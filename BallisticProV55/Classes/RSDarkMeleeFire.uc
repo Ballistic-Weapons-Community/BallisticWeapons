@@ -293,9 +293,7 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	{
 		if (BallisticPawn(Instigator) != None && RSDarkStar(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
 		{
-			if (Monster(Victim) != None)
-				BallisticPawn(Instigator).GiveAttributedHealth(Dmg / 3, Instigator.HealthMax, Instigator, True);	
-			else	BallisticPawn(Instigator).GiveAttributedHealth(Dmg, Instigator.HealthMax, Instigator, True);
+			BallisticPawn(Instigator).GiveAttributedHealth(Dmg / 3, Instigator.HealthMax, Instigator, True);	
 		}
 		
 		if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
@@ -333,25 +331,25 @@ defaultproperties
      SwipePoints(0)=(offset=(Yaw=0))
      WallHitPoint=0
      NumSwipePoints=1
-     TraceRange=(Min=170.000000,Max=170.000000)
-     Damage=25.000000
-     DamageHead=25.000000
-     DamageLimb=25.000000
+     TraceRange=(Min=150.000000,Max=150.000000)
+     Damage=30.000000
+     DamageHead=30.000000
+     DamageLimb=30.000000
      DamageType=Class'BallisticProV55.DT_RSDarkStab'
      DamageTypeHead=Class'BallisticProV55.DT_RSDarkStabHead'
      DamageTypeArm=Class'BallisticProV55.DT_RSDarkStab'
      KickForce=500
-     HookStopFactor=1.500000
-     HookPullForce=150.000000
+     HookStopFactor=1.000000
+     HookPullForce=100.000000
      ScopeDownOn=SDO_Fire
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-SawOpen',Volume=0.750000,Radius=256.000000)
      bAISilent=True
      PreFireAnim=
      FireAnim="SawStart"
      FireEndAnim="SawEnd"
-     FireRate=0.100000
+     FireRate=0.200000
      AmmoClass=Class'BallisticProV55.Ammo_DarkDiamond'
-     AmmoPerFire=2
+     AmmoPerFire=1
      ShakeRotMag=(X=64.000000,Y=16.000000)
      ShakeRotRate=(X=1024.000000,Y=1024.000000,Z=512.000000)
      ShakeRotTime=1.000000

@@ -42,33 +42,6 @@ simulated event ModeDoFire()
 {
     if (!AllowFire())
         return;
-    if (bIsJammed)
-    {
-    	if (BW.FireCount == 0)
-    	{
-    		bIsJammed=false;
-			if (bJamWastesAmmo && Weapon.Role == ROLE_Authority)
-			{
-				ConsumedLoad += Load;
-				Timer();
-			}
-	   		if (UnjamMethod == UJM_FireNextRound)
-	   		{
-		        NextFireTime += FireRate;
-   			    NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
-				BW.FireCount++;
-    			return;
-    		}
-    		if (!AllowFire())
-    			return;
-    	}
-    	else
-    	{
-	        NextFireTime += FireRate;
-   		    NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
-    		return;
-   		}
-    }
 
 	if (BW != None)
 	{
@@ -245,19 +218,19 @@ simulated function SwitchWeaponMode (byte NewMode)
 		ModePowerDrain *= 0.4;
 }
 
-//Staves deal backlash damage to hip spammer scum (Slow Bolt)
+// Dark Star uses owner's health to power the weapon
 function DoFireEffect()
 {
 	Super.DoFireEffect();
 
-	if (BW.CurrentWeaponMode == 0 && !BW.bScopeView)
+	if (BW.CurrentWeaponMode == 0)
 	{
 		Instigator.PlaySound(Sound'BWBP4-Sounds.Dark-ImmolateIgnite',,3.7,,32);
-		class'BallisticDamageType'.static.GenericHurt (Instigator, ProjectileClass.default.Damage * ((10 - RSDarkStar(BW).SoulPower) / 40), None, Instigator.Location, -vector(Instigator.GetViewRotation()) * 3000 + vect(0,0,1000), class'DT_RSDarkBacklash');
+		class'BallisticDamageType'.static.GenericHurt (Instigator, ProjectileClass.default.Damage * 0.2, None, Instigator.Location, vect(0,0,0), class'DT_RSDarkBacklash');
 	}
 
-	/*else if (BW.CurrentWeaponMode == 1)
-		class'BallisticDamageType'.static.GenericHurt (Instigator, ProjectileClass.default.Damage * 0.1, None, Instigator.Location, vect(0,0,0), class'DT_RSDarkBacklash');*/
+	else if (BW.CurrentWeaponMode == 1)
+		class'BallisticDamageType'.static.GenericHurt (Instigator, ProjectileClass.default.Damage * 0.2, None, Instigator.Location, vect(0,0,0), class'DT_RSDarkBacklash');
 }
 
 function StartBerserk()

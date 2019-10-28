@@ -28,7 +28,8 @@ defaultproperties
      BloodManagerName="BallisticProV55.BloodMan_Saw"
      bHeaddie=True
      DamageIdent="Melee"
-     bDisplaceAim=False
+     AimDisplacementDamageThreshold=30
+     AimDisplacementDuration=1
      DamageDescription=",Slash,DarkStar,Hack,"
      WeaponClass=Class'BallisticProV55.RSDarkStar'
      DeathString="%k swung %kh Dark Star into %o's pointy nose."

@@ -114,6 +114,9 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	}
 
 	else Victim = GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT);
+	
+	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+		BallisticPawn(Instigator).GiveAttributedHealth(Dmg * 0.5, Instigator.SuperHealthMax, Instigator, True);
 
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 	{
@@ -123,6 +126,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	else if (Vehicle(Victim) != None && Vehicle(Victim).Driver!=None && Vehicle(Victim).Driver.Health > 0)
 		bWasAlive = true;
 		
+	// burn and block healing
 	if (Pawn(Other) != None)
 	{
 		for (i=0;i<Other.Attached.length;i++)
@@ -337,8 +341,8 @@ defaultproperties
      AccelSpeed=50000.000000
      TrailClass=Class'BallisticProV55.RSDark1Trail'
      MyRadiusDamageType=Class'BallisticProV55.DT_RSDarkSlow'
-     DamageHead=20.000000
-     DamageLimb=20.000000
+     DamageHead=32.000000
+     DamageLimb=32.000000
      DamageTypeHead=Class'BallisticProV55.DT_RSDarkSlow'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=384.000000
@@ -350,7 +354,7 @@ defaultproperties
      Speed=3000.000000
      MaxSpeed=60000.000000
      bSwitchToZeroCollision=True
-     Damage=20.000000
+     Damage=32.000000
      DamageRadius=128.000000
      MomentumTransfer=10000.000000
      MyDamageType=Class'BallisticProV55.DT_RSDarkSlow'

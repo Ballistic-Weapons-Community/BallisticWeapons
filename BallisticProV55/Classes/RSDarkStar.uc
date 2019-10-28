@@ -960,14 +960,14 @@ defaultproperties
      SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.0;1.0;1.0")
      BringUpSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-Pullout')
      PutDownSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-Putaway')
-     MagAmmo=40
+     MagAmmo=20
      ReloadAnimRate=1.250000
      ClipHitSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemHit',Volume=0.700000)
      ClipOutSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemOut',Volume=0.700000)
      ClipInSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemIn',Volume=0.700000)
      ClipInFrame=0.700000
      WeaponModes(0)=(ModeName="Slow Bolts",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Rapid Fire",Value=4.000000)
+     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
      WeaponModes(2)=(ModeName="Plasma Flamer")
      WeaponModes(3)=(ModeName="Cone Immolation",ModeID="WM_FullAuto")
      WeaponModes(4)=(ModeName="Fire Bomb",ModeID="WM_FullAuto")

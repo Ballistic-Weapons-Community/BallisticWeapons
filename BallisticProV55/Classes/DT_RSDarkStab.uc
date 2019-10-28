@@ -28,12 +28,13 @@ defaultproperties
      DeathStrings(3)="%o was insanely shredded by %k's Dark Star."
      BloodManagerName="BallisticProV55.BloodMan_Saw"
      DamageIdent="Melee"
-     bDisplaceAim=False
+     AimDisplacementDamageThreshold=30
+     AimDisplacementDuration=1
      DamageDescription=",Slash,DarkStar,Hack,"
      WeaponClass=Class'BallisticProV55.RSDarkStar'
-     DeathString="%o screeched and lept onto %k's Dark Star saw."
-     FemaleSuicide="%o accidentally shredded herself on her DarkStar."
-     MaleSuicide="%o accidentally shredded himself on his DarkStar."
+     DeathString="%o screeched and leapt onto %k's Dark Star saw."
+     FemaleSuicide="%o accidentally shredded herself on her Dark Star."
+     MaleSuicide="%o accidentally shredded himself on his Dark Star."
      bNeverSevers=True
      PawnDamageSounds(0)=SoundGroup'BWBP4-Sounds.DarkStar.Dark-Flesh'
      KDamageImpulse=2000.000000
