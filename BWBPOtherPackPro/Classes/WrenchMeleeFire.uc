@@ -123,7 +123,7 @@ defaultproperties
      NumSwipePoints=3
      FatiguePerStrike=0.200000
      TraceRange=(Min=150.000000,Max=150.000000)
-     Damage=150.000000
+     Damage=80.000000
      DamageType=Class'BWBPOtherPackPro.DTWrenchHit'
      DamageTypeHead=Class'BWBPOtherPackPro.DTWrenchHitHead'
      DamageTypeArm=Class'BWBPOtherPackPro.DTWrenchHit'
