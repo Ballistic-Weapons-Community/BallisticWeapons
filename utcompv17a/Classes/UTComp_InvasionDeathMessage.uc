@@ -1,0 +1,6 @@
+
+
+defaultproperties
+{
+     SomeoneString="a monster"
+}

@@ -1,0 +1,6 @@
+
+
+defaultproperties
+{
+     InitialAmount=50
+}

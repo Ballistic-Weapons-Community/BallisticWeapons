@@ -1,0 +1,7 @@
+
+
+defaultproperties
+{
+     FireModeClass(0)=Class'utcompv17a.Forward_UTComp_RocketFire'
+     FireModeClass(1)=Class'utcompv17a.Forward_UTComp_RocketMultiFire'
+}

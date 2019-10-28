@@ -1,0 +1,71 @@
+//=============================================================================
+// GreenBloodSet.
+//
+// Info for green blooded beasts like aliens and skaarjez
+//
+// by Nolan "Dark Carnivour" Richert.
+// Copyright(c) 2005 RuneStorm. All Rights Reserved.
+//=============================================================================
+class BloodSetGreen extends BloodSetDefault;
+
+defaultproperties
+{
+     MyBloodName="alien-green"
+     MyBloodColor=(G=255)
+     BloodPool=Class'BallisticProV55.AD_BloodPoolGreen'
+     WaterBloodClass=Class'BallisticProV55.IE_WaterBloodGreen'
+     DragDecal=Class'BallisticProV55.AD_BloodDragGreen'
+     LowImpactDecal=Class'BallisticProV55.AD_BloodLowImpactGreen'
+     HighImpactDecal=Class'BallisticProV55.AD_BloodHighImpactGreen'
+     BulletSplat=Class'BallisticProV55.AD_BloodBulletGreen'
+     ShotgunSplat=Class'BallisticProV55.AD_BloodShotgunGreen'
+     ExplodeSplat=Class'BallisticProV55.AD_BloodExplodeGreen'
+     SlashSplat=Class'BallisticProV55.AD_BloodSlashGreen'
+     SawSplat=Class'BallisticProV55.AD_BloodSawGreen'
+     BulletEffect=Class'BallisticProV55.BG_BulletHitAlien'
+     BulletHeadEffect=Class'BallisticProV55.BG_BulletHitHeadAlien'
+     ShotgunEffect=Class'BallisticProV55.BG_ShellHitAlien'
+     ExplodeEffect=Class'BallisticProV55.IE_BloodExplodeGreen'
+     SlashEffect=Class'BallisticProV55.BG_SlashHitAlien'
+     SlashHeadEffect=Class'BallisticProV55.BG_SlashHitHeadAlien'
+     SawEffect=Class'BallisticProV55.BG_SawHitAlien'
+     SawHeadEffect=Class'BallisticProV55.BG_SawHitAlien'
+     BluntEffect=Class'BallisticProV55.BG_BluntHitAlien'
+     WoundDripper=Class'BallisticProV55.BG_BulletWoundSpurterAlien'
+     HeadExplode=Class'BallisticProV55.BG_HeadExplodeAlien'
+     TorsoExplode=Class'BallisticProV55.BG_TorsoExplodeAlien'
+     ShoulderExplode=Class'BallisticProV55.BG_ShoulderExplodeAlien'
+     ArmExplode=Class'BallisticProV55.BG_ArmExplodeAlien'
+     HandExplode=Class'BallisticProV55.BG_HandExplodeAlien'
+     LegExplode=Class'BallisticProV55.BG_LegExplodeAlien'
+     FootExplode=Class'BallisticProV55.BG_FootExplodeAlien'
+     PelvisExplode=Class'BallisticProV55.BG_PelvisExplodeAlien'
+     ShoulderExplodeLeft=Class'BallisticProV55.BG_ShoulderExplodeLeftAlien'
+     ArmExplodeLeft=Class'BallisticProV55.BG_ArmExplodeLeftAlien'
+     StumpDripper=Class'BallisticProV55.BG_StumpSpurterAlien'
+     DefaultStump=Class'BallisticProV55.BG_StumpAlien'
+     CharredStump=Class'BallisticProV55.BWStump_CharredAlien'
+     AltStumpMesh=StaticMesh'BWGoreHardwarePro.AlienStumps.Alien-LimbStump2'
+     AltCharStumpMesh=StaticMesh'BWGoreHardwarePro.AlienStumps.Alien-StumpCharred2'
+     BulletHitSound=SoundGroup'BallisticSounds2.BulletImpacts.BulletAlien'
+     ScreenEffectMisc=Class'BallisticProV55.BG_ScnBloodAlien'
+     ScreenEffectSlice=Class'BallisticProV55.BG_ScnBloodSliceAlien'
+     ScreenEffectSaw=Class'BallisticProV55.BG_ScnBloodSawAlien'
+     DefaultGibClass=Class'BallisticProV55.BWGib_Alien'
+     HeadGibs(0)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-HeadPiece1')
+     HeadGibs(1)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-HeadPiece2')
+     HeadGibs(2)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-HeadPiece3')
+     HeadGibs(3)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-HeadPiece4')
+     TorsoGibs(0)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-RibCage-FrontRight')
+     TorsoGibs(1)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-RibCage-BackLeft')
+     TorsoGibs(2)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-Spine')
+     TorsoGibs(3)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-Spine2')
+     PelvsGibs(0)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-LimbPiece')
+     PelvsGibs(1)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-LimbPiece')
+     OtherGibs(0)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-LimbPiece')
+     OtherGibs(1)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-LimbPiece')
+     OtherGibs(2)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-LimbPiece')
+     OtherGibs(3)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-LimbPiece')
+     OtherGibs(4)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-LimbPiece')
+     OtherGibs(5)=(Mesh=StaticMesh'BWGoreHardwarePro.AlienPieces.Alien-LimbPiece')
+}

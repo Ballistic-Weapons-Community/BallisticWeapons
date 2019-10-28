@@ -1,0 +1,6 @@
+
+
+defaultproperties
+{
+     bCollideActors=False
+}

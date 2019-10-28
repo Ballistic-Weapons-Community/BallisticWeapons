@@ -1,0 +1,6 @@
+
+
+defaultproperties
+{
+     bNetTemporary=False
+}

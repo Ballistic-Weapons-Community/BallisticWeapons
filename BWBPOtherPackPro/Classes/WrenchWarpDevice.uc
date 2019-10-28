@@ -1,0 +1,606 @@
+class WrenchWarpDevice extends BallisticMeleeWeapon;
+
+struct DeployableInfo
+{
+	var class<Actor> 	dClass;
+	var float				WarpInTime;
+	var vector				SpawnOffset;
+	var int					AmmoReq;
+	var bool				CheckSlope; // should block unless placed on flat enough area
+	var string				dDescription; 	//A simple explanation of what this mode does.
+};
+
+var array<DeployableInfo> Deployables;
+var DeployableInfo AltDeployable;
+
+var WrenchTeleporter Teleporters[2];
+
+var bool bRemove;
+
+const DeployRange = 512;
+
+//Now adds initial ammo in all cases
+function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
+{
+    if ( FireMode[m] != None && FireMode[m].AmmoClass != None )
+    {
+		Ammo[m] = Ammunition(Instigator.FindInventoryType(FireMode[m].AmmoClass));
+        if (Ammo[m] == None)
+        {
+            Ammo[m] = Spawn(FireMode[m].AmmoClass, instigator);
+            Instigator.AddInventory(Ammo[m]);
+			//Dropped pickup, just add ammo
+			if ((WP != None) && (WP.bDropped || WP.AmmoAmount[m] > 0))
+				Ammo[m].AddAmmo(WP.AmmoAmount[m]);
+			//else add initial complement
+			else if (bJustSpawned && (WP==None || !WP.bDropped) && (m == 0 || FireMode[m].AmmoClass != FireMode[0].AmmoClass))
+			{
+				if (Level.Game.MaxLives > 0)
+					Ammo[m].AddAmmo(Ammo[m].MaxAmmo);
+				else Ammo[m].AddAmmo(Ammo[m].InitialAmount);
+			}
+        }
+
+		else
+		{
+			//Dropped pickup, just add ammo
+			if ((WP != None) && (WP.bDropped || WP.AmmoAmount[m] > 0))
+			Ammo[m].AddAmmo(WP.AmmoAmount[m]);
+		}
+        Ammo[m].GotoState('');
+	}
+}
+
+simulated function PostBeginPlay()
+{
+	local WrenchTeleporter T;
+	
+	Super(BallisticWeapon).PostBeginPlay();
+	if (Role == ROLE_Authority && !Level.Game.bAllowVehicles)
+		Level.Game.bAllowVehicles = True;
+	MeleeSpreadAngle = BallisticMeleeFire(BFireMode[1]).GetCrosshairInaccAngle();
+	
+	foreach DynamicActors(class'WrenchTeleporter', T)
+	{
+		if (T.OwningController == Instigator.Controller)
+		{
+			if (Teleporters[0] == None)
+			{
+				Teleporters[0] = T;
+				continue;
+			}
+			else if (Teleporters[1] == None)
+			{
+				Teleporters[1] = T;
+				continue;
+			}
+			break;
+		}
+	}
+}
+
+exec simulated function SwitchWeaponMode(optional byte i)
+{
+	if (ClientState == WS_PutDown || ClientState == WS_Hidden)
+		return;
+	bRedirectSwitchToFiremode=True;
+	PendingMode = CurrentWeaponMode;
+}
+
+exec simulated function WeaponModeRelease()
+{
+	bRedirectSwitchToFiremode=False;
+	CurrentWeaponMode = PendingMode;
+	ServerSwitchWeaponMode(PendingMode);
+}
+
+simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
+{
+	if (bRedirectSwitchToFiremode)
+	{
+		PendingMode--;
+		if (PendingMode >= Deployables.Length)
+			PendingMode = Deployables.Length-1;
+		return None;
+	}
+
+	return Super.PrevWeapon(CurrentChoice, CurrentWeapon);
+}
+
+simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
+{
+	if (bRedirectSwitchToFiremode)
+	{
+		PendingMode++;
+		if (PendingMode >= Deployables.Length)
+			PendingMode = 0;
+		return None;
+	}
+
+	return Super.NextWeapon(CurrentChoice, CurrentWeapon);
+}
+
+simulated function bool PutDown()
+{
+	if (Instigator.IsLocallyControlled())
+	{
+		bRedirectSwitchToFiremode = False;
+		PendingMode = CurrentWeaponMode;
+	}
+	
+	bRemove=False;
+	
+	return Super.PutDown();
+}
+
+simulated function NewDrawWeaponInfo(Canvas C, float YPos)
+{
+	local float		ScaleFactor, XL, YL, YL2, SprintFactor;
+	local string	Temp;
+	local int i;
+	local byte StartMode;
+
+	Super(Weapon).NewDrawWeaponInfo (C, YPos);
+	
+	DrawCrosshairs(C);
+	
+	if (bSkipDrawWeaponInfo)
+		return;
+
+	ScaleFactor = C.ClipY / 900;
+
+	if (CurrentWeaponMode < WeaponModes.length && !WeaponModes[CurrentWeaponMode].bUnavailable && WeaponModes[CurrentWeaponMode].ModeName != "")
+	{
+		if (!bRedirectSwitchToFiremode)
+		{
+			// Draw the spare ammo amount
+			C.Font = GetFontSizeIndex(C, -2 + int(2 * class'HUD'.default.HudScale));
+			C.DrawColor = class'hud'.default.WhiteColor;
+			Temp = string(Ammo[0].AmmoAmount);
+			if (Temp == "0")
+				C.DrawColor = class'hud'.default.RedColor;
+			C.TextSize(Temp, XL, YL);
+			C.CurX = C.ClipX - 20 * ScaleFactor * class'HUD'.default.HudScale - XL;
+			C.CurY = C.ClipY - 200 * ScaleFactor * class'HUD'.default.HudScale - YL;
+			C.DrawText(Temp, false);
+			C.DrawColor = class'hud'.default.WhiteColor;
+	
+			C.Font = GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
+			C.TextSize(WeaponModes[CurrentWeaponMode].ModeName@"("$Deployables[CurrentWeaponMode].AmmoReq$")", XL, YL2);
+			C.CurX = C.ClipX - 15 * ScaleFactor * class'HUD'.default.HudScale - XL;
+			C.CurY = C.ClipY - (130 * ScaleFactor * class'HUD'.default.HudScale) - YL2 - YL;
+			C.DrawText(WeaponModes[CurrentWeaponMode].ModeName@"("$Deployables[CurrentWeaponMode].AmmoReq$")", false);
+			C.Font = GetFontSizeIndex(C, -5 + int(2* class'HUD'.default.HudScale));
+			C.TextSize(Deployables[CurrentWeaponMode].dDescription, XL, YL);
+			C.CurY += YL/2;
+			C.CurX = C.ClipX - 15 * ScaleFactor * class'HUD'.default.HudScale - XL;
+			C.DrawText(Deployables[CurrentWeaponMode].dDescription);
+		}
+		
+		else
+		{
+			StartMode = PendingMode - 2;
+			if (StartMode >= Deployables.Length)
+				StartMode = (Deployables.Length-1) - (255 - StartMode);
+				
+				//case -2: desire 3
+				//case -1: desire 2
+				//case 0: desire 1
+				//case 1: desire 0
+				//case 2: desire -1
+				
+				
+			for (i=-2; i<3; i++)
+			{
+				if (i != 0)
+					C.SetDrawColor(255,128,128,255 - (75 * Abs(i)));
+				else C.SetDrawColor(255,255,255,255);
+				C.Font = GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
+				C.TextSize(WeaponModes[StartMode].ModeName, XL, YL2);
+				C.CurX = C.ClipX - 15 * ScaleFactor * class'HUD'.default.HudScale - XL;
+				C.CurY = C.ClipY - (130 * ScaleFactor * class'HUD'.default.HudScale) - (YL2 * (-i +1)) - YL;
+				C.DrawText(WeaponModes[StartMode].ModeName, false);
+				
+				StartMode++;
+				if (StartMode >= Deployables.Length)
+					StartMode = 0;
+			}
+		}
+	}
+	
+	// This is pretty damn disgusting, but the weapon seems to be the only way we can draw extra info on the HUD
+	// Would be nice if someone could have a HUD function called along the inventory chain
+	if (SprintControl != None && SprintControl.Stamina < SprintControl.MaxStamina)
+	{
+		SprintFactor = SprintControl.Stamina / SprintControl.MaxStamina;
+		C.CurX = C.OrgX  + 5    * ScaleFactor * class'HUD'.default.HudScale;
+		C.CurY = C.ClipY - 330  * ScaleFactor * class'HUD'.default.HudScale;
+		if (SprintFactor < 0.2)
+			C.SetDrawColor(255, 0, 0);
+		else if (SprintFactor < 0.5)
+			C.SetDrawColor(64, 128, 255);
+		else
+			C.SetDrawColor(0, 0, 255);
+		C.DrawTile(Texture'Engine.MenuWhite', 200 * ScaleFactor * class'HUD'.default.HudScale * SprintFactor, 30 * ScaleFactor * class'HUD'.default.HudScale, 0, 0, 1, 1);
+	}
+}
+
+simulated function PostNetBeginPlay()
+{
+	Super.PostNetBeginPlay();
+	
+	AnimBlendParams(2, 1, 0, 0, 'HammerBase');
+	AnimBlendParams(1, 1, 0, 0, 'Mouth');
+	LoopAnim('HammerLoop', 1, 0, 2);
+	LoopAnim('JawsLoop', 1, 0, 1);
+}
+
+//===========================================================================
+// AmmoStatus
+//
+// Called from HUD, so it's used to call the alt timer.
+//===========================================================================
+simulated function float AmmoStatus(optional int Mode) 
+{
+	if ( Instigator == None || Instigator.Weapon != self )
+	{
+		if ( (FireMode[0].TimerInterval != 0.f) && (FireMode[0].NextTimerPop < Level.TimeSeconds) )
+		{
+			FireMode[0].Timer();
+  			if ( FireMode[0].bTimerLoop )
+				FireMode[0].NextTimerPop = FireMode[0].NextTimerPop + FireMode[0].TimerInterval;
+			else
+				FireMode[0].TimerInterval = 0.f;
+		}
+	}
+	return Super.AmmoStatus(Mode);
+}
+
+//===========================================================================
+// Weapon Special act as dedicated removal.
+//===========================================================================
+exec simulated function WeaponSpecial(optional byte i)
+{
+	if (Level.TimeSeconds < FireMode[0].NextFireTime)
+		return;
+	PlayAnim(FireMode[0].FireAnim, FireMode[0].FireAnimRate, 0.1);
+	ServerWeaponSpecial(i);
+	FireMode[0].NextFireTime = Level.TimeSeconds + FireMode[0].FireRate;
+}
+
+function ServerWeaponSpecial(optional byte i)
+{
+	if (Level.TimeSeconds < FireMode[0].NextFireTime)
+		return;
+	bRemove=True;
+	PlayAnim(FireMode[0].FireAnim, FireMode[0].FireAnimRate, 0.1);
+	FireMode[0].NextFireTime = Level.TimeSeconds + FireMode[0].FireRate;
+}
+
+//===========================================================================
+// Notify_WrenchDeploy
+//
+// Responsible for spawning the pre-warp effect for any given deployable.
+// Traces out from the view to hit something, then does an extent trace to check for room.
+// If OK, spawns the pre-warp at the required height.
+//===========================================================================
+function Notify_WrenchDeploy()
+{
+	local Actor HitActor;
+	local Vector Start, End, HitNorm, HitLoc;
+	local WrenchPreconstructor WP;
+	local WrenchDeployable D;
+	
+	Start = Instigator.Location + Instigator.EyePosition();
+	End = Start + vector(Instigator.GetViewRotation()) * DeployRange;
+	
+	HitActor = Trace(HitLoc, HitNorm, End, Start, true);
+	
+	if (HitActor == None)
+		HitActor = Trace(HitLoc, HitNorm, End - vect(0,0,256), End, true);
+		
+	if (WrenchDeployable(HitActor) != None && WrenchDeployable(HitActor).OwningController == Instigator.Controller)
+	{
+		WrenchDeployable(HitActor).bWarpOut=True;
+		WrenchDeployable(HitActor).GoToState('Destroying');
+		if (Ammo[0].AmmoAmount <= 40)	// XAVEDIT
+			Ammo[0].AddAmmo(Min(40 - Ammo[0].AmmoAmount, 10));
+		return;
+	}
+	
+	if (bRemove)
+	{
+		bRemove = False;
+		return;
+	}
+			
+	if (CurrentWeaponMode == 2 && Level.Game.GameName == "Jailbreak")
+	{
+		Instigator.ClientMessage("You're not allowed to place teleporters in this gametype.");
+		return;
+	}
+	
+	//Safety for mode switch during attack
+	if (Deployables[CurrentWeaponMode].AmmoReq > Ammo[0].AmmoAmount)
+	{
+		Instigator.ClientMessage("Not enough charge to warp in"@WeaponModes[CurrentWeaponMode].ModeName$".");
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		return;
+	}
+		
+	if (HitActor == None || !HitActor.bWorldGeometry)
+	{
+		Instigator.ClientMessage("Must target an unoccupied surface.");
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		return;
+	}
+	
+	if (HitLoc == vect(0,0,0))
+	{
+		Instigator.ClientMessage("Out of range.");
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		return;
+	}
+	
+	if (Deployables[CurrentWeaponMode].CheckSlope && HitNorm dot vect(0,0,1) < 0.9)
+	{
+		Instigator.ClientMessage("Surface is too steep for construction.");
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		return;
+	}
+	
+	Start = HitLoc + vect(0,0,1);
+	
+	if (!FastTrace(Start, Start + Deployables[CurrentWeaponMode].dClass.default.CollisionRadius * vect(1,0,0)) ||
+	!FastTrace(Start, Start + Deployables[CurrentWeaponMode].dClass.default.CollisionRadius * vect(-1,0,0)) ||
+	!FastTrace(Start, Start + Deployables[CurrentWeaponMode].dClass.default.CollisionRadius * vect(0,-1,0)) ||
+	!FastTrace(Start,Start +  Deployables[CurrentWeaponMode].dClass.default.CollisionRadius * vect(0,1,0)))
+	{
+		Instigator.ClientMessage("Insufficient space for construction.");
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		return;
+	}
+	
+	if (CurrentWeaponMode != 4)
+	{
+		foreach RadiusActors(class'WrenchDeployable', D, 512, HitLoc)
+		{
+			Instigator.ClientMessage("Too close to a major deployable.");
+			PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+			return;
+		}
+		
+		foreach RadiusActors(class'WrenchPreconstructor', WP, 512, HitLoc)
+		{
+			Instigator.ClientMessage("Too close to a warping deployable.");
+			PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+			return;
+		}
+	}
+		
+	WP = Spawn(class'WrenchPreconstructor', Instigator, ,Start + vect(0,0,1) * Deployables[CurrentWeaponMode].dClass.default.CollisionRadius, Instigator.Rotation);
+	if (Deployables[CurrentWeaponMode].SpawnOffset == vect(0,0,0))
+		WP.GroundPoint = Start - vect(0,0,1);
+	else WP.GroundPoint = Start + Deployables[CurrentWeaponMode].SpawnOffset;
+	WP.Instigator = Instigator;
+	WP.Master = self;
+	WP.Initialize(Deployables[CurrentWeaponMode].dClass,Deployables[CurrentWeaponMode].WarpInTime);
+	ConsumeAmmo(0, Deployables[CurrentWeaponMode].AmmoReq, true);
+}
+
+//===========================================================================
+// XAVEDIT
+// Notify_BarrierDeploy
+//
+// Responsible for spawning the pre-warp effect for any given deployable.
+// Traces out from the view to hit something, then does an extent trace to check for room.
+// If OK, spawns the pre-warp at the required height.
+//===========================================================================
+function Notify_BarrierDeploy()
+{
+	local Actor HitActor;
+	local Vector Start, End, HitNorm, HitLoc;
+	local WrenchPreconstructor WP;
+	
+	Start = Instigator.Location + Instigator.EyePosition();
+	End = Start + vector(Instigator.GetViewRotation()) * DeployRange;
+	
+	HitActor = Trace(HitLoc, HitNorm, End, Start, true);
+	
+	if (HitActor == None)
+		HitActor = Trace(HitLoc, HitNorm, End - vect(0,0,256), End, true);
+		
+	if (WrenchDeployable(HitActor) != None && WrenchDeployable(HitActor).OwningController == Instigator.Controller)
+	{
+		WrenchDeployable(HitActor).bWarpOut=True;
+		WrenchDeployable(HitActor).GoToState('Destroying');
+		if (Ammo[0].AmmoAmount <= 40)	// XAVEDIT
+			Ammo[0].AddAmmo(Min(40 - Ammo[0].AmmoAmount, 10));
+		return;
+	}
+	
+	//Safety for mode switch during attack
+	if (AltDeployable.AmmoReq > Ammo[0].AmmoAmount)
+	{
+		Instigator.ClientMessage("Not enough charge to warp in"@WeaponModes[0].ModeName$".");
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		return;
+	}
+		
+	if (HitActor == None || !HitActor.bWorldGeometry)
+	{
+		Instigator.ClientMessage("Must target an unoccupied surface.");
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		return;
+	}
+	
+	if (HitLoc == vect(0,0,0))
+	{
+		Instigator.ClientMessage("Out of range.");
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		return;
+	}
+	
+	if (AltDeployable.CheckSlope && HitNorm dot vect(0,0,1) < 0.1)
+	{
+		Instigator.ClientMessage("Surface is too steep for construction.");
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		return;
+	}
+	
+	Start = HitLoc + vect(0,0,1);
+	
+	if (!FastTrace(Start, Start + AltDeployable.dClass.default.CollisionRadius * vect(1,0,0)) ||
+	!FastTrace(Start, Start + AltDeployable.dClass.default.CollisionRadius * vect(-1,0,0)) ||
+	!FastTrace(Start, Start + AltDeployable.dClass.default.CollisionRadius * vect(0,-1,0)) ||
+	!FastTrace(Start,Start +  AltDeployable.dClass.default.CollisionRadius * vect(0,1,0)))
+	{
+		Instigator.ClientMessage("Insufficient space for construction.");
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		return;
+	}
+		
+	WP = Spawn(class'WrenchPreconstructor', Instigator, ,Start + vect(0,0,1) * AltDeployable.dClass.default.CollisionRadius, Instigator.Rotation);
+	if (AltDeployable.SpawnOffset == vect(0,0,0))
+		WP.GroundPoint = Start - vect(0,0,1);
+	else WP.GroundPoint = Start + AltDeployable.SpawnOffset;
+	WP.Instigator = Instigator;
+	WP.Master = self;
+	WP.Initialize(AltDeployable.dClass,AltDeployable.WarpInTime);
+	ConsumeAmmo(0, AltDeployable.AmmoReq, true);
+}
+
+// choose between regular or alt-fire
+function byte BestMode()
+{
+	return 1;
+}
+
+simulated function AnimEnd(int Channel)
+{
+	if (Channel == 0)
+		Super.AnimEnd(Channel);
+}
+
+function float GetAIRating()
+{
+	local Bot B;
+	local float Result, Dist;
+	local vector Dir;
+
+	B = Bot(Instigator.Controller);
+	if ( (B == None) || (B.Enemy == None) )
+		return AIRating;
+
+	Dir = B.Enemy.Location - Instigator.Location;
+	Dist = VSize(Dir);
+
+	Result = AIRating;
+	// Enemy too far away
+	if (Dist > 1500)
+		return 0.1;			// Enemy too far away
+	// Better if we can get him in the back
+	if (vector(B.Enemy.Rotation) dot Normal(Dir) < 0.0)
+		Result += 0.08 * B.Skill;
+	// If the enemy has a knife too, a gun looks better
+	if (B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
+		Result = FMax(0.0, Result *= 0.7 - (Dist/1000));
+	// The further we are, the worse it is
+	else
+		Result = FMax(0.0, Result *= 1 - (Dist/1000));
+
+	return Result;
+}
+
+// tells bot whether to charge or back off while using this weapon
+function float SuggestAttackStyle()
+{
+	if (AIController(Instigator.Controller) == None)
+		return 0.5;
+	return AIController(Instigator.Controller).Skill / 4;
+}
+
+// tells bot whether to charge or back off while defending against this weapon
+function float SuggestDefenseStyle()
+{
+	local Bot B;
+	local float Result, Dist;
+
+	B = Bot(Instigator.Controller);
+	if ( (B == None) || (B.Enemy == None) )
+		return -0.5;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+
+	Result = -1 * (B.Skill / 6);
+	Result *= (1 - (Dist/1500));
+    return FClamp(Result, -1.0, -0.3);
+}
+
+/*
+simulated function float ChargeBar()
+{
+	if (Ammo[0].AmmoAmount == 4 || Level.TimeSeconds > FireMode[0].NextTimerPop)
+		return 1;
+	return (30.0f - (FireMode[0].NextTimerPop - Level.TimeSeconds)) / 30.0f;
+}
+*/
+// End AI Stuff =====
+
+defaultproperties
+{
+     Deployables(0)=(dClass=Class'BWBPOtherPackPro.WrenchBoostPad',WarpInTime=5.000000,AmmoReq=20,CheckSlope=True,dDescription="A pad which propels players through the air in the direction they were moving.")
+     Deployables(1)=(dClass=Class'BWBPOtherPackPro.WrenchTeleporter',WarpInTime=20.000000,AmmoReq=20,CheckSlope=True,dDescription="A teleporter. Only two may be placed.")
+     Deployables(2)=(dClass=Class'BallisticProV55.Sandbag',WarpInTime=3.000000,AmmoReq=10,CheckSlope=False,dDescription="A unit of three sandbags which can be used as cover.")
+     Deployables(3)=(dClass=Class'BWBPOtherPackPro.WrenchShieldGeneratorB',WarpInTime=25.000000,AmmoReq=40,CheckSlope=True,dDescription="Generates a shield impervious to attack from both sides.")
+     Deployables(4)=(dClass=Class'BWBPOtherPackPro.WrenchAmmoCrate',WarpInTime=25.000000,AmmoReq=40,CheckSlope=True,dDescription="A crate which restocks ammunition to initial levels.")
+     Deployables(5)=(dClass=Class'UT2k4Assault.ASTurret_Minigun',WarpInTime=35.000000,SpawnOffset=(Z=40.000000),AmmoReq=40,CheckSlope=True,dDescription="A static minigun turret. Resistant to attacks.")
+     AltDeployable=(dClass=Class'BWBPOtherPackPro.WrenchEnergyBarrier',WarpInTime=0.500000,AmmoReq=10,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
+     PlayerSpeedFactor=1.100000
+     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BWBPOtherPackTex.Wrench.BigIcon_Wrench'
+     BigIconCoords=(Y2=240)
+     bAllowWeaponInfoOverride=False
+     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     ManualLines(0)="Constructs various deployables. Will deploy to the aim point. A description of each deployable is given underneath the fire mode text. Holding Weapon Function allows the user to scroll through the modes."
+     ManualLines(1)="Constructs an energy barrier, regardless of the currently active mode."
+     ManualLines(2)="Grants a 10% speed increase."
+     SpecialInfo(0)=(Info="180.0;6.0;-999.0;-1.0;-999.0;-999.0;-999.0")
+     MeleeFireClass=Class'BWBPOtherPackPro.WrenchMeleeFire'
+     BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
+     PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
+     MagAmmo=1
+     bNoMag=True
+     WeaponModes(0)=(ModeName="Boost Pad",bUnavailable=False,ModeID="WM_FullAuto")
+     WeaponModes(1)=(ModeName="Teleporter",bUnavailable=False,ModeID="WM_SemiAuto")
+     WeaponModes(2)=(ModeName="Sandbags")
+     WeaponModes(3)=(ModeName="Shield Generator",ModeID="WM_FullAuto")
+     WeaponModes(4)=(ModeName="Ammo Crate",ModeID="WM_FullAuto")
+     WeaponModes(5)=(ModeName="Minigun Turret",ModeID="WM_SemiAuto")
+     bNotifyModeSwitch=True
+     GunLength=0.000000
+     bAimDisabled=True
+     FireModeClass(0)=Class'BWBPOtherPackPro.WrenchPrimaryFire'
+     FireModeClass(1)=Class'BWBPOtherPackPro.WrenchSecondaryFire'
+     SelectAnimRate=1.250000
+     PutDownTime=1.000000
+     BringUpTime=1.000000
+     SelectForce="SwitchToAssaultRifle"
+     AIRating=0.200000
+     CurrentRating=0.200000
+     bMeleeWeapon=True
+     Description="Nanoforge Uplink Device 'Combat Wrench'||Manufacturer: Apollo Industries||An oft overlooked tool paramount in keeping a mobile army moving and establishing and fortifying forward bases, the Nanoforge Uplink Device allows a combat engineer to deploy protective fortifications, repair just about anything, and utilize off-site nanoforge plants to rapidly construct key structures and vehicles. Nick-named 'The Attitude Adjuster' by many an engineer, it gained a certain reverence after a single injured combat engineer stayed at his squad's machine gun nest to slow the enemy Cryon forces while the rest of the UFC forces retreated. When his body was recovered, he was found with a Combat Wrench in hand and 14 armored Cryon gunners laying about him, their cause of death - blunt force trauma."
+     Priority=13
+     HudColor=(G=100,R=200)
+     CenteredOffsetY=7.000000
+     CenteredRoll=0
+     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+     PickupClass=Class'BWBPOtherPackPro.WrenchPickup'
+     PlayerViewOffset=(X=10.000000,Z=-7.000000)
+     AttachmentClass=Class'BWBPOtherPackPro.WrenchAttachment'
+     IconMaterial=Texture'BWBPOtherPackTex.Wrench.Icon_Wrench'
+     IconCoords=(X2=128,Y2=32)
+     ItemName="NFUD Combat Wrench"
+     Mesh=SkeletalMesh'BWBPOtherPackAnim.Techwrench_FP'
+     DrawScale=0.300000
+}

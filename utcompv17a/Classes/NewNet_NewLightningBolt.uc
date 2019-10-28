@@ -1,0 +1,6 @@
+
+
+defaultproperties
+{
+     bSkipActorPropertyReplication=False
+}

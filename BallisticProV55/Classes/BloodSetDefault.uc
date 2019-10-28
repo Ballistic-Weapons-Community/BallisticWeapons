@@ -1,0 +1,72 @@
+//=============================================================================
+// BloodSetDefault.
+//
+// Info for red blooded brutes like humans and juggs.
+//
+// by Nolan "Dark Carnivour" Richert.
+// Copyright(c) 2005 RuneStorm. All Rights Reserved.
+//=============================================================================
+class BloodSetDefault extends BallisticBloodSet;
+
+defaultproperties
+{
+     MyBloodName="default-red"
+     MyBloodColor=(R=255)
+     BloodPool=Class'BallisticProV55.AD_BloodPool'
+     WaterBloodClass=Class'BallisticProV55.IE_WaterBlood'
+     DragDecal=Class'BallisticProV55.AD_BloodDrag'
+     LowImpactDecal=Class'BallisticProV55.AD_BloodLowImpact'
+     HighImpactDecal=Class'BallisticProV55.AD_BloodHighImpact'
+     BulletSplat=Class'BallisticProV55.AD_BloodBullet'
+     ShotgunSplat=Class'BallisticProV55.AD_BloodShotgun'
+     ExplodeSplat=Class'BallisticProV55.AD_BloodExplode'
+     SlashSplat=Class'BallisticProV55.AD_BloodSlash'
+     SawSplat=Class'BallisticProV55.AD_BloodSaw'
+     BulletEffect=Class'BallisticProV55.BG_BulletHit'
+     BulletHeadEffect=Class'BallisticProV55.BG_BulletHitHead'
+     ShotgunEffect=Class'BallisticProV55.BG_ShellHit'
+     ExplodeEffect=Class'BallisticProV55.IE_BloodExplode'
+     SlashEffect=Class'BallisticProV55.BG_SlashHit'
+     SlashHeadEffect=Class'BallisticProV55.BG_SlashHitHead'
+     SawEffect=Class'BallisticProV55.BG_SawHit'
+     SawHeadEffect=Class'BallisticProV55.BG_SawHit'
+     BluntEffect=Class'BallisticProV55.BG_BluntHit'
+     WoundDripper=Class'BallisticProV55.BG_BulletWoundSpurter'
+     HeadExplode=Class'BallisticProV55.BG_HeadExplode'
+     TorsoExplode=Class'BallisticProV55.BG_TorsoExplode'
+     ShoulderExplode=Class'BallisticProV55.BG_ShoulderExplode'
+     ArmExplode=Class'BallisticProV55.BG_ArmExplode'
+     HandExplode=Class'BallisticProV55.BG_HandExplode'
+     LegExplode=Class'BallisticProV55.BG_LegExplode'
+     FootExplode=Class'BallisticProV55.BG_FootExplode'
+     PelvisExplode=Class'BallisticProV55.BG_PelvisExplode'
+     ShoulderExplodeLeft=Class'BallisticProV55.BG_ShoulderExplodeLeft'
+     ArmExplodeLeft=Class'BallisticProV55.BG_ArmExplodeLeft'
+     StumpDripper=Class'BallisticProV55.BG_StumpSpurter'
+     DefaultStump=Class'BallisticProV55.BallisticStump'
+     CharredStump=Class'BallisticProV55.BWStump_Charred'
+     AltStumpMesh=StaticMesh'BWGoreHardwarePro.Stumps.LimbStump2'
+     AltCharStumpMesh=StaticMesh'BWGoreHardwarePro.Stumps.StumpCharred2'
+     BulletHitSound=SoundGroup'BallisticSounds2.BulletImpacts.BulletFlesh'
+     BulletHitHeadSound=SoundGroup'BallisticSounds2.BulletImpacts.Headshot'
+     ScreenEffectMisc=Class'BallisticProV55.BG_ScnBlood'
+     ScreenEffectSlice=Class'BallisticProV55.BG_ScnBloodSlice'
+     ScreenEffectSaw=Class'BallisticProV55.BG_ScnBloodSaw'
+     DefaultGibClass=Class'BallisticProV55.BWGib_Default'
+     HeadGibs(0)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.HeadPiece1',offset=(X=2.000000,Y=-4.000000,Z=3.000000),Velocity=(X=(Min=50.000000,Max=100.000000),Y=(Min=-50.000000),Z=(Max=200.000000)),DrawScale=1.200000)
+     HeadGibs(1)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.HeadPiece2',offset=(X=4.000000,Y=1.000000,Z=3.000000),Velocity=(X=(Min=-50.000000,Max=100.000000),Y=(Min=25.000000,Max=50.000000),Z=(Min=25.000000,Max=200.000000)),DrawScale=1.200000)
+     HeadGibs(2)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.HeadPiece3',offset=(X=1.000000,Y=2.000000,Z=3.000000),Velocity=(X=(Min=-20.000000,Max=150.000000),Y=(Min=25.000000,Max=50.000000),Z=(Max=150.000000)),DrawScale=1.200000)
+     HeadGibs(3)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.HeadPiece4',offset=(X=4.500000,Y=-0.500000,Z=-1.000000),Velocity=(X=(Min=25.000000,Max=10.000000),Y=(Min=-40.000000,Max=10.000000),Z=(Min=50.000000,Max=50.000000)),DrawScale=1.200000)
+     TorsoGibs(0)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.RibCage-FrontRight',offset=(X=-1.000000,Y=6.000000,Z=16.000000),Velocity=(X=(Max=200.000000),Y=(Max=100.000000),Z=(Max=180.000000)),DrawScale=1.700000)
+     TorsoGibs(1)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.RibCage-BackLeft',offset=(X=-1.000000,Y=-6.000000,Z=12.000000),Velocity=(X=(Min=-20.000000,Max=200.000000),Y=(Min=-100.000000),Z=(Max=140.000000)),DrawScale=1.700000)
+     TorsoGibs(2)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.spine',offset=(X=-1.000000,Z=4.000000),Velocity=(X=(Min=10.000000,Max=150.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Max=150.000000)),DrawScale=1.700000)
+     TorsoGibs(3)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.Spine2',offset=(X=-1.000000,Z=18.000000),Velocity=(X=(Min=10.000000,Max=150.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=100.000000,Max=300.000000)),DrawScale=1.700000)
+     PelvsGibs(0)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.LimbPiece',offset=(Y=7.000000,Z=-12.000000),Velocity=(X=(Min=-50.000000,Max=200.000000),Y=(Max=100.000000),Z=(Max=50.000000)),Pivot=(Roll=-4096),DrawScale=1.100000)
+     PelvsGibs(1)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.LimbPiece',offset=(Y=-7.000000,Z=-12.000000),Velocity=(X=(Min=-50.000000,Max=200.000000),Y=(Min=-100.000000),Z=(Max=50.000000)),Pivot=(Roll=4096),DrawScale=1.100000)
+     OtherGibs(0)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.LimbPiece',offset=(Y=-8.000000),Velocity=(X=(Min=-400.000000,Max=50.000000),Y=(Max=100.000000),Z=(Max=200.000000)),Pivot=(Roll=8192),DrawScale=0.900000)
+     OtherGibs(1)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.LimbPiece',offset=(Y=8.000000),Velocity=(X=(Min=-50.000000,Max=400.000000),Y=(Max=100.000000),Z=(Max=200.000000)),Pivot=(Roll=-8192),DrawScale=0.900000)
+     OtherGibs(2)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.LimbPiece',offset=(Y=-8.000000),Velocity=(X=(Max=350.000000),Y=(Min=-100.000000),Z=(Max=200.000000)),Pivot=(Roll=8192),DrawScale=0.900000)
+     OtherGibs(3)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.LimbPiece',offset=(Y=8.000000),Velocity=(X=(Max=350.000000),Y=(Max=100.000000),Z=(Max=200.000000)),Pivot=(Roll=-8192),DrawScale=0.900000)
+     OtherGibs(4)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.LimbPiece',Velocity=(X=(Min=50.000000,Max=350.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=20.000000,Max=100.000000)),DrawScale=1.200000)
+     OtherGibs(5)=(Mesh=StaticMesh'BWGoreHardwarePro.Pieces.LimbPiece',Velocity=(X=(Min=50.000000,Max=350.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=20.000000,Max=100.000000)),DrawScale=1.200000)
+}

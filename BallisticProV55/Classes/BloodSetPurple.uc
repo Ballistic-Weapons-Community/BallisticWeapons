@@ -1,0 +1,70 @@
+//=============================================================================
+// PurpleBloodSet.
+//
+// Info for purple blood critters like bots
+//
+// by Nolan "Dark Carnivour" Richert.
+// Copyright(c) 2005 RuneStorm. All Rights Reserved.
+//=============================================================================
+class BloodSetPurple extends BloodSetDefault;
+
+defaultproperties
+{
+     MyBloodName="bot-purple"
+     MyBloodColor=(B=255,G=150)
+     BloodPool=Class'BallisticProV55.AD_BloodPoolPurple'
+     WaterBloodClass=Class'BallisticProV55.IE_WaterBloodPurple'
+     DragDecal=Class'BallisticProV55.AD_BloodDragPurple'
+     LowImpactDecal=Class'BallisticProV55.AD_BloodLowImpactPurple'
+     HighImpactDecal=Class'BallisticProV55.AD_BloodHighImpactPurple'
+     BulletSplat=Class'BallisticProV55.AD_BloodBulletPurple'
+     ShotgunSplat=Class'BallisticProV55.AD_BloodShotgunPurple'
+     ExplodeSplat=Class'BallisticProV55.AD_BloodExplodePurple'
+     SlashSplat=Class'BallisticProV55.AD_BloodSlashPurple'
+     SawSplat=Class'BallisticProV55.AD_BloodSawPurple'
+     BulletEffect=Class'BallisticProV55.BG_BulletHitBot'
+     BulletHeadEffect=Class'BallisticProV55.BG_BulletHitHeadBot'
+     ShotgunEffect=Class'BallisticProV55.BG_ShellHitBot'
+     ExplodeEffect=Class'BallisticProV55.IE_BloodExplodePurple'
+     SlashEffect=Class'BallisticProV55.BG_SlashHitBot'
+     SlashHeadEffect=Class'BallisticProV55.BG_SlashHitHeadBot'
+     SawEffect=Class'BallisticProV55.BG_SawHitBot'
+     SawHeadEffect=Class'BallisticProV55.BG_SawHitBot'
+     BluntEffect=Class'BallisticProV55.BG_BluntHitBot'
+     WoundDripper=Class'BallisticProV55.BG_BulletWoundSpurterBot'
+     HeadExplode=Class'BallisticProV55.BG_HeadExplodeBot'
+     TorsoExplode=Class'BallisticProV55.BG_TorsoExplodeBot'
+     ShoulderExplode=Class'BallisticProV55.BG_ShoulderExplodeBot'
+     ArmExplode=Class'BallisticProV55.BG_ArmExplodeBot'
+     HandExplode=Class'BallisticProV55.BG_HandExplodeBot'
+     LegExplode=Class'BallisticProV55.BG_LegExplodeBot'
+     FootExplode=Class'BallisticProV55.BG_FootExplodeBot'
+     PelvisExplode=Class'BallisticProV55.BG_PelvisExplodeBot'
+     ShoulderExplodeLeft=Class'BallisticProV55.BG_ShoulderExplodeLeftBot'
+     ArmExplodeLeft=Class'BallisticProV55.BG_ArmExplodeLeftBot'
+     StumpDripper=Class'BallisticProV55.BG_StumpSpurterBot'
+     DefaultStump=None
+     CharredStump=None
+     BulletHitSound=SoundGroup'BallisticSounds2.BulletImpacts.BulletBot'
+     ScreenEffectMisc=Class'BallisticProV55.BG_ScnBloodBot'
+     ScreenEffectSlice=Class'BallisticProV55.BG_ScnBloodSliceBot'
+     ScreenEffectSaw=Class'BallisticProV55.BG_ScnBloodSawBot'
+     DefaultGibClass=Class'BallisticProV55.BWGib_Bot'
+     HeadGibs(0)=(Mesh=StaticMesh'XEffects.GibBotHead',DrawScale=0.450000)
+     HeadGibs(1)=(Mesh=None)
+     HeadGibs(2)=(Mesh=None)
+     HeadGibs(3)=(Mesh=None)
+     TorsoGibs(0)=(Mesh=StaticMesh'XEffects.GibBotTorso',DrawScale=0.425000)
+     TorsoGibs(1)=(Mesh=None)
+     TorsoGibs(2)=(Mesh=None)
+     TorsoGibs(3)=(Mesh=None)
+     PelvsGibs(0)=(Mesh=None)
+     PelvsGibs(1)=(Mesh=None)
+     OtherGibs(0)=(Mesh=StaticMesh'XEffects.GibBotUpperArm',DrawScale=0.400000)
+     OtherGibs(1)=(Mesh=StaticMesh'XEffects.GibBotUpperArm',DrawScale=0.400000)
+     OtherGibs(2)=(Mesh=StaticMesh'XEffects.GibBotForearm',DrawScale=0.400000)
+     OtherGibs(3)=(Mesh=StaticMesh'XEffects.GibBotForearm',DrawScale=0.400000)
+     OtherGibs(4)=(Mesh=StaticMesh'XEffects.GibBotCalf',DrawScale=0.400000)
+     OtherGibs(5)=(Mesh=StaticMesh'XEffects.GibBotCalf',DrawScale=0.400000)
+     OtherGibs(8)=(Mesh=StaticMesh'XEffects.GibBotHand',offset=(Y=8.000000),Velocity=(X=(Max=350.000000),Y=(Max=100.000000),Z=(Max=200.000000)),Pivot=(Roll=-8192),DrawScale=0.450000)
+}

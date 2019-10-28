@@ -1,0 +1,16 @@
+//=============================================================================
+// IM_A73Projectile.
+// 
+// ImpactManager subclass for A73 projectiles
+// 
+// by Nolan "Dark Carnivour" Richert.
+// Copyright(c) 2005 RuneStorm. All Rights Reserved.
+//=============================================================================
+class IM_ProtonStream extends BCImpactManager;
+
+defaultproperties
+{
+     HitEffects(0)=Class'BWBPOtherPackPro.IE_ProtonStream'
+     HitDecals(0)=Class'BallisticProV55.AD_BulletDirt'
+     HitSounds(0)=Sound'PackageSounds4Pro.LS14.Gauss-Impact'
+}

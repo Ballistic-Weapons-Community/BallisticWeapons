@@ -1,0 +1,6 @@
+
+
+defaultproperties
+{
+     bOwnerNoSee=True
+}
