@@ -226,11 +226,11 @@ function DoFireEffect()
 	if (BW.CurrentWeaponMode == 0)
 	{
 		Instigator.PlaySound(Sound'BWBP4-Sounds.Dark-ImmolateIgnite',,3.7,,32);
-		class'BallisticDamageType'.static.GenericHurt (Instigator, ProjectileClass.default.Damage * 0.2, None, Instigator.Location, vect(0,0,0), class'DT_RSDarkBacklash');
+		class'BallisticDamageType'.static.GenericHurt (Instigator, ProjectileClass.default.Damage * 0.15, Instigator, Instigator.Location, vect(0,0,0), class'DT_RSDarkBacklash');
 	}
 
 	else if (BW.CurrentWeaponMode == 1)
-		class'BallisticDamageType'.static.GenericHurt (Instigator, ProjectileClass.default.Damage * 0.2, None, Instigator.Location, vect(0,0,0), class'DT_RSDarkBacklash');
+		class'BallisticDamageType'.static.GenericHurt (Instigator, ProjectileClass.default.Damage * 0.15, Instigator, Instigator.Location, vect(0,0,0), class'DT_RSDarkBacklash');
 }
 
 function StartBerserk()
@@ -576,7 +576,7 @@ defaultproperties
      Damage=50
      ImmolateSoundLoop=Sound'BWBP4-Sounds.DarkStar.Dark-Immolation'
      SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
-     FireModes(0)=(mProjClass=Class'BallisticProV55.RSDarkFastProjectile',mFireRate=0.160000,mFireChaos=0.060000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-Fire2',mFireAnim="Fire2",mRecoil=192.000000,mAmmoPerFire=2,bModeLead=True,bModeSplash=True)
+     FireModes(0)=(mProjClass=Class'BallisticProV55.RSDarkFastProjectile',mFireRate=0.160000,mFireChaos=0.060000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-Fire2',mFireAnim="Fire2",mRecoil=192.000000,mAmmoPerFire=1,bModeLead=True,bModeSplash=True)
      FireModes(1)=(mFireRate=0.100000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=7.000000,mAmmoPerFire=1,TargetState="DarkFlamer",bModeInstantHit=True)
      FireModes(2)=(mFireRate=0.100000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=7.000000,mAmmoPerFire=1,TargetState="Immolate",bModeInstantHit=True)
      FireModes(3)=(mProjClass=Class'BallisticProV55.RSDarkFireBomb',mFireRate=0.800000,mFireChaos=0.150000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-FireBall',mFireAnim="Fire",mRecoil=1024.000000,mAmmoPerFire=4,TargetState="Fireball",bModeLead=True,bModeSplash=True,bModeRecommendSplash=True)
@@ -590,7 +590,7 @@ defaultproperties
      ReloadAnimRate=1.100000
      FireRate=1.350000
      AmmoClass=Class'BallisticProV55.Ammo_DarkDiamond'
-     AmmoPerFire=10
+     AmmoPerFire=5
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=1.500000

@@ -285,10 +285,6 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 
 	Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
 
-	// bUseRunningDamage
-	RelativeVelocity = Instigator.Velocity - Other.Velocity;
-	Dmg += Dmg * (VSize(RelativeVelocity) / RunningSpeedThresh) * (Normal(RelativeVelocity) Dot Normal(Other.Location-Instigator.Location));
-
 	if (Pawn(Victim) != None)
 	{
 		if (BallisticPawn(Instigator) != None && RSDarkStar(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
@@ -332,9 +328,9 @@ defaultproperties
      WallHitPoint=0
      NumSwipePoints=1
      TraceRange=(Min=150.000000,Max=150.000000)
-     Damage=30.000000
-     DamageHead=30.000000
-     DamageLimb=30.000000
+     Damage=20.000000
+     DamageHead=20.000000
+     DamageLimb=20.000000
      DamageType=Class'BallisticProV55.DT_RSDarkStab'
      DamageTypeHead=Class'BallisticProV55.DT_RSDarkStabHead'
      DamageTypeArm=Class'BallisticProV55.DT_RSDarkStab'

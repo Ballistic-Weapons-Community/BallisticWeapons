@@ -36,8 +36,8 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 {
 	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
 	
-	Dmg *= 1 + 1 * (FMin(default.LifeSpan - LifeSpan, 0.6)/0.6);
-	DamageRadius *=  1 + 1 * (FMin(default.LifeSpan - LifeSpan, 0.6)/0.6);
+	Dmg *= 1 + 1 * (FMin(default.LifeSpan - LifeSpan, 1)/1);
+	DamageRadius *=  1 + 1 * (FMin(default.LifeSpan - LifeSpan, 1)/1);
 	
 	return Other;
 }
@@ -116,7 +116,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	else Victim = GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT);
 	
 	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-		BallisticPawn(Instigator).GiveAttributedHealth(Dmg * 0.5, Instigator.SuperHealthMax, Instigator, True);
+		BallisticPawn(Instigator).GiveAttributedHealth(Dmg * 0.15, Instigator.SuperHealthMax, Instigator, True);
 
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 	{
@@ -341,8 +341,8 @@ defaultproperties
      AccelSpeed=50000.000000
      TrailClass=Class'BallisticProV55.RSDark1Trail'
      MyRadiusDamageType=Class'BallisticProV55.DT_RSDarkSlow'
-     DamageHead=32.000000
-     DamageLimb=32.000000
+     DamageHead=60.000000
+     DamageLimb=60.000000
      DamageTypeHead=Class'BallisticProV55.DT_RSDarkSlow'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=384.000000
@@ -354,7 +354,7 @@ defaultproperties
      Speed=3000.000000
      MaxSpeed=60000.000000
      bSwitchToZeroCollision=True
-     Damage=32.000000
+     Damage=60.000000
      DamageRadius=128.000000
      MomentumTransfer=10000.000000
      MyDamageType=Class'BallisticProV55.DT_RSDarkSlow'
