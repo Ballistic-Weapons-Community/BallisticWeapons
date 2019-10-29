@@ -57,6 +57,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 					continue;
 			}
 			else DmgRadiusScale = 1;
+			
 			dir = Victims.Location - HitLocation;
 			dist = FMax(1,VSize(dir));
 			if (bCoverPenetrator && DmgRadiusScale < 1 && VSize(dir) > DamageRadius * DmgRadiusScale)

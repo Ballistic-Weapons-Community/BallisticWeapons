@@ -580,8 +580,8 @@ defaultproperties
      ClipInSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipIn')
      ClipInFrame=0.700000
      bNonCocking=True
-     WeaponModes(0)=(ModeName="Charged Shot",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Irradiation",ModeID="WM_FullAuto")
+     WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+     WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
      bNotifyModeSwitch=True

@@ -26,11 +26,37 @@ simulated function Tick(float DeltaTime)
 	SetRotation(Rotation  + rot(0,0,250000) * DeltaTime);
 }
 
+function DoDamage (Actor Other, vector HitLocation)
+{
+	local RaygunPlagueEffect RPE;
+	
+	super.DoDamage (Other, HitLocation);
+	
+	if (Pawn(Other) != None && Pawn(Other).Health > 0 && Vehicle(Other) == None && Level.TimeSeconds - Pawn(Other).SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime)
+	{
+		foreach Other.BasedActors(class'RaygunPlagueEffect', RPE)
+		{
+			RPE.ExtendDuration(4);
+		}
+		if (RPE == None)
+		{
+			RPE = Spawn(class'RaygunPlagueEffect',Other,,Other.Location);// + vect(0,0,-30));
+			RPE.Initialize(Other);
+			if (Instigator!=None)
+			{
+				RPE.Instigator = Instigator;
+				RPE.InstigatorController = Instigator.Controller;
+			}
+		}
+	}
+}
+
 function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
 {
 	local actor Victims;
 	local float damageScale, dist;
 	local vector dir;
+	local RaygunPlagueEffect RPE;
 
 	if( bHurtEntry )
 		return;
@@ -60,6 +86,8 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/ DamageRadius);
 			if ( Instigator == None || Instigator.Controller == None )
 				Victims.SetDelayedDamageInstigatorController( InstigatorController );
+				
+				
 			class'BallisticDamageType'.static.GenericHurt
 			(
 				Victims,
@@ -69,6 +97,29 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 				(damageScale * Momentum * 0.8 * dir),
 				DamageType
 			);
+			
+			if (Pawn(Victims) != None && Pawn(Victims).Health > 0 && Vehicle(Victims) == None)
+			{
+				foreach Victims.BasedActors(class'RaygunPlagueEffect', RPE)
+				{
+					if (Victim != None)
+						RPE.ExtendDuration(8);
+					else RPE.ExtendDuration(4 * Square(damageScale));
+				}
+				if (RPE == None)
+				{
+					RPE = Spawn(class'RaygunPlagueEffect',Victims,,Victims.Location);// + vect(0,0,-30));
+					RPE.Initialize(Victims);
+					if (Victim == None)
+						RPE.Duration = FMax(1, 4 * Square(damageScale));
+					else RPE.Duration = 8;
+					if (Instigator!=None)
+					{
+						RPE.Instigator = Instigator;
+						RPE.InstigatorController = Instigator.Controller;
+					}
+				}
+			}
 		 }
 	}
 	bHurtEntry = false;
@@ -87,7 +138,7 @@ defaultproperties
      MotionBlurTime=2.000000
      Speed=5500.000000
      MaxSpeed=17500.000000
-     Damage=125.000000
+     Damage=80.000000
      DamageRadius=256.000000
      MomentumTransfer=120000.000000
      MyDamageType=Class'BWBPOtherPackPro.DTRaygunCharged'

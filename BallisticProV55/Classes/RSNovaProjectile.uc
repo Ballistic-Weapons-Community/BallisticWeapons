@@ -243,7 +243,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 				DamageType
 			);
 			
-			if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victims.bProjTarget && (Pawn(Victims).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+			if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victims != Instigator && Victims.bProjTarget && (Pawn(Victims).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
 				BallisticPawn(Instigator).GiveAttributedHealth(damageScale * DamageAmount, Instigator.SuperHealthMax, Instigator, True);
 			if (bWasAlive && Pawn(Victims).Health <= 0)
 				class'RSNovaSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Victims), self);

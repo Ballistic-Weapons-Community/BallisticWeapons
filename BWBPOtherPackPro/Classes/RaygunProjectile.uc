@@ -43,6 +43,21 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 }
 
+function DoDamage (Actor Other, vector HitLocation)
+{
+	local RaygunPlagueEffect RPE;
+	
+	super.DoDamage (Other, HitLocation);
+	if (Pawn(other) != None && Pawn(Other).Health > 0 && Vehicle(Other) == None)
+	{
+		foreach Other.BasedActors(class'RaygunPlagueEffect', RPE)
+		{
+			RPE.ExtendDuration(0.5);
+			break;
+		}
+	}
+}
+
 defaultproperties
 {
      ImpactManager=Class'BWBPOtherPackPro.IM_Raygun'

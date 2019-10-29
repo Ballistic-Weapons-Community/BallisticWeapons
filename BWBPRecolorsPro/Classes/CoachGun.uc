@@ -25,6 +25,31 @@ var() name				LastShellBone;		// Name of the right shell.
 var   bool				bLastShell;			// Checks if only one shell is left
 var   bool				bNowEmpty;			// Checks if it should play modified animation.
 
+simulated function PostBeginPlay()
+{
+	super.PostBeginPlay();
+	
+	if (CurrentWeaponMode == 1)
+	{
+		SetBoneScale (2, 1.0, ShellTipBone1);
+		SetBoneScale (3, 1.0, ShellTipBone2);
+		SetBoneScale (4, 1.0, ShellTipBone3);
+		SetBoneScale (5, 1.0, ShellTipBone4);
+		Skins[2]=MatBlackShell;
+		Skins[3]=MatBlackShell;
+	}
+	else
+	{
+		SetBoneScale (2, 0.0, ShellTipBone1);
+		SetBoneScale (3, 0.0, ShellTipBone2);
+		SetBoneScale (4, 0.0, ShellTipBone3);
+		SetBoneScale (5, 0.0, ShellTipBone4);
+		Skins[2]=MatGreenShell;
+		Skins[3]=MatGreenShell;
+	}
+}
+
+
 // Cycle through the various weapon modes
 function ServerSwitchWeaponMode (byte NewMode)
 {

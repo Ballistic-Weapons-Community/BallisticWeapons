@@ -13,7 +13,7 @@ simulated function PreBeginPlay()
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	SetTimer(1.5, False);
+	SetTimer(1, False);
 }
 
 simulated function Timer()
@@ -25,10 +25,7 @@ simulated function Timer()
 	}
 	
 	if (!bHasImpacted)
-	{
 		DetonateOn=DT_Impact;
-		PlayerImpactType=PIT_Detonate;
-	}
 		
 	else Explode(Location, vect(0,0,1));
 }
@@ -188,7 +185,10 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
+     DampenFactor=0.200000
+     DampenFactorParallel=0.400000
      DetonateOn=DT_ImpactTimed
+	 PlayerImpactType=PIT_Detonate
      DetonateDelay=0.400000
      ImpactDamage=60
      ImpactDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
@@ -197,12 +197,12 @@ defaultproperties
      bRandomStartRotaion=False
      TrailClass=Class'BWBPOtherPackPro.XOXOBombTrail'
      MyRadiusDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
-     DamageHead=120.000000
-     DamageLimb=120.000000
+     DamageHead=100.000000
+     DamageLimb=100.000000
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=2500.000000
      MaxSpeed=2500.000000
-     Damage=120.000000
+     Damage=100.000000
      DamageRadius=350.000000
      MomentumTransfer=100.000000
      MyDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'

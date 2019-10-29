@@ -107,7 +107,7 @@ defaultproperties
 {
      ChargeSound=Sound'IndoorAmbience.machinery18'
      ChargeSoundPitch=32
-     ChargeTime=1.750000
+     ChargeTime=1.250000
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
      FireModes(0)=(mProjClass=Class'BWBPOtherPackPro.RaygunPlagueChargedProjectile',mFireRate=0.800000,mFireChaos=0.500000,mFireSound=Sound'BWBPOtherPackSound.Raygun.Raygun-FireBig',mFireAnim="Fire",mRecoil=960.000000,mAmmoPerFire=8,bModeLead=True)
      MuzzleFlashClass=Class'BWBPOtherPackPro.RaygunMuzzleFlash'
@@ -119,7 +119,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BWBPOtherPackSound.Raygun.Raygun-FireBig',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      bFireOnRelease=True
-     MaxHoldTime=2.500000
+     MaxHoldTime=2.000000
      FireAnim="ChargedFire"
      FireEndAnim=
      FireRate=1.200000
