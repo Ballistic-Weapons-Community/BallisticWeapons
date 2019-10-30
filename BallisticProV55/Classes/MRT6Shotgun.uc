@@ -143,6 +143,7 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
+	 AimDisplacementDurationMult=0.33
      bLeftLoaded=True
      bRightLoaded=True
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')

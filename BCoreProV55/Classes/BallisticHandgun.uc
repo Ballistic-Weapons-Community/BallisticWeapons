@@ -141,14 +141,6 @@ simulated function bool CheckScope()
 	return true;
 }
 
-simulated function TickDisplacement(float DT)
-{
-	if (AimDisplacementEndTime > Level.TimeSeconds)
-		AimDisplacementFactor = FMin (AimDisplacementFactor + DT/0.2, 0.75);
-	else 
-		AimDisplacementFactor = FMax(AimDisplacementFactor-DT/0.35, 0);
-}
-
 // Cycle through the various weapon modes
 function ServerSwitchWeaponMode (byte NewMode)
 {
@@ -306,13 +298,6 @@ simulated function ApplyAimToView()
 
 	ViewAim = BaseAim;
 	ViewRecoil = BaseRecoil;	
-}
-
-simulated function Rotator GetAimPivot(optional bool bIgnoreViewAim)
-{
-	if (IsSlave() || bIgnoreViewAim || Instigator.Controller == None || PlayerController(Instigator.Controller) == None || PlayerController(Instigator.Controller).bBehindView)
-		return AimOffset + Aim + LongGunPivot * LongGunFactor;
-	return AimOffset + Aim * (1-ViewAimFactor) + LongGunPivot * LongGunFactor;
 }
 
 simulated function ReloadFinished ()
@@ -1700,6 +1685,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
 defaultproperties
 {
+	 AimDisplacementDurationMult=0.25
      SupportHandBone="Root01"
      bShouldDualInLoadout=True
      TrackSpeed=18000.000000

@@ -144,7 +144,7 @@ simulated function vector GetFireSpread()
 	local float fX;
     local Rotator R;
 
-	if (BW.bScopeView || BW.CurrentWeaponMode != 0 || BW.CurrentWeaponMode != 4)
+	if (BW.bScopeView || (BW.CurrentWeaponMode != 0 && BW.CurrentWeaponMode != 4))
 		return super.GetFireSpread();
 	else
 	{

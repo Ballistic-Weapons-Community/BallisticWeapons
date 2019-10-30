@@ -6,7 +6,7 @@
 //=============================================================================
 class BC_GUICheckListMulti extends GUIList;
 
-#exec TEXTURE IMPORT NAME=CloseBoxBallDesat FILE=Textures\CloseBoxBallDesat.tga GROUP=Textures MIPS=Off ALPHA=1 DXT=3 LODSET=5
+#exec TEXTURE IMPORT NAME=CloseBoxBallDesat FILE=Textures\CloseBoxBallDesat.dds GROUP=Textures MIPS=Off ALPHA=1 DXT=3 LODSET=5
 
 var() Material		CheckMat;
 var() Material		CheckBackMat;

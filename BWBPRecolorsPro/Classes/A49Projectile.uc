@@ -124,16 +124,16 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_A42Projectile'
      PenetrateManager=Class'BallisticProV55.IM_A42Projectile'
      bPenetrate=True
-     AccelSpeed=60000.000000
+     AccelSpeed=0.000000
      TrailClass=Class'BWBPRecolorsPro.A49TrailEmitter'
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTA49Skrith'
      bUsePositionalDamage=True
-     DamageHead=40.000000
-     DamageLimb=20.000000
+     DamageHead=48.000000
+     DamageLimb=32.000000
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=5500.000000
-     MaxSpeed=5500.000000
-     Damage=20.000000
+     Speed=3500.000000
+     MaxSpeed=3500.000000
+     Damage=32.000000
      DamageRadius=48.000000
      MomentumTransfer=100.000000
      MyDamageType=Class'BWBPRecolorsPro.DTA49Skrith'
@@ -147,7 +147,7 @@ defaultproperties
      bDynamicLight=True
      AmbientSound=Sound'BallisticSounds2.A73.A73ProjFly'
      LifeSpan=4.000000
-     DrawScale3D=(Y=0.500000,Z=0.500000)
+     DrawScale3D=(Y=1.000000,Z=1.000000)
      SoundVolume=255
      SoundRadius=75.000000
      bFixedRotationDir=True

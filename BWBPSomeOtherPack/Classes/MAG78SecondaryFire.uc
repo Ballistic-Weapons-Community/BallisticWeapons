@@ -1,12 +1,14 @@
 //=============================================================================
-// RSDarkMeleeFire.
+// EKS43SecondaryFire.
 //
-// Continuous chainsaw attack of the darkstar
+// Vertical/Diagonal held swipe for the EKS43. Uses swipe system and is prone
+// to headshots because the highest trace that hits an enemy will be used to do
+// the damage and check hit area.
 //
 // by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2006 RuneStorm. All Rights Reserved.
+// Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class RSDarkMeleeFire extends BallisticMeleeFire;
+class MAG78SecondaryFire extends BallisticMeleeFire;
 
 var() Pawn		HookedVictim;
 var() float		HookTime;
@@ -51,7 +53,7 @@ function PlayFiring()
 	if (ScopeDownOn == SDO_Fire)
 		BW.TemporaryScopeDown(0.5, 0.0);
 
-	if (RSDarkStar(Weapon).bLatchedOn)
+	if (MAG78Longsword(Weapon).bLatchedOn)
 		Weapon.AmbientSound = SawHackLoop;
 	else
 		Weapon.AmbientSound = SawFreeLoop;
@@ -63,7 +65,7 @@ function PlayFiring()
 	}
     else if (FireCount > 4)
     {
-		if (RSDarkStar(Weapon).bLatchedOn)
+		if (MAG78Longsword(Weapon).bLatchedOn)
     		BW.SafeLoopAnim('SawAttack', FireAnimRate, TweenTime, ,"FIRE");
 		else
     		BW.SafeLoopAnim('SawIdle', FireAnimRate, TweenTime, ,"FIRE");
@@ -81,7 +83,7 @@ function ServerPlayFiring()
 	}
     else if (FireCount > 4)
     {
-		if (RSDarkStar(Weapon).bLatchedOn)
+		if (MAG78Longsword(Weapon).bLatchedOn)
     		BW.SafeLoopAnim('SawAttack', FireAnimRate, TweenTime, ,"FIRE");
 		else
     		BW.SafeLoopAnim('SawIdle', FireAnimRate, TweenTime, ,"FIRE");
@@ -94,33 +96,6 @@ simulated event ModeDoFire()
 	
 	if (!AllowFire())
 		return;
-	if (bIsJammed)
-	{
-		if (BW.FireCount == 0)
-		{
-			bIsJammed=false;
-			if (bJamWastesAmmo && Weapon.Role == ROLE_Authority)
-			{
-				ConsumedLoad += Load;
-				Timer();
-			}
-			if (UnjamMethod == UJM_FireNextRound)
-			{
-				NextFireTime += FireRate;
-				NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
-				BW.FireCount++;
-				return;
-			}
-			if (!AllowFire())
-				return;
-		}
-		else
-		{
-			NextFireTime += FireRate;
-			NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
-			return;
-		}
-	}
 
 	if (BW != None)
 	{
@@ -148,6 +123,8 @@ simulated event ModeDoFire()
 	if (Weapon.Role == ROLE_Authority)
 	{
 		DoFireEffect();
+		
+		MAG78Longsword(Weapon).NextAmmoTickTime = Level.TimeSeconds + 2;
 		if ( (Instigator == None) || (Instigator.Controller == None) )
 			return;
 		if ( AIController(Instigator.Controller) != None )
@@ -243,7 +220,7 @@ function DoFireEffect()
 
 simulated function StopFiring()
 {
-	Weapon.PlayOwnedSound(SawStop,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius, 0.75 + RSDarkStar(Weapon).ChainSpeed * 0.375 ,BallisticFireSound.bAtten);
+	Weapon.PlayOwnedSound(SawStop,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius, 0.75 + MAG78Longsword(Weapon).ChainSpeed * 0.375 ,BallisticFireSound.bAtten);
 	BW.GunLength = BW.default.GunLength;
 	Weapon.PlayAnim(FireEndAnim, FireEndAnimRate, 0.0, 0);
 }
@@ -251,7 +228,7 @@ simulated function StopFiring()
 simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
 {
 	if (Weapon != None && Weapon.Role == ROLE_Authority)
-		RSDarkStar(Weapon).bLatchedOn = true;
+		MAG78Longsword(Weapon).bLatchedOn = true;
 
 	return super(BallisticMeleeFire).ImpactEffect(HitLocation, HitNormal, HitMat, Other, WaterHitLoc);
 }
@@ -259,7 +236,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 function NoHitEffect (Vector Dir, optional vector Start, optional vector HitLocation, optional vector WaterHitLoc)
 {
 	if (Weapon != None && Weapon.Role == ROLE_Authority)
-		RSDarkStar(Weapon).bLatchedOn = false;
+		MAG78Longsword(Weapon).bLatchedOn = false;
 
 	super.NoHitEffect (Dir, Start, HitLocation, WaterHitLoc);
 }
@@ -270,7 +247,7 @@ simulated event ModeTick(float DT)
 
 	if (!IsFiring())
 	{
-		RSDarkStar(Weapon).bLatchedOn = false;
+		MAG78Longsword(Weapon).bLatchedOn = false;
 		Weapon.AmbientSound = None;
 	}
 }
@@ -285,12 +262,18 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 
 	Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
 
+	// bUseRunningDamage
+	RelativeVelocity = Instigator.Velocity - Other.Velocity;
+	Dmg += Dmg * (VSize(RelativeVelocity) / RunningSpeedThresh) * (Normal(RelativeVelocity) Dot Normal(Other.Location-Instigator.Location));
+
 	if (Pawn(Victim) != None)
 	{
-		if (BallisticPawn(Instigator) != None && RSDarkStar(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+		/*if (BallisticPawn(Instigator) != None && MAG78Longsword(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
 		{
-			BallisticPawn(Instigator).GiveAttributedHealth(Dmg / 3, Instigator.HealthMax, Instigator, True);	
-		}
+			if (Monster(Victim) != None)
+				BallisticPawn(Instigator).GiveAttributedHealth(Dmg / 3, Instigator.HealthMax, Instigator, True);	
+			else	BallisticPawn(Instigator).GiveAttributedHealth(Dmg, Instigator.HealthMax, Instigator, True);
+		}*/
 		
 		if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 		{
@@ -300,20 +283,15 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 		else if (Vehicle(Victim) != None && Vehicle(Victim).Driver!=None && Vehicle(Victim).Driver.Health > 0)
 			bWasAlive = true;
 	}
-
+	
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
-	if (bWasAlive)
-	{
-		if (Pawn(Victim).health <= 0)
-			class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Victim), Weapon);
-	}
 	
 	if (Pawn(Other) != None && Pawn(Other).Health > 0)
 	{
 		HookedVictim = Pawn(Other);
 		HookTime = level.TimeSeconds;
 	}
-	RSDarkStar(Weapon).bLatchedOn=true;
+	MAG78Longsword(Weapon).bLatchedOn=true;
 
 }
 
@@ -325,24 +303,25 @@ defaultproperties
      SwipePoints(0)=(offset=(Yaw=0))
      WallHitPoint=0
      NumSwipePoints=1
-     TraceRange=(Min=150.000000,Max=150.000000)
+     TraceRange=(Min=190.000000,Max=190.000000)
      Damage=20.000000
      DamageHead=20.000000
      DamageLimb=20.000000
-     DamageType=Class'BallisticProV55.DT_RSDarkStab'
-     DamageTypeHead=Class'BallisticProV55.DT_RSDarkStabHead'
-     DamageTypeArm=Class'BallisticProV55.DT_RSDarkStab'
+     DamageType=Class'DT_MAGSAWStab'
+     DamageTypeHead=Class'DT_MAGSAWStabHead'
+     DamageTypeArm=Class'DT_MAGSAWStab'
+	 FatiguePerStrike=0
      KickForce=500
-     HookStopFactor=1.000000
-     HookPullForce=100.000000
+     HookStopFactor=1.500000
+     HookPullForce=150.000000
      ScopeDownOn=SDO_Fire
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-SawOpen',Volume=0.750000,Radius=256.000000)
      bAISilent=True
      PreFireAnim=
      FireAnim="SawStart"
      FireEndAnim="SawEnd"
-     FireRate=0.250000
-     AmmoClass=Class'BallisticProV55.Ammo_DarkDiamond'
+     FireRate=0.100000
+     AmmoClass=Class'Ammo_MAGSAWCharge'
      AmmoPerFire=1
      ShakeRotMag=(X=64.000000,Y=16.000000)
      ShakeRotRate=(X=1024.000000,Y=1024.000000,Z=512.000000)

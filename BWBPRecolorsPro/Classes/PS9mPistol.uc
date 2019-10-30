@@ -46,7 +46,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	super.BringUp(PrevWeapon);
 }
-/*
+
 function ServerWeaponSpecial(optional byte i)
 {
 	if (bLoaded)
@@ -70,7 +70,7 @@ exec simulated function WeaponSpecial(optional byte i)
 		ReloadState = RS_Cocking;
 	}
 }
-*/
+
 
 simulated function Notify_DartHeal()
 {

@@ -299,7 +299,7 @@ defaultproperties
      FireModeClass(0)=Class'BWBPOtherPackPro.CX61PrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.CX61SecondaryFire'
      SelectAnimRate=1.400000
-     PutDownAnimRate=1.500000
+     PutDownAnimRate=1.800000
      PutDownTime=0.400000
      BringUpTime=0.400000
      SelectForce="SwitchToAssaultRifle"

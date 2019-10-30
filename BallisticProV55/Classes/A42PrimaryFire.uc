@@ -16,7 +16,7 @@ simulated event ModeDoFire()
 		FireAnim = 'Fire1';
 	else
 		FireAnim = 'Fire2';
-	A42SkrithPistol(Weapon).NextAmmoTickTime = Level.TimeSeconds + 5;
+	A42SkrithPistol(Weapon).NextAmmoTickTime = Level.TimeSeconds + 2;
 	super.ModeDoFire();
 }
 

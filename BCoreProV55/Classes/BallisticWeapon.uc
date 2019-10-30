@@ -313,8 +313,9 @@ var		  float		LongGunFactor;		// Current percent of long-gun factors applied. Wi
 var		  float		NewLongGunFactor;	// What LongGunFactor should be. Set instantly when bumping into obstacles
 var(BAim) rotator	LongGunPivot;		// How to rotate aim and gun at full LongGunFactor
 var(BAim) vector		LongGunOffset;		// How much to offset weapon position at full LongGunFactor
-var		  float		AimDisplacementFactor;
-var		  float		AimDisplacementEndTime;
+var		  float		AimDisplacementFactor;  // Current factor for aim displacement.
+var		  float		AimDisplacementEndTime; // Time when aim displacement effect wears off.
+var		  float		AimDisplacementDurationMult; // Duration multiplier for aim displacement.
 // General
 var(BAim) bool		bAimDisabled;		// Disables the entire aiming system. Bullets go exactly where crosshair is aimed.
 var(BAim) bool		bUseNetAim;			// Aim info is replicated to clients. Otherwise client and server aim will be separate
@@ -3826,6 +3827,8 @@ simulated function Rotator GetPlayerAim(optional bool bFire)
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
 	local float DF;
+	local float AimDisplacementDuration;
+	
 	local class<BallisticDamageType> BDT;
 	
 	if (InstigatedBy != None && InstigatedBy.Controller != None && InstigatedBy.Controller.SameTeamAs(InstigatorController))
@@ -3840,15 +3843,17 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	{
 		if (BDT.default.bDisplaceAim && Damage >= BDT.default.AimDisplacementDamageThreshold && Level.TimeSeconds + BDT.default.AimDisplacementDuration > AimDisplacementEndTime)
 		{
+			AimDisplacementDuration = BDT.default.AimDisplacementDuration * AimDisplacementDurationMult;
+		
 			if (BDT.default.AimDisplacementDamageThreshold == 0)
 			{
-				AimDisplacementEndTime = Level.TimeSeconds + FMin(2, BDT.default.AimDisplacementDuration);
-				ClientDisplaceAim(FMin(2, BDT.default.AimDisplacementDuration));
+				AimDisplacementEndTime = Level.TimeSeconds + FMin(2, AimDisplacementDuration);
+				ClientDisplaceAim(FMin(2, AimDisplacementDuration));
 			}
 			else
 			{
-				AimDisplacementEndTime = Level.TimeSeconds + FMin(2, BDT.default.AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold));
-				ClientDisplaceAim(FMin(2, BDT.default.AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold)));
+				AimDisplacementEndTime = Level.TimeSeconds + FMin(2, AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold));
+				ClientDisplaceAim(FMin(2, AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold)));
 			}
 			if (bScopeView)
 				StopScopeView();
@@ -4457,6 +4462,7 @@ static function String GetManual()
 
 defaultproperties
 {
+	 AimDisplacementDurationMult=1.000000
      PlayerSpeedFactor=1.000000
      PlayerJumpFactor=1.000000
      AIReloadTime=2.000000

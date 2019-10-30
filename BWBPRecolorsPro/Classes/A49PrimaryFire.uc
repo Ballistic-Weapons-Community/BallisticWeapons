@@ -5,7 +5,15 @@
 //=============================================================================
 class A49PrimaryFire extends BallisticProProjectileFire;
 
-var   float		StopFireTime;
+var float StopFireTime;
+var float HeatPerShot;
+
+simulated function bool AllowFire()
+{
+	if ((A49SkrithBlaster(Weapon).HeatLevel >= 12) || !super.AllowFire())
+		return false;
+	return true;
+}
 
 simulated event ModeTick(float DT)
 {
@@ -22,8 +30,16 @@ simulated event ModeTick(float DT)
 
 function PlayFiring()
 {
-   	Super.PlayFiring();
-	Weapon.SoundPitch = Min(150, Weapon.SoundPitch + 8);
+	Super.PlayFiring();
+	A49SkrithBlaster(BW).AddHeat(HeatPerShot);
+}
+
+// Get aim then run trace...
+function DoFireEffect()
+{
+	Super.DoFireEffect();
+	if (Level.NetMode == NM_DedicatedServer)
+		A49SkrithBlaster(BW).AddHeat(HeatPerShot);
 }
 
 defaultproperties
@@ -38,6 +54,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.A49.A49-Fire',Volume=0.700000,Pitch=1.200000)
      bPawnRapidFireAnim=True
      FireEndAnim=
+	 HeatPerShot=1.2
      FireRate=0.135000
      AmmoClass=Class'BallisticProV55.Ammo_Cells'
      ShakeRotMag=(X=32.000000,Y=8.000000)

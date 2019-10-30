@@ -13,7 +13,7 @@ simulated function PreBeginPlay()
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	SetTimer(1, False);
+	SetTimer(0.75, False);
 }
 
 simulated function Timer()
@@ -185,11 +185,11 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
-     DampenFactor=0.200000
-     DampenFactorParallel=0.400000
+     DampenFactor=0.150000
+     DampenFactorParallel=0.300000
      DetonateOn=DT_ImpactTimed
 	 PlayerImpactType=PIT_Detonate
-     DetonateDelay=0.400000
+     DetonateDelay=0.800000
      ImpactDamage=60
      ImpactDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
      ImpactManager=Class'BWBPOtherPackPro.IM_XOXO'
@@ -203,7 +203,7 @@ defaultproperties
      Speed=2500.000000
      MaxSpeed=2500.000000
      Damage=100.000000
-     DamageRadius=350.000000
+     DamageRadius=512.000000
      MomentumTransfer=100.000000
      MyDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
      LightType=LT_Steady

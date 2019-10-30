@@ -66,8 +66,8 @@ simulated event Tick (float DT)
 
 	if (NextAmmoTickTime < level.TimeSeconds)
 	{
-		if (MagAmmo < 18)
-			MagAmmo=Min(18, MagAmmo+1);
+		if (MagAmmo < default.MagAmmo)
+			MagAmmo=Min(default.MagAmmo, MagAmmo+1);
 		NextAmmoTickTime = level.TimeSeconds + 0.5;
 	}
 }

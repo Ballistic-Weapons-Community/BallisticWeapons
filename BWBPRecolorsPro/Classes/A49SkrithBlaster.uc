@@ -9,7 +9,8 @@
 //=============================================================================
 class A49SkrithBlaster extends BallisticWeapon;
 
-var float		HeatLevel;			// Current Heat level, duh...
+var float		HeatLevel;
+var float 		HeatDeclineDelay;		
 var bool		bIsVenting;			// Busy venting
 var() Sound		OverHeatSound;		// Sound to play when it overheats
 var() Sound		DamageSound;		// Sound to play when it first breaks
@@ -21,6 +22,45 @@ var actor VentSteam2;
 var actor GlowFX;
 var actor GlowFXDamaged;
 
+replication
+{
+	reliable if (ROLE==ROLE_Authority)
+		ClientSetHeat;
+}
+
+simulated function float ChargeBar()
+{
+	return HeatLevel / 12;
+}
+
+simulated function AddHeat(float Amount)
+{
+	HeatLevel += Amount;
+	SoundPitch = 56 + HeatLevel * 9;
+	
+	if (HeatLevel >= 11.75)
+	{
+		Heatlevel = 12;
+		class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, vect(0,0,0), class'DTA49OverHeat');
+		return;
+	}
+}
+
+simulated function ClientSetHeat(float NewHeat)
+{
+	HeatLevel = NewHeat;
+}
+
+simulated event Tick (float DT)
+{
+	if (HeatLevel > 0 && Level.TimeSeconds > LastFireTime + HeatDeclineDelay)
+	{
+		Heatlevel = FMax(HeatLevel - 6 * DT, 0);
+		SoundPitch = 56 + HeatLevel * 9;
+	}
+	
+	super.Tick(DT);
+}
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
@@ -238,7 +278,7 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 				damageScale * DamageAmount,
 				Instigator,
 				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
-				75000 * dir,
+				175000 * dir,
 				BlastDamageType
 			);
 			
@@ -271,6 +311,8 @@ function bool CanHeal(Actor Other)
 
 defaultproperties
 {
+     HeatDeclineDelay=0.200000
+	 AimDisplacementDurationMult=0.25
      BlastDamageType=Class'BWBPRecolorsPro.DTA49Shockwave'
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      UsedAmbientSound=Sound'BallisticSounds2.A73.A73Hum1'
@@ -314,7 +356,7 @@ defaultproperties
      Priority=16
      HudColor=(B=255,G=175,R=100)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=2
+     InventoryGroup=3
      GroupOffset=4
      PickupClass=Class'BWBPRecolorsPro.A49Pickup'
      PlayerViewOffset=(Y=10.000000,Z=-25.000000)
@@ -332,4 +374,5 @@ defaultproperties
      Mesh=SkeletalMesh'BallisticRecolors4AnimPro.SkrithBlaster'
      SoundPitch=56
      SoundRadius=32.000000
+	 bShowChargingBar=True
 }

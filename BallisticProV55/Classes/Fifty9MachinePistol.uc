@@ -274,6 +274,7 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {
+	 AimDisplacementDurationMult=0.33
      StockOpenAnim="StockOut"
      StockCloseAnim="StockIn"
      StockChaosAimSpread=2048

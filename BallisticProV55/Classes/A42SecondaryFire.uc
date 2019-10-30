@@ -28,7 +28,7 @@ simulated event ModeDoFire()
 	f = (FMin(HoldTime, ChargeTime) / ChargeTime) * default.AmmoPerFire;
 	AmmoPerFire = f;
 	Weapon.AmbientSound = None;
-	A42SkrithPistol(Weapon).NextAmmoTickTime = Level.TimeSeconds + 5;
+	A42SkrithPistol(Weapon).NextAmmoTickTime = Level.TimeSeconds + 2;
 	super.ModeDoFire();
 }
 

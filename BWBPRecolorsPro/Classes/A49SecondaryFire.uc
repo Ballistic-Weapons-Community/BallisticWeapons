@@ -10,6 +10,20 @@ class A49SecondaryFire extends BallisticFire;
 
 var float	ForceMag;
 var float	Damage;
+var float HeatPerShot;
+
+simulated function bool AllowFire()
+{
+	if ((A49SkrithBlaster(Weapon).HeatLevel >= 12) || !super.AllowFire())
+		return false;
+	return true;
+}
+
+function PlayFiring()
+{
+	Super.PlayFiring();
+	A49SkrithBlaster(BW).AddHeat(HeatPerShot);
+}
 
 function DoFireEffect()
 {
@@ -22,6 +36,9 @@ function DoFireEffect()
 	Aim = Rotator(GetFireSpread() >> Aim);
 	
 	A49SkrithBlaster(BW).ConicalBlast(Damage, 512, Vector(Aim));
+	
+	if (Level.NetMode == NM_DedicatedServer)
+		A49SkrithBlaster(BW).AddHeat(HeatPerShot);
 }
 
 //Accessor for stats
@@ -42,7 +59,8 @@ static function FireModeStats GetStats()
 defaultproperties
 {
      forceMag=1000.000000
-     Damage=10.000000
+     Damage=35.000000
+	 HeatPerShot=8
      MuzzleFlashClass=Class'BWBPRecolorsPro.A49FlashEmitter'
      FlashBone="MuzzleTip"
      FlashScaleFactor=1.200000
@@ -50,10 +68,11 @@ defaultproperties
      RecoilPerShot=512.000000
      VelocityRecoil=1500.000000
      FireChaos=0.500000
+	 FireRate=1.25
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.A49.A49-ShockWave',Volume=2.000000)
      FireAnim="AltFire"
      AmmoClass=Class'BallisticProV55.Ammo_Cells'
-     AmmoPerFire=4
+     AmmoPerFire=16
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000

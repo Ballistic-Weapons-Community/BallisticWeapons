@@ -26,13 +26,23 @@ simulated function Tick(float DeltaTime)
 	SetRotation(Rotation  + rot(0,0,250000) * DeltaTime);
 }
 
+function bool AllowPlague(Actor Other)
+{
+	return 
+		Pawn(Other) != None 
+		&& Pawn(Other).Health > 0 
+		&& Vehicle(Other) == None 
+		&& (Pawn(Other).GetTeamNum() == 255 || Pawn(Other).GetTeamNum() != Instigator.GetTeamNum())
+		&& Level.TimeSeconds - Pawn(Other).SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime;
+}
+
 function DoDamage (Actor Other, vector HitLocation)
 {
 	local RaygunPlagueEffect RPE;
 	
 	super.DoDamage (Other, HitLocation);
 	
-	if (Pawn(Other) != None && Pawn(Other).Health > 0 && Vehicle(Other) == None && Level.TimeSeconds - Pawn(Other).SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime)
+	if (AllowPlague(Other))
 	{
 		foreach Other.BasedActors(class'RaygunPlagueEffect', RPE)
 		{
@@ -138,7 +148,7 @@ defaultproperties
      MotionBlurTime=2.000000
      Speed=5500.000000
      MaxSpeed=17500.000000
-     Damage=80.000000
+     Damage=50.000000
      DamageRadius=256.000000
      MomentumTransfer=120000.000000
      MyDamageType=Class'BWBPOtherPackPro.DTRaygunCharged'

@@ -322,7 +322,11 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
     	Damage *= 0.2;
     	Momentum = vect(0,0,0);
     }
-
+	
+	// less momentum when holding melee
+	if (FireMode[1].IsFiring())
+		Momentum *= 0.5;
+	
 	if (bOnRampage)
 	{
 		Damage *= 0.4;
@@ -419,14 +423,10 @@ simulated event WeaponTick(float DT)
 				AccelLimit = (0.5 + 4.0*(ChainSpeed/2))*DT;
 				ChainSpeed += FClamp(1.5 - ChainSpeed, -AccelLimit, AccelLimit);
 			}
+			
 			else if (!bLatchedOn && ChainSpeed != 2)
 			{
-//				AccelLimit = (0.25 + 1.75*(Speed/MaxSpeed))*DT;
-//				Speed += FClamp(DesiredSpeed - Speed, -AccelLimit, AccelLimit);
-
-//				AccelLimit = (0.5 + 1.5*(ChainSpeed/2))*DT;
-
-				AccelLimit = (0.5 + /*2.0*(*/ChainSpeed/*/2)*/)*DT;
+				AccelLimit = (0.5 + ChainSpeed) * DT;
 				ChainSpeed += FClamp(2 - ChainSpeed, -AccelLimit, AccelLimit);
 			}
 		}
@@ -954,9 +954,9 @@ defaultproperties
      BigIconMaterial=Texture'BWBP4-Tex.DarkStar.BigIcon_DarkStar'
      BigIconCoords=(Y1=28,Y2=225)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     ManualLines(0)="Slow Bolts deal high damage, gain damage over range and set the enemy alight. This mode damages the user if used from the hip.|Rapid Fire bolts have moderate damage and gain damage over range.|The Flamer mode deals low damage to all enemies within the projected flames, costing low soul power.|Immolation mode ignites players in a cone in front of the user, costing moderate soul power. Further fire increases the duration.|Fire Bombs deal severe damage in a wide radius, costing high soul power."
-     ManualLines(1)="Engages the chainsaw. This weapon deals moderate sustained damage, leeches damage dealt as HP for the user and reduces damage taken from frontal melee attacks by 75%."
-     ManualLines(2)="Enemies killed by this weapon leave souls behind. These can be collected to power the Flamer, Immolation and Fire Bomb modes. Use of those modes without external soul power will cause the user's soul to be used instead, dealing significant backlash damage.||With full soulpower, the weapon can enter rampage mode, reducing all damage taken and increasing both speed and jump height. In this mode, soulpower will drain over time.||Most effective at close range."
+     ManualLines(0)="Slow Bolts deal moderate damage, gain damage over range, set the enemy alight, blocking healing, and steal 15% of damage dealt as HP, but cost HP equal to 15% of their base damage to use.|Rapid Fire bolts have high damage, gain damage over range and steal 15% of damage dealt as HP, but cost HP equal to 15% of their base damage to use.|The Flamer mode deals low damage to all enemies within the projected flames, costing low soul power, and prevents them from healing.|Immolation mode ignites players in a cone in front of the user, costing moderate soul power. Further fire increases the duration.|Fire Bombs deal severe damage in a wide radius, costing high soul power."
+     ManualLines(1)="Engages the chainsaw. This weapon deals moderate sustained damage, displaces the enemy's aim, leeches damage dealt as HP for the user and reduces damage taken from frontal melee attacks by 75%."
+     ManualLines(2)="All of this weapon's modes have the potential to inflict damage to the wielder. Enemies killed by this weapon leave souls behind. These can be collected to power the Flamer, Immolation and Fire Bomb modes. Use of those modes without external soul power will consume the user's soul, dealing significant backlash damage.||With full soul power, the weapon can enter rampage mode, reducing all damage taken and increasing both speed and jump height. In this mode, soul power will drain over time.||Very effective at close and medium range."
      SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.0;1.0;1.0")
      BringUpSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-Pullout')
      PutDownSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-Putaway')

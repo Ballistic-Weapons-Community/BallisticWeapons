@@ -13,7 +13,6 @@ simulated function ModeDoFire()
 defaultproperties
 {
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
-     FireModes(0)=(mProjClass=Class'BWBPOtherPackPro.RaygunPlagueProjectile',mFireRate=0.150000,mFireChaos=0.070000,mFireSound=Sound'BWBPOtherPackSound.Raygun.Raygun-Fire',mFireAnim="FireSmall",mRecoil=108.000000,mAmmoPerFire=1,bModeLead=True)
      MuzzleFlashClass=Class'BWBPOtherPackPro.RaygunMuzzleFlashAlt'
      FlashScaleFactor=2.500000
      AimedFireAnim="SightFire"

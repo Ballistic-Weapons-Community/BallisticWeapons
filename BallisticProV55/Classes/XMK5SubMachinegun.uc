@@ -265,6 +265,7 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
+	 AimDisplacementDurationMult=0.67
      DartLoadAnim="Reload2"
      DartLoadSound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_LoadDart'
      DartCockSound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_CockDart'
