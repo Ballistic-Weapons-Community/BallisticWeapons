@@ -3,7 +3,7 @@
 //
 // Either a conventional charged shot or an irradiating shot.
 //=============================================================================
-class RaygunSecondaryFire extends BallisticProProjectileFire;
+class RaygunSecondaryFire extends BallisticProInstantFire;
 
 var() Sound	ChargeSound;
 var()	byte		ChargeSoundPitch;
@@ -80,7 +80,82 @@ simulated function ModeTick(float DeltaTime)
 			Weapon.AmbientSound = None;
 		}
 	}
-}	
+}
+
+function bool AllowPlague(Actor Other)
+{
+	return 
+		Pawn(Other) != None 
+		&& Pawn(Other).Health > 0 
+		&& Vehicle(Other) == None 
+		&& (Pawn(Other).GetTeamNum() == 255 || Pawn(Other).GetTeamNum() != Instigator.GetTeamNum())
+		&& Level.TimeSeconds - Pawn(Other).SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime;
+}
+
+//Plagues struck targets
+function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+{
+	local float							Dmg;
+	local class<DamageType>	HitDT;
+	local Actor							Victim;
+	local Vector						BoneTestLocation, ClosestLocation;
+	local	int								Bonus;
+	
+	//Locational damage code from Mr Evil under test here
+	if(Other.IsA('xPawn'))
+	{
+		//Find a point on the victim's Z axis at the same height as the HitLocation.
+		ClosestLocation = Other.Location;
+		ClosestLocation.Z += (HitLocation - Other.Location).Z;
+		
+		//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
+		BoneTestLocation = Dir;
+		BoneTestLocation *= VSize(ClosestLocation - HitLocation);
+		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
+		BoneTestLocation += HitLocation;
+		
+		Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
+	}
+	
+	else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
+
+	if (RangeAtten != 1.0)
+		Dmg *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
+	if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
+		Dmg *= Lerp(VSize(HitLocation-WaterHitLocation) / (TraceRange.Max*WaterRangeFactor), 1, WaterRangeAtten);
+	if (PenetrateCount > 0)
+		Dmg *= PDamageFactor ** PenetrateCount;
+	if (WallCount > 0)
+		Dmg *= WallPDamageFactor ** WallCount;
+
+	if (Pawn(Other) != None && Pawn(Other).bProjTarget)
+		TryPlague(Other);
+		
+	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg + Bonus, Instigator, HitLocation, KickForce * Dir, HitDT);
+}
+
+function TryPlague(Actor Other)
+{
+	local RaygunPlagueEffect RPE;
+	
+	if (AllowPlague(Other))
+	{
+		foreach Other.BasedActors(class'RaygunPlagueEffect', RPE)
+		{
+			RPE.ExtendDuration(4);
+		}
+		if (RPE == None)
+		{
+			RPE = Spawn(class'RaygunPlagueEffect',Other,,Other.Location);// + vect(0,0,-30));
+			RPE.Initialize(Other);
+			if (Instigator!=None)
+			{
+				RPE.Instigator = Instigator;
+				RPE.InstigatorController = Instigator.Controller;
+			}
+		}
+	}
+}
 
 simulated event ModeDoFire()
 {
@@ -108,10 +183,12 @@ defaultproperties
      ChargeSound=Sound'IndoorAmbience.machinery18'
      ChargeSoundPitch=32
      ChargeTime=1.250000
-     SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BWBPOtherPackPro.RaygunMuzzleFlash'
      FlashScaleFactor=4.000000
      AimedFireAnim="Fire"
+	 Damage=50
+	 DamageLimb=50
+	 DamageHead=50
      RecoilPerShot=960.000000
      FireChaos=0.320000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))

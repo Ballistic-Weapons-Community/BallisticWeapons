@@ -14,13 +14,20 @@ replication
 		bComboHit;
 }
 
+static function float ScaleDistanceDamage(float lifespan)
+{
+	if (class'RSDarkFastProjectile'.default.LifeSpan - lifespan > 0.05)
+		return 1 + (1.5 * (FMin(class'RSDarkFastProjectile'.default.LifeSpan - lifespan - 0.05, 0.5) / 0.5));
+		
+	return 1;
+}
+
 simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
 {
 	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
 	
-	if (default.LifeSpan - LifeSpan > 0.05)
-		Dmg *= 1 + (1.5 * (FMin(default.LifeSpan - LifeSpan - 0.05, 0.65) / 0.65));
-		
+	Dmg *= ScaleDistanceDamage(LifeSpan);
+	
 	return Other;
 }
 
@@ -133,7 +140,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	else Victim = GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT);
 
 	if (BallisticPawn(Instigator) != None && RSDarkStar(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-		BallisticPawn(Instigator).GiveAttributedHealth(Dmg * 0.15, Instigator.SuperHealthMax, Instigator, True);
+		BallisticPawn(Instigator).GiveAttributedHealth(Dmg * 0.2, Instigator.SuperHealthMax, Instigator, True);
 
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0 && Pawn(Victim).bProjTarget)
 	{
@@ -277,13 +284,13 @@ defaultproperties
      TrailClass=Class'BallisticProV55.RSDark2Trail'
      MyRadiusDamageType=Class'BallisticProV55.DT_RSDarkFast'
      bUsePositionalDamage=True
-     DamageHead=60.000000
-     DamageLimb=40.000000
+     DamageHead=72.000000
+     DamageLimb=48.000000
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000
      MaxSpeed=17500.000000
      bSwitchToZeroCollision=True
-     Damage=40.000000
+     Damage=48.000000
      DamageRadius=32.000000
      MomentumTransfer=100.000000
      MyDamageType=Class'BallisticProV55.DT_RSDarkFast'

@@ -9,9 +9,98 @@
 //=============================================================================
 class AM67SecondaryFire extends BallisticFire;
 
+var() Sound	ChargeSound;
+var()	byte		ChargeSoundPitch;
+var() float		DecayCharge;
+
 function float MaxRange()
 {
 	return 1200;
+}
+
+function PlayStartHold()
+{
+	HoldTime = FMax(DecayCharge,0.1);
+	
+	Weapon.AmbientSound = ChargeSound;
+	Weapon.ThirdPersonActor.AmbientSound = ChargeSound;
+	
+	Weapon.SoundVolume = 48 + FMin(MaxHoldTime, HoldTime)/MaxHoldTime * 128;
+	Weapon.SoundPitch = ChargeSoundPitch + FMin(MaxHoldTime, HoldTime)/MaxHoldTime * ChargeSoundPitch;
+	
+	Weapon.ThirdPersonActor.SoundVolume = 48 + FMin(MaxHoldTime, HoldTime)/MaxHoldTime * 128;
+	Weapon.ThirdPersonActor.SoundPitch = ChargeSoundPitch + FMin(MaxHoldTime, HoldTime)/MaxHoldTime * ChargeSoundPitch;
+	
+	BW.bPreventReload=True;
+}
+
+function ModeTick(float DeltaTime)
+{
+	Super.ModeTick(DeltaTime);
+	
+	if (bIsFiring)
+	{
+		Weapon.ThirdPersonActor.SoundVolume = 48 + FMin(MaxHoldTime, HoldTime)/MaxHoldTime * 128;
+		Weapon.ThirdPersonActor.SoundPitch = ChargeSoundPitch + FMin(MaxHoldTime, HoldTime)/MaxHoldTime * ChargeSoundPitch;
+		
+		Weapon.SoundVolume = 48 + FMin(MaxHoldTime, HoldTime)/MaxHoldTime * 128;
+		Weapon.SoundPitch = ChargeSoundPitch + FMin(MaxHoldTime, HoldTime)/MaxHoldTime * ChargeSoundPitch;
+	}
+	else if (DecayCharge > 0)
+	{
+		Weapon.ThirdPersonActor.SoundVolume = 48 + FMin(MaxHoldTime, DecayCharge)/MaxHoldTime * 128;
+		Weapon.ThirdPersonActor.SoundPitch = ChargeSoundPitch + FMin(MaxHoldTime, DecayCharge)/MaxHoldTime * ChargeSoundPitch;
+		
+		Weapon.SoundVolume = 48 + FMin(MaxHoldTime, DecayCharge)/MaxHoldTime * 128;
+		Weapon.SoundPitch = ChargeSoundPitch + FMin(MaxHoldTime, DecayCharge)/MaxHoldTime * ChargeSoundPitch;
+		DecayCharge -= DeltaTime * 2.5;
+		
+		if (DecayCharge < 0)
+		{
+			DecayCharge = 0;
+			Weapon.ThirdPersonActor.AmbientSound = None;
+			Weapon.AmbientSound = None;
+		}
+	}
+}	
+
+simulated event ModeDoFire()
+{
+	if (HoldTime >= MaxHoldTime || (Level.NetMode == NM_DedicatedServer && HoldTime >= MaxHoldTime - 0.1))
+	{
+		super.ModeDoFire();
+		Weapon.ThirdPersonActor.AmbientSound = None;
+		Weapon.AmbientSound = None;
+		DecayCharge = 0;
+	}
+	else
+	{
+		DecayCharge = HoldTime;
+		NextFireTime = Level.TimeSeconds + (DecayCharge * 0.35);
+	}
+
+	HoldTime = 0;
+}
+
+//// server propagation of firing ////
+function ServerPlayFiring()
+{
+	if (BallisticFireSound.Sound != None)
+		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+
+	CheckClipFinished();
+}
+
+//Do the spread on the client side
+function PlayFiring()
+{
+    ClientPlayForceFeedback(FireForce);  // jdf
+    FireCount++;
+
+	if (BallisticFireSound.Sound != None)
+		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+
+	CheckClipFinished();
 }
 
 function DoFireEffect()
@@ -69,15 +158,19 @@ function DoFireEffect()
 
 defaultproperties
 {
+     ChargeSound=Sound'BallisticSounds2.A73.A73ProjFly'
+     ChargeSoundPitch=32
      bUseWeaponMag=False
      MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
      FlashBone="tip2"
      BallisticFireSound=(Sound=Sound'BallisticSounds3.AM67.AM67-SecFire',Volume=0.600000)
      EffectString="Blinding flash"
+     bFireOnRelease=True
      bModeExclusive=False
+	 MaxHoldTime=0.500000
      FireAnim="SecFire"
      FireEndAnim=
-     FireRate=4.500000
+     FireRate=10.000000
      AmmoClass=Class'BallisticProV55.Ammo_50HV'
      AmmoPerFire=0
      BotRefireRate=0.300000

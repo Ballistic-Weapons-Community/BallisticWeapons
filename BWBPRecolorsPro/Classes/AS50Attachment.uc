@@ -161,7 +161,7 @@ defaultproperties
 {
      AltTracerClass=Class'BWBPRecolorsPro.TraceEmitter_Incendiary'
      MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-     ImpactManager=Class'BWBPRecolorsPro.IM_IncendiaryBullet'
+     ImpactManager=Class'IM_IncendiaryBullet'
      BrassClass=Class'BWBPRecolorsPro.Brass_BMGInc'
      TracerMode=MU_Secondary
      InstantMode=MU_Both

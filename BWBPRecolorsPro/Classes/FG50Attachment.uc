@@ -159,7 +159,7 @@ defaultproperties
 {
      MuzzleFlashClass=Class'BWBPRecolorsPro.FG50FlashEmitter'
      AltMuzzleFlashClass=Class'BWBPRecolorsPro.FG50FlashEmitter'
-     ImpactManager=Class'BWBPRecolorsPro.IM_IncendiaryBullet'
+     ImpactManager=Class'IM_IncendiaryHMGBullet'
      FlashScale=1.750000
      BrassClass=Class'BWBPRecolorsPro.Brass_BMGInc'
      InstantMode=MU_Both

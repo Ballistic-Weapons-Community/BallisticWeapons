@@ -324,7 +324,7 @@ defaultproperties
      SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.A42.A42-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.A42.A42-Putaway')
-     MagAmmo=32
+     MagAmmo=18
      CockAnim="Overheat"
      ClipOutSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipOut',Volume=1.300000)
      ClipInSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipHit',Volume=1.300000)
@@ -357,7 +357,7 @@ defaultproperties
      HudColor=(B=255,G=175,R=100)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=3
-     GroupOffset=4
+     GroupOffset=6
      PickupClass=Class'BWBPRecolorsPro.A49Pickup'
      PlayerViewOffset=(Y=10.000000,Z=-25.000000)
      BobDamping=1.600000

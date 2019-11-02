@@ -54,8 +54,8 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.A49.A49-Fire',Volume=0.700000,Pitch=1.200000)
      bPawnRapidFireAnim=True
      FireEndAnim=
-	 HeatPerShot=1.2
-     FireRate=0.135000
+	 HeatPerShot=1.1
+     FireRate=0.15000
      AmmoClass=Class'BallisticProV55.Ammo_Cells'
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

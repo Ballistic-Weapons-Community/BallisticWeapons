@@ -20,7 +20,7 @@ function ServerSwitchWeaponMode (byte NewMode)
 {
 	super.ServerSwitchWeaponMode (NewMode);
 	
-	if (CurrentWeaponMode == 0)
+	if (CurrentWeaponMode == 1)
 	{
 		RecoilXFactor=0.8;
 		RecoilYFactor=1.5;
@@ -38,7 +38,7 @@ simulated function ClientSwitchWeaponModes (byte newMode)
 {
 	Super.ClientSwitchWeaponModes(newMode);
 	
-	if (newMode == 0)
+	if (newMode == 1)
 	{
 		RecoilXFactor=0.8;
 		RecoilYFactor=1.5;

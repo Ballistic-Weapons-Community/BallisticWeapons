@@ -29,9 +29,9 @@ simulated final function BlendFireHold()
 	switch(SightingState)
 	{
 		case SS_None: AnimBlendParams(1, 0); break;
-		case SS_Raising: AnimBlendToAlpha(1, 0.75f, (1-SightingPhase) * SightingTime); break;
+		case SS_Raising: AnimBlendToAlpha(1, 0.95f, (1-SightingPhase) * SightingTime); break;
 		case SS_Lowering: AnimBlendToAlpha(1, 0, SightingPhase * SightingTime); break;
-		case SS_Active: AnimBlendParams(1, 0.75f); break;
+		case SS_Active: AnimBlendParams(1, 0.95f); break;
 	}
 }
 
@@ -66,7 +66,7 @@ simulated function PlayScopeUp()
 	{
 		SightingState = SS_Raising;
 		if (FireMode[1].HoldTime > 0)
-			AnimBlendToAlpha(1, 0.75f, SightingPhase * SightingTime);
+			AnimBlendToAlpha(1, 0.95f, SightingPhase * SightingTime);
 	}
 	if(ZoomType == ZT_Irons)
 		PlayerController(Instigator.Controller).bZooming = True;
@@ -264,8 +264,9 @@ simulated function PostBeginPlay()
 	
 	PlayAnim(IdleAnim, IdleAnimRate, 0, 1);
 	FreezeAnimAt(0.0, 1);
-	TensTex = TexScaler(Shader(Skins[3]).SelfIllumination);
-	UnitsTex = 	 TexScaler(Shader(Skins[4]).SelfIllumination);
+	
+	TensTex = TexScaler(Skins[2]);
+	UnitsTex = TexScaler(Skins[1]);
 }
 
 simulated function WeaponTick(float DeltaTime)
@@ -289,13 +290,15 @@ simulated function OffsetNumbers()
 	
 	if (bool(Tens & 1)) //odd
 		TensTex.UOffset = 64;
-	else TensTex.UOffset = 0;
-	TensTex.VOffset = -102 + Tens/2 * 102;
+	else 
+		TensTex.UOffset = 0;
+	TensTex.VOffset = Tens/2 * 102;
 	
 	if (bool(Units & 1)) //odd
 		UnitsTex.UOffset = 64;
-	else UnitsTex.UOffset = 0;
-	UnitsTex.VOffset = -102 + Units/2 * 102;
+	else 
+		UnitsTex.UOffset = 0;
+	UnitsTex.VOffset = Units/2 * 102;
 	
 	LastMagAmmo = MagAmmo;
 }
@@ -632,6 +635,8 @@ defaultproperties
      Mesh=SkeletalMesh'BWBPOtherPackAnim.Raygun_FP'
      DrawScale=0.187500
      Skins(0)=Shader'BWBPOtherPackTex.Raygun.raygun_body_SH1'
+	 Skins(1)=TexScaler'BWBPOtherPackTex.Raygun.RaygunNumbersScaler'
+	 Skins(2)=TexScaler'BWBPOtherPackTex.Raygun.RaygunNumbersScaler2'
      SoundPitch=56
      SoundRadius=32.000000
 }

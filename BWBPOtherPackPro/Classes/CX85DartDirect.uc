@@ -179,7 +179,7 @@ defaultproperties
      MotionBlurRadius=384.000000
      MotionBlurFactor=3.000000
      MotionBlurTime=4.000000
-     Damage=27.000000
+     Damage=20.000000
      DamageRadius=384.000000
      MyDamageType=Class'BWBPOtherPackPro.DTCX85DartRadius'
      StaticMesh=StaticMesh'BallisticHardware_25.OA-SMG.OA-SMG_Dart'

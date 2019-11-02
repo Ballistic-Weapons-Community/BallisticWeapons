@@ -464,6 +464,6 @@ defaultproperties
      OverlayColors(3)=(B=64,G=128,R=64,A=128)
      ShieldHitMatTime=0.350000
      RequiredEquipment(0)="XWeapons.ShieldGun"
-     RequiredEquipment(1)=
+     RequiredEquipment(1)=""
      bNoWeaponFiring=True
 }

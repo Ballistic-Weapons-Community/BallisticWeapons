@@ -316,13 +316,6 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 {
     local vector HitNormal;
 
-    if (class<BallisticDamageType>(DamageType).default.bCanBeBlocked && CheckReflect(HitLocation, HitNormal, 0) )
-    {
-		BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
-    	Damage *= 0.2;
-    	Momentum = vect(0,0,0);
-    }
-	
 	// less momentum when holding melee
 	if (FireMode[1].IsFiring())
 		Momentum *= 0.5;
@@ -334,22 +327,6 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	}
 
 	super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
-}
-
-function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDrain )
-{
-    local Vector HitDir;
-    local Vector FaceDir;
-
-    FaceDir = Vector(Instigator.Controller.Rotation);
-    HitDir = Normal(Instigator.Location - HitLocation + Vect(0,0,8));
-
-    RefNormal = FaceDir;
-
-    if ( FaceDir dot HitDir < 0 )
-        return true;
-
-    return false;
 }
 
 simulated function SetBladesOpen(float Alpha)
@@ -954,7 +931,7 @@ defaultproperties
      BigIconMaterial=Texture'BWBP4-Tex.DarkStar.BigIcon_DarkStar'
      BigIconCoords=(Y1=28,Y2=225)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     ManualLines(0)="Slow Bolts deal moderate damage, gain damage over range, set the enemy alight, blocking healing, and steal 15% of damage dealt as HP, but cost HP equal to 15% of their base damage to use.|Rapid Fire bolts have high damage, gain damage over range and steal 15% of damage dealt as HP, but cost HP equal to 15% of their base damage to use.|The Flamer mode deals low damage to all enemies within the projected flames, costing low soul power, and prevents them from healing.|Immolation mode ignites players in a cone in front of the user, costing moderate soul power. Further fire increases the duration.|Fire Bombs deal severe damage in a wide radius, costing high soul power."
+     ManualLines(0)="Slow Bolts deal moderate damage, gain damage over range, set the enemy alight, blocking healing, and steal 20% of damage dealt as HP, but cost HP equal to 20% of their base damage to use.|Rapid Fire bolts have high damage, gain damage over range and steal 20% of damage dealt as HP, but cost HP equal to 10% of their base damage to use.|The Flamer mode deals low damage to all enemies within the projected flames, costing low soul power, and prevents them from healing.|Immolation mode ignites players in a cone in front of the user, costing moderate soul power. Further fire increases the duration.|Fire Bombs deal severe damage in a wide radius, costing high soul power."
      ManualLines(1)="Engages the chainsaw. This weapon deals moderate sustained damage, displaces the enemy's aim, leeches damage dealt as HP for the user and reduces damage taken from frontal melee attacks by 75%."
      ManualLines(2)="All of this weapon's modes have the potential to inflict damage to the wielder. Enemies killed by this weapon leave souls behind. These can be collected to power the Flamer, Immolation and Fire Bomb modes. Use of those modes without external soul power will consume the user's soul, dealing significant backlash damage.||With full soul power, the weapon can enter rampage mode, reducing all damage taken and increasing both speed and jump height. In this mode, soul power will drain over time.||Very effective at close and medium range."
      SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.0;1.0;1.0")
@@ -984,7 +961,7 @@ defaultproperties
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=15000.000000
      ChaosAimSpread=2560
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=-0.045000),(InVal=0.300000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.200000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000)))
+     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=-0.015000),(InVal=0.300000,OutVal=0.030000),(InVal=0.600000,OutVal=-0.060000),(InVal=0.700000,OutVal=0.070000),(InVal=1.000000,OutVal=0.000000)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
      RecoilXFactor=0.250000
      RecoilYFactor=0.250000

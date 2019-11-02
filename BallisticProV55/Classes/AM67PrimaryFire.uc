@@ -10,13 +10,13 @@ class AM67PrimaryFire extends BallisticRangeAttenFire;
 
 defaultproperties
 {
-     CutOffDistance=2048.000000
-     CutOffStartRange=1250.000000
+     CutOffDistance=1024.000000
+     CutOffStartRange=768.000000
      WaterRangeFactor=0.500000
      MaxWallSize=64.000000
      MaxWalls=2
-     Damage=60.000000
-     DamageHead=120.000000
+     DamageHead=90.000000
+	 Damage=60.000000
      DamageLimb=60.000000
      RangeAtten=0.500000
      WaterRangeAtten=0.300000
@@ -34,7 +34,7 @@ defaultproperties
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=2048.000000
+     RecoilPerShot=1536.000000
      FireChaos=0.400000
      XInaccuracy=128.000000
      YInaccuracy=128.000000

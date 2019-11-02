@@ -10,11 +10,6 @@ simulated function Initialize(float Distance, optional float Power)
 	Emitters[2].LifeTimeRange.Max = Distance / 16000;
 }
 
-	
-
-
-	
-
 defaultproperties
 {
      Begin Object Class=BeamEmitter Name=BeamEmitter0

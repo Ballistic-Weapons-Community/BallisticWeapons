@@ -1,6 +1,0 @@
-
-
-defaultproperties
-{
-     AmmoPerFire=1
-}

@@ -22,9 +22,9 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		if (bCheckHitSurface)
 			CheckSurface(HitLocation, HitNormal, Surf);
 		if (Instigator == None)
-			ImpactManager.static.StartSpawn(HitLocation, HitNormal, 2, Level.GetLocalPlayerController()/*.Pawn*/);
+			ImpactManager.static.StartSpawn(HitLocation, HitNormal, 1, Level.GetLocalPlayerController()/*.Pawn*/);
 		else
-			ImpactManager.static.StartSpawn(HitLocation, HitNormal, 2, Instigator);
+			ImpactManager.static.StartSpawn(HitLocation, HitNormal, 1, Instigator);
 	}
 	BlowUp(HitLocation);
 	bExploded=true;

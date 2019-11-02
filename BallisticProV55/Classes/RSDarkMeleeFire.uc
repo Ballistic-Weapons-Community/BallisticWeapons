@@ -60,6 +60,8 @@ function PlayFiring()
     {
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 		BW.SafePlayAnim('SawStart', FireAnimRate, TweenTime, ,"FIRE");
+		if (BW.Role == ROLE_Authority)
+			BW.AddMeleeChargeSpeed();
 	}
     else if (FireCount > 4)
     {
@@ -78,6 +80,7 @@ function ServerPlayFiring()
     {
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 		BW.SafePlayAnim('SawStart', FireAnimRate, TweenTime, ,"FIRE");
+		BW.AddMeleeChargeSpeed();
 	}
     else if (FireCount > 4)
     {
@@ -246,6 +249,8 @@ simulated function StopFiring()
 	Weapon.PlayOwnedSound(SawStop,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius, 0.75 + RSDarkStar(Weapon).ChainSpeed * 0.375 ,BallisticFireSound.bAtten);
 	BW.GunLength = BW.default.GunLength;
 	Weapon.PlayAnim(FireEndAnim, FireEndAnimRate, 0.0, 0);
+	if (BW.Role == ROLE_Authority)
+		BW.RemoveMeleeChargeSpeed();
 }
 
 simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
@@ -325,7 +330,7 @@ defaultproperties
      SwipePoints(0)=(offset=(Yaw=0))
      WallHitPoint=0
      NumSwipePoints=1
-     TraceRange=(Min=150.000000,Max=150.000000)
+     TraceRange=(Min=170.000000,Max=170.000000)
      Damage=20.000000
      DamageHead=20.000000
      DamageLimb=20.000000
@@ -341,7 +346,7 @@ defaultproperties
      PreFireAnim=
      FireAnim="SawStart"
      FireEndAnim="SawEnd"
-     FireRate=0.250000
+     FireRate=0.150000
      AmmoClass=Class'BallisticProV55.Ammo_DarkDiamond'
      AmmoPerFire=1
      ShakeRotMag=(X=64.000000,Y=16.000000)

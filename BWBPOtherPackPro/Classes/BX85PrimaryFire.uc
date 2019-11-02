@@ -1,21 +1,33 @@
-class BX85PrimaryFire extends BallisticProProjectileFire;
+class BX85PrimaryFire extends BallisticProInstantFire;
 
 defaultproperties
 {
-     SpawnOffset=(X=15.000000,Y=15.000000,Z=-20.000000)
-     FireChaos=0.150000
-     BallisticFireSound=(Sound=Sound'BWBPOtherPackSound.XBow.XBow-Fire',Volume=1.350000,Radius=128.000000)
-     PreFireAnim=
-     FireAnim="FireCycle"
-     FireAnimRate=1.200000
-     FireForce="AssaultRifleAltFire"
-     FireRate=2.000000
-     AmmoClass=Class'BWBPOtherPackPro.Ammo_BloodhoundDarts'
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-20.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-     ProjectileClass=Class'BWBPOtherPackPro.BX85Bolt'
-     BotRefireRate=0.300000
-     WarnTargetPct=0.300000
+	TraceRange=(Min=30000.000000,Max=30000.000000)
+	WaterRangeFactor=0.750000
+	MaxWallSize=0.000000
+	MaxWalls=0
+	Damage=80.000000
+	DamageHead=120.000000
+	DamageLimb=80.000000
+	WaterRangeAtten=0.600000
+	DamageType=Class'DTBX85Bolt'
+	DamageTypeHead=Class'DTBX85Bolt'
+	DamageTypeArm=Class'DTBX85Bolt'
+	KickForce=6000
+	PenetrateForce=0
+	bPenetrate=False
+	FireChaos=0.150000
+	BallisticFireSound=(Sound=Sound'BWBPOtherPackSound.XBow.XBow-Fire',Volume=1.000000,Radius=64.000000)
+	PreFireAnim=
+	FireAnim="FireCycle"
+	FireAnimRate=2.00000
+	FireForce="AssaultRifleAltFire"
+	FireRate=1.250000
+	AmmoClass=Class'BWBPOtherPackPro.Ammo_BloodhoundDarts'
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-20.000000)
+	ShakeOffsetRate=(X=-1000.000000)
+	ShakeOffsetTime=2.000000
+	BotRefireRate=0.300000
+	WarnTargetPct=0.300000
 }

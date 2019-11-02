@@ -46,8 +46,12 @@ simulated function PlayCocking(optional byte Type)
 simulated function float ChargeBar()
 {
 	if (level.TimeSeconds >= FireMode[1].NextFireTime)
-		return 1;
-	return 1 - (FireMode[1].NextFireTime - level.TimeSeconds) / FireMode[1].FireRate;
+	{
+		if (FireMode[1].bIsFiring)
+			return FMin(1, FireMode[1].HoldTime / FireMode[1].MaxHoldTime);
+		return FMin(1, AM67SecondaryFire(FireMode[1]).DecayCharge / FireMode[1].MaxHoldTime);
+	}
+	return (FireMode[1].NextFireTime - level.TimeSeconds) / FireMode[1].FireRate;
 }
 
 // AI Interface =====
@@ -99,13 +103,13 @@ defaultproperties
      SightFXClass=Class'BallisticProV55.AM67SightLEDs'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
-     ManualLines(0)="High-powered bullet fire, with good range. The AM67 has the option of fully automatic and burst fire. Recoil is, however, high."
+     ManualLines(0)="High-powered bullet fire. The AM67 has the option of fully automatic and burst fire. Recoil is, however, high."
      ManualLines(1)="Engages the integrated flash device. Blinds enemies for a short duration. Enemies closer both to the player and to the point of aim will be blinded for longer."
-     ManualLines(2)="Effective at close to medium range."
+     ManualLines(2)="Effective at close range."
      SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=14
+     MagAmmo=7
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'BallisticSounds2.AM67.AM67-Cock')
      ReloadAnimRate=1.250000
@@ -124,7 +128,7 @@ defaultproperties
      AimSpread=16
      ChaosDeclineTime=0.450000
      ChaosSpeedThreshold=7500.000000
-     ChaosAimSpread=384
+     ChaosAimSpread=1280
      RecoilYawFactor=0.000000
      RecoilXFactor=0.250000
      RecoilYFactor=0.250000

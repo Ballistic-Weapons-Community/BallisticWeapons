@@ -21,6 +21,27 @@ replication
 		CurAlpha;
 }
 
+simulated function Vector GetTipLocation()
+{
+    local Coords C;
+    local Vector X, Y, Z;
+
+	if (Instigator.IsFirstPerson())
+	{
+		if (BallisticWeapon(Instigator.Weapon).bScopeView)
+		{
+			Instigator.Weapon.GetViewAxes(X,Y,Z);
+			return Instigator.Location + X*20 + Z*5;
+		}
+		else
+			C = Instigator.Weapon.GetBoneCoords('tip');
+	}
+	else
+		C = GetBoneCoords('tip');
+    return C.Origin;
+}
+
+/*
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
@@ -197,7 +218,7 @@ simulated function Destroyed()
 	Super.Destroyed();
 }
 
-// Refusue overlays when in transparent mode
+// Refuse overlays when in transparent mode
 simulated function SetOverlayMaterial( Material mat, float time, bool bOverride )
 {
 	if (!bTransparencyOn)
@@ -241,6 +262,7 @@ simulated function Tick(float deltaTime)
 	
 	nextCheckTime = Level.TimeSeconds + 0.025f;
 }
+*/
 
 defaultproperties
 {
@@ -260,6 +282,12 @@ defaultproperties
      Fades(13)=Texture'BallisticProTextures.Icons.stealth_112'
      Fades(14)=Texture'BallisticProTextures.Icons.stealth_120'
      Fades(15)=Texture'BallisticProTextures.Icons.stealth_128'
+	 
+	 TracerClass=Class'TraceEmitter_BX85Crossbow'
+     TracerChance=1.000000
+     WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+     WaterTracerMode=MU_Both
+	 
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      AltFlashBone=
      FlashMode=MU_None

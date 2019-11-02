@@ -1764,6 +1764,34 @@ exec simulated function MeleeHold()
 	}
 }
 
+function AddMeleeChargeSpeed()
+{
+	local float NewSpeed;
+	
+	if (SprintControl != None && SprintControl.bSprinting)
+		PlayerSprint(false);
+	PlayerSpeedFactor = FMin(PlayerSpeedFactor * 1.15, 1.15);
+	NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
+	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
+		NewSpeed *= 1.4;
+	if (Instigator.GroundSpeed != NewSpeed)
+		Instigator.GroundSpeed = NewSpeed;
+}
+
+function RemoveMeleeChargeSpeed()
+{
+	local float NewSpeed;
+	
+	if (SprintControl != None && SprintControl.bSprinting)
+		PlayerSprint(true);
+	PlayerSpeedFactor = default.PlayerSpeedFactor;
+	NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
+	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
+		NewSpeed *= 1.4;
+	if (Instigator.GroundSpeed != NewSpeed)
+		Instigator.GroundSpeed = NewSpeed;
+}
+
 function ServerMeleeHold()
 {
 	local float NewSpeed;
@@ -1775,14 +1803,7 @@ function ServerMeleeHold()
 	MeleeFireMode.HoldStartTime = Level.TimeSeconds;
 	MeleeFireMode.PlayPreFire();
 	GunLength = 1;
-	if (SprintControl != None && SprintControl.bSprinting)
-		PlayerSprint(false);
-	PlayerSpeedFactor = FMin(PlayerSpeedFactor * 1.15, 1.15);
-	NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
-	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
-		NewSpeed *= 1.4;
-	if (Instigator.GroundSpeed != NewSpeed)
-		Instigator.GroundSpeed = NewSpeed;
+	AddMeleeChargeSpeed();
 	bPreventReload = True;
 }
 
@@ -1792,8 +1813,12 @@ exec final simulated function MeleeRelease()
 		return;
 	switch(MeleeState)
 	{
-		case MS_Pending: MeleeState = MS_None; break;
-		case MS_StrikePending: MeleeState = MS_Strike; break;
+		case MS_Pending: 
+			MeleeState = MS_None; 
+			break;
+		case MS_StrikePending: 
+			MeleeState = MS_Strike; 
+			break;
 		case MS_Held:
 			if (Role < Role_Authority)
 			{
@@ -1810,22 +1835,13 @@ exec final simulated function MeleeRelease()
 
 final function ServerMeleeRelease()
 {
-	local float NewSpeed;
-	
 	//PlayerController(InstigatorController).ClientMessage("ServerMeleeRelease");
 	MeleeState = MS_Strike;
 	if (Instigator.IsLocallyControlled())
 		MeleeFireMode.PlayFiring();
 	else MeleeFireMode.ServerPlayFiring();
 	MeleeFireMode.DoFireEffect();
-	if (SprintControl != None && SprintControl.bSprinting)
-		PlayerSprint(true);
-	PlayerSpeedFactor = default.PlayerSpeedFactor;
-	NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
-	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
-		NewSpeed *= 1.4;
-	if (Instigator.GroundSpeed != NewSpeed)
-		Instigator.GroundSpeed = NewSpeed;
+	RemoveMeleeChargeSpeed();
 	GunLength = default.GunLength;
 	//Trace, damage code
 	//Fire delay

@@ -1,6 +1,0 @@
-
-
-defaultproperties
-{
-     InitialAmount=25
-}

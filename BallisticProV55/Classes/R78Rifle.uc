@@ -76,9 +76,9 @@ defaultproperties
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_R78'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
-     ManualLines(0)="Bolt-action sniper rifle fire. High damage, long range, slow fire rate and unusually quiet compared to other weapons in its class."
+     ManualLines(0)="Bolt-action sniper rifle fire with explosive rounds. High damage, long range, slow fire rate and deals damage to targets near the struck target."
      ManualLines(1)="Engages the scope."
-     ManualLines(2)="Does not use tracer rounds. Effective at long range and as a stealth weapon."
+     ManualLines(2)="Does not use tracer rounds. Effective at long range and against clustered enemies."
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')

@@ -73,7 +73,7 @@ defaultproperties
 {
      MuzzleFlashClass=Class'BWBPRecolorsPro.AH104FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-     ImpactManager=Class'BWBPRecolorsPro.IM_IncendiaryBullet'
+     ImpactManager=Class'IM_IncendiaryBullet'
      MeleeImpactManager=Class'BallisticProV55.IM_Knife'
      AltFlashBone="tip2"
      FlashScale=0.300000

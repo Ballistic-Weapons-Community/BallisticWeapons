@@ -47,7 +47,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
      End Object
-     Emitters(0)=SpriteEmitter'BallisticProV55.IE_BulletMetal.SpriteEmitter4'
+     Emitters(0)=SpriteEmitter'SpriteEmitter4'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter4
          StaticMesh=StaticMesh'BallisticHardware2.Effects.VBlast'
@@ -76,7 +76,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
-     Emitters(1)=MeshEmitter'BallisticProV55.IE_BulletMetal.MeshEmitter4'
+     Emitters(1)=MeshEmitter'MeshEmitter4'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter5
          FadeOut=True
@@ -101,7 +101,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.400000)
      End Object
-     Emitters(2)=SpriteEmitter'BallisticProV55.IE_BulletMetal.SpriteEmitter5'
+     Emitters(2)=SpriteEmitter'SpriteEmitter5'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter6
          UseDirectionAs=PTDU_Up
@@ -129,7 +129,7 @@ defaultproperties
          LifetimeRange=(Min=0.350000,Max=0.350000)
          StartVelocityRange=(X=(Min=50.000000,Max=500.000000),Y=(Min=-150.000000,Max=150.000000),Z=(Max=200.000000))
      End Object
-     Emitters(3)=SpriteEmitter'BallisticProV55.IE_BulletMetal.SpriteEmitter6'
+     Emitters(3)=SpriteEmitter'SpriteEmitter6'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter5
          StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip2'
@@ -157,7 +157,7 @@ defaultproperties
          LifetimeRange=(Min=0.800000,Max=0.800000)
          StartVelocityRange=(X=(Max=150.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Max=200.000000))
      End Object
-     Emitters(4)=MeshEmitter'BallisticProV55.IE_BulletMetal.MeshEmitter5'
+     Emitters(4)=MeshEmitter'MeshEmitter5'
 
      AutoDestroy=True
 }

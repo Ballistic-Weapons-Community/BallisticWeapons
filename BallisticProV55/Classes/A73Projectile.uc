@@ -19,12 +19,19 @@ simulated function PostBeginPlay()
 	StartLocation = Location;
 }
 
+static function float ScaleDistanceDamage(float lifespan)
+{
+	if (class'A73Projectile'.default.LifeSpan - lifespan > 0.1)
+		return 1 + 1.75 * FMin(class'A73Projectile'.default.LifeSpan - lifespan - 0.1, 0.5) / 0.5;
+		
+	return 1;
+}
+
 simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
 {
 	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
 	
-	if (default.LifeSpan - LifeSpan > 0.1)
-		Dmg *= 1 + 1.75 * FMin(default.LifeSpan - LifeSpan - 0.1, 0.5) / 0.5;
+	Dmg *= ScaleDistanceDamage(LifeSpan);
 	
 	return Other;
 }

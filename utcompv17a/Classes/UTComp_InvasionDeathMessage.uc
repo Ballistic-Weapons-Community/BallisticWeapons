@@ -1,6 +1,0 @@
-
-
-defaultproperties
-{
-     SomeoneString="a monster"
-}

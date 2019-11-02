@@ -344,11 +344,11 @@ function  ServerTryThaw()
 		return;
 	}
 
-    if (FrozenPawn == None)
+    /*if (FrozenPawn == None)
 	{
 		ClientMessage("THAW DEBUG: You don't have a pawn to thaw.");
 		return;
-	}
+	}*/
 	
 	if (FrozenPawn.Health > 99)
 		FrozenPawn.Thaw();

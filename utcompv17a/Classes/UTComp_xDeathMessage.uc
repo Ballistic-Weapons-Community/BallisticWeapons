@@ -1,6 +1,0 @@
-
-
-defaultproperties
-{
-     bEnableTeamColoredDeaths=True
-}

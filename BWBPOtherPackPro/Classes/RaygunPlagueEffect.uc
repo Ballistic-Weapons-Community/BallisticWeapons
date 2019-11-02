@@ -95,10 +95,10 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     Duration=15.000000
-     MaxDuration=40.000000
-     Damage=4.000000
-     DamageType=Class'BWBPOtherPackPro.DTRaygunPlague'
+	Duration=8.000000
+	MaxDuration=16.000000
+	Damage=5.000000
+	DamageType=Class'BWBPOtherPackPro.DTRaygunPlague'
     Begin Object Class=SpriteEmitter Name=SpriteEmitter0
         UseColorScale=True
         FadeOut=True

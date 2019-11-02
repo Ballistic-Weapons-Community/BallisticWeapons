@@ -128,12 +128,12 @@ defaultproperties
      TrailClass=Class'BWBPRecolorsPro.A49TrailEmitter'
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTA49Skrith'
      bUsePositionalDamage=True
-     DamageHead=48.000000
-     DamageLimb=32.000000
+     DamageHead=63.000000
+     DamageLimb=42.000000
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=3500.000000
-     MaxSpeed=3500.000000
-     Damage=32.000000
+     Speed=5500.000000
+     MaxSpeed=5500.000000
+     Damage=42.000000
      DamageRadius=48.000000
      MomentumTransfer=100.000000
      MyDamageType=Class'BWBPRecolorsPro.DTA49Skrith'

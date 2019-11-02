@@ -1,11 +1,11 @@
 class Team_HUDBase extends HudWTeamDeathmatch
     abstract;
 
-#exec TEXTURE IMPORT NAME=Chair FILE=Textures\Chair.tga GROUP=Textures MIPS=Off ALPHA=1 DXT=3 LODSET=5
-#exec TEXTURE IMPORT NAME=Flake FILE=Textures\Flake.tga GROUP=Textures MIPS=Off ALPHA=1 DXT=3 LODSET=5
-#exec TEXTURE IMPORT NAME=FrostedScoreboard FILE=Textures\FrostedScoreboard.tga GROUP=Textures MIPS=Off ALPHA=1 DXT=3 LODSET=5
-#exec TEXTURE IMPORT NAME=ScoreBoard FILE=Textures\ScoreBoard.tga GROUP=Textures MIPS=Off ALPHA=1 DXT=3 LODSET=5
-#exec TEXTURE IMPORT NAME=Icons FILE=Textures\Icons.tga GROUP=Textures MIPS=Off ALPHA=1 DXT=3 LODSET=5
+#exec TEXTURE IMPORT NAME=Chair FILE=Textures\Chair.DDS GROUP=Textures MIPS=Off ALPHA=1 DXT=3 LODSET=5
+#exec TEXTURE IMPORT NAME=Flake FILE=Textures\Flake.DDS GROUP=Textures MIPS=Off ALPHA=1 DXT=3 LODSET=5
+#exec TEXTURE IMPORT NAME=FrostedScoreboard FILE=Textures\FrostedScoreboard.DDS GROUP=Textures MIPS=Off ALPHA=1 DXT=3 LODSET=5
+#exec TEXTURE IMPORT NAME=ScoreBoard FILE=Textures\ScoreBoard.DDS GROUP=Textures MIPS=Off ALPHA=1 DXT=3 LODSET=5
+#exec TEXTURE IMPORT NAME=Icons FILE=Textures\Icons.DDS GROUP=Textures MIPS=Off ALPHA=1 DXT=3 LODSET=5
 
 var Texture TeamTex;
 var Material TrackedPlayer;

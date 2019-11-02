@@ -51,7 +51,7 @@ static function FireModeStats GetStats()
 	local FireModeStats FS;
 
 	FS.DamageInt = default.ProjectileClass.default.Damage;
-	FS.Damage = String(FS.DamageInt)@"-"@String(Int(FS.DamageInt * 2.5));
+	FS.Damage = String(FS.DamageInt)@"-"@String(Int(FS.DamageInt * class'A73Projectile'.static.ScaleDistanceDamage(0)));
 	FS.DPS = default.ProjectileClass.default.Damage / default.FireRate;
 	FS.TTK = default.FireRate * (Ceil(175/default.ProjectileClass.default.Damage) - 1);
 	FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";

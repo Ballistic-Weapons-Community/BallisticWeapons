@@ -60,7 +60,7 @@ defaultproperties
 {
      forceMag=1000.000000
      Damage=35.000000
-	 HeatPerShot=8
+	 HeatPerShot=10
      MuzzleFlashClass=Class'BWBPRecolorsPro.A49FlashEmitter'
      FlashBone="MuzzleTip"
      FlashScaleFactor=1.200000
@@ -72,7 +72,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.A49.A49-ShockWave',Volume=2.000000)
      FireAnim="AltFire"
      AmmoClass=Class'BallisticProV55.Ammo_Cells'
-     AmmoPerFire=16
+     AmmoPerFire=9
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000
