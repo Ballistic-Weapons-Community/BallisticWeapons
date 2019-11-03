@@ -149,8 +149,6 @@ function UpdateRocketAcceleration(float DeltaTime, float YawChange, float PitchC
 	local float PitchThreshold;
 	local int Pitch;
     local rotator TempRotation;
-    local TexRotator ScopeTexRotator;
-    local VariableTexPanner AltitudeTexPanner;
 
 	YawAccel = (1-2*DeltaTime)*YawAccel + DeltaTime*YawChange;
 	PitchAccel = (1-2*DeltaTime)*PitchAccel + DeltaTime*PitchChange;

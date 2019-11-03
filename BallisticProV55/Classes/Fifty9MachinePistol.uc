@@ -267,9 +267,9 @@ simulated function SetScopeBehavior()
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	if (HasAmmoLoaded(0)) return 0.5;	return 1.0;	}
+function float SuggestAttackStyle()	{	return 0.9;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return -0.5;	}
+function float SuggestDefenseStyle()	{	return -0.9;	}
 // End AI Stuff =====
 
 defaultproperties

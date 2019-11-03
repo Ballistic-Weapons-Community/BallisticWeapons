@@ -89,6 +89,11 @@ function byte BestMode()
 	return 0;
 }
 
+// tells bot whether to charge or back off while using this weapon
+function float SuggestAttackStyle()	{	return -0.5;	}
+// tells bot whether to charge or back off while defending against this weapon
+function float SuggestDefenseStyle()	{	return 0.5;	}
+
 defaultproperties
 {
      PanicThreshold=4.000000

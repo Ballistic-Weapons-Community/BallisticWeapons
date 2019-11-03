@@ -164,8 +164,6 @@ simulated event Timer()
 
 simulated event WeaponTick(float DT)
 {
-	local vector End;
-
 	super.WeaponTick(DT);
 
 	if (bCriticalHeat && !bIsVenting)
@@ -359,7 +357,6 @@ simulated function InitArcs()
 
 simulated event RenderOverlays (Canvas C)
 {
-	local vector End, X,Y,Z;
 	if (Spiral != None)
 		Spiral.SetRelativeRotation(rot(0,0,1)*RotorSpin);
 		

@@ -512,6 +512,9 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
+     ManualLines(0)="5.56 fire. Higher DPS than comparable weapons, but awkward recoil and highly visible tracers."
+     ManualLines(1)="Attaches or remvoes the suppressor. When active, the suppressor reduces recoil and noise output and hides the muzzle flash, but reduces range."
+     ManualLines(2)="The Weapon Function key, when used, first cycles between the weapon's laser sight and flashlight, and then activates both at once. Activate again to disable both. The laser sight reduces the spread of the hipfire, but compromises stealth.||Effective at close and medium range."
      LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
      LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
      LaserAimSpread=64.000000

@@ -289,9 +289,9 @@ function float GetAIRating()
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	if (HasAmmoLoaded(0)) return 0.5;	return 1.0;	}
+function float SuggestAttackStyle()	{	return 0.8;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return -0.5;	}
+function float SuggestDefenseStyle()	{	return -0.8;	}
 // End AI Stuff =================================
 
 
@@ -307,6 +307,9 @@ simulated function PlayCocking(optional byte Type)
 
 defaultproperties
 {
+	ManualLines(0)="Rapid automatic dart fire. High DPS and low recoil, but no penetration and very low magazine capacity."
+	ManualLines(1)="Readies a medical dart. When a medical dart has been readied, firing again will launch the dart. Allies will receive a significant health boost."
+	ManualLines(2)="Effective at close range and support."
      GrenBone="Dart"
      GrenBoneBase="MuzzleAttachment"
      GrenadeLoadAnim="DartOn"

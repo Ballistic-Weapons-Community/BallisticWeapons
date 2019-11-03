@@ -461,8 +461,6 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
-    local int Drain;
-	local vector Reflect;
     local vector HitNormal;
 
 	if( !DamageType.default.bLocationalHit )
@@ -601,7 +599,7 @@ defaultproperties
      RecoilDeclineDelay=0.700000
      FireModeClass(0)=Class'BWBPRecolorsPro.M2020GaussPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
-     PutDownTime=0.450000
+     PutDownTime=0.80000
      BringUpTime=0.500000
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000

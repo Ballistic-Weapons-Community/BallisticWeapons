@@ -38,7 +38,7 @@ simulated event AnimEnd (int Channel)
 // AI Interface =====
 function bool CanAttack(Actor Other)
 {
-	return true;
+	return VSize(Other.Location - Instigator.Location) < FireMode[0].MaxRange() * 2;
 }
 
 // choose between regular or alt-fire
@@ -97,27 +97,15 @@ function float GetAIRating()
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()
 {
-	if (AIController(Instigator.Controller) == None)
-		return 0.5;
-	return AIController(Instigator.Controller).Skill / 4;
+	return 1;
 }
 
 // tells bot whether to charge or back off while defending against this weapon
 function float SuggestDefenseStyle()
 {
-	local Bot B;
-	local float Result, Dist;
-
-	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return -0.5;
-
-	Dist = VSize(B.Enemy.Location - Instigator.Location);
-
-	Result = -1 * (B.Skill / 6);
-	Result *= (1 - (Dist/1500));
-    return FClamp(Result, -1.0, -0.3);
+	return -1;
 }
+
 // End AI Stuff =====
 
 defaultproperties
@@ -127,7 +115,7 @@ defaultproperties
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_A909'
      BigIconCoords=(X1=24,X2=432)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     ManualLines(0)="Thrusting attack with the blades. The first strike requires twice as long to complete as subsequent strikes. This attack has the highest sustained damage output of all weapons."
+     ManualLines(0)="Thrusting attack with the blades. Good range, but requires accuracy to hit. The first strike requires twice as long to complete as subsequent strikes. This attack has the highest sustained damage output of all melee weapons."
      ManualLines(1)="Prepares a slash, which will be executed upon release. The damage of this slash increases the longer altfire is held, up to 1.5 seconds for maximum damage output. This attack inflicts more damage from behind."
      ManualLines(2)="The Weapon Function key allows the player to block. Whilst blocking, no attacks are possible, but all melee damage striking the player frontally will be mitigated.||The A909s have extreme damage output at close range, but their short range makes realizing this potential difficult.||The player moves faster with the blades equipped."
      SpecialInfo(0)=(Info="120.0;2.0;-999.0;-1.0;-999.0;-999.0;-999.0")

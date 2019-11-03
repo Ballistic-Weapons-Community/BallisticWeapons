@@ -33,7 +33,7 @@ function int NetDamage( int OriginalDamage, int Damage, pawn injured, pawn insti
 			}
 			if (Cannons[i].BoostTarget == instigatedBy)
 			{
-				Damage *= 3;
+				Damage *= 1.5;
 				goto LoopLeave;
 			}
 		}

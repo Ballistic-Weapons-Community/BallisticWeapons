@@ -198,7 +198,6 @@ simulated function CreateColorStyle()
 	local int i;
 	
 	local String texDetailString;
-	local bool detailTexturesOn;
 	
 	for(i = 0;i < Skins.Length;i++)
 	{
@@ -353,8 +352,6 @@ simulated function SetOverlayMaterial( Material mat, float time, bool bOverride 
 
 simulated function TickFX(float DeltaTime)
 {
-	local int i,NumSkins;
-
     if ( SimHitFxTicker != HitFxTicker )
     {
         ProcessHitFX();

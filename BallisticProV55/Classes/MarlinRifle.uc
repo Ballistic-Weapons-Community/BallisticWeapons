@@ -216,9 +216,9 @@ function float GetAIRating()
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return 0.25;	}
+function float SuggestAttackStyle()	{	return -0.4;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return 0.0;	}
+function float SuggestDefenseStyle()	{	return 0.4;	}
 // End AI Stuff =====
 
 defaultproperties
@@ -234,6 +234,7 @@ defaultproperties
      MeleeFireClass=Class'BallisticProV55.MarlinMeleeFire'
      BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
+	 PutDownTime=0.4
      MagAmmo=8
      CockAnimRate=1.700000
      CockSound=(Sound=Sound'BWBP4-Sounds.Marlin.Mar-Cock',Volume=0.750000)

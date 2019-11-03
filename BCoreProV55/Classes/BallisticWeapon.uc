@@ -1794,8 +1794,6 @@ function RemoveMeleeChargeSpeed()
 
 function ServerMeleeHold()
 {
-	local float NewSpeed;
-	
 	//PlayerController(InstigatorController).ClientMessage("ServerMeleeHold");
 	MeleeState = MS_Held;
 	ReloadState = RS_None;
@@ -1883,14 +1881,17 @@ function ServerStartReload (optional byte i)
 
 	if (bPreventReload)
 		return;
+		
 	if (ReloadState != RS_None)
 		return;
+		
 	if (MagAmmo >= default.MagAmmo)
 	{
 		if (bNeedCock)
 			ServerCockGun(0);
 		return;
 	}
+	
 	if (Ammo[0].AmmoAmount < 1)
 		return;
 
@@ -1899,8 +1900,10 @@ function ServerStartReload (optional byte i)
 			StopFire(m);
 
 	bServerReloading = true;
+	
 	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
 		Instigator.SetAnimAction('ReloadGun');
+		
 	CommonStartReload(i);	//Server animation
 	ClientStartReload(i);	//Client animation
 }
@@ -2527,11 +2530,13 @@ function bool CanAttack(Actor Other)
 
 	if (ReloadState != RS_None)
 		return false;
+		
 	if (!bNoMag && (bNeedReload || MagAmmo < 1))
 	{
 		BotReload(true);
 		return false;
 	}
+	
 	if (!bNonCocking && bNeedCock && !bNeedReload && MagAmmo > 0)
 	{
 		CommonCockGun();

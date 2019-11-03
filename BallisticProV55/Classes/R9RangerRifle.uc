@@ -12,6 +12,8 @@
 //=============================================================================
 class R9RangerRifle extends BallisticWeapon;
 
+var float LastModeChangeTime;
+
 #exec OBJ LOAD File=R9A_tex.utx
 
 exec simulated function SwitchWeaponMode (optional byte ModeNum)	
@@ -132,7 +134,44 @@ simulated function bool HasAmmo()
 }
 
 // AI Interface =====
-function byte BestMode()	{	return 0;	}
+function byte BestMode()
+{
+	local Bot B;
+	local R9HeatManager HM;
+	local float Dist;
+
+	B = Bot(Instigator.Controller);
+	if ( B == None  || B.Enemy == None)
+		return 0;
+		
+	if (level.TimeSeconds - LastModeChangeTime < 1.4 - B.Skill*0.1)
+		return 0;
+		
+		
+	Dist = VSize(Instigator.Location - B.Enemy.Location);
+	
+	foreach B.Enemy.BasedActors(class'R9HeatManager', HM)
+		break;
+		
+	if (HM != None || B.Enemy.Health + B.Enemy.ShieldStrength > 200)
+	{
+		if (CurrentWeaponMode != 2)
+		{
+			CurrentWeaponMode = 2;
+			R9PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+		}
+	}
+	
+	else if (CurrentWeaponMode != 0)
+	{
+		CurrentWeaponMode = 0;
+		R9PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+	}
+	
+	LastModeChangeTime = level.TimeSeconds;
+
+	return 0;
+}
 
 function float GetAIRating()
 {

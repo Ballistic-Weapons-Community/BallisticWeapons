@@ -16,6 +16,11 @@ simulated function float ChargeBar()
 	return BX85Attachment(ThirdPersonActor).CurAlpha / 128.0f;
 }
 
+// tells bot whether to charge or back off while using this weapon
+function float SuggestAttackStyle()	{	return -0.7;	}
+// tells bot whether to charge or back off while defending against this weapon
+function float SuggestDefenseStyle()	{	return 0.7;	}
+
 defaultproperties
 {
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
@@ -24,9 +29,9 @@ defaultproperties
      IdleTweenTime=0.000000
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
-     ManualLines(0)="Launches a crossbow bolt. This attack is delayed and has a long fire interval, but is very difficult to detect."
-     ManualLines(1)="Charges a lightning-infused bolt. This attack will cause the enemy to suffer damage over time. Nearby players hit with the primary will link to the targeted player, restricting how far away from them they are able to move and sharing out damage."
-     ManualLines(2)="Excels at stealth."
+     ManualLines(0)="Launches an instant-hit crossbow bolt. This attack has a long fire interval and moderate damage, but is almost invisible and makes no sound. As such, it is very difficult to detect."
+     ManualLines(1)="Raises the scope."
+     ManualLines(2)="Effective at long range. Excels at stealth."
      SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')

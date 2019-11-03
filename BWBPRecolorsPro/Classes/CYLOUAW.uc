@@ -486,10 +486,11 @@ function float GetAIRating()
 
 	return Result;
 }
+
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return 0.1;	}
+function float SuggestAttackStyle()	{	return 0.6;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return 0.5;	}
+function float SuggestDefenseStyle()	{	return -0.6;	}
 // End AI Stuff =====
 
 simulated function bool HasAmmo()

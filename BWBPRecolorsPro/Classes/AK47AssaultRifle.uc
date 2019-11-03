@@ -102,6 +102,21 @@ simulated function NewDrawWeaponInfo(Canvas C, Float YPos)
 	}
 }
 
+simulated function bool IsKnifeLoaded()
+{
+	return AK47SecondaryFire(FireMode[1]).bLoaded;
+}
+
+simulated function bool IsReloadingKnife()
+{
+    local name anim;
+    local float frame, rate;
+    GetAnimParams(0, anim, frame, rate);
+	if (Anim == KnifeLoadAnim)
+ 		return true;
+	return false;
+}
+
 simulated event AnimEnd (int Channel)
 {
     local name anim;
@@ -111,8 +126,6 @@ simulated event AnimEnd (int Channel)
 	if (anim == KnifeLoadAnim)
 	{
 		ReloadState = RS_None;
-		if (Role == ROLE_Authority)
-			bServerReloading=False;
 		IdleTweenTime=0.0;
 		PlayIdle();
 	}
@@ -138,10 +151,49 @@ simulated function LoadKnife()
 	if (ReloadState == RS_None)
 	{
 		ReloadState = RS_Cocking;
-		if (Role == ROLE_Authority)
-			bServerReloading=True;
 		PlayAnim(KnifeLoadAnim, 1.1, , 0);
 	}		
+}
+
+function ServerStartReload (optional byte i)
+{
+	local int channel;
+	local name seq;
+	local float frame, rate;
+
+	if (bPreventReload)
+		return;
+	if (ReloadState != RS_None)
+		return;
+
+	GetAnimParams(channel, seq, frame, rate);
+	if (seq == KnifeLoadAnim)
+		return;
+
+	if (i == 1 || (MagAmmo >= default.MagAmmo || Ammo[0].AmmoAmount < 1))
+	{
+		if (AmmoAmount(1) > 0 && !IsReloadingKnife())
+		{
+			LoadKnife();
+			ClientStartReload(1);
+		}
+		return;
+	}
+	super.ServerStartReload();
+}
+
+simulated function ClientStartReload(optional byte i)
+{
+	if (Level.NetMode == NM_Client)
+	{
+		if (i == 1 || (MagAmmo >= default.MagAmmo || Ammo[0].AmmoAmount < 1))
+		{
+			if (AmmoAmount(1) > 0 && !IsReloadingKnife())
+				LoadKnife();
+		}
+		else
+			CommonStartReload(i);
+	}
 }
 
 simulated function Notify_BladeLaunch()
@@ -293,7 +345,7 @@ function float GetAIRating()
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return 0.0;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return 0.5;	}
+function float SuggestDefenseStyle()	{	return 0.0;	}
 // End AI Stuff =====
 
 defaultproperties

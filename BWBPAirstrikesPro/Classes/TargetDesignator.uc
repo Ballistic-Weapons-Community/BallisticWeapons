@@ -359,6 +359,10 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
+     ManualLines(0)="Projects a laser, which must be kept aimed at a given point on the map to call in the active airstrike."
+     ManualLines(1)="Raises the scope. The color of the scope changes from green to red, depending on whether or not the player is sufficiently far away from the aim point to call in the current airstrike."
+     ManualLines(2)="Switch modes by holding down the Fire Mode key and scrolling the mouse.||Effective at medium range. Extremely effective at long range, against cover, and against groups."
+
      StrikeInfo(0)=(BombClass=Class'BWBPAirstrikesPro.AIM9Missile',BomberSpeed=6000.000000,BombRange=2500.000000,BombInterval=0.350000,MinZDist=4096.000000,ModeDescription="Multiple missile attack targeted accurately on the indicated location.")
      StrikeInfo(1)=(BombClass=Class'BWBPAirstrikesPro.CarpetBomberBomb',BomberSpeed=5500.000000,BombRange=7500.000000,BombInterval=0.150000,MinZDist=4096.000000,MinRange=4096.000000,BombOffset=(Y=250.000000),ModeDescription="Drops bombs with good blast radius in a line with midpoint on targeted location.")
      StrikeInfo(2)=(BombClass=Class'BWBPAirstrikesPro.CBU30BaseShell',BomberSpeed=9000.000000,MinZDist=2048.000000,MinRange=1024.000000,ModeDescription="Drops a cluster bomb. The clusters release toxic gas.")
@@ -406,7 +410,7 @@ defaultproperties
      AIRating=1.000000
      CurrentRating=1.000000
      bShowChargingBar=True
-     Description="The Target Painter, similar to the Ion Painter, fires a harmless, low power laser with its primary fire. Unlike the Ion Painter, however, this weapon calls in a bomber that launches a string of bombs in the direction the user is facing, centered on the painted target. The bombs will easily incinerate the target and any unfortunates that happen to be nearby."
+     Description="The Target Designator is a unique weapon which can call in various types of airstrike on a position by using Target Painter mechanics. This weapon is of no use in environments where there is no access to the sky."
      EffectOffset=(X=100.000000,Y=25.000000,Z=-3.000000)
      Priority=15
      HudColor=(G=200)
@@ -429,4 +433,5 @@ defaultproperties
      Mesh=SkeletalMesh'BWBPOtherPackAnim.Designator_FP'
      DrawScale=0.600000
      AmbientGlow=64
+	 TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 }

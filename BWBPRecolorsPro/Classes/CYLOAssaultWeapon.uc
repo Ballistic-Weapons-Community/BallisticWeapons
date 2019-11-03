@@ -168,20 +168,24 @@ function byte BestMode()
 
 	if (HeatLevel > 10)
 		return 1;
-	if (HeatLevel > 5)
-		Result -= 0.1 * B.Skill * ((HeatLevel-5)/5);
+		
 	if (AmmoAmount(1) < 1)
 		return 0;
+		
 	else if (MagAmmo < 1)
 		return 1;
 
 	if (NextChangeMindTime > level.TimeSeconds)
 		return 0;
 
-
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	Height = B.Enemy.Location.Z - Instigator.Location.Z;
 	VDot = Normal(B.Enemy.Velocity) Dot Normal(Instigator.Location - B.Enemy.Location);
+	
+	
+	// Too close - self-damage risk	
+	if (Dist < 500)
+		return 1;
 
 	Result = FRand()-0.3;
 	// Too far for grenade
@@ -255,7 +259,7 @@ defaultproperties
      MedHeatSound=Sound'PackageSounds4Pro.CYLO.CYLO-MedHeat'
      BigIconMaterial=Texture'BallisticRecolors3TexPro.CYLO.BigIcon_CYLOMk2'
      bWT_Hazardous=True
-     ManualLines(0)="Automatic explosive round fire. While these rounds completely lack any penetrative ability, they explode on impact with players, dealing 70% of their base damage to nearby targets. This makes the CYLO Firestorm IV effective against groups of players."
+     ManualLines(0)="Automatic explosive round fire. While these rounds completely lack any penetrative ability, they explode on impact with players, dealing 70% of their base damage to nearby targets. This makes the CYLO Firestorm V effective against groups of players."
      ManualLines(1)="Melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab."
      ManualLines(2)="Not recommended for close range use as its explosive rounds can damage the user. Effective at medium range."
      SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.2;0.7;0.4")

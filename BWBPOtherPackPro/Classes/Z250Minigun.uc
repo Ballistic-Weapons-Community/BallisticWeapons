@@ -446,9 +446,9 @@ function float GetAIRating()
 	return Result;
 }
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return 0.5;	}
+function float SuggestAttackStyle()	{	return -0.1;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return 0.8;	}
+function float SuggestDefenseStyle()	{	return 0.1;	}
 // End AI Stuff =====
 
 defaultproperties
@@ -470,9 +470,9 @@ defaultproperties
      InventorySize=8
      bWT_Bullet=True
      bWT_Machinegun=True
-     ManualLines(0)="Add me."
-     ManualLines(1)="Add me."
-     ManualLines(2)="Add me."
+     ManualLines(0)="Primary fire spins up the barrels, delivering a hail of explosive rounds which inflict damage to the target and any nearby enemies."
+     ManualLines(1)="Secondary fire launches a fuel grenade, which spreads fuel on the ground. This fuel can be ignited using the primary fire or other fire-based weapons. Enemies hit by the grenade or who walk into the fuel spilled will be ignited and receive damage, in addition to the damage inflicted by the ground fires."
+     ManualLines(2)="Effective against groups of players and at area denial."
      SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
      BringUpSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Putaway')

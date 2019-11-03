@@ -618,9 +618,9 @@ function float GetAIRating()
 
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return 0.0;	}
+function float SuggestAttackStyle()	{	return -0.6;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return 0.5;	}
+function float SuggestDefenseStyle()	{	return 0.6;	}
 // End AI Stuff =====
 
 defaultproperties
@@ -681,6 +681,7 @@ defaultproperties
      FireModeClass(0)=Class'BWBPRecolorsPro.FG50PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.FG50SecondaryFire'
      IdleAnimRate=0.600000
+	 PutDownAnimRate=1.25
      PutDownTime=0.500000
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000

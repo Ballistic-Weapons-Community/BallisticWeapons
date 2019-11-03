@@ -83,6 +83,7 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_KnifeThrown'
      bRandomStartRotaion=False
      bUsePositionalDamage=True
+	 bIgnoreTerminalVelocity=True
      DamageHead=150.000000
      DamageLimb=100.000000
      DamageTypeHead=Class'BWBPRecolorsPro.DTX8KnifeRifleLaunchedHead'

@@ -270,7 +270,6 @@ simulated event WeaponTick(float DT)
 
 simulated event RenderOverlays (Canvas C)
 {
-	local vector End, X,Y,Z;
 	if (Spiral != None)
 		Spiral.SetRelativeRotation(rot(0,0,1)*RotorSpin);
 
@@ -667,9 +666,9 @@ function float GetAIRating()
 	return Result;
 }
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return 0.5;	}
+function float SuggestAttackStyle()	{	return -0.2;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return -0.5;	}
+function float SuggestDefenseStyle()	{	return -0.9;	}
 // End AI Stuff =====
 
 defaultproperties

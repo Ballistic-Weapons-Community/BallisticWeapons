@@ -214,6 +214,9 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
+	ManualLines(0)="High-powered semi-automatic fire."
+	ManualLines(1)="Engages the scope."
+	ManualLines(2)="Effective at medium range."
      LaserOnSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
      LaserOffSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
      RDSBone="RedDotSight"

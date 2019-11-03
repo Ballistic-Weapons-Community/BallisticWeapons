@@ -10,15 +10,12 @@ class SK410HEProjectile extends BallisticGrenade;
 
 simulated event ProcessTouch( actor Other, vector HitLocation )
 {
-	local float BoneDist;
-
 	if (Other == Instigator && (!bCanHitOwner))
 		return;
 	if (Other == HitActor)
 		return;
 	if (Base != None)
 		return;
-
 
 	if ( Instigator == None || Instigator.Controller == None )
 		Other.SetDelayedDamageInstigatorController( InstigatorController );

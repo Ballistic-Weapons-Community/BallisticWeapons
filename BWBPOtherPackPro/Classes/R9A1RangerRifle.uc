@@ -2,6 +2,8 @@ class R9A1RangerRifle extends BallisticWeapon;
 
 #exec OBJ LOAD File=R9A_tex.utx
 
+var float LastModeChangeTime;
+
 var rotator ScopeSightPivot;
 var vector ScopeSightOffset;
 
@@ -390,7 +392,45 @@ simulated function bool HasAmmo()
 }
 
 // AI Interface =====
-function byte BestMode()	{	return 0;	}
+function byte BestMode()
+{
+	local Bot B;
+	local R9HeatManager HM;
+	local float Dist;
+
+	B = Bot(Instigator.Controller);
+	if ( B == None  || B.Enemy == None)
+		return 0;
+		
+	if (level.TimeSeconds - LastModeChangeTime < 1.4 - B.Skill*0.1)
+		return 0;
+		
+		
+	Dist = VSize(Instigator.Location - B.Enemy.Location);
+	
+	foreach B.Enemy.BasedActors(class'R9HeatManager', HM)
+		break;
+		
+	if (HM != None || B.Enemy.Health + B.Enemy.ShieldStrength > 200)
+	{
+		if (CurrentWeaponMode != 2)
+		{
+			CurrentWeaponMode = 2;
+			R9PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+		}
+	}
+	
+	else if (CurrentWeaponMode != 0)
+	{
+		CurrentWeaponMode = 0;
+		R9PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+	}
+	
+	LastModeChangeTime = level.TimeSeconds;
+
+	return 0;
+}
+
 
 function float GetAIRating()
 {
@@ -412,9 +452,9 @@ function float GetAIRating()
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return -0.5;	}
+function float SuggestAttackStyle()	{	return -0.7;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return 0.8;	}
+function float SuggestDefenseStyle()	{	return 0.7;	}
 // End AI Stuff =====
 
 defaultproperties
@@ -425,9 +465,9 @@ defaultproperties
      BigIconMaterial=Texture'BWBPOtherPackTex2.R9A1.BigIcon_R9A1'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
-     ManualLines(0)="Semi-automatic rifle fire. High damage, long range, high penetration and moderate recoil. Sustained damage output is modest."
-     ManualLines(1)="As primary, except fires subsonic rounds. Loses damage over range but has lower recoil, lesser flash and is quieter."
-     ManualLines(2)="As a long-ranged weapon lacking a scope, it has a reasonably quick aiming time. Does not use tracer rounds. Cumbersome to use in close combat."
+     ManualLines(0)="Semi-automatic, long-range, moderate recoil rifle fire with three choices of ammunition, switched between using the fire mode function.||Standard rounds inflict good damage with high penetration.||Freeze rounds inflict lower damage, but progressively slow struck targets.||Heat Ray shots inflict low initial damage, but heat up the target, causing subsequent shots to inflict more damage. This effect wears off over time."
+     ManualLines(1)="Raises the scope."
+     ManualLines(2)="The R9A1 has both a scope (secondary fire) and iron sights (normal key).||Modes are switched by holding the Fire Mode key and then scrolling the mouse.||Effective at long range and against enemies making use of healing items and weapons."
      SpecialInfo(0)=(Info="240.0;25.0;0.5;50.0;1.0;0.2;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')

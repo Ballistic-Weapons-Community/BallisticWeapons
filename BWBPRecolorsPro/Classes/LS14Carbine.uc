@@ -723,6 +723,10 @@ simulated function PlayShovelLoop()
 
 defaultproperties
 {
+     ManualLines(0)="Single Fire mode fires one barrel at once for low damage, with good fire rate.||Double Fire fires both barrels, for moderate damage, with low fire rate.||Both modes heat up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
+     ManualLines(1)="Launches miniature rockets. These rockets deal high damage and good radius damage. The rockets have a short period of low speed before igniting."
+     ManualLines(2)="Effective at long range and against enemies using healing weapons and items."
+
      GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
      GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
      GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'

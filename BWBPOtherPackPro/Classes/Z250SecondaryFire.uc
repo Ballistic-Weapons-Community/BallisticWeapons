@@ -3,6 +3,12 @@ class Z250SecondaryFire extends BallisticProjectileFire;
 
 var   bool		bLoaded;
 
+simulated event ModeHoldFire()
+{
+	super.ModeHoldFire();
+    CheckGrenade();
+}
+
 simulated function bool CheckGrenade()
 {
 	local int channel;

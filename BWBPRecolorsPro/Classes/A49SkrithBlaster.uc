@@ -293,10 +293,31 @@ function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 	bHurtEntry = false;
 }
 
+simulated function float RateSelf()
+{
+	if (HeatLevel > 11)
+		CurrentRating = Super.RateSelf() * 0.2;
+	else if (PlayerController(Instigator.Controller) != None && Ammo[0].AmmoAmount < 1 && MagAmmo < 1)
+		CurrentRating = Super.RateSelf() * 0.2;
+	else
+		return Super.RateSelf();
+		
+	return CurrentRating;
+}
+
+// avoid bot suicides
+function bool CanAttack(Actor Other)
+{
+	if (HeatLevel > 11)
+		return false;
+
+	return super.CanAttack(Other);
+}
+
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return 0.3;	}
+function float SuggestAttackStyle()	{	return 0.8;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return 0.4;	}
+function float SuggestDefenseStyle()	{	return -0.8;	}
 
 function bool CanHeal(Actor Other)
 {
@@ -311,6 +332,9 @@ function bool CanHeal(Actor Other)
 
 defaultproperties
 {
+	ManualLines(0)="Fires a stream of plasma projectiles. These projectiles deal high damage and gain damage over range, but are slow.||Using this mode generates heat, and if the weapon overheats, the user will take damage and the fire rate is reduced."
+	ManualLines(1)="Projects a short-range shockwave, dealing low damage and pushing nearby enemies back.||Using this mode generates significant heat, and if the weapon overheats, the user will take damage."
+	ManualLines(2)="Effective at close range. Especially effective at repelling charges and melee."
      HeatDeclineDelay=0.200000
 	 AimDisplacementDurationMult=0.25
      BlastDamageType=Class'BWBPRecolorsPro.DTA49Shockwave'

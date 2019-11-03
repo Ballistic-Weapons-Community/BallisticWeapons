@@ -345,10 +345,6 @@ function DoFireEffect()
 
 state PowerAmp
 {
-	simulated function BeginState()
-	{
-		AmmoPerFire=5;
-	}
 	function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir)
 	{
 		if ( Pawn(Other) != None && Pawn(Other).Controller != None && Pawn(Other).Controller.SameTeamAs(Instigator.Controller) )  
@@ -416,12 +412,6 @@ state PowerAmp
 		if (!bBrassOnCock)
 			EjectBrass();
 	}
-	
-	simulated function EndState()
-	{
-		AmmoPerFire = 1;
-	}
-
 }
 	
 simulated function StopFiring()

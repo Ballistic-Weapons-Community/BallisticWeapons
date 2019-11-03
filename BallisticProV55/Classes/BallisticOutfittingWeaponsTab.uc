@@ -118,8 +118,6 @@ function LoadWeapons()
 	local IntBox ICrds;
 	local int lastIndex;
 	
-	local array<Weapon> wepsArray;
-	
 	// Load the weapons into their GUILoadOutItems
 
 	for(i=0;i<COI.GroupLength(0);i++)

@@ -435,8 +435,8 @@ defaultproperties
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M75'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
-     ManualLines(0)="Fires a high-damage extreme-velocity slug. Fire rate is low and recoil is high. Has extreme penetration, which improves as the railgun's charge level increases."
-     ManualLines(1)="Brings up the scope."
+     ManualLines(0)="Uncharged rail slug shot. High damage, moderate fire rate and recoil, and good penetration."
+     ManualLines(1)="Charged rail slug shot. The railgun will fire when the fire key is released, or immediately upon becoming fully charged. Damage and penetration improve with charge, to extreme levels when fully charged."
      ManualLines(2)="Weapon Function toggles the thermal scope, allowing the user to see enemies through walls. The further away the opponent, the closer the player's aim needs to be to their position to view them.||As a heavy weapon, the M75 reduces the user's movement speed and jump ability.||The M75 is effective at long range and through cover."
      SpecialInfo(0)=(Info="300.0;30.0;1.0;80.0;1.0;0.0;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M75.M75Pullout')

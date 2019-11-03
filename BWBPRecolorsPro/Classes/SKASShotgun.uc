@@ -182,6 +182,9 @@ simulated event WeaponTick(float DT)
 
 defaultproperties
 {
+     ManualLines(0)="Automatic fire has moderate spread, moderate damage, short range and fast fire rate.||Manual fire has tight spread, long range, good damage and low fire rate."
+     ManualLines(1)="Multi-shot attack. Loads a shell into each of the barrels, then fires them all at once. Very high damage, short range and wide spread."
+     ManualLines(2)="Extremely effective at close range."
      QuickCockSound=Sound'PackageSounds4Pro.SKAS.SKAS-Cock'
      UltraDrawSound=Sound'PackageSounds4Pro.SKAS.SKAS-UltraDraw'
      CoolRate=0.700000

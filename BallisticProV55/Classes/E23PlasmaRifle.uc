@@ -381,9 +381,11 @@ function byte BestMode()
 		return 1;
 	if (level.TimeSeconds - lastModeChangeTime < 1.4 - B.Skill*0.1 && (MagAmmo > 8 || CurrentWeaponMode!=1))
 		return 0;
-
+		
 	Dist = VSize(Instigator.Location - B.Enemy.Location);
+	
 	Result = 0.35 + FRand()*0.4;
+	
 	if (Dist < 1000)
 		Result *= FMax(0.65-B.Skill*0.11, Dist/1000);
 	else if (Dist > 3000)
@@ -404,7 +406,7 @@ function byte BestMode()
 			E23PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 		}
 	}
-	else if (MagAmmo > 5 && Result < 0.6)
+	else if (MagAmmo > 5 && Result > 0.6)
 	{
 		if (CurrentWeaponMode != 2)
 		{
@@ -417,6 +419,7 @@ function byte BestMode()
 		CurrentWeaponMode = 0;
 		E23PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 	}
+	
 	lastModeChangeTime = level.TimeSeconds;
 
 	return 0;
@@ -491,9 +494,35 @@ function bool CanHeal(Actor Other)
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return 0.3;	}
+function float SuggestAttackStyle()	
+{	
+	switch (CurrentWeaponMode)
+	{
+		case 0:
+			return -0.2;
+		case 1:
+			return 0.8;
+		case 2:
+			return -0.7;
+		default:
+			return 0.0;
+	}
+}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return -0.3;	}
+function float SuggestDefenseStyle()	
+{	
+	switch (CurrentWeaponMode)
+	{
+		case 0:
+			return 0.2;
+		case 1:
+			return -0.8;
+		case 2:
+			return 0.7;
+		default:
+			return 0.0;
+	}
+}
 // End AI Stuff =====
 
 simulated function float ChargeBar()

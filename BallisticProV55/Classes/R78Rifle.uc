@@ -65,9 +65,9 @@ function float GetAIRating()
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return -0.5;	}
+function float SuggestAttackStyle()	{	return -0.9;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return 0.8;	}
+function float SuggestDefenseStyle()	{	return 0.9;	}
 // End AI Stuff =====
 
 defaultproperties
@@ -82,6 +82,7 @@ defaultproperties
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
+	 PutDownTime=0.5
      MagAmmo=7
      CockAnim="CockQuick"
      CockSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Cock')

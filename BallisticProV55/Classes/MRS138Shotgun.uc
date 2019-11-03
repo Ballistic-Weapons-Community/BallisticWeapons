@@ -331,12 +331,14 @@ defaultproperties
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Shotgun=True
      ManualLines(0)="Automatic 10-gauge shotgun fire. Moderate spread, high damage and fast fire rate. Damage output is excellent. Strong from the hip."
-     ManualLines(1)="Melee attack using the tazer. Like other melee attacks, gains damage the longer the altfire key is held (up to 1.5 seconds). Deals more damage from behind. Inflicts a medium-duration blind upon enemies when impacting and knocks them away from the user."
-     ManualLines(2)="Weapon Function engages a flashlight which illuminates dark areas.||This weapon is extremely effective at close range."
+     ManualLines(1)="Launches a tazer. The user must hold down Altfire or the tazer will be retracted. Upon striking an enemy, transmits a current dealing low sustained damage but slowing the enemy movement."
+     ManualLines(2)="Has a melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. The attack inflicts more damage from behind. Inflicts a medium-duration blind upon enemies when impacting and knocks them away from the user.||Weapon Function engages a flashlight which illuminates dark areas.||This weapon is extremely effective at close range."
      SpecialInfo(0)=(Info="240.0;25.0;0.5;40.0;0.0;1.0;-999.0")
      MeleeFireClass=Class'BallisticProV55.MRS138MeleeFire'
      BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
+	 PutDownAnimRate=1.5
+	 PutDownTime=0.35
      MagAmmo=5
      CockAnimRate=1.200000
      CockSound=(Sound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-Cock',Volume=0.800000)

@@ -47,6 +47,7 @@ defaultproperties
      KeyData(37)=(Alias="GetWeapon BallisticProV55.FP9Explosive",KeyLabel="FP9A5 Plastic Explosive")
      KeyData(38)=(Alias="GetWeapon BallisticProV55.BX5Mine",KeyLabel="BX5-SM Land Mine")
      KeyData(39)=(Alias="GetWeapon BallisticProV55.T10Grenade",KeyLabel="T10 Toxic Grenade")
-     KeyData(40)=(Alias="GetWeapon BallisticProV55.HVCMk9LightningGun",KeyLabel="HVCMk9 Lightning-gun")
+     KeyData(40)=(Alias="GetWeapon BallisticProV55.HVCMk9LightningGun",KeyLabel="HVCMk9 Lightning Gun")
      KeyData(41)=(Alias="GetWeapon XWeapons.TransLauncher",KeyLabel="Quick UT Translocator")
+	 KeyData(42)=(Alias="BWStats",KeyLabel="Ballistic Weapons Stats/Manual")
 }

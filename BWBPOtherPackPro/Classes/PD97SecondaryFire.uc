@@ -1,11 +1,7 @@
 //=============================================================================
-// AM67SecondaryFire.
-//
-// A special attack that causes a blinding flash and motion blur for players
-// and has a stun effect on bots.
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2006 RuneStorm. All Rights Reserved.
+// PD97SecondaryFire
+// 
+// Taser fire.
 //=============================================================================
 class PD97SecondaryFire extends BallisticProjectileFire;
 

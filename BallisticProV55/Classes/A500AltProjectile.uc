@@ -15,8 +15,6 @@ const ACIDMAX = 4.0f;
 
 simulated event ProcessTouch( actor Other, vector HitLocation )
 {
-	local float BoneDist;
-
 	if (Other == Instigator && (!bCanHitOwner))
 		return;
 	if (Other == HitActor)

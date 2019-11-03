@@ -634,6 +634,24 @@ exec simulated function BWStats()
 	ClientOpenMenu ("BallisticProV55.BallisticWeaponStatsMenu");
 }
 
+// Weapon stats
+exec simulated function Stats()
+{
+	ClientOpenMenu ("BallisticProV55.BallisticWeaponStatsMenu");
+}
+
+// Weapon stats
+exec simulated function Manual()
+{
+	ClientOpenMenu ("BallisticProV55.BallisticWeaponStatsMenu");
+}
+
+// Weapon stats
+exec simulated function BWManual()
+{
+	ClientOpenMenu ("BallisticProV55.BallisticWeaponStatsMenu");
+}
+
 // Cheat to get all BW weapons...
 
 exec simulated function Reloaded()

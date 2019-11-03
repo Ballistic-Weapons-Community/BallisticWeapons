@@ -314,8 +314,6 @@ simulated function float GetModifiedJumpZ(Pawn P)
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
-    local vector HitNormal;
-
 	// less momentum when holding melee
 	if (FireMode[1].IsFiring())
 		Momentum *= 0.5;
@@ -920,9 +918,9 @@ function bool CanHeal(Actor Other)
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	 if (!HasNonMagAmmo(0) && !HasMagAmmo(0)) return 1.5; return 0.7;	}
+function float SuggestAttackStyle()	{	 return 0.2;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return -0.5;	}
+function float SuggestDefenseStyle()	{	return -0.2;	}
 // End AI Stuff =====
 
 defaultproperties

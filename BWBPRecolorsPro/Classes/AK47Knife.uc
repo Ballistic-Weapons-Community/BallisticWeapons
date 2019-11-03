@@ -68,6 +68,7 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_KnifeThrown'
      bRandomStartRotaion=False
      bUsePositionalDamage=True
+	 bIgnoreTerminalVelocity=True
      DamageHead=135.000000
      DamageLimb=90.000000
      DamageTypeHead=Class'BWBPRecolorsPro.DTX8KnifeRifleLaunchedHead'
@@ -76,7 +77,7 @@ defaultproperties
      MaxSpeed=8500.000000
      Damage=90.000000
      MyDamageType=Class'BWBPRecolorsPro.DTX8KnifeRifleLaunched'
-     StaticMesh=StaticMesh'BallisticHardware2.X3.X3PickupHi'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.X8.X8Proj'
      Physics=PHYS_Falling
      LifeSpan=0.000000
      DrawScale=0.150000

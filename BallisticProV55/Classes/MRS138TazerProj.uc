@@ -6,7 +6,7 @@ function DoDamage(Actor Other, vector HitLocation)
 {
 	Super.DoDamage(Other, HitLocation);
 	
-	if (Pawn(Other) != None && Master != None)
+	if (Pawn(Other) != None && Master != None && Level.TimeSeconds - Pawn(Other).SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime)
 	{
 		if (Pawn(Other).Controller != None && InstigatorController != None && !Pawn(Other).Controller.SameTeamAs(InstigatorController))
 			Master.GotTarget(Pawn(Other));

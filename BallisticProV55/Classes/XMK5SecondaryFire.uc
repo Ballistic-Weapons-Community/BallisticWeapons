@@ -30,6 +30,30 @@ simulated function bool CheckDart()
 	return true;
 }
 
+// Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
+simulated function bool AllowFire()
+{
+	//Force noobs to scope.
+	if ((BW.BCRepClass.default.bSightFireOnly || class'BallisticWeapon'.default.SightsRestrictionLevel > 0) && BW.bUseSights && BW.SightingState != SS_Active && !BW.bScopeHeld && Instigator.IsLocallyControlled() && PlayerController(Instigator.Controller) != None)
+		BW.ScopeView();
+	if (!BW.bScopeView && (class'BallisticWeapon'.default.SightsRestrictionLevel > 1 || (class'BallisticWeapon'.default.SightsRestrictionLevel > 0 && BW.ZoomType != ZT_Irons)))
+		return false;
+	if (!CheckReloading())
+		return false;		// Is weapon busy reloading
+	if (!CheckWeaponMode())
+		return false;		// Will weapon mode allow further firing
+
+	if(!Super.AllowFire() || !bLoaded)
+	{
+		if (DryFireSound.Sound != None)
+			Weapon.PlayOwnedSound(DryFireSound.Sound,DryFireSound.Slot,DryFireSound.Volume,DryFireSound.bNoOverride,DryFireSound.Radius,DryFireSound.Pitch,DryFireSound.bAtten);
+		BW.EmptyFire(1);
+		return false;	// Does not use ammo from weapon mag. Is there ammo in inventory
+	}
+
+    return true;
+}
+
 simulated event ModeDoFire()
 {
 	if (!AllowFire())

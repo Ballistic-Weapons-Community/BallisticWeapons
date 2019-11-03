@@ -332,47 +332,6 @@ simulated function float RateSelf()
 		return Super.RateSelf();
 	return CurrentRating;
 }
-// AI Interface =====
-// choose between regular or alt-fire
-function byte BestMode()
-{
-	local Bot B;
-	local float Dist;
-	local Vector Dir;
-	local Vehicle V;
-
-	if (MagAmmo < 1)
-		return 1;
-
-	B = Bot(Instigator.Controller);
-	if ( B == None  || B.Enemy == None)
-		return 0;
-
-	Dir = Instigator.Location - B.Enemy.Location;
-	Dist = VSize(Dir);
-
-	if ( ( (DestroyableObjective(B.Squad.SquadObjective) != None && B.Squad.SquadObjective.TeamLink(B.GetTeamNum()))
-		|| (B.Squad.SquadObjective == None && DestroyableObjective(B.Target) != None && B.Target.TeamLink(B.GetTeamNum())) )
-	     && (B.Enemy == None || !B.EnemyVisible()) )
-		return 0;
-	if ( FocusOnLeader(B.Focus == B.Squad.SquadLeader.Pawn) )
-		return 0;
-
-	if (Dist > 300)
-		return 0;
-
-	V = B.Squad.GetLinkVehicle(B);
-	if ( V == None )
-		V = Vehicle(B.MoveTarget);
-	if ( V == B.Target )
-		return 0;
-	if ( (V != None) && (V.Health < V.HealthMax) && (V.LinkHealMult > 0) && B.LineOfSightTo(V) )
-		return 0;
-
-	if (Dist < FireMode[1].MaxRange())
-		return 1;
-	return 0;
-}
 
 function float GetAIRating()
 {
@@ -507,6 +466,27 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	Super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
 }
 
+// AI Interface =====
+// choose between regular or alt-fire
+function byte BestMode()
+{
+	local Bot B;
+	local float Dist;
+
+	B = Bot(Instigator.Controller);
+	
+	if ( (B == None) || (B.Enemy == None) )
+		return 0;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	if (Dist > 3000)
+		return 1;
+		
+	return 0;
+}
+
+
 function bool FocusOnLeader(bool bLeaderFiring)
 {
 	local Bot B;
@@ -560,9 +540,9 @@ simulated function PassDelay(float Delay)
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	 if (!HasNonMagAmmo(0) && !HasMagAmmo(0)) return 1.2; return 0.5;	}
+function float SuggestAttackStyle()	{	return 0.7;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return -0.5;	}
+function float SuggestDefenseStyle()	{	return -0.7;	}
 // End AI Stuff =====
 
 defaultproperties
@@ -586,6 +566,9 @@ defaultproperties
      WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
+	 ManualLines(0)="Launches a stream of projectiles. These projectiles do not gain damage over range."
+     ManualLines(1)="Charged ray attack. Targets hit by this attack will receive damage and become irradiated. Irradiation causes damage over time and can be spread through the enemy's team by proximity to the irradiated enemy. The duration of irradiation against a target is extended when hit by the primary fire."
+     ManualLines(2)="The Raygun also possesses a shield, activated by the Weapon Function key. When active, this shield protects the user from any form of damage which is not locational, such as flames and explosions, but makes the user highly visible. Effective at close range, against groups of clustered players and against explosives."
      CurrentWeaponMode=0
      bNotifyModeSwitch=True
      bNoCrosshairInScope=True

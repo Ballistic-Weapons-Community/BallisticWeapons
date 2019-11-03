@@ -649,9 +649,9 @@ function float GetAIRating()
 
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return 0.0;	}
+function float SuggestAttackStyle()	{	return -0.7;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return 0.5;	}
+function float SuggestDefenseStyle()	{	return 0.7;	}
 
 defaultproperties
 {

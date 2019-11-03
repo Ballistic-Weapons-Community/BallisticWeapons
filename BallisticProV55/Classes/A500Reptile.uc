@@ -120,48 +120,15 @@ simulated function float RateSelf()
 function byte BestMode()
 {
 	local Bot B;
-	local float Result, Height, Dist, VDot;
+	local float Dist;
 
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
 
-	if (AmmoAmount(1) < 1)
-		return 0;
-	else if (MagAmmo < 1)
-		return 1;
-
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
-	Height = B.Enemy.Location.Z - Instigator.Location.Z;
-	VDot = Normal(B.Enemy.Velocity) Dot Normal(Instigator.Location - B.Enemy.Location);
 
-	Result = FRand()-0.3;
-	// Too far for grenade
-	if (Dist > 800)
-		Result -= (Dist-800) / 2000;
-	// Too close for grenade
-	if (Dist < 500 &&  VDot > 0.3)
-		result -= (500-Dist) / 1000;
-	if (VSize(B.Enemy.Velocity) > 50)
-	{
-		// Straight lines
-		if (Abs(VDot) > 0.8)
-			Result += 0.1;
-		// Enemy running away
-		if (VDot < 0)
-			Result -= 0.2;
-		else
-			Result += 0.2;
-	}
-	// Higher than enemy
-//	if (Height < 0)
-//		Result += 0.1;
-	// Improve grenade acording to height, but temper using horizontal distance (bots really like grenades when right above you)
-	Dist = VSize(B.Enemy.Location*vect(1,1,0) - Instigator.Location*vect(1,1,0));
-	if (Height < -100)
-		Result += Abs((Height/2) / Dist);
-
-	if (Result > 0.5)
+	if (Dist > 2048 || Rand(100) < 10)
 		return 1;
 	return 0;
 }
@@ -199,9 +166,9 @@ function float GetAIRating()
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	 if (!HasNonMagAmmo(0) && !HasMagAmmo(0)) return 1.2; return 0.5;	}
+function float SuggestAttackStyle()	{ return 0.8;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return -0.5;	}
+function float SuggestDefenseStyle()	{	return -0.8;	}
 
 simulated function float ChargeBar()
 {

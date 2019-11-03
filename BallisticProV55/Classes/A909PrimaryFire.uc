@@ -113,17 +113,17 @@ defaultproperties
      SliceAnims(0)="PrepHack"
      SliceAnims(1)="HackLoop1"
      SliceAnims(2)="HackLoop2"
-     SwipePoints(0)=(offset=(Yaw=-1536))
+     SwipePoints(0)=(offset=(Yaw=-1280))
      SwipePoints(1)=(offset=(Yaw=0))
-     SwipePoints(2)=(offset=(Yaw=1536))
+     SwipePoints(2)=(offset=(Yaw=1280))
      WallHitPoint=1
      NumSwipePoints=3
-     FatiguePerStrike=0.030000
+     FatiguePerStrike=0.060000
      bCanBackstab=False
-     TraceRange=(Min=140.000000,Max=140.000000)
-     Damage=40.000000
-     DamageHead=40.000000
-     DamageLimb=40.000000
+     TraceRange=(Min=170.000000,Max=170.000000)
+     Damage=35.000000
+     DamageHead=35.000000
+     DamageLimb=35.000000
      DamageType=Class'BallisticProV55.DTA909Blades'
      DamageTypeHead=Class'BallisticProV55.DTA909Head'
      DamageTypeArm=Class'BallisticProV55.DTA909Limb'

@@ -847,9 +847,9 @@ function bool CanHeal(Actor Other)
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	 if (!HasNonMagAmmo(0) && !HasMagAmmo(0)) return 1.5; return 0.7;	}
+function float SuggestAttackStyle()	{	 return 0.2;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return -0.5;	}
+function float SuggestDefenseStyle()	{	return -0.2;	}
 
 // End AI Stuff =====
 
@@ -868,6 +868,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Pullout')
      PutDownSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Putaway')
      MagAmmo=21
+	 PutDownAnimRate=1.4
      ReloadAnimRate=1.250000
      ClipOutSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalOut',Volume=0.700000)
      ClipInSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalIn',Volume=0.700000)

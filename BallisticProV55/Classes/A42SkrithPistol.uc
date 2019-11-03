@@ -100,7 +100,7 @@ function byte BestMode()
 	Dir = Instigator.Location - B.Enemy.Location;
 	Dist = VSize(Dir);
 
-	if (AmmoAmount(0) < 40)
+	if (AmmoAmount(0) < FireMode[1].AmmoPerFire)
 		return 0;
 
 	if (B.Squad!=None)
@@ -121,7 +121,7 @@ function byte BestMode()
 			return 0;
 	}
 
-	if (FRand() < Dist/1500)
+	if (Dist > 1024)
 		return 1;
 	return 0;
 }
@@ -169,7 +169,7 @@ function float GetAIRating()
 	else if (Dist < 500)
 		Result -= 0.1;
 	else if (Dist > 1000 && AmmoAmount(0) < 50)
-		return Result -= 0.1;;
+		return Result -= 0.1;
 
 	return Result;
 }
@@ -222,9 +222,9 @@ function bool FocusOnLeader(bool bLeaderFiring)
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return 0.3;	}
+function float SuggestAttackStyle()	{	return 0.7;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return 0.4;	}
+function float SuggestDefenseStyle()	{	return -0.7;	}
 
 function bool CanHeal(Actor Other)
 {

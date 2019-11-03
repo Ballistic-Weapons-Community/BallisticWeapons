@@ -175,8 +175,8 @@ defaultproperties
      bWT_Shotgun=True
      bWT_Machinegun=True
      ManualLines(0)="Fires shotgun blasts with wide spread. These blasts inflict heavy damage and knock the enemy back."
-     ManualLines(1)="Fires a single slug with an arming delay. Whilst unarmed, it will reflect from struck walls or surfaces. Deals good impact damage and minor radius damage."
-     ManualLines(2)="Has a melee attack. Damage improves over hold time, with a max bonus being reached at 1.5 seconds of holding. As a blunt attack, has lower damage than sharp melee attacks but inflicts a minor blind effect upon striking. Deals more damage from behind.||Effective at close to medium range depending upon active mode."
+     ManualLines(1)="Fires an explosive slug. Deals good impact damage and minor radius damage. Targets hit will be knocked back a significant distance."
+     ManualLines(2)="Has a melee attack. Damage improves over hold time, with a max bonus being reached at 1.5 seconds of holding. As a blunt attack, has lower damage than sharp melee attacks but inflicts a minor blind effect upon striking. Deals more damage from behind.||Extremely effective at close range and against charges and melee."
      SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
      MeleeFireClass=Class'BWBPRecolorsPro.SK410MeleeFire'
      BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')

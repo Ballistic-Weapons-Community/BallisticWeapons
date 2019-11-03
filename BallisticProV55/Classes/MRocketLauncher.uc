@@ -453,6 +453,13 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
     Canvas.SetPos(4,YPos);
 }
 
+// tells bot whether to charge or back off while using this weapon
+function float SuggestAttackStyle()	{	return -0.5;	}
+
+// tells bot whether to charge or back off while defending against this weapon
+function float SuggestDefenseStyle()	{	return -0.9;	}
+
+
 defaultproperties
 {
      ClipOutSoundSmall=Sound'BWBP4-Sounds.MRL.MRL-SmallOff'
@@ -480,9 +487,9 @@ defaultproperties
      bWT_Splash=True
      bWT_RapidProj=True
      bWT_Projectile=True
-     ManualLines(0)="Fires miniature rockets at a modest rate. Moderate damage, good damage output and fast travel time. Capacity is extremely high due to the double-magazine setup. Recoil is almost non-existent as the weapon is a multiple rocket launcher. The rockets also deal low radius damage."
-     ManualLines(1)="As the primary fire, but the rate of fire is significantly increased, with lesser controllability."
-     ManualLines(2)="This weapon has no iron sights.||Effective at close to medium range."
+     ManualLines(0)="Fires miniature explosive rockets at a modest rate. Moderate damage, good damage output and fast travel time. Capacity is extremely high due to the double-magazine setup. Recoil is almost non-existent as the weapon is a multiple rocket launcher. The rockets also deal radius damage."
+     ManualLines(1)="As the primary fire, but the rate of fire is significantly increased. The rockets travel slowly at first, before launching at full speed."
+     ManualLines(2)="This weapon has no iron sights.||Effective against groups and at medium range."
      SpecialInfo(0)=(Info="480.0;60.0;1.5;100.0;0.8;2.0;1.5")
      BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')

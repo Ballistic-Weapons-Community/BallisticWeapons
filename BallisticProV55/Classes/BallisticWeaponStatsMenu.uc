@@ -124,10 +124,13 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	
 	cb_Display.AddItem("Statistics");
 	cb_Display.AddItem("Manual");
+
 	cb_Display.bReadOnly = True;
 
 	LoadList();
 	bInitialized = true;
+	cb_Display.SetIndex(1);
+	SwitchDisplay(cb_Display.GetIndex());
 	UpdateInfo();
 }
 
@@ -205,41 +208,47 @@ function bool InternalOnClick(GUIComponent Sender)
 
 function InternalOnChange(GUIComponent Sender)
 {
+	if (!bInitialized)
+		return;
+	
+	if (Sender == lb_Weapons.List)
+		UpdateInfo();
+	else if (Sender == cb_Display)
+		SwitchDisplay(cb_Display.GetIndex());
+}
+
+function SwitchDisplay(int Index)
+{
 	local int i;
 	
-	if (Sender == lb_Weapons.List && bInitialized)
-		UpdateInfo();
-	if (Sender == cb_Display && bInitialized)
+	if (Index == 0)
 	{
-		if (cb_Display.GetIndex() == 0)
-		{
-			GenBack.bVisible = True;
-			for(i=0; i < GenBack.AlignStack.Length; i++)
-				GenBack.AlignStack[i].bVisible = True;
-			PriBack.bVisible = True;
-			for(i=0; i < PriBack.AlignStack.Length; i++)
-				PriBack.AlignStack[i].bVisible = True;
-			AltBack.bVisible = True;
-			for(i=0; i < AltBack.AlignStack.Length; i++)
-				AltBack.AlignStack[i].bVisible = True;
-			sb_Desc.bVisible = False;
-			Box_Desc.bVisible = False;
-			UpdateInfo();
-		}
-		else
-		{
-			GenBack.bVisible = False;
-			for(i=0; i < GenBack.AlignStack.Length; i++)
-				GenBack.AlignStack[i].bVisible = False;
-			PriBack.bVisible = False;
-			for(i=0; i < PriBack.AlignStack.Length; i++)
-				PriBack.AlignStack[i].bVisible = False;
-			AltBack.bVisible = False;
-			for(i=0; i < AltBack.AlignStack.Length; i++)
-				AltBack.AlignStack[i].bVisible = False;
-			sb_Desc.bVisible = True;
-			Box_Desc.bVisible = True;
-		}
+		GenBack.bVisible = True;
+		for(i=0; i < GenBack.AlignStack.Length; i++)
+			GenBack.AlignStack[i].bVisible = True;
+		PriBack.bVisible = True;
+		for(i=0; i < PriBack.AlignStack.Length; i++)
+			PriBack.AlignStack[i].bVisible = True;
+		AltBack.bVisible = True;
+		for(i=0; i < AltBack.AlignStack.Length; i++)
+			AltBack.AlignStack[i].bVisible = True;
+		sb_Desc.bVisible = False;
+		Box_Desc.bVisible = False;
+		UpdateInfo();
+	}
+	else
+	{
+		GenBack.bVisible = False;
+		for(i=0; i < GenBack.AlignStack.Length; i++)
+			GenBack.AlignStack[i].bVisible = False;
+		PriBack.bVisible = False;
+		for(i=0; i < PriBack.AlignStack.Length; i++)
+			PriBack.AlignStack[i].bVisible = False;
+		AltBack.bVisible = False;
+		for(i=0; i < AltBack.AlignStack.Length; i++)
+			AltBack.AlignStack[i].bVisible = False;
+		sb_Desc.bVisible = True;
+		Box_Desc.bVisible = True;
 	}
 }
 

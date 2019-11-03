@@ -232,12 +232,17 @@ simulated function bool HasAmmo()
 // choose between regular or alt-fire
 function byte BestMode()
 {
-	if(Level.TimeSeconds - LastFlareTime > 15.0 && FRand() <= 0.15)
-	{
-		LastFlareTime = Level.TimeSeconds;
-		return 1;
-	}
+	local Bot B;
+	local float Dist;
 
+	B = Bot(Instigator.Controller);
+	if ( (B == None) || (B.Enemy == None) )
+		return 0;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+
+	if (Dist < 512)
+		return 1;
 	return 0;
 }
 
@@ -266,9 +271,9 @@ function float GetAIRating()
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return 0.3;	}
+function float SuggestAttackStyle()	{	return 0.6;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return 0.5;	}
+function float SuggestDefenseStyle()	{	return -0.6;	}
 // End AI Stuff =====
 
 defaultproperties

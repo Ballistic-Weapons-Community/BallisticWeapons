@@ -148,12 +148,25 @@ simulated event Destroyed()
 //===========================================================================
 simulated function float RateSelf()
 {
-	if (PlayerController(Instigator.Controller) != None && Ammo[0].AmmoAmount < 1 && MagAmmo < 1)
+	if (HeatLevel > 11)
+		CurrentRating = Super.RateSelf() * 0.2;
+	else if (PlayerController(Instigator.Controller) != None && Ammo[0].AmmoAmount < 1 && MagAmmo < 1)
 		CurrentRating = Super.RateSelf() * 0.2;
 	else
 		return Super.RateSelf();
+		
 	return CurrentRating;
 }
+
+// avoid bot suicides
+function bool CanAttack(Actor Other)
+{
+	if (HeatLevel > 11)
+		return false;
+
+	return super.CanAttack(Other);
+}
+
 // choose between regular or alt-fire
 function byte BestMode()
 {
@@ -161,9 +174,6 @@ function byte BestMode()
 	local float Dist;
 	local Vector Dir;
 	local Vehicle V;
-
-	if (MagAmmo < 1)
-		return 1;
 
 	B = Bot(Instigator.Controller);
 	if ( B == None  || B.Enemy == None)
@@ -190,7 +200,7 @@ function byte BestMode()
 	if ( (V != None) && (V.Health < V.HealthMax) && (V.LinkHealMult > 0) && B.LineOfSightTo(V) )
 		return 0;
 
-	if (Dist < FireMode[1].MaxRange())
+	if (Rand(100) < 10)
 		return 1;
 	return 0;
 }
@@ -295,9 +305,10 @@ function bool FocusOnLeader(bool bLeaderFiring)
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	 if (!HasNonMagAmmo(0) && !HasMagAmmo(0)) return 1.2; return 0.5;	}
+function float SuggestAttackStyle()	{ return 0.3; }
+
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return -0.5;	}
+function float SuggestDefenseStyle()	{	return -0.3;	}
 
 function bool CanHeal(Actor Other)
 {
@@ -320,8 +331,8 @@ defaultproperties
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_RapidProj=True
      bWT_Energy=True
-     ManualLines(0)="Launches a torrent of energy projectiles. The damage of these projectiles increases at range."
-     ManualLines(1)="Launches a single, slower moving yet powerful projectile with minor radius damage. This projectile inflicts a short-duration blind effect and increased damage upon a direct hit. Spreads when used from the hip."
+     ManualLines(0)="Launches a torrent of energy projectiles. The damage of these projectiles increases at range.||This attack generates heat, and if the weapon overheats, the fire rate is reduced and the player will take damage."
+     ManualLines(1)="Launches a single, slower moving yet powerful projectile with minor radius damage. This projectile inflicts a short-duration blind effect and increased damage upon a direct hit. Spreads when used from the hip.||This attack generates substantial heat, and the player will take damage if the weapon overheats."
      ManualLines(2)="Has a melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab.||The A73 is effective at close range and very effective at medium range. It is also capable of healing nodes and vehicles with its plasma attacks. As an energy weapon, the A73 has lower recoil than conventional arms and its projectiles penetrate players but not walls and surfaces."
      SpecialInfo(0)=(Info="240.0;20.0;0.9;80.0;0.0;0.4;0.1")
      MeleeFireClass=Class'BallisticProV55.A73MeleeFire'

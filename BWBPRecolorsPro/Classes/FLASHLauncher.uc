@@ -195,7 +195,7 @@ function float GetAIRating()
 	return Result;
 }
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return -0.5;	}
+function float SuggestAttackStyle()	{	return -0.8;	}
 // tells bot whether to charge or back off while defending against this weapon
 function float SuggestDefenseStyle()	{	return -0.9;	}
 // End AI Stuff =====

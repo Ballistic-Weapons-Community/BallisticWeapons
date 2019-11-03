@@ -615,7 +615,7 @@ function float GetAIRating()
 	return Result;
 }
 function float SuggestAttackStyle()	{	return -0.5;	}
-function float SuggestDefenseStyle()	{	return 0.8;	}
+function float SuggestDefenseStyle()	{	return 0.5;	}
 
 //=======================================
 // End AI functions

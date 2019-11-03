@@ -348,7 +348,6 @@ simulated event WeaponTick(float DT)
 	}
 }
 
-
 //===========================================================================
 // Misc.
 //===========================================================================
@@ -358,6 +357,12 @@ simulated function FirePressed(float F)
 		bNeedReload = false;
 	super.FirePressed(F);
 }
+
+// tells bot whether to charge or back off while using this weapon
+function float SuggestAttackStyle()	{	return 0.2;	}
+// tells bot whether to charge or back off while defending against this weapon
+function float SuggestDefenseStyle()	{	return -0.2;	}
+
 
 defaultproperties
 {

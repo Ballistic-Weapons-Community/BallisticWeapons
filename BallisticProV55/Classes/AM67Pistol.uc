@@ -88,9 +88,9 @@ function float GetAIRating()
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return 0.3;	}
+function float SuggestAttackStyle()	{	return 0.7;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return 0.5;	}
+function float SuggestDefenseStyle()	{	return -0.7;	}
 // End AI Stuff =====
 
 defaultproperties
@@ -104,12 +104,12 @@ defaultproperties
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      ManualLines(0)="High-powered bullet fire. The AM67 has the option of fully automatic and burst fire. Recoil is, however, high."
-     ManualLines(1)="Engages the integrated flash device. Blinds enemies for a short duration. Enemies closer both to the player and to the point of aim will be blinded for longer."
+     ManualLines(1)="Engages the integrated flash device. The fire key must be held until the flash triggers. Blinds enemies for a short duration. Enemies closer both to the player and to the point of aim will be blinded for longer."
      ManualLines(2)="Effective at close range."
      SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=7
+     MagAmmo=9
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'BallisticSounds2.AM67.AM67-Cock')
      ReloadAnimRate=1.250000
@@ -119,8 +119,9 @@ defaultproperties
      ClipInFrame=0.650000
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
-     SightOffset=(X=-12.000000,Z=6.500000)
-     SightDisplayFOV=40.000000
+	 SightPivot=(Pitch=512)
+     SightOffset=(X=-12.000000,Z=9.500000)
+     SightDisplayFOV=60.000000
      SightingTime=0.200000
      SightAimFactor=0.150000
      JumpChaos=0.200000
