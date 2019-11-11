@@ -29,10 +29,10 @@ defaultproperties
      WaterRangeFactor=0.800000
      MaxWallSize=24.000000
      MaxWalls=2
-     Damage=35.000000
-     DamageHead=70.000000
-     DamageLimb=35.000000
-     RangeAtten=0.250000
+     Damage=55.000000
+     DamageHead=82.000000
+     DamageLimb=55.000000
+     RangeAtten=0.50000
      WaterRangeAtten=0.600000
      DamageType=Class'BallisticProV55.DTleMatRevolver'
      DamageTypeHead=Class'BallisticProV55.DTleMatrevolverHead'
@@ -44,10 +44,12 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
      FlashScaleFactor=0.600000
      AimedFireAnim="SightFire"
-     RecoilPerShot=1024.000000
+     RecoilPerShot=600.000000
      FireChaos=0.300000
-     XInaccuracy=128.000000
-     YInaccuracy=128.000000
+     XInaccuracy=96.000000
+     YInaccuracy=96.000000
+	 FireAnimRate=1.5
+	 FireRate=0.35
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-Fire',Volume=1.200000)
      FireEndAnim=
      AmmoClass=Class'BallisticProV55.Ammo_leMat'

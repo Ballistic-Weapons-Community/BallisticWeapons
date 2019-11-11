@@ -8,6 +8,8 @@
 //=============================================================================
 class BallisticTab_EliminationInventoryPro extends MidGamePanel;
 
+const INVENTORY_SIZE_MAX = 35;
+
 var bool					bLoadInitialized;
 
 var automated GUIListBox	lb_Weapons;
@@ -209,11 +211,13 @@ simulated function InitWeaponLists ()
 	for (i=0;i< EPRI.SavedInventory.length;i++)
 	{
 		a = class<Actor>(DynamicLoadObject(EPRI.SavedInventory[i], class'Class'));
+		
 		if (class<BallisticWeapon>(a) != None)
 		{
 			Weap = class<BallisticWeapon>(a);
 			AddInventory(string(Weap), Weap, Weap.default.ItemName);
 		}
+		
 		else if (class<ConflictItem>(a) != None)
 		{
 			CI = class<ConflictItem>(a);
@@ -232,6 +236,7 @@ simulated function InitWeaponLists ()
 		{
 			if (!WI.bIsBW)
 				lb_Weapons.List.Add(WI.ItemName, , EPRI.FullInventoryList[i]);
+				
 			else if (WI.InventorySize >= 8)
 			{
 				lb_Weapons.List.Insert(HWIndex, WI.ItemName, , EPRI.FullInventoryList[i]);
@@ -302,7 +307,7 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	if (class<ConflictItem>(InvClass) != None)
 	{
 		Size = class<ConflictItem>(InvClass).default.Size/5;
-		if (SpaceUsed + Size > 20)
+		if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 			return false;
 
 		SpaceUsed += Size;
@@ -322,7 +327,7 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	Weap = class<BallisticWeapon>(WeaponClass);
 
 	Size = GetItemSize(WeaponClass);
-	if (SpaceUsed + Size > 20)
+	if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 		return false;
 
 	SpaceUsed += Size;
@@ -374,7 +379,7 @@ function bool InternalOnClick(GUIComponent Sender)
 		X = Box_Inventory.Bounds[0];
 		for (i=0;i<Inventory.length;i++)
 		{
-			ItemSize = (Box_Inventory.ActualWidth()/20) * Inventory[i].Size;
+			ItemSize = (Box_Inventory.ActualWidth()/INVENTORY_SIZE_MAX) * Inventory[i].Size;
 			if (Controller.MouseX > X && Controller.MouseX < X + ItemSize)
 			{
 				SpaceUsed -= Inventory[i].Size;
@@ -504,11 +509,11 @@ function DrawInventory(Canvas C)
 
 	C.SetDrawColor(64,64,64,255);
 	X = MyX;
-	for(i=0;i<20;i++)
+	for(i=0;i<INVENTORY_SIZE_MAX;i++)
 	{
 		C.SetPos(X, Myy);
-		C.DrawTile(BoxTex, MyW/20, MyH, 0, 0, 128, 64);
-		X += MyW/20;
+		C.DrawTile(BoxTex, MyW/INVENTORY_SIZE_MAX, MyH, 0, 0, 128, 64);
+		X += MyW/INVENTORY_SIZE_MAX;
 	}
 
 	X = MyX;
@@ -521,7 +526,7 @@ function DrawInventory(Canvas C)
 			C.SetDrawColor(255,255,255,255);
 
 			//can't exceed twice the height - Azarael
-			ItemSize = (MyW/20) * Inventory[i].Size;
+			ItemSize = (MyW/INVENTORY_SIZE_MAX) * Inventory[i].Size;
 			IconX = FMin(ItemSize, MyH*2.3);
 			IconY = IconX/2;
 

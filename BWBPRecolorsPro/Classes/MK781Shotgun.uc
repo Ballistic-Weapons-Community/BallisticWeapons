@@ -645,22 +645,22 @@ defaultproperties
      MagAmmo=8
      CockSound=(Sound=Sound'PackageSounds4ProExp.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
      ReloadAnim="ReloadLoop"
-     ReloadAnimRate=1.200000
      ClipInSound=(Sound=Sound'PackageSounds4ProExp.Mk781.Mk781-ShellPlus',Volume=2.300000,Radius=32.000000)
      ClipInFrame=0.325000
      bCanSkipReload=True
      bShovelLoad=True
      StartShovelAnim="ReloadStart"
-     StartShovelAnimRate=1.200000
+     StartShovelAnimRate=1.500000
+	 ReloadAnimRate=1.5
      EndShovelAnim="ReloadEnd"
-     EndShovelAnimRate=1.200000
+     EndShovelAnimRate=1.500000
      WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
      WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
      WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
      CurrentWeaponMode=1
      bNoCrosshairInScope=True
-     SightPivot=(Pitch=-64,Yaw=10)
-     SightOffset=(X=15.000000,Y=-7.645000,Z=13.660000)
+     SightPivot=(Pitch=128,Yaw=10)
+     SightOffset=(X=15.000000,Y=-7.66000,Z=14.430000)
      SightDisplayFOV=25.000000
      SightingTime=0.300000
      GunLength=48.000000
@@ -668,8 +668,8 @@ defaultproperties
      RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
      RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
      RecoilYawFactor=0.000000
-     RecoilXFactor=0.650000
-     RecoilYFactor=0.900000
+     RecoilXFactor=0.30000
+     RecoilYFactor=0.500000
      RecoilDeclineDelay=0.600000
      FireModeClass(0)=Class'BWBPRecolorsPro.MK781PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.MK781SecondaryFire'

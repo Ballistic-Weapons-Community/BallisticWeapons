@@ -134,7 +134,7 @@ simulated function Initialize()
 
 	// Spawn all the fires to set up an area of destruction
 	Start = Location+vect(0,0,8);
-	for(i=0;i<25;i++)
+	for(i=0;i<45;i++)
 	{
 		End = VRand();
 		End.Z = Abs(End.Z);
@@ -229,7 +229,7 @@ simulated function IgniteActor(Actor A)
 
 defaultproperties
 {
-     DamageRadius=192.000000
+     DamageRadius=256.000000
      ImpactManager=Class'BallisticProV55.IM_FireExplode'
      Damage=25.000000
      BaseDamage=40.000000
@@ -248,6 +248,6 @@ defaultproperties
      LifeSpan=10.000000
      bFullVolume=True
      SoundVolume=255
-     SoundRadius=192.000000
+     SoundRadius=256.000000
      bNetNotify=True
 }

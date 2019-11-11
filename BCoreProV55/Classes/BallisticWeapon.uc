@@ -4492,7 +4492,7 @@ defaultproperties
      IdleTweenTime=0.200000
      SightFXBone="tip"
      BCRepClass=Class'BCoreProV55.BCReplicationInfo'
-     InventorySize=7
+     InventorySize=12
      HeaderColor=(B=50,G=50,R=255)
      TextColor=(G=175,R=255)
      SpecialInfo(0)=(Id="EvoDefs",Info="0.0;10.0;0.5;50.0;0.2;0.2;0.1")

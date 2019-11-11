@@ -82,7 +82,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-     HipSpreadFactor=13.000000
+     HipSpreadFactor=10.000000
      CutOffDistance=4096.000000
      CutOffStartRange=2048.000000
      TraceCount=7
@@ -104,7 +104,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Shotgun'
      BrassOffset=(X=-1.000000,Z=-1.000000)
      AimedFireAnim="FireCombinedSight"
-     RecoilPerShot=1280.000000
+     RecoilPerShot=1024.000000
      FireChaos=0.500000
      XInaccuracy=72.000000
      YInaccuracy=72.000000

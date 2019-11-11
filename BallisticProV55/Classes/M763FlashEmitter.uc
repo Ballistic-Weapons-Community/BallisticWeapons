@@ -105,6 +105,7 @@ defaultproperties
          UseRegularSizeScale=False
          AutomaticInitialSpawning=False
          TriggerDisabled=False
+		 Opacity=0.35
          ColorScale(0)=(Color=(B=255,G=128,R=128))
          ColorScale(1)=(RelativeTime=0.100000,Color=(B=255,G=192,R=192))
          ColorScale(2)=(RelativeTime=0.300000,Color=(B=64,G=96,R=96,A=255))

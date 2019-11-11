@@ -575,6 +575,7 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 defaultproperties
 {
+	 bShouldDualInLoadout=False
      ShellOutSound=Sound'BWBP4-Sounds.leMat.LM-ShellOut'
      ShellInSound=Sound'BWBP4-Sounds.leMat.LM-ShellIn'
      bSecLoaded=True
@@ -621,7 +622,7 @@ defaultproperties
      SightAimFactor=0.150000
      AimSpread=16
      ChaosDeclineTime=0.450000
-     ChaosAimSpread=512
+     ChaosAimSpread=768
      RecoilYawFactor=0.000000
      RecoilXFactor=0.250000
      RecoilYFactor=0.250000

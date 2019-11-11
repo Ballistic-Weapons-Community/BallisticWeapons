@@ -176,13 +176,13 @@ defaultproperties
      TrailClass=Class'BWBPOtherPackPro.XOXOShotTrail'
      MyRadiusDamageType=Class'BWBPOtherPackPro.DTXOXOFast'
      bUsePositionalDamage=True
-     DamageHead=62.000000
-     DamageLimb=31.000000
+     DamageHead=51.000000
+     DamageLimb=37.000000
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000
      MaxSpeed=14000.000000
      bSwitchToZeroCollision=True
-     Damage=31.000000
+     Damage=37.000000
      DamageRadius=48.000000
      MomentumTransfer=-1000.000000
      MyDamageType=Class'BWBPOtherPackPro.DTXOXOFast'

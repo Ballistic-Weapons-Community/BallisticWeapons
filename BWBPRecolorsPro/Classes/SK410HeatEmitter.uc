@@ -164,6 +164,8 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.700000)
          SizeScale(1)=(RelativeTime=0.160000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.400000)
+		 SpinParticles=True
+		 StartSpinRange=(Z=(Min=0.12,Max=0.12))
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)

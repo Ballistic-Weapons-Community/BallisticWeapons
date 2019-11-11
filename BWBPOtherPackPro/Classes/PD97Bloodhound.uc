@@ -311,6 +311,7 @@ defaultproperties
      HudColor=(B=250,G=150,R=150)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=2
+	 InventorySize=6
      GroupOffset=6
      PickupClass=Class'BWBPOtherPackPro.PD97Pickup'
      PlayerViewOffset=(X=5.000000,Y=8.000000,Z=-10.000000)

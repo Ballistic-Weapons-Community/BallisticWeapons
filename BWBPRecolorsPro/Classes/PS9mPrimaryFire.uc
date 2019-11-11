@@ -74,7 +74,7 @@ defaultproperties
      FireChaos=0.150000
      XInaccuracy=32.000000
      YInaccuracy=32.000000
-     BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-Fire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-Fire',Volume=0.25,Radius=16,Slot=SLOT_Interact,bNoOverride=False)
      bAISilent=True
      FireEndAnim=
      FireRate=0.070000

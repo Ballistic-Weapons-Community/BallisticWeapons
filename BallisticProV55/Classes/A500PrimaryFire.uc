@@ -110,7 +110,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
      FireEndAnim=
      FireAnimRate=1.300000
-     FireRate=0.750000
+     FireRate=0.50000
      AmmoClass=Class'BallisticProV55.Ammo_A500Cells'
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

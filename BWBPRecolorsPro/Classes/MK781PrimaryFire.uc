@@ -83,8 +83,8 @@ simulated function SwitchSilencerMode(bool bSilenced)
 {
 	if (bSilenced)
 	{
-		XInaccuracy	=	32;
-		YInaccuracy	=	32;
+		XInaccuracy	=	64;
+		YInaccuracy	=	64;
 		RecoilPerShot *= 0.65;
 		Damage *= 0.8;
 		RangeAtten *= 1.5;
@@ -160,8 +160,8 @@ defaultproperties
      RecoilPerShot=512.000000
      VelocityRecoil=180.000000
      FireChaos=0.250000
-     XInaccuracy=96.000000
-     YInaccuracy=96.000000
+     XInaccuracy=192.000000
+     YInaccuracy=192.000000
      SilencedFireSound=(Sound=Sound'PackageSounds4ProExp.Mk781.Mk781-FireSil',Volume=2.300000,Radius=256.000000)
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Mk781.MK781-Fire',Volume=1.300000)
      FireEndAnim=

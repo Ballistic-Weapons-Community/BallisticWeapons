@@ -189,6 +189,7 @@ defaultproperties
 {
      MuzzleFlashClass=Class'BWBPRecolorsPro.VSKSilencedFlash'
      ImpactManager=Class'BWBPRecolorsPro.IM_Tranq'
+	 TracerChance=0
      FlashScale=0.300000
      BrassClass=Class'BWBPRecolorsPro.Brass_Tranq'
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_Tranq'

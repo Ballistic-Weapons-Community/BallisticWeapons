@@ -350,9 +350,9 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
-     SightPivot=(Pitch=64)
-     SightOffset=(X=-15.000000,Z=12.000000)
-     SightDisplayFOV=25.000000
+     SightPivot=(Pitch=128)
+     SightOffset=(X=5.000000,Z=13.000000)
+     SightDisplayFOV=40.000000
      SightingTime=0.300000
      GunLength=48.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
@@ -362,8 +362,8 @@ defaultproperties
      ChaosAimSpread=0
      RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.150000),(InVal=0.300000,OutVal=0.050000),(InVal=0.650000,OutVal=-0.350000),(InVal=0.800000,OutVal=0.100000),(InVal=1.000000)))
      RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.100000),(InVal=0.250000,OutVal=0.400000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.600000
-     RecoilYFactor=0.400000
+     RecoilXFactor=0.300000
+     RecoilYFactor=0.200000
      RecoilMinRandFactor=0.350000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.800000

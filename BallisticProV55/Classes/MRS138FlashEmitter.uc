@@ -72,6 +72,7 @@ defaultproperties
          ColorScale(2)=(RelativeTime=1.000000,Color=(B=32,G=64,R=128))
          FadeOutStartTime=0.080000
          CoordinateSystem=PTCS_Relative
+		 Opacity=0.5
          MaxParticles=1
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=0.800000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.500000)
@@ -94,7 +95,7 @@ defaultproperties
          ColorScale(0)=(Color=(B=255,G=255,R=255))
          ColorScale(1)=(RelativeTime=0.142857,Color=(B=64,G=192,R=255,A=255))
          ColorScale(2)=(RelativeTime=1.000000,Color=(B=64,G=128,R=192))
-         Opacity=0.720000
+         Opacity=0.50000
          FadeOutStartTime=0.200000
          FadeInEndTime=0.032000
          CoordinateSystem=PTCS_Relative
@@ -120,6 +121,7 @@ defaultproperties
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=0.207143,Color=(B=128,G=192,R=255,A=255))
          ColorScale(2)=(RelativeTime=1.000000,Color=(B=32,G=96,R=255,A=255))
+		 Opacity=0.5
          FadeOutStartTime=0.150500
          FadeInEndTime=0.021000
          CoordinateSystem=PTCS_Relative

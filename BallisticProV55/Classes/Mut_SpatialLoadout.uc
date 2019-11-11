@@ -9,6 +9,8 @@ class Mut_SpatialLoadout extends Mut_Ballistic
 	config(BallisticProV55)
 	DependsOn(Mut_Loadout);
 	
+const INVENTORY_SIZE_MAX = 35;
+	
 var() globalconfig byte	LoadoutOption;		 //0: normal loadout, 1: Evolution skill requirements, 2: Purchasing system (not implemented yet)
 var 		  array<string> 	LoadoutOptionText;
 
@@ -163,7 +165,7 @@ function ModifyPlayer( pawn Other )
 				if( (InventoryClass!=None))
 				{
 					Size = GetItemSize(InventoryClass);
-					if (SpaceUsed + Size > 20)
+					if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 						continue;
 					xPawn(Other).RequiredEquipment[i] = EPRI.Loudout[i];
 					Inv = Spawn(InventoryClass);
@@ -187,7 +189,7 @@ function ModifyPlayer( pawn Other )
 					if (itemclass != None)
 					{
 						Size = itemclass.default.Size/5;
-						if (SpaceUsed + Size > 20)
+						if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 							continue;
 						EPRI.AppliedItems[EPRI.AppliedItems.length] = ItemClass;
 						if (ItemClass.default.bBonusAmmo)
@@ -205,7 +207,7 @@ function ModifyPlayer( pawn Other )
     if ( UnrealPawn(Other) != None )
         UnrealPawn(Other).AddDefaultInventory();
 
-	if (SpaceUsed < 20)
+	if (SpaceUsed < INVENTORY_SIZE_MAX)
 	{
 		for (Inv=Other.Inventory;Inv!=None;Inv=Inv.Inventory)
 			if (Weapon(Inv) != None)
@@ -299,7 +301,7 @@ function InventoryChanged(EliminationLRI PRI)
 		if (WeapClass != None)
 		{
 			Size = GetItemSize(WeapClass);
-			if (SpaceUsed + Size > 20)
+			if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 				continue;
 			W = P.Spawn(WeapClass,,,P.Location);
 			if( W != None )
@@ -319,7 +321,7 @@ function InventoryChanged(EliminationLRI PRI)
 			if (itemclass != None)
 			{
 				Size = itemclass.default.Size/5;
-				if (SpaceUsed + Size > 20)
+				if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 					continue;
 				PRI.AppliedItems[PRI.AppliedItems.length] = ItemClass;
 				if (ItemClass.default.bBonusAmmo)
@@ -391,7 +393,7 @@ function EquipBot(Pawn P)
 
 	// Pick us some stuff
 	EPRI.Loudout.length = 0;
-	for (i=0;i<20&&SpaceUsed<20;i++)
+	for (i=0; i < INVENTORY_SIZE_MAX && SpaceUsed < INVENTORY_SIZE_MAX; i++)
 	{
 		if (LoadoutOption == 1)
 		{	// Randomly pick something using weights
@@ -421,7 +423,7 @@ function EquipBot(Pawn P)
 					continue;
 				Size = CI.default.Size/5;
 
-				if (Size + SpaceUsed > 20)
+				if (Size + SpaceUsed > INVENTORY_SIZE_MAX)
 					continue;
 				EPRI.Loudout[EPRI.Loudout.length] = ClassName;
 				SpaceUsed += Size;
@@ -446,7 +448,7 @@ function EquipBot(Pawn P)
 		}
 		Size = GetItemSize(W);
 
-		if (Size + SpaceUsed > 20)
+		if (Size + SpaceUsed > INVENTORY_SIZE_MAX)
 			continue;
 		EPRI.Loudout[EPRI.Loudout.length] = ClassName;
 		SpaceUsed += Size;

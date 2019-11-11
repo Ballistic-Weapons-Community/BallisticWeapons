@@ -28,7 +28,7 @@ defaultproperties
          MaxPointsPerTrail=150
          DistanceThreshold=100.000000
          UseCrossedSheets=True
-         PointLifeTime=0.750000
+         PointLifeTime=0.375000
          AutomaticInitialSpawning=False
          ColorMultiplierRange=(Y=(Min=0.500000,Max=0.500000),Z=(Min=0.700000,Max=0.700000))
          Opacity=0.600000
