@@ -128,8 +128,6 @@ defaultproperties
      XInaccuracy=4.000000
      YInaccuracy=4.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.G5.G5-Fire1')
-     bSplashDamage=True
-     bRecommendSplashDamage=True
      FireEndAnim=
      FireRate=0.800000
      AmmoClass=Class'BallisticProV55.Ammo_RPG'
@@ -140,6 +138,13 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.500000
      ProjectileClass=Class'BallisticProV55.G5Rocket'
-     BotRefireRate=0.500000
-     WarnTargetPct=0.300000
+	 
+	 // AI
+	 bInstantHit=False
+	 bLeadTarget=True
+	 bTossed=False
+	 bSplashDamage=True
+	 bRecommendSplashDamage=True
+	 BotRefireRate=0.5
+     WarnTargetPct=0.8
 }

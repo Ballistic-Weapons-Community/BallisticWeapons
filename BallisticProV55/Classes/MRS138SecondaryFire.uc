@@ -128,6 +128,13 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BallisticProV55.MRS138TazerProj'
-     BotRefireRate=0.300000
-     WarnTargetPct=0.300000
+	 
+	 // AI
+	 bInstantHit=False
+	 bLeadTarget=True
+	 bTossed=False
+	 bSplashDamage=False
+	 bRecommendSplashDamage=False
+	 BotRefireRate=0.3
+     WarnTargetPct=0.5
 }

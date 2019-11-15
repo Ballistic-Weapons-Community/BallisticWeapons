@@ -139,5 +139,5 @@ defaultproperties
      ShakeOffsetMag=(X=-10.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
-     WarnTargetPct=0.200000
+     WarnTargetPct=0.500000
 }

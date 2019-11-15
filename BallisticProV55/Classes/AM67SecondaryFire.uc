@@ -173,5 +173,13 @@ defaultproperties
      FireRate=10.000000
      AmmoClass=Class'BallisticProV55.Ammo_50HV'
      AmmoPerFire=0
-     BotRefireRate=0.300000
+	 
+	 // AI
+	 bInstantHit=True
+	 bLeadTarget=False
+	 bTossed=False
+	 bSplashDamage=False
+	 bRecommendSplashDamage=False
+	 BotRefireRate=0.3
+     WarnTargetPct=1.000000
 }

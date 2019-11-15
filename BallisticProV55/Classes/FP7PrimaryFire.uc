@@ -45,4 +45,5 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
      ProjectileClass=Class'BallisticProV55.FP7Thrown'
+	 WarnTargetPct=0.9
 }

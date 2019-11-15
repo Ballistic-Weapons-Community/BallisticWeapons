@@ -68,7 +68,7 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BWBPRecolorsPro.LS14Rocket'
-     BotRefireRate=0.300000
+     BotRefireRate=0.600000
      WarnTargetPct=0.300000
      SpreadStyle=SS_Random
 }

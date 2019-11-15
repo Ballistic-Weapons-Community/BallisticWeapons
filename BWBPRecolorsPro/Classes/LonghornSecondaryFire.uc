@@ -98,4 +98,13 @@ defaultproperties
      FireAnimRate=1.200000
      FireRate=0.800000
      ProjectileClass=Class'BWBPRecolorsPro.LonghornClusterGrenadeAlt'
+	 
+	  // AI
+	 bInstantHit=False
+	 bLeadTarget=True
+	 bTossed=False
+	 bSplashDamage=True
+	 bRecommendSplashDamage=False
+	 BotRefireRate=0.7
+     WarnTargetPct=0.3
 }

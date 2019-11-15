@@ -32,6 +32,6 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
      ProjectileClass=Class'BWBPOtherPackPro.RaygunProjectile'
-     BotRefireRate=0.250000
+     BotRefireRate=0.70000
      WarnTargetPct=0.200000
 }

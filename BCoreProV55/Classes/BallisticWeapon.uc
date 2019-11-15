@@ -1604,11 +1604,13 @@ simulated function bool CanUseSights()
 // Interpolate our generated 'sighting anims' (the gun's movement to and from the sight view position)
 simulated function TickSighting (float DT)
 {
-	if (SightingState == SS_None || SightingState == SS_Active)
+	switch (SightingState)
+	{
+	case SS_None:
+	case SS_Active:
 		return;
-
-	if (SightingState == SS_Raising)
-	{	// Raising gun to sight position
+	case SS_Raising:
+		// Raising gun to sight position
 		if (SightingPhase < 1.0)
 		{
 			if ((bScopeHeld || bPendingSightUp) && CanUseSights())
@@ -1625,9 +1627,9 @@ simulated function TickSighting (float DT)
 			SightingState = SS_Active;
 			ScopeUpAnimEnd();
 		}
-	}
-	else if (SightingState == SS_Lowering)
-	{	// Lowering gun from sight pos
+		break;
+	case SS_Lowering:
+		// Lowering gun from sight pos
 		if (SightingPhase > 0.0)
 		{
 			if (bScopeHeld && CanUseSights())
@@ -1643,6 +1645,7 @@ simulated function TickSighting (float DT)
 			ScopeDownAnimEnd();
 			DisplayFOV = default.DisplayFOV;
 		}
+		break;
 	}
 }
 

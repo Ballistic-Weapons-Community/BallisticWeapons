@@ -427,5 +427,13 @@ defaultproperties
      ShakeOffsetMag=(X=1.000000,Y=1.000000,Z=1.000000)
      ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)
      ShakeOffsetTime=2.000000
-     BotRefireRate=0.990000
+	 
+	 // AI
+	 bInstantHit=True
+	 bLeadTarget=False
+	 bTossed=False
+	 bSplashDamage=False
+	 bRecommendSplashDamage=False
+	 BotRefireRate=0.99
+     WarnTargetPct=0.3
 }

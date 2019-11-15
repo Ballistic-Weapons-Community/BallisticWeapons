@@ -243,5 +243,13 @@ defaultproperties
      FireEndAnim=
      FireRate=0.085000
      AmmoClass=Class'BallisticProV55.Ammo_E23Cells'
-     BotRefireRate=0.999000
+	 
+	 // AI
+	 bInstantHit=True
+	 bLeadTarget=False
+	 bTossed=False
+	 bSplashDamage=False
+	 bRecommendSplashDamage=False
+	 BotRefireRate=0.99
+     WarnTargetPct=0.2
 }

@@ -92,9 +92,6 @@ defaultproperties
      VelocityRecoil=100.000000
      FireChaos=1.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-FireTest',Volume=2.500000)
-     bSplashDamage=True
-     bRecommendSplashDamage=True
-     bTossed=True
      bWaitForRelease=True
      FireAnim="SGFire"
      FireForce="AssaultRifleAltFire"
@@ -105,6 +102,13 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BWBPRecolorsPro.BulldogRocket'
-     BotRefireRate=0.300000
-     WarnTargetPct=0.300000
+	 
+	 // AI
+	 bInstantHit=False
+	 bLeadTarget=True
+	 bTossed=False
+	 bSplashDamage=True
+	 bRecommendSplashDamage=True
+	 BotRefireRate=0.5
+     WarnTargetPct=0.75
 }

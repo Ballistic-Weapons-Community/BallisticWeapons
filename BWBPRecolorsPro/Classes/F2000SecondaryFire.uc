@@ -90,5 +90,5 @@ defaultproperties
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BWBPRecolorsPro.F2000Grenade'
      BotRefireRate=0.300000
-     WarnTargetPct=0.300000
+     WarnTargetPct=0.600000
 }

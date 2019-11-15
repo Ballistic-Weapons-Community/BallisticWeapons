@@ -60,4 +60,8 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
      ProjectileClass=Class'BallisticProV55.T10Thrown'
+	 
+	 // AI
+	 BotRefireRate=0.3
+     WarnTargetPct=0.75
 }

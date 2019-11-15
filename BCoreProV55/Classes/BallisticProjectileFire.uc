@@ -247,8 +247,8 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
-     ShotTypeString="shots"
-     bLeadTarget=True
-     bInstantHit=False
-     WarnTargetPct=0.500000
+    ShotTypeString="shots"
+    bLeadTarget=True
+    bInstantHit=False
+    WarnTargetPct=0.500000
 }

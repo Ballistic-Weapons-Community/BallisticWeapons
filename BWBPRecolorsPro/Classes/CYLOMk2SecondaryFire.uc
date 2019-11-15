@@ -84,6 +84,13 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BWBPRecolorsPro.CYLOMk2HEProjectile'
-     BotRefireRate=0.900000
-     WarnTargetPct=0.100000
+	 
+	 // AI
+	 bInstantHit=False
+	 bLeadTarget=True
+	 bTossed=True
+	 bSplashDamage=True
+	 bRecommendSplashDamage=False
+	 BotRefireRate=0.7
+     WarnTargetPct=0.5
 }

@@ -220,12 +220,8 @@ function ModifyPlayer(Pawn Other)
 	// No lights please
 	xPlayerReplicationInfo(Other.PlayerReplicationInfo).bForceNoPlayerLights = true;
 
-	// Make bots a bit less insane...
 	if (Other.Controller != None && Bot(Other.Controller) != None)
-	{
-		Bot(Other.Controller).Jumpiness-=0.2;
-		//Bot(Other.Controller).StrafingAbility-=0.5;
-		//Bot(Other.Controller).CombatStyle-=0.3;
+	{	
 		// Change favorite weapons for bots
 		if (Bot(Other.Controller).FavoriteWeapon != None)
 		{

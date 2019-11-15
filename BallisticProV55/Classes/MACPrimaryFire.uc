@@ -126,8 +126,6 @@ defaultproperties
      VelocityRecoil=1000.000000
      FireChaos=0.550000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.Artillery.Art-Fire',Radius=768.000000)
-     bSplashDamage=True
-     bRecommendSplashDamage=True
      FireEndAnim=
      FireRate=1.350000
      AmmoClass=Class'BallisticProV55.Ammo_MAC'
@@ -138,6 +136,12 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.500000
      ProjectileClass=Class'BallisticProV55.MACShell'
-     BotRefireRate=0.500000
-     WarnTargetPct=0.300000
+	 // AI
+	 bInstantHit=False
+	 bLeadTarget=True
+	 bTossed=True
+	 bSplashDamage=True
+	 bRecommendSplashDamage=True
+	 BotRefireRate=0.7
+     WarnTargetPct=0.75
 }

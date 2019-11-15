@@ -49,6 +49,6 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BWBPOtherPackPro.PD97Dart'
-     BotRefireRate=0.300000
+     BotRefireRate=0.700000
      WarnTargetPct=0.300000
 }

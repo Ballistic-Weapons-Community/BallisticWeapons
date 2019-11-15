@@ -91,4 +91,5 @@ defaultproperties
      AmmoClass=Class'BallisticProV55.Ammo_FP9Ammo'
      ProjectileClass=Class'BallisticProV55.FP9Bomb'
      BotRefireRate=0.300000
+	 WarnTargetPct=0.9
 }

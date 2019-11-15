@@ -40,8 +40,6 @@ defaultproperties
      XInaccuracy=384.000000
      YInaccuracy=384.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.M781.M781-FireFRAG',Volume=1.300000)
-     bSplashDamage=True
-     bRecommendSplashDamage=True
      FireEndAnim=
      FireAnimRate=1.250000
      FireRate=0.650000
@@ -53,6 +51,13 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BWBPRecolorsPro.SK410HEProjectile'
-     BotRefireRate=0.900000
-     WarnTargetPct=0.100000
+	 
+	 // AI
+	 bInstantHit=False
+	 bLeadTarget=True
+	 bTossed=True
+	 bSplashDamage=True
+	 bRecommendSplashDamage=False
+	 BotRefireRate=0.6
+     WarnTargetPct=0.4
 }

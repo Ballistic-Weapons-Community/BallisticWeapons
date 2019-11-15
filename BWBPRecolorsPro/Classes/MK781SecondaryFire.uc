@@ -276,7 +276,7 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BWBPRecolorsPro.MK781PulseProjectile'
-     BotRefireRate=0.900000
-     WarnTargetPct=0.100000
+     BotRefireRate=0.400000
+     WarnTargetPct=0.500000
      aimerror=400.000000
 }

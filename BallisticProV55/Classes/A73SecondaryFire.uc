@@ -90,6 +90,9 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
      ProjectileClass=Class'BallisticProV55.A73PowerProjectile'
-     BotRefireRate=0.250000
-     WarnTargetPct=0.200000
+	 
+	 // AI
+     BotRefireRate=0.50000
+	 bInstantHit=True
+     WarnTargetPct=0.500000
 }

@@ -88,9 +88,6 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      FlashBone="tip2"
      BallisticFireSound=(Sound=Sound'BallisticSounds3.M50.M50GrenFire')
-     bSplashDamage=True
-     bRecommendSplashDamage=True
-     bTossed=True
      bFireOnRelease=True
      bWaitForRelease=True
      PreFireTime=0.450000
@@ -104,6 +101,13 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BallisticProV55.M50Grenade'
-     BotRefireRate=0.300000
-     WarnTargetPct=0.300000
+	 
+	 // AI
+	 bInstantHit=False
+	 bLeadTarget=True
+	 bTossed=True
+	 bSplashDamage=True
+	 bRecommendSplashDamage=True
+	 BotRefireRate=0.3
+     WarnTargetPct=0.5
 }

@@ -283,12 +283,12 @@ simulated function EndRampage()
 	WeaponModes[4].bUnavailable=true;
 	*/
 
-	if (Instigator.IsLocallyControlled())
+	/*if (Instigator.IsLocallyControlled())
 	{
 		if (ModeHandling == MR_SavedDefault)
 			ServerSwitchWeaponMode(SavedWeaponMode);
 		else ServerSwitchWeaponMode(0);
-	}
+	}*/
 
 	if (RampageGlow != None)
 		RampageGlow.Destroy();

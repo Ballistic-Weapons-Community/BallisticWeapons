@@ -32,6 +32,6 @@ defaultproperties
      ShakeOffsetRate=(X=-2000.000000)
      ShakeOffsetTime=5.000000
      ProjectileClass=Class'BWBPRecolorsPro.FLASHProjectile'
-     BotRefireRate=0.500000
-     WarnTargetPct=0.300000
+     BotRefireRate=0.700000
+     WarnTargetPct=1
 }

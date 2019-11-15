@@ -72,9 +72,6 @@ defaultproperties
      XInaccuracy=8.000000
      YInaccuracy=8.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
-     bSplashDamage=True
-     bRecommendSplashDamage=True
-     bTossed=True
      bModeExclusive=False
      FireAnim="GrenadeFire"
      FireForce="AssaultRifleAltFire"
@@ -85,6 +82,13 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BWBPRecolorsPro.MARSGrenade'
-     BotRefireRate=0.300000
-     WarnTargetPct=0.300000
+	 
+	 // AI
+	 bInstantHit=False
+	 bLeadTarget=True
+	 bTossed=True
+	 bSplashDamage=True
+	 bRecommendSplashDamage=True
+	 BotRefireRate=0.3
+     WarnTargetPct=0.5
 }

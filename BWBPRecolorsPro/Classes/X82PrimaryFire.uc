@@ -50,6 +50,6 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.250000
      BotRefireRate=0.300000
-     WarnTargetPct=0.050000
+     WarnTargetPct=0.700000
      aimerror=950.000000
 }

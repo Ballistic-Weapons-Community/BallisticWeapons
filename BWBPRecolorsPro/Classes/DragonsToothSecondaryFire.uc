@@ -219,6 +219,6 @@ defaultproperties
      ShakeRotMag=(X=32.000000,Y=256.000000)
      ShakeRotRate=(X=3000.000000,Y=3000.000000,Z=3000.000000)
      ShakeRotTime=2.000000
-     BotRefireRate=0.800000
-     WarnTargetPct=0.050000
+     BotRefireRate=0.700000
+     WarnTargetPct=0.800000
 }
