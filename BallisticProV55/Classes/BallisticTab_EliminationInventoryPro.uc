@@ -184,26 +184,13 @@ simulated function InitWeaponLists ()
 	local class<actor> a;
 	local class<Weapon> Weap;
 	local class<ConflictItem> CI;
-	local int i;
-	local int HWIndex, SWIndex, SIndex, MWIndex, GIndex, ItemIndex;
+	local int i, lastIndex;
 	local BC_WeaponInfoCache.WeaponInfo WI;
 
 	l_Loading.Hide();
 
 	lb_Weapons.List.Clear();
 
-	lb_Weapons.List.Add("Misc",,"Mc",true);
-
-	ItemIndex = 1;
-
-	HWIndex=2; SWIndex=3; SIndex=4; MWIndex=5; GIndex=6;;
-	lb_Weapons.List.Add("Heavy Weapons",,"HW",true);
-	lb_Weapons.List.Add("Standard Weapons",,"SW",true);
-	lb_Weapons.List.Add("SideArms",,"SA",true);
-	lb_Weapons.List.Add("Melee Weapons",,"MW",true);
-	lb_Weapons.List.Add("Grenades / Traps",,"GT",true);
-	lb_Weapons.List.Add("Other Weapons",,"OW",true);
-	
 	//Only explicitly load saved inventory.	
 	Inventory.length = 0;
 	SpaceUsed = 0;
@@ -225,51 +212,41 @@ simulated function InitWeaponLists ()
 		}
 	}
 
+	lastIndex = -1;
+	
 	//Use cache for the rest.
 	//Weapons here will be loaded explicitly if they're selected in the list, via the Extra string data.
-	for (i=0;i<EPRI.FullInventoryList.length;i++)
+	// The Full Inventory List is already sorted by inventory group and Conflict item status.
+	for (i=0; i < EPRI.FullInventoryList.length; i++)
 	{
 		if (!EPRI.WeaponRequirementsOk(EPRI.RequirementsList[i]))
 			continue;
+		
+		if (InStr(EPRI.FullInventoryList[i], "CItem") != -1)
+		{ 
+			if (lastIndex != -1)
+			{
+				lastIndex = -1;
+				lb_Weapons.List.Add("Misc",,"Mc",true);
+			}
 			
-		if (InStr(EPRI.FullInventoryList[i], "CItem") == -1 && LoadWIFromCache(EPRI.FullInventoryList[i], WI))
-		{
-			if (!WI.bIsBW)
-				lb_Weapons.List.Add(WI.ItemName, , EPRI.FullInventoryList[i]);
-				
-			else if (WI.InventorySize >= 8)
-			{
-				lb_Weapons.List.Insert(HWIndex, WI.ItemName, , EPRI.FullInventoryList[i]);
-				HWIndex++; SWIndex++; SIndex++; MWIndex++; GIndex++;
-			}
-			else if (WI.InventoryGroup == 2)
-			{
-				lb_Weapons.List.Insert(SIndex, WI.ItemName, , EPRI.FullInventoryList[i]);
-				SIndex++; MWIndex++; GIndex++;
-			}
-			else if (WI.InventoryGroup == 1)
-			{
-				lb_Weapons.List.Insert(MWIndex, WI.ItemName, , EPRI.FullInventoryList[i]);
-				MWIndex++; GIndex++;
-			}
-			else if (WI.InventoryGroup == 0)
-			{
-				lb_Weapons.List.Insert(GIndex, WI.ItemName, , EPRI.FullInventoryList[i]);
-				GIndex++;
-			}
-			else
-			{
-				lb_Weapons.List.Insert(SWIndex, WI.ItemName, , EPRI.FullInventoryList[i]);
-				SWIndex++; SIndex++; MWIndex++; GIndex++;
-			}
-		}
-		else
-		{
 			CI = class<ConflictItem>(DynamicLoadObject(EPRI.FullInventoryList[i], class'Class'));
+			
 			if (CI != None)
+				lb_Weapons.List.Add(CI.default.ItemName, , EPRI.FullInventoryList[i]);
+		}
+		
+		else 
+		{
+			if (LoadWIFromCache(EPRI.FullInventoryList[i], WI))
 			{
-				lb_Weapons.List.Insert(ItemIndex, CI.default.ItemName, CI);
-				ItemIndex++; HWIndex++; SWIndex++; SIndex++; MWIndex++; GIndex++;
+				if (WI.InventoryGroup > lastIndex)
+				{
+					lastIndex = WI.InventoryGroup;
+					lb_Weapons.List.Add(class'BallisticTab_OutfittingPro'.static.GetHeading(lastIndex),,"Weapon Category",true);
+				}
+				
+				lb_Weapons.List.Add(WI.ItemName, , EPRI.FullInventoryList[i]);
 			}
 		}
 	}

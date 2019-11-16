@@ -239,6 +239,84 @@ simulated function ClientReceiveWeaponReq(string ClassString, Mut_Loadout.LORequ
 simulated function ClientReceiveEnd()
 {
 	bHasList = true;
+	
+	SortList();
+}
+
+// Get Name, BigIconMaterial and classname of weapon at index? in group?
+function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.WeaponInfo WepInfo)
+{
+	local int i;
+
+	WepInfo = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(ClassStr, i);
+	
+	if (i == -1)
+	{
+		log("Error loading item for Conflict: "$ClassStr, 'Warning');
+		return false;
+	}
+	
+	return true;
+}
+
+simulated function SortList()
+{
+	local int i, j;
+	local BC_WeaponInfoCache.WeaponInfo WI;
+	local array<BC_WeaponInfoCache.WeaponInfo> SortedWIs;
+	local array<string> ConflictItems;
+	
+	for (i=0; i < FullInventoryList.length; i++)
+	{
+		if (InStr(FullInventoryList[i], "CItem") != -1)
+			ConflictItems[ConflictItems.Length] = FullInventoryList[i];
+	
+		else 
+		{
+			if (LoadWIFromCache(FullInventoryList[i], WI))
+			{
+				if (SortedWIs.Length == 0)
+					SortedWIs[SortedWIs.Length] = WI;
+				else 
+				{
+					for (j = 0; j < SortedWIs.Length; ++j)
+					{
+						if (WI.InventoryGroup < SortedWIs[j].InventoryGroup)
+						{
+							SortedWIs.Insert(j, 1);
+							SortedWIs[j] = WI;
+							break;
+						}
+						
+						if (WI.InventoryGroup == SortedWIs[j].InventoryGroup)
+							if (StrCmp(WI.ItemName, SortedWIs[j].ItemName, 6, True) <= 0)
+							{	
+								SortedWIs.Insert(j, 1);
+								SortedWIs[j] = WI;
+								break;
+							}
+
+						if (j == SortedWIs.Length - 1)
+						{
+							SortedWIs[SortedWIs.Length] = WI;
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	for (i = 0; i < SortedWIs.Length; ++i)
+		FullInventoryList[i] = SortedWIs[i].ClassName;
+	
+	j = i;
+		
+	for (i = 0; i < ConflictItems.Length; ++i)
+	{
+		FullInventoryList[j] = ConflictItems[i];
+		++j;	
+	}
 }
 
 //===================================================

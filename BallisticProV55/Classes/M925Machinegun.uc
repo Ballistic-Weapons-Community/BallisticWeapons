@@ -176,7 +176,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
 		
-	if(BallisticTurret(Instigator) == None && Instigator.FindInventoryType(class'SandbagLayer') == None)
+	if(BallisticTurret(Instigator) == None && Instigator.IsHumanControlled() && Instigator.FindInventoryType(class'SandbagLayer') == None)
     {
         Bags = Spawn(class'SandbagLayer',,,Instigator.Location);
 		
@@ -250,7 +250,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.75, Dist, 2048, 2048); 
+	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.75, Dist, 2048, 2048); 
 }
 
 // tells bot whether to charge or back off while using this weapon
