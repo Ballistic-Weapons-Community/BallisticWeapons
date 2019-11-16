@@ -250,7 +250,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.75, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.75, Dist, 2048, 2048); 
 }
 
 // tells bot whether to charge or back off while using this weapon

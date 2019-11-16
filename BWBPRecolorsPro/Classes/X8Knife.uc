@@ -159,6 +159,19 @@ simulated function RemoteKill()
 	super.Tick(DT);
 }*/
 
+function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
+{
+	if (InstigatedBy != None && InstigatedBy.Controller != None && InstigatedBy.Controller.SameTeamAs(InstigatorController))
+		return;
+		
+	if (VSize(Instigator.Location - InstigatedBy.Location) < 512 && VSize(Momentum) < 60)
+		Momentum = vect(0,0,0);
+	else Momentum *= 0.5;
+		
+	if (bBerserk)
+		Damage *= 0.75;
+}
+
 // AI Interface =====
 function bool CanAttack(Actor Other)
 {
@@ -186,6 +199,47 @@ function byte BestMode()
 	if (Result > 0.5)
 		return 1;
 	return 0;
+}
+
+function float GetAIRating()
+{
+	local Bot B;
+	local BallisticWeapon BW;
+	local vector Dir;
+	local float Dist;
+	local float Rating;
+
+	B = Bot(Instigator.Controller);
+	
+	if ( B == None)
+		return AIRating;
+		
+	if (B.Enemy == None)
+		return 0; // almost certainly useless against non-humans
+		
+	Dir = B.Enemy.Location - Instigator.Location;
+	Dist = VSize(Dir);
+	
+	// favour melee when attacking the enemy's back
+	if (vector(B.Enemy.Rotation) dot Normal(Dir) < 0.0)
+		Rating += 0.08 * B.Skill;
+	
+	BW = BallisticWeapon(B.Enemy.Weapon);
+	
+	if (BW != None)
+	{ 
+		// discourage melee-on-melee
+		if (BW.bMeleeWeapon)
+			Rating *= 0.75;
+			
+		// trying this against a shotgun or a PDW is a very bad idea
+		if (BW.bWT_Shotgun || BW.InventoryGroup == 3)
+			Rating = 0;	
+	}
+	
+	Rating = class'BUtil'.static.DistanceAtten(Rating, 0.3, Dist, 128, 128);
+	
+	return Rating;
 }
 
 // tells bot whether to charge or back off while using this weapon

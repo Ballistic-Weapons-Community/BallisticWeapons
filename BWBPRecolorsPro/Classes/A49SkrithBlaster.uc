@@ -115,12 +115,12 @@ function byte BestMode()
 
 	B = Bot(Instigator.Controller);
 	if ( B == None  || B.Enemy == None)
-		return Rand(2);
+		return 0;
 
 	Dir = Instigator.Location - B.Enemy.Location;
 	Dist = VSize(Dir);
 
-	if (AmmoAmount(0) < 40)
+	if (AmmoAmount(0) < BFireMode[1].AmmoPerFire)
 		return 0;
 
 	if (B.Squad!=None)
@@ -141,10 +141,9 @@ function byte BestMode()
 			return 0;
 	}
 
-	if (Dist < (FireMode[1].MaxRange()-100) && FRand() > 0.3)
+	if (Dist < (FireMode[1].MaxRange()-100) && B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
 		return 1;
-	if (vector(B.Enemy.Rotation) dot Normal(Dir) < 0.0 && (VSize(B.Enemy.Velocity) < 100 || Normal(B.Enemy.Velocity) dot Normal(B.Velocity) < 0.5))
-		return 1;
+		
 	return 0;
 }
 

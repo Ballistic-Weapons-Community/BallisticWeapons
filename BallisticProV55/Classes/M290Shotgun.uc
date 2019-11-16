@@ -58,32 +58,23 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	// Enemy too far away
-	if (Dist > 2000)
-		Result = 0.1;
-	else if (Dist < 500)
-		Result += 0.06 * B.Skill;
-	else if (Dist > 700)
-		Result -= (Dist-700) / 1400;
-	// If the enemy has a knife, this gun is handy
-	if (B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result += 0.1 * B.Skill;
-	// Sniper bad, very bad
-	else if (B.Enemy.Weapon != None && B.Enemy.Weapon.bSniping && Dist > 500)
-		Result -= 0.4;
+	if (B.Enemy == None)
+		return Rating;
 
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticProShotgunFire(BFireMode[0]).CutOffStartRange, BallisticProShotgunFire(BFireMode[0]).CutOffDistance); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -166,8 +157,8 @@ defaultproperties
      RecoilDeclineDelay=0.500000
      FireModeClass(0)=Class'BallisticProV55.M290PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M290SecondaryFire'
-     AIRating=0.600000
-     CurrentRating=0.600000
+     AIRating=0.900000
+     CurrentRating=0.900000
      Description="Another sturdy weapon by Black & Wood, the M290 has proven it's worth many times in combat situations, especially against alien forces, most notably the Krao. One of its greatest feats was during the second Human-Skrith war, when a wounded Captain in the UTC 27th Special Ops division single handedly defended an outpost from six advancing Krao companies, using the weapon’s wide spread to his advantage."
      DisplayFOV=55.000000
      Priority=38

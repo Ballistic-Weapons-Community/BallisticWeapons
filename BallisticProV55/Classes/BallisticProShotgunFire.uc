@@ -80,7 +80,7 @@ simulated function vector GetFireSpread()
 	local float fX;
     local Rotator R;
 
-	if (BW.bScopeView)
+	if (BW.bScopeView || BW.bAimDisabled)
 		return super.GetFireSpread();
 	else
 	{

@@ -139,7 +139,7 @@ simulated state Shotgun
 		{
 			R.Roll = (65536.0 / j) * i;
 
-			if (BW.bScopeView)
+			if (BW.bScopeView || BW.bAimDisabled)
 				Proj = Spawn (ProjectileClass,,, Start, rotator((Vector(rot(0,350,0)) >> R) >> Dir) );
 			else Spawn (ProjectileClass,,, Start, rotator((Vector(rot(0,900,0)) >> R) >> Dir) );
 			if (Proj != None)

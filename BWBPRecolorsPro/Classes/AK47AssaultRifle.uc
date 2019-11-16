@@ -304,18 +304,18 @@ simulated function float RateSelf()
 function byte BestMode()
 {
 	local Bot B;
+	local float Dist;
 
 	B = Bot(Instigator.Controller);
+	
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
-
-	if (B.Skill > Rand(6))
-	{
-		if (Chaos < 0.1 || Chaos < 0.5 && VSize(B.Enemy.Location - Instigator.Location) > 500)
-			return 1;
-	}
-	else if (FRand() > 0.75)
+		
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	if (Dist < 1024 && FRand() > 0.75)
 		return 1;
+		
 	return 0;
 }
 

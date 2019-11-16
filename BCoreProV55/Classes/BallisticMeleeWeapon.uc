@@ -107,21 +107,6 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 				BallisticWeapon(instigatedBy.Weapon).ApplyBlockFatigue();
 			return;
 		}
-		if (BDT.default.bDisplaceAim && Damage >= BDT.default.AimDisplacementDamageThreshold && Level.TimeSeconds + BDT.default.AimDisplacementDuration > AimDisplacementEndTime)
-		{
-			if (BDT.default.AimDisplacementDamageThreshold == 0)
-			{
-				AimDisplacementEndTime = Level.TimeSeconds + BDT.default.AimDisplacementDuration * 0.4;
-				ClientDisplaceAim(BDT.default.AimDisplacementDuration * 0.4);
-			}
-			else
-			{
-				AimDisplacementEndTime = Level.TimeSeconds + BDT.default.AimDisplacementDuration * 0.4 * (float(Damage)/BDT.default.AimDisplacementDamageThreshold);
-				ClientDisplaceAim(BDT.default.AimDisplacementDuration * 0.4 * (float(Damage)/BDT.default.AimDisplacementDamageThreshold));
-			}
-			if (bScopeView)
-				StopScopeView();
-		}
 	}
 }
 
@@ -238,7 +223,7 @@ function float GetAIRating()
 			Rating = 0;	
 	}
 	
-	Rating = class'BUtil'.static.DistanceAtten(Rating, 0.0, Dist, 512, 1536);
+	Rating = class'BUtil'.static.DistanceAtten(Rating, 0.4, Dist, 128, 128);
 	
 	return Rating * (1 - MeleeFatigue);
 }

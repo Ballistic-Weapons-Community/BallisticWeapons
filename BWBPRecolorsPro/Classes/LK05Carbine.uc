@@ -467,19 +467,6 @@ simulated function float RateSelf()
 // choose between regular or alt-fire
 function byte BestMode()
 {
-	local Bot B;
-
-	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return 0;
-
-	if (B.Skill > Rand(6))
-	{
-		if (Chaos < 0.1 || Chaos < 0.5 && VSize(B.Enemy.Location - Instigator.Location) > 500)
-			return 1;
-	}
-	else if (FRand() > 0.75)
-		return 1;
 	return 0;
 }
 
