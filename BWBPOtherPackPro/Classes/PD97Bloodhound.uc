@@ -249,8 +249,37 @@ simulated function vector ConvertFOVs (vector InVec, float InFOV, float OutFOV, 
 	return OutVec + ViewLoc;
 }
 
+function byte BestMode()
+{
+	return 0;
+}
+
+function float GetAIRating()
+{
+	local Bot B;
+	
+	local float Dist;
+	local float Rating;
+	
+	B = Bot(Instigator.Controller);
+	
+	if ( B == None )
+		return AIRating;
+
+	Rating = Super.GetAIRating();
+	
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, 768, 2048); 
+}
+
 defaultproperties
 {
+	AIRating=0.5
+	CurrentRating=0.5
      ShellBones(0)="Shell1"
      ShellBones(1)="Shell2"
      ShellBones(2)="Shell3"

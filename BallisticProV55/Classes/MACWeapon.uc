@@ -386,24 +386,30 @@ function byte BestMode()	{	return 0;	}
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	if (Dist < 500)
-		Result -= 0.6;
-	else if (Dist > 3000)
-		Result -= 0.3;
-	result += 0.2 - FRand()*0.4;
-	return Result;
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	if (Dist < 2048) // too close
+		return 0.4;
+		
+	// hamr doesn't need a height check - it just blows through cover anyway
+	
+	return Rating;
 }
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return -0.5;	}
 // tells bot whether to charge or back off while defending against this weapon
@@ -479,8 +485,8 @@ defaultproperties
      PutDownTime=0.800000
      BringUpTime=1.000000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.750000
-     CurrentRating=0.750000
+     AIRating=0.90000
+     CurrentRating=0.90000
      Description="This heavy construct was designed for infantry use, to combat vehicles and large Cryon troops. After several failed designs and attempts, resulting in weapons which were far too heavy and cumbersome for infantry use, the HAMR was built. This new weapon could be carried by infantry, and could be deployed with the sturdy legs mounted underneath the weapon. The weapon can still be fired when mounted on the soldier's shoulder, but it generates extreme recoil, and leaves the users aim in complete disarray. The optical system mounted on the weapon, allows the user to viem from a remote screen attached to the soldiers helmet. Besides a zooming scope, the optical system also features an angle indicator and range finder, allowing the user to pitch the weapon as necessary depending on an inputed distance."
      DisplayFOV=70.000000
      Priority=44

@@ -89,6 +89,28 @@ function byte BestMode()
 	return 0;
 }
 
+function float GetAIRating()
+{
+	local Bot B;
+	
+	local float Dist;
+	local float Rating;
+
+	B = Bot(Instigator.Controller);
+	
+	if ( B == None )
+		return AIRating;
+
+	Rating = Super.GetAIRating();
+
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.75, Dist, 2048, 3072); 
+}
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return -0.5;	}
 // tells bot whether to charge or back off while defending against this weapon
@@ -150,8 +172,8 @@ defaultproperties
      PutDownTime=0.800000
      BringUpTime=1.000000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.750000
-     CurrentRating=0.750000
+     AIRating=0.80000
+     CurrentRating=0.80000
      Description="The AN-56 Akeron Launcher was introduced to fulfill a pressing need for indirect fire options within the UTC ranks. Launching directed-blast rockets for the safety of allied units, it has quickly become a staple due to its optional ability to attack fortifications with manually guided rockets without requiring the user's exposure to enemy fire. However, whilst guiding a rocket, the user is vulnerable to flank attacks, and the weapon is best employed with the support of teammates. Should the user choose to eschew manual guidance, undirected rockets can be launched at a fast rate from the weapon's three barrels."
      Priority=44
      HudColor=(B=80,G=95,R=110)

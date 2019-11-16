@@ -319,27 +319,27 @@ function byte BestMode()
 	return 0;
 }
 
+
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
+	
+	if ( B == None )
 		return AIRating;
 
-	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	if (Dist < 500)
-		Result -= 1-Dist/500;
-	else if (Dist < 3000)
-		Result += (Dist-1000) / 2000;
-	else
-		Result = (Result + 0.66) - (Dist-3000) / 2500;
-	if (Result < 0.34 && CurrentWeaponMode != 2)
-		CurrentWeaponMode = 2;
-	return Result;
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -405,8 +405,8 @@ defaultproperties
      PutDownAnimRate=1.750000
      BringUpTime=0.400000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
+     AIRating=0.700000
+     CurrentRating=0.700000
      Description="Chambering 7.62mm armor piercing rounds, this rifle is a homage to its distant predecessor, the AK-47. Though the weapons' looks have hardly changed at all, this model features a vastly improved firing mechanism, allowing it to operate in the most punishing of conditions. Equipped with a heavy reinforced stock, launchable ballistic bayonet, and 20 round box mag, this automatic powerhouse is guaranteed to cut through anything in its way. ZVT Exports designed this weapon to be practical and very easy to maintain. With its rugged and reliable design, the AK490 has spread throughout the cosmos and can be found just about anywhere."
      Priority=65
      HudColor=(G=100)

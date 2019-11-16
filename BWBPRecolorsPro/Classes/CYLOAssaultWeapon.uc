@@ -160,7 +160,7 @@ simulated event Destroyed()
 function byte BestMode()
 {
 	local Bot B;
-	local float Result, Height, Dist, VDot;
+	local float Dist;
 
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
@@ -174,45 +174,10 @@ function byte BestMode()
 		
 	else if (MagAmmo < 1)
 		return 1;
-
-	if (NextChangeMindTime > level.TimeSeconds)
-		return 0;
-
+		
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
-	Height = B.Enemy.Location.Z - Instigator.Location.Z;
-	VDot = Normal(B.Enemy.Velocity) Dot Normal(Instigator.Location - B.Enemy.Location);
 	
-	
-	// Too close - self-damage risk	
-	if (Dist < 500)
-		return 1;
-
-	Result = FRand()-0.3;
-	// Too far for grenade
-	if (Dist > 800)
-		Result -= (Dist-800) / 2000;
-	if (VSize(B.Enemy.Velocity) > 50)
-	{
-		// Straight lines
-		if (Abs(VDot) > 0.8)
-			Result += 0.1;
-		// Enemy running away
-		if (VDot < 0)
-			Result -= 0.2;
-		else
-			Result += 0.2;
-	}
-	// Higher than enemy
-//	if (Height < 0)
-//		Result += 0.1;
-	// Improve grenade acording to height, but temper using horizontal distance (bots really like grenades when right above you)
-	Dist = VSize(B.Enemy.Location*vect(1,1,0) - Instigator.Location*vect(1,1,0));
-	if (Height < -100)
-		Result += Abs((Height/2) / Dist);
-
-	NextChangeMindTime = level.TimeSeconds + 4;
-
-	if (Result > 0.5)
+	if (Dist < 512)
 		return 1;
 	return 0;
 }
@@ -220,26 +185,29 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	if (Dist > 700)
-		Result += 0.3;
-	else if (B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result -= 0.05 * B.Skill;
-	if (Dist > 3000)
-		Result -= (Dist-3000) / 4000;
+	if (B.Enemy == None)
+		return Rating;
 
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	// danger close
+	if (Dist < 256)
+		return 0.2;
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
 }
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return 0.1;	}
 // tells bot whether to charge or back off while defending against this weapon
@@ -280,6 +248,8 @@ defaultproperties
      Description="The CYLO Firestorm V is an upgraded version of Dipheox's most popular weapon. The V has been redesigned from the ground up for maximum efficiency and can now chamber the fearsome 5.56mm incendiary rounds. Upgrades to the ammo feed and clip lock greatly reduce the chance of jams and ensures a more stable rate of fire, however these have been known to malfunction under excessive stress. Likewise, prolonged use of the incendiary ammunition should be avoided due to potential damage to the barrel and control mechanisms.||While not as versatile as its shotgun equipped cousin, the CYLO Firestorm is still very deadly in urban combat. Proper training with the bayonet can turn the gun itself into a deadly melee weapon."
      HudColor=(G=50)
      GroupOffset=9
+	 AIRating=0.7
+	 CurrentRating=0.7
      PickupClass=Class'BWBPRecolorsPro.CYLOMk2Pickup'
      AttachmentClass=Class'BWBPRecolorsPro.CYLOMk2Attachment'
      IconMaterial=Texture'BallisticRecolors3TexPro.CYLO.SmallIcon_CYLOMk2'

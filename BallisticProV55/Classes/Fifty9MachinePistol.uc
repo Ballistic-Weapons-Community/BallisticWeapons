@@ -234,30 +234,23 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	if (!HasMagAmmo(0) && !HasNonMagAmmo(0))
-	{
-		if (Dist > 400)
-			return 0;
-		return Result / (1+(Dist/400));
-	}
+	if (B.Enemy == None)
+		return Rating;
 
-	if (Dist < 500)
-		Result += 0.3;
-	if (Dist > 1000)
-		Result -= (Dist-1000) / 4000;
-
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, 768, 2048); 
 }
 
 simulated function SetScopeBehavior()
@@ -274,6 +267,8 @@ function float SuggestDefenseStyle()	{	return -0.9;	}
 
 defaultproperties
 {
+	AIRating=0.85
+	CurrentRating=0.85
 	 AimDisplacementDurationMult=0.33
      StockOpenAnim="StockOut"
      StockCloseAnim="StockIn"

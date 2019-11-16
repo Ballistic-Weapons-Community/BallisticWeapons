@@ -10,16 +10,11 @@ class RiotShield extends BallisticMeleeWeapon;
 // AI Interface =====
 function bool CanAttack(Actor Other)
 {
-	return false;
+	return true;
 }
 
 // choose between regular or alt-fire
 function byte BestMode()
-{
-	return 0;
-}
-
-function float GetAIRating()
 {
 	return 0;
 }
@@ -110,6 +105,12 @@ function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDr
     return false;
 }
 
+function float GetAIRating()
+{
+	// bot should fall back to riot shield if no weapon within current range is more viable than 0.55 AI rating
+	return AIRating; 
+}
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()
 {
@@ -150,8 +151,8 @@ defaultproperties
      PutDownTime=0.500000
      BringUpTime=0.500000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.300000
-     CurrentRating=0.300000
+     AIRating=0.500000
+     CurrentRating=0.5000000
      bMeleeWeapon=True
      Description="A defensive weapon capable of blocking many attack types. Reduces incoming frontal damage by 35 or reduces it to 25% of the original amount, whichever is greater. Blocks melee damage outright. Has no effect on non-locational damage such as gas and fire."
      DisplayFOV=65.000000

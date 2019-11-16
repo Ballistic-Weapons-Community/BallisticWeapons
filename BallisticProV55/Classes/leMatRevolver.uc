@@ -549,22 +549,23 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
+	
+	if ( B == None )
 		return AIRating;
 
-	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	if (Dist < 1000)
-		Result += 1-Dist/000;
-	else if (Dist < 3000)
-		Result += (Dist-1000) / 2000;
-	else
-		Result -= (Dist-3000)/2000;
-	return Result;
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, 1536, 3072); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -632,8 +633,8 @@ defaultproperties
      FireModeClass(1)=Class'BallisticProV55.leMatSecondaryFire'
      PutDownTime=0.700000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.400000
-     CurrentRating=0.400000
+     AIRating=0.600000
+     CurrentRating=0.600000
      Description="An expensive remake of an exceptionally old weapon, the Wilson 41-DB was designed for collectors and procurers of rare items from the early days of human firearms. Manufactured by the Edwinson & Sons arms co, this firearm is of high quality, sparse quantity and very high price. Never used in any military or law enforcement organisation, the Wilson 'DiamondBack', is still capable of causing damage. With a 9 cylinder revolver and single 16 gauge shotgun chamber for desperate moments, this weapon can still stop many opponents."
      DisplayFOV=50.000000
      Priority=22

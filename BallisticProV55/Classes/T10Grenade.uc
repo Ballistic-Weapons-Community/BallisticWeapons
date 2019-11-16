@@ -75,8 +75,8 @@ defaultproperties
      FireModeClass(0)=Class'BallisticProV55.T10PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.T10SecondaryFire'
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.400000
-     CurrentRating=0.400000
+     AIRating=0.800000
+     CurrentRating=0.800000
      Description="A recent addition to the Terran arsenal, the T10 toxin grenade was designed primarily for anti-Krao missions in underground facilities. When the clip is released, the grenade will start to release toxic fumes and dangerous gasses until depleted. The grenade can still roll or fly, whilst releasing toxic vapours. This becomes useful for clearing out passageways or small rooms and leaving no room for the enemy to breathe."
      Priority=3
      HudColor=(B=25,G=150,R=50)

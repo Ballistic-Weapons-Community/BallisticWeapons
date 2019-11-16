@@ -422,28 +422,33 @@ function byte BestMode()
 
 	return 0;
 }
+
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	if (Dist > 1000)
-		Result -= (Dist-1000) / 3000;
-	if (B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result += 0.2;
-	else if (B.Enemy.Weapon != None && B.Enemy.Weapon.bSniping && Dist > 500)
-		Result -= 0.4;
+	if (B.Enemy == None)
+		return Rating;
 
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	if (Dist < 2048)
+		return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.2, Dist, 0, 2048);
+
+	if (Dist > 4096)
+		return class'BUtil'.static.DistanceAtten(Rating, 0.5, Dist, 4096, 2048);
+		
+	return Rating;
 }
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return -0.1;	}
@@ -509,8 +514,8 @@ defaultproperties
      PutDownTime=0.800000
      BringUpTime=2.000000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.700000
-     CurrentRating=0.700000
+     AIRating=0.800000
+     CurrentRating=0.800000
      Description="Add me."
      DisplayFOV=45.000000
      Priority=47

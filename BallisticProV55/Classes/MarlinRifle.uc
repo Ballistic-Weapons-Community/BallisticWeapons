@@ -196,23 +196,24 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	if (Dist > 4000)
-		Result -= 0.35;
-	if (Dist > 1500)
-		Result += 0.15;
+	if (B.Enemy == None)
+		return Rating;
 
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	// the deermaster is effective at close range as well
+	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.8, Dist, 1024, 4096); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -269,8 +270,8 @@ defaultproperties
      FireModeClass(0)=Class'BallisticProV55.MarlinPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
+     AIRating=0.80000
+     CurrentRating=0.800000
      bSniping=True
      Description="Redwood Firearms are well known for their high quality hunting and sport rifles and ammuntion. One of their most successful rifles, the '6000 Deermaster', is widely recognised as an excellent hunting weapon. It has only ever been used by civilians for hunting and sporting competitions. Although not used by miltary forces, for it's inconvenient operational design, it is still a powerful weapon, using specified .341 cal ammunition. The heavy wooden stock is useful as a blunt instrument should the user require it in a desperate situation."
      Priority=33

@@ -53,8 +53,8 @@ defaultproperties
      FireModeClass(0)=Class'BallisticProV55.FP7PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.FP7SecondaryFire'
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.400000
-     CurrentRating=0.400000
+     AIRating=0.8500000
+     CurrentRating=0.8500000
      Description="A deadly hand grenade, the FP7 releases a searing blast of flames capable of melting metal with tempatures of over 7500 degrees farenheit. The flames will continue to burn for a while, causing significant damage to anyone caught within the blast radius. FP7's are still widely used against both soldiers and equipment. The weapon was used extensivly during both Human-Skrith wars and is especially famous for its part in the UTC-Cryon battles where the UTC 'Ice Hogs' used it to incinerate Cryon cyborgs."
      Priority=5
      HudColor=(G=50)

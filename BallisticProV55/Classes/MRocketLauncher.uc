@@ -453,6 +453,31 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
     Canvas.SetPos(4,YPos);
 }
 
+function float GetAIRating()
+{
+	local Bot B;
+	
+	local float Dist;
+	local float Rating;
+
+	B = Bot(Instigator.Controller);
+	
+	if ( B == None )
+		return AIRating;
+
+	Rating = Super.GetAIRating();
+
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	if (Dist < 1024) // too close
+		return 0.4;
+		
+	return class'BUtil'.static.DistanceAtten(Rating, 0.65, Dist, 4096, 4096); 
+}
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return -0.5;	}
 
@@ -520,8 +545,8 @@ defaultproperties
      FireModeClass(1)=Class'BallisticProV55.MRLSecondaryFire'
      BringUpTime=0.500000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
+     AIRating=0.850000
+     CurrentRating=0.850000
      bShowChargingBar=True
      Description="An experimental product of NDTR's ballistics wing, the JL21 missile launcher is yet another armament in a long line of anti-Krao weapons designed by the terrans. A powerful, heavy and highly volatile construct, the 'PeaceMaker' has thus far proved it's worth in field tests. The 18 barrelled monster, can fire small, short ranged missiles very quickly via several feed mechanisms supplied by 2 large ammunition containers. A very distinctive attribute of the MRL lies in it's missles flight paths, most often than not, following a drunk path and flying about in an apparently random manner. This has proved very efficient against hordes of Krao, yet not as effective against single opponents. The latest feature of the weapon, allows an even faster rate of fire, at the greatly increased cost of ammunition."
      Priority=39

@@ -680,6 +680,7 @@ function float GetAIRating()
 {
 	if (IsSlave())
 		return 0;
+		
 	return Super.GetAIRating();
 }
 

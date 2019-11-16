@@ -14,6 +14,8 @@ var byte OldWeaponMode;
 var actor ReloadSteam;
 var actor ReloadSteam2;
 
+var float LastModeChangeTime;
+
 var() Material          MatGreenShell;
 var() Material          MatBlackShell;
 var() name		ShellTipBone1;		// Super Slug 1.
@@ -359,46 +361,53 @@ function byte BestMode()
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
 		return 0;
+		
+	if (level.TimeSeconds - lastModeChangeTime < 1.4 - B.Skill*0.1)
+		return 0;
 
 	Dir = Instigator.Location - B.Enemy.Location;
 	Dist = VSize(Dir);
 
-	if (Dist > 700)
-		return 1;
-	else if (Dist < 300)
-		return 0;
-	return Rand(2);
+	if (Dist > 1024)
+	{
+		if (CurrentWeaponMode != 1)
+		{
+			CurrentWeaponMode = 1;
+			CoachGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+		}
+	}
+	
+	else if (CurrentWeaponMode != 0)
+	{
+		CurrentWeaponMode = 0;
+		CoachGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+	}
+	
+	lastModeChangeTime = level.TimeSeconds;
+
+	return 0;
 }
 
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	// Enemy too far away
-	if (Dist > 750)
-		Result = 0.1;
-	else if (Dist < 300)
-		Result += 0.06 * B.Skill;
-	else if (Dist > 500)
-		Result -= (Dist-700) / 1400;
-	// If the enemy has a knife, this gun is handy
-	if (B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result += 0.1 * B.Skill;
-	// Sniper bad, very bad
-	else if (B.Enemy.Weapon != None && B.Enemy.Weapon.bSniping && Dist > 500)
-		Result -= 0.4;
+	if (B.Enemy == None)
+		return Rating;
 
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.9, Dist, 1024, 6144); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -478,8 +487,8 @@ defaultproperties
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectAnimRate=2.000000
      PutDownAnimRate=2.000000
-     AIRating=0.600000
-     CurrentRating=0.600000
+     AIRating=0.800000
+     CurrentRating=0.800000
      Description="This primitive artifact has managed to survive the passage of time. Behind it trails a brutal story of bloodshed and sacrifice. For every scar, a life taken; every gouge, a life saved."
      Priority=38
      HudColor=(B=35,G=100,R=200)

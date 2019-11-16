@@ -466,25 +466,29 @@ function byte BestMode()
 		return 1;
 	return 0;
 }
+
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
+
+	Rating = Super.GetAIRating();
+
+	if (B.Enemy == None)
+		return Rating;
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
-
-	Result = Super.GetAIRating();
-	if (Dist > 500)
-		Result += 0.2;
-	if (Dist > 1500)
-		Result -= (Dist-1500) / 4000;
-
-	return Result;
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, 768, 2048); 
 }
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return 0.8;	}
 // tells bot whether to charge or back off while defending against this weapon
@@ -493,6 +497,8 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 defaultproperties
 {
+	AIRating=0.6
+	CurrentRating=0.6
      LaserAmmo=3.500000
      bShouldDualInLoadout=False
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')

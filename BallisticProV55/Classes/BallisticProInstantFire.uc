@@ -9,7 +9,7 @@ var bool bNoRandomFire;
 simulated function vector GetFireSpread()
 {
 	local float fX;
-    	local Rotator R;
+    local Rotator R;
 
 	if (bNoRandomFire || BW.bScopeView)
 		return super.GetFireSpread();

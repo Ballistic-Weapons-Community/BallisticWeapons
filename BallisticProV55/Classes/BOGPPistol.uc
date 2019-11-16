@@ -241,7 +241,7 @@ function byte BestMode()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 
-	if (Dist < 512)
+	if (Dist < 512 || Dist > 2048)
 		return 1;
 	return 0;
 }
@@ -249,25 +249,23 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
-
-	if (IsSlave())
-		return 0;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
+	
+	if ( B == None )
 		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = AIRating;
-	if (Dist > 800)
-		Result -= (Dist-800) / 2000;
-	else if (Dist < 500 && B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result -= 0.2;
-	return Result;
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.33, Dist, 1024, 2048); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -325,8 +323,8 @@ defaultproperties
      FireModeClass(1)=Class'BallisticProV55.BOGPSecondaryFire'
      PutDownTime=0.450000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.400000
-     CurrentRating=0.400000
+     AIRating=0.600000
+     CurrentRating=0.600000
      Description="The BORT-85 Break-Open Grenade Pistol is a compact grenade launcher manufactured by NDTR Industries. The need for a simple and easy to use grenade launcher arose towards the end of the first war, especially in the large industrial zones of various Outworld colonies. Skrith favoured these areas, as they were perfect for the aliens which prefered to be hidden and strike with surprise. The simple design had several benefits, as it was relatively compact, and could fire many different types of ammunition."
      Priority=19
      HudColor=(G=50)

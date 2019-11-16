@@ -67,14 +67,6 @@ simulated function bool PutDown()
 	return false;
 }
 
-
-
-
-
-
-
-
-
 simulated function PlayIdle()
 {
 	super.PlayIdle();
@@ -425,28 +417,6 @@ simulated function float ChargeBar()
 		return FClamp(FireMode[0].HoldTime - 0.5,  0, 2) / 2;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function DropFrom(vector StartLocation)
 {
     if (!bCanThrow)
@@ -486,34 +456,36 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist, Height;
-	local vector Dir;
+	
+	local float Dist, HeightFactor;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
+	
+	if ( B == None )
 		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
-	Height = B.Enemy.Location.Z - Instigator.Location.Z;
+	Rating = Super.GetAIRating();
 
-	Result = AIRating;
-	// Enemy too far away
-	result += Height/-500;
-	if (Height > -200)
-	{
-		if (Dist > 800)
-			Result -= (Dist-800) / 2000;
-		if (Dist < 500)
-			Result -= 1 - Dist/500;
-	}
-	return Result;
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	HeightFactor = 1 + 0.3 * FClamp((B.Enemy.Location.Z - Instigator.Location.Z)/-500, -2, 1); 
+	
+	if (Dist < 512)
+		return 0.5 * HeightFactor; // discourage close-range grenade
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, 1536, 2048) * HeightFactor; 
 }
 
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return 0.2;	}
+
 // tells bot whether to charge or back off while defending against this weapon
 function float SuggestDefenseStyle()	{	return -0.5;	}
+
 // End AI Stuff =====
 
 defaultproperties

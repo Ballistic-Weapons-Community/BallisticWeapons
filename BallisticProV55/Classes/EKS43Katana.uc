@@ -11,12 +11,6 @@
 //=============================================================================
 class EKS43Katana extends BallisticMeleeWeapon;
 
-// AI Interface =====
-function bool CanAttack(Actor Other)
-{
-	return true;
-}
-
 // choose between regular or alt-fire
 function byte BestMode()
 {
@@ -40,48 +34,6 @@ function byte BestMode()
 	return 0;
 }
 
-function float GetAIRating()
-{
-	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
-
-	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return AIRating;
-
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
-
-	Result = AIRating;
-	// Enemy too far away
-	if (Dist > 1500)
-		return 0.1;			// Enemy too far away
-	// Better if we can get him in the back
-	if (vector(B.Enemy.Rotation) dot Normal(Dir) < 0.0)
-		Result += 0.08 * B.Skill;
-	// If the enemy has a knife too, a gun looks better
-	if (B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result = FMax(0.0, Result *= 0.7 - (Dist/1000));
-	// The further we are, the worse it is
-	else
-		Result = FMax(0.0, Result *= 1 - (Dist/1000));
-
-	return Result;
-}
-
-// tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()
-{
-	return 1;
-}
-
-// tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()
-{
-	return -1;
-}
-
 // End AI Stuff =====
 
 defaultproperties
@@ -98,7 +50,6 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
      MagAmmo=1
-     bNoMag=True
      GunLength=0.000000
      bAimDisabled=True
      FireModeClass(0)=Class'BallisticProV55.EKS43PrimaryFire'
@@ -106,8 +57,6 @@ defaultproperties
      PutDownTime=0.500000
      BringUpTime=0.500000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.300000
-     CurrentRating=0.300000
      bMeleeWeapon=True
      Description="The EKS-43 sword is one of a few weapons produced by Enravion, not designed for widescale military use. It is an expenisve artefact preferred by collectors and other rare procurers. The blade is forged by the use of both ancient techniques and the most modern technology, making it a mighty weapon with incredible sharpness and legendary Enravion strength. Civilians use the weapon for various training and other personal purposes, while several mercenary groups, most notably, the highly skilled 'Apocalytes', adopted the weapon for use with their more skilled warriors."
      DisplayFOV=65.000000

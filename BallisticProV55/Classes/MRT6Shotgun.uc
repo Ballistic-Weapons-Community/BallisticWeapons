@@ -87,32 +87,23 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	// Enemy too far away
-	if (Dist > 2000)
-		Result = 0.1;
-	else if (Dist < 500)
-		Result += 0.06 * B.Skill;
-	else if (Dist > 700)
-		Result -= (Dist-700) / 1400;
-	// If the enemy has a knife, this gun is handy
-	if (B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result += 0.1 * B.Skill;
-	// Sniper bad, very bad
-	else if (B.Enemy.Weapon != None && B.Enemy.Weapon.bSniping && Dist > 500)
-		Result -= 0.4;
+	if (B.Enemy == None)
+		return Rating;
 
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -143,6 +134,8 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
+	 AIRating=0.7
+	 CurrentRating=0.7
      ManualLines(0)="Fires both barrels. Wide spread and good damage, but requires cocking after every shot."
      ManualLines(1)="Fires one barrel at a time."
      ManualLines(2)="Effective at very close range."

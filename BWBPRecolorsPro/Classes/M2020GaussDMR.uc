@@ -435,22 +435,23 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
+	
+	if ( B == None )
 		return AIRating;
 
-	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	if (Dist < 500)
-		Result -= 1-Dist/500;
-	else if (Dist < 3000)
-		Result += (Dist-1000) / 2000;
-	else
-		Result = (Result + 0.66) - (Dist-3000) / 2500;
-	return Result;
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.5, Dist, 2048, 3072); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -602,8 +603,8 @@ defaultproperties
      PutDownTime=0.80000
      BringUpTime=0.500000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
+     AIRating=0.800000
+     CurrentRating=0.800000
      bShowChargingBar=True
      Description="The M2020 is a 2nd generation Gauss rifle in use by UTC marksmen personnel, currently in the process of being phased out by Enravion 3rd generation M30 models. These 2nd generation Gauss rifles are significantly more portable and powerful than their predecessors, however troops have complained about the M2020 in particular's bulkiness and lack of ergonomics. The rifle itself uses two parallel heavy electromagnets to boost its special 7.62mm rounds to extreme velocities. Charge is variable, and the electromagnets can be disabled at will. |UTC Note: When operating this weapon, keep all metallic objects away from the reciprocaiting chargers. While locking the weapon's magnets open can be fun for pranks, troops are advised to not use it near sensitive military equipment."
      Priority=65

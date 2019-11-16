@@ -35,77 +35,6 @@ simulated event AnimEnd (int Channel)
     	super.AnimEnd(Channel);
 }
 
-// AI Interface =====
-function bool CanAttack(Actor Other)
-{
-	return VSize(Other.Location - Instigator.Location) < FireMode[0].MaxRange() * 2;
-}
-
-// choose between regular or alt-fire
-function byte BestMode()
-{
-	local Bot B;
-	local float Result;
-
-	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return 0;
-
-	if (VSize(B.Enemy.Location - Instigator.Location) > FireMode[0].MaxRange()*1.5)
-		return 1;
-	Result = FRand();
-	if (vector(B.Enemy.Rotation) dot Normal(Instigator.Location - B.Enemy.Location) < 0.0)
-		Result += 0.3;
-	else
-		Result -= 0.3;
-
-	if (Result > 0.5)
-		return 1;
-	return 0;
-}
-
-function float GetAIRating()
-{
-	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
-
-	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return AIRating;
-
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
-
-	Result = AIRating;
-	// Enemy too far away
-	if (Dist > 1500)
-		return 0.1;			// Enemy too far away
-	// Better if we can get him in the back
-	if (vector(B.Enemy.Rotation) dot Normal(Dir) < 0.0)
-		Result += 0.08 * B.Skill;
-	// If the enemy has a knife too, a gun looks better
-	if (B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result = FMax(0.0, Result *= 0.7 - (Dist/1000));
-	// The further we are, the worse it is
-	else
-		Result = FMax(0.0, Result *= 1 - (Dist/1000));
-
-	return Result;
-}
-
-// tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()
-{
-	return 1;
-}
-
-// tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()
-{
-	return -1;
-}
-
 // End AI Stuff =====
 
 defaultproperties
@@ -122,7 +51,6 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.A909.A909Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.A909.A909Putaway')
      MagAmmo=1
-     bNoMag=True
      GunLength=0.000000
      bAimDisabled=True
      FireModeClass(0)=Class'BallisticProV55.A909PrimaryFire'
@@ -131,8 +59,6 @@ defaultproperties
      PutDownTime=0.200000
      BringUpTime=0.200000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.300000
-     CurrentRating=0.300000
      bMeleeWeapon=True
      Description="The A909 Skrith Blades are a common Skrith melee weapon. They were a terrible bane of the human armies during the first war. The Skrith used them ruthlessly and with great skill to viciously slice up their enemies. Though the blades are useless at range, they are capable of great harm if the user can sneak up on an opponent. All or most Skrith warriors seem to prefer melee battle, and as such hone their skill with close range weapons. The blades can be extremely deadly when close up, as they can jab and slice very fast."
      DisplayFOV=70.000000

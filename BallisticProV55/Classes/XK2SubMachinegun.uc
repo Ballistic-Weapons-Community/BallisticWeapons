@@ -157,29 +157,29 @@ function byte BestMode()
 {
 	return 0;
 }
+
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	if (Dist > 700)
-		Result += 0.3;
-	else if (B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result -= 0.05 * B.Skill;
-	if (Dist > 2000)
-		Result -= (Dist-2000) / 4000;
+	if (B.Enemy == None)
+		return Rating;
 
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
 }
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return 0.6;	}
 // tells bot whether to charge or back off while defending against this weapon
@@ -230,6 +230,8 @@ defaultproperties
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimAdjustTime=0.400000
      AimSpread=16
+	 AIRating=0.8
+	 CurrentRating=0.8
      ChaosDeclineTime=0.800000
      ChaosSpeedThreshold=7500.000000
      ChaosAimSpread=2048

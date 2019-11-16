@@ -94,8 +94,8 @@ function byte BestMode()
 	local Vehicle V;
 
 	B = Bot(Instigator.Controller);
-	if ( B == None  || B.Enemy == None)
-		return Rand(2);
+	if ( B == None  || B.Enemy == None) // spam primary against objectives
+		return 0;
 
 	Dir = Instigator.Location - B.Enemy.Location;
 	Dist = VSize(Dir);
@@ -123,6 +123,7 @@ function byte BestMode()
 
 	if (Dist > 1024)
 		return 1;
+		
 	return 0;
 }
 
@@ -131,47 +132,34 @@ function float GetAIRating()
 	local Bot B;
 	local float Result, Dist;
 	local vector Dir;
-	local DestroyableObjective O;
-	local Vehicle V;
 
 	if (IsSlave())
 		return 0;
 
 	B = Bot(Instigator.Controller);
+	
 	if ( B == None )
 		return AIRating;
 
-	V = B.Squad.GetLinkVehicle(B);
-	if ( (V != None)
-		&& (VSize(Instigator.Location - V.Location) < 1.5 * FireMode[0].MaxRange())
-		&& (V.Health < V.HealthMax) && (V.LinkHealMult > 0) )
-		return 1.1;
-
-	if ( Vehicle(B.RouteGoal) != None && B.Enemy == None && VSize(Instigator.Location - B.RouteGoal.Location) < 1.5 * FireMode[0].MaxRange()
-	     && Vehicle(B.RouteGoal).TeamLink(B.GetTeamNum()) )
-		return 1.1;
-
-	O = DestroyableObjective(B.Squad.SquadObjective);
-	if ( O != None && B.Enemy == None && O.TeamLink(B.GetTeamNum()) && O.Health < O.DamageCapacity
-	     && VSize(Instigator.Location - O.Location) < 1.1 * FireMode[0].MaxRange() && B.LineOfSightTo(O) )
-		return 1.1;
+	if (RecommendHeal(B))
+		return 1.1;		
 
 	if (B.Enemy == None)
 		return Super.GetAIRating();
 
 	Dir = B.Enemy.Location - Instigator.Location;
+	
 	Dist = VSize(Dir);
 
 	Result = Super.GetAIRating();
-
-	if (Dist > 1500)
-		Result -= (Dist-1500) / 1500;
-	else if (Dist < 500)
-		Result -= 0.1;
-	else if (Dist > 1000 && AmmoAmount(0) < 50)
-		return Result -= 0.1;
-
-	return Result;
+	
+	switch (BestMode())
+	{
+		case 0:
+			return class'BUtil'.static.DistanceAtten(Result, 0.33, Dist, 1024, 2048);
+		case 1:
+			return 0.5; // a42 charge beam is never a great option
+	}
 }
 
 function bool FocusOnLeader(bool bLeaderFiring)
@@ -278,8 +266,8 @@ defaultproperties
      FireModeClass(1)=Class'BallisticProV55.A42SecondaryFire'
      BringUpTime=0.500000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.400000
-     CurrentRating=0.400000
+     AIRating=0.6000
+     CurrentRating=0.600000
      bShowChargingBar=True
      Description="The A42 is an energy pistol of Skrith origin. Nicknamed 'Whip' by the UTC Marines, it has been the standard issue Skrith sidearm in both wars."
      Priority=16

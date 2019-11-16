@@ -673,24 +673,25 @@ function bool CanAttack(Actor Other)
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
+	
+	if ( B == None )
 		return AIRating;
 
+	Rating = Super.GetAIRating();
+
+	if (B.Enemy == None)
+		return Rating;
+
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
-
-	Result = Super.GetAIRating();
-	if (Dist < 500)
-		Result -= 1-Dist/500;
-	else if (Dist < 3000)
-		Result += (Dist-1000) / 2000;
-	else
-		Result = (Result + 0.66) - (Dist-3000) / 2500;
-
-	return Result;
+	
+	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.75, Dist, 2048, 2048); 
 }
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return -0.5;	}
 // tells bot whether to charge or back off while defending against this weapon
@@ -803,8 +804,8 @@ defaultproperties
      PutDownTime=0.500000
      BringUpTime=0.400000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
+     AIRating=0.800000
+     CurrentRating=0.800000
      bSniping=True
      Description="LS-14 Laser Carbine||Manufacturer: UTC Defense Tech|Primary: Focused Photon Beam|Secondary: Mini Rockets"
      Priority=194

@@ -507,26 +507,31 @@ function byte BestMode()	{	return 0;	}
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	local float Dist, Rating;
 
 	B = Bot(Instigator.Controller);
+	
 	if ( (B == None) || (B.Enemy == None) )
 		return Super.GetAIRating();
+		
+	// anti-vehicle specialist
+	if (Vehicle(B.Enemy) != None)
+		return 1.2;
+		
+	Rating = Super.GetAIRating();
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
-
-	Result = Super.GetAIRating();
-	if (Dist < 500)
-		Result -= 0.6;
-	else if (Dist > 3000)
-		Result -= 0.3;
-	result += 0.2 - FRand()*0.4;
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	if (Dist < 1024) // danger close
+		return 0.4;
+	
+	// projectile
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, 3072, 4096); 
 }
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return -0.5;	}
+
 // tells bot whether to charge or back off while defending against this weapon
 function float SuggestDefenseStyle()	{	return -0.9;	}
 // End AI Stuff =====
@@ -816,8 +821,8 @@ defaultproperties
      PutDownTime=0.800000
      BringUpTime=1.000000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.750000
-     CurrentRating=0.750000
+     AIRating=0.800000
+     CurrentRating=0.800000
      Description="Based on the original design by the legendary maniac Pirate, Var Dehidra, the G5 has undergone many alterations to become what it is today. The original bandit version was constructed by Var Dehidra to blast open armored cash transportation vehicles. Its name is derived from one of Dehidra's favourite targets, the G5 CTV 4x. It is now a very deadly weapon, used to destroy everything from tanks and structures to Skrith hordes and aircraft. The bombardement attack is a recent addition, replacing the original, primitive heat seeking function that caused it to target CTVs or backfire on the pirates' own craft, provided mainly for use in outdoor environments to destroy all manner of moving targets. The latest model also features a laser-painter device, allowing the user to guide the rocket wherever they wish."
      Priority=44
      HudColor=(B=25,G=150,R=50)

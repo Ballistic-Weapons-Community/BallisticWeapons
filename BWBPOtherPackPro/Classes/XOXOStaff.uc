@@ -417,8 +417,8 @@ defaultproperties
      PutDownTime=0.600000
      BringUpTime=0.500000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.650000
-     CurrentRating=0.650000
+     AIRating=0.70000
+     CurrentRating=0.70000
      bShowChargingBar=True
      Description="Le Big Xoxo. Not a soul knows where this artifact came from or who might have created it. It might have been forged by an ancient, forgotten culture or found its way to us by having traveled through the vastness of space before becoming a fabulous, longish meteor. What matters in the end is, that it is an absolutely marvelous addition to the weapon roster, providing completely diverse firemodes, the ability to deal enormous amounts of damage, heal teammates and even improve upon killing enemies and sucking up their lewdness. Remember: Don't judge a book by its cover. (Although I don't see how this ABSOLUTELY ASTONISHING COVER could possibly lead anyone to underestimate Le Big Xoxo's power.)"
      Priority=38

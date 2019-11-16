@@ -174,26 +174,25 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	if (Dist < 600)
-		Result -= 0.6;
-	else if (Dist > 4000)
-		Result -= 0.3;
-	else if (Dist > 20000)
-		Result += (Dist-1000) / 2000;
-	result += 0.2 - FRand()*0.4;
-	return Result;
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.5, Dist, 1024, 1024); 
 }
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return -0.8;	}
 // tells bot whether to charge or back off while defending against this weapon
@@ -266,8 +265,8 @@ defaultproperties
      PutDownTime=1.400000
      BringUpTime=1.500000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.750000
-     CurrentRating=0.750000
+     AIRating=0.90000
+     CurrentRating=0.90000
      Description="The G5 is an excellent tool against armored vehicles, but against infantry it loses some of its effectiveness. In response to field tester imput, the UTC is currently trying a new anti-infantry rocket launcher called the STREAK. This specialized rocket launcher uses a standard warhead filled with a mixture of napalm, tar and thermite, along with an igniting agent. This means that the STREAK can both take out infantry quickly with a direct blast and incinerate those caught in its wide area of effect. Another bonus of the STREAK is that the user can fire the rockets singlely to dispose of individuals or four at a time to wipe out larger groups. A scope can be used for larger ranges. Note: Make sure that the device is not used in tight areas, due to the large back blast of the weapon."
      Priority=164
      HudColor=(G=200,R=0)

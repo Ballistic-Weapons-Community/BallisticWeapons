@@ -136,33 +136,23 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
+	
 	if ( B == None )
 		return AIRating;
 
+	Rating = Super.GetAIRating();
+
 	if (B.Enemy == None)
-		return Super.GetAIRating();
+		return Rating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
 
-	Result = Super.GetAIRating();
-	if (!HasMagAmmo(0) && Ammo[0].AmmoAmount < 1)
-	{
-		if (Dist > 400)
-			return 0;
-		return Result / (1+(Dist/400));
-	}
-	// Enemy too far away
-	if (Dist > 1000)
-		Result -= (Dist-1000) / 3000;
-	if (Dist < 500)
-		Result += 0.5;
-
-	return Result;
+	return class'BUtil'.static.DistanceAtten(Rating, 0.5, Dist, 1536, 3072); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -224,8 +214,8 @@ defaultproperties
      FireModeClass(1)=Class'BallisticProV55.A500SecondaryFire'
      BringUpTime=0.500000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
+     AIRating=0.800000
+     CurrentRating=0.800000
      bShowChargingBar=True
      Description="The A500 is a mostly experimental Skrith weapon, seen in only a handful of battles fought against Terran forces. The first encounter with Skrith troops using the 'Reptile' was during a notorious incident on one of the Outworld colonies, where UTC troops were stationed in defense of a large Terran lab still operating. The Skrith invaded the area with little warning, and although the heavily armoured Terrans far outnumbered the Skrith incursion party, the A500 was used by the aliens to great effect. The armoured Terrans affected by the acidic substances suffered a painful fate as the armour was eaten away rapidly and then the soldier themselves fell to the toxic substance. Many theorize that the A500 and other recent Skrith weapons are a response to the ineffectiveness of their previous energy weapons against much of the Terran armour."
      DisplayFOV=55.000000

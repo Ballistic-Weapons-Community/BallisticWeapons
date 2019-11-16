@@ -234,31 +234,23 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	// Enemy too far away
-	if (Dist > 1800)
-		Result *= 1400/Dist;
-	else if (Dist < 500)
-		Result -= 0.15 * (1-(Dist/1000)) * B.Skill;
-	else
-		Result += 0.04 * B.Skill;
-	// If the enemy has a knife, this gun is handy
-	if (B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result += 0.04 * B.Skill;
-	// Sniper bad, very bad
-	else if (B.Enemy.Weapon != None && B.Enemy.Weapon.bSniping && Dist > 2)
-		Result -= 0.4;
-	return Result;
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.2, Dist, 2048, 512); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -321,8 +313,8 @@ defaultproperties
      FireModeClass(1)=Class'BallisticProV55.RX22ASecondaryFire'
      BringUpTime=1.200000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=2.000000
-     CurrentRating=0.700000
+     AIRating=0.9
+     CurrentRating=0.900000
      Description="A very deadly weapon designed and constructed by the UTC’s Defence Research Wing, to combat the Cryons before the second Human-Skrith war. It proved highly effective, being unchallenged by both of the Skrith’s major allies, the Cryons and Krao. The RX22A proved to be an extrmely useful weapon, when clearing out Krao from many underground tunnels and facilities on the OutWorld planet. The weapon, now feared by Cryons. and especially Krao, is one of the most dangerous weapons a Terran soldier may possess. Despite its long range, searing flames and ability to litterally fill a small room with fire make it a very powerful weapon, it has a great disadvantage. The flames may just as easily incinerate the operator when used close up, and if the fuel tanks carried on the soldiers back, were to rupture and catch fire, the user may find themselves in a very unpleasant situation."
      Priority=46
      HudColor=(G=50)

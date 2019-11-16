@@ -151,10 +151,7 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
-	local DestroyableObjective O;
-	local Vehicle V;
+	local float Dist, Rating;
 
 	B = Bot(Instigator.Controller);
 	if ( B == None )
@@ -162,38 +159,23 @@ function float GetAIRating()
 
 	if (HasMagAmmo(0) || Ammo[0].AmmoAmount > 0)
 	{
-		V = B.Squad.GetLinkVehicle(B);
-		if ( (V != None)
-			&& (VSize(Instigator.Location - V.Location) < 1.5 * FireMode[0].MaxRange())
-			&& (V.Health < V.HealthMax) && (V.LinkHealMult > 0) )
-			return 1.2;
-
-		if ( Vehicle(B.RouteGoal) != None && B.Enemy == None && VSize(Instigator.Location - B.RouteGoal.Location) < 1.5 * FireMode[0].MaxRange()
-		     && Vehicle(B.RouteGoal).TeamLink(B.GetTeamNum()) )
-			return 1.2;
-
-		O = DestroyableObjective(B.Squad.SquadObjective);
-		if ( O != None && B.Enemy == None && O.TeamLink(B.GetTeamNum()) && O.Health < O.DamageCapacity
-	    	 && VSize(Instigator.Location - O.Location) < 1.1 * FireMode[0].MaxRange() && B.LineOfSightTo(O) )
+		if (RecommendHeal(B))
 			return 1.2;
 	}
 
+	Rating = Super.GetAIRating();
+
 	if (B.Enemy == None)
-		return Super.GetAIRating();
+		return Rating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
-
-	Result = Super.GetAIRating();
-
-	if (Dist > 1500)
-		Result -= (Dist-1500) / 1500;
-	else if (Dist < 500)
-		Result -= 0.1;
-	else if (Dist > 1000 && AmmoAmount(0) < 50)
-		return Result -= 0.1;;
-
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	Rating = class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, 768, 2048); 
+	
+	if (HeatLevel > 8)
+		Rating *= 0.65;
+		
+	return Rating;
 }
 
 function bool FocusOnLeader(bool bLeaderFiring)
@@ -374,8 +356,8 @@ defaultproperties
      PutDownAnimRate=2.300000
      BringUpTime=0.500000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.400000
-     CurrentRating=0.400000
+     AIRating=0.8500000
+     CurrentRating=0.8500000
      Description="A49 Skrith Blaster"
      Priority=16
      HudColor=(B=255,G=175,R=100)

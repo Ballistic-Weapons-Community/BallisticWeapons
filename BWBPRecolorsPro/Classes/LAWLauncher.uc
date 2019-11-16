@@ -324,28 +324,27 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	if (Dist < 600)
-		Result -= 0.6;
-	else if (Dist > 4000)
-		Result -= 0.3;
-	else if (Dist > 20000)
-		Result += (Dist-1000) / 2000;
-	result += 0.2 - FRand()*0.4;
-	return Result;
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.5, Dist, 1024, 3072); 
 }
+
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return -0.5;	}
+function float SuggestAttackStyle()	{	return -0.9;	}
 // tells bot whether to charge or back off while defending against this weapon
 function float SuggestDefenseStyle()	{	return -0.9;	}
 // End AI Stuff =====
@@ -427,8 +426,8 @@ defaultproperties
      PutDownTime=2.500000
      BringUpTime=3.000000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.750000
-     CurrentRating=0.750000
+     AIRating=0.90000
+     CurrentRating=0.90000
      Description="The FGM-70 LAW represents an advance in portable nuclear technology. Using clean miniature nuclear rockets with no fallout, it is suitable for general deployment within the common soldiery. Able to inflict devastation either immediately through an explosion or over time through generating penetrative shockwaves, the FGM-70 can change the course of combat."
      Priority=164
      HudColor=(G=200,R=0)

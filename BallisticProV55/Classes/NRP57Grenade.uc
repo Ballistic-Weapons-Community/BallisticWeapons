@@ -39,33 +39,6 @@ function byte BestMode()
 	return 0;
 }
 
-function float GetAIRating()
-{
-	local Bot B;
-	local float Result, Dist, Height;
-	local vector Dir;
-
-	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return AIRating;
-
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
-	Height = B.Enemy.Location.Z - Instigator.Location.Z;
-
-	Result = AIRating;
-	// Enemy too far away
-	result += Height/-500;
-	if (Height > -200)
-	{
-		if (Dist > 800)
-			Result -= (Dist-800) / 2000;
-		if (Dist < 500)
-			Result -= 1 - Dist/500;
-	}
-	return Result;
-}
-
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return 0.2;	}
 // tells bot whether to charge or back off while defending against this weapon
@@ -103,8 +76,8 @@ defaultproperties
      PutDownTime=0.700000
      BringUpTime=0.750000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.400000
-     CurrentRating=0.400000
+     AIRating=0.850000
+     CurrentRating=0.850000
      Description="One of Black & Wood's most famous devices, the versatile NRP57 is a UTC favourite. Once the pin is pulled, it can be held ready as long as needed. The longer it is held, the further it will be thrown. The 3 second timer can be shortened by releasing the clip prior to throwing, but this greatly increases the risk of termination. The NRP57 is an effective tool which can be bounced around corners, lobbed over obstacles and has a high damage and a decent radius of effect, but it's true power lies in the soldier's ability to time the detonation and speed according to the distance of the target. The most famous story involving the Pineapple tells how the UTC Phobos Marines painted it yellow and rigged it for the unsuspecting Skrith who had, over the decades, developed an incredible taste for the terran fruit."
      Priority=7
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

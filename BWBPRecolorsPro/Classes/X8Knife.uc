@@ -188,36 +188,6 @@ function byte BestMode()
 	return 0;
 }
 
-function float GetAIRating()
-{
-	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
-
-	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return AIRating;
-
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
-
-	Result = AIRating;
-	// Enemy too far away
-	if (Dist > 1500)
-		return 0.1;			// Enemy too far away
-	// Better if we can get him in the back
-	if (vector(B.Enemy.Rotation) dot Normal(Dir) < 0.0)
-		Result += 0.08 * B.Skill;
-	// If the enemy has a knife too, a gun looks better
-	if (B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result = FMax(0.0, Result *= 0.7 - (Dist/1000));
-	// The further we are, the worse it is
-	else
-		Result = FMax(0.0, Result *= 1 - (Dist/1000));
-
-	return Result;
-}
-
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()
 {
@@ -264,8 +234,8 @@ defaultproperties
      PutDownTime=0.200000
      BringUpTime=0.400000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.200000
-     CurrentRating=0.200000
+     AIRating=0.700000
+     CurrentRating=0.700000
      bMeleeWeapon=True
      Description="A counterpart to Enravion’s X3 Knife, the X8 Ballistic Knife is the Eastern Bloc’s preferred way to deal with CQC enemies. While primarily used as a bayonet on the venerable AK490, the X8 is still quite effective in hand to hand fighting thanks to its lethally sharp blade. When opponents are too far to gut personally, the unique gas propellant mechanism inside the hilt of the knife lets the user turn their knife into a fast moving spear. Several unfortunate accidents have caused the X8 to be considered unfit for civilian use."
      Priority=13

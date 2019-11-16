@@ -336,21 +336,23 @@ function byte BestMode()	{	return 0;	}
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
+
+	Rating = Super.GetAIRating();
+
+	if (B.Enemy == None)
+		return Rating;
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
-
-	Result = Super.GetAIRating();
-	if (Dist < 1000)
-		Result += (Dist/1000) - 1;
-	else
-		Result += 1-(Abs(Dist-5000)/5000);
-
-	return Result;
+	
+	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.5, Dist, 2048, 3072); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -412,8 +414,8 @@ defaultproperties
      PutDownTime=0.700000
      BringUpTime=0.700000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.650000
-     CurrentRating=0.600000
+     AIRating=0.800000
+     CurrentRating=0.800000
      Description="The Cimerion Labs CX85 was created to serve the purpose of enemy location and tracking in a battlefield environment where operatives needed tactical-level information upon enemy positions and movements without the ability to rely upon allied intelligence. Capable of launching miniature darts, each packed with an explosive charge and a remote transmitter, the CX is able to discern the location of struck enemies. Should the user no longer have need for the tracking ability, the darts can be detonated at long range to damage the target and surrounding entities."
      DisplayFOV=55.000000
      Priority=40

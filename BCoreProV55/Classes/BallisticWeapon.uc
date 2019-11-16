@@ -2493,9 +2493,14 @@ function float GetAIRating()
 {
 	if (bNoMag)
 		return AIRating;
-	if (MagAmmo < 1 && AIController(Instigator.Controller).Enemy != None && (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime < AIReloadTime || AmmoAmount(0) < 1))
+	if (DiscourageReload())
 		return AIRating * 0.25;
 	return AIRating;
+}
+
+function bool DiscourageReload()
+{
+	return MagAmmo < 1 && AIController(Instigator.Controller).Enemy != None && (Level.TimeSeconds - AIController(Instigator.Controller).LastSeenTime < AIReloadTime || AmmoAmount(0) < 1);
 }
 
 // Makes a bot reload if they have the skill or its forced
@@ -2599,6 +2604,30 @@ function bool CanAttack(Actor Other)
         return true;
 
     return false;
+}
+
+function bool RecommendHeal(Bot B)
+{
+	local DestroyableObjective O;
+	local Vehicle V;
+	
+	V = B.Squad.GetLinkVehicle(B);
+	
+	if ( (V != None)
+		&& (VSize(Instigator.Location - V.Location) < 1.5 * FireMode[0].MaxRange())
+		&& (V.Health < V.HealthMax) && (V.LinkHealMult > 0) )
+		return true;
+
+	if ( Vehicle(B.RouteGoal) != None && B.Enemy == None && VSize(Instigator.Location - B.RouteGoal.Location) < 1.5 * FireMode[0].MaxRange()
+	     && Vehicle(B.RouteGoal).TeamLink(B.GetTeamNum()) )
+		return true;
+
+	O = DestroyableObjective(B.Squad.SquadObjective);
+	if ( O != None && B.Enemy == None && O.TeamLink(B.GetTeamNum()) && O.Health < O.DamageCapacity
+	     && VSize(Instigator.Location - O.Location) < 1.1 * FireMode[0].MaxRange() && B.LineOfSightTo(O) )
+		return true;
+		
+	return false;
 }
 
 simulated function bool IsFiring() // called by pawn animation, mostly

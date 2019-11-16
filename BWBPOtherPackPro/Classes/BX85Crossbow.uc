@@ -16,6 +16,28 @@ simulated function float ChargeBar()
 	return BX85Attachment(ThirdPersonActor).CurAlpha / 128.0f;
 }
 
+function float GetAIRating()
+{
+	local Bot B;
+	
+	local float Dist;
+	local float Rating;
+
+	B = Bot(Instigator.Controller);
+	
+	if ( B == None )
+		return AIRating;
+
+	Rating = Super.GetAIRating();
+
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.5, Dist, 2048, 3072); 
+}
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return -0.7;	}
 // tells bot whether to charge or back off while defending against this weapon
@@ -23,6 +45,8 @@ function float SuggestDefenseStyle()	{	return 0.7;	}
 
 defaultproperties
 {
+	AIRating=0.8
+	CurrentRating=0.8
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
      AIReloadTime=1.500000
      BigIconMaterial=Texture'BWBPOtherPackTex2.XBow.BigIcon_Crossbow'

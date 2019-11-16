@@ -324,7 +324,7 @@ static final function vector ConvertFOVs (vector ViewLoc, rotator ViewRot, vecto
 	return OutVec + ViewLoc;
 }
 // Simpler implementation to be used on weapons
-static final  function vector WeaponConvertFOVs (Weapon Weap, vector InVec, float InFOV, float OutFOV, float Distance)
+static final function vector WeaponConvertFOVs (Weapon Weap, vector InVec, float InFOV, float OutFOV, float Distance)
 {
 	local vector ViewLoc, Outvec, Dir, X, Y, Z;
 	local rotator ViewRot;
@@ -340,6 +340,47 @@ static final  function vector WeaponConvertFOVs (Weapon Weap, vector InVec, floa
     OutVec = OutVec >> ViewRot;
 
 	return OutVec + ViewLoc;
+}
+
+static final function float CalculateDistanceAtten(float Distance, float AttenStartDist, float AttenDist)
+{
+	return FClamp((distance - AttenStartDist), 0, AttenDist) / AttenDist;
+}
+
+static final function float DistanceAmplify(float Input, float MaxAmplifyMult, float Distance, float AmpStartDist, float AmpDist)
+{
+	local float amp_factor;
+	
+	amp_factor = class'BUtil'.static.CalculateDistanceAtten(Distance, AmpStartDist, AmpDist);
+	
+	if (amp_factor < 0.02f)
+		return Input;
+		
+	return Input + (Input * (MaxAmplifyMult - 1) * amp_factor);
+}
+
+static final function float DistanceAtten(float Input, float MaxReductionMult, float Distance, float AttenStartDist, float AttenDist)
+{
+	local float reduction_factor;
+	
+	reduction_factor = class'BUtil'.static.CalculateDistanceAtten(Distance, AttenStartDist, AttenDist);
+	
+	if (reduction_factor < 0.02f)
+		return Input;
+		
+	return Input - (Input * (1 - MaxReductionMult) * reduction_factor);
+}
+
+static final function float ReverseDistanceAtten(float Input, float MaxReductionMult, float Distance, float AttenStartDist, float AttenDist)
+{
+	local float reduction_factor;
+	
+	reduction_factor = 1 - class'BUtil'.static.CalculateDistanceAtten(Distance, AttenStartDist, AttenDist);
+	
+	if (reduction_factor < 0.02f)
+		return Input;
+		
+	return Input - (Input * (1 - MaxReductionMult) * reduction_factor);
 }
 
 defaultproperties

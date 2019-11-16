@@ -599,21 +599,25 @@ function bool CanAttack(Actor Other)
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
 
-	Result = Super.GetAIRating();
-	Result += (Dist-1000) / 2000;
+	if (B.Enemy == None)
+		return Rating;
 
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.75, Dist, 2048, 2048); 
 }
+
 function float SuggestAttackStyle()	{	return -0.5;	}
 function float SuggestDefenseStyle()	{	return 0.5;	}
 
@@ -623,6 +627,8 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
+	AIRating=0.8
+	CurrentRating=0.8
      GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
      GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
      GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'

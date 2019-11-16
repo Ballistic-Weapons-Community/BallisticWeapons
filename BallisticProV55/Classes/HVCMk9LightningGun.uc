@@ -639,32 +639,20 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
+	local float Result;
 
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
 		return Super.GetAIRating();
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
-
 	Result = Super.GetAIRating();
 	if (Instigator.PhysicsVolume.bWaterVolume)
 		Result -= 0.15 * B.Skill;
-	if (Dist > 1600)
-	{
-		Result -= (Dist-1360)/1500;
-		if (B.Enemy.Weapon != None && B.Enemy.Weapon.bSniping)
-			Result -= 0.08 * B.Skill;
-	}
-	else if (Dist > 1200)
-		Result -= 0.15;
-	if (B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result += 0.07 * B.Skill;
-
+	
+	// super effective at all ranges
 	return Result;
 }
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return -0.2;	}
 // tells bot whether to charge or back off while defending against this weapon
@@ -712,8 +700,8 @@ defaultproperties
      FireModeClass(1)=Class'BallisticProV55.HVCMk9SecondaryFire'
      PutDownTime=0.500000
      BringUpTime=1.000000
-     AIRating=0.750000
-     CurrentRating=0.600000
+     AIRating=0.90000
+     CurrentRating=0.900000
      bShowChargingBar=True
      Description="Krao, the mindless, virtually limitless alien swarm used by the Skrith has caused the appearance of weapons such as shotguns and heavy spread weapons, as well as many unusual designs and inventions, including electrical armaments. The HVC (High Voltage Cannon) Mk9 is one such device, making its first appearance during the second Human-Skrith war. Designed by Nexron Defence, pioneers in terran energy weapon technology, the HVC is indeed suited to destroying Krao drones in vast quantities. In battlefield trials, the 'lightning gun' has proven to be highly effective in close combat against Krao and occasionally proving useful against Cryons and even Skrith.|Using a large energy cell mounted on the user's backpack, it can produce extremely high-voltage charges of electricity."
      Priority=45

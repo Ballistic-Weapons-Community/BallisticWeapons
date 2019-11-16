@@ -737,103 +737,67 @@ function DropFrom(vector StartLocation)
 function byte BestMode()
 {
 	local Bot B;
-	local float Dist, Result;
+	local float Dist;
 
 	B = Bot(Instigator.Controller);
 	if ( B == None  || B.Enemy == None)
 		return 0;
 
 	Dist = VSize(Instigator.Location - B.Enemy.Location);
+	
 	if (MagAmmo < 1 || ReloadState != RS_None || Dist < FireMode[1].MaxRange())
 		return 1;
 
-	if (CurrentWeaponMode >= 2 && FireMode[0].IsFiring())
-		return 0;
 	if (level.TimeSeconds - lastModeChangeTime < 1.4 - B.Skill*0.15)
 		return 0;
-	Result = 0.3 + FRand()*0.4;
-	if (Dist < 700)
-		Result += 0.3;
-	if (Dist < 300)
-		Result += 0.3;
-	if (abs(Normal(B.Enemy.Velocity) dot vector(B.GetViewRotation())) > 0.5)
-		Result -= 0.3;
 
-	if (Result < 0.34 && MagAmmo > 2)
+	if (Dist > 2048 && MagAmmo > 4)
 	{
 		if (CurrentWeaponMode != 0)
 		{
 			lastModeChangeTime = level.TimeSeconds;
 			CurrentWeaponMode = 0;
-			BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
+			RSDarkPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 		}
 	}
-	else if (Result < 0.67)
+	else
 	{
 		if (CurrentWeaponMode != 1)
 		{
 			lastModeChangeTime = level.TimeSeconds;
 			CurrentWeaponMode = 1;
-			BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
+			RSDarkPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 		}
 	}
-	else if (CurrentWeaponMode != 2)
-	{
-		lastModeChangeTime = level.TimeSeconds;
-		CurrentWeaponMode = 2;
-		BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
-	}
+
 	return 0;
 }
 
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local DestroyableObjective O;
-	local Vehicle V;
+	local float Dist;
 	
+	if (Instigator != None && Instigator.Health < 50)
+		return 0.3; // dark star eats hp to fire
+
 	B = Bot(Instigator.Controller);
+	
 	if ( B == None )
 		return AIRating;
 
 	if (HasMagAmmo(0) || Ammo[0].AmmoAmount > 0)
 	{
-		V = B.Squad.GetLinkVehicle(B);
-		if ( (V != None)
-			&& (VSize(Instigator.Location - V.Location) < 1.5 * FireMode[0].MaxRange())
-			&& (V.Health < V.HealthMax) && (V.LinkHealMult > 0) )
-			return 1.2;
-
-		if ( Vehicle(B.RouteGoal) != None && B.Enemy == None && VSize(Instigator.Location - B.RouteGoal.Location) < 1.5 * FireMode[0].MaxRange()
-		     && Vehicle(B.RouteGoal).TeamLink(B.GetTeamNum()) )
-			return 1.2;
-
-		O = DestroyableObjective(B.Squad.SquadObjective);
-		if ( O != None && B.Enemy == None && O.TeamLink(B.GetTeamNum()) && O.Health < O.DamageCapacity
-	    	 && VSize(Instigator.Location - O.Location) < 1.1 * FireMode[0].MaxRange() && B.LineOfSightTo(O) )
+		if (RecommendHeal(B))
 			return 1.2;
 	}
 
 	if (B.Enemy == None)
 		return Super.GetAIRating();
-	Dist = VSize(Instigator.Location - B.Enemy.Location);
 
-	Result = AIRating;
-	Result += -0.15 + FRand()*0.3;
-	if (!HasMagAmmo(0) && Ammo[0].AmmoAmount < 1)
-	{
-		if (Dist > 400)
-			return 0;
-		return Result / (1+(Dist/400));
-	}
-	// Enemy too far away
-	if (Dist > 1700)
-		Result -= Dist / 3400;
-	if (Dist < 500)
-		Result += 0.5;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
 
-	return Result;
+	return class'BUtil'.static.DistanceAtten(Super.GetAIRating(), 0.5, Dist, 3072, 3072);
 }
 
 function bool CanHeal(Actor Other)
@@ -902,8 +866,8 @@ defaultproperties
      FireModeClass(1)=Class'BallisticProV55.RSNovaMeleeFire'
      BringUpTime=0.500000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.650000
-     CurrentRating=0.650000
+     AIRating=0.700000
+     CurrentRating=0.70000
      bShowChargingBar=True
      Description="During a mining excavation of the large crater in sector-547b on one of the distant Outword planets, a strage, magnificent artifact was discovered. Generating great interest in the isolated facility, superstitious miners beleived it to be a magical device capable of everything from allowing god to read their minds to teleportation and the summoning of demons. The artifact was subjected to all manner of tests, but proved to be a confounding subject and revealed very little. It was made of an unimaginably strong material and appeared apparently undamaged despite it's intricate construction. For all they could say, it may have been nothing more than a candlestick.|Finally, mine coordinator R Peters, who had had a greedy eye fixed on the artifact since day one, ordered the tests cancelled and retired the artifact to his office."
      DisplayFOV=47.000000

@@ -208,53 +208,26 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
-	local DestroyableObjective O;
-	local Vehicle V;
+	
+	local float Dist;
+	local float Rating;
 
 	B = Bot(Instigator.Controller);
+	
 	if ( B == None )
 		return AIRating;
-
-	if (HasMagAmmo(0) || Ammo[0].AmmoAmount > 0)
-	{
-		V = B.Squad.GetLinkVehicle(B);
-		if ( (V != None)
-			&& (VSize(Instigator.Location - V.Location) < 1.5 * FireMode[0].MaxRange())
-			&& (V.Health < V.HealthMax) && (V.LinkHealMult > 0) )
-			return 1.2;
-
-		if ( Vehicle(B.RouteGoal) != None && B.Enemy == None && VSize(Instigator.Location - B.RouteGoal.Location) < 1.5 * FireMode[0].MaxRange()
-		     && Vehicle(B.RouteGoal).TeamLink(B.GetTeamNum()) )
-			return 1.2;
-
-		O = DestroyableObjective(B.Squad.SquadObjective);
-		if ( O != None && B.Enemy == None && O.TeamLink(B.GetTeamNum()) && O.Health < O.DamageCapacity
-	    	 && VSize(Instigator.Location - O.Location) < 1.1 * FireMode[0].MaxRange() && B.LineOfSightTo(O) )
-			return 1.2;
-	}
+		
+	if (RecommendHeal(B))
+		return 1.2;
+		
+	Rating = Super.GetAIRating();
 
 	if (B.Enemy == None)
-		return Super.GetAIRating();
+		return Rating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
 
-	Result = Super.GetAIRating();
-	if (!HasMagAmmo(0) && Ammo[0].AmmoAmount < 1)
-	{
-		if (Dist > 400)
-			return 0;
-		return Result / (1+(Dist/400));
-	}
-	// Enemy too far away
-	if (Dist > 1000)
-		Result -= (Dist-1000) / 3000;
-	if (Dist < 500)
-		Result += 0.5;
-
-	return Result;
+	return class'BUtil'.static.DistanceAtten(Rating, 0.5, Dist, 3072, 3072); 
 }
 
 function bool FocusOnLeader(bool bLeaderFiring)
@@ -372,8 +345,8 @@ defaultproperties
      FireModeClass(1)=Class'BallisticProV55.A73SecondaryFire'
      BringUpTime=0.500000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
+     AIRating=0.700000
+     CurrentRating=0.700000
      bShowChargingBar=True
      Description="The A73 is an energy-based assault rifle. It was one of the most devastating weapons in the first Human-Skrith war, before the production of energy resistant armor. Many UTC divisions suffered immense casualties at the hands of Skrith A73s and the savage manner in which they were used. The weapon uses a 90MW Skrith charge module for ammunition. Despite the dangerous energy projectile of the weapon, capable of burning through metal, the Skrith prefer brutal melee combat to ranged battle so the A73 was outfitted with razor sharp, Triclonium blades, making it even more popular among the alien warriors."
      Priority=39

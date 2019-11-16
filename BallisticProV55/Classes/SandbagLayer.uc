@@ -216,8 +216,8 @@ defaultproperties
      PutDownTime=0.900000
      BringUpTime=0.700000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.300000
-     CurrentRating=0.300000
+     AIRating=0.000000
+     CurrentRating=0.000000
      bMeleeWeapon=True
      bNoInstagibReplace=True
      Description="Generic sandbags, as used in militaries for decades. Useful for laying temporary cover. Can be used as a base for most deployed weapons, reducing the chance of the user being directly hit by attacks. May be picked up with the Use key when no other players are near them. Vulnerable to destruction if hit by high-powered weaponry."

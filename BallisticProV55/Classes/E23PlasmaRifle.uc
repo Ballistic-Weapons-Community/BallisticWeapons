@@ -379,6 +379,7 @@ function byte BestMode()
 		return 1;
 	if ( FocusOnLeader(B.Focus == B.Squad.SquadLeader.Pawn) )
 		return 1;
+		
 	if (level.TimeSeconds - lastModeChangeTime < 1.4 - B.Skill*0.1 && (MagAmmo > 8 || CurrentWeaponMode!=1))
 		return 0;
 		
@@ -428,59 +429,17 @@ function byte BestMode()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
-	local DestroyableObjective O;
-	local Vehicle V;
 
 	B = Bot(Instigator.Controller);
+	
 	if ( B == None )
 		return AIRating;
-
-	if (HasMagAmmo(0) || Ammo[0].AmmoAmount > 0)
-	{
-		V = B.Squad.GetLinkVehicle(B);
-		if ( (V != None)
-			&& (VSize(Instigator.Location - V.Location) < 1.5 * FireMode[0].MaxRange())
-			&& (V.Health < V.HealthMax) && (V.LinkHealMult > 0) )
-			return 1.2;
-
-		if ( Vehicle(B.RouteGoal) != None && B.Enemy == None && VSize(Instigator.Location - B.RouteGoal.Location) < 1.5 * FireMode[0].MaxRange()
-		     && Vehicle(B.RouteGoal).TeamLink(B.GetTeamNum()) )
-			return 1.2;
-
-		O = DestroyableObjective(B.Squad.SquadObjective);
-		if ( O != None && B.Enemy == None && O.TeamLink(B.GetTeamNum()) && O.Health < O.DamageCapacity
-	    	 && VSize(Instigator.Location - O.Location) < 1.1 * FireMode[0].MaxRange() && B.LineOfSightTo(O) )
-			return 1.2;
-	}
-
-	if (B.Enemy == None)
-		return Super.GetAIRating();
-
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
-
-	Result = Super.GetAIRating();
-	Result += (FRand()*2-1)*0.15;
-	if (B.Enemy.Weapon!=None && B.Enemy.Weapon.bSniping)
-	{
-		if (Dist > 4000)
-			Result *= 0.19;
-		else if (Dist > 1000)
-			Result *= 1-(Dist-1000)/3300;
-		else
-			Result += 0.3;
-	}
-	else
-	{
-		if (Dist > 4000)
-			Result *= 0.4;
-		else if (Dist < 1000)
-			Result += 0.25;
-	}
-
-	return Result;
+		
+	if (RecommendHeal(B))
+		return 1.2;
+		
+	// the VPR is modestly effective at all ranges
+	return Super.GetAIRating();
 }
 
 function bool CanHeal(Actor Other)
@@ -587,8 +546,8 @@ defaultproperties
      SelectAnimRate=1.250000
      BringUpTime=0.400000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.550000
-     CurrentRating=0.550000
+     AIRating=0.650000
+     CurrentRating=0.650000
      bShowChargingBar=True
      Description="This experimental prototype, being developed on Earth by Frontier Tech, fires variable high-power plasma projectiles from an advanced energy cell. Designed for law enforcement and light infantry sectors, the E-23 is a light, fairly compact and powerful energy assault weapon. The 'ViPeR' is equipped with a sniper scope including optional Infra-Red night-vision lamp."
      Priority=39

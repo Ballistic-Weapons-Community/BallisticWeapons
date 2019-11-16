@@ -423,32 +423,29 @@ function byte BestMode()
 {
 	return 0;
 }
+
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
-
-	if (IsSlave())
-		return 0;
-
+	
+	local float Dist;
+	local float Rating;
+	
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return Super.GetAIRating();
+	
+	if ( B == None )
+		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
+	
+	if (B.Enemy == None)
+		return Rating;
 
-	Result = Super.GetAIRating();
-	if (Dist > 500)
-		Result += 0.2;
-	else if (B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result -= 0.05 * B.Skill;
-	if (Dist > 1000)
-		Result -= (Dist-1000) / 4000;
-
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, 768, 2048); 
 }
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return 0.1;	}
 // tells bot whether to charge or back off while defending against this weapon
@@ -510,7 +507,8 @@ defaultproperties
      FireModeClass(0)=Class'BallisticProV55.RS8PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.RS8SecondaryFire'
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.400000
+     AIRating=0.600000
+	 CurrentRating=0.6
      Description="A fine and reliable weapon, produced by a rather new company, the 10mm RS8 pistol is bound for success. Featuring a 14 round, 10mm magazine, laser sight and silencer, as well as an effective closer range, 3-round burst fire mode. Use the laser sight to see exactly where your gun is aimed, and the silencer when stealth and quietness are required. The RS8 being a fairly recent firearm, first manufactured during the second-war, has not seen as much action as other older pistols, and some critics say it won't be able to stand up to a Cryon, let alone a Skrith!"
      Priority=17
      HudColor=(B=255,G=200,R=200)

@@ -336,10 +336,7 @@ simulated function float RateSelf()
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
-	local DestroyableObjective O;
-	local Vehicle V;
+	local float Dist;
 
 	B = Bot(Instigator.Controller);
 	if ( B == None )
@@ -347,42 +344,16 @@ function float GetAIRating()
 
 	if (HasMagAmmo(0) || Ammo[0].AmmoAmount > 0)
 	{
-		V = B.Squad.GetLinkVehicle(B);
-		if ( (V != None)
-			&& (VSize(Instigator.Location - V.Location) < 1.5 * FireMode[0].MaxRange())
-			&& (V.Health < V.HealthMax) && (V.LinkHealMult > 0) )
-			return 1.2;
-
-		if ( Vehicle(B.RouteGoal) != None && B.Enemy == None && VSize(Instigator.Location - B.RouteGoal.Location) < 1.5 * FireMode[0].MaxRange()
-		     && Vehicle(B.RouteGoal).TeamLink(B.GetTeamNum()) )
-			return 1.2;
-
-		O = DestroyableObjective(B.Squad.SquadObjective);
-		if ( O != None && B.Enemy == None && O.TeamLink(B.GetTeamNum()) && O.Health < O.DamageCapacity
-	    	 && VSize(Instigator.Location - O.Location) < 1.1 * FireMode[0].MaxRange() && B.LineOfSightTo(O) )
+		if (RecommendHeal(B))
 			return 1.2;
 	}
 
 	if (B.Enemy == None)
 		return Super.GetAIRating();
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
-
-	Result = Super.GetAIRating();
-	if (!HasMagAmmo(0) && Ammo[0].AmmoAmount < 1)
-	{
-		if (Dist > 400)
-			return 0;
-		return Result / (1+(Dist/400));
-	}
-	// Enemy too far away
-	if (Dist > 1000)
-		Result -= (Dist-1000) / 3000;
-	if (Dist < 500)
-		Result += 0.5;
-
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.DistanceAtten(Super.GetAIRating(), 0.5, Dist, 1024, 2048); 
 }
 
 exec simulated function WeaponSpecial(optional byte i)
@@ -594,8 +565,8 @@ defaultproperties
      FireModeClass(1)=Class'BWBPOtherPackPro.RaygunSecondaryFire'
      BringUpTime=0.500000
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
+     AIRating=0.750000
+     CurrentRating=0.750000
      bShowChargingBar=True
      Description="E38 Indivisible Particle Smasher||Manufacturer: United States Defense Department, 20th Century||Commissioned towards the end of the 20th century, the E38 "
      Priority=39
