@@ -227,6 +227,7 @@ defaultproperties
      SightDisplayFOV=40.000000
      SightingTime=0.250000
      SightAimFactor=0.400000
+	 SightZoomFactor=0
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimAdjustTime=0.400000
      AimSpread=16

@@ -20,5 +20,5 @@ defaultproperties
      bHeavy=True
      Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.ChainsawLongsword_third'
      DrawScale=0.200000
-	 RelativeRotation=(Pitch=32768)
+	 RelativeRotation=(Pitch=32768,Yaw=32768)
 }

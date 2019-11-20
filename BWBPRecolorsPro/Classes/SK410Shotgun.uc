@@ -173,7 +173,7 @@ defaultproperties
      MeleeFireClass=Class'BWBPRecolorsPro.SK410MeleeFire'
      BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
-     MagAmmo=8
+     MagAmmo=6
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'PackageSounds4Pro.SK410.SK410-Cock',Volume=1.400000)
      ReloadAnimRate=1.250000
@@ -189,6 +189,7 @@ defaultproperties
      SightOffset=(X=15.000000,Y=-10.000000,Z=22.500000)
 	 SightDisplayFOV=40
      SightingTime=0.250000
+	 SightZoomFactor=0
      GunLength=48.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      AimSpread=0

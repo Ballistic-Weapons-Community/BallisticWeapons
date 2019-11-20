@@ -176,6 +176,7 @@ defaultproperties
      SightOffset=(X=-20.000000,Y=-7.400000,Z=45.299999)
      SightDisplayFOV=40.000000
      SightingTime=0.200000
+	 SightZoomFactor=0
      GunLength=4.000000
      ChaosDeclineTime=0.450000
      RecoilDeclineDelay=0.750000

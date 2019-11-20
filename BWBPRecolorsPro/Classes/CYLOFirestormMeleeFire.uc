@@ -1,4 +1,4 @@
-class CYLOMk2MeleeFire extends BallisticMeleeFire;
+class CYLOFirestormMeleeFire extends BallisticMeleeFire;
 
 defaultproperties
 {
@@ -9,9 +9,9 @@ defaultproperties
      SwipePoints(4)=(Weight=3,offset=(Pitch=-2048,Yaw=-2048))
      DamageHead=75.000000
      DamageLimb=75.000000
-     DamageType=Class'BWBPRecolorsPro.DTCYLOMk2Stab'
-     DamageTypeHead=Class'BWBPRecolorsPro.DTCYLOMk2StabHead'
-     DamageTypeArm=Class'BWBPRecolorsPro.DTCYLOMk2Stab'
+     DamageType=Class'BWBPRecolorsPro.DTCYLOFirestormStab'
+     DamageTypeHead=Class'BWBPRecolorsPro.DTCYLOFirestormStabHead'
+     DamageTypeArm=Class'BWBPRecolorsPro.DTCYLOFirestormStab'
      KickForce=100
      HookStopFactor=1.700000
      HookPullForce=100.000000

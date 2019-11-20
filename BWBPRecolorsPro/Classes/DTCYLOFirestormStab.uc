@@ -1,12 +1,12 @@
 //=============================================================================
-// DTCYLOMk2Stab.
+// DTCYLOFirestormStab.
 //
 // Damagetype for the incendiary pyromancer's blade
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTCYLOMk2Stab extends DT_BWBlade;
+class DTCYLOFirestormStab extends DT_BWBlade;
 
 defaultproperties
 {

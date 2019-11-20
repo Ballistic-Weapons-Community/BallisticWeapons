@@ -1,12 +1,12 @@
 //=============================================================================
-// DTCYLOMk2Hot
+// DTCYLOFirestormHot
 //
 // Damage type for overheated CYLO Firestorm shots
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTCYLOMk2Hot extends DT_BWMiscDamage;
+class DTCYLOFirestormHot extends DT_BWMiscDamage;
 
 defaultproperties
 {

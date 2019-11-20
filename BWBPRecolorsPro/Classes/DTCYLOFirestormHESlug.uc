@@ -1,4 +1,4 @@
-class DTCYLOMK2HESlug extends DT_BWExplode;
+class DTCYLOFirestormHESlug extends DT_BWExplode;
 
 defaultproperties
 {

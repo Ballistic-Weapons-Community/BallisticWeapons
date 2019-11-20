@@ -1,12 +1,12 @@
 //=============================================================================
-// CYLOMk2HeatEmitter
+// CYLOFirestormHeatEmitter
 //
 // Special muzzleflash for melting CYLOs.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class CYLOMk2HeatEmitter extends BallisticEmitter;
+class CYLOFirestormHeatEmitter extends BallisticEmitter;
 
 var  bool          bFlareOn;
 var  bool          bSmokeOn;
@@ -67,7 +67,7 @@ defaultproperties
          SpawnOnTriggerPPS=25.000000
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=30.000000,Max=60.000000))
      End Object
-     Emitters(0)=SpriteEmitter'BWBPRecolorsPro.CYLOMk2HeatEmitter.SpriteEmitter39'
+     Emitters(0)=SpriteEmitter'BWBPRecolorsPro.CYLOFirestormHeatEmitter.SpriteEmitter39'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter26
          UseColorScale=True
@@ -105,7 +105,7 @@ defaultproperties
          SpawnOnTriggerPPS=20.000000
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=50.000000,Max=65.000000))
      End Object
-     Emitters(1)=SpriteEmitter'BWBPRecolorsPro.CYLOMk2HeatEmitter.SpriteEmitter26'
+     Emitters(1)=SpriteEmitter'BWBPRecolorsPro.CYLOFirestormHeatEmitter.SpriteEmitter26'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter4
          StaticMesh=StaticMesh'BallisticHardware2.R78.RifleMuzzleFlash'
@@ -139,7 +139,7 @@ defaultproperties
          SpawnOnTriggerPPS=500000.000000
          StartVelocityRange=(X=(Min=20.000000,Max=20.000000))
      End Object
-     Emitters(2)=MeshEmitter'BWBPRecolorsPro.CYLOMk2HeatEmitter.MeshEmitter4'
+     Emitters(2)=MeshEmitter'BWBPRecolorsPro.CYLOFirestormHeatEmitter.MeshEmitter4'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter3
          StaticMesh=StaticMesh'BallisticHardware2.M925.M925MuzzleFlash'
@@ -169,7 +169,7 @@ defaultproperties
          SpawnOnTriggerPPS=50000.000000
          StartVelocityRange=(X=(Min=20.000000,Max=20.000000))
      End Object
-     Emitters(3)=MeshEmitter'BWBPRecolorsPro.CYLOMk2HeatEmitter.MeshEmitter3'
+     Emitters(3)=MeshEmitter'BWBPRecolorsPro.CYLOFirestormHeatEmitter.MeshEmitter3'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter5
          UseColorScale=True
@@ -195,6 +195,6 @@ defaultproperties
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
-     Emitters(4)=SpriteEmitter'BWBPRecolorsPro.CYLOMk2HeatEmitter.SpriteEmitter5'
+     Emitters(4)=SpriteEmitter'BWBPRecolorsPro.CYLOFirestormHeatEmitter.SpriteEmitter5'
 
 }

@@ -33,7 +33,7 @@ defaultproperties
          ColorScale(1)=(RelativeTime=0.100000,Color=(B=255,G=255,R=255,A=255))
          ColorScale(2)=(RelativeTime=0.200000,Color=(B=64,G=64,R=64,A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(A=255))
-         Opacity=0.500000
+         Opacity=0.250000
          FadeOutStartTime=0.037500
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
@@ -65,6 +65,7 @@ defaultproperties
          FadeOutStartTime=0.020000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
+		 Opacity=0.375
          StartLocationOffset=(X=20.000000)
          StartSizeRange=(X=(Min=80.000000,Max=80.000000),Y=(Min=80.000000,Max=80.000000),Z=(Min=80.000000,Max=80.000000))
          Texture=Texture'BallisticEffects.Particles.FlareB1'

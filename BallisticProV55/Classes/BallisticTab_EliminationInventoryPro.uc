@@ -240,7 +240,7 @@ simulated function InitWeaponLists ()
 		{
 			if (LoadWIFromCache(EPRI.FullInventoryList[i], WI))
 			{
-				if (WI.InventoryGroup > lastIndex)
+				if (WI.InventoryGroup != lastIndex)
 				{
 					lastIndex = WI.InventoryGroup;
 					lb_Weapons.List.Add(class'BallisticTab_OutfittingPro'.static.GetHeading(lastIndex),,"Weapon Category",true);

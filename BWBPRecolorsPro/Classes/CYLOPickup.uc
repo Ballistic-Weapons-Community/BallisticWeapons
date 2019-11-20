@@ -1,7 +1,7 @@
 //=============================================================================
-// CYLOMk1Pickup.
+// CYLOPickup.
 //=============================================================================
-class CYLOMk1Pickup extends BallisticWeaponPickup
+class CYLOPickup extends BallisticWeaponPickup
 	placeable;
 
 #exec OBJ LOAD FILE=BallisticRecolors3TexPro.utx

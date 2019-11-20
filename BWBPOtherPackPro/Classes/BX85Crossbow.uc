@@ -67,7 +67,10 @@ defaultproperties
      ClipInSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipIn')
      ClipInFrame=0.650000
      CurrentWeaponMode=0
-     ZoomType=ZT_Smooth
+     ZoomType=ZT_Logarithmic
+	 MinZoom=2.000000
+     MaxZoom=16.000000
+     ZoomStages=8
      ScopeViewTex=Texture'BWBPOtherPackTex2.R9A1.R9_scope_UI_DO1'
      FullZoomFOV=50.000000
      bNoMeshInScope=True

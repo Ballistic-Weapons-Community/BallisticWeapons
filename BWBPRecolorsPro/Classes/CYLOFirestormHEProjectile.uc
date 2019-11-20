@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class CYLOMk2HEProjectile extends BallisticGrenade;
+class CYLOFirestormHEProjectile extends BallisticGrenade;
 
 simulated event HitWall(vector HitNormal, actor Wall)
 {
@@ -109,12 +109,12 @@ defaultproperties
      bAlignToVelocity=True
      DetonateDelay=0.150000
      ImpactDamage=80
-     ImpactDamageType=Class'BWBPRecolorsPro.DTCYLOMK2HESlug'
+     ImpactDamageType=Class'BWBPRecolorsPro.DTCYLOFirestormHESlug'
      ImpactManager=Class'BWBPRecolorsPro.IM_SlugHE'
      AccelSpeed=3000.000000
      TrailClass=Class'BWBPRecolorsPro.SK410FireTrail'
      TrailOffset=(X=-8.000000)
-     MyRadiusDamageType=Class'BWBPRecolorsPro.DTCYLOMK2HESlug'
+     MyRadiusDamageType=Class'BWBPRecolorsPro.DTCYLOFirestormHESlug'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=512.000000
      MotionBlurRadius=128.000000
@@ -123,7 +123,7 @@ defaultproperties
      Damage=50.000000
      DamageRadius=192.000000
      MomentumTransfer=100000.000000
-     MyDamageType=Class'BWBPRecolorsPro.DTCYLOMK2HESlug'
+     MyDamageType=Class'BWBPRecolorsPro.DTCYLOFirestormHESlug'
      LightHue=180
      LightSaturation=100
      LightBrightness=160.000000

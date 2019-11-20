@@ -7,7 +7,7 @@
 // by Casey 'Xavious' Johnson and Marc 'Sergeant Kelly'
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class CYLOPriFire extends BallisticRangeAttenFire;
+class CYLOPrimaryFire extends BallisticRangeAttenFire;
 
 var() sound		RifleFireSound;
 var() sound		MeleeFireSound;

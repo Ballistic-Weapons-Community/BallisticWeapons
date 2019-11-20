@@ -1,7 +1,7 @@
 //=============================================================================
 // M50Pickup.
 //=============================================================================
-class CYLOMk2Pickup extends BallisticWeaponPickup
+class CYLOFirestormPickup extends BallisticWeaponPickup
 	placeable;
 	
 #exec OBJ LOAD FILE=BallisticRecolors3TexPro.utx
@@ -52,7 +52,7 @@ defaultproperties
      LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticPro.CYLO.CYLOMk2'
      InventoryType=Class'BWBPRecolorsPro.CYLOAssaultWeapon'
      RespawnTime=20.000000
-     PickupMessage="You picked up the CYLO 'Firestorm' IV."
+     PickupMessage="You picked up the CYLO 'Firestorm' V."
      PickupSound=Sound'BallisticSounds2.M50.M50Putaway'
      StaticMesh=StaticMesh'BallisticRecolors4StaticPro.CYLO.CYLOMk2'
      Physics=PHYS_None

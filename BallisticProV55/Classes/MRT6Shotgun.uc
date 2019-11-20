@@ -166,6 +166,7 @@ defaultproperties
      SightPivot=(Pitch=768)
      SightOffset=(X=-30.000000,Z=11.000000)
      SightingTime=0.250000
+	 SightZoomFactor=0
      GunLength=24.000000
      SightAimFactor=0.300000
      JumpChaos=1.000000

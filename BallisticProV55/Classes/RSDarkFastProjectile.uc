@@ -287,7 +287,7 @@ defaultproperties
      DamageLimb=42.000000
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000
-     MaxSpeed=17500.000000
+     MaxSpeed=14000.000000
      bSwitchToZeroCollision=True
      Damage=42.000000
      DamageRadius=32.000000

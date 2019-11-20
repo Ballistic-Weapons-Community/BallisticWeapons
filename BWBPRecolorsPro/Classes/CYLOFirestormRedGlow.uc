@@ -1,10 +1,10 @@
 //=============================================================================
-// CYLOMk2RedGlow.
+// CYLOFirestormRedGlow.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class CYLOMk2RedGlow extends BallisticEmitter;
+class CYLOFirestormRedGlow extends BallisticEmitter;
 
 simulated event PostBeginPlay()
 {
@@ -42,7 +42,7 @@ defaultproperties
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=60.000000,Max=60.000000))
      End Object
-     Emitters(0)=SpriteEmitter'BWBPRecolorsPro.CYLOMk2RedGlow.SpriteEmitter6'
+     Emitters(0)=SpriteEmitter'BWBPRecolorsPro.CYLOFirestormRedGlow.SpriteEmitter6'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter39
          FadeOut=True
@@ -76,7 +76,7 @@ defaultproperties
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=30.000000,Max=60.000000))
      End Object
-     Emitters(1)=SpriteEmitter'BWBPRecolorsPro.CYLOMk2RedGlow.SpriteEmitter39'
+     Emitters(1)=SpriteEmitter'BWBPRecolorsPro.CYLOFirestormRedGlow.SpriteEmitter39'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter26
          UseColorScale=True
@@ -110,6 +110,6 @@ defaultproperties
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=50.000000,Max=65.000000))
      End Object
-     Emitters(2)=SpriteEmitter'BWBPRecolorsPro.CYLOMk2RedGlow.SpriteEmitter26'
+     Emitters(2)=SpriteEmitter'BWBPRecolorsPro.CYLOFirestormRedGlow.SpriteEmitter26'
 
 }

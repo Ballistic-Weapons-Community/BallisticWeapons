@@ -70,7 +70,7 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
-     HeatPerShot=3.000000
+     HeatPerShot=7.000000
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
      AimedFireAnim="Fire"

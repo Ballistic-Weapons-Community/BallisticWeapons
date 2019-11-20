@@ -1386,17 +1386,19 @@ function DropFrom(vector StartLocation)
     Destroy();
 }
 
+simulated function WeaponSpecialImpl(byte i)
+{
+	super.WeaponSpecialImpl(i);
+
+	if (IsMaster() && Othergun.Class == Class)
+		Othergun.WeaponSpecialImpl(i);
+}
+
 simulated function Destroyed()
 {
     local int m;
 
 	AmbientSound = None;
-
-
-
-
-
-
 
 	if (!IsSlave())
 	{
@@ -1682,6 +1684,22 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
 	if (IsMaster())
 		Othergun.DisplayDebug(Canvas, YL, YPos);
+}
+
+simulated function MeleeHoldImpl()
+{
+	super.MeleeHoldImpl();
+	
+	if (IsMaster())
+		Othergun.MeleeHoldImpl();
+}
+
+simulated function MeleeReleaseImpl()
+{
+	super.MeleeReleaseImpl();
+	
+	if (IsMaster())
+		Othergun.MeleeReleaseImpl();
 }
 
 defaultproperties

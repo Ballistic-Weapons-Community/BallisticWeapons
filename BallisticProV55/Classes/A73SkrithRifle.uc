@@ -60,7 +60,7 @@ simulated event Tick (float DT)
 {
 	if (HeatLevel > 0 && Level.TimeSeconds > LastFireTime + HeatDeclineDelay)
 	{
-		Heatlevel = FMax(HeatLevel - 6 * DT, 0);
+		Heatlevel = FMax(HeatLevel - 10 * DT, 0);
 		SoundPitch = 56 + HeatLevel * 9;
 	}
 	

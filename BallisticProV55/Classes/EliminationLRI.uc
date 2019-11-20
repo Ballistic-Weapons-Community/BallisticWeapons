@@ -266,6 +266,8 @@ simulated function SortList()
 	local array<BC_WeaponInfoCache.WeaponInfo> SortedWIs;
 	local array<string> ConflictItems;
 	
+	local int wiGroup, existingGroup;
+	
 	for (i=0; i < FullInventoryList.length; i++)
 	{
 		if (InStr(FullInventoryList[i], "CItem") != -1)
@@ -278,17 +280,27 @@ simulated function SortList()
 				if (SortedWIs.Length == 0)
 					SortedWIs[SortedWIs.Length] = WI;
 				else 
-				{
+				{	
+					wiGroup = WI.InventoryGroup;
+					
+					if (wiGroup == 0)
+						wiGroup = 10;
+						
 					for (j = 0; j < SortedWIs.Length; ++j)
 					{
-						if (WI.InventoryGroup < SortedWIs[j].InventoryGroup)
+						existingGroup = sortedWIs[j].InventoryGroup;
+						
+						if (existingGroup == 0)
+							existingGroup = 10;
+						
+						if (wiGroup < existingGroup)
 						{
 							SortedWIs.Insert(j, 1);
 							SortedWIs[j] = WI;
 							break;
 						}
 						
-						if (WI.InventoryGroup == SortedWIs[j].InventoryGroup)
+						if (wiGroup == existingGroup)
 							if (StrCmp(WI.ItemName, SortedWIs[j].ItemName, 6, True) <= 0)
 							{	
 								SortedWIs.Insert(j, 1);

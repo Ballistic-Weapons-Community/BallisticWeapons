@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTCYLOMk2StabHead extends DT_BWBlade;
+class DTCYLOFirestormStabHead extends DT_BWBlade;
 
 defaultproperties
 {

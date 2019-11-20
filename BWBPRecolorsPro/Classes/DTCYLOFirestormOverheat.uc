@@ -1,12 +1,12 @@
 //=============================================================================
-// DTCYLOMk2Overheat
+// DTCYLOFirestormOverheat
 //
 // Damage type for people who don't know how to handle hot guns. ;)
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTCYLOMk2Overheat extends DT_BWBullet;
+class DTCYLOFirestormOverheat extends DT_BWBullet;
 
 defaultproperties
 {

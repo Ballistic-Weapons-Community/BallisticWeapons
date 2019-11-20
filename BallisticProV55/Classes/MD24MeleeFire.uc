@@ -29,10 +29,10 @@ defaultproperties
      SwipePoints(2)=(Weight=2)
      SwipePoints(3)=(Weight=1,offset=(Pitch=-1000,Yaw=-1000))
      SwipePoints(4)=(Weight=3,offset=(Pitch=-2048,Yaw=-2048))
-     TraceRange=(Min=64.000000,Max=64.000000)
-     Damage=50.000000
-     DamageHead=50.000000
-     DamageLimb=50.000000
+     TraceRange=(Min=140.000000,Max=140.000000)
+     Damage=35.000000
+     DamageHead=35.000000
+     DamageLimb=35.000000
      DamageType=Class'BallisticProV55.DTMD24Melee'
      DamageTypeHead=Class'BallisticProV55.DTMD24Melee'
      DamageTypeArm=Class'BallisticProV55.DTMD24Melee'

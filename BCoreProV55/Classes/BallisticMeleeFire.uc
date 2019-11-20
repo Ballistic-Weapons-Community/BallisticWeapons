@@ -480,7 +480,7 @@ defaultproperties
      NumSwipePoints=5
      MaxBonusHoldTime=1.500000
      bCanBackstab=True
-     TraceRange=(Min=128.000000,Max=128.000000)
+     TraceRange=(Min=140.000000,Max=140.000000)
      Damage=75.000000
      PDamageFactor=0.500000
      RunningSpeedThresh=1000.000000

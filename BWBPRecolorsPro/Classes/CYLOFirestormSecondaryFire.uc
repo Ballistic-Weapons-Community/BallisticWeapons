@@ -6,7 +6,7 @@
 // by Casey 'Xavious' Johnson and Marc 'Sergeant Kelly'
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class CYLOMk2SecondaryFire extends BallisticProProjectileFire;
+class CYLOFirestormSecondaryFire extends BallisticProProjectileFire;
 
 simulated function bool AllowFire()
 {
@@ -83,7 +83,7 @@ defaultproperties
      ShakeOffsetMag=(X=-30.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
-     ProjectileClass=Class'BWBPRecolorsPro.CYLOMk2HEProjectile'
+     ProjectileClass=Class'BWBPRecolorsPro.CYLOFirestormHEProjectile'
 	 
 	 // AI
 	 bInstantHit=False

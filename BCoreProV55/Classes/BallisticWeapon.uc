@@ -1109,10 +1109,19 @@ simulated function StartScopeView()
 	SetScopeView(true);
 	
 	//Take down normal crosshairs if the weapon has none in scope view
-	if (bOldCrosshairs && bNoCrosshairInScope && PC.myHud.bCrosshairShow)
+	if (bNoCrosshairInScope)
 	{
-		bStandardCrosshairOff = True;
-		PC.myHud.bCrosshairShow = False;
+		if (bOldCrosshairs && PC.myHud.bCrosshairShow)
+		{
+			bStandardCrosshairOff = True;
+			PC.myHud.bCrosshairShow = False;
+		}
+	}
+	
+	// Show standard UT2004 crosshairs for any weapon without one in scope view
+	else if (!PC.myHud.bCrosshairShow)
+	{
+		PC.myHud.bCrosshairShow = True;
 	}
 	
 	if (ZoomInSound.Sound != None)	class'BUtil'.static.PlayFullSound(self, ZoomInSound);
@@ -1207,13 +1216,21 @@ simulated function StopScopeView(optional bool bNoAnim)
 		}
 	}
 
-	//Restore normal crosshairs if the weapon has none in scope view
-	if (bOldCrosshairs && bNoCrosshairInScope && bStandardCrosshairOff)
+	// UT2004 crosshair users: Restore normal crosshairs if the weapon has none in scope view
+	if (bNoCrosshairInScope)
 	{
-		bStandardCrosshairOff = False;
-		PlayerController(InstigatorController).myHud.bCrosshairShow = True;
+		if (bOldCrosshairs && bStandardCrosshairOff) 
+		{
+			bStandardCrosshairOff = False;
+			PlayerController(InstigatorController).myHud.bCrosshairShow = True;
+		}
 	}
-
+	
+	// Ballistic crosshair users: Hide crosshair if weapon has crosshair in scope
+	else 
+	{
+		PlayerController(InstigatorController).myHud.bCrosshairShow = False;
+	}
 }
 
 // Scope up anim just ended. Either go into scope view or move the scope back down again
@@ -1692,11 +1709,23 @@ simulated function SetHand(float InHand)
 
 // Weapon Special stuff >>>>>>>>>>>>>>>>>>>>>
 // Weapon Special key event. Client side before server has any say. Override for client only WS functions. Calls ServerWeaponSpecial.
-exec simulated function WeaponSpecial(optional byte i){ if(!Instigator.bNoWeaponFiring)	ServerWeaponSpecial(i);	}
+exec simulated function WeaponSpecial(optional byte i)
+{ 
+	WeaponSpecialImpl(i);
+}
+
+simulated function WeaponSpecialImpl(byte i)
+{
+	if(!Instigator.bNoWeaponFiring)	
+		ServerWeaponSpecial(i);	
+}
+
 // Server side WS event. Override for server side WS funcs. ClientWeaponSpecial can be called from here.
 function ServerWeaponSpecial(optional byte i);
+
 // Client WS. This is the call back from server. Not called by default...
 simulated function ClientWeaponSpecial(optional byte i);
+
 // Actual implementation of WeaponSpecial. Stuff common to client and server here. Should be called from any of these. Not Called by default.
 simulated function CommonWeaponSpecial(optional byte i);
 
@@ -1746,6 +1775,11 @@ simulated function CommonCockGun(optional byte Type)
 // Integrated melee attacks.
 //===========================================================================
 exec simulated function MeleeHold()
+{
+	MeleeHoldImpl();
+}
+
+simulated function MeleeHoldImpl()
 {
 	if (MeleeFireMode == None || (ClientState != WS_ReadyToFire && ClientState != WS_Bringup) || (MeleeState != MS_None && MeleeState != MS_Strike))
 		return;
@@ -1808,7 +1842,12 @@ function ServerMeleeHold()
 	bPreventReload = True;
 }
 
-exec final simulated function MeleeRelease()
+exec simulated function MeleeRelease()
+{
+	MeleeReleaseImpl();
+}
+
+simulated function MeleeReleaseImpl()
 {
 	if (MeleeFireMode == None || ClientState != WS_ReadyToFire || MeleeState == MS_None)
 		return;
@@ -4194,7 +4233,7 @@ simulated function DrawCrosshairs(canvas C)
 	ScaleFactor = C.ClipX / 1600;
 	
 	// Draw weapon specific Crosshairs
-	if (bOldCrosshairs || PlayerController(Instigator.Controller) == None || (Instigator.IsFirstPerson() && bScopeView && bNoCrosshairInScope))
+	if (bOldCrosshairs || PlayerController(Instigator.Controller) == None || (Instigator.IsFirstPerson() && bScopeView))
 		return;
 		
 	if (!bNoMag && MagAmmo == 0)
@@ -4230,49 +4269,55 @@ simulated function DrawCrosshairs(canvas C)
 	//hor
 	C.SetDrawColor(0,0,0,SavedDrawColor.A);
 	
-	C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment+1), (C.ClipY/2) - (ShortBound/2+1));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
-	
-	C.SetPos((C.ClipX / 2) + OffsetAdjustment -1, (C.ClipY/2) - (ShortBound/2+1));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
-	
-	//ver
-	C.SetPos((C.ClipX / 2) - (ShortBound/2+1), (C.ClipY/2) - (LongBound + OffsetAdjustment+1));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
-	
-	C.SetPos((C.ClipX / 2) - (Shortbound/2+1), (C.ClipY/2) + OffsetAdjustment-1);
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
-	
-	//centre square
-	if (bDrawCrosshairDot)
+	if (!bScopeView)
 	{
-		C.DrawColor.A = SavedDrawColor.A;
-		C.SetPos(C.ClipX / 2 - 2, C.ClipY/2 - 2);
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', 4, 4);
+		C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment+1), (C.ClipY/2) - (ShortBound/2+1));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
+		
+		C.SetPos((C.ClipX / 2) + OffsetAdjustment -1, (C.ClipY/2) - (ShortBound/2+1));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
+		
+		//ver
+		C.SetPos((C.ClipX / 2) - (ShortBound/2+1), (C.ClipY/2) - (LongBound + OffsetAdjustment+1));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
+		
+		C.SetPos((C.ClipX / 2) - (Shortbound/2+1), (C.ClipY/2) + OffsetAdjustment-1);
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
+		
+		//centre square
+		if (bDrawCrosshairDot)
+		{
+			C.DrawColor.A = SavedDrawColor.A;
+			C.SetPos(C.ClipX / 2 - 2, C.ClipY/2 - 2);
+			C.DrawTileStretched(Texture'Engine.WhiteTexture', 4, 4);
+		}
 	}
-
+	
 	//green
 	C.DrawColor = SavedDrawColor;
-	//hor
-	C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment), (C.ClipY/2) - (ShortBound/2));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
 	
-	C.SetPos((C.ClipX / 2) + OffsetAdjustment, (C.ClipY/2) - (ShortBound/2));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
-	
-	//ver
-	C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) - (LongBound + OffsetAdjustment));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
-	
-	C.SetPos((C.ClipX / 2) - (Shortbound/2), (C.ClipY/2) + OffsetAdjustment);
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
-	
-	//centre square
-	if (bDrawCrosshairDot)
+	if (!bScopeView)
 	{
-		C.DrawColor.A = SavedDrawColor.A;
-		C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
+		//hor
+		C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment), (C.ClipY/2) - (ShortBound/2));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
+		
+		C.SetPos((C.ClipX / 2) + OffsetAdjustment, (C.ClipY/2) - (ShortBound/2));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
+		
+		//ver
+		C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) - (LongBound + OffsetAdjustment));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
+		
+		C.SetPos((C.ClipX / 2) - (Shortbound/2), (C.ClipY/2) + OffsetAdjustment);
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
+		
+		if (bDrawCrosshairDot)
+		{
+			C.DrawColor.A = SavedDrawColor.A;
+			C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
+			C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
+		}
 	}
 	
 	C.SetDrawColor(255, 255, 255, 255);

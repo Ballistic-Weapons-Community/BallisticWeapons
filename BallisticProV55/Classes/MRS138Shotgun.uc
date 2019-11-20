@@ -351,6 +351,7 @@ defaultproperties
      GunLength=32.000000
      LongGunPivot=(Pitch=4500,Yaw=-8000)
      SightAimFactor=0.100000
+	 SightZoomFactor=0
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      AimSpread=0
      ChaosDeclineTime=0.750000

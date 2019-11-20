@@ -44,7 +44,7 @@ simulated event WeaponTick(float DT)
 	super.WeaponTick(DT);
 
 	if (HeatLevel >= 7 && Instigator.IsLocallyControlled() && GlowFX == None && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GlowFX == None || GlowFX.bDeleteMe))
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'CYLOMK2RedGlow', DrawScale, self, 'tip');
+		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'CYLOFirestormRedGlow', DrawScale, self, 'tip');
 	else if (HeatLevel < 7)
 	{
 		if (GlowFX != None)
@@ -74,8 +74,8 @@ simulated function AddHeat(float Amount)
 		Heatlevel = 12;
 		PlaySound(OverHeatSound,,3.7,,32);
 		if (Instigator.Physics != PHYS_Falling)
-			class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTCYLOMk2Overheat');
-		else class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, vect(0,0,0), class'DTCYLOMk2Overheat');
+			class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTCYLOFirestormOverheat');
+		else class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, vect(0,0,0), class'DTCYLOFirestormOverheat');
 		return;
 	}
 }
@@ -101,8 +101,8 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
-		if (CYLOMk2Pickup(Pickup) != None)
-			HeatLevel = FMax( 0.0, CYLOMk2Pickup(Pickup).HeatLevel - (level.TimeSeconds - CYLOMk2Pickup(Pickup).HeatTime) * 2.55 );
+		if (CYLOFirestormPickup(Pickup) != None)
+			HeatLevel = FMax( 0.0, CYLOFirestormPickup(Pickup).HeatLevel - (level.TimeSeconds - CYLOFirestormPickup(Pickup).HeatTime) * 2.55 );
 		if (level.NetMode == NM_ListenServer || level.NetMode == NM_DedicatedServer)
 			ClientSetHeat(HeatLevel);
     }
@@ -231,7 +231,7 @@ defaultproperties
      ManualLines(1)="Melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab."
      ManualLines(2)="Not recommended for close range use as its explosive rounds can damage the user. Effective at medium range."
      SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.2;0.7;0.4")
-     MeleeFireClass=Class'BWBPRecolorsPro.CYLOMk2MeleeFire'
+     MeleeFireClass=Class'BWBPRecolorsPro.CYLOFirestormMeleeFire'
      MagAmmo=32
      WeaponModes(1)=(bUnavailable=True)
      SightPivot=(Pitch=900)
@@ -242,16 +242,16 @@ defaultproperties
      RecoilXFactor=0.350000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.200000
-     FireModeClass(0)=Class'BWBPRecolorsPro.CYLOMk2PrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.CYLOMk2SecondaryFire'
+     FireModeClass(0)=Class'BWBPRecolorsPro.CYLOFirestormPrimaryFire'
+     FireModeClass(1)=Class'BWBPRecolorsPro.CYLOFirestormSecondaryFire'
      bShowChargingBar=True
      Description="The CYLO Firestorm V is an upgraded version of Dipheox's most popular weapon. The V has been redesigned from the ground up for maximum efficiency and can now chamber the fearsome 5.56mm incendiary rounds. Upgrades to the ammo feed and clip lock greatly reduce the chance of jams and ensures a more stable rate of fire, however these have been known to malfunction under excessive stress. Likewise, prolonged use of the incendiary ammunition should be avoided due to potential damage to the barrel and control mechanisms.||While not as versatile as its shotgun equipped cousin, the CYLO Firestorm is still very deadly in urban combat. Proper training with the bayonet can turn the gun itself into a deadly melee weapon."
      HudColor=(G=50)
      GroupOffset=9
 	 AIRating=0.7
 	 CurrentRating=0.7
-     PickupClass=Class'BWBPRecolorsPro.CYLOMk2Pickup'
-     AttachmentClass=Class'BWBPRecolorsPro.CYLOMk2Attachment'
+     PickupClass=Class'BWBPRecolorsPro.CYLOFirestormPickup'
+     AttachmentClass=Class'BWBPRecolorsPro.CYLOFirestormAttachment'
      IconMaterial=Texture'BallisticRecolors3TexPro.CYLO.SmallIcon_CYLOMk2'
      ItemName="CYLO Firestorm V"
      Mesh=SkeletalMesh'BallisticRecolors4AnimPro.CYLOFirestorm_FP'

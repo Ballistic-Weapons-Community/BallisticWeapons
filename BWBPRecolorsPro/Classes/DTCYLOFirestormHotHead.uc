@@ -1,12 +1,12 @@
 //=============================================================================
-// DTCYLOMk2HotHead.
+// DTCYLOFirestormHotHead.
 //
 // Damage type for hot CYLO headshots
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTCYLOMk2HotHead extends DT_BWMiscDamage;
+class DTCYLOFirestormHotHead extends DT_BWMiscDamage;
 
 // HeadShot stuff from old sniper damage ------------------
 static function IncrementKills(Controller Killer)

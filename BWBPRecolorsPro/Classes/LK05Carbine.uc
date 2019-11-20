@@ -386,7 +386,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 {
 	if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 	{
-		IdleAnim = 'IdleOpen';
+		IdleAnim = 'OpenIdle';
 		ReloadAnim = 'ReloadEmpty';
 	}
 	

@@ -549,7 +549,7 @@ defaultproperties
      RecoilYFactor=0.200000
      RecoilDeclineTime=1.000000
      RecoilDeclineDelay=0.170000
-     FireModeClass(0)=Class'BWBPRecolorsPro.CYLOPriFire'
+     FireModeClass(0)=Class'BWBPRecolorsPro.CYLOPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.CYLOSecondaryFire'
      SelectAnimRate=2.000000
      PutDownAnimRate=1.600000
@@ -565,7 +565,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=4
      GroupOffset=10
-     PickupClass=Class'BWBPRecolorsPro.CYLOMk1Pickup'
+     PickupClass=Class'BWBPRecolorsPro.CYLOPickup'
      PlayerViewOffset=(X=8.000000,Z=-14.000000)
      BobDamping=2.000000
      AttachmentClass=Class'BWBPRecolorsPro.CYLOAttachment'

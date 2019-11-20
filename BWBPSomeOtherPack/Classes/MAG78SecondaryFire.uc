@@ -266,24 +266,6 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	RelativeVelocity = Instigator.Velocity - Other.Velocity;
 	Dmg += Dmg * (VSize(RelativeVelocity) / RunningSpeedThresh) * (Normal(RelativeVelocity) Dot Normal(Other.Location-Instigator.Location));
 
-	if (Pawn(Victim) != None)
-	{
-		/*if (BallisticPawn(Instigator) != None && MAG78Longsword(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-		{
-			if (Monster(Victim) != None)
-				BallisticPawn(Instigator).GiveAttributedHealth(Dmg / 3, Instigator.HealthMax, Instigator, True);	
-			else	BallisticPawn(Instigator).GiveAttributedHealth(Dmg, Instigator.HealthMax, Instigator, True);
-		}*/
-		
-		if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
-		{
-			if (Monster(Victim) == None || Pawn(Victim).default.Health > 275)
-				bWasAlive = true;
-		}
-		else if (Vehicle(Victim) != None && Vehicle(Victim).Driver!=None && Vehicle(Victim).Driver.Health > 0)
-			bWasAlive = true;
-	}
-	
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
 	
 	if (Pawn(Other) != None && Pawn(Other).Health > 0)

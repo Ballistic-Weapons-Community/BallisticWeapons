@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class CYLOMk2Attachment extends BallisticAttachment;
+class CYLOFirestormAttachment extends BallisticAttachment;
 
 // Does all the effects for an instant-hit kind of fire.
 // On the client, this uses mHitLocation to find all the other info needed.

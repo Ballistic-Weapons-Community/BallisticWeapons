@@ -1,12 +1,12 @@
 //=============================================================================
-// DTCyloMk2Rifle.
+// DTCYLOFirestormRifle.
 //
 // Damage type for the incendiary Mk2 CYLO.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTCYLOMk2Explosion extends DT_BWBullet;
+class DTCYLOFirestormExplosion extends DT_BWBullet;
 
 defaultproperties
 {

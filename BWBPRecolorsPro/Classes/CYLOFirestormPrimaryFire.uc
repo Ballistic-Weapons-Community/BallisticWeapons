@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class CYLOMk2PrimaryFire extends BallisticRangeAttenFire;
+class CYLOFirestormPrimaryFire extends BallisticRangeAttenFire;
 
 var   float		StopFireTime, HeatPerShot;
 var() Sound			FailSound;
@@ -45,7 +45,7 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	Super.DoDamage(Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount, WaterHitLocation);
 	
 	if (Other.bProjTarget)
-		BW.TargetedHurtRadius(Damage, 420, class'DTCYLOMk2Explosion', 200, HitLocation, Pawn(Other));
+		BW.TargetedHurtRadius(Damage, 420, class'DTCYLOFirestormExplosion', 200, HitLocation, Pawn(Other));
 }
 
 // Do the trace to find out where bullet really goes
@@ -190,15 +190,15 @@ defaultproperties
      DamageLimb=32.000000
      RangeAtten=0.350000
      WaterRangeAtten=0.200000
-     DamageType=Class'BWBPRecolorsPro.DTCYLOMk2Rifle'
-     DamageTypeHead=Class'BWBPRecolorsPro.DTCYLOMk2RifleHead'
-     DamageTypeArm=Class'BWBPRecolorsPro.DTCYLOMk2Rifle'
+     DamageType=Class'BWBPRecolorsPro.DTCYLOFirestormRifle'
+     DamageTypeHead=Class'BWBPRecolorsPro.DTCYLOFirestormRifleHead'
+     DamageTypeArm=Class'BWBPRecolorsPro.DTCYLOFirestormRifle'
      KickForce=6000
      PenetrateForce=180
      ClipFinishSound=(Sound=Sound'BallisticSounds3.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)
      DryFireSound=(Sound=Sound'BallisticSounds3.Misc.DryRifle',Volume=0.700000)
      bCockAfterEmpty=True
-     MuzzleFlashClass=Class'BWBPRecolorsPro.CYLOMk2HeatEmitter'
+     MuzzleFlashClass=Class'BWBPRecolorsPro.CYLOFirestormHeatEmitter'
      FlashBone="Muzzle"
      FlashScaleFactor=0.250000
      AimedFireAnim="SightFire"

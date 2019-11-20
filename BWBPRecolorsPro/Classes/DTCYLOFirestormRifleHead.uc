@@ -1,12 +1,12 @@
 //=============================================================================
-// DTCYLOMk2RifleHead.
+// DTCYLOFirestormRifleHead.
 //
 // Damage type for the CYLO MK2 headshots.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTCYLOMk2RifleHead extends DT_BWBullet;
+class DTCYLOFirestormRifleHead extends DT_BWBullet;
 
 // HeadShot stuff from old sniper damage ------------------
 static function IncrementKills(Controller Killer)

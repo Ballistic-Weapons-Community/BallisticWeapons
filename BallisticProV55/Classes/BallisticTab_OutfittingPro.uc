@@ -553,7 +553,7 @@ function SaveSettings()
 static function String GetHeading (int i)
 {
 	if (i == 0)
-		return default.Headings[10];
+		return default.Headings[9];
 	return default.Headings[i-1];
 }
 

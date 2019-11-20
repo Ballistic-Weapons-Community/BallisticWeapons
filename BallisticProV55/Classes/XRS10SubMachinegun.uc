@@ -402,10 +402,12 @@ defaultproperties
      WeaponModes(0)=(bUnavailable=True)
      WeaponModes(1)=(ModeName="Burst")
      bNoCrosshairInScope=True
-     SightOffset=(X=-10.000000,Z=9.300000)
-     SightDisplayFOV=40.000000
+     SightOffset=(X=-10.000000,Z=12.200000)
+	 SightPivot=(Pitch=512)
+     SightDisplayFOV=60.000000
      SightingTime=0.250000
      SightAimFactor=0.200000
+	 SightZoomFactor=0
      HipRecoilFactor=2.250000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimAdjustTime=0.450000
