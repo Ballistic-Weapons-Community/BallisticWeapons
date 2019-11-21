@@ -669,7 +669,6 @@ defaultproperties
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_HVCMk9'
      BigIconCoords=(Y1=32,Y2=223)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=18
      bWT_Hazardous=True
      bWT_Energy=True
      bWT_Super=True
@@ -689,6 +688,7 @@ defaultproperties
      SightOffset=(X=-12.000000,Z=26.000000)
      SightDisplayFOV=40.000000
      SprintOffSet=(Pitch=-500,Yaw=-1024)
+	 InventorySize=35
      AimAdjustTime=0.400000
      AimSpread=2
      ChaosSpeedThreshold=600.000000

@@ -703,7 +703,8 @@ simulated function Rotator CalcNewAimOffset()
 }
 
 defaultproperties
-{
+{	 
+	InventorySize=35
      VentingSound=Sound'BWBP2-Sounds.LightningGun.LG-Coolant'
      WarningSound=Sound'PackageSounds4Pro.BFG.BFG-Critical'
      OverheatSound=Sound'BWBP4-Sounds.Misc.BH-Explode'
@@ -714,7 +715,6 @@ defaultproperties
      BigIconMaterial=Texture'BallisticRecolors3TexPro.BFG.BigIcon_BFG'
      BigIconCoords=(Y1=30,Y2=235)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=21
      bWT_Hazardous=True
      bWT_Energy=True
      bWT_Super=True

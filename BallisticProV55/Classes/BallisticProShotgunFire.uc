@@ -206,7 +206,7 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
-     HipSpreadFactor=5.000000
+     HipSpreadFactor=3.000000
      MaxSpreadFactor=3
      FireSpreadMode=FSM_Circle
 }

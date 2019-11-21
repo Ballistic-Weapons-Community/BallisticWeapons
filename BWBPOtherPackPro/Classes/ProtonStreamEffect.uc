@@ -9,7 +9,7 @@ var vector StartPoint, EndPoint;
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		StartPoint, EndPoint, ProtonAttachment, Target, bAltColor;
+		StartPoint, EndPoint, Target, bAltColor;
 }
 
 simulated function PostNetBeginPlay()
@@ -23,13 +23,17 @@ simulated function PostNetBeginPlay()
 			pPack = ProtonStreamer(Instigator.Weapon);
 			pPack.StreamEffect = self;
 		}
-		if (ProtonStreamAttachment(Instigator.Weapon.ThirdPersonActor) != None)
-			ProtonAttachment = ProtonStreamAttachment(Instigator.Weapon.ThirdPersonActor);
 	}
 	
 	if (Role < ROLE_Authority && bAltColor)
 		SetAltColor(bAltColor);
 }
+
+simulated function PostNetReceive()
+{
+	UpdateEndpoint();
+}
+
 
 simulated function SetAltColor(bool bColorAlt)
 {
@@ -61,6 +65,14 @@ simulated function SetAltColor(bool bColorAlt)
 simulated function UpdateEndpoint()
 {
 	local byte i;
+	local xWeaponAttachment Attachment;
+	local vector OffsetVector;
+	
+	if (Instigator == None || Instigator.Weapon == None || Instigator.Weapon.ThirdPersonActor == None)
+		return;
+		
+	Attachment = XWeaponAttachment(Instigator.Weapon.ThirdPersonActor);
+	
 	
 	SetRotation(rot(0,0,0));
 	
@@ -69,50 +81,46 @@ simulated function UpdateEndpoint()
 		if (!Instigator.IsFirstPerson())
 		{
 			bHidden = False;
-			SetLocation(ProtonAttachment.GetTipLocation());
+			
+			if (Attachment != None)
+				SetLocation(Attachment.GetTipLocation());
 		}
 	}
 	else
 	{
-		if (ProtonAttachment != None)
-			SetLocation(ProtonAttachment.GetBoneCoords('tip').Origin);
+		if (Attachment != None)
+			SetLocation(Attachment.GetBoneCoords('tip').Origin);
 		else SetLocation(StartPoint);
 	}
 	
 	if (Target != None)
-	{
-		for (i=0; i<3; i++)
-			BeamEmitter(Emitters[i]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(Target.Location - Location, Target.Location - Location);
-	}
+		OffsetVector = Target.Location - Location;
+	else
+		OffsetVector = EndPoint - Location;
 	
-	else if (!Instigator.IsLocallyControlled() || !Instigator.IsFirstPerson())
-	{
-		for (i=0; i<3; i++)
-		{
-			if (ProtonAttachment != None)
-				BeamEmitter(Emitters[i]).BeamEndPoints[0].Offset = VtoRV(ProtonAttachment.mHitLocation - Location, ProtonAttachment.mHitLocation - Location);
-			else BeamEmitter(Emitters[i]).BeamEndPoints[0].Offset = VtoRV(EndPoint - Location, EndPoint - Location);
-		}
-	}	
+	for (i=0; i<3; i++)
+		BeamEmitter(Emitters[i]).BeamEndPoints[0].Offset = VtoRV(OffsetVector, OffsetVector);
 }
 
 simulated function Tick(float dt)
 {
-	if (Role == ROLE_Authority)
-	{
-	    if  (Instigator == None || Instigator.Controller == None)
-		{
-			Destroy();
-			return;
-		}
-		StartPoint = Instigator.Location + Instigator.EyePosition();
-		if (Target != None)
-			EndPoint = Target.Location;
-		else EndPoint = ProtonAttachment.mHitLocation;
-	}
-		
-	if (Instigator.IsLocallyControlled() && Instigator.IsFirstPerson())
+	if (Role < ROLE_Authority)
 		return;
+		
+	if  (Instigator == None || Instigator.Controller == None || Instigator.Weapon == None)
+	{
+		Destroy();
+		return;
+	}
+	
+	StartPoint = Instigator.Location + Instigator.EyePosition();
+	
+	if (Target != None)
+		EndPoint = Target.Location;
+
+	else 
+		EndPoint = xWeaponAttachment(Instigator.Weapon.ThirdPersonActor).mHitLocation;
+		
 	UpdateEndpoint();
 }
 
@@ -239,4 +247,6 @@ defaultproperties
      bAlwaysRelevant=True
      bReplicateInstigator=True
      RemoteRole=ROLE_SimulatedProxy
+	 
+	 bNetNotify=True
 }

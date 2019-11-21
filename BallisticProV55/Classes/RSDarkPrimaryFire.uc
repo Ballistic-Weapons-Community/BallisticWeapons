@@ -576,7 +576,7 @@ defaultproperties
      Damage=50
      ImmolateSoundLoop=Sound'BWBP4-Sounds.DarkStar.Dark-Immolation'
      SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
-     FireModes(0)=(mProjClass=Class'BallisticProV55.RSDarkFastProjectile',mFireRate=0.160000,mFireChaos=0.060000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-Fire2',mFireAnim="Fire2",mRecoil=220.000000,mAmmoPerFire=1,bModeLead=True)
+     FireModes(0)=(mProjClass=Class'BallisticProV55.RSDarkFastProjectile',mFireRate=0.160000,mFireChaos=0.090000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-Fire2',mFireAnim="Fire2",mRecoil=220.000000,mAmmoPerFire=1,bModeLead=True)
      FireModes(1)=(mFireRate=0.100000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=7.000000,mAmmoPerFire=1,TargetState="DarkFlamer",bModeInstantHit=True)
      FireModes(2)=(mFireRate=0.100000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=7.000000,mAmmoPerFire=1,TargetState="Immolate",bModeInstantHit=True)
      FireModes(3)=(mProjClass=Class'BallisticProV55.RSDarkFireBomb',mFireRate=0.800000,mFireChaos=0.150000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-FireBall',mFireAnim="Fire",mRecoil=1024.000000,mAmmoPerFire=4,TargetState="Fireball",bModeLead=True,bModeSplash=True,bModeRecommendSplash=True)

@@ -94,7 +94,9 @@ simulated event PostNetReceive()
 
 function ServerWeaponSpecial(optional byte i)
 {
-	ServerSwitchlaser(!bLaserOn);
+	if (bServerReloading)
+		return;
+	ServerSwitchLaser(!bLaserOn);
 }
 
 function ServerSwitchLaser(bool bNewLaserOn)

@@ -277,6 +277,7 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
+	 InventorySize=35
      SpringOnAnim="SecStart"
      SpringOffAnim="SecFinish"
      DeploySound=(Sound=Sound'BallisticSounds2.BX5.BX5-Deploy',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
@@ -286,7 +287,6 @@ defaultproperties
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_BX5'
      BigIconCoords=(Y1=24,Y2=240)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=3
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Trap=True

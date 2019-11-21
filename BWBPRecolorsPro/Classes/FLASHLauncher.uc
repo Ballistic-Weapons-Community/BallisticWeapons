@@ -215,6 +215,7 @@ simulated function Notify_G5HideRocket ()
 
 defaultproperties
 {
+	 InventorySize=35
      RunOffset=(Pitch=-4000,Yaw=-2000)
      HatchSound=(Sound=Sound'BallisticSounds2.M75.M75Cliphit',Volume=0.700000,Pitch=1.000000)
      PlayerSpeedFactor=0.900000
@@ -223,7 +224,6 @@ defaultproperties
      BigIconMaterial=Texture'BallisticRecolors4TexPro.Flash.BigIcon_FLASH'
      BigIconCoords=(Y2=230)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=18
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Projectile=True

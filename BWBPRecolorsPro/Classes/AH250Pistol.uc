@@ -217,6 +217,7 @@ defaultproperties
 {
 	AIRating=0.6
 	CurrentRating=0.6
+	InventorySize=24
 	ManualLines(0)="High-powered semi-automatic fire."
 	ManualLines(1)="Engages the scope."
 	ManualLines(2)="Effective at medium range."
@@ -232,7 +233,6 @@ defaultproperties
      BigIconMaterial=Texture'BallisticRecolors4TexPro.Eagle.BigIcon_EagleAlt'
      BigIconCoords=(X1=48,Y1=0,X2=455,Y2=255)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=4
      bWT_Bullet=True
      SpecialInfo(0)=(Info="140.0;12.0;0.7;70.0;0.55;0.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')

@@ -395,6 +395,7 @@ defaultproperties
      ZoomType=ZT_Smooth
      ScopeXScale=1.400000
      ZoomInAnim="Raise"
+	 InventorySize=35
      ZoomOutAnim="Lower"
      ScopeViewTex=Texture'BWBPOtherPackTex.Designator.DesignatorScreen'
      FullZoomFOV=20.000000

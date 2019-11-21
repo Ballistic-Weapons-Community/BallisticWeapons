@@ -138,7 +138,7 @@ defaultproperties
 	 CurrentRating=0.7
      ManualLines(0)="Fires both barrels. Wide spread and good damage, but requires cocking after every shot."
      ManualLines(1)="Fires one barrel at a time."
-     ManualLines(2)="Effective at very close range."
+     ManualLines(2)="Effective at very close range. Spreads less from the hip than other shotguns."
 	 AimDisplacementDurationMult=0.33
      bLeftLoaded=True
      bRightLoaded=True

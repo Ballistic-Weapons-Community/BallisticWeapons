@@ -9,6 +9,8 @@
 //=============================================================================
 class FP7FireControl extends Actor;
 
+const MAX_FIRE_SPOTS = 40;
+
 struct HitPawnInfo
 {
 	var Pawn HitPawn;
@@ -18,7 +20,7 @@ struct HitPawnInfo
 var 	int				Ident;
 var() float			DamageRadius;			// Radius in which to immolate players
 var	bool			bHeld;					// This fire was detonated in hand. Use held messages
-var	Vector		GroundFireSpots[25];	// Vectors sent to client to tell it where to spawn fires
+var	Vector		GroundFireSpots[MAX_FIRE_SPOTS];	// Vectors sent to client to tell it where to spawn fires
 var() class<BCImpactManager>	ImpactManager;	// Impact manager to spawn on final hit
 var	array<HitPawnInfo>	HitPawnData;
 var	float			Damage, BaseDamage;
@@ -134,7 +136,7 @@ simulated function Initialize()
 
 	// Spawn all the fires to set up an area of destruction
 	Start = Location+vect(0,0,8);
-	for(i=0;i<45;i++)
+	for(i=0;i<MAX_FIRE_SPOTS;i++)
 	{
 		End = VRand();
 		End.Z = Abs(End.Z);

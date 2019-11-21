@@ -37,6 +37,7 @@ defaultproperties
          FadeInEndTime=0.012000
          CoordinateSystem=PTCS_Relative
          MaxParticles=5
+		 Opacity=0.5
          StartLocationOffset=(X=10.000000)
          SizeScale(0)=(RelativeSize=0.200000)
          SizeScale(1)=(RelativeTime=0.370000,RelativeSize=0.500000)
@@ -59,6 +60,7 @@ defaultproperties
          UniformSize=True
          AutomaticInitialSpawning=False
          TriggerDisabled=False
+		 Opacity=0.5
          ColorScale(0)=(Color=(B=255,G=64,R=128,A=255))
          ColorScale(1)=(RelativeTime=0.121429,Color=(B=255,R=64,A=255))
          ColorScale(2)=(RelativeTime=0.300000,Color=(G=64,R=192,A=255))
@@ -90,6 +92,7 @@ defaultproperties
          FadeOutStartTime=0.380000
          CoordinateSystem=PTCS_Relative
          MaxParticles=3
+		 Opacity=0.5
          DetailMode=DM_SuperHigh
          StartLocationOffset=(X=30.000000)
          SizeScale(0)=(RelativeSize=0.600000)
@@ -120,6 +123,7 @@ defaultproperties
          FadeOutStartTime=0.310000
          CoordinateSystem=PTCS_Relative
          MaxParticles=3
+		 Opacity=0.5
          DetailMode=DM_SuperHigh
          StartLocationOffset=(X=30.000000)
          SizeScale(0)=(RelativeSize=0.600000)
@@ -146,6 +150,7 @@ defaultproperties
          ColorScale(2)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
          FadeOutStartTime=0.455000
          MaxParticles=20
+		 Opacity=0.5
          DetailMode=DM_SuperHigh
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=40.000000,Max=40.000000)

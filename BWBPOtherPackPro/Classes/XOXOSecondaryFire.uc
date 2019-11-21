@@ -220,8 +220,6 @@ simulated function StopFiring()
 		XOXOAttachment(Weapon.ThirdPersonActor).EndStream();
 }
 	
-
-	
 function float MaxRange()
 {
 	return 1500;

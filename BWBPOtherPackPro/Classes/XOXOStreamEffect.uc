@@ -8,7 +8,7 @@ var vector StartPoint, EndPoint;
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		StartPoint, EndPoint, StaffAttachment, Target;
+		StartPoint, EndPoint, Target;
 }
 
 simulated function PostNetBeginPlay()
@@ -19,14 +19,24 @@ simulated function PostNetBeginPlay()
 	{
 		if (XOXOStaff(Instigator.Weapon) != None)
 			XOXOStaff(Instigator.Weapon).StreamEffect = self;
-		if (XOXOAttachment(Instigator.Weapon.ThirdPersonActor) != None)
-			StaffAttachment = XOXOAttachment(Instigator.Weapon.ThirdPersonActor);
 	}
+}
+
+simulated function PostNetReceive()
+{
+	UpdateEndpoint();
 }
 
 simulated function UpdateEndpoint()
 {
 	local byte i;
+	local xWeaponAttachment Attachment;
+	local vector OffsetVector;
+	
+	if (Instigator == None || Instigator.Weapon == None || Instigator.Weapon.ThirdPersonActor == None)
+		return;
+		
+	Attachment = XWeaponAttachment(Instigator.Weapon.ThirdPersonActor);
 	
 	SetRotation(rot(0,0,0));
 	
@@ -35,47 +45,46 @@ simulated function UpdateEndpoint()
 		if (!Instigator.IsFirstPerson())
 		{
 			bHidden = False;
-			SetLocation(StaffAttachment.GetTipLocation());
+			
+			if (Attachment != None)
+				SetLocation(Attachment.GetTipLocation());
 		}
 	}
 	else
 	{
-		if (StaffAttachment != None)
-			SetLocation(StaffAttachment.GetBoneCoords('tip').Origin);
+		if (Attachment != None)
+			SetLocation(Attachment.GetBoneCoords('tip').Origin);
 		else SetLocation(StartPoint);
 	}
 	
 	if (Target != None)
-	{
-		for (i=0; i<3; i++)
-			BeamEmitter(Emitters[i]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(Target.Location - Location, Target.Location - Location);
-	}
-	
+		OffsetVector = Target.Location - Location;
 	else
-	{
-		for (i=0; i<3; i++)
-		{
-			if (StaffAttachment != None)
-				BeamEmitter(Emitters[i]).BeamEndPoints[0].Offset = VtoRV(StaffAttachment.mHitLocation - Location, StaffAttachment.mHitLocation - Location);
-			else BeamEmitter(Emitters[i]).BeamEndPoints[0].Offset = VtoRV(EndPoint - Location, EndPoint - Location);
-		}
-	}
+		OffsetVector = EndPoint - Location;
+	
+	for (i=0; i<3; i++)
+		BeamEmitter(Emitters[i]).BeamEndPoints[0].Offset = VtoRV(OffsetVector, OffsetVector);
 }
 
 simulated function Tick(float dt)
 {
-	if (Role == ROLE_Authority)
+	if (Role < ROLE_Authority)
+		return;
+		
+	if  (Instigator == None || Instigator.Controller == None || Instigator.Weapon == None)
 	{
-	    if  (Instigator == None || Instigator.Controller == None)
-		{
-			Destroy();
-			return;
-		}
-		StartPoint = Instigator.Location + Instigator.EyePosition();
-		if (Target != None)
-			EndPoint = Target.Location;
-		else EndPoint = StaffAttachment.mHitLocation;
+		Destroy();
+		return;
 	}
+	
+	StartPoint = Instigator.Location + Instigator.EyePosition();
+	
+	if (Target != None)
+		EndPoint = Target.Location;
+
+	else 
+		EndPoint = xWeaponAttachment(Instigator.Weapon.ThirdPersonActor).mHitLocation;
+		
 	UpdateEndpoint();
 }
 
@@ -172,4 +181,6 @@ defaultproperties
      bAlwaysRelevant=True
      bReplicateInstigator=True
      RemoteRole=ROLE_SimulatedProxy
+	 
+	 bNetNotify=True
 }

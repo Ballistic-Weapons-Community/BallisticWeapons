@@ -197,6 +197,7 @@ simulated function Notify_BrassOut()
 
 defaultproperties
 {
+	 InventorySize=24
      MatDef=Texture'BallisticRecolors4TexPro.MGL.MGL-ScreenBase'
      MatArmed=Texture'BallisticRecolors4TexPro.MGL.MGL-Screen'
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')

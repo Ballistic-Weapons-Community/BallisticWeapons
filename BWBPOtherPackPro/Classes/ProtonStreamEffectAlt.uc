@@ -28,7 +28,15 @@ simulated function SetAltColor(bool bColorAlt)
 }
 
 simulated function UpdateEndpoint()
-{
+{	
+	local xWeaponAttachment Attachment;
+	local vector OffsetVector;
+	
+	if (Instigator == None || Instigator.Weapon == None || Instigator.Weapon.ThirdPersonActor == None)
+		return;
+		
+	Attachment = XWeaponAttachment(Instigator.Weapon.ThirdPersonActor);
+	
 	SetRotation(rot(0,0,0));
 	
 	if (Instigator.IsLocallyControlled())
@@ -36,46 +44,43 @@ simulated function UpdateEndpoint()
 		if (!Instigator.IsFirstPerson())
 		{
 			bHidden = False;
-			SetLocation(ProtonAttachment.GetTipLocation());
+			SetLocation(Attachment.GetTipLocation());
 		}
 	}
 	else
 	{
-		if (ProtonAttachment != None)
-			SetLocation(ProtonAttachment.GetBoneCoords('tip').Origin);
+		if (Attachment != None)
+			SetLocation(Attachment.GetBoneCoords('tip').Origin);
 		else SetLocation(StartPoint);
 	}
 	
 	if (Target != None)
-	{
-		BeamEmitter(Emitters[0]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(Target.Location - Location, Target.Location - Location);
-	}
-	
+		OffsetVector = Target.Location - Location;
 	else
-	{
-		if (ProtonAttachment != None)
-			BeamEmitter(Emitters[0]).BeamEndPoints[0].Offset = VtoRV(ProtonAttachment.mHitLocation - Location, ProtonAttachment.mHitLocation - Location);
-		else BeamEmitter(Emitters[0]).BeamEndPoints[0].Offset = VtoRV(EndPoint - Location, EndPoint - Location);
-	}	
+		OffsetVector = EndPoint - Location;
+	
+	BeamEmitter(Emitters[0]).BeamEndPoints[0].Offset = VtoRV(OffsetVector, OffsetVector);
 }
 
 simulated function Tick(float dt)
 {
-	if (Role == ROLE_Authority)
+	if (Role < ROLE_Authority)
+		return;
+		
+	if  (Instigator == None || Instigator.Controller == None || Instigator.Weapon == None)
 	{
-	    if  (Instigator == None || Instigator.Controller == None)
-		{
-			Destroy();
-			return;
-		}
-		StartPoint = Instigator.Location + Instigator.EyePosition();
-		if (Target != None)
-			EndPoint = Target.Location;
-		else EndPoint = ProtonAttachment.mHitLocation;
+		Destroy();
+		return;
 	}
 	
-	if (Instigator.IsLocallyControlled() && Instigator.IsFirstPerson())
-		return;
+	StartPoint = Instigator.Location + Instigator.EyePosition();
+	
+	if (Target != None)
+		EndPoint = Target.Location;
+
+	else 
+		EndPoint = xWeaponAttachment(Instigator.Weapon.ThirdPersonActor).mHitLocation;
+		
 	UpdateEndpoint();
 }
 

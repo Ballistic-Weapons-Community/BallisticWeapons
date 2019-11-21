@@ -432,7 +432,6 @@ defaultproperties
      BigIconMaterial=Texture'BWBP4-Tex.Artillery.BigIcon_Artillery'
      BigIconCoords=(Y1=24,Y2=225)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=16
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Projectile=True
@@ -475,6 +474,7 @@ defaultproperties
      ChaosDeclineTime=1.200000
      ChaosSpeedThreshold=3500.000000
      ChaosAimSpread=2048
+	 InventorySize=35
      RecoilXFactor=0.600000
      RecoilYFactor=0.900000
      RecoilMinRandFactor=0.350000

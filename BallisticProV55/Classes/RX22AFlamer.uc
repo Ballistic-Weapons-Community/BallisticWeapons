@@ -277,7 +277,7 @@ defaultproperties
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_RX22A'
      BigIconCoords=(Y2=240)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=10
+	 InventorySize=35
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_RapidProj=True

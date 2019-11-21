@@ -27,7 +27,7 @@ simulated function DrawCrosshairs(canvas C)
 	local Color 		SavedDrawColor;
 
 	// Draw weapon specific Crosshairs
-	if (bOldCrosshairs || (bScopeView && bNoCrosshairInScope))
+	if (bOldCrosshairs || bScopeView)
 		return;
 
 	if ((!bNoMag && MagAmmo == 0)|| bNeedCock)
@@ -40,12 +40,8 @@ simulated function DrawCrosshairs(canvas C)
 	ShortBound = 2;
 	LongBound= 10;
 	
-
-	if (!bScopeView)
-	{
-		OffsetAdjustment = C.ClipX / 2;
-		OffsetAdjustment *= tan (CrosshairSpreadAngle) / tan((Instigator.Controller.FovAngle/2) * 0.01745329252);
-	}
+	OffsetAdjustment = C.ClipX / 2;
+	OffsetAdjustment *= tan (CrosshairSpreadAngle) / tan((Instigator.Controller.FovAngle/2) * 0.01745329252);
 	
 	//black
 	//hor
