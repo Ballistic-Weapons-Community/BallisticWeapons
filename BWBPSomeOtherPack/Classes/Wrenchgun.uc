@@ -55,7 +55,7 @@ function ServerWeaponSpecial(optional byte i)
 function Notify_BarrierDeploy()
 {
 	local Actor HitActor;
-	local Vector Start, End, HitNorm, HitLoc;
+	local Vector Start, End, HitNorm, HitLoc, DeployableZOffset;
 	local WrenchGunPreconstructor WP;
 	
 	Start = Instigator.Location + Instigator.EyePosition();
@@ -103,11 +103,12 @@ function Notify_BarrierDeploy()
 	}
 	
 	Start = HitLoc + vect(0,0,1);
+	DeployableZOffset.Z = Deployables.dClass.default.CollisionHeight * 0.5;
 	
-	if (!FastTrace(Start, Start + Deployables.dClass.default.CollisionRadius * vect(1,0,0)) ||
-	!FastTrace(Start, Start + Deployables.dClass.default.CollisionRadius * vect(-1,0,0)) ||
-	!FastTrace(Start, Start + Deployables.dClass.default.CollisionRadius * vect(0,-1,0)) ||
-	!FastTrace(Start,Start +  Deployables.dClass.default.CollisionRadius * vect(0,1,0)))
+	if (!FastTrace(Start + DeployableZOffset, Start + DeployableZOffset + Deployables.dClass.default.CollisionRadius * vect(1,0,0)) ||
+	!FastTrace(Start + DeployableZOffset, Start + DeployableZOffset + Deployables.dClass.default.CollisionRadius * vect(-1,0,0)) ||
+	!FastTrace(Start + DeployableZOffset, Start + DeployableZOffset + Deployables.dClass.default.CollisionRadius * vect(0,-1,0)) ||
+	!FastTrace(Start + DeployableZOffset, Start + DeployableZOffset + Deployables.dClass.default.CollisionRadius * vect(0,1,0)))
 	{
 		Instigator.ClientMessage("Insufficient space for construction.");
 		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
