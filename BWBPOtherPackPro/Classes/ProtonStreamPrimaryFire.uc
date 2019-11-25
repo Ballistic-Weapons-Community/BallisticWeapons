@@ -260,10 +260,12 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			{
 				StreamDoDamage (Other, HitLocation, InitialStart, X);
 				
-				SuccessiveHits++;
+				if (Pawn(Other) != None)
+					SuccessiveHits++;
 
 				if (Vehicle(Other) != None)
 					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other);
+					
 				else if (Mover(Other) == None)
 				{
 					bHitWall = true;

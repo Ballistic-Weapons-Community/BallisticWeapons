@@ -29,7 +29,7 @@ defaultproperties
 	BallisticFireSound=(Sound=Sound'BallisticSounds3.A42.A42-Fire',Volume=0.700000)
 	bPawnRapidFireAnim=True
 	FireEndAnim=
-	FireRate=0.400000
+	FireRate=0.320000
 	AmmoClass=Class'BallisticProV55.Ammo_A42Charge'
 	ShakeRotMag=(X=32.000000,Y=8.000000)
 	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

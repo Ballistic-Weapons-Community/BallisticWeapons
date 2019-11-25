@@ -2,6 +2,7 @@ class WrenchPreconstructor extends BallisticEmitter;
 
 var float 	Health, MaxHealth;
 var Vector GroundPoint;
+
 var class<Actor>	myDeployable;
 var class<Vehicle>  myVehicle;
 var float				WarpingTime, WarpTime;
@@ -97,7 +98,7 @@ state SpawnIn
 	{
 		local WrenchDeployable W;
 
-		W = WrenchDeployable(Spawn(myDeployable, Instigator, , GroundPoint + vect(0,0,1) * myDeployable.default.CollisionHeight, Rotation));
+		W = WrenchDeployable(Spawn(myDeployable, Instigator, , GroundPoint, Rotation));
 		W.Health = Health;
 		if (WrenchTeleporter(W) != None)
 			WrenchTeleporter(W).Initialize(Master);

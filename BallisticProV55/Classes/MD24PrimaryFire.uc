@@ -58,8 +58,8 @@ defaultproperties
      YInaccuracy=128.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Fire',Volume=4.000000)
      FireEndAnim=
-     FireAnimRate=1.600000
-     FireRate=0.220000
+     FireAnimRate=1.450000
+     FireRate=0.260000
      AmmoClass=Class'BallisticProV55.Ammo_MD24Clip'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

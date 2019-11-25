@@ -4,7 +4,7 @@ struct DeployableInfo
 {
 	var class<Actor> 	dClass;
 	var float				WarpInTime;
-	var vector				SpawnOffset;
+	var int					SpawnOffset;
 	var int					AmmoReq;
 	var bool				CheckSlope; // should block unless placed on flat enough area
 	var string				dDescription; 	//A simple explanation of what this mode does.
@@ -77,6 +77,25 @@ simulated function PostBeginPlay()
 			break;
 		}
 	}
+}
+
+exec function FastSpawn()
+{
+	local int i;
+	
+	if (Level.NetMode != NM_Standalone)
+		return;
+	
+	for (i = 0; i < Deployables.Length; ++i)
+		Deployables[i].WarpInTime = 1;
+}
+
+exec function Offset(int index, int value)
+{
+	if (Level.NetMode != NM_Standalone)
+		return;
+
+	Deployables[index].SpawnOffset = value;
 }
 
 exec simulated function SwitchWeaponMode(optional byte i)
@@ -313,7 +332,7 @@ function Notify_WrenchDeploy()
 		bRemove = False;
 		return;
 	}
-			
+
 	if (CurrentWeaponMode == 2 && Level.Game.GameName == "Jailbreak")
 	{
 		Instigator.ClientMessage("You're not allowed to place teleporters in this gametype.");
@@ -349,12 +368,9 @@ function Notify_WrenchDeploy()
 		return;
 	}
 	
-	Start = HitLoc + vect(0,0,1);
+	Start = HitLoc + HitNorm; // offset from the floor by 1 unit, it's already normalized
 	
-	if (!FastTrace(Start, Start + Deployables[CurrentWeaponMode].dClass.default.CollisionRadius * vect(1,0,0)) ||
-	!FastTrace(Start, Start + Deployables[CurrentWeaponMode].dClass.default.CollisionRadius * vect(-1,0,0)) ||
-	!FastTrace(Start, Start + Deployables[CurrentWeaponMode].dClass.default.CollisionRadius * vect(0,-1,0)) ||
-	!FastTrace(Start,Start +  Deployables[CurrentWeaponMode].dClass.default.CollisionRadius * vect(0,1,0)))
+	if (!SpaceToDeploy(HitLoc + HitNorm, HitNorm, rot(0,0,0), Deployables[CurrentWeaponMode].dClass.default.CollisionHeight, Deployables[CurrentWeaponMode].dClass.default.CollisionRadius))
 	{
 		Instigator.ClientMessage("Insufficient space for construction.");
 		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
@@ -377,15 +393,55 @@ function Notify_WrenchDeploy()
 			return;
 		}
 	}
-		
-	WP = Spawn(class'WrenchPreconstructor', Instigator, ,Start + vect(0,0,1) * Deployables[CurrentWeaponMode].dClass.default.CollisionRadius, Instigator.Rotation);
-	if (Deployables[CurrentWeaponMode].SpawnOffset == vect(0,0,0))
-		WP.GroundPoint = Start - vect(0,0,1);
-	else WP.GroundPoint = Start + Deployables[CurrentWeaponMode].SpawnOffset;
+	
+	WP = Spawn(class'WrenchPreconstructor', Instigator, , Start + HitNorm * Deployables[CurrentWeaponMode].dClass.default.CollisionRadius, Instigator.Rotation);
+	
+	WP.GroundPoint = Start + HitNorm;
+	WP.GroundPoint.Z += Deployables[CurrentWeaponMode].SpawnOffset;
+	
 	WP.Instigator = Instigator;
 	WP.Master = self;
 	WP.Initialize(Deployables[CurrentWeaponMode].dClass,Deployables[CurrentWeaponMode].WarpInTime);
+	
 	ConsumeAmmo(0, Deployables[CurrentWeaponMode].AmmoReq, true);
+}
+
+//===========================================================================
+// OrientToSlope
+//
+// Returns a rotator with the correct Pitch and Roll values to orient the 
+// deployable to the detected HitNormal.
+//===========================================================================
+function Rotator GetSlopeRotator(Rotator deploy_rotation_yaw, vector hit_normal)
+{
+	local float pitch_degrees, roll_degrees;
+	local Rotator result;
+	
+	//log("GetSlopeRotator: Input yaw rotator: "$deploy_rotation_yaw$" HitNormal: "$hit_normal);
+	
+	// get hitnormal orientation as global coordinate relative to direction of deployable
+	hit_normal = hit_normal << deploy_rotation_yaw;
+	
+	//log("GetSlopeRotator: Rotated HitNormal: "$hit_normal);
+	
+	// x value determines pitch adjustment and is equal to the sine of the pitch angle
+	// if x is positive, we need to pitch down (negative)
+	pitch_degrees = Asin(hit_normal.X) * 180/pi;
+	
+	//log("GetSlopeRotator: Pitch degrees: "$pitch_degrees);
+	
+	result.Pitch = -(pitch_degrees * (65536 / 360));
+	
+	// y factor is the same for roll, but directionality is a problem (I think right is positive)
+	roll_degrees = Asin(hit_normal.Y) * 180/pi;
+	
+	//log("GetSlopeRotator: Roll degrees: "$roll_degrees);
+
+	result.Roll = (roll_degrees * (65536 / 360));
+	
+	//log("GetSlopeRotator: Result: "$result);
+		
+	return result;
 }
 
 //===========================================================================
@@ -402,6 +458,8 @@ function Notify_BarrierDeploy()
 	local Vector Start, End, HitNorm, HitLoc;
 	local WrenchPreconstructor WP;
 	
+	local Rotator SlopeInputYaw, SlopeRotation;
+
 	Start = Instigator.Location + Instigator.EyePosition();
 	End = Start + vector(Instigator.GetViewRotation()) * DeployRange;
 	
@@ -441,33 +499,54 @@ function Notify_BarrierDeploy()
 		return;
 	}
 	
-	if (AltDeployable.CheckSlope && HitNorm dot vect(0,0,1) < 0.1)
-	{
-		Instigator.ClientMessage("Surface is too steep for construction.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
-		return;
-	}
+	// Use HitNormal value to attempt to reorient actor.
+	SlopeInputYaw.Yaw = Instigator.Rotation.Yaw;
+	SlopeRotation = GetSlopeRotator(SlopeInputYaw, HitNorm);
 	
-	Start = HitLoc + vect(0,0,1);
+	Start = HitLoc + HitNorm; // offset from the floor by 1 unit, it's already normalized
 	
-	if (!FastTrace(Start, Start + AltDeployable.dClass.default.CollisionRadius * vect(1,0,0)) ||
-	!FastTrace(Start, Start + AltDeployable.dClass.default.CollisionRadius * vect(-1,0,0)) ||
-	!FastTrace(Start, Start + AltDeployable.dClass.default.CollisionRadius * vect(0,-1,0)) ||
-	!FastTrace(Start,Start +  AltDeployable.dClass.default.CollisionRadius * vect(0,1,0)))
+	if (!SpaceToDeploy(HitLoc, HitNorm, SlopeRotation, AltDeployable.dClass.default.CollisionHeight, AltDeployable.dClass.default.CollisionRadius))
 	{
 		Instigator.ClientMessage("Insufficient space for construction.");
 		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
 		return;
 	}
+	
+	SlopeRotation.Yaw = Instigator.Rotation.Yaw;
 		
-	WP = Spawn(class'WrenchPreconstructor', Instigator, ,Start + vect(0,0,1) * AltDeployable.dClass.default.CollisionRadius, Instigator.Rotation);
-	if (AltDeployable.SpawnOffset == vect(0,0,0))
-		WP.GroundPoint = Start - vect(0,0,1);
-	else WP.GroundPoint = Start + AltDeployable.SpawnOffset;
+	WP = Spawn(class'WrenchPreconstructor', Instigator, , Start + HitNorm * AltDeployable.dClass.default.CollisionRadius, SlopeRotation);
+	
+	WP.GroundPoint = Start + (HitNorm * (AltDeployable.SpawnOffset + AltDeployable.dClass.default.CollisionRadius));
+
 	WP.Instigator = Instigator;
 	WP.Master = self;
 	WP.Initialize(AltDeployable.dClass,AltDeployable.WarpInTime);
+	
 	ConsumeAmmo(0, AltDeployable.AmmoReq, true);
+}
+
+//===========================================================================
+// SpaceToDeploy
+//
+// Verifies that there is enough room to spawn the given deployable.
+// Traces out from the center in the X and Y directions, 
+// corresponding to the collision cylinder.
+// 
+// Imperfect - but functional enough for this game
+//===========================================================================
+function bool SpaceToDeploy(Vector hit_location, Vector hit_normal, Rotator slope_rotation, float collision_height, float collision_radius)
+{
+	local Vector center_point;
+	
+	// n.b: collision height property is actually half the collision height - do not halve the input value
+	center_point = hit_location + hit_normal * collision_height;
+	
+	return (
+	FastTrace(center_point, center_point + collision_radius * (vect(1,0,0) >> slope_rotation)) &&
+	FastTrace(center_point, center_point + collision_radius * (vect(-1,0,0) >> slope_rotation)) &&
+	FastTrace(center_point, center_point + collision_radius * (vect(0,-1,0) >> slope_rotation)) &&
+	FastTrace(center_point, center_point + collision_radius * (vect(0,1,0) >> slope_rotation))
+	);
 }
 
 // choose between regular or alt-fire
@@ -549,13 +628,13 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-     Deployables(0)=(dClass=Class'BWBPOtherPackPro.WrenchBoostPad',WarpInTime=5.000000,AmmoReq=20,CheckSlope=True,dDescription="A pad which propels players through the air in the direction they were moving.")
-     Deployables(1)=(dClass=Class'BWBPOtherPackPro.WrenchTeleporter',WarpInTime=20.000000,AmmoReq=20,CheckSlope=True,dDescription="A teleporter. Only two may be placed.")
-     Deployables(2)=(dClass=Class'BallisticProV55.Sandbag',WarpInTime=3.000000,AmmoReq=10,CheckSlope=False,dDescription="A unit of three sandbags which can be used as cover.")
-     Deployables(3)=(dClass=Class'BWBPOtherPackPro.WrenchShieldGeneratorB',WarpInTime=25.000000,AmmoReq=40,CheckSlope=True,dDescription="Generates a shield impervious to attack from both sides.")
-     Deployables(4)=(dClass=Class'BWBPOtherPackPro.WrenchAmmoCrate',WarpInTime=25.000000,AmmoReq=40,CheckSlope=True,dDescription="A crate which restocks ammunition to initial levels.")
-     Deployables(5)=(dClass=Class'UT2k4Assault.ASTurret_Minigun',WarpInTime=35.000000,SpawnOffset=(Z=40.000000),AmmoReq=40,CheckSlope=True,dDescription="A static minigun turret. Resistant to attacks.")
-     AltDeployable=(dClass=Class'BWBPOtherPackPro.WrenchEnergyBarrier',WarpInTime=0.500000,AmmoReq=10,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
+     Deployables(0)=(dClass=Class'BWBPOtherPackPro.WrenchBoostPad',SpawnOffset=4,WarpInTime=5.000000,AmmoReq=20,CheckSlope=True,dDescription="A pad which propels players through the air in the direction they were moving.")
+     Deployables(1)=(dClass=Class'BWBPOtherPackPro.WrenchTeleporter',SpawnOffset=1,WarpInTime=20.000000,AmmoReq=20,CheckSlope=True,dDescription="A teleporter. Only two may be placed.")
+     Deployables(2)=(dClass=Class'BallisticProV55.Sandbag',SpawnOffset=8,WarpInTime=3.000000,AmmoReq=10,CheckSlope=False,dDescription="A unit of three sandbags which can be used as cover.")
+     Deployables(3)=(dClass=Class'BWBPOtherPackPro.WrenchShieldGeneratorB',SpawnOffset=0,WarpInTime=25.000000,AmmoReq=40,CheckSlope=True,dDescription="Generates a shield impervious to attack from both sides.")
+     Deployables(4)=(dClass=Class'BWBPOtherPackPro.WrenchAmmoCrate',SpawnOffset=16,WarpInTime=25.000000,AmmoReq=40,CheckSlope=True,dDescription="A crate which restocks ammunition to initial levels.")
+     Deployables(5)=(dClass=Class'UT2k4Assault.ASTurret_Minigun',SpawnOffset=36,WarpInTime=35.000000,AmmoReq=40,CheckSlope=True,dDescription="A static minigun turret. Resistant to attacks.")
+     AltDeployable=(dClass=Class'BWBPOtherPackPro.WrenchEnergyBarrier',WarpInTime=0.500000,SpawnOffset=52,AmmoReq=10,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
      PlayerSpeedFactor=1.100000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPOtherPackTex.Wrench.BigIcon_Wrench'
