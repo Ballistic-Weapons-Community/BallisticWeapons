@@ -16,8 +16,8 @@ defaultproperties
 {
      RifleFireSound=Sound'PackageSounds4Pro.CYLO.CYLO-Fire'
      MeleeFireSound=Sound'BallisticSounds3.A73.A73Stab'
-     CutOffDistance=4608.000000
-     CutOffStartRange=2048.000000
+     CutOffDistance=3072.000000
+     CutOffStartRange=1280.000000
      TraceRange=(Min=8000.000000,Max=12000.000000)
      WaterRangeFactor=0.800000
      MaxWallSize=32.000000

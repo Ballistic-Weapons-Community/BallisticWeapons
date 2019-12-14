@@ -33,7 +33,7 @@ defaultproperties
      MaxDesireability=2.000000
      bAmbientGlow=False
      bPredictRespawns=True
-     RespawnTime=82.000000
+     RespawnTime=90.000000
      PickupMessage="You got the Damage Amplifier."
      PickupSound=Sound'BallisticSounds2.Udamage.UDamagePickup'
      PickupForce="UDamagePickup"

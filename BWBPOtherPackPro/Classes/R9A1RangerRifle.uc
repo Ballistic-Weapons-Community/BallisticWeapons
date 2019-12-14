@@ -491,7 +491,7 @@ defaultproperties
      bNoCrosshairInScope=True
      SightZoomFactor=20
      SightPivot=(Roll=11800)
-     SightOffset=(X=30.000000,Y=2.850000,Z=9.000000)
+     SightOffset=(X=15.000000,Y=2.850000,Z=9.000000)
      SightDisplayFOV=25.000000
      GunLength=80.000000
      CrouchAimFactor=0.750000

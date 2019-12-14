@@ -64,16 +64,17 @@ simulated function InstantFireEffects(byte Mode)
 	{
 		if (!bSilenced)
 		{
-			XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
+			XS = FireClass.default.XInaccuracy; 
+			YS = Fireclass.default.YInaccuracy;
 		}
 		else
 		{
-			XS = 96; YS = 96;
+			XS = 64; YS = 64;
 		}
 		if (!bScoped)
 		{
-			XS *= 5;
-			YS *= 5;
+			XS *= FireClass.static.GetAttachmentDispersionFactor();
+			YS *= FireClass.static.GetAttachmentDispersionFactor();
 		}
 		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
 		Start = Instigator.Location + Instigator.EyePosition();

@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class M925PrimaryFire extends BallisticProInstantFire;
+class M925PrimaryFire extends BallisticRangeAttenFire;
 
 simulated function ModeDoFire()
 {
@@ -33,6 +33,9 @@ simulated function PreBeginPlay()
 
 defaultproperties
 {
+	 CutOffStartRange=3072
+	 CutOffDistance=6144
+	 RangeAtten=0.6
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WaterRangeFactor=0.800000
      MaxWallSize=96.000000

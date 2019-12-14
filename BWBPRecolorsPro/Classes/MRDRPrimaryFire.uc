@@ -26,16 +26,16 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=2048.000000
-     CutOffStartRange=1024.000000
+     CutOffDistance=1536.000000
+     CutOffStartRange=378.000000
      WaterRangeFactor=0.400000
      MaxWallSize=16.000000
      MaxWalls=1
      Damage=20.000000
      DamageHead=40.000000
      DamageLimb=20.000000
-     RangeAtten=0.600000
-     WaterRangeAtten=0.300000
+     RangeAtten=0.200000
+     WaterRangeAtten=0.200000
      DamageType=Class'BWBPRecolorsPro.DT_MRDR88Body'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_MRDR88Head'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_MRDR88Body'

@@ -13,8 +13,8 @@ class M50PrimaryFire extends BallisticRangeAttenFire;
 
 defaultproperties
 {
-     CutOffDistance=5120.000000
-     CutOffStartRange=2304.000000
+     CutOffDistance=3072.000000
+     CutOffStartRange=1536.000000
      TraceRange=(Min=12000.000000,Max=15000.000000)
      WaterRangeFactor=0.800000
      MaxWallSize=48.000000

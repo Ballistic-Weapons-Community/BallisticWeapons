@@ -2,8 +2,8 @@ class CX85PrimaryFire extends BallisticRangeAttenFire;
 
 defaultproperties
 {
-     CutOffDistance=8192.000000
-     CutOffStartRange=4096.000000
+     CutOffDistance=6144.000000
+     CutOffStartRange=3072.000000
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WaterRangeFactor=0.800000
      MaxWallSize=48.000000
@@ -11,7 +11,7 @@ defaultproperties
      Damage=24.000000
      DamageHead=48.000000
      DamageLimb=24.000000
-     RangeAtten=0.500000
+     RangeAtten=0.350000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPOtherPackPro.DTCX85Bullet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTCX85BulletHead'

@@ -11,8 +11,8 @@ class XMK5PrimaryFire extends BallisticRangeAttenFire;
 
 defaultproperties
 {
-     CutOffDistance=2048.000000
-     CutOffStartRange=1536.000000
+     CutOffDistance=2560.000000
+     CutOffStartRange=1024.000000
      TraceRange=(Min=7000.000000,Max=7000.000000)
      WaterRangeFactor=0.800000
      MaxWallSize=48.000000
@@ -20,8 +20,8 @@ defaultproperties
      Damage=26.000000
      DamageHead=52.000000
      DamageLimb=26.000000
-     RangeAtten=0.500000
-     WaterRangeAtten=0.700000
+     RangeAtten=0.2500000
+     WaterRangeAtten=0.300000
      DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
      DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
      DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'

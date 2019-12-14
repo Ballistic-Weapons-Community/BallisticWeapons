@@ -5,7 +5,7 @@
 //  Originally written by Sergeant_Kelly based on code by DarkCarnivour.
 //  Modified by Azarael.
 //  =============================================================================
-class BulldogPrimaryFire extends BallisticProInstantFire;
+class BulldogPrimaryFire extends BallisticRangeAttenFire;
 
 var() class<actor>			AltBrassClass1;			//Alternate Fire's brass
 var() class<actor>			AltBrassClass2;			//Alternate Fire's brass (whole FRAG-12)
@@ -79,6 +79,9 @@ function EjectFRAGBrass()
 
 defaultproperties
 {
+	 CutOffStartRange=2048
+	 CutOffDistance=5120
+	 RangeAtten=0.5
      AltBrassClass1=Class'BWBPRecolorsPro.Brass_FRAGSpent'
      AltBrassClass2=Class'BWBPRecolorsPro.Brass_FRAG'
      TraceRange=(Min=30000.000000,Max=30000.000000)

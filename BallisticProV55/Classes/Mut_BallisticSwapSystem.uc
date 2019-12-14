@@ -1,4 +1,6 @@
-class Mut_BallisticSwapSystem extends Mut_BallisticSwap config(System);
+class Mut_BallisticSwapSystem extends Mut_BallisticSwap 
+	config(System) 
+	CacheExempt;
 
 defaultproperties
 {

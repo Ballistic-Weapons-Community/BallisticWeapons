@@ -179,8 +179,8 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 defaultproperties
 {
      HeatPerShot=0.900000
-     CutOffDistance=6144.000000
-     CutOffStartRange=3072.000000
+     CutOffDistance=4096.000000
+     CutOffStartRange=2048.000000
      TraceRange=(Min=10000.000000,Max=12000.000000)
      WaterRangeFactor=0.200000
      MaxWallSize=72.000000

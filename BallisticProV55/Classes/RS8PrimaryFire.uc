@@ -66,21 +66,27 @@ function ServerPlayFiring()
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 
-    if (FireCount > 0)
-    {
-        if (Weapon.HasAnim(FireLoopAnim))
-            BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-        else
-            BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-    }
-    else
-        BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	CheckClipFinished();
+
+	if (AimedFireAnim != '')
+	{
+		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+		if (BW.BlendFire())		
+			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
+	}
+
+	else
+	{
+		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
+			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
+		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	}
 }
 
 //Do the spread on the client side
 function PlayFiring()
 {
-	if (BW.MagAmmo - ConsumedLoad < 2)
+	if (BW.MagAmmo - ConsumedLoad < 1)
 	{
 		BW.IdleAnim = 'OpenIdle';
 		BW.ReloadAnim = 'OpenReload';
@@ -98,15 +104,33 @@ function PlayFiring()
 	else
 		Weapon.SetBoneScale (0, 0.0, RS8Pistol(Weapon).SilencerBone);
 
-	BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	if (ScopeDownOn == SDO_Fire)
+		BW.TemporaryScopeDown(0.5, 0.9);
+		
+	if (AimedFireAnim != '')
+	{
+		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+		if (BW.BlendFire())		
+			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
+	}
 
+	else
+	{
+		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
+			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
+		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	}
+	
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
-
+	// End code from normal PlayFiring()
+	
 	if (RS8Pistol(Weapon) != None && RS8Pistol(Weapon).bSilenced && SilencedFireSound.Sound != None)
 		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,true);
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
+
+	CheckClipFinished();
 }
 
 defaultproperties
@@ -114,15 +138,16 @@ defaultproperties
      SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
-     CutOffDistance=3072.000000
-     CutOffStartRange=768.000000
+	 TraceRange=(Min=4000.000000,Max=4000.000000)
+     CutOffDistance=2048.000000
+     CutOffStartRange=256.000000
      WaterRangeFactor=0.450000
      MaxWallSize=24.000000
      MaxWalls=2
-     Damage=22.000000
-     DamageHead=44.000000
-     DamageLimb=22.000000
-     RangeAtten=0.200000
+     Damage=27.000000
+     DamageHead=40.000000
+     DamageLimb=27.000000
+     RangeAtten=0.250000
      WaterRangeAtten=0.400000
      DamageType=Class'BallisticProV55.DTRS8Pistol'
      DamageTypeHead=Class'BallisticProV55.DTRS8PistolHead'
@@ -135,13 +160,14 @@ defaultproperties
      BrassOffset=(X=-14.000000,Z=-5.000000)
      RecoilPerShot=768.000000
      FireChaos=0.250000
-     XInaccuracy=128.000000
-     YInaccuracy=128.000000
+     XInaccuracy=96.000000
+     YInaccuracy=96.000000
      SilencedFireSound=(Sound=Sound'BWAddPack-RS-Sounds.Pistol.RSP-SilenceFire',Volume=0.700000,Radius=76.000000,bAtten=True)
      BallisticFireSound=(Sound=Sound'BWAddPack-RS-Sounds.Pistol.RSP-Fire',Volume=1.100000)
      bPawnRapidFireAnim=True
-     FireAnimRate=1.500000
-     FireRate=0.225000
+	 FireEndAnim=
+     FireAnimRate=2
+     FireRate=0.320000
      AmmoClass=Class'BallisticProV55.Ammo_RS8Bullets'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

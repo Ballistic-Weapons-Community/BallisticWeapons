@@ -245,8 +245,8 @@ defaultproperties
      SMuzzleFlashClass=Class'BWBPRecolorsPro.LK05SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=0.750000
-     CutOffDistance=6144.000000
-     CutOffStartRange=3072.000000
+     CutOffDistance=3072.000000
+     CutOffStartRange=1792.000000
      TraceRange=(Min=9000.000000,Max=11000.000000)
      WaterRangeFactor=0.800000
      MaxWallSize=32.000000

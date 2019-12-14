@@ -48,16 +48,21 @@ simulated function InstantFireEffects(byte Mode)
 		XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
 		if(!bScoped)
 		{
-			XS *= 3;
-			YS *= 3;
+			XS *= FireClass.static.GetAttachmentDispersionFactor();
+			YS *= FireClass.static.GetAttachmentDispersionFactor();
 		}
 		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
+		
 		Start = Instigator.Location + Instigator.EyePosition();
+		
 		for (i=0;i<FireClass.default.TraceCount;i++)
 		{
 			mHitActor = None;
+			
 			Range = Lerp(FRand(), RMin, RMax);
+			
 			R = Rotator(mHitLocation);
+			
 			switch (FireClass.default.FireSpreadMode)
 			{
 				case FSM_Scatter:
@@ -75,6 +80,7 @@ simulated function InstantFireEffects(byte Mode)
 					R.Pitch += ((FRand()*YS*2)-YS);
 					break;
 			}
+			
 			End = Start + Vector(R) * Range;
 			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
 			if (mHitActor == None)

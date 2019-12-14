@@ -53,7 +53,7 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
-     CutOffDistance=3072.000000
+     CutOffDistance=2048.000000
      CutOffStartRange=768.000000
      TraceRange=(Min=8000.000000,Max=9000.000000)
      WaterRangeFactor=0.800000
@@ -62,8 +62,8 @@ defaultproperties
      Damage=60.000000
      DamageHead=120.000000
      DamageLimb=60.000000
-     RangeAtten=0.200000
-     WaterRangeAtten=0.600000
+     RangeAtten=0.3500000
+     WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTD49Revolver'
      DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
      DamageTypeArm=Class'BallisticProV55.DTD49Revolver'

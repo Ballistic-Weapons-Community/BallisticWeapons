@@ -146,7 +146,7 @@ defaultproperties
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
      CutOffDistance=5120.000000
-     CutOffStartRange=2304.000000
+     CutOffStartRange=2048.000000
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WaterRangeFactor=0.800000
      MaxWallSize=32.000000

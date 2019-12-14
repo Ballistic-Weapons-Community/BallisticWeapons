@@ -102,6 +102,11 @@ static function FireModeStats GetStats()
 	return FS;
 }
 
+static function float GetAttachmentDispersionFactor()
+{
+	return 3.0f;
+}
+
 defaultproperties
 {
      TracerChance=0.500000

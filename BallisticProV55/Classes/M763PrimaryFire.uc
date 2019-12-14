@@ -83,16 +83,16 @@ simulated function DestroyEffects()
 defaultproperties
 {
      HipSpreadFactor=10.000000
-     CutOffDistance=4096.000000
-     CutOffStartRange=2048.000000
+     CutOffDistance=3072.000000
+     CutOffStartRange=1536.000000
      TraceCount=7
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=7500.000000,Max=7500.000000)
-     Damage=14.000000
-     DamageHead=14.000000
-     DamageLimb=14.000000
-     RangeAtten=0.250000
+     Damage=15.000000
+     DamageHead=15.000000
+     DamageLimb=15.000000
+     RangeAtten=0.40000
      DamageType=Class'BallisticProV55.DTM763Shotgun'
      DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
      DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
@@ -106,8 +106,8 @@ defaultproperties
      AimedFireAnim="FireCombinedSight"
      RecoilPerShot=1024.000000
      FireChaos=0.500000
-     XInaccuracy=72.000000
-     YInaccuracy=72.000000
+     XInaccuracy=96.000000
+     YInaccuracy=96.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.M763.M763Fire1',Volume=1.300000)
      FireAnim="FireCombined"
      FireEndAnim=

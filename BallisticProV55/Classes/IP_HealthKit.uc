@@ -16,7 +16,7 @@ function AnnouncePickup( Pawn Receiver )
 
 defaultproperties
 {
-     HealingAmount=35
+     HealingAmount=50
      bAmbientGlow=False
      PickupMessage="You picked up a Health Kit +"
      PickupSound=Sound'BallisticSounds2.Health.HealthKitPickup'

@@ -24,7 +24,7 @@ function PlayFiring()
 defaultproperties
 {
      CutOffDistance=3072.000000
-     CutOffStartRange=768.000000
+     CutOffStartRange=1280.000000
      TraceRange=(Min=8000.000000,Max=8000.000000)
      WaterRangeFactor=0.800000
      MaxWallSize=24.000000
@@ -32,8 +32,8 @@ defaultproperties
      Damage=55.000000
      DamageHead=82.000000
      DamageLimb=55.000000
-     RangeAtten=0.50000
-     WaterRangeAtten=0.600000
+     RangeAtten=0.40000
+     WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTleMatRevolver'
      DamageTypeHead=Class'BallisticProV55.DTleMatrevolverHead'
      DamageTypeArm=Class'BallisticProV55.DTleMatRevolver'

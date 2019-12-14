@@ -63,8 +63,8 @@ simulated function DestroyEffects()
 defaultproperties
 {
      HipSpreadFactor=2.000000
-     CutOffDistance=2048.000000
-     CutOffStartRange=768.000000
+     CutOffDistance=1280.000000
+     CutOffStartRange=512.000000
      MaxSpreadFactor=6
      TraceCount=3
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_ShotgunHE'

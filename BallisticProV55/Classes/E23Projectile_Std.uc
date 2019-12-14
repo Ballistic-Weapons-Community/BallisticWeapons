@@ -13,7 +13,7 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
 	
 	if (default.LifeSpan - LifeSpan > 0.1)
-		Dmg *= 1 + 1.5 * FMin(default.LifeSpan - LifeSpan - 0.1, 0.7) / 0.7;
+		Dmg *= 1 + 1 * FMin(default.LifeSpan - LifeSpan - 0.1, 0.5) / 0.5;
 		
 	return Other;
 }

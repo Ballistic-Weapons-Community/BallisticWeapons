@@ -218,7 +218,7 @@ function TakeDamage(int Damage, Pawn InstigatedBy, Vector HitLocation, Vector Mo
 	
     Health -= ActualDamage;
 	
-	if (Damage > 0 && DamageType != class'DamType_Overtime')
+	if (Damage > 0 && DamageType != class'DamType_Overtime' && (instigatedBy == None || instigatedBy.GetTeamNum() != GetTeamNum() || GetTeamNum() == 255))
 		LastDamagedTime = Level.TimeSeconds;
 
     if ( HitLocation == vect(0,0,0) )

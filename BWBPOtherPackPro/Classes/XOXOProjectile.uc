@@ -14,7 +14,7 @@ simulated function PreBeginPlay()
 static function float ScaleDistanceDamage(float lifespan)
 {
 	if (class'XOXOProjectile'.default.LifeSpan - lifespan > 0.1)
-		return 1 + 1.75 * FMin(class'XOXOProjectile'.default.LifeSpan - lifespan - 0.1, 0.5) / 0.5;
+		return 1 + 0.75 * FMin(class'XOXOProjectile'.default.LifeSpan - lifespan - 0.1, 0.5) / 0.5;
 		
 	return 1;
 }

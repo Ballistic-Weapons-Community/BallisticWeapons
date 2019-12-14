@@ -322,7 +322,7 @@ defaultproperties
      WeaponModes(1)=(Value=4.000000)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     bNoCrosshairInScope=True
+     bNoCrosshairInScope=False
      SightPivot=(Pitch=450)
      SightOffset=(X=5.000000,Z=11.700000)
      SightDisplayFOV=40.000000

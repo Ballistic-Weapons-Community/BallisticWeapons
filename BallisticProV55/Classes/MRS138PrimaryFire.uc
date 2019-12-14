@@ -24,7 +24,7 @@ function PlayFiring()
 	}
 	else
 	{
-		AimedFireAnim='FireCombined';
+		AimedFireAnim='SightFireCombined';
 		FireAnim = 'FireCombined';
 	}
 	super.PlayFiring();
@@ -39,7 +39,7 @@ function ServerPlayFiring()
 	}
 	else
 	{
-		AimedFireAnim='FireCombined';
+		AimedFireAnim='SightFireCombined';
 		FireAnim = 'FireCombined';
 	}
 	super.ServerPlayFiring();
@@ -47,8 +47,8 @@ function ServerPlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=2560.000000
-     CutOffStartRange=1024.000000
+     CutOffDistance=1536.000000
+     CutOffStartRange=768.000000
      TraceCount=10
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'

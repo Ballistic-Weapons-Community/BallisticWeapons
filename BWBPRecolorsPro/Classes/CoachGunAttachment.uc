@@ -218,8 +218,8 @@ simulated function ShotgunFireEffects(byte Mode)
 		XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
 		if (!bScoped)
 		{
-			XS *= 3;
-			YS *= 3;
+			XS *= FireClass.static.GetAttachmentDispersionFactor();
+			YS *= FireClass.static.GetAttachmentDispersionFactor();
 		}
 		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
 		Start = Instigator.Location + Instigator.EyePosition();

@@ -11,7 +11,7 @@ class AM67PrimaryFire extends BallisticRangeAttenFire;
 defaultproperties
 {
      CutOffDistance=2048.000000
-     CutOffStartRange=1536.000000
+     CutOffStartRange=1024.000000
      WaterRangeFactor=0.500000
      MaxWallSize=64.000000
      MaxWalls=2

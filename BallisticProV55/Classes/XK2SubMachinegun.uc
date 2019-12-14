@@ -188,7 +188,7 @@ function float SuggestDefenseStyle()	{	return -0.6;	}
 
 defaultproperties
 {
-	 AimDisplacementDurationMult=0.66
+	 AimDisplacementDurationMult=0.75
      SilencerBone="Silencer"
      SilencerOnAnim="SilencerOn"
      SilencerOffAnim="SilencerOff"

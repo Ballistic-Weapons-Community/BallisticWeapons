@@ -72,22 +72,34 @@ simulated function SwitchWeaponMode (byte newMode)
 {
 	if (newMode == 1) //Slug Mode
 	{
-		XInaccuracy=3;
-		YInaccuracy=3;
+		XInaccuracy=32;
+		YInaccuracy=32;
+		
 		TraceCount=1;
+		
 		TraceRange.Min=9000;
 		TraceRange.Max=9000;
-		CutOffStartRange=3072;
-		CutOffDistance=4096;
-     	RangeAtten=0.80000;
+		
+		CutOffDistance=3072;
+     	RangeAtten=0.50000;
+		
      	FlashScaleFactor=3.000000;
-		Damage=67;
-		DamageHead=100;
-		DamageLimb=67;
+		
+		Damage=55;
+		DamageHead=83;
+		DamageLimb=55;
+		
+		KickForce = 20000;
+		
+		PenetrateForce=500;
+		bPenetrate=True;
+		
 		BallisticFireSound.Sound=SlugFireSound;
 		BallisticFireSound.Volume=7.1;
+		
 		if (Weapon.ThirdPersonActor != None)
 			CoachGunAttachment(Weapon.ThirdPersonActor).bSlugMode=true;
+			
 		DamageType=Class'DTCoachSlug';
 		DamageTypeArm=Class'DTCoachSlug';
 		DamageTypeHead=Class'DTCoachSlug';
@@ -99,23 +111,37 @@ simulated function SwitchWeaponMode (byte newMode)
 	{
 		XInaccuracy=default.XInaccuracy;
 		YInaccuracy=default.YInaccuracy;
+		
 		TraceCount=default.TraceCount;
+		
 		TraceRange.Min=default.TraceRange.Min;
 		TraceRange.Max=default.TraceRange.Max;
-		CutOffStartRange=default.CutOffStartRange;
+		
 		CutOffDistance=default.CutOffDistance;
 		RangeAtten=default.RangeAtten;
+		
 		FlashScaleFactor=default.FlashScaleFactor;
+		
 		Damage = Default.Damage;
 		DamageHead = Default.DamageHead;
 		DamageLimb = Default.DamageLimb;
+		
+		KickForce=default.KickForce;
+		
+		PenetrateForce=0;
+		bPenetrate=False;
+		
 		RecoilPerShot=Default.RecoilPerShot;
+		
 		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
 		BallisticFireSound.Volume=default.BallisticFireSound.Volume;
+		
 		CoachGunAttachment(Weapon.ThirdPersonActor).bSlugMode=false;
+		
 		DamageType=Class'DTCoachShot';
 		DamageTypeArm=Class'DTCoachShot';
 		DamageTypeHead=Class'DTCoachShot';
+		
 		GotoState('');
 	}
 }
@@ -137,7 +163,7 @@ simulated state Slug
 		R = Rotator(GetFireSpread() >> Aim);
 		
 		if (ConsumedLoad == 2)
-			DoubleTrace(StartTrace, R, vect(0,12,0));
+			DoubleTrace(StartTrace, R, vect(0,8,0));
 		else
 			DoTrace(StartTrace + (vect(0,-12,0) >> Rotator(StartTrace)), R);
 
@@ -603,49 +629,47 @@ function FlashMuzzleFlash()
 
 defaultproperties
 {
-     SlugFireSound=Sound'PackageSounds4ProExp.Redwood.SuperMagnum-Fire'
-     AimedFireEmptyAnim="SightFire"
-     FireEmptyAnim="Fire"
-     HipSpreadFactor=4.000000
-     CutOffDistance=2048.000000
-     CutOffStartRange=1280.000000
-     MaxSpreadFactor=2
-     TraceCount=5
-     TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
-     ImpactManager=Class'BallisticProV55.IM_Shell'
-     TraceRange=(Min=5000.000000,Max=7000.000000)
-     MaxWalls=1
-     Damage=14.000000
-     DamageHead=21.000000
-     DamageLimb=14.000000
-     RangeAtten=0.750000
-     DamageType=Class'BWBPRecolorsPro.DTCoachShot'
-     DamageTypeHead=Class'BWBPRecolorsPro.DTCoachShot'
-     DamageTypeArm=Class'BWBPRecolorsPro.DTCoachShot'
-     KickForce=11000
-     PenetrateForce=100
-     bPenetrate=True
-     MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     FlashScaleFactor=1.500000
-     BrassBone="EjectorR"
-     BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
-     AimedFireAnim="SightFireCombined"
-     RecoilPerShot=2048.000000
-     VelocityRecoil=450.000000
-     FireChaos=1.000000
-     XInaccuracy=300.000000
-     YInaccuracy=300.000000
-     BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Redwood.Redwood-Fire',Volume=1.200000)
-     FireAnim="FireCombined"
-     FireAnimRate=0.800000
-     FireRate=0.550000
-     AmmoClass=Class'BWBPRecolorsPro.Ammo_CoachShells'
-     ShakeRotMag=(X=128.000000,Y=64.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(X=-30.000000)
-     ShakeOffsetRate=(X=-1000.000000)
-     ShakeOffsetTime=2.000000
-     BotRefireRate=0.60000
-     WarnTargetPct=0.500000
+	SlugFireSound=Sound'PackageSounds4ProExp.Redwood.SuperMagnum-Fire'
+	AimedFireEmptyAnim="SightFire"
+	FireEmptyAnim="Fire"
+	HipSpreadFactor=4.000000
+	CutOffDistance=2048.000000
+	CutOffStartRange=1024.000000
+	MaxSpreadFactor=2
+	TraceCount=5
+	TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
+	ImpactManager=Class'BallisticProV55.IM_Shell'
+	TraceRange=(Min=5000.000000,Max=7000.000000)
+	MaxWalls=1
+	Damage=14.000000
+	DamageHead=21.000000
+	DamageLimb=14.000000
+	RangeAtten=0.250000
+	DamageType=Class'BWBPRecolorsPro.DTCoachShot'
+	DamageTypeHead=Class'BWBPRecolorsPro.DTCoachShot'
+	DamageTypeArm=Class'BWBPRecolorsPro.DTCoachShot'
+	KickForce=4000
+	MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+	FlashScaleFactor=1.500000
+	BrassBone="EjectorR"
+	BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
+	AimedFireAnim="SightFireCombined"
+	RecoilPerShot=2048.000000
+	VelocityRecoil=450.000000
+	FireChaos=1.000000
+	XInaccuracy=300.000000
+	YInaccuracy=300.000000
+	BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Redwood.Redwood-Fire',Volume=1.200000)
+	FireAnim="FireCombined"
+	FireAnimRate=0.800000
+	FireRate=0.550000
+	AmmoClass=Class'BWBPRecolorsPro.Ammo_CoachShells'
+	ShakeRotMag=(X=128.000000,Y=64.000000)
+	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+	ShakeRotTime=2.000000
+	ShakeOffsetMag=(X=-30.000000)
+	ShakeOffsetRate=(X=-1000.000000)
+	ShakeOffsetTime=2.000000
+	BotRefireRate=0.60000
+	WarnTargetPct=0.500000
 }

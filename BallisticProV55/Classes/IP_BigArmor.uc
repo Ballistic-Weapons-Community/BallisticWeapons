@@ -10,7 +10,9 @@ defaultproperties
 {
      MaxDesireability=1.500000
      InventoryType=Class'BallisticProV55.BallisticArmor'
-     RespawnTime=55.000000
+	 ArmorCharge=150
+     RespawnTime=60.000000
+	 bPredictRespawns=True
      PickupMessage="You picked up heavy combat armor."
      PickupSound=Sound'BallisticSounds2.Armor.BigArmorPickup'
      PickupForce="LargeShieldPickup"

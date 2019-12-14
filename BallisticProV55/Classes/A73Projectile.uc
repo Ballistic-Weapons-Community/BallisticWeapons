@@ -21,8 +21,8 @@ simulated function PostBeginPlay()
 
 static function float ScaleDistanceDamage(float lifespan)
 {
-	if (class'A73Projectile'.default.LifeSpan - lifespan > 0.1)
-		return 1 + 1.75 * FMin(class'A73Projectile'.default.LifeSpan - lifespan - 0.1, 0.5) / 0.5;
+	if (class'A73Projectile'.default.LifeSpan - lifespan > 0.05)
+		return 1 + 1.75 * FMin(class'A73Projectile'.default.LifeSpan - lifespan - 0.05, 0.5) / 0.5;
 		
 	return 1;
 }

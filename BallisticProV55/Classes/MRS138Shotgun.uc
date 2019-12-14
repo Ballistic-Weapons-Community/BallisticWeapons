@@ -345,8 +345,7 @@ defaultproperties
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     SightPivot=(Pitch=512)
-     SightOffset=(Z=27.400000)
+     SightOffset=(Z=18.00000)
      SightingTime=0.300000
      GunLength=32.000000
      LongGunPivot=(Pitch=4500,Yaw=-8000)

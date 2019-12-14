@@ -313,7 +313,7 @@ defaultproperties
      WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)
      WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
      CurrentWeaponMode=3
-     bNoCrosshairInScope=True
+     bNoCrosshairInScope=False
      SightPivot=(Pitch=128)
      SightOffset=(X=-6.000000,Z=5.350000)
      SightingTime=0.550000

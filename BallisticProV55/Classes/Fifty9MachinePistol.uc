@@ -269,7 +269,7 @@ defaultproperties
 {
 	AIRating=0.85
 	CurrentRating=0.85
-	 AimDisplacementDurationMult=0.33
+	 AimDisplacementDurationMult=0.5
      StockOpenAnim="StockOut"
      StockCloseAnim="StockIn"
      StockChaosAimSpread=2048

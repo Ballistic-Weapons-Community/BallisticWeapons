@@ -16,10 +16,11 @@ function AnnouncePickup( Pawn Receiver )
 
 defaultproperties
 {
-     HealingAmount=100
+     HealingAmount=200
      bSuperHeal=True
      bAmbientGlow=False
-     RespawnTime=90.000000
+     RespawnTime=60.000000
+	 bPredictRespawns=True
      PickupMessage="You picked up a Super Health Kit +"
      PickupSound=Sound'BallisticSounds2.Health.SuperHealthPickup'
      PickupForce="LargeHealthPickup"

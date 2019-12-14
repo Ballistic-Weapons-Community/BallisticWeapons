@@ -97,7 +97,7 @@ defaultproperties
 	CurrentRating=0.8
 	AIReloadTime=1.500000
 	AimAdjustTime=0.450000
-	AimDisplacementDurationMult=0.33
+	AimDisplacementDurationMult=0.75
 	AimSpread=16
 	AttachmentClass=Class'BallisticProV55.AM67Attachment'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'

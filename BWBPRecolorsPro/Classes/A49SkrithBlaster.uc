@@ -317,7 +317,7 @@ defaultproperties
 	ManualLines(1)="Projects a short-range shockwave, dealing low damage and pushing nearby enemies back.||Using this mode generates significant heat, and if the weapon overheats, the user will take damage."
 	ManualLines(2)="Effective at close range. Especially effective at repelling charges and melee."
      HeatDeclineDelay=0.200000
-	 AimDisplacementDurationMult=0.25
+	 AimDisplacementDurationMult=0.5
      BlastDamageType=Class'BWBPRecolorsPro.DTA49Shockwave'
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      UsedAmbientSound=Sound'BallisticSounds2.A73.A73Hum1'

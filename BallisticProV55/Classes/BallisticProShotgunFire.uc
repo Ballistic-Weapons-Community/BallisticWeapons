@@ -204,6 +204,11 @@ simulated event ModeDoFire()
 	}
 }
 
+static function float GetAttachmentDispersionFactor()
+{
+	return default.HipSpreadFactor;
+}
+
 defaultproperties
 {
      HipSpreadFactor=3.000000

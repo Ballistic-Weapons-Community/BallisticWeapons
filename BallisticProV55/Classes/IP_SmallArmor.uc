@@ -19,10 +19,11 @@ simulated function PostBeginplay()
 defaultproperties
 {
      AlternateMesh=StaticMesh'BallisticHardware2.Armor.SmallArmor2'
-     ArmorCharge=50
+     ArmorCharge=75
      MaxDesireability=1.000000
      InventoryType=Class'BallisticProV55.BallisticArmor'
-     RespawnTime=27.000000
+     RespawnTime=30.000000
+	 bPredictRespawns=True
      PickupMessage="You picked up a vest and helmet."
      PickupSound=Sound'BallisticSounds2.Armor.LightArmorPickup'
      PickupForce="ShieldPack"

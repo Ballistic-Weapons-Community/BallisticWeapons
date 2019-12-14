@@ -350,12 +350,12 @@ simulated event Tick (float DT)
 
 	if (FireMode[0].IsFiring())
 	{
-		BarrelSpeed = BarrelSpeed + FClamp(DesiredSpeed - BarrelSpeed, -0.4*DT, 0.25*DT);
+		BarrelSpeed = BarrelSpeed + FClamp(DesiredSpeed - BarrelSpeed, -0.45*DT, 0.35*DT);
 		BarrelTurn += BarrelSpeed * 655360 * DT;
 	}
 	else if (BarrelSpeed > 0)
 	{
-		BarrelSpeed = FMax(BarrelSpeed-0.4*DT, 0.01);
+		BarrelSpeed = FMax(BarrelSpeed-0.45*DT, 0.01);
 		OldBarrelTurn = BarrelTurn;
 		BarrelTurn += BarrelSpeed * 655360 * DT;
 		if (BarrelSpeed <= 0.025 && int(OldBarrelTurn/21845.33333) < int(BarrelTurn/21845.33333))

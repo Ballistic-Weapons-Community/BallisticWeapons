@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class MarlinPrimaryFire extends BallisticProInstantFire;
+class MarlinPrimaryFire extends BallisticRangeAttenFire;
 
 //// server propagation of firing ////
 function ServerPlayFiring()
@@ -65,6 +65,9 @@ function PlayFiring()
 
 defaultproperties
 {
+	 CutOffStartRange=3072
+	 CutOffDistance=6144
+	 RangeAtten=0.5
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WaterRangeFactor=0.800000
      MaxWallSize=96.000000

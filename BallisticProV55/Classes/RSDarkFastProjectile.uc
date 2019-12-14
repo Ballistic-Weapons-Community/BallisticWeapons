@@ -17,7 +17,7 @@ replication
 static function float ScaleDistanceDamage(float lifespan)
 {
 	if (class'RSDarkFastProjectile'.default.LifeSpan - lifespan > 0.05)
-		return 1 + (1 * (FMin(class'RSDarkFastProjectile'.default.LifeSpan - lifespan, 0.4) / 0.4));
+		return 1 + (0.75 * (FMin(class'RSDarkFastProjectile'.default.LifeSpan - lifespan, 0.4) / 0.4));
 		
 	return 1;
 }

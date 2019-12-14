@@ -371,7 +371,7 @@ defaultproperties
 {
 	AIRating=0.85
 	CurrentRating=0.85
-	 AimDisplacementDurationMult=0.33
+	 AimDisplacementDurationMult=0.5
      SilencerBone="Silencer"
      SilencerOnAnim="SilencerOn"
      SilencerOffAnim="SilencerOff"
@@ -401,7 +401,7 @@ defaultproperties
      ClipInFrame=0.650000
      WeaponModes(0)=(bUnavailable=True)
      WeaponModes(1)=(ModeName="Burst")
-     bNoCrosshairInScope=True
+     bNoCrosshairInScope=False
      SightOffset=(X=-10.000000,Z=12.200000)
 	 SightPivot=(Pitch=512)
      SightDisplayFOV=60.000000

@@ -10,7 +10,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class M353PrimaryFire extends BallisticProInstantFire;
+class M353PrimaryFire extends BallisticRangeAttenFire;
 
 event ModeDoFire()
 {
@@ -30,6 +30,9 @@ simulated function vector GetFireDir(out Vector StartTrace)
 
 defaultproperties
 {
+	 CutOffDistance=4096
+	 CutOffStartRange=2560
+	 RangeAtten=0.35
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WaterRangeFactor=0.800000
      MaxWallSize=48.000000

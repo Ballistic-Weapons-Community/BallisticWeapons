@@ -87,7 +87,9 @@ simulated function SwitchSilencerMode(bool bSilenced)
 		YInaccuracy	=	64;
 		RecoilPerShot *= 0.65;
 		Damage *= 0.8;
-		RangeAtten *= 1.5;
+		RangeAtten = 0.65;
+		CutOffStartRange=1536;
+		CutOffDistance=2048;
 	}
 	
 	else
@@ -97,6 +99,8 @@ simulated function SwitchSilencerMode(bool bSilenced)
 		RecoilPerShot=default.RecoilPerShot;
 		Damage = default.Damage;
 		RangeAtten = default.RangeAtten;
+		CutOffStartRange = default.CutOffStartRange;
+		CutOffDistance = default.CutOffDistance;
 	}
 }
 
@@ -135,9 +139,9 @@ defaultproperties
      SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
-     HipSpreadFactor=8.000000
-     CutOffDistance=4096.000000
-     CutOffStartRange=1280.000000
+     HipSpreadFactor=6.000000
+     CutOffDistance=1536.000000
+     CutOffStartRange=768.000000
      TraceCount=6
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_Flechette'
      ImpactManager=Class'BallisticProV55.IM_Shell'
@@ -145,7 +149,7 @@ defaultproperties
      Damage=15.000000
      DamageHead=22.000000
      DamageLimb=15.000000
-     RangeAtten=0.650000
+     RangeAtten=0.40000
      DamageType=Class'BWBPRecolorsPro.DTM781Shotgun'
      DamageTypeHead=Class'BWBPRecolorsPro.DTM781ShotgunHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTM781Shotgun'

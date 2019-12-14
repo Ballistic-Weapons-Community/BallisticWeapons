@@ -5,8 +5,8 @@ class M46PrimaryFireQS extends BallisticRangeAttenFire;
 
 defaultproperties
 {
-     CutOffDistance=6144.000000
-     CutOffStartRange=3072.000000
+     CutOffDistance=3072.000000
+     CutOffStartRange=1536.000000
      TraceRange=(Min=12000.000000,Max=15000.000000)
      WaterRangeFactor=0.800000
      MaxWallSize=64.000000
@@ -14,7 +14,7 @@ defaultproperties
      Damage=30.000000
      DamageHead=30.000000
      DamageLimb=30.000000
-     RangeAtten=0.400000
+     RangeAtten=0.40000
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTM46AssaultQS'
      DamageTypeHead=Class'BallisticProV55.DTM46AssaultQSHead'
