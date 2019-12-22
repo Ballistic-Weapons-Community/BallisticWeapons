@@ -633,8 +633,8 @@ defaultproperties
 	AimedFireEmptyAnim="SightFire"
 	FireEmptyAnim="Fire"
 	HipSpreadFactor=4.000000
-	CutOffDistance=2048.000000
-	CutOffStartRange=1024.000000
+	CutOffDistance=2560.000000
+	CutOffStartRange=1280.000000
 	MaxSpreadFactor=2
 	TraceCount=5
 	TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'

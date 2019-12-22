@@ -68,15 +68,12 @@ simulated function UpdateEndpoint()
 	local xWeaponAttachment Attachment;
 	local vector OffsetVector;
 	
-	if (Instigator == None || Instigator.Weapon == None || Instigator.Weapon.ThirdPersonActor == None)
-		return;
-		
-	Attachment = XWeaponAttachment(Instigator.Weapon.ThirdPersonActor);
-	
+	if (Instigator != None && Instigator.Weapon != None && Instigator.Weapon.ThirdPersonActor != None)	
+		Attachment = XWeaponAttachment(Instigator.Weapon.ThirdPersonActor);
 	
 	SetRotation(rot(0,0,0));
 	
-	if (Instigator.IsLocallyControlled())
+	if (Instigator != None && Instigator.IsLocallyControlled())
 	{
 		if (!Instigator.IsFirstPerson())
 		{
@@ -86,12 +83,10 @@ simulated function UpdateEndpoint()
 				SetLocation(Attachment.GetTipLocation());
 		}
 	}
-	else
-	{
-		if (Attachment != None)
-			SetLocation(Attachment.GetBoneCoords('tip').Origin);
-		else SetLocation(StartPoint);
-	}
+	else if (Attachment != None)
+		SetLocation(Attachment.GetBoneCoords('tip').Origin);
+	else 
+		SetLocation(StartPoint);
 	
 	if (Target != None)
 		OffsetVector = Target.Location - Location;

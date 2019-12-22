@@ -358,7 +358,8 @@ defaultproperties
      ChaosAimSpread=0
      RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
      RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.200000),(InVal=1.000000)))
-     RecoilYFactor=1.000000
+     RecoilXFactor=0.3
+	 RecoilYFactor=0.4
      RecoilDeclineDelay=0.650000
      FireModeClass(0)=Class'BallisticProV55.MRS138PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.MRS138SecondaryFire'

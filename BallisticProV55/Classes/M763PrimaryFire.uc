@@ -82,7 +82,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-     HipSpreadFactor=10.000000
+     HipSpreadFactor=6.000000
      CutOffDistance=3072.000000
      CutOffStartRange=1536.000000
      TraceCount=7
@@ -106,8 +106,8 @@ defaultproperties
      AimedFireAnim="FireCombinedSight"
      RecoilPerShot=1024.000000
      FireChaos=0.500000
-     XInaccuracy=96.000000
-     YInaccuracy=96.000000
+     XInaccuracy=150.000000
+     YInaccuracy=150.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.M763.M763Fire1',Volume=1.300000)
      FireAnim="FireCombined"
      FireEndAnim=

@@ -491,7 +491,7 @@ defaultproperties
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
      RecoilXFactor=0.250000
      RecoilYFactor=0.250000
-     RecoilMinRandFactor=0.500000
+
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.150000
      FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'

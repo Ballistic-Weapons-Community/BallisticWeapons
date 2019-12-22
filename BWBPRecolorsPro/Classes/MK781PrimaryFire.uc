@@ -140,8 +140,8 @@ defaultproperties
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
      HipSpreadFactor=6.000000
-     CutOffDistance=1536.000000
-     CutOffStartRange=768.000000
+     CutOffDistance=2560.000000
+     CutOffStartRange=1280.000000
      TraceCount=6
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_Flechette'
      ImpactManager=Class'BallisticProV55.IM_Shell'

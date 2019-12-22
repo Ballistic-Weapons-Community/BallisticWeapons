@@ -26,7 +26,7 @@ simulated function SwitchWeaponMode (byte NewMode)
      	FlashScaleFactor=2;
      	XInaccuracy=100.000000;
      	YInaccuracy=100.000000;
-		CutOffDistance=3072;
+		CutOffDistance=4096;
 		CutOffStartRange=2048;
 	}
 	
@@ -61,8 +61,8 @@ defaultproperties
      ClassicFireSound=Sound'PackageSounds4Pro.SKAS.SKAS-Classic'
      UltraFireSound=Sound'PackageSounds4Pro.SKAS.SKAS-Ultra2'
      XR4FireSound=Sound'PackageSounds4Pro.XR4.XR4-Fire'
-     CutOffDistance=2048.000000
-     CutOffStartRange=610.000000
+     CutOffDistance=3072.000000
+     CutOffStartRange=1280.000000
      TraceCount=7
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'

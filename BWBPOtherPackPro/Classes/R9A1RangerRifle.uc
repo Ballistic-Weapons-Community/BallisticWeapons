@@ -499,14 +499,15 @@ defaultproperties
      AimAdjustTime=0.600000
      ChaosSpeedThreshold=3000.000000
      ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.070000),(InVal=0.500000,OutVal=0.040000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.050000),(InVal=0.500000,OutVal=0.020000),(InVal=1.000000)))
+     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.175000),(InVal=0.400000,OutVal=0.450000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
      RecoilXFactor=0.300000
      RecoilYFactor=0.200000
      RecoilMinRandFactor=0.500000
      RecoilDeclineDelay=0.350000
      FireModeClass(0)=Class'BWBPOtherPackPro.R9A1PrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.R9A1ScopeFire'
+	 SightingTime=0.4
      SelectAnimRate=1.100000
      BringUpTime=0.400000
      SelectForce="SwitchToAssaultRifle"

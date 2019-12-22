@@ -173,7 +173,7 @@ defaultproperties
      MeleeFireClass=Class'BWBPRecolorsPro.SK410MeleeFire'
      BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
-     MagAmmo=6
+     MagAmmo=8
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'PackageSounds4Pro.SK410.SK410-Cock',Volume=1.400000)
      ReloadAnimRate=1.250000
@@ -194,14 +194,12 @@ defaultproperties
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      AimSpread=0
      ChaosAimSpread=0
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.070000),(InVal=0.300000,OutVal=-0.150000),(InVal=0.500000,OutVal=0.050000),(InVal=0.750000,OutVal=0.120000),(InVal=1.000000,OutVal=-0.050000)))
+     RecoilXCurve=(Points=(,(InVal=0.500000,OutVal=0.000000),(InVal=0.700000,OutVal=-0.200000),(InVal=0.8500000,OutVal=0.15000),(InVal=0.750000,OutVal=0.050000),(InVal=1.000000,OutVal=0)))
      RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
      RecoilYFactor=0.5
 	 RecoilXFactor=0.3
-     RecoilMinRandFactor=0.250000
-     RecoilMax=8192.000000
      RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.750000
+     RecoilDeclineDelay=0.330000
      FireModeClass(0)=Class'BWBPRecolorsPro.SK410PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.SK410SecondaryFire'
      SelectAnimRate=1.600000

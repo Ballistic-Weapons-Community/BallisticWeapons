@@ -4635,8 +4635,8 @@ defaultproperties
      RecoilYCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
      RecoilPitchFactor=1.000000
      RecoilYawFactor=1.000000
-     RecoilXFactor=0.500000
-     RecoilYFactor=0.500000
+     RecoilXFactor=0.000000
+     RecoilYFactor=0.000000
      RecoilMax=4096.000000
      RecoilDeclineTime=2.000000
      RecoilDeclineDelay=0.300000

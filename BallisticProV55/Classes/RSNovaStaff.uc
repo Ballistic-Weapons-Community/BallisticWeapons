@@ -155,10 +155,10 @@ simulated function EndRampage()
 	if (Wings != None)
 		Wings.Kill();
 
-	WeaponModes[3].bUnavailable=true;
-	WeaponModes[4].bUnavailable=true;
+	//WeaponModes[3].bUnavailable=true;
+	//WeaponModes[4].bUnavailable=true;
 
-	CurrentWeaponMode = 0;
+	//CurrentWeaponMode = 0;
 //	if (!Instigator.IsLocallyControlled())
 		RSNovaPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 	SoulPower = 0; //fix for slightly negative soul power

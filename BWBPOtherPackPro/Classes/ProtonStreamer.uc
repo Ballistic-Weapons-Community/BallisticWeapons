@@ -124,9 +124,12 @@ simulated function RenderOverlays (Canvas C)
 		StreamEffect.bHidden = true;
 		StreamEffect.SetLocation(ConvertFOVs(GetBoneCoords('tip').Origin, DisplayFOV, Instigator.Controller.FovAngle, 96));
 		
-		if (StreamEffect.Target != None)
+		//if (StreamEffect.Target != None)
+		
+		
 			StreamEffect.UpdateEndpoint();
-		else
+			
+		/*else
 		{
 			StreamEffect.SetRotation(BallisticFire(FireMode[0]).GetFireAim(Start));
 			AimDir = BallisticFire(FireMode[0]).GetFireAim(Start);
@@ -153,6 +156,8 @@ simulated function RenderOverlays (Canvas C)
 					BeamEmitter(StreamEffect.Emitters[i]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(HitLocation, HitLocation);
 			else BeamEmitter(StreamEffect.Emitters[0]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(HitLocation, HitLocation);
 		}
+		*/
+		
 		C.DrawActor(StreamEffect, false, false, Instigator.Controller.FovAngle);
 	}
 }

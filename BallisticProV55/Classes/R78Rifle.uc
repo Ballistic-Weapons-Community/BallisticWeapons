@@ -122,8 +122,8 @@ defaultproperties
      ChaosSpeedThreshold=2400.000000
      ChaosAimSpread=2048
      RecoilYawFactor=0.100000
-     RecoilXFactor=0.750000
-     RecoilYFactor=0.400000
+     RecoilXFactor=0.40000
+     RecoilYFactor=0.300000
      RecoilDeclineTime=1.000000
      FireModeClass(0)=Class'BallisticProV55.R78PrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
