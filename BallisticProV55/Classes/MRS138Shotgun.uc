@@ -327,7 +327,7 @@ defaultproperties
      PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
 	 PutDownAnimRate=1.5
 	 PutDownTime=0.35
-     MagAmmo=5
+     MagAmmo=6
      CockAnimRate=1.200000
      CockSound=(Sound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-Cock',Volume=0.800000)
      ReloadAnim="ReloadLoop"
@@ -345,7 +345,8 @@ defaultproperties
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     SightOffset=(Z=18.00000)
+     SightOffset=(X=15,Z=18.00000)
+	 SightDisplayFOV=20
      SightingTime=0.300000
      GunLength=32.000000
      LongGunPivot=(Pitch=4500,Yaw=-8000)
@@ -356,10 +357,10 @@ defaultproperties
      ChaosDeclineTime=0.750000
      ChaosSpeedThreshold=1200.000000
      ChaosAimSpread=0
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.000000),(InVal=0.300000,OutVal=0.100000),(InVal=1.000000,OutVal=0.000000)))
      RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.200000),(InVal=1.000000)))
-     RecoilXFactor=0.3
-	 RecoilYFactor=0.4
+     RecoilXFactor=0.15
+	 RecoilYFactor=0.2
      RecoilDeclineDelay=0.650000
      FireModeClass(0)=Class'BallisticProV55.MRS138PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.MRS138SecondaryFire'

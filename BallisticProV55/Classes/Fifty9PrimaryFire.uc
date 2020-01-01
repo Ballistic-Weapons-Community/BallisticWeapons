@@ -44,9 +44,9 @@ defaultproperties
      WaterRangeFactor=0.400000
      MaxWallSize=24.000000
      MaxWalls=2
-     Damage=22.000000
-     DamageHead=44.000000
-     DamageLimb=22.000000
+     Damage=24.000000
+     DamageHead=48.000000
+     DamageLimb=24.000000
      RangeAtten=0.250000
      WaterRangeAtten=0.300000
      DamageType=Class'BallisticProV55.DTFifty9SMG'

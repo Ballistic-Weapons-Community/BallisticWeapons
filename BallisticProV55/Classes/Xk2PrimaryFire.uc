@@ -129,9 +129,9 @@ defaultproperties
      WaterRangeFactor=0.500000
      MaxWallSize=24.000000
      MaxWalls=2
-     Damage=20.000000
-     DamageHead=40.000000
-     DamageLimb=20.000000
+     Damage=22.000000
+     DamageHead=44.000000
+     DamageLimb=22.000000
      RangeAtten=0.250000
      WaterRangeAtten=0.600000
      DamageType=Class'BallisticProV55.DTXK2SMG'
@@ -149,8 +149,8 @@ defaultproperties
      RecoilPerShot=98.000000
      FireChaos=0.050000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
-     XInaccuracy=64.000000
-     YInaccuracy=64.000000
+     XInaccuracy=48.000000
+     YInaccuracy=48.000000
      SilencedFireSound=(Sound=Sound'BallisticSounds3.XK2.XK2-SilenceFire',Volume=1.000000,Radius=48.000000,bAtten=True)
      BallisticFireSound=(Sound=Sound'BallisticSounds3.XK2.XK2-Fire',Volume=0.500000,Radius=384.000000)
      bPawnRapidFireAnim=True

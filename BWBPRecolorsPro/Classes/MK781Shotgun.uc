@@ -398,9 +398,15 @@ simulated function SwitchSilencer(bool bNewValue)
 	Mk781SecondaryFire(FireMode[1]).SwitchSilencerMode(bNewValue);
 	
 	if (bNewValue)
+	{
 		PlayAnim(SilencerOnAnim);
+		SightZoomFactor=10;
+	}
 	else
+	{
 		PlayAnim(SilencerOffAnim);
+		SightZoomFactor=0;
+	}
 }
 
 simulated function Notify_SilencerOn()	{	PlaySound(SilencerOnSound,,0.5);	}
@@ -640,6 +646,7 @@ defaultproperties
      MagAmmo=8
      CockSound=(Sound=Sound'PackageSounds4ProExp.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
      ReloadAnim="ReloadLoop"
+	 SightZoomFactor=0
      ClipInSound=(Sound=Sound'PackageSounds4ProExp.Mk781.Mk781-ShellPlus',Volume=2.300000,Radius=32.000000)
      ClipInFrame=0.325000
      bCanSkipReload=True
@@ -654,9 +661,8 @@ defaultproperties
      WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
      CurrentWeaponMode=1
      bNoCrosshairInScope=True
-     SightPivot=(Pitch=128,Yaw=10)
-     SightOffset=(X=15.000000,Y=-7.66000,Z=14.430000)
-     SightDisplayFOV=25.000000
+     SightOffset=(X=20.000000,Y=-7.61000,Z=13.940000)
+     SightDisplayFOV=20.000000
      SightingTime=0.300000
      GunLength=48.000000
      SprintOffSet=(Pitch=-3000,Yaw=-4096)

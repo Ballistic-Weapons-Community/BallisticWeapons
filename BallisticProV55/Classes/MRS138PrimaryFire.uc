@@ -69,8 +69,8 @@ defaultproperties
      BrassOffset=(X=45.000000,Y=-20.000000,Z=35.000000)
      RecoilPerShot=1280.000000
      FireChaos=0.400000
-     XInaccuracy=350.000000
-     YInaccuracy=350.000000
+     XInaccuracy=250.000000
+     YInaccuracy=250.000000
      BallisticFireSound=(Sound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-Fire',Volume=1.500000)
      FireAnim="FireCombined"
      FireEndAnim=

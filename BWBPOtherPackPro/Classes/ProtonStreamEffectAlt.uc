@@ -32,27 +32,25 @@ simulated function UpdateEndpoint()
 	local xWeaponAttachment Attachment;
 	local vector OffsetVector;
 	
-	if (Instigator == None || Instigator.Weapon == None || Instigator.Weapon.ThirdPersonActor == None)
-		return;
+	if (Instigator != None && Instigator.Weapon != None && Instigator.Weapon.ThirdPersonActor != None)	
+		Attachment = XWeaponAttachment(Instigator.Weapon.ThirdPersonActor);
 		
-	Attachment = XWeaponAttachment(Instigator.Weapon.ThirdPersonActor);
-	
 	SetRotation(rot(0,0,0));
 	
-	if (Instigator.IsLocallyControlled())
+	if (Instigator != None && Instigator.IsLocallyControlled())
 	{
 		if (!Instigator.IsFirstPerson())
 		{
 			bHidden = False;
-			SetLocation(Attachment.GetTipLocation());
+			
+			if (Attachment != None)
+				SetLocation(Attachment.GetTipLocation());
 		}
 	}
-	else
-	{
-		if (Attachment != None)
-			SetLocation(Attachment.GetBoneCoords('tip').Origin);
-		else SetLocation(StartPoint);
-	}
+	else if (Attachment != None)
+		SetLocation(Attachment.GetBoneCoords('tip').Origin);
+	else 
+		SetLocation(StartPoint);
 	
 	if (Target != None)
 		OffsetVector = Target.Location - Location;
@@ -82,6 +80,11 @@ simulated function Tick(float dt)
 		EndPoint = xWeaponAttachment(Instigator.Weapon.ThirdPersonActor).mHitLocation;
 		
 	UpdateEndpoint();
+}
+
+simulated function Terminate()
+{
+	BeamEmitter(Emitters[0]).RespawnDeadParticles = False;
 }
 
 defaultproperties

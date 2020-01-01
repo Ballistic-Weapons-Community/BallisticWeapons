@@ -17,9 +17,9 @@ defaultproperties
      WaterRangeFactor=0.800000
      MaxWallSize=48.000000
      MaxWalls=2
-     Damage=26.000000
-     DamageHead=52.000000
-     DamageLimb=26.000000
+     Damage=29.000000
+     DamageHead=44.000000
+     DamageLimb=29.000000
      RangeAtten=0.2500000
      WaterRangeAtten=0.300000
      DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
@@ -38,8 +38,8 @@ defaultproperties
      RecoilPerShot=130.000000
      FireChaos=0.070000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
-     XInaccuracy=96.000000
-     YInaccuracy=96.000000
+     XInaccuracy=48.000000
+     YInaccuracy=48.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_Fire1',Volume=1.350000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=

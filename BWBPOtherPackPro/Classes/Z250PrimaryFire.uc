@@ -344,7 +344,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 		Surf = int(HitMat.SurfaceType);
 		
 	if (Other == None || Other.bWorldGeometry)
-		BW.TargetedHurtRadius(Damage * 0.5, 150, class'DTZ250Bullet', 50, HitLocation);
+		BW.TargetedHurtRadius(5, 150, class'DTZ250Bullet', 50, HitLocation);
 
 	// Tell the attachment to spawn effects and so on
 	SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
@@ -459,14 +459,14 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
-     TraceCount=1
+	 TraceCount=1
      TraceRange=(Min=12000.000000,Max=12000.000000)
      WaterRangeFactor=0.800000
      MaxWallSize=32.000000
      MaxWalls=2
-     Damage=55.000000
-     DamageHead=110.000000
-     DamageLimb=55.000000
+     Damage=40.000000
+     DamageHead=60.000000
+     DamageLimb=40.000000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPOtherPackPro.DTZ250Bullet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTZ250Bullet'
@@ -477,7 +477,7 @@ defaultproperties
      FlashScaleFactor=0.800000
      BrassClass=Class'BWBPOtherPackPro.Brass_Z250Shell'
      BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
-     RecoilPerShot=128.000000
+     RecoilPerShot=150.000000
      VelocityRecoil=48.000000
      FireChaos=0.120000
      XInaccuracy=16.000000

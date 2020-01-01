@@ -211,7 +211,7 @@ defaultproperties
      bPawnRapidFireAnim=True
      PreFireAnim=
      FireEndAnim=
-     FireRate=0.135000
+     FireRate=0.125000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_CYLOInc'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

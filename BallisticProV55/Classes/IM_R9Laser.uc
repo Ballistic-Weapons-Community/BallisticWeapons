@@ -8,9 +8,9 @@ class IM_R9Laser extends BCImpactManager;
 
 defaultproperties
 {
-     HitEffects(0)=Class'BallisticProV55.IE_RSDarkGeneral'
-     HitEffects(1)=Class'BallisticProV55.IE_RSDarkPlayerHit'
-     HitEffects(2)=Class'BallisticProV55.IE_RSDarkPlayerKill'
+     HitEffects(0)=Class'BallisticProV55.IE_RSDarkFastGeneral'
+     HitEffects(1)=Class'BallisticProV55.IE_RSDarkFastPlayerHit'
+     HitEffects(2)=Class'BallisticProV55.IE_RSDarkFastPlayerHit'
      HitEffects(3)=Class'BallisticProV55.IE_RSDarkFastGeneral'
      HitEffects(4)=Class'BallisticProV55.IE_RSDarkFastPlayerHit'
      HitEffects(5)=Class'BallisticProV55.IE_RSProjectileCombo'

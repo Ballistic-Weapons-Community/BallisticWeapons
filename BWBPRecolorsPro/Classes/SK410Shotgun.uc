@@ -195,9 +195,9 @@ defaultproperties
      AimSpread=0
      ChaosAimSpread=0
      RecoilXCurve=(Points=(,(InVal=0.500000,OutVal=0.000000),(InVal=0.700000,OutVal=-0.200000),(InVal=0.8500000,OutVal=0.15000),(InVal=0.750000,OutVal=0.050000),(InVal=1.000000,OutVal=0)))
-     RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilYFactor=0.5
-	 RecoilXFactor=0.3
+     RecoilYCurve=(Points=(,(InVal=0.500000,OutVal=0.400000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilYFactor=0.1
+	 RecoilXFactor=0.1
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.330000
      FireModeClass(0)=Class'BWBPRecolorsPro.SK410PrimaryFire'

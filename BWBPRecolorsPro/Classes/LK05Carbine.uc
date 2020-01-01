@@ -560,6 +560,7 @@ defaultproperties
      CurrentRating=0.700000
      Priority=41
      HudColor=(B=24,G=48)
+	 bCockOnEmpty=True
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=4
      PickupClass=Class'BWBPRecolorsPro.LK05Pickup'

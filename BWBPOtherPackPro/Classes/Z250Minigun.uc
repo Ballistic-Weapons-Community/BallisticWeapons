@@ -273,6 +273,7 @@ function InitWeaponFromTurret(BallisticTurret Turret)
 	if (!Instigator.IsLocallyControlled())
 		ClientInitWeaponFromTurret(Turret);
 }
+
 simulated function ClientInitWeaponFromTurret(BallisticTurret Turret)
 {
 	bNeedCock = false;
@@ -325,8 +326,8 @@ simulated event WeaponTick (float DT)
 	SetBoneRotation('BarrelArray', BT);
 
 	if (CurrentWeaponMode == 0)
-		DesiredSpeed = 0.057;
-	else DesiredSpeed = 0.2;
+		DesiredSpeed = 0.11;
+	else DesiredSpeed = 0.21;
 
 	super.WeaponTick(DT);
 }
@@ -350,12 +351,12 @@ simulated event Tick (float DT)
 
 	if (FireMode[0].IsFiring())
 	{
-		BarrelSpeed = BarrelSpeed + FClamp(DesiredSpeed - BarrelSpeed, -0.50*DT, 0.50*DT);
+		BarrelSpeed = BarrelSpeed + FClamp(DesiredSpeed - BarrelSpeed, -0.35*DT, 0.35*DT);
 		BarrelTurn += BarrelSpeed * 655360 * DT;
 	}
 	else if (BarrelSpeed > 0)
 	{
-		BarrelSpeed = FMax(BarrelSpeed-0.50*DT, 0.01);
+		BarrelSpeed = FMax(BarrelSpeed-0.7*DT, 0.01);
 		OldBarrelTurn = BarrelTurn;
 		BarrelTurn += BarrelSpeed * 655360 * DT;
 		if (BarrelSpeed <= 0.025 && int(OldBarrelTurn/21845.33333) < int(BarrelTurn/21845.33333))
@@ -387,6 +388,7 @@ function ServerSwitchWeaponMode (byte NewMode)
 		else
 			NewMode++;
 	}
+	
 	if (!WeaponModes[NewMode].bUnavailable)
 		CurrentWeaponMode = NewMode;
 }
@@ -487,10 +489,10 @@ defaultproperties
      ClipOutSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipOut')
      ClipInSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipIn')
      ClipInFrame=0.650000
-     WeaponModes(0)=(ModeName="100 RPM",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="350 RPM",ModeID="WM_FullAuto")
+     WeaponModes(0)=(ModeName="200 RPM",ModeID="WM_FullAuto")
+     WeaponModes(1)=(ModeName="400 RPM",ModeID="WM_FullAuto")
      WeaponModes(2)=(ModeName="400 RPM",bUnavailable=True)
-     CurrentWeaponMode=1
+     CurrentWeaponMode=0
      bNoCrosshairInScope=True
      SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
      SightDisplayFOV=45.000000
@@ -504,8 +506,8 @@ defaultproperties
      ChaosAimSpread=3072
      RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000),(InVal=1.000000,OutVal=0.200000)))
      RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.350000,OutVal=0.400000),(InVal=0.500000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.050000
-     RecoilYFactor=0.150000
+     RecoilXFactor=0.070000
+     RecoilYFactor=0.100000
      RecoilMax=8192.000000
      RecoilDeclineTime=2.500000
      FireModeClass(0)=Class'BWBPOtherPackPro.Z250PrimaryFire'

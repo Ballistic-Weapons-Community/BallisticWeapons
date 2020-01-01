@@ -358,6 +358,13 @@ simulated function FirePressed(float F)
 	super.FirePressed(F);
 }
 
+// AI Interface =====
+// choose between regular or alt-fire
+function byte BestMode()
+{
+	return 1;
+}
+
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return 0.2;	}
 // tells bot whether to charge or back off while defending against this weapon
