@@ -259,7 +259,7 @@ defaultproperties
 {
      PlayerSpeedFactor=1.150000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_EKS43'
+     BigIconMaterial=Texture'BWBPSomeOtherPackTex.Longsword.BigIcon_MAGSaw'
      BigIconCoords=(Y1=32,Y2=230)
      BCRepClass=Class'BallisticReplicationInfo'
      ManualLines(0)="Slashes with the longsword. Has a long range and moderate damage output."
@@ -294,6 +294,7 @@ defaultproperties
      AttachmentClass=Class'MAG78Attachment'
      IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_EKS43'
      IconCoords=(X2=127,Y2=31)
+	 bUseBigIcon=True
      ItemName="MAG-SAW Longsword"
      Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.ChainsawLongsword_FP'
      DrawScale=1.250000

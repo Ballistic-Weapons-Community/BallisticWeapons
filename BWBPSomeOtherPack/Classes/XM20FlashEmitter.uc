@@ -27,6 +27,8 @@ defaultproperties
          UseRegularSizeScale=False
          AutomaticInitialSpawning=False
          TriggerDisabled=False
+		 SpinParticles=True
+		 StartSpinRange=(Z=(Min=0.065,Max=0.0675))
          Acceleration=(X=-80.000000)
          ColorScale(0)=(Color=(B=255,G=255,R=255))
          ColorScale(1)=(RelativeTime=0.100000,Color=(B=255,G=255,R=255))
@@ -35,6 +37,7 @@ defaultproperties
          FadeOutStartTime=0.048000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
+		 RotationOffset=(Roll=1000)
          StartLocationOffset=(X=2.000000)
          SizeScale(0)=(RelativeSize=0.600000)
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=1.000000)
@@ -83,6 +86,8 @@ defaultproperties
          UseSizeScale=True
          UseRegularSizeScale=False
          AutomaticInitialSpawning=False
+		 SpinParticles=True
+		 StartSpinRange=(Z=(Min=0.065,Max=0.0675))
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=0.100000,Color=(B=255,G=255,R=255,A=255))
          ColorScale(2)=(RelativeTime=0.200000,Color=(A=255))

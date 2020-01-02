@@ -191,7 +191,6 @@ function DoFireEffect()
     local Vector StartTrace;
     local Rotator Aim, PointAim;
     local int i;
-	local bool bHitValidTarget;
 
 	Aim = GetFireAim(StartTrace);
 	Aim = Rotator(GetFireSpread() >> Aim);
@@ -258,7 +257,6 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	local class<DamageType>	HitDT;
 	local Actor				Victim;
 	local Vector			RelativeVelocity;
-	local bool				bWasAlive;
 
 	Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
 

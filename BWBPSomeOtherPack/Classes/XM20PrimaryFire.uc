@@ -79,11 +79,11 @@ defaultproperties
      FlashScaleFactor=0.400000
      RecoilPerShot=230.000000
      FireChaos=0.300000
-	 FireAnim="Fire"
+	 FireAnim="FireLong"
 	 AimedFireAnim="SightFire"
-     BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.LS14.Gauss-Fire',Volume=0.900000)
+     BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.XM20.XM20-PulseFire',Volume=0.900000)
      FireEndAnim=
-     FireRate=0.150000
+     FireRate=0.120000
      AmmoClass=Class'BWBPSomeOtherPack.Ammo_XM20Laser'
      ShakeRotMag=(X=200.000000,Y=16.000000)
      ShakeRotRate=(X=5000.000000,Y=5000.000000,Z=5000.000000)
