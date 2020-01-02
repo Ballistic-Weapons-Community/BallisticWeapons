@@ -81,7 +81,7 @@ defaultproperties
      FireChaos=0.300000
 	 FireAnim="FireLong"
 	 AimedFireAnim="SightFire"
-     BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.XM20.XM20-PulseFire',Volume=0.900000)
+     BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.XM20.XM20-PulseFire',Volume=2.000000)
      FireEndAnim=
      FireRate=0.120000
      AmmoClass=Class'BWBPSomeOtherPack.Ammo_XM20Laser'
