@@ -68,9 +68,9 @@ defaultproperties
      Damage=15.000000
      DamageHead=30.000000
      DamageLimb=15.000000
-     DamageType=Class'BWBPRecolorsPro.DTLS14Body'
-     DamageTypeHead=Class'BWBPRecolorsPro.DTLS14Head'
-     DamageTypeArm=Class'BWBPRecolorsPro.DTLS14Limb'
+     DamageType=Class'BWBPSomeOtherPack.DTXM20Body'
+     DamageTypeHead=Class'BWBPSomeOtherPack.DTXM20Head'
+     DamageTypeArm=Class'BWBPSomeOtherPack.DTXM20Body'
      PenetrateForce=500
      bPenetrate=True
      ClipFinishSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-LastShot',Volume=1.000000,Radius=48.000000,bAtten=True)
