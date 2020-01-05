@@ -226,4 +226,8 @@ defaultproperties
      ItemName="FMD ICIS-25 Stimpack"
      Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.Stimpack_FP'
      DrawScale=0.300000
+	 Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	 Skins(1)=Texture'BallisticRecolors4TexPro.Stim.Stim-Main'
+	 Skins(2)=Texture'ONSstructureTextures.CoreGroup.Invisible'
+	 Skins(3)=Shader'XEffectMat.goop.GoopShader'
 }
