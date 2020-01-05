@@ -56,8 +56,6 @@ simulated event PostNetReceive()
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
-	SetBoneScale (0, 0.0, ShieldBone);
-
     	if (XM20ShieldEffect == None)
         	XM20ShieldEffect = Spawn(class'XM20ShieldEffect', instigator);
 
@@ -485,7 +483,7 @@ defaultproperties
      BobDamping=1.800000
      AttachmentClass=Class'BWBPSomeOtherPack.XM20Attachment'
 	 bUseBigIcon=True
-     IconMaterial=Texture'BallisticRecolors3TexPro.LS14.SmallIcon_LS14'
+     IconMaterial=Texture'BWBPSomeOtherPackTex.XM20.Icon_XM20'
      IconCoords=(X2=127,Y2=31)
      ItemName="XM-20 Auto Las"
      LightType=LT_Pulse
