@@ -120,8 +120,8 @@ var array<Shader>		NewDeResShaders;	// Shaders used to set opacity
 var array<FinalBlend>	NewDeResFinalBlends;// FinalBlends' alpha ref is used to create the dissolving effect
 // -------------------------------------------------------
 // Animations -------------------------------------------
-var 	name 			ReloadAnim, CockingAnim, MeleeAnim, MeleeOffhandAnim, MeleeAltAnim;
-var 	float 				ReloadAnimRate, CockAnimRate, MeleeAnimRate;
+var 	name 			ReloadAnim, CockingAnim, MeleeAnim, MeleeOffhandAnim, MeleeAltAnim, MeleeBlockAnim, MeleeWindupAnim, WeaponSpecialAnim;
+var 	float 				ReloadAnimRate, CockAnimRate, MeleeAnimRate, WeaponSpecialRate;
 var 	bool				bOffhandStrike;
 
 var config array<string> Spammers;
@@ -526,8 +526,12 @@ simulated function AssignInitialPose()
 				return;
 			}
 		}
-		if ( recx.Sex ~= "Female" && PlayerReplicationInfo.CharacterName != "July")
-			LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rdFemale');
+		//log( "Skeleton "$recx.Skeleton$" Species "$recx.Species );
+		if (  recx.Species.default.SpeciesName == "Alien" )
+		//if (  recx.Species.default.MaleSkeleton == "Skeleton_Alien" || recx.Species.default.FemaleSkeleton == "Skeleton_Alien" )
+			 LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rdAlien');
+		else if ( recx.Sex ~= "Female" && PlayerReplicationInfo.CharacterName != "July")
+			LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rdFemale');	 
 		else LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rd');
 	}
 }
@@ -556,12 +560,19 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 		FireRifleBurstAnim = BAtt.SingleAimedFireAnim;
 		FireRifleRapidAnim = BAtt.RapidAimedFireAnim;
 		
+		MeleeBlockAnim = Batt.MeleeBlockAnim;
+		MeleeWindupAnim = Batt.MeleeWindupAnim;
+		
+		WeaponSpecialAnim = Batt.WeaponSpecialAnim;
+		WeaponSpecialRate = Batt.WeaponSpecialRate;
+		
 		MeleeAnim = BAtt.MeleeStrikeAnim;
 	
 		if (BallisticMeleeAttachment(NewAtt) != None)
 		{
 			MeleeAltAnim = BallisticMeleeAttachment(NewAtt).MeleeAltStrikeAnim;
-			IdleWeaponAnim = IdleRifleAnim;
+			IdleWeaponAnim = IdleHeavyAnim;
+			IdleRifleAnim = BallisticMeleeAttachment(NewAtt).MeleeBlockAnim;
 		}
 
 		else 
@@ -631,7 +642,29 @@ simulated event SetAnimAction(name NewAction)
 			else AnimAction = '';
 			return;
 		}
-		if (AnimAction == 'Raise')
+		if (AnimAction == 'WeaponSpecial')
+		{
+			if (ReloadAnim != '')
+			{
+				AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
+				PlayAnim(WeaponSpecialAnim, WeaponSpecialRate, 0.25, 1);
+				FireState=FS_PlayOnce;
+				bResetAnimationAction=True;
+			}
+			else AnimAction = '';
+			return;
+		}
+		/*if (AnimAction == 'Blocking')
+		{
+			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
+			if (FireState == FS_None || FireState == FS_Ready)
+				PlayAnim(MeleeBlockAnim,, 0.2, 1);
+			IdleWeaponAnim = MeleeBlockAnim;
+			FireState = FS_None;
+			Instigator.ClientMessage("Blocking");
+			return;
+		}		
+		else */if (AnimAction == 'Raise')
 		{
 			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
 			if (FireState == FS_None || FireState == FS_Ready)
@@ -649,6 +682,24 @@ simulated event SetAnimAction(name NewAction)
 			FireState = FS_Ready;
 			return;
 		}
+		/*if (AnimAction == 'Blocking')
+		{
+			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
+			if (FireState == FS_None || FireState == FS_Ready)
+				PlayAnim(IdleHeavyAnim,, 0.2, 1);
+			IdleWeaponAnim = IdleHeavyAnim;
+			FireState = FS_None;
+			return;
+		}*/
+		/*else if (AnimAction == 'LowerBlock')
+		{
+			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
+			if (FireState == FS_None || FireState == FS_Ready)
+				PlayAnim(IdleHeavyAnim,, 0.2, 1);
+			IdleWeaponAnim = IdleHeavyAnim;
+			FireState = FS_Ready;
+			return;
+		}*/
 		
 		// End special animations
         if ( ((Physics == PHYS_None)|| ((Level.Game != None) && Level.Game.IsInState('MatchOver')))
