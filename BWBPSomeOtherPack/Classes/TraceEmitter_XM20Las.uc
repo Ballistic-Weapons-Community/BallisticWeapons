@@ -38,7 +38,7 @@ defaultproperties
          UseSizeScale=True
          UseRegularSizeScale=False
          AutomaticInitialSpawning=False
-         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
+         ColorScale(0)=(Color=(B=128,G=128,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(R=255,A=255))
          ColorMultiplierRange=(X=(Min=0.800000,Max=0.800000),Y=(Min=0.800000,Max=0.800000),Z=(Min=0.800000,Max=0.800000))
          FadeOutStartTime=0.025000
@@ -66,8 +66,8 @@ defaultproperties
          UseSizeScale=True
          UseRegularSizeScale=False
          AutomaticInitialSpawning=False
-         ColorScale(0)=(Color=(B=3,G=32,R=255,A=255))
-         ColorScale(1)=(RelativeTime=0.275000,Color=(B=255,G=255,R=255,A=255))
+         ColorScale(0)=(Color=(B=3,G=32,R=128,A=255))
+         ColorScale(1)=(RelativeTime=0.275000,Color=(B=12,G=12,R=255,A=255))
          ColorScale(2)=(RelativeTime=0.521429,Color=(R=255,A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(B=27,G=24,R=122,A=255))
          ColorMultiplierRange=(X=(Min=0.800000,Max=0.900000),Y=(Min=0.900000))
@@ -96,8 +96,8 @@ defaultproperties
          AutomaticInitialSpawning=False
          UseRandomSubdivision=True
          Acceleration=(Z=2.000000)
-         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
-         ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
+         ColorScale(0)=(Color=(B=128,G=128,R=255,A=255))
+         ColorScale(1)=(RelativeTime=1.000000,Color=(B=128,G=128,R=255,A=255))
          ColorMultiplierRange=(X=(Min=0.400000),Y=(Min=0.000000,Max=0.000000),Z=(Min=0.000000,Max=0.000000))
          Opacity=0.350000
          FadeOutStartTime=1.034000
@@ -129,8 +129,8 @@ defaultproperties
          UseSizeScale=True
          UseRegularSizeScale=False
          AutomaticInitialSpawning=False
-         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
-         ColorScale(1)=(RelativeTime=1.000000,Color=(B=129,G=128,R=255,A=255))
+         ColorScale(0)=(Color=(B=128,G=128,R=255,A=255))
+         ColorScale(1)=(RelativeTime=1.000000,Color=(B=64,G=64,R=255,A=255))
          ColorMultiplierRange=(Y=(Min=0.000000,Max=0.000000),Z=(Min=0.000000,Max=0.000000))
          FadeOutStartTime=0.025000
          CoordinateSystem=PTCS_Relative

@@ -1,12 +1,15 @@
 //=============================================================================
-// CYLOSecondaryFire.
+// DragonsToothSecondaryFire.
 //
-// A semi-auto shotgun that uses its own magazine.
+// Lunge attack for the Dragons Tooth Sword. Does 100 damage regardless of area.
+// Good for quick take downs, but bad against armored or healthier foes.
 //
-// by Casey 'Xavious' Johnson and Marc 'Sergeant Kelly'
+// REDACTED: Now is a double swipe.
+//
+// by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM20SecondaryFire extends BallisticFire;
+class FlameSwordSecondaryFire extends BallisticFire;
 
 simulated function bool AllowFire()
 {
@@ -31,8 +34,7 @@ simulated event ModeDoFire()
 			BW.ReloadState = RS_None;
 		}
 	}
-	XM20AutoLas(Weapon).ShieldDeploy();
-	
+
 	ConsumedLoad += Load;
     // server
     if (Weapon.Role == ROLE_Authority)
@@ -70,9 +72,10 @@ defaultproperties
 {
      bUseWeaponMag=False
      bWaitForRelease=True
-     FireAnim="Cock"
+     FireAnim="SpellShield"
      FireRate=1.000000
-	 FireAnimRate=1.00
-     AmmoClass=Class'BWBPSomeOtherPack.Ammo_XM20Laser'
+	 FireAnimRate=1.25
+     AmmoClass=Class'BallisticProV55.Ammo_Knife'
      AmmoPerFire=0
+	 //BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Ignite',Volume=4.100000,Radius=256.000000,bAtten=True)
 }

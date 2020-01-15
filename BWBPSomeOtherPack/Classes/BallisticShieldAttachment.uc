@@ -37,13 +37,14 @@ defaultproperties
      FlashMode=MU_None
      LightMode=MU_None
      TrackAnimMode=MU_Both
-     IdleHeavyAnim="RifleHip_Idle"
-     IdleRifleAnim="RifleHip_Idle"
-     bHeavy=True
      AttachmentBone="bip01 l hand"	 
      Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.BallisticShield_Third'
 	 RelativeLocation=(X=-10.000000)
-     RelativeRotation=(Yaw=-16384,Pitch=-16384)
+     RelativeRotation=(Yaw=-16384,Pitch=25000)
      DrawScale=0.450000
+	 IdleHeavyAnim="Blade_Idle"
+     IdleRifleAnim="Blade_Idle"
+	 MeleeStrikeAnim="Blade_Smack"
 	 MeleeAltStrikeAnim="Blade_Swing"
+	 MeleeBlockAnim="Blade_ShieldBlock"
 }

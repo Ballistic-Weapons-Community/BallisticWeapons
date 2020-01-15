@@ -30,9 +30,9 @@ defaultproperties
 		 SpinParticles=True
 		 StartSpinRange=(Z=(Min=0.065,Max=0.0675))
          Acceleration=(X=-80.000000)
-         ColorScale(0)=(Color=(B=255,G=255,R=255))
-         ColorScale(1)=(RelativeTime=0.100000,Color=(B=255,G=255,R=255))
-         ColorScale(2)=(RelativeTime=0.200000,Color=(B=64,G=64,R=64))
+         ColorScale(0)=(Color=(B=128,G=128,R=255))
+         ColorScale(1)=(RelativeTime=0.100000,Color=(B=128,G=128,R=255))
+         ColorScale(2)=(RelativeTime=0.200000,Color=(B=0,G=0,R=64))
          ColorScale(3)=(RelativeTime=1.000000)
          FadeOutStartTime=0.048000
          CoordinateSystem=PTCS_Relative
@@ -58,8 +58,8 @@ defaultproperties
          AutomaticInitialSpawning=False
          TriggerDisabled=False
          ColorScale(0)=(Color=(B=255,G=212,R=192))
-         ColorScale(1)=(RelativeTime=0.128571,Color=(B=92,G=192,R=255,A=255))
-         ColorScale(2)=(RelativeTime=0.275000,Color=(B=64,G=96,R=192,A=255))
+         ColorScale(1)=(RelativeTime=0.128571,Color=(B=64,G=96,R=255,A=255))
+         ColorScale(2)=(RelativeTime=0.275000,Color=(B=32,G=48,R=192,A=255))
          ColorScale(3)=(RelativeTime=1.000000)
          Opacity=0.730000
          FadeOutStartTime=0.039000
@@ -88,8 +88,8 @@ defaultproperties
          AutomaticInitialSpawning=False
 		 SpinParticles=True
 		 StartSpinRange=(Z=(Min=0.065,Max=0.0675))
-         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
-         ColorScale(1)=(RelativeTime=0.100000,Color=(B=255,G=255,R=255,A=255))
+         ColorScale(0)=(Color=(B=128,G=128,R=255,A=255))
+         ColorScale(1)=(RelativeTime=0.100000,Color=(B=128,G=128,R=255,A=255))
          ColorScale(2)=(RelativeTime=0.200000,Color=(A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(A=255))
          Opacity=0.440000
@@ -112,8 +112,8 @@ defaultproperties
          UniformSize=True
          AutomaticInitialSpawning=False
          TriggerDisabled=False
-         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
-         ColorScale(1)=(RelativeTime=0.260714,Color=(B=255,A=255))
+         ColorScale(0)=(Color=(B=128,G=128,R=255,A=255))
+         ColorScale(1)=(RelativeTime=0.260714,Color=(R=255,A=255))
          ColorScale(2)=(RelativeTime=1.000000,Color=(A=255))
          ColorMultiplierRange=(X=(Min=0.000000,Max=0.000000),Y=(Min=0.300000,Max=0.300000))
          FadeOutStartTime=0.056000
@@ -138,7 +138,7 @@ defaultproperties
          RespawnDeadParticles=False
          AutomaticInitialSpawning=False
          TriggerDisabled=False
-         ColorScale(0)=(Color=(B=192,G=192,R=255,A=255))
+         ColorScale(0)=(Color=(B=96,G=96,R=255,A=255))
          ColorScale(1)=(RelativeTime=0.332143,Color=(R=255,A=255))
          ColorScale(2)=(RelativeTime=1.000000,Color=(R=255,A=255))
          ColorMultiplierRange=(X=(Min=0.000000,Max=0.000000),Y=(Min=0.300000,Max=0.300000))
