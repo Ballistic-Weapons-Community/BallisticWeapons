@@ -413,4 +413,9 @@ defaultproperties
      RelativeLocation=(X=5.000000,Z=4.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.450000
+ 	 SingleFireAnim="Reload_BreakOpenFast"
+     SingleAimedFireAnim="Reload_BreakOpenFast"
+     RapidFireAnim="Reload_BreakOpenFast"
+     RapidAimedFireAnim="Reload_BreakOpenFast"
+	 ReloadAnim="Reload_BreakOpen"
 }
