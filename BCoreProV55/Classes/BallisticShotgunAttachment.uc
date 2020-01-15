@@ -110,4 +110,6 @@ simulated function InstantFireEffects(byte Mode)
 
 defaultproperties
 {
+	 ReloadAnim="Reload_ShovelBottom"
+	 CockingAnim="Cock_PumpSlow"
 }

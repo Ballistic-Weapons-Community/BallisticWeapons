@@ -137,4 +137,10 @@ defaultproperties
      FlashMode=MU_None
      LightMode=MU_None
      TrackAnimMode=MU_Both
+	 IdleHeavyAnim="Blade_Idle"
+     IdleRifleAnim="Blade_Idle"
+	 SingleFireAnim="Blade_Swing"
+     SingleAimedFireAnim="Blade_Swing"
+     RapidFireAnim="Blade_Swing"
+     RapidAimedFireAnim="Blade_Swing"
 }

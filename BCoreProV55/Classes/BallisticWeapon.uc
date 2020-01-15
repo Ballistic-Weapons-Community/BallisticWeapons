@@ -969,6 +969,8 @@ simulated function PlayShovelEnd()
 simulated function PlayShovelLoop()
 {
 	SafePlayAnim(ReloadAnim, ReloadAnimRate, 0.0, , "RELOAD");
+	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
+		Instigator.SetAnimAction('Shovel');
 }
 simulated function PlayCocking(optional byte Type)
 {
