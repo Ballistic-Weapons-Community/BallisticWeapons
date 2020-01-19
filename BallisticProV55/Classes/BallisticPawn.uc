@@ -120,8 +120,8 @@ var array<Shader>		NewDeResShaders;	// Shaders used to set opacity
 var array<FinalBlend>	NewDeResFinalBlends;// FinalBlends' alpha ref is used to create the dissolving effect
 // -------------------------------------------------------
 // Animations -------------------------------------------
-var 	name 			ReloadAnim, CockingAnim, MeleeAnim, MeleeOffhandAnim, MeleeAltAnim, MeleeBlockAnim, MeleeWindupAnim, WeaponSpecialAnim;
-var 	float 				ReloadAnimRate, CockAnimRate, MeleeAnimRate, WeaponSpecialRate;
+var 	name 			ReloadAnim, CockingAnim, MeleeAnim, MeleeOffhandAnim, MeleeAltAnim, MeleeBlockAnim, MeleeWindupAnim, WeaponSpecialAnim, StaggerAnim;
+var 	float 				ReloadAnimRate, CockAnimRate, MeleeAnimRate, WeaponSpecialRate, StaggerRate;
 var 	bool				bOffhandStrike;
 
 var config array<string> Spammers;
@@ -528,8 +528,9 @@ simulated function AssignInitialPose()
 		}
 		//log( "Skeleton "$recx.Skeleton$" Species "$recx.Species );
 		if (  recx.Species.default.SpeciesName == "Alien" )
-		//if (  recx.Species.default.MaleSkeleton == "Skeleton_Alien" || recx.Species.default.FemaleSkeleton == "Skeleton_Alien" )
 			 LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rdAlien');
+		else if (  recx.Species.default.SpeciesName == "Juggernaut" )
+			 LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rd');
 		else if ( recx.Sex ~= "Female" && PlayerReplicationInfo.CharacterName != "July")
 			LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rdFemale');	 
 		else LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rd');
@@ -565,8 +566,13 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 		
 		WeaponSpecialAnim = Batt.WeaponSpecialAnim;
 		WeaponSpecialRate = Batt.WeaponSpecialRate;
+
+		StaggerAnim = Batt.StaggerAnim;
+		StaggerRate = Batt.StaggerRate;
 		
 		MeleeAnim = BAtt.MeleeStrikeAnim;
+		
+		IdleRestAnim = BAtt.IdleHeavyAnim;
 	
 		if (BallisticMeleeAttachment(NewAtt) != None)
 		{
@@ -653,6 +659,18 @@ simulated event SetAnimAction(name NewAction)
 			}
 			else AnimAction = '';
 			return;
+		}		
+		if (AnimAction == 'Stagger')
+		{
+			if (ReloadAnim != '')
+			{
+				AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
+				PlayAnim(StaggerAnim, StaggerRate, 0.25, 1);
+				FireState=FS_PlayOnce;
+				bResetAnimationAction=True;
+			}
+			else AnimAction = '';
+			return;
 		}
 		/*if (AnimAction == 'Blocking')
 		{
@@ -682,24 +700,6 @@ simulated event SetAnimAction(name NewAction)
 			FireState = FS_Ready;
 			return;
 		}
-		/*if (AnimAction == 'Blocking')
-		{
-			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
-			if (FireState == FS_None || FireState == FS_Ready)
-				PlayAnim(IdleHeavyAnim,, 0.2, 1);
-			IdleWeaponAnim = IdleHeavyAnim;
-			FireState = FS_None;
-			return;
-		}*/
-		/*else if (AnimAction == 'LowerBlock')
-		{
-			AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
-			if (FireState == FS_None || FireState == FS_Ready)
-				PlayAnim(IdleHeavyAnim,, 0.2, 1);
-			IdleWeaponAnim = IdleHeavyAnim;
-			FireState = FS_Ready;
-			return;
-		}*/
 		
 		// End special animations
         if ( ((Physics == PHYS_None)|| ((Level.Game != None) && Level.Game.IsInState('MatchOver')))
@@ -2602,6 +2602,7 @@ defaultproperties
      HighImpactVelocity=1000.000000
      LowImpactVelocity=500.000000
      TimeBetweenImpacts=1.000000
+	 MinTimeBetweenPainSounds=0.600000
      NewDeResSound=SoundGroup'BallisticSounds2.Misc.DeRes'
      MeleeAnim="Melee_Smack"
      Spammers(0)="jawjaw"
