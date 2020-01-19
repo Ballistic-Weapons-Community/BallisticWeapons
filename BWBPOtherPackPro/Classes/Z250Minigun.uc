@@ -326,8 +326,8 @@ simulated event WeaponTick (float DT)
 	SetBoneRotation('BarrelArray', BT);
 
 	if (CurrentWeaponMode == 0)
-		DesiredSpeed = 0.11;
-	else DesiredSpeed = 0.21;
+		DesiredSpeed = 0.21;
+	else DesiredSpeed = 0.11;
 
 	super.WeaponTick(DT);
 }
@@ -489,8 +489,8 @@ defaultproperties
      ClipOutSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipOut')
      ClipInSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipIn')
      ClipInFrame=0.650000
-     WeaponModes(0)=(ModeName="200 RPM",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="400 RPM",ModeID="WM_FullAuto")
+     WeaponModes(0)=(ModeName="400 RPM",ModeID="WM_FullAuto")
+     WeaponModes(1)=(ModeName="200 RPM",ModeID="WM_FullAuto")
      WeaponModes(2)=(ModeName="400 RPM",bUnavailable=True)
      CurrentWeaponMode=0
      bNoCrosshairInScope=True

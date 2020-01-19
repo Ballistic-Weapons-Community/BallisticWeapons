@@ -18,7 +18,6 @@ defaultproperties
      FlashV=(X=1500.000000,Y=1500.000000,Z=1500.000000)
      FlashF=-0.300000
 	 bDisplaceAim=True
-     AimDisplacementDamageThreshold=1
      AimDisplacementDuration=0.800000
      InvasionDamageScaling=2.000000
      WeaponClass=Class'BWBPRecolorsPro.MK781Shotgun'

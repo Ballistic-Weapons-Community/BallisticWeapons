@@ -4401,17 +4401,21 @@ function BrassMessage ()	{	Instigator.ClientMessage("BrassOffset is "$BFireMode[
 
 // These are to align the 1st person weapon itself
 exec function BWCenteredOffset (float f)	{	CenteredOffsetY = f;	default.CenteredOffsetY = f;	Instigator.ClientMessage("CenteredOffset: Y"$CenteredOffsetY);	}
+
 exec function BWPlayerOffsetX (float f) {	PlayerViewOffset.X = f;	default.PlayerViewOffset.X = f;	RVMessage();	}
 exec function BWPlayerOffsetY (float f) {	PlayerViewOffset.Y = f;	default.PlayerViewOffset.Y = f;	RVMessage();	}
 exec function BWPlayerOffsetZ (float f) {	PlayerViewOffset.Z = f;	default.PlayerViewOffset.Z = f;	RVMessage();	}
+
 exec function BWDisplayFOV (float f) {	DisplayFov = f;			default.DisplayFov = f;			RVMessage();	}
 exec function BWDrawScale (float f) {	SetDrawScale (F);										RVMessage();	}
 
-function RVMessage (){	Instigator.ClientMessage("X: "$PlayerViewOffset.X$", Y: "$PlayerViewOffset.Y$", Z: "$PlayerViewOffset.Z$", Scale: "$DrawScale$", FOV: "$DisplayFov);	}
+function RVMessage (){	Instigator.ClientMessage("PlayerViewOffset: X: "$PlayerViewOffset.X$", Y: "$PlayerViewOffset.Y$", Z: "$PlayerViewOffset.Z$", Scale: "$DrawScale$", FOV: "$DisplayFov);	}
 
-exec function BWSightOffsetX (float f) {	SightOffset.X = f;	default.SightOffset.X = f;	RVMessage();	}
-exec function BWSightOffsetY (float f) {	SightOffset.Y = f;	default.SightOffset.Y = f;	RVMessage();	}
-exec function BWSightOffsetZ (float f) {	SightOffset.Z = f;	default.SightOffset.Z = f;	RVMessage();	}
+exec function BWSightOffsetX (float f) {	SightOffset.X = f;	default.SightOffset.X = f;	SVMessage();	}
+exec function BWSightOffsetY (float f) {	SightOffset.Y = f;	default.SightOffset.Y = f;	SVMessage();	}
+exec function BWSightOffsetZ (float f) {	SightOffset.Z = f;	default.SightOffset.Z = f;	SVMessage();	}
+
+function SVMessage (){	Instigator.ClientMessage("SightOffset: X: "$SightOffset.X$", Y: "$SightOffset.Y$", Z: "$SightOffset.Z$", Scale: "$DrawScale$", Sight Display FOV: "$SightDisplayFov);	}
 
 delegate DumpHead(array<CacheManager.WeaponRecord> Recs);
 delegate DumpLine(class<BallisticWeapon> Weap, int Line);
