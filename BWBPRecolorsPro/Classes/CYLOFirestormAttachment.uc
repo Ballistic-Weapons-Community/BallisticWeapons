@@ -83,7 +83,13 @@ defaultproperties
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_Incendiary'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
-     ReloadAnim="Reload_AR"
+     IdleHeavyAnim="PistolHip_Idle"
+     IdleRifleAnim="PistolAimed_Idle"
+     SingleFireAnim="PistolHip_Fire"
+     SingleAimedFireAnim="PistolAimed_Fire"
+     RapidFireAnim="PistolHip_Burst"
+     RapidAimedFireAnim="PistolAimed_Burst"     
+	 ReloadAnim="Reload_AR"
      ReloadAnimRate=0.800000
      bHeavy=True
      bRapidFire=True

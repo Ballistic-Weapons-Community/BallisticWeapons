@@ -50,6 +50,7 @@ simulated function PostBeginPlay()
 function ServerSetBlocked(bool NewValue)
 {
 	bBlocked=NewValue;
+	BallisticAttachment(ThirdPersonActor).SetBlocked(NewValue);
 }
 
 simulated function float ChargeBar()
@@ -67,6 +68,8 @@ exec simulated function WeaponSpecial(optional byte i)
 	if (!IsFiring())
 		PlayAnim(BlockUpAnim, 1.5);
 	IdleAnim = BlockIdleAnim;
+	/*if (BallisticAttachment(ThirdPersonActor) != None)
+		Instigator.SetAnimAction('Blocking');*/
 }
 //simulated function DoWeaponSpecialRelease(optional byte i)
 exec simulated function WeaponSpecialRelease(optional byte i)
@@ -121,11 +124,16 @@ simulated event AnimEnd (int Channel)
 	{
 		PlayAnim(BlockUpAnim, 1.5);
 		IdleAnim = BlockIdleAnim;
+		/*if (BallisticAttachment(ThirdPersonActor) != None)
+			Instigator.SetAnimAction('Blocking');
+		Instigator.ClientMessage("Blocking");*/
 	}
 	else
 	{
 		if (!bBlocked)
 			IdleAnim = default.IdleAnim;
+		/*if (BallisticAttachment(ThirdPersonActor) != None)
+			Instigator.SetAnimAction('LowerBlock');	*/
 		Super.AnimEnd(Channel);
 	}
 }

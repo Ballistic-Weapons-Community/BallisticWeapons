@@ -1,6 +1,6 @@
 class XM20ShieldEffect extends Actor;
 
-#exec OBJ LOAD FILE=BallisticRecolors5A.utx
+#exec OBJ LOAD FILE=BallisticRecolors4TexPro.utx
 
 var float Brightness, DesiredBrightness;
 var() Material		MatShot;

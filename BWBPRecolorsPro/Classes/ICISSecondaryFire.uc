@@ -9,9 +9,63 @@
 //=============================================================================
 class ICISSecondaryFire extends BallisticMeleeFire;
 
-simulated function bool HasAmmo()
+function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
 {
-	return true;
+	local BallisticPawn Target;
+	local ICISPoisoner IP;
+
+	Target=BallisticPawn(Other);	
+
+	if(IsValidHealTarget(Target))
+	{
+			if(Instigator == None || Vehicle(Instigator) != None || Instigator.Health <= 0)
+				return;
+			
+			Target.GiveAttributedHealth(10, Target.HealthMax, Instigator);
+			
+			IP = Spawn(class'ICISPoisoner', Instigator.Controller);
+			IP.Instigator = Instigator;
+
+			if(Instigator.Role == ROLE_Authority && Instigator.Controller != None)
+				IP.InstigatorController = Instigator.Controller;
+
+			IP.Initialize(Target);
+			ICISStimPack(BW).ConsumeAmmo(1, 1, True);
+			ICISStimPack(BW).PlaySound(ICISStimPack(BW).HealSound, SLOT_Misc, 1.5, ,64);
+		return;
+	}
+	Super.DoDamage(Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount, WaterHitLocation);
+}
+
+// Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
+simulated function bool AllowFire()
+{
+	if (!CheckReloading())
+		return false;		// Is weapon busy reloading
+	if (!CheckWeaponMode())
+		return false;		// Will weapon mode allow further firing
+
+	return Weapon.AmmoAmount(ThisModeNum) > 0;
+}
+
+function bool IsValidHealTarget(Pawn Target)
+{
+	if(Target==None||Target==Instigator)
+		return False;
+
+	if(Target.Health<=0)
+		return False;
+		
+	if (!Target.bProjTarget)
+		return false;
+
+	if(!Level.Game.bTeamGame)
+		return False;
+
+	if(Vehicle(Target)!=None)
+		return False;
+
+	return (Target.Controller!=None&&Instigator.Controller.SameTeamAs(Target.Controller));
 }
 
 defaultproperties
@@ -35,7 +89,7 @@ defaultproperties
      BallisticFireSound=(Sound=SoundGroup'BallisticSounds_25.X4.X4_Melee',Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
-     PreFireAnim="PreFriendlyShank"
+     PreFireAnim="PrepFriendlyShank"
      FireAnim="FriendlyShank"
      FireRate=0.600000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_ICISStim'

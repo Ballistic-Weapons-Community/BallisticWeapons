@@ -27,4 +27,5 @@ defaultproperties
      Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.TP_Longhorn'
      RelativeRotation=(Pitch=32768)
      DrawScale=0.300000
+	 CockingAnim"Cock_PumpSlow"
 }

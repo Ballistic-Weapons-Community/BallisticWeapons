@@ -82,8 +82,8 @@ function SetBrightness(int b, bool hit)
 
 defaultproperties
 {
-     MuzzleFlashClass=Class'BWBPRecolorsPro.GRSXXLaserFlashEmitter'
-     AltMuzzleFlashClass=Class'BWBPRecolorsPro.GRSXXLaserFlashEmitter'
+     MuzzleFlashClass=Class'BWBPSomeOtherPack.XM20FlashEmitter'
+     AltMuzzleFlashClass=Class'BWBPSomeOtherPack.XM20FlashEmitter'
      ImpactManager=Class'BWBPSomeOtherPack.IM_XM20Impacted'
      BrassClass=Class'BallisticProV55.Brass_Railgun'
      FlashMode=MU_Primary

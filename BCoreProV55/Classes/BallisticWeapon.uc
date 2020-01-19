@@ -969,6 +969,8 @@ simulated function PlayShovelEnd()
 simulated function PlayShovelLoop()
 {
 	SafePlayAnim(ReloadAnim, ReloadAnimRate, 0.0, , "RELOAD");
+	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
+		Instigator.SetAnimAction('Shovel');
 }
 simulated function PlayCocking(optional byte Type)
 {
@@ -1108,6 +1110,10 @@ simulated function StartScopeView()
 	}
 	SetScopeView(true);
 	
+	if ( PlayerController(InstigatorController).bBehindView )
+		bNoCrosshairInScope = False;
+	else
+		bNoCrosshairInScope = default.bNoCrosshairInScope;
 	//Take down normal crosshairs if the weapon has none in scope view
 	if (bNoCrosshairInScope)
 	{
@@ -3936,6 +3942,8 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 		if (BDT.default.bDisplaceAim && Damage >= BDT.default.AimDisplacementDamageThreshold && Level.TimeSeconds + BDT.default.AimDisplacementDuration > AimDisplacementEndTime)
 		{
 			AimDisplacementDuration = BDT.default.AimDisplacementDuration * AimDisplacementDurationMult;
+			if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).StaggerAnim != '')
+				Instigator.SetAnimAction('Stagger');		
 		
 			if (BDT.default.AimDisplacementDamageThreshold == 0)
 			{

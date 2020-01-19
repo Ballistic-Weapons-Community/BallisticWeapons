@@ -19,4 +19,5 @@ defaultproperties
      bHeavy=True
      Mesh=SkeletalMesh'BallisticAnims_25.BOGP_3rd'
      DrawScale=0.325000
+	 CockingAnim="Reload_BreakOpen"
 }

@@ -292,7 +292,7 @@ defaultproperties
      PickupClass=Class'EKS43Pickup'
      PlayerViewOffset=(X=10.000000,Z=-20.000000)
      AttachmentClass=Class'MAG78Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_EKS43'
+     IconMaterial=Texture'BWBPSomeOtherPackTex.Longsword.Icon_MAGSaw'
      IconCoords=(X2=127,Y2=31)
 	 bUseBigIcon=True
      ItemName="MAG-SAW Longsword"

@@ -31,6 +31,10 @@ var() float ChargeupTime;
 var	  float RampTime;
 var Sound ChargingSound;                // charging sound
 var() byte	ShieldSoundVolume;
+var actor VentSteamL1;
+var actor VentSteamL2;
+var actor VentSteamR1;
+var actor VentSteamR2;
 
 replication
 {
@@ -56,8 +60,6 @@ simulated event PostNetReceive()
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
-	SetBoneScale (0, 0.0, ShieldBone);
-
     	if (XM20ShieldEffect == None)
         	XM20ShieldEffect = Spawn(class'XM20ShieldEffect', instigator);
 
@@ -80,6 +82,48 @@ simulated function bool PutDown()
 	return false;
 }
 
+simulated function Notify_VentSteam()
+{
+	if (VentSteamL1 != None)
+		VentSteamL1.Destroy();
+
+	if (VentSteamL2 != None)
+		VentSteamL2.Destroy();
+		
+	if (VentSteamR1 != None)
+		VentSteamR1.Destroy();
+
+	if (VentSteamR2 != None)
+		VentSteamR2.Destroy();
+
+	class'BUtil'.static.InitMuzzleFlash (VentSteamL1, class'CoachSteam', DrawScale, self, 'Vent1L');
+	class'BUtil'.static.InitMuzzleFlash (VentSteamL2, class'CoachSteam', DrawScale, self, 'Vent2L');
+	class'BUtil'.static.InitMuzzleFlash (VentSteamR1, class'CoachSteam', DrawScale, self, 'Vent1R');
+	class'BUtil'.static.InitMuzzleFlash (VentSteamR2, class'CoachSteam', DrawScale, self, 'Vent2R');
+
+	/*if (VentSteamL1 != None)
+		VentSteamL1.SetRelativeRotation(rot(0,32768,0));
+	if (VentSteamL2 != None)
+		VentSteamL2.SetRelativeRotation(rot(0,32768,0));
+	if (VentSteamR1 != None)
+		VentSteamR1.SetRelativeRotation(rot(0,32768,0));
+	if (VentSteamR2 != None)
+		VentSteamR2 != None.SetRelativeRotation(rot(0,32768,0));*/
+}
+
+simulated function Destroyed()
+{
+	if (Arc != None)	Arc.Destroy();
+	if (VentSteamL1 != None)
+		VentSteamL1.Destroy();
+	if (VentSteamL2 != None)
+		VentSteamL2.Destroy();
+	if (VentSteamR1 != None)
+		VentSteamR1.Destroy();
+	if (VentSteamR2 != None)
+		VentSteamR2.Destroy();
+	super.Destroyed();
+}
 
 //=====================================================
 //			SHIELD CODE
@@ -104,9 +148,9 @@ function ServerSwitchShield(bool bNewValue)
     	local XM20Attachment Attachment;
 
 	bShieldUp = bNewValue;
-    	Attachment = XM20Attachment(ThirdPersonActor);
+    Attachment = XM20Attachment(ThirdPersonActor);
    
-    	if( Attachment != None && Attachment.XM20ShieldEffect3rd != None )
+    if( Attachment != None && Attachment.XM20ShieldEffect3rd != None )
 	{
 		if (bShieldUp)
         		Attachment.XM20ShieldEffect3rd.bHidden = false;
@@ -159,7 +203,7 @@ simulated event Tick (float DT)
 		if (!bShieldUp /*&& !bBroken*/)
 			ShieldPower = FMin(ShieldPower + 5.0 * DT, 200);
 	}
-	else	
+	if (ShieldPower >= 200)	
 		bBroken=False;
 
 	super.Tick(DT);
@@ -189,23 +233,20 @@ simulated function TakeHit(int Drain)
     {
         XM20ShieldEffect.Flash(Drain, ShieldPower);
     }
-	if (ShieldPower < 10 )
+	if (ShieldPower <= 0 )
 	{
 		ServerSwitchShield(false);
 		bShieldUp=false;
-            	AdjustShieldProperties(true);
-		if (ShieldPower <= -25)
-		{
-			bBroken=true;
-			AmbientSound = None;
-			Instigator.AmbientSound = BrokenSound;
-			Instigator.SoundVolume = default.SoundVolume;
-			Instigator.SoundPitch = default.SoundPitch;
-			Instigator.SoundRadius = default.SoundRadius;
-			Instigator.bFullVolume = true;
-    			if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GlowFX == None || GlowFX.bDeleteMe))
-				class'BUtil'.static.InitMuzzleFlash (GlowFX, class'XM20GlowFXDamaged', DrawScale, self, 'tip');
-		}
+		AdjustShieldProperties(true);
+		bBroken=true;
+		AmbientSound = None;
+		Instigator.AmbientSound = BrokenSound;
+		Instigator.SoundVolume = default.SoundVolume;
+		Instigator.SoundPitch = default.SoundPitch;
+		Instigator.SoundRadius = default.SoundRadius;
+		Instigator.bFullVolume = true;
+//		if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GlowFX == None || GlowFX.bDeleteMe))
+//			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'XM20GlowFXDamaged', DrawScale, self, 'tip');
 	}
     SetBrightness(true);
 }
@@ -239,7 +280,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
     local vector HitNormal;
     local float DamageMax;
 
-	DamageMax = 75.0;
+	DamageMax = 50.0;
 	if ( DamageType == class'Fell' )
 		DamageMax = 20.0;
 	else if (class<DTXM84GrenadeRadius>(DamageType) != none && bShieldUp)
@@ -432,7 +473,7 @@ defaultproperties
 	 ShieldPower=100
 	 bShowChargingBar=True
      ManualLines(0)="Each hit heats up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
-     ManualLines(1)="Unfortunately, it's not the Wrenchgun, but secondary fire will turn on a directional shield."
+     ManualLines(1)="Unfortunately, it's not the Wrenchgun, but secondary fire will toggle a directional shield that will greatly reduce incoming damage."
      ManualLines(2)="Effective at moderate range and against enemies using healing weapons and items."
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPSomeOtherPackTex.XM20.BigIcon_XM20'
@@ -446,25 +487,27 @@ defaultproperties
      PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
      MagAmmo=30
      CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
-     ReloadAnimRate=1.150000
+     ReloadAnimRate=1.000000
      ClipHitSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-LeverDown')
      ClipOutSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipOut')
      ClipInSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipIn')
      ClipInFrame=0.650000 
      CurrentWeaponMode=2
      SightOffset=(X=20.000000,Y=16.8500000,Z=29.000000)
-	 SightDisplayFOV=25
+	 SightDisplayFOV=15
      GunLength=80.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      JumpOffSet=(Pitch=-6000,Yaw=2000)
-     AimSpread=128
-     ChaosDeclineTime=0.800000
-     ChaosSpeedThreshold=2500.000000
-     RecoilXCurve=(Points=(,(InVal=0.150000),(InVal=0.250000,OutVal=-0.080000),(InVal=0.400000,OutVal=0.080000),(InVal=0.600000,OutVal=-0.120000),(InVal=0.800000,OutVal=0.100000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.400000,OutVal=0.450000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.400000
-     RecoilYFactor=0.400000
-     RecoilDeclineTime=1.000000
+     AimSpread=14
+     ChaosDeclineTime=1.250000
+     ChaosSpeedThreshold=15000.000000
+     ChaosAimSpread=3000
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.10000),(InVal=0.400000,OutVal=0.130000),(InVal=0.600000,OutVal=-0.160000),(InVal=1.000000,OutVal=-0.080000)))
+     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.450000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.250000
+     RecoilYFactor=0.320000
+     RecoilMinRandFactor=0.08000
+     RecoilDeclineTime=1.500000
      FireModeClass(0)=Class'BWBPSomeOtherPack.XM20PrimaryFire'
      FireModeClass(1)=Class'BWBPSomeOtherPack.XM20SecondaryFire'
      SelectAnimRate=1.500000
@@ -474,7 +517,7 @@ defaultproperties
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.800000
      CurrentRating=0.800000
-     Description="XM-20 Auto Las||Manufacturer: Wrenchgun Industries|Primary: High Intensity Laser Beam|Secondary: Diffused High Intesity Beams"
+     Description="XM-20 Auto Las||Manufacturer: UTC Defense Tech|Primary: High Intensity Laser Beam|Secondary: Diffused High Intesity Beams||Having a long history with the UTC, the XM-20 managed to find its place even after most other energy weapons were rendered largely ineffective against Skrith shielding technology, thanks to its own integrated force field generator and ability to turn Cryon ballistic armor to slag with relative ease through concentrated fire."
      Priority=194
      HudColor=(B=255,G=150,R=100)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
@@ -485,7 +528,7 @@ defaultproperties
      BobDamping=1.800000
      AttachmentClass=Class'BWBPSomeOtherPack.XM20Attachment'
 	 bUseBigIcon=True
-     IconMaterial=Texture'BallisticRecolors3TexPro.LS14.SmallIcon_LS14'
+     IconMaterial=Texture'BWBPSomeOtherPackTex.XM20.Icon_XM20'
      IconCoords=(X2=127,Y2=31)
      ItemName="XM-20 Auto Las"
      LightType=LT_Pulse

@@ -1,21 +1,33 @@
 //=============================================================================
-// LS-14 Primary Fire.
+// DragonsToothPrimaryFire.
 //
-// Laser weapon with overheating mechanism. Deals more damage the lower the weapon's heat level is.
-// Does not cut out if maximum heat is reached.
+// Horizontalish swipe attack for the EKS43. Uses melee swpie system to do
+// horizontal swipes. When the swipe traces find a player, the trace closest to
+// the aim will be used to do the damage.
 //
 // by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2007 RuneStorm. All Rights Reserved.
+// Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM20PrimaryFire extends BallisticRangeAttenFire;
+class FlameSwordPrimaryFire extends BallisticMeleeFire;
+
+var() Array<name> SliceAnims;
+var int SliceAnim;
 
 var()	float			HeatPerShot;
 
-simulated function bool AllowFire()
+simulated event ModeDoFire()
 {
-	if (XM20AutoLas(BW).bShieldUp)
-		return false;
-	return Super.AllowFire();
+	FireAnim = SliceAnims[SliceAnim];
+	SliceAnim++;
+	if (SliceAnim >= SliceAnims.Length)
+		SliceAnim = 0;
+
+	Super.ModeDoFire();
+}
+
+simulated function bool HasAmmo()
+{
+	return true;
 }
 
 //The LS-14 deals increased damage to targets which have already been heated up by a previous strike.
@@ -54,53 +66,49 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	if (WallCount > 0)
 		Dmg *= WallPDamageFactor ** WallCount;
 		
-	if (Monster(Other) != None)
+	/*if (Monster(Other) != None)
 	{
 		class'BallisticDamageType'.static.GenericHurt (Victim, 45, Instigator, HitLocation, KickForce * Dir, HitDT);
 		return;
-	}
+	}*/
 
 	if (Pawn(Other) != None && Pawn(Other).bProjTarget)
-		Bonus = XM20AutoLas(BW).ManageHeatInteraction(Pawn(Other), HeatPerShot);
+		Bonus = FlameSword(BW).ManageHeatInteraction(Pawn(Other), HeatPerShot);
 		
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg + Bonus, Instigator, HitLocation, KickForce * Dir, HitDT);
 }
-
 defaultproperties
 {
-     HeatPerShot=10.000000
-     CutOffDistance=3072.000000
-     CutOffStartRange=1536.000000
-     TraceRange=(Min=11000.000000,Max=12000.000000)
-     MaxWallSize=64.000000
-     MaxWalls=3
-     Damage=10.000000
-     DamageHead=15.000000
-     DamageLimb=10.000000
-     DamageType=Class'BWBPSomeOtherPack.DTXM20Body'
-     DamageTypeHead=Class'BWBPSomeOtherPack.DTXM20Head'
-     DamageTypeArm=Class'BWBPSomeOtherPack.DTXM20Body'
-     PenetrateForce=500
-     bPenetrate=True
-     ClipFinishSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-LastShot',Volume=1.000000,Radius=48.000000,bAtten=True)
-     DryFireSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Empty',Volume=1.200000)
-     MuzzleFlashClass=Class'BWBPSomeOtherPack.XM20FlashEmitter'
-     FlashScaleFactor=0.400000
-     RecoilPerShot=230.000000
-     FireChaos=0.045000
-	 FireAnim="FireLong"
-	 AimedFireAnim="SightFire"
-     BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.XM20.XM20-PulseFire',Volume=1.500000)
-     FireEndAnim=
-     FireRate=0.110000
-     AmmoClass=Class'BWBPSomeOtherPack.Ammo_XM20Laser'
-     ShakeRotMag=(X=200.000000,Y=16.000000)
-     ShakeRotRate=(X=5000.000000,Y=5000.000000,Z=5000.000000)
-     ShakeRotTime=1.000000
-     ShakeOffsetMag=(X=-2.500000)
-     ShakeOffsetRate=(X=-500.000000)
-     ShakeOffsetTime=1.000000
-     BotRefireRate=0.99
-     WarnTargetPct=0.30000
-     aimerror=800.000000
+	 HeatPerShot=35.000000
+     SliceAnims(0)="Swing1"
+     SliceAnims(1)="Swing2"
+     SliceAnims(2)="Swing3"
+     SwipePoints(0)=(Weight=3,offset=(Yaw=2560))
+     SwipePoints(1)=(Weight=5,offset=(Yaw=1280))
+     SwipePoints(2)=(Weight=6)
+     SwipePoints(3)=(Weight=4,offset=(Yaw=-1280))
+     SwipePoints(4)=(Weight=2,offset=(Yaw=-2560))
+     WallHitPoint=2
+     NumSwipePoints=5
+     FatiguePerStrike=0.100000
+     bCanBackstab=False
+     TraceRange=(Min=150.000000,Max=150.000000)
+     Damage=65.000000
+     DamageHead=65.000000
+     DamageLimb=65.000000
+     DamageType=Class'BWBPRecolorsPro.DT_DTSChest'
+     DamageTypeHead=Class'BWBPRecolorsPro.DT_DTSHead'
+     DamageTypeArm=Class'BWBPRecolorsPro.DT_DTSLimb'
+     KickForce=100
+     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Swipe',Volume=4.100000,Radius=256.000000,bAtten=True)
+     bAISilent=True
+     FireAnim="Slash1"
+	 FireRate=0.80
+     AmmoClass=Class'BallisticProV55.Ammo_Knife'
+     AmmoPerFire=0
+     ShakeRotMag=(X=64.000000,Y=256.000000)
+     ShakeRotRate=(X=3000.000000,Y=3000.000000,Z=3000.000000)
+     ShakeRotTime=2.000000
+     BotRefireRate=0.800000
+     WarnTargetPct=0.800000
 }

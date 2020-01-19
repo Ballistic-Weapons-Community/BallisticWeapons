@@ -10,7 +10,10 @@ class EKS43Attachment extends BallisticMeleeAttachment;
 
 defaultproperties
 {
-     MeleeAltStrikeAnim="Blade_Smack"
+	 IdleHeavyAnim="TwoHand_Idle"
+     IdleRifleAnim="TwoHand_Idle"
+	 MeleeStrikeAnim="TwoHand_Slam"
+	 MeleeAltStrikeAnim="TwoHand_Smash"
      ImpactManager=Class'BallisticProV55.IM_Katana'
      BrassMode=MU_None
      InstantMode=MU_Both
