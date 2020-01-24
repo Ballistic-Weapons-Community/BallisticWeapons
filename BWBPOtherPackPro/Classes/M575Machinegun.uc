@@ -1,119 +1,127 @@
-class M575Machinegun extends BallisticMachinegun;
+class M575Machinegun extends BallisticWeapon;
 
-function InitWeaponFromTurret(BallisticTurret Turret)
+var   Material		AltScopeTex;
+var   bool		bScopeOn;
+
+var   Vector		ScopeSightOffset;
+var   name      ScopeOnAnim;
+var   name		ScopeOffAnim;
+var	  name		ScopeReloadAnim;
+var	  name		ScopeCockAnim;
+var   name		ScopeIdleAnim;
+var   name		ScopePulloutAnim;
+var   name		ScopePulloutCockAnim;
+var   name		ScopePutawayAnim;
+
+var   name		ScopeFireAnim;
+var   name		ScopeAimedFireAnim;
+
+var BUtil.FullSound ScopeZoomInSound, ScopeZoomOutSound;
+
+//Scope Stuff
+
+simulated function AdjustScopeProperties ()
 {
-	bNeedCock = false;
-	Ammo[0].AmmoAmount = Turret.AmmoAmount[0];
-	if (!Instigator.IsLocallyControlled())
-		ClientInitWeaponFromTurret(Turret);
+	if (bScopeOn)
+	{
+		//Animations
+		
+		ReloadAnim=ScopeReloadAnim;
+		CockAnim=ScopeCockAnim;
+		SelectAnim=ScopePulloutAnim;
+		CockSelectAnim=ScopePulloutCockAnim;
+		PutDownAnim=ScopePutawayAnim;
+		IdleAnim=ScopeIdleAnim;
+		M575PrimaryFire(FireMode[0]).AimedFireAnim=ScopeAimedFireAnim;
+		M575PrimaryFire(FireMode[0]).FireAnim=ScopeFireAnim;
+		
+		//Zoom Properties
+		
+		ZoomInSound=ScopeZoomInSound;
+		ZoomOutSound=ScopeZoomOutSound;
+		
+	}
+	else
+	{
+		//Animations
+		
+		ReloadAnim=default.ReloadAnim;
+		CockAnim=default.CockAnim;
+		SelectAnim=default.SelectAnim;
+		CockSelectAnim=default.CockSelectAnim;
+		PutDownAnim=default.PutDownAnim;
+		IdleAnim=default.IdleAnim;
+		M575PrimaryFire(FireMode[0]).AimedFireAnim=M575PrimaryFire(FireMode[0]).default.AimedFireAnim;
+		M575PrimaryFire(FireMode[0]).FireAnim=M575PrimaryFire(FireMode[0]).default.FireAnim;
+		
+		//Zoom Properties
+		
+		ZoomInSound=default.ZoomInSound;
+		ZoomOutSound=default.ZoomOutSound;
+	}
 }
-simulated function ClientInitWeaponFromTurret(BallisticTurret Turret)
+
+simulated function InitSwitchScope()
 {
-	bNeedCock=false;
+	if (ReloadState != RS_None)
+		return;
+	if (Clientstate != WS_ReadyToFire)
+		return;
+
+	bScopeOn = !bScopeOn;
+
+	ServerSwitchScope(bScopeOn);
+	SwitchScope(bScopeOn);
+	AdjustScopeProperties();
 }
+
+function ServerSwitchScope(bool bNewValue)
+{
+	bScopeOn = bNewValue;
+	SwitchScope(bNewValue);
+	AdjustScopeProperties();
+}
+
+simulated function SwitchScope(bool bNewValue)
+{
+	if (Role == ROLE_Authority)
+		bServerReloading = True;
+	ReloadState = RS_GearSwitch;
+	
+	if (bNewValue)
+		PlayAnim(ScopeOnAnim);
+	else
+		PlayAnim(ScopeOffAnim);
+}
+
+simulated function Notify_EndSwitchScope()
+{
+
+	if (bScopeOn)
+	{
+		ZoomType=ZT_Smooth;
+		FullZoomFOV=70.000000;
+		SightOffset=ScopeSightOffset;
+	}
+	else
+	{
+		ZoomType=ZT_Irons;
+		FullZoomFOV=default.FullZoomFOV;
+		SightOffset=default.SightOffset;
+	}
+
+}
+
+//End of Scope Stuff
 
 simulated function TickAim(float DT)
 {
 	Super(BallisticWeapon).TickAim(DT);
 }
 
-function Notify_Deploy()
-{
-	local vector HitLoc, HitNorm, Start, End;
-	local actor T;
-	local Rotator CompressedEq;
-    local BallisticTurret Turret;
-    local int Forward;
-
-	if (Instigator.HeadVolume.bWaterVolume)
-		return;
-	// Trace forward and then down. make sure turret is being deployed:
-	//   on world geometry, at least 30 units away, on level ground, not on the other side of an obstacle
-	// BallisticPro specific: Can be deployed upon sandbags providing that sandbag is not hosting
-	// another weapon already. When deployed upon sandbags, the weapon is automatically deployed 
-	// to the centre of the bags.
-	
-	Start = Instigator.Location + Instigator.EyePosition();
-	for (Forward=75;Forward>=45;Forward-=15)
-	{
-		End = Start + vector(Instigator.Rotation) * Forward;
-		T = Trace(HitLoc, HitNorm, End, Start, true, vect(6,6,6));
-		if (T != None && VSize(HitLoc - Start) < 30)
-			return;
-		if (T == None)
-			HitLoc = End;
-		End = HitLoc - vect(0,0,100);
-		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
-		if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
-			break;
-		if (Forward <= 45)
-			return;
-	}
-
-	FireMode[1].bIsFiring = false;
-   	FireMode[1].StopFiring();
-
-	if(Sandbag(T) != None)
-	{
-		HitLoc = T.Location;
-		HitLoc.Z += class'M353Turret'.default.CollisionHeight + 30;
-	}
-	
-	else
-	{
-		HitLoc.Z += class'M353Turret'.default.CollisionHeight - 9;
-	}
-	
-	CompressedEq = Instigator.Rotation;
-		
-	//Rotator compression causes disparity between server and client rotations,
-	//which then plays hob with the turret's aim.
-	//Do the compression first then use that to spawn the turret.
-	
-	CompressedEq.Pitch = (CompressedEq.Pitch >> 8) & 255;
-	CompressedEq.Yaw = (CompressedEq.Yaw >> 8) & 255;
-	CompressedEq.Pitch = (CompressedEq.Pitch << 8);
-	CompressedEq.Yaw = (CompressedEq.Yaw << 8);
-
-	Turret = Spawn(class'M353Turret', None,, HitLoc, CompressedEq);
-	
-    if (Turret != None)
-    {
-    	if (Sandbag(T) != None)
-			Sandbag(T).AttachedWeapon = Turret;
-		Turret.InitDeployedTurretFor(self);
-		Turret.TryToDrive(Instigator);
-		Destroy();
-    }
-    else
-		log("Notify_Deploy: Could not spawn turret for M353 Machinegun");
-}
-
 simulated function PlayReload()
 {
-	PlayAnim('ReloadHold', ReloadAnimRate, , 0.25);
-}
-
-simulated function Notify_M353FlapOpenedReload ()
-{
-	super.PlayReload();
-}
-
-// Animation notify to make gun cock after reload
-simulated function Notify_CockAfterReload()
-{
-	if (bNeedCock && MagAmmo > 0)
-		CommonCockGun(2);
-	else
-		PlayAnim('ReloadFinishHold', ReloadAnimRate, 0.2);
-}
-
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2 && HasAnim('ReloadEndCock'))
-		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
-	else
-		PlayAnim(CockAnim, CockAnimRate, 0.2);
+	PlayAnim('Reload', ReloadAnimRate, , 0);
 }
 
 simulated function PositionSights ()
@@ -239,10 +247,18 @@ simulated function SetScopeBehavior()
 
 defaultproperties
 {
-     BoxOnSound=(Sound=Sound'BallisticSounds2.M353.M353-BoxOn')
-     BoxOffSound=(Sound=Sound'BallisticSounds2.M353.M353-BoxOff')
-     FlapUpSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapUp')
-     FlapDownSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapDown')
+	 ScopeFireAnim="FireScope"
+	 ScopeAimedFireAnim="ScopeIn"
+	 ScopeSightOffset=(X=2.000000,Y=8.740000,Z=9.150000)
+	 ScopeOnAnim="ScopeEngage"
+	 ScopeOffAnim="ScopeDisEngage"
+	 ScopeReloadAnim="ReloadScope"
+	 ScopeCockAnim="CockScope"
+	 ScopeIdleAnim="IdleScope"
+	 ScopePulloutAnim="PulloutScope"
+	 ScopePulloutCockAnim="PulloutCockingScope"
+	 ScopePutawayAnim="PutawayScope"
+     bScopeOn=False
      PlayerSpeedFactor=0.850000
      PlayerJumpFactor=0.900000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
@@ -252,7 +268,6 @@ defaultproperties
      SightFXClass=Class'BallisticProV55.M353SightLEDs'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
-     bWT_Machinegun=True
      ManualLines(0)="Automatic 5.56mm fire. Has a high rate of fire, moderate damage and good sustained damage output. As a machinegun, it has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."
      ManualLines(1)="Deploys the machinegun upon the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, becomes perfectly accurate, loses its iron sights and gains a reduction in recoil. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
      ManualLines(2)="The M575 is a more cumbersome and heavy weapon, and accordingly has poor hipfire and takes some time to aim.||It is effective at medium to long range."
@@ -262,7 +277,6 @@ defaultproperties
      MagAmmo=100
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
-     ReloadAnim="ReloadStart"
      ReloadAnimRate=1.450000
      ClipOutSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellOut')
      ClipInSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellIn')
@@ -273,7 +287,8 @@ defaultproperties
      WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)
      WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
      CurrentWeaponMode=3
-     bNoCrosshairInScope=True
+	 ZoomType=ZT_Irons
+	 bNoCrosshairInScope=True
      SightPivot=(Pitch=128)
      SightOffset=(X=-10.000000,Y=8.740000,Z=9.150000)
      SightingTime=0.550000
@@ -290,8 +305,8 @@ defaultproperties
      RecoilMax=12288.000000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.150000
-     FireModeClass(0)=Class'BallisticProV55.M353PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.M353SecondaryFire'
+     FireModeClass(0)=Class'BWBPOtherPackPro.M575PrimaryFire'
+     FireModeClass(1)=Class'BWBPOtherPackPro.M575SecondaryFire'
      SelectAnimRate=1.350000
      PutDownTime=0.550000
      BringUpTime=0.700000
