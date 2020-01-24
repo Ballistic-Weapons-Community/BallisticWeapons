@@ -230,7 +230,7 @@ simulated function bool HasAmmo()
 
 // AI Interface =====
 // choose between regular or alt-fire
-function byte BestMode()
+/*function byte BestMode()
 {
 	local Bot B;
 	local float Dist;
@@ -243,6 +243,11 @@ function byte BestMode()
 
 	if (Dist < 512 || Dist > 2048)
 		return 1;
+	return 0;
+}*/
+
+function byte BestMode()
+{
 	return 0;
 }
 

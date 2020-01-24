@@ -2602,7 +2602,7 @@ defaultproperties
      HighImpactVelocity=1000.000000
      LowImpactVelocity=500.000000
      TimeBetweenImpacts=1.000000
-	 MinTimeBetweenPainSounds=0.600000
+	 //MinTimeBetweenPainSounds=0.600000
      NewDeResSound=SoundGroup'BallisticSounds2.Misc.DeRes'
      MeleeAnim="Melee_Smack"
      Spammers(0)="jawjaw"
