@@ -292,7 +292,9 @@ defaultproperties
      AltFlashBone=
      FlashMode=MU_None
      LightMode=MU_None
-     ReloadAnim="Reload_MG"
+     SingleFireAnim="RifleHip_FireCock"
+     SingleAimedFireAnim="RifleAimed_FireCock"
+	 ReloadAnim="Reload_MG"
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=1.250000
      CockAnimRate=1.400000
