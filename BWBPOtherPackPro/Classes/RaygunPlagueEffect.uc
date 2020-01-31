@@ -36,6 +36,12 @@ simulated function Initialize(Actor V)
 		Emitters[2].Disabled=true;
 	}
 	
+	else if (Victim.IsLocallyControlled())
+	{
+		Emitters[1].Disabled = true;
+		Emitters[2].Disabled = true;
+	}
+	
 	SetBase(Victim);
 	
 	//Spawn the associated trigger here and track it.
