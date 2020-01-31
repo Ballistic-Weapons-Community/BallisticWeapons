@@ -151,7 +151,8 @@ defaultproperties
      FlashScale=1.500000
      BrassMode=MU_None
      InstantMode=MU_None
-     ReloadAnimRate=9.000000
+     ReloadAnim="Reload_MG"
+	 ReloadAnimRate=1.000000
      Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.TP_LAW'
      DrawScale=0.350000
      PrePivot=(Z=5.000000)

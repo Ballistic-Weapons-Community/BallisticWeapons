@@ -74,6 +74,8 @@ defaultproperties
      BrassMode=MU_None
      InstantMode=MU_None
      FlashMode=MU_Both
+	 ReloadAnim="Reload_MG"
+	 ReloadAnimRate=1.00000
      Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.TP_FLASH'
      DrawScale=0.600000
      PrePivot=(Z=5.000000)

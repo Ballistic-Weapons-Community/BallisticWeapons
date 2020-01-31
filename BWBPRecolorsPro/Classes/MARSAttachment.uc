@@ -48,7 +48,8 @@ defaultproperties
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
-     ReloadAnimRate=0.800000
+     ReloadAnimRate=0.9000
+	 CockingAnim="Cock_RearPull"
      bRapidFire=True
      bAltRapidFire=True
      Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.F2000_TP'
