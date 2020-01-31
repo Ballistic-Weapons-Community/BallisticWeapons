@@ -10,6 +10,8 @@
 //=============================================================================
 class TrenchGun extends BallisticProShotgun;
 
+//This weapon is great!
+
 var byte OldWeaponMode;
 var actor ReloadSteam;
 var actor ReloadSteam2;
