@@ -151,6 +151,7 @@ defaultproperties
      LightMode=MU_Both
      TracerClass=Class'BallisticProV55.TraceEmitter_Pistol'
      TracerChance=0.600000
+	 ReloadAnimRate=0.450000
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)

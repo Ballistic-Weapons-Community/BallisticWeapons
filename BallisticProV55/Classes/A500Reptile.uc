@@ -218,7 +218,7 @@ defaultproperties
      Priority=39
      HudColor=(G=200,R=150)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=7
+     InventoryGroup=8
      PickupClass=Class'BallisticProV55.A500Pickup'
      PlayerViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
      PlayerViewPivot=(Pitch=600)

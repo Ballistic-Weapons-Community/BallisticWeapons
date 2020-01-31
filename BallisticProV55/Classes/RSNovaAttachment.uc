@@ -531,6 +531,8 @@ defaultproperties
      LightMode=MU_Both
      ReloadAnim="Reload_MG"
      ReloadAnimRate=0.800000
+	 MeleeStrikeAnim="Melee_Stab"
+     MeleeAnimRate=1.000000
      TrackNum(1)=0
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP4-Anims.NovaStaff-3rd'

@@ -15,8 +15,8 @@ defaultproperties
      MeleeImpactManager=Class'BallisticProV55.IM_A73Knife'
      FlashScale=0.100000
      BrassMode=MU_None
-     ReloadAnim="Reload_AR"
-     ReloadAnimRate=0.800000
+     ReloadAnim="Reload_MG"
+     ReloadAnimRate=1.50000
      bRapidFire=True
      Mesh=SkeletalMesh'BallisticAnims2.A73-3rd'
      DrawScale=1.700000

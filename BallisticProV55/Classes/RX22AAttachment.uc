@@ -236,7 +236,8 @@ defaultproperties
      WeaponLightTime=0.300000
      FlashScale=2.000000
      FlyBySound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-FlyBy',Volume=0.700000)
-     ReloadAnimRate=5.500000
+     ReloadAnim="Reload_MG"
+	 ReloadAnimRate=1.050000
      bHeavy=True
      bRapidFire=True
      bAltRapidFire=True
