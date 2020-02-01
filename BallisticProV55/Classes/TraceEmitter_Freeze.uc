@@ -51,6 +51,6 @@ defaultproperties
          LifetimeRange=(Min=0.900000,Max=0.900000)
          StartVelocityRange=(X=(Max=9000.000000))
      End Object
-     Emitters(2)=SpriteEmitter'BallisticProV55.TraceEmitter_Freeze.SpriteEmitter0'
+     Emitters(1)=SpriteEmitter'BallisticProV55.TraceEmitter_Freeze.SpriteEmitter0'
 
 }

@@ -1,46 +1,39 @@
 //=============================================================================
 // CoachGunAttachment.
 //
-// 3rd person weapon attachment for my sweaty applejuice
+// 3rd person weapon attachment
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class TrenchGunAttachment extends BallisticShotgunAttachment;
 
-var bool		bSlugMode;
-var bool		bOldSlugMode;
-var bool		bSingleFire;
-var name		SingleBarrelAnim;
-var name		SingleBarrelAimedAnim;
+const FREEZE_MODE = 0;
+const SHOCK_MODE = 1;
 
-var byte	SideFireCount, OldSideFireCount;
+enum TrenchBarrelMode
+{
+	TBM_Single,
+	TBM_Double
+};
 
-var bool		Side;
+var TrenchBarrelMode			BarrelMode;
+var name						SingleBarrelAnim;
+var name						SingleBarrelAimedAnim;
 
-var() class<BCImpactManager>ImpactManagerAlt;		//Impact Manager to use for iATLATmpact effects
-var() class<BCTraceEmitter>	TracerClassAlt;		//Type of tracer to use for alt fire effects
+var bool						Side;
 
-var	Actor	MuzzleFlashRight;
+var() class<BCImpactManager>	ImpactManagerAlt;		//Impact Manager to use for iATLATmpact effects
+var() class<BCTraceEmitter>		TracerClassAlt;		//Type of tracer to use for alt fire effects
 
-var Actor 	sHitActor;
-var int 		sHitSurf;
-var Vector sHitLocation, sHitNormal, sWaterHitLocation;
+var	Actor						MuzzleFlashRight;
+
 
 replication
 {
 	// Things the server should send to the client.
 	reliable if(Role==ROLE_Authority)
-		bSlugMode, SideFireCount, bSingleFire;
-}
-
-function InitFor(Inventory I)
-{
-	Super.InitFor(I);
-	
-	//safe assumption
-	if (CoachGun(I).CurrentWeaponMode == 1)
-		bSlugMode = True;
+		BarrelMode;
 }
 
 simulated event PostNetReceive()
@@ -48,67 +41,53 @@ simulated event PostNetReceive()
 	if (level.NetMode != NM_Client)
 		return;
 		
-	if (bSlugMode != bOldSlugMode)
-		bOldSlugMode = bSlugMode;
-		
 	if (DirectImpactCount != OldDirectImpactCount)
 	{
 		DoDirectHit(DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
 		OldDirectImpactCount = DirectImpactCount;
 	}
+	
 	if (FireCount != OldFireCount)
 	{
-		FiringMode = 0;
+		FiringMode = FREEZE_MODE;
 		ThirdPersonEffects();
 		OldFireCount = FireCount;
 	}
-	//2nd barrel
-	if (SideFireCount != OldSideFireCount)
-	{
-		FiringMode = 2;
-		ThirdPersonEffects();
-		OldSideFireCount = SideFireCount;
-	}
+	
 	if (AltFireCount != OldAltFireCount)
 	{
-		FiringMode = 1;
+		FiringMode = SHOCK_MODE;
 		ThirdPersonEffects();
 		OldAltFireCount = AltFireCount;
 	}
 }
 
-//Called for a Coach double shot
+//Called for a double shot
 function DoubleUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, Actor sideHitActor, vector sideHitLocation, vector sideHitNormal, int HitSurf, int sideHitSurf, optional vector WaterHitLoc, optional vector sideWaterHitLoc)
 {
 	mHitSurf = HitSurf;
-	sHitSurf = sideHitSurf;
-	
-	WaterHitLocation = WaterHitLoc;
-	sWaterHitLocation = sideWaterHitLoc;
-	
 	mHitNormal = HitNormal;
 	mHitActor = HitActor;
 	mHitLocation = HitLocation;
-	FiringMode = 0;
+	WaterHitLocation = WaterHitLoc;
+	
 	FireCount++;
 	ThirdPersonEffects();
 	
-	sHitNormal = sideHitNormal;
-	sHitActor = sideHitActor;
-	sHitLocation = sideHitLocation;
-	FiringMode = 2;
-	SideFireCount++;
+	mHitSurf = sideHitSurf;
+	mHitNormal = sideHitNormal;
+	mHitActor = sideHitActor;
+	mHitLocation = sideHitLocation;
+	WaterHitLocation = sideWaterHitLoc;
+	
+	FireCount++;
 	NetUpdateTime = Level.TimeSeconds - 1;
 	ThirdPersonEffects();
-
 }
 
 simulated function InstantFireEffects(byte Mode)
 {
-	local Vector HitLocation, Dir, Start;
-	local Material HitMat;
-	
-	if ( bSingleFire )
+	if ( BarrelMode == TBM_Single )
 	{
 		SingleAimedFireAnim=SingleBarrelAimedAnim;
 		SingleFireAnim=SingleBarrelAnim;
@@ -119,105 +98,68 @@ simulated function InstantFireEffects(byte Mode)
 		SingleFireAnim=default.SingleFireAnim;
 	}
 	
-	if (!bSlugMode)
+	if (Mode == SHOCK_MODE)
 		ShotgunFireEffects(Mode);
 	else 
-	// ================== SUPERMAG EFFECTS ===============
-	{
-		if (InstantMode == MU_None || (InstantMode == MU_Secondary && Mode != 1) || (InstantMode == MU_Primary && Mode == 1))
-			return;
-
-		if (mHitLocation == vect(0,0,0))
-			return;
-
-		if (Instigator == none)
-			return;
-
-		SpawnTracer(Mode, mHitLocation);
-		FlyByEffects(Mode, mHitLocation);
+		SlugFireEffects(Mode);
 		
-		if (FiringMode == 0)
-		{
-			// Client, trace for hitnormal, hitmaterial and hitactor
-			if (Level.NetMode == NM_Client)
-			{
-				mHitActor = None;
-				Start = Instigator.Location + Instigator.EyePosition();
-		
-				if (WallPenetrates != 0)				{
-					WallPenetrates = 0;
-					DoWallPenetrate(Start, mHitLocation);	}
-
-				Dir = Normal(mHitLocation - Start);
-				mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir*10, mHitLocation - Dir*10, false,, HitMat);
-				// Check for water and spawn splash
-				if (ImpactManager!= None && bDoWaterSplash)
-				DoWaterTrace(Start, mHitLocation);
-
-				if (mHitActor == None)
-					return;
-				// Set the hit surface type
-				if (Vehicle(mHitActor) != None)
-				mHitSurf = 3;
-				else if (HitMat == None)
-					mHitSurf = int(mHitActor.SurfaceType);
-				else
-					mHitSurf = int(HitMat.SurfaceType);
-			}
-			// Server has all the info already...
-			else
-				HitLocation = mHitLocation;
-
-			if (level.NetMode != NM_Client && ImpactManager!= None && WaterHitLocation != vect(0,0,0) && bDoWaterSplash && Level.DetailMode >= DM_High && class'BallisticMod'.default.EffectsDetailMode > 0)
-				ImpactManagerAlt.static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
-			if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
-				return;
-			if (ImpactManagerAlt != None)
-				ImpactManagerAlt.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
-		}
-		
-		else
-		{
-			// Client, trace for hitnormal, hitmaterial and hitactor
-			if (Level.NetMode == NM_Client)
-			{
-				sHitActor = None;
-				Start = Instigator.Location + Instigator.EyePosition();
-		
-				if (WallPenetrates != 0)				{
-					WallPenetrates = 0;
-					DoWallPenetrate(Start, sHitLocation);	}
-
-				Dir = Normal(sHitLocation - Start);
-				sHitActor = Trace (HitLocation, sHitNormal, sHitLocation + Dir*10, sHitLocation - Dir*10, false,, HitMat);
-				// Check for water and spawn splash
-				if (ImpactManager!= None && bDoWaterSplash)
-				DoWaterTrace(Start, mHitLocation);
-
-				if (sHitActor == None)
-					return;
-				// Set the hit surface type
-				if (Vehicle(sHitActor) != None)
-				sHitSurf = 3;
-				else if (HitMat == None)
-					sHitSurf = int(sHitActor.SurfaceType);
-				else
-					sHitSurf = int(HitMat.SurfaceType);
-			}
-			// Server has all the info already...
-			else
-				HitLocation = sHitLocation;
-
-			if (level.NetMode != NM_Client && ImpactManager!= None && sWaterHitLocation != vect(0,0,0) && bDoWaterSplash && Level.DetailMode >= DM_High && class'BallisticMod'.default.EffectsDetailMode > 0)
-				ImpactManagerAlt.static.StartSpawn(sWaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - sWaterHitLocation), 9, Instigator);
-			if (sHitActor == None || (!sHitActor.bWorldGeometry && Mover(sHitActor) == None && Vehicle(sHitActor) == None))
-				return;
-			if (ImpactManagerAlt != None)
-				ImpactManagerAlt.static.StartSpawn(HitLocation, sHitNormal, sHitSurf, instigator);
-		}
-
-	}
+	Side = !Side;
 }
+
+simulated function SlugFireEffects(byte Mode)
+{
+	local Vector HitLocation, Dir, Start;
+	local Material HitMat;
+	
+	Log("SlugFireEffects");
+	
+	if (mHitLocation == vect(0,0,0))
+		return;
+
+	if (Instigator == None)
+		return;
+
+	SpawnTracer(Mode, mHitLocation);
+	FlyByEffects(Mode, mHitLocation);
+	
+	// Client, trace for hitnormal, hitmaterial and hitactor
+	if (Level.NetMode == NM_Client)
+	{
+		mHitActor = None;
+		Start = Instigator.Location + Instigator.EyePosition();
+
+		if (WallPenetrates != 0)				{
+			WallPenetrates = 0;
+			DoWallPenetrate(Start, mHitLocation);	}
+
+		Dir = Normal(mHitLocation - Start);
+		mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir*10, mHitLocation - Dir*10, false,, HitMat);
+		// Check for water and spawn splash
+		if (ImpactManager!= None && bDoWaterSplash)
+		DoWaterTrace(Start, mHitLocation);
+
+		if (mHitActor == None)
+			return;
+		// Set the hit surface type
+		if (Vehicle(mHitActor) != None)
+		mHitSurf = 3;
+		else if (HitMat == None)
+			mHitSurf = int(mHitActor.SurfaceType);
+		else
+			mHitSurf = int(HitMat.SurfaceType);
+	}
+	// Server has all the info already...
+	else
+		HitLocation = mHitLocation;
+
+	if (level.NetMode != NM_Client && ImpactManager!= None && WaterHitLocation != vect(0,0,0) && bDoWaterSplash && Level.DetailMode >= DM_High && class'BallisticMod'.default.EffectsDetailMode > 0)
+		ImpactManagerAlt.static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
+	if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
+		return;
+	if (ImpactManagerAlt != None)
+		ImpactManagerAlt.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+}
+
 // Do trace to find impact info and then spawn the effect
 simulated function ShotgunFireEffects(byte Mode)
 {
@@ -226,7 +168,9 @@ simulated function ShotgunFireEffects(byte Mode)
 	local Material HitMat;
 	local int i;
 	local float XS, YS, RMin, RMax, Range, fX;
-
+	
+	Log("ShotgunFireEffects");
+	
 	if (Level.NetMode == NM_Client && FireClass != None)
 	{
 		XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
@@ -292,38 +236,21 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	local BCTraceEmitter Tracer;
 	local Vector TipLoc, WLoc, WNorm;
 	local float Dist;
-	local bool bThisShot;
 
+	Log("SpawnTracer");
+	
 	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;
 
 	TipLoc = GetTipLocation();
 	Dist = VSize(V - TipLoc);
 
-	// Count shots to determine if it's time to spawn a tracer
-	if (TracerMix == 0)
-		bThisShot=true;
-	else
-	{
-		TracerCounter++;
-		if (TracerMix < 0)
-		{
-			if (TracerCounter >= -TracerMix)	{
-				TracerCounter = 0;
-				bThisShot=false;			}
-			else
-				bThisShot=true;
-		}
-		else if (TracerCounter >= TracerMix)	{
-			TracerCounter = 0;
-			bThisShot=true;					}
-	}
 	// Spawn a tracer for the appropriate mode
-	if (TracerClass != None && bThisShot && (TracerChance >= 1 || FRand() < TracerChance) )
+	if (TracerClass != None)
 	{
 		if (Dist > 200)
 		{
-			if (!bSlugMode)
+			if (Mode == FREEZE_MODE)
 				Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
 			else Tracer = Spawn(TracerClassAlt, self, , TipLoc, Rotator(V - TipLoc));
 		}
@@ -332,7 +259,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	}
 	// Spawn under water bullet effect
 	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
-		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && Mode == 1) || (WaterTracerMode == MU_Primary && Mode != 1)))
+		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && Mode == FREEZE_MODE) || (WaterTracerMode == MU_Primary && Mode != SHOCK_MODE)))
 	{
 		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
 			Tracer = Spawn(WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
@@ -348,13 +275,13 @@ simulated function Vector GetTipLocation()
 
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 	{
-		if (FiringMode == 2)
+		if (!Side)
 			C = Instigator.Weapon.GetBoneCoords('tip');
 		else C = Instigator.Weapon.GetBoneCoords('Tip2');
 	}
 	else
 	{
-		if (FiringMode == 0)
+		if (!Side)
 			C = GetBoneCoords(FlashBone);
 		else C = GetBoneCoords(AltFlashBone);
 	}
@@ -369,8 +296,6 @@ simulated function FlashMuzzleFlash(byte Mode)
 {
 	local rotator R;
 
-	if (FlashMode == MU_None || (FlashMode == MU_Secondary && Mode != 1) || (FlashMode == MU_Primary && Mode == 1))
-		return;
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return;
 
@@ -382,22 +307,23 @@ simulated function FlashMuzzleFlash(byte Mode)
 		if (AltMuzzleFlash == None)
 		{
 			if (!Side)
+				class'BUtil'.static.InitMuzzleFlash (AltMuzzleFlash, AltMuzzleFlashClass, DrawScale*FlashScale, self, FlashBone);
+			else 
 				class'BUtil'.static.InitMuzzleFlash (AltMuzzleFlash, AltMuzzleFlashClass, DrawScale*FlashScale, self, AltFlashBone);
-			else 	class'BUtil'.static.InitMuzzleFlash (AltMuzzleFlash, AltMuzzleFlashClass, DrawScale*FlashScale, self, FlashBone);
 		}
 		AltMuzzleFlash.Trigger(self, Instigator);
 		if (bRandomFlashRoll)	SetBoneRotation(AltFlashBone, R, 0, 1.f);
 	}
 	else if (MuzzleFlashClass != None)
 	{
-		if(Mode == 0)
+		if(!Side)
 		{
 			if (MuzzleFlash == None)
 				class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, MuzzleFlashClass, DrawScale*FlashScale, self, FlashBone);
 			MuzzleFlash.Trigger(self, Instigator);
 			if (bRandomFlashRoll)	SetBoneRotation(FlashBone, R, 0, 1.f);
 		}
-		else if (Mode == 2)
+		else
 		{
 			if (MuzzleFlashRight == None)
 				class'BUtil'.static.InitMuzzleFlash (MuzzleFlashRight, MuzzleFlashClass, DrawScale*FlashScale, self, AltFlashBone);
@@ -411,22 +337,30 @@ simulated function EjectBrass(byte Mode);
 
 defaultproperties
 {
-     ImpactManagerAlt=Class'BWBPRecolorsPro.IM_Supercharge'
-     TracerClassAlt=Class'BWBPRecolorsPro.TraceEmitter_Supercharge'
-     FireClass=Class'BWBPSomeOtherPack.TrenchGunPrimaryFire'
-     MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+	 TracerClass=Class'BallisticProV55.TraceEmitter_Freeze'
      ImpactManager=Class'BallisticProV55.IM_FreezeHit'
-     MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
+	 
+     TracerClassAlt=Class'BWBPRecolorsPro.TraceEmitter_Supercharge'
+	 ImpactManagerAlt=Class'BWBPRecolorsPro.IM_Supercharge'
+	 
+	 MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
+	 
+     FireClass=Class'BWBPSomeOtherPack.TrenchGunPrimaryFire'
+
+     MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      FlashBone="Tip1"
      AltFlashBone="tip2"
      FlashScale=1.500000
+	 
      BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
+	 
      TrackAnimMode=MU_Secondary
-     TracerClass=Class'BallisticProV55.TraceEmitter_Freeze'
+
      Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.TechGun_Third'
      RelativeLocation=(X=5.000000,Z=4.000000)
      RelativeRotation=(Pitch=32768,Roll=-16384)
      DrawScale=0.450000
+	 
  	 SingleFireAnim="Reload_BreakOpenFast"
      SingleAimedFireAnim="Reload_BreakOpenFast"
      RapidFireAnim="Reload_BreakOpenFast"

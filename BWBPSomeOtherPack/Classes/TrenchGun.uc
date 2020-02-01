@@ -148,8 +148,6 @@ simulated function PlayReload()
 // Returns true if gun will need reloading after a certain amount of ammo is consumed. Subclass for special stuff
 simulated function bool MayNeedReload(byte Mode, float Load)
 {
-	if (!HasNonMagAmmo(0))
-		return true;
 	return bNeedReload;
 }
 
@@ -188,7 +186,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 	
 	//Phase out Channel 1 if a sight fire animation has just ended.
-	if (anim == BFireMode[0].AimedFireAnim || anim == CoachGunPrimaryFire(FireMode[0]).AimedFireEmptyAnim)
+	if (anim == BFireMode[0].AimedFireAnim || anim == TrenchgunPrimaryFire(FireMode[0]).AimedFireEmptyAnim)
 	{
 		AnimBlendParams(1, 0);
 		//Cut the basic fire anim if it's too long.

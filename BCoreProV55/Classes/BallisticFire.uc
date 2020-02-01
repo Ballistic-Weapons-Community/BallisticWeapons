@@ -341,6 +341,7 @@ simulated function FireRecoil ()
 			Instigator.Velocity -= VelRecoilVect;
 	}
 }
+
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
 {
 	BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, (ThisModeNum > 0), WaterHitLoc);

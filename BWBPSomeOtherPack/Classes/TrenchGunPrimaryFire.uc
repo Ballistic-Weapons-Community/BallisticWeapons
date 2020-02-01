@@ -104,27 +104,28 @@ function ServerPlayFiring()
 
 	CheckClipFinished();
 
-	if (BW.HasNonMagAmmo(0) && ConsumedLoad >= BW.MagAmmo)
+	if (BW.HasNonMagAmmo(0))
 	{
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())
-			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
+		if (ConsumedLoad >= BW.MagAmmo)
+		{
+			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+			
+			if (BW.BlendFire())
+				BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
+		}
+		else
+		{
+			BW.SafePlayAnim(FireSingleAnim, FireAnimRate, TweenTime, ,"FIRE");
+			
+			if (BW.BlendFire())
+				BW.SafePlayAnim(AimedFireSingleAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");			
+		}	
 	}
-	else if (BW.HasNonMagAmmo(0) && ConsumedLoad < BW.MagAmmo)
-	{
-		BW.SafePlayAnim(FireSingleAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())
-			BW.SafePlayAnim(AimedFireSingleAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-		if (Weapon.ThirdPersonActor != None)
-			TrenchGunAttachment(Weapon.ThirdPersonActor).bSingleFire=true;				
-	}	
 	else
 	{
 		BW.SafePlayAnim(FireEmptyAnim, FireAnimRate, TweenTime, ,"FIRE");
 		if (BW.BlendFire())
-			BW.SafePlayAnim(AimedFireEmptyAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-		if (Weapon.ThirdPersonActor != None)
-			TrenchGunAttachment(Weapon.ThirdPersonActor).bSingleFire=true;				
+			BW.SafePlayAnim(AimedFireEmptyAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");			
 	}
 }
 
@@ -134,27 +135,28 @@ function PlayFiring()
 	if (ScopeDownOn == SDO_Fire)
 		BW.TemporaryScopeDown(0.5, 0.9);
 		
-	if (BW.HasNonMagAmmo(0) && ConsumedLoad >= BW.MagAmmo)
+	if (BW.HasNonMagAmmo(0))
 	{
-		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())
-			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
+		if (ConsumedLoad >= BW.MagAmmo)
+		{
+			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+			
+			if (BW.BlendFire())
+				BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
+		}
+		else
+		{
+			BW.SafePlayAnim(FireSingleAnim, FireAnimRate, TweenTime, ,"FIRE");
+			
+			if (BW.BlendFire())
+				BW.SafePlayAnim(AimedFireSingleAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");			
+		}	
 	}
-	else if (BW.HasNonMagAmmo(0) && ConsumedLoad < BW.MagAmmo)
-	{
-		BW.SafePlayAnim(FireSingleAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())
-			BW.SafePlayAnim(AimedFireSingleAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-		if (Weapon.ThirdPersonActor != None)
-			TrenchGunAttachment(Weapon.ThirdPersonActor).bSingleFire=true;
-	}		
 	else
 	{
 		BW.SafePlayAnim(FireEmptyAnim, FireAnimRate, TweenTime, ,"FIRE");
 		if (BW.BlendFire())
-			BW.SafePlayAnim(AimedFireEmptyAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-		if (Weapon.ThirdPersonActor != None)
-			TrenchGunAttachment(Weapon.ThirdPersonActor).bSingleFire=true;	
+			BW.SafePlayAnim(AimedFireEmptyAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");			
 	}
 
     ClientPlayForceFeedback(FireForce);  // jdf
@@ -167,19 +169,21 @@ function PlayFiring()
 	CheckClipFinished();
 }
 
+simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
+{
+	BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, (BW.CurrentWeaponMode > 0), WaterHitLoc);
+}
+
 simulated function SwitchWeaponMode (byte newMode)
 {
-	if (newMode == 1) //Slug Mode
+	if (newMode == 1) // Electroshot mode
 	{
 		PenetrateForce=500;
 		bPenetrate=True;
 		
 		BallisticFireSound.Sound=SlugFireSound;
 		//BallisticFireSound.Volume=2.0;
-		
-		if (Weapon.ThirdPersonActor != None)
-			TrenchGunAttachment(Weapon.ThirdPersonActor).bSlugMode=true;
-		
+			
 		TracerClass=AltTracerClass;
 		ImpactManager=AltImpactManager;
 		
@@ -205,8 +209,6 @@ simulated function SwitchWeaponMode (byte newMode)
 		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
 		BallisticFireSound.Volume=default.BallisticFireSound.Volume;
 		
-		TrenchGunAttachment(Weapon.ThirdPersonActor).bSlugMode=false;
-		
 		TracerClass=default.TracerClass;
 		ImpactManager=default.ImpactManager;
 		
@@ -228,11 +230,10 @@ simulated function SwitchWeaponMode (byte newMode)
 // ModeDoFire from WeaponFire.uc, but with a few changes
 simulated event ModeDoFire()
 {
- 
 	if (!AllowFire())
 	{
-        return;
 		HoldTime = 0;	
+        return;
 	}	
 	
     if (bIsJammed)
@@ -398,19 +399,27 @@ function FlashMuzzleFlash()
 	local Coords C;
 	local Actor MuzzleSmoke;
 	local vector Start, X, Y, Z;
+	local bool Side;
 
     if ((Level.NetMode == NM_DedicatedServer) || (AIController(Instigator.Controller) != None) )
 		return;
 	if (!Instigator.IsFirstPerson() || PlayerController(Instigator.Controller).ViewTarget != Instigator)
 		return;
+		
+	Side = TrenchGunAttachment(Weapon.ThirdPersonActor).Side;
 
-	if(ConsumedLoad == 2)
+	if(ConsumedLoad == 2 || Side)
 	{
 		C = Weapon.GetBoneCoords('tip2');
 		MuzzleFlash2.Trigger(Weapon, Instigator);
 	}
-	C = Weapon.GetBoneCoords('tip');
-	MuzzleFlash.Trigger(Weapon, Instigator);
+	
+	if (ConsumedLoad == 2 || !Side)
+	{
+		C = Weapon.GetBoneCoords('tip');
+		MuzzleFlash.Trigger(Weapon, Instigator);
+	}
+
     if (!class'BallisticMod'.default.bMuzzleSmoke)
     	return;
     Weapon.GetViewAxes(X,Y,Z);
@@ -426,12 +435,9 @@ simulated function ModeTick(float DeltaTime)
 {
 	Super.ModeTick(DeltaTime);
 	
-	/*if (ThisModeNum == 0)
-		bFreezeMode=True;	*/
-	
 	if (bIsFiring)
 	{
-		if (HoldTime >= ChargeTime && BW.MagAmmo == 2)
+		if (!bDoubleShot && HoldTime >= ChargeTime && BW.MagAmmo == 2)
 		{
 			bDoubleShot=True;
 			BallisticFireSound.Volume=2.0;
@@ -445,21 +451,23 @@ simulated function ModeTick(float DeltaTime)
 				DamageTypeHead=Class'DT_TrenchGunElectroDouble';	
 			}
 		}
-		else
+		else if (bDoubleShot)
 		{
-				if (!bFreezeMode || ThisModeNum == 1)
-				{
-					DamageType=Class'DT_TrenchGunElectro';
-					DamageTypeArm=Class'DT_TrenchGunElectro';
-					DamageTypeHead=Class'DT_TrenchGunElectro';	
-				}				
-				else
-				{
-					DamageType=Class'DT_TrenchGunFreeze';
-					DamageTypeArm=Class'DT_TrenchGunFreeze';
-					DamageTypeHead=Class'DT_TrenchGunFreeze';	
-				}
+			if (!bFreezeMode || ThisModeNum == 1)
+			{
+				DamageType=Class'DT_TrenchGunElectro';
+				DamageTypeArm=Class'DT_TrenchGunElectro';
+				DamageTypeHead=Class'DT_TrenchGunElectro';	
+			}				
+			else
+			{
+				DamageType=Class'DT_TrenchGunFreeze';
+				DamageTypeArm=Class'DT_TrenchGunFreeze';
+				DamageTypeHead=Class'DT_TrenchGunFreeze';	
+			}
+			
 			bDoubleShot=False;
+			ConsumedLoad = 1;
 			BallisticFireSound.Volume=1.0;
 			XInaccuracy=default.XInaccuracy;
 			YInaccuracy=default.YInaccuracy;

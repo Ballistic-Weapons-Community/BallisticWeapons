@@ -318,7 +318,7 @@ function AddWeapon(PlayerController Sender, array<String> split_string)
 	for (i = 0; i < weapons.Length; ++i)
 	{
 		if (weapons[i] ~= WI.ClassName)
-	{	{
+		{
 			Sender.ClientMessage("Mutate AddWeapon: Loadout group"@loadout_group@"already contains"@WI.ClassName); 
 			return;	
 		}
