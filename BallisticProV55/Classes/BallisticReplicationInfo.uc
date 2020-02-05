@@ -29,6 +29,7 @@ var() Config bool		bUniversalMineLights; // All BX-5 mines are lit.
 var struct RepInfo_BW
 {
 	var bool		bBrightPlayers;
+	var bool		bRelaxedHipfire;
 	var bool		bNoDodging;
 	var bool		bLimitDoubleJumps;
 	var float	WalkingPercentage;
@@ -49,6 +50,7 @@ simulated function InitClientVars()
 	local BallisticPawn P;
 
 	bBrightPlayers		= BWRep.bBrightPlayers;
+	bRelaxedHipfire		= BWRep.bRelaxedHipfire;
 	bNoDodging			= BWRep.bNoDodging;
 	bLimitDoubleJumps	= BWRep.bLimitDoubleJumps;
 	WalkingPercentage	= BWRep.WalkingPercentage;
@@ -57,6 +59,7 @@ simulated function InitClientVars()
 	bUseRunningAnims = BWRep.bUseRunningAnims;
 
 	class.default.bBrightPlayers	= bBrightPlayers;
+	class.default.bRelaxedHipfire	= bRelaxedHipfire;
 	class.default.bNoDodging		= bNoDodging;
 	class.default.bLimitDoubleJumps	= bLimitDoubleJumps;
 	class.default.WalkingPercentage	= WalkingPercentage;
@@ -84,6 +87,7 @@ simulated function InitClientVars()
 function ServerInitialize()
 {
 	BWRep.bBrightPlayers	= bBrightPlayers;
+	BWRep.bRelaxedHipfire	= bRelaxedHipfire;
 	BWRep.bNoDodging		= bNoDodging;
 	BWRep.bLimitDoubleJumps	= bLimitDoubleJumps;
     BWRep.WalkingPercentage = WalkingPercentage;
