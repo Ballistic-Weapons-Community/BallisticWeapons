@@ -4077,6 +4077,8 @@ simulated function ClientJumped()
 
 simulated function AddRecoil (float Amount, optional byte Mode)
 {
+	local float AjustedHipRecoilFactor;
+	
 	LastFireTime = Level.TimeSeconds;
 	if (bAimDisabled || Amount == 0)
 		return;
@@ -4085,7 +4087,12 @@ simulated function AddRecoil (float Amount, optional byte Mode)
 		Amount *= CrouchAimFactor;
 	if (!bScopeView)
 
-	Amount *= HipRecoilFactor;
+	if (BCRepClass.default.bRelaxedHipFire)
+		AjustedHipRecoilFactor = ((HipRecoilFactor - 1) * 0.5) + 1;
+	else
+		AjustedHipRecoilFactor = default.HipRecoilFactor;
+	
+	Amount *= AjustedHipRecoilFactor;
 	Recoil = FMin(RecoilMax, Recoil + Amount);
 	if (!bUseNetAim || Role == ROLE_Authority)
 	{
