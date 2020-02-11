@@ -32,13 +32,13 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBPOtherPackStatic.XBow.XBow_static'
-     PickupDrawScale=0.150000
      InventoryType=Class'BWBPOtherPackPro.BX85Crossbow'
      RespawnTime=20.000000
      PickupMessage="You picked up the BX85 stealth crossbow."
      PickupSound=Sound'BallisticSounds2.M50.M50Putaway'
      StaticMesh=StaticMesh'BWBPOtherPackStatic.XBow.XBow_static'
      Physics=PHYS_None
-     DrawScale=0.150000
+     DrawScale=0.250000
      CollisionHeight=4.000000
+	 bOnSide=False
 }

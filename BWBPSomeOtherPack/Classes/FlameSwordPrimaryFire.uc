@@ -96,9 +96,9 @@ defaultproperties
      Damage=65.000000
      DamageHead=65.000000
      DamageLimb=65.000000
-     DamageType=Class'BWBPRecolorsPro.DT_DTSChest'
-     DamageTypeHead=Class'BWBPRecolorsPro.DT_DTSHead'
-     DamageTypeArm=Class'BWBPRecolorsPro.DT_DTSLimb'
+     DamageType=Class'BWBPSomeOtherPack.DT_FlameSwordChest'
+     DamageTypeHead=Class'BWBPSomeOtherPack.DT_FlameSwordHead'
+     DamageTypeArm=Class'BWBPSomeOtherPack.DT_FlameSwordChest'
      KickForce=100
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Swipe',Volume=4.100000,Radius=256.000000,bAtten=True)
      bAISilent=True

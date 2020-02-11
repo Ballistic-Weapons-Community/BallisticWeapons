@@ -280,7 +280,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
     local vector HitNormal;
     local float DamageMax;
 
-	DamageMax = 50.0;
+	DamageMax = 20.0;
 	if ( DamageType == class'Fell' )
 		DamageMax = 20.0;
 	else if (class<DTXM84GrenadeRadius>(DamageType) != none && bShieldUp)
@@ -289,7 +289,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
     		ClientTakeHit(200, 200);
 		return;
 	}
-    	else if( !DamageType.default.bArmorStops /*|| !DamageType.default.bLocationalHit */|| (DamageType == class'DamTypeShieldImpact' && InstigatedBy == Instigator) )
+    	else if( !DamageType.default.bArmorStops || (DamageType == class'DamTypeShieldImpact' && InstigatedBy == Instigator) )
         	return;
 
     if ( CheckReflect(HitLocation, HitNormal, 0) )
@@ -302,8 +302,11 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 		bPierce=true;
 		Drain+=10;
 	}
-        Damage -= Drain;
-        Momentum *= 1.25;
+		if (class<DT_BWShell>(DamageType) != None)
+			Damage = Max(Damage* 0.5, Damage-35);
+		else Damage = Max(Damage * 0.25, Damage-35);
+		Momentum *= 4;
+		
         if ( (Instigator != None) && (Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.HasFlag != None) )
         {
 			Drain = Min(ShieldPower, Drain);
@@ -318,6 +321,55 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	bPierce=false;
     }
 }
+
+/*function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
+{
+    local vector HitNormal;
+    local float DF;
+	local int Drain;
+	local float OldDamage;
+	
+	local class<BallisticDamageType> BDT;
+	
+	if (InstigatedBy != None && InstigatedBy.Controller != None && InstigatedBy.Controller.SameTeamAs(InstigatorController))
+		return;
+	
+	if (bBerserk)
+		Damage *= 0.75;
+	
+	BDT = class<BallisticDamageType>(DamageType);
+
+	DF = FMin(1, (float(Damage)/AimDamageThreshold) * AimKnockScale);
+	ApplyDamageFactor(DF);
+	ClientPlayerDamaged(255*DF);
+	bForceReaim=true;
+
+	if( DamageType.default.bCausedByWorld || HitLocation.Z < Instigator.Location.Z - 22 || !bShieldUp )
+        super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
+
+    else if ( CheckReflect(HitLocation, HitNormal, 0.2) )
+    {
+		OldDamage=Damage;
+		if (class<DT_BWShell>(DamageType) != None)
+			Damage = Max(Damage* 0.5, Damage-35);
+		else if (BDT.default.bCanBeBlocked)
+			Damage = Damage * 0.50;
+		else Damage = Max(Damage * 0.25, Damage-35);
+		Momentum *= 4;
+		
+		BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
+		DF = FMin(1, float(Damage)/AimDamageThreshold);
+		ApplyDamageFactor(DF);
+		ClientPlayerDamaged(255*DF);
+		bForceReaim=true;
+		Drain = Min(ShieldPower, OldDamage - Damage);
+		if (Drain >= ShieldPower)
+			bShieldUp = False;
+		ShieldPower -= Drain;
+    }
+
+	else super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
+}*/
 
 function DoReflectEffectA(int Drain, bool bPierce)
 {
@@ -362,7 +414,7 @@ function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDr
 
 simulated function float ChargeBar()
 {
-	return (ShieldPower/200);
+	return (ShieldPower/75);
 }
 
 //=====================================================
@@ -428,7 +480,7 @@ defaultproperties
      BrokenSound=Sound'BWBP2-Sounds.LightningGun.LG-Ambient'
      ChargingSound=Sound'WeaponSounds.BaseFiringSounds.BShield1'
      ShieldSoundVolume=220	 
-	 ShieldPower=100
+	 ShieldPower=75
 	 bShowChargingBar=True
      ManualLines(0)="Each hit heats up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
      ManualLines(1)="Unfortunately, it's not the Wrenchgun, but secondary fire will toggle a directional shield that will greatly reduce incoming damage."
@@ -460,11 +512,10 @@ defaultproperties
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=15000.000000
      ChaosAimSpread=3000
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.10000),(InVal=0.400000,OutVal=0.130000),(InVal=0.600000,OutVal=-0.160000),(InVal=1.000000,OutVal=-0.080000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.450000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.320000
-     RecoilMinRandFactor=0.08000
+	 RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.150000,OutVal=0.020000),(InVal=0.200000,OutVal=-0.080000),(InVal=0.300000),(InVal=0.400000,OutVal=-0.130000),(InVal=0.600000,OutVal=0.150000),(InVal=0.800000,OutVal=-0.150000),(InVal=1.000000,OutVal=0.000000)))
+     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.500000,OutVal=0.600000),(InVal=0.600000,OutVal=0.500000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.20000
+	 RecoilYFactor=0.25
      RecoilDeclineTime=1.500000
      FireModeClass(0)=Class'BWBPSomeOtherPack.XM20PrimaryFire'
      FireModeClass(1)=Class'BWBPSomeOtherPack.XM20SecondaryFire'

@@ -4,9 +4,10 @@
 class FlameSwordPickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticRecolors3TexPro.utx
 #exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticRecolors4StaticPro.usx
+#exec OBJ LOAD FILE=BWBPSomeOtherPackTex.utx
+#exec OBJ LOAD FILE=BWBPSomeOtherPackStatic.usx
+
 //===========================================================================
 // StaticPrecache
 //
@@ -15,43 +16,36 @@ class FlameSwordPickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DragonTooth-Main');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DragonTooth-Red');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DragonToothCore-Red');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DTS-Glow');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DTSAplhaMask');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DTSMask');
+	L.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.FlameSword.BWsword_SH1');
+	L.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.FlameSword.BWsword_SH2');
+	L.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.FlameSword.BWsword_SH3');
 	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
 	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DragonTooth-Main');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DragonTooth-Red');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DragonToothCore-Red');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DTS-Glow');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DTSAplhaMask');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DTSMask');
+	Level.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.FlameSword.BWsword_SH1');
+	Level.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.FlameSword.BWsword_SH2');;
+	Level.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.FlameSword.BWsword_SH3');;
 	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
 	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.DTS.DragonsToothPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBPSomeOtherPackStatic.FlameSword.Sword_Static');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticPro.DTS.DragonsToothPickup'
-     PickupDrawScale=1.000000
-     InventoryType=Class'BWBPRecolorsPro.DragonsToothSword'
+     LowPolyStaticMesh=StaticMesh'BWBPSomeOtherPackStatic.FlameSword.Sword_Static'
+     InventoryType=Class'BWBPSomeOtherPack.FlameSword'
      RespawnTime=50.000000
      PickupMessage="You picked up the PSI-56 Fire Sword."
-     PickupSound=Sound'PackageSounds4Pro.NEX.NEX-Pullout'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.DTS.DragonsToothPickup'
+     PickupSound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Equip'
+     StaticMesh=StaticMesh'BWBPSomeOtherPackStatic.FlameSword.Sword_Static'
      Physics=PHYS_None
-     DrawScale=0.600000
-     CollisionHeight=4.000000
+     DrawScale=1.60000
+     CollisionHeight=3.500000
 }
