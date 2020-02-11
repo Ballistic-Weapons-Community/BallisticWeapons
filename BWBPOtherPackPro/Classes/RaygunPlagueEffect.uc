@@ -26,6 +26,7 @@ simulated function Initialize(Actor V)
 		return;
 
 	Victim = V;
+	
 	if (Role == ROLE_Authority)
 		SetTimer(0.5, true);
 
@@ -36,7 +37,7 @@ simulated function Initialize(Actor V)
 		Emitters[2].Disabled=true;
 	}
 	
-	else if (Victim.IsLocallyControlled())
+	else if (xPawn(Victim) != None && xPawn(Victim).IsLocallyControlled())
 	{
 		Emitters[1].Disabled = true;
 		Emitters[2].Disabled = true;

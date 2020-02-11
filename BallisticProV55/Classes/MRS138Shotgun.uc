@@ -310,7 +310,7 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-}
+
 	bWT_Shotgun=True
 	bShovelLoad=True
 	bMeleeWeapon=True
@@ -393,3 +393,4 @@ defaultproperties
 	AttachmentClass=Class'BallisticProV55.MRS138Attachment'
 	AimSpread=0
 	AIRating=0.800000
+}
