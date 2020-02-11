@@ -211,7 +211,7 @@ static function float GetAttachmentDispersionFactor()
 
 defaultproperties
 {
-     HipSpreadFactor=3.000000
-     MaxSpreadFactor=3
+     HipSpreadFactor=1.500000
+     MaxSpreadFactor=2
      FireSpreadMode=FSM_Circle
 }

@@ -353,7 +353,7 @@ function AddWeapon(PlayerController Sender, array<String> split_string)
 	
 	Sender.ClientMessage("Mutate AddWeapon: Success - added"@WI.ClassName@"to loadout group"@loadout_group); 
 	
-	StaticSaveConfig();
+	class'Mut_Outfitting'.static.StaticSaveConfig();
 }
 
 function RemoveWeapon(PlayerController Sender, array<String> split_string)
@@ -423,7 +423,7 @@ function RemoveWeapon(PlayerController Sender, array<String> split_string)
 			break;
 		}	
 		
-		StaticSaveConfig();
+		class'Mut_Outfitting'.static.StaticSaveConfig();
 		
 		Sender.ClientMessage("Mutate RemoveWeapon: Success - removed"@split_string[2]@"from loadout group"@loadout_group); 
 	}
