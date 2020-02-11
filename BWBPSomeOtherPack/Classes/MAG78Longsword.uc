@@ -289,7 +289,7 @@ defaultproperties
      CenteredRoll=0
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      GroupOffset=1
-     PickupClass=Class'EKS43Pickup'
+     PickupClass=Class'MAG78Pickup'
      PlayerViewOffset=(X=10.000000,Z=-20.000000)
      AttachmentClass=Class'MAG78Attachment'
      IconMaterial=Texture'BWBPSomeOtherPackTex.Longsword.Icon_MAGSaw'

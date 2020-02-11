@@ -110,7 +110,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 		if (class<DT_BWShell>(DamageType) != None)
 			Damage = Max(Damage* 0.5, Damage-35);
 		else if (BDT.default.bCanBeBlocked)
-			Damage = Damage * 0.80;
+			Damage = Damage * 0.50;
 		else Damage = Max(Damage * 0.25, Damage-35);
 		Momentum *= 4;
 		

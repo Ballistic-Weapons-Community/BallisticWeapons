@@ -5,8 +5,9 @@ class MAG78Pickup extends BallisticWeaponPickup
 	placeable;
 
 #exec OBJ LOAD FILE=BallisticWeapons2.utx
+#exec OBJ LOAD FILE=BWBPSomeOtherPackTex.utx
 #exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BWBPSomeOtherPackStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,33 +17,33 @@ class MAG78Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticWeapons2.EKS43.Katana');
+	L.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.Longsword.ChainsawLongswordShiny');
+	L.AddPrecacheMaterial(TexScaler'BWBPSomeOtherPackTex.Longsword.LongswordChainScaler');
 	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
 	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.EKS43.Katana');
+	Level.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.Longsword.ChainsawLongswordShiny');
+	Level.AddPrecacheMaterial(TexScaler'BWBPSomeOtherPackTex.Longsword.LongswordChainScaler');
 	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
 	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.EKS43.KatanaPickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.EKS43.KatanaPickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBPSomeOtherPackStatic.MAGSaw.ChainsawSwordPickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticHardware2.EKS43.KatanaPickupLo'
-     PickupDrawScale=0.200000
+     LowPolyStaticMesh=StaticMesh'BWBPSomeOtherPackStatic.MAGSaw.ChainsawSwordPickup'
      InventoryType=Class'BWBPSomeOtherPack.MAG78Longsword'
      RespawnTime=10.000000
      PickupMessage="You picked up the MAG-SAW longsword."
      PickupSound=Sound'BallisticSounds2.EKS43.EKS-Putaway'
-     StaticMesh=StaticMesh'BallisticHardware2.EKS43.KatanaPickupHi'
+     StaticMesh=StaticMesh'BWBPSomeOtherPackStatic.MAGSaw.ChainsawSwordPickup'
      Physics=PHYS_None
-     DrawScale=0.200000
-     CollisionHeight=4.000000
+     DrawScale=1.60000
+     CollisionHeight=3.500000
 }

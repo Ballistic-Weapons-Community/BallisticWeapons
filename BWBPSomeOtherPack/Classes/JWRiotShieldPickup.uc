@@ -4,32 +4,33 @@
 class JWRiotShieldPickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticWeapons2.utx
 #exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticHardware2.usx
-#exec OBJ LOAD FILE=BallisticProStatic.usx
+#exec OBJ LOAD FILE=BWBPSomeOtherPackTex.utx
 #exec OBJ LOAD FILE=BallisticProTextures.utx
+#exec OBJ LOAD FILE=BWBPSomeOtherPackStatic.usx
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.EKS43.Katana');
+	Level.AddPrecacheMaterial(FinalBlend'BallisticProTextures.Misc.RiotShieldFinal');
+	Level.AddPrecacheMaterial(Texture'BWBPSomeOtherPackTex.OtherShields.JWTruncheon');
 	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
 	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.EKS43.KatanaPickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.EKS43.KatanaPickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBPSomeOtherPackStatic.Shields.JWRiotShieldPickup');
 }
 
 defaultproperties
 {
-     PickupDrawScale=0.450000
+     LowPolyStaticMesh=StaticMesh'BWBPSomeOtherPackStatic.Shields.JWRiotShieldPickup'
+     StaticMesh=StaticMesh'BWBPSomeOtherPackStatic.Shields.JWRiotShieldPickup'	 
      InventoryType=Class'BWBPSomeOtherPack.JWRiotShieldWeapon'
      RespawnTime=10.000000
      PickupMessage="You picked up a civilion riot shield."
      PickupSound=Sound'BallisticSounds2.EKS43.EKS-Putaway'
      Physics=PHYS_None
-     DrawScale=0.700000
-     CollisionHeight=4.000000
+     DrawScale=1.00000
+     CollisionHeight=3.500000
+	 bOnSide=False	 
 }
