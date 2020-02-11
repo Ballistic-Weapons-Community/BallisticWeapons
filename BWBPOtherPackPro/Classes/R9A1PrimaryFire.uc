@@ -137,8 +137,8 @@ function PlayFiring()
 	if (ScopeDownOn == SDO_Fire)
 		BW.TemporaryScopeDown(0.5, 0.9);
 		
-	if (!BW.bNoMeshInScope)
-	{
+	//if (!BW.bNoMeshInScope)
+	//{
 		if (AimedFireAnim != '')
 		{
 			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
@@ -152,7 +152,7 @@ function PlayFiring()
 				BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
 			else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
 		}
-	}
+	//}
 	
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
