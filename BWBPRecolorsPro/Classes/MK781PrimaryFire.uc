@@ -140,6 +140,7 @@ defaultproperties
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
      HipSpreadFactor=6.000000
+	 MaxSpreadFactor=2.25
      CutOffDistance=2560.000000
      CutOffStartRange=1280.000000
      TraceCount=6

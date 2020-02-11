@@ -47,6 +47,8 @@ function ServerPlayFiring()
 
 defaultproperties
 {
+	 HipSpreadFactor=3.000000
+	 MaxSpreadFactor=3.000000
      CutOffDistance=2048.000000
      CutOffStartRange=1024.000000
      TraceCount=10
