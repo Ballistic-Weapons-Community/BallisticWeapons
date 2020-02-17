@@ -278,7 +278,6 @@ simulated event ModeDoFire()
 	}
 
 	//Instigator.ClientMessage("Freezing = "@bFreezeMode);
-
     if (MaxHoldTime > 0.0)
         HoldTime = FMin(HoldTime, MaxHoldTime);
 
@@ -330,16 +329,16 @@ simulated event ModeDoFire()
     }
 
     Load = AmmoPerFire;
-	/*if (HoldTime >= ChargeTime)
+	if (HoldTime >= ChargeTime)
 	{
 		ConsumedLoad = 2;
 		bDoubleShot=True;
 	}	
 	else
 		bDoubleShot=False;
-	*/	
-    HoldTime = 0;
 
+	HoldTime = 0;
+	
     if (Instigator.PendingWeapon != Weapon && Instigator.PendingWeapon != None)
     {
         bIsFiring = false;
@@ -437,40 +436,28 @@ simulated function ModeTick(float DeltaTime)
 	
 	if (bIsFiring)
 	{
-		if (!bDoubleShot && HoldTime >= ChargeTime && BW.MagAmmo == 2)
+		if (HoldTime >= ChargeTime)
 		{
 			bDoubleShot=True;
 			BallisticFireSound.Volume=2.0;
 			ConsumedLoad = 2;
 			XInaccuracy=default.XInaccuracy * 3.0;
 			YInaccuracy=default.YInaccuracy * 2.0;
-			if (!bFreezeMode || ThisModeNum == 1)
+		
+			if (ThisModeNum == 1)
 			{
 				DamageType=Class'DT_TrenchGunElectroDouble';
 				DamageTypeArm=Class'DT_TrenchGunElectroDouble';
 				DamageTypeHead=Class'DT_TrenchGunElectroDouble';	
 			}
 		}
-		else if (bDoubleShot)
+		else
 		{
-			if (!bFreezeMode || ThisModeNum == 1)
-			{
-				DamageType=Class'DT_TrenchGunElectro';
-				DamageTypeArm=Class'DT_TrenchGunElectro';
-				DamageTypeHead=Class'DT_TrenchGunElectro';	
-			}				
-			else
-			{
-				DamageType=Class'DT_TrenchGunFreeze';
-				DamageTypeArm=Class'DT_TrenchGunFreeze';
-				DamageTypeHead=Class'DT_TrenchGunFreeze';	
-			}
-			
-			bDoubleShot=False;
-			ConsumedLoad = 1;
-			BallisticFireSound.Volume=1.0;
-			XInaccuracy=default.XInaccuracy;
-			YInaccuracy=default.YInaccuracy;
+				bDoubleShot=False;
+				ConsumedLoad = 1;
+				BallisticFireSound.Volume=1.0;
+				XInaccuracy=default.XInaccuracy;
+				YInaccuracy=default.YInaccuracy;
 		}
 	}
 	else if (DecayCharge > 0)
@@ -513,7 +500,8 @@ defaultproperties
 	FireEmptyAnim="Fire"	
 	AimedFireSingleAnim="SightFire"
 	FireSingleAnim="Fire"
-	ChargeTime=0.50
+	ChargeTime=0.35
+	MaxHoldTime=0.0
 	HipSpreadFactor=3.000000
     CutOffDistance=1024.000000
     CutOffStartRange=768.000000

@@ -73,7 +73,7 @@ defaultproperties
      bUseWeaponMag=False
      bWaitForRelease=True
      FireAnim="WrenchPoint"
-     AimedFireAnim="WrenchPoint"
+     //AimedFireAnim="WrenchPoint"
      FireRate=1.000000
 	 FireAnimRate=1.25
      AmmoClass=Class'BWBPSomeOtherPack.Ammo_TrenchgunShells'

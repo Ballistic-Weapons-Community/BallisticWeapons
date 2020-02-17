@@ -354,7 +354,7 @@ defaultproperties
 	 
      BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
 	 
-     TrackAnimMode=MU_Secondary
+     TrackAnimMode=MU_None
 
      Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.TechGun_Third'
      RelativeLocation=(X=5.000000,Z=4.000000)

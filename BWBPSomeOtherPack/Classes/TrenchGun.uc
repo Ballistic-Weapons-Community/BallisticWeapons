@@ -186,7 +186,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 	
 	//Phase out Channel 1 if a sight fire animation has just ended.
-	if (anim == BFireMode[0].AimedFireAnim || anim == TrenchgunPrimaryFire(FireMode[0]).AimedFireEmptyAnim)
+	if (anim == BFireMode[0].AimedFireAnim || anim == TrenchgunPrimaryFire(FireMode[0]).AimedFireEmptyAnim || anim == TrenchgunSecondaryFire(FireMode[1]).AimedFireAnim)
 	{
 		AnimBlendParams(1, 0);
 		//Cut the basic fire anim if it's too long.
@@ -676,7 +676,7 @@ defaultproperties
      PlayerViewOffset=(X=-50.000000,Y=20.000000,Z=-30.000000)
      AttachmentClass=Class'BWBPSomeOtherPack.TrenchGunAttachment'
      IconMaterial=Texture'BWBPSomeOtherPackTex.TechGun.Icon_TechGun'
-     IconCoords=(X2=127,Y2=40)
+     IconCoords=(X2=127,Y2=30)
      ItemName="BR-112 Trenchgun"
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
