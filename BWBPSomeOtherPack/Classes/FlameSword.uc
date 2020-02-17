@@ -351,6 +351,7 @@ defaultproperties
      bAimDisabled=True
      FireModeClass(0)=Class'BWBPSomeOtherPack.FlameSwordPrimaryFire'
      FireModeClass(1)=Class'BWBPSomeOtherPack.FlameSwordSecondaryFire'
+	 MeleeFireClass=Class'BWBPSomeOtherPack.FlameSwordMeleeFire'
      SelectAnim="PulloutFancy"
      SelectAnimRate=1.250000
      PutDownTime=0.500000

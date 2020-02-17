@@ -100,7 +100,7 @@ defaultproperties
      DamageTypeHead=Class'BWBPSomeOtherPack.DT_FlameSwordHead'
      DamageTypeArm=Class'BWBPSomeOtherPack.DT_FlameSwordChest'
      KickForce=100
-     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Swipe',Volume=4.100000,Radius=256.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Swing',Volume=4.000000,Radius=256.000000,bAtten=True)
      bAISilent=True
      FireAnim="Slash1"
 	 FireRate=0.80
