@@ -39,19 +39,19 @@ simulated function bool AllowFire()
 		return false;
 	if (!CheckReloading())
 	{
-		DebugMessage("AllowFire: CheckReloading FAIL");
+		//DebugMessage("AllowFire: CheckReloading FAIL");
 		return false;		// Is weapon busy reloading
 	}
 	if (!CheckWeaponMode())
 	{
-		DebugMessage("AllowFire: CheckWeaponMode FAIL");
+		//DebugMessage("AllowFire: CheckWeaponMode FAIL");
 		return false;		// Will weapon allow further firing
 	}
 	if (!bUseWeaponMag || BW.bNoMag)
 	{
 		if(!Super.AllowFire())
 		{
-			DebugMessage("AllowFire: Engine.WeaponFire AllowFire FAIL");
+			//DebugMessage("AllowFire: Engine.WeaponFire AllowFire FAIL");
 			if (DryFireSound.Sound != None)
 				Weapon.PlayOwnedSound(DryFireSound.Sound,DryFireSound.Slot,DryFireSound.Volume,DryFireSound.bNoOverride,DryFireSound.Radius,DryFireSound.Pitch,DryFireSound.bAtten);
 			return false;	// Does not use ammo from weapon mag. Is there ammo in inventory
@@ -70,18 +70,18 @@ simulated function bool AllowFire()
 
 		BW.EmptyFire(ThisModeNum);
 		
-		DebugMessage("AllowFire: Ammunition remaining FAIL");
+		//DebugMessage("AllowFire: Ammunition remaining FAIL");
 		
 		return false;		// Is there ammo in weapon's mag
 	}
 	else if (BW.bNeedReload)
 	{
-		DebugMessage("AllowFire: bNeedReload FAIL");
+		//DebugMessage("AllowFire: bNeedReload FAIL");
 		return false;
 	}
 	else if (BW.bNeedCock)
 	{
-		DebugMessage("AllowFire: bNeedCock FAIL");
+		//DebugMessage("AllowFire: bNeedCock FAIL");
 		return false;
 	}
     return true;
@@ -194,7 +194,7 @@ function AnimateFiring()
 //// server propagation of firing ////
 function ServerPlayFiring()
 {
-	DebugMessage("ServerPlayFiring");
+	//DebugMessage("ServerPlayFiring");
 		
 	if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
@@ -207,7 +207,7 @@ function ServerPlayFiring()
 //Do the spread on the client side
 function PlayFiring()
 {
-	DebugMessage("PlayFiring");
+	//DebugMessage("PlayFiring");
 		
 	if (ScopeDownOn == SDO_Fire)
 		BW.TemporaryScopeDown(0.5, 0.9);
@@ -289,7 +289,7 @@ simulated event Timer()
 		else
 			Weapon.ConsumeAmmo(ThisModeNum,ConsumedLoad);
 			
-		if (ConsumedLoad == 2 && BW.Role == ROLE_Authority)
+		if (BW.MagAmmo == 0 && BW.HasNonMagAmmo(0))
 			BW.bServerReloading = true;
 	}
 	ConsumedLoad=0;
@@ -298,7 +298,7 @@ simulated event Timer()
 // ModeDoFire from WeaponFire.uc, but with a few changes
 simulated event ModeDoFire()
 {
-	DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
+	//DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
 	
 	if (!AllowFire())
 	{
@@ -319,7 +319,7 @@ simulated event ModeDoFire()
 		}
 	}
 
-	if (HoldTime >= ChargeTime)
+	if (HoldTime >= ChargeTime && BW.MagAmmo == 2)
 		Load = 2;
 
 	ConsumedLoad += Load;
@@ -387,7 +387,7 @@ simulated event ModeDoFire()
 			
 		if (BW.HasNonMagAmmo(0) && (BW.MagAmmo - ConsumedLoad) == 0)
 		{
-			DebugMessage("EmptyFire reload");
+			//DebugMessage("EmptyFire reload");
 
 			BW.ReloadState = RS_PreClipOut;
 		}
@@ -473,8 +473,8 @@ simulated function ModeTick(float DeltaTime)
 		{
 			Load = 2;
 			BallisticFireSound.Volume=2.0;
-			XInaccuracy=default.XInaccuracy * 3.0;
-			YInaccuracy=default.YInaccuracy * 2.0;
+			XInaccuracy=default.XInaccuracy * 2.5;
+			YInaccuracy=default.YInaccuracy * 1.5;
 		
 			if (ThisModeNum == 1)
 			{
@@ -534,8 +534,8 @@ defaultproperties
 	ChargeTime=0.35
 	MaxHoldTime=0.0
 	HipSpreadFactor=3.000000
-    CutOffDistance=1024.000000
-    CutOffStartRange=768.000000
+    CutOffDistance=1536.000000
+    CutOffStartRange=1024.000000
 	MaxSpreadFactor=2
 	TraceCount=8
 	TracerClass=Class'BallisticProV55.TraceEmitter_Freeze'
@@ -544,9 +544,9 @@ defaultproperties
 	ImpactManager=Class'BallisticProV55.IM_FreezeHit'
 	TraceRange=(Min=2000.000000,Max=4000.000000)
 	MaxWalls=1
-	Damage=8.000000
-	DamageHead=12.000000
-	DamageLimb=8.000000
+	Damage=13.000000
+	DamageHead=20.000000
+	DamageLimb=13.000000
 	RangeAtten=0.250000
 	PenetrateForce=100
 	bPenetrate=False

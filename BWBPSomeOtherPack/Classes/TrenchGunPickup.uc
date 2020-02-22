@@ -52,7 +52,7 @@ defaultproperties
      LowPolyStaticMesh=StaticMesh'BWBPSomeOtherPackStatic.TechGun.TechGunPickup'
      InventoryType=Class'BWBPSomeOtherPack.TrenchGun'
      RespawnTime=15.000000
-     PickupMessage="You picked up the BR-112 Sappers Trechgun."
+     PickupMessage="You picked up the BR-112 sapper's trenchgun."
      PickupSound=Sound'BallisticSounds2.M290.M290Putaway'
      StaticMesh=StaticMesh'BWBPSomeOtherPackStatic.TechGun.TechGunPickup'
      Physics=PHYS_None
