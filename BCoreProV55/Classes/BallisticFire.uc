@@ -494,7 +494,6 @@ simulated event ModeDoFire()
 	
 	BW.LastFireTime = Level.TimeSeconds;
 
-
     // client
     if (Instigator.IsLocallyControlled())
     {

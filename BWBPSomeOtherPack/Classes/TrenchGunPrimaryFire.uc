@@ -17,7 +17,75 @@ var() class<BCImpactManager>	AltImpactManager;
 var	bool	bFreezeMode;
 var Name			AimedFireEmptyAnim, FireEmptyAnim, AimedFireSingleAnim, FireSingleAnim;
 var() float		ChargeTime, DecayCharge;
-var bool	bDoubleShot;
+
+simulated function DebugMessage(coerce string message)
+{
+	if (PlayerController(BW.Instigator.Controller) != None)
+	{
+		if (BW.Role == ROLE_Authority)
+			PlayerController(BW.Instigator.Controller).ClientMessage("SERVER:"@message);
+		else
+			PlayerController(BW.Instigator.Controller).ClientMessage("CLIENT:"@message);
+	}
+}
+
+// Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
+simulated function bool AllowFire()
+{
+	//Force noobs to scope.
+	if ((BW.BCRepClass.default.bSightFireOnly || class'BallisticWeapon'.default.SightsRestrictionLevel > 0) && BW.bUseSights && BW.SightingState != SS_Active && !BW.bScopeHeld && Instigator.IsLocallyControlled() && PlayerController(Instigator.Controller) != None)
+		BW.ScopeView();
+	if (!BW.bScopeView && (class'BallisticWeapon'.default.SightsRestrictionLevel > 1 || (class'BallisticWeapon'.default.SightsRestrictionLevel > 0 && BW.ZoomType != ZT_Irons)))
+		return false;
+	if (!CheckReloading())
+	{
+		DebugMessage("AllowFire: CheckReloading FAIL");
+		return false;		// Is weapon busy reloading
+	}
+	if (!CheckWeaponMode())
+	{
+		DebugMessage("AllowFire: CheckWeaponMode FAIL");
+		return false;		// Will weapon allow further firing
+	}
+	if (!bUseWeaponMag || BW.bNoMag)
+	{
+		if(!Super.AllowFire())
+		{
+			DebugMessage("AllowFire: Engine.WeaponFire AllowFire FAIL");
+			if (DryFireSound.Sound != None)
+				Weapon.PlayOwnedSound(DryFireSound.Sound,DryFireSound.Slot,DryFireSound.Volume,DryFireSound.bNoOverride,DryFireSound.Radius,DryFireSound.Pitch,DryFireSound.bAtten);
+			return false;	// Does not use ammo from weapon mag. Is there ammo in inventory
+		}
+	}
+	else if (BW.MagAmmo < AmmoPerFire)
+	{
+		if (!bPlayedDryFire && DryFireSound.Sound != None)
+		{
+			Weapon.PlayOwnedSound(DryFireSound.Sound,DryFireSound.Slot,DryFireSound.Volume,DryFireSound.bNoOverride,DryFireSound.Radius,DryFireSound.Pitch,DryFireSound.bAtten);
+			bPlayedDryFire=true;
+		}
+		if (bDryUncock)
+			BW.bNeedCock=true;
+		BW.bNeedReload = BW.MayNeedReload(ThisModeNum, 0);
+
+		BW.EmptyFire(ThisModeNum);
+		
+		DebugMessage("AllowFire: Ammunition remaining FAIL");
+		
+		return false;		// Is there ammo in weapon's mag
+	}
+	else if (BW.bNeedReload)
+	{
+		DebugMessage("AllowFire: bNeedReload FAIL");
+		return false;
+	}
+	else if (BW.bNeedCock)
+	{
+		DebugMessage("AllowFire: bNeedCock FAIL");
+		return false;
+	}
+    return true;
+}
 
 function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
 {
@@ -96,17 +164,11 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	}
 }
 
-//// server propagation of firing ////
-function ServerPlayFiring()
+function AnimateFiring()
 {
-	if (BallisticFireSound.Sound != None)
-		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
-
-	CheckClipFinished();
-
 	if (BW.HasNonMagAmmo(0))
 	{
-		if (ConsumedLoad >= BW.MagAmmo)
+		if (Load == BW.MagAmmo)
 		{
 			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
 			
@@ -129,35 +191,28 @@ function ServerPlayFiring()
 	}
 }
 
+//// server propagation of firing ////
+function ServerPlayFiring()
+{
+	DebugMessage("ServerPlayFiring");
+		
+	if (BallisticFireSound.Sound != None)
+		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+
+	CheckClipFinished();
+
+	AnimateFiring();
+}
+
 //Do the spread on the client side
 function PlayFiring()
 {
+	DebugMessage("PlayFiring");
+		
 	if (ScopeDownOn == SDO_Fire)
 		BW.TemporaryScopeDown(0.5, 0.9);
 		
-	if (BW.HasNonMagAmmo(0))
-	{
-		if (ConsumedLoad >= BW.MagAmmo)
-		{
-			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-			
-			if (BW.BlendFire())
-				BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-		}
-		else
-		{
-			BW.SafePlayAnim(FireSingleAnim, FireAnimRate, TweenTime, ,"FIRE");
-			
-			if (BW.BlendFire())
-				BW.SafePlayAnim(AimedFireSingleAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");			
-		}	
-	}
-	else
-	{
-		BW.SafePlayAnim(FireEmptyAnim, FireAnimRate, TweenTime, ,"FIRE");
-		if (BW.BlendFire())
-			BW.SafePlayAnim(AimedFireEmptyAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");			
-	}
+	AnimateFiring();
 
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
@@ -182,8 +237,7 @@ simulated function SwitchWeaponMode (byte newMode)
 		bPenetrate=True;
 		
 		BallisticFireSound.Sound=SlugFireSound;
-		//BallisticFireSound.Volume=2.0;
-			
+		
 		TracerClass=AltTracerClass;
 		ImpactManager=AltImpactManager;
 		
@@ -207,7 +261,6 @@ simulated function SwitchWeaponMode (byte newMode)
 		RecoilPerShot=Default.RecoilPerShot;
 		
 		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
-		BallisticFireSound.Volume=default.BallisticFireSound.Volume;
 		
 		TracerClass=default.TracerClass;
 		ImpactManager=default.ImpactManager;
@@ -227,42 +280,31 @@ simulated function SwitchWeaponMode (byte newMode)
 	}
 }
 
+simulated event Timer()
+{
+	if (Weapon.Role == ROLE_Authority)
+	{
+		if (BW != None)
+			BW.ConsumeMagAmmo(ThisModeNum,ConsumedLoad);
+		else
+			Weapon.ConsumeAmmo(ThisModeNum,ConsumedLoad);
+			
+		if (ConsumedLoad == 2 && BW.Role == ROLE_Authority)
+			BW.bServerReloading = true;
+	}
+	ConsumedLoad=0;
+}
+
 // ModeDoFire from WeaponFire.uc, but with a few changes
 simulated event ModeDoFire()
 {
+	DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
+	
 	if (!AllowFire())
 	{
 		HoldTime = 0;	
         return;
 	}	
-	
-    if (bIsJammed)
-    {
-    	if (BW.FireCount == 0)
-    	{
-    		bIsJammed=false;
-			if (bJamWastesAmmo && Weapon.Role == ROLE_Authority)
-			{
-				ConsumedLoad += Load;
-				Timer();
-			}
-	   		if (UnjamMethod == UJM_FireNextRound)
-	   		{
-		        NextFireTime += FireRate;
-   			    NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
-				BW.FireCount++;
-    			return;
-    		}
-    		if (!AllowFire())
-    			return;
-    	}
-    	else
-    	{
-	        NextFireTime += FireRate;
-   		    NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
-    		return;
-   		}
-    }
 
 	if (BW != None)
 	{
@@ -277,9 +319,8 @@ simulated event ModeDoFire()
 		}
 	}
 
-	//Instigator.ClientMessage("Freezing = "@bFreezeMode);
-    if (MaxHoldTime > 0.0)
-        HoldTime = FMin(HoldTime, MaxHoldTime);
+	if (HoldTime >= ChargeTime)
+		Load = 2;
 
 	ConsumedLoad += Load;
 	SetTimer(FMin(0.1, FireRate/2), false);
@@ -292,9 +333,9 @@ simulated event ModeDoFire()
         if ( AIController(Instigator.Controller) != None )
             AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
         Instigator.DeactivateSpawnProtection();
-        if(BallisticTurret(Weapon.Owner) == None  && class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo) != None)
-			class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(TraceCount, BW.InventoryGroup);
     }
+	else if (!BW.bUseNetAim && !BW.bScopeView)
+    	FireRecoil();
     
 	if (!BW.bScopeView)
 		BW.FireChaos = FClamp(BW.FireChaos + FireChaos, 0, 1);
@@ -329,14 +370,6 @@ simulated event ModeDoFire()
     }
 
     Load = AmmoPerFire;
-	if (HoldTime >= ChargeTime)
-	{
-		ConsumedLoad = 2;
-		bDoubleShot=True;
-	}	
-	else
-		bDoubleShot=False;
-
 	HoldTime = 0;
 	
     if (Instigator.PendingWeapon != Weapon && Instigator.PendingWeapon != None)
@@ -348,15 +381,17 @@ simulated event ModeDoFire()
 	if (BW != None)
 	{
 		BW.bNeedReload = BW.MayNeedReload(ThisModeNum, ConsumedLoad);
+		
 		if (bCockAfterFire || (bCockAfterEmpty && BW.MagAmmo - ConsumedLoad < 1))
 			BW.bNeedCock=true;
 			
-		if (BW.HasNonMagAmmo(0) && BW.MagAmmo < 2)
+		if (BW.HasNonMagAmmo(0) && (BW.MagAmmo - ConsumedLoad) == 0)
+		{
+			DebugMessage("EmptyFire reload");
+
 			BW.ReloadState = RS_PreClipOut;
-		else if (BW.HasNonMagAmmo(0) && bDoubleShot)
-			BW.ReloadState = RS_PreClipOut;
+		}
 	}
-	
 }
 
 // Get aim then run several individual traces using different spread for each one
@@ -366,17 +401,14 @@ function DoFireEffect()
 	local Rotator R, Aim;
 	local int i;
 
-	if (bDoubleShot)
-		ConsumedLoad = 2;
-	else	
-		ConsumedLoad = BW.WeaponModes[ThisModeNum].Value;
-
 	Aim = GetFireAim(StartTrace);
+	
 	for (i=0;i<TraceCount * ConsumedLoad;i++)
 	{
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
 	}
+	
 	// Tell the attachment the aim. It will calculate the rest for the clients
 	SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
 	if (ConsumedLoad == 2)
@@ -407,13 +439,13 @@ function FlashMuzzleFlash()
 		
 	Side = TrenchGunAttachment(Weapon.ThirdPersonActor).Side;
 
-	if(ConsumedLoad == 2 || Side)
+	if (Load == 2 || Side)
 	{
 		C = Weapon.GetBoneCoords('tip2');
 		MuzzleFlash2.Trigger(Weapon, Instigator);
 	}
 	
-	if (ConsumedLoad == 2 || !Side)
+	if (Load == 2 || !Side)
 	{
 		C = Weapon.GetBoneCoords('tip');
 		MuzzleFlash.Trigger(Weapon, Instigator);
@@ -428,6 +460,7 @@ function FlashMuzzleFlash()
 	if (!bBrassOnCock)
 		EjectBrass();
 }
+
 //Check Sounds and damage types.
 
 simulated function ModeTick(float DeltaTime)
@@ -438,9 +471,8 @@ simulated function ModeTick(float DeltaTime)
 	{
 		if (HoldTime >= ChargeTime)
 		{
-			bDoubleShot=True;
+			Load = 2;
 			BallisticFireSound.Volume=2.0;
-			ConsumedLoad = 2;
 			XInaccuracy=default.XInaccuracy * 3.0;
 			YInaccuracy=default.YInaccuracy * 2.0;
 		
@@ -453,8 +485,7 @@ simulated function ModeTick(float DeltaTime)
 		}
 		else
 		{
-				bDoubleShot=False;
-				ConsumedLoad = 1;
+				Load = 1;
 				BallisticFireSound.Volume=1.0;
 				XInaccuracy=default.XInaccuracy;
 				YInaccuracy=default.YInaccuracy;
@@ -463,7 +494,7 @@ simulated function ModeTick(float DeltaTime)
 	else if (DecayCharge > 0)
 	{
 		DecayCharge -= DeltaTime * 2.5;
-		bDoubleShot=False;
+		Load = 1;
 		if (DecayCharge < 0)
 			DecayCharge = 0;
 	}
