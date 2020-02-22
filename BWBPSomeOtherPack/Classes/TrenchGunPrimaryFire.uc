@@ -385,7 +385,7 @@ simulated event ModeDoFire()
 		if (bCockAfterFire || (bCockAfterEmpty && BW.MagAmmo - ConsumedLoad < 1))
 			BW.bNeedCock=true;
 			
-		if (BW.HasNonMagAmmo(0) && (BW.MagAmmo - ConsumedLoad) == 0)
+		if (BW.HasNonMagAmmo(0) && ConsumedLoad == 2)
 		{
 			//DebugMessage("EmptyFire reload");
 
