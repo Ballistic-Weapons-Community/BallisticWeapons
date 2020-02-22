@@ -19,7 +19,6 @@ struct HitPawnInfo
 
 var 	int				Ident;
 var() float			DamageRadius;			// Radius in which to immolate players
-var	bool			bHeld;					// This fire was detonated in hand. Use held messages
 var	Vector		GroundFireSpots[MAX_FIRE_SPOTS];	// Vectors sent to client to tell it where to spawn fires
 var() class<BCImpactManager>	ImpactManager;	// Impact manager to spawn on final hit
 var	array<HitPawnInfo>	HitPawnData;
@@ -155,8 +154,6 @@ simulated function Initialize()
 				GF.FireControl = self;
 			// Tell client where to spawn them
 			GroundFireSpots[i] = HitLoc;
-			//if (bHeld)
-				//GF.DamageType = class'DTARheld';
 		}
 	}
 }
@@ -224,8 +221,6 @@ simulated function IgniteActor(Actor A)
 
     if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
 		PF.InstigatorController = Instigator.Controller;
-	if (bHeld)
-		PF.DamageType = class'DTARheld';
 	PF.Initialize(A);
 }
 
@@ -233,8 +228,8 @@ defaultproperties
 {
      DamageRadius=172.000000
      ImpactManager=Class'BallisticProV55.IM_FireExplode'
-     Damage=10.000000
-     BaseDamage=40.000000
+     Damage=3.000000
+     BaseDamage=10.000000
      RepulsionForceMag=250.000000
      LightType=LT_Flicker
      LightEffect=LE_QuadraticNonIncidence

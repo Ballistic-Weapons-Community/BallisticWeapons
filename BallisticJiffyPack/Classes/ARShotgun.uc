@@ -10,8 +10,9 @@ class ARShotgun extends BallisticProShotgun;
 
 
 var Name			BulletBone;
+var() bool		bLoaded;
 
-
+var() bool 	bIHaveFiredAGrenade;		//Cheap shit
 var() BUtil.FullSound		GrenLoadSound;		//Grenade shovel load sound
 
 var() Name 	ShovelAnim; 	//Anim for alt shovelling
@@ -25,7 +26,6 @@ var() float       	VisGrenades;		//Rockets currently visible in tube.
 var() int       	Grenades;		//Rockets currently in the gun.
 var() int		StartingGrenades;
 var() bool		bReady;			//Weapon ready for alt fire
-var   byte				ShellIndex;
 
 var() name		SightsBone;			// Bone to use for hiding sight; temporary
 var() name  	SightsBoneHinge;			//Bone to use for hiding sight; temporary
@@ -38,14 +38,14 @@ struct RevInfo
 	var() name	GrenName;
 };
 var() RevInfo	GrenadeBones[3]; 	//Bones for Grenades in holder
-var() RevInfo	GLLoadGrenadeBones[2]; 	//Bones for Grenades in animation
+var() RevInfo	GLLoadGrenadeBones[3]; 	//Bones for Grenades in animation
 
 
 replication
 {
 	// Things the server should send to the client.
 	reliable if(Role==ROLE_Authority)
-		Grenades, bReady;
+		Grenades, VisGrenades, bReady, bLoaded, bIHaveFiredAGrenade;
 }
 
 
@@ -80,18 +80,34 @@ function GiveAmmo(int m, WeaponPickup WP, bool bJustSpawned)
 
 
 //=============================================
-//Start Grenade Stuff
+//Start Server Stuff
 //=============================================
 
 
 simulated function PostNetBeginPlay()
 {
+	local int i;
 	//Temporary hide bones
-	SetBoneScale(7, 0.0, SightsBone);
-	SetBoneScale(8, 0.0, SightsBoneHinge);
+	SetBoneScale(8, 0.0, SightsBone);
+	SetBoneScale(9, 0.0, SightsBoneHinge);
+	
+	for (i=0; i<=1; i++)
+		SetBoneScale(i+3, 1.0, GLLoadGrenadeBones[i].GrenName);
 	
 	Super.PostNetBeginPlay();
 	Grenades = StartingGrenades;
+	VisGrenades = Grenades;
+	UpdateBones();
+}
+
+
+//Ensure integrity of bones
+
+
+simulated function PostNetReceive()
+{
+	super.PostNetReceive();
+	UpdateBones();
 }
 
 
@@ -111,6 +127,7 @@ simulated function Special_ShellRemove()
 	for (i=0; i<=1; i++)
 		SetBoneScale(i+3, 1.0, GLLoadGrenadeBones[i].GrenName);
 	
+	SetBoneScale(5, 0.0, GLLoadGrenadeBones[2].GrenName);
 	UpdateBones();
 }
 
@@ -129,14 +146,14 @@ simulated function Special_ShellsIn()
 		ReloadState = RS_PostShellIn;	
 		if (Role == ROLE_Authority)
 		{
-			ARSecondaryFire(FireMode[1]).bLoaded = true;
+			bLoaded = true;
 			Grenades += 1;
 			Ammo[1].UseAmmo (1, True);
 		}
 		PlaySound(GrenLoadSound.Sound, SLOT_Misc, 0.5, ,64);
 		VisGrenades=Grenades;
-		UpdateBones();
 	}
+	UpdateBones();
 }
 
 
@@ -145,9 +162,14 @@ simulated function Special_ShellsIn()
 
 simulated function Special_GrenadeReady()
 {
+	local int i;
 	ReloadState = RS_None;	
 	bReady = true;
+	bIHaveFiredAGrenade = false;
 	Grenades -=1;	
+	
+	for (i=0; i<=2; i++)
+		SetBoneScale(i+3, 1.0, GLLoadGrenadeBones[i].GrenName);
 }
 
 
@@ -156,11 +178,23 @@ simulated function Special_GrenadeReady()
 
 simulated function Notify_RemoveGrenadeGLLoad()
 {
-	/*local int i;
+	local int i;
 	for (i=0; i<=1; i++)
-		SetBoneScale(i+3, 0.0, GLLoadGrenadeBones[i].GrenName);*/	
+		SetBoneScale(i+3, 0.0, GLLoadGrenadeBones[i].GrenName);
+		
+	SetBoneScale(5, 1.0, GLLoadGrenadeBones[2].GrenName);
 }
 
+
+//Add grenade back to hand
+
+
+simulated function Notify_ReturnGrenadeToHand()
+{
+	local int i;
+	for (i=0; i<=1; i++)
+		SetBoneScale(i+3, 1.0, GLLoadGrenadeBones[i].GrenName);
+}
 
 //=============================================
 //End Notifies
@@ -169,6 +203,7 @@ simulated function Notify_RemoveGrenadeGLLoad()
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
+	UpdateBones();
 	Super.BringUp(PrevWeapon);
 	GunLength = default.GunLength;
 }
@@ -512,7 +547,7 @@ simulated function PrepAltFire()
 
 simulated function bool IsGrenadeLoaded()
 {
-	return ARSecondaryFire(FireMode[1]).bLoaded;
+	return bLoaded;
 }
 
 
@@ -671,6 +706,7 @@ defaultproperties
      GrenadeBones(2)=(GrenName="Grenade3")
 	 GLLoadGrenadeBones(0)=(GrenName="GrenadeHandle")
 	 GLLoadGrenadeBones(1)=(GrenName="HeldGrenade")
+	 GLLoadGrenadeBones(2)=(GrenName="EmptyGrenade")
      PlayerSpeedFactor=0.800000
      PlayerJumpFactor=0.870000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
@@ -688,7 +724,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
      MagAmmo=24
-	 CockSelectAnim="Pullout"
+	 CockSelectAnim="PulloutFancy"
      CockAnimRate=1.000000
      CockSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.Cock',Volume=1.400000)
      ReloadAnimRate=0.750000

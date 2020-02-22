@@ -8,23 +8,6 @@
 //=============================================================================
 class ARSecondaryFire extends BallisticProProjectileFire;
 
-var   bool		bLoaded;
-
-// Returns normal for some random spread. This is seperate from GetFireDir for shotgun reasons mainly...
-simulated function vector GetFireSpread()
-{
-	local float fX;
-	local Rotator R;
-
-	if (BW.bScopeView)
-		return super.GetFireSpread();
-
-	fX = frand();
-	R.Yaw =  600 * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-	R.Pitch = 600 * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
-	return Vector(R);
-}
-
 // Check if there is ammo in mag if we use it or is there some in inventory if we don't
 simulated function bool AllowFire()
 {
@@ -56,19 +39,19 @@ simulated function bool AllowFire()
 }
 
 simulated event ModeDoFire()
-{
+{	
 	if (!AllowFire())
 		return;
 
-	if (!ARShotgun(Weapon).bReady)
+	if (!ARShotgun(BW).bReady)
 	{
-		ARShotgun(Weapon).PrepAltFire();
+		ARShotgun(BW).PrepAltFire();
 		return;
 	}
 	else
 	{
 		super.ModeDoFire();
-		ARShotgun(Weapon).bReady = false;
+		ARShotgun(BW).bReady = false;
 	}
 }
 
@@ -91,10 +74,7 @@ defaultproperties
      bSplashDamage=True
      bRecommendSplashDamage=True
      bTossed=True
-     bFireOnRelease=True
-     bWaitForRelease=True
-     PreFireTime=0.050000
-     PreFireAnim=
+	 bModeExclusive=False
      FireAnim="GLFire"
      FireAnimRate=1.250000
      FireForce="GLFire"
