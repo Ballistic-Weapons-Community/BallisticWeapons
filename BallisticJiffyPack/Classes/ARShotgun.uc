@@ -203,6 +203,11 @@ simulated function Notify_ReturnGrenadeToHand()
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
+	local int i;
+	
+	VisGrenades = Grenades;
+	for (i=0; i<=1; i++)
+		SetBoneScale(i+3, 1.0, GLLoadGrenadeBones[i].GrenName);
 	UpdateBones();
 	Super.BringUp(PrevWeapon);
 	GunLength = default.GunLength;
