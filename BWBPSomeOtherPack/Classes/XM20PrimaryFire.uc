@@ -88,7 +88,7 @@ defaultproperties
      FlashScaleFactor=0.400000
      RecoilPerShot=230.000000
      FireChaos=0.045000
-	 FireAnim="FireLong"
+	 FireAnim="Fire"
 	 AimedFireAnim="SightFire"
      BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.XM20.XM20-PulseFire',Volume=1.500000)
      FireEndAnim=

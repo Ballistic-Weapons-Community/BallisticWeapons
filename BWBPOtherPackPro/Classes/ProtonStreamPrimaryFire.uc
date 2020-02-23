@@ -132,8 +132,8 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 	else if (Vehicle(Victim) != None && Vehicle(Victim).Driver!=None && Vehicle(Victim).Driver.Health > 0)
 		bWasAlive = true;
 		
-	if (SuccessiveHits > 2)
-		class'BallisticDamageType'.static.GenericHurt (Victim, Min(Dmg + 2 * (SuccessiveHits - 2), 17), Instigator, HitLocation, vect(0,0,0), HitDT);
+	if (SuccessiveHits > 1)
+		class'BallisticDamageType'.static.GenericHurt (Victim, Min(Dmg + SuccessiveHits, 12), Instigator, HitLocation, vect(0,0,0), HitDT);
 	else class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, vect(0,0,0), HitDT);
 	if (bWasAlive && (Pawn(Victim).Controller == None || !Pawn(Victim).Controller.SameTeamAs(Instigator.Controller)))
 		ProtonStreamer(BW).BonusAmmo(1);
@@ -305,7 +305,7 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
-     Damage=7.000000
+     Damage=8.000000
      DamageType=Class'BWBPOtherPackPro.DTProtonStreamer'
      MuzzleFlashClass=Class'BWBPOtherPackPro.ProtonFlashEmitter'
      RecoilPerShot=1.000000

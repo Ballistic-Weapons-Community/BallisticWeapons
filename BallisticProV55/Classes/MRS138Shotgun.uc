@@ -333,8 +333,9 @@ defaultproperties
 	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
 	SightingTime=0.300000
 	SightZoomFactor=0
-	SightOffset=(X=15,Z=18.00000)
-	SightDisplayFOV=20
+	SightOffset=(X=15,Z=21.500000)
+	SightPivot=(Pitch=256)
+	SightDisplayFOV=40
 	SightAimFactor=0.100000
 	ReloadAnimRate=1.500000
 	ReloadAnim="ReloadLoop"

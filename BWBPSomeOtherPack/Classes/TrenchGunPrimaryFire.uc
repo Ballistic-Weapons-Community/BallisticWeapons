@@ -168,7 +168,7 @@ function AnimateFiring()
 {
 	if (BW.HasNonMagAmmo(0))
 	{
-		if (Load == BW.MagAmmo)
+		if (Load >= BW.MagAmmo)
 		{
 			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
 			
@@ -249,6 +249,8 @@ simulated function SwitchWeaponMode (byte newMode)
 		DamageHead=default.damageHead * 0.75;
 		DamageLimb=default.damageLimb * 0.75;
 		
+		RangeAtten = 1.0; // electrical shots shouldn't be losing damage at range
+		
 		bFreezeMode=False;
 		KickForce=10000;
 		//Instigator.ClientMessage("Freezing = "@bFreezeMode);
@@ -272,6 +274,8 @@ simulated function SwitchWeaponMode (byte newMode)
 		Damage=default.damage;
 		DamageHead=default.damageHead;
 		DamageLimb=default.damageLimb;
+		
+		RangeAtten = default.RangeAtten;
 		
 		bFreezeMode=True;
 		KickForce=default.KickForce;
@@ -385,7 +389,7 @@ simulated event ModeDoFire()
 		if (bCockAfterFire || (bCockAfterEmpty && BW.MagAmmo - ConsumedLoad < 1))
 			BW.bNeedCock=true;
 			
-		if (BW.HasNonMagAmmo(0) && ConsumedLoad == 2)
+		if (BW.HasNonMagAmmo(0) && BW.MagAmmo <= ConsumedLoad)
 		{
 			//DebugMessage("EmptyFire reload");
 
@@ -485,10 +489,10 @@ simulated function ModeTick(float DeltaTime)
 		}
 		else
 		{
-				Load = 1;
-				BallisticFireSound.Volume=1.0;
-				XInaccuracy=default.XInaccuracy;
-				YInaccuracy=default.YInaccuracy;
+			Load = 1;
+			BallisticFireSound.Volume=1.0;
+			XInaccuracy=default.XInaccuracy;
+			YInaccuracy=default.YInaccuracy;
 		}
 	}
 	else if (DecayCharge > 0)
@@ -534,8 +538,8 @@ defaultproperties
 	ChargeTime=0.35
 	MaxHoldTime=0.0
 	HipSpreadFactor=3.000000
-    CutOffDistance=1536.000000
-    CutOffStartRange=1024.000000
+    CutOffDistance=2048.000000
+    CutOffStartRange=1280.000000
 	MaxSpreadFactor=2
 	TraceCount=8
 	TracerClass=Class'BallisticProV55.TraceEmitter_Freeze'
@@ -544,9 +548,9 @@ defaultproperties
 	ImpactManager=Class'BallisticProV55.IM_FreezeHit'
 	TraceRange=(Min=2000.000000,Max=4000.000000)
 	MaxWalls=1
-	Damage=13.000000
-	DamageHead=20.000000
-	DamageLimb=13.000000
+	Damage=10.000000
+	DamageHead=15.000000
+	DamageLimb=10.000000
 	RangeAtten=0.250000
 	PenetrateForce=100
 	bPenetrate=False
