@@ -11,12 +11,11 @@ class ARSecondaryFire extends BallisticProProjectileFire;
 // Check if there is ammo in mag if we use it or is there some in inventory if we don't
 simulated function bool AllowFire()
 {
-	if (BW.BCRepClass.default.bSightFireOnly && !BW.bScopeView)
-	{
-		if (PlayerController(Instigator.Controller) != None)
-			PlayerController(Instigator.Controller).ClientMessage("You can only fire from sights.");
+	//Force noobs to scope.
+	if ((BW.BCRepClass.default.bSightFireOnly || class'BallisticWeapon'.default.SightsRestrictionLevel > 0) && BW.bUseSights && BW.SightingState != SS_Active && !BW.bScopeHeld && Instigator.IsLocallyControlled() && PlayerController(Instigator.Controller) != None)
+		BW.ScopeView();
+	if (!BW.bScopeView && (class'BallisticWeapon'.default.SightsRestrictionLevel > 1 || (class'BallisticWeapon'.default.SightsRestrictionLevel > 0 && BW.ZoomType != ZT_Irons)))
 		return false;
-	}
 	if (!CheckReloading())
 		return false;		// Is weapon busy reloading
 	if (!CheckWeaponMode())
