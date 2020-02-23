@@ -12,7 +12,6 @@ class ARShotgun extends BallisticProShotgun;
 var Name			BulletBone;
 var() bool		bLoaded;
 
-var() bool 	bIHaveFiredAGrenade;		//Cheap shit
 var() BUtil.FullSound		GrenLoadSound;		//Grenade shovel load sound
 
 var() Name 	ShovelAnim; 	//Anim for alt shovelling
@@ -45,7 +44,7 @@ replication
 {
 	// Things the server should send to the client.
 	reliable if(Role==ROLE_Authority)
-		Grenades, VisGrenades, bReady, bLoaded, bIHaveFiredAGrenade;
+		Grenades, VisGrenades, bReady, bLoaded;
 }
 
 
@@ -122,7 +121,8 @@ simulated function PostNetReceive()
 simulated function Special_ShellRemove()
 {
 	local int i;
-	VisGrenades=Grenades-1;
+	Grenades -=1;
+	VisGrenades=Grenades;		
 	
 	for (i=0; i<=1; i++)
 		SetBoneScale(i+3, 1.0, GLLoadGrenadeBones[i].GrenName);
@@ -161,13 +161,14 @@ simulated function Special_ShellsIn()
 
 
 simulated function Special_GrenadeReady()
-{
+{	
 	local int i;
-	ReloadState = RS_None;	
-	bReady = true;
-	bIHaveFiredAGrenade = false;
-	Grenades -=1;	
 	
+	ReloadState = RS_None;
+	if (Role == ROLE_Authority)
+		bServerReloading=False;
+	
+	bReady = true;	
 	for (i=0; i<=2; i++)
 		SetBoneScale(i+3, 1.0, GLLoadGrenadeBones[i].GrenName);
 }
@@ -545,8 +546,14 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 
 simulated function PrepAltFire()
 {
-	PlayAnim(SGPrepAnim[Grenades-1],GrenadeLoadAnimRate, 0.0);
-	ReloadState = RS_Cocking;
+	if (ReloadState == RS_None)
+	{
+		ReloadState = RS_Cocking;
+		if (Role == ROLE_Authority)
+			bServerReloading=True;
+		
+		PlayAnim(SGPrepAnim[Grenades-1],GrenadeLoadAnimRate, 0.0);
+	}
 }
 
 
