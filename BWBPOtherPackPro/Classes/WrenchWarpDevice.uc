@@ -634,7 +634,7 @@ defaultproperties
      Deployables(3)=(dClass=Class'BWBPOtherPackPro.WrenchShieldGeneratorB',SpawnOffset=0,WarpInTime=25.000000,AmmoReq=40,CheckSlope=True,dDescription="Generates a shield impervious to attack from both sides.")
      Deployables(4)=(dClass=Class'BWBPOtherPackPro.WrenchAmmoCrate',SpawnOffset=16,WarpInTime=25.000000,AmmoReq=40,CheckSlope=True,dDescription="A crate which restocks ammunition to initial levels.")
      Deployables(5)=(dClass=Class'UT2k4Assault.ASTurret_Minigun',SpawnOffset=36,WarpInTime=35.000000,AmmoReq=40,CheckSlope=True,dDescription="A static minigun turret. Resistant to attacks.")
-     AltDeployable=(dClass=Class'BWBPOtherPackPro.WrenchEnergyBarrier',WarpInTime=0.500000,SpawnOffset=52,AmmoReq=10,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
+     AltDeployable=(dClass=Class'BWBPOtherPackPro.WrenchEnergyBarrier',WarpInTime=0.100000,SpawnOffset=52,AmmoReq=10,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
      PlayerSpeedFactor=1.100000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPOtherPackTex.Wrench.BigIcon_Wrench'

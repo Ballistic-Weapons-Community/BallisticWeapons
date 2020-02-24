@@ -64,6 +64,7 @@ defaultproperties
      bWaitForRelease=True
      FireAnim="BarrierButton"
      FireRate=1.000000
+	 FireAnimRate=1.5
      AmmoClass=Class'BWBPOtherPackPro.Ammo_Wrench'
      AmmoPerFire=10
 }

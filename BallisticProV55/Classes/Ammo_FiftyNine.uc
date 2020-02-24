@@ -10,8 +10,8 @@ class Ammo_FiftyNine extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=192
-     InitialAmount=96
+     MaxAmmo=210
+     InitialAmount=105
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticProV55.AP_XK2Clip'
      IconMaterial=Texture'BallisticUI2.Icons.AmmoIconPage'

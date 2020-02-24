@@ -10,8 +10,8 @@ class Ammo_XRS10Bullets extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=144
-     InitialAmount=72
+     MaxAmmo=180
+     InitialAmount=90
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIcon_BP1Flash'
      PickupClass=Class'BallisticProV55.AP_XRS10Clip'
      IconMaterial=Texture'BWAddPack-RS-Skins.ui.RS-AmmoIconPage'

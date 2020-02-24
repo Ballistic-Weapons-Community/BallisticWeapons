@@ -535,7 +535,7 @@ defaultproperties
      VentingSound=Sound'PackageSounds4ProExp.M2020.M2020-IdleShield'
      OverheatSound=Sound'PackageSounds4Pro.XavPlas.Xav-Overload'
      ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
-     MaxHeat=5.000000
+     MaxHeat=7.000000
      BulletBone1="Bullet1"
      BulletBone2="Bullet2"
      MagnetOpenAnim="ShieldDeploy"
