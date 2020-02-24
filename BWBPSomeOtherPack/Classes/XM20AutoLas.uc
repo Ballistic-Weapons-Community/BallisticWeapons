@@ -16,7 +16,8 @@ var bool			bOldShieldUp;
 
 var bool			bBroken; 			//Ooops, your broke the shield emitter.
 var() name			ShieldBone;			// Bone to attach SightFX to
-var float			ShieldPower;		// From 200 to 0
+var 	int			ShieldPower;		// max 200
+var   float			ShieldPowerFraction; // recharge
 var() Sound       	ShieldHitSound;
 var() Sound       	ShieldOnSound;
 var() Sound       	ShieldOffSound;
@@ -24,9 +25,9 @@ var() Sound       	ShieldPierceSound;
 var() String		ShieldHitForce;
 var() byte			ShieldSoundVolume;
 
-var() float			ShieldDrainMax;
+var() int			ShieldDrainMax;
 var() float			ShieldMinDamageFactor;
-var() float 		PierceThreshold;
+var() int 		PierceThreshold;
 
 var() Sound 		ChargingSound;      // charging sound
 var() Sound			DamageSound;		// Sound to play when it first breaks
@@ -48,7 +49,7 @@ replication
 {
 	// Things the server should send to the client.
 	reliable if( bNetOwner && bNetDirty && (Role==ROLE_Authority) )
-		ShieldPower;
+		ShieldPower, bBroken;
 	reliable if (Role == ROLE_Authority)
         ClientTakeHit, bShieldUp;
 	reliable if (Role < ROLE_Authority)
@@ -57,8 +58,8 @@ replication
 
 simulated function DebugMessage(coerce string message)
 {
-	if (PlayerController(Instigator.Controller) != None)
-		PlayerController(Instigator.Controller).ClientMessage("DEBUG:"@message);
+	//if (PlayerController(Instigator.Controller) != None)
+	//	PlayerController(Instigator.Controller).ClientMessage("DEBUG:"@message);
 }
 
 simulated event PostNetReceive()
@@ -74,7 +75,11 @@ simulated event PostNetReceive()
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	if (XM20ShieldEffect == None)
+	{
 		XM20ShieldEffect = Spawn(class'XM20ShieldEffect', instigator);
+		if (Level.Game.bTeamGame && Instigator.GetTeamNum() == 0)
+		    XM20ShieldEffect.SetRedSkin();
+	}
 
 	Super.BringUp(PrevWeapon);
 }
@@ -155,13 +160,15 @@ exec simulated function ShieldDeploy(optional byte i) //Was previously weapon sp
 	else
     	PlaySound(ShieldOnSound, SLOT_None);
 		
-	ServerSwitchShield(bShieldUp);
+	ServerSwitchShield(!bShieldUp);
 }
 
 function ServerSwitchShield(bool bNewValue)
 {
     local XM20Attachment Attachment;
 
+	DebugMessage("ServerSwitchShield:"@bNewValue);
+	
 	bShieldUp = bNewValue;
 	
     Attachment = XM20Attachment(ThirdPersonActor);
@@ -176,7 +183,6 @@ function ServerSwitchShield(bool bNewValue)
 
 	AdjustShieldProperties();
 }
-
 
 simulated function AdjustShieldProperties()
 {
@@ -206,7 +212,7 @@ simulated function AdjustShieldProperties()
 		}
 
 		if (Arc != None)
-			Emitter(Arc).kill();
+			Emitter(Arc).Kill();
 	}
 }
 
@@ -215,10 +221,18 @@ simulated event Tick (float DT)
 	if (ShieldPower < 200)
 	{
 		if (!bShieldUp)
-			ShieldPower = FMin(ShieldPower + 5.0 * DT, 200);
+		{
+			ShieldPowerFraction += 5.0 * DT;
+			
+			while (ShieldPowerFraction > 1.0f)
+			{
+				++ShieldPower;
+				ShieldPowerFraction -= 1.0f;
+			}
+		}
 	}
 	
-	else if (bBroken)
+	if (Role == ROLE_Authority && bBroken && ShieldPower > 25)
 		bBroken = False;
 
 	super.Tick(DT);
@@ -241,10 +255,9 @@ function SetBrightness(bool bHit)
         Attachment.SetBrightness(Brightness, bHit);
 }
 
-
 simulated function TakeHit(int Drain)
 {
-	DebugMessage("TakeHit");
+	DebugMessage("TakeHit: Shield power:"@ShieldPower);
 	
     if (XM20ShieldEffect != None)
     {
@@ -271,7 +284,6 @@ simulated function TakeHit(int Drain)
     SetBrightness(true);
 }
 
-
 //=====================================================
 //			SHIELD DAMAGE + OVERLAYS
 //=====================================================
@@ -283,18 +295,17 @@ simulated event RenderOverlays( Canvas Canvas )
 	if (bShieldUp && XM20ShieldEffect != None)
 	{
 		Z = GetBoneCoords(ShieldBone);
-        	XM20ShieldEffect.SetLocation(Z.Origin);
+        XM20ShieldEffect.SetLocation(Z.Origin);
 		XM20ShieldEffect.SetRotation( Instigator.GetViewRotation() );
-//                XM20ShieldEffect.SetRelativeRotation(rotation  + rot(0, 32768, 32768));
-        	Canvas.DrawActor( XM20ShieldEffect, false, false, DisplayFOV );
-    	}
+        Canvas.DrawActor( XM20ShieldEffect, false, false, DisplayFOV );
+    }
     Super.RenderOverlays(Canvas);
 }
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation,
 						         out Vector Momentum, class<DamageType> DamageType)
 {
-    local int Drain;
+    local float Drain;
 	local vector Reflect;
     local vector HitNormal;
 	
@@ -307,9 +318,9 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	if(!DamageType.default.bArmorStops)
         return;
 	
-	if (class<DTXM84GrenadeRadius>(DamageType) != none && bShieldUp)
+	if (class<DTXM84GrenadeRadius>(DamageType) != None && bShieldUp)
 	{
-    	ClientTakeHit(200, 200);
+    	ClientTakeHit(200);
 		return;
 	}
 
@@ -337,16 +348,18 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 function DoReflectEffectA(int Drain, bool Pierce)
 {
 	DebugMessage("DoReflectEffectA");
+	
 	if (Pierce)
 		PlaySound(ShieldPierceSound, SLOT_None);
 	else
 		PlaySound(ShieldHitSound, SLOT_None);
+		
 	ClientTakeHit(Drain);
 }
 
-simulated function ClientTakeHit(int Drain, optional int ExtDrain)
+simulated function ClientTakeHit(int Drain)
 {
-	DebugMessage("ClientTakeHit");
+	DebugMessage("ClientTakeHit: Drain:"@Drain);
 	ClientPlayForceFeedback(ShieldHitForce);
 	TakeHit(Drain);
 }
@@ -376,7 +389,7 @@ function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDr
 
 simulated function float ChargeBar()
 {
-	return (ShieldPower/75);
+	return (ShieldPower * 0.005f);
 }
 
 //=====================================================
@@ -432,7 +445,7 @@ function byte BestMode()
 
 defaultproperties
 {
-	 ShieldDrainMax=35.000000
+	 ShieldDrainMax=35
 	 ShieldMinDamageFactor=0.05
 	 PierceThreshold=80
      ShieldBone="tip"

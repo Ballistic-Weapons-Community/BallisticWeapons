@@ -3,28 +3,37 @@ class XM20ShieldEffect extends Actor;
 #exec OBJ LOAD FILE=BallisticRecolors4TexPro.utx
 
 var float Brightness, DesiredBrightness;
-var() Material		MatShot;
-var() Material          MatDam;
-var bool	bDamaged;
+
+var() 	Material		MatShot;
+var() 	Material      	MatDam;
+var 	bool			bDamaged;
 
 function Flash(int Drain, int ShieldPower)
 {
     Brightness = FMin(Brightness + Drain / 2, 250.0);
+	
     Skins[0] = MatShot;
-	if (ShieldPower < 40)
-		bDamaged = true;
-	else
-		bDamaged = false;
+	
+	bDamaged = ShieldPower < 40;
+	
     SetTimer(0.2, false);
 }
-
 
 function Timer()
 {
 	if (bDamaged)
     	Skins[0] = MatDam;
 	else
-    	Skins[0] = default.Skins[0];
+    	Skins[0] = MatShot;
+}
+
+function SetRedSkin()
+{
+	MatDam = FinalBlend'BallisticRecolors4TexPro.AIMS.AIMSShield3rdFB';
+	MatShot = FinalBlend'BallisticRecolors4TexPro.AIMS.AIMSShield3rdFB';
+	
+	Skins[0] = MatShot;
+	Skins[1] = MatShot;
 }
 
 function SetBrightness(int b)

@@ -13,8 +13,8 @@ var XM20ShieldEffect3rd XM20ShieldEffect3rd;
 
 replication
 {
-    	reliable if (bNetInitial && Role == ROLE_Authority)
-       		XM20ShieldEffect3rd;
+	reliable if (bNetInitial && Role == ROLE_Authority)
+		XM20ShieldEffect3rd;
 }
 
 simulated function EjectBrass(byte Mode);

@@ -10,7 +10,7 @@ class XM20SecondaryFire extends BallisticFire;
 
 simulated function bool AllowFire()
 {
-    return ( Weapon.AmmoAmount(ThisModeNum) >= AmmoPerFire && !BW.bServerReloading && BW.MeleeState == MS_None);
+    return (!XM20AutoLas(BW).bBroken && Weapon.AmmoAmount(ThisModeNum) >= AmmoPerFire && !BW.bServerReloading && BW.MeleeState == MS_None);
 }
 
 // ModeDoFire from WeaponFire.uc, but with a few changes
@@ -31,6 +31,7 @@ simulated event ModeDoFire()
 			BW.ReloadState = RS_None;
 		}
 	}
+	
 	XM20AutoLas(Weapon).ShieldDeploy();
 	
 	ConsumedLoad += Load;
