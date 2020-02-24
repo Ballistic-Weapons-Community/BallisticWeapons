@@ -9,32 +9,40 @@
 //=============================================================================
 class XM20AutoLas extends BallisticWeapon;
 
-var bool		bPierce;
-var bool		bBroken; //Ooops, your broke the shield emitter.
-var name			BulletBone;
+var() name			BulletBone;
+
+var bool			bShieldUp; 			//Shield is online
+var bool			bOldShieldUp;
+
+var bool			bBroken; 			//Ooops, your broke the shield emitter.
 var() name			ShieldBone;			// Bone to attach SightFX to
-var float		ShieldPower;	// From 200 to 0
-var Sound       ShieldHitSound;
-var Sound       ShieldOnSound;
-var Sound       ShieldOffSound;
-var Sound       ShieldPierceSound;
-var String		ShieldHitForce;
-var bool	bShieldUp; //Shield is online
-var bool	bOldShieldUp;
-var() Sound		DamageSound;		// Sound to play when it first breaks
-var() Sound		BrokenSound;		// Sound to play when its very damaged
-var Actor	Arc;				// The top arcs
-var actor GlowFX;
+var float			ShieldPower;		// From 200 to 0
+var() Sound       	ShieldHitSound;
+var() Sound       	ShieldOnSound;
+var() Sound       	ShieldOffSound;
+var() Sound       	ShieldPierceSound;
+var() String		ShieldHitForce;
+var() byte			ShieldSoundVolume;
+
+var() float			ShieldDrainMax;
+var() float			ShieldMinDamageFactor;
+var() float 		PierceThreshold;
+
+var() Sound 		ChargingSound;      // charging sound
+var() Sound			DamageSound;		// Sound to play when it first breaks
+var() Sound			BrokenSound;		// Sound to play when its very damaged
+
+var Actor			Arc;				// The top arcs
+var Actor 			GlowFX;
 var XM20ShieldEffect XM20ShieldEffect;
-var() float AmmoRegenTime;
-var() float ChargeupTime;
-var	  float RampTime;
-var Sound ChargingSound;                // charging sound
-var() byte	ShieldSoundVolume;
-var actor VentSteamL1;
-var actor VentSteamL2;
-var actor VentSteamR1;
-var actor VentSteamR2;
+var() float 		AmmoRegenTime;
+var() float 		ChargeupTime;
+var() float 		RampTime;
+
+var actor 			VentSteamL1;
+var actor 			VentSteamL2;
+var actor 			VentSteamR1;
+var actor 			VentSteamR2;
 
 replication
 {
@@ -42,10 +50,15 @@ replication
 	reliable if( bNetOwner && bNetDirty && (Role==ROLE_Authority) )
 		ShieldPower;
 	reliable if (Role == ROLE_Authority)
-        	ClientTakeHit, bShieldUp;
-	reliable if( Role<ROLE_Authority )
+        ClientTakeHit, bShieldUp;
+	reliable if (Role < ROLE_Authority)
 		ServerSwitchShield;
-		
+}
+
+simulated function DebugMessage(coerce string message)
+{
+	if (PlayerController(Instigator.Controller) != None)
+		PlayerController(Instigator.Controller).ClientMessage("DEBUG:"@message);
 }
 
 simulated event PostNetReceive()
@@ -53,18 +66,17 @@ simulated event PostNetReceive()
 	if (bShieldUp != bOldShieldUp)
 	{
 		bOldShieldUp = bShieldUp;
-		AdjustShieldProperties(bShieldUp);
+		AdjustShieldProperties();
 	}
 	Super.PostNetReceive();
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
-    	if (XM20ShieldEffect == None)
-        	XM20ShieldEffect = Spawn(class'XM20ShieldEffect', instigator);
+	if (XM20ShieldEffect == None)
+		XM20ShieldEffect = Spawn(class'XM20ShieldEffect', instigator);
 
 	Super.BringUp(PrevWeapon);
-
 }
 
 simulated function bool PutDown()
@@ -74,11 +86,13 @@ simulated function bool PutDown()
 		bShieldUp=false;
 		AdjustShieldProperties();
 	}
+	
 	if (super.PutDown())
 	{
 		if (Arc != None)	Arc.Destroy();
 		return true;
 	}
+	
 	return false;
 }
 
@@ -113,7 +127,8 @@ simulated function Notify_VentSteam()
 
 simulated function Destroyed()
 {
-	if (Arc != None)	Arc.Destroy();
+	if (Arc != None)	
+		Arc.Destroy();
 	if (VentSteamL1 != None)
 		VentSteamL1.Destroy();
 	if (VentSteamL2 != None)
@@ -122,6 +137,7 @@ simulated function Destroyed()
 		VentSteamR1.Destroy();
 	if (VentSteamR2 != None)
 		VentSteamR2.Destroy();
+		
 	super.Destroyed();
 }
 
@@ -131,84 +147,82 @@ simulated function Destroyed()
 
 exec simulated function ShieldDeploy(optional byte i) //Was previously weapon special
 {
-	if (Clientstate != WS_ReadyToFire || bBroken)
+	if (ClientState != WS_ReadyToFire || bBroken)
 		return;
+		
 	if (bShieldUp)
-    		PlaySound(ShieldOffSound, SLOT_None);
+    	PlaySound(ShieldOffSound, SLOT_None);
 	else
-    		PlaySound(ShieldOnSound, SLOT_None);
-	bShieldUp = !bShieldUp;
-
+    	PlaySound(ShieldOnSound, SLOT_None);
+		
 	ServerSwitchShield(bShieldUp);
-	AdjustShieldProperties();
 }
 
 function ServerSwitchShield(bool bNewValue)
 {
-    	local XM20Attachment Attachment;
+    local XM20Attachment Attachment;
 
 	bShieldUp = bNewValue;
+	
     Attachment = XM20Attachment(ThirdPersonActor);
    
-    if( Attachment != None && Attachment.XM20ShieldEffect3rd != None )
+    if (Attachment != None && Attachment.XM20ShieldEffect3rd != None)
 	{
 		if (bShieldUp)
-        		Attachment.XM20ShieldEffect3rd.bHidden = false;
+        	Attachment.XM20ShieldEffect3rd.bHidden = false;
 		else
-        		Attachment.XM20ShieldEffect3rd.bHidden = true;
+        	Attachment.XM20ShieldEffect3rd.bHidden = true;
 	}
 
 	AdjustShieldProperties();
 }
 
 
-simulated function AdjustShieldProperties(optional bool bDepleted)
+simulated function AdjustShieldProperties()
 {
     local ShieldAttachment Attachment;
 
-	if (bShieldUp && !bDepleted && !bBroken)
+	if (bShieldUp)
 	{
-    		Instigator.AmbientSound = ChargingSound;
-    		Instigator.SoundVolume = ShieldSoundVolume;
-    		if( Attachment != None && Attachment.ShieldEffect3rd != None )
-        		Attachment.ShieldEffect3rd.bHidden = false;
+		Instigator.AmbientSound = ChargingSound;
+		Instigator.SoundVolume = ShieldSoundVolume;
+		if( Attachment != None && Attachment.ShieldEffect3rd != None )
+			Attachment.ShieldEffect3rd.bHidden = false;
 
 		if (Arc == None)
 			class'bUtil'.static.InitMuzzleFlash(Arc, class'M2020ShieldEffect', DrawScale, self, 'tip');
-        	XM20ShieldEffect.Flash(0, ShieldPower);
+        XM20ShieldEffect.Flash(0, ShieldPower);
 	}
 	else
 	{
-
-    		Attachment = ShieldAttachment(ThirdPersonActor);
+    	Attachment = ShieldAttachment(ThirdPersonActor);
 		Instigator.AmbientSound = None;
-    		Instigator.SoundVolume = Instigator.Default.SoundVolume;
+    	Instigator.SoundVolume = Instigator.Default.SoundVolume;
     
-    		if( Attachment != None && Attachment.ShieldEffect3rd != None )
-    		{
-        		Attachment.ShieldEffect3rd.bHidden = true;
-        		StopForceFeedback( "ShieldNoise" );  // jdf
-    		}
+		if( Attachment != None && Attachment.ShieldEffect3rd != None )
+		{
+			Attachment.ShieldEffect3rd.bHidden = true;
+			StopForceFeedback( "ShieldNoise" );  // jdf
+		}
 
 		if (Arc != None)
 			Emitter(Arc).kill();
 	}
 }
 
-
 simulated event Tick (float DT)
 {
 	if (ShieldPower < 200)
 	{
-		if (!bShieldUp /*&& !bBroken*/)
+		if (!bShieldUp)
 			ShieldPower = FMin(ShieldPower + 5.0 * DT, 200);
 	}
-	if (ShieldPower >= 200)	
-		bBroken=False;
+	
+	else if (bBroken)
+		bBroken = False;
 
 	super.Tick(DT);
 }
-
 
 function SetBrightness(bool bHit)
 {
@@ -218,6 +232,7 @@ function SetBrightness(bool bHit)
 	Brightness = ShieldPower;
 	if ( RampTime < ChargeUpTime )
 		Brightness *= RampTime/ChargeUpTime; 
+		
     if (XM20ShieldEffect != None)
         XM20ShieldEffect.SetBrightness(Brightness);
 
@@ -229,15 +244,21 @@ function SetBrightness(bool bHit)
 
 simulated function TakeHit(int Drain)
 {
+	DebugMessage("TakeHit");
+	
     if (XM20ShieldEffect != None)
     {
         XM20ShieldEffect.Flash(Drain, ShieldPower);
     }
-	if (ShieldPower <= 0 )
+	
+	if (ShieldPower <= 0)
 	{
-		ServerSwitchShield(false);
+		DebugMessage("TakeHit: Shield cancel");
+		
 		bShieldUp=false;
-		AdjustShieldProperties(true);
+		ServerSwitchShield(false);
+		AdjustShieldProperties();
+		
 		bBroken=true;
 		AmbientSound = None;
 		Instigator.AmbientSound = BrokenSound;
@@ -245,9 +266,8 @@ simulated function TakeHit(int Drain)
 		Instigator.SoundPitch = default.SoundPitch;
 		Instigator.SoundRadius = default.SoundRadius;
 		Instigator.bFullVolume = true;
-//		if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GlowFX == None || GlowFX.bDeleteMe))
-//			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'XM20GlowFXDamaged', DrawScale, self, 'tip');
 	}
+	
     SetBrightness(true);
 }
 
@@ -255,7 +275,6 @@ simulated function TakeHit(int Drain)
 //=====================================================
 //			SHIELD DAMAGE + OVERLAYS
 //=====================================================
-
 
 simulated event RenderOverlays( Canvas Canvas )
 {
@@ -278,116 +297,59 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
     local int Drain;
 	local vector Reflect;
     local vector HitNormal;
-    local float DamageMax;
-
-	DamageMax = 20.0;
-	if ( DamageType == class'Fell' )
-		DamageMax = 20.0;
-	else if (class<DTXM84GrenadeRadius>(DamageType) != none && bShieldUp)
-	{
-//		ShieldPower = -200;
-    		ClientTakeHit(200, 200);
-		return;
-	}
-    	else if( !DamageType.default.bArmorStops || (DamageType == class'DamTypeShieldImpact' && InstigatedBy == Instigator) )
-        	return;
-
-    if ( CheckReflect(HitLocation, HitNormal, 0) )
-    {
-        Drain = Min( ShieldPower*2, Damage );
-	Drain = Min(Drain,DamageMax);
-	Reflect = MirrorVectorByNormal( Normal(Location - HitLocation), Vector(Instigator.Rotation) );
-	if (Damage > DamageMax) //Piercing (75+) damage will bleed through and heavily damage shield.
-	{
-		bPierce=true;
-		Drain+=10;
-	}
-		if (class<DT_BWShell>(DamageType) != None)
-			Damage = Max(Damage* 0.5, Damage-35);
-		else Damage = Max(Damage * 0.25, Damage-35);
-		Momentum *= 4;
-		
-        if ( (Instigator != None) && (Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.HasFlag != None) )
-        {
-			Drain = Min(ShieldPower, Drain);
-			ShieldPower -= Drain;
-			DoReflectEffectA(Drain, bPierce);
-	}
-        else
-        {
-			ShieldPower -= Drain/2;
-			DoReflectEffectA(Drain/2, bPierce);
-	}
-	bPierce=false;
-    }
-}
-
-/*function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
-{
-    local vector HitNormal;
-    local float DF;
-	local int Drain;
-	local float OldDamage;
-	
-	local class<BallisticDamageType> BDT;
 	
 	if (InstigatedBy != None && InstigatedBy.Controller != None && InstigatedBy.Controller.SameTeamAs(InstigatorController))
 		return;
 	
 	if (bBerserk)
 		Damage *= 0.75;
+
+	if(!DamageType.default.bArmorStops)
+        return;
 	
-	BDT = class<BallisticDamageType>(DamageType);
+	if (class<DTXM84GrenadeRadius>(DamageType) != none && bShieldUp)
+	{
+    	ClientTakeHit(200, 200);
+		return;
+	}
 
-	DF = FMin(1, (float(Damage)/AimDamageThreshold) * AimKnockScale);
-	ApplyDamageFactor(DF);
-	ClientPlayerDamaged(255*DF);
-	bForceReaim=true;
+    if (!CheckReflect(HitLocation, HitNormal, 0))
+		return;
 
-	if( DamageType.default.bCausedByWorld || HitLocation.Z < Instigator.Location.Z - 22 || !bShieldUp )
-        super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
-
-    else if ( CheckReflect(HitLocation, HitNormal, 0.2) )
-    {
-		OldDamage=Damage;
-		if (class<DT_BWShell>(DamageType) != None)
-			Damage = Max(Damage* 0.5, Damage-35);
-		else if (BDT.default.bCanBeBlocked)
-			Damage = Damage * 0.50;
-		else Damage = Max(Damage * 0.25, Damage-35);
-		Momentum *= 4;
+	Drain = Min(ShieldPower, Damage);
+	
+	Drain = Min(Drain, ShieldDrainMax);
+	
+	Reflect = MirrorVectorByNormal( Normal(Location - HitLocation), Vector(Instigator.Rotation) );
 		
-		BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
-		DF = FMin(1, float(Damage)/AimDamageThreshold);
-		ApplyDamageFactor(DF);
-		ClientPlayerDamaged(255*DF);
-		bForceReaim=true;
-		Drain = Min(ShieldPower, OldDamage - Damage);
-		if (Drain >= ShieldPower)
-			bShieldUp = False;
-		ShieldPower -= Drain;
-    }
+	if (class<DT_BWShell>(DamageType) == None)
+		Damage = Max(Damage * ShieldMinDamageFactor, Damage - Drain);
+	else if (Drain > 5)
+		Damage *= 0.5; // average case - can be tuned
 
-	else super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
-}*/
+	Momentum *= 2;
+	
+	Drain = Min(ShieldPower, Drain);
+	ShieldPower -= Drain;
+	DoReflectEffectA(Drain, Damage > PierceThreshold);
+}
 
-function DoReflectEffectA(int Drain, bool bPierce)
+function DoReflectEffectA(int Drain, bool Pierce)
 {
-    	if (bPierce)
-    		PlaySound(ShieldPierceSound, SLOT_None);
-    	else
-    		PlaySound(ShieldHitSound, SLOT_None);
-    	ClientTakeHit(Drain);
+	DebugMessage("DoReflectEffectA");
+	if (Pierce)
+		PlaySound(ShieldPierceSound, SLOT_None);
+	else
+		PlaySound(ShieldHitSound, SLOT_None);
+	ClientTakeHit(Drain);
 }
 
 simulated function ClientTakeHit(int Drain, optional int ExtDrain)
 {
-	
-//	ShieldPower = ExtDrain;
+	DebugMessage("ClientTakeHit");
 	ClientPlayForceFeedback(ShieldHitForce);
 	TakeHit(Drain);
 }
-
 
 function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDrain )
 {
@@ -470,6 +432,9 @@ function byte BestMode()
 
 defaultproperties
 {
+	 ShieldDrainMax=35.000000
+	 ShieldMinDamageFactor=0.05
+	 PierceThreshold=80
      ShieldBone="tip"
      ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
      ShieldOnSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldOn'

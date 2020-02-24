@@ -68,7 +68,7 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 
 defaultproperties
 {
-     HeatPerShot=10.000000
+     HeatPerShot=8.000000
      CutOffDistance=3072.000000
      CutOffStartRange=1536.000000
      TraceRange=(Min=11000.000000,Max=12000.000000)
@@ -86,13 +86,13 @@ defaultproperties
      DryFireSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Empty',Volume=1.200000)
      MuzzleFlashClass=Class'BWBPSomeOtherPack.XM20FlashEmitter'
      FlashScaleFactor=0.400000
-     RecoilPerShot=230.000000
-     FireChaos=0.045000
+     RecoilPerShot=150.000000
+     FireChaos=0.07000
 	 FireAnim="Fire"
 	 AimedFireAnim="SightFire"
      BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.XM20.XM20-PulseFire',Volume=1.500000)
      FireEndAnim=
-     FireRate=0.110000
+     FireRate=0.135000
      AmmoClass=Class'BWBPSomeOtherPack.Ammo_XM20Laser'
      ShakeRotMag=(X=200.000000,Y=16.000000)
      ShakeRotRate=(X=5000.000000,Y=5000.000000,Z=5000.000000)

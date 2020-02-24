@@ -63,15 +63,13 @@ simulated function Tick(float DT)
 		Emitters[0].Opacity = (Heat/MaxHeat);
 		SoundVolume=(Heat/MaxHeat) * 150;
 	}
-	
-	
 }
 
 defaultproperties
 {
-     MaxHeat=150.000000
+     MaxHeat=50.000000
      HeatDeclineDelay=0.400000
-     Decay=5.000000
+     Decay=4.000000
      DecayInterval=0.350000
      Begin Object Class=SpriteEmitter Name=XM20Smoke
          FadeOut=True
