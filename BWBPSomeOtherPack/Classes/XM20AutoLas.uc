@@ -27,7 +27,7 @@ var() byte			ShieldSoundVolume;
 
 var() int			ShieldDrainMax;
 var() float			ShieldMinDamageFactor;
-var() int 		PierceThreshold;
+var() int 			PierceThreshold;
 
 var() Sound 		ChargingSound;      // charging sound
 var() Sound			DamageSound;		// Sound to play when it first breaks
@@ -461,14 +461,12 @@ defaultproperties
 	 ShieldPower=75
 	 bShowChargingBar=True
      ManualLines(0)="Each hit heats up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
-     ManualLines(1)="Unfortunately, it's not the Wrenchgun, but secondary fire will toggle a directional shield that will greatly reduce incoming damage."
-     ManualLines(2)="Effective at moderate range and against enemies using healing weapons and items."
+     ManualLines(1)="Secondary fire will toggle a directional shield. The shield has a maximum of 200 health points and will reduce incoming damage by 35 points or by 90% of its value, whichever is smaller. If the shield is broken, a minimum reserve level is required to reactivate it."
+     ManualLines(2)="Effective at moderate range, against small arms, and against enemies using healing weapons and items."
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPSomeOtherPackTex.XM20.BigIcon_XM20'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
      bWT_Energy=True
-	 bWT_Machinegun=True
 	 bNoCrosshairInScope=True
      SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
      BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Select')
@@ -485,7 +483,6 @@ defaultproperties
 	 SightDisplayFOV=15
      GunLength=80.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
-     JumpOffSet=(Pitch=-6000,Yaw=2000)
      AimSpread=14
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=15000.000000
@@ -504,7 +501,7 @@ defaultproperties
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.800000
      CurrentRating=0.800000
-     Description="XM-20 Auto Las||Manufacturer: UTC Defense Tech|Primary: High Intensity Laser Beam|Secondary: Diffused High Intesity Beams||Having a long history with the UTC, the XM-20 managed to find its place even after most other energy weapons were rendered largely ineffective against Skrith shielding technology, thanks to its own integrated force field generator and ability to turn Cryon ballistic armor to slag with relative ease through concentrated fire."
+     Description="XM20 Laser Rifle||Manufacturer: UTC Defense Tech|Primary: High Intensity Laser Beam|Secondary: Diffused High Intesity Beams||Having a long history with the UTC, the XM-20 managed to find its place even after most other energy weapons were rendered largely ineffective against Skrith shielding technology, thanks to its own integrated force field generator and ability to turn Cryon ballistic armor to slag with relative ease through concentrated fire."
      Priority=194
      HudColor=(B=255,G=150,R=100)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
@@ -517,7 +514,7 @@ defaultproperties
 	 bUseBigIcon=True
      IconMaterial=Texture'BWBPSomeOtherPackTex.XM20.Icon_XM20'
      IconCoords=(X2=127,Y2=31)
-     ItemName="XM-20 Auto Las"
+     ItemName="XM20 Laser Rifle"
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=30
