@@ -33,7 +33,7 @@ defaultproperties
      DeathStrings(1)="%k disintegrated %o's face with a laser assault rife."
      DeathStrings(2)="%k's XM-20 burned a neat hole directly through %o's forehead."
      DeathStrings(3)="%o should not have stared into %k's laser."
-     SimpleKillString="XM-20 Auto Las"
+     SimpleKillString="XM20 Laser Rifle"
      BloodManagerName="BloodMan_HMCLaser"
      FlashThreshold=0
      FlashV=(X=700.000000,Y=700.000000,Z=2000.000000)

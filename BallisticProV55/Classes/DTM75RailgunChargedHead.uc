@@ -10,5 +10,5 @@ class DTM75RailgunChargedHead extends DTM75RailgunHead;
 
 defaultproperties
 {
-     SimpleKillString="M75 Railgun Charged Headshot"
+     SimpleKillString="M75 Railgun Charged"
 }

@@ -37,6 +37,7 @@ simulated function ModeTick(float DeltaTime)
 		if (RailPower >= 1)
 			bIsFiring = false;
 	}
+	
 	else if (RailPower > 0)
 		RailPower = FMax(0, RailPower - DeltaTime);
 		
