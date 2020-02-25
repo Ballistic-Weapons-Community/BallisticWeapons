@@ -10,13 +10,13 @@
 //=============================================================================
 class TrenchGunPrimaryFire extends BallisticProShotgunFire;
 
-var() Actor			MuzzleFlash2;		// The muzzleflash actor
-var() sound		SlugFireSound;
-var() class<BCTraceEmitter>	AltTracerClass;	
+var() Actor						MuzzleFlash2;		// The muzzleflash actor
+var() sound						SlugFireSound;
+var() class<BCTraceEmitter>		AltTracerClass;	
 var() class<BCImpactManager>	AltImpactManager;	
-var	bool	bFreezeMode;
-var Name			AimedFireEmptyAnim, FireEmptyAnim, AimedFireSingleAnim, FireSingleAnim;
-var() float		ChargeTime, DecayCharge;
+var	bool						bExplosive;
+var Name						AimedFireEmptyAnim, FireEmptyAnim, AimedFireSingleAnim, FireSingleAnim;
+var() float						ChargeTime, DecayCharge;
 
 simulated function DebugMessage(coerce string message)
 {
@@ -29,73 +29,17 @@ simulated function DebugMessage(coerce string message)
 	}
 }
 
-// Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
-simulated function bool AllowFire()
-{
-	//Force noobs to scope.
-	if ((BW.BCRepClass.default.bSightFireOnly || class'BallisticWeapon'.default.SightsRestrictionLevel > 0) && BW.bUseSights && BW.SightingState != SS_Active && !BW.bScopeHeld && Instigator.IsLocallyControlled() && PlayerController(Instigator.Controller) != None)
-		BW.ScopeView();
-	if (!BW.bScopeView && (class'BallisticWeapon'.default.SightsRestrictionLevel > 1 || (class'BallisticWeapon'.default.SightsRestrictionLevel > 0 && BW.ZoomType != ZT_Irons)))
-		return false;
-	if (!CheckReloading())
-	{
-		//DebugMessage("AllowFire: CheckReloading FAIL");
-		return false;		// Is weapon busy reloading
-	}
-	if (!CheckWeaponMode())
-	{
-		//DebugMessage("AllowFire: CheckWeaponMode FAIL");
-		return false;		// Will weapon allow further firing
-	}
-	if (!bUseWeaponMag || BW.bNoMag)
-	{
-		if(!Super.AllowFire())
-		{
-			//DebugMessage("AllowFire: Engine.WeaponFire AllowFire FAIL");
-			if (DryFireSound.Sound != None)
-				Weapon.PlayOwnedSound(DryFireSound.Sound,DryFireSound.Slot,DryFireSound.Volume,DryFireSound.bNoOverride,DryFireSound.Radius,DryFireSound.Pitch,DryFireSound.bAtten);
-			return false;	// Does not use ammo from weapon mag. Is there ammo in inventory
-		}
-	}
-	else if (BW.MagAmmo < AmmoPerFire)
-	{
-		if (!bPlayedDryFire && DryFireSound.Sound != None)
-		{
-			Weapon.PlayOwnedSound(DryFireSound.Sound,DryFireSound.Slot,DryFireSound.Volume,DryFireSound.bNoOverride,DryFireSound.Radius,DryFireSound.Pitch,DryFireSound.bAtten);
-			bPlayedDryFire=true;
-		}
-		if (bDryUncock)
-			BW.bNeedCock=true;
-		BW.bNeedReload = BW.MayNeedReload(ThisModeNum, 0);
-
-		BW.EmptyFire(ThisModeNum);
-		
-		//DebugMessage("AllowFire: Ammunition remaining FAIL");
-		
-		return false;		// Is there ammo in weapon's mag
-	}
-	else if (BW.bNeedReload)
-	{
-		//DebugMessage("AllowFire: bNeedReload FAIL");
-		return false;
-	}
-	else if (BW.bNeedCock)
-	{
-		//DebugMessage("AllowFire: bNeedCock FAIL");
-		return false;
-	}
-    return true;
-}
-
+//======================================================================
+// DoDamage
+//
+// Explosive rounds
+//======================================================================
 function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
 {
 	local float				Dmg;
 	local class<DamageType>	HitDT;
 	local Actor				Victim;
-	local Vector			RelativeVelocity, ForceDir, BoneTestLocation, ClosestLocation;
-	local Inv_Slowdown Slow;
-	local float SlowDuration;
-	
+	local Vector			RelativeVelocity, ForceDir, BoneTestLocation, ClosestLocation;	
 	
 	//Locational damage code from Mr Evil under test here
 	if(Other.IsA('xPawn') && !Other.IsA('Monster'))
@@ -117,24 +61,12 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	//End locational damage code test
 	
 	if (RangeAtten != 1.0 && VSize(HitLocation - TraceStart) > CutOffStartRange)
-		{
-		//Range = VSize(HitLocation-TraceStart);
-                //Range -= CutOffStartRange;
-                //Range = FClamp(Range, 0, CutOffDistance)/CutOffDistance;
-		//Dmg *= Lerp(Range, 1, RangeAtten);
 		Dmg *= Lerp (FClamp(VSize(HitLocation - TraceStart) - CutOffStartRange, 0, CutOffDistance)/CutOffDistance, 1, RangeAtten);
-		}
-	//if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0) && !((VSize(HitLocation-TraceStart)-CutOffStartRange) < 0))
-		Dmg *= Lerp (FClamp(VSize(HitLocation - TraceStart) - CutOffStartRange, 0, CutOffDistance)/CutOffDistance, 1, WaterRangeAtten);
 	if (PenetrateCount > 0)
 		Dmg *= PDamageFactor ** PenetrateCount;
 	if (WallCount > 0)
 		Dmg *= WallPDamageFactor ** WallCount;
-	if (bUseRunningDamage)
-	{
-		RelativeVelocity = Instigator.Velocity - Other.Velocity;
-		Dmg += Dmg * (VSize(RelativeVelocity) / RunningSpeedThresh) * (Normal(RelativeVelocity) Dot Normal(Other.Location-Instigator.Location));
-	}
+
 	if (HookStopFactor != 0 && HookPullForce != 0 && Pawn(Victim) != None)
 	{
 		ForceDir = Normal(Other.Location-TraceStart);
@@ -144,26 +76,16 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	}
 
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
-//	Victim.TakeDamage(Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
-	SlowDuration=Dmg / (Damage * TraceCount) * 0.6;
 
-	if (Pawn(other) != None && Pawn(Other).Health > 0 && Vehicle(Other) == None && bFreezeMode)
-	{
-		Slow = Inv_Slowdown(Pawn(Other).FindInventoryType(class'Inv_Slowdown'));
-	
-		if (Slow == None)
-		{
-			Pawn(Other).CreateInventory("BallisticProV55.Inv_Slowdown");
-			Slow = Inv_Slowdown(Pawn(Other).FindInventoryType(class'Inv_Slowdown'));
-		}
-		/*if (bDoubleShot)
-		Slow.AddSlow(0.7, 1.2);
-		else
-		Slow.AddSlow(0.7, 0.6);*/
-		Slow.AddSlow(0.7, SlowDuration);
-	}
+	if (bExplosive && Other.bProjTarget)
+		BW.TargetedHurtRadius(Damage * 0.65, 420, class'DTCYLOFirestormExplosion', 200, HitLocation, Pawn(Other));
 }
 
+//======================================================================
+// AnimateFiring
+//
+// Select different animation depending on ammo and charge
+//======================================================================
 function AnimateFiring()
 {
 	if (BW.HasNonMagAmmo(0))
@@ -224,14 +146,58 @@ function PlayFiring()
 	CheckClipFinished();
 }
 
+//======================================================================
+// SendFireEffect
+//
+// Send information about double shots to attachment
+//======================================================================
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
 {
 	BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, (BW.CurrentWeaponMode > 0), WaterHitLoc);
 }
 
+//======================================================================
+// ImpactEffect
+//
+// Spawns effects on listen and standalone servers
+//======================================================================
+simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
+{
+	local int Surf;
+	
+	//DebugMessage("ImpactEffect: Hit actor:"@Other);
+
+	if (ImpactManager != None && WaterHitLoc != vect(0,0,0) && Weapon.EffectIsRelevant(WaterHitLoc,false) && bDoWaterSplash)
+		ImpactManager.static.StartSpawn(WaterHitLoc, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLoc), 9, Instigator);
+
+	if (!Other.bWorldGeometry && Mover(Other) == None && Pawn(Other) == None || level.NetMode == NM_Client)
+		return false;
+
+	if (!Other.bWorldGeometry && Mover(Other) == None && Other.bProjTarget)
+	{
+		Spawn (class'IE_IncBulletMetal', ,, HitLocation,);
+	}
+	else 
+	{	
+		if (Vehicle(Other) != None)
+			Surf = 3;
+		else if (HitMat == None)
+			Surf = int(Other.SurfaceType);
+		else
+			Surf = int(HitMat.SurfaceType);
+
+		ImpactManager.static.StartSpawn(HitLocation, HitNormal, Surf, instigator);
+	}
+	
+	if (TracerClass != None && Level.DetailMode > DM_Low && class'BallisticMod'.default.EffectsDetailMode > 0 && VSize(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetTipLocation()) > 200 && FRand() < TracerChance)
+		Spawn(TracerClass, instigator, , BallisticAttachment(Weapon.ThirdPersonActor).GetTipLocation(), Rotator(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetTipLocation()));
+	
+	return true;
+}
+
 simulated function SwitchWeaponMode (byte newMode)
 {
-	if (newMode == 1) // Electroshot mode
+	if (newMode == 1) // Electro Mode
 	{
 		PenetrateForce=500;
 		bPenetrate=True;
@@ -245,45 +211,41 @@ simulated function SwitchWeaponMode (byte newMode)
 		DamageTypeArm=Class'DT_TrenchGunElectro';
 		DamageTypeHead=Class'DT_TrenchGunElectro';
 		
-		Damage=default.damage * 0.75;
-		DamageHead=default.damageHead * 0.75;
-		DamageLimb=default.damageLimb * 0.75;
-		
 		RangeAtten = 1.0; // electrical shots shouldn't be losing damage at range
 		
-		bFreezeMode=False;
+		bExplosive=False;
 		KickForce=10000;
-		//Instigator.ClientMessage("Freezing = "@bFreezeMode);
 	}
-	else //Shot Mode
+	else // Explosive Mode
 	{
 		PenetrateForce=0;
 		bPenetrate=False;
-		
-		RecoilPerShot=Default.RecoilPerShot;
 		
 		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
 		
 		TracerClass=default.TracerClass;
 		ImpactManager=default.ImpactManager;
 		
-		DamageType=Class'DT_TrenchGunFreeze';
-		DamageTypeArm=Class'DT_TrenchGunFreeze';
-		DamageTypeHead=Class'DT_TrenchGunFreeze';
+		DamageType=Class'DT_TrenchGunExplosive';
+		DamageTypeArm=Class'DT_TrenchGunExplosive';
+		DamageTypeHead=Class'DT_TrenchGunExplosive';
 		
-		Damage=default.damage;
-		DamageHead=default.damageHead;
-		DamageLimb=default.damageLimb;
+		Damage=default.Damage;
+		DamageHead=default.DamageHead;
+		DamageLimb=default.DamageLimb;
 		
 		RangeAtten = default.RangeAtten;
 		
-		bFreezeMode=True;
+		bExplosive=True;
 		KickForce=default.KickForce;
-		
-		GotoState('');
 	}
 }
 
+//======================================================================
+// Timer
+//
+// Safety for replication timing issue with integrated reload
+//======================================================================
 simulated event Timer()
 {
 	if (Weapon.Role == ROLE_Authority)
@@ -299,7 +261,11 @@ simulated event Timer()
 	ConsumedLoad=0;
 }
 
-// ModeDoFire from WeaponFire.uc, but with a few changes
+//======================================================================
+// ModeDoFire
+//
+// Handle Load and ConsumedLoad, as well as empty fire integrated reload
+//======================================================================
 simulated event ModeDoFire()
 {
 	//DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
@@ -398,7 +364,11 @@ simulated event ModeDoFire()
 	}
 }
 
-// Get aim then run several individual traces using different spread for each one
+//======================================================================
+// DoFireEffect
+//
+// Send twice if double shot
+//======================================================================
 function DoFireEffect()
 {
 	local Vector StartTrace;
@@ -407,7 +377,7 @@ function DoFireEffect()
 
 	Aim = GetFireAim(StartTrace);
 	
-	for (i=0;i<TraceCount * ConsumedLoad;i++)
+	for (i=0;i<TraceCount * ConsumedLoad; i++)
 	{
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
@@ -415,12 +385,129 @@ function DoFireEffect()
 	
 	// Tell the attachment the aim. It will calculate the rest for the clients
 	SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
+	
 	if (ConsumedLoad == 2)
 		SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
 
 	Super(BallisticFire).DoFireEffect();
 }
 
+//======================================================================
+//	DoTrace
+//
+//	Must initiate impact effects against pawns if in explosive mode
+//======================================================================
+function DoTrace (Vector InitialStart, Rotator Dir)
+{
+	local int						PenCount, WallCount;
+	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc, ExitNormal;
+	local Material					HitMaterial, ExitMaterial;
+	local float						Dist;
+	local Actor						Other, LastOther;
+	local bool						bHitWall;
+
+	// Work out the range
+	Dist = TraceRange.Min + FRand() * (TraceRange.Max - TraceRange.Min);
+
+	Start = InitialStart;
+	X = Normal(Vector(Dir));
+	End = Start + X * Dist;
+	LastHitLoc = End;
+	Weapon.bTraceWater=true;
+
+	while (Dist > 0)		// Loop traces in case we need to go through stuff
+	{
+		// Do the trace
+		Other = Trace (HitLocation, HitNormal, End, Start, true, , HitMaterial);
+		Weapon.bTraceWater=false;
+		Dist -= VSize(HitLocation - Start);
+		if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry))
+			break;
+		if (Other != None)
+		{
+			// Water
+			if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume) )
+			{
+				if (VSize(HitLocation - Start) > 1)
+					WaterHitLoc=HitLocation;
+				Start = HitLocation;
+				Dist *= WaterRangeFactor;
+				End = Start + X * Dist;
+				Weapon.bTraceWater=false;
+				continue;
+			}
+
+			LastHitLoc = HitLocation;
+				
+			// Got something interesting
+			if (!Other.bWorldGeometry && Other != LastOther)
+			{
+				DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+			
+				LastOther = Other;
+
+				if (CanPenetrate(Other, HitLocation, X, PenCount))
+				{
+					PenCount++;
+					Start = HitLocation + (X * Other.CollisionRadius * 2);
+					End = Start + X * Dist;
+					Weapon.bTraceWater=true;
+					if (Vehicle(Other) != None)
+						HitVehicleEffect (HitLocation, HitNormal, Other);
+					continue;
+				}
+				else if (Vehicle(Other) != None || (bExplosive && Pawn(Other) != None))
+					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+				else if (Mover(Other) == None)
+					break;
+			}
+			// Do impact effect
+			if (Other.bWorldGeometry || Mover(Other) != None)
+			{
+				WallCount++;
+				if (Other.bCanBeDamaged)
+				{
+					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+					DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+					break;
+				}
+				if (WallCount <= MaxWalls && MaxWallSize > 0 && GoThroughWall(Other, HitLocation, HitNormal, MaxWallSize * ScaleBySurface(Other, HitMaterial), X, Start, ExitNormal, ExitMaterial))
+				{
+					WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
+					WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
+					Weapon.bTraceWater=true;
+					continue;
+				}
+				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+				
+				break;
+			}
+			// Still in the same guy
+			if (Other == Instigator || Other == LastOther)
+			{
+				Start = HitLocation + (X * FMax(32, Other.CollisionRadius * 2));
+				End = Start + X * Dist;
+				Weapon.bTraceWater=true;
+				continue;
+			}
+			break;
+		}
+		else
+		{
+			LastHitLoc = End;
+			break;
+		}
+	}
+	// Never hit a wall, so just tell the attachment to spawn muzzle flashes and play anims, etc
+	if (!bHitWall)
+		NoHitEffect(X, InitialStart, LastHitLoc, WaterHitLoc);
+}
+
+//======================================================================
+// InitEffects
+//
+// Flash the second barrel as well
+//======================================================================
 function InitEffects()
 {
 	super.InitEffects();
@@ -465,8 +552,11 @@ function FlashMuzzleFlash()
 		EjectBrass();
 }
 
-//Check Sounds and damage types.
-
+//======================================================================
+// ModeTick
+//
+// Manage double shot parameters
+//======================================================================
 simulated function ModeTick(float DeltaTime)
 {
 	Super.ModeTick(DeltaTime);
@@ -542,22 +632,22 @@ defaultproperties
     CutOffStartRange=1280.000000
 	MaxSpreadFactor=2
 	TraceCount=8
-	TracerClass=Class'BallisticProV55.TraceEmitter_Freeze'
+	TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 	AltTracerClass=Class'BWBPRecolorsPro.TraceEmitter_Supercharge'
 	AltImpactManager=Class'BWBPRecolorsPro.IM_Supercharge'
-	ImpactManager=Class'BallisticProV55.IM_FreezeHit'
+	ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
 	TraceRange=(Min=2000.000000,Max=4000.000000)
 	MaxWalls=1
-	Damage=10.000000
-	DamageHead=15.000000
-	DamageLimb=10.000000
+	Damage=8.000000
+	DamageHead=12.000000
+	DamageLimb=8.000000
 	RangeAtten=0.250000
-	PenetrateForce=100
+	PenetrateForce=0
 	bPenetrate=False
 	bFireOnRelease=True
-	DamageType=Class'BWBPSomeOtherPack.DT_TrenchGunFreeze'
-	DamageTypeHead=Class'BWBPSomeOtherPack.DT_TrenchGunFreeze'
-	DamageTypeArm=Class'BWBPSomeOtherPack.DT_TrenchGunFreeze'
+	DamageType=Class'BWBPSomeOtherPack.DT_TrenchGunExplosive'
+	DamageTypeHead=Class'BWBPSomeOtherPack.DT_TrenchGunExplosive'
+	DamageTypeArm=Class'BWBPSomeOtherPack.DT_TrenchGunExplosive'
 	KickForce=3000
 	MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 	FlashScaleFactor=1.500000

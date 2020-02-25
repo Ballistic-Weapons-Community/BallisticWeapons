@@ -640,7 +640,7 @@ defaultproperties
      ReloadAnimRate=1.250000
      ClipInFrame=0.800000
      bNonCocking=True
-     WeaponModes(0)=(ModeName="Cryo Shot",Value=1.000000)
+     WeaponModes(0)=(ModeName="Explosive Shot",Value=1.000000)
      WeaponModes(1)=(ModeName="Electro Shot",Value=1.000000)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0

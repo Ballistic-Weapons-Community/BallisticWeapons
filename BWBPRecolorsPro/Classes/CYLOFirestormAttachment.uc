@@ -17,33 +17,38 @@ simulated function InstantFireEffects(byte Mode)
 	
 	if (InstantMode == MU_None || (InstantMode == MU_Secondary && Mode == 0) || (InstantMode == MU_Primary && Mode != 0))
 		return;
+		
 	if (mHitLocation == vect(0,0,0))
 		return;
+		
 	if (Instigator == none)
 		return;
+		
 	SpawnTracer(Mode, mHitLocation);
 	FlyByEffects(Mode, mHitLocation);
+	
 	// Client, trace for hitnormal, hitmaterial and hitactor
 	if (Level.NetMode == NM_Client)
 	{
 		mHitActor = None;
 		Start = Instigator.Location + Instigator.EyePosition();
 
-		if (WallPenetrates != 0)				{
+		if (WallPenetrates != 0)				
+		{
 			WallPenetrates = 0;
-			DoWallPenetrate(Start, mHitLocation);	}
+			DoWallPenetrate(Start, mHitLocation);	
+		}
 
 		Dir = Normal(mHitLocation - Start);
 		mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir * 10, mHitLocation - Dir * 10, true,, HitMat); // CYLO needs to trace actors to find Pawns 
+		
 		// Check for water and spawn splash
 		if (ImpactManager!= None && bDoWaterSplash)
 			DoWaterTrace(Start, mHitLocation);
 
 		if (mHitActor == None)
-		{
-			log("No HitActor");
 			return;
-		}
+
 		// Set the hit surface type
 		if (Vehicle(mHitActor) != None)
 			mHitSurf = 3;
@@ -52,19 +57,23 @@ simulated function InstantFireEffects(byte Mode)
 		else
 			mHitSurf = int(HitMat.SurfaceType);
 	}
+	
 	// Server has all the info already...
  	else
 		HitLocation = mHitLocation;
 
 	if (level.NetMode != NM_Client && ImpactManager!= None && WaterHitLocation != vect(0,0,0) && bDoWaterSplash && Level.DetailMode >= DM_High && class'BallisticMod'.default.EffectsDetailMode > 0)
 		ImpactManager.static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
+	
 	if (mHitActor == None)
 		return;
+	
 	if (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && mHitActor.bProjTarget)
 	{
 		Spawn (class'IE_IncBulletMetal', ,, HitLocation,);
 		return;
 	}
+	
 	if (ImpactManager != None)
 		ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 }

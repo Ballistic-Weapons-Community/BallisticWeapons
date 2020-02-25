@@ -46,16 +46,18 @@ simulated function InstantFireEffects(byte Mode)
 	if (Level.NetMode == NM_Client && FireClass != None)
 	{
 		XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
+		
 		if(!bScoped)
 		{
 			XS *= FireClass.static.GetAttachmentDispersionFactor();
 			YS *= FireClass.static.GetAttachmentDispersionFactor();
 		}
+		
 		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
 		
 		Start = Instigator.Location + Instigator.EyePosition();
 		
-		for (i=0;i<FireClass.default.TraceCount;i++)
+		for (i=0; i < FireClass.default.TraceCount; i++)
 		{
 			mHitActor = None;
 			
