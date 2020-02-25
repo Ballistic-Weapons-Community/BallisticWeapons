@@ -78,7 +78,7 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
 
 	if (bExplosive && Other.bProjTarget)
-		BW.TargetedHurtRadius(Damage * 0.65, 420, class'DTCYLOFirestormExplosion', 200, HitLocation, Pawn(Other));
+		BW.TargetedHurtRadius(Damage, 420, class'DTCYLOFirestormExplosion', 200, HitLocation, Pawn(Other));
 }
 
 //======================================================================
@@ -568,7 +568,7 @@ simulated function ModeTick(float DeltaTime)
 			Load = 2;
 			BallisticFireSound.Volume=2.0;
 			XInaccuracy=default.XInaccuracy * 2.5;
-			YInaccuracy=default.YInaccuracy * 1.5;
+			YInaccuracy=default.YInaccuracy * 1.75;
 		
 			if (ThisModeNum == 1)
 			{
@@ -638,9 +638,9 @@ defaultproperties
 	ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
 	TraceRange=(Min=2000.000000,Max=4000.000000)
 	MaxWalls=1
-	Damage=8.000000
-	DamageHead=12.000000
-	DamageLimb=8.000000
+	Damage=10.000000
+	DamageHead=15.000000
+	DamageLimb=10.000000
 	RangeAtten=0.250000
 	PenetrateForce=0
 	bPenetrate=False
