@@ -329,9 +329,9 @@ defaultproperties
      WallHitPoint=0
      NumSwipePoints=1
      TraceRange=(Min=170.000000,Max=170.000000)
-     Damage=20.000000
-     DamageHead=20.000000
-     DamageLimb=20.000000
+     Damage=35.000000
+     DamageHead=35.000000
+     DamageLimb=35.000000
      DamageType=Class'BallisticProV55.DT_RSDarkStab'
      DamageTypeHead=Class'BallisticProV55.DT_RSDarkStabHead'
      DamageTypeArm=Class'BallisticProV55.DT_RSDarkStab'

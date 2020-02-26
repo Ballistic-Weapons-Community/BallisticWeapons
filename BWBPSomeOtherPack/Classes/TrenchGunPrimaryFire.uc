@@ -567,8 +567,8 @@ simulated function ModeTick(float DeltaTime)
 		{
 			Load = 2;
 			BallisticFireSound.Volume=2.0;
-			XInaccuracy=default.XInaccuracy * 2.5;
-			YInaccuracy=default.YInaccuracy * 1.75;
+			XInaccuracy=default.XInaccuracy * 2;
+			YInaccuracy=default.YInaccuracy * 2;
 		
 			if (ThisModeNum == 1)
 			{
@@ -657,8 +657,8 @@ defaultproperties
 	RecoilPerShot=512.000000
 	VelocityRecoil=1200.000000
 	FireChaos=1.000000
-	XInaccuracy=200.000000
-	YInaccuracy=150.000000
+	XInaccuracy=256.000000
+	YInaccuracy=192.000000
 	BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)
 	FireAnim="FireCombined"
 	FireAnimRate=0.800000
