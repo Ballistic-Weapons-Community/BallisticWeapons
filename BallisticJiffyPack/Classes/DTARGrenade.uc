@@ -11,7 +11,7 @@ class DTARGrenade extends DT_BWBlunt;
 defaultproperties
 {
      DeathStrings(0)="%k bounced an FP7 off %o's head."
-	 SimpleKillString="RCS-715 Grenade Impact"
+     SimpleKillString="RCS-715 Grenade Impact"
      BloodManagerName="BallisticProV55.BloodMan_BluntSmall"
      bDetonatesBombs=False
      bIgnoredOnLifts=True

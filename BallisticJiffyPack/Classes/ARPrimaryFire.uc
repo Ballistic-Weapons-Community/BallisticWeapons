@@ -64,7 +64,6 @@ defaultproperties
 {
      CutOffDistance=1536.000000
      CutOffStartRange=512.000000
-	 HipSpreadFactor=3
      TraceCount=3
      TracerClass=Class'BallisticJiffyPack.TraceEmitter_ShotgunHE'
      ImpactManager=Class'BallisticProV55.IM_Shell'

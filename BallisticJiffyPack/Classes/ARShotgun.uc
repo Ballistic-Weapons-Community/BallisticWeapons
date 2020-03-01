@@ -701,24 +701,25 @@ defaultproperties
 {
      BulletBone="Bullet1"
      GrenLoadSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.GLShovel',Volume=1.800000)
+     ShovelAnim="GLReload1"
      SGPrepAnim(0)="GLLoad1"
-	 SGPrepAnim(1)="GLLoad2"
-	 SGPrepAnim(2)="GLLoad3"
-	 GrenadeLoadAnimRate=1.200000
+     SGPrepAnim(1)="GLLoad2"
+     SGPrepAnim(2)="GLLoad3"
      ReloadAltAnim(0)="GLReload1"
-	 ReloadAltAnim(1)="GLReload2"
-	 ReloadAltAnim(2)="GLReload3"
-	 ShovelReloadAnimRate=1.500000
-	 SightsBone="LadderSight" 	//Temporary
-	 SightsBoneHinge="LadderSightHinge" 	//Temporary
+     ReloadAltAnim(1)="GLReload2"
+     ReloadAltAnim(2)="GLReload3"
+     GrenadeLoadAnimRate=1.200000
+     ShovelReloadAnimRate=1.500000
      Grenades=3
      StartingGrenades=3
+     SightsBone="LadderSight"
+     SightsBoneHinge="LadderSightHinge"
      GrenadeBones(0)=(GrenName="Grenade1")
      GrenadeBones(1)=(GrenName="Grenade2")
      GrenadeBones(2)=(GrenName="Grenade3")
-	 GLLoadGrenadeBones(0)=(GrenName="GrenadeHandle")
-	 GLLoadGrenadeBones(1)=(GrenName="HeldGrenade")
-	 GLLoadGrenadeBones(2)=(GrenName="EmptyGrenade")
+     GLLoadGrenadeBones(0)=(GrenName="GrenadeHandle")
+     GLLoadGrenadeBones(1)=(GrenName="HeldGrenade")
+     GLLoadGrenadeBones(2)=(GrenName="EmptyGrenade")
      PlayerSpeedFactor=0.800000
      PlayerJumpFactor=0.870000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
@@ -736,25 +737,21 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
      MagAmmo=24
-	 CockSelectAnim="PulloutFancy"
-     CockAnimRate=1.000000
      CockSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.Cock',Volume=1.400000)
      ReloadAnimRate=0.750000
-	 StartShovelAnim="PrepReload"
-	 EndShovelAnim="FinishReload"
-     StartShovelAnimRate=1.300000
-     EndShovelAnimRate=1.300000
-	 ShovelAnim="GLReload1"
      ClipOutSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.MagOut',Volume=1.300000)
      ClipInSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.MagIn',Volume=1.300000)
+     StartShovelAnim="PrepReload"
+     StartShovelAnimRate=1.300000
+     EndShovelAnim="FinishReload"
+     EndShovelAnimRate=1.300000
      WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
      WeaponModes(1)=(ModeName="Automatic Slug",bUnavailable=True,ModeID="WM_FullAuto")
      WeaponModes(2)=(ModeName="0451-EXECUTE",bUnavailable=True)
      CurrentWeaponMode=0
      bNotifyModeSwitch=True
-     bNoCrosshairInScope=False
      SightZoomFactor=20
-     SightOffset=(X=60.000000,Y=5.690000,Z=36)
+     SightOffset=(X=60.000000,Y=5.690000,Z=36.000000)
      SightDisplayFOV=40.000000
      SightingTime=0.330000
      GunLength=48.000000

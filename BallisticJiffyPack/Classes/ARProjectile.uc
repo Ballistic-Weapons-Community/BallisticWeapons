@@ -151,7 +151,7 @@ defaultproperties
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=0.150000
-     ImpactDamage=15.000000
+     ImpactDamage=15
      ImpactDamageType=Class'BallisticJiffyPack.DTARGrenade'
      ImpactManager=Class'BallisticProV55.IM_Grenade'
      AccelSpeed=3000.000000
@@ -165,7 +165,7 @@ defaultproperties
      MaxSpeed=15000.000000
      Damage=0.000000
      DamageRadius=0.000000
-     MomentumTransfer=0000.000000
+     MomentumTransfer=0.000000
      MyDamageType=Class'BallisticJiffyPack.DTARGrenade'
      LightHue=180
      LightSaturation=100

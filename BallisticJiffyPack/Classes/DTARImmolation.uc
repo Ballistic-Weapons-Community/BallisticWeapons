@@ -19,7 +19,7 @@ defaultproperties
      FemaleSuicides(1)="%o did her flaming scarecrow impression."
      MaleSuicides(0)="%o ran around like a maniac in a ball of fire."
      MaleSuicides(1)="%o did his flaming scarecrow impression."
-	 SimpleKillString="RCS-715 Grenade Immolation"
+     SimpleKillString="RCS-715 Grenade Immolation"
      bIgnoredOnLifts=True
      InvasionDamageScaling=2.000000
      DamageIdent="Grenade"

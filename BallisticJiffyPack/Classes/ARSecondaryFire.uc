@@ -69,11 +69,10 @@ defaultproperties
      XInaccuracy=384.000000
      YInaccuracy=384.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.Misc.GL-Fire',Volume=1.300000)
-	 //ScopeDownOn=SDO_PreFire
      bSplashDamage=True
      bRecommendSplashDamage=True
      bTossed=True
-	 bModeExclusive=False
+     bModeExclusive=False
      FireAnim="GLFire"
      FireAnimRate=1.250000
      FireForce="GLFire"
