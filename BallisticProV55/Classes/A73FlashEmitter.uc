@@ -38,6 +38,7 @@ defaultproperties
          FadeOutStartTime=0.126000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
+		 Opacity=0.5
          SizeScale(0)=(RelativeSize=0.600000)
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.400000)
@@ -63,6 +64,7 @@ defaultproperties
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=64,R=64))
          FadeOutStartTime=1.000000
          MaxParticles=100
+		 Opacity=0.5
          StartLocationRange=(Y=(Min=-5.000000,Max=5.000000),Z=(Min=-5.000000,Max=5.000000))
          StartSizeRange=(X=(Min=9.000000,Max=15.000000))
          Texture=Texture'BallisticEffects.Particles.FlareA1'
@@ -88,6 +90,7 @@ defaultproperties
          FadeOutStartTime=0.066000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
+		 Opacity=0.5
          StartLocationRange=(X=(Min=160.000000,Max=160.000000))
          StartSizeRange=(X=(Min=110.000000,Max=140.000000),Y=(Min=110.000000,Max=140.000000),Z=(Min=110.000000,Max=140.000000))
          DrawStyle=PTDS_Brighten

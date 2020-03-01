@@ -24,7 +24,7 @@ var   array<UziBrass>	UziBrassList;
 
 replication
 {
-	reliable if (Role == ROLE_Authority)
+	reliable if (Role < ROLE_Authority)
 		ServerSwitchStock;
 }
 

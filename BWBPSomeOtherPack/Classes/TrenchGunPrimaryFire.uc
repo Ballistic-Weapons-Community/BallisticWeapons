@@ -280,7 +280,7 @@ simulated function ModeTick(float DeltaTime)
 //======================================================================
 simulated event ModeDoFire()
 {
-	DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
+	//DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
 	
 	if (!AllowFire())
 	{
@@ -314,7 +314,7 @@ simulated event ModeDoFire()
     // server
     if (Weapon.Role == ROLE_Authority)
     {
-		DebugMessage("DoFireEffect: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
+		//DebugMessage("DoFireEffect: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
 	
         DoFireEffect();
         if ( (Instigator == None) || (Instigator.Controller == None) )

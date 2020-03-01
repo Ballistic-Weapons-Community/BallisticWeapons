@@ -27,11 +27,11 @@ struct UziBrass
 };
 var   array<UziBrass>	UziBrassList;
 
-replication
+replications
 {
 	reliable if (Role == ROLE_Authority)
 		bLaserOn;
-	reliable if (Role == ROLE_Authority)
+	reliable if (Role < ROLE_Authority)
 		ServerSwitchStock;
 }
 
@@ -90,6 +90,7 @@ function ServerSwitchStock(bool bNewValue)
 	SwitchStock(bNewValue);
 	AdjustStockProperties();
 }
+
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
@@ -483,17 +484,19 @@ defaultproperties
      SightAimFactor=0.200000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimAdjustTime=0.300000
+	 
      AimSpread=12
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=15000.000000
      ChaosAimSpread=2560
+	 
      RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.060000),(InVal=0.400000,OutVal=0.110000),(InVal=0.500000,OutVal=-0.120000),(InVal=0.600000,OutVal=0.130000),(InVal=0.800000,OutVal=0.160000),(InVal=1.000000)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-
+     RecoilXFactor=0.100000
+     RecoilYFactor=0.150000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.150000
+	 
      FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.SARFlashFire'
      SelectForce="SwitchToAssaultRifle"
