@@ -168,7 +168,7 @@ defaultproperties
          RotatingSheets=2
          LowFrequencyNoiseRange=(X=(Min=-1.000000,Max=1.000000),Y=(Min=-1.000000,Max=1.000000),Z=(Min=-1.000000,Max=1.000000))
          LowFrequencyPoints=6
-         HighFrequencyNoiseRange=(X=(Min=-40.000000,Max=40.000000),Y=(Min=-40.000000,Max=40.000000),Z=(Min=-40.000000,Max=40.000000))
+         HighFrequencyNoiseRange=(X=(Min=-20.000000,Max=20.000000),Y=(Min=-20.000000,Max=20.000000),Z=(Min=-20.000000,Max=20.000000))
          HighFrequencyPoints=6
          LinkupLifetime=True
          UseColorScale=True
@@ -195,7 +195,7 @@ defaultproperties
          RotatingSheets=2
          LowFrequencyNoiseRange=(X=(Min=-1.000000,Max=1.000000),Y=(Min=-1.000000,Max=1.000000),Z=(Min=-1.000000,Max=1.000000))
          LowFrequencyPoints=6
-         HighFrequencyNoiseRange=(X=(Min=-40.000000,Max=40.000000),Y=(Min=-40.000000,Max=40.000000),Z=(Min=-40.000000,Max=40.000000))
+         HighFrequencyNoiseRange=(X=(Min=-20.000000,Max=20.000000),Y=(Min=-20.000000,Max=20.000000),Z=(Min=-20.000000,Max=20.000000))
          HighFrequencyPoints=6
          LinkupLifetime=True
          UseColorScale=True

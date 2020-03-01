@@ -403,7 +403,7 @@ simulated function EjectBrass(byte Mode);
 defaultproperties
 {
 	 TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-     ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
+     ImpactManager=Class'BallisticProV55.IM_IncendiaryHMGBullet'
 	 
      TracerClassAlt=Class'BWBPRecolorsPro.TraceEmitter_Supercharge'
 	 ImpactManagerAlt=Class'BWBPRecolorsPro.IM_Supercharge'

@@ -86,7 +86,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 simulated function bool PutDown()
 {
-	if (bShieldUp)
+	if (Role == ROLE_Authority && bShieldUp)
 	{
 		bShieldUp=false;
 		AdjustShieldProperties();
@@ -94,7 +94,8 @@ simulated function bool PutDown()
 	
 	if (super.PutDown())
 	{
-		if (Arc != None)	Arc.Destroy();
+		if (Arc != None)	
+			Arc.Destroy();
 		return true;
 	}
 	

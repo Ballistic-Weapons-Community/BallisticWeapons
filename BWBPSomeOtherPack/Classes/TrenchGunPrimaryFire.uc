@@ -14,7 +14,6 @@ var() Actor						MuzzleFlash2;		// The muzzleflash actor
 var() sound						SlugFireSound;
 var() class<BCTraceEmitter>		AltTracerClass;	
 var() class<BCImpactManager>	AltImpactManager;	
-var	bool						bExplosive;
 var Name						AimedFireEmptyAnim, FireEmptyAnim, AimedFireSingleAnim, FireSingleAnim;
 var() float						ChargeTime, DecayCharge;
 
@@ -77,8 +76,8 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
 
-	if (bExplosive && Other.bProjTarget)
-		BW.TargetedHurtRadius(Damage, 420, class'DTCYLOFirestormExplosion', 200, HitLocation, Pawn(Other));
+	if (BW.CurrentWeaponMode == 0 && Other.bProjTarget)
+		BW.TargetedHurtRadius(Damage, 512, class'DTCYLOFirestormExplosion', 200, HitLocation, Pawn(Other));
 }
 
 //======================================================================
@@ -175,7 +174,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 	if (!Other.bWorldGeometry && Mover(Other) == None && Other.bProjTarget)
 	{
-		Spawn (class'IE_IncBulletMetal', ,, HitLocation,);
+		Spawn (class'IE_IncMinigunBulletConcrete', ,, HitLocation,);
 	}
 	else 
 	{	
@@ -204,6 +203,9 @@ simulated function SwitchWeaponMode (byte newMode)
 		
 		BallisticFireSound.Sound=SlugFireSound;
 		
+		XInaccuracy = 128;
+		YInaccuracy = 128;
+		
 		TracerClass=AltTracerClass;
 		ImpactManager=AltImpactManager;
 		
@@ -213,7 +215,6 @@ simulated function SwitchWeaponMode (byte newMode)
 		
 		RangeAtten = 1.0; // electrical shots shouldn't be losing damage at range
 		
-		bExplosive=False;
 		KickForce=10000;
 	}
 	else // Explosive Mode
@@ -222,6 +223,9 @@ simulated function SwitchWeaponMode (byte newMode)
 		bPenetrate=False;
 		
 		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
+			
+		XInaccuracy = default.XInaccuracy;
+		YInaccuracy = default.YInaccuracy;
 		
 		TracerClass=default.TracerClass;
 		ImpactManager=default.ImpactManager;
@@ -230,13 +234,8 @@ simulated function SwitchWeaponMode (byte newMode)
 		DamageTypeArm=Class'DT_TrenchGunExplosive';
 		DamageTypeHead=Class'DT_TrenchGunExplosive';
 		
-		Damage=default.Damage;
-		DamageHead=default.DamageHead;
-		DamageLimb=default.DamageLimb;
-		
 		RangeAtten = default.RangeAtten;
 		
-		bExplosive=True;
 		KickForce=default.KickForce;
 	}
 }
@@ -365,6 +364,21 @@ simulated event ModeDoFire()
 }
 
 //======================================================================
+// GetTraceCount
+//
+// One less trace if double fired, to reduce one-shotting threshold
+//======================================================================
+function GetTraceCount(int load)
+{
+	switch(load)
+	{
+		case 2: return (default.TraceCount * 2) - 1;
+		case 1: return default.TraceCount;
+		default: return default.TraceCount;
+	}
+}
+
+//======================================================================
 // DoFireEffect
 //
 // Send twice if double shot
@@ -377,7 +391,7 @@ function DoFireEffect()
 
 	Aim = GetFireAim(StartTrace);
 	
-	for (i=0;i<TraceCount * ConsumedLoad; i++)
+	for (i=0; i < GetTraceCount(ConsumedLoad); i++)
 	{
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
@@ -456,7 +470,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 						HitVehicleEffect (HitLocation, HitNormal, Other);
 					continue;
 				}
-				else if (Vehicle(Other) != None || (bExplosive && Pawn(Other) != None))
+				else if (Vehicle(Other) != None || (BW.CurrentWeaponMode == 0 && Pawn(Other) != None))
 					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
 				else if (Mover(Other) == None)
 					break;
@@ -567,10 +581,11 @@ simulated function ModeTick(float DeltaTime)
 		{
 			Load = 2;
 			BallisticFireSound.Volume=2.0;
-			XInaccuracy=default.XInaccuracy * 2;
-			YInaccuracy=default.YInaccuracy * 2;
-		
-			if (ThisModeNum == 1)
+			
+			XInaccuracy = default.XInaccuracy * 2.5;
+			YInaccuracy = default.YInaccuracy * 2;
+	
+			if (BW.CurrentWeaponMode == 1)
 			{
 				DamageType=Class'DT_TrenchGunElectroDouble';
 				DamageTypeArm=Class'DT_TrenchGunElectroDouble';
@@ -581,8 +596,12 @@ simulated function ModeTick(float DeltaTime)
 		{
 			Load = 1;
 			BallisticFireSound.Volume=1.0;
-			XInaccuracy=default.XInaccuracy;
-			YInaccuracy=default.YInaccuracy;
+			
+			if (BW.CurrentWeaponMode == 1)
+			{
+				XInaccuracy=128;
+				YInaccuracy=128;
+			}
 		}
 	}
 	else if (DecayCharge > 0)
@@ -631,7 +650,7 @@ defaultproperties
     CutOffDistance=2048.000000
     CutOffStartRange=1280.000000
 	MaxSpreadFactor=2
-	TraceCount=8
+	TraceCount=10
 	TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 	AltTracerClass=Class'BWBPRecolorsPro.TraceEmitter_Supercharge'
 	AltImpactManager=Class'BWBPRecolorsPro.IM_Supercharge'
@@ -657,7 +676,7 @@ defaultproperties
 	RecoilPerShot=512.000000
 	VelocityRecoil=1200.000000
 	FireChaos=1.000000
-	XInaccuracy=256.000000
+	XInaccuracy=192.000000
 	YInaccuracy=192.000000
 	BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)
 	FireAnim="FireCombined"

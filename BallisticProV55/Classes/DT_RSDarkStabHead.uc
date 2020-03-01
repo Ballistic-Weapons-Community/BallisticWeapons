@@ -29,7 +29,7 @@ defaultproperties
      bHeaddie=True
      DamageIdent="Melee"
      AimDisplacementDamageThreshold=30
-     AimDisplacementDuration=1
+     AimDisplacementDuration=0.25
      DamageDescription=",Slash,DarkStar,Hack,"
      WeaponClass=Class'BallisticProV55.RSDarkStar'
      DeathString="%k swung %kh Dark Star into %o's pointy nose."
