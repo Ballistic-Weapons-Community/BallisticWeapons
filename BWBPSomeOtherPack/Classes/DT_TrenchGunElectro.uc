@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DT_TrenchGunElectro extends DT_BWMisc;
+class DT_TrenchGunElectro extends DT_BWMiscDamage;
 
 defaultproperties
 {

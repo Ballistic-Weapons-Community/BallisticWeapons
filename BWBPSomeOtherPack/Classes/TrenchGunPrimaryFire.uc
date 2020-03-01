@@ -260,6 +260,19 @@ simulated event Timer()
 	ConsumedLoad=0;
 }
 
+simulated function ModeTick(float DeltaTime)
+{
+	Super.ModeTick(DeltaTime);
+	
+	if (!bIsFiring && DecayCharge > 0)
+	{
+		DecayCharge -= DeltaTime * 2.5;
+		
+		if (DecayCharge < 0)
+			DecayCharge = 0;
+	}
+}
+
 //======================================================================
 // ModeDoFire
 //
@@ -267,7 +280,7 @@ simulated event Timer()
 //======================================================================
 simulated event ModeDoFire()
 {
-	//DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
+	DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
 	
 	if (!AllowFire())
 	{
@@ -289,13 +302,20 @@ simulated event ModeDoFire()
 	}
 
 	if (HoldTime >= ChargeTime && BW.MagAmmo == 2)
+	{
 		Load = 2;
+		SwitchShotParams();
+	}
 
 	ConsumedLoad += Load;
+	
 	SetTimer(FMin(0.1, FireRate/2), false);
+	
     // server
     if (Weapon.Role == ROLE_Authority)
     {
+		DebugMessage("DoFireEffect: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
+	
         DoFireEffect();
         if ( (Instigator == None) || (Instigator.Controller == None) )
 			return;
@@ -338,7 +358,12 @@ simulated event ModeDoFire()
         NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
     }
 
-    Load = AmmoPerFire;
+	if (Load == 2)
+	{    
+		Load = AmmoPerFire;
+		SwitchShotParams();
+	}
+	
 	HoldTime = 0;
 	
     if (Instigator.PendingWeapon != Weapon && Instigator.PendingWeapon != None)
@@ -368,7 +393,7 @@ simulated event ModeDoFire()
 //
 // One less trace if double fired, to reduce one-shotting threshold
 //======================================================================
-function GetTraceCount(int load)
+function int GetTraceCount(int load)
 {
 	switch(load)
 	{
@@ -391,7 +416,7 @@ function DoFireEffect()
 
 	Aim = GetFireAim(StartTrace);
 	
-	for (i=0; i < GetTraceCount(ConsumedLoad); i++)
+	for (i=0; i < GetTraceCount(Load); i++)
 	{
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
@@ -567,49 +592,45 @@ function FlashMuzzleFlash()
 }
 
 //======================================================================
-// ModeTick
+// SwitchShotParams
 //
 // Manage double shot parameters
 //======================================================================
-simulated function ModeTick(float DeltaTime)
+function SwitchShotParams()
 {
-	Super.ModeTick(DeltaTime);
-	
-	if (bIsFiring)
+	if (Load == 2)
 	{
-		if (HoldTime >= ChargeTime)
+		BallisticFireSound.Volume=2.0;
+		
+		XInaccuracy = default.XInaccuracy * 2.5;
+		YInaccuracy = default.YInaccuracy * 2;
+
+		if (BW.CurrentWeaponMode == 1)
 		{
-			Load = 2;
-			BallisticFireSound.Volume=2.0;
-			
-			XInaccuracy = default.XInaccuracy * 2.5;
-			YInaccuracy = default.YInaccuracy * 2;
-	
-			if (BW.CurrentWeaponMode == 1)
-			{
-				DamageType=Class'DT_TrenchGunElectroDouble';
-				DamageTypeArm=Class'DT_TrenchGunElectroDouble';
-				DamageTypeHead=Class'DT_TrenchGunElectroDouble';	
-			}
-		}
-		else
-		{
-			Load = 1;
-			BallisticFireSound.Volume=1.0;
-			
-			if (BW.CurrentWeaponMode == 1)
-			{
-				XInaccuracy=128;
-				YInaccuracy=128;
-			}
+			DamageType=Class'DT_TrenchGunElectroDouble';
+			DamageTypeArm=Class'DT_TrenchGunElectroDouble';
+			DamageTypeHead=Class'DT_TrenchGunElectroDouble';	
 		}
 	}
-	else if (DecayCharge > 0)
+	else
 	{
-		DecayCharge -= DeltaTime * 2.5;
-		Load = 1;
-		if (DecayCharge < 0)
-			DecayCharge = 0;
+		BallisticFireSound.Volume=1.0;
+		
+		if (BW.CurrentWeaponMode == 0)
+		{
+			XInaccuracy = default.XInaccuracy;
+			YInaccuracy = default.YInaccuracy;
+		}
+		
+		if (BW.CurrentWeaponMode == 1)
+		{
+			DamageType=Class'DT_TrenchGunElectro';
+			DamageTypeArm=Class'DT_TrenchGunElectro';
+			DamageTypeHead=Class'DT_TrenchGunElectro';	
+			
+			XInaccuracy=128;
+			YInaccuracy=128;
+		}
 	}
 }
 
