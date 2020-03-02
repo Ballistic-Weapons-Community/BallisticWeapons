@@ -274,5 +274,5 @@ defaultproperties
      LightRadius=5.000000
      Mesh=SkeletalMesh'BallisticProAnims.USSR'
      DrawScale=0.500000
-     Skins(4)=Shader'R9A_tex.R9_body_SH1'
+     //Skins(4)=Shader'R9A_tex.R9_body_SH1'
 }

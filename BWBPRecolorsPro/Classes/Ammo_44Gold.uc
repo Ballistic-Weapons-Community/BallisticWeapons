@@ -2,8 +2,8 @@ class Ammo_44Gold extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=7
-     InitialAmount=7
+     MaxAmmo=8
+     InitialAmount=8
      bTryHeadShot=True
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconPageV2Flash'
      PickupClass=Class'BallisticProV55.AP_6Magnum'

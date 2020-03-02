@@ -255,7 +255,7 @@ defaultproperties
      FullZoomFOV=70.000000
      bNoCrosshairInScope=True
      SightZoomFactor=20
-     SightOffset=(X=4.000000,Z=4.750000)
+     SightOffset=(X=4.000000,Y=-0.070000,Z=4.750000)
      SightingTime=0.300000
      CrouchAimFactor=0.750000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
