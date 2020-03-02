@@ -782,7 +782,7 @@ defaultproperties
      PlayerViewOffset=(Y=16.000000,Z=-25.000000)
      AttachmentClass=Class'BallisticJiffyPack.ARAttachment'
      IconMaterial=Texture'BWBPJiffyPackTex.TacBuster.Icon_AA12'
-     IconCoords=(X2=125,Y2=35)
+     IconCoords=(X2=125,Y2=32)
      ItemName="RCS-715 Tactical Buster"
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence

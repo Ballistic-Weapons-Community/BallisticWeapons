@@ -13,7 +13,7 @@ defaultproperties
      DeathStrings(0)="%o was tactically busted by %k's RCS-715."
      DeathStrings(1)="%k shredded %o to pieces with their RCS-715 shells."
      DeathStrings(2)="%k emptied their RCS-715 drum magazine all over %o."
-     DeathStrings(3)="%o was met with a barrage of RCS-715 shotgun shells from $k."
+     DeathStrings(3)="%o was met with a barrage of RCS-715 shotgun shells from %k."
      DeathStrings(4)="%o had their nuts busted by %k's RCS-715."
      bIgniteFires=True
      InvasionDamageScaling=1.500000
