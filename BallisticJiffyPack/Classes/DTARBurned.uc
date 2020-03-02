@@ -12,9 +12,7 @@ class DTARBurned extends DT_BWFire;
 defaultproperties
 {
      DeathStrings(0)="%o went out in a blaze of %k's glory."
-     DeathStrings(1)="%k cauterized %o's head off with the FP7."
-     DeathStrings(2)="%o stopped, dropped and rolled around in %k's inferno."
-     DeathStrings(3)="%o was roasted to a cinder by %k's FP7."
+     DeathStrings(1)="%k reduced %o to ashes."
      SimpleKillString="RCS-715 Grenade Burn"
      bIgnoredOnLifts=True
      InvasionDamageScaling=2.000000

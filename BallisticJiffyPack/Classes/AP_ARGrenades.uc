@@ -12,10 +12,10 @@ defaultproperties
 {
      AmmoAmount=3
      InventoryType=Class'BallisticJiffyPack.Ammo_ARGrenades'
-     PickupMessage="You picked up 3 grenades for the M900."
+     PickupMessage="You picked up 3 grenades for the RCS."
      PickupSound=Sound'BallisticSounds2.Ammo.GrenadePickup'
-     StaticMesh=StaticMesh'BallisticHardware2.Ammo.M900Grenades'
-     DrawScale=0.500000
+     StaticMesh=StaticMesh'BWBPJiffyPackStatic.TacticalBuster.AA12GrenadePickup'
+     DrawScale=2.000000
      CollisionRadius=8.000000
      CollisionHeight=10.000000
 }

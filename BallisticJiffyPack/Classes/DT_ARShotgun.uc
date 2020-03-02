@@ -10,19 +10,19 @@ class DT_ARShotgun extends DT_BWBullet;
 
 defaultproperties
 {
-     DeathStrings(0)="%o only wishes that %k's SK-410 was capable of jamming."
-     DeathStrings(1)="%k 8-Gauge SK-410 exiled pieces of %o."
-     DeathStrings(2)="%k's SK-410 blasted %o out of the Eastern Bloc."
-     DeathStrings(3)="%k gave %o an iron curtain of explosive shotgun shells."
-     DeathStrings(4)="%k redistributed %kh wealth of HE shotshells to %o."
+     DeathStrings(0)="%o was tactically busted by %k's RCS-715."
+     DeathStrings(1)="%k shredded %o to pieces with their RCS-715 shells."
+     DeathStrings(2)="%k emptied their RCS-715 drum magazine all over %o."
+     DeathStrings(3)="%o was met with a barrage of RCS-715 shotgun shells from $k."
+     DeathStrings(4)="%o had their nuts busted by %k's RCS-715."
      bIgniteFires=True
      InvasionDamageScaling=1.500000
      DamageIdent="Shotgun"
-     DamageDescription=",Bullet,Flame,"
+     DamageDescription=",Bullet,"
      WeaponClass=Class'BallisticJiffyPack.ARShotgun'
-     DeathString="%o's only wishes that %k's SK-410 was capable of jamming."
-     FemaleSuicide="%o amputated a foot with the SK410"
-     MaleSuicide="%o removed some toes with his SK410."
+     DeathString="%o was tactically busted by %k's RCS-715."
+     FemaleSuicide="%o pointed her RCS-715 the wrong way round."
+     MaleSuicide="%o pointed his RCS-715 the wrong way round."
      bFastInstantHit=True
      bExtraMomentumZ=True
      GibPerterbation=2.000000

@@ -29,11 +29,11 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="With the aid of %k SK-410, %o's head revolted successfully from %vh body."
-     DeathStrings(1)="%k's SK-410 removed %o's mental Bloc."
-     DeathStrings(2)="%k's SK-410 Article 58'd %o's face off."
-     DeathStrings(3)="%o was shown the true meaning of No Excuses by %k's SK-410."
-     DeathStrings(4)="%o's frostbitten face was warmed by %k's SK-410."
+	 DeathStrings(0)="%o had their head tactically busted off by %k's RCS-715."
+     DeathStrings(1)="%k shredded %o's head to pieces with their RCS-715 shells."
+     DeathStrings(2)="%k emptied their RCS-715 drum magazine all over %o's head."
+     DeathStrings(3)="%o's head was met with a barrage of RCS-715 shotgun shells from $k."
+     DeathStrings(4)="%o had their brains busted by %k's RCS-715."
      EffectChance=0.500000
      bIgniteFires=True
      bHeaddie=True
@@ -41,9 +41,9 @@ defaultproperties
      DamageIdent="Shotgun"
      DamageDescription=",Bullet,Flame,"
      WeaponClass=Class'BallisticJiffyPack.ARShotgun'
-     DeathString="With the aid of %k SK-410, %o's head revolted successfully from %vh body."
-     FemaleSuicide="%o is a little too drunk to use an SK-410."
-     MaleSuicide="%o is a little too drunk to use an SK-410."
+     DeathString="%o had their head tactically busted off by %k's RCS-715."
+     FemaleSuicide="%o pointed her RCS-715 the wrong way round."
+     MaleSuicide="%o pointed his RCS-715 the wrong way round."
      bFastInstantHit=True
      bAlwaysSevers=True
      bSpecial=True

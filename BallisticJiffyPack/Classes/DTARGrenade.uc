@@ -10,7 +10,7 @@ class DTARGrenade extends DT_BWBlunt;
 
 defaultproperties
 {
-     DeathStrings(0)="%k bounced an FP7 off %o's head."
+     DeathStrings(0)="%k blasted a RCS-715 grenade directly into %o's helpless body."
      SimpleKillString="RCS-715 Grenade Impact"
      BloodManagerName="BallisticProV55.BloodMan_BluntSmall"
      bDetonatesBombs=False
@@ -19,9 +19,9 @@ defaultproperties
      DamageIdent="Grenade"
      DamageDescription=",Blunt,Hazard,"
      WeaponClass=Class'BallisticJiffyPack.ARShotgun'
-     DeathString="%k bounce an FP7 off %o's head."
-     FemaleSuicide="%o tripped on her own FP7."
-     MaleSuicide="%o tripped on his own FP7."
+     DeathString="%k blasted a RCS-715 grenade directly into %o's helpless body."
+     FemaleSuicide="%o layed a RCS-715 grenade at her own feet."
+     MaleSuicide="%o layed a RCS-715 grenade at his own feet."
      bDelayedDamage=True
      GibPerterbation=0.500000
      KDamageImpulse=20000.000000
