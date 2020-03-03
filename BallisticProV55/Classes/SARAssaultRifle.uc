@@ -27,7 +27,7 @@ struct UziBrass
 };
 var   array<UziBrass>	UziBrassList;
 
-replications
+replication
 {
 	reliable if (Role == ROLE_Authority)
 		bLaserOn;
