@@ -12,10 +12,10 @@ defaultproperties
 {
      AmmoAmount=72
      InventoryType=Class'BallisticJiffyPack.Ammo_ARShotgun'
-     PickupMessage="You picked up 3 magazines for the AR-71 Shotgun."
+     PickupMessage="You picked up 3 magazines for the RCS-715 Shotgun."
      PickupSound=Sound'BallisticSounds2.Ammo.ShotBoxPickup'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.SK410.SK410Ammo'
-     DrawScale=0.400000
+     StaticMesh=StaticMesh'BWBPJiffyPackStatic.TacticalBuster.AA12AmmoPickup'
+     DrawScale=2.000000
      CollisionRadius=8.000000
      CollisionHeight=4.500000
 }

@@ -163,8 +163,8 @@ defaultproperties
      MotionBlurRadius=128.000000
      Speed=4000.000000
      MaxSpeed=15000.000000
-     Damage=0.000000
-     DamageRadius=0.000000
+     Damage=80.000000
+     DamageRadius=128.000000
      MomentumTransfer=0.000000
      MyDamageType=Class'BallisticJiffyPack.DTARGrenade'
      LightHue=180
