@@ -40,6 +40,6 @@ defaultproperties
      StaticMesh=StaticMesh'BallisticHardware3.USSR.USSRPickup-Hi'
      Physics=PHYS_None
      DrawScale=0.350000
-     Skins(0)=Shader'R9A_tex.R9_body_SH1'
+     //Skins(0)=Shader'R9A_tex.R9_body_SH1'
      CollisionHeight=3.000000
 }

@@ -166,5 +166,5 @@ defaultproperties
      CockingAnim="Cock_RearPull"
      Mesh=SkeletalMesh'BallisticAnims3.USSR-3rd'
      DrawScale=0.160000
-     Skins(0)=Shader'R9A_tex.R9_body_SH1'
+     //Skins(0)=Shader'R9A_tex.R9_body_SH1'
 }
