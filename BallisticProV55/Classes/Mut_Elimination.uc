@@ -102,7 +102,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	//shunt the lris down to make way for this one
 	if (PlayerReplicationInfo(Other) != None)
 	{
-		BPRI = Spawn(class'EliminationLRI', Other.Owner);		
+		BPRI = Spawn(class'ConflictLoadoutLRI', Other.Owner);		
 		
 		if(PlayerReplicationInfo(Other).CustomReplicationInfo != None)
 		{

@@ -14,16 +14,16 @@
 // edited for mutator support by Azarael
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class EliminationLRI extends BallisticPlayerReplicationInfo DependsOn(Mut_Loadout) config(BallisticProV55);
+class ConflictLoadoutLRI extends BallisticPlayerReplicationInfo DependsOn(Mut_Loadout) config(BallisticProV55);
 /*
 	Game:	ServerFullList
 	PRI:	ClientInv
 	Menu:	LoadPage->PRI:S:RequestFullList->C->GiveClientFullList->FullListIsReady  ->MenuDone->PRI:S:SetInventory->InventoryIsReady
 */
 
-var Mut_SpatialLoadout LoadoutMut;					// The mutator itself
+var Mut_ConflictLoadout LoadoutMut;					// The mutator itself
 var config array<string> SavedInventory;			// old inv saved to config
-var array<string> Loudout;								// Current loadout
+var array<string> Loadout;								// Current loadout
 var array<string> FullInventoryList;					// List of all weapons available
 var array<Mut_Loadout.LORequirements> RequirementsList;	// Requirements for the weapons. order and length must match 'FullInventoryList'
 
@@ -109,15 +109,15 @@ simulated function PostNetBeginPlay()
 		//Find the mutator
 		for (M = Level.Game.BaseMutator; M != None; M = M.NextMutator)
 		{
-			if (Mut_SpatialLoadout(M) != None)
+			if (Mut_ConflictLoadout(M) != None)
 			{
-				LoadoutMut = Mut_SpatialLoadout(M);
+				LoadoutMut = Mut_ConflictLoadout(M);
 				LoadoutOption = LoadoutMut.LoadoutOption;
 			}
 		}
 		
 		if (myController != None && Level.NetMode != NM_DedicatedServer)
-			Loudout = SavedInventory;
+			Loadout = SavedInventory;
 		
 		return;
 	}
@@ -125,7 +125,7 @@ simulated function PostNetBeginPlay()
 	//Send saved inventory to server
 	if (PlayerController(myController) != None && Viewport(PlayerController(myController).Player) != None)
 	{
-		for (i=0;i<SavedInventory.Length;i++)
+		for (i=0; i<SavedInventory.Length; i++)
 		{
 			if (s == "")
 				s = SavedInventory[i];
@@ -160,10 +160,11 @@ final private simulated function ModifyMenu()
 	}
    
    Menu = UT2K4PlayerLoginMenu(GUIController(PlayerController(myController).Player.GUIController).FindPersistentMenuByName( UnrealPlayer(myController).LoginMenuClass ));
+   
    if( Menu != None )
    {
       // You can use the panel reference to do the modifications to the tab etc.
-      Panel = Menu.c_Main.InsertTab(0, MenuName, string( class'BallisticTab_EliminationInventoryPro' ),, MenuHelp);
+      Panel = Menu.c_Main.InsertTab(0, MenuName, string( class'BallisticTab_ConflictLoadoutPro' ),, MenuHelp);
 	  Menu.c_Main.ActivateTabByName(MenuName, true);
 	  bMenuModified=True;
 	  Disable('Tick');
@@ -340,7 +341,7 @@ simulated function SortList()
 //===================================================
 function ServerSetInventory(string ClassesString)
 {
-	Split(ClassesString, "|", Loudout);
+	Split(ClassesString, "|", Loadout);
 	UpdateInventory();
 }
 
@@ -353,13 +354,13 @@ function UpdateInventory()
 {
 	local string s;
 
-	Validate(Loudout);
+	Validate(Loadout);
 
-	if (Loudout.length == 0)
+	if (Loadout.length == 0)
 	{
  		s = LoadoutMut.GetRandomWeapon(self);
  		if (s != "")
- 			Loudout[0] = s;
+ 			Loadout[0] = s;
  	}
 
 	//Update immediately if allowed
@@ -497,10 +498,12 @@ defaultproperties
      SavedInventory(1)="BallisticProV55.M806Pistol"
      SavedInventory(2)="BallisticProV55.X3Knife"
      SavedInventory(3)="BallisticProV55.NRP57Grenade"
-     Loudout(0)="BallisticProV55.M50AssaultRifle"
-     Loudout(1)="BallisticProV55.M806Pistol"
-     Loudout(2)="BallisticProV55.X3Knife"
-     Loudout(3)="BallisticProV55.NRP57Grenade"
+	 
+     Loadout(0)="BallisticProV55.M50AssaultRifle"
+     Loadout(1)="BallisticProV55.M806Pistol"
+     Loadout(2)="BallisticProV55.X3Knife"
+     Loadout(3)="BallisticProV55.NRP57Grenade"
+	 
      ChangeInterval=60.000000
      MenuName="Gear"
      MenuHelp="Choose your starting equipment here."

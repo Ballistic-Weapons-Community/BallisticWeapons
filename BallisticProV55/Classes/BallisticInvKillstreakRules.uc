@@ -1,35 +1,35 @@
 // Streaks for Invasion. Work based on score and are ini-config only.
-class BallisticOutfittingInvKillstreakRules extends GameRules
+class BallisticInvKillstreakRules extends GameRules
 	config(BallisticProV55);
 
-var Mut_Outfitting Mut;
+var Mut_Killstreak Mut;
 var config array<int> InvSpreeThresholds[2];
 
 function ScoreKill(Controller Killer, Controller Killed)
 {
 	local int i, OldScore;
 	local PlayerController PC;
-	local BallisticPlayerReplicationInfo BPRI;
+	local KillstreakLRI KLRI;
 		
 	PC = PlayerController(Killer);
 		
 	if (PC != None && Killer != Killed && PC.Pawn != None)
 	{
-		BPRI = class'Mut_Ballistic'.static.GetBPRI(PC.PlayerReplicationInfo);
-		if (BPRI != None)
+		KLRI = class'Mut_Killstreak'.static.GetKLRI(PC.PlayerReplicationInfo);
+		if (KLRI != None)
 		{
-			OldScore = BPRI.InvKillScore;
+			OldScore = KLRI.InvKillScore;
 			
 			if ( Invasion(Level.Game).LastKilledMonsterClass == None )
-				BPRI.InvKillScore += 1;
+				KLRI.InvKillScore += 1;
 			else
-				BPRI.InvKillScore += Invasion(Level.Game).LastKilledMonsterClass.Default.ScoringValue;
+				KLRI.InvKillScore += Invasion(Level.Game).LastKilledMonsterClass.Default.ScoringValue;
 			
 			for(i=0; i < 2; i++)
 			{
 				if (OldScore >= InvSpreeThresholds[i])
 					continue;
-				if (BPRI.InvKillScore >= InvSpreeThresholds[i] && bool(Mut.GetStreakLevel(PC) & (2 ** i)))
+				if (KLRI.InvKillScore >= InvSpreeThresholds[i] && bool(Mut.GetStreakLevel(PC) & (2 ** i)))
 				{
 					Mut.FlagStreak(PC, i+1);
 					PC.ReceiveLocalizedMessage( class'BallisticKillstreakMessage', i+1);

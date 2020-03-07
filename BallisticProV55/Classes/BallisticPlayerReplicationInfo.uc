@@ -24,18 +24,9 @@ var float       AveragePercent;
 
 /* killstreaks */
 
-var byte 		RewardLevel; // streaks in reserve
-var byte 		ActiveStreak; // active streaks - not replicated
-var int 		InvKillScore;		// Used for Invasion streaks
 var byte		NadeCount;
 
 /* killstreaks */
-
-replication
-{
-	reliable if (Role == ROLE_Authority)
-		RewardLevel;
-}
 
 function AddFireStat(int load, int InventoryGroup)
 {

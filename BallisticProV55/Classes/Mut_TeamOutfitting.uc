@@ -7,13 +7,11 @@ class Mut_TeamOutfitting extends Mut_Ballistic
 	config(BallisticProV55);
 
 var() config string 			LoadOut[5];			// Loadout info saved seperately on each client
-var() config string			Killstreaks[2];
-var() config bool				bAllowKillstreaks;
 
 var   Array<ClientTeamOutfittingInterface>	COIPond;			// Jump right in, they won't bite - probably...
-var   PlayerController							PCPendingCOI;	// The PlayerController that is about to get its COI
+var   PlayerController						PCPendingCOI;	// The PlayerController that is about to get its COI
 
-const NUM_GROUPS = 14;
+const NUM_GROUPS = 10;
 
 //Would have preferred to use structs for this, but Random Weapon would have been a bitch.
 var() globalconfig array<string>	RedLoadoutGroup0;	// Weapons available in Melee Box
@@ -21,16 +19,12 @@ var() globalconfig array<string>	RedLoadoutGroup1;	// Weapons available in Sidea
 var() globalconfig array<string>	RedLoadoutGroup2;	// Weapons available in Primary Box
 var() globalconfig array<string>	RedLoadoutGroup3;	// Weapons available in Secondayr Box
 var() globalconfig array<string>	RedLoadoutGroup4;	// Weapons available in Grenade Box
-var() globalconfig array<string>	RedLoadoutGroup5;	// Killstreak One
-var() globalconfig array<string>	RedLoadoutGroup6;	// Killstreak Two
 
 var() globalconfig array<string>	BlueLoadoutGroup0;	// Weapons available in Melee Box
 var() globalconfig array<string>	BlueLoadoutGroup1;	// Weapons available in Sidearm Box
 var() globalconfig array<string>	BlueLoadoutGroup2;	// Weapons available in Primary Box
 var() globalconfig array<string>	BlueLoadoutGroup3;	// Weapons available in Secondayr Box
 var() globalconfig array<string>	BlueLoadoutGroup4;	// Weapons available in Grenade Box
-var() globalconfig array<string>	BlueLoadoutGroup5;	// Killstreak One
-var() globalconfig array<string>	BlueLoadoutGroup6;	// Killstreak Two
 
 
 var() globalconfig bool				bAllowAllWeaponry; // Allow weaponry even if it's not present in the loadout groups
@@ -48,8 +42,6 @@ var   class<weapon>				NetLoadout2;
 var   class<weapon>				NetLoadout3;
 var   class<weapon>				NetLoadout4;
 var   class<weapon>				NetLoadout5;
-var   class<weapon>				NetLoadout6;
-var   class<weapon>				NetLoadout7;
 
 var   class<Weapon>			NetLoadoutWeapons[255];
 var   byte							NetLoadoutGroups;
@@ -68,25 +60,6 @@ function BeginPlay()
 					DummyGroups[i].Positions[DummyGroups[i].Positions.Length] = k;
 }
 	
-function PostBeginPlay()
-{
-	Super.PostBeginPlay();
-	if (bAllowKillstreaks)
-		SpawnStreakGR();
-}
-
-function SpawnStreakGR()
-{
-	local BallisticTeamOutfittingKillstreakRules G;
-	
-	G = spawn(class'BallisticTeamOutfittingKillstreakRules');
-	if ( Level.Game.GameRulesModifiers == None )
-		Level.Game.GameRulesModifiers = G;
-	else    
-		Level.Game.GameRulesModifiers.AddGameRules(G);
-	G.Mut = self;
-}
-
 simulated function string GetGroupItem(byte GroupNum, int ItemNum, byte inTeam)
 {
 	if (inTeam == 1)
@@ -98,8 +71,6 @@ simulated function string GetGroupItem(byte GroupNum, int ItemNum, byte inTeam)
 			case	2:	return BlueLoadoutGroup2[ItemNum];
 			case	3:	return BlueLoadoutGroup3[ItemNum];
 			case	4:	return BlueLoadoutGroup4[ItemNum];
-			case	5:	return BlueLoadoutGroup5[ItemNum];
-			case	6:	return BlueLoadoutGroup6[ItemNum];
 		}
 	}
 	else
@@ -111,8 +82,6 @@ simulated function string GetGroupItem(byte GroupNum, int ItemNum, byte inTeam)
 			case	2:	return RedLoadoutGroup2[ItemNum];
 			case	3:	return RedLoadoutGroup3[ItemNum];
 			case	4:	return RedLoadoutGroup4[ItemNum];
-			case	5:	return RedLoadoutGroup5[ItemNum];
-			case	6:	return RedLoadoutGroup6[ItemNum];
 		}
 	}
 }
@@ -128,8 +97,6 @@ simulated function array<string> GetGroup(byte GroupNum, byte inTeam)
 			case	2:	return BlueLoadoutGroup2;
 			case	3:	return BlueLoadoutGroup3;
 			case	4:	return BlueLoadoutGroup4;
-			case	5:	return BlueLoadoutGroup5;
-			case	6:	return BlueLoadoutGroup6;
 		}
 	}
 	else
@@ -141,8 +108,6 @@ simulated function array<string> GetGroup(byte GroupNum, byte inTeam)
 			case	2:	return RedLoadoutGroup2;
 			case	3:	return RedLoadoutGroup3;
 			case	4:	return RedLoadoutGroup4;
-			case	5:	return RedLoadoutGroup5;
-			case	6:	return RedLoadoutGroup6;
 		}
 	}
 }
@@ -158,8 +123,6 @@ static function array<string> SGetGroup (byte GroupNum, byte inTeam)
 		case	2:	return default.BlueLoadoutGroup2;
 		case	3:	return default.BlueLoadoutGroup3;
 		case	4:	return default.BlueLoadoutGroup4;
-		case	5:	return default.BlueLoadoutGroup5;
-		case	6:	return default.BlueLoadoutGroup6;
 		}
 	}
 	else
@@ -171,8 +134,6 @@ static function array<string> SGetGroup (byte GroupNum, byte inTeam)
 		case	2:	return default.RedLoadoutGroup2;
 		case	3:	return default.RedLoadoutGroup3;
 		case	4:	return default.RedLoadoutGroup4;
-		case	5:	return default.RedLoadoutGroup5;
-		case	6:	return default.RedLoadoutGroup6;
 		}
 	}
 }
@@ -235,34 +196,11 @@ function ModifyPlayer(Pawn Other)
 			if (COIPond[i].PC == Other.Controller)
 			{	COIPond[i].ClientStartLoadout();	return;	}
 }
-
-function byte GetStreakLevel(PlayerController C)
-{
-	return class'Mut_Ballistic'.static.GetBPRI(C.PlayerReplicationInfo).RewardLevel;
-}
-
-function FlagStreak(PlayerController C, byte Level)
-{
-	class'Mut_Ballistic'.static.GetBPRI(C.PlayerReplicationInfo).RewardLevel = class'Mut_Ballistic'.static.GetBPRI(C.PlayerReplicationInfo).RewardLevel | Level;
-}
-
-function ResetActiveStreaks(PlayerController C)
-{
-	local BallisticPlayerReplicationInfo BPRI;
-	
-	BPRI = class'Mut_Ballistic'.static.GetBPRI(C.PlayerReplicationInfo);
-	if (BPRI != None)
-	{
-		BPRI.ActiveStreak = 0;
-		BPRI.InvKillScore = 0;
-	}
-}
 	
 // Use the console command "Mutate Loadout" to open the loadout menu
 function Mutate(string MutateString, PlayerController Sender)
 {
 	local int i;
-	local BallisticPlayerReplicationInfo BPRI;
 
 	if (MutateString ~= "Loadout" && Sender != None)
 	{
@@ -276,25 +214,6 @@ function Mutate(string MutateString, PlayerController Sender)
 		}
 		COIPond[i] = Spawn(class'ClientTeamOutfittinginterface',Sender);
 		COIPond[i].Initialize(self, Sender);
-	}
-	
-	else if (MutateString ~= "Killstreak" && Sender != None)
-	{
-		if (!bAllowKillstreaks)
-			Sender.ClientMessage("Killstreaks are disabled.");
-		else
-		{
-			for (i=0;i<COIPond.length;i++)
-			{
-				if (COIPond[i].PC == Sender && xPawn(Sender.Pawn) != None)
-				{
-					BPRI = class'Mut_Ballistic'.static.GetBPRI(Sender.PlayerReplicationInfo);
-					if (BPRI != None && BPRI.RewardLevel > 0)
-						GrantKillstreakReward(COIPond[i], Sender.Pawn, BPRI);
-					break;
-				}
-			}
-		}
 	}
 	
 	super.Mutate(MutateString, Sender);
@@ -439,168 +358,6 @@ function OutfitPlayer(Pawn Other, string Stuff[5], optional string OldStuff[5])
 	}
 }
 
-function GrantKillstreakReward(ClientTeamOutfittingInterface COI, Pawn Other, BallisticPlayerReplicationInfo BPRI)
-{
-	local class<DummyWeapon> Dummy;
-	local string S;
-	local byte Index, TargetGroup;
-	
-	if (bool(BPRI.RewardLevel & 2))
-	{
-		Index = 1;
-		TargetGroup = 6;
-	}
-	else
-	{
-		Index = 0;
-		TargetGroup = 5;
-	}
-	
-	//Handle dummies
-	if (InStr(COI.KillstreakRewards[Index], "Dummy") != -1)
-	{
-		if (COI.KillstreakRewards[Index] == "BallisticProV55.TeamLevelUpDummy")
-		{
-			if (!Level.Game.bTeamGame)
-				PlayerController(Other.Controller).ClientMessage("You can only donate in a team game.");
-			else if(!DonateWeapon(Index+1, Other))
-				PlayerController(Other.Controller).ClientMessage("Unable to donate at this time.");
-			else	BPRI.RewardLevel = BPRI.RewardLevel & ~(Index + 1);
-			return;
-		}
-		
-		Dummy = class<DummyWeapon>(DynamicLoadObject(COI.KillstreakRewards[Index], class'Class'));
-		if (Dummy != None && Dummy.static.ApplyEffect(Other, Index, true))
-		{
-			Level.Game.Broadcast(self, Other.PlayerReplicationInfo.PlayerName@"received a Level"@BPRI.RewardLevel@"spree reward:"@Dummy.default.ItemName);
-			BPRI.ActiveStreak = BPRI.ActiveStreak | (Index + 1);
-			BPRI.RewardLevel = BPRI.RewardLevel & ~(Index + 1);
-		}
-		
-		return;
-	}
-
-	else
-	{
-		S = SpawnStreakWeapon(COI.KillstreakRewards[Index], Other, TargetGroup);
-		
-		if (S != "")
-		{
-			if (InStr(S, "FMD") == -1 && InStr(S, "MAU") == -1)
-				Level.Game.Broadcast(self, Other.PlayerReplicationInfo.PlayerName@"received a Level"@BPRI.RewardLevel@"spree reward:"@S);
-			
-			BPRI.ActiveStreak = BPRI.ActiveStreak | (Index + 1);
-			BPRI.RewardLevel = BPRI.RewardLevel & ~(Index + 1);
-		}
-	}
-}
-
-function bool DonateWeapon(byte Index, Pawn Other)
-{
-	local int i;
-	local PlayerController C;
-	local array<Pawn> Options;
-	local Pawn Used;
-	local BallisticPlayerReplicationInfo BPRI;
-	
-	for (i=0;	i < COIPond.Length;	i++)	
-	{
-		C = COIPond[i].PC;
-		if (COIPond[i].KillstreakRewards[0] == "BallisticProV55.TeamLevelUpDummy" || COIPond[i].KillstreakRewards[1] == "BallisticProV55.TeamLevelUpDummy") //Donation isn't intended to be used as an advantage
-			continue;
-		if (BallisticPawn(C.Pawn) != None //ballisticpawn
-		&& C != Other.Controller  //not us
-		&& C.PlayerReplicationInfo != None //has pri
-		&& C.PlayerReplicationInfo.Team == Other.PlayerReplicationInfo.Team) //on the same team
-		{
-			if (!bool(class.static.GetBPRI(C.PlayerReplicationInfo).RewardLevel & Index)) //doesn't already have a streak of the level we're trying to pass
-				Options[Options.Length] = C.Pawn;
-		}
-	}
-	
-	if (Options.Length == 0)
-		return false;
-	
-	if (Options.Length == 1)
-		Used = Options[0];
-	
-	else Used = Options[Rand(Options.Length)];
-		
-	for (i=0;i<COIPond.length;i++)
-	{
-		if (COIPond[i].PC == Used.Controller)
-		{
-			BPRI = class.static.GetBPRI(Used.PlayerReplicationInfo);
-			if (BPRI != None)
-				BPRI.RewardLevel = BPRI.RewardLevel | Index;
-			else return false;
-			Other.ClientMessage("You passed your Killstreak"@Index@"to"@Used.PlayerReplicationInfo.PlayerName$".");
-			Used.ClientMessage("Received Killstreak"@Index@"from"@Other.PlayerReplicationInfo.PlayerName$".");
-			Used.ReceiveLocalizedMessage(class'BallisticKillstreakMessage', -Index);
-			Other.Controller.AwardAdrenaline(40 * Index);
-
-			return true;
-		}
-	}
-	return false;
-}
-
-function string SpawnStreakWeapon(string WeaponString, Pawn Other, byte GroupSlot)
-{
-	local class<Weapon> KR;
-	local int j, k, m;
-	
-	//Dummies are likely to come in here if the target also has Donation set
-	if (InStr(WeaponString, "Dummy") != -1)
-	{
-		k = Rand(GetGroup(GroupSlot, Other.GetTeamNum()).length - DummyGroups[GroupSlot].Positions.length);
-				
-		for (m = 0; m < DummyGroups[GroupSlot].Positions.Length; m++)
-			if (k == DummyGroups[GroupSlot].Positions[m])
-				k++;
-			
-		WeaponString = GetGroup(GroupSlot, Other.GetTeamNum())[k];		
-	}
-
-	else
-	{		
-		//Check validity.
-		for (j=0; j <= GetGroup(GroupSlot,Other.GetTeamNum()).length; j++)
-		{
-			if ( j == GetGroup(GroupSlot,Other.GetTeamNum()).length )
-			{
-				PlayerController(Other.Controller).ClientMessage("The selected Killstreak reward weapon is not available on this server, giving the default weapon.");
-				WeaponString = GetGroup(GroupSlot,Other.GetTeamNum())[0];
-				break;
-			}
-			
-			if (GetGroup(GroupSlot,Other.GetTeamNum())[j] ~= WeaponString)
-				break;
-		}
-	}
-	
-	KR = class<Weapon>(DynamicLoadObject(WeaponString,class'Class'));
-		
-	if (KR == None)
-		return "";
-	
-	else
-	{
-		SpawnWeapon(KR, Other);
-		if (class<BallisticWeapon>(KR) != None && !class<BallisticWeapon>(KR).default.bNoMag)
-		{
-			SpawnAmmo(KR.default.FireModeClass[0].default.AmmoClass, Other);
-			if (KR.default.FireModeClass[0].default.AmmoClass != KR.default.FireModeClass[1].default.AmmoClass)
-				SpawnAmmo(KR.default.FireModeClass[1].default.AmmoClass, Other);
-		}
-		
-		if (BallisticPawn(Other) != None)
-			BallisticPawn(Other).bActiveKillstreak = True;
-			
-		return KR.default.ItemName;
-	}
-}
-
 static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P)
 {
 	local Weapon newWeapon;
@@ -731,8 +488,6 @@ defaultproperties
      LoadOut(2)="BallisticProV55.M763Shotgun"
      LoadOut(3)="BallisticProV55.M50AssaultRifle"
      LoadOut(4)="BallisticProV55.NRP57Grenade"
-     Killstreaks(0)="BallisticProV55.RX22AFlamer"
-     Killstreaks(1)="BallisticProV55.MRocketLauncher"
      RedLoadoutGroup0(0)="BallisticProV55.X3Knife"
      RedLoadoutGroup0(1)="BallisticProV55.A909SkrithBlades"
      RedLoadoutGroup0(2)="BallisticProV55.EKS43Katana"
@@ -804,10 +559,6 @@ defaultproperties
      RedLoadoutGroup4(2)="BallisticProV55.FP9Explosive"
      RedLoadoutGroup4(3)="BallisticProV55.BX5Mine"
      RedLoadoutGroup4(4)="BallisticProV55.T10Grenade"
-     RedLoadoutGroup5(0)="BallisticProV55.RX22AFlamer"
-     RedLoadoutGroup5(1)="BallisticProV55.M290Shotgun"
-     RedLoadoutGroup6(0)="BallisticProV55.MRocketLauncher"
-     RedLoadoutGroup6(1)="BallisticProV55.M75Railgun"
      BlueLoadoutGroup0(0)="BallisticProV55.X3Knife"
      BlueLoadoutGroup0(1)="BallisticProV55.A909SkrithBlades"
      BlueLoadoutGroup0(2)="BallisticProV55.EKS43Katana"
@@ -879,10 +630,6 @@ defaultproperties
      BlueLoadoutGroup4(2)="BallisticProV55.FP9Explosive"
      BlueLoadoutGroup4(3)="BallisticProV55.BX5Mine"
      BlueLoadoutGroup4(4)="BallisticProV55.T10Grenade"
-     BlueLoadoutGroup5(0)="BallisticProV55.RX22AFlamer"
-     BlueLoadoutGroup5(1)="BallisticProV55.M290Shotgun"
-     BlueLoadoutGroup6(0)="BallisticProV55.MRocketLauncher"
-     BlueLoadoutGroup6(1)="BallisticProV55.M75Railgun"
      bHideLockers=True
      FriendlyName="BallisticPro: Team Loadout"
      Description="Team-based Ballistic Loadout."

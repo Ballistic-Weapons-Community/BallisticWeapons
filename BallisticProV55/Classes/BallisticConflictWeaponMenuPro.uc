@@ -160,17 +160,17 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 		if (!class'BC_WeaponInfoCache'.static.IsValid(Recs[i].ClassName))
 			continue;
 		
-		for (j=0;j<class'Mut_SpatialLoadout'.default.ConflictWeapons.length;j++)
-			if (class'Mut_SpatialLoadout'.default.ConflictWeapons[j].ClassName ~= Recs[i].ClassName)
+		for (j=0;j<class'Mut_ConflictLoadout'.default.ConflictWeapons.length;j++)
+			if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].ClassName ~= Recs[i].ClassName)
 			{
-				if (class'Mut_SpatialLoadout'.default.ConflictWeapons[j].bRed)
+				if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].bRed)
 				{
 					if (Recs[i].ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
 						lb_UsedRedWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
 					else
 						lb_UsedRedWeapons.List.Add(Recs[i].FriendlyName, , Recs[i].ClassName);
 				}
-				if (class'Mut_SpatialLoadout'.default.ConflictWeapons[j].bBlue)
+				if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].bBlue)
 				{
 					if (Recs[i].ClassName != "" && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
 						lb_UsedBlueWeapons.List.Add(Recs[i].FriendlyName, self, Recs[i].ClassName);
@@ -192,12 +192,12 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 		CI = class<ConflictItem>(DynamicLoadObject(ItemNameList[i], class'Class'));
 		if (CI != None)
 		{
-			for (j=0;j<class'Mut_SpatialLoadout'.default.ConflictWeapons.length;j++)
-				if (class'Mut_SpatialLoadout'.default.ConflictWeapons[j].ClassName ~= ItemNameList[i])
+			for (j=0;j<class'Mut_ConflictLoadout'.default.ConflictWeapons.length;j++)
+				if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].ClassName ~= ItemNameList[i])
 				{
-					if (class'Mut_SpatialLoadout'.default.ConflictWeapons[j].bRed)
+					if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].bRed)
 						lb_UsedRedWeapons.List.Add(CI.default.ItemName, lb_UsedRedWeapons, ItemNameList[i]);
-					if (class'Mut_SpatialLoadout'.default.ConflictWeapons[j].bBlue)
+					if (class'Mut_ConflictLoadout'.default.ConflictWeapons[j].bBlue)
 						lb_UsedBlueWeapons.List.Add(CI.default.ItemName, lb_UsedRedWeapons, ItemNameList[i]);
 					break;
 				}
@@ -230,10 +230,10 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
     lb_UsedBlueWeapons.List.OnEndDrag = lb_UsedBlueWeapons.List.InternalOnEndDrag;
 	lb_UsedBlueWeapons.List.OnDblClick = InternalOnDblClick;
 	
-	for(i=0;i<class'Mut_SpatialLoadout'.default.LoadoutOptionText.Length;i++)
-		co_LoadOpt.AddItem(class'Mut_SpatialLoadout'.default.LoadoutOptionText[i] ,,string(i));
+	for(i=0;i<class'Mut_ConflictLoadout'.default.LoadoutOptionText.Length;i++)
+		co_LoadOpt.AddItem(class'Mut_ConflictLoadout'.default.LoadoutOptionText[i] ,,string(i));
 	co_LoadOpt.ReadOnly(True);
-	co_LoadOpt.SetIndex(int(class'Mut_SpatialLoadout'.default.LoadoutOption));
+	co_LoadOpt.SetIndex(int(class'Mut_ConflictLoadout'.default.LoadoutOption));
 }
 
 function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
@@ -311,30 +311,30 @@ function bool InternalOnClick(GUIComponent Sender)
 	}
 	else if (Sender==BDone) // DONE
 	{
-		class'Mut_SpatialLoadout'.default.LoadoutOption = co_LoadOpt.GetIndex();
-		class'Mut_SpatialLoadout'.default.ConflictWeapons.length = 0;
+		class'Mut_ConflictLoadout'.default.LoadoutOption = co_LoadOpt.GetIndex();
+		class'Mut_ConflictLoadout'.default.ConflictWeapons.length = 0;
 
 		for (i=0;i<lb_UnusedWeapons.List.Elements.length;i++)
 		{
 			if (lb_UnusedWeapons.List.Elements[i].bSection)
 				continue;
-			k = class'Mut_SpatialLoadout'.default.ConflictWeapons.length;
-			class'Mut_SpatialLoadout'.default.ConflictWeapons.length = k+1;
-			class'Mut_SpatialLoadout'.default.ConflictWeapons[k].ClassName = lb_UnusedWeapons.List.GetExtraAtIndex(i);
+			k = class'Mut_ConflictLoadout'.default.ConflictWeapons.length;
+			class'Mut_ConflictLoadout'.default.ConflictWeapons.length = k+1;
+			class'Mut_ConflictLoadout'.default.ConflictWeapons[k].ClassName = lb_UnusedWeapons.List.GetExtraAtIndex(i);
 			for (j=0;j<lb_UsedRedWeapons.List.Elements.length;j++)
 				if (lb_UsedRedWeapons.List.GetExtraAtIndex(j) ~= lb_UnusedWeapons.List.GetExtraAtIndex(i))
 				{
-					class'Mut_SpatialLoadout'.default.ConflictWeapons[k].bRed = true;
+					class'Mut_ConflictLoadout'.default.ConflictWeapons[k].bRed = true;
 					break;
 				}
 			for (j=0;j<lb_UsedBlueWeapons.List.Elements.length;j++)
 				if (lb_UsedBlueWeapons.List.GetExtraAtIndex(j) ~= lb_UnusedWeapons.List.GetExtraAtIndex(i))
 				{
-					class'Mut_SpatialLoadout'.default.ConflictWeapons[k].bBlue = true;
+					class'Mut_ConflictLoadout'.default.ConflictWeapons[k].bBlue = true;
 					break;
 				}
 		}
-		class'Mut_SpatialLoadout'.static.StaticSaveConfig();
+		class'Mut_ConflictLoadout'.static.StaticSaveConfig();
 		Controller.CloseMenu();
 	}
 

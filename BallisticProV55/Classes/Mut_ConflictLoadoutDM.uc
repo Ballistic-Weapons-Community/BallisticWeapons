@@ -1,5 +1,5 @@
 //=============================================================================
-// Mut_SpatialLoadoutDM.
+// Mut_ConflictLoadoutDM.
 //
 // The internal ballistic deathmatch subclass of the Ballistic Conflict Loadout mutator.
 // This is added to the game by the GameInfo and is not available in mutator lists.
@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Mut_SpatialLoadoutDM extends Mut_SpatialLoadout
+class Mut_ConflictLoadoutDM extends Mut_ConflictLoadout
 	HideDropDown
 	CacheExempt;
 

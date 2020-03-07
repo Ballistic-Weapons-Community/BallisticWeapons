@@ -22,7 +22,7 @@ var() localized string StatSnprEffCaption;
 var() localized string StatStgnEffCaption;
 var() localized string StatHzrdEffCaption;
 
-var BallisticTab_EliminationInventoryPro ConflictMenu;
+var BallisticTab_ConflictLoadoutPro ConflictMenu;
 
 struct s_WeaponInfo
 {
@@ -31,6 +31,7 @@ struct s_WeaponInfo
 	var string ItemClassName;
 	var IntBox ImageCoords;
 };
+
 var array<s_WeaponInfo> WeaponInfo;
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
@@ -38,7 +39,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	Super.InitComponent(MyController, MyOwner);
 }
 
-function LoadWeapons(BallisticTab_EliminationInventoryPro Source)
+function LoadWeapons(BallisticTab_ConflictLoadoutPro Source)
 {
 	local int i;
 	local s_WeaponInfo WI;

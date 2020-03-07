@@ -1,11 +1,11 @@
 //======================================================================
-// Spatial Loadout
+// Conflict Loadout
 //
 // Formerly the Ballistic Conflict gear handling, reimplemented as this class. Allows loadouts
 // based on space as well as items and team-based loadouts.
 // Adapted from RS code by Azarael.
 //======================================================================
-class Mut_SpatialLoadout extends Mut_Ballistic
+class Mut_ConflictLoadout extends Mut_Ballistic
 	config(BallisticProV55)
 	DependsOn(Mut_Loadout);
 	
@@ -22,6 +22,7 @@ struct ConflictWeapon
 	var() config bool	bRed;
 	var() config bool	bBlue;
 };
+
 var() globalconfig array<ConflictWeapon>	ConflictWeapons;	// Big list of all available weapons and the teams for which they are selectable
 
 //================================================
@@ -48,7 +49,7 @@ function PostBeginPlay()
 			Level.Game.GameRulesModifiers.AddGameRules(G);
 	}
 		
-	for (i=0;i<ConflictWeapons.length;i++)
+	for (i=0; i < ConflictWeapons.length; i++)
 	{
 		for (j=0;j<class'Mut_Loadout'.default.Items.Length;j++)
 			if (class'Mut_Loadout'.default.Items[j].ItemName ~= ConflictWeapons[i].ClassName)
@@ -122,9 +123,8 @@ function ModifyPlayer( pawn Other )
 	local float BonusAmmo;
 	local Inventory Inv;
 	local Weapon W;
-//	local Inventory Inv;
 	local class<Inventory> InventoryClass;
-	local EliminationLRI EPRI;
+	local ConflictLoadoutLRI EPRI;
 	local string s;
 	local class<ConflictItem> itemclass;
 
@@ -134,7 +134,7 @@ function ModifyPlayer( pawn Other )
 	if (Other.LastStartTime > Level.TimeSeconds + 2)
 		return;
 
-	EPRI = EliminationLRI(GetBPRI(Other.PlayerReplicationInfo));
+	EPRI = ConflictLoadoutLRI(GetBPRI(Other.PlayerReplicationInfo));
 	if (EPRI == None)
 		return;
 
@@ -142,12 +142,12 @@ function ModifyPlayer( pawn Other )
 		EquipBot(Other);
 	else
 	{
-		EPRI.Validate(EPRI.Loudout);
-		if (EPRI.Loudout.length == 0)
+		EPRI.Validate(EPRI.Loadout);
+		if (EPRI.Loadout.length == 0)
 		{
  			s = GetRandomWeapon(EPRI);
 	 		if (s != "")
- 				EPRI.Loudout[0] = s;
+ 				EPRI.Loadout[0] = s;
 	 	}
 	}
 
@@ -155,19 +155,19 @@ function ModifyPlayer( pawn Other )
 
 	if ( xPawn(Other) != None )
 	{
-		for (i=0;i<Max(EPRI.Loudout.length,2);i++)
+		for (i=0;i<Max(EPRI.Loadout.length,2);i++)
 		{
-			if (i >= EPRI.Loudout.length)
+			if (i >= EPRI.Loadout.length)
 				xPawn(Other).RequiredEquipment[i] = "";
 			else
 			{
-				InventoryClass = Level.Game.BaseMutator.GetInventoryClass(EPRI.Loudout[i]);
+				InventoryClass = Level.Game.BaseMutator.GetInventoryClass(EPRI.Loadout[i]);
 				if( (InventoryClass!=None))
 				{
 					Size = GetItemSize(InventoryClass);
 					if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 						continue;
-					xPawn(Other).RequiredEquipment[i] = EPRI.Loudout[i];
+					xPawn(Other).RequiredEquipment[i] = EPRI.Loadout[i];
 					Inv = Spawn(InventoryClass);
 					if( Inv != None )
 					{
@@ -185,7 +185,7 @@ function ModifyPlayer( pawn Other )
 				else
 				{
 					xPawn(Other).RequiredEquipment[i] = "";
-					itemclass = class<conflictitem>(DynamicLoadObject(EPRI.Loudout[i],class'Class'));
+					itemclass = class<conflictitem>(DynamicLoadObject(EPRI.Loadout[i],class'Class'));
 					if (itemclass != None)
 					{
 						Size = itemclass.default.Size/5;
@@ -253,7 +253,7 @@ function ModifyPlayer( pawn Other )
 // InventoryChanged
 // Called when the player updates their inventory.
 //========================================
-function InventoryChanged(EliminationLRI PRI)
+function InventoryChanged(ConflictLoadoutLRI PRI)
 {
 	local Pawn P;
 	local array<string> NewList;
@@ -273,7 +273,7 @@ function InventoryChanged(EliminationLRI PRI)
 			return;
 
 	P = Controller(PRI.Owner).Pawn;
-	NewList = PRI.Loudout;
+	NewList = PRI.Loadout;
 	Inv = P.Inventory;
 	OldInv = P;
 	while (Inv != None)
@@ -352,7 +352,7 @@ function InventoryChanged(EliminationLRI PRI)
 function EquipBot(Pawn P)
 {
 	local int i, j, Size, SpaceUsed;
-	local EliminationLRI EPRI;
+	local ConflictLoadoutLRI EPRI;
 	local array<string> Potentials;
 	local string ClassName;
 	local class<Weapon> W;
@@ -362,7 +362,7 @@ function EquipBot(Pawn P)
 	local array<float>	BandWidth;
 	local float			BandTotal, BandRand, BandLoc;
 
-	EPRI = EliminationLRI(GetBPRI(P.PlayerReplicationInfo));
+	EPRI = ConflictLoadoutLRI(GetBPRI(P.PlayerReplicationInfo));
 	if (EPRI == None)
 		return;
 
@@ -392,7 +392,7 @@ function EquipBot(Pawn P)
 	}
 
 	// Pick us some stuff
-	EPRI.Loudout.length = 0;
+	EPRI.Loadout.length = 0;
 	for (i=0; i < INVENTORY_SIZE_MAX && SpaceUsed < INVENTORY_SIZE_MAX; i++)
 	{
 		if (LoadoutOption == 1)
@@ -425,7 +425,7 @@ function EquipBot(Pawn P)
 
 				if (Size + SpaceUsed > INVENTORY_SIZE_MAX)
 					continue;
-				EPRI.Loudout[EPRI.Loudout.length] = ClassName;
+				EPRI.Loadout[EPRI.Loadout.length] = ClassName;
 				SpaceUsed += Size;
 			}
 			continue;
@@ -450,7 +450,7 @@ function EquipBot(Pawn P)
 
 		if (Size + SpaceUsed > INVENTORY_SIZE_MAX)
 			continue;
-		EPRI.Loudout[EPRI.Loudout.length] = ClassName;
+		EPRI.Loadout[EPRI.Loadout.length] = ClassName;
 		SpaceUsed += Size;
 	}
 }
@@ -494,7 +494,7 @@ static function SpawnAmmo(class<Ammunition> newClass, Pawn P, optional float Mul
 	Ammo.GotoState('');
 }
 
-function string GetRandomWeapon (EliminationLRI EPRI)
+function string GetRandomWeapon (ConflictLoadoutLRI EPRI)
 {
 	local int i;
 	local array<string> Potentials;
@@ -534,7 +534,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	//shunt the lris down to make way for this one
 	else if (PlayerReplicationInfo(Other) != None)
 	{
-		BPRI = Spawn(class'EliminationLRI', Other.Owner);		
+		BPRI = Spawn(class'ConflictLoadoutLRI', Other.Owner);		
 		
 		if(PlayerReplicationInfo(Other).CustomReplicationInfo != None)
 		{

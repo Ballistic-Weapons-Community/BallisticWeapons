@@ -1,12 +1,12 @@
 //=============================================================================
-// BallisticTab_EliminationInventoryPro.
+// BallisticTab_ConflictLoadoutPro.
 //
 // Page where players choose their inventory for Conflict
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticTab_EliminationInventoryPro extends MidGamePanel;
+class BallisticTab_ConflictLoadoutPro extends MidGamePanel;
 
 const INVENTORY_SIZE_MAX = 35;
 
@@ -49,7 +49,7 @@ var() int SpaceUsed;
 
 var() material BoxTex;
 
-var EliminationLRI EPRI;
+var ConflictLoadoutLRI EPRI;
 
 var bool bWaitingWeaps, bWaitingSkill;
 
@@ -63,7 +63,7 @@ function ShowPanel(bool bShow)
 		
 	lb_Weapons.List.OnChange = InternalOnChange;
 	lb_Weapons.List.OnDblClick = InternalOnDblClick;
-	EPRI = EliminationLRI(class'Mut_Ballistic'.static.GetBPRI(PlayerOwner().PlayerReplicationInfo));
+	EPRI = ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(PlayerOwner().PlayerReplicationInfo));
 	if (EPRI == None)
 	{
 		SetTimer(0.05, true);
@@ -96,10 +96,10 @@ event Timer()
 			KillTimer();
 		}
 	}
-	else if (PlayerOwner() != None && EliminationLRI(class'Mut_Ballistic'.static.GetBPRI(PlayerOwner().PlayerReplicationInfo)) !=None)
+	else if (PlayerOwner() != None && ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(PlayerOwner().PlayerReplicationInfo)) !=None)
 	{
 		KillTimer();
-		EPRI = EliminationLRI(class'Mut_Ballistic'.static.GetBPRI(PlayerOwner().PlayerReplicationInfo));
+		EPRI = ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(PlayerOwner().PlayerReplicationInfo));
 		DoInit();
 		return;
 	}
@@ -396,7 +396,7 @@ function bool InternalOnClick(GUIComponent Sender)
 		
 		else
 		{
-			EPRI.Loudout = EPRI.SavedInventory;
+			EPRI.Loadout = EPRI.SavedInventory;
 			EPRI.UpdateInventory();
 		}
 		Controller.CloseMenu();
@@ -565,7 +565,7 @@ defaultproperties
          RenderWeight=0.520000
          TabOrder=1
      End Object
-     lb_Weapons=GUIListBox'BallisticProV55.BallisticTab_EliminationInventoryPro.lb_WeaponsList'
+     lb_Weapons=GUIListBox'BallisticProV55.BallisticTab_ConflictLoadoutPro.lb_WeaponsList'
 
      Begin Object Class=GUIImage Name=Box_WeapListImg
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -576,7 +576,7 @@ defaultproperties
          WinHeight=0.650000
          RenderWeight=0.002000
      End Object
-     Box_WeapList=GUIImage'BallisticProV55.BallisticTab_EliminationInventoryPro.Box_WeapListImg'
+     Box_WeapList=GUIImage'BallisticProV55.BallisticTab_ConflictLoadoutPro.Box_WeapListImg'
 
      Begin Object Class=GUIImage Name=Box_InventoryImg
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -585,10 +585,10 @@ defaultproperties
          WinHeight=0.200000
          RenderWeight=0.002000
          bAcceptsInput=True
-         OnRendered=BallisticTab_EliminationInventoryPro.DrawInventory
-         OnClick=BallisticTab_EliminationInventoryPro.InternalOnClick
+         OnRendered=BallisticTab_ConflictLoadoutPro.DrawInventory
+         OnClick=BallisticTab_ConflictLoadoutPro.InternalOnClick
      End Object
-     Box_Inventory=GUIImage'BallisticProV55.BallisticTab_EliminationInventoryPro.Box_InventoryImg'
+     Box_Inventory=GUIImage'BallisticProV55.BallisticTab_ConflictLoadoutPro.Box_InventoryImg'
 
      Begin Object Class=GUIImage Name=Pic_WeaponImg
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -599,7 +599,7 @@ defaultproperties
          WinHeight=0.226000
          RenderWeight=0.004000
      End Object
-     Pic_Weapon=GUIImage'BallisticProV55.BallisticTab_EliminationInventoryPro.Pic_WeaponImg'
+     Pic_Weapon=GUIImage'BallisticProV55.BallisticTab_ConflictLoadoutPro.Pic_WeaponImg'
 
      Begin Object Class=GUIImage Name=Box_WeapIconImg
          Image=Texture'2K4Menus.NewControls.Display99'
@@ -610,7 +610,7 @@ defaultproperties
          WinHeight=0.266000
          RenderWeight=0.002000
      End Object
-     Box_WeapIcon=GUIImage'BallisticProV55.BallisticTab_EliminationInventoryPro.Box_WeapIconImg'
+     Box_WeapIcon=GUIImage'BallisticProV55.BallisticTab_ConflictLoadoutPro.Box_WeapIconImg'
 
      Begin Object Class=GUILabel Name=l_WeapTitlelabel
          TextAlign=TXTA_Center
@@ -620,7 +620,7 @@ defaultproperties
          WinWidth=0.430000
          WinHeight=0.050000
      End Object
-     l_WeapTitle=GUILabel'BallisticProV55.BallisticTab_EliminationInventoryPro.l_WeapTitlelabel'
+     l_WeapTitle=GUILabel'BallisticProV55.BallisticTab_ConflictLoadoutPro.l_WeapTitlelabel'
 
      Begin Object Class=GUIScrollTextBox Name=WeaponDescription
          CharDelay=0.001500
@@ -637,7 +637,7 @@ defaultproperties
          bAcceptsInput=False
          bNeverFocus=True
      End Object
-     lb_Desc=GUIScrollTextBox'BallisticProV55.BallisticTab_EliminationInventoryPro.WeaponDescription'
+     lb_Desc=GUIScrollTextBox'BallisticProV55.BallisticTab_ConflictLoadoutPro.WeaponDescription'
 
      Begin Object Class=GUIButton Name=DoneButton
          Caption="DONE"
@@ -645,10 +645,10 @@ defaultproperties
          WinLeft=0.100000
          WinWidth=0.200000
          TabOrder=0
-         OnClick=BallisticTab_EliminationInventoryPro.InternalOnClick
+         OnClick=BallisticTab_ConflictLoadoutPro.InternalOnClick
          OnKeyEvent=DoneButton.InternalOnKeyEvent
      End Object
-     bDone=GUIButton'BallisticProV55.BallisticTab_EliminationInventoryPro.DoneButton'
+     bDone=GUIButton'BallisticProV55.BallisticTab_ConflictLoadoutPro.DoneButton'
 
      Begin Object Class=GUIButton Name=CancelButton
          Caption="CANCEL"
@@ -656,10 +656,10 @@ defaultproperties
          WinLeft=0.700000
          WinWidth=0.200000
          TabOrder=1
-         OnClick=BallisticTab_EliminationInventoryPro.InternalOnClick
+         OnClick=BallisticTab_ConflictLoadoutPro.InternalOnClick
          OnKeyEvent=CancelButton.InternalOnKeyEvent
      End Object
-     bCancel=GUIButton'BallisticProV55.BallisticTab_EliminationInventoryPro.CancelButton'
+     bCancel=GUIButton'BallisticProV55.BallisticTab_ConflictLoadoutPro.CancelButton'
 
      Begin Object Class=GUIButton Name=BStatButton
          Caption="Stats"
@@ -667,10 +667,10 @@ defaultproperties
          WinLeft=0.400000
          WinWidth=0.200000
          TabOrder=1
-         OnClick=BallisticTab_EliminationInventoryPro.InternalOnClick
+         OnClick=BallisticTab_ConflictLoadoutPro.InternalOnClick
          OnKeyEvent=CancelButton.InternalOnKeyEvent
      End Object
-     bStats=GUIButton'BallisticProV55.BallisticTab_EliminationInventoryPro.BStatButton'
+     bStats=GUIButton'BallisticProV55.BallisticTab_ConflictLoadoutPro.BStatButton'
 
      Begin Object Class=GUILabel Name=l_StatTimeLabel
          Caption="Time"
@@ -682,7 +682,7 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.030000
      End Object
-     l_StatTime=GUILabel'BallisticProV55.BallisticTab_EliminationInventoryPro.l_StatTimeLabel'
+     l_StatTime=GUILabel'BallisticProV55.BallisticTab_ConflictLoadoutPro.l_StatTimeLabel'
 
      Begin Object Class=GUILabel Name=l_StatFragsLabel
          Caption="Frags"
@@ -694,7 +694,7 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.030000
      End Object
-     l_StatFrags=GUILabel'BallisticProV55.BallisticTab_EliminationInventoryPro.l_StatFragsLabel'
+     l_StatFrags=GUILabel'BallisticProV55.BallisticTab_ConflictLoadoutPro.l_StatFragsLabel'
 
      Begin Object Class=GUILabel Name=l_StatEfficiencyLabel
          Caption="Efficiency"
@@ -706,7 +706,7 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.030000
      End Object
-     l_StatEfficiency=GUILabel'BallisticProV55.BallisticTab_EliminationInventoryPro.l_StatEfficiencyLabel'
+     l_StatEfficiency=GUILabel'BallisticProV55.BallisticTab_ConflictLoadoutPro.l_StatEfficiencyLabel'
 
      Begin Object Class=GUILabel Name=l_StatDamageRateLabel
          Caption="DamageRate"
@@ -718,7 +718,7 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.030000
      End Object
-     l_StatDamageRate=GUILabel'BallisticProV55.BallisticTab_EliminationInventoryPro.l_StatDamageRateLabel'
+     l_StatDamageRate=GUILabel'BallisticProV55.BallisticTab_ConflictLoadoutPro.l_StatDamageRateLabel'
 
      Begin Object Class=GUILabel Name=l_StatSniperEffLabel
          Caption="Sniper Efficiency"
@@ -730,7 +730,7 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.030000
      End Object
-     l_StatSniperEff=GUILabel'BallisticProV55.BallisticTab_EliminationInventoryPro.l_StatSniperEffLabel'
+     l_StatSniperEff=GUILabel'BallisticProV55.BallisticTab_ConflictLoadoutPro.l_StatSniperEffLabel'
 
      Begin Object Class=GUILabel Name=l_StatShotgunEffLabel
          Caption="Shotgun Efficiency"
@@ -742,7 +742,7 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.030000
      End Object
-     l_StatShotgunEff=GUILabel'BallisticProV55.BallisticTab_EliminationInventoryPro.l_StatShotgunEffLabel'
+     l_StatShotgunEff=GUILabel'BallisticProV55.BallisticTab_ConflictLoadoutPro.l_StatShotgunEffLabel'
 
      Begin Object Class=GUILabel Name=l_StatHazardEffLabel
          Caption="Hazard Efficiency"
@@ -754,7 +754,7 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.030000
      End Object
-     l_StatHazardEff=GUILabel'BallisticProV55.BallisticTab_EliminationInventoryPro.l_StatHazardEffLabel'
+     l_StatHazardEff=GUILabel'BallisticProV55.BallisticTab_ConflictLoadoutPro.l_StatHazardEffLabel'
 
      Begin Object Class=GUILabel Name=l_StatHeadingLabel
          Caption="Your Stats"
@@ -767,7 +767,7 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.030000
      End Object
-     l_StatHeading=GUILabel'BallisticProV55.BallisticTab_EliminationInventoryPro.l_StatHeadingLabel'
+     l_StatHeading=GUILabel'BallisticProV55.BallisticTab_ConflictLoadoutPro.l_StatHeadingLabel'
 
      Begin Object Class=GUILabel Name=l_LoadingLabel
          Caption="Receiving List..."
@@ -778,7 +778,7 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.030000
      End Object
-     l_Loading=GUILabel'BallisticProV55.BallisticTab_EliminationInventoryPro.l_LoadingLabel'
+     l_Loading=GUILabel'BallisticProV55.BallisticTab_ConflictLoadoutPro.l_LoadingLabel'
 
      StatTimeCaption="Time: "
      StatFragsCaption="Frags: "

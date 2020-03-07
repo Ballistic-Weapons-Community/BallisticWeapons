@@ -261,8 +261,8 @@ function StartRound ()
 		C.Reset();
 		if (C.PlayerReplicationInfo != None)
 			C.PlayerReplicationInfo.bOutOfLives = false;
-		if (EliminationLRI(class'Mut_Ballistic'.static.GetBPRI(C.PlayerReplicationInfo)) != None)
-			EliminationLRI(class'Mut_Ballistic'.static.GetBPRI(C.PlayerReplicationInfo)).ClientPurge(bPurgeActors);
+		if (ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(C.PlayerReplicationInfo)) != None)
+			ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(C.PlayerReplicationInfo)).ClientPurge(bPurgeActors);
 	}
 
     RemainingTime = 60 * TimeLimit;

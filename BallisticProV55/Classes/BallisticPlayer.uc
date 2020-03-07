@@ -48,6 +48,7 @@ var 	float								IconPulsePhase;		// Stuff for pulsing selected icon
 var 	float								LastUIDrawTime;
 
 var class<Weapon>					LastLoadoutClasses[7];
+var class<Weapon>					LastStreaks[2];
 
 replication
 {

@@ -13,29 +13,29 @@
 //=============================================================================
 class ClientOutfittingInterface extends Actor
 	config(BallisticProV55);
+	
+const NUM_GROUPS = 5;
 
 
-var Mut_Outfitting Mut;		// The outfitting mutator
-var PlayerController PC;	// PlayerController associated with this COI
+var Mut_Outfitting 		Mut;		// The outfitting mutator
+var PlayerController 	PC;	// PlayerController associated with this COI
 var float				LastLoadoutTime;
-var() config float	ChangeInterval;
+var() config float		ChangeInterval;
 
 //Groups of weapon names on the client's side.
-var array<string>	Group0;
-var array<string>	Group1;
-var array<string>	Group2;
-var array<string>	Group3;
-var array<string>	Group4;
-var array<string>	Group5;
-var array<string>	Group6;
+var array<string>		Group0;
+var array<string>		Group1;
+var array<string>		Group2;
+var array<string>		Group3;
+var array<string>		Group4;
 
-var array<string> KillstreakRewards[2];
+var array<string> 		KillstreakRewards[2];
 
-var bool			bWeaponsReady, bPendingLoadoutSave;
+var bool				bWeaponsReady, bPendingLoadoutSave;
 
-var String 				LastLoadout[5];
+var String 				LastLoadout[NUM_GROUPS];
 
-var class<Weapon> LastLoadoutClasses[7];
+var class<Weapon> 		LastLoadoutClasses[NUM_GROUPS];
 
 replication
 {
@@ -55,14 +55,11 @@ simulated function array<string> GetGroup(byte GroupNum)
 
 	switch (GroupNum)
 	{
-	case	0:	return Group0;
-	case	1:	return Group1;
-	case	2:	return Group2;
-	case	3:	return Group3;
-	case	4:	return Group4;
-	case	5:	return Group5;
-	case	6:	return Group6;
-
+		case	0:	return Group0;
+		case	1:	return Group1;
+		case	2:	return Group2;
+		case	3:	return Group3;
+		case	4:	return Group4;
 	}
 }
 
@@ -78,8 +75,6 @@ simulated function string GetGroupItem(byte GroupNum, int ItemNum)
 		case	2:	return Group2[ItemNum];
 		case	3:	return Group3[ItemNum];
 		case	4:	return Group4[ItemNum];
-		case	5:	return Group5[ItemNum];
-		case	6:	return Group6[ItemNum];
 	}
 }
 
@@ -95,8 +90,6 @@ simulated function int GroupLength(byte GroupNum)
 			case 2: return class'Mut_Outfitting'.default.LoadoutGroup2.length;
 			case 3: return class'Mut_Outfitting'.default.LoadoutGroup3.length;
 			case 4: return class'Mut_Outfitting'.default.LoadoutGroup4.length;
-			case 5: return class'Mut_Outfitting'.default.LoadoutGroup5.length;
-			case 6: return class'Mut_Outfitting'.default.LoadoutGroup6.length;
 		}
 	}
 	else
@@ -108,8 +101,6 @@ simulated function int GroupLength(byte GroupNum)
 			case 2: return Group2.length;
 			case 3: return Group3.length;
 			case 4: return Group4.length;
-			case 5: return Group5.length;
-			case 6: return Group6.length;
 		}
 	}
 
@@ -198,32 +189,6 @@ function SendWeapons ()
 		}
 	}
 	
-	for (i=0;i<Mut.LoadoutGroup5.length;i++)
-	{
-		if (Mut.LoadoutGroup5[i] == "")
-			continue;
-		if (IsInList(Weaps, Mut.LoadoutGroup5[i], j))
-			Boxes[j] += 32;
-		else
-		{
-			Weaps[Weaps.length] = Mut.LoadoutGroup5[i];
-			Boxes[Boxes.length] = 32;
-		}
-	}
-	
-	for (i=0;i<Mut.LoadoutGroup6.length;i++)
-	{
-		if (Mut.LoadoutGroup6[i] == "")
-			continue;
-		if (IsInList(Weaps, Mut.LoadoutGroup6[i], j))
-			Boxes[j] += 64;
-		else
-		{
-			Weaps[Weaps.length] = Mut.LoadoutGroup6[i];
-			Boxes[Boxes.length] = 64;
-		}
-	}
-
 	for (i=0;i<Weaps.length-1;i++)
 		ReceiveWeapon(Weaps[i], Boxes[i]);
 	//Last weapon, terminate
@@ -245,10 +210,7 @@ simulated function ReceiveWeapon (string WeaponName, byte Boxes, optional bool b
 		Group3[Group3.length] = WeaponName;
 	if ((Boxes & 16) > 0)
 		Group4[Group4.length] = WeaponName;
-	if ((Boxes & 32) > 0)
-		Group5[Group5.length] = WeaponName;
-	if ((Boxes & 64) > 0)
-		Group6[Group6.length] = WeaponName;
+		
 	if (bTerminate)
 		bWeaponsReady = true;
 }
@@ -285,7 +247,7 @@ simulated event Timer()
 	if (bPendingLoadoutSave)
 	{
 		bPendingLoadoutSave=False;
-		for (i=0; i<7; i++)
+		for (i=0; i < NUM_GROUPS; i++)
 			default.LastLoadoutClasses[i] = LastLoadoutClasses[i];
 		if (Role == ROLE_Authority)
 			SetTimer(1, true);
@@ -309,13 +271,13 @@ event Destroyed()
 }
 
 // Called from menu to inform us that the client's loadout has changed.
-simulated function LoadoutChanged(string Stuff[7])
+simulated function LoadoutChanged(string Stuff[NUM_GROUPS])
 {
-	ServerLoadoutChanged(Stuff[0], Stuff[1], Stuff[2], Stuff[3], Stuff[4], Stuff[5], Stuff[6]);
+	ServerLoadoutChanged(Stuff[0], Stuff[1], Stuff[2], Stuff[3], Stuff[4]);
 }
 
 // Called from client when its loadout changes.
-function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4, string Stuff5, string Stuff6)
+function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4)
 {
 	local int i;
 	// FIXME: There's some hardcoded crap here for Invasion, CTF and Onslaught!
@@ -327,7 +289,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 		 (Invasion(level.Game)!=None && !Invasion(level.Game).bWaveInProgress) ||
 		 (CTFGame(level.Game)!=None && PC.GetTeamNum()<2 && VSize(CTFTeamAI(CTFGame(level.Game).Teams[PC.GetTeamNum()].AI).FriendlyFlag.HomeBase.Location - PC.Pawn.Location) < 384) )
 	{
-		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4, Stuff5, Stuff6);
+		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4);
 		LastLoadoutTime = level.TimeSeconds;
 	}
 
@@ -336,7 +298,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 			if ( (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByRed && PC.GetTeamNum() == 0) || (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByBlue && PC.GetTeamNum() == 1) )
 				if (VSize(ONSOnslaughtGame(level.Game).PowerCores[i].Location - PC.Pawn.Location) < 384)
 				{
-					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4, Stuff5, Stuff6);
+					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4);
 					LastLoadoutTime = level.TimeSeconds;
 					return;
 				}
@@ -351,9 +313,7 @@ simulated function ClientStartLoadout()
 	class'Mut_Outfitting'.default.LoadOut[1],
 	class'Mut_Outfitting'.default.LoadOut[2],
 	class'Mut_Outfitting'.default.LoadOut[3],
-	class'Mut_Outfitting'.default.LoadOut[4],
-	class'Mut_Outfitting'.default.Killstreaks[0],
-	class'Mut_Outfitting'.default.Killstreaks[1]
+	class'Mut_Outfitting'.default.LoadOut[4]
 	);
 }
 
@@ -365,12 +325,10 @@ simulated function ClientSaveLoadoutClasses()
 
 // Loadout info sent back from client after it was requested by server.
 // Outfit the client with the standard weapons.
-function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4, string Killstreak1, string Killstreak2)
+function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4)
 {
 	local int i;
 	local string Stuff[5];
-	local class<DummyWeapon> Dummy;
-	local BallisticPlayerReplicationInfo BPRI;
 	
 	Stuff[0] = Stuff0;
 	Stuff[1] = Stuff1;
@@ -378,48 +336,16 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 	Stuff[3] = Stuff3;
 	Stuff[4] = Stuff4;
 	
-	KillstreakRewards[0] = Killstreak1;
-	KillstreakRewards[1] = Killstreak2;
-	
+
 	if (PC.Pawn != None)
 		Mut.OutfitPlayer(PC.Pawn, Stuff, LastLoadout);
 		
-	if (Mut.bAllowKillstreaks)
-	{
-		BPRI = class'Mut_Ballistic'.static.GetBPRI(PC.PlayerReplicationInfo);
-		
-		if (BPRI != None && BPRI.ActiveStreak > 0)
-		{
-			for (i=0; i<2; i++)
-			{
-				if (bool(BPRI.ActiveStreak & (2 ** i)))
-				{
-					//Handle dummies
-					if (Right(GetItemName(KillstreakRewards[i]), 5) ~= "Dummy")
-					{
-						Dummy = class<DummyWeapon>(DynamicLoadObject(KillstreakRewards[i], class'Class'));
-						if (Dummy != None)
-							Dummy.static.ApplyEffect(PC.Pawn, i);
-					}
-
-					else if (Right(KillstreakRewards[i], 5) != "Dummy")
-						Mut.SpawnStreakWeapon(KillstreakRewards[i], PC.Pawn, i+5);
-				}
-			}
-		}
-	}
 	
-	for (i=0; i<7; i++)
+	for (i=0; i< NUM_GROUPS; i++)
 	{
-		if (i < 5)
-		{
-			LastLoadout[i] = Stuff[i];
-			LastLoadoutClasses[i] = class<Weapon>(DynamicLoadObject(Stuff[i], Class'Class', True));
-		}
-		else 
-		{
-			LastLoadoutClasses[i] = class<Weapon>(DynamicLoadObject(KillstreakRewards[i-5], Class'Class', True));
-		}
+		LastLoadout[i] = Stuff[i];
+		LastLoadoutClasses[i] = class<Weapon>(DynamicLoadObject(Stuff[i], Class'Class', True));
+		
 		if (BallisticPlayer(PC) != None)
 			BallisticPlayer(PC).LastLoadoutClasses[i] = LastLoadoutClasses[i];
 	}

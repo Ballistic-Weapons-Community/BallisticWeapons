@@ -16,12 +16,11 @@ var automated GUIHeader MyHeader;
 var automated GUITabControl c_Tabs;
 
 var() editconst noexport BallisticOutfittingWeaponsTab p_Weapons;
-var() editconst noexport BallisticOutfittingKillstreaksTab p_Killstreaks;
 
 var() localized string HeaderCaption;
-var() localized string WeaponsTabLabel, WeaponsTabHint, KillstreaksTabLabel, KillstreaksTabHint;
+var() localized string WeaponsTabLabel, WeaponsTabHint;
 
-var ClientOutfittinginterface COI;	// The ClientOutfittingInterface actor we can use to comunicate with the mutator
+var ClientOutfittingInterface COI;	// The ClientOutfittingInterface actor we can use to comunicate with the mutator
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
@@ -29,14 +28,12 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 
 	MyHeader.DockedTabs = c_Tabs;
 	p_Weapons = BallisticOutfittingWeaponsTab(c_Tabs.AddTab(WeaponsTabLabel, "BallisticProV55.BallisticOutfittingWeaponsTab",,WeaponsTabHint));
-	p_Killstreaks = BallisticOutfittingKillstreaksTab(c_Tabs.AddTab(KillstreaksTabLabel, "BallisticProV55.BallisticOutfittingKillstreaksTab",,KillstreaksTabHint));
 }
 
 function SetupCOI(ClientOutfittingInterface newCOI)
 {
 	COI = newCOI;
 	p_Weapons.COI = COI;
-	p_Killstreaks.COI = COI;
 }
 
 function InternalOnChange(GUIComponent Sender)
@@ -72,7 +69,6 @@ function bool InternalOnClick(GUIComponent Sender)
 function SaveSettings()
 {
 	p_Weapons.SaveWeapons();
-	p_Killstreaks.SaveStreaks();
 }
 
 defaultproperties
@@ -139,8 +135,6 @@ defaultproperties
      HeaderCaption="Loadout"
      WeaponsTabLabel="Weapons"
      WeaponsTabHint="Select your default weapons."
-     KillstreaksTabLabel="Killstreaks"
-     KillstreaksTabHint="Select your killstreak weapons."
      bRenderWorld=True
      bAllowedAsLast=True
      OnKeyEvent=BallisticOutfittingMenu.InternalOnKeyEvent

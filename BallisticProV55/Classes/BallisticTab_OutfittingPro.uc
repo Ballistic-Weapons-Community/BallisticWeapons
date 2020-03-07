@@ -215,24 +215,24 @@ function LoadBoxesFromMutator ()
 	Boxes[2].WeaponNames = class'Mut_Outfitting'.default.LoadoutGroup2;
 	Boxes[3].WeaponNames = class'Mut_Outfitting'.default.LoadoutGroup3;
 	Boxes[4].WeaponNames = class'Mut_Outfitting'.default.LoadoutGroup4;
-	Boxes[5].WeaponNames = class'Mut_Outfitting'.default.LoadoutGroup5;
-	Boxes[6].WeaponNames = class'Mut_Outfitting'.default.LoadoutGroup6;
+	Boxes[5].WeaponNames = class'Mut_Killstreak'.default.Streak1s;
+	Boxes[6].WeaponNames = class'Mut_Killstreak'.default.Streak2s;
 	//Red
 	Boxes[7].WeaponNames = class'Mut_TeamOutfitting'.default.RedLoadoutGroup0;
 	Boxes[8].WeaponNames = class'Mut_TeamOutfitting'.default.RedLoadoutGroup1;
 	Boxes[9].WeaponNames = class'Mut_TeamOutfitting'.default.RedLoadoutGroup2;
 	Boxes[10].WeaponNames = class'Mut_TeamOutfitting'.default.RedLoadoutGroup3;
 	Boxes[11].WeaponNames = class'Mut_TeamOutfitting'.default.RedLoadoutGroup4;
-	Boxes[12].WeaponNames = class'Mut_TeamOutfitting'.default.RedLoadoutGroup5;
-	Boxes[13].WeaponNames = class'Mut_TeamOutfitting'.default.RedLoadoutGroup6;
+	Boxes[12].WeaponNames = class'Mut_Killstreak'.default.Streak1s;
+	Boxes[13].WeaponNames = class'Mut_Killstreak'.default.Streak2s;
 	//Blue
 	Boxes[14].WeaponNames = class'Mut_TeamOutfitting'.default.BlueLoadoutGroup0;
 	Boxes[15].WeaponNames = class'Mut_TeamOutfitting'.default.BlueLoadoutGroup1;
 	Boxes[16].WeaponNames = class'Mut_TeamOutfitting'.default.BlueLoadoutGroup2;
 	Boxes[17].WeaponNames = class'Mut_TeamOutfitting'.default.BlueLoadoutGroup3;
 	Boxes[18].WeaponNames = class'Mut_TeamOutfitting'.default.BlueLoadoutGroup4;
-	Boxes[19].WeaponNames = class'Mut_TeamOutfitting'.default.BlueLoadoutGroup5;
-	Boxes[20].WeaponNames = class'Mut_TeamOutfitting'.default.BlueLoadoutGroup6;
+	Boxes[19].WeaponNames = class'Mut_Killstreak'.default.Streak1s;
+	Boxes[20].WeaponNames = class'Mut_Killstreak'.default.Streak2s;
 	
 	// Get rid of things that are no longer around
 	for(i=0;i<NUM_BOXES_TOTAL;i++)
@@ -265,27 +265,28 @@ function SaveBoxesToMutator ()
 	class'Mut_Outfitting'.default.LoadoutGroup2 = Boxes[2].WeaponNames;
 	class'Mut_Outfitting'.default.LoadoutGroup3 = Boxes[3].WeaponNames;
 	class'Mut_Outfitting'.default.LoadoutGroup4 = Boxes[4].WeaponNames;
-	class'Mut_Outfitting'.default.LoadoutGroup5 = Boxes[5].WeaponNames;
-	class'Mut_Outfitting'.default.LoadoutGroup6 = Boxes[6].WeaponNames;
+	class'Mut_Killstreak'.default.Streak1s = Boxes[5].WeaponNames;
+	class'Mut_Killstreak'.default.Streak2s = Boxes[6].WeaponNames;
 	
 	class'Mut_TeamOutfitting'.default.RedLoadoutGroup0 = Boxes[7].WeaponNames;
 	class'Mut_TeamOutfitting'.default.RedLoadoutGroup1 = Boxes[8].WeaponNames;
 	class'Mut_TeamOutfitting'.default.RedLoadoutGroup2 = Boxes[9].WeaponNames;
 	class'Mut_TeamOutfitting'.default.RedLoadoutGroup3 = Boxes[10].WeaponNames;
 	class'Mut_TeamOutfitting'.default.RedLoadoutGroup4 = Boxes[11].WeaponNames;
-	class'Mut_TeamOutfitting'.default.RedLoadoutGroup5 = Boxes[12].WeaponNames;
-	class'Mut_TeamOutfitting'.default.RedLoadoutGroup6 = Boxes[13].WeaponNames;
+	//class'Mut_TeamOutfitting'.default.RedLoadoutGroup5 = Boxes[12].WeaponNames;
+	//class'Mut_TeamOutfitting'.default.RedLoadoutGroup6 = Boxes[13].WeaponNames;
 	
 	class'Mut_TeamOutfitting'.default.BlueLoadoutGroup0 = Boxes[14].WeaponNames;
 	class'Mut_TeamOutfitting'.default.BlueLoadoutGroup1 = Boxes[15].WeaponNames;
 	class'Mut_TeamOutfitting'.default.BlueLoadoutGroup2 = Boxes[16].WeaponNames;
 	class'Mut_TeamOutfitting'.default.BlueLoadoutGroup3 = Boxes[17].WeaponNames;
 	class'Mut_TeamOutfitting'.default.BlueLoadoutGroup4 = Boxes[18].WeaponNames;
-	class'Mut_TeamOutfitting'.default.BlueLoadoutGroup5 = Boxes[19].WeaponNames;
-	class'Mut_TeamOutfitting'.default.BlueLoadoutGroup6 = Boxes[20].WeaponNames;
+	//class'Mut_TeamOutfitting'.default.BlueLoadoutGroup5 = Boxes[19].WeaponNames;
+	//class'Mut_TeamOutfitting'.default.BlueLoadoutGroup6 = Boxes[20].WeaponNames;
 	
 	class'Mut_Outfitting'.static.StaticSaveConfig();
 	class'Mut_TeamOutfitting'.static.StaticSaveConfig();
+	class'Mut_Killstreak'.static.StaticSaveConfig();
 }
 
 //===========================================================================
@@ -568,6 +569,9 @@ function DefaultSettings()
 
 	class'Mut_Outfitting'.static.ResetConfig("LoadoutGroup5");
 	class'Mut_Outfitting'.static.ResetConfig("LoadoutGroup6");
+	
+	class'Mut_Killstreak'.static.ResetConfig("Streak1s");
+	class'Mut_Killstreak'.static.ResetConfig("Streak2s");
 	LoadBoxesFromMutator();
 	LoadBox(SelectedBox);
 }

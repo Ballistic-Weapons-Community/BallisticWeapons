@@ -14,40 +14,34 @@ class Mut_Outfitting extends Mut_Ballistic
 	config(BallisticProV55);
 
 var() globalconfig string 			LoadOut[5];			// Loadout info saved seperately on each client
-var() globalconfig string			Killstreaks[2];
 var() globalconfig bool				bDebugMode;
-var() globalconfig bool				bAllowKillstreaks;
 
 var   Array<ClientOutfittingInterface>	COIPond;	// Jump right in, they won't bite - probably...
 var   PlayerController			PCPendingCOI;		// The PlayerController that is about to get its COI
 
-const NUM_GROUPS = 8;
+const NUM_GROUPS = 5;
 
 var() globalconfig array<string>	LoadoutGroup0;	// Weapons available in Melee Box
 var() globalconfig array<string>	LoadoutGroup1;	// Weapons available in Sidearm Box
 var() globalconfig array<string>	LoadoutGroup2;	// Weapons available in Primary Box
 var() globalconfig array<string>	LoadoutGroup3;	// Weapons available in Secondayr Box
 var() globalconfig array<string>	LoadoutGroup4;	// Weapons available in Grenade Box
-var() globalconfig array<string>	LoadoutGroup5;	// Killstreak One
-var() globalconfig array<string>	LoadoutGroup6;	// Killstreak Two
 
 struct dummypos
 {
 	var array<byte> Positions;
 };
 
-var()  array<dummypos>	DummyGroups[7];
+var()  array<dummypos>	DummyGroups[5];
 
 var   class<weapon>				NetLoadout0;
 var   class<weapon>				NetLoadout1;
 var   class<weapon>				NetLoadout2;
 var   class<weapon>				NetLoadout3;
 var   class<weapon>				NetLoadout4;
-var   class<weapon>				NetLoadout5;
-var   class<weapon>				NetLoadout6;
 
-var   class<Weapon>			NetLoadoutWeapons[255];
-var   byte							NetLoadoutGroups;
+var   class<Weapon>				NetLoadoutWeapons[255];
+var   byte						NetLoadoutGroups;
 
 //Find and save the position of any dummy weapons (for random weapon)
 
@@ -64,44 +58,6 @@ simulated function PreBeginPlay()
 					DummyGroups[i].Positions[DummyGroups[i].Positions.Length] = j;
 }
 	
-
-function PostBeginPlay()
-{
-	Super.PostBeginPlay();
-	if (bAllowKillstreaks)
-	{
-		if (Invasion(Level.Game) != None)
-			SpawnInvStreakGR();
-		else SpawnStreakGR();
-	}
-}
-
-function SpawnStreakGR()
-{
-	local BallisticOutfittingKillstreakRules G;
-	
-	G = spawn(class'BallisticOutfittingKillstreakRules');
-	if ( Level.Game.GameRulesModifiers == None )
-		Level.Game.GameRulesModifiers = G;
-	else    
-		Level.Game.GameRulesModifiers.AddGameRules(G);
-	G.Mut = self;
-}
-
-
-function SpawnInvStreakGR()
-{
-	local BallisticOutfittingInvKillstreakRules H;
-	
-	H = spawn(class'BallisticOutfittingInvKillstreakRules');
-	if ( Level.Game.GameRulesModifiers == None )
-		Level.Game.GameRulesModifiers = H;
-	else    
-		Level.Game.GameRulesModifiers.AddGameRules(H);
-	H.Mut = self;
-}
-
-
 simulated function string GetGroupItem(byte GroupNum, int ItemNum)
 {
 	switch (GroupNum)
@@ -111,8 +67,6 @@ simulated function string GetGroupItem(byte GroupNum, int ItemNum)
 		case	2:	return LoadoutGroup2[ItemNum];
 		case	3:	return LoadoutGroup3[ItemNum];
 		case	4:	return LoadoutGroup4[ItemNum];
-		case	5:	return LoadoutGroup5[ItemNum];
-		case	6:	return LoadoutGroup6[ItemNum];
 	}
 }
 
@@ -125,8 +79,6 @@ simulated function array<string> GetGroup(byte GroupNum)
 		case	2:	return LoadoutGroup2;
 		case	3:	return LoadoutGroup3;
 		case	4:	return LoadoutGroup4;
-		case	5:	return LoadoutGroup5;
-		case	6:	return LoadoutGroup6;
 	}
 }
 
@@ -139,8 +91,6 @@ static function array<string> SGetGroup (byte GroupNum)
 		case	2:	return default.LoadoutGroup2;
 		case	3:	return default.LoadoutGroup3;
 		case	4:	return default.LoadoutGroup4;
-		case	5:	return default.LoadoutGroup5;
-		case	6:	return default.LoadoutGroup6;
 	}
 }
 
@@ -149,7 +99,7 @@ function ModifyPlayer(Pawn Other)
 {
 	local int i;
 	local class<weapon> W;
-	local string Stuff[5];
+	local string Stuff[NUM_GROUPS];
 
 	Super.ModifyPlayer(Other);
 	
@@ -159,10 +109,10 @@ function ModifyPlayer(Pawn Other)
 	//Bots get their weapons here.
 	if (Other.Controller != None && Bot(Other.Controller) != None)
 	{
-		for (i=0;i<5;i++)
+		for (i=0; i < NUM_GROUPS; i++)
 			Stuff[i] = GetGroup(i)[Rand(GetGroup(i).length)];
 		ChangeLoadout(Other, Stuff);		
-		for (i=2;i<5;i+=0)
+		for (i=2;i<NUM_GROUPS;i+=0)
 		{
 			if (Stuff[i] == "")		
 			{
@@ -202,35 +152,12 @@ function ModifyPlayer(Pawn Other)
 			if (COIPond[i].PC == Other.Controller)
 			{	COIPond[i].ClientStartLoadout();	return;	}
 }
-
-function byte GetStreakLevel(PlayerController C)
-{
-	return class.static.GetBPRI(C.PlayerReplicationInfo).RewardLevel;
-}
-
-function FlagStreak(PlayerController C, byte Level)
-{
-	class.static.GetBPRI(C.PlayerReplicationInfo).RewardLevel = class.static.GetBPRI(C.PlayerReplicationInfo).RewardLevel | Level;
-}
-
-function ResetActiveStreaks(PlayerController C)
-{
-	local BallisticPlayerReplicationInfo BPRI;
-	
-	BPRI = class.static.GetBPRI(C.PlayerReplicationInfo);
-	if (BPRI != None)
-	{
-		BPRI.ActiveStreak = 0;
-		BPRI.InvKillScore = 0;
-	}
-}
 	
 // Use the console command "Mutate Loadout" to open the loadout menu
 function Mutate(string MutateString, PlayerController Sender)
 {
 	local int i, count;
-		local array<String> split_string;
-	local BallisticPlayerReplicationInfo BPRI;
+	local array<String> split_string;
 
 	if (MutateString ~= "Loadout" && Sender != None)
 	{
@@ -242,27 +169,8 @@ function Mutate(string MutateString, PlayerController Sender)
 				return;
 			}
 		}
-		COIPond[i] = Spawn(class'ClientOutfittinginterface',Sender);
+		COIPond[i] = Spawn(class'ClientOutfittingInterface',Sender);
 		COIPond[i].Initialize(self, Sender);
-	}
-	
-	else if (MutateString ~= "Killstreak" && Sender != None)
-	{
-		if (!bAllowKillstreaks)
-			Sender.ClientMessage("Killstreaks are disabled.");
-		else
-		{
-			for (i=0;i<COIPond.length;i++)
-			{
-				if (COIPond[i].PC == Sender && xPawn(Sender.Pawn) != None)
-				{
-					BPRI = class.static.GetBPRI(Sender.PlayerReplicationInfo);
-					if (BPRI != None && BPRI.RewardLevel > 0)
-						GrantKillstreakReward(COIPond[i], Sender.Pawn, BPRI);
-					break;
-				}
-			}
-		}
 	}
 	
 	else
@@ -307,7 +215,7 @@ function AddWeapon(PlayerController Sender, array<String> split_string)
 
 	loadout_group = int(split_string[1]);
 	
-	if (loadout_group > 6)
+	if (loadout_group >= NUM_GROUPS)
 	{
 		Sender.ClientMessage("Mutate AddWeapon: Invalid loadout group"@loadout_group);
 		return;
@@ -343,12 +251,6 @@ function AddWeapon(PlayerController Sender, array<String> split_string)
 	case 4:
 		class'Mut_Outfitting'.default.LoadoutGroup4 = weapons;
 		break;
-	case 5:
-		class'Mut_Outfitting'.default.LoadoutGroup5 = weapons;
-		break;
-	case 6:
-		class'Mut_Outfitting'.default.LoadoutGroup6 = weapons;
-		break;
 	}	
 	
 	Sender.ClientMessage("Mutate AddWeapon: Success - added"@WI.ClassName@"to loadout group"@loadout_group); 
@@ -378,7 +280,7 @@ function RemoveWeapon(PlayerController Sender, array<String> split_string)
 	
 	loadout_group = int(split_string[1]);
 	
-	if (loadout_group > 6)
+	if (loadout_group >= NUM_GROUPS)
 	{
 		Sender.ClientMessage("Mutate RemoveWeapon: Invalid loadout group"@loadout_group);
 		return;
@@ -415,12 +317,6 @@ function RemoveWeapon(PlayerController Sender, array<String> split_string)
 		case 4:
 			class'Mut_Outfitting'.default.LoadoutGroup4 = weapons;
 			break;
-		case 5:
-			class'Mut_Outfitting'.default.LoadoutGroup5 = weapons;
-			break;
-		case 6:
-			class'Mut_Outfitting'.default.LoadoutGroup6 = weapons;
-			break;
 		}	
 		
 		class'Mut_Outfitting'.static.StaticSaveConfig();
@@ -435,7 +331,7 @@ function RemoveWeapon(PlayerController Sender, array<String> split_string)
 }
 
 // Goes through inventory and gets rid of stuff that ain't in the loadout
-function ChangeLoadout (Pawn P, out string Stuff[5], optional string OldStuff[5])
+function ChangeLoadout (Pawn P, out string Stuff[NUM_GROUPS], optional string OldStuff[NUM_GROUPS])
 {
 	local Inventory Inv;
 	local int Count, i, j;
@@ -445,16 +341,16 @@ function ChangeLoadout (Pawn P, out string Stuff[5], optional string OldStuff[5]
 	{
 		if (Weapon(Inv) != None && Translauncher(Inv)==None)
 		{
-			for (i=0;i<5;i++)
+			for (i=0;i<NUM_GROUPS;i++)
 				if (OldStuff[i] ~= string(Inv.class))
 				{
-					for (j=0;j<5;j++)
+					for (j=0;j<NUM_GROUPS;j++)
 						if (Stuff[j] ~= string(Inv.class))
 						{
 							Stuff[j] = "";
 							break;
 						}
-					if (j>=5)
+					if (j>=NUM_GROUPS)
 						BadInv[BadInv.length] = Inv;
 					OldStuff[i] = "";
 					break;
@@ -471,7 +367,7 @@ function ChangeLoadout (Pawn P, out string Stuff[5], optional string OldStuff[5]
 }
 
 // Makes sure client loadout is allowed, then cleans stuff out the inventory and adds the new weapons
-function OutfitPlayer(Pawn Other, string Stuff[5], optional string OldStuff[5])
+function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldStuff[NUM_GROUPS])
 {
 	local byte i, j, k, m, DummyFlags;
 	local bool bMatch;
@@ -481,7 +377,7 @@ function OutfitPlayer(Pawn Other, string Stuff[5], optional string OldStuff[5])
 		Other = Vehicle(Other).Driver;
 
 	// Make sure everything is legit
-	for (i=0;i<5;i++)
+	for (i=0;i<NUM_GROUPS;i++)
 	{
 		// Random weapon handling
 		// Tries ten times to pick a weapon which isn't a dummy
@@ -536,7 +432,7 @@ function OutfitPlayer(Pawn Other, string Stuff[5], optional string OldStuff[5])
 		xPawn(Other).RequiredEquipment[1] = Stuff[0];
 	}
 	
-	for (i=2;i<5;i+=0)
+	for (i=2;i<NUM_GROUPS;i+=0)
 	{
 		if (!bool(DummyFlags & (1 << i)))
 		{
@@ -570,168 +466,6 @@ function OutfitPlayer(Pawn Other, string Stuff[5], optional string OldStuff[5])
 			}
 			j++;
 		}
-	}
-}
-
-function GrantKillstreakReward(ClientOutfittingInterface COI, Pawn Other, BallisticPlayerReplicationInfo BPRI)
-{
-	local class<DummyWeapon> Dummy;
-	local string S;
-	local byte Index, TargetGroup;
-	
-	if (bool(BPRI.RewardLevel & 2))
-	{
-		Index = 1;
-		TargetGroup = 6;
-	}
-	else
-	{
-		Index = 0;
-		TargetGroup = 5;
-	}
-	
-	//Handle dummies
-	if (InStr(COI.KillstreakRewards[Index], "Dummy") != -1)
-	{
-
-		if (COI.KillstreakRewards[Index] == "BallisticProV55.TeamLevelUpDummy")
-		{
-			if (!Level.Game.bTeamGame)
-				PlayerController(Other.Controller).ClientMessage("You can only donate in a team game.");
-			else if(!DonateWeapon(Index+1, Other))
-				PlayerController(Other.Controller).ClientMessage("Unable to donate at this time.");
-			else	BPRI.RewardLevel = BPRI.RewardLevel & ~(Index + 1);
-			return;
-		}
-		
-		Dummy = class<DummyWeapon>(DynamicLoadObject(COI.KillstreakRewards[Index], class'Class'));
-		if (Dummy != None && Dummy.static.ApplyEffect(Other, Index, true))
-		{
-			Level.Game.Broadcast(self, Other.PlayerReplicationInfo.PlayerName@"received a Level"@BPRI.RewardLevel@"spree reward:"@Dummy.default.ItemName);
-			BPRI.ActiveStreak = BPRI.ActiveStreak | (Index + 1);
-			BPRI.RewardLevel = BPRI.RewardLevel & ~(Index + 1);
-		}
-			
-		return;
-	}
-
-	else
-	{
-		S = SpawnStreakWeapon(COI.KillstreakRewards[Index], Other, TargetGroup);
-		
-		if (S != "")
-		{
-			if (InStr(S, "FMD") == -1 && InStr(S, "MAU") == -1)
-				Level.Game.Broadcast(self, Other.PlayerReplicationInfo.PlayerName@"received a Level"@Index+1@"spree reward:"@S);
-			
-			BPRI.ActiveStreak = BPRI.ActiveStreak | (Index + 1);
-			BPRI.RewardLevel = BPRI.RewardLevel & ~(Index + 1);
-		}
-	}
-}
-
-function bool DonateWeapon(byte Index, Pawn Other)
-{
-	local int i;
-	local PlayerController C;
-	local array<Pawn> Options;
-	local Pawn Used;
-	local BallisticPlayerReplicationInfo BPRI;
-	
-	for (i=0;	i < COIPond.Length;	i++)	
-	{
-		C = COIPond[i].PC;
-		if (COIPond[i].KillstreakRewards[0] == "BallisticProV55.TeamLevelUpDummy" || COIPond[i].KillstreakRewards[1] == "BallisticProV55.TeamLevelUpDummy") //Donation isn't intended to be used as an advantage
-			continue;
-		if (BallisticPawn(C.Pawn) != None //ballisticpawn
-		&& C != Other.Controller  //not us
-		&& C.PlayerReplicationInfo != None //has pri
-		&& C.PlayerReplicationInfo.Team == Other.PlayerReplicationInfo.Team) //on the same team
-		{
-			if (!bool(class.static.GetBPRI(C.PlayerReplicationInfo).RewardLevel & Index)) //doesn't already have a streak of the level we're trying to pass
-				Options[Options.Length] = C.Pawn;
-		}
-	}
-	
-	if (Options.Length == 0)
-		return false;
-	
-	if (Options.Length == 1)
-		Used = Options[0];
-	
-	else Used = Options[Rand(Options.Length)];
-		
-	for (i=0;i<COIPond.length;i++)
-	{
-		if (COIPond[i].PC == Used.Controller)
-		{
-			BPRI = class.static.GetBPRI(Used.PlayerReplicationInfo);
-			if (BPRI != None)
-				BPRI.RewardLevel = BPRI.RewardLevel | Index;
-			else return false;
-			Other.ClientMessage("You passed your Killstreak"@Index@"to"@Used.PlayerReplicationInfo.PlayerName$".");
-			Used.ClientMessage("Received Killstreak"@Index@"from"@Other.PlayerReplicationInfo.PlayerName$".");
-			Used.ReceiveLocalizedMessage(class'BallisticKillstreakMessage', -Index);
-			Other.Controller.AwardAdrenaline(40 * Index);
-
-			return true;
-		}
-	}
-	return false;
-}
-
-function String SpawnStreakWeapon(string WeaponString, Pawn Other, byte GroupSlot)
-{
-	local class<Weapon> KR;
-	local int j, k, m;
-	
-	//Dummies are likely to come in here if the target also has Donation set
-	if (InStr(WeaponString, "Dummy") != -1)
-	{
-		k = Rand(GetGroup(GroupSlot).length - DummyGroups[GroupSlot].Positions.length);
-				
-		for (m = 0; m < DummyGroups[GroupSlot].Positions.Length; m++)
-			if (k == DummyGroups[GroupSlot].Positions[m])
-				k++;
-			
-		WeaponString = GetGroup(GroupSlot)[k];		
-	}
-	else
-	{		
-		//Check validity.
-		for (j=0; j <= GetGroup(GroupSlot).length; j++)
-		{
-			if ( j == GetGroup(GroupSlot).length )
-			{
-				PlayerController(Other.Controller).ClientMessage("The selected Killstreak reward weapon is not available on this server, giving the default weapon.");
-				WeaponString = GetGroup(GroupSlot)[0];
-				break;
-			}
-			
-			if (GetGroup(GroupSlot)[j] ~= WeaponString)
-				break;
-		}
-	}
-	
-	KR = class<Weapon>(DynamicLoadObject(WeaponString,class'Class'));
-		
-	if (KR == None)
-		return "";
-	
-	else
-	{
-		SpawnWeapon(KR, Other);
-		if (class<BallisticWeapon>(KR) != None && !class<BallisticWeapon>(KR).default.bNoMag)
-		{
-			SpawnAmmo(KR.default.FireModeClass[0].default.AmmoClass, Other);
-			if (KR.default.FireModeClass[0].default.AmmoClass != KR.default.FireModeClass[1].default.AmmoClass)
-				SpawnAmmo(KR.default.FireModeClass[1].default.AmmoClass, Other);
-		}
-		
-		if (BallisticPawn(Other) != None)
-			BallisticPawn(Other).bActiveKillstreak = True;
-			
-		return KR.default.ItemName;
 	}
 }
 
@@ -880,9 +614,6 @@ defaultproperties
      LoadOut(2)="BallisticProV55.M763Shotgun"
      LoadOut(3)="BallisticProV55.M50AssaultRifle"
      LoadOut(4)="BallisticProV55.NRP57Grenade"
-     Killstreaks(0)="BallisticProV55.RX22AFlamer"
-     Killstreaks(1)="BallisticProV55.MRocketLauncher"
-     bAllowKillstreaks=True
      LoadoutGroup0(0)="BallisticProV55.X3Knife"
      LoadoutGroup0(1)="BallisticProV55.A909SkrithBlades"
      LoadoutGroup0(2)="BallisticProV55.EKS43Katana"
@@ -961,8 +692,6 @@ defaultproperties
      LoadoutGroup4(2)="BallisticProV55.FP9Explosive"
      LoadoutGroup4(3)="BallisticProV55.BX5Mine"
      LoadoutGroup4(4)="BallisticProV55.T10Grenade"
-     LoadoutGroup5(0)="BallisticProV55.RX22AFlamer"
-     LoadoutGroup6(0)="BallisticProV55.MRocketLauncher"
      bHideLockers=True
      FriendlyName="BallisticPro: Loadout"
      Description="Play Ballistic Weapons, but instead of picking up weapons, you can choose five to start with, Melee, Sidearm, Primary, Secondary and Grenade. Ammo Packs replace weapon pickups and extra weapons can be taken from your enemies.||http://www.runestorm.com"

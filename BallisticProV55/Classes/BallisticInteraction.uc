@@ -10,14 +10,18 @@ class BallisticInteraction extends Interaction;
 
 var PlayerController PC;
 
-var float				ScaleFactor;
+/* splash screen */
 
-var bool					bShowSplash;
+var float							ScaleFactor;
+var bool							bShowSplash;
+var float							SplashStartTime;
+var Material						SplashPic;
+var localized string				VersionText, FixText;
 
-var float				SplashStartTime;
-var Material			SplashPic;
-var localized string	VersionText, FixText;
-var BallisticPlayerReplicationInfo BPRI;
+/* replicated variable display */
+
+var BallisticPlayerReplicationInfo 	BPRI;
+var KillstreakLRI					KLRI;
 
 event Initialized()
 {
@@ -32,10 +36,12 @@ function DrawSplash( canvas C )
 	if (PC.Level.TimeSeconds - SplashStartTime > 7.9)
 	{
 		bShowSplash=false;
-		// Using this as a convenient delay to get the BPRI
+		// Using this as a convenient delay to get the BPRI and KLRI
 		BPRI = class'Mut_Ballistic'.static.GetBPRI(PC.PlayerReplicationInfo);
 		if (BPRI == None)
 			log("BallisticInteraction: Couldn't find the BPRI!");
+			
+		KLRI = class'Mut_Killstreak'.static.GetKLRI(PC.PlayerReplicationInfo);
 		return;
 	}
 	// Draw splash pic
@@ -66,13 +72,13 @@ function DrawKillstreakIndicator(Canvas C)
 	
 	for (i=0;i<2;i++)
 	{
-		if (bool(BPRI.RewardLevel & (2 ** i)))
+		if (bool(KLRI.RewardLevel & (2 ** i)))
 			if (s == "")
 				s = "Level"@i+1@"Killstreak";
 			else s $= ", Level"@i+1@"Killstreak";
 	}
 	C.Font = class'BallisticWeapon'.static.GetFontSizeIndex(C, -4 + int(2 * class'HUD'.default.HudScale));
-	C.SetDrawColor(100 + (BPRI.RewardLevel * 50),100,100,150);
+	C.SetDrawColor(100 + (KLRI.RewardLevel * 50),100,100,150);
 	C.StrLen (s, XL, YL);
 	C.SetPos(C.SizeX/2 - XL/2, C.SizeY * 0.9 - YL/2);
 	C.DrawText(s);
@@ -90,7 +96,7 @@ function PostRender( canvas C )
 	if (bShowSplash)
 		DrawSplash(C);
 		
-	if (BPRI != None && BPRI.RewardLevel != 0)
+	if (KLRI != None && KLRI.RewardLevel != 0)
 		DrawKillstreakIndicator(C);
 }
 
