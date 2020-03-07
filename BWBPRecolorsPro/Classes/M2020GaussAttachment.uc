@@ -16,15 +16,16 @@ var	BallisticWeapon	myWeap;
 var 	bool					bNoEffect; 		//unpowered shots do not spawns tracers
 var	 Vector				SpawnOffset;
 
+var  byte 				OldBlockEffectCount, BlockEffectCount;
+var  M2020BlockEffect 		M2020BlockEffect;
 
 replication
 {
 	reliable if ( Role==ROLE_Authority )
-		bLaserOn;
+		BlockEffectCount, bLaserOn;
 	unreliable if ( Role==ROLE_Authority )
 		LaserRot;
 }
-
 
 // Does all the effects for an instant-hit kind of fire.
 // On the client, this uses mHitLocation to find all the other info needed.
@@ -168,6 +169,21 @@ simulated function Vector GetTipLocation()
     return Loc;
 }
 
+simulated function PostNetReceive()
+{
+	if (OldBlockEffectCount != BlockEffectCount)
+	{
+		OldBlockEffectCount = BlockEffectCount;
+		DoBlockEffect();
+	}
+
+    Super.PostNetReceive();
+}
+
+simulated function DoBlockEffect()
+{	
+	Spawn(class'M2020BlockEffect',Instigator,,GetTipLocation(), Instigator.GetViewRotation());
+}
 
 simulated function Destroyed()
 {

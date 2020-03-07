@@ -474,6 +474,11 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
     {
 		Damage = 0;
 		Momentum = vect(0,0,0);
+		
+		M2020GaussAttachment(ThirdPersonActor).BlockEffectCount += 1;
+		
+		M2020GaussAttachment(ThirdPersonActor).DoBlockEffect();
+		
 		PlaySound(ShieldHitSound, SLOT_None);
     }
 	
