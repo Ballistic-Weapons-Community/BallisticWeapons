@@ -219,15 +219,15 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 {
 	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)) || RSDarkProjectile(Other)!=None || RSDarkFastProjectile(Other)!=None)
 		return;
-
-		
 	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits
 		DoDamage(Other, HitLocation);
 	if (Pawn(Other) != None && Pawn(Other).Health <= 0)
 		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 2, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
 	else
 		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 1, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
+	
 	ImpactManager = None;
+	
 	if (Role == ROLE_Authority)
 	{
 		HitActor = Other;
@@ -334,47 +334,47 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-     PullForceMag=800000.000000
-     ImpactManager=Class'BallisticProV55.IM_RSDarkProjectile'
-     PenetrateManager=Class'BallisticProV55.IM_RSDarkProjectile'
-     bRandomStartRotaion=False
-     AccelSpeed=50000.000000
-     TrailClass=Class'BallisticProV55.RSDark1Trail'
-     MyRadiusDamageType=Class'BallisticProV55.DT_RSDarkSlow'
-     DamageHead=80.000000
-     DamageLimb=80.000000
-     DamageTypeHead=Class'BallisticProV55.DT_RSDarkSlow'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=384.000000
-     ShakeRotMag=(Y=200.000000,Z=128.000000)
-     ShakeRotRate=(X=3000.000000,Z=3000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(Y=15.000000,Z=15.000000)
-     ShakeOffsetTime=2.000000
-     Speed=3000.000000
-     MaxSpeed=60000.000000
-     bSwitchToZeroCollision=True
-     Damage=80.000000
-     DamageRadius=128.000000
-     MomentumTransfer=10000.000000
-     MyDamageType=Class'BallisticProV55.DT_RSDarkSlow'
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightBrightness=160.000000
-     LightRadius=12.000000
-     StaticMesh=StaticMesh'BWBP4-Hardware.DarkStar.DarkProjBig'
-     bDynamicLight=True
-     bNetTemporary=False
-     bSkipActorPropertyReplication=True
-     bOnlyDirtyReplication=True
-     AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire1FlyBy'
-     LifeSpan=4.000000
-     DrawScale=2.000000
-     DrawScale3D=(X=1.500000)
-     SoundVolume=255
-     SoundRadius=75.000000
-     CollisionRadius=1.000000
-     CollisionHeight=1.000000
-     bProjTarget=True
-     RotationRate=(Roll=16384)
+	AccelSpeed=50000.000000
+	AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire1FlyBy'
+	CollisionHeight=1.000000
+	CollisionRadius=1.000000
+	Damage=80.000000
+	DamageHead=80.000000
+	DamageLimb=80.000000
+	DamageRadius=128.000000
+	DamageTypeHead=Class'BallisticProV55.DT_RSDarkSlow'
+	DrawScale3D=(X=1.500000)
+	DrawScale=2.000000
+	ImpactManager=Class'BallisticProV55.IM_RSDarkProjectile'
+	LifeSpan=4.000000
+	LightBrightness=160.000000
+	LightEffect=LE_QuadraticNonIncidence
+	LightRadius=12.000000
+	LightType=LT_Steady
+	MaxSpeed=60000.000000
+	MomentumTransfer=10000.000000
+	MyDamageType=Class'BallisticProV55.DT_RSDarkSlow'
+	MyRadiusDamageType=Class'BallisticProV55.DT_RSDarkSlow'
+	PenetrateManager=Class'BallisticProV55.IM_RSDarkProjectile'
+	PullForceMag=800000.000000
+	RotationRate=(Roll=16384)
+	ShakeOffsetMag=(Y=15.000000,Z=15.000000)
+	ShakeOffsetTime=2.000000
+	ShakeRadius=384.000000
+	ShakeRotMag=(Y=200.000000,Z=128.000000)
+	ShakeRotRate=(X=3000.000000,Z=3000.000000)
+	ShakeRotTime=2.000000
+	SoundRadius=75.000000
+	SoundVolume=255
+	Speed=3000.000000
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	StaticMesh=StaticMesh'BWBP4-Hardware.DarkStar.DarkProjBig'
+	TrailClass=Class'BallisticProV55.RSDark1Trail'
+	bDynamicLight=True
+	bNetTemporary=False
+	bOnlyDirtyReplication=True
+	bProjTarget=True
+	bRandomStartRotaion=False
+	bSkipActorPropertyReplication=True
+	bSwitchToZeroCollision=True
 }

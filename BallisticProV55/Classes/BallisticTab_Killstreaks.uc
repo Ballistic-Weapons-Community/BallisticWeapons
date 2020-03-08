@@ -23,6 +23,9 @@ var automated GUIHeader MyHeader;
 var automated GUILabel	l_Receiving;
 
 var config int CurrentIndex;
+
+var bool bWeaponsReplicating;
+
 var bool bWeaponsLoaded;
 
 struct StreakWeapons
@@ -51,8 +54,10 @@ function ShowPanel(bool bShow)
 	
 	KLRI = class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo);
 	
-	if (KLRI == None || !KLRI.bWeaponsReady)
+	if (KLRI == None)
 	{
+		Log("ShowPanel: No KRI / Not Ready");
+		
 		if (PlayerOwner().level.NetMode == NM_Client)
 		{
 			l_Receiving.Caption = ReceivingText[0];
@@ -63,32 +68,59 @@ function ShowPanel(bool bShow)
 			l_Receiving.Caption = ReceivingText[1];
 			SetTimer(0.1, true);
 		}
-		
-		SetTimer(0.05, true);
 	}
 	
 	else
-	{
+	{	
+		Log("ShowPanel: DoInit");		
 		DoInit();
 	}
 }
 
 event Timer()
 {
-	if (KLRI == None)
-		KLRI = class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo);
-	
-	if (KLRI != None && KLRI.bWeaponsReady && !bWeaponsLoaded)
+	if (KLRI != None)
 	{
+		Log("Timer: KRI present");
+		
+		if (bWeaponsReplicating && KLRI.bWeaponsReady)
+		{
+			Log("Timer: Weapons replicating");
+			KillTimer();
+			bWeaponsReplicating = false;
+			InitWeaponLists();
+		}
+	}
+	
+	else if (PlayerOwner() != None && class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo) != None)
+	{
+		Log("Timer: Acquired KRI");
 		KillTimer();
+		KLRI = class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo);
 		DoInit();
+		return;
 	}
 }
 
 function DoInit()
 {
+	if (!KLRI.bWeaponsReady)
+	{
+		Log("DoInit: Requesting streak list");
+		bWeaponsReplicating = true;
+		KLRI.ClientRequestStreakList();
+		SetTimer(0.1, true);
+	}
+}
+
+function InitWeaponLists()
+{
+	Log("InitWeaponLists");
+
 	if(!bWeaponsLoaded)
 	{
+		Log("InitWeaponLists: Loading weapons");
+	
 		LoadWeapons();
 		bWeaponsLoaded=True;
 		

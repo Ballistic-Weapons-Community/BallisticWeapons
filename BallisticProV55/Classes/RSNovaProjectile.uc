@@ -132,7 +132,6 @@ simulated function DoVehicleDriverRadius(Vehicle Other)
 
 simulated singular function HitWall(vector HitNormal, actor Wall)
 {
-
 	local Vehicle HealVehicle;
 	local int AdjustedDamage;
 
@@ -174,13 +173,15 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)) || RSNovaProjectile(Other)!=None || RSNovaFastProjectile(Other)!=None)
 		return;
 
-	if (Role == ROLE_Authority)		// Do damage for direct hits
+	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits
 		DoDamage(Other, HitLocation);
 	if (Pawn(Other) != None && Pawn(Other).Health <= 0)
 		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 2, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
 	else
 		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 1, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
+	
 	ImpactManager = None;
+	
 	if (Role == ROLE_Authority)
 	{
 		HitActor = Other;
@@ -278,50 +279,49 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-     ImpactManager=Class'BallisticProV55.IM_RSNovaProjectile'
-     PenetrateManager=Class'BallisticProV55.IM_RSNovaProjectile'
-     bRandomStartRotaion=False
-     AccelSpeed=100000.000000
-     TrailClass=Class'BallisticProV55.RSNova1Trail'
-     MyRadiusDamageType=Class'BallisticProV55.DT_RSNovaSlow'
-     bTearOnExplode=False
-     bUsePositionalDamage=True
-     DamageHead=140.000000
-     DamageLimb=70.000000
-     DamageTypeHead=Class'BallisticProV55.DT_RSNovaSlow'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=384.000000
-     ShakeRotMag=(Y=200.000000,Z=128.000000)
-     ShakeRotRate=(X=3000.000000,Z=3000.000000)
-     ShakeRotTime=2.000000
-     ShakeOffsetMag=(Y=15.000000,Z=15.000000)
-     ShakeOffsetTime=2.000000
-     Speed=6000.000000
-     MaxSpeed=10000.000000
-     bSwitchToZeroCollision=True
-     Damage=70.000000
-     DamageRadius=128.000000
-     MomentumTransfer=90000.000000
-     MyDamageType=Class'BallisticProV55.DT_RSNovaSlow'
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=160
-     LightSaturation=90
-     LightBrightness=192.000000
-     LightRadius=10.000000
-     StaticMesh=StaticMesh'BWBP4-Hardware.NovaStaff.NovaProjectile'
-     bDynamicLight=True
-     bNetTemporary=False
-     bSkipActorPropertyReplication=True
-     bOnlyDirtyReplication=True
-     AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire1FlyBy'
-     LifeSpan=4.000000
-     Style=STY_Additive
-     SoundVolume=255
-     SoundRadius=75.000000
-     CollisionRadius=1.000000
-     CollisionHeight=1.000000
-     bProjTarget=True
-     bFixedRotationDir=True
-     RotationRate=(Roll=16384)
+	AccelSpeed=100000.000000
+	AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire1FlyBy'
+	CollisionHeight=1.000000
+	CollisionRadius=1.000000
+	Damage=70.000000
+	DamageHead=70.000000
+	DamageLimb=70.000000
+	DamageRadius=128.000000
+	DamageTypeHead=Class'BallisticProV55.DT_RSNovaSlow'
+	ImpactManager=Class'BallisticProV55.IM_RSNovaProjectile'
+	LifeSpan=4.000000
+	LightBrightness=192.000000
+	LightEffect=LE_QuadraticNonIncidence
+	LightHue=160
+	LightRadius=10.000000
+	LightSaturation=90
+	LightType=LT_Steady
+	MaxSpeed=10000.000000
+	MomentumTransfer=90000.000000
+	MyDamageType=Class'BallisticProV55.DT_RSNovaSlow'
+	MyRadiusDamageType=Class'BallisticProV55.DT_RSNovaSlow'
+	PenetrateManager=Class'BallisticProV55.IM_RSNovaProjectile'
+	RotationRate=(Roll=16384)
+	ShakeOffsetMag=(Y=15.000000,Z=15.000000)
+	ShakeOffsetTime=2.000000
+	ShakeRadius=384.000000
+	ShakeRotMag=(Y=200.000000,Z=128.000000)
+	ShakeRotRate=(X=3000.000000,Z=3000.000000)
+	ShakeRotTime=2.000000
+	SoundRadius=75.000000
+	SoundVolume=255
+	Speed=6000.000000
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	StaticMesh=StaticMesh'BWBP4-Hardware.NovaStaff.NovaProjectile'
+	Style=STY_Additive
+	TrailClass=Class'BallisticProV55.RSNova1Trail'
+	bDynamicLight=True
+	bFixedRotationDir=True
+	bNetTemporary=False
+	bOnlyDirtyReplication=True
+	bProjTarget=True
+	bRandomStartRotaion=False
+	bSkipActorPropertyReplication=True
+	bSwitchToZeroCollision=True
+	bTearOnExplode=False
 }
