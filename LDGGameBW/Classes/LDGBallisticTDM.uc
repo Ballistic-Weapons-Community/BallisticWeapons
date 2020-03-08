@@ -650,10 +650,11 @@ defaultproperties
      LoadoutHint="Loadout game type: Press #BB_LOADOUT to open the loadout menu."
      ForumLink="Visit our forum on #B#www.ldg-gaming.eu#H#"
      BWMutators(0)="BallisticProV55.Mut_BallisticSwap"
-     BWMutators(1)="BallisticProV55.Mut_Regeneration"
-     BWMutators(2)="BallisticProV55.Mut_ChargeSprinter"
-     BWMutators(3)="LDGGameBW.MutUTCompBW_LDG"
-     BWMutators(4)="BWInteractions3.MutBWInteractions"
+	 BWMutators(1)="BallisticProV55.Mut_Killstreak"
+     BWMutators(2)="BallisticProV55.Mut_Regeneration"
+     BWMutators(3)="BallisticProV55.Mut_ChargeSprinter"
+     BWMutators(4)="LDGGameBW.MutUTCompBW_LDG"
+     BWMutators(5)="BWInteractions3.MutBWInteractions"
      HintColor=(B=255,G=255,R=255,A=255)
      MapColor=(G=255,R=255,A=255)
      PlayerHealth=175

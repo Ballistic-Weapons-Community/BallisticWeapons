@@ -17,7 +17,6 @@ var bool					bLoadInitialized;
 var automated GUILoadOutItem Item_Streak1, Item_Streak2;
 var automated GUIComboBox	 cb_Streak1, cb_Streak2;
 var Automated GUIImage MyBack, Box_Streak1, Box_Streak2, Streak1Back, Streak2Back;
-var Automated GUIButton BSave;
 var automated GUIHeader MyHeader;
 var automated GUILabel	l_Receiving;
 
@@ -182,14 +181,6 @@ function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
 	return false;
 }
 
-function bool InternalOnClick(GUIComponent Sender)
-{
-	if (Sender == BSave && bWeaponsLoaded)
-		SaveStreaks();	
-
-	return true;
-}
-
 function SaveStreaks()
 {
 	if (!bWeaponsLoaded)
@@ -212,9 +203,16 @@ function InternalOnChange(GUIComponent Sender)
 		return;
 		
 	if (Sender == cb_Streak1)
+	{
 		Item_Streak1.SetItem(cb_Streak1.GetExtra());
+		SaveStreaks();
+	}
+	
 	else if (Sender == cb_Streak2)
+	{
 		Item_Streak2.SetItem(cb_Streak2.GetExtra());
+		SaveStreaks();
+	}
 }
 
 defaultproperties
@@ -315,18 +313,6 @@ defaultproperties
      End Object
      Streak2Back=GUIImage'BallisticProV55.BallisticTab_Killstreaks.Streak2BackImage'
 	 
-     Begin Object Class=GUIButton Name=BSaveButton
-         Caption="SAVE"
-         Hint="Commits the choices."
-         WinTop=0.920000
-         WinLeft=0.100000
-         WinWidth=0.2000
-         TabOrder=0
-         OnClick=BallisticTab_Killstreaks.InternalOnClick
-         OnKeyEvent=BSaveButton.InternalOnKeyEvent
-     End Object
-     BSave=GUIButton'BallisticProV55.BallisticTab_Killstreaks.BSaveButton'
-
      Begin Object Class=GUILabel Name=l_Receivinglabel
          TextAlign=TXTA_Center
          TextColor=(B=0,G=255,R=255)
