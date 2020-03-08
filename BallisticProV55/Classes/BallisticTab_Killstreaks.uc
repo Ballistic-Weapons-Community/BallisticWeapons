@@ -16,28 +16,14 @@ var bool					bLoadInitialized;
 // Use GUILoadOutItems to select weapons. This control has some text with an image that cycles when you click on it
 var automated GUILoadOutItem Item_Streak1, Item_Streak2;
 var automated GUIComboBox	 cb_Streak1, cb_Streak2;
-var automated moComboBox		cb_Presets;
 var Automated GUIImage MyBack, Box_Streak1, Box_Streak2, Streak1Back, Streak2Back;
-var Automated GUIButton BDone, BCancel, BSavePreset;
+var Automated GUIButton BSave;
 var automated GUIHeader MyHeader;
 var automated GUILabel	l_Receiving;
 
-var config int CurrentIndex;
-
-var bool bWeaponsReplicating;
-
 var bool bWeaponsLoaded;
 
-struct StreakWeapons
-{
-    var string PresetName;
-	var string Weapons[2];
-};
-
-var() config array<StreakWeapons>			SavedStreaks[5];  //Saved loadouts
 var() array<String>								DefaultStreaks;
-
-var int NumPresets;
 
 var() localized string QuickListText;
 
@@ -47,15 +33,12 @@ var KillstreakLRI KLRI;
 
 function InitPanel()
 {
-	Log("InitPanel: BallisticTab_Killstreaks");
 	Super.InitPanel();
 	
 	KLRI = class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo);
 	
 	if (KLRI == None)
 	{
-		Log("InitPanel: No KRI / Not Ready");
-		
 		if (PlayerOwner().level.NetMode == NM_Client)
 		{
 			l_Receiving.Caption = ReceivingText[0];
@@ -69,30 +52,35 @@ function InitPanel()
 	}
 	
 	else
-	{	
-		Log("InitPanel: OnLRIAcquired");		
+	{		
 		OnLRIAcquired();
 	}
+}
+
+function ShowPanel(bool bShow)
+{
+	Super.ShowPanel(bShow);
+	
+	if (!bShow || !bWeaponsLoaded)
+		return;
+	
+	Item_Streak1.SetItem(class'KillstreakConfig'.default.Killstreaks[0]);
+	Item_Streak2.SetItem(class'KillstreakConfig'.default.Killstreaks[1]);
 }
 
 event Timer()
 {
 	if (KLRI != None)
 	{
-		Log("Timer: KRI present");
-		
-		if (bWeaponsReplicating && KLRI.bWeaponsReady)
+		if (KLRI.bWeaponsReady)
 		{
-			Log("Timer: Weapons replicating");
 			KillTimer();
-			bWeaponsReplicating = false;
 			InitWeaponLists();
 		}
 	}
 	
 	else if (PlayerOwner() != None && class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo) != None)
 	{
-		Log("Timer: Acquired KRI");
 		KillTimer();
 		KLRI = class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo);
 		OnLRIAcquired();
@@ -103,22 +91,15 @@ event Timer()
 function OnLRIAcquired()
 {
 	if (!KLRI.bWeaponsReady)
-	{
-		Log("OnLRIAcquired: Requesting streak list");
-		bWeaponsReplicating = true;
-		KLRI.ClientRequestStreakList();
 		SetTimer(0.1, true);
-	}
+	else 
+		InitWeaponLists();
 }
 
 function InitWeaponLists()
 {
-	Log("InitWeaponLists");
-
 	if(!bWeaponsLoaded)
 	{
-		Log("InitWeaponLists: Loading weapons");
-	
 		LoadWeapons();
 		bWeaponsLoaded=True;
 		
@@ -143,7 +124,6 @@ function LoadWeapons()
 		if (GetItemInfo(0, i, IC, IMat, ICN, ICrds))
 		{
 			Item_Streak1.AddItem(IC, IMat, ICN, ICrds);
-			Item_Streak1.SetItem(SavedStreaks[CurrentIndex].Weapons[0]);
    			cb_Streak1.AddItem(IC, ,ICN);
    			cb_Streak1.SetText(QuickListText);
    		}
@@ -154,17 +134,14 @@ function LoadWeapons()
 		if (GetItemInfo(1, i, IC, IMat, ICN, ICrds))
 		{
 			Item_Streak2.AddItem(IC, IMat, ICN, ICrds);
-			Item_Streak2.SetItem(SavedStreaks[CurrentIndex].Weapons[1]);
+
    			cb_Streak2.AddItem(IC, ,ICN);
    			cb_Streak2.SetText(QuickListText);
    		}
 	}
 	
-	//Load presets
-	for(i = 0; i < 5; i++) //fixme
-	    cb_Presets.AddItem(SavedStreaks[i].PresetName ,,string(i));
-	    cb_Presets.SetIndex(CurrentIndex);
-	    
+	Item_Streak1.SetItem(class'KillstreakConfig'.default.Killstreaks[0]);
+	Item_Streak2.SetItem(class'KillstreakConfig'.default.Killstreaks[1]);
 	
 	class'BC_WeaponInfoCache'.static.EndSession();
 	
@@ -207,52 +184,24 @@ function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
 
 function bool InternalOnClick(GUIComponent Sender)
 {
-	if (Sender==BSavePreset) //SAVE PRESET
-	{
-		SavedStreaks[cb_Presets.GetIndex()].PresetName = cb_Presets.GetText();
-			
-		if (Item_Streak1.Items.length > Item_Streak1.Index)
-			SavedStreaks[cb_Presets.GetIndex()].Weapons[0] = Item_Streak1.Items[Item_Streak1.Index].Text;
-		if (Item_Streak2.Items.length > Item_Streak2.Index)
-			SavedStreaks[cb_Presets.GetIndex()].Weapons[1] = Item_Streak2.Items[Item_Streak2.Index].Text;
+	if (Sender == BSave && bWeaponsLoaded)
+		SaveStreaks();	
 
-
-		SaveConfig();	
-	}
 	return true;
-}
-
-event Closed ( GUIComponent Sender, bool bCancelled )
-{
-	if (bWeaponsLoaded)
-		SaveStreaks();
-	
-	Super.Closed(Sender, bCancelled);
 }
 
 function SaveStreaks()
 {
-	if(!bWeaponsLoaded)
+	if (!bWeaponsLoaded)
 		return;
 	
-	SavedStreaks[cb_Presets.GetIndex()].PresetName = cb_Presets.GetText();
-		
 	if (Item_Streak1.Items.length > Item_Streak1.Index)
-	{
-		Log("BallisticTab_Killstreaks: Updating KillstreakLRI: default for 0 is now "@SavedStreaks[cb_Presets.GetIndex()].Weapons[0]);
-		SavedStreaks[cb_Presets.GetIndex()].Weapons[0] = Item_Streak1.Items[Item_Streak1.Index].Text;
-		class'KillstreakLRI'.default.Killstreaks[0] = SavedStreaks[cb_Presets.GetIndex()].Weapons[0];
-	}
-	if (Item_Streak2.Items.length > Item_Streak2.Index)
-	{
-		SavedStreaks[cb_Presets.GetIndex()].Weapons[1] = Item_Streak2.Items[Item_Streak2.Index].Text;
-		class'KillstreakLRI'.default.Killstreaks[1] = SavedStreaks[cb_Presets.GetIndex()].Weapons[1];
-	}
+		class'KillstreakConfig'.default.Killstreaks[0] = Item_Streak1.Items[Item_Streak1.Index].Text;
 
-	CurrentIndex=cb_Presets.GetIndex();
-	SaveConfig();
+	if (Item_Streak2.Items.length > Item_Streak2.Index)
+		class'KillstreakConfig'.default.Killstreaks[1] = Item_Streak2.Items[Item_Streak2.Index].Text;
 	
-	class'KillstreakLRI'.static.StaticSaveConfig();
+	class'KillstreakConfig'.static.StaticSaveConfig();
 	
 	KLRI.UpdateStreakChoices();
 }
@@ -266,11 +215,6 @@ function InternalOnChange(GUIComponent Sender)
 		Item_Streak1.SetItem(cb_Streak1.GetExtra());
 	else if (Sender == cb_Streak2)
 		Item_Streak2.SetItem(cb_Streak2.GetExtra());
-	else if (Sender == cb_Presets && cb_Presets.GetExtra() != "")
-	{
-		Item_Streak1.SetItem(SavedStreaks[cb_Presets.GetIndex()].Weapons[0]);
-		Item_Streak2.SetItem(SavedStreaks[cb_Presets.GetIndex()].Weapons[1]);
-	}
 }
 
 defaultproperties
@@ -327,20 +271,6 @@ defaultproperties
      End Object
      cb_Streak2=GUIComboBox'BallisticProV55.BallisticTab_Killstreaks.cb_Streak2Box'
 
-     Begin Object Class=moComboBox Name=co_PresetsCB
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.400000
-         Caption="Presets"
-         OnCreateComponent=co_PresetsCB.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Choose a preset replacements configuration, or type a new preset name here and click 'Save' to make the current configuration a new preset."
-         WinTop=0.920000
-         WinLeft=0.630000
-         WinWidth=0.250000
-         OnChange=BallisticTab_Killstreaks.InternalOnChange
-     End Object
-     cb_Presets=moComboBox'BallisticProV55.BallisticTab_Killstreaks.co_PresetsCB'
-
      Begin Object Class=GUIImage Name=ImageBoxStreak1
          Image=Texture'2K4Menus.NewControls.Display99'
          ImageStyle=ISTY_Stretched
@@ -385,17 +315,17 @@ defaultproperties
      End Object
      Streak2Back=GUIImage'BallisticProV55.BallisticTab_Killstreaks.Streak2BackImage'
 	 
-     Begin Object Class=GUIButton Name=BSavePresetButton
+     Begin Object Class=GUIButton Name=BSaveButton
          Caption="SAVE"
-         Hint="Saves the current configuration as a new preset."
+         Hint="Commits the choices."
          WinTop=0.920000
          WinLeft=0.100000
          WinWidth=0.2000
          TabOrder=0
          OnClick=BallisticTab_Killstreaks.InternalOnClick
-         OnKeyEvent=BSavePresetButton.InternalOnKeyEvent
+         OnKeyEvent=BSaveButton.InternalOnKeyEvent
      End Object
-     BSavePreset=GUIButton'BallisticProV55.BallisticTab_Killstreaks.BSavePresetButton'
+     BSave=GUIButton'BallisticProV55.BallisticTab_Killstreaks.BSaveButton'
 
      Begin Object Class=GUILabel Name=l_Receivinglabel
          TextAlign=TXTA_Center
@@ -408,11 +338,6 @@ defaultproperties
      End Object
      l_Receiving=GUILabel'BallisticProV55.BallisticTab_Killstreaks.l_Receivinglabel'
 
-     SavedStreaks(0)=(PresetName="One",Weapons[0]="BallisticProV55.MRocketLauncher",Weapons[1]="BallisticProV55.RX22AFlamer")
-     SavedStreaks(1)=(PresetName="Two",Weapons[0]="BallisticProV55.MRocketLauncher",Weapons[1]="BallisticProV55.RX22AFlamer")
-     SavedStreaks(2)=(PresetName="Three",Weapons[0]="BallisticProV55.MRocketLauncher",Weapons[1]="BallisticProV55.RX22AFlamer")
-     SavedStreaks(3)=(PresetName="Four",Weapons[0]="BallisticProV55.MRocketLauncher",Weapons[1]="BallisticProV55.RX22AFlamer")
-     SavedStreaks(4)=(PresetName="Five",Weapons[0]="BallisticProV55.MRocketLauncher",Weapons[1]="BallisticProV55.RX22AFlamer")
      DefaultStreaks(0)="BallisticProV55.MRocketLauncher"
      DefaultStreaks(1)="BallisticProV55.RX22AFlamer"
      QuickListText="QuickList"

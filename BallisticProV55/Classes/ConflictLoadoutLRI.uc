@@ -21,6 +21,8 @@ class ConflictLoadoutLRI extends BallisticPlayerReplicationInfo DependsOn(Mut_Lo
 	Menu:	LoadPage->PRI:S:RequestFullList->C->GiveClientFullList->FullListIsReady  ->MenuDone->PRI:S:SetInventory->InventoryIsReady
 */
 
+var int					ListenRetryCount;
+
 var Mut_ConflictLoadout LoadoutMut;					// The mutator itself
 var config array<string> SavedInventory;			// old inv saved to config
 var array<string> Loadout;								// Current loadout
@@ -97,8 +99,6 @@ simulated function PostBeginPlay()
 
 simulated function PostNetBeginPlay()
 {
-	local string s;
-	local int i;
 	local Mutator M;
 
 	Super.PostNetBeginPlay();
@@ -118,22 +118,63 @@ simulated function PostNetBeginPlay()
 		
 		if (myController != None && Level.NetMode != NM_DedicatedServer)
 			Loadout = SavedInventory;
-		
-		return;
 	}
-
-	//Send saved inventory to server
-	if (PlayerController(myController) != None && Viewport(PlayerController(myController).Player) != None)
+	
+	// awkward switch because of a timing issue
+	// within PostNetBeginPlay, we have the controller, but we don't have the viewport
+	// the viewport is used by IsLocallyControlled() to know whether we're on the remote side
+	// this leaves us having to retry on listen servers
+	switch (Level.NetMode)
 	{
-		for (i=0; i<SavedInventory.Length; i++)
-		{
-			if (s == "")
-				s = SavedInventory[i];
-			else
-				s = s $ "|" $ SavedInventory[i];
-		}
-		ServerSetInventory(s);
+		case NM_StandAlone:
+		case NM_Client:
+		case NM_ListenServer:
+			SetTimer(0.5, true);
+			break;	
+		case NM_DedicatedServer:
+			break;	
+	}	
+}
+
+//===============================================================
+// Timer
+//
+// Used on Listen servers to handle the hoster's replication
+//===============================================================
+simulated function Timer()
+{
+	if (
+		PlayerController(myController) != None 
+		&& PlayerController(myController).PlayerReplicationInfo != None
+		&& Viewport(PlayerController(myController).Player) != None
+	)
+	{
+		SendSavedInventory();
+		SetTimer(0.0, false);
 	}
+	
+	else if (Level.NetMode == NM_ListenServer)
+	{
+		ListenRetryCount--;
+		
+		if (ListenRetryCount == 0)
+			SetTimer(0.0, false);
+	}
+}
+
+simulated function SendSavedInventory()
+{	
+	local string s;
+	local int i;
+	
+	for (i=0; i < SavedInventory.Length; i++)
+	{
+		if (s == "")
+			s = SavedInventory[i];
+		else
+			s = s $ "|" $ SavedInventory[i];
+	}
+	ServerSetInventory(s);
 }
 
 simulated function Tick(float deltatime)
@@ -494,19 +535,20 @@ simulated function bool WeaponRequirementsOk (Mut_Loadout.LORequirements Require
 
 defaultproperties
 {
-     SavedInventory(0)="BallisticProV55.M50AssaultRifle"
-     SavedInventory(1)="BallisticProV55.M806Pistol"
-     SavedInventory(2)="BallisticProV55.X3Knife"
-     SavedInventory(3)="BallisticProV55.NRP57Grenade"
-	 
-     Loadout(0)="BallisticProV55.M50AssaultRifle"
-     Loadout(1)="BallisticProV55.M806Pistol"
-     Loadout(2)="BallisticProV55.X3Knife"
-     Loadout(3)="BallisticProV55.NRP57Grenade"
-	 
-     ChangeInterval=60.000000
-     MenuName="Gear"
-     MenuHelp="Choose your starting equipment here."
-     bOnlyRelevantToOwner=True
-     bAlwaysTick=True
+	ListenRetryCount=10
+	SavedInventory(0)="BallisticProV55.M50AssaultRifle"
+	SavedInventory(1)="BallisticProV55.M806Pistol"
+	SavedInventory(2)="BallisticProV55.X3Knife"
+	SavedInventory(3)="BallisticProV55.NRP57Grenade"
+
+	Loadout(0)="BallisticProV55.M50AssaultRifle"
+	Loadout(1)="BallisticProV55.M806Pistol"
+	Loadout(2)="BallisticProV55.X3Knife"
+	Loadout(3)="BallisticProV55.NRP57Grenade"
+
+	ChangeInterval=60.000000
+	MenuName="Gear"
+	MenuHelp="Choose your starting equipment here."
+	bOnlyRelevantToOwner=True
+	bAlwaysTick=True
 }

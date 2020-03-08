@@ -7,6 +7,8 @@ class KillstreakLRI extends LinkedReplicationInfo;
 
 const MAX_GROUPS = 2;
 
+var int					ListenRetryCount;
+
 var Mut_Killstreak 		Mut;
 var Controller 			myController;
 
@@ -14,7 +16,7 @@ var Controller 			myController;
 var array<string>		Streak1s;
 var array<string>		Streak2s;
 
-var config array<string> 		Killstreaks[2];
+var array<string> 		Killstreaks[2];
 
 var bool				bWeaponsReady, bPendingLoadoutSave;
 
@@ -31,9 +33,9 @@ var int 		InvKillScore;		// Used for Invasion streaks
 replication
 {
 	reliable if (Role < ROLE_Authority)
-		ClientUpdatedStreakChoices, ClientRequestStreakList;
+		ServerUpdateStreakChoices, ServerGetStreakList;
 	reliable if (Role == ROLE_Authority)
-		ServerRequestedStreakChoices, ServerSentWeapon, ServerSentWeaponEnd, ClientSaveStreakClasses, LastStreaks;
+		ClientGetStreakChoices, ClientProcessWeapon, ClientProcessWeaponEnd, LastStreaks;
 	reliable if (Role == ROLE_Authority && bNetInitial)
 		myController;
 	reliable if (Role == ROLE_Authority)
@@ -67,6 +69,45 @@ simulated function PostNetBeginPlay()
 				break;	
 			}
 		}
+	}
+	
+	// awkward switch because of a timing issue
+	// within PostNetBeginPlay, we have the controller, but we don't have the viewport
+	// the viewport is used by IsLocallyControlled() to know whether we're on the remote side
+	// this leaves us having to retry on listen servers
+	switch (Level.NetMode)
+	{
+		case NM_StandAlone:
+		case NM_Client:
+			ServerGetStreakList();
+			break;
+		case NM_ListenServer:
+			SetTimer(0.5, true);
+			break;	
+		case NM_DedicatedServer:
+			break;	
+	}		
+}
+
+//===============================================================
+// Timer
+//
+// Used on Listen servers to handle the hoster's replication
+//===============================================================
+simulated function Timer()
+{
+	if (PlayerController(myController) != None && Viewport(PlayerController(myController).Player) != None)
+	{
+		ServerGetStreakList();
+		SetTimer(0.0, false);
+	}
+	
+	else if (Level.NetMode == NM_ListenServer)
+	{
+		ListenRetryCount--;
+		
+		if (ListenRetryCount == 0)
+			SetTimer(0.0, false);
 	}
 }
 
@@ -109,7 +150,7 @@ protected simulated function class GetMenuClass()
 	return class'BallisticTab_Killstreaks';
 }
 
-function ClientRequestStreakList()
+function ServerGetStreakList()
 {
 	SendStreaks();
 }
@@ -209,16 +250,16 @@ function SendStreaks()
 	}
 
 	for (i=0;i<Weaps.length;i++)
-		ServerSentWeapon(Weaps[i], Boxes[i]);
+		ClientProcessWeapon(Weaps[i], Boxes[i]);
 		
 	//Last weapon, terminate
-	ServerSentWeaponEnd();
+	ClientProcessWeaponEnd();
 }
 
 //Uses "Boxes" to determine which groups a weapon to be added to
 //Flags are checked per weapon and if fifth flag is up, the weapons
 //have all been sent
-simulated function ServerSentWeapon (string WeaponName, byte Boxes)
+simulated function ClientProcessWeapon (string WeaponName, byte Boxes)
 {
 	if ((Boxes & 1) > 0)
 		Streak1s[Streak1s.length] = WeaponName;
@@ -226,7 +267,7 @@ simulated function ServerSentWeapon (string WeaponName, byte Boxes)
 		Streak2s[Streak2s.length] = WeaponName;
 }
 
-simulated function ServerSentWeaponEnd()
+simulated function ClientProcessWeaponEnd()
 {
 	bWeaponsReady = true;
 	
@@ -235,30 +276,30 @@ simulated function ServerSentWeaponEnd()
 
 simulated function UpdateStreakChoices()
 {
-	ClientUpdatedStreakChoices(default.Killstreaks[0], default.Killstreaks[1]);
+	ServerUpdateStreakChoices(
+		class'KillstreakConfig'.default.Killstreaks[0], 
+		class'KillstreakConfig'.default.Killstreaks[1]
+	);
 }
 
 // Called from server. Tells client to send back loadout info.
 // Called at respawn of player.
-simulated function ServerRequestedStreakChoices()
+simulated function ClientGetStreakChoices()
 {
 	UpdateStreakChoices();
 }
 
-simulated function ClientSaveStreakClasses()
-{
-	bPendingLoadoutSave=True;
-	SetTimer(0.5, false);
-}
-
-function ClientUpdatedStreakChoices(string Streak1, string Streak2)
+function ServerUpdateStreakChoices(string Streak1, string Streak2)
 {
 	local int i;
 	local class<DummyWeapon> Dummy;
 	
+	Log("KillstreakLRI: Updating killstreak choices on server");
+	
 	Killstreaks[0] = Streak1;
 	Killstreaks[1] = Streak2;
 	
+	/*
 	if (ActiveStreak > 0)
 	{
 		for (i=0; i< MAX_GROUPS; i++)
@@ -278,6 +319,7 @@ function ClientUpdatedStreakChoices(string Streak1, string Streak2)
 			}
 		}
 	}
+	*/
 	
 	for (i=0; i < MAX_GROUPS; i++)
 	{
@@ -286,12 +328,11 @@ function ClientUpdatedStreakChoices(string Streak1, string Streak2)
 		if (BallisticPlayer(myController) != None)
 			BallisticPlayer(myController).LastStreaks[i] = LastStreaks[i];
 	}
-	
-	ClientSaveStreakClasses();
 }
 
 defaultproperties
 {
+	ListenRetryCount = 10;
 	MenuName="Killstreaks"
     MenuHelp="Choose your killstreak weapons here."
 	bOnlyRelevantToOwner=True
