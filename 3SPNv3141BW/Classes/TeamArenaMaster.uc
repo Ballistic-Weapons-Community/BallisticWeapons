@@ -215,6 +215,7 @@ function PracticeRoundEnded()
 {
 	local Controller	C;
 	local BallisticPlayerReplicationInfo BWPRI;
+	local KillstreakLRI KLRI;
 	local BallisticPlayerReplicationInfo.HitStat EmptyHitStat;
 	local Misc_PRI MPRI;
 	local int i;
@@ -247,9 +248,16 @@ function PracticeRoundEnded()
 				BWPRI.SGDamage = 0;
 				BWPRI.HeadShots = 0;
 				BWPRI.AveragePercent = 0;
-				BWPRI.RewardLevel = 0;
 			}
-				
+			
+			KLRI = class'Mut_Killstreak'.static.GetKLRI(C.PlayerReplicationInfo);
+			
+			if (KLRI != None)
+			{
+				KLRI.RewardLevel = 0;
+				KLRI.ActiveStreak = 0;
+			}
+			
 			if (Misc_PRI(C.PlayerReplicationInfo) != None)
 			{
 				MPRI = Misc_PRI(C.PlayerReplicationInfo);

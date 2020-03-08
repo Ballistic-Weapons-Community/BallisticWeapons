@@ -46,9 +46,9 @@ function LoadWeapons(BallisticTab_ConflictLoadoutPro Source)
 
 	ConflictMenu = Source;
 
-	for(i=0;i<Source.EPRI.FullInventoryList.Length;i++)
+	for(i=0;i<Source.CLRI.FullInventoryList.Length;i++)
 	{
-		if (Source.EPRI.FullInventoryList[i] != "")
+		if (Source.CLRI.FullInventoryList[i] != "")
 		{
 			if (GetItemInfo( i, WI.ItemName, WI.ItemImage, WI.ItemClassName, WI.ImageCoords ))
 			{
@@ -59,17 +59,17 @@ function LoadWeapons(BallisticTab_ConflictLoadoutPro Source)
 	}
 	lb_Weapons.List.OnChange = InternalOnChange;
 
-	l_StatTimeMy.Caption =		StatTimeCaption		$ ConflictMenu.EPRI.MySkillInfo.ElapsedTime;
+	l_StatTimeMy.Caption =		StatTimeCaption		$ ConflictMenu.CLRI.MySkillInfo.ElapsedTime;
 	l_StatFragsMy.Caption =		StatFragsCaption	$ int(PlayerOwner().PlayerReplicationInfo.Score);
 	if (PlayerOwner().PlayerReplicationInfo.Deaths == 0)
 		l_StatEfficiencyMy.Caption =	StatEffCaption		$ PlayerOwner().PlayerReplicationInfo.Score / 0.1;
 	else
 		l_StatEfficiencyMy.Caption =	StatEffCaption		$ PlayerOwner().PlayerReplicationInfo.Score / PlayerOwner().PlayerReplicationInfo.Deaths;
 
-	l_StatSniperEffMy.Caption =		StatSnprEffCaption	$ ConflictMenu.EPRI.MySkillInfo.SniperEff;
-	l_StatShotgunEffMy.Caption =	StatStgnEffCaption	$ ConflictMenu.EPRI.MySkillInfo.ShotgunEff;
-	l_StatHazardEffMy.Caption =		StatHzrdEffCaption	$ ConflictMenu.EPRI.MySkillInfo.HazardEff;
-	l_StatDamageRateMy.Caption =	StatDmgRtCaption	$ ConflictMenu.EPRI.MySkillInfo.DamageRate;
+	l_StatSniperEffMy.Caption =		StatSnprEffCaption	$ ConflictMenu.CLRI.MySkillInfo.SniperEff;
+	l_StatShotgunEffMy.Caption =	StatStgnEffCaption	$ ConflictMenu.CLRI.MySkillInfo.ShotgunEff;
+	l_StatHazardEffMy.Caption =		StatHzrdEffCaption	$ ConflictMenu.CLRI.MySkillInfo.HazardEff;
+	l_StatDamageRateMy.Caption =	StatDmgRtCaption	$ ConflictMenu.CLRI.MySkillInfo.DamageRate;
 
 	UpdateInfo();
 }
@@ -86,57 +86,57 @@ function UpdateInfo()
 
 	i = int(lb_Weapons.List.GetExtra());
 
-	if (ConflictMenu.EPRI.RequirementsList[i].MatchTime > ConflictMenu.EPRI.MySkillInfo.ElapsedTime)
+	if (ConflictMenu.CLRI.RequirementsList[i].MatchTime > ConflictMenu.CLRI.MySkillInfo.ElapsedTime)
 		l_StatTime.TextColor = Red;
 	else
 		l_StatTime.TextColor = Green;
-	l_StatTime.Caption =		StatTimeCaption		$ ConflictMenu.EPRI.RequirementsList[i].MatchTime;
+	l_StatTime.Caption =		StatTimeCaption		$ ConflictMenu.CLRI.RequirementsList[i].MatchTime;
 
-	if (ConflictMenu.EPRI.RequirementsList[i].Frags > PlayerOwner().PlayerReplicationInfo.Score)
+	if (ConflictMenu.CLRI.RequirementsList[i].Frags > PlayerOwner().PlayerReplicationInfo.Score)
 		l_StatFrags.TextColor = Red;
 	else
 		l_StatFrags.TextColor = Green;
-	l_StatFrags.Caption =		StatFragsCaption	$ ConflictMenu.EPRI.RequirementsList[i].Frags;
+	l_StatFrags.Caption =		StatFragsCaption	$ ConflictMenu.CLRI.RequirementsList[i].Frags;
 
 	if (PlayerOwner().PlayerReplicationInfo.Deaths == 0)
 	{
-		if (ConflictMenu.EPRI.RequirementsList[i].Efficiency > PlayerOwner().PlayerReplicationInfo.Score / 0.1)
+		if (ConflictMenu.CLRI.RequirementsList[i].Efficiency > PlayerOwner().PlayerReplicationInfo.Score / 0.1)
 			l_StatEfficiency.TextColor = Red;
 		else
 			l_StatEfficiency.TextColor = Green;
 	}
 	else
 	{
-		if (ConflictMenu.EPRI.RequirementsList[i].Efficiency > PlayerOwner().PlayerReplicationInfo.Score / PlayerOwner().PlayerReplicationInfo.Deaths)
+		if (ConflictMenu.CLRI.RequirementsList[i].Efficiency > PlayerOwner().PlayerReplicationInfo.Score / PlayerOwner().PlayerReplicationInfo.Deaths)
 			l_StatEfficiency.TextColor = Red;
 		else
 			l_StatEfficiency.TextColor = Green;
 	}
-	if (ConflictMenu.EPRI.RequirementsList[i].SniperEff > ConflictMenu.EPRI.MySkillInfo.SniperEff)
+	if (ConflictMenu.CLRI.RequirementsList[i].SniperEff > ConflictMenu.CLRI.MySkillInfo.SniperEff)
 		l_StatSniperEff.TextColor = Red;
 	else
 		l_StatSniperEff.TextColor = Green;
 
-	if (ConflictMenu.EPRI.RequirementsList[i].ShotgunEff > ConflictMenu.EPRI.MySkillInfo.ShotgunEff)
+	if (ConflictMenu.CLRI.RequirementsList[i].ShotgunEff > ConflictMenu.CLRI.MySkillInfo.ShotgunEff)
 		l_StatShotgunEff.TextColor = Red;
 	else
 		l_StatShotgunEff.TextColor = Green;
 
-	if (ConflictMenu.EPRI.RequirementsList[i].HazardEff > ConflictMenu.EPRI.MySkillInfo.HazardEff)
+	if (ConflictMenu.CLRI.RequirementsList[i].HazardEff > ConflictMenu.CLRI.MySkillInfo.HazardEff)
 		l_StatHazardEff.TextColor = Red;
 	else
 		l_StatHazardEff.TextColor = Green;
 
-	l_StatEfficiency.Caption =		StatEffCaption	$ ConflictMenu.EPRI.RequirementsList[i].Efficiency;
-	l_StatSniperEff.Caption =		StatSnprEffCaption	$ ConflictMenu.EPRI.RequirementsList[i].SniperEff;
-	l_StatShotgunEff.Caption =		StatStgnEffCaption	$ ConflictMenu.EPRI.RequirementsList[i].ShotgunEff;
-	l_StatHazardEff.Caption =		StatHzrdEffCaption	$ ConflictMenu.EPRI.RequirementsList[i].HazardEff;
+	l_StatEfficiency.Caption =		StatEffCaption	$ ConflictMenu.CLRI.RequirementsList[i].Efficiency;
+	l_StatSniperEff.Caption =		StatSnprEffCaption	$ ConflictMenu.CLRI.RequirementsList[i].SniperEff;
+	l_StatShotgunEff.Caption =		StatStgnEffCaption	$ ConflictMenu.CLRI.RequirementsList[i].ShotgunEff;
+	l_StatHazardEff.Caption =		StatHzrdEffCaption	$ ConflictMenu.CLRI.RequirementsList[i].HazardEff;
 
-	if (ConflictMenu.EPRI.RequirementsList[i].DamageRate > ConflictMenu.EPRI.MySkillInfo.DamageRate)
+	if (ConflictMenu.CLRI.RequirementsList[i].DamageRate > ConflictMenu.CLRI.MySkillInfo.DamageRate)
 		l_StatDamageRate.TextColor = Red;
 	else
 		l_StatDamageRate.TextColor = Green;
-	l_StatDamageRate.Caption =		StatDmgRtCaption	$ ConflictMenu.EPRI.RequirementsList[i].DamageRate;
+	l_StatDamageRate.Caption =		StatDmgRtCaption	$ ConflictMenu.CLRI.RequirementsList[i].DamageRate;
 
 	WeaponIcon.Image = WeaponInfo[i].ItemImage;
 	WeaponIcon.X1 = WeaponInfo[i].ImageCoords.X1;
@@ -152,7 +152,7 @@ function bool GetItemInfo(int Index, out string ItemCap, out Material ItemImage,
 	local int i;
 	local string ItemCName;
 
-	ItemCName = ConflictMenu.EPRI.FullInventoryList[Index];
+	ItemCName = ConflictMenu.CLRI.FullInventoryList[Index];
 	if (ItemCName == "")
 		return false;
 	WI = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(ItemCName, i);

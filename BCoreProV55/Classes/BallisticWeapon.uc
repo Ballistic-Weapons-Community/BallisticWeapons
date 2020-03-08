@@ -4519,7 +4519,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 	super.DisplayDebug(Canvas, YL, YPos);
 
     Canvas.SetDrawColor(255,128,0);
-    s = "Ballistic Weapon: ReloadeState: ";
+    s = "Ballistic Weapon: ReloadState: ";
 	Switch( ReloadState )
 	{
 	   	case RS_None: s=s$"None"; break;
@@ -4573,6 +4573,24 @@ static function String GetManual()
 		return S;
 	
 	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Primary Fire"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
+	S $= default.ManualLines[0]$"||";
+	
+	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Alt Fire"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
+	S $= default.ManualLines[1]$"||";
+	
+	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Additional Information"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
+	S $= default.ManualLines[2];
+	return S;
+}
+
+static function String GetShortManual()
+{
+	local String S;
+	
+	if (default.ManualLines.Length < 3)
+		return "No information available.";
+	
+	S = class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Primary Fire"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";
 	S $= default.ManualLines[0]$"||";
 	
 	S $= class'GUIComponent'.static.MakeColorCode(default.HeaderColor)$"Alt Fire"$class'GUIComponent'.static.MakeColorCode(default.TextColor)$"|";

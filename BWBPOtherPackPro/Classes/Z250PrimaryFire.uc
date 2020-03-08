@@ -464,9 +464,9 @@ defaultproperties
      WaterRangeFactor=0.800000
      MaxWallSize=32.000000
      MaxWalls=2
-     Damage=40.000000
-     DamageHead=60.000000
-     DamageLimb=40.000000
+     Damage=44.000000
+     DamageHead=66.000000
+     DamageLimb=44.000000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPOtherPackPro.DTZ250Bullet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTZ250Bullet'

@@ -42,6 +42,7 @@ struct Item
 	var() string	ClassName;
 	var() int		Size;
 	var() string	Ammo;
+	var() int		InventoryGroup;
 	var() bool		bBad;
 };
 var() array<Item> Inventory;
@@ -49,27 +50,24 @@ var() int SpaceUsed;
 
 var() material BoxTex;
 
-var ConflictLoadoutLRI EPRI;
+var ConflictLoadoutLRI CLRI;
 
 var bool bWaitingWeaps, bWaitingSkill;
 
 // Check for PRI update
-function ShowPanel(bool bShow)
+function InitPanel()
 {
-	super.ShowPanel(bShow);
+	super.InitPanel();
 	
-	if (!bShow)
-		return;
-		
 	lb_Weapons.List.OnChange = InternalOnChange;
 	lb_Weapons.List.OnDblClick = InternalOnDblClick;
-	EPRI = ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(PlayerOwner().PlayerReplicationInfo));
-	if (EPRI == None)
-	{
+	
+	CLRI = ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(PlayerOwner().PlayerReplicationInfo));
+	
+	if (CLRI == None)
 		SetTimer(0.05, true);
-		return;
-	}
-	DoInit();
+	else
+		OnLRIAcquired();
 }
 
 //========================================================================
@@ -79,14 +77,14 @@ function ShowPanel(bool bShow)
 //========================================================================
 event Timer()
 {
-	if (EPRI!=None)
+	if (CLRI!=None)
 	{
-		if (bWaitingWeaps && EPRI.bHasList && (EPRI.LoadoutOption != 1 || EPRI.bHasSkillInfo))
+		if (bWaitingWeaps && CLRI.bHasList && (CLRI.LoadoutOption != 1 || CLRI.bHasSkillInfo))
 		{
 			bWaitingWeaps=false;
 			InitWeaponLists();
 		}
-		if (bWaitingSkill && EPRI.bHasSkillInfo)
+		if (bWaitingSkill && CLRI.bHasSkillInfo)
 		{
 			bWaitingSkill=false;
 			DisplaySkills();
@@ -99,19 +97,19 @@ event Timer()
 	else if (PlayerOwner() != None && ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(PlayerOwner().PlayerReplicationInfo)) !=None)
 	{
 		KillTimer();
-		EPRI = ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(PlayerOwner().PlayerReplicationInfo));
-		DoInit();
+		CLRI = ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(PlayerOwner().PlayerReplicationInfo));
+		OnLRIAcquired();
 		return;
 	}
 }
 
-function DoInit()
+function OnLRIAcquired()
 {
-	if (EPRI.LoadoutOption == 1)
+	if (CLRI.LoadoutOption == 1)
 	{
-		EPRI.bHasSkillInfo = false;
-		EPRI.RequestSkillInfo();
-		if (!EPRI.bHasSkillInfo)
+		CLRI.bHasSkillInfo = false;
+		CLRI.RequestSkillInfo();
+		if (!CLRI.bHasSkillInfo)
 		{
 			bWaitingSkill=true;
 			SetTimer(0.1, true);
@@ -133,9 +131,9 @@ function DoInit()
 		BStats.Hide();
 	}
 
-	if (EPRI.bHasList)
+	if (CLRI.bHasList)
 	{
-		if (EPRI.LoadoutOption == 1 && !EPRI.bHasSkillInfo)
+		if (CLRI.LoadoutOption == 1 && !CLRI.bHasSkillInfo)
 		{
 			bWaitingWeaps=true;
 			SetTimer(0.1, true);
@@ -148,25 +146,25 @@ function DoInit()
 	else
 	{
 		bWaitingWeaps=true;
-		EPRI.FullInventoryList.length = 0;
-		EPRI.RequirementsList.length = 0;
-		EPRI.RequestFullList();
+		CLRI.FullInventoryList.length = 0;
+		CLRI.RequirementsList.length = 0;
+		CLRI.RequestFullList();
 		SetTimer(0.1, true);
 	}
 }
 
 simulated function DisplaySkills ()
 {
-	l_StatTime.Caption =		StatTimeCaption		$ EPRI.MySkillInfo.ElapsedTime;
+	l_StatTime.Caption =		StatTimeCaption		$ CLRI.MySkillInfo.ElapsedTime;
 	l_StatFrags.Caption =		StatFragsCaption	$ int(PlayerOwner().PlayerReplicationInfo.Score);
 	if (PlayerOwner().PlayerReplicationInfo.Deaths == 0)
 		l_StatEfficiency.Caption =	StatEffCaption		$ PlayerOwner().PlayerReplicationInfo.Score / 0.1;
 	else
 		l_StatEfficiency.Caption =	StatEffCaption		$ PlayerOwner().PlayerReplicationInfo.Score / PlayerOwner().PlayerReplicationInfo.Deaths;
-	l_StatSniperEff.Caption =	StatSnprEffCaption	$ EPRI.MySkillInfo.SniperEff;
-	l_StatShotgunEff.Caption =	StatStgnEffCaption	$ EPRI.MySkillInfo.ShotgunEff;
-	l_StatHazardEff.Caption =	StatHzrdEffCaption	$ EPRI.MySkillInfo.HazardEff;
-	l_StatDamageRate.Caption =	StatDmgRtCaption	$ EPRI.MySkillInfo.DamageRate;
+	l_StatSniperEff.Caption =	StatSnprEffCaption	$ CLRI.MySkillInfo.SniperEff;
+	l_StatShotgunEff.Caption =	StatStgnEffCaption	$ CLRI.MySkillInfo.ShotgunEff;
+	l_StatHazardEff.Caption =	StatHzrdEffCaption	$ CLRI.MySkillInfo.HazardEff;
+	l_StatDamageRate.Caption =	StatDmgRtCaption	$ CLRI.MySkillInfo.DamageRate;
 }
 
 //======================================================================
@@ -186,7 +184,10 @@ simulated function InitWeaponLists ()
 	local class<ConflictItem> CI;
 	local int i, lastIndex;
 	local BC_WeaponInfoCache.WeaponInfo WI;
+	
+	Log("BallisticTab_ConflictLoadoutPro: InitWeaponLists");
 
+	l_Loading.Caption = "";
 	l_Loading.Hide();
 
 	lb_Weapons.List.Clear();
@@ -195,9 +196,9 @@ simulated function InitWeaponLists ()
 	Inventory.length = 0;
 	SpaceUsed = 0;
 	
-	for (i=0;i< EPRI.SavedInventory.length;i++)
+	for (i = 0; i < CLRI.SavedInventory.length; i++)
 	{
-		a = class<Actor>(DynamicLoadObject(EPRI.SavedInventory[i], class'Class'));
+		a = class<Actor>(DynamicLoadObject(CLRI.SavedInventory[i], class'Class'));
 		
 		if (class<BallisticWeapon>(a) != None)
 		{
@@ -217,12 +218,12 @@ simulated function InitWeaponLists ()
 	//Use cache for the rest.
 	//Weapons here will be loaded explicitly if they're selected in the list, via the Extra string data.
 	// The Full Inventory List is already sorted by inventory group and Conflict item status.
-	for (i=0; i < EPRI.FullInventoryList.length; i++)
+	for (i=0; i < CLRI.FullInventoryList.length; i++)
 	{
-		if (!EPRI.WeaponRequirementsOk(EPRI.RequirementsList[i]))
+		if (!CLRI.WeaponRequirementsOk(CLRI.RequirementsList[i]))
 			continue;
 		
-		if (InStr(EPRI.FullInventoryList[i], "CItem") != -1)
+		if (InStr(CLRI.FullInventoryList[i], "CItem") != -1)
 		{ 
 			if (lastIndex != -1)
 			{
@@ -230,15 +231,15 @@ simulated function InitWeaponLists ()
 				lb_Weapons.List.Add("Misc",,"Mc",true);
 			}
 			
-			CI = class<ConflictItem>(DynamicLoadObject(EPRI.FullInventoryList[i], class'Class'));
+			CI = class<ConflictItem>(DynamicLoadObject(CLRI.FullInventoryList[i], class'Class'));
 			
 			if (CI != None)
-				lb_Weapons.List.Add(CI.default.ItemName, , EPRI.FullInventoryList[i]);
+				lb_Weapons.List.Add(CI.default.ItemName, , CLRI.FullInventoryList[i]);
 		}
 		
 		else 
 		{
-			if (LoadWIFromCache(EPRI.FullInventoryList[i], WI))
+			if (LoadWIFromCache(CLRI.FullInventoryList[i], WI))
 			{
 				if (WI.InventoryGroup != lastIndex)
 				{
@@ -246,7 +247,7 @@ simulated function InitWeaponLists ()
 					lb_Weapons.List.Add(class'BallisticTab_OutfittingPro'.static.GetHeading(lastIndex),,"Weapon Category",true);
 				}
 				
-				lb_Weapons.List.Add(WI.ItemName, , EPRI.FullInventoryList[i]);
+				lb_Weapons.List.Add(WI.ItemName, , CLRI.FullInventoryList[i]);
 			}
 		}
 	}
@@ -273,6 +274,27 @@ function int GetItemSize(class<Weapon> Item)
 	return 5;
 }
 
+function int GetInsertionPoint(int inserting_item_grp)
+{
+	local int i, current_item_group;
+	
+	if (inserting_item_grp == 0)
+		inserting_item_grp = 11;
+	
+	for (i = 0; i < Inventory.Length; ++i)
+	{
+		current_item_group = Inventory[i].InventoryGroup;
+		
+		if (current_item_group == 0)
+			current_item_group = 11;
+			
+		if (inserting_item_grp < current_item_group)
+			break;
+	}
+	
+	return i;
+}
+
 function bool AddInventory(string ClassName, class<actor> InvClass, string FriendlyName)
 {
 	local int i, Size, A;
@@ -281,22 +303,10 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 
 	if (InvClass == None)
 		return false;
+		
 	if (class<ConflictItem>(InvClass) != None)
-	{
-		Size = class<ConflictItem>(InvClass).default.Size/5;
-		if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
-			return false;
-
-		SpaceUsed += Size;
-		i = Inventory.length;
-		Inventory.length = i + 1;
-		Inventory[i].ClassName = string(InvClass);
-		Inventory[i].Size = Size;
-		Inventory[i].Title = FriendlyName;
-		Inventory[i].Icon = class<ConflictItem>(InvClass).default.Icon;
-		Inventory[i].Ammo = class<ConflictItem>(InvClass).default.ItemAmount;
-		return true;
-	}
+		return HandleConflictItem(InvClass, FriendlyName);
+	
 	if (class<Weapon>(InvClass) == None)
 		return false;
 
@@ -308,12 +318,18 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 		return false;
 
 	SpaceUsed += Size;
-	i = Inventory.length;
-	Inventory.length = i + 1;
+	
+	i = GetInsertionPoint(Weap.default.InventoryGroup);
+	
+	Inventory.Insert(i, 1);
+	
 	Inventory[i].ClassName = string(WeaponClass);
 	Inventory[i].Size = Size;
 	Inventory[i].Title = FriendlyName;
+	Inventory[i].InventoryGroup = Weap.default.InventoryGroup;
+	
 	A = WeaponClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
+
 	if (Weap!=None)
 	{
 		if (!Weap.default.bNoMag)
@@ -324,13 +340,38 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	{
 		Inventory[i].Icon = None;
 	}
+	
 	Inventory[i].Ammo = string(A);
+	
 	if (WeaponClass.default.FireModeClass[1].default.AmmoClass != None &&
 		WeaponClass.default.FireModeClass[1].default.AmmoClass != WeaponClass.default.FireModeClass[0].default.AmmoClass &&
 		WeaponClass.default.FireModeClass[1].default.AmmoClass.default.InitialAmount > 0)
 		Inventory[i].Ammo = WeaponClass.default.FireModeClass[1].default.AmmoClass.default.InitialAmount $ " / " $ Inventory[i].Ammo;
-	if (!EPRI.ValidateWeapon(ClassName))
+	
+	if (!CLRI.ValidateWeapon(ClassName))
 		Inventory[i].bBad = true;
+	
+	return true;
+}
+
+function bool HandleConflictItem(class<actor> InvClass, string FriendlyName)
+{
+	local int i, Size;
+	
+	Size = class<ConflictItem>(InvClass).default.Size/5;
+	
+	if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
+		return false;
+
+	SpaceUsed += Size;
+	i = Inventory.length;
+	Inventory.length = i + 1;
+	Inventory[i].ClassName = string(InvClass);
+	Inventory[i].Size = Size;
+	Inventory[i].Title = FriendlyName;
+	Inventory[i].Icon = class<ConflictItem>(InvClass).default.Icon;
+	Inventory[i].Ammo = class<ConflictItem>(InvClass).default.ItemAmount;
+	Inventory[i].InventoryGroup = 12;
 	return true;
 }
 
@@ -348,7 +389,6 @@ function bool InternalOnClick(GUIComponent Sender)
 {
 	local int i;
 	local float X, ItemSize;
-	local string s;
 
 	//Figure out which currently existing item the player clicked on and then remove it.
 	if (Sender==Box_Inventory)
@@ -367,40 +407,13 @@ function bool InternalOnClick(GUIComponent Sender)
 		}
 	}
 	
-	else if (Sender==BStats && EPRI!=None)
+	else if (Sender==BStats && CLRI!=None)
 	{
 		Controller.OpenMenu("BallisticProV55.BallisticConflictInfoMenu");
 		if (BallisticConflictInfoMenu(Controller.ActivePage) != None)
 			BallisticConflictInfoMenu(Controller.ActivePage).LoadWeapons(self);
 	}
-	else if (Sender==BCancel) // CANCEL
-		Controller.CloseMenu();
-	//Set the client PRI's local inventory to ours, send it to the server if we're a client
-	//Then close
-	else if (Sender==BDone) // DONE
-	{
-		EPRI.SavedInventory.length = 0;
-		for (i=0;i<Inventory.length;i++)
-			EPRI.SavedInventory[i] = Inventory[i].ClassName;
-		EPRI.SaveConfig();
-		
-		if (PlayerOwner().level.NetMode == NM_Client)
-		{
-			for (i=0;i<Inventory.length;i++)
-				if (s == "")
-					s = Inventory[i].ClassName;
-				else
-					s = s $ "|" $ Inventory[i].ClassName;
-			EPRI.ServerSetInventory(s);
-		}
-		
-		else
-		{
-			EPRI.Loadout = EPRI.SavedInventory;
-			EPRI.UpdateInventory();
-		}
-		Controller.CloseMenu();
-	}
+
 	return true;
 }
 
@@ -438,7 +451,7 @@ function InternalOnChange(GUIComponent Sender)
 			if (class<BallisticWeapon>(lb_Weapons.List.GetObject()) != None)
 			{
 				Pic_Weapon.Image = class<BallisticWeapon>(lb_Weapons.List.GetObject()).default.BigIconMaterial;
-				lb_Desc.SetContent(class<BallisticWeapon>(lb_Weapons.List.GetObject()).default.Description);
+				lb_Desc.SetContent(class<BallisticWeapon>(lb_Weapons.List.GetObject()).static.GetShortManual());
 				return;
 			}
 			if (class<ConflictItem>(lb_Weapons.List.GetObject()) != None)
@@ -457,11 +470,47 @@ function InternalOnChange(GUIComponent Sender)
 			if (BW != None)
 			{
 				Pic_Weapon.Image = BW.default.BigIconMaterial;
-				lb_Desc.SetContent(BW.default.Description);
+				lb_Desc.SetContent(BW.static.GetShortManual());
 				lb_Weapons.List.SetObjectAtIndex(lb_Weapons.List.Index, BW);
 			}
 		}
 	}	
+}
+
+event Closed( GUIComponent Sender, bool bCancelled )
+{
+	local int i;
+	local string s;
+
+	Super.Closed(Sender, bCancelled);
+	
+	if (bWaitingWeaps || bWaitingSkill)
+		return;
+		
+	CLRI.SavedInventory.length = 0;
+	
+	for (i=0;i<Inventory.length;i++)
+		CLRI.SavedInventory[i] = Inventory[i].ClassName;
+		
+	CLRI.SaveConfig();
+	
+	if (PlayerOwner().Level.NetMode == NM_Client)
+	{
+		for (i=0; i<Inventory.length; i++)
+		{
+			if (s == "")
+				s = Inventory[i].ClassName;
+			else
+				s = s $ "|" $ Inventory[i].ClassName;
+		}
+		CLRI.ServerSetInventory(s);
+	}
+	
+	else
+	{
+		CLRI.Loadout = CLRI.SavedInventory;
+		CLRI.UpdateInventory();
+	}
 }
 
 //=========================================================
@@ -559,7 +608,7 @@ defaultproperties
          IniOption="@Internal"
          Hint="Available items. Double-click to add them to your inventory."
          WinTop=0.070000
-         WinLeft=0.050000
+         WinLeft=0.0150000
          WinWidth=0.400000
          WinHeight=0.580000
          RenderWeight=0.520000
@@ -570,10 +619,9 @@ defaultproperties
      Begin Object Class=GUIImage Name=Box_WeapListImg
          Image=Texture'2K4Menus.NewControls.Display99'
          ImageStyle=ISTY_Stretched
-         WinTop=0.035000
-         WinLeft=0.035000
+         WinTop=0.02000
          WinWidth=0.430000
-         WinHeight=0.650000
+         WinHeight=0.675000
          RenderWeight=0.002000
      End Object
      Box_WeapList=GUIImage'BallisticProV55.BallisticTab_ConflictLoadoutPro.Box_WeapListImg'
@@ -591,11 +639,11 @@ defaultproperties
      Box_Inventory=GUIImage'BallisticProV55.BallisticTab_ConflictLoadoutPro.Box_InventoryImg'
 
      Begin Object Class=GUIImage Name=Pic_WeaponImg
-         Image=Texture'2K4Menus.NewControls.Display99'
+         //Image=Texture'2K4Menus.NewControls.Display99'
          ImageStyle=ISTY_Scaled
          WinTop=0.040000
-         WinLeft=0.570000
-         WinWidth=0.360000
+         WinLeft=0.515000
+         WinWidth=0.40000
          WinHeight=0.226000
          RenderWeight=0.004000
      End Object
@@ -605,9 +653,9 @@ defaultproperties
          Image=Texture'2K4Menus.NewControls.Display99'
          ImageStyle=ISTY_Stretched
          WinTop=0.020000
-         WinLeft=0.550000
-         WinWidth=0.400000
-         WinHeight=0.266000
+         WinLeft=0.450000
+         WinWidth=0.540000
+         WinHeight=0.675000
          RenderWeight=0.002000
      End Object
      Box_WeapIcon=GUIImage'BallisticProV55.BallisticTab_ConflictLoadoutPro.Box_WeapIconImg'
@@ -616,7 +664,7 @@ defaultproperties
          TextAlign=TXTA_Center
          TextColor=(B=255,G=255,R=255)
          WinTop=0.020000
-         WinLeft=0.535000
+         WinLeft=0.51000
          WinWidth=0.430000
          WinHeight=0.050000
      End Object
@@ -629,37 +677,15 @@ defaultproperties
          OnCreateComponent=WeaponDescription.InternalOnCreateComponent
          FontScale=FNS_Small
          WinTop=0.280000
-         WinLeft=0.530000
-         WinWidth=0.450000
-         WinHeight=0.400000
+         WinLeft=0.480000
+         WinWidth=0.500000
+         WinHeight=0.3750000
          RenderWeight=0.510000
          TabOrder=0
          bAcceptsInput=False
          bNeverFocus=True
      End Object
      lb_Desc=GUIScrollTextBox'BallisticProV55.BallisticTab_ConflictLoadoutPro.WeaponDescription'
-
-     Begin Object Class=GUIButton Name=DoneButton
-         Caption="DONE"
-         WinTop=0.920000
-         WinLeft=0.100000
-         WinWidth=0.200000
-         TabOrder=0
-         OnClick=BallisticTab_ConflictLoadoutPro.InternalOnClick
-         OnKeyEvent=DoneButton.InternalOnKeyEvent
-     End Object
-     bDone=GUIButton'BallisticProV55.BallisticTab_ConflictLoadoutPro.DoneButton'
-
-     Begin Object Class=GUIButton Name=CancelButton
-         Caption="CANCEL"
-         WinTop=0.920000
-         WinLeft=0.700000
-         WinWidth=0.200000
-         TabOrder=1
-         OnClick=BallisticTab_ConflictLoadoutPro.InternalOnClick
-         OnKeyEvent=CancelButton.InternalOnKeyEvent
-     End Object
-     bCancel=GUIButton'BallisticProV55.BallisticTab_ConflictLoadoutPro.CancelButton'
 
      Begin Object Class=GUIButton Name=BStatButton
          Caption="Stats"

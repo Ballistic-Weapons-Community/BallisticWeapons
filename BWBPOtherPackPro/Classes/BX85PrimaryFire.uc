@@ -6,9 +6,9 @@ defaultproperties
 	WaterRangeFactor=0.750000
 	MaxWallSize=0.000000
 	MaxWalls=0
-	Damage=80.000000
-	DamageHead=120.000000
-	DamageLimb=80.000000
+	Damage=95.000000
+	DamageHead=140.000000
+	DamageLimb=95.000000
 	WaterRangeAtten=0.600000
 	DamageType=Class'DTBX85Bolt'
 	DamageTypeHead=Class'DTBX85Bolt'

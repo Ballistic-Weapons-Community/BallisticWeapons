@@ -684,6 +684,8 @@ function float SuggestDefenseStyle()	{	return 0.4;	}
 
 defaultproperties
 {
+     WeaponModes(0)=(bUnavailable=True)
+	 CurrentWeaponMode=2
      GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
      GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
      GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'

@@ -77,7 +77,7 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
 
 	if (BW.CurrentWeaponMode == 0 && Other.bProjTarget)
-		BW.TargetedHurtRadius(Damage, 512, class'DTCYLOFirestormExplosion', 200, HitLocation, Pawn(Other));
+		BW.TargetedHurtRadius(Damage, 512, class'DT_TrenchGunExplosive', 200, HitLocation, Pawn(Other));
 }
 
 //======================================================================
@@ -671,7 +671,7 @@ defaultproperties
     CutOffDistance=2048.000000
     CutOffStartRange=1280.000000
 	MaxSpreadFactor=2
-	TraceCount=10
+	TraceCount=11
 	TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 	AltTracerClass=Class'BWBPRecolorsPro.TraceEmitter_Supercharge'
 	AltImpactManager=Class'BWBPRecolorsPro.IM_Supercharge'

@@ -90,25 +90,24 @@ simulated function Tick(float deltatime)
 
 final private simulated function ModifyMenu()
 {
-   local UT2K4PlayerLoginMenu Menu;
-   local GUITabPanel Panel;
-   
+	local UT2K4PlayerLoginMenu Menu;
+	local GUITabPanel Panel;
+
 	if (AIController(myController) != None)
 	{
 		Disable('Tick');
 		return;
 	}
-   
-   Menu = UT2K4PlayerLoginMenu(GUIController(PlayerController(myController).Player.GUIController).FindPersistentMenuByName( UnrealPlayer(myController).LoginMenuClass ));
-   
-   if( Menu != None )
-   {
-      // You can use the panel reference to do the modifications to the tab etc.
-      Panel = Menu.c_Main.InsertTab(0, MenuName, string( class'BallisticTab_Killstreaks' ),, MenuHelp);
-	  Menu.c_Main.ActivateTabByName(MenuName, true);
-	  bMenuModified=True;
-	  Disable('Tick');
-   }
+
+	Menu = UT2K4PlayerLoginMenu(GUIController(PlayerController(myController).Player.GUIController).FindPersistentMenuByName( UnrealPlayer(myController).LoginMenuClass ));
+
+	if( Menu != None )
+	{
+		// Always insert Streaks tab behind the Game tab
+		Panel = Menu.c_Main.InsertTab(Menu.c_Main.TabIndex("Game"), MenuName, string( class'BallisticTab_Killstreaks' ),, MenuHelp);
+		bMenuModified=True;
+		Disable('Tick');
+	}
 }
 
 function ClientRequestStreakList()
