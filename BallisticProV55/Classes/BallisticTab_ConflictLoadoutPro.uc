@@ -274,6 +274,21 @@ function int GetItemSize(class<Weapon> Item)
 	return 5;
 }
 
+function bool GroupPriorityOver(int inserting_group, int target_group)
+{
+	switch(inserting_group)
+	{
+		case 11: // grenade never has priority
+			return false;
+		case 1: // melee is only better than grenade
+			return target_group == 11;
+		case 2: // sidearm is better than melee and grenade
+			return target_group == 11 || target_group == 1;
+		default: // use last inserted weapon as primary
+			return true;
+	}
+}
+
 function int GetInsertionPoint(int inserting_item_grp)
 {
 	local int i, current_item_group;
@@ -288,7 +303,7 @@ function int GetInsertionPoint(int inserting_item_grp)
 		if (current_item_group == 0)
 			current_item_group = 11;
 			
-		if (inserting_item_grp < current_item_group)
+		if (GroupPriorityOver(inserting_item_grp, current_item_group))
 			break;
 	}
 	

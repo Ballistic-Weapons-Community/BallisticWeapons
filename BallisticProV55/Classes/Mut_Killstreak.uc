@@ -7,8 +7,6 @@ class Mut_Killstreak extends Mutator config(BallisticProV55);
 
 const NUM_GROUPS = 2;
 
-var() globalconfig string				Killstreaks[NUM_GROUPS];
-
 var() globalconfig array<string>	Streak1s;	// Killstreak One
 var() globalconfig array<string>	Streak2s;	// Killstreak Two
 
@@ -175,6 +173,8 @@ function GrantKillstreakReward(Pawn Other, KillstreakLRI KLRI)
 	local string S;
 	local byte Index;
 	
+	log("GrantKillstreakReward: 1:"@KLRI.Killstreaks[0]$", 2:"@KLRI.Killstreaks[1]);
+	
 	if (bool(KLRI.RewardLevel & 2))
 	{
 		Index = 1;
@@ -185,9 +185,9 @@ function GrantKillstreakReward(Pawn Other, KillstreakLRI KLRI)
 	}
 	
 	//Handle dummies
-	if (InStr(KLRI.KillstreakRewards[Index], "Dummy") != -1)
+	if (InStr(KLRI.Killstreaks[Index], "Dummy") != -1)
 	{
-		if (KLRI.KillstreakRewards[Index] == "BallisticProV55.TeamLevelUpDummy")
+		if (KLRI.Killstreaks[Index] == "BallisticProV55.TeamLevelUpDummy")
 		{
 			PlayerController(Other.Controller).ClientMessage("Donations are currently disabled due to technical reasons.");
 			return;
@@ -201,7 +201,7 @@ function GrantKillstreakReward(Pawn Other, KillstreakLRI KLRI)
 			return;
 		}
 		
-		Dummy = class<DummyWeapon>(DynamicLoadObject(KLRI.KillstreakRewards[Index], class'Class'));
+		Dummy = class<DummyWeapon>(DynamicLoadObject(KLRI.Killstreaks[Index], class'Class'));
 		if (Dummy != None && Dummy.static.ApplyEffect(Other, Index, true))
 		{
 			Level.Game.Broadcast(self, Other.PlayerReplicationInfo.PlayerName@"received a Level"@KLRI.RewardLevel@"spree reward:"@Dummy.default.ItemName);
@@ -214,7 +214,7 @@ function GrantKillstreakReward(Pawn Other, KillstreakLRI KLRI)
 
 	else
 	{
-		S = SpawnStreakWeapon(KLRI.KillstreakRewards[Index], Other, Index);
+		S = SpawnStreakWeapon(KLRI.Killstreaks[Index], Other, Index);
 		
 		if (S != "")
 		{
@@ -243,7 +243,7 @@ function bool DonateWeapon(byte Index, Pawn Other, KillstreakLRI KLRI)
 	for (i=0; i < CKIs.Length; i++)	
 	{
 		C = CKIs[i].PC;
-		if (CKIs[i].KillstreakRewards[0] == "BallisticProV55.TeamLevelUpDummy" || CKIs[i].KillstreakRewards[1] == "BallisticProV55.TeamLevelUpDummy") //Donation isn't intended to be used as an advantage
+		if (CKIs[i].Killstreaks[0] == "BallisticProV55.TeamLevelUpDummy" || CKIs[i].Killstreaks[1] == "BallisticProV55.TeamLevelUpDummy") //Donation isn't intended to be used as an advantage
 			continue;
 		if (BallisticPawn(C.Pawn) != None //ballisticpawn
 		&& C != Other.Controller  //not us
@@ -306,7 +306,7 @@ function String SpawnStreakWeapon(string WeaponString, Pawn Other, byte GroupSlo
 		{
 			if ( j == GetGroup(GroupSlot).length )
 			{
-				PlayerController(Other.Controller).ClientMessage("The selected Killstreak reward weapon is not available on this server, giving the default weapon.");
+				PlayerController(Other.Controller).ClientMessage("The selected Killstreak reward weapon ("$WeaponString$") is not available on this server, giving the default weapon.");
 				WeaponString = GetGroup(GroupSlot)[0];
 				break;
 			}
@@ -418,9 +418,6 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 
 defaultproperties
 {
-     Killstreaks(0)="BallisticProV55.MRocketLauncher"
-     Killstreaks(1)="BallisticProV55.RX22AFlamer"
-	 
      Streak1s(0)="BallisticProV55.MRocketLauncher"
      Streak2s(0)="BallisticProV55.RX22AFlamer"
 

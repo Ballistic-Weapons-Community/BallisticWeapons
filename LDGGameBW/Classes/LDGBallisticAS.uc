@@ -611,7 +611,7 @@ defaultproperties
      LoadingScreenHints(22)="Killing sprees grant bonus rewards. Press #BB_KILLSTREAK when notified to claim them. Set killstreak rewards in the loadout menu."
      LoadoutHint="Loadout game type: Press #BB_LOADOUT to open the loadout menu."
      ForumLink="Visit our forum on #B#www.ldg-gaming.eu#H#"
-     BWMutators(0)="BallisticProV55.Mut_Outfitting"
+     BWMutators(0)="BallisticProV55.Mut_ConflictLoadout"
      BWMutators(1)="BallisticProV55.Mut_Regeneration"
      BWMutators(2)="BallisticProV55.Mut_Marathon"
      BWMutators(3)="LDGGameBW.MutUTCompBW_LDG"

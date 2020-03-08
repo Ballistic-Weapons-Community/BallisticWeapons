@@ -64,6 +64,7 @@ function RecoverStats(PlayerController ThisPC)
 	local TeamPlayerReplicationInfo TPRI;
 	local ASPlayerReplicationInfo ASPRI;
 	local BallisticPlayerReplicationInfo BWPRI;
+	local KillstreakLRI KLRI;
 	local Misc_PRI MPRI;
 	local UTComp_PRI uPRI;
 	local int i;
@@ -127,7 +128,13 @@ function RecoverStats(PlayerController ThisPC)
 			BWPRI.SGDamage = SGDamage;
 			BWPRI.HeadShots = HeadShots;
 			BWPRI.AveragePercent = AveragePercent;
-			BWPRI.RewardLevel = RewardLevel;
+		}
+		
+		KLRI = class'Mut_Killstreak'.static.GetKLRI(TPRI);
+		
+		if (KLRI != None)
+		{
+			KLRI.RewardLevel = RewardLevel;
 		}
 			
 		if (Misc_PRI(TPRI) != None)
@@ -180,6 +187,7 @@ function SaveStats()
 	local TeamPlayerReplicationInfo TPRI;
 	local ASPlayerReplicationInfo ASPRI;
 	local BallisticPlayerReplicationInfo BWPRI;
+	local KillstreakLRI KLRI;
 	local Misc_PRI MPRI;
 	local UTComp_PRI uPRI;
 	local int i;
@@ -242,7 +250,13 @@ function SaveStats()
 			SGDamage = BWPRI.SGDamage;
 			HeadShots = BWPRI.HeadShots;
 			AveragePercent = BWPRI.AveragePercent;
-			RewardLevel = BWPRI.RewardLevel;
+		}
+		
+		KLRI = class'Mut_Killstreak'.static.GetKLRI(TPRI);
+		
+		if (KLRI != None)
+		{
+			RewardLevel = KLRI.RewardLevel;
 		}
 			
 		if (Misc_PRI(TPRI) != None)

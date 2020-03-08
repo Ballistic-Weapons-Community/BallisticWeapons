@@ -1,12 +1,12 @@
-class LDGBallisticOutfittingKillstreakRules extends GameRules;
+class LDGBallisticKillstreakRules extends GameRules;
 
-var Mut_Outfitting Mut;
+var Mut_Killstreak Mut;
 
 function ScoreKill(Controller Killer, Controller Killed)
 {
 	local int i;
 	local PlayerController PC;
-	local BallisticPlayerReplicationInfo BPRI;
+	local KillstreakLRI KLRI;
 	local UTComp_PRI_BW_FR_LDG uPRI;
 	
 	PC = PlayerController(Killer);
@@ -29,13 +29,13 @@ function ScoreKill(Controller Killer, Controller Killed)
 	
 	if (PlayerController(Killed) != None && BallisticPawn(Killed.Pawn) != None)
 	{
-		BPRI = class'Mut_Ballistic'.static.GetBPRI(Killed.PlayerReplicationInfo);
-		if (BPRI.ActiveStreak > 0)
+		KLRI = class'Mut_Killstreak'.static.GetKLRI(Killed.PlayerReplicationInfo);
+		if (KLRI.ActiveStreak > 0)
 			Mut.ResetActiveStreaks(PlayerController(Killed));
 	}
 	
 	if ( NextGameRules != None )
-	NextGameRules.ScoreKill(Killer,Killed);				
+		NextGameRules.ScoreKill(Killer,Killed);				
 }
 
 defaultproperties

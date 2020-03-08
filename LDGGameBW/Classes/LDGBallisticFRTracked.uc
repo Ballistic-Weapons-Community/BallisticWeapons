@@ -464,7 +464,7 @@ function int ReduceDamage(int Damage, pawn injured, pawn instigatedBy, vector Hi
 defaultproperties
 {
      ThawRateCurve=(Points=((OutVal=5.000000),(InVal=2.000000,OutVal=3.000000),(InVal=3.500000,OutVal=2.400000),(InVal=4.000000,OutVal=2.000000),(InVal=5.000000,OutVal=1.660000),(InVal=6.000000,OutVal=1.330000),(InVal=7.000000,OutVal=1.150000),(InVal=8.000000,OutVal=1.000000),(InVal=10.000000,OutVal=1.000000)))
-     BWMutators(0)="LDGGameBW.LDGMut_Outfitting"
+     BWMutators(0)="LDGGameBW.LDGMut_ConflictLoadout"
      DefaultPlayerClassName="LDGGameBW.Freon_Pawn_Tracked"
      MapListType="LDGGameBW.LDGBallisticFRTrackedMapList"
      GameName="LDG Ballistic Freon (Tracked, DM Maps)"

@@ -124,7 +124,7 @@ function ModifyPlayer( pawn Other )
 	local Inventory Inv;
 	local Weapon W;
 	local class<Inventory> InventoryClass;
-	local ConflictLoadoutLRI EPRI;
+	local ConflictLoadoutLRI CLRI;
 	local string s;
 	local class<ConflictItem> itemclass;
 
@@ -134,40 +134,41 @@ function ModifyPlayer( pawn Other )
 	if (Other.LastStartTime > Level.TimeSeconds + 2)
 		return;
 
-	EPRI = ConflictLoadoutLRI(GetBPRI(Other.PlayerReplicationInfo));
-	if (EPRI == None)
+	CLRI = ConflictLoadoutLRI(GetBPRI(Other.PlayerReplicationInfo));
+	
+	if (CLRI == None)
 		return;
 
 	if (Other.PlayerReplicationInfo.bBot)
 		EquipBot(Other);
 	else
 	{
-		EPRI.Validate(EPRI.Loadout);
-		if (EPRI.Loadout.length == 0)
+		CLRI.Validate(CLRI.Loadout);
+		if (CLRI.Loadout.length == 0)
 		{
- 			s = GetRandomWeapon(EPRI);
+ 			s = GetRandomWeapon(CLRI);
 	 		if (s != "")
- 				EPRI.Loadout[0] = s;
+ 				CLRI.Loadout[0] = s;
 	 	}
 	}
 
-	EPRI.AppliedItems.length = 0;
+	CLRI.AppliedItems.length = 0;
 
 	if ( xPawn(Other) != None )
 	{
-		for (i=0;i<Max(EPRI.Loadout.length,2);i++)
+		for (i=0;i<Max(CLRI.Loadout.length,2);i++)
 		{
-			if (i >= EPRI.Loadout.length)
+			if (i >= CLRI.Loadout.length)
 				xPawn(Other).RequiredEquipment[i] = "";
 			else
 			{
-				InventoryClass = Level.Game.BaseMutator.GetInventoryClass(EPRI.Loadout[i]);
+				InventoryClass = Level.Game.BaseMutator.GetInventoryClass(CLRI.Loadout[i]);
 				if( (InventoryClass!=None))
 				{
 					Size = GetItemSize(InventoryClass);
 					if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 						continue;
-					xPawn(Other).RequiredEquipment[i] = EPRI.Loadout[i];
+					xPawn(Other).RequiredEquipment[i] = CLRI.Loadout[i];
 					Inv = Spawn(InventoryClass);
 					if( Inv != None )
 					{
@@ -185,13 +186,13 @@ function ModifyPlayer( pawn Other )
 				else
 				{
 					xPawn(Other).RequiredEquipment[i] = "";
-					itemclass = class<conflictitem>(DynamicLoadObject(EPRI.Loadout[i],class'Class'));
+					itemclass = class<conflictitem>(DynamicLoadObject(CLRI.Loadout[i],class'Class'));
 					if (itemclass != None)
 					{
 						Size = itemclass.default.Size/5;
 						if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 							continue;
-						EPRI.AppliedItems[EPRI.AppliedItems.length] = ItemClass;
+						CLRI.AppliedItems[CLRI.AppliedItems.length] = ItemClass;
 						if (ItemClass.default.bBonusAmmo)
 						{
 							if (ItemClass.static.AddAmmoBonus(Other, BonusAmmo));
@@ -214,7 +215,7 @@ function ModifyPlayer( pawn Other )
 				break;
 		if (Inv == None)
 		{
-			s = GetRandomWeapon(EPRI);
+			s = GetRandomWeapon(CLRI);
 
 			InventoryClass = Level.Game.BaseMutator.GetInventoryClass(s);
 			if( (InventoryClass!=None))
@@ -245,8 +246,8 @@ function ModifyPlayer( pawn Other )
 				SpawnAmmo(W.default.FireModeClass[1].default.AmmoClass, Other, BonusAmmo);
 		}
 	}
-	for (i=0;i<EPRI.AppliedItems.length;i++)
-		EPRI.AppliedItems[i].static.PostApply(Other);
+	for (i=0;i<CLRI.AppliedItems.length;i++)
+		CLRI.AppliedItems[i].static.PostApply(Other);
 }
 
 //========================================
@@ -352,7 +353,7 @@ function InventoryChanged(ConflictLoadoutLRI PRI)
 function EquipBot(Pawn P)
 {
 	local int i, j, Size, SpaceUsed;
-	local ConflictLoadoutLRI EPRI;
+	local ConflictLoadoutLRI CLRI;
 	local array<string> Potentials;
 	local string ClassName;
 	local class<Weapon> W;
@@ -362,8 +363,8 @@ function EquipBot(Pawn P)
 	local array<float>	BandWidth;
 	local float			BandTotal, BandRand, BandLoc;
 
-	EPRI = ConflictLoadoutLRI(GetBPRI(P.PlayerReplicationInfo));
-	if (EPRI == None)
+	CLRI = ConflictLoadoutLRI(GetBPRI(P.PlayerReplicationInfo));
+	if (CLRI == None)
 		return;
 
 	// Make a list of potential weapons
@@ -376,7 +377,7 @@ function EquipBot(Pawn P)
 		// Only add weapons, not items yet. Make sure bot picks at least one weapon before getting items
 		if (class<Weapon>(DynamicLoadObject(ConflictWeapons[i].ClassName, class'Class')) == None)
 			continue;
-		if (EPRI.WeaponRequirementsOk(FullRequirementsList[i]))
+		if (CLRI.WeaponRequirementsOk(FullRequirementsList[i]))
 		{
 			Potentials[Potentials.length] = ConflictWeapons[i].ClassName;
 			if (LoadoutOption == 1)
@@ -392,7 +393,7 @@ function EquipBot(Pawn P)
 	}
 
 	// Pick us some stuff
-	EPRI.Loadout.length = 0;
+	CLRI.Loadout.length = 0;
 	for (i=0; i < INVENTORY_SIZE_MAX && SpaceUsed < INVENTORY_SIZE_MAX; i++)
 	{
 		if (LoadoutOption == 1)
@@ -425,7 +426,7 @@ function EquipBot(Pawn P)
 
 				if (Size + SpaceUsed > INVENTORY_SIZE_MAX)
 					continue;
-				EPRI.Loadout[EPRI.Loadout.length] = ClassName;
+				CLRI.Loadout[CLRI.Loadout.length] = ClassName;
 				SpaceUsed += Size;
 			}
 			continue;
@@ -450,7 +451,7 @@ function EquipBot(Pawn P)
 
 		if (Size + SpaceUsed > INVENTORY_SIZE_MAX)
 			continue;
-		EPRI.Loadout[EPRI.Loadout.length] = ClassName;
+		CLRI.Loadout[CLRI.Loadout.length] = ClassName;
 		SpaceUsed += Size;
 	}
 }
@@ -494,13 +495,13 @@ static function SpawnAmmo(class<Ammunition> newClass, Pawn P, optional float Mul
 	Ammo.GotoState('');
 }
 
-function string GetRandomWeapon (ConflictLoadoutLRI EPRI)
+function string GetRandomWeapon (ConflictLoadoutLRI CLRI)
 {
 	local int i;
 	local array<string> Potentials;
 
 	for (i=0;i<ConflictWeapons.length;i++)
-		if (EPRI.WeaponRequirementsOk(FullRequirementsList[i]) )
+		if (CLRI.WeaponRequirementsOk(FullRequirementsList[i]) )
 		{
 			if (class<Weapon>(DynamicLoadObject(ConflictWeapons[i].ClassName, class'class')) != None)
 				Potentials[Potentials.length] = ConflictWeapons[i].ClassName;

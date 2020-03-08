@@ -716,8 +716,8 @@ defaultproperties
      PrecachePickups(5)=Class'BWBPRecolorsPro.BulldogPickup'
      PrecachePickups(6)=Class'BWBPRecolorsPro.ChaffPickup'
      PrecachePickups(7)=Class'BWBPOtherPackPro.CX61Pickup'
-     PrecachePickups(8)=Class'BWBPRecolorsPro.CYLOMk1Pickup'
-     PrecachePickups(9)=Class'BWBPRecolorsPro.CYLOMk2Pickup'
+     PrecachePickups(8)=Class'BWBPRecolorsPro.CYLOPickup'
+     PrecachePickups(9)=Class'BWBPRecolorsPro.CYLOFirestormPickup'
      PrecachePickups(10)=Class'BWBPRecolorsPro.CoachGunPickup'
      PrecachePickups(11)=Class'BWBPOtherPackPro.DefibFistsPickup'
      PrecachePickups(12)=Class'BWBPRecolorsPro.DragonsToothPickup'
@@ -794,6 +794,10 @@ defaultproperties
      PrecachePickups(83)=Class'BWBPOtherPackPro.XOXOPickup'
      PrecachePickups(84)=Class'BWBPOtherPackPro.RaygunPickup'
      PrecachePickups(85)=Class'BWBPOtherPackPro.WrenchPickup'
+	 PrecachePickups(86)=Class'BWBPSomeOtherPack.MAG78Pickup'
+	 PrecachePickups(87)=Class'BWBPSomeOtherPack.TrenchGunPickup'
+	 PrecachePickups(88)=Class'BWBPSomeOtherPack.XM20Pickup'
+	 PrecachePickups(89)=Class'BallisticJiffyPack.ARPickup'
      LoadingScreenHints(0)="Can't aim well? Press #BB_SCOPE to switch to scope view or ironsights for a better aim."
      LoadingScreenHints(1)="Press #BB_RELOAD to reload your weapon when not in combat."
      LoadingScreenHints(2)="Press #BB_FIREMODE to cycle through weapon firemodes."
@@ -819,7 +823,7 @@ defaultproperties
      LoadingScreenHints(22)="Killing sprees grant bonus rewards. Press #BB_KILLSTREAK when notified to claim them. Set killstreak rewards in the loadout menu."
      LoadoutHint="Loadout game type: Press #BB_LOADOUT to open the loadout menu."
      ForumLink="Visit our forum on #B#www.ldg-gaming.eu#H#"
-     BWMutators(0)="BallisticProV55.Mut_Outfitting"
+     BWMutators(0)="BallisticProV55.Mut_ConflictLoadout"
      BWMutators(1)="BallisticProV55.Mut_ChargeSprinter"
      BWMutators(2)="LDGGameBW.MutThawProtection"
      BWMutators(3)="LDGGameBW.MutUTCompBW_LDG_FR"

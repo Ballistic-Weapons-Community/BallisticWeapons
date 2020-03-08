@@ -3,8 +3,7 @@
 //
 // Replication channel for killstreak information to the mutator.
 //=============================================================================
-class KillstreakLRI extends LinkedReplicationInfo
-	config(BallisticProV55);
+class KillstreakLRI extends LinkedReplicationInfo;
 
 const MAX_GROUPS = 2;
 
@@ -15,7 +14,7 @@ var Controller 			myController;
 var array<string>		Streak1s;
 var array<string>		Streak2s;
 
-var array<string> 		KillstreakRewards[2];
+var config array<string> 		Killstreaks[2];
 
 var bool				bWeaponsReady, bPendingLoadoutSave;
 
@@ -46,7 +45,7 @@ simulated function PostBeginPlay()
 	Super.PostBeginPlay();
 	
 	if (Role == ROLE_Authority)
-		myController = Controller(Owner);
+		myController = Controller(Owner);		
 }
 
 simulated function PostNetBeginPlay()
@@ -56,7 +55,7 @@ simulated function PostNetBeginPlay()
 	Super.PostNetBeginPlay();
 	
 	bMenuAdd = True;
-
+	
 	if (Role == ROLE_Authority)
 	{
 		//Find the mutator
@@ -68,12 +67,7 @@ simulated function PostNetBeginPlay()
 				break;	
 			}
 		}
-		
-		return;
 	}
-
-	if (PlayerController(myController) != None && Viewport(PlayerController(myController).Player) != None)
-		ClientUpdatedStreakChoices(KillstreakRewards[0], KillstreakRewards[1]);
 }
 
 simulated function Tick(float deltatime)
@@ -108,6 +102,11 @@ final private simulated function ModifyMenu()
 		bMenuModified=True;
 		Disable('Tick');
 	}
+}
+
+protected simulated function class GetMenuClass()
+{
+	return class'BallisticTab_Killstreaks';
 }
 
 function ClientRequestStreakList()
@@ -230,16 +229,20 @@ simulated function ServerSentWeapon (string WeaponName, byte Boxes)
 simulated function ServerSentWeaponEnd()
 {
 	bWeaponsReady = true;
+	
+	UpdateStreakChoices();
+}
+
+simulated function UpdateStreakChoices()
+{
+	ClientUpdatedStreakChoices(default.Killstreaks[0], default.Killstreaks[1]);
 }
 
 // Called from server. Tells client to send back loadout info.
 // Called at respawn of player.
 simulated function ServerRequestedStreakChoices()
 {
-	ClientUpdatedStreakChoices(
-	class'Mut_Killstreak'.default.Killstreaks[0],
-	class'Mut_Killstreak'.default.Killstreaks[1]
-	);
+	UpdateStreakChoices();
 }
 
 simulated function ClientSaveStreakClasses()
@@ -248,15 +251,13 @@ simulated function ClientSaveStreakClasses()
 	SetTimer(0.5, false);
 }
 
-// Loadout info sent back from client after it was requested by server.
-// Outfit the client with the standard weapons.
 function ClientUpdatedStreakChoices(string Streak1, string Streak2)
 {
 	local int i;
 	local class<DummyWeapon> Dummy;
 	
-	KillstreakRewards[0] = Streak1;
-	KillstreakRewards[1] = Streak2;
+	Killstreaks[0] = Streak1;
+	Killstreaks[1] = Streak2;
 	
 	if (ActiveStreak > 0)
 	{
@@ -265,22 +266,22 @@ function ClientUpdatedStreakChoices(string Streak1, string Streak2)
 			if (bool(ActiveStreak & (2 ** i)))
 			{
 				//Handle dummies
-				if (Right(GetItemName(KillstreakRewards[i]), 5) ~= "Dummy")
+				if (Right(GetItemName(Killstreaks[i]), 5) ~= "Dummy")
 				{
-					Dummy = class<DummyWeapon>(DynamicLoadObject(KillstreakRewards[i], class'Class'));
+					Dummy = class<DummyWeapon>(DynamicLoadObject(Killstreaks[i], class'Class'));
 					if (Dummy != None)
 						Dummy.static.ApplyEffect(myController.Pawn, i);
 				}
 
-				else if (Right(KillstreakRewards[i], 5) != "Dummy")
-					Mut.SpawnStreakWeapon(KillstreakRewards[i], myController.Pawn, i+5);
+				else if (Right(Killstreaks[i], 5) != "Dummy")
+					Mut.SpawnStreakWeapon(Killstreaks[i], myController.Pawn, i+5);
 			}
 		}
 	}
 	
 	for (i=0; i < MAX_GROUPS; i++)
 	{
-		LastStreaks[i] = class<Weapon>(DynamicLoadObject(KillstreakRewards[i], Class'Class', True));
+		LastStreaks[i] = class<Weapon>(DynamicLoadObject(Killstreaks[i], Class'Class', True));
 
 		if (BallisticPlayer(myController) != None)
 			BallisticPlayer(myController).LastStreaks[i] = LastStreaks[i];

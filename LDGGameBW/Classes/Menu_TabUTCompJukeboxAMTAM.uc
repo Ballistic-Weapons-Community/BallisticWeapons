@@ -107,6 +107,7 @@ function bool SetFileManager()
 
 function RefreshMusicList()
 {
+/*
 	local int i, c, curr, pos;
 	local array<string> MusicDirFiles;
 	local string MusicName, MusicDir, MySong;
@@ -148,6 +149,7 @@ function RefreshMusicList()
 		co_MusicComboBox.SetIndex(curr);
 		
 	bRefreshing = false;
+	*/
 }
 
 function InternalOnChange(GUIComponent C)

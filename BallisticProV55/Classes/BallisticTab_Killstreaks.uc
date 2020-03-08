@@ -239,19 +239,22 @@ function SaveStreaks()
 		
 	if (Item_Streak1.Items.length > Item_Streak1.Index)
 	{
+		Log("BallisticTab_Killstreaks: Updating KillstreakLRI: default for 0 is now "@SavedStreaks[cb_Presets.GetIndex()].Weapons[0]);
 		SavedStreaks[cb_Presets.GetIndex()].Weapons[0] = Item_Streak1.Items[Item_Streak1.Index].Text;
-		class'Mut_Killstreak'.default.Killstreaks[0] = SavedStreaks[cb_Presets.GetIndex()].Weapons[0];
+		class'KillstreakLRI'.default.Killstreaks[0] = SavedStreaks[cb_Presets.GetIndex()].Weapons[0];
 	}
 	if (Item_Streak2.Items.length > Item_Streak2.Index)
 	{
 		SavedStreaks[cb_Presets.GetIndex()].Weapons[1] = Item_Streak2.Items[Item_Streak2.Index].Text;
-		class'Mut_Killstreak'.default.Killstreaks[1] = SavedStreaks[cb_Presets.GetIndex()].Weapons[1];
+		class'KillstreakLRI'.default.Killstreaks[1] = SavedStreaks[cb_Presets.GetIndex()].Weapons[1];
 	}
 
 	CurrentIndex=cb_Presets.GetIndex();
 	SaveConfig();
 	
-	class'Mut_Killstreak'.static.StaticSaveConfig();
+	class'KillstreakLRI'.static.StaticSaveConfig();
+	
+	KLRI.UpdateStreakChoices();
 }
 
 function InternalOnChange(GUIComponent Sender)
