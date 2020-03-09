@@ -9,7 +9,7 @@
 //=============================================================================
 class A73PrimaryFire extends BallisticProProjectileFire;
 
-var float HeatPerShot;
+var float HeatPerShot, HeatDeclineDelay;
 
 simulated function bool AllowFire()
 {
@@ -32,7 +32,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 function PlayFiring()
 {
 	Super.PlayFiring();
-	A73SkrithRifle(BW).AddHeat(HeatPerShot);
+	A73SkrithRifle(BW).AddHeat(HeatPerShot, HeatDeclineDelay);
 	//Weapon.SoundPitch = Min(150, Weapon.SoundPitch + 8);
 }
 
@@ -41,7 +41,7 @@ function DoFireEffect()
 {
 	Super.DoFireEffect();
 	if (Level.NetMode == NM_DedicatedServer)
-		A73SkrithRifle(BW).AddHeat(HeatPerShot);
+		A73SkrithRifle(BW).AddHeat(HeatPerShot, HeatDeclineDelay);
 }
 
 
@@ -67,6 +67,7 @@ static function FireModeStats GetStats()
 defaultproperties
 {
 	HeatPerShot=0.750000
+	HeatDeclineDelay=0.2
 	SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
 	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
 	AimedFireAnim="SightFire"

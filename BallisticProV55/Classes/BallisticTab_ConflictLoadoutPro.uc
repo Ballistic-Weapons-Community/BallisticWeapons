@@ -196,9 +196,9 @@ simulated function InitWeaponLists ()
 	Inventory.length = 0;
 	SpaceUsed = 0;
 	
-	for (i = 0; i < CLRI.SavedInventory.length; i++)
+	for (i = 0; i < class'ConflictLoadoutConfig'.default.SavedInventory.length; i++)
 	{
-		a = class<Actor>(DynamicLoadObject(CLRI.SavedInventory[i], class'Class'));
+		a = class<Actor>(DynamicLoadObject(class'ConflictLoadoutConfig'.default.SavedInventory[i], class'Class'));
 		
 		if (class<BallisticWeapon>(a) != None)
 		{
@@ -494,36 +494,24 @@ function InternalOnChange(GUIComponent Sender)
 
 event Closed( GUIComponent Sender, bool bCancelled )
 {
-	local int i;
-	local string s;
-
 	Super.Closed(Sender, bCancelled);
 	
+	UpdateInventory();
+}
+
+function UpdateInventory()
+{
 	if (bWaitingWeaps || bWaitingSkill)
 		return;
-		
-	CLRI.SavedInventory.length = 0;
-	
-	for (i=0;i<Inventory.length;i++)
-		CLRI.SavedInventory[i] = Inventory[i].ClassName;
-		
-	CLRI.SaveConfig();
-	
+
+	class'ConflictLoadoutConfig'.static.UpdateSavedInventory(Inventory);
+			
 	if (PlayerOwner().Level.NetMode == NM_Client)
-	{
-		for (i=0; i<Inventory.length; i++)
-		{
-			if (s == "")
-				s = Inventory[i].ClassName;
-			else
-				s = s $ "|" $ Inventory[i].ClassName;
-		}
-		CLRI.ServerSetInventory(s);
-	}
-	
+		CLRI.ServerSetInventory(class'ConflictLoadoutConfig'.static.BuildSavedInventoryString());
+
 	else
 	{
-		CLRI.Loadout = CLRI.SavedInventory;
+		CLRI.Loadout = class'ConflictLoadoutConfig'.default.SavedInventory;
 		CLRI.UpdateInventory();
 	}
 }

@@ -292,35 +292,12 @@ simulated function ClientGetStreakChoices()
 function ServerUpdateStreakChoices(string Streak1, string Streak2)
 {
 	local int i;
-	local class<DummyWeapon> Dummy;
 	
 	Log("KillstreakLRI: Updating killstreak choices on server");
 	
 	Killstreaks[0] = Streak1;
 	Killstreaks[1] = Streak2;
-	
-	/*
-	if (ActiveStreak > 0)
-	{
-		for (i=0; i< MAX_GROUPS; i++)
-		{
-			if (bool(ActiveStreak & (2 ** i)))
-			{
-				//Handle dummies
-				if (Right(GetItemName(Killstreaks[i]), 5) ~= "Dummy")
-				{
-					Dummy = class<DummyWeapon>(DynamicLoadObject(Killstreaks[i], class'Class'));
-					if (Dummy != None)
-						Dummy.static.ApplyEffect(myController.Pawn, i);
-				}
-
-				else if (Right(Killstreaks[i], 5) != "Dummy")
-					Mut.SpawnStreakWeapon(Killstreaks[i], myController.Pawn, i+5);
-			}
-		}
-	}
-	*/
-	
+		
 	for (i=0; i < MAX_GROUPS; i++)
 	{
 		LastStreaks[i] = class<Weapon>(DynamicLoadObject(Killstreaks[i], Class'Class', True));

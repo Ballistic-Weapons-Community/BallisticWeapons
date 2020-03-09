@@ -10,7 +10,7 @@
 class A73SkrithRifle extends BallisticWeapon;
 
 var float			HeatLevel;					// Current Heat level, duh...
-var float 			HeatDeclineDelay;		
+var float 			HeatDeclineTime;			// Time until heat can decline
 var() Sound		OverheatSound;			// Sound to play when it overheats
 var Actor GlowFX, HeatFX;
 
@@ -38,10 +38,11 @@ simulated function float ChargeBar()
 	return HeatLevel / 12;
 }
 
-simulated function AddHeat(float Amount)
+simulated function AddHeat(float Amount, float DeclineTime)
 {
 	HeatLevel += Amount;
 	SoundPitch = 56 + HeatLevel * 9;
+	HeatDeclineTime = FMax(Level.TimeSeconds + DeclineTime, HeatDeclineTime);
 	
 	if (HeatLevel >= 11.75)
 	{
@@ -58,7 +59,7 @@ simulated function ClientSetHeat(float NewHeat)
 
 simulated event Tick (float DT)
 {
-	if (HeatLevel > 0 && Level.TimeSeconds > LastFireTime + HeatDeclineDelay)
+	if (HeatLevel > 0 && Level.TimeSeconds > HeatDeclineTime)
 	{
 		Heatlevel = FMax(HeatLevel - 10 * DT, 0);
 		SoundPitch = 56 + HeatLevel * 9;
@@ -296,7 +297,6 @@ function bool CanHeal(Actor Other)
 
 defaultproperties
 {
-     HeatDeclineDelay=0.200000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      UsedAmbientSound=Sound'BallisticSounds2.A73.A73Hum1'
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_A73'
@@ -328,7 +328,6 @@ defaultproperties
      SightDisplayFOV=60.000000
      SightAimFactor=0.300000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
-     JumpOffSet=(Pitch=-3000,Yaw=3000)
      AimAdjustTime=0.600000
      AimSpread=16
      AimDamageThreshold=75.000000

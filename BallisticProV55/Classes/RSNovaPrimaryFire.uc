@@ -47,18 +47,20 @@ simulated event PostBeginPlay()
 	NovaStaff = RSNovaStaff(Weapon);
 }
 
-//Staves deal backlash damage to hip spammer scum (Slow Bolt / Rapid Fire)
-function DoFireEffect()
+simulated function vector GetFireSpread()
 {
-	Super.DoFireEffect();
-	
-	/*
-	if (!BW.bScopeView)
+	local float fX;
+    local Rotator R;
+
+	if (BW.bScopeView || (BW.CurrentWeaponMode != 0 && BW.CurrentWeaponMode != 4))
+		return super.GetFireSpread();
+	else
 	{
-		Instigator.PlaySound(Sound'BWBP4-Sounds.Dark-ImmolateIgnite',,3.7,,32);
-		class'BallisticDamageType'.static.GenericHurt (Instigator, ProjectileClass.default.Damage * ((10 - RSNovaStaff(BW).SoulPower) / 40), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 3000 + vect(0,0,1000), class'DT_RSNovaBacklash');
+		fX = frand();
+		R.Yaw =  1024 * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+		R.Pitch = 1024 * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+		return Vector(R);
 	}
-	*/
 }
 
 // ModeDoFire from WeaponFire.uc, but with a few changes

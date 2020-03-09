@@ -14,7 +14,9 @@
 // edited for mutator support by Azarael
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class ConflictLoadoutLRI extends BallisticPlayerReplicationInfo DependsOn(Mut_Loadout) config(BallisticProV55);
+class ConflictLoadoutLRI extends BallisticPlayerReplicationInfo 
+	DependsOn(Mut_Loadout)
+	DependsOn(ConflictLoadoutConfig);
 /*
 	Game:	ServerFullList
 	PRI:	ClientInv
@@ -24,7 +26,6 @@ class ConflictLoadoutLRI extends BallisticPlayerReplicationInfo DependsOn(Mut_Lo
 var int					ListenRetryCount;
 
 var Mut_ConflictLoadout LoadoutMut;					// The mutator itself
-var config array<string> SavedInventory;			// old inv saved to config
 var array<string> Loadout;								// Current loadout
 var array<string> FullInventoryList;					// List of all weapons available
 var array<Mut_Loadout.LORequirements> RequirementsList;	// Requirements for the weapons. order and length must match 'FullInventoryList'
@@ -117,7 +118,7 @@ simulated function PostNetBeginPlay()
 		}
 		
 		if (myController != None && Level.NetMode != NM_DedicatedServer)
-			Loadout = SavedInventory;
+			Loadout = class'ConflictLoadoutConfig'.default.SavedInventory;
 	}
 	
 	// awkward switch because of a timing issue
@@ -164,17 +165,7 @@ simulated function Timer()
 
 simulated function SendSavedInventory()
 {	
-	local string s;
-	local int i;
-	
-	for (i=0; i < SavedInventory.Length; i++)
-	{
-		if (s == "")
-			s = SavedInventory[i];
-		else
-			s = s $ "|" $ SavedInventory[i];
-	}
-	ServerSetInventory(s);
+	ServerSetInventory(class'ConflictLoadoutConfig'.static.BuildSavedInventoryString());
 }
 
 simulated function Tick(float deltatime)
@@ -403,13 +394,6 @@ function UpdateInventory()
  		if (s != "")
  			Loadout[0] = s;
  	}
-
-	//Update immediately if allowed
-	if (Level.TimeSeconds > LastLoadoutTime + ChangeInterval)
-	{
-		LoadoutMut.InventoryChanged(self);
-		LastLoadoutTime = Level.TimeSeconds;
-	}
 }
 
 //===================================================
@@ -418,9 +402,9 @@ function UpdateInventory()
 simulated function Validate(out array<string> ClassNames)
 {
 	local int i;
-	for (i=0;i<ClassNames.length;i++)
+	for (i = 0; i < ClassNames.length; i++)
 	{
-		if (!ValidateWeapon(Classnames[i]))
+		if (!ValidateWeapon(ClassNames[i]))
 		{
 			ClassNames.remove(i,1);
 			i--;
@@ -536,10 +520,6 @@ simulated function bool WeaponRequirementsOk (Mut_Loadout.LORequirements Require
 defaultproperties
 {
 	ListenRetryCount=10
-	SavedInventory(0)="BallisticProV55.M50AssaultRifle"
-	SavedInventory(1)="BallisticProV55.M806Pistol"
-	SavedInventory(2)="BallisticProV55.X3Knife"
-	SavedInventory(3)="BallisticProV55.NRP57Grenade"
 
 	Loadout(0)="BallisticProV55.M50AssaultRifle"
 	Loadout(1)="BallisticProV55.M806Pistol"

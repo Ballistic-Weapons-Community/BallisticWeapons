@@ -163,7 +163,8 @@ function ModifyPlayer( pawn Other )
 			else
 			{
 				InventoryClass = Level.Game.BaseMutator.GetInventoryClass(CLRI.Loadout[i]);
-				if( (InventoryClass!=None))
+
+				if(InventoryClass != None)
 				{
 					Size = GetItemSize(InventoryClass);
 					if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
@@ -183,6 +184,7 @@ function ModifyPlayer( pawn Other )
 						SpaceUsed += Size;
 					}
 				}
+
 				else
 				{
 					xPawn(Other).RequiredEquipment[i] = "";
@@ -248,106 +250,6 @@ function ModifyPlayer( pawn Other )
 	}
 	for (i=0;i<CLRI.AppliedItems.length;i++)
 		CLRI.AppliedItems[i].static.PostApply(Other);
-}
-
-//========================================
-// InventoryChanged
-// Called when the player updates their inventory.
-//========================================
-function InventoryChanged(ConflictLoadoutLRI PRI)
-{
-	local Pawn P;
-	local array<string> NewList;
-	local int i, SpaceUsed, Size;
-	local float BonusAmmo;
-	local Actor Inv, OldInv;
-	local Weapon W;
-	local class<weapon> WeapClass;
-	local class<conflictitem> ItemClass;
-	local class<actor> InvClass;
-
-	if (PRI == None || Controller(PRI.Owner) == None || Controller(PRI.Owner).Pawn == None)
-		return;
-	//Direct support for Ballistic Conflict
-	if (Game_BWConflict(Level.Game) != None)
-		if(Level.Game.IsInState('PendingRound') && (!Game_BWConflict(Level.Game).IsNearStartSpot(Controller(PRI.Owner).PlayerReplicationInfo) || Game_BWConflict(Level.Game).RoundTime > 30))
-			return;
-
-	P = Controller(PRI.Owner).Pawn;
-	NewList = PRI.Loadout;
-	Inv = P.Inventory;
-	OldInv = P;
-	while (Inv != None)
-	{
-		if (Weapon(Inv) != None || Ammunition(Inv) != None || PowerUps(Inv) != None)
-		{
-			Inv.Destroy();
-			Inv = OldInv;
-		}
-		else
-			OldInv = Inv;
-		Inv = Inv.Inventory;
-	}
-
-	for (i=0;i<PRI.AppliedItems.length;i++)
-		PRI.AppliedItems[i].static.ResetPlayer(P);
-	PRI.AppliedItems.length = 0;
-
-	for (i=0;i<NewList.length;i++)
-	{
-		invclass = class<actor>(DynamicLoadObject(NewList[i],class'Class'));
-		if (invClass == None)
-			continue;
-		WeapClass = class<weapon>(invclass);
-		if (WeapClass != None)
-		{
-			Size = GetItemSize(WeapClass);
-			if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
-				continue;
-			W = P.Spawn(WeapClass,,,P.Location);
-			if( W != None )
-			{
-				W.GiveTo(P);
-				if (P.PendingWeapon == None && P.Weapon == None)
-				{
-					P.PendingWeapon = W;
-					P.ChangedWeapon();
-				}
-				SpaceUsed += Size;
-			}
-		}
-		else
-		{
-			itemclass = class<conflictitem>(invclass);
-			if (itemclass != None)
-			{
-				Size = itemclass.default.Size/5;
-				if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
-					continue;
-				PRI.AppliedItems[PRI.AppliedItems.length] = ItemClass;
-				if (ItemClass.default.bBonusAmmo)
-				{
-					if (ItemClass.static.AddAmmoBonus(P, BonusAmmo));
-						SpaceUsed += Size;
-				}
-				else if (ItemClass.static.Applyitem(P))
-					SpaceUsed += Size;
-			}
-		}
-	}
-
-	for (Inv=P.Inventory;Inv!=None;Inv=Inv.Inventory)
-	{
-		W = Weapon(Inv);
-		if (W != None)
-		{
-			SpawnAmmo(W.default.FireModeClass[0].default.AmmoClass, P, 1 + BonusAmmo);
-			if (W.default.FireModeClass[0].default.AmmoClass != W.default.FireModeClass[1].default.AmmoClass)
-				SpawnAmmo(W.default.FireModeClass[1].default.AmmoClass, P, 1 + BonusAmmo);
-		}
-	}
-	for (i=0;i<PRI.AppliedItems.length;i++)
-		PRI.AppliedItems[i].static.PostApply(P);
 }
 
 function EquipBot(Pawn P)
@@ -555,8 +457,11 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	
 	else if (xPawn(Other) != None)
 	{
-		xPawn(Other).RequiredEquipment[0] = "";
-		xPawn(Other).RequiredEquipment[1] = "";
+		if (xPawn(Other).RequiredEquipment[0] == "XWeapons.ShieldGun")
+		{
+			xPawn(Other).RequiredEquipment[0] = "";
+			xPawn(Other).RequiredEquipment[1] = "";
+		}	
 		return true;
 	}
 

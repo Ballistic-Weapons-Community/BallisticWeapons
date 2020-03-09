@@ -3,8 +3,4 @@ class KillstreakConfig extends Object
 
 var config array<string> 		Killstreaks[2];
 
-defaultproperties
-{
-
-
-}
+defaultproperties {}

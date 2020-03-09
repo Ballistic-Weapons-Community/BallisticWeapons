@@ -9,7 +9,7 @@
 //=============================================================================
 class A73SecondaryFire extends BallisticProProjectileFire;
 
-var float HeatPerShot;
+var float HeatPerShot, HeatDeclineDelay;
 
 simulated function bool AllowFire()
 {
@@ -28,8 +28,8 @@ simulated function vector GetFireSpread()
 	else
 	{
 		fX = frand();
-		R.Yaw =  768 * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-		R.Pitch = 768 * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+		R.Yaw =  1024 * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+		R.Pitch = 1024 * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 		return Vector(R);
 	}
 }
@@ -37,7 +37,7 @@ simulated function vector GetFireSpread()
 function PlayFiring()
 {
 	Super.PlayFiring();
-	A73SkrithRifle(BW).AddHeat(HeatPerShot);
+	A73SkrithRifle(BW).AddHeat(HeatPerShot, HeatDeclineDelay);
 	//Weapon.SoundPitch = Min(150, Weapon.SoundPitch + 8);
 }
 
@@ -46,7 +46,7 @@ function DoFireEffect()
 {
 	Super.DoFireEffect();
 	if (Level.NetMode == NM_DedicatedServer)
-		A73SkrithRifle(BW).AddHeat(HeatPerShot);
+		A73SkrithRifle(BW).AddHeat(HeatPerShot, HeatDeclineDelay);
 }
 
 //Accessor for stats
@@ -70,7 +70,8 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
-     HeatPerShot=7.000000
+	 HeatPerShot=4.000000
+	 HeatDeclineDelay=0.8
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
      AimedFireAnim="Fire"

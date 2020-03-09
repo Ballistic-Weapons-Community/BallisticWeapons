@@ -151,6 +151,105 @@ function ResetActiveStreaks(PlayerController C)
 	}
 }
 
+	
+//=================================================
+// ModifyPlayer
+// Outfits the player on spawn
+//=================================================
+function ModifyPlayer( pawn Other )
+{
+	local KillstreakLRI KLRI;
+	local int i, j;
+	local class<Inventory> InventoryClass;
+	local Inventory Inv;
+	local class<DummyWeapon> Dummy;
+	local xPawn Pawn;
+
+	Super.ModifyPlayer(Other);
+	
+	//ModifyPlayer isn't always called on spawn
+	if (Other.LastStartTime > Level.TimeSeconds + 2)
+		return;
+
+	KLRI = GetKLRI(Other.PlayerReplicationInfo);
+	
+	if (KLRI == None)
+		return;
+
+	if (Other.PlayerReplicationInfo.bBot || xPawn(Other) == None)
+		return;
+
+	Pawn = xPawn(Other);
+
+	log("Mut_Killstreak: ModifyPlayer: Pre streak check");
+	
+	if (KLRI.ActiveStreak > 0)
+	{
+		for (i=0; i < NUM_GROUPS; i++)
+		{
+			if (bool(KLRI.ActiveStreak & (2 ** i)))
+			{
+				log("Mut_Killstreak: ModifyPlayer: Got killstreak at "$i);
+
+				//Handle dummies
+				if (Right(GetItemName(KLRI.Killstreaks[i]), 5) ~= "Dummy")
+				{
+					Dummy = class<DummyWeapon>(DynamicLoadObject(KLRI.Killstreaks[i], class'Class'));
+					if (Dummy != None)
+						Dummy.static.ApplyEffect(Pawn, i);
+				}
+
+				else if (Right(KLRI.Killstreaks[i], 5) != "Dummy")
+				{
+					//Check validity.
+					for (j=0; j <= GetGroup(i).length; j++)
+					{
+						if ( j == GetGroup(i).length )
+						{
+							PlayerController(Pawn.Controller).ClientMessage("The selected Killstreak reward weapon ("$KLRI.Killstreaks[i]$") is not available on this server, giving the default weapon.");
+							KLRI.Killstreaks[i] = GetGroup(i)[0];
+							break;
+						}
+						
+						if (GetGroup(i)[j] ~= KLRI.Killstreaks[i])
+							break;
+					}
+					
+					/*
+					for (j = 0; j < ArrayCount(Pawn.RequiredEquipment); ++j)
+					{
+						if (Pawn.RequiredEquipment[j] == "")
+						{
+							Pawn.RequiredEquipment[j] = KLRI.Killstreaks[i];
+							log("Mut_Killstreak: ModifyPlayer: Added "$KLRI.Killstreaks[i]$" as required equipment");
+							break;
+						}
+					}
+					*/
+
+					InventoryClass = Level.Game.BaseMutator.GetInventoryClass(KLRI.Killstreaks[i]);
+					Inv = Spawn(InventoryClass);
+
+					if( Inv != None )
+					{
+						Inv.GiveTo(Pawn);
+						if (Weapon(Inv) != None && Pawn.PendingWeapon == None && Pawn.Weapon == None)
+						{
+							Pawn.PendingWeapon = Weapon(Inv);
+							Pawn.ChangedWeapon();
+						}
+						if (Inv != None)
+							Inv.PickupFunction(Pawn);
+					}
+		
+					if (BallisticPawn(Pawn) != None)
+						BallisticPawn(Pawn).bActiveKillstreak = True;
+				}
+			}
+		}
+	}
+}
+
 // Use the console command "Mutate Loadout" to open the loadout menu
 function Mutate(string MutateString, PlayerController Sender)
 {
@@ -227,7 +326,6 @@ function GrantKillstreakReward(Pawn Other, KillstreakLRI KLRI)
 	}
 }
 
-
 function bool DonateWeapon(byte Index, Pawn Other, KillstreakLRI KLRI)
 {
 
@@ -287,6 +385,8 @@ function String SpawnStreakWeapon(string WeaponString, Pawn Other, byte GroupSlo
 {
 	local class<Weapon> KR;
 	local int j, k, m;
+
+	log("Mut_Killstreak: SpawnStreakWeapon: "$WeaponString);
 	
 	//Dummies are likely to come in here if the target also has Donation set
 	if (InStr(WeaponString, "Dummy") != -1)
