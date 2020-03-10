@@ -17,15 +17,16 @@ defaultproperties
      FlashThreshold=5
      FlashV=(X=1500.000000,Y=1500.000000,Z=1500.000000)
      FlashF=-0.300000
-	 bDisplaceAim=True
+	bDisplaceAim=True
      AimDisplacementDuration=0.400000
      InvasionDamageScaling=2.000000
-	 bExtraMomentumZ=True
+     bExtraMomentumZ=True
+     DamageIdent="Shotgun"
      WeaponClass=Class'BWBPSomeOtherPack.TrenchGun'
      DeathString="%k electrocuted %o with %kh modified trenchgun."
      FemaleSuicide="%o put the fork in the power outlet."
      MaleSuicide="%o put the spoon in the power outlet."
-	 DamageDescription=",Shell,Electro,"
+	DamageDescription=",Shell,Electro,"
      bCauseConvulsions=True
      bNeverSevers=True
      PawnDamageSounds(0)=Sound'PackageSounds4Pro.Misc.XM84-StunEffect'

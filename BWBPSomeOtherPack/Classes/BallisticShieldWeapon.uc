@@ -57,71 +57,135 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	
 	if (bBerserk)
 		Damage *= 0.75;
-	
+
 	BDT = class<BallisticDamageType>(DamageType);
 	
-	if (BDT != None)
+	if (BDT != None && CheckReflect(HitLocation, HitNormal, 0.2))
 	{
-		if (BDT.default.bDisplaceAim && Damage >= BDT.default.AimDisplacementDamageThreshold && Level.TimeSeconds + BDT.default.AimDisplacementDuration > AimDisplacementEndTime)
+		if (bBlocked)
 		{
-			AimDisplacementDuration = BDT.default.AimDisplacementDuration * AimDisplacementDurationMult;
-		
-			if (bBlocked && !IsFiring() && level.TimeSeconds > LastFireTime + 1 && BDT.default.bCanBeBlocked &&
-				Normal(HitLocation-(Instigator.Location+Instigator.EyePosition())) Dot Vector(Instigator.GetViewRotation()) > 0.4
-				&& AimDisplacementEndTime < Level.TimeSeconds && AimDisplacementFactor == 0)
-			{
-				Damage = 0;
-				BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
-				if (instigatedBy != None && BallisticWeapon(instigatedBy.Weapon) != None)
-					BallisticWeapon(instigatedBy.Weapon).ApplyBlockFatigue();
-				AimDisplacementEndTime = Level.TimeSeconds + FMin(2, 1.00 * (float(Damage)/AimDisplacementBlockThreshold));	
-				ClientDisplaceAim(FMin(2, 1.00 * (float(Damage)/AimDisplacementBlockThreshold)));	
-				return;
-			}		
-		
-			if (BDT.default.AimDisplacementDamageThreshold == 0)
-			{
-				AimDisplacementEndTime = Level.TimeSeconds + FMin(2, AimDisplacementDuration);
-				ClientDisplaceAim(FMin(2, AimDisplacementDuration));
-			}
-			else
-			{
-				AimDisplacementEndTime = Level.TimeSeconds + FMin(2, AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold));
-				ClientDisplaceAim(FMin(2, AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold)));
-			}
-			if (bScopeView)
-				StopScopeView();
+			if (Instigator.bIsCrouched)	
+				HandleCrouchBlockingDamageMitigation(Damage, Momentum, BDT);
+			else 
+				HandleBlockingDamageMitigation(Damage, Momentum, BDT);
+		}
+		else 
+			HandlePassiveDamageMitigation(Damage, Momentum, BDT);
+
+		BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
+	}
+
+	if (BDT.default.bDisplaceAim && Damage >= BDT.default.AimDisplacementDamageThreshold && Level.TimeSeconds + BDT.default.AimDisplacementDuration > AimDisplacementEndTime)
+	{
+		AimDisplacementDuration = BDT.default.AimDisplacementDuration * AimDisplacementDurationMult;
+	
+		if (bBlocked && !IsFiring() && level.TimeSeconds > LastFireTime + 1 && BDT.default.bCanBeBlocked &&
+			Normal(HitLocation-(Instigator.Location+Instigator.EyePosition())) Dot Vector(Instigator.GetViewRotation()) > 0.4
+			&& AimDisplacementEndTime < Level.TimeSeconds && AimDisplacementFactor == 0)
+		{
+			Damage = 0;
+			//BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
+			if (instigatedBy != None && BallisticWeapon(instigatedBy.Weapon) != None)
+				BallisticWeapon(instigatedBy.Weapon).ApplyBlockFatigue();
+			AimDisplacementEndTime = Level.TimeSeconds + FMin(2, 1.00 * (float(Damage)/AimDisplacementBlockThreshold));	
+			ClientDisplaceAim(FMin(2, 1.00 * (float(Damage)/AimDisplacementBlockThreshold)));	
+			return;
+		}		
+	
+		if (BDT.default.AimDisplacementDamageThreshold == 0)
+		{
+			AimDisplacementEndTime = Level.TimeSeconds + FMin(2, AimDisplacementDuration);
+			ClientDisplaceAim(FMin(2, AimDisplacementDuration));
+		}
+		else
+		{
+			AimDisplacementEndTime = Level.TimeSeconds + FMin(2, AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold));
+			ClientDisplaceAim(FMin(2, AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold)));
 		}
 	}
-		
-	if (AimKnockScale == 0)
+
+	super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
+}
+
+function HandleCrouchBlockingDamageMitigation( out int Damage, out Vector Momentum, class<BallisticDamageType> DamageType)
+{
+	// defend against melee, ballistics and other blockables completely, but with pushback
+	// massive damage reduction against
+	if (DamageType.default.bCanBeBlocked || DamageType.default.bMetallic) 
+	{
+		Damage = 0;
+		Momentum *= 2;
 		return;
+	}
 
-	DF = FMin(1, (float(Damage)/AimDamageThreshold) * AimKnockScale);
-	ApplyDamageFactor(DF);
-	ClientPlayerDamaged(255*DF);
-	bForceReaim=true;
+	// locational non-melee non-metallic almost certainly means energy - deal some damage and push back
+	if (DamageType.default.bLocationalHit)
+	{
+		Damage = Max(1, Damage - 30);
+		return;
+	}
 
-	if( DamageType.default.bCausedByWorld || HitLocation.Z < Instigator.Location.Z - 22 || AimDisplacementEndTime > Level.TimeSeconds || AimDisplacementFactor > 0 )
-        super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
+	Damage = Max(1, Damage - 40);
+	Momentum *= 2;
+}
 
-    else if ( CheckReflect(HitLocation, HitNormal, 0.2) )
-    {
-		if (class<DT_BWShell>(DamageType) != None)
-			Damage = Max(Damage* 0.5, Damage-35);
-		else if (BDT.default.bCanBeBlocked)
-			Damage = Damage * 0.50;
-		else Damage = Max(Damage * 0.25, Damage-35);
-		Momentum *= 4;
-		
-		BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
-		DF = FMin(1, float(Damage)/AimDamageThreshold);
-		ApplyDamageFactor(DF);
-		ClientPlayerDamaged(255*DF);
-		bForceReaim=true;
-    }
+function HandleBlockingDamageMitigation( out int Damage, out Vector Momentum, class<BallisticDamageType> DamageType)
+{
+	// defend against melee and other blockables completely, but with pushback
+	if (DamageType.default.bCanBeBlocked)
+	{
+		Damage = 0;
+		Momentum *= 2;
+		return;
+	}
+	
+	// damage reduction against ballistics
+	if (DamageType.default.bMetallic)
+	{
+		Damage = Max(1, Damage - 65);
+		Momentum *= 2;
+		return;
+	}
 
-	else super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
+	// locational non-melee non-metallic almost certainly means energy - deal some damage and push back
+	if (DamageType.default.bLocationalHit)
+	{
+		Damage = Max(1, Damage - 30);
+		return;
+	}
+
+	Damage = Max(1, Damage - 40);
+	Momentum *= 2;
+}
+
+function HandlePassiveDamageMitigation( out int Damage, out Vector Momentum, class<BallisticDamageType> DamageType)
+{
+	// defend against melee and other blockables completely, but with pushback
+	if (DamageType.default.bCanBeBlocked)
+	{
+		Damage = 0;
+		Momentum *= 2;
+		return;
+	}
+	
+	// moderate passive damage reduction against ballistics
+	if (DamageType.default.bMetallic)
+	{
+		Damage = Max(3, Damage - 30);
+		Momentum *= 2;
+		return;
+	}
+
+	// locational non-melee non-metallic almost certainly means energy - deal some damage and push back
+	if (DamageType.default.bLocationalHit)
+	{
+		Damage = Max(6, Damage - 15);
+		return;
+	}
+
+	// explosions push back
+	Damage = Max(10, Damage - 20);
+	Momentum *= 2;
 }
 
 simulated function ClientPlayerDamaged(byte DamageFactor)
@@ -178,15 +242,15 @@ function float SuggestDefenseStyle()
 defaultproperties
 {
      PlayerSpeedFactor=0.950000
-	 AimDisplacementBlockThreshold=40.00
+	 AimDisplacementBlockThreshold=40.000000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPSomeOtherPackTex.BallisticShield.BigIcon_BallisticShield'
      BigIconCoords=(X1=180,Y1=0,X2=320,Y2=255)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=3
+     InventorySize=5
      ManualLines(0)="Attacks with the weapon and shield. The shield continues to block whilst attacking."
      ManualLines(1)="Prepared strike with the weapons."
-     ManualLines(2)="The ballistic shield reduces movement speed whilst active."
+     ManualLines(2)="Hold Weapon Function to block with the shield, which dramatically increases its defensive effectiveness at the cost of your ability to see. The shield is further bolstered in effectiveness if the user is crouching while blocking.||The ballistic shield reduces movement speed whilst active."
      SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
@@ -213,7 +277,7 @@ defaultproperties
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      GroupOffset=4
      PickupClass=Class'BWBPSomeOtherPack.BallisticShieldPickup'
-     PlayerViewOffset=(Y=75.000000,Z=-100.000000)
+     PlayerViewOffset=(Y=75.000000,Z=-125.000000)
      AttachmentClass=Class'BWBPSomeOtherPack.BallisticShieldAttachment'
      IconMaterial=Texture'BWBPSomeOtherPackTex.BallisticShield.Icon_BallisticShield'
      IconCoords=(X2=256,Y2=31)

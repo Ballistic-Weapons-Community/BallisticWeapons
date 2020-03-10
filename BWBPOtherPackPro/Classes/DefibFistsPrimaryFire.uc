@@ -194,9 +194,9 @@ defaultproperties
 {
      DischargedFireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Radius=32.000000,bAtten=True)
      FatiguePerStrike=0.015000
-     Damage=45.000000
-     DamageHead=45.000000
-     DamageLimb=45.000000
+     Damage=70.000000
+     DamageHead=70.000000
+     DamageLimb=70.000000
      DamageType=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeArm=Class'BWBPOtherPackPro.DTShockGauntlet'

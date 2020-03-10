@@ -194,7 +194,6 @@ simulated function ExplosiveFireEffects(byte Mode)
 
 			if (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && mHitActor.bProjTarget)
 			{
-				log("Spawning explosive effect");
 				Spawn (class'IE_IncBulletMetal', ,, HitLocation,);
 				continue;
 			}

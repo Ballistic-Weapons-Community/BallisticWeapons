@@ -194,7 +194,8 @@ defaultproperties
      CockSound=(Sound=Sound'PackageSounds4Pro.MRDR.MRDR-Cock',Volume=0.800000)
      ClipOutSound=(Sound=Sound'PackageSounds4Pro.MRDR.MRDR-ClipOut',Volume=0.700000)
      ClipInSound=(Sound=Sound'PackageSounds4Pro.MRDR.MRDR-ClipIn',Volume=0.700000)
-     ClipInFrame=0.650000
+	 ClipInFrame=0.650000
+	 InventorySize=6
      WeaponModes(0)=(bUnavailable=True)
      WeaponModes(1)=(ModeName="Small Burst",Value=5.000000)
      bUseSights=False

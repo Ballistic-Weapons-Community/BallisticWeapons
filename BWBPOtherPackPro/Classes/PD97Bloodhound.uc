@@ -290,7 +290,8 @@ defaultproperties
      SpareShellBones(2)="SpareShell3"
      SpareShellBones(3)="SpareShell4"
      SpareShellBones(4)="SpareShell5"
-     bShouldDualInLoadout=False
+	 bShouldDualInLoadout=False
+	 InventorySize=6
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      AIReloadTime=1.500000
      BigIconMaterial=Texture'BWBPOtherPackTex.Bloodhound.BigIcon_PD97'
@@ -340,7 +341,6 @@ defaultproperties
      HudColor=(B=250,G=150,R=150)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=2
-	 InventorySize=6
      GroupOffset=6
      PickupClass=Class'BWBPOtherPackPro.PD97Pickup'
      PlayerViewOffset=(X=5.000000,Y=8.000000,Z=-10.000000)

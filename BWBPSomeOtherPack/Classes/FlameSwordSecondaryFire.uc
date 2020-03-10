@@ -73,8 +73,8 @@ defaultproperties
      bUseWeaponMag=False
      bWaitForRelease=True
      FireAnim="SpellShield"
-     FireRate=1.000000
-	 FireAnimRate=1.25
+     FireRate=1.500000
+	 FireAnimRate=2
      AmmoClass=Class'BallisticProV55.Ammo_Knife'
      AmmoPerFire=0
 	 //BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Ignite',Volume=4.100000,Radius=256.000000,bAtten=True)

@@ -10,7 +10,7 @@ class Ammo_M58Grenades extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=2
+     MaxAmmo=4
      InitialAmount=2
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconPageV2Flash'
      PickupClass=Class'BallisticProV55.M58Pickup'

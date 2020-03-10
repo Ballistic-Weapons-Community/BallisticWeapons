@@ -123,6 +123,7 @@ defaultproperties
 	HudColor=(B=25,G=150,R=50)
 	IconCoords=(X2=127,Y2=31)
 	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_AM67'
+	InventorySize=12
 	InventoryGroup=3
 	ItemName="AM67 Assault Pistol"
 	JumpChaos=0.200000

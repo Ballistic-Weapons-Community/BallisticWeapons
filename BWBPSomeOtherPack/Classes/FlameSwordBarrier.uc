@@ -11,7 +11,7 @@ auto state Working
 {
 	function BeginState()
 	{
-		SetTimer(5, false);
+		SetTimer(3, false);
 	}
 	
 	function TakeDamage( int Damage, Pawn instigatedBy, Vector hitlocation,	Vector momentum, class<DamageType> damageType)
@@ -77,9 +77,9 @@ defaultproperties
      bStasis=False
      bNetInitialRotation=True
      NetUpdateFrequency=10.000000
-     DrawScale3D=(X=1.500000,Y=1.500000,Z=1.500000)
+     DrawScale3D=(X=4.50000,Y=4.5000,Z=4.50000)
      bShouldBaseAtStartup=True
      CollisionRadius=48.000000
-     CollisionHeight=90.000000
+     CollisionHeight=128.000000
      bFixedRotationDir=True
 }

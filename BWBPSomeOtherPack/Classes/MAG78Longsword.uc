@@ -278,7 +278,8 @@ defaultproperties
      BringUpTime=0.500000
 	 RecoilDeclineDelay=1
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.300000
+	 AIRating=0.300000
+	 InventorySize=3
      CurrentRating=0.300000
      bMeleeWeapon=True
 	 Description="The MAG-SAW is a robust and efficient weapon that utilizes every surface as a dangerous implement. Developed in direct response to the EKS-43 Katana, the MAG-SAW features numerous cutting edge technologies to maximize effectiveness in any and all situations. Such as a titanium alloy blade to reduce weight, combined with a recently developed and 100% tested electro-magnetic drive system which turns the chain with ease and deadly power, the MAG-SAW easily lends itself to aggressive civilian defense. But it doesn't stop there; as demonstrated in the legendary Purge of Lignus CIXIIV by the mercenary group Kriegsknecht, among whom the MAG-SAW is held in high esteem, the MAG-SAW creates absolute butchery of Krao. In any situation, any place, and against any enemy the MAG-SAW is a fierce competitor against its counterpart."

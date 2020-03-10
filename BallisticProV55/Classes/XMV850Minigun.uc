@@ -386,7 +386,6 @@ defaultproperties
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XMV850'
      BigIconCoords=(Y2=255)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=8
      bWT_Bullet=True
      bWT_Machinegun=True
      ManualLines(0)="Spins up the barrel. Once spun up to speed, unleashes a hail of bullets. Incredible fire rate and moderate damage. Sustained damage output is extremely high. Large ammo reserves due to the attached backpack mean the weapon can fire continuously for long periods."

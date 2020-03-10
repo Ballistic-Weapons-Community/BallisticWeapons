@@ -10,7 +10,7 @@ class Ammo_XM84HTG extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=2
+     MaxAmmo=3
      InitialAmount=1
      IconFlashMaterial=Shader'BallisticRecolors3TexPro.XM84.AmmoIcon_XM84Flash'
      PickupClass=Class'BWBPRecolorsPro.XM84Pickup'

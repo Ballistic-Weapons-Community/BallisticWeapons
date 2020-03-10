@@ -612,7 +612,8 @@ defaultproperties
      ClipOutSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-BulletsOut')
      ClipInSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-BulletsIn')
      ClipInFrame=0.650000
-     bAltTriggerReload=True
+	 bAltTriggerReload=True
+	 InventorySize=6
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0

@@ -474,7 +474,6 @@ defaultproperties
      BigIconMaterial=Texture'BWBPOtherPackTex2.Z250.BigIcon_Z250'
      BigIconCoords=(X1=30,X2=470,Y2=220)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=8
      bWT_Bullet=True
      bWT_Machinegun=True
      ManualLines(0)="Primary fire spins up the barrels, delivering a hail of explosive rounds which inflict damage to the target and any nearby enemies."

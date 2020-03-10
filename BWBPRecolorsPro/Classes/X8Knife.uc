@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class X8Knife extends BallisticWeapon;
 
@@ -260,20 +260,20 @@ defaultproperties
      KnifeBone="Blade"
      PinBone="Pin"
      PinPullSound=(Sound=Sound'BallisticSounds3.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.600000,bAtten=True)
-     PlayerSpeedFactor=1.100000
+     PlayerSpeedFactor=1.150000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticRecolors3TexPro.BigIcon_X8'
      BigIconCoords=(Y1=25,Y2=230)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=2
-     ManualLines(0)="Slashes rapidly with the knife. Deals lower sustained damage than other melee weapons."
+     ManualLines(0)="Slashes rapidly with the knife."
      ManualLines(1)="When held, readies the ballistic knife. When released, the knife is fired in a straight trajectory, dealing good damage to targets hit."
      ManualLines(2)="Effective at close range and while moving."
      SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
      PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
      MagAmmo=1
-     bNoMag=True
+	 bNoMag=True
+	 InventorySize=3
      WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
@@ -291,7 +291,7 @@ defaultproperties
      AIRating=0.700000
      CurrentRating=0.700000
      bMeleeWeapon=True
-     Description="A counterpart to Enravion’s X3 Knife, the X8 Ballistic Knife is the Eastern Bloc’s preferred way to deal with CQC enemies. While primarily used as a bayonet on the venerable AK490, the X8 is still quite effective in hand to hand fighting thanks to its lethally sharp blade. When opponents are too far to gut personally, the unique gas propellant mechanism inside the hilt of the knife lets the user turn their knife into a fast moving spear. Several unfortunate accidents have caused the X8 to be considered unfit for civilian use."
+     Description="A counterpart to Enravionï¿½s X3 Knife, the X8 Ballistic Knife is the Eastern Blocï¿½s preferred way to deal with CQC enemies. While primarily used as a bayonet on the venerable AK490, the X8 is still quite effective in hand to hand fighting thanks to its lethally sharp blade. When opponents are too far to gut personally, the unique gas propellant mechanism inside the hilt of the knife lets the user turn their knife into a fast moving spear. Several unfortunate accidents have caused the X8 to be considered unfit for civilian use."
      Priority=13
      HudColor=(B=25,G=25,R=200)
      CenteredOffsetY=7.000000

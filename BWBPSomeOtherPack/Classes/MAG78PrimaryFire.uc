@@ -35,7 +35,7 @@ defaultproperties
      FatiguePerStrike=0.064000
      bCanBackstab=False
      TraceRange=(Min=180.000000,Max=180.000000)
-	 Damage=80.000000
+	Damage=80.000000
      DamageHead=80.000000
      DamageLimb=80.000000
      DamageType=Class'BWBPSomeOtherPack.DT_MAGSAWStab'

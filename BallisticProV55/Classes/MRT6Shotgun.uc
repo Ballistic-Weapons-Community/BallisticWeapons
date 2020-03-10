@@ -146,7 +146,7 @@ defaultproperties
      TeamSkins(1)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=3)
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_MRT6'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=3
+     InventorySize=5
      bWT_Shotgun=True
      bWT_Sidearm=True
      SpecialInfo(0)=(Info="180.0;10.0;-999.0;25.0;0.0;0.8;-999.0")

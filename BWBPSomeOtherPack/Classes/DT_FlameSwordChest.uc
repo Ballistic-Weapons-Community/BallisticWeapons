@@ -10,7 +10,7 @@ class DT_FlameSwordChest extends DT_BWBlade;
 
 defaultproperties
 {
-     DeathStrings(0)="%o was laid open in a blinding flash of %k's incidiary blade."
+     DeathStrings(0)="%o was laid open in a blinding flash of %k's incendiary blade."
      DeathStrings(1)="%k stands gore-soaked, with flame blade in hand, among %o's smoldering carcass."
      DeathStrings(2)="Bones cracked and tendons snapped as %k cleaved %kh fire sword through %o's wretched body."
      DeathStrings(3)="%o could not withstand the might of %k's pyrokinetic blade."

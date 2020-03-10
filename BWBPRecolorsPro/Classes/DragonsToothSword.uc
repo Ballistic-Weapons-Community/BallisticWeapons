@@ -135,7 +135,8 @@ defaultproperties
      MagAmmo=1
      bNoMag=True
      GunLength=0.000000
-     bAimDisabled=True
+	 bAimDisabled=True
+	 InventorySize=12
      FireModeClass(0)=Class'BWBPRecolorsPro.DragonsToothPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.DragonsToothSecondaryFire'
      SelectAnim="PulloutFancy"

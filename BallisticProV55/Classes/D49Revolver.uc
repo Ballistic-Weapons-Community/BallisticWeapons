@@ -493,7 +493,8 @@ defaultproperties
      Shells(3)=(BulletName="Bullet5",ShellName="Shell5",NextShell=5)
      Shells(4)=(BulletName="Bullet3",ShellName="Shell3",NextShell=1)
      Shells(5)=(BulletName="Bullet6",ShellName="Shell6")
-     bShouldDualInLoadout=False
+	 bShouldDualInLoadout=False
+	 InventorySize=6
      HandgunGroup=1
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      AIReloadTime=1.500000

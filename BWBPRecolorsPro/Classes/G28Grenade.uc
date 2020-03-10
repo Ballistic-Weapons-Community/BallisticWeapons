@@ -109,7 +109,7 @@ defaultproperties
      BigIconMaterial=Texture'BallisticRecolors3TexPro.G28.BigIcon_G28'
      BigIconCoords=(Y1=12,Y2=245)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=4
+     InventorySize=12
      bWT_Splash=True
      bWT_Grenade=True
      bWT_Heal=True

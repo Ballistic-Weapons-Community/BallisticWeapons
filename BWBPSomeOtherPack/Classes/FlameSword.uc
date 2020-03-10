@@ -24,6 +24,8 @@ var DeployableInfo AltDeployable;
 const DeployRange = 256;
 var Sound      	ShieldHitSound;
 
+var float		NextShieldCreateTime;
+
 exec function Offset(int index, int value)
 {
 	if (Level.NetMode != NM_Standalone)
@@ -86,6 +88,9 @@ function Notify_BarrierDeploy()
 	
 	local Rotator SlopeInputYaw, SlopeRotation;
 
+	if (Level.TimeSeconds < NextShieldCreateTime)
+		return; 
+
 	Start = Instigator.Location + Instigator.EyePosition();
 	End = Start + vector(Instigator.GetViewRotation()) * DeployRange;
 	
@@ -137,10 +142,12 @@ function Notify_BarrierDeploy()
 	}
 	
 	SlopeRotation.Yaw = Instigator.Rotation.Yaw;
+
+	NextShieldCreateTime = Level.TimeSeconds + 1;
 		
-	FSP = Spawn(class'FlameSwordPreconstructor', Instigator, , Start + HitNorm * AltDeployable.dClass.default.CollisionRadius, SlopeRotation);
+	FSP = Spawn(class'FlameSwordPreconstructor', Instigator, , Start + HitNorm * AltDeployable.dClass.default.CollisionHeight, SlopeRotation);
 	
-	FSP.GroundPoint = Start + (HitNorm * (AltDeployable.SpawnOffset + AltDeployable.dClass.default.CollisionRadius));
+	FSP.GroundPoint = Start + (HitNorm * (AltDeployable.SpawnOffset + AltDeployable.dClass.default.CollisionHeight));
 
 	FSP.Instigator = Instigator;
 	FSP.Master = self;
@@ -169,34 +176,6 @@ function bool SpaceToDeploy(Vector hit_location, Vector hit_normal, Rotator slop
 	FastTrace(center_point, center_point + collision_radius * (vect(0,-1,0) >> slope_rotation)) &&
 	FastTrace(center_point, center_point + collision_radius * (vect(0,1,0) >> slope_rotation))
 	);
-}
-
-//=====================================================
-//			HEAT MANAGEMENT CODE
-//=====================================================
-
-function int ManageHeatInteraction(Pawn P, int HeatPerShot)
-{
-	local XM20HeatManager HM;
-	local int HeatBonus;
-	
-	foreach P.BasedActors(class'XM20HeatManager', HM)
-		break;
-	if (HM == None)
-	{
-		HM = Spawn(class'XM20HeatManager',P,,P.Location + vect(0,0,-30));
-		HM.SetBase(P);
-	}
-	
-	if (HM != None)
-	{
-		HeatBonus = HM.Heat;
-		if (Vehicle(P) != None)
-			HM.AddHeat(HeatPerShot/4);
-		else HM.AddHeat(HeatPerShot);
-	}
-	
-	return heatBonus;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -331,23 +310,24 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     PlayerSpeedFactor=1.150000
+     PlayerSpeedFactor=1.100000
 	 ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
      AltDeployable=(dClass=Class'BWBPSomeOtherPack.FlameSwordBarrier',WarpInTime=0.0010000,SpawnOffset=18,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPSomeOtherPackTex.FlameSword.BWsword_icon_512'
      BigIconCoords=(Y1=40,Y2=240)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     ManualLines(0)="Strikes for relatively weak damage"
-     ManualLines(1)="Create a temporary barrier to block all incoming shots, but temporarily removes your hazard shielding."
+     ManualLines(0)="Swings the sword. Inflicts heavy damage and has a long range and wide swing arc."
+     ManualLines(1)="Creates a temporary barrier to block all incoming shots, but temporarily removes your hazard shielding."
      ManualLines(2)="Passively grants protection from explosions, fire, and other hazardous damage types."
      SpecialInfo(0)=(Info="420.0;20.0;-999.0;-1.0;-999.0;0.9;-999.0")
      BringUpSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Equip',Volume=2.000000)
-	 PutDOwnSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Unequip',Volume=2.000000)
+	 PutDownSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Unequip',Volume=2.000000)
 	 //UsedAmbientSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-AmbientFire')
      MagAmmo=1
      bNoMag=True
-     GunLength=0.000000
+	 GunLength=0.000000
+	 InventorySize=11
      bAimDisabled=True
      FireModeClass(0)=Class'BWBPSomeOtherPack.FlameSwordPrimaryFire'
      FireModeClass(1)=Class'BWBPSomeOtherPack.FlameSwordSecondaryFire'
@@ -363,7 +343,7 @@ defaultproperties
      Description="During Operation: Chalkboard Firefly, UTC troopers had discovered a strange sword being developed in secret in an underground arctic facility by an unknown manufacturer. While having the appearance of a Medieval arming sword, the blade itself seems to be made out of a strange nano-material, and is covered in a bright fire when held. UTC scientists have yet to find out more about the weapon due to resources being tight due to fighting the Skrith. However what has been found is this weapon was intended to be some sort of psionic enhancing focii, capable of shielding the user from explosions and flames alike."
      DisplayFOV=65.000000
      Priority=12
-     HudColor=(B=255,G=125,R=75)
+     HudColor=(G=50)
      CenteredOffsetY=7.000000
      CenteredRoll=0
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

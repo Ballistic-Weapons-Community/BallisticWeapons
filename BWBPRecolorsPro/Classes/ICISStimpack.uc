@@ -1,5 +1,5 @@
 //=============================================================================
-// ICISKnife.
+// Stimpack. Grants health over time.
 //=============================================================================
 class ICISStimpack extends BallisticWeapon;
 
@@ -180,10 +180,10 @@ defaultproperties
      BigIconMaterial=Texture'BallisticRecolors4TexPro.Stim.BigIcon_Stim'
      BigIconCoords=(Y1=24,Y2=230)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=2
+     InventorySize=4
      ManualLines(0)="Injects self with the stimpack, granting 80 health over 10 seconds."
      ManualLines(1)="Melee attack. Damage improves over hold time, with max bonus reached after 1.5 seconds. Deals increased damage from behind."
-	 ManualLines(2)="This weapon cannot be used to heal allies."
+	 ManualLines(2)="Attacking allies with the stimpack will apply its effect to them."
      SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
      PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')

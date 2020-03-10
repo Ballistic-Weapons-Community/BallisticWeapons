@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class BOGPPistol extends BallisticHandgun;
 
@@ -310,7 +310,8 @@ defaultproperties
      WeaponModes(1)=(ModeName="Flare",ModeID="WM_SemiAuto",Value=1.000000)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     bNoCrosshairInScope=True
+	 bNoCrosshairInScope=True
+	 InventorySize=5
      SightPivot=(Pitch=300)
      SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
      JumpChaos=0.750000

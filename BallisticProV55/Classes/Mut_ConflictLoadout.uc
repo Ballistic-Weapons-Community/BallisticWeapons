@@ -457,11 +457,8 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	
 	else if (xPawn(Other) != None)
 	{
-		if (xPawn(Other).RequiredEquipment[0] == "XWeapons.ShieldGun")
-		{
-			xPawn(Other).RequiredEquipment[0] = "";
-			xPawn(Other).RequiredEquipment[1] = "";
-		}	
+		xPawn(Other).RequiredEquipment[0] = "";
+		xPawn(Other).RequiredEquipment[1] = "";
 		return true;
 	}
 

@@ -298,7 +298,8 @@ defaultproperties
      BigIconCoords=(X1=96,Y1=16,X2=418,Y2=255)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
-     bWT_Heal=True
+	 bWT_Heal=True
+	 InventorySize=6
      SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;2.0;0.1;0.1")
      BringUpSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-Pickup')
      PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')

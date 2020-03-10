@@ -3,13 +3,13 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class Ammo_Chaff extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=5
-     InitialAmount=3
+     MaxAmmo=6
+     InitialAmount=2
      ItemName="MOAC Chaff Ammo"
 }

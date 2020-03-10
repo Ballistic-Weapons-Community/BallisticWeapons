@@ -3,6 +3,7 @@ class ConflictLoadoutConfig extends Object
 	config(BallisticProV55);
 
 var config array<string> 		SavedInventory;
+var config bool 				HasPrompted;
 
 static function UpdateSavedInventory(array<BallisticTab_ConflictLoadoutPro.Item> inventory)
 {
@@ -13,6 +14,12 @@ static function UpdateSavedInventory(array<BallisticTab_ConflictLoadoutPro.Item>
 	for (i = 0; i < inventory.length; i++)
 		default.SavedInventory[i] = inventory[i].ClassName;
 		
+	StaticSaveConfig();
+}
+
+static function NotifyPrompted()
+{
+	default.HasPrompted = true;
 	StaticSaveConfig();
 }
 
@@ -37,4 +44,5 @@ defaultproperties
 	SavedInventory(1)="BallisticProV55.M806Pistol"
 	SavedInventory(2)="BallisticProV55.X3Knife"
 	SavedInventory(3)="BallisticProV55.NRP57Grenade"
+	HasPrompted=False
 }

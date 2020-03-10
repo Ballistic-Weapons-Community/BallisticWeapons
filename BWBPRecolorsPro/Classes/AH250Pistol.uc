@@ -217,7 +217,7 @@ defaultproperties
 {
 	AIRating=0.6
 	CurrentRating=0.6
-	InventorySize=24
+	InventorySize=5
 	ManualLines(0)="High-powered semi-automatic fire."
 	ManualLines(1)="Engages the scope."
 	ManualLines(2)="Effective at medium range."

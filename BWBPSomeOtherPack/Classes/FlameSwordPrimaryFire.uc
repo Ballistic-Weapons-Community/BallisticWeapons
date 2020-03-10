@@ -13,8 +13,6 @@ class FlameSwordPrimaryFire extends BallisticMeleeFire;
 var() Array<name> SliceAnims;
 var int SliceAnim;
 
-var()	float			HeatPerShot;
-
 simulated event ModeDoFire()
 {
 	FireAnim = SliceAnims[SliceAnim];
@@ -30,56 +28,37 @@ simulated function bool HasAmmo()
 	return true;
 }
 
-//The LS-14 deals increased damage to targets which have already been heated up by a previous strike.
 function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
 {
-	local float							Dmg;
-	local class<DamageType>	HitDT;
-	local Actor							Victim;
-	local Vector						BoneTestLocation, ClosestLocation;
-	local	int								Bonus;
+    local int i;
+	local FlameSwordActorFire Burner;
 	
-	//Locational damage code from Mr Evil under test here
-	if(Other.IsA('xPawn'))
+	super.DoDamage (Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount);
+
+	if (Pawn(other) != None && Pawn(Other).Health > 0 && Vehicle(Other) == None)
 	{
-		//Find a point on the victim's Z axis at the same height as the HitLocation.
-		ClosestLocation = Other.Location;
-		ClosestLocation.Z += (HitLocation - Other.Location).Z;
-		
-		//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
-		BoneTestLocation = Dir;
-		BoneTestLocation *= VSize(ClosestLocation - HitLocation);
-		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
-		BoneTestLocation += HitLocation;
-		
-		Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
+		for (i=0;i<Other.Attached.length;i++)
+		{
+			if (FlameSwordActorFire(Other.Attached[i])!=None)
+			{
+				FlameSwordActorFire(Other.Attached[i]).AddFuel(2);
+				break;
+			}
+		}
+		if (i>=Other.Attached.length)
+		{
+			Burner = Spawn(class'FlameSwordActorFire',Other,,Other.Location + vect(0,0,-30));
+			Burner.Initialize(Other);
+			if (Instigator!=None)
+			{
+				Burner.Instigator = Instigator;
+				Burner.InstigatorController = Instigator.Controller;
+			}
+		}
 	}
-	
-	else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
-
-	if (RangeAtten != 1.0)
-		Dmg *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
-	if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
-		Dmg *= Lerp(VSize(HitLocation-WaterHitLocation) / (TraceRange.Max*WaterRangeFactor), 1, WaterRangeAtten);
-	if (PenetrateCount > 0)
-		Dmg *= PDamageFactor ** PenetrateCount;
-	if (WallCount > 0)
-		Dmg *= WallPDamageFactor ** WallCount;
-		
-	/*if (Monster(Other) != None)
-	{
-		class'BallisticDamageType'.static.GenericHurt (Victim, 45, Instigator, HitLocation, KickForce * Dir, HitDT);
-		return;
-	}*/
-
-	if (Pawn(Other) != None && Pawn(Other).bProjTarget)
-		Bonus = FlameSword(BW).ManageHeatInteraction(Pawn(Other), HeatPerShot);
-		
-	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg + Bonus, Instigator, HitLocation, KickForce * Dir, HitDT);
 }
 defaultproperties
 {
-	 HeatPerShot=35.000000
      SliceAnims(0)="Swing1"
      SliceAnims(1)="Swing2"
      SliceAnims(2)="Swing3"
@@ -92,10 +71,10 @@ defaultproperties
      NumSwipePoints=5
      FatiguePerStrike=0.100000
      bCanBackstab=False
-     TraceRange=(Min=150.000000,Max=150.000000)
-     Damage=65.000000
-     DamageHead=65.000000
-     DamageLimb=65.000000
+     TraceRange=(Min=180.000000,Max=180.000000)
+     Damage=80.000000
+     DamageHead=80.000000
+     DamageLimb=80.000000
      DamageType=Class'BWBPSomeOtherPack.DT_FlameSwordChest'
      DamageTypeHead=Class'BWBPSomeOtherPack.DT_FlameSwordHead'
      DamageTypeArm=Class'BWBPSomeOtherPack.DT_FlameSwordChest'
@@ -103,7 +82,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Swing',Volume=4.000000,Radius=256.000000,bAtten=True)
      bAISilent=True
      FireAnim="Slash1"
-	 FireRate=0.80
+	 FireRate=0.7
      AmmoClass=Class'BallisticProV55.Ammo_Knife'
      AmmoPerFire=0
      ShakeRotMag=(X=64.000000,Y=256.000000)
