@@ -10,7 +10,7 @@ class Ammo_T10Grenades extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=3
+     MaxAmmo=2
      InitialAmount=1
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconPageV2Flash'
      PickupClass=Class'BallisticProV55.T10Pickup'

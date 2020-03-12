@@ -301,7 +301,7 @@ static function string GetLoadingHint(PlayerController PlayerController, string 
   
 	hint = Super.GetLoadingHint(PlayerController, MapName, ColorHint);
 
-	if ( default.BWMutators[0] ~= "BallisticProV55.Mut_Outfitting" )
+	if ( default.BWMutators[0] ~= "BallisticProV55.Mut_ConflictLoadout" )
 	hint = default.LoadoutHint $ "|" $ hint;
 
 

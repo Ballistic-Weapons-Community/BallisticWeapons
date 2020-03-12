@@ -69,6 +69,7 @@ function PostBeginPlay()
 		}
 	}
 	FullRequirementsList.length = ConflictWeapons.length;
+
 	for (i=0;i<FullRequirementsList.length;i++)
 	{
 		FullRequirementsList[i].MatchTime	*= class'Mut_LoadoutConfig'.default.TimeScale;
@@ -79,6 +80,91 @@ function PostBeginPlay()
 		FullRequirementsList[i].SniperEff	*= class'Mut_LoadoutConfig'.default.SrEfScale;
 		FullRequirementsList[i].HazardEff	*= class'Mut_LoadoutConfig'.default.HzEfScale;
 	}
+}
+
+		
+
+//==================================================
+// Mutate
+// Convenience editing function for servers
+//==================================================
+function Mutate(string MutateString, PlayerController Sender)
+{
+	local int i, count;
+	local array<String> split_string;
+
+	count = Split(MutateString, " ", split_string);
+
+	if (split_string[0] ~= "AddWeapon")
+		AddWeapon(Sender, split_string);
+	else if (split_string[0] ~= "RemoveWeapon")
+		RemoveWeapon(Sender, split_string);
+
+	super.Mutate(MutateString, Sender);
+}
+
+function AddWeapon(PlayerController Sender, array<String> split_string)
+{	
+	local int i;
+
+	if (Level.NetMode != NM_Standalone && !Sender.PlayerReplicationInfo.bAdmin)
+	{
+		Sender.ClientMessage("Mutate AddWeapon: Administrator permissions required");
+		return;
+	}
+	
+	if (split_string.Length != 2)
+	{
+		Sender.ClientMessage("Mutate AddWeapon: Usage: mutate addweapon <weapon_class_name>");
+		return;
+	}	
+	
+	for (i = 0; i < class'Mut_ConflictLoadout'.default.ConflictWeapons.Length; ++i)
+	{
+		if (class'Mut_ConflictLoadout'.default.ConflictWeapons[i].ClassName ~= split_string[1])
+		{
+			class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bRed = true;
+			class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bBlue = true;
+			Sender.ClientMessage("Mutate AddWeapon: Successfully enabled "@split_string[1]); 
+
+			class'Mut_ConflictLoadout'.static.StaticSaveConfig();
+			return;	
+		}
+	}
+
+	Sender.ClientMessage("Mutate AddWeapon: Couldn't find "@split_string[1]@" in the conflict list."); 
+}
+
+function RemoveWeapon(PlayerController Sender, array<String> split_string)
+{	
+	local int i;
+
+	if (Level.NetMode != NM_Standalone && !Sender.PlayerReplicationInfo.bAdmin)
+	{
+		Sender.ClientMessage("Mutate RemoveWeapon: Administrator permissions required");
+		return;
+	}
+	
+	if (split_string.Length != 2)
+	{
+		Sender.ClientMessage("Mutate RemoveWeapon: Usage: mutate addweapon <weapon_class_name>");
+		return;
+	}	
+	
+	for (i = 0; i < class'Mut_ConflictLoadout'.default.ConflictWeapons.Length; ++i)
+	{
+		if (class'Mut_ConflictLoadout'.default.ConflictWeapons[i].ClassName ~= split_string[1])
+		{
+			class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bRed = false;
+			class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bBlue = false;
+			Sender.ClientMessage("Mutate RemoveWeapon: Successfully disabled "@split_string[1]); 
+
+			class'Mut_ConflictLoadout'.static.StaticSaveConfig();
+			return;	
+		}
+	}
+
+	Sender.ClientMessage("Mutate RemoveWeapon: Couldn't find "@split_string[1]@" in the conflict list."); 
 }
 
 //==================================================
@@ -174,11 +260,6 @@ function ModifyPlayer( pawn Other )
 					if( Inv != None )
 					{
 						Inv.GiveTo(Other);
-						if (Weapon(Inv) != None && Other.PendingWeapon == None && Other.Weapon == None)
-						{
-							Other.PendingWeapon = Weapon(Inv);
-							Other.ChangedWeapon();
-						}
 						if ( Inv != None )
 							Inv.PickupFunction(Other);
 						SpaceUsed += Size;
@@ -568,7 +649,7 @@ defaultproperties
 {
      LoadoutOptionText(0)="Standard"
      LoadoutOptionText(1)="Evolution"
-     LoadoutOptionText(2)="Purchasing (NOT IMPLEMENTED)"
+	 LoadoutOptionText(2)="Purchasing (NOT IMPLEMENTED)"
 	 ConflictWeapons(0)=(ClassName="BallisticProV55.A42SkrithPistol",bRed=True,bBlue=True)
 	 ConflictWeapons(1)=(ClassName="BallisticProV55.A500Reptile",bRed=True,bBlue=True)
 	 ConflictWeapons(2)=(ClassName="BallisticProV55.A73SkrithRifle",bRed=True,bBlue=True)
@@ -603,7 +684,7 @@ defaultproperties
 	 ConflictWeapons(31)=(ClassName="BallisticProV55.MarlinRifle",bRed=True,bBlue=True)
 	 ConflictWeapons(32)=(ClassName="BallisticProV55.NRP57Grenade",bRed=True,bBlue=True)
 	 ConflictWeapons(33)=(ClassName="BallisticProV55.R78Rifle",bRed=True,bBlue=True)
-	 ConflictWeapons(34)=(ClassName="BallisticProV55.R9RangerRifle",bRed=True,bBlue=True)
+	 ConflictWeapons(34)=(ClassName="BallisticProV55.R9RangerRifle",bRed=False,bBlue=False)
 	 ConflictWeapons(35)=(ClassName="BallisticProV55.RS8Pistol",bRed=True,bBlue=True)
 	 ConflictWeapons(36)=(ClassName="BallisticProV55.RSDarkStar",bRed=True,bBlue=True)
 	 ConflictWeapons(37)=(ClassName="BallisticProV55.RSNovaStaff",bRed=True,bBlue=True)
@@ -623,7 +704,7 @@ defaultproperties
 	 ConflictWeapons(51)=(ClassName="BallisticProV55.XRS10SubMachinegun",bRed=True,bBlue=True)
 	 ConflictWeapons(52)=(ClassName="BallisticProV55.leMatRevolver",bRed=True,bBlue=True)
 	 ConflictWeapons(53)=(ClassName="BWBPRecolorsPro.A49SkrithBlaster",bRed=True,bBlue=True)
-	 ConflictWeapons(54)=(ClassName="BWBPRecolorsPro.AH208Pistol",bRed=True,bBlue=True)
+	 ConflictWeapons(54)=(ClassName="BWBPRecolorsPro.AH208Pistol",bRed=False,bBlue=False)
 	 ConflictWeapons(55)=(ClassName="BWBPRecolorsPro.AH250Pistol",bRed=True,bBlue=True)
 	 ConflictWeapons(56)=(ClassName="BWBPRecolorsPro.AK47AssaultRifle",bRed=True,bBlue=True)
 	 ConflictWeapons(57)=(ClassName="BWBPRecolorsPro.AS50Rifle",bRed=True,bBlue=True)

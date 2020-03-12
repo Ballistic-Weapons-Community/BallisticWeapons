@@ -303,7 +303,7 @@ static function string GetLoadingHint(PlayerController PlayerController, string 
   
 	hint = Super.GetLoadingHint(PlayerController, MapName, ColorHint);
 
-	if ( default.BWMutators[0] ~= "BallisticProV55.Mut_Outfitting" )
+	if ( default.BWMutators[0] ~= "BallisticProV55.Mut_ConflictLoadout" )
 	hint = default.LoadoutHint $ "|" $ hint;
 
 
@@ -586,30 +586,30 @@ defaultproperties
      LoadingScreens(12)=Texture'LDGGameBW_rc.LoadingScreen.BWLoadingScreen13'
      LoadingScreens(13)=Texture'LDGGameBW_rc.LoadingScreen.BWLoadingScreen14'
      LoadingScreens(14)=Texture'LDGGameBW_rc.LoadingScreen.BWLoadingScreen15'
-     LoadingScreenHints(0)="Can't aim well? Press #BB_SCOPE to switch to scope view or ironsights for a better aim."
+     LoadingScreenHints(0)="Can't aim well? Press #BB_SCOPE to switch to scope view or iron sights for a better aim."
      LoadingScreenHints(1)="Press #BB_RELOAD to reload your weapon when not in combat."
      LoadingScreenHints(2)="Press #BB_FIREMODE to cycle through weapon firemodes."
      LoadingScreenHints(3)="The #B#Nova Staff#H# or #B#Dark Star#H#, when fully charged, can provide powerful bonuses. Press #BB_SPECIAL to activate them."
-     LoadingScreenHints(4)="Some weapons can be deployed into stationary cannon. Use %ALTFIRE% to deploy them or to pack them back when deployed."
+     LoadingScreenHints(4)="Some weapons can be deployed. Use %ALTFIRE% to deploy them or to pack them back when deployed."
      LoadingScreenHints(5)="Running slow? Press #BB_SPRINT to sprint."
      LoadingScreenHints(6)="Carrying two pistols? Switch to one of them and then press #BB_DUAL to select the other one."
-     LoadingScreenHints(7)="The #B#Dark Star#H# and #B#Nova Staff#H# gain increased damage when energized with the souls of slain enemies."
+     LoadingScreenHints(7)="The #B#Riot Shield#H# is more effective at blocking enemy fire when you are crouching."
      LoadingScreenHints(8)="Many weapons have a special function. Press #BB_SPECIAL to trigger it."
      LoadingScreenHints(9)="Bullets can penetrate walls. The bigger the gun, the further they will penetrate."
      LoadingScreenHints(10)="The #B#M-75 Railgun#H# has a thermal scope. Press #BB_SPECIAL when aiming through the scope to activate it."
      LoadingScreenHints(11)="The #B#E-23 ViPeR#H# has unique firemodes which vary significantly. Press #BB_FIREMODE to switch between them."
      LoadingScreenHints(12)="Headshots deal 50% more damage. Explosive weapons cannot deal headshot damage, but projectiles and shotguns can."
-     LoadingScreenHints(13)="Some weapons have suppressors, which remove the flash and significantly reduce noise. Press #BB_SPECIAL to apply them."
+     LoadingScreenHints(13)="Some weapons have suppressors, which remove the flash, reduce recoil and significantly reduce noise. However, damage is reduced. Press #BB_SPECIAL to apply them."
      LoadingScreenHints(14)="The pin of a grenade can be removed by pressing #BB_SPECIAL."
      LoadingScreenHints(15)="You can make a reduced dodge while using your iron sights, but you cannot dodge jump."
-     LoadingScreenHints(16)="You move 20 percent slower while aiming your weapon."
+     LoadingScreenHints(16)="You move 10 percent slower while aiming your weapon."
      LoadingScreenHints(17)="The longer you use automatic fire, the more erratic your weapon's aim will become."
      LoadingScreenHints(18)="Some melee weapons can block. To block, hold down #BB_SPECIAL."
      LoadingScreenHints(19)="Press %USE% to quickly release a deployed weapon, or to use a previously deployed weapon."
-     LoadingScreenHints(20)="Pistols, shotguns and submachine guns deal less damage over long ranges."
+     LoadingScreenHints(20)="Ballistic weapons deal less damage over long ranges. Energy weapons, however, often deal more damage per hit at range."
      LoadingScreenHints(21)="The size of a weapon's crosshair provides a rough estimation of its hipfire spread."
      LoadingScreenHints(22)="Killing sprees grant bonus rewards. Press #BB_KILLSTREAK when notified to claim them. Set killstreak rewards in the loadout menu."
-     LoadoutHint="Loadout game type: Press #BB_LOADOUT to open the loadout menu."
+     LoadoutHint="Loadout game type: Press Escape to open the loadout menu."
      ForumLink="Visit our forum on #B#www.ldg-gaming.eu#H#"
      BWMutators(0)="BallisticProV55.Mut_ConflictLoadout"
 	 BWMutators(1)="BallisticProV55.Mut_Killstreak"

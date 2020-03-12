@@ -64,11 +64,6 @@ function ModifyPlayer( pawn Other )
 					if( Inv != None )
 					{
 						Inv.GiveTo(Other);
-						if (Weapon(Inv) != None && Other.PendingWeapon == None && Other.Weapon == None)
-						{
-							Other.PendingWeapon = Weapon(Inv);
-							Other.ChangedWeapon();
-						}
 						if ( Inv != None )
 							Inv.PickupFunction(Other);
 						SpaceUsed += Size;
@@ -149,38 +144,6 @@ function ModifyPlayer( pawn Other )
 	}
 	for (i=0;i<CLRI.AppliedItems.length;i++)
 		CLRI.AppliedItems[i].static.PostApply(Other);
-}
-
-function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
-{
-	local LDGKillstreakLRI KLRI;
-	
-	local LinkedReplicationInfo LPRI;
-	
-	bSuperRelevant = 0;
-		
-	//shunt the lris down to make way for this one
-	if (PlayerReplicationInfo(Other) != None)
-	{
-		KLRI = Spawn(class'LDGKillstreakLRI', Other.Owner);		
-		
-		if(PlayerReplicationInfo(Other).CustomReplicationInfo != None)
-		{
-			LPRI = PlayerReplicationInfo(Other).CustomReplicationInfo;
-		
-			PlayerReplicationInfo(Other).CustomReplicationInfo = KLRI;
-			
-			//this should be impossible?
-			if (KLRI.NextReplicationInfo != None)
-				KLRI.NextReplicationInfo.NextReplicationInfo = LPRI;
-			else
-				KLRI.NextReplicationInfo = LPRI;
-		}
-		else
-			PlayerReplicationInfo(Other).CustomReplicationInfo = KLRI;
-	}
-	
-	return super(Mut_Ballistic).CheckReplacement(Other, bSuperRelevant);
 }
 
 defaultproperties
