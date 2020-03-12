@@ -280,7 +280,7 @@ defaultproperties
      PlayerViewOffset=(Y=75.000000,Z=-125.000000)
      AttachmentClass=Class'BWBPSomeOtherPack.BallisticShieldAttachment'
      IconMaterial=Texture'BWBPSomeOtherPackTex.BallisticShield.Icon_BallisticShield'
-     IconCoords=(X2=256,Y2=31)
+     IconCoords=(X2=110,Y2=32)
      ItemName="RSH-1034 Riot Shield"
      Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.BallisticShield_FP'
      DrawScale=1.250000

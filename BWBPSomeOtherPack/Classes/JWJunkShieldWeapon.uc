@@ -216,7 +216,7 @@ defaultproperties
      PlayerViewOffset=(Y=75.000000,Z=-100.000000)
      AttachmentClass=Class'BWBPSomeOtherPack.JWJunkShieldAttachment'
      IconMaterial=Texture'BWBPSomeOtherPackTex.OtherShields.Icon_JWJunkShield'
-     IconCoords=(X2=256,Y2=31)
+     IconCoords=(X2=132,Y2=32)
      ItemName="Scavenged Junk Shield"
      Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.JWJunkShield_FP'
      DrawScale=1.250000
