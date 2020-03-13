@@ -11,6 +11,435 @@
 //===========================================================================
 class BX85Crossbow extends BallisticWeapon;
 
+//IR/NV
+var() BUtil.FullSound	ThermalOnSound;	// Sound when activating thermal mode
+var() BUtil.FullSound	ThermalOffSound;// Sound when deactivating thermal mode
+var() BUtil.FullSound	NVOnSound;	// Sound when activating NV/Meat mode
+var() BUtil.FullSound	NVOffSound; // Sound when deactivating NV/Meat mode
+var   Array<Pawn>		PawnList;		// A list of all the potential pawns to view in thermal mode
+var() material			WallVisionSkin;	// Texture to assign to players when theyare viewed with Thermal mode
+var   bool				bThermal;		// Is thermal mode active?
+var   bool				bUpdatePawns;	// Should viewable pawn list be updated
+var   Pawn				UpdatedPawns[16];// List of pawns to view in thermal scope
+var() material			Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
+var() float				ThermalRange;	// Maximum range at which it is possible to see enemies through walls
+var   bool				bMeatVision;
+var   Pawn				Target;
+var   float				TargetTime;
+var   float				LastSendTargetTime;
+var   vector			TargetLocation;
+var   Actor				NVLight;
+
+
+replication
+{
+	reliable if (Role == ROLE_Authority)
+		Target, bMeatVision;
+	reliable if (Role < ROLE_Authority)
+		ServerAdjustThermal;
+}
+
+//==============================================
+//=========== Scope Code - Targetting + IRNV ===
+//==============================================
+function ServerWeaponSpecial(optional byte i)
+{
+	bMeatVision = !bMeatVision;
+	if (bMeatVision)
+		class'BUtil'.static.PlayFullSound(self, NVOnSound);
+	else
+		class'BUtil'.static.PlayFullSound(self, NVOffSound);
+}
+
+simulated event WeaponTick(float DT)
+{
+	local actor T;
+	local float BestAim, BestDist;
+	local Pawn Targ;
+	local vector HitLoc, HitNorm, Start, End;
+
+	super.WeaponTick(DT);
+
+	if (bThermal && bScopeView)
+	{
+		SetNVLight(true);
+
+		Start = Instigator.Location+Instigator.EyePosition();
+		End = Start+vector(Instigator.GetViewRotation())*1500;
+		T = Trace(HitLoc, HitNorm, End, Start, true, vect(16,16,16));
+		if (T==None)
+			HitLoc = End;
+
+		if (VSize(HitLoc-Start) > 400)
+			NVLight.SetLocation(Start + (HitLoc-Start)*0.5);
+		else
+			NVLight.SetLocation(HitLoc + HitNorm*30);
+	}
+	else
+		SetNVLight(false);
+
+	if (!bScopeView || Role < Role_Authority)
+		return;
+
+	Start = Instigator.Location + Instigator.EyePosition();
+	BestAim = 0.995;
+	Targ = Instigator.Controller.PickTarget(BestAim, BestDist, Vector(Instigator.GetViewRotation()), Start, 20000);
+	if (Targ != None)
+	{
+		if (Targ != Target)
+		{
+			Target = Targ;
+			TargetTime = 0;
+		}
+		else if (Vehicle(Targ) != None)
+			TargetTime += 1.2 * DT * (BestAim-0.95) * 20;
+		else
+			TargetTime += DT * (BestAim-0.95) * 20;
+	}
+	else
+	{
+		TargetTime = FMax(0, TargetTime - DT * 0.5);
+	}
+}
+
+function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
+{
+	Target = None;
+	TargetTime = 0;
+	super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
+}
+
+simulated event RenderOverlays (Canvas C)
+{
+	local float ImageScaleRatio;
+	local Vector X, Y, Z;
+
+	if (!bScopeView)
+	{
+		Super.RenderOverlays(C);
+		if (SightFX != None)
+			RenderSightFX(C);
+		return;
+	}
+	if (bScopeView && ( (PlayerController(Instigator.Controller).DesiredFOV == PlayerController(Instigator.Controller).DefaultFOV && PlayerController(Instigator.Controller).bZooming==false)
+		|| (Level.bClassicView && (PlayerController(Instigator.Controller).DesiredFOV == 90)) ))
+	{
+		SetScopeView(false);
+		PlayAnim(ZoomOutAnim);
+	}
+
+    	if (bThermal)
+		DrawThermalMode(C);
+
+	if (!bNoMeshInScope)
+	{
+		Super.RenderOverlays(C);
+		if (SightFX != None)
+			RenderSightFX(C);
+	}
+	else
+	{
+		GetViewAxes(X, Y, Z);
+		if (BFireMode[0].MuzzleFlash != None)
+		{
+			BFireMode[0].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
+			BFireMode[0].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
+			C.DrawActor(BFireMode[0].MuzzleFlash, false, false, DisplayFOV);
+		}
+		if (BFireMode[1].MuzzleFlash != None)
+		{
+			BFireMode[1].MuzzleFlash.SetLocation(Instigator.Location + Instigator.EyePosition() + X * SMuzzleFlashOffset.X + Z * SMuzzleFlashOffset.Z);
+			BFireMode[1].MuzzleFlash.SetRotation(Instigator.GetViewRotation());
+			C.DrawActor(BFireMode[1].MuzzleFlash, false, false, DisplayFOV);
+		}
+		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
+		SetRotation(Instigator.GetViewRotation());
+	}
+
+	// Draw Scope View
+	// Draw the Scope View Tex
+	C.SetDrawColor(255,255,255,255);
+	C.SetPos(C.OrgX, C.OrgY);
+	C.Style = ERenderStyle.STY_Alpha;
+	C.ColorModulate.W = 1;
+	ImageScaleRatio = 1.3333333;
+
+	/*if (bThermal)
+	{
+
+    		C.DrawTile(Texture'BallisticRecolors4TexPro.MARS.MARS-ScopeRed', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+
+        	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
+        	C.DrawTile(Texture'BallisticRecolors4TexPro.MARS.MARS-ScopeRed', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
+
+        	C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
+        	C.DrawTile(Texture'BallisticRecolors4TexPro.MARS.MARS-ScopeRed', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+	}
+	else if (bMeatVision)
+	{
+    		C.DrawTile(Texture'BallisticRecolors4TexPro.MARS.MARS-ScopeTarget', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+
+        	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
+        	C.DrawTile(Texture'BallisticRecolors4TexPro.MARS.MARS-ScopeTarget', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
+
+        	C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
+        	C.DrawTile(Texture'BallisticRecolors4TexPro.MARS.MARS-ScopeTarget', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+	}
+	else
+	{*/
+    		C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+
+        	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
+        	C.DrawTile(ScopeViewTex, C.SizeY, C.SizeY, 0, 0, 1024, 1024);
+
+        	C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
+        	C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+	//}
+		
+	if (bMeatVision)
+		DrawMeatVisionMode(C);
+}
+
+simulated event Timer()
+{
+	if (bUpdatePawns)
+		UpdatePawnList();
+	else
+		super.Timer();
+}
+
+simulated function UpdatePawnList()
+{
+
+	local Pawn P;
+	local int i;
+	local float Dist;
+
+	PawnList.Length=0;
+	ForEach DynamicActors( class 'Pawn', P)
+	{
+		PawnList[PawnList.length] = P;
+		Dist = VSize(P.Location - Instigator.Location);
+		if (Dist <= ThermalRange &&
+			( Normal(P.Location-(Instigator.Location+Instigator.EyePosition())) Dot Vector(Instigator.GetViewRotation()) > 1-((Instigator.Controller.FovAngle*0.9)/180) ) &&
+			((Instigator.LineOfSightTo(P)) || Normal(P.Location - Instigator.Location) Dot Vector(Instigator.GetViewRotation()) > 0.985 + 0.015 * (Dist/ThermalRange)))
+		{
+			if (!Instigator.IsLocallyControlled())
+			{
+				P.NetUpdateTime = Level.TimeSeconds - 1;
+				P.bAlwaysRelevant = true;
+			}
+			UpdatedPawns[i]=P;
+			i++;
+		}
+	}
+}
+
+simulated function SetScopeView(bool bNewValue)
+{
+
+	bScopeView = bNewValue;
+	if (!bScopeView)
+	{
+		Target = None;
+		TargetTime=0;
+	}
+	if (Level.NetMode == NM_Client)
+		ServerSetScopeView(bNewValue);
+	bScopeView = bNewValue;
+	SetScopeBehavior();
+
+	if (!bNewValue && Target != None)
+		class'BUtil'.static.PlayFullSound(self, NVOffSound);
+}
+
+// draws red blob that moves, scanline, and target boxes.
+simulated event DrawMeatVisionMode (Canvas C)
+{
+	local Vector V, V2, V3, X, Y, Z;
+	local float ScaleFactor;
+
+	// Draw RED stuff
+	C.Style = ERenderStyle.STY_Modulated;
+	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
+	C.SetDrawColor(255,255,255,255);
+	C.DrawTile(FinalBlend'BallisticRecolors4TexPro.MARS.F2000TargetFinal', (C.SizeY*1.3333333) * 0.75, C.SizeY, 0, 0, 1024, 1024);
+
+	// Draw some panning lines
+	C.SetPos(C.OrgX, C.OrgY);
+	//C.DrawTile(FinalBlend'BallisticUI2.M75.M75LinesFinal', C.SizeX, C.SizeY, 0, 0, 512, 512);
+
+    C.Style = ERenderStyle.STY_Alpha;
+	
+	if (Target == None)
+		return;
+
+	// Draw Target Boxers
+	ScaleFactor = C.ClipX / 1600;
+	GetViewAxes(X, Y, Z);
+	V  = C.WorldToScreen(Target.Location - Y*Target.CollisionRadius + Z*Target.CollisionHeight);
+	V.X -= 32*ScaleFactor;
+	V.Y -= 32*ScaleFactor;
+	C.SetPos(V.X, V.Y);
+	V2 = C.WorldToScreen(Target.Location + Y*Target.CollisionRadius - Z*Target.CollisionHeight);
+	C.SetDrawColor(160,185,200,255);
+      C.DrawTileStretched(Texture'BallisticRecolors3TexPro.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
+
+    V3 = C.WorldToScreen(Target.Location - Z*Target.CollisionHeight);
+}
+
+// Draws players through walls and all the other Thermal Mode stuff
+simulated event DrawThermalMode (Canvas C)
+{
+	local float ImageScaleRatio;//, OtherRatio;
+
+	ImageScaleRatio = 1.3333333;
+
+	C.Style = ERenderStyle.STY_Modulated;
+	// Draw Spinning Sweeper thing
+	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
+	C.SetDrawColor(255,255,255,255);
+	C.DrawTile(FinalBlend'BallisticRecolors4TexPro.MARS.F2000IRNVFinal', (C.SizeY*ImageScaleRatio) * 0.75, C.SizeY, 0, 0, 1024, 1024);
+}
+
+simulated function AdjustThermalView(bool bNewValue)
+{
+	if (AIController(Instigator.Controller) != None)
+		return;
+	if (!bNewValue)
+		bUpdatePawns = false;
+	else
+
+	{
+		bUpdatePawns = true;
+		UpdatePawnList();
+		SetTimer(1.0, true);
+	}
+	ServerAdjustThermal(bNewValue);
+}
+
+function ServerAdjustThermal(bool bNewValue)
+{
+
+	local int i;
+//	bThermal = bNewValue;
+	if (bNewValue)
+	{
+		bUpdatePawns = true;
+		UpdatePawnList();
+		SetTimer(1.0, true);
+	}
+	else
+	{
+		bUpdatePawns = false;
+//		SetTimer(0.0, false);
+		for (i=0;i<ArrayCount(UpdatedPawns);i++)
+		{
+			if (UpdatedPawns[i] != None)
+				UpdatedPawns[i].bAlwaysRelevant = false;
+		}
+	}
+}
+
+//simulated function DoWeaponSpecial(optional byte i)
+exec simulated function WeaponSpecial(optional byte i)
+{
+	if (!bThermal && !bMeatVision) //Nothing on, turn on IRNV!
+	{
+		bThermal = !bThermal;
+		if (bThermal)
+				class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
+		else
+				class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
+		AdjustThermalView(bThermal);
+		if (!bScopeView)
+			PlayerController(InstigatorController).ClientMessage("Activated nightvision scope.");
+		return;
+	}
+	if (bThermal && !bMeatVision) //IRNV on! turn it off and turn on targeting!
+	{
+		bThermal = !bThermal;
+		if (bThermal)
+				class'BUtil'.static.PlayFullSound(self, ThermalOnSound);
+		else
+				class'BUtil'.static.PlayFullSound(self, ThermalOffSound);
+		AdjustThermalView(bThermal);
+		if (!bScopeView)
+			PlayerController(InstigatorController).ClientMessage("Activated infrared targeting scope.");
+		bMeatVision = !bMeatVision;
+		if (bMeatVision)
+				class'BUtil'.static.PlayFullSound(self, NVOnSound);
+		else
+				class'BUtil'.static.PlayFullSound(self, NVOffSound);
+		return;
+	}
+	if (!bThermal && bMeatVision) //targeting on! turn it off!
+	{
+		bMeatVision = !bMeatVision;
+		if (bMeatVision)
+				class'BUtil'.static.PlayFullSound(self, NVOnSound);
+		else
+				class'BUtil'.static.PlayFullSound(self, NVOffSound);
+		if (!bScopeView)
+			PlayerController(InstigatorController).ClientMessage("Activated standard scope.");
+		return;
+	}
+}
+
+//==============================================
+//=========== Light + Garbage Cleanup ==========
+//==============================================
+
+simulated event Destroyed()
+{
+	AdjustThermalView(false);
+
+	if (NVLight != None)
+		NVLight.Destroy();
+		
+	Instigator.AmbientSound = UsedAmbientSound;
+	Instigator.SoundVolume = default.SoundVolume;
+	Instigator.SoundPitch = default.SoundPitch;
+	Instigator.SoundRadius = default.SoundRadius;
+	Instigator.bFullVolume = false;
+
+	super.Destroyed();
+}
+
+simulated function bool PutDown()
+{
+	if (Super.PutDown())
+	{
+		AdjustThermalView(false);
+		return true;
+	}
+
+	Instigator.AmbientSound = UsedAmbientSound;
+	Instigator.SoundVolume = default.SoundVolume;
+	Instigator.SoundPitch = default.SoundPitch;
+	Instigator.SoundRadius = default.SoundRadius;
+	Instigator.bFullVolume = false;
+
+	return false;
+}
+
+simulated function SetNVLight(bool bOn)
+{
+	if (!Instigator.IsLocallyControlled())
+		return;
+	if (bOn)
+	{
+		if (NVLight == None)
+		{
+			NVLight = Spawn(class'BX85NVLight',,,Instigator.location);
+			NVLight.SetBase(Instigator);
+		}
+		NVLight.bDynamicLight = true;
+	}
+	else if (NVLight != None)
+		NVLight.bDynamicLight = false;
+}
+
 simulated function float ChargeBar()
 {
 	return BX85Attachment(ThirdPersonActor).CurAlpha / 128.0f;
@@ -45,8 +474,13 @@ function float SuggestDefenseStyle()	{	return 0.7;	}
 
 defaultproperties
 {
-	AIRating=0.8
-	CurrentRating=0.8
+	 ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
+     ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
+     NVOnSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
+     NVOffSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
+     WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
+     Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
+     ThermalRange=2500.000000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
      AIReloadTime=1.500000
      BigIconMaterial=Texture'BWBPOtherPackTex2.XBow.BigIcon_Crossbow'
@@ -68,9 +502,6 @@ defaultproperties
      ClipInFrame=0.650000
      CurrentWeaponMode=0
      ZoomType=ZT_Logarithmic
-	 MinZoom=2.000000
-     MaxZoom=16.000000
-     ZoomStages=8
      ScopeViewTex=Texture'BWBPOtherPackTex2.R9A1.R9_scope_UI_DO1'
      FullZoomFOV=50.000000
      bNoMeshInScope=True
@@ -78,6 +509,9 @@ defaultproperties
      SightOffset=(X=-2.000000,Y=5.000000,Z=5.200000)
      SightDisplayFOV=40.000000
      SightingTime=0.450000
+     MinZoom=2.000000
+     MaxZoom=16.000000
+     ZoomStages=8
      SightAimFactor=0.150000
      JumpChaos=0.200000
      AimAdjustTime=0.450000
@@ -95,13 +529,14 @@ defaultproperties
      PutDownTime=0.600000
      BringUpTime=0.900000
      SelectForce="SwitchToAssaultRifle"
+     AIRating=0.800000
+     CurrentRating=0.800000
      bShowChargingBar=True
      Description="Originally a specialist law enforcement weapon, the PD-97 'Bloodhound' has been adapted into a military role, used to control opponents and track their movement upon the battlefield. While less immediately lethal than most other weapons, its tactical repertoire is not to be underestimated."
      Priority=24
      HudColor=(B=150,G=150,R=150)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=9
-     GroupOffset=0
      PickupClass=Class'BWBPOtherPackPro.BX85Pickup'
      PlayerViewOffset=(X=10.000000,Y=2.000000,Z=-7.000000)
      AttachmentClass=Class'BWBPOtherPackPro.BX85Attachment'
