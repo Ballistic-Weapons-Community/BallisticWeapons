@@ -38,7 +38,10 @@ simulated function Initialize(Actor V)
 		Emitters[1].Disabled=true;
 		Emitters[2].Disabled=true;
 	}
-	SetBase(Victim);
+    SetBase(Victim);
+    
+    if (Role == ROLE_Authority && BallisticPawn(Victim) != None)
+        BallisticPawn(Victim).HealBlock(Instigator, class'RSDarkHealBlockMessage');
 }
 
 function AddPower(float Amount)
@@ -62,6 +65,15 @@ event Tick (float DT)
 		else Kill();
 		return;
 	}
+}
+
+    
+simulated function Destroyed()
+{
+	if (Role == ROLE_Authority && BallisticPawn(Victim) != None)
+        BallisticPawn(Victim).ReleaseHealBlock();
+
+	Super.Destroyed();
 }
 
 event Timer()

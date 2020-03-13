@@ -26,7 +26,7 @@ simulated function Initialize(Actor V)
 	Victim = V;
 	SetTimer(1, true);
 
-	if (level.netMode == NM_DedicatedServer)
+	if (level.NetMode == NM_DedicatedServer)
 	{
 		Emitters[0].Disabled=true;
 		Emitters[1].Disabled=true;
@@ -34,8 +34,8 @@ simulated function Initialize(Actor V)
 	}
 	SetBase(Victim);
 	
-	if (BallisticPawn(Victim) != None)
-		BallisticPawn(Victim).bPreventHealing = True;
+	if (Role == ROLE_Authority && BallisticPawn(Victim) != None)
+        BallisticPawn(Victim).HealBlock(Instigator, class'RSDarkHealBlockMessage');
 }
 
 function AddPower(float Amount)
@@ -61,8 +61,9 @@ event Tick (float DT)
 
 simulated function Destroyed()
 {
-	if (BallisticPawn(Victim) != None)
-		BallisticPawn(Victim).bPreventHealing = False;
+	if (Role == ROLE_Authority && BallisticPawn(Victim) != None)
+        BallisticPawn(Victim).ReleaseHealBlock();
+
 	Super.Destroyed();
 }
 

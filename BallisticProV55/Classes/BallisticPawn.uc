@@ -47,8 +47,6 @@ var   byte				DoubleJumpsLeft;
 var   float				LastDoubleJumpTime;
 var	bool					bResetAnimationAction;
 
-var	bool					bPreventHealing;
-
 var 	globalconfig	bool	bLocalDisableAnimation;
 var 						bool	bDisablePawnAnimation;
 var	globalconfig	array<String> ModelWhitelist;
@@ -126,21 +124,26 @@ var 	bool				bOffhandStrike;
 
 var config array<string> Spammers;
 // Cover from decorations -----------------------------
-var array<Actor> CoverAnchors;
+var 	array<Actor>		CoverAnchors;
 
 //Flying exploit
-var bool		bPendingNegation;
+var 	bool				bPendingNegation;
 
 // Support for player transparency
-var array<Material>				OriginalSkins, Fades;
-var byte									CurFade, penalty;
+var 	array<Material>		OriginalSkins, Fades;
+var 	byte				CurFade, penalty;
 
-var bool                 					bTransparencyInitialized;
-var bool									bTransparencyOn, bOldTransparency;
+var 	bool                bTransparencyInitialized;
+var 	bool				bTransparencyOn, bOldTransparency;
 	
 //Killstreak -----------------------------------------------
-var 	bool	bActiveKillstreak;
-var 	float 	NextHealMessageTime;
+var 	bool				bActiveKillstreak; // FIXME REMOVE?
+//Healing------------------------------------------------
+var 	float 				NextHealMessageTime;
+var		bool				bPreventHealing;
+var		Pawn				HealPreventer;
+var		int					PreventHealCount;
+var 	class<LocalMessage> HealBlockMessage;
 
 replication
 {
@@ -827,13 +830,35 @@ simulated function AnimEnd(int Channel)
 		PlayVictoryAnimation();
 }
 
+function HealBlock(Pawn Instigator, class<LocalMessage> BlockMessageClass)
+{
+	PreventHealCount++;
+
+	bPreventHealing = true;
+
+	HealPreventer = Instigator;
+
+	HealBlockMessage = BlockMessageClass;
+}
+
+function ReleaseHealBlock()
+{
+	PreventHealCount--;
+
+	if (PreventHealCount == 0)
+		bPreventHealing = false;
+}
+
 //Tracks the person who healed us
-function bool GiveAttributedHealth(int HealAmount, int HealMax, pawn Healer, optional bool bOverheal)
+function bool GiveAttributedHealth(int HealAmount, int HealMax, Pawn Healer, optional bool bOverheal)
 {
 	local int OldHealth;
 	
 	if (bPreventHealing && bProjTarget)
+	{
+		MessageAttributedHealBlock(Healer);
 		return false;
+	}
 	
 	OldHealth = Health;
 	
@@ -860,17 +885,41 @@ function bool GiveAttributedHealth(int HealAmount, int HealMax, pawn Healer, opt
 function bool GiveHealth(int HealAmount, int HealMax)
 {
 	if (bPreventHealing && bProjTarget)
+	{
+		MessageHealBlock();
 		return false;
+	}
 	
 	return Super.GiveHealth(HealAmount, HealMax);	
 }
 
-function MessageHeal (pawn Healer)
+function MessageHeal (Pawn Healer)
 {
 	if (PlayerController(Controller) != None && NextHealMessageTime < Level.TimeSeconds)
 	{
 		NextHealMessageTime = Level.TimeSeconds + 1;
 		PlayerController(Controller).ReceiveLocalizedMessage(class'BallisticHealMessage', 0, Healer.PlayerReplicationInfo);
+	}
+}
+
+function MessageHealBlock()
+{
+	if (PlayerController(Controller) != None && NextHealMessageTime < Level.TimeSeconds)
+	{
+		NextHealMessageTime = Level.TimeSeconds + 1;
+		PlayerController(Controller).ReceiveLocalizedMessage(HealBlockMessage, 0, HealPreventer.PlayerReplicationInfo);
+	}
+}
+
+function MessageAttributedHealBlock(Pawn Healer)
+{
+	if (PlayerController(Controller) != None && NextHealMessageTime < Level.TimeSeconds)
+	{
+		NextHealMessageTime = Level.TimeSeconds + 1;
+		PlayerController(Controller).ReceiveLocalizedMessage(HealBlockMessage, 1, HealPreventer.PlayerReplicationInfo, Healer.PlayerReplicationInfo);
+
+		if (PlayerController(Healer.Controller) != None)
+			PlayerController(Healer.Controller).ReceiveLocalizedMessage(HealBlockMessage, 2, HealPreventer.PlayerReplicationInfo, PlayerReplicationInfo);
 	}
 }
 
