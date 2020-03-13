@@ -274,6 +274,38 @@ function int GetItemSize(class<Weapon> Item)
 	return 5;
 }
 
+function int CountExisting(string weapon_name)
+{
+	local int i, count;
+
+	for (i = 0; i < Inventory.Length; ++i)
+	{
+		if (Inventory[i].ClassName ~= weapon_name)
+			++count;
+	}
+
+	return count;
+}
+
+function int GetMaxCount(class<Weapon> weapon)
+{
+	local class<Ammo> ammo_class;
+	local int base_ammo, max_ammo;
+
+	base_ammo = weapon.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
+	max_ammo = weapon.default.FireModeClass[0].default.AmmoClass.default.MaxAmmo;
+
+	if (max_ammo % base_ammo == 0)
+		return max_ammo / base_ammo;
+
+	return Ceil(float(max_ammo) / float(base_ammo));
+}
+
+function bool MaxReached(class<Weapon> weapon, string class_name)
+{
+	return CountExisting(class_name) >= GetMaxCount(weapon);
+}
+
 function bool GroupPriorityOver(int inserting_group, int target_group)
 {
 	switch(inserting_group)
@@ -313,8 +345,8 @@ function int GetInsertionPoint(int inserting_item_grp)
 function bool AddInventory(string ClassName, class<actor> InvClass, string FriendlyName)
 {
 	local int i, Size, A;
-	local class<BallisticWeapon> Weap;
-	local class<Weapon> 		WeaponClass;
+	local class<BallisticWeapon> 	Weap;
+	local class<Weapon> 			WeaponClass;
 
 	if (InvClass == None)
 		return false;
@@ -326,9 +358,14 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 		return false;
 
 	WeaponClass = class<Weapon>(InvClass);
+
+	if (MaxReached(WeaponClass, ClassName))
+		return false;
+
 	Weap = class<BallisticWeapon>(WeaponClass);
 
 	Size = GetItemSize(WeaponClass);
+
 	if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 		return false;
 

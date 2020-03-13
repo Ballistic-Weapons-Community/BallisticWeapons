@@ -31,7 +31,7 @@ simulated function Initialize(Pawn V)
 	SetLocation(Victim.Location - vect(0, 0, 1)*Victim.CollisionHeight);
 	SetRotation(Victim.Rotation + rot(0, -16384, 0));
 	SetBase(Victim);
-	Victim.GiveHealth(10, Instigator.SuperHealthMax);
+	Victim.GiveHealth(10, Instigator.HealthMax);
 }
 
 simulated event Timer()
@@ -47,7 +47,7 @@ simulated event Timer()
 	if (Victim != None && Level.NetMode != NM_Client)
 	{
 		if (Instigator.bProjTarget)
-			Victim.GiveHealth(10, Instigator.SuperHealthMax);
+			Victim.GiveHealth(10, Instigator.HealthMax);
 	}
 }
 
@@ -70,7 +70,7 @@ simulated event Tick(float DT)
 
 defaultproperties
 {
-     BurnTime=9.000000
+     BurnTime=10.000000
      AutoDestroy=True
      bDynamicLight=True
      bFullVolume=True

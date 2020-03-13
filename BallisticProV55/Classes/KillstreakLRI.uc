@@ -96,6 +96,12 @@ simulated function PostNetBeginPlay()
 //===============================================================
 simulated function Timer()
 {
+	if (Level.NetMode != NM_ListenServer)	
+	{	
+		SetTimer(0.0, false);
+		return;
+	}
+	
 	if (PlayerController(myController) != None && Viewport(PlayerController(myController).Player) != None)
 	{
 		ServerGetStreakList();

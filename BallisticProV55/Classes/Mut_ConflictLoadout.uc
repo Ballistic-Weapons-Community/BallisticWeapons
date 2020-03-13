@@ -256,23 +256,14 @@ function ModifyPlayer( pawn Other )
 
 					if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 						continue;
+				
+					if (class<Weapon>(InventoryClass) != None)
+						SpawnConflictWeapon(class<Weapon>(InventoryClass), Other);
+					else 
+						SpawnInventoryItem(InventoryClass, Other);
 
-					Inv = Other.Spawn(InventoryClass,,,Other.Location);
-					if( Inv != None )
-					{
-						Inv.GiveTo(Other);
-						Inv.PickupFunction(Other);
-
-						if (Bot(Other.Controller) != None && Weapon(Inv) != None && Other.PendingWeapon == None && Other.Weapon == None)
-						{
-							Other.PendingWeapon = Weapon(Inv);
-							Other.ChangedWeapon();
-						}						
-					}
-					
 					SpaceUsed += Size;
 				}
-
 				else
 				{
 					ItemClass = class<ConflictItem>(DynamicLoadObject(CLRI.Loadout[i],class'Class'));
@@ -287,7 +278,7 @@ function ModifyPlayer( pawn Other )
 							if (ItemClass.static.AddAmmoBonus(Other, BonusAmmo));
 								SpaceUsed += Size;
 						}
-						else if (ItemClass.static.Applyitem(Other))
+						else if (ItemClass.static.ApplyItem(Other))
 							SpaceUsed += Size;
 					}
 				}
@@ -330,6 +321,53 @@ function ModifyPlayer( pawn Other )
 
 	for (i = 0; i < CLRI.AppliedItems.length; i++)
 		CLRI.AppliedItems[i].static.PostApply(Other);
+}
+
+function SpawnInventoryItem(class<Inventory> InvClass, Pawn Other)
+{
+	local Inventory Inv;
+
+	Inv = Other.Spawn(InvClass,,,Other.Location);
+
+	if( Inv != None )
+	{
+		Inv.GiveTo(Other);
+		Inv.PickupFunction(Other);					
+	}
+}
+
+function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other)
+{
+	local Weapon newWeapon;
+
+	newWeapon = Weapon(Other.FindInventoryType(WepClass));
+
+	if (newWeapon == None || (BallisticHandgun(newWeapon) != None && BallisticHandgun(newWeapon).bShouldDualInLoadout))
+	{
+		newWeapon = Other.Spawn(WepClass,,,Other.Location);
+	
+		if( newWeapon != None )
+		{
+			newWeapon.GiveTo(Other);
+			newWeapon.PickupFunction(Other);
+				
+			//Hack for bots - stops them complaining
+			if (Bot(Other.Controller) != None && Other.PendingWeapon == None && Other.Weapon == None)
+			{
+				Other.PendingWeapon = newWeapon;
+				Other.ChangedWeapon();
+			}						
+		}
+	}
+
+	else 
+	{
+		if (Level.NetMode == NM_Standalone)
+			Log("Adding extra ammo for "$newWeapon.Name);
+
+		newWeapon.AddAmmo(WepClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount, 0);
+		newWeapon.AddAmmo(WepClass.default.FireModeClass[1].default.AmmoClass.default.InitialAmount, 1);
+	}
 }
 
 function EquipBot(Pawn P)

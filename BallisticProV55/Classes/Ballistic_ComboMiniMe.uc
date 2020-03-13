@@ -29,7 +29,7 @@ function StopEffect(xPawn P)
 defaultproperties
 {
      ExecMessage="Pint-Sized!"
-     Duration=60.000000
+     Duration=40.000000
      ComboAnnouncementName="Pint_sized"
      keys(0)=8
      keys(1)=8

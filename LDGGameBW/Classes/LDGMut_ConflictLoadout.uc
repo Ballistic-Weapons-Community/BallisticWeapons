@@ -55,38 +55,21 @@ function ModifyPlayer( pawn Other )
 			{
 				InventoryClass = Level.Game.BaseMutator.GetInventoryClass(CLRI.Loadout[i]);
 
-				if( (InventoryClass!=None))
+				if(InventoryClass != None)
 				{
 					Size = GetItemSize(InventoryClass);
 
 					if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 						continue;
+				
+					if (class<Weapon>(InventoryClass) != None)
+						SpawnConflictWeapon(class<Weapon>(InventoryClass), Other);
+					else 
+						SpawnInventoryItem(InventoryClass, Other);
 
-					Inv = Other.Spawn(InventoryClass,,,Other.Location);
-					if( Inv != None )
-					{
-						Inv.GiveTo(Other);
-						Inv.PickupFunction(Other);
-
-						if (Bot(Other.Controller) != None && Weapon(Inv) != None && Other.PendingWeapon == None && Other.Weapon == None)
-						{
-							Other.PendingWeapon = Weapon(Inv);
-							Other.ChangedWeapon();
-						}	
-
-						SpaceUsed += Size;
-						
-						if (class<BallisticWeapon>(InventoryClass) != None)
-							TrackInfo = Freon_Player(Other.Controller).GetAmmoTrackFor(class<BallisticWeapon>(InventoryClass));
-						if (TrackInfo.GunClass != None && (TrackInfo.GunClass == InventoryClass || ClassIsChildOf(TrackInfo.GunClass, InventoryClass)))
-						{
-							BW = BallisticWeapon(Inv);
-							BW.SetAmmoTo(TrackInfo.Ammo1, 0);
-							if (BW.GetAmmoClass(0) != BW.GetAmmoClass(1) && BW.GetAmmoClass(1) != None)
-								BW.SetAmmoTo(TrackInfo.Ammo2, 1);
-						}
-					}
+					SpaceUsed += Size;
 				}
+
 				else
 				{
 					itemclass = class<ConflictItem>(DynamicLoadObject(CLRI.Loadout[i],class'Class'));
