@@ -104,7 +104,7 @@ simulated function PhysicsVolumeChange( PhysicsVolume NewVolume )
 defaultproperties
 {
      DamageType=Class'BallisticJiffyPack.DTARImmolation'
-     Damage=7
+     Damage=9.000000
      BurnTime=6.000000
      Begin Object Class=SpriteEmitter Name=SpriteEmitter11
          FadeOut=True
