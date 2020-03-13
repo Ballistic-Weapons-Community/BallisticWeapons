@@ -22,7 +22,7 @@ function ModifyPlayer( pawn Other )
 	Super(Mut_Ballistic).ModifyPlayer(Other);
 	
 	//ModifyPlayer isn't always called on spawn
-	if (Other.LastStartTime > Level.TimeSeconds + 2)
+	if (Other.LastStartTime > Level.TimeSeconds + 1)
 		return;
 
 	CLRI = ConflictLoadoutLRI(GetBPRI(Other.PlayerReplicationInfo));
@@ -54,18 +54,26 @@ function ModifyPlayer( pawn Other )
 			else
 			{
 				InventoryClass = Level.Game.BaseMutator.GetInventoryClass(CLRI.Loadout[i]);
+
 				if( (InventoryClass!=None))
 				{
 					Size = GetItemSize(InventoryClass);
+
 					if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 						continue;
-					xPawn(Other).RequiredEquipment[i] = CLRI.Loadout[i];
-					Inv = Spawn(InventoryClass);
+
+					Inv = Other.Spawn(InventoryClass,,,Other.Location);
 					if( Inv != None )
 					{
 						Inv.GiveTo(Other);
-						if ( Inv != None )
-							Inv.PickupFunction(Other);
+						Inv.PickupFunction(Other);
+
+						if (Bot(Other.Controller) != None && Weapon(Inv) != None && Other.PendingWeapon == None && Other.Weapon == None)
+						{
+							Other.PendingWeapon = Weapon(Inv);
+							Other.ChangedWeapon();
+						}	
+
 						SpaceUsed += Size;
 						
 						if (class<BallisticWeapon>(InventoryClass) != None)
@@ -81,7 +89,6 @@ function ModifyPlayer( pawn Other )
 				}
 				else
 				{
-					xPawn(Other).RequiredEquipment[i] = "";
 					itemclass = class<ConflictItem>(DynamicLoadObject(CLRI.Loadout[i],class'Class'));
 					if (itemclass != None)
 					{
@@ -101,8 +108,6 @@ function ModifyPlayer( pawn Other )
 			}
 		}
 	}
-    if ( UnrealPawn(Other) != None )
-        UnrealPawn(Other).AddDefaultInventory();
 
 	if (SpaceUsed < INVENTORY_SIZE_MAX)
 	{
@@ -132,7 +137,7 @@ function ModifyPlayer( pawn Other )
 		}
 	}
 
-	for (Inv=Other.Inventory;Inv!=None;Inv=Inv.Inventory)
+	for (Inv = Other.Inventory; Inv != None; Inv = Inv.Inventory)
 	{
 		W = Weapon(Inv);
 		if (W != None && BonusAmmo > 0)
@@ -142,7 +147,7 @@ function ModifyPlayer( pawn Other )
 				SpawnAmmo(W.default.FireModeClass[1].default.AmmoClass, Other, BonusAmmo);
 		}
 	}
-	for (i=0;i<CLRI.AppliedItems.length;i++)
+		for (i = 0; i < CLRI.AppliedItems.length; i++)
 		CLRI.AppliedItems[i].static.PostApply(Other);
 }
 

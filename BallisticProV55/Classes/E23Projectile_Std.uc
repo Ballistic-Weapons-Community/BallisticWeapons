@@ -13,7 +13,7 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
 	
 	if (default.LifeSpan - LifeSpan > 0.1)
-		Dmg *= 1 + 1 * FMin(default.LifeSpan - LifeSpan - 0.1, 0.5) / 0.5;
+		Dmg *= 1 + 0.6 * FMin(default.LifeSpan - LifeSpan - 0.1, 0.3) / 0.3;
 		
 	return Other;
 }
@@ -111,13 +111,13 @@ defaultproperties
      AccelSpeed=100000.000000
      MyRadiusDamageType=Class'BallisticProV55.DTE23Plasma'
      bUsePositionalDamage=True
-     DamageHead=31.000000
-     DamageLimb=31.000000
+     DamageHead=60.000000
+     DamageLimb=40.000000
      DamageTypeHead=Class'BallisticProV55.DTE23PlasmaHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000
-     MaxSpeed=14000.000000
-     Damage=31.000000
+     MaxSpeed=10000.000000
+     Damage=40.000000
      DamageRadius=16.000000
      MomentumTransfer=100.000000
      MyDamageType=Class'BallisticProV55.DTE23Plasma'

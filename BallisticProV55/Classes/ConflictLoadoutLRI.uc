@@ -1,7 +1,7 @@
 //=============================================================================
-// EliminationPRI.
+// Conflict Loadout Linked Replication Info
 //
-// LinkedReplicationInfo used by Spatial Loadout.
+// LinkedReplicationInfo used by Conflict Loadout.
 // Adds list of weapons to send to client, requirements for the weapons for
 // evolution mode, player's skill info, selected loadout lit, saved loadout
 // list and a few other settings...
@@ -165,7 +165,21 @@ simulated function Timer()
 
 simulated function SendSavedInventory()
 {	
-	ServerSetInventory(class'ConflictLoadoutConfig'.static.BuildSavedInventoryString());
+	local string s;
+
+	// this is a hack for an issue with weapon priority
+	// on standalones, the player holds the first weapon created
+	// when a client, the player holds the last weapon created
+	// so when on a standalone, we send the regular inventory string
+	if (Level.NetMode != NM_Client)
+		s = class'ConflictLoadoutConfig'.static.BuildSavedInventoryString();
+	// otherwise we send a reversed string
+	else
+		s = class'ConflictLoadoutConfig'.static.BuildReversedSavedInventoryString();
+
+	Log("SendSavedInventory: Sending string:"@s);
+
+	ServerSetInventory(s);
 }
 
 simulated function Tick(float deltatime)

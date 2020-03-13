@@ -278,14 +278,14 @@ function bool GroupPriorityOver(int inserting_group, int target_group)
 {
 	switch(inserting_group)
 	{
-		case 11: // grenade never has priority
+		case 11: // grenade last
 			return false;
-		case 1: // melee is only better than grenade
+		case 1: // melee next
 			return target_group == 11;
-		case 2: // sidearm is better than melee and grenade
-			return target_group == 11 || target_group == 1;
-		default: // use last inserted weapon as primary
-			return true;
+		case 2: // sidearm next
+			return target_group == 1 || target_group == 2;
+		default: // primary weapons always come last so we spawn with them online, it seems
+			return target_group == 1 || target_group == 2 || target_group == 11;
 	}
 }
 
@@ -507,7 +507,7 @@ function UpdateInventory()
 	class'ConflictLoadoutConfig'.static.UpdateSavedInventory(Inventory);
 			
 	if (PlayerOwner().Level.NetMode == NM_Client)
-		CLRI.ServerSetInventory(class'ConflictLoadoutConfig'.static.BuildSavedInventoryString());
+		CLRI.ServerSetInventory(class'ConflictLoadoutConfig'.static.BuildReversedSavedInventoryString());
 
 	else
 	{

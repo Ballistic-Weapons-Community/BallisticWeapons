@@ -212,12 +212,12 @@ function ModifyPlayer( pawn Other )
 	local class<Inventory> InventoryClass;
 	local ConflictLoadoutLRI CLRI;
 	local string s;
-	local class<ConflictItem> itemclass;
+	local class<ConflictItem> ItemClass;
 
 	Super.ModifyPlayer(Other);
 	
-	//ModifyPlayer isn't always called on spawn
-	if (Other.LastStartTime > Level.TimeSeconds + 2)
+	//ModifyPlayer is sometimes called at times other than spawn time
+	if (Other.LastStartTime > Level.TimeSeconds + 1)
 		return;
 
 	CLRI = ConflictLoadoutLRI(GetBPRI(Other.PlayerReplicationInfo));
@@ -253,26 +253,32 @@ function ModifyPlayer( pawn Other )
 				if(InventoryClass != None)
 				{
 					Size = GetItemSize(InventoryClass);
+
 					if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 						continue;
-					xPawn(Other).RequiredEquipment[i] = CLRI.Loadout[i];
-					Inv = Spawn(InventoryClass);
+
+					Inv = Other.Spawn(InventoryClass,,,Other.Location);
 					if( Inv != None )
 					{
 						Inv.GiveTo(Other);
-						if ( Inv != None )
-							Inv.PickupFunction(Other);
-						SpaceUsed += Size;
+						Inv.PickupFunction(Other);
+
+						if (Bot(Other.Controller) != None && Weapon(Inv) != None && Other.PendingWeapon == None && Other.Weapon == None)
+						{
+							Other.PendingWeapon = Weapon(Inv);
+							Other.ChangedWeapon();
+						}						
 					}
+					
+					SpaceUsed += Size;
 				}
 
 				else
 				{
-					xPawn(Other).RequiredEquipment[i] = "";
-					itemclass = class<conflictitem>(DynamicLoadObject(CLRI.Loadout[i],class'Class'));
-					if (itemclass != None)
+					ItemClass = class<ConflictItem>(DynamicLoadObject(CLRI.Loadout[i],class'Class'));
+					if (ItemClass != None)
 					{
-						Size = itemclass.default.Size/5;
+						Size = ItemClass.default.Size/5;
 						if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
 							continue;
 						CLRI.AppliedItems[CLRI.AppliedItems.length] = ItemClass;
@@ -288,12 +294,10 @@ function ModifyPlayer( pawn Other )
 			}
 		}
 	}
-    if ( UnrealPawn(Other) != None )
-        UnrealPawn(Other).AddDefaultInventory();
-
+		
 	if (SpaceUsed < INVENTORY_SIZE_MAX)
 	{
-		for (Inv=Other.Inventory;Inv!=None;Inv=Inv.Inventory)
+		for (Inv=Other.Inventory; Inv != None; Inv = Inv.Inventory)
 			if (Weapon(Inv) != None)
 				break;
 		if (Inv == None)
@@ -307,13 +311,7 @@ function ModifyPlayer( pawn Other )
 				if( Inv != None )
 				{
 					Inv.GiveTo(Other);
-					if (Weapon(Inv) != None && Other.PendingWeapon == None && Other.Weapon == None)
-					{
-						Other.PendingWeapon = Weapon(Inv);
-						Other.ChangedWeapon();
-					}
-					if ( Inv != None )
-						Inv.PickupFunction(Other);
+					Inv.PickupFunction(Other);
 				}
 			}
 		}
@@ -329,7 +327,8 @@ function ModifyPlayer( pawn Other )
 				SpawnAmmo(W.default.FireModeClass[1].default.AmmoClass, Other, BonusAmmo);
 		}
 	}
-	for (i=0;i<CLRI.AppliedItems.length;i++)
+
+	for (i = 0; i < CLRI.AppliedItems.length; i++)
 		CLRI.AppliedItems[i].static.PostApply(Other);
 }
 
@@ -536,6 +535,9 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 			PlayerReplicationInfo(Other).CustomReplicationInfo = BPRI;
 	}
 	
+	// void required equipment before AddDefaultInventory call
+	// we can't access the PlayerReplicationInfo from this point,
+	// forcing the use of ModifyPlayer to equip the pawn
 	else if (xPawn(Other) != None)
 	{
 		xPawn(Other).RequiredEquipment[0] = "";

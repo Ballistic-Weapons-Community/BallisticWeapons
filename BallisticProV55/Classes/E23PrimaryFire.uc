@@ -200,7 +200,7 @@ static function FireModeStats GetStats()
 	local FireModeStats FS;
 
 	FS.DamageInt = default.ProjectileClass.default.Damage;
-	FS.Damage = String(FS.DamageInt)@"-"@String(Int(FS.DamageInt * 2.5));
+	FS.Damage = String(FS.DamageInt)@"-"@String(Int(FS.DamageInt * 1.6));
 	FS.DPS = default.ProjectileClass.default.Damage / default.FireRate;
 	FS.TTK = default.FireRate * (Ceil(175/default.ProjectileClass.default.Damage) - 1);
 	FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
@@ -208,7 +208,7 @@ static function FireModeStats GetStats()
 	FS.RPS = default.RecoilPerShot / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.Range = "Max dmg: 0.6s";
+	FS.Range = "Max dmg: 0.3s";
 	
 	return FS;
 }
@@ -220,11 +220,11 @@ defaultproperties
      PushForce=800.000000
      SGFireCount=5
      SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
-     FireModes(0)=(mProjClass=Class'BallisticProV55.E23Projectile_SG',mFireRate=0.650000,mFireChaos=0.500000,mFireSound=Sound'BWBP4-Sounds.VPR.VPR-SGFire',mFireAnim="Fire2",mRecoil=1024.000000,mAmmoPerFire=10,TargetState="Shotgun",bModeLead=True)
+     FireModes(0)=(mProjClass=Class'BallisticProV55.E23Projectile_SG',mFireRate=0.50000,mFireChaos=0.500000,mFireSound=Sound'BWBP4-Sounds.VPR.VPR-SGFire',mFireAnim="Fire2",mRecoil=1024.000000,mAmmoPerFire=10,TargetState="Shotgun",bModeLead=True)
      FireModes(1)=(mProjClass=Class'BallisticProV55.E23Projectile_Snpr',mFireRate=0.650000,mFireChaos=0.350000,mFireSound=Sound'BWBP4-Sounds.VPR.VPR-Fire',mFireAnim="Fire",mRecoil=384.000000,mAmmoPerFire=10,bModeLead=True)
      MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
      FlashScaleFactor=0.750000
-     RecoilPerShot=150.000000
+     RecoilPerShot=160.000000
      FireChaos=0.060000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True

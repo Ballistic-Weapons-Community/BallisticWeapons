@@ -28,7 +28,22 @@ static function string BuildSavedInventoryString()
 	local string s;
 	local int i;
 
-	for (i=0; i < default.SavedInventory.Length; i++)
+	for (i = 0; i < default.SavedInventory.Length; i++)
+	{
+		if (s == "")
+			s = default.SavedInventory[i];
+		else
+			s = s $ "|" $ default.SavedInventory[i];
+	}
+	return s;
+}
+
+static function string BuildReversedSavedInventoryString()
+{ 
+	local string s;
+	local int i;
+
+	for (i = default.SavedInventory.Length - 1; i >= 0; --i)
 	{
 		if (s == "")
 			s = default.SavedInventory[i];
