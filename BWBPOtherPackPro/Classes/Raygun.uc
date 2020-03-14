@@ -427,7 +427,7 @@ function DisableShield()
 // Aim goes bad when player takes damage
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
-	if (bShieldOn && !DamageType.default.bLocationalHit && DamageType.default.bArmorStops)
+	if (bShieldOn && !DamageType.default.bLocationalHit)
 	{
 		Damage = 0;
 		Momentum=vect(0,0,0);

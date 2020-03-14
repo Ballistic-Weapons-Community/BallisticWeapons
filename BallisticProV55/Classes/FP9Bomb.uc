@@ -443,7 +443,7 @@ defaultproperties
      LaserOffSound=Sound'BallisticSounds2.FP9A5.FP9-LaserOff'
      OldLaserRange=-1.000000
      LaserSkin=Shader'BallisticWeapons2.FP9A5.FP9LCDActiveSD'
-     BombDetonateDelay=4.000000
+     BombDetonateDelay=2.000000
      DetonateOn=DT_None
      DampenFactor=0.500000
      DampenFactorParallel=0.700000
@@ -462,8 +462,8 @@ defaultproperties
      ShakeRotRate=(X=3000.000000,Z=3000.000000)
      ShakeOffsetMag=(X=20.000000,Y=30.000000,Z=30.000000)
      Speed=350.000000
-     Damage=225.000000
-     DamageRadius=512.000000
+     Damage=120.000000
+     DamageRadius=768.000000
      MomentumTransfer=90000.000000
      MyDamageType=Class'BallisticProV55.DTNRP57Grenade'
      ImpactSound=SoundGroup'BallisticSounds2.FP9A5.FP9-Bounce'

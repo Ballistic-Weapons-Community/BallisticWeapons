@@ -78,11 +78,6 @@ function Timer()
 	bHidden=True;
 	bAlwaysRelevant=True;
 	bTearOff=True;
-	if (Level.NetMode != NM_DedicatedServer && !bDie)
-	{
-		Spawn(class'IE_FireExplosion');
-		PlaySound(Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Ignite', ,1);
-	}
 	GoToState('SpawnIn');
 }
 

@@ -2,6 +2,16 @@ class FlameSwordBarrier extends BallisticShield;
 
 var class<Actor> EffectWhenDestroyed;
 
+simulated function PostBeginPlay()
+{
+	Super.PostBeginPlay();
+
+	PlaySound(Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Ignite', ,1);
+	
+	if (Level.NetMode != NM_DedicatedServer)
+		Spawn(EffectWhenDestroyed, Owner,, Location );
+}
+
 function Timer()
 {
 	GoToState('Destroying');
