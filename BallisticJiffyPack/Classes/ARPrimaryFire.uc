@@ -68,9 +68,9 @@ defaultproperties
      TracerClass=Class'BallisticJiffyPack.TraceEmitter_ShotgunHE'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=4000.000000,Max=6000.000000)
-     Damage=11.000000
-     DamageHead=11.000000
-     DamageLimb=11.000000
+     Damage=13.000000
+     DamageHead=13.000000
+     DamageLimb=13.000000
      RangeAtten=0.300000
      DamageType=Class'BallisticJiffyPack.DT_ARShotgun'
      DamageTypeHead=Class'BallisticJiffyPack.DT_ARShotgunHead'
