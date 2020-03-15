@@ -27,7 +27,7 @@ defaultproperties
      Damage=5.000000
      MyDamageType=Class'BWBPOtherPackPro.DTPD97Tazer'
      DrawType=DT_None
-     StaticMesh=StaticMesh'BallisticHardware_25.OA-SMG.OA-SMG_Dart'
+     StaticMesh=StaticMesh'BWBPOtherPackProjStatic.Bloodhound.BHTazerDart'
      LifeSpan=0.100000
      DrawScale=1.500000
      bIgnoreTerminalVelocity=True
