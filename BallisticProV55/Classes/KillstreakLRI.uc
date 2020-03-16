@@ -18,7 +18,7 @@ var array<string>		Streak2s;
 
 var array<string> 		Killstreaks[2];
 
-var bool				bWeaponsReady, bPendingLoadoutSave, bAttemptedGetStreakList, bClientAttemptedGetStreakList;
+var bool				bWeaponsReady, bPendingLoadoutSave, bClientAttemptedGetStreakList;
 
 var class<Weapon> 		LastStreaks[2];
 
@@ -45,7 +45,7 @@ replication
 simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
-	
+
 	if (Role == ROLE_Authority)
 		myController = Controller(Owner);		
 }
@@ -79,7 +79,7 @@ simulated function PostNetBeginPlay()
 	{
 		case NM_StandAlone:
 		case NM_Client:
-			GetStreakList();
+			ServerGetStreakList();
 			break;
 		case NM_ListenServer:
 			SetTimer(0.5, true);
@@ -104,7 +104,7 @@ simulated function Timer()
 	
 	if (PlayerController(myController) != None && Viewport(PlayerController(myController).Player) != None)
 	{
-		GetStreakList();
+		ServerGetStreakList();
 		SetTimer(0.0, false);
 	}
 	
@@ -115,14 +115,6 @@ simulated function Timer()
 		if (ListenRetryCount == 0)
 			SetTimer(0.0, false);
 	}
-}
-
-function GetStreakList()
-{
-	if (bAttemptedGetStreakList)
-		return;
-	bAttemptedGetStreakList = true;
-	ServerGetStreakList();
 }
 
 simulated function Tick(float deltatime)
@@ -328,7 +320,7 @@ function ServerUpdateStreakChoices(string Streak1, string Streak2)
 
 defaultproperties
 {
-	ListenRetryCount = 10;
+	ListenRetryCount = 10
 	MenuName="Killstreaks"
     MenuHelp="Choose your killstreak weapons here."
 	bOnlyRelevantToOwner=True

@@ -976,7 +976,7 @@ function PracticeRoundEnded()
 		if ( C.PlayerReplicationInfo != None )
 		{
 			C.PlayerReplicationInfo.Kills = 0;
-			C.PlayerReplicationInfo.Score	= 0;
+			C.PlayerReplicationInfo.Score = 0;
 			C.PlayerReplicationInfo.Deaths= 0;
 
 			if ( TeamPlayerReplicationInfo(C.PlayerReplicationInfo) != None )
@@ -991,9 +991,8 @@ function PracticeRoundEnded()
 					
 				BWPRI.SGDamage = 0;
 				BWPRI.HeadShots = 0;
-				BWPRI.AveragePercent = 0;
-
-			}
+                BWPRI.AveragePercent = 0;
+            }
 			
 			KLRI = class'Mut_Killstreak'.static.GetKLRI(C.PlayerReplicationInfo);
 			
@@ -2042,6 +2041,23 @@ function bool CheckMaxLives(PlayerReplicationInfo Scorer)
     return false;
 }
 
+function OnRoundEnded()
+{
+    local Controller C;
+    local ConflictLoadoutLRI CLRI;
+
+    for ( C = Level.ControllerList; C != None; C = C.NextController )
+	{
+        if ( C.PlayerReplicationInfo == None )
+            continue;
+
+        CLRI = ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(C.PlayerReplicationInfo));
+    
+        if (CLRI != None)
+            CLRI.OnRoundChanged();
+	}
+}
+
 function EndRound(PlayerReplicationInfo Scorer)
 {
     local Controller c;
@@ -2052,7 +2068,9 @@ function EndRound(PlayerReplicationInfo Scorer)
     Misc_BaseGRI(GameReplicationInfo).RoundMinute = -1;
     Misc_BaseGRI(GameReplicationInfo).NetUpdateTime = Level.TimeSeconds - 1;
 	
-	RemoveExcessBots();
+    RemoveExcessBots();
+    
+    OnRoundEnded();
 
 	if (IsPracticeRound())
 	{

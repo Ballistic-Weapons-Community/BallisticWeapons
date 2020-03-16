@@ -10,7 +10,9 @@ class BallisticTab_ConflictLoadoutPro extends MidGamePanel;
 
 const INVENTORY_SIZE_MAX = 35;
 
+var bool					bInitialized; // showpanel
 var bool					bLoadInitialized;
+
 
 var automated GUIListBox	lb_Weapons;
 var Automated GUIImage		Box_WeapList, Box_Inventory, Pic_Weapon, Box_WeapIcon;
@@ -56,10 +58,29 @@ var bool bWaitingWeaps, bWaitingSkill;
 
 // Check for PRI update
 // This might be causing crashes
+/*
 function InitPanel()
 {
 	super.InitPanel();
 	
+	// Initialize(); moved to showpanel - crash testing
+}*/
+
+function ShowPanel(bool bShow)
+{
+	super.ShowPanel(bShow);
+
+	if (!bShow)
+		return;
+	
+	Initialize();
+}
+
+function Initialize()
+{
+	if (bInitialized)
+		return;
+
 	lb_Weapons.List.OnChange = InternalOnChange;
 	lb_Weapons.List.OnDblClick = InternalOnDblClick;
 	
@@ -69,6 +90,8 @@ function InitPanel()
 		SetTimer(0.05, true);
 	else
 		OnLRIAcquired();
+
+	bInitialized = true;
 }
 
 //========================================================================
@@ -78,7 +101,7 @@ function InitPanel()
 //========================================================================
 event Timer()
 {
-	if (CLRI!=None)
+	if (CLRI != None)
 	{
 		if (bWaitingWeaps && CLRI.bHasList && (CLRI.LoadoutOption != 1 || CLRI.bHasSkillInfo))
 		{
@@ -543,15 +566,8 @@ function UpdateInventory()
 		return;
 
 	class'ConflictLoadoutConfig'.static.UpdateSavedInventory(Inventory);
-			
-	if (PlayerOwner().Level.NetMode == NM_Client)
-		CLRI.ServerSetInventory(class'ConflictLoadoutConfig'.static.BuildReversedSavedInventoryString());
 
-	else
-	{
-		CLRI.Loadout = class'ConflictLoadoutConfig'.default.SavedInventory;
-		CLRI.UpdateInventory();
-	}
+	CLRI.OnInventoryUpdated();
 }
 
 //=========================================================

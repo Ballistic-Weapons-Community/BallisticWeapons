@@ -11,6 +11,7 @@
 //=============================================================================
 class BallisticTab_Killstreaks extends MidGamePanel;
 
+var bool					bInitialized; // showpanel
 var bool					bLoadInitialized;
 
 // Use GUILoadOutItems to select weapons. This control has some text with an image that cycles when you click on it
@@ -30,10 +31,33 @@ var localized string ReceivingText[2];
 
 var KillstreakLRI KLRI;
 
+/*
 function InitPanel()
 {
 	Super.InitPanel();
-	
+
+	// Initialize(); moved to showpanel - crash testing
+}
+*/
+
+function ShowPanel(bool bShow)
+{
+	super.ShowPanel(bShow);
+
+	if (!bShow)
+		return;
+
+	Initialize();
+}
+
+function Initialize()
+{
+	if (bInitialized)
+		return;
+
+	Item_Streak1.SetItem(class'KillstreakConfig'.default.Killstreaks[0]);
+	Item_Streak2.SetItem(class'KillstreakConfig'.default.Killstreaks[1]);
+
 	KLRI = class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo);
 	
 	if (KLRI == None)
@@ -54,35 +78,24 @@ function InitPanel()
 	{		
 		OnLRIAcquired();
 	}
-}
 
-function ShowPanel(bool bShow)
-{
-	Super.ShowPanel(bShow);
-	
-	if (!bShow || !bWeaponsLoaded)
-		return;
-	
-	Item_Streak1.SetItem(class'KillstreakConfig'.default.Killstreaks[0]);
-	Item_Streak2.SetItem(class'KillstreakConfig'.default.Killstreaks[1]);
+	bInitialized = true;
 }
 
 // timer is only here to attempt reacquisition of LRI
 event Timer()
 {
-	if (KLRI != None)
+	if (KLRI != None) // retry weapon list init
 	{
-		// retry weapon list init
 		OnLRIAcquired();
 	}
-	else if (PlayerOwner() != None && class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo) != None)
+	else if (PlayerOwner() != None && class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo) != None) // assign found lri
 	{
-		// retry acquisition of klri
 		KLRI = class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo);
 		OnLRIAcquired();
 		return;
 	}
-	else
+	else // wait for lri
 	{
 		SetTimer(0.5, false);
 	}

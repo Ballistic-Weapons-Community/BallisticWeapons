@@ -23,11 +23,22 @@ class ConflictLoadoutLRI extends BallisticPlayerReplicationInfo
 	Menu:	LoadPage->PRI:S:RequestFullList->C->GiveClientFullList->FullListIsReady  ->MenuDone->PRI:S:SetInventory->InventoryIsReady
 */
 
+enum ELoadoutUpdateMode
+{
+	LUM_Immediate,
+	LUM_Delayed
+};
+
+var ELoadoutUpdateMode	LoadoutUpdateMode;
 var int					ListenRetryCount;
 
-var Mut_ConflictLoadout LoadoutMut;					// The mutator itself
-var array<string> Loadout;								// Current loadout
-var array<string> FullInventoryList;					// List of all weapons available
+var Mut_ConflictLoadout LoadoutMut;						// The mutator itself
+
+var bool				bPendingLoadout;
+var array<string> 		PendingLoadout;						// If set to pending mode, next loadout
+var array<string> 		Loadout;								// Current loadout
+
+var array<string> 		FullInventoryList;					// List of all weapons available
 var array<Mut_Loadout.LORequirements> RequirementsList;	// Requirements for the weapons. order and length must match 'FullInventoryList'
 
 var array<class<ConflictItem> > AppliedItems;
@@ -93,6 +104,10 @@ simulated function ClientPurge(bool bPurgeActors)
 simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
+
+	// delayed update mode in 3SPN gametypes
+	if (InStr(Level.Game.GameName, "Freon") != -1 || InStr(Level.Game.GameName, "ArenaMaster") != -1)
+		SetDelayedMode();
 	
 	if (Role == ROLE_Authority)
 		myController = Controller(Owner);
@@ -161,6 +176,11 @@ simulated function Timer()
 		if (ListenRetryCount == 0)
 			SetTimer(0.0, false);
 	}
+}
+
+simulated function OnInventoryUpdated()
+{		
+	SendSavedInventory();
 }
 
 simulated function SendSavedInventory()
@@ -381,13 +401,54 @@ simulated function SortList()
 }
 
 //===================================================
+// SetDelayedMode
+// Enables delayed loadout updates
+//===================================================
+function SetDelayedMode()
+{
+	LoadoutUpdateMode = LUM_Delayed;
+}
+
+function SetImmediateMode()
+{
+	LoadoutUpdateMode = LUM_Immediate;
+}
+
+//===================================================
 // ServerSetInventory
 // Sent from client to update server's loadout. Splits the received
 // string into an array and validates with UpdateInventory.
 //===================================================
 function ServerSetInventory(string ClassesString)
 {
-	Split(ClassesString, "|", Loadout);
+	switch (LoadoutUpdateMode)
+	{
+		case LUM_Immediate:
+			log("ConflictLoadoutLRI: Performing immediate loadout update...");
+			Split(ClassesString, "|", Loadout);
+			UpdateInventory();
+			break;
+		case LUM_Delayed:
+			log("ConflictLoadoutLRI: Performing delayed loadout update...");
+			Split(ClassesString, "|", PendingLoadout);
+			bPendingLoadout = true;
+			break;
+	}
+}
+
+//===================================================
+// OnRoundChanged
+// Performs delayed loadout updates, if the mode is on
+//===================================================
+function OnRoundChanged()
+{
+	if (LoadoutUpdateMode == LUM_Immediate || !bPendingLoadout)
+		return;
+
+	log("ConflictLoadoutLRI: Round changed, updating loadout...");
+
+	Loadout = PendingLoadout;
+	bPendingLoadout = false;
 	UpdateInventory();
 }
 
@@ -561,10 +622,14 @@ defaultproperties
 {
 	ListenRetryCount=10
 
+	LoadoutUpdateMode=LUM_Immediate
+
 	Loadout(0)="BallisticProV55.M50AssaultRifle"
-	Loadout(1)="BallisticProV55.M806Pistol"
-	Loadout(2)="BallisticProV55.X3Knife"
-	Loadout(3)="BallisticProV55.NRP57Grenade"
+	Loadout(1)="BallisticProV55.MRS138Shotgun"
+	Loadout(2)="BallisticProV55.MD24Pistol"
+	Loadout(3)="BallisticProV55.MD24Pistol"
+	Loadout(4)="BallisticProV55.X4Knife"
+	Loadout(5)="BallisticProV55.NRP57Grenade"
 
 	ChangeInterval=60.000000
 	MenuName="Gear"
