@@ -17,7 +17,6 @@ function ModifyPlayer( pawn Other )
 	local ConflictLoadoutLRI CLRI;
 	local string s;
 	local class<ConflictItem> itemclass;
-	local Freon_Player.AmmoTrack TrackInfo;
 
 	Super(Mut_Ballistic).ModifyPlayer(Other);
 	
@@ -132,6 +131,34 @@ function ModifyPlayer( pawn Other )
 	}
 		for (i = 0; i < CLRI.AppliedItems.length; i++)
 		CLRI.AppliedItems[i].static.PostApply(Other);
+}
+
+function OnWeaponSpawned(Weapon W, Pawn Other)
+{
+	local BallisticWeapon BW;
+	local Freon_Player.AmmoTrack TrackInfo;
+
+	TrackInfo = Freon_Player(Other.Controller).GetAmmoTrackFor(W.Class);
+
+	if (TrackInfo.GunClass == None || (TrackInfo.GunClass != W.Class && !ClassIsChildOf(TrackInfo.GunClass, W.Class)))
+		return;
+
+	BW = BallisticWeapon(W);
+	BW.SetAmmoTo(TrackInfo.Ammo1, 0);
+	if (BW.GetAmmoClass(0) != BW.GetAmmoClass(1) && BW.GetAmmoClass(1) != None)
+		BW.SetAmmoTo(TrackInfo.Ammo2, 1);
+}
+
+function bool AllowExtraAmmo(Weapon W, Pawn Other)
+{
+	local Freon_Player.AmmoTrack TrackInfo;
+
+	TrackInfo = Freon_Player(Other.Controller).GetAmmoTrackFor(W.Class);
+	
+	if (TrackInfo.GunClass == None || (TrackInfo.GunClass != W.Class && !ClassIsChildOf(TrackInfo.GunClass, W.Class)))
+		return true;
+
+	return false;
 }
 
 defaultproperties

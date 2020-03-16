@@ -18,7 +18,7 @@ var array<string>		Streak2s;
 
 var array<string> 		Killstreaks[2];
 
-var bool				bWeaponsReady, bPendingLoadoutSave;
+var bool				bWeaponsReady, bPendingLoadoutSave, bAttemptedGetStreakList, bClientAttemptedGetStreakList;
 
 var class<Weapon> 		LastStreaks[2];
 
@@ -79,7 +79,7 @@ simulated function PostNetBeginPlay()
 	{
 		case NM_StandAlone:
 		case NM_Client:
-			ServerGetStreakList();
+			GetStreakList();
 			break;
 		case NM_ListenServer:
 			SetTimer(0.5, true);
@@ -104,7 +104,7 @@ simulated function Timer()
 	
 	if (PlayerController(myController) != None && Viewport(PlayerController(myController).Player) != None)
 	{
-		ServerGetStreakList();
+		GetStreakList();
 		SetTimer(0.0, false);
 	}
 	
@@ -115,6 +115,14 @@ simulated function Timer()
 		if (ListenRetryCount == 0)
 			SetTimer(0.0, false);
 	}
+}
+
+function GetStreakList()
+{
+	if (bAttemptedGetStreakList)
+		return;
+	bAttemptedGetStreakList = true;
+	ServerGetStreakList();
 }
 
 simulated function Tick(float deltatime)
@@ -227,6 +235,11 @@ function SendStreaks()
 	local int i, j;
 	local array<string> Weaps;
 	local array<byte>	Boxes;
+
+	if (bClientAttemptedGetStreakList)
+		return;
+
+	bClientAttemptedGetStreakList = true;
 
 	//Go through the available loadout weapons, adding them to the Weaps array. Continue if there is no weapon in the slot
 	for (i=0;i<Mut.Streak1s.length;i++)

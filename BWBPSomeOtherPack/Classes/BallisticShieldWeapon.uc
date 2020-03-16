@@ -109,11 +109,14 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 
 function HandleCrouchBlockingDamageMitigation( out int Damage, out Vector Momentum, class<BallisticDamageType> DamageType)
 {
+	if (!DamageType.default.bArmorStops)
+		return;
+
 	// defend against melee, ballistics and other blockables completely, but with pushback
 	// massive damage reduction against
 	if (DamageType.default.bCanBeBlocked || DamageType.default.bMetallic) 
 	{
-		Damage = 0;
+		Damage = Max(1, Damage - 50);
 		Momentum *= 2;
 		return;
 	}
@@ -131,6 +134,9 @@ function HandleCrouchBlockingDamageMitigation( out int Damage, out Vector Moment
 
 function HandleBlockingDamageMitigation( out int Damage, out Vector Momentum, class<BallisticDamageType> DamageType)
 {
+	if (!DamageType.default.bArmorStops)
+		return;
+
 	// defend against melee and other blockables completely, but with pushback
 	if (DamageType.default.bCanBeBlocked)
 	{
@@ -142,7 +148,7 @@ function HandleBlockingDamageMitigation( out int Damage, out Vector Momentum, cl
 	// damage reduction against ballistics
 	if (DamageType.default.bMetallic)
 	{
-		Damage = Max(1, Damage - 65);
+		Damage = Max(2, Damage - 35);
 		Momentum *= 2;
 		return;
 	}
@@ -150,7 +156,7 @@ function HandleBlockingDamageMitigation( out int Damage, out Vector Momentum, cl
 	// locational non-melee non-metallic almost certainly means energy - deal some damage and push back
 	if (DamageType.default.bLocationalHit)
 	{
-		Damage = Max(1, Damage - 30);
+		Damage = Max(Damage/20, Damage - 30);
 		return;
 	}
 
@@ -160,6 +166,9 @@ function HandleBlockingDamageMitigation( out int Damage, out Vector Momentum, cl
 
 function HandlePassiveDamageMitigation( out int Damage, out Vector Momentum, class<BallisticDamageType> DamageType)
 {
+	if (!DamageType.default.bArmorStops)
+		return;
+
 	// defend against melee and other blockables completely, but with pushback
 	if (DamageType.default.bCanBeBlocked)
 	{
@@ -171,7 +180,7 @@ function HandlePassiveDamageMitigation( out int Damage, out Vector Momentum, cla
 	// moderate passive damage reduction against ballistics
 	if (DamageType.default.bMetallic)
 	{
-		Damage = Max(3, Damage - 30);
+		Damage = Max(Damage/10, Damage - 20);
 		Momentum *= 2;
 		return;
 	}
@@ -186,6 +195,7 @@ function HandlePassiveDamageMitigation( out int Damage, out Vector Momentum, cla
 	// explosions push back
 	Damage = Max(10, Damage - 20);
 	Momentum *= 2;
+
 }
 
 simulated function ClientPlayerDamaged(byte DamageFactor)

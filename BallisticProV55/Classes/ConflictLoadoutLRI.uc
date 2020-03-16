@@ -434,13 +434,15 @@ simulated function bool ValidateWeapon (string WeaponName)
 {
 	local int i;
 
-	if (Role == Role_Authority)
+	if (Role == ROLE_Authority)
 	{
 		for (i=0;i<LoadoutMut.ConflictWeapons.Length;i++)
 			if (LoadoutMut.ConflictWeapons[i].ClassName ~= WeaponName)
 			{
+				if (!TeamAllowed(LoadoutMut.ConflictWeapons[i]))
+					return false;
+
 				return WeaponRequirementsOk(LoadoutMut.FullRequirementsList[i]);
-				return true;
 			}
 	}
 	else
@@ -450,6 +452,32 @@ simulated function bool ValidateWeapon (string WeaponName)
 				return WeaponRequirementsOk(RequirementsList[i]);
 	}
 	return false;
+}
+
+simulated function bool TeamAllowed(Mut_ConflictLoadout.ConflictWeapon weapon)
+{
+	if (myController == None)
+	{
+		log("TEAMALLOWED - NO CONTROLLER!");
+		return false;
+	}
+
+	if (myController.PlayerReplicationInfo.Team != None)
+	{
+		switch (myController.PlayerReplicationInfo.Team.TeamIndex)
+		{
+			case 0:
+				return weapon.bRed;
+			case 1:
+				return weapon.bBlue;
+			default:
+				return weapon.bRed || weapon.bBlue;
+		}
+	}
+	else // dm
+	{
+		return weapon.bRed || weapon.bBlue;
+	}
 }
 
 //===================================================
@@ -466,8 +494,6 @@ simulated function bool WeaponRequirementsOk (Mut_Loadout.LORequirements Require
 		log("WEPREQS - NO CONTROLLER!");
 		return false;
 	}
-	if (myController.PlayerReplicationInfo.Team != None && Requirements.InTeam != 2 && Requirements.InTeam != myController.PlayerReplicationInfo.Team.TeamIndex)
-		return false;
 	if (LoadoutOption == 0 || LoadoutOption == 2)
 		return true;
 	if (myController.PlayerReplicationInfo.Score < Requirements.Frags)

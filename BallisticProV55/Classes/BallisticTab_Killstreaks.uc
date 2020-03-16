@@ -41,12 +41,12 @@ function InitPanel()
 		if (PlayerOwner().level.NetMode == NM_Client)
 		{
 			l_Receiving.Caption = ReceivingText[0];
-			SetTimer(0.5, true);
+			SetTimer(0.5, false);
 		}
 		else
 		{
 			l_Receiving.Caption = ReceivingText[1];
-			SetTimer(0.1, true);
+			SetTimer(0.1, false);
 		}
 	}
 	
@@ -67,46 +67,46 @@ function ShowPanel(bool bShow)
 	Item_Streak2.SetItem(class'KillstreakConfig'.default.Killstreaks[1]);
 }
 
+// timer is only here to attempt reacquisition of LRI
 event Timer()
 {
 	if (KLRI != None)
 	{
-		if (KLRI.bWeaponsReady)
-		{
-			KillTimer();
-			InitWeaponLists();
-		}
+		// retry weapon list init
+		OnLRIAcquired();
 	}
-	
 	else if (PlayerOwner() != None && class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo) != None)
 	{
-		KillTimer();
+		// retry acquisition of klri
 		KLRI = class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo);
 		OnLRIAcquired();
 		return;
+	}
+	else
+	{
+		SetTimer(0.5, false);
 	}
 }
 
 function OnLRIAcquired()
 {
 	if (!KLRI.bWeaponsReady)
-		SetTimer(0.1, true);
+		SetTimer(0.1, false);
 	else 
 		InitWeaponLists();
 }
 
 function InitWeaponLists()
 {
-	if(!bWeaponsLoaded)
-	{
-		LoadWeapons();
-		bWeaponsLoaded=True;
-		
-		cb_Streak1.List.bSorted=true;
-		cb_Streak1.List.Sort();
-		cb_Streak2.List.bSorted=true;
-		cb_Streak2.List.Sort();
-	}
+	if(bWeaponsLoaded)
+		return;
+
+	LoadWeapons();
+
+	cb_Streak1.List.bSorted=true;
+	cb_Streak1.List.Sort();
+	cb_Streak2.List.bSorted=true;
+	cb_Streak2.List.Sort();
 }
 
 function LoadWeapons()
@@ -145,6 +145,8 @@ function LoadWeapons()
 	class'BC_WeaponInfoCache'.static.EndSession();
 	
 	l_Receiving.Caption = "";
+
+	bWeaponsLoaded=True;
 }
 
 // Get Name, BigIconMaterial and classname of weapon at index? in group?

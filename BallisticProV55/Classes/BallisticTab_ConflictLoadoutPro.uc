@@ -55,6 +55,7 @@ var ConflictLoadoutLRI CLRI;
 var bool bWaitingWeaps, bWaitingSkill;
 
 // Check for PRI update
+// This might be causing crashes
 function InitPanel()
 {
 	super.InitPanel();

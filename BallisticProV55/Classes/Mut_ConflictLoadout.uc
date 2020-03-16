@@ -350,6 +350,7 @@ function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other)
 		{
 			newWeapon.GiveTo(Other);
 			newWeapon.PickupFunction(Other);
+			OnWeaponSpawned(newWeapon, Other);
 				
 			//Hack for bots - stops them complaining
 			if (Bot(Other.Controller) != None && Other.PendingWeapon == None && Other.Weapon == None)
@@ -365,11 +366,24 @@ function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other)
 		if (Level.NetMode == NM_Standalone)
 			Log("Adding extra ammo for "$newWeapon.Name);
 
+		if (!AllowExtraAmmo(newWeapon, Other))
+			return;
+
 		newWeapon.AddAmmo(WepClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount, 0);
 		newWeapon.AddAmmo(WepClass.default.FireModeClass[1].default.AmmoClass.default.InitialAmount, 1);
 	}
 }
 
+function OnWeaponSpawned(Weapon W, Pawn Other)
+{
+
+}
+
+function bool AllowExtraAmmo(Weapon W, Pawn Other)
+{
+	return true;
+}
+	
 function EquipBot(Pawn P)
 {
 	local int i, j, Size, SpaceUsed;
