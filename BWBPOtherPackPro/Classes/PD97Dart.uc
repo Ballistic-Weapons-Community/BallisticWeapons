@@ -73,7 +73,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 defaultproperties
 {
      ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
-     TrailClass=Class'BallisticProV55.PineappleTrail'
+     TrailClass=Class'BWBPOtherPackPro.PD97DartTrail'
      MyRadiusDamageType=Class'BWBPOtherPackPro.DTPD97Dart'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=0.000000
@@ -83,7 +83,7 @@ defaultproperties
      Speed=15000.000000
      Damage=3.000000
      MyDamageType=Class'BWBPOtherPackPro.DTPD97Dart'
-     StaticMesh=StaticMesh'BallisticHardware_25.OA-SMG.OA-SMG_Dart'
+     StaticMesh=StaticMesh'BWBPOtherPackProjStatic.Bloodhound.BHPoisonDart'
      LifeSpan=2.500000
      bIgnoreTerminalVelocity=True
 }

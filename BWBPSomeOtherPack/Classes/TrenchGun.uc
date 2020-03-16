@@ -613,7 +613,7 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-     MatGreenShell=Texture'BWBPSomeOtherPackTex.TechWrench.CryoShell'
+     MatGreenShell=Texture'BWBPSomeOtherPackTex.TechWrench.ExplodoShell'
      MatBlackShell=Texture'BWBPSomeOtherPackTex.TechWrench.ShockShell'
      ShellTipBone1="ShellLSuper"
      ShellTipBone2="ShellRSuper"
@@ -646,7 +646,7 @@ defaultproperties
      CurrentWeaponMode=0
      bNotifyModeSwitch=True
      SightPivot=(Pitch=256)
-     SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
+     SightOffset=(X=-40.000000,Y=11.500000,Z=43.500000)
      SightingTime=0.250000
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
