@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(2)="%o succumbed to %k's XM84 psionic blast."
      FlashThreshold=0
      FlashV=(X=128.000000,Y=128.000000,Z=128.000000)
-     FlashF=-2.000000
+     FlashF=-1.000000
      DamageIdent="Grenade"
      MinMotionBlurDamage=1.000000
      MotionBlurDamageRange=20.000000

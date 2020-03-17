@@ -47,7 +47,7 @@ defaultproperties
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
          ColorMultiplierRange=(X=(Min=0.000000,Max=0.000000),Y=(Min=0.000000,Max=0.000000),Z=(Min=0.000000,Max=0.000000))
-         Opacity=0.760000
+         Opacity=0.50000
          FadeOutStartTime=0.520000
          FadeInEndTime=0.220000
          MaxParticles=90
@@ -125,7 +125,7 @@ defaultproperties
          ColorScale(1)=(RelativeTime=0.100000,Color=(B=255,G=255,R=255,A=255))
          ColorScale(2)=(RelativeTime=0.200000,Color=(B=64,G=64,R=64,A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(A=255))
-         Opacity=0.850000
+         Opacity=0.50000
          FadeOutStartTime=0.037500
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
@@ -135,7 +135,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.200000)
          StartSizeRange=(Y=(Min=1.500000,Max=1.500000),Z=(Min=1.500000,Max=1.500000))
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.125000,Max=0.125000)
+         LifetimeRange=(Min=0.075000,Max=0.075000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
          StartVelocityRange=(X=(Min=20.000000,Max=20.000000))
@@ -159,6 +159,7 @@ defaultproperties
          ColorScale(2)=(RelativeTime=0.178571,Color=(B=112,G=96,R=96,A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(B=160,G=64,R=64,A=255))
          FadeOutStartTime=0.060000
+         Opacity=0.65
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          SizeScale(0)=(RelativeSize=0.700000)
@@ -167,7 +168,7 @@ defaultproperties
 		 SpinParticles=True
 		 StartSpinRange=(Z=(Min=0.12,Max=0.12))
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.200000,Max=0.200000)
+         LifetimeRange=(Min=0.130000,Max=0.130000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=50000.000000
          StartVelocityRange=(X=(Min=20.000000,Max=20.000000))
@@ -186,7 +187,7 @@ defaultproperties
          ColorScale(2)=(RelativeTime=0.178571,Color=(B=32,G=64,R=255,A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(B=16,G=32,R=255,A=255))
          ColorMultiplierRange=(Y=(Min=0.800000,Max=0.800000),Z=(Min=0.500000,Max=0.500000))
-         Opacity=0.700000
+         Opacity=0.500000
          FadeOutStartTime=0.108000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
@@ -194,7 +195,7 @@ defaultproperties
          StartSizeRange=(X=(Min=120.000000,Max=120.000000),Y=(Min=120.000000,Max=120.000000),Z=(Min=120.000000,Max=120.000000))
          Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.200000,Max=0.200000)
+         LifetimeRange=(Min=0.130000,Max=0.130000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object

@@ -70,9 +70,9 @@ defaultproperties
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_ShotgunHE'
      ImpactManager=Class'BWBPRecolorsPro.IM_ShellHE'
      TraceRange=(Min=4000.000000,Max=6000.000000)
-     Damage=14.000000
-     DamageHead=14.000000
-     DamageLimb=14.000000
+     Damage=12.000000
+     DamageHead=12.000000
+     DamageLimb=12.000000
      RangeAtten=0.500000
      DamageType=Class'BWBPRecolorsPro.DT_SK410Shotgun'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_SK410ShotgunHead'
@@ -85,7 +85,7 @@ defaultproperties
      BrassClass=Class'BWBPRecolorsPro.Brass_ShotgunHE'
      BrassOffset=(X=-1.000000,Z=-1.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=480.000000
+     RecoilPerShot=600.000000
      VelocityRecoil=0.000000
      FireChaos=0.400000
      XInaccuracy=400.000000

@@ -18,7 +18,7 @@ var automated GUIListBox	lb_Weapons;
 var Automated GUIImage		Box_WeapList, Box_Inventory, Pic_Weapon, Box_WeapIcon;
 var automated GUILabel   	l_WeapTitle;
 var automated GUIScrollTextBox	lb_Desc;
-var Automated GUIButton BDone, BCancel, BStats;
+var Automated GUIButton BStats;
 var automated GUILabel	l_StatTime, l_StatFrags, l_StatEfficiency, l_StatDamageRate, l_StatSniperEff, l_StatShotgunEff, l_StatHazardEff, l_StatHeading, l_Loading;
 
 var() localized string StatTimeCaption;
@@ -50,28 +50,16 @@ struct Item
 var() array<Item> Inventory;
 var() int SpaceUsed;
 
-var() material BoxTex;
+var() Material BoxTex;
 
 var ConflictLoadoutLRI CLRI;
 
 var bool bWaitingWeaps, bWaitingSkill;
 
 // Check for PRI update
-// This might be causing crashes
-/*
 function InitPanel()
 {
 	super.InitPanel();
-	
-	// Initialize(); moved to showpanel - crash testing
-}*/
-
-function ShowPanel(bool bShow)
-{
-	super.ShowPanel(bShow);
-
-	if (!bShow)
-		return;
 	
 	Initialize();
 }

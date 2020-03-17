@@ -197,8 +197,6 @@ simulated function SendSavedInventory()
 	else
 		s = class'ConflictLoadoutConfig'.static.BuildReversedSavedInventoryString();
 
-	Log("SendSavedInventory: Sending string:"@s);
-
 	ServerSetInventory(s);
 }
 
@@ -229,9 +227,9 @@ final private simulated function ModifyMenu()
    
    if( Menu != None )
    {
-      // You can use the panel reference to do the modifications to the tab etc.
+	  // You can use the panel reference to do the modifications to the tab etc.
+	  // conflict tab is always first
       Panel = Menu.c_Main.InsertTab(0, MenuName, string( class'BallisticTab_ConflictLoadoutPro' ),, MenuHelp);
-	  Menu.c_Main.ActivateTabByName(MenuName, true);
 	  bMenuModified=True;
 	  Disable('Tick');
    }
@@ -424,12 +422,10 @@ function ServerSetInventory(string ClassesString)
 	switch (LoadoutUpdateMode)
 	{
 		case LUM_Immediate:
-			log("ConflictLoadoutLRI: Performing immediate loadout update...");
 			Split(ClassesString, "|", Loadout);
 			UpdateInventory();
 			break;
 		case LUM_Delayed:
-			log("ConflictLoadoutLRI: Performing delayed loadout update...");
 			Split(ClassesString, "|", PendingLoadout);
 			bPendingLoadout = true;
 			break;
@@ -444,8 +440,6 @@ function OnRoundChanged()
 {
 	if (LoadoutUpdateMode == LUM_Immediate || !bPendingLoadout)
 		return;
-
-	log("ConflictLoadoutLRI: Round changed, updating loadout...");
 
 	Loadout = PendingLoadout;
 	bPendingLoadout = false;

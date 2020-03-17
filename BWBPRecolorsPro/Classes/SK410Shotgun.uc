@@ -186,15 +186,15 @@ defaultproperties
      bNotifyModeSwitch=True
      bNoCrosshairInScope=True
      SightPivot=(Pitch=150)
-     SightOffset=(X=15.000000,Y=-10.000000,Z=22.500000)
-	 SightDisplayFOV=40
+     SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
+	 SightDisplayFOV=30
      SightingTime=0.250000
 	 SightZoomFactor=0
      GunLength=48.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      AimSpread=0
      ChaosAimSpread=0
-     RecoilXCurve=(Points=(,(InVal=0.500000,OutVal=0.000000),(InVal=0.700000,OutVal=-0.200000),(InVal=0.8500000,OutVal=0.15000),(InVal=0.750000,OutVal=0.050000),(InVal=1.000000,OutVal=0)))
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.050000),(InVal=0.400000,OutVal=-0.200000),(InVal=0.600000,OutVal=0.15000),(InVal=0.750000,OutVal=0.050000),(InVal=1.000000,OutVal=0)))
      RecoilYCurve=(Points=(,(InVal=0.500000,OutVal=0.400000),(InVal=1.000000,OutVal=1.000000)))
      RecoilYFactor=0.1
 	 RecoilXFactor=0.1

@@ -31,21 +31,9 @@ var localized string ReceivingText[2];
 
 var KillstreakLRI KLRI;
 
-/*
 function InitPanel()
 {
 	Super.InitPanel();
-
-	// Initialize(); moved to showpanel - crash testing
-}
-*/
-
-function ShowPanel(bool bShow)
-{
-	super.ShowPanel(bShow);
-
-	if (!bShow)
-		return;
 
 	Initialize();
 }

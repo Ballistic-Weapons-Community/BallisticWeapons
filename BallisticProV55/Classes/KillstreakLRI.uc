@@ -133,6 +133,7 @@ final private simulated function ModifyMenu()
 {
 	local UT2K4PlayerLoginMenu Menu;
 	local GUITabPanel Panel;
+	local int index;
 
 	if (AIController(myController) != None)
 	{
@@ -144,8 +145,16 @@ final private simulated function ModifyMenu()
 
 	if( Menu != None )
 	{
-		// Always insert Streaks tab behind the Game tab
-		Panel = Menu.c_Main.InsertTab(Menu.c_Main.TabIndex("Game"), MenuName, string( class'BallisticTab_Killstreaks' ),, MenuHelp);
+		// Look for Conflict's gear tab
+		index = Menu.c_Main.TabIndex("Gear");
+
+		if (index == -1)
+			index = 0; // make first if gear tab is not present
+
+		else 
+			index += 1; // insert after gear tab
+
+		Panel = Menu.c_Main.InsertTab(index, MenuName, string( class'BallisticTab_Killstreaks' ),, MenuHelp);
 		bMenuModified=True;
 		Disable('Tick');
 	}
@@ -303,8 +312,6 @@ simulated function ClientGetStreakChoices()
 function ServerUpdateStreakChoices(string Streak1, string Streak2)
 {
 	local int i;
-	
-	Log("KillstreakLRI: Updating killstreak choices on server");
 	
 	Killstreaks[0] = Streak1;
 	Killstreaks[1] = Streak2;
