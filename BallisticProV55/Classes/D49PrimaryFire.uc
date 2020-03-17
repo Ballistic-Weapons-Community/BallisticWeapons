@@ -80,6 +80,7 @@ defaultproperties
      FireAnim="FireSingle"
      FireEndAnim=
      FireRate=0.400000
+	 AimedFireAnim="SightFire"
      AmmoClass=Class'BallisticProV55.Ammo_44Magnum'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

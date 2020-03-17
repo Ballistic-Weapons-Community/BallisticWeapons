@@ -42,5 +42,6 @@ simulated function Vector GetTipLocation()
 
 defaultproperties
 {
+	 Mesh=SkeletalMesh'BallisticAnims_25.OA-AR-RDS_3rd'
      bHeavy=True
 }
