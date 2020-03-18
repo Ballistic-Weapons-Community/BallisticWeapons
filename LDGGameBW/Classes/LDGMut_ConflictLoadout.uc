@@ -155,10 +155,7 @@ function bool AllowExtraAmmo(Weapon W, Pawn Other)
 
 	TrackInfo = Freon_Player(Other.Controller).GetAmmoTrackFor(W.Class);
 	
-	if (TrackInfo.GunClass == None || (TrackInfo.GunClass != W.Class && !ClassIsChildOf(TrackInfo.GunClass, W.Class)))
-		return true;
-
-	return false;
+	return (TrackInfo.GunClass == None || (TrackInfo.GunClass != W.Class && !ClassIsChildOf(TrackInfo.GunClass, W.Class)));
 }
 
 defaultproperties

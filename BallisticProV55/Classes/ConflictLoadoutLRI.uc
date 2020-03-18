@@ -34,6 +34,7 @@ var int					ListenRetryCount;
 
 var Mut_ConflictLoadout LoadoutMut;						// The mutator itself
 
+var bool				bInventoryInitialized;
 var bool				bPendingLoadout;
 var array<string> 		PendingLoadout;						// If set to pending mode, next loadout
 var array<string> 		Loadout;								// Current loadout
@@ -409,6 +410,9 @@ function SetDelayedMode()
 
 function SetImmediateMode()
 {
+	if (bPendingLoadout)
+		UpdatePendingLoadout();
+
 	LoadoutUpdateMode = LUM_Immediate;
 }
 
@@ -419,6 +423,14 @@ function SetImmediateMode()
 //===================================================
 function ServerSetInventory(string ClassesString)
 {
+	if (!bInventoryInitialized)
+	{
+		bInventoryInitialized = true;
+		Split(ClassesString, "|", Loadout);
+		UpdateInventory();
+		return;
+	}
+
 	switch (LoadoutUpdateMode)
 	{
 		case LUM_Immediate:
@@ -436,7 +448,7 @@ function ServerSetInventory(string ClassesString)
 // OnRoundChanged
 // Performs delayed loadout updates, if the mode is on
 //===================================================
-function OnRoundChanged()
+function UpdatePendingLoadout()
 {
 	if (LoadoutUpdateMode == LUM_Immediate || !bPendingLoadout)
 		return;

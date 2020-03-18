@@ -913,6 +913,8 @@ function StartMatch()
 
 function StartNewRound()
 {
+    OnNewRoundStart();
+
     RespawnTime = 6;
     LockTime = default.LockTime;
 
@@ -2054,7 +2056,24 @@ function OnRoundEnded()
         CLRI = ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(C.PlayerReplicationInfo));
     
         if (CLRI != None)
-            CLRI.OnRoundChanged();
+            CLRI.SetImmediateMode();
+	}
+}
+
+function OnNewRoundStart()
+{
+    local Controller C;
+    local ConflictLoadoutLRI CLRI;
+
+    for ( C = Level.ControllerList; C != None; C = C.NextController )
+	{
+        if ( C.PlayerReplicationInfo == None )
+            continue;
+
+        CLRI = ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(C.PlayerReplicationInfo));
+    
+        if (CLRI != None)
+            CLRI.SetDelayedMode();
 	}
 }
 
@@ -2069,7 +2088,7 @@ function EndRound(PlayerReplicationInfo Scorer)
     Misc_BaseGRI(GameReplicationInfo).NetUpdateTime = Level.TimeSeconds - 1;
 	
     RemoveExcessBots();
-    
+
     OnRoundEnded();
 
 	if (IsPracticeRound())
