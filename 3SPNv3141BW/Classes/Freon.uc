@@ -142,6 +142,8 @@ function ParseOptions(string Options)
 event InitGame(string options, out string error)
 {
     Super.InitGame(Options, Error);
+
+	AddMutator("3SPNv3141BW.Freon_Mut_ConflictLoadout", false);
     
     class'xPawn'.Default.ControllerClass = class'Freon_Bot';
 }

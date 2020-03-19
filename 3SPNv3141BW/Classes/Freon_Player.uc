@@ -6,7 +6,8 @@ struct AmmoTrack
 {
 	var class<BallisticWeapon> GunClass;
 	var byte Ammo1;
-	var byte Ammo2;
+    var byte Ammo2;
+    var bool bNoSpawn;
 };
 
 var() array <AmmoTrack> AmmoTracking;
@@ -90,7 +91,9 @@ function AddAmmoTrack(BallisticWeapon BW)
 	AT.Ammo1 = BW.AmmoAmount(0) - (BW.default.MagAmmo - BW.MagAmmo);
 	if (BW.GetAmmoClass(0) != BW.GetAmmoClass(1) && BW.GetAmmoClass(1) != None)
 		AT.Ammo2 = BW.AmmoAmount(1);
-	AmmoTracking[AmmoTracking.Length] = AT;
+    AmmoTracking[AmmoTracking.Length] = AT;
+    
+    //ClientMessage("Ammo tracking: Saved "$AT.Ammo1$" and "$AT.Ammo2$" for "$AT.GunClass);
 }
 
 function AmmoTrack GetAmmoTrackFor(class<Weapon> W)
@@ -104,13 +107,19 @@ function AmmoTrack GetAmmoTrackFor(class<Weapon> W)
 		{
 			ReturnedTrack.GunClass = AmmoTracking[i].GunClass;
 			ReturnedTrack.Ammo1 = AmmoTracking[i].Ammo1;
-			ReturnedTrack.Ammo2 = AmmoTracking[i].Ammo2;
-			AmmoTracking.Remove(i, 1);
+            ReturnedTrack.Ammo2 = AmmoTracking[i].Ammo2;
+            ReturnedTrack.bNoSpawn = AmmoTracking[i].bNoSpawn;
+			//AmmoTracking.Remove(i, 1); interferes with conflict loadout
 			return ReturnedTrack;
 		}
 	}
 	
 	return ReturnedTrack;
+}
+
+function ClearAmmoTracks()
+{
+    AmmoTracking.Length = 0;
 }
 
 //Ghosts are always empty
@@ -127,8 +136,11 @@ function TrackGhost(class<BallisticWeapon> TrackClass)
 			return;
 	}
 		
-	AT.GunClass = TrackClass;
-	AmmoTracking[AmmoTracking.Length] = AT;
+    AT.GunClass = TrackClass;
+    AT.bNoSpawn = true;
+    AmmoTracking[AmmoTracking.Length] = AT;
+    
+    //ClientMessage("Ammo tracking: Saved ghost of "$AT.GunClass);
 }
 
 simulated event Destroyed()

@@ -1,4 +1,5 @@
-class LDGMut_ConflictLoadout extends Mut_ConflictLoadout
+class Freon_Mut_ConflictLoadout extends Mut_ConflictLoadout
+	DependsOn(Freon_Player)
 	HideDropDown
 	CacheExempt;
 
@@ -129,33 +130,65 @@ function ModifyPlayer( pawn Other )
 				SpawnAmmo(W.default.FireModeClass[1].default.AmmoClass, Other, BonusAmmo);
 		}
 	}
-		for (i = 0; i < CLRI.AppliedItems.length; i++)
+	for (i = 0; i < CLRI.AppliedItems.length; i++)
 		CLRI.AppliedItems[i].static.PostApply(Other);
+
+	Freon_Player(Other.Controller).ClearAmmoTracks();
 }
 
-function OnWeaponSpawned(Weapon W, Pawn Other)
+function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other)
 {
+	local Weapon newWeapon;
 	local BallisticWeapon BW;
+	local bool bHasTrack;
 	local Freon_Player.AmmoTrack TrackInfo;
 
-	TrackInfo = Freon_Player(Other.Controller).GetAmmoTrackFor(W.Class);
+	TrackInfo = Freon_Player(Other.Controller).GetAmmoTrackFor(WepClass);
 
-	if (TrackInfo.GunClass == None || (TrackInfo.GunClass != W.Class && !ClassIsChildOf(TrackInfo.GunClass, W.Class)))
+	bHasTrack = (TrackInfo.GunClass != None && (TrackInfo.GunClass == WepClass || ClassIsChildOf(TrackInfo.GunClass, WepClass)));
+
+	// Weapons such as grenades which became ghosts shouldn't be respawned
+	if (bHasTrack && TrackInfo.bNoSpawn)
 		return;
 
-	BW = BallisticWeapon(W);
+	newWeapon = Weapon(Other.FindInventoryType(WepClass));
+
+	if (newWeapon == None || (BallisticHandgun(newWeapon) != None && BallisticHandgun(newWeapon).bShouldDualInLoadout))
+	{
+		//Freon_Player(Other.Controller).ClientMessage("Spawning "$WepClass$": Tracking info is: "$TrackInfo.GunClass$" bNoSpawn:"$TrackInfo.bNoSpawn);
+
+		newWeapon = Other.Spawn(WepClass,,,Other.Location);
+	
+		if( newWeapon != None )
+		{
+			newWeapon.GiveTo(Other);
+			newWeapon.PickupFunction(Other);
+
+			// Newly spawned weapons may have saved ammo count information to set
+			if (bHasTrack)
+				SetTrackedAmmo(BallisticWeapon(newWeapon), TrackInfo);
+				
+			//Hack for bots - stops them complaining
+			if (Bot(Other.Controller) != None && Other.PendingWeapon == None && Other.Weapon == None)
+			{
+				Other.PendingWeapon = newWeapon;
+				Other.ChangedWeapon();
+			}						
+		}
+	}
+
+	else if (!bHasTrack) // Ammo already managed by tracking system, don't grant extra
+	{
+		newWeapon.AddAmmo(WepClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount, 0);
+		newWeapon.AddAmmo(WepClass.default.FireModeClass[1].default.AmmoClass.default.InitialAmount, 1);
+	}
+}
+
+function SetTrackedAmmo(BallisticWeapon BW, Freon_Player.AmmoTrack TrackInfo)
+{
 	BW.SetAmmoTo(TrackInfo.Ammo1, 0);
 	if (BW.GetAmmoClass(0) != BW.GetAmmoClass(1) && BW.GetAmmoClass(1) != None)
 		BW.SetAmmoTo(TrackInfo.Ammo2, 1);
-}
-
-function bool AllowExtraAmmo(Weapon W, Pawn Other)
-{
-	local Freon_Player.AmmoTrack TrackInfo;
-
-	TrackInfo = Freon_Player(Other.Controller).GetAmmoTrackFor(W.Class);
-	
-	return (TrackInfo.GunClass == None || (TrackInfo.GunClass != W.Class && !ClassIsChildOf(TrackInfo.GunClass, W.Class)));
 }
 
 defaultproperties

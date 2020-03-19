@@ -252,8 +252,7 @@ function PlayerController Login(string Portal, string Options, out string Error)
 
 defaultproperties
 {
-	 BWMutators(0)="LDGGameBW.LDGMut_ConflictLoadout"
-	 BWMutators(1)="LDGGameBW.LDGMut_Killstreak"
+	 BWMutators(0)="LDGGameBW.LDGMut_Killstreak"
      DefaultPlayerClassName="LDGGameBW.Freon_Pawn_Tracked"
      MapListType="LDGGameBW.LDGBallisticFR_CTFMapsTrackedMapList"
      GameName="LDG Ballistic Freon (Tracked, CTF Maps)"
