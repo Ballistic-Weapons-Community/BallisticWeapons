@@ -61,7 +61,7 @@ function PlayFiring()
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 		BW.SafePlayAnim('SawStart', FireAnimRate, TweenTime, ,"FIRE");
 		if (BW.Role == ROLE_Authority)
-			BW.AddMeleeChargeSpeed();
+			BW.AddSpeedModification(1.15);
 	}
     else if (FireCount > 4)
     {
@@ -80,7 +80,7 @@ function ServerPlayFiring()
     {
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 		BW.SafePlayAnim('SawStart', FireAnimRate, TweenTime, ,"FIRE");
-		BW.AddMeleeChargeSpeed();
+		BW.AddSpeedModification(1.15);
 	}
     else if (FireCount > 4)
     {
@@ -249,7 +249,7 @@ simulated function StopFiring()
 	BW.GunLength = BW.default.GunLength;
 	Weapon.PlayAnim(FireEndAnim, FireEndAnimRate, 0.0, 0);
 	if (BW.Role == ROLE_Authority)
-		BW.RemoveMeleeChargeSpeed();
+		BW.RemoveSpeedModification(1.15);
 }
 
 simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)

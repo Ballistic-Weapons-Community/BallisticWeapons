@@ -1807,27 +1807,28 @@ simulated function MeleeHoldImpl()
 	}
 }
 
-function AddMeleeChargeSpeed()
+function AddSpeedModification(float value)
 {
-	local float NewSpeed;
-	
-	if (SprintControl != None && SprintControl.bSprinting)
+	if (value > 1f && SprintControl != None && SprintControl.bSprinting)
 		PlayerSprint(false);
-	PlayerSpeedFactor = FMin(PlayerSpeedFactor * 1.15, 1.15);
-	NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
-	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
-		NewSpeed *= 1.4;
-	if (Instigator.GroundSpeed != NewSpeed)
-		Instigator.GroundSpeed = NewSpeed;
+	PlayerSpeedFactor = FMin(PlayerSpeedFactor * value, value);
+
+	UpdateSpeed();
 }
 
-function RemoveMeleeChargeSpeed()
+function RemoveSpeedModification(float value)
+{
+	if (value > 1f && SprintControl != None && SprintControl.bSprinting)
+		PlayerSprint(true);
+	PlayerSpeedFactor = default.PlayerSpeedFactor;
+
+	UpdateSpeed();
+}
+
+function UpdateSpeed()
 {
 	local float NewSpeed;
 	
-	if (SprintControl != None && SprintControl.bSprinting)
-		PlayerSprint(true);
-	PlayerSpeedFactor = default.PlayerSpeedFactor;
 	NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
 	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
 		NewSpeed *= 1.4;
@@ -1844,7 +1845,7 @@ function ServerMeleeHold()
 	MeleeFireMode.HoldStartTime = Level.TimeSeconds;
 	MeleeFireMode.PlayPreFire();
 	GunLength = 1;
-	AddMeleeChargeSpeed();
+	AddSpeedModification(1.15);
 	bPreventReload = True;
 }
 
@@ -1887,7 +1888,7 @@ final function ServerMeleeRelease()
 		MeleeFireMode.PlayFiring();
 	else MeleeFireMode.ServerPlayFiring();
 	MeleeFireMode.DoFireEffect();
-	RemoveMeleeChargeSpeed();
+	RemoveSpeedModification(1.15);
 	GunLength = default.GunLength;
 	//Trace, damage code
 	//Fire delay
@@ -3608,7 +3609,7 @@ simulated function bool CheckScope()
 	if (AimDisplacementEndTime > Level.TimeSeconds)
 		return false;
 	
-	if ((ReloadState != RS_None && ReloadState != RS_Cocking) || (Instigator.Controller.bRun == 0 && Instigator.Physics == PHYS_Walking) || (Instigator.Physics == PHYS_Falling && VSize(Instigator.Velocity) > Instigator.GroundSpeed * 1.5) || (SprintControl != None && SprintControl.bSprinting)) //should stop recoil issues where player takes momentum and knocked out of scope, also helps dodge
+	if ((ReloadState != RS_None && ReloadState != RS_Cocking) || (Instigator.Controller.bRun == 0 && Instigator.Physics == PHYS_Walking) || (Instigator.Physics == PHYS_Falling && VSize(Instigator.Velocity) > Instigator.GroundSpeed * 2.5) || (SprintControl != None && SprintControl.bSprinting)) //should stop recoil issues where player takes momentum and knocked out of scope, also helps dodge
 	{
 		StopScopeView();
 		return false;

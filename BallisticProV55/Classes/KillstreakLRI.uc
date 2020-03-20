@@ -154,7 +154,7 @@ final private simulated function ModifyMenu()
 		else 
 			index += 1; // insert after gear tab
 
-		Panel = Menu.c_Main.InsertTab(index, MenuName, string( class'BallisticTab_Killstreaks' ),, MenuHelp);
+		Panel = Menu.c_Main.InsertTab(index, MenuName, string( GetMenuClass() ),, MenuHelp);
 		bMenuModified=True;
 		Disable('Tick');
 	}

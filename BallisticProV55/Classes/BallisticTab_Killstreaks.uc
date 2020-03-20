@@ -186,16 +186,18 @@ function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
 
 function SaveStreaks()
 {
+	local string new_killstreaks[2];
+	
 	if (!bWeaponsLoaded)
 		return;
 	
 	if (Item_Streak1.Items.length > Item_Streak1.Index)
-		class'KillstreakConfig'.default.Killstreaks[0] = Item_Streak1.Items[Item_Streak1.Index].Text;
+		new_killstreaks[0] = Item_Streak1.Items[Item_Streak1.Index].Text;
 
 	if (Item_Streak2.Items.length > Item_Streak2.Index)
-		class'KillstreakConfig'.default.Killstreaks[1] = Item_Streak2.Items[Item_Streak2.Index].Text;
-	
-	class'KillstreakConfig'.static.StaticSaveConfig();
+		new_killstreaks[1] = Item_Streak2.Items[Item_Streak2.Index].Text;
+
+	class'KillstreakConfig'.static.UpdateStreaks(new_killstreaks);
 	
 	KLRI.UpdateStreakChoices();
 }

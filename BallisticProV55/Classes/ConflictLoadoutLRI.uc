@@ -106,10 +106,6 @@ simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
 
-	// delayed update mode in 3SPN gametypes
-	if (InStr(Level.Game.GameName, "Freon") != -1 || InStr(Level.Game.GameName, "ArenaMaster") != -1)
-		SetDelayedMode();
-	
 	if (Role == ROLE_Authority)
 		myController = Controller(Owner);
 }

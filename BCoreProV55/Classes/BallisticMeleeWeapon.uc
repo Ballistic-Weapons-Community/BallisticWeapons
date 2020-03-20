@@ -63,8 +63,10 @@ exec simulated function WeaponSpecial(optional byte i)
 {
 	if (bBlocked)
 		return;
+		
+	ServerSetBlocked(true);
 	bBlocked=true;
-	ServerSetBlocked(bBlocked);
+
 	if (!IsFiring())
 		PlayAnim(BlockUpAnim, 1.5);
 	IdleAnim = BlockIdleAnim;
@@ -76,8 +78,10 @@ exec simulated function WeaponSpecialRelease(optional byte i)
 {
 	if (!bBlocked)
 		return;
+
+	ServerSetBlocked(false);
 	bBlocked=false;
-	ServerSetBlocked(bBlocked);
+
 	if (!IsFiring())
 		PlayAnim(BlockDownAnim, 1.5);
 	IdleAnim = default.IdleAnim;

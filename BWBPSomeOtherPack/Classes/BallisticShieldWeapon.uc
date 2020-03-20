@@ -21,6 +21,28 @@ function byte BestMode()
 	return 0;
 }
 
+//=========================================================
+// ServerSetBlocked
+// 
+// Speed penalty while blocking
+//=========================================================
+function ServerSetBlocked(bool NewValue)
+{
+	if (bBlocked == NewValue)
+		return;
+	bBlocked=NewValue;
+	BallisticAttachment(ThirdPersonActor).SetBlocked(NewValue);
+
+	if (bBlocked)
+	{
+		AddSpeedModification(0.75);
+	}
+	else 
+	{
+		RemoveSpeedModification(0.75);
+	}
+}
+
 //always offhand
 function AttachToPawn(Pawn P)
 {
@@ -75,35 +97,6 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 		BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
 	}
 
-	if (BDT.default.bDisplaceAim && Damage >= BDT.default.AimDisplacementDamageThreshold && Level.TimeSeconds + BDT.default.AimDisplacementDuration > AimDisplacementEndTime)
-	{
-		AimDisplacementDuration = BDT.default.AimDisplacementDuration * AimDisplacementDurationMult;
-	
-		if (bBlocked && !IsFiring() && level.TimeSeconds > LastFireTime + 1 && BDT.default.bCanBeBlocked &&
-			Normal(HitLocation-(Instigator.Location+Instigator.EyePosition())) Dot Vector(Instigator.GetViewRotation()) > 0.4
-			&& AimDisplacementEndTime < Level.TimeSeconds && AimDisplacementFactor == 0)
-		{
-			Damage = 0;
-			//BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
-			if (instigatedBy != None && BallisticWeapon(instigatedBy.Weapon) != None)
-				BallisticWeapon(instigatedBy.Weapon).ApplyBlockFatigue();
-			AimDisplacementEndTime = Level.TimeSeconds + FMin(2, 1.00 * (float(Damage)/AimDisplacementBlockThreshold));	
-			ClientDisplaceAim(FMin(2, 1.00 * (float(Damage)/AimDisplacementBlockThreshold)));	
-			return;
-		}		
-	
-		if (BDT.default.AimDisplacementDamageThreshold == 0)
-		{
-			AimDisplacementEndTime = Level.TimeSeconds + FMin(2, AimDisplacementDuration);
-			ClientDisplaceAim(FMin(2, AimDisplacementDuration));
-		}
-		else
-		{
-			AimDisplacementEndTime = Level.TimeSeconds + FMin(2, AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold));
-			ClientDisplaceAim(FMin(2, AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold)));
-		}
-	}
-
 	super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
 }
 
@@ -112,11 +105,23 @@ function HandleCrouchBlockingDamageMitigation( out int Damage, out Vector Moment
 	if (!DamageType.default.bArmorStops)
 		return;
 
+	// defend against melee and other blockables completely, but with pushback
+	if (DamageType.default.bCanBeBlocked)
+	{
+		Damage = 0;
+		Momentum *= 2;
+		return;
+	}
+
+	Damage *= 0.2;
+	Momentum *= 2;
+	return;
+
 	// defend against melee, ballistics and other blockables completely, but with pushback
 	// massive damage reduction against
 	if (DamageType.default.bCanBeBlocked || DamageType.default.bMetallic) 
 	{
-		Damage = Max(1, Damage - 50);
+		Damage = Max(Damage/6, Damage - 35);
 		Momentum *= 2;
 		return;
 	}
@@ -124,11 +129,11 @@ function HandleCrouchBlockingDamageMitigation( out int Damage, out Vector Moment
 	// locational non-melee non-metallic almost certainly means energy - deal some damage and push back
 	if (DamageType.default.bLocationalHit)
 	{
-		Damage = Max(1, Damage - 30);
+		Damage = Max(Damage/6, Damage - 30);
 		return;
 	}
 
-	Damage = Max(1, Damage - 40);
+	Damage = Max(Damage/20, Damage - 50);
 	Momentum *= 2;
 }
 
@@ -144,11 +149,15 @@ function HandleBlockingDamageMitigation( out int Damage, out Vector Momentum, cl
 		Momentum *= 2;
 		return;
 	}
-	
+
+	Damage *= 0.3;
+	Momentum *= 2;
+	return;
+
 	// damage reduction against ballistics
 	if (DamageType.default.bMetallic)
 	{
-		Damage = Max(2, Damage - 35);
+		Damage = Max(Damage/5, Damage - 20);
 		Momentum *= 2;
 		return;
 	}
@@ -156,11 +165,11 @@ function HandleBlockingDamageMitigation( out int Damage, out Vector Momentum, cl
 	// locational non-melee non-metallic almost certainly means energy - deal some damage and push back
 	if (DamageType.default.bLocationalHit)
 	{
-		Damage = Max(Damage/20, Damage - 30);
+		Damage = Max(Damage/5, Damage - 20);
 		return;
 	}
 
-	Damage = Max(1, Damage - 40);
+	Damage = Max(1, Damage - 30);
 	Momentum *= 2;
 }
 
@@ -169,18 +178,15 @@ function HandlePassiveDamageMitigation( out int Damage, out Vector Momentum, cla
 	if (!DamageType.default.bArmorStops)
 		return;
 
-	// defend against melee and other blockables completely, but with pushback
-	if (DamageType.default.bCanBeBlocked)
-	{
-		Damage = 0;
-		Momentum *= 2;
-		return;
-	}
-	
+	// actually have to block to reduce melee damage
+	Damage *= 0.45;
+	Momentum *= 2;
+	return;
+
 	// moderate passive damage reduction against ballistics
 	if (DamageType.default.bMetallic)
 	{
-		Damage = Max(Damage/10, Damage - 20);
+		Damage = Max(Damage/3, Damage - 10);
 		Momentum *= 2;
 		return;
 	}
@@ -188,12 +194,12 @@ function HandlePassiveDamageMitigation( out int Damage, out Vector Momentum, cla
 	// locational non-melee non-metallic almost certainly means energy - deal some damage and push back
 	if (DamageType.default.bLocationalHit)
 	{
-		Damage = Max(6, Damage - 15);
+		Damage = Max(Damage/2, Damage - 10);
 		return;
 	}
 
 	// explosions push back
-	Damage = Max(10, Damage - 20);
+	Damage = Max(Damage/4, Damage - 15);
 	Momentum *= 2;
 
 }
