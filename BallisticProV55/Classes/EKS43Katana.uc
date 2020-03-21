@@ -51,6 +51,7 @@ defaultproperties
      PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
      MagAmmo=1
      GunLength=0.000000
+     InventorySize=3
      bAimDisabled=True
      FireModeClass(0)=Class'BallisticProV55.EKS43PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.EKS43SecondaryFire'

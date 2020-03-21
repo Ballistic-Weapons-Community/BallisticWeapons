@@ -43,6 +43,7 @@ defaultproperties
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Grenade=True
+     InventorySize=2
      ManualLines(0)="Throws a grenade overarm. The FP7 grenade explodes into flames, igniting nearby players and obscuring their view for a short period of time. Flames cover the nearby area, dealing damage over time to players standing in them. FP7 flames will push allies of the user outwards, away from the centre of the fire."
      ManualLines(1)="As primary, except the grenade is rolled underarm."
      ManualLines(2)="As with all grenades, Weapon Function or Reload can be used to release the clip and cook the grenade in the user's hand. Care must be taken not to overcook the grenade, lest the user be incinerated. The FP7 grenade is effective in chokepoints, against static positions or when thrown at the enemy en masse."

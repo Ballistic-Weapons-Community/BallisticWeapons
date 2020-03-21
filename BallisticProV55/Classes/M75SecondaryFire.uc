@@ -12,6 +12,7 @@ class M75SecondaryFire extends BallisticRailgunFire;
 
 const MAX_RAIL_POWER = 1.4f; // charges in 2 seconds, 0.8s hold time grace
 var   	float 		RailPower;
+var		float		RailDamageBonus;
 
 var		float		RailMaxWallSizeBonus;
 var		int			RailMaxWallsBonus;
@@ -102,9 +103,11 @@ defaultproperties
 	 MaxWallSize=256
 	 RailMaxWallSizeBonus=768
 
-     Damage=125.000000
+	 Damage=120.000000
      DamageHead=150.000000
-     DamageLimb=125.000000
+	 DamageLimb=120.000000
+	 RailDamageBonus=50
+	 
      DamageType=Class'BallisticProV55.DTM75RailgunCharged'
      DamageTypeHead=Class'BallisticProV55.DTM75RailgunChargedHead'
 	 DamageTypeArm=Class'BallisticProV55.DTM75RailgunCharged'

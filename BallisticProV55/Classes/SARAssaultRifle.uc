@@ -17,7 +17,7 @@ var   Emitter		LaserDot;
 
 var   name		StockOpenAnim;
 var   name		StockCloseAnim;
-var   bool		bStockOpen, bStockOpenRotated;
+var   bool		bStockOpen, bStockBoneOpen;
 
 // This uhhh... thing is added to allow manual drawing of brass OVER the muzzle flash
 struct UziBrass
@@ -35,6 +35,13 @@ replication
 		ServerSwitchStock;
 }
 
+simulated function PostBeginPlay()
+{
+	Super.PostBeginPlay();
+
+	SetStockBonePosition();
+	AdjustStockProperties();
+}
 
 simulated function float ChargeBar()
 {
@@ -47,7 +54,7 @@ simulated function float ChargeBar()
 	return (FireMode[1].NextFireTime - level.TimeSeconds) / FireMode[1].FireRate;
 }
 
-simulated function AdjustStockProperties ()
+simulated function AdjustStockProperties()
 {
 	if (bStockOpen)
 	{
@@ -96,16 +103,14 @@ exec simulated function WeaponSpecial(optional byte i)
 {
 	if (ReloadState != RS_None)
 		return;
-	if (Clientstate != WS_ReadyToFire)
-		return;
 
-	if (!bStockOpen)
-		SetStockRotation();
+	if (ClientState != WS_ReadyToFire)
+		return;
 
 	bStockOpen = !bStockOpen;
 
 	if (!bStockOpen)
-		SetStockRotation();
+		SetStockBonePosition();
 
 	TemporaryScopeDown(0.4);
 	ServerSwitchStock(bStockOpen);
@@ -125,32 +130,32 @@ simulated function SwitchStock(bool bNewValue)
 		PlayAnim(StockCloseAnim);
 }
 
-simulated function SetStockRotation()
+simulated function SetStockBonePosition()
 {
 	if (bStockOpen)
 	{
 		SetBoneLocation('Stock',vect(-38.472,0,0),1.0);
-		bStockOpenRotated = true;
+		bStockBoneOpen = true;
 	}
 	else
 	{
 		SetBoneLocation('Stock',vect(0,0,0),1.0);
-		bStockOpenRotated = false;
+		bStockBoneOpen = false;
 	}
 }
 
 simulated function PlayIdle()
 {
-	if (bStockOpen && !bStockOpenRotated)
+	if (bStockOpen && !bStockBoneOpen)
 	{
-		SetStockRotation();
+		SetStockBonePosition();
 		IdleTweenTime=0.0;
 		super.PlayIdle();
 		IdleTweenTime=default.IdleTweenTime;
 	}
 	else
-	{	if (!bStockOpen && bStockOpenRotated)
-			SetStockRotation();
+	{	if (!bStockOpen && bStockBoneOpen)
+			SetStockBonePosition();
 		super.PlayIdle();
 	}
 
@@ -444,6 +449,7 @@ simulated function bool ReadyToFire(int Mode)
 
 defaultproperties
 {
+	bStockOpen=true
 	AIRating=0.72
 	CurrentRating=0.72
      LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
@@ -460,7 +466,7 @@ defaultproperties
      bWT_Machinegun=True
      ManualLines(0)="Automatic 5.56mm fire. Slightly shorter range than full-size assault rifles. Low damage and moderate recoil by default."
      ManualLines(1)="Engages the frontal flash device. Inflicts a medium-duration blind upon enemies. The effect is more potent the closer the foe is both to the point of aim and to the user."
-     ManualLines(2)="The Weapon Function key engages or disengages the stock. By default, the stock is disengaged, granting the SAR-12 superior hipfire but more recoil than similar weapons. Extending the stock reduces the recoil and widens the hipfire.||Effective at close to medium range, depending upon specialisation."
+     ManualLines(2)="The Weapon Function key engages or disengages the stock. By default, the stock is engaged. Disengaging the stock grants the SAR-12 superior hipfire and shortens the time taken to aim the weapon, but recoil becomes worse and no stabilization bonus is given for crouching.||Effective at close to medium range, depending upon specialisation."
      SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')

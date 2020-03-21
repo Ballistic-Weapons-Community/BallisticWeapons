@@ -650,7 +650,7 @@ defaultproperties
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_FP9A5'
      BigIconCoords=(Y1=24,Y2=235)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=3
+     InventorySize=2
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Grenade=True

@@ -10,7 +10,7 @@ class Ammo_Pineapple extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=3
+     MaxAmmo=2
      InitialAmount=1
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticProV55.NRP57Pickup'

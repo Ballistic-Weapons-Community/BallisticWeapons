@@ -357,7 +357,7 @@ simulated event ModeDoFire()
 	}
 	else
 	{
-		NextFireTime += FireRate * (1 + BW.MeleeFatigue);
+		NextFireTime += FireRate * (1 + FMax(0, BW.MeleeFatigue - 0.15f));
 		NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
 	}
 	

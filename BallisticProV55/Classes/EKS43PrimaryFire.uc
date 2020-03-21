@@ -34,7 +34,7 @@ defaultproperties
      SliceAnims(1)="Slash2"
      SliceAnims(2)="Slash3"
      SliceAnims(3)="Slash4"
-     FatiguePerStrike=0.080000
+     FatiguePerStrike=0.060000
      bCanBackstab=False
      TraceRange=(Min=160.000000,Max=160.000000)
      DamageHead=75.000000
@@ -54,11 +54,11 @@ defaultproperties
      ShakeRotTime=2.500000
 	 
 	 // AI
-	 bInstantHit=True
-	 bLeadTarget=False
-	 bTossed=False
-	 bSplashDamage=False
-	 bRecommendSplashDamage=False
-	 BotRefireRate=0.99
+	bInstantHit=True
+	bLeadTarget=False
+	bTossed=False
+	bSplashDamage=False
+	bRecommendSplashDamage=False
+	BotRefireRate=0.99
      WarnTargetPct=0.3
 }

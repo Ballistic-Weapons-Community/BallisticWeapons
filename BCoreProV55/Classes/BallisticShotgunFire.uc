@@ -18,10 +18,11 @@ var() bool						bDoWaterSplash;	// splash when hitting water, duh...
 //Target collation ------------------------------------------------------------
 struct HitActorInfo
 {
-	var Actor HitActor;
-	var int   Damage;
-	var int	  TotalHits;
-	var int	  HeadHits;
+	var() Actor 	HitActor;
+	var() int   	Damage;
+	var() Vector 	LastHitLocation;
+	var() int	  	TotalHits;
+	var() int	  	HeadHits;
 };
 
 var	 array<HitActorInfo>		HitActorInfos;
@@ -32,6 +33,7 @@ simulated function PostNetBeginPlay()
 	if (TracerChance < 2 && (level.DetailMode == DM_High || class'BallisticMod'.default.EffectsDetailMode == 1))
 		TracerChance *= 0.3;
 }
+
 // Get aim then run several individual traces using different spread for each one
 function DoFireEffect()
 {
@@ -45,10 +47,100 @@ function DoFireEffect()
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
 	}
+
+	ApplyHits();
+
 	// Tell the attachment the aim. It will calculate the rest for the clients
 	SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
 
 	Super(BallisticFire).DoFireEffect();
+}
+
+// This is called for any actor found by this fire.
+function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector Dir, optional int PenetrateCount, optional int WallCount, optional vector WaterHitLocation)
+{
+	local float				Dmg;
+	local float				ScaleFactor;
+	local class<DamageType>	HitDT;
+	local class<BallisticDamageType> BDT;
+	local Actor				Victim;
+	local Vector 			DamageHitLocation;
+	local bool				bHeadshot;
+
+	//Log("BallisticShotgunFire::OnTraceHit");
+
+	if(Other.IsA('xPawn') && !Other.IsA('Monster'))
+		DamageHitLocation = GetDamageHitLocation(xPawn(Other), HitLocation, TraceStart, Dir);
+	else
+		DamageHitLocation = HitLocation;
+	
+	Dmg = GetDamage(Other, DamageHitLocation, Dir, Victim, HitDT);
+
+	ScaleFactor = ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WaterHitLocation);
+	
+	Dmg *= ScaleFactor;
+
+	if (Pawn(Victim) != None)
+		ApplyForce(Pawn(Victim), TraceStart, ScaleFactor);
+
+	BDT = class<BallisticDamageType>(HitDT);
+
+	if (BDT != None && BDT.default.bHeaddie)
+		bHeadshot = true;
+
+	TrackHit(Victim, Dmg, HitLocation, bHeadshot); 
+}
+
+function TrackHit(Actor Target, int Damage, vector HitLocation, bool bHeadshot)
+{	
+	local int i;
+
+	//Log("BallisticShotgunFire::TrackHit");
+
+	for(i = 0; i < HitActorInfos.Length && HitActorInfos[i].HitActor != Target; ++i);
+
+	if (i == HitActorInfos.Length)
+	{	
+		//Log("BallisticShotgunFire::TrackHit: Inserting new actor "$Target);
+		HitActorInfos.Insert(HitActorInfos.Length, 1);
+
+		HitActorInfos[i].HitActor = Target;
+		HitActorInfos[i].LastHitLocation = HitLocation;
+	}
+
+	HitActorInfos[i].Damage += Damage;
+	++HitActorInfos[i].TotalHits;
+	if (bHeadshot)
+		++HitActorInfos[i].HeadHits;
+
+	//Log("BallisticShotgunFire::TrackHit: Damage: "$HitActorInfos[i].Damage$" Location: "$HitActorInfos[i].LastHitLocation$" Total Hits: "$HitActorInfos[i].TotalHits);
+}
+
+function ApplyHits()
+{
+	local int i;
+	local Vector MomentumDir;
+	local class <DamageType> HitDamageType;
+
+	//Log("BallisticShotgunFire::ApplyHits");
+
+	for (i = 0; i < HitActorInfos.Length; ++i)
+	{
+		//Log("Index "$i);
+
+		if (HitActorInfos[i].HeadHits * 2 >= HitActorInfos[i].TotalHits)
+			HitDamageType = DamageTypeHead;
+		else 
+			HitDamageType = DamageType;
+
+		MomentumDir = Normal(HitActorInfos[i].LastHitLocation - Instigator.Location);
+
+		ApplyDamage(HitActorInfos[i].HitActor, HitActorInfos[i].Damage, Instigator, HitActorInfos[i].LastHitLocation, MomentumDir * KickForce * HitActorInfos[i].TotalHits, HitDamageType);
+
+		HitActorInfos[i].HitActor = None;
+	}
+
+	HitActorInfos.Remove(0, HitActorInfos.Length);
 }
 
 // Even if we hit nothing, this is already taken care of in DoFireEffects()...

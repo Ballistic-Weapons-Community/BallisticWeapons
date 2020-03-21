@@ -11,7 +11,7 @@ class Ammo_FP9Ammo extends BallisticAmmo;
 defaultproperties
 {
      bNoPackResupply=True
-     MaxAmmo=2
+     MaxAmmo=1
      InitialAmount=1
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticProV55.FP9Pickup'

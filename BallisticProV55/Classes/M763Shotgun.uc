@@ -340,7 +340,7 @@ defaultproperties
      SightOffset=(X=5.000000,Z=12.900000)
 	 SightDisplayFOV=60.000000
 	 SightPivot=(Pitch=128)
-     SightingTime=0.300000
+     SightingTime=0.400000
      GunLength=48.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      AimSpread=0
@@ -369,7 +369,8 @@ defaultproperties
      AttachmentClass=Class'BallisticProV55.M763Attachment'
      IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M763'
      IconCoords=(X2=127,Y2=31)
-     ItemName="M763 Shotgun"
+	 ItemName="M763 Shotgun"
+	 bNoCrosshairInScope=True
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=25

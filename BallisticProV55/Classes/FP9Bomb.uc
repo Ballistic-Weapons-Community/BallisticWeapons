@@ -462,7 +462,7 @@ defaultproperties
      ShakeRotRate=(X=3000.000000,Z=3000.000000)
      ShakeOffsetMag=(X=20.000000,Y=30.000000,Z=30.000000)
      Speed=350.000000
-     Damage=120.000000
+     Damage=160.000000
      DamageRadius=768.000000
      MomentumTransfer=90000.000000
      MyDamageType=Class'BallisticProV55.DTNRP57Grenade'

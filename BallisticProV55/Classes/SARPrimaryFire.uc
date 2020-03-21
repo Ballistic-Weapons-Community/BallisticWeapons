@@ -10,8 +10,8 @@ class SARPrimaryFire extends BallisticRangeAttenFire;
 
 function PlayFiring()
 {
-	if (SARAssaultRifle(Weapon).bStockOpen && !SARAssaultRifle(Weapon).bStockOpenRotated)
-		SARAssaultRifle(Weapon).SetStockRotation();
+	if (SARAssaultRifle(Weapon).bStockOpen && !SARAssaultRifle(Weapon).bStockBoneOpen)
+		SARAssaultRifle(Weapon).SetStockBonePosition();
 
 	if (ScopeDownOn == SDO_Fire)
 		BW.TemporaryScopeDown(0.5, 0.9);

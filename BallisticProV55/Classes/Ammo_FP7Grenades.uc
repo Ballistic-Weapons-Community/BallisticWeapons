@@ -10,7 +10,7 @@ class Ammo_FP7Grenades extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=3
+     MaxAmmo=2
      InitialAmount=1
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticProV55.FP7Pickup'
