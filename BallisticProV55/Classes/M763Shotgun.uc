@@ -337,7 +337,6 @@ defaultproperties
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     SightPivot=(Pitch=32)
      SightOffset=(X=5.000000,Z=12.900000)
 	 SightDisplayFOV=60.000000
 	 SightPivot=(Pitch=128)
