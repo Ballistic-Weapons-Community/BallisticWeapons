@@ -282,7 +282,8 @@ defaultproperties
      bWT_Splash=True
      bWT_RapidProj=True
      bWT_Projectile=True
-     bWT_Super=True
+	 bWT_Super=True
+	 bUseSights=False
      ManualLines(0)="Sprays fire, blinding the enemy, inflicting initial damage and burning them for damage over time. Hip-accurate and capable of hitting multiple enemies at a time. May cause surfaces struck to burn."
      ManualLines(1)="Sprays unignited flamer gas. This gas will collect on surfaces or players. When on a surface, it can be ignited later to set a trap for the enemy or to close off areas. When on a player, it increases the damage dealt by the next primary attack."
      ManualLines(2)="Has a high capacity, but long reload time. Will not function underwater.||Effective at close range. Extremely effective when used defensively."
@@ -315,7 +316,7 @@ defaultproperties
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.9
      CurrentRating=0.900000
-     Description="A very deadly weapon designed and constructed by the UTC’s Defence Research Wing, to combat the Cryons before the second Human-Skrith war. It proved highly effective, being unchallenged by both of the Skrith’s major allies, the Cryons and Krao. The RX22A proved to be an extrmely useful weapon, when clearing out Krao from many underground tunnels and facilities on the OutWorld planet. The weapon, now feared by Cryons. and especially Krao, is one of the most dangerous weapons a Terran soldier may possess. Despite its long range, searing flames and ability to litterally fill a small room with fire make it a very powerful weapon, it has a great disadvantage. The flames may just as easily incinerate the operator when used close up, and if the fuel tanks carried on the soldiers back, were to rupture and catch fire, the user may find themselves in a very unpleasant situation."
+     Description="A very deadly weapon designed and constructed by the UTCï¿½s Defence Research Wing, to combat the Cryons before the second Human-Skrith war. It proved highly effective, being unchallenged by both of the Skrithï¿½s major allies, the Cryons and Krao. The RX22A proved to be an extrmely useful weapon, when clearing out Krao from many underground tunnels and facilities on the OutWorld planet. The weapon, now feared by Cryons. and especially Krao, is one of the most dangerous weapons a Terran soldier may possess. Despite its long range, searing flames and ability to litterally fill a small room with fire make it a very powerful weapon, it has a great disadvantage. The flames may just as easily incinerate the operator when used close up, and if the fuel tanks carried on the soldiers back, were to rupture and catch fire, the user may find themselves in a very unpleasant situation."
      Priority=46
      HudColor=(G=50)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

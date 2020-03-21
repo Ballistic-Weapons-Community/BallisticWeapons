@@ -2,8 +2,8 @@
 // xscorch
 //=============================================================================
 class PermanentScorch extends Projector
-	abstract;
-
+    abstract;
+    
 var() float Lifetime;
 var() float PushBack;
 var() bool  RandomOrient;
@@ -55,12 +55,14 @@ defaultproperties
 {
      PushBack=24.000000
      RandomOrient=True
+
+     
      FOV=1
      MaxTraceDistance=70000
      bProjectActor=False
      bClipBSP=True
      FadeInTime=0.125000
      bStatic=False
-     LifeSpan=1000.000000
+     LifeSpan=30.000000
      bGameRelevant=True
 }

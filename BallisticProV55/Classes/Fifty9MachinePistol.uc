@@ -134,9 +134,9 @@ simulated function AdjustUziProperties (bool bDualMode)
 {
 	if (bStockOpen)
 	{
-		BFireMode[0].RecoilPerShot *= 0.75;
-		RecoilXFactor		*= 0.75;
-		RecoilYFactor		*= 0.75;
+		BFireMode[0].RecoilPerShot = BFireMode[0].default.RecoilPerShot * 0.75;
+		RecoilXFactor	= default.RecoilXFactor * 0.75;
+		RecoilYFactor	= default.RecoilYFactor * 0.75;
 		ChaosAimSpread = StockChaosAimSpread;
 	}
 	else
@@ -147,7 +147,7 @@ simulated function AdjustUziProperties (bool bDualMode)
 		ChaosAimSpread = default.ChaosAimSpread;
 	}
 	
-		ChaosAimSpread 		*= BCRepClass.default.AccuracyScale;
+	ChaosAimSpread 		*= BCRepClass.default.AccuracyScale;
 }
 
 simulated function SetStockRotation()

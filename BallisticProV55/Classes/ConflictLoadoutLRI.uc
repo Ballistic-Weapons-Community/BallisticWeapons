@@ -467,7 +467,7 @@ function UpdateInventory()
 
 	if (Loadout.length == 0)
 	{
- 		s = LoadoutMut.GetRandomWeapon(self);
+ 		s = LoadoutMut.GetFallbackWeapon(self);
  		if (s != "")
  			Loadout[0] = s;
  	}

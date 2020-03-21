@@ -4,10 +4,11 @@
 //Extra code work by Melaneus aka Jesse S
 //All Rights Reserved
 //================================================================
-class GBU38BlastMark extends PermanentScorch;
+class GBU38BlastMark extends xScorch;
 
 defaultproperties
 {
      ProjTexture=Texture'XEffects.rocketblastmark'
      DrawScale=14.000000
+     LifeSpan=30
 }

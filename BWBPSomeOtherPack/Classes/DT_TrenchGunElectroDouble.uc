@@ -10,5 +10,5 @@ class DT_TrenchGunElectroDouble extends DT_TrenchGunElectro;
 
 defaultproperties
 {
-     AimDisplacementDuration=0.800000
+     AimDisplacementDuration=0.400000
 }

@@ -37,7 +37,7 @@ function ModifyPlayer( pawn Other )
 		CLRI.Validate(CLRI.Loadout);
 		if (CLRI.Loadout.length == 0)
 		{
- 			s = GetRandomWeapon(CLRI);
+ 			s = GetFallbackWeapon(CLRI);
 	 		if (s != "")
  				CLRI.Loadout[0] = s;
 	 	}
@@ -99,7 +99,7 @@ function ModifyPlayer( pawn Other )
 				break;
 		if (Inv == None)
 		{
-			s = GetRandomWeapon(CLRI);
+			s = GetFallbackWeapon(CLRI);
 
 			InventoryClass = Level.Game.BaseMutator.GetInventoryClass(s);
 			if( (InventoryClass!=None))

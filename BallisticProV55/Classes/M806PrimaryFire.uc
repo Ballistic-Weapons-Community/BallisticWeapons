@@ -28,16 +28,16 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=1500.000000
-     CutOffStartRange=2048.000000
+     CutOffDistance=512.000000
+     CutOffStartRange=1024.000000
      TraceRange=(Max=6000.000000)
      WaterRangeFactor=0.600000
      MaxWallSize=24.000000
      MaxWalls=2
-     Damage=35.000000
-     DamageHead=55.000000
-     DamageLimb=35.000000
-     RangeAtten=0.750000
+     Damage=30.000000
+     DamageHead=45.000000
+     DamageLimb=30.000000
+     RangeAtten=0.30000
      WaterRangeAtten=0.500000
      DamageType=Class'BallisticProV55.DTM806Pistol'
      DamageTypeHead=Class'BallisticProV55.DTM806PistolHead'
@@ -49,10 +49,12 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
-     RecoilPerShot=3072.000000
+     RecoilPerShot=450.000000
+     FireChaos=0.2
      BallisticFireSound=(Sound=Sound'BallisticSounds3.M806.M806Fire',Volume=0.700000)
      FireEndAnim=
      FireRate=0.200000
+     FireAnimRate=2
      AmmoClass=Class'BallisticProV55.Ammo_45HV'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

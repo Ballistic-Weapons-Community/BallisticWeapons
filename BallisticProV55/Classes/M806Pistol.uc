@@ -328,12 +328,12 @@ defaultproperties
      ViewRecoilFactor=0.200000
      ChaosDeclineTime=0.320000
      ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=384
+     ChaosAimSpread=768
      RecoilYawFactor=0.000000
      RecoilXFactor=0.250000
      RecoilYFactor=0.250000
      RecoilDeclineTime=0.500000
-     RecoilDeclineDelay=0.200000
+     RecoilDeclineDelay=0.400000
      FireModeClass(0)=Class'BallisticProV55.M806PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M806SecondaryFire'
      SelectForce="SwitchToAssaultRifle"
@@ -342,7 +342,8 @@ defaultproperties
      Description="M806 High Velocity Pistol||Manufacturer: Enravion Combat Solutions|Primary: Powerful single shot|Secondary: Toggle Laser Sight||The M806 is one of the few sidearms capable of making a full-grown Skrith whimper. Although long used by law enforcment organizations, military forces and ordinary civillians, it gained recognition when an elite commando unit was forced to use it on a difficult mission to disable a heavily armoured, Cryon infantry Division. Poor logistics planning left them with a wealth of ammo for the sidearm and little else, but the pistol was so effective in the mission it quickly grew in favour amongst the UTC Infantry Corps. The M806 is capable of massive damage when targetted at the right area and is a generally reliable, backup weapon. Use of a laser sight turns it into a real weapon by allowing the soldier to accurately direct its powerful bullets."
      Priority=19
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=2
+	 InventoryGroup=2
+	 InventorySize=5
      GroupOffset=5
      PickupClass=Class'BallisticProV55.M806Pickup'
      PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)

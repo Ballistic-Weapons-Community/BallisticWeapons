@@ -30,9 +30,9 @@ defaultproperties
      WaterRangeFactor=0.800000
      MaxWallSize=32.000000
      MaxWalls=2
-     Damage=90.000000
-     DamageHead=135.000000
-     DamageLimb=90.000000
+     Damage=100.000000
+     DamageHead=150.000000
+     DamageLimb=100.000000
      RangeAtten=0.600000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPRecolorsPro.DTAH208Pistol'
@@ -46,11 +46,11 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
-     RecoilPerShot=1024.000000
+     RecoilPerShot=768.000000
      VelocityRecoil=300.000000
      FireChaos=0.350000
-     XInaccuracy=1.000000
-     YInaccuracy=1.000000
+     XInaccuracy=64.000000
+     YInaccuracy=64.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Eagle.Eagle-Fire4',Volume=4.100000)
      FireEndAnim=
      FireRate=0.600000

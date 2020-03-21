@@ -232,7 +232,7 @@ function ModifyPlayer( pawn Other )
 		CLRI.Validate(CLRI.Loadout);
 		if (CLRI.Loadout.length == 0)
 		{
- 			s = GetRandomWeapon(CLRI);
+ 			s = GetFallbackWeapon(CLRI);
 	 		if (s != "")
  				CLRI.Loadout[0] = s;
 	 	}
@@ -293,7 +293,7 @@ function ModifyPlayer( pawn Other )
 				break;
 		if (Inv == None)
 		{
-			s = GetRandomWeapon(CLRI);
+			s = GetFallbackWeapon(CLRI); //GetRandomWeapon(CLRI);
 
 			InventoryClass = Level.Game.BaseMutator.GetInventoryClass(s);
 			if( (InventoryClass!=None))
@@ -512,13 +512,14 @@ static function SpawnAmmo(class<Ammunition> newClass, Pawn P, optional float Mul
 	Ammo.GotoState('');
 }
 
+	/*
 function string GetRandomWeapon (ConflictLoadoutLRI CLRI)
 {
 	local int i;
 	local array<string> Potentials;
 
-	for (i=0;i<ConflictWeapons.length;i++)
-		if (CLRI.WeaponRequirementsOk(FullRequirementsList[i]) )
+	for (i=0; i<ConflictWeapons.length; i++)
+		if (CLRI.TeamAllowed(ConflictWeapons[i]) && CLRI.WeaponRequirementsOk(FullRequirementsList[i]) )
 		{
 			if (class<Weapon>(DynamicLoadObject(ConflictWeapons[i].ClassName, class'class')) != None)
 				Potentials[Potentials.length] = ConflictWeapons[i].ClassName;
@@ -527,6 +528,12 @@ function string GetRandomWeapon (ConflictLoadoutLRI CLRI)
 	if (Potentials.length < 1)
 		return "";
 	return Potentials[Rand(Potentials.length)];
+}
+	*/
+
+function string GetFallbackWeapon (ConflictLoadoutLRI CLRI)
+{
+	return "BallisticProV55.M806Pistol";
 }
 
 // Check for item replacement.

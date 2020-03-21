@@ -10,17 +10,26 @@
 //=============================================================================
 class M75SecondaryFire extends BallisticRailgunFire;
 
-var   float RailPower;
+const MAX_RAIL_POWER = 1.4f; // charges in 2 seconds, 0.8s hold time grace
+var   	float 		RailPower;
+
+var		float		RailMaxWallSizeBonus;
+var		int			RailMaxWallsBonus;
+var		int			RailPenetrateForceBonus;
+var		float		RailKickForceBonus;
+var		float		RailRecoilPerShotPenalty;
 
 simulated event ModeDoFire()
 {
-	MaxWallSize = default.MaxWallSize * 0.2 + default.MaxWallSize * 0.8 * Square(RailPower);
-	KickForce = default.KickForce * 0.2 + default.KickForce * 0.8 * RailPower;
-	RecoilPerShot = default.RecoilPerShot * 0.25 + default.RecoilPerShot * 0.75 * RailPower;
+	MaxWallSize 	= default.MaxWallSize 		+ RailMaxWallSizeBonus 		* Square(RailPower);
+	MaxWalls 		= default.MaxWalls 			+ RailMaxWallsBonus 		* RailPower;
+	PenetrateForce 	= default.PenetrateForce 	+ RailPenetrateForceBonus 	* RailPower;
+	KickForce 		= default.KickForce 		+ RailKickForceBonus 		* RailPower;
+	RecoilPerShot 	= default.RecoilPerShot 	+ RailRecoilPerShotPenalty 	* RailPower;
 
 	Super.ModeDoFire();
 
-	RailPower=0.0;
+	RailPower = 0.0;
 	
 	Weapon.ThirdPersonActor.SoundPitch =  32;
 	//Weapon.SoundPitch = 32 + RailPower * 12;
@@ -33,9 +42,13 @@ simulated function ModeTick(float DeltaTime)
 {	
 	if (bIsFiring)
 	{
-		RailPower = FMin(1.0, RailPower + 0.5*DeltaTime);
-		if (RailPower >= 1)
+		RailPower = FMin(MAX_RAIL_POWER, RailPower + 0.5 * DeltaTime);
+
+		if (RailPower >= MAX_RAIL_POWER)
+		{
+			RailPower = 1.0f;
 			bIsFiring = false;
+		}
 	}
 	
 	else if (RailPower > 0)
@@ -43,7 +56,7 @@ simulated function ModeTick(float DeltaTime)
 		
 	Super.ModeTick(DeltaTime);
 	
-	if (RailPower > 0)
+	if (RailPower > 0 && RailPower <= 1.0f)
 	{
 		Weapon.ThirdPersonActor.SoundPitch =  32 + RailPower * 12;
 		//Weapon.SoundPitch = 32 + RailPower * 12;
@@ -81,28 +94,47 @@ function WallEnterEffect (vector HitLocation, vector HitNormal, vector X, actor 
 
 defaultproperties
 {
-     TraceRange=(Min=30000.000000,Max=30000.000000)
-     MaxWalls=5
+	 TraceRange=(Min=30000.000000,Max=30000.000000)
+	 
+	 MaxWalls=5
+	 RailMaxWallsBonus=10
+
+	 MaxWallSize=256
+	 RailMaxWallSizeBonus=768
+
      Damage=125.000000
      DamageHead=150.000000
      DamageLimb=125.000000
      DamageType=Class'BallisticProV55.DTM75RailgunCharged'
      DamageTypeHead=Class'BallisticProV55.DTM75RailgunChargedHead'
-     DamageTypeArm=Class'BallisticProV55.DTM75RailgunCharged'
-     KickForce=150000
-     PenetrateForce=700
-     bPenetrate=True
+	 DamageTypeArm=Class'BallisticProV55.DTM75RailgunCharged'
+
+	 KickForce=30000
+	 RailKickForceBonus=120000
+
+	 bPenetrate=True
+	 PenetrateForce=700
+	 RailPenetrateForceBonus=2500
+
+
      MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
      BrassClass=Class'BallisticProV55.Brass_Railgun'
-     BrassOffset=(X=-33.000000,Y=-4.000000,Z=-4.000000)
-     RecoilPerShot=4096.000000
-     VelocityRecoil=1300.000000
-     FireChaos=0.750000
-     BallisticFireSound=(Sound=Sound'BallisticSounds3.M75.M75Fire',Radius=768.000000)
+	 BrassOffset=(X=-33.000000,Y=-4.000000,Z=-4.000000)
+	 
+	 RecoilPerShot=1024.000000
+	 RailRecoilPerShotPenalty=3072.000000
+	 VelocityRecoil=1300.000000
+	 FireChaos=0.750000
+	 
+	 BallisticFireSound=(Sound=Sound'BallisticSounds3.M75.M75Fire',Radius=768.000000)
+	 
      bFireOnRelease=True
-     FireEndAnim="'"
-     FireRate=1.500000
-     AmmoClass=Class'BallisticProV55.Ammo_20mmRailgun'
+	 FireEndAnim="'"
+	 
+	 FireRate=1.500000
+	 
+	 AmmoClass=Class'BallisticProV55.Ammo_20mmRailgun'
+	 
      ShakeRotMag=(X=400.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000

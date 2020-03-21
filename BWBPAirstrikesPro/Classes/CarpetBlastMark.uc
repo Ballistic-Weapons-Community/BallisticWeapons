@@ -4,10 +4,11 @@
 //Extra code work by Melaneus aka Jesse S
 //All Rights Reserved
 //================================================================
-class CarpetBlastMark extends PermanentScorch;
+class CarpetBlastMark extends xScorch;
 
 defaultproperties
 {
      ProjTexture=Texture'XEffects.rocketblastmark'
      DrawScale=6.000000
+     LifeSpan=30
 }

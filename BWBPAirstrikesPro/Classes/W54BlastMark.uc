@@ -4,7 +4,7 @@
 //Extra code work by Melaneus aka Jesse S
 //All Rights Reserved
 //================================================================
-class W54BlastMark extends PermanentScorch;
+class W54BlastMark extends xScorch;
 
 defaultproperties
 {
