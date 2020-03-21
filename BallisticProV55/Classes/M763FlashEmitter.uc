@@ -116,7 +116,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.700000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.200000)
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.500000,Max=0.500000)
+         LifetimeRange=(Min=0.250000,Max=0.250000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
@@ -134,6 +134,7 @@ defaultproperties
          ColorScale(2)=(RelativeTime=0.300000,Color=(B=64,G=64,R=96,A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(G=64,R=96))
          FadeOutStartTime=0.095000
+         Opacity=0.5
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          StartLocationRange=(X=(Min=16.000000,Max=16.000000))
@@ -141,7 +142,7 @@ defaultproperties
          DrawStyle=PTDS_Brighten
          Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.500000,Max=0.500000)
+         LifetimeRange=(Min=0.2500000,Max=0.250000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object

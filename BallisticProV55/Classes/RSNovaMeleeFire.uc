@@ -44,7 +44,7 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 	if (RSNovaStaff(Weapon).bOnRampage)
 		DamageFactor *= 2.0f;
 
-	DamageFactor *= ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WaterHitLocation);
+	DamageFactor *= Super.ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WaterHitLocation);
 
 	return DamageFactor;
 }
