@@ -5,36 +5,39 @@
 //
 // by Marc Sergeant Kelly Moylan
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class ICISSecondaryFire extends BallisticMeleeFire;
 
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-	local BallisticPawn Target;
+	local BallisticPawn BPawn;
 	local ICISPoisoner IP;
 
-	Target=BallisticPawn(Other);	
+	BPawn = BallisticPawn(Target);	
 
-	if(IsValidHealTarget(Target))
+	if(IsValidHealTarget(BPawn))
 	{
-			if(Instigator == None || Vehicle(Instigator) != None || Instigator.Health <= 0)
-				return;
-			
-			Target.GiveAttributedHealth(10, Target.HealthMax, Instigator);
-			
-			IP = Spawn(class'ICISPoisoner', Instigator.Controller);
-			IP.Instigator = Instigator;
+		if(Instigator == None || Vehicle(Instigator) != None || Instigator.Health <= 0)
+			return;
+		
+		BPawn.GiveAttributedHealth(10, BPawn.HealthMax, Instigator);
+		
+		IP = Spawn(class'ICISPoisoner', Instigator.Controller);
+		IP.Instigator = Instigator;
 
-			if(Instigator.Role == ROLE_Authority && Instigator.Controller != None)
-				IP.InstigatorController = Instigator.Controller;
+		if(Instigator.Role == ROLE_Authority && Instigator.Controller != None)
+			IP.InstigatorController = Instigator.Controller;
 
-			IP.Initialize(Target);
-			ICISStimPack(BW).ConsumeAmmo(1, 1, True);
-			ICISStimPack(BW).PlaySound(ICISStimPack(BW).HealSound, SLOT_Misc, 1.5, ,64);
+		IP.Initialize(BPawn);
+		ICISStimPack(BW).ConsumeAmmo(1, 1, True);
+		ICISStimPack(BW).PlaySound(ICISStimPack(BW).HealSound, SLOT_Misc, 1.5, ,64);
+		
 		return;
 	}
-	Super.DoDamage(Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount, WaterHitLocation);
+
+	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+	
 }
 
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't

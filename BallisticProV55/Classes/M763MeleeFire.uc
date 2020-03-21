@@ -10,8 +10,17 @@ class M763MeleeFire extends BallisticMeleeFire;
 
 defaultproperties
 {
-     DamageHead=75.000000
-     DamageLimb=75.000000
+     SwipePoints(0)=(Weight=1,offset=(Yaw=5120))
+     SwipePoints(1)=(Weight=2,offset=(Yaw=3840))
+     SwipePoints(2)=(Weight=3,offset=(Yaw=2560))
+     SwipePoints(3)=(Weight=4,offset=(Yaw=1280))
+     SwipePoints(4)=(Weight=5)
+     SwipePoints(5)=(Weight=4,offset=(Yaw=-1280))
+     SwipePoints(6)=(Weight=3,offset=(Yaw=-2560))
+     SwipePoints(7)=(Weight=2,offset=(Yaw=-3840))
+     SwipePoints(8)=(Weight=1,offset=(Yaw=-5120))
+     DamageHead=50.000000
+     DamageLimb=50.000000
      DamageType=Class'BallisticProV55.DTM763Hit'
      DamageTypeHead=Class'BallisticProV55.DTM763HitHead'
      DamageTypeArm=Class'BallisticProV55.DTM763Hit'

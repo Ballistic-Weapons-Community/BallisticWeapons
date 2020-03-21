@@ -1,43 +1,20 @@
 class XOXOMeleeFire extends BallisticMeleeFire;
 
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-	local float				Dmg;
-	local class<DamageType>	HitDT;
-	local Actor				Victim;
-	local bool				bWasAlive;
-	local Vector			testDir;
+	local bool  bWasAlive;
 
-	Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
-	
-	if (HoldTime > 0)
-		Dmg += Dmg * 1.15  * (FMin(HoldTime, MaxBonusHoldTime)/MaxBonusHoldTime);
-	else if (ThisModeNum == 2 && HoldStartTime != 0)
-	{
-		Dmg += Dmg * 1.15 * (FMin(Level.TimeSeconds - HoldStartTime, MaxBonusHoldTime)/MaxBonusHoldTime);
-		HoldStartTime = 0.0f;
-	}
-	
-	if (bCanBackstab)
-	{
-		testDir = Dir;
-		testDir.Z = 0;
-	
-		if (Vector(Victim.Rotation) Dot testDir > 0.2)
-			Dmg *= 1.5;
-		Dmg = Min(Dmg, 230);
-	}
-	
+	if (BallisticPawn(Instigator) != None && XOXOStaff(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+		BallisticPawn(Instigator).GiveAttributedHealth(Damage * 0.66, Instigator.HealthMax, Instigator, True);
+
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 	{
 		if (Monster(Victim) == None || Pawn(Victim).default.Health > 275)
 			bWasAlive = true;
 	}
-	
-	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-		BallisticPawn(Instigator).GiveAttributedHealth(Dmg / 1.5, Instigator.HealthMax, Instigator, True);
 
-	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
+	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+	
 	if (bWasAlive && Pawn(Victim).Health <= 0)
 		class'XOXOLewdness'.static.DistributeLewd(HitLocation, Instigator, Pawn(Victim), Weapon);
 }

@@ -46,36 +46,13 @@ simulated function bool StreamAllowFire()
 }
 
 //===========================================================================
-// DoDamage
+// ApplyDamage
 //
 // Damage of stream ramps with successive hits
 //===========================================================================
-function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir)
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-	local float Dmg;
-	local class<DamageType>	HitDT;
-	local actor Victim;
-	local Vector ClosestLocation, BoneTestLocation;
-		
-	//Locational damage code from Mr Evil
-	if(Other.IsA('xPawn') && !Other.IsA('Monster'))
-	{
-		//Find a point on the victim's Z axis at the same height as the HitLocation.
-		ClosestLocation = Other.Location;
-		ClosestLocation.Z += (HitLocation - Other.Location).Z;
-		
-		//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
-		BoneTestLocation = Dir;
-		BoneTestLocation *= VSize(ClosestLocation - HitLocation);
-		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
-		BoneTestLocation += HitLocation;
-
-		Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
-	}
-
-	else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
-
-	class'BallisticDamageType'.static.GenericHurt (Victim, Min(Dmg + SuccessiveHits * 5, 30), Instigator, HitLocation, 10000 * Dir, HitDT);
+	class'BallisticDamageType'.static.GenericHurt (Victim, Min(Damage + SuccessiveHits * 5, 30), Instigator, HitLocation, MomentumDir, DamageType);
 }
 
 function DoFireEffect()
@@ -172,7 +149,7 @@ function OldDoTrace(Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{
-				StreamDoDamage (Other, HitLocation, InitialStart, X);
+				OnTraceHit(Other, HitLocation, InitialStart, X);
 				
 				SuccessiveHits++;
 

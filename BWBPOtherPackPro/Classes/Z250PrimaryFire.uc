@@ -212,14 +212,12 @@ event ModeTick(float DT)
 	super.ModeTick(DT);
 }
 
-// This is called to DoDamage to an actor found by this fire.
-// Adjusts damage based on Range, Penetrates, WallPenetrates, relative velocities and runs Hurt() to do the deed...
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-	Super.DoDamage(Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount, WaterHitLocation);
+	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (Other.bProjTarget)
-		BW.TargetedHurtRadius(Damage, 420, class'DTZ250Bullet', 200, HitLocation, Pawn(Other));
+	if (Victim.bProjTarget)
+		BW.TargetedHurtRadius(Damage, 420, class'DTZ250Bullet', 200, HitLocation, Pawn(Victim));
 }
 
 // Do the trace to find out where bullet really goes
@@ -268,7 +266,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{				
-				DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
 			
 				LastOther = Other;
 

@@ -78,7 +78,8 @@ defaultproperties
      BallisticFireSound=(Sound=SoundGroup'BallisticSounds3.UZI.Melee',Radius=256.000000,bAtten=True)
      bAISilent=True
      FireAnim="Melee1"
-     FireRate=0.600000
+     FireAnimRate=1.5
+     FireRate=0.300000
      AmmoClass=Class'BallisticProV55.Ammo_FiftyNine'
      AmmoPerFire=0
      ShakeRotMag=(X=64.000000,Y=128.000000)

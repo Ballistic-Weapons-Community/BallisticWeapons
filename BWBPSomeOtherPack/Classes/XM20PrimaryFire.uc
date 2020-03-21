@@ -18,52 +18,16 @@ simulated function bool AllowFire()
 	return Super.AllowFire();
 }
 
-//The LS-14 deals increased damage to targets which have already been heated up by a previous strike.
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
-{
-	local float							Dmg;
-	local class<DamageType>	HitDT;
-	local Actor							Victim;
-	local Vector						BoneTestLocation, ClosestLocation;
-	local	int								Bonus;
+//The XM20 deals increased damage to targets which have already been heated up by a previous strike.
+function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+{	
+	if (Pawn(Target) != None && Pawn(Target).bProjTarget)
+		Damage += XM20AutoLas(BW).ManageHeatInteraction(Pawn(Target), HeatPerShot);
 	
-	//Locational damage code from Mr Evil under test here
-	if(Other.IsA('xPawn'))
-	{
-		//Find a point on the victim's Z axis at the same height as the HitLocation.
-		ClosestLocation = Other.Location;
-		ClosestLocation.Z += (HitLocation - Other.Location).Z;
-		
-		//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
-		BoneTestLocation = Dir;
-		BoneTestLocation *= VSize(ClosestLocation - HitLocation);
-		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
-		BoneTestLocation += HitLocation;
-		
-		Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
-	}
-	
-	else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
+	if (Monster(Target) != None)
+		Damage = Min(Damage, 40);
 
-	if (RangeAtten != 1.0)
-		Dmg *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
-	if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
-		Dmg *= Lerp(VSize(HitLocation-WaterHitLocation) / (TraceRange.Max*WaterRangeFactor), 1, WaterRangeAtten);
-	if (PenetrateCount > 0)
-		Dmg *= PDamageFactor ** PenetrateCount;
-	if (WallCount > 0)
-		Dmg *= WallPDamageFactor ** WallCount;
-		
-	if (Monster(Other) != None)
-	{
-		class'BallisticDamageType'.static.GenericHurt (Victim, 45, Instigator, HitLocation, KickForce * Dir, HitDT);
-		return;
-	}
-
-	if (Pawn(Other) != None && Pawn(Other).bProjTarget)
-		Bonus = XM20AutoLas(BW).ManageHeatInteraction(Pawn(Other), HeatPerShot);
-		
-	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg + Bonus, Instigator, HitLocation, KickForce * Dir, HitDT);
+	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 }
 
 defaultproperties

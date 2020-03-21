@@ -35,52 +35,24 @@ event ModeTick(float DT)
 	}
 }
 
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, Vector WaterHitLocation)
 {
-	local float				Dmg;
-	local class<DamageType>	HitDT;
-	local Actor				Victim;
-	local bool				bWasAlive;
-	local Vector			BoneTestLocation, ClosestLocation, testDir;
+	local float DamageFactor;
 
-	if (Other.IsA('Monster'))
-		Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
-	
-	//Locational damage code from Mr Evil under test here
-	else if(Other.IsA('xPawn'))
-	{
-		//Find a point on the victim's Z axis at the same height as the HitLocation.
-		ClosestLocation = Other.Location;
-		ClosestLocation.Z += (HitLocation - Other.Location).Z;
-		
-		//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
-		BoneTestLocation = Dir;
-		BoneTestLocation *= VSize(ClosestLocation - HitLocation);
-		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
-		BoneTestLocation += HitLocation;
-		
-		Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
-	}
-	
-	else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
-	//End locational damage code test
-	
-	if (HoldTime > 0)
-		Dmg += Dmg * 1.15  * (FMin(HoldTime, MaxBonusHoldTime)/MaxBonusHoldTime);
-	
-	if (bCanBackstab)
-	{
-		testDir = Dir;
-		testDir.Z = 0;
-	
-		if (Vector(Victim.Rotation) Dot testDir > 0.2)
-			Dmg *= 1.5;
-		Dmg = Min(Dmg, 230);
-	}
+	DamageFactor = 1.0f;
 
 	if (RSNovaStaff(Weapon).bOnRampage)
-		Dmg *= 2.0;
-		
+		DamageFactor *= 2.0f;
+
+	DamageFactor *= ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WaterHitLocation);
+
+	return DamageFactor;
+}
+
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+{
+	local bool bWasAlive;
+
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 	{
 		if (Monster(Victim) == None || Pawn(Victim).default.Health > 275)
@@ -88,15 +60,16 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	}
 		
 	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-		BallisticPawn(Instigator).GiveAttributedHealth(Dmg / 3, Instigator.SuperHealthMax, Instigator, True);
+		BallisticPawn(Instigator).GiveAttributedHealth(Damage / 3, Instigator.SuperHealthMax, Instigator, True);
 
-	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
+	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+	
 	if (bWasAlive && Pawn(Victim).health <= 0)
 		class'RSNovaSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Victim), Weapon);
 
-	if (Pawn(Other) != None && Pawn(Other).Health > 0)
+	if (Pawn(Victim) != None && Pawn(Victim).Health > 0)
 	{
-		HookedVictim = Pawn(Other);
+		HookedVictim = Pawn(Victim);
 		HookTime = level.TimeSeconds;
 	}
 }

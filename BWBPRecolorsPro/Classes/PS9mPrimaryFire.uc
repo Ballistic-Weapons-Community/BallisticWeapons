@@ -46,11 +46,11 @@ function bool DoTazerBlurEffect(Actor Victim)
 	return false;
 }
 
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+     function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-	super.DoDamage (Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount);
-	if ( Other.bCanBeDamaged)
-		DoTazerBlurEffect(Other);
+	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+	if (Victim.bCanBeDamaged)
+		DoTazerBlurEffect(Victim);
 }
 
 defaultproperties

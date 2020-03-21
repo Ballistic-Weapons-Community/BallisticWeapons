@@ -1,7 +1,8 @@
 class KillstreakConfig extends Object
+	DependsOn(BallisticTab_Killstreaks)
 	config(BallisticProV55);
 
-var config string		Killstreaks[2];
+var() globalconfig string		Killstreaks[2];
 
 static function UpdateStreaks(string new_killstreaks[2])
 {

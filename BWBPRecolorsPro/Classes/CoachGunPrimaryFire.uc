@@ -219,7 +219,7 @@ simulated state Slug
 					// Got something interesting
 					if (!Other.bWorldGeometry && Other != LastOther)
 					{				
-						DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+						OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
 					
 						LastOther = Other;
 
@@ -311,9 +311,10 @@ simulated state Slug
 			Instigator.MakeNoise(1.0);
 		return true;
 	}
-	function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+
+	function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
 	{
-		Super(BallisticInstantFire).DoDamage(Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount, WaterHitLocation);
+		Super(BallisticInstantFire).OnTraceHit(Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount, WaterHitLocation);
 	}
 	
 	// Returns normal for some random spread. This is seperate from GetFireDir for shotgun reasons mainly...
@@ -634,7 +635,7 @@ defaultproperties
 	FireEmptyAnim="Fire"
 	HipSpreadFactor=4.000000
 	CutOffDistance=2560.000000
-	CutOffStartRange=1280.000000
+	CutOffStartRange=1024.000000
 	MaxSpreadFactor=2
 	TraceCount=5
 	TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'

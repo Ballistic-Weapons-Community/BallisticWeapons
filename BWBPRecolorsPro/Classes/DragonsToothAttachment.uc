@@ -51,15 +51,9 @@ defaultproperties
      LightHue=160
      LightSaturation=64
      LightBrightness=150.000000
-     LightRadius=64.000000
+     LightRadius=32.000000
      bDynamicLight=True
-     AmbientSound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Loop'
      Mesh=SkeletalMesh'BallisticRecolors4AnimPro.DragonsTooth_third'
      RelativeLocation=(Z=6.000000)
      DrawScale=0.120000
-     bFullVolume=True
-     SoundVolume=255
-     SoundRadius=256.000000
-     TransientSoundVolume=0.800000
-     TransientSoundRadius=256.000000
 }

@@ -28,27 +28,27 @@ simulated function bool HasAmmo()
 	return true;
 }
 
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
     local int i;
 	local FlameSwordActorFire Burner;
 	
-	super.DoDamage (Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount);
-
-	if (Pawn(other) != None && Pawn(Other).Health > 0 && Vehicle(Other) == None)
+	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+	
+	if (Pawn(Target) != None && Pawn(Target).Health > 0 && Vehicle(Target) == None)
 	{
-		for (i=0;i<Other.Attached.length;i++)
+		for (i=0;i<Target.Attached.length;i++)
 		{
-			if (FlameSwordActorFire(Other.Attached[i])!=None)
+			if (FlameSwordActorFire(Target.Attached[i])!=None)
 			{
-				FlameSwordActorFire(Other.Attached[i]).AddFuel(2);
+				FlameSwordActorFire(Target.Attached[i]).AddFuel(2);
 				break;
 			}
 		}
-		if (i>=Other.Attached.length)
+		if (i>=Target.Attached.length)
 		{
-			Burner = Spawn(class'FlameSwordActorFire',Other,,Other.Location + vect(0,0,-30));
-			Burner.Initialize(Other);
+			Burner = Spawn(class'FlameSwordActorFire',Target,,Target.Location + vect(0,0,-30));
+			Burner.Initialize(Target);
 			if (Instigator!=None)
 			{
 				Burner.Instigator = Instigator;
@@ -57,6 +57,7 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 		}
 	}
 }
+    
 defaultproperties
 {
      SliceAnims(0)="Swing1"

@@ -78,95 +78,37 @@ simulated function bool HasAmmo()
 	return true;
 }
 
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-	local float				Dmg;
-	local class<DamageType>	HitDT;
-	local Actor				Victim;
-	local Vector			RelativeVelocity, ForceDir, BoneTestLocation, ClosestLocation, testDir;
-	local BallisticPawn Target;
 	local int PrevHealth;
-	Target=BallisticPawn(Other);
-		
-	if(IsValidHealTarget(Target))
+	local BallisticPawn BPawn;
+
+	if (Mover(Target) != None || Vehicle(Target) != None)
+		return;
+
+	BPawn = BallisticPawn(Target);
+
+	if(IsValidHealTarget(BPawn))
 	{
 		if (DefibFists(BW).ElectroCharge >= 30)
 		{
-			PrevHealth = Target.Health;
-			Target.GiveAttributedHealth(15, Target.HealthMax, Instigator);
-			DefibFists(Weapon).PointsHealed += Target.Health - PrevHealth;
+			PrevHealth = BPawn.Health;
+			BPawn.GiveAttributedHealth(15, BPawn.HealthMax, Instigator);
+			DefibFists(Weapon).PointsHealed += BPawn.Health - PrevHealth;
 			DefibFists(BW).ElectroCharge -= 30;
 			DefibFists(BW).LastRegen = Level.TimeSeconds + 0.5;
 		}
 		return;
 	}
-	
-	if (Mover(Other) != None || Vehicle(Other) != None)
-		return;
 
-	if (Other.IsA('Monster'))
-		Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
-	
-	//Locational damage code from Mr Evil under test here
-	else if(Other.IsA('xPawn'))
-	{
-		//Find a point on the victim's Z axis at the same height as the HitLocation.
-		ClosestLocation = Other.Location;
-		ClosestLocation.Z += (HitLocation - Other.Location).Z;
-		
-		//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
-		BoneTestLocation = Dir;
-		BoneTestLocation *= VSize(ClosestLocation - HitLocation);
-		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
-		BoneTestLocation += HitLocation;
-		
-		Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
-	}
-	
-	else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
-	//End locational damage code test
-	
 	if (DefibFists(Weapon).ElectroCharge < 15)
-		Dmg *= 0.35;
-	
-	if (RangeAtten != 1.0)
-		Dmg *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
-	if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
-		Dmg *= Lerp(VSize(HitLocation-WaterHitLocation) / (TraceRange.Max*WaterRangeFactor), 1, WaterRangeAtten);
-	if (PenetrateCount > 0)
-		Dmg *= PDamageFactor ** PenetrateCount;
-	if (WallCount > 0)
-		Dmg *= WallPDamageFactor ** WallCount;
-	if (bUseRunningDamage)
-	{
-		RelativeVelocity = Instigator.Velocity - Other.Velocity;
-		Dmg += Dmg * (VSize(RelativeVelocity) / RunningSpeedThresh) * (Normal(RelativeVelocity) Dot Normal(Other.Location-Instigator.Location));
-	}
-	
-	if (HoldTime > 0)
-		Dmg += Dmg * 1.15  * (FMin(HoldTime, MaxBonusHoldTime)/MaxBonusHoldTime);
-	
-	if (bCanBackstab)
-	{
-		testDir = Dir;
-		testDir.Z = 0;
-	
-		if (Vector(Victim.Rotation) Dot testDir > 0.2)
-			Dmg *= 1.5;
-		Dmg = Min(Dmg, 230);
-	}
-	if (HookStopFactor != 0 && HookPullForce != 0 && Pawn(Victim) != None && Pawn(Victim).bProjTarget)
-	{
-		ForceDir = Normal(Other.Location-TraceStart);
-		ForceDir.Z *= 0.3;
+		Damage /= 3;
 
-		Pawn(Victim).AddVelocity( Normal(Victim.Acceleration) * HookStopFactor * -FMin(Pawn(Victim).GroundSpeed, VSize(Victim.Velocity)) - ForceDir * HookPullForce );
-	}
-
-	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
+	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
 	if (DefibFists(BW).ElectroCharge >= 30)
 		DefibFists(BW).ElectroCharge -= 30;
+
 	DefibFists(BW).LastRegen = Level.TimeSeconds + 0.5;
 }
 
@@ -194,9 +136,9 @@ defaultproperties
 {
      DischargedFireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Radius=32.000000,bAtten=True)
      FatiguePerStrike=0.015000
-     Damage=70.000000
-     DamageHead=70.000000
-     DamageLimb=70.000000
+     Damage=40.000000
+     DamageHead=40.000000
+     DamageLimb=40.000000
      DamageType=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeArm=Class'BWBPOtherPackPro.DTShockGauntlet'

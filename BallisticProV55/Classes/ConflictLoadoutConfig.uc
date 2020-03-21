@@ -2,8 +2,8 @@ class ConflictLoadoutConfig extends Object
 	DependsOn(BallisticTab_ConflictLoadoutPro)
 	config(BallisticProV55);
 
-var config array<string> 		SavedInventory;
-var config bool 				HasPrompted;
+var globalconfig array<string> 		SavedInventory;
+var globalconfig bool 				HasPrompted;
 
 static function UpdateSavedInventory(array<BallisticTab_ConflictLoadoutPro.Item> inventory)
 {

@@ -18,59 +18,10 @@ simulated function SwitchWeaponMode(byte NewMode)
 //===========================================================================
 function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
 {
-	local string	Bone;
-	local float		Dmg, BoneDist;
-	local Pawn		DriverPawn;
-
-	Dmg = Damage;
-
 	DT = DamageType;
 	Victim = Other;
-	
-	//if (Monster(Other) != None)
-		return Dmg;
-		
-	if (Pawn(Other) != None)
-	{
-		if (Vehicle(Other) != None)
-		{
-			// Try to relieve driver of his head...
-			DriverPawn = Vehicle(Other).CheckForHeadShot(HitLocation, Dir, 1.0);
-			if (DriverPawn != None)
-			{
-				Victim = DriverPawn;
-				Dmg *= DamageModHead;
-			}
-		}
-		
-		else
-		{
-			// Check for head shot
-			Bone = string(Other.GetClosestBone(HitLocation, Dir, BoneDist, 'head', 10));
-			if (InStr(Bone, "head") > -1)
-			{
-				Dmg *= DamageModHead;
-				return Dmg;
-			}
-			
-			if (class'BallisticWeapon'.default.bEvenBodyDamage)
-				return Dmg;
-			
-			// Torso shots
-			if (HitLocation.Z > Other.GetBoneCoords('spine').Origin.Z - 14) //accounting for groin region here
-			{
-				HitLocation.Z = Other.Location.Z;
-				// Torso radius
-				if (VSize(HitLocation - Other.Location) <= 22)
-					return Dmg;
-			}
-			
-			//Anything else is limb
-			if (class'BallisticWeapon'.default.bUseModifiers)
-				Dmg *= DamageModLimb;
-		}
-	}
-	return Dmg;
+
+	return Damage;
 }
 	
 simulated function StopFiring()

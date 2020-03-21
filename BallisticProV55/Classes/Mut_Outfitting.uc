@@ -478,6 +478,7 @@ static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P)
     if( (newClass!=None) && P != None)
     {
 		newWeapon = Weapon(P.FindInventoryType(newClass));
+		
 		if (newWeapon == None || BallisticHandgun(newWeapon) != None)
 		{
 			newWeapon = P.Spawn(newClass,,,P.Location);

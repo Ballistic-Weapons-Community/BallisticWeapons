@@ -8,9 +8,9 @@
 //=============================================================================
 class E23SecondaryFire extends BallisticProInstantFire;
 
-var   	bool		bLaserFiring;
+var bool		bLaserFiring;
 var	Actor		MuzzleFlashBeam;
-var	Sound	FireSoundLoop;
+var	Sound		FireSoundLoop;
 var byte		SuccessiveHits;
 
 // Remove effects
@@ -43,59 +43,39 @@ function DoFireEffect()
 	super.DoFireEffect();
 }
 
-function LaserDoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir)
+function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-	local float				Dmg;
-	local class<DamageType>	HitDT;
-	local Actor				Victim;
-	local Vector			BoneTestLocation, ClosestLocation;
+	local int AdjustedDamage;
 	local DestroyableObjective HealObjective;
 	local Vehicle HealVehicle;
-	local int AdjustedDamage;
-	
-	//Locational damage code from Mr Evil under test here
-	if(Other.IsA('xPawn'))
-	{
-		//Find a point on the victim's Z axis at the same height as the HitLocation.
-		ClosestLocation = Other.Location;
-		ClosestLocation.Z += (HitLocation - Other.Location).Z;
-		
-		//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
-		BoneTestLocation = Dir;
-		BoneTestLocation *= VSize(ClosestLocation - HitLocation);
-		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
-		BoneTestLocation += HitLocation;
-		
-		Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
-	}
-	
-	else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
-	//End locational damage code test
 
 	if (Instigator != None)
 	{
-		AdjustedDamage = Dmg * Instigator.DamageScaling * DamageType.default.VehicleDamageScaling;
+		AdjustedDamage = Damage * Instigator.DamageScaling * DamageType.default.VehicleDamageScaling;
 		if (Instigator.HasUDamage())
 			AdjustedDamage *= 2;
 	}
 
-	HealObjective = DestroyableObjective(Other);
+	HealObjective = DestroyableObjective(Target);
+
 	if ( HealObjective == None )
-		HealObjective = DestroyableObjective(Other.Owner);
+		HealObjective = DestroyableObjective(Target.Owner);
+
 	if ( HealObjective != None && HealObjective.TeamLink(Instigator.GetTeamNum()) )
 	{
-		HealObjective.HealDamage(AdjustedDamage, Instigator.Controller, HitDT);
+		HealObjective.HealDamage(AdjustedDamage, Instigator.Controller, DamageType);
 		return;
 	}
 
-	HealVehicle = Vehicle(Other);
+	HealVehicle = Vehicle(Target);
+
 	if ( HealVehicle != None && HealVehicle.TeamLink(Instigator.GetTeamNum()) )
 	{
-		HealVehicle.HealDamage(AdjustedDamage, Instigator.Controller, HitDT);
+		HealVehicle.HealDamage(AdjustedDamage, Instigator.Controller, DamageType);
 		return;
 	}
 
-	class'BallisticDamageType'.static.GenericHurt (Victim, FMin(Dmg + SuccessiveHits, 16), Instigator, HitLocation, KickForce * Dir, HitDT);
+	class'BallisticDamageType'.static.GenericHurt (Target, FMin(Damage + SuccessiveHits, 16), Instigator, HitLocation, MomentumDir, DamageType);
 }
 
 function DoTrace (Vector InitialStart, Rotator Dir)
@@ -136,7 +116,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{
-				LaserDoDamage (Other, HitLocation, InitialStart, X);
+				OnTraceHit(Other, HitLocation, InitialStart, X);
 				
 				if (Pawn(Other) != None)
 					++SuccessiveHits;

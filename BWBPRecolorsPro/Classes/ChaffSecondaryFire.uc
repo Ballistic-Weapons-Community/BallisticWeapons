@@ -70,7 +70,6 @@ function MeleeDoTrace (Vector InitialStart, Rotator Dir, bool bWallHitter, int W
 					SwipeHits[SwipeHits.length-1].Weight = Weight;
 					SwipeHits[SwipeHits.length-1].HitLoc = HitLocation;
 					SwipeHits[SwipeHits.length-1].HitDir = X;
-//					DoDamage(Other, HitLocation, InitialStart, X, 0);
 					LastOther = Other;
 
 

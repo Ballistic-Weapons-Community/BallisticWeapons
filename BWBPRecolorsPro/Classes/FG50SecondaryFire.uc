@@ -119,7 +119,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{				
-				DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
 			
 				LastOther = Other;
 
@@ -201,13 +201,12 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	return true;
 }
 
-// This is called to DoDamage to an actor found by this fire.
-// Adjusts damage based on Range, Penetrates, WallPenetrates, relative velocities and runs Hurt() to do the deed...
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-	Super.DoDamage(Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount, WaterHitLocation);
-	if (Other.bProjTarget)
-		BW.TargetedHurtRadius(Damage, 768, class'DT_FG50Explosion', 500, HitLocation, Pawn(Other));
+	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+	
+	if (Victim.bProjTarget)
+		BW.TargetedHurtRadius(Damage, 768, class'DT_FG50Explosion', 500, HitLocation, Pawn(Victim));
 }
 
 simulated function InitEffects()

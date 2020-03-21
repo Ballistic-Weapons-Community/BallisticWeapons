@@ -620,8 +620,8 @@ state NovaLightning
 // ========================================================================
 state Zap
 {
-	function DoDamage (Actor Other, vector HitLocation, vector Dir)
-	{
+	function OnTraceHit(Actor Other, vector HitLocation, vector Dir)
+{
 		local bool bWasAlive;
 
 		if (xPawn(Other) != None && Pawn(Other).Health > 0)
@@ -631,7 +631,9 @@ state Zap
 		}
 		else if (Vehicle(Other) != None && Vehicle(Other).Driver!=None && Vehicle(Other).Driver.Health > 0)
 			bWasAlive = true;
+
 		class'BallisticDamageType'.static.GenericHurt (Other, 145, Instigator, HitLocation, 50000 * Dir, class'DT_RSNovaOneShotZap');
+
 		if (bWasAlive && Pawn(Other).Health <= 0)
 			class'RSNovaSoul'.static.SpawnSoul(Other.Location, Instigator, Pawn(Other), Weapon);
 	}
@@ -699,7 +701,7 @@ state Zap
 				// Got something interesting
 				if (!Other.bWorldGeometry && Other != LastOther)
 				{
-					DoDamage (Other, HitLocation, X);
+					OnTraceHit(Other, HitLocation, X);
 //					class'BallisticDamageType'.static.GenericHurt (Other, 100, Instigator, HitLocation, 50000 * X, class'DT_RSNovaOneShotZap');
 //					LastOther = Other;
 

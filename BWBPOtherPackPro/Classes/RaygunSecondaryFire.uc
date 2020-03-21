@@ -92,46 +92,17 @@ function bool AllowPlague(Actor Other)
 		&& Level.TimeSeconds - Pawn(Other).SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime;
 }
 
-//Plagues struck targets
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+//===================================================
+// ApplyDamage
+//
+// Irradiates struck targets
+//===================================================
+function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-	local float							Dmg;
-	local class<DamageType>	HitDT;
-	local Actor							Victim;
-	local Vector						BoneTestLocation, ClosestLocation;
-	local	int								Bonus;
-	
-	//Locational damage code from Mr Evil under test here
-	if(Other.IsA('xPawn'))
-	{
-		//Find a point on the victim's Z axis at the same height as the HitLocation.
-		ClosestLocation = Other.Location;
-		ClosestLocation.Z += (HitLocation - Other.Location).Z;
-		
-		//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
-		BoneTestLocation = Dir;
-		BoneTestLocation *= VSize(ClosestLocation - HitLocation);
-		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
-		BoneTestLocation += HitLocation;
-		
-		Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
-	}
-	
-	else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
+	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 
-	if (RangeAtten != 1.0)
-		Dmg *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
-	if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
-		Dmg *= Lerp(VSize(HitLocation-WaterHitLocation) / (TraceRange.Max*WaterRangeFactor), 1, WaterRangeAtten);
-	if (PenetrateCount > 0)
-		Dmg *= PDamageFactor ** PenetrateCount;
-	if (WallCount > 0)
-		Dmg *= WallPDamageFactor ** WallCount;
-
-	if (Pawn(Other) != None && Pawn(Other).bProjTarget)
-		TryPlague(Other);
-		
-	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg + Bonus, Instigator, HitLocation, KickForce * Dir, HitDT);
+	if (Pawn(Target) != None && Pawn(Target).bProjTarget)
+		TryPlague(Target);
 }
 
 function TryPlague(Actor Other)

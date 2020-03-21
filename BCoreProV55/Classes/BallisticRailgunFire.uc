@@ -202,7 +202,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{
-				DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
 				LastOther = Other;
 				HitSameCount = 0;
 
@@ -227,7 +227,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				if (Other.bCanBeDamaged)
 				{
 					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
-					DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+					OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
 					break;
 				}
 				if (WallCount < 5 && GoThroughWall(Other, HitLocation, HitNormal, MaxWallSize, X, Start, ExitNorm))

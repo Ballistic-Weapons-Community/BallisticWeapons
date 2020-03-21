@@ -9,17 +9,24 @@
 //=============================================================================
 class R78PrimaryFire extends BallisticProInstantFire;
 
-// This is called to DoDamage to an actor found by this fire.
-// Adjusts damage based on Range, Penetrates, WallPenetrates, relative velocities and runs Hurt() to do the deed...
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+//========================================================
+// ApplyDamage
+//
+// Explosive effect when damaging valid target
+//========================================================
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-	Super.DoDamage(Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount, WaterHitLocation);
+	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (Other.bProjTarget)
-		BW.TargetedHurtRadius(Damage, 420, class'DTR78Explosion', 200, HitLocation, Pawn(Other));
+	if (Victim.bProjTarget)
+		BW.TargetedHurtRadius(Damage, 420, class'DTR78Explosion', 200, HitLocation, Pawn(Victim));
 }
 
-// Do the trace to find out where bullet really goes
+//========================================================
+// DoTrace
+//
+// Explosive effect draw
+//========================================================
 function DoTrace (Vector InitialStart, Rotator Dir)
 {
 	local int						PenCount, WallCount;
@@ -65,7 +72,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{				
-				DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
 			
 				LastOther = Other;
 
@@ -164,16 +171,16 @@ defaultproperties
 	PenetrateForce=150
 	bPenetrate=True
 	PDamageFactor=0.800000
-	bCockAfterFire=True
+	//bCockAfterFire=True
 	MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
-	bBrassOnCock=True
+	//bBrassOnCock=True
 	BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
 	RecoilPerShot=1536.000000
 	FireChaos=0.500000
 	BallisticFireSound=(Sound=Sound'BallisticSounds3.R78.R78-Fire',Volume=2.000000,Radius=1024.000000)
 	FireEndAnim=
-	FireRate=1.000000
+	FireRate=0.8
 	AmmoClass=Class'BallisticProV55.Ammo_42Rifle'
 	ShakeRotMag=(X=400.000000,Y=32.000000)
 	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

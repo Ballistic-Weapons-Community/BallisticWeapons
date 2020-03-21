@@ -29,55 +29,17 @@ simulated function DebugMessage(coerce string message)
 }
 
 //======================================================================
-// DoDamage
+// ApplyDamage
 //
 // Explosive rounds
 //======================================================================
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+
+function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-	local float				Dmg;
-	local class<DamageType>	HitDT;
-	local Actor				Victim;
-	local Vector			RelativeVelocity, ForceDir, BoneTestLocation, ClosestLocation;	
+	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	//Locational damage code from Mr Evil under test here
-	if(Other.IsA('xPawn') && !Other.IsA('Monster'))
-	{
-		//Find a point on the victim's Z axis at the same height as the HitLocation.
-		ClosestLocation = Other.Location;
-		ClosestLocation.Z += (HitLocation - Other.Location).Z;
-		
-		//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
-		BoneTestLocation = Dir;
-		BoneTestLocation *= VSize(ClosestLocation - HitLocation);
-		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
-		BoneTestLocation += HitLocation;
-		
-		Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
-	}
-	
-	else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
-	//End locational damage code test
-	
-	if (RangeAtten != 1.0 && VSize(HitLocation - TraceStart) > CutOffStartRange)
-		Dmg *= Lerp (FClamp(VSize(HitLocation - TraceStart) - CutOffStartRange, 0, CutOffDistance)/CutOffDistance, 1, RangeAtten);
-	if (PenetrateCount > 0)
-		Dmg *= PDamageFactor ** PenetrateCount;
-	if (WallCount > 0)
-		Dmg *= WallPDamageFactor ** WallCount;
-
-	if (HookStopFactor != 0 && HookPullForce != 0 && Pawn(Victim) != None)
-	{
-		ForceDir = Normal(Other.Location-TraceStart);
-		ForceDir.Z *= 0.3;
-
-		Pawn(Victim).AddVelocity( Normal(Victim.Acceleration) * HookStopFactor * -FMin(Pawn(Victim).GroundSpeed, VSize(Victim.Velocity)) - ForceDir * HookPullForce );
-	}
-
-	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
-
-	if (BW.CurrentWeaponMode == 0 && Other.bProjTarget)
-		BW.TargetedHurtRadius(Damage, 512, class'DT_TrenchGunExplosive', 200, HitLocation, Pawn(Other));
+	if (BW.CurrentWeaponMode == 0 && Target.bProjTarget)
+		BW.TargetedHurtRadius(Damage, 512, class'DT_TrenchGunExplosive', 200, HitLocation, Pawn(Target));
 }
 
 //======================================================================
@@ -481,7 +443,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{
-				DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
 			
 				LastOther = Other;
 
@@ -507,7 +469,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				if (Other.bCanBeDamaged)
 				{
 					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
-					DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+					OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
 					break;
 				}
 				if (WallCount <= MaxWalls && MaxWallSize > 0 && GoThroughWall(Other, HitLocation, HitNormal, MaxWallSize * ScaleBySurface(Other, HitMaterial), X, Start, ExitNormal, ExitMaterial))

@@ -11,26 +11,27 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	return super.ImpactEffect(HitLocation, HitNormal, HitMat, Other, WaterHitLoc);
 }
 
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
     local int i;
 	local AS50ActorFire Burner;
 	
-	super.DoDamage (Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount);
-	if (Pawn(other) != None && Pawn(Other).Health > 0 && Vehicle(Other) == None)
+	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+	
+    if (Pawn(Target) != None && Pawn(Target).Health > 0 && Vehicle(Target) == None)
 	{
-		for (i=0;i<Other.Attached.length;i++)
+		for (i=0;i<Target.Attached.length;i++)
 		{
-			if (AS50ActorFire(Other.Attached[i])!=None)
+			if (AS50ActorFire(Target.Attached[i])!=None)
 			{
-				AS50ActorFire(Other.Attached[i]).AddFuel(2);
+				AS50ActorFire(Target.Attached[i]).AddFuel(2);
 				break;
 			}
 		}
-		if (i>=Other.Attached.length)
+		if (i>=Target.Attached.length)
 		{
-			Burner = Spawn(class'AS50ActorFire',Other,,Other.Location + vect(0,0,-30));
-			Burner.Initialize(Other);
+			Burner = Spawn(class'AS50ActorFire',Target,,Target.Location + vect(0,0,-30));
+			Burner.Initialize(Target);
 			if (Instigator!=None)
 			{
 				Burner.Instigator = Instigator;

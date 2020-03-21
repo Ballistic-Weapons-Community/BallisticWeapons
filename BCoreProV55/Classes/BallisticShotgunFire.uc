@@ -15,6 +15,16 @@ var() float						TracerChance;	// Chance of tracer effect spawning per trace. 0=
 var() class<BCImpactManager>	ImpactManager;	// Impact manager to use for ListenServer and StandAlone impacts
 var() bool						bDoWaterSplash;	// splash when hitting water, duh...
 //-----------------------------------------------------------------------------
+//Target collation ------------------------------------------------------------
+struct HitActorInfo
+{
+	var Actor HitActor;
+	var int   Damage;
+	var int	  TotalHits;
+	var int	  HeadHits;
+};
+
+var	 array<HitActorInfo>		HitActorInfos;
 
 simulated function PostNetBeginPlay()
 {

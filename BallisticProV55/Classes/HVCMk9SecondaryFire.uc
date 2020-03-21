@@ -211,7 +211,7 @@ function OldDoTrace (Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{
-				DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount);
 				LastOther = Other;
 				SendFireEffect(Other, HitLocation, HitNormal, 9);
 				bHitWall = true;

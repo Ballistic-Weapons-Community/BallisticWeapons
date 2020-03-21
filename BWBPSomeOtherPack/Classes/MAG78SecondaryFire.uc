@@ -209,7 +209,7 @@ function DoFireEffect()
 	// Do damage for each victim
 	for (i=0;i<SwipeHits.length;i++)
 	{
-		DoDamage(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0);
+		OnTraceHit(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0);
 		SwipeHits[i].Victim = None;
 	}
 	SwipeHits.Length = 0;
@@ -251,28 +251,17 @@ simulated event ModeTick(float DT)
 	}
 }
 
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-	local float				Dmg;
-	local class<DamageType>	HitDT;
-	local Actor				Victim;
-	local Vector			RelativeVelocity;
-
-	Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
-
-	// bUseRunningDamage
-	RelativeVelocity = Instigator.Velocity - Other.Velocity;
-	Dmg += Dmg * (VSize(RelativeVelocity) / RunningSpeedThresh) * (Normal(RelativeVelocity) Dot Normal(Other.Location-Instigator.Location));
-
-	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
+	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (Pawn(Other) != None && Pawn(Other).Health > 0)
+	if (Pawn(Target) != None && Pawn(Target).Health > 0)
 	{
-		HookedVictim = Pawn(Other);
-		HookTime = level.TimeSeconds;
+		HookedVictim = Pawn(Target);
+		HookTime = Level.TimeSeconds;
 	}
-	MAG78Longsword(Weapon).bLatchedOn=true;
 
+	MAG78Longsword(Weapon).bLatchedOn=true;
 }
 
 defaultproperties

@@ -66,79 +66,50 @@ simulated function SetInstigator(Pawn P)
 	Instigator = P;
 }
 
-// This is called to DoDamage to an actor found by this fire.
-// Adjsuts damage based on Range, Penetrates, WallPenetrates, relative velocities and runs Hurt() to do the deed...
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+//================================================
+// ResolveDamageFactors
+//
+// Reduce damage when using non-Booster combo 
+// Implement hold time damage
+// Implement backstab damage
+//================================================
+function float ResolveDamageFactors(Actor Victim, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, Vector WaterHitLocation)
 {
-	local float				Dmg;
-	local class<DamageType>	HitDT;
-	local Actor				Victim;
-	local Vector			RelativeVelocity, ForceDir, BoneTestLocation, ClosestLocation, testDir;
-	
-	if (Other.IsA('Monster'))
-		Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
-	
-	//Locational damage code from Mr Evil under test here
-	else if(Other.IsA('xPawn'))
-	{
-		//Find a point on the victim's Z axis at the same height as the HitLocation.
-		ClosestLocation = Other.Location;
-		ClosestLocation.Z += (HitLocation - Other.Location).Z;
-		
-		//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
-		BoneTestLocation = Dir;
-		BoneTestLocation *= VSize(ClosestLocation - HitLocation);
-		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
-		BoneTestLocation += HitLocation;
-		
-		Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
-	}
-	
-	else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
-	//End locational damage code test
-	
-	if (RangeAtten != 1.0)
-		Dmg *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
-	if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
-		Dmg *= Lerp(VSize(HitLocation-WaterHitLocation) / (TraceRange.Max*WaterRangeFactor), 1, WaterRangeAtten);
-	if (PenetrateCount > 0)
-		Dmg *= PDamageFactor ** PenetrateCount;
-	if (WallCount > 0)
-		Dmg *= WallPDamageFactor ** WallCount;
-	if (bUseRunningDamage)
-	{
-		RelativeVelocity = Instigator.Velocity - Other.Velocity;
-		Dmg += Dmg * (VSize(RelativeVelocity) / RunningSpeedThresh) * (Normal(RelativeVelocity) Dot Normal(Other.Location-Instigator.Location));
-	}
-	
+	local float DamageFactor;
+	local Vector testDir;
+	local Combo combo;
+
+	DamageFactor = Super.ResolveDamageFactors(Victim, TraceStart, HitLocation, PenetrateCount, WallCount, WaterHitLocation);
+	// Reduce damage if using Speed or MiniMe
+	combo = xPawn(Instigator).CurrentCombo;
+
+	if(combo != None && ComboSpeed(combo) == None && ComboMiniMe(combo) == None)
+		DamageFactor *= 0.5;
+
+	// Damage increases with hold time
 	if (HoldTime > 0)
-		Dmg *= 1 + (FMin(HoldTime, MaxBonusHoldTime)/MaxBonusHoldTime);
-	else if (ThisModeNum == 2 && HoldStartTime != 0)
+		DamageFactor *= 1 + (FMin(HoldTime, MaxBonusHoldTime)/MaxBonusHoldTime);
+	else if (ThisModeNum == 2 && HoldStartTime != 0) // check for BallisticWeapon MeleeFireMode
 	{
-		Dmg *= 1 + (FMin(Level.TimeSeconds - HoldStartTime, MaxBonusHoldTime)/MaxBonusHoldTime);
+		DamageFactor *= 1 + (FMin(Level.TimeSeconds - HoldStartTime, MaxBonusHoldTime)/MaxBonusHoldTime);
 		HoldStartTime = 0.0f;
 	}
 	
+	// Most weapons can backstab
 	if (bCanBackstab)
 	{
-		testDir = Dir;
+		testDir = Normal(HitLocation - TraceStart);
 		testDir.Z = 0;
 	
 		if (Vector(Victim.Rotation) Dot testDir > 0.2)
-			Dmg *= 1.5;
+			DamageFactor *= 1.5;
 		else if (Vector(Victim.Rotation) Dot testDir > -0.4)
-			Dmg *= 1.25;
-		Dmg = Min(Dmg, 230);
-	}
-	if (HookStopFactor != 0 && HookPullForce != 0 && Pawn(Victim) != None && Pawn(Victim).bProjTarget)
-	{
-		ForceDir = Normal(Other.Location-TraceStart);
-		ForceDir.Z *= 0.3;
-
-		Pawn(Victim).AddVelocity( Normal(Victim.Acceleration) * HookStopFactor * -FMin(Pawn(Victim).GroundSpeed, VSize(Victim.Velocity)) - ForceDir * HookPullForce );
+			DamageFactor *= 1.25;
 	}
 
-	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
+	DamageFactor = FMin(3f, DamageFactor);
+
+	return DamageFactor;
 }
 
 // Get aim then run trace...
@@ -152,7 +123,7 @@ function DoFireEffect()
 	Aim = Rotator(GetFireSpread() >> Aim);
 
 	// Do trace for each point
-	for	(i=0;i<NumSwipePoints;i++)
+	for	(i=0; i<NumSwipePoints; i++)
 	{
 		if (SwipePoints[i].Weight < 0)
 			continue;
@@ -160,9 +131,9 @@ function DoFireEffect()
 		MeleeDoTrace(StartTrace, PointAim, i==WallHitPoint, SwipePoints[i].Weight);
 	}
 	// Do damage for each victim
-	for (i=0;i<SwipeHits.length;i++)
+	for (i=0; i<SwipeHits.length; i++)
 	{
-		DoDamage(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0);
+		OnTraceHit(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0);
 		SwipeHits[i].Victim = None;
 	}
 	SwipeHits.Length = 0;

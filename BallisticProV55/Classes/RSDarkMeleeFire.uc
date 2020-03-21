@@ -235,7 +235,7 @@ function DoFireEffect()
 	// Do damage for each victim
 	for (i=0;i<SwipeHits.length;i++)
 	{
-		DoDamage(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0);
+		OnTraceHit(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0);
 		SwipeHits[i].Victim = None;
 	}
 	SwipeHits.Length = 0;
@@ -279,45 +279,39 @@ simulated event ModeTick(float DT)
 	}
 }
 
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-	local float				Dmg;
-	local class<DamageType>	HitDT;
-	local Actor				Victim;
-	local bool				bWasAlive;
-
-	Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
+	local bool bWasAlive;
 
 	if (Pawn(Victim) != None)
 	{
 		if (BallisticPawn(Instigator) != None && RSDarkStar(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-		{
-			BallisticPawn(Instigator).GiveAttributedHealth(Dmg / 3, Instigator.HealthMax, Instigator, True);	
-		}
+			BallisticPawn(Instigator).GiveAttributedHealth(Damage / 3, Instigator.HealthMax, Instigator, True);	
 		
 		if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 		{
 			if (Monster(Victim) == None || Pawn(Victim).default.Health > 275)
 				bWasAlive = true;
 		}
-		else if (Vehicle(Victim) != None && Vehicle(Victim).Driver!=None && Vehicle(Victim).Driver.Health > 0)
+		else if (Vehicle(Victim) != None && Vehicle(Victim).Driver != None && Vehicle(Victim).Driver.Health > 0)
 			bWasAlive = true;
 	}
 
-	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir, HitDT);
+	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+	
 	if (bWasAlive)
 	{
-		if (Pawn(Victim).health <= 0)
+		if (Pawn(Victim).Health <= 0)
 			class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Victim), Weapon);
 	}
-	
-	if (Pawn(Other) != None && Pawn(Other).Health > 0)
+
+	if (Pawn(Victim) != None && Pawn(Victim).Health > 0)
 	{
-		HookedVictim = Pawn(Other);
+		HookedVictim = Pawn(Victim);
 		HookTime = level.TimeSeconds;
 	}
-	RSDarkStar(Weapon).bLatchedOn=true;
 
+	RSDarkStar(Weapon).bLatchedOn=true;
 }
 
 defaultproperties

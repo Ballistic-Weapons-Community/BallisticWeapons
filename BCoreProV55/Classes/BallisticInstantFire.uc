@@ -245,63 +245,98 @@ function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor
 	}
 	return Dmg;
 }
-// This is called to DoDamage to an actor found by this fire.
-// Adjusts damage based on Range, Penetrates, WallPenetrates, relative velocities and runs Hurt() to do the deed...
-function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
-{
-	local float				Dmg;
-	local float				RangeReduction;
-	local class<DamageType>	HitDT;
-	local Actor				Victim;
-	local Vector			RelativeVelocity, ForceDir, BoneTestLocation, ClosestLocation;
-		
+
+function Vector GetDamageHitLocation(xPawn Other, Vector HitLocation, vector TraceStart, vector Dir)
+{	
 	//Locational damage code from Mr Evil
-	if(Other.IsA('xPawn') && !Other.IsA('Monster'))
-	{
-		//Find a point on the victim's Z axis at the same height as the HitLocation.
-		ClosestLocation = Other.Location;
-		ClosestLocation.Z += (HitLocation - Other.Location).Z;
-		
-		//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
-		BoneTestLocation = Dir;
-		BoneTestLocation *= VSize(ClosestLocation - HitLocation);
-		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
-		BoneTestLocation += HitLocation;
-		
-		Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
-	}
+	local Vector BoneTestLocation, ClosestLocation;
+
+	//Find a point on the victim's Z axis at the same height as the HitLocation.
+	ClosestLocation = Other.Location;
+	ClosestLocation.Z += (HitLocation - Other.Location).Z;
 	
-	else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
-	//End locational damage code test
+	//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
+	BoneTestLocation = Dir;
+	BoneTestLocation *= VSize(ClosestLocation - HitLocation);
+	BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
+	BoneTestLocation += HitLocation;
 	
-	if (BW.AimDisplacementEndTime > Level.TimeSeconds)
-		Damage *= 1 - BW.AimDisplacementFactor;
-	
+	return BoneTestLocation;
+}
+
+function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, Vector WaterHitLocation)
+{
+	local float  DamageFactor;
+	local Vector RelativeVelocity;
+
+	DamageFactor = 1;
+
+	// what the fuck is this? - Az
+	//if (BW.AimDisplacementEndTime > Level.TimeSeconds)
+	//	Damage *= 1 - BW.AimDisplacementFactor;
+
 	if (RangeAtten != 1.0)
-	{
-		RangeReduction = Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
-		Dmg *= RangeReduction;
-	}
+		DamageFactor *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
+
 	if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
-		Dmg *= Lerp(VSize(HitLocation-WaterHitLocation) / (TraceRange.Max*WaterRangeFactor), 1, WaterRangeAtten);
+		DamageFactor *= Lerp(VSize(HitLocation-WaterHitLocation) / (TraceRange.Max*WaterRangeFactor), 1, WaterRangeAtten);
+
 	if (PenetrateCount > 0)
-		Dmg *= PDamageFactor ** PenetrateCount;
+		DamageFactor *= PDamageFactor ** PenetrateCount;
+
 	if (WallCount > 0)
-		Dmg *= WallPDamageFactor ** WallCount;
+		DamageFactor *= WallPDamageFactor ** WallCount;
+
 	if (bUseRunningDamage)
 	{
 		RelativeVelocity = Instigator.Velocity - Other.Velocity;
-		Dmg += Dmg * (VSize(RelativeVelocity) / RunningSpeedThresh) * (Normal(RelativeVelocity) Dot Normal(Other.Location-Instigator.Location));
+		DamageFactor += DamageFactor * (VSize(RelativeVelocity) / RunningSpeedThresh) * (Normal(RelativeVelocity) Dot Normal(Other.Location-Instigator.Location));
 	}
-	if (HookStopFactor != 0 && HookPullForce != 0 && Pawn(Victim) != None && Pawn(Victim).bProjTarget)
+
+	return DamageFactor;
+}
+
+// This is called for any actor found by this fire.
+function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector Dir, optional int PenetrateCount, optional int WallCount, optional vector WaterHitLocation)
+{
+	local float				Dmg;
+	local float				ScaleFactor;
+	local class<DamageType>	HitDT;
+	local Actor				Victim;
+	local Vector 			DamageHitLocation;
+
+	if(Other.IsA('xPawn') && !Other.IsA('Monster'))
+		DamageHitLocation = GetDamageHitLocation(xPawn(Other), HitLocation, TraceStart, Dir);
+	else
+		DamageHitLocation = HitLocation;
+	
+	Dmg = GetDamage(Other, DamageHitLocation, Dir, Victim, HitDT);
+
+	ScaleFactor = ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WaterHitLocation);
+	
+	Dmg *= ScaleFactor;
+
+	if (Pawn(Victim) != None)
+		ApplyForce(Pawn(Victim), TraceStart, ScaleFactor);
+
+	ApplyDamage(Victim, Dmg, Instigator, HitLocation, KickForce * Dir * ScaleFactor, HitDT); 
+}
+
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+{
+	class'BallisticDamageType'.static.GenericHurt(Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+}
+
+function ApplyForce(Pawn Victim, Vector Start, float ScaleFactor)
+{
+	local Vector ForceDir;
+	if (HookStopFactor != 0 && HookPullForce != 0 && Victim.bProjTarget)
 	{
-		ForceDir = Normal(Other.Location-TraceStart);
+		ForceDir = Normal(Victim.Location - Start) * ScaleFactor;
 		ForceDir.Z *= 0.3;
 
-		Pawn(Victim).AddVelocity( Normal(Victim.Acceleration) * HookStopFactor * -FMin(Pawn(Victim).GroundSpeed, VSize(Victim.Velocity)) - ForceDir * HookPullForce );
+		Victim.AddVelocity( Normal(Victim.Acceleration) * HookStopFactor * -FMin(Victim.GroundSpeed, VSize(Victim.Velocity)) - ForceDir * HookPullForce );
 	}
-
-	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, KickForce * Dir * RangeReduction, HitDT);
 }
 
 // Do the trace to find out where bullet really goes
@@ -325,86 +360,86 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 
 	while (Dist > 0)		// Loop traces in case we need to go through stuff
 	{
-		// Do the trace
 		Other = Trace (HitLocation, HitNormal, End, Start, true, , HitMaterial);
 		Weapon.bTraceWater=false;
 		Dist -= VSize(HitLocation - Start);
+
 		if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry))
 			break;
-		if (Other != None)
-		{
-			// Water
-			if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume) )
-			{
-				if (VSize(HitLocation - Start) > 1)
-					WaterHitLoc=HitLocation;
-				Start = HitLocation;
-				Dist *= WaterRangeFactor;
-				End = Start + X * Dist;
-				Weapon.bTraceWater=false;
-				continue;
-			}
 
-			LastHitLoc = HitLocation;
-				
-			// Got something interesting
-			if (!Other.bWorldGeometry && Other != LastOther)
-			{
-				DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
-			
-				LastOther = Other;
-
-				if (CanPenetrate(Other, HitLocation, X, PenCount))
-				{
-					PenCount++;
-					Start = HitLocation + (X * Other.CollisionRadius * 2);
-					End = Start + X * Dist;
-					Weapon.bTraceWater=true;
-					if (Vehicle(Other) != None)
-						HitVehicleEffect (HitLocation, HitNormal, Other);
-					continue;
-				}
-				else if (Vehicle(Other) != None)
-					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
-				else if (Mover(Other) == None)
-					break;
-			}
-			// Do impact effect
-			if (Other.bWorldGeometry || Mover(Other) != None)
-			{
-				WallCount++;
-				if (Other.bCanBeDamaged)
-				{
-					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
-					DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
-					break;
-				}
-				if (WallCount <= MaxWalls && MaxWallSize > 0 && GoThroughWall(Other, HitLocation, HitNormal, MaxWallSize * ScaleBySurface(Other, HitMaterial), X, Start, ExitNormal, ExitMaterial))
-				{
-					WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
-					WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
-					Weapon.bTraceWater=true;
-					continue;
-				}
-				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
-				
-				break;
-			}
-			// Still in the same guy
-			if (Other == Instigator || Other == LastOther)
-			{
-				Start = HitLocation + (X * FMax(32, Other.CollisionRadius * 2));
-				End = Start + X * Dist;
-				Weapon.bTraceWater=true;
-				continue;
-			}
-			break;
-		}
-		else
+		if (Other == None)
 		{
 			LastHitLoc = End;
 			break;
 		}
+
+		// Water
+		if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume) )
+		{
+			if (VSize(HitLocation - Start) > 1)
+				WaterHitLoc=HitLocation;
+			Start = HitLocation;
+			Dist *= WaterRangeFactor;
+			End = Start + X * Dist;
+			Weapon.bTraceWater=false;
+			continue;
+		}
+
+		LastHitLoc = HitLocation;
+			
+		// Got something interesting
+		if (!Other.bWorldGeometry && Other != LastOther)
+		{
+			OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+		
+			LastOther = Other;
+
+			if (CanPenetrate(Other, HitLocation, X, PenCount))
+			{
+				PenCount++;
+				Start = HitLocation + (X * Other.CollisionRadius * 2);
+				End = Start + X * Dist;
+				Weapon.bTraceWater=true;
+				if (Vehicle(Other) != None)
+					HitVehicleEffect (HitLocation, HitNormal, Other);
+				continue;
+			}
+			else if (Vehicle(Other) != None)
+				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+			else if (Mover(Other) == None)
+				break;
+		}
+
+		// Do impact effect
+		if (Other.bWorldGeometry || Mover(Other) != None)
+		{
+			WallCount++;
+			if (Other.bCanBeDamaged)
+			{
+				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+				break;
+			}
+			if (WallCount <= MaxWalls && MaxWallSize > 0 && GoThroughWall(Other, HitLocation, HitNormal, MaxWallSize * ScaleBySurface(Other, HitMaterial), X, Start, ExitNormal, ExitMaterial))
+			{
+				WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
+				WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
+				Weapon.bTraceWater=true;
+				continue;
+			}
+			bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+			
+			break;
+		}
+		// Still in the same guy
+		if (Other == Instigator || Other == LastOther)
+		{
+			Start = HitLocation + (X * FMax(32, Other.CollisionRadius * 2));
+			End = Start + X * Dist;
+			Weapon.bTraceWater=true;
+			continue;
+		}
+		break;
 	}
 	// Never hit a wall, so just tell the attachment to spawn muzzle flashes and play anims, etc
 	if (!bHitWall)
