@@ -38,6 +38,7 @@ defaultproperties
      WallHitPoint=1
      NumSwipePoints=3
      FatiguePerStrike=0.250000
+     TraceRange=(Min=170.000000,Max=170.000000)
      Damage=80.000000
      DamageHead=80.000000
      DamageLimb=80.000000

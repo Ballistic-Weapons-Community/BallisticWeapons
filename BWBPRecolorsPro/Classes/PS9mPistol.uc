@@ -303,7 +303,7 @@ defaultproperties
      SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;2.0;0.1;0.1")
      BringUpSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-Pickup')
      PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=10
+     MagAmmo=15
      CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock',Radius=32.000000)
      ClipHitSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-MagInS1',Volume=1.800000,Radius=32.000000)
      ClipOutSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-MagOut',Volume=1.800000,Radius=32.000000)

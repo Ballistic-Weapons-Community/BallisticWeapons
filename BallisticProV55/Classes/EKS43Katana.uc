@@ -51,12 +51,14 @@ defaultproperties
      PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
      MagAmmo=1
      GunLength=0.000000
-     InventorySize=3
+     InventorySize=4
      bAimDisabled=True
      FireModeClass(0)=Class'BallisticProV55.EKS43PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.EKS43SecondaryFire'
-     PutDownTime=0.500000
-     BringUpTime=0.500000
+     SelectAnimRate=1.5
+     PutDownAnimRate=1.5
+     PutDownTime=0.300000
+     BringUpTime=0.300000
      SelectForce="SwitchToAssaultRifle"
      bMeleeWeapon=True
      Description="The EKS-43 sword is one of a few weapons produced by Enravion, not designed for widescale military use. It is an expenisve artefact preferred by collectors and other rare procurers. The blade is forged by the use of both ancient techniques and the most modern technology, making it a mighty weapon with incredible sharpness and legendary Enravion strength. Civilians use the weapon for various training and other personal purposes, while several mercenary groups, most notably, the highly skilled 'Apocalytes', adopted the weapon for use with their more skilled warriors."

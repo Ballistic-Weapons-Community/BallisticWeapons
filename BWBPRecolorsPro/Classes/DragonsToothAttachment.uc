@@ -18,7 +18,8 @@ replication
 
 simulated function PostNetBeginPlay()
 {
-	Super.PostNetBeginPlay();
+     Super.PostNetBeginPlay();
+     
 	if (Instigator != None)
 	{
 		if ((Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.Team != None) || bRedTeam )
@@ -33,7 +34,7 @@ simulated function PostNetBeginPlay()
 		}
 	
 		if (Owner == None || Instigator == Owner)
-		LightType = LT_None;
+               LightType = LT_None;
 	}
 }
 
@@ -51,7 +52,7 @@ defaultproperties
      LightHue=160
      LightSaturation=64
      LightBrightness=150.000000
-     LightRadius=32.000000
+     LightRadius=64.000000
      bDynamicLight=True
      Mesh=SkeletalMesh'BallisticRecolors4AnimPro.DragonsTooth_third'
      RelativeLocation=(Z=6.000000)

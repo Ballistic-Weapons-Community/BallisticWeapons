@@ -4,6 +4,50 @@ class SandbagLayer extends BallisticWeapon;
 
 var Sound DropSound;
 
+static function bool ShouldGiveBags(Pawn Other)
+{
+	local int Count;
+	local Inventory Inv;
+
+	if (Other.FindInventoryType(class'SandbagLayer') != None)
+		return false;
+		
+	for (Inv = Other.Inventory; Inv != None && Count < 1000; Count++)
+	{
+		if (BCGhostWeapon(Inv) != None && BCGhostWeapon(Inv).MyWeaponClass == class'SandbagLayer')
+			return false;
+
+		Inv=Inv.Inventory;
+	}
+
+	return true;
+}
+
+simulated function bool PutDown()
+{
+	if (Super.PutDown())
+	{
+		if (Ammo[0].AmmoAmount < 1)
+			SaveGhost();
+		return true;
+	}
+	return false;
+}
+
+function SaveGhost()
+{
+	local BCGhostWeapon GW;
+
+	// Save a ghost of this weapon so it can be brought back
+	GW = Spawn(class'BCGhostWeapon',,,Instigator.Location);
+
+	if(GW != None)
+	{
+		GW.MyWeaponClass = class;
+		GW.GiveTo(Instigator);
+	}
+}
+
 function bool CanAttack(Actor Other)
 {
 	return false;
@@ -147,11 +191,15 @@ function Notify_Deploy ()
 	
 	if (!HasAmmo())
 	{
+		SaveGhost();
 		AIRating = -999;
 		Priority = -999;
+
 		Instigator.Weapon = None;
+
 		if (Instigator!=None && Instigator.Controller!=None && Instigator.PendingWeapon == None)
 			Instigator.Controller.ClientSwitchToBestWeapon();
+
 		Destroy();
 	}
 }

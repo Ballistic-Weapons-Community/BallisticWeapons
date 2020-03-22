@@ -10,19 +10,6 @@
 //=============================================================================
 class DragonsToothPrimaryFire extends BallisticMeleeFire;
 
-var() Array<name> SliceAnims;
-var int SliceAnim;
-
-simulated event ModeDoFire()
-{
-	FireAnim = SliceAnims[SliceAnim];
-	SliceAnim++;
-	if (SliceAnim >= SliceAnims.Length)
-		SliceAnim = 0;
-
-	Super.ModeDoFire();
-}
-
 simulated function bool HasAmmo()
 {
 	return true;
@@ -30,24 +17,24 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
-     SliceAnims(0)="Swing1"
-     SliceAnims(1)="Swing2"
-     SliceAnims(2)="Swing3"
-     FatiguePerStrike=0.025
-     bCanBackstab=False
+     SwipePoints(0)=(offset=(Yaw=1280))
+     SwipePoints(1)=(offset=(Yaw=0))
+     SwipePoints(2)=(offset=(Yaw=-1280))
+     WallHitPoint=1
+     NumSwipePoints=3
+     FatiguePerStrike=0.100000
+     bCanBackstab=True
      TraceRange=(Min=160.000000,Max=160.000000)
-     Damage=75.000000
-     DamageHead=75.000000
-	DamageLimb=75.000000
-	FireRate=0.55
-     DamageType=Class'BWBPRecolorsPro.DT_DTSChest'
-     DamageTypeHead=Class'BWBPRecolorsPro.DT_DTSHead'
-     DamageTypeArm=Class'BWBPRecolorsPro.DT_DTSLimb'
+     Damage=140.000000
+     DamageHead=140.000000
+     DamageLimb=140.000000
+     DamageType=Class'BWBPRecolorsPro.DT_DTSStabChest'
+     DamageTypeHead=Class'BWBPRecolorsPro.DT_DTSStabHead'
+     DamageTypeArm=Class'BWBPRecolorsPro.DT_DTSStabChest'
      KickForce=100
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Swipe',Volume=4.100000,Radius=256.000000,bAtten=True)
      bAISilent=True
-	FireAnim="Slash1"
-	FireAnimRate=1.25
+     FireAnim="Stab"
      AmmoClass=Class'BallisticProV55.Ammo_Knife'
      AmmoPerFire=0
      ShakeRotMag=(X=64.000000,Y=256.000000)

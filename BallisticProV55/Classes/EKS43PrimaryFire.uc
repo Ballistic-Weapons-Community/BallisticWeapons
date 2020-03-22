@@ -36,9 +36,9 @@ defaultproperties
      SliceAnims(3)="Slash4"
      FatiguePerStrike=0.060000
      bCanBackstab=False
-     TraceRange=(Min=160.000000,Max=160.000000)
-     DamageHead=75.000000
-     DamageLimb=75.000000
+     TraceRange=(Min=170.000000,Max=170.000000)
+     DamageHead=85.000000
+     DamageLimb=85.000000
      DamageType=Class'BallisticProV55.DTEKS43Katana'
      DamageTypeHead=Class'BallisticProV55.DTEKS43KatanaHead'
      DamageTypeArm=Class'BallisticProV55.DTEKS43KatanaLimb'
@@ -46,7 +46,7 @@ defaultproperties
      BallisticFireSound=(Sound=SoundGroup'BallisticSounds3.EKS43.EKS-Slash',Radius=378.000000,bAtten=True)
      bAISilent=True
      FireAnim="Slash1"
-     FireRate=0.550000
+     FireRate=0.750000
      AmmoClass=Class'BallisticProV55.Ammo_Knife'
      AmmoPerFire=0
      ShakeRotMag=(X=64.000000,Y=512.000000)

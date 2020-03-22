@@ -12,6 +12,7 @@
 class DragonsToothSword extends BallisticMeleeWeapon;
 
 var Actor	BladeGlow;				// Nano replicators
+var Sound	LoopAmbientSound;
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
@@ -21,18 +22,17 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	{
 		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 )
 		{
-			Instigator.SoundPitch = 48;
 			Skins[1] = Shader'BallisticRecolors3TexPro.DragonToothSword.DTS-Red';
 			if (ThirdPersonActor != None)
 				DragonsToothAttachment(ThirdPersonActor).bRedTeam=true;	
 		}
 	}
 
-	Instigator.AmbientSound = UsedAmbientSound;
-	Instigator.SoundVolume = 192;
-	Instigator.SoundPitch = 64;
-	Instigator.SoundRadius = 768;
-	Instigator.bFullVolume = false;
+	Instigator.AmbientSound = LoopAmbientSound;
+	Instigator.SoundVolume = 255;
+	Instigator.SoundPitch = 48;
+	Instigator.SoundRadius = 128;
+	Instigator.bFullVolume = true;
 }
 
 simulated function BladeEffectStart()
@@ -53,12 +53,15 @@ simulated function bool PutDown()
 {
 	if (super.PutDown())
 	{
-		if (BladeGlow != None)	BladeGlow.Destroy();
+		if (BladeGlow != None)	
+			BladeGlow.Destroy();
+
 		Instigator.AmbientSound = None;
 		Instigator.SoundVolume = Instigator.default.SoundVolume;
 		Instigator.SoundPitch = Instigator.default.SoundPitch;
 		Instigator.SoundRadius = Instigator.default.SoundRadius;
 		Instigator.bFullVolume = Instigator.default.bFullVolume;
+
 		return true;
 	}
 	return false;
@@ -66,7 +69,9 @@ simulated function bool PutDown()
 
 simulated function Destroyed()
 {
-	if (BladeGlow != None)	BladeGlow.Destroy();
+	if (BladeGlow != None)	
+		BladeGlow.Destroy();
+
 	if (Instigator.AmbientSound != None)
 	{
 		Instigator.AmbientSound = None;
@@ -75,6 +80,7 @@ simulated function Destroyed()
 		Instigator.SoundRadius = Instigator.default.SoundRadius;
 		Instigator.bFullVolume = Instigator.default.bFullVolume;
 	}
+
 	super.Destroyed();
 }
 
@@ -122,47 +128,48 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     PlayerSpeedFactor=1.150000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticRecolors3TexPro.DragonToothSword.BigIcon_DTS'
-     BigIconCoords=(Y1=40,Y2=240)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     ManualLines(0)="Swings the nanoblade. Good range and damage. This attack generates very low fatigue."
-     ManualLines(1)="Stabs with the blade. This attack will inflict 40% of its base damage even if the enemy was blocking. Long range and high damage, but slow attack rate and generates higher fatigue."
-     ManualLines(2)="Combines the advantages of both knives and swords. Has a fast bring up and put down time and low fatigue, in addition to higher damage per swing and good range.||The Weapon Function key allows the Nanoblade to block incoming frontal melee attacks.||Effective at close range."
-     SpecialInfo(0)=(Info="420.0;20.0;-999.0;-1.0;-999.0;0.9;-999.0")
-     BringUpSound=(Sound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Draw',Volume=16.100000)
-     MagAmmo=1
-     bNoMag=True
-     GunLength=0.000000
-	 bAimDisabled=True
-	 InventorySize=7
-     FireModeClass(0)=Class'BWBPRecolorsPro.DragonsToothPrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.DragonsToothStabFire'
-     SelectAnim="PulloutFancy"
-     SelectAnimRate=1.250000
-     PutDownTime=0.300000
-	 BringUpTime=0.300000
-	 PutDownAnimRate=1.4
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.800000
-     CurrentRating=0.800000
-     bMeleeWeapon=True
-     Description="The Dragon Nanoblade is a technological marvel. A weapon consisting of a nanotechnologically created blade which is dynamically 'forged' on command into a non-eutactic solid. Nanoscale whetting devices ensure that the blade is both unbreakable and lethally sharp. The true weapon of a modern warrior."
-     DisplayFOV=65.000000
-     Priority=12
-     HudColor=(B=255,G=125,R=75)
-     CenteredOffsetY=7.000000
-     CenteredRoll=0
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     GroupOffset=5
-     PickupClass=Class'BWBPRecolorsPro.DragonsToothPickup'
-     BobDamping=1.000000
-     AttachmentClass=Class'BWBPRecolorsPro.DragonsToothAttachment'
-     IconMaterial=Texture'BallisticRecolors3TexPro.DragonToothSword.SmallIcon_DTS'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="XM300 Dragon Nanoblade"
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.DragonToothFP'
-     DrawScale=1.250000
-     SoundRadius=32.000000
+	//LoopAmbientSound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Loop'
+	LoopAmbientSound=Sound'GeneralAmbience.texture21'
+	PlayerSpeedFactor=1.150000
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.DragonToothSword.BigIcon_DTS'
+	BigIconCoords=(Y1=40,Y2=240)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	ManualLines(0)="Strikes once for fatal damage. Has a good range but a very slow swing rate."
+	ManualLines(1)="Strikes twice consecutively for good damage. Good for baiting block."
+	ManualLines(2)="The Weapon Function key allows the Nanoblade to block incoming frontal melee attacks.||Devastating at close range."
+	SpecialInfo(0)=(Info="420.0;20.0;-999.0;-1.0;-999.0;0.9;-999.0")
+	BringUpSound=(Sound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Draw',Volume=16.100000)
+	MagAmmo=1
+	bNoMag=True
+	GunLength=0.000000
+	bAimDisabled=True
+	InventorySize=12
+	FireModeClass(0)=Class'BWBPRecolorsPro.DragonsToothPrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.DragonsToothSecondaryFire'
+	SelectAnim="PulloutFancy"
+	SelectAnimRate=1.250000
+	PutDownTime=0.500000
+	BringUpTime=0.700000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.800000
+	CurrentRating=0.800000
+	bMeleeWeapon=True
+	Description="The Dragon Nanoblade is a technological marvel. A weapon consisting of a nanotechnologically created blade which is dynamically 'forged' on command into a non-eutactic solid. Nanoscale whetting devices ensure that the blade is both unbreakable and lethally sharp. The true weapon of a modern warrior."
+	DisplayFOV=65.000000
+	Priority=12
+	HudColor=(B=255,G=125,R=75)
+	CenteredOffsetY=7.000000
+	CenteredRoll=0
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	GroupOffset=5
+	PickupClass=Class'BWBPRecolorsPro.DragonsToothPickup'
+	BobDamping=1.000000
+	AttachmentClass=Class'BWBPRecolorsPro.DragonsToothAttachment'
+	IconMaterial=Texture'BallisticRecolors3TexPro.DragonToothSword.SmallIcon_DTS'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="XM300 Dragon Nanoblade"
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.DragonToothFP'
+	DrawScale=1.250000
+	SoundRadius=32.000000
 }

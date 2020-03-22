@@ -40,12 +40,8 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
-     SwipePoints(1)=(offset=(Yaw=1500))
-     SwipePoints(3)=(offset=(Yaw=-1500))
-     SwipePoints(4)=(offset=(Yaw=3000))
-     WallHitPoint=1
      FatiguePerStrike=0.200000
-     TraceRange=(Min=170.000000,Max=170.000000)
+     TraceRange=(Min=155.000000,Max=155.000000)
      Damage=80.000000
      DamageType=Class'BallisticProV55.DTA909Blades'
      DamageTypeHead=Class'BallisticProV55.DTA909Head'
@@ -67,11 +63,11 @@ defaultproperties
      ShakeRotTime=2.000000
 	 
 	 // AI
-	 bInstantHit=True
-	 bLeadTarget=False
-	 bTossed=False
-	 bSplashDamage=False
-	 bRecommendSplashDamage=False
-	 BotRefireRate=0.5
+     bInstantHit=True
+     bLeadTarget=False
+     bTossed=False
+     bSplashDamage=False
+     bRecommendSplashDamage=False
+     BotRefireRate=0.5
      WarnTargetPct=0.500000
 }

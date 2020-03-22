@@ -176,7 +176,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
 		
-	if(BallisticTurret(Instigator) == None && Instigator.IsHumanControlled() && Instigator.FindInventoryType(class'SandbagLayer') == None)
+	if(BallisticTurret(Instigator) == None && Pickup == None && Instigator.IsHumanControlled() && class'SandbagLayer'.static.ShouldGiveBags(Instigator))
     {
         Bags = Spawn(class'SandbagLayer',,,Instigator.Location);
 		

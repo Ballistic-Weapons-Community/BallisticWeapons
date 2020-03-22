@@ -51,6 +51,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.A909.A909Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.A909.A909Putaway')
      MagAmmo=1
+     InventorySize=4
      GunLength=0.000000
      bAimDisabled=True
      FireModeClass(0)=Class'BallisticProV55.A909PrimaryFire'

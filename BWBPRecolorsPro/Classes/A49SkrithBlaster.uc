@@ -329,7 +329,7 @@ defaultproperties
      SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.A42.A42-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.A42.A42-Putaway')
-     MagAmmo=18
+     MagAmmo=24
      CockAnim="Overheat"
      ClipOutSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipOut',Volume=1.300000)
      ClipInSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipHit',Volume=1.300000)

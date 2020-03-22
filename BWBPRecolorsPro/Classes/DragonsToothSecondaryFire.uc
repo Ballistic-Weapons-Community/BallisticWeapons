@@ -11,10 +11,10 @@
 //=============================================================================
 class DragonsToothSecondaryFire extends BallisticMeleeFire;
 
-var   float RailPower;
-var bool	bIsCharging;
-var() Array<name> SliceAnims;
-var int SliceAnim;
+var 	float 			RailPower;
+var 	bool			bIsCharging;
+var() 	Array<name> 	SliceAnims;
+var 	int 			SliceAnim;
 
 
 simulated function bool HasAmmo()
@@ -46,7 +46,7 @@ simulated function ModeTick(float DT)
 	Super.ModeTick(DT);
 
     if (bIsCharging)
-        RailPower = FMin(RailPower + 3.0*DT, 1);
+        RailPower = FMin(RailPower + 2.0*DT, 1);
     
     if (RailPower + 0.05 >= 1)
     {
@@ -57,9 +57,7 @@ simulated function ModeTick(float DT)
 
     if (!bIsFiring)
         return;
-
 }
-
 
 // Get aim then run trace...
 function DoFireEffect()
@@ -193,11 +191,14 @@ defaultproperties
      SwipePoints(3)=(offset=(Yaw=-1500))
      SwipePoints(4)=(offset=(Yaw=-3000))
      WallHitPoint=1
-     FatiguePerStrike=0.2
+     FatiguePerStrike=0.200000
      TraceRange=(Min=160.000000,Max=160.000000)
-     Damage=65.000000
-     DamageHead=65.000000
-     DamageLimb=65.000000
+	 bCanBackstab=False
+	 bNoPositionalDamage=True
+	 bUseRunningDamage=False
+     Damage=140.000000
+     DamageHead=140.000000
+     DamageLimb=140.000000
      DamageType=Class'BWBPRecolorsPro.DT_DTSChest'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_DTSHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_DTSLimb'
@@ -206,8 +207,8 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Swipe',Volume=5.500000,Radius=256.000000,bAtten=True)
      bAISilent=True
      FireAnim="Melee3"
-     FireAnimRate=1.4
-     FireRate=1.200000
+     FireAnimRate=0.850000
+     FireRate=2.000000
      AmmoClass=Class'BallisticProV55.Ammo_Knife'
      AmmoPerFire=0
      ShakeRotMag=(X=32.000000,Y=256.000000)
