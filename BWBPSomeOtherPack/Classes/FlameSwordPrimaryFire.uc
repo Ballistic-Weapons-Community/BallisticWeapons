@@ -30,13 +30,19 @@ simulated function bool HasAmmo()
 
 function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
-    local int i;
-	local FlameSwordActorFire Burner;
+    local int i, LastTargetHealth;
+    local Pawn PawnTarget;
+    local FlameSwordActorFire Burner;
+
+    PawnTarget = Pawn(Target);
+    
+     if (PawnTarget != None)
+        LastTargetHealth = PawnTarget.Health;
 	
 	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (Pawn(Target) != None && Pawn(Target).Health > 0 && Vehicle(Target) == None)
-	{
+    if (PawnTarget != None && PawnTarget.Health > 0 && PawnTarget.Health < LastTargetHealth && Vehicle(Target) == None)
+    {
 		for (i=0;i<Target.Attached.length;i++)
 		{
 			if (FlameSwordActorFire(Target.Attached[i])!=None)

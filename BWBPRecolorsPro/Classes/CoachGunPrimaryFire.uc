@@ -583,6 +583,9 @@ function DoFireEffect()
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
 	}
+
+	ApplyHits();
+		
 	// Tell the attachment the aim. It will calculate the rest for the clients
 	SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
 	if (ConsumedLoad == 2)

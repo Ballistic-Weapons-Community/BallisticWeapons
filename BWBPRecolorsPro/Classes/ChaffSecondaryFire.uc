@@ -131,9 +131,9 @@ defaultproperties
      SwipePoints(5)=(Weight=1,offset=(Pitch=-1500,Yaw=-1500))
      WallHitPoint=4
      TraceRange=(Min=140.000000,Max=140.000000)
-     Damage=85.000000
-     DamageHead=85.000000
-     DamageLimb=85.000000
+     Damage=50.000000
+     DamageHead=50.000000
+     DamageLimb=50.000000
      DamageType=Class'BWBPRecolorsPro.DTChaffSmack'
      DamageTypeHead=Class'BWBPRecolorsPro.DTChaffSmack'
      DamageTypeArm=Class'BWBPRecolorsPro.DTChaffSmack'

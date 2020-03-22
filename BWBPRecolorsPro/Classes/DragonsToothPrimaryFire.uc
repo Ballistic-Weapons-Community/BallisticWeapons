@@ -33,11 +33,6 @@ defaultproperties
      SliceAnims(0)="Swing1"
      SliceAnims(1)="Swing2"
      SliceAnims(2)="Swing3"
-     SwipePoints(0)=(offset=(Yaw=768))
-     SwipePoints(1)=(offset=(Yaw=0))
-     SwipePoints(2)=(offset=(Yaw=-768))
-     WallHitPoint=1
-     NumSwipePoints=3
      FatiguePerStrike=0.025
      bCanBackstab=False
      TraceRange=(Min=160.000000,Max=160.000000)

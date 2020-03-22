@@ -108,7 +108,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 		if (bBlocked && !IsFiring() && level.TimeSeconds > LastFireTime + 1 && BDT.default.bCanBeBlocked &&
 		Normal(HitLocation-(Instigator.Location+Instigator.EyePosition())) Dot Vector(Instigator.GetViewRotation()) > 0.4)
 		{
-			Damage = 0;
+			Damage *= BDT.default.BlockPenetration;
 			BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
 			if (instigatedBy != None && BallisticWeapon(instigatedBy.Weapon) != None)
 				BallisticWeapon(instigatedBy.Weapon).ApplyBlockFatigue();

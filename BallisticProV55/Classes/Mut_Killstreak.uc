@@ -518,22 +518,22 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 
 defaultproperties
 {
-	Streak1s(0)=BWBPRecolorsPro.G28Grenade
-	Streak1s(1)=BWBPRecolorsPro.AH208Pistol
-	Streak1s(2)=BallisticProV55.G5Bazooka
-	Streak1s(3)=BallisticProV55.MRocketLauncher
-	Streak1s(4)=BallisticProV55.SKASShotgun
-	Streak1s(5)=BallisticProV55.SRS600Rifle
-	Streak1s(6)=BallisticProV55.TeamLevelUpDummys
+	Streak1s(0)="BWBPRecolorsPro.G28Grenade
+	Streak1s(1)="BWBPRecolorsPro.AH208Pistol
+	Streak1s(2)="BallisticProV55.G5Bazooka
+	Streak1s(3)="BallisticProV55.MRocketLauncher
+	Streak1s(4)="BallisticProV55.SKASShotgun
+	Streak1s(5)="BallisticProV55.SRS600Rifle"
+	Streak1s(6)="BallisticProV55.TeamLevelUpDummys"
 
-	Streak2s(0)=BallisticProV55.RX22AFlamer
-	Streak2s(1)=BallisticProV55.HVCMk9LightningGun
-	Streak2s(2)=BallisticProV55.MACWeapon
-	Streak2s(3)=BWBPRecolorsPro.MGLauncher
-	Streak2s(4)=BWBPRecolorsPro.LAWLauncher
-	Streak2s(5)=BWBPRecolorsPro.FLASHLauncher
-	Streak2s(6)=BWBPAirstrikesPro.TargetDesignator
-	Streak2s(7)=BallisticProV55.TeamLevelUpDummy
+	Streak2s(0)="BallisticProV55.RX22AFlamer"
+	Streak2s(1)="BallisticProV55.HVCMk9LightningGun"
+	Streak2s(2)="BallisticProV55.MACWeapon"
+	Streak2s(3)="BWBPRecolorsPro.MGLauncher"
+	Streak2s(4)="BWBPRecolorsPro.LAWLauncher"
+	Streak2s(5)="BWBPRecolorsPro.FLASHLauncher"
+	Streak2s(6)="BWBPAirstrikesPro.TargetDesignator"
+	Streak2s(7)="BallisticProV55.TeamLevelUpDummy"
 
 	FriendlyName="BallisticPro: Killstreaks"
 	Description="Enables special weapons and effects which are granted when a certain kill streak has been obtained.||http://www.runestorm.com"

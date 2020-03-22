@@ -7,22 +7,23 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
-     SwipePoints(0)=(offset=(Yaw=768))
-     SwipePoints(1)=(offset=(Yaw=0))
-     SwipePoints(2)=(offset=(Yaw=-768))
-     WallHitPoint=0
-     NumSwipePoints=3
+     SwipePoints(0)=(offset=(Yaw=1024))
+     SwipePoints(1)=(offset=(Yaw=512))
+     SwipePoints(2)=(offset=(Yaw=0))
+     SwipePoints(3)=(offset=(Yaw=-512))
+     SwipePoints(4)=(offset=(Yaw=-1024))
+     WallHitPoint=2
+     NumSwipePoints=5
      FatiguePerStrike=0.1
      bCanBackstab=True
-     bNoPositionalDamage=False
-     TraceRange=(Min=190.000000,Max=190.000000)
-     Damage=100.000000
-     DamageHead=150.000000
-	DamageLimb=100.000000
+     TraceRange=(Min=200.000000,Max=200.000000)
+     Damage=135.000000
+     DamageHead=135.000000
+	DamageLimb=135.000000
 	FireRate=1.5
-     DamageType=Class'BWBPRecolorsPro.DT_DTSChest'
-     DamageTypeHead=Class'BWBPRecolorsPro.DT_DTSHead'
-     DamageTypeArm=Class'BWBPRecolorsPro.DT_DTSLimb'
+     DamageType=Class'BWBPRecolorsPro.DT_DTSStabChest'
+     DamageTypeHead=Class'BWBPRecolorsPro.DT_DTSStabHead'
+     DamageTypeArm=Class'BWBPRecolorsPro.DT_DTSStabChest'
      KickForce=100
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Swipe',Volume=4.100000,Radius=256.000000,bAtten=True)
      bAISilent=True

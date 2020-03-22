@@ -27,6 +27,7 @@ var vector 							FlashV;
 var float							FlashF;
 
 var() bool							bCanBeBlocked;		// This damage(eg. sword slash) can be blocked with a shield, sword or whatever...
+var() float							BlockPenetration;	// Scaler for damage to do through block, if any
 var() int							ShieldDamage;		// Damage this can do to shields that block it (for future mod purposses, used by JunkWar)
 var() bool							bDetonatesBombs;	// This damage can detonate bombs, mines, etc...
 var() bool							bIgniteFires;		// This damage can ignite flammable things and cause fires.

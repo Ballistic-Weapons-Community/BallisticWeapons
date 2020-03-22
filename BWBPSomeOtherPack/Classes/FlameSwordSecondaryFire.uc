@@ -73,7 +73,7 @@ defaultproperties
      bUseWeaponMag=False
      bWaitForRelease=True
      FireAnim="SpellShield"
-     FireRate=1.500000
+     FireRate=2.000000
 	 FireAnimRate=2
      AmmoClass=Class'BallisticProV55.Ammo_Knife'
      AmmoPerFire=0
