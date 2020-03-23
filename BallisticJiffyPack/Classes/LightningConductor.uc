@@ -16,135 +16,237 @@ var() class<BCTraceEmitter> 		TracerClass;
 var() class<BallisticDamageType>	CDamageType;
 
 var	  int 							DmgScalar;
-var   Pawn 							CollidingPawn;
-var   int 							VictimIterator, Subtract;
+var   int 							CurrentTargetIndex;
 var   Vector 						VertDisplacement;
-var   array<Pawn> 					PawnList;
+var   array<Pawn> 					ShockTargets;
 
 replication
 {
-	reliable if (Role == ROLE_Authority)
-		PawnList;
+	/* Azarael:
+
+	replication of dynamic arrays (var array<ClassName> VarName) is unsupported
+	replication of static arrays (var ClassName VarName[n]) is questionable
+	
+	there are two ways to handle this 
+
+	the standard idiom to use for replication of hits per WeaponAttachment classes:
+
+	an integer for hit number, a vector for start, and a vector (or Actor) for endpoint
+	all of them are replicated
+
+	set the start vector and the endpoint for a given hit, then increment hit count integer
+	listen in client postnetreceive for updates to hit count integer
+	to force replication, set NetUpdateTime = Level.TimeSeconds - 1 after each new hit
+	PostNetReceive will be called for every update and they should be received in order
+
+	(though since you have a delay on your hit propagation, you should be OK)
+
+	the second way:
+
+	you can replicate functions from server to client so long as this actor is owned by a PlayerController (which it is)
+	so you can call an unreliable replicated function with the information for each hit to cause the client to propagate it
+	*/
+
+	// we don't care if the client misses an effect draw
+	unreliable if (Role == ROLE_Authority)
+		ClientDrawShock;
 }
 
-simulated function PostNetBeginPlay()
+//============================================================
+// ClientDrawShock (Replicated server -> client)
+//
+// Effects replication
+//============================================================
+simulated function ClientDrawShock(vector start, vector end, Pawn src, Pawn dest)
 {
-	if (Role < ROLE_Authority)
-		Initialize();
+	// if we have valid Pawn references, use them to accurize the effect
+	if (src != None)
+		start = src.Location;
+	if (dest != None)
+		end = dest.Location;
+
+	DrawShock(start, end);
 }
 
-simulated function Initialize()
+//============================================================
+// Initialize (server only)
+//
+// Builds target list and begins propagation
+//============================================================
+function Initialize(Pawn InitialTarget)
 {
 	local int i, ShortestDistIndex;
 	local Pawn PVictim;
 	local bool FoundInstigator;
 	local float ShortestDistance;
 
+	ShockTargets.Insert(ShockTargets.Length, 1);
+	ShockTargets[0] = InitialTarget;
+
 	//Check for nearby pawns
 	ForEach CollidingActors(class'Pawn', PVictim, ConductRadius)
-	{
-		if (i>MaxConductors)	//Any extra pawns beyond this causes problems? Needs looking into
-			return;		
-		
+	{		
 		if (PVictim == Instigator)
+		{
 			FoundInstigator = True;
+			continue;
+		}
 		
 		//Gather all nearby pawns. If "valid", will add to list of pawns to affect
-		else if (ValidTarget(PVictim))
+		if (ValidTarget(Instigator, PVictim, Level))
 		{
-			PawnList[i] = PVictim;
-			i++;
+			ShockTargets.Insert(ShockTargets.Length, 1);
+			ShockTargets[ShockTargets.Length - 1] = PVictim;
+
+			if (ShockTargets.Length == MaxConductors)	//Any extra pawns beyond this causes problems? Needs looking into
+				break;	
 		}
 	}
+
 	//If instigator in ConductRadius, find the shortest distance between all pawns and instigator - insert instigator into array between pawn(s) with least distance
-	
 	ShortestDistance = ConductRadius;
+
 	if (FoundInstigator)
 	{
-		for(i=0; i<PawnList.Length; i++)
+		for(i = 0; i < ShockTargets.Length; i++)
 		{
-			if(VSize(Instigator.Location - PawnList[i].Location) < ShortestDistance)
+			if(VSize(Instigator.Location - ShockTargets[i].Location) < ShortestDistance)
 			{
-				ShortestDistance = VSize(Instigator.Location - PawnList[i].Location);
+				ShortestDistance = VSize(Instigator.Location - ShockTargets[i].Location);
 				ShortestDistIndex = i;
 			}
 		}
 		
-		PawnList.Insert(ShortestDistIndex, 1);
-		PawnList[ShortestDistIndex] = Instigator;
+		ShockTargets.Insert(ShortestDistIndex, 1);
+		ShockTargets[ShortestDistIndex] = Instigator;
 	}
 	
-	//Starts electrocuting pawns
-	CycleElectrocutionWithDelay();
+	if (ShockTargets.Length == 1) // no targets found, no work to do
+		Destroy();
+	else 	
+		StartElectrocution();
 }
 
-simulated function bool ValidTarget(Pawn Other)
+//============================================================
+// ValidTarget
+//
+// Returns true if target is valid 
+// for electroshock propagation
+//============================================================
+static function bool ValidTarget(Pawn Instigator, Pawn Target, LevelInfo Level)
 {
 	local byte Team, InTeam;
-	Team = Instigator.Controller.GetTeamNum();
-	InTeam = Other.Controller.GetTeamNum();
-	
-	//true check
-	
-	/*if(Other != None && Other.bProjTarget && Other.Controller != None && Level.TimeSeconds - Other.SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime && (InTeam == 255 || InTeam != Team))
-		return true;*/
-	
-	//test check - works on uncontrolled pawns
-	
-	if(Other != None && Other.bProjTarget && Level.TimeSeconds - Other.SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime && (InTeam == 255 || InTeam != Team))
+
+	// target should never be none because this function is only ever called from CollidingActors
+	if (Target == None || !Target.bProjTarget)
+		return false;
+
+	// uncontrolled pawn is neutral - valid target
+	if (Target.Controller == None)
 		return true;
-	
-	return false;
+
+	Team = Instigator.Controller.GetTeamNum();
+	InTeam = Target.Controller.GetTeamNum();
+
+	return (Level.TimeSeconds - Target.SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime && (InTeam == 255 || InTeam != Team));
 }
 
-simulated function CycleElectrocutionWithDelay()
+//============================================================
+// StartElectrocution
+//
+// Invokes rolling timer and performs first tick
+//============================================================
+function StartElectrocution()
 {
-	if (PawnList.Length == 0 || VictimIterator >= PawnList.Length)
-		Destroy();
-	
-	SetTimer(ConductDelay, false);
+	SetTimer(ConductDelay, true);
+	Propagate();
 }
 
-simulated function Timer()
+//============================================================
+// DrawShock
+//
+// Spawns shock effects
+//============================================================
+simulated function DrawShock(Vector start, Vector end)
 {
-	local BCTraceEmitter Tracer;
-	local TraceEmitter_LightningConduct MyTracer;
-	local int NewDamage;
-	local Vector ConnectionLine;
+	local TraceEmitter_LightningConduct LightningTracer;
+
+	start += VertDisplacement;
+	end += VertDisplacement;
+
+	LightningTracer = TraceEmitter_LightningConduct(Spawn(TracerClass, self, , start, Rotator(end - start)));
+
+	if (LightningTracer != None)
+		LightningTracer.Initialize(VSize(end - start));
+}
+
+//============================================================
+// Timer
+//
+// Propagates effect to next target at intervals
+//============================================================
+function Timer()
+{
+	Propagate();  
+}
+
+//============================================================
+// Propagate
+//
+// Spreads effect to next target, damaging them
+// Kills the Actor if this fails or if the target list
+// is exhausted
+//============================================================
+function Propagate()
+{
+	local Pawn src, dest;
+
+	src = ShockTargets[CurrentTargetIndex - 1];
+	dest = ShockTargets[CurrentTargetIndex];
+
+	// pawns may be destroyed for some reason beyond our control
+	// additionally, if no LOS between source and dest pawn, the chain fails
+	// next timer tick will destroy us
+	if (src == None || dest == None || !FastTrace(src.Location, dest.Location))
+	{
+		Kill();
+		return;
+	}
 		
-	ConnectionLine = PawnList[VictimIterator].Location - PawnList[VictimIterator - 1].Location;
+	DrawShock(src.Location, dest.Location);
+	ClientDrawShock(src.Location, dest.Location, src, dest);
 	
-	Tracer = Spawn(TracerClass, self, , PawnList[VictimIterator - 1].Location + VertDisplacement, Rotator(ConnectionLine));
-	if (Tracer != None)
-	{
-		MyTracer = TraceEmitter_LightningConduct(Tracer);
-		MyTracer.Initialize(VSize(ConnectionLine));
-	}
-	
-	if (PawnList[VictimIterator-Subtract] == CollidingPawn)
-	{
-		Subtract = 0;
-	}
-	
-	if (PawnList[VictimIterator-Subtract] != None)
-	{
-		NewDamage = FMax(1.0, Damage/VictimIterator);
-		class'BallisticDamageType'.static.GenericHurt(PawnList[VictimIterator-Subtract], NewDamage, Instigator, PawnList[VictimIterator-Subtract].Location, vect(0,0,0), CDamageType);
-	}
+	class'BallisticDamageType'.static.GenericHurt(dest, Max(1, Damage/CurrentTargetIndex), Instigator, dest.Location, vect(0,0,0), CDamageType);
 
-	VictimIterator++;
-	CycleElectrocutionWithDelay();
+	++CurrentTargetIndex;
+
+	if (CurrentTargetIndex == ShockTargets.Length)
+		Kill();
+}
+
+//============================================================
+// Kill
+//
+// Removes the Actor
+//============================================================
+function Kill()
+{
+	ShockTargets.Remove(0, ShockTargets.Length);
+	SetTimer(0.0, false);
+	Destroy();
 }
 
 defaultproperties
 {
-	 VictimIterator=1
-	 Subtract=1
-	 ConductDelay=0.060000
-	 VertDisplacement=(Z=20.000000)
-	 TracerClass=Class'BallisticJiffyPack.TraceEmitter_LightningConduct'
-	 bHidden=True
-	 CDamageType=Class'BallisticJiffyPack.DT_LightningConduct'
-	 ConductRadius=1024.000000
-	 MaxConductors=100
+	bAlwaysRelevant=True
+	RemoteRole=ROLE_SimulatedProxy
+	Damage=30 // sanity
+	CurrentTargetIndex=1
+	ConductDelay=0.060000
+	VertDisplacement=(Z=20.000000)
+	TracerClass=Class'BallisticJiffyPack.TraceEmitter_LightningConduct'
+	bHidden=True
+	CDamageType=Class'BallisticJiffyPack.DT_LightningConduct'
+	ConductRadius=1024.000000
+	MaxConductors=16 // really don't need any more than this tbh
 }

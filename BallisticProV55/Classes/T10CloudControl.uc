@@ -34,6 +34,7 @@ function ServeCustomers()
 {
 	local int i,j,k;
 	local array<Actor> Served;
+	
 	for(i=0;i<Clouds.length;i++)
 		for(j=0;j<Clouds[i].Touching.length;j++)
 		{
@@ -140,7 +141,9 @@ simulated function Destroyed()
 
 simulated event PostNetReceive()
 {
-	if (CloudSpawnLoc != OldCloudSpawnLoc)	{	OldCloudSpawnLoc = CloudSpawnLoc;
+	if (CloudSpawnLoc != OldCloudSpawnLoc)	
+	{	
+		OldCloudSpawnLoc = CloudSpawnLoc;
 		SpawnCloud(CloudSpawnLoc);
 	}
 }

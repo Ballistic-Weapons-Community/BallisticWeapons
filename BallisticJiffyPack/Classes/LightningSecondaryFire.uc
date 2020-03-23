@@ -89,7 +89,7 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 
 	super.ApplyDamage(Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 
-	if (!ValidTarget(Pawn(Target)))
+	if (!class'LightningConductor'.static.ValidTarget(Instigator, Pawn(Target), Instigator.Level))
 		return;
 
 	//Initiates Lightning Conduction actor
@@ -99,32 +99,8 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 	{
 		LConductor.Instigator = Instigator;
 		LConductor.Damage = TransferCDamage;
-		LConductor.CollidingPawn = Pawn(Target);
-		LConductor.Initialize();
+		LConductor.Initialize(Pawn(Target));
 	}
-}
-
-simulated function bool ValidTarget(Pawn Target)
-{
-	local byte Team, InTeam;
-
-	if (Target == None || Target.Controller == None)
-		return false;
-
-	Team = Instigator.Controller.GetTeamNum();
-	InTeam = Target.Controller.GetTeamNum();
-	
-	//true check
-	
-	/*if(Other != None && Other.bProjTarget && Other.Controller != None && Level.TimeSeconds - Other.SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime && (InTeam == 255 || InTeam != Team))
-		return true;*/
-	
-	//test check - works on uncontrolled pawns
-	
-	if(Target.bProjTarget && Level.TimeSeconds - Target.SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime && (InTeam == 255 || InTeam != Team))
-		return true;
-	
-	return false;
 }
 
 defaultproperties
