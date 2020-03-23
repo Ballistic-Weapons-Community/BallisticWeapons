@@ -11,7 +11,14 @@
 //=============================================================================
 class LightningRifle extends BallisticWeapon;
 
-var() int 	TransferCDamage;
+var int 	                    TransferCDamage;
+var LightningSecondaryFire    AltMode;
+
+simulated function PostBeginPlay()
+{
+     Super.PostBeginPlay();
+     AltMode = LightningSecondaryFire(FireMode[1]);
+}
 
 simulated function PlayCocking(optional byte Type)
 {
@@ -34,7 +41,7 @@ simulated function Notify_CockAimed()
 
 simulated function float ChargeBar()
 {
-	return LightningSecondaryFire(FireMode[1]).ChargePower;
+     return AltMode.GetChargeFactor();
 }
 
 // AI Interface =====
