@@ -132,7 +132,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		foreach RadiusActors(class'Teleporter', TB, 256)
 		{
 			if (Instigator != None)
-				Level.Game.Broadcast(self, "AR Grenade thrown by"@Instigator.PlayerReplicationInfo.PlayerName@"too close to a teleporter!");
+				Level.Game.Broadcast(self, "RCS Grenade thrown by"@Instigator.PlayerReplicationInfo.PlayerName@"too close to a teleporter!");
 			return;
 		}
 		F = Spawn(class'ARFireControl',self,,HitLocation-HitNormal*2, rot(0,0,0));
@@ -151,7 +151,7 @@ defaultproperties
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=0.150000
-     ImpactDamage=15
+     ImpactDamage=15.000000
      ImpactDamageType=Class'BallisticJiffyPack.DTARGrenade'
      ImpactManager=Class'BallisticProV55.IM_Grenade'
      AccelSpeed=3000.000000
