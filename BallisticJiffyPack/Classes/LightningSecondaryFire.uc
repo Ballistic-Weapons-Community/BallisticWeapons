@@ -16,7 +16,7 @@ var		float					MaxCharge, ChargeGainPerSecond, ChargeDecayPerSecond;
 
 simulated event ModeDoFire()
 {
-	TransferCDamage = default.Damage + 3 * default.Damage * ChargePower;
+	TransferCDamage = default.Damage * (1 + ChargePower);
 
 	Load = CalculateAmmoUse();
 	
@@ -66,7 +66,7 @@ function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor
 	local float DefDmg;
 	DefDmg = Super.GetDamage(Other, HitLocation, Dir, Victim, DT);
 	
-	return (DefDmg + 3 * DefDmg * ChargePower);
+	return DefDmg * (1 + ChargePower);
 }
 
 simulated function ServerPlayFiring()
