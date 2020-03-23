@@ -11,16 +11,18 @@
 //=============================================================================
 class BallisticDamageType extends WeaponDamageType config(BallisticProV55);
 
-var() localized Array<string>	DeathStrings;					// Multiple deathstrings may be interesting...
-var() localized Array<string>	FemaleSuicides, MaleSuicides;	// Multiple suicide messages
-var() localized string			SimpleKillString, SimpleSuicideString;
-var() localized string			HipString, AimedString;
-var() localized string			His, Her, Himself, Herself, Him, MHer, He, She;
+var() localized Array<string>		DeathStrings;					// Multiple deathstrings may be interesting...
+var() localized Array<string>		FemaleSuicides, MaleSuicides;	// Multiple suicide messages
+var() localized string				SimpleKillString, SimpleSuicideString;
+var() localized string				HipString, AimedString;
+var() localized string				His, Her, Himself, Herself, Him, MHer, He, She;
 
 var() float							EffectChance;		// Chance of blood effect appearing
-var() class<BloodManager>	BloodManager;		// BloodManager loaded from BloodManagerName
+var() class<BloodManager>			BloodManager;		// BloodManager loaded from BloodManagerName
 var() string						BloodManagerName;	// BloodManager to use for this damagetype
 var   bool							bCantLoadBlood;		// No able to load BloodManager. So we know not to keep trying...
+
+var	  bool							bAimable;			// Tracked as spam if used unaimed
 
 var int								FlashThreshold;
 var vector 							FlashV;
@@ -334,30 +336,33 @@ static function bool DoSeverStump (Pawn Victim, name Bone, vector HitRay, int Da
 
 defaultproperties
 {
-     AimedString="Aimed"
-     His="his"
-     Her="her"
-     Himself="himself"
-     Herself="herself"
-     Him="him"
-     MHer="her"
-     He="he"
-     She="she"
-     FlashThreshold=200
-     bDetonatesBombs=True
-     ArmorHitType=255
-     InvasionDamageScaling=1.000000
-     DamageIdent="Unknown"
-     AimDisplacementDuration=0.600000
-     bSimpleDeathMessages=True
-     MinMotionBlurDamage=10.000000
-     MotionBlurDamageRange=80.000000
-     MotionBlurFactor=4.000000
-     MotionBlurTime=3.000000
-     bDetonatesGoop=True
-     bKUseTearOffMomentum=True
-     bExtraMomentumZ=False
-     bDirectDamage=False
-     TransientSoundVolume=1.000000
-     TransientSoundRadius=64.000000
+	bAimable=True
+	
+	AimedString="Aimed"
+	His="his"
+	Her="her"
+	Himself="himself"
+	Herself="herself"
+	Him="him"
+	MHer="her"
+	He="he"
+	She="she"
+
+	FlashThreshold=200
+	bDetonatesBombs=True
+	ArmorHitType=255
+	InvasionDamageScaling=1.000000
+	DamageIdent="Unknown"
+	AimDisplacementDuration=0.600000
+	bSimpleDeathMessages=True
+	MinMotionBlurDamage=10.000000
+	MotionBlurDamageRange=80.000000
+	MotionBlurFactor=4.000000
+	MotionBlurTime=3.000000
+	bDetonatesGoop=True
+	bKUseTearOffMomentum=True
+	bExtraMomentumZ=False
+	bDirectDamage=False
+	TransientSoundVolume=1.000000
+	TransientSoundRadius=64.000000
 }

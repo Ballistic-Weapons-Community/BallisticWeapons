@@ -41,6 +41,20 @@ replication
 		bShotDown;
 }
 
+simulated function PostBeginPlay()
+{
+	Super.PostBeginPlay();
+
+	if (Role == ROLE_Authority && Instigator != None)
+		Team = Instigator.GetTeamNum();
+
+	if (Level.NetMode != NM_DedicatedServer)
+	{
+		spawn(class'NewTracer',,,, Rotation + rot(0,16384,0));
+		Level.GetLocalPlayerController().PlayStatusAnnouncement('Incoming_air', 0, true);
+	}
+}
+
 function Touch(Actor Other)
 {
 	if (Vehicle(Other) != None)

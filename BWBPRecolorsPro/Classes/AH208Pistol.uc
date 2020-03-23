@@ -38,7 +38,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	{
 		IdleAnim = 'Idle';
 		ReloadAnim = 'Reload';
-		SelectAnim = 'SuperPullout';
+		SelectAnim = 'Pullout';
 		BringUpTime=default.BringUpTime;
 	}
 
@@ -162,7 +162,7 @@ defaultproperties
      SpecialInfo(0)=(Info="140.0;12.0;0.7;70.0;0.55;0.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=8
+     MagAmmo=7
      CockSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-Cock',Volume=5.100000,Radius=32.000000)
      ClipHitSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipHit',Volume=2.500000,Radius=32.000000)
      ClipOutSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipOut',Volume=2.500000,Radius=32.000000)
@@ -174,17 +174,18 @@ defaultproperties
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
      SightOffset=(X=-20.000000,Y=-7.400000,Z=45.299999)
-     SightDisplayFOV=40.000000
-     SightingTime=0.200000
+     SightDisplayFOV=60.000000
+     SightingTime=0.25
 	 SightZoomFactor=0
      GunLength=4.000000
      ChaosDeclineTime=0.450000
      RecoilDeclineDelay=0.750000
      FireModeClass(0)=Class'BWBPRecolorsPro.AH208PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.AH208MeleeFire'
+     SelectAnimRate=2.000000
      PutDownAnimRate=1.600000
      PutDownTime=0.500000
-     BringUpTime=1.200000
+     BringUpTime=0.600000
      SelectForce="SwitchToAssaultRifle"
      Description="Built as a more affordable alternative to the AH104, the AH208 is an alternate design chambered for .44 magnum rounds instead of the usual $100 .600 HEAP ones. It is less accurate than the AH104 and D49, but its 8 round magazine and faster reload times let it put more rounds down range than both. Its significant weight and recoil means it requires both hands to shoot and is harder to control than its revolver and handcannon siblings, a fact that comes into play where range is a concern. While not as popular as its larger .600 cousin, the AH208 packs a formidable punch and is a force to be reckoned with."
      Priority=96

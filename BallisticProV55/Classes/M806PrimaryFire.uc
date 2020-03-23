@@ -28,15 +28,15 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=512.000000
-     CutOffStartRange=1024.000000
+     CutOffDistance=1536.000000
+     CutOffStartRange=512.000000
      TraceRange=(Max=6000.000000)
      WaterRangeFactor=0.600000
      MaxWallSize=24.000000
      MaxWalls=2
-     Damage=30.000000
+     Damage=40.000000
      DamageHead=45.000000
-     DamageLimb=30.000000
+     DamageLimb=40.000000
      RangeAtten=0.30000
      WaterRangeAtten=0.500000
      DamageType=Class'BallisticProV55.DTM806Pistol'
@@ -53,7 +53,7 @@ defaultproperties
      FireChaos=0.2
      BallisticFireSound=(Sound=Sound'BallisticSounds3.M806.M806Fire',Volume=0.700000)
      FireEndAnim=
-     FireRate=0.200000
+     FireRate=0.25000
      FireAnimRate=2
      AmmoClass=Class'BallisticProV55.Ammo_45HV'
      ShakeRotMag=(X=64.000000,Y=32.000000)

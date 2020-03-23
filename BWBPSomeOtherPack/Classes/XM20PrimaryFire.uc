@@ -50,10 +50,10 @@ defaultproperties
      DryFireSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Empty',Volume=1.200000)
      MuzzleFlashClass=Class'BWBPSomeOtherPack.XM20FlashEmitter'
      FlashScaleFactor=0.400000
-     RecoilPerShot=150.000000
+     RecoilPerShot=140.000000
      FireChaos=0.07000
-	 FireAnim="Fire"
-	 AimedFireAnim="SightFire"
+	FireAnim="Fire"
+	AimedFireAnim="SightFire"
      BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.XM20.XM20-PulseFire',Volume=1.500000)
      FireEndAnim=
      FireRate=0.135000

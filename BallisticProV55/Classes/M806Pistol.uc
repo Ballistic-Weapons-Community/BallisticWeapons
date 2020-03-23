@@ -23,13 +23,29 @@ replication
 		bLaserOn;
 }
 
-simulated function bool SlaveCanUseMode(int Mode) {return Mode == 0;}
-simulated function bool MasterCanSendMode(int Mode) {return Mode == 0;}
+simulated function bool SlaveCanUseMode(int Mode)
+{
+	if(M806Pistol(OtherGun) != None)
+		return (Mode == 0 || (Mode == 1 && Level.TimeSeconds >= FireMode[Mode].NextFireTime));
+
+	return Mode == 0;
+}
+
+simulated function bool MasterCanSendMode(int Mode)
+{
+	if(M806Pistol(OtherGun) != None)
+		return Mode < 2;
+
+	return Mode == 0;
+}
 
 simulated function bool CanAlternate(int Mode)
 {
-	if (Mode != 0)
+	if (M806Pistol(OtherGun) == None && Mode != 0)
 		return false;
+	else if(M806Pistol(OtherGun) != None)
+		return true;
+
 	return super.CanAlternate(Mode);
 }
 
@@ -58,16 +74,31 @@ simulated event PostNetReceive()
 	Super.PostNetReceive();
 }
 
+function ServerWeaponSpecial(optional byte i)
+{
+	if (bServerReloading)
+		return;
+	ServerSwitchLaser(!bLaserOn);
+}
+
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = bLaserOn;
+	bUseNetAim = default.bUseNetAim || bLaserOn;
 	if (ThirdPersonActor!=None)
 		M806Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 	if (bLaserOn)
+	{	
 		AimAdjustTime = default.AimAdjustTime * 1.5;
+		ChaosAimSpread *= 0.65;
+	}
+
 	else
+	{
 		AimAdjustTime = default.AimAdjustTime;
+		ChaosAimSpread = default.ChaosAimSpread;
+	}
+
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
 }
@@ -78,15 +109,19 @@ simulated function ClientSwitchLaser()
 	{
 		SpawnLaserDot();
 		PlaySound(LaserOnSound,,0.7,,32);
+		ChaosAimSpread *= 0.65;
 	}
 	else
 	{
 		KillLaserDot();
 		PlaySound(LaserOffSound,,0.7,,32);
+		ChaosAimSpread = default.ChaosAimSpread;
 	}
+
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))
 		PlayIdle();
-	bUseNetAim = bLaserOn;
+
+	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -258,7 +293,7 @@ simulated function SetScopeBehavior()
 {
 	super.SetScopeBehavior();
 
-	bUseNetAim = bScopeView || bLaserOn;
+	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 // AI Interface =====
@@ -268,31 +303,29 @@ function byte BestMode()	{	return 0;	}
 function float GetAIRating()
 {
 	local Bot B;
-	local float Result, Dist;
-	local vector Dir;
-
-	if (IsSlave())
-		return 0;
-
+	
+	local float Dist;
+	local float Rating;
+	
 	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
+	
+	if ( B == None )
 		return AIRating;
 
-	Dir = B.Enemy.Location - Instigator.Location;
-	Dist = VSize(Dir);
+	Rating = Super.GetAIRating();
+	
+	if (B.Enemy == None)
+		return Rating;
 
-	Result = AIRating;
-	if (Dist > 800)
-		Result -= (Dist-800) / 2000;
-	else if (Dist < 500 && B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
-		Result -= 0.2;
-	return Result;
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, 768, 2048); 
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return 0.3;	}
+function float SuggestAttackStyle()	{	return 0.8;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return 0.5;	}
+function float SuggestDefenseStyle()	{	return -0.8;	}
 // End AI Stuff =====
 
 defaultproperties
@@ -304,11 +337,12 @@ defaultproperties
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M806'
      SightFXClass=Class'BallisticProV55.M806SightLEDs'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
+	 bWT_Bullet=True
+	 bShouldDualInLoadout=False
      SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=12
+     MagAmmo=10
      CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock')
      ClipHitSound=(Sound=Sound'BallisticSounds2.M806.M806-ClipHit')
      ClipOutSound=(Sound=Sound'BallisticSounds2.M806.M806-ClipOut')
@@ -318,33 +352,31 @@ defaultproperties
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
      SightPivot=(Pitch=300)
-     SightOffset=(X=-4.000000,Z=5.100000)
-     SightDisplayFOV=40.000000
-     SightingTime=0.200000
-     SightAimFactor=0.100000
-     JumpChaos=0.200000
+     SightOffset=(X=5.000000,Z=5.100000)
+     SightDisplayFOV=60.000000
+	 SightingTime=0.200000
+	 SightAimFactor=0.1
+	 AimSpread=32
      AimAdjustTime=0.450000
-     ViewAimFactor=0.050000
-     ViewRecoilFactor=0.200000
      ChaosDeclineTime=0.320000
-     ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=768
-     RecoilYawFactor=0.000000
+     ChaosSpeedThreshold=7500.000000
+     ChaosAimSpread=1024
+     RecoilYawFactor=0.200000
      RecoilXFactor=0.250000
      RecoilYFactor=0.250000
-     RecoilDeclineTime=0.500000
+     RecoilDeclineTime=1.5
      RecoilDeclineDelay=0.400000
      FireModeClass(0)=Class'BallisticProV55.M806PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M806SecondaryFire'
      SelectForce="SwitchToAssaultRifle"
-     AIRating=0.400000
-     CurrentRating=0.400000
+     AIRating=0.600000
+     CurrentRating=0.600000
      Description="M806 High Velocity Pistol||Manufacturer: Enravion Combat Solutions|Primary: Powerful single shot|Secondary: Toggle Laser Sight||The M806 is one of the few sidearms capable of making a full-grown Skrith whimper. Although long used by law enforcment organizations, military forces and ordinary civillians, it gained recognition when an elite commando unit was forced to use it on a difficult mission to disable a heavily armoured, Cryon infantry Division. Poor logistics planning left them with a wealth of ammo for the sidearm and little else, but the pistol was so effective in the mission it quickly grew in favour amongst the UTC Infantry Corps. The M806 is capable of massive damage when targetted at the right area and is a generally reliable, backup weapon. Use of a laser sight turns it into a real weapon by allowing the soldier to accurately direct its powerful bullets."
      Priority=19
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	 InventoryGroup=2
 	 InventorySize=5
-     GroupOffset=5
+     GroupOffset=8
      PickupClass=Class'BallisticProV55.M806Pickup'
      PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
      AttachmentClass=Class'BallisticProV55.M806Attachment'

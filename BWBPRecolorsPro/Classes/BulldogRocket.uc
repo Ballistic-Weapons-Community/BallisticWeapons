@@ -9,6 +9,7 @@ class BulldogRocket extends BallisticProjectile;
 
 var sound ImpactSounds[6];
 var int ImpactDamage;
+var int	ImpactKickForce;
 var class<DamageType> ImpactDamageType;
 var vector					StartLoc;
 
@@ -173,7 +174,7 @@ defaultproperties
      Speed=7000.000000
      MaxSpeed=7000.000000
      Damage=140.000000
-     DamageRadius=512.000000
+	 DamageRadius=512.000000
      MomentumTransfer=30000.000000
      MyDamageType=Class'BWBPRecolorsPro.DTBulldogFRAG'
      LightType=LT_Steady

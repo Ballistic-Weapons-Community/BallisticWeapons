@@ -7,7 +7,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class MD24Pistol extends BallisticHandgun;
 
@@ -108,7 +108,7 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	if (bLaserOn)
 	{
 		AimAdjustTime = default.AimAdjustTime * 1.5;
-		ChaosAimSpread *= 0.5;
+		ChaosAimSpread *= 0.65;
 	}
 	
 	else
@@ -127,7 +127,7 @@ simulated function ClientSwitchLaser()
 	{
 		SpawnLaserDot();
 		PlaySound(LaserOnSound,,0.7,,32);
-		ChaosAimSpread *= 0.5;
+		ChaosAimSpread *= 0.65;
 	}
 	else
 	{
@@ -135,8 +135,10 @@ simulated function ClientSwitchLaser()
 		PlaySound(LaserOffSound,,0.7,,32);
 		ChaosAimSpread = default.ChaosAimSpread;
 	}
+
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))
 		PlayIdle();
+
 	bUseNetAim = default.bUseNetAim || bLaserOn;
 }
 
@@ -328,26 +330,7 @@ simulated function SetScopeBehavior()
 
 // AI Interface =====
 // choose between regular or alt-fire
-function byte BestMode()
-{
-	local Bot B;
-	local float Dist;
-
-	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return 0;
-
-	if (!HasAmmoLoaded(0))
-		return 1;
-
-	Dist = VSize(Instigator.Location - B.Enemy.Location);
-
-	if (Dist > 200)
-		return 0;
-	if (Dist < FireMode[1].MaxRange())
-		return 1;
-	return Rand(2);
-}
+function byte BestMode()	{	return 0;	}
 
 function float GetAIRating()
 {
@@ -404,8 +387,8 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
-     SightOffset=(X=-22.000000,Y=-0.030000,Z=7.400000)
-     SightDisplayFOV=40.000000
+     SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
+     SightDisplayFOV=60.000000
      SightingTime=0.200000
      SightAimFactor=0.100000
      AimAdjustTime=0.450000

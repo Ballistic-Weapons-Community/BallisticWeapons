@@ -12,6 +12,7 @@ class BallisticMeleeWeapon extends BallisticWeapon
 	HideDropDown
 	CacheExempt;
 
+var() bool			bCanBlock; 		// Capable of blocking
 var   bool			bBlocked;		// Currently blocking
 var() name			BlockUpAnim;	// Anim for going into blocking
 var() name			BlockDownAnim;	// Anim when blocking stops
@@ -61,7 +62,7 @@ simulated function float ChargeBar()
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (bBlocked)
+	if (!bCanBlock || bBlocked)
 		return;
 		
 	ServerSetBlocked(true);
@@ -76,7 +77,7 @@ exec simulated function WeaponSpecial(optional byte i)
 //simulated function DoWeaponSpecialRelease(optional byte i)
 exec simulated function WeaponSpecialRelease(optional byte i)
 {
-	if (!bBlocked)
+	if (!bCanBlock || !bBlocked)
 		return;
 
 	ServerSetBlocked(false);
@@ -96,9 +97,12 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 		
 	BDT = class<BallisticDamageType>(DamageType);
 	
-	if (VSize(Instigator.Location - InstigatedBy.Location) < 512 && VSize(Momentum) < 60)
-		Momentum = vect(0,0,0);
-	else Momentum *= 0.5;
+	if (VSize(Momentum) < 60)
+	{
+		if (VSize(Instigator.Location - InstigatedBy.Location) < 384)
+			Momentum = vect(0,0,0);
+		else Momentum *= 0.5;
+	}
 		
 	if (bBerserk)
 		Damage *= 0.75;
@@ -254,7 +258,8 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     BlockUpAnim="PrepBlock"
+	bCanBlock=True
+	 BlockUpAnim="PrepBlock"
      BlockDownAnim="EndBlock"
      BlockIdleAnim="BlockIdle"
      InventorySize=2

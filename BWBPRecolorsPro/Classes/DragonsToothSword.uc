@@ -20,7 +20,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	if ((Instigator.PlayerReplicationInfo != None) && (Instigator.PlayerReplicationInfo.Team != None) )
 	{
-		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 )
+		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 && Level.Game.bTeamGame )
 		{
 			Skins[1] = Shader'BallisticRecolors3TexPro.DragonToothSword.DTS-Red';
 			if (ThirdPersonActor != None)
@@ -33,20 +33,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	Instigator.SoundPitch = 48;
 	Instigator.SoundRadius = 128;
 	Instigator.bFullVolume = true;
-}
-
-simulated function BladeEffectStart()
-{
-	if ((Instigator.PlayerReplicationInfo != None) )
-	{
-		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 )
-			class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffectR', DrawScale, self, 'BladeBase');
-		else
-			class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffect', DrawScale, self, 'BladeBase');
-	}
-	else
-		class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffect', DrawScale, self, 'BladeBase');
-
 }
 
 simulated function bool PutDown()
@@ -82,6 +68,21 @@ simulated function Destroyed()
 	}
 
 	super.Destroyed();
+}
+
+
+simulated function BladeEffectStart()
+{
+	if ((Instigator.PlayerReplicationInfo != None) )
+	{
+		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 )
+			class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffectR', DrawScale, self, 'BladeBase');
+		else
+			class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffect', DrawScale, self, 'BladeBase');
+	}
+	else
+		class'bUtil'.static.InitMuzzleFlash(BladeGlow, class'DragonsToothBladeEffect', DrawScale, self, 'BladeBase');
+
 }
 
 // AI Interface =====
@@ -144,7 +145,7 @@ defaultproperties
 	bNoMag=True
 	GunLength=0.000000
 	bAimDisabled=True
-	InventorySize=12
+	InventorySize=11
 	FireModeClass(0)=Class'BWBPRecolorsPro.DragonsToothPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.DragonsToothSecondaryFire'
 	SelectAnim="PulloutFancy"

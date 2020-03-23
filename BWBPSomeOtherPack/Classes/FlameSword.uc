@@ -13,18 +13,60 @@ class FlameSword extends BallisticMeleeWeapon;
 
 struct DeployableInfo
 {
-	var class<Actor> 	dClass;
+	var class<Actor> 		dClass;
 	var float				WarpInTime;
 	var int					SpawnOffset;
 	var bool				CheckSlope; // should block unless placed on flat enough area
 	var string				dDescription; 	//A simple explanation of what this mode does.
 };
 
-var DeployableInfo AltDeployable;
-const DeployRange = 256;
-var Sound      	ShieldHitSound;
+var DeployableInfo 	AltDeployable;
+const 				DeployRange = 256;
+var Sound      		ShieldHitSound;
 
-var float		NextShieldCreateTime;
+var float			NextShieldCreateTime;
+
+var Sound			LoopAmbientSound;
+
+simulated function BringUp(optional Weapon PrevWeapon)
+{
+	Super.BringUp(PrevWeapon);
+
+	Instigator.AmbientSound = LoopAmbientSound;
+	Instigator.SoundVolume = 32;
+	Instigator.SoundPitch = 48;
+	Instigator.SoundRadius = 128;
+	Instigator.bFullVolume = true;
+}
+
+simulated function bool PutDown()
+{
+	if (super.PutDown())
+	{
+		Instigator.AmbientSound = None;
+		Instigator.SoundVolume = Instigator.default.SoundVolume;
+		Instigator.SoundPitch = Instigator.default.SoundPitch;
+		Instigator.SoundRadius = Instigator.default.SoundRadius;
+		Instigator.bFullVolume = Instigator.default.bFullVolume;
+
+		return true;
+	}
+	return false;
+}
+
+simulated function Destroyed()
+{
+	if (Instigator.AmbientSound != None)
+	{
+		Instigator.AmbientSound = None;
+		Instigator.SoundVolume = Instigator.default.SoundVolume;
+		Instigator.SoundPitch = Instigator.default.SoundPitch;
+		Instigator.SoundRadius = Instigator.default.SoundRadius;
+		Instigator.bFullVolume = Instigator.default.bFullVolume;
+	}
+
+	super.Destroyed();
+}	
 
 exec function Offset(int index, int value)
 {
@@ -178,44 +220,6 @@ function bool SpaceToDeploy(Vector hit_location, Vector hit_normal, Rotator slop
 	);
 }
 
-simulated function BringUp(optional Weapon PrevWeapon)
-{
-	Super.BringUp(PrevWeapon);
-
-	Instigator.AmbientSound = UsedAmbientSound;
-	Instigator.SoundVolume = 192;
-	Instigator.SoundPitch = 64;
-	Instigator.SoundRadius = 768;
-	Instigator.bFullVolume = false;
-}
-
-simulated function bool PutDown()
-{
-	if (super.PutDown())
-	{
-		Instigator.AmbientSound = None;
-		Instigator.SoundVolume = Instigator.default.SoundVolume;
-		Instigator.SoundPitch = Instigator.default.SoundPitch;
-		Instigator.SoundRadius = Instigator.default.SoundRadius;
-		Instigator.bFullVolume = Instigator.default.bFullVolume;
-		return true;
-	}
-	return false;
-}
-
-simulated function Destroyed()
-{
-	if (Instigator.AmbientSound != None)
-	{
-		Instigator.AmbientSound = None;
-		Instigator.SoundVolume = Instigator.default.SoundVolume;
-		Instigator.SoundPitch = Instigator.default.SoundPitch;
-		Instigator.SoundRadius = Instigator.default.SoundRadius;
-		Instigator.bFullVolume = Instigator.default.bFullVolume;
-	}
-	super.Destroyed();
-}
-
 /*function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
     local vector HitNormal;
@@ -310,7 +314,7 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     PlayerSpeedFactor=1.100000
+     PlayerSpeedFactor=1.15000
 	 ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
      AltDeployable=(dClass=Class'BWBPSomeOtherPack.FlameSwordBarrier',WarpInTime=0.0010000,SpawnOffset=18,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
@@ -323,11 +327,11 @@ defaultproperties
      SpecialInfo(0)=(Info="420.0;20.0;-999.0;-1.0;-999.0;0.9;-999.0")
      BringUpSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Equip',Volume=2.000000)
 	 PutDownSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Unequip',Volume=2.000000)
-	 //UsedAmbientSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-AmbientFire')
+	 LoopAmbientSound=Sound'BallisticSounds2.RX22A.RX22A.RX22A-FireLoop'
      MagAmmo=1
      bNoMag=True
 	 GunLength=0.000000
-	 InventorySize=11
+	 InventorySize=12
      bAimDisabled=True
      FireModeClass(0)=Class'BWBPSomeOtherPack.FlameSwordPrimaryFire'
      FireModeClass(1)=Class'BWBPSomeOtherPack.FlameSwordSecondaryFire'

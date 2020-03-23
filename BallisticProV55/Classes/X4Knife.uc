@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class X4Knife extends BallisticMeleeWeapon;
 
@@ -61,6 +61,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
      PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
      MagAmmo=1
+     bCanBlock=False
      bNoMag=True
      GunLength=0.000000
      bAimDisabled=True

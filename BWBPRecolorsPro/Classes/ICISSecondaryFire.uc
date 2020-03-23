@@ -32,12 +32,10 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 		IP.Initialize(BPawn);
 		ICISStimPack(BW).ConsumeAmmo(1, 1, True);
 		ICISStimPack(BW).PlaySound(ICISStimPack(BW).HealSound, SLOT_Misc, 1.5, ,64);
-		
-		return;
+
 	}
 
-	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
-	
+	//super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 }
 
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't

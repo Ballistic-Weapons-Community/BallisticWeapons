@@ -367,7 +367,7 @@ defaultproperties
      DrumOutSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
      ReloadAltAnim="ReloadAlt"
      AltAmmo=6
-     BaseTrackDist=2560
+     BaseTrackDist=3368
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPOtherPackTex3.CX85.BigIcon_CX85'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'

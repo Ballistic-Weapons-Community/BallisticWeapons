@@ -7,7 +7,7 @@
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright� 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class X8Knife extends BallisticWeapon;
+class X8Knife extends BallisticMeleeWeapon;
 
 var() name				KnifeBone;		//Bone of whole grenade. Used to hide grenade at the right time
 var() name				PinBone;			//Bone of pin. Used to hide pin
@@ -257,53 +257,54 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     KnifeBone="Blade"
-     PinBone="Pin"
-     PinPullSound=(Sound=Sound'BallisticSounds3.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.600000,bAtten=True)
-     PlayerSpeedFactor=1.150000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticRecolors3TexPro.BigIcon_X8'
-     BigIconCoords=(Y1=25,Y2=230)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     ManualLines(0)="Slashes rapidly with the knife."
-     ManualLines(1)="When held, readies the ballistic knife. When released, the knife is fired in a straight trajectory, dealing good damage to targets hit."
-     ManualLines(2)="Effective at close range and while moving."
-     SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
-     PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
-     MagAmmo=1
-	 bNoMag=True
-	 InventorySize=3
-     WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
-     WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     bUseSights=False
-     GunLength=0.000000
-     bAimDisabled=True
-     FireModeClass(0)=Class'BWBPRecolorsPro.X8PrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.X8SecondaryFire'
-     SelectAnimRate=2.500000
-     PutDownAnimRate=2.000000
-     PutDownTime=0.200000
-     BringUpTime=0.400000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.700000
-     CurrentRating=0.700000
-     bMeleeWeapon=True
-     Description="A counterpart to Enravion�s X3 Knife, the X8 Ballistic Knife is the Eastern Bloc�s preferred way to deal with CQC enemies. While primarily used as a bayonet on the venerable AK490, the X8 is still quite effective in hand to hand fighting thanks to its lethally sharp blade. When opponents are too far to gut personally, the unique gas propellant mechanism inside the hilt of the knife lets the user turn their knife into a fast moving spear. Several unfortunate accidents have caused the X8 to be considered unfit for civilian use."
-     Priority=13
-     HudColor=(B=25,G=25,R=200)
-     CenteredOffsetY=7.000000
-     CenteredRoll=0
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     GroupOffset=7
-     PickupClass=Class'BWBPRecolorsPro.X8Pickup'
-     PlayerViewOffset=(X=20.000000,Z=-10.000000)
-     AttachmentClass=Class'BWBPRecolorsPro.X8Attachment'
-     IconMaterial=Texture'BallisticRecolors3TexPro.SmallIcon_X8'
-     IconCoords=(X2=128,Y2=32)
-     ItemName="X8 Ballistic Knife"
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.BalKnife_FP'
-     DrawScale=0.300000
+	bCanBlock=False
+	KnifeBone="Blade"
+	PinBone="Pin"
+	PinPullSound=(Sound=Sound'BallisticSounds3.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.600000,bAtten=True)
+	PlayerSpeedFactor=1.150000
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.BigIcon_X8'
+	BigIconCoords=(Y1=25,Y2=230)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	ManualLines(0)="Slashes rapidly with the knife."
+	ManualLines(1)="When held, readies the ballistic knife. When released, the knife is fired in a straight trajectory, dealing good damage to targets hit."
+	ManualLines(2)="Effective at close range and while moving."
+	SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
+	PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
+	MagAmmo=1
+	bNoMag=True
+	InventorySize=3
+	WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bUseSights=False
+	GunLength=0.000000
+	bAimDisabled=True
+	FireModeClass(0)=Class'BWBPRecolorsPro.X8PrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.X8SecondaryFire'
+	SelectAnimRate=2.500000
+	PutDownAnimRate=2.000000
+	PutDownTime=0.200000
+	BringUpTime=0.400000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.700000
+	CurrentRating=0.700000
+	bMeleeWeapon=True
+	Description="A counterpart to Enravion�s X3 Knife, the X8 Ballistic Knife is the Eastern Bloc�s preferred way to deal with CQC enemies. While primarily used as a bayonet on the venerable AK490, the X8 is still quite effective in hand to hand fighting thanks to its lethally sharp blade. When opponents are too far to gut personally, the unique gas propellant mechanism inside the hilt of the knife lets the user turn their knife into a fast moving spear. Several unfortunate accidents have caused the X8 to be considered unfit for civilian use."
+	Priority=13
+	HudColor=(B=25,G=25,R=200)
+	CenteredOffsetY=7.000000
+	CenteredRoll=0
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	GroupOffset=7
+	PickupClass=Class'BWBPRecolorsPro.X8Pickup'
+	PlayerViewOffset=(X=20.000000,Z=-10.000000)
+	AttachmentClass=Class'BWBPRecolorsPro.X8Attachment'
+	IconMaterial=Texture'BallisticRecolors3TexPro.SmallIcon_X8'
+	IconCoords=(X2=128,Y2=32)
+	ItemName="X8 Ballistic Knife"
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.BalKnife_FP'
+	DrawScale=0.300000
 }

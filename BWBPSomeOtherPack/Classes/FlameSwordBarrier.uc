@@ -84,7 +84,8 @@ defaultproperties
 {
      EffectWhenDestroyed=Class'BallisticProV55.IE_FireExplosion'
      StaticMesh=StaticMesh'BWBPSomeOtherPackStatic.FlameSword.FlameSword_Shield'
-     bStasis=False
+	 bStasis=False
+	 bUnlit=True
      bNetInitialRotation=True
      NetUpdateFrequency=10.000000
      DrawScale3D=(X=4.50000,Y=4.5000,Z=4.50000)

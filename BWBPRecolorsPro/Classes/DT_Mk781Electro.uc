@@ -14,10 +14,11 @@ defaultproperties
      DeathStrings(1)="%k's Mk.781 charged %o to 1.21 jiggawatts."
      DeathStrings(2)="%k's X-007 showed %o what licking 20 batteries is like."
      SimpleKillString="Mk781 Electroshock Shell"
-     FlashThreshold=5
+     FlashThreshold=40
      FlashV=(X=1500.000000,Y=1500.000000,Z=1500.000000)
      FlashF=-0.300000
-	 bDisplaceAim=True
+      bDisplaceAim=True
+     AimDisplacementDamageThreshold=40
      AimDisplacementDuration=0.800000
      InvasionDamageScaling=2.000000
      WeaponClass=Class'BWBPRecolorsPro.MK781Shotgun'

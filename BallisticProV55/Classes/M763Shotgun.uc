@@ -340,7 +340,7 @@ defaultproperties
      SightOffset=(X=5.000000,Z=12.900000)
 	 SightDisplayFOV=60.000000
 	 SightPivot=(Pitch=128)
-     SightingTime=0.400000
+     SightingTime=0.350000
      GunLength=48.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      AimSpread=0

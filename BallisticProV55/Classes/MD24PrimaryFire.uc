@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class MD24PrimaryFire extends BallisticRangeAttenFire;
 
@@ -32,7 +32,7 @@ function PlayFiring()
 defaultproperties
 {
      CutOffDistance=1536.000000
-     CutOffStartRange=256.000000
+     CutOffStartRange=512.000000
      TraceRange=(Min=4000.000000,Max=4000.000000)
      WaterRangeFactor=0.600000
      MaxWallSize=24.000000

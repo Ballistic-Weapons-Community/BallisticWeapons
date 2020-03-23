@@ -491,7 +491,7 @@ defaultproperties
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
      SightOffset=(X=-15.000000,Z=8.700000)
-     SightDisplayFOV=40.000000
+     SightDisplayFOV=60.000000
      SightingTime=0.200000
      SightAimFactor=0.150000
      AimAdjustTime=0.450000

@@ -488,10 +488,10 @@ defaultproperties
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=15000.000000
      ChaosAimSpread=3000
-	 RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.150000,OutVal=0.020000),(InVal=0.200000,OutVal=-0.080000),(InVal=0.300000),(InVal=0.400000,OutVal=-0.130000),(InVal=0.600000,OutVal=0.150000),(InVal=0.800000,OutVal=-0.150000),(InVal=1.000000,OutVal=0.000000)))
+	 RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.150000,OutVal=0.020000),(InVal=0.200000,OutVal=-0.050000),(InVal=0.300000),(InVal=0.400000,OutVal=-0.80000),(InVal=0.600000,OutVal=0.050000),(InVal=0.800000,OutVal=-0.030000),(InVal=1.000000,OutVal=0.000000)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.500000,OutVal=0.600000),(InVal=0.600000,OutVal=0.500000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.20000
-	 RecoilYFactor=0.25
+     RecoilXFactor=0.050000
+	 RecoilYFactor=0.1
      RecoilDeclineTime=1.500000
      FireModeClass(0)=Class'BWBPSomeOtherPack.XM20PrimaryFire'
      FireModeClass(1)=Class'BWBPSomeOtherPack.XM20SecondaryFire'

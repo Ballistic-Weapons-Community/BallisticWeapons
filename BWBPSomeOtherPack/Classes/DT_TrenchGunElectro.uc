@@ -1,24 +1,22 @@
 //=============================================================================
-// DT_Mk781Electro.
-//
-// Damage type for the Mk781 lightning shell
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2005 RuneStorm. All Rights Reserved.
+// DT_TrenchGunElectro
+// 
+// Damage type for Trenchgun single electrics.
 //=============================================================================
 class DT_TrenchGunElectro extends DT_BWMiscDamage;
 
 defaultproperties
-{
+
      DeathStrings(0)="%k electrocuted %o with %kh modified trenchgun."
      DeathStrings(1)="%k's skeletized shotgun zapped %o to death."
      DeathStrings(2)="%k's electric shot exorcised a convulsing %o."
      SimpleKillString="Trenchgun Electroshock Shell"
-     FlashThreshold=5
+     FlashThreshold=30
      FlashV=(X=1500.000000,Y=1500.000000,Z=1500.000000)
-     FlashF=-0.300000
-	bDisplaceAim=True
-     AimDisplacementDuration=0.400000
+     FlashF=-0.100000
+     bDisplaceAim=True
+     AimDisplacementDamageThreshold=30
+     AimDisplacementDuration=0.100000
      InvasionDamageScaling=2.000000
      bExtraMomentumZ=True
      DamageIdent="Shotgun"

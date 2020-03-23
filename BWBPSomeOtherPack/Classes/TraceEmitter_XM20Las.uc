@@ -44,6 +44,7 @@ defaultproperties
          FadeOutStartTime=0.025000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
+         Opacity=0.75
          DetailMode=DM_SuperHigh
          StartLocationOffset=(X=100.000000)
          SizeScale(1)=(RelativeTime=0.680000,RelativeSize=0.300000)
@@ -51,7 +52,7 @@ defaultproperties
          StartSizeRange=(X=(Min=25.000000,Max=25.000000),Y=(Min=25.000000,Max=25.000000),Z=(Min=25.000000,Max=25.000000))
          InitialParticlesPerSecond=50000.000000
          Texture=Texture'BallisticEffects.GunFire.RailCoreWave'
-         LifetimeRange=(Min=0.350000,Max=0.350000)
+         LifetimeRange=(Min=0.20000,Max=0.20000)
          StartVelocityRange=(X=(Min=0.010000,Max=0.010000))
      End Object
      Emitters(0)=BeamEmitter'BWBPSomeOtherPack.TraceEmitter_XM20Las.BeamEmitter0'
@@ -74,13 +75,14 @@ defaultproperties
          FadeOutStartTime=0.192000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
+         Opacity=0.75
          SizeScale(0)=(RelativeSize=0.200000)
          SizeScale(1)=(RelativeTime=0.280000,RelativeSize=0.800000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=3.000000,Max=4.000000),Y=(Min=3.000000,Max=4.000000),Z=(Min=3.000000,Max=4.000000))
          InitialParticlesPerSecond=50000.000000
          Texture=Texture'BallisticRecolors3TexPro.BeamCannon.HMCSmokeCore2'
-         LifetimeRange=(Min=0.300000,Max=0.300000)
+         LifetimeRange=(Min=0.170000,Max=0.170000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object
      Emitters(1)=BeamEmitter'BWBPSomeOtherPack.TraceEmitter_XM20Las.BeamEmitter1'
@@ -115,7 +117,7 @@ defaultproperties
          Texture=Texture'BallisticRecolors3TexPro.BFG.PlasmaSubdivide'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
-         LifetimeRange=(Min=1.500000,Max=1.500000)
+         LifetimeRange=(Min=1.00000,Max=1.00000)
          StartVelocityRange=(X=(Max=5.000000))
      End Object
      Emitters(2)=SpriteEmitter'BWBPSomeOtherPack.TraceEmitter_XM20Las.SpriteEmitter0'
@@ -135,13 +137,14 @@ defaultproperties
          FadeOutStartTime=0.025000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
+         Opacity=0.75
          DetailMode=DM_SuperHigh
          SizeScale(1)=(RelativeTime=0.680000,RelativeSize=0.300000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=25.000000,Max=25.000000),Y=(Min=25.000000,Max=25.000000),Z=(Min=25.000000,Max=25.000000))
          InitialParticlesPerSecond=50000.000000
          Texture=Texture'BallisticEffects.GunFire.RailCoreWaveCap'
-         LifetimeRange=(Min=0.350000,Max=0.350000)
+         LifetimeRange=(Min=0.20000,Max=0.20000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object
      Emitters(3)=BeamEmitter'BWBPSomeOtherPack.TraceEmitter_XM20Las.BeamEmitter2'
@@ -164,7 +167,7 @@ defaultproperties
          InitialParticlesPerSecond=50000.000000
          Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=1.000000,Max=1.000000)
+         LifetimeRange=(Min=0.6600000,Max=0.660000)
          StartVelocityRange=(X=(Min=50.000000,Max=1000.000000),Y=(Min=-200.000000,Max=200.000000),Z=(Min=-200.000000,Max=200.000000))
      End Object
      Emitters(4)=SparkEmitter'BWBPSomeOtherPack.TraceEmitter_XM20Las.SparkEmitter0'
@@ -194,7 +197,7 @@ defaultproperties
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
          Texture=Texture'BallisticRecolors3TexPro.BeamCannon.HMCSmokeCore2'
-         LifetimeRange=(Min=0.500000,Max=0.700000)
+         LifetimeRange=(Min=0.300000,Max=0.450000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object
      Emitters(5)=BeamEmitter'BWBPSomeOtherPack.TraceEmitter_XM20Las.BeamEmitter3'
@@ -220,7 +223,7 @@ defaultproperties
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.625000,Max=0.625000)
+         LifetimeRange=(Min=0.45000,Max=0.45000)
          StartVelocityRange=(X=(Max=8000.000000))
      End Object
      Emitters(6)=SpriteEmitter'BWBPSomeOtherPack.TraceEmitter_XM20Las.SpriteEmitter1'
