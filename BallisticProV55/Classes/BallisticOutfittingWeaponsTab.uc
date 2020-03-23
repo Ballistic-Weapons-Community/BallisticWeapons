@@ -153,7 +153,7 @@ function LoadWeapons()
 		if (sortedPrimaries[i].InventoryGroup > lastIndex)
 		{
 			lastIndex = sortedPrimaries[i].InventoryGroup;
-			cb_Primary.MyListBox.List.Add(class'BallisticTab_OutfittingPro'.static.GetHeading(lastIndex),None,"",true);
+			cb_Primary.MyListBox.List.Add(class'BallisticWeaponClassInfo'.static.GetHeading(lastIndex),None,"",true);
 		}
 		
 		Item_Primary.AddItem(
@@ -176,7 +176,7 @@ function LoadWeapons()
 		if (sortedSecondaries[i].InventoryGroup > lastIndex)
 		{
 			lastIndex = sortedSecondaries[i].InventoryGroup;
-			cb_Secondary.MyListBox.List.Add(class'BallisticTab_OutfittingPro'.static.GetHeading(lastIndex),None,"",true);
+			cb_Secondary.MyListBox.List.Add(class'BallisticWeaponClassInfo'.static.GetHeading(lastIndex),None,"",true);
 		}
 		
 		Item_Secondary.AddItem(

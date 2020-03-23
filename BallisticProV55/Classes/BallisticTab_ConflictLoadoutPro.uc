@@ -256,7 +256,7 @@ simulated function InitWeaponLists ()
 				if (WI.InventoryGroup != lastIndex)
 				{
 					lastIndex = WI.InventoryGroup;
-					lb_Weapons.List.Add(class'BallisticTab_OutfittingPro'.static.GetHeading(lastIndex),,"Weapon Category",true);
+					lb_Weapons.List.Add(class'BallisticWeaponClassInfo'.static.GetHeading(lastIndex),, "Weapon Category", true);
 				}
 				
 				lb_Weapons.List.Add(WI.ItemName, , CLRI.FullInventoryList[i]);
@@ -492,23 +492,16 @@ function InternalOnChange(GUIComponent Sender)
 	
 	if (Sender==lb_Weapons.List)
 	{
-		l_WeapTitle.Caption = lb_Weapons.List.Get();
+		l_WeapTitle.Caption = lb_Weapons.List.SelectedText();
 		
 		//Section header.
 		if (lb_Weapons.List.IsSection())
 		{
-			switch (lb_Weapons.List.GetExtra())
-			{
-				case "Mc" : lb_Desc.SetContent("Miscellaneous non-weapons and equipment."); break;
-				case "HW" : lb_Desc.SetContent("Heavy Weapons.|These are cumbersome weapons that take up a lot of space and are generally more powerful than other weapon types."); break;
-				case "SW" : lb_Desc.SetContent("Standard Ballistic Weapons.|Average weapons that are fairly powerful, but do not place a huge burden on the wielder."); break;
-				case "SA" : lb_Desc.SetContent("Sidearms.|Light, fast handguns and similar weapons that provide lower than average firepower, but are smaller and generally quicker to use."); break;
-				case "MW" : lb_Desc.SetContent("Melee Weapons.|Light, fast, vicious weapons that are used to hack, stab and fight in melee combat.."); break;
-				case "GT" : lb_Desc.SetContent("Grenades and Traps.|Non firearm weapons that are used in a different manner. These are genreally small and powerful, but require different skills and tactics to use."); break;
-				case "OW" : lb_Desc.SetContent("Other Weapons.|Non-Ballistic Weapons like the standard UT weapons and other, unidentified weapons."); break;
-			}
+			lb_Desc.SetContent(class'BallisticWeaponClassInfo'.static.GetClassDescription(lb_Weapons.List.SelectedText()));
+			Pic_Weapon.Image = None;
 			return;
 		}
+
 		//Check for items which have already been loaded.
 		if (lb_Weapons.List.GetObject() != None)
 		{
