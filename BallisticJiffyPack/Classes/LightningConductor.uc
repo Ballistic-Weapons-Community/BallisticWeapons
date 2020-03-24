@@ -24,6 +24,8 @@ var		int							HitCounter, OldHitCounter;
 var		vector						EffectStart, EffectEnd;
 var		Pawn						EffectSource, EffectDest;
 
+replication
+{
 	reliable if (Role == ROLE_Authority)
 		HitCounter, EffectStart, EffectEnd, EffectSource, EffectDest; 
 }
