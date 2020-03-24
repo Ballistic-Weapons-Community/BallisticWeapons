@@ -35,18 +35,18 @@ simulated function UpdatePrecacheMaterials()
 simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M925.M925MuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.DesertEagle.GoldEaglePickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.DesertEagle.EaglePickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticProExp.DesertEagle.GoldEaglePickup'
+     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticProExp.DesertEagle.EaglePickup'
      PickupDrawScale=1.000000
      InventoryType=Class'BWBPRecolorsPro.AH250Pistol'
      RespawnTime=20.000000
      PickupMessage="You picked up the AH250 'Hawk' scoped pistol."
      PickupSound=Sound'BallisticSounds2.MRT6.MRT6Pullout'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.DesertEagle.GoldEaglePickup'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.DesertEagle.EaglePickup'
      Physics=PHYS_None
      CollisionHeight=4.000000
 }
