@@ -16,5 +16,6 @@ static function UpdateStreaks(string new_killstreaks[2])
 
 defaultproperties 
 {
-	
+	Killstreaks(0)="BallisticProV55.MRocketLauncher"
+	Killstreaks(1)="BallisticProV55.RX22AFlamer"
 }
