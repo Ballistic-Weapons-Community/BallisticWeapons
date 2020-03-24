@@ -86,7 +86,7 @@ defaultproperties
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
-     MagAmmo=3
+     MagAmmo=4
      CockAnim="CockQuick"
      CockAnimRate=1.400000
      CockSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Cock')
