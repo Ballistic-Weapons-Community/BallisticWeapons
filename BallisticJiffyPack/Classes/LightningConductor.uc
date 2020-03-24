@@ -14,6 +14,7 @@ var   float 						ConductRadius;
 var   float							ConductDelay;
 var() class<BCTraceEmitter> 		TracerClass;
 var() class<BallisticDamageType>	CDamageType;
+var   float							ChargePower;
 
 var	  int 							DmgScalar;
 var   int 							CurrentTargetIndex;
@@ -95,6 +96,10 @@ function Initialize(Pawn InitialTarget)
 	ShockTargets.Insert(ShockTargets.Length, 1);
 	ShockTargets[0] = InitialTarget;
 
+	//Scale up max conductors, conduct radius, etc. according to ChargePower
+	ConductRadius = 128 * (1 + ChargePower);
+	MaxConductors = 4 * (1 + ChargePower);
+
 	//Check for nearby pawns
 	ForEach CollidingActors(class'Pawn', PVictim, ConductRadius)
 	{		
@@ -110,7 +115,7 @@ function Initialize(Pawn InitialTarget)
 			ShockTargets.Insert(ShockTargets.Length, 1);
 			ShockTargets[ShockTargets.Length - 1] = PVictim;
 
-			if (ShockTargets.Length == MaxConductors)	//Any extra pawns beyond this causes problems? Needs looking into
+			if (ShockTargets.Length == MaxConductors)
 				break;	
 		}
 	}
@@ -228,7 +233,7 @@ function Propagate()
 	DrawShock(src.Location, dest.Location);
 	ReplicateShock(src.Location, dest.Location, src, dest);
 	
-	class'BallisticDamageType'.static.GenericHurt(dest, Max(1, Damage/CurrentTargetIndex), Instigator, dest.Location, vect(0,0,0), CDamageType);
+	class'BallisticDamageType'.static.GenericHurt(dest, Max(1, (Damage)/(CurrentTargetIndex^(1/(1+2*ChargePower)))), Instigator, dest.Location, vect(0,0,0), CDamageType);
 
 	++CurrentTargetIndex;
 

@@ -99,21 +99,22 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 	{
 		LConductor.Instigator = Instigator;
 		LConductor.Damage = TransferCDamage;
+		LConductor.ChargePower = ChargePower;
 		LConductor.Initialize(Pawn(Target));
 	}
 }
 
 defaultproperties
 {
-	MaxCharge = 3.0f
-	ChargeGainPerSecond = 1.5f
+	MaxCharge = 4.0f
+	ChargeGainPerSecond = 1.0f
 	ChargeDecayPerSecond = 9.0f
 	LightningSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunCrackle',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
 	TraceRange=(Min=30000.000000,Max=30000.000000)
 	WaterRangeFactor=0.800000
 	MaxWallSize=48.000000
 	MaxWalls=1
-	Damage=35.000000
+	Damage=34.000000
 	DamageHead=55.000000
 	DamageLimb=23.000000
 	WaterRangeAtten=0.800000
