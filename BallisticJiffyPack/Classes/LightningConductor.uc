@@ -20,42 +20,52 @@ var   int 							CurrentTargetIndex;
 var   Vector 						VertDisplacement;
 var   array<Pawn> 					ShockTargets;
 
-replication
-{
-	/* Azarael:
+var		int							HitCounter, OldHitCounter;
+var		vector						EffectStart, EffectEnd;
+var		Pawn						EffectSource, EffectDest;
 
-	replication of dynamic arrays (var array<ClassName> VarName) is unsupported
-	replication of static arrays (var ClassName VarName[n]) is questionable
-	
-	there are two ways to handle this 
-
-	the standard idiom to use for replication of hits per WeaponAttachment classes:
-
-	an integer for hit number, a vector for start, and a vector (or Actor) for endpoint
-	all of them are replicated
-
-	set the start vector and the endpoint for a given hit, then increment hit count integer
-	listen in client postnetreceive for updates to hit count integer
-	to force replication, set NetUpdateTime = Level.TimeSeconds - 1 after each new hit
-	PostNetReceive will be called for every update and they should be received in order
-
-	(though since you have a delay on your hit propagation, you should be OK)
-
-	the second way:
-
-	you can replicate functions from server to client so long as this actor is owned by a PlayerController (which it is)
-	so you can call an unreliable replicated function with the information for each hit to cause the client to propagate it
-	*/
-
-	// we don't care if the client misses an effect draw
-	unreliable if (Role == ROLE_Authority)
-		ClientDrawShock;
+	reliable if (Role == ROLE_Authority)
+		HitCounter, EffectStart, EffectEnd, EffectSource, EffectDest; 
 }
 
 //============================================================
-// ClientDrawShock (Replicated server -> client)
+// PostNetReceive
 //
-// Effects replication
+// Updates replicated shock effect variables
+//============================================================
+function ReplicateShock(vector start, vector end, Pawn src, Pawn dest)
+{
+	EffectStart = start;
+	EffectEnd = end;
+	
+	EffectSource = src;
+	EffectDest = dest;
+
+	HitCounter++;
+
+	NetUpdateTime = Level.TimeSeconds - 1;
+}
+
+//============================================================
+// PostNetReceive
+//
+// Processes replicated shock effect variables on client
+//============================================================
+simulated function PostNetReceive()
+{
+	if (HitCounter != OldHitCounter)
+	{
+		OldHitCounter = HitCounter;
+		ClientDrawShock(EffectStart, EffectEnd, EffectSource, EffectDest);
+	}
+
+	Super.PostNetReceive();
+}
+
+//============================================================
+// ClientDrawShock
+//
+// Draws shock effect on network client
 //============================================================
 simulated function ClientDrawShock(vector start, vector end, Pawn src, Pawn dest)
 {
@@ -214,7 +224,7 @@ function Propagate()
 	}
 		
 	DrawShock(src.Location, dest.Location);
-	ClientDrawShock(src.Location, dest.Location, src, dest);
+	ReplicateShock(src.Location, dest.Location, src, dest);
 	
 	class'BallisticDamageType'.static.GenericHurt(dest, Max(1, Damage/CurrentTargetIndex), Instigator, dest.Location, vect(0,0,0), CDamageType);
 
@@ -238,14 +248,17 @@ function Kill()
 
 defaultproperties
 {
+	bHidden=True
+	bNetNotify=True
 	bAlwaysRelevant=True
 	RemoteRole=ROLE_SimulatedProxy
+
 	Damage=30 // sanity
 	CurrentTargetIndex=1
 	ConductDelay=0.060000
 	VertDisplacement=(Z=20.000000)
 	TracerClass=Class'BallisticJiffyPack.TraceEmitter_LightningConduct'
-	bHidden=True
+
 	CDamageType=Class'BallisticJiffyPack.DT_LightningConduct'
 	ConductRadius=1024.000000
 	MaxConductors=16 // really don't need any more than this tbh

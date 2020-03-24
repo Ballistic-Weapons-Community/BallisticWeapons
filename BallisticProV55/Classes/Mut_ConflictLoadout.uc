@@ -106,6 +106,7 @@ function Mutate(string MutateString, PlayerController Sender)
 function AddWeapon(PlayerController Sender, array<String> split_string)
 {	
 	local int i;
+	local BC_WeaponInfoCache.WeaponInfo WI;
 
 	if (Level.NetMode != NM_Standalone && !Sender.PlayerReplicationInfo.bAdmin)
 	{
@@ -125,14 +126,30 @@ function AddWeapon(PlayerController Sender, array<String> split_string)
 		{
 			class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bRed = true;
 			class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bBlue = true;
-			Sender.ClientMessage("Mutate AddWeapon: Successfully enabled "@split_string[1]); 
+			Sender.ClientMessage("Mutate AddWeapon: Successfully enabled "$split_string[1]$" for Conflict Loadout play."); 
 
 			class'Mut_ConflictLoadout'.static.StaticSaveConfig();
 			return;	
 		}
 	}
 
-	Sender.ClientMessage("Mutate AddWeapon: Couldn't find "@split_string[1]@" in the conflict list."); 
+	WI = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(split_string[1]);
+
+	if (!(WI.ClassName ~= split_string[1]))
+	{
+		Sender.ClientMessage("Mutate AddWeapon: Couldn't find "@split_string[1]@" in the cache."); 
+		return;
+	}
+
+	class'Mut_ConflictLoadout'.default.ConflictWeapons.Insert(i, 1);
+
+	class'Mut_ConflictLoadout'.default.ConflictWeapons[i].ClassName = split_string[1];
+	class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bRed = true;
+	class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bBlue = true;
+
+	class'Mut_ConflictLoadout'.static.StaticSaveConfig();
+
+	Sender.ClientMessage("Mutate AddWeapon: Successfully added "$split_string[1]$" to the Conflict Loadout list."); 
 }
 
 function RemoveWeapon(PlayerController Sender, array<String> split_string)

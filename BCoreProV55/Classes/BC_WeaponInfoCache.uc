@@ -38,7 +38,7 @@ struct WeaponInfo
 	var() config IntBox		SmallIconCoords;
 	var() config int			InventoryGroup;
 	var() config Material	BigIconMaterial;
-	var()	config byte		InventorySize;
+	var() config byte		InventorySize;
 	var() config bool			bIsBW;
 };
 
