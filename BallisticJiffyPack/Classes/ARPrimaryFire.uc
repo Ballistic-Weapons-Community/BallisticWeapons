@@ -62,15 +62,17 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-     CutOffDistance=1536.000000
-     CutOffStartRange=512.000000
-     TraceCount=9
+	 HipSpreadFactor=1.500000
+	 MaxSpreadFactor=1.500000
+     CutOffDistance=1280.000000
+     CutOffStartRange=384.000000
+     TraceCount=8
      TracerClass=Class'BallisticJiffyPack.TraceEmitter_ShotgunHE'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=4000.000000,Max=6000.000000)
-     Damage=13.000000
-     DamageHead=13.000000
-     DamageLimb=13.000000
+     Damage=10.000000
+     DamageHead=10.000000
+     DamageLimb=10.000000
      RangeAtten=0.300000
      DamageType=Class'BallisticJiffyPack.DT_ARShotgun'
      DamageTypeHead=Class'BallisticJiffyPack.DT_ARShotgunHead'
@@ -92,7 +94,7 @@ defaultproperties
      BallisticFireSound=(Sound=SoundGroup'BallisticSounds2.XMV-850.XMV-Fire-3')
      FireEndAnim=
      FireAnimRate=2.250000
-     FireRate=0.290000
+     FireRate=0.300000
      AmmoClass=Class'BallisticJiffyPack.Ammo_ARShotgun'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
