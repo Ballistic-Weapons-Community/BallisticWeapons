@@ -95,7 +95,7 @@ function Initialize(Pawn InitialTarget)
 	local float ShortestDistance;
 
 	ShockTargets.Insert(ShockTargets.Length, 1);
-	ShockTargets[0] = InitialTarget;
+	ShockTargets[ShockTargets.Length - 1] = InitialTarget;
 
 	//Scale up max conductors, conduct radius, etc. according to ChargePower. Now uses default values, easier to balance
 	ConductRadius = default.ConductRadius * (1 + (SquareCoefficient*ChargePower*ChargePower));
@@ -112,7 +112,7 @@ function Initialize(Pawn InitialTarget)
 
 		// first shock target is not obtained from CollidingActors
 		// so we need to explicitly check it's not this one
-		if (PVictim == ShockTargets[0])
+		if (PVictim == InitialTarget)
 			continue;
 		
 		//Gather all nearby pawns. If "valid", will add to list of pawns to affect
