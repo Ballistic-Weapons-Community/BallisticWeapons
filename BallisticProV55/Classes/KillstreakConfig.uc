@@ -4,14 +4,18 @@ class KillstreakConfig extends Object
 
 var() globalconfig string		Killstreaks[2];
 
-static function UpdateStreaks(string new_killstreaks[2])
+static function UpdateStreaks(string ks1, string ks2)
 {
 	local int i;
-	
-	default.Killstreaks[0] = new_killstreaks[0];
-	default.Killstreaks[1] = new_killstreaks[1];
 
-	StaticSaveConfig();
+	Log("KillstreakConfig: Attempting killstreak update: "$ks1$", "$ks2);
+	
+	default.Killstreaks[0] = ks1;
+	default.Killstreaks[1] = ks2;
+
+	class'KillstreakConfig'.static.StaticSaveConfig();
+
+	Log("KillstreakConfig: Updated killstreaks:"$default.Killstreaks[0]$", "$default.Killstreaks[1]);
 }
 
 defaultproperties 

@@ -108,6 +108,11 @@ function Initialize(Pawn InitialTarget)
 			FoundInstigator = True;
 			continue;
 		}
+
+		// first shock target is not obtained from CollidingActors
+		// so we need to explicitly check it's not this one
+		if (PVictim == ShockTargets[0])
+			continue;
 		
 		//Gather all nearby pawns. If "valid", will add to list of pawns to affect
 		if (ValidTarget(Instigator, PVictim, Level))

@@ -1,11 +1,11 @@
 class MRS138TazerLineEffect extends BallisticEmitter;
 
-var Pawn								Target;
-var Inv_Slowdown					Slow;
+var Pawn					Target;
+var Inv_Slowdown			Slow;
 var MRS138TazerPlayerEffect	Flash;
 
-var int 							MaxRange;
-var float 						EffectInterval;
+var int 					MaxRange;
+var float 					EffectInterval;
 
 simulated function SetTarget(Pawn Targ)
 {
@@ -22,6 +22,7 @@ simulated function SetTarget(Pawn Targ)
 	}
 
 	Target = Targ;
+
 	if (Instigator.Role == ROLE_Authority)
 	{
 		SetTimer(EffectInterval, True);
@@ -36,7 +37,9 @@ simulated function SetTarget(Pawn Targ)
 		Slow.AddSlow(0.4, EffectInterval * 1.5);
 	}
 		
-	if (Flash == None)
+	// don't spawn this shit for the player who has been hit
+	// it's blinding
+	if (!Target.IsLocallyControlled() && Flash == None)
 		Flash = spawn(class'MRS138TazerPlayerEffect',Targ);
 }
 
@@ -68,8 +71,9 @@ simulated function UpdateTargets()
 		log("UpdateTargets: Target Loc:"@Target.Location@"MyLoc:"@Location@"Rotation:"@Rotation);
 	*/
 
-	if (Flash == None)
+	if (Flash == None && !Target.IsLocallyControlled())
 		Flash = spawn(class'MRS138TazerPlayerEffect',Target);
+
 	Dir = Normal(Location - Target.Location);
 	Flash.SetLocation(Target.Location + Dir * Target.CollisionRadius);
 	Flash.SetRotation(rotator(Dir));
