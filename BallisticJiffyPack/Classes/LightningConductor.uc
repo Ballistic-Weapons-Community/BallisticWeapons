@@ -143,9 +143,10 @@ function Initialize(Pawn InitialTarget)
 		ShockTargets.Insert(ShortestDistIndex + 1, 1);
 		ShockTargets[ShortestDistIndex + 1] = Instigator;
 	}
-	
 
-	else 	
+	if (ShockTargets.Length == 1) // no targets found, no work to do
+		Destroy();
+	else
 		StartElectrocution();
 }
 
