@@ -62,8 +62,8 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-	 HipSpreadFactor=1.500000
-	 MaxSpreadFactor=1.500000
+	 HipSpreadFactor=3.000000
+	 MaxSpreadFactor=3.500000
      CutOffDistance=1280.000000
      CutOffStartRange=384.000000
      TraceCount=8
