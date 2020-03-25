@@ -25,9 +25,6 @@ var bool bWeaponsLoaded;
 
 var() array<String>								DefaultStreaks;
 
-var string		KS1;
-var string		KS2;
-
 var() localized string QuickListText;
 
 var localized string ReceivingText[2];
@@ -46,11 +43,11 @@ function Initialize()
 	if (bInitialized)
 		return;
 
-	KS1 = class'KillstreakConfig'.default.Killstreaks[0];
-	KS2 = class'KillstreakConfig'.default.Killstreaks[1];
+	Item_Streak1.OnItemChange = OnLoadoutItemChange;
+	Item_Streak2.OnItemChange = OnLoadoutItemChange;
 
-	Item_Streak1.SetItem(KS1);
-	Item_Streak2.SetItem(KS2);
+	Item_Streak1.SetItem(class'KillstreakConfig'.default.Killstreaks[0]);
+	Item_Streak2.SetItem(class'KillstreakConfig'.default.Killstreaks[1]);
 
 	KLRI = class'Mut_Killstreak'.static.GetKLRI(PlayerOwner().PlayerReplicationInfo);
 	
@@ -125,8 +122,6 @@ function LoadWeapons()
 
 	// Load the weapons into their GUILoadOutItems
 
-	Log("BallisticTab_Killstreaks: Loading weapons...");
-
 	for(i=0; i < KLRI.GroupLength(0); i++)
 	{
 		if (GetItemInfo(0, i, IC, IMat, ICN, ICrds))
@@ -156,8 +151,6 @@ function LoadWeapons()
 	l_Receiving.Caption = "";
 
 	bWeaponsLoaded=True;
-
-	Log("BallisticTab_Killstreaks: Weapons loaded. Killstreaks can now be saved.");
 }
 
 // Get Name, BigIconMaterial and classname of weapon at index? in group?
@@ -194,23 +187,25 @@ function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
 	return false;
 }
 
-function UpdateStrings()
+function SaveStreaks()
 {
+	if (!bWeaponsLoaded)
+		return;
+	
 	if (Item_Streak1.Items.length > Item_Streak1.Index)
-		KS1 = Item_Streak1.Items[Item_Streak1.Index].Text;
-	else 
-	{
-		Log("BallisticTab_Killstreaks: Unable to update killstreak 1: Index out of range ("$Item_Streak1.Index$"/"$Item_Streak1.Items.length);
-		KS1 = class'KillstreakConfig'.default.Killstreaks[0];
-	}
+		class'KillstreakConfig'.default.Killstreaks[0] = Item_Streak1.Items[Item_Streak1.Index].Text;
 
 	if (Item_Streak2.Items.length > Item_Streak2.Index)
-		KS2 = Item_Streak2.Items[Item_Streak2.Index].Text;
-	else 
-	{
-		Log("BallisticTab_Killstreaks: Unable to update killstreak 2: Index out of range ("$Item_Streak2.Index$"/"$Item_Streak2.Items.length);
-		KS2 = class'KillstreakConfig'.default.Killstreaks[1];
-	}
+		class'KillstreakConfig'.default.Killstreaks[1] = Item_Streak2.Items[Item_Streak2.Index].Text;
+	
+	class'KillstreakConfig'.static.StaticSaveConfig();
+	
+	KLRI.UpdateStreakChoices();
+}
+
+function OnLoadoutItemChange(GUIComponent Sender)
+{
+	SaveStreaks();
 }
 
 function InternalOnChange(GUIComponent Sender)
@@ -219,34 +214,16 @@ function InternalOnChange(GUIComponent Sender)
 		return;
 		
 	if (Sender == cb_Streak1)
+	{
 		Item_Streak1.SetItem(cb_Streak1.GetExtra());
-
-	else if (Sender == cb_Streak2)
-		Item_Streak2.SetItem(cb_Streak2.GetExtra());
-
-	else 
-		return;
-
-	UpdateStrings();
-}
-
-event Closed( GUIComponent Sender, bool bCancelled )
-{
-	Super.Closed(Sender, bCancelled);
-
-	UpdateStreaks();
-}
-
-function UpdateStreaks()
-{
-	if (!bWeaponsLoaded)
-		return;
-
-	Log("BallisticTab_Killstreaks: Saving killstreak update...");
-
-	class'KillstreakConfig'.static.UpdateStreaks(KS1, KS2);
+		Item_Streak1.OnItemChange(Item_Streak1);
+	}
 	
-	KLRI.UpdateStreakChoices();
+	else if (Sender == cb_Streak2)
+	{
+		Item_Streak2.SetItem(cb_Streak2.GetExtra());
+		Item_Streak2.OnItemChange(Item_Streak2);
+	}
 }
 
 defaultproperties

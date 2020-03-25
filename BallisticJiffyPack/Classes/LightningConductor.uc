@@ -126,7 +126,7 @@ function Initialize(Pawn InitialTarget)
 		}
 	}
 
-	//If instigator in ConductRadius, find the shortest distance between all pawns and instigator - insert instigator into array between pawn(s) with least distance
+	//If instigator in ConductRadius, find the shortest distance between all pawns and instigator - insert instigator into array after pawn with least distance
 	ShortestDistance = ConductRadius;
 
 	if (FoundInstigator)
@@ -140,12 +140,11 @@ function Initialize(Pawn InitialTarget)
 			}
 		}
 		
-		ShockTargets.Insert(ShortestDistIndex, 1);
-		ShockTargets[ShortestDistIndex] = Instigator;
+		ShockTargets.Insert(ShortestDistIndex + 1, 1);
+		ShockTargets[ShortestDistIndex + 1] = Instigator;
 	}
 	
-	if (ShockTargets.Length == 1) // no targets found, no work to do
-		Destroy();
+
 	else 	
 		StartElectrocution();
 }

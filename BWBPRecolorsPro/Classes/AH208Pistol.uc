@@ -173,8 +173,8 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
-     SightOffset=(X=-20.000000,Y=-7.400000,Z=45.299999)
-     SightDisplayFOV=60.000000
+     SightOffset=(X=20.000000,Y=-7.400000,Z=45.299999)
+     SightDisplayFOV=40.000000
      SightingTime=0.25
 	 SightZoomFactor=0
      GunLength=4.000000
