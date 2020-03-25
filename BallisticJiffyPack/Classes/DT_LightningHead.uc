@@ -31,17 +31,16 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%k's precision sniping sent %o's head spiralling into the distance."
-     DeathStrings(1)="%k's R78 bullet turned %o's face into hamburger."
-     DeathStrings(2)="%o's head was preyed upon by %k's Raven."
-     DeathStrings(3)="%k's expert marksmanship brought an end to %o's paltry attempts at stealth."
+     DeathStrings(0)="%o's head was fried by %k's lightning rifle."
+     DeathStrings(1)="%k's lightning bolt cooked %o's face to a perfect temperature in an instant."
+     DeathStrings(2)="%o felt the full force of a lightning strike to the head from %k's lightning bolt."
      AimedString="Scoped"
      bSnipingDamage=True
      bHeaddie=True
      InvasionDamageScaling=2.000000
      DamageIdent="Sniper"
      WeaponClass=Class'BallisticJiffyPack.LightningRifle'
-     DeathString="%o's head was removed from the scene by %k's R78."
+     DeathString="%o's head was fried by %k's lightning rifle."
      FemaleSuicide="%o sniped off her own head."
      MaleSuicide="%o sniped off his own head."
      bAlwaysSevers=True

@@ -10,10 +10,10 @@ class Ammo_ARShotgun extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=168
-     InitialAmount=48
+     MaxAmmo=140
+     InitialAmount=40
      IconFlashMaterial=Shader'BallisticRecolors3TexPro.SK410.AmmoIcon_SK410Flash'
      PickupClass=Class'BallisticJiffyPack.AP_ARShotgun'
      IconMaterial=Texture'BallisticRecolors3TexPro.SK410.AmmoIcon_SK410'
-     ItemName="AR Magazine"
+     ItemName="RCS Magazine"
 }

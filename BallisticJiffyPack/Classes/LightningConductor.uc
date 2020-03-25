@@ -15,6 +15,7 @@ var   float							ConductDelay;
 var() class<BCTraceEmitter> 		TracerClass;
 var() class<BallisticDamageType>	CDamageType;
 var   float							ChargePower;
+var   float							SquareCoefficient;
 
 var	  int 							DmgScalar;
 var   int 							CurrentTargetIndex;
@@ -96,9 +97,9 @@ function Initialize(Pawn InitialTarget)
 	ShockTargets.Insert(ShockTargets.Length, 1);
 	ShockTargets[0] = InitialTarget;
 
-	//Scale up max conductors, conduct radius, etc. according to ChargePower
-	ConductRadius = 128 * (1 + ChargePower);
-	MaxConductors = 4 * (1 + ChargePower);
+	//Scale up max conductors, conduct radius, etc. according to ChargePower. Now uses default values, easier to balance
+	ConductRadius = default.ConductRadius * (1 + (SquareCoefficient*ChargePower*ChargePower));
+	MaxConductors = default.MaxConductors * (1 + ChargePower);
 
 	//Check for nearby pawns
 	ForEach CollidingActors(class'Pawn', PVictim, ConductRadius)
@@ -264,14 +265,12 @@ defaultproperties
 	bNetNotify=True
 	bAlwaysRelevant=True
 	RemoteRole=ROLE_SimulatedProxy
-
-	Damage=30 // sanity
 	CurrentTargetIndex=1
 	ConductDelay=0.060000
 	VertDisplacement=(Z=20.000000)
 	TracerClass=Class'BallisticJiffyPack.TraceEmitter_LightningConduct'
-
 	CDamageType=Class'BallisticJiffyPack.DT_LightningConduct'
-	ConductRadius=1024.000000
-	MaxConductors=16 // really don't need any more than this tbh
+	SquareCoefficient=0.083333
+	ConductRadius=768.000000
+	MaxConductors=3
 }
