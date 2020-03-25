@@ -32,9 +32,9 @@ defaultproperties
      WaterRangeFactor=0.800000
      MaxWallSize=48.000000
      MaxWalls=1
-     Damage=70.000000
-     DamageHead=140.000000
-     DamageLimb=55.000000
+     Damage=80.000000
+     DamageHead=120.000000
+     DamageLimb=60.000000
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticJiffyPack.DT_LightningRifle'
      DamageTypeHead=Class'BallisticJiffyPack.DT_LightningHead'

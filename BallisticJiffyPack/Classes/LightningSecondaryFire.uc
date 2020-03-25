@@ -16,7 +16,7 @@ var		float					MaxCharge, ChargeGainPerSecond, ChargeDecayPerSecond;
 
 simulated event ModeDoFire()
 {
-	TransferCDamage = default.Damage * (1 + ChargePower);
+	TransferCDamage = default.Damage * (1 + (0.25*ChargePower));
 
 	Load = CalculateAmmoUse();
 	
@@ -66,7 +66,7 @@ function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor
 	local float DefDmg;
 	DefDmg = Super.GetDamage(Other, HitLocation, Dir, Victim, DT);
 	
-	return DefDmg * (1 + ChargePower);
+	return DefDmg * (1 + (0.25*ChargePower));
 }
 
 simulated function ServerPlayFiring()
@@ -114,9 +114,9 @@ defaultproperties
 	WaterRangeFactor=0.800000
 	MaxWallSize=48.000000
 	MaxWalls=1
-	Damage=34.000000
-	DamageHead=55.000000
-	DamageLimb=23.000000
+	Damage=80.000000
+	DamageHead=120.000000
+	DamageLimb=60.000000
 	WaterRangeAtten=0.800000
 	DamageType=Class'BallisticJiffyPack.DT_LightningRifle'
 	DamageTypeHead=Class'BallisticJiffyPack.DT_LightningHead'

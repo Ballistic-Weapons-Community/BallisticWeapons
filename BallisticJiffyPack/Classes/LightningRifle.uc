@@ -80,9 +80,9 @@ defaultproperties
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_R78'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
-     ManualLines(0)="Bolt-action sniper rifle fire with explosive rounds. High damage, long range, slow fire rate and deals damage to targets near the struck target."
-     ManualLines(1)="Engages the scope."
-     ManualLines(2)="Does not use tracer rounds. Effective at long range and against clustered enemies."
+     ManualLines(0)="Uncharged lightning bolt shot. Deals reasonable damage for a small ammo cost."
+     ManualLines(1)="Charged lightning bolt. The rifle will fire when the fire key is released, or immediately upon becoming fully charged. Damage improves with charge, and more ammo is consumed."
+     ManualLines(2)="Upon releasing a charged lightning bolt, the electricity will arc between nearby players. The number of conducting players, radius and damage dropoff depends on the charge."
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
@@ -113,7 +113,7 @@ defaultproperties
      bNoCrosshairInScope=True
      SightPivot=(Roll=-1024)
      SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
-     SightingTime=0.400000
+     SightingTime=0.300000
 	 MinZoom=2.000000
      MaxZoom=8.000000
      ZoomStages=4
@@ -139,7 +139,7 @@ defaultproperties
      CurrentRating=0.800000
      bSniping=True
 	 bShowChargingBar=True
-     Description="Originally taken from the design of a bird hunting rifle, the R78 'Raven', is a favourite among military snipers and commando corps. Used to a great extent by the expert marksmen of the New European Army, the Raven, is extremely reliable and capable of incredible damage in a single shot. The added long distance sniping scope makes the R78 one of the most deadly weapons. Of course, the gun is only as good as the soldier using it, with a low clip capacity, long reload times and it's terrible ineffectiveness in close quarters combat."
+     Description="ARC-79 Lightning Rifle||Manufacturer: JAX Industrial Firm|Primary: Single lightning bolt|Secondary: Charged lightning bolt with arcing to nearby players"
      DisplayFOV=55.000000
      Priority=33
      HudColor=(B=50,G=50,R=200)
@@ -151,7 +151,7 @@ defaultproperties
      AttachmentClass=Class'BallisticJiffyPack.LightningAttachment'
      IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_R78'
      IconCoords=(X2=127,Y2=31)
-     ItemName="L78A2 Lightning Rifle"
+     ItemName="ARC-79 Lightning Rifle"
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=30
