@@ -43,7 +43,6 @@ defaultproperties
      PenetrateForce=150
      bPenetrate=True
      PDamageFactor=0.800000
-     bCockAfterFire=True
      MuzzleFlashClass=Class'BallisticJiffyPack.LightningFlashEmitter'
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      bBrassOnCock=True
@@ -53,7 +52,7 @@ defaultproperties
      FireChaos=0.800000
      BallisticFireSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunShot',Volume=1.600000,Radius=1024.000000)
      FireEndAnim=
-     FireRate=0.300000
+     FireRate=0.500000
      AmmoClass=Class'BallisticJiffyPack.Ammo_LightningRifle'
      ShakeRotMag=(X=400.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
