@@ -12,11 +12,11 @@ class LonghornClusterGrenadeAlt extends BallisticGrenade;
 
 var	float					ZBonus;
 var	int						ImpactCount; // Will automatically explode after this many impacts.
-var	Emitter				Flare;
-var	class<Emitter> 	FlareClass;
+var	Emitter					Flare;
+var	class<Emitter> 			FlareClass;
 var	bool					bFlareKilled;
 
-var protected const float		ArmingDelay;
+var protected const float	ArmingDelay;
 
 simulated function PostNetBeginPlay()
 {

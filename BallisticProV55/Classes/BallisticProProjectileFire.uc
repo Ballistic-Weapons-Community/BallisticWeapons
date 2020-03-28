@@ -116,7 +116,8 @@ simulated event ModeDoFire()
             NextFireTime += MaxHoldTime + FireRate;
         else
             NextFireTime = Level.TimeSeconds + FireRate;
-    }
+	}
+		/*
     else if (bBurstMode)
     {
 		BurstCount++;
@@ -131,7 +132,8 @@ simulated event ModeDoFire()
     		NextFireTime += FireRate * 0.75;
   			NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
   		}
-    }
+	}
+		*/
     else
     {
         NextFireTime += FireRate;

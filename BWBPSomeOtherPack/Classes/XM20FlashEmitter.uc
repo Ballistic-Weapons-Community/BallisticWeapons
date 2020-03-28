@@ -39,11 +39,12 @@ defaultproperties
          MaxParticles=1
 		 RotationOffset=(Roll=1000)
          StartLocationOffset=(X=2.000000)
+         StartSizeRange=(X=(Min=1.000000,Max=1.000000),Y=(Min=1.000000,Max=1.000000),Z=(Min=1.000000,Max=1.000000))
          SizeScale(0)=(RelativeSize=0.600000)
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.900000,Max=0.900000)
+         LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
          StartVelocityRange=(X=(Min=20.000000,Max=20.000000))
