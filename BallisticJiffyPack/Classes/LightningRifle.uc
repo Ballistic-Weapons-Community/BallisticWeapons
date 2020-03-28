@@ -11,32 +11,13 @@
 //=============================================================================
 class LightningRifle extends BallisticWeapon;
 
-var int 	                    TransferCDamage;
+var int 	                  TransferCDamage;
 var LightningSecondaryFire    AltMode;
 
 simulated function PostBeginPlay()
 {
      Super.PostBeginPlay();
      AltMode = LightningSecondaryFire(FireMode[1]);
-}
-
-simulated function PlayCocking(optional byte Type)
-{
-	if (Type == 2 && HasAnim(CockAnimPostReload))
-		SafePlayAnim(CockAnimPostReload, CockAnimRate, 0.2, , "RELOAD");
-	else
-		SafePlayAnim(CockAnim, CockAnimRate, 0.2, , "RELOAD");
-
-	if (SightingState != SS_None && Type != 1)
-		TemporaryScopeDown(0.5);
-}
-
-// Animation notify for when cocking action starts. Used to time sounds
-simulated function Notify_CockAimed()
-{
-	bNeedCock = False;
-	ReloadState = RS_Cocking;
-	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
 }
 
 simulated function float ChargeBar()

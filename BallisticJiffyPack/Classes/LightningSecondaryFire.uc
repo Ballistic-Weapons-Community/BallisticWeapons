@@ -12,50 +12,51 @@ class LightningSecondaryFire extends BallisticProInstantFire;
 var   	float 					ChargePower;	//Charge power of secondary fire - affects damage, ammo usage and conductivity
 var() 	BUtil.FullSound			LightningSound;	//Crackling sound to play
 var   	int 					TransferCDamage;	//Damage to transfer to LightningConductor actor
-var		float					MaxCharge, ChargeGainPerSecond, ChargeDecayPerSecond;
+var		float					ChargeGainPerSecond, ChargeDecayPerSecond, ChargeOvertime, MaxChargeOvertime;
+var		bool 					AmmoHasBeenCalculated;
 
 simulated event ModeDoFire()
 {
 	TransferCDamage = default.Damage * (1 + (0.25*ChargePower));
 
 	Load = CalculateAmmoUse();
+	AmmoHasBeenCalculated = true;
 	
 	super.ModeDoFire();
 }
 
-simulated function bool CanContinueCharge()
-{
-	return ChargePower < MaxCharge && ChargePower < BW.MagAmmo;
-}
-
 simulated function int CalculateAmmoUse()
-{
-	if (BW.MagAmmo < ChargePower)
+{	
+	if (ChargePower >= BW.MagAmmo)
 		return BW.MagAmmo;
-
-	if (MaxCharge < ChargePower)
-		return MaxCharge;
 
 	return Max(1, int(ChargePower));
 }
 
 simulated function float GetChargeFactor()
 {
-	return ChargePower / MaxCharge;
+	return ChargePower / BW.default.MagAmmo;
 }
 
 simulated function ModeTick(float DeltaTime)
 {	
 	if (bIsFiring)
 	{
-		ChargePower += ChargeGainPerSecond * DeltaTime;
+		ChargePower = FMin(BW.MagAmmo, ChargePower + ChargeGainPerSecond * DeltaTime);
 		
-		if (!CanContinueCharge())
+		if (ChargePower >= BW.MagAmmo)
+			ChargeOvertime += DeltaTime;
+		
+		if (ChargeOvertime >= MaxChargeOvertime)
 			bIsFiring = false;
 	}
-	else if (ChargePower > 0)
+	else if (ChargePower > 0 && AmmoHasBeenCalculated)
 	{
 		ChargePower = FMax(0.0, ChargePower - ChargeDecayPerSecond * DeltaTime);
+		if (ChargePower == 0)
+			AmmoHasBeenCalculated = false;
+			
+		ChargeOvertime = 0;
 	}
 	
 	Super.ModeTick(DeltaTime);
@@ -106,8 +107,8 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 
 defaultproperties
 {
-	MaxCharge = 4.0f
-	ChargeGainPerSecond = 1.0f
+	MaxChargeOvertime = 3.0f
+	ChargeGainPerSecond = 2.5f
 	ChargeDecayPerSecond = 9.0f
 	LightningSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunCrackle',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
 	TraceRange=(Min=30000.000000,Max=30000.000000)
@@ -123,7 +124,6 @@ defaultproperties
 	DamageTypeArm=Class'BallisticJiffyPack.DT_LightningRifle'
 	KickForce=6000
 	PDamageFactor=0.800000
-	bCockAfterFire=True
 	MuzzleFlashClass=Class'BallisticJiffyPack.LightningFlashEmitter'
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
 	bBrassOnCock=True
@@ -134,7 +134,7 @@ defaultproperties
 	BallisticFireSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunShot',Volume=1.600000,Radius=1024.000000)
 	bFireOnRelease=True
 	FireEndAnim=
-	FireRate=0.300000
+	FireRate=0.950000
 	AmmoClass=Class'BallisticJiffyPack.Ammo_LightningRifle'
 	AmmoPerFire=1
 	ShakeRotMag=(X=400.000000,Y=32.000000)
