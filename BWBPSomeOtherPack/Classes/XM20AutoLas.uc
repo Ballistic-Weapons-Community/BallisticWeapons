@@ -1,12 +1,3 @@
-//=============================================================================
-// LS-14 Laser Rifle
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2007 RuneStorm. All Rights Reserved.
-// Modified by Marc 'Sergeant Kelly' Moylan
-// Scope code by Kaboodles
-// Reloading code and handling change by Azarael, yaaaay!
-//=============================================================================
 class XM20AutoLas extends BallisticWeapon;
 
 var() name			BulletBone;
@@ -16,8 +7,10 @@ var bool			bOldShieldUp;
 
 var bool			bBroken; 			//Ooops, your broke the shield emitter.
 var() name			ShieldBone;			// Bone to attach SightFX to
-var 	int			ShieldPower;		// max 200
+var 	int			ShieldPower, ShieldPowerMax;
+var		float		ShieldGainPerSecond;
 var   float			ShieldPowerFraction; // recharge
+
 var() Sound       	ShieldHitSound;
 var() Sound       	ShieldOnSound;
 var() Sound       	ShieldOffSound;
@@ -25,8 +18,6 @@ var() Sound       	ShieldPierceSound;
 var() String		ShieldHitForce;
 var() byte			ShieldSoundVolume;
 
-var() int			ShieldDrainMax;
-var() float			ShieldMinDamageFactor;
 var() int 			PierceThreshold;
 
 var() Sound 		ChargingSound;      // charging sound
@@ -85,15 +76,15 @@ simulated function BringUp(optional Weapon PrevWeapon)
 }
 
 simulated function bool PutDown()
-{
-	if (Role == ROLE_Authority && bShieldUp)
-	{
-		bShieldUp=false;
-		AdjustShieldProperties();
-	}
-	
+{	
 	if (super.PutDown())
 	{
+		if (Role == ROLE_Authority && bShieldUp)
+		{
+			bShieldUp = false;
+			AdjustShieldProperties();
+		}
+
 		if (Arc != None)	
 			Arc.Destroy();
 		return true;
@@ -120,15 +111,6 @@ simulated function Notify_VentSteam()
 	class'BUtil'.static.InitMuzzleFlash (VentSteamL2, class'CoachSteam', DrawScale, self, 'Vent2L');
 	class'BUtil'.static.InitMuzzleFlash (VentSteamR1, class'CoachSteam', DrawScale, self, 'Vent1R');
 	class'BUtil'.static.InitMuzzleFlash (VentSteamR2, class'CoachSteam', DrawScale, self, 'Vent2R');
-
-	/*if (VentSteamL1 != None)
-		VentSteamL1.SetRelativeRotation(rot(0,32768,0));
-	if (VentSteamL2 != None)
-		VentSteamL2.SetRelativeRotation(rot(0,32768,0));
-	if (VentSteamR1 != None)
-		VentSteamR1.SetRelativeRotation(rot(0,32768,0));
-	if (VentSteamR2 != None)
-		VentSteamR2 != None.SetRelativeRotation(rot(0,32768,0));*/
 }
 
 simulated function Destroyed()
@@ -219,11 +201,11 @@ simulated function AdjustShieldProperties()
 
 simulated event Tick (float DT)
 {
-	if (ShieldPower < 200)
+	if (ShieldPower < ShieldPowerMax)
 	{
 		if (!bShieldUp)
 		{
-			ShieldPowerFraction += 5.0 * DT;
+			ShieldPowerFraction += ShieldGainPerSecond * DT;
 			
 			while (ShieldPowerFraction > 1.0f)
 			{
@@ -319,30 +301,15 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	if(!DamageType.default.bArmorStops)
         return;
 	
-	if (class<DTXM84GrenadeRadius>(DamageType) != None && bShieldUp)
-	{
-    	ClientTakeHit(200);
-		return;
-	}
-
     if (!CheckReflect(HitLocation, HitNormal, 0))
 		return;
 
 	Drain = Min(ShieldPower, Damage);
-	
-	Drain = Min(Drain, ShieldDrainMax);
-	
 	Reflect = MirrorVectorByNormal( Normal(Location - HitLocation), Vector(Instigator.Rotation) );
-		
-	if (class<DT_BWShell>(DamageType) == None)
-		Damage = Max(Damage * ShieldMinDamageFactor, Damage - Drain);
-	else if (Drain > 5)
-		Damage *= 0.5; // average case - can be tuned
-
+	Damage -= Drain;
 	Momentum *= 2;
-	
-	Drain = Min(ShieldPower, Drain);
 	ShieldPower -= Drain;
+
 	DoReflectEffectA(Drain, Damage > PierceThreshold);
 }
 
@@ -446,9 +413,7 @@ function byte BestMode()
 
 defaultproperties
 {
-	 ShieldDrainMax=35
-	 ShieldMinDamageFactor=0.05
-	 PierceThreshold=80
+	 PierceThreshold=50
      ShieldBone="tip"
      ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
      ShieldOnSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldOn'
@@ -459,7 +424,9 @@ defaultproperties
      BrokenSound=Sound'BWBP2-Sounds.LightningGun.LG-Ambient'
      ChargingSound=Sound'WeaponSounds.BaseFiringSounds.BShield1'
      ShieldSoundVolume=220	 
-	 ShieldPower=75
+	 ShieldPower=100
+	 ShieldPowerMax=300
+	 ShieldGainPerSecond=10.0f
 	 bShowChargingBar=True
      ManualLines(0)="Each hit heats up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
      ManualLines(1)="Secondary fire will toggle a directional shield. The shield has a maximum of 200 health points and will reduce incoming damage by 35 points or by 90% of its value, whichever is smaller. If the shield is broken, a minimum reserve level is required to reactivate it."
