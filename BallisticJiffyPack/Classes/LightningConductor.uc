@@ -26,6 +26,8 @@ var		int							HitCounter, OldHitCounter;
 var		vector						EffectStart, EffectEnd;
 var		Pawn						EffectSource, EffectDest;
 
+var 	float						SelfDmgScalar;
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -239,7 +241,10 @@ function Propagate()
 	DrawShock(src.Location, dest.Location);
 	ReplicateShock(src.Location, dest.Location, src, dest);
 	
-	class'BallisticDamageType'.static.GenericHurt(dest, Max(1, (Damage)/(CurrentTargetIndex^(1/(1+2*ChargePower)))), Instigator, dest.Location, vect(0,0,0), CDamageType);
+	if (dest == Instigator)
+		class'BallisticDamageType'.static.GenericHurt(dest, Max(1, (SelfDmgScalar * (Damage)/(CurrentTargetIndex^(1/(1+2*ChargePower))))), Instigator, dest.Location, vect(0,0,0), CDamageType);
+		
+	else class'BallisticDamageType'.static.GenericHurt(dest, Max(1, (Damage)/(CurrentTargetIndex^(1/(1+2*ChargePower)))), Instigator, dest.Location, vect(0,0,0), CDamageType);
 
 	++CurrentTargetIndex;
 
@@ -273,4 +278,5 @@ defaultproperties
 	SquareCoefficient=0.083333
 	ConductRadius=768.000000
 	MaxConductors=3
+	SelfDmgScalar=0.600000
 }

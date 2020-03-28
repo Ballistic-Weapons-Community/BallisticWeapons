@@ -6,9 +6,6 @@
 //=============================================================================
 class TraceEmitter_Lightning extends BCTraceEmitter;
 
-var float 	HighFreqNoiseGlobal;
-var float 	LowFreqNoiseGlobal;
-
 simulated function Initialize(float Distance, optional float Power)
 {
 	BeamEmitter(Emitters[0]).BeamEndPoints[0].Offset.X.Min = Distance; 
@@ -27,8 +24,8 @@ defaultproperties
          BeamEndPoints(0)=(offset=(X=(Min=65536.000000,Max=65536.000000)))
          DetermineEndPointBy=PTEP_Offset
          BeamTextureUScale=2.000000
-         LowFrequencyNoiseRange=(Y=(Min=-40.000000,Max=40.000000),Z=(Min=-40.000000,Max=40.000000))
-         HighFrequencyNoiseRange=(Y=(Min=-10.000000,Max=10.000000),Z=(Min=-10.000000,Max=10.000000))
+         LowFrequencyNoiseRange=(Y=(Min=-10.000000,Max=10.000000),Z=(Min=-10.000000,Max=10.000000))
+         HighFrequencyNoiseRange=(Y=(Min=-4.000000,Max=4.000000),Z=(Min=-4.000000,Max=4.000000))
          UseBranching=True
          BranchProbability=(Min=0.800000,Max=0.800000)
          BranchEmitter=1
@@ -45,14 +42,15 @@ defaultproperties
          ColorScale(3)=(RelativeTime=0.400000,Color=(A=255))
          ColorScale(4)=(RelativeTime=0.550000,Color=(B=255,G=255,R=255,A=255))
          ColorScale(5)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
+		 ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Y=(Min=0.800000,Max=0.800000),Z=(Min=1.000000,Max=1.000000))
          Opacity=0.160000
-         FadeOutStartTime=0.248000
+         FadeOutStartTime=0.448000
          CoordinateSystem=PTCS_Relative
          MaxParticles=15
          SizeScale(0)=(RelativeSize=2.500000)
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=2.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.600000)
-         StartSizeRange=(X=(Min=1.000000,Max=8.000000),Y=(Min=1.000000,Max=8.000000),Z=(Min=1.000000,Max=8.000000))
+         StartSizeRange=(X=(Min=1.000000,Max=2.000000),Y=(Min=1.000000,Max=2.000000),Z=(Min=1.000000,Max=2.000000))
          InitialParticlesPerSecond=80.000000
          Texture=Texture'EpicParticles.Beams.HotBolt03aw'
          SecondsBeforeInactive=0.000000
@@ -64,8 +62,8 @@ defaultproperties
      Begin Object Class=BeamEmitter Name=BeamEmitter1
          BeamDistanceRange=(Min=100.000000,Max=500.000000)
          DetermineEndPointBy=PTEP_Distance
-         LowFrequencyNoiseRange=(X=(Min=-30.000000,Max=30.000000),Y=(Min=-30.000000,Max=30.000000),Z=(Min=-30.000000,Max=30.000000))
-         HighFrequencyNoiseRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=-5.000000,Max=5.000000))
+         LowFrequencyNoiseRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=-10.000000,Max=10.000000))
+         HighFrequencyNoiseRange=(X=(Min=-2.000000,Max=2.000000),Y=(Min=-2.000000,Max=2.000000),Z=(Min=-2.000000,Max=2.000000))
          NoiseDeterminesEndPoint=True
          UseColorScale=True
          FadeOut=True
@@ -77,13 +75,13 @@ defaultproperties
          ColorScale(3)=(RelativeTime=0.382143,Color=(B=255,G=255,R=255,A=255))
          ColorScale(4)=(RelativeTime=0.532143,Color=(G=255,A=255))
          ColorScale(5)=(RelativeTime=1.000000,Color=(B=255,G=255,A=255))
-         ColorMultiplierRange=(Y=(Min=0.000000,Max=0.000000))
+         ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Y=(Min=0.800000,Max=0.800000),Z=(Min=1.000000,Max=1.000000))
          Opacity=0.580000
-         FadeOutStartTime=0.226000
+         FadeOutStartTime=0.426000
          CoordinateSystem=PTCS_Relative
          MaxParticles=50
          DetailMode=DM_SuperHigh
-         StartSizeRange=(X=(Min=1.000000,Max=2.000000),Y=(Min=1.000000,Max=2.000000),Z=(Min=1.000000,Max=2.000000))
+         StartSizeRange=(X=(Min=0.100000,Max=1.000000),Y=(Min=0.100000,Max=1.000000),Z=(Min=0.100000,Max=1.000000))
          Texture=Texture'EpicParticles.Beams.HotBolt04aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
@@ -105,13 +103,13 @@ defaultproperties
          ColorScale(2)=(RelativeTime=0.578571,Color=(B=255,G=255,R=255,A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(R=255,A=255))
          ColorScale(4)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
-         FadeOutStartTime=0.264000
+		 ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Y=(Min=0.800000,Max=0.800000),Z=(Min=1.000000,Max=1.000000))
+         FadeOutStartTime=0.464000
          CoordinateSystem=PTCS_Relative
          MaxParticles=20
          DetailMode=DM_SuperHigh
          StartLocationOffset=(X=20.000000)
-         StartSpinRange=(X=(Min=0.260000,Max=0.260000))
-         StartSizeRange=(X=(Min=3.000000,Max=10.500000),Y=(Min=3.000000,Max=10.500000),Z=(Min=3.000000,Max=10.500000))
+         StartSizeRange=(X=(Min=1.000000,Max=5.500000),Y=(Min=1.000000,Max=5.500000),Z=(Min=1.000000,Max=5.500000))
          InitialParticlesPerSecond=500.000000
          Texture=Texture'EpicParticles.Beams.BeamFalloff'
          SecondsBeforeInactive=0.000000
@@ -125,8 +123,8 @@ defaultproperties
          BeamEndPoints(0)=(offset=(X=(Min=1000.000000,Max=1000.000000)))
          DetermineEndPointBy=PTEP_Offset
          BeamTextureUScale=2.000000
-         LowFrequencyNoiseRange=(Y=(Min=-35.000000,Max=35.000000),Z=(Min=-35.000000,Max=35.000000))
-         HighFrequencyNoiseRange=(Y=(Min=-15.000000,Max=15.000000),Z=(Min=-15.000000,Max=15.000000))
+         LowFrequencyNoiseRange=(Y=(Min=-10.000000,Max=10.000000),Z=(Min=-10.000000,Max=10.000000))
+         HighFrequencyNoiseRange=(Y=(Min=-2.000000,Max=2.000000),Z=(Min=-2.000000,Max=2.000000))
          UseColorScale=True
          FadeOut=True
          RespawnDeadParticles=False
@@ -134,10 +132,11 @@ defaultproperties
          ColorScale(0)=(Color=(B=255,G=255,R=128,A=255))
          ColorScale(1)=(RelativeTime=0.382143,Color=(B=255,G=255,R=255,A=255))
          ColorScale(2)=(RelativeTime=1.000000,Color=(B=128,A=255))
-         FadeOutStartTime=0.243000
+		 ColorMultiplierRange=(X=(Min=0.500000,Max=0.500000),Y=(Min=0.800000,Max=0.800000),Z=(Min=1.000000,Max=1.000000))
+         FadeOutStartTime=0.443000
          CoordinateSystem=PTCS_Relative
          MaxParticles=20
-         StartSizeRange=(X=(Min=3.000000,Max=3.000000),Y=(Min=3.000000,Max=3.000000),Z=(Min=3.000000,Max=3.000000))
+         StartSizeRange=(X=(Min=1.000000,Max=1.000000),Y=(Min=1.000000,Max=1.000000),Z=(Min=1.000000,Max=1.000000))
          InitialParticlesPerSecond=5000.000000
          Texture=Texture'EpicParticles.Beams.HotBolt03aw'
          SecondsBeforeInactive=0.000000
