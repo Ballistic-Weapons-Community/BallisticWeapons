@@ -18,6 +18,8 @@ var bool bDampingFireLoop;
 
 var Z250FireControl FireControl;
 
+var float		RotationSpeeds[3];
+
 replication
 {
 	reliable if (Role < ROLE_Authority)
@@ -197,6 +199,15 @@ simulated function PlayIdle()
 	    SafeLoopAnim(IdleAnim, IdleAnimRate, IdleTweenTime, ,"IDLE");
 }
 
+simulated function float GetRampUpSpeed()
+{
+	if (BarrelSpeed < RotationSpeeds[0])
+		return 0.5f;
+
+	// takes more time to reach higher speeds
+	return 0.5f - (0.48f * ((BarrelSpeed - RotationSpeeds[0]) / (RotationSpeeds[2] - RotationSpeeds[0]))); 
+}
+
 // Load in a grenade
 simulated function LoadGrenade()
 {
@@ -325,9 +336,7 @@ simulated event WeaponTick (float DT)
 
 	SetBoneRotation('BarrelArray', BT);
 
-	if (CurrentWeaponMode == 0)
-		DesiredSpeed = 0.21;
-	else DesiredSpeed = 0.11;
+	DesiredSpeed = RotationSpeeds[CurrentWeaponMode];
 
 	super.WeaponTick(DT);
 }
@@ -351,12 +360,12 @@ simulated event Tick (float DT)
 
 	if (FireMode[0].IsFiring())
 	{
-		BarrelSpeed = BarrelSpeed + FClamp(DesiredSpeed - BarrelSpeed, -0.35*DT, 0.35*DT);
+		BarrelSpeed = BarrelSpeed + FClamp(DesiredSpeed - BarrelSpeed, -0.35*DT, GetRampUpSpeed() *DT);
 		BarrelTurn += BarrelSpeed * 655360 * DT;
 	}
 	else if (BarrelSpeed > 0)
 	{
-		BarrelSpeed = FMax(BarrelSpeed-0.7*DT, 0.01);
+		BarrelSpeed = FMax(BarrelSpeed-0.5*DT, 0.01);
 		OldBarrelTurn = BarrelTurn;
 		BarrelTurn += BarrelSpeed * 655360 * DT;
 		if (BarrelSpeed <= 0.025 && int(OldBarrelTurn/21845.33333) < int(BarrelTurn/21845.33333))
@@ -467,8 +476,8 @@ defaultproperties
      BarrelSpinSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelSpinLoop'
      BarrelStopSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStop'
      BarrelStartSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStart'
-     PlayerSpeedFactor=0.800000
-     PlayerJumpFactor=0.800000
+     PlayerSpeedFactor=0.850000
+     PlayerJumpFactor=0.850000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BWBPOtherPackTex2.Z250.BigIcon_Z250'
@@ -489,14 +498,19 @@ defaultproperties
      ClipInSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipIn')
      ClipInFrame=0.650000
      WeaponModes(0)=(ModeName="400 RPM",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="200 RPM",ModeID="WM_FullAuto")
-     WeaponModes(2)=(ModeName="400 RPM",bUnavailable=True)
-     CurrentWeaponMode=0
+     WeaponModes(1)=(ModeName="600 RPM",ModeID="WM_FullAuto")
+	 WeaponModes(2)=(ModeName="800 RPM",ModeID="WM_FullAuto")
+	 
+	RotationSpeeds(0)=0.22
+	RotationSpeeds(1)=0.33
+	RotationSpeeds(2)=0.44
+
+     CurrentWeaponMode=2
      bNoCrosshairInScope=True
      SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
      SightDisplayFOV=45.000000
      SightingTime=0.550000
-     CrouchAimFactor=1.500000
+     CrouchAimFactor=0.8
      SprintOffSet=(Pitch=-6000,Yaw=-8000)
      JumpOffSet=(Pitch=-6000,Yaw=2000)
      AimAdjustTime=0.800000

@@ -20,15 +20,22 @@ simulated event PostNetReceive()
 		Explode(Location, vect(0,0,1));
 }
 
+static function float ScaleDistanceDamage(float lifespan)
+{
+	if (class'RSNovaFastProjectile'.default.LifeSpan - lifespan > 0.05)
+		return 1 + (0.75 * (FMin(class'RSNovaFastProjectile'.default.LifeSpan - lifespan, 0.4) / 0.4));
+		
+	return 1;
+}
+
 simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
 {
 	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
-	if (default.LifeSpan - LifeSpan > 0.1)
-		Dmg *= 1 + 0.75 * FMin(default.LifeSpan - LifeSpan - 0.1, 0.6) / 0.6;
+	
+	Dmg *= ScaleDistanceDamage(LifeSpan);
 	
 	return Other;
 }
-
 // Spawn impact effects, run BlowUp() and then die.
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
@@ -114,7 +121,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	else Victim = GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT);
 
 	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-		BallisticPawn(Instigator).GiveAttributedHealth(Dmg, Instigator.SuperHealthMax, Instigator, True);
+		BallisticPawn(Instigator).GiveAttributedHealth(int(Dmg * 0.6f), Instigator.SuperHealthMax, Instigator, True);
 
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 	{
@@ -242,13 +249,13 @@ defaultproperties
      TrailClass=Class'BallisticProV55.RSNova2Trail'
      MyRadiusDamageType=Class'BallisticProV55.DT_RSNovaFast'
      bUsePositionalDamage=True
-     DamageHead=30.000000
-     DamageLimb=20.000000
+     DamageHead=37.000000
+     DamageLimb=25.000000
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000
      MaxSpeed=14000.000000
      bSwitchToZeroCollision=True
-     Damage=20.000000
+     Damage=25.000000
      DamageRadius=48.000000
      MomentumTransfer=10000.000000
      MyDamageType=Class'BallisticProV55.DT_RSNovaFast'

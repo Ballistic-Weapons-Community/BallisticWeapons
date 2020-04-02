@@ -101,7 +101,9 @@ defaultproperties
      MotionBlurRadius=0.000000
      MotionBlurFactor=0.000000
      MotionBlurTime=0.000000
-     Speed=35000.000000
+	 Speed=35000.000000
+	 MaxSpeed=100000.000000
+	 AccelSpeed=100000.000000
      Damage=3.000000
      MyDamageType=Class'BWBPOtherPackPro.DTCX85Dart'
      StaticMesh=StaticMesh'BallisticHardware_25.OA-SMG.OA-SMG_Dart'

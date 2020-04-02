@@ -41,7 +41,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 	local actor Victims;
 	local float damageScale, dist;
 	local vector dir;
-	local bool bWasAlive;
+//	local bool bWasAlive;
 //	local RSDarkSoul Soul;
 
 	if( bHurtEntry )
@@ -53,7 +53,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
 		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != HurtWall)
 		{
-			if (xPawn(Victims) != None && Pawn(Victims).Health > 0)
+			/*if (xPawn(Victims) != None && Pawn(Victims).Health > 0)
 			{
 				if (Monster(Victims) == None || Pawn(Victims).default.Health > 275)
 					bWasAlive = true;
@@ -62,6 +62,7 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 				bWasAlive = true;
 			else
 				bWasAlive = false;
+				*/
 			dir = Victims.Location - HitLocation;
 			dist = FMax(1,VSize(dir));
 			dir = dir/dist;
@@ -77,14 +78,11 @@ simulated function SpecialHurtRadius( float DamageAmount, float DamageRadius, cl
 				(damageScale * Momentum * dir),
 				DamageType
 			);
+			/*
 			if (bWasAlive && Pawn(Victims).Health <= 0)
 				class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Victims), self);
-/*			{
-				Soul = Spawn(class'RSDarkSoul',,, HitLocation);
-				if (Soul!=None)
-					Soul.Assailant = Instigator;
-			}
-*/		}
+			*/
+		}
 	}
 	bHurtEntry = false;
 }

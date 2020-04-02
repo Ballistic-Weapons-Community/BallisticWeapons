@@ -50,7 +50,7 @@ defaultproperties
      HookStopFactor=1.700000
      HookPullForce=100.000000
      bReleaseFireOnDie=False
-     BallisticFireSound=(Sound=SoundGroup'BallisticSounds3.A909.A909Slash',Radius=378.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BallisticSounds3.A909.A909Slash',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepBigHack3"

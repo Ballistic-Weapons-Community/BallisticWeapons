@@ -8,12 +8,12 @@
 //=============================================================================
 class RSDarkMeleeFire extends BallisticMeleeFire;
 
-var() Pawn		HookedVictim;
-var() float		HookTime;
+var() Pawn			HookedVictim;
+var() float			HookTime;
 
-var() sound		SawFreeLoop;
-var() sound		SawHackLoop;
-var() sound		SawStop;
+var() sound			SawFreeLoop;
+var() sound			SawHackLoop;
+var() sound			SawStop;
 
 var bool 			bHitThisTick;
 
@@ -322,10 +322,10 @@ defaultproperties
      SwipePoints(0)=(offset=(Yaw=0))
      WallHitPoint=0
      NumSwipePoints=1
-     TraceRange=(Min=170.000000,Max=170.000000)
-     Damage=35.000000
-     DamageHead=35.000000
-     DamageLimb=35.000000
+     TraceRange=(Min=180.000000,Max=180.000000)
+     Damage=25.000000
+     DamageHead=25.000000
+     DamageLimb=25.000000
      DamageType=Class'BallisticProV55.DT_RSDarkStab'
      DamageTypeHead=Class'BallisticProV55.DT_RSDarkStabHead'
      DamageTypeArm=Class'BallisticProV55.DT_RSDarkStab'
@@ -338,7 +338,7 @@ defaultproperties
      PreFireAnim=
      FireAnim="SawStart"
      FireEndAnim="SawEnd"
-     FireRate=0.150000
+     FireRate=0.100000
      AmmoClass=Class'BallisticProV55.Ammo_DarkDiamond'
      AmmoPerFire=1
      ShakeRotMag=(X=64.000000,Y=16.000000)

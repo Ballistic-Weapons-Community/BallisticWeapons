@@ -9,7 +9,7 @@ class XRS10SecondaryFire extends BallisticFire;
 event ModeDoFire()
 {
 	if (Weapon.Role == ROLE_Authority)
-		XRS10SubMachinegun(Weapon).ServerSwitchlaser(!XRS10SubMachinegun(Weapon).bLaserOn);
+		XRS10SubMachinegun(Weapon).ServerSwitchLaser(!XRS10SubMachinegun(Weapon).bLaserOn);
 //	if (!Instigator.IsLocallyControlled())
 //		return;
 //	if (AllowFire())

@@ -6,7 +6,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class MD24MeleeFire extends BallisticMeleeFire;
 
@@ -43,7 +43,7 @@ defaultproperties
      bReleaseFireOnDie=False
      bIgnoreReload=True
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Melee',Volume=1.500000,Radius=256.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepMelee"

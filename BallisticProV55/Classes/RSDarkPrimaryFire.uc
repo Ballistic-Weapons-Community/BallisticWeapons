@@ -198,7 +198,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 			break;
 		case 2:
 			MuzzleFlash = None;
-			ModePowerDrain=0.05;
+			ModePowerDrain=0;
 			break;
 		case 3:
 			MuzzleFlash = None;
@@ -206,7 +206,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 			break;
 		case 4:
 			MuzzleFlash = MuzzleFlashSlow;
-			ModePowerDrain=1;
+			ModePowerDrain=0.5;
 			break;
 		default:
 			MuzzleFlash = MuzzleFlashFast;
@@ -230,7 +230,7 @@ function DoFireEffect()
 	}
 
 	else if (BW.CurrentWeaponMode == 1)
-		class'BallisticDamageType'.static.GenericHurt (Instigator, ProjectileClass.default.Damage * 0.10, Instigator, Instigator.Location, vect(0,0,0), class'DT_RSDarkBacklash');
+		class'BallisticDamageType'.static.GenericHurt (Instigator, 2, Instigator, Instigator.Location, vect(0,0,0), class'DT_RSDarkBacklash');
 }
 
 function StartBerserk()
@@ -576,7 +576,7 @@ defaultproperties
      Damage=50
      ImmolateSoundLoop=Sound'BWBP4-Sounds.DarkStar.Dark-Immolation'
      SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
-     FireModes(0)=(mProjClass=Class'BallisticProV55.RSDarkFastProjectile',mFireRate=0.160000,mFireChaos=0.090000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-Fire2',mFireAnim="Fire2",mRecoil=220.000000,mAmmoPerFire=1,bModeLead=True)
+     FireModes(0)=(mProjClass=Class'BallisticProV55.RSDarkFastProjectile',mFireRate=0.145000,mFireChaos=0.090000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-Fire2',mFireAnim="Fire2",mRecoil=220.000000,mAmmoPerFire=1,bModeLead=True)
      FireModes(1)=(mFireRate=0.100000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=7.000000,mAmmoPerFire=1,TargetState="DarkFlamer",bModeInstantHit=True)
      FireModes(2)=(mFireRate=0.100000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=7.000000,mAmmoPerFire=1,TargetState="Immolate",bModeInstantHit=True)
      FireModes(3)=(mProjClass=Class'BallisticProV55.RSDarkFireBomb',mFireRate=0.800000,mFireChaos=0.150000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-FireBall',mFireAnim="Fire",mRecoil=1024.000000,mAmmoPerFire=4,TargetState="Fireball",bModeLead=True,bModeSplash=True,bModeRecommendSplash=True)

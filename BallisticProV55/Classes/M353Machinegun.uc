@@ -283,7 +283,7 @@ defaultproperties
      BoxOffSound=(Sound=Sound'BallisticSounds2.M353.M353-BoxOff')
      FlapUpSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapUp')
      FlapDownSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapDown')
-     PlayerSpeedFactor=0.850000
+     PlayerSpeedFactor=0.90000
      PlayerJumpFactor=0.900000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      AIReloadTime=4.000000

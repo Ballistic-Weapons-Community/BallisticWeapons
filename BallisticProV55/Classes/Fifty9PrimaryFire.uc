@@ -39,7 +39,7 @@ function EjectBrass()
 
 defaultproperties
 {
-     CutOffDistance=1024.000000
+     CutOffDistance=1280.000000
      CutOffStartRange=512.000000
      WaterRangeFactor=0.400000
      MaxWallSize=24.000000

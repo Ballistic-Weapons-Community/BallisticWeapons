@@ -78,7 +78,7 @@ simulated function Destroyed()
 
 event Timer()
 {
-	local bool bWasAlive;
+	//local bool bWasAlive;
 
 	if (bTearOff)
 		Destroy();
@@ -91,19 +91,22 @@ event Timer()
 		if ( Instigator == None || Instigator.Controller == None )
 			Victim.SetDelayedDamageInstigatorController( InstigatorController );
 
-		if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
+		/*if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 		{
 			if (Monster(Victim) == None || Pawn(Victim).default.Health > 275)
 				bWasAlive = true;
 		}
 		else if (Vehicle(Victim) != None && Vehicle(Victim).Driver!=None && Vehicle(Victim).Driver.Health > 0)
-			bWasAlive = true;
+            bWasAlive = true;
+        */
 
 		class'BallisticDamageType'.static.GenericHurt (Victim, 10, Instigator, Location, vect(0,0,0), class'DT_RSDarkImmolate');
 
+        /*
 		if (bWasAlive && Pawn(Victim).Health <= 0)
 			class'RSDarkSoul'.static.SpawnSoul(Victim.Location, Instigator, Pawn(Victim), self);
-	}
+        */
+    }
 }
 
 function PhysicsVolumeChange( PhysicsVolume NewVolume )

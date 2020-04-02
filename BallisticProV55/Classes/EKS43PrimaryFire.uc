@@ -43,7 +43,7 @@ defaultproperties
      DamageTypeHead=Class'BallisticProV55.DTEKS43KatanaHead'
      DamageTypeArm=Class'BallisticProV55.DTEKS43KatanaLimb'
      KickForce=100
-     BallisticFireSound=(Sound=SoundGroup'BallisticSounds3.EKS43.EKS-Slash',Radius=378.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BallisticSounds3.EKS43.EKS-Slash',Volume=0.35,Radius=32.000000,bAtten=True)
      bAISilent=True
      FireAnim="Slash1"
      FireRate=0.750000

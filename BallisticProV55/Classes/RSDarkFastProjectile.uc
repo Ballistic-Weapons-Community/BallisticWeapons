@@ -1,5 +1,5 @@
 //=============================================================================
-// RSNovaFastProjectile.
+// RSDarkFastProjectile.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
@@ -89,7 +89,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	local class<DamageType> DT;
 	local float Dmg;
 	local actor Victim;
-	local bool bWasAlive;
+	//local bool bWasAlive;
 	local DestroyableObjective HealObjective;
 	local Vehicle HealVehicle;
 	local int AdjustedDamage;
@@ -139,20 +139,20 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	else Victim = GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT);
 
 	if (BallisticPawn(Instigator) != None && RSDarkStar(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-		BallisticPawn(Instigator).GiveAttributedHealth(default.Damage * 0.1, Instigator.SuperHealthMax, Instigator, True);
+		BallisticPawn(Instigator).GiveAttributedHealth(2, Instigator.SuperHealthMax, Instigator, True);
 
-	if (xPawn(Victim) != None && Pawn(Victim).Health > 0 && Pawn(Victim).bProjTarget)
+	/*if (xPawn(Victim) != None && Pawn(Victim).Health > 0 && Pawn(Victim).bProjTarget)
 	{
 		if (Monster(Victim) == None || Pawn(Victim).default.Health > 275)
 			bWasAlive = true;
 	}
 	else if (Vehicle(Victim) != None && Vehicle(Victim).Driver!=None && Vehicle(Victim).Driver.Health > 0)
-		bWasAlive = true;
+		bWasAlive = true;*/
 
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), DT);
 
-	if (bWasAlive && Pawn(Victim).Health <= 0)
-		class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Other), self);
+	/*if (bWasAlive && Pawn(Victim).Health <= 0)
+		class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Other), self);*/
 }
 
 simulated singular function HitWall(vector HitNormal, actor Wall)

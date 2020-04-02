@@ -27,21 +27,17 @@ function InitEffects()
 function SetSilenced(bool bSilenced)
 {
 	bAISilent = bSilenced;
-	if (bSilenced)
+	if (!bSilenced)
 	{
-     	RecoilPerShot *= 0.8;
-		Damage *= 0.85;
-		RangeAtten *= 1.15; //intentional to improve long range damage
-		XInaccuracy *= 0.5;
-		YInaccuracy *= 0.5;
+		XInaccuracy *= 2;
+		YInaccuracy *= 2;
+		CutOffStartRange *= 1.25;
 	}
 	else
 	{
-     	RecoilPerShot = default.RecoilPerShot;
-		Damage = default.Damage;
-		RangeAtten = default.RangeAtten;
 		XInaccuracy = default.XInaccuracy;
 		YInaccuracy = default.YInaccuracy;
+		CutOffStartRange = default.CutOffStartRange;
 	}
 }
 
@@ -149,9 +145,9 @@ defaultproperties
      RecoilPerShot=98.000000
      FireChaos=0.050000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
-     XInaccuracy=48.000000
-     YInaccuracy=48.000000
-     SilencedFireSound=(Sound=Sound'BallisticSounds3.XK2.XK2-SilenceFire',Volume=1.000000,Radius=48.000000,bAtten=True)
+     XInaccuracy=24.000000
+     YInaccuracy=24.000000
+     SilencedFireSound=(Sound=Sound'BallisticSounds3.XK2.XK2-SilenceFire',Volume=0.50000,Radius=48.000000,bAtten=True)
      BallisticFireSound=(Sound=Sound'BallisticSounds3.XK2.XK2-Fire',Volume=0.500000,Radius=384.000000)
      bPawnRapidFireAnim=True
      FireRate=0.090000

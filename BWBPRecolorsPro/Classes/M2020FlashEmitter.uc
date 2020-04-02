@@ -109,6 +109,7 @@ defaultproperties
          FadeOut=True
          RespawnDeadParticles=False
          UniformSize=True
+         SpinParticles=True
          AutomaticInitialSpawning=False
          TriggerDisabled=False
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
@@ -116,8 +117,9 @@ defaultproperties
          FadeOutStartTime=0.054000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
-         StartLocationRange=(X=(Min=80.000000,Max=80.000000))
-         StartSizeRange=(X=(Min=75.000000,Max=75.000000),Y=(Min=75.000000,Max=75.000000),Z=(Min=75.000000,Max=75.000000))
+         StartSpinRange=(X=(Min=0.125,Max=0.125))
+         StartLocationRange=(X=(Min=10.000000,Max=10.000000))
+         StartSizeRange=(X=(Min=40.000000,Max=40.000000),Y=(Min=40.000000,Max=40.000000),Z=(Min=40.000000,Max=40.000000))
          Texture=Texture'BallisticRecolors4TexPro.M2020.M2020-FlareX1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)

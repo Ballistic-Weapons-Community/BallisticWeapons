@@ -24,19 +24,14 @@ function InitEffects()
 function SetSilenced(bool bSilenced)
 {
 	bAISilent = bSilenced;
-	if (bSilenced)
+
+	if (!bSilenced)
 	{
-     	RecoilPerShot *= 0.8;
-		Damage *= 0.85;
-		RangeAtten *= 1.15; //intentional to improve long range damage
-		XInaccuracy *= 0.5;
-		YInaccuracy *= 0.5;
+		XInaccuracy *= 2;
+		YInaccuracy *= 2;
 	}
 	else
 	{
-     	RecoilPerShot = default.RecoilPerShot;
-		Damage = default.Damage;
-		RangeAtten = default.RangeAtten;
 		XInaccuracy = default.XInaccuracy;
 		YInaccuracy = default.YInaccuracy;
 	}
@@ -137,14 +132,14 @@ defaultproperties
      SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
-     CutOffDistance=1024.000000
+     CutOffDistance=1280.000000
      CutOffStartRange=512.000000
      WaterRangeFactor=0.500000
      MaxWallSize=24.000000
      MaxWalls=2
-     Damage=28.000000
-     DamageHead=28.000000
-     DamageLimb=28.000000
+     Damage=25.000000
+     DamageHead=25.000000
+     DamageLimb=25.000000
      RangeAtten=0.250000
      WaterRangeAtten=0.400000
      DamageType=Class'BallisticProV55.DTXRS10SMG'
@@ -159,11 +154,11 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassOffset=(X=-26.000000,Z=-5.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=190.000000
+     RecoilPerShot=170.000000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.320000,OutVal=1),(InVal=0.500000,OutVal=1.500000),(InVal=1.000000,OutVal=2.250000)))
-     XInaccuracy=64.000000
-     YInaccuracy=64.000000
-     SilencedFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-SilenceFire',Volume=0.800000,Radius=48.000000,bAtten=True)
+     XInaccuracy=48.000000
+     YInaccuracy=48.000000
+     SilencedFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-SilenceFire',Volume=0.500000,Radius=32.000000,bAtten=True)
      BallisticFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Fire',Volume=0.900000,Radius=384.000000)
      bPawnRapidFireAnim=True
      FireRate=0.0850000

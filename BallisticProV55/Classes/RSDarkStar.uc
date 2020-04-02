@@ -15,6 +15,8 @@
 //=============================================================================
 class RSDarkStar extends BallisticWeapon;
 
+var	int			MaxSoulPower;
+
 var float		BladeAlpha;
 var float		DesiredBladeAlpha;
 var float		BladeShiftSpeed;
@@ -198,12 +200,12 @@ simulated function bool CanUseSights()
 
 function AddSoul(float Amount)
 {
-	SoulPower = FClamp(SoulPower+Amount, 0, 5.2);
+	SoulPower = FClamp(SoulPower+Amount, 0, MaxSoulPower + 0.2f);
 }
 
 function ServerWeaponSpecial(optional byte i)
 {
-	if (SoulPower >= 5)
+	if (SoulPower >= MaxSoulPower)
 	{
 		StartRampage();
 		ClientWeaponSpecial(1);
@@ -240,11 +242,6 @@ simulated function StartRampage()
 		PlayerSpeedFactor = 1.25;
 	}
 
-	/*
-	WeaponModes[3].bUnavailable=false;
-	WeaponModes[4].bUnavailable=false;
-	*/
-
 	if (level.NetMode != NM_DedicatedServer)
 	{
 		Horns = spawn(class'RSDarkHorns',Instigator);
@@ -277,18 +274,6 @@ simulated function EndRampage()
 
 	if (Horns != None)
 		Horns.Destroy();
-
-	/*
-	WeaponModes[3].bUnavailable=true;
-	WeaponModes[4].bUnavailable=true;
-	*/
-
-	/*if (Instigator.IsLocallyControlled())
-	{
-		if (ModeHandling == MR_SavedDefault)
-			ServerSwitchWeaponMode(SavedWeaponMode);
-		else ServerSwitchWeaponMode(0);
-	}*/
 
 	if (RampageGlow != None)
 		RampageGlow.Destroy();
@@ -374,7 +359,7 @@ simulated event WeaponTick(float DT)
 
 	if (bOnRampage)
 	{
-		SoulPower -= DT/5;
+		SoulPower -= DT/8;
 		if (SoulPower <= 0)
 			EndRampage();
 	}
@@ -745,7 +730,7 @@ simulated function TickLongGun (float DT)
 
 simulated function float ChargeBar()
 {
-	return SoulPower/5;
+	return SoulPower/MaxSoulPower;
 }
 
 function GiveTo(Pawn Other, optional Pickup Pickup)
@@ -888,17 +873,18 @@ function float SuggestDefenseStyle()	{	return -0.2;	}
 
 defaultproperties
 {
+	MaxSoulPower=3
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP4-Tex.DarkStar.BigIcon_DarkStar'
      BigIconCoords=(Y1=28,Y2=225)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     ManualLines(0)="Slow Bolts deal moderate damage, gain damage over range, set the enemy alight, blocking healing, and steal 20% of damage dealt as HP, but cost HP equal to 20% of their base damage to use.|Rapid Fire bolts have high damage, gain damage over range and steal 20% of damage dealt as HP, but cost HP equal to 10% of their base damage to use.|The Flamer mode deals low damage to all enemies within the projected flames, costing low soul power, and prevents them from healing.|Immolation mode ignites players in a cone in front of the user, costing moderate soul power. Further fire increases the duration.|Fire Bombs deal severe damage in a wide radius, costing high soul power."
-     ManualLines(1)="Engages the chainsaw. This weapon deals moderate sustained damage, displaces the enemy's aim, leeches damage dealt as HP for the user and reduces damage taken from frontal melee attacks by 75%."
+     ManualLines(0)="Slow Bolts deal moderate damage, gain damage over range, set the enemy alight, blocking healing, and steal 20% of damage dealt as HP, but cost HP equal to 20% of their base damage to use.|Rapid Fire bolts have high damage, gain damage over range and steal 20% of damage dealt as HP, but cost HP equal to 10% of their base damage to use.|The Flamer mode deals low damage to all enemies within the projected flames, costing low soul power, and prevents them from healing.|Fire Bombs deal severe damage in a wide radius, costing high soul power."
+     ManualLines(1)="Engages the chainsaw. This weapon deals high sustained damage, displaces the enemy's aim, leeches damage dealt as HP for the user and reduces damage taken from frontal melee attacks by 75%."
      ManualLines(2)="All of this weapon's modes have the potential to inflict damage to the wielder. Enemies killed by this weapon leave souls behind. These can be collected to power the Flamer, Immolation and Fire Bomb modes. Use of those modes without external soul power will consume the user's soul, dealing significant backlash damage.||With full soul power, the weapon can enter rampage mode, reducing all damage taken and increasing both speed and jump height. In this mode, soul power will drain over time.||Very effective at close and medium range."
      SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.0;1.0;1.0")
      BringUpSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-Pullout')
      PutDownSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-Putaway')
-     MagAmmo=20
+     MagAmmo=24
      ReloadAnimRate=1.250000
      ClipHitSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemHit',Volume=0.700000)
      ClipOutSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemOut',Volume=0.700000)
@@ -907,7 +893,7 @@ defaultproperties
      WeaponModes(0)=(ModeName="Slow Bolts",ModeID="WM_FullAuto")
      WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
      WeaponModes(2)=(ModeName="Plasma Flamer")
-     WeaponModes(3)=(ModeName="Cone Immolation",ModeID="WM_FullAuto")
+     WeaponModes(3)=(ModeName="Cone Immolation",ModeID="WM_FullAuto",bUnavailable=True)
      WeaponModes(4)=(ModeName="Fire Bomb",ModeID="WM_FullAuto")
      CurrentWeaponMode=0
      bNotifyModeSwitch=True
@@ -924,8 +910,8 @@ defaultproperties
      ChaosAimSpread=2560
      RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=-0.015000),(InVal=0.300000,OutVal=0.030000),(InVal=0.600000,OutVal=-0.060000),(InVal=0.700000,OutVal=0.070000),(InVal=1.000000,OutVal=0.000000)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
+     RecoilXFactor=0.120000
+     RecoilYFactor=0.120000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.250000
      FireModeClass(0)=Class'BallisticProV55.RSDarkPrimaryFire'

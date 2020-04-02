@@ -599,9 +599,9 @@ defaultproperties
      ChaosDeclineTime=1.250000
      ChaosAimSpread=3072
      RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.400000),(InVal=1.000000,OutVal=-0.200000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.650000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.350000
+     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.550000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.1500000
+     RecoilYFactor=0.1500000
      RecoilDeclineDelay=0.700000
      FireModeClass(0)=Class'BWBPRecolorsPro.M2020GaussPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'

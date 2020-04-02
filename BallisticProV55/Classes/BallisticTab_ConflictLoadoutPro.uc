@@ -304,6 +304,9 @@ function int GetMaxCount(class<Weapon> weapon)
 	local class<Ammo> ammo_class;
 	local int base_ammo, max_ammo;
 
+	if (class<BallisticHandgun>(weapon) != None && class<BallisticHandgun>(weapon).default.bShouldDualInLoadout)
+		return 2;
+
 	base_ammo = weapon.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
 	max_ammo = weapon.default.FireModeClass[0].default.AmmoClass.default.MaxAmmo;
 

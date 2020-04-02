@@ -63,7 +63,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	local class<DamageType> DT;
 	local float Dmg;
 	local actor Victim;
-	local bool bWasAlive;
+	//local bool bWasAlive;
 	local DestroyableObjective HealObjective;
 	local Vehicle HealVehicle;
 	local int AdjustedDamage;
@@ -118,6 +118,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
 		BallisticPawn(Instigator).GiveAttributedHealth(Dmg * 0.2, Instigator.SuperHealthMax, Instigator, True);
 
+	/*
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 	{
 		if (Monster(Victim) == None || Pawn(Victim).default.Health > 275)
@@ -125,6 +126,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	}
 	else if (Vehicle(Victim) != None && Vehicle(Victim).Driver!=None && Vehicle(Victim).Driver.Health > 0)
 		bWasAlive = true;
+	*/
 		
 	// burn and block healing
 	if (Pawn(Other) != None)
@@ -156,8 +158,8 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, MomentumDir, DT);
 
-	if (bWasAlive && Pawn(Victim).Health <= 0)
-		class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Other), self);
+	/*if (bWasAlive && Pawn(Victim).Health <= 0)
+		class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Other), self);*/
 }
 
 simulated function DoVehicleDriverRadius(Vehicle Other)

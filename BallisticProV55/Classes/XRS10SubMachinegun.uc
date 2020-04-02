@@ -47,9 +47,15 @@ simulated event PostNetReceive()
 	if (bLaserOn != default.bLaserOn)
 	{
 		if (bLaserOn)
+		{
 			AimAdjustTime = default.AimAdjustTime * 1.5;
+			ChaosAimSpread *= 0.65;
+		}
 		else
+		{
 			AimAdjustTime = default.AimAdjustTime;
+			ChaosAimSpread = default.ChaosAimSpread;
+		}
 		default.bLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
@@ -60,12 +66,21 @@ function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
 	bUseNetAim = default.bUseNetAim || bLaserOn;
+
 	if (ThirdPersonActor != None)
 		XRS10Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+
 	if (bLaserOn)
+	{
 		AimAdjustTime = default.AimAdjustTime * 1.5;
+		ChaosAimSpread *= 0.65;
+	}
 	else
+	{
 		AimAdjustTime = default.AimAdjustTime;
+		ChaosAimSpread = default.ChaosAimSpread;
+	}
+
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
 }
@@ -240,6 +255,7 @@ function ServerSwitchSilencer(bool bNewValue)
 	XRS10PrimaryFire(BFireMode[0]).SetSilenced(bNewValue);
 }
 
+/*
 exec simulated function WeaponSpecial(optional byte i)
 {
 	if (ReloadState != RS_None)
@@ -252,6 +268,7 @@ exec simulated function WeaponSpecial(optional byte i)
 	SwitchSilencer(bSilenced);
 	ReloadState = RS_GearSwitch;
 }
+*/
 
 simulated function SwitchSilencer(bool bNewValue)
 {
@@ -309,6 +326,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	else
 		SetBoneScale (0, 0.0, SilencerBone);
 }
+
 simulated function PlayReload()
 {
 	super.PlayReload();
@@ -369,82 +387,81 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 defaultproperties
 {
+	bSilenced=True
 	AIRating=0.85
 	CurrentRating=0.85
-	 AimDisplacementDurationMult=0.5
-     SilencerBone="Silencer"
-     SilencerOnAnim="SilencerOn"
-     SilencerOffAnim="SilencerOff"
-     SilencerOnSound=Sound'BallisticSounds2.XK2.XK2-SilenceOn'
-     SilencerOffSound=Sound'BallisticSounds2.XK2.XK2-SilenceOff'
-     SilencerOnTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
-     SilencerOffTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
-     LaserOnSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
-     LaserOffSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
-     PlayerSpeedFactor=1.100000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.000000
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XRS10'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     bWT_Machinegun=True
-     ManualLines(0)="Automatic machine pistol fire. Moderate damage per bullet and high fire rate. Deals extreme DPS at close range, but has controllability and recoil issues, especially from the hip."
-     ManualLines(1)="Toggles the laser sight. While active, reduces the hipfire spread, but broadcasts the user's position to the enemy."
-     ManualLines(2)="The Weapon Function key attaches a suppressor, reducing recoil, range and noise output and removing the flash.||This weapon is highly effective at very close range."
-     SpecialInfo(0)=(Info="60.0;5.0;0.4;-1.0;0.0;0.2;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-     MagAmmo=30
-     CockSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Cock')
-     ClipOutSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipout')
-     ClipInSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipin')
-     ClipInFrame=0.650000
-     WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(ModeName="Burst")
-     bNoCrosshairInScope=False
-     SightOffset=(X=-10.000000,Z=12.200000)
-	 SightPivot=(Pitch=512)
-     SightDisplayFOV=60.000000
-     SightingTime=0.250000
-     SightAimFactor=0.200000
-	 SightZoomFactor=0
-     HipRecoilFactor=2.250000
-     SprintOffSet=(Pitch=-3000,Yaw=-4000)
-     AimAdjustTime=0.450000
-     AimSpread=16
-     ChaosSpeedThreshold=7500.000000
-     RecoilXCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.300000
-     RecoilMax=6144.000000
-     RecoilDeclineTime=1.200000
-     RecoilDeclineDelay=0.125000
-     FireModeClass(0)=Class'BallisticProV55.XRS10PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.XRS10SecondaryFire'
-     SelectForce="SwitchToAssaultRifle"
-     Description="The XRS10 is a small, silencable Sub-Machinegun, constructed by newcomer arms company, Drake & Co. Based on a design from many years ago, the XRS10 is a short, medium-range weapon, using .40 calibre ammunition. The weapon has a medium rate-of-fire, fair damage, and a decent magazine capacity, yet can generate much recoil and chaos. The new model, features silencer and blue-light laser sight, to give it some more edge in stealthier situations."
-     Priority=27
-     HudColor=(B=255,G=200,R=200)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=3
-     GroupOffset=3
-     PickupClass=Class'BallisticProV55.XRS10Pickup'
-     PlayerViewOffset=(X=5.000000,Y=11.000000,Z=-11.000000)
-     AttachmentClass=Class'BallisticProV55.XRS10Attachment'
-     IconMaterial=Texture'BWAddPack-RS-Skins.XRS10.SmallIcon_XRS10'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="XRS-10 Machine Pistol"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=130.000000
-     LightRadius=3.000000
-     Mesh=SkeletalMesh'BallisticProAnims.XRS10'
-     DrawScale=0.200000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Shader'BWAddPack-RS-Skins.XRS10.XRS10Shiney'
-     Skins(2)=Shader'BWAddPack-RS-Skins.XRS10.XRS10LaserShiney'
-     Skins(3)=Shader'BWAddPack-RS-Skins.XRS10.XRS10SilencerShiney'
+	AimDisplacementDurationMult=0.5
+	SilencerBone="Silencer"
+	SilencerOnAnim="SilencerOn"
+	SilencerOffAnim="SilencerOff"
+	SilencerOnSound=Sound'BallisticSounds2.XK2.XK2-SilenceOn'
+	SilencerOffSound=Sound'BallisticSounds2.XK2.XK2-SilenceOff'
+	SilencerOnTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
+	SilencerOffTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
+	LaserOnSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
+	LaserOffSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
+	PlayerSpeedFactor=1.050000
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.000000
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XRS10'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bWT_Machinegun=True
+	ManualLines(0)="Automatic machine pistol fire. Moderate damage per bullet and high fire rate. Deals extreme DPS at close range, but has controllability and recoil issues, especially from the hip."
+	ManualLines(1)="Toggles the laser sight. While active, reduces the hipfire spread, but broadcasts the user's position to the enemy."
+	ManualLines(2)="The Weapon Function key attaches a suppressor, reducing recoil, range and noise output and removing the flash.||This weapon is highly effective at very close range."
+	SpecialInfo(0)=(Info="60.0;5.0;0.4;-1.0;0.0;0.2;-999.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
+	MagAmmo=30
+	CockSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Cock')
+	ClipOutSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipout')
+	ClipInSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipin')
+	ClipInFrame=0.650000
+	WeaponModes(0)=(bUnavailable=True)
+	WeaponModes(1)=(ModeName="Burst")
+	SightOffset=(X=-15.000000,Z=9.500000)
+	SightDisplayFOV=60.000000
+	SightingTime=0.200000
+	SightAimFactor=0.200000
+	SightZoomFactor=0
+	HipRecoilFactor=2.250000
+	SprintOffSet=(Pitch=-3000,Yaw=-4000)
+	AimAdjustTime=0.450000
+	AimSpread=16
+	ChaosSpeedThreshold=7500.000000
+	RecoilXCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
+	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
+	RecoilXFactor=0.125000
+	RecoilYFactor=0.125000
+	RecoilMax=6144.000000
+	RecoilDeclineTime=1.200000
+	RecoilDeclineDelay=0.125000
+	FireModeClass(0)=Class'BallisticProV55.XRS10PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.XRS10SecondaryFire'
+	SelectForce="SwitchToAssaultRifle"
+	Description="The XRS10 is a small, silencable Sub-Machinegun, constructed by newcomer arms company, Drake & Co. Based on a design from many years ago, the XRS10 is a short, medium-range weapon, using .40 calibre ammunition. The weapon has a medium rate-of-fire, fair damage, and a decent magazine capacity, yet can generate much recoil and chaos. The new model, features silencer and blue-light laser sight, to give it some more edge in stealthier situations."
+	Priority=27
+	HudColor=(B=255,G=200,R=200)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=3
+	GroupOffset=3
+	PickupClass=Class'BallisticProV55.XRS10Pickup'
+	PlayerViewOffset=(X=5.000000,Y=11.000000,Z=-11.000000)
+	AttachmentClass=Class'BallisticProV55.XRS10Attachment'
+	IconMaterial=Texture'BWAddPack-RS-Skins.XRS10.SmallIcon_XRS10'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="XRS-10 Machine Pistol"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=130.000000
+	LightRadius=3.000000
+	Mesh=SkeletalMesh'BallisticProAnims.XRS10'
+	DrawScale=0.200000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Shader'BWAddPack-RS-Skins.XRS10.XRS10Shiney'
+	Skins(2)=Shader'BWAddPack-RS-Skins.XRS10.XRS10LaserShiney'
+	Skins(3)=Shader'BWAddPack-RS-Skins.XRS10.XRS10SilencerShiney'
 }

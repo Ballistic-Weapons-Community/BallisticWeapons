@@ -111,13 +111,13 @@ defaultproperties
      AccelSpeed=100000.000000
      MyRadiusDamageType=Class'BallisticProV55.DTE23Plasma'
      bUsePositionalDamage=True
-     DamageHead=60.000000
-     DamageLimb=40.000000
+     DamageHead=52.000000
+     DamageLimb=35.000000
      DamageTypeHead=Class'BallisticProV55.DTE23PlasmaHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000
-     MaxSpeed=10000.000000
-     Damage=40.000000
+     MaxSpeed=14000.000000
+     Damage=35.000000
      DamageRadius=16.000000
      MomentumTransfer=100.000000
      MyDamageType=Class'BallisticProV55.DTE23Plasma'

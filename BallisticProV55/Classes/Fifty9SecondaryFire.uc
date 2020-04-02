@@ -75,7 +75,7 @@ defaultproperties
      HookPullForce=100.000000
      bUseWeaponMag=False
      bIgnoreReload=True
-     BallisticFireSound=(Sound=SoundGroup'BallisticSounds3.UZI.Melee',Radius=256.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BallisticSounds3.UZI.Melee',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      FireAnim="Melee1"
      FireAnimRate=1.5

@@ -173,7 +173,7 @@ event ModeTick(float DT)
 	}
 	else
 	{
-		DesiredFireRate = (FMin(1.0 / (30*Minigun.BarrelSpeed), 1));
+		DesiredFireRate = (FMin(1.0 / (30 * Minigun.BarrelSpeed), 1));
 		if (BW.CurrentWeaponMode == 0)
 			TraceCount = 1;
 		else
@@ -462,9 +462,9 @@ defaultproperties
      WaterRangeFactor=0.800000
      MaxWallSize=32.000000
      MaxWalls=2
-     Damage=44.000000
-     DamageHead=66.000000
-     DamageLimb=44.000000
+     Damage=25.000000
+     DamageHead=37.000000
+     DamageLimb=25.000000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPOtherPackPro.DTZ250Bullet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTZ250Bullet'
@@ -475,7 +475,7 @@ defaultproperties
      FlashScaleFactor=0.800000
      BrassClass=Class'BWBPOtherPackPro.Brass_Z250Shell'
      BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
-     RecoilPerShot=150.000000
+     RecoilPerShot=96.000000
      VelocityRecoil=48.000000
      FireChaos=0.120000
      XInaccuracy=16.000000

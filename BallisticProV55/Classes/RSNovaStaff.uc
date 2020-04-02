@@ -133,9 +133,6 @@ simulated function StartRampage()
 	Wings = spawn(class'RSNovaWings',Instigator,,Instigator.Location,Instigator.Rotation);
 	if (Wings != None)
 		Wings.SetBase(Instigator);
-
-	WeaponModes[3].bUnavailable=false;
-	WeaponModes[4].bUnavailable=false;
 }
 
 simulated function EndRampage()
@@ -147,20 +144,12 @@ simulated function EndRampage()
 
 	if (Instigator!=None && Role==Role_Authority)
 		PlayerController(Instigator.Controller).Restart();
-//		PlayerController(Instigator.Controller).ClientReStart(Instigator);
-	Instigator.AirSpeed /= 1.25;
 
-//	Instigator.AmbientSound = None;
+	Instigator.AirSpeed /= 1.25;
 
 	if (Wings != None)
 		Wings.Kill();
 
-	//WeaponModes[3].bUnavailable=true;
-	//WeaponModes[4].bUnavailable=true;
-
-	//CurrentWeaponMode = 0;
-//	if (!Instigator.IsLocallyControlled())
-		RSNovaPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 	SoulPower = 0; //fix for slightly negative soul power
 	
 	if (Role == ROLE_Authority && !Instigator.IsLocallyControlled())
@@ -437,10 +426,12 @@ function ServerSwitchWeaponMode (byte NewMode)
 	}
 	
 	if (CurrentWeaponMode == 0 || CurrentWeaponMode == 3)
-		AimSpread=1024;
+		AimSpread = 1024;
 		
-	else AimSpread=default.AimSpread;
+	else 
+		AimSpread = default.AimSpread;
 }
+
 simulated function ClientSwitchWeaponModes (byte newMode)
 {
 	Super.ClientSwitchWeaponModes(newMode);
@@ -460,9 +451,10 @@ simulated function ClientSwitchWeaponModes (byte newMode)
 	}
 	
 	if (newMode == 0 || newMode == 3)
-		AimSpread=1024;
+		AimSpread = 1024;
 		
-	else AimSpread=default.AimSpread;
+	else
+		AimSpread = default.AimSpread;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -841,7 +833,7 @@ defaultproperties
      WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
      WeaponModes(2)=(ModeName="Lightning")
      WeaponModes(3)=(ModeName="Thunder Strike",ModeID="WM_FullAuto")
-     WeaponModes(4)=(ModeName="Chain Lightning",ModeID="WM_FullAuto")
+     WeaponModes(4)=(ModeName="Chain Lightning",ModeID="WM_FullAuto",bUnavailable=True)
      CurrentWeaponMode=0
      bNotifyModeSwitch=True
      SightPivot=(Pitch=512)
@@ -852,14 +844,14 @@ defaultproperties
      HipRecoilFactor=3.500000
      SprintOffSet=(Pitch=-1024,Yaw=-1024)
      AimAdjustTime=0.700000
-     AimSpread=1024
+     AimSpread=16
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=15000.000000
      ChaosAimSpread=2560
      RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=-0.040000),(InVal=0.300000,OutVal=0.090000),(InVal=0.600000,OutVal=-0.120000),(InVal=0.700000,OutVal=0.150000),(InVal=1.000000)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
+     RecoilXFactor=0.10000
+     RecoilYFactor=0.10000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.250000
      FireModeClass(0)=Class'BallisticProV55.RSNovaPrimaryFire'

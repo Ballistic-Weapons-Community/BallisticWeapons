@@ -357,7 +357,7 @@ function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDr
 
 simulated function float ChargeBar()
 {
-	return (ShieldPower * 0.005f);
+	return ShieldPower / float(ShieldPowerMax);
 }
 
 //=====================================================
@@ -425,8 +425,8 @@ defaultproperties
      ChargingSound=Sound'WeaponSounds.BaseFiringSounds.BShield1'
      ShieldSoundVolume=220	 
 	 ShieldPower=100
-	 ShieldPowerMax=300
-	 ShieldGainPerSecond=10.0f
+	 ShieldPowerMax=200
+	 ShieldGainPerSecond=5.0f
 	 bShowChargingBar=True
      ManualLines(0)="Each hit heats up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
      ManualLines(1)="Secondary fire will toggle a directional shield. The shield has a maximum of 200 health points and will reduce incoming damage by 35 points or by 90% of its value, whichever is smaller. If the shield is broken, a minimum reserve level is required to reactivate it."

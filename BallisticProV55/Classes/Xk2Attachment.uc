@@ -139,6 +139,10 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	if (class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;
 
+	// no tracers if suppressed
+	if (Mode == 1)
+		return;
+
 	TipLoc = GetTipLocation();
 	Dist = VSize(V - TipLoc);
 

@@ -147,7 +147,7 @@ auto state Spawning
 	simulated event Timer()
 	{
 		SetCollisionSize(28, 28);
-		GotoState('BackOff');
+		GotoState('Follow');
 	}
 }
 

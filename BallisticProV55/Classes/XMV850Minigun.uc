@@ -97,11 +97,11 @@ simulated event WeaponTick (float DT)
 
 	SetBoneRotation('Barrels', BT);
 
-	if (CurrentWeaponMode == 0)
+	if (CurrentWeaponMode == 0) // 1200 RPM - 200 revolutions per minute x 6 shots
 		DesiredSpeed = 0.33;
-	else if (CurrentWeaponMode == 1)
+	else if (CurrentWeaponMode == 1) // 2400 RPM - 400 revolutions per minute x 6 shots
 		DesiredSpeed = 0.66;
-	else DesiredSpeed = 0.17;
+	else DesiredSpeed = 0.17; // 600 RPM - 100 revolutions per minute x 6 shots
 
 	super.WeaponTick(DT);
 }
@@ -379,8 +379,8 @@ defaultproperties
      BarrelStartSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStart'
      DeploySound=Sound'BallisticSounds2.XMV-850.XMV-Deploy'
      UndeploySound=Sound'BallisticSounds2.XMV-850.XMV-UnDeploy'
-     PlayerSpeedFactor=0.700000
-     PlayerJumpFactor=0.700000
+     PlayerSpeedFactor=0.750000
+     PlayerJumpFactor=0.750000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XMV850'

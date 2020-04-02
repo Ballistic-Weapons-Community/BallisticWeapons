@@ -67,6 +67,7 @@ function ServerSwitchSilencer(bool bNewValue)
 	XK2PrimaryFire(BFireMode[0]).SetSilenced(bNewValue);
 }
 
+/*
 exec simulated function WeaponSpecial(optional byte i)
 {
 	if (ReloadState != RS_None)
@@ -79,6 +80,8 @@ exec simulated function WeaponSpecial(optional byte i)
 	SwitchSilencer(bSilenced);
 	ReloadState = RS_GearSwitch;
 }
+*/
+
 simulated function SwitchSilencer(bool bNewValue)
 {
 	if (bNewValue)
@@ -114,8 +117,10 @@ simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);
 
+	/*
 	if (AIController(Instigator.Controller) != None)
 		bSilenced = (FRand() > 0.5);
+	*/
 
 	if (bSilenced)
 		SetBoneScale (0, 1.0, SilencerBone);
@@ -188,6 +193,7 @@ function float SuggestDefenseStyle()	{	return -0.6;	}
 
 defaultproperties
 {
+	bSilenced=True
 	 AimDisplacementDurationMult=0.75
      SilencerBone="Silencer"
      SilencerOnAnim="SilencerOn"
@@ -196,8 +202,8 @@ defaultproperties
      SilencerOffSound=Sound'BallisticSounds2.XK2.XK2-SilenceOff'
      SilencerOnTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
      SilencerOffTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
-     PlayerSpeedFactor=1.050000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	 PlayerSpeedFactor=1.050000
+	 TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      AIReloadTime=1.000000
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XK2'
      BigIconCoords=(X1=24,X2=450)
@@ -220,7 +226,8 @@ defaultproperties
      WeaponModes(1)=(ModeName="Burst of Three")
      WeaponModes(2)=(ModeName="Burst of Six",ModeID="WM_BigBurst",Value=6.000000)
      WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-     CurrentWeaponMode=3
+	 CurrentWeaponMode=3
+	 CockAnimRate=1.25
      bNoCrosshairInScope=True
      SightPivot=(Pitch=256)
      SightOffset=(X=5.000000,Z=12.700000)

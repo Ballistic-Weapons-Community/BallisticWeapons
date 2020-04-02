@@ -33,7 +33,7 @@ defaultproperties
      bReleaseFireOnDie=False
      bIgnoreReload=True
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-Stab',Radius=256.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-Stab',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepStab"

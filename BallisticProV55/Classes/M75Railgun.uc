@@ -429,8 +429,8 @@ defaultproperties
      WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
      Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
      ThermalRange=3500.000000
-     PlayerSpeedFactor=0.800000
-     PlayerJumpFactor=0.800000
+     PlayerSpeedFactor=0.850000
+     PlayerJumpFactor=0.850000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M75'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'

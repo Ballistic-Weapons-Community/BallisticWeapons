@@ -48,13 +48,14 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	local class<DamageType> DT;
 	local float Dmg;
 	local actor Victim;
-	local bool bWasAlive;
+	//local bool bWasAlive;
 
 	if ( Instigator == None || Instigator.Controller == None )
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
 
 	Victim = GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT);
 
+	/*
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 	{
 		if (Monster(Victim) == None || Pawn(Victim).default.Health > 275)
@@ -62,28 +63,35 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	}
 	else if (Vehicle(Victim) != None && Vehicle(Victim).Driver!=None && Vehicle(Victim).Driver.Health > 0)
 		bWasAlive = true;
+	*/
 
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), DT);
 
+	/*
 	if (bWasAlive && Pawn(Victim).Health <= 0)
 		class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Other), self);
+	*/
 }
 
 simulated function DoVehicleDriverRadius(Vehicle Other)
 {
-	local bool bWasAlive;
+	//local bool bWasAlive;
 	local Pawn D;
 
+	/*
 	if (Other.Driver != None && Other.Driver.health > 0)
 	{
 		D = Other.Driver;
 		bWasAlive = true;
 	}
+	*/
 
 	Other.DriverRadiusDamage(Damage, DamageRadius, InstigatorController, MyDamageType, MomentumTransfer, Location);
 
+	/*
 	if (bWasAlive && (D == None || D.Health <= 0))
 		class'RSDarkSoul'.static.SpawnSoul(Location, Instigator, D, self);
+	*/
 }
 
 simulated singular function HitWall(vector HitNormal, actor Wall)
@@ -126,7 +134,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 	local actor Victims;
 	local float damageScale, dist;
 	local vector dir;
-	local bool bWasAlive;
+	//local bool bWasAlive;
 //	local RSDarkSoul Soul;
 
 	if( bHurtEntry )
@@ -138,19 +146,24 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
 		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim && Victims != HurtWall)
 		{
+			/*
 			if (xPawn(Victims) != None && Pawn(Victims).Health > 0)
 				bWasAlive = true;
 			else if (Vehicle(Victims) != None && Vehicle(Victims).Driver!=None && Vehicle(Victims).Driver.Health > 0)
 				bWasAlive = true;
 			else
 				bWasAlive = false;
+			*/
+
 			dir = Victims.Location - HitLocation;
 			dist = FMax(1,VSize(dir));
 			dir = dir/dist;
 			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
+			
 			if ( Instigator == None || Instigator.Controller == None )
 				Victims.SetDelayedDamageInstigatorController( InstigatorController );
-			class'BallisticDamageType'.static.GenericHurt
+			
+				class'BallisticDamageType'.static.GenericHurt
 			(
 				Victims,
 				damageScale * DamageAmount,
@@ -159,14 +172,11 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 				(damageScale * Momentum * dir),
 				DamageType
 			);
+			/*
 			if (bWasAlive && Pawn(Victims).Health <= 0)
 				class'RSDarkSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Victims), self);
-/*			{
-				Soul = Spawn(class'RSDarkSoul',,, HitLocation);
-				if (Soul!=None)
-					Soul.Assailant = Instigator;
-			}
-*/		}
+			*/		
+		}
 	}
 	bHurtEntry = false;
 }
