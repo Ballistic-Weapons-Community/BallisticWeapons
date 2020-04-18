@@ -1,115 +1,106 @@
 class M575Machinegun extends BallisticWeapon;
 
-var   Material		AltScopeTex;
-var   bool		bScopeOn;
+var rotator ScopeSightPivot;
+var vector ScopeSightOffset;
+var() Material ScopeScopeViewTex;
 
-var   Vector		ScopeSightOffset;
-var   name      ScopeOnAnim;
-var   name		ScopeOffAnim;
-var	  name		ScopeReloadAnim;
-var	  name		ScopeCockAnim;
-var   name		ScopeIdleAnim;
-var   name		ScopePulloutAnim;
-var   name		ScopePulloutCockAnim;
-var   name		ScopePutawayAnim;
-
-var   name		ScopeFireAnim;
-var   name		ScopeAimedFireAnim;
-
-var BUtil.FullSound ScopeZoomInSound, ScopeZoomOutSound;
-
-//Scope Stuff
-
-simulated function AdjustScopeProperties ()
+//===========================================================================
+// Dual scoping
+//===========================================================================
+exec simulated function ScopeView()
 {
-	if (bScopeOn)
-	{
-		//Animations
-		
-		ReloadAnim=ScopeReloadAnim;
-		CockAnim=ScopeCockAnim;
-		SelectAnim=ScopePulloutAnim;
-		CockSelectAnim=ScopePulloutCockAnim;
-		PutDownAnim=ScopePutawayAnim;
-		IdleAnim=ScopeIdleAnim;
-		M575PrimaryFire(FireMode[0]).AimedFireAnim=ScopeAimedFireAnim;
-		M575PrimaryFire(FireMode[0]).FireAnim=ScopeFireAnim;
-		
-		//Zoom Properties
-		
-		ZoomInSound=ScopeZoomInSound;
-		ZoomOutSound=ScopeZoomOutSound;
-		
-	}
-	else
-	{
-		//Animations
-		
-		ReloadAnim=default.ReloadAnim;
-		CockAnim=default.CockAnim;
-		SelectAnim=default.SelectAnim;
-		CockSelectAnim=default.CockSelectAnim;
-		PutDownAnim=default.PutDownAnim;
-		IdleAnim=default.IdleAnim;
-		M575PrimaryFire(FireMode[0]).AimedFireAnim=M575PrimaryFire(FireMode[0]).default.AimedFireAnim;
-		M575PrimaryFire(FireMode[0]).FireAnim=M575PrimaryFire(FireMode[0]).default.FireAnim;
-		
-		//Zoom Properties
-		
-		ZoomInSound=default.ZoomInSound;
-		ZoomOutSound=default.ZoomOutSound;
-	}
-}
-
-simulated function InitSwitchScope()
-{
-	if (ReloadState != RS_None)
+	if (bNoMeshInScope && SightingState != SS_None && SightingState != SS_Active)
 		return;
-	if (Clientstate != WS_ReadyToFire)
-		return;
-
-	bScopeOn = !bScopeOn;
-
-	ServerSwitchScope(bScopeOn);
-	SwitchScope(bScopeOn);
-	AdjustScopeProperties();
-}
-
-function ServerSwitchScope(bool bNewValue)
-{
-	bScopeOn = bNewValue;
-	SwitchScope(bNewValue);
-	AdjustScopeProperties();
-}
-
-simulated function SwitchScope(bool bNewValue)
-{
-	if (Role == ROLE_Authority)
-		bServerReloading = True;
-	ReloadState = RS_GearSwitch;
+		
+	if (SightingState == SS_None)
+	{
+		if (bNoMeshInScope)
+		{
+			SightPivot = default.SightPivot;
+			SightOffset = default.SightOffset;
+			ZoomType = ZT_Irons;
+			ScopeViewTex=None;
+			SightingTime = default.SightingTime;
+			bNoMeshInScope = false;
+		}
+	}
 	
-	if (bNewValue)
-		PlayAnim(ScopeOnAnim);
-	else
-		PlayAnim(ScopeOffAnim);
+	Super.ScopeView();
 }
 
-simulated function Notify_EndSwitchScope()
+exec simulated function ScopeViewRelease()
 {
+	if (bNoMeshInScope && SightingState != SS_None && SightingState != SS_Active)
+		return;
+		
+	Super.ScopeViewRelease();
+}
 
-	if (bScopeOn)
+simulated function ScopeViewTwo()
+{
+	if (!bNoMeshInScope && SightingState != SS_None && SightingState != SS_Active)
+		return;
+		
+	if (SightingState == SS_None)
 	{
-		ZoomType=ZT_Smooth;
-		FullZoomFOV=70.000000;
-		SightOffset=ScopeSightOffset;
+		ScopeViewTex = ScopeScopeViewTex;
+		
+		if (!bNoMeshInScope)
+		{
+			SightPivot = ScopeSightPivot;
+			SightOffset = ScopeSightOffset;
+			ZoomType = ZT_Fixed;
+			SightingTime = 0.4;
+			bNoMeshInScope = true;
+		}
+	}
+	
+	Super.ScopeView();
+}
+
+simulated function ScopeViewTwoRelease()
+{
+	if (!bNoMeshInScope && SightingState != SS_None && SightingState != SS_Active)
+		return;
+		
+	Super.ScopeViewRelease();
+}
+
+// Swap sighted offset and pivot for left handers
+simulated function SetHand(float InHand)
+{
+	super.SetHand(InHand);
+	if (Hand < 0)
+	{
+		if (bNoMeshInScope)
+		{
+			SightOffset.Y = ScopeSightOffset.Y * -1;
+			SightPivot.Roll = ScopeSightPivot.Roll * -1;
+			SightPivot.Yaw = ScopeSightPivot.Yaw * -1;
+		}
+		
+		else
+		{
+			SightOffset.Y = default.SightOffset.Y * -1;
+			SightPivot.Roll = default.SightPivot.Roll * -1;
+			SightPivot.Yaw = default.SightPivot.Yaw * -1;
+		}
 	}
 	else
 	{
-		ZoomType=ZT_Irons;
-		FullZoomFOV=default.FullZoomFOV;
-		SightOffset=default.SightOffset;
+		if (bNoMeshInScope)
+		{
+			SightOffset.Y = ScopeSightOffset.Y;
+			SightPivot.Roll = ScopeSightPivot.Roll;
+			SightPivot.Yaw = ScopeSightPivot.Yaw;
+		}
+		else
+		{
+			SightOffset.Y = default.SightOffset.Y;
+			SightPivot.Roll = default.SightPivot.Roll;
+			SightPivot.Yaw = default.SightPivot.Yaw;
+		}
 	}
-
 }
 
 //End of Scope Stuff
@@ -212,53 +203,11 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 	}
 }
 
-simulated function SetScopeBehavior()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView;
-		
-	if (bScopeView)
-	{
-		ViewAimFactor = 1.0;
-		ViewRecoilFactor = 1.0;
-		AimAdjustTime *= 2;
-		AimSpread = 0;
-		ChaosAimSpread *= SightAimFactor;
-		ChaosDeclineTime *= 2.0;
-		ChaosSpeedThreshold *= 0.5;
-	}
-	else
-	{
-		//PositionSights will handle this for clients
-		if(Level.NetMode == NM_DedicatedServer)
-		{
-			ViewAimFactor = default.ViewAimFactor;
-			ViewRecoilFactor = default.ViewRecoilFactor;
-		}
-
-		AimAdjustTime = default.AimAdjustTime;
-		AimSpread = default.AimSpread;
-		AimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosAimSpread = default.ChaosAimSpread;
-		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosDeclineTime = default.ChaosDeclineTime;
-		ChaosSpeedThreshold = default.ChaosSpeedThreshold;
-	}
-}
-
 defaultproperties
 {
-	 ScopeFireAnim="FireScope"
-	 ScopeAimedFireAnim="ScopeIn"
-	 ScopeSightOffset=(X=2.000000,Y=8.740000,Z=9.150000)
-	 ScopeOnAnim="ScopeEngage"
-	 ScopeOffAnim="ScopeDisEngage"
-	 ScopeReloadAnim="ReloadScope"
-	 ScopeCockAnim="CockScope"
-	 ScopeIdleAnim="IdleScope"
-	 ScopePulloutAnim="PulloutScope"
-	 ScopePulloutCockAnim="PulloutCockingScope"
-	 ScopePutawayAnim="PutawayScope"
-     bScopeOn=False
+	 ScopeSightPivot=(Roll=-8192)
+     ScopeSightOffset=(X=-10.000000,Y=3.750000,Z=13.500000)
+	 ScopeScopeViewTex=Texture'BWBPJiffyPackTex.M575.G36ScopeViewDot'
      PlayerSpeedFactor=0.850000
      PlayerJumpFactor=0.900000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
@@ -287,7 +236,6 @@ defaultproperties
      WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)
      WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
      CurrentWeaponMode=3
-	 ZoomType=ZT_Irons
 	 bNoCrosshairInScope=True
      SightPivot=(Pitch=128)
      SightOffset=(X=-10.000000,Y=8.740000,Z=9.150000)
@@ -306,7 +254,7 @@ defaultproperties
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.150000
      FireModeClass(0)=Class'BWBPOtherPackPro.M575PrimaryFire'
-     FireModeClass(1)=Class'BWBPOtherPackPro.M575SecondaryFire'
+     FireModeClass(1)=Class'BWBPOtherPackPro.M575ScopeFire'
      SelectAnimRate=1.350000
      PutDownTime=0.550000
      BringUpTime=0.700000
@@ -319,7 +267,7 @@ defaultproperties
      HudColor=(G=150,R=100)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
-     PickupClass=Class'BallisticProV55.M353Pickup'
+     PickupClass=Class'BWBPOtherPackPro.M575Pickup'
      PlayerViewOffset=(X=3.000000,Y=-1.000000,Z=-6.000000)
      AttachmentClass=Class'BWBPOtherPackPro.M575Attachment'
      IconMaterial=Texture'BWBPOtherPackTex2.M575.SmallIcon_M575'

@@ -12,24 +12,9 @@
 //=============================================================================
 class M575PrimaryFire extends BallisticProInstantFire;
 
-event ModeDoFire()
-{
-    if (!AllowFire())
-        return;
-
-	BallisticMachinegun(Weapon).SetBeltVisibility(BallisticMachinegun(Weapon).MagAmmo);
-	Super.ModeDoFire();
-}
-
-simulated function vector GetFireDir(out Vector StartTrace)
-{
-    if (BallisticTurret(Instigator) != None)
-    	StartTrace = Instigator.Location + Instigator.EyePosition() + Vector(Instigator.GetViewRotation()) * 64;
-	return super.GetFireDir(StartTrace);
-}
-
 defaultproperties
 {
+	 FlashBone="MuzzleFlash"
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WaterRangeFactor=0.800000
      MaxWallSize=48.000000
