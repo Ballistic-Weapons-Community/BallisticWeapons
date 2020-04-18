@@ -83,11 +83,11 @@ defaultproperties
 {
      DetonateOn=DT_ImpactTimed
      PlayerImpactType=PIT_Detonate
-     DampenFactor=0.300000
-     DampenFactorParallel=0.500000
+     DampenFactor=0.150000
+     DampenFactorParallel=0.300000
      bNoInitialSpin=True
      bAlignToVelocity=True
-     DetonateDelay=1.250000
+     DetonateDelay=1.10000
      ImpactDamage=100
      ImpactDamageType=Class'BWBPRecolorsPro.DTMGLGrenade'
      ImpactManager=Class'BWBPRecolorsPro.IM_MGLGrenade'
@@ -100,8 +100,8 @@ defaultproperties
      MotionBlurTime=4.000000
      bCoverPenetrator=True
      Speed=4500.000000
-     Damage=145.000000
-     DamageRadius=300.000000
+     Damage=120.000000
+     DamageRadius=512.000000
      MyDamageType=Class'BWBPRecolorsPro.DTMGLGrenadeRadius'
      ImpactSound=Sound'PackageSounds4Pro.Misc.FLAK-GrenadeBounce'
      StaticMesh=StaticMesh'BallisticHardware2.M900.M900Grenade'

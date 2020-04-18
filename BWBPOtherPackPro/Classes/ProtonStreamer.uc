@@ -281,8 +281,8 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 {
 	if (bShieldOn && !DamageType.default.bLocationalHit)
 	{
-		Damage = 0;
-		Momentum=vect(0,0,0);
+		Damage *= 0.25;
+		Momentum *= 0.25;
 		return;
 	}
 	

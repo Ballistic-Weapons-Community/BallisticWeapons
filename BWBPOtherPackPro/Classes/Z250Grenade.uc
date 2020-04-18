@@ -140,7 +140,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
-     DetonateOn=DT_ImpactTimed
+     DetonateOn=DT_Impact
      PlayerImpactType=PIT_Detonate
      bNoInitialSpin=True
      bAlignToVelocity=True
@@ -157,7 +157,7 @@ defaultproperties
      MotionBlurFactor=3.000000
      MotionBlurTime=4.000000
      Speed=3500.000000
-     Damage=5.000000
+     Damage=30.000000
      DamageRadius=64.000000
      MyDamageType=Class'BallisticProV55.DTM50GrenadeRadius'
      ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'

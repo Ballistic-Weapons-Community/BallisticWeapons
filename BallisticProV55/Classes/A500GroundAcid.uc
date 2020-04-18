@@ -7,7 +7,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class A500GroundAcid extends BallisticEmitter
 	placeable;
@@ -127,8 +127,8 @@ simulated function PhysicsVolumeChange( PhysicsVolume NewVolume )
 
 defaultproperties
 {
-     BurnTime=4.000000
-     Damage=20.000000
+     BurnTime=6.000000
+     Damage=15.000000
      DamageType=Class'BallisticProV55.DTA500Pool'
      Begin Object Class=SpriteEmitter Name=SpriteEmitter12
          UseDirectionAs=PTDU_Up

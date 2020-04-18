@@ -89,7 +89,7 @@ simulated function SwitchWeaponMode (byte newMode)
 		DamageHead=83;
 		DamageLimb=55;
 		
-		KickForce = 20000;
+		KickForce = 30000;
 		
 		PenetrateForce=500;
 		bPenetrate=True;
@@ -652,7 +652,7 @@ defaultproperties
 	DamageType=Class'BWBPRecolorsPro.DTCoachShot'
 	DamageTypeHead=Class'BWBPRecolorsPro.DTCoachShot'
 	DamageTypeArm=Class'BWBPRecolorsPro.DTCoachShot'
-	KickForce=4000
+	KickForce=8000
 	MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 	FlashScaleFactor=1.500000
 	BrassBone="EjectorR"

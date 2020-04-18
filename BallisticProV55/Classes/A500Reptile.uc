@@ -6,7 +6,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class A500Reptile extends BallisticWeapon;
 
@@ -171,7 +171,7 @@ defaultproperties
      bWT_Hazardous=True
      bWT_Projectile=True
      ManualLines(0)="Blasts the enemy with multiple acid projectiles. These projectiles gain damage over range and inflict a short-duration blind on a headshot."
-     ManualLines(1)="Charges a larger, direct-attack projectile with minor radius damage. This projectile creates pools of acid where it strikes. Speed, power and number of pools increase with charge."
+     ManualLines(1)="Charges a larger, direct-attack projectile with minor radius damage. This projectile creates pools of acid where it strikes. Speed, power, number of pools and radius of coverage all increase with charge."
      ManualLines(2)="The A500 is effective at close range, or at all ranges when charged. The recoil is low because of the nature of the delivery system."
      SpecialInfo(0)=(Info="210.0;30.0;0.95;80.0;0.0;0.8;0.8")
      BringUpSound=(Sound=Sound'BallisticSounds2.A73.A73Pullout')

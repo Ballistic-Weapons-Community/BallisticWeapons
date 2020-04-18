@@ -132,7 +132,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		RecoilPerShot=1024.000000;
 		VelocityRecoil=120.000000;
 		FireAnim='FirePowered';
-		FireRate=1.300000;
+		FireRate=1.200000;
 		FireChaos=1;
 		KickForce=3000;
 		BW.RecoilXFactor = 0.35;
@@ -143,6 +143,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		DamageHead=175.000000;
 		DamageLimb=135.000000;
 		FlashScaleFactor=1.600000;
+		KickForce=60000;
 		bFlashAlt=false;
 		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
 		MaxWalls=5;
@@ -157,7 +158,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		PDamageFactor=0.600000;
 		WallPDamageFactor=0.400000;
 		bFlashAlt=true;
-		KickForce=0;
+		KickForce=5000;
 		BW.RecoilXFactor = 0.1;
 		BW.RecoilYFactor = 0.1;
 		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=true;
@@ -194,7 +195,7 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DT_M2020Pwr'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_M2020HeadPwr'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_M2020LimbPwr'
-     KickForce=10000
+     KickForce=20000
      PenetrateForce=600
      bPenetrate=True
      PDamageFactor=0.750000

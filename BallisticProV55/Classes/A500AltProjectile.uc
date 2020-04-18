@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class A500AltProjectile extends BallisticGrenade;
 
@@ -15,6 +15,8 @@ const ACIDMAX = 4.0f;
 
 simulated event ProcessTouch( actor Other, vector HitLocation )
 {
+	local int DirectDamage;
+
 	if (Other == Instigator && (!bCanHitOwner))
 		return;
 	if (Other == HitActor)
@@ -25,7 +27,7 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 	if ( Instigator == None || Instigator.Controller == None )
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
 
-	class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage * (AcidLoad / ACIDMAX) * (1 + 0.35 * FMin(default.LifeSpan - LifeSpan, 0.5)), Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
+	class'BallisticDamageType'.static.GenericHurt (Other, DirectDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
 	ReduceHP(Other);
 	HitActor = Other;
 	Explode(HitLocation, Normal(HitLocation-Other.Location));
@@ -97,7 +99,7 @@ defaultproperties
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=1.000000
-     ImpactDamage=135
+     ImpactDamage=100
      ImpactDamageType=Class'BallisticProV55.DTA500Impact'
      ImpactManager=Class'BallisticProV55.IM_A500AcidExplode'
      TrailClass=Class'BallisticProV55.A500AltProjectileTrail'

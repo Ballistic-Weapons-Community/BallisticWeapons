@@ -96,7 +96,7 @@ defaultproperties
      bPenetrate=True
      bUseWeaponMag=False
      FlashBone="tip2"
-     FireChaos=0.050000
+     FireChaos=0.000000
      XInaccuracy=2.000000
      YInaccuracy=2.000000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.Glock.Glk-LaserFire')

@@ -429,8 +429,8 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 {
 	if (bShieldOn && !DamageType.default.bLocationalHit)
 	{
-		Damage = 0;
-		Momentum=vect(0,0,0);
+		Damage *= 0.25;
+		Momentum *= 0.25;
 		return;
 	}
 	
@@ -539,7 +539,7 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
 	 ManualLines(0)="Launches a stream of projectiles. These projectiles do not gain damage over range."
      ManualLines(1)="Charged ray attack. Targets hit by this attack will receive damage and become irradiated. Irradiation causes damage over time and can be spread through the enemy's team by proximity to the irradiated enemy. The duration of irradiation against a target is extended when hit by the primary fire."
-     ManualLines(2)="The Raygun also possesses a shield, activated by the Weapon Function key. When active, this shield protects the user from any form of damage which is not locational, such as flames and explosions, but makes the user highly visible. Effective at close range, against groups of clustered players and against explosives."
+     ManualLines(2)="The Raygun also possesses a shield, activated by the Weapon Function key. When active, this shield reduces damage from any source which is not locational, such as flames and explosions, by 75%, but makes the user highly visible. Effective at close range, against groups of clustered players and against explosives."
      CurrentWeaponMode=0
      bNotifyModeSwitch=True
      bNoCrosshairInScope=True

@@ -455,6 +455,25 @@ simulated event ModeDoFire()
 	BW.bNeedReload = BW.MayNeedReload(ThisModeNum, ConsumedLoad);
 }
 
+//Accessor for stats
+static function FireModeStats GetStats() 
+{
+	local FireModeStats FS;
+	
+	FS.DamageInt = default.Damage;
+	FS.Damage = String(FS.DamageInt);
+	FS.DPS = FS.DamageInt / 0.075;
+	FS.TTK = 0.075 * (Ceil(175/FS.DamageInt) - 1);
+	FS.RPM = String(int((1 / 0.075) * 60))@default.ShotTypeString$"/min";
+	FS.RPShot = default.RecoilPerShot;
+	FS.RPS = default.RecoilPerShot / default.FireRate;
+	FS.FCPShot = default.FireChaos;
+	FS.FCPS = default.FireChaos / default.FireRate;
+	FS.Range = "Max:"@(int(default.TraceRange.Max / 52.5))@"metres";
+	
+	return FS;
+}
+
 defaultproperties
 {
 	 TraceCount=1
@@ -462,9 +481,9 @@ defaultproperties
      WaterRangeFactor=0.800000
      MaxWallSize=32.000000
      MaxWalls=2
-     Damage=25.000000
-     DamageHead=37.000000
-     DamageLimb=25.000000
+     Damage=32.000000
+     DamageHead=48.000000
+     DamageLimb=32.000000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPOtherPackPro.DTZ250Bullet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTZ250Bullet'

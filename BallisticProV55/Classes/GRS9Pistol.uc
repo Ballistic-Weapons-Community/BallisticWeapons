@@ -419,11 +419,17 @@ simulated function CommonWeaponSpecial(optional byte i)
 	BallisticInstantFire(FireMode[1]).Damage = 90;
 	BallisticInstantFire(FireMode[1]).DamageHead = 120;
 	BallisticInstantFire(FireMode[1]).DamageLimb = 90;
+	BallisticInstantFire(FireMode[1]).XInaccuracy = 192;
+	BallisticInstantFire(FireMode[1]).YInaccuracy = 192;
 	FireMode[1].ModeDoFire();
 	LaserAmmo = FMax(0, LaserAmmo - default.LaserAmmo);
 	BallisticInstantFire(FireMode[1]).Damage = BallisticInstantFire(FireMode[1]).default.Damage;
 	BallisticInstantFire(FireMode[1]).DamageHead = BallisticInstantFire(FireMode[1]).default.DamageHead;
 	BallisticInstantFire(FireMode[1]).DamageLimb = BallisticInstantFire(FireMode[1]).default.DamageLimb;
+	BallisticInstantFire(FireMode[1]).XInaccuracy = 2;
+	BallisticInstantFire(FireMode[1]).YInaccuracy = 2;
+
+	
 	if (ClientState != WS_PutDown && ClientState != WS_BringUp)
 		Settimer(0.15, false);
 }
@@ -534,12 +540,12 @@ defaultproperties
 	AimDamageThreshold=480.000000
 	ChaosDeclineTime=0.450000
 	ChaosSpeedThreshold=7500.000000
-	ChaosAimSpread=384
+	ChaosAimSpread=1024
 	RecoilYawFactor=0.000000
-	RecoilXFactor=0.250000
-	RecoilYFactor=0.250000
+	RecoilXFactor=0.20000
+	RecoilYFactor=0.20000
 	RecoilDeclineTime=1.500000
-	RecoilDeclineDelay=0.150000
+	RecoilDeclineDelay=0.270000
 	FireModeClass(0)=Class'BallisticProV55.GRS9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.GRS9SecondaryFire'
 	SelectAnimRate=1.500000

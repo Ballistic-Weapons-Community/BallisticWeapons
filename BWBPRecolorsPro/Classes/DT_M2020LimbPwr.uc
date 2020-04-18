@@ -10,6 +10,9 @@ defaultproperties
      DeathStrings(3)="%k's EM rifle took %o's leg below the knee."
      AimedString="Scoped"
      DamageIdent="Sniper"
+     bDisplaceAim=True
+     AimDisplacementDamageThreshold=75
+     AimDisplacementDuration=0.3
      WeaponClass=Class'BWBPRecolorsPro.M2020GaussDMR'
      DeathString="%k's M2020 shook hands with %o."
      FemaleSuicide="%o polarized herself."

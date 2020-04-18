@@ -9,7 +9,7 @@
 class G5Rocket extends BallisticProjectile;
 
 var sound ImpactSounds[6];
-var float ImpactDamage;
+var float ImpactDamage, ArmedImpactDamage;
 var float ImpactMomentumTransfer;
 var class<DamageType> ImpactDamageType;
 var float ArmingDelay;
@@ -70,7 +70,7 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 			if ( Instigator == None || Instigator.Controller == None )
 				Other.SetDelayedDamageInstigatorController( InstigatorController );
 			
-			class'BallisticDamageType'.static.GenericHurt (Other, Damage * 1.5, Instigator, HitLocation, MomentumTransfer * Normal(Velocity),MyDamageType);
+			class'BallisticDamageType'.static.GenericHurt (Other, ArmedImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity),MyDamageType);
 			HitActor = Other;
 			Explode(HitLocation, Normal(HitLocation-Other.Location));
 			return;
@@ -122,7 +122,8 @@ defaultproperties
      ImpactSounds(3)=Sound'XEffects.Impact3'
      ImpactSounds(4)=Sound'XEffects.Impact1'
      ImpactSounds(5)=Sound'XEffects.Impact2'
-     ImpactDamage=130.000000
+	 ImpactDamage=100.000000
+	 ArmedImpactDamage=150.000000
      ImpactMomentumTransfer=200000.000000
      ImpactDamageType=Class'BallisticProV55.DTG5Unarmed'
      ArmingDelay=0.200000
@@ -141,7 +142,7 @@ defaultproperties
      ShakeOffsetMag=(X=20.000000,Y=30.000000,Z=30.000000)
      Speed=2000.000000
      MaxSpeed=25000.000000
-     Damage=150.000000
+     Damage=120.000000
      DamageRadius=768.000000
      MomentumTransfer=90000.000000
      MyDamageType=Class'BallisticProV55.DTG5Bazooka'

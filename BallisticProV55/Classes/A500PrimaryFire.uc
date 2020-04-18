@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class A500PrimaryFire extends BallisticProProjectileFire;
 
@@ -102,7 +102,7 @@ defaultproperties
      HipSpreadFactor=6.000000
      bNoRandomFire=True
      MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
-     RecoilPerShot=768.000000
+     RecoilPerShot=512.000000
      FireChaos=0.400000
      XInaccuracy=275.000000
      YInaccuracy=275.000000
@@ -110,7 +110,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
      FireEndAnim=
      FireAnimRate=1.300000
-     FireRate=0.50000
+     FireRate=0.5000
      AmmoClass=Class'BallisticProV55.Ammo_A500Cells'
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

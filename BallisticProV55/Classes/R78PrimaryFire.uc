@@ -167,7 +167,7 @@ defaultproperties
 	DamageType=Class'BallisticProV55.DTR78Rifle'
 	DamageTypeHead=Class'BallisticProV55.DTR78RifleHead'
 	DamageTypeArm=Class'BallisticProV55.DTR78Rifle'
-	KickForce=6000
+	KickForce=70000
 	PenetrateForce=150
 	bPenetrate=True
 	PDamageFactor=0.800000

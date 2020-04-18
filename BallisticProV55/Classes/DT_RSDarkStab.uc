@@ -28,7 +28,6 @@ defaultproperties
      DeathStrings(3)="%o was insanely shredded by %k's Dark Star."
      BloodManagerName="BallisticProV55.BloodMan_Saw"
      DamageIdent="Melee"
-     AimDisplacementDamageThreshold=30
      AimDisplacementDuration=0.25
      DamageDescription=",Slash,DarkStar,Hack,"
      WeaponClass=Class'BallisticProV55.RSDarkStar'

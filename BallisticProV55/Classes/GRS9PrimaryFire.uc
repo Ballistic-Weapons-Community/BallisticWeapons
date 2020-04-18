@@ -34,9 +34,9 @@ defaultproperties
      WaterRangeFactor=0.600000
      MaxWallSize=24.000000
      MaxWalls=2
-     Damage=22.000000
-     DamageHead=44.000000
-     DamageLimb=22.000000
+     Damage=25.000000
+     DamageHead=37.000000
+     DamageLimb=25.000000
      RangeAtten=0.200000
      WaterRangeAtten=0.500000
      DamageType=Class'BallisticProV55.DTGRS9Pistol'
@@ -50,13 +50,13 @@ defaultproperties
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
      RecoilPerShot=256.000000
-     FireChaos=0.140000
+     FireChaos=0.120000
      XInaccuracy=96.000000
      YInaccuracy=96.000000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.Glock.Glk-Fire',Volume=1.200000)
      FireEndAnim=
-     FireAnimRate=1.500000
-     FireRate=0.180000
+     FireAnimRate=1.700000
+     FireRate=0.160000
      AmmoClass=Class'BallisticProV55.Ammo_GRSNine'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
@@ -65,12 +65,12 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
 	 
-	 // AI
-	 bInstantHit=True
-	 bLeadTarget=False
-	 bTossed=False
-	 bSplashDamage=False
-	 bRecommendSplashDamage=False
-	 BotRefireRate=0.99
+     // AI
+     bInstantHit=True
+     bLeadTarget=False
+     bTossed=False
+     bSplashDamage=False
+     bRecommendSplashDamage=False
+     BotRefireRate=0.99
      WarnTargetPct=0.2
 }

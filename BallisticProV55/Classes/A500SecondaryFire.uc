@@ -6,7 +6,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class A500SecondaryFire extends BallisticProProjectileFire;
 
@@ -67,7 +67,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	if (Proj != None)
 	{
 		Proj.Instigator = Instigator;
-		A500AltProjectile(Proj).AcidLoad = AcidLoad * 1.5;
+		A500AltProjectile(Proj).AcidLoad = AcidLoad;
 		A500AltProjectile(Proj).AdjustSpeed();
 	}
 }

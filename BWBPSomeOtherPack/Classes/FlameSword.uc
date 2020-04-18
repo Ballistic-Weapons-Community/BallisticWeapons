@@ -254,15 +254,11 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
     {
         BDT = class<BallisticDamageType>(DamageType);
 
-        if (BDT.static.IsDamage(",DarkStar,")
-        || BDT.static.IsDamage(",Flame,")
-        || BDT.static.IsDamage(",Plasma,")
-        || BDT.static.IsDamage(",Laser,")
-        || BDT.static.IsDamage(",Explode,"))
+        if (BDT.static.IsDamage(",Flame,"))
         {
-            Damage = Min(Damage * 0.50, 25);
+            Damage = 0;
             PlaySound(ShieldHitSound, SLOT_None);
-            Momentum *= 2;    
+			Momentum = vect(0,0,0);    
         }
     }
 
@@ -323,7 +319,7 @@ defaultproperties
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      ManualLines(0)="Swings the sword. Inflicts heavy damage and has a long range and wide swing arc."
      ManualLines(1)="Creates a temporary barrier to block all incoming shots, but temporarily removes your hazard shielding."
-     ManualLines(2)="Passively grants protection from explosions, fire, and other hazardous damage types."
+     ManualLines(2)="Passively grants immunity to fire damage."
      SpecialInfo(0)=(Info="420.0;20.0;-999.0;-1.0;-999.0;0.9;-999.0")
      BringUpSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Equip',Volume=2.000000)
 	 PutDownSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Unequip',Volume=2.000000)

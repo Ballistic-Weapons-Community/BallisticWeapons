@@ -52,6 +52,8 @@ defaultproperties
      PlayerImpactType=PIT_Detonate
      bNoInitialSpin=True
      bAlignToVelocity=True
+     DampenFactor=0.150000
+     DampenFactorParallel=0.300000
      DetonateDelay=0.350000
      ImpactDamage=25
      ImpactDamageType=Class'BWBPRecolorsPro.DTMGLGrenade'

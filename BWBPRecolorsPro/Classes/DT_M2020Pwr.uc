@@ -18,7 +18,7 @@ defaultproperties
      DamageIdent="Sniper"
      bDisplaceAim=True
      AimDisplacementDamageThreshold=100
-     AimDisplacementDuration=0.450000
+     AimDisplacementDuration=0.60000
      ImpactManager=Class'BWBPRecolorsPro.IM_ExpBullet'
      WeaponClass=Class'BWBPRecolorsPro.M2020GaussDMR'
      DeathString="%k sent a superaccelerated M2020 gauss round through %o."

@@ -469,90 +469,90 @@ function float SuggestDefenseStyle()	{	return 0.1;	}
 
 defaultproperties
 {
-     GrenadeLoadAnim="GLReload"
-     GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
-     GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
-     GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
-     BarrelSpinSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelSpinLoop'
-     BarrelStopSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStop'
-     BarrelStartSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStart'
-     PlayerSpeedFactor=0.850000
-     PlayerJumpFactor=0.850000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=4.000000
-     BigIconMaterial=Texture'BWBPOtherPackTex2.Z250.BigIcon_Z250'
-     BigIconCoords=(X1=30,X2=470,Y2=220)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     bWT_Machinegun=True
-     ManualLines(0)="Primary fire spins up the barrels, delivering a hail of explosive rounds which inflict damage to the target and any nearby enemies."
-     ManualLines(1)="Secondary fire launches a fuel grenade, which spreads fuel on the ground. This fuel can be ignited using the primary fire or other fire-based weapons. Enemies hit by the grenade or who walk into the fuel spilled will be ignited and receive damage, in addition to the damage inflicted by the ground fires."
-     ManualLines(2)="Effective against groups of players and at area denial."
-     SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
-     BringUpSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Putaway')
-     MagAmmo=50
-     CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
-     ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
-     ClipOutSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipIn')
-     ClipInFrame=0.650000
-     WeaponModes(0)=(ModeName="400 RPM",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="600 RPM",ModeID="WM_FullAuto")
-	 WeaponModes(2)=(ModeName="800 RPM",ModeID="WM_FullAuto")
+	GrenadeLoadAnim="GLReload"
+	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
+	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
+	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
+	BarrelSpinSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelSpinLoop'
+	BarrelStopSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStop'
+	BarrelStartSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStart'
+	PlayerSpeedFactor=0.850000
+	PlayerJumpFactor=0.850000
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=4.000000
+	BigIconMaterial=Texture'BWBPOtherPackTex2.Z250.BigIcon_Z250'
+	BigIconCoords=(X1=30,X2=470,Y2=220)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bWT_Machinegun=True
+	ManualLines(0)="Primary fire spins up the barrels, delivering a hail of explosive rounds which inflict damage to the target and any nearby enemies."
+	ManualLines(1)="Secondary fire launches a fuel grenade, which spreads fuel on the ground. This fuel can be ignited using the primary fire or other fire-based weapons. Enemies hit by the grenade or who walk into the fuel spilled will be ignited and receive damage, in addition to the damage inflicted by the ground fires."
+	ManualLines(2)="Effective against groups of players and at area denial."
+	SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
+	BringUpSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Putaway')
+	MagAmmo=50
+	CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
+	ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipIn')
+	ClipInFrame=0.650000
+	WeaponModes(0)=(ModeName="400 RPM",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="600 RPM",ModeID="WM_FullAuto")
+	WeaponModes(2)=(ModeName="800 RPM",ModeID="WM_FullAuto")
 	 
 	RotationSpeeds(0)=0.22
 	RotationSpeeds(1)=0.33
 	RotationSpeeds(2)=0.44
 
-     CurrentWeaponMode=2
-     bNoCrosshairInScope=True
-     SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
-     SightDisplayFOV=45.000000
-     SightingTime=0.550000
-     CrouchAimFactor=0.8
-     SprintOffSet=(Pitch=-6000,Yaw=-8000)
-     JumpOffSet=(Pitch=-6000,Yaw=2000)
-     AimAdjustTime=0.800000
-     AimSpread=256
-     ChaosSpeedThreshold=1200.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000),(InVal=1.000000,OutVal=0.200000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.350000,OutVal=0.400000),(InVal=0.500000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.070000
-     RecoilYFactor=0.100000
-     RecoilMax=8192.000000
-     RecoilDeclineTime=2.500000
-     FireModeClass(0)=Class'BWBPOtherPackPro.Z250PrimaryFire'
-     FireModeClass(1)=Class'BWBPOtherPackPro.Z250SecondaryFire'
-     SelectAnimRate=0.750000
-     PutDownTime=0.800000
-     BringUpTime=2.000000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.800000
-     CurrentRating=0.800000
-     Description="Add me."
-     DisplayFOV=45.000000
-     Priority=47
-     HudColor=(B=50,G=200,R=25)
-     CustomCrossHairColor=(A=219)
-     CustomCrossHairScale=1.008803
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=6
-     GroupOffset=2
-     PickupClass=Class'BWBPOtherPackPro.Z250Pickup'
-     PlayerViewOffset=(Y=15.000000,Z=-25.000000)
-     AttachmentClass=Class'BWBPOtherPackPro.Z250Attachment'
-     IconMaterial=Texture'BWBPOtherPackTex2.Z250.Icon_Z250'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="Z-250 Minigun"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BWBPOtherPackAnim.Z250_FP'
-     DrawScale=0.600000
-     SoundRadius=128.000000
+	CurrentWeaponMode=2
+	bNoCrosshairInScope=True
+	SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
+	SightDisplayFOV=45.000000
+	SightingTime=0.550000
+	CrouchAimFactor=0.8
+	SprintOffSet=(Pitch=-6000,Yaw=-8000)
+	JumpOffSet=(Pitch=-6000,Yaw=2000)
+	AimAdjustTime=0.800000
+	AimSpread=256
+	ChaosSpeedThreshold=1200.000000
+	ChaosAimSpread=3072
+	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000),(InVal=1.000000,OutVal=0.200000)))
+	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.350000,OutVal=0.400000),(InVal=0.500000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+	RecoilXFactor=0.070000
+	RecoilYFactor=0.100000
+	RecoilMax=8192.000000
+	RecoilDeclineTime=2.500000
+	FireModeClass(0)=Class'BWBPOtherPackPro.Z250PrimaryFire'
+	FireModeClass(1)=Class'BWBPOtherPackPro.Z250SecondaryFire'
+	SelectAnimRate=0.750000
+	PutDownTime=0.800000
+	BringUpTime=2.000000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.800000
+	CurrentRating=0.800000
+	Description="Add me."
+	DisplayFOV=45.000000
+	Priority=47
+	HudColor=(B=50,G=200,R=25)
+	CustomCrossHairColor=(A=219)
+	CustomCrossHairScale=1.008803
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=6
+	GroupOffset=2
+	PickupClass=Class'BWBPOtherPackPro.Z250Pickup'
+	PlayerViewOffset=(Y=15.000000,Z=-25.000000)
+	AttachmentClass=Class'BWBPOtherPackPro.Z250Attachment'
+	IconMaterial=Texture'BWBPOtherPackTex2.Z250.Icon_Z250'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="Z-250 Minigun"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.Z250_FP'
+	DrawScale=0.600000
+	SoundRadius=128.000000
 }

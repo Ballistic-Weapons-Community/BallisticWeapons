@@ -6,11 +6,11 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class A500AcidControl extends Actor;
 
-var float SpreadRadius;
+var float BaseSpreadRadius;
 
 struct AcidPoolStruct
 {
@@ -54,7 +54,6 @@ function TryDamage (Pawn Victim, float Interval, float Damage, class<DamageType>
 	}
 }
 
-//Stumbled across some useful code
 function int FindIndex (Pawn Sought)
 {	
 	local int i;
@@ -70,9 +69,9 @@ function int FindIndex (Pawn Sought)
 	return i;
 }
 
-simulated function Initialize(vector HitNormal, int Spots)
+simulated function Initialize(vector HitNormal, int Load)
 {
-    local int i, Count;
+    local int i, Count, SpreadRadius;
 	local vector Start, End, HitLoc, HitNorm;
 	local Actor T;
 	local A500GroundAcid GF;
@@ -81,12 +80,15 @@ simulated function Initialize(vector HitNormal, int Spots)
 	if (level.NetMode == NM_Client)
 		return;
 
+	SpreadRadius = BaseSpreadRadius * (Load ** 0.65f);
+	Count = 4 * (Load ** 1.5f);
+
 	// Spawn all the pools to set up an area of destruction
 	Start = Location+(HitNormal*8);
-	Count = 0;
-	for(i=0;i<20 && Count < Spots;i++)
+
+	for(i = 0; i < Count; i++)
 	{
-		if(Count > 0)
+		if(i > 0)
 		{
 			End = VRand();
 			End.Z = Abs(End.Z);
@@ -95,8 +97,6 @@ simulated function Initialize(vector HitNormal, int Spots)
 			if (T==None) 
 				HitLoc=End;
 
-
-
 			GF = Spawn(class'A500GroundAcid',self,,HitLoc, rotator(HitNorm));
 		}
 		else
@@ -104,7 +104,6 @@ simulated function Initialize(vector HitNormal, int Spots)
 
 		if (GF!=None)
 		{
-			Count++;
 			GF.Instigator = Instigator;
 			if ( Role == ROLE_Authority && Instigator != None && Instigator.Controller != None )
 				GF.InstigatorController = Instigator.Controller;
@@ -123,7 +122,7 @@ simulated function Initialize(vector HitNormal, int Spots)
 
 defaultproperties
 {
-     SpreadRadius=128.000000
+     BaseSpreadRadius=128.000000
      DamageRadius=384.000000
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence

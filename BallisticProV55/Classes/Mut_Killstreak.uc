@@ -254,6 +254,8 @@ function ModifyPlayer( pawn Other )
 function Mutate(string MutateString, PlayerController Sender)
 {
 	local KillstreakLRI KLRI;
+	local int count;
+	local array<String> split_string;
 	
 	if (MutateString ~= "Killstreak" && Sender != None)
 	{
@@ -262,8 +264,145 @@ function Mutate(string MutateString, PlayerController Sender)
 		if (KLRI != None && KLRI.RewardLevel > 0)
 			GrantKillstreakReward(Sender.Pawn, KLRI);
 	}
+
+	else
+	{
+		count = Split(MutateString, " ", split_string);
+
+		if (split_string[0] ~= "AddKillstreakWeapon")
+			AddWeapon(Sender, split_string);
+		else if (split_string[0] ~= "RemoveKillstreakWeapon")
+			RemoveWeapon(Sender, split_string);
+	}
 	
 	super.Mutate(MutateString, Sender);
+}
+
+	
+function AddWeapon(PlayerController Sender, array<String> split_string)
+{	
+	local int i, loadout_group;
+	local array<String> weapons;
+	
+	local BC_WeaponInfoCache.WeaponInfo WI;
+	
+	if (Level.NetMode != NM_Standalone && !Sender.PlayerReplicationInfo.bAdmin)
+	{
+		Sender.ClientMessage("Mutate AddKillstreakWeapon: Administrator permissions required");
+		return;
+	}
+	
+	if (split_string.Length != 3)
+	{
+		Sender.ClientMessage("Mutate AddKillstreakWeapon: Usage: mutate addkillstreakweapon <loadout_group_index> <weapon_class_name>");
+		return;
+	}	
+	
+	WI = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(split_string[2]);
+	
+	if (!(WI.ClassName ~= split_string[2]))
+	{
+		Sender.ClientMessage("Mutate AddKillstreakWeapon: Weapon not found:"@split_string[2]);
+		return;
+	}
+
+	loadout_group = int(split_string[1]);
+	
+	if (loadout_group >= NUM_GROUPS)
+	{
+		Sender.ClientMessage("Mutate AddKillstreakWeapon: Invalid loadout group"@loadout_group);
+		return;
+	}
+	
+	weapons = SGetGroup(loadout_group);
+	
+	for (i = 0; i < weapons.Length; ++i)
+	{
+		if (weapons[i] ~= WI.ClassName)
+		{
+			Sender.ClientMessage("Mutate AddKillstreakWeapon: Loadout group"@loadout_group@"already contains"@WI.ClassName); 
+			return;	
+		}
+	}
+	
+	weapons[weapons.Length] = split_string[2];
+	
+	switch(loadout_group)
+	{
+	case 0:
+		class'Mut_Killstreak'.default.Streak1s = weapons;
+		break;
+	case 1:
+		class'Mut_Killstreak'.default.Streak2s = weapons;
+		break;
+	}	
+	
+	Sender.ClientMessage("Mutate AddKillstreakWeapon: Success - added"@WI.ClassName@"to loadout group"@loadout_group); 
+	
+	class'Mut_Killstreak'.static.StaticSaveConfig();
+}
+
+function RemoveWeapon(PlayerController Sender, array<String> split_string)
+{	
+	local bool success;
+	local int i, loadout_group;
+	local array<String> weapons;
+
+	success = false;
+	
+	if (Level.NetMode != NM_Standalone && !Sender.PlayerReplicationInfo.bAdmin)
+	{
+		Sender.ClientMessage("Mutate RemoveKillstreakWeapon: Administrator permissions required");
+		return;
+	}
+	
+	if (split_string.Length != 3)
+	{
+		Sender.ClientMessage("Mutate RemoveKillstreakWeapon: Usage: mutate removekillstreakweapon <loadout_group_index> <weapon_class_name>");
+		return;
+	}	
+	
+	loadout_group = int(split_string[1]);
+	
+	if (loadout_group >= NUM_GROUPS)
+	{
+		Sender.ClientMessage("Mutate RemoveKillstreakWeapon: Invalid loadout group"@loadout_group);
+		return;
+	}
+	
+	weapons = SGetGroup(loadout_group);
+	
+	for (i = 0; i < weapons.Length; ++i)
+	{
+		if (weapons[i] ~= split_string[2])
+		{
+			weapons.Remove(i, 1);
+			--i;
+			success = true;
+		}
+	}
+	
+	if (success)
+	{
+		switch(loadout_group)
+		{
+		case 0:
+			class'Mut_Killstreak'.default.Streak1s = weapons;
+			break;
+		case 1:
+			class'Mut_Killstreak'.default.Streak2s = weapons;
+			break;
+		}	
+		
+		class'Mut_Killstreak'.static.StaticSaveConfig();
+		
+		Sender.ClientMessage("Mutate RemoveKillstreakWeapon: Success - removed"@split_string[2]@"from loadout group"@loadout_group); 
+	}
+	
+	else 
+	{
+		Sender.ClientMessage("Mutate RemoveKillstreakWeapon:"@split_string[2]@"not found in loadout group"@loadout_group); 
+	}
 }
 
 function GrantKillstreakReward(Pawn Other, KillstreakLRI KLRI)
