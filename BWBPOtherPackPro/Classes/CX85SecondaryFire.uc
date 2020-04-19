@@ -37,7 +37,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 
 defaultproperties
 {
-     SpawnOffset=(X=15.000000,Y=15.000000,Z=-20.000000)
+     SpawnOffset=(X=15.000000,Y=15.000000,Z=-2.000000)
      bUseWeaponMag=False
      FlashBone="tip2"
      RecoilPerShot=256.000000

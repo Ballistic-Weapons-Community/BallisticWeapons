@@ -80,8 +80,8 @@ simulated function Initialize(vector HitNormal, int Load)
 	if (level.NetMode == NM_Client)
 		return;
 
-	SpreadRadius = BaseSpreadRadius * (Load ** 0.65f);
-	Count = 4 * (Load ** 1.5f);
+	SpreadRadius = BaseSpreadRadius * (Load ** 0.4f);
+	Count = 2 * (Load ** 1.35f);
 
 	// Spawn all the pools to set up an area of destruction
 	Start = Location+(HitNormal*8);

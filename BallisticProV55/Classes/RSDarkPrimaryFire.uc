@@ -235,20 +235,38 @@ function DoFireEffect()
 
 function StartBerserk()
 {
-   	FireRate *= 0.75;
-    FireAnimRate = default.FireAnimRate/0.75;
-    RecoilPerShot = default.RecoilPerShot * 0.75;
-    FireChaos = default.FireChaos * 0.75;
+	if (BW.CurrentWeaponMode == 0)
+	{
+		FireRate = default.FireRate * 0.75;
+		FireAnimRate = default.FireAnimRate * 0.75;
+		RecoilPerShot = default.RecoilPerShot * 0.75;
+		FireChaos = default.FireChaos * 0.75;
+	}
+	else
+	{
+		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate * 0.75;
+    	FireAnimRate = default.FireAnimRate * 0.75;
+    	RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
+		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos * 0.75;
+	}
 }
 
 function StopBerserk()
 {
 	if (BW.CurrentWeaponMode == 0)
+	{
 		FireRate = default.FireRate;
-	else FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate;
-    FireAnimRate = default.FireAnimRate;
-    RecoilPerShot = default.RecoilPerShot;
-    FireChaos = default.FireChaos;
+		FireAnimRate = default.FireAnimRate;
+		RecoilPerShot = default.RecoilPerShot;
+		FireChaos = default.FireChaos;
+	}
+	else
+	{
+		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate;
+    	FireAnimRate = default.FireAnimRate;
+    	RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil;
+		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos;
+	}
 }
 
 function StartSuperBerserk()

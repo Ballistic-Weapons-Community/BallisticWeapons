@@ -12,7 +12,7 @@ class X3Knife extends BallisticMeleeWeapon;
 
 #exec OBJ LOAD File=BallisticSounds3.uax
 
-var   bool			bThrowingKinfe;
+var   bool			bThrowingKnife;
 var() name			KnifeBackAnim;
 var() name			KnifeThrowAnim;
 var   float			NextThrowTime;
@@ -25,46 +25,49 @@ simulated event AnimEnd (int Channel)
 
     GetAnimParams(0, anim, frame, rate);
 
-	if (anim == 'PrepThrow' && bThrowingKinfe)
+	if (anim == 'PrepThrow' && bThrowingKnife)
 		return;
 	super.AnimEnd(Channel);
 }
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (Instigator.bNoWeaponFiring || AmmoAmount(0) < 2 || Level.TimeSeconds < NextThrowTime || bThrowingKinfe)
+	if (Instigator.bNoWeaponFiring || AmmoAmount(0) < 2 || Level.TimeSeconds < NextThrowTime || bThrowingKnife)
 		return;
 	PlayAnim('PrepThrow');
-	bThrowingKinfe=true;
+	bThrowingKnife=true;
 	ServerWeaponSpecial(i);
 }
 function ServerWeaponSpecial(optional byte i)
 {
-	bThrowingKinfe=true;
+	bThrowingKnife=true;
 }
 
 //simulated function DoWeaponSpecialRelease(optional byte i)
 exec simulated function WeaponSpecialRelease(optional byte i)
 {
-	if (!bThrowingKinfe || AmmoAmount(0) < 2 || Level.TimeSeconds < NextThrowTime)
+	if (!bThrowingKnife || AmmoAmount(0) < 2 || Level.TimeSeconds < NextThrowTime)
 		return;
-	PlaySound(Sound'BallisticSounds3.Knife.KnifeThrow',,1.0,,32,,);
+	PlaySound(Sound'BallisticSounds3.Knife.KnifeThrow',/*slot*/,1.0,/*nooverride*/,256,/* pitch */,/*attenuate*/);
 	if (level.NetMode == NM_Client)
 		PlayAnim('Throw', 1.5);
 	ServerWeaponSpecialRelease(i);
 }
+
 function ServerWeaponSpecialRelease(optional byte i)
 {
 	PlayAnim('Throw');
 }
+
 simulated function Notify_X3Throw()
 {
 	ThrowKnife();
 	SetBoneScale(0, 0.0, 'Knife');
 }
+
 simulated function ThrowKnife()
 {
-	bThrowingKinfe=false;
+	bThrowingKnife=false;
 	NextThrowTime = Level.TimeSeconds + 0.6;
 	if (Role == ROLE_Authority)
 	{

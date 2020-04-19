@@ -40,6 +40,9 @@ simulated function float ChargeBar()
 
 simulated function AddHeat(float Amount, float DeclineTime)
 {
+	if (bBerserk)
+		Amount *= 0.75;
+		
 	HeatLevel += Amount;
 	SoundPitch = 56 + HeatLevel * 9;
 	HeatDeclineTime = FMax(Level.TimeSeconds + DeclineTime, HeatDeclineTime);

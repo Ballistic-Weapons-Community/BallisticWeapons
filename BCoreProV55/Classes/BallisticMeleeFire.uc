@@ -80,10 +80,10 @@ function float ResolveDamageFactors(Actor Victim, vector TraceStart, vector HitL
 	local Combo combo;
 
 	DamageFactor = Super.ResolveDamageFactors(Victim, TraceStart, HitLocation, PenetrateCount, WallCount, WaterHitLocation);
-	// Reduce damage if using Speed or MiniMe
+	// Reduce damage if using Speed or MiniMe (hits unknown combos as well)
 	combo = xPawn(Instigator).CurrentCombo;
 
-	if(combo != None && ComboSpeed(combo) == None && ComboMiniMe(combo) == None)
+	if(combo != None && ComboDefensive(combo) == None && ComboBerserk(combo) == None)
 		DamageFactor *= 0.5;
 
 	// Damage increases with hold time
@@ -361,7 +361,8 @@ simulated event ModeDoFire()
 		NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
 	}
 	
-	BW.MeleeFatigue = FMin(BW.MeleeFatigue + FatiguePerStrike, 1);
+	if (!BW.bBerserk)
+		BW.MeleeFatigue = FMin(BW.MeleeFatigue + FatiguePerStrike, 1);
 	
 	Load = AmmoPerFire;
 	HoldTime = 0;

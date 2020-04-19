@@ -67,6 +67,9 @@ simulated event Tick (float DT)
 
 simulated function AddHeat(float Amount)
 {
+	if (bBerserk)
+		Amount *= 0.75;
+
 	HeatLevel += Amount;
 	
 	if (HeatLevel >= 11.75)

@@ -13,7 +13,7 @@ class A500SecondaryFire extends BallisticProProjectileFire;
 var Sound ChargingSound;
 var int AcidLoad;
 
-const ACIDMAX = 4;
+const ACIDMAX = 8;
 
 function ModeHoldFire()
 {

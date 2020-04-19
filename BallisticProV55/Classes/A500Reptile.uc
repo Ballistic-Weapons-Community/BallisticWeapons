@@ -158,7 +158,7 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 simulated function float ChargeBar()
 {
-	return BFireMode[1].HoldTime / 2.25f;
+	return BFireMode[1].HoldTime / BFireMode[1].MaxHoldTime;
 }
 
 defaultproperties

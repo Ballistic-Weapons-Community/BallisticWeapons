@@ -81,34 +81,38 @@ simulated function SwitchWeaponMode (byte NewMode)
 
 function StartBerserk()
 {
-	if (BW.CurrentWeaponMode == 3)
-    	FireRate = 0.6;
-	else if (BW.CurrentWeaponMode == 2)
-    	FireRate = 0.08;
-	else if (BW.CurrentWeaponMode == 1)
-    	FireRate = 1.5;
+	if (BW.CurrentWeaponMode == 0)
+	{
+		FireRate = default.FireRate * 0.75;
+		FireAnimRate = default.FireAnimRate * 0.75;
+		RecoilPerShot = default.RecoilPerShot * 0.75;
+		FireChaos = default.FireChaos * 0.75;
+	}
 	else
-    	FireRate = 0.15;
-   	FireRate *= 0.75;
-    FireAnimRate = default.FireAnimRate/0.75;
-    RecoilPerShot = default.RecoilPerShot * 0.75;
-    FireChaos = default.FireChaos * 0.75;
+	{
+		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate * 0.75;
+    	FireAnimRate = default.FireAnimRate * 0.75;
+    	RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
+		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos * 0.75;
+	}
 }
 
 function StopBerserk()
 {
-	if (BW.CurrentWeaponMode == 3)
-    	FireRate = 0.6;
-	else if (BW.CurrentWeaponMode == 2)
-    	FireRate = 0.08;
-	else if (BW.CurrentWeaponMode == 1)
-    	FireRate = 1.5;
+	if (BW.CurrentWeaponMode == 0)
+	{
+		FireRate = default.FireRate;
+		FireAnimRate = default.FireAnimRate;
+		RecoilPerShot = default.RecoilPerShot;
+		FireChaos = default.FireChaos;
+	}
 	else
-    	FireRate = 0.15;
-    FireAnimRate = default.FireAnimRate;
-    ReloadAnimRate = default.ReloadAnimRate;
-    RecoilPerShot = default.RecoilPerShot;
-    FireChaos = default.FireChaos;
+	{
+		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate;
+    	FireAnimRate = default.FireAnimRate;
+    	RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil;
+		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos;
+	}
 }
 
 function StartSuperBerserk()
@@ -137,7 +141,7 @@ simulated state Shotgun
 		ConsumedLoad = (4*j);
 		for (i=0;i<j;i++)
 		{
-			R.Roll = (65536.0 / j) * i;
+			R.Roll = ((65536.0 / j) * i) -16384;
 
 			if (BW.bScopeView || BW.bAimDisabled)
 				Proj = Spawn (ProjectileClass,,, Start, rotator((Vector(rot(0,256,0)) >> R) >> Dir) );

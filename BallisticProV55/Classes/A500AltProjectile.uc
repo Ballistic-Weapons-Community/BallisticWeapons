@@ -9,9 +9,9 @@
 //=============================================================================
 class A500AltProjectile extends BallisticGrenade;
 
-var int AcidLoad;
+var int AcidLoad, BaseImpactDamage, BonusImpactDamage;
 
-const ACIDMAX = 4.0f;
+const ACIDMAX = 8.0f;
 
 simulated event ProcessTouch( actor Other, vector HitLocation )
 {
@@ -26,6 +26,8 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 		
 	if ( Instigator == None || Instigator.Controller == None )
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
+
+	DirectDamage = BaseImpactDamage + (BonusImpactDamage * (AcidLoad / ACIDMAX));
 
 	class'BallisticDamageType'.static.GenericHurt (Other, DirectDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
 	ReduceHP(Other);
@@ -98,8 +100,9 @@ defaultproperties
      PlayerImpactType=PIT_Detonate
      bNoInitialSpin=True
      bAlignToVelocity=True
-     DetonateDelay=1.000000
-     ImpactDamage=100
+	 DetonateDelay=1.000000
+	 BaseImpactDamage=50
+     BonusImpactDamage=100
      ImpactDamageType=Class'BallisticProV55.DTA500Impact'
      ImpactManager=Class'BallisticProV55.IM_A500AcidExplode'
      TrailClass=Class'BallisticProV55.A500AltProjectileTrail'

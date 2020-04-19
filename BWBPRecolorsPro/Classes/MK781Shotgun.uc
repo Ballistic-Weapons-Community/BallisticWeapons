@@ -661,7 +661,7 @@ defaultproperties
      WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
      CurrentWeaponMode=1
      bNoCrosshairInScope=True
-     SightOffset=(X=20.000000,Y=-7.61000,Z=13.940000)
+	 SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
      SightDisplayFOV=20.000000
      SightingTime=0.300000
      GunLength=48.000000
