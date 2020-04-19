@@ -7,6 +7,9 @@ var float LastModeChangeTime;
 var rotator ScopeSightPivot;
 var vector ScopeSightOffset;
 
+var rotator IronSightPivot;
+var vector IronSightOffset;
+
 simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
@@ -231,10 +234,10 @@ exec simulated function ScopeView()
 	{
 		if (bNoMeshInScope)
 		{
-			SightPivot = default.SightPivot;
-			SightOffset = default.SightOffset;
+			SightPivot = IronSightPivot;
+			SightOffset = IronSightOffset;
 			ZoomType = ZT_Irons;
-			ScopeViewTex=None;
+			ScopeViewTex = None;
 			SightingTime = default.SightingTime;
 			bNoMeshInScope = false;
 		}
@@ -289,36 +292,38 @@ simulated function ScopeViewTwoRelease()
 // Swap sighted offset and pivot for left handers
 simulated function SetHand(float InHand)
 {
+	IronSightPivot = default.SightPivot;
+	IronSightOffset = default.SightOffset;
+
 	super.SetHand(InHand);
 	if (Hand < 0)
 	{
 		if (bNoMeshInScope)
 		{
-			SightOffset.Y = ScopeSightOffset.Y * -1;
-			SightPivot.Roll = ScopeSightPivot.Roll * -1;
-			SightPivot.Yaw = ScopeSightPivot.Yaw * -1;
+			ScopeSightOffset.Y = ScopeSightOffset.Y * -1;
+			ScopeSightPivot.Roll = ScopeSightPivot.Roll * -1;
+			ScopeSightPivot.Yaw = ScopeSightPivot.Yaw * -1;
 		}
-		
 		else
 		{
-			SightOffset.Y = default.SightOffset.Y * -1;
-			SightPivot.Roll = default.SightPivot.Roll * -1;
-			SightPivot.Yaw = default.SightPivot.Yaw * -1;
+			IronSightOffset.Y = IronSightOffset.Y * -1;
+			IronSightPivot.Roll = IronSightPivot.Roll * -1;
+			IronSightPivot.Yaw = IronSightPivot.Yaw * -1;
 		}
 	}
 	else
 	{
 		if (bNoMeshInScope)
 		{
-			SightOffset.Y = ScopeSightOffset.Y;
-			SightPivot.Roll = ScopeSightPivot.Roll;
-			SightPivot.Yaw = ScopeSightPivot.Yaw;
+			ScopeSightOffset.Y = ScopeSightOffset.Y * -1;
+			ScopeSightPivot.Roll = ScopeSightPivot.Roll * -1;
+			ScopeSightPivot.Yaw = ScopeSightPivot.Yaw * -1;
 		}
 		else
 		{
-			SightOffset.Y = default.SightOffset.Y;
-			SightPivot.Roll = default.SightPivot.Roll;
-			SightPivot.Yaw = default.SightPivot.Yaw;
+			IronSightOffset.Y = IronSightOffset.Y * -1;
+			IronSightPivot.Roll = IronSightPivot.Roll * -1;
+			IronSightPivot.Yaw = IronSightPivot.Yaw * -1;
 		}
 	}
 }

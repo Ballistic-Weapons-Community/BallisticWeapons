@@ -27,6 +27,8 @@ var() name				LastShellBone;		// Name of the right shell.
 var   bool				bLastShell;			// Checks if only one shell is left
 var   bool				bNowEmpty;			// Checks if it should play modified animation.
 
+var() float				SingleReloadAnimRate; // Animation rate for single reload.
+
 struct DeployableInfo
 {
 	var class<Actor> 	dClass;
@@ -76,7 +78,7 @@ simulated function PostBeginPlay()
 // Cycle through the various weapon modes
 function ServerSwitchWeaponMode (byte NewMode)
 {
-	if (ReloadState != RS_None || !HasAmmo())
+	if (ReloadState != RS_None || !HasAmmo() || FireMode[1].bIsFiring)
 		return;
 	Super.ServerSwitchWeaponMode(NewMode);
 	ServerStartReload(2);
@@ -140,7 +142,7 @@ simulated function CommonStartReload (optional byte i)
 simulated function PlayReload()
 {
 	if (MagAmmo == 1 && !bNowEmpty)		// One shell fired and both shells in
-		PlayAnim('ReloadSingle', CockAnimRate, , 0.25);
+		PlayAnim('ReloadSingle', SingleReloadAnimRate, , 0.25);
 	else					// Both shells fired
 		PlayAnim('Reload', ReloadAnimRate, , 0.25);
 }
@@ -637,6 +639,7 @@ defaultproperties
      PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
      MagAmmo=2
      CockAnimRate=0.700000
+	 SingleReloadAnimRate=1.300000
      ReloadAnimRate=1.250000
      ClipInFrame=0.800000
      bNonCocking=True
