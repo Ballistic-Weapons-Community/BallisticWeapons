@@ -122,10 +122,10 @@ function SetSilenced(bool bSilenced)
 	bAISilent = bSilenced;
 	if (bSilenced)
 	{
-		Damage *= 0.9;
-		RecoilPerShot *= 0.9;
-		BW.RecoilXFactor *= 0.9;
-		BW.RecoilYFactor *= 0.9;
+		Damage *= 0.8;
+		RecoilPerShot *= 0.7;
+		BW.RecoilXFactor *= 0.7;
+		BW.RecoilYFactor *= 0.7;
 		RangeAtten *= 1.2;
 		XInaccuracy *= 0.5;
 		YInaccuracy *= 0.5;

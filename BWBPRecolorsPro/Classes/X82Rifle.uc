@@ -388,7 +388,7 @@ defaultproperties
      bNoCrosshairInScope=True
      SightPivot=(Roll=-1024)
      SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
-     SightingTime=0.650000
+     SightingTime=0.750000
      MinZoom=2.000000
      MaxZoom=32.000000
      ZoomStages=10

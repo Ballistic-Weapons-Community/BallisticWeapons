@@ -22,9 +22,9 @@ defaultproperties
      WaterRangeFactor=0.800000
      MaxWallSize=72.000000
      MaxWalls=4
-     Damage=120.000000
+     Damage=130.000000
      DamageHead=175.000000
-     DamageLimb=120.000000
+     DamageLimb=130.000000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPRecolorsPro.DT_X82Torso'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_X82Head'

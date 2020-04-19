@@ -437,7 +437,7 @@ defaultproperties
      bNoMeshInScope=True
      bNoCrosshairInScope=True
      SightOffset=(X=20.000000,Z=11.750000)
-     SightingTime=0.500000
+     SightingTime=0.550000
      MinZoom=2.000000
      MaxZoom=8.000000
      ZoomStages=6

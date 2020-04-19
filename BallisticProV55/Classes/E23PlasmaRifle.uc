@@ -527,7 +527,7 @@ defaultproperties
      SightPivot=(Pitch=256)
      SightOffset=(X=-8.000000,Z=9.300000)
      SightDisplayFOV=25.000000
-     SightingTime=0.400000
+     SightingTime=0.550000
      SightAimFactor=0.350000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimSpread=256

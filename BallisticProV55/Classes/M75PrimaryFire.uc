@@ -21,9 +21,9 @@ defaultproperties
      TraceRange=(Min=30000.000000,Max=30000.000000)
      MaxWallSize=72.000000
      MaxWalls=5
-     Damage=125.000000
+     Damage=130.000000
      DamageHead=150.000000
-     DamageLimb=125.000000
+     DamageLimb=130.000000
      DamageType=Class'BallisticProV55.DTM75Railgun'
      DamageTypeHead=Class'BallisticProV55.DTM75RailgunHead'
      DamageTypeArm=Class'BallisticProV55.DTM75Railgun'

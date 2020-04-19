@@ -764,7 +764,8 @@ defaultproperties
      ClipHitSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipHit')
      ClipOutSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipOut')
      ClipInSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipIn')
-     ClipInFrame=0.650000
+	 ClipInFrame=0.650000
+	 SightingTime=0.4
      StartShovelAnim="RLLoadPrep"
      StartShovelAnimRate=2.000000
      EndShovelAnim="RLLoadEnd"
