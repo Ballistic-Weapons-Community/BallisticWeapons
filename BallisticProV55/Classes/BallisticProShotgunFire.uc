@@ -15,7 +15,6 @@ var int	 MaxSpreadFactor;
 function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, Vector WaterHitLocation)
 {
 	local float  DamageFactor;
-	local Vector RelativeVelocity;
 
 	DamageFactor = 1;
 

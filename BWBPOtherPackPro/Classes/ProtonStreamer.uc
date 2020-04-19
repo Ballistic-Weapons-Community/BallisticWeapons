@@ -111,12 +111,6 @@ simulated event WeaponTick(float DT)
 //===========================================================================
 simulated function RenderOverlays (Canvas C)
 {
-	local int i;
-	local Vector Start, End, HitLocation, HitNormal;
-	local float Magnitude;
-	local Actor Other;
-	local Rotator AimDir;
-	
 	Super.RenderOverlays(C);
 
 	if (StreamEffect != None)

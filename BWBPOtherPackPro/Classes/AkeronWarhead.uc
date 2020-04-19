@@ -193,14 +193,12 @@ simulated function PhysicsVolumeChange( PhysicsVolume Volume )
 
 simulated function Landed( vector HitNormal )
 {
-	if (Level.TimeSeconds - FiredAt > ArmThreshold)
-		BlowUp(Location);
+	BlowUp(Location);
 }
 
 simulated function HitWall(vector HitNormal, actor Wall)
 {
-	if (Level.TimeSeconds - FiredAt > ArmThreshold)
-		BlowUp(Location);
+	BlowUp(Location);
 }
 
 simulated singular function Touch(Actor Other)
@@ -277,7 +275,8 @@ function BlowUp(vector HitLocation)
 		Master.LostWarhead();
 
 	Instigator = self;
-    TargetedHurtRadius(Damage, DamageRadius, MyDamageType, MomentumTransfer, HitLocation, HitActor);
+	if (Level.TimeSeconds - FiredAt > ArmThreshold)
+    	TargetedHurtRadius(Damage, DamageRadius, MyDamageType, MomentumTransfer, HitLocation, HitActor);
 	bExploded = True;
 	
 	GoToState('NetTrapped');
@@ -651,7 +650,7 @@ defaultproperties
      MyDamageType=Class'BWBPOtherPackPro.DTAkeronGuided'
 	 OutwardDamageRadius=96.000000
      ImpactManager=Class'BWBPOtherPackPro.IM_Akeron'
-	 ArmThreshold=0.070000
+	 ArmThreshold=0.150000
 
 	 AmbientSound=Sound'BallisticSounds2.G5.G5-RocketFly'
      SoundRadius=100.000000

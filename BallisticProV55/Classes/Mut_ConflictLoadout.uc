@@ -90,7 +90,7 @@ function PostBeginPlay()
 //==================================================
 function Mutate(string MutateString, PlayerController Sender)
 {
-	local int i, count;
+	local int count;
 	local array<String> split_string;
 	
 	count = Split(MutateString, " ", split_string);

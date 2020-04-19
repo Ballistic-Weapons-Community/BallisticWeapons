@@ -6,8 +6,6 @@ var() globalconfig string		Killstreaks[2];
 
 static function UpdateStreaks(string ks1, string ks2)
 {
-	local int i;
-
 	Log("KillstreakConfig: Attempting killstreak update: "$ks1$", "$ks2);
 	
 	default.Killstreaks[0] = ks1;

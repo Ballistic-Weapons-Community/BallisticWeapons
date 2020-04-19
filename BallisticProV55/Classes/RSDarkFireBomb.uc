@@ -76,7 +76,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 simulated function DoVehicleDriverRadius(Vehicle Other)
 {
 	//local bool bWasAlive;
-	local Pawn D;
+	//local Pawn D;
 
 	/*
 	if (Other.Driver != None && Other.Driver.health > 0)

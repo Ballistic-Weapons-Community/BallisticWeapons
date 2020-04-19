@@ -301,7 +301,6 @@ function int CountExisting(string weapon_name)
 
 function int GetMaxCount(class<Weapon> weapon)
 {
-	local class<Ammo> ammo_class;
 	local int base_ammo, max_ammo;
 
 	if (class<BallisticHandgun>(weapon) != None && class<BallisticHandgun>(weapon).default.bShouldDualInLoadout)
