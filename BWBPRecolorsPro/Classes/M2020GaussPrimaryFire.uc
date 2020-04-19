@@ -83,7 +83,7 @@ function StartBerserk()
 	switch(BW.CurrentWeaponMode)
 	{
 		case 0: FireRate = default.FireRate * 0.75; break;
-		case 1: FireRate = 1.2 * 0.75; break;
+		case 1: FireRate = 1.0 * 0.75; break;
 		default: FireRate = 0.2 * 0.75;
 	}
     FireAnimRate = default.FireAnimRate/0.75;
@@ -96,7 +96,7 @@ function StopBerserk()
 	switch(BW.CurrentWeaponMode)
 	{
 		case 0: FireRate = default.FireRate; break;
-		case 1: FireRate = 1.2; break;
+		case 1: FireRate = 1.0; break;
 		default: FireRate = 0.2;
 	}
     FireAnimRate = default.FireAnimRate;
@@ -132,7 +132,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		RecoilPerShot=1024.000000;
 		VelocityRecoil=120.000000;
 		FireAnim='FirePowered';
-		FireRate=1.200000;
+		FireRate=1.000000;
 		FireChaos=1;
 		KickForce=3000;
 		BW.RecoilXFactor = 0.35;

@@ -95,7 +95,7 @@ defaultproperties
      XInaccuracy=300.000000
      YInaccuracy=300.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Longhorn.Longhorn-FireAlt',Volume=1.700000)
-     FireAnimRate=1.200000
+     FireAnimRate=1.500000
      FireRate=0.800000
      ProjectileClass=Class'BWBPRecolorsPro.LonghornClusterGrenadeAlt'
 	 

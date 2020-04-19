@@ -100,8 +100,8 @@ defaultproperties
      MotionBlurTime=4.000000
      bCoverPenetrator=True
      Speed=4500.000000
-     Damage=120.000000
-     DamageRadius=512.000000
+     Damage=140.000000
+     DamageRadius=768.000000
      MyDamageType=Class'BWBPRecolorsPro.DTMGLGrenadeRadius'
      ImpactSound=Sound'PackageSounds4Pro.Misc.FLAK-GrenadeBounce'
      StaticMesh=StaticMesh'BallisticHardware2.M900.M900Grenade'

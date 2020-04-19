@@ -368,9 +368,9 @@ defaultproperties
      PutDownSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOff')
      MagAmmo=5
      CockAnimPostReload="Cock"
-     CockAnimRate=1.500000
+     CockAnimRate=1.700000
      CockSound=(Sound=Sound'PackageSounds4Pro.X82.X83-Charge',Volume=2.500000)
-     ReloadAnimRate=0.400000
+     ReloadAnimRate=0.70000
      ClipHitSound=(Sound=Sound'PackageSounds4Pro.X82.X83-In',Volume=1.500000)
      ClipOutSound=(Sound=Sound'PackageSounds4Pro.X82.X83-Out',Volume=1.500000)
      ClipInFrame=0.850000

@@ -172,13 +172,12 @@ simulated function SwitchSilencerMode (bool bNewMode)
 {
 	if (bNewMode)
 	{
-		Damage *= 0.65;
-		RecoilPerShot *= 0.5;
-		BW.RecoilXFactor *= 0.5;
-		BW.RecoilYFactor *= 0.5;
-		RangeAtten *= 1.55;
-		XInaccuracy *= 0.25;
-		YInaccuracy *= 0.25;
+		Damage *= 0.7;
+		RecoilPerShot *= 0.6;
+		BW.RecoilXFactor *= 0.6;
+		BW.RecoilYFactor *= 0.6;
+		XInaccuracy *= 0.5;
+		YInaccuracy *= 0.5;
 		DamageType=Class'DT_LK05SilAssault';
      	DamageTypeHead=Class'DT_LK05SilAssaultHead';
      	DamageTypeArm=Class'DT_LK05SilAssault';

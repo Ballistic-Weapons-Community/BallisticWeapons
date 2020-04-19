@@ -7,7 +7,7 @@ defaultproperties
 {
      bNoPackResupply=True
      MaxAmmo=12
-     InitialAmount=12
+     InitialAmount=6
      IconFlashMaterial=Shader'BallisticTextures_25.BOGP.AmmoIcon_BOGPFlash'
      PickupClass=Class'BallisticProV55.AP_BOGPGrenades'
      IconMaterial=Texture'BallisticTextures_25.BOGP.AmmoIcon_BOGP'

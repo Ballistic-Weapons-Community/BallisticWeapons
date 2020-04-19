@@ -122,13 +122,13 @@ function SetSilenced(bool bSilenced)
 	bAISilent = bSilenced;
 	if (bSilenced)
 	{
-		Damage *= 0.65;
-		RecoilPerShot *= 0.5;
-		BW.RecoilXFactor *= 0.5;
-		BW.RecoilYFactor *= 0.5;
-		RangeAtten *= 1.55;
-		XInaccuracy *= 0.2;
-		YInaccuracy *= 0.2;
+		Damage *= 0.9;
+		RecoilPerShot *= 0.9;
+		BW.RecoilXFactor *= 0.9;
+		BW.RecoilYFactor *= 0.9;
+		RangeAtten *= 1.2;
+		XInaccuracy *= 0.5;
+		YInaccuracy *= 0.5;
 	}
 	else
 	{
@@ -170,7 +170,7 @@ defaultproperties
      FlashScaleFactor=0.500000
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
-     RecoilPerShot=240.000000
+     RecoilPerShot=210.000000
      FireChaos=0.070000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      SilencedFireSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-SilenceFire',Volume=1.000000,Radius=256.000000,bAtten=True)
