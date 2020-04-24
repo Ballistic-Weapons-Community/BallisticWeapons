@@ -32,7 +32,7 @@ state Freeze
 {
 	function BeginState()
 	{
-		Damage = 40;
+		Damage = 50;
 	}
 	function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 	{	
