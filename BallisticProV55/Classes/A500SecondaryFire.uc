@@ -20,6 +20,7 @@ function ModeHoldFire()
     if ( BW.HasMagAmmo(ThisModeNum) )
     {
         Super.ModeHoldFire();
+		BW.bPreventReload = True;
         GotoState('Hold');
     }
 }
@@ -49,6 +50,7 @@ state Hold
     {
 		if ( Weapon != None && Instigator != None)
 		{
+			BW.bPreventReload = False;
 			Instigator.AmbientSound = None;
 			Instigator.SoundRadius = Instigator.default.SoundRadius;
 			Instigator.SoundVolume = Instigator.default.SoundVolume;
