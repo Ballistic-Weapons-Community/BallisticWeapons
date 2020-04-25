@@ -97,7 +97,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	else Victim = GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT);
 
 	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-		BallisticPawn(Instigator).GiveAttributedHealth(Dmg, Instigator.SuperHealthMax, Instigator, True);
+		BallisticPawn(Instigator).GiveAttributedHealth(int(Dmg * 0.6f), Instigator.SuperHealthMax, Instigator, True);
 
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 	{
@@ -245,7 +245,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 			);
 			
 			if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victims != Instigator && Victims.bProjTarget && (Pawn(Victims).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-				BallisticPawn(Instigator).GiveAttributedHealth(damageScale * DamageAmount, Instigator.SuperHealthMax, Instigator, True);
+				BallisticPawn(Instigator).GiveAttributedHealth(damageScale * DamageAmount * 0.6f, Instigator.SuperHealthMax, Instigator, True);
 			if (bWasAlive && Pawn(Victims).Health <= 0)
 				class'RSNovaSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Victims), self);
 		}
@@ -283,9 +283,9 @@ defaultproperties
 	AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire1FlyBy'
 	CollisionHeight=1.000000
 	CollisionRadius=1.000000
-	Damage=70.000000
-	DamageHead=70.000000
-	DamageLimb=70.000000
+	Damage=60.000000
+	DamageHead=60.000000
+	DamageLimb=60.000000
 	DamageRadius=128.000000
 	DamageTypeHead=Class'BallisticProV55.DT_RSNovaSlow'
 	ImpactManager=Class'BallisticProV55.IM_RSNovaProjectile'

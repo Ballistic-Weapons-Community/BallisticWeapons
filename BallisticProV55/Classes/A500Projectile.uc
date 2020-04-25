@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class A500Projectile extends BallisticProjectile;
 
@@ -168,7 +168,8 @@ defaultproperties
      DamageTypeHead=Class'BallisticProV55.DTA500BlastHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=8000.000000
-     MaxSpeed=8000.000000
+	 MaxSpeed=12000.000000
+	 AccelSpeed=100000.000000
      Damage=30.000000
      MomentumTransfer=1000.000000
      MyDamageType=Class'BallisticProV55.DTA500Blast'

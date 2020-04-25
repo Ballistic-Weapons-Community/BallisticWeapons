@@ -492,14 +492,14 @@ state NovaLightning
 				return;
 			}
 
-			if (Pawn(Target) != None && Instigator.Controller.SameTeamAs(Pawn(Target).Controller))
+			if (Pawn(Target) != None && Pawn(Target).bProjTarget && Instigator.Controller.SameTeamAs(Pawn(Target).Controller))
 			{
 				AdjustedDamage = Damage * Instigator.DamageScaling;
 				if (Instigator.HasUDamage())
 					AdjustedDamage *= 2;
 				if (BallisticPawn(Target) != None)
-					BallisticPawn(Target).GiveAttributedHealth(15, Pawn(Target).SuperHealthMax, Instigator);
-				else Pawn(Target).GiveHealth(15, Pawn(Target).SuperHealthMax);
+					BallisticPawn(Target).GiveAttributedHealth(5, Pawn(Target).SuperHealthMax, Instigator);
+				else Pawn(Target).GiveHealth(5, Pawn(Target).SuperHealthMax);
 				NovaStaff.SetTargetZap(Target, true);
 				return;
 			}

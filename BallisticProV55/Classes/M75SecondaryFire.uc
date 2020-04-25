@@ -22,6 +22,7 @@ var		float		RailRecoilPerShotPenalty;
 
 simulated event ModeDoFire()
 {
+	Damage 			= default.Damage			+ RailDamageBonus			* RailPower;
 	MaxWallSize 	= default.MaxWallSize 		+ RailMaxWallSizeBonus 		* Square(RailPower);
 	MaxWalls 		= default.MaxWalls 			+ RailMaxWallsBonus 		* RailPower;
 	PenetrateForce 	= default.PenetrateForce 	+ RailPenetrateForceBonus 	* RailPower;
@@ -68,11 +69,6 @@ simulated function ModeTick(float DeltaTime)
 		Weapon.ThirdPersonActor.SoundRadius = 128 + 768 * RailPower;
 	}
 
-}
-
-function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
-{
-	return Super.GetDamage(Other, HitLocation, Dir, Victim, DT) *  (1 + (Square(RailPower) * 0.6));
 }
 
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
