@@ -128,12 +128,13 @@ defaultproperties
          FadeOutStartTime=0.037500
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
-         StartSpinRange=(Z=(Max=1.000000))
+         //StartSpinRange=(Z=(Max=1.000000))
          SizeScale(0)=(RelativeSize=0.500000)
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.200000)
          StartSizeRange=(Y=(Min=1.500000,Max=1.500000),Z=(Min=1.500000,Max=1.500000))
          SecondsBeforeInactive=0.000000
+         StartSpinRange=(Z=(Min=0,Max=0))
          LifetimeRange=(Min=0.250000,Max=0.250000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
@@ -147,6 +148,7 @@ defaultproperties
          RenderTwoSided=True
          UseParticleColor=True
          UseColorScale=True
+         SpinParticles=True
          FadeOut=True
          RespawnDeadParticles=False
          UseSizeScale=True
@@ -164,6 +166,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.160000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.400000)
          SecondsBeforeInactive=0.000000
+         StartSpinRange=(Z=(Min=0.25,Max=0.25))
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=50000.000000

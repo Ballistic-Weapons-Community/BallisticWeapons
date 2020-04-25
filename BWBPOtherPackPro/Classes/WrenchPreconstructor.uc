@@ -102,7 +102,7 @@ state SpawnIn
 		
 		newVehicle = Spawn(myVehicle, Wrench, , GroundPoint + vect(0,0,1), Rotation);
 		newVehicle.Health = Health;
-		newVehicle.bTeamLocked = False;
+        newVehicle.bTeamLocked = False;
 	}
 	
 	function SpawnDeployable()

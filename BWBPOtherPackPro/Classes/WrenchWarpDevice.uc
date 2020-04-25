@@ -316,6 +316,7 @@ function Notify_WrenchDeploy()
 	local Vector Start, End, HitNorm, HitLoc;
 	local WrenchPreconstructor WP;
 	local WrenchDeployable D;
+	local ASTurret_Minigun MT;
 	
 	Start = Instigator.Location + Instigator.EyePosition();
 	End = Start + vector(Instigator.GetViewRotation()) * DeployRange;
@@ -396,6 +397,13 @@ function Notify_WrenchDeploy()
 		foreach RadiusActors(class'WrenchDeployable', D, 512, HitLoc)
 		{
 			Instigator.ClientMessage("Too close to a major deployable.");
+			PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+			return;
+		}
+
+			foreach RadiusActors(class'ASTurret_Minigun', MT, 512, HitLoc)
+		{
+			Instigator.ClientMessage("Too close to a minigun turret.");
 			PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
 			return;
 		}
@@ -665,13 +673,13 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-     Deployables(0)=(dClass=Class'BWBPOtherPackPro.WrenchBoostPad',SpawnOffset=4,WarpInTime=4.000000,AmmoReq=20,Limit=0,CheckSlope=True,dDescription="A pad which propels players through the air in the direction they were moving.")
-     Deployables(1)=(dClass=Class'BWBPOtherPackPro.WrenchTeleporter',SpawnOffset=1,WarpInTime=20.000000,AmmoReq=20,Limit=2,CheckSlope=True,dDescription="A teleporter. Only two may be placed.")
-     Deployables(2)=(dClass=Class'BallisticProV55.Sandbag',SpawnOffset=8,WarpInTime=2.000000,AmmoReq=10,Limit=0,CheckSlope=False,dDescription="A unit of three sandbags which can be used as cover.")
-     Deployables(3)=(dClass=Class'BWBPOtherPackPro.WrenchShieldGeneratorB',SpawnOffset=0,WarpInTime=20.000000,AmmoReq=40,Limit=1,CheckSlope=True,dDescription="Generates a shield impervious to attack from both sides. Only one may be placed.")
-     Deployables(4)=(dClass=Class'BWBPOtherPackPro.WrenchAmmoCrate',SpawnOffset=16,WarpInTime=10.000000,AmmoReq=40,CheckSlope=True,dDescription="A crate which restocks ammunition to initial levels.")
-     Deployables(5)=(dClass=Class'UT2k4Assault.ASTurret_Minigun',SpawnOffset=36,WarpInTime=35.000000,AmmoReq=40,Limit=1,CheckSlope=True,dDescription="A static minigun turret. Resistant to attacks. Only one may be placed.")
-     AltDeployable=(dClass=Class'BWBPOtherPackPro.WrenchEnergyBarrier',WarpInTime=0.100000,SpawnOffset=52,AmmoReq=10,Limit=0,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
+     Deployables(0)=(dClass=Class'WrenchBoostPad',SpawnOffset=4,WarpInTime=4.000000,AmmoReq=20,Limit=0,CheckSlope=True,dDescription="A pad which propels players through the air in the direction they were moving.")
+     Deployables(1)=(dClass=Class'WrenchTeleporter',SpawnOffset=1,WarpInTime=20.000000,AmmoReq=20,Limit=2,CheckSlope=True,dDescription="A teleporter. Only two may be placed.")
+     Deployables(2)=(dClass=Class'Sandbag',SpawnOffset=8,WarpInTime=2.000000,AmmoReq=10,Limit=0,CheckSlope=False,dDescription="A unit of three sandbags which can be used as cover.")
+     Deployables(3)=(dClass=Class'WrenchShieldGeneratorB',SpawnOffset=0,WarpInTime=20.000000,AmmoReq=40,Limit=1,CheckSlope=True,dDescription="Generates a shield impervious to attack from both sides. Only one may be placed.")
+     Deployables(4)=(dClass=Class'WrenchAmmoCrate',SpawnOffset=16,WarpInTime=10.000000,AmmoReq=40,CheckSlope=True,dDescription="A crate which restocks ammunition to initial levels.")
+     Deployables(5)=(dClass=Class'WrenchMinigunTurret',SpawnOffset=36,WarpInTime=35.000000,AmmoReq=40,Limit=1,CheckSlope=True,dDescription="A static minigun turret. Resistant to attacks. Only one may be placed.")
+     AltDeployable=(dClass=Class'WrenchEnergyBarrier',WarpInTime=0.100000,SpawnOffset=52,AmmoReq=10,Limit=0,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
      PlayerSpeedFactor=1.100000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPOtherPackTex.Wrench.BigIcon_Wrench'
@@ -682,7 +690,7 @@ defaultproperties
      ManualLines(1)="Constructs an energy barrier, regardless of the currently active mode."
      ManualLines(2)="Grants a 10% speed increase."
      SpecialInfo(0)=(Info="180.0;6.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     MeleeFireClass=Class'BWBPOtherPackPro.WrenchMeleeFire'
+     MeleeFireClass=Class'WrenchMeleeFire'
      BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
      PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
      MagAmmo=1
@@ -697,8 +705,8 @@ defaultproperties
      GunLength=0.000000
      bAimDisabled=True
 	 InventorySize=11
-     FireModeClass(0)=Class'BWBPOtherPackPro.WrenchPrimaryFire'
-     FireModeClass(1)=Class'BWBPOtherPackPro.WrenchSecondaryFire'
+     FireModeClass(0)=Class'WrenchPrimaryFire'
+     FireModeClass(1)=Class'WrenchSecondaryFire'
      SelectAnimRate=1.250000
      PutDownTime=1.000000
      BringUpTime=1.000000

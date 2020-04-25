@@ -543,10 +543,10 @@ defaultproperties
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=15000.000000
      ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.150000,OutVal=0.060000),(InVal=0.200000,OutVal=-0.060000),(InVal=0.300000),(InVal=0.400000,OutVal=-0.200000),(InVal=0.600000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.300000),(InVal=1.000000,OutVal=0.000000)))
+     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.150000,OutVal=0.000000),(InVal=0.200000,OutVal=-0.060000),(InVal=0.300000),(InVal=0.400000,OutVal=-0.200000),(InVal=0.600000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.300000),(InVal=1.000000,OutVal=0.000000)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.150000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.500000,OutVal=0.600000),(InVal=0.600000,OutVal=0.500000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
+     RecoilXFactor=0.080000
+     RecoilYFactor=0.080000
      RecoilDeclineTime=1.000000
      RecoilDeclineDelay=0.170000
      FireModeClass(0)=Class'BWBPRecolorsPro.CYLOPrimaryFire'
