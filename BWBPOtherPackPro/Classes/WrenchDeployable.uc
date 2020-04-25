@@ -36,9 +36,8 @@ function PostBeginPlay()
 	else Team = 255;
 }
 
-function Initialize(WrenchWarpDevice master, byte deployable_index)
+function Initialize(byte deployable_index)
 {
-	Master = master;
 	MasterDeployableIndex = deployable_index;
 }
 
@@ -138,7 +137,9 @@ state Destroying
 
 simulated function Destroyed()
 {
-	if (Role == ROLE_Authority && Master != None)
+	if (Master == None)
+		Log("NO MASTER - WrenchDeployable");
+	else if (Master.Role == ROLE_Authority)
 		Master.LostDeployable(MasterDeployableIndex);
 
 	super.Destroyed();

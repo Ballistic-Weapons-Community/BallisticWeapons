@@ -61,9 +61,11 @@ simulated function PostBeginPlay()
 	local WrenchTeleporter T;
 	
 	Super(BallisticWeapon).PostBeginPlay();
+	
 	if (Role == ROLE_Authority && !Level.Game.bAllowVehicles)
 		Level.Game.bAllowVehicles = True;
-	MeleeSpreadAngle = BallisticMeleeFire(BFireMode[1]).GetCrosshairInaccAngle();
+
+	MeleeSpreadAngle = MeleeFireMode.GetCrosshairInaccAngle();
 	
 	foreach DynamicActors(class'WrenchTeleporter', T)
 	{
@@ -381,6 +383,13 @@ function Notify_WrenchDeploy()
 		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
 		return;
 	}
+
+	if (Deployables[CurrentWeaponMode].Limit > 0 && DeployableCount[CurrentWeaponMode] >= Deployables[CurrentWeaponMode].Limit)
+	{
+		Instigator.ClientMessage("You have "$DeployableCount[CurrentWeaponMode]$" of this item and the limit is "$Deployables[CurrentWeaponMode].Limit$".");
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		return;
+	}
 	
 	if (CurrentWeaponMode != 4)
 	{
@@ -405,7 +414,7 @@ function Notify_WrenchDeploy()
 	WP.GroundPoint.Z += Deployables[CurrentWeaponMode].SpawnOffset;
 	
 	WP.Instigator = Instigator;
-	WP.Master = self;
+	WP.Wrench = self;
 	WP.Initialize(Deployables[CurrentWeaponMode].dClass, CurrentWeaponMode, Deployables[CurrentWeaponMode].WarpInTime);
 
 	++DeployableCount[CurrentWeaponMode];
@@ -427,6 +436,8 @@ function LostChild(Actor lost)
 //===========================================================================
 function LostDeployable(byte index)
 {
+	if (index < DEPLOYABLE_COUNT - 1)
+		Instigator.ClientMessage("Your "$WeaponModes[index].ModeName$" was destroyed.");
 	--DeployableCount[index];
 }
 
@@ -543,10 +554,10 @@ function Notify_BarrierDeploy()
 	WP.GroundPoint = Start + (HitNorm * (AltDeployable.SpawnOffset + AltDeployable.dClass.default.CollisionRadius));
 
 	WP.Instigator = Instigator;
-	WP.Master = self;
-	WP.Initialize(AltDeployable.dClass, 0, AltDeployable.WarpInTime);
+	WP.Wrench = self;
+	WP.Initialize(AltDeployable.dClass, 6, AltDeployable.WarpInTime);
 
-	DeployableCount[0]++;
+	DeployableCount[6]++;
 	
 	ConsumeAmmo(0, AltDeployable.AmmoReq, true);
 }
@@ -678,7 +689,7 @@ defaultproperties
      bNoMag=True
      WeaponModes(0)=(ModeName="Boost Pad",bUnavailable=False,ModeID="WM_FullAuto")
      WeaponModes(1)=(ModeName="Teleporter",bUnavailable=False,ModeID="WM_SemiAuto")
-     WeaponModes(2)=(ModeName="Sandbags")
+     WeaponModes(2)=(ModeName="Sandbag Stack")
      WeaponModes(3)=(ModeName="Shield Generator",ModeID="WM_FullAuto")
      WeaponModes(4)=(ModeName="Ammo Crate",ModeID="WM_FullAuto")
      WeaponModes(5)=(ModeName="Minigun Turret",ModeID="WM_SemiAuto")

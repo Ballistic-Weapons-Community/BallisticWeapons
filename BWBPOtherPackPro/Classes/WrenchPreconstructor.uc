@@ -1,14 +1,14 @@
 class WrenchPreconstructor extends BallisticEmitter;
 
-var float 	Health, MaxHealth;
-var Vector GroundPoint;
+var float 	            Health, MaxHealth;
+var Vector              GroundPoint;
 
-var class<Actor>	myDeployable;
-var class<Vehicle>  myVehicle;
+var class<Actor>	    myDeployable;
+var class<Vehicle>      myVehicle;
 var float				WarpingTime, WarpTime;
-var WrenchWarpDevice Master;
-var bool bDie;
-var byte DeployableIndex;
+var WrenchWarpDevice    Wrench;
+var bool                bDie;
+var byte                DeployableIndex;
 
 replication
 {
@@ -88,8 +88,8 @@ function Timer()
 
 simulated function Kill()
 {
-    if (Role == ROLE_Authority && Master != None && !IsInState('SpawnIn'))
-    Master.LostDeployable(DeployableIndex);
+    if (Role == ROLE_Authority && Wrench != None && !IsInState('SpawnIn'))
+        Wrench.LostDeployable(DeployableIndex);
 
     super.Kill();
 }
@@ -100,7 +100,7 @@ state SpawnIn
 	{
 		local Vehicle newVehicle;
 		
-		newVehicle = Spawn(myVehicle, Master, , GroundPoint + vect(0,0,1), Rotation);
+		newVehicle = Spawn(myVehicle, Wrench, , GroundPoint + vect(0,0,1), Rotation);
 		newVehicle.Health = Health;
 		newVehicle.bTeamLocked = False;
 	}
@@ -110,8 +110,9 @@ state SpawnIn
 		local WrenchDeployable W;
 
 		W = WrenchDeployable(Spawn(myDeployable, Instigator, , GroundPoint, Rotation));
-		W.Health = Health;
-		W.Initialize(Master, DeployableIndex);
+        W.Health = Health;
+        W.Master = Wrench;
+		W.Initialize(DeployableIndex);
 	}
 	
 	Begin:

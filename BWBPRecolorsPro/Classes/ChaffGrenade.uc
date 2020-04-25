@@ -106,8 +106,8 @@ defaultproperties
      ShakeRotRate=(X=3000.000000,Z=3000.000000)
      ShakeOffsetMag=(X=20.000000,Y=30.000000,Z=30.000000)
      Speed=1750.000000
-     Damage=55.000000
-     DamageRadius=300.000000
+     Damage=40.000000
+     DamageRadius=256.000000
      MyDamageType=Class'BWBPRecolorsPro.DTChaffGrenadeRadius'
      StaticMesh=StaticMesh'BallisticRecolors4StaticPro.MOAC.MOACProj'
      DrawScale=0.150000

@@ -74,7 +74,7 @@ event Touch(actor Other)
 
 defaultproperties
 {
-     MaxUses=4
+     MaxUses=2
      CollisionRadius=64.000000
      CollisionHeight=32.000000
 }

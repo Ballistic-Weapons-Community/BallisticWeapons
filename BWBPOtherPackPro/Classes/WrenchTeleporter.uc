@@ -35,11 +35,11 @@ simulated function PostNetBeginPlay()
 		Skins[0] = FinalBlend'XEffectMat.InvisOverlayFB';
 }
 
-function Initialize(WrenchWarpDevice master, byte deployable_index)
+function Initialize(byte deployable_index)
 {
 	local int myIndex;
 	
-	super.Initialize(master, deployable_index);
+	super.Initialize(deployable_index);
 	
 	if (Master == None || (Master.Teleporters[0] != None && Master.Teleporters[1] != None) )
 	{
