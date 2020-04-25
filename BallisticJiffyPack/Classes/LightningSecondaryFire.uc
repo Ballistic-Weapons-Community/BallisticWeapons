@@ -134,7 +134,7 @@ defaultproperties
 	BallisticFireSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunShot',Volume=1.600000,Radius=1024.000000)
 	bFireOnRelease=True
 	FireEndAnim=
-	FireRate=0.950000
+	FireRate=1.050000
 	AmmoClass=Class'BallisticJiffyPack.Ammo_LightningRifle'
 	AmmoPerFire=1
 	ShakeRotMag=(X=400.000000,Y=32.000000)

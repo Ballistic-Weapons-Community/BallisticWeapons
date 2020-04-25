@@ -10,8 +10,8 @@ class Ammo_LightningRifle extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=36
-     InitialAmount=18
+     MaxAmmo=40
+     InitialAmount=20
      bTryHeadShot=True
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticJiffyPack.AP_LightningClip'
