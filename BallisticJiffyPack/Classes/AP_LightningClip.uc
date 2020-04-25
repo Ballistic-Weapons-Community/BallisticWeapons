@@ -10,7 +10,7 @@ class AP_LightningClip extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=9
+     AmmoAmount=12
      InventoryType=Class'BallisticJiffyPack.Ammo_LightningRifle'
      PickupMessage="You picked up .42 sniper rifle rounds."
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'

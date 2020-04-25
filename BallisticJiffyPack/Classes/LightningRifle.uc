@@ -1,22 +1,14 @@
-//=============================================================================
-// R78Rifle.
-//
-// Powerful, accurate semi automatic rifle with good power and reasonable
-// reload time, but low clip capacity. Secondary fire makes it the weapon it is
-// by providing a powerful scope. Holding secondary zooms in further initially,
-// but the player can still use Prev and Next weapon to adjust.
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2005 RuneStorm. All Rights Reserved.
-//=============================================================================
 class LightningRifle extends BallisticWeapon;
 
 var int 	                  TransferCDamage;
 var LightningSecondaryFire    AltMode;
+var() name					  ScopeBone;	//Scope bone of R78 - Testing purposes
 
 simulated function PostBeginPlay()
 {
      Super.PostBeginPlay();
+	 
+	 SetBoneScale(1, 0.0, ScopeBone);	//Hides scope bone of R78, temporary
      AltMode = LightningSecondaryFire(FireMode[1]);
 }
 
@@ -57,6 +49,44 @@ function float SuggestDefenseStyle()	{	return 0.9;	}
 
 defaultproperties
 {
+	 //With Scope
+	 
+	 /*
+	 ZoomType=ZT_Logarithmic
+     ScopeXScale=1.333000
+     ZoomInAnim="ZoomIn"
+     ScopeViewTex=Texture'BallisticUI2.R78.RifleScopeView'
+     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+     FullZoomFOV=20.000000
+	 bNoMeshInScope=True
+     bNoCrosshairInScope=True
+     SightPivot=(Roll=-1024)
+     SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
+     SightingTime=0.300000
+	 MinZoom=2.000000
+     MaxZoom=8.000000
+     ZoomStages=4
+	 */
+	 
+	 //Without Scope
+	 
+	 /*
+	 ZoomType=ZT_Irons
+	 bNoCrosshairInScope=False
+	 SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
+	 SightingTime=0.300000
+	 */
+	 
+	 //Swap these out where necessary.
+	 
+	 ZoomType=ZT_Irons
+	 bNoCrosshairInScope=False
+	 SightOffset=(X=-10.000000,Y=-0.030000,Z=12.760000)
+	 SightPivot=(Pitch=64)
+	 SightingTime=0.300000
+	 
+	 ScopeBone="Scope"
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_R78'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -81,23 +111,8 @@ defaultproperties
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-	 ZoomType=ZT_Logarithmic
-     ScopeXScale=1.333000
-     ZoomInAnim="ZoomIn"
-     ScopeViewTex=Texture'BallisticUI2.R78.RifleScopeView'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-     FullZoomFOV=20.000000
 	 PlayerSpeedFactor=0.950000
      PlayerJumpFactor=0.950000
-	 bNoMeshInScope=True
-     bNoCrosshairInScope=True
-     SightPivot=(Roll=-1024)
-     SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
-     SightingTime=0.300000
-	 MinZoom=2.000000
-     MaxZoom=8.000000
-     ZoomStages=4
      GunLength=60.000000
      CrouchAimFactor=0.600000
      SightAimFactor=0.350000

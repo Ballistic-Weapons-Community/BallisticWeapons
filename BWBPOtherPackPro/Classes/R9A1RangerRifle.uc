@@ -311,21 +311,6 @@ simulated function SetHand(float InHand)
 			IronSightPivot.Yaw = IronSightPivot.Yaw * -1;
 		}
 	}
-	else
-	{
-		if (bNoMeshInScope)
-		{
-			ScopeSightOffset.Y = ScopeSightOffset.Y * -1;
-			ScopeSightPivot.Roll = ScopeSightPivot.Roll * -1;
-			ScopeSightPivot.Yaw = ScopeSightPivot.Yaw * -1;
-		}
-		else
-		{
-			IronSightOffset.Y = IronSightOffset.Y * -1;
-			IronSightPivot.Roll = IronSightPivot.Roll * -1;
-			IronSightPivot.Yaw = IronSightPivot.Yaw * -1;
-		}
-	}
 }
 //===========================================================================
 // Mode Switch

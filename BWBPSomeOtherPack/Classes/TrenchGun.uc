@@ -639,7 +639,7 @@ defaultproperties
      PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
      MagAmmo=2
      CockAnimRate=0.700000
-	 SingleReloadAnimRate=1.300000
+	 SingleReloadAnimRate=1.000000
      ReloadAnimRate=1.250000
      ClipInFrame=0.800000
      bNonCocking=True
