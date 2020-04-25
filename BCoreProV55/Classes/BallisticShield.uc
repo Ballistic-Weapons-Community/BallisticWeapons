@@ -1,6 +1,7 @@
 class BallisticShield extends Actor;
 
 var sound ShieldHitSound;
+var float EffectiveThickness;
 
 function bool BlocksShotAt(Actor Other)
 {
@@ -21,4 +22,5 @@ defaultproperties
      bCollideActors=True
      bBlockProjectiles=True
      bProjTarget=True
+     EffectiveThickness=768
 }

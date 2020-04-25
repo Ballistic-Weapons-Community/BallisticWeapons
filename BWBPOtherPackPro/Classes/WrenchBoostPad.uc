@@ -47,10 +47,11 @@ state Destroying
 
 defaultproperties
 {
-     TeamSkinIndex=2
-     TeamSkins(0)=Shader'BWBPOtherPackTex.Wrench.BoostShaderRed'
-     TeamSkins(1)=Shader'BWBPOtherPackTex.Wrench.BoostShaderBlue'
-     StaticMesh=StaticMesh'BWBPOtherPackStatic.Wrench.BoostPad'
-     DrawScale3D=(X=0.750000,Y=0.750000,Z=0.500000)
-     CollisionHeight=4.000000
+	Health=100
+	TeamSkinIndex=2
+	TeamSkins(0)=Shader'BWBPOtherPackTex.Wrench.BoostShaderRed'
+	TeamSkins(1)=Shader'BWBPOtherPackTex.Wrench.BoostShaderBlue'
+	StaticMesh=StaticMesh'BWBPOtherPackStatic.Wrench.BoostPad'
+	DrawScale3D=(X=0.750000,Y=0.750000,Z=0.500000)
+	CollisionHeight=4.000000
 }

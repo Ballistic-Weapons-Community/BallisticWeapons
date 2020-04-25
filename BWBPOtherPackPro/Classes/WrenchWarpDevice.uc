@@ -1,16 +1,21 @@
 class WrenchWarpDevice extends BallisticMeleeWeapon;
 
+const DEPLOYABLE_COUNT = 7;
+
 struct DeployableInfo
 {
 	var class<Actor> 	dClass;
 	var float				WarpInTime;
 	var int					SpawnOffset;
 	var int					AmmoReq;
-	var bool				CheckSlope; // should block unless placed on flat enough area
+	var int					Limit;
+	var bool				CheckSlope;     // should block unless placed on flat enough area
 	var string				dDescription; 	//A simple explanation of what this mode does.
 };
 
-var array<DeployableInfo> Deployables;
+var array<DeployableInfo> 	Deployables;
+var int			  			DeployableCount[7];
+
 var DeployableInfo AltDeployable;
 
 var WrenchTeleporter Teleporters[2];
@@ -401,9 +406,28 @@ function Notify_WrenchDeploy()
 	
 	WP.Instigator = Instigator;
 	WP.Master = self;
-	WP.Initialize(Deployables[CurrentWeaponMode].dClass,Deployables[CurrentWeaponMode].WarpInTime);
+	WP.Initialize(Deployables[CurrentWeaponMode].dClass, CurrentWeaponMode, Deployables[CurrentWeaponMode].WarpInTime);
+
+	++DeployableCount[CurrentWeaponMode];
 	
 	ConsumeAmmo(0, Deployables[CurrentWeaponMode].AmmoReq, true);
+}
+
+// fucking evil hack for minigun turrets
+function LostChild(Actor lost)
+{
+	if (ASTurret_Minigun(lost) != None)
+		--DeployableCount[5];
+}
+
+//===========================================================================
+// LostDeployable
+//
+// Decrements active count for given deployable index
+//===========================================================================
+function LostDeployable(byte index)
+{
+	--DeployableCount[index];
 }
 
 //===========================================================================
@@ -520,7 +544,9 @@ function Notify_BarrierDeploy()
 
 	WP.Instigator = Instigator;
 	WP.Master = self;
-	WP.Initialize(AltDeployable.dClass,AltDeployable.WarpInTime);
+	WP.Initialize(AltDeployable.dClass, 0, AltDeployable.WarpInTime);
+
+	DeployableCount[0]++;
 	
 	ConsumeAmmo(0, AltDeployable.AmmoReq, true);
 }
@@ -628,13 +654,13 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-     Deployables(0)=(dClass=Class'BWBPOtherPackPro.WrenchBoostPad',SpawnOffset=4,WarpInTime=5.000000,AmmoReq=20,CheckSlope=True,dDescription="A pad which propels players through the air in the direction they were moving.")
-     Deployables(1)=(dClass=Class'BWBPOtherPackPro.WrenchTeleporter',SpawnOffset=1,WarpInTime=20.000000,AmmoReq=20,CheckSlope=True,dDescription="A teleporter. Only two may be placed.")
-     Deployables(2)=(dClass=Class'BallisticProV55.Sandbag',SpawnOffset=8,WarpInTime=3.000000,AmmoReq=10,CheckSlope=False,dDescription="A unit of three sandbags which can be used as cover.")
-     Deployables(3)=(dClass=Class'BWBPOtherPackPro.WrenchShieldGeneratorB',SpawnOffset=0,WarpInTime=25.000000,AmmoReq=40,CheckSlope=True,dDescription="Generates a shield impervious to attack from both sides.")
-     Deployables(4)=(dClass=Class'BWBPOtherPackPro.WrenchAmmoCrate',SpawnOffset=16,WarpInTime=25.000000,AmmoReq=40,CheckSlope=True,dDescription="A crate which restocks ammunition to initial levels.")
-     Deployables(5)=(dClass=Class'UT2k4Assault.ASTurret_Minigun',SpawnOffset=36,WarpInTime=35.000000,AmmoReq=40,CheckSlope=True,dDescription="A static minigun turret. Resistant to attacks.")
-     AltDeployable=(dClass=Class'BWBPOtherPackPro.WrenchEnergyBarrier',WarpInTime=0.100000,SpawnOffset=52,AmmoReq=10,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
+     Deployables(0)=(dClass=Class'BWBPOtherPackPro.WrenchBoostPad',SpawnOffset=4,WarpInTime=4.000000,AmmoReq=20,Limit=0,CheckSlope=True,dDescription="A pad which propels players through the air in the direction they were moving.")
+     Deployables(1)=(dClass=Class'BWBPOtherPackPro.WrenchTeleporter',SpawnOffset=1,WarpInTime=20.000000,AmmoReq=20,Limit=2,CheckSlope=True,dDescription="A teleporter. Only two may be placed.")
+     Deployables(2)=(dClass=Class'BallisticProV55.Sandbag',SpawnOffset=8,WarpInTime=2.000000,AmmoReq=10,Limit=0,CheckSlope=False,dDescription="A unit of three sandbags which can be used as cover.")
+     Deployables(3)=(dClass=Class'BWBPOtherPackPro.WrenchShieldGeneratorB',SpawnOffset=0,WarpInTime=20.000000,AmmoReq=40,Limit=1,CheckSlope=True,dDescription="Generates a shield impervious to attack from both sides. Only one may be placed.")
+     Deployables(4)=(dClass=Class'BWBPOtherPackPro.WrenchAmmoCrate',SpawnOffset=16,WarpInTime=10.000000,AmmoReq=40,CheckSlope=True,dDescription="A crate which restocks ammunition to initial levels.")
+     Deployables(5)=(dClass=Class'UT2k4Assault.ASTurret_Minigun',SpawnOffset=36,WarpInTime=35.000000,AmmoReq=40,Limit=1,CheckSlope=True,dDescription="A static minigun turret. Resistant to attacks. Only one may be placed.")
+     AltDeployable=(dClass=Class'BWBPOtherPackPro.WrenchEnergyBarrier',WarpInTime=0.100000,SpawnOffset=52,AmmoReq=10,Limit=0,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
      PlayerSpeedFactor=1.100000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPOtherPackTex.Wrench.BigIcon_Wrench'

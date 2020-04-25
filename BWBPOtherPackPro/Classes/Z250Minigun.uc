@@ -1,4 +1,10 @@
-// It's the XMV-850 (and that code's too much for it tbh)
+//=============================================================================
+// Z-250 Minigun
+//
+// Murderous explosive bullet spewer of hellfire and death.
+//
+// Adapted from Dark Carnivour's XMV-850 code by Azarael
+//=============================================================================
 class Z250Minigun extends BallisticWeapon;
 
 #exec OBJ LOAD FILE=BallisticWeapons2.utx
@@ -29,7 +35,7 @@ replication
 //===========================================================================
 // BlendFireHold
 //
-// Called when Raygun starts charging. We blend with Channel 1 to dampen the vibrations when aimed.
+// Called when weapon starts charging. We blend with Channel 1 to dampen the vibrations when aimed.
 //===========================================================================
 simulated final function BlendFireHold()
 {
@@ -65,7 +71,7 @@ simulated function PlayScopeDown(optional bool bNoAnim)
 //===========================================================================
 // PlayScopeUp
 //
-// Dampen Channel 0, by playing a blended Idle on Channel 1, if the raygun's holding fire.
+// Dampen Channel 0, by playing a blended Idle on Channel 1, if the weapon's holding fire.
 //===========================================================================
 simulated function PlayScopeUp()
 {
@@ -81,7 +87,7 @@ simulated function PlayScopeUp()
 //===========================================================================
 // TickSighting
 //
-// Dampen Channel 0, by playing a blended Idle on Channel 1, if the raygun's holding fire.
+// Dampen Channel 0, by playing a blended Idle on Channel 1, if the weapon's holding fire.
 //===========================================================================
 simulated function TickSighting (float DT)
 {

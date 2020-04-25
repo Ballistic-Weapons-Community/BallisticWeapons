@@ -38,6 +38,8 @@ var() Sound BarrelStartSound;
 var() Sound DeploySound;
 var() Sound UndeploySound;
 
+var float		RotationSpeeds[3];
+
 replication
 {
 	reliable if (Role < ROLE_Authority)
@@ -89,6 +91,16 @@ simulated event PostBeginPlay()
 	XMV850MinigunPrimaryFire(FireMode[0]).Minigun = self;
 }
 
+	
+simulated function float GetRampUpSpeed()
+{
+	if (BarrelSpeed < RotationSpeeds[0])
+		return 0.5f;
+
+	// takes more time to reach higher speeds
+	return 0.5f - (0.47f * ((BarrelSpeed - RotationSpeeds[0]) / (RotationSpeeds[2] - RotationSpeeds[0]))); 
+}
+
 simulated event WeaponTick (float DT)
 {
 	local rotator BT;
@@ -97,11 +109,7 @@ simulated event WeaponTick (float DT)
 
 	SetBoneRotation('Barrels', BT);
 
-	if (CurrentWeaponMode == 0) // 1200 RPM - 200 revolutions per minute x 6 shots
-		DesiredSpeed = 0.33;
-	else if (CurrentWeaponMode == 1) // 2400 RPM - 400 revolutions per minute x 6 shots
-		DesiredSpeed = 0.66;
-	else DesiredSpeed = 0.17; // 600 RPM - 100 revolutions per minute x 6 shots
+	DesiredSpeed = RotationSpeeds[CurrentWeaponMode];
 
 	super.WeaponTick(DT);
 }
@@ -125,12 +133,12 @@ simulated event Tick (float DT)
 
 	if (FireMode[0].IsFiring())
 	{
-		BarrelSpeed = BarrelSpeed + FClamp(DesiredSpeed - BarrelSpeed, -0.4*DT, 0.25*DT);
+		BarrelSpeed = BarrelSpeed + FClamp(DesiredSpeed - BarrelSpeed, -0.35*DT, GetRampUpSpeed() *DT);
 		BarrelTurn += BarrelSpeed * 655360 * DT;
 	}
 	else if (BarrelSpeed > 0)
 	{
-		BarrelSpeed = FMax(BarrelSpeed-0.4*DT, 0.01);
+		BarrelSpeed = FMax(BarrelSpeed-0.5*DT, 0.01);
 		OldBarrelTurn = BarrelTurn;
 		BarrelTurn += BarrelSpeed * 655360 * DT;
 		if (BarrelSpeed <= 0.025 && int(OldBarrelTurn/10922.66667) < int(BarrelTurn/10922.66667))
@@ -400,16 +408,22 @@ defaultproperties
      ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
      ClipOutSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipOut')
      ClipInSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipIn')
-     ClipInFrame=0.650000
-     WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="2400 RPM",ModeID="WM_FullAuto")
-     WeaponModes(2)=(ModeName="600 RPM")
-     CurrentWeaponMode=1
+	 ClipInFrame=0.650000
+	 WeaponModes(0)=(ModeName="600 RPM",ModeID="WM_FullAuto")
+     WeaponModes(1)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
+     WeaponModes(2)=(ModeName="2400 RPM",ModeID="WM_FullAuto")
+
+	 RotationSpeeds(0)=0.17 // 600 RPM - 100 revolutions per minute x 6 shots
+	 RotationSpeeds(1)=0.33 // 1200 RPM - 200 revolutions per minute x 6 shots
+	 RotationSpeeds(2)=0.66 // 2400 RPM - 400 revolutions per minute x 6 shots
+
+	 CurrentWeaponMode=1
+	 
      SightPivot=(Pitch=700,Roll=2048)
      SightOffset=(X=8.000000,Z=28.000000)
      SightDisplayFOV=45.000000
      SightingTime=0.550000
-     CrouchAimFactor=1.500000
+     CrouchAimFactor=0.75
      SprintOffSet=(Pitch=-6000,Yaw=-8000)
      JumpOffSet=(Pitch=-6000,Yaw=2000)
      AimAdjustTime=0.800000
@@ -420,7 +434,7 @@ defaultproperties
      RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.350000,OutVal=0.400000),(InVal=0.500000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
      RecoilXFactor=0.050000
      RecoilYFactor=0.150000
-     RecoilMax=6144.000000
+     RecoilMax=8192.000000
      RecoilDeclineTime=2.500000
      FireModeClass(0)=Class'BallisticProV55.XMV850MinigunPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.XMV850MinigunSecondaryFire'

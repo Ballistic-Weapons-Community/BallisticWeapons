@@ -7,6 +7,9 @@ var byte								Team, TeamSkinIndex;
 var Material							TeamSkins[2];
 var Controller							OwningController;
 
+var WrenchWarpDevice					Master;
+var	byte 								MasterDeployableIndex;
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -16,6 +19,7 @@ replication
 function PostBeginPlay()
 {
 	local WrenchDeployable D;
+
 	foreach RadiusActors(class'WrenchDeployable', D, 256)
 	{
 		if (D != Self)
@@ -30,6 +34,12 @@ function PostBeginPlay()
 	if (Instigator.PlayerReplicationInfo.Team != None)
 		Team = Instigator.PlayerReplicationInfo.Team.TeamIndex;
 	else Team = 255;
+}
+
+function Initialize(WrenchWarpDevice master, byte deployable_index)
+{
+	Master = master;
+	MasterDeployableIndex = deployable_index;
 }
 
 simulated function PostNetBeginPlay()
@@ -124,6 +134,14 @@ state Destroying
 		
 		Sleep(0.5);
 		Destroy();
+}
+
+simulated function Destroyed()
+{
+	if (Role == ROLE_Authority && Master != None)
+		Master.LostDeployable(MasterDeployableIndex);
+
+	super.Destroyed();
 }
 
 defaultproperties

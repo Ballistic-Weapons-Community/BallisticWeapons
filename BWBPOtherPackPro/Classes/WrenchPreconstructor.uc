@@ -8,6 +8,7 @@ var class<Vehicle>  myVehicle;
 var float				WarpingTime, WarpTime;
 var WrenchWarpDevice Master;
 var bool bDie;
+var byte DeployableIndex;
 
 replication
 {
@@ -22,8 +23,10 @@ simulated function PostBeginPlay()
 	PlaySound(Sound'BWBPOtherPackSound.Wrench.electric_burst_6', ,1);
 }
 
-function Initialize(class<Actor> InClass, float ConstructionTime)
+function Initialize(class<Actor> InClass, byte deployable_index, float ConstructionTime)
 {
+    DeployableIndex = deployable_index;
+
 	if (class<Vehicle>(InClass) != None)
 	{
 		myVehicle = class<Vehicle>(InClass);
@@ -83,13 +86,21 @@ function Timer()
 	GoToState('SpawnIn');
 }
 
+simulated function Kill()
+{
+    if (Role == ROLE_Authority && Master != None && !IsInState('SpawnIn'))
+    Master.LostDeployable(DeployableIndex);
+
+    super.Kill();
+}
+
 state SpawnIn
 {
 	function SpawnVehicle()
 	{
 		local Vehicle newVehicle;
 		
-		newVehicle = Spawn(myVehicle, , , GroundPoint + vect(0,0,1), Rotation);
+		newVehicle = Spawn(myVehicle, Master, , GroundPoint + vect(0,0,1), Rotation);
 		newVehicle.Health = Health;
 		newVehicle.bTeamLocked = False;
 	}
@@ -100,8 +111,7 @@ state SpawnIn
 
 		W = WrenchDeployable(Spawn(myDeployable, Instigator, , GroundPoint, Rotation));
 		W.Health = Health;
-		if (WrenchTeleporter(W) != None)
-			WrenchTeleporter(W).Initialize(Master);
+		W.Initialize(Master, DeployableIndex);
 	}
 	
 	Begin:

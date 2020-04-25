@@ -83,13 +83,13 @@ simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNor
 
 simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
 {
-	BallisticWeapon(Weapon).TargetedHurtRadius(60.0*RailPower, 48+48.0*RailPower, DamageType, 25000, HitLocation, Pawn(Other));
+	BallisticWeapon(Weapon).TargetedHurtRadius(60.0*RailPower, 48+48.0*RailPower, DamageType, 5000, HitLocation, Pawn(Other));
 	return super.ImpactEffect(HitLocation, HitNormal, HitMat, Other, WaterHitLoc);
 }
 
 function WallEnterEffect (vector HitLocation, vector HitNormal, vector X, actor other, Material HitMat)
 {
-	BallisticWeapon(Weapon).TargetedHurtRadius(60.0*RailPower, 48+48.0*RailPower, DamageType, 25000, HitLocation, Pawn(Other));
+	BallisticWeapon(Weapon).TargetedHurtRadius(60.0*RailPower, 48+192.0*RailPower, DamageType, 5000, HitLocation, Pawn(Other));
 	super.WallEnterEffect(HitLocation, HitNormal, X, other, HitMat);
 }
 

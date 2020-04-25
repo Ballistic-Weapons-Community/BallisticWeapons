@@ -17,6 +17,8 @@ var() class<BCImpactManager>	AltImpactManager;
 var Name						AimedFireEmptyAnim, FireEmptyAnim, AimedFireSingleAnim, FireSingleAnim;
 var() float						ChargeTime, DecayCharge;
 
+var() float						ElectroDamageHead, ElectroDamage, ElectroDamageLimb;
+
 simulated function DebugMessage(coerce string message)
 {
 	if (PlayerController(BW.Instigator.Controller) != None)
@@ -160,13 +162,14 @@ simulated function SwitchWeaponMode (byte newMode)
 {
 	if (newMode == 1) // Electro Mode
 	{
+		Damage = ElectroDamage;
+		DamageHead = ElectroDamageHead;
+		DamageLimb = ElectroDamageLimb;
+
 		PenetrateForce=500;
 		bPenetrate=True;
-		
+
 		BallisticFireSound.Sound=SlugFireSound;
-		
-		XInaccuracy = 128;
-		YInaccuracy = 128;
 		
 		TracerClass=AltTracerClass;
 		ImpactManager=AltImpactManager;
@@ -181,13 +184,14 @@ simulated function SwitchWeaponMode (byte newMode)
 	}
 	else // Explosive Mode
 	{
+		Damage = default.Damage;
+		DamageHead = default.DamageHead;
+		DamageLimb = default.DamageLimb;
+
 		PenetrateForce=0;
 		bPenetrate=False;
 		
 		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
-			
-		XInaccuracy = default.XInaccuracy;
-		YInaccuracy = default.YInaccuracy;
 		
 		TracerClass=default.TracerClass;
 		ImpactManager=default.ImpactManager;
@@ -566,8 +570,8 @@ function SwitchShotParams()
 	{
 		BallisticFireSound.Volume=2.0;
 		
-		XInaccuracy = default.XInaccuracy * 2.5;
-		YInaccuracy = default.YInaccuracy * 2;
+		XInaccuracy = default.XInaccuracy * 4;
+		YInaccuracy = default.YInaccuracy * 3;
 
 		if (BW.CurrentWeaponMode == 1)
 		{
@@ -642,9 +646,15 @@ defaultproperties
 	ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
 	TraceRange=(Min=2000.000000,Max=4000.000000)
 	MaxWalls=1
+
 	Damage=10.000000
 	DamageHead=15.000000
 	DamageLimb=10.000000
+
+	ElectroDamage=6.000000
+	ElectroDamageHead=9.000000
+	ElectroDamageLimb=6.000000
+
 	RangeAtten=0.250000
 	PenetrateForce=0
 	bPenetrate=False

@@ -46,6 +46,6 @@ state Destroying
 
 defaultproperties
 {
-     StaticMesh=StaticMesh'BWBPOtherPackStatic.Wrench.AmmoCrate'
-     CollisionHeight=32.000000
+	StaticMesh=StaticMesh'BWBPOtherPackStatic.Wrench.AmmoCrate'
+    CollisionHeight=32.000000
 }

@@ -736,10 +736,10 @@ defaultproperties
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=5000.000000
      ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.250000,OutVal=0.250000),(InVal=0.500000,OutVal=0.050000),(InVal=0.650000,OutVal=-0.200000),(InVal=0.900000,OutVal=-0.100000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
+     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.250000,OutVal=-0.050000),(InVal=0.500000,OutVal=0.050000),(InVal=0.650000,OutVal=-0.070000),(InVal=0.900000,OutVal=-0.100000),(InVal=1.000000)))
+     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.400000,OutVal=0.4500000),(InVal=0.600000,OutVal=0.5500000),(InVal=0.800000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.0500000
+     RecoilYFactor=0.0500000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.140000
      FireModeClass(0)=Class'BWBPRecolorsPro.MARSPrimaryFire'

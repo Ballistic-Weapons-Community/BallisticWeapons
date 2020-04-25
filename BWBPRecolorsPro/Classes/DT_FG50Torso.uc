@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DT_FG50Torso extends DT_BWMiscDamage;
+class DT_FG50Torso extends DT_BWBullet;
 
 defaultproperties
 {

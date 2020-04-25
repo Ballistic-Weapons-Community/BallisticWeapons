@@ -160,8 +160,11 @@ function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int Pen
 {
 	local float Resistance;
 
-	if (!bPenetrate || Other == None || Other.bWorldGeometry || Mover(Other) != None || BallisticShield(Other) != None)
+	if (!bPenetrate || Other == None || Other.bWorldGeometry || Mover(Other) != None)
 		return false;
+
+	if (BallisticShield(Other) != None)
+		return BallisticShield(Other).EffectiveThickness < MaxWallSize;
 
 	// Resistance is random between 0 and enemy max health
 	if (Pawn(Other) != None)
@@ -530,6 +533,7 @@ function bool GoThroughWall(actor Other, vector FirstLoc, vector FirstNorm, floa
 
 	if (MaxWallDepth <= 0)
 		return false;
+
 	// First, try shorcut method...
 	foreach Weapon.CollidingActors ( class'pawn', A, MaxWallDepth, FirstLoc)
 	{
