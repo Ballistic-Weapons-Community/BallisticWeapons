@@ -1,11 +1,3 @@
-//=============================================================================
-// SK410Shotgun.
-//
-// The SK410 auto shottie, aka the LASERLASER
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2005 RuneStorm. All Rights Reserved.
-//=============================================================================
 class ARShotgun extends BallisticProShotgun;
 
 
@@ -720,8 +712,8 @@ defaultproperties
      GLLoadGrenadeBones(0)=(GrenName="GrenadeHandle")
      GLLoadGrenadeBones(1)=(GrenName="HeldGrenade")
      GLLoadGrenadeBones(2)=(GrenName="EmptyGrenade")
-     PlayerSpeedFactor=0.800000
-     PlayerJumpFactor=0.870000
+     PlayerSpeedFactor=0.850000
+     PlayerJumpFactor=0.900000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPJiffyPackTex.TacBuster.BigIcon_AA12'
      BigIconCoords=(Y1=40)
@@ -760,8 +752,8 @@ defaultproperties
      ChaosAimSpread=0
      RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.070000),(InVal=0.300000,OutVal=-0.150000),(InVal=0.500000,OutVal=0.050000),(InVal=0.750000,OutVal=0.120000),(InVal=1.000000,OutVal=-0.050000)))
      RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.150000
-     RecoilYFactor=0.100000
+     RecoilXFactor=0.200000
+     RecoilYFactor=0.200000
      RecoilMinRandFactor=0.150000
      RecoilMax=8192.000000
      RecoilDeclineDelay=1.000000
