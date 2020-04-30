@@ -79,7 +79,7 @@ function DoFireEffect()
 	}
 	// Do damage for each victim
 	for (i=0;i<SwipeHits.length;i++)
-		OnTraceHit(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0);
+		OnTraceHit(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0, 0);
 	SwipeHits.Length = 0;
 
 	Super(BallisticFire).DoFireEffect();

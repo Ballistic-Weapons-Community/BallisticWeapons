@@ -73,13 +73,13 @@ simulated function SetInstigator(Pawn P)
 // Implement hold time damage
 // Implement backstab damage
 //================================================
-function float ResolveDamageFactors(Actor Victim, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, Vector WaterHitLocation)
+function float ResolveDamageFactors(Actor Victim, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
 {
 	local float DamageFactor;
 	local Vector testDir;
 	local Combo combo;
 
-	DamageFactor = Super.ResolveDamageFactors(Victim, TraceStart, HitLocation, PenetrateCount, WallCount, WaterHitLocation);
+	DamageFactor = Super.ResolveDamageFactors(Victim, TraceStart, HitLocation, PenetrateCount, WallCount, WallPenForce, WaterHitLocation);
 	// Reduce damage if using Speed or MiniMe (hits unknown combos as well)
 	combo = xPawn(Instigator).CurrentCombo;
 
@@ -133,7 +133,7 @@ function DoFireEffect()
 	// Do damage for each victim
 	for (i=0; i<SwipeHits.length; i++)
 	{
-		OnTraceHit(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0);
+		OnTraceHit(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0, 0);
 		SwipeHits[i].Victim = None;
 	}
 	SwipeHits.Length = 0;
@@ -449,7 +449,8 @@ defaultproperties
      SwipePoints(3)=(Weight=4,offset=(Yaw=-1280))
      SwipePoints(4)=(Weight=2,offset=(Yaw=-2560))
      WallHitPoint=2
-     NumSwipePoints=5
+	 NumSwipePoints=5
+	 WallPenetrationForce=0
      MaxBonusHoldTime=1.500000
      bCanBackstab=True
      TraceRange=(Min=140.000000,Max=140.000000)

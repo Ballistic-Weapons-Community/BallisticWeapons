@@ -18,7 +18,7 @@ static function float GetRangeAttenFactor(vector start, vector end, int cut_off_
 	return Lerp( (dist - cut_off_start) / cut_off_dist, 1.0f, range_atten);
 }
 
-function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, Vector WaterHitLocation)
+function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
 {
 	local float  DamageFactor;
 
@@ -30,10 +30,13 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 		DamageFactor *= GetRangeAttenFactor(TraceStart, HitLocation, CutOffStartRange, CutOffDistance, RangeAtten);
 	
 	if (PenetrateCount > 0)
-		DamageFactor *= PDamageFactor ** PenetrateCount;
+		DamageFactor *= PDamageFactor * PenetrateCount;
 
-	if (WallCount > 0)
-		DamageFactor *= WallPDamageFactor ** WallCount;
+	if (WallCount > 0 && WallPenetrationForce > 0)
+	{
+		DamageFactor *= WallPDamageFactor * WallCount;
+		DamageFactor *= WallPenForce / WallPenetrationForce;
+	}
 
 	return DamageFactor;
 }

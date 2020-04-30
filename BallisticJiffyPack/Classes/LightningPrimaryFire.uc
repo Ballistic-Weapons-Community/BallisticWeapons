@@ -30,8 +30,6 @@ defaultproperties
 	 LightningSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunCrackle',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WaterRangeFactor=0.800000
-     MaxWallSize=48.000000
-     MaxWalls=1
      Damage=80.000000
      DamageHead=120.000000
      DamageLimb=60.000000

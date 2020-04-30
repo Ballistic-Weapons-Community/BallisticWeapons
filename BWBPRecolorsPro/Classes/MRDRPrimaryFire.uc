@@ -29,8 +29,8 @@ defaultproperties
      CutOffDistance=1536.000000
      CutOffStartRange=378.000000
      WaterRangeFactor=0.400000
-     MaxWallSize=16.000000
-     MaxWalls=1
+     WallPenetrationForce=16.000000
+     
      Damage=20.000000
      DamageHead=40.000000
      DamageLimb=20.000000

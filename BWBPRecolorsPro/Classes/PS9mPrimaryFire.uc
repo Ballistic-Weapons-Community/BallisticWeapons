@@ -56,8 +56,8 @@ function bool DoTazerBlurEffect(Actor Victim)
 defaultproperties
 {
      TraceRange=(Min=3000.000000)
-     MaxWallSize=1.000000
-     MaxWalls=1
+     WallPenetrationForce=1.000000
+     
      Damage=12.000000
      DamageHead=24.000000
      DamageLimb=12.000000

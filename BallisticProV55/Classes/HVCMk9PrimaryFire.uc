@@ -149,7 +149,7 @@ function OldDoTrace(Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{
-				OnTraceHit(Other, HitLocation, InitialStart, X);
+				OnTraceHit(Other, HitLocation, InitialStart, X, 0, 0, 0);
 				
 				SuccessiveHits++;
 

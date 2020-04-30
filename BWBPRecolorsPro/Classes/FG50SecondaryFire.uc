@@ -76,9 +76,8 @@ simulated function DestroyEffects()
 // Do the trace to find out where bullet really goes
 function DoTrace (Vector InitialStart, Rotator Dir)
 {
-	local int						PenCount, WallCount;
-	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc, ExitNormal;
-	local Material					HitMaterial, ExitMaterial;
+	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc;
+	local Material					HitMaterial;
 	local float						Dist;
 	local Actor						Other, LastOther;
 	local bool						bHitWall;
@@ -119,21 +118,11 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{				
-				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, 0, 0, 0, WaterHitLoc);
 			
 				LastOther = Other;
 
-				if (CanPenetrate(Other, HitLocation, X, PenCount))
-				{
-					PenCount++;
-					Start = HitLocation + (X * Other.CollisionRadius * 2);
-					End = Start + X * Dist;
-					Weapon.bTraceWater=true;
-					if (Vehicle(Other) != None)
-						HitVehicleEffect (HitLocation, HitNormal, Other);
-					continue;
-				}
-				else if (Pawn(Other) != None)
+				if (Pawn(Other) != None)
 				{
 					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
 					break;
@@ -144,14 +133,6 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Do impact effect
 			if (Other.bWorldGeometry || Mover(Other) != None)
 			{
-				WallCount++;
-				if (WallCount <= MaxWalls && MaxWallSize > 0 && GoThroughWall(Other, HitLocation, HitNormal, MaxWallSize * ScaleBySurface(Other, HitMaterial), X, Start, ExitNormal, ExitMaterial))
-				{
-					WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
-					WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
-					Weapon.bTraceWater=true;
-					continue;
-				}
 				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
 				break;
 			}
@@ -226,8 +207,8 @@ defaultproperties
      SpecialFireSound=Sound'PackageSounds4Pro.X82.X82-Fire2'
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WaterRangeFactor=0.800000
-     MaxWallSize=72.000000
-     MaxWalls=4
+     WallPenetrationForce=72.000000
+     
      Damage=65.000000
      DamageHead=130.000000
      DamageLimb=65.000000

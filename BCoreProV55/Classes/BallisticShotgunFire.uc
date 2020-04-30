@@ -57,7 +57,7 @@ function DoFireEffect()
 }
 
 // This is called for any actor found by this fire.
-function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector Dir, optional int PenetrateCount, optional int WallCount, optional vector WaterHitLocation)
+function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, int WallPenForce, optional vector WaterHitLocation)
 {
 	local float				Dmg;
 	local float				ScaleFactor;
@@ -76,7 +76,7 @@ function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector 
 	
 	Dmg = GetDamage(Other, DamageHitLocation, Dir, Victim, HitDT);
 
-	ScaleFactor = ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WaterHitLocation);
+	ScaleFactor = ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WallPenForce, WaterHitLocation);
 	
 	Dmg *= ScaleFactor;
 
@@ -213,8 +213,7 @@ defaultproperties
 {
      TracerChance=0.500000
      TraceRange=(Min=500.000000,Max=2000.000000)
-     MaxWallSize=16.000000
-     MaxWalls=2
+     WallPenetrationForce=16.000000
      FireSpreadMode=FSM_Scatter
      ShotTypeString="shots"
 }

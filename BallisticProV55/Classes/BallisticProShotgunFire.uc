@@ -12,7 +12,7 @@ var() float CutOffDistance;
 var() float CutOffStartRange;
 var int	 MaxSpreadFactor;
 
-function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, Vector WaterHitLocation)
+function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
 {
 	local float  DamageFactor;
 
@@ -24,10 +24,13 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 		DamageFactor *= class'BallisticRangeAttenFire'.static.GetRangeAttenFactor(TraceStart, HitLocation, CutOffStartRange, CutOffDistance, RangeAtten);
 	
 	if (PenetrateCount > 0)
-		DamageFactor *= PDamageFactor ** PenetrateCount;
+		DamageFactor *= PDamageFactor * PenetrateCount;
 
-	if (WallCount > 0)
-		DamageFactor *= WallPDamageFactor ** WallCount;
+	if (WallCount > 0 && WallPenetrationForce > 0)
+	{
+		DamageFactor *= WallPDamageFactor * WallCount;
+		DamageFactor *= WallPenForce / WallPenetrationForce;
+	}
 
 	return DamageFactor;
 }

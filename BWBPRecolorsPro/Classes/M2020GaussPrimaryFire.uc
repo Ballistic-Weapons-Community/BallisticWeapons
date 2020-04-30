@@ -122,7 +122,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 		bFlashAlt=false;
 		KickForce = default.KickForce;
 		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
-		MaxWalls=default.MaxWalls;
 		FireRate=Default.FireRate;
 	}
 	
@@ -146,7 +145,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 		KickForce=60000;
 		bFlashAlt=false;
 		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
-		MaxWalls=5;
 	}
 	else if (NewMode == 2 || NewMode == 3)
 	{
@@ -170,7 +168,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 		Damage=40.000000;
 		DamageHead=80.000000;
 		DamageLimb=40.000000;
-		MaxWalls=3;
 	}
 	if (Weapon.bBerserk)
 		FireRate *= 0.75;
@@ -186,8 +183,8 @@ defaultproperties
      MuzzleFlashClass2=Class'BallisticProV55.M50FlashEmitter'
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WaterRangeFactor=0.900000
-     MaxWallSize=64.000000
-     MaxWalls=4
+     WallPenetrationForce=64.000000
+     
      Damage=60.000000
      DamageHead=120.000000
      DamageLimb=60.000000

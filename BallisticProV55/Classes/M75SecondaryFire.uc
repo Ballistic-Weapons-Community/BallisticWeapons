@@ -14,20 +14,18 @@ const MAX_RAIL_POWER = 1.4f; // charges in 2 seconds, 0.8s hold time grace
 var   	float 		RailPower;
 var		float		RailDamageBonus;
 
-var		float		RailMaxWallSizeBonus;
-var		int			RailMaxWallsBonus;
+var		float		RailWallPenetrationForceBonus;
 var		int			RailPenetrateForceBonus;
 var		float		RailKickForceBonus;
 var		float		RailRecoilPerShotPenalty;
 
 simulated event ModeDoFire()
 {
-	Damage 			= default.Damage			+ RailDamageBonus			* RailPower;
-	MaxWallSize 	= default.MaxWallSize 		+ RailMaxWallSizeBonus 		* Square(RailPower);
-	MaxWalls 		= default.MaxWalls 			+ RailMaxWallsBonus 		* RailPower;
-	PenetrateForce 	= default.PenetrateForce 	+ RailPenetrateForceBonus 	* RailPower;
-	KickForce 		= default.KickForce 		+ RailKickForceBonus 		* RailPower;
-	RecoilPerShot 	= default.RecoilPerShot 	+ RailRecoilPerShotPenalty 	* RailPower;
+	Damage 					= default.Damage					+ RailDamageBonus				* RailPower;
+	WallPenetrationForce 	= default.WallPenetrationForce 		+ RailWallPenetrationForceBonus * Square(RailPower);
+	PenetrateForce 			= default.PenetrateForce 			+ RailPenetrateForceBonus 		* RailPower;
+	KickForce 				= default.KickForce 				+ RailKickForceBonus 			* RailPower;
+	RecoilPerShot 			= default.RecoilPerShot 			+ RailRecoilPerShotPenalty 		* RailPower;
 
 	Super.ModeDoFire();
 
@@ -93,11 +91,8 @@ defaultproperties
 {
 	 TraceRange=(Min=30000.000000,Max=30000.000000)
 	 
-	 MaxWalls=5
-	 RailMaxWallsBonus=10
-
-	 MaxWallSize=256
-	 RailMaxWallSizeBonus=768
+	 WallPenetrationForce=512
+	 RailWallPenetrationForceBonus=1536
 
 	 Damage=120.000000
      DamageHead=150.000000

@@ -173,13 +173,15 @@ simulated state Slug
 	// Do the trace to find out where bullet really goes
 	function DoubleTrace (Vector InitialStart, Rotator Dir, Vector Offsetting)
 	{
-		local int							PenCount, WallCount;
+		local int						PenCount, WallCount, WallPenForce;
 		local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc, ExitNormal;
 		local Material					HitMaterial, ExitMaterial;
 		local float						Dist;
 		local Actor						Other, LastOther;
 		local bool						bHitWall;
 		local byte						i;
+
+		WallPenForce = WallPenetrationForce;
 
 		for (i=0;i<2;i++)
 		{
@@ -219,8 +221,8 @@ simulated state Slug
 					// Got something interesting
 					if (!Other.bWorldGeometry && Other != LastOther)
 					{				
-						OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
-					
+						OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
+		
 						LastOther = Other;
 
 						if (CanPenetrate(Other, HitLocation, X, PenCount))
@@ -242,8 +244,10 @@ simulated state Slug
 					if (Other.bWorldGeometry || Mover(Other) != None)
 					{
 						WallCount++;
-						if (WallCount <= MaxWalls && MaxWallSize > 0 && GoThroughWall(Other, HitLocation, HitNormal, MaxWallSize * ScaleBySurface(Other, HitMaterial), X, Start, ExitNormal, ExitMaterial))
+						if (WallCount < MAX_WALLS && WallPenForce > 0 && GoThroughWall(Other, HitLocation, HitNormal, WallPenForce * ScaleBySurface(Other, HitMaterial), X, Start, ExitNormal, ExitMaterial))
 						{
+							WallPenForce -= VSize(Start - HitLocation) / ScaleBySurface(Other, HitMaterial);
+			
 							WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
 							WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
 							Weapon.bTraceWater=true;
@@ -312,9 +316,9 @@ simulated state Slug
 		return true;
 	}
 
-	function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, optional vector WaterHitLocation)
+	function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector Dir, int PenetrateCount, int WallCount, int WallPenForce, optional vector WaterHitLocation)
 	{
-		Super(BallisticInstantFire).OnTraceHit(Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount, WaterHitLocation);
+		Super(BallisticInstantFire).OnTraceHit(Other, HitLocation, TraceStart, Dir, PenetrateCount, WallCount, WallPenForce, WaterHitLocation);
 	}
 	
 	// Returns normal for some random spread. This is seperate from GetFireDir for shotgun reasons mainly...
@@ -644,7 +648,7 @@ defaultproperties
 	TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 	ImpactManager=Class'BallisticProV55.IM_Shell'
 	TraceRange=(Min=5000.000000,Max=7000.000000)
-	MaxWalls=1
+	
 	Damage=14.000000
 	DamageHead=21.000000
 	DamageLimb=14.000000

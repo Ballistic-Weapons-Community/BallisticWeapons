@@ -35,7 +35,7 @@ event ModeTick(float DT)
 	}
 }
 
-function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, Vector WaterHitLocation)
+function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
 {
 	local float DamageFactor;
 
@@ -44,7 +44,7 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 	if (RSNovaStaff(Weapon).bOnRampage)
 		DamageFactor *= 2.0f;
 
-	DamageFactor *= Super.ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WaterHitLocation);
+	DamageFactor *= Super.ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WallPenForce, WaterHitLocation);
 
 	return DamageFactor;
 }

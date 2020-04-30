@@ -134,7 +134,7 @@ function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int Pen
 		return false;
 
 	if (BallisticShield(Other) != None)
-		return BallisticShield(Other).EffectiveThickness < MaxWallSize;
+		return BallisticShield(Other).EffectiveThickness < WallPenetrationForce;
 
 	// Resistance is random between 0 and enemy max health
 	if (Pawn(Other) != None)
@@ -164,12 +164,14 @@ function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int Pen
 // Do the trace to find out where bullet really goes
 function DoTrace (Vector InitialStart, Rotator Dir)
 {
-	local int						PenCount, WallCount, HitSameCount;
+	local int						PenCount, WallCount, WallPenForce, HitSameCount;
 	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, ExitNorm, LastHitLocation;
 	local Material					HitMaterial;
 	local float						Dist;
 	local Actor						Other, LastOther;
 	local bool						bHitWall;
+
+	WallPenForce = WallPenetrationForce;
 
 	// Work out the range
 	Dist = TraceRange.Min + FRand() * (TraceRange.Max - TraceRange.Min);
@@ -205,7 +207,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{
-				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
 				LastOther = Other;
 				HitSameCount = 0;
 
@@ -230,11 +232,13 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				if (Other.bCanBeDamaged)
 				{
 					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
-					OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+					OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
 					break;
 				}
-				if (WallCount < 5 && GoThroughWall(Other, HitLocation, HitNormal, MaxWallSize, X, Start, ExitNorm))
+				if (WallCount < MAX_WALLS && GoThroughWall(Other, HitLocation, HitNormal, WallPenForce, X, Start, ExitNorm))
 				{
+					WallPenForce -= VSize(Start - HitLocation);
+
 					End = Start + X * Dist;
 					if (WallEntrys.Length < 1 || VSize(HitLocation - WallEntrys[WallEntrys.Length-1]) > 80)
 						WallEnterEffect(HitLocation, HitNormal, X, Other, HitMaterial);
@@ -295,6 +299,6 @@ simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNor
 defaultproperties
 {
      TraceRange=(Min=10000.000000,Max=10000.000000)
-     MaxWallSize=256.000000
+	 WallPenetrationForce=256.000000
      PDamageFactor=0.950000
 }

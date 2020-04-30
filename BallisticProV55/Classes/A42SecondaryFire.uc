@@ -37,8 +37,8 @@ defaultproperties
 	ChargeTime=1.000000
 	ChargeSound=Sound'BallisticSounds2.A42.A42-Charge'
 	TraceRange=(Min=8000.000000,Max=8000.000000)
-	MaxWallSize=32.000000
-	MaxWalls=3
+	WallPenetrationForce=32.000000
+	
 	Damage=45.000000
 	DamageHead=90.000000
 	DamageLimb=45.000000

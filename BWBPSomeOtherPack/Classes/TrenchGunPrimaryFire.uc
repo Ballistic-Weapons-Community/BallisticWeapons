@@ -406,9 +406,8 @@ function DoFireEffect()
 //======================================================================
 function DoTrace (Vector InitialStart, Rotator Dir)
 {
-	local int						PenCount, WallCount;
-	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc, ExitNormal;
-	local Material					HitMaterial, ExitMaterial;
+	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc;
+	local Material					HitMaterial;
 	local float						Dist;
 	local Actor						Other, LastOther;
 	local bool						bHitWall;
@@ -449,21 +448,11 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{
-				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, 0, 0, 0, WaterHitLoc);
 			
 				LastOther = Other;
 
-				if (CanPenetrate(Other, HitLocation, X, PenCount))
-				{
-					PenCount++;
-					Start = HitLocation + (X * Other.CollisionRadius * 2);
-					End = Start + X * Dist;
-					Weapon.bTraceWater=true;
-					if (Vehicle(Other) != None)
-						HitVehicleEffect (HitLocation, HitNormal, Other);
-					continue;
-				}
-				else if (Vehicle(Other) != None || (BW.CurrentWeaponMode == 0 && Pawn(Other) != None))
+				if (Vehicle(Other) != None || (BW.CurrentWeaponMode == 0 && Pawn(Other) != None))
 					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
 				else if (Mover(Other) == None)
 					break;
@@ -471,19 +460,11 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Do impact effect
 			if (Other.bWorldGeometry || Mover(Other) != None)
 			{
-				WallCount++;
 				if (Other.bCanBeDamaged)
 				{
 					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
-					OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+					OnTraceHit(Other, HitLocation, InitialStart, X, 0, 0, 0, WaterHitLoc);
 					break;
-				}
-				if (WallCount <= MaxWalls && MaxWallSize > 0 && GoThroughWall(Other, HitLocation, HitNormal, MaxWallSize * ScaleBySurface(Other, HitMaterial), X, Start, ExitNormal, ExitMaterial))
-				{
-					WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
-					WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
-					Weapon.bTraceWater=true;
-					continue;
 				}
 				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
 				
@@ -645,7 +626,8 @@ defaultproperties
 	AltImpactManager=Class'BWBPRecolorsPro.IM_Supercharge'
 	ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
 	TraceRange=(Min=2000.000000,Max=4000.000000)
-	MaxWalls=1
+	
+	WallPenetrationForce=0
 
 	Damage=10.000000
 	DamageHead=15.000000

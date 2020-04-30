@@ -75,7 +75,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			// Got something interesting
 			if (!Other.bWorldGeometry && Other != LastOther)
 			{				
-				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, 0, WaterHitLoc);
 			
 				LastOther = Other;
 
@@ -98,7 +98,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			if (Other.bWorldGeometry || Mover(Other) != None)
 			{
 				WallCount++;
-				if (WallCount <= MaxWalls && MaxWallSize > 0 && GoThroughWall(Other, HitLocation, HitNormal, MaxWallSize * ScaleBySurface(Other, HitMaterial), X, Start, ExitNormal, ExitMaterial))
+				if (WallCount <= MAX_WALLS && WallPenetrationForce > 0 && GoThroughWall(Other, HitLocation, HitNormal, WallPenetrationForce * ScaleBySurface(Other, HitMaterial), X, Start, ExitNormal, ExitMaterial))
 				{
 					WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
 					WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
@@ -167,7 +167,9 @@ defaultproperties
      DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
      DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
      KickForce=25000
-     PenetrateForce=100
+	 PenetrateForce=100
+	 
+	 WallPenetrationForce=0
      bPenetrate=True
      bUseWeaponMag=False
      FlashScaleFactor=2.000000
