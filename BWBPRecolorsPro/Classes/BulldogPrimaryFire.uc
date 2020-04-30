@@ -86,7 +86,7 @@ defaultproperties
      AltBrassClass2=Class'BWBPRecolorsPro.Brass_FRAG'
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WaterRangeFactor=0.300000
-     WallPenetrationForce=120.000000
+     WallPenetrationForce=96.000000
      
      Damage=100.000000
      DamageHead=150.000000

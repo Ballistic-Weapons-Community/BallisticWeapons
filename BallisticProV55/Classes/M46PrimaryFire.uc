@@ -8,7 +8,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class M46PrimaryFire extends BallisticRangeAttenFire;
 
@@ -18,7 +18,7 @@ defaultproperties
      CutOffStartRange=1536.000000
      TraceRange=(Min=12000.000000,Max=15000.000000)
      WaterRangeFactor=0.800000
-     WallPenetrationForce=64.000000
+     WallPenetrationForce=24.000000
      
      Damage=30.000000
      DamageHead=60.000000

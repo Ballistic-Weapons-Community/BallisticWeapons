@@ -19,7 +19,7 @@ simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNor
 defaultproperties
 {
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WallPenetrationForce=512.000000
+     WallPenetrationForce=256.000000
      
      Damage=130.000000
      DamageHead=150.000000

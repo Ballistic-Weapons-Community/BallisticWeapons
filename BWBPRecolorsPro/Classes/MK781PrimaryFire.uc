@@ -155,8 +155,9 @@ defaultproperties
      DamageTypeHead=Class'BWBPRecolorsPro.DTM781ShotgunHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTM781Shotgun'
      KickForce=4000
-     PenetrateForce=100
-     bPenetrate=True
+     PenetrateForce=0
+	 bPenetrate=false
+	 WallPenetrationForce=0
      MuzzleFlashClass=Class'BWBPRecolorsPro.MK781FlashEmitter'
      FlashScaleFactor=2.000000
      BrassClass=Class'BWBPRecolorsPro.Brass_ShotgunFlechette'

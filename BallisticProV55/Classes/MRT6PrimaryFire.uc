@@ -75,8 +75,9 @@ defaultproperties
      DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
      DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'
      KickForce=3500
-     PenetrateForce=100
-     bPenetrate=True
+     PenetrateForce=0
+     bPenetrate=False
+     WallPenetrationForce=0
      bCockAfterFire=True
      MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      FlashScaleFactor=1.200000

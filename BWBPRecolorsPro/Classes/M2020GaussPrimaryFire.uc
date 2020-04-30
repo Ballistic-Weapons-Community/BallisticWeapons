@@ -113,11 +113,10 @@ simulated function SwitchWeaponMode (byte NewMode)
 		VelocityRecoil=default.VelocityRecoil;
 		FireAnim=default.FireAnim;
 		FireChaos=0.6;
-		PDamageFactor=default.PDamageFactor;
-		WallPDamageFactor=default.WallPDamageFactor;
 		Damage=default.Damage;
 		DamageHead=default.DamageHead;
 		DamageLimb=default.DamageLimb;
+		WallPenetrationForce = default.WallPenetrationForce;
 		FlashScaleFactor=default.FlashScaleFactor;
 		bFlashAlt=false;
 		KickForce = default.KickForce;
@@ -136,11 +135,10 @@ simulated function SwitchWeaponMode (byte NewMode)
 		KickForce=3000;
 		BW.RecoilXFactor = 0.35;
 		BW.RecoilYFactor = 0.35;
-		PDamageFactor=0.850000;
-		WallPDamageFactor=0.850000;
 		Damage=110.000000;
 		DamageHead=175.000000;
 		DamageLimb=135.000000;
+		WallPenetrationForce = 96;
 		FlashScaleFactor=1.600000;
 		KickForce=60000;
 		bFlashAlt=false;
@@ -153,8 +151,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 		VelocityRecoil=10.000000;
 		FlashScaleFactor=1.000000;
 		FireChaos=0.25;
-		PDamageFactor=0.600000;
-		WallPDamageFactor=0.400000;
 		bFlashAlt=true;
 		KickForce=5000;
 		BW.RecoilXFactor = 0.1;
@@ -168,6 +164,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		Damage=40.000000;
 		DamageHead=80.000000;
 		DamageLimb=40.000000;
+		WallPenetrationForce=24;
 	}
 	if (Weapon.bBerserk)
 		FireRate *= 0.75;
@@ -183,7 +180,7 @@ defaultproperties
      MuzzleFlashClass2=Class'BallisticProV55.M50FlashEmitter'
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WaterRangeFactor=0.900000
-     WallPenetrationForce=64.000000
+     WallPenetrationForce=48.000000
      
      Damage=60.000000
      DamageHead=120.000000

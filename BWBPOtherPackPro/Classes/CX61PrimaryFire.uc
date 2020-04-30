@@ -9,7 +9,7 @@ defaultproperties
      CutOffStartRange=1536.000000
      TraceRange=(Min=9000.000000,Max=9000.000000)
      WaterRangeFactor=0.800000
-     WallPenetrationForce=48.000000
+     WallPenetrationForce=16.000000
      
      Damage=20.000000
      DamageHead=40.000000

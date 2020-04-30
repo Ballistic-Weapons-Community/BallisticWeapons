@@ -213,7 +213,8 @@ defaultproperties
 {
      TracerChance=0.500000
      TraceRange=(Min=500.000000,Max=2000.000000)
-     WallPenetrationForce=16.000000
+	 WallPenetrationForce=0.000000
+	 bPenetrate=False
      FireSpreadMode=FSM_Scatter
      ShotTypeString="shots"
 }

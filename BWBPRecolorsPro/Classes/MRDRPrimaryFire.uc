@@ -29,7 +29,7 @@ defaultproperties
      CutOffDistance=1536.000000
      CutOffStartRange=378.000000
      WaterRangeFactor=0.400000
-     WallPenetrationForce=16.000000
+     WallPenetrationForce=8.000000
      
      Damage=20.000000
      DamageHead=40.000000
@@ -40,8 +40,8 @@ defaultproperties
      DamageTypeHead=Class'BWBPRecolorsPro.DT_MRDR88Head'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_MRDR88Body'
      KickForce=1250
-     PenetrateForce=135
-     bPenetrate=True
+     PenetrateForce=0
+     bPenetrate=False
      ClipFinishSound=(Sound=Sound'BallisticSounds3.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
      DryFireSound=(Sound=Sound'BallisticSounds3.Misc.DryPistol',Volume=0.700000)
      MuzzleFlashClass=Class'BWBPRecolorsPro.MRDRFlashEmitter'

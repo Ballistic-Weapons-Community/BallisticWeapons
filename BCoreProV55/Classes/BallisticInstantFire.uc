@@ -115,17 +115,17 @@ function float SurfaceScale (int Surf)
 {
 	switch (Surf)
 	{
-		Case 0:/*EST_Default*/	return 1.0;
+		Case 0:/*EST_Default*/	return 1.0; // bricks and such
 		Case 1:/*EST_Rock*/		return 1.0;
-		Case 2:/*EST_Dirt*/		return 4.0;
-		Case 3:/*EST_Metal*/	return 0.5;
+		Case 2:/*EST_Dirt*/		return 1.0;
+		Case 3:/*EST_Metal*/	return 0.25;
 		Case 4:/*EST_Wood*/		return 2.0;
-		Case 5:/*EST_Plant*/	return 4.0;
-		Case 6:/*EST_Flesh*/	return 2.0;
-		Case 7:/*EST_Ice*/		return 1.5;
-		Case 8:/*EST_Snow*/		return 2.0;
-		Case 9:/*EST_Water*/	return 8.0;
-		Case 10:/*EST_Glass*/	return 1.0;
+		Case 5:/*EST_Plant*/	return 3.5;
+		Case 6:/*EST_Flesh*/	return 1.0;
+		Case 7:/*EST_Ice*/		return 1.0;
+		Case 8:/*EST_Snow*/		return 5.0;
+		Case 9:/*EST_Water*/	return 0.2;
+		Case 10:/*EST_Glass*/	return 4.0;
 		default:				return 1.0;
 	}
 }

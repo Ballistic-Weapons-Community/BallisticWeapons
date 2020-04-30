@@ -20,7 +20,7 @@ defaultproperties
 {
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WaterRangeFactor=0.800000
-     WallPenetrationForce=72.000000
+     WallPenetrationForce=128.000000
      
      Damage=130.000000
      DamageHead=175.000000

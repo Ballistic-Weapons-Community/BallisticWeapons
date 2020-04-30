@@ -46,7 +46,7 @@ function ServerPlayFiring()
 }
 
 defaultproperties
-  {
+{
   HipSpreadFactor=3.000000
   MaxSpreadFactor=3.000000
   CutOffDistance=1536.000000
@@ -55,6 +55,7 @@ defaultproperties
   TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
   ImpactManager=Class'BallisticProV55.IM_Shell'
   TraceRange=(Min=7000.000000,Max=7000.000000)
+  WallPenetrationForce=0
   
   Damage=11.000000
   DamageHead=16.000000
@@ -64,8 +65,8 @@ defaultproperties
   DamageTypeHead=Class'BallisticProV55.DTMRS138ShotgunHead'
   DamageTypeArm=Class'BallisticProV55.DTMRS138Shotgun'
   KickForce=4000
-  PenetrateForce=120
-  bPenetrate=True
+  PenetrateForce=0
+  bPenetrate=False
   MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'
   BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
   BrassOffset=(X=45.000000,Y=-20.000000,Z=35.000000)

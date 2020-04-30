@@ -10,7 +10,7 @@
 //=============================================================================
 class M75SecondaryFire extends BallisticRailgunFire;
 
-const MAX_RAIL_POWER = 1.4f; // charges in 2 seconds, 0.8s hold time grace
+const 				MAX_RAIL_POWER = 1.3f; // charges in 2 seconds, 0.6s hold time grace
 var   	float 		RailPower;
 var		float		RailDamageBonus;
 
@@ -21,7 +21,9 @@ var		float		RailRecoilPerShotPenalty;
 
 simulated event ModeDoFire()
 {
-	Damage 					= default.Damage					+ RailDamageBonus				* RailPower;
+	RailPower = FMin(RailPower, 1.0f);
+
+	Damage 					= default.Damage					+ (RailDamageBonus				* RailPower);
 	WallPenetrationForce 	= default.WallPenetrationForce 		+ RailWallPenetrationForceBonus * Square(RailPower);
 	PenetrateForce 			= default.PenetrateForce 			+ RailPenetrateForceBonus 		* RailPower;
 	KickForce 				= default.KickForce 				+ RailKickForceBonus 			* RailPower;
@@ -45,10 +47,7 @@ simulated function ModeTick(float DeltaTime)
 		RailPower = FMin(MAX_RAIL_POWER, RailPower + 0.5 * DeltaTime);
 
 		if (RailPower >= MAX_RAIL_POWER)
-		{
-			RailPower = 1.0f;
 			bIsFiring = false;
-		}
 	}
 	
 	else if (RailPower > 0)
@@ -66,24 +65,23 @@ simulated function ModeTick(float DeltaTime)
 		
 		Weapon.ThirdPersonActor.SoundRadius = 128 + 768 * RailPower;
 	}
-
 }
 
-simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
+simulated function SendFireEffect(Actor Other, Vector HitLocation, Vector HitNormal, int Surf, optional Vector WaterHitLoc)
 {
-	M75Attachment(Weapon.ThirdPersonActor).RailPower = 64 + 191*RailPower;
+	M75Attachment(Weapon.ThirdPersonActor).RailPower = 64 + 191 * FMin(RailPower, 1.0f);
 	super.SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
 }
 
-simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
+simulated function bool ImpactEffect(Vector HitLocation, Vector HitNormal, Material HitMat, Actor Other, optional Vector WaterHitLoc)
 {
-	BallisticWeapon(Weapon).TargetedHurtRadius(60.0*RailPower, 48+48.0*RailPower, DamageType, 5000, HitLocation, Pawn(Other));
+	BallisticWeapon(Weapon).TargetedHurtRadius(25.0*FMin(RailPower, 1.0f), 32+32.0*FMin(RailPower, 1.0f), DamageType, 5000, HitLocation, Pawn(Other));
 	return super.ImpactEffect(HitLocation, HitNormal, HitMat, Other, WaterHitLoc);
 }
 
-function WallEnterEffect (vector HitLocation, vector HitNormal, vector X, actor other, Material HitMat)
+function WallEnterEffect (Vector HitLocation, Vector HitNormal, Vector X, Actor other, Material HitMat)
 {
-	BallisticWeapon(Weapon).TargetedHurtRadius(60.0*RailPower, 48+192.0*RailPower, DamageType, 5000, HitLocation, Pawn(Other));
+	BallisticWeapon(Weapon).TargetedHurtRadius(25.0*FMin(RailPower, 1.0f), 32+96.0*FMin(RailPower, 1.0f), DamageType, 5000, HitLocation, Pawn(Other));
 	super.WallEnterEffect(HitLocation, HitNormal, X, other, HitMat);
 }
 
@@ -91,8 +89,8 @@ defaultproperties
 {
 	 TraceRange=(Min=30000.000000,Max=30000.000000)
 	 
-	 WallPenetrationForce=512
-	 RailWallPenetrationForceBonus=1536
+	 WallPenetrationForce=256
+	 RailWallPenetrationForceBonus=1280
 
 	 Damage=120.000000
      DamageHead=150.000000
@@ -104,7 +102,7 @@ defaultproperties
 	 DamageTypeArm=Class'BallisticProV55.DTM75RailgunCharged'
 
 	 KickForce=30000
-	 RailKickForceBonus=120000
+	 RailKickForceBonus=45000
 
 	 bPenetrate=True
 	 PenetrateForce=700

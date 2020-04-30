@@ -648,6 +648,7 @@ defaultproperties
 	TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 	ImpactManager=Class'BallisticProV55.IM_Shell'
 	TraceRange=(Min=5000.000000,Max=7000.000000)
+	WallPenetrationForce=24
 	
 	Damage=14.000000
 	DamageHead=21.000000
