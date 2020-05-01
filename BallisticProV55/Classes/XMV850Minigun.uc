@@ -336,6 +336,11 @@ simulated function bool HasAmmo()
 	return false;	//This weapon is empty
 }
 
+simulated function float ChargeBar()
+{
+     return BarrelSpeed / DesiredSpeed;
+}
+
 // AI Interface =====
 // choose between regular or alt-fire
 function byte BestMode()
@@ -419,6 +424,7 @@ defaultproperties
 
 	 CurrentWeaponMode=1
 	 
+	 bShowChargingBar=True
      SightPivot=(Pitch=700,Roll=2048)
      SightOffset=(X=8.000000,Z=28.000000)
      SightDisplayFOV=45.000000
