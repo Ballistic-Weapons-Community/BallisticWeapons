@@ -89,7 +89,7 @@ defaultproperties
 {
 	 TraceRange=(Min=30000.000000,Max=30000.000000)
 	 
-	 WallPenetrationForce=256
+	 WallPenetrationForce=128
 	 RailWallPenetrationForceBonus=1280
 
 	 Damage=120.000000

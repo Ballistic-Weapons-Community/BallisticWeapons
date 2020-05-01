@@ -336,13 +336,13 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-	AccelSpeed=50000.000000
+	AccelSpeed=100000.000000
 	AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire1FlyBy'
 	CollisionHeight=1.000000
 	CollisionRadius=1.000000
-	Damage=80.000000
-	DamageHead=80.000000
-	DamageLimb=80.000000
+	Damage=70.000000
+	DamageHead=70.000000
+	DamageLimb=70.000000
 	DamageRadius=128.000000
 	DamageTypeHead=Class'BallisticProV55.DT_RSDarkSlow'
 	DrawScale3D=(X=1.500000)
@@ -353,7 +353,7 @@ defaultproperties
 	LightEffect=LE_QuadraticNonIncidence
 	LightRadius=12.000000
 	LightType=LT_Steady
-	MaxSpeed=60000.000000
+	MaxSpeed=14000.000000
 	MomentumTransfer=10000.000000
 	MyDamageType=Class'BallisticProV55.DT_RSDarkSlow'
 	MyRadiusDamageType=Class'BallisticProV55.DT_RSDarkSlow'
@@ -368,7 +368,7 @@ defaultproperties
 	ShakeRotTime=2.000000
 	SoundRadius=75.000000
 	SoundVolume=255
-	Speed=3000.000000
+	Speed=5000.000000
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
 	StaticMesh=StaticMesh'BWBP4-Hardware.DarkStar.DarkProjBig'
 	TrailClass=Class'BallisticProV55.RSDark1Trail'

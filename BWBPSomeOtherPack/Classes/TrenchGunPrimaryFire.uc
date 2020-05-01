@@ -556,9 +556,9 @@ function SwitchShotParams()
 
 		if (BW.CurrentWeaponMode == 1)
 		{
-			DamageType=Class'DT_TrenchGunElectroDouble';
-			DamageTypeArm=Class'DT_TrenchGunElectroDouble';
-			DamageTypeHead=Class'DT_TrenchGunElectroDouble';	
+			DamageType=Class'DT_TrenchGunElectro';
+			DamageTypeArm=Class'DT_TrenchGunElectro';
+			DamageTypeHead=Class'DT_TrenchGunElectro';	
 		}
 	}
 	else

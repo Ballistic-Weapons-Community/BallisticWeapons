@@ -1163,6 +1163,37 @@ ignores SeePlayer, HearNoise, Bump, ServerSpectate;
 
 // end Titan RPG handling
 
+
+function ViewFlash(float DeltaTime)
+{
+    local vector goalFog;
+    local float goalscale, delta, Step;
+    local PhysicsVolume ViewVolume;
+
+    delta = FMin(0.1, DeltaTime);
+    goalScale = 1; // + ConstantGlowScale;
+    goalFog = vect(0,0,0); // ConstantGlowFog;
+
+    if ( Pawn != None )
+    {
+		if ( bBehindView )
+			ViewVolume = Level.GetPhysicsVolume(CalcViewLocation);
+		else
+			ViewVolume = Pawn.HeadVolume;
+
+		goalScale += ViewVolume.ViewFlash.X;
+		goalFog += ViewVolume.ViewFog;
+	}
+		
+	Step = 0.6 * delta;
+	FlashScale.X = UpdateFlashComponent(FlashScale.X,step,goalScale);
+    FlashScale = FlashScale.X * vect(1,1,1);
+
+	FlashFog.X = UpdateFlashComponent(FlashFog.X,step,goalFog.X);
+	FlashFog.Y = UpdateFlashComponent(FlashFog.Y,step,goalFog.Y);
+	FlashFog.Z = UpdateFlashComponent(FlashFog.Z,step,goalFog.Z);
+}
+
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 {
 	Super.DisplayDebug(Canvas, YL, YPos);

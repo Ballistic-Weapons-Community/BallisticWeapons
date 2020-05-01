@@ -124,7 +124,7 @@ defaultproperties
      SpecialFireSound=Sound'PackageSounds4Pro.LS14.Gauss-FireDouble'
      HeatPerShot=20.000000
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WallPenetrationForce=64.000000
+     WallPenetrationForce=0.000000
      
      Damage=15.000000
      DamageHead=30.000000

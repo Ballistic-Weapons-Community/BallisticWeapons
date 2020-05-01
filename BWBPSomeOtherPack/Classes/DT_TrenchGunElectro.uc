@@ -11,12 +11,11 @@ defaultproperties
      DeathStrings(1)="%k's skeletized shotgun zapped %o to death."
      DeathStrings(2)="%k's electric shot exorcised a convulsing %o."
      SimpleKillString="Trenchgun Electroshock Shell"
-     FlashThreshold=30
-     FlashV=(X=1500.000000,Y=1500.000000,Z=1500.000000)
-     FlashF=-0.100000
+     FlashThreshold=0
+     FlashV=(X=128.000000,Y=128.000000,Z=128.000000)
      bDisplaceAim=True
-     AimDisplacementDamageThreshold=30
-     AimDisplacementDuration=0.100000
+     AimDisplacementDamageThreshold=10
+     AimDisplacementDuration=0.150000
      InvasionDamageScaling=2.000000
      bExtraMomentumZ=True
      DamageIdent="Shotgun"

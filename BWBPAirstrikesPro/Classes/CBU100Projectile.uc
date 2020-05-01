@@ -88,7 +88,7 @@ defaultproperties
      LifeSpan=15.000000
      AmbientGlow=96
      FluidSurfaceShootStrengthMod=10.000000
-     bFullVolume=True
+     bFullVolume=False
      SoundVolume=255
      SoundRadius=1000.000000
      TransientSoundVolume=1.000000

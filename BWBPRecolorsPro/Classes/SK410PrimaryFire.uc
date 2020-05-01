@@ -66,7 +66,7 @@ defaultproperties
      CutOffDistance=1536.000000
      CutOffStartRange=378.000000
      MaxSpreadFactor=6
-     TraceCount=6
+     TraceCount=7
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_ShotgunHE'
      ImpactManager=Class'BWBPRecolorsPro.IM_ShellHE'
      TraceRange=(Min=4000.000000,Max=6000.000000)
@@ -88,8 +88,8 @@ defaultproperties
      RecoilPerShot=600.000000
      VelocityRecoil=0.000000
      FireChaos=0.400000
-     XInaccuracy=400.000000
-     YInaccuracy=400.000000
+     XInaccuracy=300.000000
+     YInaccuracy=300.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.M781.M781-Blast',Volume=1.300000)
      FireEndAnim=
      FireAnimRate=2.250000

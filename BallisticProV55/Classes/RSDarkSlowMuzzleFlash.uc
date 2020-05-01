@@ -40,6 +40,7 @@ defaultproperties
          FadeInEndTime=0.010000
          CoordinateSystem=PTCS_Relative
          MaxParticles=3
+         Opacity=0.5
          StartLocationOffset=(X=1.000000)
          StartSpinRange=(Z=(Min=0.250000,Max=0.250000))
          SizeScale(0)=(RelativeSize=0.200000)
@@ -70,6 +71,7 @@ defaultproperties
          FadeOutStartTime=0.135000
          CoordinateSystem=PTCS_Relative
          MaxParticles=6
+         Opacity=0.5
          StartLocationOffset=(X=10.000000)
          SizeScale(0)=(RelativeSize=0.200000)
          SizeScale(1)=(RelativeTime=0.500000,RelativeSize=0.600000)
@@ -98,6 +100,7 @@ defaultproperties
          FadeOutStartTime=0.355000
          CoordinateSystem=PTCS_Relative
          MaxParticles=3
+         Opacity=0.5
          DetailMode=DM_SuperHigh
          StartLocationOffset=(X=50.000000)
          SizeScale(0)=(RelativeSize=0.600000)
@@ -129,6 +132,7 @@ defaultproperties
          FadeInEndTime=0.015000
          CoordinateSystem=PTCS_Relative
          MaxParticles=30
+         Opacity=0.5
          DetailMode=DM_SuperHigh
          StartLocationOffset=(X=5.000000)
          StartLocationRange=(X=(Max=10.000000))
@@ -158,6 +162,7 @@ defaultproperties
          FadeOutStartTime=0.057000
          CoordinateSystem=PTCS_Relative
          MaxParticles=3
+         Opacity=0.5
          StartSizeRange=(X=(Min=60.000000,Max=60.000000),Y=(Min=60.000000,Max=60.000000),Z=(Min=60.000000,Max=60.000000))
          Texture=Texture'BallisticEffects.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
@@ -183,6 +188,7 @@ defaultproperties
          FadeInEndTime=0.088000
          CoordinateSystem=PTCS_Relative
          MaxParticles=100
+         Opacity=0.5
          DetailMode=DM_SuperHigh
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=45.000000,Max=45.000000)
@@ -215,6 +221,7 @@ defaultproperties
          FadeInEndTime=0.096000
          CoordinateSystem=PTCS_Relative
          MaxParticles=45
+         Opacity=0.5
          DetailMode=DM_SuperHigh
          StartLocationOffset=(X=-30.000000,Z=6.000000)
          StartSpinRange=(X=(Min=-0.030000,Max=0.030000))

@@ -339,9 +339,9 @@ defaultproperties
 	SightAimFactor=0.100000
 	ReloadAnimRate=1.500000
 	ReloadAnim="ReloadLoop"
-	RecoilYFactor=0.2
+	RecoilYFactor=0.25
 	RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.200000),(InVal=1.000000)))
-	RecoilXFactor=0.15
+	RecoilXFactor=0.2
 	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.000000),(InVal=0.300000,OutVal=0.100000),(InVal=1.000000,OutVal=0.000000)))
 	RecoilDeclineDelay=0.650000
 	PutDownTime=0.35
