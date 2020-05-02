@@ -625,6 +625,7 @@ function float SuggestDefenseStyle()	{	return 0.6;	}
 
 defaultproperties
 {
+	AimDisplacementDurationMult=1.25
      LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
      LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
      HeatDeclineDelay=0.400000

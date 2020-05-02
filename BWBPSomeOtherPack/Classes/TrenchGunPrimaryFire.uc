@@ -180,7 +180,7 @@ simulated function SwitchWeaponMode (byte newMode)
 		
 		RangeAtten = 1.0; // electrical shots shouldn't be losing damage at range
 		
-		KickForce=10000;
+		KickForce=4500;
 	}
 	else // Explosive Mode
 	{
@@ -633,9 +633,9 @@ defaultproperties
 	DamageHead=15.000000
 	DamageLimb=10.000000
 
-	ElectroDamage=6.000000
-	ElectroDamageHead=9.000000
-	ElectroDamageLimb=6.000000
+	ElectroDamage=5.000000
+	ElectroDamageHead=8.000000
+	ElectroDamageLimb=5.000000
 
 	RangeAtten=0.250000
 	PenetrateForce=0

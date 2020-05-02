@@ -486,8 +486,8 @@ exec function OffsetY2(int y2)
 
 exec function LogIconCoords()
 {
-	log(self@"BigIconCoords=(X1="$IconCoords.X1$",X2="$IconCoords.X2$",Y1="$IconCoords.Y1$",Y2="$IconCoords.Y2$")");
-	PlayerController(InstigatorController).ClientMessage("Logged IconCoords for"@self);
+	log(self @ "BigIconCoords=(X1="$IconCoords.X1$",X2="$IconCoords.X2$",Y1="$IconCoords.Y1$",Y2="$IconCoords.Y2$")");
+	PlayerController(InstigatorController).ClientMessage("Logged IconCoords for" @ self);
 }
 
 static final operator(34) Range *= (out Range A, float B)
@@ -3942,20 +3942,23 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	{
 		if (BDT.default.bDisplaceAim && Damage >= BDT.default.AimDisplacementDamageThreshold && Level.TimeSeconds + BDT.default.AimDisplacementDuration > AimDisplacementEndTime)
 		{
-			AimDisplacementDuration = BDT.default.AimDisplacementDuration * AimDisplacementDurationMult;
+			AimDisplacementDuration = FMin(2.0f, BDT.default.AimDisplacementDuration * AimDisplacementDurationMult);
+
+			if (BDT.default.AimDisplacementDamageThreshold > 0)
+				AimDisplacementDuration *= float(Damage)/float(BDT.default.AimDisplacementDamageThreshold);
+
 			if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).StaggerAnim != '')
-				Instigator.SetAnimAction('Stagger');		
+				Instigator.SetAnimAction('Stagger');
 		
-			if (BDT.default.AimDisplacementDamageThreshold == 0)
+			if (Level.TimeSeconds + AimDisplacementDuration > AimDisplacementEndTime)
 			{
-				AimDisplacementEndTime = Level.TimeSeconds + FMin(2, AimDisplacementDuration);
-				ClientDisplaceAim(FMin(2, AimDisplacementDuration));
+				AimDisplacementEndTime = Level.TimeSeconds + AimDisplacementDuration;
+				ClientDisplaceAim(AimDisplacementDuration);
 			}
-			else
-			{
-				AimDisplacementEndTime = Level.TimeSeconds + FMin(2, AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold));
-				ClientDisplaceAim(FMin(2, AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold)));
-			}
+			
+			//if (Level.NetMode == NM_Standalone)
+			//	Log("Aim displacement applied: "$ (AimDisplacementEndTime - Level.TimeSeconds) $" seconds.");
+
 			if (bScopeView)
 				StopScopeView();
 		}

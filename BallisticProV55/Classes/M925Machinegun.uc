@@ -262,6 +262,7 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
+	AimDisplacementDurationMult=1.25
      BeltLength=8
      BoxOnSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOn')
      BoxOffSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOff')

@@ -116,7 +116,7 @@ simulated function PhysicsVolumeChange( PhysicsVolume NewVolume )
 
 defaultproperties
 {
-     BurnTime=5.000000
+     BurnTime=12.000000
      Damage=30.000000
      DamageType=Class'BallisticProV55.DTFP7Burned'
      Begin Object Class=SpriteEmitter Name=SpriteEmitter1

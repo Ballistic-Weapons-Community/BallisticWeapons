@@ -149,6 +149,7 @@ event ModeTick(float DT)
 	local Rotator BasePlayerView;
 
 	BasePlayerView = BW.GetPlayerAim() - BW.Aim * (BW.ViewAimFactor) - BW.GetRecoilPivot(true) * (BW.ViewRecoilFactor);
+	
 	if (Instigator.IsLocallyControlled())
 	{
 		TurnVelocity = (BasePlayerView - OldLookDir) / DT;

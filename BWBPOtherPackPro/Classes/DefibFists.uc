@@ -9,20 +9,21 @@
 //==============================================================================
 class DefibFists extends BallisticMeleeWeapon;
 
-var() int			ElectroCharge;
-var() float			DeflectionAmount;
-var() float			PulseCharge;
-var() float			PulseInterval;
-var	float 			LastPulse;
-var	float 			LastRecharge;
-var	Actor			LSparks;
-var	Actor			RSparks;
-var	float			PointsHealed;	// Counter to keep track of points healed, will not exceed 50 x HealRatio (will not regenerate more than 50HP before healing again)
+var() int				ElectroCharge;
+var() int				ChargePerSecond;
+var() float				DeflectionAmount;
+var() float				PulseCharge;
+var() float				PulseInterval;
+var	float 				LastPulse;
+var	float 				LastRecharge;
+var	Actor				LSparks;
+var	Actor				RSparks;
+var	float				PointsHealed;	// Counter to keep track of points healed, will not exceed 50 x HealRatio (will not regenerate more than 50HP before healing again)
 var()	float			HealRatio;		// How many points medic must heal for every 1 HP regenerated
-var	float			LastRegen;
-var() Sound		PulseSound;	
-var	bool			bSetAmbient;
-var	bool			bDischarged;
+var	float				LastRegen;
+var() Sound				PulseSound;	
+var	bool				bSetAmbient;
+var	bool				bDischarged;
 var class<DamageType> PulseDamageType;
 
 simulated function bool HasAmmo()
@@ -93,13 +94,11 @@ simulated event Tick (float DT)
 	{
 		if (ElectroCharge < default.ElectroCharge && !bBlocked && Level.TimeSeconds > LastRecharge)
 		{
-			ElectroCharge = Min(150, ElectroCharge + 5);
-			LastRecharge = Level.TimeSeconds + 1.5;
+			ElectroCharge = Min(default.MagAmmo, ElectroCharge + ChargePerSecond);
+			LastRecharge = Level.TimeSeconds + 1;
 		}
 		MagAmmo = ElectroCharge;
 	}
-	
-
 }
 
 simulated event WeaponTick(float DT)
@@ -225,6 +224,7 @@ function ElectroShockWave( float DamageAmount, float DamageRadius, class<DamageT
 		if(Victims != Self && (Victims.Role == ROLE_Authority) && Victims.bCanBeDamaged && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Instigator)
 		{
 			ShockTarget=BallisticPawn(Victims);
+
 			if(IsValidHealTarget(ShockTarget))
 			{
 				PrevHealth = ShockTarget.Health;
@@ -317,11 +317,6 @@ simulated function string GetHUDAmmoText(int Mode)
 	return "";
 }
 
-simulated function float AmmoStatus(optional int Mode)
-{
-    return float(MagAmmo) / float(default.MagAmmo);
-}
-
 // AI Interface =====
 function bool CanAttack(Actor Other)
 {
@@ -407,16 +402,28 @@ function float SuggestDefenseStyle()
 }
 // End AI Stuff =====
 
+simulated function GetAmmoCount(out float MaxAmmoPrimary, out float CurAmmoPrimary)
+{
+	MaxAmmoPrimary = default.ElectroCharge;
+	CurAmmoPrimary = ElectroCharge;
+}
+
+simulated function float AmmoStatus(optional int Mode) // returns float value for ammo amount
+{
+	return float(ElectroCharge) / float(default.ElectroCharge);
+}
+
 defaultproperties
 {
-     ElectroCharge=100
-     DeflectionAmount=35.000000
-     PulseCharge=10.000000
+	 ElectroCharge=100
+	 ChargePerSecond=10
+     DeflectionAmount=25.000000
+     PulseCharge=5.000000
      PulseInterval=0.500000
      HealRatio=5.000000
      PulseSound=Sound'BWBP2-Sounds2.LightningGun.LG-FireLoop'
      PulseDamageType=Class'BWBPOtherPackPro.DTShockGauntletPulse'
-     PlayerSpeedFactor=1.100000
+     PlayerSpeedFactor=1.150000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPOtherPackTex.DefibFists.BigIcon_DefibFists'
      BigIconCoords=(X1=96,Y1=10,X2=418,Y2=245)

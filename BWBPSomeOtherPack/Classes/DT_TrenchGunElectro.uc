@@ -15,7 +15,7 @@ defaultproperties
      FlashV=(X=128.000000,Y=128.000000,Z=128.000000)
      bDisplaceAim=True
      AimDisplacementDamageThreshold=10
-     AimDisplacementDuration=0.150000
+     AimDisplacementDuration=0.200000
      InvasionDamageScaling=2.000000
      bExtraMomentumZ=True
      DamageIdent="Shotgun"

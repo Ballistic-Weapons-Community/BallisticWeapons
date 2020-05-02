@@ -1,7 +1,7 @@
 //=============================================================================
 // MACWeapon.
 //
-// HAMR (Heavy Anti-Materiél Rifle). A man-portable artilery cannon. Fires a
+// HAMR (Heavy Anti-Materiï¿½l Rifle). A man-portable artilery cannon. Fires a
 // powerful explosive shell. Can be deployed into turret form to deal with
 // recoil problems
 //
@@ -315,7 +315,7 @@ simulated event DrawHAMRScope (Canvas C)
 			if (VP > 32768)
 				VP -= 65546;
 			VP *= 0.0054931640625;
-			s = VP $ "°";
+			s = VP $ "ï¿½";
 			C.TextSize(s, XL, YL);
 			C.SetPos(V.X-XL/2, V.Y+YL);
 			C.DrawText(s);
@@ -418,6 +418,7 @@ function float SuggestDefenseStyle()	{	return -0.9;	}
 
 defaultproperties
 {
+	AimDisplacementDurationMult=1.25
      RulerTex=Texture'BWBP4-Tex.Artillery.Lines'
      PointerTex=Texture'BWBP4-Tex.Artillery.Pointer'
      DeploySound=Sound'BWBP4-Sounds.Artillery.Art-Deploy'

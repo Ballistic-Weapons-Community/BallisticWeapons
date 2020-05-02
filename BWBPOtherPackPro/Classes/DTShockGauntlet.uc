@@ -13,9 +13,12 @@ defaultproperties
      DeathStrings(2)="%k prescribed a dose of electro-gauntlet fury for %o."
      DeathStrings(3)="%k operated %o's face off with %vh fists of vengeance."
      DeathStrings(4)="%k surgically removed %o's life with the Combat Defibrillator!"
-     FlashThreshold=45
+     FlashThreshold=55
      FlashV=(X=400.000000,Y=400.000000,Z=1000.000000)
      FlashF=0.100000
+     bDisplaceAim=True
+     AimDisplacementDamageThreshold=40
+     AimDisplacementDuration=0.3
      bCanBeBlocked=True
      ShieldDamage=15
      DamageIdent="Melee"

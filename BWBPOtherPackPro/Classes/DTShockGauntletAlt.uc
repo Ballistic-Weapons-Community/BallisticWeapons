@@ -13,11 +13,14 @@ defaultproperties
      DeathStrings(2)="%k fed %o RAW, CHUNKY VOLTS to the FACE."
      DeathStrings(3)="%k's hellish blow shot %o into the skybox."
      DeathStrings(4)="%k struck down %o with the fist of Thor."
-     FlashThreshold=45
+     FlashThreshold=90
      FlashV=(X=400.000000,Y=400.000000,Z=1000.000000)
      FlashF=0.100000
      bCanBeBlocked=True
      ShieldDamage=15
+     bDisplaceAim=True
+     AimDisplacementDamageThreshold=40
+     AimDisplacementDuration=0.3
      DamageIdent="Melee"
      DamageDescription=",Blunt,Electro"
      ImpactManager=Class'BallisticProV55.IM_MRS138TazerHit'

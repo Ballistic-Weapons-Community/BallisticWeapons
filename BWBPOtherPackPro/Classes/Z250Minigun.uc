@@ -364,7 +364,7 @@ simulated event Tick (float DT)
 
 	super.Tick(DT);
 
-	if (FireMode[0].IsFiring())
+	if (FireMode[0].IsFiring() && !bServerReloading)
 	{
 		BarrelSpeed = BarrelSpeed + FClamp(DesiredSpeed - BarrelSpeed, -0.35*DT, GetRampUpSpeed() *DT);
 		BarrelTurn += BarrelSpeed * 655360 * DT;
@@ -480,6 +480,7 @@ function float SuggestDefenseStyle()	{	return 0.1;	}
 
 defaultproperties
 {
+	AimDisplacementDurationMult=1.25
 	GrenadeLoadAnim="GLReload"
 	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'

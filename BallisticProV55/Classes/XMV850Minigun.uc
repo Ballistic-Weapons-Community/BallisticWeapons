@@ -131,7 +131,7 @@ simulated event Tick (float DT)
 
 	super.Tick(DT);
 
-	if (FireMode[0].IsFiring())
+	if (FireMode[0].IsFiring() && !bServerReloading)
 	{
 		BarrelSpeed = BarrelSpeed + FClamp(DesiredSpeed - BarrelSpeed, -0.35*DT, GetRampUpSpeed() *DT);
 		BarrelTurn += BarrelSpeed * 655360 * DT;
@@ -387,6 +387,7 @@ function float SuggestDefenseStyle()	{	return 1;	}
 
 defaultproperties
 {
+	 AimDisplacementDurationMult=1.25
      BarrelSpinSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelSpinLoop'
      BarrelStopSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStop'
      BarrelStartSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStart'

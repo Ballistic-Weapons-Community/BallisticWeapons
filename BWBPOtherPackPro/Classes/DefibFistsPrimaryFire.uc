@@ -8,7 +8,9 @@
 //=============================================================================
 class DefibFistsPrimaryFire extends BallisticMeleeFire;
 
-var bool bPunchLeft;
+var int				ElectroDamageBonus, ElectroHeal;
+var int				RequiredBonusCharge;
+var bool 			bPunchLeft;
 var BUtil.FullSound DischargedFireSound;
 
 event ModeDoFire()
@@ -90,31 +92,33 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 
 	if(IsValidHealTarget(BPawn))
 	{
-		if (DefibFists(BW).ElectroCharge >= 30)
+		if (DefibFists(BW).ElectroCharge >= RequiredBonusCharge)
 		{
 			PrevHealth = BPawn.Health;
-			BPawn.GiveAttributedHealth(15, BPawn.HealthMax, Instigator);
+			BPawn.GiveAttributedHealth(ElectroHeal, BPawn.HealthMax, Instigator);
 			DefibFists(Weapon).PointsHealed += BPawn.Health - PrevHealth;
-			DefibFists(BW).ElectroCharge -= 30;
+			DefibFists(BW).ElectroCharge -= RequiredBonusCharge;
 			DefibFists(BW).LastRegen = Level.TimeSeconds + 0.5;
 		}
 		return;
 	}
 
-	if (DefibFists(Weapon).ElectroCharge < 15)
-		Damage /= 3;
+	if (DefibFists(Weapon).ElectroCharge >= RequiredBonusCharge)
+	{
+		Damage += ElectroDamageBonus;
+		DefibFists(BW).ElectroCharge -= RequiredBonusCharge;
+	}
 
 	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (DefibFists(BW).ElectroCharge >= 30)
-		DefibFists(BW).ElectroCharge -= 30;
 
-	DefibFists(BW).LastRegen = Level.TimeSeconds + 0.5;
+
+	DefibFists(BW).LastRegen = Level.TimeSeconds + 1;
 }
 
 function bool IsValidHealTarget(Pawn Target)
 {
-	if(Target==None||Target==Instigator)
+	if(Target==None || Target==Instigator)
 		return false;
 
 	if(Target.Health<=0)
@@ -126,7 +130,7 @@ function bool IsValidHealTarget(Pawn Target)
 	if(!Level.Game.bTeamGame)
 		return false;
 
-	if(Vehicle(Target)!=None)
+	if(Vehicle(Target) != None)
 		return false;
 
 	return (Target.Controller!=None && Instigator.Controller.SameTeamAs(Target.Controller));
@@ -135,10 +139,14 @@ function bool IsValidHealTarget(Pawn Target)
 defaultproperties
 {
      DischargedFireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Radius=32.000000,bAtten=True)
-     FatiguePerStrike=0.015000
+	 FatiguePerStrike=0.015000
+	 RequiredBonusCharge=20
+	 ElectroDamageBonus=30
+	 ElectroHeal=30
      Damage=40.000000
      DamageHead=40.000000
-     DamageLimb=40.000000
+	 DamageLimb=40.000000
+	 TraceRange=(Min=150,Max=150)
      DamageType=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeArm=Class'BWBPOtherPackPro.DTShockGauntlet'

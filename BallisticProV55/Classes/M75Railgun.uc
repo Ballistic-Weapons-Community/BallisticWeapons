@@ -424,6 +424,7 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
+	AimDisplacementDurationMult=1.25
      ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
      ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
      WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
