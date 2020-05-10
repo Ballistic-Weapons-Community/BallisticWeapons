@@ -8,6 +8,20 @@
 //=============================================================================
 class X82Turret extends BallisticTurret;
 
+function AdjustDriverDamage(out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
+{
+	if ( InGodMode() )
+ 		Damage = 0;
+	else if (DamageType.default.bLocationalHit && CheckDefense(instigatedBy.Location))
+ 		Damage *= DriverDamageMult + (1 - DriverDamageMult) * FClamp(((Driver.Location.Z + Driver.EyePosition().Z) - Location.Z)/(2 * Driver.CollisionHeight), 0, 1);
+	Momentum = vect(0,0,0);
+}
+
+exec function GetMultScale()
+{
+	Log("Damage multiplier:"$(DriverDamageMult + (1 - DriverDamageMult) * FClamp(((Driver.Location.Z + Driver.EyePosition().Z) - Location.Z)/(2 * Driver.CollisionHeight), 0, 1)));
+	Log("Driver eye: "$(Driver.Location.Z + Driver.EyePosition().Z)$" Turret loc: "$Location.Z);
+}
 
 function Fire( optional float F )
 {

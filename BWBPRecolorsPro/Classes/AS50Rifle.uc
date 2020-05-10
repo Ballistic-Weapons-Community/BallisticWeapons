@@ -719,9 +719,9 @@ defaultproperties
      ChaosAimSpread=3072
      RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.400000),(InVal=1.000000,OutVal=-0.200000)))
      RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.40000
-	 RecoilYFactor=0.50000
-	 RecoilMinRandFactor=0.2
+     RecoilXFactor=0.3000
+	 RecoilYFactor=0.40000
+	 RecoilMinRandFactor=0.15
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.500000
      FireModeClass(0)=Class'BWBPRecolorsPro.AS50PrimaryFire'

@@ -150,7 +150,7 @@ function AdjustDriverDamage(out int Damage, Pawn InstigatedBy, Vector HitLocatio
 	if ( InGodMode() )
  		Damage = 0;
 	else if (DamageType.default.bLocationalHit && CheckDefense(instigatedBy.Location))
- 		Damage *= DriverDamageMult + (1 - DriverDamageMult) * FClamp((Driver.EyePosition().Z - Location.Z)/(2 * Driver.CollisionHeight), 0, 1);
+ 		Damage *= DriverDamageMult + (1 - DriverDamageMult) * FClamp(((Driver.Location.Z + Driver.EyePosition().Z) - Location.Z)/(2 * Driver.CollisionHeight), 0, 1);
 	Momentum = vect(0,0,0);
 }
 
@@ -1132,7 +1132,7 @@ defaultproperties
      bRemoteControlled=True
      bDesiredBehindView=False
      DriveAnim="Idle_Rest"
-     DriverDamageMult=0.350000
+     DriverDamageMult=0.20000
      VehicleNameString="Ballistic Turret"
      MaxDesireability=2.000000
      bIgnoreForces=True
