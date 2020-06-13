@@ -19,7 +19,12 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
 	if (Victim.bProjTarget)
-		BW.TargetedHurtRadius(Damage, 420, class'DTR78Explosion', 200, HitLocation, Pawn(Victim));
+	{
+		if (BallisticShield(Victim) != None)
+			BW.TargetedHurtRadius(Damage, 105, class'DTR78Explosion', 200, HitLocation, Pawn(Victim));
+		else
+			BW.TargetedHurtRadius(Damage, 420, class'DTR78Explosion', 200, HitLocation, Pawn(Victim));
+	}
 }
 
 //========================================================

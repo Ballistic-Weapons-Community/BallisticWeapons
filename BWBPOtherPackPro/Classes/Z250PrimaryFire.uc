@@ -217,7 +217,12 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
 	if (Victim.bProjTarget)
-		BW.TargetedHurtRadius(Damage, 420, class'DTZ250Bullet', 200, HitLocation, Pawn(Victim));
+	{
+		if (BallisticShield(Victim) != None)
+			BW.TargetedHurtRadius(Damage, 210, class'DTZ250Bullet', 200, HitLocation, Pawn(Victim));
+		else
+			BW.TargetedHurtRadius(Damage, 420, class'DTZ250Bullet', 200, HitLocation, Pawn(Victim));
+	}
 }
 
 // Do the trace to find out where bullet really goes
