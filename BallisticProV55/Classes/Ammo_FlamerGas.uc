@@ -15,4 +15,5 @@ defaultproperties
      IconMaterial=Texture'BallisticUI2.Icons.AmmoIcon_FlameTank'
      IconCoords=(X2=63,Y2=63)
      ItemName="Flamer fuel"
+     bNoPackResupply=True
 }

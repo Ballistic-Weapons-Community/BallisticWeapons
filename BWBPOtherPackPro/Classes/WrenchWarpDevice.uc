@@ -192,10 +192,10 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 			C.DrawColor = class'hud'.default.WhiteColor;
 	
 			C.Font = GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
-			C.TextSize(WeaponModes[CurrentWeaponMode].ModeName@"("$Deployables[CurrentWeaponMode].AmmoReq$")", XL, YL2);
+			C.TextSize(WeaponModes[CurrentWeaponMode].ModeName @ "(" $Deployables[CurrentWeaponMode].AmmoReq$")", XL, YL2);
 			C.CurX = C.ClipX - 15 * ScaleFactor * class'HUD'.default.HudScale - XL;
 			C.CurY = C.ClipY - (130 * ScaleFactor * class'HUD'.default.HudScale) - YL2 - YL;
-			C.DrawText(WeaponModes[CurrentWeaponMode].ModeName@"("$Deployables[CurrentWeaponMode].AmmoReq$")", false);
+			C.DrawText(WeaponModes[CurrentWeaponMode].ModeName @ "(" $Deployables[CurrentWeaponMode].AmmoReq$")", false);
 			C.Font = GetFontSizeIndex(C, -5 + int(2* class'HUD'.default.HudScale));
 			C.TextSize(Deployables[CurrentWeaponMode].dDescription, XL, YL);
 			C.CurY += YL/2;

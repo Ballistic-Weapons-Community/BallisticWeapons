@@ -198,7 +198,7 @@ auto simulated state HealGas
 			Prj.Instigator = Instigator;
 		}
 		
-		CX61AssaultRifle(Weapon).StoredGas -= 0.05;
+		CX61AssaultRifle(Weapon).StoredGas -= 0.04;
 		CX61Attachment(Weapon.ThirdPersonActor).CX61UpdateGasHit(HitLocation);
 	
 		Super(BallisticFire).DoFireEffect();

@@ -17,4 +17,5 @@ defaultproperties
      IconMaterial=Texture'BallisticRecolors3TexPro.G28.AmmoIcon_Med'
      IconCoords=(X2=64,Y2=64)
      ItemName="G28 Medicinal Aerosol Ammo"
+     bNoPackResupply=True
 }

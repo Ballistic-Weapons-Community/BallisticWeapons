@@ -48,7 +48,7 @@ defaultproperties
 {
      DampenFactor=0.400000
      DampenFactorParallel=0.600000
-     DetonateDelay=1.500000
+     DetonateDelay=3.000000
      ImpactDamage=15
      ImpactDamageType=Class'BallisticProV55.DTNRP57Grenade'
      ImpactManager=Class'BallisticProV55.IM_NRP57Grenade'
@@ -62,7 +62,7 @@ defaultproperties
      Speed=1400.000000
      MaxSpeed=1500.000000
      Damage=150.000000
-     DamageRadius=1024.000000
+     DamageRadius=1536.000000
      MyDamageType=Class'BallisticProV55.DTNRP57Grenade'
      ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'
      StaticMesh=StaticMesh'BallisticHardware2.NRP57.Pineapple'

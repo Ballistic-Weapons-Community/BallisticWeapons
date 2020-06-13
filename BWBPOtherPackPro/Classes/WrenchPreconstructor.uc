@@ -9,6 +9,7 @@ var float				WarpingTime, WarpTime;
 var WrenchWarpDevice    Wrench;
 var bool                bDie;
 var byte                DeployableIndex;
+var bool                bHasSpawned;
 
 replication
 {
@@ -47,13 +48,13 @@ function Initialize(class<Actor> InClass, byte deployable_index, float Construct
 
 event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
 {
-	if (EventInstigator != None && EventInstigator.Controller != None && EventInstigator.Controller.SameTeamAs(Instigator.Controller))
+	if (EventInstigator != None && EventInstigator.Controller != None && EventInstigator != Instigator && EventInstigator.Controller.SameTeamAs(Instigator.Controller))
 		return;
 		
 	if (Health < 1)
 		return;
 		
-	Health -= Damage * 0.2;
+	Health -= Damage * 0.5;
 	
 	if (Health < 1)
 	{
@@ -88,10 +89,24 @@ function Timer()
 
 simulated function Kill()
 {
-    if (Role == ROLE_Authority && Wrench != None && !IsInState('SpawnIn'))
+    if (Role == ROLE_Authority && Wrench != None && !bHasSpawned)
+    {        
         Wrench.LostDeployable(DeployableIndex);
+        bHasSpawned = True;
+    }
 
     super.Kill();
+}
+
+simulated function Destroyed()
+{
+    if (Role == ROLE_Authority && Wrench != None && !bHasSpawned)
+    {        
+        Wrench.LostDeployable(DeployableIndex);
+        bHasSpawned = True;
+    }
+
+    super.Destroyed();
 }
 
 state SpawnIn
@@ -117,10 +132,14 @@ state SpawnIn
 	
 	Begin:
 		Sleep(0.3);
-		SetCollision(false,false,false);
+        SetCollision(false,false,false);
+        
 		if (myVehicle != None)
 			SpawnVehicle();
-		else SpawnDeployable();
+        else 
+            SpawnDeployable();
+        
+        bHasSpawned = true;
 		Sleep(0.5);
 		Destroy();
 }

@@ -64,8 +64,8 @@ defaultproperties
      bHidden=True
      RemoteRole=ROLE_None
      LifeSpan=0.300000
-     CollisionRadius=32.000000
-     CollisionHeight=32.000000
+     CollisionRadius=40.000000
+     CollisionHeight=40.000000
      bCollideWorld=False
      bBlockZeroExtentTraces=False
      bBlockNonZeroExtentTraces=False

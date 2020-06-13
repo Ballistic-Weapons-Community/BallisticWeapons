@@ -476,6 +476,7 @@ function ServerSwitchWeaponMode (byte NewMode)
 		AimSpread=1280;
 	else AimSpread=default.AimSpread;
 }
+	
 simulated function ClientSwitchWeaponModes (byte newMode)
 {
 	Super.ClientSwitchWeaponModes(newMode);

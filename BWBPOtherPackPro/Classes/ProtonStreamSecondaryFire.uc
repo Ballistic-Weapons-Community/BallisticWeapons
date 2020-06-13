@@ -313,7 +313,7 @@ function bool MaintainConnection(vector AimVec)
 		}
 		
 		if (BallisticPawn(P) != None)
-			BallisticPawn(LockedTarget).GiveAttributedHealth(Damage, Pawn(LockedTarget).SuperHealthMax, Instigator);
+			BallisticPawn(LockedTarget).GiveAttributedHealth(Damage, Pawn(LockedTarget).HealthMax, Instigator);
 		else if (Vehicle(LockedTarget) != None)
 			Vehicle(LockedTarget).HealDamage(Damage, Instigator.Controller, DamageType);
 		else Pawn(LockedTarget).GiveHealth(Damage, Pawn(LockedTarget).HealthMax);
@@ -528,7 +528,7 @@ function InitEffects()
 defaultproperties
 {
      BoostMuzzleFlashClass=Class'BWBPOtherPackPro.ProtonFlashEmitterBoost'
-     Damage=10.000000
+     Damage=5.000000
      DamageType=Class'BWBPOtherPackPro.DTProtonStreamer'
      MuzzleFlashClass=Class'BWBPOtherPackPro.ProtonFlashEmitterAlt'
      RecoilPerShot=1.000000

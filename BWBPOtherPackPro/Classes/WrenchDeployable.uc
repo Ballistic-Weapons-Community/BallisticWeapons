@@ -137,10 +137,13 @@ state Destroying
 
 simulated function Destroyed()
 {
-	if (Master == None)
-		Log("NO MASTER - WrenchDeployable");
-	else if (Master.Role == ROLE_Authority)
-		Master.LostDeployable(MasterDeployableIndex);
+	if (Role == ROLE_Authority)
+	{	
+		if (Master == None)
+			Log("NO MASTER - WrenchDeployable");
+		else
+			Master.LostDeployable(MasterDeployableIndex);
+	}
 
 	super.Destroyed();
 }

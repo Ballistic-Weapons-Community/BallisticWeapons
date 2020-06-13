@@ -11,8 +11,8 @@ class Ammo_MAC extends BallisticAmmo;
 defaultproperties
 {
      bNoPackResupply=True
-     MaxAmmo=5
-     InitialAmount=5
+     MaxAmmo=4
+     InitialAmount=4
      IconFlashMaterial=Shader'BWBP4-Tex.Artillery.AmmoIcon_ArtilleryShellsFlash'
      PickupClass=Class'BallisticProV55.AP_MACShells'
      IconMaterial=Texture'BWBP4-Tex.Artillery.AmmoIcon_ArtilleryShells'

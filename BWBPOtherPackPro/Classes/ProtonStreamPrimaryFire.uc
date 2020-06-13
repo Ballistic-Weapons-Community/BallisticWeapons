@@ -256,7 +256,7 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
-     Damage=8.000000
+     Damage=6.000000
      DamageType=Class'BWBPOtherPackPro.DTProtonStreamer'
      MuzzleFlashClass=Class'BWBPOtherPackPro.ProtonFlashEmitter'
      RecoilPerShot=1.000000
