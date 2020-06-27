@@ -455,7 +455,10 @@ defaultproperties
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     ZoomType=ZT_Smooth
+     ZoomType=ZT_Logarithmic
+	 MinZoom=2
+	 MaxZoom=16
+	 ZoomStages=3
      ScopeXScale=1.333000
      ScopeViewTex=Texture'BWBP4-Tex.Artillery.Artillery-ScopeView'
      ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)

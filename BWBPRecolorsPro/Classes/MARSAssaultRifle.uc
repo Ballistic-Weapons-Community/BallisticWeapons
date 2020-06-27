@@ -727,8 +727,8 @@ defaultproperties
      SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
      SightingTime=0.550000
      MinZoom=2.000000
-     MaxZoom=8.000000
-     ZoomStages=6
+     MaxZoom=4.000000
+     ZoomStages=1
      SMuzzleFlashOffset=(X=15.000000,Z=-10.000000)
      CrouchAimFactor=0.650000
      SprintOffSet=(Pitch=-3000,Yaw=-4096)

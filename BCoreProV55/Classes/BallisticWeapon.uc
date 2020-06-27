@@ -1165,6 +1165,7 @@ simulated function ChangeZoom (float Value)
 			NewZoomLevel = FClamp(PC.ZoomLevel + Value * (  (90-FullZoomFOV)/88 - ((90-FullZoomFOV)/88 * MinFixedZoomLevel)   ), MinFixedZoomLevel, (90-FullZoomFOV)/88);
 			break;
 		case ZT_Logarithmic:
+			Value *= 1f - (loge(MinZoom)/loge(MaxZoom));
 			LogZoomLevel = FClamp(LogZoomLevel + Value, loge(MinZoom)/loge(MaxZoom), 1);
 			SoughtFOV = PC.DefaultFOV / 2**(    (loge(MaxZoom)/loge(2)) * LogZoomLevel    ); 
 			NewZoomLevel = (90 - SoughtFOV) / 88;

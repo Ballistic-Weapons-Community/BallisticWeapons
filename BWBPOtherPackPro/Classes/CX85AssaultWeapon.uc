@@ -396,9 +396,9 @@ defaultproperties
      bNoCrosshairInScope=True
      SightOffset=(X=-20.000000,Z=35.000000)
      SightingTime=0.550000
-     MinZoom=2.000000
+     MinZoom=4.000000
      MaxZoom=16.000000
-     ZoomStages=8
+     ZoomStages=2
      GunLength=72.000000
      SprintOffSet=(Pitch=-3000,Yaw=-8000)
      ChaosSpeedThreshold=3000.000000

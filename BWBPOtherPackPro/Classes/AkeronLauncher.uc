@@ -156,7 +156,7 @@ defaultproperties
      SightingTime=0.500000
      MinZoom=2.000000
      MaxZoom=8.000000
-     ZoomStages=6
+     ZoomStages=2
      SightAimFactor=0.650000
      SprintOffSet=(Pitch=-6000,Yaw=-8000)
      JumpOffSet=(Pitch=-6000,Yaw=-1500)

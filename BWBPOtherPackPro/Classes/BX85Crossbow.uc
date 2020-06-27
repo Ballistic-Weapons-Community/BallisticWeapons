@@ -511,7 +511,7 @@ defaultproperties
      SightingTime=0.450000
      MinZoom=2.000000
      MaxZoom=16.000000
-     ZoomStages=8
+     ZoomStages=3
      SightAimFactor=0.150000
      JumpChaos=0.200000
      AimAdjustTime=0.450000

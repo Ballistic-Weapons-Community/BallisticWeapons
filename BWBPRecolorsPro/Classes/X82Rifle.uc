@@ -390,9 +390,9 @@ defaultproperties
      SightPivot=(Roll=-1024)
      SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
      SightingTime=0.750000
-     MinZoom=2.000000
+     MinZoom=4.000000
      MaxZoom=32.000000
-     ZoomStages=10
+     ZoomStages=3
      GunLength=80.000000
      CrouchAimFactor=0.700000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)

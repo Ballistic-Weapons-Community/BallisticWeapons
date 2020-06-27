@@ -169,7 +169,7 @@ simulated function Destroyed()
 defaultproperties
 {
      FlareClass=Class'BWBPRecolorsPro.LonghornClusterFlare'
-     ArmingDelay=0.200000
+     ArmingDelay=0.100000
      DetonateOn=DT_ImpactTimed
      PlayerImpactType=PIT_Detonate
      DampenFactor=0.120000
@@ -186,8 +186,8 @@ defaultproperties
      MotionBlurRadius=384.000000
      MotionBlurFactor=3.000000
      MotionBlurTime=1.000000
-     Speed=6500.000000
-     MaxSpeed=6500.000000
+     Speed=7500.000000
+     MaxSpeed=7500.000000
      Damage=30.000000
      DamageRadius=256.000000
      MomentumTransfer=25000.000000

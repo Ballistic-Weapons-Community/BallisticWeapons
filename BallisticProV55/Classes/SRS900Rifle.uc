@@ -440,7 +440,7 @@ defaultproperties
      SightingTime=0.550000
      MinZoom=2.000000
      MaxZoom=8.000000
-     ZoomStages=6
+     ZoomStages=2
      GunLength=72.000000
      SightAimFactor=0.350000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)

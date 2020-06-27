@@ -467,9 +467,9 @@ defaultproperties
      bNoMeshInScope=True
      bNoCrosshairInScope=True
      SightingTime=0.600000
-     MinZoom=2.000000
+     MinZoom=4.000000
      MaxZoom=16.000000
-     ZoomStages=8
+     ZoomStages=2
      SMuzzleFlashOffset=(X=50.000000,Z=-35.000000)
      GunLength=80.000000
      CrouchAimFactor=0.600000

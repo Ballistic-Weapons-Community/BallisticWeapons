@@ -517,7 +517,10 @@ defaultproperties
      WeaponModes(2)=(ModeName="Sniper Pulse",ModeID="WM_SemiAuto",Value=1.000000)
      CurrentWeaponMode=0
      bNotifyModeSwitch=True
-     ZoomType=ZT_Smooth
+     ZoomType=ZT_Logarithmic
+	 MinZoom=2
+	 MaxZoom=8
+	 ZoomStages=2
      ScopeViewTex=Texture'BWBP4-Tex.VPR.VPR-ScopeUI'
      ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
      ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)

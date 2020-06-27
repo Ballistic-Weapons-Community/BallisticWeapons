@@ -786,7 +786,7 @@ defaultproperties
      SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
      MinZoom=2.000000
      MaxZoom=8.000000
-     ZoomStages=6
+     ZoomStages=2
      GunLength=80.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      JumpOffSet=(Pitch=-6000,Yaw=2000)

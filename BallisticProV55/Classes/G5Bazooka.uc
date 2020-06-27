@@ -795,7 +795,10 @@ defaultproperties
      WeaponModes(1)=(ModeName="Mortar",ModeID="WM_SemiAuto")
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     ZoomType=ZT_Smooth
+     ZoomType=ZT_Logarithmic
+	 MinZoom=4
+	 MaxZoom=16
+	 ZoomStages=2
      ScopeXScale=1.333000
      ZoomInAnim="ZoomIn"
      ZoomOutAnim="ZoomOut"
