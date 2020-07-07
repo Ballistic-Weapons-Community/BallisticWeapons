@@ -424,13 +424,6 @@ simulated function PlayShovelEnd()
 }
 
 
-simulated event WeaponTick(float DT)
-{
-	super.WeaponTick(DT);
-
-	if (AIController(Instigator.Controller) != None && !IsGrenadeLoaded()&& AmmoAmount(1) > 0 && BotShouldReloadGrenade() && !IsReloadingGrenade())
-		LoadGrenadeLoop();
-}
 
 
 simulated function UpdateBones()
@@ -615,12 +608,15 @@ function byte BestMode()
 	Dir = Instigator.Location - B.Enemy.Location;
 	Dist = VSize(Dir);
 
-	if (Dist > 1024 || B.Enemy.Weapon != None && B.Enemy.Weapon.bMeleeWeapon)
+	if (Dist > 400)
+		return 0;
+	if (Dist < FireMode[1].MaxRange() && FRand() > 0.3)
 		return 1;
-		
-	return 0;
-}
+	if (vector(B.Enemy.Rotation) dot Normal(Dir) < 0.0 && (VSize(B.Enemy.Velocity) < 100 || Normal(B.Enemy.Velocity) dot Normal(B.Velocity) < 0.5))
+		return 1;
 
+	return Rand(2);
+}
 
 function float GetAIRating()
 {
@@ -641,7 +637,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, 768, 1536); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticProShotgunFire(BFireMode[0]).CutOffStartRange, BallisticProShotgunFire(BFireMode[0]).CutOffDistance); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -667,22 +663,6 @@ function float SuggestDefenseStyle()
 	Result = -1 * (B.Skill / 6);
 	Result *= (1 - (Dist/4000));
     return FClamp(Result, -1.0, -0.3);
-}
-function bool BotShouldReloadGrenade ()
-{
-	if ( (Level.TimeSeconds - Instigator.LastPainTime > 1.0) )
-		return true;
-	return false;
-}
-
-simulated function bool IsReloadingGrenade()
-{
-    local name anim;
-    local float frame, rate;
-    GetAnimParams(0, anim, frame, rate);
-	if (Anim == ReloadAltAnim[0] || Anim == ReloadAltAnim[1] || Anim == ReloadAltAnim[2])
- 		return true;
-	return false;
 }
 
 // End AI Stuff =====

@@ -27,8 +27,8 @@ defaultproperties
          TriggerDisabled=False
          ColorScale(0)=(Color=(B=255,G=255,A=255))
          ColorScale(1)=(RelativeTime=0.303571,Color=(B=255,G=128,A=255))
-         ColorScale(2)=(RelativeTime=0.600000,Color=(B=192,G=192,R=192,A=255))
-         ColorScale(3)=(RelativeTime=1.000000,Color=(G=224,R=224,A=255))
+         ColorScale(2)=(RelativeTime=0.600000,Color=(B=192,A=255))
+         ColorScale(3)=(RelativeTime=1.000000,Color=(B=128,A=255))
          FadeOutStartTime=0.040000
          CoordinateSystem=PTCS_Relative
          DetailMode=DM_SuperHigh
@@ -58,8 +58,8 @@ defaultproperties
          TriggerDisabled=False
          ColorScale(0)=(Color=(B=255,G=255,A=255))
          ColorScale(1)=(RelativeTime=0.303571,Color=(B=255,G=128,A=255))
-         ColorScale(2)=(RelativeTime=0.600000,Color=(B=192,G=192,R=192,A=255))
-         ColorScale(3)=(RelativeTime=1.000000,Color=(G=224,R=224,A=255))
+         ColorScale(2)=(RelativeTime=0.600000,Color=(B=192,A=255))
+         ColorScale(3)=(RelativeTime=1.000000,Color=(B=128,A=255))
          FadeOutStartTime=0.040000
          CoordinateSystem=PTCS_Relative
          DetailMode=DM_SuperHigh
@@ -89,8 +89,8 @@ defaultproperties
          TriggerDisabled=False
          ColorScale(0)=(Color=(B=255,G=255,A=255))
          ColorScale(1)=(RelativeTime=0.303571,Color=(B=255,G=128,A=255))
-         ColorScale(2)=(RelativeTime=0.600000,Color=(B=192,G=192,R=192,A=255))
-         ColorScale(3)=(RelativeTime=1.000000,Color=(G=224,R=224,A=255))
+         ColorScale(2)=(RelativeTime=0.600000,Color=(B=192,A=255))
+         ColorScale(3)=(RelativeTime=1.000000,Color=(B=128,A=255))
          FadeOutStartTime=0.040000
          CoordinateSystem=PTCS_Relative
          DetailMode=DM_SuperHigh
@@ -118,8 +118,8 @@ defaultproperties
          AutomaticInitialSpawning=False
          TriggerDisabled=False
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
-         ColorScale(1)=(RelativeTime=0.089286,Color=(G=255,R=255,A=255))
-         ColorScale(2)=(RelativeTime=0.178571,Color=(G=255,R=255,A=255))
+         ColorScale(1)=(RelativeTime=0.089286,Color=(B=255,G=255,A=255))
+         ColorScale(2)=(RelativeTime=0.178571,Color=(B=255,G=192,A=255))
          ColorScale(3)=(RelativeTime=0.275000,Color=(B=255,G=255,R=255,A=255))
          ColorScale(4)=(RelativeTime=0.400000,Color=(B=255,G=128,A=255))
          ColorScale(5)=(RelativeTime=1.000000,Color=(B=255,A=255))
@@ -153,8 +153,8 @@ defaultproperties
          TriggerDisabled=False
          Acceleration=(Z=-400.000000)
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
-         ColorScale(1)=(RelativeTime=0.289286,Color=(B=128,G=255,R=255,A=255))
-         ColorScale(2)=(RelativeTime=1.000000,Color=(G=255,R=255,A=255))
+         ColorScale(1)=(RelativeTime=0.289286,Color=(B=255,G=128,A=255))
+         ColorScale(2)=(RelativeTime=1.000000,Color=(B=255,A=255))
          FadeOutStartTime=0.035000
          CoordinateSystem=PTCS_Relative
          MaxParticles=20
