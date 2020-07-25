@@ -370,7 +370,7 @@ defaultproperties
      SpecialInfo(0)=(Info="240.0;25.0;0.9;70.0;0.9;0.2;0.7")
      BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
-     MagAmmo=25
+     MagAmmo=24
      CockAnimPostReload="ReloadEndCock"
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_Cock',Volume=1.100000)
@@ -403,15 +403,21 @@ defaultproperties
      SightAimFactor=0.450000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimAdjustTime=0.550000
-     AimSpread=16
+	 
+	 
+     AimSpread=24
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=7000.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.080000),(InVal=0.150000,OutVal=0.050000),(InVal=0.300000,OutVal=-0.100000),(InVal=0.600000,OutVal=0.150000),(InVal=0.800000,OutVal=-0.150000),(InVal=1.000000)))
+     ChaosAimSpread=1024
+	 
+	 ViewRecoilFactor=0.35
+     RecoilXCurve=(Points=(,(InVal=0.080000,OutVal=0.100000),(InVal=0.150000,OutVal=0.14000),(InVal=0.300000,OutVal=0.2300000),(InVal=0.450000,OutVal=0.2500000),(InVal=0.600000,OutVal=0.350000),(InVal=0.800000,OutVal=0.380000),(InVal=1.000000,OutVal=0.25)))
      RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.500000,OutVal=0.600000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilDeclineDelay=0.200000
+     RecoilXFactor=0.10000
+     RecoilYFactor=0.10000
+     RecoilDeclineDelay=0.1700000
+	 RecoilDeclineTime=0.65
+	 
      FireModeClass(0)=Class'BallisticProV55.M46PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M46SecondaryFire'
      SelectForce="SwitchToAssaultRifle"

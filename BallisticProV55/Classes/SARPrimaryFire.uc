@@ -75,9 +75,9 @@ defaultproperties
      WaterRangeFactor=0.800000
      WallPenetrationForce=16.000000
      
-     Damage=25.000000
-     DamageHead=50.000000
-     DamageLimb=25.000000
+     Damage=20.000000
+     DamageHead=40.000000
+     DamageLimb=20.000000
      RangeAtten=0.350000
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTSARRifle'
@@ -94,7 +94,7 @@ defaultproperties
      BrassBone="tip"
      BrassOffset=(X=-105.000000,Y=-10.000000,Z=-1.000000)
      AimedFireAnim="AimedFire"
-     RecoilPerShot=256.000000
+     RecoilPerShot=180.000000
      FireChaos=0.022000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      XInaccuracy=48.000000
@@ -103,7 +103,7 @@ defaultproperties
      bPawnRapidFireAnim=True
      bModeExclusive=False
      FireEndAnim=
-     FireRate=0.100000
+     FireRate=0.09
      AmmoClass=Class'BallisticProV55.Ammo_556mm'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
