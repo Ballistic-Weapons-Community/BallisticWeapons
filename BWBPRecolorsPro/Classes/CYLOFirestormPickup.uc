@@ -13,7 +13,7 @@ var float	HeatTime;
 
 function InitDroppedPickupFor(Inventory Inv)
 {
-    Super.InitDroppedPickupFor(None);
+    Super.InitDroppedPickupFor(Inv);
 
     if (CYLOAssaultWeapon(Inv) != None)
     {
