@@ -1,7 +1,7 @@
 //=============================================================================
 // Ammo_50CalBelt.
 //
-// .50 Calibre Rounds on belts for machineguns.
+// .50 caliber rounds on belts for machineguns.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
