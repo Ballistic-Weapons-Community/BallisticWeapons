@@ -241,12 +241,25 @@ defaultproperties
      SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
 	 bNoCrosshairInScope=True
      GunLength=16.500000
-	 RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.150000,OutVal=0.020000),(InVal=0.200000,OutVal=-0.080000),(InVal=0.300000),(InVal=0.400000,OutVal=-0.130000),(InVal=0.600000,OutVal=0.150000),(InVal=0.800000,OutVal=-0.150000),(InVal=1.000000,OutVal=0.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.500000,OutVal=0.600000),(InVal=0.600000,OutVal=0.500000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.10000
+	 
+	 AimSpread=16
+     ChaosDeclineTime=0.5
+     ChaosSpeedThreshold=7000.000000
+     ChaosAimSpread=728
+	 
+	 ViewRecoilFactor=0.4
+	 RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.12),(InVal=0.2,OutVal=0.19),(InVal=0.25,OutVal=0.21),(InVal=0.3,OutVal=0.17),(InVal=0.35,OutVal=0.12),(InVal=0.40000,OutVal=0.070000),(InVal=0.50000,OutVal=-0.020000),(InVal=0.600000,OutVal=-0.040000),(InVal=0.700000,OutVal=0.04),(InVal=0.800000,OutVal=0.070000),(InVal=1.000000,OutVal=0.13)))
+     RecoilYCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.220000),(InVal=0.300000,OutVal=0.2600000),(InVal=0.400000,OutVal=0.4000),(InVal=0.500000,OutVal=0.5500),(InVal=0.600000,OutVal=0.620000),(InVal=0.750000,OutVal=0.770000),(InVal=1.000000,OutVal=1.00000)))
+	 
+	 //hard pull right
+	 //RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.30000),(InVal=0.300000,OutVal=0.35000),(InVal=0.400000,OutVal=0.40000),(InVal=0.500000,OutVal=0.550000),(InVal=0.800000,OutVal=0.740000),(InVal=1.000000,OutVal=1.000000)))
+     //RecoilYCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.180000),(InVal=0.300000,OutVal=0.2500000),(InVal=0.400000,OutVal=0.26000),(InVal=0.500000,OutVal=0.30000),(InVal=0.600000,OutVal=0.350000),(InVal=0.750000,OutVal=0.40000),(InVal=1.000000,OutVal=0.600000)))
+    
+ 	 RecoilXFactor=0.1
 	 RecoilYFactor=0.1
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.200000
+     RecoilDeclineTime=0.4
+     RecoilDeclineDelay=0.180000
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.CYLOFirestormPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.CYLOFirestormSecondaryFire'
      bShowChargingBar=True

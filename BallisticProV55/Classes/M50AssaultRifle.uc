@@ -697,8 +697,9 @@ defaultproperties
      RecoilYCurve=(Points=((InVal=0,OutVal=0),(InVal=0.200000,OutVal=0.210000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.7500000),(InVal=1.000000,OutVal=1.000000)))
      RecoilXFactor=0.050000
      RecoilYFactor=0.050000
-     RecoilDeclineTime=0.5
-     RecoilDeclineDelay=0.140000
+	 RecoilDeclineDelay=0.140000     
+	 RecoilDeclineTime=0.5
+
 	 
      FireModeClass(0)=Class'BallisticProV55.M50PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M50SecondaryFire'

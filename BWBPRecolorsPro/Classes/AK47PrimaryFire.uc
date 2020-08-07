@@ -14,9 +14,9 @@ defaultproperties
      WaterRangeFactor=0.800000
      WallPenetrationForce=24.000000
      
-     Damage=30.000000
-     DamageHead=60.000000
-     DamageLimb=30.000000
+     Damage=28.000000
+     DamageHead=56.000000
+     DamageLimb=28.000000
      RangeAtten=0.40000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPRecolorsPro.DT_AK47Assault'
@@ -31,14 +31,14 @@ defaultproperties
      BrassBone="tip"
      BrassOffset=(X=-80.000000,Y=1.000000)
      RecoilPerShot=192.000000
-     FireChaos=0.06000
+     FireChaos=0.04000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      XInaccuracy=48.000000
      YInaccuracy=48.000000
      BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.AK47.AK47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
-     FireRate=0.115000
+     FireRate=0.11000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_AK762mm'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
