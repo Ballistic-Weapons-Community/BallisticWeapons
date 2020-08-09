@@ -246,8 +246,8 @@ function float SuggestDefenseStyle()	{	return -0.2;	}
 
 defaultproperties
 {
-AIRating=0.7
-CurrentRating=0.7
+	 AIRating=0.7
+	 CurrentRating=0.7
      StoredGas=1.000000
      ModeColors(0)=(B=210,G=210,R=75,A=255)
      ModeColors(1)=(G=100,R=255,A=255)
@@ -259,13 +259,13 @@ CurrentRating=0.7
      bWT_Bullet=True
      bWT_Machinegun=True
      bWT_Heal=True
-     ManualLines(0)="Automatic fire. Lowest per-shot damage of all weapons in its class, but solid fire rate and sustained damage output. Recoil is similarly low. Hip effective."
+     ManualLines(0)="Automatic fire. Lower damage output than other assault rifles, but more controllable."
      ManualLines(1)="Flamethrower mode launches a stream of fire, dealing minor damage to enemies and causing disorientation.|Healing Gas mode sprays G28 gas, granting health to allies."
      ManualLines(2)="It is recommended to check which mode of the CX is active before engaging the altfire. Burning allies or healing enemies is not conducive to survival.||The CX61 is effective at close to medium range."
      SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-     MagAmmo=40
+     MagAmmo=32
      CockAnimPostReload="ReloadEndCock"
      CockSound=(Sound=Sound'BallisticSounds3.SAR.SAR-Cock')
      ReloadAnimRate=1.100000
@@ -286,16 +286,21 @@ CurrentRating=0.7
      SightAimFactor=0.200000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimAdjustTime=0.400000
+	 
      AimSpread=16
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.060000),(InVal=0.400000,OutVal=0.110000),(InVal=0.500000,OutVal=-0.120000),(InVal=0.600000,OutVal=0.130000),(InVal=0.800000,OutVal=0.160000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.190000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilDeclineTime=1.500000
+     ChaosAimSpread=768
+	 
+	 ViewRecoilFactor=0.4
+     RecoilXCurve=(Points=(,(InVal=0.2,OutVal=-0.03),(InVal=0.4,OutVal=0.11),(InVal=0.5,OutVal=0.13),(InVal=0.6,OutVal=0.15),(InVal=0.8,OutVal=0.16),(InVal=1.000000)))
+     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.190000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.620000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.05000
+     RecoilYFactor=0.05000
+     RecoilDeclineTime=0.5
      RecoilDeclineDelay=0.135000
+	 
+	 
      FireModeClass(0)=Class'BWBPOtherPackPro.CX61PrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.CX61SecondaryFire'
      SelectAnimRate=1.400000

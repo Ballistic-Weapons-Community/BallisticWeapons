@@ -12,8 +12,8 @@ class BallisticWeaponStatsMenu extends UT2K4GUIPage;
 const TIME_DILATION_FIXED = 1.1f;
 
 const BASELINE_DPS_DIVISOR = 2.42f;
-const BASELINE_TTK_DIVISOR = 0.0077f;
-const BASELINE_RECOIL_DIVISOR = 14.663f;
+const BASELINE_TTK_DIVISOR = 0.0065f;
+const BASELINE_RECOIL_DIVISOR = 14.42f;
 
 var Automated GUIImage			MyBack, Box_WeaponList, Box_Desc, Box_WeaponIcon, WeaponIcon;
 var Automated GUISectionBackground GenBack, PriBack, AltBack;
