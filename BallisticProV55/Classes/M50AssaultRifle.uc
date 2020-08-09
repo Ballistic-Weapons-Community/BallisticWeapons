@@ -6,6 +6,8 @@
 // Weapon special deploys a camera on the wall, then press to switch between play and cam view. Get camera back by
 // moving near it, and pressing Use.
 //
+// Weapon balance basis: M4 Carbine / M16 Rifle
+//
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================

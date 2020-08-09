@@ -5,6 +5,8 @@
 // Also has proximity grenade launcher secondary. It can be used to plant discreet devices to blow players to hell when they pass.
 // Grenades also stick to players and vehicles, automatically triggering the mine.
 //
+// Weapon balance basis: FN SCAR-H
+//
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright© 2011 RuneStorm. All Rights Reserved.

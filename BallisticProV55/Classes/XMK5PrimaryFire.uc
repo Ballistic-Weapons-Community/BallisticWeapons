@@ -13,15 +13,15 @@ defaultproperties
 {
      CutOffDistance=2560.000000
      CutOffStartRange=1024.000000
-     TraceRange=(Min=7000.000000,Max=7000.000000)
-     WaterRangeFactor=0.800000
+     TraceRange=(Min=4000.000000,Max=4000.000000)
+     WaterRangeFactor=0.200000
      WallPenetrationForce=8.000000
      
-     Damage=25.000000
-     DamageHead=37.000000
-     DamageLimb=25.000000
-     RangeAtten=0.2500000
-     WaterRangeAtten=0.300000
+     Damage=22.000000
+     DamageHead=36.000000
+     DamageLimb=22.000000
+     RangeAtten=0.200000
+     WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
      DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
      DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
@@ -35,7 +35,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_XMK5SMG'
      BrassOffset=(Y=10.000000)
      AimedFireAnim="AimedFire"
-     RecoilPerShot=115.000000
+     RecoilPerShot=110.000000
      FireChaos=0.070000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
      XInaccuracy=48.000000
@@ -43,7 +43,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_Fire1',Volume=1.350000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
-     FireRate=0.090000
+     FireRate=0.085000
      AmmoClass=Class'BallisticProV55.Ammo_XMK5Clip'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
