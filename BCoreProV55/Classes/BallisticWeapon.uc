@@ -3885,6 +3885,10 @@ simulated function Rotator GetRecoilPivot(optional bool bIgnoreViewAim)
 	// Pitching/Yawing
 	R.Yaw += RecoilMax * InterpCurveEval(RecoilXCurve, Recoil/RecoilMax) * RecoilYawFactor;
 	R.Pitch += RecoilMax * InterpCurveEval(RecoilYCurve, Recoil/RecoilMax) * RecoilPitchFactor;
+	
+	if (InstigatorController != None && InstigatorController.Handedness == -1)
+		R.Yaw = -R.Yaw;
+	
 	if (bIgnoreViewAim || Instigator.Controller == None || PlayerController(Instigator.Controller) == None || PlayerController(Instigator.Controller).bBehindView)
 		return R;
 	return R*(1-ViewRecoilFactor);

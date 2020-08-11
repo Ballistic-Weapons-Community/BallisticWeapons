@@ -10,7 +10,7 @@ var float HeatPerShot;
 
 simulated function bool AllowFire()
 {
-	if ((A49SkrithBlaster(Weapon).HeatLevel >= 12) || !super.AllowFire())
+	if ((A49SkrithBlaster(Weapon).HeatLevel >= 10) || !super.AllowFire())
 		return false;
 	return true;
 }
