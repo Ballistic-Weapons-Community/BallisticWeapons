@@ -1114,6 +1114,7 @@ simulated function StartScopeView()
 		bNoCrosshairInScope = False;
 	else
 		bNoCrosshairInScope = default.bNoCrosshairInScope;
+		
 	//Take down normal crosshairs if the weapon has none in scope view
 	if (bNoCrosshairInScope)
 	{
@@ -1222,19 +1223,19 @@ simulated function StopScopeView(optional bool bNoAnim)
 			PlayerController(InstigatorController).bZooming = False;
 		}
 	}
-
-	// UT2004 crosshair users: Restore normal crosshairs if the weapon has none in scope view
-	if (bNoCrosshairInScope)
+	
+	if (bStandardCrosshairOff) // bNoCrosshairInScope
 	{
-		if (bOldCrosshairs && bStandardCrosshairOff) 
+		if (bOldCrosshairs)
 		{
 			bStandardCrosshairOff = False;
-			PlayerController(InstigatorController).myHud.bCrosshairShow = True;
+			PlayerController(InstigatorController).myHud.bCrosshairShow = True;	
 		}
+		
 	}
 	
 	// Ballistic crosshair users: Hide crosshair if weapon has crosshair in scope
-	else 
+	else if (!bOldCrosshairs)
 	{
 		PlayerController(InstigatorController).myHud.bCrosshairShow = False;
 	}
@@ -2031,7 +2032,15 @@ function ServerSwitchWeaponMode (byte NewMode)
 		}
 		ClientSwitchWeaponModes(CurrentWeaponMode);
 	}
-		
+	
+	CheckBurstMode();
+
+	if (Instigator.IsLocallyControlled())
+		default.LastWeaponMode = CurrentWeaponMode;
+}
+
+function CheckBurstMode()
+{
 	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
 	// To my knowledge, this is the case.
 	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
@@ -2048,9 +2057,6 @@ function ServerSwitchWeaponMode (byte NewMode)
 		if (!Instigator.IsLocallyControlled())
 			ClientSwitchBurstMode(False);
 	}
-
-	if (Instigator.IsLocallyControlled())
-		default.LastWeaponMode = CurrentWeaponMode;
 }
 
 simulated function ClientSwitchWeaponModes (byte NewMode)
@@ -4642,9 +4648,9 @@ defaultproperties
      ShovelIncrement=1
      bPlayThirdPersonReload=True
      FireAnimCutThreshold=0.600000
-     WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
-     WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=3.000000)
-     WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+     WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+     WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
+     WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
      CurrentWeaponMode=2
      LastWeaponMode=255
      SavedWeaponMode=255

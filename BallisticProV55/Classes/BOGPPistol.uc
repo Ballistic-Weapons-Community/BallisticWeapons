@@ -145,8 +145,21 @@ simulated function ClientSwitchFlare()
 	CommonCockGun(1);
 }
 
+exec simulated function SwitchWeaponMode (optional byte ModeNum)	
+{
+	if (ReloadState != RS_None)
+		return;
+
+	if (ModeNum == 0)
+		ServerSwitchWeaponMode(255);
+	else ServerSwitchWeaponMode(ModeNum-1);
+}
+
 function ServerSwitchWeaponMode(byte NewMode)
 {
+	if (ReloadState != RS_None)
+		return;
+		
 	ServerSwitchFlare(!bUseFlare);
 }
 

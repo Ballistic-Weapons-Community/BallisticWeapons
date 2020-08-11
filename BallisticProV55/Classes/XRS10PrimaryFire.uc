@@ -133,12 +133,12 @@ defaultproperties
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
      CutOffDistance=1280.000000
-     CutOffStartRange=512.000000
+     CutOffStartRange=768.000000
      WaterRangeFactor=0.500000
      WallPenetrationForce=8.000000
-     Damage=25.000000
-     DamageHead=25.000000
-     DamageLimb=25.000000
+     Damage=22.000000
+     DamageHead=22.000000
+     DamageLimb=22.000000
      RangeAtten=0.250000
      WaterRangeAtten=0.400000
      DamageType=Class'BallisticProV55.DTXRS10SMG'
@@ -153,14 +153,14 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassOffset=(X=-26.000000,Z=-5.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=170.000000
+     RecoilPerShot=140.000000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.320000,OutVal=1),(InVal=0.500000,OutVal=1.500000),(InVal=1.000000,OutVal=2.250000)))
-     XInaccuracy=48.000000
-     YInaccuracy=48.000000
+     XInaccuracy=64.000000
+     YInaccuracy=64.000000
      SilencedFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-SilenceFire',Volume=0.500000,Radius=32.000000,bAtten=True)
      BallisticFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Fire',Volume=0.900000,Radius=384.000000)
      bPawnRapidFireAnim=True
-     FireRate=0.0850000
+     FireRate=0.08000
      AmmoClass=Class'BallisticProV55.Ammo_XRS10Bullets'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
@@ -168,4 +168,5 @@ defaultproperties
      ShakeOffsetMag=(X=-3.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
+	 BurstFireRateFactor=0.55
 }

@@ -6,6 +6,25 @@
 //=============================================================================
 class Fifty9PrimaryFire extends BallisticRangeAttenFire;
 
+const BURST_MODE = 0;
+const AUTO_MODE = 1;
+
+//Stub called by the weapon mode when its FireMode changes if bNotifyModeSwitch is set to true
+simulated function SwitchWeaponMode (byte NewMode)
+{
+	if (NewMode == BURST_MODE)
+	{
+		FireRate = default.FireRate;
+		RecoilPerShot = default.RecoilPerShot;
+	}
+
+	else if (NewMode == AUTO_MODE)
+	{
+		FireRate = default.FireRate * 0.9f;
+		RecoilPerShot = default.RecoilPerShot * 0.9f;
+	}
+}
+
 //Spawn shell casing for first person
 function EjectBrass()
 {
@@ -40,13 +59,13 @@ function EjectBrass()
 defaultproperties
 {
      CutOffDistance=1280.000000
-     CutOffStartRange=512.000000
+     CutOffStartRange=768.000000
      WaterRangeFactor=0.400000
      WallPenetrationForce=8.000000
      
-     Damage=24.000000
-     DamageHead=48.000000
-     DamageLimb=24.000000
+     Damage=20.000000
+     DamageHead=40.000000
+     DamageLimb=20.000000
      RangeAtten=0.250000
      WaterRangeAtten=0.300000
      DamageType=Class'BallisticProV55.DTFifty9SMG'
@@ -64,11 +83,11 @@ defaultproperties
      AimedFireAnim="SightFire"
      RecoilPerShot=140.000000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
-     XInaccuracy=64.000000
-     YInaccuracy=64.000000
+     XInaccuracy=48.000000
+     YInaccuracy=48.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.UZI.UZI-Fire',Volume=0.900000)
      bPawnRapidFireAnim=True
-     FireRate=0.072000
+     FireRate=0.07500
      AmmoClass=Class'BallisticProV55.Ammo_FiftyNine'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
@@ -76,7 +95,8 @@ defaultproperties
      ShakeOffsetMag=(X=-3.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
-	 
+	 BurstFireRateFactor=0.55
+		 
 	 // AI
 	 bInstantHit=True
 	 bLeadTarget=False
