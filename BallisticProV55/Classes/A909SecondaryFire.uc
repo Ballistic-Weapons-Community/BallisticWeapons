@@ -42,7 +42,7 @@ defaultproperties
 {
      FatiguePerStrike=0.200000
      TraceRange=(Min=155.000000,Max=155.000000)
-     Damage=80.000000
+     Damage=100.000000
      DamageType=Class'BallisticProV55.DTA909Blades'
      DamageTypeHead=Class'BallisticProV55.DTA909Head'
      DamageTypeArm=Class'BallisticProV55.DTA909Limb'

@@ -19,8 +19,9 @@ var() BUtil.FullSound	RevCloseSound;		// Drum shut
 var() BUtil.FullSound	RevSpinSound;		// Spin drum
 var() BUtil.FullSound	DryFireSound;		// Sound for trying to fire empty chamber
 
-var() rotator			CylinderRotation;	// Rotation aplied to drum
+var() rotator			CylinderRotation;	// Rotation applied to drum
 var	  bool				bRevCocked;			// Is it cocked? (for effect only)
+
 // Type of fire
 enum EBarrelMode
 {
@@ -29,6 +30,7 @@ enum EBarrelMode
 	BM_Secondary,
 	BM_Both
 };
+
 // State of a shell (slot in drum)
 enum EShellState
 {
@@ -36,6 +38,7 @@ enum EShellState
 	SS_Fired,
 	SS_Empty
 };
+
 // Info for a single shell in the drum
 struct RevShell
 {
@@ -44,6 +47,7 @@ struct RevShell
 	var() name			ShellName;
 	var() byte			NextShell;
 };
+
 var() RevShell			Shells[6];			// The six shells (ammo slots) and their info
 var() byte				PrimaryShell;		// Shell under primary hammer
 var() byte				SecondaryShell;		// Shell under secondary hammer
@@ -53,14 +57,8 @@ var   EBarrelMode		RealBarrelMode;
 var   bool				bBarrelModeUsed;
 var   byte				BMByte, OldBMByte;
 
-var   Emitter		LaserDot;
-var   bool			bLaserOn;
-
-replication
-{
-	reliable if (Role < ROLE_Authority)
-		ServerUpdateLaser;
-}
+var   Emitter			LaserDot;
+var   bool				bLaserOn;
 
 simulated function RevolverFired(EBarrelMode BarrelsFired)
 {
@@ -165,17 +163,33 @@ simulated function Notify_ClipOutOfSight()
 		D49Attachment(ThirdPersonActor).RevolverEjectBrass(Empties);
 }
 
-simulated function Notify_D49Uncock()
-{	bRevCocked=false;	}
+simulated function Notify_D49Uncock() 
+{	
+	bRevCocked=false;	
+}
+
 simulated function Notify_D49Cock()
-{	bRevCocked=true;
-	class'BUtil'.static.PlayFullSound(self, CockSound);	}
+{	
+	bRevCocked=true;
+
+	class'BUtil'.static.PlayFullSound(self, CockSound);	
+}
+
 simulated function Notify_D49CockAfterPullout()
-{	Notify_D49Cock();	}
+{	
+	Notify_D49Cock();	
+}
+
 simulated function Notify_D49CockAfterFire()
-{	Notify_D49Cock();	}
+{	
+	Notify_D49Cock();	
+}
+
 simulated function Notify_D49StartReload()
-{    class'BUtil'.static.PlayFullSound(self, RevReloadSound);	}
+{    
+	class'BUtil'.static.PlayFullSound(self, RevReloadSound);	
+}
+
 simulated function Notify_D49SwingOpen()
 {
     class'BUtil'.static.PlayFullSound(self, RevOpenSound);
@@ -187,10 +201,16 @@ simulated function Notify_D49SwingOpen()
 		SetAnimFrame(0.38, 0);
 	}
 }
+
 simulated function Notify_D49SwingClosed()
-{	class'BUtil'.static.PlayFullSound(self, RevCloseSound);	}
+{	
+	class'BUtil'.static.PlayFullSound(self, RevCloseSound);	
+}
+
 simulated function Notify_D49Spin()
-{	class'BUtil'.static.PlayFullSound(self, RevSpinSound);	}
+{	
+	class'BUtil'.static.PlayFullSound(self, RevSpinSound);	
+}
 
 // Animation notify for when the clip is pulled out
 simulated function Notify_ClipOut()
@@ -230,6 +250,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	else
 		HandgunGroup = default.HandgunGroup;
 }
+
 simulated function bool PutDown()
 {
 	if (super.PutDown())
@@ -259,6 +280,7 @@ Begin:
 		PlayIdle();
 	GotoState('');
 }
+
 simulated state Lowering
 {
 Begin:
@@ -299,13 +321,6 @@ simulated function CommonCockGun(optional byte Type)
 	bNeedCock=false;
 	if (!bRevCocked)
 		SafePlayAnim('Cock', 1.0, 0.2);
-}
-
-// Change some properties when using sights...
-simulated function SetScopeBehavior()
-{
-	super.SetScopeBehavior();
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 simulated function ApplyAimRotation()
@@ -354,82 +369,37 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	local Rotator AimDir;
 	local Actor Other;
 
-	if (ClientState != WS_ReadyToFire || !bLaserOn/* || !bScopeView */|| ReloadState != RS_None || IsInState('DualAction') || Level.TimeSeconds - FireMode[0].NextFireTime < 0.2)
-	{
-		KillLaserDot();
-		return;
-	}
-
 	AimDir = BallisticFire(FireMode[0]).GetFireAim(Start);
 
 	End = Start + Normal(Vector(AimDir))*5000;
+	
 	Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
 	if (Other == None)
 		HitLocation = End;
 
 	// Draw dot at end of beam
 	SpawnLaserDot(HitLocation);
+	
 	if (LaserDot != None)
 		LaserDot.SetLocation(HitLocation);
+		
 	Canvas.DrawActor(LaserDot, false, false, Instigator.Controller.FovAngle);
 }
 
 simulated event RenderOverlays( Canvas Canvas )
 {
 	super.RenderOverlays(Canvas);
-	if (!IsInState('Lowered'))
+	
+	if (bLaserOn && !IsInState('Lowered'))
 		DrawLaserSight(Canvas);
-}
-
-function ServerUpdateLaser(bool bNewLaserOn)
-{
-	bUseNetAim = bNewLaserOn;
 }
 
 exec simulated function WeaponSpecial(optional byte i)
 {
-		if (!bScopeView && !bLaserOn)
-		{
-			FullZoomFOV=60.000000;
-			bLaserOn=true;
-			ScopeView();
-		}
-		else
-		{
-			if (bLaserOn)
-			{
-				FullZoomFOV=default.FullZoomFOV;
-				bLaserOn=false;
-			}
-			else
-			{
-				FullZoomFOV=60.000000;
-				bLaserOn=true;
-			}
-		}
-	bUseNetAim = bLaserOn;
-	ServerUpdateLaser(bLaserOn);
-
-//	if (bScopeView)
-//	{
-//		if (bLaserOn)
-//		{
-//			ScopeView();
-//			bLaserOn=false;
-//		}
-//		else
-//			bLaserOn=true;
-//	}
-//	else
-//	{
-//		ScopeView();
-//		bLaserOn=true;
-//	}
-}
-
-exec simulated function WeaponSpecialRelease(optional byte i)
-{
-	ScopeViewRelease();
+	bLaserOn = !bLaserOn;
+	
+	if (!bLaserOn)
+		KillLaserDot();
 }
 
 // AI Interface =====
@@ -522,15 +492,18 @@ defaultproperties
      bNoCrosshairInScope=True
      SightOffset=(X=-30.000000,Y=-0.400000,Z=14.500000)
      SightingTime=0.200000
-     SightAimFactor=0.150000
-     AimSpread=16
      ChaosDeclineTime=0.450000
-     ChaosAimSpread=768
-     RecoilYawFactor=0.000000
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilDeclineTime=0.800000
+	 
+	 
+	 RecoilXCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.5,OutVal=0.03),(InVal=1,OutVal=0.07)))
+	 
+	 ViewRecoilFactor=0.35
+     RecoilXFactor=0.150000
+     RecoilYFactor=0.150000
+     RecoilDeclineTime=1.200000
      RecoilDeclineDelay=0.350000
+	 RecoilMax=6144
+	 
      FireModeClass(0)=Class'BallisticProV55.D49PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.D49SecondaryFire'
      PutDownAnimRate=1.250000

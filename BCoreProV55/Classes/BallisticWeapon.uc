@@ -1343,9 +1343,7 @@ simulated function SetScopeBehavior()
 	{
 		ViewAimFactor = 1.0;
 		ViewRecoilFactor = 1.0;
-		AimAdjustTime *= 2;
 		AimSpread = 0;
-		//AimSpread *= SightAimFactor;
 		ChaosAimSpread *= SightAimFactor;
 		ChaosDeclineTime *= 2.0;
 		ChaosSpeedThreshold *= 0.7;
@@ -1359,7 +1357,6 @@ simulated function SetScopeBehavior()
 			ViewRecoilFactor = default.ViewRecoilFactor;
 		}
 
-		AimAdjustTime = default.AimAdjustTime;
 		AimSpread = default.AimSpread;
 		AimSpread *= BCRepClass.default.AccuracyScale;
 		ChaosAimSpread = default.ChaosAimSpread;
@@ -4678,17 +4675,19 @@ defaultproperties
      LongGunOffset=(X=5.000000,Y=10.000000,Z=-11.000000)
      bUseNetAim=True
      CrouchAimFactor=0.800000
-     SightAimFactor=0.250000
+     SightAimFactor=1
      HipRecoilFactor=1.600000
      SprintChaos=0.100000
      AimAdjustTime=0.500000
      OffsetAdjustTime=0.300000
-     AimSpread=96
+	 
+     AimSpread=16
      ViewRecoilFactor=1.000000
      AimDamageThreshold=100.000000
      ChaosDeclineTime=0.640000
-     ChaosSpeedThreshold=6000.000000
-     ChaosAimSpread=1536
+     ChaosSpeedThreshold=500.000000
+     ChaosAimSpread=128
+	 
      RecoilXCurve=(Points=(,(InVal=1.000000)))
      RecoilYCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
      RecoilPitchFactor=1.000000

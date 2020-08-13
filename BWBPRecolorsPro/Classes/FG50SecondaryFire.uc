@@ -229,6 +229,7 @@ defaultproperties
      bCockAfterEmpty=True
      MuzzleFlashClass=Class'BWBPRecolorsPro.FG50FlashEmitter'
      FlashScaleFactor=1.500000
+	 AimedFireAnim="SGCFireAimed"
      BrassClass=Class'BWBPRecolorsPro.Brass_BMGInc'
      BrassBone="tip"
      BrassOffset=(X=-80.000000,Y=1.000000)

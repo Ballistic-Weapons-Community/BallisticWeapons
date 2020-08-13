@@ -35,7 +35,7 @@ simulated event WeaponTick(float DT)
 
 simulated function float ChargeBar()
 {
-	return HeatLevel / 12;
+	return HeatLevel / 10;
 }
 
 simulated function AddHeat(float Amount, float DeclineTime)
@@ -44,12 +44,12 @@ simulated function AddHeat(float Amount, float DeclineTime)
 		Amount *= 0.75;
 		
 	HeatLevel += Amount;
-	SoundPitch = 56 + HeatLevel * 9;
+	SoundPitch = 56 + HeatLevel * 11;
 	HeatDeclineTime = FMax(Level.TimeSeconds + DeclineTime, HeatDeclineTime);
 	
-	if (HeatLevel >= 11.75)
+	if (HeatLevel >= 9.75)
 	{
-		Heatlevel = 12;
+		HeatLevel = 10;
 		class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, vect(0,0,0), class'DTA73Overheat');
 		return;
 	}
@@ -64,8 +64,8 @@ simulated event Tick (float DT)
 {
 	if (HeatLevel > 0 && Level.TimeSeconds > HeatDeclineTime)
 	{
-		Heatlevel = FMax(HeatLevel - 10 * DT, 0);
-		SoundPitch = 56 + HeatLevel * 9;
+		HeatLevel = FMax(HeatLevel - 10 * DT, 0);
+		SoundPitch = 56 + HeatLevel * 11;
 	}
 	
 	super.Tick(DT);
@@ -321,8 +321,8 @@ defaultproperties
      ClipInSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipIn')
      ClipInFrame=0.700000
      bNonCocking=True
-     WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-     WeaponModes(1)=(Value=4.000000)
+     WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
+     WeaponModes(1)=(Value=4.000000,bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
 	 bNoCrosshairInScope=True
@@ -332,17 +332,22 @@ defaultproperties
      SightAimFactor=0.300000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimAdjustTime=0.600000
+	 
      AimSpread=16
      AimDamageThreshold=75.000000
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=3072
+     ChaosAimSpread=768
+	 
+	 ViewRecoilFactor=0.3
      RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.070000),(InVal=0.600000,OutVal=-0.060000),(InVal=0.700000,OutVal=-0.060000),(InVal=1.000000)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.350000),(InVal=0.450000,OutVal=0.550000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
-     RecoilDeclineTime=1.500000
+     RecoilXFactor=0.100000
+     RecoilYFactor=0.100000
+     RecoilDeclineTime=0.5
      RecoilDeclineDelay=0.170000
+	 
+	 
      FireModeClass(0)=Class'BallisticProV55.A73PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.A73SecondaryFire'
      BringUpTime=0.500000

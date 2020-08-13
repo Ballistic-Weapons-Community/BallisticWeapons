@@ -28,7 +28,7 @@ simulated function InitProjectile()
 
 	FallStart=Location;
 
-	DieTime = Level.TimeSeconds + 2;
+	DieTime = Level.TimeSeconds + 1;
 
 	if(Instigator != None && Instigator.GetTeamNum() == 1)
 		LightHue = 160;
@@ -192,9 +192,9 @@ defaultproperties
      MotionBlurRadius=0.000000
      MotionBlurFactor=0.000000
      MotionBlurTime=0.000000
-     Speed=4000.000000
+     Speed=5500.000000
      TossZ=0.000000
-     Damage=25.000000
+     Damage=20.000000
      DamageRadius=128.000000
      MomentumTransfer=0.000000
      MyDamageType=Class'BallisticProV55.DTBOGPFlareBurn'

@@ -59,9 +59,9 @@ defaultproperties
      WaterRangeFactor=0.800000
      WallPenetrationForce=8.000000
      
-     Damage=60.000000
-     DamageHead=120.000000
-     DamageLimb=60.000000
+     Damage=45.000000
+     DamageHead=63.000000
+     DamageLimb=45.000000
      RangeAtten=0.3500000
      WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTD49Revolver'
@@ -72,14 +72,14 @@ defaultproperties
      bPenetrate=True
      MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
      FlashScaleFactor=1.200000
-     RecoilPerShot=1024.000000
+     RecoilPerShot=768.000000
      FireChaos=0.400000
-     XInaccuracy=128.000000
-     YInaccuracy=128.000000
+     XInaccuracy=64.000000
+     YInaccuracy=64.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.D49.D49-FireSingle',Volume=1.200000)
      FireAnim="FireSingle"
      FireEndAnim=
-     FireRate=0.400000
+     FireRate=0.34000
 	 AimedFireAnim="SightFire"
      AmmoClass=Class'BallisticProV55.Ammo_44Magnum'
      ShakeRotMag=(X=64.000000,Y=32.000000)

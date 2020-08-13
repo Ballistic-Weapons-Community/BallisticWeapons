@@ -15,12 +15,14 @@ function PlayFiring()
 	{
 		BW.IdleAnim = 'OpenIdle';
 		BW.ReloadAnim = 'OpenReload';
+		AimedFireAnim = 'SightFireOpen';
 		FireAnim = 'OpenFire';
 	}
 	else
 	{
 		BW.IdleAnim = 'Idle';
 		BW.ReloadAnim = 'Reload';
+		AimedFireAnim = 'SightFire';
 		FireAnim = 'Fire';
 	}
 	super.PlayFiring();
@@ -55,6 +57,7 @@ defaultproperties
      YInaccuracy=96.000000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.Glock.Glk-Fire',Volume=1.200000)
      FireEndAnim=
+	 AimedFireAnim='SightFire'
      FireAnimRate=1.700000
      FireRate=0.160000
      AmmoClass=Class'BallisticProV55.Ammo_GRSNine'

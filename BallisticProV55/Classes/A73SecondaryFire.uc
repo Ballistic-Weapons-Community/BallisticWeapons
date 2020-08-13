@@ -13,7 +13,7 @@ var float HeatPerShot, HeatDeclineDelay;
 
 simulated function bool AllowFire()
 {
-	if ((A73SkrithRifle(Weapon).HeatLevel >= 12) || !super.AllowFire())
+	if ((A73SkrithRifle(Weapon).HeatLevel >= 10) || !super.AllowFire())
 		return false;
 	return true;
 }
@@ -70,7 +70,7 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
-	 HeatPerShot=4.000000
+	 HeatPerShot=3.40000
 	 HeatDeclineDelay=0.8
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'

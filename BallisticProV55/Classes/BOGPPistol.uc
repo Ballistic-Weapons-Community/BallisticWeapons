@@ -312,7 +312,7 @@ defaultproperties
      MagAmmo=1
      bNoMag=True
      CockAnim="Reload"
-     CockAnimRate=1.500000
+     CockAnimRate=1.250000
      CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock')
      ReloadAnimRate=1.250000
      ClipHitSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_Close',Volume=1.000000)
@@ -328,16 +328,16 @@ defaultproperties
      SightPivot=(Pitch=300)
      SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
      JumpChaos=0.750000
-     AimAdjustTime=0.450000
-     AimSpread=16
+
+	 ChaosAimSpread=378
+	 ViewRecoilFactor=0.6
      ChaosDeclineTime=1.000000
-     ChaosSpeedThreshold=1250.000000
-     ChaosAimSpread=768
      RecoilYawFactor=0.000000
      RecoilXFactor=0.250000
      RecoilYFactor=0.250000
      RecoilDeclineTime=1.000000
      RecoilDeclineDelay=0.800000
+	 
      FireModeClass(0)=Class'BallisticProV55.BOGPPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.BOGPSecondaryFire'
      PutDownTime=0.450000

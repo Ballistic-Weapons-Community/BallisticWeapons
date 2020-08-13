@@ -337,15 +337,11 @@ defaultproperties
 	SightingTime=0.200000
 	SightZoomFactor=0
 	CrouchAimFactor=1
-	SightAimFactor=0.500000
+	SightAimFactor=2
 	HipRecoilFactor=1.5
 	SprintOffSet=(Pitch=-3000,Yaw=-4000)
 	AimAdjustTime=0.450000
 	
-	AimSpread=16
-	ChaosSpeedThreshold=7500.000000
-	ChaosAimSpread=256
-
 	ViewRecoilFactor=0.35
 	RecoilXCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))

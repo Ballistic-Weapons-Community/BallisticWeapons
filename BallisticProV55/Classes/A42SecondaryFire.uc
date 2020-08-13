@@ -7,6 +7,7 @@
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class A42SecondaryFire extends BallisticProInstantFire;
+
 var() float ChargeTime;
 var() Sound	ChargeSound;
 
@@ -17,18 +18,25 @@ simulated function PlayPreFire()
 	if (!BW.bScopeView)
 		BW.SafeLoopAnim('SecIdle', 1.0, TweenTime, ,"IDLE");
 }
+
 function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
 {
 	KickForce = (FMin(HoldTime, ChargeTime) / ChargeTime) * default.KickForce;
 	return super.GetDamage (Other, HitLocation, Dir, Victim, DT) * (FMin(HoldTime, ChargeTime) / ChargeTime);
 }
+
 simulated event ModeDoFire()
 {
 	local float f;
+	
 	f = (FMin(HoldTime, ChargeTime) / ChargeTime) * default.AmmoPerFire;
-	AmmoPerFire = f;
+
+	Load = Max(1, f);
+	
 	Weapon.AmbientSound = None;
+	
 	A42SkrithPistol(Weapon).NextAmmoTickTime = Level.TimeSeconds + 2;
+	
 	super.ModeDoFire();
 }
 
@@ -38,24 +46,24 @@ defaultproperties
 	ChargeSound=Sound'BallisticSounds2.A42.A42-Charge'
 	TraceRange=(Min=8000.000000,Max=8000.000000)
 	WallPenetrationForce=8.000000
-	Damage=45.000000
-	DamageHead=90.000000
-	DamageLimb=45.000000
+	Damage=50.000000
+	DamageHead=75.000000
+	DamageLimb=50.000000
 	DamageType=Class'BallisticProV55.DTA42SkrithBeam'
 	DamageTypeHead=Class'BallisticProV55.DTA42SkrithBeam'
 	DamageTypeArm=Class'BallisticProV55.DTA42SkrithBeam'
 	KickForce=80000
 	PenetrateForce=150
 	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-	RecoilPerShot=96.000000
-	XInaccuracy=2.000000
-	YInaccuracy=2.000000
+	RecoilPerShot=512.000000
+	XInaccuracy=128.000000
+	YInaccuracy=128.000000
 	BallisticFireSound=(Sound=Sound'BallisticSounds3.A42.A42-SecFire',Volume=0.800000)
 	bFireOnRelease=True
 	FireAnim="SecFire"
 	FireRate=0.300000
 	AmmoClass=Class'BallisticProV55.Ammo_A42Charge'
-	AmmoPerFire=6
+	AmmoPerFire=7
 	ShakeRotMag=(X=128.000000,Y=64.000000)
 	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
 	ShakeRotTime=2.000000

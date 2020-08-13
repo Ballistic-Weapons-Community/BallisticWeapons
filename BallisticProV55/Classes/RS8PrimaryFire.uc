@@ -90,12 +90,14 @@ function PlayFiring()
 	{
 		BW.IdleAnim = 'OpenIdle';
 		BW.ReloadAnim = 'OpenReload';
+		AimedFireAnim = 'SightFireOpen';
 		FireAnim = 'OpenFire';
 	}
 	else
 	{
 		BW.IdleAnim = 'Idle';
 		BW.ReloadAnim = 'Reload';
+		AimedFireAnim = 'SightFire';
 		FireAnim = 'Fire';
 	}
 
@@ -167,6 +169,7 @@ defaultproperties
      bPawnRapidFireAnim=True
 	 FireEndAnim=
      FireAnimRate=2
+	 AimedFireAnim='SightFire'
      FireRate=0.320000
      AmmoClass=Class'BallisticProV55.Ammo_RS8Bullets'
      ShakeRotMag=(X=64.000000,Y=32.000000)

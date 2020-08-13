@@ -81,7 +81,7 @@ defaultproperties
      WallPenetrationForce=8.000000
      
      Damage=90.000000
-     DamageHead=160.000000
+     DamageHead=135.000000
      DamageLimb=90.000000
      RangeAtten=0.200000
      WaterRangeAtten=0.800000
@@ -96,11 +96,11 @@ defaultproperties
      FlashScaleFactor=1.200000
      RecoilPerShot=2048.000000
      FireChaos=0.800000
-     XInaccuracy=128.000000
-     YInaccuracy=128.000000
+     XInaccuracy=64.000000
+     YInaccuracy=64.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.D49.D49-Fire',Volume=1.300000)
      FireEndAnim=
-     FireRate=1.000000
+     FireRate=0.8
      AmmoClass=Class'BallisticProV55.Ammo_44Magnum'
      AmmoPerFire=2
      ShakeRotMag=(X=64.000000,Y=32.000000)

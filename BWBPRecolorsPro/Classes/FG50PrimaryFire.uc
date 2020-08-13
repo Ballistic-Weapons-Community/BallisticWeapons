@@ -39,7 +39,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		RecoilPerShot=default.RecoilPerShot;
 		VelocityRecoil=default.VelocityRecoil;
 		FireRate = default.FireRate;
-		FireChaos=default.FireChaos;
+		FireChaos = default.FireChaos;
 		FireAnim='Fire';
 		DamageType=Class'DT_FG50Torso';
 		DamageTypeArm=Class'DT_FG50Limb';
@@ -199,7 +199,8 @@ defaultproperties
      BrassClass=Class'BWBPRecolorsPro.Brass_BMGInc'
      BrassBone="tip"
      BrassOffset=(X=-80.000000,Y=1.000000)
-     AimedFireAnim="SGCFire"
+	 FireAnim="Fire"
+     AimedFireAnim="SGCFireAimed"
      RecoilPerShot=512.000000
      VelocityRecoil=125.000000
      FireChaos=0.200000

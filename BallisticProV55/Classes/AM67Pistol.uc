@@ -104,9 +104,9 @@ defaultproperties
 	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_AM67'
 	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
 	BringUpTime=0.900000
-	ChaosAimSpread=768
+	SightAimFactor=2
 	ChaosDeclineTime=0.450000
-	ChaosSpeedThreshold=7500.000000
+	ChaosSpeedThreshold=500.000000
 	ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
 	ClipInFrame=0.650000
 	ClipInSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipIn')
@@ -151,7 +151,7 @@ defaultproperties
     RecoilYCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.4500),(InVal=0.500000,OutVal=0.5500),(InVal=0.600000,OutVal=0.620000),(InVal=0.750000,OutVal=0.770000),(InVal=1.000000,OutVal=1.00000)))
 
 	RecoilDeclineDelay=0.6
-	RecoilDeclineTime=0.75
+	RecoilDeclineTime=1.5
 	RecoilMax=8192.000000
 	RecoilXFactor=0.20000
 	RecoilYFactor=0.20000
@@ -159,7 +159,6 @@ defaultproperties
 	
 	
 	SelectForce="SwitchToAssaultRifle"
-	SightAimFactor=0.150000
 	SightDisplayFOV=60.000000
 	SightFXClass=Class'BallisticProV55.AM67SightLEDs'
 	SightOffset=(X=-12.000000,Z=9.500000)
