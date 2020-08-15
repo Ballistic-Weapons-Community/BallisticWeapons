@@ -139,7 +139,6 @@ defaultproperties
      DamageType=Class'BallisticProV55.DTM353MGDeploy'
      DamageTypeHead=Class'BallisticProV55.DTM353MGDeployHead'
      DamageTypeArm=Class'BallisticProV55.DTM353MGDeploy'
-     RecoilPerShot=105.000000
-     FireRate=0.046000
+     RecoilPerShot=64.000000
      aimerror=0.000000
 }
