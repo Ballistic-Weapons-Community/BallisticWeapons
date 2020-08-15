@@ -230,23 +230,23 @@ var EZoomType ZoomType;
 
 var() bool						bUseSights;			// This weapon has sights or a scope that can be used
 var() bool						bNoTweenToScope;			//Don't tween to the first idle frame to fix the animation jump (M75 fix) FIXME the M75 uses animations to scope
-var() config float 			ScopeXScale;			//Manual scaling for scopes
-var() globalconfig bool	bInvertScope;		// Inverts Prev/Next weap relation to Zoom In/Out
+var() config float 				ScopeXScale;			//Manual scaling for scopes
+var() globalconfig bool			bInvertScope;		// Inverts Prev/Next weap relation to Zoom In/Out
 var() name						ZoomInAnim;			// Anim to play for raising weapon to view through Scope or sights
 var() name						ZoomOutAnim;		// Anim to play when lowering weapon after viewing through scope or sights
 var() Material					ScopeViewTex;		// Texture displayed in Scope View. Fills the screen
-var() BUtil.FullSound		ZoomInSound;		// Sound when zooming in
-var() BUtil.FullSound		ZoomOutSound;		// Sound when zooming out
+var() BUtil.FullSound			ZoomInSound;		// Sound when zooming in
+var() BUtil.FullSound			ZoomOutSound;		// Sound when zooming out
 var() float						FullZoomFOV;		// The FOV that can be reached when fully zoomed in
 var() bool						bNoMeshInScope;		// Weapon mesh is hidden when in scope/sight view
 var() bool						bNoCrosshairInScope;// Crosshair will be hiden when in scope or sights
-var() int 						SightZoomFactor; // (90 - this) gives the FOV of ironsight zoom
+var() float						SightZoomFactor; 	// Base FOV multiplied by this to give sight aim factor
 var() name						SightBone;			// Bone at which camera should be to view through sights. Uses origin if none
 var() Rotator					SightPivot;			// Rotate the weapon by this when in sight view
 var() Vector					SightOffset;		// Offset of actual sight view position from SightBone or mesh origin.
 var() float						SightDisplayFOV;	// DisplayFOV for drawing gun in scope/sight view
 var() float						SightingTime;		// Time it takes to move weapon to and from sight view
-var() globalconfig float	SightingTimeScale;	// Scales the SightingTime for each weapon by this amount.
+var() globalconfig float		SightingTimeScale;	// Scales the SightingTime for each weapon by this amount.
 var   float						OldZoomFOV;			// FOV saved for temporary scope down
 var   float						SightingPhase;		// Current level of progress moving weapon into place for sight view
 var   bool						bPendingSightUp;		// Currently out of sight view for something. Will go back when done
@@ -1583,7 +1583,7 @@ simulated function PositionSights ()
 
 		ViewRecoilFactor=1.0;
 		if (ZoomType == ZT_Irons)
-			PC.DesiredFOV = PC.DefaultFOV - SightZoomFactor;
+			PC.DesiredFOV = PC.DefaultFOV * SightZoomFactor;
 	}
 	
 	else if (SightingPhase <= 0.0)
@@ -1612,7 +1612,7 @@ simulated function PositionSights ()
 		ViewRecoilFactor = Smerp(SightingPhase, default.ViewRecoilFactor, 1);
 		//Don't do this for scoped weapons
 		if (ZoomType == ZT_Irons)
-	        PC.DesiredFOV = PC.DefaultFOV - (FClamp(SightingPhase, 0, 1) * SightZoomFactor);
+	        PC.DesiredFOV = PC.DefaultFOV * (Lerp(SightingPhase, 1, SightZoomFactor));
 	}
 }
 
@@ -4658,7 +4658,7 @@ defaultproperties
      bUseSights=True
      ScopeXScale=1.000000
      FullZoomFOV=80.000000
-     SightZoomFactor=10
+     SightZoomFactor=0.78
      SightOffset=(Z=2.500000)
      SightDisplayFOV=30.000000
      SightingTime=0.350000

@@ -31,14 +31,14 @@ function PlayFiring()
 defaultproperties
 {
      CutOffDistance=1536.000000
-     CutOffStartRange=256.000000
+     CutOffStartRange=512.000000
      TraceRange=(Min=4000.000000,Max=4000.000000)
      WaterRangeFactor=0.600000
      WallPenetrationForce=8.000000
      
-     Damage=25.000000
-     DamageHead=37.000000
-     DamageLimb=25.000000
+     Damage=16.000000
+     DamageHead=22.000000
+     DamageLimb=16.000000
      RangeAtten=0.200000
      WaterRangeAtten=0.500000
      DamageType=Class'BallisticProV55.DTGRS9Pistol'
@@ -51,7 +51,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_GRSNine'
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
-     RecoilPerShot=256.000000
+     RecoilPerShot=160.000000
      FireChaos=0.120000
      XInaccuracy=96.000000
      YInaccuracy=96.000000
@@ -59,7 +59,7 @@ defaultproperties
      FireEndAnim=
 	 AimedFireAnim='SightFire'
      FireAnimRate=1.700000
-     FireRate=0.160000
+     FireRate=0.050000
      AmmoClass=Class'BallisticProV55.Ammo_GRSNine'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

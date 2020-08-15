@@ -332,7 +332,6 @@ defaultproperties
 	Skins(1)=Shader'BWAddPack-RS-Skins.MRS138.MRS138Shiney'
 	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
 	SightingTime=0.300000
-	SightZoomFactor=0
 	SightOffset=(X=15,Z=21.500000)
 	SightPivot=(Pitch=256)
 	SightDisplayFOV=40

@@ -679,7 +679,6 @@ defaultproperties
      WeaponModes(5)=(ModeName="ERROR",bUnavailable=True,ModeID="WM_FullAuto")
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
-     SightZoomFactor=20
      SightPivot=(Pitch=256)
      SightOffset=(X=-18.000000,Y=4.490000,Z=6.350000)
      SightDisplayFOV=35.000000

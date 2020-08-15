@@ -479,7 +479,6 @@ defaultproperties
      bNotifyModeSwitch=True
      FullZoomFOV=25.000000
      bNoCrosshairInScope=True
-     SightZoomFactor=20
      SightPivot=(Roll=11800)
      SightOffset=(X=15.000000,Y=2.850000,Z=9.000000)
      SightDisplayFOV=25.000000

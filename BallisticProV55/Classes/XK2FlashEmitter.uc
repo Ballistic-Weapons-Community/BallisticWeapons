@@ -41,9 +41,9 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.500000)
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.200000)
-         StartSizeRange=(Y=(Min=1.500000,Max=1.500000),Z=(Min=1.500000,Max=1.500000))
+         StartSizeRange=(Y=(Min=0.7500000,Max=0.7500000),Z=(Min=0.7500000,Max=0.7500000))
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.250000,Max=0.250000)
+         LifetimeRange=(Min=0.10000,Max=0.10000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
          StartVelocityRange=(X=(Min=20.000000,Max=20.000000))
@@ -67,10 +67,10 @@ defaultproperties
          MaxParticles=1
 		 Opacity=0.375
          StartLocationOffset=(X=20.000000)
-         StartSizeRange=(X=(Min=80.000000,Max=80.000000),Y=(Min=80.000000,Max=80.000000),Z=(Min=80.000000,Max=80.000000))
+         StartSizeRange=(X=(Min=40.000000,Max=40.000000),Y=(Min=40.000000,Max=40.000000),Z=(Min=40.000000,Max=40.000000))
          Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.250000,Max=0.250000)
+         LifetimeRange=(Min=0.10000,Max=0.10000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object

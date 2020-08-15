@@ -377,30 +377,31 @@ defaultproperties
      MeleeFireClass=Class'BallisticProV55.MD24MeleeFire'
      BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=12
+     MagAmmo=16
      CockSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Cock',Volume=0.675000)
      ReloadAnimRate=1.350000
      ClipHitSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_ClipHit',Volume=0.800000)
      ClipOutSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_ClipOut',Volume=0.800000)
      ClipInSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_ClipIn',Volume=0.800000)
      ClipInFrame=0.580000
+	 WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
      SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
      SightDisplayFOV=60.000000
      SightingTime=0.200000
-     SightAimFactor=0.100000
+	 SightAimFactor=2
+
      AimAdjustTime=0.450000
-     AimSpread=16
-     ChaosDeclineTime=0.450000
-     ChaosSpeedThreshold=7500.000000
-     ChaosAimSpread=384
-     RecoilYawFactor=0.200000
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.250000
+	 
+	 
+	 ViewRecoilFactor=0.4
+     RecoilXFactor=0.10000
+     RecoilYFactor=0.10000
+     RecoilDeclineTime=0.500000
+     RecoilDeclineDelay=0.220000
+	 
      FireModeClass(0)=Class'BallisticProV55.MD24PrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectForce="SwitchToAssaultRifle"

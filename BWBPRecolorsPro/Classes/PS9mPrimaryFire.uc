@@ -58,9 +58,9 @@ defaultproperties
      TraceRange=(Min=3000.000000)
      WallPenetrationForce=0
      
-     Damage=12.000000
-     DamageHead=24.000000
-     DamageLimb=12.000000
+     Damage=10.000000
+     DamageHead=20.000000
+     DamageLimb=10.000000
      DamageType=Class'BWBPRecolorsPro.DT_PS9MDart'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_PS9MDartHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_PS9MDart'
@@ -70,14 +70,14 @@ defaultproperties
      FlashScaleFactor=0.800000
      BrassClass=Class'BWBPRecolorsPro.Brass_Tranq'
      BrassOffset=(X=-20.000000,Y=1.000000)
-     RecoilPerShot=128.000000
-     FireChaos=0.150000
+     RecoilPerShot=64.000000
+     FireChaos=0.050000
      XInaccuracy=32.000000
      YInaccuracy=32.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-Fire',Volume=0.25,Radius=16,Slot=SLOT_Interact,bNoOverride=False)
      bAISilent=True
      FireEndAnim=
-     FireRate=0.070000
+     FireRate=0.075000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_TranqP'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

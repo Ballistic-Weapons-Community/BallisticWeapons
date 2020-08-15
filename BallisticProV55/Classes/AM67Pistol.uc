@@ -139,7 +139,7 @@ defaultproperties
 	ManualLines(0)="High-powered bullet fire. Recoil is high."
 	ManualLines(1)="Engages the integrated flash device. The fire key must be held until the flash triggers. Blinds enemies for a short duration. Enemies closer both to the player and to the point of aim will be blinded for longer."
 	ManualLines(2)="Effective at close and medium range."
-	Mesh=SkeletalMesh'BallisticProAnims.AM67Pistol'
+	Mesh=SkeletalMesh'BallisticProAnims.AM68_FPm'
 	PickupClass=Class'BallisticProV55.AM67Pickup'
 	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 	Priority=24
@@ -161,8 +161,7 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	SightDisplayFOV=60.000000
 	SightFXClass=Class'BallisticProV55.AM67SightLEDs'
-	SightOffset=(X=-12.000000,Z=9.500000)
-	SightPivot=(Pitch=512)
+	SightOffset=(X=10.000000,Z=9.900000)
 	SightingTime=0.250000
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')

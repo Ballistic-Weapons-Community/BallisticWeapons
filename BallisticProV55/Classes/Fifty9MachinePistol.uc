@@ -335,7 +335,7 @@ defaultproperties
 	SightOffset=(X=-10.000000,Z=12.00000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-	SightZoomFactor=0
+	SightZoomFactor=0.85
 	CrouchAimFactor=1
 	SightAimFactor=2
 	HipRecoilFactor=1.5

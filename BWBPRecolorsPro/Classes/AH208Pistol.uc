@@ -173,13 +173,19 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
-     SightOffset=(X=20.000000,Y=-7.400000,Z=45.299999)
+	 RecoilXCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.1),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.12),(InVal=0.7,OutVal=0.2),(InVal=1.0,OutVal=0.3)))
+     SightOffset=(X=20.000000,Y=-7.350000,Z=45.400002)
      SightDisplayFOV=40.000000
-     SightingTime=0.25
-	 SightZoomFactor=0
+	 SightAimFactor=2
+	 ChaosAimSpread=128
      GunLength=4.000000
-     ChaosDeclineTime=0.450000
-     RecoilDeclineDelay=0.750000
+     ChaosDeclineTime=0.60000
+	 ViewRecoilFactor=0.5
+     RecoilXFactor=0.200000
+     RecoilYFactor=0.200000
+     RecoilMax=6144.000000
+     RecoilDeclineDelay=0.65
+	 RecoilDeclineTime=1
      FireModeClass(0)=Class'BWBPRecolorsPro.AH208PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.AH208MeleeFire'
      SelectAnimRate=2.000000

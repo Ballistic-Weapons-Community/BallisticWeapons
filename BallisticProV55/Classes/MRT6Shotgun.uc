@@ -166,18 +166,17 @@ defaultproperties
      SightPivot=(Pitch=768)
      SightOffset=(X=-30.000000,Z=11.000000)
      SightingTime=0.250000
-	 SightZoomFactor=0
+	 SightZoomFactor=0.85
      GunLength=24.000000
-     SightAimFactor=0.300000
+
      JumpChaos=1.000000
      AimSpread=0
      ChaosDeclineTime=0.320000
-     ChaosSpeedThreshold=3000.000000
      ChaosAimSpread=0
+	 ViewRecoilFactor=0.5
      RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
      RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilYawFactor=0.000000
-     RecoilXFactor=0.200000
+     RecoilXFactor=0.100000
      RecoilYFactor=0.200000
      RecoilDeclineTime=0.700000
      FireModeClass(0)=Class'BallisticProV55.MRT6PrimaryFire'

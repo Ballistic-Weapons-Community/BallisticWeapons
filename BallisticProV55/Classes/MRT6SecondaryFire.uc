@@ -88,16 +88,16 @@ function FlashMuzzleFlash()
 
 defaultproperties
 {
-     HipSpreadFactor=1.500000
+     HipSpreadFactor=1.250000
      CutOffDistance=1024.000000
      CutOffStartRange=768.000000
      TraceCount=7
      TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=5000.000000,Max=5000.000000)
-     Damage=11.000000
-     DamageHead=14.000000
-     DamageLimb=11.000000
+     Damage=10.000000
+     DamageHead=15.000000
+     DamageLimb=10.000000
      RangeAtten=0.500000
      DamageType=Class'BallisticProV55.DTMRT6Shotgun'
      DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
@@ -115,8 +115,8 @@ defaultproperties
      RecoilPerShot=378.000000
      VelocityRecoil=600.000000
      FireChaos=0.200000
-     XInaccuracy=450.000000
-     YInaccuracy=450.000000
+     XInaccuracy=378.000000
+     YInaccuracy=378.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.MRT6.MRT6SingleFire')
      FireAnim="FireRight"
      FireRate=0.400000

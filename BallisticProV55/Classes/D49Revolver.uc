@@ -497,7 +497,7 @@ defaultproperties
 	 
 	 RecoilXCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.5,OutVal=0.03),(InVal=1,OutVal=0.07)))
 	 
-	 ViewRecoilFactor=0.35
+	 ViewRecoilFactor=0.5
      RecoilXFactor=0.150000
      RecoilYFactor=0.150000
      RecoilDeclineTime=1.200000

@@ -769,5 +769,5 @@ defaultproperties
      PDamageFactor=0.700000
      WallPDamageFactor=0.95
      DamageModHead=1.500000
-     DamageModLimb=0.750000
+     DamageModLimb=0.700000
 }

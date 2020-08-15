@@ -280,7 +280,7 @@ simulated function PlayCocking(optional byte Type)
 
 defaultproperties
 {
-	ManualLines(0)="Rapid automatic dart fire. High DPS and low recoil, but no penetration and very low magazine capacity."
+	ManualLines(0)="Rapid automatic dart fire. Very low recoil and accurate from point shooting, but no penetration and very low magazine capacity."
 	ManualLines(1)="Readies a medical dart. When a medical dart has been readied, firing again will launch the dart. Allies will receive a significant health boost."
 	ManualLines(2)="Effective at close range and support."
 	GrenBone="Dart"
@@ -303,7 +303,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;2.0;0.1;0.1")
 	BringUpSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-Pickup')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-	MagAmmo=15
+	MagAmmo=10
 	CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock',Radius=32.000000)
 	ClipHitSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-MagInS1',Volume=1.800000,Radius=32.000000)
 	ClipOutSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-MagOut',Volume=1.800000,Radius=32.000000)
@@ -317,14 +317,14 @@ defaultproperties
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
 	SprintOffSet=(Pitch=-1000,Yaw=-2048)
-	AimSpread=16
 	ChaosDeclineTime=0.450000
-	ChaosAimSpread=768
-	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.400000),(InVal=1.000000,OutVal=-0.200000)))
-	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.650000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilYawFactor=0.400000
-	RecoilXFactor=0.300000
-	RecoilYFactor=0.200000
+	ChaosAimSpread=192
+	
+	ViewRecoilFactor=0.4
+	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.000000),(InVal=0.50000,OutVal=0.120000),,(InVal=0.7000,OutVal=-0.010000),(InVal=1.000000,OutVal=0.000000)))
+	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.4500000,OutVal=0.40000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+	RecoilXFactor=0.050000
+	RecoilYFactor=0.050000
 	FireModeClass(0)=Class'BWBPRecolorsPro.PS9mPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.PS9mSecondaryFire'
 	PutDownTime=0.700000

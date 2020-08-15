@@ -400,12 +400,12 @@ simulated function SwitchSilencer(bool bNewValue)
 	if (bNewValue)
 	{
 		PlayAnim(SilencerOnAnim);
-		SightZoomFactor=10;
+		SightZoomFactor = 0.78;
 	}
 	else
 	{
 		PlayAnim(SilencerOffAnim);
-		SightZoomFactor=0;
+		SightZoomFactor = default.SightZoomFactor;
 	}
 }
 
@@ -646,7 +646,6 @@ defaultproperties
      MagAmmo=8
      CockSound=(Sound=Sound'PackageSounds4ProExp.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
      ReloadAnim="ReloadLoop"
-	 SightZoomFactor=0
      ClipInSound=(Sound=Sound'PackageSounds4ProExp.Mk781.Mk781-ShellPlus',Volume=2.300000,Radius=32.000000)
      ClipInFrame=0.325000
      bCanSkipReload=True

@@ -480,7 +480,7 @@ defaultproperties
      SpecialInfo(0)=(Info="0.0;-5.0;-999.0;-1.0;0.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-     MagAmmo=10
+     MagAmmo=9
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'BWAddPack-RS-Sounds.Pistol.RSP-Cock')
      ReloadAnimRate=1.250000
@@ -493,16 +493,14 @@ defaultproperties
      SightOffset=(X=-15.000000,Z=8.700000)
      SightDisplayFOV=60.000000
      SightingTime=0.200000
-     SightAimFactor=0.150000
      AimAdjustTime=0.450000
-     AimSpread=16
      ChaosDeclineTime=0.450000
-     ChaosSpeedThreshold=7500.000000
-     ChaosAimSpread=384
-     RecoilYawFactor=0.000000
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilDeclineTime=1.500000
+	 
+	 
+	 ViewRecoilFactor=0.3
+     RecoilXFactor=0.05
+     RecoilYFactor=0.05
+     RecoilDeclineTime=0.500000
      RecoilDeclineDelay=0.250000
      FireModeClass(0)=Class'BallisticProV55.RS8PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.RS8SecondaryFire'

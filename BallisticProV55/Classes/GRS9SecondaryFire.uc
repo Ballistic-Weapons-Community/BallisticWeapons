@@ -86,9 +86,9 @@ defaultproperties
 {
      FireSoundLoop=Sound'BWBP4-Sounds.Glock.Glk-LaserBurn'
      WaterRangeFactor=0.700000
-     Damage=10.000000
-     DamageHead=10.000000
-     DamageLimb=10.000000
+     Damage=17.000000
+     DamageHead=17.000000
+     DamageLimb=17.000000
      DamageType=Class'BallisticProV55.DTGRS9Laser'
      DamageTypeHead=Class'BallisticProV55.DTGRS9LaserHead'
      DamageTypeArm=Class'BallisticProV55.DTGRS9Laser'
