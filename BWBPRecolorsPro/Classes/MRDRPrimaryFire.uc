@@ -48,10 +48,10 @@ defaultproperties
      FlashScaleFactor=0.600000
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassOffset=(X=-25.000000,Z=-5.000000)
-     RecoilPerShot=96.000000
+     RecoilPerShot=72.000000
      FireChaos=0.200000
-     XInaccuracy=128.000000
-     YInaccuracy=128.000000
+     XInaccuracy=64.000000
+     YInaccuracy=64.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.MRDR.MRDR-Fire')
      bPawnRapidFireAnim=True
      FireRate=0.180000

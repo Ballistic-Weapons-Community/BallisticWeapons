@@ -209,12 +209,14 @@ defaultproperties
 	 CurrentRating=0.6
      ChaosDeclineTime=0.450000
      ChaosAimSpread=256
+	 
+	 ViewRecoilFactor=0.5
      RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000),(InVal=0.600000,OutVal=0.150000),(InVal=0.800000,OutVal=0.250000),(InVal=1.000000,OutVal=0.100000)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.200000),(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.550000),(InVal=0.600000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.400000
-     RecoilYFactor=0.400000
+     RecoilXFactor=0.050000
+     RecoilYFactor=0.050000
      RecoilDeclineTime=0.800000
-     RecoilDeclineDelay=0.450000
+     RecoilDeclineDelay=0.350000
      FireModeClass(0)=Class'BWBPRecolorsPro.MRDRPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.MRDRSecondaryFire'
      PutDownTime=0.400000

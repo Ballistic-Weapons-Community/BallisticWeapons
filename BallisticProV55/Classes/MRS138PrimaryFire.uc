@@ -47,19 +47,18 @@ function ServerPlayFiring()
 
 defaultproperties
 {
-  HipSpreadFactor=3.000000
-  MaxSpreadFactor=3.000000
+  HipSpreadFactor=1.500000
   CutOffDistance=1536.000000
-  CutOffStartRange=768.000000
-  TraceCount=10
+  CutOffStartRange=378.000000
+  TraceCount=8
   TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
   ImpactManager=Class'BallisticProV55.IM_Shell'
-  TraceRange=(Min=7000.000000,Max=7000.000000)
+  TraceRange=(Min=5000.000000,Max=5000.000000)
   WallPenetrationForce=0
   
-  Damage=11.000000
-  DamageHead=16.000000
-  DamageLimb=11.000000
+  Damage=13.000000
+  DamageHead=20.000000
+  DamageLimb=13.000000
   RangeAtten=0.200000
   DamageType=Class'BallisticProV55.DTMRS138Shotgun'
   DamageTypeHead=Class'BallisticProV55.DTMRS138ShotgunHead'
@@ -70,14 +69,14 @@ defaultproperties
   MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'
   BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
   BrassOffset=(X=45.000000,Y=-20.000000,Z=35.000000)
-  RecoilPerShot=1280.000000
+  RecoilPerShot=512.000000
   FireChaos=0.400000
-  XInaccuracy=250.000000
-  YInaccuracy=250.000000
+  XInaccuracy=256.000000
+  YInaccuracy=256.000000
   BallisticFireSound=(Sound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-Fire',Volume=1.500000)
   FireAnim="FireCombined"
   FireEndAnim=
-  FireRate=0.450000
+  FireRate=0.50000
   AmmoClass=Class'BallisticProV55.Ammo_MRS138Shells'
   ShakeRotMag=(X=128.000000,Y=64.000000)
   ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

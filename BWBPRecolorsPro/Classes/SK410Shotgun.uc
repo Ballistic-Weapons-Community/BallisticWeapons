@@ -166,7 +166,7 @@ defaultproperties
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Shotgun=True
      bWT_Machinegun=True
-     ManualLines(0)="Fires shotgun blasts with wide spread. These blasts inflict heavy damage and knock the enemy back."
+     ManualLines(0)="Rapid fire shotgun blasts with wide spread. Short range, but high sustained damage output."
      ManualLines(1)="Fires an explosive slug. Deals good impact damage and minor radius damage. Targets hit will be knocked back a significant distance."
      ManualLines(2)="Has a melee attack. Damage improves over hold time, with a max bonus being reached at 1.5 seconds of holding. As a blunt attack, has lower damage than sharp melee attacks but inflicts a minor blind effect upon striking. Deals more damage from behind.||Extremely effective at close range and against charges and melee."
      SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
@@ -191,14 +191,16 @@ defaultproperties
      SightingTime=0.250000
      GunLength=48.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
-     AimSpread=0
-     ChaosAimSpread=0
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.050000),(InVal=0.400000,OutVal=-0.200000),(InVal=0.600000,OutVal=0.15000),(InVal=0.750000,OutVal=0.050000),(InVal=1.000000,OutVal=0)))
+
+	 ViewRecoilFactor=0.35
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.050000),(InVal=0.400000,OutVal=0.120000),(InVal=0.600000,OutVal=0.15000),(InVal=0.750000,OutVal=0.250000),(InVal=1.000000,OutVal=0.32)))
      RecoilYCurve=(Points=(,(InVal=0.500000,OutVal=0.400000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilYFactor=0.1
-	 RecoilXFactor=0.1
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.330000
+     RecoilYFactor=0.05
+	 RecoilXFactor=0.05
+     RecoilDeclineTime=0.500000
+     RecoilDeclineDelay=0.450000
+	 
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.SK410PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.SK410SecondaryFire'
      SelectAnimRate=1.600000

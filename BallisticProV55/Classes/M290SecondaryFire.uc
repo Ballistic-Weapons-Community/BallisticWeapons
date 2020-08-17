@@ -88,16 +88,16 @@ function FlashMuzzleFlash()
 
 defaultproperties
 {
-     CutOffDistance=5120.000000
-     CutOffStartRange=1536.000000
+     CutOffDistance=2536.000000
+     CutOffStartRange=1280.000000
      TraceCount=12
      TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=7000.000000,Max=7000.000000)
-     Damage=13.000000
-     DamageHead=13.000000
-     DamageLimb=13.000000
-     RangeAtten=0.400000
+     Damage=10.000000
+     DamageHead=15.000000
+     DamageLimb=10.000000
+     RangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTM290Shotgun'
      DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
      DamageTypeArm=Class'BallisticProV55.DTM290Shotgun'
@@ -106,7 +106,7 @@ defaultproperties
      bPenetrate=True
      bCockAfterFire=True
      MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-     FlashScaleFactor=3.500000
+     FlashScaleFactor=2
      BrassClass=Class'BallisticProV55.Brass_M290Left'
      BrassBone="EjectorR"
      bBrassOnCock=True

@@ -275,18 +275,18 @@ defaultproperties
      SightAimFactor=0.350000
      HipRecoilFactor=1.000000
      SprintOffSet=(Pitch=-6000,Yaw=-8000)
+     WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
      AimSpread=2
      ViewAimFactor=1.000000
      AimDamageThreshold=2000.000000
      ChaosDeclineTime=0.320000
      ChaosSpeedThreshold=850.000000
      ChaosAimSpread=2
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.150000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.250000,OutVal=0.120000),(InVal=0.500000,OutVal=0.300000),(InVal=0.750000,OutVal=0.550000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilYawFactor=0.660000
-     RecoilXFactor=0.050000
-     RecoilYFactor=0.150000
-     RecoilMax=6144.000000
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.00000),(InVal=0.500000,OutVal=0.100000),(InVal=1.000000)))
+     RecoilYCurve=(Points=(,(InVal=0.250000,OutVal=0.230000),(InVal=0.400000,OutVal=0.40000),(InVal=0.550000,OutVal=0.58000),(InVal=0.750000,OutVal=0.720000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.030000
+     RecoilYFactor=0.030000
+     RecoilMax=8192.000000
      RecoilDeclineTime=0.750000
      RecoilDeclineDelay=0.400000
      FireModeClass(0)=Class'BallisticProV55.M925TW_PrimaryFire'

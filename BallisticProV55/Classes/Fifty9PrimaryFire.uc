@@ -59,7 +59,7 @@ function EjectBrass()
 defaultproperties
 {
      CutOffDistance=1280.000000
-     CutOffStartRange=768.000000
+     CutOffStartRange=512.000000
      WaterRangeFactor=0.400000
      WallPenetrationForce=8.000000
      
@@ -81,7 +81,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Uzi'
      BrassOffset=(X=-18.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=140.000000
+     RecoilPerShot=170.000000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
      XInaccuracy=48.000000
      YInaccuracy=48.000000

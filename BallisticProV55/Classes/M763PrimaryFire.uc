@@ -82,8 +82,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-     HipSpreadFactor=6.000000
-	 MaxSpreadFactor=2.000000
+     HipSpreadFactor=3.000000
      CutOffDistance=2536.000000
      CutOffStartRange=1280.000000
      TraceCount=7
@@ -102,12 +101,12 @@ defaultproperties
 	 bPenetrate=False
 	 WallPenetrationForce=0
      MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
-     FlashScaleFactor=2.000000
+     FlashScaleFactor=1.000000
      BrassClass=Class'BallisticProV55.Brass_Shotgun'
      BrassOffset=(X=-1.000000,Z=-1.000000)
      AimedFireAnim="FireCombinedSight"
-     RecoilPerShot=1024.000000
-     FireChaos=0.650000
+     RecoilPerShot=768.000000
+     FireChaos=0.30000
      XInaccuracy=150.000000
      YInaccuracy=150.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.M763.M763Fire1',Volume=1.300000)

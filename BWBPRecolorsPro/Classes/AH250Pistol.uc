@@ -296,9 +296,9 @@ defaultproperties
      Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.DEagle_FP'
      DrawScale=0.800000
      Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-MainSilverEngraved'
-     Skins(2)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-Misc'
-     Skins(3)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-ScopeRed'
-     Skins(4)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-FrontSilver'
+     Skins(1)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-MainBlack'
+     Skins(2)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-MiscBlack'
+     Skins(3)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-Scope'
+     Skins(4)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-FrontBlack'
      Skins(5)=Shader'BallisticRecolors4TexPro.Eagle.Eagle-SightDotGreen'
 }

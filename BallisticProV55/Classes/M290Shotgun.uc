@@ -145,17 +145,17 @@ defaultproperties
      SightAimFactor=0.350000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      JumpChaos=1.000000
-     AimSpread=0
-     ChaosDeclineTime=1.000000
-     ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=0
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
-     RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilYawFactor=0.000000
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
+     ChaosDeclineTime=1.000000	 
+	 
+	 ViewRecoilFactor=0.2
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
+     RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.400000),(InVal=1.000000,OutVal=1.000000)))
+	 
+     RecoilXFactor=0.100000
+     RecoilYFactor=0.100000
      RecoilDeclineTime=0.900000
      RecoilDeclineDelay=0.500000
+	 
      FireModeClass(0)=Class'BallisticProV55.M290PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M290SecondaryFire'
      AIRating=0.900000

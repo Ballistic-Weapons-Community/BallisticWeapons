@@ -561,7 +561,7 @@ defaultproperties
 	Description="The GRS9 from Drake & Co. is used primarily by inner core planets for law enforcement purposes. The additional laser unit adds an alternative attack to the GRS9. The laser unit can be held down, for up to 3.5 seconds, releasing a searing beam upon enemies. This drains the rechargeable battery however, which must be left to replenish when empty."
 	Priority=9
 	HudColor=(B=25,G=25,R=200)
-	InventoryGroup=2
+	InventoryGroup=3
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.GRS9Pickup'
 	PlayerViewOffset=(X=6.000000,Y=8.000000,Z=-9.000000)

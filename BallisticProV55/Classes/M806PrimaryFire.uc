@@ -11,16 +11,18 @@ class M806PrimaryFire extends BallisticRangeAttenFire;
 //Do the spread on the client side
 function PlayFiring()
 {
-	if (BW.MagAmmo - ConsumedLoad < 2)
+	if (BW.MagAmmo - ConsumedLoad < 1)
 	{
 		BW.IdleAnim = 'OpenIdle';
 		BW.ReloadAnim = 'OpenReload';
+		AimedFireAnim = 'SightFireOpen';
 		FireAnim = 'OpenFire';
 	}
 	else
 	{
 		BW.IdleAnim = 'Idle';
 		BW.ReloadAnim = 'Reload';
+		AimedFireAnim = 'SightFire';
 		FireAnim = 'Fire';
 	}
 	super.PlayFiring();
@@ -28,14 +30,14 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=1536.000000
-     CutOffStartRange=512.000000
-     TraceRange=(Max=6000.000000)
+     CutOffDistance=2048.000000
+     CutOffStartRange=768.000000
+     TraceRange=(Min=4000,Max=4000)
      WaterRangeFactor=0.600000
      WallPenetrationForce=8.000000
      
      Damage=40.000000
-     DamageHead=45.000000
+     DamageHead=60.000000
      DamageLimb=40.000000
      RangeAtten=0.30000
      WaterRangeAtten=0.500000
@@ -49,10 +51,11 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
-     RecoilPerShot=450.000000
+     RecoilPerShot=256.000000
      FireChaos=0.2
      BallisticFireSound=(Sound=Sound'BallisticSounds3.M806.M806Fire',Volume=0.700000)
      FireEndAnim=
+	 AimedFireAnim="SightFire"
      FireRate=0.25000
      FireAnimRate=2
      AmmoClass=Class'BallisticProV55.Ammo_45HV'

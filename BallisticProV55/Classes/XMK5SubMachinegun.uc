@@ -314,7 +314,7 @@ defaultproperties
 	ViewRecoilFactor=0.35
 	
 	RecoilXCurve=(Points=(,(InVal=0.15,OutVal=0.08),(InVal=0.3,OutVal=0.18),(InVal=0.4,OutVal=0.22),(InVal=0.6,OutVal=0.27),(InVal=0.8,OutVal=0.28),(InVal=1.0,OutVal=0.35)))
-	RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.225000,OutVal=0.450000),(InVal=0.350000,OutVal=0.600000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+	RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.170000),(InVal=0.30000,OutVal=0.450000),(InVal=0.450000,OutVal=0.600000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 	RecoilXFactor=0.10000
 	RecoilYFactor=0.10000
 	RecoilDeclineTime=0.5
