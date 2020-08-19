@@ -88,6 +88,7 @@ function FlashMuzzleFlash()
 
 defaultproperties
 {
+	 HipSpreadFactor=3
      CutOffDistance=2536.000000
      CutOffStartRange=1280.000000
      TraceCount=12

@@ -3,7 +3,11 @@ class XMV850TW_PrimaryFire extends XMV850MinigunPrimaryFire;
 // ModeDoFire from WeaponFire.uc, but with a few changes
 simulated event ModeDoFire()
 {
-    if (!AllowFire() || XMV850Minigun(BW).BarrelSpeed < XMV850Minigun(BW).DesiredSpeed)
+    if (!AllowFire()) 
+		return;
+	
+	// won't fire if spinning slower than lowest rotation speed
+	if (Minigun.BarrelSpeed <  Minigun.RotationSpeeds[0]) //Minigun.DesiredSpeed)
         return;
 
 	BW.bPreventReload=true;

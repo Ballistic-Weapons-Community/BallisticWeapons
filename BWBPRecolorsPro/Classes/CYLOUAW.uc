@@ -520,7 +520,7 @@ defaultproperties
      MeleeFireClass=Class'BWBPRecolorsPro.CYLOMeleeFire'
      BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
-     MagAmmo=20
+     MagAmmo=22
      CockAnimPostReload="Cock"
      CockAnimRate=1.400000
      CockSound=(Sound=Sound'BallisticSounds2.M50.M50Cock')

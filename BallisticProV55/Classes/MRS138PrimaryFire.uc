@@ -49,7 +49,7 @@ defaultproperties
 {
   HipSpreadFactor=1.500000
   CutOffDistance=1536.000000
-  CutOffStartRange=378.000000
+  CutOffStartRange=256.000000
   TraceCount=8
   TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
   ImpactManager=Class'BallisticProV55.IM_Shell'

@@ -141,22 +141,6 @@ simulated event Timer()
 	}
 }
 
-simulated event WeaponTick (float DT)
-{
-	local rotator BT;
-
-	BT.Roll = BarrelTurn;
-
-	SetBoneRotation('Barrels', BT);
-
-	if (CurrentWeaponMode == 0)
-		DesiredSpeed = 0.33;
-
-	else	DesiredSpeed = 0.46;
-
-	super.WeaponTick(DT);
-}
-
 simulated event RenderOverlays (Canvas C)
 {
 	DisplayFOV = Instigator.Controller.FovAngle;
@@ -183,14 +167,21 @@ defaultproperties
      CrouchAimFactor=1.000000
      HipRecoilFactor=1.000000
      AimAdjustTime=1.000000
-     AimSpread=4
+     AimSpread=0
      ViewAimFactor=1.000000
+	 ViewRecoilFactor=1.000000
      AimDamageThreshold=2000.000000
-     ChaosAimSpread=4
-     RecoilYawFactor=0.660000
-     RecoilXFactor=0.000000
+	 
+	 RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.03),(InVal=0.2,OutVal=-0.05),(InVal=0.3,OutVal=-0.07),(InVal=0.4,OutVal=0.0),(InVal=0.5,OutVal=0.1),(InVal=0.6,OutVal=0.18),(InVal=0.7,OutVal=0.05),(InVal=0.8,OutVal=0),(InVal=1,OutVal=0.000000)))
+     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.350000,OutVal=0.400000),(InVal=0.500000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+	 
+	 
+     ChaosAimSpread=0
      RecoilDeclineTime=1.100000
      FireModeClass(0)=Class'BallisticProV55.XMV850TW_PrimaryFire'
+	 WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
+     WeaponModes(1)=(bUnavailable=False)
+     WeaponModes(2)=(bUnavailable=False)
      SelectAnim="Deploy"
      SelectAnimRate=1.000000
      BringUpTime=1.400000

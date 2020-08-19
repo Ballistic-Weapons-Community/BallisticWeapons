@@ -87,18 +87,32 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
 simulated event PostBeginPlay()
 {
-	super.PostbeginPlay();
+	super.PostBeginPlay();
 	XMV850MinigunPrimaryFire(FireMode[0]).Minigun = self;
 }
 
-	
-simulated function float GetRampUpSpeed()
-{
-	if (BarrelSpeed < RotationSpeeds[0])
-		return 0.5f;
+
 
 	// takes more time to reach higher speeds
-	return 0.5f - (0.47f * ((BarrelSpeed - RotationSpeeds[0]) / (RotationSpeeds[2] - RotationSpeeds[0]))); 
+	// this is unrealistic because miniguns are electric with extremely powerful motors and provide constant torque,
+	// but do you really want the xmv to spin up to 3600rpm instantly? I for one don't
+simulated function float GetRampUpSpeed()
+{
+	local float mult;
+	
+	mult = 1 - (BarrelSpeed / RotationSpeeds[2]);
+	
+	return 0.075f + (0.5f * mult * mult);
+	
+	/*
+	if (BarrelSpeed < RotationSpeeds[0])
+		return 0.5f;
+		
+	mult = ((BarrelSpeed - RotationSpeeds[0]) / (RotationSpeeds[2] - RotationSpeeds[0])); 
+	
+
+	return 0.5f - (0.47f * mult * mult); 
+	*/
 }
 
 simulated event WeaponTick (float DT)
@@ -393,8 +407,8 @@ defaultproperties
      BarrelStartSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStart'
      DeploySound=Sound'BallisticSounds2.XMV-850.XMV-Deploy'
      UndeploySound=Sound'BallisticSounds2.XMV-850.XMV-UnDeploy'
-     PlayerSpeedFactor=0.750000
-     PlayerJumpFactor=0.750000
+     PlayerSpeedFactor=0.50000
+     PlayerJumpFactor=0.50000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XMV850'
@@ -404,45 +418,52 @@ defaultproperties
      bWT_Machinegun=True
      ManualLines(0)="Spins up the barrel. Once spun up to speed, unleashes a hail of bullets. Incredible fire rate and moderate damage. Sustained damage output is extremely high. Large ammo reserves due to the attached backpack mean the weapon can fire continuously for long periods."
      ManualLines(1)="Deploys the minigun upon the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, becomes perfectly accurate, loses its iron sights and gains a reduction in recoil. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
-     ManualLines(2)="The XMV-850 is one of the heaviest weapons in the game and severely burdens movement.||Effective at medium range. Extremely effective from ambush and deployed mode."
+     ManualLines(2)="The XMV-850 is one of the heaviest weapons in the game and halves your movement speed when equipped.||Effective at medium range. Extremely effective from ambush and deployed mode."
      SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
      BringUpSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Putaway')
-     MagAmmo=150
+     MagAmmo=300
      CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
      ReloadAnimRate=1.300000
      ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
      ClipOutSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipOut')
      ClipInSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipIn')
 	 ClipInFrame=0.650000
-	 WeaponModes(0)=(ModeName="600 RPM",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
-     WeaponModes(2)=(ModeName="2400 RPM",ModeID="WM_FullAuto")
+	 
+	 WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
+     WeaponModes(1)=(ModeName="2400 RPM",ModeID="WM_FullAuto",bUnavailable=True)
+     WeaponModes(2)=(ModeName="3600 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 
-	 RotationSpeeds(0)=0.17 // 600 RPM - 100 revolutions per minute x 6 shots
-	 RotationSpeeds(1)=0.33 // 1200 RPM - 200 revolutions per minute x 6 shots
-	 RotationSpeeds(2)=0.66 // 2400 RPM - 400 revolutions per minute x 6 shots
+	 RotationSpeeds(0)=0.33 // 1200 RPM - 150 revolutions per minute x 6 shots
+	 RotationSpeeds(1)=0.66 // 2400 RPM - 300 revolutions per minute x 6 shots
+	 RotationSpeeds(2)=1.00  // 3600 RPM - 600 revolutions per minute x 6 shots
 
-	 CurrentWeaponMode=1
+	 CurrentWeaponMode=0
 	 
 	 bShowChargingBar=True
      SightPivot=(Pitch=700,Roll=2048)
      SightOffset=(X=8.000000,Z=28.000000)
      SightDisplayFOV=45.000000
-     SightingTime=0.550000
+     SightingTime=0.80000
      CrouchAimFactor=0.75
      SprintOffSet=(Pitch=-6000,Yaw=-8000)
      JumpOffSet=(Pitch=-6000,Yaw=2000)
-     AimAdjustTime=0.800000
+     AimAdjustTime=0.500000
+	 
      AimSpread=256
-     ChaosSpeedThreshold=1200.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000),(InVal=1.000000,OutVal=0.200000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.350000,OutVal=0.400000),(InVal=0.500000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+     ChaosSpeedThreshold=350.000000
+     ChaosAimSpread=1024
+	 
+	 ViewRecoilFactor=0.1
+	 
+     RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.22),(InVal=0.3,OutVal=0.28),(InVal=0.4,OutVal=0.4),(InVal=0.5,OutVal=0.3),(InVal=0.6,OutVal=0.1),(InVal=0.7,OutVal=0.25),(InVal=0.8,OutVal=0.4),(InVal=1,OutVal=0.600000)))
+     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=-0.170000),(InVal=0.350000,OutVal=-0.400000),(InVal=0.500000,OutVal=-0.700000),(InVal=1.000000,OutVal=-1.000000)))
      RecoilXFactor=0.050000
-     RecoilYFactor=0.150000
-     RecoilMax=8192.000000
+     RecoilYFactor=0.050000
+     RecoilMax=32768.000000
      RecoilDeclineTime=2.500000
+	 
+	 
      FireModeClass(0)=Class'BallisticProV55.XMV850MinigunPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.XMV850MinigunSecondaryFire'
      SelectAnimRate=0.750000
