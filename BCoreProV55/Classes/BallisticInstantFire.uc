@@ -50,7 +50,7 @@ const MAX_WALLS = 5;
 
 //General Vars ----------------------------------------------------------------
 var() Range				TraceRange;			// Min and Max range of trace
-var() float				WaterRangeFactor;	// Remaining range is multiplied by this when going under water
+var() float				MaxWaterTraceRange;	// Maximum distance this fire should trace after entering water
 var() float				WallPenetrationForce;		// Maximum thickness of the walls that this bullet gan go through
 struct TraceInfo					// This holds info about a trace
 {
@@ -283,7 +283,7 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 		DamageFactor *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
 
 	if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
-		DamageFactor *= Lerp(VSize(HitLocation-WaterHitLocation) / (TraceRange.Max*WaterRangeFactor), 1, WaterRangeAtten);
+		DamageFactor *= Lerp(VSize(HitLocation-WaterHitLocation) / MaxWaterTraceRange, 1, WaterRangeAtten);
 
 	if (PenetrateCount > 0)
 		DamageFactor *= PDamageFactor * PenetrateCount;
@@ -388,7 +388,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			if (VSize(HitLocation - Start) > 1)
 				WaterHitLoc=HitLocation;
 			Start = HitLocation;
-			Dist *= WaterRangeFactor;
+			Dist = Min(Dist, MaxWaterTraceRange);
 			End = Start + X * Dist;
 			Weapon.bTraceWater=false;
 			continue;
@@ -763,9 +763,9 @@ static function FireModeStats GetStats()
 defaultproperties
 {
      TraceRange=(Min=5000.000000,Max=5000.000000)
-     WaterRangeFactor=1.000000
+     MaxWaterTraceRange=128 // ~ 3 feet
      RangeAtten=1.000000
-     WaterRangeAtten=1.000000
+     WaterRangeAtten=0.000000
      PDamageFactor=0.700000
      WallPDamageFactor=0.95
      DamageModHead=1.500000

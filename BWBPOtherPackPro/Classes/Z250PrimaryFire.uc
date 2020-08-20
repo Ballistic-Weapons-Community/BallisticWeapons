@@ -386,7 +386,7 @@ function DoFireEffect()
 // ModeDoFire from WeaponFire.uc, but with a few changes
 simulated event ModeDoFire()
 {
-    if (!AllowFire() || Z250Minigun(BW).BarrelSpeed < Z250Minigun(BW).DesiredSpeed)
+    if (!AllowFire() || Minigun.BarrelSpeed < Minigun.RotationSpeeds[0])
         return;
 		
 	BW.bPreventReload=true;
@@ -467,9 +467,9 @@ defaultproperties
      WaterRangeFactor=0.800000
      WallPenetrationForce=0
      
-     Damage=32.000000
-     DamageHead=48.000000
-     DamageLimb=32.000000
+     Damage=22.000000
+     DamageHead=33.000000
+     DamageLimb=22.000000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPOtherPackPro.DTZ250Bullet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTZ250Bullet'

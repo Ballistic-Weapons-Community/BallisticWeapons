@@ -4628,18 +4628,23 @@ defaultproperties
      HeaderColor=(B=50,G=50,R=255)
      TextColor=(G=175,R=255)
      SpecialInfo(0)=(Id="EvoDefs",Info="0.0;10.0;0.5;50.0;0.2;0.2;0.1")
+	 
      BringUpSound=(Volume=0.500000,Radius=32.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
      PutDownSound=(Volume=0.500000,Radius=32.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+	 
      MagAmmo=30
+	 
      CockAnim="Cock"
      CockAnimRate=1.000000
      CockSelectAnim="PulloutFancy"
      CockSelectAnimRate=1.250000
      CockingBringUpTime=0.700000
      CockSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
+	 
      ReloadAnim="Reload"
      ReloadAnimRate=1.000000
      ReloadEmptyAnim="ReloadEmpty"
+	 
      ClipHitSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
      ClipOutSound=(Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
      ClipInSound=(Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
@@ -4648,6 +4653,7 @@ defaultproperties
      EndShovelAnimRate=1.000000
      ShovelIncrement=1
      bPlayThirdPersonReload=True
+	 
      FireAnimCutThreshold=0.600000
      WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
      WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
@@ -4655,6 +4661,7 @@ defaultproperties
      CurrentWeaponMode=2
      LastWeaponMode=255
      SavedWeaponMode=255
+	 
      bUseSights=True
      ScopeXScale=1.000000
      FullZoomFOV=80.000000
@@ -4667,6 +4674,7 @@ defaultproperties
      MinZoom=1.000000
      MaxZoom=2.000000
      ZoomStages=2
+	 
      SMuzzleFlashOffset=(X=25.000000,Z=-15.000000)
      MagEmptyColor=(B=50,G=50,R=255,A=255)
      CockingColor=(B=50,G=175,R=255,A=255)
@@ -4697,6 +4705,7 @@ defaultproperties
      RecoilMax=4096.000000
      RecoilDeclineTime=2.000000
      RecoilDeclineDelay=0.300000
+	 
      SelectAnim="Pullout"
      PutDownAnim="putaway"
      SelectAnimRate=1.000000

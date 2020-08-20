@@ -150,11 +150,10 @@ defaultproperties
      CutOffDistance=6144.000000
      CutOffStartRange=3072.000000
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WaterRangeFactor=0.800000
      WallPenetrationForce=24.000000
-     Damage=40.000000
-     DamageHead=40.000000
-     DamageLimb=40.000000
+     Damage=36.000000
+     DamageHead=36.000000
+     DamageLimb=36.000000
      RangeAtten=0.450000
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTSRS900Rifle'
@@ -176,7 +175,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-Fire',Radius=1024.000000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
-     FireRate=0.170000
+     FireRate=0.20000
      AmmoClass=Class'BallisticProV55.Ammo_RS762mm'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
@@ -186,4 +185,5 @@ defaultproperties
      ShakeOffsetTime=2.000000
      WarnTargetPct=0.200000
      aimerror=800.000000
+	 BurstFireRateFactor=0.55
 }

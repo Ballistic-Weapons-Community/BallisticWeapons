@@ -503,19 +503,19 @@ defaultproperties
 	SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
 	BringUpSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Putaway')
-	MagAmmo=50
+	MagAmmo=75
 	CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
 	ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
 	ClipOutSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipOut')
 	ClipInSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipIn')
 	ClipInFrame=0.650000
-	WeaponModes(0)=(ModeName="400 RPM",ModeID="WM_FullAuto")
-	WeaponModes(1)=(ModeName="600 RPM",ModeID="WM_FullAuto")
-	WeaponModes(2)=(ModeName="800 RPM",ModeID="WM_FullAuto")
+	WeaponModes(0)=(ModeName="600 RPM",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="900 RPM",ModeID="WM_FullAuto")
+	WeaponModes(2)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
 	 
-	RotationSpeeds(0)=0.22
-	RotationSpeeds(1)=0.33
-	RotationSpeeds(2)=0.44
+	RotationSpeeds(0)=0.33
+	RotationSpeeds(1)=0.5
+	RotationSpeeds(2)=0.66
 
 	CurrentWeaponMode=2
 	bShowChargingBar=True
@@ -527,15 +527,19 @@ defaultproperties
 	SprintOffSet=(Pitch=-6000,Yaw=-8000)
 	JumpOffSet=(Pitch=-6000,Yaw=2000)
 	AimAdjustTime=0.800000
-	AimSpread=256
-	ChaosSpeedThreshold=1200.000000
-	ChaosAimSpread=3072
-	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000),(InVal=1.000000,OutVal=0.200000)))
+	AimSpread=64
+	ChaosSpeedThreshold=450.000000
+	ChaosAimSpread=768
+	
+	ViewRecoilFactor=0.35
+	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
 	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.350000,OutVal=0.400000),(InVal=0.500000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 	RecoilXFactor=0.070000
-	RecoilYFactor=0.100000
+	RecoilYFactor=0.070000
 	RecoilMax=8192.000000
-	RecoilDeclineTime=2.500000
+	RecoilDeclineTime=1.500000
+	
+	
 	FireModeClass(0)=Class'BWBPOtherPackPro.Z250PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.Z250SecondaryFire'
 	SelectAnimRate=0.750000

@@ -346,27 +346,31 @@ simulated event RenderOverlays( Canvas Canvas )
 simulated function SetScopeBehavior()
 {
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+	
 	if (bScopeView)
 	{
 		ViewAimFactor = 1.0;
 		ViewRecoilFactor = 1.0;
-		AimAdjustTime *= 1.5;
-		AimSpread *= SightAimFactor;
+		AimSpread = 0;
 		ChaosAimSpread *= SightAimFactor;
+		ChaosDeclineTime *= 2.0;
+		ChaosSpeedThreshold *= 0.7;
 	}
 	else
-
 	{
-		//caused flicker coming out of scope - regulated differently for server & client!
+		//PositionSights will handle this for clients
 		if(Level.NetMode == NM_DedicatedServer)
+		{
 			ViewAimFactor = default.ViewAimFactor;
+			ViewRecoilFactor = default.ViewRecoilFactor;
+		}
 
-		ViewRecoilFactor = default.ViewRecoilFactor;
-		AimAdjustTime = default.AimAdjustTime;
 		AimSpread = default.AimSpread;
 		AimSpread *= BCRepClass.default.AccuracyScale;
 		ChaosAimSpread = default.ChaosAimSpread;
 		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
+		ChaosDeclineTime = default.ChaosDeclineTime;
+		ChaosSpeedThreshold = default.ChaosSpeedThreshold;
 	}
 }
 
@@ -377,6 +381,7 @@ simulated function PlayReload()
 
 	super.PlayReload();
 }
+
 simulated function Notify_ClipOutOfSight()
 {
 	SetBoneScale (1, 1.0, 'Bullet');

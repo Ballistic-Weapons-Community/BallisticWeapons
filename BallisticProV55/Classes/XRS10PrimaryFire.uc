@@ -134,7 +134,6 @@ defaultproperties
      SFlashScaleFactor=1.000000
      CutOffDistance=1280.000000
      CutOffStartRange=512.000000
-     WaterRangeFactor=0.500000
      WallPenetrationForce=8.000000
      Damage=22.000000
      DamageHead=22.000000

@@ -45,9 +45,9 @@ defaultproperties
 {
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WaterRangeFactor=0.800000
-     Damage=30.000000
-     DamageHead=60.000000
-     DamageLimb=30.000000
+     Damage=40.000000
+     DamageHead=80.000000
+     DamageLimb=40.000000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPRecolorsPro.DT_AS50Torso'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_AS50Head'
@@ -59,13 +59,13 @@ defaultproperties
      BrassClass=Class'BWBPRecolorsPro.Brass_BMGInc'
      BrassBone="breach"
      BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
-     RecoilPerShot=512.000000
+     RecoilPerShot=768.000000
      VelocityRecoil=255.000000
      FireChaos=1.000000
      BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.AS50.AS50-Fire',Volume=5.100000,Slot=SLOT_Interact,bNoOverride=False)
      FireAnim="CFire"
      FireEndAnim=
-     FireRate=0.280000
+     FireRate=0.350000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_50Inc'
      ShakeRotMag=(X=450.000000,Y=64.000000)
      ShakeRotRate=(X=12400.000000,Y=12400.000000,Z=12400.000000)

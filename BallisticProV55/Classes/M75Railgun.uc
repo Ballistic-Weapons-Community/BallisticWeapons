@@ -476,15 +476,19 @@ defaultproperties
      SprintOffSet=(Pitch=-8000,Yaw=-10000)
      JumpOffSet=(Pitch=-6000,Yaw=2000)
      JumpChaos=0.800000
-     AimSpread=256
+     AimSpread=64
      ChaosDeclineTime=0.800000
-     ChaosSpeedThreshold=2400.000000
-     ChaosAimSpread=3072
-     RecoilXFactor=1.200000
-     RecoilYFactor=0.600000
+     ChaosAimSpread=1536
+	 
+	 ViewRecoilFactor=0.15
+	 RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.18),(InVal=0.40000,OutVal=0.350000),(InVal=0.50000,OutVal=0.420000),(InVal=0.600000,OutVal=0.450000),(InVal=0.700000,OutVal=0.55),(InVal=0.800000,OutVal=0.60000),(InVal=1.000000,OutVal=0.7)))
+     RecoilXFactor=0.250000
+     RecoilYFactor=0.250000
      RecoilMinRandFactor=0.400000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=1.500000
+	 
+	 
      FireModeClass(0)=Class'BallisticProV55.M75PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M75SecondaryFire'
      PutDownAnimRate=1.300000
