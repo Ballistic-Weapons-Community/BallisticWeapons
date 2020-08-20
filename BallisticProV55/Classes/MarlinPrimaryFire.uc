@@ -87,7 +87,7 @@ defaultproperties
      bBrassOnCock=True
      BrassOffset=(X=-70.000000,Y=-12.000000,Z=10.000000)
      AimedFireAnim="SightFireCock"
-     RecoilPerShot=410.000000
+     RecoilPerShot=768.000000
      FireChaos=0.800000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.Marlin.Mar-Fire')
      FireEndAnim=

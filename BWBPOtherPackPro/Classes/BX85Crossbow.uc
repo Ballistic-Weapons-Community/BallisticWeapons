@@ -512,18 +512,18 @@ defaultproperties
      MinZoom=2.000000
      MaxZoom=16.000000
      ZoomStages=3
-     SightAimFactor=0.150000
+     SightAimFactor=2
      JumpChaos=0.200000
      AimAdjustTime=0.450000
-     AimSpread=16
-     ChaosDeclineTime=0.450000
-     ChaosSpeedThreshold=600.000000
-     RecoilYawFactor=0.000000
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilMax=8192.000000
+	 ChaosAimSpread=512
+	 
+	 ViewRecoilFactor=0.5
+     RecoilXFactor=0.050000
+     RecoilYFactor=0.050000
+     RecoilMax=4096.000000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.500000
+	 
      FireModeClass(0)=Class'BWBPOtherPackPro.BX85PrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      PutDownTime=0.600000

@@ -654,16 +654,16 @@ defaultproperties
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
      LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-     AimSpread=32
-     ViewRecoilFactor=0.900000
-     ChaosAimSpread=768
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
+	 
+	 ViewRecoilFactor=0.65
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
      RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.600000
-     RecoilYFactor=0.800000
+     RecoilXFactor=0.100000
+     RecoilYFactor=0.200000
      RecoilMax=16384.000000
      RecoilDeclineTime=0.900000
      RecoilDeclineDelay=0.400000
+	 
      FireModeClass(0)=Class'BWBPSomeOtherPack.TrenchGunPrimaryFire'
      FireModeClass(1)=Class'BWBPSomeOtherPack.TrenchGunSecondaryFire'
      SelectAnimRate=2.000000

@@ -107,7 +107,7 @@ defaultproperties
      FullZoomFOV=20.000000
      bNoMeshInScope=True
      bNoCrosshairInScope=True
-	 SightAimFactor=5
+	 SightAimFactor=1
      SightPivot=(Roll=-1024)
      SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
      SightingTime=0.550000
@@ -122,7 +122,7 @@ defaultproperties
 	 
      AimSpread=16
      ChaosSpeedThreshold=500.000000
-     ChaosAimSpread=192
+     ChaosAimSpread=256
 	 
 	 ViewRecoilFactor=0.2
 	 RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.12),(InVal=0.2,OutVal=0.16),(InVal=0.40000,OutVal=0.250000),(InVal=0.50000,OutVal=0.30000),(InVal=0.600000,OutVal=0.370000),(InVal=0.700000,OutVal=0.4),(InVal=0.800000,OutVal=0.50000),(InVal=1.000000,OutVal=0.55)))

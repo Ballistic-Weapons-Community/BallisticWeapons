@@ -266,9 +266,12 @@ simulated event ModeDoFire()
     if (!AllowFire()) 
 		return;
 	
+	
+	/*
 	// won't fire if spinning slower than lowest rotation speed
 	if (Minigun.BarrelSpeed <  Minigun.RotationSpeeds[0]) //Minigun.DesiredSpeed)
         return;
+	*/
 
 	BW.bPreventReload=true;
 	BW.FireCount++;

@@ -320,16 +320,16 @@ defaultproperties
      SightAimFactor=0.150000
      JumpChaos=0.200000
      AimAdjustTime=0.450000
-     AimSpread=16
      ChaosDeclineTime=0.450000
-     ChaosSpeedThreshold=7500.000000
-     ChaosAimSpread=512
-     RecoilYawFactor=0.000000
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
+	 
+	 ViewRecoilFactor=0.45
+     RecoilXFactor=0.10000
+     RecoilYFactor=0.10000
      RecoilMax=8192.000000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.500000
+	 
+	 
      FireModeClass(0)=Class'BWBPOtherPackPro.PD97PrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.PD97SecondaryFire'
      PutDownTime=0.600000

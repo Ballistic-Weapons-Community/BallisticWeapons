@@ -205,13 +205,16 @@ simulated function PlayIdle()
 	    SafeLoopAnim(IdleAnim, IdleAnimRate, IdleTweenTime, ,"IDLE");
 }
 
+// takes more time to reach higher speeds
+// this is unrealistic because miniguns are electric with extremely powerful motors and provide constant torque,
+// but do you really want the xmv to spin up to 3600rpm instantly? I for one don't
 simulated function float GetRampUpSpeed()
 {
-	if (BarrelSpeed < RotationSpeeds[0])
-		return 0.5f;
-
-	// takes more time to reach higher speeds
-	return 0.5f - (0.48f * ((BarrelSpeed - RotationSpeeds[0]) / (RotationSpeeds[2] - RotationSpeeds[0]))); 
+	local float mult;
+	
+	mult = 1 - (BarrelSpeed / RotationSpeeds[2]);
+	
+	return 0.075f + (0.5f * mult * mult);
 }
 
 // Load in a grenade
@@ -503,7 +506,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
 	BringUpSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Putaway')
-	MagAmmo=75
+	MagAmmo=100
 	CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
 	ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
 	ClipOutSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipOut')

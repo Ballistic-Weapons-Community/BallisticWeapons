@@ -265,7 +265,7 @@ defaultproperties
 	 
      ChaosDeclineTime=1.000000
 	 
-	 ViewRecoilFactor=0.35
+	 ViewRecoilFactor=0.5
 	 RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.400000,OutVal=0.10000),(InVal=0.600000,OutVal=0.25000),(InVal=0.800000,OutVal=0.33000),(InVal=1.000000)))
      RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
      RecoilDeclineTime=1.000000

@@ -65,12 +65,12 @@ defaultproperties
 	 HipSpreadFactor=2.000000
 	 MaxSpreadFactor=2.000000
      CutOffDistance=1280.000000
-     CutOffStartRange=512.000000
-     TraceCount=8
+     CutOffStartRange=768.000000
+     TraceCount=6
      TracerClass=Class'BallisticJiffyPack.TraceEmitter_ShotgunHE'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=4000.000000,Max=6000.000000)
-     Damage=8.000000
+     Damage=9.000000
      DamageHead=8.000000
      DamageLimb=8.000000
      RangeAtten=0.300000
@@ -85,16 +85,16 @@ defaultproperties
      BrassClass=Class'BallisticJiffyPack.Brass_ShotgunHE'
      BrassOffset=(X=-1.000000,Z=-1.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=240.000000
-     VelocityRecoil=120.000000
+     RecoilPerShot=256.000000
+     VelocityRecoil=150.000000
      FireChaos=0.500000
-     XInaccuracy=550.000000
-     YInaccuracy=400.000000
+     XInaccuracy=256.000000
+     YInaccuracy=192.000000
      FireSpreadMode=FSM_Rectangle
      BallisticFireSound=(Sound=SoundGroup'BallisticSounds2.XMV-850.XMV-Fire-3')
      FireEndAnim=
-     FireAnimRate=2.250000
-     FireRate=0.290000
+     FireAnimRate=2.50000
+     FireRate=0.200000
      AmmoClass=Class'BallisticJiffyPack.Ammo_ARShotgun'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
