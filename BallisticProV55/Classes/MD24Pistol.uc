@@ -396,9 +396,9 @@ defaultproperties
      AimAdjustTime=0.450000
 	 
 	 
-	 ViewRecoilFactor=0.4
-     RecoilXFactor=0.10000
-     RecoilYFactor=0.10000
+	 ViewRecoilFactor=0.65
+     RecoilXFactor=0.03000
+     RecoilYFactor=0.03000
      RecoilDeclineTime=0.500000
      RecoilDeclineDelay=0.220000
 	 

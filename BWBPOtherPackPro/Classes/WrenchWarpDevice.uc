@@ -703,7 +703,7 @@ defaultproperties
      bNotifyModeSwitch=True
      GunLength=0.000000
      bAimDisabled=True
-	 InventorySize=11
+	 InventorySize=12
      FireModeClass(0)=Class'WrenchPrimaryFire'
      FireModeClass(1)=Class'WrenchSecondaryFire'
      SelectAnimRate=1.250000

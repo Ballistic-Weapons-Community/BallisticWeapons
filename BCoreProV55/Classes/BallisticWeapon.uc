@@ -534,11 +534,15 @@ simulated function PostNetBeginPlay()
 		AimSpread *= BCRepClass.default.AccuracyScale;
 	}
 
+	CheckBurstMode();
+	
+	/*
 	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
 	{
 		BFireMode[0].bBurstMode = True;
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
 	}
+	*/
 }
 
 simulated function PostNetReceive()
@@ -2036,6 +2040,21 @@ function ServerSwitchWeaponMode (byte NewMode)
 		default.LastWeaponMode = CurrentWeaponMode;
 }
 
+simulated function float CalculateBurstRecoilDelay(bool burst)
+{
+	if (burst)
+	{
+		return
+			(BFireMode[0].FireRate * WeaponModes[CurrentWeaponMode].Value * (1f - BFireMode[0].BurstFireRateFactor)) // cooldown of burst
+			+ (default.RecoilDeclineDelay - BFireMode[0].FireRate); // inherent delay, usually fire rate * 0.5
+	}
+	
+	else
+	{
+		return default.RecoilDeclineDelay;
+	}
+}
+
 function CheckBurstMode()
 {
 	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
@@ -2046,6 +2065,7 @@ function CheckBurstMode()
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
 		if (!Instigator.IsLocallyControlled())
 			ClientSwitchBurstMode(True, WeaponModes[CurrentWeaponMode].Value);
+
 	}
 	
 	else if(BFireMode[0].bBurstMode)
@@ -2054,6 +2074,8 @@ function CheckBurstMode()
 		if (!Instigator.IsLocallyControlled())
 			ClientSwitchBurstMode(False);
 	}
+	
+	RecoilDeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
 }
 
 simulated function ClientSwitchWeaponModes (byte NewMode)
@@ -2062,11 +2084,14 @@ simulated function ClientSwitchWeaponModes (byte NewMode)
 	BFireMode[1].SwitchWeaponMode(NewMode);
 }
 
-simulated final function ClientSwitchBurstMode(bool bBurst, optional int Max)
+simulated final function ClientSwitchBurstMode(bool burst, optional int Max)
 {
-	BFireMode[0].bBurstMode = bBurst;
-	if (bBurst)
+	BFireMode[0].bBurstMode = burst;
+	
+	if (burst)
 		BFireMode[0].MaxBurst = Max;
+		
+	RecoilDeclineDelay = CalculateBurstRecoilDelay(burst);
 }
 
 // See if firing modes will let us fire another round or not

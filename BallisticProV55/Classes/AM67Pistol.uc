@@ -104,7 +104,7 @@ defaultproperties
 	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_AM67'
 	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
 	BringUpTime=0.900000
-	SightAimFactor=2
+	SightAimFactor=1
 	ChaosDeclineTime=0.450000
 	ChaosSpeedThreshold=500.000000
 	ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')

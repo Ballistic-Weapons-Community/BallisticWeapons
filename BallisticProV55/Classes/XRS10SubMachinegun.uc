@@ -434,7 +434,7 @@ defaultproperties
 	
 	SightAimFactor=2
 	
-	ViewRecoilFactor=0.5
+	ViewRecoilFactor=0.6
 	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.05),(InVal=0.400000,OutVal=0.10000),(InVal=0.5500000,OutVal=0.120000),(InVal=0.800000,OutVal=0.15000),(InVal=1.000000,OutVal=0.100000)))
 	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.400000,OutVal=0.420000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 	RecoilXFactor=0.1

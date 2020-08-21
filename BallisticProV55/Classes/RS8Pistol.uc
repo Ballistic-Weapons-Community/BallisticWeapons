@@ -497,7 +497,7 @@ defaultproperties
      ChaosDeclineTime=0.450000
 	 
 	 
-	 ViewRecoilFactor=0.3
+	 ViewRecoilFactor=0.6
      RecoilXFactor=0.05
      RecoilYFactor=0.05
      RecoilDeclineTime=0.500000

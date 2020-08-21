@@ -478,6 +478,7 @@ defaultproperties
      JumpChaos=0.800000
      AimSpread=64
      ChaosDeclineTime=0.800000
+	 SightAimFactor=0.5
      ChaosAimSpread=1536
 	 
 	 ViewRecoilFactor=0.15

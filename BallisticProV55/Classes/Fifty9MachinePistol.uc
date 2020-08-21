@@ -141,7 +141,7 @@ simulated function ClientSwitchWeaponModes(byte newMode)
 {
 	super.ClientSwitchWeaponModes(newMode);
 	
-	SwitchStock(!bool(newMode));
+	SwitchStock(bool(newMode));
 }
 
 simulated function SwitchStock(bool bNewValue)
@@ -342,7 +342,7 @@ defaultproperties
 	SprintOffSet=(Pitch=-3000,Yaw=-4000)
 	AimAdjustTime=0.450000
 	
-	ViewRecoilFactor=0.35
+	ViewRecoilFactor=0.5
 	RecoilXCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 	RecoilXFactor=0.10000

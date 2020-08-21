@@ -146,7 +146,7 @@ defaultproperties
      BrassOffset=(X=-25.000000,Z=-5.000000)
      AimedFireAnim="SightFire"
      RecoilPerShot=72.000000
-     FireChaos=0.035000
+     FireChaos=0.025000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
      XInaccuracy=32.000000
      YInaccuracy=32.000000

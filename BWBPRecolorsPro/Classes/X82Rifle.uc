@@ -397,7 +397,7 @@ defaultproperties
 	CrouchAimFactor=0.700000
 	SprintOffSet=(Pitch=-1000,Yaw=-2048)
 	JumpOffSet=(Pitch=-6000,Yaw=2000)
-	SightAimFactor=0.75
+	SightAimFactor=0.5
 	AimAdjustTime=0.600000
 	AimSpread=256
 	ChaosDeclineTime=1.200000

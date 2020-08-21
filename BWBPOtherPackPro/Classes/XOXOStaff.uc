@@ -410,7 +410,7 @@ defaultproperties
      SprintOffSet=(Pitch=-1024,Yaw=-1024)
      ChaosDeclineTime=1.250000
 	 
-	 ViewAimFactor=0.35
+	 ViewRecoilFactor=0.35
      RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=0.045000),(InVal=0.300000,OutVal=0.150000),(InVal=0.600000,OutVal=0.210000),(InVal=0.700000,OutVal=0.150000),(InVal=1.000000)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.200000,OutVal=0.200000),(InVal=1.000000,OutVal=1.000000)))
      RecoilXFactor=0.10000

@@ -247,7 +247,7 @@ defaultproperties
      ChaosSpeedThreshold=7500.000000
      ChaosAimSpread=512
 	 
-	 ViewRecoilFactor=0.35
+	 ViewRecoilFactor=0.45
      RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.400000,OutVal=0.050000),(InVal=0.600000,OutVal=0.10000),(InVal=0.800000,OutVal=0.120000),(InVal=1.000000,OutVal=0.16)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.25),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
      RecoilXFactor=0.05000

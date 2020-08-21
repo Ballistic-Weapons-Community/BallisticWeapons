@@ -679,7 +679,7 @@ defaultproperties
      ClipInSound=(Sound=Sound'BallisticSounds2.M50.M50ClipIn')
      ClipInFrame=0.650000
      WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(Value=5.000000)
+     WeaponModes(1)=(Value=3.000000,bUnavailable=True)
      bNoCrosshairInScope=False
      SightPivot=(Pitch=200)
      SightOffset=(Y=0.050000,Z=12.130000)

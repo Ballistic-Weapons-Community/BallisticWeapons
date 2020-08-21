@@ -1,6 +1,6 @@
 class WrenchBoostTrigger extends Trigger;
 
-var vector	ZForce;
+var float	ZForce;
 var float	BoostForce;
 var sound	JumpSound;
 var byte	Team;
@@ -25,7 +25,8 @@ event PostTouch(Actor Other)
 	
 		if ( Other.Physics == PHYS_Walking )
 			Other.SetPhysics(PHYS_Falling);
-		Other.Velocity += ZForce + Dir * BoostForce;
+		Other.Velocity.Z = ZForce;
+		Other.Velocity += Dir * BoostForce;
 		Other.Acceleration = vect(0,0,0);
 		Other.PlaySound(JumpSound);
 		if(BallisticPawn(Other) != None)
@@ -35,8 +36,8 @@ event PostTouch(Actor Other)
 
 defaultproperties
 {
-     ZForce=(Z=1700.000000)
-     BoostForce=350.000000
+     ZForce=300.000000
+     BoostForce=0.000000
      JumpSound=Sound'PickupSounds.AdrenelinPickup'
      TransientSoundVolume=1.000000
      CollisionRadius=64.000000
