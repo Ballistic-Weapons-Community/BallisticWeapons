@@ -36,7 +36,7 @@ event PostTouch(Actor Other)
 
 defaultproperties
 {
-     ZForce=300.000000
+     ZForce=1100.000000
      BoostForce=0.000000
      JumpSound=Sound'PickupSounds.AdrenelinPickup'
      TransientSoundVolume=1.000000
