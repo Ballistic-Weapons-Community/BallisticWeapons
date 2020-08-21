@@ -283,8 +283,8 @@ defaultproperties
      BoxOffSound=(Sound=Sound'BallisticSounds2.M353.M353-BoxOff')
      FlapUpSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapUp')
      FlapDownSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapDown')
-     PlayerSpeedFactor=0.90000
-     PlayerJumpFactor=0.900000
+     PlayerSpeedFactor=0.85000
+     PlayerJumpFactor=0.850000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M353'
@@ -303,7 +303,7 @@ defaultproperties
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
      ReloadAnim="ReloadStart"
-     ReloadAnimRate=1.450000
+     ReloadAnimRate=1.250000
      ClipOutSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellOut')
      ClipInSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellIn')
      ClipInFrame=0.650000
@@ -313,22 +313,23 @@ defaultproperties
      WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)
      WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
      CurrentWeaponMode=3
-     bNoCrosshairInScope=False
-     SightPivot=(Pitch=128)
-     SightOffset=(X=-6.000000,Z=5.350000)
+     bNoCrosshairInScope=True
+     SightOffset=(X=-6.000000,Z=4.60000)
      SightingTime=0.550000
-     SightAimFactor=0.700000
+     SightAimFactor=0.5
      SprintOffSet=(Pitch=-6000,Yaw=-8000)
-     AimSpread=384
+     AimSpread=128
+	 ChaosAimSpread=1024
+	 JumpOffSet=(Pitch=-4000,Yaw=3000)
+	 HipRecoilFactor=1.5
      ViewRecoilFactor=0.500000
      ChaosDeclineTime=1.600000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.070000,OutVal=-0.050000),(InVal=0.100000,OutVal=-0.085000),(InVal=0.180000,OutVal=0.060000),(InVal=0.300000,OutVal=-0.100000),(InVal=0.500000,OutVal=0.200000),(InVal=0.650000,OutVal=0.300000),(InVal=0.700000,OutVal=-0.100000),(InVal=0.850000,OutVal=0.400000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.050000,OutVal=0.070000),(InVal=0.100000,OutVal=0.120000),(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.400000),(InVal=0.550000,OutVal=0.650000),(InVal=0.650000,OutVal=0.450000),(InVal=0.800000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
+     RecoilXCurve=(Points=(,(InVal=0.070000,OutVal=0.050000),(InVal=0.100000,OutVal=0.085000),(InVal=0.180000,OutVal=0.060000),(InVal=0.300000,OutVal=0.100000),(InVal=0.500000,OutVal=0.200000),(InVal=0.650000,OutVal=0.300000),(InVal=0.700000,OutVal=0.4500000),(InVal=0.850000,OutVal=0.400000),(InVal=1.000000,OutVal=0.55)))
+     RecoilYCurve=(Points=(,(InVal=0.050000,OutVal=0.070000),(InVal=0.100000,OutVal=0.120000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.400000),(InVal=0.550000,OutVal=0.650000),(InVal=0.650000,OutVal=0.750000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.05000
+     RecoilYFactor=0.05000
      RecoilMax=12288.000000
-     RecoilDeclineTime=1.500000
+     RecoilDeclineTime=0.500000
      RecoilDeclineDelay=0.150000
      FireModeClass(0)=Class'BallisticProV55.M353PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M353SecondaryFire'

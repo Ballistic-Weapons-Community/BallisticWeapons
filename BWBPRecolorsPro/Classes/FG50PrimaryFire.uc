@@ -39,7 +39,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		RecoilPerShot=default.RecoilPerShot;
 		VelocityRecoil=default.VelocityRecoil;
 		FireRate = default.FireRate;
-		FireChaos=default.FireChaos;
+		FireChaos = default.FireChaos;
 		FireAnim='Fire';
 		DamageType=Class'DT_FG50Torso';
 		DamageTypeArm=Class'DT_FG50Limb';
@@ -86,7 +86,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				if (VSize(HitLocation - Start) > 1)
 					WaterHitLoc=HitLocation;
 				Start = HitLocation;
-				Dist *= WaterRangeFactor;
+				Dist = Min(Dist, MaxWaterTraceRange);
 				End = Start + X * Dist;
 				Weapon.bTraceWater=false;
 				continue;
@@ -178,7 +178,6 @@ defaultproperties
 {
      SpecialFireSound=Sound'PackageSounds4Pro.X82.X82-Fire2'
      TraceRange=(Min=15000.000000,Max=15000.000000)
-     WaterRangeFactor=0.800000
      WallPenetrationForce=0.000000
      
      Damage=65.000000
@@ -195,13 +194,14 @@ defaultproperties
      DryFireSound=(Sound=Sound'BallisticSounds2.D49.D49-DryFire',Volume=0.700000)
      bCockAfterEmpty=True
      MuzzleFlashClass=Class'BWBPRecolorsPro.FG50FlashEmitter'
-     FlashScaleFactor=1.500000
+     FlashScaleFactor=1.000000
      BrassClass=Class'BWBPRecolorsPro.Brass_BMGInc'
      BrassBone="tip"
      BrassOffset=(X=-80.000000,Y=1.000000)
-     AimedFireAnim="SGCFire"
+	 FireAnim="Fire"
+     AimedFireAnim="SGCFireAimed"
      RecoilPerShot=512.000000
-     VelocityRecoil=125.000000
+     VelocityRecoil=150.000000
      FireChaos=0.200000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)

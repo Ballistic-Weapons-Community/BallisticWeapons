@@ -547,21 +547,21 @@ defaultproperties
      SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
      SightDisplayFOV=25.000000
      SightingTime=0.250000
-     SightAimFactor=0.300000
-	 SightZoomFactor=0
+     SightAimFactor=1
+	 SightZoomFactor=0.85
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimAdjustTime=0.600000
-     AimSpread=16
-     AimDamageThreshold=75.000000
      ChaosDeclineTime=1.250000
-     ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.140000),(InVal=0.600000,OutVal=-0.120000),(InVal=0.700000,OutVal=-0.120000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.350000),(InVal=0.450000,OutVal=0.550000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
+	 
+	 ViewRecoilFactor=0.35
+     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.070000),(InVal=0.300000,OutVal=0.140000),(InVal=0.600000,OutVal=0.120000),(InVal=0.700000,OutVal=0.120000),(InVal=1.000000)))
+     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.150000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=0.320000),(InVal=0.450000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.050000
+     RecoilYFactor=0.050000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.230000
+	 
+	 
      FireModeClass(0)=Class'BWBPOtherPackPro.RaygunPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.RaygunSecondaryFire'
      BringUpTime=0.500000

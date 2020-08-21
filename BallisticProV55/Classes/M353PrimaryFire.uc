@@ -34,7 +34,6 @@ defaultproperties
 	 CutOffStartRange=2560
 	 RangeAtten=0.35
      TraceRange=(Min=15000.000000,Max=15000.000000)
-     WaterRangeFactor=0.800000
      WallPenetrationForce=24.000000
      
      Damage=20.000000
@@ -54,14 +53,14 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_MG'
      BrassOffset=(X=6.000000,Y=10.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=120.000000
+     RecoilPerShot=96.000000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
      XInaccuracy=16.000000
      YInaccuracy=16.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
-     FireRate=0.065000
+     FireRate=0.08000
      AmmoClass=Class'BallisticProV55.Ammo_556mmBelt'
      ShakeRotMag=(X=64.000000,Y=64.000000,Z=128.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

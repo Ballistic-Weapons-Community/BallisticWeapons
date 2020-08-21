@@ -220,27 +220,36 @@ defaultproperties
      ClipOutSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-ClipOut')
      ClipInSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-ClipIn')
      ClipInFrame=0.650000
-     WeaponModes(0)=(bUnavailable=True)
+     WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+     WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=2.000000)
+     WeaponModes(2)=(bUnavailable=True)
+	 CurrentWeaponMode=0
      FullZoomFOV=70.000000
      bNoCrosshairInScope=True
      SightOffset=(X=16.000000,Z=10.460000)
      SightDisplayFOV=25.000000
      GunLength=72.000000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
-     AimSpread=32
-     ChaosDeclineTime=1.250000
-     ChaosSpeedThreshold=9000.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=-0.120000),(InVal=0.400000,OutVal=0.180000),(InVal=0.800000,OutVal=-0.220000),(InVal=1.000000,OutVal=0.250000)))
-     RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.500000,OutVal=0.445000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.250000
+	 
+     AimSpread=16
+     ChaosDeclineTime=0.75
+     ChaosAimSpread=192
+	 
+	 ViewRecoilFactor=0.25
+	 
+     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.30000),(InVal=0.800000,OutVal=0.40000),(InVal=1.000000,OutVal=0.60000)))
+     RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.1000
+     RecoilYFactor=0.1000
+     RecoilDeclineTime=1.00000
+     RecoilDeclineDelay=0.400000
+	 
+	 
      FireModeClass(0)=Class'BallisticProV55.SRS600PrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectAnimRate=1.350000
      BringUpTime=0.350000
+	 
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.80000
      CurrentRating=0.80000

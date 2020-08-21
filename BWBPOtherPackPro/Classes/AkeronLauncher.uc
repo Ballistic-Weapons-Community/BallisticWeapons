@@ -119,8 +119,8 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 defaultproperties
 {
      PanicThreshold=4.000000
-     PlayerSpeedFactor=0.900000
-     PlayerJumpFactor=0.900000
+     PlayerSpeedFactor=0.850000
+     PlayerJumpFactor=0.850000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BWBPOtherPackTex3.Akeron.BigIcon_Akeron'
@@ -131,7 +131,7 @@ defaultproperties
      bWT_Projectile=True
      ManualLines(0)="Launches rockets with good fire rate. These rockets travel quickly and deal high damage upon direct impact. The blast of Akeron rockets is directed forwards, so targets perpendicular to or behind the rocket's target vector when it explodes will take very little damage."
      ManualLines(1)="Launches a manually guided rocket. While a rocket is active, the user views through the rocket's nose camera. Rockets are fast and quite manoeuverable, but much as the primary fire, have a directed blast and require the enemy to be struck directly to do much damage."
-     ManualLines(2)="The Akeron is effective at medium range or in specialist situations where indirect fire is required. As a rocket launcher, it has very low recoil, but its size makes it cumbersome to use without stability or aiming."
+     ManualLines(2)="The Akeron is effective at close to medium range or in specialist situations where indirect fire is required. As a rocket launcher, it has no recoil, but its size makes it cumbersome to use without stability or aiming."
      SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.0;1.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')
@@ -161,10 +161,13 @@ defaultproperties
      SprintOffSet=(Pitch=-6000,Yaw=-8000)
      JumpOffSet=(Pitch=-6000,Yaw=-1500)
      AimAdjustTime=1.000000
-     AimSpread=512
-     ChaosSpeedThreshold=1000.000000
-     ChaosAimSpread=2560
+     AimSpread=64
+     ChaosSpeedThreshold=500.000000
+     ChaosAimSpread=512
+	 
+	 ViewRecoilFactor=0.75
      RecoilDeclineTime=1.000000
+	 
      FireModeClass(0)=Class'BWBPOtherPackPro.AkeronPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.AkeronSecondaryFire'
      SelectAnimRate=0.600000

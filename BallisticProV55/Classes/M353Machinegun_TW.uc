@@ -288,19 +288,19 @@ defaultproperties
      HipRecoilFactor=1.000000
      SprintOffSet=(Pitch=-6000,Yaw=-8000)
      AimAdjustTime=0.800000
-     AimSpread=2
+     AimSpread=0
      ViewAimFactor=1.000000
      AimDamageThreshold=2000.000000
      ChaosDeclineTime=0.320000
      ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=512
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.150000),(InVal=0.550000,OutVal=0.120000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.200000),(InVal=0.500000,OutVal=0.400000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilYawFactor=0.660000
-     RecoilXFactor=0.000000
-     RecoilYFactor=0.200000
-     RecoilDeclineTime=0.750000
-     RecoilDeclineDelay=0.120000
+     ChaosAimSpread=0
+     RecoilXCurve=(Points=(,(InVal=0.070000,OutVal=0.050000),(InVal=0.100000,OutVal=0.085000),(InVal=0.180000,OutVal=0.060000),(InVal=0.300000,OutVal=0.100000),(InVal=0.500000,OutVal=0.200000),(InVal=0.650000,OutVal=0.300000),(InVal=0.700000,OutVal=0.4500000),(InVal=0.850000,OutVal=0.400000),(InVal=1.000000,OutVal=0.55)))
+     RecoilYCurve=(Points=(,(InVal=0.050000,OutVal=0.070000),(InVal=0.100000,OutVal=0.120000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.400000),(InVal=0.550000,OutVal=0.650000),(InVal=0.650000,OutVal=0.750000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.03000
+     RecoilYFactor=0.03000
+     RecoilMax=12288.000000
+     RecoilDeclineTime=0.500000
+     RecoilDeclineDelay=0.150000
      FireModeClass(0)=Class'BallisticProV55.M353TW_PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M353SecondaryFire'
      SelectAnim="Deploy"

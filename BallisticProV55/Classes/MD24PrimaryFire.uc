@@ -34,11 +34,10 @@ defaultproperties
      CutOffDistance=1536.000000
      CutOffStartRange=512.000000
      TraceRange=(Min=4000.000000,Max=4000.000000)
-     WaterRangeFactor=0.600000
      WallPenetrationForce=8.000000
      
      Damage=22.000000
-     DamageHead=44.000000
+     DamageHead=33.000000
      DamageLimb=22.000000
      RangeAtten=0.200000
      WaterRangeAtten=0.500000
@@ -52,14 +51,14 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassOffset=(X=-10.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=512.000000
+     RecoilPerShot=140.000000
      FireChaos=0.200000
      XInaccuracy=96.000000
      YInaccuracy=96.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Fire',Volume=4.000000)
      FireEndAnim=
      FireAnimRate=1.450000
-     FireRate=0.260000
+     FireRate=0.13000
      AmmoClass=Class'BallisticProV55.Ammo_MD24Clip'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

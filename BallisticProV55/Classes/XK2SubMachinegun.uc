@@ -6,6 +6,8 @@
 // hard to detect by removing tracers, using a small muzzle flash and making
 // low noise of course.
 //
+// Weapon balance basis: MP5A2
+//
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
@@ -211,13 +213,13 @@ defaultproperties
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      bWT_Machinegun=True
-     ManualLines(0)="Low-velocity submachinegun fire. Low recoil, lower damage than other submachineguns but controllable and excellent hipfire."
+     ManualLines(0)="Low-velocity submachinegun fire. Low recoil, lower damage output than other submachineguns but controllable and excellent hipfire."
      ManualLines(1)="Activates the internal compressor when firing. Rounds will inflict less damage, but will slow the target."
      ManualLines(2)="The Weapon Function key attaches or removes the suppressor. When active, the suppressor reduces recoil and noise output and hides the muzzle flash, but reduces range.||Effective from the hip and at close range."
      SpecialInfo(0)=(Info="120.0;10.0;0.6;60.0;0.3;0.1;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-     MagAmmo=40
+     MagAmmo=30
      CockSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Cock')
      ClipOutSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipOut')
      ClipInSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipIn')
@@ -234,26 +236,30 @@ defaultproperties
      SightDisplayFOV=40.000000
      SightingTime=0.250000
      SightAimFactor=0.400000
-	 SightZoomFactor=0
+	 SightZoomFactor=0.85
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimAdjustTime=0.400000
+	 
      AimSpread=16
 	 AIRating=0.8
 	 CurrentRating=0.8
-     ChaosDeclineTime=0.800000
+     ChaosDeclineTime=0.500000
      ChaosSpeedThreshold=7500.000000
-     ChaosAimSpread=2048
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.050000),(InVal=0.400000,OutVal=-0.100000),(InVal=0.600000,OutVal=0.150000),(InVal=0.800000,OutVal=-0.050000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.400000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.110000
+     ChaosAimSpread=512
+	 
+	 ViewRecoilFactor=0.45
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.400000,OutVal=0.050000),(InVal=0.600000,OutVal=0.10000),(InVal=0.800000,OutVal=0.120000),(InVal=1.000000,OutVal=0.16)))
+     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.25),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.05000
+     RecoilYFactor=0.05000
+     RecoilDeclineTime=0.5
+     RecoilDeclineDelay=0.15
+	 
      FireModeClass(0)=Class'BallisticProV55.Xk2PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.Xk2SecondaryFire'
      SelectForce="SwitchToAssaultRifle"
      bShowChargingBar=True
-     Description="Yet another high quality weapon by Black & Wood, the XK2 is a light-weight, silenceable sub-machinegun. It has a very fast rate of fire, but its low velocity bullets make it less dangerous than other weapons. However, these low velocity rounds do allow the weapon to be easily silenced, turning it into an effective stealth weapon, used by many law enforcement organisations, and Black-Ops military units alike. The weapon's high rate of fire, and quick reload times, means that the soldier can pump out rounds quicker than even the M353, making it very useful for cover-fire."
+     Description="Yet another high quality weapon by Black & Wood, the XK2 is a lightweight, suppressed sub-machinegun. It has a fast rate of fire, but its low velocity bullets make it less dangerous than other weapons. However, these low velocity rounds do allow the weapon to be easily silenced, turning it into an effective stealth weapon, used by many law enforcement organisations, and Black-Ops military units alike. The weapon's high rate of fire, and quick reload times, means that the soldier can pump out rounds quicker than even the M353, making it very useful for cover-fire."
      DisplayFOV=55.000000
      Priority=32
      HudColor=(B=100,G=150,R=50)

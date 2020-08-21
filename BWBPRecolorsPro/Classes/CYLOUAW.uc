@@ -520,7 +520,7 @@ defaultproperties
      MeleeFireClass=Class'BWBPRecolorsPro.CYLOMeleeFire'
      BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
-     MagAmmo=28
+     MagAmmo=22
      CockAnimPostReload="Cock"
      CockAnimRate=1.400000
      CockSound=(Sound=Sound'BallisticSounds2.M50.M50Cock')
@@ -531,24 +531,28 @@ defaultproperties
      bAltTriggerReload=True
      WeaponModes(0)=(bUnavailable=True)
      bNoCrosshairInScope=False
+	 SightAimFactor=0.3
      SightPivot=(Pitch=64)
      SightOffset=(X=0.000000,Y=13.600000,Z=19.500000)
      SightDisplayFOV=25.000000
      GunLength=16.000000
-     CrouchAimFactor=0.850000
-     SightAimFactor=0.200000
+     CrouchAimFactor=1
      SprintOffSet=(Pitch=-3000,Yaw=-8000)
      AimAdjustTime=0.400000
+	 
      AimSpread=16
-     ChaosDeclineTime=1.250000
-     ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.150000,OutVal=0.000000),(InVal=0.200000,OutVal=-0.060000),(InVal=0.300000),(InVal=0.400000,OutVal=-0.200000),(InVal=0.600000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.300000),(InVal=1.000000,OutVal=0.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.150000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.500000,OutVal=0.600000),(InVal=0.600000,OutVal=0.500000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.080000
-     RecoilYFactor=0.080000
-     RecoilDeclineTime=1.000000
-     RecoilDeclineDelay=0.170000
+     ChaosDeclineTime=0.5
+     ChaosSpeedThreshold=7000.000000
+     ChaosAimSpread=768
+	 
+	 ViewRecoilFactor=0.3
+	 RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.09),(InVal=0.2,OutVal=0.12),(InVal=0.25,OutVal=0.13),(InVal=0.3,OutVal=0.11),(InVal=0.35,OutVal=0.08),(InVal=0.40000,OutVal=0.050000),(InVal=0.50000,OutVal=-0.020000),(InVal=0.600000,OutVal=-0.040000),(InVal=0.700000,OutVal=0.04),(InVal=0.800000,OutVal=0.070000),(InVal=1.000000,OutVal=0.13)))
+     RecoilYCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.220000),(InVal=0.300000,OutVal=0.2600000),(InVal=0.400000,OutVal=0.4000),(InVal=0.500000,OutVal=0.5500),(InVal=0.600000,OutVal=0.620000),(InVal=0.750000,OutVal=0.770000),(InVal=1.000000,OutVal=1.00000)))
+     RecoilXFactor=0.1
+	 RecoilYFactor=0.1
+     RecoilDeclineTime=0.4
+     RecoilDeclineDelay=0.160000
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.CYLOPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.CYLOSecondaryFire'
      SelectAnimRate=2.000000
@@ -572,7 +576,7 @@ defaultproperties
      AttachmentClass=Class'BWBPRecolorsPro.CYLOAttachment'
      IconMaterial=Texture'BallisticRecolors3TexPro.CYLO.SmallIcon_CYLO'
      IconCoords=(X2=127,Y2=31)
-     ItemName="CYLO Assault Weapon"
+     ItemName="CYLO Urban Assault Weapon"
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=30

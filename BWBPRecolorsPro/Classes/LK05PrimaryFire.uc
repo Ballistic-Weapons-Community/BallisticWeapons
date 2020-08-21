@@ -247,7 +247,6 @@ defaultproperties
      CutOffDistance=3072.000000
      CutOffStartRange=1792.000000
      TraceRange=(Min=9000.000000,Max=11000.000000)
-     WaterRangeFactor=0.800000
      WallPenetrationForce=16.000000
      
      Damage=25.000000
@@ -266,7 +265,7 @@ defaultproperties
      BrassBone="tip"
      BrassOffset=(X=-80.000000,Y=1.000000)
      RecoilPerShot=160.000000
-     FireChaos=0.035000
+     FireChaos=0.028000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      XInaccuracy=48.000000
      YInaccuracy=48.000000

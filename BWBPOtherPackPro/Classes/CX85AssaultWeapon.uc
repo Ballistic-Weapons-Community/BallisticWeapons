@@ -368,6 +368,8 @@ defaultproperties
      ReloadAltAnim="ReloadAlt"
      AltAmmo=6
      BaseTrackDist=3368
+	 PlayerSpeedFactor=0.9
+	 PlayerJumpFactor=0.9
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPOtherPackTex3.CX85.BigIcon_CX85'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -395,19 +397,21 @@ defaultproperties
      bNoMeshInScope=True
      bNoCrosshairInScope=True
      SightOffset=(X=-20.000000,Z=35.000000)
-     SightingTime=0.550000
-     MinZoom=4.000000
-     MaxZoom=16.000000
+     SightingTime=0.650000
+	 SightAimFactor=1
+     MinZoom=2.000000
+     MaxZoom=8.000000
      ZoomStages=2
      GunLength=72.000000
      SprintOffSet=(Pitch=-3000,Yaw=-8000)
-     ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=2048
-     RecoilXCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=-0.120000),(InVal=0.400000,OutVal=0.180000),(InVal=0.800000,OutVal=-0.220000),(InVal=1.000000,OutVal=0.250000)))
+     ChaosAimSpread=768
+	 
+	 ViewRecoilFactor=0.3
+     RecoilXCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=0.120000),(InVal=0.400000,OutVal=0.180000),(InVal=0.800000,OutVal=0.220000),(InVal=1.000000,OutVal=0.250000)))
      RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.500000,OutVal=0.445000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilDeclineTime=1.500000
+     RecoilXFactor=0.05000
+     RecoilYFactor=0.05000
+     RecoilDeclineTime=1.000000
      RecoilDeclineDelay=0.170000
      FireModeClass(0)=Class'BWBPOtherPackPro.CX85PrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.CX85SecondaryFire'
@@ -416,7 +420,7 @@ defaultproperties
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.800000
      CurrentRating=0.800000
-     Description="The Cimerion Labs CX85 was created to serve the purpose of enemy location and tracking in a battlefield environment where operatives needed tactical-level information upon enemy positions and movements without the ability to rely upon allied intelligence. Capable of launching miniature darts, each packed with an explosive charge and a remote transmitter, the CX is able to discern the location of struck enemies. Should the user no longer have need for the tracking ability, the darts can be detonated at long range to damage the target and surrounding entities."
+     Description="The Cimerion Labs CX85 was created to serve the purpose of enemy location and tracking in a battlefield environment where operatives needed tactical-level information on enemy positions and movements without the ability to rely upon allied intelligence. Capable of launching miniature darts, each packed with an explosive charge and a remote transmitter, the CX is able to discern the location of struck enemies. Should the user no longer have need for the tracking ability, the darts can be detonated at long range to damage the target and surrounding entities."
      DisplayFOV=55.000000
      Priority=40
      HudColor=(G=125,R=150)

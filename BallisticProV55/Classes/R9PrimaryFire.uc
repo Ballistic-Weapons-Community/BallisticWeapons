@@ -137,7 +137,6 @@ defaultproperties
      LaserFireSound=(Sound=Sound'BallisticProSounds.R9.EnergyRelayExplode',Volume=3.000000,Radius=256.000000)
      HeatPerShot=45
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WaterRangeFactor=0.800000
      WallPenetrationForce=64.000000
      
      Damage=65.000000

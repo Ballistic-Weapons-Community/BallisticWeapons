@@ -210,7 +210,7 @@ simulated state Slug
 						if (VSize(HitLocation - Start) > 1)
 							WaterHitLoc=HitLocation;
 						Start = HitLocation;
-						Dist *= WaterRangeFactor;
+						Dist = Min(Dist, MaxWaterTraceRange);
 						End = Start + X * Dist;
 						Weapon.bTraceWater=false;
 						continue;
@@ -640,19 +640,18 @@ defaultproperties
 	SlugFireSound=Sound'PackageSounds4ProExp.Redwood.SuperMagnum-Fire'
 	AimedFireEmptyAnim="SightFire"
 	FireEmptyAnim="Fire"
-	HipSpreadFactor=4.000000
+	HipSpreadFactor=1.5
 	CutOffDistance=2560.000000
 	CutOffStartRange=1024.000000
-	MaxSpreadFactor=2
 	TraceCount=5
 	TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 	ImpactManager=Class'BallisticProV55.IM_Shell'
 	TraceRange=(Min=5000.000000,Max=7000.000000)
 	WallPenetrationForce=24
 	
-	Damage=14.000000
-	DamageHead=21.000000
-	DamageLimb=14.000000
+	Damage=11.000000
+	DamageHead=18.000000
+	DamageLimb=11.000000
 	RangeAtten=0.250000
 	DamageType=Class'BWBPRecolorsPro.DTCoachShot'
 	DamageTypeHead=Class'BWBPRecolorsPro.DTCoachShot'
@@ -663,11 +662,11 @@ defaultproperties
 	BrassBone="EjectorR"
 	BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
 	AimedFireAnim="SightFireCombined"
-	RecoilPerShot=2048.000000
-	VelocityRecoil=450.000000
+	RecoilPerShot=1024.000000
+	VelocityRecoil=250.000000
 	FireChaos=1.000000
-	XInaccuracy=300.000000
-	YInaccuracy=300.000000
+	XInaccuracy=400.000000
+	YInaccuracy=220.000000
 	BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Redwood.Redwood-Fire',Volume=1.200000)
 	FireAnim="FireCombined"
 	FireAnimRate=0.800000

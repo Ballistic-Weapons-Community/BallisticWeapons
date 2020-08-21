@@ -107,7 +107,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				if (VSize(HitLocation - Start) > 1)
 					WaterHitLoc=HitLocation;
 				Start = HitLocation;
-				Dist *= WaterRangeFactor;
+				Dist = Min(Dist, MaxWaterTraceRange);
 				End = Start + X * Dist;
 				Weapon.bTraceWater=false;
 				continue;
@@ -211,7 +211,6 @@ defaultproperties
      HeatPerShot=1.400000
      SpecialFireSound=Sound'PackageSounds4Pro.X82.X82-Fire2'
      TraceRange=(Min=15000.000000,Max=15000.000000)
-     WaterRangeFactor=0.800000
      WallPenetrationForce=72.000000
      
      Damage=65.000000
@@ -229,6 +228,7 @@ defaultproperties
      bCockAfterEmpty=True
      MuzzleFlashClass=Class'BWBPRecolorsPro.FG50FlashEmitter'
      FlashScaleFactor=1.500000
+	 AimedFireAnim="SGCFireAimed"
      BrassClass=Class'BWBPRecolorsPro.Brass_BMGInc'
      BrassBone="tip"
      BrassOffset=(X=-80.000000,Y=1.000000)

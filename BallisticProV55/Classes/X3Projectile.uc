@@ -132,12 +132,12 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_KnifeThrown'
      bRandomStartRotaion=False
      bUsePositionalDamage=True
-     DamageHead=55.000000
-     DamageLimb=55.000000
+     DamageHead=60.000000
+     DamageLimb=40.000000
      DamageTypeHead=Class'BallisticProV55.DTX3KnifeThrownHead'
      bWarnEnemy=False
      Speed=3000.000000
-     Damage=55.000000
+     Damage=40.000000
      MyDamageType=Class'BallisticProV55.DTX3KnifeThrown'
      StaticMesh=StaticMesh'BallisticHardware2.X3.X3PickupHi'
      bNetTemporary=False

@@ -684,8 +684,6 @@ function float SuggestDefenseStyle()	{	return 0.4;	}
 
 defaultproperties
 {
-     WeaponModes(0)=(bUnavailable=True)
-	 CurrentWeaponMode=2
      GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
      GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
      GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
@@ -709,6 +707,13 @@ defaultproperties
      SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.8;0.5;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
+	 
+	 WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+     WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
+     WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+	 
+     CurrentWeaponMode=1
+	 
      CockAnimPostReload="ReloadEndCock"
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
@@ -725,23 +730,27 @@ defaultproperties
      bNoMeshInScope=True
      bNoCrosshairInScope=True
      SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
-     SightingTime=0.550000
+     SightingTime=0.50000
      MinZoom=2.000000
      MaxZoom=4.000000
      ZoomStages=1
      SMuzzleFlashOffset=(X=15.000000,Z=-10.000000)
+	 SightAimFactor=2
      CrouchAimFactor=0.650000
      SprintOffSet=(Pitch=-3000,Yaw=-4096)
-     AimSpread=48
+     AimSpread=16
      ChaosDeclineTime=1.250000
-     ChaosSpeedThreshold=5000.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.250000,OutVal=-0.050000),(InVal=0.500000,OutVal=0.050000),(InVal=0.650000,OutVal=-0.070000),(InVal=0.900000,OutVal=-0.100000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.400000,OutVal=0.4500000),(InVal=0.600000,OutVal=0.5500000),(InVal=0.800000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.0500000
-     RecoilYFactor=0.0500000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.140000
+     ChaosAimSpread=128
+	 
+	 ViewRecoilFactor=0.25
+     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.250000),(InVal=0.4800000,OutVal=0.30000),(InVal=0.600000,OutVal=0.320000),(InVal=0.750000,OutVal=0.370000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.4)))
+     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.050000
+     RecoilYFactor=0.050000
+	 
+     RecoilDeclineTime=0.500000
+     RecoilDeclineDelay=0.300000
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.MARSPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.MARSSecondaryFire'
      PutDownTime=0.700000

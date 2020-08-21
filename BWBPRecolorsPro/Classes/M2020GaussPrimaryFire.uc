@@ -112,7 +112,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		RecoilPerShot=default.RecoilPerShot;
 		VelocityRecoil=default.VelocityRecoil;
 		FireAnim=default.FireAnim;
-		FireChaos=0.6;
+		FireChaos=default.FireChaos;
 		Damage=default.Damage;
 		DamageHead=default.DamageHead;
 		DamageLimb=default.DamageLimb;
@@ -133,11 +133,11 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FireRate=1.000000;
 		FireChaos=1;
 		KickForce=3000;
-		BW.RecoilXFactor = 0.35;
-		BW.RecoilYFactor = 0.35;
+		BW.RecoilXFactor = 0.2;
+		BW.RecoilYFactor = 0.2;
 		Damage=110.000000;
 		DamageHead=175.000000;
-		DamageLimb=135.000000;
+		DamageLimb=110.000000;
 		WallPenetrationForce = 96;
 		FlashScaleFactor=1.600000;
 		KickForce=60000;
@@ -147,16 +147,16 @@ simulated function SwitchWeaponMode (byte NewMode)
 	else if (NewMode == 2 || NewMode == 3)
 	{
 		BallisticFireSound.Sound=LowPowerFireSound;
-		RecoilPerShot=260.000000;
-		VelocityRecoil=10.000000;
+		RecoilPerShot=150.000000;
+		VelocityRecoil=0.000000;
 		FlashScaleFactor=1.000000;
-		FireChaos=0.25;
+		FireChaos=0.05;
 		bFlashAlt=true;
 		KickForce=5000;
 		BW.RecoilXFactor = 0.1;
 		BW.RecoilYFactor = 0.1;
 		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=true;
-		if (NewMode ==2)
+		if (NewMode == 2)
 			FireAnim='FireUnPowered';
 		else
 			FireAnim='FireShield';
@@ -179,7 +179,6 @@ defaultproperties
      LowPowerFireSound=Sound'PackageSounds4ProExp.M2020.M2020-GaussFireLow'
      MuzzleFlashClass2=Class'BallisticProV55.M50FlashEmitter'
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WaterRangeFactor=0.900000
      WallPenetrationForce=48.000000
      
      Damage=60.000000
@@ -199,7 +198,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
-     RecoilPerShot=384.000000
+     RecoilPerShot=320.000000
      FireChaos=0.600000
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.M2020.M2020-GaussFire',Volume=6.700000)
      FireEndAnim=

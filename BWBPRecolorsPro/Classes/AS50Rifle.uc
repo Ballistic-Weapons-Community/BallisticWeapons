@@ -670,8 +670,8 @@ defaultproperties
      ScreenBase4=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen4'
      Numbers=Texture'BallisticRecolors3TexPro.PUMA.PUMA-Numbers'
      MyFontColor=(B=255,G=255,R=255,A=255)
-     PlayerSpeedFactor=0.900000
-     PlayerJumpFactor=0.900000
+     PlayerSpeedFactor=0.850000
+     PlayerJumpFactor=0.850000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticRecolors3TexPro.FSG50.BigIcon_FSG50'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -692,7 +692,6 @@ defaultproperties
      ClipInFrame=0.850000
      bCockOnEmpty=True
      bAltTriggerReload=True
-     WeaponModes(0)=(ModeName="Semi-Automatic")
      WeaponModes(1)=(bUnavailable=True)
      CurrentWeaponMode=0
      ZoomType=ZT_Logarithmic
@@ -709,21 +708,27 @@ defaultproperties
      ZoomStages=2
      GunLength=80.000000
      CrouchAimFactor=0.650000
-     SightAimFactor=0.200000
+     SightAimFactor=1
      SprintOffSet=(Pitch=-3000,Yaw=-4096)
      JumpOffSet=(Pitch=-6000,Yaw=2000)
      AimAdjustTime=0.600000
-     AimSpread=150
+     AimSpread=64
+	 
+	 
      ChaosDeclineTime=0.800000
-     ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.400000),(InVal=1.000000,OutVal=-0.200000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.3000
-	 RecoilYFactor=0.40000
+     ChaosSpeedThreshold=350.000000
+     ChaosAimSpread=1024
+	 
+	 ViewRecoilFactor=0.15
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
+     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.15
+	 RecoilYFactor=0.15
 	 RecoilMinRandFactor=0.15
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.500000
+	 
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.AS50PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.AS50SecondaryFire'
      IdleAnimRate=0.600000

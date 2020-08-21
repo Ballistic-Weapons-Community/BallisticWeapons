@@ -104,9 +104,9 @@ defaultproperties
 	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_AM67'
 	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
 	BringUpTime=0.900000
-	ChaosAimSpread=1280
+	SightAimFactor=1
 	ChaosDeclineTime=0.450000
-	ChaosSpeedThreshold=7500.000000
+	ChaosSpeedThreshold=500.000000
 	ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
 	ClipInFrame=0.650000
 	ClipInSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipIn')
@@ -133,30 +133,36 @@ defaultproperties
 	LightRadius=4.000000
 	LightSaturation=150
 	LightType=LT_Pulse
-	MagAmmo=9
-	ManualLines(0)="High-powered bullet fire. The AM67 has the option of fully automatic and burst fire. Recoil is, however, high."
+	MagAmmo=8
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	ManualLines(0)="High-powered bullet fire. Recoil is high."
 	ManualLines(1)="Engages the integrated flash device. The fire key must be held until the flash triggers. Blinds enemies for a short duration. Enemies closer both to the player and to the point of aim will be blinded for longer."
-	ManualLines(2)="Effective at close range."
-	Mesh=SkeletalMesh'BallisticProAnims.AM67Pistol'
+	ManualLines(2)="Effective at close and medium range."
+	Mesh=SkeletalMesh'BallisticProAnims.AM68_FPm'
 	PickupClass=Class'BallisticProV55.AM67Pickup'
 	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 	Priority=24
 	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
 	PutDownTime=0.600000
-	RecoilDeclineDelay=0.500000
-	RecoilDeclineTime=1.500000
+	
+	ViewRecoilFactor=0.35
+	RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.05),(InVal=0.2,OutVal=0.12),(InVal=0.3,OutVal=0.08),(InVal=0.40000,OutVal=0.05),(InVal=0.50000,OutVal=0.10000),(InVal=0.600000,OutVal=0.170000),(InVal=0.700000,OutVal=0.24),(InVal=0.800000,OutVal=0.30000),(InVal=1.000000,OutVal=0.4)))
+    RecoilYCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.4500),(InVal=0.500000,OutVal=0.5500),(InVal=0.600000,OutVal=0.620000),(InVal=0.750000,OutVal=0.770000),(InVal=1.000000,OutVal=1.00000)))
+
+	RecoilDeclineDelay=0.6
+	RecoilDeclineTime=1.5
 	RecoilMax=8192.000000
-	RecoilXFactor=0.250000
-	RecoilYFactor=0.250000
-	RecoilYawFactor=0.000000
+	RecoilXFactor=0.20000
+	RecoilYFactor=0.20000
 	ReloadAnimRate=1.250000
+	
+	
 	SelectForce="SwitchToAssaultRifle"
-	SightAimFactor=0.150000
 	SightDisplayFOV=60.000000
 	SightFXClass=Class'BallisticProV55.AM67SightLEDs'
-	SightOffset=(X=-12.000000,Z=9.500000)
-	SightPivot=(Pitch=512)
-	SightingTime=0.200000
+	SightOffset=(X=10.000000,Z=9.900000)
+	SightingTime=0.250000
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	bNoCrosshairInScope=True

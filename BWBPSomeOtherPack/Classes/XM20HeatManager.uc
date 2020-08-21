@@ -67,7 +67,7 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
-     MaxHeat=50.000000
+     MaxHeat=35.000000
      HeatDeclineDelay=0.400000
      Decay=4.000000
      DecayInterval=0.350000

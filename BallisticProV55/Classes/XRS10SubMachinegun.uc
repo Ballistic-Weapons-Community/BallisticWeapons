@@ -413,30 +413,36 @@ defaultproperties
 	SpecialInfo(0)=(Info="60.0;5.0;0.4;-1.0;0.0;0.2;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-	MagAmmo=30
+	MagAmmo=25
 	CockSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Cock')
 	ClipOutSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipout')
 	ClipInSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipin')
 	ClipInFrame=0.650000
-	WeaponModes(0)=(bUnavailable=True)
-	WeaponModes(1)=(ModeName="Burst")
+	
+	WeaponModes(0)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=4.000000)
+	WeaponModes(1)=(bUnavailable=True)
+    WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+	CurrentWeaponMode=0
+	
 	SightOffset=(X=-15.000000,Z=9.500000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-	SightAimFactor=0.200000
-	SightZoomFactor=0
-	HipRecoilFactor=2.250000
+	SightZoomFactor=0.85
+	HipRecoilFactor=1.5
 	SprintOffSet=(Pitch=-3000,Yaw=-4000)
 	AimAdjustTime=0.450000
-	AimSpread=16
-	ChaosSpeedThreshold=7500.000000
-	RecoilXCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
-	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.125000
-	RecoilYFactor=0.125000
-	RecoilMax=6144.000000
-	RecoilDeclineTime=1.200000
-	RecoilDeclineDelay=0.125000
+	
+	SightAimFactor=2
+	
+	ViewRecoilFactor=0.6
+	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.05),(InVal=0.400000,OutVal=0.10000),(InVal=0.5500000,OutVal=0.120000),(InVal=0.800000,OutVal=0.15000),(InVal=1.000000,OutVal=0.100000)))
+	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.400000,OutVal=0.420000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
+	RecoilXFactor=0.1
+	RecoilYFactor=0.1
+	RecoilMax=4096.000000
+	RecoilDeclineTime=0.5
+	RecoilDeclineDelay=0.30000
+	
 	FireModeClass(0)=Class'BallisticProV55.XRS10PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XRS10SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

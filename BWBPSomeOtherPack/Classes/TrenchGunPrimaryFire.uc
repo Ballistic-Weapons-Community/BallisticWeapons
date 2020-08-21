@@ -437,7 +437,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				if (VSize(HitLocation - Start) > 1)
 					WaterHitLoc=HitLocation;
 				Start = HitLocation;
-				Dist *= WaterRangeFactor;
+				Dist = Min(Dist, MaxWaterTraceRange);
 				End = Start + X * Dist;
 				Weapon.bTraceWater=false;
 				continue;
@@ -616,10 +616,9 @@ defaultproperties
 	FireSingleAnim="Fire"
 	ChargeTime=0.35
 	MaxHoldTime=0.0
-	HipSpreadFactor=3.000000
+	HipSpreadFactor=2.000000
     CutOffDistance=2048.000000
     CutOffStartRange=1280.000000
-	MaxSpreadFactor=2
 	TraceCount=11
 	TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 	AltTracerClass=Class'BWBPRecolorsPro.TraceEmitter_Supercharge'

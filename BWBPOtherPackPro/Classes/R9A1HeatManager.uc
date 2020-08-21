@@ -69,9 +69,9 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
-     MaxHeat=150.000000
+     MaxHeat=60.000000
      HeatDeclineDelay=0.65
-     Decay=15.000000
+     Decay=10.000000
      DecayInterval=0.350000
      Begin Object Class=SpriteEmitter Name=R9A1LasSmoke
          FadeOut=True

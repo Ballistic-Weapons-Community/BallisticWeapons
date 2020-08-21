@@ -259,7 +259,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				if (VSize(HitLocation - Start) > 1)
 					WaterHitLoc=HitLocation;
 				Start = HitLocation;
-				Dist *= WaterRangeFactor;
+				Dist = Min(Dist, MaxWaterTraceRange);
 				End = Start + X * Dist;
 				Weapon.bTraceWater=false;
 				continue;
@@ -386,7 +386,7 @@ function DoFireEffect()
 // ModeDoFire from WeaponFire.uc, but with a few changes
 simulated event ModeDoFire()
 {
-    if (!AllowFire() || Z250Minigun(BW).BarrelSpeed < Z250Minigun(BW).DesiredSpeed)
+    if (!AllowFire() || Minigun.BarrelSpeed < Minigun.RotationSpeeds[0])
         return;
 		
 	BW.bPreventReload=true;
@@ -464,12 +464,11 @@ defaultproperties
 {
 	 TraceCount=1
      TraceRange=(Min=12000.000000,Max=12000.000000)
-     WaterRangeFactor=0.800000
      WallPenetrationForce=0
      
-     Damage=32.000000
-     DamageHead=48.000000
-     DamageLimb=32.000000
+     Damage=22.000000
+     DamageHead=33.000000
+     DamageLimb=22.000000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPOtherPackPro.DTZ250Bullet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTZ250Bullet'
@@ -480,7 +479,7 @@ defaultproperties
      FlashScaleFactor=0.800000
      BrassClass=Class'BWBPOtherPackPro.Brass_Z250Shell'
      BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
-     RecoilPerShot=96.000000
+     RecoilPerShot=64.000000
      VelocityRecoil=48.000000
      FireChaos=0.120000
      XInaccuracy=16.000000

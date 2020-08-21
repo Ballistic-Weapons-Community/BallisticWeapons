@@ -8,7 +8,6 @@ defaultproperties
      CutOffDistance=3072.000000
      CutOffStartRange=1536.000000
      TraceRange=(Min=12000.000000,Max=15000.000000)
-     WaterRangeFactor=0.800000
      WallPenetrationForce=24.000000
      Damage=30.000000
      DamageHead=30.000000
@@ -28,8 +27,8 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_M46AR'
      BrassOffset=(Y=10.000000)
      AimedFireAnim="AimedFire"
-     RecoilPerShot=180.000000
-     FireChaos=0.045000
+     RecoilPerShot=170.000000
+     FireChaos=0.032000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      BallisticFireSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_Fire1',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True

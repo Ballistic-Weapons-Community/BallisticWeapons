@@ -308,7 +308,7 @@ defaultproperties
      BigIconCoords=(Y1=35,Y2=230)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Shotgun=True
-     ManualLines(0)="Long-ranged shotgun fire. Tight spread, good damage and moderate fire rate. Sustained damage output is lower than that of shorter-ranged shotguns."
+     ManualLines(0)="Long-ranged pump-action shotgun fire. Tight spread and high damage, but relatively slow fire rate. Sustained damage output is lower than that of shorter-ranged shotguns."
      ManualLines(1)="Loads a gas shell. Once loaded, the gas shell can be fired, generating a linear cloud of toxic gas in front of the weapon. Anyone standing in this cloud will receive damage over time."
      ManualLines(2)="Has a melee attack. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind.||As a shotgun, has poor penetration.||Most effective at medium range."
      SpecialInfo(0)=(Info="120.0;20.0;0.7;50.0;0.0;0.5;0.0")
@@ -342,18 +342,20 @@ defaultproperties
 	 SightPivot=(Pitch=128)
      SightingTime=0.350000
      GunLength=48.000000
+	 SightAimFactor=0.5
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
-     AimSpread=0
+     AimSpread=16
      ChaosDeclineTime=0.750000
-     ChaosSpeedThreshold=850.000000
-     ChaosAimSpread=0
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.150000),(InVal=0.300000,OutVal=0.050000),(InVal=0.650000,OutVal=-0.350000),(InVal=0.800000,OutVal=0.100000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.100000),(InVal=0.250000,OutVal=0.400000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.300000
-     RecoilYFactor=0.200000
-     RecoilMinRandFactor=0.350000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.800000
+     ChaosAimSpread=256
+	 
+	 ViewRecoilFactor=0.3
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.10000),(InVal=0.350000,OutVal=0.13000),(InVal=0.550000,OutVal=0.230000),(InVal=0.800000,OutVal=0.35000),(InVal=1.000000,OutVal=0.45)))
+     RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.150000),(InVal=0.40000,OutVal=0.50000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.100000
+     RecoilYFactor=0.100000
+     RecoilDeclineTime=0.500000
+     RecoilDeclineDelay=0.75
+	 
      FireModeClass(0)=Class'BallisticProV55.M763PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M763SecondaryFire'
      AIRating=0.750000

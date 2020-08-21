@@ -406,16 +406,16 @@ defaultproperties
      BigIconCoords=(X1=32,Y1=40,X2=475)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
-     ManualLines(0)="Powerful 5.56mm fire. Has a fast fire rate and high sustained DPS, but excessive recoil."
+     ManualLines(0)="5.56mm fire. Has a fast fire rate and high sustained DPS, but high recoil, limiting its hipfire."
      ManualLines(1)="Launches a cryogenic grenade. Upon impact, freezes nearby enemies, slowing their movement. The effect is proportional to their distance from the epicentre. This attack will also extinguish the fires of an FP7 grenade."
      ManualLines(2)="The Weapon Special key attaches a suppressor. This reduces the recoil, but also the effective range. The flash is removed and the gunfire becomes less audible.||Effective at close to medium range."
      SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.8;0.5;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
      CockAnimPostReload="ReloadEndCock"
-     CockAnimRate=1.250000
+     CockAnimRate=1.10000
      CockSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
-     ReloadAnimRate=1.350000
+     ReloadAnimRate=1.10000
      ClipHitSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagFiddle',Volume=1.200000,Radius=32.000000)
      ClipOutSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagOut',Volume=1.200000,Radius=32.000000)
      ClipInSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagIn',Volume=1.200000,Radius=32.000000)
@@ -427,16 +427,22 @@ defaultproperties
      SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
      SightDisplayFOV=25.000000
      SprintOffSet=(Pitch=-3000,Yaw=-4096)
+	 
      AimSpread=16
-     ChaosDeclineTime=1.250000
+     ChaosDeclineTime=0.5
      ChaosSpeedThreshold=7500.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.40000,OutVal=0.150000),(InVal=0.600000,OutVal=0.050000),(InVal=0.650000,OutVal=-0.200000),(InVal=0.900000,OutVal=-0.100000),(InVal=1.000000)))
+     ChaosAimSpread=728
+	 
+     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.150000),(InVal=0.4800000,OutVal=0.20000),(InVal=0.600000,OutVal=-0.050000),(InVal=0.750000,OutVal=0.0500000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.3)))
      RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
-     RecoilDeclineTime=1.500000
+     RecoilXFactor=0.050000
+     RecoilYFactor=0.050000
+	 
+     RecoilDeclineTime=0.500000
      RecoilDeclineDelay=0.140000
+	 
+	 ViewRecoilFactor=0.4
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.F2000PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.F2000SecondaryFire'
      PutDownTime=0.700000

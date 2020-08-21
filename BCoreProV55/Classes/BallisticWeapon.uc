@@ -230,23 +230,23 @@ var EZoomType ZoomType;
 
 var() bool						bUseSights;			// This weapon has sights or a scope that can be used
 var() bool						bNoTweenToScope;			//Don't tween to the first idle frame to fix the animation jump (M75 fix) FIXME the M75 uses animations to scope
-var() config float 			ScopeXScale;			//Manual scaling for scopes
-var() globalconfig bool	bInvertScope;		// Inverts Prev/Next weap relation to Zoom In/Out
+var() config float 				ScopeXScale;			//Manual scaling for scopes
+var() globalconfig bool			bInvertScope;		// Inverts Prev/Next weap relation to Zoom In/Out
 var() name						ZoomInAnim;			// Anim to play for raising weapon to view through Scope or sights
 var() name						ZoomOutAnim;		// Anim to play when lowering weapon after viewing through scope or sights
 var() Material					ScopeViewTex;		// Texture displayed in Scope View. Fills the screen
-var() BUtil.FullSound		ZoomInSound;		// Sound when zooming in
-var() BUtil.FullSound		ZoomOutSound;		// Sound when zooming out
+var() BUtil.FullSound			ZoomInSound;		// Sound when zooming in
+var() BUtil.FullSound			ZoomOutSound;		// Sound when zooming out
 var() float						FullZoomFOV;		// The FOV that can be reached when fully zoomed in
 var() bool						bNoMeshInScope;		// Weapon mesh is hidden when in scope/sight view
 var() bool						bNoCrosshairInScope;// Crosshair will be hiden when in scope or sights
-var() int 						SightZoomFactor; // (90 - this) gives the FOV of ironsight zoom
+var() float						SightZoomFactor; 	// Base FOV multiplied by this to give sight aim factor
 var() name						SightBone;			// Bone at which camera should be to view through sights. Uses origin if none
 var() Rotator					SightPivot;			// Rotate the weapon by this when in sight view
 var() Vector					SightOffset;		// Offset of actual sight view position from SightBone or mesh origin.
 var() float						SightDisplayFOV;	// DisplayFOV for drawing gun in scope/sight view
 var() float						SightingTime;		// Time it takes to move weapon to and from sight view
-var() globalconfig float	SightingTimeScale;	// Scales the SightingTime for each weapon by this amount.
+var() globalconfig float		SightingTimeScale;	// Scales the SightingTime for each weapon by this amount.
 var   float						OldZoomFOV;			// FOV saved for temporary scope down
 var   float						SightingPhase;		// Current level of progress moving weapon into place for sight view
 var   bool						bPendingSightUp;		// Currently out of sight view for something. Will go back when done
@@ -534,11 +534,15 @@ simulated function PostNetBeginPlay()
 		AimSpread *= BCRepClass.default.AccuracyScale;
 	}
 
+	CheckBurstMode();
+	
+	/*
 	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
 	{
 		BFireMode[0].bBurstMode = True;
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
 	}
+	*/
 }
 
 simulated function PostNetReceive()
@@ -1114,6 +1118,7 @@ simulated function StartScopeView()
 		bNoCrosshairInScope = False;
 	else
 		bNoCrosshairInScope = default.bNoCrosshairInScope;
+		
 	//Take down normal crosshairs if the weapon has none in scope view
 	if (bNoCrosshairInScope)
 	{
@@ -1222,19 +1227,19 @@ simulated function StopScopeView(optional bool bNoAnim)
 			PlayerController(InstigatorController).bZooming = False;
 		}
 	}
-
-	// UT2004 crosshair users: Restore normal crosshairs if the weapon has none in scope view
-	if (bNoCrosshairInScope)
+	
+	if (bStandardCrosshairOff) // bNoCrosshairInScope
 	{
-		if (bOldCrosshairs && bStandardCrosshairOff) 
+		if (bOldCrosshairs)
 		{
 			bStandardCrosshairOff = False;
-			PlayerController(InstigatorController).myHud.bCrosshairShow = True;
+			PlayerController(InstigatorController).myHud.bCrosshairShow = True;	
 		}
+		
 	}
 	
 	// Ballistic crosshair users: Hide crosshair if weapon has crosshair in scope
-	else 
+	else if (!bOldCrosshairs)
 	{
 		PlayerController(InstigatorController).myHud.bCrosshairShow = False;
 	}
@@ -1342,9 +1347,7 @@ simulated function SetScopeBehavior()
 	{
 		ViewAimFactor = 1.0;
 		ViewRecoilFactor = 1.0;
-		AimAdjustTime *= 2;
 		AimSpread = 0;
-		//AimSpread *= SightAimFactor;
 		ChaosAimSpread *= SightAimFactor;
 		ChaosDeclineTime *= 2.0;
 		ChaosSpeedThreshold *= 0.7;
@@ -1358,7 +1361,6 @@ simulated function SetScopeBehavior()
 			ViewRecoilFactor = default.ViewRecoilFactor;
 		}
 
-		AimAdjustTime = default.AimAdjustTime;
 		AimSpread = default.AimSpread;
 		AimSpread *= BCRepClass.default.AccuracyScale;
 		ChaosAimSpread = default.ChaosAimSpread;
@@ -1585,7 +1587,7 @@ simulated function PositionSights ()
 
 		ViewRecoilFactor=1.0;
 		if (ZoomType == ZT_Irons)
-			PC.DesiredFOV = PC.DefaultFOV - SightZoomFactor;
+			PC.DesiredFOV = PC.DefaultFOV * SightZoomFactor;
 	}
 	
 	else if (SightingPhase <= 0.0)
@@ -1614,7 +1616,7 @@ simulated function PositionSights ()
 		ViewRecoilFactor = Smerp(SightingPhase, default.ViewRecoilFactor, 1);
 		//Don't do this for scoped weapons
 		if (ZoomType == ZT_Irons)
-	        PC.DesiredFOV = PC.DefaultFOV - (FClamp(SightingPhase, 0, 1) * SightZoomFactor);
+	        PC.DesiredFOV = PC.DefaultFOV * (Lerp(SightingPhase, 1, SightZoomFactor));
 	}
 }
 
@@ -2031,7 +2033,30 @@ function ServerSwitchWeaponMode (byte NewMode)
 		}
 		ClientSwitchWeaponModes(CurrentWeaponMode);
 	}
-		
+	
+	CheckBurstMode();
+
+	if (Instigator.IsLocallyControlled())
+		default.LastWeaponMode = CurrentWeaponMode;
+}
+
+simulated function float CalculateBurstRecoilDelay(bool burst)
+{
+	if (burst)
+	{
+		return
+			(BFireMode[0].FireRate * WeaponModes[CurrentWeaponMode].Value * (1f - BFireMode[0].BurstFireRateFactor)) // cooldown of burst
+			+ (default.RecoilDeclineDelay - BFireMode[0].FireRate); // inherent delay, usually fire rate * 0.5
+	}
+	
+	else
+	{
+		return default.RecoilDeclineDelay;
+	}
+}
+
+function CheckBurstMode()
+{
 	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
 	// To my knowledge, this is the case.
 	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
@@ -2040,6 +2065,7 @@ function ServerSwitchWeaponMode (byte NewMode)
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
 		if (!Instigator.IsLocallyControlled())
 			ClientSwitchBurstMode(True, WeaponModes[CurrentWeaponMode].Value);
+
 	}
 	
 	else if(BFireMode[0].bBurstMode)
@@ -2048,9 +2074,8 @@ function ServerSwitchWeaponMode (byte NewMode)
 		if (!Instigator.IsLocallyControlled())
 			ClientSwitchBurstMode(False);
 	}
-
-	if (Instigator.IsLocallyControlled())
-		default.LastWeaponMode = CurrentWeaponMode;
+	
+	RecoilDeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
 }
 
 simulated function ClientSwitchWeaponModes (byte NewMode)
@@ -2059,11 +2084,14 @@ simulated function ClientSwitchWeaponModes (byte NewMode)
 	BFireMode[1].SwitchWeaponMode(NewMode);
 }
 
-simulated final function ClientSwitchBurstMode(bool bBurst, optional int Max)
+simulated final function ClientSwitchBurstMode(bool burst, optional int Max)
 {
-	BFireMode[0].bBurstMode = bBurst;
-	if (bBurst)
+	BFireMode[0].bBurstMode = burst;
+	
+	if (burst)
 		BFireMode[0].MaxBurst = Max;
+		
+	RecoilDeclineDelay = CalculateBurstRecoilDelay(burst);
 }
 
 // See if firing modes will let us fire another round or not
@@ -3879,6 +3907,10 @@ simulated function Rotator GetRecoilPivot(optional bool bIgnoreViewAim)
 	// Pitching/Yawing
 	R.Yaw += RecoilMax * InterpCurveEval(RecoilXCurve, Recoil/RecoilMax) * RecoilYawFactor;
 	R.Pitch += RecoilMax * InterpCurveEval(RecoilYCurve, Recoil/RecoilMax) * RecoilPitchFactor;
+	
+	if (InstigatorController != None && InstigatorController.Handedness == -1)
+		R.Yaw = -R.Yaw;
+	
 	if (bIgnoreViewAim || Instigator.Controller == None || PlayerController(Instigator.Controller) == None || PlayerController(Instigator.Controller).bBehindView)
 		return R;
 	return R*(1-ViewRecoilFactor);
@@ -4621,18 +4653,23 @@ defaultproperties
      HeaderColor=(B=50,G=50,R=255)
      TextColor=(G=175,R=255)
      SpecialInfo(0)=(Id="EvoDefs",Info="0.0;10.0;0.5;50.0;0.2;0.2;0.1")
+	 
      BringUpSound=(Volume=0.500000,Radius=32.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
      PutDownSound=(Volume=0.500000,Radius=32.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+	 
      MagAmmo=30
+	 
      CockAnim="Cock"
      CockAnimRate=1.000000
      CockSelectAnim="PulloutFancy"
      CockSelectAnimRate=1.250000
      CockingBringUpTime=0.700000
      CockSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
+	 
      ReloadAnim="Reload"
      ReloadAnimRate=1.000000
      ReloadEmptyAnim="ReloadEmpty"
+	 
      ClipHitSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
      ClipOutSound=(Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
      ClipInSound=(Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
@@ -4641,17 +4678,19 @@ defaultproperties
      EndShovelAnimRate=1.000000
      ShovelIncrement=1
      bPlayThirdPersonReload=True
+	 
      FireAnimCutThreshold=0.600000
-     WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
-     WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=3.000000)
-     WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+     WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+     WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
+     WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
      CurrentWeaponMode=2
      LastWeaponMode=255
      SavedWeaponMode=255
+	 
      bUseSights=True
      ScopeXScale=1.000000
      FullZoomFOV=80.000000
-     SightZoomFactor=10
+     SightZoomFactor=0.78
      SightOffset=(Z=2.500000)
      SightDisplayFOV=30.000000
      SightingTime=0.350000
@@ -4660,6 +4699,7 @@ defaultproperties
      MinZoom=1.000000
      MaxZoom=2.000000
      ZoomStages=2
+	 
      SMuzzleFlashOffset=(X=25.000000,Z=-15.000000)
      MagEmptyColor=(B=50,G=50,R=255,A=255)
      CockingColor=(B=50,G=175,R=255,A=255)
@@ -4668,17 +4708,19 @@ defaultproperties
      LongGunOffset=(X=5.000000,Y=10.000000,Z=-11.000000)
      bUseNetAim=True
      CrouchAimFactor=0.800000
-     SightAimFactor=0.250000
+     SightAimFactor=1
      HipRecoilFactor=1.600000
      SprintChaos=0.100000
      AimAdjustTime=0.500000
      OffsetAdjustTime=0.300000
-     AimSpread=96
+	 
+     AimSpread=16
      ViewRecoilFactor=1.000000
      AimDamageThreshold=100.000000
      ChaosDeclineTime=0.640000
-     ChaosSpeedThreshold=6000.000000
-     ChaosAimSpread=1536
+     ChaosSpeedThreshold=500.000000
+     ChaosAimSpread=128
+	 
      RecoilXCurve=(Points=(,(InVal=1.000000)))
      RecoilYCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
      RecoilPitchFactor=1.000000
@@ -4688,6 +4730,7 @@ defaultproperties
      RecoilMax=4096.000000
      RecoilDeclineTime=2.000000
      RecoilDeclineDelay=0.300000
+	 
      SelectAnim="Pullout"
      PutDownAnim="putaway"
      SelectAnimRate=1.000000

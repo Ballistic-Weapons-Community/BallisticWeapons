@@ -388,15 +388,20 @@ defaultproperties
      SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
      SightDisplayFOV=40.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
-     AimSpread=16
+	 
+     AimSpread=24
      ChaosDeclineTime=1.250000
-     ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.00000),(InVal=0.200000,OutVal=-0.10000),(InVal=0.400000,OutVal=0.130000),(InVal=0.600000,OutVal=-0.160000),(InVal=1.000000,OutVal=-0.080000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.450000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.150000
-     RecoilYFactor=0.150000
-     RecoilDeclineTime=1.500000
+     ChaosSpeedThreshold=5000.000000
+     ChaosAimSpread=1024
+	 
+	 ViewRecoilFactor=0.25
+     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.05000),(InVal=0.200000,OutVal=0.060000),(InVal=0.300000,OutVal=0.10000),(InVal=0.400000,OutVal=0.150000),(InVal=0.500000,OutVal=0.170000),(InVal=0.65000000,OutVal=0.100000),(InVal=0.75.000000,OutVal=0.05000),(InVal=1.000000,OutVal=0.080000)))
+     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.300000,OutVal=0.40000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.10000
+     RecoilYFactor=0.10000
+	 RecoilDeclineDelay=0.15
+     RecoilDeclineTime=0.65	 
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.AK47PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.AK47SecondaryFire'
      IdleAnimRate=0.400000

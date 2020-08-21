@@ -124,12 +124,12 @@ defaultproperties
      TrailClass=Class'BallisticProV55.A42TrailEmitter'
      MyRadiusDamageType=Class'BallisticProV55.DTA42Skrith'
      bUsePositionalDamage=True
-	 DamageHead=36.000000
-	 Damage=24.000000
-     DamageLimb=24.000000
+	 DamageHead=45.000000
+	 Damage=30.000000
+     DamageLimb=30.000000
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=3000.000000
-     MaxSpeed=6000.000000
+     MaxSpeed=4500.000000
      DamageRadius=48.000000
      MomentumTransfer=100.000000
      MyDamageType=Class'BallisticProV55.DTA42Skrith'

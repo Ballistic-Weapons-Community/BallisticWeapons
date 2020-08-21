@@ -64,7 +64,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				if (VSize(HitLocation - Start) > 1)
 					WaterHitLoc=HitLocation;
 				Start = HitLocation;
-				Dist *= WaterRangeFactor;
+				Dist = Min(Dist, MaxWaterTraceRange);
 				End = Start + X * Dist;
 				Weapon.bTraceWater=false;
 				continue;

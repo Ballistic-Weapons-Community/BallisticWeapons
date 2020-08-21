@@ -62,13 +62,16 @@ simulated function AdjustStockProperties()
 	    LongGunPivot 	= rot(4000, -12000, 0);
     	LongGunOffset	= vect(15, 20, -7);
 		GunLength 		= 64;
+
 		
 		// Weapon bonuses
-		CrouchAimFactor		= 0.7;
-		BFireMode[0].RecoilPerShot = 128;
-		BFireMode[0].FireChaos=0.030000;
-		SightingTime	=	0.35;
-		RecoilMinRandFactor=0;
+		CrouchAimFactor				= 0.7;
+		BFireMode[0].RecoilPerShot 	= 128;
+		BFireMode[0].FireChaos		= 0.030000;
+		
+		// Weapon penalties
+		SightingTime				= 0.35;
+		ViewRecoilFactor 			= 0.35;
 	}
 	else
 	{
@@ -78,11 +81,14 @@ simulated function AdjustStockProperties()
     	LongGunOffset		= default.LongGunOffset;
 		
 		// Weapon Bonuses
-		CrouchAimFactor		= default.CrouchAimFactor;
-		BFireMode[0].RecoilPerShot = BFireMode[0].default.RecoilPerShot;
-		BFireMode[0].FireChaos = BFireMode[0].default.FireChaos;
 		SightingTime = default.SightingTime;
-		RecoilMinRandFactor= default.RecoilMinRandFactor;
+		ViewRecoilFactor = default.ViewRecoilFactor;
+		
+		// Weapon penalties
+		CrouchAimFactor					= default.CrouchAimFactor;
+		BFireMode[0].RecoilPerShot 		= BFireMode[0].default.RecoilPerShot;
+		BFireMode[0].FireChaos 			= BFireMode[0].default.FireChaos;
+		
 	}
 }
 
@@ -340,27 +346,31 @@ simulated event RenderOverlays( Canvas Canvas )
 simulated function SetScopeBehavior()
 {
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+	
 	if (bScopeView)
 	{
 		ViewAimFactor = 1.0;
 		ViewRecoilFactor = 1.0;
-		AimAdjustTime *= 1.5;
-		AimSpread *= SightAimFactor;
+		AimSpread = 0;
 		ChaosAimSpread *= SightAimFactor;
+		ChaosDeclineTime *= 2.0;
+		ChaosSpeedThreshold *= 0.7;
 	}
 	else
-
 	{
-		//caused flicker coming out of scope - regulated differently for server & client!
+		//PositionSights will handle this for clients
 		if(Level.NetMode == NM_DedicatedServer)
+		{
 			ViewAimFactor = default.ViewAimFactor;
+			ViewRecoilFactor = default.ViewRecoilFactor;
+		}
 
-		ViewRecoilFactor = default.ViewRecoilFactor;
-		AimAdjustTime = default.AimAdjustTime;
 		AimSpread = default.AimSpread;
 		AimSpread *= BCRepClass.default.AccuracyScale;
 		ChaosAimSpread = default.ChaosAimSpread;
 		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
+		ChaosDeclineTime = default.ChaosDeclineTime;
+		ChaosSpeedThreshold = default.ChaosSpeedThreshold;
 	}
 }
 
@@ -371,6 +381,7 @@ simulated function PlayReload()
 
 	super.PlayReload();
 }
+
 simulated function Notify_ClipOutOfSight()
 {
 	SetBoneScale (1, 1.0, 'Bullet');
@@ -470,7 +481,7 @@ defaultproperties
      SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-     MagAmmo=40
+     MagAmmo=32
      CockAnimPostReload="ReloadEndCock"
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'BallisticSounds3.SAR.SAR-Cock')
@@ -485,26 +496,30 @@ defaultproperties
      SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
      SightDisplayFOV=25.000000
      SightingTime=0.250000
+	 
      GunLength=16.000000
+	 
      CrouchAimFactor=1.000000
      SightAimFactor=0.200000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimAdjustTime=0.300000
 	 
      AimSpread=12
-     ChaosDeclineTime=1.250000
+     ChaosDeclineTime=0.5
      ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=2560
+     ChaosAimSpread=768
 	 
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.060000),(InVal=0.400000,OutVal=0.110000),(InVal=0.500000,OutVal=-0.120000),(InVal=0.600000,OutVal=0.130000),(InVal=0.800000,OutVal=0.160000),(InVal=1.000000)))
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.100000
-     RecoilYFactor=0.150000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.150000
+     RecoilXFactor=0.05
+     RecoilYFactor=0.05
+     RecoilDeclineTime=0.5
+     RecoilDeclineDelay=0.14
+	 ViewRecoilFactor=0.45
 	 
      FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.SARFlashFire'
+	 
      SelectForce="SwitchToAssaultRifle"
      bShowChargingBar=True
      Description="With a growing number of operations and battles taking place in urban and industial enviroments, the UTC realized that their ground infantry units were in dire need of a more effective, balanced weapon system for indoor combat. UTC soldiers fighting in the close confines of urban structures and industrial installatons needed a highly compact, reliable and manouverable weapon, but it needed the power to blast through light walls and take down the agile alien forces they were faced with.||The result was the development of the Sub-Assault Rifle, the most well known of which is the S-AR 12. These weapons have the power of an assault rifle, usually using rifle ammunition such as 5.56mm rounds, and the manouverability of a compact sub-machinegun. Accuracy was not an issue due to the extremely short range of most of the encounters in urban combat."

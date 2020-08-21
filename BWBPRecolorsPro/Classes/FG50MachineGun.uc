@@ -641,15 +641,15 @@ defaultproperties
      ScreenRedBar=Texture'BallisticRecolors3TexPro.M2020.M2020-ScreenOff'
      Numbers=Texture'BallisticRecolors3TexPro.PUMA.PUMA-Numbers'
      MyFontColor=(B=255,G=255,R=255,A=255)
-     PlayerSpeedFactor=0.850000
-     PlayerJumpFactor=0.800000
+     PlayerSpeedFactor=0.750000
+     PlayerJumpFactor=0.750000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      AIReloadTime=1.000000
      BigIconMaterial=Texture'BallisticRecolors3TexPro.FG50.BigIcon_FG50'
      BigIconCoords=(Y1=36,Y2=225)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
-     ManualLines(0)="Full Auto mode rapid-fires powerful explosive rounds. Upon impact with the enemy, these rounds explode, dealing heavy damage to nearby targets. Sustained DPS is massive. Has no penetration ability.|Controlled mode dramatically improves the hipfire at the cost of fire rate. A laser is projected which may give away the user's position."
+     ManualLines(0)="Fires powerful explosive rounds. Upon impact with the enemy, these rounds explode, dealing heavy damage to nearby targets. Sustained DPS is massive. Has no penetration ability.|Controlled mode dramatically improves the hipfire at the cost of fire rate. A laser is projected which may give away the user's position."
      ManualLines(1)="Fires more rapidly, but overheats the weapon. An extremely powerful burst attack."
      ManualLines(2)="The FG50 is heavy and restricts movement. Takes a long time to aim. Effective at medium to long range."
      SpecialInfo(0)=(Info="320.0;35.0;1.0;100.0;0.8;0.5;0.1")
@@ -670,14 +670,19 @@ defaultproperties
      SightingTime=0.700000
      SprintOffSet=(Pitch=-3072,Yaw=-4096)
      JumpOffSet=(Pitch=-6000,Yaw=2000)
+	 SightAimFactor=0.7
+	 
      AimSpread=128
      ChaosDeclineTime=1.750000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
-     RecoilYCurve=(Points=(,(InVal=0.250000,OutVal=0.200000),(InVal=0.400000,OutVal=0.450000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilYawFactor=0.750000
-     RecoilXFactor=0.300000
-     RecoilYFactor=0.300000
+     ChaosAimSpread=1536
+	 ChaosSpeedThreshold=350
+	 
+	 ViewRecoilFactor=0.15
+     RecoilXCurve=(Points=(,(InVal=0.15,OutVal=0.2),(InVal=0.400000,OutVal=0.350000),(InVal=0.550000,OutVal=0.40000),(InVal=0.700000,OutVal=0.50000),(InVal=1.000000,OutVal=0.600000)))
+     RecoilYCurve=(Points=(,(InVal=0.20000,OutVal=0.250000),(InVal=0.400000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.05000
+     RecoilYFactor=0.050000
+	 RecoilMax=16384
      RecoilDeclineTime=1.500000
      FireModeClass(0)=Class'BWBPRecolorsPro.FG50PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.FG50SecondaryFire'

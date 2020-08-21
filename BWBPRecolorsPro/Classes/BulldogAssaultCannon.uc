@@ -5,6 +5,9 @@
 // damage. Secondary can load and blast FRAG-12 grenades with significant
 // blast radius.
 //
+// Azarael note:
+// This weapon should not exist - .75 
+//
 // Originally written by Sergeant_Kelly based on code by DarkCarnivour.
 // Partially rewritten for online compatibility by Azarael.
 //==========================================================
@@ -647,6 +650,7 @@ defaultproperties
      Shells(4)="Shell5"
      Shells(5)="Shell6"
      PlayerSpeedFactor=0.900000
+	 PlayerJumpFactor=0.900000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      AIReloadTime=1.500000
      BigIconMaterial=Texture'BallisticRecolors3TexPro.Bulldog.BigIcon_Bulldog'
@@ -679,21 +683,23 @@ defaultproperties
      WeaponModes(5)=(ModeName="ERROR",bUnavailable=True,ModeID="WM_FullAuto")
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
-     SightZoomFactor=20
      SightPivot=(Pitch=256)
      SightOffset=(X=-18.000000,Y=4.490000,Z=6.350000)
      SightDisplayFOV=35.000000
      GunLength=48.000000
-     SightAimFactor=0.400000
+     SightAimFactor=0.50000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      AimSpread=128
      ChaosDeclineTime=1.600000
-     ChaosSpeedThreshold=1800.000000
+	 ChaosAimSpread=768
+	 
+	 ViewRecoilFactor=0.25
      RecoilXFactor=0.350000
      RecoilYFactor=0.350000
      RecoilMax=6144.000000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.400000
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.BulldogPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.BulldogSecondaryFire'
      PutDownAnimRate=1.700000

@@ -596,7 +596,7 @@ defaultproperties
      bTearOnExplode=True
      NetTrappedDelay=0.150000
      DamageModHead=1.500000
-     DamageModLimb=0.750000
+     DamageModLimb=0.700000
      ShakeRadius=-1.000000
      bWarnEnemy=True
      MotionBlurRadius=-1.000000

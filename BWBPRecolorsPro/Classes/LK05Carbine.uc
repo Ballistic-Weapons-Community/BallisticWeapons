@@ -258,13 +258,13 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	if (bLaserOn)
 	{
 		AimAdjustTime = default.AimAdjustTime * 1.5;
-		AimSpread = LaserAimSpread;
+		//AimSpread = LaserAimSpread;
 		BFireMode[0].FireChaos *= 0.8;
 	}
 	else
 	{
 		AimAdjustTime = default.AimAdjustTime;
-		AimSpread = default.AimSpread;
+		//AimSpread = default.AimSpread;
 		BFireMode[0].FireChaos = BFireMode[0].default.FireChaos;
 	}
 }
@@ -525,7 +525,7 @@ defaultproperties
      SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
      BringUpSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-PullOut',Volume=2.200000)
      PutDownSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-Putaway',Volume=2.200000)
-     MagAmmo=32
+     MagAmmo=25
      CockSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-Cock',Volume=2.200000)
      ClipOutSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-MagOut',Volume=2.400000)
      ClipInSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-MagIn',Volume=2.400000)
@@ -538,16 +538,20 @@ defaultproperties
      SightDisplayFOV=25.000000
      SightingTime=0.300000
      SprintOffSet=(Pitch=-3072,Yaw=-4096)
+	 
      AimSpread=16
-     ChaosDeclineTime=1.250000
+     ChaosDeclineTime=0.5
      ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.025000),(InVal=0.250000,OutVal=0.10000),(InVal=0.500000,OutVal=0.050000),(InVal=0.700000,OutVal=0.060000),(InVal=0.850000,OutVal=0.10000),(InVal=1.000000)))
+     ChaosAimSpread=768
+	 
+	 ViewRecoilFactor=0.35
+     RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.12),(InVal=0.2,OutVal=0.18),(InVal=0.35,OutVal=0.22),(InVal=0.5,OutVal=0.3),(InVal=0.7,OutVal=0.45),(InVal=0.85,OutVal=0.6),(InVal=1.000000,OutVal=0.66)))
      RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.100000
-     RecoilYFactor=0.150000
-     RecoilDeclineTime=1.500000
+     RecoilXFactor=0.050000
+     RecoilYFactor=0.050000
+     RecoilDeclineTime=0.4
      RecoilDeclineDelay=0.200000
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.LK05PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.LK05SecondaryFire'
      IdleAnimRate=0.500000

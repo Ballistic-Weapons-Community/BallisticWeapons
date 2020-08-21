@@ -12,7 +12,7 @@ class Fifty9MachinePistol extends BallisticWeapon;
 var   name		StockOpenAnim;
 var   name		StockCloseAnim;
 var   bool		bStockOpen, bStockOpenRotated;
-var   int StockChaosAimSpread;
+var   int 		StockChaosAimSpread;
 
 // This uhhh... thing is added to allow manual drawing of brass OVER the muzzle flash
 struct UziBrass
@@ -21,12 +21,6 @@ struct UziBrass
 	var() float KillTime;
 };
 var   array<UziBrass>	UziBrassList;
-
-replication
-{
-	reliable if (Role < ROLE_Authority)
-		ServerSwitchStock;
-}
 
 simulated event WeaponTick (Float DT)
 {
@@ -96,58 +90,102 @@ simulated event RenderOverlays( Canvas Canvas )
     bDrawingFirstPerson = false;
 }
 
-function ServerSwitchStock(bool bNewValue)
+exec simulated function SwitchWeaponMode (optional byte ModeNum)	
 {
-	bStockOpen = bNewValue;
-	SwitchStock(bNewValue);
-	AdjustUziProperties(false);
-}
-
-//simulated function DoWeaponSpecial(optional byte i)
-exec simulated function WeaponSpecial(optional byte i)
-{
+	Log("Fifty9 SwitchWeaponMode");
+	
+	// 59 animates to change weapon mode
 	if (ReloadState != RS_None)
 		return;
-	if (Clientstate != WS_ReadyToFire)
+
+	if (ModeNum == 0)
+		ServerSwitchWeaponMode(255);
+	else ServerSwitchWeaponMode(ModeNum-1);
+}
+
+// Cycle through the various weapon modes
+function ServerSwitchWeaponMode (byte NewMode)
+{
+	Log("Fifty9 ServerSwitchWeaponMode");
+	
+	if (ReloadState != RS_None)
 		return;
-	bStockOpen = !bStockOpen;
-	TemporaryScopeDown(0.4);
-	ServerSwitchStock(bStockOpen);
-	SwitchStock(bStockOpen);
-	AdjustUziProperties(false);
+		
+	NewMode = byte(!bStockOpen);
+		
+	// can feasibly happen
+	if (NewMode == CurrentWeaponMode)
+		return;
+
+	CurrentWeaponMode = NewMode;
+	NetUpdateTime = Level.TimeSeconds - 1;
+	
+	if (Instigator != None && !Instigator.IsLocallyControlled())
+	{
+		BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
+		BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
+	}
+	
+	// listen for mode switch on client for stock animation application
+	ClientSwitchWeaponModes(CurrentWeaponMode);
+
+	CheckBurstMode();
+
+	if (Instigator.IsLocallyControlled())
+		default.LastWeaponMode = CurrentWeaponMode;
+		
+	SwitchStock(!bStockOpen);
+}
+
+simulated function ClientSwitchWeaponModes(byte newMode)
+{
+	super.ClientSwitchWeaponModes(newMode);
+	
+	SwitchStock(bool(newMode));
 }
 
 simulated function SwitchStock(bool bNewValue)
 {
+	if (bNewValue == bStockOpen)
+		return;
+		
 	if (Role == ROLE_Authority)
 		bServerReloading = True;
 	ReloadState = RS_GearSwitch;
 	
+	TemporaryScopeDown(0.4);
+	
 	SetBoneRotation('Stock', rot(0,0,0));
+	
+	bStockOpen = bNewValue;
+	
 	if (bNewValue)
 		PlayAnim(StockOpenAnim);
 	else
 		PlayAnim(StockCloseAnim);
+		
+	AdjustStockProperties();
 }
 
-simulated function AdjustUziProperties (bool bDualMode)
+simulated function AdjustStockProperties()
 {
 	if (bStockOpen)
 	{
-		BFireMode[0].RecoilPerShot = BFireMode[0].default.RecoilPerShot * 0.75;
-		RecoilXFactor	= default.RecoilXFactor * 0.75;
-		RecoilYFactor	= default.RecoilYFactor * 0.75;
-		ChaosAimSpread = StockChaosAimSpread;
-	}
-	else
-	{
-		BFireMode[0].RecoilPerShot = BFireMode[0].default.RecoilPerShot;
-		RecoilXFactor		= default.RecoilXFactor;
-		RecoilYFactor		= default.RecoilYFactor;
-		ChaosAimSpread = default.ChaosAimSpread;
+		CrouchAimFactor 	= 0.8f;
+		SightingTime 		= 0.3f; // awkward to sight
+		HipRecoilFactor		= 1.75f;
+		ViewRecoilFactor	= 0.2f;
+		RecoilDeclineDelay	= 0.09f;
 	}
 	
-	ChaosAimSpread 		*= BCRepClass.default.AccuracyScale;
+	else
+	{
+		CrouchAimFactor 	= default.CrouchAimFactor;
+		SightingTime 		= default.SightingTime;
+		HipRecoilFactor		= default.HipRecoilFactor;
+		ViewRecoilFactor 	= default.ViewRecoilFactor;
+		RecoilDeclineDelay 	= default.RecoilDeclineDelay;
+	}
 }
 
 simulated function SetStockRotation()
@@ -253,12 +291,6 @@ function float GetAIRating()
 	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, 768, 2048); 
 }
 
-simulated function SetScopeBehavior()
-{
-	Super.SetScopeBehavior();
-	AdjustUziProperties(false);
-}
-
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return 0.9;	}
 // tells bot whether to charge or back off while defending against this weapon
@@ -282,38 +314,43 @@ defaultproperties
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	bWT_Machinegun=True
-	ManualLines(0)="Sprays low-calibre bullets. Has an extremely high fire rate and very high DPS, but suffers from recoil and hip stability problems and has low penetration and awful effective range."
+	ManualLines(0)="Sprays low caliber bullets. Has an extremely high fire rate and very high DPS, but suffers from recoil and hip stability problems and has low penetration and awful effective range."
 	ManualLines(1)="Continually slashes with the attached blade. Damage output is modest and range is low."
 	ManualLines(2)="The Fifty-9's stock can be engaged or disengaged with the Weapon Function key. With the stock engaged, the recoil is reduced but the hipfire spread increases. The Fifty-9 is extremely effective at very close range."
 	SpecialInfo(0)=(Info="120.0;10.0;0.8;40.0;0.0;0.4;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-	MagAmmo=25
+	MagAmmo=20
 	CockSound=(Sound=Sound'BallisticSounds2.UZI.UZI-Cock',Volume=0.800000)
 	ClipOutSound=(Sound=Sound'BallisticSounds2.UZI.UZI-ClipOut',Volume=0.700000)
 	ClipInSound=(Sound=Sound'BallisticSounds2.UZI.UZI-ClipIn',Volume=0.700000)
 	ClipInFrame=0.650000
-	WeaponModes(0)=(bUnavailable=True)
-	WeaponModes(1)=(ModeName="Burst")
+	bNotifyModeSwitch=True
+	CurrentWeaponMode=0
+    WeaponModes(0)=(ModeName="Burst",ModeID="WM_Burst",Value=4.000000)
+    WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto")
+	WeaponModes(2)=(bUnavailable=True)
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=512)
 	SightOffset=(X=-10.000000,Z=12.00000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-	SightZoomFactor=0
-	CrouchAimFactor=0.750000
-	SightAimFactor=0.500000
-	HipRecoilFactor=2.250000
+	SightZoomFactor=0.85
+	CrouchAimFactor=1
+	SightAimFactor=2
+	HipRecoilFactor=1.5
 	SprintOffSet=(Pitch=-3000,Yaw=-4000)
 	AimAdjustTime=0.450000
-	AimSpread=16
-	ChaosSpeedThreshold=7500.000000
+	
+	ViewRecoilFactor=0.5
 	RecoilXCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.125000
-	RecoilYFactor=0.125000
-	RecoilMax=6144.000000
-	RecoilDeclineDelay=0.120000
+	RecoilXFactor=0.10000
+	RecoilYFactor=0.10000
+	RecoilDeclineTime=0.5
+	RecoilDeclineDelay=0.280000
+	RecoilMax=6144
+	
 	FireModeClass(0)=Class'BallisticProV55.Fifty9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.Fifty9SecondaryFire'
 	PutDownTime=0.400000

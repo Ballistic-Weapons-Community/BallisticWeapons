@@ -6,6 +6,8 @@
 // Weapon special deploys a camera on the wall, then press to switch between play and cam view. Get camera back by
 // moving near it, and pressing Use.
 //
+// Weapon balance basis: M4 Carbine / M16 Rifle
+//
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
@@ -677,26 +679,33 @@ defaultproperties
      ClipInSound=(Sound=Sound'BallisticSounds2.M50.M50ClipIn')
      ClipInFrame=0.650000
      WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(Value=5.000000)
+     WeaponModes(1)=(Value=3.000000,bUnavailable=True)
      bNoCrosshairInScope=False
      SightPivot=(Pitch=200)
      SightOffset=(Y=0.050000,Z=12.130000)
      SightDisplayFOV=40.000000
+	 
      CrouchAimFactor=0.750000
      SightAimFactor=0.200000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
+	 
      AimSpread=16
-     ChaosDeclineTime=1.250000
-     ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.150000),(InVal=0.250000,OutVal=-0.080000),(InVal=0.400000,OutVal=0.080000),(InVal=0.600000,OutVal=-0.120000),(InVal=0.800000,OutVal=0.100000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.150000
-     RecoilYFactor=0.300000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.140000
+     ChaosDeclineTime=0.5
+     ChaosSpeedThreshold=7000.000000
+     ChaosAimSpread=728
+	 
+	 ViewRecoilFactor=0.35
+     RecoilXCurve=(Points=((InVal=0,OutVal=0),(InVal=0.150000,OutVal=0.06),(InVal=0.40000,OutVal=0.21000),(InVal=0.6500000,OutVal=0.25000),(InVal=0.800000,OutVal=0.050000),(InVal=1.00000,OutVal=0.150000)))
+     RecoilYCurve=(Points=((InVal=0,OutVal=0),(InVal=0.200000,OutVal=0.210000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.7500000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.050000
+     RecoilYFactor=0.050000
+	 RecoilDeclineDelay=0.140000     
+	 RecoilDeclineTime=0.5
+
+	 
      FireModeClass(0)=Class'BallisticProV55.M50PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M50SecondaryFire'
+	 
      PutDownAnimRate=1.500000
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000

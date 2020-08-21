@@ -1,3 +1,15 @@
+//=========================================================
+// RCS-715 Tactical Buster.
+//
+// Heavyweight, powerful automatic shotgun. Large drum magazine, 
+// high dps and controllable when stabilized, but poor
+// shoulder fire performance, movement rate and general handling. 
+// Analogous to a close range LMG in terms of overall balance.
+//
+// Balance basis: AA-12 (300RPM)
+//
+// By Jiffy, based on code by DarkCarnivour, Sergeant_Kelly and Azarael.
+//==========================================================
 class ARShotgun extends BallisticProShotgun;
 
 
@@ -13,8 +25,8 @@ var() Array<Name> 	ReloadAltAnim;			//Anim to use for Reloading each shell indiv
 var() float 	GrenadeLoadAnimRate;		//Grenade loading speed
 var() float 	ShovelReloadAnimRate;		//Grenade reloading speed
 
-var() float       	VisGrenades;		//Rockets currently visible in tube.
-var() int       	Grenades;		//Rockets currently in the gun.
+var() float     VisGrenades;		//Rockets currently visible in tube.
+var() int       Grenades;		//Rockets currently in the gun.
 var() int		StartingGrenades;
 var() bool		bReady;			//Weapon ready for alt fire
 
@@ -692,8 +704,8 @@ defaultproperties
      GLLoadGrenadeBones(0)=(GrenName="GrenadeHandle")
      GLLoadGrenadeBones(1)=(GrenName="HeldGrenade")
      GLLoadGrenadeBones(2)=(GrenName="EmptyGrenade")
-     PlayerSpeedFactor=0.850000
-     PlayerJumpFactor=0.900000
+     PlayerSpeedFactor=0.80000
+     PlayerJumpFactor=0.800000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPJiffyPackTex.TacBuster.BigIcon_AA12'
      BigIconCoords=(Y1=40)
@@ -701,8 +713,9 @@ defaultproperties
      bWT_Shotgun=True
      bWT_Machinegun=True
      bWT_Projectile=True
-     ManualLines(0)="Fires fast shotgun blasts with reasonable accuracy and recoil. These blasts inflict reasonable damage with range falloff, compensated by the large ammo capacity."
+     ManualLines(0)="Automatic shotgun blasts with high DPS, good accuracy and controllable recoil."
      ManualLines(1)="Loads an incendiary grenade and fires. Deals good impact damage and minor radius damage, as well as a blast of fire upon impact."
+	 ManualLines(2)="This weapon is heavy and has poor shoulder fire properties.||Effective at close range."
      SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
@@ -720,23 +733,26 @@ defaultproperties
 	 WeaponModes(2)=(ModeName="Burst",bUnavailable=true,ModeID="WM_Burst")
      CurrentWeaponMode=0
      bNotifyModeSwitch=True
-     SightZoomFactor=20
      SightOffset=(X=60.000000,Y=5.690000,Z=35.820000)
 	 bNoCrosshairInScope=True
      SightDisplayFOV=40.000000
-     SightingTime=0.330000
+     SightingTime=0.550000
      GunLength=48.000000
      SprintOffSet=(Pitch=-4096,Yaw=-4096)
      JumpOffSet=(Pitch=-1024,Yaw=-1024)
-     AimSpread=0
-     ChaosAimSpread=0
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.070000),(InVal=0.300000,OutVal=-0.150000),(InVal=0.500000,OutVal=0.050000),(InVal=0.750000,OutVal=0.120000),(InVal=1.000000,OutVal=-0.050000)))
+	 
+     AimSpread=16
+     ChaosAimSpread=512
+	 
+	 ViewRecoilFactor=0.25
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.300000,OutVal=0.150000),(InVal=0.500000,OutVal=0.250000),(InVal=0.750000,OutVal=0.30000),(InVal=1.000000,OutVal=0.350000)))
      RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
-     RecoilMinRandFactor=0.150000
+     RecoilXFactor=0.100000
+     RecoilYFactor=0.100000
      RecoilMax=8192.000000
-     RecoilDeclineDelay=1.000000
+     RecoilDeclineDelay=0.4
+	 RecoilDeclineTime=1.0	 
+	 
      FireModeClass(0)=Class'BallisticJiffyPack.ARPrimaryFire'
      FireModeClass(1)=Class'BallisticJiffyPack.ARSecondaryFire'
      SelectAnimRate=0.900000

@@ -416,11 +416,11 @@ simulated function CommonWeaponSpecial(optional byte i)
 	bBigLaser=true;
 	if (ThirdPersonActor != None)
 		GRS9Attachment(ThirdPersonActor).bBigLaser=true;
-	BallisticInstantFire(FireMode[1]).Damage = 90;
-	BallisticInstantFire(FireMode[1]).DamageHead = 120;
-	BallisticInstantFire(FireMode[1]).DamageLimb = 90;
-	BallisticInstantFire(FireMode[1]).XInaccuracy = 192;
-	BallisticInstantFire(FireMode[1]).YInaccuracy = 192;
+	BallisticInstantFire(FireMode[1]).Damage = 50;
+	BallisticInstantFire(FireMode[1]).DamageHead = 75;
+	BallisticInstantFire(FireMode[1]).DamageLimb = 50;
+	BallisticInstantFire(FireMode[1]).XInaccuracy = 16;
+	BallisticInstantFire(FireMode[1]).YInaccuracy = 16;
 	FireMode[1].ModeDoFire();
 	LaserAmmo = FMax(0, LaserAmmo - default.LaserAmmo);
 	BallisticInstantFire(FireMode[1]).Damage = BallisticInstantFire(FireMode[1]).default.Damage;
@@ -520,7 +520,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
 	MagAmmo=15
-	InventorySize=6
+	InventorySize=12
 	CockAnimRate=1.200000
 	CockSound=(Sound=Sound'BWBP4-Sounds.Glock.Glk-Cock',Volume=0.600000)
 	ReloadAnimRate=1.350000
@@ -530,32 +530,38 @@ defaultproperties
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	bNoCrosshairInScope=True
+	
 	SightOffset=(X=-15.000000,Z=5.900000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-	SightAimFactor=0.050000
+	SightAimFactor=2
 	SprintChaos=0.050000
 	AimAdjustTime=0.350000
-	AimSpread=16
-	AimDamageThreshold=480.000000
 	ChaosDeclineTime=0.450000
-	ChaosSpeedThreshold=7500.000000
-	ChaosAimSpread=1024
-	RecoilYawFactor=0.000000
-	RecoilXFactor=0.20000
-	RecoilYFactor=0.20000
-	RecoilDeclineTime=1.500000
-	RecoilDeclineDelay=0.270000
+	
+	ViewRecoilFactor=0.2
+	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.12),(InVal=0.300000,OutVal=0.150000),(InVal=0.4,OutVal=0.02),(InVal=0.550000,OutVal=-0.120000),(InVal=0.700000,OutVal=0.050000),(InVal=1.000000,OutVal=0.200000)))
+	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.25000),(InVal=0.450000,OutVal=0.450000),(InVal=0.650000,OutVal=0.75000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
+	
+	RecoilXFactor=0.10000
+	RecoilYFactor=0.10000
+	
+	RecoilDeclineTime=0.750000
+	RecoilDeclineDelay=0.350000
+	RecoilMax=6144
+	
+	HipRecoilFactor=2.5
+	
 	FireModeClass(0)=Class'BallisticProV55.GRS9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.GRS9SecondaryFire'
-	SelectAnimRate=1.500000
-	PutDownAnimRate=1.500000
+	SelectAnimRate=1.250000
+	PutDownAnimRate=1.250000
 	SelectForce="SwitchToAssaultRifle"
 	bShowChargingBar=True
 	Description="The GRS9 from Drake & Co. is used primarily by inner core planets for law enforcement purposes. The additional laser unit adds an alternative attack to the GRS9. The laser unit can be held down, for up to 3.5 seconds, releasing a searing beam upon enemies. This drains the rechargeable battery however, which must be left to replenish when empty."
 	Priority=9
 	HudColor=(B=25,G=25,R=200)
-	InventoryGroup=2
+	InventoryGroup=3
 	GroupOffset=3
 	PickupClass=Class'BallisticProV55.GRS9Pickup'
 	PlayerViewOffset=(X=6.000000,Y=8.000000,Z=-9.000000)

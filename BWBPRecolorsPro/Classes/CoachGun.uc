@@ -18,10 +18,10 @@ var float LastModeChangeTime;
 
 var() Material          MatGreenShell;
 var() Material          MatBlackShell;
-var() name		ShellTipBone1;		// Super Slug 1.
-var() name		ShellTipBone2;		// Super Slug 2
-var() name		ShellTipBone3;		// Spare Super Slug 1.
-var() name		ShellTipBone4;		// Spare Super Slug 2
+var() name				ShellTipBone1;		// Super Slug 1.
+var() name				ShellTipBone2;		// Super Slug 2
+var() name				ShellTipBone3;		// Spare Super Slug 1.
+var() name				ShellTipBone4;		// Spare Super Slug 2
 
 var() name				LastShellBone;		// Name of the right shell.
 var   bool				bLastShell;			// Checks if only one shell is left
@@ -469,18 +469,16 @@ defaultproperties
      bNotifyModeSwitch=True
      SightPivot=(Pitch=256)
      SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
-     SightingTime=0.250000
+     SightingTime=0.350000
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
      LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-     AimSpread=32
-     ViewRecoilFactor=0.900000
-     ChaosAimSpread=768
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
-     RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.600000
-     RecoilYFactor=0.800000
-     RecoilMax=16384.000000
+     ViewRecoilFactor=0.350000
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
+     RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.300000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.200000
+     RecoilYFactor=0.200000
+     RecoilMax=8192.000000
      RecoilDeclineTime=0.900000
      RecoilDeclineDelay=0.400000
      FireModeClass(0)=Class'BWBPRecolorsPro.CoachGunPrimaryFire'

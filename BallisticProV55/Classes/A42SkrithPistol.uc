@@ -3,7 +3,7 @@
 //
 // Alien energy sidearm with recharging ammo, a rapid fire projectile fire for
 // primary and a charged up beam for secondary. Primary heals vehicles and
-// power nodes,
+// power nodes.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -68,7 +68,7 @@ simulated event Tick (float DT)
 	{
 		if (MagAmmo < default.MagAmmo)
 			MagAmmo=Min(default.MagAmmo, MagAmmo+1);
-		NextAmmoTickTime = level.TimeSeconds + 0.5;
+		NextAmmoTickTime = Level.TimeSeconds + 0.5;
 	}
 }
 
@@ -244,25 +244,26 @@ defaultproperties
      SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.A42.A42-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.A42.A42-Putaway')
-	 MagAmmo=24
-	 bShouldDualInLoadout=True
+	 MagAmmo=14
+	 bShouldDualInLoadout=False
      bNonCocking=True
      bNoCrosshairInScope=True
      SightPivot=(Pitch=1024,Roll=-768)
      SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
      SightDisplayFOV=40.000000
      SightingTime=0.200000
-     SightAimFactor=0.000000
-     AimSpread=16
+     AimSpread=64
      ChaosDeclineTime=0.450000
-     ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=384
-     RecoilXCurve=(Points=(,(InVal=0.100000),(InVal=0.200000,OutVal=-0.100000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=-0.500000),(InVal=0.700000),(InVal=1.000000,OutVal=0.100000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.200000),(InVal=0.700000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
-     RecoilDeclineTime=1.000000
+	 SightAimFactor=2
+	 ViewRecoilFactor=0.5
+     RecoilXCurve=(Points=(,(InVal=0.100000),(InVal=0.200000,OutVal=0.05000),(InVal=0.400000,OutVal=0.0800000),(InVal=0.600000,OutVal=0.0200000),(InVal=0.700000,OutVal=0.1),(InVal=1.000000,OutVal=0.000000)))
+     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.350000),(InVal=0.550000,OutVal=0.550000),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.0)))
+     RecoilXFactor=0.100000
+     RecoilYFactor=0.100000
+     RecoilDeclineTime=0.5
      RecoilDeclineDelay=0.200000
+	 
+	 
      FireModeClass(0)=Class'BallisticProV55.A42PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.A42SecondaryFire'
      BringUpTime=0.500000
@@ -275,6 +276,7 @@ defaultproperties
      HudColor=(B=255,G=175,R=100)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=2
+	 InventorySize=6
      PickupClass=Class'BallisticProV55.A42Pickup'
      PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-10.000000)
      AttachmentClass=Class'BallisticProV55.A42Attachment'

@@ -13,7 +13,7 @@ simulated function SwitchWeaponMode(byte newMode)
 simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
-	SetTimer(0.8, true);	// XAVEDIT
+	SetTimer(0.5, true);	// XAVEDIT
 }
 
 function Timer()
@@ -82,7 +82,7 @@ defaultproperties
      bUseWeaponMag=False
      bWaitForRelease=True
      FireAnim="Button"
-	 FireAnimRate=1.5
+	 FireAnimRate=2
      FireRate=1.000000
      AmmoClass=Class'BWBPOtherPackPro.Ammo_Wrench'
      AmmoPerFire=10

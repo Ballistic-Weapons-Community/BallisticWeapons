@@ -601,7 +601,7 @@ defaultproperties
      bWT_Bullet=True
      ManualLines(0)="High damage bullet fire. Good range for a handgun and high ammo capacity."
      ManualLines(1)="Fires the single 16-gauge shotgun shell. Strong at very close range."
-     ManualLines(2)="Effective at very close to medium range."
+     ManualLines(2)="Effective at close range."
      SpecialInfo(0)=(Info="120.0;15.0;0.6;50.0;0.9;0.5;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
@@ -618,18 +618,22 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
+	 
      SightOffset=(X=-20.000000,Y=0.070000,Z=6.150000)
      SightDisplayFOV=60.000000
      SightingTime=0.200000
-     SightAimFactor=0.150000
-     AimSpread=16
+     SightAimFactor=2
+	 
      ChaosDeclineTime=0.450000
-     ChaosAimSpread=768
-     RecoilYawFactor=0.000000
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilDeclineTime=0.800000
-     RecoilDeclineDelay=0.600000
+	 
+	 ViewRecoilFactor=0.5
+	 RecoilXCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.2,OutVal=0.03),(InVal=0.36,OutVal=0.07),(InVal=0.62,OutVal=0.09),(InVal=0.6,OutVal=0.11),(InVal=1,OutVal=0.15)))
+     RecoilXFactor=0.150000
+     RecoilYFactor=0.150000
+     RecoilDeclineTime=1.000000
+     RecoilDeclineDelay=0.500000
+	 
+	 
      FireModeClass(0)=Class'BallisticProV55.leMatPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.leMatSecondaryFire'
      PutDownTime=0.700000

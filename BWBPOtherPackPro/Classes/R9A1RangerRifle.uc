@@ -479,7 +479,6 @@ defaultproperties
      bNotifyModeSwitch=True
      FullZoomFOV=25.000000
      bNoCrosshairInScope=True
-     SightZoomFactor=20
      SightPivot=(Roll=11800)
      SightOffset=(X=15.000000,Y=2.850000,Z=9.000000)
      SightDisplayFOV=25.000000
@@ -487,14 +486,19 @@ defaultproperties
      CrouchAimFactor=0.750000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      AimAdjustTime=0.600000
-     ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.050000),(InVal=0.500000,OutVal=0.020000),(InVal=1.000000)))
+     ChaosSpeedThreshold=450.000000
+     ChaosAimSpread=768
+	 
+	 SightAimFactor=1
+	 
+	 ViewRecoilFactor=0.35
+     RecoilXCurve=(Points=(,(InVal=0.150000,OutVal=0.10000),(InVal=0.350000,OutVal=0.25000),(InVal=0.500000,OutVal=0.30000),(InVal=0.70000,OutVal=0.350000),(InVal=0.850000,OutVal=0.42000),(InVal=1.000000,OutVal=0.45)))
      RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.175000),(InVal=0.400000,OutVal=0.450000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.300000
-     RecoilYFactor=0.200000
-     RecoilMinRandFactor=0.500000
+     RecoilXFactor=0.100000
+     RecoilYFactor=0.100000
      RecoilDeclineDelay=0.350000
+	 RecoilDeclineTime=1.00000
+	 
      FireModeClass(0)=Class'BWBPOtherPackPro.R9A1PrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.R9A1ScopeFire'
 	 SightingTime=0.4

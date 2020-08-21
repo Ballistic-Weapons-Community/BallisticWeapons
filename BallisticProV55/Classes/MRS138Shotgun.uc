@@ -310,7 +310,6 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-
 	bWT_Shotgun=True
 	bShovelLoad=True
 	bMeleeWeapon=True
@@ -332,18 +331,26 @@ defaultproperties
 	Skins(1)=Shader'BWAddPack-RS-Skins.MRS138.MRS138Shiney'
 	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
 	SightingTime=0.300000
-	SightZoomFactor=0
 	SightOffset=(X=15,Z=21.500000)
 	SightPivot=(Pitch=256)
 	SightDisplayFOV=40
-	SightAimFactor=0.100000
+	SightAimFactor=1
+	
+	HipRecoilFactor=1
+	
+
 	ReloadAnimRate=1.500000
 	ReloadAnim="ReloadLoop"
-	RecoilYFactor=0.25
-	RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.200000),(InVal=1.000000)))
-	RecoilXFactor=0.2
-	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.000000),(InVal=0.300000,OutVal=0.100000),(InVal=1.000000,OutVal=0.000000)))
+	
+	ViewRecoilFactor=0.4
+	RecoilXCurve=(Points=(,(InVal=0.3,OutVal=0.2),(InVal=0.55,OutVal=0.1),(InVal=0.8,OutVal=0.25),(InVal=1.000000,OutVal=0.4)))
+	RecoilYCurve=(Points=(,(InVal=0.2,OutVal=0.2),(InVal=0.4,OutVal=0.45),(InVal=0.75,OutVal=0.7),(InVal=1.000000,OutVal=1)))
+	RecoilXFactor=0.1
+	RecoilYFactor=0.1
 	RecoilDeclineDelay=0.650000
+	RecoilDeclineTime=0.5
+	
+	
 	PutDownTime=0.35
 	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
 	PutDownAnimRate=1.5
@@ -354,7 +361,7 @@ defaultproperties
 	MeleeFireClass=Class'BallisticProV55.MRS138MeleeFire'
 	ManualLines(2)="Has a melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. The attack inflicts more damage from behind. Inflicts a medium-duration blind upon enemies when impacting and knocks them away from the user.||Weapon Function engages a flashlight which illuminates dark areas.||This weapon is extremely effective at close range."
 	ManualLines(1)="Launches a tazer. The user must hold down Altfire or the tazer will be retracted. Upon striking an enemy, transmits a current dealing low sustained damage but slowing the enemy movement."
-	ManualLines(0)="Automatic 10-gauge shotgun fire. Moderate spread, high damage and fast fire rate. Damage output is excellent. Strong from the hip."
+	ManualLines(0)="10-gauge pump-action shotgun fire. Moderate spread, good damage and average fire rate. Good shoulder fire properties."
 	MagAmmo=6
 	LongGunPivot=(Pitch=4500,Yaw=-8000)
 	LightType=LT_Pulse

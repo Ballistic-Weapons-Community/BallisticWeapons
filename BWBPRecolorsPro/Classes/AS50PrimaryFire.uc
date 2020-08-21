@@ -14,12 +14,11 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 defaultproperties
 {
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WaterRangeFactor=0.800000
      WallPenetrationForce=48.000000
      
-     Damage=70.000000
-     DamageHead=140.000000
-     DamageLimb=70.000000
+     Damage=80.000000
+     DamageHead=160.000000
+     DamageLimb=80.000000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPRecolorsPro.DT_AS50Torso'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_AS50Head'
@@ -39,7 +38,7 @@ defaultproperties
      BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.AS50.AS50-Fire',Volume=5.100000,Slot=SLOT_Interact,bNoOverride=False)
      FireAnim="CFire"
      FireEndAnim=
-     FireRate=0.280000
+     FireRate=0.350000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_50Inc'
      ShakeRotMag=(X=450.000000,Y=64.000000)
      ShakeRotRate=(X=12400.000000,Y=12400.000000,Z=12400.000000)

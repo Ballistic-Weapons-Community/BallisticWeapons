@@ -85,7 +85,6 @@ defaultproperties
      AltBrassClass1=Class'BWBPRecolorsPro.Brass_FRAGSpent'
      AltBrassClass2=Class'BWBPRecolorsPro.Brass_FRAG'
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WaterRangeFactor=0.300000
      WallPenetrationForce=96.000000
      
      Damage=100.000000
@@ -95,7 +94,7 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DTBulldog'
      DamageTypeHead=Class'BWBPRecolorsPro.DTBulldogHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTBulldog'
-     KickForce=25000
+     KickForce=40000
      PenetrateForce=250
      bPenetrate=True
      DryFireSound=(Sound=Sound'BallisticSounds2.D49.D49-DryFire',Volume=0.700000)

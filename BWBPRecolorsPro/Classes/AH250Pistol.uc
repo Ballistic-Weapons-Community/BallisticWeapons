@@ -243,7 +243,7 @@ defaultproperties
      ClipOutSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipOut',Volume=2.500000,Radius=48.000000)
      ClipInSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipIn',Volume=2.500000,Radius=48.000000)
      ClipInFrame=0.650000
-     WeaponModes(0)=(ModeName="Semi-Automatic")
+     WeaponModes(0)=(ModeName="Semi")
      WeaponModes(1)=(ModeName="Mode-2",bUnavailable=True,Value=7.000000)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
@@ -254,15 +254,19 @@ defaultproperties
      FullZoomFOV=40.000000
      bNoMeshInScope=True
      bNoCrosshairInScope=True
+	 RecoilXCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.1),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.12),(InVal=0.7,OutVal=0.2),(InVal=1.0,OutVal=0.3)))
      SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
      SightDisplayFOV=40.000000
+	 SightAimFactor=2
+	 ChaosAimSpread=256
      GunLength=4.000000
-     ChaosDeclineTime=0.450000
-     ChaosAimSpread=1024
-     RecoilXFactor=0.300000
-     RecoilYFactor=0.400000
-     RecoilMax=8192.000000
-     RecoilDeclineDelay=1.000000
+     ChaosDeclineTime=0.60000
+	 ViewRecoilFactor=0.5
+     RecoilXFactor=0.200000
+     RecoilYFactor=0.200000
+     RecoilMax=6144.000000
+     RecoilDeclineDelay=0.65
+	 RecoilDeclineTime=1
      FireModeClass(0)=Class'BWBPRecolorsPro.AH250PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.AH208MeleeFire'
      SelectAnimRate=2.000000
@@ -292,9 +296,9 @@ defaultproperties
      Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.DEagle_FP'
      DrawScale=0.800000
      Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-MainSilverEngraved'
-     Skins(2)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-Misc'
-     Skins(3)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-ScopeRed'
-     Skins(4)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-FrontSilver'
+     Skins(1)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-MainBlack'
+     Skins(2)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-MiscBlack'
+     Skins(3)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-Scope'
+     Skins(4)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-FrontBlack'
      Skins(5)=Shader'BallisticRecolors4TexPro.Eagle.Eagle-SightDotGreen'
 }

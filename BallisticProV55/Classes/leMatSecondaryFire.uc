@@ -47,7 +47,7 @@ defaultproperties
 {
      CutOffDistance=1536.000000
      CutOffStartRange=768.000000
-     TraceCount=10
+     TraceCount=8
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=2500.000000,Max=2500.000000)

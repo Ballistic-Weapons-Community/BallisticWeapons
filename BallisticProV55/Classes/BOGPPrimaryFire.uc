@@ -62,8 +62,8 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      FlashBone="Muzzle"
      FireChaos=0.700000
-     XInaccuracy=128.000000
-     YInaccuracy=128.000000
+     XInaccuracy=64.000000
+     YInaccuracy=64.000000
      BallisticFireSound=(Sound=SoundGroup'BallisticSounds_25.BOGP.BOGP_Fire',Volume=1.750000)
      bSplashDamage=True
      bRecommendSplashDamage=True

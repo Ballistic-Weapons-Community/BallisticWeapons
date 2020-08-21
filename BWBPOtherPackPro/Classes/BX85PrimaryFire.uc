@@ -3,7 +3,6 @@ class BX85PrimaryFire extends BallisticProInstantFire;
 defaultproperties
 {
 	TraceRange=(Min=30000.000000,Max=30000.000000)
-	WaterRangeFactor=0.750000
 	WallPenetrationForce=0.000000
 	
 	Damage=95.000000

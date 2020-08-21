@@ -38,6 +38,7 @@ var Name						EmptyFireAnim, EmptyAimedFireAnim; //Fire anim to play when emptie
 var int BurstCount;										// Number of shots fired in this burst thus far
 var int MaxBurst;											// Max shots per burst, set by Weapon
 var bool bBurstMode;									// Weapon fires bursts
+var float	BurstFireRateFactor;						// Multiplies down fire rate in burst mode
 
 var() enum EScopeDownOn
 {
@@ -515,23 +516,23 @@ simulated event ModeDoFire()
         else
             NextFireTime = Level.TimeSeconds + FireRate;
 	}
-	/*
+	
     else if (bBurstMode)
     {
 		BurstCount++;
     	if (BurstCount >= MaxBurst)
     	{
-    		NextFireTime += FireRate * (1 + (MaxBurst * 0.25));
+    		NextFireTime += FireRate * (1 + (MaxBurst * (1.0f - BurstFireRateFactor)));
     		NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
     		BurstCount = 0;
     	}
     	else
     	{
-    		NextFireTime += FireRate * 0.75;
+    		NextFireTime += FireRate * BurstFireRateFactor;
   			NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
   		}
 	}
-	*/
+	
     else
     {
         NextFireTime += FireRate;
@@ -559,7 +560,7 @@ function StopFiring()
 {	
 	if (bBurstMode && BurstCount != 0)
 	{
-		NextFireTime = Level.TimeSeconds + FireRate * (1 + (MaxBurst * 0.25));
+		NextFireTime = Level.TimeSeconds + FireRate * (1 + (MaxBurst * (1.0f - BurstFireRateFactor)));
 		BurstCount = 0;
 	}
 }
@@ -673,4 +674,5 @@ defaultproperties
      TransientSoundVolume=1.000000
      TweenTime=0.000000
      AmmoPerFire=1
+	 BurstFireRateFactor=0.66
 }

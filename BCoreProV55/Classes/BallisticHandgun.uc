@@ -100,6 +100,8 @@ exec simulated function ScopeView()
 		Super.ScopeView();
 		return;
 	}
+	
+	/*
 	if (IsMaster())
 	{
 		Othergun.ScopeView();
@@ -107,6 +109,7 @@ exec simulated function ScopeView()
 	}
 	bAutoTrack = true;
 	ServerStartTracking();
+	*/
 }
 // Scope key released. Stop tracking
 exec simulated function ScopeViewRelease()
@@ -116,6 +119,7 @@ exec simulated function ScopeViewRelease()
 		Super.ScopeViewRelease();
 		return;
 	}
+	/*
 	if (IsMaster())
 	{
 		Othergun.ScopeViewRelease();
@@ -123,6 +127,7 @@ exec simulated function ScopeViewRelease()
 	}
 	bAutoTrack = false;
 	ServerStopTracking();
+	*/
 }
 
 simulated function bool CheckScope()
@@ -415,12 +420,15 @@ simulated event RenderOverlays (Canvas C)
 simulated event WeaponTick(float DT)
 {
 	local int m;
+	
 	Super.WeaponTick(DT);
+	
 	if (IsMaster())
 		OtherGun.WeaponTick(DT);
 
 	else if (IsSlave())
-	{	// Timers and ModeDoFire need to be called manually for slave...
+	{	
+		// Timers and ModeDoFire need to be called manually for slave...
 		for (m=0;m<NUM_FIRE_MODES;m++)
 		{
 			if (FireMode[m].bIsFiring)
@@ -440,7 +448,7 @@ simulated event WeaponTick(float DT)
 					FireMode[m].NextTimerPop = 9999999;
 			}
 		}
-		TrackerTick(DT);
+		//TrackerTick(DT);
 	}
 }
 simulated event StopFire(int Mode)
@@ -587,7 +595,7 @@ simulated function bool CanAlternate(int Mode)
 //Can these two weapons fire simultaneously?
 simulated function bool CanSynch(byte Mode)
 {
-	return (OtherGun != None && OtherGun.Class == Class);
+	return false; // (OtherGun != None && OtherGun.Class == Class);
 }
 
 simulated function ForceFire(int Mode)
@@ -926,7 +934,8 @@ simulated function SetDualMode (bool bDualMode)
 		SetBoneScale(8, 0.0, SupportHandBone);
 		if (AIController(Instigator.Controller) == None)
 			bUseSpecialAim = true;
-		ChaosAimSpread *= 1.75;
+			
+		BFireMode[0].FireRate = BFireMode[0].default.FireRate * 1.75;
 		if (bAimDisabled)
 			return;
 	}
@@ -934,7 +943,7 @@ simulated function SetDualMode (bool bDualMode)
 	{
 		SetBoneScale(8, 1.0, SupportHandBone);
 		bUseSpecialAim = false;
-		ChaosAimSpread = default.ChaosAimSpread;
+		BFireMode[0].FireRate = BFireMode[0].default.FireRate;
 		if (bAimDisabled)
 			return;
 	}
@@ -1526,20 +1535,6 @@ simulated state PendingCocking extends PendingDualAction
 	function ServerStartReload (optional byte i){}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Draw slave weapon info on the HUD
 simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 {
@@ -1604,12 +1599,14 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 
 simulated function bool IsMaster()	{	return (OtherGun != None && bIsMaster);	}
 simulated function bool IsSlave()	{	return (OtherGun != None && !bIsMaster);}
+
 simulated function BallisticHandgun	GetMaster()
 {
 	if (OtherGun == None || bIsMaster)
 		return self;
 	return Othergun;
 }
+
 simulated function BallisticHandgun	GetSlave()
 {
 	if (IsSlave())
@@ -1632,18 +1629,9 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 		return;
 	}
 	if (IsMaster())
-
-
-
 		super(Weapon).DisplayDebug(Canvas, YL, YPos);
-
-
+		
 	if (IsSlave())
-
-
-
-
-
     	Canvas.SetDrawColor(128,128,255);
 	else
     	Canvas.SetDrawColor(255,128,0);
@@ -1712,7 +1700,7 @@ defaultproperties
      PlayerSpeedFactor=1.100000
      InventorySize=3
      bWT_Sidearm=True
-     SightZoomFactor=0
+     SightZoomFactor=0.85
      GunLength=16.000000
      LongGunPivot=(Pitch=5000,Yaw=6000)
      HipRecoilFactor=1.500000

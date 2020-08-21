@@ -7,9 +7,10 @@ var float OutwardDamageRadius;
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	SetTimer(ArmingDelay, False);
+	//SetTimer(ArmingDelay, False);
 }
 
+/*
 simulated function Timer()
 {
 	if(StartDelay > 0)
@@ -20,6 +21,7 @@ simulated function Timer()
 	
 	bBounce=False;
 }
+*/
 
 simulated function Landed (vector HitNormal)
 {
@@ -211,7 +213,7 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 
 defaultproperties
 {
-     ArmingDelay=0.060000
+     ArmingDelay=0.050000
      ImpactSounds(0)=Sound'XEffects.Impact4Snd'
      ImpactSounds(1)=Sound'XEffects.Impact6Snd'
      ImpactSounds(2)=Sound'XEffects.Impact7Snd'
@@ -221,7 +223,7 @@ defaultproperties
      OutwardDamageRadius=96.000000
      ImpactManager=Class'BWBPOtherPackPro.IM_Akeron'
      bRandomStartRotaion=False
-     AccelSpeed=90000.000000
+     AccelSpeed=100000.000000
      TrailClass=Class'BallisticProV55.G5RocketTrail'
      TrailOffset=(X=-4.000000)
      MyRadiusDamageType=Class'BWBPOtherPackPro.DTAkeron'
@@ -236,7 +238,7 @@ defaultproperties
      AmbientSound=Sound'BWBP4-Sounds.MRL.MRL-RocketFly'
      DrawScale=0.750000
      SoundVolume=64
-     bBounce=True
+     bBounce=False
      bFixedRotationDir=True
      RotationRate=(Roll=32768)
 }

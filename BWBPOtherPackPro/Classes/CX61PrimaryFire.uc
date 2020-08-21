@@ -8,14 +8,16 @@ defaultproperties
      CutOffDistance=3328.000000
      CutOffStartRange=1536.000000
      TraceRange=(Min=9000.000000,Max=9000.000000)
-     WaterRangeFactor=0.800000
+     
      WallPenetrationForce=16.000000
      
-     Damage=20.000000
-     DamageHead=40.000000
-     DamageLimb=20.000000
+     Damage=22.000000
+     DamageHead=44.000000
+     DamageLimb=22.000000
+	 
      RangeAtten=0.350000
      WaterRangeAtten=0.800000
+	 
      DamageType=Class'BWBPOtherPackPro.DT_CX61Chest'
      DamageTypeHead=Class'BWBPOtherPackPro.DT_CX61Head'
      DamageTypeArm=Class'BWBPOtherPackPro.DT_CX61Chest'
@@ -37,8 +39,8 @@ defaultproperties
      bPawnRapidFireAnim=True
      FireAnim="SightFire"
      FireEndAnim=
-     FireAnimRate=1.300000
-     FireRate=0.090000
+     FireAnimRate=1.200000
+     FireRate=0.115000
      AmmoClass=Class'BWBPOtherPackPro.Ammo_CX61Rounds'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

@@ -30,17 +30,17 @@ replication
 
 simulated function float ChargeBar()
 {
-	return HeatLevel / 12;
+	return HeatLevel / 10;
 }
 
 simulated function AddHeat(float Amount)
 {
 	HeatLevel += Amount;
-	SoundPitch = 56 + HeatLevel * 9;
+	SoundPitch = 56 + HeatLevel * 11;
 	
-	if (HeatLevel >= 11.75)
+	if (HeatLevel >= 9.75)
 	{
-		Heatlevel = 12;
+		Heatlevel = 10;
 		class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, vect(0,0,0), class'DTA49OverHeat');
 		return;
 	}
@@ -55,8 +55,8 @@ simulated event Tick (float DT)
 {
 	if (HeatLevel > 0 && Level.TimeSeconds > LastFireTime + HeatDeclineDelay)
 	{
-		Heatlevel = FMax(HeatLevel - 6 * DT, 0);
-		SoundPitch = 56 + HeatLevel * 9;
+		HeatLevel = FMax(HeatLevel - 10 * DT, 0);
+		SoundPitch = 56 + HeatLevel * 11;
 	}
 	
 	super.Tick(DT);
@@ -316,69 +316,71 @@ defaultproperties
 	ManualLines(0)="Fires a stream of plasma projectiles. These projectiles deal high damage and gain damage over range, but are slow.||Using this mode generates heat, and if the weapon overheats, the user will take damage and the fire rate is reduced."
 	ManualLines(1)="Projects a short-range shockwave, dealing low damage and pushing nearby enemies back.||Using this mode generates significant heat, and if the weapon overheats, the user will take damage."
 	ManualLines(2)="Effective at close range. Especially effective at repelling charges and melee."
-     HeatDeclineDelay=0.200000
-	 AimDisplacementDurationMult=0.5
-     BlastDamageType=Class'BWBPRecolorsPro.DTA49Shockwave'
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     UsedAmbientSound=Sound'BallisticSounds2.A73.A73Hum1'
-     BigIconMaterial=Texture'BallisticRecolors3TexPro.A6.BigIcon_A49'
-     BigIconCoords=(Y1=24)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_RapidProj=True
-     bWT_Energy=True
-     SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.A42.A42-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.A42.A42-Putaway')
-     MagAmmo=24
-     CockAnim="Overheat"
-     ClipOutSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipOut',Volume=1.300000)
-     ClipInSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipHit',Volume=1.300000)
-     WeaponModes(0)=(bUnavailable=True)
-     SightPivot=(Pitch=2000,Roll=-768)
-     SightOffset=(X=-12.000000,Y=33.000000,Z=65.000000)
-     SightDisplayFOV=40.000000
-     SightingTime=0.200000
-	 SightZoomFactor=0
-     GunLength=0.100000
-     AimAdjustTime=0.350000
-     AimSpread=16
-     ChaosDeclineTime=0.800000
-     ChaosSpeedThreshold=7500.000000
-     ChaosAimSpread=2048
-     RecoilXCurve=(Points=(,(InVal=0.100000),(InVal=0.200000,OutVal=-0.100000),(InVal=0.400000,OutVal=0.050000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.700000),(InVal=1.000000,OutVal=0.100000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.200000),(InVal=0.700000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.400000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.170000
-     FireModeClass(0)=Class'BWBPRecolorsPro.A49PrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.A49SecondaryFire'
-     PutDownAnimRate=2.300000
-     BringUpTime=0.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.8500000
-     CurrentRating=0.8500000
-     Description="A49 Skrith Blaster"
-     Priority=16
-     HudColor=(B=255,G=175,R=100)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=3
-     GroupOffset=6
-     PickupClass=Class'BWBPRecolorsPro.A49Pickup'
-     PlayerViewOffset=(Y=10.000000,Z=-25.000000)
-     BobDamping=1.600000
-     AttachmentClass=Class'BWBPRecolorsPro.A49Attachment'
-     IconMaterial=Texture'BallisticRecolors3TexPro.A6.SmallIcon_A49'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="A49 Skrith Blaster"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=180
-     LightSaturation=100
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.SkrithBlaster'
-     SoundPitch=56
-     SoundRadius=32.000000
-	 bShowChargingBar=True
+	HeatDeclineDelay=0.200000
+	AimDisplacementDurationMult=0.5
+	BlastDamageType=Class'BWBPRecolorsPro.DTA49Shockwave'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	UsedAmbientSound=Sound'BallisticSounds2.A73.A73Hum1'
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.A6.BigIcon_A49'
+	BigIconCoords=(Y1=24)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_RapidProj=True
+	bWT_Energy=True
+	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.A42.A42-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.A42.A42-Putaway')
+	MagAmmo=32
+	CockAnim="Overheat"
+	ClipOutSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipOut',Volume=1.300000)
+	ClipInSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipHit',Volume=1.300000)
+	WeaponModes(0)=(bUnavailable=True)
+	SightPivot=(Pitch=2000,Roll=-768)
+	SightOffset=(X=-12.000000,Y=33.000000,Z=65.000000)
+	SightDisplayFOV=40.000000
+	SightingTime=0.200000
+	SightZoomFactor=0.85
+	GunLength=0.100000
+	AimAdjustTime=0.350000
+	
+	AimSpread=16
+	ChaosDeclineTime=0.800000
+	ChaosSpeedThreshold=7500.000000
+	ChaosAimSpread=512
+	
+	ViewRecoilFactor=0.4
+	RecoilXCurve=(Points=(,(InVal=0.100000),(InVal=0.200000,OutVal=-0.050000),(InVal=0.400000,OutVal=0.050000),(InVal=0.600000,OutVal=0.070000),(InVal=0.700000),(InVal=1.000000,OutVal=0.100000)))
+	RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.350000,OutVal=0.400000),(InVal=0.540000,OutVal=0.650000),(InVal=0.700000,OutVal=0.720000),(InVal=1.000000,OutVal=0.300000)))
+	RecoilDeclineTime=0.5
+	RecoilDeclineDelay=0.170000
+	
+	FireModeClass(0)=Class'BWBPRecolorsPro.A49PrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.A49SecondaryFire'
+	PutDownAnimRate=2.300000
+	BringUpTime=0.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.8500000
+	CurrentRating=0.8500000
+	Description="A49 Skrith Blaster"
+	Priority=16
+	HudColor=(B=255,G=175,R=100)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=5
+	GroupOffset=1
+	PickupClass=Class'BWBPRecolorsPro.A49Pickup'
+	PlayerViewOffset=(Y=10.000000,Z=-25.000000)
+	BobDamping=1.600000
+	AttachmentClass=Class'BWBPRecolorsPro.A49Attachment'
+	IconMaterial=Texture'BallisticRecolors3TexPro.A6.SmallIcon_A49'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="A49 Skrith Blaster"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=180
+	LightSaturation=100
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.SkrithBlaster'
+	SoundPitch=56
+	SoundRadius=32.000000
+	bShowChargingBar=True
 }

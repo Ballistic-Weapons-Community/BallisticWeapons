@@ -342,7 +342,7 @@ defaultproperties
      SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=10
+     MagAmmo=7
      CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock')
      ClipHitSound=(Sound=Sound'BallisticSounds2.M806.M806-ClipHit')
      ClipOutSound=(Sound=Sound'BallisticSounds2.M806.M806-ClipOut')
@@ -351,21 +351,17 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
-     SightPivot=(Pitch=300)
-     SightOffset=(X=5.000000,Z=5.100000)
+     SightOffset=(X=7.000000,Y=0.01,Z=3.600000)
      SightDisplayFOV=60.000000
 	 SightingTime=0.200000
-	 SightAimFactor=0.1
-	 AimSpread=32
+	 
+	 ViewRecoilFactor=0.25
      AimAdjustTime=0.450000
      ChaosDeclineTime=0.320000
-     ChaosSpeedThreshold=7500.000000
-     ChaosAimSpread=1024
-     RecoilYawFactor=0.200000
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilDeclineTime=1.5
-     RecoilDeclineDelay=0.400000
+     RecoilXFactor=0.050000
+     RecoilYFactor=0.050000
+     RecoilDeclineTime=0.5
+     RecoilDeclineDelay=0.37000
      FireModeClass(0)=Class'BallisticProV55.M806PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M806SecondaryFire'
      SelectForce="SwitchToAssaultRifle"
@@ -389,6 +385,6 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticAnims2.M806Pistol'
+     Mesh=SkeletalMesh'BallisticProAnims.M806Pistol'
      DrawScale=0.080000
 }

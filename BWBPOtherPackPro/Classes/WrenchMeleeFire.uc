@@ -37,15 +37,6 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	
 	else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
 	//End locational damage code test
-	
-	if (RangeAtten != 1.0)
-		Dmg *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
-	if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
-		Dmg *= Lerp(VSize(HitLocation-WaterHitLocation) / (TraceRange.Max*WaterRangeFactor), 1, WaterRangeAtten);
-	if (PenetrateCount > 0)
-		Dmg *= PDamageFactor ** PenetrateCount;
-	if (WallCount > 0)
-		Dmg *= WallPDamageFactor ** WallCount;
 		
 	if (Instigator != None)
 	{

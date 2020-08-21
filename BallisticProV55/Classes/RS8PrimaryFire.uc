@@ -90,12 +90,14 @@ function PlayFiring()
 	{
 		BW.IdleAnim = 'OpenIdle';
 		BW.ReloadAnim = 'OpenReload';
+		AimedFireAnim = 'SightFireOpen';
 		FireAnim = 'OpenFire';
 	}
 	else
 	{
 		BW.IdleAnim = 'Idle';
 		BW.ReloadAnim = 'Reload';
+		AimedFireAnim = 'SightFire';
 		FireAnim = 'Fire';
 	}
 
@@ -137,17 +139,16 @@ defaultproperties
 {
      SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      SFlashBone="tip2"
-     SFlashScaleFactor=1.000000
+     SFlashScaleFactor=0.25
 	 TraceRange=(Min=4000.000000,Max=4000.000000)
      CutOffDistance=2048.000000
-     CutOffStartRange=512.000000
-     WaterRangeFactor=0.450000
+     CutOffStartRange=768.000000
+	 RangeAtten=0.3
      WallPenetrationForce=8.000000
      
-     Damage=27.000000
-     DamageHead=40.000000
-     DamageLimb=27.000000
-     RangeAtten=0.250000
+     Damage=25.000000
+     DamageHead=37.000000
+     DamageLimb=25.000000
      WaterRangeAtten=0.400000
      DamageType=Class'BallisticProV55.DTRS8Pistol'
      DamageTypeHead=Class'BallisticProV55.DTRS8PistolHead'
@@ -155,10 +156,9 @@ defaultproperties
      PenetrateForce=135
      bPenetrate=True
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-     FlashScaleFactor=0.500000
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassOffset=(X=-14.000000,Z=-5.000000)
-     RecoilPerShot=768.000000
+     RecoilPerShot=192.000000
      FireChaos=0.250000
      XInaccuracy=96.000000
      YInaccuracy=96.000000
@@ -167,7 +167,8 @@ defaultproperties
      bPawnRapidFireAnim=True
 	 FireEndAnim=
      FireAnimRate=2
-     FireRate=0.320000
+	 AimedFireAnim='SightFire'
+     FireRate=0.20000
      AmmoClass=Class'BallisticProV55.Ammo_RS8Bullets'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

@@ -9,28 +9,28 @@
 //=============================================================================
 class LS14Carbine extends BallisticWeapon;
 
-var() Sound		GrenOpenSound;		//Sounds for rocket reloading
-var() Sound		GrenLoadSound;		//
-var() Sound		GrenCloseSound;		//
+var() Sound		GrenOpenSound;				//Sounds for rocket reloading
+var() Sound		GrenLoadSound;				//
+var() Sound		GrenCloseSound;				//
 
 var   actor GLIndicator;
-var() name		GrenadeLoadAnim;	//Anim for rocket reload
+var() name		GrenadeLoadAnim;			//Anim for rocket reload
 var() float		GrenadeLoadAnimRate;
-var() name		SingleGrenadeLoadAnim;	//Anim for rocket reload loop
+var() name		SingleGrenadeLoadAnim;		//Anim for rocket reload loop
 var() name		HatchOpenAnim;
 var() float		HatchOpenAnimRate;
 var() name		HatchCloseAnim;
 var() float 		HatchCloseAnimRate;
-var() Name		ShovelAnim;		//Anim to play after shovel loop ends
+var() Name		ShovelAnim;					//Anim to play after shovel loop ends
 var() float		ShovelAnimRate;
-var() int       	Rockets;		//Rockets currently in the gun.
-var() int       	ConfigX;		//Rockets currently in the gun.
-var() int      	ConfigY;		//Rockets currently in the gun.
-var	bool		bHeatOnce;		//Used for playing a sound once.
-var	bool		bBarrelsOnline;		//Used for alternating laser effect in attachment class.
-var	bool		bIsReloadingGrenade;	//Are we loading grenades?
-var	bool		bWantsToShoot;	//Are we interrupting reload?
-var	bool		bOverloaded;	//You exploded it.
+var() int       	Rockets;				//Rockets currently in the gun.
+var() int       	ConfigX;				//Rockets currently in the gun.
+var() int      	ConfigY;					//Rockets currently in the gun.
+var	bool		bHeatOnce;					//Used for playing a sound once.
+var	bool		bBarrelsOnline;				//Used for alternating laser effect in attachment class.
+var	bool		bIsReloadingGrenade;		//Are we loading grenades?
+var	bool		bWantsToShoot;				//Are we interrupting reload?
+var	bool		bOverloaded;				//You exploded it.
 var float		lastModeChangeTime;
 
 var() Material	StabBackTex;
@@ -702,22 +702,10 @@ function ServerSwitchWeaponMode(byte NewMode)
 {
 	super.ServerSwitchWeaponMode(NewMode);
 	LS14Attachment(ThirdPersonActor).bDouble = bool(CurrentWeaponMode);
-	if (CurrentWeaponMode == 1)
-	     ChaosSpeedThreshold=1500.000000;
-	else ChaosSpeedThreshold=default.ChaosSpeedThreshold;
-}
-
-simulated function ClientSwitchWeaponModes (byte newMode)
-{
-	Super.ClientSwitchWeaponModes(newMode);
-	if (NewMode == 1)
-	     ChaosSpeedThreshold = 800.000000;
-	else ChaosSpeedThreshold=default.ChaosSpeedThreshold;
 }
 
 simulated function PlayShovelLoop()
 {
-
 	SetBoneScale(2, 1.0, Shells[2].ShellName);
 	SafePlayAnim(ShovelAnim, ShovelAnimRate, 0.0, , "RELOAD");
 }
@@ -785,19 +773,24 @@ defaultproperties
      SightPivot=(Pitch=600,Roll=-1024)
      SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
      MinZoom=2.000000
-     MaxZoom=8.000000
-     ZoomStages=2
+     MaxZoom=4.000000
+     ZoomStages=1
      GunLength=80.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      JumpOffSet=(Pitch=-6000,Yaw=2000)
-     AimSpread=128
+	 
+     AimSpread=64
      ChaosDeclineTime=0.800000
-     ChaosSpeedThreshold=2500.000000
-     RecoilXCurve=(Points=(,(InVal=0.150000),(InVal=0.250000,OutVal=-0.080000),(InVal=0.400000,OutVal=0.080000),(InVal=0.600000,OutVal=-0.120000),(InVal=0.800000,OutVal=0.100000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.400000,OutVal=0.450000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.400000
-     RecoilYFactor=0.400000
+	 ChaosAimSpread=256
+	 
+	 ViewRecoilFactor=0.2
+     RecoilXCurve=(Points=(,(InVal=0.150000,OutVal=0.1),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.250000),(InVal=0.600000,OutVal=0.350000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.5)))
+     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.20000),(InVal=0.400000,OutVal=0.420000),(InVal=0.600000,OutVal=0.560000),(InVal=0.800000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.050000
+     RecoilYFactor=0.050000
      RecoilDeclineTime=1.000000
+	 RecoilDeclineDelay=0.2
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.LS14PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.LS14SecondaryFire'
      SelectAnimRate=1.500000

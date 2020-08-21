@@ -120,16 +120,19 @@ defaultproperties
      SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
+	 
      CutOffDistance=2560.000000
      CutOffStartRange=1024.000000
-     WaterRangeFactor=0.500000
+     TraceRange=(Min=4000.000000,Max=4000.000000)
+	 RangeAtten=0.2
+	 WaterRangeAtten=0.200000
+	 
      WallPenetrationForce=8.000000
      
-     Damage=22.000000
-     DamageHead=44.000000
-     DamageLimb=22.000000
-     RangeAtten=0.250000
-     WaterRangeAtten=0.600000
+     Damage=18.000000
+     DamageHead=18.000000
+     DamageLimb=18.000000
+
      DamageType=Class'BallisticProV55.DTXK2SMG'
      DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
      DamageTypeArm=Class'BallisticProV55.DTXK2SMG'
@@ -142,15 +145,15 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassOffset=(X=-25.000000,Z=-5.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=98.000000
-     FireChaos=0.050000
+     RecoilPerShot=72.000000
+     FireChaos=0.025000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
-     XInaccuracy=24.000000
-     YInaccuracy=24.000000
+     XInaccuracy=32.000000
+     YInaccuracy=32.000000
      SilencedFireSound=(Sound=Sound'BallisticSounds3.XK2.XK2-SilenceFire',Volume=0.50000,Radius=48.000000,bAtten=True)
      BallisticFireSound=(Sound=Sound'BallisticSounds3.XK2.XK2-Fire',Volume=0.500000,Radius=384.000000)
      bPawnRapidFireAnim=True
-     FireRate=0.090000
+     FireRate=0.09000
      AmmoClass=Class'BallisticProV55.Ammo_9mm'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

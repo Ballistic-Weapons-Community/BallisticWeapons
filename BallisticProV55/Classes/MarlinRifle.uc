@@ -228,7 +228,7 @@ defaultproperties
      BigIconMaterial=Texture'BWBP4-Tex.Marlin.BigIcon_Marlin'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
-     ManualLines(0)="Lever-action rifle fire. High damage per shot with modest recoil and good penetration. The first shot is hip-accurate. This mode fires more quickly when the weapon is aimed."
+     ManualLines(0)="Lever-action rifle fire. High damage per shot with modest recoil and good penetration. Good shoulder fire properties. This mode fires more quickly when the weapon is aimed."
      ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
      ManualLines(2)="As a long-ranged weapon lacking a scope, it has a very quick aiming time. Does not use tracer rounds. Effective at medium to long range."
      SpecialInfo(0)=(Info="240.0;25.0;0.6;50.0;1.0;0.5;-999.0")
@@ -254,7 +254,6 @@ defaultproperties
      CurrentWeaponMode=0
      FullZoomFOV=70.000000
      bNoCrosshairInScope=True
-     SightZoomFactor=20
      SightOffset=(X=4.000000,Y=-0.070000,Z=4.750000)
      SightingTime=0.400000
      CrouchAimFactor=0.750000
@@ -262,11 +261,17 @@ defaultproperties
      JumpChaos=0.200000
      FallingChaos=0.100000
      SprintChaos=0.200000
+	 
+	 
      ChaosDeclineTime=1.000000
-     RecoilXFactor=0.400000
-     RecoilMinRandFactor=0.500000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=1.000000
+	 
+	 ViewRecoilFactor=0.5
+	 RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.400000,OutVal=0.10000),(InVal=0.600000,OutVal=0.25000),(InVal=0.800000,OutVal=0.33000),(InVal=1.000000)))
+     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilDeclineTime=1.000000
+     RecoilDeclineDelay=0.800000
+	 
+	 
      FireModeClass(0)=Class'BallisticProV55.MarlinPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectForce="SwitchToAssaultRifle"

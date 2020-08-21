@@ -170,7 +170,7 @@ defaultproperties
      bWT_Shotgun=True
      bWT_Hazardous=True
      bWT_Projectile=True
-     ManualLines(0)="Blasts the enemy with multiple acid projectiles. These projectiles gain damage over range and inflict a short-duration blind on a headshot."
+     ManualLines(0)="Blasts the enemy with multiple acid projectiles. These projectiles gain damage over range and inflict a short-duration blind on a headshot. Good shoulder fire properties."
      ManualLines(1)="Charges a larger, direct-attack projectile with minor radius damage. This projectile creates pools of acid where it strikes. Speed, power, number of pools and radius of coverage all increase with charge."
      ManualLines(2)="The A500 is effective at close range, or at all ranges when charged. The recoil is low because of the nature of the delivery system."
      SpecialInfo(0)=(Info="210.0;30.0;0.95;80.0;0.0;0.8;0.8")
@@ -194,18 +194,20 @@ defaultproperties
      SightAimFactor=0.150000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimAdjustTime=0.600000
+	 
      AimSpread=0
      AimDamageThreshold=75.000000
      ChaosDeclineTime=0.320000
      ChaosSpeedThreshold=1000.000000
-     ChaosAimSpread=0
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.270000),(InVal=0.600000,OutVal=-0.250000),(InVal=0.700000,OutVal=-0.250000),(InVal=1.000000,OutVal=0.100000)))
+     ChaosAimSpread=128
+	 
+	 ViewRecoilFactor=0.45
+     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.270000),(InVal=0.600000,OutVal=0.350000),(InVal=0.700000,OutVal=0.40000),(InVal=1.000000,OutVal=0.4500000)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.170000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.100000),(InVal=1.000000,OutVal=0.500000)))
-     RecoilPitchFactor=0.800000
-     RecoilYawFactor=0.800000
      RecoilXFactor=0.200000
      RecoilYFactor=0.200000
      RecoilDeclineTime=1.500000
+	 
      FireModeClass(0)=Class'BallisticProV55.A500PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.A500SecondaryFire'
      BringUpTime=0.500000

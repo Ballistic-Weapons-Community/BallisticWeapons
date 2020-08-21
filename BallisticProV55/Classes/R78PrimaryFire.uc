@@ -65,7 +65,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				if (VSize(HitLocation - Start) > 1)
 					WaterHitLoc=HitLocation;
 				Start = HitLocation;
-				Dist *= WaterRangeFactor;
+				Dist = Min(Dist, MaxWaterTraceRange);
 				End = Start + X * Dist;
 				Weapon.bTraceWater=false;
 				continue;
@@ -143,10 +143,9 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 defaultproperties
 {
 	TraceRange=(Min=30000.000000,Max=30000.000000)
-	WaterRangeFactor=0.800000
-	Damage=100.000000
-	DamageHead=145.000000
-	DamageLimb=100.000000
+	Damage=60.000000
+	DamageHead=120.000000
+	DamageLimb=60.000000
 	WaterRangeAtten=0.800000
 	DamageType=Class'BallisticProV55.DTR78Rifle'
 	DamageTypeHead=Class'BallisticProV55.DTR78RifleHead'
@@ -161,11 +160,11 @@ defaultproperties
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
 	//bBrassOnCock=True
 	BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
-	RecoilPerShot=768.000000
+	RecoilPerShot=378.000000
 	FireChaos=0.500000
 	BallisticFireSound=(Sound=Sound'BallisticSounds3.R78.R78-Fire',Volume=2.000000,Radius=1024.000000)
 	FireEndAnim=
-	FireRate=0.8
+	FireRate=0.5
 	AmmoClass=Class'BallisticProV55.Ammo_42Rifle'
 	ShakeRotMag=(X=400.000000,Y=32.000000)
 	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

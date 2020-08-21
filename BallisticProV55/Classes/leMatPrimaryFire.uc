@@ -23,15 +23,14 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=3072.000000
-     CutOffStartRange=1280.000000
+     CutOffDistance=2048.000000
+     CutOffStartRange=768.000000
      TraceRange=(Min=8000.000000,Max=8000.000000)
-     WaterRangeFactor=0.800000
      WallPenetrationForce=8.000000
      
-     Damage=55.000000
-     DamageHead=82.000000
-     DamageLimb=55.000000
+     Damage=35.000000
+     DamageHead=35.000000
+     DamageLimb=35.000000
      RangeAtten=0.40000
      WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTleMatRevolver'
@@ -44,12 +43,12 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
      FlashScaleFactor=0.600000
      AimedFireAnim="SightFire"
-     RecoilPerShot=600.000000
-     FireChaos=0.300000
-     XInaccuracy=96.000000
-     YInaccuracy=96.000000
+     RecoilPerShot=300.000000
+     FireChaos=0.0400000
+     XInaccuracy=64.000000
+     YInaccuracy=64.000000
 	 FireAnimRate=1.5
-	 FireRate=0.35
+	 FireRate=0.25
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-Fire',Volume=1.200000)
      FireEndAnim=
      AmmoClass=Class'BallisticProV55.Ammo_leMat'

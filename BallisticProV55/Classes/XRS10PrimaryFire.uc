@@ -134,11 +134,10 @@ defaultproperties
      SFlashScaleFactor=1.000000
      CutOffDistance=1280.000000
      CutOffStartRange=512.000000
-     WaterRangeFactor=0.500000
      WallPenetrationForce=8.000000
-     Damage=25.000000
-     DamageHead=25.000000
-     DamageLimb=25.000000
+     Damage=22.000000
+     DamageHead=22.000000
+     DamageLimb=22.000000
      RangeAtten=0.250000
      WaterRangeAtten=0.400000
      DamageType=Class'BallisticProV55.DTXRS10SMG'
@@ -160,7 +159,7 @@ defaultproperties
      SilencedFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-SilenceFire',Volume=0.500000,Radius=32.000000,bAtten=True)
      BallisticFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Fire',Volume=0.900000,Radius=384.000000)
      bPawnRapidFireAnim=True
-     FireRate=0.0850000
+     FireRate=0.08000
      AmmoClass=Class'BallisticProV55.Ammo_XRS10Bullets'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
@@ -168,4 +167,5 @@ defaultproperties
      ShakeOffsetMag=(X=-3.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
+	 BurstFireRateFactor=0.55
 }

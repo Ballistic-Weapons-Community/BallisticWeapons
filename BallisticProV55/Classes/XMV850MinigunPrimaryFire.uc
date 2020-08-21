@@ -124,6 +124,8 @@ event PostBeginPlay()
 	super.PostBeginPlay();
 }
 
+
+
 // Fire TraceCount each DoFireEvent
 // FireRate = DesiredFireRate / TraceCount
 // TraceCount
@@ -142,6 +144,9 @@ TraceCount = Ceil((level.TimeSeconds - level.LastRenderTime) / DesiredFireRate);
 
 FireRate = DesiredFireRate / TraceCount;
 */
+
+
+
 
 event ModeTick(float DT)
 {
@@ -258,8 +263,15 @@ function DoFireEffect()
 // ModeDoFire from WeaponFire.uc, but with a few changes
 simulated event ModeDoFire()
 {
-    if (!AllowFire() || XMV850Minigun(BW).BarrelSpeed < XMV850Minigun(BW).DesiredSpeed)
+    if (!AllowFire()) 
+		return;
+	
+	
+	/*
+	// won't fire if spinning slower than lowest rotation speed
+	if (Minigun.BarrelSpeed <  Minigun.RotationSpeeds[0]) //Minigun.DesiredSpeed)
         return;
+	*/
 
 	BW.bPreventReload=true;
 	BW.FireCount++;
@@ -316,17 +328,16 @@ simulated event ModeDoFire()
 defaultproperties
 {
 	 CutOffStartRange=3072
-	 CutOffDistance=6144
+	 CutOffDistance=8192
 	 RangeAtten=0.35
      TraceCount=1
      TraceRange=(Min=12000.000000,Max=12000.000000)
-     WaterRangeFactor=0.800000
      WallPenetrationForce=16.000000
      
-     Damage=25.000000
-     DamageHead=50.000000
-     DamageLimb=25.000000
-     WaterRangeAtten=0.800000
+     Damage=22.000000
+     DamageHead=44.000000
+     DamageLimb=22.000000
+     WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTXMV850MG'
      DamageTypeHead=Class'BallisticProV55.DTXMV850MGHead'
      DamageTypeArm=Class'BallisticProV55.DTXMV850MG'
@@ -338,10 +349,10 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Minigun'
      BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
      RecoilPerShot=72.000000
-     VelocityRecoil=48.000000
+     VelocityRecoil=300.000000
      FireChaos=0.120000
-     XInaccuracy=32.000000
-     YInaccuracy=32.000000
+     XInaccuracy=16.000000
+     YInaccuracy=16.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.XMV-850.XMV-Fire-1',Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireRate=0.050000

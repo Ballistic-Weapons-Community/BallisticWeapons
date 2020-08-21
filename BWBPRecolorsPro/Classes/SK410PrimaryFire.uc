@@ -62,18 +62,17 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-     HipSpreadFactor=2.000000
+     HipSpreadFactor=1.250000
      CutOffDistance=1536.000000
-     CutOffStartRange=378.000000
-     MaxSpreadFactor=6
-     TraceCount=7
+     CutOffStartRange=512.000000
+     TraceCount=6
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_ShotgunHE'
      ImpactManager=Class'BWBPRecolorsPro.IM_ShellHE'
      TraceRange=(Min=4000.000000,Max=6000.000000)
-     Damage=12.000000
-     DamageHead=12.000000
-     DamageLimb=12.000000
-     RangeAtten=0.500000
+     Damage=11.000000
+     DamageHead=11.000000
+     DamageLimb=11.000000
+     RangeAtten=0.350000
      DamageType=Class'BWBPRecolorsPro.DT_SK410Shotgun'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_SK410ShotgunHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_SK410Shotgun'
@@ -85,15 +84,15 @@ defaultproperties
      BrassClass=Class'BWBPRecolorsPro.Brass_ShotgunHE'
      BrassOffset=(X=-1.000000,Z=-1.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=600.000000
+     RecoilPerShot=378.000000
      VelocityRecoil=0.000000
      FireChaos=0.400000
-     XInaccuracy=300.000000
-     YInaccuracy=300.000000
+     XInaccuracy=256.000000
+     YInaccuracy=256.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.M781.M781-Blast',Volume=1.300000)
      FireEndAnim=
-     FireAnimRate=2.250000
-     FireRate=0.220000
+     FireAnimRate=1.750000
+     FireRate=0.225000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_8GaugeHE'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
