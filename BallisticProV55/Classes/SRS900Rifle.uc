@@ -445,7 +445,7 @@ defaultproperties
      MaxZoom=8.000000
      ZoomStages=2
      GunLength=72.000000
-     SightAimFactor=0.350000
+     SightAimFactor=2
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
 	 
      AimSpread=16

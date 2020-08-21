@@ -44,7 +44,6 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 defaultproperties
 {
      TraceRange=(Min=15000.000000,Max=15000.000000)
-     WaterRangeFactor=0.800000
      Damage=40.000000
      DamageHead=80.000000
      DamageLimb=40.000000

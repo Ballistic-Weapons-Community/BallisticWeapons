@@ -71,10 +71,10 @@ simulated function vector GetFireSpread()
 		return super(BallisticProjectileFire).GetFireSpread();
 
 	fX = frand();
-	R.Yaw =  1280 * sin (FMin(sqrt(frand()), 1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+	R.Yaw =  512 * sin (FMin(sqrt(frand()), 1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
 	if (frand() > 0.5)
 		R.Yaw = -R.Yaw;
-	R.Pitch = 1280 * sin (FMin(sqrt(frand()), 1)  * 1.5707963267948966) * cos(fX*1.5707963267948966);
+	R.Pitch = 512 * sin (FMin(sqrt(frand()), 1)  * 1.5707963267948966) * cos(fX*1.5707963267948966);
 	if (frand() > 0.5)
 		R.Pitch = -R.Pitch;
 	return Vector(R);

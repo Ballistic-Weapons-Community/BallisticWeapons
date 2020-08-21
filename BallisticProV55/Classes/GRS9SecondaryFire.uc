@@ -85,7 +85,6 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 defaultproperties
 {
      FireSoundLoop=Sound'BWBP4-Sounds.Glock.Glk-LaserBurn'
-     WaterRangeFactor=0.700000
      Damage=17.000000
      DamageHead=17.000000
      DamageLimb=17.000000

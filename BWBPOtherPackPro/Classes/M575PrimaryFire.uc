@@ -16,7 +16,7 @@ defaultproperties
 {
 	 FlashBone="MuzzleFlash"
      TraceRange=(Min=15000.000000,Max=15000.000000)
-     WaterRangeFactor=0.800000
+     
      WallPenetrationForce=48.000000
      
      Damage=15.000000

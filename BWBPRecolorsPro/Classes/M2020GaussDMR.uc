@@ -540,6 +540,8 @@ defaultproperties
      VentingSound=Sound'PackageSounds4ProExp.M2020.M2020-IdleShield'
      OverheatSound=Sound'PackageSounds4Pro.XavPlas.Xav-Overload'
      ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
+	 PlayerSpeedFactor=0.9
+	 PlayerJumpFactor=0.9
      MaxHeat=7.000000
      BulletBone1="Bullet1"
      BulletBone2="Bullet2"
@@ -592,17 +594,20 @@ defaultproperties
      ZoomStages=8
      GunLength=80.000000
      CrouchAimFactor=0.650000
-     SightAimFactor=0.150000
+     SightAimFactor=1
      SprintOffSet=(Pitch=-3000,Yaw=-4096)
      JumpOffSet=(Pitch=-6000,Yaw=2000)
-     AimSpread=192
+     AimSpread=64
      ChaosDeclineTime=1.250000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.400000),(InVal=1.000000,OutVal=-0.200000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.550000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.1500000
-     RecoilYFactor=0.1500000
+     ChaosAimSpread=1280
+	 
+	 ViewRecoilFactor=0.2
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
+     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+     RecoilXFactor=0.0500000
+     RecoilYFactor=0.0500000
      RecoilDeclineDelay=0.700000
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.M2020GaussPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      PutDownTime=0.80000
@@ -623,7 +628,7 @@ defaultproperties
      AttachmentClass=Class'BWBPRecolorsPro.M2020GaussAttachment'
      IconMaterial=Texture'BallisticRecolors4TexPro.M2020.SmallIcon_M2020'
      IconCoords=(X2=127,Y2=31)
-     ItemName="M2020 Gauss Rifle"
+     ItemName="M2020 Gauss DMR"
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=30

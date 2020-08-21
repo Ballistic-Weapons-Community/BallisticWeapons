@@ -99,7 +99,7 @@ static function FireModeStats GetStats()
 defaultproperties
 {
      ProjectileCount=3
-     HipSpreadFactor=6.000000
+     HipSpreadFactor=1.500000
      bNoRandomFire=True
      MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
      RecoilPerShot=512.000000

@@ -4,8 +4,7 @@
 // Laser weapon with overheating mechanism. Deals more damage the lower the weapon's heat level is.
 // Does not cut out if maximum heat is reached.
 //
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2007 RuneStorm. All Rights Reserved.
+// Azarael note: This is pretty bright. Maybe use this elsewhere
 //=============================================================================
 class LS14PrimaryFire extends BallisticProInstantFire;
 
@@ -13,7 +12,7 @@ class LS14PrimaryFire extends BallisticProInstantFire;
 var() Actor			MuzzleFlash2;		// The muzzleflash actor
 var   bool			bSecondBarrel;
 var   bool			bIsDouble;
-var() sound		SpecialFireSound;
+var() sound			SpecialFireSound;
 
 var()	float			HeatPerShot;
 
@@ -37,7 +36,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 	else
 	{
 		bIsDouble=true;
-		HeatPerShot=40;
+		HeatPerShot=45;
 	}
 }
 
@@ -47,9 +46,6 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 	if (Pawn(Target) != None && Pawn(Target).bProjTarget)
 		Damage += LS14Carbine(BW).ManageHeatInteraction(Pawn(Target), HeatPerShot);
 	
-	if (Monster(Target) != None)
-		Damage = Min(Damage, 55);
-
 	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 }
 
@@ -122,7 +118,7 @@ function FlashMuzzleFlash()
 defaultproperties
 {
      SpecialFireSound=Sound'PackageSounds4Pro.LS14.Gauss-FireDouble'
-     HeatPerShot=20.000000
+     HeatPerShot=15.000000
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=0.000000
      
@@ -134,12 +130,12 @@ defaultproperties
      DamageTypeArm=Class'BWBPRecolorsPro.DTLS14Limb'
      PenetrateForce=500
      bPenetrate=True
-     FireModes(0)=(mDamage=40,mDamageType=Class'BWBPRecolorsPro.DTLS14Twin',mDamageTypeHead=Class'BWBPRecolorsPro.DTLS14Twin',mFireRate=0.500000,mFireChaos=1.000000,mRecoil=1024.000000,mAmmoPerFire=2,bModeInstantHit=True)
+     FireModes(0)=(mDamage=45,mDamageType=Class'BWBPRecolorsPro.DTLS14Twin',mDamageTypeHead=Class'BWBPRecolorsPro.DTLS14Twin',mFireRate=0.500000,mFireChaos=1.000000,mRecoil=512.000000,mAmmoPerFire=2,bModeInstantHit=True)
      ClipFinishSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-LastShot',Volume=1.000000,Radius=48.000000,bAtten=True)
      DryFireSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Empty',Volume=1.200000)
      MuzzleFlashClass=Class'BWBPRecolorsPro.LS14FlashEmitter'
      FlashScaleFactor=0.400000
-     RecoilPerShot=230.000000
+     RecoilPerShot=150.000000
      FireChaos=0.300000
      BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.LS14.Gauss-Fire',Volume=0.900000)
      FireEndAnim=

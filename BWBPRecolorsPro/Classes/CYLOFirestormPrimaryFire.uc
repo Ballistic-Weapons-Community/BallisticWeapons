@@ -84,7 +84,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				if (VSize(HitLocation - Start) > 1)
 					WaterHitLoc=HitLocation;
 				Start = HitLocation;
-				Dist *= WaterRangeFactor;
+				Dist = Min(Dist, MaxWaterTraceRange);
 				End = Start + X * Dist;
 				Weapon.bTraceWater=false;
 				continue;
@@ -167,7 +167,7 @@ defaultproperties
      CutOffDistance=4096.000000
      CutOffStartRange=2048.000000
      TraceRange=(Min=10000.000000,Max=12000.000000)
-	 WaterRangeFactor=0.200000
+	 
 	 bPenetrate=False
      WallPenetrationForce=0.000000
      

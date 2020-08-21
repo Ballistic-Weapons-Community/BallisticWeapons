@@ -903,16 +903,14 @@ defaultproperties
      SightDisplayFOV=40.000000
      SightingTime=0.300000
      GunLength=128.000000
-     HipRecoilFactor=3.500000
      SprintOffSet=(Pitch=-1024,Yaw=-1024)
-     AimSpread=16
      ChaosDeclineTime=1.250000
-     ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=2560
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=-0.015000),(InVal=0.300000,OutVal=0.030000),(InVal=0.600000,OutVal=-0.060000),(InVal=0.700000,OutVal=0.070000),(InVal=1.000000,OutVal=0.000000)))
+	 
+	 ViewRecoilFactor=0.3
+     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.120000
-     RecoilYFactor=0.120000
+     RecoilXFactor=0.10000
+     RecoilYFactor=0.100000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.250000
      FireModeClass(0)=Class'BallisticProV55.RSDarkPrimaryFire'

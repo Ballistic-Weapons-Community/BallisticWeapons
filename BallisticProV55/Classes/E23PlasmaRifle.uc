@@ -31,51 +31,6 @@ replication
 		bNightVision;
 }
 
-simulated function Reaim (float DT, optional float TimeMod, optional float ExtraChaos, optional float XMod, optional float YMod, optional float BaseChaos)
-{
-	local float VResult, X, Y, T;
-	local Vector V;//, Forward, Right, up;
-
-	if (bAimDisabled)
-		return;
-		
-	if (bUseNetAim && Role < ROLE_Authority)
-		return;
-
-	bForceReaim=false;
-
-	// Calculate chaos caused by movement
-	if (Instigator.Physics != PHYS_None)
-	{
-		V = Instigator.Velocity;
-		if (Instigator.Base != None)
-
-			V -= Instigator.Base.Velocity;
-		VResult = VSize(V) / ChaosSpeedThreshold;
-	}
-	
-	if (FireMode[1].bIsFiring && !bScopeView)
-		VResult += 0.7;
-
-	OldChaos = NewChaos;
-	//Changed how this is worked out.
-	//Uses ChaosSpeedThreshold (VResult) to provide a basic movement penalty.
-	Chaos = FClamp(VResult, 0, 1 );
-	NewChaos = Chaos;
-	
-	// Calculate new aim
-	X = XMod + Lerp( FRand(), Lerp(Chaos, -AimSpread, -ChaosAimSpread), Lerp(Chaos, AimSpread, ChaosAimSpread) );
-	Y = YMod + Lerp( FRand(), Lerp(Chaos, -AimSpread, -ChaosAimSpread), Lerp(Chaos, AimSpread, ChaosAimSpread) );
-	if (TimeMod!=0)
-		T = TimeMod;
-	else
-		T = AimAdjustTime;
-	StartAim(T, X, Y);
-
-	if (bUseNetAim)
-		SendNewAim();
-}
-
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
@@ -531,19 +486,23 @@ defaultproperties
      SightOffset=(X=-8.000000,Z=9.300000)
      SightDisplayFOV=25.000000
      SightingTime=0.550000
-     SightAimFactor=0.350000
+     SightAimFactor=2
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
-     AimSpread=256
+	 
+     AimSpread=64
      AimDamageThreshold=75.000000
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=9000.000000
-     ChaosAimSpread=3072
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=-0.050000),(InVal=0.350000,OutVal=0.070000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.100000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.400000),(InVal=0.600000,OutVal=0.750000),(InVal=0.700000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
+     ChaosAimSpread=128
+	 
+	 ViewRecoilFactor=0.25
+     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.10000),(InVal=0.350000,OutVal=0.140000),(InVal=0.600000,OutVal=0.200000),(InVal=0.800000,OutVal=0.320000),(InVal=1.000000,OutVal=0.4)))
+     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.120000),(InVal=0.200000,OutVal=0.200000),(InVal=0.350000,OutVal=0.380000),(InVal=0.600000,OutVal=0.750000),(InVal=0.700000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
      RecoilXFactor=0.200000
      RecoilYFactor=0.200000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.240000
+	 
      FireModeClass(0)=Class'BallisticProV55.E23PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.E23SecondaryFire'
      SelectAnimRate=1.250000

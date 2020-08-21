@@ -32,7 +32,7 @@ state Freeze
 {
 	function BeginState()
 	{
-		Damage = 50;
+		Damage = 35;
 	}
 	function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 	{	
@@ -59,7 +59,7 @@ state Laser
 {
 	function BeginState()
 	{
-		Damage = 35;
+		Damage = 20;
 	}
 	//Deals increased damage to targets which have already been heated up by a previous strike.
 	function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
@@ -142,14 +142,13 @@ defaultproperties
 	 RangeAtten=0.5
      FreezeFireSound=(Sound=Sound'BallisticSounds2.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
      LaserFireSound=(Sound=Sound'BallisticProSounds.R9.EnergyRelayExplode',Volume=3.000000,Radius=256.000000)
-     HeatPerShot=35
+     HeatPerShot=25
      TraceRange=(Min=30000.000000,Max=30000.000000)
-     WaterRangeFactor=0.800000
      WallPenetrationForce=32.000000
      
-     Damage=65.000000
-     DamageHead=130.000000
-     DamageLimb=65.000000
+     Damage=45.000000
+     DamageHead=90.000000
+     DamageLimb=45.000000
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTR9Rifle'
      DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
@@ -165,11 +164,11 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassOffset=(X=-40.000000,Y=-2.000000,Z=6.000000)
      AimedFireAnim="AimedFire"
-     RecoilPerShot=350.000000
+     RecoilPerShot=192.000000
      FireChaos=0.450000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Fire',Volume=0.800000)
      FireEndAnim=
-     FireRate=0.300000
+     FireRate=0.225000
      AmmoClass=Class'BWBPOtherPackPro.Ammo_R9A1'
      ShakeRotMag=(X=400.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

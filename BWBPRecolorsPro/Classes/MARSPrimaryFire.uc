@@ -16,12 +16,11 @@ defaultproperties
      CutOffDistance=8144.000000
      CutOffStartRange=4096.000000
      TraceRange=(Min=15000.000000,Max=15000.000000)
-     WaterRangeFactor=0.800000
      WallPenetrationForce=16.000000
      
-     Damage=25.000000
-     DamageHead=50.000000
-     DamageLimb=25.000000
+     Damage=20.000000
+     DamageHead=40.000000
+     DamageLimb=20.000000
      RangeAtten=0.600000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPRecolorsPro.DT_MARSAssault'
@@ -40,7 +39,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
-     FireRate=0.11500
+     FireRate=0.1
      AmmoClass=Class'BWBPRecolorsPro.Ammo_545mmSTANAG'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
@@ -50,4 +49,5 @@ defaultproperties
      ShakeOffsetTime=2.000000
      WarnTargetPct=0.200000
      aimerror=900.000000
+	 BurstFireRateFactor=0.55
 }

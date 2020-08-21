@@ -398,19 +398,18 @@ defaultproperties
      SightPivot=(Pitch=600,Roll=-1024)
      SightOffset=(Y=-1.000000,Z=12.500000)
      SightDisplayFOV=40.000000
-     SightingTime=0.400000
+     SightingTime=0.50000
      MinZoom=2.000000
      MaxZoom=4.000000
 	 ZoomStages=1
-     SightAimFactor=0.450000
+     SightAimFactor=1
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimAdjustTime=0.550000
 	 
-	 
      AimSpread=24
      ChaosDeclineTime=1.250000
-     ChaosSpeedThreshold=7000.000000
-     ChaosAimSpread=1024
+     ChaosSpeedThreshold=500.000000
+     ChaosAimSpread=256
 	 
 	 ViewRecoilFactor=0.35
      RecoilXCurve=(Points=(,(InVal=0.080000,OutVal=0.050000),(InVal=0.110000,OutVal=0.080000),(InVal=0.150000,OutVal=0.14000),(InVal=0.300000,OutVal=0.2300000),(InVal=0.450000,OutVal=0.2500000),(InVal=0.600000,OutVal=0.350000),(InVal=0.800000,OutVal=0.380000),(InVal=1.000000,OutVal=0.25)))

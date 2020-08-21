@@ -64,14 +64,14 @@ defaultproperties
 {
      HipSpreadFactor=1.250000
      CutOffDistance=1536.000000
-     CutOffStartRange=256.000000
+     CutOffStartRange=512.000000
      TraceCount=6
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_ShotgunHE'
      ImpactManager=Class'BWBPRecolorsPro.IM_ShellHE'
      TraceRange=(Min=4000.000000,Max=6000.000000)
-     Damage=10.000000
-     DamageHead=10.000000
-     DamageLimb=10.000000
+     Damage=11.000000
+     DamageHead=11.000000
+     DamageLimb=11.000000
      RangeAtten=0.350000
      DamageType=Class'BWBPRecolorsPro.DT_SK410Shotgun'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_SK410ShotgunHead'
@@ -87,8 +87,8 @@ defaultproperties
      RecoilPerShot=378.000000
      VelocityRecoil=0.000000
      FireChaos=0.400000
-     XInaccuracy=300.000000
-     YInaccuracy=300.000000
+     XInaccuracy=256.000000
+     YInaccuracy=256.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.M781.M781-Blast',Volume=1.300000)
      FireEndAnim=
      FireAnimRate=1.750000

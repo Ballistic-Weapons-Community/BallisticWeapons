@@ -665,12 +665,14 @@ defaultproperties
      SightingTime=0.300000
      GunLength=48.000000
      SprintOffSet=(Pitch=-3000,Yaw=-4096)
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
+	 
+	 ViewRecoilFactor=0.3
+     RecoilXCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=0.120000),(InVal=0.400000,OutVal=0.180000),(InVal=0.800000,OutVal=0.220000),(InVal=1.000000,OutVal=0.250000)))
      RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilYawFactor=0.000000
-     RecoilXFactor=0.30000
-     RecoilYFactor=0.500000
+     RecoilXFactor=0.05000
+     RecoilYFactor=0.050000
      RecoilDeclineDelay=0.600000
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.MK781PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.MK781SecondaryFire'
      PutDownTime=0.500000

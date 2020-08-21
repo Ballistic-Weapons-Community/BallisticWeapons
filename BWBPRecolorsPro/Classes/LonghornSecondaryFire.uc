@@ -85,7 +85,7 @@ function DoFireEffect()
 defaultproperties
 {
      ProjectileCount=6
-     HipSpreadFactor=5.000000
+	 HipSpreadFactor=2
      bNoRandomFire=True
      bCockAfterFire=True
      AimedFireAnim="SightFire"

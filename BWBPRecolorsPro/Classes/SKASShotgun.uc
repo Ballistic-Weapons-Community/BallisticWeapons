@@ -195,7 +195,7 @@ defaultproperties
      SpecialInfo(0)=(Info="360.0;30.0;0.9;120.0;0.0;3.0;0.0")
      BringUpSound=(Sound=Sound'PackageSounds4Pro.SKAS.SKAS-Select')
      PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
-     MagAmmo=12
+     MagAmmo=24
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'PackageSounds4Pro.SKAS.SKAS-CockLong',Volume=1.000000)
      ReloadAnimRate=1.550000
@@ -213,20 +213,17 @@ defaultproperties
      bNotifyModeSwitch=True
      SightPivot=(Pitch=1024)
      SightOffset=(X=-20.000000,Y=9.700000,Z=19.000000)
-	 SightZoomFactor=0
      GunLength=32.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
-     AimSpread=0
-     ChaosDeclineTime=0.800000
-     ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=0
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
+
+	 ViewRecoilFactor=0.4
+     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
      RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.350000
-     RecoilYFactor=0.350000
-     RecoilMinRandFactor=0.350000
+     RecoilXFactor=0.050000
+     RecoilYFactor=0.050000
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.450000
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.SKASPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.SKASSecondaryFire'
      IdleAnimRate=0.100000

@@ -9,6 +9,11 @@ function PostBeginPlay()
 	ShieldActor=Spawn(class'WrenchShield', self,,Location + vect(0,0,56));
 }
 
+function Timer()
+{
+	GoToState('Destroying');
+}
+
 simulated function Destroyed()
 {
 	if (ShieldActor != None)
@@ -18,12 +23,23 @@ simulated function Destroyed()
 }
 
 auto state Working
-{
+{	
+	function BeginState()
+	{
+		SetTimer(12, false);
+	}
+	
 	function TakeDamage( int Damage, Pawn instigatedBy, Vector hitlocation,	Vector momentum, class<DamageType> damageType)
 	{
 		if (!DamageType.default.bLocationalHit)
 			return;
 		Super.TakeDamage(Damage,instigatedBy,hitlocation, momentum, damageType);
+	}
+	
+		
+	function Timer()
+	{
+		GoToState('Destroying');
 	}
 }
 

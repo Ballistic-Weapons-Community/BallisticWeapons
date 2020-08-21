@@ -28,8 +28,8 @@ simulated function vector GetFireSpread()
 	else
 	{
 		fX = frand();
-		R.Yaw =  1536 * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-		R.Pitch = 1536 * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+		R.Yaw =  512 * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+		R.Pitch = 512 * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 		return Vector(R);
 	}
 }

@@ -11,7 +11,7 @@ auto state Working
 {
 	function BeginState()
 	{
-		SetTimer(5, false);
+		SetTimer(3, false);
 	}
 	
 	function TakeDamage( int Damage, Pawn instigatedBy, Vector hitlocation,	Vector momentum, class<DamageType> damageType)

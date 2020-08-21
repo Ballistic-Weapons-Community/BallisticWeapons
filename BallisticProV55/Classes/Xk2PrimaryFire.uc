@@ -126,7 +126,6 @@ defaultproperties
      TraceRange=(Min=4000.000000,Max=4000.000000)
 	 RangeAtten=0.2
 	 WaterRangeAtten=0.200000
-     WaterRangeFactor=0.200000
 	 
      WallPenetrationForce=8.000000
      

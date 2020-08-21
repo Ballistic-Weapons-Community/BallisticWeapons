@@ -53,8 +53,8 @@ simulated function vector GetFireSpread()
 		return super.GetFireSpread();
 
 	fX = frand();
-	R.Yaw =  1024 * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-	R.Pitch = 1024 * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+	R.Yaw =  128 * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+	R.Pitch = 128 * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 	return Vector(R);
 }
 
@@ -74,7 +74,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.CYLO.CYLO-FireSG',Volume=1.300000,Radius=256.000000)
      FireAnim="FireSG"
      FireEndAnim=
-     FireRate=1.000000
+     FireRate=0.75
      AmmoClass=Class'BWBPRecolorsPro.Ammo_CYLOSG'
      AmmoPerFire=0
      ShakeRotMag=(X=128.000000,Y=64.000000)

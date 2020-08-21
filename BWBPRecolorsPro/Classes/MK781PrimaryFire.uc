@@ -139,8 +139,6 @@ defaultproperties
      SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
-     HipSpreadFactor=6.000000
-	 MaxSpreadFactor=2.25
      CutOffDistance=2560.000000
      CutOffStartRange=1280.000000
      TraceCount=6
@@ -159,12 +157,12 @@ defaultproperties
 	 bPenetrate=false
 	 WallPenetrationForce=0
      MuzzleFlashClass=Class'BWBPRecolorsPro.MK781FlashEmitter'
-     FlashScaleFactor=2.000000
+     FlashScaleFactor=1.000000
      BrassClass=Class'BWBPRecolorsPro.Brass_ShotgunFlechette'
      BrassOffset=(X=-1.000000,Z=-1.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=512.000000
-     VelocityRecoil=180.000000
+     RecoilPerShot=300.000000
+     VelocityRecoil=50.000000
      FireChaos=0.250000
      XInaccuracy=192.000000
      YInaccuracy=192.000000

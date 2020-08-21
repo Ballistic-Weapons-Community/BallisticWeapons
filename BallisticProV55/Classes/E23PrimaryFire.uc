@@ -144,8 +144,8 @@ simulated state Shotgun
 			R.Roll = ((65536.0 / j) * i) -16384;
 
 			if (BW.bScopeView || BW.bAimDisabled)
-				Proj = Spawn (ProjectileClass,,, Start, rotator((Vector(rot(0,256,0)) >> R) >> Dir) );
-			else Spawn (ProjectileClass,,, Start, rotator((Vector(rot(0,768,0)) >> R) >> Dir) );
+				Proj = Spawn (ProjectileClass,,, Start, rotator((Vector(rot(0,96,0)) >> R) >> Dir) );
+			else Spawn (ProjectileClass,,, Start, rotator((Vector(rot(0,256,0)) >> R) >> Dir) );
 			if (Proj != None)
 				Proj.Instigator = Instigator;
 		}
@@ -224,11 +224,11 @@ defaultproperties
      PushForce=800.000000
      SGFireCount=3
      SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
-     FireModes(0)=(mProjClass=Class'BallisticProV55.E23Projectile_SG',mFireRate=0.50000,mFireChaos=0.500000,mFireSound=Sound'BWBP4-Sounds.VPR.VPR-SGFire',mFireAnim="Fire2",mRecoil=1024.000000,mAmmoPerFire=10,TargetState="Shotgun",bModeLead=True)
-     FireModes(1)=(mProjClass=Class'BallisticProV55.E23Projectile_Snpr',mFireRate=0.650000,mFireChaos=0.350000,mFireSound=Sound'BWBP4-Sounds.VPR.VPR-Fire',mFireAnim="Fire",mRecoil=384.000000,mAmmoPerFire=10,bModeLead=True)
+     FireModes(0)=(mProjClass=Class'BallisticProV55.E23Projectile_SG',mFireRate=0.50000,mFireChaos=0.500000,mFireSound=Sound'BWBP4-Sounds.VPR.VPR-SGFire',mFireAnim="Fire2",mRecoil=768.000000,mAmmoPerFire=10,TargetState="Shotgun",bModeLead=True)
+     FireModes(1)=(mProjClass=Class'BallisticProV55.E23Projectile_Snpr',mFireRate=0.650000,mFireChaos=0.350000,mFireSound=Sound'BWBP4-Sounds.VPR.VPR-Fire',mFireAnim="Fire",mRecoil=768.000000,mAmmoPerFire=10,bModeLead=True)
      MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
      FlashScaleFactor=0.750000
-     RecoilPerShot=160.000000
+     RecoilPerShot=96.000000
      FireChaos=0.060000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True

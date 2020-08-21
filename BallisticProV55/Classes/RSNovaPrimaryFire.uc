@@ -1064,7 +1064,7 @@ defaultproperties
      FireSoundLoop=Sound'BWBP4-Sounds.NovaStaff.Nova-AltFireLoop'
      Damage=2
      SpawnOffset=(X=12.000000,Y=8.000000,Z=-9.000000)
-     FireModes(0)=(mProjClass=Class'BallisticProV55.RSNovaFastProjectile',mFireRate=0.170000,mFireChaos=0.060000,mFireSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire2',mFireAnim="Fire2",mRecoil=192.000000,mAmmoPerFire=1,bModeLead=True,bModeSplash=True)
+     FireModes(0)=(mProjClass=Class'BallisticProV55.RSNovaFastProjectile',mFireRate=0.170000,mFireChaos=0.060000,mFireSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire2',mFireAnim="Fire2",mRecoil=150.000000,mAmmoPerFire=1,bModeLead=True,bModeSplash=True)
      FireModes(1)=(mFireRate=0.100000,mFireSound=Sound'BWBP4-Sounds.NovaStaff.Nova-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=7.000000,mAmmoPerFire=1,TargetState="NovaLightning",bModeInstantHit=True)
      FireModes(2)=(mFireRate=0.750000,mFireSound=Sound'BWBP4-Sounds.NovaStaff.Nova-LightningBolt',mFireAnim="Fire",mRecoil=256.000000,mAmmoPerFire=2,TargetState="Zap",bModeInstantHit=True)
      FireModes(3)=(mFireRate=0.100000,mFireSound=Sound'BWBP4-Sounds.NovaStaff.Nova-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=256.000000,mAmmoPerFire=1,TargetState="ChainLightning",bModeInstantHit=True)

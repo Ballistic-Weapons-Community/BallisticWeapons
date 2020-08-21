@@ -68,7 +68,7 @@ defaultproperties
      FlashBones(2)="tip3"
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
      MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-     RecoilPerShot=256.000000
+     RecoilPerShot=128.000000
      FireChaos=0.500000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.G5.G5-Fire1')
      FireEndAnim=
