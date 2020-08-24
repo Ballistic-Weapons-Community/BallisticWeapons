@@ -14,7 +14,7 @@ var float	HeatTime;
 
 function InitDroppedPickupFor(Inventory Inv)
 {
-    Super.InitDroppedPickupFor(None);
+    Super.InitDroppedPickupFor(Inv);
 
     if (HVPCMk66PlasmaCannon(Inv) != None)
     {

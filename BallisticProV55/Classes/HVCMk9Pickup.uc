@@ -23,7 +23,7 @@ function float GetRespawnTime()
 
 function InitDroppedPickupFor(Inventory Inv)
 {
-    Super.InitDroppedPickupFor(None);
+    Super.InitDroppedPickupFor(Inv);
 
     if (HVCMk9LightningGun(Inv) != None)
     {
