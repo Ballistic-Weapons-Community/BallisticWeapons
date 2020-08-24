@@ -413,13 +413,13 @@ defaultproperties
 	SpecialInfo(0)=(Info="60.0;5.0;0.4;-1.0;0.0;0.2;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-	MagAmmo=25
+	MagAmmo=30
 	CockSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Cock')
 	ClipOutSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipout')
 	ClipInSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipin')
 	ClipInFrame=0.650000
 	
-	WeaponModes(0)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=4.000000)
+	WeaponModes(0)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=5.000000)
 	WeaponModes(1)=(bUnavailable=True)
     WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 	CurrentWeaponMode=0
@@ -428,7 +428,7 @@ defaultproperties
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
 	SightZoomFactor=0.85
-	HipRecoilFactor=1.5
+	HipRecoilFactor=1
 	SprintOffSet=(Pitch=-3000,Yaw=-4000)
 	AimAdjustTime=0.450000
 	
@@ -441,7 +441,7 @@ defaultproperties
 	RecoilYFactor=0.1
 	RecoilMax=4096.000000
 	RecoilDeclineTime=0.5
-	RecoilDeclineDelay=0.30000
+	RecoilDeclineDelay=0.2500
 	
 	FireModeClass(0)=Class'BallisticProV55.XRS10PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XRS10SecondaryFire'

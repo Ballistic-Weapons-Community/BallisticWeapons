@@ -406,7 +406,7 @@ defaultproperties
      SightDisplayFOV=40.000000
      SightingTime=0.300000
      GunLength=128.000000
-     HipRecoilFactor=3.500000
+     HipRecoilFactor=2.250000
      SprintOffSet=(Pitch=-1024,Yaw=-1024)
      ChaosDeclineTime=1.250000
 	 

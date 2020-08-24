@@ -486,21 +486,20 @@ defaultproperties
      SightOffset=(X=-8.000000,Z=9.300000)
      SightDisplayFOV=25.000000
      SightingTime=0.550000
-     SightAimFactor=2
+     SightAimFactor=1
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
 	 
      AimSpread=64
      AimDamageThreshold=75.000000
      ChaosDeclineTime=1.250000
-     ChaosSpeedThreshold=9000.000000
-     ChaosAimSpread=128
+     ChaosAimSpread=256
 	 
 	 ViewRecoilFactor=0.25
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.10000),(InVal=0.350000,OutVal=0.140000),(InVal=0.600000,OutVal=0.200000),(InVal=0.800000,OutVal=0.320000),(InVal=1.000000,OutVal=0.4)))
+     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.200000,OutVal=0.12000),(InVal=0.350000,OutVal=0.170000),(InVal=0.600000,OutVal=0.220000),(InVal=0.800000,OutVal=0.320000),(InVal=1.000000,OutVal=0.4)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.120000),(InVal=0.200000,OutVal=0.200000),(InVal=0.350000,OutVal=0.380000),(InVal=0.600000,OutVal=0.750000),(InVal=0.700000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
-     RecoilDeclineTime=1.500000
+     RecoilXFactor=0.100000
+     RecoilYFactor=0.100000
+     RecoilDeclineTime=0.500000
      RecoilDeclineDelay=0.240000
 	 
      FireModeClass(0)=Class'BallisticProV55.E23PrimaryFire'

@@ -355,7 +355,7 @@ defaultproperties
      SightDisplayFOV=60.000000
 	 SightingTime=0.200000
 	 
-	 ViewRecoilFactor=0.25
+	 ViewRecoilFactor=0.4
      AimAdjustTime=0.450000
      ChaosDeclineTime=0.320000
      RecoilXFactor=0.050000

@@ -320,7 +320,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;10.0;0.8;40.0;0.0;0.4;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-	MagAmmo=20
+	MagAmmo=25
 	CockSound=(Sound=Sound'BallisticSounds2.UZI.UZI-Cock',Volume=0.800000)
 	ClipOutSound=(Sound=Sound'BallisticSounds2.UZI.UZI-ClipOut',Volume=0.700000)
 	ClipInSound=(Sound=Sound'BallisticSounds2.UZI.UZI-ClipIn',Volume=0.700000)
@@ -338,17 +338,17 @@ defaultproperties
 	SightZoomFactor=0.85
 	CrouchAimFactor=1
 	SightAimFactor=2
-	HipRecoilFactor=1.5
+	HipRecoilFactor=1
 	SprintOffSet=(Pitch=-3000,Yaw=-4000)
 	AimAdjustTime=0.450000
 	
-	ViewRecoilFactor=0.5
+	ViewRecoilFactor=0.6
 	RecoilXCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.10000
-	RecoilYFactor=0.10000
+	RecoilXFactor=0.05000
+	RecoilYFactor=0.05000
 	RecoilDeclineTime=0.5
-	RecoilDeclineDelay=0.280000
+	RecoilDeclineDelay=0.220000
 	RecoilMax=6144
 	
 	FireModeClass(0)=Class'BallisticProV55.Fifty9PrimaryFire'

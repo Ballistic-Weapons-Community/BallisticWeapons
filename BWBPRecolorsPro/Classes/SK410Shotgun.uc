@@ -192,7 +192,7 @@ defaultproperties
      GunLength=48.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
 
-	 ViewRecoilFactor=0.35
+	 ViewRecoilFactor=0.65
      RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.050000),(InVal=0.400000,OutVal=0.120000),(InVal=0.600000,OutVal=0.15000),(InVal=0.750000,OutVal=0.250000),(InVal=1.000000,OutVal=0.32)))
      RecoilYCurve=(Points=(,(InVal=0.500000,OutVal=0.400000),(InVal=1.000000,OutVal=1.000000)))
      RecoilYFactor=0.05
