@@ -444,7 +444,7 @@ simulated function AddHeat(float Amount)
 	{
 		HeatLevel = 10;
 		PlaySound(OverHeatSound,,3.7,,32);
-		class'BallisticDamageType'.static.GenericHurt (Instigator, 25, None, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTCYLOFirestormOverheat');
+		class'BallisticDamageType'.static.GenericHurt (Instigator, 25, None, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTFG50Overheat');
 		return;
 	}
 }
