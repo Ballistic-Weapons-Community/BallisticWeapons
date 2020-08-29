@@ -268,8 +268,7 @@ defaultproperties
      RecoilDeclineDelay=0.65
 	 RecoilDeclineTime=1
      FireModeClass(0)=Class'BWBPRecolorsPro.AH250PrimaryFire'
-     FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
-	 MeleeFireClass=Class'BWBPRecolorsPro.AH250MeleeFire'
+     FireModeClass(1)=Class'BWBPRecolorsPro.AH208MeleeFire'
      SelectAnimRate=2.000000
      PutDownAnimRate=1.600000
      PutDownTime=0.500000
