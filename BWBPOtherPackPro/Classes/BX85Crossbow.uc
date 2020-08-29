@@ -30,6 +30,18 @@ var   float				LastSendTargetTime;
 var   vector			TargetLocation;
 var   Actor				NVLight;
 
+var() Array<Name>		ReleaseStateAnim;
+var() Name				ReloadAnim2;
+
+var() Name				MagBone;
+var() Rotator			MagBoneRotation;
+
+struct RevInfo
+{
+	var() name	BoneName;
+};
+var() RevInfo	ArrowBones[7]; 	//Bones for showing/hiding arrows
+var() Name		GunArrowBone;	//Bone for the arrow that fires
 
 replication
 {
@@ -37,6 +49,86 @@ replication
 		Target, bMeatVision;
 	reliable if (Role < ROLE_Authority)
 		ServerAdjustThermal;
+}
+
+//change mag rotation if after firing, as well as code to continue reloading
+simulated function AnimEnded (int Channel, name anim, float frame, float rate)
+{
+	if (Anim == 'FireCycle')
+		RemoveGunArrow();
+		
+	if (Anim == 'FireCycleRotate')
+	{
+		//65536 = 360 degrees
+		//each cock sets the mag bone rotation by 4 degrees depending on the MagAmmo
+		
+		MagBoneRotation.Roll = -4 * (8-MagAmmo) * (65536/360);
+		SetBoneRotation(MagBone, MagBoneRotation, 0, 1.0);
+		
+		RemoveArrow();
+	}
+	if (ReloadState == RS_PreClipOut)
+	{
+		if (HasAnim(ReloadAnim))
+			SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
+	}
+	super.AnimEnded(Channel, anim, frame, rate);
+}
+
+//choose which animation to play for the initial reload
+
+simulated function PlayReload()
+{
+	MagBoneRotation.Roll = 0;
+	SetBoneRotation(MagBone, MagBoneRotation, 0, 1.0);
+	
+	if (MagAmmo == 1 && HasAnim(ReloadAnim2))
+		SafePlayAnim(ReloadAnim2, ReloadAnimRate, , 0, "RELOAD");
+		
+	else if (MagAmmo == 0 && HasAnim(ReloadEmptyAnim))
+		SafePlayAnim(ReloadEmptyAnim, ReloadAnimRate, , 0, "RELOAD");
+		
+	else if (MagAmmo > 1 && MagAmmo < 8)
+		SafePlayAnim(ReleaseStateAnim[MagAmmo-2], ReloadAnimRate, , 0, "RELOAD");
+}
+
+//hide the arrow that has been shot
+
+simulated function RemoveArrow()
+{
+	SetBoneScale(MagAmmo-1, 0.0, ArrowBones[MagAmmo-1].BoneName);
+}
+
+simulated function RemoveGunArrow()
+{
+	SetBoneScale(9, 0.0, GunArrowBone);
+}
+
+//show arrows, this will be iterated according to the reload happening
+
+simulated function ReturnArrow(int ArrowIndex)
+{
+	SetBoneScale(ArrowIndex, 1.0, ArrowBones[ArrowIndex].BoneName);
+}
+
+simulated function Notify_ReturnAllArrows()
+{
+	local int i;
+	for (i=0; i<=6; i++)
+	{
+		ReturnArrow(i);
+	}
+}
+
+simulated function Notify_ReturnFirstArrow()
+{
+	SetBoneScale(9, 1.0, GunArrowBone);
+}
+
+// Animation notify for when cocking action starts. Used to time sounds
+simulated function Notify_CockStart()
+{
+	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
 }
 
 //==============================================
@@ -474,6 +566,24 @@ function float SuggestDefenseStyle()	{	return 0.7;	}
 
 defaultproperties
 {
+	 MagBone="Magazine"
+	 ReloadEmptyAnim="ReloadEmpty"	//0 ammo
+	 ReloadAnim2="ReloadMagEmpty"	//1 ammo
+	 ReleaseStateAnim[0]="ReloadMagReleaseState6"	//2 ammo
+	 ReleaseStateAnim[1]="ReloadMagReleaseState5"	//3 ammo
+	 ReleaseStateAnim[2]="ReloadMagReleaseState4"	//4 ammo
+	 ReleaseStateAnim[3]="ReloadMagReleaseState3"	//5 ammo
+	 ReleaseStateAnim[4]="ReloadMagReleaseState2"	//6 ammo
+	 ReleaseStateAnim[5]="ReloadMagReleaseState1"	//7 ammo
+	 ReloadAnim="ReloadStateFinish"
+	 GunArrowBone="1"
+	 ArrowBones(0)=(BoneName="2")
+	 ArrowBones(1)=(BoneName="3")
+	 ArrowBones(2)=(BoneName="4")
+	 ArrowBones(3)=(BoneName="5")
+	 ArrowBones(4)=(BoneName="6")
+	 ArrowBones(5)=(BoneName="7")
+	 ArrowBones(6)=(BoneName="8")
 	 ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
      ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
      NVOnSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
@@ -494,8 +604,8 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
      MagAmmo=8
+	 CockAnim='CockRotateMag'
      CockAnimRate=1.250000
-     CockSound=(Sound=Sound'BallisticSounds2.AM67.AM67-Cock')
      ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
      ClipOutSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipOut')
      ClipInSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipIn')
@@ -524,6 +634,7 @@ defaultproperties
      RecoilDeclineTime=1.500000
      RecoilDeclineDelay=0.500000
 	 
+	 CockSound=(Sound=Sound'BWBPOtherPackSound.XBow.CockFast',Volume=1.200000)
      FireModeClass(0)=Class'BWBPOtherPackPro.BX85PrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      PutDownTime=0.600000
