@@ -11,6 +11,7 @@ defaultproperties
      ShieldDamage=15
      DamageIdent="Energy"
      DamageDescription=",Electro,"
+	 InvasionDamageScaling=2
      WeaponClass=Class'BWBPOtherPackPro.XOXOStaff'
      DeathString="%o was enlightened by %k."
      FemaleSuicide="%o didn't believe in the power of love."

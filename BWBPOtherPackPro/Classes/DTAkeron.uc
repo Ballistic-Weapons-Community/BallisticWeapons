@@ -5,7 +5,7 @@ defaultproperties
      DeathStrings(0)="%o got blasted by %k's Akeron launcher."
      DeathStrings(1)="%k's Akeron rocket put an end to %o's hopes of conquest."
      DeathStrings(2)="%o was completely wrecked by %k's speeding rocket."
-     InvasionDamageScaling=2.500000
+     InvasionDamageScaling=2
      DamageIdent="Ordnance"
      WeaponClass=Class'BWBPOtherPackPro.AkeronLauncher'
      DeathString="%o got blasted by %k's Akeron launcher."

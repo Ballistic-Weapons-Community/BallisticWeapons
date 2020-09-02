@@ -13,7 +13,7 @@ defaultproperties
      DeathStrings(0)="%k blasted two pounds of lead into %o with the M290."
      DeathStrings(1)="%o was blown into a ball by %k's M290."
      DeathStrings(2)="%o was atoned by %k's double barreled shotgun."
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Shotgun"
      WeaponClass=Class'BallisticProV55.M290Shotgun'
      DeathString="%k blasted two pounds of lead into %o with the M290."

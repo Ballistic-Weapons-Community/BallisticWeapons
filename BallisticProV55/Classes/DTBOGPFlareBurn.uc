@@ -20,5 +20,6 @@ defaultproperties
      FemaleSuicide="%o set herself ablaze with a BORT-85 flare."
      MaleSuicide="%o set himself ablaze with a BORT-85 flare."
      bDelayedDamage=True
+	 InvasionDamageScaling=2
      VehicleDamageScaling=0.500000
 }

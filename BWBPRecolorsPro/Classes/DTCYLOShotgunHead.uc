@@ -18,6 +18,7 @@ defaultproperties
      DeathStrings(2)="%o wondered what the bottom barrel of %k's CYLO did."
      SimpleKillString="CYLO UAW Shotgun"
      bHeaddie=True
+	 InvasionDamageScaling=2
      DamageIdent="Shotgun"
      WeaponClass=Class'BWBPRecolorsPro.CYLOUAW'
      DeathString="%o got a face full of loving courtesy of %k's CYLO."

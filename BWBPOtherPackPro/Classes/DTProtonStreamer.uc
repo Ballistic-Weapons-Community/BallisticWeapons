@@ -12,7 +12,7 @@ defaultproperties
      DeathStrings(1)="%k busted %o with a proton stream."
      DeathStrings(2)="%k made a ghost out of %o."
      DeathStrings(3)="%k neutronized %o with %kh particle accelerator."
-     DeathStrings(4)="%k ain't 'fraid of &o's ghost."
+     DeathStrings(4)="%k ain't 'fraid of %o's ghost."
      DeathStrings(5)="%k crossed %o's stream."
      DeathStrings(6)="%k made every molecule in %o's body explode at the speed of light."
      DeathStrings(7)="%k reduced %o to a focused, non-terminal, repeating phantasm."

@@ -16,7 +16,7 @@ defaultproperties
      DeathStrings(3)="%o got into %k's performance space."
      DeathStrings(4)="%k's Fifty-9 sprayed %o down in style."
      EffectChance=0.500000
-     InvasionDamageScaling=1.500000
+	 InvasionDamageScaling=1.5
      DamageIdent="SMG"
      WeaponClass=Class'BallisticProV55.Fifty9MachinePistol'
      DeathString="%k went Fifty9 on %o."

@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%o absorbed the random shots of %k's combat shotgun."
      DeathStrings(2)="%k blasted %o down as %ve tried to scamper away in fear."
      DeathStrings(3)="%o was disassembled by %k's MRS-138 barrage."
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Shotgun"
      WeaponClass=Class'BallisticProV55.MRS138Shotgun'
      DeathString="%k fired a tenner into %o with the MRS-138."

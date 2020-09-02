@@ -16,7 +16,7 @@ defaultproperties
      DeathStrings(3)="%o was met with a barrage of RCS-715 shotgun shells from %k."
      DeathStrings(4)="%o had their nuts busted by %k's RCS-715."
      bIgniteFires=True
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Shotgun"
      DamageDescription=",Bullet,"
      WeaponClass=Class'BallisticJiffyPack.ARShotgun'

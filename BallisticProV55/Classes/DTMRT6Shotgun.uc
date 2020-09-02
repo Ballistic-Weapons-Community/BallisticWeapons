@@ -16,7 +16,7 @@ defaultproperties
      DeathStrings(3)="%o was blindsided by %k's MRT-6."
      DeathStrings(4)="%k outfitted %o with MRT-6 pellets."
      DeathStrings(5)="%o was mortified by %k."
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Sidearm"
      WeaponClass=Class'BallisticProV55.MRT6Shotgun'
      DeathString="%k blasted %kh way through %o with the MRT-6."

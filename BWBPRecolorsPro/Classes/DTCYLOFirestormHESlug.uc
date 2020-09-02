@@ -4,7 +4,7 @@ defaultproperties
 {
      DeathStrings(0)="%o got blasted by %k's CYLO Firestorm HE shell."
      DeathStrings(1)="%o had various bits of him blown off by %k's CYLO Firestorm explosive shell."
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Assault"
      DamageDescription=",Flame,"
      WeaponClass=Class'BWBPRecolorsPro.CYLOAssaultWeapon'

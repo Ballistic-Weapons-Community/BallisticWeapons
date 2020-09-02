@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%o lost %vh head in an M290 brawl with %k."
      DeathStrings(2)="%k popped %o's melon with %kh M290."
      bHeaddie=True
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Shotgun"
      WeaponClass=Class'BallisticProV55.M290Shotgun'
      DeathString="%k uncorked %o with the M290."

@@ -143,9 +143,9 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 defaultproperties
 {
 	TraceRange=(Min=30000.000000,Max=30000.000000)
-	Damage=60.000000
-	DamageHead=120.000000
-	DamageLimb=60.000000
+	Damage=100.000000
+	DamageHead=150.000000
+	DamageLimb=100.000000
 	WaterRangeAtten=0.800000
 	DamageType=Class'BallisticProV55.DTR78Rifle'
 	DamageTypeHead=Class'BallisticProV55.DTR78RifleHead'
@@ -155,7 +155,7 @@ defaultproperties
 	bPenetrate=False	
 	WallPenetrationForce=0
 	PDamageFactor=0.800000
-	//bCockAfterFire=True
+	bCockAfterFire=True
 	MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
 	//bBrassOnCock=True
@@ -164,7 +164,7 @@ defaultproperties
 	FireChaos=0.500000
 	BallisticFireSound=(Sound=Sound'BallisticSounds3.R78.R78-Fire',Volume=2.000000,Radius=1024.000000)
 	FireEndAnim=
-	FireRate=0.5
+	FireRate=1.1
 	AmmoClass=Class'BallisticProV55.Ammo_42Rifle'
 	ShakeRotMag=(X=400.000000,Y=32.000000)
 	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

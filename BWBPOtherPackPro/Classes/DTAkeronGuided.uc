@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%o was hunted and killed by %k's roving rocket."
      DeathStrings(2)="%o tragically failed to spot %k's marauding missile."
      SimpleKillString="AN-56 Akeron Guided"
-     InvasionDamageScaling=2.500000
+     InvasionDamageScaling=3
      DamageIdent="Ordnance"
      WeaponClass=Class'BWBPOtherPackPro.AkeronLauncher'
      DeathString="%k callously flew his rocket into %o's face."

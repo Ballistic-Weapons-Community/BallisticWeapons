@@ -21,6 +21,7 @@ defaultproperties
      MotionBlurDamageRange=20.000000
      MotionBlurFactor=9.000000
      bUseMotionBlur=True
+	 InvasionDamageScaling=3
      WeaponClass=Class'BWBPRecolorsPro.XM84Flashbang'
      DeathString="%o was fatally corrupted by %k's tech grenade."
      FemaleSuicide="%o had a tactical error with her tactical grenade."

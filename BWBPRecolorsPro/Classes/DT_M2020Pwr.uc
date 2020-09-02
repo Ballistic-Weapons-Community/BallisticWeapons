@@ -17,6 +17,7 @@ defaultproperties
      ShieldDamage=150
      DamageIdent="Sniper"
      bDisplaceAim=True
+	 InvasionDamageScaling=2
      AimDisplacementDamageThreshold=100
      AimDisplacementDuration=0.60000
      ImpactManager=Class'BWBPRecolorsPro.IM_ExpBullet'

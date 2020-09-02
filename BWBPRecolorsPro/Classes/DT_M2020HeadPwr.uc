@@ -39,6 +39,7 @@ defaultproperties
      bDisplaceAim=True
      AimDisplacementDamageThreshold=150
      AimDisplacementDuration=0.9
+	 InvasionDamageScaling=2
      WeaponClass=Class'BWBPRecolorsPro.M2020GaussDMR'
      DeathString="%o's head got in the way of %k's M2020 gauss round."
      FemaleSuicide="%o wanted to experience magnetic acceleration first hand!"

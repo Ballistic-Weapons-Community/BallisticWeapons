@@ -18,7 +18,7 @@ defaultproperties
      DeathStrings(5)="%k's Bulldog bit huge chunks out of %o."
      DeathStrings(6)="%k tore %o's limbs off with a menacing Bulldog."
      bIgniteFires=True
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Ordnance"
      WeaponClass=Class'BWBPRecolorsPro.BulldogAssaultCannon'
      DeathString="%k's Bulldog chewed up and spat out %o."

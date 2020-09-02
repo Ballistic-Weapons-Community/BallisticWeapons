@@ -32,4 +32,5 @@ defaultproperties
      GibPerterbation=0.200000
      KDamageImpulse=1000.000000
      VehicleDamageScaling=0.600000
+	 InvasionDamageScaling=1.25
 }

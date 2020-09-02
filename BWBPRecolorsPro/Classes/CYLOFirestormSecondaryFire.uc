@@ -74,7 +74,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.CYLO.CYLO-FireSG',Volume=1.300000,Radius=256.000000)
      FireAnim="FireSG"
      FireEndAnim=
-     FireRate=0.75
+     FireRate=0.5
      AmmoClass=Class'BWBPRecolorsPro.Ammo_CYLOSG'
      AmmoPerFire=0
      ShakeRotMag=(X=128.000000,Y=64.000000)

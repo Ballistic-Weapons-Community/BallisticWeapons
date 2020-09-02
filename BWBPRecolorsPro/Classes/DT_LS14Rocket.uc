@@ -16,6 +16,7 @@ defaultproperties
      DeathStrings(3)="%k launched a rocket right up %o's nostril."
      SimpleKillString="LS-14 Rocket"
      DamageIdent="Sniper"
+	 InvasionDamageScaling=2
      WeaponClass=Class'BWBPRecolorsPro.LS14Carbine'
      DeathString="%k made a night-light out of %o's stomach with a rocket."
      FemaleSuicide="%o had her heart set aflame by a LS-14 rocket."

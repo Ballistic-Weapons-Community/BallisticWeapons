@@ -11,6 +11,7 @@ defaultproperties
      FlashV=(Z=350.000000)
      FlashF=0.700000
      ShieldDamage=15
+	 InvasionDamageScaling=4
      bIgniteFires=True
      DamageIdent="Sidearm"
      DamageDescription=",Electro,"

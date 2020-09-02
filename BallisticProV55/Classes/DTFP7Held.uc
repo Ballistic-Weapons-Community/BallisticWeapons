@@ -16,7 +16,7 @@ defaultproperties
      FemaleSuicides(1)="%o erupted in a shower of flames."
      MaleSuicides(0)="%o successfully seared off his hands."
      MaleSuicides(1)="%o erupted in a shower of flames."
-     InvasionDamageScaling=2.000000
+     InvasionDamageScaling=3.000000
      DamageIdent="Grenade"
      WeaponClass=Class'BallisticProV55.FP7Grenade'
      DeathString="%k lurched onto %o in a ball of flames."

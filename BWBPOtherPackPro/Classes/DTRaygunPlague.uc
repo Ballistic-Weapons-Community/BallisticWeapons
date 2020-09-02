@@ -16,6 +16,7 @@ defaultproperties
      MaleSuicide="%o irradiated himself."
      bArmorStops=False
      bDetonatesGoop=False
+	 InvasionDamageScaling=1.250000
      GibModifier=2.000000
      GibPerterbation=0.200000
      KDamageImpulse=30000.000000

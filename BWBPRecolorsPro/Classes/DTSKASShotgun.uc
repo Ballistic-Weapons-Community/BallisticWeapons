@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(2)="%o was reduced to bloody ribbons by %k's SKAS-21."
      DeathStrings(3)="%o was swept off the floor by %k's SKAS-21."
      DeathStrings(4)="%k's SKAS-21 removed bones, organs, and more from %o."
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Shotgun"
      WeaponClass=Class'BWBPRecolorsPro.SKASShotgun'
      DeathString="%k tore apart %o with a 10-gauge SKAS hailstorm."

@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTR9Rifle extends DT_BWBullet;
+class DTR9A1Rifle extends DT_BWBullet;
 
 defaultproperties
 {
@@ -17,7 +17,7 @@ defaultproperties
      DeathStrings(4)="%k banged a round through %o with %kh R9A1."
      DeathStrings(5)="%k stapled %o with %kh R9A1."
      DamageIdent="Sniper"
-     WeaponClass=Class'BWBPOtherPackPro.R9RangerRifle'
+     WeaponClass=Class'BWBPOtherPackPro.R9A1RangerRifle'
      DeathString="%k exorcised %o with R9A1 rounds."
      FemaleSuicide="%o exorcised herself."
      MaleSuicide="%o exorcised himself."

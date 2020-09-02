@@ -18,6 +18,7 @@ defaultproperties
      bIgniteFires=True
      DamageIdent="Sniper"
      DamageDescription=",Bullet,Flame,"
+	 InvasionDamageScaling=1.5
      WeaponClass=Class'BWBPRecolorsPro.AS50Rifle'
      DeathString="%o noticed %k's FSSG-50 scope glint a second too late."
      FemaleSuicide="%o's FSSG-50 didn't like the look of its owner."

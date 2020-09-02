@@ -17,6 +17,7 @@ defaultproperties
      AimedString="Scoped"
      bIgniteFires=True
      DamageIdent="Sniper"
+	 InvasionDamageScaling=1.5
      DamageDescription=",Bullet,Flame,"
      WeaponClass=Class'BWBPRecolorsPro.AS50Rifle'
      DeathString="%k's FSSG-50 round ripped an arm off %o."

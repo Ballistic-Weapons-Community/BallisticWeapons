@@ -22,7 +22,7 @@ defaultproperties
      MaleSuicides(1)="%o ignored the warning labels on his LAW mine."
      MaleSuicides(2)="%o got a fatal dose of radiation from his own LAW mine."
      SimpleKillString="LAW Shockwave"
-     InvasionDamageScaling=2.000000
+     InvasionDamageScaling=3.000000
      DamageIdent="Killstreak"
      WeaponClass=Class'BWBPRecolorsPro.LAWLauncher'
      DeathString="%o got %vh neurons scrambled by %k's LAW pulse."

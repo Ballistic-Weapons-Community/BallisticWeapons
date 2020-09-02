@@ -34,7 +34,7 @@ defaultproperties
      DeathStrings(2)="%o's head was eaten up by %k's Bulldog."
      DeathStrings(3)="%k blew %o's head into a wall with one BOLT round."
      bHeaddie=True
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Ordnance"
      WeaponClass=Class'BWBPRecolorsPro.BulldogAssaultCannon'
      DeathString="%o's head got eaten by %k's Bulldog."

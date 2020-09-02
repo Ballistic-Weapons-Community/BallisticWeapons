@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%o caught %k's G5 rocket."
      DeathStrings(2)="%k launched %kh G5 rocket into %o's face."
      AimedString="Scoped"
-     InvasionDamageScaling=2.000000
+     InvasionDamageScaling=3.000000
      DamageIdent="Ordnance"
      bDisplaceAim=True
      AimDisplacementDamageThreshold=100

@@ -7,6 +7,7 @@ defaultproperties
      DeathStrings(2)="%o contracted %k's dreaded lurgie."
      SimpleKillString="Raygun Irradiation Bolt"
      BloodManagerName="BallisticProV55.BloodMan_DarkSlow"
+	 InvasionDamageScaling=1.250000
      DamageIdent="Energy"
      DamageDescription=",Plasma,"
      WeaponClass=Class'BWBPOtherPackPro.Raygun'

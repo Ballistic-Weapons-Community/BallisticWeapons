@@ -37,7 +37,7 @@ defaultproperties
      EffectChance=0.500000
      bIgniteFires=True
      bHeaddie=True
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Shotgun"
      DamageDescription=",Bullet,Flame,"
      WeaponClass=Class'BallisticJiffyPack.ARShotgun'

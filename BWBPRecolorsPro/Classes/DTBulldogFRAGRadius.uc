@@ -21,7 +21,7 @@ defaultproperties
      MaleSuicides(1)="%o forgot that FRAG-12s explode."
      MaleSuicides(2)="%o couldn't control his Bulldog's explosives."
      SimpleKillString="Bulldog FRAG-12"
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Ordnance"
      WeaponClass=Class'BWBPRecolorsPro.BulldogAssaultCannon'
      DeathString="%k fragged %o real good with a FRAG-12."

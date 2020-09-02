@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(2)="%k obliterated %o's head with %kh M763."
      DeathStrings(3)="%k's Avenger blast purged %o's face from the battlefield."
      bHeaddie=True
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Shotgun"
      WeaponClass=Class'BallisticProV55.M763Shotgun'
      DeathString="%k uncorked %o with the M763."

@@ -37,7 +37,7 @@ defaultproperties
      BloodManagerName="BallisticProV55.BloodMan_GRS9Laser"
      bIgniteFires=True
      bHeaddie=True
-     InvasionDamageScaling=2.000000
+     InvasionDamageScaling=1.250000
      DamageIdent="Assault"
      DamageDescription=",Bullet,Flame,"
      WeaponClass=Class'BWBPRecolorsPro.CYLOAssaultWeapon'

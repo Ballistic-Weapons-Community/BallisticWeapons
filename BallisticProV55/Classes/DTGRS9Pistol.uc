@@ -15,6 +15,7 @@ defaultproperties
      DeathStrings(2)="%o was vindicated by %k's GRS-9."
      DeathStrings(3)="%k intimidated %o to pieces with %kh GRS-9."
      DamageIdent="Pistol"
+	 InvasionDamageScaling=1.5
      WeaponClass=Class'BallisticProV55.GRS9Pistol'
      DeathString="%k prosecuted %o with %kh GRS-9."
      FemaleSuicide="%o prosecuted herself with the GRS-9."

@@ -15,6 +15,7 @@ defaultproperties
      FlashV=(X=128.000000,Y=128.000000,Z=128.000000)
      bDetonatesBombs=False
      DamageIdent="Grenade"
+	 InvasionDamageScaling=3
      DamageDescription=",Gas,GearSafe,Hazard,"
      MinMotionBlurDamage=1.000000
      MotionBlurDamageRange=20.000000

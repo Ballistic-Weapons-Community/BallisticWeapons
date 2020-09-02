@@ -14,7 +14,7 @@ defaultproperties
      MaleSuicides(1)="%o fused his hands to an overheating gun."
      MaleSuicides(2)="%o's CYLO Firestorm burned through his hands."
      SimpleSuicideString="CYLO Firestorm V Overheat"
-     InvasionDamageScaling=2.000000
+     InvasionDamageScaling=1.250000
      DamageIdent="Assault"
      DamageDescription=",Flame,Hazard,"
      WeaponClass=Class'BWBPRecolorsPro.CYLOAssaultWeapon'

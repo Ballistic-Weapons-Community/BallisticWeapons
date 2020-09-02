@@ -16,7 +16,7 @@ defaultproperties
      DeathStrings(2)="%o stopped, dropped and rolled around in %k's inferno."
      DeathStrings(3)="%o was roasted to a cinder by %k's FP7."
      bIgnoredOnLifts=True
-     InvasionDamageScaling=2.000000
+     InvasionDamageScaling=3.000000
      DamageIdent="Grenade"
      WeaponClass=Class'BallisticProV55.FP7Grenade'
      DeathString="%o went out in a blaze of %k's glory."

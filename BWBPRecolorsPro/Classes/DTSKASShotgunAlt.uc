@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(2)="%o was blown apart by %k's three SKAS-21 barrels."
      DeathStrings(3)="%o swallowed a triple barrel blast from %k's SKAS."
      DeathStrings(4)="%k's SKAS-21 absolutely destroyed hapless %o."
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=3
      DamageIdent="Shotgun"
      WeaponClass=Class'BWBPRecolorsPro.SKASShotgun'
      DeathString="%k's SKAS-21 blew %o torso apart with a triple blast."

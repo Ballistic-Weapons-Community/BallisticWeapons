@@ -6,7 +6,7 @@ defaultproperties
      DeathStrings(1)="%k's break-open shotgun tore %o to shreds."
      DeathStrings(2)="%o was blasted away by %k's coach gun."
      SimpleKillString="Redwood Coach Gun Slug"
-     InvasionDamageScaling=2.000000
+     InvasionDamageScaling=2.500000
      DamageIdent="Shotgun"
      WeaponClass=Class'BWBPRecolorsPro.CoachGun'
      DeathString="%k hunted down a cowering %o with %kh coach gun."

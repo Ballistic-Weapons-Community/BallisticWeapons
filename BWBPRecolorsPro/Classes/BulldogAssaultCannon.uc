@@ -687,7 +687,7 @@ defaultproperties
      SightOffset=(X=-18.000000,Y=4.490000,Z=6.350000)
      SightDisplayFOV=35.000000
      GunLength=48.000000
-     SightAimFactor=0.50000
+     SightAimFactor=0.30000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      AimSpread=128
      ChaosDeclineTime=1.600000

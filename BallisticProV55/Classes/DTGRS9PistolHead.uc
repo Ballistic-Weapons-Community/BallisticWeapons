@@ -35,6 +35,7 @@ defaultproperties
      DeathStrings(3)="%k litigated %o's head off."
      bHeaddie=True
      DamageIdent="Pistol"
+	 InvasionDamageScaling=1.5
      WeaponClass=Class'BallisticProV55.GRS9Pistol'
      DeathString="%k litigated %o's head off."
      FemaleSuicide="%o litigated her own head off."

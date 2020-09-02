@@ -15,7 +15,7 @@ defaultproperties
      FemaleSuicides(0)="%o forgot where she left one of her mortar rockets."
      MaleSuicides(0)="%o forgot where he left one of his mortar rockets."
      AimedString="Scoped"
-     InvasionDamageScaling=2.000000
+     InvasionDamageScaling=3.000000
      DamageIdent="Ordnance"
      WeaponClass=Class'BallisticProV55.G5Bazooka'
      DeathString="%o was bombarded by %k's G5."

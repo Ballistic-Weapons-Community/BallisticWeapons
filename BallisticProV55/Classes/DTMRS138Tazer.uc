@@ -17,6 +17,7 @@ defaultproperties
      ShieldDamage=15
      DamageIdent="Melee"
      bDisplaceAim=True
+	 InvasionDamageScaling=3
      AimDisplacementDamageThreshold=60
      AimDisplacementDuration=2.000000
      DamageDescription=",Blunt,Electro"

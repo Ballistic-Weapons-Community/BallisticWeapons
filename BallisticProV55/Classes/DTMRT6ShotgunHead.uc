@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(2)="%o's head exploded with %k's MRT-6 pellets."
      DeathStrings(3)="%k showed %o the light at the end of two tunnels."
      bHeaddie=True
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Sidearm"
      WeaponClass=Class'BallisticProV55.MRT6Shotgun'
      DeathString="%o saw eye to eye with %k's MRT-6."

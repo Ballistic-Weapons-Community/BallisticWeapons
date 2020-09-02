@@ -799,6 +799,7 @@ defaultproperties
 	 MinZoom=4
 	 MaxZoom=16
 	 ZoomStages=2
+	 SightAimFactor=0.4
      ScopeXScale=1.333000
      ZoomInAnim="ZoomIn"
      ZoomOutAnim="ZoomOut"

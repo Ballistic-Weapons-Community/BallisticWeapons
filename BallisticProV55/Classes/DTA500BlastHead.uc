@@ -57,6 +57,7 @@ defaultproperties
      FlashV=(Y=2000.000000)
      FlashF=0.250000
      bHeaddie=True
+	 InvasionDamageScaling=2
      DamageIdent="Shotgun"
      DamageDescription=",Corrosive,Hazard,NonSniper,"
      WeaponClass=Class'BallisticProV55.A500Reptile'

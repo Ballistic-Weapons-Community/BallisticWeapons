@@ -16,7 +16,7 @@ defaultproperties
      DeathStrings(3)="%k gave %o an iron curtain of explosive shotgun shells."
      DeathStrings(4)="%k redistributed %kh wealth of HE shotshells to %o."
      bIgniteFires=True
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Shotgun"
      DamageDescription=",Bullet,Flame,"
      WeaponClass=Class'BWBPRecolorsPro.SK410Shotgun'

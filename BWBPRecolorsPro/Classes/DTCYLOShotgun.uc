@@ -18,6 +18,7 @@ defaultproperties
      DeathStrings(2)="%o was maimed by %k's CYLO 12 gauge."
      SimpleKillString="CYLO UAW Shotgun"
      DamageIdent="Shotgun"
+	 InvasionDamageScaling=2
      WeaponClass=Class'BWBPRecolorsPro.CYLOUAW'
      DeathString="%o didn't realize %k's CYLO had a shotgun."
      FemaleSuicide="%o perforated herself with the CYLO."

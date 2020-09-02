@@ -11,6 +11,7 @@ defaultproperties
      DeathStrings(1)="%k's unarmed FRAG-12 brought %o along for the ride."
      SimpleKillString="Bulldog FRAG-12 Impact"
      EffectChance=0.500000
+	 InvasionDamageScaling=2
      DamageIdent="Ordnance"
      WeaponClass=Class'BWBPRecolorsPro.BulldogAssaultCannon'
      DeathString="%o took %k's unarmed FRAG-12 in the gut."

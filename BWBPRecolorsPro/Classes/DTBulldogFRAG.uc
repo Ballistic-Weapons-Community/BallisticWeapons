@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%o was the lucky recipient of %k's FRAG-12."
      DeathStrings(2)="%k's FRAG-12 whizzed right into %o's face."
      SimpleKillString="Bulldog FRAG-12"
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Ordnance"
      bDisplaceAim=True
      AimDisplacementDuration=0.400000

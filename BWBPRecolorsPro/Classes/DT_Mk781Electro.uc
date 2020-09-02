@@ -17,10 +17,10 @@ defaultproperties
      FlashThreshold=40
      FlashV=(X=1500.000000,Y=1500.000000,Z=1500.000000)
      FlashF=-0.300000
-      bDisplaceAim=True
+     bDisplaceAim=True
+	 InvasionDamageScaling=3
      AimDisplacementDamageThreshold=40
      AimDisplacementDuration=0.800000
-     InvasionDamageScaling=2.000000
      WeaponClass=Class'BWBPRecolorsPro.MK781Shotgun'
      DeathString="%k attempted some ranged electrotherapy on %o."
      FemaleSuicide="%o put the fork in the power outlet."

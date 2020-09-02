@@ -38,7 +38,7 @@ defaultproperties
      FlashThreshold=90
      bIgniteFires=True
      bHeaddie=True
-     InvasionDamageScaling=2.000000
+     InvasionDamageScaling=1.5
      DamageIdent="Sniper"
      bDisplaceAim=True
      AimDisplacementDamageThreshold=100

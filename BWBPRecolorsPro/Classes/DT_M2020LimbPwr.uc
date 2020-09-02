@@ -11,6 +11,7 @@ defaultproperties
      AimedString="Scoped"
      DamageIdent="Sniper"
      bDisplaceAim=True
+	 InvasionDamageScaling=2
      AimDisplacementDamageThreshold=75
      AimDisplacementDuration=0.3
      WeaponClass=Class'BWBPRecolorsPro.M2020GaussDMR'

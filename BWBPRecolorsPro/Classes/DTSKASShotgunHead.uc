@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%o's mind was blown by %k's 10-gauge rotary beast."
      DeathStrings(2)="%k executed %o with a massive 10-gauge cannon."
      bHeaddie=True
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Shotgun"
      WeaponClass=Class'BWBPRecolorsPro.SKASShotgun'
      DeathString="%k's 10-gauge street sweeper clipped off %o's head."

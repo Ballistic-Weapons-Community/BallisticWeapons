@@ -41,7 +41,7 @@ defaultproperties
      FlashV=(Z=250.000000)
      FlashF=0.250000
      bSnipingDamage=True
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Sniper"
      bDisplaceAim=True
      AimDisplacementDamageThreshold=110

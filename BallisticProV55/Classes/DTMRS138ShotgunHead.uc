@@ -14,7 +14,7 @@ defaultproperties
      DeathStrings(1)="%k's MRS-138 went off in %o's face."
      DeathStrings(2)="%o got %vh head ventilated by %k's MRS-138."
      bHeaddie=True
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="Shotgun"
      WeaponClass=Class'BallisticProV55.MRS138Shotgun'
      DeathString="%k tore off %o's head with a tenner from %kh shotgun."

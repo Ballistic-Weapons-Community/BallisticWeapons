@@ -327,7 +327,7 @@ defaultproperties
 	ClipInFrame=0.650000
 	bNotifyModeSwitch=True
 	CurrentWeaponMode=0
-    WeaponModes(0)=(ModeName="Burst",ModeID="WM_Burst",Value=4.000000)
+    WeaponModes(0)=(ModeName="Burst",ModeID="WM_Burst",Value=5.000000)
     WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto")
 	WeaponModes(2)=(bUnavailable=True)
 	bNoCrosshairInScope=True

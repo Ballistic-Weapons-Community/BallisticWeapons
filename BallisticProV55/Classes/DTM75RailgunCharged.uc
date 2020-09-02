@@ -11,4 +11,5 @@ class DTM75RailgunCharged extends DTM75Railgun;
 defaultproperties
 {
      SimpleKillString="M75 Railgun Charged"
+	 InvasionDamageScaling=4
 }

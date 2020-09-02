@@ -20,7 +20,7 @@ defaultproperties
      MaleSuicides(0)="%o ran around like a maniac in a ball of fire."
      MaleSuicides(1)="%o did his flaming scarecrow impression."
      bIgnoredOnLifts=True
-     InvasionDamageScaling=2.000000
+     InvasionDamageScaling=3.000000
      DamageIdent="Grenade"
      WeaponClass=Class'BallisticProV55.FP7Grenade'
      DeathString="%o was set a blaze by %k's FP7."

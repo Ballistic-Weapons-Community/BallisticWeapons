@@ -35,7 +35,7 @@ defaultproperties
      DeathStrings(3)="%o got a faceful of %k's Fifty-9 light show."
      EffectChance=0.500000
      bHeaddie=True
-     InvasionDamageScaling=1.500000
+	 InvasionDamageScaling=1.5
      DamageIdent="SMG"
      WeaponClass=Class'BallisticProV55.Fifty9MachinePistol'
      DeathString="%k Fifty-9ed %o's head."

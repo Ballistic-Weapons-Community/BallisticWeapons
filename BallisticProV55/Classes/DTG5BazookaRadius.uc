@@ -21,7 +21,7 @@ defaultproperties
      MaleSuicides(1)="%o blasted himself across the map with a G5."
      MaleSuicides(2)="%o blew himself into a chunky haze with the G5."
      AimedString="Scoped"
-     InvasionDamageScaling=2.000000
+     InvasionDamageScaling=3.000000
      DamageIdent="Ordnance"
      WeaponClass=Class'BallisticProV55.G5Bazooka'
      DeathString="%o almost escaped %k's G5 rocket."

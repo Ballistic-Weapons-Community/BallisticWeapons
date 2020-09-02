@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(2)="%k turned %o's legs to drumsticks with an A49."
      DeathStrings(3)="%k's blue plasma burned away %o's head."
      BloodManagerName="BallisticProV55.BloodMan_A73Burn"
-     InvasionDamageScaling=1.500000
+     InvasionDamageScaling=2
      DamageIdent="SMG"
      WeaponClass=Class'BWBPRecolorsPro.A49SkrithBlaster'
      DeathString="%k's A49 burned %o's corpse away."

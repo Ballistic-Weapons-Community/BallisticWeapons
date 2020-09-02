@@ -10,6 +10,7 @@ defaultproperties
      //FlashV=(X=350.000000,Y=350.000000,Z=700.000000)
      //FlashF=0.250000
      WeaponClass=Class'BWBPSomeOtherPack.TrenchGun'
+	 InvasionDamageScaling=1.250000
      DeathString="%k's explosive double barrel shot blasted %o into giblets."
      FemaleSuicide="%o got a little too close to her own explosive rounds."
      MaleSuicide="%o got a little too close to his own explosive rounds."

@@ -398,7 +398,7 @@ defaultproperties
      bNoCrosshairInScope=True
      SightOffset=(X=-20.000000,Z=35.000000)
      SightingTime=0.650000
-	 SightAimFactor=1
+	 SightAimFactor=0.35
      MinZoom=2.000000
      MaxZoom=8.000000
      ZoomStages=2

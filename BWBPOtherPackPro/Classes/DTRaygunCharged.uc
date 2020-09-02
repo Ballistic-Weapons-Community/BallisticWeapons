@@ -7,6 +7,7 @@ defaultproperties
      DeathStrings(2)="%k's spiralling blast vaporized %o."
      SimpleKillString="Raygun Charged Bolt"
      BloodManagerName="BallisticProV55.BloodMan_DarkSlow"
+	 InvasionDamageScaling=2
      FlashV=(X=1000.000000,Y=500.000000)
      FlashF=-0.100000
      bIgniteFires=True

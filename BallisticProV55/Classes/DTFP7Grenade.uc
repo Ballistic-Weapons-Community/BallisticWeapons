@@ -14,7 +14,7 @@ defaultproperties
      BloodManagerName="BallisticProV55.BloodMan_BluntSmall"
      bDetonatesBombs=False
      bIgnoredOnLifts=True
-     InvasionDamageScaling=2.000000
+     InvasionDamageScaling=3.000000
      DamageIdent="Grenade"
      DamageDescription=",Blunt,Hazard,"
      WeaponClass=Class'BallisticProV55.FP7Grenade'

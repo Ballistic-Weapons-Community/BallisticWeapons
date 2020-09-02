@@ -35,7 +35,7 @@ defaultproperties
      DeathStrings(2)="%k's Reptile blast chewed up and spat out %o."
      DeathStrings(3)="%o got liquidised by %k's Skrith Reptile acid."
      SimpleKillString="A500 Acid Blast"
-     InvasionDamageScaling=1.250000
+     InvasionDamageScaling=2
      DamageIdent="Shotgun"
      DamageDescription=",Corrosive,Hazard,NonSniper,"
      WeaponClass=Class'BallisticProV55.A500Reptile'
