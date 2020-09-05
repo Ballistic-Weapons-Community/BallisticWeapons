@@ -137,10 +137,16 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadFinished();
 		
 		if (Anim == SingleLoadAnim)
+		{
 			bAltLoaded = True;
+			WeaponModes[0].ModeName="Grenade Loaded";
+		}
 		
 		else
+		{
 			bAltLoaded=False;
+			WeaponModes[0].ModeName=default.WeaponModes[0].ModeName;
+		}
 		
 		PlayIdle();
 		ReAim(0.05);
@@ -153,6 +159,12 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		PlayIdle();
 	}
+}
+
+//Triggered after Alt nade is shot or unloaded.
+simulated function PrepPriFire()
+{
+	WeaponModes[0].ModeName=default.WeaponModes[0].ModeName;
 }
 
 simulated function float RateSelf()

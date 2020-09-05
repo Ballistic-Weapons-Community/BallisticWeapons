@@ -175,6 +175,17 @@ simulated function Special_GrenadeReady()
 	bReady = true;	
 	for (i=0; i<=2; i++)
 		SetBoneScale(i+3, 1.0, GLLoadGrenadeBones[i].GrenName);
+		
+	WeaponModes[0].ModeName="Grenade Loaded";
+}
+
+
+//Triggered after Alt nade is shot.
+
+
+simulated function PrepPriFire()
+{
+	WeaponModes[0].ModeName=default.WeaponModes[0].ModeName;
 }
 
 
@@ -719,7 +730,7 @@ defaultproperties
      SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
-     MagAmmo=20
+     MagAmmo=15
      CockSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.Cock',Volume=1.400000)
      ReloadAnimRate=0.750000
      ClipOutSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.MagOut',Volume=1.300000)

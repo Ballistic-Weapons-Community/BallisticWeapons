@@ -51,6 +51,7 @@ simulated event ModeDoFire()
 	{
 		super.ModeDoFire();
 		ARShotgun(BW).bReady = false;
+		ARShotgun(BW).PrepPriFire();
 	}
 }
 
