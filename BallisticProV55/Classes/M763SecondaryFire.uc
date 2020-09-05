@@ -27,6 +27,7 @@ simulated function ModeDoFire()
 {
 	Super.ModeDoFire();
 	M763Shotgun(BW).bAltLoaded=False;
+	M763Shotgun(BW).PrepPriFire();
 }
 
 // Do the trace to find out where bullet really goes

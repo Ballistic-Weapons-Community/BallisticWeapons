@@ -175,6 +175,17 @@ simulated function Special_GrenadeReady()
 	bReady = true;	
 	for (i=0; i<=2; i++)
 		SetBoneScale(i+3, 1.0, GLLoadGrenadeBones[i].GrenName);
+		
+	WeaponModes[0].ModeName="Grenade Loaded";
+}
+
+
+//Triggered after Alt nade is shot.
+
+
+simulated function PrepPriFire()
+{
+	WeaponModes[0].ModeName=default.WeaponModes[0].ModeName;
 }
 
 
