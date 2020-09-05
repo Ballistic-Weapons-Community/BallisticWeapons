@@ -35,9 +35,9 @@ defaultproperties
      TraceRange=(Min=4000.000000,Max=4000.000000)
      WallPenetrationForce=8.000000
      
-     Damage=16.000000
-     DamageHead=22.000000
-     DamageLimb=16.000000
+     Damage=18.000000
+     DamageHead=24.000000
+     DamageLimb=18.000000
      RangeAtten=0.200000
      WaterRangeAtten=0.500000
      DamageType=Class'BallisticProV55.DTGRS9Pistol'
@@ -50,7 +50,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_GRSNine'
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
-     RecoilPerShot=160.000000
+     RecoilPerShot=150.000000
      FireChaos=0.120000
      XInaccuracy=96.000000
      YInaccuracy=96.000000

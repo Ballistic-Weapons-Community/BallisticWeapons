@@ -64,7 +64,7 @@ defaultproperties
 {
      HipSpreadFactor=1.50000
      CutOffDistance=1536.000000
-     CutOffStartRange=512.000000
+     CutOffStartRange=768.000000
      TraceCount=6
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_ShotgunHE'
      ImpactManager=Class'BWBPRecolorsPro.IM_ShellHE'

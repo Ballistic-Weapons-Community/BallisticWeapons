@@ -87,7 +87,8 @@ defaultproperties
 	 PutDownTime=0.5
      MagAmmo=10
      CockAnim="CockQuick"
-     CockSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Cock')
+     //CockSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Cock')
+	 CockSound=(Sound=Sound'PackageSounds4Pro.R78NS.R78NS-Cock')
      ReloadAnimRate=1.250000
      ClipHitSound=(Sound=Sound'BallisticSounds2.R78.R78-ClipHit')
      ClipOutSound=(Sound=Sound'BallisticSounds2.R78.R78-ClipOut')

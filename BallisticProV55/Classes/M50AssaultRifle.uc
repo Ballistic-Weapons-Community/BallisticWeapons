@@ -691,7 +691,7 @@ defaultproperties
 	 
      AimSpread=16
      ChaosDeclineTime=0.5
-     ChaosSpeedThreshold=7000.000000
+     ChaosSpeedThreshold=5000.000000
      ChaosAimSpread=728
 	 
 	 ViewRecoilFactor=0.35
