@@ -463,6 +463,7 @@ defaultproperties
      RecoilMax=32768.000000
      RecoilDeclineTime=2.500000
 	 
+	 InventorySize=12
 	 
      FireModeClass(0)=Class'BallisticProV55.XMV850MinigunPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.XMV850MinigunSecondaryFire'

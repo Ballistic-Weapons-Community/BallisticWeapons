@@ -2097,7 +2097,7 @@ simulated final function ClientSwitchBurstMode(bool burst, optional int Max)
 // See if firing modes will let us fire another round or not
 simulated function bool CheckWeaponMode (int Mode)
 {
-	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_FullAuto" || WeaponModes[CurrentWeaponMode].ModeID ~= "WM_None")
+	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_FullAuto" || WeaponModes[CurrentWeaponMode].ModeID ~= "WM_None" || WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
 		return true;
 	if (FireCount >= WeaponModes[CurrentWeaponMode].Value)
 		return false;

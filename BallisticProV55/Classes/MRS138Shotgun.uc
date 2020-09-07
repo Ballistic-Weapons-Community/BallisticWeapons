@@ -72,6 +72,104 @@ simulated function KillTazer()
 		MRS138Attachment(ThirdPersonActor).bTazerOn = false;
 }
 
+simulated function AnimEnded (int Channel, name anim, float frame, float rate)
+{
+	if (anim == FireMode[0].FireAnim || (anim == FireMode[1].FireAnim && !FireMode[1].IsFiring()))
+		bPreventReload=false;
+		
+	if (MeleeFireMode != None && anim == MeleeFireMode.FireAnim)
+	{
+		if (MeleeState == MS_StrikePending)
+			MeleeState = MS_Pending;
+		else MeleeState = MS_None;
+		ReloadState = RS_None;
+		if (Role == ROLE_Authority)
+			bServerReloading=False;
+		bPreventReload=false;
+	}
+		
+	//Phase out Channel 1 if a sight fire animation has just ended.
+	if (anim == BFireMode[0].AimedFireAnim || anim == BFireMode[1].AimedFireAnim)
+	{
+		AnimBlendParams(1, 0);
+		//Cut the basic fire anim if it's too long.
+		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
+			FreezeAnimAt(0.0);
+			
+		if (anim == BFireMode[0].AimedFireAnim || !BFireMode[1].IsFiring())
+		{
+			bPreventReload=False;
+		}
+	}
+
+	// Modified stuff from Engine.Weapon
+	if ((ClientState == WS_ReadyToFire || (ClientState == WS_None && Instigator.Weapon == self)) && ReloadState == RS_None)
+    {
+        if (anim == FireMode[0].FireAnim && HasAnim(FireMode[0].FireEndAnim)) // rocket hack
+			SafePlayAnim(FireMode[0].FireEndAnim, FireMode[0].FireEndAnimRate, 0.0);
+        else if (FireMode[1]!=None && anim== FireMode[1].FireAnim && HasAnim(FireMode[1].FireEndAnim))
+            SafePlayAnim(FireMode[1].FireEndAnim, FireMode[1].FireEndAnimRate, 0.0);
+        else if (!FireMode[1].IsFiring() && MeleeState < MS_Held)
+			bPreventReload=false;
+		if (Channel == 0 && (bNeedReload || ((FireMode[0] == None || !FireMode[0].bIsFiring) && (FireMode[1] == None || !FireMode[1].bIsFiring))) && MeleeState < MS_Held)
+			PlayIdle();
+    }
+	// End stuff from Engine.Weapon
+
+	// Start Shovel ended, move on to Shovel loop
+	if (ReloadState == RS_StartShovel)
+	{
+		ReloadState = RS_Shovel;
+		PlayShovelLoop();
+		return;
+	}
+	// Shovel loop ended, start it again
+	if (ReloadState == RS_PostShellIn)
+	{
+		if (MagAmmo >= default.MagAmmo || Ammo[0].AmmoAmount < 1 )
+		{
+			PlayShovelEnd();
+			ReloadState = RS_EndShovel;
+			return;
+		}
+		ReloadState = RS_Shovel;
+		PlayShovelLoop();
+		return;
+	}
+	// End of reloading, either cock the gun or go to idle
+	if (ReloadState == RS_PostClipIn || ReloadState == RS_EndShovel)
+	{
+		if (bNeedCock && MagAmmo > 0)
+			CommonCockGun();
+		else
+		{
+			bNeedCock=false;
+			ReloadState = RS_None;
+			ReloadFinished();
+			PlayIdle();
+			ReAim(0.05);
+		}
+		return;
+	}
+	//Cock anim ended, goto idle
+	if (ReloadState == RS_Cocking)
+	{
+		bNeedCock=false;
+		ReloadState = RS_None;
+		ReloadFinished();
+		PlayIdle();
+		ReAim(0.05);
+	}
+	
+	if (ReloadState == RS_GearSwitch)
+	{
+		if (Role == ROLE_Authority)
+			bServerReloading=false;
+		ReloadState = RS_None;
+		PlayIdle();
+	}
+}
+
 exec simulated function WeaponSpecial(optional byte i)
 {
 	bLightsOn = !bLightsOn;

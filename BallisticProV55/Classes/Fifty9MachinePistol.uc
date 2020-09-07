@@ -106,7 +106,7 @@ exec simulated function SwitchWeaponMode (optional byte ModeNum)
 // Cycle through the various weapon modes
 function ServerSwitchWeaponMode (byte NewMode)
 {
-	Log("Fifty9 ServerSwitchWeaponMode");
+	Log("Fifty9 ServerSwitchWeaponMode: Stock open: "$bStockOpen);
 	
 	if (ReloadState != RS_None)
 		return;
@@ -141,14 +141,17 @@ simulated function ClientSwitchWeaponModes(byte newMode)
 {
 	super.ClientSwitchWeaponModes(newMode);
 	
-	SwitchStock(bool(newMode));
+	if (Level.NetMode == NM_Client)
+		SwitchStock(bool(newMode));
 }
 
 simulated function SwitchStock(bool bNewValue)
 {
 	if (bNewValue == bStockOpen)
 		return;
-		
+
+	Log("Fifty9 SwitchStock: Stock open: "$bStockOpen);
+	
 	if (Role == ROLE_Authority)
 		bServerReloading = True;
 	ReloadState = RS_GearSwitch;

@@ -129,7 +129,7 @@ defaultproperties
 	 RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.12),(InVal=0.2,OutVal=0.16),(InVal=0.40000,OutVal=0.250000),(InVal=0.50000,OutVal=0.30000),(InVal=0.600000,OutVal=0.370000),(InVal=0.700000,OutVal=0.4),(InVal=0.800000,OutVal=0.50000),(InVal=1.000000,OutVal=0.55)))
      RecoilXFactor=0.10000
      RecoilYFactor=0.10000
-	 RecoilDeclineDelay=0.9
+	 RecoilDeclineDelay=1.25
      RecoilDeclineTime=1.000000
 	 
      FireModeClass(0)=Class'BallisticProV55.R78PrimaryFire'

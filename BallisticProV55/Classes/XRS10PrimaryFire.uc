@@ -132,12 +132,12 @@ defaultproperties
      SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
-     CutOffDistance=1280.000000
+     CutOffDistance=1536.000000
      CutOffStartRange=768.000000
      WallPenetrationForce=8.000000
-     Damage=24.000000
-     DamageHead=24.000000
-     DamageLimb=24.000000
+     Damage=25.000000
+     DamageHead=25.000000
+     DamageLimb=25.000000
      RangeAtten=0.250000
      WaterRangeAtten=0.400000
      DamageType=Class'BallisticProV55.DTXRS10SMG'
@@ -152,7 +152,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassOffset=(X=-26.000000,Z=-5.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=170.000000
+     RecoilPerShot=140.000000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.320000,OutVal=1),(InVal=0.500000,OutVal=1.500000),(InVal=1.000000,OutVal=2.250000)))
      XInaccuracy=48.000000
      YInaccuracy=48.000000

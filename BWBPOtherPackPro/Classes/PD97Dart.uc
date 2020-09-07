@@ -81,7 +81,7 @@ defaultproperties
      MotionBlurFactor=0.000000
      MotionBlurTime=0.000000
      Speed=15000.000000
-     Damage=3.000000
+     Damage=10.000000
      MyDamageType=Class'BWBPOtherPackPro.DTPD97Dart'
      StaticMesh=StaticMesh'BWBPOtherPackProjStatic.Bloodhound.BHPoisonDart'
      LifeSpan=2.500000

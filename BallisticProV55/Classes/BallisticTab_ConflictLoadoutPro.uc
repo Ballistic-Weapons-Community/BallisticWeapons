@@ -306,13 +306,13 @@ function int GetMaxCount(class<Weapon> weapon)
 	if (class<BallisticHandgun>(weapon) != None && class<BallisticHandgun>(weapon).default.bShouldDualInLoadout)
 		return 2;
 
-	base_ammo = weapon.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
+	base_ammo = Max(1, weapon.default.FireModeClass[0].default.AmmoClass.default.InitialAmount);
 	max_ammo = weapon.default.FireModeClass[0].default.AmmoClass.default.MaxAmmo;
 
 	if (max_ammo % base_ammo == 0)
-		return max_ammo / base_ammo;
+		return Max(1, max_ammo / base_ammo);
 
-	return Ceil(float(max_ammo) / float(base_ammo));
+	return Max(1, Ceil(float(max_ammo) / float(base_ammo)));
 }
 
 function bool MaxReached(class<Weapon> weapon, string class_name)
@@ -363,25 +363,37 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	local class<Weapon> 			WeaponClass;
 
 	if (InvClass == None)
+	{
+		Log("BallisticTab_ConflictLoadoutPro::AddInventory: InvClass was None");
 		return false;
+	}
 		
 	if (class<ConflictItem>(InvClass) != None)
 		return HandleConflictItem(InvClass, FriendlyName);
 	
 	if (class<Weapon>(InvClass) == None)
+	{
+		Log("BallisticTab_ConflictLoadoutPro::AddInventory: InvClass was not a Weapon");
 		return false;
+	}
 
 	WeaponClass = class<Weapon>(InvClass);
 
 	if (MaxReached(WeaponClass, ClassName))
+	{
+		Log("BallisticTab_ConflictLoadoutPro::AddInventory: Maximum count reached for "$ClassName);
 		return false;
+	}
 
 	Weap = class<BallisticWeapon>(WeaponClass);
 
 	Size = GetItemSize(WeaponClass);
 
 	if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
+	{
+		Log("BallisticTab_ConflictLoadoutPro::AddInventory: No room: Used "$SpaceUsed$"/"$INVENTORY_SIZE_MAX$", requesting "$Size);
 		return false;
+	}
 
 	SpaceUsed += Size;
 	

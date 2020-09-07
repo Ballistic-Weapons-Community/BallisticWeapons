@@ -58,11 +58,10 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 	else
 	{
-		if (anim == FireMode[0].FireAnim || (FireMode[1] != None && anim == FireMode[1].FireAnim))
+		if (anim == FireMode[0].FireAnim || (anim == FireMode[1].FireAnim && !FireMode[1].IsFiring()))
 		{
 			bPreventReload=false;
-			if (anim == FireMode[0].FireAnim)
-				CycleDrum();
+			CycleDrum();
 		}
 		if (IdleAnim == 'OpenIdle')
 			IdleAnim = 'Idle';
@@ -76,9 +75,13 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		//Cut the basic fire anim if it's too long.
 		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
 			FreezeAnimAt(0.0);
-		bPreventReload=False;
-		if (anim == BFireMode[0].AimedFireAnim)
-			CycleDrum();
+			
+		if (anim == BFireMode[0].AimedFireAnim || !BFireMode[1].IsFiring())
+		{
+			bPreventReload=False;
+			if (anim == BFireMode[0].AimedFireAnim)
+				CycleDrum();
+		}
 	}
 
 	// Modified stuff from Engine.Weapon
@@ -88,7 +91,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			SafePlayAnim(FireMode[0].FireEndAnim, FireMode[0].FireEndAnimRate, 0.0);
         else if (FireMode[1]!=None && anim== FireMode[1].FireAnim && HasAnim(FireMode[1].FireEndAnim))
             SafePlayAnim(FireMode[1].FireEndAnim, FireMode[1].FireEndAnimRate, 0.0);
-        else if (MeleeState < MS_Held)
+        else if (!FireMode[1].IsFiring() && MeleeState < MS_Held)
 			bPreventReload=false;
 		if (Channel == 0 && (bNeedReload || !FireMode[0].bIsFiring) && MeleeState < MS_Held)
 			PlayIdle();

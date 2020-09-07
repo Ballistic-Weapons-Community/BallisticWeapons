@@ -262,7 +262,6 @@ defaultproperties
      FallingChaos=0.100000
      SprintChaos=0.200000
 	 
-	 
      ChaosDeclineTime=1.000000
 	 
 	 ViewRecoilFactor=0.5

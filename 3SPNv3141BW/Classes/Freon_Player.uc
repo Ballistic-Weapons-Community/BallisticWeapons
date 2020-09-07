@@ -4,10 +4,10 @@ var Freon_Pawn FrozenPawn;
 
 struct AmmoTrack
 {
-	var class<BallisticWeapon> GunClass;
-	var byte Ammo1;
-    var byte Ammo2;
-    var bool bNoSpawn;
+	var class<BallisticWeapon> 	GunClass;
+	var int 					Ammo1;
+    var int 					Ammo2;
+    var bool 					bNoSpawn;
 };
 
 var() array <AmmoTrack> AmmoTracking;

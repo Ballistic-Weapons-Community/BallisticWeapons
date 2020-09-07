@@ -4,16 +4,16 @@
 class PD97DartControl extends BallisticEmitter
 	placeable;
 
-var   Pawn					Victim;
-var   float					Damage, BaseDuration;
-var 	PD97Bloodhound	Master;
-var   Controller			InstigatorController;
-var class<DamageType> DamageType;
+var   	Pawn					Victim;
+var   	float					Damage, BaseDuration;
+var 	PD97Bloodhound			Master;
+var   	Controller				InstigatorController;
+var 	class<DamageType> 		DamageType;
 
-var array<float>			DartDurations;
+var 	array<float>			DartDurations;
 
-const EffectInterval = 0.5;
-const MaxDarts=10;
+const 							EffectInterval = 1;
+const 							MaxDarts = 6;
 
 function Reset()
 {
@@ -127,7 +127,7 @@ simulated function Destroyed()
 defaultproperties
 {
      Damage=4.000000
-     BaseDuration=5.000000
+     BaseDuration=8.000000
      DamageType=Class'BWBPOtherPackPro.DTPD97Poison'
      Begin Object Class=SpriteEmitter Name=SpriteEmitter0
          FadeOut=True
@@ -138,8 +138,8 @@ defaultproperties
          AutomaticInitialSpawning=False
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
-         ColorMultiplierRange=(Y=(Min=0.500000,Max=0.500000))
-         Opacity=0.250000
+         ColorMultiplierRange=(Y=(Min=0.250000,Max=0.250000),Z=(Min=0.25,Max=0.25))
+         Opacity=0.350000
          FadeOutStartTime=0.750000
          MaxParticles=80
          StartLocationRange=(X=(Min=-4.000000,Max=4.000000),Y=(Min=-4.000000,Max=4.000000),Z=(Min=-4.000000,Max=4.000000))

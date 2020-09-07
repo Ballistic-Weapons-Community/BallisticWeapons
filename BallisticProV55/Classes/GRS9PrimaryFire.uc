@@ -31,13 +31,13 @@ function PlayFiring()
 defaultproperties
 {
      CutOffDistance=1536.000000
-     CutOffStartRange=512.000000
+     CutOffStartRange=768.000000
      TraceRange=(Min=4000.000000,Max=4000.000000)
      WallPenetrationForce=8.000000
      
-     Damage=18.000000
-     DamageHead=24.000000
-     DamageLimb=18.000000
+     Damage=17.000000
+     DamageHead=25.000000
+     DamageLimb=17.000000
      RangeAtten=0.200000
      WaterRangeAtten=0.500000
      DamageType=Class'BallisticProV55.DTGRS9Pistol'
@@ -52,8 +52,8 @@ defaultproperties
      BrassOffset=(X=-30.000000,Y=1.000000)
      RecoilPerShot=150.000000
      FireChaos=0.120000
-     XInaccuracy=96.000000
-     YInaccuracy=96.000000
+     XInaccuracy=72.000000
+     YInaccuracy=72.000000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.Glock.Glk-Fire',Volume=1.200000)
      FireEndAnim=
 	 AimedFireAnim='SightFire'

@@ -17,7 +17,7 @@ defaultproperties
          ColorScale(0)=(Color=(B=240,G=240,R=150,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=240,G=240,R=150,A=255))
          ColorMultiplierRange=(X=(Min=0.900000),Y=(Min=0.800000,Max=0.900000),Z=(Min=0.500000,Max=0.700000))
-         Opacity=0.450000
+         Opacity=0.10000
          FadeOutStartTime=1.000000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
@@ -41,7 +41,7 @@ defaultproperties
          ColorScale(0)=(Color=(B=240,G=240,R=150,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=240,G=240,R=150,A=255))
          ColorMultiplierRange=(Y=(Min=0.850000,Max=0.900000),Z=(Min=0.650000,Max=0.700000))
-         Opacity=0.500000
+         Opacity=0.100000
          FadeOutStartTime=0.400000
          FadeInEndTime=0.200000
          MaxParticles=1
