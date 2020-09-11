@@ -174,9 +174,9 @@ defaultproperties
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=24.000000
      
-     Damage=36.000000
-     DamageHead=72.000000
-     DamageLimb=36.000000
+     Damage=40.000000
+     DamageHead=80.000000
+     DamageLimb=40.000000
      RangeAtten=0.450000
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTSRS600Rifle'

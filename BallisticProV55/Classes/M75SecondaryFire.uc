@@ -123,7 +123,7 @@ defaultproperties
      bFireOnRelease=True
 	 FireEndAnim="'"
 	 
-	 FireRate=1.500000
+	 FireRate=1.50000
 	 
 	 AmmoClass=Class'BallisticProV55.Ammo_20mmRailgun'
 	 

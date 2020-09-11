@@ -539,7 +539,7 @@ defaultproperties
 	AimAdjustTime=0.350000
 	ChaosDeclineTime=0.450000
 	
-	ViewRecoilFactor=0.2
+	ViewRecoilFactor=0.35
 	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.12),(InVal=0.300000,OutVal=0.150000),(InVal=0.4,OutVal=0.02),(InVal=0.550000,OutVal=-0.120000),(InVal=0.700000,OutVal=0.050000),(InVal=1.000000,OutVal=0.200000)))
 	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.25000),(InVal=0.450000,OutVal=0.450000),(InVal=0.650000,OutVal=0.75000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
 	
@@ -550,7 +550,7 @@ defaultproperties
 	RecoilDeclineDelay=0.350000
 	RecoilMax=6144
 	
-	HipRecoilFactor=2.5
+	HipRecoilFactor=1.5
 	
 	FireModeClass(0)=Class'BallisticProV55.GRS9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.GRS9SecondaryFire'

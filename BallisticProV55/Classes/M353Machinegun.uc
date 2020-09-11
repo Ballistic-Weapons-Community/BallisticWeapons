@@ -314,7 +314,8 @@ defaultproperties
      WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
      CurrentWeaponMode=3
      bNoCrosshairInScope=True
-     SightOffset=(X=-6.000000,Z=4.60000)
+	 SightPivot=(Pitch=128)
+     SightOffset=(X=-6.000000,Z=5.30000)
      SightingTime=0.550000
      SightAimFactor=0.5
      SprintOffSet=(Pitch=-6000,Yaw=-8000)

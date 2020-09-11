@@ -290,12 +290,12 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 		{
 			if (Damage - DeflectionAmount < 0)
 			{
-				Drain = Damage * 0.25;
+				Drain = Damage;
 				Damage = 0;
 			}
 			else
 			{
-				Drain = DeflectionAmount * 0.25;
+				Drain = DeflectionAmount;
 				Damage -= DeflectionAmount;
 			}
 			ElectroCharge = Max(ElectroCharge - Drain, 0);

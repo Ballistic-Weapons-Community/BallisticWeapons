@@ -108,7 +108,7 @@ defaultproperties
      FullZoomFOV=20.000000
      bNoMeshInScope=True
      bNoCrosshairInScope=True
-	 SightAimFactor=1
+	 SightAimFactor=0.5
      SightPivot=(Roll=-1024)
      SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
      SightingTime=0.550000

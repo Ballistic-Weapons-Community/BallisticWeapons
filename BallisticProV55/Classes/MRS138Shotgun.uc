@@ -64,6 +64,16 @@ simulated function StartTazer()
 	}
 }
 
+simulated function OnWeaponDisplaced()
+{
+	super.OnWeaponDisplaced();
+	
+	if (Role == ROLE_Authority && MRS138Attachment(ThirdPersonActor).bTazerOn)
+	{
+		MRS138Attachment(ThirdPersonActor).PlayerTazeEnd();
+	}
+}
+
 simulated function KillTazer()
 {
 	if (TazerEffect != None)

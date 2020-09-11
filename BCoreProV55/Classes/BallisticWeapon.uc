@@ -3996,9 +3996,8 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 			
 			//if (Level.NetMode == NM_Standalone)
 			//	Log("Aim displacement applied: "$ (AimDisplacementEndTime - Level.TimeSeconds) $" seconds.");
-
-			if (bScopeView)
-				StopScopeView();
+				
+			OnWeaponDisplaced();
 		}
 	}
 		
@@ -4014,8 +4013,22 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 simulated final function ClientDisplaceAim(float Duration)
 {
 	AimDisplacementEndTime = Level.TimeSeconds+Duration;
+			
+	OnWeaponDisplaced();
+}
+
+simulated function OnWeaponDisplaced()
+{
+	local int m;
+	
 	if (bScopeView)
 		StopScopeView();
+		
+	for (m = 0; m < NUM_FIRE_MODES; m++)
+	{
+		if (FireMode[m].bIsFiring)
+			StopFire(m);
+	}
 }
 
 simulated function ClientPlayerDamaged(byte DamageFactor)

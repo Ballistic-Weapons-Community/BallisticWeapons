@@ -40,7 +40,7 @@ defaultproperties
      FireChaos=0.750000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.M75.M75Fire',Volume=0.750000,Radius=384.000000)
      FireEndAnim="'"
-     FireRate=1.300000
+     FireRate=1.500000
      AmmoClass=Class'BallisticProV55.Ammo_20mmRailgun'
      ShakeRotMag=(X=400.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

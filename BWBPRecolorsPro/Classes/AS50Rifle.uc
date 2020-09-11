@@ -708,7 +708,7 @@ defaultproperties
      ZoomStages=2
      GunLength=80.000000
      CrouchAimFactor=0.650000
-     SightAimFactor=0.4
+     SightAimFactor=0.15
      SprintOffSet=(Pitch=-3000,Yaw=-4096)
      JumpOffSet=(Pitch=-6000,Yaw=2000)
      AimAdjustTime=0.600000
