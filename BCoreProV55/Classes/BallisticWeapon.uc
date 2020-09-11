@@ -533,16 +533,16 @@ simulated function PostNetBeginPlay()
 		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
 		AimSpread *= BCRepClass.default.AccuracyScale;
 	}
-
-	CheckBurstMode();
 	
-	/*
+	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
+	// To my knowledge, this is the case.
 	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
 	{
 		BFireMode[0].bBurstMode = True;
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
+
+		RecoilDeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
 	}
-	*/
 }
 
 simulated function PostNetReceive()
@@ -2056,13 +2056,16 @@ simulated function float CalculateBurstRecoilDelay(bool burst)
 }
 
 function CheckBurstMode()
-{
+{	
 	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
 	// To my knowledge, this is the case.
 	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
 	{
 		BFireMode[0].bBurstMode = True;
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
+		
+		Log("Burst On");
+			
 		if (!Instigator.IsLocallyControlled())
 			ClientSwitchBurstMode(True, WeaponModes[CurrentWeaponMode].Value);
 
@@ -2070,6 +2073,8 @@ function CheckBurstMode()
 	
 	else if(BFireMode[0].bBurstMode)
 	{	
+		Log("Burst Off");
+			
 		BFireMode[0].bBurstMode = False;
 		if (!Instigator.IsLocallyControlled())
 			ClientSwitchBurstMode(False);

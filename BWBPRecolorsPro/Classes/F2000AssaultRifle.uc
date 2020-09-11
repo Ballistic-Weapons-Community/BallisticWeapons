@@ -421,8 +421,8 @@ defaultproperties
      ClipInSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagIn',Volume=1.200000,Radius=32.000000)
      ClipInFrame=0.650000
      WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(ModeName="4-Round Burst",Value=4.000000)
-     WeaponModes(2)=(ModeName="Automatic")
+     WeaponModes(1)=(ModeName="Burst",Value=4.000000)
+     WeaponModes(2)=(ModeName="Auto")
      bNoCrosshairInScope=True
      SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
      SightDisplayFOV=25.000000
@@ -430,8 +430,7 @@ defaultproperties
 	 
      AimSpread=16
      ChaosDeclineTime=0.5
-     ChaosSpeedThreshold=7500.000000
-     ChaosAimSpread=728
+     ChaosAimSpread=128
 	 
      RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.150000),(InVal=0.4800000,OutVal=0.20000),(InVal=0.600000,OutVal=-0.050000),(InVal=0.750000,OutVal=0.0500000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.3)))
      RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))

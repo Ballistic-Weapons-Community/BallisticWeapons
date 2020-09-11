@@ -701,23 +701,23 @@ defaultproperties
      BigIconCoords=(Y1=30,Y2=235)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
-     ManualLines(0)="Powerful automatic fire. Has the best sustained damage output of its class, but has recoil to match."
+	 ManualLines(0)="5.56mm fire. Has a fast fire rate and high sustained DPS, but high recoil, limiting its hipfire."
      ManualLines(1)="Launches a smoke grenade. Upon impact, generates a cloud of smoke and deals minor radius damage. There is a bonus for a direct hit."
      ManualLines(2)="The Weapon Function key switches between various integrated scopes.|The Normal scope offers clear vision.|The Night Vision scope (green) illuminates the environment and shows enemies in orange.|The Infrared scope (red) highlights enemies with a box, even underwater or through smoke or trees.||Effective at medium range."
      SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.8;0.5;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
 	 
-	 WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-     WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
-     WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+     WeaponModes(0)=(bUnavailable=True)
+     WeaponModes(1)=(ModeName="Burst",Value=4.000000)
+     WeaponModes(2)=(ModeName="Auto")
 	 
-     CurrentWeaponMode=1
+     CurrentWeaponMode=2
 	 
      CockAnimPostReload="ReloadEndCock"
-     CockAnimRate=1.250000
+     CockAnimRate=1.10000
      CockSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
-     ReloadAnimRate=1.350000
+     ReloadAnimRate=1.10000
      ClipHitSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagFiddle',Volume=1.400000,Radius=32.000000)
      ClipOutSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagOut',Volume=1.400000,Radius=32.000000)
      ClipInSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagIn',Volume=1.400000,Radius=32.000000)
@@ -738,18 +738,21 @@ defaultproperties
 	 SightAimFactor=2
      CrouchAimFactor=0.650000
      SprintOffSet=(Pitch=-3000,Yaw=-4096)
-     AimSpread=16
-     ChaosDeclineTime=1.250000
-     ChaosAimSpread=128
 	 
-	 ViewRecoilFactor=0.25
+     AimSpread=16
+     ChaosDeclineTime=0.5
+     ChaosAimSpread=128
+
+
      RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.250000),(InVal=0.4800000,OutVal=0.30000),(InVal=0.600000,OutVal=0.320000),(InVal=0.750000,OutVal=0.370000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.4)))
      RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
      RecoilXFactor=0.050000
      RecoilYFactor=0.050000
 	 
      RecoilDeclineTime=0.500000
-     RecoilDeclineDelay=0.300000
+     RecoilDeclineDelay=0.140000
+	 
+	 ViewRecoilFactor=0.4
 	 
      FireModeClass(0)=Class'BWBPRecolorsPro.MARSPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.MARSSecondaryFire'

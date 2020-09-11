@@ -33,7 +33,7 @@ defaultproperties
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=768.000000
+     RecoilPerShot=700.000000
      FireChaos=0.2
      XInaccuracy=32.000000
      YInaccuracy=32.000000

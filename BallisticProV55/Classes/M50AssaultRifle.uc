@@ -680,7 +680,7 @@ defaultproperties
      ClipInFrame=0.650000
      WeaponModes(0)=(bUnavailable=True)
      WeaponModes(1)=(Value=3.000000,bUnavailable=True)
-     bNoCrosshairInScope=False
+     bNoCrosshairInScope=True
      SightPivot=(Pitch=200)
      SightOffset=(Y=0.050000,Z=12.130000)
      SightDisplayFOV=40.000000

@@ -4,8 +4,6 @@
 // Very automatic, bullet style instant hit. Shots have medium range and good
 // power. Accuracy and ammo goes quickly with its faster than normal rate of fire.
 //
-// Has damage drop off due to shorter barrel.
-//
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
@@ -14,15 +12,15 @@ class MARSPrimaryFire extends BallisticRangeAttenFire;
 defaultproperties
 {
      CutOffDistance=8144.000000
-     CutOffStartRange=4096.000000
+     CutOffStartRange=2536.000000
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WallPenetrationForce=16.000000
      
      Damage=20.000000
      DamageHead=40.000000
      DamageLimb=20.000000
-     RangeAtten=0.600000
-     WaterRangeAtten=0.800000
+     RangeAtten=0.350000
+	 
      DamageType=Class'BWBPRecolorsPro.DT_MARSAssault'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_MARSAssaultHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_MARSAssault'
@@ -39,7 +37,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
-     FireRate=0.1
+     FireRate=0.08
      AmmoClass=Class'BWBPRecolorsPro.Ammo_545mmSTANAG'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
