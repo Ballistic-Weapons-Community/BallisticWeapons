@@ -22,4 +22,5 @@ defaultproperties
      GibPerterbation=0.250000
      KDamageImpulse=4000.000000
      VehicleDamageScaling=4.000000
+	 bLocationalHit=False
 }

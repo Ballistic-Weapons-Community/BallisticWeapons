@@ -22,4 +22,5 @@ defaultproperties
      DamageOverlayTime=0.200000
      GibPerterbation=0.250000
      KDamageImpulse=45000.000000
+	 bLocationalHit=False
 }

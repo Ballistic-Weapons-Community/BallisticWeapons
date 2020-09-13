@@ -768,6 +768,11 @@ simulated event Tick(float DT)
 	}
 }
 
+simulated function bool IsDisplaced()
+{
+	return (AimDisplacementEndTime > Level.TimeSeconds || AimDisplacementFactor > 0);
+}
+
 // Check a few things and run the aiming tick
 simulated event WeaponTick(float DT)
 {
@@ -781,7 +786,7 @@ simulated event WeaponTick(float DT)
 
 	if (!BCRepClass.default.bNoLongGun && GunLength > 0)
 		TickLongGun(DT);
-	if (AimDisplacementEndTime > Level.TimeSeconds || AimDisplacementFactor > 0)
+	if (IsDisplaced())
 		TickDisplacement(DT);
 	TickFireCounter(DT);
 	

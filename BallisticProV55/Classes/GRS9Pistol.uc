@@ -106,7 +106,10 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	if (bLaserOn)
 		AimAdjustTime = default.AimAdjustTime * 1.5;
 	else
+	{
 		AimAdjustTime = default.AimAdjustTime;
+		bServerReloading = false;
+	}
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
 }
@@ -416,9 +419,9 @@ simulated function CommonWeaponSpecial(optional byte i)
 	bBigLaser=true;
 	if (ThirdPersonActor != None)
 		GRS9Attachment(ThirdPersonActor).bBigLaser=true;
-	BallisticInstantFire(FireMode[1]).Damage = 50;
+	BallisticInstantFire(FireMode[1]).Damage = 75;
 	BallisticInstantFire(FireMode[1]).DamageHead = 75;
-	BallisticInstantFire(FireMode[1]).DamageLimb = 50;
+	BallisticInstantFire(FireMode[1]).DamageLimb = 75;
 	BallisticInstantFire(FireMode[1]).XInaccuracy = 16;
 	BallisticInstantFire(FireMode[1]).YInaccuracy = 16;
 	FireMode[1].ModeDoFire();
@@ -429,9 +432,8 @@ simulated function CommonWeaponSpecial(optional byte i)
 	BallisticInstantFire(FireMode[1]).XInaccuracy = 2;
 	BallisticInstantFire(FireMode[1]).YInaccuracy = 2;
 
-	
 	if (ClientState != WS_PutDown && ClientState != WS_BringUp)
-		Settimer(0.15, false);
+		SetTimer(0.15, false);
 }
 
 

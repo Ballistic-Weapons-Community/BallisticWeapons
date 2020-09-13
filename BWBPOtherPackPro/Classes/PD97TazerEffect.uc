@@ -49,7 +49,8 @@ simulated function SetTarget(Pawn Targ)
 function Timer()
 {
 	local vector HitLocation, HitNormal;
-	if (Target == None || Target.Health < 1 || !Target.bProjTarget || !FastTrace(Target.Location, Instigator.Location) || BallisticShield(Trace(HitLocation, HitNormal, Target.Location, Instigator.Location, true)) != None || VSize(Target.Location - Instigator.Location) > MaxRange)
+	if (Target == None || Target.Health < 1 || !Target.bProjTarget || !FastTrace(Target.Location, Instigator.Location) || BallisticShield(Trace(HitLocation, HitNormal, Target.Location, Instigator.Location, true)) != None 
+	|| VSize(Target.Location - Instigator.Location) > MaxRange || 	BallisticWeapon(Instigator.Weapon) == None || BallisticWeapon(Instigator.Weapon).IsDisplaced())
 	{
 		SetTarget(None);
 		PD97Attachment(Owner).TazeEnd();

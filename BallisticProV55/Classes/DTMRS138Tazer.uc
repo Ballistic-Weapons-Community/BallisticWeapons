@@ -18,12 +18,11 @@ defaultproperties
      DamageIdent="Melee"
      bDisplaceAim=True
 	 InvasionDamageScaling=3
-     AimDisplacementDamageThreshold=60
-     AimDisplacementDuration=2.000000
+     AimDisplacementDuration=1.500000
      DamageDescription=",Blunt,Electro"
      ImpactManager=Class'BallisticProV55.IM_MRS138TazerHit'
      WeaponClass=Class'BallisticProV55.MRS138Shotgun'
-     DeathString="%o was electrified by %k's MRS138."
+     DeathString="%o was electrified by %k's MRS-138."
      FemaleSuicide="%o zapped herself."
      MaleSuicide="%o zapped himself."
      bArmorStops=False

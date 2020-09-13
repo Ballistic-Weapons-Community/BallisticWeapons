@@ -99,6 +99,7 @@ simulated function PlayerTazeEnd()
 		TazerHit = None;
 	if (TazerLineEffect != None)
 	{
+		TazerLineEffect.SetTarget(None);
 		TazerLineEffect.KillFlashes();
 		TazerLineEffect.SetTimer(0.0, false);
 		TazerLineEffect.Kill();
@@ -124,7 +125,6 @@ simulated function TazerHitEffects()
 	class'IM_MRS138TazerHit'.static.StartSpawn(TazerHitLocation, Normal(TazerHitLocation - Instigator.Location+Instigator.EyePosition()), 0, instigator);
 }
 
-
 simulated function StartProjector()
 {
 	if (FlashLightProj == None)
@@ -132,6 +132,7 @@ simulated function StartProjector()
 	AttachToBone(FlashLightProj, 'tip2');
 	FlashLightProj.SetRelativeLocation(vect(-32,0,0));
 }
+
 simulated function KillProjector()
 {
 	if (FlashLightProj != None)

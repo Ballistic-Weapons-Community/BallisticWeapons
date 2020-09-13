@@ -2,10 +2,10 @@ class DTMRS138TazerLine extends DT_BWMiscDamage;
 
 defaultproperties
 {
-     DeathStrings(0)="%o got shocked by %k's MRS138 tazer."
-     DeathStrings(1)="%k defibrillated %o with a MRS138 tazer."
+     DeathStrings(0)="%o got shocked by %k's MRS-138 tazer."
+     DeathStrings(1)="%k defibrillated %o with a MRS-138 tazer."
      DeathStrings(2)="%o got zapped hard by %k's shotgun tazer."
-     SimpleKillString="MRS138 Tazer"
+     SimpleKillString="MRS-138 Taser"
      BloodManagerName="BallisticProV55.BloodMan_NovaLightning"
      FlashThreshold=0
      FlashV=(Z=350.000000)
@@ -16,7 +16,7 @@ defaultproperties
      DamageIdent="Sidearm"
      DamageDescription=",Electro,"
      WeaponClass=Class'BallisticProV55.MRS138Shotgun'
-     DeathString="%o got shocked by %k's MRS138 tazer."
+     DeathString="%o got shocked by %k's MRS-138 tazer."
      FemaleSuicide="%o struck herself."
      MaleSuicide="%o struck himself."
      bInstantHit=True
