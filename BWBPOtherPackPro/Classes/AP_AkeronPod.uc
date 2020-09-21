@@ -4,7 +4,7 @@ class AP_AkeronPod extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=90
+     AmmoAmount=18
      InventoryType=Class'BWBPOtherPackPro.Ammo_Akeron'
      PickupMessage="You picked up an Akeron rocket pod."
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'

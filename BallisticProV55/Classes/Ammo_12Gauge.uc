@@ -10,8 +10,8 @@ class Ammo_12Gauge extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=48
-     InitialAmount=24
+     MaxAmmo=42
+     InitialAmount=21
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIcon_12GaugeFlash'
      PickupClass=Class'BallisticProV55.AP_12GaugeBox'
      IconMaterial=Texture'BallisticUI2.Icons.AmmoIcon_12GaugeBox'

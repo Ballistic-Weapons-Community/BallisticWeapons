@@ -10,8 +10,8 @@ class Ammo_MRL extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=120
-     InitialAmount=60
+     MaxAmmo=108
+     InitialAmount=54
      IconFlashMaterial=Shader'BWBP4-Tex.MRL.AmmoIcon_MRLRocketsFlash'
      PickupClass=Class'BallisticProV55.AP_MRLRockets'
      IconMaterial=Texture'BWBP4-Tex.MRL.AmmoIcon_MRLRockets'

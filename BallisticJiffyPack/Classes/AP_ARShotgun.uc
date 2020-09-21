@@ -10,7 +10,7 @@ class AP_ARShotgun extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=60
+     AmmoAmount=45
      InventoryType=Class'BallisticJiffyPack.Ammo_ARShotgun'
      PickupMessage="You picked up 3 magazines for the RCS-715 Shotgun."
      PickupSound=Sound'BallisticSounds2.Ammo.ShotBoxPickup'

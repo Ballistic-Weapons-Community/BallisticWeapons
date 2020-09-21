@@ -45,7 +45,7 @@ simulated function Destroyed()
 defaultproperties
 {
      M900AmmoClass=Class'BWBPRecolorsPro.AP_Frag12Box'
-     AmmoAmount=15
+     AmmoAmount=16
      InventoryType=Class'BWBPRecolorsPro.Ammo_75BOLT'
      PickupMessage="You picked up Bulldog BOLT slugs."
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'

@@ -10,8 +10,8 @@ class Ammo_42Rifle extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=42
-     InitialAmount=21
+     MaxAmmo=60
+     InitialAmount=30
      bTryHeadShot=True
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticProV55.AP_R78Clip'

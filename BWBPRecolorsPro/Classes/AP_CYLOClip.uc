@@ -44,7 +44,7 @@ simulated function Destroyed()
 defaultproperties
 {
      M900AmmoClass=Class'BWBPRecolorsPro.AP_CYLOSG'
-     AmmoAmount=56
+     AmmoAmount=66
      InventoryType=Class'BWBPRecolorsPro.Ammo_CYLO'
      PickupMessage="You picked up CYLO UAW rounds."
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'

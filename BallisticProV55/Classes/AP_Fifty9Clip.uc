@@ -10,9 +10,9 @@ class AP_Fifty9Clip extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=90
+     AmmoAmount=100
      InventoryType=Class'BallisticProV55.Ammo_FiftyNine'
-     PickupMessage="You picked up two Fifty-9 magazines."
+     PickupMessage="You picked up three Fifty-9 magazines."
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BallisticHardware2.Fifty9.Fifty9Clips'
      DrawScale=0.350000

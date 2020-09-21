@@ -10,7 +10,7 @@ class AP_CYLOInc extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=70
+     AmmoAmount=78
      InventoryType=Class'BWBPRecolorsPro.Ammo_CYLOInc'
      PickupMessage="You picked up Firestorm incendiary rounds."
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'

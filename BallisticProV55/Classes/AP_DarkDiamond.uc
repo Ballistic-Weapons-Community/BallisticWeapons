@@ -123,9 +123,9 @@ State Disabled
 
 defaultproperties
 {
-     AmmoAmount=42
+     AmmoAmount=48
      InventoryType=Class'BallisticProV55.Ammo_DarkDiamond'
-     PickupMessage="You picked up a blood diamond for the Dark Star."
+     PickupMessage="You picked up two blood diamonds for the Dark Star."
      PickupSound=Sound'BWBP4-Sounds.DarkStar.Dark-AmmoPickup'
      StaticMesh=StaticMesh'BWBP4-Hardware.DarkStar.DarkStarAmmo'
      DrawScale=0.800000

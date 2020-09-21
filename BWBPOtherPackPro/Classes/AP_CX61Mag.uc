@@ -10,7 +10,7 @@ class AP_CX61Mag extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=80
+     AmmoAmount=64
      InventoryType=Class'BWBPOtherPackPro.Ammo_CX61Rounds'
      PickupMessage="You picked up two CX61 magazines."
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'

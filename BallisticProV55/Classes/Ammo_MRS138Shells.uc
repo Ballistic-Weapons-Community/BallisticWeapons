@@ -10,8 +10,8 @@ class Ammo_MRS138Shells extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=30
-     InitialAmount=15
+     MaxAmmo=36
+     InitialAmount=18
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIcon_BP1Flash'
      PickupClass=Class'BallisticProV55.AP_MRS138Box'
      IconMaterial=Texture'BWAddPack-RS-Skins.ui.RS-AmmoIconPage'

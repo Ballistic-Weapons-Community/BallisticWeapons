@@ -2,8 +2,8 @@ class Ammo_R9A1 extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=72
-     InitialAmount=36
+     MaxAmmo=90
+     InitialAmount=45
      bTryHeadShot=True
      IconFlashMaterial=Shader'BallisticTextures3.ui.AmmoIcon_R9ClipsFlash'
      PickupClass=Class'BWBPOtherPackPro.AP_R9A1Mag'

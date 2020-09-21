@@ -10,9 +10,9 @@ class AP_MRLRockets extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=90
+     AmmoAmount=54
      InventoryType=Class'BallisticProV55.Ammo_MRL'
-     PickupMessage="You picked up 90 Peacemaker rockets."
+     PickupMessage="You picked up 54 Peacemaker rockets."
      PickupSound=Sound'BallisticSounds2.Ammo.RocketPickup'
      StaticMesh=StaticMesh'BWBP4-Hardware.MRL.JL21-Ammo'
      DrawScale=0.400000

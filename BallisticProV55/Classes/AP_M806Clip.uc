@@ -10,7 +10,7 @@ class AP_M806Clip extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=24
+     AmmoAmount=21
      InventoryType=Class'BallisticProV55.Ammo_45HV'
      PickupMessage="You picked up .45 high velocity M806 bullets."
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'

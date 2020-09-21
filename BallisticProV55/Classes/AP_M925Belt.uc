@@ -10,7 +10,7 @@ class AP_M925Belt extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=40
+     AmmoAmount=50
      InventoryType=Class'BallisticProV55.Ammo_50CalBelt'
      PickupMessage="You picked up a belt of .50 cal rounds."
      PickupSound=Sound'BallisticSounds2.Ammo.MGBoxPickup'

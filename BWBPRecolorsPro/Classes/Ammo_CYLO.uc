@@ -10,8 +10,8 @@ class Ammo_CYLO extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=168
-     InitialAmount=84
+     MaxAmmo=176
+     InitialAmount=88
      IconFlashMaterial=Shader'BallisticRecolors3TexPro.CYLO.AmmoIcon_CYLOFlash'
      PickupClass=Class'BWBPRecolorsPro.AP_CYLOClip'
      IconMaterial=Texture'BallisticRecolors3TexPro.CYLO.AmmoIcon_CYLO'
