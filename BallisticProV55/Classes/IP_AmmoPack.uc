@@ -86,8 +86,18 @@ auto state Pickup
 				{
 					if (A.AmmoAmount < A.MaxAmmo && BallAmmo(A) == None && (BallisticAmmo(A) == None || !BallisticAmmo(A).bNoPackResupply))
 					{
-						A.AddAmmo(A.InitialAmount);
-						BGetIt=true;
+						if (A.InitialAmount != 0)
+						{
+							A.AddAmmo(A.InitialAmount);
+							BGetIt=true;
+						}
+						else
+						{
+							//this is a fallback if InitialAmount is 0, eg. xmv-850 has no initial ammo
+							//can't seem to access the weapon class from here to get a fraction of MagAmmo, but if there is a workaround feel free to change this
+							A.AddAmmo(A.MaxAmmo/4);
+							BGetIt=true;
+						}
 					}
 				}
 				else
