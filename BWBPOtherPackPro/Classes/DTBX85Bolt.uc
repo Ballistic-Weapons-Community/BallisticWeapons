@@ -7,7 +7,7 @@ defaultproperties
      DeathStrings(2)="%o was discreetly decommissioned by %k's silent bolt."
      SimpleKillString="BX85 Crossbow Bolt"
      DamageIdent="Assault"
-     WeaponClass=Class'BWBPOtherPackPro.PD97Bloodhound'
+     WeaponClass=Class'BWBPOtherPackPro.BX85Crossbow'
      DeathString="%%o was assassinated from the shadows by %k's BX85 bolt."
      FemaleSuicide="%o dropped her own crossbow."
      MaleSuicide="%o dropped his own crossbow."
