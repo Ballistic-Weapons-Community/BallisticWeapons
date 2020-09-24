@@ -10,7 +10,7 @@ class AP_50IncDrum extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=50
+     AmmoAmount=40
      InventoryType=Class'BWBPRecolorsPro.Ammo_50IncDrum'
      PickupMessage="You picked up an FG50 drum."
      PickupSound=Sound'BallisticSounds2.Ammo.MGBoxPickup'

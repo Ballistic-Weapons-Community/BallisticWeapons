@@ -1,21 +1,21 @@
 //=============================================================================
-// AP_R78Clip.
+// AP_68mmClip.
 //
-// 2 x 7 round clip for the R78.
+// A 25 round 6.8mm magazine.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class AP_R78Clip extends BallisticAmmoPickup;
+class AP_68mmClip extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=20
-     InventoryType=Class'BallisticProV55.Ammo_42Rifle'
-     PickupMessage="You picked up .42 sniper rifle rounds."
+     AmmoAmount=50
+     InventoryType=Class'BWBPRecolorsPro.Ammo_68mm'
+     PickupMessage="You got two 6.8mm magazines."
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BallisticHardware2.Ammo.R78Clip'
-     DrawScale=0.300000
+     StaticMesh=StaticMesh'BallisticHardware2.Ammo.M50Magazine'
+     DrawScale=0.400000
      CollisionRadius=8.000000
-     CollisionHeight=14.000000
+     CollisionHeight=5.200000
 }

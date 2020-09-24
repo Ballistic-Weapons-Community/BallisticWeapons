@@ -2,7 +2,7 @@ class Ammo_Akeron extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=27
+     MaxAmmo=30
      InitialAmount=18
      IconFlashMaterial=Shader'BWBPOtherPackTex3.Akeron.AmmoIcon_AkeronFlash'
      PickupClass=Class'BWBPOtherPackPro.AP_AkeronPod'

@@ -10,8 +10,8 @@ class Ammo_50IncDrum extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=150
-     InitialAmount=100
+     MaxAmmo=120
+     InitialAmount=80
      IconFlashMaterial=Shader'BallisticRecolors3TexPro.FG50.AmmoIcon_FG50Flash'
      PickupClass=Class'BWBPRecolorsPro.AP_50IncDrum'
      IconMaterial=Texture'BallisticRecolors3TexPro.FG50.AmmoIcon_FG50'

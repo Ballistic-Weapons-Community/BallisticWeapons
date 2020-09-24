@@ -10,9 +10,9 @@ class AP_SKASDrum extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=20
+     AmmoAmount=24
      InventoryType=Class'BWBPRecolorsPro.Ammo_SKASShells'
-     PickupMessage="You picked up SKAS drums."
+     PickupMessage="You picked up a SKAS drum."
      PickupSound=Sound'BallisticSounds2.Ammo.ShotBoxPickup'
      StaticMesh=StaticMesh'BallisticRecolors4StaticPro.SKAS.SKASShotgunAmmo'
      DrawScale=0.600000

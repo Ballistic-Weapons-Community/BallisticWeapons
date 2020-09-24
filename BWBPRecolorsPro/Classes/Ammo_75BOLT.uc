@@ -8,8 +8,8 @@ class Ammo_75BOLT extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=36
-     InitialAmount=18
+     MaxAmmo=32
+     InitialAmount=16
      bTryHeadShot=True
      IconFlashMaterial=Shader'BallisticRecolors3TexPro.Bulldog.AmmoIcon_BOLTFlash'
      PickupClass=Class'BWBPRecolorsPro.AP_75BOLTClip'

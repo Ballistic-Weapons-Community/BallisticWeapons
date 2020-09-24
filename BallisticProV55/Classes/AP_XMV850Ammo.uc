@@ -10,7 +10,7 @@ class AP_XMV850Ammo extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=100
+     AmmoAmount=150
      InventoryType=Class'BallisticProV55.Ammo_MinigunRounds'
      PickupMessage="You stowed a backpack of minigun rounds."
      PickupSound=Sound'BallisticSounds2.XMV-850.XMV-AmmoPickup'

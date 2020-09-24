@@ -10,8 +10,8 @@ class Ammo_50CalBelt extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=80
-     InitialAmount=40
+     MaxAmmo=100
+     InitialAmount=50
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticProV55.AP_M925Belt'
      IconMaterial=Texture'BallisticUI2.Icons.AmmoIconPage'

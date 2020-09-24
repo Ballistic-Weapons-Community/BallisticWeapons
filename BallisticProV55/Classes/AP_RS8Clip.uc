@@ -10,9 +10,9 @@ class AP_RS8Clip extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=28
+     AmmoAmount=36
      InventoryType=Class'BallisticProV55.Ammo_RS8Bullets'
-     PickupMessage="You picked up two RS8 magazines."
+     PickupMessage="You picked up four RS8 magazines."
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BWAddPack-RS-Hardware.RS8.RS8Clips'
      DrawScale=0.300000

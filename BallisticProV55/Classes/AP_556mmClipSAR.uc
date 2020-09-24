@@ -1,22 +1,21 @@
 //=============================================================================
-// AP_42MachineGun
+// AP_556mmClip.
 //
-// A 42 round .42 magazine.
+// A 30 round 5.56mm magazine. Duplicate exists for the SAR12 ammo count
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class AP_42MachineGun extends BallisticAmmoPickup;
+class AP_556mmClipSAR extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=30
-     InventoryType=Class'BWBPRecolorsPro.Ammo_42HVG'
-     PickupMessage="You got three Gauss magazines."
+     AmmoAmount=64
+     InventoryType=Class'BallisticProV55.Ammo_556mmSAR'
+     PickupMessage="You got two 5.56mm magazines."
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BallisticHardware2.Ammo.M50Magazine'
      DrawScale=0.400000
-     Skins(0)=Texture'BallisticRecolors4TexPro.M30A2.M30A2-SB'
      CollisionRadius=8.000000
      CollisionHeight=5.200000
 }

@@ -1,19 +1,20 @@
 //=============================================================================
-// Ammo_CX61.
+// Ammo_556mm.
+//
+// 5.56mm bullet ammo. Used by several of the ballistic weapons. Duplicate exists for the SAR12 ammo count
 //
 // by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2006 RuneStorm. All Rights Reserved.
+// Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Ammo_CX61Rounds extends BallisticAmmo;
+class Ammo_556mmSAR extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=192
-     InitialAmount=96
-     bTryHeadShot=True
+     MaxAmmo=256
+     InitialAmount=128
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
-     PickupClass=Class'BWBPOtherPackPro.AP_CX61Mag'
+     PickupClass=Class'BallisticProV55.AP_556mmClipSAR'
      IconMaterial=Texture'BallisticUI2.Icons.AmmoIconPage'
      IconCoords=(X1=128,X2=191,Y2=63)
-     ItemName="CX61 Flechette Rounds"
+     ItemName="5.56mm Ammo"
 }

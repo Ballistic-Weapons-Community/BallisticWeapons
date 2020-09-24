@@ -10,8 +10,8 @@ class Ammo_SKASShells extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=36
-     InitialAmount=18
+     MaxAmmo=48
+     InitialAmount=24
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIcon_BP1Flash'
      PickupClass=Class'BWBPRecolorsPro.AP_SKASDrum'
      IconMaterial=Texture'BWAddPack-RS-Skins.ui.RS-AmmoIconPage'

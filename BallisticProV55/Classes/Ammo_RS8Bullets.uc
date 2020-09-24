@@ -10,8 +10,8 @@ class Ammo_RS8Bullets extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=120
-     InitialAmount=60
+     MaxAmmo=108
+     InitialAmount=54
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIcon_BP1Flash'
      PickupClass=Class'BallisticProV55.AP_RS8Clip'
      IconMaterial=Texture'BWAddPack-RS-Skins.ui.RS-AmmoIconPage'

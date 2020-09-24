@@ -10,8 +10,8 @@ class Ammo_DarkDiamond extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=126
-     InitialAmount=63
+     MaxAmmo=144
+     InitialAmount=72
      IconFlashMaterial=Shader'BWBP4-Tex.DarkStar.AmmoIcon_DarkCrystalFlash'
      PickupClass=Class'BallisticProV55.AP_DarkDiamond'
      IconMaterial=Texture'BWBP4-Tex.DarkStar.AmmoIcon_DarkCrystal'

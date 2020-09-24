@@ -10,7 +10,7 @@ class AP_12GaugeBox extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=10
+     AmmoAmount=14
      InventoryType=Class'BallisticProV55.Ammo_12Gauge'
      PickupMessage="You picked up a box of 12 gauge shells."
      PickupSound=Sound'BallisticSounds2.Ammo.ShotBoxPickup'

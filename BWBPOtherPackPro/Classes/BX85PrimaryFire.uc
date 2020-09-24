@@ -69,7 +69,7 @@ defaultproperties
 	FireAnimRate=2.00000
 	FireForce="AssaultRifleAltFire"
 	FireRate=1.500000
-	AmmoClass=Class'BWBPOtherPackPro.Ammo_BloodhoundDarts'
+	AmmoClass=Class'BWBPOtherPackPro.Ammo_BX85Darts'
 	ShakeRotTime=2.000000
 	ShakeOffsetMag=(X=-20.000000)
 	ShakeOffsetRate=(X=-1000.000000)

@@ -8,8 +8,8 @@ class Ammo_42HVG extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=210
-     InitialAmount=42
+     MaxAmmo=100
+     InitialAmount=40
      bTryHeadShot=True
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BWBPRecolorsPro.AP_42MachineGun'

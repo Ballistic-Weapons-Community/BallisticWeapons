@@ -10,9 +10,9 @@ class AP_MRS138Box extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=15
+     AmmoAmount=18
      InventoryType=Class'BallisticProV55.Ammo_MRS138Shells'
-     PickupMessage="You picked up a box of 15 MRS-138 shells."
+     PickupMessage="You picked up a box of 18 MRS-138 shells."
      PickupSound=Sound'BallisticSounds2.Ammo.ShotBoxPickup'
      StaticMesh=StaticMesh'BWAddPack-RS-Hardware.MRS138.MRS138ShellBox'
      DrawScale=0.250000

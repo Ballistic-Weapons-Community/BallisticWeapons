@@ -2,7 +2,7 @@ class AP_R9A1Mag extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=12
+     AmmoAmount=30
      InventoryType=Class'BWBPOtherPackPro.Ammo_R9A1'
      PickupMessage="You picked up R9A1 ammunition."
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'

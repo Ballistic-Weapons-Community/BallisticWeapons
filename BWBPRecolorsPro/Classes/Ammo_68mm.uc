@@ -10,10 +10,10 @@ class Ammo_68mm extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=192
-     InitialAmount=96
+     MaxAmmo=200
+     InitialAmount=100
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
-     PickupClass=Class'BallisticProV55.AP_556mmClip'
+     PickupClass=Class'BWBPRecolorsPro.AP_68mmClip'
      IconMaterial=Texture'BallisticUI2.Icons.AmmoIconPage'
      IconCoords=(X1=128,X2=191,Y2=63)
      ItemName="6.8mm HVHE ammo"
