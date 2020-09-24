@@ -22,6 +22,7 @@ defaultproperties
      FemaleSuicide="%o cut herself on her CYLO."
      MaleSuicide="%o cut himself on his CYLO."
      bArmorStops=False
+	 BlockFatiguePenalty=0.25
      PawnDamageSounds(0)=Sound'BallisticSounds2.A73.A73StabFlesh'
      KDamageImpulse=2000.000000
 }

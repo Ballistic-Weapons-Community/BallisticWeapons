@@ -17,4 +17,5 @@ defaultproperties
      DeathString="%k smashed the M763 into %o's face."
      FemaleSuicide="%o swatted a fly on her head using the M763."
      MaleSuicide="%o swatted a fly on his head using the M763."
+	 BlockFatiguePenalty=0.25
 }

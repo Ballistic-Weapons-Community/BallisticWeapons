@@ -21,6 +21,7 @@ defaultproperties
      FemaleSuicide="%o skinned herself with a Fifty-9."
      MaleSuicide="%o skinned himself with a Fifty-9."
      bNeverSevers=True
+	 BlockFatiguePenalty=0.1
      PawnDamageSounds(0)=Sound'BallisticSounds2.A73.A73StabFlesh'
      KDamageImpulse=1000.000000
 }

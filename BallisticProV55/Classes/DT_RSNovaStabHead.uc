@@ -23,6 +23,7 @@ defaultproperties
      MaleSuicide="%o stabbed his head off with a Nova Staff."
      bAlwaysSevers=True
      bSpecial=True
+	 BlockFatiguePenalty=0.25
      PawnDamageSounds(0)=SoundGroup'BWBP4-Sounds.NovaStaff.Nova-Flesh'
      KDamageImpulse=2000.000000
 }

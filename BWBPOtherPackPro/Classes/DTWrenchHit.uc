@@ -10,6 +10,8 @@ defaultproperties
      DeathStrings(5)="%k realigned %o's anatomy."
      DamageIdent="Melee"
      bDisplaceAim=True
+	 BlockFatiguePenalty=0.4
+	 BlockPenetration=0.25
      AimDisplacementDamageThreshold=60
      AimDisplacementDuration=1.000000
      WeaponClass=Class'BWBPOtherPackPro.WrenchWarpDevice'

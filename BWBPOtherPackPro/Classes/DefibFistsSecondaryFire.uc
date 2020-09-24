@@ -218,15 +218,15 @@ function PlayFiring()
 defaultproperties
 {
 	 DischargedFireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Radius=32.000000,bAtten=True)
-	 RequiredBonusCharge=40
-	 RequiredShockwaveCharge=90
-	 ElectroDamageBonus=40
-	 ElectroHeal=40
+	 RequiredBonusCharge=33
+	 RequiredShockwaveCharge=75
+	 ElectroDamageBonus=50
+	 ElectroHeal=50
      FatiguePerStrike=0.150000
      bCanBackstab=False
-     Damage=60.000000
-     DamageHead=60.000000
-     DamageLimb=60.000000
+     Damage=50.000000
+     DamageHead=50.000000
+     DamageLimb=50.000000
      DamageType=Class'BWBPOtherPackPro.DTShockGauntletAlt'
      DamageTypeHead=Class'BWBPOtherPackPro.DTShockGauntletAlt'
      DamageTypeArm=Class'BWBPOtherPackPro.DTShockGauntletAlt'

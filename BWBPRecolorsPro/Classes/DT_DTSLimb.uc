@@ -15,6 +15,7 @@ defaultproperties
      DeathStrings(2)="%k sliced a chunk off %o with %kh nanosword."
      DeathStrings(3)="%o's limbs were amputated by %k's swinging DTS."
      DamageIdent="Melee"
+	 BlockFatiguePenalty=0.1
      MinMotionBlurDamage=5.000000
      MotionBlurDamageRange=20.000000
      MotionBlurFactor=3.000000

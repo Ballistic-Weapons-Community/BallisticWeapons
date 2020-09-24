@@ -1902,7 +1902,7 @@ final function ServerMeleeRelease()
 	//Fire delay
 }
 
-final function ApplyBlockFatigue()
+final function ApplyAttackFatigue()
 {
 	local float Penalty;
 	
@@ -1910,14 +1910,19 @@ final function ApplyBlockFatigue()
 		Penalty = BallisticMeleeFire(BFireMode[1]).FatiguePerStrike * 2.5;
 	else Penalty = BallisticMeleeFire(BFireMode[0]).FatiguePerStrike * 2.5;
 	
-	MeleeFatigue = FMin(1, MeleeFatigue + Penalty);
-	
-	ClientApplyBlockFatigue(Penalty);
+	ApplyBlockFatigue(Penalty);
 }
 
-simulated final function ClientApplyBlockFatigue(float Penalty)
+final function ApplyBlockFatigue(float value)
 {
-	MeleeFatigue = FMin(1, MeleeFatigue + Penalty);
+	MeleeFatigue = FMin(1, MeleeFatigue + value);
+	
+	ClientApplyBlockFatigue(value);
+}
+
+simulated final function ClientApplyBlockFatigue(float value)
+{
+	MeleeFatigue = FMin(1, MeleeFatigue + value);
 }
 
 //===========================================================================

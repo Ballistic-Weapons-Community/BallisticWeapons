@@ -29,6 +29,7 @@ defaultproperties
      BloodManagerName="BallisticProV55.BloodMan_Saw"
      DamageIdent="Melee"
      AimDisplacementDuration=0.25
+	 BlockFatiguePenalty=0.05
      DamageDescription=",Slash,DarkStar,Hack,"
      WeaponClass=Class'BallisticProV55.RSDarkStar'
      DeathString="%o screeched and leapt onto %k's Dark Star saw."

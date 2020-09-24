@@ -17,6 +17,7 @@ defaultproperties
      DamageIdent="Melee"
      AimDisplacementDamageThreshold=25
      AimDisplacementDuration=1.200000
+	 BlockFatiguePenalty=0.1
      WeaponClass=Class'BallisticProV55.X3Knife'
      DeathString="%k viciously shanked %o with the X3."
      FemaleSuicide="%o forgot how to use the handle of her X3."

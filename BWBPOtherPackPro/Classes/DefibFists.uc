@@ -285,7 +285,12 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	Normal(HitLocation-(Instigator.Location+Instigator.EyePosition())) Dot Vector(Instigator.GetViewRotation()) > 0.4)
 	{
 		if (class<BallisticDamageType>(DamageType).default.bCanBeBlocked)
-			Damage = 0;
+		{
+			Damage *= 0.1f;
+			BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
+		}
+		
+		/* defibs are strong enough as it is - Azarael
 		else
 		{
 			if (Damage - DeflectionAmount < 0)
@@ -299,9 +304,14 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 				Damage -= DeflectionAmount;
 			}
 			ElectroCharge = Max(ElectroCharge - Drain, 0);
+			
+			BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
 		}
-		BallisticAttachment(ThirdPersonActor).UpdateBlockHit();		
+		
+		*/
+	
 	}
+	
 	super.AdjustPlayerDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType);
 }
 

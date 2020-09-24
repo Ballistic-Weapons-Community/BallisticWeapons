@@ -15,6 +15,7 @@ defaultproperties
      DeathStrings(2)="%k's coach gun cracked a couple of %o's ribs."
      DamageIdent="Melee"
      bDisplaceAim=True
+	 BlockFatiguePenalty=0.25
      AimDisplacementDamageThreshold=60
      AimDisplacementDuration=1.700000
      WeaponClass=Class'BWBPRecolorsPro.CoachGun'

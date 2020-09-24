@@ -22,6 +22,7 @@ defaultproperties
      MaleSuicide="%o sliced his own head in half with the CYLO."
      bAlwaysSevers=True
      bSpecial=True
+	 BlockFatiguePenalty=0.25
      PawnDamageSounds(0)=Sound'BallisticSounds2.A73.A73StabFlesh'
      KDamageImpulse=2000.000000
 }

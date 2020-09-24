@@ -30,15 +30,16 @@ var float							FlashF;
 
 var() bool							bCanBeBlocked;		// This damage(eg. sword slash) can be blocked with a shield, sword or whatever...
 var() float							BlockPenetration;	// Scaler for damage to do through block, if any
+var() float							BlockFatiguePenalty;// Fatigue for the defender who blocks this attack
 var() int							ShieldDamage;		// Damage this can do to shields that block it (for future mod purposses, used by JunkWar)
 var() bool							bDetonatesBombs;	// This damage can detonate bombs, mines, etc...
 var() bool							bIgniteFires;		// This damage can ignite flammable things and cause fires.
 var() byte							ArmorHitType;		// Tells BArmor what effects to use (Bullet, Misc or None)
-var() bool							bSnipingDamage;   // Ballistic Freon - extend camp check longer than normal
-var() bool							bPowerPush;		 // 3SPN: Attacks of this damagetype impart a lot of momentum and are commonly used for abusive purposes
-var() bool							bNegatesMomentum; // Arrests horizontal momentum of struck target
+var() bool							bSnipingDamage;   	// Ballistic Freon - extend camp check longer than normal
+var() bool							bPowerPush;		 	// 3SPN: Attacks of this damagetype impart a lot of momentum and are commonly used for abusive purposes
+var() bool							bNegatesMomentum; 	// Arrests horizontal momentum of struck target
 var() bool 							bHeaddie; 			// Is a headshot damagetype
-var() bool							bIgnoredOnLifts;			//If used against a player on a lift, or exiting a lift, this damagetype will be ignored completely
+var() bool							bIgnoredOnLifts;	//If used against a player on a lift, or exiting a lift, this damagetype will be ignored completely
 var() float							InvasionDamageScaling; // Scale the damage by this in Invasion (because Invasion requires different balance to PvP)
 var string							DamageIdent;		// The stats slot this damagetype fits into
 var() bool							bDisplaceAim;		// This damagetype forcibly displaces the weapon if it hits
@@ -46,7 +47,7 @@ var() bool							bMetallic; // This damagetype is delivered by means of a metal 
 var()	int							AimDisplacementDamageThreshold;
 var() float							AimDisplacementDuration;
 
-var globalconfig bool			bSimpleDeathMessages; //Simplify DMs
+var globalconfig bool				bSimpleDeathMessages;
 
 var() string	DamageDescription;	// Words that describe this damagetype. e.g. ",Poison,Melee,Bite," or ",Electro,Lightning,"
 									// Makes it easier for systems to identify the damage and work accordingly...
@@ -363,6 +364,7 @@ defaultproperties
 	bKUseTearOffMomentum=True
 	bExtraMomentumZ=False
 	bDirectDamage=False
+	BlockFatiguePenalty=0.1
 	TransientSoundVolume=1.000000
 	TransientSoundRadius=64.000000
 }

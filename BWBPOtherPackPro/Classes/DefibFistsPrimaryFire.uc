@@ -143,14 +143,14 @@ defaultproperties
 	 RequiredBonusCharge=20
 	 ElectroDamageBonus=30
 	 ElectroHeal=30
-     Damage=40.000000
-     DamageHead=40.000000
-	 DamageLimb=40.000000
+     Damage=25.000000
+     DamageHead=25.000000
+	 DamageLimb=25.000000
 	 TraceRange=(Min=150,Max=150)
      DamageType=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeArm=Class'BWBPOtherPackPro.DTShockGauntlet'
-     KickForce=40000
+     KickForce=50000
      bUseWeaponMag=False
      BallisticFireSound=(Sound=SoundGroup'BWAddPack-RS-Sounds.MRS38.RSS-ElectroSwing',Radius=32.000000,bAtten=True)
      bAISilent=True

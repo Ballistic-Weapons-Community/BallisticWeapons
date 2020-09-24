@@ -25,6 +25,7 @@ defaultproperties
      MaleSuicide="%o activated his DTS backwards."
      bNeverSevers=True
      GibModifier=4.000000
+	 BlockFatiguePenalty=0.1
      PawnDamageSounds(0)=Sound'PackageSounds4Pro.DTS.NanoSwordHitFlesh'
      GibPerterbation=0.200000
      KDamageImpulse=1000.000000

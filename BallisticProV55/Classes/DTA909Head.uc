@@ -15,6 +15,7 @@ defaultproperties
      DeathStrings(2)="%o lost %vh head in a whirl of %k's blades."
      DeathStrings(3)="%k went Skrith on %o's face."
      bHeaddie=True
+	 BlockFatiguePenalty=0.1
      DeathString="%k went Skrith on %o's face."
      bAlwaysSevers=True
      bSpecial=True

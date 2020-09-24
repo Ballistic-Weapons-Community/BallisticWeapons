@@ -11,6 +11,7 @@ class DT_AK47HitHead extends DT_AK47Hit;
 defaultproperties
 {
      bHeaddie=True
+	 BlockFatiguePenalty=0.25
      DeathString="%k RAGED LIKE BEAR and beat %o's face with an AK!"
      FemaleSuicide="A drunken %o beat herself with her AK47."
      MaleSuicide="A drunken %o beat himself with his AK47."

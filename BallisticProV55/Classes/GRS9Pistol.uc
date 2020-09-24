@@ -109,6 +109,8 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	{
 		AimAdjustTime = default.AimAdjustTime;
 		bServerReloading = false;
+		bPreventReload=False;
+		ReloadState = RS_None;
 	}
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();

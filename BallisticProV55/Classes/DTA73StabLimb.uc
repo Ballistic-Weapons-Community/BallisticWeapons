@@ -20,6 +20,7 @@ defaultproperties
      DeathString="%o alost fended off %k's A73 blades."
      FemaleSuicide="%o cut herself on her A73."
      MaleSuicide="%o cut himself on his A73."
+	 BlockFatiguePenalty=0.25
      PawnDamageSounds(0)=Sound'BallisticSounds2.A73.A73StabFlesh'
      KDamageImpulse=2000.000000
 }

@@ -24,6 +24,8 @@ defaultproperties
      FemaleSuicide="%o activated her DTS backwards."
      MaleSuicide="%o activated his DTS backwards."
      bNeverSevers=True
+	 BlockFatiguePenalty=0.2
+	 BlockPenetration=0.2
      GibModifier=4.000000
      PawnDamageSounds(0)=Sound'PackageSounds4Pro.DTS.NanoSwordHitFlesh'
      GibPerterbation=0.200000

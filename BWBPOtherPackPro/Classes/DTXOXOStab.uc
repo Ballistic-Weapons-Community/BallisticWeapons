@@ -11,6 +11,7 @@ defaultproperties
      FemaleSuicide="%o plunged her XOXO into her teammate."
      MaleSuicide="%o plunged his XOXO into his teammate."
      bNeverSevers=True
+	 BlockFatiguePenalty=0.25
      PawnDamageSounds(0)=Sound'BallisticSounds2.A73.A73StabFlesh'
      KDamageImpulse=2000.000000
 }

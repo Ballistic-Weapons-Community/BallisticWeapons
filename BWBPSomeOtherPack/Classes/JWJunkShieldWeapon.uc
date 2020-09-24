@@ -73,7 +73,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 				Damage = 0;
 				BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
 				if (instigatedBy != None && BallisticWeapon(instigatedBy.Weapon) != None)
-					BallisticWeapon(instigatedBy.Weapon).ApplyBlockFatigue();
+					BallisticWeapon(instigatedBy.Weapon).ApplyAttackFatigue();
 				AimDisplacementEndTime = Level.TimeSeconds + FMin(2, 1.00 * (float(Damage)/AimDisplacementBlockThreshold));	
 				ClientDisplaceAim(FMin(2, 1.00 * (float(Damage)/AimDisplacementBlockThreshold)));	
 				return;

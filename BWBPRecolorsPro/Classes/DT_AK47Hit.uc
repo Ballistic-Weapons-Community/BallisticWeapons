@@ -15,6 +15,7 @@ defaultproperties
      DeathStrings(2)="%o was killed by a raving %k's AK-490 stock."
      DamageIdent="Melee"
      bDisplaceAim=True
+	 BlockFatiguePenalty=0.25
      AimDisplacementDamageThreshold=55
      AimDisplacementDuration=1.700000
      WeaponClass=Class'BWBPRecolorsPro.AK47AssaultRifle'

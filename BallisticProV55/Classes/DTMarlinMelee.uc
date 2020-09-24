@@ -18,6 +18,7 @@ defaultproperties
      AimDisplacementDamageThreshold=60
      AimDisplacementDuration=1.700000
      WeaponClass=Class'BallisticProV55.MarlinRifle'
+	 BlockFatiguePenalty=0.25
      DeathString="%k smashed %o's chest with the back of %kh Deermaster."
      FemaleSuicide="%o bashed herself with a Deermaster."
      MaleSuicide="%o bashed himself with a Deermaster."

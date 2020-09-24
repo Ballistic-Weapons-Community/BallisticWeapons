@@ -244,7 +244,7 @@ defaultproperties
      SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.A42.A42-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.A42.A42-Putaway')
-	 MagAmmo=14
+	 MagAmmo=18
 	 bShouldDualInLoadout=False
      bNonCocking=True
      bNoCrosshairInScope=True

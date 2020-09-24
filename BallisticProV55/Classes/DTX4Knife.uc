@@ -16,6 +16,7 @@ defaultproperties
      DeathStrings(2)="%k jammed %kh X4 knife into %o's staggering body."
      DeathStrings(3)="%o was stabbed to death by %k's X4."
      DamageIdent="Melee"
+	 BlockFatiguePenalty=0.1
      AimDisplacementDamageThreshold=40
      AimDisplacementDuration=1.400000
      DamageDescription=",Slash,Stab,"

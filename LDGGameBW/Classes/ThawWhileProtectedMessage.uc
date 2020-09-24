@@ -19,7 +19,7 @@ static function string GetString(
 defaultproperties
 {
      CannotThawProtMessage="CANNOT THAW WHEN PROTECTED!"
-     CannotThawRecMessage="CANNOT THAW - YOU HAVE BEEN RECENTLY THAWN!"
+     CannotThawRecMessage="CANNOT THAW - YOU HAVE RECENTLY THAWED!"
      bIsUnique=True
      bIsConsoleMessage=False
      bFadeMessage=True

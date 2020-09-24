@@ -21,6 +21,7 @@ defaultproperties
      FemaleSuicide="%o fell on her X8 knife."
      MaleSuicide="%o fell on his X8 knife."
      bArmorStops=False
+	 BlockFatiguePenalty=0.1
      KDamageImpulse=1000.000000
      VehicleDamageScaling=0.500000
 }

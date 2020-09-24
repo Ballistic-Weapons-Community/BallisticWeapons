@@ -16,6 +16,7 @@ defaultproperties
      DeathStrings(3)="%o learned that %k's SK-410 makes a GREAT club."
      DamageIdent="Melee"
      bDisplaceAim=True
+	 BlockFatiguePenalty=0.2
      AimDisplacementDamageThreshold=60
      AimDisplacementDuration=1.500000
      WeaponClass=Class'BWBPRecolorsPro.SK410Shotgun'

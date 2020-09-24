@@ -17,6 +17,7 @@ defaultproperties
      bDisplaceAim=True
      AimDisplacementDamageThreshold=60
      AimDisplacementDuration=1.700000
+	 BlockFatiguePenalty=0.25
      WeaponClass=Class'BallisticProV55.M763Shotgun'
      DeathString="%k bludgeoned %o to death in a wild frenzy with the M763."
      FemaleSuicide="%o beat herself to death with the M763."

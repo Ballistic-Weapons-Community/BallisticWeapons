@@ -448,13 +448,18 @@ function string GetPlayerFlags(PlayerController PC)
 	if (FlagsServer != None)
 		return FlagsServer.GetFor(PC);
 
+	Log("GetPlayerFlags: No flags server found!");
+	
 	return "None";
 }
 
 function RestartPlayer(Controller aPlayer)
 {
 	if (PlayerController(aPlayer) != None && GetPlayerFlags(PlayerController(aPlayer)) ~= "None")
+	{
+		Log("RestartPlayer: Refusing restart due to no player flags");
 		return;
+	}
 
 	Super.RestartPlayer(aPlayer);
 }

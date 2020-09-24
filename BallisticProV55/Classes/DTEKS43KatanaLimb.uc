@@ -15,4 +15,5 @@ defaultproperties
      DeathStrings(2)="%k used %kh EKS-43 to prune %o."
      DeathStrings(3)="%o's swinging limbs were flayed by %k's katana."
      DeathString="%k skewered the flapping hands of %o on %kh sword."
+	 BlockFatiguePenalty=0.2
 }

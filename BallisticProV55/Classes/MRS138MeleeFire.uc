@@ -62,8 +62,8 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 
 defaultproperties
 {
-     DamageHead=75.000000
-     DamageLimb=75.000000
+     DamageHead=50.000000
+     DamageLimb=50.000000
      DamageType=Class'BallisticProV55.DTMRS138Tazer'
      DamageTypeHead=Class'BallisticProV55.DTMRS138Tazer'
      DamageTypeArm=Class'BallisticProV55.DTMRS138Tazer'

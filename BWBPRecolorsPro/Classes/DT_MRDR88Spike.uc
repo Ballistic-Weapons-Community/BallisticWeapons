@@ -22,6 +22,7 @@ defaultproperties
      MaleSuicide="%o happily stabbed himself to death."
      bArmorStops=False
      bNeverSevers=True
+	 BlockFatiguePenalty=0.15
      PawnDamageSounds(0)=Sound'BallisticSounds2.A73.A73StabFlesh'
      KDamageImpulse=2000.000000
      VehicleDamageScaling=0.500000

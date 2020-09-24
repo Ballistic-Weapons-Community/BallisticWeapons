@@ -37,6 +37,7 @@ defaultproperties
      MaleSuicide="%o sawed his head off with a Dark Star."
      bAlwaysSevers=True
      bSpecial=True
+	 BlockFatiguePenalty=0.05
      PawnDamageSounds(0)=SoundGroup'BWBP4-Sounds.DarkStar.Dark-Flesh'
      KDamageImpulse=2000.000000
      TransientSoundVolume=0.900000

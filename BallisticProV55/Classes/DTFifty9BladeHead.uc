@@ -23,5 +23,6 @@ defaultproperties
      MaleSuicide="%o stabbed himself in the head with his Fifty-9."
      bAlwaysSevers=True
      bSpecial=True
+	 BlockFatiguePenalty=0.1
      KDamageImpulse=1000.000000
 }

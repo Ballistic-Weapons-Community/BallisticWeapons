@@ -17,5 +17,6 @@ defaultproperties
      bHeaddie=True
      DeathString="%k lifted off %o's head with %kh katana."
      bAlwaysSevers=True
+	 BlockFatiguePenalty=0.2
      bSpecial=True
 }

@@ -103,22 +103,46 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 			Momentum = vect(0,0,0);
 		else Momentum *= 0.5;
 	}
-		
-	if (bBerserk)
-		Damage *= 0.75;
 	
 	if (BDT != None)
 	{
 		if (bBlocked && !IsFiring() && level.TimeSeconds > LastFireTime + 1 && BDT.default.bCanBeBlocked &&
 		Normal(HitLocation-(Instigator.Location+Instigator.EyePosition())) Dot Vector(Instigator.GetViewRotation()) > 0.4)
 		{
-			Damage *= BDT.default.BlockPenetration;
-			BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
-			if (instigatedBy != None && BallisticWeapon(instigatedBy.Weapon) != None)
-				BallisticWeapon(instigatedBy.Weapon).ApplyBlockFatigue();
-			return;
+			BlockDamage(Damage, InstigatedBy, BDT);
 		}
 	}
+}
+
+//=================================================================
+// BlockDamage
+//
+// Calculates damage reduction for blockable damage types
+//=================================================================
+function BlockDamage(out int Damage, Pawn InstigatedBy, class<BallisticDamageType> DamageType)
+{
+	local float ReducibleDamage;
+	local float BlockFatigueFactor;
+
+	ReducibleDamage = Damage * DamageType.default.BlockPenetration;
+	
+	// if the weapon has block penetration, this portion of damage is guaranteed
+	Damage -= ReducibleDamage;
+
+	// reducible damage portion varies depending on fatigue level
+	BlockFatigueFactor = MeleeFatigue * 0.5f;
+
+	Damage += ReducibleDamage * BlockFatigueFactor;
+	
+	// defender receives fatigue from blocking the weapon, based on the attack type
+	ApplyBlockFatigue(DamageType.default.BlockFatiguePenalty);
+	
+	// display block fx
+	BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
+	
+	// attacker receives additional fatigue for hitting block
+	if (instigatedBy != None && BallisticWeapon(instigatedBy.Weapon) != None)
+		BallisticWeapon(instigatedBy.Weapon).ApplyAttackFatigue();
 }
 
 simulated event AnimEnd (int Channel)
@@ -259,24 +283,24 @@ function float SuggestDefenseStyle()
 defaultproperties
 {
 	bCanBlock=True
-	 BlockUpAnim="PrepBlock"
-     BlockDownAnim="EndBlock"
-     BlockIdleAnim="BlockIdle"
-     InventorySize=2
-	 bNoMag=True
-     bNonCocking=True
-	 AIRating=0.700000
-     CurrentRating=0.700000
-     WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
-     WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     bUseSights=False
-     SightingTime=0.000000
-     CrouchAimFactor=1.000000
-     AimSpread=0
-     ChaosAimSpread=0
-     RecoilDeclineTime=4.000000
-     RecoilDeclineDelay=0.750000
-     bShowChargingBar=True
+	BlockUpAnim="PrepBlock"
+	BlockDownAnim="EndBlock"
+	BlockIdleAnim="BlockIdle"
+	InventorySize=2
+	bNoMag=True
+	bNonCocking=True
+	AIRating=0.700000
+	CurrentRating=0.700000
+	WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bUseSights=False
+	SightingTime=0.000000
+	CrouchAimFactor=1.000000
+	AimSpread=0
+	ChaosAimSpread=0
+	RecoilDeclineTime=4.000000
+	RecoilDeclineDelay=0.750000
+	bShowChargingBar=True
 }

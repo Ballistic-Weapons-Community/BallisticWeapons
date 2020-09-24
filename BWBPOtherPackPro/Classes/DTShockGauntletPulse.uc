@@ -1,5 +1,5 @@
 //=============================================================================
-// DTMRS138Tazer.
+// Shock Gauntlet pulse.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.

@@ -22,6 +22,7 @@ defaultproperties
      MaleSuicide="%o swung his Dragon's Tooth like a fool."
      bAlwaysSevers=True
      bSpecial=True
+	 BlockFatiguePenalty=0.1
      PawnDamageSounds(0)=SoundGroup'BallisticSounds2.BulletImpacts.Headshot'
      KDamageImpulse=1000.000000
 }

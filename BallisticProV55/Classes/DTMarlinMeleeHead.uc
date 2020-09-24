@@ -15,6 +15,7 @@ defaultproperties
      DeathStrings(2)="%k's Deermaster rifle slipped into %o's head."
      DeathStrings(3)="%o's head was beaten askew by %k's Deermaster."
      bHeaddie=True
+	 BlockFatiguePenalty=0.25
      DeathString="%k shoved %kh Redwood 6000 stock into %o's face."
      FemaleSuicide="%o accidentally plunged her Redwood into her eye."
      MaleSuicide="%o accidentally plunged his Redwood into his eye."

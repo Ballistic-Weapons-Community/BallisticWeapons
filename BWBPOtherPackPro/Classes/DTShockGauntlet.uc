@@ -32,10 +32,13 @@ defaultproperties
      bInstantHit=True
      bCauseConvulsions=True
      bNeverSevers=True
+	 BlockFatiguePenalty=0.15
+	 BlockPenetration=0.1
      PawnDamageSounds(0)=SoundGroup'BWAddPack-RS-Sounds.MRS38.RSS-ElectroFlesh'
      DamageOverlayMaterial=Shader'XGameShaders.PlayerShaders.LightningHit'
      DamageOverlayTime=0.900000
      GibPerterbation=0.250000
      VehicleDamageScaling=0.100000
      VehicleMomentumScaling=0.050000
+	 bExtraMomentumZ=True
 }

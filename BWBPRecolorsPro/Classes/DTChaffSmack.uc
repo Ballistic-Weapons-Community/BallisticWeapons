@@ -19,6 +19,7 @@ defaultproperties
      FemaleSuicide="%o cracked her skull with her own grenade."
      MaleSuicide="%o cracked his skull with his smoke grenade."
      bExtraMomentumZ=True
+	 BlockFatiguePenalty=0.2
      KDamageImpulse=1000.000000
      VehicleDamageScaling=0.100000
      VehicleMomentumScaling=1.300000
