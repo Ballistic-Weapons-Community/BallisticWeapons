@@ -103,7 +103,7 @@ function InitPineapple(float PSpeed, float PDelay)
 
 defaultproperties
 {
-     DampenFactor=0.250000
+     DampenFactor=0.050000
      DampenFactorParallel=0.350000
      DetonateDelay=1.500000
      ImpactDamage=15

@@ -21,6 +21,8 @@ defaultproperties
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=128.000000
      
+	 bCockAfterFire=True
+	 
      Damage=120.000000
      DamageHead=150.000000
      DamageLimb=120.000000

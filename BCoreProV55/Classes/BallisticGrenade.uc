@@ -365,8 +365,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
-     DampenFactor=0.500000
-     DampenFactorParallel=0.800000
+     DampenFactor=0.05000
+     DampenFactorParallel=0.350000
      RandomSpin=32768.000000
      DetonateDelay=3.000000
      FlakClass=Class'XWeapons.FlakChunk'

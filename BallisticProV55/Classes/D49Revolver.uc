@@ -479,9 +479,9 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
      MagAmmo=6
-     CockAnimRate=1.250000
+     CockAnimRate=1.750000
      CockSound=(Sound=Sound'BallisticSounds2.D49.D49-Cock')
-     ReloadAnimRate=1.250000
+     ReloadAnimRate=1.750000
      ClipOutSound=(Sound=Sound'BallisticSounds2.D49.D49-ShellOut')
      ClipInSound=(Sound=Sound'BallisticSounds2.D49.D49-ShellIn')
      ClipInFrame=0.650000
@@ -497,9 +497,9 @@ defaultproperties
 	 
 	 RecoilXCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.5,OutVal=0.03),(InVal=1,OutVal=0.07)))
 	 
-	 ViewRecoilFactor=0.6
-     RecoilXFactor=0.150000
-     RecoilYFactor=0.150000
+	 ViewRecoilFactor=0.65
+     RecoilXFactor=0.10000
+     RecoilYFactor=0.10000
      RecoilDeclineTime=1.200000
      RecoilDeclineDelay=0.350000
 	 RecoilMax=6144

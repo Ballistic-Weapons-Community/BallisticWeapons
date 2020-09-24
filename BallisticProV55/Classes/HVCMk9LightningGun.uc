@@ -679,7 +679,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-Pullout',Volume=0.750000)
      PutDownSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-Putaway',Volume=0.600000)
      bNoMag=True
-     WeaponModes(0)=(ModeID="WM_None")
+     WeaponModes(0)=(ModeName="Stream",ModeID="WM_None")
      WeaponModes(1)=(bUnavailable=True,Value=4.000000)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0

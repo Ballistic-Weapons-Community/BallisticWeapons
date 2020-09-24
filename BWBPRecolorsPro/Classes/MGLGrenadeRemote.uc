@@ -52,7 +52,7 @@ defaultproperties
      PlayerImpactType=PIT_Detonate
      bNoInitialSpin=True
      bAlignToVelocity=True
-     DampenFactor=0.150000
+     DampenFactor=0.050000
      DampenFactorParallel=0.300000
      DetonateDelay=0.350000
      ImpactDamage=25

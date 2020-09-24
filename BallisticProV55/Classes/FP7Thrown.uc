@@ -72,7 +72,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
-     DampenFactor=0.250000
+     DampenFactor=0.050000
      DampenFactorParallel=0.350000
      ImpactDamage=15
      ImpactDamageType=Class'BallisticProV55.DTFP7Grenade'

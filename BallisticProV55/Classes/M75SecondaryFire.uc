@@ -91,6 +91,8 @@ defaultproperties
 	 
 	 WallPenetrationForce=128
 	 RailWallPenetrationForceBonus=1280
+	 
+	 bCockAfterFire=True
 
 	 Damage=120.000000
      DamageHead=150.000000

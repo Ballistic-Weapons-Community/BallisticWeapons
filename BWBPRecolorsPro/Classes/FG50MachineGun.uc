@@ -678,7 +678,7 @@ defaultproperties
 	 ChaosSpeedThreshold=350
 	 
 	 ViewRecoilFactor=0.15
-     RecoilXCurve=(Points=(,(InVal=0.15,OutVal=0.15),(InVal=0.400000,OutVal=0.260000),(InVal=0.550000,OutVal=0.30000),(InVal=0.700000,OutVal=0.41000),(InVal=1.000000,OutVal=0.4500000)))
+     RecoilXCurve=(Points=(,(InVal=0.15,OutVal=0.075),(InVal=0.400000,OutVal=0.130000),(InVal=0.550000,OutVal=0.15000),(InVal=0.700000,OutVal=0.21000),(InVal=1.000000,OutVal=0.225000)))
      RecoilYCurve=(Points=(,(InVal=0.20000,OutVal=0.250000),(InVal=0.400000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
      RecoilXFactor=0.05000
      RecoilYFactor=0.050000
