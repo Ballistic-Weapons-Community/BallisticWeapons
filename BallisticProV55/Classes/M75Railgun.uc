@@ -487,7 +487,7 @@ defaultproperties
      RecoilYFactor=0.250000
      RecoilMinRandFactor=0.400000
      RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=1.500000
+     RecoilDeclineDelay=0.500000
 	 
 	 
      FireModeClass(0)=Class'BallisticProV55.M75PrimaryFire'
