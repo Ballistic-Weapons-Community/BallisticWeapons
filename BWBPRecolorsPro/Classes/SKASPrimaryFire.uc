@@ -21,11 +21,11 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FireAnim='SemiFire';
 		FireAnimRate=1.45;
     	KickForce=13000;
-		RecoilPerShot=1536;
-     	FireChaos=0.5;
-     	FlashScaleFactor=2;
-     	XInaccuracy=100.000000;
-     	YInaccuracy=100.000000;
+		RecoilPerShot=128;
+     	FireChaos=0.2;
+     	FlashScaleFactor=1.5;
+     	XInaccuracy=35.000000;
+     	YInaccuracy=35.000000;
 		CutOffDistance=4096;
 		CutOffStartRange=2048;
 	}
