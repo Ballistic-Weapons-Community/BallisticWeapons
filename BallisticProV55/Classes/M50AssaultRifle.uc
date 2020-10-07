@@ -13,20 +13,20 @@
 //=============================================================================
 class M50AssaultRifle extends BallisticWeapon;
 
-var() name		GrenadeLoadAnim;	//Anim for grenade reload
-var   M50Camera	Camera;				//The camera on the wall
-var() ScriptedTexture CamTex;		//ScriptedTex to put on gun and generated from cam view
-var() Sound		CamGrabSound;		//
-var() Material	LCDCamOnTex;		//
-var() BUtil.FullSound CamInSound;
-var() BUtil.FullSound CamOutSound;
-var() name		CamUpAnim;			//Anim when going to cam view
-var() name		CamDownAnim;		//Anim when leaving cam view
-var() float		CamUpdateRate;		//Time interval between scripted tex screen updates
+var() name					GrenadeLoadAnim;	//Anim for grenade reload
+var   M50Camera				Camera;				//The camera on the wall
+var() ScriptedTexture 		CamTex;		//ScriptedTex to put on gun and generated from cam view
+var() Sound					CamGrabSound;		//
+var() Material				LCDCamOnTex;		//
+var() BUtil.FullSound 		CamInSound;
+var() BUtil.FullSound 		CamOutSound;
+var() name					CamUpAnim;			//Anim when going to cam view
+var() name					CamDownAnim;		//Anim when leaving cam view
+var() float					CamUpdateRate;		//Time interval between scripted tex screen updates
 
-var() Sound		GrenOpenSound;		//Sounds for grenade reloading
-var() Sound		GrenLoadSound;		//
-var() Sound		GrenCloseSound;		//
+var() Sound					GrenOpenSound;		//Sounds for grenade reloading
+var() Sound					GrenLoadSound;		//
+var() Sound					GrenCloseSound;		//
 
 var   actor GLIndicator;
 

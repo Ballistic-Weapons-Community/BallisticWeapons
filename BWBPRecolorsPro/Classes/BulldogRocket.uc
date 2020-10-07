@@ -7,10 +7,11 @@
 //=============================================================================
 class BulldogRocket extends BallisticProjectile;
 
-var sound ImpactSounds[6];
-var int ImpactDamage;
-var int	ImpactKickForce;
-var class<DamageType> ImpactDamageType;
+var sound 					ImpactSounds[6];
+var int 					ImpactDamage;
+var int						ImpactKickForce;
+var class<DamageType> 		ImpactDamageType;
+var class<BCImpactManager>	ReflectImpactManager;
 var vector					StartLoc;
 
 replication
@@ -92,6 +93,18 @@ simulated function HitWall( vector HitNormal, actor Wall )
 		Velocity = 0.75 * (Velocity - 2.0*HitNormal*(Velocity dot HitNormal));
 		return;
    	}
+	else if (Pawn(Wall) == None && (Level.NetMode != NM_DedicatedServer) && (!Level.bDropDetail) && (Level.DetailMode != DM_Low) && EffectIsRelevant(Location,false))
+	{
+		if (ImpactSound != None)
+			PlaySound(ImpactSound, SLOT_Misc, 1.5);
+		if (ReflectImpactManager != None)
+		{
+			if (Instigator == None)
+				ReflectImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Level.GetLocalPlayerController()/*.Pawn*/);
+			else
+				ReflectImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Instigator);			
+		}
+    }
    	
    	Explode(Location, HitNormal);
 }
@@ -166,6 +179,7 @@ defaultproperties
      ImpactDamage=80
      ImpactDamageType=Class'BWBPRecolorsPro.DT_BulldogImpact'
      ImpactManager=Class'BWBPRecolorsPro.IM_BulldogFRAG'
+	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
      TrailClass=Class'BallisticProV55.MRLTrailEmitter'
      TrailOffset=(X=-14.000000)
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTBulldogFRAGRadius'

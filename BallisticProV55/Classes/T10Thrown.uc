@@ -109,6 +109,7 @@ defaultproperties
      ImpactDamage=15
      ImpactDamageType=Class'BallisticProV55.DTT10Grenade'
      ImpactManager=Class'BallisticProV55.IM_Grenade'
+	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
      TrailClass=Class'BallisticProV55.T10Spray'
      TrailOffset=(Z=8.000000)
      MyRadiusDamageType=Class'BallisticProV55.DTT10Gas'

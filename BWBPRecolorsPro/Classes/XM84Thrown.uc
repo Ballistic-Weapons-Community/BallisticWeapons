@@ -123,6 +123,7 @@ defaultproperties
      ImpactDamage=15
      ImpactDamageType=Class'BWBPRecolorsPro.DTXM84Hit'
      ImpactManager=Class'BWBPRecolorsPro.IM_XM84Grenade'
+	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
      TrailClass=Class'BWBPRecolorsPro.XM84Trail'
      TrailOffset=(X=1.600000,Z=6.400000)
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTXM84GrenadeRadius'

@@ -22,37 +22,38 @@ var() enum EDetonateType				// Different ways that grenade can detonate
 	DT_None						// Don't use normal detonation
 } DetonateOn;
 
-var() enum EPlayerImpactType			// Different ways that grenade can impact with players
+var() enum EPlayerImpactType	// Different ways that grenade can impact with players
 {
 	PIT_Bounce,					// Bounce off players
 	PIT_Detonate,				// Detonate
 	PIT_Stick					// Stick to players
 } PlayerImpactType;
 
-var() float				DampenFactor;			// Bounce Damping
-var() float				DampenFactorParallel;	// Parallel Bounce Damping
-var() float				RandomSpin;				// Random spin amount
-var() bool				bNoInitialSpin;			// Do not apply random spin until impact
-var() bool				bAlignToVelocity;		// If true, grenaded always faces in the direction of its velocity
-var	  bool				bHasImpacted;			// Has it hit anything yet?
-//var	  bool				bCanHitOwner;			// Can impact with owner
+var() class<BCImpactManager>	ReflectImpactManager;
+var() float						DampenFactor;			// Bounce Damping
+var() float						DampenFactorParallel;	// Parallel Bounce Damping
+var() float						RandomSpin;				// Random spin amount
+var() bool						bNoInitialSpin;			// Do not apply random spin until impact
+var() bool						bAlignToVelocity;		// If true, grenaded always faces in the direction of its velocity
+var	  bool						bHasImpacted;			// Has it hit anything yet?
+//var	  bool					bCanHitOwner;			// Can impact with owner
 
-var() float 			DetonateDelay;			// Time before detonation. Starts on spawn for DT_Timer. Starts on impact for DT_ImpactTimed
+var() float 					DetonateDelay;			// Time before detonation. Starts on spawn for DT_Timer. Starts on impact for DT_ImpactTimed
 
-var() int				FlakCount;				// How many chunks of flak to fling on explode
-var() Class<Projectile>	FlakClass;				// Flak projectiles to fling on explode
+var() int						FlakCount;				// How many chunks of flak to fling on explode
+var() Class<Projectile>			FlakClass;				// Flak projectiles to fling on explode
 
-var() bool				TrailWhenStill;			// If true, trail actor stays when not moving
+var() bool						TrailWhenStill;			// If true, trail actor stays when not moving
 
-var() int				ImpactDamage;			// Damage when hitting or sticking to players and not detonating
-var() Class<DamageType>	ImpactDamageType;		// Type of Damage caused for striking or sticking to players
-var() float				MinStickVelocity;		// Minimum velocity required to stick to players
+var() int						ImpactDamage;			// Damage when hitting or sticking to players and not detonating
+var() Class<DamageType>			ImpactDamageType;		// Type of Damage caused for striking or sticking to players
+var() float						MinStickVelocity;		// Minimum velocity required to stick to players
 
-var   Rotator			VelocityDir;
+var   Rotator					VelocityDir;
 
-var	float				PokeReductionFactor;
+var	float						PokeReductionFactor;
 
-var globalconfig bool bAllowTerrainPoking;
+var globalconfig bool 			bAllowTerrainPoking;
 
 simulated event PostBeginPlay()
 {
@@ -303,8 +304,13 @@ simulated event HitWall(vector HitNormal, actor Wall)
 	{
 		if (ImpactSound != None)
 			PlaySound(ImpactSound, SLOT_Misc );
-		if (ImpactManager != None)
-			ImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Owner);
+		if (ReflectImpactManager != None)
+		{
+			if (Instigator == None)
+				ReflectImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Level.GetLocalPlayerController()/*.Pawn*/);
+			else
+				ReflectImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Instigator);			
+		}
     }
 }
 

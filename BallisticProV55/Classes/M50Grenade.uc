@@ -73,9 +73,11 @@ simulated event HitWall(vector HitNormal, actor Wall)
 	{
 		if (ImpactSound != None)
 			PlaySound(ImpactSound, SLOT_Misc, 1.5);
-		if (ImpactManager != None)
-			ImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Owner);
-    	}
+			if (Instigator == None)
+				ReflectImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Level.GetLocalPlayerController()/*.Pawn*/);
+			else
+				ReflectImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Instigator);
+    }
 }
 
 defaultproperties
@@ -88,6 +90,7 @@ defaultproperties
      ImpactDamage=80
      ImpactDamageType=Class'BallisticProV55.DTM50Grenade'
      ImpactManager=Class'BallisticProV55.IM_M50Grenade'
+	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
      TrailClass=Class'BallisticProV55.M50GrenadeTrail'
      TrailOffset=(X=-8.000000)
      MyRadiusDamageType=Class'BallisticProV55.DTM50GrenadeRadius'

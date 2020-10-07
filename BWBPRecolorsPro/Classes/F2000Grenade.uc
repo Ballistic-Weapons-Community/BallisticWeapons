@@ -84,9 +84,14 @@ simulated event HitWall(vector HitNormal, actor Wall)
 	{
 		if (ImpactSound != None)
 			PlaySound(ImpactSound, SLOT_Misc, 1.5);
-		if (ImpactManager != None)
-			ImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Owner);
-    	}
+		if (ReflectImpactManager != None)
+		{
+			if (Instigator == None)
+				ReflectImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Level.GetLocalPlayerController()/*.Pawn*/);
+			else
+				ReflectImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Instigator);			
+		}
+    }
 }
 
 simulated event ProcessTouch( actor Other, vector HitLocation )
@@ -220,6 +225,7 @@ defaultproperties
      ImpactDamage=75
      ImpactDamageType=Class'BWBPRecolorsPro.DTCryoGrenade'
      ImpactManager=Class'BWBPRecolorsPro.IM_CryoGrenade'
+	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
      TrailClass=Class'BWBPRecolorsPro.ChaffTrail'
      TrailOffset=(X=1.600000,Z=6.400000)
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTCryoGrenade'

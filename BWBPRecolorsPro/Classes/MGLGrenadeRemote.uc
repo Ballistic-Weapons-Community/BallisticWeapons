@@ -58,6 +58,7 @@ defaultproperties
      ImpactDamage=25
      ImpactDamageType=Class'BWBPRecolorsPro.DTMGLGrenade'
      ImpactManager=Class'BWBPRecolorsPro.IM_MGLGrenade'
+	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
      TrailClass=Class'BWBPRecolorsPro.MGLNadeTrail'
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTMGLGrenadeRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'

@@ -211,6 +211,7 @@ defaultproperties
      ImpactDamage=3
      ImpactDamageType=Class'BWBPRecolorsPro.DTG28Grenade'
      ImpactManager=Class'BWBPRecolorsPro.IM_G28Explode'
+	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
      TrailClass=Class'BWBPRecolorsPro.G28Spray'
      TrailOffset=(Z=8.000000)
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTG28Gas'

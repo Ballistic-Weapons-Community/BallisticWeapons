@@ -6,6 +6,7 @@
 //=============================================================================
 class M50Camera extends Actor;
 
+var int				Health;			// HP
 var bool			bBusted;		// Is it dead?
 var Rotator			StartRotation;	// Rotation when spawned. This is the rotation of the walls mounting
 var Rotator			OldRotation;	// Rotation before viewing from this camera
@@ -26,7 +27,7 @@ var   M50CamTrigger	MyUseTrigger;	// Trigger for picking up this camera
 replication
 {
 	unreliable if(Role == ROLE_Authority)
-		HitCount, Weapon;
+		Health, Weapon;
 }
 
 simulated event PostNetBeginPlay()
@@ -40,7 +41,7 @@ simulated event PostNetBeginPlay()
 
 simulated event PostNetReceive()
 {
-	if (HitCount > default.HitCount)
+	if (Health == 0)
 	{
 		bBusted=true;
 		default.HitCount = HitCount;
@@ -56,9 +57,23 @@ simulated event PostNetReceive()
 
 event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
 {
+	// don't allow team members to destroy M50 cam
+	if (InstigatorController != None && EventInstigator.Controller != None && EventInstigator.Controller.SameTeamAs(InstigatorController))
+		return;
+		
+	// reject hits from gear-safe damagetypes
 	if (class<BallisticDamageType>(DamageType) != None && class<BallisticDamageType>(DamageType).static.IsDamage(",GearSafe,"))
 		return;
-	HitCount++;
+		
+	// already destroyed
+	if (Health == 0)
+		return;
+		
+	if (Damage > Health)
+		Health = 0; 
+	else 
+		Health -= Damage;
+
 	if (Level.NetMode != NM_DedicatedServer)
 		PostNetReceive();
 }
@@ -93,6 +108,7 @@ delegate OnCameraDie();
 
 defaultproperties
 {
+	 Health=200
      NoiseSound=Sound'BallisticSounds2.M50.M50CamNoise'
      TrackSound=Sound'BallisticSounds2.M50.M50CamTurn'
      DieSound=Sound'BallisticSounds2.M50.M50CamDie'

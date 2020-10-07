@@ -123,12 +123,12 @@ function BlockDamage(out int Damage, Pawn InstigatedBy, class<BallisticDamageTyp
 {
 	local float ReducibleDamage;
 	local float BlockFatigueFactor;
-
-	ReducibleDamage = Damage * DamageType.default.BlockPenetration;
+	
+	ReducibleDamage = Damage * (1f - DamageType.default.BlockPenetration);
 	
 	// if the weapon has block penetration, this portion of damage is guaranteed
 	Damage -= ReducibleDamage;
-
+	
 	// reducible damage portion varies depending on fatigue level
 	BlockFatigueFactor = MeleeFatigue * 0.5f;
 
