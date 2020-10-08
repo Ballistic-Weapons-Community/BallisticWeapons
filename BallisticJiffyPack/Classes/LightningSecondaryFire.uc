@@ -1,23 +1,16 @@
-//=============================================================================
-// R78PrimaryFire.
-//
-// Very accurate, long ranged and powerful bullet fire. Headshots are
-// especially dangerous.
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2005 RuneStorm. All Rights Reserved.
-//=============================================================================
 class LightningSecondaryFire extends BallisticProInstantFire;
 
-var   	float 					ChargePower;	//Charge power of secondary fire - affects damage, ammo usage and conductivity
+var()	Name					ChargeAnim;		//Animation to use when charging
 var() 	BUtil.FullSound			LightningSound;	//Crackling sound to play
+var() 	Sound					ChargeLoopSound; //Sound to play/scale pitch when charging
+var		byte					ChargeSoundPitch;
 var   	int 					TransferCDamage;	//Damage to transfer to LightningConductor actor
 var		float					ChargeGainPerSecond, ChargeDecayPerSecond, ChargeOvertime, MaxChargeOvertime;
 var		bool 					AmmoHasBeenCalculated;
 
 simulated event ModeDoFire()
 {
-	TransferCDamage = default.Damage * (1 + (0.25*ChargePower));
+	TransferCDamage = default.Damage * (1 + (0.25*LightningRifle(BW).ChargePower));
 
 	Load = CalculateAmmoUse();
 	AmmoHasBeenCalculated = true;
@@ -25,40 +18,65 @@ simulated event ModeDoFire()
 	super.ModeDoFire();
 }
 
-simulated function int CalculateAmmoUse()
+simulated function PlayStartHold()
 {	
-	if (ChargePower >= BW.MagAmmo)
-		return BW.MagAmmo;
+	Weapon.AmbientSound = ChargeLoopSound;
+	Weapon.ThirdPersonActor.AmbientSound = ChargeLoopSound;
 
-	return Max(1, int(ChargePower));
+	AdjustChargeVolume();
+
+	BW.bPreventReload=True;
+	BW.SafeLoopAnim(ChargeAnim, 1.0, TweenTime, ,"IDLE");
 }
 
-simulated function float GetChargeFactor()
+simulated function AdjustChargeVolume()
 {
-	return ChargePower / BW.default.MagAmmo;
+	Weapon.SoundVolume = 127 + LightningRifle(BW).ChargePower * 32;
+	Weapon.SoundPitch = ChargeSoundPitch * (1 + FMax(LightningRifle(BW).ChargePower, 0.1)/4);
+	
+	Weapon.ThirdPersonActor.SoundVolume = 127 + LightningRifle(BW).ChargePower * 32;
+	Weapon.ThirdPersonActor.SoundPitch = ChargeSoundPitch * (1 + FMax(LightningRifle(BW).ChargePower,0.1)/4);
+}
+
+simulated function int CalculateAmmoUse()
+{	
+	if (LightningRifle(BW).ChargePower >= BW.MagAmmo)
+		return BW.MagAmmo;
+
+	return Max(1, int(LightningRifle(BW).ChargePower));
 }
 
 simulated function ModeTick(float DeltaTime)
 {	
 	if (bIsFiring)
 	{
-		ChargePower = FMin(BW.MagAmmo, ChargePower + ChargeGainPerSecond * DeltaTime);
+		//Scale charge
+		LightningRifle(BW).SetChargePower(FMin(BW.MagAmmo, LightningRifle(BW).ChargePower + ChargeGainPerSecond * DeltaTime));
 		
-		if (ChargePower >= BW.MagAmmo)
+		if (LightningRifle(BW).ChargePower >= BW.MagAmmo)
 			ChargeOvertime += DeltaTime;
 		
 		if (ChargeOvertime >= MaxChargeOvertime)
 			bIsFiring = false;
 	}
-	else if (ChargePower > 0 && AmmoHasBeenCalculated)
+	else if (LightningRifle(BW).ChargePower > 0 && AmmoHasBeenCalculated)
 	{
-		ChargePower = FMax(0.0, ChargePower - ChargeDecayPerSecond * DeltaTime);
-		if (ChargePower == 0)
+		LightningRifle(BW).SetChargePower(FMax(0.0, LightningRifle(BW).ChargePower - ChargeDecayPerSecond * DeltaTime));
+		if (LightningRifle(BW).ChargePower == 0)
+		{
 			AmmoHasBeenCalculated = false;
+			
+			Weapon.AmbientSound = None;
+			Weapon.ThirdPersonActor.AmbientSound = None;
+		}
 			
 		ChargeOvertime = 0;
 	}
 	
+	if (Weapon.AmbientSound != None && Weapon.ThirdPersonActor.AmbientSound != None)
+		AdjustChargeVolume();
+		
+		
 	Super.ModeTick(DeltaTime);
 }
 
@@ -67,7 +85,7 @@ function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor
 	local float DefDmg;
 	DefDmg = Super.GetDamage(Other, HitLocation, Dir, Victim, DT);
 	
-	return DefDmg * (1 + (0.25*ChargePower));
+	return DefDmg * (1 + (0.25*LightningRifle(BW).ChargePower));
 }
 
 simulated function ServerPlayFiring()
@@ -100,19 +118,22 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 	{
 		LConductor.Instigator = Instigator;
 		LConductor.Damage = TransferCDamage;
-		LConductor.ChargePower = ChargePower;
+		LConductor.ChargePower = LightningRifle(BW).ChargePower;
 		LConductor.Initialize(Pawn(Target));
 	}
 }
 
 defaultproperties
 {
-	MaxChargeOvertime = 3.0f
-	ChargeGainPerSecond = 2.5f
-	ChargeDecayPerSecond = 9.0f
+	ChargeAnim="ChargeLoop"
+	ChargeLoopSound=Sound'IndoorAmbience.machinery18'
+	ChargeSoundPitch=32
+	MaxChargeOvertime=3.0f
+	ChargeGainPerSecond=2.5f
+	ChargeDecayPerSecond=9.0f
 	LightningSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunCrackle',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
 	TraceRange=(Min=30000.000000,Max=30000.000000)
-    MaxWaterTraceRange=30000
+	MaxWaterTraceRange=30000
 	Damage=80.000000
 	DamageHead=120.000000
 	DamageLimb=60.000000
@@ -123,16 +144,18 @@ defaultproperties
 	KickForce=6000
 	PDamageFactor=0.800000
 	MuzzleFlashClass=Class'BallisticJiffyPack.LightningFlashEmitter'
+	FlashScaleFactor=0.600000
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
 	bBrassOnCock=True
 	BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
 	RecoilPerShot=1536.000000
-	VelocityRecoil=255.000000
+	VelocityRecoil=256.000000
 	FireChaos=0.800000
 	BallisticFireSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunShot',Volume=1.600000,Radius=1024.000000)
 	bFireOnRelease=True
-	FireEndAnim=
+	FireAnim="FireCharged"
 	FireRate=1.050000
+	FireAnimRate=0.800000
 	AmmoClass=Class'BallisticJiffyPack.Ammo_LightningRifle'
 	AmmoPerFire=1
 	ShakeRotMag=(X=400.000000,Y=32.000000)

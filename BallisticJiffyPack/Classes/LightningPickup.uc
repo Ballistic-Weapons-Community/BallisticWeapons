@@ -38,14 +38,14 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticHardware2.R78.R78PickupLo'
-     PickupDrawScale=0.500000
+     LowPolyStaticMesh=StaticMesh'BWBPJiffyPackStatic.LightningGun.LG_TP'
+     PickupDrawScale=0.150000
      InventoryType=Class'BallisticJiffyPack.LightningRifle'
      RespawnTime=20.000000
-     PickupMessage="You picked up the L78A2 lightning rifle."
+     PickupMessage="You picked up the ARC-79 lightning rifle."
      PickupSound=Sound'BallisticSounds2.R78.R78Putaway'
-     StaticMesh=StaticMesh'BallisticHardware2.R78.R78PickupHi'
+     StaticMesh=StaticMesh'BWBPJiffyPackStatic.LightningGun.LG_TP'
      Physics=PHYS_None
-     DrawScale=0.470000
+     DrawScale=0.300000
      CollisionHeight=3.000000
 }
