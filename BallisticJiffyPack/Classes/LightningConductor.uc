@@ -91,10 +91,12 @@ simulated function ClientDrawShock(vector start, vector end, Pawn src, Pawn dest
 //============================================================
 function Initialize(Pawn InitialTarget)
 {
+	/*
 	local int i, ShortestDistIndex;
-	local Pawn PVictim;
-	local bool FoundInstigator;
 	local float ShortestDistance;
+	*/
+	local Pawn PVictim;
+	//local bool FoundInstigator;
 
 	ShockTargets.Insert(ShockTargets.Length, 1);
 	ShockTargets[ShockTargets.Length - 1] = InitialTarget;
@@ -106,9 +108,10 @@ function Initialize(Pawn InitialTarget)
 	//Check for nearby pawns
 	ForEach CollidingActors(class'Pawn', PVictim, ConductRadius)
 	{		
+		//skip to next victim if instigator, in order to not damage the instigator
 		if (PVictim == Instigator)
 		{
-			FoundInstigator = True;
+			//FoundInstigator = True;
 			continue;
 		}
 
@@ -128,6 +131,8 @@ function Initialize(Pawn InitialTarget)
 		}
 	}
 
+	//i no longer want to damage/kill the instigator, it's fucking annoying
+	/*
 	//If instigator in ConductRadius, find the shortest distance between all pawns and instigator - insert instigator into array after pawn with least distance
 	ShortestDistance = ConductRadius;
 
@@ -145,6 +150,7 @@ function Initialize(Pawn InitialTarget)
 		ShockTargets.Insert(ShortestDistIndex + 1, 1);
 		ShockTargets[ShortestDistIndex + 1] = Instigator;
 	}
+	*/
 
 	if (ShockTargets.Length == 1) // no targets found, no work to do
 		Destroy();
@@ -241,10 +247,12 @@ function Propagate()
 	DrawShock(src.Location, dest.Location);
 	ReplicateShock(src.Location, dest.Location, src, dest);
 	
-	if (dest == Instigator)
+	//damage self - removing for balance, can always restore this if needed
+	/*if (dest == Instigator)
 		class'BallisticDamageType'.static.GenericHurt(dest, Max(1, (SelfDmgScalar * (Damage)/(CurrentTargetIndex^(1/(1+2*ChargePower))))), Instigator, dest.Location, vect(0,0,0), CDamageType);
-		
-	else class'BallisticDamageType'.static.GenericHurt(dest, Max(1, (Damage)/(CurrentTargetIndex^(1/(1+2*ChargePower)))), Instigator, dest.Location, vect(0,0,0), CDamageType);
+	else*/
+
+	class'BallisticDamageType'.static.GenericHurt(dest, Max(1, (Damage)/(CurrentTargetIndex^(1/(1+2*ChargePower)))), Instigator, dest.Location, vect(0,0,0), CDamageType);
 
 	++CurrentTargetIndex;
 

@@ -50,7 +50,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=2.500000)
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=2.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.600000)
-         StartSizeRange=(X=(Min=1.000000,Max=2.000000),Y=(Min=1.000000,Max=2.000000),Z=(Min=1.000000,Max=2.000000))
+         StartSizeRange=(X=(Min=3.000000,Max=6.000000),Y=(Min=3.000000,Max=6.000000),Z=(Min=3.000000,Max=6.000000))
          InitialParticlesPerSecond=80.000000
          Texture=Texture'EpicParticles.Beams.HotBolt03aw'
          SecondsBeforeInactive=0.000000
@@ -60,7 +60,7 @@ defaultproperties
      Emitters(0)=BeamEmitter'BallisticJiffyPack.TraceEmitter_LightningConduct.BeamEmitter0'
 
      Begin Object Class=BeamEmitter Name=BeamEmitter1
-         BeamDistanceRange=(Min=100.000000,Max=500.000000)
+         BeamDistanceRange=(Min=0.000000,Max=500.000000)
          DetermineEndPointBy=PTEP_Distance
          LowFrequencyNoiseRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=-10.000000,Max=10.000000))
          HighFrequencyNoiseRange=(X=(Min=-2.000000,Max=2.000000),Y=(Min=-2.000000,Max=2.000000),Z=(Min=-2.000000,Max=2.000000))
@@ -81,7 +81,7 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          MaxParticles=50
          DetailMode=DM_SuperHigh
-         StartSizeRange=(X=(Min=0.100000,Max=1.000000),Y=(Min=0.100000,Max=1.000000),Z=(Min=0.100000,Max=1.000000))
+         StartSizeRange=(X=(Min=0.300000,Max=3.000000),Y=(Min=0.300000,Max=3.000000),Z=(Min=0.300000,Max=3.000000))
          Texture=Texture'EpicParticles.Beams.HotBolt04aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
@@ -136,7 +136,7 @@ defaultproperties
          FadeOutStartTime=0.443000
          CoordinateSystem=PTCS_Relative
          MaxParticles=20
-         StartSizeRange=(X=(Min=1.000000,Max=1.000000),Y=(Min=1.000000,Max=1.000000),Z=(Min=1.000000,Max=1.000000))
+         StartSizeRange=(X=(Min=3.000000,Max=3.000000),Y=(Min=3.000000,Max=3.000000),Z=(Min=3.000000,Max=3.000000))
          InitialParticlesPerSecond=5000.000000
          Texture=Texture'EpicParticles.Beams.HotBolt03aw'
          SecondsBeforeInactive=0.000000

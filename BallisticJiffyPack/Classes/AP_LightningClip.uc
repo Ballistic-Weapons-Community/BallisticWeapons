@@ -12,10 +12,11 @@ defaultproperties
 {
      AmmoAmount=12
      InventoryType=Class'BallisticJiffyPack.Ammo_LightningRifle'
-     PickupMessage="You picked up .42 sniper rifle rounds."
+     PickupMessage="You picked up ARC-79 Lightning Rifle cylinders."
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BallisticHardware2.Ammo.R78Clip'
-     DrawScale=0.300000
+     StaticMesh=StaticMesh'BWBPJiffyPackStatic.LightningGun.LG_Mag'
+     DrawScale=0.500000
+	 PrePivot=(Z=30.000000)
      CollisionRadius=8.000000
      CollisionHeight=14.000000
 }

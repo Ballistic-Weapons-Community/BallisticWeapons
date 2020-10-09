@@ -8,10 +8,11 @@
 //=============================================================================
 class LightningAttachment extends BallisticAttachment;
 
+var Vector		SpawnOffset;
+
 simulated function Vector GetTipLocation()
 {
-    local Coords C;
-    local Vector X, Y, Z;
+    local Vector X, Y, Z, Loc;
 
 	if (Instigator.IsFirstPerson())
 	{
@@ -21,11 +22,12 @@ simulated function Vector GetTipLocation()
 			return Instigator.Location + X*20 + Z*5;
 		}
 		else
-			C = Instigator.Weapon.GetBoneCoords('tip');
+			Loc = Instigator.Weapon.GetBoneCoords('tip').Origin + class'BUtil'.static.AlignedOffset(Instigator.GetViewRotation(), SpawnOffset);
 	}
 	else
-		C = GetBoneCoords('tip');
-    return C.Origin;
+		Loc = GetBoneCoords('tip').Origin;
+		
+    return Loc;
 }
 
 // Does all the effects for an instant-hit kind of fire.
@@ -93,6 +95,7 @@ simulated function InstantFireEffects(byte Mode)
 
 defaultproperties
 {
+	 SpawnOffset=(X=-200.000000)
 	 InstantMode=MU_Both
 	 TracerMode=MU_Both
      MuzzleFlashClass=Class'BallisticJiffyPack.LightningFlashEmitter'
@@ -103,6 +106,7 @@ defaultproperties
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
      CockAnimRate=1.400000
-     Mesh=SkeletalMesh'BallisticAnims2.Rifle-3rd'
-     DrawScale=0.200000
+     Mesh=SkeletalMesh'BWBPJiffyPackAnims.LG_TPout'
+	 RelativeRotation=(Pitch=32768)
+     DrawScale=0.700000
 }
