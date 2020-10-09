@@ -303,7 +303,7 @@ defaultproperties
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Splash=True
      bWT_Projectile=True
-     ManualLines(0)="Grenade mode launches a grenade with good damage and moderate blast radius. This grenade has an arming delay and upon striking a surface or player when unarmed. will ricochet, dealing only minor damage.|Flare mode will emit a flare which deals upfront damage, burns struck targets over time and obscures their view. If fired into the air, it will eventually explode with a distinctive effect."
+     ManualLines(0)="Grenade mode launches a grenade with good damage and blast radius. This grenade has an arming delay and upon striking a surface or player when unarmed. will ricochet, dealing only minor damage.|Flare mode will emit a flare which deals upfront damage, burns struck targets over time and obscures their view. If fired into the air, it will eventually explode with a distinctive effect."
      ManualLines(1)="Used to toggle between grenade and flare modes."
      ManualLines(2)="The BORT grenade is effective at medium range and when the player has height advantage. The BORT flare is most effective at close range. Recoil and hip spread are low, except when jumping. When dual wielded, the BORT pistols will fire simultaneously."
      SpecialInfo(0)=(Info="120.0;20.0;0.8;40.0;0.0;0.0;0.6")
@@ -324,7 +324,7 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
 	 bNoCrosshairInScope=True
-	 InventorySize=5
+	 InventorySize=6
      SightPivot=(Pitch=300)
      SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
      JumpChaos=0.750000

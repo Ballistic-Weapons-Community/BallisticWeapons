@@ -5,23 +5,17 @@
 //=============================================================================
 class TrenchGunAttachment extends BallisticShotgunAttachment;
 
-const EXPLOSIVE_MODE = 0;
-const SHOCK_MODE = 1;
+const EXPLOSIVE_AMMO = 0;
+const SHOCK_AMMO = 1;
 
-enum TrenchBarrelMode
-{
-	TBM_Single,
-	TBM_Double
-};
-
-var TrenchBarrelMode			BarrelMode;
 var name						SingleBarrelAnim;
 var name						SingleBarrelAimedAnim;
 
 var bool						Side;
+var byte						AmmoType;
 
 var() class<BCImpactManager>	ImpactManagerAlt;		//Impact Manager to use for iATLATmpact effects
-var() class<BCTraceEmitter>		TracerClassAlt;		//Type of tracer to use for alt fire effects
+var() class<BCTraceEmitter>		TracerClassAlt;			//Type of tracer to use for alt fire effects
 
 var	Actor						MuzzleFlashRight;
 
@@ -29,8 +23,18 @@ var	Actor						MuzzleFlashRight;
 replication
 {
 	// Things the server should send to the client.
-	reliable if(Role==ROLE_Authority)
-		BarrelMode;
+	reliable if (Role == ROLE_Authority)
+		AmmoType;
+}
+
+//======================================================================
+// SwitchWeaponMode
+//
+// Called when weapon changes shot mode
+//======================================================================
+function SwitchWeaponMode(byte WeaponMode)
+{
+	AmmoType = WeaponMode;
 }
 
 //======================================================================
@@ -49,42 +53,21 @@ simulated event PostNetReceive()
 		OldDirectImpactCount = DirectImpactCount;
 	}
 	
+	// SINGLE FIRE
 	if (FireCount != OldFireCount)
 	{
-		FiringMode = EXPLOSIVE_MODE;
+		FiringMode = 0;
 		ThirdPersonEffects();
 		OldFireCount = FireCount;
 	}
 	
+	// DOUBLE FIRE
 	if (AltFireCount != OldAltFireCount)
 	{
-		FiringMode = SHOCK_MODE;
+		FiringMode = 1;
 		ThirdPersonEffects();
 		OldAltFireCount = AltFireCount;
 	}
-}
-
-//Called for a double shot
-function DoubleUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, Actor sideHitActor, vector sideHitLocation, vector sideHitNormal, int HitSurf, int sideHitSurf, optional vector WaterHitLoc, optional vector sideWaterHitLoc)
-{
-	mHitSurf = HitSurf;
-	mHitNormal = HitNormal;
-	mHitActor = HitActor;
-	mHitLocation = HitLocation;
-	WaterHitLocation = WaterHitLoc;
-	
-	FireCount++;
-	ThirdPersonEffects();
-	
-	mHitSurf = sideHitSurf;
-	mHitNormal = sideHitNormal;
-	mHitActor = sideHitActor;
-	mHitLocation = sideHitLocation;
-	WaterHitLocation = sideWaterHitLoc;
-	
-	FireCount++;
-	NetUpdateTime = Level.TimeSeconds - 1;
-	ThirdPersonEffects();
 }
 
 //======================================================================
@@ -92,25 +75,23 @@ function DoubleUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, A
 //
 // Switch animations, barrel used and fire effects based on shot type
 //======================================================================
-simulated function InstantFireEffects(byte Mode)
+simulated function InstantFireEffects(byte IsDoubleFire)
 {
-	if ( BarrelMode == TBM_Single )
+	if (IsDoubleFire == 0)
 	{
-		SingleAimedFireAnim=SingleBarrelAimedAnim;
-		SingleFireAnim=SingleBarrelAnim;
+		SingleAimedFireAnim 	= SingleBarrelAimedAnim;
+		SingleFireAnim 			= SingleBarrelAnim;
 	}
 	else
 	{
-		SingleAimedFireAnim=default.SingleAimedFireAnim;
-		SingleFireAnim=default.SingleFireAnim;
+		SingleAimedFireAnim		= default.SingleAimedFireAnim;
+		SingleFireAnim			= default.SingleFireAnim;
 	}
 	
-	if (Mode == SHOCK_MODE)
-		ElectroFireEffects(Mode);
+	if (AmmoType == SHOCK_AMMO)
+		ElectroFireEffects(IsDoubleFire);
 	else 
-		ExplosiveFireEffects(Mode);
-		
-	Side = !Side;
+		ExplosiveFireEffects(IsDoubleFire);
 }
 
 //======================================================================
@@ -118,15 +99,15 @@ simulated function InstantFireEffects(byte Mode)
 //
 // Spawn explosive effects on hit
 //======================================================================
-simulated function ExplosiveFireEffects(byte Mode)
+simulated function ExplosiveFireEffects(byte IsDoubleFire)
 {
 	local Vector HitLocation, Start, End;
 	local Rotator R;
 	local Material HitMat;
-	local int i;
+	local int i, j, ShotCount;
 	local float XS, YS, RMin, RMax, Range, fX;
 	
-	Log("ExplosiveFireEffects");
+	ShotCount = IsDoubleFire + 1;
 	
 	if (mHitLocation == vect(0,0,0))
 		return;
@@ -136,7 +117,16 @@ simulated function ExplosiveFireEffects(byte Mode)
 		
 	if (Level.NetMode == NM_Client && FireClass != None)
 	{
-		XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
+		if (IsDoubleFire == 0)
+		{
+			XS = class'TrenchGunPrimaryFire'.default.ExplosiveInaccuracy.X; 
+			YS = class'TrenchGunPrimaryFire'.default.ExplosiveInaccuracy.Y;
+		}
+		else 
+		{
+			XS = class'TrenchGunPrimaryFire'.default.ExplosiveDoubleInaccuracy.X; 
+			YS = class'TrenchGunPrimaryFire'.default.ExplosiveDoubleInaccuracy.Y;
+		}
 		
 		if(!bScoped)
 		{
@@ -148,7 +138,7 @@ simulated function ExplosiveFireEffects(byte Mode)
 		
 		Start = Instigator.Location + Instigator.EyePosition();
 		
-		for (i=0; i < FireClass.default.TraceCount; i++)
+		for (i=0; i < FireClass.default.TraceCount * ShotCount; i++)
 		{
 			mHitActor = None;
 			
@@ -180,13 +170,22 @@ simulated function ExplosiveFireEffects(byte Mode)
 			if (mHitActor == None)
 			{
 				DoWaterTrace(Start, End);
-				SpawnTracer(Mode, End);
+				
+				for (j = 0; j < ShotCount; ++j)
+				{
+					SpawnTracer(IsDoubleFire, End);
+					Side = !Side;
+				}
 			}
-			
 			else
 			{
 				DoWaterTrace(Start, HitLocation);
-				SpawnTracer(Mode, HitLocation);
+				
+				for (j = 0; j < ShotCount; ++j)
+				{
+					SpawnTracer(IsDoubleFire, HitLocation);
+					Side = !Side;
+				}
 			}
 			
 			if (mHitActor == None)
@@ -214,13 +213,15 @@ simulated function ExplosiveFireEffects(byte Mode)
 //
 // Use alternate impact manager
 //======================================================================
-simulated function ElectroFireEffects(byte Mode)
+simulated function ElectroFireEffects(byte IsDoubleFire)
 {
 	local Vector HitLocation, Start, End;
 	local Rotator R;
 	local Material HitMat;
-	local int i;
+	local int i, j, ShotCount;
 	local float XS, YS, RMin, RMax, Range, fX;
+	
+	ShotCount = IsDoubleFire + 1;
 	
 	if (mHitLocation == vect(0,0,0))
 		return;
@@ -229,7 +230,16 @@ simulated function ElectroFireEffects(byte Mode)
 	
 	if (Level.NetMode == NM_Client && FireClass != None)
 	{
-		XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
+		if (IsDoubleFire == 0)
+		{
+			XS = class'TrenchGunPrimaryFire'.default.ElectroInaccuracy.X; 
+			YS = class'TrenchGunPrimaryFire'.default.ElectroInaccuracy.Y;
+		}
+		else 
+		{
+			XS = class'TrenchGunPrimaryFire'.default.ElectroDoubleInaccuracy.X; 
+			YS = class'TrenchGunPrimaryFire'.default.ElectroDoubleInaccuracy.Y;
+		}
 		
 		if (!bScoped)
 		{
@@ -241,7 +251,7 @@ simulated function ElectroFireEffects(byte Mode)
 		
 		Start = Instigator.Location + Instigator.EyePosition();
 		
-		for (i=0; i < FireClass.default.TraceCount; i++)
+		for (i=0; i < FireClass.default.TraceCount * ShotCount; i++)
 		{
 			mHitActor = None;
 			
@@ -272,12 +282,22 @@ simulated function ElectroFireEffects(byte Mode)
 			if (mHitActor == None)
 			{
 				DoWaterTrace(Start, End);
-				SpawnTracer(Mode, End);
+				
+				for (j = 0; j < ShotCount; ++j)
+				{
+					SpawnTracer(IsDoubleFire, End);
+					Side = !Side;
+				}
 			}
 			else
 			{
 				DoWaterTrace(Start, HitLocation);
-				SpawnTracer(Mode, HitLocation);
+				
+				for (j = 0; j < ShotCount; ++j)
+				{
+					SpawnTracer(IsDoubleFire, HitLocation);
+					Side = !Side;
+				}
 			}
 
 			if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None))
@@ -295,7 +315,7 @@ simulated function ElectroFireEffects(byte Mode)
 }
 
 // Spawn a tracer and water tracer
-simulated function SpawnTracer(byte Mode, Vector V)
+simulated function SpawnTracer(byte IsDoubleFire, Vector V)
 {
 	local BCTraceEmitter Tracer;
 	local Vector TipLoc, WLoc, WNorm;
@@ -314,7 +334,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	{
 		if (Dist > 200)
 		{
-			if (Mode == EXPLOSIVE_MODE)
+			if (AmmoType == EXPLOSIVE_AMMO)
 				Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
 			else Tracer = Spawn(TracerClassAlt, self, , TipLoc, Rotator(V - TipLoc));
 		}
@@ -323,7 +343,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	}
 	// Spawn under water bullet effect
 	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
-		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && Mode == EXPLOSIVE_MODE) || (WaterTracerMode == MU_Primary && Mode != SHOCK_MODE)))
+		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && AmmoType == EXPLOSIVE_AMMO) || (WaterTracerMode == MU_Primary && AmmoType != SHOCK_AMMO)))
 	{
 		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
 			Tracer = Spawn(WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
@@ -356,7 +376,7 @@ simulated function Vector GetTipLocation()
 
 // This assumes flash actors are triggered to make them work
 // Override this in subclassed for better control
-simulated function FlashMuzzleFlash(byte Mode)
+simulated function FlashMuzzleFlash(byte IsDoubleFire)
 {
 	local rotator R;
 
@@ -366,7 +386,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 	if (bRandomFlashRoll)
 		R.Roll = Rand(65536);
 
-	if (Mode == 1 && AltMuzzleFlashClass != None)
+	if (AmmoType == 1 && AltMuzzleFlashClass != None)
 	{
 		if (AltMuzzleFlash == None)
 		{
@@ -397,7 +417,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 	}
 }
 
-simulated function EjectBrass(byte Mode);
+simulated function EjectBrass(byte IsDoubleFire);
 
 defaultproperties
 {

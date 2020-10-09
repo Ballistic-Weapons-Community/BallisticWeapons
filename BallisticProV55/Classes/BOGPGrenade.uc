@@ -104,7 +104,7 @@ defaultproperties
      MotionBlurTime=4.000000
      Speed=3500.000000
      Damage=120.000000
-     DamageRadius=256.000000
+     DamageRadius=512.000000
      MyDamageType=Class'BallisticProV55.DTBOGPGrenadeRadius'
      ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'
      StaticMesh=StaticMesh'BallisticHardware_25.BOGP.BOGP_Grenade'

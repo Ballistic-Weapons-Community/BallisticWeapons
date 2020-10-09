@@ -32,56 +32,56 @@ enum EModeUsed
 };
 
 var() class<actor>					MuzzleFlashClass;					//Effect to spawn fot mode 0 muzzle flash
-var   actor								MuzzleFlash;							//The flash actor itself
+var   actor							MuzzleFlash;							//The flash actor itself
 var() class<actor>					AltMuzzleFlashClass;					//Effect to spawn fot mode 1 muzzle flash
-var   actor								AltMuzzleFlash;						//The flash actor itself
-var() class<BCImpactManager>	ImpactManager;						//Impact Manager to use for impact effects
-var() class<BCImpactManager>	MeleeImpactManager;				//Impact Manager to use for melee effects
-var() bool								bDoWaterSplash;						//Allow water splash effects and checks
-var() bool								bRandomFlashRoll;					//Randomly set roll of muzzle flash actor for each shot
-var   actor								LightWeapon;							//Actor currently being use for weapon light
-var() float								WeaponLightTime;					//Time for weapon light to remain on
-var() name								FlashBone;								//Bone to which primary flash will be attached
-var() name								AltFlashBone;							//Bone to which secondary flash will be attached
-var   int									mHitSurf;								//Surface type that was hit
-var() float								FlashScale;								//Flash will be scaled by weapon drawscale and this
+var   actor							AltMuzzleFlash;						//The flash actor itself
+var() class<BCImpactManager>		ImpactManager;						//Impact Manager to use for impact effects
+var() class<BCImpactManager>		MeleeImpactManager;				//Impact Manager to use for melee effects
+var() bool							bDoWaterSplash;						//Allow water splash effects and checks
+var() bool							bRandomFlashRoll;					//Randomly set roll of muzzle flash actor for each shot
+var   actor							LightWeapon;							//Actor currently being use for weapon light
+var() float							WeaponLightTime;					//Time for weapon light to remain on
+var() name							FlashBone;								//Bone to which primary flash will be attached
+var() name							AltFlashBone;							//Bone to which secondary flash will be attached
+var   int							mHitSurf;								//Surface type that was hit
+var() float							FlashScale;								//Flash will be scaled by weapon drawscale and this
 var() class<actor>					BrassClass;								//Type of brass to eject
 var() EModeUsed						BrassMode;								//Firing mode/s that eject brass
-var() name								BrassBone;								//Name of bone from which to spawn brass
+var() name							BrassBone;								//Name of bone from which to spawn brass
 var() EModeUsed						TracerMode;							//Firing mode/s that spawn tracer effects. Still needs Instant mode to be on
 var() EModeUsed						InstantMode;							//Firing mode/s that spawn instant fire effects
 var() EModeUsed						FlashMode;								//Firing mode/s that spawn muzzle flash
 var() EModeUsed						LightMode;								//Firing mode/s that flash light
 var() EModeUsed						TrackAnimMode;						//Firing mode/s that play pawn slash anim instead of normal firing
-var() class<BCTraceEmitter>	TracerClass;							//Type of tracer to use for instant fire effects
-var() float								TracerChance;						//Chance of tracer effect spawning. 0=never, 1=always on super detail, 2=always
-var() int								TracerMix;								//Do Tracer every ? shots. <0 means don't do tracer every ? shots
-var   int									TracerCounter;						//Tracer every ? shots uses this to count shots
-var   byte								FireCount;								//Incremented to to inform this attachment that a shot was fired
-var   byte								OldFireCount;							//Used to check if FireCount changed
-var   byte								AltFireCount;							//Incremented to to inform this attachment of secondary fire shots
-var   byte								OldAltFireCount;						//Used to check if AltFireCount changed
-var 	byte								MeleeFireCount, OldMeleeFireCount;
-var   vector 							WaterHitLocation;					//Spot where water was hit
-var() class<BCTraceEmitter>	WaterTracerClass;					//Emitter to sue for under water tracer
+var() class<BCTraceEmitter>			TracerClass;							//Type of tracer to use for instant fire effects
+var() float							TracerChance;						//Chance of tracer effect spawning. 0=never, 1=always on super detail, 2=always
+var() int							TracerMix;								//Do Tracer every ? shots. <0 means don't do tracer every ? shots
+var   int							TracerCounter;						//Tracer every ? shots uses this to count shots
+var   byte							FireCount;								//Incremented to to inform this attachment that a shot was fired
+var   byte							OldFireCount;							//Used to check if FireCount changed
+var   byte							AltFireCount;							//Incremented to to inform this attachment of secondary fire shots
+var   byte							OldAltFireCount;						//Used to check if AltFireCount changed
+var 	byte						MeleeFireCount, OldMeleeFireCount;
+var   vector 						WaterHitLocation;					//Spot where water was hit
+var() class<BCTraceEmitter>			WaterTracerClass;					//Emitter to sue for under water tracer
 var() EModeUsed						WaterTracerMode;					//Modes that have water tracers
-var   byte								WallPenetrates;						//Fire penetrated a wall. Tells client to do find walls and do effects
+var   byte							WallPenetrates;						//Fire penetrated a wall. Tells client to do find walls and do effects
 var() BUtil.FullSound				FlyBySound;							//Sound to play for bullet flyby effect
 var() EModeUsed						FlyByMode;								//Firing mode/s that use flyby effect.
-var() float								FlybyRange;							//Max distance from bullet trace line, at which flyby by sounds will be heard
-var() float								FlyByBulletSpeed;					//Used to calculate flyby sound delay (simulate bullet speed)
+var() float							FlybyRange;							//Max distance from bullet trace line, at which flyby by sounds will be heard
+var() float							FlyByBulletSpeed;					//Used to calculate flyby sound delay (simulate bullet speed)
 
 //===========================================================================
 // Animation support
 //===========================================================================
-var() Name								ReloadAnim, CockingAnim, WeaponSpecialAnim, StaggerAnim;			// Third person reload animation.
-var() float								ReloadAnimRate, CockAnimRate, WeaponSpecialRate, StaggerRate;  // Used by SetAnimAction for third person "reload" anim rate
+var() Name							ReloadAnim, CockingAnim, WeaponSpecialAnim, StaggerAnim;			// Third person reload animation.
+var() float							ReloadAnimRate, CockAnimRate, WeaponSpecialRate, StaggerRate;  // Used by SetAnimAction for third person "reload" anim rate
 var()  name							IdleHeavyAnim, IdleRifleAnim;
-var()	 name							MeleeStrikeAnim;						// Third person melee attack.
-var()	 float								MeleeAnimRate;
+var()	 name						MeleeStrikeAnim;						// Third person melee attack.
+var()	 float						MeleeAnimRate;
 var()	 name						MeleeBlockAnim, MeleeWindupAnim;
-var 	 bool								bIsAimed; 								// Used to have pawns raise and lower the gun
-var()	 name							SingleFireAnim, SingleAimedFireAnim,  RapidFireAnim, RapidAimedFireAnim;
+var 	 bool						bIsAimed; 								// Used to have pawns raise and lower the gun
+var()	 name						SingleFireAnim, SingleAimedFireAnim,  RapidFireAnim, RapidAimedFireAnim;
 
 // Direct impacts allow the server to send the loc, norm and surf of an impact to be used on the client
 // This way the server can force a specific impact, but this uses more bandwidth
@@ -92,11 +92,11 @@ struct DirectImp
 	var() byte		HitSurf;	// Surface type
 	var() byte		HitNorm;	// Compressed normal. BUtil.NormToByte can be used to compress and BUtil.ByteToNorm can be used to decompress
 };
-var   DirectImp				DirectImpact;			// Compressed impact info sent from server
-var   byte					DirectImpactCount		// Incremented to to inform this attachment of direct impacts
-						,	OldDirectImpactCount;	// Used to check on DirectImpactCount changes
+var   DirectImp						DirectImpact;			// Compressed impact info sent from server
+var   byte							DirectImpactCount		// Incremented to to inform this attachment of direct impacts
+						,			OldDirectImpactCount;	// Used to check on DirectImpactCount changes
 
-//var() bool					bHeavy, bRapidFire, bAltRapidFire; //Old stuff
+//var() bool						bHeavy, bRapidFire, bAltRapidFire; //Old stuff
 
 // These are the settings for a special animation track system. These are used to 'make' animations that meshes don't have...
 

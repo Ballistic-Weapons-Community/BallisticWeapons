@@ -27,7 +27,7 @@ function PlayFiring()
 defaultproperties
 {
      CutOffDistance=1536.000000
-     CutOffStartRange=378.000000
+     CutOffStartRange=768.000000
      WallPenetrationForce=8.000000
      
      Damage=20.000000
@@ -47,13 +47,13 @@ defaultproperties
      FlashScaleFactor=0.600000
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassOffset=(X=-25.000000,Z=-5.000000)
-     RecoilPerShot=72.000000
-     FireChaos=0.200000
-     XInaccuracy=64.000000
-     YInaccuracy=64.000000
+     RecoilPerShot=64.000000
+     FireChaos=0.100000
+     XInaccuracy=48.000000
+     YInaccuracy=48.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.MRDR.MRDR-Fire')
      bPawnRapidFireAnim=True
-     FireRate=0.180000
+     FireRate=0.120000
      AmmoClass=Class'BallisticProV55.Ammo_9mm'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
