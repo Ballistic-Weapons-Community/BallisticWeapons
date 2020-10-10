@@ -288,7 +288,8 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BallisticSounds2.M925.M925-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M925.M925-Putaway')
 	CurrentWeaponMode=0
-	WeaponModes(1)=(bUnavailable=True)
+    WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
+    WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	MagAmmo=50
 	CockAnimRate=1.250000
@@ -312,13 +313,17 @@ defaultproperties
 	ViewRecoilFactor=0.250000
 	ChaosDeclineTime=1.750000
 	ChaosAimSpread=1280
+	
+	
 	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.40000),(InVal=0.500000,OutVal=0.550000),(InVal=0.700000,OutVal=0.70000),(InVal=1.000000)))
 	RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.300000),(InVal=0.500000,OutVal=0.550000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.15
-	RecoilYFactor=0.15
+	RecoilXFactor=0.07
+	RecoilYFactor=0.07
 	RecoilMax=12288.000000
 	RecoilDeclineTime=1.500000
 	RecoilDeclineDelay=0.40000
+	
+	
 	FireModeClass(0)=Class'BallisticProV55.M925PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'
 	PutDownTime=0.700000

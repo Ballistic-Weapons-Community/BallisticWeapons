@@ -19,6 +19,14 @@ var() float						ChargeTime, DecayCharge;
 
 var() float						ElectroDamageHead, ElectroDamage, ElectroDamageLimb;
 
+struct Point2
+{
+	var int X;
+	var int Y;
+};
+
+var() Point2					ElectroInaccuracy, ElectroDoubleInaccuracy, ExplosiveInaccuracy, ExplosiveDoubleInaccuracy;
+
 simulated function DebugMessage(coerce string message)
 {
 	if (PlayerController(BW.Instigator.Controller) != None)
@@ -116,7 +124,7 @@ function PlayFiring()
 //======================================================================
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
 {
-	BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, (BW.CurrentWeaponMode > 0), WaterHitLoc);
+	BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, ConsumedLoad == 2, WaterHitLoc);
 }
 
 //======================================================================
@@ -181,6 +189,10 @@ simulated function SwitchWeaponMode (byte newMode)
 		RangeAtten = 1.0; // electrical shots shouldn't be losing damage at range
 		
 		KickForce=4500;
+		
+		MaxWaterTraceRange=9000;
+		
+		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(1);
 	}
 	else // Explosive Mode
 	{
@@ -203,6 +215,10 @@ simulated function SwitchWeaponMode (byte newMode)
 		RangeAtten = default.RangeAtten;
 		
 		KickForce=default.KickForce;
+		
+		MaxWaterTraceRange=default.MaxWaterTraceRange;
+		
+		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(0);
 	}
 }
 
@@ -392,9 +408,6 @@ function DoFireEffect()
 	
 	// Tell the attachment the aim. It will calculate the rest for the clients
 	SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
-	
-	if (ConsumedLoad == 2)
-		SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
 
 	Super(BallisticFire).DoFireEffect();
 }
@@ -549,13 +562,19 @@ function SwitchShotParams()
 {
 	if (Load == 2)
 	{
-		BallisticFireSound.Volume=2.0;
+		BallisticFireSound.Volume = 2.0;
 		
-		XInaccuracy = default.XInaccuracy * 4;
-		YInaccuracy = default.YInaccuracy * 3;
-
-		if (BW.CurrentWeaponMode == 1)
+		if (BW.CurrentWeaponMode == 0)
 		{
+			XInaccuracy = ExplosiveDoubleInaccuracy.X;
+			YInaccuracy = ExplosiveDoubleInaccuracy.Y;
+		}
+
+		else
+		{
+			XInaccuracy = ElectroDoubleInaccuracy.X;
+			YInaccuracy = ElectroDoubleInaccuracy.Y;
+			
 			DamageType=Class'DT_TrenchGunElectro';
 			DamageTypeArm=Class'DT_TrenchGunElectro';
 			DamageTypeHead=Class'DT_TrenchGunElectro';	
@@ -563,12 +582,12 @@ function SwitchShotParams()
 	}
 	else
 	{
-		BallisticFireSound.Volume=1.0;
+		BallisticFireSound.Volume = 1.0;
 		
 		if (BW.CurrentWeaponMode == 0)
 		{
-			XInaccuracy = default.XInaccuracy;
-			YInaccuracy = default.YInaccuracy;
+			XInaccuracy = ExplosiveInaccuracy.X;
+			YInaccuracy = ExplosiveInaccuracy.Y;
 		}
 		
 		if (BW.CurrentWeaponMode == 1)
@@ -577,8 +596,8 @@ function SwitchShotParams()
 			DamageTypeArm=Class'DT_TrenchGunElectro';
 			DamageTypeHead=Class'DT_TrenchGunElectro';	
 			
-			XInaccuracy=128;
-			YInaccuracy=128;
+			XInaccuracy = ElectroInaccuracy.X;
+			YInaccuracy = ElectroInaccuracy.Y;
 		}
 	}
 }
@@ -654,6 +673,13 @@ defaultproperties
 	FireChaos=1.000000
 	XInaccuracy=192.000000
 	YInaccuracy=192.000000
+	
+	ExplosiveInaccuracy=(X=192,Y=192)
+	ExplosiveDoubleInaccuracy=(X=762,Y=576)
+	
+	ElectroInaccuracy=(X=128,Y=128)
+	ElectroDoubleInaccuracy=(X=320,Y=192)
+	
 	BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)
 	FireAnim="FireCombined"
 	FireAnimRate=0.800000

@@ -676,10 +676,10 @@ defaultproperties
      Deployables(0)=(dClass=Class'WrenchBoostPad',SpawnOffset=4,WarpInTime=1.000000,AmmoReq=50,Limit=0,CheckSlope=True,dDescription="A pad which propels players through the air in the direction they were moving.")
      Deployables(1)=(dClass=Class'WrenchTeleporter',SpawnOffset=1,WarpInTime=1.000000,AmmoReq=50,Limit=2,CheckSlope=True,dDescription="A teleporter. Only two may be placed.")
      Deployables(2)=(dClass=Class'Sandbag',SpawnOffset=8,WarpInTime=1.000000,AmmoReq=10,Limit=0,CheckSlope=False,dDescription="A unit of three sandbags which can be used as cover.")
-     Deployables(3)=(dClass=Class'WrenchShieldGeneratorB',SpawnOffset=0,WarpInTime=1.000000,AmmoReq=75,Limit=1,CheckSlope=True,dDescription="Places a dome shield generator which lasts 12 seconds.")
-     Deployables(4)=(dClass=Class'WrenchAmmoCrate',SpawnOffset=16,WarpInTime=3.000000,AmmoReq=60,CheckSlope=True,dDescription="A crate which restocks ammunition to initial levels.")
+     Deployables(3)=(dClass=Class'WrenchShieldGeneratorB',SpawnOffset=0,WarpInTime=1.000000,AmmoReq=30,Limit=1,CheckSlope=True,dDescription="Places a dome shield generator which lasts 12 seconds.")
+     Deployables(4)=(dClass=Class'WrenchAmmoCrate',SpawnOffset=16,WarpInTime=3.000000,AmmoReq=30,CheckSlope=True,dDescription="A crate which restocks ammunition to initial levels.")
      Deployables(5)=(dClass=Class'WrenchMinigunTurret',SpawnOffset=36,WarpInTime=35.000000,AmmoReq=100,Limit=1,CheckSlope=True,dDescription="A static minigun turret. Resistant to attacks. Only one may be placed.")
-     AltDeployable=(dClass=Class'WrenchEnergyBarrier',WarpInTime=0.100000,SpawnOffset=52,AmmoReq=20,Limit=0,CheckSlope=False,dDescription="A three-second barrier of infinite durability.")
+     AltDeployable=(dClass=Class'WrenchEnergyBarrier',WarpInTime=0.100000,SpawnOffset=52,AmmoReq=10,Limit=0,CheckSlope=False,dDescription="A three-second barrier of infinite durability.")
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPOtherPackTex.Wrench.BigIcon_Wrench'
      BigIconCoords=(Y2=240)

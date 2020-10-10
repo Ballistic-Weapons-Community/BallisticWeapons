@@ -392,6 +392,7 @@ defaultproperties
      DamageTypeHead=Class'BallisticProV55.DT_HVCLightning'
      DamageTypeArm=Class'BallisticProV55.DT_HVCLightning'
      KickForce=2000
+	 MaxWaterTraceRange=9000
      bNoPositionalDamage=True
      FireChaos=0.000000
      BallisticFireSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-FireStart')

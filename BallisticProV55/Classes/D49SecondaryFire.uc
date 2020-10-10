@@ -74,15 +74,15 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
-     CutOffDistance=2048.000000
-     CutOffStartRange=768.000000
+     CutOffDistance=2536.000000
+     CutOffStartRange=1024.000000
      TraceRange=(Min=8000.000000,Max=9000.000000)
      WallPenetrationForce=8.000000
      
-     Damage=90.000000
-     DamageHead=135.000000
-     DamageLimb=90.000000
-     RangeAtten=0.200000
+     Damage=100.000000
+     DamageHead=150.000000
+     DamageLimb=100.000000
+     RangeAtten=0.350000
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTD49Revolver'
      DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
@@ -95,8 +95,8 @@ defaultproperties
      FlashScaleFactor=1.200000
      RecoilPerShot=2048.000000
      FireChaos=0.800000
-     XInaccuracy=64.000000
-     YInaccuracy=64.000000
+     XInaccuracy=48.000000
+     YInaccuracy=48.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.D49.D49-Fire',Volume=1.300000)
      FireEndAnim=
      FireRate=0.8

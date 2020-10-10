@@ -105,7 +105,7 @@ defaultproperties
          AutomaticInitialSpawning=False
          ColorScale(0)=(Color=(B=64,G=64,R=64,A=128))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=64,G=64,R=64,A=128))
-         Opacity=0.100000
+         Opacity=0.0250000
          FadeOutStartTime=0.400000
          FadeInEndTime=0.200000
          MaxParticles=3

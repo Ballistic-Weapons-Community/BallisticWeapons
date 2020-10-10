@@ -29,7 +29,7 @@ simulated function Initialize(Actor V)
 		return;
 
 	Victim = V;
-	SetTimer(1, true);
+	SetTimer(0.5, true);
 
 	if (level.netMode == NM_DedicatedServer)
 	{
@@ -106,7 +106,7 @@ defaultproperties
 {
      DamageType=Class'BallisticProV55.DTBOGPFlareBurn'
      Damage=15
-     BurnTime=6.000000
+     BurnTime=3.000000
      Begin Object Class=SpriteEmitter Name=SpriteEmitter11
          FadeOut=True
          FadeIn=True
