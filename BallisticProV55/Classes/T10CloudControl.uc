@@ -16,6 +16,7 @@ var() int					Damage;
 var() class<DamageType>		DamageType;
 var   vector				CloudSpawnLoc, OldCloudSpawnLoc;
 var   bool					bNoMore;
+var	  Controller			InstigatorController;
 
 replication
 {
@@ -36,17 +37,26 @@ function ServeCustomers()
 	local array<Actor> Served;
 	
 	for(i=0;i<Clouds.length;i++)
+	{
 		for(j=0;j<Clouds[i].Touching.length;j++)
 		{
 			if (Clouds[i].Touching[j] == None || Pawn(Clouds[i].Touching[j]) == None)
 				continue;
+			
 			for(k=0;k<Served.length;k++)
 				if (Served[k] == Clouds[i].Touching[j])
 					break;
-			if (k >= Served.length)	{
+			
+			if (k >= Served.length)	
+			{
+				if ( Instigator == None || Instigator.Controller == None )
+					Clouds[i].Touching[j].SetDelayedDamageInstigatorController( InstigatorController );
+					
 				class'BallisticDamageType'.static.GenericHurt(Clouds[i].Touching[j], Clouds[i].Density*Damage, Instigator, Clouds[i].Touching[j].Location, vect(0,0,0), DamageType);
-				Served[Served.length] = Clouds[i].Touching[j];	}
+				Served[Served.length] = Clouds[i].Touching[j];	
+			}
 		}
+	}
 }
 
 simulated function Tick(float DT)

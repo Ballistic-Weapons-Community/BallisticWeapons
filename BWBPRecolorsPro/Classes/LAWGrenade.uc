@@ -24,6 +24,10 @@ simulated event ProcessTouch(Actor Other, vector HitLocation )
 		StuckActor = Other;
 		HitActor = Other;
 		Explode(HitLocation, Normal(HitLocation-Other.Location));
+		
+		if ( Instigator == None || Instigator.Controller == None )
+			Other.SetDelayedDamageInstigatorController( InstigatorController );
+			
 		class'BallisticDamageType'.static.GenericHurt(Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
 	}
 	else

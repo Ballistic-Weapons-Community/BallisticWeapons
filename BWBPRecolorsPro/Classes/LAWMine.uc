@@ -1,16 +1,16 @@
 class LAWMine extends BallisticProjectile;
 
-var() Sound			DetonateSound;
-var     int				ShockRadius;
+var() Sound						DetonateSound;
+var     int						ShockRadius;
 
 var() class<DamageType>			MyShotDamageType;	// Damagetype to use when detonated by damage
-var() class<BCImpactManager>		ImpactManager2;		// Impact manager to spawn on final hit
+var() class<BCImpactManager>	ImpactManager2;		// Impact manager to spawn on final hit
 
-var   int							Health;			// Distance from his glorious holiness, the source. Wait, thats not what this is...
-var   LAWSparkEmitter		TeamLight;		// A flare emitter to show the glowing core
-var   int							PulseNum;
-var bool							bPulse, bOldPulse;
-var bool							bShot;
+var   int						Health;			// Distance from his glorious holiness, the source. Wait, thats not what this is...
+var   LAWSparkEmitter			TeamLight;		// A flare emitter to show the glowing core
+var   int						PulseNum;
+var bool						bPulse, bOldPulse;
+var bool						bShot;
 
 replication
 {
@@ -140,9 +140,15 @@ function Shockwave(vector HitLocation)
 	foreach CollidingActors( class 'Actor', A, ShockRadius, Location )
 	{
 		if (A != Self && A.bCanBeDamaged)
+		{
+			if ( Instigator == None || Instigator.Controller == None )
+				A.SetDelayedDamageInstigatorController( InstigatorController );
+				
 			if (FastTrace(A.Location, Location))
 				class'BallisticDamageType'.static.Hurt(A, 75.0, Instigator, A.Location, Normal(A.Location - Location)*500, class'DTLAWPulse');
-			else 	class'BallisticDamageType'.static.Hurt(A, 40.0, Instigator, A.Location, Normal(A.Location - Location)*500, class'DTLAWPulse');
+			else 
+				class'BallisticDamageType'.static.Hurt(A, 40.0, Instigator, A.Location, Normal(A.Location - Location)*500, class'DTLAWPulse');
+		}
 
 	}
 	PulseNum++;

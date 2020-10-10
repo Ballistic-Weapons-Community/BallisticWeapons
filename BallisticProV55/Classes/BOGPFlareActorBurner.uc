@@ -11,12 +11,14 @@
 //=============================================================================
 class BOGPFlareActorBurner extends BallisticEmitter
 	placeable;
+	
+const TIMER_INTERVAL = 0.5f;
 
-var   Actor				Victim;			// The guy on fire
-var() class<DamageType>	DamageType;		// DamageType done to player
-var() int				Damage;			// Damage done every 0.5 seconds
-var() float				BurnTime;		// How to burn for
-var Controller	InstigatorController;
+var   Actor				Victim;				// The guy on fire
+var() class<DamageType>	DamageType;			// DamageType done to player
+var() int				Damage;				// Damage done every 0.5 seconds
+var() int				TicksRemaining;		// How many ticks to burn for
+var Controller			InstigatorController;
 
 function Reset()
 {
@@ -29,7 +31,7 @@ simulated function Initialize(Actor V)
 		return;
 
 	Victim = V;
-	SetTimer(0.5, true);
+	SetTimer(TIMER_INTERVAL, true);
 
 	if (level.netMode == NM_DedicatedServer)
 	{
@@ -53,32 +55,41 @@ simulated function Initialize(Actor V)
 
 simulated event Timer()
 {
-	if (BurnTime == -1)
-		return;
-	BurnTime-=1;
-	if (BurnTime <= 0 || Victim.PhysicsVolume.bWaterVolume)
+	if (TicksRemaining == 0)
 	{
-		BurnTime=-1;
+		SetTimer(0.0, false);
+		return;
+	}
+	
+	if (TicksRemaining == 0 || Victim.PhysicsVolume.bWaterVolume)
+	{
 		Kill();
 		bDynamicLight=false;
 	}
-	if (Victim != None && Level.NetMode != NM_Client && BurnTime > 1)
+	
+	if (Victim != None && Level.NetMode != NM_Client)
 	{
 		if ( Instigator == None || Instigator.Controller == None )
 			Victim.SetDelayedDamageInstigatorController( InstigatorController );
 		class'BallisticDamageType'.static.GenericHurt (Victim, Damage, Instigator, Victim.Location, vect(0,0,0), DamageType);
 	}
+	
+	TicksRemaining--;
 }
 
 simulated event Tick(float DT)
 {
 	Super.Tick(DT);
+	
 	if (Victim == None || Victim.bDeleteMe)
 		Destroy();
-	if (level.netMode == NM_DedicatedServer && BurnTime <= 1)
+		
+	if (level.NetMode == NM_DedicatedServer && TicksRemaining == 0)
 		Destroy();
-	if (BurnTime == -1)
+		
+	if (TicksRemaining == 0)
 		return;
+		
 	else if (xPawn(Victim) != None && xPawn(Victim).bDeRes)
 	{
 		Emitters[0].SkeletalMeshActor = None;
@@ -87,7 +98,7 @@ simulated event Tick(float DT)
 		Emitters[3].SkeletalMeshActor = None;
 		SetBase(None);
 		Kill();
-		BurnTime=-1;
+		TicksRemaining = 0;
 	}
 }
 
@@ -95,7 +106,7 @@ simulated function PhysicsVolumeChange( PhysicsVolume NewVolume )
 {
 	if ( NewVolume.bWaterVolume )
 	{
-		if (level.netMode == NM_DedicatedServer)
+		if (level.NetMode == NM_DedicatedServer)
 			Destroy();
 		else
 			Kill();
@@ -106,7 +117,7 @@ defaultproperties
 {
      DamageType=Class'BallisticProV55.DTBOGPFlareBurn'
      Damage=15
-     BurnTime=3.000000
+     TicksRemaining=5.000000
      Begin Object Class=SpriteEmitter Name=SpriteEmitter11
          FadeOut=True
          FadeIn=True

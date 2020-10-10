@@ -59,6 +59,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		if (C!=None)
 		{
 			C.Instigator = Instigator;
+			C.InstigatorController = InstigatorController;
 		}
 	}
 	if (Level.NetMode != NM_DedicatedServer && TrailClass != None && Trail == None)
