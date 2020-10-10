@@ -172,7 +172,7 @@ defaultproperties
      FireAnim=
      FireEndAnim=
      FireRate=10.000000
-     AmmoClass=Class'BallisticProV55.Ammo_556mm'
+     AmmoClass=Class'BallisticProV55.Ammo_556mmSAR'
      AmmoPerFire=0
      BotRefireRate=0.300000
 }
