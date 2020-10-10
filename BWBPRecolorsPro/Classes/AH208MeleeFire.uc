@@ -75,9 +75,9 @@ defaultproperties
      Damage=70.000000
      DamageHead=70.000000
      DamageLimb=70.000000
-     DamageType=Class'BWBPRecolorsPro.DTEagleMelee'
-     DamageTypeHead=Class'BWBPRecolorsPro.DTEagleMeleeHead'
-     DamageTypeArm=Class'BWBPRecolorsPro.DTEagleMelee'
+     DamageType=Class'BWBPRecolorsPro.DTEagle208Melee'
+     DamageTypeHead=Class'BWBPRecolorsPro.DTEagle208MeleeHead'
+     DamageTypeArm=Class'BWBPRecolorsPro.DTEagle208Melee'
      bUseWeaponMag=False
      bReleaseFireOnDie=False
      bIgnoreReload=True

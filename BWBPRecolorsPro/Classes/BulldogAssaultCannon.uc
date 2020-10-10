@@ -641,7 +641,7 @@ defaultproperties
      SGPrepAnim="SGPrep"
      CockingAnim="Cock"
      ShovelAnim="SGReload"
-     Grenades=5
+     Grenades=6
      bAltNeedCock=True
      Shells(0)="Shell1"
      Shells(1)="Shell2"
