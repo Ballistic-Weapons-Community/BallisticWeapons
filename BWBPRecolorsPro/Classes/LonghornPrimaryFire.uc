@@ -202,6 +202,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Longhorn.Longhorn-Fire',Volume=1.500000)
      bFireOnRelease=True
      FireRate=0.400000
+	 FireAnimRate=1.5
      AmmoClass=Class'BWBPRecolorsPro.Ammo_Longhorn'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

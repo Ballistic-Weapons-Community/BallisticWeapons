@@ -190,6 +190,8 @@ simulated function SwitchWeaponMode (byte newMode)
 		
 		KickForce=4500;
 		
+		MaxWaterTraceRange=9000;
+		
 		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(1);
 	}
 	else // Explosive Mode
@@ -213,6 +215,8 @@ simulated function SwitchWeaponMode (byte newMode)
 		RangeAtten = default.RangeAtten;
 		
 		KickForce=default.KickForce;
+		
+		MaxWaterTraceRange=default.MaxWaterTraceRange;
 		
 		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(0);
 	}

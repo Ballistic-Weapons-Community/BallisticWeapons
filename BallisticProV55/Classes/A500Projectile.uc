@@ -168,8 +168,8 @@ defaultproperties
      DamageTypeHead=Class'BallisticProV55.DTA500BlastHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000
-	 MaxSpeed=5500.000000
-	 AccelSpeed=0.000000
+	 MaxSpeed=6500.000000
+	 AccelSpeed=100000.000000
      Damage=27.000000
      MomentumTransfer=1000.000000
      MyDamageType=Class'BallisticProV55.DTA500Blast'

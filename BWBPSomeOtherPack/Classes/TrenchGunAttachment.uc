@@ -8,9 +8,6 @@ class TrenchGunAttachment extends BallisticShotgunAttachment;
 const EXPLOSIVE_AMMO = 0;
 const SHOCK_AMMO = 1;
 
-var name						SingleBarrelAnim;
-var name						SingleBarrelAimedAnim;
-
 var bool						Side;
 var byte						AmmoType;
 
@@ -25,6 +22,30 @@ replication
 	// Things the server should send to the client.
 	reliable if (Role == ROLE_Authority)
 		AmmoType;
+}
+
+//======================================================================
+// PostNetBeginPlay
+//
+// Debug
+//======================================================================
+simulated function PostNetBeginPlay()
+{
+	Super.PostNetBeginPlay();
+	
+	Log("TrenchGunAttachment::PostNetBeginPlay: AmmoType: "$AmmoType);
+}
+
+//======================================================================
+// InitFor
+//
+// Sets initial shot mode on attachment to pawn
+//======================================================================
+function InitFor(Inventory I)
+{
+	Super.InitFor(I);
+	
+	AmmoType = BallisticWeapon(I).CurrentWeaponMode;
 }
 
 //======================================================================
@@ -79,13 +100,13 @@ simulated function InstantFireEffects(byte IsDoubleFire)
 {
 	if (IsDoubleFire == 0)
 	{
-		SingleAimedFireAnim 	= SingleBarrelAimedAnim;
-		SingleFireAnim 			= SingleBarrelAnim;
+		SingleFireAnim 		= 	'RifleHip_Fire';
+		SingleAimedFireAnim	=	'RifleAimed_Fire';
 	}
 	else
 	{
-		SingleAimedFireAnim		= default.SingleAimedFireAnim;
-		SingleFireAnim			= default.SingleFireAnim;
+		SingleAimedFireAnim	= default.SingleAimedFireAnim;
+		SingleFireAnim		= default.SingleFireAnim;
 	}
 	
 	if (AmmoType == SHOCK_AMMO)
@@ -321,8 +342,6 @@ simulated function SpawnTracer(byte IsDoubleFire, Vector V)
 	local Vector TipLoc, WLoc, WNorm;
 	local float Dist;
 
-	Log("SpawnTracer");
-	
 	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;
 
@@ -435,7 +454,7 @@ defaultproperties
      FlashBone="Tip1"
      AltFlashBone="tip2"
      FlashScale=1.500000
-	 
+	 	 
 	 InstantMode = MU_Both
 	 
      BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
@@ -449,10 +468,9 @@ defaultproperties
 	 
  	 SingleFireAnim="Reload_BreakOpenFast"
      SingleAimedFireAnim="Reload_BreakOpenFast"
-     RapidFireAnim="Reload_BreakOpenFast"
-     RapidAimedFireAnim="Reload_BreakOpenFast"
+     RapidFireAnim="RifleHip_Fire"
+     RapidAimedFireAnim="RifleAimed_Fire"
+	 
 	 ReloadAnim="Reload_BreakOpen"
 	 CockingAnim="Reload_BreakOpen"
-	 SingleBarrelAnim="RifleHip_Fire"
-	 SingleBarrelAimedAnim="RifleAimed_Fire"
 }
