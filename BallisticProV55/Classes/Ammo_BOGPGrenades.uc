@@ -11,8 +11,8 @@ class Ammo_BOGPGrenades extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=8
-     InitialAmount=4
+     MaxAmmo=20
+     InitialAmount=10
      IconFlashMaterial=Shader'BallisticTextures_25.BOGP.AmmoIcon_BOGPFlash'
      PickupClass=Class'BallisticProV55.AP_BOGPGrenades'
      IconMaterial=Texture'BallisticTextures_25.BOGP.AmmoIcon_BOGP'

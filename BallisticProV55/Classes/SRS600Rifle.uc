@@ -220,8 +220,8 @@ defaultproperties
      ClipOutSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-ClipOut')
      ClipInSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-ClipIn')
      ClipInFrame=0.650000
-     WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-     WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=2.000000)
+	 WeaponModes(0)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
+     WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
      WeaponModes(2)=(bUnavailable=True)
 	 CurrentWeaponMode=0
      FullZoomFOV=70.000000

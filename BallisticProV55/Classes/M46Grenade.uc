@@ -102,6 +102,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		if (Proj != None)
 		{
 			Proj.Instigator = Instigator;
+			Proj.InstigatorController = InstigatorController;
 			M46ProximityMine(Proj).OriginalPlacer = Instigator;
 			Proj.bHardAttach = true;
 			Proj.SetBase(LastTrace);

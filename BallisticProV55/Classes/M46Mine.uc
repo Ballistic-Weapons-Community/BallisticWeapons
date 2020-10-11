@@ -1,8 +1,8 @@
 class M46Mine extends BallisticProjectile;
 
 var() Sound				DetonateSound;
-var 	bool					bManualMode;		// Requires manual activation
-var   float					TriggerStartTime;	// Time when trigger will be active
+var 	bool			bManualMode;		// Requires manual activation
+var   float				TriggerStartTime;	// Time when trigger will be active
 
 simulated function ProcessTouch (Actor Other, vector HitLocation);
 function SetManualMode (bool bManual);	

@@ -55,16 +55,12 @@ simulated function Initialize(Actor V)
 
 simulated event Timer()
 {
-	if (TicksRemaining == 0)
-	{
-		SetTimer(0.0, false);
-		return;
-	}
-	
 	if (TicksRemaining == 0 || Victim.PhysicsVolume.bWaterVolume)
 	{
 		Kill();
 		bDynamicLight=false;
+		SetTimer(0.0, false);
+		return;
 	}
 	
 	if (Victim != None && Level.NetMode != NM_Client)
@@ -116,7 +112,7 @@ simulated function PhysicsVolumeChange( PhysicsVolume NewVolume )
 defaultproperties
 {
      DamageType=Class'BallisticProV55.DTBOGPFlareBurn'
-     Damage=15
+     Damage=20
      TicksRemaining=5.000000
      Begin Object Class=SpriteEmitter Name=SpriteEmitter11
          FadeOut=True

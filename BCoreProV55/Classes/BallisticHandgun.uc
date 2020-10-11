@@ -935,7 +935,8 @@ simulated function SetDualMode (bool bDualMode)
 		if (AIController(Instigator.Controller) == None)
 			bUseSpecialAim = true;
 			
-		BFireMode[0].FireRate = BFireMode[0].default.FireRate * 1.75;
+		BFireMode[0].FireRate = BFireMode[0].default.FireRate * 1.5;
+		
 		if (bAimDisabled)
 			return;
 	}

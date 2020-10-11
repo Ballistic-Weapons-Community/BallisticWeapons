@@ -9,10 +9,11 @@ class FLASHFireControl extends Actor;
 
 var() float								DamageRadius;			// Radius in which to immolate players
 var   Vector							GroundFireSpots[25];	// Vectors sent to client to tell it where to spawn fires
-var() class<BCImpactManager>	ImpactManager;	// Impact manager to spawn on final hit
-var array<FLASHGroundFire>	Fires;
+var() class<BCImpactManager>			ImpactManager;	// Impact manager to spawn on final hit
+var array<FLASHGroundFire>				Fires;
 var() int								Damage;
-var() class<DamageType>		DamageType;
+var() class<DamageType>					DamageType;
+var() Controller						InstigatorController;
 
 var int UniqueID;
 
@@ -44,6 +45,9 @@ simulated function Initialize()
 	local Actor T;
 	local Actor A;
 	local FLASHGroundFire GF;
+	
+	if (Instigator != None)
+		InstigatorController = Instigator.Controller;
 
 	// Spawn effects, sounds, etc
 /*    if (ImpactManager != None)
@@ -161,6 +165,9 @@ function Timer()
 				
 				if (bDamage)
 				{
+					if ( Instigator == None || Instigator.Controller == None )
+						Fires[i].Touching[j].SetDelayedDamageInstigatorController( InstigatorController );
+						
 					class'BallisticDamageType'.static.GenericHurt(Fires[i].Touching[j], Damage, Instigator, Fires[i].Touching[j].Location, vect(0,0,0), DamageType);
 					Served[Served.length] = Fires[i].Touching[j];	
 				}

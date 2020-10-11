@@ -67,7 +67,7 @@ defaultproperties
 {
 	 CutOffStartRange=3072
 	 CutOffDistance=6144
-	 RangeAtten=0.5
+	 RangeAtten=0.75
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=24.000000
      

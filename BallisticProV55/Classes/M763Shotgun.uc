@@ -43,6 +43,7 @@ simulated function PostBeginPlay()
 	Super.PostBeginPlay();
 	
 	GC = Spawn(class'M763GasControl', self);
+	GC.InstigatorController = Instigator.Controller;
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)

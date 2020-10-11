@@ -82,7 +82,7 @@ defaultproperties
      bPenetrate=True
      StartDelay=0.030000
      Speed=3000.000000
-     Damage=24.000000
+     Damage=18.000000
      MyDamageType=Class'BallisticProV55.DTRX22ABurned'
      bHidden=True
      RemoteRole=ROLE_None

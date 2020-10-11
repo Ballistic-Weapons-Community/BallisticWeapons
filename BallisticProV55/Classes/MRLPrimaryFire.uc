@@ -22,12 +22,7 @@ simulated function bool AllowFire()
 {
 	if (Instigator.Physics != PHYS_Walking)
 		return false;
-	if (!BW.bScopeHeld && BW.SightingState != SS_Active && Instigator.IsLocallyControlled() && PlayerController(Instigator.Controller) != None)
-	{
-		BW.ScopeView();
-		if (!BW.bScopeView)
-			return false;
-	}
+		
 	if (MRL.LoadedFrontBarrels < AmmoPerFire && MRL.LoadedBackBarrels < AmmoPerFire)
 	{
 		if (MRL.MagAmmo+MRL.BigMagAmmo < AmmoPerFire)
@@ -37,10 +32,13 @@ simulated function bool AllowFire()
 		}
 		return false;
 	}
+	
 	if (!CheckReloading())
 		return false;// Is weapon busy reloading
+		
 	if (!CheckWeaponMode())
 		return false;// Will weapon mode allow further firing
+		
 	if (!bUseWeaponMag || BW.bNoMag)
 	{
 		if(!Super.AllowFire())
@@ -50,6 +48,7 @@ simulated function bool AllowFire()
 			return false;	// Does not use ammo from weapon mag. Is there ammo in inventory
 		}
 	}
+	
 	else if (MRL.MagAmmo+MRL.BigMagAmmo < AmmoPerFire)
 	{
 		if (!bPlayedDryFire && DryFireSound.Sound != None)
@@ -64,10 +63,13 @@ simulated function bool AllowFire()
 		BW.EmptyFire(ThisModeNum);
 		return false;		// Is there ammo in weapon's mag
 	}
+	
 	else if (BW.bNeedReload)
 		return false;
+		
 	else if (BW.bNeedCock)
 		return false;	// Is gun cocked
+		
     return true;
 }
 
@@ -181,7 +183,7 @@ defaultproperties
 {
      SpawnOffset=(X=28.000000,Y=10.000000,Z=-8.000000)
      MuzzleFlashClass=Class'BallisticProV55.MRLFlashEmitter'
-     RecoilPerShot=150.000000
+     RecoilPerShot=0.000000
      FireChaos=0.170000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
      bPawnRapidFireAnim=True

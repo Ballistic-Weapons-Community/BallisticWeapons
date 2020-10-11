@@ -324,7 +324,7 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
 	 bNoCrosshairInScope=True
-	 InventorySize=6
+	 InventorySize=12
      SightPivot=(Pitch=300)
      SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
      JumpChaos=0.750000
@@ -348,8 +348,8 @@ defaultproperties
      Priority=19
      HudColor=(G=50)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=2
-     GroupOffset=1
+     InventoryGroup=8
+     GroupOffset=5
      PickupClass=Class'BallisticProV55.BOGPPickup'
      PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
      AttachmentClass=Class'BallisticProV55.BOGPAttachment'

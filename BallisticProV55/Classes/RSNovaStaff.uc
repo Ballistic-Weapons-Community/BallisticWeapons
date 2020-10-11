@@ -823,7 +823,7 @@ defaultproperties
      SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;1.0;0.0;1.0")
      BringUpSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Pullout')
      PutDownSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Putaway')
-     MagAmmo=21
+     MagAmmo=24
 	 PutDownAnimRate=1.4
      ReloadAnimRate=1.250000
      ClipOutSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalOut',Volume=0.700000)

@@ -11,9 +11,10 @@
 //=============================================================================
 class M763GasControl extends Actor;
 
-var   array<M763GasCollider>		Clouds;
-var() int									Damage;
+var   array<M763GasCollider>	Clouds;
+var() int						Damage;
 var() class<DamageType>			DamageType;
+var	  Controller				InstigatorController;
 
 const MAXRANGE = 1280;
 const INTERVAL = 6;
@@ -67,6 +68,9 @@ function ServeCustomers()
 					break;
 			if (k >= Served.length)	
 			{
+				if ( Instigator == None || Instigator.Controller == None )
+					Clouds[i].Touching[j].SetDelayedDamageInstigatorController( InstigatorController );
+					
 				class'BallisticDamageType'.static.GenericHurt(Clouds[i].Touching[j], Damage, Instigator, Clouds[i].Touching[j].Location, vect(0,0,0), DamageType);
 				if (Pawn(Clouds[i].Touching[j]) != None)
 				{

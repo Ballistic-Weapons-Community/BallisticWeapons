@@ -194,7 +194,7 @@ defaultproperties
      MotionBlurTime=0.000000
      Speed=6500.000000
      TossZ=0.000000
-     Damage=20.000000
+     Damage=25.000000
      DamageRadius=128.000000
      MomentumTransfer=0.000000
      MyDamageType=Class'BallisticProV55.DTBOGPFlareBurn'

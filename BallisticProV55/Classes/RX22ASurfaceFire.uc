@@ -135,7 +135,7 @@ simulated function PhysicsVolumeChange( PhysicsVolume NewVolume )
 
 defaultproperties
 {
-     Damage=35.000000
+     Damage=25.000000
      DamageType=Class'BallisticProV55.DTRX22AFireTrap'
      IgniteSound=Sound'BallisticSounds2.RX22A.RX22A-IgniteFire'
      RepulsionForceMag=275.000000

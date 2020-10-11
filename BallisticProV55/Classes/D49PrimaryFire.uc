@@ -58,9 +58,9 @@ defaultproperties
      TraceRange=(Min=8000.000000,Max=9000.000000)
      WallPenetrationForce=8.000000
      
-     Damage=50.000000
-     DamageHead=75.000000
-     DamageLimb=50.000000
+     Damage=60.000000
+     DamageHead=90.000000
+     DamageLimb=60.000000
      RangeAtten=0.3500000
      WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTD49Revolver'
@@ -78,7 +78,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BallisticSounds3.D49.D49-FireSingle',Volume=1.200000)
      FireAnim="FireSingle"
      FireEndAnim=
-     FireRate=0.34000
+     FireRate=0.4
 	 AimedFireAnim="SightFire"
      AmmoClass=Class'BallisticProV55.Ammo_44Magnum'
      ShakeRotMag=(X=64.000000,Y=32.000000)

@@ -163,9 +163,11 @@ function Timer()
 			for(k=0;k<Served.length;k++)
 				if (Served[k] == GroundFires[i].Touching[j])
 					break;
-			if (k >= Served.length)	{
+			if (k >= Served.length)	
+			{
 				GroundFires[i].Toast(GroundFires[i].Touching[j]);
-				Served[Served.length] = GroundFires[i].Touching[j];	}
+				Served[Served.length] = GroundFires[i].Touching[j];	
+			}
 		}
 }
 

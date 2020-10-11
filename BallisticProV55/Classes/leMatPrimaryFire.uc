@@ -28,9 +28,9 @@ defaultproperties
      TraceRange=(Min=8000.000000,Max=8000.000000)
      WallPenetrationForce=8.000000
      
-     Damage=35.000000
-     DamageHead=35.000000
-     DamageLimb=35.000000
+     Damage=45.000000
+     DamageHead=45.000000
+     DamageLimb=45.000000
      RangeAtten=0.40000
      WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTleMatRevolver'
@@ -48,7 +48,7 @@ defaultproperties
      XInaccuracy=64.000000
      YInaccuracy=64.000000
 	 FireAnimRate=1.5
-	 FireRate=0.25
+	 FireRate=0.32
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-Fire',Volume=1.200000)
      FireEndAnim=
      AmmoClass=Class'BallisticProV55.Ammo_leMat'

@@ -185,10 +185,10 @@ function FlashMuzzleFlash()
 defaultproperties
 {
      SpawnOffset=(X=28.000000,Y=8.000000,Z=-6.000000)
-     RecoilPerShot=96.000000
+     RecoilPerShot=0.000000
      FireChaos=0.080000
-     XInaccuracy=64.000000
-     YInaccuracy=64.000000
+     XInaccuracy=378.000000
+     YInaccuracy=378.000000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
@@ -200,6 +200,6 @@ defaultproperties
      ShakeOffsetMag=(X=-3.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
-     ProjectileClass=Class'BallisticProV55.MRLRocketSecondary'
+     ProjectileClass=Class'BallisticProV55.MRLRocket'
      WarnTargetPct=0.200000
 }

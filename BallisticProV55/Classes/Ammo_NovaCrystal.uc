@@ -10,8 +10,8 @@ class Ammo_NovaCrystal extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=126
-     InitialAmount=63
+     MaxAmmo=144
+     InitialAmount=72
      IconFlashMaterial=Shader'BWBP4-Tex.NovaStaff.AmmoIcon_NovaCrystalFlash'
      PickupClass=Class'BallisticProV55.AP_NovaCrystal'
      IconMaterial=Texture'BWBP4-Tex.NovaStaff.AmmoIcon_NovaCrystal'
