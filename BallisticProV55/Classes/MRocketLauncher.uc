@@ -503,7 +503,8 @@ defaultproperties
      BackRockets(1)=(RocketName="RocketB2")
      BackRockets(2)=(RocketName="RocketB3")
      BigMagAmmo=72
-     PlayerSpeedFactor=0.50000
+	 PlayerSpeedFactor=0.75
+	 PlayerJumpFactor=0.75
      BigIconMaterial=Texture'BWBP4-Tex.MRL.BigIcon_MRL'
      BigIconCoords=(Y1=30,Y2=225)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -539,7 +540,7 @@ defaultproperties
      AimSpread=12
      ChaosDeclineTime=0.320000
      ChaosSpeedThreshold=500.000000
-     ChaosAimSpread=768
+     ChaosAimSpread=2048
      RecoilXFactor=0.000000
      RecoilYFactor=0.000000
      FireModeClass(0)=Class'BallisticProV55.MRLPrimaryFire'

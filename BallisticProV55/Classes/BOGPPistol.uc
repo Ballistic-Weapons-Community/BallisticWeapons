@@ -312,7 +312,7 @@ defaultproperties
      MagAmmo=1
      bNoMag=True
      CockAnim="Reload"
-     CockAnimRate=1.250000
+     CockAnimRate=1.50000
      CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock')
      ReloadAnimRate=1.250000
      ClipHitSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_Close',Volume=1.000000)

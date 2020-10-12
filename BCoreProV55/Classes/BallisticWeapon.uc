@@ -4473,6 +4473,49 @@ exec simulated final function GetDefaultMode()
 	else 	Instigator.ClientMessage("Default mode for"@ItemName$":"@WeaponModes[SavedWeaponMode].ModeName$".");
 }
 
+simulated function vector GetEffectStart()
+{
+    local Vector X,Y,Z;
+	local Vector AimEffectOffset;
+	local Rotator CurrentAimRotation;
+
+    // jjs - this function should actually never be called in third person views
+    // any effect that needs a 3rdp weapon offset should figure it out itself
+
+    // 1st person
+    if (Instigator.IsFirstPerson())
+    {
+        if ( WeaponCentered() )
+			return CenteredEffectStart();
+
+		if (Instigator.Controller == None)
+			CurrentAimRotation = Instigator.Rotation;
+		else 
+			CurrentAimRotation = Instigator.Controller.Rotation;
+			
+		CurrentAimRotation += GetAimPivot();
+		CurrentAimRotation += GetRecoilPivot();
+		CurrentAimRotation += default.PlayerViewPivot;
+
+        GetAxes(CurrentAimRotation, X, Y, Z);
+		
+		AimEffectOffset = (EffectOffset.X * X) + (EffectOffset.Y * Y * Hand) + (EffectOffset.Z * Z);
+		
+		Log("Pivot: "$(GetAimPivot() + GetRecoilPivot())$" AimEffectOffset:"$AimEffectOffset);
+		
+		return (Instigator.Location +
+			Instigator.CalcDrawOffset(self) +
+			AimEffectOffset);
+    }
+    // 3rd person
+    else
+    {
+        return (Instigator.Location +
+            Instigator.EyeHeight*Vect(0,0,0.5) +
+            Vector(Instigator.Rotation) * 40.0);
+    }
+}
+
 //===========================================================================
 //
 // Debug stuff --------------------------------------------------------------------------------------------------

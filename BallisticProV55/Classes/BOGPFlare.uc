@@ -182,7 +182,7 @@ defaultproperties
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=0.000000
-     ImpactDamage=25
+     ImpactDamage=40
      ImpactDamageType=Class'BallisticProV55.DTBOGPFlare'
      ImpactManager=Class'BallisticProV55.IM_BOGPFlareScorch'
      TrailClass=Class'BallisticProV55.BOGPFlareTrail'
@@ -192,10 +192,12 @@ defaultproperties
      MotionBlurRadius=0.000000
      MotionBlurFactor=0.000000
      MotionBlurTime=0.000000
-     Speed=6500.000000
+     Speed=5500.000000
+	 MaxSpeed=7500.000000
+	 AccelSpeed=100000.000000
      TossZ=0.000000
-     Damage=25.000000
-     DamageRadius=128.000000
+     Damage=40.000000
+     DamageRadius=64.000000
      MomentumTransfer=0.000000
      MyDamageType=Class'BallisticProV55.DTBOGPFlareBurn'
      LightType=LT_Steady
@@ -207,4 +209,5 @@ defaultproperties
      bDynamicLight=True
      LifeSpan=0.000000
      DrawScale=0.300000
+	 bIgnoreTerminalVelocity=True
 }

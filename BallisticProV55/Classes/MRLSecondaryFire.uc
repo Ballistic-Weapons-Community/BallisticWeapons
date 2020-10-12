@@ -35,12 +35,7 @@ simulated function bool OldAllowFire()
 {
 	if (Instigator.Physics != PHYS_Walking)
 		return false;
-	if (!BW.bScopeHeld && BW.SightingState != SS_Active && Instigator.IsLocallyControlled() && PlayerController(Instigator.Controller) != None)
-	{
-		BW.ScopeView();
-		if (!BW.bScopeView)
-			return false;
-	}
+
 	if (MRL.LoadedFrontBarrels < AmmoPerFire && MRL.LoadedBackBarrels < AmmoPerFire)
 	{
 		if (MRL.MagAmmo+MRL.BigMagAmmo < AmmoPerFire)
@@ -187,12 +182,12 @@ defaultproperties
      SpawnOffset=(X=28.000000,Y=8.000000,Z=-6.000000)
      RecoilPerShot=0.000000
      FireChaos=0.080000
-     XInaccuracy=378.000000
-     YInaccuracy=378.000000
+     XInaccuracy=768.000000
+     YInaccuracy=768.000000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
-     FireRate=0.080000
+     FireRate=0.070000
      AmmoClass=Class'BallisticProV55.Ammo_MRL'
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

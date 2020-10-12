@@ -188,7 +188,9 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
-     FireRate=0.120000
+     FireRate=0.110000
+	 XInaccuracy=128
+	 YInaccuracy=128
      AmmoClass=Class'BallisticProV55.Ammo_MRL'
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

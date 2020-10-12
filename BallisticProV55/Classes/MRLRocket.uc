@@ -95,7 +95,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 			class'BallisticDamageType'.static.GenericHurt
 			(
 				Victims,
-				Square(damageScale) * DamageAmount,
+				damageScale * DamageAmount,
 				Instigator,
 				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
 				(damageScale * Momentum * dir),
@@ -111,15 +111,15 @@ defaultproperties
      RollRange=192000
      ImpactManager=Class'BallisticProV55.IM_MRLRocket'
      bRandomStartRotaion=False
-     AccelSpeed=12000.000000
+     AccelSpeed=10000.000000
      TrailClass=Class'BallisticProV55.MRLTrailEmitter'
      TrailOffset=(X=-4.000000)
      MyRadiusDamageType=Class'BallisticProV55.DT_MRLRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=1000.000000
+     Speed=4500.000000
      MaxSpeed=25000.000000
      Damage=35.000000
-     DamageRadius=384.000000
+     DamageRadius=420.000000
      MomentumTransfer=5500.000000
      MyDamageType=Class'BallisticProV55.DT_MRL'
      StaticMesh=StaticMesh'BWBP4-Hardware.MRL.MRLRocket'

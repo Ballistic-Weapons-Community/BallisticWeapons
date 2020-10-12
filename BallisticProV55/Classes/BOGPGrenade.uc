@@ -87,6 +87,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 defaultproperties
 {
      DetonateOn=DT_ImpactTimed
+	 PlayerImpactType=PIT_Detonate
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=1.000000

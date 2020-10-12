@@ -14,7 +14,7 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticJiffyPack.ARHeatEmitter'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
-     FlashScale=1.800000
+     FlashScale=0.6
      BrassClass=Class'BallisticJiffyPack.Brass_ShotgunHE'
      TracerClass=Class'BallisticJiffyPack.TraceEmitter_ShotgunHE'
      TracerChance=0.500000

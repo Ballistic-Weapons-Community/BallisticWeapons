@@ -685,6 +685,8 @@ defaultproperties
      SightOffset=(Y=0.050000,Z=12.130000)
      SightDisplayFOV=40.000000
 	 
+	 EffectOffset=(X=100,Z=7)
+	 
      CrouchAimFactor=0.750000
      SightAimFactor=0.200000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
