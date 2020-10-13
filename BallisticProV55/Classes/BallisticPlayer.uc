@@ -21,34 +21,37 @@
 //=============================================================================
 class BallisticPlayer extends xPlayer config(User);
 
-var() globalconfig bool			bUseWeaponUI;	// Option to use the weap selection UI
-struct UIWeaps { var array<Inventory> Items; };//List of items in a group
-var 	bool								bIsInWeaponUI;		// Weapon selector UI is active
-var 	UIWeaps						WeaponGroups[11];	// A list of all inventory groups and the items in them
-var 	int									WGroup, WItem;		// Current inventory group and item highlited in UI
+var() globalconfig bool					bUseWeaponUI;	// Option to use the weap selection UI
+struct UIWeaps { var array<Inventory> 	Items; };//List of items in a group
+var 	bool							bIsInWeaponUI;		// Weapon selector UI is active
+var 	UIWeaps							WeaponGroups[11];	// A list of all inventory groups and the items in them
+var 	int								WGroup, WItem;		// Current inventory group and item highlited in UI
 var 	String							GroupNames[11];		// key binding text displayed next to each group
-var	Sound							WeapUIEnter;		// Sound when UI opens
-var	Sound							WeapUIExit;			// Sound when UI is closed with alt fire
-var	Sound							WeapUIFail;			// Sound when unable to change to selected weapon
-var	Sound							WeapUIUse;			// Sound when switching to new weapon and leaving UI
-var	Sound							WeapUICycle;		// Sound when moving selection to another weapon
-var	Sound							WeapUIChange;		// Sound when moving selection to another group
-var 	int									InventoryLength;	// Number of items last in the inventory chain. Use to see if inventory changes
+var	Sound								WeapUIEnter;		// Sound when UI opens
+var	Sound								WeapUIExit;			// Sound when UI is closed with alt fire
+var	Sound								WeapUIFail;			// Sound when unable to change to selected weapon
+var	Sound								WeapUIUse;			// Sound when switching to new weapon and leaving UI
+var	Sound								WeapUICycle;		// Sound when moving selection to another weapon
+var	Sound								WeapUIChange;		// Sound when moving selection to another group
+var 	int								InventoryLength;	// Number of items last in the inventory chain. Use to see if inventory changes
 
-var	globalconfig	float			ZoomTimeMod;		//A modifier on how fast zoom changes.
+var	globalconfig	float				ZoomTimeMod;		//A modifier on how fast zoom changes.
 var 	globalconfig 	bool			bOldBehindView;
 
-var Rotator							BehindViewAimRotator;
+var Rotator								BehindViewAimRotator;
 
 var globalconfig		float			SavedBehindDistFactor;
 var float								BehindDistFactor;
-var() localized string				WeapUIHelp[4];
+var() localized string					WeapUIHelp[4];
 
-var 	float								IconPulsePhase;		// Stuff for pulsing selected icon
-var 	float								LastUIDrawTime;
+var 	float							IconPulsePhase;		// Stuff for pulsing selected icon
+var 	float							LastUIDrawTime;
 
-var class<Weapon>					LastLoadoutClasses[7];
-var class<Weapon>					LastStreaks[2];
+var class<Weapon>						LastLoadoutClasses[7];
+var class<Weapon>						LastStreaks[2];
+
+// nasty bullshit because PlayerInput is a private variable
+var bool								bDodgeHeld;
 
 replication
 {
@@ -1163,7 +1166,6 @@ ignores SeePlayer, HearNoise, Bump, ServerSpectate;
 
 // end Titan RPG handling
 
-
 function ViewFlash(float DeltaTime)
 {
     local vector goalFog;
@@ -1204,6 +1206,18 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 	Canvas.SetPos(4, YPos);
 }
 
+simulated exec function DodgeOn()
+{
+	Log("DodgeOn");
+	bDodgeHeld = true;
+}
+
+simulated exec function DodgeOff()
+{
+	Log("DodgeOff");
+	bDodgeHeld = false;
+}
+
 defaultproperties
 {
      WeapUIEnter=Sound'MenuSounds.selectDshort'
@@ -1214,6 +1228,7 @@ defaultproperties
      WeapUIChange=Sound'MenuSounds.MS_ListChangeUp'
      ZoomTimeMod=1.500000
      SavedBehindDistFactor=1.000000
+	 InputClass=class'BallisticProV55.BallisticPlayerInput'
      BehindDistFactor=1.000000
      WeapUIHelp(0)="Fire to confirm selection."
      WeapUIHelp(1)="Altfire to exit UI."
