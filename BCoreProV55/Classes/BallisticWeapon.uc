@@ -4473,6 +4473,24 @@ exec simulated final function GetDefaultMode()
 	else 	Instigator.ClientMessage("Default mode for"@ItemName$":"@WeaponModes[SavedWeaponMode].ModeName$".");
 }
 
+simulated function vector ConvertFOVs (vector InVec, float InFOV, float OutFOV, float Distance)
+{
+	local vector ViewLoc, Outvec, Dir, X, Y, Z;
+	local rotator ViewRot;
+
+	ViewLoc = Instigator.Location + Instigator.EyePosition();
+	ViewRot = Instigator.GetViewRotation();
+	Dir = InVec - ViewLoc;
+	GetAxes(ViewRot, X, Y, Z);
+
+    OutVec.X = Distance / tan(OutFOV * PI / 360);
+    OutVec.Y = (Dir dot Y) * (Distance / tan(InFOV * PI / 360)) / (Dir dot X);
+    OutVec.Z = (Dir dot Z) * (Distance / tan(InFOV * PI / 360)) / (Dir dot X);
+    OutVec = OutVec >> ViewRot;
+
+	return OutVec + ViewLoc;
+}
+
 simulated function vector GetEffectStart()
 {
     local Vector X,Y,Z;
@@ -4487,25 +4505,8 @@ simulated function vector GetEffectStart()
     {
         if ( WeaponCentered() )
 			return CenteredEffectStart();
-
-		if (Instigator.Controller == None)
-			CurrentAimRotation = Instigator.Rotation;
-		else 
-			CurrentAimRotation = Instigator.Controller.Rotation;
 			
-		CurrentAimRotation += GetAimPivot();
-		CurrentAimRotation += GetRecoilPivot();
-		CurrentAimRotation += default.PlayerViewPivot;
-
-        GetAxes(CurrentAimRotation, X, Y, Z);
-		
-		AimEffectOffset = (EffectOffset.X * X) + (EffectOffset.Y * Y * Hand) + (EffectOffset.Z * Z);
-		
-		Log("Pivot: "$(GetAimPivot() + GetRecoilPivot())$" AimEffectOffset:"$AimEffectOffset);
-		
-		return (Instigator.Location +
-			Instigator.CalcDrawOffset(self) +
-			AimEffectOffset);
+		return ConvertFOVs(GetBoneCoords('tip').Origin, DisplayFOV, Instigator.Controller.FovAngle, 32);
     }
     // 3rd person
     else

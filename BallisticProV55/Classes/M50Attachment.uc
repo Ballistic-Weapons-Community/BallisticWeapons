@@ -8,23 +8,6 @@
 //=============================================================================
 class M50Attachment extends BallisticAttachment;
 
-// Return the location of the muzzle.
-simulated function Vector GetTipLocation()
-{
-    local Coords C;
-
-	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
-	{		
-		Log("Returning GetEffectStart()");
-		return Instigator.Weapon.GetEffectStart();
-	}
-
-	if (Instigator != None && level.NetMode != NM_StandAlone && level.NetMode != NM_ListenServer && VSize(C.Origin - Instigator.Location) > 300)
-		return Instigator.Location;
-		
-    return GetBoneCoords('tip').Origin;
-}
-
 defaultproperties
 {
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
