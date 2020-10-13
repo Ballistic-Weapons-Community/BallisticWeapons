@@ -4493,13 +4493,6 @@ simulated function vector ConvertFOVs (vector InVec, float InFOV, float OutFOV, 
 
 simulated function vector GetEffectStart()
 {
-    local Vector X,Y,Z;
-	local Vector AimEffectOffset;
-	local Rotator CurrentAimRotation;
-
-    // jjs - this function should actually never be called in third person views
-    // any effect that needs a 3rdp weapon offset should figure it out itself
-
     // 1st person
     if (Instigator.IsFirstPerson())
     {

@@ -275,8 +275,6 @@ function bool IsValidHealTarget(Pawn PulseTarget)
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
-	local int Drain;
-	
 	if (ElectroCharge > 0 &&
 	bBlocked && 
 	!IsFiring() && 

@@ -46,14 +46,16 @@ simulated function Vector GetTipLocation()
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 	{
 		if (HandGun != None)
-			C = HandGun.GetBoneCoords('tip');
+			return HandGun.GetEffectStart();
 		else
-			C = Instigator.Weapon.GetBoneCoords('tip');
+			return Instigator.Weapon.GetEffectStart();
 	}
-	else
-		C = GetBoneCoords('tip');
+	
+	C = GetBoneCoords('tip');
+		
 	if (Instigator != None && VSize(C.Origin - Instigator.Location) > 200)
 		return Instigator.Location;
+		
     return C.Origin;
 }
 

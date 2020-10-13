@@ -31,8 +31,7 @@ simulated function Vector GetTipLocation()
 		}
 		else
 		{
-			C = Instigator.Weapon.GetBoneCoords('tip');
-    			return C.Origin;
+			return Instigator.Weapon.GetEffectStart();
 		}
 	}
 	else if (BallisticTurret(Instigator) != None)

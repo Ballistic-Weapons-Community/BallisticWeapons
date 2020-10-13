@@ -1,6 +1,6 @@
 class BX85PrimaryFire extends BallisticProInstantFire;
 
-var() Name		EmptyFireAnim, NoMagFireAnim;
+var() Name		NoMagFireAnim;
 
 //// server propagation of firing. Changes to animation selection to accommodate different ammo counts //// 
 function ServerPlayFiring()

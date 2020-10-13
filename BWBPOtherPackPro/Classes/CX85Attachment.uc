@@ -2,10 +2,9 @@ class CX85Attachment extends BallisticAttachment;
 
 simulated function Vector GetTipLocation()
 {
-    local Coords C;
     local Vector X, Y, Z;
-
-	if (Instigator.IsFirstPerson())
+	
+	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 	{
 		if (BallisticWeapon(Instigator.Weapon).bScopeView)
 		{
@@ -13,11 +12,11 @@ simulated function Vector GetTipLocation()
 			return Instigator.Location + X*20 + Z*5;
 		}
 		else
-			C = Instigator.Weapon.GetBoneCoords('tip');
+			return Instigator.Weapon.GetEffectStart();
 	}
+	
 	else
-		C = GetBoneCoords('tip');
-    return C.Origin;
+		return GetBoneCoords('tip').Origin;
 }
 
 defaultproperties

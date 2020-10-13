@@ -6,28 +6,6 @@ class F2000Attachment extends BallisticAttachment;
 var	  BallisticWeapon		myWeap;
 var Vector		SpawnOffset;
 
-simulated function Vector GetTipLocation()
-{
-    local Vector X, Y, Z, Loc;
-
-	if (Instigator.IsFirstPerson())
-	{
-		if (F2000AssaultRifle(Instigator.Weapon).bScopeView)
-		{
-			Instigator.Weapon.GetViewAxes(X,Y,Z);
-			Loc = Instigator.Location + Instigator.EyePosition() + X*20 + Z*-10;
-		}
-		else
-			Loc = Instigator.Weapon.GetBoneCoords('tip').Origin + class'BUtil'.static.AlignedOffset(Instigator.GetViewRotation(), SpawnOffset);
-	}
-	else
-		Loc = GetBoneCoords('tip').Origin;
-	if (VSize(Loc - Instigator.Location) > 200)
-		return Instigator.Location;
-    return Loc;
-}
-
-
 function InitFor(Inventory I)
 {
 	Super.InitFor(I);

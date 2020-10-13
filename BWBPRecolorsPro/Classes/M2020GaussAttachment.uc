@@ -160,7 +160,7 @@ simulated function Vector GetTipLocation()
 			Loc = Instigator.Location + Instigator.EyePosition() + X*20 + Z*-10;
 		}
 		else
-			Loc = Instigator.Weapon.GetBoneCoords('tip').Origin + class'BUtil'.static.AlignedOffset(Instigator.GetViewRotation(), SpawnOffset);
+			Loc = Instigator.Weapon.GetEffectStart();
 	}
 	else
 		Loc = GetBoneCoords('tip').Origin;

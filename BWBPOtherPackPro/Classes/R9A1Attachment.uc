@@ -135,27 +135,26 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 simulated function Vector GetTipLocation()
 {
-    local Coords C;
     local Vector X, Y, Z;
-
-	if (Instigator.IsFirstPerson())
+	
+	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 	{
 		if (BW == None)
+		{
 			BW = BallisticWeapon(Instigator.Weapon);
-		if (BW == None)
-			return Instigator.Location;
-		
+			
+			if (BW == None)
+				return Instigator.Location;
+		}
+			
 		if (BW.bScopeView && BW.bNoMeshInScope)
 		{
 			Instigator.Weapon.GetViewAxes(X,Y,Z);
 			return Instigator.Location + X*20 + Z*5;
 		}
 		else
-			C = BW.GetBoneCoords('tip');
+			return Instigator.Weapon.GetEffectStart();
 	}
-	else
-		C = GetBoneCoords('tip');
-    return C.Origin;
 }
 
 defaultproperties

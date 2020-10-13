@@ -8,15 +8,13 @@
 //=============================================================================
 class RaygunAttachment extends BallisticAttachment;
 
+// Return the location of the muzzle.
 simulated function Vector GetTipLocation()
 {
-    local Coords C;
-
-	if (Instigator.IsFirstPerson())
-		C = Instigator.Weapon.GetBoneCoords('tip');
-	else
-		C = GetBoneCoords('tip');
-    return C.Origin;
+	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
+		return Instigator.Weapon.GetEffectStart();
+		
+	return GetBoneCoords('tip').Origin;
 }
 
 defaultproperties

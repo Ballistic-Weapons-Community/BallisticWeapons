@@ -13,7 +13,6 @@ var() class<BCTraceEmitter>	AltTracerClass;		//Type of tracer to use for instant
 // Return the location of the muzzle.
 simulated function Vector GetTipLocation()
 {
-    local Coords C;
     local Vector X, Y, Z, Loc;
 
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
@@ -26,23 +25,13 @@ simulated function Vector GetTipLocation()
 		}
 		else
 		{
-			C = Instigator.Weapon.GetBoneCoords('tip');
-    			return C.Origin;
+			return Instigator.Weapon.GetEffectStart();
 		}
-	}
-	else if (BallisticTurret(Instigator) != None)
-	{
-		C = Instigator.GetBoneCoords('tip');
-    		return C.Origin;
 	}
 	else
 	{
-		C = GetBoneCoords('tip');
-	     return C.Origin;
+	    return GetBoneCoords('tip').Origin;
 	}
-	if (Instigator != None && VSize(C.Origin - Instigator.Location) > 250)
-		return Instigator.Location;
-
 }
 
 // Return location of brass ejector

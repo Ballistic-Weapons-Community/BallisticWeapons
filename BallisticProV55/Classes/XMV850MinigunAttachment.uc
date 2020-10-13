@@ -301,11 +301,9 @@ simulated function Vector GetTipLocation()
     local Coords C;
 
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
-	{
-		C = Instigator.Weapon.GetBoneCoords('tip');
-	}
+		return Instigator.Weapon.GetEffectStart();
 	
-	else if (BallisticTurret(Instigator) != None)
+	if (BallisticTurret(Instigator) != None)
 		C = Instigator.GetBoneCoords('tip');
 		
 	else C = GetBoneCoords('tip');

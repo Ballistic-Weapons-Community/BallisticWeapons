@@ -56,21 +56,22 @@ simulated function Vector GetTipLocation()
 
 	if (Instigator.IsFirstPerson())
 	{
-
 		if (LS14Carbine(Instigator.Weapon).bScopeView)
 		{
 			Instigator.Weapon.GetViewAxes(X,Y,Z);
-				Loc = Instigator.Location + Instigator.EyePosition() + X*20 + Z*-10;
+			Loc = Instigator.Location + Instigator.EyePosition() + X*20 + Z*-10;
 		}
 		else
 		{
-			Loc = Instigator.Weapon.GetBoneCoords('tip').Origin + class'BUtil'.static.AlignedOffset(Instigator.GetViewRotation(), SpawnOffset);
+			Loc = Instigator.Weapon.GetEffectStart();
 		}
 	}
 	else
 		Loc = GetBoneCoords('tip').Origin;
+		
 	if (VSize(Loc - Instigator.Location) > 200)
 		return Instigator.Location;
+		
     return Loc;
 }
 
