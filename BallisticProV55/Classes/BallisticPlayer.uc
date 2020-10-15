@@ -50,9 +50,6 @@ var 	float							LastUIDrawTime;
 var class<Weapon>						LastLoadoutClasses[7];
 var class<Weapon>						LastStreaks[2];
 
-// nasty bullshit because PlayerInput is a private variable
-var bool								bDodgeHeld;
-
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -1204,18 +1201,6 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 	Canvas.DrawText("Rotation:"@Rotation@"Pawn Rotation:"@Pawn.Rotation@"Smooth View Yaw:"@Pawn.SmoothViewYaw@"Aim rotator:"@BehindViewAimRotator);
 	YPos += YL;
 	Canvas.SetPos(4, YPos);
-}
-
-simulated exec function DodgeOn()
-{
-	Log("DodgeOn");
-	bDodgeHeld = true;
-}
-
-simulated exec function DodgeOff()
-{
-	Log("DodgeOff");
-	bDodgeHeld = false;
 }
 
 defaultproperties

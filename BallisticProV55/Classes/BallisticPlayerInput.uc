@@ -8,6 +8,16 @@ class BallisticPlayerInput extends PlayerInput
 	transient;
 	
 var bool bDodgeHeld;
+
+simulated exec function DodgeOn()
+{
+	bDodgeHeld = true;
+}
+
+simulated exec function DodgeOff()
+{
+	bDodgeHeld = false;
+}
 	
 // check for double click move
 // this version allows a single-button dodge,
@@ -36,13 +46,13 @@ function Actor.eDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
 			OldDoubleClick = DoubleClickDir;
 			DoubleClickDir = DCLICK_None;
 
-			if (((bEnableDodging && bEdgeForward) || BallisticPlayer(Outer).bDodgeHeld) && bWasForward)
+			if (((bEnableDodging && bEdgeForward) || bDodgeHeld) && bWasForward)
 				DoubleClickDir = DCLICK_Forward;
-			else if (((bEnableDodging && bEdgeBack) || BallisticPlayer(Outer).bDodgeHeld) && bWasBack)
+			else if (((bEnableDodging && bEdgeBack) || bDodgeHeld) && bWasBack)
 				DoubleClickDir = DCLICK_Back;
-			else if (((bEnableDodging && bEdgeLeft) || BallisticPlayer(Outer).bDodgeHeld) && bWasLeft)
+			else if (((bEnableDodging && bEdgeLeft) || bDodgeHeld) && bWasLeft)
 				DoubleClickDir = DCLICK_Left;
-			else if (((bEnableDodging && bEdgeRight) || BallisticPlayer(Outer).bDodgeHeld) && bWasRight)
+			else if (((bEnableDodging && bEdgeRight) || bDodgeHeld) && bWasRight)
 				DoubleClickDir = DCLICK_Right;
 
 			if ( DoubleClickDir == DCLICK_None)
@@ -52,7 +62,7 @@ function Actor.eDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
 			else
 			{
 				DoubleClickMove = DoubleClickDir;
-				BallisticPlayer(Outer).bDodgeHeld = false;
+				bDodgeHeld = false;
 			}
 		}
 

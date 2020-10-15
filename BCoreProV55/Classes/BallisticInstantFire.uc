@@ -66,13 +66,13 @@ var() float						DamageHead;		// Damage for Headshots
 var() float						DamageLimb;		// Damage for Limbshots
 var() float						RangeAtten;		// Attenuates damage depending on range. At max range, damage is multiplied by this.
 var() float						WaterRangeAtten;// Extra attenuation applied when bullet goes through water. Damage *= Lerp(WaterDist / (MaxRange*WaterRangeFactor), 1, This)
-var() class<DamageType>		DamageType;		// Damage type to use
-var() class<DamageType>		DamageTypeHead;	// Damage type to use for head
-var() class<DamageType>		DamageTypeArm;	// Damage type to use for unimportant limbs
-var() int							KickForce;		// Strength of momentum
+var() class<DamageType>			DamageType;		// Damage type to use
+var() class<DamageType>			DamageTypeHead;	// Damage type to use for head
+var() class<DamageType>			DamageTypeArm;	// Damage type to use for unimportant limbs
+var() int						KickForce;		// Strength of momentum
 var() float						HookStopFactor;	// How much force is applied to counteract victim running. This * Victim.GroundSpeed
 var() float						HookPullForce;	// Velocity amount added to pull victim towards instigator
-var() int							PenetrateForce;	// The penetrating power of these bullets.
+var() int						PenetrateForce;	// The penetrating power of these bullets.
 var() bool						bPenetrate;		// Bullets can go though enemies
 var() float						PDamageFactor;	// Damage multiplied by this with each penetration
 var() float						WallPDamageFactor;	// Damage multiplied by this for each wall penetration

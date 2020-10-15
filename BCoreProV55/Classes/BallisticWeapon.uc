@@ -26,6 +26,11 @@
 // upgraded/fixed by Azarael
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
+// Azarael notes:
+// The future aim for this class is for it to serve primarily as the graphical 
+// and input components of the weapon as well as the replication channel.
+// Sub objects should handle reloading, aim and recoil systems.
+//=============================================================================
 class BallisticWeapon extends Weapon
 	abstract
  	config(BallisticProV55)
@@ -42,29 +47,29 @@ class BallisticWeapon extends Weapon
 struct WeaponSkin
 {
 	var() Material	RedTex;		// Texture to use when red
-	var() Material	BlueTex;		// Texture to use when blue
+	var() Material	BlueTex;	// Texture to use when blue
 	var() int		SkinNum;	// Index in Skins array
 };
-var() float								PlayerSpeedFactor;					// Instigator movement speed is multiplied by this when this weapon is in use
-var	bool								PlayerSpeedUp;								// Player speed has been altered by this weapon
-var() float								PlayerJumpFactor;					// Player JumpZ multiplied by this when holding this weapon
-var() array<WeaponSkin>		TeamSkins;								// A list of which skins change to show team colors
-var() Sound							UsedAmbientSound;					// Use this instead of AmbientSound to have gun hum when in use
+var() float								PlayerSpeedFactor;						// Instigator movement speed is multiplied by this when this weapon is in use
+var	bool								PlayerSpeedUp;							// Player speed has been altered by this weapon
+var() float								PlayerJumpFactor;						// Player JumpZ multiplied by this when holding this weapon
+var() array<WeaponSkin>					TeamSkins;								// A list of which skins change to show team colors
+var() Sound								UsedAmbientSound;						// Use this instead of AmbientSound to have gun hum when in use
 var() float								AIReloadTime;							// How long it's likely to take to reload. Used by bots to tell if they should reload
-var	float								BotTryReloadTime;					// Time when bot should try reload again
-var	Vehicle							OwnerLastVehicle;					// Vehicle being driven last tick...
-var	Controller						InstigatorController;					// Controller of the instigator
-var	BallisticFire   					BFireMode[NUM_FIRE_MODES];	// BallisticFire FireModes. So you don't have to write: BallisticFire(FireMode[m])
+var	float								BotTryReloadTime;						// Time when bot should try reload again
+var	Vehicle								OwnerLastVehicle;						// Vehicle being driven last tick...
+var	Controller							InstigatorController;					// Controller of the instigator
+var	BallisticFire   					BFireMode[NUM_FIRE_MODES];				// BallisticFire FireModes. So you don't have to write: BallisticFire(FireMode[m])
 var() Material							BigIconMaterial;						// A big icon for this weapon. Used in outfitting screens
-var() IntBox							BigIconCoords;						// Coords for drawing the BigIcon in the weapon bar (HUDFix)
-var	bool								bSkipDrawWeaponInfo;				//	Skips the Ballistic versions of NewDrawWeaponInfo
-var	bool								bAllowWeaponInfoOverride;		// If true, prevents upgraded HUDs from overriding the weapon info display
-var   BCSprintControl				SprintControl;							// A low, poor sort of hack to draw Sprint info on the HUD
-var() float								IdleTweenTime;						// Just a general tween time used by anims like idle
-var   Actor								SightFX;									// SightFX actor
-var() class<Actor>					SightFXClass;							// Effect to attach as an iron sight effect or could be used for anything
+var() IntBox							BigIconCoords;							// Coords for drawing the BigIcon in the weapon bar (HUDFix)
+var	bool								bSkipDrawWeaponInfo;					// Skips the Ballistic versions of NewDrawWeaponInfo
+var	bool								bAllowWeaponInfoOverride;				// If true, prevents upgraded HUDs from overriding the weapon info display
+var   BCSprintControl					SprintControl;							// A low, poor sort of hack to draw Sprint info on the HUD
+var() float								IdleTweenTime;							// Just a general tween time used by anims like idle
+var   Actor								SightFX;								// SightFX actor
+var() class<Actor>						SightFXClass;							// Effect to attach as an iron sight effect or could be used for anything
 var() name								SightFXBone;							// Bone to attach SightFX to
-var() class<BCReplicationInfo>	BCRepClass;							// BCReplication info class to use for server side variables that are sent to clients
+var() class<BCReplicationInfo>	BCRepClass;										// BCReplication info class to use for server side variables that are sent to clients
 //----------------------------------------------------------------------------------------------------------------------
 
 //Global configurable settings -----------------------------------------------------------------------------------------
@@ -192,7 +197,7 @@ enum ModeSaveType
 {
 	MR_None,				//Don't remember any weapon modes.
 	MR_Last,				//Remember the last mode used.
-	MR_SavedDefault		//Remember the mode saved manually using the SaveMode command.
+	MR_SavedDefault			//Remember the mode saved manually using the SaveMode command.
 };
 
 var globalconfig ModeSaveType ModeHandling;
@@ -363,8 +368,8 @@ var       Rotator		OldLookDir;					// Where player was looking last tick. Used t
 
 var 		float 			FireChaos; 			//Current conefire expansion factor (this * ChaosAimSpread being the current radius)
 // Recoil
-var(BAim) 	InterpCurve 	RecoilXCurve;				// Curve used to apply Yaw according to recoil amount.
-var(BAim) 	InterpCurve 	RecoilYCurve;				// Curve used to apply Pitch according to recoil amount.
+var(BAim) 	InterpCurve 		RecoilXCurve;				// Curve used to apply Yaw according to recoil amount.
+var(BAim) 	InterpCurve 		RecoilYCurve;				// Curve used to apply Pitch according to recoil amount.
 var(BAim) 	float				RecoilPitchFactor;		// Recoil is multiplied by this and added to Aim Pitch.
 var(BAim) 	float				RecoilYawFactor;			// Recoil is multiplied by this and added to Aim Yaw.
 var(BAim) 	float				RecoilXFactor;				// Recoil multiplied by this for recoil Yaw randomness
@@ -373,8 +378,8 @@ var(BAim)	float				RecoilMinRandFactor;	// Bias for calculation of recoil random
 var(BAim) 	float				RecoilMax;					// The maximum recoil amount
 var(BAim) 	float				RecoilDeclineTime;		// Time it takes for Recoil to decline maximum to zero
 var       	float				RecoilXRand;				// Random between 0 and 1. Recorded random number for recoil Yaw randomness
-var      		float				RecoilYRand;				// Random between 0 and 1. Recorded random number for recoil Pitch randomness
-var      		float				Recoil;						// The current recoil amount. Increases each shot, decreases when not firing
+var      		float			RecoilYRand;				// Random between 0 and 1. Recorded random number for recoil Pitch randomness
+var      		float			Recoil;						// The current recoil amount. Increases each shot, decreases when not firing
 var(BAim) 	float				RecoilDeclineDelay;		// The time between firing and when recoil should start decaying
 var       	float				LastFireTime;				// Time of last fire
 var			float				NextZeroAimTime;		//For zeroing aim when scoping
@@ -384,21 +389,31 @@ var			bool				bPendingBringupTimer;
 
 replication
 {
-	// Things the server should send to the client.
-	reliable if( bNetOwner && bNetDirty && (Role==ROLE_Authority) )
-		MagAmmo, CurrentWeaponMode, bServerReloading;
+	// Things the server should send to the owning client
+	reliable if( bNetOwner && Role==ROLE_Authority)
+		MagAmmo, bServerReloading, // reload system
+		CurrentWeaponMode; // weapon mode
 
 	// functions on server, called by client
-   	reliable if( Role<ROLE_Authority )
-		ServerReloadRelease, ServerStartReload, ServerSwitchWeaponMode, ServerSkipReload, ServerWeaponSpecial,
-		ServerWeaponSpecialRelease, ServerCockGun, ServerSetScopeView, ServerStopReload,
-		ServerMeleeHold, ServerMeleeRelease, ServerZeroAim, ServerReaim, ServerReloaded;
+   	reliable if( Role < ROLE_Authority )
+		ServerReloadRelease, ServerStartReload, ServerSkipReload, ServerCockGun, ServerStopReload, ServerReloaded, // reload system
+		ServerZeroAim, ServerReaim, // aim system
+		ServerWeaponSpecial, ServerWeaponSpecialRelease, // weapon special ability
+		ServerSwitchWeaponMode, // weapon mode
+		ServerMeleeHold, ServerMeleeRelease, // melee integration
+		ServerSetScopeView; // ADS
+
 
 	// functions on client, called by server
-   	reliable if( Role==ROLE_Authority )
-		ClientReloadRelease, ClientStartReload, ReceiveNewAim, ClientWeaponSpecial, ClientWeaponSpecialRelease,
-		ReceiveNetRecoil, ClientJumped, ClientPlayerDamaged, ClientScopeDown, ClientJamMode, ClientCockGun, ClientInitWeaponFromTurret,
-		ClientSwitchWeaponModes, ClientSwitchBurstMode, ClientDodged, ClientWeaponReloaded, ClientApplyBlockFatigue, ClientDisplaceAim;
+   	reliable if( Role == ROLE_Authority )
+		ClientReloadRelease, ClientStartReload, ClientCockGun, ClientWeaponReloaded, // reload system
+		ReceiveNewAim, ClientDisplaceAim, // aim system
+		ReceiveNetRecoil, // recoil system
+		ClientWeaponSpecial, ClientWeaponSpecialRelease, // weapon special ability
+		ClientSwitchWeaponModes, ClientSwitchBurstMode, // weapon mode
+		ClientJumped, ClientDodged, ClientPlayerDamaged, // client events
+		ClientScopeDown, ClientJamMode,ClientInitWeaponFromTurret,
+		ClientApplyBlockFatigue; // gameplay events
 }
 
 //The Core -------------------------------------------------------------------------------------------------------------
