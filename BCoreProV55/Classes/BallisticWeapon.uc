@@ -187,9 +187,9 @@ var() Name					EndShovelAnim;			//Anim to play after shovel loop ends
 var() Name					EndShovelEmptyAnim;	//Played if the weapon needs cocking at the end of the shovel loop
 var() float					EndShovelAnimRate;		//Rate for end anim
 var() int					ShovelIncrement;			//Amount of ammo to stick in gun each time
-var   EReloadState		ReloadState;				//State of the gun during reloading or cocking. Set seperately on client and server
+var   EReloadState			ReloadState;				//State of the gun during reloading or cocking. Set seperately on client and server
 var   bool					bServerReloading;		//Used to let clients know that server side is still reloading
-var 	bool					bPlayThirdPersonReload;//Play an anim on the Pawn for reloading.
+var 	bool				bPlayThirdPersonReload;//Play an anim on the Pawn for reloading.
 var	float					FireAnimCutThreshold;  // Cuts the fire anim if the SightingState is higher than this.
 
 enum ModeSaveType
@@ -364,6 +364,8 @@ var       Rotator	OldLookDir;					// Where player was looking last tick. Used to
 var 		float 			FireChaos; 			//Current conefire expansion factor (this * ChaosAimSpread being the current radius)
 
 var			RecoilComponent		RecoilComponent;
+var			RecoilParams		RecoilParams;
+
 var       	float				LastFireTime;				// Time of last fire
 var			float				NextZeroAimTime;			//For zeroing aim when scoping
 
@@ -428,7 +430,10 @@ final simulated function vector ViewAlignedOffset (vector Offset) { return class
 simulated function PostBeginPlay()
 {
     local int m;
-    Super.PostBeginPlay();
+	Super.PostBeginPlay();
+	
+	RecoilComponent = new (self) class'RecoilComponent';
+	RecoilComponent.Initialize(RecoilParams);
 	
 	SightingTime = Default.SightingTime*Default.SightingTimeScale;
 	
@@ -3847,11 +3852,12 @@ simulated function ApplyAimToView()
 	local Rotator BaseAim, RecoilPivotDelta;
 
 	//DC 110313
-	if (/*!Instigator.IsFirstPerson() || */ Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
+	if (Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
 		return;
 
 	RecoilPivotDelta = RecoilComponent.GetViewPivotDelta();
 	BaseAim = Aim * ViewAimFactor;
+	
 	if (RecoilComponent.ShouldUpdateView())
 		Instigator.SetViewRotation(Instigator.Controller.Rotation + (BaseAim - ViewAim) + (RecoilPivotDelta));
 	else 

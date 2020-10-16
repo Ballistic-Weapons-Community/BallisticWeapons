@@ -22,7 +22,7 @@ var private float               LastRecoilTime;
 var private RecoilParams        Params;                         // Recoil parameters
 
 // Replication
-var bool                        bForceRecoilUpdate;             // Forces ApplyAimToView call to recalculate recoil (set after ReceiveNetRecoil)
+var private bool                bForceRecoilUpdate;             // Forces ApplyAimToView call to recalculate recoil (set after ReceiveNetRecoil)
 
 //=============================================================
 // Accessors
@@ -99,7 +99,7 @@ final simulated function Tick(float DeltaTime)
 		Recoil -= FMin(Recoil, Params.RecoilMax * (DeltaTime / Params.RecoilDeclineTime));
 }
 
-simulated function AddRecoil (float Amount, optional byte Mode)
+final simulated function AddRecoil (float Amount, optional byte Mode)
 {
 	LastRecoilTime = Level.TimeSeconds;
 	
@@ -109,7 +109,7 @@ simulated function AddRecoil (float Amount, optional byte Mode)
 	Amount *= Outer.BCRepClass.default.RecoilScale;
 	
 	if (Outer.Instigator.bIsCrouched && VSize(Outer.Instigator.Velocity) < 30)
-		Amount *= Params.CrouchAimFactor;
+		Amount *= Params.CrouchRecoilFactor;
 		
 	if (!Outer.bScopeView)
 		Amount *= Params.HipRecoilFactor;

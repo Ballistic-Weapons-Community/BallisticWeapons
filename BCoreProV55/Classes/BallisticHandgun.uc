@@ -59,7 +59,7 @@ var   name				SupportHandBone;	// Bone used to hide/show extra hand for reloadin
 var   BallisticHandgun	LastSlave;			// Last slave this gun had
 var   float				LastMasterTime;		// Time when gun last had slave
 var   bool				bSlavePutDown;		// True on slave when its being putdown. Used to let it know to not do normal putdonw
-var()	bool				bShouldDualInLoadout; 	//True for a gunclass which should be dual wielded in Loadout gts
+var()	bool			bShouldDualInLoadout; 	//True for a gunclass which should be dual wielded in Loadout gts
 var	float				CreationTime;
 
 // Autotracking vars
@@ -281,28 +281,10 @@ simulated function PreDrawFPWeapon()
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
 {
-	local Rotator BaseAim, BaseRecoil;
-
-
-
-	if (IsSlave() || /*!Instigator.IsFirstPerson() || */ Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
+	if (IsSlave()))
 		return;
-
-		
-	BaseRecoil = GetRecoilPivot(true) * ViewRecoilFactor;
-	BaseAim = Aim * ViewAimFactor;
-	if (bForceRecoilUpdate || LastFireTime >= Level.TimeSeconds - RecoilDeclineDelay)
-	{
-		bForceRecoilUpdate = False;
-		Instigator.SetViewRotation(Instigator.Controller.Rotation + (BaseAim - ViewAim) + (BaseRecoil - ViewRecoil));
-	}
-
-
-
-	else Instigator.SetViewRotation(Instigator.Controller.Rotation + (BaseAim - ViewAim));
-
-	ViewAim = BaseAim;
-	ViewRecoil = BaseRecoil;	
+	
+	Super.ApplyAimToView();
 }
 
 simulated function ReloadFinished ()
@@ -1651,7 +1633,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 		case RS_EndShovel: s=s$"EndShovel"; break;
 		case RS_Cocking: s=s$"Cocking"; break;
 	}
-	s = s $ ", MagAmmo="$MagAmmo$"Chaos="$Chaos$", Recoil="$Recoil$", ReaimPhase="$ReaimPhase$", State="$GetStateName();
+	s = s $ ", MagAmmo="$MagAmmo$"Chaos="$Chaos$", Recoil="$RecoilComponent.GetRecoil()$", ReaimPhase="$ReaimPhase$", State="$GetStateName();
 	Canvas.DrawText(s);
     YPos += YL;
     Canvas.SetPos(4,YPos);
@@ -1704,5 +1686,4 @@ defaultproperties
      SightZoomFactor=0.85
      GunLength=16.000000
      LongGunPivot=(Pitch=5000,Yaw=6000)
-     HipRecoilFactor=1.500000
 }
