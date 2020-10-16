@@ -263,8 +263,8 @@ function ServerSwitchSilencer(bool bNewValue)
 	BFireMode[0].bAISilent = bSilenced;
 	SwitchSilencer(bSilenced);
 	if (bSilenced)
-		BFireMode[0].RecoilPerShot *= 0.85;
-	else BFireMode[0].RecoilPerShot = BFireMode[0].default.RecoilPerShot;
+		BFireMode[0].FireRecoil *= 0.85;
+	else BFireMode[0].FireRecoil = BFireMode[0].default.FireRecoil;
 }
 
 exec simulated function WeaponSpecial(optional byte i)

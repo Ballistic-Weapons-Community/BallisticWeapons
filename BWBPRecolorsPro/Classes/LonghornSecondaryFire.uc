@@ -89,8 +89,8 @@ defaultproperties
      bNoRandomFire=True
      bCockAfterFire=True
      AimedFireAnim="SightFire"
-     RecoilPerShot=1024.000000
-     VelocityRecoil=800.000000
+     FireRecoil=1024.000000
+     FirePushbackForce=800.000000
      FireChaos=1.000000
      XInaccuracy=256.000000
      YInaccuracy=256.000000

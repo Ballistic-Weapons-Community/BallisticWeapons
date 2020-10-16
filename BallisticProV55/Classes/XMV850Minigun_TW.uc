@@ -14,23 +14,21 @@ class XMV850Minigun_TW extends XMV850Minigun
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
 {
-	local Rotator BaseAim, BaseRecoil;
+	local Rotator BaseAim, RecoilPivotDelta;
 
 	//DC 110313
 	if (Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
 		return;
 
-	BaseRecoil = GetRecoilPivot(true) * ViewRecoilFactor;
-	BaseAim = Aim * ViewAimFactor ;
-	if (bForceRecoilUpdate || LastFireTime >= Level.TimeSeconds - RecoilDeclineDelay)
-	{
-		bForceRecoilUpdate = False;
-		Instigator.SetViewRotation((BaseAim - ViewAim) + (BaseRecoil - ViewRecoil));
-	}
+	RecoilPivotDelta = RcComponent.GetViewPivotDelta();
+	BaseAim = Aim * ViewAimFactor;
+	
+	if (RcComponent.ShouldUpdateView())
+		Instigator.SetViewRotation((BaseAim - ViewAim) + (RecoilPivotDelta));
 	else
 		Instigator.SetViewRotation(BaseAim - ViewAim);
-	ViewAim = BaseAim;
-	ViewRecoil = BaseRecoil;	
+		
+	ViewAim = BaseAim;	
 }
 
 function InitTurretWeapon(BallisticTurret Turret)
@@ -43,7 +41,7 @@ simulated function PostBeginPlay()
 	super.PostBeginPlay();
 	FireMode[0].FireAnim = 'Idle';
 	FireMode[0].FireLoopAnim = 'Idle';
-	BFireMode[0].VelocityRecoil = 0;
+	BFireMode[0].FirePushbackForce = 0;
 	BallisticFire(FireMode[0]).BrassOffset = vect(0,0,0);
 }
 
@@ -150,7 +148,7 @@ simulated event RenderOverlays (Canvas C)
 simulated function ApplyAimRotation()
 {
 	ApplyAimToView();
-	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
+	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + RcComponent.GetWeaponPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
 }
 
 function byte BestMode()

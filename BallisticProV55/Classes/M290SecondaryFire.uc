@@ -112,8 +112,8 @@ defaultproperties
      BrassBone="EjectorR"
      bBrassOnCock=True
      BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
-     RecoilPerShot=768.000000
-     VelocityRecoil=600.000000
+     FireRecoil=768.000000
+     FirePushbackForce=600.000000
      FireChaos=0.250000
      XInaccuracy=190.000000
      YInaccuracy=190.000000

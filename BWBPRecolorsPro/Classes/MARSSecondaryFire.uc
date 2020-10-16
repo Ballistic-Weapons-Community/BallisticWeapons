@@ -67,7 +67,7 @@ defaultproperties
      bUseWeaponMag=False
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      FlashBone="GrenadeLauncher"
-     RecoilPerShot=1024.000000
+     FireRecoil=1024.000000
      FireChaos=0.500000
      XInaccuracy=8.000000
      YInaccuracy=8.000000

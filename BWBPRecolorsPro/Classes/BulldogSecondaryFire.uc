@@ -88,8 +88,8 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      BrassClass=Class'BWBPRecolorsPro.Brass_FRAGSpent'
      BrassOffset=(X=-30.000000,Y=1.000000)
-     RecoilPerShot=2048.000000
-     VelocityRecoil=100.000000
+     FireRecoil=2048.000000
+     FirePushbackForce=100.000000
      FireChaos=1.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-FireTest',Volume=2.500000)
      bWaitForRelease=True

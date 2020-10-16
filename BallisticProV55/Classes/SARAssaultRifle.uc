@@ -66,7 +66,7 @@ simulated function AdjustStockProperties()
 		
 		// Weapon bonuses
 		CrouchAimFactor				= 0.7;
-		BFireMode[0].RecoilPerShot 	= 128;
+		BFireMode[0].FireRecoil 	= 128;
 		BFireMode[0].FireChaos		= 0.030000;
 		
 		// Weapon penalties
@@ -86,7 +86,7 @@ simulated function AdjustStockProperties()
 		
 		// Weapon penalties
 		CrouchAimFactor					= default.CrouchAimFactor;
-		BFireMode[0].RecoilPerShot 		= BFireMode[0].default.RecoilPerShot;
+		BFireMode[0].FireRecoil 		= BFireMode[0].default.FireRecoil;
 		BFireMode[0].FireChaos 			= BFireMode[0].default.FireChaos;
 		
 	}
@@ -350,7 +350,7 @@ simulated function SetScopeBehavior()
 	if (bScopeView)
 	{
 		ViewAimFactor = 1.0;
-		ViewRecoilFactor = 1.0;
+		RcComponent.OnADSStart();
 		AimSpread = 0;
 		ChaosAimSpread *= SightAimFactor;
 		ChaosDeclineTime *= 2.0;
@@ -362,7 +362,7 @@ simulated function SetScopeBehavior()
 		if(Level.NetMode == NM_DedicatedServer)
 		{
 			ViewAimFactor = default.ViewAimFactor;
-			ViewRecoilFactor = default.ViewRecoilFactor;
+			RcComponent.OnADSEnd();
 		}
 
 		AimSpread = default.AimSpread;

@@ -17,7 +17,7 @@ var		float		RailDamageBonus;
 var		float		RailWallPenetrationForceBonus;
 var		int			RailPenetrateForceBonus;
 var		float		RailKickForceBonus;
-var		float		RailRecoilPerShotPenalty;
+var		float		RailFireRecoilPenalty;
 
 simulated event ModeDoFire()
 {
@@ -27,7 +27,7 @@ simulated event ModeDoFire()
 	WallPenetrationForce 	= default.WallPenetrationForce 		+ RailWallPenetrationForceBonus * Square(RailPower);
 	PenetrateForce 			= default.PenetrateForce 			+ RailPenetrateForceBonus 		* RailPower;
 	KickForce 				= default.KickForce 				+ RailKickForceBonus 			* RailPower;
-	RecoilPerShot 			= default.RecoilPerShot 			+ RailRecoilPerShotPenalty 		* RailPower;
+	FireRecoil 			= default.FireRecoil 			+ RailFireRecoilPenalty 		* RailPower;
 
 	Super.ModeDoFire();
 
@@ -115,9 +115,9 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Railgun'
 	 BrassOffset=(X=-33.000000,Y=-4.000000,Z=-4.000000)
 	 
-	 RecoilPerShot=1024.000000
-	 RailRecoilPerShotPenalty=3072.000000
-	 VelocityRecoil=1300.000000
+	 FireRecoil=1024.000000
+	 RailFireRecoilPenalty=3072.000000
+	 FirePushbackForce=1300.000000
 	 FireChaos=0.750000
 	 
 	 BallisticFireSound=(Sound=Sound'BallisticSounds3.M75.M75Fire',Radius=768.000000)

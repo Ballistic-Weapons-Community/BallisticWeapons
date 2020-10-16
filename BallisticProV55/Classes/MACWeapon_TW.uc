@@ -14,23 +14,21 @@ class MACWeapon_TW extends MACWeapon
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
 {
-	local Rotator BaseAim, BaseRecoil;
+	local Rotator BaseAim, RecoilPivotDelta;
 
 	//DC 110313
-	if (!Instigator.IsFirstPerson() || Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
+	if (Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
 		return;
 
-	BaseRecoil = GetRecoilPivot(true) * ViewRecoilFactor;
+	RecoilPivotDelta = RcComponent.GetViewPivotDelta();
 	BaseAim = Aim * ViewAimFactor;
-	if (bForceRecoilUpdate || LastFireTime >= Level.TimeSeconds - RecoilDeclineDelay)
-	{
-		bForceRecoilUpdate = False;
-		Instigator.SetViewRotation((BaseAim - ViewAim) + (BaseRecoil - ViewRecoil));
-	}
+	
+	if (RcComponent.ShouldUpdateView())
+		Instigator.SetViewRotation((BaseAim - ViewAim) + (RecoilPivotDelta));
 	else
 		Instigator.SetViewRotation(BaseAim - ViewAim);
-	ViewAim = BaseAim;
-	ViewRecoil = BaseRecoil;	
+		
+	ViewAim = BaseAim;	
 }
 
 simulated function GetViewAxes( out vector xaxis, out vector yaxis, out vector zaxis )
@@ -75,9 +73,9 @@ function InitTurretWeapon(BallisticTurret Turret)
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
-	BFireMode[0].VelocityRecoil = 0;
+	BFireMode[0].FirePushbackForce = 0;
 	BFireMode[0].FireChaos=0.05;
-	BFireMode[0].RecoilPerShot=256.000000;
+	BFireMode[0].FireRecoil=256.000000;
 	BallisticFire(FireMode[0]).BrassOffset = vect(0,0,0);
 }
 simulated function PostNetBeginPlay()
@@ -148,7 +146,7 @@ simulated function ApplyAimRotation()
 {
 	ApplyAimToView();
 
-	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
+	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + RcComponent.GetWeaponPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
 }
 
 function byte BestMode()

@@ -29,9 +29,7 @@ simulated function Tick(float DT)
 
 	if (bLaserOn && Role == ROLE_Authority && Handgun != None)
 	{
-		LaserRot = Instigator.GetViewRotation();
-		LaserRot += HandGun.GetAimPivot();
-		LaserRot += HandGun.GetRecoilPivot();
+		LaserRot = Instigator.GetViewRotation() + Handgun.GetFireRot();
 	}
 
 	if (Level.NetMode == NM_DedicatedServer)

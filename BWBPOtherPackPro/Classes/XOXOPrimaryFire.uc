@@ -183,8 +183,8 @@ static function FireModeStats GetStats()
 	FS.DPS = default.ProjectileClass.default.Damage / default.FireRate;
 	FS.TTK = default.FireRate * (Ceil(175/default.ProjectileClass.default.Damage) - 1);
 	FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	FS.RPShot = default.RecoilPerShot;
-	FS.RPS = default.RecoilPerShot / default.FireRate;
+	FS.RPShot = default.FireRecoil;
+	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
 	FS.Range = "Max dmg: 0.6s";
@@ -199,7 +199,7 @@ defaultproperties
      FireModes(1)=(mFireRate=0.900000,mFireSound=Sound'BWBPOtherPackSound.XOXO.XOXO-Shockwave',mFireAnim="LustWave",TargetState="Shockwave",bModeInstantHit=True,bModeRecommendSplash=True)
      FireModes(2)=(mProjClass=Class'BWBPOtherPackPro.XOXONukeProjectile',mFireRate=0.500000,mFireChaos=1.000000,mFireSound=Sound'BWBPOtherPackSound.XOXO.XOXO-Sexplosion-Fire',mFireAnim="Fire",mRecoil=1024.000000,mAmmoPerFire=1,TargetState="Sexplosion",bModeLead=True,bModeSplash=True,bModeRecommendSplash=True)
      MuzzleFlashClass=Class'BWBPOtherPackPro.XOXOFlashEmitter'
-     RecoilPerShot=160.000000
+     FireRecoil=160.000000
      FireChaos=0.060000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      BallisticFireSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-Fire',Slot=SLOT_Interact,bNoOverride=False)

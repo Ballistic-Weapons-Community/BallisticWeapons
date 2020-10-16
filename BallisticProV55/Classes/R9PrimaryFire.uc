@@ -157,7 +157,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassOffset=(X=-40.000000,Y=-2.000000,Z=6.000000)
      AimedFireAnim="AimedFire"
-     RecoilPerShot=384.000000
+     FireRecoil=384.000000
      FireChaos=0.450000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Fire',Volume=0.800000)
      FireEndAnim=

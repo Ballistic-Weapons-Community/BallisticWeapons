@@ -18,13 +18,13 @@ simulated function FireRecoil ()
 {
 	if (!BW.bReaiming)
 		BW.Reaim(level.TimeSeconds-Weapon.LastRenderTime, , FireChaos,,,0.15);
-	BW.AddRecoil(RecoilPerShot, ThisModeNum);
-	if (VelocityRecoil != 0)
+	BW.AddRecoil(FireRecoil, ThisModeNum);
+	if (FirePushbackForce != 0)
 	{
 		if (Instigator.Physics == PHYS_Falling)
-			Instigator.Velocity -= Vector(Instigator.GetViewRotation()) * VelocityRecoil * 0.25;
+			Instigator.Velocity -= Vector(Instigator.GetViewRotation()) * FirePushbackForce * 0.25;
 		else
-			Instigator.Velocity -= Vector(Instigator.GetViewRotation()) * VelocityRecoil;
+			Instigator.Velocity -= Vector(Instigator.GetViewRotation()) * FirePushbackForce;
 	}
 }
 
@@ -145,7 +145,7 @@ function SetSilenced(bool bSilenced)
 	if (bSilenced)
 	{
 		Damage *= 0.8;
-		RecoilPerShot *= 0.7;
+		FireRecoil *= 0.7;
 		BW.RecoilXFactor *= 0.7;
 		BW.RecoilYFactor *= 0.7;
 		RangeAtten *= 1.2;
@@ -154,7 +154,7 @@ function SetSilenced(bool bSilenced)
 	}
 	else
 	{
-     	RecoilPerShot = default.RecoilPerShot;
+     	FireRecoil = default.FireRecoil;
 		Damage = default.Damage;
 		BW.RecoilXFactor = BW.default.RecoilXFactor;
 		BW.RecoilYFactor = BW.default.RecoilYFactor;
@@ -192,7 +192,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
      AimedFireAnim="AimedFire"
-     RecoilPerShot=240.000000
+     FireRecoil=240.000000
      FireChaos=0.065000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      XInaccuracy=16.000000

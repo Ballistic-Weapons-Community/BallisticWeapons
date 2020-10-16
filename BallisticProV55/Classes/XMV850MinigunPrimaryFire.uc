@@ -145,9 +145,6 @@ TraceCount = Ceil((level.TimeSeconds - level.LastRenderTime) / DesiredFireRate);
 FireRate = DesiredFireRate / TraceCount;
 */
 
-
-
-
 event ModeTick(float DT)
 {
 	local float DesiredFireRate;
@@ -245,7 +242,7 @@ function DoFireEffect()
 		Aim += ExtraAim;
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
-		FireRecoil();
+		ApplyRecoil();
 		if (i == 1)
 			MuzzleBTime = Level.TimeSeconds + ExtraTime;
 		else if (i == 2)
@@ -348,8 +345,8 @@ defaultproperties
      FlashScaleFactor=0.800000
      BrassClass=Class'BallisticProV55.Brass_Minigun'
      BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
-     RecoilPerShot=72.000000
-     VelocityRecoil=300.000000
+     FireRecoil=72.000000
+     FirePushbackForce=300.000000
      FireChaos=0.120000
      XInaccuracy=16.000000
      YInaccuracy=16.000000

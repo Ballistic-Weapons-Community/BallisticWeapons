@@ -10,7 +10,7 @@ simulated function ModeDoFire ()
 defaultproperties
 {
      BrassOffset=(X=0.000000,Y=0.000000,Z=0.000000)
-     VelocityRecoil=0.000000
+     FirePushbackForce=0.000000
      FireChaos=0.500000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.X82.X82-Fire4',Radius=750.000000)
      FireRate=0.530000

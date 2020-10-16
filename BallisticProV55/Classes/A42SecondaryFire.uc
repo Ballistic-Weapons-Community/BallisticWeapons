@@ -55,7 +55,7 @@ defaultproperties
 	KickForce=80000
 	PenetrateForce=150
 	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-	RecoilPerShot=512.000000
+	FireRecoil=512.000000
 	XInaccuracy=128.000000
 	YInaccuracy=128.000000
 	BallisticFireSound=(Sound=Sound'BallisticSounds3.A42.A42-SecFire',Volume=0.800000)

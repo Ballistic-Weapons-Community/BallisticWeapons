@@ -21,7 +21,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FireAnim='SemiFire';
 		FireAnimRate=1.45;
     	KickForce=13000;
-		RecoilPerShot=128;
+		FireRecoil=128;
      	FireChaos=0.2;
      	FlashScaleFactor=1.5;
      	XInaccuracy=35.000000;
@@ -37,7 +37,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
 		FireAnim=default.FireAnim;
 		KickForce=Default.KickForce;
-		RecoilPerShot=Default.RecoilPerShot;
+		FireRecoil=Default.FireRecoil;
      	FireChaos=Default.FireChaos;
 		bCockAfterFire=False;
      	XInaccuracy=default.XInaccuracy;
@@ -81,8 +81,8 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
      BrassOffset=(X=-1.000000,Z=-1.000000)
-     RecoilPerShot=450.000000
-     VelocityRecoil=180.000000
+     FireRecoil=450.000000
+     FirePushbackForce=180.000000
      FireChaos=0.300000
      XInaccuracy=310.000000
      YInaccuracy=310.000000

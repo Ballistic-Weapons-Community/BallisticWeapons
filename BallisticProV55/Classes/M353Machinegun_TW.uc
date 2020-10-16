@@ -54,23 +54,21 @@ simulated function TickAim(float DT)
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
 {
-	local Rotator BaseAim, BaseRecoil;
+	local Rotator BaseAim, RecoilPivotDelta;
 
 	//DC 110313
 	if (Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
 		return;
 
-	BaseRecoil = GetRecoilPivot(true) * ViewRecoilFactor;
-	BaseAim = Aim * ViewAimFactor ;
-	if (bForceRecoilUpdate || LastFireTime >= Level.TimeSeconds - RecoilDeclineDelay)
-	{
-		bForceRecoilUpdate = False;
-		Instigator.SetViewRotation((BaseAim - ViewAim) + (BaseRecoil - ViewRecoil));
-	}
+	RecoilPivotDelta = RcComponent.GetViewPivotDelta();
+	BaseAim = Aim * ViewAimFactor;
+	
+	if (RcComponent.ShouldUpdateView())
+		Instigator.SetViewRotation((BaseAim - ViewAim) + (RecoilPivotDelta));
 	else
 		Instigator.SetViewRotation(BaseAim - ViewAim);
-	ViewAim = BaseAim;
-	ViewRecoil = BaseRecoil;	
+		
+	ViewAim = BaseAim;	
 }
 
 
@@ -202,7 +200,7 @@ simulated function ApplyAimRotation()
 {
 	ApplyAimToView();
 
-	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
+	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + RcComponent.GetWeaponPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
 }
 
 simulated function PlayReload()

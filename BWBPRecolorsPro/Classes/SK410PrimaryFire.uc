@@ -84,8 +84,8 @@ defaultproperties
      BrassClass=Class'BWBPRecolorsPro.Brass_ShotgunHE'
      BrassOffset=(X=-1.000000,Z=-1.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=378.000000
-     VelocityRecoil=0.000000
+     FireRecoil=378.000000
+     FirePushbackForce=0.000000
      FireChaos=0.400000
      XInaccuracy=256.000000
      YInaccuracy=256.000000

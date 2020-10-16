@@ -232,67 +232,70 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_A42'
-     BigIconCoords=(X1=80,Y1=24,X2=410,Y2=230)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_RapidProj=True
-     bWT_Energy=True
-     ManualLines(0)="Launches moderate damage plasma projectiles at a good rate of fire. These projectiles gain damage over range."
-     ManualLines(1)="A charging hitscan beam whose lethality increases with charge. Both pistols will charge and fire simultaneously if dual wielded."
-     ManualLines(2)="Due to rechargeable batteries, the A42 will regain ammo at a slow rate when not in use. It is moderately effective at close range, with low recoil and good hipfire. A42 plasma will repair nodes and vehicles. The projectile attack will only penetrate players and not the environment."
-     SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.A42.A42-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.A42.A42-Putaway')
-	 MagAmmo=18
-	 bShouldDualInLoadout=False
-     bNonCocking=True
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=1024,Roll=-768)
-     SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
-     SightDisplayFOV=40.000000
-     SightingTime=0.200000
-     AimSpread=64
-     ChaosDeclineTime=0.450000
-	 SightAimFactor=2
-	 ViewRecoilFactor=0.5
-     RecoilXCurve=(Points=(,(InVal=0.100000),(InVal=0.200000,OutVal=0.05000),(InVal=0.400000,OutVal=0.0800000),(InVal=0.600000,OutVal=0.0200000),(InVal=0.700000,OutVal=0.1),(InVal=1.000000,OutVal=0.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.350000),(InVal=0.550000,OutVal=0.550000),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.0)))
-     RecoilXFactor=0.100000
-     RecoilYFactor=0.100000
-     RecoilDeclineTime=0.5
-     RecoilDeclineDelay=0.200000
-	 
-	 
-     FireModeClass(0)=Class'BallisticProV55.A42PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.A42SecondaryFire'
-     BringUpTime=0.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.6000
-     CurrentRating=0.600000
-     bShowChargingBar=True
-     Description="The A42 is an energy pistol of Skrith origin. Nicknamed 'Whip' by the UTC Marines, it has been the standard issue Skrith sidearm in both wars."
-     Priority=16
-     HudColor=(B=255,G=175,R=100)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=2
-	 InventorySize=6
-     PickupClass=Class'BallisticProV55.A42Pickup'
-     PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-10.000000)
-     AttachmentClass=Class'BallisticProV55.A42Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_A42'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="A42 Skrith Sidearm"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=180
-     LightSaturation=100
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BallisticAnims2.A42'
-     DrawScale=0.110000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Shader'BallisticWeapons2.A42.A42Skin_SD'
-     SoundPitch=56
-     SoundRadius=32.000000
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_A42'
+	BigIconCoords=(X1=80,Y1=24,X2=410,Y2=230)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_RapidProj=True
+	bWT_Energy=True
+	ManualLines(0)="Launches moderate damage plasma projectiles at a good rate of fire. These projectiles gain damage over range."
+	ManualLines(1)="A charging hitscan beam whose lethality increases with charge. Both pistols will charge and fire simultaneously if dual wielded."
+	ManualLines(2)="Due to rechargeable batteries, the A42 will regain ammo at a slow rate when not in use. It is moderately effective at close range, with low recoil and good hipfire. A42 plasma will repair nodes and vehicles. The projectile attack will only penetrate players and not the environment."
+	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.A42.A42-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.A42.A42-Putaway')
+	MagAmmo=18
+	bShouldDualInLoadout=False
+	bNonCocking=True
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=1024,Roll=-768)
+	SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
+	SightDisplayFOV=40.000000
+	SightingTime=0.200000
+	AimSpread=64
+	ChaosDeclineTime=0.450000
+	SightAimFactor=2 
+	FireModeClass(0)=Class'BallisticProV55.A42PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.A42SecondaryFire'
+	BringUpTime=0.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.6000
+	CurrentRating=0.600000
+	bShowChargingBar=True
+	Description="The A42 is an energy pistol of Skrith origin. Nicknamed 'Whip' by the UTC Marines, it has been the standard issue Skrith sidearm in both wars."
+	Priority=16
+	HudColor=(B=255,G=175,R=100)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=2
+	InventorySize=6
+	PickupClass=Class'BallisticProV55.A42Pickup'
+	PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-10.000000)
+	AttachmentClass=Class'BallisticProV55.A42Attachment'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_A42'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="A42 Skrith Sidearm"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=180
+	LightSaturation=100
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BallisticAnims2.A42'
+	DrawScale=0.110000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Shader'BallisticWeapons2.A42.A42Skin_SD'
+	SoundPitch=56
+	SoundRadius=32.000000
+	
+	Begin Object Class=RecoilParams Name=A42RecoilParams
+		XCurve=(Points=(,(InVal=0.100000),(InVal=0.200000,OutVal=0.05000),(InVal=0.400000,OutVal=0.0800000),(InVal=0.600000,OutVal=0.0200000),(InVal=0.700000,OutVal=0.1),(InVal=1.000000,OutVal=0.000000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.350000),(InVal=0.550000,OutVal=0.550000),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.0)))
+		XRandFactor=0.100000
+		YRandFactor=0.100000
+		DeclineTime=0.5
+		DeclineDelay=0.200000
+		ViewBindFactor=0.5
+		HipMultiplier=1.5
+	End Object
+	RcParams=RecoilParams'A42RecoilParams'
 }

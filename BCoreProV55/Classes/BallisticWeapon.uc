@@ -363,8 +363,8 @@ var       Rotator	OldLookDir;					// Where player was looking last tick. Used to
 
 var 		float 			FireChaos; 			//Current conefire expansion factor (this * ChaosAimSpread being the current radius)
 
-var			RecoilComponent		RecoilComponent;
-var			RecoilParams		RecoilParams;
+var			RecoilComponent		RcComponent;
+var			RecoilParams		RcParams;
 
 var       	float				LastFireTime;				// Time of last fire
 var			float				NextZeroAimTime;			//For zeroing aim when scoping
@@ -432,8 +432,8 @@ simulated function PostBeginPlay()
     local int m;
 	Super.PostBeginPlay();
 	
-	RecoilComponent = new (self) class'RecoilComponent';
-	RecoilComponent.Initialize(RecoilParams);
+	RcComponent = new (self) class'RecoilComponent';
+	RcComponent.Initialize(RcParams);
 	
 	SightingTime = Default.SightingTime*Default.SightingTimeScale;
 	
@@ -544,7 +544,7 @@ simulated function PostNetBeginPlay()
 		BFireMode[0].bBurstMode = True;
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
 
-		RecoilComponent.SetDeclineDelay(CalculateBurstRecoilDelay(BFireMode[0].bBurstMode));
+		RcComponent.SetDeclineDelay(CalculateBurstRecoilDelay(BFireMode[0].bBurstMode));
 	}
 }
 
@@ -708,7 +708,7 @@ simulated function StartBerserk()
 		
 	bBerserk = true;
 	
-	RecoilComponent.OnBerserkStart();
+	RcComponent.OnBerserkStart();
 	
 	ReloadAnimRate = default.ReloadAnimRate / 0.75;
     CockAnimRate = default.CockAnimRate / 0.75;
@@ -723,7 +723,7 @@ simulated function StopBerserk()
 {
 	bBerserk = false;
 	
-	RecoilComponent.OnBerserkEnd();
+	RcComponent.OnBerserkEnd();
 	ReloadAnimRate = default.ReloadAnimRate;
     CockAnimRate = default.CockAnimRate;
     
@@ -1353,7 +1353,7 @@ simulated function SetScopeBehavior()
 	if (bScopeView)
 	{
 		ViewAimFactor = 1.0;
-		RecoilComponent.OnADSStart();
+		RcComponent.OnADSStart();
 		AimSpread = 0;
 		ChaosAimSpread *= SightAimFactor;
 		ChaosDeclineTime *= 2.0;
@@ -1365,7 +1365,7 @@ simulated function SetScopeBehavior()
 		if(Level.NetMode == NM_DedicatedServer)
 		{
 			ViewAimFactor = default.ViewAimFactor;
-			RecoilComponent.OnADSEnd();
+			RcComponent.OnADSEnd();
 		}
 
 		AimSpread = default.AimSpread;
@@ -1592,7 +1592,7 @@ simulated function PositionSights ()
 		DisplayFOV = SightDisplayFOV;
 		ViewAimFactor=1.0;
 
-		RecoilComponent.OnADSStart();
+		RcComponent.OnADSStart();
 		if (ZoomType == ZT_Irons)
 			PC.DesiredFOV = PC.DefaultFOV * SightZoomFactor;
 	}
@@ -1605,7 +1605,7 @@ simulated function PositionSights ()
 		PlayerController(InstigatorController).bZooming = False;
 		ViewAimFactor=default.ViewAimFactor;
 
-		RecoilComponent.OnADSEnd();
+		RcComponent.OnADSEnd();
 		if(ZoomType == ZT_Irons)
 		{
 	        PC.DesiredFOV = PC.DefaultFOV;
@@ -1620,7 +1620,7 @@ simulated function PositionSights ()
 		DisplayFOV = Smerp(SightingPhase, default.DisplayFOV, SightDisplayFOV);
 		ViewAimFactor=Smerp(SightingPhase, default.ViewAimFactor, 1);
 
-		RecoilComponent.UpdateADSTransition(SightingPhase);
+		RcComponent.UpdateADSTransition(SightingPhase);
 
 		//Don't do this for scoped weapons
 		if (ZoomType == ZT_Irons)
@@ -2059,12 +2059,12 @@ simulated function float CalculateBurstRecoilDelay(bool burst)
 	{
 		return
 			(BFireMode[0].FireRate * WeaponModes[CurrentWeaponMode].Value * (1f - BFireMode[0].BurstFireRateFactor)) // cooldown of burst
-			+ (RecoilComponent.GetDeclineDelay() - BFireMode[0].FireRate); // inherent delay, usually fire rate * 0.5
+			+ (RcComponent.GetDeclineDelay() - BFireMode[0].FireRate); // inherent delay, usually fire rate * 0.5
 	}
 	
 	else
 	{
-		return RecoilComponent.GetDeclineDelay();
+		return RcComponent.GetDeclineDelay();
 	}
 }
 
@@ -2093,7 +2093,7 @@ function CheckBurstMode()
 			ClientSwitchBurstMode(False);
 	}
 	
-	RecoilComponent.SetDeclineDelay(CalculateBurstRecoilDelay(BFireMode[0].bBurstMode));
+	RcComponent.SetDeclineDelay(CalculateBurstRecoilDelay(BFireMode[0].bBurstMode));
 }
 
 simulated function ClientSwitchWeaponModes (byte NewMode)
@@ -2109,7 +2109,7 @@ simulated final function ClientSwitchBurstMode(bool burst, optional int Max)
 	if (burst)
 		BFireMode[0].MaxBurst = Max;
 		
-		RecoilComponent.SetDeclineDelay(CalculateBurstRecoilDelay(burst));
+		RcComponent.SetDeclineDelay(CalculateBurstRecoilDelay(burst));
 }
 
 // See if firing modes will let us fire another round or not
@@ -2663,7 +2663,7 @@ function bool CanAttack(Actor Other)
 	}
 
 	// Skilled bots can conserve ammo by not firing when the spread is too high
-	if ((Rand(6) < AIController(Instigator.Controller).Skill) && !RecoilComponent.BotShouldFire(Dist) )
+	if ((Rand(6) < AIController(Instigator.Controller).Skill) && !RcComponent.BotShouldFire(Dist) )
 		return false;
 
     for (m = 0; m < NUM_FIRE_MODES; m++)
@@ -3581,7 +3581,7 @@ simulated final function ReceiveNewAim(float Yaw, float Pitch, float Time, float
 final function SendNetRecoil()
 {
 	//DC 110313
-	ReceiveNetRecoil(RecoilComponent.GetRecoilXRand() * 255, RecoilComponent.GetRecoilYRand() * 255, RecoilComponent.GetRecoil() );
+	ReceiveNetRecoil(RcComponent.GetRecoilXRand() * 255, RcComponent.GetRecoilYRand() * 255, RcComponent.GetRecoil() );
 //	log( "SendNetRecoil() Recoil: "$Recoil );
 }
 
@@ -3592,7 +3592,7 @@ simulated final function ReceiveNetRecoil(byte XRand, byte YRand, float RecAmp)
 	if (!bUseNetAim || Role == ROLE_Authority)
 		return;
 
-	RecoilComponent.UpdateRecoil(XRand, YRand, RecAmp);
+	RcComponent.UpdateRecoil(XRand, YRand, RecAmp);
 }
 
 // End Net Stuff <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -3704,7 +3704,7 @@ simulated function TickAim (float DT)
 		AimOffset = class'BUtil'.static.RSmerp(FMax(0.0,(AimOffsetTime-level.TimeSeconds)/OffsetAdjustTime), NewAimOffset, OldAimOffset);
 	
 	// Align the gun mesh and player view
-	if (RecoilComponent.HoldingRecoil())
+	if (RcComponent.HoldingRecoil())
 	{
 		ApplyAimRotation();
 		OldLookDir = GetPlayerAim();
@@ -3721,7 +3721,7 @@ simulated function TickAim (float DT)
 	}
 
 	// Fire chaos decline
-	if (FireChaos > 0 && LastFireTime + RecoilComponent.GetDeclineDelay() < Level.TimeSeconds)
+	if (FireChaos > 0 && LastFireTime + RcComponent.GetDeclineDelay() < Level.TimeSeconds)
 	{
 		if (Instigator.bIsCrouched)
 			FireChaos -= FMin(FireChaos, DT / (ChaosDeclineTime/CrouchAimFactor));
@@ -3729,7 +3729,7 @@ simulated function TickAim (float DT)
 			FireChaos -= FMin(FireChaos, DT / ChaosDeclineTime);
 	}
 
-	RecoilComponent.Tick(DT);
+	RcComponent.Tick(DT);
 
 	// Align the gun mesh and player view
 	ApplyAimRotation();
@@ -3838,16 +3838,21 @@ final simulated function StopAim()
 	ReaimPhase = 0;
 }
 
+final simulated function Rotator GetFireRot()
+{
+	return GetAimPivot() + RcComponent.GetWeaponPivot();
+}
+
 final simulated function Vector GetFireDir()
 {
-	return Vector(GetAimPivot() + RecoilComponent.GetWeaponPivot());
+	return Vector(GetFireRot());
 }
 
 // Rotate weapon and view according to aim
 simulated function ApplyAimRotation()
 {
 	ApplyAimToView();
-	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + RecoilComponent.GetWeaponPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
+	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + RcComponent.GetWeaponPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
 }
 
 // Rotates the player's view according to Aim
@@ -3861,10 +3866,10 @@ simulated function ApplyAimToView()
 	if (Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
 		return;
 
-	RecoilPivotDelta = RecoilComponent.GetViewPivotDelta();
+	RecoilPivotDelta = RcComponent.GetViewPivotDelta();
 	BaseAim = Aim * ViewAimFactor;
 
-	if (RecoilComponent.ShouldUpdateView())
+	if (RcComponent.ShouldUpdateView())
 		Instigator.SetViewRotation(Instigator.Controller.Rotation + (BaseAim - ViewAim) + (RecoilPivotDelta));
 	else 
 		Instigator.SetViewRotation(Instigator.Controller.Rotation + (BaseAim - ViewAim));
@@ -4110,7 +4115,7 @@ simulated function ClientJumped()
 
 simulated function AddRecoil(float Amount, optional byte Mode)
 {
-	RecoilComponent.AddRecoil(Amount, Mode);
+	RcComponent.AddRecoil(Amount, Mode);
 
 	if (ROLE == ROLE_Authority && bUseNetAim)
 		SendNetRecoil();
@@ -4576,7 +4581,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
     YPos += YL;
     Canvas.SetPos(4,YPos);
 
-	Canvas.DrawText("Chaos: "$Chaos$", Recoil: "$RecoilComponent.GetRecoil()$", ReaimPhase: "$ReaimPhase$", Aim: "$Aim.Yaw$","$Aim.Pitch$", bNeedCock: "$bNeedCock$", bNeedReload: "$bNeedReload$", bPreventReload: "$bPreventReload$", bServerReloading: "$bServerReloading);
+	Canvas.DrawText("Chaos: "$Chaos$", Recoil: "$RcComponent.GetRecoil()$", ReaimPhase: "$ReaimPhase$", Aim: "$Aim.Yaw$","$Aim.Pitch$", bNeedCock: "$bNeedCock$", bNeedReload: "$bNeedReload$", bPreventReload: "$bPreventReload$", bServerReloading: "$bServerReloading);
     YPos += YL;
     Canvas.SetPos(4,YPos);
 }

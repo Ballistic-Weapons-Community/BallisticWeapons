@@ -213,7 +213,7 @@ simulated function AdjustMagnetProperties ()
 			class'bUtil'.static.InitMuzzleFlash(Arc, class'M2020ShieldEffect', DrawScale, self, 'tip');
 
 		IdleAnim='IdleShield';
-		BFireMode[0].RecoilPerShot = 64;
+		BFireMode[0].FireRecoil = 64;
 		WeaponModes[3].bUnavailable=false;
 		
 		PreviousWeaponMode = CurrentWeaponMode;
@@ -232,7 +232,7 @@ simulated function AdjustMagnetProperties ()
 
 		IdleAnim='Idle';
 		Instigator.AmbientSound = UsedAmbientSound;
-		BFireMode[0].RecoilPerShot = BFireMode[0].default.RecoilPerShot;
+		BFireMode[0].FireRecoil = BFireMode[0].default.FireRecoil;
 		
 		WeaponModes[0].bUnavailable=false;
 		WeaponModes[1].bUnavailable=false;

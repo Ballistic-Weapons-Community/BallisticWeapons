@@ -20,10 +20,10 @@ function InitTurretWeapon(BallisticTurret Turret)
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
-	BFireMode[0].VelocityRecoil = 0;
+	BFireMode[0].FirePushbackForce = 0;
         BFireMode[0].XInaccuracy=1.000000;
         BFireMode[0].YInaccuracy=1.000000;
-	BFireMode[0].RecoilPerShot=128.000000;
+	BFireMode[0].FireRecoil=128.000000;
 	BFireMode[0].BrassOffset = vect(0,0,0);
 }
 

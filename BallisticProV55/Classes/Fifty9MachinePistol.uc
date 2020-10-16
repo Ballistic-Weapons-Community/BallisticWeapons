@@ -14,6 +14,8 @@ var   name		StockCloseAnim;
 var   bool		bStockOpen, bStockOpenRotated;
 var   int 		StockChaosAimSpread;
 
+var 	RecoilParams	StockRecoilParams;
+
 // This uhhh... thing is added to allow manual drawing of brass OVER the muzzle flash
 struct UziBrass
 {
@@ -26,8 +28,8 @@ simulated event WeaponTick (Float DT)
 {
 	Super.WeaponTick (DT);
 	
-	if (LastFireTime < Level.TimeSeconds - RecoilDeclineDelay && MeleeFatigue > 0)
-		MeleeFatigue = FMax(0, MeleeFatigue - DT/RecoilDeclineTime);
+	if (LastFireTime < Level.TimeSeconds - RcComponent.GetDeclineDelay() && MeleeFatigue > 0)
+		MeleeFatigue = FMax(0, MeleeFatigue - DT/RcParams.DeclineTime);
 }
 
 simulated function float ChargeBar()
@@ -174,20 +176,14 @@ simulated function AdjustStockProperties()
 {
 	if (bStockOpen)
 	{
-		CrouchAimFactor 	= 0.8f;
-		SightingTime 		= 0.3f; // awkward to sight
-		HipRecoilFactor		= 1.75f;
-		ViewRecoilFactor	= 0.2f;
-		RecoilDeclineDelay	= 0.09f;
+		SightingTime = 0.3f; // awkward to sight
+		RcParams = StockRecoilParams;
 	}
 	
 	else
 	{
-		CrouchAimFactor 	= default.CrouchAimFactor;
-		SightingTime 		= default.SightingTime;
-		HipRecoilFactor		= default.HipRecoilFactor;
-		ViewRecoilFactor 	= default.ViewRecoilFactor;
-		RecoilDeclineDelay 	= default.RecoilDeclineDelay;
+		SightingTime = default.SightingTime;
+		RcParams = default.RcParams;
 	}
 }
 
@@ -379,4 +375,18 @@ defaultproperties
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BallisticProAnims.UZI'
 	DrawScale=0.300000
+	
+	Begin Object Class=RecoilParams Name=Fifty9StockRecoilParams
+		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.05000
+		YRandFactor=0.05000
+		DeclineTime=0.5
+		MaxRecoil=6144
+		CrouchMultiplier= 0.8
+		HipMultiplier=1.75
+		ViewBindFactor=0.2
+		DeclineDelay=0.09
+	End Object
+	StockRecoilParams = RecoilParams'Fifty9StockRecoilParams'
 }

@@ -85,7 +85,7 @@ simulated function SwitchSilencerMode(bool bSilenced)
 	{
 		XInaccuracy	=	64;
 		YInaccuracy	=	64;
-		RecoilPerShot *= 0.65;
+		FireRecoil *= 0.65;
 		Damage *= 0.8;
 		RangeAtten = 0.65;
 		CutOffStartRange=1536;
@@ -96,7 +96,7 @@ simulated function SwitchSilencerMode(bool bSilenced)
 	{
 		XInaccuracy=default.XInaccuracy;
 		YInaccuracy=default.YInaccuracy;
-		RecoilPerShot=default.RecoilPerShot;
+		FireRecoil=default.FireRecoil;
 		Damage = default.Damage;
 		RangeAtten = default.RangeAtten;
 		CutOffStartRange = default.CutOffStartRange;
@@ -161,8 +161,8 @@ defaultproperties
      BrassClass=Class'BWBPRecolorsPro.Brass_ShotgunFlechette'
      BrassOffset=(X=-1.000000,Z=-1.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=300.000000
-     VelocityRecoil=50.000000
+     FireRecoil=300.000000
+     FirePushbackForce=50.000000
      FireChaos=0.250000
      XInaccuracy=192.000000
      YInaccuracy=192.000000

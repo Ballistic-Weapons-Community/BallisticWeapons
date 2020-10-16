@@ -59,7 +59,7 @@ event ModeDoFire()
     }
 	else
 	{
-		FireRecoil();
+		ApplyRecoil();
 	}
 
 

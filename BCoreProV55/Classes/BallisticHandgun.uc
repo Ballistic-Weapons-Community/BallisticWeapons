@@ -1633,7 +1633,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 		case RS_EndShovel: s=s$"EndShovel"; break;
 		case RS_Cocking: s=s$"Cocking"; break;
 	}
-	s = s $ ", MagAmmo="$MagAmmo$"Chaos="$Chaos$", Recoil="$RecoilComponent.GetRecoil()$", ReaimPhase="$ReaimPhase$", State="$GetStateName();
+	s = s $ ", MagAmmo="$MagAmmo$"Chaos="$Chaos$", Recoil="$RcComponent.GetRecoil()$", ReaimPhase="$ReaimPhase$", State="$GetStateName();
 	Canvas.DrawText(s);
     YPos += YL;
     Canvas.SetPos(4,YPos);

@@ -323,12 +323,6 @@ simulated function CommonCockGun(optional byte Type)
 		SafePlayAnim('Cock', 1.0, 0.2);
 }
 
-simulated function ApplyAimRotation()
-{
-	ApplyAimToView();
-	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + GetRecoilPivot()*0.1) * (DisplayFOV / Instigator.Controller.FovAngle);
-}
-
 // See if firing modes will let us fire another round or not
 simulated function bool CheckWeaponMode (int Mode)
 {

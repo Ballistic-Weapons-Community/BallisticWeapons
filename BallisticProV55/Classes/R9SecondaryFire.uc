@@ -23,12 +23,12 @@ simulated function FireRecoil ()
 		if (!BW.bReaiming)
 			BW.Reaim(level.TimeSeconds-Weapon.LastRenderTime, , , , , FireChaos);
 		if (BurstCount > 0)
-			BW.AddRecoil(RecoilPerShot * 1.5, ThisModeNum);
-		else BW.AddRecoil(RecoilPerShot, ThisModeNum);
+			BW.AddRecoil(FireRecoil * 1.5, ThisModeNum);
+		else BW.AddRecoil(FireRecoil, ThisModeNum);
 	}
-	if (VelocityRecoil != 0 && Instigator!= None)
+	if (FirePushbackForce != 0 && Instigator!= None)
 	{
-		VelRecoilVect = Vector(Instigator.GetViewRotation()) * VelocityRecoil;
+		VelRecoilVect = Vector(Instigator.GetViewRotation()) * FirePushbackForce;
 		VelRecoilVect.Z *= 0.25;
 		
 		if (Instigator.Physics == PHYS_Falling)
@@ -100,7 +100,7 @@ simulated event ModeDoFire()
         Instigator.DeactivateSpawnProtection();
     }
     else if (!BW.bUseNetAim && !BW.bScopeView)
-    	FireRecoil();
+    	ApplyRecoil();
 	
 	BW.LastFireTime = Level.TimeSeconds;
 
@@ -163,6 +163,6 @@ defaultproperties
 {
      BurstInterval=0.125000
      MaxBurst=2
-     RecoilPerShot=512.000000
+     FireRecoil=512.000000
      FireRate=0.900000
 }

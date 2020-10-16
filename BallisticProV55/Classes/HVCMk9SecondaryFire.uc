@@ -50,7 +50,7 @@ simulated event ModeDoFire()
 	local float f;
 
 	f = ChargePower;
-	VelocityRecoil = default.VelocityRecoil * f;
+	FirePushbackForce = default.FirePushbackForce * f;
 	HVCMk9LightningGun(Weapon).AddHeat(1.2);
 	if (Instigator == None)
 		return;
@@ -298,8 +298,8 @@ defaultproperties
      KickForce=80000
      bNoPositionalDamage=True
      MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
-     RecoilPerShot=96.000000
-     VelocityRecoil=1600.000000
+     FireRecoil=96.000000
+     FirePushbackForce=1600.000000
      BallisticFireSound=(Sound=Sound'BWBP2-Sounds2.LightningGun.LG-SecFire',Volume=0.900000)
      bFireOnRelease=True
      FireAnim="Fire2"

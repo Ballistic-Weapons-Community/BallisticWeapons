@@ -131,7 +131,7 @@ simulated function SwitchWeaponMode (byte newMode)
 		PenetrateForce=0;
 		bPenetrate=False;
 		
-		RecoilPerShot=Default.RecoilPerShot;
+		FireRecoil=Default.FireRecoil;
 		
 		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
 		BallisticFireSound.Volume=default.BallisticFireSound.Volume;
@@ -662,8 +662,8 @@ defaultproperties
 	BrassBone="EjectorR"
 	BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
 	AimedFireAnim="SightFireCombined"
-	RecoilPerShot=1024.000000
-	VelocityRecoil=250.000000
+	FireRecoil=1024.000000
+	FirePushbackForce=250.000000
 	FireChaos=1.000000
 	XInaccuracy=400.000000
 	YInaccuracy=220.000000

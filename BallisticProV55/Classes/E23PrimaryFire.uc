@@ -85,14 +85,14 @@ function StartBerserk()
 	{
 		FireRate = default.FireRate * 0.75;
 		FireAnimRate = default.FireAnimRate * 0.75;
-		RecoilPerShot = default.RecoilPerShot * 0.75;
+		FireRecoil = default.FireRecoil * 0.75;
 		FireChaos = default.FireChaos * 0.75;
 	}
 	else
 	{
 		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate * 0.75;
     	FireAnimRate = default.FireAnimRate * 0.75;
-    	RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
+    	FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
 		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos * 0.75;
 	}
 }
@@ -103,14 +103,14 @@ function StopBerserk()
 	{
 		FireRate = default.FireRate;
 		FireAnimRate = default.FireAnimRate;
-		RecoilPerShot = default.RecoilPerShot;
+		FireRecoil = default.FireRecoil;
 		FireChaos = default.FireChaos;
 	}
 	else
 	{
 		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate;
     	FireAnimRate = default.FireAnimRate;
-    	RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil;
+    	FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil;
 		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos;
 	}
 }
@@ -208,8 +208,8 @@ static function FireModeStats GetStats()
 	FS.DPS = default.ProjectileClass.default.Damage / default.FireRate;
 	FS.TTK = default.FireRate * (Ceil(175/default.ProjectileClass.default.Damage) - 1);
 	FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	FS.RPShot = default.RecoilPerShot;
-	FS.RPS = default.RecoilPerShot / default.FireRate;
+	FS.RPShot = default.FireRecoil;
+	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
 	FS.Range = "Max dmg: 0.3s";
@@ -228,7 +228,7 @@ defaultproperties
      FireModes(1)=(mProjClass=Class'BallisticProV55.E23Projectile_Snpr',mFireRate=0.650000,mFireChaos=0.350000,mFireSound=Sound'BWBP4-Sounds.VPR.VPR-Fire',mFireAnim="Fire",mRecoil=768.000000,mAmmoPerFire=20,bModeLead=True)
      MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
      FlashScaleFactor=0.750000
-     RecoilPerShot=96.000000
+     FireRecoil=96.000000
      FireChaos=0.060000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True

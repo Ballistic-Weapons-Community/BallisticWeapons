@@ -78,7 +78,7 @@ simulated function SetScopeBehavior()
 	if (bScopeView)
 	{
 		ViewAimFactor = 1.0;
-		ViewRecoilFactor = 1.0;
+		RcComponent.OnADSStart();	
 		AimAdjustTime *= 2;
 		AimSpread *= SightAimFactor;
 		ChaosAimSpread *= SightAimFactor;
@@ -91,7 +91,7 @@ simulated function SetScopeBehavior()
 		if(Level.NetMode == NM_DedicatedServer)
 		{
 			ViewAimFactor = default.ViewAimFactor;
-			ViewRecoilFactor = default.ViewRecoilFactor;
+			RcComponent.OnADSEnd();	
 		}
 
 		AimAdjustTime = default.AimAdjustTime;

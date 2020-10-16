@@ -134,7 +134,7 @@ simulated event ModeDoFire()
 			Instigator.DeactivateSpawnProtection();
 		}
 		else if (!BW.bUseNetAim && !BW.bScopeView)
-			FireRecoil();
+			ApplyRecoil();
 		
 		BW.LastFireTime = Level.TimeSeconds;
 
@@ -196,7 +196,7 @@ defaultproperties
      SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      AimedFireAnim="SightFire"
-     RecoilPerShot=768.000000
+     FireRecoil=768.000000
      FireChaos=0.650000
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.MGL.MGL-Fire',Volume=9.200000)
      bSplashDamage=True

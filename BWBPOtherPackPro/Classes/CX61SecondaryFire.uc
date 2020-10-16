@@ -37,7 +37,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 	if (Weapon.bBerserk)
 	{
 		FireRate *= 0.75;
-		RecoilPerShot *= 0.75;
+		FireRecoil *= 0.75;
 		FireChaos *= 0.75;
 	}
 	if ( Level.GRI.WeaponBerserk > 1.0 )
@@ -277,8 +277,8 @@ static function FireModeStats GetStats()
 	if (default.FireRate < 0.5)
 		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
 	else FS.RPM = 1/default.FireRate@"checks/second";
-	FS.RPShot = default.RecoilPerShot;
-	FS.RPS = default.RecoilPerShot / default.FireRate;
+	FS.RPShot = default.FireRecoil;
+	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
 	FS.Range = "Max:"@(3000 / 52.5)@"metres";

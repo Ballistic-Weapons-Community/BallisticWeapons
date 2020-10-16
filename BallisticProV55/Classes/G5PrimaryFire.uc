@@ -123,7 +123,7 @@ defaultproperties
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
      bCockAfterFire=True
      MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-     RecoilPerShot=64.000000
+     FireRecoil=64.000000
      FireChaos=0.500000
      XInaccuracy=4.000000
      YInaccuracy=4.000000

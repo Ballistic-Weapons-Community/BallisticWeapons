@@ -48,7 +48,7 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
      FlashBone="MuzzleTip"
      FlashScaleFactor=0.150000
-     RecoilPerShot=108.000000
+     FireRecoil=108.000000
      FireChaos=0.070000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.A49.A49-Fire',Volume=0.700000,Pitch=1.200000)

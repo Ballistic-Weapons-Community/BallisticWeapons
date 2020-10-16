@@ -37,8 +37,8 @@ defaultproperties
      FlashScaleFactor=0.750000
      BrassClass=Class'BallisticProV55.Brass_Railgun'
      BrassOffset=(X=-33.000000,Y=-4.000000,Z=-4.000000)
-     RecoilPerShot=768.000000
-     VelocityRecoil=350.000000
+     FireRecoil=768.000000
+     FirePushbackForce=350.000000
      FireChaos=0.750000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.M75.M75Fire',Volume=0.750000,Radius=384.000000)
      FireEndAnim="'"

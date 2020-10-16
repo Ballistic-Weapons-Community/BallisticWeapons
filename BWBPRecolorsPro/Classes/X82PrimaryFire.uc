@@ -35,8 +35,8 @@ defaultproperties
      BrassClass=Class'BWBPRecolorsPro.Brass_BMG'
      BrassBone="breach"
      BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
-     RecoilPerShot=768.000000
-     VelocityRecoil=255.000000
+     FireRecoil=768.000000
+     FirePushbackForce=255.000000
      FireChaos=0.700000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.X82.X82-Fire',Volume=10.000000,Radius=1024.000000)
      FireEndAnim=

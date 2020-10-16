@@ -260,8 +260,8 @@ defaultproperties
      FlashScaleFactor=2.000000
      BrassClass=Class'BWBPRecolorsPro.Brass_ShotgunZap'
      BrassOffset=(X=-1.000000,Z=-1.000000)
-     RecoilPerShot=768.000000
-     VelocityRecoil=180.000000
+     FireRecoil=768.000000
+     FirePushbackForce=180.000000
      XInaccuracy=150.000000
      YInaccuracy=150.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.HyperBeamCannon.343Primary-Hit',Volume=1.600000)

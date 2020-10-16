@@ -180,7 +180,7 @@ defaultproperties
      LockOffSound=(Sound=Sound'BallisticSounds2.G5.G5-TargetOff',Volume=0.500000,Radius=128.000000,Pitch=1.000000)
      SpawnOffset=(X=50.000000,Y=10.000000,Z=-3.000000)
      MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-     RecoilPerShot=64.000000
+     FireRecoil=64.000000
      FireChaos=0.500000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.G5.G5-Fire1')
      bSplashDamage=True

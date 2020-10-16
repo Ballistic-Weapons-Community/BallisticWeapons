@@ -103,8 +103,8 @@ defaultproperties
      FlashScaleFactor=1.100000
      BrassClass=Class'BWBPRecolorsPro.Brass_BOLT'
      BrassOffset=(X=-30.000000,Y=1.000000)
-     RecoilPerShot=1536.000000
-     VelocityRecoil=256.000000
+     FireRecoil=1536.000000
+     FirePushbackForce=256.000000
      FireChaos=1.000000
      BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.Bulldog.Bulldog-Fire',Volume=7.500000)
      FireEndAnim=

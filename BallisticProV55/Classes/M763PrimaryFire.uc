@@ -105,7 +105,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Shotgun'
      BrassOffset=(X=-1.000000,Z=-1.000000)
      AimedFireAnim="FireCombinedSight"
-     RecoilPerShot=768.000000
+     FireRecoil=768.000000
      FireChaos=0.30000
      XInaccuracy=150.000000
      YInaccuracy=150.000000

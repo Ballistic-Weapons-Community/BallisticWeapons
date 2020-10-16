@@ -93,7 +93,7 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
      FlashBone="tip2"
      FlashScaleFactor=1.200000
-     RecoilPerShot=2048.000000
+     FireRecoil=2048.000000
      FireChaos=0.800000
      XInaccuracy=48.000000
      YInaccuracy=48.000000

@@ -40,7 +40,7 @@ defaultproperties
      SpawnOffset=(X=15.000000,Y=15.000000,Z=-2.000000)
      bUseWeaponMag=False
      FlashBone="tip2"
-     RecoilPerShot=256.000000
+     FireRecoil=256.000000
      FireChaos=0.500000
      BallisticFireSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_FireDart',Volume=1.350000)
      bModeExclusive=False

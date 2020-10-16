@@ -61,6 +61,6 @@ simulated function ModeDoFire ()
 
 defaultproperties
 {
-     RecoilPerShot=256.000000
+     FireRecoil=256.000000
      FireRate=0.800000
 }

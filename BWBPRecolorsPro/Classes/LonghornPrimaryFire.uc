@@ -124,7 +124,7 @@ simulated event ModeHoldFire()
         Instigator.DeactivateSpawnProtection();
     }
     else if (!BW.bUseNetAim && !BW.bScopeView)
-    	FireRecoil();
+    	ApplyRecoil();
 	
 	BW.LastFireTime = Level.TimeSeconds;
 
@@ -196,8 +196,8 @@ defaultproperties
      bBrassOnCock=True
      BrassOffset=(Z=5.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=1024.000000
-     VelocityRecoil=300.000000
+     FireRecoil=1024.000000
+     FirePushbackForce=300.000000
      FireChaos=1.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Longhorn.Longhorn-Fire',Volume=1.500000)
      bFireOnRelease=True

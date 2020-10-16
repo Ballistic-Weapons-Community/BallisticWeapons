@@ -368,7 +368,7 @@ function DoFireEffect()
 		Aim += ExtraAim;
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
-		FireRecoil();
+		ApplyRecoil();
 		if (i == 1)
 			MuzzleBTime = Level.TimeSeconds + ExtraTime;
 		else if (i == 2)
@@ -451,8 +451,8 @@ static function FireModeStats GetStats()
 	FS.DPS = FS.DamageInt / 0.075;
 	FS.TTK = 0.075 * (Ceil(175/FS.DamageInt) - 1);
 	FS.RPM = String(int((1 / 0.075) * 60))@default.ShotTypeString$"/min";
-	FS.RPShot = default.RecoilPerShot;
-	FS.RPS = default.RecoilPerShot / default.FireRate;
+	FS.RPShot = default.FireRecoil;
+	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
 	FS.Range = "Max:"@(int(default.TraceRange.Max / 52.5))@"metres";
@@ -479,8 +479,8 @@ defaultproperties
      FlashScaleFactor=0.800000
      BrassClass=Class'BWBPOtherPackPro.Brass_Z250Shell'
      BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
-     RecoilPerShot=64.000000
-     VelocityRecoil=48.000000
+     FireRecoil=64.000000
+     FirePushbackForce=48.000000
      FireChaos=0.120000
      XInaccuracy=16.000000
      YInaccuracy=16.000000

@@ -144,7 +144,7 @@ simulated event ModeDoFire()
     }
 	else if (!BW.bScopeView)
 	{
-		FireRecoil();
+		ApplyRecoil();
 	}
 	
 		BW.LastFireTime = Level.TimeSeconds;

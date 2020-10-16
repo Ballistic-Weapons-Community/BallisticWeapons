@@ -87,8 +87,8 @@ static function FireModeStats GetStats()
 	FS.DPS = default.ProjectileClass.default.Damage * default.ProjectileCount / default.FireRate;
 	FS.TTK = default.FireRate * (Ceil(175/default.ProjectileClass.default.Damage) - 1);
 	FS.RPM = String(int((1 / default.FireRate) * 60))@"shots/min";
-	FS.RPShot = default.RecoilPerShot;
-	FS.RPS = default.RecoilPerShot / default.FireRate;
+	FS.RPShot = default.FireRecoil;
+	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
 	FS.Range = "Max:"@(10000 / 52.5)@"metres";
@@ -102,7 +102,7 @@ defaultproperties
      HipSpreadFactor=1.500000
      bNoRandomFire=True
      MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
-     RecoilPerShot=512.000000
+     FireRecoil=512.000000
      FireChaos=0.400000
      XInaccuracy=275.000000
      YInaccuracy=275.000000

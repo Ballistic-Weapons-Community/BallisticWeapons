@@ -36,7 +36,7 @@ defaultproperties
 {
      SpawnOffset=(X=15.000000,Y=15.000000,Z=-20.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=256.000000
+     FireRecoil=256.000000
      FireChaos=0.150000
      BallisticFireSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_FireDart',Radius=128,Volume=0.5)
      PreFireAnim=

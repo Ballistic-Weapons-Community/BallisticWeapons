@@ -45,7 +45,7 @@ simulated function SwitchCannonMode (byte NewMode)
 		BallisticFireSound.Sound=SpecialFireSound;
 		FireAnim='CFire';
 		BallisticFireSound.Pitch=1.0;
-		VelocityRecoil=64.000000;
+		FirePushbackForce=64.000000;
 		FireRate=0.6;
 		FireChaos=0.5;
 	}
@@ -55,8 +55,8 @@ simulated function SwitchCannonMode (byte NewMode)
 		BallisticFireSound.Sound=default.BallisticFireSound.sound;
 		FireAnim='Fire';
 		BallisticFireSound.Pitch=default.BallisticFireSound.pitch;
-		RecoilPerShot=default.RecoilPerShot;
-		VelocityRecoil=default.VelocityRecoil;
+		FireRecoil=default.FireRecoil;
+		FirePushbackForce=default.FirePushbackForce;
 		FG50MachineGun(Weapon).RecoilDeclineDelay=FG50MachineGun(Weapon).default.RecoilDeclineDelay;
 		FireRate = default.FireRate;
 	}
@@ -232,8 +232,8 @@ defaultproperties
      BrassClass=Class'BWBPRecolorsPro.Brass_BMGInc'
      BrassBone="tip"
      BrassOffset=(X=-80.000000,Y=1.000000)
-     RecoilPerShot=512.000000
-     VelocityRecoil=125.000000
+     FireRecoil=512.000000
+     FirePushbackForce=125.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireAnim="CFire"

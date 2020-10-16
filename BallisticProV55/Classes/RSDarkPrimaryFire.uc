@@ -239,14 +239,14 @@ function StartBerserk()
 	{
 		FireRate = default.FireRate * 0.75;
 		FireAnimRate = default.FireAnimRate * 0.75;
-		RecoilPerShot = default.RecoilPerShot * 0.75;
+		FireRecoil = default.FireRecoil * 0.75;
 		FireChaos = default.FireChaos * 0.75;
 	}
 	else
 	{
 		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate * 0.75;
     	FireAnimRate = default.FireAnimRate * 0.75;
-    	RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
+    	FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
 		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos * 0.75;
 	}
 }
@@ -257,14 +257,14 @@ function StopBerserk()
 	{
 		FireRate = default.FireRate;
 		FireAnimRate = default.FireAnimRate;
-		RecoilPerShot = default.RecoilPerShot;
+		FireRecoil = default.FireRecoil;
 		FireChaos = default.FireChaos;
 	}
 	else
 	{
 		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate;
     	FireAnimRate = default.FireAnimRate;
-    	RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil;
+    	FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil;
 		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos;
 	}
 }
@@ -599,7 +599,7 @@ defaultproperties
      FireModes(2)=(mFireRate=0.100000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=7.000000,mAmmoPerFire=1,TargetState="Immolate",bModeInstantHit=True)
      FireModes(3)=(mProjClass=Class'BallisticProV55.RSDarkFireBomb',mFireRate=0.800000,mFireChaos=0.150000,mFireSound=Sound'BWBP4-Sounds.DarkStar.Dark-FireBall',mFireAnim="Fire",mRecoil=1024.000000,mAmmoPerFire=4,TargetState="Fireball",bModeLead=True,bModeSplash=True,bModeRecommendSplash=True)
      MuzzleFlashClass=Class'BallisticProV55.RSDarkSlowMuzzleFlash'
-     RecoilPerShot=1024.000000
+     FireRecoil=1024.000000
      FireChaos=0.250000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-Fire',Slot=SLOT_Interact,bNoOverride=False)

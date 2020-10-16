@@ -65,8 +65,8 @@ defaultproperties
      FlashBone="MuzzleTip"
      FlashScaleFactor=1.200000
      BrassOffset=(X=15.000000,Y=-13.000000,Z=7.000000)
-     RecoilPerShot=512.000000
-     VelocityRecoil=1500.000000
+     FireRecoil=512.000000
+     FirePushbackForce=1500.000000
      FireChaos=0.500000
 	 FireRate=1.25
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.A49.A49-ShockWave',Volume=2.000000)

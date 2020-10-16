@@ -122,8 +122,8 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_HAMR'
      BrassBone="EmptyShell"
      bBrassOnCock=True
-     RecoilPerShot=2048.000000
-     VelocityRecoil=1000.000000
+     FireRecoil=2048.000000
+     FirePushbackForce=1000.000000
      FireChaos=0.550000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.Artillery.Art-Fire',Radius=768.000000)
      FireEndAnim=

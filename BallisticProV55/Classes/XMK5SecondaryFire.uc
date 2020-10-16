@@ -6,7 +6,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class XMK5SecondaryFire extends BallisticProjectileFire;
 
@@ -76,8 +76,8 @@ static function FireModeStats GetStats()
 	if (default.FireRate < 0.5)
 		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
 	else FS.RPM = 1/default.FireRate@"times/second";
-	FS.RPShot = default.RecoilPerShot;
-	FS.RPS = default.RecoilPerShot / default.FireRate;
+	FS.RPShot = default.FireRecoil;
+	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
 	FS.Range = "Max:"@(10000 / 52.5)@"metres";
