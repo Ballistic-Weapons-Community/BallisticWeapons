@@ -76,11 +76,11 @@ var() class<BCReplicationInfo>	BCRepClass;										// BCReplication info class 
 var() globalconfig 	bool		bOldCrosshairs;			// Use UT2004 crosshairs instead of BW's
 var() globalconfig 	bool		bEvenBodyDamage;		// Will weapon limb hits cause as much damage as any non-head body region?...
 var() globalconfig	bool		bUseModifiers;				// Uses configurable modifiers in BallisticInstantFire / BallisticProjectile to handle locational damage
-var()	globalconfig 	float		AimKnockScale;			// Scale the weapon displacement caused by taking damage
+var()	globalconfig 	float	AimKnockScale;			// Scale the weapon displacement caused by taking damage
 var() globalconfig 	bool		bDrawCrosshairDot; 		//Draw dot in the centre of crosshairs
 var() globalconfig	bool		bUseBigIcon;				// For HUDFix huds - makes the Icon the BigIcon
 var() globalconfig	bool		bLimitCarry;
-var()	globalconfig	byte		MaxWeaponsPerSlot;
+var()	globalconfig	byte	MaxWeaponsPerSlot;
 var() globalconfig  byte		SightsRestrictionLevel;	// Forces any weapon which can aim to aim when the player fires.
 //----------------------------------------------------------------------------------------------------------------------
 
