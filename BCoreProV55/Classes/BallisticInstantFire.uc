@@ -631,14 +631,14 @@ function StartBerserk()
 	{
 		FireRate = default.FireRate * 0.75;
 		FireAnimRate = default.FireAnimRate/0.75;
-		RecoilPerShot = default.RecoilPerShot * 0.75;
+		FireRecoil = default.FireRecoil * 0.75;
 		FireChaos = default.FireChaos * 0.75;
 	}
 	else
 	{
 		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate * 0.75;
 		FireAnimRate = default.FireAnimRate/0.75;
-		RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
+		FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
 		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos * 0.75;
 	}
 }
@@ -649,14 +649,14 @@ function StopBerserk()
 	{
 		FireRate = default.FireRate;
 		FireAnimRate = default.FireAnimRate;
-		RecoilPerShot = default.RecoilPerShot;
+		FireRecoil = default.FireRecoil;
 		FireChaos = default.FireChaos;
 	}
 	else
 	{
 		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate;
 		FireAnimRate = default.FireAnimRate;
-		RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil;
+		FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil;
 		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos;
 	}
 }
@@ -678,7 +678,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 			FireLoopAnim 	= 					default.FireLoopAnim;
 			FireAnim 		= 					default.FireAnim;
 			FireEndAnim = 					default.FireEndAnim;
-			RecoilPerShot = 					default.RecoilPerShot;
+			FireRecoil = 					default.FireRecoil;
 			AmmoPerFire = 					default.AmmoPerFire;
 			GoToState('');
 			
@@ -712,7 +712,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 			}
 
 			FireEndAnim = FireModes[NewMode].mFireEndAnim;
-			RecoilPerShot = FireModes[NewMode].mRecoil;
+			FireRecoil = FireModes[NewMode].mRecoil;
 			AmmoPerFire = FireModes[NewMode].mAmmoPerFire;
 			GoToState(FireModes[NewMode].TargetState);
 			
@@ -728,7 +728,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		if (Weapon.bBerserk)
 		{
 			FireRate *= 0.75;
-			RecoilPerShot *= 0.75;
+			FireRecoil *= 0.75;
 			FireChaos *= 0.75;
 		}
 		
@@ -751,8 +751,8 @@ static function FireModeStats GetStats()
 	if (default.FireRate < 0.5)
 		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
 	else FS.RPM = 1/default.FireRate@"times/second";
-	FS.RPShot = default.RecoilPerShot;
-	FS.RPS = default.RecoilPerShot / default.FireRate;
+	FS.RPShot = default.FireRecoil;
+	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
 	FS.Range = "Max:"@(int(default.TraceRange.Max / 52.5))@"metres";

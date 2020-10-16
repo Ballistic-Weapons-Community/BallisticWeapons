@@ -660,7 +660,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			CommonCockGun();
 		else
 		{
-	r		bNeedCock=false;
+			bNeedCock=false;
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
@@ -1353,7 +1353,7 @@ simulated function SetScopeBehavior()
 	if (bScopeView)
 	{
 		ViewAimFactor = 1.0;
-		RecoilComponent.OnScopeUp();
+		RecoilComponent.OnADSStart();
 		AimSpread = 0;
 		ChaosAimSpread *= SightAimFactor;
 		ChaosDeclineTime *= 2.0;
@@ -1365,7 +1365,7 @@ simulated function SetScopeBehavior()
 		if(Level.NetMode == NM_DedicatedServer)
 		{
 			ViewAimFactor = default.ViewAimFactor;
-			RecoilComponent.OnScopeDown();
+			RecoilComponent.OnADSEnd();
 		}
 
 		AimSpread = default.AimSpread;
@@ -1592,7 +1592,7 @@ simulated function PositionSights ()
 		DisplayFOV = SightDisplayFOV;
 		ViewAimFactor=1.0;
 
-		RecoilComponent.OnScopeUp();
+		RecoilComponent.OnADSStart();
 		if (ZoomType == ZT_Irons)
 			PC.DesiredFOV = PC.DefaultFOV * SightZoomFactor;
 	}
@@ -1605,7 +1605,7 @@ simulated function PositionSights ()
 		PlayerController(InstigatorController).bZooming = False;
 		ViewAimFactor=default.ViewAimFactor;
 
-		RecoilComponent.OnScopeDown();
+		RecoilComponent.OnADSEnd();
 		if(ZoomType == ZT_Irons)
 		{
 	        PC.DesiredFOV = PC.DefaultFOV;
@@ -1620,7 +1620,7 @@ simulated function PositionSights ()
 		DisplayFOV = Smerp(SightingPhase, default.DisplayFOV, SightDisplayFOV);
 		ViewAimFactor=Smerp(SightingPhase, default.ViewAimFactor, 1);
 
-		RecoilComponent.ShiftViewRecoilFactor(SightingPhase);
+		RecoilComponent.UpdateADSTransition(SightingPhase);
 
 		//Don't do this for scoped weapons
 		if (ZoomType == ZT_Irons)
@@ -2663,7 +2663,7 @@ function bool CanAttack(Actor Other)
 	}
 
 	// Skilled bots can conserve ammo by not firing when the spread is too high
-	if ((Rand(6) < AIController(Instigator.Controller).Skill) && !RecoilComponent.BotShouldFire() )
+	if ((Rand(6) < AIController(Instigator.Controller).Skill) && !RecoilComponent.BotShouldFire(Dist) )
 		return false;
 
     for (m = 0; m < NUM_FIRE_MODES; m++)
@@ -3837,6 +3837,12 @@ final simulated function StopAim()
 	Aim = NewAim;
 	ReaimPhase = 0;
 }
+
+final simulated function Vector GetFireDir()
+{
+	return Vector(GetAimPivot() + RecoilComponent.GetWeaponPivot());
+}
+
 // Rotate weapon and view according to aim
 simulated function ApplyAimRotation()
 {
@@ -3857,7 +3863,7 @@ simulated function ApplyAimToView()
 
 	RecoilPivotDelta = RecoilComponent.GetViewPivotDelta();
 	BaseAim = Aim * ViewAimFactor;
-	
+
 	if (RecoilComponent.ShouldUpdateView())
 		Instigator.SetViewRotation(Instigator.Controller.Rotation + (BaseAim - ViewAim) + (RecoilPivotDelta));
 	else 
@@ -4102,7 +4108,7 @@ simulated function ClientJumped()
 	bJumpLock=True;
 }
 
-simulated function AddRecoil (float Amount, optional byte Mode)
+simulated function AddRecoil(float Amount, optional byte Mode)
 {
 	RecoilComponent.AddRecoil(Amount, Mode);
 

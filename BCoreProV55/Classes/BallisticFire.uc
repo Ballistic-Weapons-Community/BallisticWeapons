@@ -49,12 +49,12 @@ var() enum EScopeDownOn
 //-----------------------------------------------------------------------------
 
 //Bullet spread variables------------------------------------------------------
-var() float				RecoilPerShot;		// Amount of recoil added each shot
-var() float				VelocityRecoil;		// How much to jolt player back when they fire
-var() float				FireChaos;			// Chaos added to aim when fired. Will be auto calculated if < 0
+var() float				FireRecoil;				// Amount of recoil added each shot
+var() float				FirePushbackForce;		// How much to jolt player back when they fire
+var() float				FireChaos;				// Chaos added to aim when fired. Will be auto calculated if < 0
 var() InterpCurve		FireChaosCurve;
-var() float				XInaccuracy;		// Set amount that bullets can Yaw away from gun's aim
-var() float				YInaccuracy;		// Set amount that bullets can Pitch away from gun's aim
+var() float				XInaccuracy;			// Set amount that bullets can Yaw away from gun's aim
+var() float				YInaccuracy;			// Set amount that bullets can Pitch away from gun's aim
 enum EFireSpreadMode
 {
 	FSM_Rectangle,	// Standard random rectangular box.
@@ -113,15 +113,13 @@ simulated function PreBeginPlay()
 {
 	super.PreBeginPlay();
 	BW = BallisticWeapon(Weapon);
-	if (FireChaos < 0)
-		FireChaos = (BW.RecoilDeclineTime*RecoilPerShot)/BW.RecoilMax;
 }
 
 function StartBerserk()
 {
     FireRate = default.FireRate * 0.75;
     FireAnimRate = default.FireAnimRate/0.75;
-    RecoilPerShot = default.RecoilPerShot * 0.75;
+    FireRecoil = default.FireRecoil * 0.75;
     FireChaos = default.FireChaos * 0.75;
 }
 
@@ -129,7 +127,7 @@ function StopBerserk()
 {
     FireRate = default.FireRate;
     FireAnimRate = default.FireAnimRate;
-    RecoilPerShot = default.RecoilPerShot;
+    FireRecoil = default.FireRecoil;
     FireChaos = default.FireChaos;
 }
 
@@ -137,7 +135,7 @@ function StartSuperBerserk()
 {
     FireRate = default.FireRate/Level.GRI.WeaponBerserk;
     FireAnimRate = default.FireAnimRate * Level.GRI.WeaponBerserk;
-    RecoilPerShot = default.RecoilPerShot * Level.GRI.WeaponBerserk;
+    FireRecoil = default.FireRecoil * Level.GRI.WeaponBerserk;
 }
 
 //Stub called by the weapon mode when its FireMode changes if bNotifyModeSwitch is set to true
@@ -213,7 +211,7 @@ simulated function vector GetFireDir(out Vector StartTrace)
     // the to-hit trace always starts right in front of the eye
 	if (StartTrace == vect(0,0,0))
 		StartTrace = Instigator.Location + Instigator.EyePosition();
-	return Vector(BW.GetAimPivot() + BW.GetRecoilPivot()) >> AdjustAim(StartTrace, AimError);
+	return BW.GetFireDir() >> AdjustAim(StartTrace, AimError);
 }
 // Like GetFireDir, but returns a rotator instead
 simulated function rotator GetFireAim(out Vector StartTrace)
@@ -260,7 +258,7 @@ function DoFireEffect()
 {
 	if (!bAISilent)
 		Instigator.MakeNoise(1.0);
-	FireRecoil();
+	ApplyRecoil();
 	bPendingTryJam=true;
 	Super.DoFireEffect();
 }
@@ -324,18 +322,18 @@ simulated function ReloadingGun(optional byte i)
 	}
 }
 
-simulated function FireRecoil ()
+simulated function ApplyRecoil ()
 {
 	local Vector VelRecoilVect;
 	if (BW != None)
 	{
 		if (!BW.bReaiming)
 			BW.Reaim(level.TimeSeconds-Weapon.LastRenderTime, , , , , FireChaos);
-		BW.AddRecoil(RecoilPerShot, ThisModeNum);
+		BW.AddRecoil(FireRecoil, ThisModeNum);
 	}
-	if (VelocityRecoil != 0 && Instigator!= None)
+	if (FirePushbackForce != 0 && Instigator!= None)
 	{
-		VelRecoilVect = Vector(Instigator.GetViewRotation()) * VelocityRecoil;
+		VelRecoilVect = Vector(Instigator.GetViewRotation()) * FirePushbackForce;
 		VelRecoilVect.Z *= 0.25;
 		
 		if (Instigator.Physics != PHYS_Falling)
@@ -491,7 +489,7 @@ simulated event ModeDoFire()
         Instigator.DeactivateSpawnProtection();
     }
     else if (!BW.bUseNetAim && !BW.bScopeView)
-    	FireRecoil();
+    	ApplyRecoil();
 	
 	BW.LastFireTime = Level.TimeSeconds;
 
@@ -645,8 +643,8 @@ static function FireModeStats GetStats()
 	if (default.FireRate < 0.5)
 		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
 	else FS.RPM = 1/default.FireRate@"times/second";
-	FS.RPShot = default.RecoilPerShot;
-	FS.RPS = default.RecoilPerShot / default.FireRate;
+	FS.RPShot = default.FireRecoil;
+	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
 	
@@ -661,7 +659,8 @@ defaultproperties
      FlashBone="tip"
      FlashScaleFactor=1.000000
      BrassBone="ejector"
-     bReleaseFireOnDie=True
+	 bReleaseFireOnDie=True
+	 FireChaos=0
      FireChaosCurve=(Points=((InVal=0.000000,OutVal=1.000000),(InVal=1.000000,OutVal=1.000000)))
      FireSpreadMode=FSM_Circle
      UnjamMethod=UJM_Cock

@@ -18,12 +18,22 @@ var() float				YawFactor;					// Recoil is multiplied by this and added to Aim Y
 var() float				XRandFactor;				// Recoil multiplied by this for recoil Yaw randomness
 var() float				YRandFactor;				// Recoil multiplied by this for recoil Pitch randomness
 var() float				MinRandFactor;				// Bias for calculation of recoil random factor
-var() float				Max;						// The maximum recoil amount
+var() float				MaxRecoil;						// The maximum recoil amount
 var() float				DeclineTime;				// Time it takes for Recoil to decline maximum to zero
 var() float				DeclineDelay;				// The time between firing and when recoil should start decaying
 var() float             ViewBindFactor;           	// How much of the recoil is applied to the player's view rotation
 var() float             HipMultiplier;            	// Hipfire recoil is scaled up by this value
 var() float             CrouchMultiplier;         	// Crouch recoil is scaled by this value
+
+final function float EvaluateXRecoil(float Recoil)
+{
+    return MaxRecoil * InterpCurveEval(XCurve, Recoil / MaxRecoil) * YawFactor;
+}
+    
+final function float EvaluateYRecoil(float Recoil)
+{
+    return MaxRecoil * InterpCurveEval(YCurve, Recoil / MaxRecoil) * PitchFactor;
+}
 
 defaultproperties
 {
@@ -33,7 +43,7 @@ defaultproperties
     YawFactor=1.000000
     XRandFactor=0.000000
     YRandFactor=0.000000
-    Max=4096.000000
+    MaxRecoil=4096.000000
     DeclineTime=2.000000
     DeclineDelay=0.300000
     ViewBindFactor=1.000000

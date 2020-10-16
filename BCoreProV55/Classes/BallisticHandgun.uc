@@ -281,7 +281,7 @@ simulated function PreDrawFPWeapon()
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
 {
-	if (IsSlave()))
+	if (IsSlave())
 		return;
 	
 	Super.ApplyAimToView();

@@ -13,6 +13,5 @@ simulated function SetScopeBehavior()
 
 defaultproperties
 {
-     HipRecoilFactor=1.250000
 	 SightZoomFactor=0.85
 }
