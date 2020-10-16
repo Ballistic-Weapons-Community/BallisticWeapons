@@ -69,27 +69,27 @@ var() float								IdleTweenTime;							// Just a general tween time used by ani
 var   Actor								SightFX;								// SightFX actor
 var() class<Actor>						SightFXClass;							// Effect to attach as an iron sight effect or could be used for anything
 var() name								SightFXBone;							// Bone to attach SightFX to
-var() class<BCReplicationInfo>	BCRepClass;										// BCReplication info class to use for server side variables that are sent to clients
+var() class<BCReplicationInfo>			BCRepClass;								// BCReplication info class to use for server side variables that are sent to clients
 //----------------------------------------------------------------------------------------------------------------------
 
 //Global configurable settings -----------------------------------------------------------------------------------------
 var() globalconfig 	bool		bOldCrosshairs;			// Use UT2004 crosshairs instead of BW's
 var() globalconfig 	bool		bEvenBodyDamage;		// Will weapon limb hits cause as much damage as any non-head body region?...
-var() globalconfig	bool		bUseModifiers;				// Uses configurable modifiers in BallisticInstantFire / BallisticProjectile to handle locational damage
-var()	globalconfig 	float	AimKnockScale;			// Scale the weapon displacement caused by taking damage
-var() globalconfig 	bool		bDrawCrosshairDot; 		//Draw dot in the centre of crosshairs
-var() globalconfig	bool		bUseBigIcon;				// For HUDFix huds - makes the Icon the BigIcon
+var() globalconfig	bool		bUseModifiers;			// Uses configurable modifiers in BallisticInstantFire / BallisticProjectile to handle locational damage
+var() globalconfig 	float		AimKnockScale;			// Scale the weapon displacement caused by taking damage
+var() globalconfig 	bool		bDrawCrosshairDot; 		// Draw dot in the centre of crosshairs
+var() globalconfig	bool		bUseBigIcon;			// For HUDFix huds - makes the Icon the BigIcon
 var() globalconfig	bool		bLimitCarry;
-var()	globalconfig	byte	MaxWeaponsPerSlot;
+var() globalconfig	byte		MaxWeaponsPerSlot;
 var() globalconfig  byte		SightsRestrictionLevel;	// Forces any weapon which can aim to aim when the player fires.
 //----------------------------------------------------------------------------------------------------------------------
 
 //Special weapon info vars ---------------------------------------------------------------------------------------------
 var() config float		WeaponPrice;					// Cash cost to buy the weapon
-var() config float		PrimaryAmmoPrice;			// Cost to fill primary fm ammo
-var() config float		SecondaryAmmoPrice;		// Cost to fill secondary fm ammo
-var() byte					InventorySize;					// How much space this weapon should occupy in an inventory. 0-100. Used by mutators, games, etc...
-																	// Please note that this is now equivalent to slot usage in Conflict.
+var() config float		PrimaryAmmoPrice;				// Cost to fill primary fm ammo
+var() config float		SecondaryAmmoPrice;				// Cost to fill secondary fm ammo
+var() byte				InventorySize;					// How much space this weapon should occupy in an inventory. 0-100. Used by mutators, games, etc...
+														// Please note that this is now equivalent to slot usage in Conflict.
 
 // Flags which describe a weapon or its capabilities. Use for mutators, AI, anything that needs to try just types of weapons
 var() bool		bWT_Bullet;							
@@ -130,14 +130,13 @@ enum EMeleeState
 	MS_StrikePending 	//Gun is in the middle of its own strike, but wants to prepare another at the end of this one.
 };
 
-var EMeleeState			MeleeState;
+var EMeleeState						MeleeState;
 
-var float					MeleeInterval, MeleeHoldTime;
+var float							MeleeInterval, MeleeHoldTime;
 
 var class<BallisticMeleeFire>		MeleeFireClass;
 var protected BallisticMeleeFire	MeleeFireMode;
-var	float		MeleeFatigue;
-
+var	float							MeleeFatigue;
 //--------------------------------------------------------------------------------------------------------------------------
 
 //Ammo/Reloading Stuff -------------------------------------------------------------------------------------------------
@@ -210,13 +209,13 @@ struct WeaponModeType						//All the settings for a weapon firing mode
 	var() float Value;							//Just a useful extra numerical value. Could be max count for burst mode or whatever...
 };
 
-var() Array<WeaponModeType>	WeaponModes;			//A list of the available weapon firing modes and their info for this weapon
-var() travel byte						CurrentWeaponMode;	//The index of the firing mode currently active
-																				//FIXME, weapons using SwitchCannonMode will require assistance.
-var() config byte						LastWeaponMode;		//The last known used weapon mode
-var() config byte						SavedWeaponMode;		//A manually set or saved initial weapon mode
-var	bool									bNotifyModeSwitch;		//Calls SwitchWeaponMode on each fire mode on mode switching.
-var	bool									bRedirectSwitchToFiremode; //Compatibility for Ballistic UI - implemented in later weapons
+var() Array<WeaponModeType>					WeaponModes;				//A list of the available weapon firing modes and their info for this weapon
+var() travel byte							CurrentWeaponMode;			//The index of the firing mode currently active
+																		//FIXME, weapons using SwitchCannonMode will require assistance.
+var() config byte							LastWeaponMode;				//The last known used weapon mode
+var() config byte							SavedWeaponMode;			//A manually set or saved initial weapon mode
+var	bool									bNotifyModeSwitch;			//Calls SwitchWeaponMode on each fire mode on mode switching.
+var	bool									bRedirectSwitchToFiremode;  //Compatibility for Ballistic UI - implemented in later weapons
 var	byte 									PendingMode;
 var	int										FireCount;					//How many shots have been fired since trigger was pulled
 //----------------------------------------------------------------------------------------------------------------------
@@ -234,8 +233,8 @@ enum EZoomType // Azarael
 var EZoomType ZoomType;
 
 var() bool						bUseSights;			// This weapon has sights or a scope that can be used
-var() bool						bNoTweenToScope;			//Don't tween to the first idle frame to fix the animation jump (M75 fix) FIXME the M75 uses animations to scope
-var() config float 				ScopeXScale;			//Manual scaling for scopes
+var() bool						bNoTweenToScope;	//Don't tween to the first idle frame to fix the animation jump (M75 fix) FIXME the M75 uses animations to scope
+var() config float 				ScopeXScale;		//Manual scaling for scopes
 var() globalconfig bool			bInvertScope;		// Inverts Prev/Next weap relation to Zoom In/Out
 var() name						ZoomInAnim;			// Anim to play for raising weapon to view through Scope or sights
 var() name						ZoomOutAnim;		// Anim to play when lowering weapon after viewing through scope or sights
@@ -254,15 +253,15 @@ var() float						SightingTime;		// Time it takes to move weapon to and from sigh
 var() globalconfig float		SightingTimeScale;	// Scales the SightingTime for each weapon by this amount.
 var   float						OldZoomFOV;			// FOV saved for temporary scope down
 var   float						SightingPhase;		// Current level of progress moving weapon into place for sight view
-var   bool						bPendingSightUp;		// Currently out of sight view for something. Will go back when done
+var   bool						bPendingSightUp;	// Currently out of sight view for something. Will go back when done
 var   bool						bScopeView;			// Currently viewing through scope or sights
 var   bool						bScopeHeld;			// Scope key has not been released
 var   float						NextCheckScopeTime;	// Used to prevent CheckScope() from exiting scope view for a period of time (eg. Prevent RG recoil from cutting scope view)
-var float 						MinFixedZoomLevel; 		// Minimum zoom level for ZT_Minimum.
-var float						MinZoom, MaxZoom;		//Min and max magnification levels for ZT_Logarithmic.
-var float						LogZoomLevel;			// Separate from PC.ZoomLevel because of bZooming code for Anti TCC
-var int							ZoomStages;				//Number of zoom stages
-var Vector						SMuzzleFlashOffset;		//Offset for muzzle flash in scope
+var float 						MinFixedZoomLevel; 	// Minimum zoom level for ZT_Minimum.
+var float						MinZoom, MaxZoom;	//Min and max magnification levels for ZT_Logarithmic.
+var float						LogZoomLevel;		// Separate from PC.ZoomLevel because of bZooming code for Anti TCC
+var int							ZoomStages;			//Number of zoom stages
+var Vector						SMuzzleFlashOffset;	//Offset for muzzle flash in scope
 
 enum ESightingState
 {
@@ -325,10 +324,9 @@ var		  float		AimDisplacementDurationMult; // Duration multiplier for aim displa
 var(BAim) bool		bAimDisabled;		// Disables the entire aiming system. Bullets go exactly where crosshair is aimed.
 var(BAim) bool		bUseNetAim;			// Aim info is replicated to clients. Otherwise client and server aim will be separate
 var(BAim) bool		bUseSpecialAim;		// Firemodes will use GetPlayerAim instead of normal AdjustAim. Used for autotracking and other special aiming functions
-var(BAim) float		CrouchAimFactor;	// Aim recoil and wildness will be mutiplied by this when crouched
+var(BAim) float		CrouchAimFactor;	// Aim will be mutiplied by this when crouched
 var(BAim) float		SightAimFactor;		// Aim is multiplied by this when in sights or scope
 
-var(BAim) float 		HipRecoilFactor; 		//scale hip recoil
 var(BAim) Rotator	SprintOffSet;		// Rotation applied to AimOffset when sprinting
 var(BAim) Rotator	JumpOffSet;			// Temporarily offset aim by this when jumping
 var(BAim) float		JumpChaos;			// Chaos applied for jump event
@@ -336,16 +334,13 @@ var			bool		bJumpLock;				// Prevents ZeroAim from acting when player jumps
 var(BAim) float		FallingChaos;		// Chaos applied when falling
 var(BAim) float		SprintChaos;		// Chaos applied for sprint event
 var       bool			bForceReaim;		// Another Reaim event will be forced after current one completes
-var	   bool			bForceRecoilUpdate; // Forces ApplyAimToView to calculate recoil (set after ReceiveNetRecoil)
 //Base aiming.
 var(BAim) float		AimAdjustTime;		// Time it should take to move aim pointer to new random aim when view moves
 var(BAim) float    	OffsetAdjustTime; 	// Offsetting time for long gun and sprinting
 var(BAim) int			AimSpread;			// How far aim can be from crosshair(rotator units)
 var(BAim) float		ViewAimFactor;		// How much of the Aim is applied to the player's view rotation. 0.0 - 1.0
-var(BAim) float		ViewRecoilFactor;	// How much of the recoil is applied to the player's view rotation. 0.0 - 1.0
 var		  float		ReaimTime;			// Time it should take to move aim pointer to new position
 var	   Rotator		ViewAim;			// Aim saved between ApplyAimToView calls, used to find delta aim
-var	   Rotator   	ViewRecoil;			// Recoil saved between ApplyAimToView calls, used to find delta recoil
 var       Rotator		Aim;				// How far aim pointer is from crosshair
 var       Rotator		NewAim;				// New destination for aim pointer
 var       Rotator		OldAim;				// Where aim poitner was before it started moving
@@ -360,29 +355,17 @@ var(BAim) float		AimDamageThreshold;	// Damage done to player is divided by this
 var(BAim) float		ChaosDeclineTime;	// Time it take for chaos to decline from 1 to 0
 
 var(BAim) float		ChaosSpeedThreshold;// Player speed divided by this to set chaos. <100=Very High Spread, 500=Average, >500 Good Spread.
-var(BAim) int			ChaosAimSpread;		// How far aim can be from crosshair when full chaos is applied(rotator units)
+var(BAim) int		ChaosAimSpread;		// How far aim can be from crosshair when full chaos is applied(rotator units)
 var		  float		Chaos;						// The amount of chaos to be applied to aiming. 0=No Chaos, best aim.1=Full Chaos, Worst aim
 var		  float		NewChaos;					// The Chaos when reaim started. Used for crosshair interpolation.
 var		  float		OldChaos;					// The NewChaos from the previous reaim
-var       Rotator		OldLookDir;					// Where player was looking last tick. Used to check if player view changed
+var       Rotator	OldLookDir;					// Where player was looking last tick. Used to check if player view changed
 
 var 		float 			FireChaos; 			//Current conefire expansion factor (this * ChaosAimSpread being the current radius)
-// Recoil
-var(BAim) 	InterpCurve 		RecoilXCurve;				// Curve used to apply Yaw according to recoil amount.
-var(BAim) 	InterpCurve 		RecoilYCurve;				// Curve used to apply Pitch according to recoil amount.
-var(BAim) 	float				RecoilPitchFactor;		// Recoil is multiplied by this and added to Aim Pitch.
-var(BAim) 	float				RecoilYawFactor;			// Recoil is multiplied by this and added to Aim Yaw.
-var(BAim) 	float				RecoilXFactor;				// Recoil multiplied by this for recoil Yaw randomness
-var(BAim) 	float				RecoilYFactor;				// Recoil multiplied by this for recoil Pitch randomness
-var(BAim)	float				RecoilMinRandFactor;	// Bias for calculation of recoil random factor
-var(BAim) 	float				RecoilMax;					// The maximum recoil amount
-var(BAim) 	float				RecoilDeclineTime;		// Time it takes for Recoil to decline maximum to zero
-var       	float				RecoilXRand;				// Random between 0 and 1. Recorded random number for recoil Yaw randomness
-var      		float			RecoilYRand;				// Random between 0 and 1. Recorded random number for recoil Pitch randomness
-var      		float			Recoil;						// The current recoil amount. Increases each shot, decreases when not firing
-var(BAim) 	float				RecoilDeclineDelay;		// The time between firing and when recoil should start decaying
+
+var			RecoilComponent		RecoilComponent;
 var       	float				LastFireTime;				// Time of last fire
-var			float				NextZeroAimTime;		//For zeroing aim when scoping
+var			float				NextZeroAimTime;			//For zeroing aim when scoping
 
 var			bool				bPendingBringupTimer;
 //----------------------------------------------------------------------------------------------------------------------
@@ -556,7 +539,7 @@ simulated function PostNetBeginPlay()
 		BFireMode[0].bBurstMode = True;
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
 
-		RecoilDeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
+		RecoilComponent.SetDeclineDelay(CalculateBurstRecoilDelay(BFireMode[0].bBurstMode));
 	}
 }
 
@@ -672,7 +655,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			CommonCockGun();
 		else
 		{
-			bNeedCock=false;
+	r		bNeedCock=false;
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
@@ -720,8 +703,8 @@ simulated function StartBerserk()
 		
 	bBerserk = true;
 	
-	RecoilXFactor = default.RecoilXFactor * 0.75;
-	RecoilYFactor = default.RecoilYFactor * 0.75;
+	RecoilComponent.OnBerserkStart();
+	
 	ReloadAnimRate = default.ReloadAnimRate / 0.75;
     CockAnimRate = default.CockAnimRate / 0.75;
     
@@ -735,8 +718,7 @@ simulated function StopBerserk()
 {
 	bBerserk = false;
 	
-	RecoilXFactor = default.RecoilXFactor;
-	RecoilYFactor = default.RecoilYFactor;
+	RecoilComponent.OnBerserkEnd();
 	ReloadAnimRate = default.ReloadAnimRate;
     CockAnimRate = default.CockAnimRate;
     
@@ -1366,7 +1348,7 @@ simulated function SetScopeBehavior()
 	if (bScopeView)
 	{
 		ViewAimFactor = 1.0;
-		ViewRecoilFactor = 1.0;
+		RecoilComponent.OnScopeUp();
 		AimSpread = 0;
 		ChaosAimSpread *= SightAimFactor;
 		ChaosDeclineTime *= 2.0;
@@ -1378,7 +1360,7 @@ simulated function SetScopeBehavior()
 		if(Level.NetMode == NM_DedicatedServer)
 		{
 			ViewAimFactor = default.ViewAimFactor;
-			ViewRecoilFactor = default.ViewRecoilFactor;
+			RecoilComponent.OnScopeDown();
 		}
 
 		AimSpread = default.AimSpread;
@@ -1605,7 +1587,7 @@ simulated function PositionSights ()
 		DisplayFOV = SightDisplayFOV;
 		ViewAimFactor=1.0;
 
-		ViewRecoilFactor=1.0;
+		RecoilComponent.OnScopeUp();
 		if (ZoomType == ZT_Irons)
 			PC.DesiredFOV = PC.DefaultFOV * SightZoomFactor;
 	}
@@ -1618,7 +1600,7 @@ simulated function PositionSights ()
 		PlayerController(InstigatorController).bZooming = False;
 		ViewAimFactor=default.ViewAimFactor;
 
-		ViewRecoilFactor=default.ViewRecoilFactor;
+		RecoilComponent.OnScopeDown();
 		if(ZoomType == ZT_Irons)
 		{
 	        PC.DesiredFOV = PC.DefaultFOV;
@@ -1633,7 +1615,8 @@ simulated function PositionSights ()
 		DisplayFOV = Smerp(SightingPhase, default.DisplayFOV, SightDisplayFOV);
 		ViewAimFactor=Smerp(SightingPhase, default.ViewAimFactor, 1);
 
-		ViewRecoilFactor = Smerp(SightingPhase, default.ViewRecoilFactor, 1);
+		RecoilComponent.ShiftViewRecoilFactor(SightingPhase);
+
 		//Don't do this for scoped weapons
 		if (ZoomType == ZT_Irons)
 	        PC.DesiredFOV = PC.DefaultFOV * (Lerp(SightingPhase, 1, SightZoomFactor));
@@ -2071,12 +2054,12 @@ simulated function float CalculateBurstRecoilDelay(bool burst)
 	{
 		return
 			(BFireMode[0].FireRate * WeaponModes[CurrentWeaponMode].Value * (1f - BFireMode[0].BurstFireRateFactor)) // cooldown of burst
-			+ (default.RecoilDeclineDelay - BFireMode[0].FireRate); // inherent delay, usually fire rate * 0.5
+			+ (RecoilComponent.GetDeclineDelay() - BFireMode[0].FireRate); // inherent delay, usually fire rate * 0.5
 	}
 	
 	else
 	{
-		return default.RecoilDeclineDelay;
+		return RecoilComponent.GetDeclineDelay();
 	}
 }
 
@@ -2105,7 +2088,7 @@ function CheckBurstMode()
 			ClientSwitchBurstMode(False);
 	}
 	
-	RecoilDeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
+	RecoilComponent.SetDeclineDelay(CalculateBurstRecoilDelay(BFireMode[0].bBurstMode));
 }
 
 simulated function ClientSwitchWeaponModes (byte NewMode)
@@ -2121,7 +2104,7 @@ simulated final function ClientSwitchBurstMode(bool burst, optional int Max)
 	if (burst)
 		BFireMode[0].MaxBurst = Max;
 		
-	RecoilDeclineDelay = CalculateBurstRecoilDelay(burst);
+		RecoilComponent.SetDeclineDelay(CalculateBurstRecoilDelay(burst));
 }
 
 // See if firing modes will let us fire another round or not
@@ -2675,7 +2658,7 @@ function bool CanAttack(Actor Other)
 	}
 
 	// Skilled bots can conserve ammo by not firing when the spread is too high
-	if ((Rand(6) < AIController(Instigator.Controller).Skill) && ( (Recoil*RecoilYawFactor > 100 * (1+4000/Dist)) || (Recoil*RecoilPitchFactor > 100 * (1+4000/Dist))) )
+	if ((Rand(6) < AIController(Instigator.Controller).Skill) && !RecoilComponent.BotShouldFire() )
 		return false;
 
     for (m = 0; m < NUM_FIRE_MODES; m++)
@@ -3593,20 +3576,18 @@ simulated final function ReceiveNewAim(float Yaw, float Pitch, float Time, float
 final function SendNetRecoil()
 {
 	//DC 110313
-	ReceiveNetRecoil(RecoilXRand*255, RecoilYRand*255, Recoil );
+	ReceiveNetRecoil(RecoilComponent.GetRecoilXRand() * 255, RecoilComponent.GetRecoilYRand() * 255, RecoilComponent.GetRecoil() );
 //	log( "SendNetRecoil() Recoil: "$Recoil );
 }
+
 // Receive random values for recoil from the server
-//DC 110313
+// DC 110313
 simulated final function ReceiveNetRecoil(byte XRand, byte YRand, float RecAmp)
 {
 	if (!bUseNetAim || Role == ROLE_Authority)
 		return;
-	RecoilXRand = float(XRand)/255;
-	RecoilYRand = float(YRand)/255;
-	//DC 110313
-	Recoil = RecAmp;
-	bForceRecoilUpdate=True;
+
+	RecoilComponent.UpdateRecoil(XRand, YRand, RecAmp);
 }
 
 // End Net Stuff <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -3684,7 +3665,6 @@ simulated function TickAim (float DT)
 	if (bAimDisabled)
 	{
 		Aim = Rot(0,0,0);
-		Recoil = 0;
 		return;
 	}
 	
@@ -3719,7 +3699,7 @@ simulated function TickAim (float DT)
 		AimOffset = class'BUtil'.static.RSmerp(FMax(0.0,(AimOffsetTime-level.TimeSeconds)/OffsetAdjustTime), NewAimOffset, OldAimOffset);
 	
 	// Align the gun mesh and player view
-	if (LastFireTime + RecoilDeclineDelay >= Level.TimeSeconds)
+	if (RecoilComponent.HoldingRecoil())
 	{
 		ApplyAimRotation();
 		OldLookDir = GetPlayerAim();
@@ -3736,7 +3716,7 @@ simulated function TickAim (float DT)
 	}
 
 	// Fire chaos decline
-	if (FireChaos > 0 && LastFireTime + RecoilDeclineDelay < Level.TimeSeconds)
+	if (FireChaos > 0 && LastFireTime + RecoilComponent.GetDeclineDelay() < Level.TimeSeconds)
 	{
 		if (Instigator.bIsCrouched)
 			FireChaos -= FMin(FireChaos, DT / (ChaosDeclineTime/CrouchAimFactor));
@@ -3744,9 +3724,7 @@ simulated function TickAim (float DT)
 			FireChaos -= FMin(FireChaos, DT / ChaosDeclineTime);
 	}
 
-	// Recoil Decline
-	if (Recoil > 0 && LastFireTime < Level.TimeSeconds - RecoilDeclineDelay)
-		Recoil -= FMin(Recoil, RecoilMax * (DT / RecoilDeclineTime));
+	RecoilComponent.Tick(DT);
 
 	// Align the gun mesh and player view
 	ApplyAimRotation();
@@ -3858,7 +3836,7 @@ final simulated function StopAim()
 simulated function ApplyAimRotation()
 {
 	ApplyAimToView();
-	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
+	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + RecoilComponent.GetWeaponPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
 }
 
 // Rotates the player's view according to Aim
@@ -3866,24 +3844,20 @@ simulated function ApplyAimRotation()
 
 simulated function ApplyAimToView()
 {
-	local Rotator BaseAim, BaseRecoil;
+	local Rotator BaseAim, RecoilPivotDelta;
 
 	//DC 110313
 	if (/*!Instigator.IsFirstPerson() || */ Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
 		return;
 
-	BaseRecoil = GetRecoilPivot(true) * ViewRecoilFactor;
+	RecoilPivotDelta = RecoilComponent.GetViewPivotDelta();
 	BaseAim = Aim * ViewAimFactor;
-	if (bForceRecoilUpdate || LastFireTime >= Level.TimeSeconds - RecoilDeclineDelay)
-	{
-		bForceRecoilUpdate = False;
-		Instigator.SetViewRotation(Instigator.Controller.Rotation + (BaseAim - ViewAim) + (BaseRecoil - ViewRecoil));
-	}
-
-	else Instigator.SetViewRotation(Instigator.Controller.Rotation + (BaseAim - ViewAim));
+	if (RecoilComponent.ShouldUpdateView())
+		Instigator.SetViewRotation(Instigator.Controller.Rotation + (BaseAim - ViewAim) + (RecoilPivotDelta));
+	else 
+		Instigator.SetViewRotation(Instigator.Controller.Rotation + (BaseAim - ViewAim));
 
 	ViewAim = BaseAim;
-	ViewRecoil = BaseRecoil;	
 }
 
 // Sets new aimoffset and gets AimOffset to interpolate to it over a period set by ShiftTime
@@ -3911,39 +3885,6 @@ simulated function Rotator GetAimPivot(optional bool bIgnoreViewAim)
 	if (bIgnoreViewAim || Instigator.Controller == None || PlayerController(Instigator.Controller) == None || PlayerController(Instigator.Controller).bBehindView)
 		return AimOffset + Aim + LongGunPivot * FMax(LongGunFactor, AimDisplacementFactor);
 	return AimOffset + Aim * (1-ViewAimFactor) + LongGunPivot * FMax(LongGunFactor, AimDisplacementFactor);
-}
-
-// Returns all the effects of recoil in the form of a single rotator
-// Scaled randomness.
-simulated function Rotator GetRecoilPivot(optional bool bIgnoreViewAim)
-{
-	local Rotator R;
-	local float AdjustedRecoil;
-
-	if (!bIgnoreViewAim && ViewRecoilFactor==1)
-		return R;
-	// Randomness
-	if (RecoilMinRandFactor > 0)
-	{
-		AdjustedRecoil = RecoilMax * RecoilMinRandFactor + Recoil * (1 - RecoilMinRandFactor);
-		R.Yaw = ((-AdjustedRecoil*RecoilXFactor + AdjustedRecoil*RecoilXFactor*2*RecoilXRand) * 0.3);
-		R.Pitch = ((-AdjustedRecoil*RecoilYFactor + AdjustedRecoil*RecoilYFactor*2*RecoilYRand) * 0.3);
-	}
-	else
-	{
-		R.Yaw = ((-Recoil*RecoilXFactor + Recoil*RecoilXFactor*2*RecoilXRand) * 0.3);
-		R.Pitch = ((-Recoil*RecoilYFactor + Recoil*RecoilYFactor*2*RecoilYRand) * 0.3);
-	}
-	// Pitching/Yawing
-	R.Yaw += RecoilMax * InterpCurveEval(RecoilXCurve, Recoil/RecoilMax) * RecoilYawFactor;
-	R.Pitch += RecoilMax * InterpCurveEval(RecoilYCurve, Recoil/RecoilMax) * RecoilPitchFactor;
-	
-	if (InstigatorController != None && InstigatorController.Handedness == -1)
-		R.Yaw = -R.Yaw;
-	
-	if (bIgnoreViewAim || Instigator.Controller == None || PlayerController(Instigator.Controller) == None || PlayerController(Instigator.Controller).bBehindView)
-		return R;
-	return R*(1-ViewRecoilFactor);
 }
 
 // Checks up on things and returns what our AimOffset should be
@@ -4157,50 +4098,10 @@ simulated function ClientJumped()
 
 simulated function AddRecoil (float Amount, optional byte Mode)
 {
-	local float AdjustedHipRecoilFactor;
-	
-	LastFireTime = Level.TimeSeconds;
-	
-	if (bAimDisabled || Amount == 0)
-		return;
-		
-	Amount *= BCRepClass.default.RecoilScale;
-	
-	if (Instigator.bIsCrouched && VSize(Instigator.Velocity) < 30)
-		Amount *= CrouchAimFactor;
-		
-	if (!bScopeView)
-	{
-		if (BCRepClass.default.bRelaxedHipFire)
-			AdjustedHipRecoilFactor = ((HipRecoilFactor - 1) * 0.5) + 1;
-		else
-			AdjustedHipRecoilFactor = default.HipRecoilFactor;
-		
-		Amount *= AdjustedHipRecoilFactor;
-	}
-	
-	Recoil = FMin(RecoilMax, Recoil + Amount);
-	if (!bUseNetAim || Role == ROLE_Authority)
-	{
-		RecoilXRand = FRand();
-		RecoilYRand = FRand();
-		
-		if (Recoil == RecoilMax)
-		{
-			if (Amount < 260)
-			{
-				RecoilXRand *= 5 * (400 - Amount) / 400;
-				RecoilYRand *= 5 * (400 - Amount) / 400;
-			}
-			else
-			{
-				RecoilXRand *= 3;
-				RecoilYRand *= 3;
-			}
-		}
-		if (bUseNetAim)
-			SendNetRecoil();
-	}
+	RecoilComponent.AddRecoil(Amount, Mode);
+
+	if (ROLE == ROLE_Authority && bUseNetAim)
+		SendNetRecoil();
 }
 
 // These can be called when a turret undeploys and gives this weapon. Override in sub-classes to add some functionality
@@ -4663,7 +4564,7 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
     YPos += YL;
     Canvas.SetPos(4,YPos);
 
-	Canvas.DrawText("Chaos: "$Chaos$", Recoil: "$Recoil$", ReaimPhase: "$ReaimPhase$", Aim: "$Aim.Yaw$","$Aim.Pitch$", bNeedCock: "$bNeedCock$", bNeedReload: "$bNeedReload$", bPreventReload: "$bPreventReload$", bServerReloading: "$bServerReloading);
+	Canvas.DrawText("Chaos: "$Chaos$", Recoil: "$RecoilComponent.GetRecoil()$", ReaimPhase: "$ReaimPhase$", Aim: "$Aim.Yaw$","$Aim.Pitch$", bNeedCock: "$bNeedCock$", bNeedReload: "$bNeedReload$", bPreventReload: "$bPreventReload$", bServerReloading: "$bServerReloading);
     YPos += YL;
     Canvas.SetPos(4,YPos);
 }
@@ -4789,27 +4690,19 @@ defaultproperties
      bUseNetAim=True
      CrouchAimFactor=0.800000
      SightAimFactor=1
-     HipRecoilFactor=1.600000
+
      SprintChaos=0.100000
      AimAdjustTime=0.500000
      OffsetAdjustTime=0.300000
 	 
      AimSpread=16
-     ViewRecoilFactor=1.000000
+
      AimDamageThreshold=100.000000
      ChaosDeclineTime=0.640000
      ChaosSpeedThreshold=500.000000
      ChaosAimSpread=128
 	 
-     RecoilXCurve=(Points=(,(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
-     RecoilPitchFactor=1.000000
-     RecoilYawFactor=1.000000
-     RecoilXFactor=0.000000
-     RecoilYFactor=0.000000
-     RecoilMax=4096.000000
-     RecoilDeclineTime=2.000000
-     RecoilDeclineDelay=0.300000
+
 	 
      SelectAnim="Pullout"
      PutDownAnim="putaway"
