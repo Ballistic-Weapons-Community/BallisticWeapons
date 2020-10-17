@@ -432,8 +432,11 @@ simulated function PostBeginPlay()
     local int m;
 	Super.PostBeginPlay();
 	
+	Log("BallisticWeapon: PostBeginPlay: Creating RecoilComponent");
 	RcComponent = new (self) class'RecoilComponent';
-	RcComponent.Initialize(GetRecoilParams());
+
+	Log("BallisticWeapon: PostBeginPlay: Initializing RecoilComponent");
+	RcComponent.Initialize();
 	
 	SightingTime = Default.SightingTime*Default.SightingTimeScale;
 	
@@ -2055,7 +2058,7 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 	BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
 
 	if (WeaponModes[default.LastWeaponMode].RecoilParamsIndex != WeaponModes[CurrentWeaponMode].RecoilParamsIndex)
-		RcComponent.Initialize(GetRecoilParams());
+		RcComponent.Initialize();
 
 	CheckBurstMode();
 

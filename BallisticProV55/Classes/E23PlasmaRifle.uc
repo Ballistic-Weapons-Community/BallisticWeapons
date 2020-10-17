@@ -446,89 +446,92 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-     ScopePopupHeight=17.000000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP4-Tex.VPR.BigIcon_VPR'
-     BigIconCoords=(Y1=36,Y2=225)
-     SightFXClass=Class'BallisticProV55.E23ClipEffect'
-     SightFXBone="Clip"
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_RapidProj=True
-     bWT_Energy=True
-     ManualLines(0)="Series mode fires a continuous stream of high damage projectiles, which gain damage over range.|Multi mode fires five projectiles simultaneously in a spread pattern, mimicking a shotgun.|Sniper mode fires a very fast projectile which is weak up close but quickly gains damage over range."
-     ManualLines(1)="Projects a hitscan beam with almost no recoil but low damage output."
-     ManualLines(2)="While scoped, the weapon function toggles the infra-red night vision lamp. The E-23 ViPeR is effective at all ranges, but requires mode switching and uses the same ammo pool for all its modes. It has low recoil but poor hipfire. Its energy projectiles repair nodes and vehicles. Plasma projectiles will penetrate players, but not walls and surfaces."
-     SpecialInfo(0)=(Info="300.0;25.0;0.9;80.0;0.2;0.4;0.1")
-     BringUpSound=(Sound=Sound'BallisticSounds2.A73.A73Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.A73.A73Putaway')
-     MagAmmo=100
-     ReloadAnimRate=1.250000
-     ClipOutSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipOut')
-     ClipInSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipIn')
-     ClipInFrame=0.700000
-     bNonCocking=True
-     WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
-     WeaponModes(2)=(ModeName="Sniper Pulse",ModeID="WM_SemiAuto",Value=1.000000)
-     CurrentWeaponMode=0
-     bNotifyModeSwitch=True
-     ZoomType=ZT_Logarithmic
-	 MinZoom=2
-	 MaxZoom=8
-	 ZoomStages=2
-     ScopeViewTex=Texture'BWBP4-Tex.VPR.VPR-ScopeUI'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-     FullZoomFOV=45.000000
-     bNoMeshInScope=True
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=256)
-     SightOffset=(X=-8.000000,Z=9.300000)
-     SightDisplayFOV=25.000000
-     SightingTime=0.550000
-     SightAimFactor=1
-     SprintOffSet=(Pitch=-3000,Yaw=-4000)
+	ScopePopupHeight=17.000000
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBP4-Tex.VPR.BigIcon_VPR'
+	BigIconCoords=(Y1=36,Y2=225)
+	SightFXClass=Class'BallisticProV55.E23ClipEffect'
+	SightFXBone="Clip"
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_RapidProj=True
+	bWT_Energy=True
+	ManualLines(0)="Series mode fires a continuous stream of high damage projectiles, which gain damage over range.|Multi mode fires five projectiles simultaneously in a spread pattern, mimicking a shotgun.|Sniper mode fires a very fast projectile which is weak up close but quickly gains damage over range."
+	ManualLines(1)="Projects a hitscan beam with almost no recoil but low damage output."
+	ManualLines(2)="While scoped, the weapon function toggles the infra-red night vision lamp. The E-23 ViPeR is effective at all ranges, but requires mode switching and uses the same ammo pool for all its modes. It has low recoil but poor hipfire. Its energy projectiles repair nodes and vehicles. Plasma projectiles will penetrate players, but not walls and surfaces."
+	SpecialInfo(0)=(Info="300.0;25.0;0.9;80.0;0.2;0.4;0.1")
+	BringUpSound=(Sound=Sound'BallisticSounds2.A73.A73Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.A73.A73Putaway')
+	MagAmmo=100
+	ReloadAnimRate=1.250000
+	ClipOutSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipOut')
+	ClipInSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipIn')
+	ClipInFrame=0.700000
+	bNonCocking=True
+	WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
+	WeaponModes(2)=(ModeName="Sniper Pulse",ModeID="WM_SemiAuto",Value=1.000000)
+	CurrentWeaponMode=0
+	bNotifyModeSwitch=True
+	ZoomType=ZT_Logarithmic
+	MinZoom=2
+	MaxZoom=8
+	ZoomStages=2
+	ScopeViewTex=Texture'BWBP4-Tex.VPR.VPR-ScopeUI'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	FullZoomFOV=45.000000
+	bNoMeshInScope=True
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=256)
+	SightOffset=(X=-8.000000,Z=9.300000)
+	SightDisplayFOV=25.000000
+	SightingTime=0.550000
+	SightAimFactor=1
+	SprintOffSet=(Pitch=-3000,Yaw=-4000)
+
+	AimSpread=64
+	AimDamageThreshold=75.000000
+	ChaosDeclineTime=1.250000
+	ChaosAimSpread=256
+
+	Begin Object Class=RecoilParams Name=E23RecoilParams
+		ViewBindFactor=0.25
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.200000,OutVal=0.12000),(InVal=0.350000,OutVal=0.170000),(InVal=0.600000,OutVal=0.220000),(InVal=0.800000,OutVal=0.320000),(InVal=1.000000,OutVal=0.4)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.120000),(InVal=0.200000,OutVal=0.200000),(InVal=0.350000,OutVal=0.380000),(InVal=0.600000,OutVal=0.750000),(InVal=0.700000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.100000
+		YRandFactor=0.100000
+		DeclineTime=0.500000
+		DeclineDelay=0.240000
+	End Object
+	RecoilParamsList(0)=RecoilParams'E23RecoilParams'
 	 
-     AimSpread=64
-     AimDamageThreshold=75.000000
-     ChaosDeclineTime=1.250000
-     ChaosAimSpread=256
-	 
-	 ViewRecoilFactor=0.25
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.200000,OutVal=0.12000),(InVal=0.350000,OutVal=0.170000),(InVal=0.600000,OutVal=0.220000),(InVal=0.800000,OutVal=0.320000),(InVal=1.000000,OutVal=0.4)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.120000),(InVal=0.200000,OutVal=0.200000),(InVal=0.350000,OutVal=0.380000),(InVal=0.600000,OutVal=0.750000),(InVal=0.700000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.100000
-     RecoilYFactor=0.100000
-     RecoilDeclineTime=0.500000
-     RecoilDeclineDelay=0.240000
-	 
-     FireModeClass(0)=Class'BallisticProV55.E23PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.E23SecondaryFire'
-     SelectAnimRate=1.250000
-     BringUpTime=0.400000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.650000
-     CurrentRating=0.650000
-     bShowChargingBar=True
-     Description="This experimental prototype, being developed on Earth by Frontier Tech, fires variable high-power plasma projectiles from an advanced energy cell. Designed for law enforcement and light infantry sectors, the E-23 is a light, fairly compact and powerful energy assault weapon. The 'ViPeR' is equipped with a sniper scope including optional Infra-Red night-vision lamp."
-     Priority=39
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=5
-     GroupOffset=12
-     PickupClass=Class'BallisticProV55.E23Pickup'
-     PlayerViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)
-     AttachmentClass=Class'BallisticProV55.E23Attachment'
-     IconMaterial=Texture'BWBP4-Tex.VPR.SmallIcon_VPR'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="E-23 'ViPeR' Plasma Rifle"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=64
-     LightSaturation=96
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBP4-Anims.VPR'
-     DrawScale=0.200000
-     bFullVolume=True
-     SoundRadius=32.000000
+	FireModeClass(0)=Class'BallisticProV55.E23PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.E23SecondaryFire'
+	SelectAnimRate=1.250000
+	BringUpTime=0.400000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.650000
+	CurrentRating=0.650000
+	bShowChargingBar=True
+	Description="This experimental prototype, being developed on Earth by Frontier Tech, fires variable high-power plasma projectiles from an advanced energy cell. Designed for law enforcement and light infantry sectors, the E-23 is a light, fairly compact and powerful energy assault weapon. The 'ViPeR' is equipped with a sniper scope including optional Infra-Red night-vision lamp."
+	Priority=39
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=5
+	GroupOffset=12
+	PickupClass=Class'BallisticProV55.E23Pickup'
+	PlayerViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)
+	AttachmentClass=Class'BallisticProV55.E23Attachment'
+	IconMaterial=Texture'BWBP4-Tex.VPR.SmallIcon_VPR'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="E-23 'ViPeR' Plasma Rifle"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=64
+	LightSaturation=96
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BWBP4-Anims.VPR'
+	DrawScale=0.200000
+	bFullVolume=True
+	SoundRadius=32.000000
 }

@@ -443,22 +443,21 @@ defaultproperties
 	SightPivot=(Pitch=256)
 	SightDisplayFOV=40
 	SightAimFactor=1
-	
-	HipRecoilFactor=1
-	
-
 	ReloadAnimRate=1.500000
 	ReloadAnim="ReloadLoop"
-	
-	ViewRecoilFactor=0.6
-	RecoilXCurve=(Points=(,(InVal=0.3,OutVal=0.2),(InVal=0.55,OutVal=0.1),(InVal=0.8,OutVal=0.25),(InVal=1.000000,OutVal=0.4)))
-	RecoilYCurve=(Points=(,(InVal=0.2,OutVal=0.2),(InVal=0.4,OutVal=0.45),(InVal=0.75,OutVal=0.7),(InVal=1.000000,OutVal=1)))
-	RecoilXFactor=0.1
-	RecoilYFactor=0.1
-	RecoilDeclineDelay=0.650000
-	RecoilDeclineTime=0.5
-	
-	
+
+    Begin Object Class=RecoilParams Name=MRS138RecoilParams
+		ViewBindFactor=0.6
+		XCurve=(Points=(,(InVal=0.3,OutVal=0.2),(InVal=0.55,OutVal=0.1),(InVal=0.8,OutVal=0.25),(InVal=1.000000,OutVal=0.4)))
+		YCurve=(Points=(,(InVal=0.2,OutVal=0.2),(InVal=0.4,OutVal=0.45),(InVal=0.75,OutVal=0.7),(InVal=1.000000,OutVal=1)))
+		XRandFactor=0.1
+		YRandFactor=0.1
+		DeclineDelay=0.650000
+		DeclineTime=0.5
+		HipMultiplier=1
+    End Object
+    RecoilParamsList(0)=RecoilParams'MRS138RecoilParams'
+
 	PutDownTime=0.35
 	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
 	PutDownAnimRate=1.5

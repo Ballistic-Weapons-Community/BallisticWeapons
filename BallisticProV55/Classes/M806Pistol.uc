@@ -330,61 +330,65 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 defaultproperties
 {
-     LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
-     LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.500000
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M806'
-     SightFXClass=Class'BallisticProV55.M806SightLEDs'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-	 bWT_Bullet=True
-	 bShouldDualInLoadout=False
-     SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=7
-     CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock')
-     ClipHitSound=(Sound=Sound'BallisticSounds2.M806.M806-ClipHit')
-     ClipOutSound=(Sound=Sound'BallisticSounds2.M806.M806-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds2.M806.M806-ClipIn')
-     ClipInFrame=0.650000
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     bNoCrosshairInScope=True
-     SightOffset=(X=7.000000,Y=0.01,Z=3.600000)
-     SightDisplayFOV=60.000000
-	 SightingTime=0.200000
-	 
-	 ViewRecoilFactor=0.4
-     AimAdjustTime=0.450000
-     ChaosDeclineTime=0.320000
-     RecoilXFactor=0.050000
-     RecoilYFactor=0.050000
-     RecoilDeclineTime=0.5
-     RecoilDeclineDelay=0.37000
-     FireModeClass(0)=Class'BallisticProV55.M806PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.M806SecondaryFire'
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
-     Description="M806 High Velocity Pistol||Manufacturer: Enravion Combat Solutions|Primary: Powerful single shot|Secondary: Toggle Laser Sight||The M806 is one of the few sidearms capable of making a full-grown Skrith whimper. Although long used by law enforcment organizations, military forces and ordinary civillians, it gained recognition when an elite commando unit was forced to use it on a difficult mission to disable a heavily armoured, Cryon infantry Division. Poor logistics planning left them with a wealth of ammo for the sidearm and little else, but the pistol was so effective in the mission it quickly grew in favour amongst the UTC Infantry Corps. The M806 is capable of massive damage when targetted at the right area and is a generally reliable, backup weapon. Use of a laser sight turns it into a real weapon by allowing the soldier to accurately direct its powerful bullets."
-     Priority=19
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-	 InventoryGroup=2
-	 InventorySize=5
-     GroupOffset=8
-     PickupClass=Class'BallisticProV55.M806Pickup'
-     PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
-     AttachmentClass=Class'BallisticProV55.M806Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M806'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="M806A2 Pistol"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticProAnims.M806Pistol'
-     DrawScale=0.080000
+	LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
+	LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.500000
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M806'
+	SightFXClass=Class'BallisticProV55.M806SightLEDs'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bShouldDualInLoadout=False
+	SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
+	MagAmmo=7
+	CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock')
+	ClipHitSound=(Sound=Sound'BallisticSounds2.M806.M806-ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.M806.M806-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.M806.M806-ClipIn')
+	ClipInFrame=0.650000
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bNoCrosshairInScope=True
+	SightOffset=(X=7.000000,Y=0.01,Z=3.600000)
+	SightDisplayFOV=60.000000
+	SightingTime=0.200000
+	AimAdjustTime=0.450000
+	ChaosDeclineTime=0.320000
+
+	Begin Object Class=RecoilParams Name=M806RecoilParams
+		ViewBindFactor=0.4
+		XRandFactor=0.050000
+		YRandFactor=0.050000
+		DeclineTime=0.5
+		DeclineDelay=0.37000
+	End Object
+	RecoilParamsList(0)=RecoilParams'M806RecoilParams'
+
+	FireModeClass(0)=Class'BallisticProV55.M806PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.M806SecondaryFire'
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.600000
+	CurrentRating=0.600000
+	Description="M806 High Velocity Pistol||Manufacturer: Enravion Combat Solutions|Primary: Powerful single shot|Secondary: Toggle Laser Sight||The M806 is one of the few sidearms capable of making a full-grown Skrith whimper. Although long used by law enforcment organizations, military forces and ordinary civillians, it gained recognition when an elite commando unit was forced to use it on a difficult mission to disable a heavily armoured, Cryon infantry Division. Poor logistics planning left them with a wealth of ammo for the sidearm and little else, but the pistol was so effective in the mission it quickly grew in favour amongst the UTC Infantry Corps. The M806 is capable of massive damage when targetted at the right area and is a generally reliable, backup weapon. Use of a laser sight turns it into a real weapon by allowing the soldier to accurately direct its powerful bullets."
+	Priority=19
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=2
+	InventorySize=5
+	GroupOffset=8
+	PickupClass=Class'BallisticProV55.M806Pickup'
+	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
+	AttachmentClass=Class'BallisticProV55.M806Attachment'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M806'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="M806A2 Pistol"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticProAnims.M806Pistol'
+	DrawScale=0.080000
 }

@@ -163,79 +163,83 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticTextures_25.Reptile.BigIcon_Reptile'
-     BigIconCoords=(Y1=30,Y2=230)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Shotgun=True
-     bWT_Hazardous=True
-     bWT_Projectile=True
-     ManualLines(0)="Blasts the enemy with multiple acid projectiles. These projectiles gain damage over range and inflict a short-duration blind on a headshot. Good shoulder fire properties."
-     ManualLines(1)="Charges a larger, direct-attack projectile with minor radius damage. This projectile creates pools of acid where it strikes. Speed, power, number of pools and radius of coverage all increase with charge."
-     ManualLines(2)="The A500 is effective at close range, or at all ranges when charged. The recoil is low because of the nature of the delivery system."
-     SpecialInfo(0)=(Info="210.0;30.0;0.95;80.0;0.0;0.8;0.8")
-     BringUpSound=(Sound=Sound'BallisticSounds2.A73.A73Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.A73.A73Putaway')
-     MagAmmo=8
-     ClipOutSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_ClipOut',Volume=0.800000)
-     ClipInSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_ClipIn',Volume=0.800000)
-     ClipInFrame=0.700000
-     bNonCocking=True
-     WeaponModes(0)=(ModeName="Blast")
-     WeaponModes(1)=(bUnavailable=True,Value=4.000000)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     SightPivot=(Pitch=512)
-     SightOffset=(X=15.000000,Y=0.100000,Z=35.000000)
-     SightDisplayFOV=40.000000
-     SightingTime=0.300000
-     GunLength=48.000000
-     CrouchAimFactor=0.750000
-     SightAimFactor=0.150000
-     SprintOffSet=(Pitch=-3000,Yaw=-4000)
-     AimAdjustTime=0.600000
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticTextures_25.Reptile.BigIcon_Reptile'
+	BigIconCoords=(Y1=30,Y2=230)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Shotgun=True
+	bWT_Hazardous=True
+	bWT_Projectile=True
+	ManualLines(0)="Blasts the enemy with multiple acid projectiles. These projectiles gain damage over range and inflict a short-duration blind on a headshot. Good shoulder fire properties."
+	ManualLines(1)="Charges a larger, direct-attack projectile with minor radius damage. This projectile creates pools of acid where it strikes. Speed, power, number of pools and radius of coverage all increase with charge."
+	ManualLines(2)="The A500 is effective at close range, or at all ranges when charged. The recoil is low because of the nature of the delivery system."
+	SpecialInfo(0)=(Info="210.0;30.0;0.95;80.0;0.0;0.8;0.8")
+	BringUpSound=(Sound=Sound'BallisticSounds2.A73.A73Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.A73.A73Putaway')
+	MagAmmo=8
+	ClipOutSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_ClipOut',Volume=0.800000)
+	ClipInSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_ClipIn',Volume=0.800000)
+	ClipInFrame=0.700000
+	bNonCocking=True
+	WeaponModes(0)=(ModeName="Blast")
+	WeaponModes(1)=(bUnavailable=True,Value=4.000000)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	SightPivot=(Pitch=512)
+	SightOffset=(X=15.000000,Y=0.100000,Z=35.000000)
+	SightDisplayFOV=40.000000
+	SightingTime=0.300000
+	GunLength=48.000000
+
+	SightAimFactor=0.150000
+	SprintOffSet=(Pitch=-3000,Yaw=-4000)
+	AimAdjustTime=0.600000
+
+	AimSpread=0
+	AimDamageThreshold=75.000000
+	ChaosDeclineTime=0.320000
+	ChaosSpeedThreshold=1000.000000
+	ChaosAimSpread=128
 	 
-     AimSpread=0
-     AimDamageThreshold=75.000000
-     ChaosDeclineTime=0.320000
-     ChaosSpeedThreshold=1000.000000
-     ChaosAimSpread=128
-	 
-	 ViewRecoilFactor=0.65
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.270000),(InVal=0.600000,OutVal=0.350000),(InVal=0.700000,OutVal=0.40000),(InVal=1.000000,OutVal=0.4500000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.170000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.100000),(InVal=1.000000,OutVal=0.500000)))
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
-     RecoilDeclineTime=1.500000
-	 
-     FireModeClass(0)=Class'BallisticProV55.A500PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.A500SecondaryFire'
-     BringUpTime=0.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.800000
-     CurrentRating=0.800000
-     bShowChargingBar=True
-     Description="The A500 is a mostly experimental Skrith weapon, seen in only a handful of battles fought against Terran forces. The first encounter with Skrith troops using the 'Reptile' was during a notorious incident on one of the Outworld colonies, where UTC troops were stationed in defense of a large Terran lab still operating. The Skrith invaded the area with little warning, and although the heavily armoured Terrans far outnumbered the Skrith incursion party, the A500 was used by the aliens to great effect. The armoured Terrans affected by the acidic substances suffered a painful fate as the armour was eaten away rapidly and then the soldier themselves fell to the toxic substance. Many theorize that the A500 and other recent Skrith weapons are a response to the ineffectiveness of their previous energy weapons against much of the Terran armour."
-     DisplayFOV=55.000000
-     Priority=39
-     HudColor=(G=200,R=150)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=7
-     PickupClass=Class'BallisticProV55.A500Pickup'
-     PlayerViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
-     PlayerViewPivot=(Pitch=600)
-     AttachmentClass=Class'BallisticProV55.A500Attachment'
-     IconMaterial=Texture'BallisticTextures_25.Reptile.SmallIcon_Reptile'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="A500 'Reptile' Acid Gun"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=54
-     LightSaturation=100
-     LightBrightness=150.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BallisticAnims_25.Reptile'
-     DrawScale=0.187500
-     SoundPitch=56
-     SoundRadius=32.000000
+	Begin Object Class=RecoilParams Name=A500RecoilParams
+		ViewBindFactor=0.65
+		CrouchMultiplier=0.750000
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.270000),(InVal=0.600000,OutVal=0.350000),(InVal=0.700000,OutVal=0.40000),(InVal=1.000000,OutVal=0.4500000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.170000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.100000),(InVal=1.000000,OutVal=0.500000)))
+		XRandFactor=0.200000
+		YRandFactor=0.200000
+		DeclineTime=1.500000
+	End Object
+	RecoilParamsList(0)=RecoilParams'A500RecoilParams'
+
+	FireModeClass(0)=Class'BallisticProV55.A500PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.A500SecondaryFire'
+	BringUpTime=0.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.800000
+	CurrentRating=0.800000
+	bShowChargingBar=True
+	Description="The A500 is a mostly experimental Skrith weapon, seen in only a handful of battles fought against Terran forces. The first encounter with Skrith troops using the 'Reptile' was during a notorious incident on one of the Outworld colonies, where UTC troops were stationed in defense of a large Terran lab still operating. The Skrith invaded the area with little warning, and although the heavily armoured Terrans far outnumbered the Skrith incursion party, the A500 was used by the aliens to great effect. The armoured Terrans affected by the acidic substances suffered a painful fate as the armour was eaten away rapidly and then the soldier themselves fell to the toxic substance. Many theorize that the A500 and other recent Skrith weapons are a response to the ineffectiveness of their previous energy weapons against much of the Terran armour."
+	DisplayFOV=55.000000
+	Priority=39
+	HudColor=(G=200,R=150)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=7
+	PickupClass=Class'BallisticProV55.A500Pickup'
+	PlayerViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
+	PlayerViewPivot=(Pitch=600)
+	AttachmentClass=Class'BallisticProV55.A500Attachment'
+	IconMaterial=Texture'BallisticTextures_25.Reptile.SmallIcon_Reptile'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="A500 'Reptile' Acid Gun"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=54
+	LightSaturation=100
+	LightBrightness=150.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BallisticAnims_25.Reptile'
+	DrawScale=0.187500
+	SoundPitch=56
+	SoundRadius=32.000000
 }

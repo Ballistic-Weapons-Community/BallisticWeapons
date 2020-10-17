@@ -299,8 +299,14 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bUseSights=False
+
+	Begin Object Class=RecoilParams Name=MeleeRecoilParams
+		PitchFactor=0.000000
+		YawFactor=0.000000
+	End Object
+	RecoilParamsList(0)=RecoilParams'MeleeRecoilParams'
+
 	SightingTime=0.000000
-	CrouchAimFactor=1.000000
 	AimSpread=0
 	ChaosAimSpread=0
 	FatigueDeclineTime=4.000000

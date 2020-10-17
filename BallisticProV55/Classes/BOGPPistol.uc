@@ -330,13 +330,17 @@ defaultproperties
      JumpChaos=0.750000
 
 	 ChaosAimSpread=378
-	 ViewRecoilFactor=0.6
      ChaosDeclineTime=1.000000
-     RecoilYawFactor=0.000000
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilDeclineTime=1.000000
-     RecoilDeclineDelay=0.800000
+
+	Begin Object Class=RecoilParams Name=BOGPRecoilParams
+		ViewBindFactor=0.6
+		YawFactor=0.000000
+		XRandFactor=0.250000
+		YRandFactor=0.250000
+		DeclineTime=1.000000
+		DeclineDelay=0.800000
+	End Object
+	RecoilParamsList(0)=RecoilParams'BOGPRecoilParams'
 	 
      FireModeClass(0)=Class'BallisticProV55.BOGPPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.BOGPSecondaryFire'

@@ -360,7 +360,7 @@ defaultproperties
 		YRandFactor=0.05000
 		DeclineTime=0.5
 		MaxRecoil=6144
-		CrouchMultiplier= 0.8
+		CrouchMultiplier=0.8
 		HipMultiplier=1.75
 		ViewBindFactor=0.2
 		DeclineDelay=0.09

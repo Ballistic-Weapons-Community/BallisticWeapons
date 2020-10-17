@@ -302,15 +302,20 @@ defaultproperties
      SprintOffSet=(Pitch=-500,Yaw=-1024)
      AimSpread=0
      ChaosSpeedThreshold=900.000000
-     ChaosAimSpread=0
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=-0.300000),(InVal=0.600000,OutVal=-0.250000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000,OutVal=-0.300000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=-0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.300000),(InVal=1.000000,OutVal=0.600000)))
-     RecoilPitchFactor=0.800000
-     RecoilYawFactor=0.800000
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
-     RecoilDeclineTime=1.000000
-     FireModeClass(0)=Class'BallisticProV55.RX22APrimaryFire'
+	 ChaosAimSpread=0
+	 
+     Begin Object Class=RecoilParams Name=RX22ARecoilParams
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=-0.300000),(InVal=0.600000,OutVal=-0.250000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000,OutVal=-0.300000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=-0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.300000),(InVal=1.000000,OutVal=0.600000)))
+		PitchFactor=0.800000
+		YawFactor=0.800000
+		XRandFactor=0.200000
+		YRandFactor=0.200000
+		DeclineTime=1.000000
+     End Object
+     RecoilParamsList(0)=RecoilParams'RX22ARecoilParams'
+
+	 FireModeClass(0)=Class'BallisticProV55.RX22APrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.RX22ASecondaryFire'
      BringUpTime=1.200000
      SelectForce="SwitchToAssaultRifle"

@@ -156,33 +156,40 @@ function byte BestMode()
 
 defaultproperties
 {
-     TeamSkins(0)=(SkinNum=1)
-     ReloadAnimRate=2.500000
-     SightingTime=0.100000
-     GunLength=0.000000
-     bUseSpecialAim=True
-     AimSpread=8
-     ViewAimFactor=1.000000
-     ViewRecoilFactor=0.000000
-     AimDamageThreshold=2000.000000
-     ChaosAimSpread=32
-     RecoilPitchFactor=0.100000
-     RecoilYawFactor=0.500000
-     RecoilXFactor=0.300000
-     RecoilYFactor=0.200000
-     RecoilDeclineTime=1.500000
-     FireModeClass(0)=Class'BallisticProV55.MACTW_PrimaryFire'
-     SelectAnim="Deploy"
-     BringUpTime=1.500000
-     bCanThrow=False
-     bNoInstagibReplace=True
-     DisplayFOV=90.000000
-     ClientState=WS_BringUp
-     Priority=1
-     PlayerViewOffset=(Y=0.000000)
-     ItemName="HAMR Turret"
-     Mesh=SkeletalMesh'BWBP4b-Anims.Artillery-Turret'
-     DrawScale=0.250000
-     PrePivot=(Z=8.000000)
-     Skins(1)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	TeamSkins(0)=(SkinNum=1)
+	ReloadAnimRate=2.500000
+	SightingTime=0.100000
+	GunLength=0.000000
+	bUseSpecialAim=True
+	AimSpread=8
+	ViewAimFactor=1.000000
+
+	AimDamageThreshold=2000.000000
+	ChaosAimSpread=32
+	 
+	Begin Object Class=RecoilParams Name=HAMR_TWRecoilParams
+	 	ViewBindFactor=0.000000
+		PitchFactor=0.100000
+		YawFactor=0.500000
+		XRandFactor=0.300000
+		YRandFactor=0.200000
+		DeclineTime=1.500000
+		MinRandFactor=0.350000
+	End Object
+	RecoilParamsList(0)=RecoilParams'HAMR_TWRecoilParams'
+
+	FireModeClass(0)=Class'BallisticProV55.MACTW_PrimaryFire'
+	SelectAnim="Deploy"
+	BringUpTime=1.500000
+	bCanThrow=False
+	bNoInstagibReplace=True
+	DisplayFOV=90.000000
+	ClientState=WS_BringUp
+	Priority=1
+	PlayerViewOffset=(Y=0.000000)
+	ItemName="HAMR Turret"
+	Mesh=SkeletalMesh'BWBP4b-Anims.Artillery-Turret'
+	DrawScale=0.250000
+	PrePivot=(Z=8.000000)
+	Skins(1)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
 }

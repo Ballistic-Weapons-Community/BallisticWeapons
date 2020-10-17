@@ -9,7 +9,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class M46AssaultRifle extends BallisticWeapon;
 
@@ -353,97 +353,100 @@ function float SuggestDefenseStyle()	{	return 0.0;	}
 
 defaultproperties
 {
-     GrenadeLoadAnim="GrenadeReload"
-     GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
-     GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
-     GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.000000
-     BigIconMaterial=Texture'BallisticTextures_25.OA-AR.BigIcon_OAAR'
-     BigIconCoords=(Y1=40,Y2=235)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     bWT_Splash=True
-     bWT_Machinegun=True
-     bWT_Projectile=True
-     ManualLines(0)="Automatic battle rifle fire. Moderate damage per shot with greater range and penetration than assault rifles. Recoil is moderate."
-     ManualLines(1)="Deploys a mine. These mines can be detonated with the Weapon Function key shortly after being placed for severe damage. Mines can be picked up with the Use key."
-     ManualLines(2)="Effective at medium to long range."
-     SpecialInfo(0)=(Info="240.0;25.0;0.9;70.0;0.9;0.2;0.7")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
-     MagAmmo=24
-     CockAnimPostReload="ReloadEndCock"
-     CockAnimRate=1.250000
-     CockSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_Cock',Volume=1.100000)
-     ReloadAnimRate=1.250000
-     ClipHitSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_ClipHit',Volume=1.000000)
-     ClipOutSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_ClipOut',Volume=1.000000)
-     ClipInSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_ClipIn',Volume=1.000000)
-     ClipInFrame=0.700000
-     WeaponModes(0)=(ModeName="Proximity Detonation",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Manual Detonation",ModeID="WM_FullAuto")
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=1
-     ZoomType=ZT_Logarithmic
-     ScopeXScale=1.250000
-     ZoomInAnim="ZoomIn"
-     ZoomOutAnim="ZoomOut"
-     ScopeViewTex=Texture'BWBP3-Tex.SRS900.SRS900ScopeView'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-     FullZoomFOV=60.000000
-     bNoMeshInScope=True
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=600,Roll=-1024)
-     SightOffset=(Y=-1.000000,Z=12.500000)
-     SightDisplayFOV=40.000000
-     SightingTime=0.50000
-     MinZoom=2.000000
-     MaxZoom=4.000000
-	 ZoomStages=1
-     SightAimFactor=1
-     SprintOffSet=(Pitch=-3000,Yaw=-4000)
-     AimAdjustTime=0.550000
+	GrenadeLoadAnim="GrenadeReload"
+	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
+	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
+	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.000000
+	BigIconMaterial=Texture'BallisticTextures_25.OA-AR.BigIcon_OAAR'
+	BigIconCoords=(Y1=40,Y2=235)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bWT_Splash=True
+	bWT_Machinegun=True
+	bWT_Projectile=True
+	ManualLines(0)="Automatic battle rifle fire. Moderate damage per shot with greater range and penetration than assault rifles. Recoil is moderate."
+	ManualLines(1)="Deploys a mine. These mines can be detonated with the Weapon Function key shortly after being placed for severe damage. Mines can be picked up with the Use key."
+	ManualLines(2)="Effective at medium to long range."
+	SpecialInfo(0)=(Info="240.0;25.0;0.9;70.0;0.9;0.2;0.7")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
+	MagAmmo=24
+	CockAnimPostReload="ReloadEndCock"
+	CockAnimRate=1.250000
+	CockSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_Cock',Volume=1.100000)
+	ReloadAnimRate=1.250000
+	ClipHitSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_ClipHit',Volume=1.000000)
+	ClipOutSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_ClipOut',Volume=1.000000)
+	ClipInSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_ClipIn',Volume=1.000000)
+	ClipInFrame=0.700000
+	WeaponModes(0)=(ModeName="Proximity Detonation",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Manual Detonation",ModeID="WM_FullAuto")
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=1
+	ZoomType=ZT_Logarithmic
+	ScopeXScale=1.250000
+	ZoomInAnim="ZoomIn"
+	ZoomOutAnim="ZoomOut"
+	ScopeViewTex=Texture'BWBP3-Tex.SRS900.SRS900ScopeView'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	FullZoomFOV=60.000000
+	bNoMeshInScope=True
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=600,Roll=-1024)
+	SightOffset=(Y=-1.000000,Z=12.500000)
+	SightDisplayFOV=40.000000
+	SightingTime=0.50000
+	MinZoom=2.000000
+	MaxZoom=4.000000
+	ZoomStages=1
+	SightAimFactor=1
+	SprintOffSet=(Pitch=-3000,Yaw=-4000)
+	AimAdjustTime=0.550000
+
+	AimSpread=24
+	ChaosDeclineTime=1.250000
+	ChaosSpeedThreshold=500.000000
+	ChaosAimSpread=256
 	 
-     AimSpread=24
-     ChaosDeclineTime=1.250000
-     ChaosSpeedThreshold=500.000000
-     ChaosAimSpread=256
+	Begin Object Class=RecoilParams Name=M46A1RecoilParams
+		ViewBindFactor=0.35
+		XCurve=(Points=(,(InVal=0.080000,OutVal=0.050000),(InVal=0.110000,OutVal=0.080000),(InVal=0.150000,OutVal=0.14000),(InVal=0.300000,OutVal=0.2300000),(InVal=0.450000,OutVal=0.2500000),(InVal=0.600000,OutVal=0.350000),(InVal=0.800000,OutVal=0.380000),(InVal=1.000000,OutVal=0.25)))
+		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.500000,OutVal=0.600000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.05000
+		YRandFactor=0.05000
+		DeclineDelay=0.1700000
+		DeclineTime=0.65
+	End Object
+	RecoilParamsList(0)=RecoilParams'M46A1RecoilParams'
 	 
-	 ViewRecoilFactor=0.35
-     RecoilXCurve=(Points=(,(InVal=0.080000,OutVal=0.050000),(InVal=0.110000,OutVal=0.080000),(InVal=0.150000,OutVal=0.14000),(InVal=0.300000,OutVal=0.2300000),(InVal=0.450000,OutVal=0.2500000),(InVal=0.600000,OutVal=0.350000),(InVal=0.800000,OutVal=0.380000),(InVal=1.000000,OutVal=0.25)))
-     RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.500000,OutVal=0.600000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.05000
-     RecoilYFactor=0.05000
-     RecoilDeclineDelay=0.1700000
-	 RecoilDeclineTime=0.65
-	 
-     FireModeClass(0)=Class'BallisticProV55.M46PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.M46SecondaryFire'
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.700000
-     CurrentRating=0.700000
-     Description="The M46 was one of Black & Wood's first forays into high powered assault weaponry, specifically rifles. As with all of Black & Wood's weapons, the 'Jackal' is incredibly reliable and tough. Used by certain Terran units, the M46 is typically equipped with a short-range optical scope and often various Grenade Launcher attachments. While not quite yet a widely used weapon, its reputation has grown in recent times as heroic stories of Armoured Squadron 190's use of it has spread amongst the bulk of the UTC troops."
-     DisplayFOV=55.000000
-     Priority=41
-     HudColor=(G=175)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=4
-     GroupOffset=1
-     PickupClass=Class'BallisticProV55.M46Pickup'
-     PlayerViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)
-     PlayerViewPivot=(Pitch=384)
-     AttachmentClass=Class'BallisticProV55.M46Attachment'
-     IconMaterial=Texture'BallisticTextures_25.OA-AR.SmallIcon_OAAR'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="M46A1 Combat Rifle"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticAnims_25.OA-AR'
-     DrawScale=0.300000
+	FireModeClass(0)=Class'BallisticProV55.M46PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.M46SecondaryFire'
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.700000
+	CurrentRating=0.700000
+	Description="The M46 was one of Black & Wood's first forays into high powered assault weaponry, specifically rifles. As with all of Black & Wood's weapons, the 'Jackal' is incredibly reliable and tough. Used by certain Terran units, the M46 is typically equipped with a short-range optical scope and often various Grenade Launcher attachments. While not quite yet a widely used weapon, its reputation has grown in recent times as heroic stories of Armoured Squadron 190's use of it has spread amongst the bulk of the UTC troops."
+	DisplayFOV=55.000000
+	Priority=41
+	HudColor=(G=175)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=4
+	GroupOffset=1
+	PickupClass=Class'BallisticProV55.M46Pickup'
+	PlayerViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)
+	PlayerViewPivot=(Pitch=384)
+	AttachmentClass=Class'BallisticProV55.M46Attachment'
+	IconMaterial=Texture'BallisticTextures_25.OA-AR.SmallIcon_OAAR'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="M46A1 Combat Rifle"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticAnims_25.OA-AR'
+	DrawScale=0.300000
 }

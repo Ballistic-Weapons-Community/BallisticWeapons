@@ -158,38 +158,42 @@ function byte BestMode()
 
 defaultproperties
 {
-     ReloadAnimRate=1.200000
-     bUseSights=False
-     GunLength=0.000000
-     bUseSpecialAim=True
-     CrouchAimFactor=1.000000
-     HipRecoilFactor=1.000000
-     AimAdjustTime=1.000000
-     AimSpread=0
-     ViewAimFactor=1.000000
-	 ViewRecoilFactor=1.000000
-     AimDamageThreshold=2000.000000
+	ReloadAnimRate=1.200000
+	bUseSights=False
+	GunLength=0.000000
+	bUseSpecialAim=True
+	AimAdjustTime=1.000000
+	AimSpread=0
+	ChaosAimSpread=0
+	ViewAimFactor=1.000000
+	AimDamageThreshold=2000.000000
 	 
-	 RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.03),(InVal=0.2,OutVal=-0.05),(InVal=0.3,OutVal=-0.07),(InVal=0.4,OutVal=0.0),(InVal=0.5,OutVal=0.1),(InVal=0.6,OutVal=0.18),(InVal=0.7,OutVal=0.05),(InVal=0.8,OutVal=0),(InVal=1,OutVal=0.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.350000,OutVal=0.400000),(InVal=0.500000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+	Begin Object Class=RecoilParams Name=XMV850_TWRecoilParams
+		XCurve=(Points=(,(InVal=0.1,OutVal=0.03),(InVal=0.2,OutVal=-0.05),(InVal=0.3,OutVal=-0.07),(InVal=0.4,OutVal=0.0),(InVal=0.5,OutVal=0.1),(InVal=0.6,OutVal=0.18),(InVal=0.7,OutVal=0.05),(InVal=0.8,OutVal=0),(InVal=1,OutVal=0.000000)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.350000,OutVal=0.400000),(InVal=0.500000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+		ViewBindFactor=1.000000
+		CrouchMultiplier=1.000000
+		HipMultiplier=1.000000
+		DeclineTime=1.100000
+	End Object
+	RecoilParamsList(0)=RecoilParams'XMV850_TWRecoilParams'
 	 
-	 
-     ChaosAimSpread=0
-     RecoilDeclineTime=1.100000
-     FireModeClass(0)=Class'BallisticProV55.XMV850TW_PrimaryFire'
-	 WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
-     WeaponModes(1)=(bUnavailable=False)
-     WeaponModes(2)=(bUnavailable=False)
-     SelectAnim="Deploy"
-     SelectAnimRate=1.000000
-     BringUpTime=1.400000
-     bCanThrow=False
-     bNoInstagibReplace=True
-     DisplayFOV=90.000000
-     ClientState=WS_BringUp
-     Priority=1
-     PlayerViewOffset=(Y=0.000000)
-     ItemName="XMV-850 Minigun Turret"
-     Mesh=SkeletalMesh'BallisticAnims2.XMV850Turret-1st'
-     DrawScale=0.350000
+
+
+	FireModeClass(0)=Class'BallisticProV55.XMV850TW_PrimaryFire'
+	WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
+	WeaponModes(1)=(bUnavailable=False)
+	WeaponModes(2)=(bUnavailable=False)
+	SelectAnim="Deploy"
+	SelectAnimRate=1.000000
+	BringUpTime=1.400000
+	bCanThrow=False
+	bNoInstagibReplace=True
+	DisplayFOV=90.000000
+	ClientState=WS_BringUp
+	Priority=1
+	PlayerViewOffset=(Y=0.000000)
+	ItemName="XMV-850 Minigun Turret"
+	Mesh=SkeletalMesh'BallisticAnims2.XMV850Turret-1st'
+	DrawScale=0.350000
 }

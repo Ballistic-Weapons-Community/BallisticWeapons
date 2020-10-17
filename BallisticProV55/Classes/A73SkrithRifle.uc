@@ -338,16 +338,18 @@ defaultproperties
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=15000.000000
      ChaosAimSpread=768
-	 
-	 ViewRecoilFactor=0.3
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.070000),(InVal=0.600000,OutVal=-0.060000),(InVal=0.700000,OutVal=-0.060000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.350000),(InVal=0.450000,OutVal=0.550000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.100000
-     RecoilYFactor=0.100000
-     RecoilDeclineTime=0.5
-     RecoilDeclineDelay=0.170000
-	 
-	 
+
+	Begin Object Class=RecoilParams Name=A73RecoilParams
+		ViewBindFactor=0.3
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.070000),(InVal=0.600000,OutVal=-0.060000),(InVal=0.700000,OutVal=-0.060000),(InVal=1.000000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.350000),(InVal=0.450000,OutVal=0.550000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.100000
+		YRandFactor=0.100000
+		DeclineTime=0.5
+		DeclineDelay=0.170000
+ 	End Object
+ 	RecoilParamsList(0)=RecoilParams'A73RecoilParams'
+
      FireModeClass(0)=Class'BallisticProV55.A73PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.A73SecondaryFire'
      BringUpTime=0.500000

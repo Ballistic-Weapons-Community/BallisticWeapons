@@ -297,5 +297,5 @@ defaultproperties
 		ViewBindFactor=0.5
 		HipMultiplier=1.5
 	End Object
-	RcParams=RecoilParams'A42RecoilParams'
+	RecoilParamsList(0)=RecoilParams'A42RecoilParams'
 }

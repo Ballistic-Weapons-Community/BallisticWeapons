@@ -315,83 +315,86 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     SingleLoadAnim="LoadSingle"
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M763'
-     BigIconCoords=(Y1=35,Y2=230)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Shotgun=True
-     ManualLines(0)="Long-ranged pump-action shotgun fire. Tight spread and high damage, but relatively slow fire rate. Sustained damage output is lower than that of shorter-ranged shotguns."
-     ManualLines(1)="Loads a gas shell. Once loaded, the gas shell can be fired, generating a linear cloud of toxic gas in front of the weapon. Anyone standing in this cloud will receive damage over time."
-     ManualLines(2)="Has a melee attack. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind.||As a shotgun, has poor penetration.||Most effective at medium range."
-     SpecialInfo(0)=(Info="120.0;20.0;0.7;50.0;0.0;0.5;0.0")
-     MeleeFireClass=Class'BallisticProV55.M763MeleeFire'
-     BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
-	 PutDownAnimRate=1.5
-	 PutDownTime=0.35
-     MagAmmo=7
-     CockAnimRate=1.700000
-     CockSound=(Sound=Sound'BallisticSounds2.M763.M763Cock1')
-     ReloadAnim="ReloadLoop"
-     ReloadAnimRate=1.100000
-     ClipInSound=(Sound=Sound'BallisticSounds2.M763.M763LoadShell1')
-     ClipInFrame=0.375000
-     bCockOnEmpty=True
-     bCanSkipReload=True
-     bAltTriggerReload=True
-     bShovelLoad=True
-     StartShovelAnim="ReloadStart"
-     StartShovelAnimRate=1.100000
-     EndShovelAnim="ReloadEnd"
-     EndShovelEmptyAnim="ReloadEndEmpty"
-     EndShovelAnimRate=1.100000
-     WeaponModes(0)=(ModeName="Single Fire")
-     WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     SightOffset=(X=5.000000,Z=12.900000)
-	 SightDisplayFOV=60.000000
-	 SightPivot=(Pitch=128)
-     SightingTime=0.350000
-     GunLength=48.000000
-	 SightAimFactor=0.5
-     SprintOffSet=(Pitch=-1000,Yaw=-2048)
-     AimSpread=16
-     ChaosDeclineTime=0.750000
-     ChaosAimSpread=256
+	SingleLoadAnim="LoadSingle"
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M763'
+	BigIconCoords=(Y1=35,Y2=230)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Shotgun=True
+	ManualLines(0)="Long-ranged pump-action shotgun fire. Tight spread and high damage, but relatively slow fire rate. Sustained damage output is lower than that of shorter-ranged shotguns."
+	ManualLines(1)="Loads a gas shell. Once loaded, the gas shell can be fired, generating a linear cloud of toxic gas in front of the weapon. Anyone standing in this cloud will receive damage over time."
+	ManualLines(2)="Has a melee attack. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind.||As a shotgun, has poor penetration.||Most effective at medium range."
+	SpecialInfo(0)=(Info="120.0;20.0;0.7;50.0;0.0;0.5;0.0")
+	MeleeFireClass=Class'BallisticProV55.M763MeleeFire'
+	BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
+	PutDownAnimRate=1.5
+	PutDownTime=0.35
+	MagAmmo=7
+	CockAnimRate=1.700000
+	CockSound=(Sound=Sound'BallisticSounds2.M763.M763Cock1')
+	ReloadAnim="ReloadLoop"
+	ReloadAnimRate=1.100000
+	ClipInSound=(Sound=Sound'BallisticSounds2.M763.M763LoadShell1')
+	ClipInFrame=0.375000
+	bCockOnEmpty=True
+	bCanSkipReload=True
+	bAltTriggerReload=True
+	bShovelLoad=True
+	StartShovelAnim="ReloadStart"
+	StartShovelAnimRate=1.100000
+	EndShovelAnim="ReloadEnd"
+	EndShovelEmptyAnim="ReloadEndEmpty"
+	EndShovelAnimRate=1.100000
+	WeaponModes(0)=(ModeName="Single Fire")
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	SightOffset=(X=5.000000,Z=12.900000)
+	SightDisplayFOV=60.000000
+	SightPivot=(Pitch=128)
+	SightingTime=0.350000
+	GunLength=48.000000
+	SightAimFactor=0.5
+	SprintOffSet=(Pitch=-1000,Yaw=-2048)
+	AimSpread=16
+	ChaosDeclineTime=0.750000
+	ChaosAimSpread=256
 	 
-	 ViewRecoilFactor=0.45
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.10000),(InVal=0.350000,OutVal=0.13000),(InVal=0.550000,OutVal=0.230000),(InVal=0.800000,OutVal=0.35000),(InVal=1.000000,OutVal=0.45)))
-     RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.150000),(InVal=0.40000,OutVal=0.50000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.100000
-     RecoilYFactor=0.100000
-     RecoilDeclineTime=0.500000
-     RecoilDeclineDelay=0.75
+	Begin Object Class=RecoilParams Name=M763RecoilParams
+		ViewBindFactor=0.45
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.10000),(InVal=0.350000,OutVal=0.13000),(InVal=0.550000,OutVal=0.230000),(InVal=0.800000,OutVal=0.35000),(InVal=1.000000,OutVal=0.45)))
+		YCurve=(Points=(,(InVal=0.150000,OutVal=0.150000),(InVal=0.40000,OutVal=0.50000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.100000
+		YRandFactor=0.100000
+		DeclineTime=0.500000
+		DeclineDelay=0.75
+	End Object
+	RecoilParamsList(0)=RecoilParams'M763RecoilParams'
 	 
-     FireModeClass(0)=Class'BallisticProV55.M763PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.M763SecondaryFire'
-     AIRating=0.750000
-     CurrentRating=0.750000
-     Description="The Avenger single barreled shotgun is the standard spread weapon of the UTC infantry divisions. Its high damage, reliability and good range for a shotgun have made this gun one of the humans' favourites; the M763 has blown open more Krao drones than can be counted. After its many successes, even during trials by the UTC's Reunited Jamaican Army, defending from wave upon wave of Krao minions during the 'Red Storm' Skrith invasion, the Avenger became the standard issue shotgun and a favorite of many forces including the UTC RJA Division."
-     Priority=37
-     HudColor=(B=255,R=200)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=7
-     GroupOffset=2
-     PickupClass=Class'BallisticProV55.M763Pickup'
-     PlayerViewOffset=(Y=12.000000,Z=-12.000000)
-     AttachmentClass=Class'BallisticProV55.M763Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M763'
-     IconCoords=(X2=127,Y2=31)
-	 ItemName="M763 Shotgun"
-	 bNoCrosshairInScope=True
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=25
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=5.000000
-     Mesh=SkeletalMesh'BallisticProAnims.M763_FP'
-     DrawScale=0.500000
+	FireModeClass(0)=Class'BallisticProV55.M763PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.M763SecondaryFire'
+	AIRating=0.750000
+	CurrentRating=0.750000
+	Description="The Avenger single barreled shotgun is the standard spread weapon of the UTC infantry divisions. Its high damage, reliability and good range for a shotgun have made this gun one of the humans' favourites; the M763 has blown open more Krao drones than can be counted. After its many successes, even during trials by the UTC's Reunited Jamaican Army, defending from wave upon wave of Krao minions during the 'Red Storm' Skrith invasion, the Avenger became the standard issue shotgun and a favorite of many forces including the UTC RJA Division."
+	Priority=37
+	HudColor=(B=255,R=200)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=7
+	GroupOffset=2
+	PickupClass=Class'BallisticProV55.M763Pickup'
+	PlayerViewOffset=(Y=12.000000,Z=-12.000000)
+	AttachmentClass=Class'BallisticProV55.M763Attachment'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M763'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="M763 Shotgun"
+	bNoCrosshairInScope=True
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=25
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=5.000000
+	Mesh=SkeletalMesh'BallisticProAnims.M763_FP'
+	DrawScale=0.500000
 }

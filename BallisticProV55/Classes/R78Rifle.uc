@@ -117,21 +117,25 @@ defaultproperties
      ZoomStages=2
      GunLength=80.000000
 	 
-     CrouchAimFactor=0.600000
+
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
      AimAdjustTime=0.700000
 	 
      AimSpread=16
      ChaosSpeedThreshold=500.000000
      ChaosAimSpread=512
-	 
-	 ViewRecoilFactor=0.2
-	 RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.12),(InVal=0.2,OutVal=0.16),(InVal=0.40000,OutVal=0.250000),(InVal=0.50000,OutVal=0.30000),(InVal=0.600000,OutVal=0.370000),(InVal=0.700000,OutVal=0.4),(InVal=0.800000,OutVal=0.50000),(InVal=1.000000,OutVal=0.55)))
-     RecoilXFactor=0.10000
-     RecoilYFactor=0.10000
-	 RecoilDeclineDelay=1.25
-     RecoilDeclineTime=1.000000
-	 
+
+     Begin Object Class=RecoilParams Name=R78RecoilParams
+          ViewBindFactor=0.2
+          CrouchMultiplier=0.600000
+          XCurve=(Points=(,(InVal=0.1,OutVal=0.12),(InVal=0.2,OutVal=0.16),(InVal=0.40000,OutVal=0.250000),(InVal=0.50000,OutVal=0.30000),(InVal=0.600000,OutVal=0.370000),(InVal=0.700000,OutVal=0.4),(InVal=0.800000,OutVal=0.50000),(InVal=1.000000,OutVal=0.55)))
+          XRandFactor=0.10000
+          YRandFactor=0.10000
+          DeclineDelay=1.25
+          DeclineTime=1.000000
+     End Object
+     RecoilParamsList(0)=RecoilParams'R78RecoilParams'
+     
      FireModeClass(0)=Class'BallisticProV55.R78PrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      BringUpTime=0.500000

@@ -311,15 +311,17 @@ defaultproperties
 	ChaosSpeedThreshold=7500.000000
 	ChaosAimSpread=512
 	
-	ViewRecoilFactor=0.35
-	
-	RecoilXCurve=(Points=(,(InVal=0.15,OutVal=0.08),(InVal=0.3,OutVal=0.18),(InVal=0.4,OutVal=0.22),(InVal=0.6,OutVal=0.27),(InVal=0.8,OutVal=0.28),(InVal=1.0,OutVal=0.35)))
-	RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.250000),(InVal=0.30000,OutVal=0.350000),(InVal=0.450000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.05000
-	RecoilYFactor=0.05000
-	RecoilDeclineTime=0.5
-	RecoilDeclineDelay=0.125000
-	
+	Begin Object Class=RecoilParams Name=XMK5RecoilParams
+		ViewBindFactor=0.35
+		XCurve=(Points=(,(InVal=0.15,OutVal=0.08),(InVal=0.3,OutVal=0.18),(InVal=0.4,OutVal=0.22),(InVal=0.6,OutVal=0.27),(InVal=0.8,OutVal=0.28),(InVal=1.0,OutVal=0.35)))
+		YCurve=(Points=(,(InVal=0.150000,OutVal=0.250000),(InVal=0.30000,OutVal=0.350000),(InVal=0.450000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.05000
+		YRandFactor=0.05000
+		DeclineTime=0.5
+		DeclineDelay=0.125000
+	End Object
+	RecoilParamsList(0)=RecoilParams'XMK5RecoilParams'
+
 	FireModeClass(0)=Class'BallisticProV55.XMK5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XMK5SecondaryFire'
 	PutDownTime=0.350000

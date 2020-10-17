@@ -304,25 +304,28 @@ defaultproperties
 	SightOffset=(X=-18.000000,Z=7.200000)
 	SightDisplayFOV=40.000000
 	SightingTime=0.700000
-	CrouchAimFactor=0.700000
+
 	SightAimFactor=0.40000
 	SprintOffSet=(Pitch=-6000,Yaw=-8000)
 	JumpOffSet=(Pitch=-6000,Yaw=-4000)
 	AimAdjustTime=0.400000
 	AimSpread=384
-	ViewRecoilFactor=0.250000
+
 	ChaosDeclineTime=1.750000
 	ChaosAimSpread=1280
-	
-	
-	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.40000),(InVal=0.500000,OutVal=0.550000),(InVal=0.700000,OutVal=0.70000),(InVal=1.000000)))
-	RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.300000),(InVal=0.500000,OutVal=0.550000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.07
-	RecoilYFactor=0.07
-	RecoilMax=12288.000000
-	RecoilDeclineTime=1.500000
-	RecoilDeclineDelay=0.40000
-	
+
+	Begin Object Class=RecoilParams Name=M925RecoilParams
+		ViewBindFactor=0.250000
+		CrouchMultiplier=0.700000
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.40000),(InVal=0.500000,OutVal=0.550000),(InVal=0.700000,OutVal=0.70000),(InVal=1.000000)))
+		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.300000),(InVal=0.500000,OutVal=0.550000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.07
+		YRandFactor=0.07
+		MaxRecoil=12288.000000
+		DeclineTime=1.500000
+		DeclineDelay=0.40000
+	End Object
+	RecoilParamsList(0)=RecoilParams'M925RecoilParams'
 	
 	FireModeClass(0)=Class'BallisticProV55.M925PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'

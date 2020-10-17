@@ -757,96 +757,101 @@ simulated function Notify_G5HideRocket ()
 
 defaultproperties
 {
-     HatchSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever',Volume=0.700000,Pitch=1.000000)
-     LockOnTime=1.500000
-     LockOnSound=(Sound=Sound'BallisticSounds2.G5.G5-TargetOn',Volume=0.500000,Pitch=1.000000)
-     LockOffSound=(Sound=Sound'BallisticSounds2.G5.G5-TargetOff',Volume=0.500000,Pitch=1.000000)
-     LaserChaosAimSpread=256
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=4.000000
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_G5'
-     BigIconCoords=(Y1=36,Y2=230)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Hazardous=True
-     bWT_Splash=True
-     bWT_Projectile=True
-     bWT_Super=True
-	 InventorySize=24
-     ManualLines(0)="Fires a rocket. These rockets have an arming delay and will ricochet off surfaces when unarmed.|In Rocket mode, the rocket flies directly to the point of aim.|In Mortar mode, the rocket will fly upwards and then strike downwards upon the point of aim.|When scoped and in Mortar mode, targets focused directly upon by the weapon's scope may be highlighted in red; when this happens, the next Mortar shot will track the target until line of sight is broken. The target is notified of the lockon when the rocket is fired."
-     ManualLines(1)="Toggles the guidance laser. With the guidance laser active, rockets will fly towards the point indicated by the laser at any given time."
-     ManualLines(2)="When firing a mortar rocket. the Weapon Function key will cause the player to view through the rocket's nose camera.|As a bazooka, the G5 has no recoil. With the laser in use, its hipfire is stable, however it will always be lowered when the player jumps. The weapon is effective at medium to long range and with height advantage."
-     SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.0;1.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')
-     MagAmmo=2
-     CockAnimRate=1.250000
-     CockSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever')
-     ReloadAnim="ReloadLoop"
-     ReloadAnimRate=1.250000
-     ClipOutSound=(Sound=Sound'BallisticSounds2.G5.G5-Load')
-     ClipInSound=(Sound=Sound'BallisticSounds2.G5.G5-LoadHatch')
-     bCanSkipReload=True
-     bShovelLoad=True
-     StartShovelAnim="StartReload"
-     StartShovelAnimRate=1.250000
-     EndShovelAnim="FinishReload"
-     EndShovelAnimRate=1.250000
-     WeaponModes(0)=(ModeName="Rocket")
-     WeaponModes(1)=(ModeName="Mortar",ModeID="WM_SemiAuto")
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     ZoomType=ZT_Logarithmic
-	 MinZoom=4
-	 MaxZoom=16
-	 ZoomStages=2
-	 SightAimFactor=0.4
-     ScopeXScale=1.333000
-     ZoomInAnim="ZoomIn"
-     ZoomOutAnim="ZoomOut"
-     ScopeViewTex=Texture'BallisticUI2.G5.G5ScopeView'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-     FullZoomFOV=10.000000
-     bNoMeshInScope=True
-     bNoCrosshairInScope=True
-     SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
-     SightingTime=0.500000
-     SprintOffSet=(Pitch=-6000,Yaw=-8000)
-     JumpOffSet=(Pitch=-6000,Yaw=-1500)
-     AimAdjustTime=1.000000
-     AimSpread=512
-     ChaosSpeedThreshold=1000.000000
-     ChaosAimSpread=2560
-     RecoilYawFactor=0.000000
-     RecoilDeclineTime=1.000000
-     FireModeClass(0)=Class'BallisticProV55.G5PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.G5SecondaryFire'
-     SelectAnimRate=0.600000
-     PutDownAnimRate=0.800000
-     PutDownTime=0.800000
-     BringUpTime=1.000000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.800000
-     CurrentRating=0.800000
-     Description="Based on the original design by the legendary maniac Pirate, Var Dehidra, the G5 has undergone many alterations to become what it is today. The original bandit version was constructed by Var Dehidra to blast open armored cash transportation vehicles. Its name is derived from one of Dehidra's favourite targets, the G5 CTV 4x. It is now a very deadly weapon, used to destroy everything from tanks and structures to Skrith hordes and aircraft. The bombardement attack is a recent addition, replacing the original, primitive heat seeking function that caused it to target CTVs or backfire on the pirates' own craft, provided mainly for use in outdoor environments to destroy all manner of moving targets. The latest model also features a laser-painter device, allowing the user to guide the rocket wherever they wish."
-     Priority=44
-     HudColor=(B=25,G=150,R=50)
-     CenteredOffsetY=10.000000
-     CenteredRoll=0
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=8
-     PickupClass=Class'BallisticProV55.G5Pickup'
-     PlayerViewOffset=(X=10.000000,Y=10.500000,Z=-6.000000)
-     AttachmentClass=Class'BallisticProV55.G5Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_G5'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="G5 Missile Launcher"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=25
-     LightSaturation=100
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BallisticAnims2.G5Bazooka'
-     DrawScale=0.300000
+	HatchSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever',Volume=0.700000,Pitch=1.000000)
+	LockOnTime=1.500000
+	LockOnSound=(Sound=Sound'BallisticSounds2.G5.G5-TargetOn',Volume=0.500000,Pitch=1.000000)
+	LockOffSound=(Sound=Sound'BallisticSounds2.G5.G5-TargetOff',Volume=0.500000,Pitch=1.000000)
+	LaserChaosAimSpread=256
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=4.000000
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_G5'
+	BigIconCoords=(Y1=36,Y2=230)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Hazardous=True
+	bWT_Splash=True
+	bWT_Projectile=True
+	bWT_Super=True
+	InventorySize=24
+	ManualLines(0)="Fires a rocket. These rockets have an arming delay and will ricochet off surfaces when unarmed.|In Rocket mode, the rocket flies directly to the point of aim.|In Mortar mode, the rocket will fly upwards and then strike downwards upon the point of aim.|When scoped and in Mortar mode, targets focused directly upon by the weapon's scope may be highlighted in red; when this happens, the next Mortar shot will track the target until line of sight is broken. The target is notified of the lockon when the rocket is fired."
+	ManualLines(1)="Toggles the guidance laser. With the guidance laser active, rockets will fly towards the point indicated by the laser at any given time."
+	ManualLines(2)="When firing a mortar rocket. the Weapon Function key will cause the player to view through the rocket's nose camera.|As a bazooka, the G5 has no recoil. With the laser in use, its hipfire is stable, however it will always be lowered when the player jumps. The weapon is effective at medium to long range and with height advantage."
+	SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.0;1.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')
+	MagAmmo=2
+	CockAnimRate=1.250000
+	CockSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever')
+	ReloadAnim="ReloadLoop"
+	ReloadAnimRate=1.250000
+	ClipOutSound=(Sound=Sound'BallisticSounds2.G5.G5-Load')
+	ClipInSound=(Sound=Sound'BallisticSounds2.G5.G5-LoadHatch')
+	bCanSkipReload=True
+	bShovelLoad=True
+	StartShovelAnim="StartReload"
+	StartShovelAnimRate=1.250000
+	EndShovelAnim="FinishReload"
+	EndShovelAnimRate=1.250000
+	WeaponModes(0)=(ModeName="Rocket")
+	WeaponModes(1)=(ModeName="Mortar",ModeID="WM_SemiAuto")
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	ZoomType=ZT_Logarithmic
+	MinZoom=4
+	MaxZoom=16
+	ZoomStages=2
+	SightAimFactor=0.4
+	ScopeXScale=1.333000
+	ZoomInAnim="ZoomIn"
+	ZoomOutAnim="ZoomOut"
+	ScopeViewTex=Texture'BallisticUI2.G5.G5ScopeView'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	FullZoomFOV=10.000000
+	bNoMeshInScope=True
+	bNoCrosshairInScope=True
+	SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
+	SightingTime=0.500000
+	SprintOffSet=(Pitch=-6000,Yaw=-8000)
+	JumpOffSet=(Pitch=-6000,Yaw=-1500)
+	AimAdjustTime=1.000000
+	AimSpread=512
+	ChaosSpeedThreshold=1000.000000
+	ChaosAimSpread=2560
+	 
+	Begin Object Class=RecoilParams Name=G5RecoilParams
+     	YawFactor=0.000000
+     	DeclineTime=1.000000
+	End Object
+	RecoilParamsList(0)=RecoilParams'G5RecoilParams'
+
+	FireModeClass(0)=Class'BallisticProV55.G5PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.G5SecondaryFire'
+	SelectAnimRate=0.600000
+	PutDownAnimRate=0.800000
+	PutDownTime=0.800000
+	BringUpTime=1.000000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.800000
+	CurrentRating=0.800000
+	Description="Based on the original design by the legendary maniac Pirate, Var Dehidra, the G5 has undergone many alterations to become what it is today. The original bandit version was constructed by Var Dehidra to blast open armored cash transportation vehicles. Its name is derived from one of Dehidra's favourite targets, the G5 CTV 4x. It is now a very deadly weapon, used to destroy everything from tanks and structures to Skrith hordes and aircraft. The bombardement attack is a recent addition, replacing the original, primitive heat seeking function that caused it to target CTVs or backfire on the pirates' own craft, provided mainly for use in outdoor environments to destroy all manner of moving targets. The latest model also features a laser-painter device, allowing the user to guide the rocket wherever they wish."
+	Priority=44
+	HudColor=(B=25,G=150,R=50)
+	CenteredOffsetY=10.000000
+	CenteredRoll=0
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=8
+	PickupClass=Class'BallisticProV55.G5Pickup'
+	PlayerViewOffset=(X=10.000000,Y=10.500000,Z=-6.000000)
+	AttachmentClass=Class'BallisticProV55.G5Attachment'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_G5'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="G5 Missile Launcher"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=25
+	LightSaturation=100
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BallisticAnims2.G5Bazooka'
+	DrawScale=0.300000
 }

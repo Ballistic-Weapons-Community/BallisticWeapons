@@ -535,7 +535,6 @@ defaultproperties
 	 
      GunLength=16.000000
 	 
-     CrouchAimFactor=1.000000
      SightAimFactor=0.200000
      SprintOffSet=(Pitch=-3000,Yaw=-4000)
      AimAdjustTime=0.300000
