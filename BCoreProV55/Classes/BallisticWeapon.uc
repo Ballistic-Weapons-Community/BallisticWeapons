@@ -432,11 +432,14 @@ simulated function PostBeginPlay()
     local int m;
 	Super.PostBeginPlay();
 	
-	Log("BallisticWeapon: PostBeginPlay: Creating RecoilComponent");
-	RcComponent = new (self) class'RecoilComponent';
+	RcComponent = RecoilComponent(Level.ObjectPool.AllocateObject(class'RecoilComponent'));
 
-	Log("BallisticWeapon: PostBeginPlay: Initializing RecoilComponent");
-	RcComponent.Initialize();
+	Log("Initializing RecoilComponent");
+	RcComponent.Weapon = self;
+	RcComponent.Instigator = Instigator;
+	RcComponent.Level = Level;
+	RcComponent.Params = RecoilParamsList[WeaponModes[CurrentWeaponMode].RecoilParamsIndex];
+	RcComponent.OnParamsAssigned();
 	
 	SightingTime = Default.SightingTime*Default.SightingTimeScale;
 	
@@ -2058,7 +2061,10 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 	BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
 
 	if (WeaponModes[default.LastWeaponMode].RecoilParamsIndex != WeaponModes[CurrentWeaponMode].RecoilParamsIndex)
-		RcComponent.Initialize();
+	{
+		RcComponent.Params = RecoilParamsList[WeaponModes[CurrentWeaponMode].RecoilParamsIndex];
+		RcComponent.OnParamsAssigned();
+	}
 
 	CheckBurstMode();
 
@@ -2074,7 +2080,7 @@ simulated function ClientSwitchWeaponMode (byte NewMode)
 	CommonSwitchWeaponMode(NewMode);
 }
 
-function CheckBurstMode()
+simulated function CheckBurstMode()
 {	
 	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
 	// To my knowledge, this is the case.
@@ -3093,6 +3099,12 @@ simulated function Destroyed()
 		Level.ObjectPool.FreeObject(MeleeFireMode);
 		MeleeFireMode = None;
 	}
+
+	RcComponent.Cleanup();
+
+	Level.ObjectPool.FreeObject(RcComponent);
+
+	RcComponent = None;
 	
 	Super(Inventory).Destroyed();
 }

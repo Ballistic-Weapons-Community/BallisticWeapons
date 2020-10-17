@@ -3,22 +3,33 @@
 //
 // Represents the recoil system component of a Ballistic Weapon.
 //
-// Note that we are calling GetRecoilParams() on the Weapon to avoid
-// garbage collection issues which occur if we take a reference to the params
-//
 // by Azarael 2020
 // adapting code written by DarkCarnivour
 //=============================================================================
-class RecoilComponent extends Object within BallisticWeapon;
+class RecoilComponent extends Object;
 
-// State
+// Parameters set externally - MUST BE CLEANED UP
+
+// Weapon
+var BallisticWeapon				Weapon;
+var LevelInfo					Level;
+var Pawn						Instigator;
+
+// System parameters
+var RecoilParams				Params;
+
+// Parameters set internally
+
 var private float               Recoil;						    // The current recoil amount. Increases each shot, decreases when not firing
 var private float               XRand;				            // Random between 0 and 1. Recorded random number for recoil Yaw randomness
 var private float               YRand;				            // Random between 0 and 1. Recorded random number for recoil Pitch randomness
-var private Rotator             LastViewPivot;   		        // Pivot saved between GetViewPivotDelta calls, used to find delta recoil  
-var private float               ViewBindFactor;             	// Amount to bind recoil offsetting to view
 var private float               DeclineDelay;                   // Delay in seconds before recoil declines
 
+// View application
+var private Rotator             LastViewPivot;   		        // Pivot saved between GetViewPivotDelta calls, used to find delta recoil  
+var private float               ViewBindFactor;             	// Amount to bind recoil offsetting to view
+
+// State
 var private float               LastRecoilTime;                 // Last time at which recoil was added
 
 // Replication
@@ -44,7 +55,7 @@ final simulated function float GetRecoilYRand()
 
 final simulated function float GetDeclineDelay()
 {
-	return GetRecoilParams().DeclineDelay;
+	return Params.DeclineDelay;
 }
 
 //=============================================================
@@ -74,12 +85,36 @@ final simulated function bool ShouldUpdateView()
 }
 
 //=============================================================
+// Cleanup (hello where are the RAII?)
+//=============================================================
+final simulated function Cleanup()
+{
+	Weapon = None;
+	Level = None;
+	Instigator = None;
+
+	Params = None;
+
+	Recoil = 0;
+	XRand = 0;
+	YRand = 0;
+	DeclineDelay = 0;
+
+	LastViewPivot = rot(0,0,0);
+	ViewBindFactor = 0;
+
+	LastRecoilTime = 0;
+
+	bForceUpdate = false;
+}
+
+//=============================================================
 // Gameplay
 //=============================================================
-final simulated function Initialize()
+final simulated function OnParamsAssigned()
 {
-    ViewBindFactor = GetRecoilParams().ViewBindFactor;
-    DeclineDelay = GetRecoilParams().DeclineDelay;
+    ViewBindFactor = Params.ViewBindFactor;
+    DeclineDelay = Params.DeclineDelay;
 }
 
 final simulated function OnBerserkStart()
@@ -93,32 +128,32 @@ final simulated function OnBerserkEnd()
 final simulated function Tick(float DeltaTime)
 {
 	if (Recoil > 0 && !HoldingRecoil())
-		Recoil -= FMin(Recoil, GetRecoilParams().MaxRecoil * (DeltaTime / GetRecoilParams().DeclineTime));
+		Recoil -= FMin(Recoil, Params.MaxRecoil * (DeltaTime / Params.DeclineTime));
 }
 
 final simulated function AddRecoil (float Amount, optional byte Mode)
 {
-	LastRecoilTime = Level.TimeSeconds;
+	LastRecoilTime = Weapon.Level.TimeSeconds;
 	
-	if (Outer.bAimDisabled || Amount == 0)
+	if (Weapon.bAimDisabled || Amount == 0)
 		return;
 		
-	Amount *= Outer.BCRepClass.default.RecoilScale;
+	Amount *= Weapon.BCRepClass.default.RecoilScale;
 	
-	if (Outer.Instigator.bIsCrouched && VSize(Outer.Instigator.Velocity) < 30)
-		Amount *= GetRecoilParams().CrouchMultiplier;
+	if (Instigator.bIsCrouched && VSize(Instigator.Velocity) < 30)
+		Amount *= Params.CrouchMultiplier;
 		
-	if (!Outer.bScopeView)
-		Amount *= GetRecoilParams().HipMultiplier;
+	if (!Weapon.bScopeView)
+		Amount *= Params.HipMultiplier;
 	
-	Recoil = FMin(GetRecoilParams().MaxRecoil, Recoil + Amount);
+	Recoil = FMin(Params.MaxRecoil, Recoil + Amount);
 
-	if (!Outer.bUseNetAim || Role == ROLE_Authority)
+	if (!Weapon.bUseNetAim || Weapon.Role == ROLE_Authority)
 	{
 		XRand = FRand();
 		YRand = FRand();
 		
-		if (Recoil == GetRecoilParams().MaxRecoil)
+		if (Recoil == Params.MaxRecoil)
 		{
 			if (Amount < 260)
 			{
@@ -139,7 +174,7 @@ final simulated function AddRecoil (float Amount, optional byte Mode)
 //=============================================================
 final simulated function UpdateADSTransition(float delta)
 {
-    ViewBindFactor = Smerp(delta, GetRecoilParams().ViewBindFactor, 1);
+    ViewBindFactor = Smerp(delta, Params.ViewBindFactor, 1);
 }
 
 final simulated function OnADSStart()
@@ -151,7 +186,7 @@ final simulated function OnADSEnd()
 {
     // BallisticWeapon's PositionSights will handle this for clients
     if (Level.NetMode == NM_DedicatedServer)
-        ViewBindFactor = GetRecoilParams().ViewBindFactor;
+        ViewBindFactor = Params.ViewBindFactor;
 }
 
 final simulated function Rotator GetWeaponPivot()
@@ -186,26 +221,26 @@ private final simulated function Rotator GetRecoilPivot(bool bIgnoreViewAim)
         return R;
         
 	// Randomness
-    if (GetRecoilParams().MinRandFactor > 0)
+    if (Params.MinRandFactor > 0)
 	{
-		AdjustedRecoil = GetRecoilParams().MaxRecoil * GetRecoilParams().MinRandFactor + Recoil * (1 - GetRecoilParams().MinRandFactor);
-		R.Yaw = ((-AdjustedRecoil * GetRecoilParams().XRandFactor + AdjustedRecoil * GetRecoilParams().XRandFactor *2 * XRand) * 0.3);
-		R.Pitch = ((-AdjustedRecoil * GetRecoilParams().YRandFactor + AdjustedRecoil * GetRecoilParams().YRandFactor * 2 * YRand) * 0.3);
+		AdjustedRecoil = Params.MaxRecoil * Params.MinRandFactor + Recoil * (1 - Params.MinRandFactor);
+		R.Yaw = ((-AdjustedRecoil * Params.XRandFactor + AdjustedRecoil * Params.XRandFactor *2 * XRand) * 0.3);
+		R.Pitch = ((-AdjustedRecoil * Params.YRandFactor + AdjustedRecoil * Params.YRandFactor * 2 * YRand) * 0.3);
 	}
 	else
 	{
-		R.Yaw = ((-Recoil * GetRecoilParams().XRandFactor + Recoil * GetRecoilParams().XRandFactor * 2 * XRand) * 0.3);
-		R.Pitch = ((-Recoil * GetRecoilParams().YRandFactor + Recoil * GetRecoilParams().YRandFactor * 2 * YRand) * 0.3);
+		R.Yaw = ((-Recoil * Params.XRandFactor + Recoil * Params.XRandFactor * 2 * XRand) * 0.3);
+		R.Pitch = ((-Recoil * Params.YRandFactor + Recoil * Params.YRandFactor * 2 * YRand) * 0.3);
     }
         
 	// Pitching/Yawing
-	R.Yaw += GetRecoilParams().EvaluateXRecoil(Recoil);
-	R.Pitch += GetRecoilParams().EvaluateYRecoil(Recoil);
+	R.Yaw += Params.EvaluateXRecoil(Recoil);
+	R.Pitch += Params.EvaluateYRecoil(Recoil);
 	
-	if (Outer.InstigatorController != None && Outer.InstigatorController.Handedness == -1)
+	if (Weapon.InstigatorController != None && Weapon.InstigatorController.Handedness == -1)
 		R.Yaw = -R.Yaw;
 	
-	if (bIgnoreViewAim || Outer.Instigator.Controller == None || PlayerController(Outer.Instigator.Controller) == None || PlayerController(Outer.Instigator.Controller).bBehindView)
+	if (bIgnoreViewAim || Weapon.Instigator.Controller == None || PlayerController(Weapon.Instigator.Controller) == None || PlayerController(Weapon.Instigator.Controller).bBehindView)
         return R;
         
 	return R*(1-ViewBindFactor);
@@ -216,7 +251,7 @@ private final simulated function Rotator GetRecoilPivot(bool bIgnoreViewAim)
 //=============================================================
 final function bool BotShouldFire(float Dist)
 {
-    if (Recoil * GetRecoilParams().YawFactor > 100 * (1+4000/Dist) || (Recoil * GetRecoilParams().PitchFactor > 100 * (1+4000/Dist)))
+    if (Recoil * Params.YawFactor > 100 * (1+4000/Dist) || (Recoil * Params.PitchFactor > 100 * (1+4000/Dist)))
         return false;
 
     return true;

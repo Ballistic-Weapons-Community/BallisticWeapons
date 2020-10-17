@@ -303,7 +303,13 @@ defaultproperties
      CurrentWeaponMode=0
      bUseSights=False
      GunLength=0.000000
-     bAimDisabled=True
+	 bAimDisabled=True
+	 Begin Object Class=RecoilParams Name=BX5RecoilParams
+		PitchFactor=0.000000
+		YawFactor=0.000000
+	End Object
+	RecoilParamsList(0)=RecoilParams'BX5RecoilParams'
+
      FireModeClass(0)=Class'BallisticProV55.BX5PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.BX5SecondaryFire'
      PutDownTime=0.700000

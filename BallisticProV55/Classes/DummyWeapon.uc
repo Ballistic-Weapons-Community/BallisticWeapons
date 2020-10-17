@@ -12,4 +12,9 @@ static function bool ApplyEffect(Pawn Other, byte Level, optional bool bInitial)
 defaultproperties
 {
      InventoryGroup=99
+     Begin Object Class=RecoilParams Name=DummyRecoilParams
+          PitchFactor=0.000000
+          YawFactor=0.000000
+     End Object
+     RecoilParamsList(0)=RecoilParams'DummyRecoilParams'
 }
