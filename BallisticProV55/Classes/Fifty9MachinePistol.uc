@@ -14,8 +14,6 @@ var   name		StockCloseAnim;
 var   bool		bStockOpen, bStockOpenRotated;
 var   int 		StockChaosAimSpread;
 
-var 	RecoilParams	StockRecoilParams;
-
 // This uhhh... thing is added to allow manual drawing of brass OVER the muzzle flash
 struct UziBrass
 {
@@ -24,12 +22,18 @@ struct UziBrass
 };
 var   array<UziBrass>	UziBrassList;
 
+simulated function PostBeginPlay()
+{
+	SetBoneRotation('tip', rot(0,0,8192));
+	super.PostbeginPlay();
+}
+
 simulated event WeaponTick (Float DT)
 {
 	Super.WeaponTick (DT);
 	
 	if (LastFireTime < Level.TimeSeconds - RcComponent.GetDeclineDelay() && MeleeFatigue > 0)
-		MeleeFatigue = FMax(0, MeleeFatigue - DT/RcParams.DeclineTime);
+		MeleeFatigue = FMax(0, MeleeFatigue - DT/GetRecoilParams().DeclineTime);
 }
 
 simulated function float ChargeBar()
@@ -94,8 +98,6 @@ simulated event RenderOverlays( Canvas Canvas )
 
 exec simulated function SwitchWeaponMode (optional byte ModeNum)	
 {
-	Log("Fifty9 SwitchWeaponMode");
-	
 	// 59 animates to change weapon mode
 	if (ReloadState != RS_None)
 		return;
@@ -119,32 +121,15 @@ function ServerSwitchWeaponMode (byte NewMode)
 	if (NewMode == CurrentWeaponMode)
 		return;
 
-	CurrentWeaponMode = NewMode;
+	CommonSwitchWeaponMode(NewMode);
+	ClientSwitchWeaponMode(NewMode);
 	NetUpdateTime = Level.TimeSeconds - 1;
-	
-	if (Instigator != None && !Instigator.IsLocallyControlled())
-	{
-		BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
-		BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
-	}
-	
-	// listen for mode switch on client for stock animation application
-	ClientSwitchWeaponModes(CurrentWeaponMode);
-
-	CheckBurstMode();
-
-	if (Instigator.IsLocallyControlled())
-		default.LastWeaponMode = CurrentWeaponMode;
-		
-	SwitchStock(!bStockOpen);
 }
 
-simulated function ClientSwitchWeaponModes(byte newMode)
+simulated function CommonSwitchWeaponMode(byte NewMode)
 {
-	super.ClientSwitchWeaponModes(newMode);
-	
-	if (Level.NetMode == NM_Client)
-		SwitchStock(bool(newMode));
+	Super.CommonSwitchWeaponMode(NewMode);
+	SwitchStock(bool(NewMode));
 }
 
 simulated function SwitchStock(bool bNewValue)
@@ -175,16 +160,10 @@ simulated function SwitchStock(bool bNewValue)
 simulated function AdjustStockProperties()
 {
 	if (bStockOpen)
-	{
 		SightingTime = 0.3f; // awkward to sight
-		RcParams = StockRecoilParams;
-	}
 	
 	else
-	{
 		SightingTime = default.SightingTime;
-		RcParams = default.RcParams;
-	}
 }
 
 simulated function SetStockRotation()
@@ -224,11 +203,6 @@ simulated function PlayCocking(optional byte Type)
 		PlayAnim(CockAnim, CockAnimRate, 0.2);
 }
 
-simulated function PostBeginPlay()
-{
-	SetBoneRotation('tip', rot(0,0,8192));
-	super.PostbeginPlay();
-}
 
 simulated function Notify_Fifty9Melee()
 {
@@ -327,7 +301,7 @@ defaultproperties
 	bNotifyModeSwitch=True
 	CurrentWeaponMode=0
     WeaponModes(0)=(ModeName="Burst",ModeID="WM_Burst",Value=5.000000)
-    WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto")
+    WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)
 	WeaponModes(2)=(bUnavailable=True)
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=512)
@@ -335,20 +309,9 @@ defaultproperties
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
 	SightZoomFactor=0.85
-	CrouchAimFactor=1
 	SightAimFactor=2
-	HipRecoilFactor=1
 	SprintOffSet=(Pitch=-3000,Yaw=-4000)
 	AimAdjustTime=0.450000
-	
-	ViewRecoilFactor=0.6
-	RecoilXCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
-	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.05000
-	RecoilYFactor=0.05000
-	RecoilDeclineTime=0.5
-	RecoilDeclineDelay=0.220000
-	RecoilMax=6144
 	
 	FireModeClass(0)=Class'BallisticProV55.Fifty9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.Fifty9SecondaryFire'
@@ -376,7 +339,21 @@ defaultproperties
 	Mesh=SkeletalMesh'BallisticProAnims.UZI'
 	DrawScale=0.300000
 	
-	Begin Object Class=RecoilParams Name=Fifty9StockRecoilParams
+	Begin Object Class=RecoilParams Name=Fifty9BurstRecoilParams
+		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.05000
+		YRandFactor=0.05000
+		DeclineTime=0.5
+		MaxRecoil=6144
+		CrouchMultiplier=1
+		HipMultiplier=1
+		ViewBindFactor=0.6
+		DeclineDelay=0.22
+	End Object
+	RecoilParamsList(0)=RecoilParams'Fifty9BurstRecoilParams'
+	
+	Begin Object Class=RecoilParams Name=Fifty9AutoRecoilParams
 		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000
@@ -388,5 +365,5 @@ defaultproperties
 		ViewBindFactor=0.2
 		DeclineDelay=0.09
 	End Object
-	StockRecoilParams = RecoilParams'Fifty9StockRecoilParams'
+	RecoilParamsList(1)=RecoilParams'Fifty9AutoRecoilParams'
 }

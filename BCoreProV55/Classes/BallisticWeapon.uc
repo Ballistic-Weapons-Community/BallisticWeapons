@@ -201,12 +201,13 @@ enum ModeSaveType
 
 var globalconfig ModeSaveType ModeHandling;
 	
-struct WeaponModeType						//All the settings for a weapon firing mode
+struct WeaponModeType							// All the settings for a weapon firing mode
 {
-	var() localized string ModeName;		//Display name for this mode
-	var() bool bUnavailable;					//Is it disabled and hidden(not in use)
-	var() string ModeID;						//A non localized ID to easily identify this mode. Format: WM_????????, e.g. WM_FullAuto or WM_Burst
-	var() float Value;							//Just a useful extra numerical value. Could be max count for burst mode or whatever...
+	var() localized string 	ModeName;			// Display name for this mode
+	var() bool 				bUnavailable;		// Is it disabled and hidden(not in use)
+	var() string 			ModeID;				// A non localized ID to easily identify this mode. Format: WM_????????, e.g. WM_FullAuto or WM_Burst
+	var() float 			Value;				// Just a useful extra numerical value. Could be max count for burst mode or whatever...
+	var() int 				RecoilParamsIndex;	// Index of the recoil parameters to use for this mode
 };
 
 var() Array<WeaponModeType>					WeaponModes;				//A list of the available weapon firing modes and their info for this weapon
@@ -312,59 +313,59 @@ struct XYRange
 	var() config Range Y;
 };
 // Gun length
-var(BAim) float		GunLength;			// How far weapon extends from player. Used by long-gun check
-var		  float		LongGunFactor;		// Current percent of long-gun factors applied. Will be interpolated to NewLongGunFactor
-var		  float		NewLongGunFactor;	// What LongGunFactor should be. Set instantly when bumping into obstacles
-var(BAim) rotator	LongGunPivot;		// How to rotate aim and gun at full LongGunFactor
-var(BAim) vector		LongGunOffset;		// How much to offset weapon position at full LongGunFactor
-var		  float		AimDisplacementFactor;  // Current factor for aim displacement.
-var		  float		AimDisplacementEndTime; // Time when aim displacement effect wears off.
-var		  float		AimDisplacementDurationMult; // Duration multiplier for aim displacement.
+var(BAim) float					GunLength;			// How far weapon extends from player. Used by long-gun check
+var		  float					LongGunFactor;		// Current percent of long-gun factors applied. Will be interpolated to NewLongGunFactor
+var		  float					NewLongGunFactor;	// What LongGunFactor should be. Set instantly when bumping into obstacles
+var(BAim) rotator				LongGunPivot;		// How to rotate aim and gun at full LongGunFactor
+var(BAim) vector				LongGunOffset;		// How much to offset weapon position at full LongGunFactor
+var		  float					AimDisplacementFactor;  // Current factor for aim displacement.
+var		  float					AimDisplacementEndTime; // Time when aim displacement effect wears off.
+var		  float					AimDisplacementDurationMult; // Duration multiplier for aim displacement.
 // General
-var(BAim) bool		bAimDisabled;		// Disables the entire aiming system. Bullets go exactly where crosshair is aimed.
-var(BAim) bool		bUseNetAim;			// Aim info is replicated to clients. Otherwise client and server aim will be separate
-var(BAim) bool		bUseSpecialAim;		// Firemodes will use GetPlayerAim instead of normal AdjustAim. Used for autotracking and other special aiming functions
-var(BAim) float		CrouchAimFactor;	// Aim will be mutiplied by this when crouched
-var(BAim) float		SightAimFactor;		// Aim is multiplied by this when in sights or scope
+var(BAim) bool					bAimDisabled;		// Disables the entire aiming system. Bullets go exactly where crosshair is aimed.
+var(BAim) bool					bUseNetAim;			// Aim info is replicated to clients. Otherwise client and server aim will be separate
+var(BAim) bool					bUseSpecialAim;		// Firemodes will use GetPlayerAim instead of normal AdjustAim. Used for autotracking and other special aiming functions
+var(BAim) float					CrouchAimFactor;	// Aim will be mutiplied by this when crouched
+var(BAim) float					SightAimFactor;		// Aim is multiplied by this when in sights or scope
 
-var(BAim) Rotator	SprintOffSet;		// Rotation applied to AimOffset when sprinting
-var(BAim) Rotator	JumpOffSet;			// Temporarily offset aim by this when jumping
-var(BAim) float		JumpChaos;			// Chaos applied for jump event
-var			bool		bJumpLock;				// Prevents ZeroAim from acting when player jumps
-var(BAim) float		FallingChaos;		// Chaos applied when falling
-var(BAim) float		SprintChaos;		// Chaos applied for sprint event
-var       bool			bForceReaim;		// Another Reaim event will be forced after current one completes
+var(BAim) Rotator				SprintOffSet;		// Rotation applied to AimOffset when sprinting
+var(BAim) Rotator				JumpOffSet;			// Temporarily offset aim by this when jumping
+var(BAim) float					JumpChaos;			// Chaos applied for jump event
+var			bool				bJumpLock;				// Prevents ZeroAim from acting when player jumps
+var(BAim) float					FallingChaos;		// Chaos applied when falling
+var(BAim) float					SprintChaos;		// Chaos applied for sprint event
+var       bool					bForceReaim;		// Another Reaim event will be forced after current one completes
 //Base aiming.
-var(BAim) float		AimAdjustTime;		// Time it should take to move aim pointer to new random aim when view moves
-var(BAim) float    	OffsetAdjustTime; 	// Offsetting time for long gun and sprinting
-var(BAim) int			AimSpread;			// How far aim can be from crosshair(rotator units)
-var(BAim) float		ViewAimFactor;		// How much of the Aim is applied to the player's view rotation. 0.0 - 1.0
-var		  float		ReaimTime;			// Time it should take to move aim pointer to new position
-var	   Rotator		ViewAim;			// Aim saved between ApplyAimToView calls, used to find delta aim
-var       Rotator		Aim;				// How far aim pointer is from crosshair
-var       Rotator		NewAim;				// New destination for aim pointer
-var       Rotator		OldAim;				// Where aim poitner was before it started moving
-var       float			ReaimPhase;			// How far along pointer is in its movement from old to new
-var       bool			bReaiming;			// Is the pointer being reaimed?
-var       Rotator		AimOffset;			// Extra Aim offset. Set NewAimOffset and AimOffsetTime to have this move smoothly
-var       Rotator		NewAimOffset;		// This is what AimOffset should be and is adjusted for sprinting and so on
-var       Rotator		OldAimOffset;		// AimOffset before it started shifting. Used for interpolationg AimOffset
-var		  float		AimOffsetTime;		// Time when AimOffset should reach NewAimOffset. Used for interpolationg AimOffset
-var(BAim) float		AimDamageThreshold;	// Damage done to player is divided by this to calculate chaos added from being damaged
+var(BAim) float					AimAdjustTime;		// Time it should take to move aim pointer to new random aim when view moves
+var(BAim) float    				OffsetAdjustTime; 	// Offsetting time for long gun and sprinting
+var(BAim) int					AimSpread;			// How far aim can be from crosshair(rotator units)
+var(BAim) float					ViewAimFactor;		// How much of the Aim is applied to the player's view rotation. 0.0 - 1.0
+var		  float					ReaimTime;			// Time it should take to move aim pointer to new position
+var		  Rotator				ViewAim;			// Aim saved between ApplyAimToView calls, used to find delta aim
+var       Rotator				Aim;				// How far aim pointer is from crosshair
+var       Rotator				NewAim;				// New destination for aim pointer
+var       Rotator				OldAim;				// Where aim poitner was before it started moving
+var       float					ReaimPhase;			// How far along pointer is in its movement from old to new
+var       bool					bReaiming;			// Is the pointer being reaimed?
+var       Rotator				AimOffset;			// Extra Aim offset. Set NewAimOffset and AimOffsetTime to have this move smoothly
+var       Rotator				NewAimOffset;		// This is what AimOffset should be and is adjusted for sprinting and so on
+var       Rotator				OldAimOffset;		// AimOffset before it started shifting. Used for interpolationg AimOffset
+var		  float					AimOffsetTime;		// Time when AimOffset should reach NewAimOffset. Used for interpolationg AimOffset
+var(BAim) float					AimDamageThreshold;	// Damage done to player is divided by this to calculate chaos added from being damaged
 // Chaos, Wildness
-var(BAim) float		ChaosDeclineTime;	// Time it take for chaos to decline from 1 to 0
+var(BAim) float					ChaosDeclineTime;	// Time it take for chaos to decline from 1 to 0
 
-var(BAim) float		ChaosSpeedThreshold;// Player speed divided by this to set chaos. <100=Very High Spread, 500=Average, >500 Good Spread.
-var(BAim) int		ChaosAimSpread;		// How far aim can be from crosshair when full chaos is applied(rotator units)
-var		  float		Chaos;						// The amount of chaos to be applied to aiming. 0=No Chaos, best aim.1=Full Chaos, Worst aim
-var		  float		NewChaos;					// The Chaos when reaim started. Used for crosshair interpolation.
-var		  float		OldChaos;					// The NewChaos from the previous reaim
-var       Rotator	OldLookDir;					// Where player was looking last tick. Used to check if player view changed
+var(BAim) float					ChaosSpeedThreshold;// Player speed divided by this to set chaos. <100=Very High Spread, 500=Average, >500 Good Spread.
+var(BAim) int					ChaosAimSpread;		// How far aim can be from crosshair when full chaos is applied(rotator units)
+var		  float					Chaos;						// The amount of chaos to be applied to aiming. 0=No Chaos, best aim.1=Full Chaos, Worst aim
+var		  float					NewChaos;					// The Chaos when reaim started. Used for crosshair interpolation.
+var		  float					OldChaos;					// The NewChaos from the previous reaim
+var       Rotator				OldLookDir;					// Where player was looking last tick. Used to check if player view changed
 
-var 		float 			FireChaos; 			//Current conefire expansion factor (this * ChaosAimSpread being the current radius)
+var 		float 				FireChaos; 			//Current conefire expansion factor (this * ChaosAimSpread being the current radius)
 
 var			RecoilComponent		RcComponent;
-var			RecoilParams		RcParams;
+var			array<RecoilParams>	RecoilParamsList;
 
 var       	float				LastFireTime;				// Time of last fire
 var			float				NextZeroAimTime;			//For zeroing aim when scoping
@@ -376,8 +377,7 @@ replication
 {
 	// Things the server should send to the owning client
 	reliable if( bNetOwner && Role==ROLE_Authority)
-		MagAmmo, bServerReloading, // reload system
-		CurrentWeaponMode; // weapon mode
+		MagAmmo, bServerReloading; // reload system
 
 	// functions on server, called by client
    	reliable if( Role < ROLE_Authority )
@@ -395,7 +395,7 @@ replication
 		ReceiveNewAim, ClientDisplaceAim, // aim system
 		ReceiveNetRecoil, // recoil system
 		ClientWeaponSpecial, ClientWeaponSpecialRelease, // weapon special ability
-		ClientSwitchWeaponModes, ClientSwitchBurstMode, // weapon mode
+		ClientSwitchWeaponMode, // weapon mode
 		ClientJumped, ClientDodged, ClientPlayerDamaged, // client events
 		ClientScopeDown, ClientJamMode,ClientInitWeaponFromTurret,
 		ClientApplyBlockFatigue; // gameplay events
@@ -433,7 +433,7 @@ simulated function PostBeginPlay()
 	Super.PostBeginPlay();
 	
 	RcComponent = new (self) class'RecoilComponent';
-	RcComponent.Initialize(RcParams);
+	RcComponent.Initialize(GetRecoilParams());
 	
 	SightingTime = Default.SightingTime*Default.SightingTimeScale;
 	
@@ -2009,8 +2009,12 @@ simulated function ClientReloadRelease(optional byte i);
 simulated function CommonReloadRelease(optional byte i);
 // End Reloading Stuff <<<<<<<<<<<<<<<<<<<<<<
 
-// Weapon Firing Mode Stuff >>>>>>>>>>>>>>>>>
-// WeapMode key pressed. Server will do the switching and the WM var will be replicated.
+//====================================================================================================
+// Weapon mode switching
+//
+// Request is sent to server to switch mode. Server validates request and replicates to client
+// if switch was successful. Each side then implements any necessary switching by itself.
+//====================================================================================================
 exec simulated function SwitchWeaponMode (optional byte ModeNum)	
 {
 	if (ModeNum == 0)
@@ -2031,26 +2035,58 @@ function ServerSwitchWeaponMode (byte NewMode)
 		else
 			NewMode++;
 	}
+
 	if (!WeaponModes[NewMode].bUnavailable)
 	{
-		CurrentWeaponMode = NewMode;
+		CommonSwitchWeaponMode(NewMode);
+		ClientSwitchWeaponMode(CurrentWeaponMode);
 		NetUpdateTime = Level.TimeSeconds - 1;
 	}
-	
-	if (bNotifyModeSwitch)
-	{
-		if (Instigator != None && !Instigator.IsLocallyControlled())
-		{
-			BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
-			BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
-		}
-		ClientSwitchWeaponModes(CurrentWeaponMode);
-	}
-	
+}
+
+simulated function CommonSwitchWeaponMode(byte NewMode)
+{
+	if (Instigator == None)
+		return;
+
+	CurrentWeaponMode = NewMode;
+
+	BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
+	BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
+
+	if (WeaponModes[default.LastWeaponMode].RecoilParamsIndex != WeaponModes[CurrentWeaponMode].RecoilParamsIndex)
+		RcComponent.Initialize(GetRecoilParams());
+
 	CheckBurstMode();
 
 	if (Instigator.IsLocallyControlled())
 		default.LastWeaponMode = CurrentWeaponMode;
+}
+
+simulated function ClientSwitchWeaponMode (byte NewMode)
+{
+	if (Level.NetMode != NM_Client)
+		return;
+
+	CommonSwitchWeaponMode(NewMode);
+}
+
+function CheckBurstMode()
+{	
+	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
+	// To my knowledge, this is the case.
+	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
+	{
+		BFireMode[0].bBurstMode = True;
+		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
+	}
+	
+	else if(BFireMode[0].bBurstMode)
+	{	
+		BFireMode[0].bBurstMode = False;
+	}
+	
+	RcComponent.SetDeclineDelay(CalculateBurstRecoilDelay(BFireMode[0].bBurstMode));
 }
 
 simulated function float CalculateBurstRecoilDelay(bool burst)
@@ -2066,50 +2102,6 @@ simulated function float CalculateBurstRecoilDelay(bool burst)
 	{
 		return RcComponent.GetDeclineDelay();
 	}
-}
-
-function CheckBurstMode()
-{	
-	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
-	// To my knowledge, this is the case.
-	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
-	{
-		BFireMode[0].bBurstMode = True;
-		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
-		
-		Log("Burst On");
-			
-		if (!Instigator.IsLocallyControlled())
-			ClientSwitchBurstMode(True, WeaponModes[CurrentWeaponMode].Value);
-
-	}
-	
-	else if(BFireMode[0].bBurstMode)
-	{	
-		Log("Burst Off");
-			
-		BFireMode[0].bBurstMode = False;
-		if (!Instigator.IsLocallyControlled())
-			ClientSwitchBurstMode(False);
-	}
-	
-	RcComponent.SetDeclineDelay(CalculateBurstRecoilDelay(BFireMode[0].bBurstMode));
-}
-
-simulated function ClientSwitchWeaponModes (byte NewMode)
-{
-	BFireMode[0].SwitchWeaponMode(NewMode);
-	BFireMode[1].SwitchWeaponMode(NewMode);
-}
-
-simulated final function ClientSwitchBurstMode(bool burst, optional int Max)
-{
-	BFireMode[0].bBurstMode = burst;
-	
-	if (burst)
-		BFireMode[0].MaxBurst = Max;
-		
-		RcComponent.SetDeclineDelay(CalculateBurstRecoilDelay(burst));
 }
 
 // See if firing modes will let us fire another round or not
@@ -3848,11 +3840,22 @@ final simulated function Vector GetFireDir()
 	return Vector(GetFireRot());
 }
 
+final simulated function Rotator GetBasePlayerView()
+{
+	return GetPlayerAim() - Aim * ViewAimFactor - RcComponent.GetViewPivot();
+}
+
 // Rotate weapon and view according to aim
 simulated function ApplyAimRotation()
 {
 	ApplyAimToView();
 	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + RcComponent.GetWeaponPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
+}
+
+// minigun bullshit
+simulated function Rotator GetRecoilPivot()
+{
+	return RcComponent.GetWeaponPivot();
 }
 
 // Rotates the player's view according to Aim
@@ -4113,12 +4116,23 @@ simulated function ClientJumped()
 	bJumpLock=True;
 }
 
+//====================================================================================
+// Recoil functions.
+//
+// Mostly moved to RecoilComponent
+//====================================================================================
+
 simulated function AddRecoil(float Amount, optional byte Mode)
 {
 	RcComponent.AddRecoil(Amount, Mode);
 
 	if (ROLE == ROLE_Authority && bUseNetAim)
 		SendNetRecoil();
+}
+
+simulated function RecoilParams GetRecoilParams()
+{
+	return RecoilParamsList[WeaponModes[CurrentWeaponMode].RecoilParamsIndex];
 }
 
 // These can be called when a turret undeploys and gives this weapon. Override in sub-classes to add some functionality

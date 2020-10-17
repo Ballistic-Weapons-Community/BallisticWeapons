@@ -146,7 +146,7 @@ simulated function ApplyAimRotation()
 {
 	ApplyAimToView();
 
-	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + RcComponent.GetWeaponPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
+	BallisticTurret(Instigator).WeaponPivot = GetFireRot() * (DisplayFOV / Instigator.Controller.FovAngle);
 }
 
 function byte BestMode()

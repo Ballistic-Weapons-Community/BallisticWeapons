@@ -149,48 +149,7 @@ simulated function bool CheckScope()
 // Cycle through the various weapon modes
 function ServerSwitchWeaponMode (byte NewMode)
 {
-	if (NewMode == 255)
-		NewMode = CurrentWeaponMode + 1;
-	
-	while (NewMode != CurrentWeaponMode && (NewMode >= WeaponModes.length || WeaponModes[NewMode].bUnavailable) )
-	{
-		if (NewMode >= WeaponModes.length)
-			NewMode = 0;
-		else
-			NewMode++;
-	}
-	if (!WeaponModes[NewMode].bUnavailable)
-		CurrentWeaponMode = NewMode;
-	
-	if (bNotifyModeSwitch)
-	{
-		if (Instigator != None && !Instigator.IsLocallyControlled())
-		{
-			BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
-			BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
-		}
-		ClientSwitchWeaponModes(CurrentWeaponMode);
-	}
-		
-	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
-	// To my knowledge, this is the case.
-	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
-	{
-		BFireMode[0].bBurstMode = True;
-		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
-		if (!Instigator.IsLocallyControlled())
-			ClientSwitchBurstMode(True, WeaponModes[CurrentWeaponMode].Value);
-	}
-	
-	else if(BFireMode[0].bBurstMode)
-	{	
-		BFireMode[0].bBurstMode = False;
-		if (!Instigator.IsLocallyControlled())
-			ClientSwitchBurstMode(False);
-	}
-
-	if (Instigator.IsLocallyControlled())
-		default.LastWeaponMode = CurrentWeaponMode;
+	Super.ServerSwitchWeaponMode(NewMode);
 		
 	if (bIsMaster && OtherGun != None && OtherGun.Class == Class)
 		OtherGun.ServerSwitchWeaponMode(CurrentWeaponMode);

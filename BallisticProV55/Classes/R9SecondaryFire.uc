@@ -15,7 +15,7 @@ class R9SecondaryFire extends R9PrimaryFire;
 
 var float BurstInterval;
 
-simulated function FireRecoil ()
+simulated function ApplyRecoil()
 {
 	local Vector VelRecoilVect;
 	if (BW != None)

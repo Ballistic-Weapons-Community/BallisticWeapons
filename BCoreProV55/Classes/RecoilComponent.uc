@@ -27,22 +27,22 @@ var private bool                bForceUpdate;                   // Forces ApplyA
 //=============================================================
 // Accessors
 //=============================================================
-final function float GetRecoil()
+final simulated function float GetRecoil()
 {
     return Recoil;
 }
 
-final function float GetRecoilXRand()
+final simulated function float GetRecoilXRand()
 {
     return XRand;
 }
 
-final function float GetRecoilYRand()
+final simulated function float GetRecoilYRand()
 {
     return YRand;
 }
 
-final function float GetDeclineDelay()
+final simulated function float GetDeclineDelay()
 {
     return Params.DeclineDelay;
 }
@@ -50,19 +50,19 @@ final function float GetDeclineDelay()
 //=============================================================
 // Mutators
 //=============================================================
-final function SetDeclineDelay(float value)
+final simulated function SetDeclineDelay(float value)
 {
     DeclineDelay = value;
 }
 //=============================================================
 // Utility
 //=============================================================
-final function bool HoldingRecoil()
+final simulated function bool HoldingRecoil()
 {
     return LastRecoilTime + DeclineDelay >= Level.TimeSeconds;
 }
 
-final function bool ShouldUpdateView()
+final simulated function bool ShouldUpdateView()
 {
     local bool ret;
 

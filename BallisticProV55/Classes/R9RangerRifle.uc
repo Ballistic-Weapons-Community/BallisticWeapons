@@ -31,11 +31,9 @@ function ServerSwitchWeaponMode (byte NewMode)
 {
 	local int m;
 	
-	if (bPreventReload)
+	if (bPreventReload || ReloadState != RS_None)
 		return;
-	if (ReloadState != RS_None)
-		return;
-		
+
 	if (NewMode == 255)
 		NewMode = CurrentWeaponMode + 1;
 		
@@ -49,34 +47,26 @@ function ServerSwitchWeaponMode (byte NewMode)
 		else
 			NewMode++;
 	}
+
 	if (!WeaponModes[NewMode].bUnavailable)
 	{
-		CurrentWeaponMode = NewMode;
+		CommonSwitchWeaponMode(NewMode);
+		ClientSwitchWeaponMode(CurrentWeaponMode);
 		NetUpdateTime = Level.TimeSeconds - 1;
 	}
 	
-	if (bNotifyModeSwitch)
-	{
-		if (Instigator != None && !Instigator.IsLocallyControlled())
-		{
-			BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
-			BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
-		}
-		ClientSwitchWeaponModes(CurrentWeaponMode);
-	}
-	
+	// mode switch for this weapon causes a reload
 	R9Attachment(ThirdPersonActor).CurrentTracerMode = CurrentWeaponMode;
-
-	if (Instigator.IsLocallyControlled())
-		default.LastWeaponMode = CurrentWeaponMode;
 		
 	for (m=0; m < NUM_FIRE_MODES; m++)
 		if (FireMode[m] != None && FireMode[m].bIsFiring)
 			StopFire(m);
 
 	bServerReloading = true;
+
 	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
 		Instigator.SetAnimAction('ReloadGun');
+
 	CommonStartReload(0);	//Server animation
 	ClientStartReload(0);	//Client animation
 }

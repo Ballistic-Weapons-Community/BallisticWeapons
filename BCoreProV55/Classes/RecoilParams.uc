@@ -48,5 +48,5 @@ defaultproperties
     DeclineDelay=0.300000
     ViewBindFactor=1.000000
     HipMultiplier=1.600000
-	CrouchMultiplier=0.800000
+	CrouchMultiplier=0.750000
 }

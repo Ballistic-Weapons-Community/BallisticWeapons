@@ -435,7 +435,7 @@ simulated event WeaponTick(float DT)
 		if (Flame != None)
 		{
 			Flame.SetLocation(RSDarkAttachment(ThirdPersonActor).GetTipLocation());
-			Flame.SetRotation(rotator(Vector(GetAimPivot() + GetRecoilPivot()) >> GetPlayerAim()));
+			Flame.SetRotation(rotator(GetFireDir() >> GetPlayerAim()));
 		}
 	}
 }
@@ -446,7 +446,7 @@ simulated event RenderOverlays(Canvas C)
 	if (Flame != None)
 	{
 		Flame.SetLocation(ConvertFOVs(GetBoneCoords('tip').Origin, DisplayFOV, Instigator.Controller.FovAngle, 32));
-		Flame.SetRotation(rotator(Vector(GetAimPivot() + GetRecoilPivot()) >> GetPlayerAim()));
+		Flame.SetRotation(rotator(GetFireDir() >> GetPlayerAim()));
 	}
 }
 
@@ -454,46 +454,13 @@ function ServerSwitchWeaponMode (byte NewMode)
 {
 	if (CurrentWeaponMode > 0 && FireMode[0].IsFiring())
 		return;
-	super.ServerSwitchWeaponMode (NewMode);
 
-	if (CurrentWeaponMode == 0)
-	{
-		RecoilXFactor=0.8;
-		RecoilYFactor=1.5;
-		RecoilDeclineDelay=0.8;
-	}
-
-	else
-	{
-		RecoilXFactor = default.RecoilXFactor;
-		RecoilYFactor = default.RecoilYFactor;
-		RecoilDeclineDelay = default.RecoilDeclineDelay;
-	}
-
-	if (CurrentWeaponMode == 0)
-		AimSpread=1024;
-	else if (CurrentWeaponMode == 4)
-		AimSpread=1280;
-	else AimSpread=default.AimSpread;
+	super.ServerSwitchWeaponMode(NewMode);
 }
 	
-simulated function ClientSwitchWeaponModes (byte newMode)
+simulated function CommonSwitchWeaponMode (byte newMode)
 {
-	Super.ClientSwitchWeaponModes(newMode);
-
-	if (newMode == 0)
-	{
-		RecoilXFactor=0.8;
-		RecoilYFactor=1.5;
-		RecoilDeclineDelay=0.8;
-	}
-
-	else
-	{
-		RecoilXFactor = default.RecoilXFactor;
-		RecoilYFactor = default.RecoilYFactor;
-		RecoilDeclineDelay = default.RecoilDeclineDelay;
-	}
+	Super.CommonSwitchWeaponMode(newMode);
 
 	if (newMode == 0)
 		AimSpread=1024;
@@ -892,10 +859,10 @@ defaultproperties
      ClipInSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemIn',Volume=0.700000)
      ClipInFrame=0.700000
      WeaponModes(0)=(ModeName="Bolt",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
-     WeaponModes(2)=(ModeName="Flame")
-     WeaponModes(3)=(ModeName="Cone Immolation",ModeID="WM_FullAuto",bUnavailable=True)
-     WeaponModes(4)=(ModeName="Fire Bomb",ModeID="WM_FullAuto")
+     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1)
+     WeaponModes(2)=(ModeName="Flame",RecoilParamsIndex=1)
+     WeaponModes(3)=(ModeName="Cone Immolation",ModeID="WM_FullAuto",bUnavailable=True,RecoilParamsIndex=1)
+     WeaponModes(4)=(ModeName="Fire Bomb",ModeID="WM_FullAuto",RecoilParamsIndex=0)
      CurrentWeaponMode=0
      bNotifyModeSwitch=True
      SightPivot=(Pitch=1024)
@@ -904,15 +871,30 @@ defaultproperties
      SightingTime=0.300000
      GunLength=128.000000
      SprintOffSet=(Pitch=-1024,Yaw=-1024)
-     ChaosDeclineTime=1.250000
+	 ChaosDeclineTime=1.250000
 	 
-	 ViewRecoilFactor=0.3
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.10000
-     RecoilYFactor=0.100000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.250000
+	Begin Object Class=RecoilParams Name=DarkBoltRecoilParams
+     	XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
+     	YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.8
+		YRandFactor=0.8
+		DeclineTime=1.5
+		ViewBindFactor=0.3
+		DeclineDelay=0.8
+	End Object
+	RecoilParamsList(0)=RecoilParams'DarkBoltRecoilParams'
+ 
+	Begin Object Class=RecoilParams Name=DarkFastRecoilParams
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+	    XRandFactor=0.1
+		YRandFactor=0.1
+		DeclineTime=0.5
+		ViewBindFactor=0.3
+		DeclineDelay=0.25
+	End Object
+	RecoilParamsList(1)=RecoilParams'DarkFastRecoilParams'
+
      FireModeClass(0)=Class'BallisticProV55.RSDarkPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.RSDarkMeleeFire'
      BringUpTime=0.500000

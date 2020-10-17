@@ -70,7 +70,7 @@ simulated event ModeDoFire()
 	super.ModeDoFire();
 }
 
-simulated function FireRecoil ()
+simulated function ApplyRecoil ()
 {
 	if (BW != None)
 		BW.AddRecoil(FireRecoil, ThisModeNum);

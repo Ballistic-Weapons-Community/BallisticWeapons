@@ -202,8 +202,8 @@ simulated function ApplyAimRotation()
 {
 	ApplyAimToView();
 
-	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + RcComponent.GetWeaponPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
-//	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
+	BallisticTurret(Instigator).WeaponPivot = GetFireRot() * (DisplayFOV / Instigator.Controller.FovAngle);
+//	PlayerViewPivot = default.PlayerViewPivot + GetFireRot() * (DisplayFOV / Instigator.Controller.FovAngle);
 }
 
 // Animation notify to make gun cock after reload

@@ -91,13 +91,13 @@ simulated event RenderOverlays(Canvas C)
 	if (Flame != None)
 	{
 		Flame.SetLocation(ConvertFOVs(GetBoneCoords('tip').Origin, DisplayFOV, Instigator.Controller.FovAngle, 32));
-		Flame.SetRotation(rotator(Vector(GetAimPivot() + GetRecoilPivot()) >> GetPlayerAim()));
+		Flame.SetRotation(rotator(GetFireDir() >> GetPlayerAim()));
 		C.DrawActor(Flame, false, false, Instigator.Controller.FovAngle);
 	}
 	else if (GasSpray != None)
 	{
 		GasSpray.SetLocation(ConvertFOVs(GetBoneCoords('tip').Origin+vector(Instigator.GetViewRotation())*32, DisplayFOV, Instigator.Controller.FovAngle, 32));
-		GasSpray.SetRotation(rotator(Vector(GetAimPivot() + GetRecoilPivot()) >> GetPlayerAim()));
+		GasSpray.SetRotation(rotator(GetFireDir() >> GetPlayerAim()));
 		C.DrawActor(GasSpray, false, false, Instigator.Controller.FovAngle);
 	}
 }
@@ -122,12 +122,12 @@ simulated function WeaponTick (float DT)
 		if (Flame != None)
 		{
 			Flame.SetLocation(RX22AAttachment(ThirdPersonActor).GetTipLocation());
-			Flame.SetRotation(rotator(Vector(GetAimPivot() + GetRecoilPivot()) >> GetPlayerAim()));
+			Flame.SetRotation(rotator(GetFireDir() >> GetPlayerAim()));
 		}
 		else if (GasSpray != None)
 		{
 			GasSpray.SetLocation(RX22AAttachment(ThirdPersonActor).GetTipLocation());
-			GasSpray.SetRotation(rotator(Vector(GetAimPivot() + GetRecoilPivot()) >> GetPlayerAim()));
+			GasSpray.SetRotation(rotator(GetFireDir() >> GetPlayerAim()));
 		}
 	}
 }

@@ -407,53 +407,14 @@ simulated function KillFreeChainZap()
 	{	FreeChainZap.Kill();	bCanKillChainZap = true;	}
 }
 
-function ServerSwitchWeaponMode (byte NewMode)
+simulated function CommonSwitchWeaponMode (byte NewMode)
 {
-	super.ServerSwitchWeaponMode (NewMode);
-	
-	if (CurrentWeaponMode == 0)
-	{
-		RecoilXFactor=0.8;
-		RecoilYFactor=1.5;
-		RecoilDeclineDelay=0.8;
-	}
-	
-	else
-	{
-		RecoilXFactor = default.RecoilXFactor;
-		RecoilYFactor = default.RecoilYFactor;
-		RecoilDeclineDelay = default.RecoilDeclineDelay;
-	}
+	super.CommonSwitchWeaponMode (NewMode);
 	
 	if (CurrentWeaponMode == 0 || CurrentWeaponMode == 3)
 		AimSpread = 1024;
 		
 	else 
-		AimSpread = default.AimSpread;
-}
-
-simulated function ClientSwitchWeaponModes (byte newMode)
-{
-	Super.ClientSwitchWeaponModes(newMode);
-	
-	if (newMode == 0)
-	{
-		RecoilXFactor=0.8;
-		RecoilYFactor=1.5;
-		RecoilDeclineDelay=0.8;
-	}
-	
-	else
-	{
-		RecoilXFactor = default.RecoilXFactor;
-		RecoilYFactor = default.RecoilYFactor;
-		RecoilDeclineDelay = default.RecoilDeclineDelay;
-	}
-	
-	if (newMode == 0 || newMode == 3)
-		AimSpread = 1024;
-		
-	else
 		AimSpread = default.AimSpread;
 }
 
@@ -483,7 +444,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		class'BUtil'.static.InitMuzzleFlash (Blade1Glow, class'RSNovaBladeGlow', DrawScale, self, 'blade1');
 		class'BUtil'.static.InitMuzzleFlash (Blade2Glow, class'RSNovaBladeGlow', DrawScale, self, 'blade2');
 		class'BUtil'.static.InitMuzzleFlash (Blade3Glow, class'RSNovaBladeGlow', DrawScale, self, 'blade3');
-
 	}
 }
 
@@ -830,8 +790,8 @@ defaultproperties
      ClipInSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalIn',Volume=0.700000)
      ClipInFrame=0.700000
      WeaponModes(0)=(ModeName="Slow Bolt",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
-     WeaponModes(2)=(ModeName="Lightning")
+     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1)
+     WeaponModes(2)=(ModeName="Lightning",RecoilParamsIndex=1)
      WeaponModes(3)=(ModeName="Thunder Strike",ModeID="WM_FullAuto")
      WeaponModes(4)=(ModeName="Chain Lightning",ModeID="WM_FullAuto",bUnavailable=True)
      CurrentWeaponMode=0
@@ -843,42 +803,57 @@ defaultproperties
      GunLength=128.000000
      SprintOffSet=(Pitch=-1024,Yaw=-1024)
      AimAdjustTime=0.700000
-     ChaosDeclineTime=1.250000
+	 ChaosDeclineTime=1.250000
 	 
-	 ViewRecoilFactor=0.4
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.05000
-     RecoilYFactor=0.05000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.250000
-     FireModeClass(0)=Class'BallisticProV55.RSNovaPrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.RSNovaMeleeFire'
-     BringUpTime=0.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.700000
-     CurrentRating=0.70000
-     bShowChargingBar=True
-     Description="During a mining excavation of the large crater in sector-547b on one of the distant Outword planets, a strage, magnificent artifact was discovered. Generating great interest in the isolated facility, superstitious miners beleived it to be a magical device capable of everything from allowing god to read their minds to teleportation and the summoning of demons. The artifact was subjected to all manner of tests, but proved to be a confounding subject and revealed very little. It was made of an unimaginably strong material and appeared apparently undamaged despite it's intricate construction. For all they could say, it may have been nothing more than a candlestick.|Finally, mine coordinator R Peters, who had had a greedy eye fixed on the artifact since day one, ordered the tests cancelled and retired the artifact to his office."
-     DisplayFOV=47.000000
-     Priority=9
-     HudColor=(B=255,G=175,R=100)
-     InventoryGroup=5
-     GroupOffset=3
-     PickupClass=Class'BallisticProV55.RSNovaPickup'
-     PlayerViewOffset=(X=20.000000,Y=5.000000,Z=-6.000000)
-     AttachmentClass=Class'BallisticProV55.RSNovaAttachment'
-     IconMaterial=Texture'BWBP4-Tex.NovaStaff.SmallIcon_NovaStaff'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="Nova Staff"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=180
-     LightSaturation=96
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBP4-Anims.NovaStaff'
-     DrawScale=0.300000
-     bFullVolume=True
-     SoundRadius=32.000000
+	 Begin Object Class=RecoilParams Name=NovaBoltRecoilParams
+     	XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
+     	YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.8
+		YRandFactor=0.8
+		DeclineTime=1.5
+		ViewBindFactor=0.4
+		DeclineDelay=0.8
+	End Object
+	RecoilParamsList(0)=RecoilParams'NovaBoltRecoilParams'
+
+	Begin Object Class=RecoilParams Name=NovaFastRecoilParams
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+	    XRandFactor=0.05
+		YRandFactor=0.05
+		DeclineTime=0.5
+		ViewBindFactor=0.4
+		DeclineDelay=0.25
+	End Object
+	RecoilParamsList(1)=RecoilParams'NovaFastRecoilParams'
+	 
+	FireModeClass(0)=Class'BallisticProV55.RSNovaPrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.RSNovaMeleeFire'
+	BringUpTime=0.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.700000
+	CurrentRating=0.70000
+	bShowChargingBar=True
+	Description="During a mining excavation of the large crater in sector-547b on one of the distant Outword planets, a strage, magnificent artifact was discovered. Generating great interest in the isolated facility, superstitious miners beleived it to be a magical device capable of everything from allowing god to read their minds to teleportation and the summoning of demons. The artifact was subjected to all manner of tests, but proved to be a confounding subject and revealed very little. It was made of an unimaginably strong material and appeared apparently undamaged despite it's intricate construction. For all they could say, it may have been nothing more than a candlestick.|Finally, mine coordinator R Peters, who had had a greedy eye fixed on the artifact since day one, ordered the tests cancelled and retired the artifact to his office."
+	DisplayFOV=47.000000
+	Priority=9
+	HudColor=(B=255,G=175,R=100)
+	InventoryGroup=5
+	GroupOffset=3
+	PickupClass=Class'BallisticProV55.RSNovaPickup'
+	PlayerViewOffset=(X=20.000000,Y=5.000000,Z=-6.000000)
+	AttachmentClass=Class'BallisticProV55.RSNovaAttachment'
+	IconMaterial=Texture'BWBP4-Tex.NovaStaff.SmallIcon_NovaStaff'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="Nova Staff"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=180
+	LightSaturation=96
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BWBP4-Anims.NovaStaff'
+	DrawScale=0.300000
+	bFullVolume=True
+	SoundRadius=32.000000
 }

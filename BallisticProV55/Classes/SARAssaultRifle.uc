@@ -31,15 +31,13 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 		bLaserOn;
-	reliable if (Role < ROLE_Authority)
-		ServerSwitchStock;
 }
 
 simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
 
-	SetStockBonePosition();
+	SetStockRotation();
 	AdjustStockProperties();
 }
 
@@ -54,7 +52,79 @@ simulated function float ChargeBar()
 	return (FireMode[1].NextFireTime - level.TimeSeconds) / FireMode[1].FireRate;
 }
 
-simulated function AdjustStockProperties()
+static function class<Pickup> RecommendAmmoPickup(int Mode)
+{
+	return class'AP_SARClip';
+}
+
+//======================================================================
+// Weapon mode behaviour
+//
+// Switches mode by animating the stock
+//======================================================================
+exec simulated function SwitchWeaponMode (optional byte ModeNum)	
+{
+	// SAR animates to change weapon mode
+	if (ReloadState != RS_None)
+		return;
+
+	if (ModeNum == 0)
+		ServerSwitchWeaponMode(255);
+	else ServerSwitchWeaponMode(ModeNum-1);
+}
+
+// Cycle through the various weapon modes
+function ServerSwitchWeaponMode (byte NewMode)
+{
+	Log("SAR ServerSwitchWeaponMode: Stock open: "$bStockOpen);
+	
+	if (ReloadState != RS_None)
+		return;
+		
+	NewMode = byte(!bStockOpen);
+		
+	// can feasibly happen
+	if (NewMode == CurrentWeaponMode)
+		return;
+
+	CommonSwitchWeaponMode(NewMode);
+	ClientSwitchWeaponMode(NewMode);
+	NetUpdateTime = Level.TimeSeconds - 1;
+}
+
+simulated function CommonSwitchWeaponMode(byte NewMode)
+{
+	Super.CommonSwitchWeaponMode(NewMode);
+	SwitchStock(bool(NewMode));
+}
+
+simulated function SwitchStock(bool bNewValue)
+{
+	if (bNewValue == bStockOpen)
+		return;
+
+	Log("SAR SwitchStock: Stock open: "$bStockOpen);
+	
+	if (Role == ROLE_Authority)
+		bServerReloading = True;
+	ReloadState = RS_GearSwitch;
+	
+	TemporaryScopeDown(0.4);
+
+	bStockOpen = bNewValue;
+	
+	SetBoneRotation('Stock', rot(0,0,0));
+	
+	if (bNewValue)
+		PlayAnim(StockOpenAnim);
+	else
+		PlayAnim(StockCloseAnim);
+		
+	AdjustStockProperties();
+}
+
+
+	simulated function AdjustStockProperties()
 {
 	if (bStockOpen)
 	{
@@ -71,7 +141,6 @@ simulated function AdjustStockProperties()
 		
 		// Weapon penalties
 		SightingTime				= 0.35;
-		ViewRecoilFactor 			= 0.35;
 	}
 	else
 	{
@@ -82,7 +151,6 @@ simulated function AdjustStockProperties()
 		
 		// Weapon Bonuses
 		SightingTime = default.SightingTime;
-		ViewRecoilFactor = default.ViewRecoilFactor;
 		
 		// Weapon penalties
 		CrouchAimFactor					= default.CrouchAimFactor;
@@ -92,51 +160,7 @@ simulated function AdjustStockProperties()
 	}
 }
 
-static function class<Pickup> RecommendAmmoPickup(int Mode)
-{
-	return class'AP_SARClip';
-}
-
-function ServerSwitchStock(bool bNewValue)
-{
-	bStockOpen = bNewValue;
-	SwitchStock(bNewValue);
-	AdjustStockProperties();
-}
-
-//simulated function DoWeaponSpecial(optional byte i)
-exec simulated function WeaponSpecial(optional byte i)
-{
-	if (ReloadState != RS_None)
-		return;
-
-	if (ClientState != WS_ReadyToFire)
-		return;
-
-	bStockOpen = !bStockOpen;
-
-	if (!bStockOpen)
-		SetStockBonePosition();
-
-	TemporaryScopeDown(0.4);
-	ServerSwitchStock(bStockOpen);
-	SwitchStock(bStockOpen);
-	AdjustStockProperties();
-}
-
-simulated function SwitchStock(bool bNewValue)
-{
-	if (Role == ROLE_Authority)
-		bServerReloading = True;
-	ReloadState = RS_GearSwitch;
-	
-	if (bNewValue)
-		PlayAnim(StockOpenAnim);
-	else
-		PlayAnim(StockCloseAnim);
-}
-
-simulated function SetStockBonePosition()
+simulated function SetStockRotation()
 {
 	if (bStockOpen)
 	{
@@ -154,20 +178,30 @@ simulated function PlayIdle()
 {
 	if (bStockOpen && !bStockBoneOpen)
 	{
-		SetStockBonePosition();
+		SetStockRotation();
 		IdleTweenTime=0.0;
 		super.PlayIdle();
 		IdleTweenTime=default.IdleTweenTime;
 	}
 	else
 	{	if (!bStockOpen && bStockBoneOpen)
-			SetStockBonePosition();
+			SetStockRotation();
 		super.PlayIdle();
 	}
 
 	if (!bLaserOn || bPendingSightUp || SightingState != SS_None || bScopeView || !CanPlayAnim(IdleAnim, ,"IDLE"))
 		return;
 	FreezeAnimAt(0.0);
+}
+
+//=======================================================================
+// Laser handling
+//=======================================================================
+function ServerWeaponSpecial(optional byte i)
+{
+	if (bServerReloading)
+		return;
+	ServerSwitchLaser(!bLaserOn);
 }
 
 simulated event PostNetReceive()
@@ -489,8 +523,10 @@ defaultproperties
      ClipOutSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipOut')
      ClipInSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipIn')
      ClipInFrame=0.650000
-     WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(Value=5.000000)
+     WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
+     WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=4.000000,RecoilParamsIndex=1)
+	 WeaponModes(2)=(bUnavailable=True)
+	 CurrentWeaponMode=0
      bNoCrosshairInScope=True
      SightPivot=(Pitch=350)
      SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
@@ -507,42 +543,58 @@ defaultproperties
      AimSpread=12
      ChaosDeclineTime=0.5
      ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=768
+	 ChaosAimSpread=768
 	 
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.05
-     RecoilYFactor=0.05
-     RecoilDeclineTime=0.5
-     RecoilDeclineDelay=0.14
-	 ViewRecoilFactor=0.45
+	Begin Object Class=RecoilParams Name=SARAutoRecoilParams
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+	   	XRandFactor=0.05
+		YRandFactor=0.05
+		DeclineTime=0.5
+		ViewBindFactor=0.35
+		CrouchMultiplier=0.75
+		DeclineDelay=0.14
+	End Object
+	RecoilParamsList(0)=RecoilParams'SARAutoRecoilParams'
+
+	Begin Object Class=RecoilParams Name=SARBurstRecoilParams
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+	   	XRandFactor=0.05
+		YRandFactor=0.05
+		DeclineTime=0.5
+		ViewBindFactor=0.45
+		CrouchMultiplier=1
+		DeclineDelay=0.14
+	End Object
+	RecoilParamsList(1)=RecoilParams'SARBurstRecoilParams'
+	  
+	FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.SARFlashFire'
 	 
-     FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.SARFlashFire'
-	 
-     SelectForce="SwitchToAssaultRifle"
-     bShowChargingBar=True
-     Description="With a growing number of operations and battles taking place in urban and industial enviroments, the UTC realized that their ground infantry units were in dire need of a more effective, balanced weapon system for indoor combat. UTC soldiers fighting in the close confines of urban structures and industrial installatons needed a highly compact, reliable and manouverable weapon, but it needed the power to blast through light walls and take down the agile alien forces they were faced with.||The result was the development of the Sub-Assault Rifle, the most well known of which is the S-AR 12. These weapons have the power of an assault rifle, usually using rifle ammunition such as 5.56mm rounds, and the manouverability of a compact sub-machinegun. Accuracy was not an issue due to the extremely short range of most of the encounters in urban combat."
-     DisplayFOV=55.000000
-     Priority=32
-     HudColor=(G=200,R=100)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=4
-     GroupOffset=4
-     PickupClass=Class'BallisticProV55.SARPickup'
-     PlayerViewOffset=(X=5.000000,Y=9.000000,Z=-11.000000)
-     AttachmentClass=Class'BallisticProV55.SARAttachment'
-     IconMaterial=Texture'BallisticTextures3.ui.SmallIcon_SAR12'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="Sub-Assault Rifle 12"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=130.000000
-     LightRadius=3.000000
-     Mesh=SkeletalMesh'BallisticProAnims.SAR'
-     DrawScale=0.300000
-     SoundPitch=56
-     SoundRadius=32.000000
+	SelectForce="SwitchToAssaultRifle"
+	bShowChargingBar=True
+	Description="With a growing number of operations and battles taking place in urban and industial enviroments, the UTC realized that their ground infantry units were in dire need of a more effective, balanced weapon system for indoor combat. UTC soldiers fighting in the close confines of urban structures and industrial installatons needed a highly compact, reliable and manouverable weapon, but it needed the power to blast through light walls and take down the agile alien forces they were faced with.||The result was the development of the Sub-Assault Rifle, the most well known of which is the S-AR 12. These weapons have the power of an assault rifle, usually using rifle ammunition such as 5.56mm rounds, and the manouverability of a compact sub-machinegun. Accuracy was not an issue due to the extremely short range of most of the encounters in urban combat."
+	DisplayFOV=55.000000
+	Priority=32
+	HudColor=(G=200,R=100)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=4
+	GroupOffset=4
+	PickupClass=Class'BallisticProV55.SARPickup'
+	PlayerViewOffset=(X=5.000000,Y=9.000000,Z=-11.000000)
+	AttachmentClass=Class'BallisticProV55.SARAttachment'
+	IconMaterial=Texture'BallisticTextures3.ui.SmallIcon_SAR12'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="Sub-Assault Rifle 12"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=130.000000
+	LightRadius=3.000000
+	Mesh=SkeletalMesh'BallisticProAnims.SAR'
+	DrawScale=0.300000
+	SoundPitch=56
+	SoundRadius=32.000000
 }
