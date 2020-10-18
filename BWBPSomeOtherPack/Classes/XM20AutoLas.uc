@@ -478,7 +478,7 @@ defaultproperties
      InventoryGroup=5
      GroupOffset=4
      PickupClass=Class'BWBPSomeOtherPack.XM20Pickup'
-     PlayerViewOffset=(X=-12.000000,Y=0.000000,Z=-22.000000)
+     PlayerViewOffset=(X=4.000000,Y=0.000000,Z=-22.000000)
      BobDamping=1.800000
      AttachmentClass=Class'BWBPSomeOtherPack.XM20Attachment'
 	 bUseBigIcon=True
