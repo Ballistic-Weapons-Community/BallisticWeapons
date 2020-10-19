@@ -18,7 +18,7 @@ var() float				YawFactor;					// Recoil is multiplied by this and added to Aim Y
 var() float				XRandFactor;				// Recoil multiplied by this for recoil Yaw randomness
 var() float				YRandFactor;				// Recoil multiplied by this for recoil Pitch randomness
 var() float				MinRandFactor;				// Bias for calculation of recoil random factor
-var() float				MaxRecoil;						// The maximum recoil amount
+var() float				MaxRecoil;					// The maximum recoil amount
 var() float				DeclineTime;				// Time it takes for Recoil to decline maximum to zero
 var() float				DeclineDelay;				// The time between firing and when recoil should start decaying
 var() float             ViewBindFactor;           	// How much of the recoil is applied to the player's view rotation

@@ -434,12 +434,11 @@ simulated function PostBeginPlay()
 	
 	RcComponent = RecoilComponent(Level.ObjectPool.AllocateObject(class'RecoilComponent'));
 
-	Log("Initializing RecoilComponent");
 	RcComponent.Weapon = self;
 	RcComponent.Instigator = Instigator;
 	RcComponent.Level = Level;
 	RcComponent.Params = RecoilParamsList[WeaponModes[CurrentWeaponMode].RecoilParamsIndex];
-	RcComponent.OnParamsAssigned();
+	RcComponent.Recalculate();
 	
 	SightingTime = Default.SightingTime*Default.SightingTimeScale;
 	
@@ -550,7 +549,7 @@ simulated function PostNetBeginPlay()
 		BFireMode[0].bBurstMode = True;
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
 
-		RcComponent.SetDeclineDelay(CalculateBurstRecoilDelay(BFireMode[0].bBurstMode));
+		RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
 	}
 }
 
@@ -713,9 +712,8 @@ simulated function StartBerserk()
 		return;
 		
 	bBerserk = true;
-	
-	RcComponent.OnBerserkStart();
-	
+	UpdateBerserkRecoil();
+
 	ReloadAnimRate = default.ReloadAnimRate / 0.75;
     CockAnimRate = default.CockAnimRate / 0.75;
     
@@ -728,8 +726,8 @@ simulated function StartBerserk()
 simulated function StopBerserk()
 {
 	bBerserk = false;
-	
-	RcComponent.OnBerserkEnd();
+	UpdateBerserkRecoil();
+
 	ReloadAnimRate = default.ReloadAnimRate;
     CockAnimRate = default.CockAnimRate;
     
@@ -740,6 +738,19 @@ simulated function StopBerserk()
         FireMode[0].StopBerserk();
     if (FireMode[1] != None)
         FireMode[1].StopBerserk();
+}
+
+simulated function UpdateBerserkRecoil()
+{
+	local float factor;
+
+	factor = 0.75f;
+
+	if (!bBerserk)
+		factor = 1f / factor;
+
+	RcComponent.DeclineTime *= factor;
+	RcComponent.DeclineDelay *= factor;
 }
 
 simulated function PlayerEnteredVehicle(Vehicle V)
@@ -2063,7 +2074,7 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 	if (WeaponModes[default.LastWeaponMode].RecoilParamsIndex != WeaponModes[CurrentWeaponMode].RecoilParamsIndex)
 	{
 		RcComponent.Params = RecoilParamsList[WeaponModes[CurrentWeaponMode].RecoilParamsIndex];
-		RcComponent.OnParamsAssigned();
+		RcComponent.Recalculate();
 	}
 
 	CheckBurstMode();
@@ -2095,7 +2106,7 @@ simulated function CheckBurstMode()
 		BFireMode[0].bBurstMode = False;
 	}
 	
-	RcComponent.SetDeclineDelay(CalculateBurstRecoilDelay(BFireMode[0].bBurstMode));
+	RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
 }
 
 simulated function float CalculateBurstRecoilDelay(bool burst)
@@ -2104,12 +2115,12 @@ simulated function float CalculateBurstRecoilDelay(bool burst)
 	{
 		return
 			(BFireMode[0].FireRate * WeaponModes[CurrentWeaponMode].Value * (1f - BFireMode[0].BurstFireRateFactor)) // cooldown of burst
-			+ (RcComponent.GetDeclineDelay() - BFireMode[0].FireRate); // inherent delay, usually fire rate * 0.5
+			+ (RcComponent.DeclineDelay - BFireMode[0].FireRate); // inherent delay, usually fire rate * 0.5
 	}
 	
 	else
 	{
-		return RcComponent.GetDeclineDelay();
+		return RcComponent.DeclineDelay;
 	}
 }
 
@@ -3728,7 +3739,7 @@ simulated function TickAim (float DT)
 	}
 
 	// Fire chaos decline
-	if (FireChaos > 0 && LastFireTime + RcComponent.GetDeclineDelay() < Level.TimeSeconds)
+	if (FireChaos > 0 && LastFireTime + RcComponent.DeclineDelay < Level.TimeSeconds)
 	{
 		if (Instigator.bIsCrouched)
 			FireChaos -= FMin(FireChaos, DT / (ChaosDeclineTime/CrouchAimFactor));
@@ -4149,6 +4160,16 @@ simulated function RecoilParams GetRecoilParams()
 {
 	return RecoilParamsList[WeaponModes[CurrentWeaponMode].RecoilParamsIndex];
 }
+
+simulated function OnRecoilParamsChanged()
+{
+	if (bBerserk)
+		UpdateBerserkRecoil();
+}
+
+//====================================================================================
+// Turrets
+//====================================================================================
 
 // These can be called when a turret undeploys and gives this weapon. Override in sub-classes to add some functionality
 function InitWeaponFromTurret(BallisticTurret Turret);
@@ -4712,7 +4733,7 @@ defaultproperties
      WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
      CurrentWeaponMode=2
      LastWeaponMode=255
-     SavedWeaponMode=255
+	 SavedWeaponMode=255
 	 
      bUseSights=True
      ScopeXScale=1.000000

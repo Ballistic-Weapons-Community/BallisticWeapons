@@ -32,7 +32,7 @@ simulated event WeaponTick (Float DT)
 {
 	Super.WeaponTick (DT);
 	
-	if (LastFireTime < Level.TimeSeconds - RcComponent.GetDeclineDelay() && MeleeFatigue > 0)
+	if (LastFireTime < Level.TimeSeconds - RcComponent.DeclineDelay && MeleeFatigue > 0)
 		MeleeFatigue = FMax(0, MeleeFatigue - DT/GetRecoilParams().DeclineTime);
 }
 

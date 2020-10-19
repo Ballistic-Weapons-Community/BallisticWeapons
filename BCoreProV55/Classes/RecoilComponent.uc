@@ -18,12 +18,26 @@ var Pawn						Instigator;
 // System parameters
 var RecoilParams				Params;
 
-// Parameters set internally
+// UnrealScript's shitty object handling necessitates copying most of the RecoilParams fields we might want to modify
+// and exposing them as public so that we can apply modifiers from the weapon
+//
+// The nice modifier-based / delegate-based solution to this crashes for no good reason, so whatever :) :) :) :) :) :)
 
+var float						PitchFactor;					// Recoil is multiplied by this and added to Aim Pitch.
+var float						YawFactor;						// Recoil is multiplied by this and added to Aim Yaw.
+var float						XRandFactor;					// Recoil multiplied by this for recoil Yaw randomness
+var float						YRandFactor;					// Recoil multiplied by this for recoil Pitch randomness
+var float						MinRandFactor;					// Bias for calculation of recoil random factor
+var float						MaxRecoil;						// The maximum recoil amount
+var float						DeclineTime;					// Time it takes for Recoil to decline maximum to zero
+var float						DeclineDelay;					// The time between firing and when recoil should start decaying
+var float             			HipMultiplier;            		// Hipfire recoil is scaled up by this value
+var float             			CrouchMultiplier;         		// Crouch recoil is scaled by this value
+
+// Parameters set internally
 var private float               Recoil;						    // The current recoil amount. Increases each shot, decreases when not firing
 var private float               XRand;				            // Random between 0 and 1. Recorded random number for recoil Yaw randomness
 var private float               YRand;				            // Random between 0 and 1. Recorded random number for recoil Pitch randomness
-var private float               DeclineDelay;                   // Delay in seconds before recoil declines
 
 // View application
 var private Rotator             LastViewPivot;   		        // Pivot saved between GetViewPivotDelta calls, used to find delta recoil  
@@ -53,18 +67,6 @@ final simulated function float GetRecoilYRand()
     return YRand;
 }
 
-final simulated function float GetDeclineDelay()
-{
-	return Params.DeclineDelay;
-}
-
-//=============================================================
-// Mutators
-//=============================================================
-final simulated function SetDeclineDelay(float value)
-{
-    DeclineDelay = value;
-}
 //=============================================================
 // Utility
 //=============================================================
@@ -98,7 +100,6 @@ final simulated function Cleanup()
 	Recoil = 0;
 	XRand = 0;
 	YRand = 0;
-	DeclineDelay = 0;
 
 	LastViewPivot = rot(0,0,0);
 	ViewBindFactor = 0;
@@ -111,24 +112,26 @@ final simulated function Cleanup()
 //=============================================================
 // Gameplay
 //=============================================================
-final simulated function OnParamsAssigned()
+final simulated function Recalculate()
 {
-    ViewBindFactor = Params.ViewBindFactor;
-    DeclineDelay = Params.DeclineDelay;
-}
+	PitchFactor 		= Params.PitchFactor;
+	YawFactor 			= Params.YawFactor;
+	XRandFactor 		= Params.XRandFactor;
+	YRandFactor 		= Params.YRandFactor;
+	MinRandFactor 		= Params.MinRandFactor;
+	MaxRecoil 			= Params.MaxRecoil;
+	DeclineTime 		= Params.DeclineTime;
+	DeclineDelay		= Params.DeclineDelay;
+	HipMultiplier 		= Params.HipMultiplier;
+	CrouchMultiplier 	= Params.CrouchMultiplier;
 
-final simulated function OnBerserkStart()
-{
-}
-
-final simulated function OnBerserkEnd()
-{
+	Weapon.OnRecoilParamsChanged();
 }
 
 final simulated function Tick(float DeltaTime)
 {
 	if (Recoil > 0 && !HoldingRecoil())
-		Recoil -= FMin(Recoil, Params.MaxRecoil * (DeltaTime / Params.DeclineTime));
+		Recoil -= FMin(Recoil, MaxRecoil * (DeltaTime / DeclineTime));
 }
 
 final simulated function AddRecoil (float Amount, optional byte Mode)
@@ -141,19 +144,19 @@ final simulated function AddRecoil (float Amount, optional byte Mode)
 	Amount *= Weapon.BCRepClass.default.RecoilScale;
 	
 	if (Instigator.bIsCrouched && VSize(Instigator.Velocity) < 30)
-		Amount *= Params.CrouchMultiplier;
+		Amount *= CrouchMultiplier;
 		
 	if (!Weapon.bScopeView)
-		Amount *= Params.HipMultiplier;
+		Amount *= HipMultiplier;
 	
-	Recoil = FMin(Params.MaxRecoil, Recoil + Amount);
+	Recoil = FMin(MaxRecoil, Recoil + Amount);
 
 	if (!Weapon.bUseNetAim || Weapon.Role == ROLE_Authority)
 	{
 		XRand = FRand();
 		YRand = FRand();
 		
-		if (Recoil == Params.MaxRecoil)
+		if (Recoil == MaxRecoil)
 		{
 			if (Amount < 260)
 			{
