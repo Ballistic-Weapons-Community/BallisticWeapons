@@ -454,13 +454,13 @@ defaultproperties
 
      ChaosDeclineTime=0.5
 	 
-	 ViewRecoilFactor=0.35
+	 ViewBindFactor=0.35
 	 RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.150000,OutVal=0.020000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.11),(InVal=0.400000,OutVal=0.130000),(InVal=0.600000,OutVal=0.20000),(InVal=0.800000,OutVal=0.25000),(InVal=1.000000,OutVal=0.30000)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.500000,OutVal=0.600000),(InVal=0.600000,OutVal=0.670000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.05
-	 RecoilYFactor=0.05
-     RecoilDeclineTime=0.5
-	 RecoilDeclineDelay=0.15
+     XRandFactor=0.05
+	 YRandFactor=0.05
+     DeclineTime=0.5
+	 DeclineDelay=0.15
 	 
      FireModeClass(0)=Class'BWBPSomeOtherPack.XM20PrimaryFire'
      FireModeClass(1)=Class'BWBPSomeOtherPack.XM20SecondaryFire'

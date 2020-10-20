@@ -409,7 +409,6 @@ defaultproperties
      MinZoom=2.000000
      MaxZoom=8.000000
      ZoomStages=6
-     CrouchAimFactor=0.500000
      SightAimFactor=0.500000
      SprintOffSet=(Pitch=-6000,Yaw=-8000)
      JumpOffSet=(Pitch=-7000)
@@ -417,10 +416,15 @@ defaultproperties
      AimSpread=512
      AimDamageThreshold=300.000000
      ChaosDeclineTime=2.800000
-     ChaosSpeedThreshold=1200.000000
-     RecoilYawFactor=0.000000
-     RecoilDeclineTime=1.000000
-     RecoilDeclineDelay=0.000000
+	 ChaosSpeedThreshold=1200.00000
+
+	Begin Object Class=RecoilParams Name=LAWRecoilParams
+		YawFactor=0.000000
+		DeclineTime=1.000000
+		DeclineDelay=0.000000
+	End Object
+	RecoilParamsList(0)=RecoilParams'LAWRecoilParams'
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.LAWPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.LAWSecondaryFire'
      PutDownTime=2.500000

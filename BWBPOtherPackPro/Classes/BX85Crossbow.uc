@@ -628,11 +628,11 @@ defaultproperties
 	 ChaosAimSpread=512
 	 
 	 ViewRecoilFactor=0.5
-     RecoilXFactor=0.050000
-     RecoilYFactor=0.050000
-     RecoilMax=4096.000000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.500000
+     XRandFactor=0.050000
+     YRandFactor=0.050000
+     MaxRecoil=4096.000000
+     DeclineTime=1.500000
+     DeclineDelay=0.500000
 	 
 	 CockSound=(Sound=Sound'BWBPOtherPackSound.XBow.CockFast',Volume=1.200000)
      FireModeClass(0)=Class'BWBPOtherPackPro.BX85PrimaryFire'

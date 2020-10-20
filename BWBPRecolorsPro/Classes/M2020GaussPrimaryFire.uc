@@ -133,8 +133,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FireRate=1.000000;
 		FireChaos=1;
 		KickForce=3000;
-		BW.RecoilXFactor = 0.2;
-		BW.RecoilYFactor = 0.2;
 		Damage=110.000000;
 		DamageHead=175.000000;
 		DamageLimb=110.000000;
@@ -153,8 +151,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FireChaos=0.05;
 		bFlashAlt=true;
 		KickForce=5000;
-		BW.RecoilXFactor = 0.1;
-		BW.RecoilYFactor = 0.1;
 		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=true;
 		if (NewMode == 2)
 			FireAnim='FireUnPowered';

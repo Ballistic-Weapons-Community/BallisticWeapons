@@ -166,7 +166,7 @@ defaultproperties
      ChaosAimSpread=512
 	 
 	 ViewRecoilFactor=0.75
-     RecoilDeclineTime=1.000000
+     DeclineTime=1.000000
 	 
      FireModeClass(0)=Class'BWBPOtherPackPro.AkeronPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.AkeronSecondaryFire'

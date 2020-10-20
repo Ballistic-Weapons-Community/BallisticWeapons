@@ -347,11 +347,14 @@ defaultproperties
 	ChaosSpeedThreshold=7500.000000
 	ChaosAimSpread=512
 	
-	ViewRecoilFactor=0.4
-	RecoilXCurve=(Points=(,(InVal=0.100000),(InVal=0.200000,OutVal=-0.050000),(InVal=0.400000,OutVal=0.050000),(InVal=0.600000,OutVal=0.070000),(InVal=0.700000),(InVal=1.000000,OutVal=0.100000)))
-	RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.350000,OutVal=0.400000),(InVal=0.540000,OutVal=0.650000),(InVal=0.700000,OutVal=0.720000),(InVal=1.000000,OutVal=0.300000)))
-	RecoilDeclineTime=0.5
-	RecoilDeclineDelay=0.170000
+	Begin Object Class=RecoilParams Name=A49RecoilParams
+		ViewBindFactor=0.4
+		XCurve=(Points=(,(InVal=0.100000),(InVal=0.200000,OutVal=-0.050000),(InVal=0.400000,OutVal=0.050000),(InVal=0.600000,OutVal=0.070000),(InVal=0.700000),(InVal=1.000000,OutVal=0.100000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.350000,OutVal=0.400000),(InVal=0.540000,OutVal=0.650000),(InVal=0.700000,OutVal=0.720000),(InVal=1.000000,OutVal=0.300000)))
+		DeclineTime=0.5
+		DeclineDelay=0.170000
+	End Object
+	RecoilParamsList(0)=RecoilParams'A49RecoilParams'
 	
 	FireModeClass(0)=Class'BWBPRecolorsPro.A49PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.A49SecondaryFire'

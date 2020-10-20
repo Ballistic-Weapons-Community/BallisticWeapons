@@ -254,19 +254,25 @@ defaultproperties
      FullZoomFOV=40.000000
      bNoMeshInScope=True
      bNoCrosshairInScope=True
-	 RecoilXCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.1),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.12),(InVal=0.7,OutVal=0.2),(InVal=1.0,OutVal=0.3)))
+
      SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
      SightDisplayFOV=40.000000
 	 SightAimFactor=2
 	 ChaosAimSpread=256
      GunLength=4.000000
-     ChaosDeclineTime=0.60000
-	 ViewRecoilFactor=0.5
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
-     RecoilMax=6144.000000
-     RecoilDeclineDelay=0.65
-	 RecoilDeclineTime=1
+	 ChaosDeclineTime=0.60000
+	 
+	Begin Object Class=RecoilParams Name=AH250RecoilParams
+		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.1),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.12),(InVal=0.7,OutVal=0.2),(InVal=1.0,OutVal=0.3)))
+		ViewBindFactor=0.5
+		XRandFactor=0.200000
+		YRandFactor=0.200000
+		MaxRecoil=6144.000000
+		DeclineDelay=0.65
+		DeclineTime=1
+	End Object
+	RecoilParamsList(0)=RecoilParams'AH250RecoilParams'
+
      FireModeClass(0)=Class'BWBPRecolorsPro.AH250PrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	 MeleeFireClass=Class'BWBPRecolorsPro.AH250MeleeFire'

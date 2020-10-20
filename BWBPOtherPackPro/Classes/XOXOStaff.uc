@@ -22,16 +22,16 @@ function ServerSwitchWeaponMode (byte NewMode)
 	
 	if (CurrentWeaponMode == 1)
 	{
-		RecoilXFactor=0.8;
-		RecoilYFactor=1.5;
-		RecoilDeclineDelay=0.8;
+		XRandFactor=0.8;
+		YRandFactor=1.5;
+		DeclineDelay=0.8;
 	}
 	
 	else
 	{
-		RecoilXFactor = default.RecoilXFactor;
-		RecoilYFactor = default.RecoilYFactor;
-		RecoilDeclineDelay = default.RecoilDeclineDelay;
+		XRandFactor = default.XRandFactor;
+		YRandFactor = default.YRandFactor;
+		DeclineDelay = default.DeclineDelay;
 	}
 }
 simulated function ClientSwitchWeaponModes (byte newMode)
@@ -40,16 +40,16 @@ simulated function ClientSwitchWeaponModes (byte newMode)
 	
 	if (newMode == 1)
 	{
-		RecoilXFactor=0.8;
-		RecoilYFactor=1.5;
-		RecoilDeclineDelay=0.8;
+		XRandFactor=0.8;
+		YRandFactor=1.5;
+		DeclineDelay=0.8;
 	}
 	
 	else
 	{
-		RecoilXFactor = default.RecoilXFactor;
-		RecoilYFactor = default.RecoilYFactor;
-		RecoilDeclineDelay = default.RecoilDeclineDelay;
+		XRandFactor = default.XRandFactor;
+		YRandFactor = default.YRandFactor;
+		DeclineDelay = default.DeclineDelay;
 	}
 }
 
@@ -413,10 +413,10 @@ defaultproperties
 	 ViewRecoilFactor=0.35
      RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=0.045000),(InVal=0.300000,OutVal=0.150000),(InVal=0.600000,OutVal=0.210000),(InVal=0.700000,OutVal=0.150000),(InVal=1.000000)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.200000,OutVal=0.200000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.10000
-     RecoilYFactor=0.10000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.250000
+     XRandFactor=0.10000
+     YRandFactor=0.10000
+     DeclineTime=1.500000
+     DeclineDelay=0.250000
 	 
      FireModeClass(0)=Class'BWBPOtherPackPro.XOXOPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.XOXOSecondaryFire'

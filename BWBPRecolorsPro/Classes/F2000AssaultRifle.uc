@@ -159,9 +159,28 @@ simulated event WeaponTick(float DT)
 //=====================================================================
 function ServerSwitchSilencer(bool bNewValue)
 {
+	if (bSilenced == bNewValue)
+		return;
+
 	bSilenced = bNewValue;
 	SwitchSilencer(bSilenced);
-	F2000PrimaryFire(BFireMode[0]).SetSilenced(bNewValue);
+
+	SuppressorRecoil(bNewValue);
+}
+
+function SuppressorRecoil(bool suppressed)
+{
+	local float factor;
+
+	factor = 0.7f;
+
+	if (!suppressed)
+		factor = 1f / factor;
+
+	RcComponent.XRandFactor *= factor;
+	RcComponent.YRandFactor *= factor;
+
+	F2000PrimaryFire(BFireMode[0]).SetSuppressed(suppressed);
 }
 
 //simulated function DoWeaponSpecial(optional byte i)
@@ -388,84 +407,85 @@ function float SuggestDefenseStyle()	{	return -0.4;	}
 
 defaultproperties
 {
-     SilencerBone="tip2"
-     SilencerOnAnim="SilencerOn"
-     SilencerOffAnim="SilencerOff"
-     SilencerOnSound=Sound'BallisticSounds2.XK2.XK2-SilenceOn'
-     SilencerOffSound=Sound'BallisticSounds2.XK2.XK2-SilenceOff'
-     SilencerOnTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
-     SilencerOffTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
-     GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
-     GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
-     GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
-     GrenadeLoadAnim="GLReload"
-     ScopeBone="EOTech"
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.000000
-     BigIconMaterial=Texture'BallisticRecolors4TexPro.MARS.BigIcon_F2000Alt'
-     BigIconCoords=(X1=32,Y1=40,X2=475)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     ManualLines(0)="5.56mm fire. Has a fast fire rate and high sustained DPS, but high recoil, limiting its hipfire."
-     ManualLines(1)="Launches a cryogenic grenade. Upon impact, freezes nearby enemies, slowing their movement. The effect is proportional to their distance from the epicentre. This attack will also extinguish the fires of an FP7 grenade."
-     ManualLines(2)="The Weapon Special key attaches a suppressor. This reduces the recoil, but also the effective range. The flash is removed and the gunfire becomes less audible.||Effective at close to medium range."
-     SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.8;0.5;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
-     CockAnimPostReload="ReloadEndCock"
-     CockAnimRate=1.10000
-     CockSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
-     ReloadAnimRate=1.10000
-     ClipHitSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagFiddle',Volume=1.200000,Radius=32.000000)
-     ClipOutSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagOut',Volume=1.200000,Radius=32.000000)
-     ClipInSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagIn',Volume=1.200000,Radius=32.000000)
-     ClipInFrame=0.650000
-     WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(ModeName="Burst",Value=4.000000)
-     WeaponModes(2)=(ModeName="Auto")
-     bNoCrosshairInScope=True
-     SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
-     SightDisplayFOV=25.000000
-     SprintOffSet=(Pitch=-3000,Yaw=-4096)
+	SilencerBone="tip2"
+	SilencerOnAnim="SilencerOn"
+	SilencerOffAnim="SilencerOff"
+	SilencerOnSound=Sound'BallisticSounds2.XK2.XK2-SilenceOn'
+	SilencerOffSound=Sound'BallisticSounds2.XK2.XK2-SilenceOff'
+	SilencerOnTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
+	SilencerOffTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
+	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
+	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
+	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
+	GrenadeLoadAnim="GLReload"
+	ScopeBone="EOTech"
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.000000
+	BigIconMaterial=Texture'BallisticRecolors4TexPro.MARS.BigIcon_F2000Alt'
+	BigIconCoords=(X1=32,Y1=40,X2=475)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)="5.56mm fire. Has a fast fire rate and high sustained DPS, but high recoil, limiting its hipfire."
+	ManualLines(1)="Launches a cryogenic grenade. Upon impact, freezes nearby enemies, slowing their movement. The effect is proportional to their distance from the epicentre. This attack will also extinguish the fires of an FP7 grenade."
+	ManualLines(2)="The Weapon Special key attaches a suppressor. This reduces the recoil, but also the effective range. The flash is removed and the gunfire becomes less audible.||Effective at close to medium range."
+	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.8;0.5;0.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
+	CockAnimPostReload="ReloadEndCock"
+	CockAnimRate=1.10000
+	CockSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
+	ReloadAnimRate=1.10000
+	ClipHitSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagFiddle',Volume=1.200000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagOut',Volume=1.200000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagIn',Volume=1.200000,Radius=32.000000)
+	ClipInFrame=0.650000
+	WeaponModes(0)=(bUnavailable=True)
+	WeaponModes(1)=(ModeName="Burst",Value=4.000000)
+	WeaponModes(2)=(ModeName="Auto")
+	bNoCrosshairInScope=True
+	SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
+	SightDisplayFOV=25.000000
+	SprintOffSet=(Pitch=-3000,Yaw=-4096)
+	
+	AimSpread=16
+	ChaosDeclineTime=0.5
+	ChaosAimSpread=128
 	 
-     AimSpread=16
-     ChaosDeclineTime=0.5
-     ChaosAimSpread=128
+	Begin Object Class=RecoilParams Name=MARS3RecoilParams
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.150000),(InVal=0.4800000,OutVal=0.20000),(InVal=0.600000,OutVal=-0.050000),(InVal=0.750000,OutVal=0.0500000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.3)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.050000
+		YRandFactor=0.050000
+		DeclineTime=0.500000
+		DeclineDelay=0.140000
+		ViewBindFactor=0.4
+	End Object
+	RecoilParamsList(0)=RecoilParams'MARS3RecoilParams'
 	 
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.150000),(InVal=0.4800000,OutVal=0.20000),(InVal=0.600000,OutVal=-0.050000),(InVal=0.750000,OutVal=0.0500000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.3)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.050000
-     RecoilYFactor=0.050000
-	 
-     RecoilDeclineTime=0.500000
-     RecoilDeclineDelay=0.140000
-	 
-	 ViewRecoilFactor=0.4
-	 
-     FireModeClass(0)=Class'BWBPRecolorsPro.F2000PrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.F2000SecondaryFire'
-     PutDownTime=0.700000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.750000
-     CurrentRating=0.750000
-     Description="The 3 variant of the Modular Assault Rifle System is one of many rifles built under NDTR Industries' MARS project. The project, which was aimed to produce a successor to the army's current M50 and M30 rifles, has produced a number of functional prototypes. ||The 3 variant is a short barreled model designed for CQC use with non-standard ammunition. Field tests have shown excellent results when loaded with Snowstorm or Firestorm rounds, and above-average performance with Zero-G, toxic and electro rounds. This specific MARS-3 is loaded with Snowstorm XII rounds and is set to fire at a blistering 850 RPM. Enemies hit with this ammunition will be chilled and slowed."
-     Priority=65
-     HudColor=(B=255,G=175,R=125)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=4
-     PickupClass=Class'BWBPRecolorsPro.F2000Pickup'
-     PlayerViewOffset=(X=0.500000,Y=12.000000,Z=-18.000000)
-     BobDamping=2.000000
-     AttachmentClass=Class'BWBPRecolorsPro.F2000Attachment'
-     IconMaterial=Texture'BallisticRecolors4TexPro.MARS.SmallIcon_F2000Alt'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="MARS-3 'Snowstorm' XII"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.MARS3_FP'
-     DrawScale=0.300000
+	FireModeClass(0)=Class'BWBPRecolorsPro.F2000PrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.F2000SecondaryFire'
+	PutDownTime=0.700000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.750000
+	CurrentRating=0.750000
+	Description="The 3 variant of the Modular Assault Rifle System is one of many rifles built under NDTR Industries' MARS project. The project, which was aimed to produce a successor to the army's current M50 and M30 rifles, has produced a number of functional prototypes. ||The 3 variant is a short barreled model designed for CQC use with non-standard ammunition. Field tests have shown excellent results when loaded with Snowstorm or Firestorm rounds, and above-average performance with Zero-G, toxic and electro rounds. This specific MARS-3 is loaded with Snowstorm XII rounds and is set to fire at a blistering 850 RPM. Enemies hit with this ammunition will be chilled and slowed."
+	Priority=65
+	HudColor=(B=255,G=175,R=125)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=4
+	PickupClass=Class'BWBPRecolorsPro.F2000Pickup'
+	PlayerViewOffset=(X=0.500000,Y=12.000000,Z=-18.000000)
+	BobDamping=2.000000
+	AttachmentClass=Class'BWBPRecolorsPro.F2000Attachment'
+	IconMaterial=Texture'BallisticRecolors4TexPro.MARS.SmallIcon_F2000Alt'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="MARS-3 'Snowstorm' XII"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.MARS3_FP'
+	DrawScale=0.300000
 }

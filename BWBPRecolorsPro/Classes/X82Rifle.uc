@@ -394,7 +394,7 @@ defaultproperties
 	MaxZoom=32.000000
 	ZoomStages=3
 	GunLength=80.000000
-	CrouchAimFactor=0.700000
+
 	SprintOffSet=(Pitch=-1000,Yaw=-2048)
 	JumpOffSet=(Pitch=-6000,Yaw=2000)
 	SightAimFactor=0.15
@@ -403,13 +403,16 @@ defaultproperties
 	ChaosDeclineTime=1.200000
 	ChaosAimSpread=2048
 
-	HipRecoilFactor=3
-
-	ViewRecoilFactor=0.35
-	RecoilXFactor=0.600000
-	RecoilYFactor=0.300000
-	RecoilDeclineTime=1.500000
-	RecoilMax=8192
+	Begin Object Class=RecoilParams Name=X83RecoilParams
+		ViewBindFactor=0.35
+		XRandFactor=0.600000
+		YRandFactor=0.300000
+		DeclineTime=1.500000
+		MaxRecoil=8192
+		HipMultiplier=3
+		CrouchMultiplier=0.7
+	End Object
+	RecoilParamsList(0)=RecoilParams'X83RecoilParams'
 
 	FireModeClass(0)=Class'BWBPRecolorsPro.X82PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.X82SecondaryFire'

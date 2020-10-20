@@ -614,91 +614,94 @@ function ServerSwitchWeaponMode (byte NewMode)
 
 defaultproperties
 {
-     SilencerBone="Silencer"
-     SilencerOnAnim="SilencerOn"
-     SilencerOffAnim="SilencerOff"
-     SilencerOnSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOn'
-     SilencerOffSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOff'
-     SGPrepAnim="LoadSpecial2"
-     ReloadAltAnim="ReloadSpecialFull"
-     ReloadAnimEmpty="ReloadEmpty"
-     GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
-     Grenades=6
-     StartingGrenades=3
-     Shells(0)=(ShellName="HShell1")
-     Shells(1)=(ShellName="HShell2")
-     Shells(2)=(ShellName="HShell3")
-     Shells(3)=(ShellName="HShell4")
-     Shells(4)=(ShellName="HShell5")
-     Shells(5)=(ShellName="HShell6")
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticRecolors4TexPro.M1014.BigIcon_M1014'
-     BigIconCoords=(Y1=25,Y2=210)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Shotgun=True
-     bWT_Machinegun=True
-     ManualLines(0)="Automatic shotgun fire. Lower overall damage per shot than other shotguns, but good fire rate and tight spread. Spread tightens further with the suppressor employed."
-     ManualLines(1)="Loads an electroshock shell.|Without the suppressor employed, will subsequently generate an electric shot with high power and excellent range.|With the suppressor employed, will generate an arcing bolt with fast travel time and strong impact damage. Deals lesser damage in a radius around the point of impact."
-     ManualLines(2)="The Weapon Function key attaches the suppressor, which removes the flash, reduces recoil, quietens the fire sound of the primary and changes the functionality of the weapon. Due to the suppressor's length, the weapon will offset while jumping if it is attached.||Effective at medium range."
-     SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
-     MagAmmo=8
-     CockSound=(Sound=Sound'PackageSounds4ProExp.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
-     ReloadAnim="ReloadLoop"
-     ClipInSound=(Sound=Sound'PackageSounds4ProExp.Mk781.Mk781-ShellPlus',Volume=2.300000,Radius=32.000000)
-     ClipInFrame=0.325000
-     bCanSkipReload=True
-     bShovelLoad=True
-     StartShovelAnim="ReloadStart"
-     StartShovelAnimRate=1.500000
-	 ReloadAnimRate=1.5
-     EndShovelAnim="ReloadEnd"
-     EndShovelAnimRate=1.500000
-     WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
-     WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
-     CurrentWeaponMode=1
-     bNoCrosshairInScope=True
-	 SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
-     SightDisplayFOV=20.000000
-     SightingTime=0.300000
-     GunLength=48.000000
-     SprintOffSet=(Pitch=-3000,Yaw=-4096)
+	SilencerBone="Silencer"
+	SilencerOnAnim="SilencerOn"
+	SilencerOffAnim="SilencerOff"
+	SilencerOnSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOn'
+	SilencerOffSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOff'
+	SGPrepAnim="LoadSpecial2"
+	ReloadAltAnim="ReloadSpecialFull"
+	ReloadAnimEmpty="ReloadEmpty"
+	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
+	Grenades=6
+	StartingGrenades=3
+	Shells(0)=(ShellName="HShell1")
+	Shells(1)=(ShellName="HShell2")
+	Shells(2)=(ShellName="HShell3")
+	Shells(3)=(ShellName="HShell4")
+	Shells(4)=(ShellName="HShell5")
+	Shells(5)=(ShellName="HShell6")
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticRecolors4TexPro.M1014.BigIcon_M1014'
+	BigIconCoords=(Y1=25,Y2=210)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Shotgun=True
+	bWT_Machinegun=True
+	ManualLines(0)="Automatic shotgun fire. Lower overall damage per shot than other shotguns, but good fire rate and tight spread. Spread tightens further with the suppressor employed."
+	ManualLines(1)="Loads an electroshock shell.|Without the suppressor employed, will subsequently generate an electric shot with high power and excellent range.|With the suppressor employed, will generate an arcing bolt with fast travel time and strong impact damage. Deals lesser damage in a radius around the point of impact."
+	ManualLines(2)="The Weapon Function key attaches the suppressor, which removes the flash, reduces recoil, quietens the fire sound of the primary and changes the functionality of the weapon. Due to the suppressor's length, the weapon will offset while jumping if it is attached.||Effective at medium range."
+	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
+	MagAmmo=8
+	CockSound=(Sound=Sound'PackageSounds4ProExp.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
+	ReloadAnim="ReloadLoop"
+	ClipInSound=(Sound=Sound'PackageSounds4ProExp.Mk781.Mk781-ShellPlus',Volume=2.300000,Radius=32.000000)
+	ClipInFrame=0.325000
+	bCanSkipReload=True
+	bShovelLoad=True
+	StartShovelAnim="ReloadStart"
+	StartShovelAnimRate=1.500000
+	ReloadAnimRate=1.5
+	EndShovelAnim="ReloadEnd"
+	EndShovelAnimRate=1.500000
+	WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
+	WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
+	CurrentWeaponMode=1
+	bNoCrosshairInScope=True
+	SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
+	SightDisplayFOV=20.000000
+	SightingTime=0.300000
+	GunLength=48.000000
+	SprintOffSet=(Pitch=-3000,Yaw=-4096)
 	 
-	 ViewRecoilFactor=0.45
-     RecoilXCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=0.120000),(InVal=0.400000,OutVal=0.180000),(InVal=0.800000,OutVal=0.220000),(InVal=1.000000,OutVal=0.250000)))
-     RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.05000
-     RecoilYFactor=0.050000
-     RecoilDeclineDelay=0.600000
-	 
-     FireModeClass(0)=Class'BWBPRecolorsPro.MK781PrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.MK781SecondaryFire'
-     PutDownTime=0.500000
-     AIRating=0.800000
-     CurrentRating=0.800000
-     Description="The Avenger Mk 781 is the special ops version of the M763. It boasts a modernized firing and recoil suppression system and has been praised for its field effectiveness. A good weapon in a pinch, the M781 has been known to save many soldiers' lives. ||This particular model is the MK781 Mod 0, which uses a new lightweight polymer frame and is designed specifically for tactical wetwork. Tube length and barrel length are shortened to cut weight, leaving the Mark 781 with a shell capacity of 6. As part of its wetwork upgrades, this Mark 781 has gained the ability to affix a special suppressor designed for flechette sabot ammunition and slugs. Operators are advised not to load high-powered rounds or buckshot into the suppressor due to potential suppressor damage and failure."
-     Priority=245
-     HudColor=(B=168,G=111,R=83)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=7
-     PickupClass=Class'BWBPRecolorsPro.MK781Pickup'
-     PlayerViewOffset=(X=-6.000000,Y=10.000000,Z=-10.000000)
-     BobDamping=1.800000
-     AttachmentClass=Class'BWBPRecolorsPro.MK781Attachment'
-     IconMaterial=Texture'BallisticRecolors4TexPro.M1014.SmallIcon_M1014'
-     IconCoords=(X2=127,Y2=35)
-     ItemName="MK781 Combat Shotgun"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=25
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=5.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.M1014_FP'
-     DrawScale=0.130000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Shader'BallisticRecolors4TexPro.M1014.M1014-Shine'
-     Skins(2)=Shader'BallisticRecolors4TexPro.M1014.M1014-MiscShine'
+	Begin Object Class=RecoilParams Name=MK781RecoilParams
+		ViewBindFactor=0.45
+		XCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=0.120000),(InVal=0.400000,OutVal=0.180000),(InVal=0.800000,OutVal=0.220000),(InVal=1.000000,OutVal=0.250000)))
+		YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.05000
+		YRandFactor=0.050000
+		DeclineDelay=0.600000
+	End Object
+	RecoilParamsList(0)=RecoilParams'MK781RecoilParams'
+
+	FireModeClass(0)=Class'BWBPRecolorsPro.MK781PrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.MK781SecondaryFire'
+	PutDownTime=0.500000
+	AIRating=0.800000
+	CurrentRating=0.800000
+	Description="The Avenger Mk 781 is the special ops version of the M763. It boasts a modernized firing and recoil suppression system and has been praised for its field effectiveness. A good weapon in a pinch, the M781 has been known to save many soldiers' lives. ||This particular model is the MK781 Mod 0, which uses a new lightweight polymer frame and is designed specifically for tactical wetwork. Tube length and barrel length are shortened to cut weight, leaving the Mark 781 with a shell capacity of 6. As part of its wetwork upgrades, this Mark 781 has gained the ability to affix a special suppressor designed for flechette sabot ammunition and slugs. Operators are advised not to load high-powered rounds or buckshot into the suppressor due to potential suppressor damage and failure."
+	Priority=245
+	HudColor=(B=168,G=111,R=83)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=7
+	PickupClass=Class'BWBPRecolorsPro.MK781Pickup'
+	PlayerViewOffset=(X=-6.000000,Y=10.000000,Z=-10.000000)
+	BobDamping=1.800000
+	AttachmentClass=Class'BWBPRecolorsPro.MK781Attachment'
+	IconMaterial=Texture'BallisticRecolors4TexPro.M1014.SmallIcon_M1014'
+	IconCoords=(X2=127,Y2=35)
+	ItemName="MK781 Combat Shotgun"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=25
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=5.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.M1014_FP'
+	DrawScale=0.130000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Shader'BallisticRecolors4TexPro.M1014.M1014-Shine'
+	Skins(2)=Shader'BallisticRecolors4TexPro.M1014.M1014-MiscShine'
 }

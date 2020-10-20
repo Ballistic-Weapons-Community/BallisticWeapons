@@ -197,77 +197,82 @@ simulated function Notify_BrassOut()
 
 defaultproperties
 {
-	 InventorySize=24
-     MatDef=Texture'BallisticRecolors4TexPro.MGL.MGL-ScreenBase'
-     MatArmed=Texture'BallisticRecolors4TexPro.MGL.MGL-Screen'
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     TeamSkins(1)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticRecolors4TexPro.MGL.BigIcon_MGL'
-     IdleTweenTime=0.000000
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Hazardous=True
-     bWT_Splash=True
-     bWT_Projectile=True
-     bWT_Super=True
-     ManualLines(0)="Launches a grenade. Fire rate, damage and explosive radius are good. These grenades have an arming delay and if striking a surface when unarmed will ricochet. Direct impacts will always result in explosion."
-     ManualLines(1)="Employs a manually controlled grenade. Pressing altfire again detonates the grenade."
-     ManualLines(2)="Effective with height advantage and at medium range."
-     SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
-     MagAmmo=6
-     CockSound=(Sound=Sound'PackageSounds4Pro.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
-     ClipOutSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff',Volume=1.700000,Radius=32.000000)
-     ClipInSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOn',Volume=1.700000,Radius=32.000000)
-     ClipInFrame=0.325000
-     StartShovelAnim="ReloadStart"
-     EndShovelAnim="ReloadEnd"
-     WeaponModes(0)=(ModeName="Timed",bUnavailable=True,ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Impact",ModeID="WM_FullAuto")
-     WeaponModes(2)=(ModeName="4-Round Burst",bUnavailable=True)
-     CurrentWeaponMode=1
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=512)
-     SightOffset=(X=-30.000000,Y=12.450000,Z=14.850000)
-     GunLength=48.000000
-     SprintOffSet=(Pitch=-3000,Yaw=-4096)
-     AimSpread=192
-     ChaosDeclineTime=1.000000
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
-     RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilYawFactor=0.000000
-     RecoilXFactor=0.400000
-     RecoilYFactor=0.400000
-     RecoilMax=6144.000000
-     RecoilDeclineDelay=0.500000
-     FireModeClass(0)=Class'BWBPRecolorsPro.MGLPrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.MGLSecondaryFire'
-     SelectAnimRate=1.500000
-     PutDownAnimRate=2.000000
-     PutDownTime=0.660000
-     BringUpTime=0.660000
-     AIRating=0.900000
-     CurrentRating=0.900000
-     Description="The big, bad Conqueror” is an alias to the VDML-6 Multiple Grenade Launcher, designed as a heavier, tactical version of the old world M32, and a more direct way of punting grenades down range, unlike the PUMA’s Airburst grenades or the Longhorn’s smart cluster. Black and Wood designed this weapon to bring down explosives over the Skrith’s plasma barriers with haste, the user can fire timed grenades to flush out any hiders, or impact to wreck enemies without bouncing off of them (note, when fired at a short range, the impact fuse will not engage). But when tactics are needed, the “Conqueror” can also fire remote detonated grenades for traps. So far, the Conqueror has already conquered 2 services and will be seeing more as they come."
-     Priority=245
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=8
-     PickupClass=Class'BWBPRecolorsPro.MGLPickup'
-     PlayerViewOffset=(X=5.000000,Y=-1.000000,Z=-7.000000)
-     AttachmentClass=Class'BWBPRecolorsPro.MGLAttachment'
-     IconMaterial=Texture'BallisticRecolors4TexPro.MGL.SmallIcon_MGL'
-     IconCoords=(X2=127,Y2=35)
-     ItemName="Conqueror MGL"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=25
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=5.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.Conqueror_FP'
-     DrawScale=0.130000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Texture'BallisticRecolors4TexPro.MGL.MGL-Main'
-     Skins(2)=Texture'BallisticRecolors4TexPro.MGL.MGL-ScreenBase'
-     Skins(3)=Shader'BallisticRecolors4TexPro.MGL.MGL-HolosightGlow'
+	InventorySize=24
+	MatDef=Texture'BallisticRecolors4TexPro.MGL.MGL-ScreenBase'
+	MatArmed=Texture'BallisticRecolors4TexPro.MGL.MGL-Screen'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	TeamSkins(1)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticRecolors4TexPro.MGL.BigIcon_MGL'
+	IdleTweenTime=0.000000
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Hazardous=True
+	bWT_Splash=True
+	bWT_Projectile=True
+	bWT_Super=True
+	ManualLines(0)="Launches a grenade. Fire rate, damage and explosive radius are good. These grenades have an arming delay and if striking a surface when unarmed will ricochet. Direct impacts will always result in explosion."
+	ManualLines(1)="Employs a manually controlled grenade. Pressing altfire again detonates the grenade."
+	ManualLines(2)="Effective with height advantage and at medium range."
+	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
+	MagAmmo=6
+	CockSound=(Sound=Sound'PackageSounds4Pro.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff',Volume=1.700000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOn',Volume=1.700000,Radius=32.000000)
+	ClipInFrame=0.325000
+	StartShovelAnim="ReloadStart"
+	EndShovelAnim="ReloadEnd"
+	WeaponModes(0)=(ModeName="Timed",bUnavailable=True,ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Impact",ModeID="WM_FullAuto")
+	WeaponModes(2)=(ModeName="4-Round Burst",bUnavailable=True)
+	CurrentWeaponMode=1
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=512)
+	SightOffset=(X=-30.000000,Y=12.450000,Z=14.850000)
+	GunLength=48.000000
+	SprintOffSet=(Pitch=-3000,Yaw=-4096)
+	AimSpread=192
+	ChaosDeclineTime=1.000000
+	 
+	Begin Object Class=RecoilParams Name=ConquerorRecoilParams
+		XCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
+		YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
+		YawFactor=0.000000
+		XRandFactor=0.400000
+		YRandFactor=0.400000
+		MaxRecoil=6144.000000
+		DeclineDelay=0.500000
+	End Object
+	RecoilParamsList(0)=RecoilParams'ConquerorRecoilParams'
+
+	FireModeClass(0)=Class'BWBPRecolorsPro.MGLPrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.MGLSecondaryFire'
+	SelectAnimRate=1.500000
+	PutDownAnimRate=2.000000
+	PutDownTime=0.660000
+	BringUpTime=0.660000
+	AIRating=0.900000
+	CurrentRating=0.900000
+	Description="The big, bad Conqueror” is an alias to the VDML-6 Multiple Grenade Launcher, designed as a heavier, tactical version of the old world M32, and a more direct way of punting grenades down range, unlike the PUMA’s Airburst grenades or the Longhorn’s smart cluster. Black and Wood designed this weapon to bring down explosives over the Skrith’s plasma barriers with haste, the user can fire timed grenades to flush out any hiders, or impact to wreck enemies without bouncing off of them (note, when fired at a short range, the impact fuse will not engage). But when tactics are needed, the “Conqueror” can also fire remote detonated grenades for traps. So far, the Conqueror has already conquered 2 services and will be seeing more as they come."
+	Priority=245
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=8
+	PickupClass=Class'BWBPRecolorsPro.MGLPickup'
+	PlayerViewOffset=(X=5.000000,Y=-1.000000,Z=-7.000000)
+	AttachmentClass=Class'BWBPRecolorsPro.MGLAttachment'
+	IconMaterial=Texture'BallisticRecolors4TexPro.MGL.SmallIcon_MGL'
+	IconCoords=(X2=127,Y2=35)
+	ItemName="Conqueror MGL"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=25
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=5.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.Conqueror_FP'
+	DrawScale=0.130000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Texture'BallisticRecolors4TexPro.MGL.MGL-Main'
+	Skins(2)=Texture'BallisticRecolors4TexPro.MGL.MGL-ScreenBase'
+	Skins(3)=Shader'BallisticRecolors4TexPro.MGL.MGL-HolosightGlow'
 }

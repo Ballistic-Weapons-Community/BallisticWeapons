@@ -632,100 +632,103 @@ defaultproperties
 {
 	AIRating=0.8
 	CurrentRating=0.8
-     GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
-     GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
-     GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
-     CockSoundQuick=Sound'PackageSounds4Pro.Bulldog.Bulldog-CockQuick'
-     CockSoundAlt=Sound'PackageSounds4Pro.Bulldog.Bulldog-CockAlt'
-     CockSoundAltQ=Sound'PackageSounds4Pro.Bulldog.Bulldog-CockAltQuick'
-     SGPrepAnim="SGPrep"
-     CockingAnim="Cock"
-     ShovelAnim="SGReload"
-     Grenades=6
-     bAltNeedCock=True
-     Shells(0)="Shell1"
-     Shells(1)="Shell2"
-     Shells(2)="Shell3"
-     Shells(3)="Shell4"
-     Shells(4)="Shell5"
-     Shells(5)="Shell6"
-     PlayerSpeedFactor=0.900000
-	 PlayerJumpFactor=0.900000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.500000
-     BigIconMaterial=Texture'BallisticRecolors3TexPro.Bulldog.BigIcon_Bulldog'
-     BigIconCoords=(Y2=230)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     ManualLines(0)=".75 BOLT cannon fire. Long-ranged with high power. Fire rate is better than average. Good penetration. Poor from the hip."
-     ManualLines(1)="Readies a FRAG-12 if one is not already loaded; otherwise, fires the loaded FRAG-12. FRAG-12s move along a straight trajectory, dealing high damage upon impact and to enemies close to the point of impact. Has lesser recoil than the primary fire."
-     ManualLines(2)="As it lacks a scope, has a quicker aim time than scoped weapons. Effective at medium to long range."
-     SpecialInfo(0)=(Info="120.0;15.0;0.8;70.0;0.75;0.5;0.0")
-     BringUpSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-PullOut',Volume=1.800000)
-     PutDownSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-PutAway',Volume=1.400000)
-     MagAmmo=8
-     CockAnimRate=1.250000
-     CockSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-Cock',Volume=1.800000)
-     ReloadAnim="Reload2"
-     ReloadAnimRate=1.250000
-     ClipHitSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-MagHit')
-     ClipOutSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-MagOut',Volume=1.100000)
-     ClipInSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-MagIn',Volume=2.100000)
-     ClipInFrame=0.650000
-     bCockOnEmpty=True
-     bCanSkipReload=True
-     bAltTriggerReload=True
-     StartShovelAnim="SGReloadStart"
-     EndShovelAnim="SGReloadEnd"
-     WeaponModes(1)=(ModeName="Laser-Auto",bUnavailable=True,Value=7.000000)
-     WeaponModes(3)=(ModeName="FRAG-12 Loaded",bUnavailable=True,ModeID="WM_FullAuto")
-     WeaponModes(4)=(ModeName="ERROR",bUnavailable=True,ModeID="WM_FullAuto")
-     WeaponModes(5)=(ModeName="ERROR",bUnavailable=True,ModeID="WM_FullAuto")
-     CurrentWeaponMode=0
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=256)
-     SightOffset=(X=-18.000000,Y=4.490000,Z=6.350000)
-     SightDisplayFOV=35.000000
-     GunLength=48.000000
-     SightAimFactor=0.30000
-     SprintOffSet=(Pitch=-1000,Yaw=-2048)
-     AimSpread=128
-     ChaosDeclineTime=1.600000
-	 ChaosAimSpread=768
+	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
+	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
+	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
+	CockSoundQuick=Sound'PackageSounds4Pro.Bulldog.Bulldog-CockQuick'
+	CockSoundAlt=Sound'PackageSounds4Pro.Bulldog.Bulldog-CockAlt'
+	CockSoundAltQ=Sound'PackageSounds4Pro.Bulldog.Bulldog-CockAltQuick'
+	SGPrepAnim="SGPrep"
+	CockingAnim="Cock"
+	ShovelAnim="SGReload"
+	Grenades=6
+	bAltNeedCock=True
+	Shells(0)="Shell1"
+	Shells(1)="Shell2"
+	Shells(2)="Shell3"
+	Shells(3)="Shell4"
+	Shells(4)="Shell5"
+	Shells(5)="Shell6"
+	PlayerSpeedFactor=0.900000
+	PlayerJumpFactor=0.900000
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.500000
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.Bulldog.BigIcon_Bulldog'
+	BigIconCoords=(Y2=230)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)=".75 BOLT cannon fire. Long-ranged with high power. Fire rate is better than average. Good penetration. Poor from the hip."
+	ManualLines(1)="Readies a FRAG-12 if one is not already loaded; otherwise, fires the loaded FRAG-12. FRAG-12s move along a straight trajectory, dealing high damage upon impact and to enemies close to the point of impact. Has lesser recoil than the primary fire."
+	ManualLines(2)="As it lacks a scope, has a quicker aim time than scoped weapons. Effective at medium to long range."
+	SpecialInfo(0)=(Info="120.0;15.0;0.8;70.0;0.75;0.5;0.0")
+	BringUpSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-PullOut',Volume=1.800000)
+	PutDownSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-PutAway',Volume=1.400000)
+	MagAmmo=8
+	CockAnimRate=1.250000
+	CockSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-Cock',Volume=1.800000)
+	ReloadAnim="Reload2"
+	ReloadAnimRate=1.250000
+	ClipHitSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-MagHit')
+	ClipOutSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-MagOut',Volume=1.100000)
+	ClipInSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-MagIn',Volume=2.100000)
+	ClipInFrame=0.650000
+	bCockOnEmpty=True
+	bCanSkipReload=True
+	bAltTriggerReload=True
+	StartShovelAnim="SGReloadStart"
+	EndShovelAnim="SGReloadEnd"
+	WeaponModes(1)=(ModeName="Laser-Auto",bUnavailable=True,Value=7.000000)
+	WeaponModes(3)=(ModeName="FRAG-12 Loaded",bUnavailable=True,ModeID="WM_FullAuto")
+	WeaponModes(4)=(ModeName="ERROR",bUnavailable=True,ModeID="WM_FullAuto")
+	WeaponModes(5)=(ModeName="ERROR",bUnavailable=True,ModeID="WM_FullAuto")
+	CurrentWeaponMode=0
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=256)
+	SightOffset=(X=-18.000000,Y=4.490000,Z=6.350000)
+	SightDisplayFOV=35.000000
+	GunLength=48.000000
+	SightAimFactor=0.30000
+	SprintOffSet=(Pitch=-1000,Yaw=-2048)
+	AimSpread=128
+	ChaosDeclineTime=1.600000
+	ChaosAimSpread=768
 	 
-	 ViewRecoilFactor=0.25
-     RecoilXFactor=0.350000
-     RecoilYFactor=0.350000
-     RecoilMax=6144.000000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.400000
-	 
-     FireModeClass(0)=Class'BWBPRecolorsPro.BulldogPrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.BulldogSecondaryFire'
-     PutDownAnimRate=1.700000
-     PutDownTime=0.400000
-     BringUpTime=0.900000
-     SelectForce="SwitchToAssaultRifle"
-     bSniping=True
-     Description="In the large universe of guns, Black & Wood's R20 Bulldog is a cannon. In keeping with their excellent reputation, the Bulldog was designed as an extremely reliable and high powered dual-feed munition launcher. Capable of punching a 2 foot hole in the toughest of Cryon grunts at 50 yards and shattering enemy structures with relative ease, the massive .75 caliber BOLT rounds devastate anything they smash into. Designated 'thermoBaric Ordinance, Lead Trajectory', the acronym desicribes the payload and trajectory of the massive primary munition of the Bulldog. The secondary ammo feed can be chambered with a number of different 20mm rounds, but the preferred shells are an adaption of the potent FRAG-12 explosive slugs, used for ripping a hole in thicker armor to allow the BOLT rounds to finish the job."
-     Priority=162
-     HudColor=(B=25,G=25)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=8
-     GroupOffset=3
-     PickupClass=Class'BWBPRecolorsPro.BulldogPickup'
-     PlayerViewOffset=(X=11.000000,Y=2.000000,Z=-6.000000)
-     BobDamping=1.600000
-     AttachmentClass=Class'BWBPRecolorsPro.BulldogAttachment'
-     IconMaterial=Texture'BallisticRecolors3TexPro.Bulldog.SmallIcon_Bulldog'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="Bulldog Autocannon"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.BullDogFP'
-     DrawScale=0.200000
+	Begin Object Class=RecoilParams Name=BulldogRecoilParams
+		ViewBindFactor=0.25
+		XRandFactor=0.350000
+		YRandFactor=0.350000
+		MaxRecoil=6144.000000
+		DeclineTime=1.500000
+		DeclineDelay=0.400000
+	End Object
+	RecoilParamsList(0)=RecoilParams'BulldogRecoilParams'
+
+	FireModeClass(0)=Class'BWBPRecolorsPro.BulldogPrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.BulldogSecondaryFire'
+	PutDownAnimRate=1.700000
+	PutDownTime=0.400000
+	BringUpTime=0.900000
+	SelectForce="SwitchToAssaultRifle"
+	bSniping=True
+	Description="In the large universe of guns, Black & Wood's R20 Bulldog is a cannon. In keeping with their excellent reputation, the Bulldog was designed as an extremely reliable and high powered dual-feed munition launcher. Capable of punching a 2 foot hole in the toughest of Cryon grunts at 50 yards and shattering enemy structures with relative ease, the massive .75 caliber BOLT rounds devastate anything they smash into. Designated 'thermoBaric Ordinance, Lead Trajectory', the acronym desicribes the payload and trajectory of the massive primary munition of the Bulldog. The secondary ammo feed can be chambered with a number of different 20mm rounds, but the preferred shells are an adaption of the potent FRAG-12 explosive slugs, used for ripping a hole in thicker armor to allow the BOLT rounds to finish the job."
+	Priority=162
+	HudColor=(B=25,G=25)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=8
+	GroupOffset=3
+	PickupClass=Class'BWBPRecolorsPro.BulldogPickup'
+	PlayerViewOffset=(X=11.000000,Y=2.000000,Z=-6.000000)
+	BobDamping=1.600000
+	AttachmentClass=Class'BWBPRecolorsPro.BulldogAttachment'
+	IconMaterial=Texture'BallisticRecolors3TexPro.Bulldog.SmallIcon_Bulldog'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="Bulldog Autocannon"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.BullDogFP'
+	DrawScale=0.200000
 }

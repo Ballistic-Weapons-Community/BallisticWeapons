@@ -174,8 +174,6 @@ simulated function SwitchSilencerMode (bool bNewMode)
 	{
 		Damage *= 0.7;
 		FireRecoil *= 0.6;
-		BW.RecoilXFactor *= 0.6;
-		BW.RecoilYFactor *= 0.6;
 		XInaccuracy *= 0.5;
 		YInaccuracy *= 0.5;
 		DamageType=Class'DT_LK05SilAssault';
@@ -186,15 +184,13 @@ simulated function SwitchSilencerMode (bool bNewMode)
 	else
 	{
 		Damage =default.Damage;
-     	DamageType=Class'DT_LK05Assault';
-     	DamageTypeHead=Class'DT_LK05AssaultHead';
-     	DamageTypeArm=Class'DT_LK05Assault';
 		FireRecoil = default.FireRecoil;
 		RangeAtten = default.RangeAtten;
-		BW.RecoilXFactor = BW.default.RecoilXFactor;
-		BW.RecoilYFactor = BW.default.RecoilYFactor;
 		XInaccuracy = default.XInaccuracy;
 		YInaccuracy = default.YInaccuracy;
+		DamageType=Class'DT_LK05Assault';
+		DamageTypeHead=Class'DT_LK05AssaultHead';
+		DamageTypeArm=Class'DT_LK05Assault';
 	}
 }
 

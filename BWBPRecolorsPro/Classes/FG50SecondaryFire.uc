@@ -34,7 +34,7 @@ function PlayFiring()
 function DoFireEffect()
 {
 	Super.DoFireEffect();
-	if (level.Netmode == NM_DedicatedServer)
+	if (Level.NetMode == NM_DedicatedServer)
 		FG50Machinegun(BW).AddHeat(HeatPerShot);
 }
 
@@ -57,7 +57,6 @@ simulated function SwitchCannonMode (byte NewMode)
 		BallisticFireSound.Pitch=default.BallisticFireSound.pitch;
 		FireRecoil=default.FireRecoil;
 		FirePushbackForce=default.FirePushbackForce;
-		FG50MachineGun(Weapon).RecoilDeclineDelay=FG50MachineGun(Weapon).default.RecoilDeclineDelay;
 		FireRate = default.FireRate;
 	}
 	if (Weapon.bBerserk)

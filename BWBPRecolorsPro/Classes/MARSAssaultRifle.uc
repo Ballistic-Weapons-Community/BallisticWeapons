@@ -684,102 +684,102 @@ function float SuggestDefenseStyle()	{	return 0.4;	}
 
 defaultproperties
 {
-     GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
-     GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
-     GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
-     GrenadeLoadAnim="GLReload"
-     ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
-     ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
-     NVOnSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
-     NVOffSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
-     WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
-     Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
-     ThermalRange=2500.000000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.000000
-     BigIconMaterial=Texture'BallisticRecolors4TexPro.MARS.BigIcon_F2000'
-     BigIconCoords=(Y1=30,Y2=235)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-	 ManualLines(0)="5.56mm fire. Has a fast fire rate and high sustained DPS, but high recoil, limiting its hipfire."
-     ManualLines(1)="Launches a smoke grenade. Upon impact, generates a cloud of smoke and deals minor radius damage. There is a bonus for a direct hit."
-     ManualLines(2)="The Weapon Function key switches between various integrated scopes.|The Normal scope offers clear vision.|The Night Vision scope (green) illuminates the environment and shows enemies in orange.|The Infrared scope (red) highlights enemies with a box, even underwater or through smoke or trees.||Effective at medium range."
-     SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.8;0.5;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
-	 
-     WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(ModeName="Burst",Value=4.000000)
-     WeaponModes(2)=(ModeName="Auto")
-	 
-     CurrentWeaponMode=2
-	 
-     CockAnimPostReload="ReloadEndCock"
-     CockAnimRate=1.10000
-     CockSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
-     ReloadAnimRate=1.10000
-     ClipHitSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagFiddle',Volume=1.400000,Radius=32.000000)
-     ClipOutSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagOut',Volume=1.400000,Radius=32.000000)
-     ClipInSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagIn',Volume=1.400000,Radius=32.000000)
-     ClipInFrame=0.650000
-     ZoomType=ZT_Logarithmic
-     ScopeViewTex=Texture'BallisticRecolors4TexPro.MARS.MARS-Scope'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-     FullZoomFOV=45.000000
-     bNoMeshInScope=True
-     bNoCrosshairInScope=True
-     SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
-     SightingTime=0.50000
-     MinZoom=2.000000
-     MaxZoom=4.000000
-     ZoomStages=1
-     SMuzzleFlashOffset=(X=15.000000,Z=-10.000000)
-	 SightAimFactor=2
-     CrouchAimFactor=0.650000
-     SprintOffSet=(Pitch=-3000,Yaw=-4096)
-	 
-     AimSpread=16
-     ChaosDeclineTime=0.5
-     ChaosAimSpread=128
+	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
+	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
+	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
+	GrenadeLoadAnim="GLReload"
+	ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
+	ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
+	NVOnSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
+	NVOffSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
+	WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
+	Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
+	ThermalRange=2500.000000
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.000000
+	BigIconMaterial=Texture'BallisticRecolors4TexPro.MARS.BigIcon_F2000'
+	BigIconCoords=(Y1=30,Y2=235)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)="5.56mm fire. Has a fast fire rate and high sustained DPS, but high recoil, limiting its hipfire."
+	ManualLines(1)="Launches a smoke grenade. Upon impact, generates a cloud of smoke and deals minor radius damage. There is a bonus for a direct hit."
+	ManualLines(2)="The Weapon Function key switches between various integrated scopes.|The Normal scope offers clear vision.|The Night Vision scope (green) illuminates the environment and shows enemies in orange.|The Infrared scope (red) highlights enemies with a box, even underwater or through smoke or trees.||Effective at medium range."
+	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.8;0.5;0.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
+	
+	WeaponModes(0)=(bUnavailable=True)
+	WeaponModes(1)=(ModeName="Burst",Value=4.000000)
+	WeaponModes(2)=(ModeName="Auto")
+	
+	CurrentWeaponMode=2
+	
+	CockAnimPostReload="ReloadEndCock"
+	CockAnimRate=1.10000
+	CockSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
+	ReloadAnimRate=1.10000
+	ClipHitSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagFiddle',Volume=1.400000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagOut',Volume=1.400000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagIn',Volume=1.400000,Radius=32.000000)
+	ClipInFrame=0.650000
+	ZoomType=ZT_Logarithmic
+	ScopeViewTex=Texture'BallisticRecolors4TexPro.MARS.MARS-Scope'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	FullZoomFOV=45.000000
+	bNoMeshInScope=True
+	bNoCrosshairInScope=True
+	SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+	SightingTime=0.50000
+	MinZoom=2.000000
+	MaxZoom=4.000000
+	ZoomStages=1
+	SMuzzleFlashOffset=(X=15.000000,Z=-10.000000)
+	SightAimFactor=2
+	SprintOffSet=(Pitch=-3000,Yaw=-4096)
+	
+	AimSpread=16
+	ChaosDeclineTime=0.5
+	ChaosAimSpread=128
 
+	Begin Object Class=RecoilParams Name=MARS2RecoilParams
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.250000),(InVal=0.4800000,OutVal=0.30000),(InVal=0.600000,OutVal=0.320000),(InVal=0.750000,OutVal=0.370000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.4)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.050000
+		YRandFactor=0.050000
+		DeclineTime=0.500000
+		DeclineDelay=0.140000
+		ViewBindFactor=0.4
+		CrouchMultiplier=0.650000
+	End Object
+	RecoilParamsList(0)=RecoilParams'MARS2RecoilParams'
 
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.250000),(InVal=0.4800000,OutVal=0.30000),(InVal=0.600000,OutVal=0.320000),(InVal=0.750000,OutVal=0.370000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.4)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.050000
-     RecoilYFactor=0.050000
-	 
-     RecoilDeclineTime=0.500000
-     RecoilDeclineDelay=0.140000
-	 
-	 ViewRecoilFactor=0.4
-	 
-     FireModeClass(0)=Class'BWBPRecolorsPro.MARSPrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.MARSSecondaryFire'
-     PutDownTime=0.700000
-     BringUpTime=0.330000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.700000
-     CurrentRating=0.700000
-     Description="The 2 variant of the Modular Assault Rifle System is one of many rifles built under NDTR Industries' MARS project. The project, which aimed to produce a successor to the army's current M50 and M30 rifles, has produced a number of functional prototypes. The 2 variant is a sharpshooter model with a longer barrel and an advanced, integral scope. Current tests show the MARS-2 to be reliable and effective, yet expensive."
-     Priority=65
-     HudColor=(G=0)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=4
-     PickupClass=Class'BWBPRecolorsPro.MARSPickup'
-     PlayerViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
-     BobDamping=2.000000
-     AttachmentClass=Class'BWBPRecolorsPro.MARSAttachment'
-     IconMaterial=Texture'BallisticRecolors4TexPro.MARS.SmallIcon_F2000'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="MARS-2 Assault Rifle"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.F2000_FP'
-     DrawScale=0.350000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	FireModeClass(0)=Class'BWBPRecolorsPro.MARSPrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.MARSSecondaryFire'
+	PutDownTime=0.700000
+	BringUpTime=0.330000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.700000
+	CurrentRating=0.700000
+	Description="The 2 variant of the Modular Assault Rifle System is one of many rifles built under NDTR Industries' MARS project. The project, which aimed to produce a successor to the army's current M50 and M30 rifles, has produced a number of functional prototypes. The 2 variant is a sharpshooter model with a longer barrel and an advanced, integral scope. Current tests show the MARS-2 to be reliable and effective, yet expensive."
+	Priority=65
+	HudColor=(G=0)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=4
+	PickupClass=Class'BWBPRecolorsPro.MARSPickup'
+	PlayerViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
+	BobDamping=2.000000
+	AttachmentClass=Class'BWBPRecolorsPro.MARSAttachment'
+	IconMaterial=Texture'BallisticRecolors4TexPro.MARS.SmallIcon_F2000'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="MARS-2 Assault Rifle"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.F2000_FP'
+	DrawScale=0.350000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
 }

@@ -21,8 +21,8 @@ simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
 	BFireMode[0].FirePushbackForce = 0;
-        BFireMode[0].XInaccuracy=1.000000;
-        BFireMode[0].YInaccuracy=1.000000;
+    BFireMode[0].XInaccuracy=1.000000;
+    BFireMode[0].YInaccuracy=1.000000;
 	BFireMode[0].FireRecoil=128.000000;
 	BFireMode[0].BrassOffset = vect(0,0,0);
 }
@@ -156,29 +156,37 @@ simulated function PlayCocking(optional byte Type)
 
 defaultproperties
 {
-     ReloadAnimRate=0.800000
-     ClipHitSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipHit',Volume=0.000000,Radius=32.000000)
-     ClipOutSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipOut')
-     ClipInSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipIn')
-     SightingTime=0.000001
-     GunLength=0.000000
-     bUseSpecialAim=True
-     AimSpread=0
-     ViewRecoilFactor=0.100000
-     AimDamageThreshold=2000.000000
-     ChaosAimSpread=0
-     RecoilPitchFactor=0.100000
-     RecoilXFactor=0.200000
-     RecoilMax=1200.000000
-     RecoilDeclineTime=1.000001
-     SelectAnim="Deploy"
-     bCanThrow=False
-     bNoInstagibReplace=True
-     DisplayFOV=90.000000
-     Priority=1
-     PlayerViewOffset=(X=-80.000000)
-     ItemName="FG50 Turret"
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.X83A1_Turret'
-     DrawScale=0.650000
-     CollisionHeight=24.000000
+	ReloadAnimRate=0.800000
+	ClipHitSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipHit',Volume=0.000000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipOut')
+	ClipInSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipIn')
+	SightingTime=0.000001
+	GunLength=0.000000
+	bUseSpecialAim=True
+	AimSpread=0
+	AimDamageThreshold=2000.000000
+	ChaosAimSpread=0
+	 
+	Begin Object Class=RecoilParams Name=FG50_TWRecoilParams
+		ViewBindFactor=0.100000
+		XCurve=(Points=(,(InVal=0.15,OutVal=0.075),(InVal=0.400000,OutVal=0.130000),(InVal=0.550000,OutVal=0.15000),(InVal=0.700000,OutVal=0.21000),(InVal=1.000000,OutVal=0.225000)))
+		YCurve=(Points=(,(InVal=0.20000,OutVal=0.250000),(InVal=0.400000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+		PitchFactor=0.050000
+		XRandFactor=0.200000
+		YRandFactor=0.050000
+		MaxRecoil=1200.000000
+		DeclineTime=1.000001
+	End Object
+	RecoilParamsList(0)=RecoilParams'FG50_TWRecoilParams'
+
+	SelectAnim="Deploy"
+	bCanThrow=False
+	bNoInstagibReplace=True
+	DisplayFOV=90.000000
+	Priority=1
+	PlayerViewOffset=(X=-80.000000)
+	ItemName="FG50 Turret"
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.X83A1_Turret'
+	DrawScale=0.650000
+	CollisionHeight=24.000000
 }

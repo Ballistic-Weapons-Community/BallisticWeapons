@@ -198,7 +198,13 @@ defaultproperties
      SightingTime=0.000000
      GunLength=0.000000
      bAimDisabled=True
-     CrouchAimFactor=1.000000
+	 
+	Begin Object Class=RecoilParams Name=ICISRecoilParams
+		PitchFactor=0
+		YawFactor=0
+ 	End Object
+ 	RecoilParamsList(0)=RecoilParams'ICISRecoilParams'
+
      AimSpread=0
      ChaosAimSpread=0
      FireModeClass(0)=Class'BWBPRecolorsPro.ICISPrimaryFire'

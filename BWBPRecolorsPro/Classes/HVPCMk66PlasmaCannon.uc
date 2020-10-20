@@ -731,11 +731,16 @@ defaultproperties
      AimAdjustTime=0.400000
      AimSpread=192
      ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=1024
-     RecoilYawFactor=0.100000
-     RecoilXFactor=0.300000
-     RecoilYFactor=0.300000
-     RecoilDeclineTime=0.750000
+	 ChaosAimSpread=1024
+
+	Begin Object Class=RecoilParams Name=HVPCRecoilParams
+		YawFactor=0.100000
+		XRandFactor=0.300000
+		YRandFactor=0.300000
+		DeclineTime=0.750000
+	End Object
+	RecoilParamsList(0)=RecoilParams'HVPCRecoilParams'
+	 
      FireModeClass(0)=Class'BWBPRecolorsPro.HVPCMk66PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.HVPCMk66SecondaryFire'
      IdleAnimRate=1.200000

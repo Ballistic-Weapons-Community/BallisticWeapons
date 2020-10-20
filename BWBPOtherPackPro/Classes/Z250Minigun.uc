@@ -526,7 +526,7 @@ defaultproperties
 	SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
 	SightDisplayFOV=45.000000
 	SightingTime=0.550000
-	CrouchAimFactor=0.8
+	CrouchMultiplier=0.8
 	SprintOffSet=(Pitch=-6000,Yaw=-8000)
 	JumpOffSet=(Pitch=-6000,Yaw=2000)
 	AimAdjustTime=0.800000
@@ -537,10 +537,10 @@ defaultproperties
 	ViewRecoilFactor=0.35
 	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
 	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.350000,OutVal=0.400000),(InVal=0.500000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.070000
-	RecoilYFactor=0.070000
-	RecoilMax=8192.000000
-	RecoilDeclineTime=1.500000
+	XRandFactor=0.070000
+	YRandFactor=0.070000
+	MaxRecoil=8192.000000
+	DeclineTime=1.500000
 	
 	
 	FireModeClass(0)=Class'BWBPOtherPackPro.Z250PrimaryFire'

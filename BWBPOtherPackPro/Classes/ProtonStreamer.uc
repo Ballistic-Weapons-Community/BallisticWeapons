@@ -338,10 +338,10 @@ defaultproperties
      ChaosAimSpread=2560
      RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=-0.045000),(InVal=0.300000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.200000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000)))
      RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.250000
+     XRandFactor=0.250000
+     YRandFactor=0.250000
+     DeclineTime=1.500000
+     DeclineDelay=0.250000
      FireModeClass(0)=Class'BWBPOtherPackPro.ProtonStreamPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.ProtonStreamSecondaryFire'
      SelectAnimRate=1.250000

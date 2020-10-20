@@ -242,9 +242,10 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 }
 
-simulated function ClientSwitchWeaponModes (byte NewMode)
+simulated function CommonSwitchWeaponMode (byte NewMode)
 {
-	Super.ClientSwitchWeaponModes(NewMode);
+	Super.CommonSwitchWeaponMode(NewMode);
+	
 	if (NewMode == 1)
 	{
 		SetBoneScale (2, 0.0, ShellTipBone1);
@@ -472,15 +473,20 @@ defaultproperties
      SightingTime=0.350000
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
-     LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-     ViewRecoilFactor=0.350000
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
-     RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.300000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
-     RecoilMax=8192.000000
-     RecoilDeclineTime=0.900000
-     RecoilDeclineDelay=0.400000
+	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
+	 
+	Begin Object Class=RecoilParams Name=CoachRecoilParams
+		ViewBindFactor=0.350000
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
+		YCurve=(Points=(,(InVal=0.300000,OutVal=0.300000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.200000
+		YRandFactor=0.200000
+		MaxRecoil=8192.000000
+		DeclineTime=0.900000
+		DeclineDelay=0.400000
+	End Object
+	RecoilParamsList(0)=RecoilParams'CoachRecoilParams'
+
      FireModeClass(0)=Class'BWBPRecolorsPro.CoachGunPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectAnimRate=2.000000

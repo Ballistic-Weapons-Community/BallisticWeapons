@@ -181,54 +181,66 @@ Begin:
 	GotoState('Lowered');
 }
 
+simulated function OnRecoilParamsChanged()
+{
+	Super.OnRecoilParamsChanged();
+
+	if (IsMaster() || IsSlave())
+		DualModeRecoil(true);
+}
 
 simulated function SetDualMode (bool bDualMode)
 {
 	AdjustUziProperties(bDualMode);
+	DualModeRecoil(bDualMode);
 }
+
 simulated function AdjustUziProperties (bool bDualMode)
 {
-//	AimAdjustTime		= default.AimAdjustTime;
 	AimSpread 			= default.AimSpread;
 	ViewAimFactor		= default.ViewAimFactor;
-	ViewRecoilFactor	= default.ViewRecoilFactor;
 	ChaosDeclineTime	= default.ChaosDeclineTime;
 	ChaosSpeedThreshold	= default.ChaosSpeedThreshold;
 	ChaosAimSpread		= default.ChaosAimSpread;
 	ChaosAimSpread 		*= BCRepClass.default.AccuracyScale;
 
-	RecoilPitchFactor	= default.RecoilPitchFactor;
-	RecoilYawFactor		= default.RecoilYawFactor;
-	RecoilXFactor		= default.RecoilXFactor;
-	RecoilYFactor		= default.RecoilYFactor;
-	RecoilDeclineTime	= default.RecoilDeclineTime;
-
 	if (bDualMode)
 	{
 		if (Instigator.IsLocallyControlled() && SightingState == SS_Active)
 			StopScopeView();
+
 		SetBoneScale(8, 0.0, SupportHandBone);
+
 		if (AIController(Instigator.Controller) == None)
 			bUseSpecialAim = true;
-//		AimAdjustTime		*= 1.0;
+
 		AimSpread			*= 1.4;
 		ViewAimFactor		*= 0.6;
-		ViewRecoilFactor	*= 1.75;
 		ChaosDeclineTime	*= 1.2;
 		ChaosSpeedThreshold	*= 0.8;
 		ChaosAimSpread		*= 1.2;
-		RecoilPitchFactor	*= 1.2;
-		RecoilYawFactor		*= 1.2;
-		RecoilXFactor		*= 1.2;
-		RecoilYFactor		*= 1.2;
-//		RecoilMax			*= 1.0;
-		RecoilDeclineTime	*= 1.2;
 	}
 	else
 	{
 		SetBoneScale(8, 1.0, SupportHandBone);
 		bUseSpecialAim = false;
 	}
+}
+
+simulated function DualModeRecoil(bool bDualMode)
+{
+	local float factor;
+
+	factor = 1.2f;
+
+	if (!bDualMode)
+		factor = 1f / factor;
+
+	RcComponent.PitchFactor			*= factor;
+	RcComponent.YawFactor			*= factor;
+	RcComponent.XRandFactor			*= factor;
+	RcComponent.YRandFactor			*= factor;
+	RcComponent.DeclineTime			*= factor;
 }
 
 // AI Interface =====
@@ -319,12 +331,16 @@ defaultproperties
 	SprintOffSet=(Pitch=-1000,Yaw=-2048)
 	ChaosDeclineTime=0.450000
 	ChaosAimSpread=192
+
+	Begin Object Class=RecoilParams Name=PS9MRecoilParams
+		ViewBindFactor=0.4
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.000000),(InVal=0.50000,OutVal=0.120000),,(InVal=0.7000,OutVal=-0.010000),(InVal=1.000000,OutVal=0.000000)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.4500000,OutVal=0.40000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.050000
+		YRandFactor=0.050000
+	End Object
+	RecoilParamsList(0)=RecoilParams'PS9MRecoilParams'
 	
-	ViewRecoilFactor=0.4
-	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.000000),(InVal=0.50000,OutVal=0.120000),,(InVal=0.7000,OutVal=-0.010000),(InVal=1.000000,OutVal=0.000000)))
-	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.4500000,OutVal=0.40000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.050000
-	RecoilYFactor=0.050000
 	FireModeClass(0)=Class'BWBPRecolorsPro.PS9mPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.PS9mSecondaryFire'
 	PutDownTime=0.700000

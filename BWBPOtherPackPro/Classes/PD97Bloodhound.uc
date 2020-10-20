@@ -326,11 +326,11 @@ defaultproperties
      ChaosDeclineTime=0.450000
 	 
 	 ViewRecoilFactor=0.45
-     RecoilXFactor=0.10000
-     RecoilYFactor=0.10000
-     RecoilMax=8192.000000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.500000
+     XRandFactor=0.10000
+     YRandFactor=0.10000
+     MaxRecoil=8192.000000
+     DeclineTime=1.500000
+     DeclineDelay=0.500000
 	 
 	 
      FireModeClass(0)=Class'BWBPOtherPackPro.PD97PrimaryFire'

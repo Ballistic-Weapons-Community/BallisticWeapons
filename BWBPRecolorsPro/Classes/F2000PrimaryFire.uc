@@ -30,28 +30,30 @@ function FlashMuzzleFlash()
 		EjectBrass();
 }
 
-function SetSilenced(bool bSilenced)
+function SetSuppressed(bool bSilenced)
 {
-	bAISilent = bSilenced;
 	if (bSilenced)
 	{
-		Damage *= 0.8;
-		FireRecoil *= 0.7;
-		BW.RecoilXFactor *= 0.7;
-		BW.RecoilYFactor *= 0.7;
-		RangeAtten *= 1.1;
-		XInaccuracy *= 0.65;
-		YInaccuracy *= 0.65;
+		FireRecoil *= 0.8;
+		RangeAtten *= 1.2;
+		XInaccuracy *= 0.75;
+		YInaccuracy *= 0.75;
+
+		BW.SightingTime = BW.default.SightingTime * 1.25;
+		BW.AimSpread = BW.default.AimSpread * 1.25;
+		BW.ChaosAimSpread = BW.default.ChaosAimSpread * 1.25;
+
 	}
 	else
 	{
-     	FireRecoil = default.FireRecoil;
-		Damage = default.Damage;
-		BW.RecoilXFactor = BW.default.RecoilXFactor;
-		BW.RecoilYFactor = BW.default.RecoilYFactor;
+		FireRecoil = default.FireRecoil;
 		RangeAtten = default.RangeAtten;
 		XInaccuracy = default.XInaccuracy;
 		YInaccuracy = default.YInaccuracy;
+
+		BW.SightingTime = BW.default.SightingTime;
+		BW.AimSpread = BW.default.AimSpread;
+		BW.ChaosAimSpread = BW.default.ChaosAimSpread;
 	}
 }
 
