@@ -42,104 +42,9 @@ class BallisticWeapon extends Weapon
 // internal things that you don't need to worry about and for many others, the defaults
 // will be ok. There are lots of settings just available in case you need to change
 // some behavior.
-
-//General vars ---------------------------------------------------------------------------------------------------------
-struct WeaponSkin
-{
-	var() Material	RedTex;		// Texture to use when red
-	var() Material	BlueTex;	// Texture to use when blue
-	var() int		SkinNum;	// Index in Skins array
-};
-var() float								PlayerSpeedFactor;						// Instigator movement speed is multiplied by this when this weapon is in use
-var	bool								PlayerSpeedUp;							// Player speed has been altered by this weapon
-var() float								PlayerJumpFactor;						// Player JumpZ multiplied by this when holding this weapon
-var() array<WeaponSkin>					TeamSkins;								// A list of which skins change to show team colors
-var() Sound								UsedAmbientSound;						// Use this instead of AmbientSound to have gun hum when in use
-var() float								AIReloadTime;							// How long it's likely to take to reload. Used by bots to tell if they should reload
-var	float								BotTryReloadTime;						// Time when bot should try reload again
-var	Vehicle								OwnerLastVehicle;						// Vehicle being driven last tick...
-var	Controller							InstigatorController;					// Controller of the instigator
-var	BallisticFire   					BFireMode[NUM_FIRE_MODES];				// BallisticFire FireModes. So you don't have to write: BallisticFire(FireMode[m])
-var() Material							BigIconMaterial;						// A big icon for this weapon. Used in outfitting screens
-var() IntBox							BigIconCoords;							// Coords for drawing the BigIcon in the weapon bar (HUDFix)
-var	bool								bSkipDrawWeaponInfo;					// Skips the Ballistic versions of NewDrawWeaponInfo
-var	bool								bAllowWeaponInfoOverride;				// If true, prevents upgraded HUDs from overriding the weapon info display
-var   BCSprintControl					SprintControl;							// A low, poor sort of hack to draw Sprint info on the HUD
-var() float								IdleTweenTime;							// Just a general tween time used by anims like idle
-var   Actor								SightFX;								// SightFX actor
-var() class<Actor>						SightFXClass;							// Effect to attach as an iron sight effect or could be used for anything
-var() name								SightFXBone;							// Bone to attach SightFX to
-var() class<BCReplicationInfo>			BCRepClass;								// BCReplication info class to use for server side variables that are sent to clients
-//----------------------------------------------------------------------------------------------------------------------
-
-//Global configurable settings -----------------------------------------------------------------------------------------
-var() globalconfig 	bool		bOldCrosshairs;			// Use UT2004 crosshairs instead of BW's
-var() globalconfig 	bool		bEvenBodyDamage;		// Will weapon limb hits cause as much damage as any non-head body region?...
-var() globalconfig	bool		bUseModifiers;			// Uses configurable modifiers in BallisticInstantFire / BallisticProjectile to handle locational damage
-var() globalconfig 	float		AimKnockScale;			// Scale the weapon displacement caused by taking damage
-var() globalconfig 	bool		bDrawCrosshairDot; 		// Draw dot in the centre of crosshairs
-var() globalconfig	bool		bUseBigIcon;			// For HUDFix huds - makes the Icon the BigIcon
-var() globalconfig	bool		bLimitCarry;
-var() globalconfig	byte		MaxWeaponsPerSlot;
-var() globalconfig  byte		SightsRestrictionLevel;	// Forces any weapon which can aim to aim when the player fires.
-//----------------------------------------------------------------------------------------------------------------------
-
-//Special weapon info vars ---------------------------------------------------------------------------------------------
-var() config float		WeaponPrice;					// Cash cost to buy the weapon
-var() config float		PrimaryAmmoPrice;				// Cost to fill primary fm ammo
-var() config float		SecondaryAmmoPrice;				// Cost to fill secondary fm ammo
-var() byte				InventorySize;					// How much space this weapon should occupy in an inventory. 0-100. Used by mutators, games, etc...
-														// Please note that this is now equivalent to slot usage in Conflict.
-
-// Flags which describe a weapon or its capabilities. Use for mutators, AI, anything that needs to try just types of weapons
-var() bool		bWT_Bullet;							
-var() bool		bWT_Shotgun;						
-var() bool		bWT_Hazardous;						// It is dangerous to the user (if not used carefully)
-var() bool		bWT_Splash;							// Has large radius damage attacks
-var() bool		bWT_Sidearm;							
-var() bool		bWT_Machinegun;					// A fairly automatic non-proj pistol, smg, ar, mg, minigun, etc
-var() bool		bWT_RapidProj;						// A fairly automatic projectile weapon
-var() bool		bWT_Projectile;						// Has non-instant non-rapid projectile attack
-var() bool		bWT_Grenade;						// Has non-instant bouncing grenade type projectiles
-var() bool		bWT_Energy;							// Energy attack
-var() bool		bWT_Super;							// Is considered a 'super weapon' or more powerful than normal weapons. 
-																// Gameplay relevant. Pickups for guns with this set will never stay. Ballistic Freon won't resupply weapons with this set.
-var() bool		bWT_Trap;								// Some kind of weird or deployable weapon. eg. mine, bomb, beartrap
-var() bool		bWT_Heal;								// Has the ability to heal in some fashion.
-var() bool		bWT_Spam;							// Is unusually powerful relative to other weapons in the hands of bad players who refuse to use the Aimed key.
-																// Loadout will refuse to give spammers this weapon.
-var() localized array<String>	ManualLines;					// String array containing usage information.
-var	Object.Color	HeaderColor, TextColor;
-
-// Special weapon info that could be set from anywhere if needed
-struct SpecialInfoEntry
-{
-	var() name		ID;
-	var() string	Info;
-};
-var() config array<SpecialInfoEntry>	SpecialInfo; // A list of special info strings and their IDs
-//----------------------------------------------------------------------------------------------------------------------
-
-//Dedicated melee attack------------------------------------------------------------------------------------------------
-enum EMeleeState
-{
-	MS_None, 				//Default.
-	MS_Pending, 			//Gun couldn't fire yet, but melee is being held.
-	MS_Held,				//Gun is in melee position, charging the attack.
-	MS_Strike,				//Gun is attacking.
-	MS_StrikePending 	//Gun is in the middle of its own strike, but wants to prepare another at the end of this one.
-};
-
-var EMeleeState						MeleeState;
-
-var float							MeleeInterval, MeleeHoldTime;
-
-var class<BallisticMeleeFire>		MeleeFireClass;
-var protected BallisticMeleeFire	MeleeFireMode;
-var	float							MeleeFatigue;
-//--------------------------------------------------------------------------------------------------------------------------
-
-//Ammo/Reloading Stuff -------------------------------------------------------------------------------------------------
+//=============================================================================
+// ENUMS
+//=============================================================================
 enum EReloadState
 {
    	RS_None,				//Not reloading or cocking. Used as default as well as after reload finishes
@@ -154,43 +59,22 @@ enum EReloadState
 	RS_GearSwitch   		//Adjusting some kind of gear like a suppressor or a GL
 };
 
-var() BUtil.FullSound	BringUpSound;				//Sound to play when weapon is brough out
-var() BUtil.FullSound	PutDownSound;			//Sound to play when weapon is put away
-var() travel int			MagAmmo;					//Ammo currently in magazine for Primary and Secondary. Max is whatever the default is.
-var() bool					bNoMag;					//Does not use reloading. Takes ammo straight from inventory
-var() Name					CockAnim;					//Animation to use for cocking
-var() Name					CockAnimPostReload;	//Anim to use for cocking at end of reload
-var() float					CockAnimRate;			//Rate to play cock anim at
-var() Name					CockSelectAnim;			//Anim used when bringing up a weapon which needs cocking
-var() float					CockSelectAnimRate; 	//Rate for this anim
-var() float					CockingBringUpTime;		//Time in code before weapon is ready
-var() BUtil.FullSound	CockSound;				//Sound to play for cocking
-var() Name					ReloadAnim;				//Anim to use for Reloading. Also anim to use for shovel loop
-var() float					ReloadAnimRate;			//Rate to play Reload Anim at
-var() Name					ReloadEmptyAnim;		//Anim played when reloading an empty weapon
-var() BUtil.FullSound	ClipHitSound;				//Sound to play when magazine gets hit
-var() BUtil.FullSound	ClipOutSound;				//Sound to play when magazine is pulled out
-var() BUtil.FullSound	ClipInSound;				//Sound to play when magazine is put in
-var() float					ClipInFrame;				//RED! Frame at which magazine is put in. Also frame of shovel loop when shell is placed in
-var() bool					bCockAfterReload;		//Always cock the gun after reload
-var() bool					bCockOnEmpty;			//Gun will cock when reload ends if mag was empty before reload
-var   bool					bNeedReload;				//Gun needs to be reloaded. When on, pressing fire will start a reload
-var   bool					bNeedCock;				//Gun needs to be cocked. Will be cocked when reload ends
-var   bool					bPreventReload;			//Reload will not start. Used to prevent reloading while fire anim plays
-var() bool					bNonCocking;				//Gun doesn't, can't or shouldn't get cocked...
-var() bool					bCanSkipReload;			//Can press fire to exit reloading from shovel loop or PreClipIn
-var() bool					bAltTriggerReload;		//Pressing alt fire triggers reload/skip/cock just like primary.
-var() bool					bShovelLoad;				//Ammo is loaded into gun repeatedly, e.g. the loading of a winchester or pump-action shotgun
-var() Name					StartShovelAnim;			//Played before shoveling loop starts
-var() float					StartShovelAnimRate;	//Rate for start anim
-var() Name					EndShovelAnim;			//Anim to play after shovel loop ends
-var() Name					EndShovelEmptyAnim;	//Played if the weapon needs cocking at the end of the shovel loop
-var() float					EndShovelAnimRate;		//Rate for end anim
-var() int					ShovelIncrement;			//Amount of ammo to stick in gun each time
-var   EReloadState			ReloadState;				//State of the gun during reloading or cocking. Set seperately on client and server
-var   bool					bServerReloading;		//Used to let clients know that server side is still reloading
-var 	bool				bPlayThirdPersonReload;//Play an anim on the Pawn for reloading.
-var	float					FireAnimCutThreshold;  // Cuts the fire anim if the SightingState is higher than this.
+enum EMeleeState
+{
+	MS_None, 				//Default.
+	MS_Pending, 			//Gun couldn't fire yet, but melee is being held.
+	MS_Held,				//Gun is in melee position, charging the attack.
+	MS_Strike,				//Gun is attacking.
+	MS_StrikePending 		//Gun is in the middle of its own strike, but wants to prepare another at the end of this one.
+};
+
+enum ESightingState
+{
+   	SS_None,			//Not viewing through sights or moving gun into sight postions
+   	SS_Lowering,		//Finished sight view, lowering un
+    SS_Raising,			//Lifting gun and getting to sight view
+ 	SS_Active			//Looking through sights
+};
 
 enum ModeSaveType
 {
@@ -199,29 +83,6 @@ enum ModeSaveType
 	MR_SavedDefault			//Remember the mode saved manually using the SaveMode command.
 };
 
-var globalconfig ModeSaveType ModeHandling;
-	
-struct WeaponModeType							// All the settings for a weapon firing mode
-{
-	var() localized string 	ModeName;			// Display name for this mode
-	var() bool 				bUnavailable;		// Is it disabled and hidden(not in use)
-	var() string 			ModeID;				// A non localized ID to easily identify this mode. Format: WM_????????, e.g. WM_FullAuto or WM_Burst
-	var() float 			Value;				// Just a useful extra numerical value. Could be max count for burst mode or whatever...
-	var() int 				RecoilParamsIndex;	// Index of the recoil parameters to use for this mode
-};
-
-var() Array<WeaponModeType>					WeaponModes;				//A list of the available weapon firing modes and their info for this weapon
-var() travel byte							CurrentWeaponMode;			//The index of the firing mode currently active
-																		//FIXME, weapons using SwitchCannonMode will require assistance.
-var() config byte							LastWeaponMode;				//The last known used weapon mode
-var() config byte							SavedWeaponMode;			//A manually set or saved initial weapon mode
-var	bool									bNotifyModeSwitch;			//Calls SwitchWeaponMode on each fire mode on mode switching.
-var	bool									bRedirectSwitchToFiremode;  //Compatibility for Ballistic UI - implemented in later weapons
-var	byte 									PendingMode;
-var	int										FireCount;					//How many shots have been fired since trigger was pulled
-//----------------------------------------------------------------------------------------------------------------------
-
-// Scope and Sights stuff ----------------------------------------------------------------------------------------------
 enum EZoomType // Azarael
 {
 	ZT_Irons, // Iron sights or simple non-magnifying aiming aid such as a red dot sight or holographic. Smoothly zooms into FullZoomFOV as the weapon repositions to sights view.
@@ -231,54 +92,296 @@ enum EZoomType // Azarael
 	ZT_Smooth // Smooth zoom. Replaces bSmoothZoom, allows the weapon to zoom from FOV 90 to FullZoomFOV.
 };
 
-var EZoomType ZoomType;
-
-var() bool						bUseSights;			// This weapon has sights or a scope that can be used
-var() bool						bNoTweenToScope;	//Don't tween to the first idle frame to fix the animation jump (M75 fix) FIXME the M75 uses animations to scope
-var() config float 				ScopeXScale;		//Manual scaling for scopes
-var() globalconfig bool			bInvertScope;		// Inverts Prev/Next weap relation to Zoom In/Out
-var() name						ZoomInAnim;			// Anim to play for raising weapon to view through Scope or sights
-var() name						ZoomOutAnim;		// Anim to play when lowering weapon after viewing through scope or sights
-var() Material					ScopeViewTex;		// Texture displayed in Scope View. Fills the screen
-var() BUtil.FullSound			ZoomInSound;		// Sound when zooming in
-var() BUtil.FullSound			ZoomOutSound;		// Sound when zooming out
-var() float						FullZoomFOV;		// The FOV that can be reached when fully zoomed in
-var() bool						bNoMeshInScope;		// Weapon mesh is hidden when in scope/sight view
-var() bool						bNoCrosshairInScope;// Crosshair will be hiden when in scope or sights
-var() float						SightZoomFactor; 	// Base FOV multiplied by this to give sight aim factor
-var() name						SightBone;			// Bone at which camera should be to view through sights. Uses origin if none
-var() Rotator					SightPivot;			// Rotate the weapon by this when in sight view
-var() Vector					SightOffset;		// Offset of actual sight view position from SightBone or mesh origin.
-var() float						SightDisplayFOV;	// DisplayFOV for drawing gun in scope/sight view
-var() float						SightingTime;		// Time it takes to move weapon to and from sight view
-var() globalconfig float		SightingTimeScale;	// Scales the SightingTime for each weapon by this amount.
-var   float						OldZoomFOV;			// FOV saved for temporary scope down
-var   float						SightingPhase;		// Current level of progress moving weapon into place for sight view
-var   bool						bPendingSightUp;	// Currently out of sight view for something. Will go back when done
-var   bool						bScopeView;			// Currently viewing through scope or sights
-var   bool						bScopeHeld;			// Scope key has not been released
-var   float						NextCheckScopeTime;	// Used to prevent CheckScope() from exiting scope view for a period of time (eg. Prevent RG recoil from cutting scope view)
-var float 						MinFixedZoomLevel; 	// Minimum zoom level for ZT_Minimum.
-var float						MinZoom, MaxZoom;	//Min and max magnification levels for ZT_Logarithmic.
-var float						LogZoomLevel;		// Separate from PC.ZoomLevel because of bZooming code for Anti TCC
-var int							ZoomStages;			//Number of zoom stages
-var Vector						SMuzzleFlashOffset;	//Offset for muzzle flash in scope
-
-enum ESightingState
+//=============================================================================
+// STRUCTS
+//=============================================================================
+struct XYRange
 {
-   	SS_None,			//Not viewing through sights or moving gun into sight postions
-   	SS_Lowering,		//Finished sight view, lowering un
-    SS_Raising,			//Lifting gun and getting to sight view
- 	SS_Active			//Looking through sights
+	var() config Range X;
+	var() config Range Y;
 };
-var   ESightingState	SightingState;		// State of non anim, sight related gun movement
-//----------------------------------------------------------------------------------------------------------------------
 
-// Crosshair Info ------------------------------------------------------------------------------------------------------
-var Object.Color  MagEmptyColor;					//used by Simple XHairs if mag is empty
-var Object.Color	CockingColor;						//used by Simple XHairs when weapon needs cocking
-var	bool			bStandardCrosshairOff;			//True if ScopeView has hidden the UT2004 crosshair.
-//----------------------------------------------------------------------------------------------------------------------
+struct WeaponModeType							// All the settings for a weapon firing mode
+{
+	var() localized string 	ModeName;			// Display name for this mode
+	var() bool 				bUnavailable;		// Is it disabled and hidden(not in use)
+	var() string 			ModeID;				// A non localized ID to easily identify this mode. Format: WM_????????, e.g. WM_FullAuto or WM_Burst
+	var() float 			Value;				// Just a useful extra numerical value. Could be max count for burst mode or whatever...
+	var() int 				RecoilParamsIndex;	// Index of the recoil parameters to use for this mode
+};
+
+struct SpecialInfoEntry
+{
+	var() name		ID;
+	var() string	Info;
+};
+
+//=============================================================================
+// GLOBALLY CONFIGURABLE SETTINGS
+//=============================================================================
+var() globalconfig 	ModeSaveType 	ModeHandling;
+var() globalconfig  bool			bInvertScope;			// Inverts Prev/Next weap relation to Zoom In/Out
+var() globalconfig  float			SightingTimeScale;		// Scales the SightingTime for each weapon by this amount.
+var() globalconfig 	bool			bOldCrosshairs;			// Use UT2004 crosshairs instead of BW's
+var() globalconfig 	bool			bEvenBodyDamage;		// Will weapon limb hits cause as much damage as any non-head body region?...
+var() globalconfig	bool			bUseModifiers;			// Uses configurable modifiers in BallisticInstantFire / BallisticProjectile to handle locational damage
+var() globalconfig 	float			AimKnockScale;			// Scale the weapon displacement caused by taking damage
+var() globalconfig 	bool			bDrawCrosshairDot; 		// Draw dot in the centre of crosshairs
+var() globalconfig	bool			bUseBigIcon;			// For HUDFix huds - makes the Icon the BigIcon
+var() globalconfig	bool			bLimitCarry;
+var() globalconfig	byte			MaxWeaponsPerSlot;
+//=============================================================================
+// END GLOBALLY CONFIGURABLE SETTINGS
+//=============================================================================
+
+//=============================================================================
+// CONFIGURABLE SETTINGS
+//=============================================================================
+var() config byte					LastWeaponMode;			//The last known used weapon mode
+var() config byte					SavedWeaponMode;		//A manually set or saved initial weapon mode
+var() config float					WeaponPrice;			// Cash cost to buy the weapon
+var() config float					PrimaryAmmoPrice;		// Cost to fill primary fm ammo
+var() config float					SecondaryAmmoPrice;		// Cost to fill secondary fm ammo
+var() config array<SpecialInfoEntry> SpecialInfo; 			// A list of special info strings and their IDs
+//=============================================================================
+// END CONFIGURABLE SETTINGS
+//=============================================================================
+
+//=============================================================================
+// STATIC DEFINITIONS
+//=============================================================================
+var Object.Color  					MagEmptyColor;			//used by Simple XHairs if mag is empty
+var Object.Color					CockingColor;			//used by Simple XHairs when weapon needs cocking
+//=============================================================================
+// END STATIC DEFINITIONS
+//=============================================================================
+
+//=============================================================================
+// WEAPON STATE VARIABLES
+//=============================================================================
+var		bool						bPendingBringupTimer;
+//-----------------------------------------------------------------------------
+// AI
+//-----------------------------------------------------------------------------
+var() 	float						AIReloadTime;					// How long it's likely to take to reload. Used by bots to tell if they should reload
+var		float						BotTryReloadTime;				// Time when bot should try reload again
+var		Vehicle						OwnerLastVehicle;				// Vehicle being driven last tick...
+var		Controller					InstigatorController;			// Controller of the instigator
+//-----------------------------------------------------------------------------
+// Fire Modes
+//-----------------------------------------------------------------------------
+var		BallisticFire   			BFireMode[NUM_FIRE_MODES];		// BallisticFire FireModes. So you don't have to write: BallisticFire(FireMode[m])
+var() 	travel byte					CurrentWeaponMode;				// The index of the firing mode currently active
+var		byte 						PendingMode;
+var		int							FireCount;						// How many shots have been fired since trigger was pulled
+var     float						LastFireTime;					// Time of last fire
+//-----------------------------------------------------------------------------
+// Sights
+//-----------------------------------------------------------------------------
+var  	float						OldZoomFOV;						// FOV saved for temporary scope down
+var  	float						SightingPhase;					// Current level of progress moving weapon into place for sight view
+var   	bool						bPendingSightUp;				// Currently out of sight view for something. Will go back when done
+var   	bool						bScopeView;						// Currently viewing through scope or sights
+var  	bool						bScopeHeld;						// Scope key has not been released
+var   	float						NextCheckScopeTime;				// Used to prevent CheckScope() from exiting scope view for a period of time (eg. Prevent RG recoil from cutting scope view)
+var  	float						LogZoomLevel;					// Separate from PC.ZoomLevel because of bZooming code for Anti TCC
+var   	ESightingState				SightingState;					// State of non anim, sight related gun movement
+var		bool						bStandardCrosshairOff;			// True if ScopeView has hidden the UT2004 crosshair.
+//-----------------------------------------------------------------------------
+// Movement speed
+//-----------------------------------------------------------------------------
+var	  bool							PlayerSpeedUp;					// Player speed has been altered by this weapon
+var   BCSprintControl				SprintControl;					// A low, poor sort of hack to draw Sprint info on the HUD
+//-----------------------------------------------------------------------------
+// Melee
+//-----------------------------------------------------------------------------
+var EMeleeState						MeleeState;
+var float							MeleeInterval, MeleeHoldTime;
+var  protected BallisticMeleeFire 	MeleeFireMode;
+var	float							MeleeFatigue;
+//-----------------------------------------------------------------------------
+// Ammo/Reload
+//-----------------------------------------------------------------------------
+var   bool							bNeedReload;					// Gun needs to be reloaded. When on, pressing fire will start a reload
+var   bool							bNeedCock;						// Gun needs to be cocked. Will be cocked when reload ends
+var   bool							bPreventReload;					// Reload will not start. Used to prevent reloading while fire anim plays
+var   EReloadState					ReloadState;					// State of the gun during reloading or cocking. Set seperately on client and server
+var   bool							bServerReloading;				// Used to let clients know that server side is still reloading
+//-----------------------------------------------------------------------------
+// Recoil
+//-----------------------------------------------------------------------------
+var	  RecoilComponent				RcComponent;					// Object which handles recoil
+//-----------------------------------------------------------------------------
+// Aim
+//-----------------------------------------------------------------------------
+var	  float					NextZeroAimTime;				//For zeroing aim when scoping
+//=============================================================================
+// END WEAPON STATE VARIABLES
+//=============================================================================
+
+//=============================================================================
+// GENERAL WEAPON VARIABLES
+//
+// These variables are consistent for every instance of a weapon and are 
+// user-defined but generally not modified within the game. 
+// Contains things like display offsets, icon coords etc
+//=============================================================================
+//-----------------------------------------------------------------------------
+// Replication
+//-----------------------------------------------------------------------------
+var() class<BCReplicationInfo>	BCRepClass;				// BCReplication info class to use for server side variables that are sent to clients
+//-----------------------------------------------------------------------------
+// Display
+//-----------------------------------------------------------------------------
+struct WeaponSkin
+{
+	var() Material	RedTex;		// Texture to use when red
+	var() Material	BlueTex;	// Texture to use when blue
+	var() int		SkinNum;	// Index in Skins array
+};
+
+var() array<WeaponSkin>		TeamSkins;					// A list of which skins change to show team colors
+var() Material				BigIconMaterial;			// A big icon for this weapon. Used in outfitting screens
+var() IntBox				BigIconCoords;				// Coords for drawing the BigIcon in the weapon bar (HUDFix)
+var	bool					bSkipDrawWeaponInfo;		// Skips the Ballistic versions of NewDrawWeaponInfo
+var	bool					bAllowWeaponInfoOverride;	// If true, prevents upgraded HUDs from overriding the weapon info display
+var() float					IdleTweenTime;				// Just a general tween time used by anims like idle
+//-----------------------------------------------------------------------------
+// Sound
+//-----------------------------------------------------------------------------
+var() BUtil.FullSound		BringUpSound;				//Sound to play when weapon is brought out
+var() BUtil.FullSound		PutDownSound;				//Sound to play when weapon is put away
+//-----------------------------------------------------------------------------
+// Fire Modes
+//-----------------------------------------------------------------------------
+var() Array<WeaponModeType> WeaponModes;				//A list of the available weapon firing modes and their info for this weapon
+var	bool					bRedirectSwitchToFiremode;  //Compatibility for Ballistic UI - implemented in later weapons
+//-----------------------------------------------------------------------------
+// Sighting
+//-----------------------------------------------------------------------------
+var   Actor					SightFX;				// SightFX actor
+var() class<Actor>			SightFXClass;			// Effect to attach as an iron sight effect or could be used for anything
+var() name					SightFXBone;			// Bone to attach SightFX to
+var() bool					bUseSights;				// This weapon has sights or a scope that can be used
+var() bool					bNoTweenToScope;		// Don't tween to the first idle frame to fix the animation jump (M75 fix) FIXME the M75 uses animations to scope
+var() config float 			ScopeXScale;			// Manual scaling for scopes
+var() name					ZoomInAnim;				// Anim to play for raising weapon to view through Scope or sights
+var() name					ZoomOutAnim;			// Anim to play when lowering weapon after viewing through scope or sights
+var() Material				ScopeViewTex;			// Texture displayed in Scope View. Fills the screen
+var() BUtil.FullSound		ZoomInSound;			// Sound when zooming in
+var() BUtil.FullSound		ZoomOutSound;			// Sound when zooming out
+var() float					FullZoomFOV;			// The FOV that can be reached when fully zoomed in
+var() bool					bNoMeshInScope;			// Weapon mesh is hidden when in scope/sight view
+var() bool					bNoCrosshairInScope;	// Crosshair will be hidden when in scope or sights
+var() float					SightZoomFactor; 		// Base FOV multiplied by this to give sight aim factor
+var() name					SightBone;				// Bone at which camera should be to view through sights. Uses origin if none
+var() Rotator				SightPivot;				// Rotate the weapon by this when in sight view
+var() Vector				SightOffset;			// Offset of actual sight view position from SightBone or mesh origin.
+var() float					SightDisplayFOV;		// DisplayFOV for drawing gun in scope/sight view
+var float 					MinFixedZoomLevel; 		// Minimum zoom level for ZT_Minimum.
+var float					MinZoom, MaxZoom;		// Min and max magnification levels for ZT_Logarithmic.
+var int						ZoomStages;				// Number of zoom stages
+var Vector					SMuzzleFlashOffset;		// Offset for muzzle flash in scope
+//-----------------------------------------------------------------------------
+// Ammo/Reload
+//-----------------------------------------------------------------------------
+var() bool					bNoMag;						//Does not use reloading. Takes ammo straight from inventory
+var() Name					CockAnim;					//Animation to use for cocking
+var() Name					CockAnimPostReload;			//Anim to use for cocking at end of reload
+var() Name					CockSelectAnim;				//Anim used when bringing up a weapon which needs cocking
+var() BUtil.FullSound		CockSound;					//Sound to play for cocking
+var() bool					bCockAfterReload;			//Always cock the gun after reload
+var() bool					bCockOnEmpty;				//Gun will cock when reload ends if mag was empty before reload
+var() bool					bNonCocking;				//Gun doesn't, can't or shouldn't get cocked...
+var() Name					ReloadAnim;					//Anim to use for Reloading. Also anim to use for shovel loop
+var() Name					ReloadEmptyAnim;			//Anim played when reloading an empty weapon
+var() BUtil.FullSound		ClipHitSound;				//Sound to play when magazine gets hit
+var() BUtil.FullSound		ClipOutSound;				//Sound to play when magazine is pulled out
+var() BUtil.FullSound		ClipInSound;				//Sound to play when magazine is put in
+var() float					ClipInFrame;				//RED! Frame at which magazine is put in. Also frame of shovel loop when shell is placed in
+var() bool					bCanSkipReload;				//Can press fire to exit reloading from shovel loop or PreClipIn
+var() bool					bAltTriggerReload;			//Pressing alt fire triggers reload/skip/cock just like primary.
+var() bool					bShovelLoad;				//Ammo is loaded into gun repeatedly, e.g. the loading of a winchester or pump-action shotgun
+var() Name					StartShovelAnim;			//Played before shoveling loop starts
+var() Name					EndShovelAnim;				//Anim to play after shovel loop ends
+var() Name					EndShovelEmptyAnim;			//Played if the weapon needs cocking at the end of the shovel loop
+var() int					ShovelIncrement;			//Amount of ammo to stick in gun each time
+var   bool					bPlayThirdPersonReload; 	//Play an anim on the Pawn for reloading.
+var	  float					FireAnimCutThreshold;   	// Cuts the fire anim if the SightingState is higher than this.
+//-----------------------------------------------------------------------------
+// Recoil
+//-----------------------------------------------------------------------------
+var() array<RecoilParams>		RecoilParamsList;
+//-----------------------------------------------------------------------------
+// Melee
+//-----------------------------------------------------------------------------
+var class<BallisticMeleeFire>	MeleeFireClass;
+//-----------------------------------------------------------------------------
+// Flags 
+// These describe a weapon or its capabilities. 
+// Use for mutators, AI, anything that needs to try just types of weapons
+//-----------------------------------------------------------------------------
+var() bool		bWT_Bullet;							
+var() bool		bWT_Shotgun;						
+var() bool		bWT_Hazardous;						// It is dangerous to the user (if not used carefully)
+var() bool		bWT_Splash;							// Has large radius damage attacks
+var() bool		bWT_Sidearm;							
+var() bool		bWT_Machinegun;						// A fairly automatic non-proj pistol, smg, ar, mg, minigun, etc
+var() bool		bWT_RapidProj;						// A fairly automatic projectile weapon
+var() bool		bWT_Projectile;						// Has non-instant non-rapid projectile attack
+var() bool		bWT_Grenade;						// Has non-instant bouncing grenade type projectiles
+var() bool		bWT_Energy;							// Energy attack
+var() bool		bWT_Super;							// Is considered a 'super weapon' or more powerful than normal weapons. 
+													// Gameplay relevant. Pickups for guns with this set will never stay. Ballistic Freon won't resupply weapons with this set.
+var() bool		bWT_Trap;							// Some kind of weird or deployable weapon. eg. mine, bomb, beartrap
+var() bool		bWT_Heal;							// Has the ability to heal in some fashion.
+var() bool		bWT_Spam;							// Is unusually powerful relative to other weapons in the hands of bad players who refuse to use the Aimed key.
+													// Loadout will refuse to give spammers this weapon.
+var() localized array<String>	ManualLines;		// String array containing usage information.
+var	Object.Color	HeaderColor, TextColor;
+//=============================================================================
+// END GENERAL WEAPON VARIABLES
+//=============================================================================
+
+//=============================================================================
+// GAMEPLAY VARIABLES
+//
+// These variables are user-defined, and may additionally be modified either 
+// by the game ruleset or by weapon modes and attachments.
+//=============================================================================
+//-----------------------------------------------------------------------------
+// Movement speed
+//-----------------------------------------------------------------------------
+var() float					PlayerSpeedFactor;		// Instigator movement speed is multiplied by this when this weapon is in use
+var() float					PlayerJumpFactor;		// Player JumpZ multiplied by this when holding this weapon
+//-----------------------------------------------------------------------------
+// Effects
+//-----------------------------------------------------------------------------
+var() Sound					UsedAmbientSound;		// Use this instead of AmbientSound to have gun hum when in use
+//-----------------------------------------------------------------------------
+// Conflict Loadout
+//-----------------------------------------------------------------------------
+var() byte					InventorySize;			// How much space this weapon should occupy in an inventory. 0-100. Used by mutators, games, etc...
+//-----------------------------------------------------------------------------
+// Sights
+//-----------------------------------------------------------------------------
+var() EZoomType 			ZoomType;				// Type of zoom used for ADS
+var() float					SightingTime;			// Time it takes to move weapon to and from sight view
+//-----------------------------------------------------------------------------
+// Ammo/Reloading
+//-----------------------------------------------------------------------------
+var() travel int			MagAmmo;				//Ammo currently in magazine for Primary and Secondary. Max is whatever the default is.
+
+var() float					CockAnimRate;			//Rate to play cock anim at
+var() float					CockSelectAnimRate; 	//Rate for this anim
+var() float					CockingBringUpTime;		//Time in code before weapon is ready
+var() float					ReloadAnimRate;			//Rate to play Reload Anim at
+var() float					StartShovelAnimRate;	//Rate for start anim
+var() float					EndShovelAnimRate;		//Rate for end anim
+//=============================================================================
+// END GAMEPLAY VARIABLES
+//=============================================================================
+
 
 // Aim Stuff -----------------------------------------------------------------------------------------------------------
 // This is the eccessivly complicated aiming system.
@@ -306,12 +409,7 @@ var	bool			bStandardCrosshairOff;			//True if ScopeView has hidden the UT2004 cr
 //
 // FireModes have an aditional spread to make bullets vear away from the gun's actual aim. This can be used to make guns
 // seem crap or to make shotgun pellets spread properly.
-//
-struct XYRange
-{
-	var() config Range X;
-	var() config Range Y;
-};
+
 // Gun length
 var(BAim) float					GunLength;			// How far weapon extends from player. Used by long-gun check
 var		  float					LongGunFactor;		// Current percent of long-gun factors applied. Will be interpolated to NewLongGunFactor
@@ -364,13 +462,6 @@ var       Rotator				OldLookDir;					// Where player was looking last tick. Used
 
 var 		float 				FireChaos; 			//Current conefire expansion factor (this * ChaosAimSpread being the current radius)
 
-var			RecoilComponent		RcComponent;
-var			array<RecoilParams>	RecoilParamsList;
-
-var       	float				LastFireTime;				// Time of last fire
-var			float				NextZeroAimTime;			//For zeroing aim when scoping
-
-var			bool				bPendingBringupTimer;
 //----------------------------------------------------------------------------------------------------------------------
 
 replication
