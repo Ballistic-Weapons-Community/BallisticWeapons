@@ -330,47 +330,52 @@ defaultproperties
      SightDisplayFOV=40.000000
      SightingTime=0.200000
      SightAimFactor=0.000000
-     HipRecoilFactor=3.500000
      SprintOffSet=(Pitch=-1024,Yaw=-1024)
      AimSpread=16
      ChaosDeclineTime=1.250000
      ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=2560
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=-0.045000),(InVal=0.300000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.200000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     XRandFactor=0.250000
-     YRandFactor=0.250000
-     DeclineTime=1.500000
-     DeclineDelay=0.250000
-     FireModeClass(0)=Class'BWBPOtherPackPro.ProtonStreamPrimaryFire'
-     FireModeClass(1)=Class'BWBPOtherPackPro.ProtonStreamSecondaryFire'
-     SelectAnimRate=1.250000
-     PutDownAnimRate=1.250000
-     PutDownTime=0.600000
-     BringUpTime=0.600000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.700000
-     CurrentRating=0.700000
-     Description="Psycho-Kinetic Amplifier||Manufacturer: Unknown Skrith Engineers|Primary: Slower moving, Energy Fire|Secondary: Instant Beam||It has a fast fire rate, rechargeable batteries, a good accuracy, low damage, and every Skrith has one. The infamous A42 'Whip', as it was named by the UTC Marines, has been the standard issue Skrith sidearm in both wars. Though it may be accurate, have a fast rate of fire and an unlimited, rechargeable cell, the A42 does very little damage, and has less accuracy than others when running, making it an all-round ineffective weapon. The secondary attack is a recent feature, giving the weapon the ability to charge up a variable shot. This does make the weapon more powerful, yet it is still not as effective as other sidearms. The rechargable cell however, means that it is always there when you need the extra bit of range over the melee weapons."
-     Priority=16
-     HudColor=(G=75)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=5
-     PickupClass=Class'BWBPOtherPackPro.ProtonStreamPickup'
-     PlayerViewOffset=(X=40.000000,Y=15.000000,Z=-20.000000)
-     PlayerViewPivot=(Pitch=1024,Yaw=-1024)
-     AttachmentClass=Class'BWBPOtherPackPro.ProtonStreamAttachment'
-     IconMaterial=Texture'BWBPOtherPackTex2.ProtonPack.Icon_ProtonPack'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="E90-N Particle Accelerator"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=180
-     LightSaturation=100
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBPOtherPackAnim.ProtonPack_FP'
-     DrawScale=0.600000
-     SoundPitch=56
-     SoundRadius=32.000000
+	 ChaosAimSpread=2560
+	 
+	Begin Object Class=RecoilParams Name=ProtonRecoilParams
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=-0.045000),(InVal=0.300000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.200000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.250000
+		YRandFactor=0.250000
+		DeclineTime=1.500000
+		DeclineDelay=0.250000
+		HipMultiplier=3.5
+	End Object
+	RecoilParamsList(0)=RecoilParams'ProtonRecoilParams'
+
+	FireModeClass(0)=Class'BWBPOtherPackPro.ProtonStreamPrimaryFire'
+	FireModeClass(1)=Class'BWBPOtherPackPro.ProtonStreamSecondaryFire'
+	SelectAnimRate=1.250000
+	PutDownAnimRate=1.250000
+	PutDownTime=0.600000
+	BringUpTime=0.600000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.700000
+	CurrentRating=0.700000
+	Description="Psycho-Kinetic Amplifier||Manufacturer: Unknown Skrith Engineers|Primary: Slower moving, Energy Fire|Secondary: Instant Beam||It has a fast fire rate, rechargeable batteries, a good accuracy, low damage, and every Skrith has one. The infamous A42 'Whip', as it was named by the UTC Marines, has been the standard issue Skrith sidearm in both wars. Though it may be accurate, have a fast rate of fire and an unlimited, rechargeable cell, the A42 does very little damage, and has less accuracy than others when running, making it an all-round ineffective weapon. The secondary attack is a recent feature, giving the weapon the ability to charge up a variable shot. This does make the weapon more powerful, yet it is still not as effective as other sidearms. The rechargable cell however, means that it is always there when you need the extra bit of range over the melee weapons."
+	Priority=16
+	HudColor=(G=75)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=5
+	PickupClass=Class'BWBPOtherPackPro.ProtonStreamPickup'
+	PlayerViewOffset=(X=40.000000,Y=15.000000,Z=-20.000000)
+	PlayerViewPivot=(Pitch=1024,Yaw=-1024)
+	AttachmentClass=Class'BWBPOtherPackPro.ProtonStreamAttachment'
+	IconMaterial=Texture'BWBPOtherPackTex2.ProtonPack.Icon_ProtonPack'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="E90-N Particle Accelerator"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=180
+	LightSaturation=100
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.ProtonPack_FP'
+	DrawScale=0.600000
+	SoundPitch=56
+	SoundRadius=32.000000
 }

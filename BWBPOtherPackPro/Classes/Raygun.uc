@@ -518,80 +518,82 @@ function float SuggestDefenseStyle()	{	return -0.7;	}
 
 defaultproperties
 {
-     ShieldOnSound=Sound'BWBPOtherPackSound.Raygun.ShieldOn'
-     ShieldOffSound=Sound'BWBPOtherPackSound.Raygun.ShieldOff'
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=6)
-     BigIconMaterial=Texture'BWBPOtherPackTex.Raygun.raygun_icon_512'
-     BigIconCoords=(Y1=32,Y2=220)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Energy=True
-     SpecialInfo(0)=(Info="240.0;20.0;0.9;80.0;0.0;0.4;0.1")
-     BringUpSound=(Sound=Sound'BallisticSounds2.A73.A73Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.A73.A73Putaway')
-     MagAmmo=24
-     ClipHitSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipHit')
-     ClipOutSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipIn')
-     ClipInFrame=0.700000
-     bNonCocking=True
-     WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-     WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(bUnavailable=True)
-	 ManualLines(0)="Launches a stream of projectiles. These projectiles do not gain damage over range."
-     ManualLines(1)="Charged ray attack. Targets hit by this attack will receive damage and become irradiated. Irradiation causes damage over time and can be spread through the enemy's team by proximity to the irradiated enemy. The duration of irradiation against a target is extended when hit by the primary fire."
-     ManualLines(2)="The Raygun also possesses a shield, activated by the Weapon Function key. When active, this shield reduces damage from any source which is not locational, such as flames and explosions, by 75%, but makes the user highly visible. Effective at close range, against groups of clustered players and against explosives."
-     CurrentWeaponMode=0
-     bNotifyModeSwitch=True
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=450)
-     SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
-     SightDisplayFOV=25.000000
-     SightingTime=0.250000
-     SightAimFactor=1
-	 SightZoomFactor=0.85
-     SprintOffSet=(Pitch=-3000,Yaw=-4000)
-     AimAdjustTime=0.600000
-     ChaosDeclineTime=1.250000
+	ShieldOnSound=Sound'BWBPOtherPackSound.Raygun.ShieldOn'
+	ShieldOffSound=Sound'BWBPOtherPackSound.Raygun.ShieldOff'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=6)
+	BigIconMaterial=Texture'BWBPOtherPackTex.Raygun.raygun_icon_512'
+	BigIconCoords=(Y1=32,Y2=220)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Energy=True
+	SpecialInfo(0)=(Info="240.0;20.0;0.9;80.0;0.0;0.4;0.1")
+	BringUpSound=(Sound=Sound'BallisticSounds2.A73.A73Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.A73.A73Putaway')
+	MagAmmo=24
+	ClipHitSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipIn')
+	ClipInFrame=0.700000
+	bNonCocking=True
+	WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	ManualLines(0)="Launches a stream of projectiles. These projectiles do not gain damage over range."
+	ManualLines(1)="Charged ray attack. Targets hit by this attack will receive damage and become irradiated. Irradiation causes damage over time and can be spread through the enemy's team by proximity to the irradiated enemy. The duration of irradiation against a target is extended when hit by the primary fire."
+	ManualLines(2)="The Raygun also possesses a shield, activated by the Weapon Function key. When active, this shield reduces damage from any source which is not locational, such as flames and explosions, by 75%, but makes the user highly visible. Effective at close range, against groups of clustered players and against explosives."
+	CurrentWeaponMode=0
+	bNotifyModeSwitch=True
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=450)
+	SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
+	SightDisplayFOV=25.000000
+	SightingTime=0.250000
+	SightAimFactor=1
+	SightZoomFactor=0.85
+	SprintOffSet=(Pitch=-3000,Yaw=-4000)
+	AimAdjustTime=0.600000
+	ChaosDeclineTime=1.250000
 	 
-	 ViewRecoilFactor=0.35
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.070000),(InVal=0.300000,OutVal=0.140000),(InVal=0.600000,OutVal=0.120000),(InVal=0.700000,OutVal=0.120000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.150000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=0.320000),(InVal=0.450000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     XRandFactor=0.050000
-     YRandFactor=0.050000
-     DeclineTime=1.500000
-     DeclineDelay=0.230000
+	 Begin Object Class=RecoilParams Name=R9A1RecoilParams
+		ViewBindFactor=0.35
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.070000),(InVal=0.300000,OutVal=0.140000),(InVal=0.600000,OutVal=0.120000),(InVal=0.700000,OutVal=0.120000),(InVal=1.000000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.150000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=0.320000),(InVal=0.450000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.050000
+		YRandFactor=0.050000
+		DeclineTime=1.500000
+		DeclineDelay=0.230000
+ 	End Object
+ 	RecoilParamsList(0)=RecoilParams'R9A1RecoilParams'
 	 
-	 
-     FireModeClass(0)=Class'BWBPOtherPackPro.RaygunPrimaryFire'
-     FireModeClass(1)=Class'BWBPOtherPackPro.RaygunSecondaryFire'
-     BringUpTime=0.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.750000
-     CurrentRating=0.750000
-     bShowChargingBar=True
-     Description="E38 Indivisible Particle Smasher||Manufacturer: United States Defense Department, 20th Century||Commissioned towards the end of the 20th century, the E38 "
-     Priority=39
-     HudColor=(B=50,G=175)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=5
-     GroupOffset=1
-     PickupClass=Class'BWBPOtherPackPro.RaygunPickup'
-     PlayerViewOffset=(X=5.000000,Z=-5.000000)
-     AttachmentClass=Class'BWBPOtherPackPro.RaygunAttachment'
-     IconMaterial=Texture'BWBPOtherPackTex.Raygun.raygun_icon_128'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="E58 Raygun"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=180
-     LightSaturation=100
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBPOtherPackAnim.Raygun_FP'
-     DrawScale=0.187500
-     Skins(0)=Shader'BWBPOtherPackTex.Raygun.raygun_body_SH1'
-	 Skins(1)=TexScaler'BWBPOtherPackTex.Raygun.RaygunNumbersScaler'
-	 Skins(2)=TexScaler'BWBPOtherPackTex.Raygun.RaygunNumbersScaler2'
-     SoundPitch=56
-     SoundRadius=32.000000
+	FireModeClass(0)=Class'BWBPOtherPackPro.RaygunPrimaryFire'
+	FireModeClass(1)=Class'BWBPOtherPackPro.RaygunSecondaryFire'
+	BringUpTime=0.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.750000
+	CurrentRating=0.750000
+	bShowChargingBar=True
+	Description="E38 Indivisible Particle Smasher||Manufacturer: United States Defense Department, 20th Century||Commissioned towards the end of the 20th century, the E38 "
+	Priority=39
+	HudColor=(B=50,G=175)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=5
+	GroupOffset=1
+	PickupClass=Class'BWBPOtherPackPro.RaygunPickup'
+	PlayerViewOffset=(X=5.000000,Z=-5.000000)
+	AttachmentClass=Class'BWBPOtherPackPro.RaygunAttachment'
+	IconMaterial=Texture'BWBPOtherPackTex.Raygun.raygun_icon_128'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="E58 Raygun"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=180
+	LightSaturation=100
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.Raygun_FP'
+	DrawScale=0.187500
+	Skins(0)=Shader'BWBPOtherPackTex.Raygun.raygun_body_SH1'
+	Skins(1)=TexScaler'BWBPOtherPackTex.Raygun.RaygunNumbersScaler'
+	Skins(2)=TexScaler'BWBPOtherPackTex.Raygun.RaygunNumbersScaler2'
+	SoundPitch=56
+	SoundRadius=32.000000
 }

@@ -152,7 +152,8 @@ event ModeTick(float DT)
 	local float DesiredFireRate;
 	local Rotator BasePlayerView;
 
-	BasePlayerView = BW.GetPlayerAim() - BW.Aim * (BW.ViewAimFactor) - BW.GetRecoilPivot(true) * (BW.ViewRecoilFactor);
+	BasePlayerView = BW.GetBasePlayerView();
+	
 	if (Instigator.IsLocallyControlled())
 	{
 		TurnVelocity = (BasePlayerView - OldLookDir) / DT;

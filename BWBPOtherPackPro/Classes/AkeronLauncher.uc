@@ -164,10 +164,13 @@ defaultproperties
      AimSpread=64
      ChaosSpeedThreshold=500.000000
      ChaosAimSpread=512
-	 
-	 ViewRecoilFactor=0.75
-     DeclineTime=1.000000
-	 
+
+     Begin Object Class=RecoilParams Name=AkeronRecoilParams
+          ViewBindFactor=0.75
+          DeclineTime=1.000000
+     End Object
+     RecoilParamsList(0)=RecoilParams'AkeronRecoilParams'
+
      FireModeClass(0)=Class'BWBPOtherPackPro.AkeronPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.AkeronSecondaryFire'
      SelectAnimRate=0.600000

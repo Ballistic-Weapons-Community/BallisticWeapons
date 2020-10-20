@@ -16,42 +16,6 @@ replication
 	reliable if (ROLE == ROLE_Authority)
 		Lewdness;
 }
-function ServerSwitchWeaponMode (byte NewMode)
-{
-	super.ServerSwitchWeaponMode (NewMode);
-	
-	if (CurrentWeaponMode == 1)
-	{
-		XRandFactor=0.8;
-		YRandFactor=1.5;
-		DeclineDelay=0.8;
-	}
-	
-	else
-	{
-		XRandFactor = default.XRandFactor;
-		YRandFactor = default.YRandFactor;
-		DeclineDelay = default.DeclineDelay;
-	}
-}
-simulated function ClientSwitchWeaponModes (byte newMode)
-{
-	Super.ClientSwitchWeaponModes(newMode);
-	
-	if (newMode == 1)
-	{
-		XRandFactor=0.8;
-		YRandFactor=1.5;
-		DeclineDelay=0.8;
-	}
-	
-	else
-	{
-		XRandFactor = default.XRandFactor;
-		YRandFactor = default.YRandFactor;
-		DeclineDelay = default.DeclineDelay;
-	}
-}
 
 //===========================================================================
 // Glow management.
@@ -396,7 +360,7 @@ defaultproperties
      ClipInFrame=0.700000
      bNonCocking=True
      WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Bomb",ModeID="WM_FullAuto")
+     WeaponModes(1)=(ModeName="Bomb",ModeID="WM_FullAuto",RecoilParamsIndex=1)
      WeaponModes(2)=(ModeName="Lust Shockwave",ModeID="WM_SemiAuto",Value=1.000000)
      WeaponModes(3)=(ModeName="Sexplosion",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
      CurrentWeaponMode=0
@@ -406,17 +370,33 @@ defaultproperties
      SightDisplayFOV=40.000000
      SightingTime=0.300000
      GunLength=128.000000
-     HipRecoilFactor=2.250000
      SprintOffSet=(Pitch=-1024,Yaw=-1024)
      ChaosDeclineTime=1.250000
-	 
-	 ViewRecoilFactor=0.35
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=0.045000),(InVal=0.300000,OutVal=0.150000),(InVal=0.600000,OutVal=0.210000),(InVal=0.700000,OutVal=0.150000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.200000,OutVal=0.200000),(InVal=1.000000,OutVal=1.000000)))
-     XRandFactor=0.10000
-     YRandFactor=0.10000
-     DeclineTime=1.500000
-     DeclineDelay=0.250000
+
+	Begin Object Class=RecoilParams Name=XOXOFastRecoilParams
+		ViewBindFactor=0.35
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=0.045000),(InVal=0.300000,OutVal=0.150000),(InVal=0.600000,OutVal=0.210000),(InVal=0.700000,OutVal=0.150000),(InVal=1.000000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.200000,OutVal=0.200000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.10000
+		YRandFactor=0.10000
+		DeclineTime=1.500000
+		DeclineDelay=0.250000
+	End Object
+	RecoilParamsList(0)=RecoilParams'XOXOFastRecoilParams'
+
+	Begin Object Class=RecoilParams Name=XOXOBombRecoilParams
+		ViewBindFactor=0.35
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=0.045000),(InVal=0.300000,OutVal=0.150000),(InVal=0.600000,OutVal=0.210000),(InVal=0.700000,OutVal=0.150000),(InVal=1.000000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.200000,OutVal=0.200000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.8
+		YRandFactor=1.5
+		DeclineDelay=0.8
+		DeclineTime=1.500000
+	End Object
+	RecoilParamsList(1)=RecoilParams'XOXOBombRecoilParams'
+
+
+
 	 
      FireModeClass(0)=Class'BWBPOtherPackPro.XOXOPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.XOXOSecondaryFire'

@@ -363,82 +363,86 @@ function float SuggestDefenseStyle()	{	return 0.6;	}
 
 defaultproperties
 {
-     DrumInSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOn',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-     DrumOutSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-     ReloadAltAnim="ReloadAlt"
-     AltAmmo=6
-     BaseTrackDist=3368
-	 PlayerSpeedFactor=0.9
-	 PlayerJumpFactor=0.9
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBPOtherPackTex3.CX85.BigIcon_CX85'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     bWT_Machinegun=True
-     ManualLines(0)="Automatic low-calibre fire. Has extremely long effective range, but as a low-calibre weapon, must be fired in bursts at range, subjecting the user to the effects of recoil."
-     ManualLines(1)="Fires a dart. Good fire rate and fast flight speed. Enemies hit by the darts show up on the scope when within a given range of the user. The tracking range increases with successive hits."
-     ManualLines(2)="Weapon Function for this weapon causes all the darts attached to the last player to be hit for the first time to explode. This feature works independently of range.||The CX85 is effective at long range."
-     SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;1.0;0.0;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
-     MagAmmo=50
-     CockAnimRate=1.200000
-     CockSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6Cock',Volume=0.650000)
-     ClipHitSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-ClipHit')
-     ClipOutSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipIn')
-     ClipInFrame=0.650000
-     WeaponModes(0)=(bUnavailable=True)
-     ZoomType=ZT_Logarithmic
-     ScopeViewTex=Texture'BWBPOtherPackTex3.CX85.CX85ScopeView'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-     FullZoomFOV=20.000000
-     bNoMeshInScope=True
-     bNoCrosshairInScope=True
-     SightOffset=(X=-20.000000,Z=35.000000)
-     SightingTime=0.650000
-	 SightAimFactor=0.15
-     MinZoom=2.000000
-     MaxZoom=8.000000
-     ZoomStages=2
-     GunLength=72.000000
-     SprintOffSet=(Pitch=-3000,Yaw=-8000)
-     ChaosAimSpread=768
+	DrumInSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOn',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+	DrumOutSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+	ReloadAltAnim="ReloadAlt"
+	AltAmmo=6
+	BaseTrackDist=3368
+	PlayerSpeedFactor=0.9
+	PlayerJumpFactor=0.9
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBPOtherPackTex3.CX85.BigIcon_CX85'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bWT_Machinegun=True
+	ManualLines(0)="Automatic low-calibre fire. Has extremely long effective range, but as a low-calibre weapon, must be fired in bursts at range, subjecting the user to the effects of recoil."
+	ManualLines(1)="Fires a dart. Good fire rate and fast flight speed. Enemies hit by the darts show up on the scope when within a given range of the user. The tracking range increases with successive hits."
+	ManualLines(2)="Weapon Function for this weapon causes all the darts attached to the last player to be hit for the first time to explode. This feature works independently of range.||The CX85 is effective at long range."
+	SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;1.0;0.0;-999.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
+	MagAmmo=50
+	CockAnimRate=1.200000
+	CockSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6Cock',Volume=0.650000)
+	ClipHitSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipIn')
+	ClipInFrame=0.650000
+	WeaponModes(0)=(bUnavailable=True)
+	ZoomType=ZT_Logarithmic
+	ScopeViewTex=Texture'BWBPOtherPackTex3.CX85.CX85ScopeView'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	FullZoomFOV=20.000000
+	bNoMeshInScope=True
+	bNoCrosshairInScope=True
+	SightOffset=(X=-20.000000,Z=35.000000)
+	SightingTime=0.650000
+	SightAimFactor=0.15
+	MinZoom=2.000000
+	MaxZoom=8.000000
+	ZoomStages=2
+	GunLength=72.000000
+	SprintOffSet=(Pitch=-3000,Yaw=-8000)
+	ChaosAimSpread=768
 	 
-	 ViewRecoilFactor=0.3
-     RecoilXCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=0.120000),(InVal=0.400000,OutVal=0.180000),(InVal=0.800000,OutVal=0.220000),(InVal=1.000000,OutVal=0.250000)))
-     RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.500000,OutVal=0.445000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     XRandFactor=0.05000
-     YRandFactor=0.05000
-     DeclineTime=1.000000
-     DeclineDelay=0.170000
-     FireModeClass(0)=Class'BWBPOtherPackPro.CX85PrimaryFire'
-     FireModeClass(1)=Class'BWBPOtherPackPro.CX85SecondaryFire'
-     PutDownTime=0.700000
-     BringUpTime=0.700000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.800000
-     CurrentRating=0.800000
-     Description="The Cimerion Labs CX85 was created to serve the purpose of enemy location and tracking in a battlefield environment where operatives needed tactical-level information on enemy positions and movements without the ability to rely upon allied intelligence. Capable of launching miniature darts, each packed with an explosive charge and a remote transmitter, the CX is able to discern the location of struck enemies. Should the user no longer have need for the tracking ability, the darts can be detonated at long range to damage the target and surrounding entities."
-     DisplayFOV=55.000000
-     Priority=40
-     HudColor=(G=125,R=150)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=9
-     GroupOffset=6
-     PickupClass=Class'BWBPOtherPackPro.CX85Pickup'
-     PlayerViewOffset=(X=25.000000,Y=18.000000,Z=-25.000000)
-     AttachmentClass=Class'BWBPOtherPackPro.CX85Attachment'
-     IconMaterial=Texture'BWBPOtherPackTex3.CX85.SmallIcon_CX85'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="CX85 Combat Rifle"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBPOtherPackAnim3.CX85_FP'
-     DrawScale=0.500000
+	Begin Object Class=RecoilParams Name=CX85RecoilParams
+		ViewBindFactor=0.3
+		XCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=0.120000),(InVal=0.400000,OutVal=0.180000),(InVal=0.800000,OutVal=0.220000),(InVal=1.000000,OutVal=0.250000)))
+		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.500000,OutVal=0.445000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.05000
+		YRandFactor=0.05000
+		DeclineTime=1.000000
+		DeclineDelay=0.170000
+	End Object
+	RecoilParamsList(0)=RecoilParams'CX85RecoilParams'
+	 
+	FireModeClass(0)=Class'BWBPOtherPackPro.CX85PrimaryFire'
+	FireModeClass(1)=Class'BWBPOtherPackPro.CX85SecondaryFire'
+	PutDownTime=0.700000
+	BringUpTime=0.700000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.800000
+	CurrentRating=0.800000
+	Description="The Cimerion Labs CX85 was created to serve the purpose of enemy location and tracking in a battlefield environment where operatives needed tactical-level information on enemy positions and movements without the ability to rely upon allied intelligence. Capable of launching miniature darts, each packed with an explosive charge and a remote transmitter, the CX is able to discern the location of struck enemies. Should the user no longer have need for the tracking ability, the darts can be detonated at long range to damage the target and surrounding entities."
+	DisplayFOV=55.000000
+	Priority=40
+	HudColor=(G=125,R=150)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=9
+	GroupOffset=6
+	PickupClass=Class'BWBPOtherPackPro.CX85Pickup'
+	PlayerViewOffset=(X=25.000000,Y=18.000000,Z=-25.000000)
+	AttachmentClass=Class'BWBPOtherPackPro.CX85Attachment'
+	IconMaterial=Texture'BWBPOtherPackTex3.CX85.SmallIcon_CX85'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="CX85 Combat Rifle"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=5.000000
+	Mesh=SkeletalMesh'BWBPOtherPackAnim3.CX85_FP'
+	DrawScale=0.500000
 }

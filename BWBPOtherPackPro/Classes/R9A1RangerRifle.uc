@@ -50,34 +50,25 @@ function ServerSwitchWeaponMode (byte NewMode)
 		else
 			NewMode++;
 	}
+
 	if (!WeaponModes[NewMode].bUnavailable)
 	{
-		CurrentWeaponMode = NewMode;
+		CommonSwitchWeaponMode(NewMode);
+		ClientSwitchWeaponMode(CurrentWeaponMode);
 		NetUpdateTime = Level.TimeSeconds - 1;
 	}
 	
-	if (bNotifyModeSwitch)
-	{
-		if (Instigator != None && !Instigator.IsLocallyControlled())
-		{
-			BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
-			BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
-		}
-		ClientSwitchWeaponModes(CurrentWeaponMode);
-	}
-	
 	R9A1Attachment(ThirdPersonActor).CurrentTracerMode = CurrentWeaponMode;
-
-	if (Instigator.IsLocallyControlled())
-		default.LastWeaponMode = CurrentWeaponMode;
 		
 	for (m=0; m < NUM_FIRE_MODES; m++)
 		if (FireMode[m] != None && FireMode[m].bIsFiring)
 			StopFire(m);
 
 	bServerReloading = true;
+
 	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
 		Instigator.SetAnimAction('ReloadGun');
+
 	CommonStartReload(0);	//Server animation
 	ClientStartReload(0);	//Client animation
 }
@@ -452,79 +443,83 @@ function float SuggestDefenseStyle()	{	return 0.7;	}
 
 defaultproperties
 {
-     ScopeSightPivot=(Pitch=50)
-     ScopeSightOffset=(X=35.000000,Y=0.050000,Z=12.550000)
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBPOtherPackTex2.R9A1.BigIcon_R9A1'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     ManualLines(0)="Semi-automatic, long-range, moderate recoil rifle fire with three choices of ammunition, switched between using the fire mode function.||Standard rounds inflict good damage with high penetration.||Freeze rounds inflict lower damage, but progressively slow struck targets.||Heat Ray shots inflict low initial damage, but heat up the target, causing subsequent shots to inflict more damage. This effect wears off over time."
-     ManualLines(1)="Raises the scope."
-     ManualLines(2)="The R9A1 has both a scope (secondary fire) and iron sights (normal key).||Modes are switched by holding the Fire Mode key and then scrolling the mouse.||Effective at long range and against enemies making use of healing items and weapons."
-     SpecialInfo(0)=(Info="240.0;25.0;0.5;50.0;1.0;0.2;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
-     MagAmmo=15
-     CockAnimRate=1.250000
-     CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
-     ReloadAnimRate=1.250000
-     ClipHitSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipHit')
-     ClipOutSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipIn')
-     ClipInFrame=0.650000
-     WeaponModes(0)=(ModeName="Regular")
-     WeaponModes(1)=(ModeName="Freeze",ModeID="WM_SemiAuto",Value=1.000000)
-     WeaponModes(2)=(ModeName="Heat Ray",ModeID="WM_SemiAuto",Value=1.000000)
-     CurrentWeaponMode=0
-     bNotifyModeSwitch=True
-     FullZoomFOV=25.000000
-     bNoCrosshairInScope=True
-     SightPivot=(Roll=11800)
-     SightOffset=(X=15.000000,Y=2.850000,Z=9.000000)
-     SightDisplayFOV=25.000000
-     GunLength=80.000000
-     CrouchMultiplier=0.750000
-     SprintOffSet=(Pitch=-1000,Yaw=-2048)
-     AimAdjustTime=0.600000
-     ChaosSpeedThreshold=450.000000
-     ChaosAimSpread=768
+	ScopeSightPivot=(Pitch=50)
+	ScopeSightOffset=(X=35.000000,Y=0.050000,Z=12.550000)
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBPOtherPackTex2.R9A1.BigIcon_R9A1'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)="Semi-automatic, long-range, moderate recoil rifle fire with three choices of ammunition, switched between using the fire mode function.||Standard rounds inflict good damage with high penetration.||Freeze rounds inflict lower damage, but progressively slow struck targets.||Heat Ray shots inflict low initial damage, but heat up the target, causing subsequent shots to inflict more damage. This effect wears off over time."
+	ManualLines(1)="Raises the scope."
+	ManualLines(2)="The R9A1 has both a scope (secondary fire) and iron sights (normal key).||Modes are switched by holding the Fire Mode key and then scrolling the mouse.||Effective at long range and against enemies making use of healing items and weapons."
+	SpecialInfo(0)=(Info="240.0;25.0;0.5;50.0;1.0;0.2;0.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
+	MagAmmo=15
+	CockAnimRate=1.250000
+	CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
+	ReloadAnimRate=1.250000
+	ClipHitSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipIn')
+	ClipInFrame=0.650000
+	WeaponModes(0)=(ModeName="Regular")
+	WeaponModes(1)=(ModeName="Freeze",ModeID="WM_SemiAuto",Value=1.000000)
+	WeaponModes(2)=(ModeName="Heat Ray",ModeID="WM_SemiAuto",Value=1.000000)
+	CurrentWeaponMode=0
+	bNotifyModeSwitch=True
+	FullZoomFOV=25.000000
+	bNoCrosshairInScope=True
+	SightPivot=(Roll=11800)
+	SightOffset=(X=15.000000,Y=2.850000,Z=9.000000)
+	SightDisplayFOV=25.000000
+	GunLength=80.000000
+
+	SprintOffSet=(Pitch=-1000,Yaw=-2048)
+	AimAdjustTime=0.600000
+	ChaosSpeedThreshold=450.000000
+	ChaosAimSpread=768
+	
+	SightAimFactor=0.35
+
+	Begin Object Class=RecoilParams Name=R9A1RecoilParams
+		ViewBindFactor=0.35
+		XCurve=(Points=(,(InVal=0.150000,OutVal=0.10000),(InVal=0.350000,OutVal=0.25000),(InVal=0.500000,OutVal=0.30000),(InVal=0.70000,OutVal=0.350000),(InVal=0.850000,OutVal=0.42000),(InVal=1.000000,OutVal=0.45)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.175000),(InVal=0.400000,OutVal=0.450000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.100000
+		YRandFactor=0.100000
+		DeclineDelay=0.350000
+		DeclineTime=1.00000
+		CrouchMultiplier=0.750000
+	End Object
+	RecoilParamsList(0)=RecoilParams'R9A1RecoilParams'
 	 
-	 SightAimFactor=0.35
-	 
-	 ViewRecoilFactor=0.35
-     RecoilXCurve=(Points=(,(InVal=0.150000,OutVal=0.10000),(InVal=0.350000,OutVal=0.25000),(InVal=0.500000,OutVal=0.30000),(InVal=0.70000,OutVal=0.350000),(InVal=0.850000,OutVal=0.42000),(InVal=1.000000,OutVal=0.45)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.175000),(InVal=0.400000,OutVal=0.450000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     XRandFactor=0.100000
-     YRandFactor=0.100000
-     DeclineDelay=0.350000
-	 DeclineTime=1.00000
-	 
-     FireModeClass(0)=Class'BWBPOtherPackPro.R9A1PrimaryFire'
-     FireModeClass(1)=Class'BWBPOtherPackPro.R9A1ScopeFire'
-	 SightingTime=0.4
-     SelectAnimRate=1.100000
-     BringUpTime=0.400000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.800000
-     CurrentRating=0.800000
-     Description="Outstanding reliability and durability in the field are what characterise one of Black & Wood's legendary rifles. Though not widely used by most military forces, the R9 is renowned for its near indestructable design, and superb reliability. Those who use the weapon, mostly snipers, hunters, and specialised squads, swear by it's accuracy and dependability. Often used without fancy features or burdening devices such as optical scopes and similar attachements, the R9 is a true legend with it's users."
-     Priority=33
-     HudColor=(G=175)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=9
-     GroupOffset=3
-     PickupClass=Class'BWBPOtherPackPro.R9A1Pickup'
-     PlayerViewOffset=(Y=9.500000,Z=-11.000000)
-     AttachmentClass=Class'BWBPOtherPackPro.R9A1Attachment'
-     IconMaterial=Texture'BWBPOtherPackTex2.R9A1.SmallIcon_R9A1'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="R9A1 Ranger Rifle"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBPOtherPackAnim.R9A1_FP'
-     DrawScale=0.500000
+	FireModeClass(0)=Class'BWBPOtherPackPro.R9A1PrimaryFire'
+	FireModeClass(1)=Class'BWBPOtherPackPro.R9A1ScopeFire'
+	SightingTime=0.4
+	SelectAnimRate=1.100000
+	BringUpTime=0.400000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.800000
+	CurrentRating=0.800000
+	Description="Outstanding reliability and durability in the field are what characterise one of Black & Wood's legendary rifles. Though not widely used by most military forces, the R9 is renowned for its near indestructable design, and superb reliability. Those who use the weapon, mostly snipers, hunters, and specialised squads, swear by it's accuracy and dependability. Often used without fancy features or burdening devices such as optical scopes and similar attachements, the R9 is a true legend with it's users."
+	Priority=33
+	HudColor=(G=175)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=9
+	GroupOffset=3
+	PickupClass=Class'BWBPOtherPackPro.R9A1Pickup'
+	PlayerViewOffset=(Y=9.500000,Z=-11.000000)
+	AttachmentClass=Class'BWBPOtherPackPro.R9A1Attachment'
+	IconMaterial=Texture'BWBPOtherPackTex2.R9A1.SmallIcon_R9A1'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="R9A1 Ranger Rifle"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=5.000000
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.R9A1_FP'
+	DrawScale=0.500000
 }
