@@ -276,7 +276,6 @@ defaultproperties
      FireModeClass(1)=Class'MAG78SecondaryFire'
      PutDownTime=0.500000
      BringUpTime=0.500000
-	 DeclineDelay=1
      SelectForce="SwitchToAssaultRifle"
 	 AIRating=0.300000
 	 InventorySize=3

@@ -69,8 +69,6 @@ function AttachToPawn(Pawn P)
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
     local vector HitNormal;
-    local float DF;
-	local float AimDisplacementDuration;
 	
 	local class<BallisticDamageType> BDT;
 	

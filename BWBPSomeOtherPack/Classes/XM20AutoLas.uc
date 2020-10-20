@@ -452,45 +452,48 @@ defaultproperties
      GunLength=80.000000
      SprintOffSet=(Pitch=-1000,Yaw=-2048)
 
-     ChaosDeclineTime=0.5
+	 ChaosDeclineTime=0.5
 	 
-	 ViewBindFactor=0.35
-	 RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.150000,OutVal=0.020000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.11),(InVal=0.400000,OutVal=0.130000),(InVal=0.600000,OutVal=0.20000),(InVal=0.800000,OutVal=0.25000),(InVal=1.000000,OutVal=0.30000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.500000,OutVal=0.600000),(InVal=0.600000,OutVal=0.670000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     XRandFactor=0.05
-	 YRandFactor=0.05
-     DeclineTime=0.5
-	 DeclineDelay=0.15
-	 
-     FireModeClass(0)=Class'BWBPSomeOtherPack.XM20PrimaryFire'
-     FireModeClass(1)=Class'BWBPSomeOtherPack.XM20SecondaryFire'
-     SelectAnimRate=1.500000
-     PutDownAnimRate=2.000000
-     PutDownTime=0.500000
-     BringUpTime=0.400000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.800000
-     CurrentRating=0.800000
-     Description="XM20 Laser Rifle||Manufacturer: UTC Defense Tech|Primary: High Intensity Laser Beam|Secondary: Diffused High Intesity Beams||Having a long history with the UTC, the XM-20 managed to find its place even after most other energy weapons were rendered largely ineffective against Skrith shielding technology, thanks to its own integrated force field generator and ability to turn Cryon ballistic armor to slag with relative ease through concentrated fire."
-     Priority=194
-     HudColor=(B=255,G=150,R=100)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=5
-     GroupOffset=4
-     PickupClass=Class'BWBPSomeOtherPack.XM20Pickup'
-     PlayerViewOffset=(X=-12.000000,Y=0.000000,Z=-22.000000)
-     BobDamping=1.800000
-     AttachmentClass=Class'BWBPSomeOtherPack.XM20Attachment'
-	 bUseBigIcon=True
-     IconMaterial=Texture'BWBPSomeOtherPackTex.XM20.Icon_XM20'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="XM20 Laser Rifle"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.XM20_FP'
-     DrawScale=0.500000
+	Begin Object Class=RecoilParams Name=XM20RecoilParams
+		ViewBindFactor=0.35
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.150000,OutVal=0.020000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.11),(InVal=0.400000,OutVal=0.130000),(InVal=0.600000,OutVal=0.20000),(InVal=0.800000,OutVal=0.25000),(InVal=1.000000,OutVal=0.30000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.500000,OutVal=0.600000),(InVal=0.600000,OutVal=0.670000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.05
+		YRandFactor=0.05
+		DeclineTime=0.5
+		DeclineDelay=0.15
+	End Object
+	RecoilParamsList(0)=RecoilParams'XM20RecoilParams'	 
+	
+	FireModeClass(0)=Class'BWBPSomeOtherPack.XM20PrimaryFire'
+	FireModeClass(1)=Class'BWBPSomeOtherPack.XM20SecondaryFire'
+	SelectAnimRate=1.500000
+	PutDownAnimRate=2.000000
+	PutDownTime=0.500000
+	BringUpTime=0.400000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.800000
+	CurrentRating=0.800000
+	Description="XM20 Laser Rifle||Manufacturer: UTC Defense Tech|Primary: High Intensity Laser Beam|Secondary: Diffused High Intesity Beams||Having a long history with the UTC, the XM-20 managed to find its place even after most other energy weapons were rendered largely ineffective against Skrith shielding technology, thanks to its own integrated force field generator and ability to turn Cryon ballistic armor to slag with relative ease through concentrated fire."
+	Priority=194
+	HudColor=(B=255,G=150,R=100)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=5
+	GroupOffset=4
+	PickupClass=Class'BWBPSomeOtherPack.XM20Pickup'
+	PlayerViewOffset=(X=-12.000000,Y=0.000000,Z=-22.000000)
+	BobDamping=1.800000
+	AttachmentClass=Class'BWBPSomeOtherPack.XM20Attachment'
+	bUseBigIcon=True
+	IconMaterial=Texture'BWBPSomeOtherPackTex.XM20.Icon_XM20'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="XM20 Laser Rifle"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=5.000000
+	Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.XM20_FP'
+	DrawScale=0.500000
 }

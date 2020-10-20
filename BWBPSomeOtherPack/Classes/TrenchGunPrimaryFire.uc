@@ -635,7 +635,7 @@ defaultproperties
 	FireSingleAnim="Fire"
 	ChargeTime=0.35
 	MaxHoldTime=0.0
-	HipMultiplier=2.000000
+	HipSpreadFactor=2.000000
     CutOffDistance=2048.000000
     CutOffStartRange=1280.000000
 	TraceCount=11
