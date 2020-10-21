@@ -139,7 +139,7 @@ defaultproperties
     ManualLines(0)="Fires both barrels. Wide spread and good damage, but requires cocking after every shot."
     ManualLines(1)="Fires one barrel at a time."
     ManualLines(2)="Effective at very close range. Spreads less from the hip than other shotguns."
-    AimDisplacementDurationMult=0.33
+    DisplaceDurationMult=0.33
     bLeftLoaded=True
     bRightLoaded=True
     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
@@ -168,10 +168,6 @@ defaultproperties
     SightingTime=0.250000
     SightZoomFactor=0.85
     GunLength=24.000000
-    JumpChaos=1.000000
-    AimSpread=0
-    ChaosDeclineTime=0.320000
-    ChaosAimSpread=0
 
     Begin Object Class=RecoilParams Name=MRT6RecoilParams
         ViewBindFactor=0.5
@@ -182,6 +178,13 @@ defaultproperties
         DeclineTime=0.700000
     End Object
     RecoilParamsList(0)=RecoilParams'MRT6RecoilParams'
+
+    Begin Object Class=AimParams Name=MRT6AimParams
+        JumpChaos=1.000000
+        AimSpread=(Min=0,Max=0)
+        ChaosDeclineTime=0.320000
+    End Object
+    AimParamsList(0)=AimParams'MRT6AimParams'
 
     FireModeClass(0)=Class'BallisticProV55.MRT6PrimaryFire'
     FireModeClass(1)=Class'BallisticProV55.MRT6SecondaryFire'

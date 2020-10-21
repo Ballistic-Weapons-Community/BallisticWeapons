@@ -294,43 +294,39 @@ function float SuggestDefenseStyle()	{	return -0.6;	}
 
 defaultproperties
 {
-     GrenadeBone="GrenadePistolGrenade"
-     bShouldDualInLoadout=False
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
-     AIReloadTime=1.500000
-     BigIconMaterial=Texture'BallisticTextures_25.BOGP.BigIcon_BOGP'
-     BigIconCoords=(Y1=32,Y2=230)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Splash=True
-     bWT_Projectile=True
-     ManualLines(0)="Grenade mode launches a grenade with good damage and blast radius. This grenade has an arming delay and upon striking a surface or player when unarmed. will ricochet, dealing only minor damage.|Flare mode will emit a flare which deals upfront damage, burns struck targets over time and obscures their view. If fired into the air, it will eventually explode with a distinctive effect."
-     ManualLines(1)="Used to toggle between grenade and flare modes."
-     ManualLines(2)="The BORT grenade is effective at medium range and when the player has height advantage. The BORT flare is most effective at close range. Recoil and hip spread are low, except when jumping. When dual wielded, the BORT pistols will fire simultaneously."
-     SpecialInfo(0)=(Info="120.0;20.0;0.8;40.0;0.0;0.0;0.6")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=1
-     bNoMag=True
-     CockAnim="Reload"
-     CockAnimRate=1.50000
-     CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock')
-     ReloadAnimRate=1.250000
-     ClipHitSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_Close',Volume=1.000000)
-     ClipOutSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_Open',Volume=1.000000)
-     ClipInSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_GrenLoad',Volume=1.000000)
-     ClipInFrame=0.650000
-     WeaponModes(0)=(ModeName="Grenade")
-     WeaponModes(1)=(ModeName="Flare",ModeID="WM_SemiAuto",Value=1.000000)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-	 bNoCrosshairInScope=True
-	 InventorySize=12
-     SightPivot=(Pitch=300)
-     SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
-     JumpChaos=0.750000
-
-	 ChaosAimSpread=378
-     ChaosDeclineTime=1.000000
+	GrenadeBone="GrenadePistolGrenade"
+	bShouldDualInLoadout=False
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
+	AIReloadTime=1.500000
+	BigIconMaterial=Texture'BallisticTextures_25.BOGP.BigIcon_BOGP'
+	BigIconCoords=(Y1=32,Y2=230)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Splash=True
+	bWT_Projectile=True
+	ManualLines(0)="Grenade mode launches a grenade with good damage and blast radius. This grenade has an arming delay and upon striking a surface or player when unarmed. will ricochet, dealing only minor damage.|Flare mode will emit a flare which deals upfront damage, burns struck targets over time and obscures their view. If fired into the air, it will eventually explode with a distinctive effect."
+	ManualLines(1)="Used to toggle between grenade and flare modes."
+	ManualLines(2)="The BORT grenade is effective at medium range and when the player has height advantage. The BORT flare is most effective at close range. Recoil and hip spread are low, except when jumping. When dual wielded, the BORT pistols will fire simultaneously."
+	SpecialInfo(0)=(Info="120.0;20.0;0.8;40.0;0.0;0.0;0.6")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
+	MagAmmo=1
+	bNoMag=True
+	CockAnim="Reload"
+	CockAnimRate=1.50000
+	CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock')
+	ReloadAnimRate=1.250000
+	ClipHitSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_Close',Volume=1.000000)
+	ClipOutSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_Open',Volume=1.000000)
+	ClipInSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_GrenLoad',Volume=1.000000)
+	ClipInFrame=0.650000
+	WeaponModes(0)=(ModeName="Grenade")
+	WeaponModes(1)=(ModeName="Flare",ModeID="WM_SemiAuto",Value=1.000000)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bNoCrosshairInScope=True
+	InventorySize=12
+	SightPivot=(Pitch=300)
+	SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
 
 	Begin Object Class=RecoilParams Name=BOGPRecoilParams
 		ViewBindFactor=0.6
@@ -341,6 +337,13 @@ defaultproperties
 		DeclineDelay=0.800000
 	End Object
 	RecoilParamsList(0)=RecoilParams'BOGPRecoilParams'
+
+	Begin Object Class=AimParams Name=BOGPAimParams
+		AimSpread=(Min=16,Max=378)
+		JumpChaos=0.750000
+		ChaosDeclineTime=1.000000
+	End Object
+	AimParamsList(0)=AimParams'BOGPAimParams'
 	 
      FireModeClass(0)=Class'BallisticProV55.BOGPPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.BOGPSecondaryFire'

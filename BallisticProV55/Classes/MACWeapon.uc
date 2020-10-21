@@ -418,7 +418,7 @@ function float SuggestDefenseStyle()	{	return -0.9;	}
 
 defaultproperties
 {
-	AimDisplacementDurationMult=1.25
+	DisplaceDurationMult=1.25
 	RulerTex=Texture'BWBP4-Tex.Artillery.Lines'
 	PointerTex=Texture'BWBP4-Tex.Artillery.Pointer'
 	DeploySound=Sound'BWBP4-Sounds.Artillery.Art-Deploy'
@@ -471,21 +471,24 @@ defaultproperties
 	SightDisplayFOV=70.000000
 	SightingTime=0.450000
 	GunLength=96.000000
-	SprintOffSet=(Pitch=-7000,Yaw=-3500)
-	JumpOffSet=(Pitch=-6000,Yaw=-1500)
-	AimAdjustTime=1.000000
-	AimSpread=256
-	ChaosDeclineTime=1.200000
-	ChaosSpeedThreshold=3500.000000
-	ChaosAimSpread=2048
 	InventorySize=35
 
-	Begin Object Class=RecoilParams Name=HAMRRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		XRandFactor=0.600000
 		YRandFactor=0.900000
 		MinRandFactor=0.350000
 	End Object
-	RecoilParamsList(0)=RecoilParams'HAMRRecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		SprintOffSet=(Pitch=-7000,Yaw=-3500)
+		JumpOffSet=(Pitch=-6000,Yaw=-1500)
+		AimAdjustTime=1.000000
+		AimSpread=(Min=256,Max=2048)
+		ChaosDeclineTime=1.200000
+		ChaosSpeedThreshold=3500.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.MACPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.MACSecondaryFire'

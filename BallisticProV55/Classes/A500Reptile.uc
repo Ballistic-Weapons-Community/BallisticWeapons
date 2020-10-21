@@ -191,16 +191,6 @@ defaultproperties
 	SightingTime=0.300000
 	GunLength=48.000000
 
-	SightAimFactor=0.150000
-	SprintOffSet=(Pitch=-3000,Yaw=-4000)
-	AimAdjustTime=0.600000
-
-	AimSpread=0
-	AimDamageThreshold=75.000000
-	ChaosDeclineTime=0.320000
-	ChaosSpeedThreshold=1000.000000
-	ChaosAimSpread=128
-	 
 	Begin Object Class=RecoilParams Name=A500RecoilParams
 		ViewBindFactor=0.65
 		CrouchMultiplier=0.750000
@@ -211,6 +201,17 @@ defaultproperties
 		DeclineTime=1.500000
 	End Object
 	RecoilParamsList(0)=RecoilParams'A500RecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		ADSMultiplier=0.150000
+		SprintOffSet=(Pitch=-3000,Yaw=-4000)
+		AimAdjustTime=0.600000
+		AimSpread=(Min=0,Max=128)
+		AimDamageThreshold=75.000000
+		ChaosDeclineTime=0.320000
+		ChaosSpeedThreshold=1000.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.A500PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A500SecondaryFire'

@@ -498,6 +498,10 @@ defaultproperties
 	End Object
 	RecoilParamsList(0)=RecoilParams'GrenadeRecoilParams'
 
+	Begin Object Class=AimParams Name=GrenadeAimParams
+	End Object
+	AimParamsList(0)=AimParams'GrenadeAimParams'
+
 	WeaponModes(0)=(ModeName="Auto Throw",ModeID="WM_None",Value=0.000000)
 	WeaponModes(1)=(ModeName="Long Throw",ModeID="WM_None",Value=1.000000)
 	WeaponModes(2)=(ModeName="Short Throw",ModeID="WM_None",Value=2.000000)

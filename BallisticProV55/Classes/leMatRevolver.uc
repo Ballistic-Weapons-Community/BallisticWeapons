@@ -622,9 +622,7 @@ defaultproperties
 	SightOffset=(X=-20.000000,Y=0.070000,Z=6.150000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-	SightAimFactor=2
-	
-	ChaosDeclineTime=0.450000
+
 	 
 	Begin Object Class=RecoilParams Name=leMatRecoilParams
 		ViewBindFactor=0.6
@@ -635,6 +633,12 @@ defaultproperties
 		DeclineDelay=0.500000
 	End Object
 	RecoilParamsList(0)=RecoilParams'leMatRecoilParams'
+
+	Begin Object Class=AimParams Name=leMatAimParams
+		ADSMultiplier=2
+		ChaosDeclineTime=0.450000
+	End Object
+	AimParamsList(0)=AimParams'leMatAimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.leMatPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.leMatSecondaryFire'

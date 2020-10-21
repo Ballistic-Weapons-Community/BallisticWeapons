@@ -142,10 +142,7 @@ defaultproperties
     SightPivot=(Pitch=256)
     SightOffset=(X=-50.000000,Y=-0.040000,Z=14.050000)
     SightingTime=0.300000
-    SightAimFactor=0.350000
-    SprintOffSet=(Pitch=-1000,Yaw=-2048)
-    JumpChaos=1.000000
-    ChaosDeclineTime=1.000000	 
+ 
      
     Begin Object Class=RecoilParams Name=M290RecoilParams
         ViewBindFactor=0.2
@@ -157,6 +154,14 @@ defaultproperties
         DeclineDelay=0.500000
     End Object
     RecoilParamsList(0)=RecoilParams'M290RecoilParams'
+
+    Begin Object Class=AimParams Name=M290AimParams
+        ADSMultiplier=0.350000
+        SprintOffSet=(Pitch=-1000,Yaw=-2048)
+        JumpChaos=1.000000
+        ChaosDeclineTime=1.000000	
+    End Object
+    AimParamsList(0)=AimParams'M290AimParams'
 	 
     FireModeClass(0)=Class'BallisticProV55.M290PrimaryFire'
     FireModeClass(1)=Class'BallisticProV55.M290SecondaryFire'

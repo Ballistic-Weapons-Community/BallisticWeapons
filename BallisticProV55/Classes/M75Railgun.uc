@@ -424,7 +424,7 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
-	AimDisplacementDurationMult=1.25
+	DisplaceDurationMult=1.25
      ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
      ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
      WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
@@ -471,17 +471,9 @@ defaultproperties
      MaxZoom=16.000000
      ZoomStages=2
      SMuzzleFlashOffset=(X=50.000000,Z=-35.000000)
-     GunLength=80.000000
-
-     SprintOffSet=(Pitch=-8000,Yaw=-10000)
-     JumpOffSet=(Pitch=-6000,Yaw=2000)
-     JumpChaos=0.800000
-     AimSpread=64
-     ChaosDeclineTime=0.800000
-	 SightAimFactor=0.5
-	 ChaosAimSpread=1536
+	 GunLength=80.000000
 	 
-	Begin Object Class=RecoilParams Name=M75RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.15
 		CrouchMultiplier=0.600000
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.18),(InVal=0.40000,OutVal=0.350000),(InVal=0.50000,OutVal=0.420000),(InVal=0.600000,OutVal=0.450000),(InVal=0.700000,OutVal=0.55),(InVal=0.800000,OutVal=0.60000),(InVal=1.000000,OutVal=0.7)))
@@ -491,7 +483,17 @@ defaultproperties
 		DeclineTime=1.500000
 		DeclineDelay=0.500000
 	End Object
-	RecoilParamsList(0)=RecoilParams'M75RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		SprintOffset=(Pitch=-8000,Yaw=-10000)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
+		JumpChaos=0.800000
+		AimSpread=(Min=64,Max=1536)
+		ChaosDeclineTime=0.800000
+		ADSMultiplier=0.5
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
     FireModeClass(0)=Class'BallisticProV55.M75PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M75SecondaryFire'

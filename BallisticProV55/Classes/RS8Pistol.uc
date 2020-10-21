@@ -500,8 +500,7 @@ defaultproperties
 	SightOffset=(X=-15.000000,Z=8.700000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-	AimAdjustTime=0.450000
-	ChaosDeclineTime=0.450000
+
 	 
 	Begin Object Class=RecoilParams Name=RS8RecoilParams
 		ViewBindFactor=0.6
@@ -511,6 +510,12 @@ defaultproperties
 		DeclineDelay=0.250000
 	End Object
 	RecoilParamsList(0)=RecoilParams'RS8RecoilParams'
+
+	Begin Object Class=AimParams Name=RS8AimParams
+		AimAdjustTime=0.450000
+		ChaosDeclineTime=0.450000
+	End Object
+	AimParamsList(0)=AimParams'RS8AimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.RS8PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RS8SecondaryFire'

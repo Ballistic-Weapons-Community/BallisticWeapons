@@ -159,13 +159,8 @@ defaultproperties
 	SightingTime=0.100000
 	GunLength=0.000000
 	bUseSpecialAim=True
-	AimSpread=8
-	ViewAimFactor=1.000000
-
-	AimDamageThreshold=2000.000000
-	ChaosAimSpread=32
 	 
-	Begin Object Class=RecoilParams Name=HAMR_TWRecoilParams
+	Begin Object Class=RecoilParams Name=Arena_TW_RecoilParams
 	 	ViewBindFactor=0.000000
 		PitchFactor=0.100000
 		YawFactor=0.500000
@@ -174,7 +169,19 @@ defaultproperties
 		DeclineTime=1.500000
 		MinRandFactor=0.350000
 	End Object
-	RecoilParamsList(0)=RecoilParams'HAMR_TWRecoilParams'
+	RecoilParamsList(0)=RecoilParams'Arena_TW_RecoilParams'
+
+	Begin Object Class=AimParams Name=Arena_TW_AimParams
+		ViewBindFactor=1
+		SprintOffSet=(Pitch=-7000,Yaw=-3500)
+		JumpOffSet=(Pitch=-6000,Yaw=-1500)
+		AimAdjustTime=1.000000
+		AimSpread=(Min=8,Max=32)
+		ChaosDeclineTime=1.200000
+		ChaosSpeedThreshold=3500.000000
+		AimDamageThreshold=2000
+	End Object
+	AimParamsList(0)=AimParams'Arena_TW_AimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.MACTW_PrimaryFire'
 	SelectAnim="Deploy"

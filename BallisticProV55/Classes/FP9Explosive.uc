@@ -669,11 +669,17 @@ defaultproperties
 	bUseSights=False
 	GunLength=0.000000
 	bAimDisabled=True
-	Begin Object Class=RecoilParams Name=FP9RecoilParams
+
+	Begin Object Class=RecoilParams Name=UniversalRecoilParams
 		PitchFactor=0.000000
 		YawFactor=0.000000
 	End Object
-	RecoilParamsList(0)=RecoilParams'FP9RecoilParams'
+	RecoilParamsList(0)=RecoilParams'UniversalRecoilParams'
+
+	Begin Object Class=AimParams Name=UniversalAimParams
+	End Object
+	AimParamsList(0)=AimParams'UniversalAimParams'
+
 	FireModeClass(0)=Class'BallisticProV55.FP9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.FP9SecondaryFire'
 	PutDownTime=0.700000

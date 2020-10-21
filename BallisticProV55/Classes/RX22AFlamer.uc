@@ -268,43 +268,39 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     PackOnSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-PackOn',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
-     LeverOnSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-LeverOn',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
-     LeverOffSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-LeverOff',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
-     ValveAnim="TurnValve"
-     PlayerSpeedFactor=0.900000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_RX22A'
-     BigIconCoords=(Y2=240)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-	 InventorySize=35
-     bWT_Hazardous=True
-     bWT_Splash=True
-     bWT_RapidProj=True
-     bWT_Projectile=True
-	 bWT_Super=True
-	 bUseSights=False
-     ManualLines(0)="Sprays fire, blinding the enemy, inflicting initial damage and burning them for damage over time. Hip-accurate and capable of hitting multiple enemies at a time. May cause surfaces struck to burn."
-     ManualLines(1)="Sprays unignited flamer gas. This gas will collect on surfaces or players. When on a surface, it can be ignited later to set a trap for the enemy or to close off areas. When on a player, it increases the damage dealt by the next primary attack."
-     ManualLines(2)="Has a high capacity, but long reload time. Will not function underwater.||Effective at close range. Extremely effective when used defensively."
-     SpecialInfo(0)=(Info="360.0;50.0;0.96;90.0;0.0;0.3;1.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-Putaway')
-     MagAmmo=75
-     ClipOutSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-PipeOut')
-     ClipInSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-PipeIn')
-     ClipInFrame=0.700000
-     WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(bUnavailable=True)
-     SightPivot=(Pitch=768)
-     SightOffset=(X=-12.000000,Z=14.300000)
-     SightDisplayFOV=40.000000
-     SprintOffSet=(Pitch=-500,Yaw=-1024)
-     AimSpread=0
-     ChaosSpeedThreshold=900.000000
-	 ChaosAimSpread=0
-	 
-     Begin Object Class=RecoilParams Name=RX22ARecoilParams
+	PackOnSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-PackOn',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
+	LeverOnSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-LeverOn',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
+	LeverOffSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-LeverOff',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
+	ValveAnim="TurnValve"
+	PlayerSpeedFactor=0.900000
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_RX22A'
+	BigIconCoords=(Y2=240)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	InventorySize=35
+	bWT_Hazardous=True
+	bWT_Splash=True
+	bWT_RapidProj=True
+	bWT_Projectile=True
+	bWT_Super=True
+	bUseSights=False
+	ManualLines(0)="Sprays fire, blinding the enemy, inflicting initial damage and burning them for damage over time. Hip-accurate and capable of hitting multiple enemies at a time. May cause surfaces struck to burn."
+	ManualLines(1)="Sprays unignited flamer gas. This gas will collect on surfaces or players. When on a surface, it can be ignited later to set a trap for the enemy or to close off areas. When on a player, it increases the damage dealt by the next primary attack."
+	ManualLines(2)="Has a high capacity, but long reload time. Will not function underwater.||Effective at close range. Extremely effective when used defensively."
+	SpecialInfo(0)=(Info="360.0;50.0;0.96;90.0;0.0;0.3;1.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-Putaway')
+	MagAmmo=75
+	ClipOutSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-PipeOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-PipeIn')
+	ClipInFrame=0.700000
+	WeaponModes(0)=(bUnavailable=True)
+	WeaponModes(1)=(bUnavailable=True)
+	SightPivot=(Pitch=768)
+	SightOffset=(X=-12.000000,Z=14.300000)
+	SightDisplayFOV=40.000000
+
+    Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=-0.300000),(InVal=0.600000,OutVal=-0.250000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000,OutVal=-0.300000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=-0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.300000),(InVal=1.000000,OutVal=0.600000)))
 		PitchFactor=0.800000
@@ -312,38 +308,45 @@ defaultproperties
 		XRandFactor=0.200000
 		YRandFactor=0.200000
 		DeclineTime=1.000000
-     End Object
-     RecoilParamsList(0)=RecoilParams'RX22ARecoilParams'
+    End Object
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+	 
+	Begin Object Class=AimParams Name=ArenaAimParams
+		SprintOffSet=(Pitch=-500,Yaw=-1024)
+		AimSpread=(Min=0,Max=32)
+		ChaosSpeedThreshold=900.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
-	 FireModeClass(0)=Class'BallisticProV55.RX22APrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.RX22ASecondaryFire'
-     BringUpTime=1.200000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.9
-     CurrentRating=0.900000
-     Description="A very deadly weapon designed and constructed by the UTC�s Defence Research Wing, to combat the Cryons before the second Human-Skrith war. It proved highly effective, being unchallenged by both of the Skrith�s major allies, the Cryons and Krao. The RX22A proved to be an extrmely useful weapon, when clearing out Krao from many underground tunnels and facilities on the OutWorld planet. The weapon, now feared by Cryons. and especially Krao, is one of the most dangerous weapons a Terran soldier may possess. Despite its long range, searing flames and ability to litterally fill a small room with fire make it a very powerful weapon, it has a great disadvantage. The flames may just as easily incinerate the operator when used close up, and if the fuel tanks carried on the soldiers back, were to rupture and catch fire, the user may find themselves in a very unpleasant situation."
-     Priority=46
-     HudColor=(G=50)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=8
-     GroupOffset=1
-     PickupClass=Class'BallisticProV55.RX22APickup'
-     PlayerViewOffset=(X=6.000000,Y=6.000000,Z=-8.000000)
-     AttachmentClass=Class'BallisticProV55.RX22AAttachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_RX22A'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="RX-22A Flamethrower"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticAnims2.RX22AFlamer'
-     DrawScale=0.300000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Texture'BallisticWeapons2.RX22A.RX22ASkin'
-     Skins(2)=Texture'BallisticWeapons2.RX22A.RX22AShield'
-     bFullVolume=True
-     SoundRadius=128.000000
+	FireModeClass(0)=Class'BallisticProV55.RX22APrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.RX22ASecondaryFire'
+	BringUpTime=1.200000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.9
+	CurrentRating=0.900000
+	Description="A very deadly weapon designed and constructed by the UTC�s Defence Research Wing, to combat the Cryons before the second Human-Skrith war. It proved highly effective, being unchallenged by both of the Skrith�s major allies, the Cryons and Krao. The RX22A proved to be an extrmely useful weapon, when clearing out Krao from many underground tunnels and facilities on the OutWorld planet. The weapon, now feared by Cryons. and especially Krao, is one of the most dangerous weapons a Terran soldier may possess. Despite its long range, searing flames and ability to litterally fill a small room with fire make it a very powerful weapon, it has a great disadvantage. The flames may just as easily incinerate the operator when used close up, and if the fuel tanks carried on the soldiers back, were to rupture and catch fire, the user may find themselves in a very unpleasant situation."
+	Priority=46
+	HudColor=(G=50)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=8
+	GroupOffset=1
+	PickupClass=Class'BallisticProV55.RX22APickup'
+	PlayerViewOffset=(X=6.000000,Y=6.000000,Z=-8.000000)
+	AttachmentClass=Class'BallisticProV55.RX22AAttachment'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_RX22A'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="RX-22A Flamethrower"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticAnims2.RX22AFlamer'
+	DrawScale=0.300000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Texture'BallisticWeapons2.RX22A.RX22ASkin'
+	Skins(2)=Texture'BallisticWeapons2.RX22A.RX22AShield'
+	bFullVolume=True
+	SoundRadius=128.000000
 }

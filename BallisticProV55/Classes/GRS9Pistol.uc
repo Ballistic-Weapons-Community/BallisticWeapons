@@ -539,10 +539,6 @@ defaultproperties
 	SightOffset=(X=-15.000000,Z=5.900000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-	SightAimFactor=2
-	SprintChaos=0.050000
-	AimAdjustTime=0.350000
-	ChaosDeclineTime=0.450000
 
 	Begin Object Class=RecoilParams Name=GRS9RecoilParams
 		ViewBindFactor=0.35
@@ -556,6 +552,14 @@ defaultproperties
 		HipMultiplier=1.5
 	End Object
 	RecoilParamsList(0)=RecoilParams'GRS9RecoilParams'
+
+	Begin Object Class=AimParams Name=GRS9AimParams
+		ADSMultiplier=2
+		SprintChaos=0.050000
+		AimAdjustTime=0.350000
+		ChaosDeclineTime=0.450000
+	End Object
+	AimParamsList(0)=AimParams'GRS9AimParams'
 	
 	FireModeClass(0)=Class'BallisticProV55.GRS9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.GRS9SecondaryFire'

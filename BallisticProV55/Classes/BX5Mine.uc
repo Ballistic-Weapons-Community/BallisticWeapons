@@ -277,60 +277,65 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
-	 InventorySize=35
-     SpringOnAnim="SecStart"
-     SpringOffAnim="SecFinish"
-     DeploySound=(Sound=Sound'BallisticSounds2.BX5.BX5-Deploy',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
-     OpenSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOn',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
-     CloseSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_BX5'
-     BigIconCoords=(Y1=24,Y2=240)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Hazardous=True
-     bWT_Splash=True
-     bWT_Trap=True
-     ManualLines(0)="Places a BX5 mine."
-     ManualLines(1)="Changes the mode of the mine. With the base extended outwards, the mine will spring off its base and explode in the air after a short delay. It will have a greater trigger radius in this mode. With the base not extended, the mine will explode immediately, but only upon direct contact."
-     ManualLines(2)="This weapon is no longer available due to its effectiveness being independent of skill and its primary usage being to trap places where it cannot be avoided."
-     SpecialInfo(0)=(Info="260.0;20.0;0.6;60.0;0.0;0.0;1.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.BX5.BX5-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.BX5.BX5-Putaway')
-     bNoMag=True
-     WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     bUseSights=False
-     GunLength=0.000000
-	 bAimDisabled=True
-	 Begin Object Class=RecoilParams Name=BX5RecoilParams
+	InventorySize=35
+	SpringOnAnim="SecStart"
+	SpringOffAnim="SecFinish"
+	DeploySound=(Sound=Sound'BallisticSounds2.BX5.BX5-Deploy',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
+	OpenSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOn',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
+	CloseSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_BX5'
+	BigIconCoords=(Y1=24,Y2=240)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Hazardous=True
+	bWT_Splash=True
+	bWT_Trap=True
+	ManualLines(0)="Places a BX5 mine."
+	ManualLines(1)="Changes the mode of the mine. With the base extended outwards, the mine will spring off its base and explode in the air after a short delay. It will have a greater trigger radius in this mode. With the base not extended, the mine will explode immediately, but only upon direct contact."
+	ManualLines(2)="This weapon is no longer available due to its effectiveness being independent of skill and its primary usage being to trap places where it cannot be avoided."
+	SpecialInfo(0)=(Info="260.0;20.0;0.6;60.0;0.0;0.0;1.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.BX5.BX5-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.BX5.BX5-Putaway')
+	bNoMag=True
+	WeaponModes(0)=(bUnavailable=True)
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bUseSights=False
+	GunLength=0.000000
+	bAimDisabled=True
+
+	Begin Object Class=RecoilParams Name=UniversalRecoilParams
 		PitchFactor=0.000000
 		YawFactor=0.000000
 	End Object
-	RecoilParamsList(0)=RecoilParams'BX5RecoilParams'
+	RecoilParamsList(0)=RecoilParams'UniversalRecoilParams'
 
-     FireModeClass(0)=Class'BallisticProV55.BX5PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.BX5SecondaryFire'
-     PutDownTime=0.700000
-     BringUpTime=0.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.300000
-     CurrentRating=0.300000
-     Description="Land mines have been around for centuries, changing little in their time. Used mainly for anti-vehicle use, the BX5 Mine is an efficient killer when used correctly. Mines can be easily hidden under dirt and leaves, and wait for unsuspecting vehicles to drive over them. The BX5 Switching Mine is a greatly modified version of the standard device with increased trigger sensitivity and the new jumping ability to make it an anti-infantry weapon. When approached, the device will spring from its unfolded base, and then explode, causing much harm to anyone unfortunate enough to be within its radius. As the Skrith did not know of such devices, the Terrans used them with great effectiveness against their oblivious troops and vehicles."
-     Priority=0
-     HudColor=(B=25,G=150,R=50)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=0
-     GroupOffset=21
-     PickupClass=Class'BallisticProV55.BX5Pickup'
-     PlayerViewOffset=(X=5.000000,Z=-6.000000)
-     AttachmentClass=Class'BallisticProV55.BX5Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_BX5'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="BX5-SM Land Mine"
-     Mesh=SkeletalMesh'BallisticAnims2.BX5'
-     DrawScale=0.100000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Texture'BallisticWeapons2.BX5.BX5Skin'
+	Begin Object Class=AimParams Name=UniversalAimParams
+	End Object
+	AimParamsList(0)=AimParams'UniversalAimParams'
+
+	FireModeClass(0)=Class'BallisticProV55.BX5PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.BX5SecondaryFire'
+	PutDownTime=0.700000
+	BringUpTime=0.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.300000
+	CurrentRating=0.300000
+	Description="Land mines have been around for centuries, changing little in their time. Used mainly for anti-vehicle use, the BX5 Mine is an efficient killer when used correctly. Mines can be easily hidden under dirt and leaves, and wait for unsuspecting vehicles to drive over them. The BX5 Switching Mine is a greatly modified version of the standard device with increased trigger sensitivity and the new jumping ability to make it an anti-infantry weapon. When approached, the device will spring from its unfolded base, and then explode, causing much harm to anyone unfortunate enough to be within its radius. As the Skrith did not know of such devices, the Terrans used them with great effectiveness against their oblivious troops and vehicles."
+	Priority=0
+	HudColor=(B=25,G=150,R=50)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=0
+	GroupOffset=21
+	PickupClass=Class'BallisticProV55.BX5Pickup'
+	PlayerViewOffset=(X=5.000000,Z=-6.000000)
+	AttachmentClass=Class'BallisticProV55.BX5Attachment'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_BX5'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="BX5-SM Land Mine"
+	Mesh=SkeletalMesh'BallisticAnims2.BX5'
+	DrawScale=0.100000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Texture'BallisticWeapons2.BX5.BX5Skin'
 }

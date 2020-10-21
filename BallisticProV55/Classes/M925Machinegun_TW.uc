@@ -263,16 +263,10 @@ defaultproperties
 	GunLength=0.000000
 	bUseSpecialAim=True
 
-	SightAimFactor=0.350000
 
-	SprintOffSet=(Pitch=-6000,Yaw=-8000)
+
 	WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
-	AimSpread=2
-	ViewAimFactor=1.000000
-	AimDamageThreshold=2000.000000
-	ChaosDeclineTime=0.320000
-	ChaosSpeedThreshold=850.000000
-	ChaosAimSpread=2
+
 
 	Begin Object Class=RecoilParams Name=M925_TWRecoilParams
 		HipMultiplier=1.000000
@@ -285,7 +279,17 @@ defaultproperties
 		DeclineTime=0.750000
 		DeclineDelay=0.400000
   	End Object
-  	RecoilParamsList(0)=RecoilParams'M925_TWRecoilParams'
+	RecoilParamsList(0)=RecoilParams'M925_TWRecoilParams'
+	  
+	Begin Object Class=AimParams Name=M925_TWAimParams
+		AimSpread=(Min=0,Max=2)
+		ViewBindFactor=1.000000
+		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		AimDamageThreshold=2000.000000
+		ChaosDeclineTime=0.320000
+		ChaosSpeedThreshold=850.000000
+	End Object
+	AimParamsList(0)=AimParams'M925_TWAimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.M925TW_PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'

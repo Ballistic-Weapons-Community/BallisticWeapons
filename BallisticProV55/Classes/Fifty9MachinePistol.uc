@@ -274,7 +274,7 @@ defaultproperties
 {
 	AIRating=0.85
 	CurrentRating=0.85
-	AimDisplacementDurationMult=0.5
+	DisplaceDurationMult=0.5
 	StockOpenAnim="StockOut"
 	StockCloseAnim="StockIn"
 	StockChaosAimSpread=2048
@@ -298,7 +298,6 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BallisticSounds2.UZI.UZI-ClipOut',Volume=0.700000)
 	ClipInSound=(Sound=Sound'BallisticSounds2.UZI.UZI-ClipIn',Volume=0.700000)
 	ClipInFrame=0.650000
-	bNotifyModeSwitch=True
 	CurrentWeaponMode=0
     WeaponModes(0)=(ModeName="Burst",ModeID="WM_Burst",Value=5.000000)
     WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)
@@ -309,9 +308,7 @@ defaultproperties
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
 	SightZoomFactor=0.85
-	SightAimFactor=2
-	SprintOffSet=(Pitch=-3000,Yaw=-4000)
-	AimAdjustTime=0.450000
+
 	
 	FireModeClass(0)=Class'BallisticProV55.Fifty9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.Fifty9SecondaryFire'
@@ -339,7 +336,7 @@ defaultproperties
 	Mesh=SkeletalMesh'BallisticProAnims.UZI'
 	DrawScale=0.300000
 	
-	Begin Object Class=RecoilParams Name=Fifty9BurstRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaBurstRecoilParams
 		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000
@@ -351,9 +348,9 @@ defaultproperties
 		ViewBindFactor=0.6
 		DeclineDelay=0.22
 	End Object
-	RecoilParamsList(0)=RecoilParams'Fifty9BurstRecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaBurstRecoilParams'
 	
-	Begin Object Class=RecoilParams Name=Fifty9AutoRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaAutoRecoilParams
 		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05000
@@ -365,5 +362,12 @@ defaultproperties
 		ViewBindFactor=0.2
 		DeclineDelay=0.09
 	End Object
-	RecoilParamsList(1)=RecoilParams'Fifty9AutoRecoilParams'
+	RecoilParamsList(1)=RecoilParams'ArenaAutoRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		ADSMultiplier=2
+		SprintOffset=(Pitch=-3000,Yaw=-4000)
+		AimAdjustTime=0.450000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 }

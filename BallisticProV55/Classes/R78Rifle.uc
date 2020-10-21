@@ -108,7 +108,6 @@ defaultproperties
      FullZoomFOV=20.000000
      bNoMeshInScope=True
      bNoCrosshairInScope=True
-	 SightAimFactor=0.25
      SightPivot=(Roll=-1024)
      SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
      SightingTime=0.550000
@@ -116,16 +115,8 @@ defaultproperties
      MaxZoom=16.000000
      ZoomStages=2
      GunLength=80.000000
-	 
 
-     SprintOffSet=(Pitch=-1000,Yaw=-2048)
-     AimAdjustTime=0.700000
-	 
-     AimSpread=16
-     ChaosSpeedThreshold=500.000000
-     ChaosAimSpread=512
-
-     Begin Object Class=RecoilParams Name=R78RecoilParams
+     Begin Object Class=RecoilParams Name=ArenaRecoilParams
           ViewBindFactor=0.2
           CrouchMultiplier=0.600000
           XCurve=(Points=(,(InVal=0.1,OutVal=0.12),(InVal=0.2,OutVal=0.16),(InVal=0.40000,OutVal=0.250000),(InVal=0.50000,OutVal=0.30000),(InVal=0.600000,OutVal=0.370000),(InVal=0.700000,OutVal=0.4),(InVal=0.800000,OutVal=0.50000),(InVal=1.000000,OutVal=0.55)))
@@ -134,7 +125,16 @@ defaultproperties
           DeclineDelay=1.25
           DeclineTime=1.000000
      End Object
-     RecoilParamsList(0)=RecoilParams'R78RecoilParams'
+     RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+     Begin Object Class=AimParams Name=ArenaAimParams
+          ADSMultiplier=0.25
+          SprintOffSet=(Pitch=-1000,Yaw=-2048)
+          AimAdjustTime=0.700000
+          AimSpread=(Min=64,Max=512)
+          ChaosSpeedThreshold=500.000000
+     End Object
+     AimParamsList(0)=AimParams'ArenaAimParams'
      
      FireModeClass(0)=Class'BallisticProV55.R78PrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'

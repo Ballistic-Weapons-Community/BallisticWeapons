@@ -402,8 +402,6 @@ defaultproperties
 	SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-	SightAimFactor=2
-	AimAdjustTime=0.450000
 
 	Begin Object Class=RecoilParams Name=MD24RecoilParams
 		ViewBindFactor=0.65
@@ -413,6 +411,12 @@ defaultproperties
 		DeclineDelay=0.220000
 	End Object
 	RecoilParamsList(0)=RecoilParams'MD24RecoilParams'
+
+	Begin Object Class=AimParams Name=MD24AimParams
+		ADSMultiplier=2
+		AimAdjustTime=0.450000
+	End Object
+	AimParamsList(0)=AimParams'MD24AimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.MD24PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'

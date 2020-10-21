@@ -43,7 +43,7 @@ defaultproperties
     CrouchMultiplier=0.800000
     ADSMultiplier=1.000000
 
-    ViewBindFactor=0.250000
+    ViewBindFactor=0.000000
 
     SprintChaos=0.100000
     AimDamageThreshold=100

@@ -355,12 +355,7 @@ defaultproperties
 	SightPivot=(Pitch=128)
 	SightingTime=0.350000
 	GunLength=48.000000
-	SightAimFactor=0.5
-	SprintOffSet=(Pitch=-1000,Yaw=-2048)
-	AimSpread=16
-	ChaosDeclineTime=0.750000
-	ChaosAimSpread=256
-	 
+
 	Begin Object Class=RecoilParams Name=M763RecoilParams
 		ViewBindFactor=0.45
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.10000),(InVal=0.350000,OutVal=0.13000),(InVal=0.550000,OutVal=0.230000),(InVal=0.800000,OutVal=0.35000),(InVal=1.000000,OutVal=0.45)))
@@ -371,7 +366,15 @@ defaultproperties
 		DeclineDelay=0.75
 	End Object
 	RecoilParamsList(0)=RecoilParams'M763RecoilParams'
-	 
+
+	Begin Object Class=AimParams Name=M763AimParams
+		ADSMultiplier=0.5
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		AimSpread=(Min=16,Max=256)
+		ChaosDeclineTime=0.750000
+	End Object
+	AimParamsList(0)=AimParams'M763AimParams'
+ 
 	FireModeClass(0)=Class'BallisticProV55.M763PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M763SecondaryFire'
 	AIRating=0.750000

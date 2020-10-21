@@ -486,7 +486,6 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-30.000000,Y=-0.400000,Z=14.500000)
 	SightingTime=0.200000
-	ChaosDeclineTime=0.450000
 	 
 	Begin Object Class=RecoilParams Name=D49RecoilParams
 		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.5,OutVal=0.03),(InVal=1,OutVal=0.07)))
@@ -498,6 +497,13 @@ defaultproperties
 		MaxRecoil=6144
 	End Object
 	RecoilParamsList(0)=RecoilParams'D49RecoilParams'
+
+	Begin Object Class=AimParams Name=D49AimParams
+		AimSpread=(Min=16,Max=378)
+		JumpChaos=0.750000
+		ChaosDeclineTime=0.450000
+	End Object
+	AimParamsList(0)=AimParams'D49AimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.D49PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.D49SecondaryFire'

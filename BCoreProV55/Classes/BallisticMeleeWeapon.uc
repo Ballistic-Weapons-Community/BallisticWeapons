@@ -292,6 +292,10 @@ defaultproperties
 	End Object
 	RecoilParamsList(0)=RecoilParams'MeleeRecoilParams'
 
+	Begin Object Class=AimParams Name=MeleeAimParams
+	End Object
+	AimParamsList(0)=AimParams'MeleeAimParams'
+
 	SightingTime=0.000000
 	FatigueDeclineTime=4.000000
 	FatigueDeclineDelay=0.750000

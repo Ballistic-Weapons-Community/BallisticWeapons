@@ -709,9 +709,9 @@ defaultproperties
 	LockOnTime=1.500000
 	LockOnSound=(Sound=Sound'BallisticSounds2.G5.G5-TargetOn',Volume=0.500000,Pitch=1.000000)
 	LockOffSound=(Sound=Sound'BallisticSounds2.G5.G5-TargetOff',Volume=0.500000,Pitch=1.000000)
-	LaserChaosAimSpread=256
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=4.000000
+	LaserAimSpread=(Min=0,Max=256)
 	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_G5'
 	BigIconCoords=(Y1=36,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -747,7 +747,6 @@ defaultproperties
 	MinZoom=4
 	MaxZoom=16
 	ZoomStages=2
-	SightAimFactor=0.4
 	ScopeXScale=1.333000
 	ZoomInAnim="ZoomIn"
 	ZoomOutAnim="ZoomOut"
@@ -759,18 +758,22 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 	SightingTime=0.500000
-	SprintOffSet=(Pitch=-6000,Yaw=-8000)
-	JumpOffSet=(Pitch=-6000,Yaw=-1500)
-	AimAdjustTime=1.000000
-	AimSpread=512
-	ChaosSpeedThreshold=1000.000000
-	ChaosAimSpread=2560
-	 
-	Begin Object Class=RecoilParams Name=G5RecoilParams
+
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
      	YawFactor=0.000000
      	DeclineTime=1.000000
 	End Object
-	RecoilParamsList(0)=RecoilParams'G5RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		ADSMultiplier=0.4
+		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		JumpOffset=(Pitch=-6000,Yaw=-1500)
+		AimAdjustTime=1.000000
+		AimSpread=(Min=512,Max=2560)
+		ChaosSpeedThreshold=1000.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.G5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.G5SecondaryFire'

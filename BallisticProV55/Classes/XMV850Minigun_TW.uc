@@ -160,11 +160,6 @@ defaultproperties
 	bUseSights=False
 	GunLength=0.000000
 	bUseSpecialAim=True
-	AimAdjustTime=1.000000
-	AimSpread=0
-	ChaosAimSpread=0
-	ViewAimFactor=1.000000
-	AimDamageThreshold=2000.000000
 	 
 	Begin Object Class=RecoilParams Name=XMV850_TWRecoilParams
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.03),(InVal=0.2,OutVal=-0.05),(InVal=0.3,OutVal=-0.07),(InVal=0.4,OutVal=0.0),(InVal=0.5,OutVal=0.1),(InVal=0.6,OutVal=0.18),(InVal=0.7,OutVal=0.05),(InVal=0.8,OutVal=0),(InVal=1,OutVal=0.000000)))
@@ -175,9 +170,18 @@ defaultproperties
 		DeclineTime=1.100000
 	End Object
 	RecoilParamsList(0)=RecoilParams'XMV850_TWRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		ViewBindFactor=1
+		SprintOffSet=(Pitch=-6000,Yaw=-8000)
+		JumpOffSet=(Pitch=-6000,Yaw=2000)
+		AimAdjustTime=1
+		AimSpread=(Min=0,Max=0)
+		ChaosSpeedThreshold=350.000000
+		AimDamageThreshold=2000.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	 
-
-
 	FireModeClass(0)=Class'BallisticProV55.XMV850TW_PrimaryFire'
 	WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
 	WeaponModes(1)=(bUnavailable=False)

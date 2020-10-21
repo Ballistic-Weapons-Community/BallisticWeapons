@@ -401,7 +401,7 @@ function float SuggestDefenseStyle()	{	return 1;	}
 
 defaultproperties
 {
-	AimDisplacementDurationMult=1.25
+	DisplaceDurationMult=1.25
 	BarrelSpinSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelSpinLoop'
 	BarrelStopSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStop'
 	BarrelStartSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStart'
@@ -439,20 +439,12 @@ defaultproperties
 	RotationSpeeds(2)=1.00  // 3600 RPM - 600 revolutions per minute x 6 shots
 
 	CurrentWeaponMode=0
-
+	
 	bShowChargingBar=True
 	SightPivot=(Pitch=700,Roll=2048)
 	SightOffset=(X=8.000000,Z=28.000000)
 	SightDisplayFOV=45.000000
 	SightingTime=0.80000
-
-	SprintOffSet=(Pitch=-6000,Yaw=-8000)
-	JumpOffSet=(Pitch=-6000,Yaw=2000)
-	AimAdjustTime=0.500000
-
-	AimSpread=256
-	ChaosSpeedThreshold=350.000000
-	ChaosAimSpread=1024
 	 
 	Begin Object Class=RecoilParams Name=XMV850RecoilParams
 		ViewBindFactor=0.1
@@ -465,6 +457,15 @@ defaultproperties
 		DeclineTime=2.500000
 	End Object
 	RecoilParamsList(0)=RecoilParams'XMV850RecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		SprintOffSet=(Pitch=-6000,Yaw=-8000)
+		JumpOffSet=(Pitch=-6000,Yaw=2000)
+		AimAdjustTime=0.500000
+		AimSpread=(Min=256,Max=1024)
+		ChaosSpeedThreshold=350.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	InventorySize=12
 

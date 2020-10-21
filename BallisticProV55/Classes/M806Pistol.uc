@@ -365,8 +365,6 @@ defaultproperties
 	SightOffset=(X=7.000000,Y=0.01,Z=3.600000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-	AimAdjustTime=0.450000
-	ChaosDeclineTime=0.320000
 
 	Begin Object Class=RecoilParams Name=M806RecoilParams
 		ViewBindFactor=0.4
@@ -376,6 +374,12 @@ defaultproperties
 		DeclineDelay=0.37000
 	End Object
 	RecoilParamsList(0)=RecoilParams'M806RecoilParams'
+
+	Begin Object Class=AimParams Name=M806AimParams
+		AimAdjustTime=0.450000
+		ChaosDeclineTime=0.320000
+	End Object
+	AimParamsList(0)=AimParams'M806AimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.M806PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M806SecondaryFire'

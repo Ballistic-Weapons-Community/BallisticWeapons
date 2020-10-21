@@ -532,21 +532,25 @@ defaultproperties
 	CurrentWeaponMode=0
 	SightOffset=(X=-30.000000,Y=-10.000000,Z=15.000000)
 	SightDisplayFOV=50.000000
-	SightAimFactor=0.25
+
 	SightingTime=0.65
 	LongGunOffset=(X=8.000000,Y=-5.000000,Z=-3.000000)
-	SprintOffSet=(Pitch=-7000,Yaw=-3000)
-	OffsetAdjustTime=0.600000
-	AimSpread=12
-	ChaosDeclineTime=0.320000
-	ChaosSpeedThreshold=500.000000
-	ChaosAimSpread=2048
 	 
-	Begin Object Class=RecoilParams Name=MRLRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		XRandFactor=0.000000
 		YRandFactor=0.000000
  	End Object
- 	RecoilParamsList(0)=RecoilParams'MRLRecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+	 
+	Begin Object Class=AimParams Name=ArenaAimParams
+		ADSMultiplier=0.25
+		SprintOffSet=(Pitch=-7000,Yaw=-3000)
+		OffsetAdjustTime=0.600000
+		AimSpread=(Min=128,Max=2048)
+		ChaosDeclineTime=0.320000
+		ChaosSpeedThreshold=500.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.MRLPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.MRLSecondaryFire'

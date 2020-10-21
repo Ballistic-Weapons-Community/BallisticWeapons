@@ -85,7 +85,7 @@ function ServerSwitchLaser(bool bNewLaserOn)
 simulated function ClientSwitchLaser()
 {		
 	OnLaserSwitched();
-	
+
 	if (bLaserOn)
 	{
 		SpawnLaserDot();
@@ -389,7 +389,7 @@ defaultproperties
 	bSilenced=True
 	AIRating=0.85
 	CurrentRating=0.85
-	AimDisplacementDurationMult=0.5
+	DisplaceDurationMult=0.5
 	SilencerBone="Silencer"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"
@@ -428,12 +428,7 @@ defaultproperties
 	SightingTime=0.200000
 	SightZoomFactor=0.85
 
-	SprintOffSet=(Pitch=-3000,Yaw=-4000)
-	AimAdjustTime=0.450000
-	
-	SightAimFactor=2
-
-	Begin Object Class=RecoilParams Name=XRS10RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.6
 		HipMultiplier=1
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.05),(InVal=0.400000,OutVal=0.10000),(InVal=0.5500000,OutVal=0.120000),(InVal=0.800000,OutVal=0.15000),(InVal=1.000000,OutVal=0.100000)))
@@ -444,7 +439,14 @@ defaultproperties
 		DeclineTime=0.5
 		DeclineDelay=0.2
 	End Object
-	RecoilParamsList(0)=RecoilParams'XRS10RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		SprintOffSet=(Pitch=-3000,Yaw=-4000)
+		AimAdjustTime=0.450000
+		ADSMultiplier=2
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	
 	FireModeClass(0)=Class'BallisticProV55.XRS10PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XRS10SecondaryFire'

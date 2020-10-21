@@ -256,13 +256,8 @@ defaultproperties
 	SightOffset=(X=16.000000,Z=10.460000)
 	SightDisplayFOV=25.000000
 	GunLength=72.000000
-	SprintOffSet=(Pitch=-3000,Yaw=-4000)
 	
-	AimSpread=16
-	ChaosDeclineTime=0.75
-	ChaosAimSpread=192
-	
-	Begin Object Class=RecoilParams Name=SRS600RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.25
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.30000),(InVal=0.800000,OutVal=0.40000),(InVal=1.000000,OutVal=0.60000)))
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
@@ -271,7 +266,14 @@ defaultproperties
 		DeclineTime=1.00000
 		DeclineDelay=0.400000
 	End Object
-	RecoilParamsList(0)=RecoilParams'SRS600RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		SprintOffset=(Pitch=-3000,Yaw=-4000)
+		AimSpread=(Min=16,Max=192)
+		ChaosDeclineTime=0.75
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.SRS600PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'

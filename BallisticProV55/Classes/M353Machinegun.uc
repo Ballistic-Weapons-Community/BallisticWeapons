@@ -279,13 +279,8 @@ defaultproperties
 	SightPivot=(Pitch=128)
 	SightOffset=(X=-6.000000,Z=5.30000)
 	SightingTime=0.550000
-	SightAimFactor=0.5
-	SprintOffSet=(Pitch=-6000,Yaw=-8000)
-	AimSpread=128
-	ChaosAimSpread=1024
-	JumpOffSet=(Pitch=-4000,Yaw=3000)
-	ChaosDeclineTime=1.600000
-	 
+
+
 	Begin Object Class=RecoilParams Name=M353RecoilParams
 		HipMultiplier=1.5
 		ViewBindFactor=0.500000
@@ -298,6 +293,15 @@ defaultproperties
 		DeclineDelay=0.150000
 	End Object
 	RecoilParamsList(0)=RecoilParams'M353RecoilParams'
+
+	Begin Object Class=AimParams Name=M353AimParams
+		ADSMultiplier=0.5
+		AimSpread=(Min=128,Max=1024)
+		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		JumpOffset=(Pitch=-4000,Yaw=3000)
+		ChaosDeclineTime=1.600000
+	End Object
+	AimParamsList(0)=AimParams'M353AimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.M353PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M353SecondaryFire'

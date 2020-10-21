@@ -67,7 +67,6 @@ function float GetAIRating()
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
     local vector HitNormal;
-    local float DF;
 
 	if( DamageType.default.bCausedByWorld || HitLocation.Z < Instigator.Location.Z - 22)
         super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
@@ -237,10 +236,6 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(ModeName="Place")
 	GunLength=0.000000
-	AimSpread=0
-	AimDamageThreshold=25.000000
-	ChaosSpeedThreshold=3000.000000
-	ChaosAimSpread=0
 	FireModeClass(0)=Class'BallisticProV55.SandbagFire'
 	FireModeClass(1)=Class'BallisticProV55.SandbagFire'
 	PutDownTime=0.900000
@@ -256,6 +251,10 @@ defaultproperties
 		YawFactor=0.000000
 	End Object
 	RecoilParamsList(0)=RecoilParams'SandbagRecoilParams'
+
+	Begin Object Class=AimParams Name=SandbagAimParams
+	End Object
+	AimParamsList(0)=AimParams'SandbagAimParams'
 
 	Description="Generic sandbags, as used in militaries for decades. Useful for laying temporary cover. Can be used as a base for most deployed weapons, reducing the chance of the user being directly hit by attacks. May be picked up with the Use key when no other players are near them. Vulnerable to destruction if hit by high-powered weaponry."
 	DisplayFOV=65.000000

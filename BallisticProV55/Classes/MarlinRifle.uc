@@ -258,14 +258,7 @@ defaultproperties
 	SightOffset=(X=4.000000,Y=-0.070000,Z=4.750000)
 	SightingTime=0.400000
 
-	SprintOffSet=(Pitch=-1000,Yaw=-2048)
-	JumpChaos=0.200000
-	FallingChaos=0.100000
-	SprintChaos=0.200000
-	
-	ChaosDeclineTime=1.000000
-	 
-	Begin Object Class=RecoilParams Name=MarlinRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.5
 		CrouchMultiplier=0.750000
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.400000,OutVal=0.10000),(InVal=0.600000,OutVal=0.25000),(InVal=0.800000,OutVal=0.33000),(InVal=1.000000)))
@@ -273,7 +266,16 @@ defaultproperties
 		DeclineTime=1.000000
 		DeclineDelay=0.800000
 	End Object
-	RecoilParamsList(0)=RecoilParams'MarlinRecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpChaos=0.200000
+		FallingChaos=0.100000
+		SprintChaos=0.200000
+		ChaosDeclineTime=1.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	 
 	FireModeClass(0)=Class'BallisticProV55.MarlinPrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'

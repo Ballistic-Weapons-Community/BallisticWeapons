@@ -96,17 +96,14 @@ defaultproperties
 	AIRating=0.8
 	CurrentRating=0.8
 	AIReloadTime=1.500000
-	AimAdjustTime=0.450000
-	AimDisplacementDurationMult=0.75
-	AimSpread=16
+
+	DisplaceDurationMult=0.75
 	AttachmentClass=Class'BallisticProV55.AM67Attachment'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_AM67'
 	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
 	BringUpTime=0.900000
-	SightAimFactor=1
-	ChaosDeclineTime=0.450000
-	ChaosSpeedThreshold=500.000000
+
 	ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
 	ClipInFrame=0.650000
 	ClipInSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipIn')
@@ -126,7 +123,7 @@ defaultproperties
 	InventorySize=12
 	InventoryGroup=3
 	ItemName="AM67 Assault Pistol"
-	JumpChaos=0.200000
+
 	LightBrightness=150.000000
 	LightEffect=LE_NonIncidence
 	LightHue=30
@@ -157,6 +154,16 @@ defaultproperties
 		YRandFactor=0.10000
 	End Object
 	RecoilParamsList(0)=RecoilParams'AM67RecoilParams'
+
+	Begin Object Class=AimParams Name=AM67AimParams
+		AimSpread=(Min=16,Max=128)
+		AimAdjustTime=0.450000
+		ADSMultiplier=1
+		JumpChaos=0.200000
+		ChaosDeclineTime=0.450000
+		ChaosSpeedThreshold=500.000000
+	End Object
+	AimParamsList(0)=AimParams'AM67AimParams'
 
 	ReloadAnimRate=1.250000
 	SelectForce="SwitchToAssaultRifle"

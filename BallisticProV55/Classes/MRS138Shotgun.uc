@@ -432,7 +432,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	StartShovelAnimRate=1.400000
 	StartShovelAnim="PrepReload"
-	SprintOffSet=(Pitch=-1000,Yaw=-2048)
+
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;40.0;0.0;1.0;-999.0")
 	Skins(3)=Texture'BWAddPack-RS-Skins.MRS138.MRS138Shell'
 	Skins(2)=Shader'BWAddPack-RS-Skins.MRS138.MRS138HeatShiney'
@@ -442,7 +442,7 @@ defaultproperties
 	SightOffset=(X=15,Z=21.500000)
 	SightPivot=(Pitch=256)
 	SightDisplayFOV=40
-	SightAimFactor=1
+
 	ReloadAnimRate=1.500000
 	ReloadAnim="ReloadLoop"
 
@@ -456,7 +456,16 @@ defaultproperties
 		DeclineTime=0.5
 		HipMultiplier=1
     End Object
-    RecoilParamsList(0)=RecoilParams'MRS138RecoilParams'
+	RecoilParamsList(0)=RecoilParams'MRS138RecoilParams'
+	
+	Begin Object Class=AimParams Name=MRS138AimParams
+		ADSMultiplier=1
+		ChaosSpeedThreshold=1200.000000
+		ChaosDeclineTime=0.750000
+		AimSpread=(Min=0,Max=0)
+		SprintOffset=(Pitch=-1000,Yaw=-2048)
+	End Object
+	AimParamsList(0)=AimParams'MRS138AimParams'
 
 	PutDownTime=0.35
 	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
@@ -498,14 +507,10 @@ defaultproperties
 	CockAnimRate=1.200000
 	ClipInSound=(Sound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-ShellIn')
 	ClipInFrame=0.375000
-	ChaosSpeedThreshold=1200.000000
-	ChaosDeclineTime=0.750000
-	ChaosAimSpread=0
 	BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
 	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_MRS138'
 	BigIconCoords=(Y1=36,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	AttachmentClass=Class'BallisticProV55.MRS138Attachment'
-	AimSpread=0
 	AIRating=0.800000
 }

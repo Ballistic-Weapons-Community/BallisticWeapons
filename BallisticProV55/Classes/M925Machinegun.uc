@@ -224,7 +224,7 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
-	AimDisplacementDurationMult=1.25
+	DisplaceDurationMult=1.25
 	BeltLength=8
 	BoxOnSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOn')
 	BoxOffSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOff')
@@ -267,15 +267,6 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	SightingTime=0.700000
 
-	SightAimFactor=0.40000
-	SprintOffSet=(Pitch=-6000,Yaw=-8000)
-	JumpOffSet=(Pitch=-6000,Yaw=-4000)
-	AimAdjustTime=0.400000
-	AimSpread=384
-
-	ChaosDeclineTime=1.750000
-	ChaosAimSpread=1280
-
 	Begin Object Class=RecoilParams Name=M925RecoilParams
 		ViewBindFactor=0.250000
 		CrouchMultiplier=0.700000
@@ -288,6 +279,16 @@ defaultproperties
 		DeclineDelay=0.40000
 	End Object
 	RecoilParamsList(0)=RecoilParams'M925RecoilParams'
+
+	Begin Object Class=AimParams Name=M925AimParams
+		AimSpread=(Min=384,Max=1280)
+		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		JumpOffset=(Pitch=-6000,Yaw=-4000)
+		ADSMultiplier=0.40000
+		AimAdjustTime=0.400000
+		ChaosDeclineTime=1.750000
+	End Object
+	AimParamsList(0)=AimParams'M925AimParams'
 	
 	FireModeClass(0)=Class'BallisticProV55.M925PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'

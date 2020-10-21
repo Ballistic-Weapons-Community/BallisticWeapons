@@ -275,16 +275,10 @@ defaultproperties
 	SightOffset=(X=-4.000000,Z=5.200000)
 	GunLength=0.000000
 	bUseSpecialAim=True
-	SightAimFactor=0.300000
 
-	SprintOffSet=(Pitch=-6000,Yaw=-8000)
-	AimAdjustTime=0.800000
-	AimSpread=0
-	ViewAimFactor=1.000000
-	AimDamageThreshold=2000.000000
-	ChaosDeclineTime=0.320000
-	ChaosSpeedThreshold=3000.000000
-	ChaosAimSpread=0
+
+
+
 	
 	Begin Object Class=RecoilParams Name=M353_TWRecoilParams
 	 	HipMultiplier=1.000000
@@ -296,7 +290,19 @@ defaultproperties
 		DeclineTime=0.500000
 		DeclineDelay=0.150000
 	End Object
- 	RecoilParamsList(0)=RecoilParams'M353_TWRecoilParams'
+	 RecoilParamsList(0)=RecoilParams'M353_TWRecoilParams'
+	 
+	Begin Object Class=AimParams Name=M353_TWAimParams
+		ADSMultiplier=0.300000
+		AimAdjustTime=0.800000
+		AimSpread=(Min=0,Max=0)
+		SprintOffSet=(Pitch=-6000,Yaw=-8000)
+		ViewBindFactor=1.000000
+		AimDamageThreshold=2000.000000
+		ChaosDeclineTime=0.320000
+		ChaosSpeedThreshold=3000.000000
+	End Object
+	AimParamsList(0)=AimParams'M353_TWAimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.M353TW_PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M353SecondaryFire'

@@ -545,16 +545,9 @@ defaultproperties
 	 
      GunLength=16.000000
 	 
-     SightAimFactor=0.200000
-     SprintOffSet=(Pitch=-3000,Yaw=-4000)
-     AimAdjustTime=0.300000
+
 	 
-     AimSpread=12
-     ChaosDeclineTime=0.5
-     ChaosSpeedThreshold=15000.000000
-	 ChaosAimSpread=768
-	 
-	Begin Object Class=RecoilParams Name=SARAutoRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaAutoRecoilParams
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 	   	XRandFactor=0.05
@@ -564,9 +557,9 @@ defaultproperties
 		CrouchMultiplier=0.75
 		DeclineDelay=0.14
 	End Object
-	RecoilParamsList(0)=RecoilParams'SARAutoRecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaAutoRecoilParams'
 
-	Begin Object Class=RecoilParams Name=SARBurstRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaBurstRecoilParams
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 	   	XRandFactor=0.05
@@ -576,7 +569,17 @@ defaultproperties
 		CrouchMultiplier=1
 		DeclineDelay=0.14
 	End Object
-	RecoilParamsList(1)=RecoilParams'SARBurstRecoilParams'
+	RecoilParamsList(1)=RecoilParams'ArenaBurstRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		ADSMultiplier=0.200000
+		SprintOffset=(Pitch=-3000,Yaw=-4000)
+		AimAdjustTime=0.300000
+		AimSpread=(Min=12,Max=768)
+		ChaosDeclineTime=0.5
+		ChaosSpeedThreshold=15000.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	  
 	FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.SARFlashFire'

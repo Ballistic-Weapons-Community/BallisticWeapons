@@ -171,7 +171,7 @@ simulated function ApplySuppressorAim()
 	AimComponent.AimSpread.Min *= 1.25;
 	AimComponent.AimSpread.Max *= 1.25;
 }
-	
+
 simulated function Notify_SilencerOn()	{	PlaySound(SilencerOnSound,,0.5);	}
 simulated function Notify_SilencerOff()	{	PlaySound(SilencerOffSound,,0.5);	}
 
@@ -470,12 +470,6 @@ defaultproperties
 	MaxZoom=8.000000
 	ZoomStages=2
 	GunLength=72.000000
-	SightAimFactor=2
-	SprintOffSet=(Pitch=-3000,Yaw=-4000)
-
-	AimSpread=16
-	ChaosDeclineTime=0.75
-	ChaosAimSpread=192
 	 
 	Begin Object Class=RecoilParams Name=SRS900RecoilParams
 		ViewBindFactor=0.25

@@ -687,19 +687,22 @@ defaultproperties
 	SightPivot=(Pitch=1024)
 	SightOffset=(X=-12.000000,Z=26.000000)
 	SightDisplayFOV=40.000000
-	SprintOffSet=(Pitch=-500,Yaw=-1024)
 	InventorySize=35
-	AimAdjustTime=0.400000
-	AimSpread=2
-	ChaosSpeedThreshold=600.000000
-	ChaosAimSpread=2
-	 
-	Begin Object Class=RecoilParams Name=HVCMk9RecoilParams
+
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		XRandFactor=0.200000
 		YRandFactor=0.200000
 		DeclineTime=1.000000
 	End Object
-	RecoilParamsList(0)=RecoilParams'HVCMk9RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		SprintOffset=(Pitch=-500,Yaw=-1024)
+		AimAdjustTime=0.400000
+		AimSpread=(Min=2,Max=2)
+		ChaosSpeedThreshold=600.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BallisticProV55.HVCMk9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.HVCMk9SecondaryFire'

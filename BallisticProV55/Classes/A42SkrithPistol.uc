@@ -252,9 +252,6 @@ defaultproperties
 	SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 	SightDisplayFOV=40.000000
 	SightingTime=0.200000
-	AimSpread=64
-	ChaosDeclineTime=0.450000
-	SightAimFactor=2 
 	FireModeClass(0)=Class'BallisticProV55.A42PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A42SecondaryFire'
 	BringUpTime=0.500000
@@ -298,4 +295,11 @@ defaultproperties
 		HipMultiplier=1.5
 	End Object
 	RecoilParamsList(0)=RecoilParams'A42RecoilParams'
+
+	Begin Object Class=AimParams Name=A42AimParams
+		AimSpread=(Min=64,Max=128)
+		ChaosDeclineTime=0.450000
+		ADSMultiplier=2 
+	End Object
+	AimParamsList(0)=AimParams'A42AimParams'
 }

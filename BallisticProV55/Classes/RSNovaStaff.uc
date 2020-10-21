@@ -715,22 +715,18 @@ defaultproperties
      ClipInSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalIn',Volume=0.700000)
      ClipInFrame=0.700000
      WeaponModes(0)=(ModeName="Slow Bolt",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1)
-     WeaponModes(2)=(ModeName="Lightning",RecoilParamsIndex=1)
+     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1,AimParamsIndex=1)
+     WeaponModes(2)=(ModeName="Lightning",RecoilParamsIndex=1,AimParamsIndex=1)
      WeaponModes(3)=(ModeName="Thunder Strike",ModeID="WM_FullAuto")
      WeaponModes(4)=(ModeName="Chain Lightning",ModeID="WM_FullAuto",bUnavailable=True)
      CurrentWeaponMode=0
-     bNotifyModeSwitch=True
      SightPivot=(Pitch=512)
      SightOffset=(X=-60.000000,Z=15.000000)
      SightDisplayFOV=40.000000
      SightingTime=0.300000
      GunLength=128.000000
-     SprintOffSet=(Pitch=-1024,Yaw=-1024)
-     AimAdjustTime=0.700000
-	 ChaosDeclineTime=1.250000
-	 
-	 Begin Object Class=RecoilParams Name=NovaBoltRecoilParams
+ 
+	 Begin Object Class=RecoilParams Name=ArenaBoltRecoilParams
      	XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
      	YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.8
@@ -739,9 +735,9 @@ defaultproperties
 		ViewBindFactor=0.4
 		DeclineDelay=0.8
 	End Object
-	RecoilParamsList(0)=RecoilParams'NovaBoltRecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaBoltRecoilParams'
 
-	Begin Object Class=RecoilParams Name=NovaFastRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaFastRecoilParams
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 	    XRandFactor=0.05
@@ -750,7 +746,20 @@ defaultproperties
 		ViewBindFactor=0.4
 		DeclineDelay=0.25
 	End Object
-	RecoilParamsList(1)=RecoilParams'NovaFastRecoilParams'
+	RecoilParamsList(1)=RecoilParams'ArenaFastRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaBoltAimParams
+		AimSpread=(Min=64,Max=1024)
+		SprintOffSet=(Pitch=-1024,Yaw=-1024)
+		ChaosDeclineTime=1.250000
+	End Object
+	AimParamsList(0)=AimParams'ArenaBoltAimParams'
+
+	Begin Object Class=AimParams Name=ArenaFastAimParams
+		SprintOffSet=(Pitch=-1024,Yaw=-1024)
+		ChaosDeclineTime=1.250000
+	End Object
+	AimParamsList(1)=AimParams'ArenaFastAimParams'
 	 
 	FireModeClass(0)=Class'BallisticProV55.RSNovaPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RSNovaMeleeFire'
