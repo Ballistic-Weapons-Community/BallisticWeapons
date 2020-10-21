@@ -4,25 +4,39 @@
 // Represents the recoil system component of a Ballistic Weapon.
 //
 // by Azarael 2020
-// adapting code written by DarkCarnivour
+// adapting code written by DarkCarnivour, whose comments are below:
+//
+// Recoil is added each shot and declines each tick(). Recoil is seperate from the base aim and makes the weapon inaccurate
+// from firing. Crouching reduces the rate of increase of recoil. How recoil affects the weapon depends on 3 factors:
+// Recoil Path Curves:
+// 		Yaw and Pitch are applied to the gun through two curves that give the Yaw and Pitch value depending
+// 		the amount of recoil. These curves can be altered to steer the gun along winding, curved paths when recoil is applied.
+//		At (In=0,Out=0),(In=1,Out=1) these will do nothing and the Scaling Factors will set a straight recoil path.
+// Recoil Scaling:
+//		RecoilYawFactor and RecoilPitchFactor * Recoil add Yaw and Pitch to the gun. At 1.0, these do nothing and the curves
+//		set how the gun moves with recoil. These can be set to give general scaling to the curves.
+// Recoil Randomness:
+//		RecoilRand(X and Y) * Recoil add Yaw and Pitch randomness to the gun.
 //=============================================================================
 class RecoilComponent extends Object;
 
-// Parameters set externally - MUST BE CLEANED UP
-
-// Weapon
+//=============================================================================
+// ACTOR/OBJECT REFERENCES
+//
+// MUST BE CLEANED UP FROM THE WEAPON CODE
+//=============================================================================
 var BallisticWeapon				Weapon;
 var LevelInfo					Level;
 var Pawn						Instigator;
-
-// System parameters
 var RecoilParams				Params;
 
 // UnrealScript's shitty object handling necessitates copying most of the RecoilParams fields we might want to modify
 // and exposing them as public so that we can apply modifiers from the weapon
 //
 // The nice modifier-based / delegate-based solution to this crashes for no good reason, so whatever :) :) :) :) :) :)
-
+//=============================================================================
+// MUTABLES
+//=============================================================================
 var float						PitchFactor;					// Recoil is multiplied by this and added to Aim Pitch.
 var float						YawFactor;						// Recoil is multiplied by this and added to Aim Yaw.
 var float						XRandFactor;					// Recoil multiplied by this for recoil Yaw randomness
@@ -34,7 +48,9 @@ var float						DeclineDelay;					// The time between firing and when recoil shou
 var float             			HipMultiplier;            		// Hipfire recoil is scaled up by this value
 var float             			CrouchMultiplier;         		// Crouch recoil is scaled by this value
 
-// Parameters set internally
+//=============================================================================
+// STATE
+//=============================================================================
 var private float               Recoil;						    // The current recoil amount. Increases each shot, decreases when not firing
 var private float               XRand;				            // Random between 0 and 1. Recorded random number for recoil Yaw randomness
 var private float               YRand;				            // Random between 0 and 1. Recorded random number for recoil Pitch randomness
@@ -128,10 +144,10 @@ final simulated function Recalculate()
 	Weapon.OnRecoilParamsChanged();
 }
 
-final simulated function Tick(float DeltaTime)
+final simulated function UpdateRecoil(float dt)
 {
 	if (Recoil > 0 && !HoldingRecoil())
-		Recoil -= FMin(Recoil, MaxRecoil * (DeltaTime / DeclineTime));
+		Recoil -= FMin(Recoil, MaxRecoil * (dt / DeclineTime));
 }
 
 final simulated function AddRecoil (float Amount, optional byte Mode)
@@ -180,12 +196,12 @@ final simulated function UpdateADSTransition(float delta)
     ViewBindFactor = Smerp(delta, Params.ViewBindFactor, 1);
 }
 
-final simulated function OnADSStart()
+final simulated function OnADSViewStart()
 {
     ViewBindFactor = 1.0;
 }
 
-final simulated function OnADSEnd()
+final simulated function OnADSViewEnd()
 {
     // BallisticWeapon's PositionSights will handle this for clients
     if (Level.NetMode == NM_DedicatedServer)
@@ -202,7 +218,7 @@ final simulated function Rotator GetViewPivot()
     return GetRecoilPivot(true) * ViewBindFactor;
 }
 
-final simulated function Rotator GetViewPivotDelta()
+final simulated function Rotator CalcViewPivotDelta()
 {
     local Rotator CurViewPivot, DeltaPivot;
 
@@ -263,10 +279,18 @@ final function bool BotShouldFire(float Dist)
 //=============================================================
 // Replication
 //=============================================================
-final simulated function UpdateRecoil(byte NetXRand, byte NetYRand, float NetRecoil)
+final simulated function ReceiveNetRecoil(byte NetXRand, byte NetYRand, float NetRecoil)
 {
 	XRand = float(NetXRand)/255;
 	YRand = float(NetYRand)/255;
 	Recoil = NetRecoil;
 	bForceUpdate=True;
+}
+
+//=============================================================
+// Debug
+//=============================================================
+final simulated function DrawDebug(Canvas Canvas)
+{
+    Canvas.DrawText("RecoilComponent: Recoil: "$Recoil$", MaxRecoil: "$MaxRecoil);
 }
