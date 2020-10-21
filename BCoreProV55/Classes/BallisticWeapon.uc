@@ -512,6 +512,8 @@ private simulated function CreateAimComponent()
 	AimComponent.Instigator = Instigator;
 	AimComponent.Level = Level;
 	AimComponent.GunLength = GunLength;
+	AimComponent.LongGunPivot = LongGunPivot;
+	AimComponent.LongGunOffset = LongGunOffset;
 	AimComponent.DisplaceDurationMult = DisplaceDurationMult;
 	AimComponent.Params = AimParamsList[WeaponModes[CurrentWeaponMode].AimParamsIndex];
 	AimComponent.Recalculate();
@@ -3968,9 +3970,10 @@ simulated function ClientJumped()
 //
 // Mostly moved to RecoilComponent
 //====================================================================================
-simulated function AddRecoil(float Amount, optional byte Mode)
+simulated function AddRecoil(float Recoil, float FireChaos, optional byte Mode)
 {
-	RcComponent.AddRecoil(Amount, Mode);
+	RcComponent.AddRecoil(Recoil, Mode);
+	AimComponent.AddFireChaos(FireChaos);
 
 	if (ROLE == ROLE_Authority && bUseNetAim)
 		SendNetRecoil();
@@ -4145,7 +4148,7 @@ simulated function DrawCrosshairs(canvas C)
 	LongBound= 10;
 	
 	if (!bScopeView)
-		OffsetAdjustment = AimComponent.CalcCrosshairOffset();
+		OffsetAdjustment = AimComponent.CalcCrosshairOffset(C);
 	
 	//black
 	//hor
@@ -4576,21 +4579,6 @@ defaultproperties
      LongGunPivot=(Pitch=-4000,Yaw=-12000)
      LongGunOffset=(X=5.000000,Y=10.000000,Z=-11.000000)
      bUseNetAim=True
-     CrouchAimFactor=0.800000
-     SightAimFactor=1
-
-     SprintChaos=0.100000
-     AimAdjustTime=0.500000
-     OffsetAdjustTime=0.300000
-	 
-     AimSpread=16
-
-     AimDamageThreshold=100.000000
-     ChaosDeclineTime=0.640000
-     ChaosSpeedThreshold=500.000000
-     ChaosAimSpread=128
-	 
-
 	 
      SelectAnim="Pullout"
      PutDownAnim="putaway"

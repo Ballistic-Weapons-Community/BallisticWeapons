@@ -51,37 +51,37 @@ class BallisticHandgun extends BallisticWeapon
 	abstract;
 
 // General vars
-var   BallisticHandgun	OtherGun;			// The other Handgun. The gun in the other hand
-var   bool				bIsMaster;			// Is this the master
-var   BallisticHandgun	PendingHandgun;		// The slave that wil be brought up when the master is ready
-var   bool				bIsPendingHandGun;	// This gun is a handgun about to be used as the slave
-var   name				SupportHandBone;	// Bone used to hide/show extra hand for reloading and other two hand anims
-var   BallisticHandgun	LastSlave;			// Last slave this gun had
-var   float				LastMasterTime;		// Time when gun last had slave
-var   bool				bSlavePutDown;		// True on slave when its being putdown. Used to let it know to not do normal putdonw
+var   BallisticHandgun	OtherGun;				// The other Handgun. The gun in the other hand
+var   bool				bIsMaster;				// Is this the master
+var   BallisticHandgun	PendingHandgun;			// The slave that wil be brought up when the master is ready
+var   bool				bIsPendingHandGun;		// This gun is a handgun about to be used as the slave
+var   name				SupportHandBone;		// Bone used to hide/show extra hand for reloading and other two hand anims
+var   BallisticHandgun	LastSlave;				// Last slave this gun had
+var   float				LastMasterTime;			// Time when gun last had slave
+var   bool				bSlavePutDown;			// True on slave when its being putdown. Used to let it know to not do normal putdonw
 var()	bool			bShouldDualInLoadout; 	//True for a gunclass which should be dual wielded in Loadout gts
 var	float				CreationTime;
 
 // Autotracking vars
-var   Pawn				Target;				// The guy getting tracked by our gun
-var   Rotator			TrackerAim;			// Offset from ViewRotation where the tracking gun is aimed
-var   float				TrackSpeed;			// How fast the tracking gun can move (Rotator Units per Second)
-var   bool				bIsAutoTracking;	// Can and is tracking. This tells client to track as well.
-var   bool				bAutoTrack;			// Track key is down. Try tracking if we can
+var   Pawn				Target;					// The guy getting tracked by our gun
+var   Rotator			TrackerAim;				// Offset from ViewRotation where the tracking gun is aimed
+var   float				TrackSpeed;				// How fast the tracking gun can move (Rotator Units per Second)
+var   bool				bIsAutoTracking;		// Can and is tracking. This tells client to track as well.
+var   bool				bAutoTrack;				// Track key is down. Try tracking if we can
 
-var   byte				HandgunGroup;		// Grouping used for firing styles. Similar HGs should be the same, e.g. M806/9mm/RS8/Pistols, Magnum/DesertEagle, Uzi/XK2/XRS10/MPs
-var() float				SingleHeldRate;		// Time between shots when a fire style allows semi-auto gun to fire continuously while fire key is held
+var   byte				HandgunGroup;			// Grouping used for firing styles. Similar HGs should be the same, e.g. M806/9mm/RS8/Pistols, Magnum/DesertEagle, Uzi/XK2/XRS10/MPs
+var() float				SingleHeldRate;			// Time between shots when a fire style allows semi-auto gun to fire continuously while fire key is held
 
 replication
 {
 	// Variables the server sends to the client.
-	reliable if( bNetOwner && bNetDirty && Role==ROLE_Authority )
+	reliable if( bNetOwner && bNetDirty && Role == ROLE_Authority )
 		Target, bIsAutoTracking;
 	// Functions the client calls on the server
-	reliable if( Role<ROLE_Authority )
+	reliable if( Role < ROLE_Authority )
 		ServerStartTracking, ServerStopTracking, SetDualGun, ServerSwap, ServerDoQuickDraw, ServerLeaveDualMode;
 	// Functions the server calls on the client
-	reliable if( Role==ROLE_Authority )
+	reliable if( Role == ROLE_Authority )
 		ClientDualSelect;
 }
 
@@ -279,6 +279,7 @@ exec simulated function Reload (optional byte i)
 	else if (IsMaster())
 		OtherGun.Reload(i);
 }
+
 function ServerStartReload (optional byte i)
 {
 	if (IsSlave() && Othergun.IsFiring())
@@ -1592,9 +1593,18 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 		case RS_EndShovel: s=s$"EndShovel"; break;
 		case RS_Cocking: s=s$"Cocking"; break;
 	}
-	s = s $ ", MagAmmo="$MagAmmo$"Chaos="$Chaos$", Recoil="$RcComponent.GetRecoil()$", ReaimPhase="$ReaimPhase$", State="$GetStateName();
+	s = s $ ", MagAmmo="$MagAmmo$",State="$GetStateName();
 	Canvas.DrawText(s);
+
     YPos += YL;
+	Canvas.SetPos(4,YPos);
+	RcComponent.DrawDebug(Canvas);
+	
+    YPos += YL;
+	Canvas.SetPos(4,YPos);
+	AimComponent.DrawDebug(Canvas);
+
+	YPos += YL;
     Canvas.SetPos(4,YPos);
 
 	Switch( ClientState )
@@ -1634,7 +1644,7 @@ simulated function MeleeReleaseImpl()
 
 defaultproperties
 {
-	 AimDisplacementDurationMult=0.5
+	 DisplaceDurationMult=0.5
      SupportHandBone="Root01"
      bShouldDualInLoadout=True
      TrackSpeed=18000.000000

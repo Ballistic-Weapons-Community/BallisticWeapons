@@ -322,15 +322,13 @@ simulated function ReloadingGun(optional byte i)
 	}
 }
 
-simulated function ApplyRecoil ()
+simulated function ApplyRecoil()
 {
 	local Vector VelRecoilVect;
+
 	if (BW != None)
-	{
-		if (!BW.bReaiming)
-			BW.Reaim(level.TimeSeconds-Weapon.LastRenderTime, , , , , FireChaos);
-		BW.AddRecoil(FireRecoil, ThisModeNum);
-	}
+		BW.AddRecoil(FireRecoil, FireChaos, ThisModeNum);
+
 	if (FirePushbackForce != 0 && Instigator!= None)
 	{
 		VelRecoilVect = Vector(Instigator.GetViewRotation()) * FirePushbackForce;
@@ -594,11 +592,6 @@ simulated function bool CheckReloading()
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
 simulated function bool AllowFire()
 {
-	//Force noobs to scope.
-	if ((BW.BCRepClass.default.bSightFireOnly || class'BallisticWeapon'.default.SightsRestrictionLevel > 0) && BW.bUseSights && BW.SightingState != SS_Active && !BW.bScopeHeld && Instigator.IsLocallyControlled() && PlayerController(Instigator.Controller) != None)
-		BW.ScopeView();
-	if (!BW.bScopeView && (class'BallisticWeapon'.default.SightsRestrictionLevel > 1 || (class'BallisticWeapon'.default.SightsRestrictionLevel > 0 && BW.ZoomType != ZT_Irons)))
-		return false;
 	if (!CheckReloading())
 		return false;		// Is weapon busy reloading
 	if (!CheckWeaponMode())

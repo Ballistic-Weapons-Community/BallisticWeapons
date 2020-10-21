@@ -21,28 +21,12 @@ var() name			BlockIdleAnim;	// Anim when in block mode and idle
 var float			FatigueDeclineTime;
 var float			FatigueDeclineDelay;
 
-var float				MeleeSpreadAngle;
+var float			MeleeSpreadAngle;
 
 replication
 {
 	reliable if ( Role<ROLE_Authority )
 		ServerSetBlocked;
-}
-
-simulated function TickDisplacement(float DT)
-{
-	if (AimDisplacementEndTime > Level.TimeSeconds)
-	{
-		AimDisplacementFactor = FMin (AimDisplacementFactor + DT/0.2, 0.75);
-		if (!bServerReloading)
-			bServerReloading = True;
-	}
-	else 
-	{
-		AimDisplacementFactor = FMax(AimDisplacementFactor-DT/0.35, 0);
-		if (bServerReloading)
-			bServerReloading=False;
-	}
 }
 
 simulated function PostBeginPlay()
@@ -285,6 +269,8 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
+	DisplaceDurationMult=0.1
+
 	bCanBlock=True
 	BlockUpAnim="PrepBlock"
 	BlockDownAnim="EndBlock"
@@ -307,8 +293,6 @@ defaultproperties
 	RecoilParamsList(0)=RecoilParams'MeleeRecoilParams'
 
 	SightingTime=0.000000
-	AimSpread=0
-	ChaosAimSpread=0
 	FatigueDeclineTime=4.000000
 	FatigueDeclineDelay=0.750000
 	bShowChargingBar=True

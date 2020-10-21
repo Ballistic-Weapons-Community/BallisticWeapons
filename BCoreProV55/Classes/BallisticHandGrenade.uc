@@ -506,7 +506,6 @@ defaultproperties
 	SightingTime=0.000000
 	GunLength=0.000000
 	bAimDisabled=True
-	CrouchAimFactor=1.000000
 	SelectAnimRate=1.800000
 	PutDownAnimRate=1.500000
 	PutDownTime=1.000000

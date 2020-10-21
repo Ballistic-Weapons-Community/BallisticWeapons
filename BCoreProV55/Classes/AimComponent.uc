@@ -18,7 +18,7 @@
 // by AimSpread.Max. AimSpread.Min ranges can be used as a minimum spread and AimSpread.Max as the maximum spread. Aim
 // spread is adjusted smoothly between AimSpread.Min and AimSpread.Max depedning on chaos level.
 //=============================================================================
-class AimComponent extends Object within BallisticWeapon;
+class AimComponent extends Object;
 
 //=============================================================================
 // ACTOR/OBJECT REFERENCES
@@ -33,11 +33,19 @@ var AimParams				    Params;
 //=============================================================================
 // MUTABLES
 //=============================================================================
+//-----------------------------------------------------------------------------
+// Aim
+//-----------------------------------------------------------------------------
 var BUtil.IntRange		        AimSpread;			    // Range for how far aim can be from crosshair (rotator units) based on chaos value
 var float                       AimAdjustTime;
 var float				        ChaosDeclineTime;	    // Time it take for chaos to decline from 1 to 0
 var int                         ChaosSpeedThreshold;    
+//-----------------------------------------------------------------------------
+// Long Gun
+//-----------------------------------------------------------------------------
 var float					    GunLength;			    // How far weapon extends from player. Used by long-gun check
+var Rotator                     LongGunPivot;
+var Vector                      LongGunOffset;
 //-----------------------------------------------------------------------------
 // Displacement
 //-----------------------------------------------------------------------------
@@ -104,8 +112,8 @@ final simulated function bool PendingForcedReaim()
 final simulated function Rotator GetAimPivot(optional bool bIgnoreViewAim)
 {
 	if (bIgnoreViewAim || Instigator.Controller == None || PlayerController(Instigator.Controller) == None || PlayerController(Instigator.Controller).bBehindView)
-		return AimOffset + Aim + LongGunPivot * FMax(LongGunFactor, AimDisplacementFactor);
-	return AimOffset + Aim * (1-ViewBindFactor) + LongGunPivot * FMax(LongGunFactor, AimDisplacementFactor);
+		return AimOffset + Aim + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
+	return AimOffset + Aim * (1-ViewBindFactor) + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
 }
 
 final simulated function Rotator GetViewPivot()
@@ -218,7 +226,7 @@ final simulated function Recalculate()
 final simulated function OnPreDrawFPWeapon()
 {
     if (LongGunFactor != 0)
-    Weapon.SetLocation(Weapon.Location + class'BUtil'.static.ViewAlignedOffset(Weapon, LongGunOffset) * LongGunFactor);
+        Weapon.SetLocation(Weapon.Location + class'BUtil'.static.ViewAlignedOffset(Weapon, LongGunOffset) * LongGunFactor);
 }
 
 final simulated function OnWeaponSelected()
@@ -282,19 +290,25 @@ final simulated function OnPlayerJumped()
     Reaim(0.05, AimAdjustTime, Params.JumpChaos, Params.JumpOffset.Yaw, Params.JumpOffset.Pitch);
     bJumpLock = True;
     FireChaos += Params.JumpChaos;
-    LastFireTime=Level.TimeSeconds;
+    Weapon.LastFireTime = Level.TimeSeconds;
     bForceReaim=true;
 }
 
 final simulated function OnPlayerSprint()
 {
-    SetNewAimOffset(CalcNewAimOffset(), OffsetAdjustTime);
-    Reaim(0.05, AimAdjustTime, SprintChaos);
+    SetNewAimOffset(CalcNewAimOffset(), Params.OffsetAdjustTime);
+    Reaim(0.05, AimAdjustTime, Params.SprintChaos);
 }
 
 //=============================================================
 // Aim
 //=============================================================
+final simulated function AddFireChaos(float chaos)
+{
+    if (!bReaiming)
+	    Reaim(Level.TimeSeconds-Weapon.LastRenderTime, , , , , chaos);
+}
+
 // This a major part of of the aiming system. It checks on things and interpolates Aim, AimOffset, Chaos,  Recoil, and
 // CrosshairScale. Calls Reaim if it detects view change or movement and constantly sets the gun pivot and view rotation.
 // Azarael - fixed recoil bug here
@@ -318,7 +332,7 @@ final simulated function UpdateAim(float DT)
 
 	// Fell, Reaim
 	else if (Instigator.Physics == PHYS_Falling)
-		Reaim(DT, , FallingChaos);
+		Reaim(DT, , Params.FallingChaos);
 	
 	// Moved, Reaim
 	else if (bForceReaim || Weapon.GetPlayerAim() != OldLookDir || (Instigator.Physics != PHYS_None && VSize(Instigator.Velocity) > 100))
@@ -326,7 +340,7 @@ final simulated function UpdateAim(float DT)
 
 	// Interpolate the AimOffset
 	if (AimOffset != NewAimOffset)
-        AimOffset = class'BUtil'.static.RSmerp(FMax(0.0,(AimOffsetTime-level.TimeSeconds)/OffsetAdjustTime), NewAimOffset, OldAimOffset);
+        AimOffset = class'BUtil'.static.RSmerp(FMax(0.0,(AimOffsetTime-Level.TimeSeconds)/Params.OffsetAdjustTime), NewAimOffset, OldAimOffset);
         
     // Chaos decline
 	if (Chaos > 0)
@@ -338,7 +352,7 @@ final simulated function UpdateAim(float DT)
     }
 
     // Fire chaos decline
-    if (FireChaos > 0 && LastFireTime + ChaosDeclineDelay < Level.TimeSeconds)
+    if (FireChaos > 0 && Weapon.LastFireTime + Params.ChaosDeclineDelay < Level.TimeSeconds)
     {
         if (Instigator.bIsCrouched)
             FireChaos -= FMin(FireChaos, DT / (ChaosDeclineTime / Params.CrouchMultiplier));
@@ -415,8 +429,8 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
 	
 	if (Instigator.bIsCrouched)
 	{
-		X *= CrouchMultiplier;
-		Y *= CrouchMultiplier;
+		X *= Params.CrouchMultiplier;
+		Y *= Params.CrouchMultiplier;
 	}
 
 	if (TimeMod!=0)
@@ -427,7 +441,7 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
 	StartAim(T, X, Y);
 
 	if (Weapon.bUseNetAim)
-		Weapon.SendNewAim();
+		SendNewAim();
 }
 
 // Start aim interpolation
@@ -449,7 +463,7 @@ private final simulated function StopAim()
 	ReaimPhase = 0;
 }
 
-final simulated function bool ZeroAim(float TimeMod)
+final simulated function ZeroAim(float TimeMod)
 {
     if (Level.TimeSeconds < NextZeroAimTime || bJumpLock)
         return;
@@ -478,10 +492,10 @@ private final simulated function TickLongGun (float DT)
 	local Vector	HitLoc, HitNorm, Start;
 	local float		Dist;
 
-	LongGunFactor += FClamp(NewLongGunFactor - LongGunFactor, -DT/OffsetAdjustTime, DT/OffsetAdjustTime);
+	LongGunFactor += FClamp(NewLongGunFactor - LongGunFactor, -DT/Params.OffsetAdjustTime, DT/Params.OffsetAdjustTime);
 
 	Start = Instigator.Location + Instigator.EyePosition();
-    T = Trace(HitLoc, HitNorm, Start + vector(Instigator.GetViewRotation()) * (GunLength+Instigator.CollisionRadius), Start, true);
+    T = Weapon.Trace(HitLoc, HitNorm, Start + vector(Instigator.GetViewRotation()) * (GunLength+Instigator.CollisionRadius), Start, true);
     
 	if (T == None || T.Base == Instigator)
 	{
@@ -493,7 +507,7 @@ private final simulated function TickLongGun (float DT)
 		Dist = FMax(0, VSize(HitLoc - Start)-Instigator.CollisionRadius);
 		if (Dist < GunLength)
 		{
-            Weapon.OnDisplaceStart());
+            Weapon.OnDisplaceStart();
 			NewLongGunFactor = Acos(Dist / GunLength)/1.570796;
 		}
 	}
@@ -560,7 +574,7 @@ private final function SendNewAim()
 
 final simulated function ReceiveNetAim(float Yaw, float Pitch, float Time, float oChaos, float nChaos)
 {
-	if (!bUseNetAim || Role == ROLE_Authority)
+	if (!Weapon.bUseNetAim || Weapon.Role == ROLE_Authority)
 		return;
 
 	bReaiming=true;
@@ -575,16 +589,18 @@ final simulated function ReceiveNetAim(float Yaw, float Pitch, float Time, float
 
 final simulated function ApplyDamageFactor(int Damage)
 {
+    local float DF;
+
     DF = FMin(1, (float(Damage)/Params.AimDamageThreshold) * Weapon.AimKnockScale);
 
 	Reaim(0.1, 0.3*AimAdjustTime, DF*2, DF*2*(-3500 + 7000 * FRand()), DF*2*(-3000 + 6000 * FRand()));
     bForceReaim = True;
     
     if (Weapon.Role == ROLE_Authority)
-        ClientPlayerDamaged(Damage);
+        Weapon.ClientPlayerDamaged(Damage);
 }
 
-final simulated function float CalcCrosshairOffset()
+final simulated function float CalcCrosshairOffset(Canvas C)
 {
     local float OffsetAdjustment;
 
