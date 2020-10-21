@@ -45,18 +45,6 @@ simulated state PendingSwitchSilencer extends PendingDualAction
 	}
 }
 
-simulated function PlayerSprint (bool bSprinting)
-{
-	if (BCRepClass.default.bNoJumpOffset)
-		return;
-	if (bScopeView && Instigator.IsLocallyControlled())
-		StopScopeView();
-	if (bAimDisabled)
-		return;
-	SetNewAimOffset(CalcNewAimOffset(), AimAdjustTime);
-	Reaim(0.05, AimAdjustTime, 0.05);
-}
-
 simulated function PlayIdle()
 {
 	super.PlayIdle();
@@ -66,16 +54,36 @@ simulated function PlayIdle()
 	FreezeAnimAt(0.0);
 }
 
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 1.5;
+	AimComponent.AimSpread.Max *= 0.65;
+}
+
 simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
 	if (bLaserOn != default.bLaserOn)
 	{
-		if (bLaserOn)
-			AimAdjustTime = default.AimAdjustTime * 1.5;
-		else
-			AimAdjustTime = default.AimAdjustTime;
+		OnLaserSwitched();
+
 		default.bLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
@@ -88,16 +96,15 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	bUseNetAim = default.bUseNetAim || bLaserOn;
 	if (ThirdPersonActor != None)
 		RS8Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
-	if (bLaserOn)
-		AimAdjustTime = default.AimAdjustTime * 1.5;
-	else
-		AimAdjustTime = default.AimAdjustTime;
+	OnLaserSwitched();
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
 }
 
 simulated function ClientSwitchLaser()
 {
+	OnLaserSwitched();
+
 	if (bLaserOn)
 	{
 		SpawnLaserDot();

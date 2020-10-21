@@ -16,9 +16,7 @@ var() float						SFlashScaleFactor;
 
 simulated function ApplyRecoil()
 {
-	if (!BW.bReaiming)
-		BW.Reaim(level.TimeSeconds-Weapon.LastRenderTime, , FireChaos,,,0.15);
-	BW.AddRecoil(FireRecoil, ThisModeNum);
+	BW.AddRecoil(FireRecoil, FireChaos, ThisModeNum);
 	if (FirePushbackForce != 0)
 	{
 		if (Instigator.Physics == PHYS_Falling)
@@ -149,9 +147,6 @@ function SetSilenced(bool bSilenced)
 		YInaccuracy *= 0.75;
 
 		BW.SightingTime = BW.default.SightingTime * 1.25;
-		BW.AimSpread = BW.default.AimSpread * 1.25;
-		BW.ChaosAimSpread = BW.default.ChaosAimSpread * 1.25;
-
 	}
 	else
 	{
@@ -161,8 +156,6 @@ function SetSilenced(bool bSilenced)
 		YInaccuracy = default.YInaccuracy;
 
 		BW.SightingTime = BW.default.SightingTime;
-		BW.AimSpread = BW.default.AimSpread;
-		BW.ChaosAimSpread = BW.default.ChaosAimSpread;
 	}
 }
 

@@ -408,7 +408,7 @@ function byte BestMode()
 
 	if (B.Skill > Rand(6))
 	{
-		if (Chaos < 0.1 || Chaos < 0.5 && VSize(B.Enemy.Location - Instigator.Location) < 500)
+		if (AimComponent.GetChaos() < 0.1 || AimComponent.GetChaos() < 0.5 && VSize(B.Enemy.Location - Instigator.Location) < 500)
 			return 1;
 	}
 	else if (FRand() > 0.75)

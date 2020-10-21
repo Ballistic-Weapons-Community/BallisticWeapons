@@ -87,28 +87,10 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 			Momentum *= 4;
 		}
 		
-		DF = FMin(1, float(Damage)/AimDamageThreshold);
-		ApplyDamageFactor(DF);
-		ClientPlayerDamaged(255*DF);
-		bForceReaim=true;
+		AimComponent.ApplyDamageFactor(Damage);
     }
 
 	else super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
-}
-
-simulated function ClientPlayerDamaged(byte DamageFactor)
-{
-	local float DF;
-	if (level.NetMode != NM_Client)
-		return;
-	DF = float(DamageFactor)/255;
-	ApplyDamageFactor(DF);
-	bForceReaim=true;
-}
-
-simulated function ApplyDamageFactor (float DF)
-{
-	Reaim(0.1, 0.3*AimAdjustTime, DF*2, DF*2*(-3500 + 7000 * FRand()), DF*2*(-3000 + 6000 * FRand()));
 }
 
 function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDrain )

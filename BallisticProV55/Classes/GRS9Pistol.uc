@@ -86,9 +86,10 @@ simulated event PostNetReceive()
 	if (bLaserOn != default.bLaserOn)
 	{
 		if (bLaserOn)
-			AimAdjustTime = default.AimAdjustTime * 1.5;
+			AimComponent.AimAdjustTime *= 1.5;
 		else
-			AimAdjustTime = default.AimAdjustTime;
+			AimComponent.AimAdjustTime *= 0.667;
+
 		default.bLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
@@ -104,10 +105,10 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	if (ThirdPersonActor != None)
 		GRS9Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 	if (bLaserOn)
-		AimAdjustTime = default.AimAdjustTime * 1.5;
+		AimComponent.AimAdjustTime *= 1.5;
 	else
 	{
-		AimAdjustTime = default.AimAdjustTime;
+		AimComponent.AimAdjustTime *= 0.667;
 		bServerReloading = false;
 		bPreventReload=False;
 		ReloadState = RS_None;

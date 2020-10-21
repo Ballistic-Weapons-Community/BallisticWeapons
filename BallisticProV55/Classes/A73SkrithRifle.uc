@@ -71,39 +71,6 @@ simulated event Tick (float DT)
 	super.Tick(DT);
 }
 
-simulated function SetScopeBehavior()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView;
-		
-	if (bScopeView)
-	{
-		ViewAimFactor = 1.0;
-		RcComponent.OnADSStart();	
-		AimAdjustTime *= 2;
-		AimSpread *= SightAimFactor;
-		ChaosAimSpread *= SightAimFactor;
-		ChaosDeclineTime *= 2.0;
-		ChaosSpeedThreshold *= 0.7;
-	}
-	else
-	{
-		//PositionSights will handle this for clients
-		if(Level.NetMode == NM_DedicatedServer)
-		{
-			ViewAimFactor = default.ViewAimFactor;
-			RcComponent.OnADSEnd();	
-		}
-
-		AimAdjustTime = default.AimAdjustTime;
-		AimSpread = default.AimSpread;
-		AimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosAimSpread = default.ChaosAimSpread;
-		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosDeclineTime = default.ChaosDeclineTime;
-		ChaosSpeedThreshold = default.ChaosSpeedThreshold;
-	}
-}
-
 //===========================================================================
 // AdjustPlayerDamage
 //

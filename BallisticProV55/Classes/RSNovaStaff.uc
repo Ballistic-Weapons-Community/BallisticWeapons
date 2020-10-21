@@ -44,48 +44,12 @@ replication
 		SoulPower;
 }
 
-simulated function SetScopeBehavior()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView;
-
-	if (bScopeView)
-	{
-		ViewAimFactor = 1.0;
-		RcComponent.OnADSStart();
-		AimAdjustTime *= 2;
-		AimSpread = 0;
-		ChaosAimSpread *= SightAimFactor;
-		ChaosDeclineTime *= 2.0;
-		ChaosSpeedThreshold *= 0.7;
-	}
-	else
-	{
-		//PositionSights will handle this for clients
-		if(Level.NetMode == NM_DedicatedServer)
-		{
-			ViewAimFactor = default.ViewAimFactor;
-			RcComponent.OnADSEnd();
-		}
-
-		AimAdjustTime = default.AimAdjustTime;
-		if (CurrentWeaponMode == 0 || CurrentWeaponMode == 3)
-			AimSpread = 1024;
-		else AimSpread = default.AimSpread;
-		AimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosAimSpread = default.ChaosAimSpread;
-		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosDeclineTime = default.ChaosDeclineTime;
-		ChaosSpeedThreshold = default.ChaosSpeedThreshold;
-	}
-}
-
 simulated function PostNetBeginPlay()
 {
 	local RSDarkNovaControl DNC;
 
 	super.PostNetBeginPlay();
-	if (CurrentWeaponMode == 4 || CurrentWeaponMode == 0)
-		AimSpread=1024;
+
 	if (Role == ROLE_Authority && DNControl == None)
 	{
 		foreach DynamicActors (class'RSDarkNovaControl', DNC)
@@ -177,9 +141,9 @@ simulated function SetBladesOpen(float Alpha)
 	LoopAnim('BladesWide',, 0.0, 1);
 }
 
-simulated function AddRecoil (float Amount, optional byte Mode)
+simulated function AddRecoil (float Amount, float FireChaos, optional byte Mode)
 {
-	super.AddRecoil(Amount, Mode);
+	super.AddRecoil(Amount, FireChaos, Mode);
 	if (Mode == 0)
 	{
 		if (CurrentWeaponMode == 0)
@@ -407,17 +371,6 @@ simulated function KillFreeChainZap()
 	{	FreeChainZap.Kill();	bCanKillChainZap = true;	}
 }
 
-simulated function CommonSwitchWeaponMode (byte NewMode)
-{
-	super.CommonSwitchWeaponMode (NewMode);
-	
-	if (CurrentWeaponMode == 0 || CurrentWeaponMode == 3)
-		AimSpread = 1024;
-		
-	else 
-		AimSpread = default.AimSpread;
-}
-
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);
@@ -606,34 +559,6 @@ simulated function float RateSelf()
 	else
 		return Super.RateSelf();
 	return CurrentRating;
-}
-
-simulated function TickLongGun (float DT)
-{
-	local Actor		T;
-	local Vector	HitLoc, HitNorm, Start;
-	local float		Dist;
-
-	LongGunFactor += FClamp(NewLongGunFactor - LongGunFactor, -DT/AimAdjustTime, DT/AimAdjustTime);
-
-	Start = Instigator.Location + Instigator.EyePosition();
-	T = Trace(HitLoc, HitNorm, Start + vector(Instigator.GetViewRotation()) * (GunLength+Instigator.CollisionRadius), Start, true);
-	if (T == None || T.Base == Instigator || (Projectile(T)!=None))
-	{
-		if (bPendingSightUp && SightingState < SS_Raising && NewLongGunFactor > 0)
-			ScopeBackUp(0.5);
-		NewLongGunFactor = 0;
-	}
-	else
-	{
-		Dist = VSize(HitLoc - Start)-Instigator.CollisionRadius;
-		if (Dist < GunLength)
-		{
-			if (bScopeView)
-				TemporaryScopeDown(0.5);
-			NewLongGunFactor = Acos(Dist / GunLength)/1.570796;
-		}
-	}
 }
 
 simulated function float ChargeBar()

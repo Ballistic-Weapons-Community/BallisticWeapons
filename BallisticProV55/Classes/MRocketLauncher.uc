@@ -216,7 +216,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 		return;
 	}
 }

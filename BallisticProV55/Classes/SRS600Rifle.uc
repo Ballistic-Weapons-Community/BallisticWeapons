@@ -15,11 +15,12 @@ replication
 		ServerSwitchSilencer;
 }
 
-simulated function ClientPlayerDamaged(byte DamageFactor)
+simulated function ClientPlayerDamaged(int Damage)
 {
-	super.ClientPlayerDamaged(DamageFactor);
+	super.ClientPlayerDamaged(Damage);
+	
 	if (Instigator.IsLocallyControlled())
-		StealthImpulse(FMin(0.8, float(DamageFactor)/255));
+		StealthImpulse(FMin(0.8, Damage));
 }
 
 simulated function ClientJumped()
@@ -79,6 +80,9 @@ simulated function PlayCocking(optional byte Type)
 
 function ServerSwitchSilencer(bool bNewValue)
 {
+	if (bNewValue == bSilenced)
+		return;
+
 	bSilenced = bNewValue;
 	SwitchSilencer(bSilenced);
 	bServerReloading=True;
@@ -91,6 +95,7 @@ exec simulated function WeaponSpecial(optional byte i)
 {
 	if (ReloadState != RS_None)
 		return;
+
 	TemporaryScopeDown(0.5);
 	bSilenced = !bSilenced;
 	ServerSwitchSilencer(bSilenced);
@@ -108,7 +113,29 @@ simulated function SwitchSilencer(bool bNewValue)
 	if (bNewValue)
 		PlayAnim(SilencerOnAnim);
 	else
-		PlayAnim(SilencerOffAnim);
+		PlayAnim(SilencerOffAnim);	
+}
+
+simulated function OnSuppressorSwitched()
+{
+	if (bSilenced)
+		ApplySuppressorAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bSilenced)
+		ApplySuppressorAim();
+}
+
+simulated function ApplySuppressorAim()
+{
+	AimComponent.AimSpread.Min *= 1.25;
+	AimComponent.AimSpread.Max *= 1.25;
 }
 
 simulated function Notify_SilencerOn()	{	PlaySound(SilencerOnSound,,0.5);	}

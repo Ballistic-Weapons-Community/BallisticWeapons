@@ -14,13 +14,13 @@ class G5Bazooka extends BallisticWeapon;
 
 var() BUtil.FullSound	HatchSound;
 var   bool				bCamView;
-var   Pawn			Target;
-var   float			TargetTime;
-var() float			LockOnTime;
-var	  bool			bLockedOn, bLockedOld;
+var   Pawn				Target;
+var   float				TargetTime;
+var() float				LockOnTime;
+var	  bool				bLockedOn, bLockedOld;
 var() BUtil.FullSound	LockOnSound;
 var() BUtil.FullSound	LockOffSound;
-var() int		LaserChaosAimSpread, LaserAimSpread;
+var() BUtil.IntRange	LaserAimSpread;
 
 var   Actor			CurrentRocket;			//Current rocket of interest. The rocket that can be used as camera or directed with laser
 
@@ -44,34 +44,6 @@ replication
 		ClientSetCurrentRocket, ClientRocketDie;
 }
 
-simulated function TickLongGun (float DT)
-{
-	local Actor		T;
-	local Vector	HitLoc, HitNorm, Start;
-	local float		Dist;
-
-	LongGunFactor += FClamp(NewLongGunFactor - LongGunFactor, -DT/AimAdjustTime, DT/AimAdjustTime);
-
-	Start = Instigator.Location + Instigator.EyePosition();
-	T = Trace(HitLoc, HitNorm, Start + vector(Instigator.GetViewRotation()) * (GunLength+Instigator.CollisionRadius), Start, true);
-	if (T == None || T.Base == Instigator || (G5MortarDamageHull(T)!=None && T.Owner == Instigator))
-	{
-		if (bPendingSightUp && SightingState < SS_Raising && NewLongGunFactor > 0)
-			ScopeBackUp(0.5);
-		NewLongGunFactor = 0;
-	}
-	else
-	{
-		Dist = VSize(HitLoc - Start)-Instigator.CollisionRadius;
-		if (Dist < GunLength)
-		{
-			if (bScopeView)
-				TemporaryScopeDown(0.5);
-			NewLongGunFactor = Acos(Dist / GunLength)/1.570796;
-		}
-	}
-}
-
 simulated function OutOfAmmo()
 {
     if ( Instigator == None || !Instigator.IsLocallyControlled() || HasAmmo()  || ( CurrentRocket != None && (bLaserOn || bCamView) ))
@@ -86,13 +58,9 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	bUseNetAim = default.bUseNetAim || bLaserOn;
 
 	G5Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
-	if (bLaserOn)
-		AimAdjustTime = default.AimAdjustTime * 1.5;
-	else
-		AimAdjustTime = default.AimAdjustTime;
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
-	SwitchLaserProps(bNewLaserOn);
+	OnLaserSwitched();
 }
 
 simulated function ClientSwitchLaser()
@@ -110,24 +78,30 @@ simulated function ClientSwitchLaser()
 	}
 	PlayIdle();
 	bUseNetAim = default.bUseNetAim || bLaserOn;
-	SwitchLaserProps(bLaserOn);
+	OnLaserSwitched();
 }
 
-simulated function SwitchLaserProps(bool bLaserOn)
+simulated function OnLaserSwitched()
 {
 	if (bLaserOn)
-	{
-		AimSpread = LaserAimSpread;
-		ChaosAimSpread = LaserChaosAimSpread;
-	}
-	
+		ApplyLaserAim();
 	else
-	{
-		AimSpread = default.AimSpread;
-		ChaosAimSpread = default.ChaosAimSpread;
-	}
+		AimComponent.Recalculate();
 }
-	
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimSpread = LaserAimSpread;
+	AimComponent.AimAdjustTime *= 1.5f;
+}
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
@@ -229,34 +203,8 @@ simulated function DrawLaserSight ( Canvas Canvas )
 // Azarael - improved ironsights
 simulated function SetScopeBehavior()
 {
+	Super.SetScopeBehavior();
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-		
-	if (bScopeView)
-	{
-		ViewAimFactor = 1.0;
-		RcComponent.OnADSStart();	
-		AimAdjustTime *= 2;
-		AimSpread *= SightAimFactor;
-		ChaosAimSpread *= SightAimFactor;
-		ChaosDeclineTime *= 2.0;
-		ChaosSpeedThreshold *= 0.7;
-	}
-	else
-	{
-		//PositionSights will handle this for clients
-		if(Level.NetMode == NM_DedicatedServer)
-		{
-			ViewAimFactor = default.ViewAimFactor;
-			RcComponent.OnADSEnd();	
-		}
-		AimAdjustTime = default.AimAdjustTime;
-		AimSpread = default.AimSpread;
-		ChaosAimSpread = default.ChaosAimSpread;
-		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosDeclineTime = default.ChaosDeclineTime;
-		ChaosSpeedThreshold = default.ChaosSpeedThreshold;
-		SwitchLaserProps(bLaserOn);
-	}
 }
 
 simulated function PlayIdle()
@@ -564,7 +512,7 @@ exec simulated function WeaponSpecial(optional byte i)
 	if (Instigator.Physics == PHYS_Falling || (SprintControl != None && SprintControl.bSprinting))
 		return;
 
-	if (NewLongGunFactor == 0 && CurrentRocket != None)
+	if (AimComponent.AllowADS() && CurrentRocket != None)
 	{
 		PlayScopeUp();
 

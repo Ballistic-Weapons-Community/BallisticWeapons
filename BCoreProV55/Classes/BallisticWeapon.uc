@@ -210,11 +210,11 @@ var   bool							bServerReloading;				// Used to let clients know that server si
 //-----------------------------------------------------------------------------
 // Recoil
 //-----------------------------------------------------------------------------
-var	  RecoilComponent				RcComponent;					// Object which handles recoil
+var	protected RecoilComponent		RcComponent;					// Object which handles recoil
 //-----------------------------------------------------------------------------
 // Aim
 //-----------------------------------------------------------------------------
-var   AimComponent					AimComponent;
+var protected AimComponent			AimComponent;
 //=============================================================================
 // END WEAPON STATE VARIABLES
 //=============================================================================
@@ -3705,6 +3705,11 @@ simulated final function ReceiveNetRecoil(byte XRand, byte YRand, float RecAmp)
 
 //Using OffsetAdjustTime
 
+final simulated function bool IsDisplaced()
+{
+	return AimComponent.IsDisplaced();
+}
+
 simulated function bool CheckScope()
 {
 	if (level.TimeSeconds < NextCheckScopeTime)
@@ -3762,6 +3767,11 @@ final function ServerZeroAim (float TimeMod)
 final simulated function Rotator GetAimPivot()
 {
 	return AimComponent.GetAimPivot();
+}
+
+final simulated function Rotator CalcFutureAim(float ExtraTime, bool bIgnoreViewAim)
+{
+	return AimComponent.CalcFutureAim(ExtraTime, bIgnoreViewAim);
 }
 
 final simulated function Rotator GetRecoilPivot()
@@ -3876,7 +3886,7 @@ simulated function ClientPlayerDamaged(int Damage)
 	AimComponent.ApplyDamageFactor(Damage);
 }
 
-final simulated function OnWeaponDisplaced()
+simulated function OnWeaponDisplaced()
 {
 	local int m;
 	
@@ -3977,6 +3987,16 @@ simulated function AddRecoil(float Recoil, float FireChaos, optional byte Mode)
 
 	if (ROLE == ROLE_Authority && bUseNetAim)
 		SendNetRecoil();
+}
+
+simulated function float GetFireChaos()
+{
+	return AimComponent.GetFireChaos();
+}
+
+simulated function AddFireChaos(float chaos)
+{
+	AimComponent.AddFireChaos(chaos);
 }
 
 simulated function RecoilParams GetRecoilParams()

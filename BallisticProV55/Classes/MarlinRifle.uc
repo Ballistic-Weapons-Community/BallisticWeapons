@@ -102,7 +102,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -113,7 +113,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 	}
 	if (ReloadState == RS_GearSwitch)
 	{
@@ -130,7 +130,7 @@ simulated function CommonCockGun(optional byte Type)
 		super.CommonCockGun(Type);
 }
 
-simulated function TickLongGun (float DT)
+simulated function WeaponTick (float DT)
 {
 	if (!FireMode[1].IsFiring())
 	{
@@ -139,7 +139,8 @@ simulated function TickLongGun (float DT)
 		else if (GunLength == 1)
 			GunLength = default.GunLength;
 	}
-	super.TickLongGun(DT);
+
+	super.WeaponTick(DT);
 }
 
 simulated function PlayCocking(optional byte Type)

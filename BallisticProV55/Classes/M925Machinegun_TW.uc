@@ -17,6 +17,7 @@ function InitWeaponFromTurret(BallisticTurret Turret)
 	if (!Instigator.IsLocallyControlled())
 		ClientInitWeaponFromTurret(Turret);
 }
+
 simulated function ClientInitWeaponFromTurret(BallisticTurret Turret)
 {
 	bNeedCock=false;
@@ -35,21 +36,19 @@ simulated function Notify_M925HandleOff()
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
 {
-	local Rotator BaseAim, RecoilPivotDelta;
+	local Rotator AimPivotDelta, RecoilPivotDelta;
 
 	//DC 110313
 	if (Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
 		return;
 
-	RecoilPivotDelta = RcComponent.GetViewPivotDelta();
-	BaseAim = Aim * ViewAimFactor;
+	RecoilPivotDelta 	= RcComponent.CalcViewPivotDelta();
+	AimPivotDelta  		= AimComponent.CalcViewPivotDelta();
 	
 	if (RcComponent.ShouldUpdateView())
-		Instigator.SetViewRotation((BaseAim - ViewAim) + (RecoilPivotDelta));
+		Instigator.SetViewRotation(AimPivotDelta + RecoilPivotDelta);
 	else
-		Instigator.SetViewRotation(BaseAim - ViewAim);
-		
-	ViewAim = BaseAim;	
+		Instigator.SetViewRotation(AimPivotDelta);	
 }
 
 function InitTurretWeapon(BallisticTurret Turret)
@@ -82,17 +81,12 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 	Super(BallisticWeapon).GiveTo(Other, Pickup);
 }
 
-simulated function TickAim(float DT)
-{
-	Super(BallisticWeapon).TickAim(DT);
-}
-
 //attachment fix for deployed
 simulated event Timer()
 {
 	local int Mode;
 
-	ReAim(0.1);
+	AimComponent.Reaim(0.1);
 
     if (ClientState == WS_BringUp)
     {

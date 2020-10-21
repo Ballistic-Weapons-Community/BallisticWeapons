@@ -38,7 +38,7 @@ simulated function PostBeginPlay()
 	Super.PostBeginPlay();
 
 	SetStockRotation();
-	AdjustStockProperties();
+	OnStockSwitched();
 }
 
 simulated function float ChargeBar()
@@ -55,6 +55,16 @@ simulated function float ChargeBar()
 static function class<Pickup> RecommendAmmoPickup(int Mode)
 {
 	return class'AP_SARClip';
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+	if (bStockOpen)
+		ApplyStockAim();
 }
 
 //======================================================================
@@ -98,6 +108,16 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 	SwitchStock(bool(NewMode));
 }
 
+simulated function OnStockSwitched()
+{
+	if (bStockOpen)
+		ApplyStockAim();
+	else
+		AimComponent.Recalculate();
+
+	AdjustStockProperties();
+}
+
 simulated function SwitchStock(bool bNewValue)
 {
 	if (bNewValue == bStockOpen)
@@ -119,12 +139,17 @@ simulated function SwitchStock(bool bNewValue)
 		PlayAnim(StockOpenAnim);
 	else
 		PlayAnim(StockCloseAnim);
-		
-	AdjustStockProperties();
+
+	OnStockSwitched();
 }
 
+simulated function ApplyStockAim()
+{
+	if (bStockOpen)
+		AimComponent.CrouchMultiplier *= 0.7f;
+}
 
-	simulated function AdjustStockProperties()
+simulated function AdjustStockProperties()
 {
 	if (bStockOpen)
 	{
@@ -135,7 +160,6 @@ simulated function SwitchStock(bool bNewValue)
 
 		
 		// Weapon bonuses
-		CrouchAimFactor				= 0.7;
 		BFireMode[0].FireRecoil 	= 128;
 		BFireMode[0].FireChaos		= 0.030000;
 		
@@ -153,10 +177,8 @@ simulated function SwitchStock(bool bNewValue)
 		SightingTime = default.SightingTime;
 		
 		// Weapon penalties
-		CrouchAimFactor					= default.CrouchAimFactor;
 		BFireMode[0].FireRecoil 		= BFireMode[0].default.FireRecoil;
 		BFireMode[0].FireChaos 			= BFireMode[0].default.FireChaos;
-		
 	}
 }
 
@@ -204,16 +226,28 @@ function ServerWeaponSpecial(optional byte i)
 	ServerSwitchLaser(!bLaserOn);
 }
 
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 1.5;
+	AimComponent.AimSpread.Max *= 0.8;
+}
+
 simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
 	if (bLaserOn != default.bLaserOn)
 	{
-		if (bLaserOn)
-			AimAdjustTime = default.AimAdjustTime * 1.5;
-		else
-			AimAdjustTime = default.AimAdjustTime;
+		OnLaserSwitched();
+
 		default.bLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
@@ -226,16 +260,17 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	bUseNetAim = default.bUseNetAim || bLaserOn;
 	if (ThirdPersonActor!=None)
 		SARAttachment(ThirdPersonActor).bLaserOn = bLaserOn;
-	if (bLaserOn)
-		AimAdjustTime = default.AimAdjustTime * 1.5;
-	else
-		AimAdjustTime = default.AimAdjustTime;
+
+	OnLaserSwitched();
+
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
 }
 
 simulated function ClientSwitchLaser()
 {
+	OnLaserSwitched();
+
 	if (bLaserOn)
 	{
 		SpawnLaserDot();
@@ -379,33 +414,8 @@ simulated event RenderOverlays( Canvas Canvas )
 
 simulated function SetScopeBehavior()
 {
+	Super.SetScopeBehavior();
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-	
-	if (bScopeView)
-	{
-		ViewAimFactor = 1.0;
-		RcComponent.OnADSStart();
-		AimSpread = 0;
-		ChaosAimSpread *= SightAimFactor;
-		ChaosDeclineTime *= 2.0;
-		ChaosSpeedThreshold *= 0.7;
-	}
-	else
-	{
-		//PositionSights will handle this for clients
-		if(Level.NetMode == NM_DedicatedServer)
-		{
-			ViewAimFactor = default.ViewAimFactor;
-			RcComponent.OnADSEnd();
-		}
-
-		AimSpread = default.AimSpread;
-		AimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosAimSpread = default.ChaosAimSpread;
-		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosDeclineTime = default.ChaosDeclineTime;
-		ChaosSpeedThreshold = default.ChaosSpeedThreshold;
-	}
 }
 
 simulated function PlayReload()

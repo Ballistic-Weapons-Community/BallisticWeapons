@@ -75,7 +75,7 @@ simulated event ModeDoFire()
     }
 
 	if (!BW.bScopeView)
-		BW.FireChaos = FClamp(BW.FireChaos + FireChaos, 0, 1);
+		BW.AddFireChaos(FireChaos);
 
 	BW.LastFireTime = Level.TimeSeconds;
 

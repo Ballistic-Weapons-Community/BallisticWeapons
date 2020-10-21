@@ -40,22 +40,28 @@ simulated function PlayIdle()
 	FreezeAnimAt(0.0);
 }
 
+	simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 1.5;
+	AimComponent.AimSpread.Max *= 0.65;
+}
+
 simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
 	if (bLaserOn != default.bLaserOn)
 	{
-		if (bLaserOn)
-		{
-			AimAdjustTime = default.AimAdjustTime * 1.5;
-			ChaosAimSpread *= 0.65;
-		}
-		else
-		{
-			AimAdjustTime = default.AimAdjustTime;
-			ChaosAimSpread = default.ChaosAimSpread;
-		}
+		OnLaserSwitched();
+
 		default.bLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
@@ -70,23 +76,16 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	if (ThirdPersonActor != None)
 		XRS10Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
-	if (bLaserOn)
-	{
-		AimAdjustTime = default.AimAdjustTime * 1.5;
-		ChaosAimSpread *= 0.65;
-	}
-	else
-	{
-		AimAdjustTime = default.AimAdjustTime;
-		ChaosAimSpread = default.ChaosAimSpread;
-	}
+	OnLaserSwitched();
 
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
 }
 
 simulated function ClientSwitchLaser()
-{
+{		
+	OnLaserSwitched();
+	
 	if (bLaserOn)
 	{
 		SpawnLaserDot();

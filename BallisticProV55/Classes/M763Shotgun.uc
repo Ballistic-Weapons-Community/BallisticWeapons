@@ -126,7 +126,7 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -150,7 +150,7 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 		}
 		
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 	}
 	
 	else if (ReloadState == RS_GearSwitch)

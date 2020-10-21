@@ -15,12 +15,12 @@ class SRS900Rifle extends BallisticWeapon;
 
 var float LastRangeFound, LastStabilityFound, StealthRating, StealthImps, ZRefHeight;
 
-var   bool			bSilenced;				// Silencer on. Silenced
-var() name			SilencerBone;			// Bone to use for hiding silencer
-var() name			SilencerOnAnim;			// Think hard about this one...
-var() name			SilencerOffAnim;		//
-var() sound		SilencerOnSound;		// Silencer stuck on sound
-var() sound		SilencerOffSound;		//
+var   bool		bSilenced;
+var() name		SilencerBone;
+var() name		SilencerOnAnim;			
+var() name		SilencerOffAnim;
+var() sound		SilencerOnSound;
+var() sound		SilencerOffSound;
 
 var() Material	BulletTex;
 var() Material	ReadoutTex;
@@ -58,11 +58,11 @@ simulated event PostNetBeginPlay()
 		ZRefHeight = TotalZ / ZCount;
 }
 
-simulated function ClientPlayerDamaged(byte DamageFactor)
+simulated function ClientPlayerDamaged(int Damage)
 {
-	super.ClientPlayerDamaged(DamageFactor);
+	super.ClientPlayerDamaged(Damage);
 	if (Instigator.IsLocallyControlled())
-		StealthImpulse(FMin(0.8, float(DamageFactor)/255));
+		StealthImpulse(FMin(0.8, Damage));
 }
 
 simulated function ClientJumped()
@@ -146,7 +146,32 @@ simulated function SwitchSilencer(bool bDetachSuppressor)
 		PlayAnim(SilencerOffAnim);
 	else
 		PlayAnim(SilencerOnAnim);
+
+	OnSuppressorSwitched();
 }
+
+simulated function OnSuppressorSwitched()
+{
+	if (bSilenced)
+		ApplySuppressorAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bSilenced)
+		ApplySuppressorAim();
+}
+
+simulated function ApplySuppressorAim()
+{
+	AimComponent.AimSpread.Min *= 1.25;
+	AimComponent.AimSpread.Max *= 1.25;
+}
+	
 simulated function Notify_SilencerOn()	{	PlaySound(SilencerOnSound,,0.5);	}
 simulated function Notify_SilencerOff()	{	PlaySound(SilencerOffSound,,0.5);	}
 
@@ -313,7 +338,7 @@ simulated event RenderOverlays (Canvas C)
 	// Draw Stability Curve
 	C.SetDrawColor(64,255,32,255);
 	C.SetPos(C.OrgX + 26 * ScaleFactor, C.OrgY + 204 * ScaleFactor);
-	C.DrawTile(StabCurveTex, 227 * ScaleFactor, 227 * ScaleFactor, 192 * (1-Chaos), SMerp(1-Abs(Chaos * 2 - 1), 0, 48), 64, 64);
+	C.DrawTile(StabCurveTex, 227 * ScaleFactor, 227 * ScaleFactor, 192 * (1-AimComponent.GetChaos()), SMerp(1-Abs(AimComponent.GetChaos() * 2 - 1), 0, 48), 64, 64);
 	// Draw Stability Number
 	C.SetDrawColor(0,255,0,255);
 	C.SetPos(64 * ScaleFactor, 431 * ScaleFactor);
@@ -335,7 +360,7 @@ simulated event Timer()
 			LastRangeFound = -1;
 		else
 			LastRangeFound = VSize(HitLoc-Start);
-		LastStabilityFound = 1-Chaos;
+		LastStabilityFound = 1-AimComponent.GetChaos();
 //		ElevationGraphTex.Trigger(self, Instigator);
 		return;
 	}

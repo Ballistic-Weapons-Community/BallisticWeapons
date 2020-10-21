@@ -58,16 +58,36 @@ simulated function PlayIdle()
 	FreezeAnimAt(0.0);
 }
 
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 1.5;
+	AimComponent.AimSpread.Max *= 0.65;
+}
+
 simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
 	if (bLaserOn != default.bLaserOn)
 	{
-		if (bLaserOn)
-			AimAdjustTime = default.AimAdjustTime * 1.5;
-		else
-			AimAdjustTime = default.AimAdjustTime;
+		OnLaserSwitched();
+
 		default.bLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
@@ -87,17 +107,8 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	bUseNetAim = default.bUseNetAim || bLaserOn;
 	if (ThirdPersonActor!=None)
 		M806Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
-	if (bLaserOn)
-	{	
-		AimAdjustTime = default.AimAdjustTime * 1.5;
-		ChaosAimSpread *= 0.65;
-	}
 
-	else
-	{
-		AimAdjustTime = default.AimAdjustTime;
-		ChaosAimSpread = default.ChaosAimSpread;
-	}
+	OnLaserSwitched();
 
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
@@ -105,17 +116,17 @@ function ServerSwitchLaser(bool bNewLaserOn)
 
 simulated function ClientSwitchLaser()
 {
+	OnLaserSwitched();
+
 	if (bLaserOn)
 	{
 		SpawnLaserDot();
 		PlaySound(LaserOnSound,,0.7,,32);
-		ChaosAimSpread *= 0.65;
 	}
 	else
 	{
 		KillLaserDot();
 		PlaySound(LaserOffSound,,0.7,,32);
-		ChaosAimSpread = default.ChaosAimSpread;
 	}
 
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))

@@ -134,7 +134,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -145,7 +145,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 	}
 
 	if (ReloadState == RS_GearSwitch)
@@ -154,40 +154,6 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			bServerReloading=false;
 		ReloadState = RS_None;
 		PlayIdle();
-	}
-}
-
-simulated function SetScopeBehavior()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView;
-
-	if (bScopeView)
-	{
-		ViewAimFactor = 1.0;
-		RcComponent.OnADSStart();
-		AimAdjustTime *= 2;
-
-		AimSpread = 0;
-		ChaosAimSpread *= SightAimFactor;
-		ChaosDeclineTime *= 2.0;
-		ChaosSpeedThreshold *= 0.7;
-	}
-	else
-	{
-		//PositionSights will handle this for clients
-		if(Level.NetMode == NM_DedicatedServer)
-		{
-			ViewAimFactor = default.ViewAimFactor;
-			RcComponent.OnADSEnd();
-		}
-
-		AimAdjustTime = default.AimAdjustTime;
-		AimSpread = default.AimSpread;
-		AimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosAimSpread = default.ChaosAimSpread;
-		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosDeclineTime = default.ChaosDeclineTime;
-		ChaosSpeedThreshold = default.ChaosSpeedThreshold;
 	}
 }
 
@@ -334,28 +300,7 @@ simulated event WeaponTick(float DT)
 {
 	local float AccelLimit;
 
-	if (!Instigator.IsFirstPerson() && SightingState != SS_None)
-		PositionSights();
-	TickAim(DT);
-
-	TickSighting(DT);
-
-	if (!BCRepClass.default.bNoLongGun && GunLength > 0)
-		TickLongGun(DT);
-	if (AimDisplacementEndTime > Level.TimeSeconds || AimDisplacementFactor > 0)
-		TickDisplacement(DT);
-	TickFireCounter(DT);
-
-	if (!bNoMag && level.TimeSeconds > BotTryReloadTime && AIController(Instigator.Controller) != None && (!Instigator.Controller.LineOfSightTo(AIController(Instigator.Controller).Enemy)) && BotShouldReload() )
-	{
-		BotTryReloadTime = level.TimeSeconds + 1.0;
-		BotReload();
-	}
-	//Kab
-	if (Instigator.Base != none)
-        AimAdjustTime = (default.AimAdjustTime * 2) - (default.AimAdjustTime * (FMin(VSize(Instigator.Velocity - Instigator.Base.Velocity), 375) / 350));
-    else
-        AimAdjustTime = default.AimAdjustTime;
+	Super.WeaponTick(DT);
 
 	if (bOnRampage)
 	{
@@ -458,17 +403,6 @@ function ServerSwitchWeaponMode (byte NewMode)
 	super.ServerSwitchWeaponMode(NewMode);
 }
 	
-simulated function CommonSwitchWeaponMode (byte newMode)
-{
-	Super.CommonSwitchWeaponMode(newMode);
-
-	if (newMode == 0)
-		AimSpread=1024;
-	else if (newMode == 4)
-		AimSpread=1280;
-	else AimSpread=default.AimSpread;
-}
-
 // Scales a RangeVector
 static function ScaleRV (out RangeVector RV, float Scale)
 {
@@ -666,34 +600,6 @@ simulated function float RateSelf()
 	else
 		return Super.RateSelf();
 	return CurrentRating;
-}
-
-simulated function TickLongGun (float DT)
-{
-	local Actor		T;
-	local Vector	HitLoc, HitNorm, Start;
-	local float		Dist;
-
-	LongGunFactor += FClamp(NewLongGunFactor - LongGunFactor, -DT/AimAdjustTime, DT/AimAdjustTime);
-
-	Start = Instigator.Location + Instigator.EyePosition();
-	T = Trace(HitLoc, HitNorm, Start + vector(Instigator.GetViewRotation()) * (GunLength+Instigator.CollisionRadius), Start, true);
-	if (T == None || T.Base == Instigator || (Projectile(T)!=None))
-	{
-		if (bPendingSightUp && SightingState < SS_Raising && NewLongGunFactor > 0)
-			ScopeBackUp(0.5);
-		NewLongGunFactor = 0;
-	}
-	else
-	{
-		Dist = VSize(HitLoc - Start)-Instigator.CollisionRadius;
-		if (Dist < GunLength)
-		{
-			if (bScopeView)
-				TemporaryScopeDown(0.5);
-			NewLongGunFactor = Acos(Dist / GunLength)/1.570796;
-		}
-	}
 }
 
 simulated function float ChargeBar()

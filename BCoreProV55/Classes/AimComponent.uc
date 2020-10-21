@@ -40,6 +40,7 @@ var BUtil.IntRange		        AimSpread;			    // Range for how far aim can be fro
 var float                       AimAdjustTime;
 var float				        ChaosDeclineTime;	    // Time it take for chaos to decline from 1 to 0
 var int                         ChaosSpeedThreshold;    
+var float                       CrouchMultiplier;
 //-----------------------------------------------------------------------------
 // Long Gun
 //-----------------------------------------------------------------------------
@@ -103,6 +104,16 @@ final simulated function bool IsDisplaced()
 	return (DisplaceEndTime > Level.TimeSeconds || DisplaceFactor > 0);
 }
 
+final simulated function float GetChaos()
+{
+    return Chaos;
+}
+
+final simulated function float GetFireChaos()
+{
+    return FireChaos;
+}
+
 final simulated function bool PendingForcedReaim()
 {
     return bForceReaim;
@@ -125,6 +136,28 @@ final simulated function Rotator GetViewPivot()
 final simulated function float CalcConeInaccuracy()
 {
 	return AimSpread.Max * (1 - ((360/ChaosSpeedThreshold) * Chaos)) * FireChaos;
+}
+
+final simulated function Rotator CalcFutureAim(float ExtraTime, bool bIgnoreViewAim)
+{	
+    if (bIgnoreViewAim || Instigator.Controller == None || PlayerController(Instigator.Controller) == None || PlayerController(Instigator.Controller).bBehindView)
+        return GetFutureAimOffset(ExtraTime) + GetFutureAim(ExtraTime) + GetAimOffsets();
+    return GetFutureAimOffset(ExtraTime) + GetFutureAim(ExtraTime) * (1-ViewBindFactor) + GetAimOffsets();
+}
+
+private final simulated function Rotator GetAimOffsets()
+{
+	return AimOffset + LongGunPivot * LongGunFactor;
+}
+
+private final simulated function Rotator GetFutureAim(float ExtraTime)
+{
+	return class'BUtil'.static.RSmerp(FMin((ReaimPhase+ExtraTime)/ReaimTime, 1.0), OldAim, NewAim);
+}
+
+private final simulated function Rotator GetFutureAimOffset(float ExtraTime)
+{
+	return class'BUtil'.static.RSmerp(FMax(0.0,(AimOffsetTime-(Level.TimeSeconds+ExtraTime))/AimAdjustTime), NewAimOffset,OldAimOffset);
 }
 
 //=============================================================
@@ -174,6 +207,7 @@ final simulated function Cleanup()
     
     ChaosDeclineTime = 0;
     AimAdjustTime = 0;
+    CrouchMultiplier = 1;
 
     Aim = rot(0,0,0);
     NewAim = rot(0,0,0);
@@ -219,6 +253,7 @@ final simulated function Recalculate()
     AimAdjustTime       = Params.AimAdjustTime;
     ChaosDeclineTime    = Params.ChaosDeclineTime;
     ChaosSpeedThreshold = Params.ChaosSpeedThreshold;
+    CrouchMultiplier    = Params.CrouchMultiplier;
 
 	Weapon.OnAimParamsChanged();
 }
@@ -303,10 +338,15 @@ final simulated function OnPlayerSprint()
 //=============================================================
 // Aim
 //=============================================================
-final simulated function AddFireChaos(float chaos)
+final simulated function RecoilReaim(float chaos)
 {
     if (!bReaiming)
 	    Reaim(Level.TimeSeconds-Weapon.LastRenderTime, , , , , chaos);
+}
+
+final simulated function AddFireChaos(float chaos)
+{
+    FireChaos = FClamp(FireChaos + chaos, 0, 1);
 }
 
 // This a major part of of the aiming system. It checks on things and interpolates Aim, AimOffset, Chaos,  Recoil, and
@@ -346,7 +386,7 @@ final simulated function UpdateAim(float DT)
 	if (Chaos > 0)
     {
         if (Instigator.bIsCrouched)
-            Chaos -= FMin(Chaos, DT / (ChaosDeclineTime * Params.CrouchMultiplier));
+            Chaos -= FMin(Chaos, DT / (ChaosDeclineTime * CrouchMultiplier));
         else
             Chaos -= FMin(Chaos, DT / ChaosDeclineTime);
     }
@@ -355,7 +395,7 @@ final simulated function UpdateAim(float DT)
     if (FireChaos > 0 && Weapon.LastFireTime + Params.ChaosDeclineDelay < Level.TimeSeconds)
     {
         if (Instigator.bIsCrouched)
-            FireChaos -= FMin(FireChaos, DT / (ChaosDeclineTime / Params.CrouchMultiplier));
+            FireChaos -= FMin(FireChaos, DT / (ChaosDeclineTime / CrouchMultiplier));
         else
             FireChaos -= FMin(FireChaos, DT / ChaosDeclineTime);
     }
@@ -429,8 +469,8 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
 	
 	if (Instigator.bIsCrouched)
 	{
-		X *= Params.CrouchMultiplier;
-		Y *= Params.CrouchMultiplier;
+		X *= CrouchMultiplier;
+		Y *= CrouchMultiplier;
 	}
 
 	if (TimeMod!=0)
@@ -497,7 +537,7 @@ private final simulated function TickLongGun (float DT)
 	Start = Instigator.Location + Instigator.EyePosition();
     T = Weapon.Trace(HitLoc, HitNorm, Start + vector(Instigator.GetViewRotation()) * (GunLength+Instigator.CollisionRadius), Start, true);
     
-	if (T == None || T.Base == Instigator)
+	if (T == None || T.Base == Instigator || (Pawn(T) == None && T.Owner == Instigator))
 	{
         Weapon.OnDisplaceEnd();
 		NewLongGunFactor = 0;

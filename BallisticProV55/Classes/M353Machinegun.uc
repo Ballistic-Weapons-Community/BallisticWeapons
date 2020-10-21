@@ -24,11 +24,6 @@ simulated function ClientInitWeaponFromTurret(BallisticTurret Turret)
 	bNeedCock=false;
 }
 
-simulated function TickAim(float DT)
-{
-	Super(BallisticWeapon).TickAim(DT);
-}
-
 function Notify_Deploy()
 {
 	local vector HitLoc, HitNorm, Start, End;
@@ -236,39 +231,6 @@ function float GetAIRating()
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
 	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.75, Dist, 1024, 2048); 
-}
-
-simulated function SetScopeBehavior()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView;
-		
-	if (bScopeView)
-	{
-		ViewAimFactor = 1.0;
-		RcComponent.OnADSStart();
-		AimAdjustTime *= 2;
-		AimSpread = 0;
-		ChaosAimSpread *= SightAimFactor;
-		ChaosDeclineTime *= 2.0;
-		ChaosSpeedThreshold *= 0.5;
-	}
-	else
-	{
-		//PositionSights will handle this for clients
-		if(Level.NetMode == NM_DedicatedServer)
-		{
-			ViewAimFactor = default.ViewAimFactor;
-			RcComponent.OnADSEnd();
-		}
-
-		AimAdjustTime = default.AimAdjustTime;
-		AimSpread = default.AimSpread;
-		AimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosAimSpread = default.ChaosAimSpread;
-		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosDeclineTime = default.ChaosDeclineTime;
-		ChaosSpeedThreshold = default.ChaosSpeedThreshold;
-	}
 }
 
 // tells bot whether to charge or back off while using this weapon

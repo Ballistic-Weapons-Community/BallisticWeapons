@@ -20,11 +20,9 @@ simulated function ApplyRecoil()
 	local Vector VelRecoilVect;
 	if (BW != None)
 	{
-		if (!BW.bReaiming)
-			BW.Reaim(level.TimeSeconds-Weapon.LastRenderTime, , , , , FireChaos);
 		if (BurstCount > 0)
-			BW.AddRecoil(FireRecoil * 1.5, ThisModeNum);
-		else BW.AddRecoil(FireRecoil, ThisModeNum);
+			BW.AddRecoil(FireRecoil * 1.5, FireChaos, ThisModeNum);
+		else BW.AddRecoil(FireRecoil, FireChaos, ThisModeNum);
 	}
 	if (FirePushbackForce != 0 && Instigator!= None)
 	{

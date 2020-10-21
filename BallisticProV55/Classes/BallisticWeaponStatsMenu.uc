@@ -306,8 +306,8 @@ function UpdateInfo()
 		
 		db_Exp.Caption = String(int(FS.FCPShot * pb_HipSpr.Value));
 		
-		pb_EPS.Value = FMin(FS.FCPS * BW.default.ChaosAimSpread, pb_EPS.High);
-		pb_EPS.Caption = String(int(FS.FCPS * BW.default.ChaosAimSpread));
+		pb_EPS.Value = FMin(FS.FCPS * BW.default.AimParamsList[0].AimSpread.Max, pb_EPS.High);
+		pb_EPS.Caption = String(int(FS.FCPS * BW.default.AimParamsList[0].AimSpread.Max));
 		pb_EPS.BarColor = ColorBar(pb_EPS.Value / pb_EPS.High);
 		
 		//Alt
@@ -382,8 +382,8 @@ function UpdateInfo()
 		
 		db_ExpAlt.Caption = String(int(AFS.FCPShot * pb_HipSpr.Value));
 		
-		pb_EPSAlt.Value = FMin(AFS.FCPS * BW.default.ChaosAimSpread, pb_EPSAlt.High);
-		pb_EPSAlt.Caption = String(int(AFS.FCPS * BW.default.ChaosAimSpread));
+		pb_EPSAlt.Value = FMin(AFS.FCPS * BW.default.AimParamsList[0].AimSpread.Max, pb_EPSAlt.High);
+		pb_EPSAlt.Caption = String(int(AFS.FCPS * BW.default.AimParamsList[0].AimSpread.Max));
 		pb_EPSAlt.BarColor = ColorBar(pb_EPSAlt.Value / pb_EPSAlt.High);
 		
 		//general stats
@@ -392,8 +392,8 @@ function UpdateInfo()
 		pb_Raise.Caption = String(pb_Raise.Value);
 		pb_Raise.BarColor = ColorBar(pb_Raise.Value/pb_Raise.High);
 		
-		pb_HipSpr.Value = BW.default.ChaosAimSpread;
-		pb_HipSpr.Caption = string(BW.default.ChaosAimSpread)@"("$int(BW.default.ChaosAimSpread / 12.80)$"%)";
+		pb_HipSpr.Value = BW.default.AimParamsList[0].AimSpread.Max;
+		pb_HipSpr.Caption = string(BW.default.AimParamsList[0].AimSpread.Max)@"("$int(BW.default.AimParamsList[0].AimSpread.Max / 12.80)$"%)";
 		pb_HipSpr.BarColor = ColorBar(pb_HipSpr.Value / pb_HipSpr.High);
 		
 		db_Mag.Caption = String(BW.default.MagAmmo);
@@ -404,9 +404,9 @@ function UpdateInfo()
 		
 		db_Range.Caption = FS.Range;
 		
-		db_CAF.Caption = string(int(100 * (1 - BW.default.CrouchAimFactor)))$"%";
+		db_CAF.Caption = string(int(100 * (1 - BW.default.AimParamsList[0].CrouchMultiplier)))$"%";
 		
-		db_MovePen.Caption = string(int((class'BallisticPawn'.default.GroundSpeed/BW.default.ChaosSpeedThreshold)* 100))$"%";
+		db_MovePen.Caption = string(int((class'BallisticPawn'.default.GroundSpeed/BW.default.AimParamsList[0].ChaosSpeedThreshold)* 100))$"%";
 	}
 }
 
