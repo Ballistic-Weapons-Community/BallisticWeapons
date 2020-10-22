@@ -9,7 +9,7 @@
 //=============================================================================
 class BallisticTab_PreferencesPro extends UT2K4TabPanel;
 
-var automated moCheckbox	ch_UseBrass, ch_ImpStay, ch_MSmoke, ch_WeaponUI, ch_MotionBlur, ch_SimpleDeathMessages, ch_OldCrosshairs;
+var automated moCheckbox	ch_UseBrass, ch_ImpStay, ch_MSmoke, ch_WeaponUI, ch_MotionBlur, ch_SimpleDeathMessages, ch_OldCrosshairs, ch_SightLock;
 
 var automated moComboBox	co_WeaponDet, co_CamRate, co_EffectDet, co_ModeMemory;
 var automated moFloatEdit	fl_BrassTime, fl_ZoomTimeMod;
@@ -45,7 +45,8 @@ function LoadSettings()
 	ch_WeaponUI.Checked(class'BallisticPlayer'.default.bUseWeaponUI);
 	ch_MotionBlur.Checked(class'BallisticMod'.default.bUseMotionBlur);
 	ch_SimpleDeathMessages.Checked(class'BallisticDamageType'.default.bSimpleDeathMessages);
-	ch_OldCrosshairs.Checked(class'BallisticWeapon'.default.bOldCrosshairs);
+    ch_OldCrosshairs.Checked(class'BallisticWeapon'.default.bOldCrosshairs);
+    ch_SightLock.Checked(class'BallisticWeapon'.default.bSightLock);
 
 	for(i=0;i<class'Mut_Ballistic'.default.CamRateOptions.length;i++)
 	    co_CamRate.AddItem(class'Mut_Ballistic'.default.CamRateOptions[i] ,,string(i));
@@ -78,7 +79,8 @@ function SaveSettings()
 		return;
 	class'Mut_Ballistic'.default.CamUpdateRate 			= string(co_CamRate.GetIndex());
 	class'BallisticWeapon'.default.ModeHandling			= ModeSaveType(co_ModeMemory.GetIndex());
-	class'BallisticWeapon'.default.bOldCrosshairs			=	ch_OldCrosshairs.IsChecked();
+    class'BallisticWeapon'.default.bOldCrosshairs		=	ch_OldCrosshairs.IsChecked();
+    class'BallisticWeapon'.default.bSightLock			=	ch_SightLock.IsChecked();
 	class'BallisticMod'.default.EffectsDetailMode 		= ELLHDetailMode(co_EffectDet.GetIndex());
 	class'BallisticMod'.default.bEjectBrass 			= ch_useBrass.IsChecked();
 	class'AD_ImpactDecal'.default.bPermanentImpacts		= ch_ImpStay.IsChecked();
@@ -118,7 +120,8 @@ function DefaultSettings()
 	ch_WeaponUI.Checked(true);
 	ch_MotionBlur.Checked(false);
 	ch_SimpleDeathMessages.Checked(true);
-	co_ModeMemory.SetIndex(0);
+    co_ModeMemory.SetIndex(0);
+    ch_SightLock.Checked(true);
 }
 
 defaultproperties
@@ -139,7 +142,7 @@ defaultproperties
      Begin Object Class=moCheckBox Name=ch_ImpStayCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Permanent Impact Marks"
+         Caption="Permanent Impact Marks [!]"
          OnCreateComponent=ch_ImpStayCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Impact marks like bullet holes and explosion scorches stay forever. WARNING: This can kill performance on most machines!"
@@ -178,7 +181,7 @@ defaultproperties
      Begin Object Class=moCheckBox Name=ch_MotionBlurCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Motion Blur"
+         Caption="Motion Blur [!]"
          OnCreateComponent=ch_MotionBlurCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Enable the use of motion blur effects. WARNING: This may have undesirable effects on some machines!"
@@ -270,7 +273,7 @@ defaultproperties
          MaxValue=100.000000
          ComponentJustification=TXTA_Left
          CaptionWidth=0.700000
-         Caption="Brass Life Scale"
+         Caption="Brass Life Scale [!]"
          OnCreateComponent=fl_BrassTimeFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Scales the life time of ejected brass. 0 = Forever."
@@ -294,5 +297,18 @@ defaultproperties
          WinHeight=0.040000
      End Object
      fl_ZoomTimeMod=moFloatEdit'BallisticProV55.BallisticTab_PreferencesPro.fl_ZoomTimeModFloat'
+
+     Begin Object Class=moCheckBox Name=ch_SightLockCheck
+        ComponentJustification=TXTA_Left
+        CaptionWidth=0.900000
+        Caption="Aim Down Sight Lock"
+        OnCreateComponent=ch_SightLockCheck.InternalOnCreateComponent
+        IniOption="@Internal"
+        Hint="If checked, weapons will remain in sight or scope view when the sight key is released."
+        WinTop=0.750000
+        WinLeft=0.250000
+        WinHeight=0.040000
+    End Object
+    ch_SightLock=moCheckBox'ch_SightLockCheck'
 
 }

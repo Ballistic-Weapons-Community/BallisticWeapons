@@ -341,7 +341,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=2
 	PickupClass=Class'BWBPRecolorsPro.PS9mPickup'
-	PlayerViewOffset=(X=3.000000,Y=-2.000000,Z=-8.500000)
+	PlayerViewOffset=(X=3.000000,Y=-5.000000,Z=-8.500000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBPRecolorsPro.PS9mAttachment'
 	IconMaterial=Texture'BallisticRecolors4TexPro.Stealth.SmallIcon_PS9M'

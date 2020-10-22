@@ -105,11 +105,6 @@ simulated function SetHand(float InHand)
 
 //End of Scope Stuff
 
-simulated function TickAim(float DT)
-{
-	Super(BallisticWeapon).TickAim(DT);
-}
-
 simulated function PlayReload()
 {
 	PlayAnim('Reload', ReloadAnimRate, , 0);
@@ -118,6 +113,7 @@ simulated function PlayReload()
 simulated function PositionSights ()
 {
 	super.PositionSights();
+	
 	if (SightingPhase <= 0.0)
 		SetBoneRotation('TopHandle', rot(0,0,0));
 	else if (SightingPhase >= 1.0 )
@@ -240,13 +236,7 @@ defaultproperties
      SightPivot=(Pitch=128)
      SightOffset=(X=-10.000000,Y=8.740000,Z=9.150000)
      SightingTime=0.550000
-     SightAimFactor=0.700000
-     SprintOffSet=(Pitch=-6000,Yaw=-8000)
-     AimSpread=384
 
-     ChaosDeclineTime=1.600000
-	 ChaosAimSpread=3072
-	 
 	Begin Object Class=RecoilParams Name=M575RecoilParams
 		ViewBindFactor=0.500000
 		XCurve=(Points=(,(InVal=0.070000,OutVal=-0.050000),(InVal=0.100000,OutVal=-0.085000),(InVal=0.180000,OutVal=0.060000),(InVal=0.300000,OutVal=-0.100000),(InVal=0.500000,OutVal=0.200000),(InVal=0.650000,OutVal=0.300000),(InVal=0.700000,OutVal=-0.100000),(InVal=0.850000,OutVal=0.400000),(InVal=1.000000)))
@@ -258,6 +248,14 @@ defaultproperties
 		DeclineDelay=0.150000
 	End Object
 	RecoilParamsList(0)=RecoilParams'M575RecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=384,Max=3072)
+		ADSMultiplier=0.700000
+		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		ChaosDeclineTime=1.600000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
      FireModeClass(0)=Class'BWBPOtherPackPro.M575PrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.M575ScopeFire'

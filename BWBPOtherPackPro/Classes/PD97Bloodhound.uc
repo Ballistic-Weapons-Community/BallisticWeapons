@@ -129,7 +129,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -140,7 +140,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 	}
 	
 	if (ReloadState == RS_GearSwitch)
@@ -320,12 +320,9 @@ defaultproperties
 	SightOffset=(X=-10.000000,Y=-4.400000,Z=12.130000)
 	SightDisplayFOV=40.000000
 	SightingTime=0.200000
-	SightAimFactor=0.150000
-	JumpChaos=0.200000
-	AimAdjustTime=0.450000
-	ChaosDeclineTime=0.450000
+
 	 
-	Begin Object Class=RecoilParams Name=PD97RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.45
 		XRandFactor=0.10000
 		YRandFactor=0.10000
@@ -333,7 +330,15 @@ defaultproperties
 		DeclineTime=1.500000
 		DeclineDelay=0.500000
 	End Object
-	RecoilParamsList(0)=RecoilParams'PD97RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		ADSMultiplier=0.150000
+		JumpChaos=0.200000
+		AimAdjustTime=0.450000
+		ChaosDeclineTime=0.450000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BWBPOtherPackPro.PD97PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.PD97SecondaryFire'

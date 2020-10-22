@@ -413,48 +413,45 @@ function byte BestMode()
 
 defaultproperties
 {
-	 PierceThreshold=50
-     ShieldBone="tip"
-     ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
-     ShieldOnSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldOn'
-     ShieldOffSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldOff'
-     ShieldPierceSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldPierce'
-     ShieldHitForce="ShieldReflection"
-     DamageSound=Sound'PackageSounds4Pro.NEX.NEX-Overload'
-     BrokenSound=Sound'BWBP2-Sounds.LightningGun.LG-Ambient'
-     ChargingSound=Sound'WeaponSounds.BaseFiringSounds.BShield1'
-     ShieldSoundVolume=220	 
-	 ShieldPower=100
-	 ShieldPowerMax=200
-	 ShieldGainPerSecond=5.0f
-	 bShowChargingBar=True
-     ManualLines(0)="Each hit heats up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
-     ManualLines(1)="Secondary fire will toggle a directional shield. The shield has a maximum of 200 health points and will reduce incoming damage by 35 points or by 90% of its value, whichever is smaller. If the shield is broken, a minimum reserve level is required to reactivate it."
-     ManualLines(2)="Effective at moderate range, against small arms, and against enemies using healing weapons and items."
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBPSomeOtherPackTex.XM20.BigIcon_XM20'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Energy=True
-	 bNoCrosshairInScope=True
-     SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
-     BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Select')
-     PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
-     MagAmmo=30
-     CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
-     ReloadAnimRate=1.000000
-     ClipHitSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-LeverDown')
-     ClipOutSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipOut')
-     ClipInSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipIn')
-     ClipInFrame=0.650000 
-     CurrentWeaponMode=2
-     SightOffset=(X=20.000000,Y=16.8500000,Z=29.000000)
-	 SightDisplayFOV=15
-     GunLength=80.000000
-     SprintOffSet=(Pitch=-1000,Yaw=-2048)
+	PierceThreshold=50
+	ShieldBone="tip"
+	ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
+	ShieldOnSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldOn'
+	ShieldOffSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldOff'
+	ShieldPierceSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldPierce'
+	ShieldHitForce="ShieldReflection"
+	DamageSound=Sound'PackageSounds4Pro.NEX.NEX-Overload'
+	BrokenSound=Sound'BWBP2-Sounds.LightningGun.LG-Ambient'
+	ChargingSound=Sound'WeaponSounds.BaseFiringSounds.BShield1'
+	ShieldSoundVolume=220	 
+	ShieldPower=100
+	ShieldPowerMax=200
+	ShieldGainPerSecond=5.0f
+	bShowChargingBar=True
+	ManualLines(0)="Each hit heats up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
+	ManualLines(1)="Secondary fire will toggle a directional shield. The shield has a maximum of 200 health points and will reduce incoming damage by 35 points or by 90% of its value, whichever is smaller. If the shield is broken, a minimum reserve level is required to reactivate it."
+	ManualLines(2)="Effective at moderate range, against small arms, and against enemies using healing weapons and items."
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBPSomeOtherPackTex.XM20.BigIcon_XM20'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Energy=True
+	bNoCrosshairInScope=True
+	SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
+	BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Select')
+	PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
+	MagAmmo=30
+	CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
+	ReloadAnimRate=1.000000
+	ClipHitSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-LeverDown')
+	ClipOutSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipOut')
+	ClipInSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipIn')
+	ClipInFrame=0.650000 
+	CurrentWeaponMode=2
+	SightOffset=(X=20.000000,Y=16.8500000,Z=29.000000)
+	SightDisplayFOV=15
+	GunLength=80.000000
 
-	 ChaosDeclineTime=0.5
-	 
-	Begin Object Class=RecoilParams Name=XM20RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.35
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.150000,OutVal=0.020000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.11),(InVal=0.400000,OutVal=0.130000),(InVal=0.600000,OutVal=0.20000),(InVal=0.800000,OutVal=0.25000),(InVal=1.000000,OutVal=0.30000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.500000,OutVal=0.600000),(InVal=0.600000,OutVal=0.670000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
@@ -463,7 +460,15 @@ defaultproperties
 		DeclineTime=0.5
 		DeclineDelay=0.15
 	End Object
-	RecoilParamsList(0)=RecoilParams'XM20RecoilParams'	 
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'	 
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=64,Max=768)
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		ChaosDeclineTime=0.5
+		ChaosSpeedThreshold=500
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	
 	FireModeClass(0)=Class'BWBPSomeOtherPack.XM20PrimaryFire'
 	FireModeClass(1)=Class'BWBPSomeOtherPack.XM20SecondaryFire'

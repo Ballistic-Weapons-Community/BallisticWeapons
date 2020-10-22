@@ -25,7 +25,7 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 		Damage += XM20AutoLas(BW).ManageHeatInteraction(Pawn(Target), HeatPerShot);
 	
 	if (Monster(Target) != None)
-		Damage = Min(Damage, 40);
+		Damage = Min(Damage, 36);
 
 	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 }

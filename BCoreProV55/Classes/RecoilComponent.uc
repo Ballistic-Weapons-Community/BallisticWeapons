@@ -141,7 +141,8 @@ final simulated function Recalculate()
 	HipMultiplier 		= Params.HipMultiplier;
 	CrouchMultiplier 	= Params.CrouchMultiplier;
 
-	UpdateADSTransition();
+	if (ViewBindFactor == 0)
+		ViewBindFactor = Params.ViewBindFactor;
 
 	Weapon.OnRecoilParamsChanged();
 }

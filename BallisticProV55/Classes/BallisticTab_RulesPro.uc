@@ -221,7 +221,7 @@ defaultproperties
          Caption="Random Default Weapons"
          OnCreateComponent=ch_RandomDefaultsCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Players will spawn with a random sidearm instead of stock Pistol."
+         Hint="Players will spawn with a random sidearm instead of stock pistol."
          WinTop=0.050000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -234,7 +234,7 @@ defaultproperties
          Caption="Bright Players"
          OnCreateComponent=ch_BrightPlayersCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Makes players glow in the dark like normal UT2004. Only affeects BW gametypes, standard gametypes have bright players already."
+         Hint="Makes players glow in the dark like normal UT2004. Only affects BW gametypes - standard gametypes have bright players already."
          WinTop=0.400000
          WinLeft=0.250000
          WinHeight=0.040000

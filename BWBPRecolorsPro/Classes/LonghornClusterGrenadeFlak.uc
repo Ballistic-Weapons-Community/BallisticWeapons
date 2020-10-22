@@ -79,8 +79,8 @@ simulated function InitProjectile ()
 	if (RandomSpin != 0 && !bNoInitialSpin)
 		RandSpin(RandomSpin);
 
-	if (DetonateOn == DT_Timer)
-		SetTimer(Lerp(FRand(), DetonateDelayRange.Min, DetonateDelayRange.Max), false);
+	if (DetonateOn == DT_ImpactTimed || DetonateOn == DT_Timer)
+		DetonateDelay = Lerp(FRand(), DetonateDelayRange.Min, DetonateDelayRange.Max);
 }
 
 simulated function InitEffects ()
@@ -253,10 +253,10 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
-	DetonateDelayRange=(Min=1.000000,Max=1.500000)
-	DetonateOn=DT_Timer
+	DetonateDelayRange=(Min=0.75,Max=1.250000)
+	DetonateOn=DT_ImpactTimed
 	PlayerImpactType=PIT_Detonate
-	DampenFactor=0.200000
+	DampenFactor=0.100000
 	DampenFactorParallel=0.350000
 	bAlignToVelocity=True
 	ImpactDamage=45

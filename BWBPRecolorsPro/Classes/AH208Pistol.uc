@@ -210,7 +210,7 @@ defaultproperties
     InventoryGroup=2
     GroupOffset=14
     PickupClass=Class'BWBPRecolorsPro.AH208Pickup'
-    PlayerViewOffset=(Y=19.500000,Z=-30.000000)
+	PlayerViewOffset=(X=15,Y=12,Z=-37)
     BobDamping=1.200000
     AttachmentClass=Class'BWBPRecolorsPro.AH208Attachment'
     IconMaterial=Texture'BallisticRecolors4TexPro.Eagle.SmallIcon_Eagle'

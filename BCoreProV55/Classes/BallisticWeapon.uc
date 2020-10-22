@@ -4822,6 +4822,7 @@ defaultproperties
      LongGunOffset=(X=5.000000,Y=10.000000,Z=-11.000000)
      bUseNetAim=True
 	 
+	 bSightLock=True
      SelectAnim="Pullout"
      PutDownAnim="putaway"
      SelectAnimRate=1.000000

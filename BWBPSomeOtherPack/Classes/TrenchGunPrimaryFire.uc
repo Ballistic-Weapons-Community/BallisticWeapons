@@ -309,9 +309,7 @@ simulated event ModeDoFire()
     	ApplyRecoil();
     
 	if (!BW.bScopeView)
-		BW.FireChaos = FClamp(BW.FireChaos + FireChaos, 0, 1);
-		
-	BW.LastFireTime = Level.TimeSeconds;
+		BW.AddFireChaos(FireChaos);
 
     // client
     if (Instigator.IsLocallyControlled())

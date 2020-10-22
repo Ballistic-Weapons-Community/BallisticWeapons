@@ -86,10 +86,10 @@ defaultproperties
          MaxValue=1.000000
          ComponentJustification=TXTA_Left
          CaptionWidth=0.800000
-         Caption="Walk Speed Percentage"
+         Caption="Aim Down Sight Move Speed %"
          OnCreateComponent=fl_WalkingPctFloat.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Scales the walk speed. 0.5 to 1.0 = 50% to 100% of run speed."
+         Hint="Scales player movement speed when aiming weapons. 0.5 to 1.0 = 50% to 100% of run speed. This is also the walking speed"
          WinTop=0.100000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -101,7 +101,7 @@ defaultproperties
          MaxValue=0.600000
          ComponentJustification=TXTA_Left
          CaptionWidth=0.800000
-         Caption="Crouch Speed Percentage"
+         Caption="Crouch Move Speed %"
          OnCreateComponent=fl_CrouchingPctFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Scales the crouch speed. 0.2 to 0.6 = 20% to 60% of run speed."
@@ -172,7 +172,7 @@ defaultproperties
      Begin Object Class=moCheckBox Name=ch_RunningAnimsCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Use Run Anims For Walk"
+         Caption="Use Run Anims For ADS Movement"
          OnCreateComponent=ch_RunningAnimsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Sets player walk anims to run anims."

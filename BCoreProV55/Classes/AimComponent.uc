@@ -66,6 +66,7 @@ var	private float				ReaimTime;			    // Time it should take to move aim pointer
 var private float				ReaimPhase;			    // How far along pointer is in its movement from old to new
 var private bool				bReaiming;			    // Is the pointer being reaimed?
 var	private float				NextZeroAimTime;		// For zeroing aim when scoping
+var private float				LastFireChaosTime;		// Last time at which chaos was applied
 
 var private Rotator				AimOffset;			    // Extra Aim offset. Set NewAimOffset and AimOffsetTime to have this move smoothly
 var private Rotator				NewAimOffset;		    // This is what AimOffset should be and is adjusted for sprinting and so on
@@ -254,8 +255,9 @@ final simulated function Recalculate()
     ChaosDeclineTime    = Params.ChaosDeclineTime;
     ChaosSpeedThreshold = Params.ChaosSpeedThreshold;
 	CrouchMultiplier    = Params.CrouchMultiplier;
-	
-	UpdateADSTransition();
+
+	if (ViewBindFactor == 0)
+		ViewBindFactor = Params.ViewBindFactor;
 
 	Weapon.OnAimParamsChanged();
 }
@@ -322,7 +324,6 @@ final simulated function OnPlayerJumped()
     Reaim(0.05, AimAdjustTime, Params.JumpChaos, Params.JumpOffset.Yaw, Params.JumpOffset.Pitch);
     bJumpLock = True;
     FireChaos += Params.JumpChaos;
-    Weapon.LastFireTime = Level.TimeSeconds;
     bForceReaim=true;
 }
 
@@ -343,7 +344,8 @@ final simulated function RecoilReaim(float chaos)
 
 final simulated function AddFireChaos(float chaos)
 {
-    FireChaos = FClamp(FireChaos + chaos, 0, 1);
+	FireChaos = FClamp(FireChaos + chaos, 0, 1);
+	LastFireChaosTime = Level.TimeSeconds;
 }
 
 // This a major part of of the aiming system. It checks on things and interpolates Aim, AimOffset, Chaos,  Recoil, and
@@ -389,7 +391,7 @@ final simulated function UpdateAim(float DT)
     }
 
     // Fire chaos decline
-    if (FireChaos > 0 && Weapon.LastFireTime + Params.ChaosDeclineDelay < Level.TimeSeconds)
+    if (FireChaos > 0 && LastFireChaosTime + Params.ChaosDeclineDelay < Level.TimeSeconds)
     {
         if (Instigator.bIsCrouched)
             FireChaos -= FMin(FireChaos, DT / (ChaosDeclineTime / CrouchMultiplier));

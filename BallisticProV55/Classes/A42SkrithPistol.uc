@@ -284,7 +284,7 @@ defaultproperties
 	SoundPitch=56
 	SoundRadius=32.000000
 	
-	Begin Object Class=RecoilParams Name=A42RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		XCurve=(Points=(,(InVal=0.100000),(InVal=0.200000,OutVal=0.05000),(InVal=0.400000,OutVal=0.0800000),(InVal=0.600000,OutVal=0.0200000),(InVal=0.700000,OutVal=0.1),(InVal=1.000000,OutVal=0.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.350000),(InVal=0.550000,OutVal=0.550000),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.0)))
 		XRandFactor=0.100000
@@ -294,12 +294,12 @@ defaultproperties
 		ViewBindFactor=0.5
 		HipMultiplier=1.5
 	End Object
-	RecoilParamsList(0)=RecoilParams'A42RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
 
-	Begin Object Class=AimParams Name=A42AimParams
+	Begin Object Class=AimParams Name=ArenaAimParams
 		AimSpread=(Min=64,Max=128)
 		ChaosDeclineTime=0.450000
 		ADSMultiplier=2 
 	End Object
-	AimParamsList(0)=AimParams'A42AimParams'
+	AimParamsList(0)=AimParams'ArenaAimParams'
 }

@@ -83,21 +83,10 @@ simulated function DestroyEffects()
 	class'BUtil'.static.KillEmitterEffect (MuzzleFlashC);
 }
 
-simulated function rotator GetNewAim(float ExtraTime)
-{
-	return class'BUtil'.static.RSmerp(FMin((BW.ReaimPhase+ExtraTime)/BW.ReaimTime, 1.0), BW.OldAim, BW.NewAim);
-}
-
-simulated function rotator GetNewAimOffset(float ExtraTime)
-{
-	return class'BUtil'.static.RSmerp(FMax(0.0,(BW.AimOffsetTime-(level.TimeSeconds+ExtraTime))/BW.AimAdjustTime), BW.NewAimOffset, BW.OldAimOffset);
-}
 // Returns the interpolated base aim with its offset, chaos, etc and view aim removed in the form of a single rotator
 simulated function Rotator GetNewAimPivot(float ExtraTime, optional bool bIgnoreViewAim)
 {
-	if (bIgnoreViewAim || Instigator.Controller == None || PlayerController(Instigator.Controller) == None || PlayerController(Instigator.Controller).bBehindView)
-		return GetNewAimOffset(ExtraTime) + GetNewAim(ExtraTime) + BW.AimOffset + BW.LongGunPivot * BW.LongGunFactor;
-	return GetNewAimOffset(ExtraTime) + GetNewAim(ExtraTime) * (1-BW.ViewAimFactor) + BW.AimOffset + BW.LongGunPivot * BW.LongGunFactor;
+	return BW.CalcFutureAim(ExtraTime, bIgnoreViewAim);
 }
 
 //FIXME, maybe lets not use adjust aim, cause it does some traces and target selecting!!!
@@ -412,7 +401,7 @@ simulated event ModeDoFire()
 			class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(load, BW.InventoryGroup);
     }
 	if (!BW.bScopeView)
-		BW.FireChaos = FClamp(BW.FireChaos + FireChaos, 0, 1);
+		BW.AddFireChaos(FireChaos);
 	
 	BW.LastFireTime = Level.TimeSeconds;
 

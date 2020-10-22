@@ -53,21 +53,8 @@ simulated event Tick (float DT)
 simulated event WeaponTick(float DT)
 {
 	local float AccelLimit;
-
-	TickAim(DT);
-
-	TickSighting(DT);
-
-	if (!BCRepClass.default.bNoLongGun && GunLength > 0)
-		TickLongGun(DT);
-		
-	TickFireCounter(DT);
-
-	//Kab
-	if (Instigator.Base != none)
-        AimAdjustTime = (default.AimAdjustTime * 2) - (default.AimAdjustTime * (FMin(VSize(Instigator.Velocity - Instigator.Base.Velocity), 375) / 350));
-    else
-        AimAdjustTime = default.AimAdjustTime;
+	
+	super.WeaponTick(DT);
 
 	if (FireMode[0].IsFiring())
 	{

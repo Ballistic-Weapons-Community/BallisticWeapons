@@ -199,22 +199,6 @@ function HandlePassiveDamageMitigation( out int Damage, out Vector Momentum, cla
 	// explosions push back
 	Damage = Max(Damage/4, Damage - 15);
 	Momentum *= 2;
-
-}
-
-simulated function ClientPlayerDamaged(byte DamageFactor)
-{
-	local float DF;
-	if (level.NetMode != NM_Client)
-		return;
-	DF = float(DamageFactor)/255;
-	ApplyDamageFactor(DF);
-	bForceReaim=true;
-}
-
-simulated function ApplyDamageFactor (float DF)
-{
-	Reaim(0.1, 0.3*AimAdjustTime, DF*2, DF*2*(-6000 + 12000 * FRand()), DF*2*(-6000 + 12000 * FRand()));
 }
 
 function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDrain )
@@ -271,9 +255,14 @@ defaultproperties
      MagAmmo=1
      bNoMag=True
      GunLength=0.000000
-     AimSpread=32
-     ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=256
+	 
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimAdjustTime=0.350000
+		AimSpread=(Min=32,Max=256)
+		ChaosSpeedThreshold=3000.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
+
      FireModeClass(0)=Class'BWBPSomeOtherPack.BallisticShieldPrimaryFire'
      FireModeClass(1)=Class'BWBPSomeOtherPack.BallisticShieldSecondaryFire'
      PutDownTime=0.500000
@@ -298,5 +287,5 @@ defaultproperties
      ItemName="RSH-1034 Riot Shield"
      Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.BallisticShield_FP'
      DrawScale=1.250000
-	 AimDisplacementDurationMult=0.0
+	 DisplaceDurationMult=0.0
 }

@@ -398,13 +398,10 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-20.000000,Z=35.000000)
 	SightingTime=0.650000
-	SightAimFactor=0.15
 	MinZoom=2.000000
 	MaxZoom=8.000000
 	ZoomStages=2
 	GunLength=72.000000
-	SprintOffSet=(Pitch=-3000,Yaw=-8000)
-	ChaosAimSpread=768
 	 
 	Begin Object Class=RecoilParams Name=CX85RecoilParams
 		ViewBindFactor=0.3
@@ -416,6 +413,13 @@ defaultproperties
 		DeclineDelay=0.170000
 	End Object
 	RecoilParamsList(0)=RecoilParams'CX85RecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=16,Max=768)
+		ADSMultiplier=0.15
+		SprintOffset=(Pitch=-3000,Yaw=-8000)
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	 
 	FireModeClass(0)=Class'BWBPOtherPackPro.CX85PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.CX85SecondaryFire'

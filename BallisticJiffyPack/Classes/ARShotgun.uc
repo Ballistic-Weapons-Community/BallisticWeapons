@@ -13,25 +13,25 @@
 class ARShotgun extends BallisticProShotgun;
 
 
-var Name			BulletBone;
-var() bool		bLoaded;
+var Name					BulletBone;
+var() bool					bLoaded;
 
-var() BUtil.FullSound		GrenLoadSound;		//Grenade shovel load sound
+var() BUtil.FullSound		GrenLoadSound;				//Grenade shovel load sound
 
-var() Name 	ShovelAnim; 	//Anim for alt shovelling
-var() Array<Name> 	SGPrepAnim;			//Anim to use for Loading each shell individually
-var() Array<Name> 	ReloadAltAnim;			//Anim to use for Reloading each shell individually
+var() Name 					ShovelAnim; 				//Anim for alt shovelling
+var() Array<Name> 			SGPrepAnim;					//Anim to use for Loading each shell individually
+var() Array<Name> 			ReloadAltAnim;				//Anim to use for Reloading each shell individually
 
-var() float 	GrenadeLoadAnimRate;		//Grenade loading speed
-var() float 	ShovelReloadAnimRate;		//Grenade reloading speed
+var() float 				GrenadeLoadAnimRate;		//Grenade loading speed
+var() float 				ShovelReloadAnimRate;		//Grenade reloading speed
 
-var() float     VisGrenades;		//Rockets currently visible in tube.
-var() int       Grenades;		//Rockets currently in the gun.
-var() int		StartingGrenades;
-var() bool		bReady;			//Weapon ready for alt fire
+var() float     			VisGrenades;				//Rockets currently visible in tube.
+var() int       			Grenades;					//Rockets currently in the gun.
+var() int					StartingGrenades;
+var() bool					bReady;						//Weapon ready for alt fire
 
-var() name		SightsBone;			// Bone to use for hiding sight; temporary
-var() name  	SightsBoneHinge;			//Bone to use for hiding sight; temporary
+var() name					SightsBone;					// Bone to use for hiding sight; temporary
+var() name  				SightsBoneHinge;			//Bone to use for hiding sight; temporary
 
 var   actor GLIndicator;
 
@@ -43,14 +43,12 @@ struct RevInfo
 var() RevInfo	GrenadeBones[3]; 	//Bones for Grenades in holder
 var() RevInfo	GLLoadGrenadeBones[3]; 	//Bones for Grenades in animation
 
-
 replication
 {
 	// Things the server should send to the client.
 	reliable if(Role==ROLE_Authority)
 		Grenades, VisGrenades, bReady, bLoaded;
 }
-
 
 //=============================================
 //End Variables
@@ -294,7 +292,7 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -694,101 +692,105 @@ simulated function Notify_BrassOut();
 
 defaultproperties
 {
-     BulletBone="Bullet1"
-     GrenLoadSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.GLShovel',Volume=1.800000)
-     ShovelAnim="GLReload1"
-     SGPrepAnim(0)="GLLoad1"
-     SGPrepAnim(1)="GLLoad2"
-     SGPrepAnim(2)="GLLoad3"
-     ReloadAltAnim(0)="GLReload1"
-     ReloadAltAnim(1)="GLReload2"
-     ReloadAltAnim(2)="GLReload3"
-     GrenadeLoadAnimRate=1.200000
-     ShovelReloadAnimRate=1.500000
-     Grenades=3
-     StartingGrenades=3
-     SightsBone="LadderSight"
-     SightsBoneHinge="LadderSightHinge"
-     GrenadeBones(0)=(GrenName="Grenade1")
-     GrenadeBones(1)=(GrenName="Grenade2")
-     GrenadeBones(2)=(GrenName="Grenade3")
-     GLLoadGrenadeBones(0)=(GrenName="GrenadeHandle")
-     GLLoadGrenadeBones(1)=(GrenName="HeldGrenade")
-     GLLoadGrenadeBones(2)=(GrenName="EmptyGrenade")
-     PlayerSpeedFactor=0.80000
-     PlayerJumpFactor=0.800000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBPJiffyPackTex.TacBuster.BigIcon_AA12'
-     BigIconCoords=(Y1=40)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Shotgun=True
-     bWT_Machinegun=True
-     bWT_Projectile=True
-     ManualLines(0)="Automatic shotgun blasts with high DPS, good accuracy and controllable recoil."
-     ManualLines(1)="Loads an incendiary grenade and fires. Deals good impact damage and minor radius damage, as well as a blast of fire upon impact."
-	 ManualLines(2)="This weapon is heavy and has poor shoulder fire properties.||Effective at close range."
-     SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
-     MagAmmo=15
-     CockSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.Cock',Volume=1.400000)
-     ReloadAnimRate=0.750000
-     ClipOutSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.MagOut',Volume=1.300000)
-     ClipInSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.MagIn',Volume=1.300000)
-     StartShovelAnim="PrepReload"
-     StartShovelAnimRate=1.300000
-     EndShovelAnim="FinishReload"
-     EndShovelAnimRate=1.300000
-     WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
-	 WeaponModes(1)=(ModeName="Semi-Automatic",bUnavailable=true,ModeID="WM_SemiAuto")
-	 WeaponModes(2)=(ModeName="Burst",bUnavailable=true,ModeID="WM_Burst")
-     CurrentWeaponMode=0
-     bNotifyModeSwitch=True
-     SightOffset=(X=60.000000,Y=5.690000,Z=35.820000)
-	 bNoCrosshairInScope=True
-     SightDisplayFOV=40.000000
-     SightingTime=0.550000
-     GunLength=48.000000
-     SprintOffSet=(Pitch=-4096,Yaw=-4096)
-     JumpOffSet=(Pitch=-1024,Yaw=-1024)
+	BulletBone="Bullet1"
+	GrenLoadSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.GLShovel',Volume=1.800000)
+	ShovelAnim="GLReload1"
+	SGPrepAnim(0)="GLLoad1"
+	SGPrepAnim(1)="GLLoad2"
+	SGPrepAnim(2)="GLLoad3"
+	ReloadAltAnim(0)="GLReload1"
+	ReloadAltAnim(1)="GLReload2"
+	ReloadAltAnim(2)="GLReload3"
+	GrenadeLoadAnimRate=1.200000
+	ShovelReloadAnimRate=1.500000
+	Grenades=3
+	StartingGrenades=3
+	SightsBone="LadderSight"
+	SightsBoneHinge="LadderSightHinge"
+	GrenadeBones(0)=(GrenName="Grenade1")
+	GrenadeBones(1)=(GrenName="Grenade2")
+	GrenadeBones(2)=(GrenName="Grenade3")
+	GLLoadGrenadeBones(0)=(GrenName="GrenadeHandle")
+	GLLoadGrenadeBones(1)=(GrenName="HeldGrenade")
+	GLLoadGrenadeBones(2)=(GrenName="EmptyGrenade")
+	PlayerSpeedFactor=0.80000
+	PlayerJumpFactor=0.800000
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBPJiffyPackTex.TacBuster.BigIcon_AA12'
+	BigIconCoords=(Y1=40)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Shotgun=True
+	bWT_Machinegun=True
+	bWT_Projectile=True
+	ManualLines(0)="Automatic shotgun blasts with high DPS, good accuracy and controllable recoil."
+	ManualLines(1)="Loads an incendiary grenade and fires. Deals good impact damage and minor radius damage, as well as a blast of fire upon impact."
+	ManualLines(2)="This weapon is heavy and has poor shoulder fire properties.||Effective at close range."
+	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
+	MagAmmo=15
+	CockSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.Cock',Volume=1.400000)
+	ReloadAnimRate=0.750000
+	ClipOutSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.MagOut',Volume=1.300000)
+	ClipInSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.MagIn',Volume=1.300000)
+	StartShovelAnim="PrepReload"
+	StartShovelAnimRate=1.300000
+	EndShovelAnim="FinishReload"
+	EndShovelAnimRate=1.300000
+	WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Semi-Automatic",bUnavailable=true,ModeID="WM_SemiAuto")
+	WeaponModes(2)=(ModeName="Burst",bUnavailable=true,ModeID="WM_Burst")
+	CurrentWeaponMode=0
+	SightOffset=(X=60.000000,Y=5.690000,Z=35.820000)
+	bNoCrosshairInScope=True
+	SightDisplayFOV=40.000000
+	SightingTime=0.550000
+	GunLength=48.000000
+
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
+		ViewBindFactor=0.4
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.300000,OutVal=0.150000),(InVal=0.500000,OutVal=0.250000),(InVal=0.750000,OutVal=0.30000),(InVal=1.000000,OutVal=0.350000)))
+		YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.100000
+		YRandFactor=0.100000
+		MaxRecoil=8192.000000
+		DeclineDelay=0.4
+		DeclineTime=1.0	
+	End Object
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=16,Max=512)
+		SprintOffset=(Pitch=-4096,Yaw=-4096)
+		JumpOffset=(Pitch=-1024,Yaw=-1024)
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	 
-     AimSpread=16
-     ChaosAimSpread=512
-	 
-	 ViewRecoilFactor=0.4
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.300000,OutVal=0.150000),(InVal=0.500000,OutVal=0.250000),(InVal=0.750000,OutVal=0.30000),(InVal=1.000000,OutVal=0.350000)))
-     RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.100000
-     RecoilYFactor=0.100000
-     RecoilMax=8192.000000
-     RecoilDeclineDelay=0.4
-	 RecoilDeclineTime=1.0	 
-	 
-     FireModeClass(0)=Class'BallisticJiffyPack.ARPrimaryFire'
-     FireModeClass(1)=Class'BallisticJiffyPack.ARSecondaryFire'
-     SelectAnimRate=0.900000
-     PutDownTime=0.550000
-     BringUpTime=0.700000
-     AIRating=0.850000
-     CurrentRating=0.850000
-	 Description="RCS-715 Tactical Buster||Manufacturer: JAX Industrial Firm|Primary: Automatic Shotgun Blast|Secondary: Incendiary Grenade"
-     Priority=245
-     HudColor=(G=25)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=7
-     GroupOffset=7
-     PickupClass=Class'BallisticJiffyPack.ARPickup'
-     PlayerViewOffset=(Y=16.000000,Z=-25.000000)
-     AttachmentClass=Class'BallisticJiffyPack.ARAttachment'
-     IconMaterial=Texture'BWBPJiffyPackTex.TacBuster.Icon_AA12'
-     IconCoords=(X2=125,Y2=32)
-     ItemName="RCS-715 Tactical Buster"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=25
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBPJiffyPackAnims.AA12_FP'
-     DrawScale=0.600000
+	FireModeClass(0)=Class'BallisticJiffyPack.ARPrimaryFire'
+	FireModeClass(1)=Class'BallisticJiffyPack.ARSecondaryFire'
+	SelectAnimRate=0.900000
+	PutDownTime=0.550000
+	BringUpTime=0.700000
+	AIRating=0.850000
+	CurrentRating=0.850000
+	Description="RCS-715 Tactical Buster||Manufacturer: JAX Industrial Firm|Primary: Automatic Shotgun Blast|Secondary: Incendiary Grenade"
+	Priority=245
+	HudColor=(G=25)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=7
+	GroupOffset=7
+	PickupClass=Class'BallisticJiffyPack.ARPickup'
+	PlayerViewOffset=(Y=16.000000,Z=-25.000000)
+	AttachmentClass=Class'BallisticJiffyPack.ARAttachment'
+	IconMaterial=Texture'BWBPJiffyPackTex.TacBuster.Icon_AA12'
+	IconCoords=(X2=125,Y2=32)
+	ItemName="RCS-715 Tactical Buster"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=25
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=5.000000
+	Mesh=SkeletalMesh'BWBPJiffyPackAnims.AA12_FP'
+	DrawScale=0.600000
 }

@@ -327,22 +327,15 @@ simulated function UpdatePawnList()
 	}
 }
 
-simulated function SetScopeView(bool bNewValue)
+simulated function OnScopeViewChanged()
 {
-
-	bScopeView = bNewValue;
 	if (!bScopeView)
 	{
+		if (Target != None)
+			class'BUtil'.static.PlayFullSound(self, NVOffSound);
 		Target = None;
 		TargetTime=0;
 	}
-	if (Level.NetMode == NM_Client)
-		ServerSetScopeView(bNewValue);
-	bScopeView = bNewValue;
-	SetScopeBehavior();
-
-	if (!bNewValue && Target != None)
-		class'BUtil'.static.PlayFullSound(self, NVOffSound);
 }
 
 // draws red blob that moves, scanline, and target boxes.
@@ -622,12 +615,8 @@ defaultproperties
 	MinZoom=2.000000
 	MaxZoom=16.000000
 	ZoomStages=3
-	SightAimFactor=0.4
-	JumpChaos=0.200000
-	AimAdjustTime=0.450000
-	ChaosAimSpread=512
 
-	Begin Object Class=RecoilParams Name=BX85RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.5
 		XRandFactor=0.050000
 		YRandFactor=0.050000
@@ -635,7 +624,15 @@ defaultproperties
 		DeclineTime=1.500000
 		DeclineDelay=0.500000
 	End Object
-	RecoilParamsList(0)=RecoilParams'BX85RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=64,Max=512)
+		ADSMultiplier=0.4
+		JumpChaos=0.200000
+		AimAdjustTime=0.450000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	
 	CockSound=(Sound=Sound'BWBPOtherPackSound.XBow.CockFast',Volume=1.200000)
 	FireModeClass(0)=Class'BWBPOtherPackPro.BX85PrimaryFire'

@@ -331,7 +331,13 @@ function BlowUp(vector HitLocation)
 		Start.Z += 16;
 	if (FlakCount > 0 && FlakClass != None)
 	{
-		for (i=0; i < FlakCount; i++)
+		// First flak is always straight down
+		Dir.Pitch = -16384;
+		Dir.Yaw = Rotation.Yaw;
+		Spawn( FlakClass,, '', Start, Dir);
+
+		// Remainder are spawned in predictable star pattern
+		for (i=1; i < FlakCount; i++)
 		{
 			switch (DetonationType)
 			{
@@ -339,8 +345,8 @@ function BlowUp(vector HitLocation)
 					Dir = RotRand();
 					break;
 				default:
-					Dir.Yaw += 20000 + FRand() * 40000;
-					Dir.Pitch = -12386 - Rand(4000);
+					Dir.Yaw 	+= 65536 / (FlakCount - 1);
+					Dir.Pitch 	= -12386 - 2000;
 					break;
 			}
 			Spawn( FlakClass,, '', Start, Dir);

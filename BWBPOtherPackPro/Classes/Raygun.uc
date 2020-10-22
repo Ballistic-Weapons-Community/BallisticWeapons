@@ -235,7 +235,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -246,7 +246,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 	}
 	
 	if (ReloadState == RS_GearSwitch)
@@ -541,19 +541,16 @@ defaultproperties
 	ManualLines(1)="Charged ray attack. Targets hit by this attack will receive damage and become irradiated. Irradiation causes damage over time and can be spread through the enemy's team by proximity to the irradiated enemy. The duration of irradiation against a target is extended when hit by the primary fire."
 	ManualLines(2)="The Raygun also possesses a shield, activated by the Weapon Function key. When active, this shield reduces damage from any source which is not locational, such as flames and explosions, by 75%, but makes the user highly visible. Effective at close range, against groups of clustered players and against explosives."
 	CurrentWeaponMode=0
-	bNotifyModeSwitch=True
+	
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=450)
 	SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
 	SightDisplayFOV=25.000000
 	SightingTime=0.250000
-	SightAimFactor=1
 	SightZoomFactor=0.85
-	SprintOffSet=(Pitch=-3000,Yaw=-4000)
-	AimAdjustTime=0.600000
-	ChaosDeclineTime=1.250000
+
 	 
-	 Begin Object Class=RecoilParams Name=R9A1RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.35
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.070000),(InVal=0.300000,OutVal=0.140000),(InVal=0.600000,OutVal=0.120000),(InVal=0.700000,OutVal=0.120000),(InVal=1.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.150000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=0.320000),(InVal=0.450000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
@@ -562,7 +559,15 @@ defaultproperties
 		DeclineTime=1.500000
 		DeclineDelay=0.230000
  	End Object
- 	RecoilParamsList(0)=RecoilParams'R9A1RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+	 
+	 Begin Object Class=AimParams Name=ArenaAimParams
+		ADSMultiplier=1
+		SprintOffset=(Pitch=-3000,Yaw=-4000)
+		AimAdjustTime=0.600000
+		ChaosDeclineTime=1.250000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	 
 	FireModeClass(0)=Class'BWBPOtherPackPro.RaygunPrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.RaygunSecondaryFire'

@@ -20,8 +20,10 @@ function SpawnProjectile(Vector Start, Rotator Dir)
 	local PlayerController Possessor;
 	
     Warhead = Weapon.Spawn(class'AkeronWarhead', Instigator,, Start, Dir);
+
     if (Warhead == None)
 		Warhead = Weapon.Spawn(class'AkeronWarhead', Instigator,, Instigator.Location, Dir);
+    
     if (Warhead != None)
     {
 		AkeronLauncher(BW).ActiveWarhead = Warhead;
@@ -43,8 +45,6 @@ function SpawnProjectile(Vector Start, Rotator Dir)
 		WarHead.MyTeam = Possessor.PlayerReplicationInfo.Team;
 		Warhead.Master = AkeronLauncher(BW);
     }
-    else 
-		Weapon.HurtRadius(85, 150, class'DTAkeron', 20000, Instigator.Location);
 
 	bIsFiring = false;
     StopFiring();
@@ -114,11 +114,8 @@ simulated event ModeDoFire()
         if(BallisticTurret(Weapon.Owner) == None && class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo) != None)
 			class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(load, BW.InventoryGroup);
     }
-	if (!BW.bScopeView)
-		BW.FireChaos = FClamp(BW.FireChaos + (FireChaos * InterpCurveEval(FireChaosCurve, BW.FireChaos)), 0, 1);
-    	
-	BW.LastFireTime = Level.TimeSeconds;
-
+    if (!BW.bScopeView)
+		BW.AddFireChaos(FireChaos);	
 
     // client
     if (Instigator.IsLocallyControlled())

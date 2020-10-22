@@ -277,21 +277,13 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Flamethrower",ModeID="WM_FullAuto")
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	bNotifyModeSwitch=True
+	
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=600)
 	SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
 	SightDisplayFOV=25.000000
 	GunLength=16.000000
-	SightAimFactor=0.200000
-	SprintOffSet=(Pitch=-3000,Yaw=-4000)
-	AimAdjustTime=0.400000
-	
-	AimSpread=16
-	ChaosDeclineTime=1.250000
-	ChaosSpeedThreshold=15000.000000
-	ChaosAimSpread=768
-	 
+
 	Begin Object Class=RecoilParams Name=CX61RecoilParams
 		ViewBindFactor=0.4
 		XCurve=(Points=(,(InVal=0.2,OutVal=-0.03),(InVal=0.4,OutVal=0.11),(InVal=0.5,OutVal=0.13),(InVal=0.6,OutVal=0.15),(InVal=0.8,OutVal=0.16),(InVal=1.000000)))
@@ -302,6 +294,16 @@ defaultproperties
 		DeclineDelay=0.135000
 	End Object
 	RecoilParamsList(0)=RecoilParams'CX61RecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=16,Max=768)
+		ADSMultiplier=0.200000
+		SprintOffset=(Pitch=-3000,Yaw=-4000)
+		AimAdjustTime=0.400000
+		ChaosDeclineTime=1.250000
+		ChaosSpeedThreshold=15000.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BWBPOtherPackPro.CX61PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.CX61SecondaryFire'

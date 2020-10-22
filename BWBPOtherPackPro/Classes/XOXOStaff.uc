@@ -360,18 +360,16 @@ defaultproperties
      ClipInFrame=0.700000
      bNonCocking=True
      WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Bomb",ModeID="WM_FullAuto",RecoilParamsIndex=1)
+     WeaponModes(1)=(ModeName="Bomb",ModeID="WM_FullAuto",RecoilParamsIndex=1,AimParamsIndex=1)
      WeaponModes(2)=(ModeName="Lust Shockwave",ModeID="WM_SemiAuto",Value=1.000000)
      WeaponModes(3)=(ModeName="Sexplosion",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
      CurrentWeaponMode=0
-     bNotifyModeSwitch=True
      SightPivot=(Pitch=768)
      SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
      SightDisplayFOV=40.000000
      SightingTime=0.300000
      GunLength=128.000000
-     SprintOffSet=(Pitch=-1024,Yaw=-1024)
-     ChaosDeclineTime=1.250000
+
 
 	Begin Object Class=RecoilParams Name=XOXOFastRecoilParams
 		ViewBindFactor=0.35
@@ -395,8 +393,18 @@ defaultproperties
 	End Object
 	RecoilParamsList(1)=RecoilParams'XOXOBombRecoilParams'
 
+	Begin Object Class=AimParams Name=ArenaFastAimParams
+		SprintOffset=(Pitch=-1024,Yaw=-1024)
+		ChaosDeclineTime=1.250000
+	End Object
+	AimParamsList(0)=AimParams'ArenaFastAimParams'
 
-
+	Begin Object Class=AimParams Name=ArenaBombAimParams
+		AimSpread=(Min=128,Max=1024)
+		SprintOffset=(Pitch=-1024,Yaw=-1024)
+		ChaosDeclineTime=1.250000
+	End Object
+	AimParamsList(1)=AimParams'ArenaBombAimParams'
 	 
      FireModeClass(0)=Class'BWBPOtherPackPro.XOXOPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.XOXOSecondaryFire'

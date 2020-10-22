@@ -44,11 +44,9 @@ function AttachToPawn(Pawn P)
 		P.AttachToBone(ThirdPersonActor,BoneName);
 }
 
-function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
+	function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
     local vector HitNormal;
-    local float DF;
-	local float AimDisplacementDuration;
 	
 	local class<BallisticDamageType> BDT;
 	
@@ -57,86 +55,128 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	
 	if (bBerserk)
 		Damage *= 0.75;
-	
+
 	BDT = class<BallisticDamageType>(DamageType);
 	
-	if (BDT != None)
+	if (BDT != None && CheckReflect(HitLocation, HitNormal, 0.2))
 	{
-		if (BDT.default.bDisplaceAim && Damage >= BDT.default.AimDisplacementDamageThreshold && Level.TimeSeconds + BDT.default.AimDisplacementDuration > AimDisplacementEndTime)
+		if (bBlocked)
 		{
-			AimDisplacementDuration = BDT.default.AimDisplacementDuration * AimDisplacementDurationMult;
-		
-			if (bBlocked && !IsFiring() && level.TimeSeconds > LastFireTime + 1 && BDT.default.bCanBeBlocked &&
-				Normal(HitLocation-(Instigator.Location+Instigator.EyePosition())) Dot Vector(Instigator.GetViewRotation()) > 0.4
-				&& AimDisplacementEndTime < Level.TimeSeconds && AimDisplacementFactor == 0)
-			{
-				Damage = 0;
-				BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
-				if (instigatedBy != None && BallisticWeapon(instigatedBy.Weapon) != None)
-					BallisticWeapon(instigatedBy.Weapon).ApplyAttackFatigue();
-				AimDisplacementEndTime = Level.TimeSeconds + FMin(2, 1.00 * (float(Damage)/AimDisplacementBlockThreshold));	
-				ClientDisplaceAim(FMin(2, 1.00 * (float(Damage)/AimDisplacementBlockThreshold)));	
-				return;
-			}		
-		
-			if (BDT.default.AimDisplacementDamageThreshold == 0)
-			{
-				AimDisplacementEndTime = Level.TimeSeconds + FMin(2, AimDisplacementDuration);
-				ClientDisplaceAim(FMin(2, AimDisplacementDuration));
-			}
-			else
-			{
-				AimDisplacementEndTime = Level.TimeSeconds + FMin(2, AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold));
-				ClientDisplaceAim(FMin(2, AimDisplacementDuration * (float(Damage)/BDT.default.AimDisplacementDamageThreshold)));
-			}
-			if (bScopeView)
-				StopScopeView();
+			if (Instigator.bIsCrouched)	
+				HandleCrouchBlockingDamageMitigation(Damage, Momentum, BDT);
+			else 
+				HandleBlockingDamageMitigation(Damage, Momentum, BDT);
 		}
-	}
-		
-	if (AimKnockScale == 0)
-		return;
+		else 
+			HandlePassiveDamageMitigation(Damage, Momentum, BDT);
 
-	DF = FMin(1, (float(Damage)/AimDamageThreshold) * AimKnockScale);
-	ApplyDamageFactor(DF);
-	ClientPlayerDamaged(255*DF);
-	bForceReaim=true;
-
-	if( DamageType.default.bCausedByWorld || HitLocation.Z < Instigator.Location.Z - 22 || AimDisplacementEndTime > Level.TimeSeconds || AimDisplacementFactor > 0 )
-        super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
-
-    else if ( CheckReflect(HitLocation, HitNormal, 0.2) )
-    {
-		if (class<DT_BWShell>(DamageType) != None)
-			Damage = Max(Damage* 0.5, Damage-35);
-		else if (BDT.default.bCanBeBlocked)
-			Damage = Damage * 0.50;
-		else Damage = Max(Damage * 0.25, Damage-35);
-		Momentum *= 4;
-		
 		BallisticAttachment(ThirdPersonActor).UpdateBlockHit();
-		DF = FMin(1, float(Damage)/AimDamageThreshold);
-		ApplyDamageFactor(DF);
-		ClientPlayerDamaged(255*DF);
-		bForceReaim=true;
-    }
+	}
 
-	else super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
+	super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
 }
 
-simulated function ClientPlayerDamaged(byte DamageFactor)
+function HandleCrouchBlockingDamageMitigation( out int Damage, out Vector Momentum, class<BallisticDamageType> DamageType)
 {
-	local float DF;
-	if (level.NetMode != NM_Client)
+	if (!DamageType.default.bArmorStops)
 		return;
-	DF = float(DamageFactor)/255;
-	ApplyDamageFactor(DF);
-	bForceReaim=true;
+
+	// defend against melee and other blockables completely, but with pushback
+	if (DamageType.default.bCanBeBlocked)
+	{
+		Damage = 0;
+		Momentum *= 2;
+		return;
+	}
+
+	Damage *= 0.2;
+	Momentum *= 2;
+	return;
+
+	// defend against melee, ballistics and other blockables completely, but with pushback
+	// massive damage reduction against
+	if (DamageType.default.bCanBeBlocked || DamageType.default.bMetallic) 
+	{
+		Damage = Max(Damage/6, Damage - 35);
+		Momentum *= 2;
+		return;
+	}
+
+	// locational non-melee non-metallic almost certainly means energy - deal some damage and push back
+	if (DamageType.default.bLocationalHit)
+	{
+		Damage = Max(Damage/6, Damage - 30);
+		return;
+	}
+
+	Damage = Max(Damage/20, Damage - 50);
+	Momentum *= 2;
 }
 
-simulated function ApplyDamageFactor (float DF)
+function HandleBlockingDamageMitigation( out int Damage, out Vector Momentum, class<BallisticDamageType> DamageType)
 {
-	Reaim(0.1, 0.3*AimAdjustTime, DF*2, DF*2*(-6000 + 12000 * FRand()), DF*2*(-6000 + 12000 * FRand()));
+	if (!DamageType.default.bArmorStops)
+		return;
+
+	// defend against melee and other blockables completely, but with pushback
+	if (DamageType.default.bCanBeBlocked)
+	{
+		Damage = 0;
+		Momentum *= 2;
+		return;
+	}
+
+	Damage *= 0.3;
+	Momentum *= 2;
+	return;
+
+	// damage reduction against ballistics
+	if (DamageType.default.bMetallic)
+	{
+		Damage = Max(Damage/5, Damage - 20);
+		Momentum *= 2;
+		return;
+	}
+
+	// locational non-melee non-metallic almost certainly means energy - deal some damage and push back
+	if (DamageType.default.bLocationalHit)
+	{
+		Damage = Max(Damage/5, Damage - 20);
+		return;
+	}
+
+	Damage = Max(1, Damage - 30);
+	Momentum *= 2;
+}
+
+function HandlePassiveDamageMitigation( out int Damage, out Vector Momentum, class<BallisticDamageType> DamageType)
+{
+	if (!DamageType.default.bArmorStops)
+		return;
+
+	// actually have to block to reduce melee damage
+	Damage *= 0.45;
+	Momentum *= 2;
+	return;
+
+	// moderate passive damage reduction against ballistics
+	if (DamageType.default.bMetallic)
+	{
+		Damage = Max(Damage/3, Damage - 10);
+		Momentum *= 2;
+		return;
+	}
+
+	// locational non-melee non-metallic almost certainly means energy - deal some damage and push back
+	if (DamageType.default.bLocationalHit)
+	{
+		Damage = Max(Damage/2, Damage - 10);
+		return;
+	}
+
+	// explosions push back
+	Damage = Max(Damage/4, Damage - 15);
+	Momentum *= 2;
 }
 
 function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDrain )
@@ -192,10 +232,15 @@ defaultproperties
      PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
      MagAmmo=1
      bNoMag=True
-     GunLength=0.000000
-     AimSpread=32
-     ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=256
+	 GunLength=0.000000
+	 
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimAdjustTime=0.350000
+		AimSpread=(Min=32,Max=256)
+		ChaosSpeedThreshold=3000.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
+
      FireModeClass(0)=Class'BWBPSomeOtherPack.BallisticShieldPrimaryFire'
      FireModeClass(1)=Class'BWBPSomeOtherPack.BallisticShieldSecondaryFire'
      PutDownTime=0.500000
@@ -220,5 +265,5 @@ defaultproperties
      ItemName="Civilian Riot Shield"
      Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.JWRiotShield_FP'
      DrawScale=1.250000
-	 AimDisplacementDurationMult=0.0
+	 DisplaceDurationMult=0.0
 }

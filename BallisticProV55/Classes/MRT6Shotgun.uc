@@ -194,7 +194,7 @@ defaultproperties
     InventoryGroup=2
     GroupOffset=9
     PickupClass=Class'BallisticProV55.MRT6Pickup'
-    PlayerViewOffset=(X=12.000000,Y=8.000000,Z=-8.500000)
+    PlayerViewOffset=(X=12.000000,Y=3.000000,Z=-8.500000)
     AttachmentClass=Class'BallisticProV55.MRT6Attachment'
     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_MRT6'
     IconCoords=(X2=127,Y2=31)

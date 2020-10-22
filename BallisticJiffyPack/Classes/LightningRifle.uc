@@ -50,17 +50,17 @@ function float SuggestDefenseStyle()	{	return 0.9;	}
 
 defaultproperties
 {
-	 ZoomType=ZT_Logarithmic
+	ZoomType=ZT_Logarithmic
      ZoomInAnim="ZoomIn"
      ScopeViewTex=Texture'BWBPJiffyPackTex.Arc.ARCRifleScope'
      ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
      ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=20.000000
-	 bNoMeshInScope=True
+	bNoMeshInScope=True
      bNoCrosshairInScope=True
      SightOffset=(Z=51.000000)
      SightingTime=0.450000
-	 MinZoom=2.000000
+	MinZoom=2.000000
      MaxZoom=8.000000
      ZoomStages=4
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
@@ -83,25 +83,33 @@ defaultproperties
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-	 PlayerSpeedFactor=0.950000
+	PlayerSpeedFactor=0.950000
      PlayerJumpFactor=0.950000
      GunLength=60.000000
-     CrouchAimFactor=0.600000
-     SightAimFactor=0.350000
-     SprintOffSet=(Pitch=-8192,Yaw=-12288)
-	 JumpOffSet=(Pitch=-6000,Yaw=2000)
-	 BobDamping=0.800000
-     AimAdjustTime=0.750000
-     AimSpread=192
-     ChaosSpeedThreshold=1200.000000
-	 ChaosDeclineTime=0.750000
-     ChaosAimSpread=1024
-     RecoilYawFactor=0.100000
-     RecoilXFactor=0.400000
-     RecoilYFactor=0.800000
-	 RecoilDeclineDelay=1.000000
-     RecoilDeclineTime=0.800000
-	 ViewRecoilFactor=0.500000
+	BobDamping=0.800000
+
+     Begin Object Class=RecoilParams Name=ArenaRecoilParams
+          ViewBindFactor=0.500000
+          YawFactor=0.100000
+          XRandFactor=0.400000
+          YRandFactor=0.800000
+          DeclineDelay=1.000000
+          DeclineTime=0.800000
+          CrouchMultiplier=0.6
+     End Object
+     RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+     Begin Object Class=AimParams Name=ArenaAimParams
+          AimSpread=(Min=192,Max=1024)
+          ADSMultiplier=0.35
+          AimAdjustTime=0.750000
+          ChaosSpeedThreshold=1200.000000
+          ChaosDeclineTime=0.750000
+          SprintOffSet=(Pitch=-8192,Yaw=-12288)
+          JumpOffSet=(Pitch=-6000,Yaw=2000)
+     End Object
+     AimParamsList(0)=AimParams'ArenaAimParams'
+
      FireModeClass(0)=Class'BallisticJiffyPack.LightningPrimaryFire'
      FireModeClass(1)=Class'BallisticJiffyPack.LightningSecondaryFire'
      PutDownTime=0.700000
@@ -110,7 +118,7 @@ defaultproperties
      AIRating=0.800000
      CurrentRating=0.800000
      bSniping=True
-	 bShowChargingBar=True
+	bShowChargingBar=True
      Description="ARC-79 Lightning Rifle||Manufacturer: JAX Industrial Firm|Primary: Single lightning bolt|Secondary: Charged lightning bolt with arcing to nearby players"
      DisplayFOV=55.000000
      Priority=33

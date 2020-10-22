@@ -700,7 +700,7 @@ defaultproperties
      WeaponModes(3)=(ModeName="Shield Generator",ModeID="WM_FullAuto")
      WeaponModes(4)=(ModeName="Ammo Crate",ModeID="WM_FullAuto")
      WeaponModes(5)=(ModeName="Minigun Turret",ModeID="WM_SemiAuto")
-     bNotifyModeSwitch=True
+     
      GunLength=0.000000
      bAimDisabled=True
 	 InventorySize=12
