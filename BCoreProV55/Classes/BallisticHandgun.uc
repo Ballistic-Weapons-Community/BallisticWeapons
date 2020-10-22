@@ -137,7 +137,7 @@ simulated function bool CheckScope()
 
 	NextCheckScopeTime = level.TimeSeconds + 0.25;
 	
-	if (IsMaster() || ReloadState != RS_None || (Instigator.Physics == PHYS_Falling && VSize(Instigator.Velocity) > Instigator.GroundSpeed * 1.5) || (SprintControl != None && SprintControl.bSprinting)) //should stop recoil issues where player takes momentum and knocked out of scope, also helps dodge
+	if (IsMaster() || ReloadState != RS_None || (SprintControl != None && SprintControl.bSprinting)) //should stop recoil issues where player takes momentum and knocked out of scope, also helps dodge
 	{
 		StopScopeView();
 		return false;
@@ -892,9 +892,11 @@ simulated function SetDualMode (bool bDualMode)
 	}
 }
 
+/*
 simulated function StopScopeView(optional bool bNoAnim)
 {
 	OldZoomFOV = PlayerController(Instigator.Controller).FovAngle;
+
 	if (ZoomType != ZT_Irons)
 	{
 		PlayerController(Instigator.Controller).SetFOV(PlayerController(Instigator.Controller).DefaultFOV);
@@ -911,6 +913,7 @@ simulated function StopScopeView(optional bool bNoAnim)
 	if (ZoomOutSound.Sound != None)	class'BUtil'.static.PlayFullSound(self, ZoomOutSound);
 	PlayScopeDown(bNoAnim);
 }
+*/
 
 function ServerSwap(BallisticHandgun Other)
 {

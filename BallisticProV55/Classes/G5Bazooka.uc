@@ -228,8 +228,11 @@ simulated function OnScopeViewChanged()
 	}
 }
 
-simulated function StartScopeView()
+simulated function StartScopeZoom()
 {
+	if (ZoomInSound.Sound != None)	
+		class'BUtil'.static.PlayFullSound(self, ZoomInSound);
+
 	if (!bCamView && Instigator.Controller.IsA( 'PlayerController' ))
 	{
 		switch(ZoomType)
@@ -253,10 +256,6 @@ simulated function StartScopeView()
 				break;
 		}
 	}
-	SetScopeView(true);
-	if (ZoomInSound.Sound != None)	class'BUtil'.static.PlayFullSound(self, ZoomInSound);
-	if (bPendingSightUp)
-		bPendingSightUp=false;
 }
 
 // Scope up anim just ended. Either go into scope view or move the scope back down again

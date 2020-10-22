@@ -1149,7 +1149,7 @@ final function ServerStopReload()	{	ReloadState = RS_None;	}
 //
 // Returns true if the player may enter iron sights
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-simulated final function bool CanUseSights()
+simulated function bool CanUseSights()
 {
 	if 
 	( 
@@ -1261,13 +1261,9 @@ simulated function bool CheckScope()
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 simulated final function StartScopeView()
 {
-    local PlayerController PC;
-
-    PC = PlayerController(InstigatorController);
-
-	StartScopeZoom(PC);
+	StartScopeZoom();
 	SetScopeView(true);
-	ManageScopeCrosshair(PC);
+	ScopeModifyCrosshair();
 		
 	if (bPendingSightUp)
 		bPendingSightUp=false;
@@ -1535,7 +1531,7 @@ simulated function ApplyADSAimModifiers()
 //------------------------------------------------------------------------
 // FOV changing
 //------------------------------------------------------------------------
-simulated final function StartScopeZoom()
+simulated function StartScopeZoom()
 {
 	local PlayerController PC;
 
@@ -1594,7 +1590,7 @@ simulated final function EndScopeZoom()
 	}
 }
 
-simulated final function ChangeZoom (float Value)
+simulated function ChangeZoom (float Value)
 {
 	local PlayerController PC;
 	local float OldZoomLevel;
