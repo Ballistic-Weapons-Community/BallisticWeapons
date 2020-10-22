@@ -32,11 +32,11 @@ var() float				ThermalRange;	// Maximum range at which it is possible to see ene
 var   ColorModifier		ColorMod;
 var   float				NextPawnListUpdateTime;
 
-simulated function SetScopeView(bool bNewValue)
+simulated function OnScopeViewChanged()
 {
-	super.SetScopeView(bNewValue);
+	super.OnScopeViewChanged();
 		
-	if (!bNewValue)
+	if (!bScopeView)
 	{
 		if (Level.NetMode == NM_Client)
 			AdjustThermalView(false);

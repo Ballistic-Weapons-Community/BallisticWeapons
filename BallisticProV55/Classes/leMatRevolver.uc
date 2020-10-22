@@ -419,9 +419,8 @@ simulated function CommonCockGun(optional byte Type)
 		SafePlayAnim(CockAnim, 1.0, 0.2);
 }
 
-simulated function SetScopeBehavior()
+simulated function UpdateNetAim()
 {
-	super.SetScopeBehavior();
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 

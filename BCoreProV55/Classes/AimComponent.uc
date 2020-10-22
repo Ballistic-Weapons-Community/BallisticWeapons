@@ -285,13 +285,10 @@ final simulated function bool AllowADS()
     return NewLongGunFactor == 0 && !IsDisplaced();
 }
 
-final simulated function OnADSStart()
+final simulated function ApplyADSModifiers()
 {
-    AimSpread.Min = 0;
+	AimSpread.Min = 0;
     AimSpread.Max *= Params.ADSMultiplier;
-    
-    ChaosDeclineTime *= 2.0;
-    ChaosSpeedThreshold *= 0.7;
 }
 
 final simulated function OnADSViewStart()
@@ -301,9 +298,7 @@ final simulated function OnADSViewStart()
 
 final simulated function OnADSViewEnd()
 {
-    // BallisticWeapon's PositionSights will handle this for clients
-    if (Level.NetMode == NM_DedicatedServer)
-        ViewBindFactor = Params.ViewBindFactor;
+    ViewBindFactor = Params.ViewBindFactor;
 }
 
 final simulated function OnADSEnd()
@@ -401,10 +396,10 @@ final simulated function UpdateAim(float DT)
     }
 
     // Change aim adjust time for player velocity
-	if (Instigator.Base != none)
-        AimAdjustTime = (default.AimAdjustTime * 2) - (default.AimAdjustTime * (FMin(VSize(Instigator.Velocity - Instigator.Base.Velocity), 375) / 350));
+	if (Instigator.Base != None)
+        AimAdjustTime = (Params.AimAdjustTime * 2) - (Params.AimAdjustTime * (FMin(VSize(Instigator.Velocity - Instigator.Base.Velocity), 375) / 350));
     else
-        AimAdjustTime = default.AimAdjustTime;
+        AimAdjustTime = Params.AimAdjustTime;
 }
 
 // Checks up on things and returns what our AimOffset should be
@@ -516,7 +511,7 @@ final simulated function ZeroAim(float TimeMod)
 
 final simulated function UpdateDisplacements(float delta)
 {
-	if (!class'BCReplicationInfo'.default.bNoLongGun && GunLength > 0)
+	if (!Weapon.BCRepClass.default.bNoLongGun && GunLength > 0)
         TickLongGun(delta);
         
 	if (IsDisplaced())
@@ -662,5 +657,5 @@ final simulated function float CalcCrosshairOffset(Canvas C)
 //=============================================================
 final simulated function DrawDebug(Canvas Canvas)
 {
-    Canvas.DrawText("AimComponent: Chaos: "$Chaos$", ReaimPhase: "$ReaimPhase$", Aim: "$Aim.Yaw$","$Aim.Pitch);
+    Canvas.DrawText("AimComponent: Chaos: "$Chaos$", ReaimPhase: "$ReaimPhase$", Aim: "$Aim.Yaw$","$Aim.Pitch$" Aim Adjust Time: "$AimAdjustTime);
 }

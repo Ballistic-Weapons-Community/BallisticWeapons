@@ -1540,8 +1540,20 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	}
 }
 
-simulated function bool IsMaster()	{	return (OtherGun != None && bIsMaster);	}
-simulated function bool IsSlave()	{	return (OtherGun != None && !bIsMaster);}
+simulated final function bool IsMaster()
+{	
+	return (OtherGun != None && bIsMaster);	
+}
+
+simulated final function bool IsSlave()
+{	
+	return (OtherGun != None && !bIsMaster);
+}
+
+simulated final function bool IsInDualMode() 
+{ 
+	return OtherGun != None;
+}
 
 simulated function BallisticHandgun	GetMaster()
 {

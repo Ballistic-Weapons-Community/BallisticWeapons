@@ -381,26 +381,6 @@ simulated event WeaponTick(float DT)
 	}
 }
 
-/*
-simulated function SetScopeView(bool bNewValue)
-{
-	if (Level.NetMode == NM_Client)
-		ServerSetScopeView(bNewValue);
-	if (Role == ROLE_Authority)
-	{
-		BallisticAttachment(ThirdPersonActor).SetAimed(bNewValue);
-		if (bNewValue)
-			PlayerSpeedFactor = 0.6;
-		else PlayerSpeedFactor = default.PlayerSpeedFactor;
-		if (SprintControl.bSprinting)
-			BallisticPawn(Instigator).CalcSpeedUp(1.35);
-		else BallisticPawn(Instigator).CalcSpeedUp(1);	
-	}
-	bScopeView = bNewValue;
-	SetScopeBehavior();
-}
-*/
-
 simulated function bool ConsumeMRLAmmo(int Mode, float Load, float LoadB)
 {
 	if (bNoMag || (BFireMode[Mode] != None && BFireMode[Mode].bUseWeaponMag == false))

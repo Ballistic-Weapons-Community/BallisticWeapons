@@ -201,9 +201,8 @@ simulated function DrawLaserSight ( Canvas Canvas )
 }
 
 // Azarael - improved ironsights
-simulated function SetScopeBehavior()
+simulated function UpdateNetAim()
 {
-	Super.SetScopeBehavior();
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
@@ -215,21 +214,17 @@ simulated function PlayIdle()
 	FreezeAnimAt(0.0);
 }
 
-simulated function SetScopeView(bool bNewValue)
+simulated function OnScopeViewChanged()
 {
-	bScopeView = bNewValue;
+	Super.OnScopeViewChanged();
+
 	if (!bScopeView)
 	{
+		if (Target != None && TargetTime >= LockOnTime)
+			class'BUtil'.static.PlayFullSound(self, LockOffSound);
+
 		Target = None;
 		TargetTime=0;
-	}
-	SetScopeBehavior();
-	if (Level.NetMode == NM_Client)
-	{
-		ServerSetScopeView(bNewValue);
-
-		if (!bNewValue && Target != None && TargetTime >= LockOnTime)
-		    class'BUtil'.static.PlayFullSound(self, LockOffSound);
 	}
 }
 

@@ -412,9 +412,8 @@ simulated event RenderOverlays( Canvas Canvas )
     bDrawingFirstPerson = false;
 }
 
-simulated function SetScopeBehavior()
+simulated function UpdateNetAim()
 {
-	Super.SetScopeBehavior();
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 

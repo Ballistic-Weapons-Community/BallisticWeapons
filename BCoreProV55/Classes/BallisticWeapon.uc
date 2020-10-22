@@ -122,6 +122,7 @@ struct SpecialInfoEntry
 //=============================================================================
 var() globalconfig 	ModeSaveType 	ModeHandling;
 var() globalconfig  bool			bInvertScope;			// Inverts Prev/Next weap relation to Zoom In/Out
+var() globalconfig 	bool			bSightLock;				// Should iron sights continue when the key is released, once activated?
 var() globalconfig  float			SightingTimeScale;		// Scales the SightingTime for each weapon by this amount.
 var() globalconfig 	bool			bOldCrosshairs;			// Use UT2004 crosshairs instead of BW's
 var() globalconfig 	bool			bEvenBodyDamage;		// Will weapon limb hits cause as much damage as any non-head body region?...
@@ -448,7 +449,7 @@ simulated function bool CanPlayAnim (name Sequence, optional int Channel, option
 }
 
 // Quick shortcut...
-final simulated function vector ViewAlignedOffset (vector Offset) { return class'BUtil'.static.ViewAlignedOffset(self, Offset); }
+simulated final function vector ViewAlignedOffset (vector Offset) { return class'BUtil'.static.ViewAlignedOffset(self, Offset); }
 
 // Set a few things...
 simulated function PostBeginPlay()
@@ -568,18 +569,6 @@ static final operator(34) XYRange /= (out XYRange A, float B)
 	return A;
 }
 
-simulated function OnAimParamsChanged()
-{
-	if (bScopeView)
-		AimComponent.OnADSStart();
-
-	if (BCRepClass.default.AccuracyScale != 1)
-	{
-		AimComponent.AimSpread.Min *= BCRepClass.default.AccuracyScale;
-		AimComponent.AimSpread.Max *= BCRepClass.default.AccuracyScale;
-	}
-}
-
 //===========================================================================
 // PostNetBeginPlay
 //
@@ -602,14 +591,6 @@ simulated function PostNetBeginPlay()
 
 		RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
 	}
-}
-
-simulated function PostNetReceive()
-{
-	Super.PostNetReceive();
-	
-	if (CurrentWeaponMode != default.LastWeaponMode)
-		default.LastWeaponMode = CurrentWeaponMode;
 }
 
 //===========================================================================
@@ -846,12 +827,6 @@ simulated event WeaponTick(float DT)
 {
 	Super.WeaponTick(DT);
 
-	if (bScopeView)
-		CheckScope();
-	
-	if (!Instigator.IsFirstPerson() && SightingState != SS_None)
-		PositionSights();
-	
 	AimComponent.UpdateAim(DT);
 	RcComponent.UpdateRecoil(DT);
 
@@ -1157,13 +1132,417 @@ final function ServerStopReload()	{	ReloadState = RS_None;	}
 
 //================================================================================
 // ADS HANDLING
-//================================================================================
-// Scope up anim has ended. Now view through the scope or sights
-simulated function StartScopeView()
+//
+// Azarael notes:
+// 
+// In netplay, a lot of the ADS management is client side.
+// The client is responsible for managing:
+// - whether the player wishes to scope; 
+// - the point that the scope request is at; 
+// - notifying the server that a scope attempt is in progress so that aim can be stabilized;
+// - notifying the server that the weapon should change to using scoped parameters.
+// 
+// This is exploitable and it should be fixed.
+//--------------------------------------------------------------------------------
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// CanUseSights
+//
+// Returns true if the player may enter iron sights
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+simulated final function bool CanUseSights()
+{
+	if 
+	( 
+		(SprintControl != None && SprintControl.bSprinting) || 
+		ClientState == WS_BringUp || 
+		ClientState == WS_PutDown || 
+		ReloadState != RS_None || 
+		MeleeState != MS_None
+	) 
+		return false;
+
+	return true;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ScopeView
+//
+// If not in ADS, zeroes aim on the server and flags that sight interpolation
+// should begin.
+//
+// If in ADS, ends ADS mode on client and server.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exec simulated function ScopeView()
+{
+	bScopeHeld=true;
+	bPendingSightUp=false;
+
+	if (bScopeView)
+	{
+		bScopeHeld=false;
+		StopScopeView();
+		return;
+	}
+	
+	if (!bUseSights)
+		return;
+
+	if (!CanUseSights())
+	{
+		bScopeHeld=False;
+		return;
+	}
+
+	ZeroAim(SightingTime); //Level out sights over aim adjust time to stop the "shunt" effect
+	
+	if (!IsFiring() && !bNoTweenToScope)
+		TweenAnim(IdleAnim, SightingTime);
+
+	if (AimComponent.AllowADS())
+		PlayScopeUp();
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ScopeViewRelease
+//
+// Notifies the weapon that the player no longer wishes to scope.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+exec simulated function ScopeViewRelease()
+{
+	bScopeHeld=false;
+
+	if (!bUseSights)
+		return;
+
+	if (bScopeView && !bSightLock)
+		StopScopeView();
+
+	if (!bScopeView)
+		ServerReaim(0.1);
+
+	if( InstigatorController.IsA( 'PlayerController' ) && ZoomType == ZT_Smooth)
+		PlayerController(InstigatorController).StopZoom();
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// CheckScope
+//
+// Called at intervals to ensure the player can still maintain ADS view.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+simulated function bool CheckScope()
+{
+	if (level.TimeSeconds < NextCheckScopeTime)
+		return true;
+
+	NextCheckScopeTime = level.TimeSeconds + 0.25;
+		
+	if 
+	(	AimComponent.IsDisplaced() ||
+		(ReloadState != RS_None && ReloadState != RS_Cocking) || 
+		(Instigator.Controller.bRun == 0 && Instigator.Physics == PHYS_Walking) || 
+		(SprintControl != None && SprintControl.bSprinting)
+	)
+	{
+		StopScopeView();
+		return false;
+	}
+
+	return true;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// StartScopeView
+//
+// Called when entering full ADS mode, which is either when the weapon has 
+// interpolated to its final ADS position, or a scope up animation has ended.
+//
+// Enters ADS mode, switches parameters, applies any necessary zoom and 
+// modifies the crosshairs.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+simulated final function StartScopeView()
 {
     local PlayerController PC;
 
     PC = PlayerController(InstigatorController);
+
+	StartScopeZoom(PC);
+	SetScopeView(true);
+	ManageScopeCrosshair(PC);
+		
+	if (bPendingSightUp)
+		bPendingSightUp=false;
+
+	if (!bNeedCock)
+		PlayIdle();
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ServerSetScopeView
+//
+// Called on clients when transitioning to or from full ADS mode to notify 
+// the server of the change.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+final function ServerSetScopeView(bool bNewValue)
+{	
+	SetScopeView(bNewValue);	
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// SetScopeView
+//
+// Called on client and server when transitioning to or from full ADS mode.
+// The client replicates the call to the server.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+simulated final function SetScopeView(bool bNewValue)
+{
+	if (bScopeView == bNewValue)
+		return;
+
+	if (Level.NetMode == NM_Client)
+		ServerSetScopeView(bNewValue);
+
+	if (Role == ROLE_Authority && ThirdPersonActor != None)
+		BallisticAttachment(ThirdPersonActor).SetAimed(bNewValue);
+		
+	bScopeView = bNewValue;
+
+	if (Role == ROLE_Authority)
+	{
+		CheckSetNetAim();
+
+		if (!Instigator.IsLocallyControlled())
+			BindScopeViewFactors();
+	}
+
+	OnScopeViewChanged();
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// StopScopeView
+//
+// Called on client when leaving full ADS mode.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+simulated final function StopScopeView(optional bool bNoAnim)
+{
+	SetScopeView(false);
+	
+	if (bNoMeshInScope)
+	{
+		if (BFireMode[0] != None && BFireMode[0].MuzzleFlash != None)
+			AttachToBone(BFireMode[0].MuzzleFlash, 'tip');
+		if (BFireMode[1] != None && BFireMode[1].MuzzleFlash != None)
+			AttachToBone(BFireMode[1].MuzzleFlash, 'tip');
+	}
+	
+	PlayScopeDown(bNoAnim);
+	
+	bScopeHeld=False;
+
+	EndScopeZoom();
+	ScopeRestoreCrosshair();
+}
+
+//------------------------------------------------------------------------
+// Animations (general)
+//
+// Also used to invoke various events
+//------------------------------------------------------------------------
+// Play the scope down anim or start the 'sighting' repositioning of gun
+simulated function PlayScopeDown(optional bool bNoAnim)
+{
+	if (!bNoAnim && HasAnim(ZoomOutAnim))
+	    SafePlayAnim(ZoomOutAnim, 1.0);
+	else if (SightingState == SS_Active || SightingState == SS_Raising)
+		SightingState = SS_Lowering;
+
+	InstigatorController.bRun = 0;
+}
+
+// Play the scope up anim or start the 'sighting' repositioning of gun
+// Azarael - Anti TCC compatible zoom
+simulated function PlayScopeUp()
+{
+	if (HasAnim(ZoomInAnim))
+	    SafePlayAnim(ZoomInAnim, 1.0);
+	else
+		SightingState = SS_Raising;
+	if(ZoomType == ZT_Irons)
+		PlayerController(InstigatorController).bZooming = True;
+
+	InstigatorController.bRun = 1;
+}
+
+//------------------------------------------------------------------------
+// Animations (specific)
+// 
+// This code is invoked only when the weapon uses actual animations to scope
+// The only weapon that does is the M75-TIC
+//------------------------------------------------------------------------
+// Scope up anim just ended. Either go into scope view or move the scope back down again
+simulated function ScopeUpAnimEnd()
+{
+	if (!bUseSights || Instigator.Physics == PHYS_Falling || (SprintControl != None && SprintControl.bSprinting))
+	{
+		PlayScopeDown();
+		return;
+	}
+	if (bPendingSightUp)
+	{
+		StartScopeView();
+		bPendingSightUp=false;
+	}
+	else if (bScopeHeld)
+	{
+		StartScopeView();
+		bScopeHeld=false;
+	}
+	else
+		PlayScopeDown();
+}
+
+// Scope down anim has just ended. Play idle anims if the anim was frozen.
+simulated function ScopeDownAnimEnd()
+{
+	local int Channel;
+	local name Anim;
+	local float Frame, Rate;
+	
+	GetAnimParams(Channel, Anim, Frame, Rate);
+	if (!bPendingSightUp && Frame == 0.0f) //Frozen idle anim
+		PlayIdle();
+	PlayerController(InstigatorController).bZooming = False;
+}
+
+//------------------------------------------------------------------------
+//	Events
+//------------------------------------------------------------------------
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// OnScopeViewChanged
+//
+// Called whenever bScopeView is modified.
+// 
+// Mod authors should override this and call the super version in order 
+// to implement any handling which depends on being scoped or not.
+//
+// This function SHOULD NOT be overridden to apply aim or recoil modifiers
+// directly!
+//
+// You should instead call another function from here (such as 
+// ApplySuppressorAimModifiers() for example) and that function should also
+// be linked in with OnAimParamsChanged() below, to ensure the recoil and 
+// aim behaviour is consistent when the underlying parameters are changed 
+// or a recalculation is otherwise forced.
+//
+// The handling of ApplyADSAimModifiers() below demonstrates how this 
+// should look.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+simulated function OnScopeViewChanged()
+{
+	if (bScopeView)
+	{
+		AimComponent.ApplyADSModifiers(); 
+		ApplyADSAimModifiers();
+	}
+	else 
+		AimComponent.Recalculate();
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// OnAimParamsChanged
+//
+// Called whenever the AimComponent is asked to recalculate, either 
+// explicitly or when its basic parameters are changed.
+//
+// If this function has been called, any modifications applied on top of 
+// the aim component's basic parameters (such as scope view, suppressor, 
+// berserk etc) have been removed. 
+//
+// Mod authors should override this function and check which of their 
+// modifications still apply, then reapply them from here, as is done 
+// for ADS and core accuracy scaling below.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+simulated function OnAimParamsChanged()
+{
+	if (bScopeView)
+	{
+		AimComponent.ApplyADSModifiers(); 
+		ApplyADSAimModifiers();
+	}
+
+	if (BCRepClass.default.AccuracyScale != 1)
+	{
+		AimComponent.AimSpread.Min *= BCRepClass.default.AccuracyScale;
+		AimComponent.AimSpread.Max *= BCRepClass.default.AccuracyScale;
+	}
+}
+
+//------------------------------------------------------------------------
+// Aim parameter modification
+//------------------------------------------------------------------------
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// CheckSetNetAim
+//
+// Called whenever a function modifies a variable which could cause this 
+// weapon to need to replicate its aim.
+//
+// By default, Pro weapons always use net aim. However, any weapon which 
+// would formerly have used SetScopeBehavior() to change net aim, or set it 
+// directly, should use this function instead.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+simulated function CheckSetNetAim()
+{
+	bUseNetAim = default.bUseNetAim || bScopeView;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// BindScopeViewFactors
+//
+// Called to change the view binding level of the Aim and Recoil components.
+// When in ADS mode, all aim and recoil movement is bound 100% to the view,
+// and the weapon's point of aim is always equal to the player's view rotation.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+simulated final function BindScopeViewFactors()
+{	
+	if (bScopeView)
+	{
+		AimComponent.OnADSViewStart();
+		RcComponent.OnADSViewStart();
+	}
+	else
+	{
+		AimComponent.OnADSViewEnd();
+		RcComponent.OnADSViewEnd();
+	}
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ApplyADSAimModifiers
+//
+// This function should be overridden to apply any aim system changes 
+// which a particular weapon might want for ADS mode.
+// 
+// This function should ONLY be used to apply aim system modifiers -
+// those which affect the AimComponent - as it will be called whenever 
+// the AimComponent recalculates!
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+simulated function ApplyADSAimModifiers()
+{	
+    AimComponent.ChaosDeclineTime *= 2.0;
+    AimComponent.ChaosSpeedThreshold *= 0.7;
+}
+
+//------------------------------------------------------------------------
+// FOV changing
+//------------------------------------------------------------------------
+simulated final function StartScopeZoom()
+{
+	local PlayerController PC;
+
+	PC = PlayerController(InstigatorController);
+
+	if (ZoomInSound.Sound != None)	
+		class'BUtil'.static.PlayFullSound(self, ZoomInSound);
 
 	switch(ZoomType)
 	{
@@ -1184,7 +1563,7 @@ simulated function StartScopeView()
 			break;
 		case ZT_Logarithmic:
 			PC.bZooming=True;
-		    LogZoomLevel = loge(MinZoom)/loge(MaxZoom);
+			LogZoomLevel = loge(MinZoom)/loge(MaxZoom);
 			PC.SetFOV(PC.DefaultFOV / 2**(    (loge(MaxZoom)/loge(2)) * LogZoomLevel    )); 
 			
 			PC.ZoomLevel = (90 - PC.FOVAngle) / 88;
@@ -1195,40 +1574,27 @@ simulated function StartScopeView()
 			//fix this!
 			break;
 	}
-	SetScopeView(true);
-	
-	if ( PlayerController(InstigatorController).bBehindView )
-		bNoCrosshairInScope = False;
-	else
-		bNoCrosshairInScope = default.bNoCrosshairInScope;
-		
-	//Take down normal crosshairs if the weapon has none in scope view
-	if (bNoCrosshairInScope)
-	{
-		if (bOldCrosshairs && PC.myHud.bCrosshairShow)
-		{
-			bStandardCrosshairOff = True;
-			PC.myHud.bCrosshairShow = False;
-		}
-	}
-	
-	// Show standard UT2004 crosshairs for any weapon without one in scope view
-	else if (!PC.myHud.bCrosshairShow)
-	{
-		PC.myHud.bCrosshairShow = True;
-	}
-	
-	if (ZoomInSound.Sound != None)	class'BUtil'.static.PlayFullSound(self, ZoomInSound);
-	
-	if (bPendingSightUp)
-		bPendingSightUp=false;
-
-	if (!bNeedCock)
-		PlayIdle();
 }
 
+simulated final function EndScopeZoom()
+{	
+	local PlayerController PC;
 
-simulated function ChangeZoom (float Value)
+	PC = PlayerController(InstigatorController);
+
+	if (ZoomOutSound.Sound != None)	
+		class'BUtil'.static.PlayFullSound(self, ZoomOutSound);
+	
+	OldZoomFOV = PC.FovAngle;
+
+	if (ZoomType != ZT_Irons)
+	{
+		PC.SetFOV(PC.DefaultFOV);
+		PC.bZooming = False;
+	}
+}
+
+simulated final function ChangeZoom (float Value)
 {
 	local PlayerController PC;
 	local float OldZoomLevel;
@@ -1276,45 +1642,45 @@ simulated function ChangeZoom (float Value)
 	PC.DesiredZoomLevel = NewZoomLevel;
 }
 
-//Stop viewing through the scope or sights and play scope down anim
-//Azarael - improved ironsights
-simulated function StopScopeView(optional bool bNoAnim)
+//------------------------------------------------------------------------
+// Crosshair
+//------------------------------------------------------------------------
+simulated final function ScopeModifyCrosshair()
 {
-	SetScopeView(false);
-	
-	if (bNoMeshInScope)
-	{
-		if (BFireMode[0] != None && BFireMode[0].MuzzleFlash != None)
-			AttachToBone(BFireMode[0].MuzzleFlash, 'tip');
-		if (BFireMode[1] != None && BFireMode[1].MuzzleFlash != None)
-			AttachToBone(BFireMode[1].MuzzleFlash, 'tip');
-	}
-	
-	if (ZoomOutSound.Sound != None)	class'BUtil'.static.PlayFullSound(self, ZoomOutSound);
-	PlayScopeDown(bNoAnim);
-	
-	bScopeHeld=False;
-	OldZoomFOV = PlayerController(InstigatorController).FovAngle;
+	local PlayerController PC;
 
-	if (ZoomType != ZT_Irons)
+	PC = PlayerController(InstigatorController);
+
+	if ( PC.bBehindView )
+		bNoCrosshairInScope = False;
+	else
+		bNoCrosshairInScope = default.bNoCrosshairInScope;
+		
+	//Take down normal crosshairs if the weapon has none in scope view
+	if (bNoCrosshairInScope)
 	{
-		if (InstigatorController.IsA( 'PlayerController' ))
+		if (bOldCrosshairs && PC.myHud.bCrosshairShow)
 		{
-			PlayerController(InstigatorController).SetFOV(PlayerController(InstigatorController).DefaultFOV);
-			PlayerController(InstigatorController).bZooming = False;
+			bStandardCrosshairOff = True;
+			PC.myHud.bCrosshairShow = False;
 		}
 	}
-	
-	if (bStandardCrosshairOff) // bNoCrosshairInScope
+
+	// Show standard UT2004 crosshairs for any weapon without one in scope view
+	else if (!PC.myHud.bCrosshairShow)
+		PC.myHud.bCrosshairShow = True;
+}
+
+simulated final function ScopeRestoreCrosshair()
+{
+	if (bStandardCrosshairOff)
 	{
 		if (bOldCrosshairs)
 		{
 			bStandardCrosshairOff = False;
 			PlayerController(InstigatorController).myHud.bCrosshairShow = True;	
 		}
-		
 	}
-	
 	// Ballistic crosshair users: Hide crosshair if weapon has crosshair in scope
 	else if (!bOldCrosshairs)
 	{
@@ -1322,66 +1688,10 @@ simulated function StopScopeView(optional bool bNoAnim)
 	}
 }
 
-// Scope up anim just ended. Either go into scope view or move the scope back down again
-simulated function ScopeUpAnimEnd()
-{
-	if (!bUseSights || Instigator.Physics == PHYS_Falling || (SprintControl != None && SprintControl.bSprinting))
-	{
-		PlayScopeDown();
-		return;
-	}
-	if (bPendingSightUp)
-	{
-		StartScopeView();
-		bPendingSightUp=false;
-	}
-	else if (bScopeHeld)
-	{
-		StartScopeView();
-		bScopeHeld=false;
-	}
-	else
-		PlayScopeDown();
-}
-
-
-// Scope down anim has just ended. Play idle anims if the anim was frozen.
-simulated function ScopeDownAnimEnd()
-{
-	local int Channel;
-	local name Anim;
-	local float Frame, Rate;
-	
-	GetAnimParams(Channel, Anim, Frame, Rate);
-	if (!bPendingSightUp && Frame == 0.0f) //Frozen idle anim
-		PlayIdle();
-	PlayerController(InstigatorController).bZooming = False;
-}
-
-// Play the scope down anim or start the 'sighting' repositioning of gun
-simulated function PlayScopeDown(optional bool bNoAnim)
-{
-	if (!bNoAnim && HasAnim(ZoomOutAnim))
-	    SafePlayAnim(ZoomOutAnim, 1.0);
-	else if (SightingState == SS_Active || SightingState == SS_Raising)
-		SightingState = SS_Lowering;
-	InstigatorController.bRun = 0;
-}
-
-// Play the scope up anim or start the 'sighting' repositioning of gun
-// Azarael - Anti TCC compatible zoom
-simulated function PlayScopeUp()
-{
-	if (HasAnim(ZoomInAnim))
-	    SafePlayAnim(ZoomInAnim, 1.0);
-	else
-		SightingState = SS_Raising;
-	if(ZoomType == ZT_Irons)
-		PlayerController(InstigatorController).bZooming = True;
-
-	InstigatorController.bRun = 1;
-}
-
+//------------------------------------------------------------------------
+// Temporary scope drop (in response to long gun, etc)
+// This isn't used in Pro
+//------------------------------------------------------------------------
 // Tell the weapon lower and wait until anims are over to go back to scope/sight view
 simulated function TemporaryScopeDown(optional float NewSightingTime, optional float StartPhase)
 {
@@ -1392,7 +1702,6 @@ simulated function TemporaryScopeDown(optional float NewSightingTime, optional f
 		SightingPhase = StartPhase;
 }
 
-
 // anim has ended and we're still pending sight up so tell it to go back up
 simulated function ScopeBackUp(optional float NewSightingTime, optional float StartPhase)
 {
@@ -1401,52 +1710,9 @@ simulated function ScopeBackUp(optional float NewSightingTime, optional float St
 	PlayScopeUp();
 }
 
-
-// Set the new bScopeView
-final function ServerSetScopeView(bool bNewValue)		{	SetScopeView(bNewValue);	}
-
-simulated function SetScopeView(bool bNewValue)
-{
-	if (bScopeView == bNewValue)
-		return;
-
-	if (Level.NetMode == NM_Client)
-		ServerSetScopeView(bNewValue);
-
-	if (Role == ROLE_Authority && ThirdPersonActor != None)
-		BallisticAttachment(ThirdPersonActor).SetAimed(bNewValue);
-		
-	bScopeView = bNewValue;
-	SetScopeBehavior();
-}
-
-// Azarael - improved ironsights
-simulated function SetScopeBehavior()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView;
-		
-	if (bScopeView)
-	{
-		if (Level.NetMode == NM_DedicatedServer)
-		{			
-			AimComponent.OnADSViewStart();
-			RcComponent.OnADSViewStart();
-		}
-
-		AimComponent.OnADSStart();
-	}
-	else
-	{
-		if (Level.NetMode == NM_DedicatedServer)
-		{
-			AimComponent.OnADSViewEnd();
-			RcComponent.OnADSViewEnd();
-		}
-
-		AimComponent.OnADSEnd();
-	}
-}
-
+//------------------------------------------------------------------------
+// Rendering
+//------------------------------------------------------------------------
 simulated function RenderSightFX(Canvas Canvas)
 {
 	local coords C;
@@ -1641,7 +1907,7 @@ simulated function PreDrawFPWeapon()
 // Relocate the weapon according to sight view.
 // Improved ironsights.
 // SightZoomFactor used instead of FullZoomFOV.
-simulated function PositionSights ()
+simulated function PositionSights()
 {
 	local Vector SightPos, Offset, NewLoc, OldLoc;//, X,Y,Z;
 	local PlayerController PC;
@@ -1655,14 +1921,18 @@ simulated function PositionSights ()
 	OldLoc = Instigator.Location + Instigator.CalcDrawOffset(self);
 	Offset = SightOffset; Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 4096;
 	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1-SightingPhase))) - (SightPos + ViewAlignedOffset(Offset));
-	if (SightingPhase >= 1.0 )
+
+	if (SightingPhase >= 1.0)
 	{	// Weapon locked in sight view
 		SetLocation(NewLoc);
 		SetRotation(Instigator.GetViewRotation() + SightPivot);
 		DisplayFOV = SightDisplayFOV;
 
-		AimComponent.OnADSViewStart();
-		RcComponent.OnADSViewStart();
+		if (SightingState == SS_Raising)
+		{
+			AimComponent.OnADSViewStart();
+			RcComponent.OnADSViewStart();
+		}
 
 		if (ZoomType == ZT_Irons)
 			PC.DesiredFOV = PC.DefaultFOV * SightZoomFactor;
@@ -1675,8 +1945,11 @@ simulated function PositionSights ()
 		DisplayFOV = default.DisplayFOV;
 		PlayerController(InstigatorController).bZooming = False;
 
-		AimComponent.OnADSViewEnd();
-		RcComponent.OnADSViewEnd();
+		if (SightingState == SS_Lowering)
+		{
+			AimComponent.OnADSViewEnd();
+			RcComponent.OnADSViewEnd();
+		}
 
 		if(ZoomType == ZT_Irons)
 		{
@@ -1700,16 +1973,18 @@ simulated function PositionSights ()
 	}
 }
 
-simulated function bool CanUseSights()
-{
-	if ((Instigator.Physics == PHYS_Falling && VSize(Instigator.Velocity) > Instigator.GroundSpeed * 1.5) || (SprintControl != None && SprintControl.bSprinting) || ClientState == WS_BringUp || ClientState == WS_PutDown || ReloadState != RS_None || MeleeState != MS_None)
-		return false;
-	return true;
-}
-
+//------------------------------------------------------------------------
+// Update
+//------------------------------------------------------------------------
 // Interpolate our generated 'sighting anims' (the gun's movement to and from the sight view position)
 simulated function TickSighting (float DT)
 {
+	if (bScopeView)
+		CheckScope();
+
+	if (!Instigator.IsFirstPerson() && SightingState != SS_None)
+		PositionSights();
+	
 	switch (SightingState)
 	{
 	case SS_None:
@@ -2016,7 +2291,7 @@ simulated final function ClientApplyBlockFatigue(float value)
 	MeleeFatigue = FMin(1, MeleeFatigue + value);
 }
 
-final simulated function bool IsHoldingMelee()
+simulated final function bool IsHoldingMelee()
 {
 	if (BallisticMeleeFire(BFireMode[1]) != None && BFireMode[1].IsFiring())
 		return true;
@@ -2030,7 +2305,7 @@ final simulated function bool IsHoldingMelee()
 // END MELEE ATTACKS
 //===========================================================================
 
-final simulated function bool SprintActive()
+simulated final function bool SprintActive()
 {
 	return (!BCRepClass.default.bNoJumpOffset && SprintControl != None && SprintControl.bSprinting);
 }
@@ -2170,6 +2445,12 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 		RcComponent.Recalculate();
 	}
 
+	if (WeaponModes[default.LastWeaponMode].AimParamsIndex != WeaponModes[CurrentWeaponMode].AimParamsIndex)
+	{
+		AimComponent.Params = AimParamsList[WeaponModes[CurrentWeaponMode].AimParamsIndex];
+		AimComponent.Recalculate();
+	}
+
 	CheckBurstMode();
 
 	if (Instigator.IsLocallyControlled())
@@ -2200,6 +2481,7 @@ simulated function CheckBurstMode()
 	}
 	
 	RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
+
 }
 
 simulated function float CalculateBurstRecoilDelay(bool burst)
@@ -2228,63 +2510,6 @@ simulated function bool CheckWeaponMode (int Mode)
 }
 //---------------------------------------------------------------------------
 // END FIRE MODE SWITCH
-//===========================================================================
-
-//===========================================================================
-// ADS VIEW
-// Scopes can be activated with the sight key. 
-// Holding the key will zoom in until released. 
-// Further adjustments can be made with the Prev/Next weapon select keys.
-//---------------------------------------------------------------------------
-
-// Sight key pressed. Bring the scope/sights up to eye level or lower gun if already in scope view.
-// Azarael - Improved ironsights
-exec simulated function ScopeView()
-{
-	bScopeHeld=true;
-	bPendingSightUp=false;
-	
-	if (!bUseSights)
-		return;
-
-	if (bScopeView)
-	{
-		bScopeHeld=false;
-		StopScopeView();
-		return;
-	}
-
-	if (!CanUseSights())
-	{
-		bScopeHeld=False;
-		return;
-	}
-
-	ZeroAim(SightingTime); //Level out sights over aim adjust time to stop the "shunt" effect
-	
-	if (!IsFiring() && !bNoTweenToScope)
-		TweenAnim(IdleAnim, SightingTime);
-
-	AimComponent.ForceReaim();
-	
-	if (AimComponent.AllowADS())
-		PlayScopeUp();
-}
-
-// Sight key released. Stop zooming in
-exec simulated function ScopeViewRelease()
-{
-	bScopeHeld=false;
-	if (!bUseSights)
-		return;
-	if (!bScopeView)
-		ServerReaim(0.1);	
-	if( InstigatorController.IsA( 'PlayerController' ) && ZoomType == ZT_Smooth)
-		PlayerController(InstigatorController).StopZoom();
-}
-
-//---------------------------------------------------------------------------
-// END ADS VIEW
 //===========================================================================
 
 //===========================================================================
@@ -3705,28 +3930,12 @@ simulated final function ReceiveNetRecoil(byte XRand, byte YRand, float RecAmp)
 
 //Using OffsetAdjustTime
 
-final simulated function bool IsDisplaced()
+simulated final function bool IsDisplaced()
 {
 	return AimComponent.IsDisplaced();
 }
 
-simulated function bool CheckScope()
-{
-	if (level.TimeSeconds < NextCheckScopeTime)
-		return true;
 
-	NextCheckScopeTime = level.TimeSeconds + 0.25;
-	
-	if (AimComponent.IsDisplaced())
-		return false;
-	
-	if ((ReloadState != RS_None && ReloadState != RS_Cocking) || (Instigator.Controller.bRun == 0 && Instigator.Physics == PHYS_Walking) || (Instigator.Physics == PHYS_Falling && VSize(Instigator.Velocity) > Instigator.GroundSpeed * 2.5) || (SprintControl != None && SprintControl.bSprinting)) //should stop recoil issues where player takes momentum and knocked out of scope, also helps dodge
-	{
-		StopScopeView();
-		return false;
-	}
-	return true;
-}
 
 simulated final function OnDisplaceStart()
 {
@@ -3764,32 +3973,32 @@ final function ServerZeroAim (float TimeMod)
 	AimComponent.ZeroAim(TimeMod);
 }
 
-final simulated function Rotator GetAimPivot()
+simulated final function Rotator GetAimPivot()
 {
 	return AimComponent.GetAimPivot();
 }
 
-final simulated function Rotator CalcFutureAim(float ExtraTime, bool bIgnoreViewAim)
+simulated final function Rotator CalcFutureAim(float ExtraTime, bool bIgnoreViewAim)
 {
 	return AimComponent.CalcFutureAim(ExtraTime, bIgnoreViewAim);
 }
 
-final simulated function Rotator GetRecoilPivot()
+simulated final function Rotator GetRecoilPivot()
 {
 	return RcComponent.GetWeaponPivot();
 }
 
-final simulated function Rotator GetFireRot()
+simulated final function Rotator GetFireRot()
 {
 	return GetAimPivot() + RcComponent.GetWeaponPivot();
 }
 
-final simulated function Vector GetFireDir()
+simulated final function Vector GetFireDir()
 {
 	return Vector(GetFireRot());
 }
 
-final simulated function Rotator GetBasePlayerView()
+simulated final function Rotator GetBasePlayerView()
 {
 	return GetPlayerAim() - AimComponent.GetViewPivot() - RcComponent.GetViewPivot();
 }
@@ -3976,10 +4185,10 @@ simulated function ClientJumped()
 }
 
 //====================================================================================
-// Recoil functions.
+// RECOIL
 //
-// Mostly moved to RecoilComponent
-//====================================================================================
+// Mostly moved to the RecoilComponent class. 
+//------------------------------------------------------------------------------------
 simulated function AddRecoil(float Recoil, float FireChaos, optional byte Mode)
 {
 	RcComponent.AddRecoil(Recoil, Mode);
@@ -4004,11 +4213,28 @@ simulated function RecoilParams GetRecoilParams()
 	return RecoilParamsList[WeaponModes[CurrentWeaponMode].RecoilParamsIndex];
 }
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// OnRecoilParamsChanged
+//
+// Called whenever the RecoilComponent is asked to recalculate, either 
+// explicitly or when its basic parameters are changed.
+//
+// If this function has been called, any modifications applied on top of 
+// the recoil component's basic parameters (such as suppressor, berserk etc) 
+// have been removed and must be reapplied.
+//
+// Mod authors should override this function and check which of their 
+// modifications still apply, then reapply them from here, as is done 
+// for berserk below.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 simulated function OnRecoilParamsChanged()
 {
 	if (bBerserk)
 		UpdateBerserkRecoil();
 }
+//------------------------------------------------------------------------------------
+// END RECOIL
+//====================================================================================
 
 //====================================================================================
 // Turrets

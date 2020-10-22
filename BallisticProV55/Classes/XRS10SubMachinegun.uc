@@ -228,13 +228,10 @@ simulated event RenderOverlays( Canvas Canvas )
 }
 
 // Change some properties when using sights...
-simulated function SetScopeBehavior()
+simulated function UpdateNetAim()
 {
-	super.SetScopeBehavior();
-
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
-
 
 simulated function PlayCocking(optional byte Type)
 {

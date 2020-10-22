@@ -320,11 +320,15 @@ simulated function bool HasAmmo()
 	return false;	//This weapon is empty
 }
 // Change some properties when using sights...
-simulated function SetScopeBehavior()
+simulated function UpdateNetAim()
 {
-	super.SetScopeBehavior();
-
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+}
+
+simulated function OnScopeViewChanged()
+{
+	Super.OnScopeViewChanged();
+	
 	if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 	{
 		if (bScopeView)

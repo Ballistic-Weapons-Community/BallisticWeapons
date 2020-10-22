@@ -7,7 +7,7 @@
 class BallisticTab_ProSettings extends UT2K4TabPanel;
 
 var automated moFloatEdit fl_WalkingPct, fl_CrouchingPct, fl_NadePct, fl_HeadPct, fl_LimbPct;
-var automated moCheckbox ch_MineLights, ch_RunningAnims, ch_DmgModifier, ch_LimitCarry, ch_RelaxedHipfire;
+var automated moCheckbox ch_MineLights, ch_RunningAnims, ch_DmgModifier, ch_LimitCarry;
 var automated moNumericEdit int_MaxWeps;
 
 var BallisticConfigMenuPro p_Anchor;
@@ -41,7 +41,6 @@ function LoadSettings()
 	fl_LimbPct.SetValue(class'BallisticInstantFire'.default.DamageModLimb);
 	ch_LimitCarry.Checked(class'BallisticWeapon'.default.bLimitCarry);
 	int_MaxWeps.SetValue(class'BallisticWeapon'.default.MaxWeaponsPerSlot);
-	ch_RelaxedHipfire.Checked(class'BallisticReplicationInfo'.default.bRelaxedHipfire);	
 }
 
 function SaveSettings()
@@ -59,8 +58,7 @@ function SaveSettings()
 	class'BallisticProjectile'.default.DamageModHead = fl_HeadPct.GetValue();
 	class'BallisticProjectile'.default.DamageModLimb = fl_LimbPct.GetValue();
 	class'BallisticWeapon'.default.bLimitCarry = ch_LimitCarry.IsChecked();
-	class'BallisticWeapon'.default.MaxWeaponsPerSlot = int_MaxWeps.GetValue();
-	class'BallisticReplicationInfo'.default.bRelaxedHipfire	= ch_RelaxedHipfire.IsChecked();	
+	class'BallisticWeapon'.default.MaxWeaponsPerSlot = int_MaxWeps.GetValue();	
 	class'BallisticReplicationInfo'.static.StaticSaveConfig();
 	class'BallisticWeapon'.static.StaticSaveConfig();
 	class'BallisticInstantFire'.static.StaticSaveConfig();
@@ -78,8 +76,7 @@ function DefaultSettings()
 	fl_HeadPct.SetValue(1.5);
 	fl_LimbPct.SetValue(0.75);
 	ch_LimitCarry.Checked(False);
-	int_MaxWeps.SetValue(1);
-	ch_RelaxedHipfire.Checked(false);	
+	int_MaxWeps.SetValue(1);	
 }
 
 defaultproperties
@@ -225,17 +222,4 @@ defaultproperties
          WinHeight=0.040000
      End Object
      int_MaxWeps=moNumericEdit'BallisticProV55.BallisticTab_ProSettings.int_MaxWepsInt'
-	 
-	 Begin Object Class=moCheckBox Name=ch_RelaxedHipfireCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Relaxed Hip Fire"
-         OnCreateComponent=ch_RelaxedHipfireCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Makes weapons handle considerably better when fired from the hip."
-         WinTop=0.600000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_RelaxedHipfire=moCheckBox'BallisticProV55.BallisticTab_ProSettings.ch_RelaxedHipfireCheck'
 }

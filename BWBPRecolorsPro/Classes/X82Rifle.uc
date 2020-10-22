@@ -269,21 +269,19 @@ simulated event RenderOverlays (Canvas C)
 		DrawMeatVisionMode(C);
 }
 
-simulated function SetScopeView(bool bNewValue)
+simulated function OnScopeViewChanged()
 {
-	bScopeView = bNewValue;
+	super.OnScopeViewChanged();
+
 	if (!bScopeView)
 	{
-		Target = None;
+		if (Target != None)
+		{
+			class'BUtil'.static.PlayFullSound(self, NVOffSound);
+			Target = None;
+		}
 		TargetTime=0;
 	}
-	if (Level.NetMode == NM_Client)
-		ServerSetScopeView(bNewValue);
-	bScopeView = bNewValue;
-	SetScopeBehavior();
-
-	if (!bNewValue && Target != None)
-		class'BUtil'.static.PlayFullSound(self, NVOffSound);
 }
 
 // draws red blob that moves, scanline, and target boxes.

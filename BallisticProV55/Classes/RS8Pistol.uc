@@ -246,11 +246,15 @@ simulated event RenderOverlays( Canvas Canvas )
 		DrawLaserSight(Canvas);
 }
 
-simulated function SetScopeBehavior()
+simulated function UpdateNetAim()
 {
-	super(BallisticHandgun).SetScopeBehavior();
-
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+}
+
+simulated function OnScopeViewChanged()
+{
+	super.OnScopeViewChanged();
+
 	if (Hand < 0)
 		SightOffset.Y = default.SightOffset.Y * -1;
 }

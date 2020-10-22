@@ -279,17 +279,19 @@ simulated event RenderOverlays( Canvas Canvas )
 	}
 }
 
-// Change some properties when using sights...
-simulated function SetScopeBehavior()
+simulated function UpdateNetAim()
 {
-	super.SetScopeBehavior();
-
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-	
+}
+
+// Change some properties when using sights...
+simulated function OnScopeViewChanged()
+{
+	super.OnScopeViewChanged();
+
 	if (Hand < 0)
 		SightOffset.Y = default.SightOffset.Y * -1;
 }
-
 
 simulated function PlayCocking(optional byte Type)
 {

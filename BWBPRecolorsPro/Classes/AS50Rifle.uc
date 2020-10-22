@@ -167,11 +167,11 @@ simulated function Notify_ClipIn()
 /// Infa Red Scope View
 ///==============================================================
 
-simulated function SetScopeView(bool bNewValue)
+simulated function OnScopeViewChanged()
 {
-	super.SetScopeView(bNewValue);
+	super.OnScopeViewChanged();
 		
-	if (!bNewValue)
+	if (!bScopeView)
 	{
 		if (Level.NetMode == NM_Client)
 			AdjustThermalView(false);
