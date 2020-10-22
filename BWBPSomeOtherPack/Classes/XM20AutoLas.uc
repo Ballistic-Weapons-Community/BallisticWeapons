@@ -466,7 +466,7 @@ defaultproperties
 		AimSpread=(Min=64,Max=768)
 		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=0.5
-		ChaosSpeedThreshold=500
+		ChaosSpeedThreshold=5000
 	End Object
 	AimParamsList(0)=AimParams'ArenaAimParams'
 	

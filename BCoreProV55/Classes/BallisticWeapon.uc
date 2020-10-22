@@ -2427,21 +2427,24 @@ function ServerSwitchWeaponMode (byte NewMode)
 
 simulated function CommonSwitchWeaponMode(byte NewMode)
 {
+	local int LastMode;
+
 	if (Instigator == None)
 		return;
 
+	LastMode = CurrentWeaponMode;
 	CurrentWeaponMode = NewMode;
 
 	BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
 	BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
 
-	if (WeaponModes[default.LastWeaponMode].RecoilParamsIndex != WeaponModes[CurrentWeaponMode].RecoilParamsIndex)
+	if (WeaponModes[LastMode].RecoilParamsIndex != WeaponModes[CurrentWeaponMode].RecoilParamsIndex)
 	{
 		RcComponent.Params = RecoilParamsList[WeaponModes[CurrentWeaponMode].RecoilParamsIndex];
 		RcComponent.Recalculate();
 	}
 
-	if (WeaponModes[default.LastWeaponMode].AimParamsIndex != WeaponModes[CurrentWeaponMode].AimParamsIndex)
+	if (WeaponModes[LastMode].AimParamsIndex != WeaponModes[CurrentWeaponMode].AimParamsIndex)
 	{
 		AimComponent.Params = AimParamsList[WeaponModes[CurrentWeaponMode].AimParamsIndex];
 		AimComponent.Recalculate();
@@ -2450,7 +2453,7 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 	CheckBurstMode();
 
 	if (Instigator.IsLocallyControlled())
-		default.LastWeaponMode = CurrentWeaponMode;
+		default.LastWeaponMode = LastMode;
 }
 
 simulated function ClientSwitchWeaponMode (byte NewMode)

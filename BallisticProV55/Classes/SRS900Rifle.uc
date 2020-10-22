@@ -477,7 +477,7 @@ defaultproperties
 	ZoomStages=2
 	GunLength=72.000000
 	 
-	Begin Object Class=RecoilParams Name=SRS900RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.25
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.30000),(InVal=0.800000,OutVal=0.40000),(InVal=1.000000,OutVal=0.60000)))
 		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
@@ -486,8 +486,15 @@ defaultproperties
 		DeclineTime=1.00000
 		DeclineDelay=0.400000
 	End Object
-	RecoilParamsList(0)=RecoilParams'SRS900RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
 	 
+	Begin Object Class=AimParams Name=ArenaAimParams
+		SprintOffset=(Pitch=-3000,Yaw=-4000)
+		AimSpread=(Min=16,Max=192)
+		ChaosDeclineTime=0.75
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
+
 	FireModeClass(0)=Class'BallisticProV55.SRS900PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	BringUpTime=0.500000
