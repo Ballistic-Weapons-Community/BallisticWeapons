@@ -93,7 +93,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -104,7 +104,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 	}
 	
 	if (ReloadState == RS_GearSwitch)
@@ -230,11 +230,9 @@ defaultproperties
 	SightPivot=(Pitch=512)
 	SightOffset=(X=-30.000000,Y=12.450000,Z=14.850000)
 	GunLength=48.000000
-	SprintOffSet=(Pitch=-3000,Yaw=-4096)
-	AimSpread=192
-	ChaosDeclineTime=1.000000
+
 	 
-	Begin Object Class=RecoilParams Name=ConquerorRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		XCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
 		YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
 		YawFactor=0.000000
@@ -243,7 +241,14 @@ defaultproperties
 		MaxRecoil=6144.000000
 		DeclineDelay=0.500000
 	End Object
-	RecoilParamsList(0)=RecoilParams'ConquerorRecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=192,Max=768)
+		SprintOffset=(Pitch=-3000,Yaw=-4096)
+		ChaosDeclineTime=1.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BWBPRecolorsPro.MGLPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.MGLSecondaryFire'

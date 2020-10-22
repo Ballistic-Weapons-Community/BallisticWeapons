@@ -20,11 +20,11 @@ var() name		SingleGrenadeLoadAnim;		//Anim for rocket reload loop
 var() name		HatchOpenAnim;
 var() float		HatchOpenAnimRate;
 var() name		HatchCloseAnim;
-var() float 		HatchCloseAnimRate;
+var() float 	HatchCloseAnimRate;
 var() Name		ShovelAnim;					//Anim to play after shovel loop ends
 var() float		ShovelAnimRate;
-var() int       	Rockets;				//Rockets currently in the gun.
-var() int       	ConfigX;				//Rockets currently in the gun.
+var() int       Rockets;					//Rockets currently in the gun.
+var() int       ConfigX;					//Rockets currently in the gun.
 var() int      	ConfigY;					//Rockets currently in the gun.
 var	bool		bHeatOnce;					//Used for playing a sound once.
 var	bool		bBarrelsOnline;				//Used for alternating laser effect in attachment class.
@@ -762,7 +762,6 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(ModeName="Bot Firemode",bUnavailable=True)
 	CurrentWeaponMode=0
-	bNotifyModeSwitch=True
 	ZoomType=ZT_Logarithmic
 	ScopeViewTex=Texture'BallisticRecolors3TexPro.LS14.LS14Scope'
 	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
@@ -776,13 +775,7 @@ defaultproperties
 	MaxZoom=4.000000
 	ZoomStages=1
 	GunLength=80.000000
-	SprintOffSet=(Pitch=-1000,Yaw=-2048)
-	JumpOffSet=(Pitch=-6000,Yaw=2000)
-	
-	AimSpread=64
-	ChaosDeclineTime=0.800000
-	ChaosAimSpread=256
-	 
+
 	Begin Object Class=RecoilParams Name=LS14RecoilParams
 		ViewBindFactor=0.2
 		XCurve=(Points=(,(InVal=0.150000,OutVal=0.1),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.250000),(InVal=0.600000,OutVal=0.350000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.5)))
@@ -793,6 +786,14 @@ defaultproperties
 		DeclineDelay=0.2
 	End Object
 	RecoilParamsList(0)=RecoilParams'LS14RecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=64,Max=256)
+		SprintOffset=(Pitch=-1000,Yaw=-2048)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
+		ChaosDeclineTime=0.800000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	 
 	FireModeClass(0)=Class'BWBPRecolorsPro.LS14PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.LS14SecondaryFire'

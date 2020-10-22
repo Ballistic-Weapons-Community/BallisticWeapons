@@ -38,11 +38,6 @@ function SetSuppressed(bool bSilenced)
 		RangeAtten *= 1.2;
 		XInaccuracy *= 0.75;
 		YInaccuracy *= 0.75;
-
-		BW.SightingTime = BW.default.SightingTime * 1.25;
-		BW.AimSpread = BW.default.AimSpread * 1.25;
-		BW.ChaosAimSpread = BW.default.ChaosAimSpread * 1.25;
-
 	}
 	else
 	{
@@ -50,10 +45,6 @@ function SetSuppressed(bool bSilenced)
 		RangeAtten = default.RangeAtten;
 		XInaccuracy = default.XInaccuracy;
 		YInaccuracy = default.YInaccuracy;
-
-		BW.SightingTime = BW.default.SightingTime;
-		BW.AimSpread = BW.default.AimSpread;
-		BW.ChaosAimSpread = BW.default.ChaosAimSpread;
 	}
 }
 

@@ -531,18 +531,11 @@ defaultproperties
 	bAltTriggerReload=True
 	WeaponModes(0)=(bUnavailable=True)
 	bNoCrosshairInScope=False
-	SightAimFactor=0.3
 	SightPivot=(Pitch=64)
 	SightOffset=(X=0.000000,Y=13.600000,Z=19.500000)
 	SightDisplayFOV=25.000000
 	GunLength=16.000000
-	SprintOffSet=(Pitch=-3000,Yaw=-8000)
-	AimAdjustTime=0.400000
-	
-	AimSpread=16
-	ChaosDeclineTime=0.5
-	ChaosSpeedThreshold=7000.000000
-	ChaosAimSpread=768
+
 	 
 	Begin Object Class=RecoilParams Name=CYLOUAWRecoilParams
 		ViewBindFactor=0.3
@@ -555,6 +548,16 @@ defaultproperties
 		CrouchMultiplier=1
 	End Object
 	RecoilParamsList(0)=RecoilParams'CYLOUAWRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		ADSMultiplier=0.3
+		AimSpread=(Min=16,Max=768)
+		SprintOffset=(Pitch=-3000,Yaw=-8000)
+		AimAdjustTime=0.400000
+		ChaosDeclineTime=0.5
+		ChaosSpeedThreshold=7000.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	 
 	FireModeClass(0)=Class'BWBPRecolorsPro.CYLOPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.CYLOSecondaryFire'

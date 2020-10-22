@@ -12,21 +12,23 @@
 //=============================================================================
 class LonghornClusterGrenade extends BallisticGrenade;
 
-var bool                 				bColored;
-var bool                					bPrimaryGrenade;
-var bool                 				bFireReleased;
-var bool                 				bNoArtillery;
+var bool                 		bColored;
+var bool                		bPrimaryGrenade;
+var bool                 		bFireReleased;
+var bool                 		bNoArtillery;
+
 enum EDetonationType
 {
 	DET_Shatter,
 	DET_Manual,
-	DET_Big
+	DET_Artillery,
+	DET_Direct
 };
 
 var EDetonationType				DetonationType; //1:manual 2:artillery
-var float                				ZBonus;
-var float								DamageDropoffFactor;
-var int									ExplosiveImpactDamage;
+var float                		ZBonus;
+var float						DamageDropoffFactor;
+var int							ExplosiveImpactDamage;
 var protected const float		ArmingDelay;
 
 replication
@@ -153,16 +155,16 @@ function ManualDetonate(bool bBig)
 	
 	if (bBig)
 	{
-		FlakClass=Class'LonghornClusterGrenadeImpact';
-		DamageRadius *= 2;
-		DetonationType = DET_Big;
+		FlakClass		= Class'LonghornClusterGrenadeImpact';
+		DamageRadius 	*= 2;
+		DetonationType 	= DET_Artillery;
 	 }
 	else
 	{
-		FlakClass=Class'LonghornClusterGrenadeFlak';
-		Damage = 60;
-		DetonationType = DET_Manual;
-		MomentumTransfer=20000;
+		FlakClass		= Class'LonghornClusterGrenadeFlak';
+		Damage 			= 60;
+		DetonationType 	= DET_Manual;
+		MomentumTransfer= 20000;
 	}
 	
 	Explode(Location, vect(0,0,1));
@@ -246,7 +248,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 		if (!bHasImpacted && !bFireReleased && default.LifeSpan - LifeSpan > ArmingDelay)
 		{
 			class'BallisticDamageType'.static.GenericHurt (Other, ExplosiveImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
-			DetonationType = DET_Big;
+			DetonationType = DET_Direct;
 			Explode(HitLocation, vect(0,0,1));
 		}
 		else 
@@ -276,17 +278,21 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	if (ShakeRadius > 0 || MotionBlurRadius > 0)
 		ShakeView(HitLocation);
 	
-	if (DetonationType == DET_Shatter)
-		ImpactManager = None;
-
-	else if (DetonationType == DET_Big)
+	switch (DetonationType)
 	{
-	    ImpactManager=Class'IM_LonghornMax';
-		if (DamageRadius == default.DamageRadius)
+		case DET_Shatter:
+			ImpactManager = None;
+			break;
+		case DET_Direct:
+			ImpactManager=Class'IM_LonghornMax';
 			FlakClass = None;
+			break;
+		case DET_Artillery:
+			ImpactManager=Class'IM_LonghornMax';
+			break;
 	}
 		
-	if (ImpactManager != None && level.NetMode != NM_DedicatedServer)
+	if (ImpactManager != None && Level.NetMode != NM_DedicatedServer)
 	{
 		if (bCheckHitSurface)
 			CheckSurface(HitLocation, HitNormal, Surf);
@@ -298,6 +304,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	
 	if (!bTearOff)
 		BlowUp(HitLocation);
+
 	bExploded = True;
 	
 	if (!bNetTemporary && bTearOnExplode && (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer))
@@ -324,14 +331,17 @@ function BlowUp(vector HitLocation)
 		Start.Z += 16;
 	if (FlakCount > 0 && FlakClass != None)
 	{
-		for (i=0;i<FlakCount;i++)
+		for (i=0; i < FlakCount; i++)
 		{
-			if (DetonationType == DET_Shatter)
-				Dir = RotRand();
-			else
+			switch (DetonationType)
 			{
-				Dir.Yaw += 20000 + FRand() * 40000;
-				Dir.Pitch = -12386 - Rand(4000);
+				case DET_Shatter:
+					Dir = RotRand();
+					break;
+				default:
+					Dir.Yaw += 20000 + FRand() * 40000;
+					Dir.Pitch = -12386 - Rand(4000);
+					break;
 			}
 			Spawn( FlakClass,, '', Start, Dir);
 		}

@@ -617,7 +617,7 @@ function byte BestMode()
 
 	if (B.Skill > Rand(6))
 	{
-		if (Chaos < 0.1 || Chaos < 0.5 && VSize(B.Enemy.Location - Instigator.Location) > 500)
+		if (AimComponent.GetChaos() < 0.1 || AimComponent.GetChaos() < 0.5 && VSize(B.Enemy.Location - Instigator.Location) > 500)
 			return 1;
 	}
 	else if (FRand() > 0.75)
@@ -708,17 +708,6 @@ defaultproperties
 	ZoomStages=2
 	GunLength=80.000000
 
-	SightAimFactor=0.15
-	SprintOffSet=(Pitch=-3000,Yaw=-4096)
-	JumpOffSet=(Pitch=-6000,Yaw=2000)
-	AimAdjustTime=0.600000
-	AimSpread=64
-
-
-	ChaosDeclineTime=0.800000
-	ChaosSpeedThreshold=350.000000
-	ChaosAimSpread=1024
-	 
 	Begin Object Class=RecoilParams Name=FSSG50RecoilParams
 		ViewBindFactor=0.15
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
@@ -731,6 +720,17 @@ defaultproperties
 		CrouchMultiplier=0.650000
 	End Object
 	RecoilParamsList(0)=RecoilParams'FSSG50RecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=64,Max=1024)
+		ADSMultiplier=0.15
+		SprintOffset=(Pitch=-3000,Yaw=-4096)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
+		AimAdjustTime=0.600000
+		ChaosDeclineTime=0.800000
+		ChaosSpeedThreshold=350.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	 
 	FireModeClass(0)=Class'BWBPRecolorsPro.AS50PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.AS50SecondaryFire'

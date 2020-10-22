@@ -491,7 +491,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -501,7 +501,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 	}
 	
 	if (ReloadState == RS_GearSwitch)
@@ -664,9 +664,8 @@ defaultproperties
 	SightDisplayFOV=20.000000
 	SightingTime=0.300000
 	GunLength=48.000000
-	SprintOffSet=(Pitch=-3000,Yaw=-4096)
-	 
-	Begin Object Class=RecoilParams Name=MK781RecoilParams
+
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.45
 		XCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=0.120000),(InVal=0.400000,OutVal=0.180000),(InVal=0.800000,OutVal=0.220000),(InVal=1.000000,OutVal=0.250000)))
 		YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
@@ -674,7 +673,12 @@ defaultproperties
 		YRandFactor=0.050000
 		DeclineDelay=0.600000
 	End Object
-	RecoilParamsList(0)=RecoilParams'MK781RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		SprintOffset=(Pitch=-3000,Yaw=-4096)
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BWBPRecolorsPro.MK781PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.MK781SecondaryFire'

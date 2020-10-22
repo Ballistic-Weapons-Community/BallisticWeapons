@@ -317,7 +317,7 @@ defaultproperties
 	ManualLines(1)="Projects a short-range shockwave, dealing low damage and pushing nearby enemies back.||Using this mode generates significant heat, and if the weapon overheats, the user will take damage."
 	ManualLines(2)="Effective at close range. Especially effective at repelling charges and melee."
 	HeatDeclineDelay=0.200000
-	AimDisplacementDurationMult=0.5
+	DisplaceDurationMult=0.5
 	BlastDamageType=Class'BWBPRecolorsPro.DTA49Shockwave'
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	UsedAmbientSound=Sound'BallisticSounds2.A73.A73Hum1'
@@ -340,12 +340,7 @@ defaultproperties
 	SightingTime=0.200000
 	SightZoomFactor=0.85
 	GunLength=0.100000
-	AimAdjustTime=0.350000
-	
-	AimSpread=16
-	ChaosDeclineTime=0.800000
-	ChaosSpeedThreshold=7500.000000
-	ChaosAimSpread=512
+
 	
 	Begin Object Class=RecoilParams Name=A49RecoilParams
 		ViewBindFactor=0.4
@@ -355,6 +350,14 @@ defaultproperties
 		DeclineDelay=0.170000
 	End Object
 	RecoilParamsList(0)=RecoilParams'A49RecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimAdjustTime=0.350000
+		AimSpread=(Min=16,Max=512)
+		ChaosDeclineTime=0.800000
+		ChaosSpeedThreshold=7500.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	
 	FireModeClass(0)=Class'BWBPRecolorsPro.A49PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.A49SecondaryFire'

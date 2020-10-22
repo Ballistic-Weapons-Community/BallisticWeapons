@@ -327,7 +327,7 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -352,7 +352,7 @@ simulated event AnimEnded (int Channel, name anim, float frame, float rate)
 		}
 		
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 	}
 }
 
@@ -687,13 +687,8 @@ defaultproperties
 	SightOffset=(X=-18.000000,Y=4.490000,Z=6.350000)
 	SightDisplayFOV=35.000000
 	GunLength=48.000000
-	SightAimFactor=0.30000
-	SprintOffSet=(Pitch=-1000,Yaw=-2048)
-	AimSpread=128
-	ChaosDeclineTime=1.600000
-	ChaosAimSpread=768
-	 
-	Begin Object Class=RecoilParams Name=BulldogRecoilParams
+
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.25
 		XRandFactor=0.350000
 		YRandFactor=0.350000
@@ -701,7 +696,15 @@ defaultproperties
 		DeclineTime=1.500000
 		DeclineDelay=0.400000
 	End Object
-	RecoilParamsList(0)=RecoilParams'BulldogRecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=128,Max=768)
+		ADSMultiplier=0.30000
+		SprintOffset=(Pitch=-1000,Yaw=-2048)
+		ChaosDeclineTime=1.600000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BWBPRecolorsPro.BulldogPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.BulldogSecondaryFire'

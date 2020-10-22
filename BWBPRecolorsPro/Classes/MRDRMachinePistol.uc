@@ -203,14 +203,10 @@ defaultproperties
 	SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
 	SightDisplayFOV=40.000000
 	GunLength=0.100000
-	AimAdjustTime=0.450000
-	AimSpread=16
 	AIRating=0.6
 	CurrentRating=0.6
-	ChaosDeclineTime=0.450000
-	ChaosAimSpread=256
 	 
-	Begin Object Class=RecoilParams Name=MRDRRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.5
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000),(InVal=0.600000,OutVal=0.150000),(InVal=0.800000,OutVal=0.250000),(InVal=1.000000,OutVal=0.100000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.200000),(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.550000),(InVal=0.600000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
@@ -219,7 +215,14 @@ defaultproperties
 		DeclineTime=0.800000
 		DeclineDelay=0.350000
 	End Object
-	RecoilParamsList(0)=RecoilParams'MRDRRecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimAdjustTime=0.450000
+		ChaosDeclineTime=0.450000
+		AimSpread=(Min=16,Max=256)
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	 
 	FireModeClass(0)=Class'BWBPRecolorsPro.MRDRPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.MRDRSecondaryFire'

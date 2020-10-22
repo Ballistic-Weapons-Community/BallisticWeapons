@@ -210,13 +210,11 @@ defaultproperties
     WeaponModes(4)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
     WeaponModes(5)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
     CurrentWeaponMode=1
-    bNotifyModeSwitch=True
     SightPivot=(Pitch=1024)
     SightOffset=(X=-20.000000,Y=9.700000,Z=19.000000)
     GunLength=32.000000
-    SprintOffSet=(Pitch=-1000,Yaw=-2048)
 
-    Begin Object Class=RecoilParams Name=SKASRecoilParams
+    Begin Object Class=RecoilParams Name=ArenaRecoilParams
         ViewBindFactor=0.45
         XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
         YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
@@ -225,7 +223,12 @@ defaultproperties
         DeclineTime=1.500000
         DeclineDelay=0.450000
     End Object
-    RecoilParamsList(0)=RecoilParams'SKASRecoilParams'
+    RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+    Begin Object Class=AimParams Name=ArenaAimParams
+        SprintOffset=(Pitch=-1000,Yaw=-2048)
+    End Object
+    AimParamsList(0)=AimParams'ArenaAimParams'
 	 
     FireModeClass(0)=Class'BWBPRecolorsPro.SKASPrimaryFire'
     FireModeClass(1)=Class'BWBPRecolorsPro.SKASSecondaryFire'

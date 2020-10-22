@@ -64,10 +64,6 @@ simulated event PostNetReceive()
 		return;
 	if (bLaserOn != default.bLaserOn)
 	{
-		if (bLaserOn)
-			AimAdjustTime = default.AimAdjustTime * 1.5;
-		else
-			AimAdjustTime = default.AimAdjustTime;
 		default.bLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
@@ -144,26 +140,21 @@ simulated function bool ConsumeMagAmmo(int Mode, float Load, optional bool bAmou
 	return true;
 }
 
+simulated function CheckSetNetAim()
+{
+	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+}
+
 //=====================================================================
 
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+
+	CheckSetNetAim();
+
 	if (ThirdPersonActor!=None)
 		FG50Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
-	if (bLaserOn)
-	{
-		AimAdjustTime = default.AimAdjustTime * 1.5;
-		AimSpread *= 0.4;
-		ChaosAimSpread *= 0.4;
-	}
-	else
-	{
-		AimAdjustTime = default.AimAdjustTime;
-		AimSpread = default.AimSpread;
-		ChaosAimSpread = default.ChaosAimSpread;	
-	}
     if (!Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
 }
@@ -174,15 +165,11 @@ simulated function ClientSwitchLaser()
 	{
 		SpawnLaserDot();
 		PlaySound(LaserOnSound,,0.7,,32);
-		AimSpread *= 0.4;
-		ChaosAimSpread *= 0.4;
 	}
 	else
 	{
 		KillLaserDot();
-		PlaySound(LaserOffSound,,0.7,,32);
-		AimSpread = default.AimSpread;
-		ChaosAimSpread = default.ChaosAimSpread;	
+		PlaySound(LaserOffSound,,0.7,,32);	
 	}
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
@@ -203,12 +190,7 @@ simulated function SpawnLaserDot(optional vector Loc)
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
-	if (Instigator != None && AIController(Instigator.Controller) != None) //Bot Accuracy++
-	{
-		AimSpread *= 0.30;
-		ChaosAimSpread *= 0.20;
-	}
-	else if (Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
+	if (Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
 	{
 		ScreenStart();
 		if (!Instigator.IsLocallyControlled())
@@ -586,7 +568,7 @@ function byte BestMode()
 
 	if (B.Skill > Rand(6))
 	{
-		if (Chaos < 0.1 || Chaos < 0.5 && VSize(B.Enemy.Location - Instigator.Location) > 500)
+		if (AimComponent.GetChaos() < 0.1 || AimComponent.GetChaos() < 0.5 && VSize(B.Enemy.Location - Instigator.Location) > 500)
 			return 1;
 	}
 	else if (FRand() > 0.75)
@@ -625,7 +607,7 @@ function float SuggestDefenseStyle()	{	return 0.6;	}
 
 defaultproperties
 {
-	AimDisplacementDurationMult=1.25
+	DisplaceDurationMult=1.25
 	LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
 	LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
 	HeatDeclineDelay=0.400000
@@ -661,21 +643,12 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-DrumOut',Volume=1.500000,Radius=32.000000)
 	ClipInSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-DrumIn',Volume=1.500000,Radius=32.000000)
 	ClipInFrame=0.650000
-	WeaponModes(0)=(ModeName="Controlled")
+	WeaponModes(0)=(ModeName="Controlled",AimParamsIndex=1)
 	WeaponModes(1)=(bUnavailable=True)
-	bNotifyModeSwitch=True
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
 	SightOffset=(Y=25.000000,Z=10.300000)
 	SightingTime=0.700000
-	SprintOffSet=(Pitch=-3072,Yaw=-4096)
-	JumpOffSet=(Pitch=-6000,Yaw=2000)
-	SightAimFactor=0.7
-	
-	AimSpread=128
-	ChaosDeclineTime=1.750000
-	ChaosAimSpread=1536
-	ChaosSpeedThreshold=350
 
 	Begin Object Class=RecoilParams Name=FG50RecoilParams
 		ViewBindFactor=0.15
@@ -687,6 +660,27 @@ defaultproperties
 		DeclineTime=1.500000
 	End Object
 	RecoilParamsList(0)=RecoilParams'FG50RecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaStandardAimParams
+		ADSMultiplier=0.7
+		AimSpread=(Min=128,Max=1536)
+		ChaosDeclineTime=1.750000
+		ChaosSpeedThreshold=350
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
+	End Object 
+	AimParamsList(0)=AimParams'ArenaStandardAimParams'
+
+	Begin Object Class=AimParams Name=ArenaControlledAimParams
+		AimAdjustTime=1
+		ADSMultiplier=0.4
+		AimSpread=(Min=64,Max=768)
+		ChaosDeclineTime=1.25
+		ChaosSpeedThreshold=350
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
+	End Object 
+	AimParamsList(1)=AimParams'ArenaControlledAimParams'
 	 
 	FireModeClass(0)=Class'BWBPRecolorsPro.FG50PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.FG50SecondaryFire'

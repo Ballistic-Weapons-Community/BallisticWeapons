@@ -387,14 +387,8 @@ defaultproperties
 	SightPivot=(Pitch=64)
 	SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
 	SightDisplayFOV=40.000000
-	SprintOffSet=(Pitch=-1000,Yaw=-2048)
-	
-	AimSpread=24
-	ChaosDeclineTime=1.250000
-	ChaosSpeedThreshold=5000.000000
-	ChaosAimSpread=1024
-	 
-	Begin Object Class=RecoilParams Name=AK490RecoilParams
+
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.25
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.05000),(InVal=0.200000,OutVal=0.060000),(InVal=0.300000,OutVal=0.10000),(InVal=0.400000,OutVal=0.150000),(InVal=0.500000,OutVal=0.170000),(InVal=0.65000000,OutVal=0.100000),(InVal=0.75.000000,OutVal=0.05000),(InVal=1.000000,OutVal=0.080000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.300000,OutVal=0.40000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
@@ -403,7 +397,15 @@ defaultproperties
 		DeclineDelay=0.15
 		DeclineTime=0.65	
 	End Object
-	RecoilParamsList(0)=RecoilParams'AK490RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=24,Max=1024)
+		SprintOffset=(Pitch=-1000,Yaw=-2048)
+		ChaosDeclineTime=1.250000
+		ChaosSpeedThreshold=5000.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BWBPRecolorsPro.AK47PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.AK47SecondaryFire'

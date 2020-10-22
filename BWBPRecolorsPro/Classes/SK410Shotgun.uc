@@ -183,16 +183,15 @@ defaultproperties
     WeaponModes(1)=(ModeName="Automatic Slug",bUnavailable=True,ModeID="WM_FullAuto")
     WeaponModes(2)=(ModeName="0451-EXECUTE",bUnavailable=True)
     CurrentWeaponMode=0
-    bNotifyModeSwitch=True
     bNoCrosshairInScope=True
     SightPivot=(Pitch=150)
     SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
     SightDisplayFOV=30
     SightingTime=0.250000
     GunLength=48.000000
-    SprintOffSet=(Pitch=-1000,Yaw=-2048)
 
-    Begin Object Class=RecoilParams Name=SK410RecoilParams
+
+    Begin Object Class=RecoilParams Name=ArenaRecoilParams
         ViewBindFactor=0.65
         XCurve=(Points=(,(InVal=0.200000,OutVal=0.050000),(InVal=0.400000,OutVal=0.120000),(InVal=0.600000,OutVal=0.15000),(InVal=0.750000,OutVal=0.250000),(InVal=1.000000,OutVal=0.32)))
         YCurve=(Points=(,(InVal=0.500000,OutVal=0.400000),(InVal=1.000000,OutVal=1.000000)))
@@ -201,7 +200,12 @@ defaultproperties
         DeclineTime=0.500000
         DeclineDelay=0.450000
     End Object
-    RecoilParamsList(0)=RecoilParams'SK410RecoilParams'
+    RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+    Begin Object Class=AimParams Name=ArenaAimParams
+        SprintOffset=(Pitch=-1000,Yaw=-2048)
+    End Object
+    AimParamsList(0)=AimParams'ArenaAimParams'
 
     FireModeClass(0)=Class'BWBPRecolorsPro.SK410PrimaryFire'
     FireModeClass(1)=Class'BWBPRecolorsPro.SK410SecondaryFire'

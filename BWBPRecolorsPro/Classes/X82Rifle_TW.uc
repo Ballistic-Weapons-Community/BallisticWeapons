@@ -16,21 +16,19 @@ var() sound		MountFireSound;
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
 {
-	local Rotator BaseAim, RecoilPivotDelta;
+	local Rotator AimPivotDelta, RecoilPivotDelta;
 
 	//DC 110313
 	if (Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
 		return;
 
-	RecoilPivotDelta = RcComponent.GetViewPivotDelta();
-	BaseAim = Aim * ViewAimFactor;
+	RecoilPivotDelta 	= RcComponent.CalcViewPivotDelta();
+	AimPivotDelta  		= AimComponent.CalcViewPivotDelta();
 	
 	if (RcComponent.ShouldUpdateView())
-		Instigator.SetViewRotation((BaseAim - ViewAim) + (RecoilPivotDelta));
+		Instigator.SetViewRotation(AimPivotDelta + RecoilPivotDelta);
 	else
-		Instigator.SetViewRotation(BaseAim - ViewAim);
-		
-	ViewAim = BaseAim;	
+		Instigator.SetViewRotation(AimPivotDelta);	
 }
 
 function InitTurretWeapon(BallisticTurret Turret)
@@ -87,7 +85,7 @@ simulated event Timer()
 {
 	local int Mode;
 
-	ReAim(0.1);
+	AimComponent.ReAim(0.1);
 
     if (ClientState == WS_BringUp)
     {
@@ -197,10 +195,6 @@ defaultproperties
 	SightingTime=0.010000
 	GunLength=0.000000
 	bUseSpecialAim=True
-	SightAimFactor=0.100000
-	AimSpread=0
-	AimDamageThreshold=2000.000000
-	ChaosAimSpread=0
 	 
 	Begin Object Class=RecoilParams Name=X83_TWRecoilParams
 		ViewBindFactor=0.35
@@ -215,6 +209,17 @@ defaultproperties
 		CrouchMultiplier=1
 	End Object
 	RecoilParamsList(0)=RecoilParams'X83_TWRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=0,Max=0)
+		SprintOffset=(Pitch=-1000,Yaw=-2048)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
+		ADSMultiplier=0.1
+		AimDamageThreshold=2000.000000
+		AimAdjustTime=0.600000
+		ChaosDeclineTime=1.200000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BWBPRecolorsPro.X82TW_PrimaryFire'
 	SelectAnim="Deploy"

@@ -23,12 +23,6 @@ var       float		HUDRefreshTime;		// Used to keep the damn thing pretty
 // Check if there is ammo in mag if we use it or is there some in inventory if we don't
 simulated function bool AllowFire()
 {
-	if (BW.BCRepClass.default.bSightFireOnly && !BW.bScopeView)
-	{
-		if (PlayerController(Instigator.Controller) != None)
-			PlayerController(Instigator.Controller).ClientMessage("You can only fire from sights.");
-		return false;
-	}
 	if (!CheckReloading())
 		return false;		// Is weapon busy reloading
 	if (!CheckWeaponMode())

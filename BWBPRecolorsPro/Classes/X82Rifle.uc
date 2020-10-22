@@ -350,7 +350,7 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
-	AimDisplacementDurationMult=1.25
+	DisplaceDurationMult=1.25
 	ManualLines(0)="High-powered .50 rifle fire. High damage and fire rate, but strong recoil."
 	ManualLines(1)="Deploys the rifle upon the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, becomes perfectly accurate, loses its iron sights and gains a reduction in recoil. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
 	ManualLines(2)="Weapon Function activates infrared vision. Viable infantry targets will be bordered by a box in the weapon's scope.||Effective at long range. Very effective at long range when deployed."
@@ -393,14 +393,6 @@ defaultproperties
 	ZoomStages=3
 	GunLength=80.000000
 
-	SprintOffSet=(Pitch=-1000,Yaw=-2048)
-	JumpOffSet=(Pitch=-6000,Yaw=2000)
-	SightAimFactor=0.15
-	AimAdjustTime=0.600000
-	AimSpread=256
-	ChaosDeclineTime=1.200000
-	ChaosAimSpread=2048
-
 	Begin Object Class=RecoilParams Name=X83RecoilParams
 		ViewBindFactor=0.35
 		XRandFactor=0.600000
@@ -411,6 +403,16 @@ defaultproperties
 		CrouchMultiplier=0.7
 	End Object
 	RecoilParamsList(0)=RecoilParams'X83RecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=256,Max=2048)
+		SprintOffset=(Pitch=-1000,Yaw=-2048)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
+		ADSMultiplier=0.15
+		AimAdjustTime=0.600000
+		ChaosDeclineTime=1.200000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BWBPRecolorsPro.X82PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.X82SecondaryFire'

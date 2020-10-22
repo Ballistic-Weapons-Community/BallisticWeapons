@@ -199,14 +199,17 @@ defaultproperties
      GunLength=0.000000
      bAimDisabled=True
 	 
-	Begin Object Class=RecoilParams Name=ICISRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		PitchFactor=0
 		YawFactor=0
  	End Object
- 	RecoilParamsList(0)=RecoilParams'ICISRecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+	 
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=0,Max=0)
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
-     AimSpread=0
-     ChaosAimSpread=0
      FireModeClass(0)=Class'BWBPRecolorsPro.ICISPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.ICISSecondaryFire'
      SelectAnimRate=2.500000

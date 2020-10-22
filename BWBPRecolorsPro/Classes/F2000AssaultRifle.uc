@@ -164,23 +164,52 @@ function ServerSwitchSilencer(bool bNewValue)
 
 	bSilenced = bNewValue;
 	SwitchSilencer(bSilenced);
-
-	SuppressorRecoil(bNewValue);
 }
 
-function SuppressorRecoil(bool suppressed)
+simulated function OnSuppressorSwitched()
 {
-	local float factor;
+	if (bSilenced)
+	{		
+		ApplySuppressorAim();
+		ApplySuppressorRecoil();
+		SightingTime *= 1.25;
+	}
+	else
+	{
+		AimComponent.Recalculate();
+		RcComponent.Recalculate();
+		SightingTime = default.SightingTime;
+	}
 
-	factor = 0.7f;
+	F2000PrimaryFire(BFireMode[0]).SetSuppressed(bSilenced);
+}
 
-	if (!suppressed)
-		factor = 1f / factor;
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
 
-	RcComponent.XRandFactor *= factor;
-	RcComponent.YRandFactor *= factor;
+	if (bSilenced)
+		ApplySuppressorAim();
+}
 
-	F2000PrimaryFire(BFireMode[0]).SetSuppressed(suppressed);
+simulated function OnRecoilParamsChanged()
+{
+	Super.OnRecoilParamsChanged();
+
+	if (bSilenced)
+		ApplySuppressorRecoil();
+}
+
+simulated function ApplySuppressorAim()
+{
+	AimComponent.AimSpread.Min *= 1.25;
+	AimComponent.AimSpread.Max *= 1.25;
+}
+
+function ApplySuppressorRecoil()
+{
+	RcComponent.XRandFactor *= 0.7f;
+	RcComponent.YRandFactor *= 0.7f;
 }
 
 //simulated function DoWeaponSpecial(optional byte i)
@@ -206,6 +235,8 @@ simulated function SwitchSilencer(bool bNewValue)
 		PlayAnim(SilencerOnAnim);
 	else
 		PlayAnim(SilencerOffAnim);
+
+	OnSuppressorSwitched();
 }
 
 simulated function Notify_MARSSilencerOn()
@@ -445,13 +476,8 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
 	SightDisplayFOV=25.000000
-	SprintOffSet=(Pitch=-3000,Yaw=-4096)
-	
-	AimSpread=16
-	ChaosDeclineTime=0.5
-	ChaosAimSpread=128
 	 
-	Begin Object Class=RecoilParams Name=MARS3RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.150000),(InVal=0.4800000,OutVal=0.20000),(InVal=0.600000,OutVal=-0.050000),(InVal=0.750000,OutVal=0.0500000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.3)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
@@ -460,7 +486,14 @@ defaultproperties
 		DeclineDelay=0.140000
 		ViewBindFactor=0.4
 	End Object
-	RecoilParamsList(0)=RecoilParams'MARS3RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=16,Max=128)
+		SprintOffset=(Pitch=-3000,Yaw=-4096)
+		ChaosDeclineTime=0.5
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	 
 	FireModeClass(0)=Class'BWBPRecolorsPro.F2000PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.F2000SecondaryFire'

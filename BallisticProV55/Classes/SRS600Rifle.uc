@@ -58,8 +58,6 @@ simulated event WeaponTick(float DT)
 	else
 		NewSR += Speed / 1900;
 
-
-
 	NewSR = FMin(1.0, NewSR + StealthImps);
 
 	P = NewSR-StealthRating;
@@ -113,15 +111,23 @@ simulated function SwitchSilencer(bool bNewValue)
 	if (bNewValue)
 		PlayAnim(SilencerOnAnim);
 	else
-		PlayAnim(SilencerOffAnim);	
+		PlayAnim(SilencerOffAnim);
+
+	OnSuppressorSwitched();
 }
 
 simulated function OnSuppressorSwitched()
 {
 	if (bSilenced)
+	{
 		ApplySuppressorAim();
+		SightingTime *= 1.25;
+	}
 	else
+	{
 		AimComponent.Recalculate();
+		SightingTime = default.SightingTime;
+	}
 }
 
 simulated function OnAimParamsChanged()

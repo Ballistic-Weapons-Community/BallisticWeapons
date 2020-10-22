@@ -13,7 +13,8 @@
 class LonghornClusterGrenadeFlak extends BallisticGrenade;
 
 var float                ZBonus;
-var bool bDetonating;
+var bool 				bDetonating;
+var Range				DetonateDelayRange;
 
 const EXP_LIFE_TIME = 0.35f;
 
@@ -72,18 +73,14 @@ simulated event Timer()
 }
 
 simulated function InitProjectile ()
-{
-    local float r;
-    
-    r=((FRand()-0.50)*0.50)+1; // Lets make it a bit more random.
-    DetonateDelay *= r;
-    Speed*=r;
-    
+{   
 	Velocity = Speed * Vector(VelocityDir);
+	
 	if (RandomSpin != 0 && !bNoInitialSpin)
 		RandSpin(RandomSpin);
+
 	if (DetonateOn == DT_Timer)
-		SetTimer(DetonateDelay, false);
+		SetTimer(Lerp(FRand(), DetonateDelayRange.Min, DetonateDelayRange.Max), false);
 }
 
 simulated function InitEffects ()
@@ -256,39 +253,39 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
-     DetonateOn=DT_ImpactTimed
-     PlayerImpactType=PIT_Detonate
-     DampenFactor=0.200000
-     DampenFactorParallel=0.350000
-     bAlignToVelocity=True
-     DetonateDelay=1.500000
-     ImpactDamage=45
-     ImpactDamageType=Class'BWBPRecolorsPro.DT_LonghornShotDirect'
-     ImpactManager=Class'BWBPRecolorsPro.IM_LonghornCluster'
-     TrailClass=Class'BWBPRecolorsPro.LonghornGrenadeTrailSmall'
-     MyRadiusDamageType=Class'BWBPRecolorsPro.DT_LonghornShotRadius'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=512.000000
-     MotionBlurRadius=384.000000
-     MotionBlurFactor=3.000000
-     MotionBlurTime=1.000000
-     Speed=1500.000000
-     MaxSpeed=11000.000000
-     Damage=50.000000
-     DamageRadius=256.000000
-     MomentumTransfer=15000.000000
-     MyDamageType=Class'BWBPRecolorsPro.DT_LonghornShotRadius'
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=25
-     LightSaturation=192
-     LightBrightness=32.000000
-     LightRadius=4.000000
-     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Longhorn.ClusterProj'
-     bDynamicLight=True
-     LifeSpan=20.000000
-     DrawScale=0.500000
-     bCollideActors=False
-     bIgnoreTerminalVelocity=True
-     RotationRate=(Roll=32768)
+	DetonateDelayRange=(Min=1.000000,Max=1.500000)
+	DetonateOn=DT_Timer
+	PlayerImpactType=PIT_Detonate
+	DampenFactor=0.200000
+	DampenFactorParallel=0.350000
+	bAlignToVelocity=True
+	ImpactDamage=45
+	ImpactDamageType=Class'BWBPRecolorsPro.DT_LonghornShotDirect'
+	ImpactManager=Class'BWBPRecolorsPro.IM_LonghornCluster'
+	TrailClass=Class'BWBPRecolorsPro.LonghornGrenadeTrailSmall'
+	MyRadiusDamageType=Class'BWBPRecolorsPro.DT_LonghornShotRadius'
+	SplashManager=Class'BallisticProV55.IM_ProjWater'
+	ShakeRadius=512.000000
+	MotionBlurRadius=384.000000
+	MotionBlurFactor=3.000000
+	MotionBlurTime=1.000000
+	Speed=1500.000000
+	MaxSpeed=11000.000000
+	Damage=50.000000
+	DamageRadius=256.000000
+	MomentumTransfer=15000.000000
+	MyDamageType=Class'BWBPRecolorsPro.DT_LonghornShotRadius'
+	LightType=LT_Steady
+	LightEffect=LE_QuadraticNonIncidence
+	LightHue=25
+	LightSaturation=192
+	LightBrightness=32.000000
+	LightRadius=4.000000
+	StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Longhorn.ClusterProj'
+	bDynamicLight=True
+	LifeSpan=20.000000
+	DrawScale=0.500000
+	bCollideActors=False
+	bIgnoreTerminalVelocity=True
+	RotationRate=(Roll=32768)
 }

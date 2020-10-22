@@ -254,14 +254,10 @@ defaultproperties
 	FullZoomFOV=40.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
-
 	SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
 	SightDisplayFOV=40.000000
-	SightAimFactor=2
-	ChaosAimSpread=256
 	GunLength=4.000000
-	ChaosDeclineTime=0.60000
-	 
+
 	Begin Object Class=RecoilParams Name=AH250RecoilParams
 		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.1),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.02),(InVal=0.7,OutVal=-0.06),(InVal=1.0,OutVal=0.0)))
 		ViewBindFactor=0.5
@@ -272,6 +268,13 @@ defaultproperties
 		DeclineTime=1
 	End Object
 	RecoilParamsList(0)=RecoilParams'AH250RecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		ADSMultiplier=2
+		AimSpread=(Min=16,Max=256)
+		ChaosDeclineTime=0.60000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BWBPRecolorsPro.AH250PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'

@@ -253,7 +253,9 @@ final simulated function Recalculate()
     AimAdjustTime       = Params.AimAdjustTime;
     ChaosDeclineTime    = Params.ChaosDeclineTime;
     ChaosSpeedThreshold = Params.ChaosSpeedThreshold;
-    CrouchMultiplier    = Params.CrouchMultiplier;
+	CrouchMultiplier    = Params.CrouchMultiplier;
+	
+	UpdateADSTransition();
 
 	Weapon.OnAimParamsChanged();
 }

@@ -578,7 +578,6 @@ defaultproperties
 	WeaponModes(2)=(ModeName="Gauss: Offline",ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=2)
 	WeaponModes(3)=(ModeName="Gauss: Deflecting",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=2)
 	CurrentWeaponMode=0
-	bNotifyModeSwitch=True
 	ZoomType=ZT_Logarithmic
 	ScopeViewTex=Texture'BallisticRecolors4TexPro.M2020.M2020ScopeView'
 	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
@@ -594,12 +593,7 @@ defaultproperties
 	ZoomStages=8
 	GunLength=80.000000
 
-	SightAimFactor=0.15
-	SprintOffSet=(Pitch=-3000,Yaw=-4096)
-	JumpOffSet=(Pitch=-6000,Yaw=2000)
-	AimSpread=64
-	ChaosDeclineTime=1.250000
-	ChaosAimSpread=1280
+
 	 
 	Begin Object Class=RecoilParams Name=M2020RechargeRecoilParams
 		ViewBindFactor=0.2
@@ -633,6 +627,15 @@ defaultproperties
 		CrouchMultiplier=0.650000
 	End Object
 	RecoilParamsList(2)=RecoilParams'M2020OfflineRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=64,Max=1280)
+		ADSMultiplier=0.15
+		SprintOffset=(Pitch=-3000,Yaw=-4096)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
+		ChaosDeclineTime=1.250000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BWBPRecolorsPro.M2020GaussPrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'

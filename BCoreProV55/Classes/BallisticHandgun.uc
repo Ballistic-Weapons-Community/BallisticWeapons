@@ -867,7 +867,7 @@ simulated function SlavePutDown()
 	}
 }
 
-simulated function SetDualMode (bool bDualMode)
+simulated final function SetDualMode (bool bDualMode)
 {
 	if (bDualMode)
 	{
@@ -876,20 +876,32 @@ simulated function SetDualMode (bool bDualMode)
 		SetBoneScale(8, 0.0, SupportHandBone);
 		if (AIController(Instigator.Controller) == None)
 			bUseSpecialAim = true;
-			
-		BFireMode[0].FireRate = BFireMode[0].default.FireRate * 1.5;
-		
-		if (bAimDisabled)
-			return;
 	}
 	else
 	{
 		SetBoneScale(8, 1.0, SupportHandBone);
 		bUseSpecialAim = false;
-		BFireMode[0].FireRate = BFireMode[0].default.FireRate;
-		if (bAimDisabled)
-			return;
 	}
+
+	OnDualModeChanged(bDualMode);
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// OnDualModeChanged
+//
+// Event raised whenever dual mode is switched.
+// Override in subclasses instead of SetDualMode to implement behaviour 
+// when changing between modes.
+//
+// Remember to follow OnRecoilParamsChanged / OnAimParamsChanged pattern 
+// as laid out in BallisticWeapon if changing recoil or aim params.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+simulated function OnDualModeChanged(bool bDualMode)
+{
+	if (bDualMode)
+		BFireMode[0].FireRate = BFireMode[0].default.FireRate * 1.5;
+	else 
+		BFireMode[0].FireRate = BFireMode[0].default.FireRate;
 }
 
 /*

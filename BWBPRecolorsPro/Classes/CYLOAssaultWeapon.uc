@@ -243,12 +243,7 @@ defaultproperties
 	SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
 	bNoCrosshairInScope=True
 	GunLength=16.500000
-	
-	AimSpread=16
-	ChaosDeclineTime=0.5
-	ChaosSpeedThreshold=7000.000000
-	ChaosAimSpread=728
-	 
+		 
 	Begin Object Class=RecoilParams Name=FirestormRecoilParams
 		ViewBindFactor=0.4
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.09),(InVal=0.2,OutVal=0.12),(InVal=0.25,OutVal=0.13),(InVal=0.3,OutVal=0.11),(InVal=0.35,OutVal=0.08),(InVal=0.40000,OutVal=0.050000),(InVal=0.50000,OutVal=-0.020000),(InVal=0.600000,OutVal=-0.040000),(InVal=0.700000,OutVal=0.04),(InVal=0.800000,OutVal=0.070000),(InVal=1.000000,OutVal=0.13)))
@@ -265,7 +260,16 @@ defaultproperties
 	End Object
 	RecoilParamsList(0)=RecoilParams'FirestormRecoilParams'
 
-	 
+	Begin Object Class=AimParams Name=FirestormAimParams
+		AimSpread=(Min=16,Max=768)
+		ADSMultiplier=0.3
+		SprintOffset=(Pitch=-3000,Yaw=-8000)
+		AimAdjustTime=0.400000
+		ChaosDeclineTime=0.5
+		ChaosSpeedThreshold=7000.000000
+	End Object
+	AimParamsList(0)=AimParams'FirestormAimParams'
+
 	FireModeClass(0)=Class'BWBPRecolorsPro.CYLOFirestormPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.CYLOFirestormSecondaryFire'
 	bShowChargingBar=True

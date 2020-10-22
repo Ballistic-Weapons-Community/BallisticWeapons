@@ -143,27 +143,12 @@ simulated function WeaponTick(float DT)
 		else if (bRunOffsetting)
 		{
 			SetNewAimOffset(default.AimOffset, OffsetAdjustTime);
-			Reaim(0.05, AimAdjustTime);
+			AimComponent.Reaim(0.05, AimAdjustTime);
 			bRunOffsetting=false;
 		}
 	}
 }
 */
-
-simulated function Rotator CalcNewAimOffset()
-{
-	local rotator R;
-
-	R = default.AimOffset;
-
-	if (!BCRepClass.default.bNoJumpOffset && SprintControl != None && SprintControl.bSprinting)
-		R += SprintOffset;
-	/*
-    else if (Instigator.Base != none && VSize(Instigator.velocity - Instigator.base.velocity) > 220)
-        R += RunOffset;
-	*/
-	return R;
-}
 
 // AI Interface =====
 function byte BestMode()
@@ -252,18 +237,22 @@ defaultproperties
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightOffset=(Y=5.300000,Z=23.299999)
-	SightAimFactor=0.500000
-	SprintOffSet=(Pitch=-6000,Yaw=-8000)
-	AimSpread=512
-	AimDamageThreshold=300.000000
-	ChaosDeclineTime=0.750000
-	ChaosSpeedThreshold=1200.000000
-	ChaosAimSpread=2048
+
 	 
-	Begin Object Class=RecoilParams Name=AT40RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 	 	DeclineTime=0.750000
 	End Object
-	RecoilParamsList(0)=RecoilParams'AT40RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=512,Max=2048)
+		ADSMultiplier=0.500000
+		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		AimDamageThreshold=300.000000
+		ChaosDeclineTime=0.750000
+		ChaosSpeedThreshold=1200.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BWBPRecolorsPro.FLASHPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.FLASHSecondaryFire'

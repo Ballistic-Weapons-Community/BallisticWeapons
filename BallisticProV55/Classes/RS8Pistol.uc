@@ -259,7 +259,6 @@ simulated function OnScopeViewChanged()
 		SightOffset.Y = default.SightOffset.Y * -1;
 }
 
-
 simulated function PlayCocking(optional byte Type)
 {
 	if (Type == 2)

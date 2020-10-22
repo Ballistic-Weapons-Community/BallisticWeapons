@@ -141,6 +141,8 @@ final simulated function Recalculate()
 	HipMultiplier 		= Params.HipMultiplier;
 	CrouchMultiplier 	= Params.CrouchMultiplier;
 
+	UpdateADSTransition();
+
 	Weapon.OnRecoilParamsChanged();
 }
 
@@ -292,5 +294,5 @@ final simulated function ReceiveNetRecoil(byte NetXRand, byte NetYRand, float Ne
 //=============================================================
 final simulated function DrawDebug(Canvas Canvas)
 {
-    Canvas.DrawText("RecoilComponent: Recoil: "$Recoil$", MaxRecoil: "$MaxRecoil);
+    Canvas.DrawText("RecoilComponent: Recoil: "$Recoil$", MaxRecoil: "$MaxRecoil$" ViewBindFactor: "$ViewBindFactor$" Params.ViewBindFactor: "$Params.ViewBindFactor);
 }

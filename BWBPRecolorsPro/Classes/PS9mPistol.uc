@@ -15,12 +15,12 @@ var() name			GrenadeLoadAnim;	//Anim for grenade reload
 var   bool			bLoaded;
 
 
-var() Sound		GrenSlideSound;		//Sounds for grenade reloading
-var() Sound		GrenLoadSound;		//	
+var() Sound			GrenSlideSound;		//Sounds for grenade reloading
+var() Sound			GrenLoadSound;		//	
 
-var() sound		PartialReloadSound;	// Silencer stuck on sound
+var() sound			PartialReloadSound;	// Silencer stuck on sound
 var() name			HealAnim;		// Anim for murdering Simon
-var() sound		HealSound;		// The sound of a thousand dying orphans
+var() sound			HealSound;		// The sound of a thousand dying orphans
 
 simulated function bool SlaveCanUseMode(int Mode) {return Mode == 0;}
 simulated function bool MasterCanSendMode(int Mode) {return Mode == 0;}
@@ -185,62 +185,47 @@ simulated function OnRecoilParamsChanged()
 {
 	Super.OnRecoilParamsChanged();
 
-	if (IsMaster() || IsSlave())
-		DualModeRecoil(true);
+	if (IsInDualMode())
+		ApplyDualModeRecoilModifiers();
 }
 
-simulated function SetDualMode (bool bDualMode)
+simulated function OnAimParamsChanged()
 {
-	AdjustUziProperties(bDualMode);
-	DualModeRecoil(bDualMode);
+	Super.OnAimParamsChanged();
+
+	if (IsInDualMode())
+		ApplyDualModeAimModifiers();
 }
 
-simulated function AdjustUziProperties (bool bDualMode)
+simulated function OnDualModeChanged(bool bDualMode)
 {
-	AimSpread 			= default.AimSpread;
-	ViewAimFactor		= default.ViewAimFactor;
-	ChaosDeclineTime	= default.ChaosDeclineTime;
-	ChaosSpeedThreshold	= default.ChaosSpeedThreshold;
-	ChaosAimSpread		= default.ChaosAimSpread;
-	ChaosAimSpread 		*= BCRepClass.default.AccuracyScale;
-
 	if (bDualMode)
 	{
-		if (Instigator.IsLocallyControlled() && SightingState == SS_Active)
-			StopScopeView();
-
-		SetBoneScale(8, 0.0, SupportHandBone);
-
-		if (AIController(Instigator.Controller) == None)
-			bUseSpecialAim = true;
-
-		AimSpread			*= 1.4;
-		ViewAimFactor		*= 0.6;
-		ChaosDeclineTime	*= 1.2;
-		ChaosSpeedThreshold	*= 0.8;
-		ChaosAimSpread		*= 1.2;
+		ApplyDualModeAimModifiers();
+		ApplyDualModeRecoilModifiers();
 	}
-	else
+	else 
 	{
-		SetBoneScale(8, 1.0, SupportHandBone);
-		bUseSpecialAim = false;
+		AimComponent.Recalculate();
+		RcComponent.Recalculate();
 	}
 }
 
-simulated function DualModeRecoil(bool bDualMode)
+simulated function ApplyDualModeAimModifiers()
 {
-	local float factor;
+	AimComponent.AimSpread.Min		 *= 1.4;
+	AimComponent.AimSpread.Max		 *= 1.2;
+	AimComponent.ChaosDeclineTime	 *= 1.2;
+	AimComponent.ChaosSpeedThreshold *= 0.8;
+}
 
-	factor = 1.2f;
-
-	if (!bDualMode)
-		factor = 1f / factor;
-
-	RcComponent.PitchFactor			*= factor;
-	RcComponent.YawFactor			*= factor;
-	RcComponent.XRandFactor			*= factor;
-	RcComponent.YRandFactor			*= factor;
-	RcComponent.DeclineTime			*= factor;
+simulated function ApplyDualModeRecoilModifiers()
+{
+	RcComponent.PitchFactor			*= 1.2f;
+	RcComponent.YawFactor			*= 1.2f;
+	RcComponent.XRandFactor			*= 1.2f;
+	RcComponent.YRandFactor			*= 1.2f;
+	RcComponent.DeclineTime			*= 1.2f;
 }
 
 // AI Interface =====
@@ -249,7 +234,6 @@ function byte BestMode()
 {
 	return 0;
 }
-
 
 function float GetAIRating()
 {
@@ -328,18 +312,22 @@ defaultproperties
 	SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-	SprintOffSet=(Pitch=-1000,Yaw=-2048)
-	ChaosDeclineTime=0.450000
-	ChaosAimSpread=192
 
-	Begin Object Class=RecoilParams Name=PS9MRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.4
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.000000),(InVal=0.50000,OutVal=0.120000),,(InVal=0.7000,OutVal=-0.010000),(InVal=1.000000,OutVal=0.000000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.4500000,OutVal=0.40000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
 		YRandFactor=0.050000
 	End Object
-	RecoilParamsList(0)=RecoilParams'PS9MRecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		SprintOffset=(Pitch=-1000,Yaw=-2048)
+		ChaosDeclineTime=0.450000
+		AimSpread=(Min=16,Max=192)
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	
 	FireModeClass(0)=Class'BWBPRecolorsPro.PS9mPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.PS9mSecondaryFire'

@@ -732,14 +732,8 @@ defaultproperties
 	MaxZoom=4.000000
 	ZoomStages=1
 	SMuzzleFlashOffset=(X=15.000000,Z=-10.000000)
-	SightAimFactor=2
-	SprintOffSet=(Pitch=-3000,Yaw=-4096)
-	
-	AimSpread=16
-	ChaosDeclineTime=0.5
-	ChaosAimSpread=128
 
-	Begin Object Class=RecoilParams Name=MARS2RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.250000),(InVal=0.4800000,OutVal=0.30000),(InVal=0.600000,OutVal=0.320000),(InVal=0.750000,OutVal=0.370000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.4)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
@@ -749,7 +743,15 @@ defaultproperties
 		ViewBindFactor=0.4
 		CrouchMultiplier=0.650000
 	End Object
-	RecoilParamsList(0)=RecoilParams'MARS2RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=16,Max=128)
+		ADSMultiplier=2
+		SprintOffset=(Pitch=-3000,Yaw=-4096)
+		ChaosDeclineTime=0.5
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BWBPRecolorsPro.MARSPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.MARSSecondaryFire'

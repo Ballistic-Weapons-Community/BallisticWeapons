@@ -58,13 +58,25 @@ simulated event PostNetReceive()
 	//Do not use default to save postnetreceived shit
 	if (bLaserOn != bOldLaserOn)
 	{
-		if (bLaserOn)
-			AimAdjustTime = default.AimAdjustTime * 1.5;
-		else
-			AimAdjustTime = default.AimAdjustTime;
+		OnLaserSwitched();
 		bOldLaserOn = bLaserOn;
 	}
 	Super.PostNetReceive();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bSilenced)
+		ApplySuppressorAim();
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function CheckSetNetAim()
+{
+	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 //=================================
@@ -86,14 +98,29 @@ exec simulated function SwitchSilencer()
 {
 	if (ReloadState != RS_None)
 		return;
-	if (Clientstate != WS_ReadyToFire)
+	if (ClientState != WS_ReadyToFire)
 		return;
 
 	bSilenced = !bSilenced;
 	ServerSwitchSilencer(bSilenced);
 	PlaySuppressorAttachment(bSilenced);
+	OnSuppressorSwitched();
 	LK05PrimaryFire(FireMode[0]).SwitchSilencerMode(bSilenced);
 	LK05Attachment(ThirdPersonActor).IAOverride(bSilenced);
+}
+
+simulated function OnSuppressorSwitched()
+{
+	if (bSilenced)
+		ApplySuppressorAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function ApplySuppressorAim()
+{
+	AimComponent.AimSpread.Min *= 1.2;
+	AimComponent.AimSpread.Max *= 1.2;
 }
 
 simulated function PlaySuppressorAttachment(bool bSuppressed)
@@ -167,28 +194,11 @@ exec simulated function WeaponSpecial(optional byte i)
 	}
 	else //Laser
 	{
-		bLaserOn = !bLaserOn;
 		ServerSwitchLaser(bLaserOn);
-		if (bLaserOn)
-		{
-			SpawnLaserDot();
-			PlaySound(LaserOnSound,,0.7,,32);
-			AimSpread = LaserAimSpread;
-			BFireMode[0].FireChaos *= 0.8;
-		}
-		else
-		{
-			KillLaserDot();
-			PlaySound(LaserOffSound,,0.7,,32);
-			AimSpread = default.AimSpread;
-			BFireMode[0].FireChaos = BFireMode[0].default.FireChaos;
-		}
-
 		PlayIdle();
-		bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+		CheckSetNetAim();
 	}
 }
-
 
 //=================================
 // Flashlight
@@ -245,30 +255,54 @@ simulated event RenderOverlays( Canvas Canvas )
 	}
 }
 
-
 //=================================
 // Laser
 //=================================
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+	
+	CheckSetNetAim();
+
 	if (ThirdPersonActor!=None)
 		LK05Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
-	if (bLaserOn)
-	{
-		AimAdjustTime = default.AimAdjustTime * 1.5;
-		//AimSpread = LaserAimSpread;
-		BFireMode[0].FireChaos *= 0.8;
-	}
-	else
-	{
-		AimAdjustTime = default.AimAdjustTime;
-		//AimSpread = default.AimSpread;
-		BFireMode[0].FireChaos = BFireMode[0].default.FireChaos;
-	}
+
+	OnLaserSwitched();
 }
 
+simulated function OnLaserSwitched()
+{
+	if (Instigator.IsLocallyControlled())
+	{
+		if (bLaserOn)
+		{
+			SpawnLaserDot();
+			PlaySound(LaserOnSound,,0.7,,32);
+		}
+		else
+		{
+			KillLaserDot();
+			PlaySound(LaserOffSound,,0.7,,32);
+		}
+	}
+
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 1.5;
+	AimComponent.AimSpread.Max *= 0.8;
+}
+
+simulated function SpawnLaserDot(optional vector Loc)
+{
+	if (LaserDot == None)
+		LaserDot = Spawn(class'MD24LaserDot',,,Loc);
+}
 
 simulated function KillLaserDot()
 {
@@ -278,12 +312,6 @@ simulated function KillLaserDot()
 		LaserDot = None;
 	}
 }
-simulated function SpawnLaserDot(optional vector Loc)
-{
-	if (LaserDot == None)
-		LaserDot = Spawn(class'MD24LaserDot',,,Loc);
-}
-
 
 // Draw a laser beam and dot to show exact path of bullets before they're fired
 simulated function DrawLaserSight ( Canvas Canvas )
@@ -537,14 +565,8 @@ defaultproperties
 	SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
 	SightDisplayFOV=25.000000
 	SightingTime=0.300000
-	SprintOffSet=(Pitch=-3072,Yaw=-4096)
 
-	AimSpread=16
-	ChaosDeclineTime=0.5
-	ChaosSpeedThreshold=15000.000000
-	ChaosAimSpread=768
-	 
-	Begin Object Class=RecoilParams Name=LK05RecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.35
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.12),(InVal=0.2,OutVal=0.18),(InVal=0.35,OutVal=0.22),(InVal=0.5,OutVal=0.3),(InVal=0.7,OutVal=0.45),(InVal=0.85,OutVal=0.6),(InVal=1.000000,OutVal=0.66)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
@@ -553,7 +575,15 @@ defaultproperties
 		DeclineTime=0.4
 		DeclineDelay=0.200000
 	End Object
-	RecoilParamsList(0)=RecoilParams'LK05RecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=16,Max=768)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		ChaosDeclineTime=0.5
+		ChaosSpeedThreshold=15000.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	FireModeClass(0)=Class'BWBPRecolorsPro.LK05PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.LK05SecondaryFire'

@@ -16,15 +16,15 @@ var() BUtil.FullSound	HatchSound;
 
 
 var   bool          bRunOffsetting;
-var	bool		  bInUse;
+var	bool		  	bInUse;
 var() rotator       RunOffset;
 
 var   Emitter		LaserDot;
-var   bool		bLaserOn;
+var   bool			bLaserOn;
 var   LaserActor	Laser;
 var   Emitter		LaserBlast;
-var() Sound		LaserOnSound;
-var() Sound		LaserOffSound;
+var() Sound			LaserOnSound;
+var() Sound			LaserOffSound;
 
 
 replication
@@ -155,45 +155,6 @@ simulated function bool CanUseSights()
 	if ((Instigator.Physics == PHYS_Falling && VSize(Instigator.Velocity) > Instigator.GroundSpeed * 1.5) || bRunOffsetting || (SprintControl != None && SprintControl.bSprinting) || ClientState == WS_BringUp || ClientState == WS_PutDown || ReloadState != RS_None)
 		return false;
 	return true;
-}
-
-/*
-simulated function WeaponTick(float DT)
-{
-	Super.WeaponTick(DT);
-
-	if (Instigator.Base != none)
-	{
-		if (VSize(Instigator.velocity - Instigator.base.velocity) > 220)
-		{
-			if(!bRunOffsetting && !bScopeView)
-			{
-				SetNewAimOffset(CalcNewAimOffset(), OffsetAdjustTime);
-				bRunOffsetting=true;  
-			}
-		}
-		else if (bRunOffsetting)
-		{
-			SetNewAimOffset(default.AimOffset, OffsetAdjustTime);
-			Reaim(0.05, AimAdjustTime);
-			bRunOffsetting=false;
-		}
-	}
-}
-*/
-
-simulated function Rotator CalcNewAimOffset()
-{
-	local rotator R;
-
-	R = default.AimOffset;
-
-	if (!BCRepClass.default.bNoJumpOffset && SprintControl != None && SprintControl.bSprinting)
-		R += SprintOffset;
-	/*
-    else if (Instigator.Base != none && VSize(Instigator.velocity - Instigator.base.velocity) > 220)
-        R += RunOffset;*/
-	return R;
 }
 
 // Draw a laser beam and dot to show exact path of bullets before they're fired
@@ -409,14 +370,7 @@ defaultproperties
      MinZoom=2.000000
      MaxZoom=8.000000
      ZoomStages=6
-     SightAimFactor=0.500000
-     SprintOffSet=(Pitch=-6000,Yaw=-8000)
-     JumpOffSet=(Pitch=-7000)
-     AimAdjustTime=0.750000
-     AimSpread=512
-     AimDamageThreshold=300.000000
-     ChaosDeclineTime=2.800000
-	 ChaosSpeedThreshold=1200.00000
+
 
 	Begin Object Class=RecoilParams Name=LAWRecoilParams
 		YawFactor=0.000000
@@ -424,6 +378,18 @@ defaultproperties
 		DeclineDelay=0.000000
 	End Object
 	RecoilParamsList(0)=RecoilParams'LAWRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=512,Max=1536)
+		ADSMultiplier=0.500000
+		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		JumpOffset=(Pitch=-7000)
+		AimAdjustTime=0.750000
+		AimDamageThreshold=300.000000
+		ChaosDeclineTime=2.800000
+		ChaosSpeedThreshold=1200.00000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	 
      FireModeClass(0)=Class'BWBPRecolorsPro.LAWPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.LAWSecondaryFire'

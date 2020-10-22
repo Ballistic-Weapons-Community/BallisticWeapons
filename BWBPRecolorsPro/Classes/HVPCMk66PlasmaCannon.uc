@@ -689,19 +689,6 @@ function float SuggestAttackStyle()	{	return 0.5;	}
 function float SuggestDefenseStyle()	{	return -0.5;	}
 // End AI Stuff =====
 
-
-simulated function Rotator CalcNewAimOffset()
-{
-	local rotator R;
-
-	R = default.AimOffset;
-
-	if (!BCRepClass.default.bNoJumpOffset && SprintControl != None && SprintControl.bSprinting)
-		R += SprintOffset;
-
-	return R;
-}
-
 defaultproperties
 {	 
 	InventorySize=35
@@ -727,19 +714,23 @@ defaultproperties
      SightPivot=(Pitch=768)
      SightOffset=(X=-18.000000,Z=23.299999)
      SightDisplayFOV=40.000000
-     SprintOffSet=(Pitch=-3000,Yaw=-5000)
-     AimAdjustTime=0.400000
-     AimSpread=192
-     ChaosSpeedThreshold=3000.000000
-	 ChaosAimSpread=1024
 
-	Begin Object Class=RecoilParams Name=HVPCRecoilParams
+
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		YawFactor=0.100000
 		XRandFactor=0.300000
 		YRandFactor=0.300000
 		DeclineTime=0.750000
 	End Object
-	RecoilParamsList(0)=RecoilParams'HVPCRecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		AimSpread=(Min=192,Max=1024)
+		SprintOffset=(Pitch=-3000,Yaw=-5000)
+		AimAdjustTime=0.400000
+		ChaosSpeedThreshold=3000.000000
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 	 
      FireModeClass(0)=Class'BWBPRecolorsPro.HVPCMk66PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.HVPCMk66SecondaryFire'

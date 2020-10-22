@@ -20,6 +20,7 @@ function InitTurretWeapon(BallisticTurret Turret)
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
+
 	BFireMode[0].FirePushbackForce = 0;
     BFireMode[0].XInaccuracy=1.000000;
     BFireMode[0].YInaccuracy=1.000000;
@@ -49,9 +50,7 @@ simulated event Timer()
 simulated function Notify_Undeploy ()
 {
 	if (BallisticTurret(Instigator) != None && Role == ROLE_Authority)
-		{
 		BallisticTurret(Instigator).UndeployTurret();
-		}
 }
 
 
@@ -66,19 +65,11 @@ function ServerWeaponSpecial(optional byte i)
 
 }
 
-
-
-
-simulated function Notify_Deploy ();
+simulated function Notify_Deploy();
 
 simulated function PreDrawFPWeapon()
 {
 	SetRotation(Instigator.Rotation);
-}
-
-simulated function TickAim(float DT)
-{
-	Super(BallisticWeapon).TickAim(DT);
 }
 
 simulated event AnimEnd (int Channel)
@@ -117,16 +108,12 @@ simulated event RenderOverlays (Canvas C)
 	Super.RenderOverlays(C);
 }
 
-
-
 simulated function PlayReload()
 {
        ReloadAnim='Reload';
 
 	SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
 }
-
-
 
 simulated function ApplyAimRotation()
 {
@@ -135,7 +122,6 @@ simulated function ApplyAimRotation()
 	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
 //	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
 }
-
 
 // Animation notify to make gun cock after reload
 simulated function Notify_CockAfterReload()
@@ -163,9 +149,6 @@ defaultproperties
 	SightingTime=0.000001
 	GunLength=0.000000
 	bUseSpecialAim=True
-	AimSpread=0
-	AimDamageThreshold=2000.000000
-	ChaosAimSpread=0
 	 
 	Begin Object Class=RecoilParams Name=FG50_TWRecoilParams
 		ViewBindFactor=0.100000
@@ -178,6 +161,17 @@ defaultproperties
 		DeclineTime=1.000001
 	End Object
 	RecoilParamsList(0)=RecoilParams'FG50_TWRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		ADSMultiplier=0.7
+		AimSpread=(Min=0,Max=0)
+		AimDamageThreshold=2000.000000
+		ChaosDeclineTime=1.750000
+		ChaosSpeedThreshold=350
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
+	End Object 
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
 	SelectAnim="Deploy"
 	bCanThrow=False

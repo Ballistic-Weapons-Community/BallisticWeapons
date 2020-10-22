@@ -150,12 +150,18 @@ simulated function SwitchSilencer(bool bDetachSuppressor)
 	OnSuppressorSwitched();
 }
 
-simulated function OnSuppressorSwitched()
+	simulated function OnSuppressorSwitched()
 {
 	if (bSilenced)
+	{
 		ApplySuppressorAim();
+		SightingTime *= 1.25;
+	}
 	else
+	{
 		AimComponent.Recalculate();
+		SightingTime = default.SightingTime;
+	}
 }
 
 simulated function OnAimParamsChanged()

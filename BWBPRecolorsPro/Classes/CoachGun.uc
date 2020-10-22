@@ -219,7 +219,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -230,7 +230,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 	}
 	
 	if (ReloadState == RS_GearSwitch)
@@ -467,7 +467,6 @@ defaultproperties
      WeaponModes(1)=(ModeName="Slug",Value=2.000000)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     bNotifyModeSwitch=True
      SightPivot=(Pitch=256)
      SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
      SightingTime=0.350000
@@ -475,7 +474,7 @@ defaultproperties
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
 	 
-	Begin Object Class=RecoilParams Name=CoachRecoilParams
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.350000
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
 		YCurve=(Points=(,(InVal=0.300000,OutVal=0.300000),(InVal=1.000000,OutVal=1.000000)))
@@ -485,7 +484,11 @@ defaultproperties
 		DeclineTime=0.900000
 		DeclineDelay=0.400000
 	End Object
-	RecoilParamsList(0)=RecoilParams'CoachRecoilParams'
+	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+	End Object
+	AimParamsList(0)=AimParams'ArenaAimParams'
 
      FireModeClass(0)=Class'BWBPRecolorsPro.CoachGunPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
