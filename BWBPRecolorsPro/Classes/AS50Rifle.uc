@@ -654,6 +654,7 @@ function float SuggestDefenseStyle()	{	return 0.7;	}
 
 defaultproperties
 {
+	SightMoveSpeedFactor=0.8
 	ScopeBone="Scope"
 	BulletBone="Bullet"
 	ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
@@ -670,8 +671,8 @@ defaultproperties
 	ScreenBase4=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen4'
 	Numbers=Texture'BallisticRecolors3TexPro.PUMA.PUMA-Numbers'
 	MyFontColor=(B=255,G=255,R=255,A=255)
-	PlayerSpeedFactor=0.850000
-	PlayerJumpFactor=0.850000
+	PlayerSpeedFactor=0.90000
+	PlayerJumpFactor=0.90000
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BallisticRecolors3TexPro.FSG50.BigIcon_FSG50'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'

@@ -630,6 +630,7 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
+	SightMoveSpeedFactor=0.8
 	AIRating=0.8
 	CurrentRating=0.8
 	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'

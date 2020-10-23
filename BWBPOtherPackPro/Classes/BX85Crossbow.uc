@@ -570,6 +570,7 @@ defaultproperties
 	ReleaseStateAnim[5]="ReloadMagReleaseState1"	//7 ammo
 	ReloadAnim="ReloadStateFinish"
 	GunArrowBone="1"
+	SightMoveSpeedFactor=0.8
 	ArrowBones(0)=(BoneName="2")
 	ArrowBones(1)=(BoneName="3")
 	ArrowBones(2)=(BoneName="4")

@@ -422,6 +422,7 @@ function float SuggestDefenseStyle()	{	return 0.6;	}
 
 defaultproperties
 {
+	SightMoveSpeedFactor=0.8
 	SilencerBone="Silencer"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"

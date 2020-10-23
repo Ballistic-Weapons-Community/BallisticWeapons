@@ -359,6 +359,7 @@ defaultproperties
 	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
+	SightMoveSpeedFactor=0.8
 	BigIconMaterial=Texture'BallisticTextures_25.OA-AR.BigIcon_OAAR'
 	BigIconCoords=(Y1=40,Y2=235)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'

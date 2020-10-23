@@ -446,6 +446,7 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
+	SightMoveSpeedFactor=0.8
 	ScopePopupHeight=17.000000
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP4-Tex.VPR.BigIcon_VPR'

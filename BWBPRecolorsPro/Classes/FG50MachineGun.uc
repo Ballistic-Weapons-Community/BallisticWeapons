@@ -623,8 +623,9 @@ defaultproperties
 	ScreenRedBar=Texture'BallisticRecolors3TexPro.M2020.M2020-ScreenOff'
 	Numbers=Texture'BallisticRecolors3TexPro.PUMA.PUMA-Numbers'
 	MyFontColor=(B=255,G=255,R=255,A=255)
-	PlayerSpeedFactor=0.750000
-	PlayerJumpFactor=0.750000
+	PlayerSpeedFactor=0.850000
+	PlayerJumpFactor=0.850000
+	SightMoveSpeedFactor=0.8
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BallisticRecolors3TexPro.FG50.BigIcon_FG50'

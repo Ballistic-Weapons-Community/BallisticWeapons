@@ -426,8 +426,9 @@ defaultproperties
 	Shells(0)="Shell1"
 	Shells(1)="Shell2"
 	Shells(2)="Shell3"
-	PlayerSpeedFactor=0.700000
-	PlayerJumpFactor=0.700000
+	PlayerSpeedFactor=0.80000
+	PlayerJumpFactor=0.80000
+	SightMoveSpeedFactor=0.8
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=2)
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BWBP4-Tex.Artillery.BigIcon_Artillery'

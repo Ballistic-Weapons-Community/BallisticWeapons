@@ -52,7 +52,7 @@ defaultproperties
      YInaccuracy=8.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-Fire3',Volume=4.100000)
      FireEndAnim=
-     FireRate=0.50000
+     FireRate=0.40000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_44MagnumScope'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

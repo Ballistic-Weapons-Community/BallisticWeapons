@@ -25,9 +25,8 @@ class AimComponent extends Object;
 //
 // MUST BE CLEANED UP FROM THE WEAPON CODE
 //=============================================================================
-var BallisticWeapon				Weapon;
+var BallisticWeapon				BW;
 var LevelInfo					Level;
-var Pawn						Instigator;
 var AimParams				    Params;
 
 //=============================================================================
@@ -123,7 +122,7 @@ final simulated function bool PendingForcedReaim()
 // Returns the interpolated base aim with its offset, chaos, etc and view aim removed in the form of a single rotator
 final simulated function Rotator GetAimPivot(optional bool bIgnoreViewAim)
 {
-	if (bIgnoreViewAim || Instigator.Controller == None || PlayerController(Instigator.Controller) == None || PlayerController(Instigator.Controller).bBehindView)
+	if (bIgnoreViewAim || BW.InstigatorController == None || PlayerController(BW.InstigatorController) == None || PlayerController(BW.InstigatorController).bBehindView)
 		return AimOffset + Aim + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
 	return AimOffset + Aim * (1-ViewBindFactor) + LongGunPivot * FMax(LongGunFactor, DisplaceFactor);
 }
@@ -141,7 +140,7 @@ final simulated function float CalcConeInaccuracy()
 
 final simulated function Rotator CalcFutureAim(float ExtraTime, bool bIgnoreViewAim)
 {	
-    if (bIgnoreViewAim || Instigator.Controller == None || PlayerController(Instigator.Controller) == None || PlayerController(Instigator.Controller).bBehindView)
+    if (bIgnoreViewAim || BW.InstigatorController == None || PlayerController(BW.InstigatorController) == None || PlayerController(BW.InstigatorController).bBehindView)
         return GetFutureAimOffset(ExtraTime) + GetFutureAim(ExtraTime) + GetAimOffsets();
     return GetFutureAimOffset(ExtraTime) + GetFutureAim(ExtraTime) * (1-ViewBindFactor) + GetAimOffsets();
 }
@@ -200,9 +199,8 @@ final simulated function SetNewAimOffset(Rotator NewOffset, float ShiftTime)
 //=============================================================
 final simulated function Cleanup()
 {
-	Weapon = None;
+	BW = None;
 	Level = None;
-	Instigator = None;
 
     Params = None;
     
@@ -259,18 +257,18 @@ final simulated function Recalculate()
 	if (ViewBindFactor == 0)
 		ViewBindFactor = Params.ViewBindFactor;
 
-	Weapon.OnAimParamsChanged();
+	BW.OnAimParamsChanged();
 }
 
 final simulated function OnPreDrawFPWeapon()
 {
     if (LongGunFactor != 0)
-        Weapon.SetLocation(Weapon.Location + class'BUtil'.static.ViewAlignedOffset(Weapon, LongGunOffset) * LongGunFactor);
+        BW.SetLocation(BW.Location + class'BUtil'.static.ViewAlignedOffset(BW, LongGunOffset) * LongGunFactor);
 }
 
 final simulated function OnWeaponSelected()
 {
-	OldLookDir = Weapon.GetPlayerAim();
+	OldLookDir = BW.GetPlayerAim();
 	AimOffset = CalcNewAimOffset();
 	NewAimOffset = AimOffset;
 	OldAimOffset = AimOffset;
@@ -339,7 +337,7 @@ final simulated function OnPlayerSprint()
 final simulated function RecoilReaim(float chaos)
 {
     if (!bReaiming)
-	    Reaim(Level.TimeSeconds-Weapon.LastRenderTime, , , , , chaos);
+	    Reaim(Level.TimeSeconds-BW.LastRenderTime, , , , , chaos);
 }
 
 final simulated function AddFireChaos(float chaos)
@@ -353,7 +351,7 @@ final simulated function AddFireChaos(float chaos)
 // Azarael - fixed recoil bug here
 final simulated function UpdateAim(float DT)
 {
-	if (Weapon.bAimDisabled)
+	if (BW.bAimDisabled)
 	{
 		Aim = rot(0,0,0);
 		return;
@@ -370,11 +368,11 @@ final simulated function UpdateAim(float DT)
 	}
 
 	// Fell, Reaim
-	else if (Instigator.Physics == PHYS_Falling)
+	else if (BW.Instigator.Physics == PHYS_Falling)
 		Reaim(DT, , Params.FallingChaos);
 	
 	// Moved, Reaim
-	else if (bForceReaim || Weapon.GetPlayerAim() != OldLookDir || (Instigator.Physics != PHYS_None && VSize(Instigator.Velocity) > 100))
+	else if (bForceReaim || BW.GetPlayerAim() != OldLookDir || (BW.Instigator.Physics != PHYS_None && VSize(BW.Instigator.Velocity) > 100))
 		Reaim(DT);
 
 	// Interpolate the AimOffset
@@ -384,7 +382,7 @@ final simulated function UpdateAim(float DT)
     // Chaos decline
 	if (Chaos > 0)
     {
-        if (Instigator.bIsCrouched)
+        if (BW.Instigator.bIsCrouched)
             Chaos -= FMin(Chaos, DT / (ChaosDeclineTime * CrouchMultiplier));
         else
             Chaos -= FMin(Chaos, DT / ChaosDeclineTime);
@@ -393,15 +391,15 @@ final simulated function UpdateAim(float DT)
     // Fire chaos decline
     if (FireChaos > 0 && LastFireChaosTime + Params.ChaosDeclineDelay < Level.TimeSeconds)
     {
-        if (Instigator.bIsCrouched)
+        if (BW.Instigator.bIsCrouched)
             FireChaos -= FMin(FireChaos, DT / (ChaosDeclineTime / CrouchMultiplier));
         else
             FireChaos -= FMin(FireChaos, DT / ChaosDeclineTime);
     }
 
     // Change aim adjust time for player velocity
-	if (Instigator.Base != None)
-        AimAdjustTime = (Params.AimAdjustTime * 2) - (Params.AimAdjustTime * (FMin(VSize(Instigator.Velocity - Instigator.Base.Velocity), 375) / 350));
+	if (BW.Instigator.Base != None)
+        AimAdjustTime = (Params.AimAdjustTime * 2) - (Params.AimAdjustTime * (FMin(VSize(BW.Instigator.Velocity - BW.Instigator.Base.Velocity), 375) / 350));
     else
         AimAdjustTime = Params.AimAdjustTime;
 }
@@ -413,13 +411,13 @@ final simulated function Rotator CalcNewAimOffset()
 
     R = rot(0,0,0);
     
-    if (Weapon.IsHoldingMelee())
+    if (BW.IsHoldingMelee())
         return R;
 
-    if (Weapon.SprintActive())
+    if (BW.SprintActive())
 	{
 		R.Pitch += Params.SprintOffset.Pitch;
-		if (Instigator.Controller.Handedness < 0)
+		if (BW.Instigator.Controller.Handedness < 0)
 			R.Yaw -= Params.SprintOffset.Yaw;
 		else R.Yaw += Params.SprintOffset.Yaw;
 	}
@@ -433,24 +431,24 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
 	local float VResult, X, Y, T;
 	local Vector V;//, Forward, Right, up;
 
-	if (Weapon.bAimDisabled)
+	if (BW.bAimDisabled)
 		return;
 		
 	if (bJumpLock)
 		bJumpLock = False;
 		
-	if (Weapon.bUseNetAim && Weapon.Role < ROLE_Authority)
+	if (BW.bUseNetAim && BW.Role < ROLE_Authority)
 		return;
 
 	bForceReaim=false;
 
 	// Calculate chaos caused by movement
-	if (Instigator.Physics != PHYS_None)
+	if (BW.Instigator.Physics != PHYS_None)
 	{
-		V = Instigator.Velocity;
-		if (Instigator.Base != None)
+		V = BW.Instigator.Velocity;
+		if (BW.Instigator.Base != None)
 
-			V -= Instigator.Base.Velocity;
+			V -= BW.Instigator.Base.Velocity;
 		VResult = VSize(V) / Params.ChaosSpeedThreshold;
 	}
 
@@ -466,7 +464,7 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
 	X = XMod + Lerp( FRand(), Lerp(Chaos, -AimSpread.Min, -AimSpread.Max), Lerp(Chaos, AimSpread.Min, AimSpread.Max) );
 	Y = YMod + Lerp( FRand(), Lerp(Chaos, -AimSpread.Min, -AimSpread.Max), Lerp(Chaos, AimSpread.Min, AimSpread.Max) );
 	
-	if (Instigator.bIsCrouched)
+	if (BW.Instigator.bIsCrouched)
 	{
 		X *= CrouchMultiplier;
 		Y *= CrouchMultiplier;
@@ -479,7 +477,7 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
         
 	StartAim(T, X, Y);
 
-	if (Weapon.bUseNetAim)
+	if (BW.bUseNetAim)
 		SendNewAim();
 }
 
@@ -509,13 +507,13 @@ final simulated function ZeroAim(float TimeMod)
 
     StartAim(TimeMod, 0, 0);
 
-	if (Weapon.bUseNetAim)
+	if (BW.bUseNetAim)
         SendNewAim();
 }
 
 final simulated function UpdateDisplacements(float delta)
 {
-	if (!Weapon.BCRepClass.default.bNoLongGun && GunLength > 0)
+	if (!BW.BCRepClass.default.bNoLongGun && GunLength > 0)
         TickLongGun(delta);
         
 	if (IsDisplaced())
@@ -533,20 +531,20 @@ private final simulated function TickLongGun (float DT)
 
 	LongGunFactor += FClamp(NewLongGunFactor - LongGunFactor, -DT/Params.OffsetAdjustTime, DT/Params.OffsetAdjustTime);
 
-	Start = Instigator.Location + Instigator.EyePosition();
-    T = Weapon.Trace(HitLoc, HitNorm, Start + vector(Instigator.GetViewRotation()) * (GunLength+Instigator.CollisionRadius), Start, true);
+	Start = BW.Instigator.Location + BW.Instigator.EyePosition();
+    T = BW.Trace(HitLoc, HitNorm, Start + vector(BW.Instigator.GetViewRotation()) * (GunLength+BW.Instigator.CollisionRadius), Start, true);
     
-	if (T == None || T.Base == Instigator || (Pawn(T) == None && T.Owner == Instigator))
+	if (T == None || T.Base == BW.Instigator || (Pawn(T) == None && T.Owner == BW.Instigator))
 	{
-        Weapon.OnDisplaceEnd();
+        BW.OnDisplaceEnd();
 		NewLongGunFactor = 0;
 	}
 	else
 	{
-		Dist = FMax(0, VSize(HitLoc - Start)-Instigator.CollisionRadius);
+		Dist = FMax(0, VSize(HitLoc - Start)-BW.Instigator.CollisionRadius);
 		if (Dist < GunLength)
 		{
-            Weapon.OnDisplaceStart();
+            BW.OnDisplaceStart();
 			NewLongGunFactor = Acos(Dist / GunLength)/1.570796;
 		}
 	}
@@ -571,10 +569,10 @@ final simulated function DisplaceAim(int Damage, int DamageThreshold, float Dura
     {
         DisplaceEndTime = Level.TimeSeconds + DisplaceDuration;
 
-        Weapon.OnWeaponDisplaced();
+        BW.OnWeaponDisplaced();
 
-        if (Weapon.Role == ROLE_Authority)
-            Weapon.ClientDisplaceAim(DisplaceDuration);
+        if (BW.Role == ROLE_Authority)
+            BW.ClientDisplaceAim(DisplaceDuration);
     }
 }
 
@@ -584,16 +582,16 @@ private final simulated function TickDisplacement(float DT)
 	{
         DisplaceFactor = FMin (DisplaceFactor + DT/0.2, 0.75);
         
-		if (!Weapon.bServerReloading)
-            Weapon.bServerReloading = True;
+		if (!BW.bServerReloading)
+            BW.bServerReloading = True;
     }
         
 	else 
 	{
         DisplaceFactor = FMax(DisplaceFactor-DT/0.35, 0);
         
-		if (Weapon.bServerReloading)
-            Weapon.bServerReloading=False;
+		if (BW.bServerReloading)
+            BW.bServerReloading=False;
 	}
 }
 
@@ -608,12 +606,12 @@ private final function SendNewAim()
 	Pitch = NewAim.Pitch;
     Time = ReaimTime;
     
-	Weapon.ReceiveNetAim(Yaw, Pitch, Time, OldChaos, NewChaos);
+	BW.ReceiveNetAim(Yaw, Pitch, Time, OldChaos, NewChaos);
 }
 
 final simulated function ReceiveNetAim(float Yaw, float Pitch, float Time, float oChaos, float nChaos)
 {
-	if (!Weapon.bUseNetAim || Weapon.Role == ROLE_Authority)
+	if (!BW.bUseNetAim || BW.Role == ROLE_Authority)
 		return;
 
 	bReaiming=true;
@@ -630,13 +628,13 @@ final simulated function ApplyDamageFactor(int Damage)
 {
     local float DF;
 
-    DF = FMin(1, (float(Damage)/Params.AimDamageThreshold) * Weapon.AimKnockScale);
+    DF = FMin(1, (float(Damage)/Params.AimDamageThreshold) * BW.AimKnockScale);
 
 	Reaim(0.1, 0.3*AimAdjustTime, DF*2, DF*2*(-3500 + 7000 * FRand()), DF*2*(-3000 + 6000 * FRand()));
     bForceReaim = True;
     
-    if (Weapon.Role == ROLE_Authority)
-        Weapon.ClientPlayerDamaged(Damage);
+    if (BW.Role == ROLE_Authority)
+        BW.ClientPlayerDamaged(Damage);
 }
 
 final simulated function float CalcCrosshairOffset(Canvas C)
@@ -649,9 +647,9 @@ final simulated function float CalcCrosshairOffset(Canvas C)
     OffsetAdjustment = C.ClipX / 2;
     
     if (bReaiming)
-        OffsetAdjustment *= tan ((AimSpread.Min + ((AimSpread.Max - AimSpread.Min) * FClamp(Lerp(ReaimPhase/ReaimTime, OldChaos, NewChaos) + ((1 - (360/Params.ChaosSpeedThreshold)* NewChaos) * FireChaos), 0, 1))) * 0.000095873799) / tan((Weapon.InstigatorController.FovAngle/2) * 0.01745329252);
+        OffsetAdjustment *= tan ((AimSpread.Min + ((AimSpread.Max - AimSpread.Min) * FClamp(Lerp(ReaimPhase/ReaimTime, OldChaos, NewChaos) + ((1 - (360/Params.ChaosSpeedThreshold)* NewChaos) * FireChaos), 0, 1))) * 0.000095873799) / tan((BW.InstigatorController.FovAngle/2) * 0.01745329252);
     else
-        OffsetAdjustment *= tan ((AimSpread.Min + ((AimSpread.Max - AimSpread.Min) * FClamp(NewChaos + ((1 - (360/Params.ChaosSpeedThreshold) * NewChaos) * FireChaos), 0, 1))) * 0.000095873799) / tan((Weapon.InstigatorController.FovAngle/2) * 0.01745329252);
+        OffsetAdjustment *= tan ((AimSpread.Min + ((AimSpread.Max - AimSpread.Min) * FClamp(NewChaos + ((1 - (360/Params.ChaosSpeedThreshold) * NewChaos) * FireChaos), 0, 1))) * 0.000095873799) / tan((BW.InstigatorController.FovAngle/2) * 0.01745329252);
 
     return OffsetAdjustment;
 }

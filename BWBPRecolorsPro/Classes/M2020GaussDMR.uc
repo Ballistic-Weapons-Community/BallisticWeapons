@@ -542,6 +542,7 @@ defaultproperties
 	ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
 	PlayerSpeedFactor=0.9
 	PlayerJumpFactor=0.9
+	SightMoveSpeedFactor=0.8
 	MaxHeat=7.000000
 	BulletBone1="Bullet1"
 	BulletBone2="Bullet2"

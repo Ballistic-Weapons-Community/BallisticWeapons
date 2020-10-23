@@ -138,7 +138,7 @@ function StartSuperBerserk()
     FireRecoil = default.FireRecoil * Level.GRI.WeaponBerserk;
 }
 
-//Stub called by the weapon mode when its FireMode changes if bNotifyModeSwitch is set to true
+//Stub called by the weapon mode when its FireMode changes
 simulated function SwitchWeaponMode (byte NewMode);
 
 // Effect related functions ------------------------------------------------
@@ -337,6 +337,12 @@ simulated function ApplyRecoil()
 		if (Instigator.Physics != PHYS_Falling)
 			Instigator.Velocity -= VelRecoilVect;
 	}
+}
+	
+simulated event ModeTick(float dt)
+{
+	if (Instigator == None)
+		Log("BallisticFire: ModeTick: No Instigator");
 }
 
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)

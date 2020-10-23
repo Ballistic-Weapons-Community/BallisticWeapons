@@ -25,9 +25,8 @@ class RecoilComponent extends Object;
 //
 // MUST BE CLEANED UP FROM THE WEAPON CODE
 //=============================================================================
-var BallisticWeapon				Weapon;
+var BallisticWeapon				BW;
 var LevelInfo					Level;
-var Pawn						Instigator;
 var RecoilParams				Params;
 
 // UnrealScript's shitty object handling necessitates copying most of the RecoilParams fields we might want to modify
@@ -107,9 +106,8 @@ final simulated function bool ShouldUpdateView()
 //=============================================================
 final simulated function Cleanup()
 {
-	Weapon = None;
+	BW = None;
 	Level = None;
-	Instigator = None;
 
 	Params = None;
 
@@ -144,7 +142,7 @@ final simulated function Recalculate()
 	if (ViewBindFactor == 0)
 		ViewBindFactor = Params.ViewBindFactor;
 
-	Weapon.OnRecoilParamsChanged();
+	BW.OnRecoilParamsChanged();
 }
 
 final simulated function UpdateRecoil(float dt)
@@ -155,22 +153,22 @@ final simulated function UpdateRecoil(float dt)
 
 final simulated function AddRecoil (float Amount, optional byte Mode)
 {
-	LastRecoilTime = Weapon.Level.TimeSeconds;
+	LastRecoilTime = BW.Level.TimeSeconds;
 	
-	if (Weapon.bAimDisabled || Amount == 0)
+	if (BW.bAimDisabled || Amount == 0)
 		return;
 		
-	Amount *= Weapon.BCRepClass.default.RecoilScale;
+	Amount *= BW.BCRepClass.default.RecoilScale;
 	
-	if (Instigator.bIsCrouched && VSize(Instigator.Velocity) < 30)
+	if (BW.Instigator.bIsCrouched && VSize(BW.Instigator.Velocity) < 30)
 		Amount *= CrouchMultiplier;
 		
-	if (!Weapon.bScopeView)
+	if (!BW.bScopeView)
 		Amount *= HipMultiplier;
 	
 	Recoil = FMin(MaxRecoil, Recoil + Amount);
 
-	if (!Weapon.bUseNetAim || Weapon.Role == ROLE_Authority)
+	if (!BW.bUseNetAim || BW.Role == ROLE_Authority)
 	{
 		XRand = FRand();
 		YRand = FRand();
@@ -259,10 +257,10 @@ private final simulated function Rotator GetRecoilPivot(bool bIgnoreViewAim)
 	R.Yaw += Params.EvaluateXRecoil(Recoil);
 	R.Pitch += Params.EvaluateYRecoil(Recoil);
 	
-	if (Weapon.InstigatorController != None && Weapon.InstigatorController.Handedness == -1)
+	if (BW.InstigatorController != None && BW.InstigatorController.Handedness == -1)
 		R.Yaw = -R.Yaw;
 	
-	if (bIgnoreViewAim || Weapon.Instigator.Controller == None || PlayerController(Weapon.Instigator.Controller) == None || PlayerController(Weapon.Instigator.Controller).bBehindView)
+	if (bIgnoreViewAim || BW.Instigator.Controller == None || PlayerController(BW.Instigator.Controller) == None || PlayerController(BW.Instigator.Controller).bBehindView)
         return R;
         
 	return R*(1-ViewBindFactor);
@@ -287,6 +285,7 @@ final simulated function ReceiveNetRecoil(byte NetXRand, byte NetYRand, float Ne
 	XRand = float(NetXRand)/255;
 	YRand = float(NetYRand)/255;
 	Recoil = NetRecoil;
+	LastRecoilTime = Level.TimeSeconds;
 	bForceUpdate=True;
 }
 

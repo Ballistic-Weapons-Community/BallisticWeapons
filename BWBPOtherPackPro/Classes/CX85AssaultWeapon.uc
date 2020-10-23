@@ -367,6 +367,7 @@ defaultproperties
 	DrumOutSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
 	ReloadAltAnim="ReloadAlt"
 	AltAmmo=6
+	SightMoveSpeedFactor=0.8
 	BaseTrackDist=3368
 	PlayerSpeedFactor=0.9
 	PlayerJumpFactor=0.9

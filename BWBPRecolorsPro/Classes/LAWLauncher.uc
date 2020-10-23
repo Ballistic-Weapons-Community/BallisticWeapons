@@ -331,7 +331,8 @@ defaultproperties
      RunOffset=(Pitch=-4000,Yaw=-2000)
      LaserOnSound=Sound'PackageSounds4Pro.AH104.AH104-SightOn'
      LaserOffSound=Sound'PackageSounds4Pro.AH104.AH104-SightOff'
-     PlayerSpeedFactor=0.900000
+	 PlayerSpeedFactor=0.900000
+	 SightMoveSpeedFactor=0.8
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BallisticRecolors4TexPro.LAW.BigIcon_LAW'

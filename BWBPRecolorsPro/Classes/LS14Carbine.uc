@@ -716,6 +716,7 @@ defaultproperties
 	ManualLines(1)="Launches miniature rockets. These rockets deal high damage and good radius damage. The rockets have a short period of low speed before igniting."
 	ManualLines(2)="Effective at long range and against enemies using healing weapons and items."
 
+	SightMoveSpeedFactor=0.8
 	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'

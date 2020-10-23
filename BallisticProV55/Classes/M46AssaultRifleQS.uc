@@ -12,6 +12,7 @@ simulated event RenderOverlays (Canvas C)
 
 defaultproperties
 {
+     SightMoveSpeedFactor=0.9
      ZoomType=ZT_Irons
      ZoomInAnim=
      ZoomOutAnim=

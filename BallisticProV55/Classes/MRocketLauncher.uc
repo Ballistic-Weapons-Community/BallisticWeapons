@@ -483,8 +483,8 @@ defaultproperties
 	BackRockets(1)=(RocketName="RocketB2")
 	BackRockets(2)=(RocketName="RocketB3")
 	BigMagAmmo=72
-	PlayerSpeedFactor=0.75
-	PlayerJumpFactor=0.75
+	PlayerSpeedFactor=0.8
+	PlayerJumpFactor=0.8
 	BigIconMaterial=Texture'BWBP4-Tex.MRL.BigIcon_MRL'
 	BigIconCoords=(Y1=30,Y2=225)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'

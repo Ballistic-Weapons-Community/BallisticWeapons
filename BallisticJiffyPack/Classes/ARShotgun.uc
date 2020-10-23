@@ -713,8 +713,9 @@ defaultproperties
 	GLLoadGrenadeBones(0)=(GrenName="GrenadeHandle")
 	GLLoadGrenadeBones(1)=(GrenName="HeldGrenade")
 	GLLoadGrenadeBones(2)=(GrenName="EmptyGrenade")
-	PlayerSpeedFactor=0.80000
-	PlayerJumpFactor=0.800000
+	PlayerSpeedFactor=0.900000
+	PlayerJumpFactor=0.900000
+	SightMoveSpeedFactor=0.8
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBPJiffyPackTex.TacBuster.BigIcon_AA12'
 	BigIconCoords=(Y1=40)

@@ -356,8 +356,9 @@ defaultproperties
 	ManualLines(2)="Weapon Function activates infrared vision. Viable infantry targets will be bordered by a box in the weapon's scope.||Effective at long range. Very effective at long range when deployed."
 	NVOnSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
 	NVOffSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
-	PlayerSpeedFactor=0.750000
-	PlayerJumpFactor=0.750000
+	PlayerSpeedFactor=0.850000
+	PlayerJumpFactor=0.850000
+	SightMoveSpeedFactor=0.8
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=3)
 	BigIconMaterial=Texture'BallisticRecolors3TexPro.X82.BigIcon_X82'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'

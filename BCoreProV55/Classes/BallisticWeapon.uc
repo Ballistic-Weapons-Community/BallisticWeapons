@@ -261,6 +261,7 @@ var	bool					bRedirectSwitchToFiremode;  //Compatibility for Ballistic UI - impl
 //-----------------------------------------------------------------------------
 // Sighting
 //-----------------------------------------------------------------------------
+var() float					SightMoveSpeedFactor;	// Additional slowdown factor in iron sights
 var   Actor					SightFX;				// SightFX actor
 var() class<Actor>			SightFXClass;			// Effect to attach as an iron sight effect or could be used for anything
 var() name					SightFXBone;			// Bone to attach SightFX to
@@ -457,22 +458,24 @@ simulated function PostBeginPlay()
     local int m;
 	Super.PostBeginPlay();
 
-	CreateRecoilComponent();
-	CreateAimComponent();
-		
-	SightingTime = Default.SightingTime*Default.SightingTimeScale;
+	//Set up channel 1 for sight fire blending.
+	AnimBlendParams(1,0);
+
+	SightingTime = default.SightingTime * default.SightingTimeScale;
 	
 	if (bUseBigIcon)
 	{
-		IconMaterial = BigIconMaterial;
-		IconCoords = 	BigIconCoords;
+		IconMaterial 	= BigIconMaterial;
+		IconCoords 		= BigIconCoords;
 	}		
 
     for (m = 0; m < NUM_FIRE_MODES; m++)
     	if (FireMode[m] != None && BallisticFire(FireMode[m]) != None)
 			BFireMode[m] = BallisticFire(FireMode[m]);
-	
-	
+
+	CreateRecoilComponent();
+	CreateAimComponent();
+
 	//Abuse the existing fire mode class for its ModeDoFire.
 	if (MeleeFireClass != None)
 	{
@@ -483,7 +486,7 @@ simulated function PostBeginPlay()
 			MeleeFireMode.ThisModeNum = 2;
 			MeleeFireMode.Weapon = self;
 			MeleeFireMode.BW = self;
-			MeleeFireMode.Instigator = Instigator;
+			MeleeFireMode.Instigator = Instigator; // this will always fail
 			MeleeFireMode.Level = Level;
 			MeleeFireMode.Owner = self;
 			MeleeFireMode.PreBeginPlay();
@@ -494,23 +497,44 @@ simulated function PostBeginPlay()
 	}
 }
 
-private simulated function CreateRecoilComponent()
+//===========================================================================
+// PostNetBeginPlay
+//
+// Scales accuracy, sets up burst mode and sets the initial fire mode.
+//===========================================================================
+simulated function PostNetBeginPlay()
+{
+	Super.PostNetBeginPlay();
+
+	if (BCRepClass.default.bNoReloading)
+		bNoMag = true;
+
+	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
+	// To my knowledge, this is the case.
+	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
+	{
+		BFireMode[0].bBurstMode = True;
+		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
+
+		RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
+	}
+}
+
+simulated function CreateRecoilComponent()
 {
 	RcComponent = RecoilComponent(Level.ObjectPool.AllocateObject(class'RecoilComponent'));
 
-	RcComponent.Weapon = self;
-	RcComponent.Instigator = Instigator;
+	RcComponent.BW = self;
 	RcComponent.Level = Level;
 	RcComponent.Params = RecoilParamsList[WeaponModes[CurrentWeaponMode].RecoilParamsIndex];
 	RcComponent.Recalculate();
 }
 
-private simulated function CreateAimComponent()
+simulated function CreateAimComponent()
 {
 	AimComponent = AimComponent(Level.ObjectPool.AllocateObject(class'AimComponent'));
 
-	AimComponent.Weapon = self;
-	AimComponent.Instigator = Instigator;
+	AimComponent.BW = self;
 	AimComponent.Level = Level;
 	AimComponent.GunLength = GunLength;
 	AimComponent.LongGunPivot = LongGunPivot;
@@ -567,30 +591,6 @@ static final operator(34) XYRange /= (out XYRange A, float B)
 	A.X /= B;
 	A.Y /= B;
 	return A;
-}
-
-//===========================================================================
-// PostNetBeginPlay
-//
-// Scales accuracy, sets up burst mode and sets the initial fire mode.
-//===========================================================================
-simulated function PostNetBeginPlay()
-{
-	//Set up channel 1 for sight fire blending.
-	AnimBlendParams(1,0);
-
-	if (BCRepClass.default.bNoReloading)
-		bNoMag = true;
-
-	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
-	// To my knowledge, this is the case.
-	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
-	{
-		BFireMode[0].bBurstMode = True;
-		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
-
-		RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
-	}
 }
 
 //===========================================================================
@@ -812,7 +812,10 @@ simulated event Tick(float DT)
 {
 	super.Tick(DT);
 
-	if (Instigator!= None && Instigator.Weapon == self && OwnerLastVehicle != Instigator.DrivenVehicle )
+	if (Instigator == None)
+		Log("BallisticWeapon: No Instigator");
+
+	if (Instigator != None && Instigator.Weapon == self && OwnerLastVehicle != Instigator.DrivenVehicle )
 	{
 		if (Instigator.DrivenVehicle != None)
 			PlayerEnteredVehicle(Instigator.DrivenVehicle);
@@ -2181,6 +2184,7 @@ function AddSpeedModification(float value)
 {
 	if (value > 1f && SprintControl != None && SprintControl.bSprinting)
 		PlayerSprint(false);
+
 	PlayerSpeedFactor = FMin(PlayerSpeedFactor * value, value);
 
 	UpdateSpeed();
@@ -2190,6 +2194,7 @@ function RemoveSpeedModification(float value)
 {
 	if (value > 1f && SprintControl != None && SprintControl.bSprinting)
 		PlayerSprint(true);
+
 	PlayerSpeedFactor = default.PlayerSpeedFactor;
 
 	UpdateSpeed();
@@ -2720,18 +2725,23 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	AimComponent.OnWeaponSelected();
 
+	Instigator.WalkingPct = SightMoveSpeedFactor;
+
 	if (Role == ROLE_Authority)
 	{
 		// If factor differs from previous wep, or no previous wep, set groundspeed anew
 		if (BallisticWeapon(PrevWeapon) == None || BallisticWeapon(PrevWeapon).PlayerSpeedFactor != PlayerSpeedFactor)
 		{
-				NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
-				if (SprintControl != None && SprintControl.bSprinting)
-					NewSpeed *= SprintControl.SpeedFactor;
-				if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
-					NewSpeed *= 1.4;
-				if (Instigator.GroundSpeed != NewSpeed)
-					Instigator.GroundSpeed = NewSpeed;
+			NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
+
+			if (SprintControl != None && SprintControl.bSprinting)
+				NewSpeed *= SprintControl.SpeedFactor;
+
+			if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
+				NewSpeed *= 1.4;
+
+			if (Instigator.GroundSpeed != NewSpeed)
+				Instigator.GroundSpeed = NewSpeed;
 		}
 		
 		//Transfer over SpeedUp responsibility if we can
@@ -3440,10 +3450,12 @@ simulated function Destroyed()
 	}
 
 	RcComponent.Cleanup();
-
 	Level.ObjectPool.FreeObject(RcComponent);
-
 	RcComponent = None;
+
+	AimComponent.Cleanup();
+	Level.ObjectPool.FreeObject(AimComponent);
+	AimComponent = None;
 	
 	Super(Inventory).Destroyed();
 }
@@ -4758,7 +4770,8 @@ static function String GetShortManual()
 defaultproperties
 {
 	 DisplaceDurationMult=1.000000
-     PlayerSpeedFactor=1.000000
+	 PlayerSpeedFactor=1.000000
+	 SightMoveSpeedFactor=0.900000
      PlayerJumpFactor=1.000000
      AIReloadTime=2.000000
      BigIconCoords=(Y1=48,X2=511,Y2=212)
@@ -4774,7 +4787,7 @@ defaultproperties
      BringUpSound=(Volume=0.500000,Radius=32.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
      PutDownSound=(Volume=0.500000,Radius=32.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
 	 
-     MagAmmo=30
+	 MagAmmo=30
 	 
      CockAnim="Cock"
      CockAnimRate=1.000000

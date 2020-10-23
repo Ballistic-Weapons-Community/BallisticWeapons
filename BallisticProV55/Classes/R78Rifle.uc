@@ -74,6 +74,7 @@ function float SuggestDefenseStyle()	{	return 0.9;	}
 
 defaultproperties
 {
+     SightMoveSpeedFactor=0.8
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_R78'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'

@@ -56,6 +56,7 @@ defaultproperties
      ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
      ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=20.000000
+     SightMoveSpeedFactor=0.8
 	bNoMeshInScope=True
      bNoCrosshairInScope=True
      SightOffset=(Z=51.000000)

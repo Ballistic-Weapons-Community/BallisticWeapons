@@ -491,8 +491,8 @@ defaultproperties
 	BarrelSpinSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelSpinLoop'
 	BarrelStopSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStop'
 	BarrelStartSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStart'
-	PlayerSpeedFactor=0.850000
-	PlayerJumpFactor=0.850000
+	PlayerSpeedFactor=0.900000
+	PlayerJumpFactor=0.900000
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BWBPOtherPackTex2.Z250.BigIcon_Z250'

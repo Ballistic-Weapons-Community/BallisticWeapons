@@ -232,8 +232,9 @@ defaultproperties
 	FlapDownSound=(Sound=Sound'BallisticSounds2.M925.M925-LeverDown')
 	HandleOnSound=Sound'BallisticSounds2.M925.M925-StandOn'
 	HandleOffSound=Sound'BallisticSounds2.M925.M925-StandOff'
-	PlayerSpeedFactor=0.75
-	PlayerJumpFactor=0.75
+	PlayerSpeedFactor=0.9
+	PlayerJumpFactor=0.9
+	SightMoveSpeedFactor=0.8
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=3)
 	TeamSkins(1)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=5)
 	AIReloadTime=4.000000

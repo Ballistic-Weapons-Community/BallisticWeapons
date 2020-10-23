@@ -10,8 +10,8 @@ class Ammo_RPG extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=2
-     InitialAmount=2
+     MaxAmmo=12
+     InitialAmount=6
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticProV55.AP_G5Ammo'
      IconMaterial=Texture'BallisticUI2.Icons.AmmoIconPage'
