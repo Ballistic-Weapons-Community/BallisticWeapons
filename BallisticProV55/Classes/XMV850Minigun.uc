@@ -407,8 +407,8 @@ defaultproperties
 	BarrelStartSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStart'
 	DeploySound=Sound'BallisticSounds2.XMV-850.XMV-Deploy'
 	UndeploySound=Sound'BallisticSounds2.XMV-850.XMV-UnDeploy'
-	PlayerSpeedFactor=0.8500
-	PlayerJumpFactor=0.8500
+	PlayerSpeedFactor=0.800000
+	PlayerJumpFactor=0.800000
 	SightMoveSpeedFactor=0.9
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
 	AIReloadTime=4.000000
