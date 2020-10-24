@@ -12,23 +12,23 @@
 class BallisticFire extends WeaponFire;
 
 // General Variables -----------------------------------------------------------
-var   BallisticWeapon		BW;						// Easy access to BallisticWeapon(Weapon)
-var() BUtil.FullSound		ClipFinishSound;		// Sound to play when mag runs out
-var() BUtil.FullSound		DryFireSound;			// Sound to play when dry firing
+var   BallisticWeapon			BW;						// Easy access to BallisticWeapon(Weapon)
+var() BUtil.FullSound			ClipFinishSound;		// Sound to play when mag runs out
+var() BUtil.FullSound			DryFireSound;			// Sound to play when dry firing
 var   bool						bPlayedDryFire;		// Has dry fire sound been played since ammo ran out
 var() bool						bCockAfterFire;		// Cock the gun after each shot
 var() bool						bCockAfterEmpty;	// Cock the gun if MagAmmo gets to 0
 var() bool						bDryUncock;			// Can still uncock weapon by pressing fire when mag is empty
 var() bool						bUseWeaponMag;	// Use ammo from gun. Uses ammo from weapon's mag is it has one
 var() Actor						MuzzleFlash;			// The muzzleflash actor
-var() class<Actor>			MuzzleFlashClass;	// The actor to use for this fire's muzzleflash
+var() class<Actor>				MuzzleFlashClass;	// The actor to use for this fire's muzzleflash
 var() Name						FlashBone;				// Bone to attach muzzle flash to
 var() float						FlashScaleFactor;	// MuzzleFlash scaling will be DrawScale * FlashScaleFactor
-var() class<actor>			BrassClass;				// Actor to spawn for ejecting brass
+var() class<actor>				BrassClass;				// Actor to spawn for ejecting brass
 var() name						BrassBone;				// Bone where brass will be spawned
 var() bool						bBrassOnCock;		// Eject brass when cocked
 var() Vector					BrassOffset;			// Position offset for brass spawning
-var   int							ConsumedLoad;		// This is the amount of ammo to consume for delayed consume ammo.
+var   int						ConsumedLoad;		// This is the amount of ammo to consume for delayed consume ammo.
 var() bool						bReleaseFireOnDie;	// If bFireOnRelease, mode will fire if holder died before release
 var() bool						bIgnoreReload;		// This firemode can stop the weapon reloading and fire
 var() bool						bIgnoreCocking;		// This mode can cancel weapon cocking to fire
@@ -53,13 +53,14 @@ var() float				FireRecoil;				// Amount of recoil added each shot
 var() float				FirePushbackForce;		// How much to jolt player back when they fire
 var() float				FireChaos;				// Chaos added to aim when fired. Will be auto calculated if < 0
 var() InterpCurve		FireChaosCurve;
-var() float				XInaccuracy;			// Set amount that bullets can Yaw away from gun's aim
-var() float				YInaccuracy;			// Set amount that bullets can Pitch away from gun's aim
+var() float				XInaccuracy;			// Set amount that bullets can yaw away from gun's aim
+var() float				YInaccuracy;			// Set amount that bullets can pitch away from gun's aim
+
 enum EFireSpreadMode
 {
 	FSM_Rectangle,	// Standard random rectangular box.
-	FSM_Scatter,	// An eliptical spread pattern with higher concentratrion towards the center.
-	FSM_Circle		// More evenly spread eliptical pattern.
+	FSM_Scatter,	// An elliptical spread pattern with higher concentration towards the center.
+	FSM_Circle		// More evenly spread elliptical pattern.
 };
 var() EFireSpreadMode	FireSpreadMode;		// The type of spread pattern to use for X and YInaccuracy
 //-----------------------------------------------------------------------------
@@ -69,25 +70,25 @@ var() EFireSpreadMode	FireSpreadMode;		// The type of spread pattern to use for 
 //Weapons have to be unjammed before firing may resume.
 var(Jamming) enum EUnjamMethod
 {
-	UJM_ReloadAndCock,	// Weapon must be reloaded, clip out, back in and cocked
-	UJM_Reload,				// Weapon must be reloaded, clip out and back in
+	UJM_ReloadAndCock,			// Weapon must be reloaded, clip out, back in and cocked
+	UJM_Reload,					// Weapon must be reloaded, clip out and back in
 	UJM_Cock,					// Weapon must be cocked.
-	UJM_FireNextRound,		// Pressing fire will unjam, but not fire a bullet
+	UJM_FireNextRound,			// Pressing fire will unjam, but not fire a bullet
 	UJM_Fire					// Press fire to unjam and fire the next round
-}							UnjamMethod;					// How to unjam this firemode
-var(Jamming) float	JamChance;					// Chance of weapon jamming each shot
-var(Jamming) float	WaterJamChance;			// Chance of weapon jamming each shot when under water
-var(Jamming) float	JamMoveMultiplier;			// JamChance multiplied by this when player is moving
-var	bool				bIsJammed;					// Is this firemode currently jammed
-var(Jamming) BUtil.FullSound JamSound;			// Sound to play when clip runs out
-var bool					bPendingTryJam;				// Try jam next Timer()
-var(Jamming) bool	bJamWastesAmmo;			// Jamming wastes the ammo that would have been fired
+}								UnjamMethod;			// How to unjam this firemode
+var(Jamming) float				JamChance;				// Chance of weapon jamming each shot
+var(Jamming) float				WaterJamChance;			// Chance of weapon jamming each shot when under water
+var(Jamming) float				JamMoveMultiplier;		// JamChance multiplied by this when player is moving
+var	bool						bIsJammed;				// Is this firemode currently jammed
+var(Jamming) BUtil.FullSound 	JamSound;				// Sound to play when clip runs out
+var bool						bPendingTryJam;			// Try jam next Timer()
+var(Jamming) bool				bJamWastesAmmo;			// Jamming wastes the ammo that would have been fired
 //-----------------------------------------------------------------------------
 
 // Sound Stuff  ---------------------------------------------
 var() BUtil.FullSound		SilencedFireSound;	// Fire sound to play when silenced
 var() BUtil.FullSound		BallisticFireSound;	// Fire sound to play
-var() bool						bAISilent;				// Bots dont hear the fire
+var() bool					bAISilent;				// Bots dont hear the fire
 //-----------------------------------------------------------
 
 //===========================================================================
@@ -95,11 +96,11 @@ var() bool						bAISilent;				// Bots dont hear the fire
 //===========================================================================
 struct FireModeStats
 {
-	var	String	Damage;
+	var	String		Damage;
 	var	int			DamageInt;
 	var	int			DPS;
 	var	float		TTK;
-	var	String	RPM;
+	var	String		RPM;
 	var	int			RPShot;
 	var	int			RPS;
 	var	float		FCPShot;
