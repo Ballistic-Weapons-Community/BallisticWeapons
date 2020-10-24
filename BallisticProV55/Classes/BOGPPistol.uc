@@ -309,7 +309,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;20.0;0.8;40.0;0.0;0.0;0.6")
 	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-	MagAmmo=1
 	bNoMag=True
 	CockAnim="Reload"
 	CockAnimRate=1.50000
@@ -324,53 +323,35 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
-	InventorySize=12
 	SightPivot=(Pitch=300)
 	SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
-
-	Begin Object Class=RecoilParams Name=BOGPRecoilParams
-		ViewBindFactor=0.6
-		YawFactor=0.000000
-		XRandFactor=0.250000
-		YRandFactor=0.250000
-		DeclineTime=1.000000
-		DeclineDelay=0.800000
-	End Object
-	RecoilParamsList(0)=RecoilParams'BOGPRecoilParams'
-
-	Begin Object Class=AimParams Name=BOGPAimParams
-		AimSpread=(Min=16,Max=378)
-		JumpChaos=0.750000
-		ChaosDeclineTime=1.000000
-	End Object
-	AimParamsList(0)=AimParams'BOGPAimParams'
-	 
-     FireModeClass(0)=Class'BallisticProV55.BOGPPrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.BOGPSecondaryFire'
-     PutDownTime=0.450000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
-     Description="The BORT-85 Break-Open Grenade Pistol is a compact grenade launcher manufactured by NDTR Industries. The need for a simple and easy to use grenade launcher arose towards the end of the first war, especially in the large industrial zones of various Outworld colonies. Skrith favoured these areas, as they were perfect for the aliens which prefered to be hidden and strike with surprise. The simple design had several benefits, as it was relatively compact, and could fire many different types of ammunition."
-     Priority=19
-     HudColor=(G=50)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=8
-     GroupOffset=5
-     PickupClass=Class'BallisticProV55.BOGPPickup'
-     PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
-     AttachmentClass=Class'BallisticProV55.BOGPAttachment'
-     IconMaterial=Texture'BallisticTextures_25.BOGP.SmallIcon_BOGP'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="BORT-85 Grenade Pistol"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticAnims_25.BOGP'
-     DrawScale=0.300000
-     Skins(0)=Texture'BallisticTextures_25.BOGP.BOGP_Main'
-     Skins(1)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	ParamsClass=Class'BOGPWeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.BOGPPrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.BOGPSecondaryFire'
+	PutDownTime=0.450000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.600000
+	CurrentRating=0.600000
+	Description="The BORT-85 Break-Open Grenade Pistol is a compact grenade launcher manufactured by NDTR Industries. The need for a simple and easy to use grenade launcher arose towards the end of the first war, especially in the large industrial zones of various Outworld colonies. Skrith favoured these areas, as they were perfect for the aliens which prefered to be hidden and strike with surprise. The simple design had several benefits, as it was relatively compact, and could fire many different types of ammunition."
+	Priority=19
+	HudColor=(G=50)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=8
+	GroupOffset=5
+	PickupClass=Class'BallisticProV55.BOGPPickup'
+	PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
+	AttachmentClass=Class'BallisticProV55.BOGPAttachment'
+	IconMaterial=Texture'BallisticTextures_25.BOGP.SmallIcon_BOGP'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="BORT-85 Grenade Pistol"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticAnims_25.BOGP'
+	DrawScale=0.300000
+	Skins(0)=Texture'BallisticTextures_25.BOGP.BOGP_Main'
+	Skins(1)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
 }

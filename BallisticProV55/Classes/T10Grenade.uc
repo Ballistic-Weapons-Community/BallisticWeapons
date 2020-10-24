@@ -72,6 +72,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Putaway')
      CurrentWeaponMode=1
+     ParamsClass=Class'T10WeaponParams'
      FireModeClass(0)=Class'BallisticProV55.T10PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.T10SecondaryFire'
      SelectForce="SwitchToAssaultRifle"

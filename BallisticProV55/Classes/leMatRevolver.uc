@@ -604,7 +604,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;15.0;0.6;50.0;0.9;0.5;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-	MagAmmo=9
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-Cock')
 	ReloadAnimRate=1.300000
@@ -612,33 +611,14 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-BulletsIn')
 	ClipInFrame=0.650000
 	bAltTriggerReload=True
-	InventorySize=6
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	bNoCrosshairInScope=True
-	
+	bNoCrosshairInScope=True	
 	SightOffset=(X=-20.000000,Y=0.070000,Z=6.150000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-
-	 
-	Begin Object Class=RecoilParams Name=leMatRecoilParams
-		ViewBindFactor=0.6
-		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.2,OutVal=0.03),(InVal=0.36,OutVal=0.07),(InVal=0.62,OutVal=0.09),(InVal=0.6,OutVal=0.11),(InVal=1,OutVal=0.15)))
-		XRandFactor=0.150000
-		YRandFactor=0.150000
-		DeclineTime=1.000000
-		DeclineDelay=0.500000
-	End Object
-	RecoilParamsList(0)=RecoilParams'leMatRecoilParams'
-
-	Begin Object Class=AimParams Name=leMatAimParams
-		ADSMultiplier=2
-		ChaosDeclineTime=0.450000
-	End Object
-	AimParamsList(0)=AimParams'leMatAimParams'
-
+	ParamsClass=Class'leMatWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.leMatPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.leMatSecondaryFire'
 	PutDownTime=0.700000

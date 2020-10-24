@@ -526,8 +526,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-	MagAmmo=15
-	InventorySize=12
 	CockAnimRate=1.200000
 	CockSound=(Sound=Sound'BWBP4-Sounds.Glock.Glk-Cock',Volume=0.600000)
 	ReloadAnimRate=1.350000
@@ -537,32 +535,9 @@ defaultproperties
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	bNoCrosshairInScope=True
-	
 	SightOffset=(X=-15.000000,Z=5.900000)
 	SightDisplayFOV=60.000000
-	SightingTime=0.200000
-
-	Begin Object Class=RecoilParams Name=GRS9RecoilParams
-		ViewBindFactor=0.35
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.12),(InVal=0.300000,OutVal=0.150000),(InVal=0.4,OutVal=0.02),(InVal=0.550000,OutVal=-0.120000),(InVal=0.700000,OutVal=0.050000),(InVal=1.000000,OutVal=0.200000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.25000),(InVal=0.450000,OutVal=0.450000),(InVal=0.650000,OutVal=0.75000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.10000
-		YRandFactor=0.10000
-		DeclineTime=0.750000
-		DeclineDelay=0.350000
-		MaxRecoil=6144
-		HipMultiplier=1.5
-	End Object
-	RecoilParamsList(0)=RecoilParams'GRS9RecoilParams'
-
-	Begin Object Class=AimParams Name=GRS9AimParams
-		ADSMultiplier=2
-		SprintChaos=0.050000
-		AimAdjustTime=0.350000
-		ChaosDeclineTime=0.450000
-	End Object
-	AimParamsList(0)=AimParams'GRS9AimParams'
-	
+	ParamsClass=Class'GRS9WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.GRS9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.GRS9SecondaryFire'
 	SelectAnimRate=1.250000

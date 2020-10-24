@@ -483,12 +483,9 @@ defaultproperties
 	BackRockets(1)=(RocketName="RocketB2")
 	BackRockets(2)=(RocketName="RocketB3")
 	BigMagAmmo=72
-	PlayerSpeedFactor=0.8
-	PlayerJumpFactor=0.8
 	BigIconMaterial=Texture'BWBP4-Tex.MRL.BigIcon_MRL'
 	BigIconCoords=(Y1=30,Y2=225)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-	InventorySize=12
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_RapidProj=True
@@ -499,7 +496,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="480.0;60.0;1.5;100.0;0.8;2.0;1.5")
 	BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')
-	MagAmmo=36
 	ReloadAnim="Reload1"
 	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOff')
@@ -512,26 +508,8 @@ defaultproperties
 	CurrentWeaponMode=0
 	SightOffset=(X=-30.000000,Y=-10.000000,Z=15.000000)
 	SightDisplayFOV=50.000000
-
-	SightingTime=0.65
 	LongGunOffset=(X=8.000000,Y=-5.000000,Z=-3.000000)
-	 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		XRandFactor=0.000000
-		YRandFactor=0.000000
- 	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-	 
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.25
-		SprintOffSet=(Pitch=-7000,Yaw=-3000)
-		OffsetAdjustTime=0.600000
-		AimSpread=(Min=128,Max=2048)
-		ChaosDeclineTime=0.320000
-		ChaosSpeedThreshold=500.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'MRLWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.MRLPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.MRLSecondaryFire'
 	BringUpTime=0.500000

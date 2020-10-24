@@ -28,17 +28,19 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BC_WeaponInfoCache extends Object config(BWCache) exportstructs;
+class BC_WeaponInfoCache extends Object 
+	config(BWCache) 
+	exportstructs;
 
 struct WeaponInfo
 {
-	var() config string		ClassName;
-	var() config string		ItemName;
-	var() config Material	SmallIconMaterial;
-	var() config IntBox		SmallIconCoords;
+	var() config string			ClassName;
+	var() config string			ItemName;
+	var() config Material		SmallIconMaterial;
+	var() config IntBox			SmallIconCoords;
 	var() config int			InventoryGroup;
-	var() config Material	BigIconMaterial;
-	var() config byte		InventorySize;
+	var() config Material		BigIconMaterial;
+	var() config byte			InventorySize;
 	var() config bool			bIsBW;
 };
 
@@ -109,8 +111,8 @@ static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 	BW = Class<BallisticWeapon>(Weap);
 	if (BW != None)
 	{
-		WI.BigIconMaterial	= BW.default.BigIconMaterial;
-		WI.InventorySize		= BW.default.InventorySize;
+		WI.BigIconMaterial		= BW.default.BigIconMaterial;
+		WI.InventorySize		= BW.default.ParamsClass.default.Params[0].InventorySize;
 		WI.bIsBW				= true;
 	}
 

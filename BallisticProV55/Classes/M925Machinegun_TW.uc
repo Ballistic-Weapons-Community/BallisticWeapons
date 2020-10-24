@@ -246,7 +246,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="360.0;30.0;0.8;40.0;0.0;0.0;0.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.M925.M925-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M925.M925-Putaway')
-	MagAmmo=50
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BallisticSounds2.M925.M925-Cock')
 	ReloadAnim="ReloadStart"
@@ -262,35 +261,8 @@ defaultproperties
 	SightingTime=0.450000
 	GunLength=0.000000
 	bUseSpecialAim=True
-
-
-
 	WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
-
-
-	Begin Object Class=RecoilParams Name=M925_TWRecoilParams
-		HipMultiplier=1.000000
-		CrouchMultiplier=1.000000
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.00000),(InVal=0.500000,OutVal=0.100000),(InVal=1.000000)))
-		YCurve=(Points=(,(InVal=0.250000,OutVal=0.230000),(InVal=0.400000,OutVal=0.40000),(InVal=0.550000,OutVal=0.58000),(InVal=0.750000,OutVal=0.720000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.030000
-		YRandFactor=0.030000
-		MaxRecoil=8192.000000
-		DeclineTime=0.750000
-		DeclineDelay=0.400000
-  	End Object
-	RecoilParamsList(0)=RecoilParams'M925_TWRecoilParams'
-	  
-	Begin Object Class=AimParams Name=M925_TWAimParams
-		AimSpread=(Min=0,Max=2)
-		ViewBindFactor=1.000000
-		SprintOffset=(Pitch=-6000,Yaw=-8000)
-		AimDamageThreshold=2000.000000
-		ChaosDeclineTime=0.320000
-		ChaosSpeedThreshold=850.000000
-	End Object
-	AimParamsList(0)=AimParams'M925_TWAimParams'
-
+	ParamsClass=Class'M925TW_WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.M925TW_PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'
 	SelectAnim="Deploy"

@@ -272,12 +272,11 @@ defaultproperties
 	LeverOnSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-LeverOn',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
 	LeverOffSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-LeverOff',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
 	ValveAnim="TurnValve"
-	PlayerSpeedFactor=0.900000
+
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_RX22A'
 	BigIconCoords=(Y2=240)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-	InventorySize=35
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_RapidProj=True
@@ -290,7 +289,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="360.0;50.0;0.96;90.0;0.0;0.3;1.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-Putaway')
-	MagAmmo=75
 	ClipOutSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-PipeOut')
 	ClipInSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-PipeIn')
 	ClipInFrame=0.700000
@@ -299,25 +297,7 @@ defaultproperties
 	SightPivot=(Pitch=768)
 	SightOffset=(X=-12.000000,Z=14.300000)
 	SightDisplayFOV=40.000000
-
-    Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=-0.300000),(InVal=0.600000,OutVal=-0.250000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000,OutVal=-0.300000)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=-0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.300000),(InVal=1.000000,OutVal=0.600000)))
-		PitchFactor=0.800000
-		YawFactor=0.800000
-		XRandFactor=0.200000
-		YRandFactor=0.200000
-		DeclineTime=1.000000
-    End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-	 
-	Begin Object Class=AimParams Name=ArenaAimParams
-		SprintOffSet=(Pitch=-500,Yaw=-1024)
-		AimSpread=(Min=0,Max=32)
-		ChaosSpeedThreshold=900.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'RX22AWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.RX22APrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RX22ASecondaryFire'
 	BringUpTime=1.200000

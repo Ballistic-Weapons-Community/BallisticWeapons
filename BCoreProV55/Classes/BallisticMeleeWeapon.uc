@@ -269,13 +269,10 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-	DisplaceDurationMult=0.1
-
 	bCanBlock=True
 	BlockUpAnim="PrepBlock"
 	BlockDownAnim="EndBlock"
 	BlockIdleAnim="BlockIdle"
-	InventorySize=2
 	bNoMag=True
 	bNonCocking=True
 	AIRating=0.700000
@@ -285,18 +282,6 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bUseSights=False
-
-	Begin Object Class=RecoilParams Name=MeleeRecoilParams
-		PitchFactor=0.000000
-		YawFactor=0.000000
-	End Object
-	RecoilParamsList(0)=RecoilParams'MeleeRecoilParams'
-
-	Begin Object Class=AimParams Name=MeleeAimParams
-	End Object
-	AimParamsList(0)=AimParams'MeleeAimParams'
-
-	SightingTime=0.000000
 	FatigueDeclineTime=4.000000
 	FatigueDeclineDelay=0.750000
 	bShowChargingBar=True

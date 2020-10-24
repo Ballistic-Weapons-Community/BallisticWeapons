@@ -139,20 +139,18 @@ defaultproperties
     ManualLines(0)="Fires both barrels. Wide spread and good damage, but requires cocking after every shot."
     ManualLines(1)="Fires one barrel at a time."
     ManualLines(2)="Effective at very close range. Spreads less from the hip than other shotguns."
-    DisplaceDurationMult=0.33
+
     bLeftLoaded=True
     bRightLoaded=True
     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
     TeamSkins(1)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=3)
     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_MRT6'
     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-    InventorySize=5
     bWT_Shotgun=True
     bWT_Sidearm=True
     SpecialInfo(0)=(Info="180.0;10.0;-999.0;25.0;0.0;0.8;-999.0")
     BringUpSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6Pullout')
     PutDownSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6Putaway')
-    MagAmmo=8
     CockSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6Cock')
     ClipHitSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6ClipHit')
     ClipOutSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6ClipOut')
@@ -165,27 +163,9 @@ defaultproperties
     CurrentWeaponMode=0
     SightPivot=(Pitch=768)
     SightOffset=(X=-30.000000,Z=11.000000)
-    SightingTime=0.250000
     SightZoomFactor=0.85
     GunLength=24.000000
-
-    Begin Object Class=RecoilParams Name=MRT6RecoilParams
-        ViewBindFactor=0.5
-        XCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
-        YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-        XRandFactor=0.100000
-        YRandFactor=0.200000
-        DeclineTime=0.700000
-    End Object
-    RecoilParamsList(0)=RecoilParams'MRT6RecoilParams'
-
-    Begin Object Class=AimParams Name=MRT6AimParams
-        JumpChaos=1.000000
-        AimSpread=(Min=0,Max=0)
-        ChaosDeclineTime=0.320000
-    End Object
-    AimParamsList(0)=AimParams'MRT6AimParams'
-
+    ParamsClass=Class'MRT6WeaponParams'
     FireModeClass(0)=Class'BallisticProV55.MRT6PrimaryFire'
     FireModeClass(1)=Class'BallisticProV55.MRT6SecondaryFire'
     Description="MRT6 Shotgun Sidearm||Manufacturer: Wot ya Packin Gun Corp|Primary: Dual Barrel Shot|Secondary: Single Barrel Shot"

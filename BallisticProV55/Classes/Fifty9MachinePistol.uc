@@ -33,7 +33,7 @@ simulated event WeaponTick (Float DT)
 	Super.WeaponTick (DT);
 	
 	if (LastFireTime < Level.TimeSeconds - RcComponent.DeclineDelay && MeleeFatigue > 0)
-		MeleeFatigue = FMax(0, MeleeFatigue - DT/GetRecoilParams().DeclineTime);
+		MeleeFatigue = FMax(0, MeleeFatigue - DT/RcComponent.DeclineTime);
 }
 
 simulated function float ChargeBar()
@@ -274,11 +274,10 @@ defaultproperties
 {
 	AIRating=0.85
 	CurrentRating=0.85
-	DisplaceDurationMult=0.5
+
 	StockOpenAnim="StockOut"
 	StockCloseAnim="StockIn"
 	StockChaosAimSpread=2048
-	PlayerSpeedFactor=1.05
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_Fifty9'
@@ -306,10 +305,8 @@ defaultproperties
 	SightPivot=(Pitch=512)
 	SightOffset=(X=-10.000000,Z=12.00000)
 	SightDisplayFOV=60.000000
-	SightingTime=0.200000
 	SightZoomFactor=0.85
-
-	
+	ParamsClass=Class'Fifty9WeaponParams'	
 	FireModeClass(0)=Class'BallisticProV55.Fifty9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.Fifty9SecondaryFire'
 	PutDownTime=0.400000
@@ -335,39 +332,4 @@ defaultproperties
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BallisticProAnims.UZI'
 	DrawScale=0.300000
-	
-	Begin Object Class=RecoilParams Name=ArenaBurstRecoilParams
-		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05000
-		YRandFactor=0.05000
-		DeclineTime=0.5
-		MaxRecoil=6144
-		CrouchMultiplier=1
-		HipMultiplier=1
-		ViewBindFactor=0.6
-		DeclineDelay=0.22
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaBurstRecoilParams'
-	
-	Begin Object Class=RecoilParams Name=ArenaAutoRecoilParams
-		XCurve=(Points=(,(InVal=0.200000),(InVal=0.400000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.100000),(InVal=0.800000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05000
-		YRandFactor=0.05000
-		DeclineTime=0.5
-		MaxRecoil=6144
-		CrouchMultiplier=0.8
-		HipMultiplier=1.75
-		ViewBindFactor=0.2
-		DeclineDelay=0.09
-	End Object
-	RecoilParamsList(1)=RecoilParams'ArenaAutoRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=2
-		SprintOffset=(Pitch=-3000,Yaw=-4000)
-		AimAdjustTime=0.450000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
 }

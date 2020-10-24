@@ -432,41 +432,16 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	StartShovelAnimRate=1.400000
 	StartShovelAnim="PrepReload"
-
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;40.0;0.0;1.0;-999.0")
 	Skins(3)=Texture'BWAddPack-RS-Skins.MRS138.MRS138Shell'
 	Skins(2)=Shader'BWAddPack-RS-Skins.MRS138.MRS138HeatShiney'
 	Skins(1)=Shader'BWAddPack-RS-Skins.MRS138.MRS138Shiney'
 	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-	SightingTime=0.300000
 	SightOffset=(X=15,Z=21.500000)
 	SightPivot=(Pitch=256)
 	SightDisplayFOV=40
-
 	ReloadAnimRate=1.500000
 	ReloadAnim="ReloadLoop"
-
-    Begin Object Class=RecoilParams Name=MRS138RecoilParams
-		ViewBindFactor=0.6
-		XCurve=(Points=(,(InVal=0.3,OutVal=0.2),(InVal=0.55,OutVal=0.1),(InVal=0.8,OutVal=0.25),(InVal=1.000000,OutVal=0.4)))
-		YCurve=(Points=(,(InVal=0.2,OutVal=0.2),(InVal=0.4,OutVal=0.45),(InVal=0.75,OutVal=0.7),(InVal=1.000000,OutVal=1)))
-		XRandFactor=0.1
-		YRandFactor=0.1
-		DeclineDelay=0.650000
-		DeclineTime=0.5
-		HipMultiplier=1
-    End Object
-	RecoilParamsList(0)=RecoilParams'MRS138RecoilParams'
-	
-	Begin Object Class=AimParams Name=MRS138AimParams
-		ADSMultiplier=1
-		ChaosSpeedThreshold=1200.000000
-		ChaosDeclineTime=0.750000
-		AimSpread=(Min=0,Max=0)
-		SprintOffset=(Pitch=-1000,Yaw=-2048)
-	End Object
-	AimParamsList(0)=AimParams'MRS138AimParams'
-
 	PutDownTime=0.35
 	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
 	PutDownAnimRate=1.5
@@ -478,7 +453,6 @@ defaultproperties
 	ManualLines(2)="Has a melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. The attack inflicts more damage from behind. Inflicts a medium-duration blind upon enemies when impacting and knocks them away from the user.||Weapon Function engages a flashlight which illuminates dark areas.||This weapon is extremely effective at close range."
 	ManualLines(1)="Launches a tazer. The user must hold down Altfire or the tazer will be retracted. Upon striking an enemy, transmits a current dealing low sustained damage but slowing the enemy movement."
 	ManualLines(0)="10-gauge pump-action shotgun fire. Moderate spread, good damage and average fire rate. Good shoulder fire properties."
-	MagAmmo=6
 	LongGunPivot=(Pitch=4500,Yaw=-8000)
 	LightType=LT_Pulse
 	LightSaturation=150
@@ -493,6 +467,7 @@ defaultproperties
 	HudColor=(B=255,G=150,R=100)
 	GunLength=32.000000
 	GroupOffset=3
+	ParamsClass=Class'MRS138WeaponParams'
 	FireModeClass(1)=Class'BallisticProV55.MRS138SecondaryFire'
 	FireModeClass(0)=Class'BallisticProV55.MRS138PrimaryFire'
 	EndShovelAnimRate=1.600000

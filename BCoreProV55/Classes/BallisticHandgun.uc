@@ -1671,13 +1671,10 @@ simulated function MeleeReleaseImpl()
 
 defaultproperties
 {
-	 DisplaceDurationMult=0.5
      SupportHandBone="Root01"
      bShouldDualInLoadout=True
      TrackSpeed=18000.000000
      SingleHeldRate=0.300000
-     PlayerSpeedFactor=1.100000
-     InventorySize=3
      bWT_Sidearm=True
      SightZoomFactor=0.85
      GunLength=16.000000

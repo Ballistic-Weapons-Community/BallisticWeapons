@@ -418,7 +418,6 @@ function float SuggestDefenseStyle()	{	return -0.9;	}
 
 defaultproperties
 {
-	DisplaceDurationMult=1.25
 	RulerTex=Texture'BWBP4-Tex.Artillery.Lines'
 	PointerTex=Texture'BWBP4-Tex.Artillery.Pointer'
 	DeploySound=Sound'BWBP4-Sounds.Artillery.Art-Deploy'
@@ -426,9 +425,6 @@ defaultproperties
 	Shells(0)="Shell1"
 	Shells(1)="Shell2"
 	Shells(2)="Shell3"
-	PlayerSpeedFactor=0.80000
-	PlayerJumpFactor=0.80000
-	SightMoveSpeedFactor=0.8
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=2)
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BWBP4-Tex.Artillery.BigIcon_Artillery'
@@ -444,7 +440,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="300.0;40.0;1.0;90.0;0.8;0.0;1.2")
 	BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')
-	MagAmmo=5
 	ReloadAnim="ReloadLoop"
 	ReloadAnimRate=2.250000
 	ClipInSound=(Sound=Sound'BWBP4-Sounds.Artillery.Art-ShellIn')
@@ -470,27 +465,8 @@ defaultproperties
 	SightPivot=(Pitch=450)
 	SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
 	SightDisplayFOV=70.000000
-	SightingTime=0.450000
 	GunLength=96.000000
-	InventorySize=35
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		XRandFactor=0.600000
-		YRandFactor=0.900000
-		MinRandFactor=0.350000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		SprintOffSet=(Pitch=-7000,Yaw=-3500)
-		JumpOffSet=(Pitch=-6000,Yaw=-1500)
-		AimAdjustTime=1.000000
-		AimSpread=(Min=256,Max=2048)
-		ChaosDeclineTime=1.200000
-		ChaosSpeedThreshold=3500.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'MACWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.MACPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.MACSecondaryFire'
 	SelectAnimRate=0.600000

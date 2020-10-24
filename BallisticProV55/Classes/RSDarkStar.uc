@@ -758,7 +758,6 @@ defaultproperties
      SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.0;1.0;1.0")
      BringUpSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-Pullout')
      PutDownSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-Putaway')
-     MagAmmo=24
      ReloadAnimRate=1.250000
      ClipHitSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemHit',Volume=0.700000)
      ClipOutSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemOut',Volume=0.700000)
@@ -773,44 +772,8 @@ defaultproperties
      SightPivot=(Pitch=1024)
      SightOffset=(X=-22.000000,Z=10.000000)
      SightDisplayFOV=40.000000
-     SightingTime=0.300000
-     GunLength=128.000000
-
-	Begin Object Class=RecoilParams Name=DarkBoltRecoilParams
-     	XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
-     	YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.8
-		YRandFactor=0.8
-		DeclineTime=1.5
-		ViewBindFactor=0.3
-		DeclineDelay=0.8
-	End Object
-	RecoilParamsList(0)=RecoilParams'DarkBoltRecoilParams'
- 
-	Begin Object Class=RecoilParams Name=DarkFastRecoilParams
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-	    XRandFactor=0.1
-		YRandFactor=0.1
-		DeclineTime=0.5
-		ViewBindFactor=0.3
-		DeclineDelay=0.25
-	End Object
-	RecoilParamsList(1)=RecoilParams'DarkFastRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaBoltAimParams
-		AimSpread=(Min=64,Max=1024)
-		SprintOffSet=(Pitch=-1024,Yaw=-1024)
-		ChaosDeclineTime=1.250000
-	End Object
-	AimParamsList(0)=AimParams'ArenaBoltAimParams'
-
-	Begin Object Class=AimParams Name=ArenaFastAimParams
-		SprintOffSet=(Pitch=-1024,Yaw=-1024)
-		ChaosDeclineTime=1.250000
-	End Object
-	AimParamsList(1)=AimParams'ArenaFastAimParams'
-
+	 GunLength=128.000000
+	 ParamsClass=Class'RSDarkWeaponParams'
      FireModeClass(0)=Class'BallisticProV55.RSDarkPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.RSDarkMeleeFire'
      BringUpTime=0.500000

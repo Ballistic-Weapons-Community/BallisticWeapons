@@ -148,7 +148,6 @@ defaultproperties
 {
 	AIRating=0.6
 	CurrentRating=0.6
-     PlayerSpeedFactor=1.150000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_X3'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -158,10 +157,10 @@ defaultproperties
      SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
      PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
-     MagAmmo=1
      bNoMag=True
      GunLength=0.000000
-     bAimDisabled=True
+	 bAimDisabled=True
+	 ParamsClass=Class'X3WeaponParams'
      FireModeClass(0)=Class'BallisticProV55.X3PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.X3SecondaryFire'
      SelectAnimRate=2.000000

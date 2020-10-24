@@ -11,8 +11,8 @@ class A73SkrithRifle extends BallisticWeapon;
 
 var float			HeatLevel;					// Current Heat level, duh...
 var float 			HeatDeclineTime;			// Time until heat can decline
-var() Sound		OverheatSound;			// Sound to play when it overheats
-var Actor GlowFX, HeatFX;
+var() Sound			OverheatSound;				// Sound to play when it overheats
+var Actor 			GlowFX, HeatFX;
 
 replication
 {
@@ -281,7 +281,6 @@ defaultproperties
 	MeleeFireClass=Class'BallisticProV55.A73MeleeFire'
 	BringUpSound=(Sound=Sound'BallisticSounds2.A73.A73Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.A73.A73Putaway')
-	MagAmmo=32
 	ReloadAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipHit')
 	ClipOutSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipOut')
@@ -296,29 +295,7 @@ defaultproperties
 	SightPivot=(Pitch=450)
 	SightOffset=(X=10.000000,Z=12.150000)
 	SightDisplayFOV=60.000000
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.3
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.070000),(InVal=0.600000,OutVal=-0.060000),(InVal=0.700000,OutVal=-0.060000),(InVal=1.000000)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.350000),(InVal=0.450000,OutVal=0.550000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.100000
-		YRandFactor=0.100000
-		DeclineTime=0.5
-		DeclineDelay=0.170000
- 	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-	 
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.300000
-		SprintOffSet=(Pitch=-3000,Yaw=-4000)
-		AimAdjustTime=0.600000
-		AimSpread=(Min=16,Max=768)
-		AimDamageThreshold=75.000000
-		ChaosDeclineTime=1.250000
-		ChaosSpeedThreshold=15000.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'A73WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.A73PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A73SecondaryFire'
 	BringUpTime=0.500000

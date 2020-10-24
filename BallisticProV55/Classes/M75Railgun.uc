@@ -424,78 +424,51 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
-	DisplaceDurationMult=1.25
-     ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
-     ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
-     WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
-     Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
-     ThermalRange=3500.000000
-     PlayerSpeedFactor=0.850000
-	 PlayerJumpFactor=0.850000
-	 SightMoveSpeedFactor=0.8
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M75'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     ManualLines(0)="Uncharged rail slug shot. High damage, moderate fire rate and recoil, and good penetration."
-     ManualLines(1)="Charged rail slug shot. The railgun will fire when the fire key is released, or immediately upon becoming fully charged. Damage and penetration improve with charge, to extreme levels when fully charged."
-     ManualLines(2)="Weapon Function toggles the thermal scope, allowing the user to see enemies through walls. The further away the opponent, the closer the player's aim needs to be to their position to view them.||As a heavy weapon, the M75 reduces the user's movement speed and jump ability.||The M75 is effective at long range and through cover."
-     SpecialInfo(0)=(Info="300.0;30.0;1.0;80.0;1.0;0.0;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M75.M75Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M75.M75Putaway')
-     MagAmmo=5
-     CockAnimPostReload="Cock2"
-     CockAnimRate=1.350000
-     CockSound=(Sound=Sound'BallisticSounds2.M75.M75Cock')
-     ReloadAnimRate=1.400000
-     ClipHitSound=(Sound=Sound'BallisticSounds2.M75.M75Cliphit')
-     ClipOutSound=(Sound=Sound'BallisticSounds2.M75.M75Clipout')
-     ClipInSound=(Sound=Sound'BallisticSounds2.M75.M75Clipin')
-     ClipInFrame=0.650000
-     bAltTriggerReload=True
-     WeaponModes(0)=(ModeName="Single Fire")
-     WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     ZoomType=ZT_Logarithmic
-     bNoTweenToScope=True
-     ZoomInAnim="ZoomIn"
-     ZoomOutAnim="ZoomOut"
-     ScopeViewTex=Texture'BallisticUI2.M75.M75ScopeView'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-     FullZoomFOV=20.000000
-     bNoMeshInScope=True
-     bNoCrosshairInScope=True
-     SightingTime=0.600000
-     MinZoom=4.000000
-     MaxZoom=16.000000
-     ZoomStages=2
-     SMuzzleFlashOffset=(X=50.000000,Z=-35.000000)
-	 GunLength=80.000000
-	 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.15
-		CrouchMultiplier=0.600000
-		XCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.18),(InVal=0.40000,OutVal=0.350000),(InVal=0.50000,OutVal=0.420000),(InVal=0.600000,OutVal=0.450000),(InVal=0.700000,OutVal=0.55),(InVal=0.800000,OutVal=0.60000),(InVal=1.000000,OutVal=0.7)))
-		XRandFactor=0.250000
-		YRandFactor=0.250000
-		MinRandFactor=0.400000
-		DeclineTime=1.500000
-		DeclineDelay=0.500000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
+	ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
+	ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
+	WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
+	Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
+	ThermalRange=3500.000000
 
-	Begin Object Class=AimParams Name=ArenaAimParams
-		SprintOffset=(Pitch=-8000,Yaw=-10000)
-		JumpOffset=(Pitch=-6000,Yaw=2000)
-		JumpChaos=0.800000
-		AimSpread=(Min=64,Max=1536)
-		ChaosDeclineTime=0.800000
-		ADSMultiplier=0.5
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M75'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)="Uncharged rail slug shot. High damage, moderate fire rate and recoil, and good penetration."
+	ManualLines(1)="Charged rail slug shot. The railgun will fire when the fire key is released, or immediately upon becoming fully charged. Damage and penetration improve with charge, to extreme levels when fully charged."
+	ManualLines(2)="Weapon Function toggles the thermal scope, allowing the user to see enemies through walls. The further away the opponent, the closer the player's aim needs to be to their position to view them.||As a heavy weapon, the M75 reduces the user's movement speed and jump ability.||The M75 is effective at long range and through cover."
+	SpecialInfo(0)=(Info="300.0;30.0;1.0;80.0;1.0;0.0;0.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M75.M75Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M75.M75Putaway')
+	CockAnimPostReload="Cock2"
+	CockAnimRate=1.350000
+	CockSound=(Sound=Sound'BallisticSounds2.M75.M75Cock')
+	ReloadAnimRate=1.400000
+	ClipHitSound=(Sound=Sound'BallisticSounds2.M75.M75Cliphit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.M75.M75Clipout')
+	ClipInSound=(Sound=Sound'BallisticSounds2.M75.M75Clipin')
+	ClipInFrame=0.650000
+	bAltTriggerReload=True
+	WeaponModes(0)=(ModeName="Single Fire")
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	ZoomType=ZT_Logarithmic
+	bNoTweenToScope=True
+	ZoomInAnim="ZoomIn"
+	ZoomOutAnim="ZoomOut"
+	ScopeViewTex=Texture'BallisticUI2.M75.M75ScopeView'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	FullZoomFOV=20.000000
+	bNoMeshInScope=True
+	bNoCrosshairInScope=True
+	MinZoom=4.000000
+	MaxZoom=16.000000
+	ZoomStages=2
+	SMuzzleFlashOffset=(X=50.000000,Z=-35.000000)
+	GunLength=80.000000
+	ParamsClass=Class'M75WeaponParams'
     FireModeClass(0)=Class'BallisticProV55.M75PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M75SecondaryFire'
 	PutDownAnimRate=1.300000

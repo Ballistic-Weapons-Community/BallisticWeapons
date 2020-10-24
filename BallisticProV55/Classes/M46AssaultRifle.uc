@@ -359,7 +359,6 @@ defaultproperties
 	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	SightMoveSpeedFactor=0.8
 	BigIconMaterial=Texture'BallisticTextures_25.OA-AR.BigIcon_OAAR'
 	BigIconCoords=(Y1=40,Y2=235)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -373,7 +372,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;70.0;0.9;0.2;0.7")
 	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
-	MagAmmo=24
 	CockAnimPostReload="ReloadEndCock"
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_Cock',Volume=1.100000)
@@ -399,32 +397,10 @@ defaultproperties
 	SightPivot=(Pitch=600,Roll=-1024)
 	SightOffset=(Y=-1.000000,Z=12.500000)
 	SightDisplayFOV=40.000000
-	SightingTime=0.50000
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.35
-		XCurve=(Points=(,(InVal=0.080000,OutVal=0.050000),(InVal=0.110000,OutVal=0.080000),(InVal=0.150000,OutVal=0.14000),(InVal=0.300000,OutVal=0.2300000),(InVal=0.450000,OutVal=0.2500000),(InVal=0.600000,OutVal=0.350000),(InVal=0.800000,OutVal=0.380000),(InVal=1.000000,OutVal=0.25)))
-		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.500000,OutVal=0.600000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05000
-		YRandFactor=0.05000
-		DeclineDelay=0.1700000
-		DeclineTime=0.65
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=1
-		SprintOffSet=(Pitch=-3000,Yaw=-4000)
-		AimAdjustTime=0.550000
-		AimSpread=(Min=24,Max=256)
-		ChaosDeclineTime=1.250000
-		ChaosSpeedThreshold=500.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-	 
+	ParamsClass=Class'M46WeaponParams'	 
 	FireModeClass(0)=Class'BallisticProV55.M46PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M46SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

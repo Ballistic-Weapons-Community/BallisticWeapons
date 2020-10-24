@@ -458,7 +458,6 @@ defaultproperties
 	Shells(4)=(BulletName="Bullet3",ShellName="Shell3",NextShell=1)
 	Shells(5)=(BulletName="Bullet6",ShellName="Shell6")
 	bShouldDualInLoadout=False
-	InventorySize=6
 	HandgunGroup=1
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
@@ -472,7 +471,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;10.0;0.6;50.0;1.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-	MagAmmo=6
 	CockAnimRate=1.750000
 	CockSound=(Sound=Sound'BallisticSounds2.D49.D49-Cock')
 	ReloadAnimRate=1.750000
@@ -485,26 +483,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	SightOffset=(X=-30.000000,Y=-0.400000,Z=14.500000)
-	SightingTime=0.200000
-	 
-	Begin Object Class=RecoilParams Name=D49RecoilParams
-		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.5,OutVal=0.03),(InVal=1,OutVal=0.07)))
-		ViewBindFactor=0.65
-		XRandFactor=0.10000
-		YRandFactor=0.10000
-		DeclineTime=1.200000
-		DeclineDelay=0.350000
-		MaxRecoil=6144
-	End Object
-	RecoilParamsList(0)=RecoilParams'D49RecoilParams'
-
-	Begin Object Class=AimParams Name=D49AimParams
-		AimSpread=(Min=16,Max=378)
-		JumpChaos=0.750000
-		ChaosDeclineTime=0.450000
-	End Object
-	AimParamsList(0)=AimParams'D49AimParams'
-
+	ParamsClass=Class'D49WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.D49PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.D49SecondaryFire'
 	PutDownAnimRate=1.250000

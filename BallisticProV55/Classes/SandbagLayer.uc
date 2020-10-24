@@ -227,7 +227,6 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BallisticProTextures.Sandbags.Icon_Sandbags'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-	InventorySize=2
 	SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
@@ -236,6 +235,7 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(ModeName="Place")
 	GunLength=0.000000
+	ParamsClass=Class'SandbagWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.SandbagFire'
 	FireModeClass(1)=Class'BallisticProV55.SandbagFire'
 	PutDownTime=0.900000
@@ -245,17 +245,6 @@ defaultproperties
 	CurrentRating=0.000000
 	bMeleeWeapon=True
 	bNoInstagibReplace=True
-	 
-	Begin Object Class=RecoilParams Name=SandbagRecoilParams
-		PitchFactor=0.000000
-		YawFactor=0.000000
-	End Object
-	RecoilParamsList(0)=RecoilParams'SandbagRecoilParams'
-
-	Begin Object Class=AimParams Name=SandbagAimParams
-	End Object
-	AimParamsList(0)=AimParams'SandbagAimParams'
-
 	Description="Generic sandbags, as used in militaries for decades. Useful for laying temporary cover. Can be used as a base for most deployed weapons, reducing the chance of the user being directly hit by attacks. May be picked up with the Use key when no other players are near them. Vulnerable to destruction if hit by high-powered weaponry."
 	DisplayFOV=65.000000
 	Priority=12

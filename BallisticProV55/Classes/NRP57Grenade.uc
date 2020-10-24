@@ -48,7 +48,7 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 defaultproperties
 {
      bCookable=False
-     HeldDamage=250
+     HeldDamage=150
      HeldRadius=350
      HeldMomentum=75000
      HeldDamageType=Class'BallisticProV55.DTNRP57Held'
@@ -69,7 +69,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Putaway')
      CurrentWeaponMode=1
-     InventorySize=2
+     ParamsClass=Class'NRP57WeaponParams'
      FireModeClass(0)=Class'BallisticProV55.NRP57PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.NRP57SecondaryFire'
      SelectAnimRate=2.250000

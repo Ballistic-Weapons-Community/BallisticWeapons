@@ -506,83 +506,43 @@ defaultproperties
 	bStockOpen=true
 	AIRating=0.72
 	CurrentRating=0.72
-     LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
-     LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
-     StockOpenAnim="StockOn"
-     StockCloseAnim="StockOff"
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.000000
-     BigIconMaterial=Texture'BallisticTextures3.ui.BigIcon_SAR12'
-     BigIconCoords=(Y1=24,Y2=250)
-     SightFXClass=Class'BallisticProV55.SARSightDot'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     bWT_Machinegun=True
-     ManualLines(0)="Automatic 5.56mm fire. Slightly shorter range than full-size assault rifles. Low damage and moderate recoil by default."
-     ManualLines(1)="Engages the frontal flash device. Inflicts a medium-duration blind upon enemies. The effect is more potent the closer the foe is both to the point of aim and to the user."
-     ManualLines(2)="The Weapon Function key engages or disengages the stock. By default, the stock is engaged. Disengaging the stock grants the SAR-12 superior hipfire and shortens the time taken to aim the weapon, but recoil becomes worse and no stabilization bonus is given for crouching.||Effective at close to medium range, depending upon specialisation."
-     SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-     MagAmmo=32
-     CockAnimPostReload="ReloadEndCock"
-     CockAnimRate=1.250000
-     CockSound=(Sound=Sound'BallisticSounds3.SAR.SAR-Cock')
-     ReloadAnimRate=1.100000
-     ClipOutSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipIn')
-     ClipInFrame=0.650000
-     WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=4.000000,RecoilParamsIndex=1)
-	 WeaponModes(2)=(bUnavailable=True)
-	 CurrentWeaponMode=0
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=350)
-     SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
-     SightDisplayFOV=25.000000
-     SightingTime=0.250000
-	 
-     GunLength=16.000000
-	 
-
-	 
-	Begin Object Class=RecoilParams Name=ArenaAutoRecoilParams
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-	   	XRandFactor=0.05
-		YRandFactor=0.05
-		DeclineTime=0.5
-		ViewBindFactor=0.35
-		CrouchMultiplier=0.75
-		DeclineDelay=0.14
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaAutoRecoilParams'
-
-	Begin Object Class=RecoilParams Name=ArenaBurstRecoilParams
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-	   	XRandFactor=0.05
-		YRandFactor=0.05
-		DeclineTime=0.5
-		ViewBindFactor=0.45
-		CrouchMultiplier=1
-		DeclineDelay=0.14
-	End Object
-	RecoilParamsList(1)=RecoilParams'ArenaBurstRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.200000
-		SprintOffset=(Pitch=-3000,Yaw=-4000)
-		AimAdjustTime=0.300000
-		AimSpread=(Min=12,Max=768)
-		ChaosDeclineTime=0.5
-		ChaosSpeedThreshold=15000.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-	  
+	LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
+	LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
+	StockOpenAnim="StockOn"
+	StockCloseAnim="StockOff"
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.000000
+	BigIconMaterial=Texture'BallisticTextures3.ui.BigIcon_SAR12'
+	BigIconCoords=(Y1=24,Y2=250)
+	SightFXClass=Class'BallisticProV55.SARSightDot'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bWT_Machinegun=True
+	ManualLines(0)="Automatic 5.56mm fire. Slightly shorter range than full-size assault rifles. Low damage and moderate recoil by default."
+	ManualLines(1)="Engages the frontal flash device. Inflicts a medium-duration blind upon enemies. The effect is more potent the closer the foe is both to the point of aim and to the user."
+	ManualLines(2)="The Weapon Function key engages or disengages the stock. By default, the stock is engaged. Disengaging the stock grants the SAR-12 superior hipfire and shortens the time taken to aim the weapon, but recoil becomes worse and no stabilization bonus is given for crouching.||Effective at close to medium range, depending upon specialisation."
+	SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
+	CockAnimPostReload="ReloadEndCock"
+	CockAnimRate=1.250000
+	CockSound=(Sound=Sound'BallisticSounds3.SAR.SAR-Cock')
+	ReloadAnimRate=1.100000
+	ClipOutSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipIn')
+	ClipInFrame=0.650000
+	WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=4.000000,RecoilParamsIndex=1)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=350)
+	SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
+	SightDisplayFOV=25.000000
+	GunLength=16.000000
+	ParamsClass=Class'SARWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.SARFlashFire'
-	 
 	SelectForce="SwitchToAssaultRifle"
 	bShowChargingBar=True
 	Description="With a growing number of operations and battles taking place in urban and industial enviroments, the UTC realized that their ground infantry units were in dire need of a more effective, balanced weapon system for indoor combat. UTC soldiers fighting in the close confines of urban structures and industrial installatons needed a highly compact, reliable and manouverable weapon, but it needed the power to blast through light walls and take down the agile alien forces they were faced with.||The result was the development of the Sub-Assault Rifle, the most well known of which is the S-AR 12. These weapons have the power of an assault rifle, usually using rifle ammunition such as 5.56mm rounds, and the manouverability of a compact sub-machinegun. Accuracy was not an issue due to the extremely short range of most of the encounters in urban combat."

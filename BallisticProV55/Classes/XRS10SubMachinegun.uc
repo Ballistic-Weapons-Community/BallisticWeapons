@@ -386,7 +386,7 @@ defaultproperties
 	bSilenced=True
 	AIRating=0.85
 	CurrentRating=0.85
-	DisplaceDurationMult=0.5
+
 	SilencerBone="Silencer"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"
@@ -396,7 +396,6 @@ defaultproperties
 	SilencerOffTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
 	LaserOnSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
 	LaserOffSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
-	PlayerSpeedFactor=1.050000
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XRS10'
@@ -414,37 +413,14 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipout')
 	ClipInSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipin')
 	ClipInFrame=0.650000
-	
 	WeaponModes(0)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=5.000000)
 	WeaponModes(1)=(bUnavailable=True)
     WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 	CurrentWeaponMode=0
-	
 	SightOffset=(X=-15.000000,Z=9.500000)
 	SightDisplayFOV=60.000000
-	SightingTime=0.200000
 	SightZoomFactor=0.85
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.6
-		HipMultiplier=1
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.05),(InVal=0.400000,OutVal=0.10000),(InVal=0.5500000,OutVal=0.120000),(InVal=0.800000,OutVal=0.15000),(InVal=1.000000,OutVal=0.100000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.220000),(InVal=0.400000,OutVal=0.400000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05
-		YRandFactor=0.05
-		MaxRecoil=4096.000000
-		DeclineTime=0.5
-		DeclineDelay=0.2
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		SprintOffSet=(Pitch=-3000,Yaw=-4000)
-		AimAdjustTime=0.450000
-		ADSMultiplier=2
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-	
+	ParamsClass=Class'XRS10WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.XRS10PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XRS10SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

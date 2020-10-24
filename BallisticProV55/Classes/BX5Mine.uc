@@ -277,7 +277,6 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
-	InventorySize=35
 	SpringOnAnim="SecStart"
 	SpringOffAnim="SecFinish"
 	DeploySound=(Sound=Sound'BallisticSounds2.BX5.BX5-Deploy',Volume=1.000000,Radius=48.000000,Pitch=1.000000)
@@ -304,17 +303,7 @@ defaultproperties
 	bUseSights=False
 	GunLength=0.000000
 	bAimDisabled=True
-
-	Begin Object Class=RecoilParams Name=UniversalRecoilParams
-		PitchFactor=0.000000
-		YawFactor=0.000000
-	End Object
-	RecoilParamsList(0)=RecoilParams'UniversalRecoilParams'
-
-	Begin Object Class=AimParams Name=UniversalAimParams
-	End Object
-	AimParamsList(0)=AimParams'UniversalAimParams'
-
+	ParamsClass=Class'BX5WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.BX5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.BX5SecondaryFire'
 	PutDownTime=0.700000

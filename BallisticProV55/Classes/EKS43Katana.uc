@@ -38,7 +38,6 @@ function byte BestMode()
 
 defaultproperties
 {
-     PlayerSpeedFactor=1.150000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_EKS43'
      BigIconCoords=(Y1=32,Y2=230)
@@ -49,10 +48,9 @@ defaultproperties
      SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
-     MagAmmo=1
      GunLength=0.000000
-     InventorySize=4
      bAimDisabled=True
+     ParamsClass=Class'EKS43WeaponParams'
      FireModeClass(0)=Class'BallisticProV55.EKS43PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.EKS43SecondaryFire'
      SelectAnimRate=1.5

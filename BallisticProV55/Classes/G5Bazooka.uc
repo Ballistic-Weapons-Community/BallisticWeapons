@@ -713,16 +713,12 @@ defaultproperties
 	bWT_Splash=True
 	bWT_Projectile=True
 	bWT_Super=True
-	InventorySize=24
-	PlayerSpeedFactor=0.95
-	SightMoveSpeedFactor=0.8
 	ManualLines(0)="Fires a rocket. These rockets have an arming delay and will ricochet off surfaces when unarmed.|In Rocket mode, the rocket flies directly to the point of aim.|In Mortar mode, the rocket will fly upwards and then strike downwards upon the point of aim.|When scoped and in Mortar mode, targets focused directly upon by the weapon's scope may be highlighted in red; when this happens, the next Mortar shot will track the target until line of sight is broken. The target is notified of the lockon when the rocket is fired."
 	ManualLines(1)="Toggles the guidance laser. With the guidance laser active, rockets will fly towards the point indicated by the laser at any given time."
 	ManualLines(2)="When firing a mortar rocket. the Weapon Function key will cause the player to view through the rocket's nose camera.|As a bazooka, the G5 has no recoil. With the laser in use, its hipfire is stable, however it will always be lowered when the player jumps. The weapon is effective at medium to long range and with height advantage."
 	SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.0;1.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')
-	MagAmmo=2
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever')
 	ReloadAnim="ReloadLoop"
@@ -754,23 +750,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 	SightingTime=0.500000
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-     	YawFactor=0.000000
-     	DeclineTime=1.000000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.4
-		SprintOffset=(Pitch=-6000,Yaw=-8000)
-		JumpOffset=(Pitch=-6000,Yaw=-1500)
-		AimAdjustTime=1.000000
-		AimSpread=(Min=512,Max=2560)
-		ChaosSpeedThreshold=1000.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'G5WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.G5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.G5SecondaryFire'
 	SelectAnimRate=0.600000

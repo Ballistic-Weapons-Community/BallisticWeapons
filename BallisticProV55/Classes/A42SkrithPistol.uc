@@ -251,7 +251,7 @@ defaultproperties
 	SightPivot=(Pitch=1024,Roll=-768)
 	SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 	SightDisplayFOV=40.000000
-	SightingTime=0.200000
+	ParamsClass=Class'A42WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.A42PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A42SecondaryFire'
 	BringUpTime=0.500000
@@ -264,7 +264,6 @@ defaultproperties
 	HudColor=(B=255,G=175,R=100)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=2
-	InventorySize=6
 	PickupClass=Class'BallisticProV55.A42Pickup'
 	PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-10.000000)
 	AttachmentClass=Class'BallisticProV55.A42Attachment'
@@ -284,22 +283,5 @@ defaultproperties
 	SoundPitch=56
 	SoundRadius=32.000000
 	
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		XCurve=(Points=(,(InVal=0.100000),(InVal=0.200000,OutVal=0.05000),(InVal=0.400000,OutVal=0.0800000),(InVal=0.600000,OutVal=0.0200000),(InVal=0.700000,OutVal=0.1),(InVal=1.000000,OutVal=0.000000)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.350000),(InVal=0.550000,OutVal=0.550000),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.0)))
-		XRandFactor=0.100000
-		YRandFactor=0.100000
-		DeclineTime=0.5
-		DeclineDelay=0.200000
-		ViewBindFactor=0.5
-		HipMultiplier=1.5
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
 
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=64,Max=128)
-		ChaosDeclineTime=0.450000
-		ADSMultiplier=2 
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
 }

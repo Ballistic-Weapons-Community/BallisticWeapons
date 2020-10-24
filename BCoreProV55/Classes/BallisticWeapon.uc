@@ -161,6 +161,7 @@ var Object.Color					CockingColor;			//used by Simple XHairs when weapon needs c
 //=============================================================================
 // WEAPON STATE VARIABLES
 //=============================================================================
+var		WeaponParams				WeaponParams;
 var		bool						bPendingBringupTimer;
 //-----------------------------------------------------------------------------
 // AI
@@ -211,11 +212,11 @@ var   bool							bServerReloading;				// Used to let clients know that server si
 //-----------------------------------------------------------------------------
 // Recoil
 //-----------------------------------------------------------------------------
-var	protected RecoilComponent		RcComponent;					// Object which handles recoil
+var	RecoilComponent					RcComponent;					// Object which handles recoil
 //-----------------------------------------------------------------------------
 // Aim
 //-----------------------------------------------------------------------------
-var protected AimComponent			AimComponent;
+var AimComponent					AimComponent;
 //=============================================================================
 // END WEAPON STATE VARIABLES
 //=============================================================================
@@ -227,10 +228,11 @@ var protected AimComponent			AimComponent;
 // user-defined but generally not modified within the game. 
 // Contains things like display offsets, icon coords etc
 //=============================================================================
+var() class<BallisticWeaponParams>	ParamsClass;
 //-----------------------------------------------------------------------------
 // Replication
 //-----------------------------------------------------------------------------
-var() class<BCReplicationInfo>	BCRepClass;				// BCReplication info class to use for server side variables that are sent to clients
+var() class<BCReplicationInfo>		BCRepClass;				// BCReplication info class to use for server side variables that are sent to clients
 //-----------------------------------------------------------------------------
 // Display
 //-----------------------------------------------------------------------------
@@ -250,18 +252,18 @@ var() float					IdleTweenTime;				// Just a general tween time used by anims lik
 //-----------------------------------------------------------------------------
 // Sound
 //-----------------------------------------------------------------------------
-var() BUtil.FullSound		BringUpSound;				//Sound to play when weapon is brought out
-var() BUtil.FullSound		PutDownSound;				//Sound to play when weapon is put away
+var() BUtil.FullSound		BringUpSound;				// Sound to play when weapon is brought out
+var() BUtil.FullSound		PutDownSound;				// Sound to play when weapon is put away
 //-----------------------------------------------------------------------------
 // Fire Modes
 //-----------------------------------------------------------------------------
-var() Array<WeaponModeType> WeaponModes;				//A list of the available weapon firing modes and their info for this weapon
+var() array<WeaponModeType> WeaponModes;				//A list of the available weapon firing modes and their info for this weapon
+
 var() travel byte			CurrentWeaponMode;			// The index of the firing mode currently active
-var	bool					bRedirectSwitchToFiremode;  //Compatibility for Ballistic UI - implemented in later weapons
+var	bool					bRedirectSwitchToFiremode;  // Compatibility for Ballistic UI - implemented in later weapons
 //-----------------------------------------------------------------------------
 // Sighting
 //-----------------------------------------------------------------------------
-var() float					SightMoveSpeedFactor;	// Additional slowdown factor in iron sights
 var   Actor					SightFX;				// SightFX actor
 var() class<Actor>			SightFXClass;			// Effect to attach as an iron sight effect or could be used for anything
 var() name					SightFXBone;			// Bone to attach SightFX to
@@ -314,14 +316,12 @@ var	  float					FireAnimCutThreshold;   	// Cuts the fire anim if the SightingSt
 //-----------------------------------------------------------------------------
 // Recoil
 //-----------------------------------------------------------------------------
-var() array<RecoilParams>	RecoilParamsList;
+
 //-----------------------------------------------------------------------------
 // Aim
 //-----------------------------------------------------------------------------
-var() array<AimParams>		AimParamsList;
 var() rotator				LongGunPivot;			// How to rotate aim and gun at full LongGunFactor
 var() vector				LongGunOffset;			// How much to offset weapon position at full LongGunFactor
-var() float					DisplaceDurationMult;   // Duration multiplier for aim displacement.
 //-----------------------------------------------------------------------------
 // Melee
 //-----------------------------------------------------------------------------
@@ -360,7 +360,7 @@ var	Object.Color	HeaderColor, TextColor;
 // by the game ruleset or by weapon modes and attachments.
 //=============================================================================
 //-----------------------------------------------------------------------------
-// Movement speed
+// Move speed
 //-----------------------------------------------------------------------------
 var() float					PlayerSpeedFactor;		// Instigator movement speed is multiplied by this when this weapon is in use
 var() float					PlayerJumpFactor;		// Player JumpZ multiplied by this when holding this weapon
@@ -368,10 +368,6 @@ var() float					PlayerJumpFactor;		// Player JumpZ multiplied by this when holdi
 // Effects
 //-----------------------------------------------------------------------------
 var() Sound					UsedAmbientSound;		// Use this instead of AmbientSound to have gun hum when in use
-//-----------------------------------------------------------------------------
-// Conflict Loadout
-//-----------------------------------------------------------------------------
-var() byte					InventorySize;			// How much space this weapon should occupy in an inventory. 0-100. Used by mutators, games, etc...
 //-----------------------------------------------------------------------------
 // Sights
 //-----------------------------------------------------------------------------
@@ -458,6 +454,11 @@ simulated function PostBeginPlay()
     local int m;
 	Super.PostBeginPlay();
 
+	CreateRecoilComponent();
+	CreateAimComponent();
+
+	ParamsClass.static.Initialize(self);
+
 	//Set up channel 1 for sight fire blending.
 	AnimBlendParams(1,0);
 
@@ -472,9 +473,6 @@ simulated function PostBeginPlay()
     for (m = 0; m < NUM_FIRE_MODES; m++)
     	if (FireMode[m] != None && BallisticFire(FireMode[m]) != None)
 			BFireMode[m] = BallisticFire(FireMode[m]);
-
-	CreateRecoilComponent();
-	CreateAimComponent();
 
 	//Abuse the existing fire mode class for its ModeDoFire.
 	if (MeleeFireClass != None)
@@ -520,17 +518,30 @@ simulated function PostNetBeginPlay()
 	}
 }
 
-simulated function CreateRecoilComponent()
+simulated final function OnWeaponParamsChanged()
+{
+	SightingTime 				= WeaponParams.SightingTime;
+	default.SightingTime 		= WeaponParams.SightingTime;
+
+	MagAmmo 					= WeaponParams.MagAmmo;
+	default.MagAmmo				= WeaponParams.MagAmmo;
+
+	PlayerSpeedFactor 			= WeaponParams.PlayerSpeedFactor;
+	default.PlayerSpeedFactor	= WeaponParams.PlayerSpeedFactor;
+
+	PlayerJumpFactor 			= WeaponParams.PlayerJumpFactor;
+	default.PlayerJumpFactor	= WeaponParams.PlayerJumpFactor;
+}
+
+simulated final function CreateRecoilComponent()
 {
 	RcComponent = RecoilComponent(Level.ObjectPool.AllocateObject(class'RecoilComponent'));
 
 	RcComponent.BW = self;
 	RcComponent.Level = Level;
-	RcComponent.Params = RecoilParamsList[WeaponModes[CurrentWeaponMode].RecoilParamsIndex];
-	RcComponent.Recalculate();
 }
 
-simulated function CreateAimComponent()
+simulated final function CreateAimComponent()
 {
 	AimComponent = AimComponent(Level.ObjectPool.AllocateObject(class'AimComponent'));
 
@@ -539,9 +550,6 @@ simulated function CreateAimComponent()
 	AimComponent.GunLength = GunLength;
 	AimComponent.LongGunPivot = LongGunPivot;
 	AimComponent.LongGunOffset = LongGunOffset;
-	AimComponent.DisplaceDurationMult = DisplaceDurationMult;
-	AimComponent.Params = AimParamsList[WeaponModes[CurrentWeaponMode].AimParamsIndex];
-	AimComponent.Recalculate();
 }
 
 exec function OffsetX1(int x1)
@@ -2445,14 +2453,12 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 
 	if (WeaponModes[LastMode].RecoilParamsIndex != WeaponModes[CurrentWeaponMode].RecoilParamsIndex)
 	{
-		RcComponent.Params = RecoilParamsList[WeaponModes[CurrentWeaponMode].RecoilParamsIndex];
-		RcComponent.Recalculate();
+		ParamsClass.static.SetRecoilParams(self);
 	}
 
 	if (WeaponModes[LastMode].AimParamsIndex != WeaponModes[CurrentWeaponMode].AimParamsIndex)
 	{
-		AimComponent.Params = AimParamsList[WeaponModes[CurrentWeaponMode].AimParamsIndex];
-		AimComponent.Recalculate();
+		ParamsClass.static.SetAimParams(self);
 	}
 
 	CheckBurstMode();
@@ -2714,8 +2720,10 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	ReloadState = RS_None;
 	// Reset Melee
 	MeleeState = MS_None;
+
 	if (PlayerSpeedFactor != default.PlayerSpeedFactor)
-	PlayerSpeedFactor = default.PlayerSpeedFactor;
+		PlayerSpeedFactor = default.PlayerSpeedFactor;
+
 	// Link up with sprint control
 	if (SprintControl == None)	{
 		for (Inv=Instigator.Inventory;Inv!=None;Inv=Inv.Inventory)
@@ -2725,7 +2733,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	AimComponent.OnWeaponSelected();
 
-	Instigator.WalkingPct = SightMoveSpeedFactor;
+	Instigator.WalkingPct = WeaponParams.SightMoveSpeedFactor;
 
 	if (Role == ROLE_Authority)
 	{
@@ -3449,6 +3457,8 @@ simulated function Destroyed()
 		MeleeFireMode = None;
 	}
 
+	WeaponParams = None;
+
 	RcComponent.Cleanup();
 	Level.ObjectPool.FreeObject(RcComponent);
 	RcComponent = None;
@@ -4040,6 +4050,10 @@ simulated function ApplyAimToView()
 		Instigator.SetViewRotation(Instigator.Controller.Rotation + AimPivotDelta);
 }
 
+simulated final function byte GetAimParamsIndex()
+{
+	return WeaponModes[CurrentWeaponMode].AimParamsIndex;
+}
 
 // End Core <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -4219,9 +4233,9 @@ simulated function AddFireChaos(float chaos)
 	AimComponent.AddFireChaos(chaos);
 }
 
-simulated function RecoilParams GetRecoilParams()
+simulated final function byte GetRecoilParamsIndex()
 {
-	return RecoilParamsList[WeaponModes[CurrentWeaponMode].RecoilParamsIndex];
+	return WeaponModes[CurrentWeaponMode].RecoilParamsIndex;
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -4769,17 +4783,12 @@ static function String GetShortManual()
 
 defaultproperties
 {
-	 DisplaceDurationMult=1.000000
-	 PlayerSpeedFactor=1.000000
-	 SightMoveSpeedFactor=0.900000
-     PlayerJumpFactor=1.000000
      AIReloadTime=2.000000
      BigIconCoords=(Y1=48,X2=511,Y2=212)
      bAllowWeaponInfoOverride=True
      IdleTweenTime=0.200000
      SightFXBone="tip"
      BCRepClass=Class'BCoreProV55.BCReplicationInfo'
-     InventorySize=12
      HeaderColor=(B=50,G=50,R=255)
      TextColor=(G=175,R=255)
      SpecialInfo(0)=(Id="EvoDefs",Info="0.0;10.0;0.5;50.0;0.2;0.2;0.1")
@@ -4790,10 +4799,7 @@ defaultproperties
 	 MagAmmo=30
 	 
      CockAnim="Cock"
-     CockAnimRate=1.000000
      CockSelectAnim="PulloutFancy"
-     CockSelectAnimRate=1.250000
-     CockingBringUpTime=0.700000
      CockSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
 	 
      ReloadAnim="Reload"
@@ -4804,8 +4810,6 @@ defaultproperties
      ClipOutSound=(Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
      ClipInSound=(Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
      ClipInFrame=0.900000
-     StartShovelAnimRate=1.000000
-     EndShovelAnimRate=1.000000
      ShovelIncrement=1
      bPlayThirdPersonReload=True
 	 
@@ -4824,7 +4828,6 @@ defaultproperties
      SightOffset=(Z=2.500000)
      SightDisplayFOV=30.000000
      SightingTime=0.350000
-     SightingTimeScale=1.000000
      MinFixedZoomLevel=0.050000
      MinZoom=1.000000
      MaxZoom=2.000000

@@ -392,7 +392,6 @@ defaultproperties
 	MeleeFireClass=Class'BallisticProV55.MD24MeleeFire'
 	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-	MagAmmo=16
 	CockSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Cock',Volume=0.675000)
 	ReloadAnimRate=1.350000
 	ClipHitSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_ClipHit',Volume=0.800000)
@@ -405,23 +404,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
 	SightDisplayFOV=60.000000
-	SightingTime=0.200000
-
-	Begin Object Class=RecoilParams Name=MD24RecoilParams
-		ViewBindFactor=0.65
-		XRandFactor=0.03000
-		YRandFactor=0.03000
-		DeclineTime=0.500000
-		DeclineDelay=0.220000
-	End Object
-	RecoilParamsList(0)=RecoilParams'MD24RecoilParams'
-
-	Begin Object Class=AimParams Name=MD24AimParams
-		ADSMultiplier=2
-		AimAdjustTime=0.450000
-	End Object
-	AimParamsList(0)=AimParams'MD24AimParams'
-
+	ParamsClass=Class'MD24WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.MD24PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	SelectForce="SwitchToAssaultRifle"

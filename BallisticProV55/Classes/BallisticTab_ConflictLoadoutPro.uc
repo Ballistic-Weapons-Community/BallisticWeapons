@@ -282,7 +282,7 @@ function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.WeaponInfo
 function int GetItemSize(class<Weapon> Item)
 {
 	if (class<BallisticWeapon>(Item) != None)
-		return class<BallisticWeapon>(Item).default.InventorySize;
+		return class<BallisticWeapon>(Item).default.ParamsClass.default.Params[0].InventorySize;
 	return 5;
 }
 

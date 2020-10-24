@@ -196,7 +196,6 @@ function float SuggestDefenseStyle()	{	return -0.6;	}
 defaultproperties
 {
 	bSilenced=True
-	DisplaceDurationMult=0.75
 	SilencerBone="Silencer"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"
@@ -204,7 +203,6 @@ defaultproperties
 	SilencerOffSound=Sound'BallisticSounds2.XK2.XK2-SilenceOff'
 	SilencerOnTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
 	SilencerOffTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
-	PlayerSpeedFactor=1.050000
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XK2'
@@ -219,7 +217,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;10.0;0.6;60.0;0.3;0.1;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-	MagAmmo=30
 	CockSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Cock')
 	ClipOutSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipOut')
 	ClipInSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipIn')
@@ -234,34 +231,10 @@ defaultproperties
 	SightPivot=(Pitch=256)
 	SightOffset=(X=5.000000,Z=12.700000)
 	SightDisplayFOV=40.000000
-	SightingTime=0.250000
 	AIRating=0.8
 	CurrentRating=0.8
 	SightZoomFactor=0.85
-
-
-	 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.45
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.400000,OutVal=0.050000),(InVal=0.600000,OutVal=0.10000),(InVal=0.800000,OutVal=0.120000),(InVal=1.000000,OutVal=0.16)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.25),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05000
-		YRandFactor=0.05000
-		DeclineTime=0.5
-		DeclineDelay=0.15
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.400000
-		SprintOffSet=(Pitch=-3000,Yaw=-4000)
-		AimAdjustTime=0.400000
-		AimSpread=(Min=16,Max=512)
-		ChaosDeclineTime=0.500000
-		ChaosSpeedThreshold=7500.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'XK2WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.Xk2PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.Xk2SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

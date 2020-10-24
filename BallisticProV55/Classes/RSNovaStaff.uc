@@ -696,71 +696,34 @@ function float SuggestDefenseStyle()	{	return -0.2;	}
 
 defaultproperties
 {
-     WingSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Flying'
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP4-Tex.NovaStaff.BigIcon_NovaStaff'
-     BigIconCoords=(Y1=32,Y2=230)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Heal=True
-     ManualLines(0)="Slow Bolts deal high damage, gain damage over range and leech enemy HP for the user. This mode damages the user if used from the hip.|Rapid Fire bolts have moderate damage and gain damage over range.|The Lightning mode locks onto an enemy, deals damage and inflicts blind. Alternatively, it can be used to rapidly heal allies. It costs low soul power.|Thunder Strike mode generates a thunder bolt with medium range and excellent damage output. It inflicts severe damage at high soul cost.|Chain Lightning attacks multiple enemies on screen in the same fashion as Lightning, but drains soul power at an alarming rate."
-     ManualLines(1)="Melee attack. Damage increases the longer Altfire is held, up to 1.5 seconds for maximum bonus. Deals more damage from behind. Leeches half of the damage dealt as health for the wielder."
-     ManualLines(2)="Enemies killed by this weapon leave souls behind. These can be collected to power the Lightning, Thunder Strike and Chain Lightning modes. Use of those modes without external soul power will cause the user's soul to be used instead, dealing significant backlash damage.||With full soulpower, the weapon can enter rampage mode, reducing all damage taken and granting the ability to fly. In this mode, soulpower will drain over time.||Effective at close and medium range."
-     SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;1.0;0.0;1.0")
-     BringUpSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Pullout')
-     PutDownSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Putaway')
-     MagAmmo=24
-	 PutDownAnimRate=1.4
-     ReloadAnimRate=1.250000
-     ClipOutSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalOut',Volume=0.700000)
-     ClipInSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalIn',Volume=0.700000)
-     ClipInFrame=0.700000
-     WeaponModes(0)=(ModeName="Slow Bolt",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1,AimParamsIndex=1)
-     WeaponModes(2)=(ModeName="Lightning",RecoilParamsIndex=1,AimParamsIndex=1)
-     WeaponModes(3)=(ModeName="Thunder Strike",ModeID="WM_FullAuto")
-     WeaponModes(4)=(ModeName="Chain Lightning",ModeID="WM_FullAuto",bUnavailable=True)
-     CurrentWeaponMode=0
-     SightPivot=(Pitch=512)
-     SightOffset=(X=-60.000000,Z=15.000000)
-     SightDisplayFOV=40.000000
-     SightingTime=0.300000
-     GunLength=128.000000
- 
-	 Begin Object Class=RecoilParams Name=ArenaBoltRecoilParams
-     	XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
-     	YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.8
-		YRandFactor=0.8
-		DeclineTime=1.5
-		ViewBindFactor=0.4
-		DeclineDelay=0.8
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaBoltRecoilParams'
-
-	Begin Object Class=RecoilParams Name=ArenaFastRecoilParams
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-	    XRandFactor=0.05
-		YRandFactor=0.05
-		DeclineTime=0.5
-		ViewBindFactor=0.4
-		DeclineDelay=0.25
-	End Object
-	RecoilParamsList(1)=RecoilParams'ArenaFastRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaBoltAimParams
-		AimSpread=(Min=64,Max=1024)
-		SprintOffSet=(Pitch=-1024,Yaw=-1024)
-		ChaosDeclineTime=1.250000
-	End Object
-	AimParamsList(0)=AimParams'ArenaBoltAimParams'
-
-	Begin Object Class=AimParams Name=ArenaFastAimParams
-		SprintOffSet=(Pitch=-1024,Yaw=-1024)
-		ChaosDeclineTime=1.250000
-	End Object
-	AimParamsList(1)=AimParams'ArenaFastAimParams'
-	 
+	WingSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Flying'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBP4-Tex.NovaStaff.BigIcon_NovaStaff'
+	BigIconCoords=(Y1=32,Y2=230)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Heal=True
+	ManualLines(0)="Slow Bolts deal high damage, gain damage over range and leech enemy HP for the user. This mode damages the user if used from the hip.|Rapid Fire bolts have moderate damage and gain damage over range.|The Lightning mode locks onto an enemy, deals damage and inflicts blind. Alternatively, it can be used to rapidly heal allies. It costs low soul power.|Thunder Strike mode generates a thunder bolt with medium range and excellent damage output. It inflicts severe damage at high soul cost.|Chain Lightning attacks multiple enemies on screen in the same fashion as Lightning, but drains soul power at an alarming rate."
+	ManualLines(1)="Melee attack. Damage increases the longer Altfire is held, up to 1.5 seconds for maximum bonus. Deals more damage from behind. Leeches half of the damage dealt as health for the wielder."
+	ManualLines(2)="Enemies killed by this weapon leave souls behind. These can be collected to power the Lightning, Thunder Strike and Chain Lightning modes. Use of those modes without external soul power will cause the user's soul to be used instead, dealing significant backlash damage.||With full soulpower, the weapon can enter rampage mode, reducing all damage taken and granting the ability to fly. In this mode, soulpower will drain over time.||Effective at close and medium range."
+	SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;1.0;0.0;1.0")
+	BringUpSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Pullout')
+	PutDownSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Putaway')
+	PutDownAnimRate=1.4
+	ReloadAnimRate=1.250000
+	ClipOutSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalOut',Volume=0.700000)
+	ClipInSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalIn',Volume=0.700000)
+	ClipInFrame=0.700000
+	WeaponModes(0)=(ModeName="Slow Bolt",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1,AimParamsIndex=1)
+	WeaponModes(2)=(ModeName="Lightning",RecoilParamsIndex=1,AimParamsIndex=1)
+	WeaponModes(3)=(ModeName="Thunder Strike",ModeID="WM_FullAuto")
+	WeaponModes(4)=(ModeName="Chain Lightning",ModeID="WM_FullAuto",bUnavailable=True)
+	CurrentWeaponMode=0
+	SightPivot=(Pitch=512)
+	SightOffset=(X=-60.000000,Z=15.000000)
+	SightDisplayFOV=40.000000
+	GunLength=128.000000
+	ParamsClass=Class'RSNovaWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.RSNovaPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RSNovaMeleeFire'
 	BringUpTime=0.500000

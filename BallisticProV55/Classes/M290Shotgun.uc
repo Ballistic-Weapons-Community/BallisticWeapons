@@ -105,7 +105,6 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-    InventorySize=35
     bLeftLoaded=True
     bRightLoaded=True
     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
@@ -120,7 +119,6 @@ defaultproperties
     SpecialInfo(0)=(Info="240.0;20.0;0.5;80.0;0.0;1.0;0.0")
     BringUpSound=(Sound=Sound'BallisticSounds2.M290.M290Pullout')
     PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
-    MagAmmo=6
     CockAnimRate=1.350000
     CockSound=(Sound=Sound'BallisticSounds2.M290.M290Cock')
     ReloadAnim="ReloadLoop"
@@ -141,28 +139,7 @@ defaultproperties
     bNoCrosshairInScope=True
     SightPivot=(Pitch=256)
     SightOffset=(X=-50.000000,Y=-0.040000,Z=14.050000)
-    SightingTime=0.300000
- 
-     
-    Begin Object Class=RecoilParams Name=M290RecoilParams
-        ViewBindFactor=0.2
-        XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
-        YCurve=(Points=(,(InVal=0.300000,OutVal=0.400000),(InVal=1.000000,OutVal=1.000000)))
-        XRandFactor=0.100000
-        YRandFactor=0.100000
-        DeclineTime=0.900000
-        DeclineDelay=0.500000
-    End Object
-    RecoilParamsList(0)=RecoilParams'M290RecoilParams'
-
-    Begin Object Class=AimParams Name=M290AimParams
-        ADSMultiplier=0.350000
-        SprintOffSet=(Pitch=-1000,Yaw=-2048)
-        JumpChaos=1.000000
-        ChaosDeclineTime=1.000000	
-    End Object
-    AimParamsList(0)=AimParams'M290AimParams'
-	 
+    ParamsClass=Class'M290WeaponParams'
     FireModeClass(0)=Class'BallisticProV55.M290PrimaryFire'
     FireModeClass(1)=Class'BallisticProV55.M290SecondaryFire'
     AIRating=0.900000

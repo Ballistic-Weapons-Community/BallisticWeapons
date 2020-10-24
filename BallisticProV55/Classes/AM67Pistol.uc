@@ -97,7 +97,6 @@ defaultproperties
 	CurrentRating=0.8
 	AIReloadTime=1.500000
 
-	DisplaceDurationMult=0.75
 	AttachmentClass=Class'BallisticProV55.AM67Attachment'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_AM67'
@@ -120,7 +119,6 @@ defaultproperties
 	HudColor=(B=25,G=150,R=50)
 	IconCoords=(X2=127,Y2=31)
 	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_AM67'
-	InventorySize=12
 	InventoryGroup=3
 	ItemName="AM67 Assault Pistol"
 
@@ -137,33 +135,14 @@ defaultproperties
 	ManualLines(1)="Engages the integrated flash device. The fire key must be held until the flash triggers. Blinds enemies for a short duration. Enemies closer both to the player and to the point of aim will be blinded for longer."
 	ManualLines(2)="Effective at close and medium range."
 	Mesh=SkeletalMesh'BallisticProAnims.AM68_FPm'
+	ParamsClass=Class'AM67WeaponParams'
 	PickupClass=Class'BallisticProV55.AM67Pickup'
 	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 	Priority=24
 	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
 	PutDownTime=0.600000
 
-	Begin Object Class=RecoilParams Name=AM67RecoilParams
-		ViewBindFactor=0.45
-		XCurve=(Points=(,(InVal=0.1,OutVal=0.05),(InVal=0.2,OutVal=0.12),(InVal=0.3,OutVal=0.08),(InVal=0.40000,OutVal=0.05),(InVal=0.50000,OutVal=0.10000),(InVal=0.600000,OutVal=0.170000),(InVal=0.700000,OutVal=0.24),(InVal=0.800000,OutVal=0.30000),(InVal=1.000000,OutVal=0.4)))
-		YCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.4500),(InVal=0.500000,OutVal=0.5500),(InVal=0.600000,OutVal=0.620000),(InVal=0.750000,OutVal=0.770000),(InVal=1.000000,OutVal=1.00000)))
-		DeclineDelay=0.6
-		DeclineTime=1.0
-		MaxRecoil=8192.000000
-		XRandFactor=0.10000
-		YRandFactor=0.10000
-	End Object
-	RecoilParamsList(0)=RecoilParams'AM67RecoilParams'
 
-	Begin Object Class=AimParams Name=AM67AimParams
-		AimSpread=(Min=16,Max=128)
-		AimAdjustTime=0.450000
-		ADSMultiplier=1
-		JumpChaos=0.200000
-		ChaosDeclineTime=0.450000
-		ChaosSpeedThreshold=500.000000
-	End Object
-	AimParamsList(0)=AimParams'AM67AimParams'
 
 	ReloadAnimRate=1.250000
 	SelectForce="SwitchToAssaultRifle"

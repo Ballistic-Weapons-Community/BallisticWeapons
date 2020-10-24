@@ -246,7 +246,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;1.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
-	MagAmmo=20
 	CockAnimRate=1.200000
 	CockSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-Cock',Volume=0.650000)
 	ClipHitSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-ClipHit')
@@ -262,30 +261,11 @@ defaultproperties
 	SightOffset=(X=16.000000,Z=10.460000)
 	SightDisplayFOV=25.000000
 	GunLength=72.000000
-	
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.25
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.30000),(InVal=0.800000,OutVal=0.40000),(InVal=1.000000,OutVal=0.60000)))
-		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.1000
-		YRandFactor=0.1000
-		DeclineTime=1.00000
-		DeclineDelay=0.400000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		SprintOffset=(Pitch=-3000,Yaw=-4000)
-		AimSpread=(Min=16,Max=192)
-		ChaosDeclineTime=0.75
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'SRS600WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.SRS600PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	SelectAnimRate=1.350000
 	BringUpTime=0.350000
-	
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.80000
 	CurrentRating=0.80000

@@ -446,7 +446,6 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-	SightMoveSpeedFactor=0.8
 	ScopePopupHeight=17.000000
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP4-Tex.VPR.BigIcon_VPR'
@@ -462,7 +461,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="300.0;25.0;0.9;80.0;0.2;0.4;0.1")
 	BringUpSound=(Sound=Sound'BallisticSounds2.A73.A73Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.A73.A73Putaway')
-	MagAmmo=100
 	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipOut')
 	ClipInSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipIn')
@@ -485,28 +483,7 @@ defaultproperties
 	SightPivot=(Pitch=256)
 	SightOffset=(X=-8.000000,Z=9.300000)
 	SightDisplayFOV=25.000000
-	SightingTime=0.550000
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.25
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.040000),(InVal=0.200000,OutVal=0.12000),(InVal=0.350000,OutVal=0.170000),(InVal=0.600000,OutVal=0.220000),(InVal=0.800000,OutVal=0.320000),(InVal=1.000000,OutVal=0.4)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.120000),(InVal=0.200000,OutVal=0.200000),(InVal=0.350000,OutVal=0.380000),(InVal=0.600000,OutVal=0.750000),(InVal=0.700000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.100000
-		YRandFactor=0.100000
-		DeclineTime=0.500000
-		DeclineDelay=0.240000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=1
-		SprintOffset=(Pitch=-3000,Yaw=-4000)
-		AimSpread=(Min=64,Max=256)
-		AimDamageThreshold=75.000000
-		ChaosDeclineTime=1.250000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-	 
+	ParamsClass=Class'E23WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.E23PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.E23SecondaryFire'
 	SelectAnimRate=1.250000

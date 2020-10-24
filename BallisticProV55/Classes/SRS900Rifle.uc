@@ -422,7 +422,6 @@ function float SuggestDefenseStyle()	{	return 0.6;	}
 
 defaultproperties
 {
-	SightMoveSpeedFactor=0.8
 	SilencerBone="Silencer"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"
@@ -472,30 +471,11 @@ defaultproperties
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightOffset=(X=20.000000,Z=11.750000)
-	SightingTime=0.550000
 	MinZoom=2.000000
 	MaxZoom=8.000000
 	ZoomStages=2
 	GunLength=72.000000
-	 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.25
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.30000),(InVal=0.800000,OutVal=0.40000),(InVal=1.000000,OutVal=0.60000)))
-		YCurve=(Points=(,(InVal=0.150000,OutVal=0.180000),(InVal=0.300000,OutVal=0.320000),(InVal=0.500000,OutVal=0.5000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05000
-		YRandFactor=0.05000
-		DeclineTime=1.00000
-		DeclineDelay=0.400000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-	 
-	Begin Object Class=AimParams Name=ArenaAimParams
-		SprintOffset=(Pitch=-3000,Yaw=-4000)
-		AimSpread=(Min=16,Max=192)
-		ChaosDeclineTime=0.75
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'SRS900WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.SRS900PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	BringUpTime=0.500000

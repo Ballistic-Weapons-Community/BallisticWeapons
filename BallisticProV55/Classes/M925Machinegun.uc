@@ -224,7 +224,6 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
-	DisplaceDurationMult=1.25
 	BeltLength=8
 	BoxOnSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOn')
 	BoxOffSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOff')
@@ -232,9 +231,6 @@ defaultproperties
 	FlapDownSound=(Sound=Sound'BallisticSounds2.M925.M925-LeverDown')
 	HandleOnSound=Sound'BallisticSounds2.M925.M925-StandOn'
 	HandleOffSound=Sound'BallisticSounds2.M925.M925-StandOff'
-	PlayerSpeedFactor=0.9
-	PlayerJumpFactor=0.9
-	SightMoveSpeedFactor=0.8
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=3)
 	TeamSkins(1)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=5)
 	AIReloadTime=4.000000
@@ -254,7 +250,6 @@ defaultproperties
     WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
     WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(bUnavailable=True)
-	MagAmmo=50
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BallisticSounds2.M925.M925-Cock')
 	ReloadAnim="ReloadStart"
@@ -266,31 +261,7 @@ defaultproperties
 	SightPivot=(Pitch=64)
 	SightOffset=(X=-18.000000,Z=7.200000)
 	SightDisplayFOV=40.000000
-	SightingTime=0.700000
-
-	Begin Object Class=RecoilParams Name=M925RecoilParams
-		ViewBindFactor=0.250000
-		CrouchMultiplier=0.700000
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.40000),(InVal=0.500000,OutVal=0.550000),(InVal=0.700000,OutVal=0.70000),(InVal=1.000000)))
-		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.300000),(InVal=0.500000,OutVal=0.550000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.07
-		YRandFactor=0.07
-		MaxRecoil=12288.000000
-		DeclineTime=1.500000
-		DeclineDelay=0.40000
-	End Object
-	RecoilParamsList(0)=RecoilParams'M925RecoilParams'
-
-	Begin Object Class=AimParams Name=M925AimParams
-		AimSpread=(Min=384,Max=1280)
-		SprintOffset=(Pitch=-6000,Yaw=-8000)
-		JumpOffset=(Pitch=-6000,Yaw=-4000)
-		ADSMultiplier=0.40000
-		AimAdjustTime=0.400000
-		ChaosDeclineTime=1.750000
-	End Object
-	AimParamsList(0)=AimParams'M925AimParams'
-	
+	ParamsClass=Class'M925WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.M925PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'
 	PutDownTime=0.700000

@@ -203,7 +203,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;50.0;1.0;0.2;0.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
-	MagAmmo=15
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
 	ReloadAnimRate=1.250000
@@ -222,28 +221,7 @@ defaultproperties
 	SightPivot=(Pitch=50)
 	SightOffset=(X=25.000000,Y=0.030000,Z=8.000000)
 	SightDisplayFOV=40.000000
-	SightingTime=0.400000
 	GunLength=80.000000
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		CrouchMultiplier=0.750000
-		XCurve=(Points=(,(InVal=0.200000,OutVal=-0.070000),(InVal=0.500000,OutVal=0.040000),(InVal=1.000000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.300000
-		YRandFactor=0.200000
-		MinRandFactor=0.500000
-		DeclineDelay=0.350000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		SprintOffSet=(Pitch=-1000,Yaw=-2048)
-		AimAdjustTime=0.600000
-		ChaosSpeedThreshold=3000.000000
-		AimSpread=(Min=64,Max=3072)
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
 	FireModeClass(0)=Class'BallisticProV55.R9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.R9SecondaryFire'
 	SelectAnimRate=1.100000
