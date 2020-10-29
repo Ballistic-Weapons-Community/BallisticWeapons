@@ -197,7 +197,6 @@ simulated function Notify_BrassOut()
 
 defaultproperties
 {
-	InventorySize=24
 	MatDef=Texture'BallisticRecolors4TexPro.MGL.MGL-ScreenBase'
 	MatArmed=Texture'BallisticRecolors4TexPro.MGL.MGL-Screen'
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
@@ -215,7 +214,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
-	MagAmmo=6
 	CockSound=(Sound=Sound'PackageSounds4Pro.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
 	ClipOutSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff',Volume=1.700000,Radius=32.000000)
 	ClipInSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOn',Volume=1.700000,Radius=32.000000)
@@ -230,26 +228,7 @@ defaultproperties
 	SightPivot=(Pitch=512)
 	SightOffset=(X=-30.000000,Y=12.450000,Z=14.850000)
 	GunLength=48.000000
-
-	 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		XCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
-		YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-		YawFactor=0.000000
-		XRandFactor=0.400000
-		YRandFactor=0.400000
-		MaxRecoil=6144.000000
-		DeclineDelay=0.500000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=192,Max=768)
-		SprintOffset=(Pitch=-3000,Yaw=-4096)
-		ChaosDeclineTime=1.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'MGLWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.MGLPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.MGLSecondaryFire'
 	SelectAnimRate=1.500000

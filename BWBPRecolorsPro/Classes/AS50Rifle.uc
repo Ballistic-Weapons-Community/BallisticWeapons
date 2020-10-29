@@ -654,7 +654,6 @@ function float SuggestDefenseStyle()	{	return 0.7;	}
 
 defaultproperties
 {
-	SightMoveSpeedFactor=0.8
 	ScopeBone="Scope"
 	BulletBone="Bullet"
 	ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
@@ -671,8 +670,7 @@ defaultproperties
 	ScreenBase4=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen4'
 	Numbers=Texture'BallisticRecolors3TexPro.PUMA.PUMA-Numbers'
 	MyFontColor=(B=255,G=255,R=255,A=255)
-	PlayerSpeedFactor=0.90000
-	PlayerJumpFactor=0.90000
+
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BallisticRecolors3TexPro.FSG50.BigIcon_FSG50'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -703,36 +701,11 @@ defaultproperties
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
-	SightingTime=0.650000
 	MinZoom=4.000000
 	MaxZoom=16.000000
 	ZoomStages=2
 	GunLength=80.000000
-
-	Begin Object Class=RecoilParams Name=FSSG50RecoilParams
-		ViewBindFactor=0.15
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.15
-		YRandFactor=0.15
-		MinRandFactor=0.15
-		DeclineTime=1.500000
-		DeclineDelay=0.500000
-		CrouchMultiplier=0.650000
-	End Object
-	RecoilParamsList(0)=RecoilParams'FSSG50RecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=64,Max=1024)
-		ADSMultiplier=0.15
-		SprintOffset=(Pitch=-3000,Yaw=-4096)
-		JumpOffset=(Pitch=-6000,Yaw=2000)
-		AimAdjustTime=0.600000
-		ChaosDeclineTime=0.800000
-		ChaosSpeedThreshold=350.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-	 
+	ParamsClass=Class'AS50WeaponParams'	 
 	FireModeClass(0)=Class'BWBPRecolorsPro.AS50PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.AS50SecondaryFire'
 	IdleAnimRate=0.600000

@@ -607,7 +607,6 @@ function float SuggestDefenseStyle()	{	return 0.6;	}
 
 defaultproperties
 {
-	DisplaceDurationMult=1.25
 	LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
 	LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
 	HeatDeclineDelay=0.400000
@@ -623,9 +622,6 @@ defaultproperties
 	ScreenRedBar=Texture'BallisticRecolors3TexPro.M2020.M2020-ScreenOff'
 	Numbers=Texture'BallisticRecolors3TexPro.PUMA.PUMA-Numbers'
 	MyFontColor=(B=255,G=255,R=255,A=255)
-	PlayerSpeedFactor=0.850000
-	PlayerJumpFactor=0.850000
-	SightMoveSpeedFactor=0.8
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BallisticRecolors3TexPro.FG50.BigIcon_FG50'
@@ -649,40 +645,7 @@ defaultproperties
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
 	SightOffset=(Y=25.000000,Z=10.300000)
-	SightingTime=0.700000
-
-	Begin Object Class=RecoilParams Name=FG50RecoilParams
-		ViewBindFactor=0.15
-		XCurve=(Points=(,(InVal=0.15,OutVal=0.075),(InVal=0.400000,OutVal=0.130000),(InVal=0.550000,OutVal=0.15000),(InVal=0.700000,OutVal=0.21000),(InVal=1.000000,OutVal=0.225000)))
-		YCurve=(Points=(,(InVal=0.20000,OutVal=0.250000),(InVal=0.400000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05000
-		YRandFactor=0.050000
-		MaxRecoil=16384
-		DeclineTime=1.500000
-	End Object
-	RecoilParamsList(0)=RecoilParams'FG50RecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaStandardAimParams
-		ADSMultiplier=0.7
-		AimSpread=(Min=128,Max=1536)
-		ChaosDeclineTime=1.750000
-		ChaosSpeedThreshold=350
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
-		JumpOffset=(Pitch=-6000,Yaw=2000)
-	End Object 
-	AimParamsList(0)=AimParams'ArenaStandardAimParams'
-
-	Begin Object Class=AimParams Name=ArenaControlledAimParams
-		AimAdjustTime=1
-		ADSMultiplier=0.4
-		AimSpread=(Min=64,Max=768)
-		ChaosDeclineTime=1.25
-		ChaosSpeedThreshold=350
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
-		JumpOffset=(Pitch=-6000,Yaw=2000)
-	End Object 
-	AimParamsList(1)=AimParams'ArenaControlledAimParams'
-	 
+	ParamsClass=Class'FG50WeaponParams'	 
 	FireModeClass(0)=Class'BWBPRecolorsPro.FG50PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.FG50SecondaryFire'
 	IdleAnimRate=0.600000

@@ -190,12 +190,10 @@ defaultproperties
 	SpecialInfo(0)=(Info="60.0;3.0;0.1;125.0;0.0;0.2;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-	MagAmmo=24
 	CockSound=(Sound=Sound'PackageSounds4Pro.MRDR.MRDR-Cock',Volume=0.800000)
 	ClipOutSound=(Sound=Sound'PackageSounds4Pro.MRDR.MRDR-ClipOut',Volume=0.700000)
 	ClipInSound=(Sound=Sound'PackageSounds4Pro.MRDR.MRDR-ClipIn',Volume=0.700000)
 	ClipInFrame=0.650000
-	InventorySize=6
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Small Burst",Value=5.000000)
 	bUseSights=False
@@ -205,25 +203,7 @@ defaultproperties
 	GunLength=0.100000
 	AIRating=0.6
 	CurrentRating=0.6
-	 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.5
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000),(InVal=0.600000,OutVal=0.150000),(InVal=0.800000,OutVal=0.250000),(InVal=1.000000,OutVal=0.100000)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.200000),(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.550000),(InVal=0.600000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.050000
-		YRandFactor=0.050000
-		DeclineTime=0.800000
-		DeclineDelay=0.350000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimAdjustTime=0.450000
-		ChaosDeclineTime=0.450000
-		AimSpread=(Min=16,Max=256)
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-	 
+	ParamsClass=Class'MRDRWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.MRDRPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.MRDRSecondaryFire'
 	PutDownTime=0.400000

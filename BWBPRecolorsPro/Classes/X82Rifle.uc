@@ -350,15 +350,11 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
-	DisplaceDurationMult=1.25
 	ManualLines(0)="High-powered .50 rifle fire. High damage and fire rate, but strong recoil."
 	ManualLines(1)="Deploys the rifle upon the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, becomes perfectly accurate, loses its iron sights and gains a reduction in recoil. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
 	ManualLines(2)="Weapon Function activates infrared vision. Viable infantry targets will be bordered by a box in the weapon's scope.||Effective at long range. Very effective at long range when deployed."
 	NVOnSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
 	NVOffSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
-	PlayerSpeedFactor=0.850000
-	PlayerJumpFactor=0.850000
-	SightMoveSpeedFactor=0.8
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=3)
 	BigIconMaterial=Texture'BallisticRecolors3TexPro.X82.BigIcon_X82'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -366,7 +362,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="360.0;35.0;1.0;80.0;10.0;0.0;0.0")
 	BringUpSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOn')
 	PutDownSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOff')
-	MagAmmo=5
 	CockAnimPostReload="Cock"
 	CockAnimRate=1.700000
 	CockSound=(Sound=Sound'PackageSounds4Pro.X82.X83-Charge',Volume=2.500000)
@@ -388,33 +383,11 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightPivot=(Roll=-1024)
 	SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
-	SightingTime=0.750000
 	MinZoom=4.000000
 	MaxZoom=32.000000
 	ZoomStages=3
 	GunLength=80.000000
-
-	Begin Object Class=RecoilParams Name=X83RecoilParams
-		ViewBindFactor=0.35
-		XRandFactor=0.600000
-		YRandFactor=0.300000
-		DeclineTime=1.500000
-		MaxRecoil=8192
-		HipMultiplier=3
-		CrouchMultiplier=0.7
-	End Object
-	RecoilParamsList(0)=RecoilParams'X83RecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=256,Max=2048)
-		SprintOffset=(Pitch=-1000,Yaw=-2048)
-		JumpOffset=(Pitch=-6000,Yaw=2000)
-		ADSMultiplier=0.15
-		AimAdjustTime=0.600000
-		ChaosDeclineTime=1.200000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'X82WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.X82PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.X82SecondaryFire'
 	SelectAnim="Takeout"

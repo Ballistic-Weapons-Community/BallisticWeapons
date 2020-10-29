@@ -1,7 +1,7 @@
 //=============================================================================
 // CYLOUAW.
 //
-// CYLO Versitile Urban Assault Weapon.
+// CYLO Versatile Urban Assault Weapon.
 //
 // This nasty little gun has all sorts of tricks up its sleeve. Primary fire is
 // a somewhat unreliable assault rifle with random fire rate and a chance to jam.
@@ -535,30 +535,7 @@ defaultproperties
 	SightOffset=(X=0.000000,Y=13.600000,Z=19.500000)
 	SightDisplayFOV=25.000000
 	GunLength=16.000000
-
-	 
-	Begin Object Class=RecoilParams Name=CYLOUAWRecoilParams
-		ViewBindFactor=0.3
-		XCurve=(Points=(,(InVal=0.1,OutVal=0.09),(InVal=0.2,OutVal=0.12),(InVal=0.25,OutVal=0.13),(InVal=0.3,OutVal=0.11),(InVal=0.35,OutVal=0.08),(InVal=0.40000,OutVal=0.050000),(InVal=0.50000,OutVal=-0.020000),(InVal=0.600000,OutVal=-0.040000),(InVal=0.700000,OutVal=0.04),(InVal=0.800000,OutVal=0.070000),(InVal=1.000000,OutVal=0.13)))
-		YCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.220000),(InVal=0.300000,OutVal=0.2600000),(InVal=0.400000,OutVal=0.4000),(InVal=0.500000,OutVal=0.5500),(InVal=0.600000,OutVal=0.620000),(InVal=0.750000,OutVal=0.770000),(InVal=1.000000,OutVal=1.00000)))
-		XRandFactor=0.1
-		YRandFactor=0.1
-		DeclineTime=0.4
-		DeclineDelay=0.160000
-		CrouchMultiplier=1
-	End Object
-	RecoilParamsList(0)=RecoilParams'CYLOUAWRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.3
-		AimSpread=(Min=16,Max=768)
-		SprintOffset=(Pitch=-3000,Yaw=-8000)
-		AimAdjustTime=0.400000
-		ChaosDeclineTime=0.5
-		ChaosSpeedThreshold=7000.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-	 
+	ParamsClass=Class'CYLOWeaponParams' 
 	FireModeClass(0)=Class'BWBPRecolorsPro.CYLOPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.CYLOSecondaryFire'
 	SelectAnimRate=2.000000

@@ -630,7 +630,6 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
-	SightMoveSpeedFactor=0.8
 	AIRating=0.8
 	CurrentRating=0.8
 	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
@@ -650,8 +649,6 @@ defaultproperties
 	Shells(3)="Shell4"
 	Shells(4)="Shell5"
 	Shells(5)="Shell6"
-	PlayerSpeedFactor=0.900000
-	PlayerJumpFactor=0.900000
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BallisticRecolors3TexPro.Bulldog.BigIcon_Bulldog'
@@ -664,7 +661,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;70.0;0.75;0.5;0.0")
 	BringUpSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-PullOut',Volume=1.800000)
 	PutDownSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-PutAway',Volume=1.400000)
-	MagAmmo=8
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-Cock',Volume=1.800000)
 	ReloadAnim="Reload2"
@@ -688,25 +684,7 @@ defaultproperties
 	SightOffset=(X=-18.000000,Y=4.490000,Z=6.350000)
 	SightDisplayFOV=35.000000
 	GunLength=48.000000
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.25
-		XRandFactor=0.350000
-		YRandFactor=0.350000
-		MaxRecoil=6144.000000
-		DeclineTime=1.500000
-		DeclineDelay=0.400000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=128,Max=768)
-		ADSMultiplier=0.30000
-		SprintOffset=(Pitch=-1000,Yaw=-2048)
-		ChaosDeclineTime=1.600000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'BulldogWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.BulldogPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.BulldogSecondaryFire'
 	PutDownAnimRate=1.700000

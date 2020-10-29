@@ -192,35 +192,9 @@ defaultproperties
 	ClipHitSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipHit',Volume=0.000000)
 	ClipOutSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipOut')
 	ClipInSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipIn',Volume=1.500000)
-	SightingTime=0.010000
 	GunLength=0.000000
 	bUseSpecialAim=True
-	 
-	Begin Object Class=RecoilParams Name=X83_TWRecoilParams
-		ViewBindFactor=0.35
-		PitchFactor=0.350000
-		YawFactor=0.000000
-		XRandFactor=0.000000
-		YRandFactor=0.200000
-		DeclineTime=0.500000
-		DeclineDelay=0.150000
-		MaxRecoil=8192
-		HipMultiplier=1
-		CrouchMultiplier=1
-	End Object
-	RecoilParamsList(0)=RecoilParams'X83_TWRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=0,Max=0)
-		SprintOffset=(Pitch=-1000,Yaw=-2048)
-		JumpOffset=(Pitch=-6000,Yaw=2000)
-		ADSMultiplier=0.1
-		AimDamageThreshold=2000.000000
-		AimAdjustTime=0.600000
-		ChaosDeclineTime=1.200000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class='X82TW_WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.X82TW_PrimaryFire'
 	SelectAnim="Deploy"
 	BringUpTime=1.000000
@@ -230,7 +204,7 @@ defaultproperties
 	ClientState=WS_BringUp
 	Priority=1
 	PlayerViewOffset=(X=-80.000000)
-	ItemName="X-83 A1 Turret"
+	ItemName="Deployed X83 Sniper Rifle"
 	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.X83A1_Turret'
 	DrawScale=0.650000
 	CollisionHeight=24.000000

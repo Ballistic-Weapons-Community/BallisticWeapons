@@ -553,7 +553,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
 	BringUpSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-PullOut',Volume=2.200000)
 	PutDownSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-Putaway',Volume=2.200000)
-	MagAmmo=25
 	CockSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-Cock',Volume=2.200000)
 	ClipOutSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-MagOut',Volume=2.400000)
 	ClipInSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-MagIn',Volume=2.400000)
@@ -564,27 +563,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
 	SightDisplayFOV=25.000000
-	SightingTime=0.300000
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.35
-		XCurve=(Points=(,(InVal=0.1,OutVal=0.12),(InVal=0.2,OutVal=0.18),(InVal=0.35,OutVal=0.22),(InVal=0.5,OutVal=0.3),(InVal=0.7,OutVal=0.45),(InVal=0.85,OutVal=0.6),(InVal=1.000000,OutVal=0.66)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.050000
-		YRandFactor=0.050000
-		DeclineTime=0.4
-		DeclineDelay=0.200000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=16,Max=768)
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
-		ChaosDeclineTime=0.5
-		ChaosSpeedThreshold=15000.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'LK05WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.LK05PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.LK05SecondaryFire'
 	IdleAnimRate=0.500000

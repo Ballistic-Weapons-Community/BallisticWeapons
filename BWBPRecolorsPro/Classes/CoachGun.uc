@@ -458,7 +458,6 @@ defaultproperties
      MeleeFireClass=Class'BWBPRecolorsPro.CoachGunMeleeFire'
      BringUpSound=(Sound=Sound'BallisticSounds2.M290.M290Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
-     MagAmmo=2
      CockAnimRate=0.700000
      ReloadAnimRate=1.100000
      ClipInFrame=0.800000
@@ -469,27 +468,10 @@ defaultproperties
      CurrentWeaponMode=0
      SightPivot=(Pitch=256)
      SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
-     SightingTime=0.350000
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-	 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.350000
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
-		YCurve=(Points=(,(InVal=0.300000,OutVal=0.300000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.200000
-		YRandFactor=0.200000
-		MaxRecoil=8192.000000
-		DeclineTime=0.900000
-		DeclineDelay=0.400000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	 ParamsClass=Class'CoachWeaponParams'
      FireModeClass(0)=Class'BWBPRecolorsPro.CoachGunPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectAnimRate=2.000000

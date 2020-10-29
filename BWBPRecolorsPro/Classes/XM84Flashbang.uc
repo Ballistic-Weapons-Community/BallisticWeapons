@@ -147,7 +147,8 @@ defaultproperties
      SpecialInfo(0)=(Info="60.0;5.0;0.25;30.0;0.0;0.0;0.4")
      BringUpSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Putaway')
-     CurrentWeaponMode=1
+	 CurrentWeaponMode=1
+	 ParamsClass=Class'XM84WeaponParams'
      FireModeClass(0)=Class'BWBPRecolorsPro.XM84PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.XM84SecondaryFire'
      SelectAnimRate=2.000000

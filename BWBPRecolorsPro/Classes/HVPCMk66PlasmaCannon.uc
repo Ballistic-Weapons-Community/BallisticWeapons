@@ -691,7 +691,6 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {	 
-	InventorySize=35
      VentingSound=Sound'BWBP2-Sounds.LightningGun.LG-Coolant'
      WarningSound=Sound'PackageSounds4Pro.BFG.BFG-Critical'
      OverheatSound=Sound'BWBP4-Sounds.Misc.BH-Explode'
@@ -714,24 +713,7 @@ defaultproperties
      SightPivot=(Pitch=768)
      SightOffset=(X=-18.000000,Z=23.299999)
      SightDisplayFOV=40.000000
-
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		YawFactor=0.100000
-		XRandFactor=0.300000
-		YRandFactor=0.300000
-		DeclineTime=0.750000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=192,Max=1024)
-		SprintOffset=(Pitch=-3000,Yaw=-5000)
-		AimAdjustTime=0.400000
-		ChaosSpeedThreshold=3000.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-	 
+	 ParamsClass=Class'HVPCMk66WeaponParams'
      FireModeClass(0)=Class'BWBPRecolorsPro.HVPCMk66PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.HVPCMk66SecondaryFire'
      IdleAnimRate=1.200000

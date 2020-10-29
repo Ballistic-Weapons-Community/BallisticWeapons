@@ -131,7 +131,6 @@ defaultproperties
 {
 	//LoopAmbientSound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Loop'
 	LoopAmbientSound=Sound'GeneralAmbience.texture21'
-	PlayerSpeedFactor=1.150000
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BallisticRecolors3TexPro.DragonToothSword.BigIcon_DTS'
 	BigIconCoords=(Y1=40,Y2=240)
@@ -141,11 +140,10 @@ defaultproperties
 	ManualLines(2)="The Weapon Function key allows the Nanoblade to block incoming frontal melee attacks.||Devastating at close range."
 	SpecialInfo(0)=(Info="420.0;20.0;-999.0;-1.0;-999.0;0.9;-999.0")
 	BringUpSound=(Sound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Draw',Volume=16.100000)
-	MagAmmo=1
 	bNoMag=True
 	GunLength=0.000000
 	bAimDisabled=True
-	InventorySize=11
+	ParamsClass=Class'DragonsToothWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.DragonsToothPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.DragonsToothSecondaryFire'
 	SelectAnim="PulloutFancy"

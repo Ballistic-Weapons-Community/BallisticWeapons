@@ -681,7 +681,6 @@ function float SuggestDefenseStyle()	{	return 0.4;	}
 
 defaultproperties
 {
-	SightMoveSpeedFactor=0.8
 	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
@@ -728,32 +727,11 @@ defaultproperties
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
-	SightingTime=0.50000
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1
 	SMuzzleFlashOffset=(X=15.000000,Z=-10.000000)
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.080000),(InVal=0.25000,OutVal=0.2000),(InVal=0.3500000,OutVal=0.250000),(InVal=0.4800000,OutVal=0.30000),(InVal=0.600000,OutVal=0.320000),(InVal=0.750000,OutVal=0.370000),(InVal=0.900000,OutVal=0.15),(InVal=1.000000,OutVal=0.4)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.250000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.050000
-		YRandFactor=0.050000
-		DeclineTime=0.500000
-		DeclineDelay=0.140000
-		ViewBindFactor=0.4
-		CrouchMultiplier=0.650000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=16,Max=128)
-		ADSMultiplier=2
-		SprintOffset=(Pitch=-3000,Yaw=-4096)
-		ChaosDeclineTime=0.5
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'MARSWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.MARSPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.MARSSecondaryFire'
 	PutDownTime=0.700000

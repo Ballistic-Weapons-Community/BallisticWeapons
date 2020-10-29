@@ -217,8 +217,6 @@ defaultproperties
 {
 	AIRating=0.6
 	CurrentRating=0.6
-	InventorySize=6
-	SightMoveSpeedFactor=0.8
 	ManualLines(0)="High-powered semi-automatic fire."
 	ManualLines(1)="Engages the scope."
 	ManualLines(2)="Effective at medium range."
@@ -238,7 +236,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="140.0;12.0;0.7;70.0;0.55;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-	MagAmmo=7
 	CockSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-Cock',Volume=5.100000,Radius=48.000000)
 	ClipHitSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipHit',Volume=2.500000,Radius=48.000000)
 	ClipOutSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipOut',Volume=2.500000,Radius=48.000000)
@@ -258,25 +255,7 @@ defaultproperties
 	SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
 	SightDisplayFOV=40.000000
 	GunLength=4.000000
-
-	Begin Object Class=RecoilParams Name=AH250RecoilParams
-		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.1),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.02),(InVal=0.7,OutVal=-0.06),(InVal=1.0,OutVal=0.0)))
-		ViewBindFactor=0.5
-		XRandFactor=0.150000
-		YRandFactor=0.150000
-		MaxRecoil=6144.000000
-		DeclineDelay=0.65
-		DeclineTime=1
-	End Object
-	RecoilParamsList(0)=RecoilParams'AH250RecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=2
-		AimSpread=(Min=16,Max=256)
-		ChaosDeclineTime=0.60000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'AH250WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.AH250PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	MeleeFireClass=Class'BWBPRecolorsPro.AH250MeleeFire'

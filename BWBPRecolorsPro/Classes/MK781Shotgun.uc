@@ -643,7 +643,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
-	MagAmmo=8
 	CockSound=(Sound=Sound'PackageSounds4ProExp.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
 	ReloadAnim="ReloadLoop"
 	ClipInSound=(Sound=Sound'PackageSounds4ProExp.Mk781.Mk781-ShellPlus',Volume=2.300000,Radius=32.000000)
@@ -662,24 +661,8 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
 	SightDisplayFOV=20.000000
-	SightingTime=0.300000
 	GunLength=48.000000
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.45
-		XCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=0.120000),(InVal=0.400000,OutVal=0.180000),(InVal=0.800000,OutVal=0.220000),(InVal=1.000000,OutVal=0.250000)))
-		YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05000
-		YRandFactor=0.050000
-		DeclineDelay=0.600000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		SprintOffset=(Pitch=-3000,Yaw=-4096)
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'MK781WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.MK781PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.MK781SecondaryFire'
 	PutDownTime=0.500000

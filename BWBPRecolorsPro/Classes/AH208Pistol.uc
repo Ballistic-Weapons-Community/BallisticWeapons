@@ -154,7 +154,6 @@ defaultproperties
     BigIconMaterial=Texture'BallisticRecolors4TexPro.Eagle.BigIcon_Eagle'
     BigIconCoords=(X1=47,Y1=16,X2=455,Y2=245)
     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-    InventorySize=8
     bWT_Bullet=True
     ManualLines(0)="Powerful .44 fire. Massive damage, long range and excellent fire rate."
     ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
@@ -162,7 +161,6 @@ defaultproperties
     SpecialInfo(0)=(Info="140.0;12.0;0.7;70.0;0.55;0.0;-999.0")
     BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
     PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-    MagAmmo=7
     CockSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-Cock',Volume=5.100000,Radius=32.000000)
     ClipHitSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipHit',Volume=2.500000,Radius=32.000000)
     ClipOutSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipOut',Volume=2.500000,Radius=32.000000)
@@ -176,25 +174,7 @@ defaultproperties
     SightOffset=(X=20.000000,Y=-7.350000,Z=45.400002)
     SightDisplayFOV=40.000000
     GunLength=4.000000
-
-    Begin Object Class=RecoilParams Name=AH208RecoilParams
-        XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.03),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.00),(InVal=0.7,OutVal=0.03),(InVal=1.0,OutVal=0.00)))
-        ViewBindFactor=0.5
-        XRandFactor=0.100000
-        YRandFactor=0.100000
-        MaxRecoil=6144.000000
-        DeclineDelay=0.65
-        DeclineTime=1
-    End Object
-    RecoilParamsList(0)=RecoilParams'AH208RecoilParams'
-
-    Begin Object Class=AimParams Name=ArenaAimParams
-        ADSMultiplier=2
-        AimSpread=(Min=16,Max=128)
-        ChaosDeclineTime=0.60000
-    End Object
-    AimParamsList(0)=AimParams'ArenaAimParams'
-
+    ParamsClass=Class'AH208WeaponParams'
     FireModeClass(0)=Class'BWBPRecolorsPro.AH208PrimaryFire'
     FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
     MeleeFireClass=Class'BWBPRecolorsPro.AH208MeleeFire'

@@ -178,7 +178,6 @@ simulated event WeaponTick(float DT)
 
 defaultproperties
 {
-    InventorySize=18
     ManualLines(0)="Automatic fire has moderate spread, moderate damage, short range and fast fire rate.||Manual fire has tight spread, long range, good damage and low fire rate."
     ManualLines(1)="Multi-shot attack. Loads a shell into each of the barrels, then fires them all at once. Very high damage, short range and wide spread."
     ManualLines(2)="Extremely effective at close range."
@@ -213,23 +212,7 @@ defaultproperties
     SightPivot=(Pitch=1024)
     SightOffset=(X=-20.000000,Y=9.700000,Z=19.000000)
     GunLength=32.000000
-
-    Begin Object Class=RecoilParams Name=ArenaRecoilParams
-        ViewBindFactor=0.45
-        XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
-        YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-        XRandFactor=0.050000
-        YRandFactor=0.050000
-        DeclineTime=1.500000
-        DeclineDelay=0.450000
-    End Object
-    RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-    Begin Object Class=AimParams Name=ArenaAimParams
-        SprintOffset=(Pitch=-1000,Yaw=-2048)
-    End Object
-    AimParamsList(0)=AimParams'ArenaAimParams'
-	 
+    ParamsClass=Class'SKASWeaponParams'
     FireModeClass(0)=Class'BWBPRecolorsPro.SKASPrimaryFire'
     FireModeClass(1)=Class'BWBPRecolorsPro.SKASSecondaryFire'
     IdleAnimRate=0.100000

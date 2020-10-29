@@ -200,10 +200,9 @@ simulated function Notify_G5HideRocket ()
 
 defaultproperties
 {
-	InventorySize=35
+
 	RunOffset=(Pitch=-4000,Yaw=-2000)
 	HatchSound=(Sound=Sound'BallisticSounds2.M75.M75Cliphit',Volume=0.700000,Pitch=1.000000)
-	PlayerSpeedFactor=0.900000
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=5)
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BallisticRecolors4TexPro.Flash.BigIcon_FLASH'
@@ -219,7 +218,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="500.0;60.0;1.0;80.0;2.0;0.0;1.5")
 	BringUpSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-PullOut',Volume=2.200000)
 	PutDownSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-Putaway',Volume=2.200000)
-	MagAmmo=4
 	CockSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever')
 	ClipOutSound=(Sound=Sound'PackageSounds4ProExp.Flash.FLASH-PullOut',Volume=1.100000)
 	ClipInSound=(Sound=Sound'PackageSounds4ProExp.Flash.FLASH-Insert',Volume=1.100000)
@@ -237,23 +235,7 @@ defaultproperties
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightOffset=(Y=5.300000,Z=23.299999)
-
-	 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-	 	DeclineTime=0.750000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=512,Max=2048)
-		ADSMultiplier=0.500000
-		SprintOffset=(Pitch=-6000,Yaw=-8000)
-		AimDamageThreshold=300.000000
-		ChaosDeclineTime=0.750000
-		ChaosSpeedThreshold=1200.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'FLASHWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.FLASHPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.FLASHSecondaryFire'
 	PutDownTime=1.400000

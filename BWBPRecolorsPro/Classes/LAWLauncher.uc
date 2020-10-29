@@ -326,99 +326,76 @@ simulated function Notify_G5HideRocket ()
 
 defaultproperties
 {
-	 InventorySize=24
-     HatchSound=(Sound=Sound'BallisticSounds2.M75.M75Cliphit',Volume=0.700000,Pitch=1.000000)
-     RunOffset=(Pitch=-4000,Yaw=-2000)
-     LaserOnSound=Sound'PackageSounds4Pro.AH104.AH104-SightOn'
-     LaserOffSound=Sound'PackageSounds4Pro.AH104.AH104-SightOff'
-	 PlayerSpeedFactor=0.900000
-	 SightMoveSpeedFactor=0.8
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=4.000000
-     BigIconMaterial=Texture'BallisticRecolors4TexPro.LAW.BigIcon_LAW'
-     BigIconCoords=(Y1=36,Y2=225)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Hazardous=True
-     bWT_Splash=True
-     bWT_Projectile=True
-     bWT_Super=True
-     ManualLines(0)="Launches a nuclear rocket. Travel time is moderate. Deals extreme damage within a wide radius."
-     ManualLines(1)="Fires a shockwave rocket in an arc. Upon impact, the rocket generates shockwaves which penetrate walls and deal damage to targets in a very wide radius. Damage is reduced if the target is obscured from the rocket. The rocket can be destroyed by enemy fire whilst so placed."
-     ManualLines(2)="Effective against groups and at controlling areas."
-     SpecialInfo(0)=(Info="500.0;60.0;1.0;80.0;2.0;0.0;1.5")
-     BringUpSound=(Sound=Sound'PackageSounds4ProExp.LAW.LAW-Draw',Volume=1.100000)
-     PutDownSound=(Sound=Sound'BWBP4-Sounds.Artillery.Art-Undeploy',Volume=1.100000)
-     MagAmmo=1
-     CockSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever')
-     ClipHitSound=(Sound=Sound'PackageSounds4ProExp.LAW.LAW-Cock',Volume=2.100000)
-     ClipOutSound=(Sound=Sound'PackageSounds4ProExp.LAW.LAW-TubeUnlock',Volume=2.100000)
-     ClipInSound=(Sound=Sound'PackageSounds4ProExp.LAW.Law-TubeLock',Volume=2.100000)
-     bNonCocking=True
-     WeaponModes(0)=(ModeName="Single Fire")
-     WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     ZoomType=ZT_Logarithmic
-     ScopeXScale=1.330000
-     ScopeViewTex=Texture'BallisticRecolors4TexPro.LAW.LAW-ScopeView'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-     FullZoomFOV=10.000000
-     bNoMeshInScope=True
-     bNoCrosshairInScope=True
-     SightOffset=(Y=6.000000,Z=15.000000)
-     SightingTime=0.600000
-     MinZoom=2.000000
-     MaxZoom=8.000000
-     ZoomStages=6
+	HatchSound=(Sound=Sound'BallisticSounds2.M75.M75Cliphit',Volume=0.700000,Pitch=1.000000)
+	RunOffset=(Pitch=-4000,Yaw=-2000)
+	LaserOnSound=Sound'PackageSounds4Pro.AH104.AH104-SightOn'
+	LaserOffSound=Sound'PackageSounds4Pro.AH104.AH104-SightOff'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=4.000000
+	BigIconMaterial=Texture'BallisticRecolors4TexPro.LAW.BigIcon_LAW'
+	BigIconCoords=(Y1=36,Y2=225)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Hazardous=True
+	bWT_Splash=True
+	bWT_Projectile=True
+	bWT_Super=True
+	ManualLines(0)="Launches a nuclear rocket. Travel time is moderate. Deals extreme damage within a wide radius."
+	ManualLines(1)="Fires a shockwave rocket in an arc. Upon impact, the rocket generates shockwaves which penetrate walls and deal damage to targets in a very wide radius. Damage is reduced if the target is obscured from the rocket. The rocket can be destroyed by enemy fire whilst so placed."
+	ManualLines(2)="Effective against groups and at controlling areas."
+	SpecialInfo(0)=(Info="500.0;60.0;1.0;80.0;2.0;0.0;1.5")
+	BringUpSound=(Sound=Sound'PackageSounds4ProExp.LAW.LAW-Draw',Volume=1.100000)
+	PutDownSound=(Sound=Sound'BWBP4-Sounds.Artillery.Art-Undeploy',Volume=1.100000)
+	CockSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever')
+	ClipHitSound=(Sound=Sound'PackageSounds4ProExp.LAW.LAW-Cock',Volume=2.100000)
+	ClipOutSound=(Sound=Sound'PackageSounds4ProExp.LAW.LAW-TubeUnlock',Volume=2.100000)
+	ClipInSound=(Sound=Sound'PackageSounds4ProExp.LAW.Law-TubeLock',Volume=2.100000)
+	bNonCocking=True
+	WeaponModes(0)=(ModeName="Single Fire")
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	ZoomType=ZT_Logarithmic
+	ScopeXScale=1.330000
+	ScopeViewTex=Texture'BallisticRecolors4TexPro.LAW.LAW-ScopeView'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	FullZoomFOV=10.000000
+	bNoMeshInScope=True
+	bNoCrosshairInScope=True
+	SightOffset=(Y=6.000000,Z=15.000000)
+	MinZoom=2.000000
+	MaxZoom=8.000000
+	ZoomStages=6
 
-
-	Begin Object Class=RecoilParams Name=LAWRecoilParams
-		YawFactor=0.000000
-		DeclineTime=1.000000
-		DeclineDelay=0.000000
-	End Object
-	RecoilParamsList(0)=RecoilParams'LAWRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=512,Max=1536)
-		ADSMultiplier=0.500000
-		SprintOffset=(Pitch=-6000,Yaw=-8000)
-		JumpOffset=(Pitch=-7000)
-		AimAdjustTime=0.750000
-		AimDamageThreshold=300.000000
-		ChaosDeclineTime=2.800000
-		ChaosSpeedThreshold=1200.00000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
+	ParamsClass=Class'LAWWeaponParams'
 	 
-     FireModeClass(0)=Class'BWBPRecolorsPro.LAWPrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.LAWSecondaryFire'
-     PutDownTime=2.500000
-     BringUpTime=3.000000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.90000
-     CurrentRating=0.90000
-     Description="The FGM-70 LAW represents an advance in portable nuclear technology. Using clean miniature nuclear rockets with no fallout, it is suitable for general deployment within the common soldiery. Able to inflict devastation either immediately through an explosion or over time through generating penetrative shockwaves, the FGM-70 can change the course of combat."
-     Priority=164
-     HudColor=(G=200,R=0)
-     CenteredOffsetY=10.000000
-     CenteredRoll=0
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=8
-     PickupClass=Class'BWBPRecolorsPro.LAWPickup'
-     PlayerViewOffset=(X=10.000000,Z=-7.000000)
-     BobDamping=1.800000
-     AttachmentClass=Class'BWBPRecolorsPro.LAWAttachment'
-     IconMaterial=Texture'BallisticRecolors4TexPro.LAW.SmallIcon_LAW'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="FGM-70 'Shockwave' LAW"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=25
-     LightSaturation=100
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.LAW_FP'
-     DrawScale=0.400000
+	FireModeClass(0)=Class'BWBPRecolorsPro.LAWPrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.LAWSecondaryFire'
+	PutDownTime=2.500000
+	BringUpTime=3.000000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.90000
+	CurrentRating=0.90000
+	Description="The FGM-70 LAW represents an advance in portable nuclear technology. Using clean miniature nuclear rockets with no fallout, it is suitable for general deployment within the common soldiery. Able to inflict devastation either immediately through an explosion or over time through generating penetrative shockwaves, the FGM-70 can change the course of combat."
+	Priority=164
+	HudColor=(G=200,R=0)
+	CenteredOffsetY=10.000000
+	CenteredRoll=0
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=8
+	PickupClass=Class'BWBPRecolorsPro.LAWPickup'
+	PlayerViewOffset=(X=10.000000,Z=-7.000000)
+	BobDamping=1.800000
+	AttachmentClass=Class'BWBPRecolorsPro.LAWAttachment'
+	IconMaterial=Texture'BallisticRecolors4TexPro.LAW.SmallIcon_LAW'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="FGM-70 'Shockwave' LAW"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=25
+	LightSaturation=100
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.LAW_FP'
+	DrawScale=0.400000
 }

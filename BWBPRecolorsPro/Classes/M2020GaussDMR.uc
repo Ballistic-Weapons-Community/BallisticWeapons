@@ -540,9 +540,6 @@ defaultproperties
 	VentingSound=Sound'PackageSounds4ProExp.M2020.M2020-IdleShield'
 	OverheatSound=Sound'PackageSounds4Pro.XavPlas.Xav-Overload'
 	ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
-	PlayerSpeedFactor=0.9
-	PlayerJumpFactor=0.9
-	SightMoveSpeedFactor=0.8
 	MaxHeat=7.000000
 	BulletBone1="Bullet1"
 	BulletBone2="Bullet2"
@@ -566,7 +563,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;1.0;80.0;2.0;0.1;0.1")
 	BringUpSound=(Sound=Sound'WeaponSounds.LightningGun.SwitchToLightningGun')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
-	MagAmmo=10
 	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BallisticSounds2.M50.M50Cock')
 	ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
@@ -587,57 +583,12 @@ defaultproperties
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightOffset=(Y=-3.000000,Z=18.000000)
-	SightingTime=0.650000
 	MinFixedZoomLevel=0.350000
 	MinZoom=2.000000
 	MaxZoom=16.000000
 	ZoomStages=8
 	GunLength=80.000000
-
-
-	 
-	Begin Object Class=RecoilParams Name=M2020RechargeRecoilParams
-		ViewBindFactor=0.2
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.1
-		YRandFactor=0.1
-		DeclineDelay=0.550000
-		CrouchMultiplier=0.650000
-	End Object
-	RecoilParamsList(0)=RecoilParams'M2020RechargeRecoilParams'
-
-	Begin Object Class=RecoilParams Name=M2020PowerRecoilParams
-		ViewBindFactor=0.2
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.2
-		YRandFactor=0.2
-		DeclineDelay=1.1
-		CrouchMultiplier=0.650000
-	End Object
-	RecoilParamsList(1)=RecoilParams'M2020PowerRecoilParams'
-
-	Begin Object Class=RecoilParams Name=M2020OfflineRecoilParams
-		ViewBindFactor=0.2
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.0500000
-		YRandFactor=0.0500000
-		DeclineDelay=0.3
-		CrouchMultiplier=0.650000
-	End Object
-	RecoilParamsList(2)=RecoilParams'M2020OfflineRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=64,Max=1280)
-		ADSMultiplier=0.15
-		SprintOffset=(Pitch=-3000,Yaw=-4096)
-		JumpOffset=(Pitch=-6000,Yaw=2000)
-		ChaosDeclineTime=1.250000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'M2020WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.M2020GaussPrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	PutDownTime=0.80000

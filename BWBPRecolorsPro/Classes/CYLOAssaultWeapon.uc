@@ -229,47 +229,18 @@ defaultproperties
 	HighHeatSound=Sound'PackageSounds4Pro.CYLO.CYLO-HighHeat'
 	MedHeatSound=Sound'PackageSounds4Pro.CYLO.CYLO-MedHeat'
 	bWT_Hazardous=True
-
 	BigIconMaterial=Texture'BallisticRecolors3TexPro.CYLO.BigIcon_CYLOMk2'
-
 	ManualLines(0)="Automatic explosive round fire. While these rounds completely lack any penetrative ability, they explode on impact with players, dealing 70% of their base damage to nearby targets. This makes the CYLO Firestorm V effective against groups of players."
 	ManualLines(1)="Melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab."
 	ManualLines(2)="Not recommended for close range use as its explosive rounds can damage the user. Effective at medium range."
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.2;0.7;0.4")
 	MeleeFireClass=Class'BWBPRecolorsPro.CYLOFirestormMeleeFire'
-	MagAmmo=26
 	WeaponModes(1)=(bUnavailable=True)
 	SightPivot=(Pitch=900)
 	SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
 	bNoCrosshairInScope=True
 	GunLength=16.500000
-		 
-	Begin Object Class=RecoilParams Name=FirestormRecoilParams
-		ViewBindFactor=0.4
-		XCurve=(Points=(,(InVal=0.1,OutVal=0.09),(InVal=0.2,OutVal=0.12),(InVal=0.25,OutVal=0.13),(InVal=0.3,OutVal=0.11),(InVal=0.35,OutVal=0.08),(InVal=0.40000,OutVal=0.050000),(InVal=0.50000,OutVal=-0.020000),(InVal=0.600000,OutVal=-0.040000),(InVal=0.700000,OutVal=0.04),(InVal=0.800000,OutVal=0.070000),(InVal=1.000000,OutVal=0.13)))
-		YCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.220000),(InVal=0.300000,OutVal=0.2600000),(InVal=0.400000,OutVal=0.4000),(InVal=0.500000,OutVal=0.5500),(InVal=0.600000,OutVal=0.620000),(InVal=0.750000,OutVal=0.770000),(InVal=1.000000,OutVal=1.00000)))
-		
-		//hard pull right
-		//XCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.30000),(InVal=0.300000,OutVal=0.35000),(InVal=0.400000,OutVal=0.40000),(InVal=0.500000,OutVal=0.550000),(InVal=0.800000,OutVal=0.740000),(InVal=1.000000,OutVal=1.000000)))
-		//YCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.180000),(InVal=0.300000,OutVal=0.2500000),(InVal=0.400000,OutVal=0.26000),(InVal=0.500000,OutVal=0.30000),(InVal=0.600000,OutVal=0.350000),(InVal=0.750000,OutVal=0.40000),(InVal=1.000000,OutVal=0.600000)))
-		
-		XRandFactor=0.1
-		YRandFactor=0.1
-		DeclineTime=0.4
-		DeclineDelay=0.180000
-	End Object
-	RecoilParamsList(0)=RecoilParams'FirestormRecoilParams'
-
-	Begin Object Class=AimParams Name=FirestormAimParams
-		AimSpread=(Min=16,Max=768)
-		ADSMultiplier=0.3
-		SprintOffset=(Pitch=-3000,Yaw=-8000)
-		AimAdjustTime=0.400000
-		ChaosDeclineTime=0.5
-		ChaosSpeedThreshold=7000.000000
-	End Object
-	AimParamsList(0)=AimParams'FirestormAimParams'
-
+	ParamsClass=Class'CYLOFirestormWeaponParams' 
 	FireModeClass(0)=Class'BWBPRecolorsPro.CYLOFirestormPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.CYLOFirestormSecondaryFire'
 	bShowChargingBar=True

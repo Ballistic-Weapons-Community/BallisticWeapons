@@ -716,7 +716,6 @@ defaultproperties
 	ManualLines(1)="Launches miniature rockets. These rockets deal high damage and good radius damage. The rockets have a short period of low speed before igniting."
 	ManualLines(2)="Effective at long range and against enemies using healing weapons and items."
 
-	SightMoveSpeedFactor=0.8
 	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
@@ -747,14 +746,12 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
 	BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Select')
 	PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
-	MagAmmo=20
 	CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
 	ReloadAnimRate=1.150000
 	ClipHitSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipHit')
 	ClipOutSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipOut')
 	ClipInSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipIn')
 	ClipInFrame=0.650000
-	SightingTime=0.4
 	StartShovelAnim="RLLoadPrep"
 	StartShovelAnimRate=2.000000
 	EndShovelAnim="RLLoadEnd"
@@ -776,26 +773,7 @@ defaultproperties
 	MaxZoom=4.000000
 	ZoomStages=1
 	GunLength=80.000000
-
-	Begin Object Class=RecoilParams Name=LS14RecoilParams
-		ViewBindFactor=0.2
-		XCurve=(Points=(,(InVal=0.150000,OutVal=0.1),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.250000),(InVal=0.600000,OutVal=0.350000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.5)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.20000),(InVal=0.400000,OutVal=0.420000),(InVal=0.600000,OutVal=0.560000),(InVal=0.800000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.050000
-		YRandFactor=0.050000
-		DeclineTime=1.000000
-		DeclineDelay=0.2
-	End Object
-	RecoilParamsList(0)=RecoilParams'LS14RecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=64,Max=256)
-		SprintOffset=(Pitch=-1000,Yaw=-2048)
-		JumpOffset=(Pitch=-6000,Yaw=2000)
-		ChaosDeclineTime=0.800000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-	 
+	ParamsClass=Class'LS14WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.LS14PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.LS14SecondaryFire'
 	SelectAnimRate=1.500000
