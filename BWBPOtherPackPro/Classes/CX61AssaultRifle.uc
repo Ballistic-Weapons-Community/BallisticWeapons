@@ -265,7 +265,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-	MagAmmo=32
 	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BallisticSounds3.SAR.SAR-Cock')
 	ReloadAnimRate=1.100000
@@ -277,34 +276,12 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Flamethrower",ModeID="WM_FullAuto")
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=600)
 	SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
 	SightDisplayFOV=25.000000
 	GunLength=16.000000
-
-	Begin Object Class=RecoilParams Name=CX61RecoilParams
-		ViewBindFactor=0.4
-		XCurve=(Points=(,(InVal=0.2,OutVal=-0.03),(InVal=0.4,OutVal=0.11),(InVal=0.5,OutVal=0.13),(InVal=0.6,OutVal=0.15),(InVal=0.8,OutVal=0.16),(InVal=1.000000)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.190000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.620000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05000
-		YRandFactor=0.05000
-		DeclineTime=0.5
-		DeclineDelay=0.135000
-	End Object
-	RecoilParamsList(0)=RecoilParams'CX61RecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=16,Max=768)
-		ADSMultiplier=0.200000
-		SprintOffset=(Pitch=-3000,Yaw=-4000)
-		AimAdjustTime=0.400000
-		ChaosDeclineTime=1.250000
-		ChaosSpeedThreshold=15000.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'CX61WeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.CX61PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.CX61SecondaryFire'
 	SelectAnimRate=1.400000

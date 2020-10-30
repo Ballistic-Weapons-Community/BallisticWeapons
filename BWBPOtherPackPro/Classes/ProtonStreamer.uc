@@ -9,12 +9,12 @@
 //=============================================================================
 class ProtonStreamer extends BallisticWeapon;
 
-var	ProtonStreamEffect		StreamEffect;
-var	bool							bShieldOn;
+var	ProtonStreamEffect			StreamEffect;
+var	bool						bShieldOn;
 var	Sound 						ShieldOnSound, ShieldOffSound;
-var	float							LastShieldTick;
-var	Pawn							DrainTarget, BoostTarget;
-var ProtonGameRules			myRules;
+var	float						LastShieldTick;
+var	Pawn						DrainTarget, BoostTarget;
+var ProtonGameRules				myRules;
 
 replication
 {
@@ -307,49 +307,26 @@ function float GetAIRating()
 
 defaultproperties
 {
-     BigIconMaterial=Texture'BWBPOtherPackTex2.ProtonPack.BigIcon_ProtonPack'
-     BigIconCoords=(Y1=32,X2=512,Y2=225)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Energy=True
-     bWT_Heal=True
-     SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BWBPOtherPackSound.ProtonPack.Proton-Pullout')
-     PutDownSound=(Sound=Sound'BWBPOtherPackSound.ProtonPack.Proton-Putaway')
-     MagAmmo=100
-     bNoMag=True
-     bNonCocking=True
-     WeaponModes(0)=(ModeName="Proton Stream",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Neutrino Amplification",ModeID="WM_FullAuto")
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     
-     bUseSights=False
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=1024,Roll=-768)
-     SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
-     SightDisplayFOV=40.000000
-     SightingTime=0.200000
-
-	Begin Object Class=RecoilParams Name=ProtonRecoilParams
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=-0.045000),(InVal=0.300000,OutVal=0.100000),(InVal=0.600000,OutVal=-0.200000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.250000
-		YRandFactor=0.250000
-		DeclineTime=1.500000
-		DeclineDelay=0.250000
-		HipMultiplier=3.5
-	End Object
-	RecoilParamsList(0)=RecoilParams'ProtonRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=16,Max=2560)
-		ADSMultiplier=0.000000
-		SprintOffset=(Pitch=-1024,Yaw=-1024)
-		ChaosDeclineTime=1.250000
-		ChaosSpeedThreshold=15000.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	BigIconMaterial=Texture'BWBPOtherPackTex2.ProtonPack.BigIcon_ProtonPack'
+	BigIconCoords=(Y1=32,X2=512,Y2=225)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Energy=True
+	bWT_Heal=True
+	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
+	BringUpSound=(Sound=Sound'BWBPOtherPackSound.ProtonPack.Proton-Pullout')
+	PutDownSound=(Sound=Sound'BWBPOtherPackSound.ProtonPack.Proton-Putaway')
+	bNoMag=True
+	bNonCocking=True
+	WeaponModes(0)=(ModeName="Proton Stream",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Neutrino Amplification",ModeID="WM_FullAuto")
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bUseSights=False
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=1024,Roll=-768)
+	SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
+	SightDisplayFOV=40.000000
+	ParamsClass=Class'ProtonWeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.ProtonStreamPrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.ProtonStreamSecondaryFire'
 	SelectAnimRate=1.250000

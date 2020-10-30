@@ -639,7 +639,6 @@ defaultproperties
 	MeleeFireClass=Class'BWBPSomeOtherPack.TrenchGunMeleeFire'
 	BringUpSound=(Sound=Sound'BallisticSounds2.M290.M290Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
-	MagAmmo=2
 	CockAnimRate=0.700000
 	SingleReloadAnimRate=1.000000
 	ReloadAnimRate=1.250000
@@ -651,27 +650,10 @@ defaultproperties
 	CurrentWeaponMode=0
 	SightPivot=(Pitch=256)
 	SightOffset=(X=30.000000,Y=11.500000,Z=43.500000)
-	SightingTime=0.250000
 	GunLength=60.000000
 	LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-	 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.65
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
-		YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.100000
-		YRandFactor=0.200000
-		MaxRecoil=16384.000000
-		DeclineTime=0.900000
-		DeclineDelay=0.400000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'TrenchGunWeaponParams'
 	FireModeClass(0)=Class'BWBPSomeOtherPack.TrenchGunPrimaryFire'
 	FireModeClass(1)=Class'BWBPSomeOtherPack.TrenchGunSecondaryFire'
 	SelectAnimRate=2.000000

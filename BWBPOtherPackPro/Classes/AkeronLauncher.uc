@@ -114,9 +114,6 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 defaultproperties
 {
      PanicThreshold=4.000000
-     PlayerSpeedFactor=0.90000
-     PlayerJumpFactor=0.90000
-     SightMoveSpeedFactor=0.8
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BWBPOtherPackTex3.Akeron.BigIcon_Akeron'
@@ -149,27 +146,11 @@ defaultproperties
      bNoMeshInScope=True
      bNoCrosshairInScope=True
      SightOffset=(X=-30.000000,Y=-17.000000,Z=15.000000)
-     SightingTime=0.500000
+
      MinZoom=2.000000
      MaxZoom=8.000000
      ZoomStages=2
-
-     Begin Object Class=RecoilParams Name=ArenaRecoilParams
-          ViewBindFactor=0.75
-          DeclineTime=1.000000
-     End Object
-     RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-     Begin Object Class=AimParams Name=ArenaAimParams
-          AimSpread=(Min=64,Max=512)
-          ADSMultiplier=0.650000
-          SprintOffset=(Pitch=-6000,Yaw=-8000)
-          JumpOffset=(Pitch=-6000,Yaw=-1500)
-          AimAdjustTime=1.000000
-          ChaosSpeedThreshold=500.000000
-     End Object
-     AimParamsList(0)=AimParams'ArenaAimParams'
-
+     ParamsClass=Class'AkeronWeaponParams'
      FireModeClass(0)=Class'BWBPOtherPackPro.AkeronPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.AkeronSecondaryFire'
      SelectAnimRate=0.600000

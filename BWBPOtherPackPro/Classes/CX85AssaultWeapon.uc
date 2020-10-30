@@ -367,10 +367,7 @@ defaultproperties
 	DrumOutSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
 	ReloadAltAnim="ReloadAlt"
 	AltAmmo=6
-	SightMoveSpeedFactor=0.8
 	BaseTrackDist=3368
-	PlayerSpeedFactor=0.9
-	PlayerJumpFactor=0.9
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBPOtherPackTex3.CX85.BigIcon_CX85'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -382,7 +379,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;1.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
-	MagAmmo=50
 	CockAnimRate=1.200000
 	CockSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6Cock',Volume=0.650000)
 	ClipHitSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-ClipHit')
@@ -403,25 +399,7 @@ defaultproperties
 	MaxZoom=8.000000
 	ZoomStages=2
 	GunLength=72.000000
-	 
-	Begin Object Class=RecoilParams Name=CX85RecoilParams
-		ViewBindFactor=0.3
-		XCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=0.120000),(InVal=0.400000,OutVal=0.180000),(InVal=0.800000,OutVal=0.220000),(InVal=1.000000,OutVal=0.250000)))
-		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.500000,OutVal=0.445000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05000
-		YRandFactor=0.05000
-		DeclineTime=1.000000
-		DeclineDelay=0.170000
-	End Object
-	RecoilParamsList(0)=RecoilParams'CX85RecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=16,Max=768)
-		ADSMultiplier=0.15
-		SprintOffset=(Pitch=-3000,Yaw=-8000)
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-	 
+	ParamsClass=Class'CX85WeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.CX85PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.CX85SecondaryFire'
 	PutDownTime=0.700000

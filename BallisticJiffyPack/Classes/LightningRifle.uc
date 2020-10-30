@@ -56,11 +56,9 @@ defaultproperties
      ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
      ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=20.000000
-     SightMoveSpeedFactor=0.8
 	bNoMeshInScope=True
      bNoCrosshairInScope=True
      SightOffset=(Z=51.000000)
-     SightingTime=0.450000
 	MinZoom=2.000000
      MaxZoom=8.000000
      ZoomStages=4
@@ -74,43 +72,18 @@ defaultproperties
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
      BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Pickup')
      PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
-     MagAmmo=4
      ReloadAnimRate=1.000000
      ClipOutSound=(Sound=Sound'PackageSounds4ProExp.LAW.Law-TubeLock')
      ClipInSound=(Sound=Sound'PackageSounds4Pro.BeamCannon.Beam-Up')
      ClipInFrame=0.650000
      bNonCocking=True
-     WeaponModes(0)=(ModeName="Semi-Automatic")
+     WeaponModes(0)=(ModeName="Semi")
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-	PlayerSpeedFactor=0.950000
-     PlayerJumpFactor=0.950000
      GunLength=60.000000
-	BobDamping=0.800000
-
-     Begin Object Class=RecoilParams Name=ArenaRecoilParams
-          ViewBindFactor=0.500000
-          YawFactor=0.100000
-          XRandFactor=0.400000
-          YRandFactor=0.800000
-          DeclineDelay=1.000000
-          DeclineTime=0.800000
-          CrouchMultiplier=0.6
-     End Object
-     RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-     Begin Object Class=AimParams Name=ArenaAimParams
-          AimSpread=(Min=192,Max=1024)
-          ADSMultiplier=0.35
-          AimAdjustTime=0.750000
-          ChaosSpeedThreshold=1200.000000
-          ChaosDeclineTime=0.750000
-          SprintOffSet=(Pitch=-8192,Yaw=-12288)
-          JumpOffSet=(Pitch=-6000,Yaw=2000)
-     End Object
-     AimParamsList(0)=AimParams'ArenaAimParams'
-
+     BobDamping=0.800000
+     ParamsClass=Class'LightningWeaponParams'
      FireModeClass(0)=Class'BallisticJiffyPack.LightningPrimaryFire'
      FireModeClass(1)=Class'BallisticJiffyPack.LightningSecondaryFire'
      PutDownTime=0.700000

@@ -713,9 +713,6 @@ defaultproperties
 	GLLoadGrenadeBones(0)=(GrenName="GrenadeHandle")
 	GLLoadGrenadeBones(1)=(GrenName="HeldGrenade")
 	GLLoadGrenadeBones(2)=(GrenName="EmptyGrenade")
-	PlayerSpeedFactor=0.900000
-	PlayerJumpFactor=0.900000
-	SightMoveSpeedFactor=0.8
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBPJiffyPackTex.TacBuster.BigIcon_AA12'
 	BigIconCoords=(Y1=40)
@@ -729,7 +726,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
-	MagAmmo=15
 	CockSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.Cock',Volume=1.400000)
 	ReloadAnimRate=0.750000
 	ClipOutSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.MagOut',Volume=1.300000)
@@ -745,28 +741,8 @@ defaultproperties
 	SightOffset=(X=60.000000,Y=5.690000,Z=35.820000)
 	bNoCrosshairInScope=True
 	SightDisplayFOV=40.000000
-	SightingTime=0.550000
 	GunLength=48.000000
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.4
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.300000,OutVal=0.150000),(InVal=0.500000,OutVal=0.250000),(InVal=0.750000,OutVal=0.30000),(InVal=1.000000,OutVal=0.350000)))
-		YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.100000
-		YRandFactor=0.100000
-		MaxRecoil=8192.000000
-		DeclineDelay=0.4
-		DeclineTime=1.0	
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=16,Max=512)
-		SprintOffset=(Pitch=-4096,Yaw=-4096)
-		JumpOffset=(Pitch=-1024,Yaw=-1024)
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-	 
+	ParamsClass=Class'ARWeaponParams'
 	FireModeClass(0)=Class'BallisticJiffyPack.ARPrimaryFire'
 	FireModeClass(1)=Class'BallisticJiffyPack.ARSecondaryFire'
 	SelectAnimRate=0.900000

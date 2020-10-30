@@ -222,6 +222,7 @@ defaultproperties
 	SightOffset=(X=25.000000,Y=0.030000,Z=8.000000)
 	SightDisplayFOV=40.000000
 	GunLength=80.000000
+	ParamsClass=Class'R9WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.R9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.R9SecondaryFire'
 	SelectAnimRate=1.100000

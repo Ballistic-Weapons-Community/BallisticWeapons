@@ -310,7 +310,6 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     PlayerSpeedFactor=1.15000
 	 ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
      AltDeployable=(dClass=Class'BWBPSomeOtherPack.FlameSwordBarrier',WarpInTime=0.0010000,SpawnOffset=18,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
@@ -324,11 +323,10 @@ defaultproperties
      BringUpSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Equip',Volume=2.000000)
 	 PutDownSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Unequip',Volume=2.000000)
 	 LoopAmbientSound=Sound'BallisticSounds2.RX22A.RX22A.RX22A-FireLoop'
-     MagAmmo=1
      bNoMag=True
 	 GunLength=0.000000
-	 InventorySize=12
-     bAimDisabled=True
+	 bAimDisabled=True
+	 ParamsClass=Class'FlameSwordWeaponParams'
      FireModeClass(0)=Class'BWBPSomeOtherPack.FlameSwordPrimaryFire'
      FireModeClass(1)=Class'BWBPSomeOtherPack.FlameSwordSecondaryFire'
 	 MeleeFireClass=Class'BWBPSomeOtherPack.FlameSwordMeleeFire'

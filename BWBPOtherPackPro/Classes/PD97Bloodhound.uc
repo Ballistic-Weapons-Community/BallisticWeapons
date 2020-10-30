@@ -294,7 +294,6 @@ defaultproperties
 	SpareShellBones(3)="SpareShell4"
 	SpareShellBones(4)="SpareShell5"
 	bShouldDualInLoadout=False
-	InventorySize=6
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BWBPOtherPackTex.Bloodhound.BigIcon_PD97'
@@ -308,7 +307,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-	MagAmmo=5
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BallisticSounds2.AM67.AM67-Cock')
 	ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
@@ -320,26 +318,7 @@ defaultproperties
 	SightOffset=(X=-10.000000,Y=-4.400000,Z=12.130000)
 	SightDisplayFOV=40.000000
 	SightingTime=0.200000
-
-	 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.45
-		XRandFactor=0.10000
-		YRandFactor=0.10000
-		MaxRecoil=8192.000000
-		DeclineTime=1.500000
-		DeclineDelay=0.500000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.150000
-		JumpChaos=0.200000
-		AimAdjustTime=0.450000
-		ChaosDeclineTime=0.450000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	ParamsClass=Class'PD97WeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.PD97PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.PD97SecondaryFire'
 	PutDownTime=0.600000

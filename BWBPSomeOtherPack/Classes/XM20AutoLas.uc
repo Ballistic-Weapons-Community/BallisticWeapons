@@ -439,7 +439,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
 	BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Select')
 	PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
-	MagAmmo=30
 	CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
 	ReloadAnimRate=1.000000
 	ClipHitSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-LeverDown')
@@ -450,26 +449,7 @@ defaultproperties
 	SightOffset=(X=20.000000,Y=16.8500000,Z=29.000000)
 	SightDisplayFOV=15
 	GunLength=80.000000
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.35
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.150000,OutVal=0.020000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.11),(InVal=0.400000,OutVal=0.130000),(InVal=0.600000,OutVal=0.20000),(InVal=0.800000,OutVal=0.25000),(InVal=1.000000,OutVal=0.30000)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.500000,OutVal=0.600000),(InVal=0.600000,OutVal=0.670000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05
-		YRandFactor=0.05
-		DeclineTime=0.5
-		DeclineDelay=0.15
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'	 
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=64,Max=768)
-		SprintOffSet=(Pitch=-1000,Yaw=-2048)
-		ChaosDeclineTime=0.5
-		ChaosSpeedThreshold=5000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-	
+	ParamsClass=Class'XM20WeaponParams'
 	FireModeClass(0)=Class'BWBPSomeOtherPack.XM20PrimaryFire'
 	FireModeClass(1)=Class'BWBPSomeOtherPack.XM20SecondaryFire'
 	SelectAnimRate=1.500000

@@ -692,7 +692,6 @@ defaultproperties
      MeleeFireClass=Class'WrenchMeleeFire'
      BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
      PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
-     MagAmmo=1
      bNoMag=True
      WeaponModes(0)=(ModeName="Boost Pad",bUnavailable=False,ModeID="WM_FullAuto")
      WeaponModes(1)=(ModeName="Teleporter",bUnavailable=False,ModeID="WM_SemiAuto")
@@ -700,10 +699,9 @@ defaultproperties
      WeaponModes(3)=(ModeName="Shield Generator",ModeID="WM_FullAuto")
      WeaponModes(4)=(ModeName="Ammo Crate",ModeID="WM_FullAuto")
      WeaponModes(5)=(ModeName="Minigun Turret",ModeID="WM_SemiAuto")
-     
      GunLength=0.000000
      bAimDisabled=True
-	 InventorySize=12
+	 ParamsClass=Class'WrenchWeaponParams'
      FireModeClass(0)=Class'WrenchPrimaryFire'
      FireModeClass(1)=Class'WrenchSecondaryFire'
      SelectAnimRate=1.250000

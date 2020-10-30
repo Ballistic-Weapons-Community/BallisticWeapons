@@ -217,30 +217,20 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     PlayerSpeedFactor=0.950000
 	 AimDisplacementBlockThreshold=40.00
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticProTextures.Misc.BigIcon_Shield'
      BigIconCoords=(X1=180,Y1=0,X2=320,Y2=255)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=2
      ManualLines(0)="Attacks with the weapon and shield. The shield continues to block whilst attacking."
      ManualLines(1)="Prepared strike with the weapons."
      ManualLines(2)="The ballistic shield reduces movement speed whilst active."
      SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
-     MagAmmo=1
      bNoMag=True
 	 GunLength=0.000000
-	 
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimAdjustTime=0.350000
-		AimSpread=(Min=32,Max=256)
-		ChaosSpeedThreshold=3000.000000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-
+	 ParamsClass=Class'BallisticShieldWeaponParams'
      FireModeClass(0)=Class'BWBPSomeOtherPack.BallisticShieldPrimaryFire'
      FireModeClass(1)=Class'BWBPSomeOtherPack.BallisticShieldSecondaryFire'
      PutDownTime=0.500000
@@ -265,5 +255,4 @@ defaultproperties
      ItemName="Civilian Riot Shield"
      Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.JWRiotShield_FP'
      DrawScale=1.250000
-	 DisplaceDurationMult=0.0
 }

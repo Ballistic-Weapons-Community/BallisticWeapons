@@ -570,7 +570,6 @@ defaultproperties
 	ReleaseStateAnim[5]="ReloadMagReleaseState1"	//7 ammo
 	ReloadAnim="ReloadStateFinish"
 	GunArrowBone="1"
-	SightMoveSpeedFactor=0.8
 	ArrowBones(0)=(BoneName="2")
 	ArrowBones(1)=(BoneName="3")
 	ArrowBones(2)=(BoneName="4")
@@ -597,7 +596,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-	MagAmmo=8
 	CockAnim='CockRotateMag'
 	CockAnimRate=1.250000
 	ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
@@ -612,29 +610,10 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-2.000000,Y=5.000000,Z=5.200000)
 	SightDisplayFOV=40.000000
-	SightingTime=0.450000
 	MinZoom=2.000000
 	MaxZoom=16.000000
 	ZoomStages=3
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.5
-		XRandFactor=0.050000
-		YRandFactor=0.050000
-		MaxRecoil=4096.000000
-		DeclineTime=1.500000
-		DeclineDelay=0.500000
-	End Object
-	RecoilParamsList(0)=RecoilParams'ArenaRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=64,Max=512)
-		ADSMultiplier=0.4
-		JumpChaos=0.200000
-		AimAdjustTime=0.450000
-	End Object
-	AimParamsList(0)=AimParams'ArenaAimParams'
-	
+	ParamsClass=Class'BX85WeaponParams'
 	CockSound=(Sound=Sound'BWBPOtherPackSound.XBow.CockFast',Volume=1.200000)
 	FireModeClass(0)=Class'BWBPOtherPackPro.BX85PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'

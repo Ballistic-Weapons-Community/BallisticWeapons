@@ -92,7 +92,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.400000,RelativeSize=0.300000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=45.000000,Max=45.000000),Y=(Min=45.000000,Max=45.000000),Z=(Min=45.000000,Max=45.000000))
-         InitialParticlesPerSecond=50.000000
+         InitialParticlesPerSecond=80.000000
          DrawStyle=PTDS_AlphaBlend
          Texture=Texture'BWBPOtherPackTex.CX61.CX61Gas'
          SecondsBeforeInactive=0.000000
@@ -129,7 +129,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.400000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Max=1.500000),Y=(Max=1.500000),Z=(Max=1.500000))
-         InitialParticlesPerSecond=10.000000
+         InitialParticlesPerSecond=20.000000
          DrawStyle=PTDS_Darken
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.370000,Max=0.370000)

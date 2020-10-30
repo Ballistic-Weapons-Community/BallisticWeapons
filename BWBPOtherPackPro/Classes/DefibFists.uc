@@ -436,17 +436,16 @@ defaultproperties
      BigIconMaterial=Texture'BWBPOtherPackTex.DefibFists.BigIcon_DefibFists'
      BigIconCoords=(X1=96,Y1=10,X2=418,Y2=245)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=6
      bWT_Heal=True
      ManualLines(0)="Strike with the gauntlets. Deals minor damage when charged and blinds the opponent for a short duration. When discharged, deals poor damage. Allies struck by this attack will be healed. A successful strike depletes charge."
      ManualLines(1)="Uppercut with the gauntlets. Deals good damage with some charge remaining. Allies struck will be healed. With over 55% charge, gains power, discharging a shockwave which increases the effectiveness of the attack and causes some radius damage. A successful or empowered strike depletes charge."
      ManualLines(2)="Holding Weapon Function allows the defibrillators to block. This generates a frontal shield which reduces damage from attacks by 35. The weapon will also project pulses which inflict poor healing or damage upon nearby targets. Melee attacks are blocked regardless of charge. Charge drains over time with the shield engaged.||Effective in a defensive and supporting role."
      SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     MagAmmo=100
      WeaponModes(0)=(ModeName="Strikes")
      WeaponModes(1)=(ModeName="KILL!",ModeID="WM_FullAuto")
      GunLength=0.000000
-     bAimDisabled=True
+	 bAimDisabled=True
+	 ParamsClass=Class'DefibWeaponParams'
      FireModeClass(0)=Class'BWBPOtherPackPro.DefibFistsPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.DefibFistsSecondaryFire'
      PutDownTime=0.660000

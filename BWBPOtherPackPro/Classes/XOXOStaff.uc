@@ -337,102 +337,64 @@ function float SuggestDefenseStyle()	{	return -0.2;	}
 
 defaultproperties
 {
-     ShockwaveDamageRadius=1024
-     ShockwaveDamage=80
-     ShockwaveMomentum=40000
-     ShockwaveDamageType=Class'BWBPOtherPackPro.DTXOXOShockwave'
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBPOtherPackTex.XOXO.BigIcon_XOXO'
-     BigIconCoords=(Y1=16,Y2=220)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     ManualLines(0)="The Bomb firemode shoots Xes and Os, that explode and deal relatively high damage on direct hit and also release smaller, shrapnel-like Xes and Os that deal some area damage. The projectile travels relatively slow though and has to deal with noticeable trajectory.|The Fast Charge has high RPM, deals good damage and travels in a straight line. Gains damage over range.|Lust creates a shockwave, damaging and knocking back nearby enemies. Every shockwave has vampiristic abilities, healing you and random teammates on the map, no matter wher they are, the health of your enemies will be evenly distributed between you and your team. This mode costs Lewdness to use."
-     ManualLines(1)="The Stream, with its spazzing movement, performs rather poorly on medium range, on the other hand, continously hitting someone with it at close range increases the base damage until you next miss.. Aiming it at teammates however enables its homing capability, which makes it rather convenient to heal them."
-     ManualLines(2)="Has a melee attack.|By killing enemies, you can collect their lewdness (similar to Dark Star and Nova Staff souls) and fill up your luv-o-meter. Filling it up, makes it possible to activate love-mode by pressing the Weapon Special-Key. This gives you damage resistance, improved jump, reduces the Lewdness cost of Lust Shockwave and allows the Sexplosion to be used.||The Sexplosion is an impressive firemode, which creates a gargantuan ball of love, acting bomb-like, but much slower. Upon impact, it explodes violently and kills pretty much everyone in proximity. The Sexplosion however wastes the complete charge of Le Big Xoxo and ends Love-Mode. Think twice, before wasting it!"
-     SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.0;1.0;1.0")
-     MeleeFireClass=Class'BWBPOtherPackPro.XOXOMeleeFire'
-     BringUpSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-Pullout')
-     PutDownSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-Putdown')
-     MagAmmo=70
-     ReloadAnimRate=1.250000
-     ClipHitSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemHit',Volume=0.700000)
-     ClipOutSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-MagOut',Volume=0.700000)
-     ClipInSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-MagIn',Volume=0.700000)
-     ClipInFrame=0.700000
-     bNonCocking=True
-     WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Bomb",ModeID="WM_FullAuto",RecoilParamsIndex=1,AimParamsIndex=1)
-     WeaponModes(2)=(ModeName="Lust Shockwave",ModeID="WM_SemiAuto",Value=1.000000)
-     WeaponModes(3)=(ModeName="Sexplosion",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
-     CurrentWeaponMode=0
-     SightPivot=(Pitch=768)
-     SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
-     SightDisplayFOV=40.000000
-     SightingTime=0.300000
-     GunLength=128.000000
-
-
-	Begin Object Class=RecoilParams Name=XOXOFastRecoilParams
-		ViewBindFactor=0.35
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=0.045000),(InVal=0.300000,OutVal=0.150000),(InVal=0.600000,OutVal=0.210000),(InVal=0.700000,OutVal=0.150000),(InVal=1.000000)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.200000,OutVal=0.200000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.10000
-		YRandFactor=0.10000
-		DeclineTime=1.500000
-		DeclineDelay=0.250000
-	End Object
-	RecoilParamsList(0)=RecoilParams'XOXOFastRecoilParams'
-
-	Begin Object Class=RecoilParams Name=XOXOBombRecoilParams
-		ViewBindFactor=0.35
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=0.045000),(InVal=0.300000,OutVal=0.150000),(InVal=0.600000,OutVal=0.210000),(InVal=0.700000,OutVal=0.150000),(InVal=1.000000)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.200000,OutVal=0.200000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.8
-		YRandFactor=1.5
-		DeclineDelay=0.8
-		DeclineTime=1.500000
-	End Object
-	RecoilParamsList(1)=RecoilParams'XOXOBombRecoilParams'
-
-	Begin Object Class=AimParams Name=ArenaFastAimParams
-		SprintOffset=(Pitch=-1024,Yaw=-1024)
-		ChaosDeclineTime=1.250000
-	End Object
-	AimParamsList(0)=AimParams'ArenaFastAimParams'
-
-	Begin Object Class=AimParams Name=ArenaBombAimParams
-		AimSpread=(Min=128,Max=1024)
-		SprintOffset=(Pitch=-1024,Yaw=-1024)
-		ChaosDeclineTime=1.250000
-	End Object
-	AimParamsList(1)=AimParams'ArenaBombAimParams'
-	 
-     FireModeClass(0)=Class'BWBPOtherPackPro.XOXOPrimaryFire'
-     FireModeClass(1)=Class'BWBPOtherPackPro.XOXOSecondaryFire'
-     PutDownAnimRate=1.350000
-     PutDownTime=0.600000
-     BringUpTime=0.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.70000
-     CurrentRating=0.70000
-     bShowChargingBar=True
-     Description="Le Big Xoxo. Not a soul knows where this artifact came from or who might have created it. It might have been forged by an ancient, forgotten culture or found its way to us by having traveled through the vastness of space before becoming a fabulous, longish meteor. What matters in the end is, that it is an absolutely marvelous addition to the weapon roster, providing completely diverse firemodes, the ability to deal enormous amounts of damage, heal teammates and even improve upon killing enemies and sucking up their lewdness. Remember: Don't judge a book by its cover. (Although I don't see how this ABSOLUTELY ASTONISHING COVER could possibly lead anyone to underestimate Le Big Xoxo's power.)"
-     Priority=38
-     HudColor=(B=225,G=155,R=235)
-     InventoryGroup=5
-     GroupOffset=2
-     PickupClass=Class'BWBPOtherPackPro.XOXOPickup'
-     PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-9.000000)
-     AttachmentClass=Class'BWBPOtherPackPro.XOXOAttachment'
-     IconMaterial=Texture'BWBPOtherPackTex.XOXO.SmallIcon_XOXO'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="Le Big XOXO"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightSaturation=64
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBPOtherPackAnim.XOXO_FP'
-     DrawScale=0.300000
-     bFullVolume=True
-     SoundRadius=32.000000
+	ShockwaveDamageRadius=1024
+	ShockwaveDamage=80
+	ShockwaveMomentum=40000
+	ShockwaveDamageType=Class'BWBPOtherPackPro.DTXOXOShockwave'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBPOtherPackTex.XOXO.BigIcon_XOXO'
+	BigIconCoords=(Y1=16,Y2=220)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	ManualLines(0)="The Bomb firemode shoots Xes and Os, that explode and deal relatively high damage on direct hit and also release smaller, shrapnel-like Xes and Os that deal some area damage. The projectile travels relatively slow though and has to deal with noticeable trajectory.|The Fast Charge has high RPM, deals good damage and travels in a straight line. Gains damage over range.|Lust creates a shockwave, damaging and knocking back nearby enemies. Every shockwave has vampiristic abilities, healing you and random teammates on the map, no matter wher they are, the health of your enemies will be evenly distributed between you and your team. This mode costs Lewdness to use."
+	ManualLines(1)="The Stream, with its spazzing movement, performs rather poorly on medium range, on the other hand, continously hitting someone with it at close range increases the base damage until you next miss.. Aiming it at teammates however enables its homing capability, which makes it rather convenient to heal them."
+	ManualLines(2)="Has a melee attack.|By killing enemies, you can collect their lewdness (similar to Dark Star and Nova Staff souls) and fill up your luv-o-meter. Filling it up, makes it possible to activate love-mode by pressing the Weapon Special-Key. This gives you damage resistance, improved jump, reduces the Lewdness cost of Lust Shockwave and allows the Sexplosion to be used.||The Sexplosion is an impressive firemode, which creates a gargantuan ball of love, acting bomb-like, but much slower. Upon impact, it explodes violently and kills pretty much everyone in proximity. The Sexplosion however wastes the complete charge of Le Big Xoxo and ends Love-Mode. Think twice, before wasting it!"
+	SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.0;1.0;1.0")
+	MeleeFireClass=Class'BWBPOtherPackPro.XOXOMeleeFire'
+	BringUpSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-Pullout')
+	PutDownSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-Putdown')
+	ReloadAnimRate=1.250000
+	ClipHitSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemHit',Volume=0.700000)
+	ClipOutSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-MagOut',Volume=0.700000)
+	ClipInSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-MagIn',Volume=0.700000)
+	ClipInFrame=0.700000
+	bNonCocking=True
+	WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Bomb",ModeID="WM_FullAuto",RecoilParamsIndex=1,AimParamsIndex=1)
+	WeaponModes(2)=(ModeName="Lust Shockwave",ModeID="WM_SemiAuto",Value=1.000000)
+	WeaponModes(3)=(ModeName="Sexplosion",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
+	CurrentWeaponMode=0
+	SightPivot=(Pitch=768)
+	SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
+	SightDisplayFOV=40.000000
+	GunLength=128.000000
+	ParamsClass=Class'XOXOWeaponParams'
+	FireModeClass(0)=Class'BWBPOtherPackPro.XOXOPrimaryFire'
+	FireModeClass(1)=Class'BWBPOtherPackPro.XOXOSecondaryFire'
+	PutDownAnimRate=1.350000
+	PutDownTime=0.600000
+	BringUpTime=0.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.70000
+	CurrentRating=0.70000
+	bShowChargingBar=True
+	Description="Le Big XOXO. Not a soul knows where this artifact came from or who might have created it. It might have been forged by an ancient, forgotten culture or found its way to us by having traveled through the vastness of space before becoming a fabulous, longish meteor. What matters in the end is, that it is an absolutely marvelous addition to the weapon roster, providing completely diverse firemodes, the ability to deal enormous amounts of damage, heal teammates and even improve upon killing enemies and sucking up their lewdness. Remember: Don't judge a book by its cover. (Although I don't see how this ABSOLUTELY ASTONISHING COVER could possibly lead anyone to underestimate Le Big Xoxo's power.)"
+	Priority=38
+	HudColor=(B=225,G=155,R=235)
+	InventoryGroup=5
+	GroupOffset=2
+	PickupClass=Class'BWBPOtherPackPro.XOXOPickup'
+	PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-9.000000)
+	AttachmentClass=Class'BWBPOtherPackPro.XOXOAttachment'
+	IconMaterial=Texture'BWBPOtherPackTex.XOXO.SmallIcon_XOXO'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="Le Big XOXO"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightSaturation=64
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.XOXO_FP'
+	DrawScale=0.300000
+	bFullVolume=True
+	SoundRadius=32.000000
 }
