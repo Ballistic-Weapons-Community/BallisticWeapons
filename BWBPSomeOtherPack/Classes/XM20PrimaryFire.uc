@@ -25,7 +25,7 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 		Damage += XM20AutoLas(BW).ManageHeatInteraction(Pawn(Target), HeatPerShot);
 	
 	if (Monster(Target) != None)
-		Damage = Min(Damage, 40);
+		Damage = Min(Damage, 36);
 
 	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 }
@@ -50,7 +50,7 @@ defaultproperties
 	DryFireSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Empty',Volume=1.200000)
 	MuzzleFlashClass=Class'BWBPSomeOtherPack.XM20FlashEmitter'
 	FlashScaleFactor=0.400000
-	RecoilPerShot=128.000000
+	FireRecoil=128.000000
 	FireChaos=0.07000
 	FireAnim="Fire"
 	AimedFireAnim="SightFire"

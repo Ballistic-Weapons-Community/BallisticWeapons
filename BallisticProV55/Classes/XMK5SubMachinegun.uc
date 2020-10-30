@@ -265,11 +265,9 @@ function float SuggestDefenseStyle()	{	return -0.6;	}
 
 defaultproperties
 {
-	AimDisplacementDurationMult=0.75
 	DartLoadAnim="Reload2"
 	DartLoadSound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_LoadDart'
 	DartCockSound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_CockDart'
-	PlayerSpeedFactor=1.050000
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BallisticTextures_25.OA-SMG.BigIcon_OASMG'
@@ -284,7 +282,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="180.0;15.0;0.7;60.0;0.1;0.4;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
-	MagAmmo=32
 	AIRating=0.8
 	CurrentRating=0.8
 	CockAnimPostReload="ReloadEndCock"
@@ -300,26 +297,8 @@ defaultproperties
 	SightZoomFactor=0.85
 	SightOffset=(X=1.000000,Z=17.750000)
 	SightDisplayFOV=25.000000
-	SightingTime=0.250000
 	GunLength=40.000000
-	SprintOffSet=(Pitch=-3000,Yaw=-4000)
-	AimAdjustTime=0.350000
-	
-	AimSpread=16
-	AimDamageThreshold=190.000000
-	ChaosDeclineTime=0.800000
-	ChaosSpeedThreshold=7500.000000
-	ChaosAimSpread=512
-	
-	ViewRecoilFactor=0.35
-	
-	RecoilXCurve=(Points=(,(InVal=0.15,OutVal=0.08),(InVal=0.3,OutVal=0.18),(InVal=0.4,OutVal=0.22),(InVal=0.6,OutVal=0.27),(InVal=0.8,OutVal=0.28),(InVal=1.0,OutVal=0.35)))
-	RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.250000),(InVal=0.30000,OutVal=0.350000),(InVal=0.450000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.05000
-	RecoilYFactor=0.05000
-	RecoilDeclineTime=0.5
-	RecoilDeclineDelay=0.125000
-	
+	ParamsClass=Class'XMK5WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.XMK5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XMK5SecondaryFire'
 	PutDownTime=0.350000

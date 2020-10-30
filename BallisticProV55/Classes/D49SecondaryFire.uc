@@ -26,12 +26,6 @@ simulated function FlashMuzzleFlash()
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
 simulated function bool AllowFire()
 {
-	if (BW.BCRepClass.default.bSightFireOnly && BW.bUseSights && !BW.bScopeView)
-	{
-		if (PlayerController(Instigator.Controller) != None)
-			PlayerController(Instigator.Controller).ClientMessage("You can only fire from sights.");
-		return false;
-	}
 	if (!CheckWeaponMode())
 		return false;
 	if (!CheckReloading())
@@ -93,7 +87,7 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
      FlashBone="tip2"
      FlashScaleFactor=1.200000
-     RecoilPerShot=2048.000000
+     FireRecoil=2048.000000
      FireChaos=0.800000
      XInaccuracy=48.000000
      YInaccuracy=48.000000

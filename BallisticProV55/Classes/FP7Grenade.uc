@@ -43,7 +43,6 @@ defaultproperties
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Grenade=True
-     InventorySize=2
      ManualLines(0)="Throws a grenade overarm. The FP7 grenade explodes into flames, igniting nearby players and obscuring their view for a short period of time. Flames cover the nearby area, dealing damage over time to players standing in them. FP7 flames will push allies of the user outwards, away from the centre of the fire."
      ManualLines(1)="As primary, except the grenade is rolled underarm."
      ManualLines(2)="As with all grenades, Weapon Function or Reload can be used to release the clip and cook the grenade in the user's hand. Care must be taken not to overcook the grenade, lest the user be incinerated. The FP7 grenade is effective in chokepoints, against static positions or when thrown at the enemy en masse."
@@ -51,12 +50,13 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Putaway')
      CurrentWeaponMode=1
+     ParamsClass=Class'FP7WeaponParams'
      FireModeClass(0)=Class'BallisticProV55.FP7PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.FP7SecondaryFire'
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.8500000
      CurrentRating=0.8500000
-     Description="A deadly hand grenade, the FP7 releases a searing blast of flames capable of melting metal with tempatures of over 7500 degrees farenheit. The flames will continue to burn for a while, causing significant damage to anyone caught within the blast radius. FP7's are still widely used against both soldiers and equipment. The weapon was used extensivly during both Human-Skrith wars and is especially famous for its part in the UTC-Cryon battles where the UTC 'Ice Hogs' used it to incinerate Cryon cyborgs."
+     Description="A deadly hand grenade, the FP7 releases a searing blast of flames capable of melting metal with tempatures of over 7500 degrees Fahrenheit. The flames will continue to burn for a while, causing significant damage to anyone caught within the blast radius. FP7s are still widely used against both soldiers and equipment. The weapon was used extensivly during both Human-Skrith wars and is especially famous for its part in the UTC-Cryon battles where the UTC 'Ice Hogs' used it to incinerate Cryon cyborgs."
      Priority=5
      HudColor=(G=50)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

@@ -40,22 +40,28 @@ simulated function PlayIdle()
 	FreezeAnimAt(0.0);
 }
 
+	simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 1.5;
+	AimComponent.AimSpread.Max *= 0.65;
+}
+
 simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
 	if (bLaserOn != default.bLaserOn)
 	{
-		if (bLaserOn)
-		{
-			AimAdjustTime = default.AimAdjustTime * 1.5;
-			ChaosAimSpread *= 0.65;
-		}
-		else
-		{
-			AimAdjustTime = default.AimAdjustTime;
-			ChaosAimSpread = default.ChaosAimSpread;
-		}
+		OnLaserSwitched();
+
 		default.bLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
@@ -70,23 +76,16 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	if (ThirdPersonActor != None)
 		XRS10Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
-	if (bLaserOn)
-	{
-		AimAdjustTime = default.AimAdjustTime * 1.5;
-		ChaosAimSpread *= 0.65;
-	}
-	else
-	{
-		AimAdjustTime = default.AimAdjustTime;
-		ChaosAimSpread = default.ChaosAimSpread;
-	}
+	OnLaserSwitched();
 
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
 }
 
 simulated function ClientSwitchLaser()
-{
+{		
+	OnLaserSwitched();
+
 	if (bLaserOn)
 	{
 		SpawnLaserDot();
@@ -229,13 +228,10 @@ simulated event RenderOverlays( Canvas Canvas )
 }
 
 // Change some properties when using sights...
-simulated function SetScopeBehavior()
+simulated function UpdateNetAim()
 {
-	super.SetScopeBehavior();
-
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
-
 
 simulated function PlayCocking(optional byte Type)
 {
@@ -390,7 +386,7 @@ defaultproperties
 	bSilenced=True
 	AIRating=0.85
 	CurrentRating=0.85
-	AimDisplacementDurationMult=0.5
+
 	SilencerBone="Silencer"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"
@@ -400,7 +396,6 @@ defaultproperties
 	SilencerOffTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
 	LaserOnSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
 	LaserOffSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
-	PlayerSpeedFactor=1.050000
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XRS10'
@@ -418,31 +413,14 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipout')
 	ClipInSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipin')
 	ClipInFrame=0.650000
-	
 	WeaponModes(0)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=5.000000)
 	WeaponModes(1)=(bUnavailable=True)
     WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 	CurrentWeaponMode=0
-	
 	SightOffset=(X=-15.000000,Z=9.500000)
 	SightDisplayFOV=60.000000
-	SightingTime=0.200000
 	SightZoomFactor=0.85
-	HipRecoilFactor=1
-	SprintOffSet=(Pitch=-3000,Yaw=-4000)
-	AimAdjustTime=0.450000
-	
-	SightAimFactor=2
-	
-	ViewRecoilFactor=0.6
-	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.05),(InVal=0.400000,OutVal=0.10000),(InVal=0.5500000,OutVal=0.120000),(InVal=0.800000,OutVal=0.15000),(InVal=1.000000,OutVal=0.100000)))
-	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.220000),(InVal=0.400000,OutVal=0.400000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.05
-	RecoilYFactor=0.05
-	RecoilMax=4096.000000
-	RecoilDeclineTime=0.5
-	RecoilDeclineDelay=0.2
-	
+	ParamsClass=Class'XRS10WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.XRS10PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XRS10SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

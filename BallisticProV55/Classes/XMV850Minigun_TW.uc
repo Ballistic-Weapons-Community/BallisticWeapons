@@ -14,23 +14,19 @@ class XMV850Minigun_TW extends XMV850Minigun
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
 {
-	local Rotator BaseAim, BaseRecoil;
+	local Rotator AimPivotDelta, RecoilPivotDelta;
 
 	//DC 110313
 	if (Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
 		return;
 
-	BaseRecoil = GetRecoilPivot(true) * ViewRecoilFactor;
-	BaseAim = Aim * ViewAimFactor ;
-	if (bForceRecoilUpdate || LastFireTime >= Level.TimeSeconds - RecoilDeclineDelay)
-	{
-		bForceRecoilUpdate = False;
-		Instigator.SetViewRotation((BaseAim - ViewAim) + (BaseRecoil - ViewRecoil));
-	}
+	RecoilPivotDelta = RcComponent.CalcViewPivotDelta();
+	AimPivotDelta = AimComponent.CalcViewPivotDelta();
+	
+	if (RcComponent.ShouldUpdateView())
+		Instigator.SetViewRotation(AimPivotDelta + RecoilPivotDelta);
 	else
-		Instigator.SetViewRotation(BaseAim - ViewAim);
-	ViewAim = BaseAim;
-	ViewRecoil = BaseRecoil;	
+		Instigator.SetViewRotation(AimPivotDelta);
 }
 
 function InitTurretWeapon(BallisticTurret Turret)
@@ -43,7 +39,7 @@ simulated function PostBeginPlay()
 	super.PostBeginPlay();
 	FireMode[0].FireAnim = 'Idle';
 	FireMode[0].FireLoopAnim = 'Idle';
-	BFireMode[0].VelocityRecoil = 0;
+	BFireMode[0].FirePushbackForce = 0;
 	BallisticFire(FireMode[0]).BrassOffset = vect(0,0,0);
 }
 
@@ -71,7 +67,7 @@ simulated event Timer()
 {
 	local int Mode;
 
-	ReAim(0.1);
+	AimComponent.Reaim(0.1);
 
     if (ClientState == WS_BringUp)
     {
@@ -150,7 +146,7 @@ simulated event RenderOverlays (Canvas C)
 simulated function ApplyAimRotation()
 {
 	ApplyAimToView();
-	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
+	BallisticTurret(Instigator).WeaponPivot = GetFireRot() * (DisplayFOV / Instigator.Controller.FovAngle);
 }
 
 function byte BestMode()
@@ -160,38 +156,25 @@ function byte BestMode()
 
 defaultproperties
 {
-     ReloadAnimRate=1.200000
-     bUseSights=False
-     GunLength=0.000000
-     bUseSpecialAim=True
-     CrouchAimFactor=1.000000
-     HipRecoilFactor=1.000000
-     AimAdjustTime=1.000000
-     AimSpread=0
-     ViewAimFactor=1.000000
-	 ViewRecoilFactor=1.000000
-     AimDamageThreshold=2000.000000
-	 
-	 RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.03),(InVal=0.2,OutVal=-0.05),(InVal=0.3,OutVal=-0.07),(InVal=0.4,OutVal=0.0),(InVal=0.5,OutVal=0.1),(InVal=0.6,OutVal=0.18),(InVal=0.7,OutVal=0.05),(InVal=0.8,OutVal=0),(InVal=1,OutVal=0.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.350000,OutVal=0.400000),(InVal=0.500000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-	 
-	 
-     ChaosAimSpread=0
-     RecoilDeclineTime=1.100000
-     FireModeClass(0)=Class'BallisticProV55.XMV850TW_PrimaryFire'
-	 WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
-     WeaponModes(1)=(bUnavailable=False)
-     WeaponModes(2)=(bUnavailable=False)
-     SelectAnim="Deploy"
-     SelectAnimRate=1.000000
-     BringUpTime=1.400000
-     bCanThrow=False
-     bNoInstagibReplace=True
-     DisplayFOV=90.000000
-     ClientState=WS_BringUp
-     Priority=1
-     PlayerViewOffset=(Y=0.000000)
-     ItemName="XMV-850 Minigun Turret"
-     Mesh=SkeletalMesh'BallisticAnims2.XMV850Turret-1st'
-     DrawScale=0.350000
+	ReloadAnimRate=1.200000
+	bUseSights=False
+	GunLength=0.000000
+	bUseSpecialAim=True
+	ParamsClass=Class'XMV850TW_WeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.XMV850TW_PrimaryFire'
+	WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
+	WeaponModes(1)=(bUnavailable=False)
+	WeaponModes(2)=(bUnavailable=False)
+	SelectAnim="Deploy"
+	SelectAnimRate=1.000000
+	BringUpTime=1.400000
+	bCanThrow=False
+	bNoInstagibReplace=True
+	DisplayFOV=90.000000
+	ClientState=WS_BringUp
+	Priority=1
+	PlayerViewOffset=(Y=0.000000)
+	ItemName="XMV-850 Minigun Turret"
+	Mesh=SkeletalMesh'BallisticAnims2.XMV850Turret-1st'
+	DrawScale=0.350000
 }

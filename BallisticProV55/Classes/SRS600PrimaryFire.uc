@@ -14,17 +14,15 @@ var() class<Actor>				SMuzzleFlashClass;
 var() Name						SFlashBone;
 var() float						SFlashScaleFactor;
 
-simulated function FireRecoil ()
+simulated function ApplyRecoil()
 {
-	if (!BW.bReaiming)
-		BW.Reaim(level.TimeSeconds-Weapon.LastRenderTime, , FireChaos,,,0.15);
-	BW.AddRecoil(RecoilPerShot, ThisModeNum);
-	if (VelocityRecoil != 0)
+	BW.AddRecoil(FireRecoil, FireChaos, ThisModeNum);
+	if (FirePushbackForce != 0)
 	{
 		if (Instigator.Physics == PHYS_Falling)
-			Instigator.Velocity -= Vector(Instigator.GetViewRotation()) * VelocityRecoil * 0.25;
+			Instigator.Velocity -= Vector(Instigator.GetViewRotation()) * FirePushbackForce * 0.25;
 		else
-			Instigator.Velocity -= Vector(Instigator.GetViewRotation()) * VelocityRecoil;
+			Instigator.Velocity -= Vector(Instigator.GetViewRotation()) * FirePushbackForce;
 	}
 }
 
@@ -105,7 +103,7 @@ function PlayFiring()
 {
 	if (SRS600Rifle(Weapon).bSilenced)
 	{
-		SRS600Rifle(Weapon).StealthImpulse(0.05);
+		SRS600Rifle(Weapon).StealthImpulse(0.3);
 		Weapon.SetBoneScale (0, 1.0, SRS600Rifle(Weapon).SilencerBone);
 	}
 	else
@@ -141,26 +139,23 @@ function PlayFiring()
 
 function SetSilenced(bool bSilenced)
 {
-	bAISilent = bSilenced;
 	if (bSilenced)
 	{
-		Damage *= 0.8;
-		RecoilPerShot *= 0.7;
-		BW.RecoilXFactor *= 0.7;
-		BW.RecoilYFactor *= 0.7;
+		FireRecoil *= 0.8;
 		RangeAtten *= 1.2;
-		XInaccuracy *= 0.5;
-		YInaccuracy *= 0.5;
+		XInaccuracy *= 0.75;
+		YInaccuracy *= 0.75;
+
+		BW.SightingTime = BW.default.SightingTime * 1.25;
 	}
 	else
 	{
-     	RecoilPerShot = default.RecoilPerShot;
-		Damage = default.Damage;
-		BW.RecoilXFactor = BW.default.RecoilXFactor;
-		BW.RecoilYFactor = BW.default.RecoilYFactor;
+		FireRecoil = default.FireRecoil;
 		RangeAtten = default.RangeAtten;
 		XInaccuracy = default.XInaccuracy;
 		YInaccuracy = default.YInaccuracy;
+
+		BW.SightingTime = BW.default.SightingTime;
 	}
 }
 
@@ -192,13 +187,13 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
      AimedFireAnim="AimedFire"
-     RecoilPerShot=240.000000
+     FireRecoil=240.000000
      FireChaos=0.065000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      XInaccuracy=16.000000
      YInaccuracy=16.000000
-     SilencedFireSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-SilenceFire',Volume=1.000000,Radius=512.000000,bAtten=True)
-     BallisticFireSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-Fire',Radius=1024.000000,Slot=SLOT_Interact,bNoOverride=False)
+     SilencedFireSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-SilenceFire',Volume=1.000000,Radius=1536.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireRate=0.20000

@@ -419,9 +419,8 @@ simulated function CommonCockGun(optional byte Type)
 		SafePlayAnim(CockAnim, 1.0, 0.2);
 }
 
-simulated function SetScopeBehavior()
+simulated function UpdateNetAim()
 {
-	super.SetScopeBehavior();
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
@@ -576,89 +575,75 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 defaultproperties
 {
-	 bShouldDualInLoadout=False
-     ShellOutSound=Sound'BWBP4-Sounds.leMat.LM-ShellOut'
-     ShellInSound=Sound'BWBP4-Sounds.leMat.LM-ShellIn'
-     bSecLoaded=True
-     SGLoadAnim="Reload2"
-     Shells(0)=(ShellName="Bullet1",BulletName="Slug1")
-     Shells(1)=(ShellName="Bullet2",BulletName="Slug2")
-     Shells(2)=(ShellName="Bullet3",BulletName="Slug3")
-     Shells(3)=(ShellName="Bullet4",BulletName="Slug4")
-     Shells(4)=(ShellName="Bullet5",BulletName="Slug5")
-     Shells(5)=(ShellName="Bullet6",BulletName="Slug6")
-     Shells(6)=(ShellName="Bullet7",BulletName="Slug7")
-     Shells(7)=(ShellName="Bullet8",BulletName="Slug8")
-     Shells(8)=(ShellName="Bullet9",BulletName="Slug9")
-     Shells(9)=(ShellName="shell",BulletName="shell")
-     LoadedChambers=9
-     HandgunGroup=1
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.500000
-     BigIconMaterial=Texture'BWBP4-Tex.leMat.BigIcon_Wilson41DB'
-     BigIconCoords=(X1=48,Y1=40,X2=459)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     ManualLines(0)="High damage bullet fire. Good range for a handgun and high ammo capacity."
-     ManualLines(1)="Fires the single 16-gauge shotgun shell. Strong at very close range."
-     ManualLines(2)="Effective at close range."
-     SpecialInfo(0)=(Info="120.0;15.0;0.6;50.0;0.9;0.5;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=9
-     CockAnimRate=1.250000
-     CockSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-Cock')
-     ReloadAnimRate=1.300000
-     ClipOutSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-BulletsOut')
-     ClipInSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-BulletsIn')
-     ClipInFrame=0.650000
-	 bAltTriggerReload=True
-	 InventorySize=6
-     WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     bNoCrosshairInScope=True
-	 
-     SightOffset=(X=-20.000000,Y=0.070000,Z=6.150000)
-     SightDisplayFOV=60.000000
-     SightingTime=0.200000
-     SightAimFactor=2
-	 
-     ChaosDeclineTime=0.450000
-	 
-	 ViewRecoilFactor=0.6
-	 RecoilXCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.2,OutVal=0.03),(InVal=0.36,OutVal=0.07),(InVal=0.62,OutVal=0.09),(InVal=0.6,OutVal=0.11),(InVal=1,OutVal=0.15)))
-     RecoilXFactor=0.150000
-     RecoilYFactor=0.150000
-     RecoilDeclineTime=1.000000
-     RecoilDeclineDelay=0.500000
-	 
-	 
-     FireModeClass(0)=Class'BallisticProV55.leMatPrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.leMatSecondaryFire'
-     PutDownTime=0.700000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
-     Description="An expensive remake of an exceptionally old weapon, the Wilson 41-DB was designed for collectors and procurers of rare items from the early days of human firearms. Manufactured by the Edwinson & Sons arms co, this firearm is of high quality, sparse quantity and very high price. Never used in any military or law enforcement organisation, the Wilson 'DiamondBack', is still capable of causing damage. With a 9 cylinder revolver and single 16 gauge shotgun chamber for desperate moments, this weapon can still stop many opponents."
-     DisplayFOV=50.000000
-     Priority=22
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=2
-     GroupOffset=4
-     PickupClass=Class'BallisticProV55.leMatPickup'
-     PlayerViewOffset=(X=15.000000,Y=11.000000,Z=-7.000000)
-     PlayerViewPivot=(Pitch=512)
-     AttachmentClass=Class'BallisticProV55.leMatAttachment'
-     IconMaterial=Texture'BWBP4-Tex.leMat.SmallIcon_Wilson41DB'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="Wilson 41"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticProAnims.leMat'
-     DrawScale=0.300000
+	bShouldDualInLoadout=False
+	ShellOutSound=Sound'BWBP4-Sounds.leMat.LM-ShellOut'
+	ShellInSound=Sound'BWBP4-Sounds.leMat.LM-ShellIn'
+	bSecLoaded=True
+	SGLoadAnim="Reload2"
+	Shells(0)=(ShellName="Bullet1",BulletName="Slug1")
+	Shells(1)=(ShellName="Bullet2",BulletName="Slug2")
+	Shells(2)=(ShellName="Bullet3",BulletName="Slug3")
+	Shells(3)=(ShellName="Bullet4",BulletName="Slug4")
+	Shells(4)=(ShellName="Bullet5",BulletName="Slug5")
+	Shells(5)=(ShellName="Bullet6",BulletName="Slug6")
+	Shells(6)=(ShellName="Bullet7",BulletName="Slug7")
+	Shells(7)=(ShellName="Bullet8",BulletName="Slug8")
+	Shells(8)=(ShellName="Bullet9",BulletName="Slug9")
+	Shells(9)=(ShellName="shell",BulletName="shell")
+	LoadedChambers=9
+	HandgunGroup=1
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.500000
+	BigIconMaterial=Texture'BWBP4-Tex.leMat.BigIcon_Wilson41DB'
+	BigIconCoords=(X1=48,Y1=40,X2=459)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)="High damage bullet fire. Good range for a handgun and high ammo capacity."
+	ManualLines(1)="Fires the single 16-gauge shotgun shell. Strong at very close range."
+	ManualLines(2)="Effective at close range."
+	SpecialInfo(0)=(Info="120.0;15.0;0.6;50.0;0.9;0.5;-999.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
+	CockAnimRate=1.250000
+	CockSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-Cock')
+	ReloadAnimRate=1.300000
+	ClipOutSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-BulletsOut')
+	ClipInSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-BulletsIn')
+	ClipInFrame=0.650000
+	bAltTriggerReload=True
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bNoCrosshairInScope=True	
+	SightOffset=(X=-20.000000,Y=0.070000,Z=6.150000)
+	SightDisplayFOV=60.000000
+	SightingTime=0.200000
+	ParamsClass=Class'leMatWeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.leMatPrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.leMatSecondaryFire'
+	PutDownTime=0.700000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.600000
+	CurrentRating=0.600000
+	Description="An expensive remake of an exceptionally old weapon, the Wilson 41-DB was designed for collectors and procurers of rare items from the early days of human firearms. Manufactured by the Edwinson & Sons arms co, this firearm is of high quality, sparse quantity and very high price. Never used in any military or law enforcement organisation, the Wilson 'DiamondBack', is still capable of causing damage. With a 9 cylinder revolver and single 16 gauge shotgun chamber for desperate moments, this weapon can still stop many opponents."
+	DisplayFOV=50.000000
+	Priority=22
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=2
+	GroupOffset=4
+	PickupClass=Class'BallisticProV55.leMatPickup'
+	PlayerViewOffset=(X=15.000000,Y=11.000000,Z=-7.000000)
+	PlayerViewPivot=(Pitch=512)
+	AttachmentClass=Class'BallisticProV55.leMatAttachment'
+	IconMaterial=Texture'BWBP4-Tex.leMat.SmallIcon_Wilson41DB'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="Wilson 41"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticProAnims.leMat'
+	DrawScale=0.300000
 }

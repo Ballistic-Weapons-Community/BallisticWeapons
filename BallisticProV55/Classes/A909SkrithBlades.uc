@@ -39,7 +39,6 @@ simulated event AnimEnd (int Channel)
 
 defaultproperties
 {
-     PlayerSpeedFactor=1.150000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_A909'
      BigIconCoords=(X1=24,X2=432)
@@ -50,10 +49,9 @@ defaultproperties
      SpecialInfo(0)=(Info="120.0;2.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.A909.A909Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.A909.A909Putaway')
-     MagAmmo=1
-     InventorySize=4
      GunLength=0.000000
      bAimDisabled=True
+     ParamsClass=Class'A909WeaponParams'
      FireModeClass(0)=Class'BallisticProV55.A909PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.A909SecondaryFire'
      PutDownAnimRate=2.200000

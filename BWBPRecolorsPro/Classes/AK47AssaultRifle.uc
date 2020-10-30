@@ -350,89 +350,74 @@ function float SuggestDefenseStyle()	{	return 0.0;	}
 
 defaultproperties
 {
-     KnifeLoadAnim="ReloadKnife"
-     bLoaded=True
-     GrenBone="KnifeBlade"
-     GrenBoneBase="AttachKnife"
-     GrenLoadSound=Sound'PackageSounds4Pro.AK47.Knife-Load'
-     GrenDropSound=Sound'PackageSounds4Pro.AK47.Knife-Drop'
-     BulletBone="Bullet1"
-     BulletBone2="Bullet2"
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.000000
-     BigIconMaterial=Texture'BallisticRecolors3TexPro.AK490.BigIcon_AK490'
-     BigIconCoords=(Y1=32,Y2=220)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     ManualLines(0)="Automatic 7.62mm fire. Higher sustained damage than other weapons in its class, but greater recoil and inferior hipfire ability."
-     ManualLines(1)="Prepares a melee attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. If lacking a knife, becomes a blunt attack, dealing lower base damage but inflicting a short-duration blinding effect when striking. This attack inflicts more damage from behind."
-     ManualLines(2)="The Weapon Function key manages the ballistic knife. If a knife is attached, it will be launched, dealing high damage. This attack is hip-accurate and has no recoil. If no knife is attached, one will be attached if available.||This weapon is effective at medium range."
-     SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.5;0.8;0.0")
-     MeleeFireClass=Class'BWBPRecolorsPro.AK47MeleeFire'
-     BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
-     MagAmmo=25
-     CockAnimPostReload="ReloadEndCock"
-     CockingBringUpTime=1.300000
-     CockSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-Cock',Volume=3.500000)
-     ReloadAnimRate=1.250000
-     ClipHitSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-ClipHit',Volume=3.500000)
-     ClipOutSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-ClipOut',Volume=3.500000)
-     ClipInSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-ClipIn',Volume=3.500000)
-     ClipInFrame=0.650000
-     bCockOnEmpty=True
-     WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
-     WeaponModes(1)=(bUnavailable=True)
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=64)
-     SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
-     SightDisplayFOV=40.000000
-     SprintOffSet=(Pitch=-1000,Yaw=-2048)
-	 
-     AimSpread=24
-     ChaosDeclineTime=1.250000
-     ChaosSpeedThreshold=5000.000000
-     ChaosAimSpread=1024
-	 
-	 ViewRecoilFactor=0.25
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.05000),(InVal=0.200000,OutVal=0.060000),(InVal=0.300000,OutVal=0.10000),(InVal=0.400000,OutVal=0.150000),(InVal=0.500000,OutVal=0.170000),(InVal=0.65000000,OutVal=0.100000),(InVal=0.75.000000,OutVal=0.05000),(InVal=1.000000,OutVal=0.080000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.300000,OutVal=0.40000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.10000
-     RecoilYFactor=0.10000
-	 RecoilDeclineDelay=0.15
-     RecoilDeclineTime=0.65	 
-	 
-     FireModeClass(0)=Class'BWBPRecolorsPro.AK47PrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.AK47SecondaryFire'
-     IdleAnimRate=0.400000
-     SelectAnimRate=1.700000
-     PutDownAnimRate=1.750000
-     BringUpTime=0.400000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.700000
-     CurrentRating=0.700000
-     Description="Chambering 7.62mm armor piercing rounds, this rifle is a homage to its distant predecessor, the AK-47. Though the weapons' looks have hardly changed at all, this model features a vastly improved firing mechanism, allowing it to operate in the most punishing of conditions. Equipped with a heavy reinforced stock, launchable ballistic bayonet, and 20 round box mag, this automatic powerhouse is guaranteed to cut through anything in its way. ZVT Exports designed this weapon to be practical and very easy to maintain. With its rugged and reliable design, the AK490 has spread throughout the cosmos and can be found just about anywhere."
-     Priority=65
-     HudColor=(G=100)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=4
-     GroupOffset=5
-     PickupClass=Class'BWBPRecolorsPro.AK47Pickup'
-     PlayerViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
-     BobDamping=2.000000
-     AttachmentClass=Class'BWBPRecolorsPro.AK47Attachment'
-     IconMaterial=Texture'BallisticRecolors3TexPro.AK490.SmallIcon_AK490'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="AK-490 Battle Rifle"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.AK490_FPNew'
-     DrawScale=0.350000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Texture'BallisticRecolors3TexPro.AK490.AK490-Main'
-     Skins(2)=Texture'BallisticRecolors3TexPro.AK490.AK490-Misc'
+	KnifeLoadAnim="ReloadKnife"
+	bLoaded=True
+	GrenBone="KnifeBlade"
+	GrenBoneBase="AttachKnife"
+	GrenLoadSound=Sound'PackageSounds4Pro.AK47.Knife-Load'
+	GrenDropSound=Sound'PackageSounds4Pro.AK47.Knife-Drop'
+	BulletBone="Bullet1"
+	BulletBone2="Bullet2"
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.000000
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.AK490.BigIcon_AK490'
+	BigIconCoords=(Y1=32,Y2=220)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)="Automatic 7.62mm fire. Higher sustained damage than other weapons in its class, but greater recoil and inferior hipfire ability."
+	ManualLines(1)="Prepares a melee attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. If lacking a knife, becomes a blunt attack, dealing lower base damage but inflicting a short-duration blinding effect when striking. This attack inflicts more damage from behind."
+	ManualLines(2)="The Weapon Function key manages the ballistic knife. If a knife is attached, it will be launched, dealing high damage. This attack is hip-accurate and has no recoil. If no knife is attached, one will be attached if available.||This weapon is effective at medium range."
+	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.5;0.8;0.0")
+	MeleeFireClass=Class'BWBPRecolorsPro.AK47MeleeFire'
+	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
+	CockAnimPostReload="ReloadEndCock"
+	CockingBringUpTime=1.300000
+	CockSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-Cock',Volume=3.500000)
+	ReloadAnimRate=1.250000
+	ClipHitSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-ClipHit',Volume=3.500000)
+	ClipOutSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-ClipOut',Volume=3.500000)
+	ClipInSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-ClipIn',Volume=3.500000)
+	ClipInFrame=0.650000
+	bCockOnEmpty=True
+	WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
+	WeaponModes(1)=(bUnavailable=True)
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=64)
+	SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
+	SightDisplayFOV=40.000000
+	ParamsClass=Class'AK490WeaponParams'
+	FireModeClass(0)=Class'BWBPRecolorsPro.AK47PrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.AK47SecondaryFire'
+	IdleAnimRate=0.400000
+	SelectAnimRate=1.700000
+	PutDownAnimRate=1.750000
+	BringUpTime=0.400000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.700000
+	CurrentRating=0.700000
+	Description="Chambering 7.62mm armor piercing rounds, this rifle is a homage to its distant predecessor, the AK-47. Though the weapons' looks have hardly changed at all, this model features a vastly improved firing mechanism, allowing it to operate in the most punishing of conditions. Equipped with a heavy reinforced stock, launchable ballistic bayonet, and 20 round box mag, this automatic powerhouse is guaranteed to cut through anything in its way. ZVT Exports designed this weapon to be practical and very easy to maintain. With its rugged and reliable design, the AK490 has spread throughout the cosmos and can be found just about anywhere."
+	Priority=65
+	HudColor=(G=100)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=4
+	GroupOffset=5
+	PickupClass=Class'BWBPRecolorsPro.AK47Pickup'
+	PlayerViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
+	BobDamping=2.000000
+	AttachmentClass=Class'BWBPRecolorsPro.AK47Attachment'
+	IconMaterial=Texture'BallisticRecolors3TexPro.AK490.SmallIcon_AK490'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="AK-490 Battle Rifle"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.AK490_FPNew'
+	DrawScale=0.350000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Texture'BallisticRecolors3TexPro.AK490.AK490-Main'
+	Skins(2)=Texture'BallisticRecolors3TexPro.AK490.AK490-Misc'
 }

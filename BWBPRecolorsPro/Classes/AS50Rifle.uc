@@ -167,11 +167,11 @@ simulated function Notify_ClipIn()
 /// Infa Red Scope View
 ///==============================================================
 
-simulated function SetScopeView(bool bNewValue)
+simulated function OnScopeViewChanged()
 {
-	super.SetScopeView(bNewValue);
+	super.OnScopeViewChanged();
 		
-	if (!bNewValue)
+	if (!bScopeView)
 	{
 		if (Level.NetMode == NM_Client)
 			AdjustThermalView(false);
@@ -617,7 +617,7 @@ function byte BestMode()
 
 	if (B.Skill > Rand(6))
 	{
-		if (Chaos < 0.1 || Chaos < 0.5 && VSize(B.Enemy.Location - Instigator.Location) > 500)
+		if (AimComponent.GetChaos() < 0.1 || AimComponent.GetChaos() < 0.5 && VSize(B.Enemy.Location - Instigator.Location) > 500)
 			return 1;
 	}
 	else if (FRand() > 0.75)
@@ -654,114 +654,91 @@ function float SuggestDefenseStyle()	{	return 0.7;	}
 
 defaultproperties
 {
-     ScopeBone="Scope"
-     BulletBone="Bullet"
-     ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
-     ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
-     WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
-     Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
-     ThermalRange=4500.000000
-     ScopeViewTexThermal=Texture'BallisticRecolors3TexPro.FSG50.FSG-ScopeViewThermal'
-     WeaponScreen=ScriptedTexture'BallisticRecolors3TexPro.FSG50.FSG50-ScriptLCD'
-     screen=Shader'BallisticRecolors3TexPro.FSG50.FSG50-ScriptLCD-SD'
-     ScreenBase1=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen'
-     ScreenBase2=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen2'
-     ScreenBase3=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen3'
-     ScreenBase4=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen4'
-     Numbers=Texture'BallisticRecolors3TexPro.PUMA.PUMA-Numbers'
-     MyFontColor=(B=255,G=255,R=255,A=255)
-     PlayerSpeedFactor=0.850000
-     PlayerJumpFactor=0.850000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticRecolors3TexPro.FSG50.BigIcon_FSG50'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     ManualLines(0)="Semi-automatic .50 cal fire. Extremely unpredictable recoil, but good damage per shot and excellent theoretical sustained damage output."
-     ManualLines(1)="Incendiary shot. Deals moderate damage and ignites struck targets, causing them to burn brightly, emit smoke, suffer view flash and take damage over time. Further hits extend the duration of this effect."
-     ManualLines(2)="The Weapon Function key toggles the IR component of the weapon's scope. This is useful for highlighting enemies through environmental features like water or trees, or through smoke.||The FSSG-50 is heavy and burdens the player, reducing movement speed and jump height. It takes time to aim.||The FSSG-50 is effective at long range."
-     SpecialInfo(0)=(Info="360.0;35.0;1.0;90.0;10.0;0.0;0.1")
-     BringUpSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOn')
-     PutDownSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOff')
-     MagAmmo=8
-     CockAnimPostReload="Cock"
-     CockAnimRate=1.350000
-     CockSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
-     ReloadAnimRate=1.250000
-     ClipOutSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-MagOut',Volume=1.500000,Radius=32.000000)
-     ClipInSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-MagIn',Volume=1.500000,Radius=32.000000)
-     ClipInFrame=0.850000
-     bCockOnEmpty=True
-     bAltTriggerReload=True
-     WeaponModes(1)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     ZoomType=ZT_Logarithmic
-     ScopeViewTex=Texture'BallisticRecolors3TexPro.FSG50.FSG-ScopeView'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-     FullZoomFOV=15.000000
-     bNoMeshInScope=True
-     bNoCrosshairInScope=True
-     SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
-     SightingTime=0.650000
-     MinZoom=4.000000
-     MaxZoom=16.000000
-     ZoomStages=2
-     GunLength=80.000000
-     CrouchAimFactor=0.650000
-     SightAimFactor=0.15
-     SprintOffSet=(Pitch=-3000,Yaw=-4096)
-     JumpOffSet=(Pitch=-6000,Yaw=2000)
-     AimAdjustTime=0.600000
-     AimSpread=64
-	 
-	 
-     ChaosDeclineTime=0.800000
-     ChaosSpeedThreshold=350.000000
-     ChaosAimSpread=1024
-	 
-	 ViewRecoilFactor=0.15
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.350000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.15
-	 RecoilYFactor=0.15
-	 RecoilMinRandFactor=0.15
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.500000
-	 
-	 
-     FireModeClass(0)=Class'BWBPRecolorsPro.AS50PrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.AS50SecondaryFire'
-     IdleAnimRate=0.600000
-     PutDownTime=0.600000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.80000
-     CurrentRating=0.800000
-     bSniping=True
-     Description="[ Fallschirmj�gerscharfsch�tzengewehr] FSsG-50 is the name given to high-performance FG50 machineguns that are then equipped with match-grade barrels and high-quality custom marksman stocks. FG-50s with exceptional target groupings and perfect reliability ratings are the primary candidates for the FSsG upgrade, though some production plants with extremely tight tolerances and quality control specifically produce the FSsG variant. The result is a very accurate sniper rifle with a muzzle velocity far higher than its standard cousin. These elite rifles are very rarely mounted on vehicle platforms and are often utilized by sharpshooters equipped with enhanced scopes and match-grade N6-BMG rounds for hard target interdiction. This FSSG-50 is firing the mass produced N1-Incendiary round and has an Aeris Mark 2 Suresight scope attached."
-     DisplayFOV=55.000000
-     Priority=207
-     HudColor=(G=50)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=9
-     PickupClass=Class'BWBPRecolorsPro.AS50Pickup'
-     PlayerViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
-     BobDamping=1.800000
-     AttachmentClass=Class'BWBPRecolorsPro.AS50Attachment'
-     IconMaterial=Texture'BallisticRecolors3TexPro.FSG50.SmallIcon_FSG50'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="FSSG-50 Marksman Rifle"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=5.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.FSG-50_FP'
-     DrawScale=0.500000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Texture'BallisticRecolors3TexPro.FSG50.FSG-Main'
-     Skins(2)=Texture'BallisticRecolors3TexPro.FSG50.FSG-Misc'
-     Skins(3)=Texture'BallisticRecolors3TexPro.FSG50.FSG-Stock'
-     Skins(4)=Texture'BallisticRecolors3TexPro.FSG50.FSG-Scope'
-     Skins(5)=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen'
+	ScopeBone="Scope"
+	BulletBone="Bullet"
+	ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
+	ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
+	WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
+	Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
+	ThermalRange=4500.000000
+	ScopeViewTexThermal=Texture'BallisticRecolors3TexPro.FSG50.FSG-ScopeViewThermal'
+	WeaponScreen=ScriptedTexture'BallisticRecolors3TexPro.FSG50.FSG50-ScriptLCD'
+	screen=Shader'BallisticRecolors3TexPro.FSG50.FSG50-ScriptLCD-SD'
+	ScreenBase1=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen'
+	ScreenBase2=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen2'
+	ScreenBase3=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen3'
+	ScreenBase4=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen4'
+	Numbers=Texture'BallisticRecolors3TexPro.PUMA.PUMA-Numbers'
+	MyFontColor=(B=255,G=255,R=255,A=255)
+
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.FSG50.BigIcon_FSG50'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)="Semi-automatic .50 cal fire. Extremely unpredictable recoil, but good damage per shot and excellent theoretical sustained damage output."
+	ManualLines(1)="Incendiary shot. Deals moderate damage and ignites struck targets, causing them to burn brightly, emit smoke, suffer view flash and take damage over time. Further hits extend the duration of this effect."
+	ManualLines(2)="The Weapon Function key toggles the IR component of the weapon's scope. This is useful for highlighting enemies through environmental features like water or trees, or through smoke.||The FSSG-50 is heavy and burdens the player, reducing movement speed and jump height. It takes time to aim.||The FSSG-50 is effective at long range."
+	SpecialInfo(0)=(Info="360.0;35.0;1.0;90.0;10.0;0.0;0.1")
+	BringUpSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOn')
+	PutDownSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOff')
+	MagAmmo=8
+	CockAnimPostReload="Cock"
+	CockAnimRate=1.350000
+	CockSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
+	ReloadAnimRate=1.250000
+	ClipOutSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-MagOut',Volume=1.500000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-MagIn',Volume=1.500000,Radius=32.000000)
+	ClipInFrame=0.850000
+	bCockOnEmpty=True
+	bAltTriggerReload=True
+	WeaponModes(1)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	ZoomType=ZT_Logarithmic
+	ScopeViewTex=Texture'BallisticRecolors3TexPro.FSG50.FSG-ScopeView'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	FullZoomFOV=15.000000
+	bNoMeshInScope=True
+	bNoCrosshairInScope=True
+	SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
+	MinZoom=4.000000
+	MaxZoom=16.000000
+	ZoomStages=2
+	GunLength=80.000000
+	ParamsClass=Class'AS50WeaponParams'	 
+	FireModeClass(0)=Class'BWBPRecolorsPro.AS50PrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.AS50SecondaryFire'
+	IdleAnimRate=0.600000
+	PutDownTime=0.600000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.80000
+	CurrentRating=0.800000
+	bSniping=True
+	Description="[ Fallschirmj�gerscharfsch�tzengewehr] FSsG-50 is the name given to high-performance FG50 machineguns that are then equipped with match-grade barrels and high-quality custom marksman stocks. FG-50s with exceptional target groupings and perfect reliability ratings are the primary candidates for the FSsG upgrade, though some production plants with extremely tight tolerances and quality control specifically produce the FSsG variant. The result is a very accurate sniper rifle with a muzzle velocity far higher than its standard cousin. These elite rifles are very rarely mounted on vehicle platforms and are often utilized by sharpshooters equipped with enhanced scopes and match-grade N6-BMG rounds for hard target interdiction. This FSSG-50 is firing the mass produced N1-Incendiary round and has an Aeris Mark 2 Suresight scope attached."
+	DisplayFOV=55.000000
+	Priority=207
+	HudColor=(G=50)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=9
+	PickupClass=Class'BWBPRecolorsPro.AS50Pickup'
+	PlayerViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
+	BobDamping=1.800000
+	AttachmentClass=Class'BWBPRecolorsPro.AS50Attachment'
+	IconMaterial=Texture'BallisticRecolors3TexPro.FSG50.SmallIcon_FSG50'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="FSSG-50 Marksman Rifle"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=5.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.FSG-50_FP'
+	DrawScale=0.500000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Texture'BallisticRecolors3TexPro.FSG50.FSG-Main'
+	Skins(2)=Texture'BallisticRecolors3TexPro.FSG50.FSG-Misc'
+	Skins(3)=Texture'BallisticRecolors3TexPro.FSG50.FSG-Stock'
+	Skins(4)=Texture'BallisticRecolors3TexPro.FSG50.FSG-Scope'
+	Skins(5)=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen'
 }

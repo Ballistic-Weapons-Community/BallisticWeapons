@@ -20,11 +20,11 @@ var() name		SingleGrenadeLoadAnim;		//Anim for rocket reload loop
 var() name		HatchOpenAnim;
 var() float		HatchOpenAnimRate;
 var() name		HatchCloseAnim;
-var() float 		HatchCloseAnimRate;
+var() float 	HatchCloseAnimRate;
 var() Name		ShovelAnim;					//Anim to play after shovel loop ends
 var() float		ShovelAnimRate;
-var() int       	Rockets;				//Rockets currently in the gun.
-var() int       	ConfigX;				//Rockets currently in the gun.
+var() int       Rockets;					//Rockets currently in the gun.
+var() int       ConfigX;					//Rockets currently in the gun.
 var() int      	ConfigY;					//Rockets currently in the gun.
 var	bool		bHeatOnce;					//Used for playing a sound once.
 var	bool		bBarrelsOnline;				//Used for alternating laser effect in attachment class.
@@ -712,114 +712,97 @@ simulated function PlayShovelLoop()
 
 defaultproperties
 {
-     ManualLines(0)="Single Fire mode fires one barrel at once for low damage, with good fire rate.||Double Fire fires both barrels, for moderate damage, with low fire rate.||Both modes heat up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
-     ManualLines(1)="Launches miniature rockets. These rockets deal high damage and good radius damage. The rockets have a short period of low speed before igniting."
-     ManualLines(2)="Effective at long range and against enemies using healing weapons and items."
+	ManualLines(0)="Single Fire mode fires one barrel at once for low damage, with good fire rate.||Double Fire fires both barrels, for moderate damage, with low fire rate.||Both modes heat up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
+	ManualLines(1)="Launches miniature rockets. These rockets deal high damage and good radius damage. The rockets have a short period of low speed before igniting."
+	ManualLines(2)="Effective at long range and against enemies using healing weapons and items."
 
-     GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
-     GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
-     GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
-     GrenadeLoadAnim="RLLoad"
-     GrenadeLoadAnimRate=1.500000
-     SingleGrenadeLoadAnim="RLLoadLoop"
-     HatchOpenAnim="RLLoadPrep"
-     HatchOpenAnimRate=1.500000
-     HatchCloseAnim="RLLoadEnd"
-     HatchCloseAnimRate=1.500000
-     ShovelAnim="RLLoadLoop"
-     ShovelAnimRate=1.500000
-     Rockets=3
-     ChargeColor=(B=100,G=255,R=255,A=255)
-     RechargeOrigin=(X=600.000000,Y=330.000000)
-     RechargeSize=(X=10.000000,Y=-180.000000)
-     Shells(0)=(ShellName="RocketThree")
-     Shells(1)=(ShellName="RocketTwo")
-     Shells(2)=(ShellName="RocketOne")
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticRecolors3TexPro.LS14.BigIcon_LS14'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     bWT_Hazardous=True
-     bWT_Splash=True
-     bWT_Projectile=True
-     bWT_Energy=True
-     SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
-     BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Select')
-     PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
-     MagAmmo=20
-     CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
-     ReloadAnimRate=1.150000
-     ClipHitSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipHit')
-     ClipOutSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipIn')
-	 ClipInFrame=0.650000
-	 SightingTime=0.4
-     StartShovelAnim="RLLoadPrep"
-     StartShovelAnimRate=2.000000
-     EndShovelAnim="RLLoadEnd"
-     EndShovelAnimRate=2.000000
-     WeaponModes(0)=(ModeName="Single Barrel",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
-     WeaponModes(2)=(ModeName="Bot Firemode",bUnavailable=True)
-     CurrentWeaponMode=0
-     bNotifyModeSwitch=True
-     ZoomType=ZT_Logarithmic
-     ScopeViewTex=Texture'BallisticRecolors3TexPro.LS14.LS14Scope'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-     FullZoomFOV=20.000000
-     bNoMeshInScope=True
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=600,Roll=-1024)
-     SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
-     MinZoom=2.000000
-     MaxZoom=4.000000
-     ZoomStages=1
-     GunLength=80.000000
-     SprintOffSet=(Pitch=-1000,Yaw=-2048)
-     JumpOffSet=(Pitch=-6000,Yaw=2000)
-	 
-     AimSpread=64
-     ChaosDeclineTime=0.800000
-	 ChaosAimSpread=256
-	 
-	 ViewRecoilFactor=0.2
-     RecoilXCurve=(Points=(,(InVal=0.150000,OutVal=0.1),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.250000),(InVal=0.600000,OutVal=0.350000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.5)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.20000),(InVal=0.400000,OutVal=0.420000),(InVal=0.600000,OutVal=0.560000),(InVal=0.800000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.050000
-     RecoilYFactor=0.050000
-     RecoilDeclineTime=1.000000
-	 RecoilDeclineDelay=0.2
-	 
-     FireModeClass(0)=Class'BWBPRecolorsPro.LS14PrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.LS14SecondaryFire'
-     SelectAnimRate=1.500000
-     PutDownAnimRate=2.000000
-     PutDownTime=0.500000
-     BringUpTime=0.400000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.800000
-     CurrentRating=0.800000
-     bSniping=True
-     Description="LS-14 Laser Carbine||Manufacturer: UTC Defense Tech|Primary: Focused Photon Beam|Secondary: Mini Rockets"
-     Priority=194
-     HudColor=(B=255,G=150,R=100)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=9
-     GroupOffset=4
-     PickupClass=Class'BWBPRecolorsPro.LS14Pickup'
-     PlayerViewOffset=(X=-5.000000,Y=12.000000,Z=-15.000000)
-     BobDamping=1.800000
-     AttachmentClass=Class'BWBPRecolorsPro.LS14Attachment'
-     IconMaterial=Texture'BallisticRecolors3TexPro.LS14.SmallIcon_LS14'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="LS-14 Laser Rifle"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=5.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.LS14Carbine'
-     DrawScale=0.300000
+	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
+	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
+	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
+	GrenadeLoadAnim="RLLoad"
+	GrenadeLoadAnimRate=1.500000
+	SingleGrenadeLoadAnim="RLLoadLoop"
+	HatchOpenAnim="RLLoadPrep"
+	HatchOpenAnimRate=1.500000
+	HatchCloseAnim="RLLoadEnd"
+	HatchCloseAnimRate=1.500000
+	ShovelAnim="RLLoadLoop"
+	ShovelAnimRate=1.500000
+	Rockets=3
+	ChargeColor=(B=100,G=255,R=255,A=255)
+	RechargeOrigin=(X=600.000000,Y=330.000000)
+	RechargeSize=(X=10.000000,Y=-180.000000)
+	Shells(0)=(ShellName="RocketThree")
+	Shells(1)=(ShellName="RocketTwo")
+	Shells(2)=(ShellName="RocketOne")
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.LS14.BigIcon_LS14'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bWT_Hazardous=True
+	bWT_Splash=True
+	bWT_Projectile=True
+	bWT_Energy=True
+	SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
+	BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Select')
+	PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
+	CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
+	ReloadAnimRate=1.150000
+	ClipHitSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipIn')
+	ClipInFrame=0.650000
+	StartShovelAnim="RLLoadPrep"
+	StartShovelAnimRate=2.000000
+	EndShovelAnim="RLLoadEnd"
+	EndShovelAnimRate=2.000000
+	WeaponModes(0)=(ModeName="Single Barrel",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
+	WeaponModes(2)=(ModeName="Bot Firemode",bUnavailable=True)
+	CurrentWeaponMode=0
+	ZoomType=ZT_Logarithmic
+	ScopeViewTex=Texture'BallisticRecolors3TexPro.LS14.LS14Scope'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	FullZoomFOV=20.000000
+	bNoMeshInScope=True
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=600,Roll=-1024)
+	SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
+	MinZoom=2.000000
+	MaxZoom=4.000000
+	ZoomStages=1
+	GunLength=80.000000
+	ParamsClass=Class'LS14WeaponParams'
+	FireModeClass(0)=Class'BWBPRecolorsPro.LS14PrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.LS14SecondaryFire'
+	SelectAnimRate=1.500000
+	PutDownAnimRate=2.000000
+	PutDownTime=0.500000
+	BringUpTime=0.400000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.800000
+	CurrentRating=0.800000
+	bSniping=True
+	Description="LS-14 Laser Carbine||Manufacturer: UTC Defense Tech|Primary: Focused Photon Beam|Secondary: Mini Rockets"
+	Priority=194
+	HudColor=(B=255,G=150,R=100)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=9
+	GroupOffset=4
+	PickupClass=Class'BWBPRecolorsPro.LS14Pickup'
+	PlayerViewOffset=(X=-5.000000,Y=12.000000,Z=-15.000000)
+	BobDamping=1.800000
+	AttachmentClass=Class'BWBPRecolorsPro.LS14Attachment'
+	IconMaterial=Texture'BallisticRecolors3TexPro.LS14.SmallIcon_LS14'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="LS-14 Laser Rifle"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=5.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.LS14Carbine'
+	DrawScale=0.300000
 }

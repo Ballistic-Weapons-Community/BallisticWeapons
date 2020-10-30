@@ -24,11 +24,6 @@ simulated function ClientInitWeaponFromTurret(BallisticTurret Turret)
 	bNeedCock=false;
 }
 
-simulated function TickAim(float DT)
-{
-	Super(BallisticWeapon).TickAim(DT);
-}
-
 function Notify_Deploy()
 {
 	local vector HitLoc, HitNorm, Start, End;
@@ -238,39 +233,6 @@ function float GetAIRating()
 	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.75, Dist, 1024, 2048); 
 }
 
-simulated function SetScopeBehavior()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView;
-		
-	if (bScopeView)
-	{
-		ViewAimFactor = 1.0;
-		ViewRecoilFactor = 1.0;
-		AimAdjustTime *= 2;
-		AimSpread = 0;
-		ChaosAimSpread *= SightAimFactor;
-		ChaosDeclineTime *= 2.0;
-		ChaosSpeedThreshold *= 0.5;
-	}
-	else
-	{
-		//PositionSights will handle this for clients
-		if(Level.NetMode == NM_DedicatedServer)
-		{
-			ViewAimFactor = default.ViewAimFactor;
-			ViewRecoilFactor = default.ViewRecoilFactor;
-		}
-
-		AimAdjustTime = default.AimAdjustTime;
-		AimSpread = default.AimSpread;
-		AimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosAimSpread = default.ChaosAimSpread;
-		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosDeclineTime = default.ChaosDeclineTime;
-		ChaosSpeedThreshold = default.ChaosSpeedThreshold;
-	}
-}
-
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return -0.5;	}
 
@@ -279,85 +241,67 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
-     BoxOnSound=(Sound=Sound'BallisticSounds2.M353.M353-BoxOn')
-     BoxOffSound=(Sound=Sound'BallisticSounds2.M353.M353-BoxOff')
-     FlapUpSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapUp')
-     FlapDownSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapDown')
-     PlayerSpeedFactor=0.85000
-     PlayerJumpFactor=0.850000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=4.000000
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M353'
-     BigIconCoords=(Y1=50,Y2=240)
-     SightFXClass=Class'BallisticProV55.M353SightLEDs'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     bWT_Machinegun=True
-     ManualLines(0)="Automatic 5.56mm fire. Has a high rate of fire, moderate damage and good sustained damage output. As a machinegun, it has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."
-     ManualLines(1)="Deploys the machinegun upon the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, becomes perfectly accurate, loses its iron sights and gains a reduction in recoil. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
-     ManualLines(2)="The M353 is a more cumbersome and heavy weapon, and accordingly has poor hipfire and takes some time to aim.||It is effective at medium to long range."
-     SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.4;0.4;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M353.M353-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M353.M353-Putaway')
-     MagAmmo=100
-     CockAnimRate=1.250000
-     CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
-     ReloadAnim="ReloadStart"
-     ReloadAnimRate=1.250000
-     ClipOutSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellOut')
-     ClipInSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellIn')
-     ClipInFrame=0.650000
-     bCockOnEmpty=True
-     WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(ModeName="Burst of Three")
-     WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)
-     WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-     CurrentWeaponMode=3
-     bNoCrosshairInScope=True
-	 SightPivot=(Pitch=128)
-     SightOffset=(X=-6.000000,Z=5.30000)
-     SightingTime=0.550000
-     SightAimFactor=0.5
-     SprintOffSet=(Pitch=-6000,Yaw=-8000)
-     AimSpread=128
-	 ChaosAimSpread=1024
-	 JumpOffSet=(Pitch=-4000,Yaw=3000)
-	 HipRecoilFactor=1.5
-     ViewRecoilFactor=0.500000
-     ChaosDeclineTime=1.600000
-     RecoilXCurve=(Points=(,(InVal=0.070000,OutVal=0.050000),(InVal=0.100000,OutVal=0.085000),(InVal=0.180000,OutVal=0.060000),(InVal=0.300000,OutVal=0.100000),(InVal=0.500000,OutVal=0.200000),(InVal=0.650000,OutVal=0.300000),(InVal=0.700000,OutVal=0.4500000),(InVal=0.850000,OutVal=0.400000),(InVal=1.000000,OutVal=0.55)))
-     RecoilYCurve=(Points=(,(InVal=0.050000,OutVal=0.070000),(InVal=0.100000,OutVal=0.120000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.400000),(InVal=0.550000,OutVal=0.650000),(InVal=0.650000,OutVal=0.750000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.05000
-     RecoilYFactor=0.05000
-     RecoilMax=12288.000000
-     RecoilDeclineTime=0.500000
-     RecoilDeclineDelay=0.150000
-     FireModeClass(0)=Class'BallisticProV55.M353PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.M353SecondaryFire'
-     SelectAnimRate=1.350000
-     PutDownTime=0.550000
-     BringUpTime=0.700000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.7500000
-     CurrentRating=0.7500000
-     Description="The M353 'Guardian' Machinegun has seen some of the most brutal battles ever recorded in recent history, and has helped win many of them, the most famous being the bloody 'Wasteland Seige' where 12 million Krao were slaughtered along a 500 mile line of defences. Used primarily as a defensive weapon, the M353's incredible rate of fire can quickly and effectively destroy masses of oncoming foes, especially melee attackers. When the secondary mode is activated, the Guardian becomes much more accurate when the user mounts it on the ground, allowing it to be a very effective defensive weapon. With its high rate of fire and high damage, the M353 becomes very inaccurate after just a few rounds and with its high ammo capacity, comes the difficulty of longer reload times than smaller weapons."
-     DisplayFOV=50.000000
-     Priority=43
-     HudColor=(G=150,R=100)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=6
-     PickupClass=Class'BallisticProV55.M353Pickup'
-     PlayerViewOffset=(X=2.000000,Y=3.500000,Z=-4.000000)
-     AttachmentClass=Class'BallisticProV55.M353Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M353'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="M353 Light Machine Gun"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticProAnims.M353Machinegun'
-     DrawScale=0.350000
+	BoxOnSound=(Sound=Sound'BallisticSounds2.M353.M353-BoxOn')
+	BoxOffSound=(Sound=Sound'BallisticSounds2.M353.M353-BoxOff')
+	FlapUpSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapUp')
+	FlapDownSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapDown')
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=4.000000
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M353'
+	BigIconCoords=(Y1=50,Y2=240)
+	SightFXClass=Class'BallisticProV55.M353SightLEDs'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bWT_Machinegun=True
+	ManualLines(0)="Automatic 5.56mm fire. Has a high rate of fire, moderate damage and good sustained damage output. As a machinegun, it has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."
+	ManualLines(1)="Deploys the machinegun upon the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, becomes perfectly accurate, loses its iron sights and gains a reduction in recoil. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
+	ManualLines(2)="The M353 is a more cumbersome and heavy weapon, and accordingly has poor hipfire and takes some time to aim.||It is effective at medium to long range."
+	SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.4;0.4;-999.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M353.M353-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M353.M353-Putaway')
+	CockAnimRate=1.250000
+	CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
+	ReloadAnim="ReloadStart"
+	ReloadAnimRate=1.250000
+	ClipOutSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellIn')
+	ClipInFrame=0.650000
+	bCockOnEmpty=True
+	WeaponModes(0)=(bUnavailable=True)
+	WeaponModes(1)=(ModeName="Burst of Three")
+	WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)
+	WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+	CurrentWeaponMode=3
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=128)
+	SightOffset=(X=-6.000000,Z=5.30000)
+	ParamsClass=Class'M353WeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.M353PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.M353SecondaryFire'
+	SelectAnimRate=1.350000
+	PutDownTime=0.550000
+	BringUpTime=0.700000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.7500000
+	CurrentRating=0.7500000
+	Description="The M353 'Guardian' Machinegun has seen some of the most brutal battles ever recorded in recent history, and has helped win many of them, the most famous being the bloody 'Wasteland Seige' where 12 million Krao were slaughtered along a 500 mile line of defences. Used primarily as a defensive weapon, the M353's incredible rate of fire can quickly and effectively destroy masses of oncoming foes, especially melee attackers. When the secondary mode is activated, the Guardian becomes much more accurate when the user mounts it on the ground, allowing it to be a very effective defensive weapon. With its high rate of fire and high damage, the M353 becomes very inaccurate after just a few rounds and with its high ammo capacity, comes the difficulty of longer reload times than smaller weapons."
+	DisplayFOV=50.000000
+	Priority=43
+	HudColor=(G=150,R=100)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=6
+	PickupClass=Class'BallisticProV55.M353Pickup'
+	PlayerViewOffset=(X=2.000000,Y=3.500000,Z=-4.000000)
+	AttachmentClass=Class'BallisticProV55.M353Attachment'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M353'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="M353 Light Machine Gun"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticProAnims.M353Machinegun'
+	DrawScale=0.350000
 }

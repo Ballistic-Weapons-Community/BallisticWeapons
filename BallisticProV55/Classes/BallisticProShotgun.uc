@@ -51,7 +51,7 @@ simulated function DrawCrosshairs(canvas C)
 	
 
 	OffsetAdjustment = C.ClipX / 2;
-	OffsetAdjustment *= tan (CrosshairSpreadAngle * Lerp(FireChaos, 1, MaxSpreadFactor) * 0.000095873799) / tan((Instigator.Controller.FovAngle/2) * 0.01745329252);
+	OffsetAdjustment *= tan (CrosshairSpreadAngle * Lerp(AimComponent.GetFireChaos(), 1, MaxSpreadFactor) * 0.000095873799) / tan((Instigator.Controller.FovAngle/2) * 0.01745329252);
 	
 
 	//black

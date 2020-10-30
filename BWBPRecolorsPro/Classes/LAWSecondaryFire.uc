@@ -13,7 +13,7 @@ defaultproperties
 {
      SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-     RecoilPerShot=3096.000000
+     FireRecoil=3096.000000
      XInaccuracy=256.000000
      YInaccuracy=256.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.LAW.LAW-Fire',Volume=4.200000,Slot=SLOT_Interact,bNoOverride=False)

@@ -73,7 +73,7 @@ defaultproperties
 {
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BallisticProV55.RSNovaFastMuzzleFlash'
-     RecoilPerShot=100.000000
+     FireRecoil=100.000000
      FireChaos=0.050000
      XInaccuracy=2.000000
      YInaccuracy=2.000000

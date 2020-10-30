@@ -124,7 +124,7 @@ simulated function bool AllowFire()
 
 defaultproperties
 {
-     RecoilPerShot=32.000000
+     FireRecoil=32.000000
      XInaccuracy=128.000000
      YInaccuracy=128.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.RX22A.RX22A-FuelLoop',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)

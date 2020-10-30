@@ -20,8 +20,10 @@ function SpawnProjectile(Vector Start, Rotator Dir)
 	local PlayerController Possessor;
 	
     Warhead = Weapon.Spawn(class'AkeronWarhead', Instigator,, Start, Dir);
+
     if (Warhead == None)
 		Warhead = Weapon.Spawn(class'AkeronWarhead', Instigator,, Instigator.Location, Dir);
+    
     if (Warhead != None)
     {
 		AkeronLauncher(BW).ActiveWarhead = Warhead;
@@ -43,8 +45,6 @@ function SpawnProjectile(Vector Start, Rotator Dir)
 		WarHead.MyTeam = Possessor.PlayerReplicationInfo.Team;
 		Warhead.Master = AkeronLauncher(BW);
     }
-    else 
-		Weapon.HurtRadius(85, 150, class'DTAkeron', 20000, Instigator.Location);
 
 	bIsFiring = false;
     StopFiring();
@@ -114,11 +114,8 @@ simulated event ModeDoFire()
         if(BallisticTurret(Weapon.Owner) == None && class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo) != None)
 			class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(load, BW.InventoryGroup);
     }
-	if (!BW.bScopeView)
-		BW.FireChaos = FClamp(BW.FireChaos + (FireChaos * InterpCurveEval(FireChaosCurve, BW.FireChaos)), 0, 1);
-    	
-	BW.LastFireTime = Level.TimeSeconds;
-
+    if (!BW.bScopeView)
+		BW.AddFireChaos(FireChaos);	
 
     // client
     if (Instigator.IsLocallyControlled())
@@ -180,7 +177,7 @@ defaultproperties
      LockOffSound=(Sound=Sound'BallisticSounds2.G5.G5-TargetOff',Volume=0.500000,Radius=128.000000,Pitch=1.000000)
      SpawnOffset=(X=50.000000,Y=10.000000,Z=-3.000000)
      MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-     RecoilPerShot=64.000000
+     FireRecoil=64.000000
      FireChaos=0.500000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.G5.G5-Fire1')
      bSplashDamage=True

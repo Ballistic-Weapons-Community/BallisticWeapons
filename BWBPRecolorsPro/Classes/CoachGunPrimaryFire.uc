@@ -131,7 +131,7 @@ simulated function SwitchWeaponMode (byte newMode)
 		PenetrateForce=0;
 		bPenetrate=False;
 		
-		RecoilPerShot=Default.RecoilPerShot;
+		FireRecoil=Default.FireRecoil;
 		
 		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
 		BallisticFireSound.Volume=default.BallisticFireSound.Volume;
@@ -325,14 +325,16 @@ simulated state Slug
 	simulated function vector GetFireSpread()
 	{
 		local float fX;
-			local Rotator R;
+		local Rotator R;
 
 		if (BW.bScopeView)
 			return super(BallisticInstantFire).GetFireSpread();
 
 		fX = frand();
-		R.Yaw =  BW.ChaosAimSpread * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-		R.Pitch = BW.ChaosAimSpread * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+
+		R.Yaw =  512 * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+		R.Pitch = 512 * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+		
 		return Vector(R);
 	}
 
@@ -400,7 +402,7 @@ simulated state Slug
 		}
 		
 		if (!BW.bScopeView)
-			BW.FireChaos = FClamp(BW.FireChaos + FireChaos, 0, 1);
+			BW.AddFireChaos(FireChaos);
 		
 		BW.LastFireTime = Level.TimeSeconds;
 
@@ -521,7 +523,7 @@ simulated event ModeDoFire()
     }
     
 	if (!BW.bScopeView)
-		BW.FireChaos = FClamp(BW.FireChaos + FireChaos, 0, 1);
+		BW.AddFireChaos(FireChaos);
 		
 	BW.LastFireTime = Level.TimeSeconds;
 
@@ -662,8 +664,8 @@ defaultproperties
 	BrassBone="EjectorR"
 	BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
 	AimedFireAnim="SightFireCombined"
-	RecoilPerShot=1024.000000
-	VelocityRecoil=250.000000
+	FireRecoil=1024.000000
+	FirePushbackForce=250.000000
 	FireChaos=1.000000
 	XInaccuracy=400.000000
 	YInaccuracy=220.000000

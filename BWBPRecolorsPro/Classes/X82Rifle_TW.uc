@@ -16,21 +16,21 @@ var() sound		MountFireSound;
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
 {
-	local Rotator BaseAim, BaseRecoil;
+	local Rotator AimPivotDelta, RecoilPivotDelta;
 
 	//DC 110313
 	if (Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
 		return;
 
-	BaseRecoil = GetRecoilPivot(true) * ViewRecoilFactor;
-	BaseAim = Aim * ViewAimFactor ;
-	if (LastFireTime >= Level.TimeSeconds - RecoilDeclineDelay)
-		Instigator.SetViewRotation((BaseAim - ViewAim) + (BaseRecoil - ViewRecoil));
+	RecoilPivotDelta 	= RcComponent.CalcViewPivotDelta();
+	AimPivotDelta  		= AimComponent.CalcViewPivotDelta();
+	
+	if (RcComponent.ShouldUpdateView())
+		Instigator.SetViewRotation(AimPivotDelta + RecoilPivotDelta);
 	else
-		Instigator.SetViewRotation(BaseAim - ViewAim);
-	ViewAim = BaseAim;
-	ViewRecoil = BaseRecoil;	
+		Instigator.SetViewRotation(AimPivotDelta);	
 }
+
 function InitTurretWeapon(BallisticTurret Turret)
 {
 	Ammo[0].AmmoAmount = Turret.AmmoAmount[0];
@@ -85,7 +85,7 @@ simulated event Timer()
 {
 	local int Mode;
 
-	ReAim(0.1);
+	AimComponent.ReAim(0.1);
 
     if (ClientState == WS_BringUp)
     {
@@ -187,37 +187,25 @@ simulated function PlayCocking(optional byte Type)
 
 defaultproperties
 {
-     MountFireSound=Sound'PackageSounds4Pro.X82.X82-Fire4'
-     ReloadAnimRate=1.300000
-     ClipHitSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipHit',Volume=0.000000)
-     ClipOutSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipOut')
-     ClipInSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipIn',Volume=1.500000)
-     SightingTime=0.010000
-     GunLength=0.000000
-     bUseSpecialAim=True
-     CrouchAimFactor=1.000000
-     SightAimFactor=0.100000
-     HipRecoilFactor=1.000000
-     AimSpread=0
-     AimDamageThreshold=2000.000000
-     ChaosAimSpread=0
-     RecoilPitchFactor=0.350000
-     RecoilYawFactor=0.000000
-     RecoilXFactor=0.000000
-     RecoilYFactor=0.200000
-     RecoilDeclineTime=0.500000
-     RecoilDeclineDelay=0.150000
-     FireModeClass(0)=Class'BWBPRecolorsPro.X82TW_PrimaryFire'
-     SelectAnim="Deploy"
-     BringUpTime=1.000000
-     bCanThrow=False
-     bNoInstagibReplace=True
-     DisplayFOV=90.000000
-     ClientState=WS_BringUp
-     Priority=1
-     PlayerViewOffset=(X=-80.000000)
-     ItemName="X-83 A1 Turret"
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.X83A1_Turret'
-     DrawScale=0.650000
-     CollisionHeight=24.000000
+	MountFireSound=Sound'PackageSounds4Pro.X82.X82-Fire4'
+	ReloadAnimRate=1.300000
+	ClipHitSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipHit',Volume=0.000000)
+	ClipOutSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipOut')
+	ClipInSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipIn',Volume=1.500000)
+	GunLength=0.000000
+	bUseSpecialAim=True
+	ParamsClass=Class='X82TW_WeaponParams'
+	FireModeClass(0)=Class'BWBPRecolorsPro.X82TW_PrimaryFire'
+	SelectAnim="Deploy"
+	BringUpTime=1.000000
+	bCanThrow=False
+	bNoInstagibReplace=True
+	DisplayFOV=90.000000
+	ClientState=WS_BringUp
+	Priority=1
+	PlayerViewOffset=(X=-80.000000)
+	ItemName="Deployed X83 Sniper Rifle"
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.X83A1_Turret'
+	DrawScale=0.650000
+	CollisionHeight=24.000000
 }

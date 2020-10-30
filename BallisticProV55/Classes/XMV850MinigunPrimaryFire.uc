@@ -79,21 +79,10 @@ simulated function DestroyEffects()
 	class'BUtil'.static.KillEmitterEffect (MuzzleFlashC);
 }
 
-simulated function rotator GetNewAim(float ExtraTime)
-{
-	return class'BUtil'.static.RSmerp(FMin((BW.ReaimPhase+ExtraTime)/BW.ReaimTime, 1.0), BW.OldAim, BW.NewAim);
-}
-
-simulated function rotator GetNewAimOffset(float ExtraTime)
-{
-	return class'BUtil'.static.RSmerp(FMax(0.0,(BW.AimOffsetTime-(level.TimeSeconds+ExtraTime))/BW.AimAdjustTime), BW.NewAimOffset, BW.OldAimOffset);
-}
 // Returns the interpolated base aim with its offset, chaos, etc and view aim removed in the form of a single rotator
 simulated function Rotator GetNewAimPivot(float ExtraTime, optional bool bIgnoreViewAim)
 {
-	if (bIgnoreViewAim || Instigator.Controller == None || PlayerController(Instigator.Controller) == None || PlayerController(Instigator.Controller).bBehindView)
-		return GetNewAimOffset(ExtraTime) + GetNewAim(ExtraTime) + BW.AimOffset + BW.LongGunPivot * BW.LongGunFactor;
-	return GetNewAimOffset(ExtraTime) + GetNewAim(ExtraTime) * (1-BW.ViewAimFactor) + BW.AimOffset + BW.LongGunPivot * BW.LongGunFactor;
+	return BW.CalcFutureAim(ExtraTime, bIgnoreViewAim);
 }
 
 //FIXME, maybe lets not use adjust aim, cause it does some traces and target selecting!!!
@@ -145,15 +134,12 @@ TraceCount = Ceil((level.TimeSeconds - level.LastRenderTime) / DesiredFireRate);
 FireRate = DesiredFireRate / TraceCount;
 */
 
-
-
-
 event ModeTick(float DT)
 {
 	local float DesiredFireRate;
 	local Rotator BasePlayerView;
 
-	BasePlayerView = BW.GetPlayerAim() - BW.Aim * (BW.ViewAimFactor) - BW.GetRecoilPivot(true) * (BW.ViewRecoilFactor);
+	BasePlayerView = BW.GetBasePlayerView();
 	
 	if (Instigator.IsLocallyControlled())
 	{
@@ -245,7 +231,7 @@ function DoFireEffect()
 		Aim += ExtraAim;
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
-		FireRecoil();
+		ApplyRecoil();
 		if (i == 1)
 			MuzzleBTime = Level.TimeSeconds + ExtraTime;
 		else if (i == 2)
@@ -295,7 +281,7 @@ simulated event ModeDoFire()
 			class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(load, BW.InventoryGroup);
     }
 	if (!BW.bScopeView)
-		BW.FireChaos = FClamp(BW.FireChaos + FireChaos, 0, 1);
+		BW.AddFireChaos(FireChaos);
 	
 	BW.LastFireTime = Level.TimeSeconds;
 
@@ -348,8 +334,8 @@ defaultproperties
      FlashScaleFactor=0.800000
      BrassClass=Class'BallisticProV55.Brass_Minigun'
      BrassOffset=(X=-50.000000,Y=-8.000000,Z=5.000000)
-     RecoilPerShot=72.000000
-     VelocityRecoil=300.000000
+     FireRecoil=72.000000
+     FirePushbackForce=150.000000
      FireChaos=0.120000
      XInaccuracy=16.000000
      YInaccuracy=16.000000

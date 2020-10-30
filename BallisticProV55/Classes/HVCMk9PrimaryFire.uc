@@ -68,7 +68,7 @@ function DoFireEffect()
 	if (HvCMk9Attachment(Weapon.ThirdPersonActor).StreamEffect == None)
 		HvCMk9Attachment(Weapon.ThirdPersonActor).StartStream();
 
-	FireRecoil();
+	ApplyRecoil();
 }
 
 //manages self damage
@@ -329,7 +329,7 @@ simulated event ModeDoFire()
     }
 	else if (!BW.bScopeView)
 	{
-		FireRecoil();
+		ApplyRecoil();
 	}
 	
 		BW.LastFireTime = Level.TimeSeconds;

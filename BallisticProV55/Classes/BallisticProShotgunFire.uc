@@ -6,11 +6,10 @@
 //=============================================
 class BallisticProShotgunFire extends BallisticShotgunFire;
 
-var float HipSpreadFactor;
-var float AdjustedHipSpreadFactor;
-var() float CutOffDistance;
-var() float CutOffStartRange;
-var int	 MaxSpreadFactor;
+var float 		HipSpreadFactor;
+var() float 	CutOffDistance;
+var() float 	CutOffStartRange;
+var int	 		MaxSpreadFactor;
 
 function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
 {
@@ -47,18 +46,13 @@ simulated function vector GetFireSpread()
 	local float fX;
     local Rotator R;
 	
-	if (BW.BCRepClass.default.bRelaxedHipFire)
-		AdjustedHipSpreadFactor = default.HipSpreadFactor * 0.5;
-	else
-		AdjustedHipSpreadFactor = default.HipSpreadFactor;
-
 	if (BW.bScopeView || BW.bAimDisabled)
 		return super.GetFireSpread();
 	else
 	{
 		fX = frand();
-		R.Yaw =  XInaccuracy * AdjustedHipSpreadFactor * Lerp(BW.FireChaos, 1, MaxSpreadFactor) * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-		R.Pitch = YInaccuracy * AdjustedHipSpreadFactor * Lerp(BW.FireChaos, 1, MaxSpreadFactor) * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+		R.Yaw =  XInaccuracy * HipSpreadFactor * Lerp(BW.GetFireChaos(), 1, MaxSpreadFactor) * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+		R.Pitch = YInaccuracy * HipSpreadFactor * Lerp(BW.GetFireChaos(), 1, MaxSpreadFactor) * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 		return Vector(R);
 	}
 }
@@ -128,7 +122,7 @@ simulated event ModeDoFire()
     }
     
 	if (!BW.bScopeView)
-		BW.FireChaos = FClamp(BW.FireChaos + FireChaos, 0, 1);
+		BW.AddFireChaos(FireChaos);
 		
 	BW.LastFireTime = Level.TimeSeconds;
 

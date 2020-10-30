@@ -30,25 +30,18 @@ function FlashMuzzleFlash()
 		EjectBrass();
 }
 
-function SetSilenced(bool bSilenced)
+function SetSuppressed(bool bSilenced)
 {
-	bAISilent = bSilenced;
 	if (bSilenced)
 	{
-		Damage *= 0.8;
-		RecoilPerShot *= 0.7;
-		BW.RecoilXFactor *= 0.7;
-		BW.RecoilYFactor *= 0.7;
-		RangeAtten *= 1.1;
-		XInaccuracy *= 0.65;
-		YInaccuracy *= 0.65;
+		FireRecoil *= 0.8;
+		RangeAtten *= 1.2;
+		XInaccuracy *= 0.75;
+		YInaccuracy *= 0.75;
 	}
 	else
 	{
-     	RecoilPerShot = default.RecoilPerShot;
-		Damage = default.Damage;
-		BW.RecoilXFactor = BW.default.RecoilXFactor;
-		BW.RecoilYFactor = BW.default.RecoilYFactor;
+		FireRecoil = default.FireRecoil;
 		RangeAtten = default.RangeAtten;
 		XInaccuracy = default.XInaccuracy;
 		YInaccuracy = default.YInaccuracy;
@@ -166,7 +159,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_MG'
      BrassOffset=(X=-80.000000,Y=1.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=140.000000
+     FireRecoil=140.000000
      FireChaos=0.02000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      XInaccuracy=48.000000

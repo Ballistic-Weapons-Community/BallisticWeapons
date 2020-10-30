@@ -44,48 +44,12 @@ replication
 		SoulPower;
 }
 
-simulated function SetScopeBehavior()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView;
-
-	if (bScopeView)
-	{
-		ViewAimFactor = 1.0;
-		ViewRecoilFactor = 1.0;
-		AimAdjustTime *= 2;
-		AimSpread = 0;
-		ChaosAimSpread *= SightAimFactor;
-		ChaosDeclineTime *= 2.0;
-		ChaosSpeedThreshold *= 0.7;
-	}
-	else
-	{
-		//PositionSights will handle this for clients
-		if(Level.NetMode == NM_DedicatedServer)
-		{
-			ViewAimFactor = default.ViewAimFactor;
-			ViewRecoilFactor = default.ViewRecoilFactor;
-		}
-
-		AimAdjustTime = default.AimAdjustTime;
-		if (CurrentWeaponMode == 0 || CurrentWeaponMode == 3)
-			AimSpread = 1024;
-		else AimSpread = default.AimSpread;
-		AimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosAimSpread = default.ChaosAimSpread;
-		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosDeclineTime = default.ChaosDeclineTime;
-		ChaosSpeedThreshold = default.ChaosSpeedThreshold;
-	}
-}
-
 simulated function PostNetBeginPlay()
 {
 	local RSDarkNovaControl DNC;
 
 	super.PostNetBeginPlay();
-	if (CurrentWeaponMode == 4 || CurrentWeaponMode == 0)
-		AimSpread=1024;
+
 	if (Role == ROLE_Authority && DNControl == None)
 	{
 		foreach DynamicActors (class'RSDarkNovaControl', DNC)
@@ -177,9 +141,9 @@ simulated function SetBladesOpen(float Alpha)
 	LoopAnim('BladesWide',, 0.0, 1);
 }
 
-simulated function AddRecoil (float Amount, optional byte Mode)
+simulated function AddRecoil (float Amount, float FireChaos, optional byte Mode)
 {
-	super.AddRecoil(Amount, Mode);
+	super.AddRecoil(Amount, FireChaos, Mode);
 	if (Mode == 0)
 	{
 		if (CurrentWeaponMode == 0)
@@ -407,56 +371,6 @@ simulated function KillFreeChainZap()
 	{	FreeChainZap.Kill();	bCanKillChainZap = true;	}
 }
 
-function ServerSwitchWeaponMode (byte NewMode)
-{
-	super.ServerSwitchWeaponMode (NewMode);
-	
-	if (CurrentWeaponMode == 0)
-	{
-		RecoilXFactor=0.8;
-		RecoilYFactor=1.5;
-		RecoilDeclineDelay=0.8;
-	}
-	
-	else
-	{
-		RecoilXFactor = default.RecoilXFactor;
-		RecoilYFactor = default.RecoilYFactor;
-		RecoilDeclineDelay = default.RecoilDeclineDelay;
-	}
-	
-	if (CurrentWeaponMode == 0 || CurrentWeaponMode == 3)
-		AimSpread = 1024;
-		
-	else 
-		AimSpread = default.AimSpread;
-}
-
-simulated function ClientSwitchWeaponModes (byte newMode)
-{
-	Super.ClientSwitchWeaponModes(newMode);
-	
-	if (newMode == 0)
-	{
-		RecoilXFactor=0.8;
-		RecoilYFactor=1.5;
-		RecoilDeclineDelay=0.8;
-	}
-	
-	else
-	{
-		RecoilXFactor = default.RecoilXFactor;
-		RecoilYFactor = default.RecoilYFactor;
-		RecoilDeclineDelay = default.RecoilDeclineDelay;
-	}
-	
-	if (newMode == 0 || newMode == 3)
-		AimSpread = 1024;
-		
-	else
-		AimSpread = default.AimSpread;
-}
-
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);
@@ -483,7 +397,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		class'BUtil'.static.InitMuzzleFlash (Blade1Glow, class'RSNovaBladeGlow', DrawScale, self, 'blade1');
 		class'BUtil'.static.InitMuzzleFlash (Blade2Glow, class'RSNovaBladeGlow', DrawScale, self, 'blade2');
 		class'BUtil'.static.InitMuzzleFlash (Blade3Glow, class'RSNovaBladeGlow', DrawScale, self, 'blade3');
-
 	}
 }
 
@@ -648,34 +561,6 @@ simulated function float RateSelf()
 	return CurrentRating;
 }
 
-simulated function TickLongGun (float DT)
-{
-	local Actor		T;
-	local Vector	HitLoc, HitNorm, Start;
-	local float		Dist;
-
-	LongGunFactor += FClamp(NewLongGunFactor - LongGunFactor, -DT/AimAdjustTime, DT/AimAdjustTime);
-
-	Start = Instigator.Location + Instigator.EyePosition();
-	T = Trace(HitLoc, HitNorm, Start + vector(Instigator.GetViewRotation()) * (GunLength+Instigator.CollisionRadius), Start, true);
-	if (T == None || T.Base == Instigator || (Projectile(T)!=None))
-	{
-		if (bPendingSightUp && SightingState < SS_Raising && NewLongGunFactor > 0)
-			ScopeBackUp(0.5);
-		NewLongGunFactor = 0;
-	}
-	else
-	{
-		Dist = VSize(HitLoc - Start)-Instigator.CollisionRadius;
-		if (Dist < GunLength)
-		{
-			if (bScopeView)
-				TemporaryScopeDown(0.5);
-			NewLongGunFactor = Acos(Dist / GunLength)/1.570796;
-		}
-	}
-}
-
 simulated function float ChargeBar()
 {
 	return SoulPower/5;
@@ -811,74 +696,61 @@ function float SuggestDefenseStyle()	{	return -0.2;	}
 
 defaultproperties
 {
-     WingSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Flying'
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP4-Tex.NovaStaff.BigIcon_NovaStaff'
-     BigIconCoords=(Y1=32,Y2=230)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Heal=True
-     ManualLines(0)="Slow Bolts deal high damage, gain damage over range and leech enemy HP for the user. This mode damages the user if used from the hip.|Rapid Fire bolts have moderate damage and gain damage over range.|The Lightning mode locks onto an enemy, deals damage and inflicts blind. Alternatively, it can be used to rapidly heal allies. It costs low soul power.|Thunder Strike mode generates a thunder bolt with medium range and excellent damage output. It inflicts severe damage at high soul cost.|Chain Lightning attacks multiple enemies on screen in the same fashion as Lightning, but drains soul power at an alarming rate."
-     ManualLines(1)="Melee attack. Damage increases the longer Altfire is held, up to 1.5 seconds for maximum bonus. Deals more damage from behind. Leeches half of the damage dealt as health for the wielder."
-     ManualLines(2)="Enemies killed by this weapon leave souls behind. These can be collected to power the Lightning, Thunder Strike and Chain Lightning modes. Use of those modes without external soul power will cause the user's soul to be used instead, dealing significant backlash damage.||With full soulpower, the weapon can enter rampage mode, reducing all damage taken and granting the ability to fly. In this mode, soulpower will drain over time.||Effective at close and medium range."
-     SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;1.0;0.0;1.0")
-     BringUpSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Pullout')
-     PutDownSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Putaway')
-     MagAmmo=24
-	 PutDownAnimRate=1.4
-     ReloadAnimRate=1.250000
-     ClipOutSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalOut',Volume=0.700000)
-     ClipInSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalIn',Volume=0.700000)
-     ClipInFrame=0.700000
-     WeaponModes(0)=(ModeName="Slow Bolt",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
-     WeaponModes(2)=(ModeName="Lightning")
-     WeaponModes(3)=(ModeName="Thunder Strike",ModeID="WM_FullAuto")
-     WeaponModes(4)=(ModeName="Chain Lightning",ModeID="WM_FullAuto",bUnavailable=True)
-     CurrentWeaponMode=0
-     bNotifyModeSwitch=True
-     SightPivot=(Pitch=512)
-     SightOffset=(X=-60.000000,Z=15.000000)
-     SightDisplayFOV=40.000000
-     SightingTime=0.300000
-     GunLength=128.000000
-     SprintOffSet=(Pitch=-1024,Yaw=-1024)
-     AimAdjustTime=0.700000
-     ChaosDeclineTime=1.250000
-	 
-	 ViewRecoilFactor=0.4
-     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.05000
-     RecoilYFactor=0.05000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.250000
-     FireModeClass(0)=Class'BallisticProV55.RSNovaPrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.RSNovaMeleeFire'
-     BringUpTime=0.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.700000
-     CurrentRating=0.70000
-     bShowChargingBar=True
-     Description="During a mining excavation of the large crater in sector-547b on one of the distant Outword planets, a strage, magnificent artifact was discovered. Generating great interest in the isolated facility, superstitious miners beleived it to be a magical device capable of everything from allowing god to read their minds to teleportation and the summoning of demons. The artifact was subjected to all manner of tests, but proved to be a confounding subject and revealed very little. It was made of an unimaginably strong material and appeared apparently undamaged despite it's intricate construction. For all they could say, it may have been nothing more than a candlestick.|Finally, mine coordinator R Peters, who had had a greedy eye fixed on the artifact since day one, ordered the tests cancelled and retired the artifact to his office."
-     DisplayFOV=47.000000
-     Priority=9
-     HudColor=(B=255,G=175,R=100)
-     InventoryGroup=5
-     GroupOffset=3
-     PickupClass=Class'BallisticProV55.RSNovaPickup'
-     PlayerViewOffset=(X=20.000000,Y=5.000000,Z=-6.000000)
-     AttachmentClass=Class'BallisticProV55.RSNovaAttachment'
-     IconMaterial=Texture'BWBP4-Tex.NovaStaff.SmallIcon_NovaStaff'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="Nova Staff"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=180
-     LightSaturation=96
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBP4-Anims.NovaStaff'
-     DrawScale=0.300000
-     bFullVolume=True
-     SoundRadius=32.000000
+	WingSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Flying'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBP4-Tex.NovaStaff.BigIcon_NovaStaff'
+	BigIconCoords=(Y1=32,Y2=230)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Heal=True
+	ManualLines(0)="Slow Bolts deal high damage, gain damage over range and leech enemy HP for the user. This mode damages the user if used from the hip.|Rapid Fire bolts have moderate damage and gain damage over range.|The Lightning mode locks onto an enemy, deals damage and inflicts blind. Alternatively, it can be used to rapidly heal allies. It costs low soul power.|Thunder Strike mode generates a thunder bolt with medium range and excellent damage output. It inflicts severe damage at high soul cost.|Chain Lightning attacks multiple enemies on screen in the same fashion as Lightning, but drains soul power at an alarming rate."
+	ManualLines(1)="Melee attack. Damage increases the longer Altfire is held, up to 1.5 seconds for maximum bonus. Deals more damage from behind. Leeches half of the damage dealt as health for the wielder."
+	ManualLines(2)="Enemies killed by this weapon leave souls behind. These can be collected to power the Lightning, Thunder Strike and Chain Lightning modes. Use of those modes without external soul power will cause the user's soul to be used instead, dealing significant backlash damage.||With full soulpower, the weapon can enter rampage mode, reducing all damage taken and granting the ability to fly. In this mode, soulpower will drain over time.||Effective at close and medium range."
+	SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;1.0;0.0;1.0")
+	BringUpSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Pullout')
+	PutDownSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Putaway')
+	PutDownAnimRate=1.4
+	ReloadAnimRate=1.250000
+	ClipOutSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalOut',Volume=0.700000)
+	ClipInSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalIn',Volume=0.700000)
+	ClipInFrame=0.700000
+	WeaponModes(0)=(ModeName="Slow Bolt",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1,AimParamsIndex=1)
+	WeaponModes(2)=(ModeName="Lightning",RecoilParamsIndex=1,AimParamsIndex=1)
+	WeaponModes(3)=(ModeName="Thunder Strike",ModeID="WM_FullAuto")
+	WeaponModes(4)=(ModeName="Chain Lightning",ModeID="WM_FullAuto",bUnavailable=True)
+	CurrentWeaponMode=0
+	SightPivot=(Pitch=512)
+	SightOffset=(X=-60.000000,Z=15.000000)
+	SightDisplayFOV=40.000000
+	GunLength=128.000000
+	ParamsClass=Class'RSNovaWeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.RSNovaPrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.RSNovaMeleeFire'
+	BringUpTime=0.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.700000
+	CurrentRating=0.70000
+	bShowChargingBar=True
+	Description="During a mining excavation of the large crater in sector-547b on one of the distant Outword planets, a strage, magnificent artifact was discovered. Generating great interest in the isolated facility, superstitious miners beleived it to be a magical device capable of everything from allowing god to read their minds to teleportation and the summoning of demons. The artifact was subjected to all manner of tests, but proved to be a confounding subject and revealed very little. It was made of an unimaginably strong material and appeared apparently undamaged despite it's intricate construction. For all they could say, it may have been nothing more than a candlestick.|Finally, mine coordinator R Peters, who had had a greedy eye fixed on the artifact since day one, ordered the tests cancelled and retired the artifact to his office."
+	DisplayFOV=47.000000
+	Priority=9
+	HudColor=(B=255,G=175,R=100)
+	InventoryGroup=5
+	GroupOffset=3
+	PickupClass=Class'BallisticProV55.RSNovaPickup'
+	PlayerViewOffset=(X=20.000000,Y=5.000000,Z=-6.000000)
+	AttachmentClass=Class'BallisticProV55.RSNovaAttachment'
+	IconMaterial=Texture'BWBP4-Tex.NovaStaff.SmallIcon_NovaStaff'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="Nova Staff"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=180
+	LightSaturation=96
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BWBP4-Anims.NovaStaff'
+	DrawScale=0.300000
+	bFullVolume=True
+	SoundRadius=32.000000
 }

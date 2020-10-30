@@ -67,7 +67,6 @@ function float GetAIRating()
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
     local vector HitNormal;
-    local float DF;
 
 	if( DamageType.default.bCausedByWorld || HitLocation.Z < Instigator.Location.Z - 22)
         super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
@@ -87,28 +86,10 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 			Momentum *= 4;
 		}
 		
-		DF = FMin(1, float(Damage)/AimDamageThreshold);
-		ApplyDamageFactor(DF);
-		ClientPlayerDamaged(255*DF);
-		bForceReaim=true;
+		AimComponent.ApplyDamageFactor(Damage);
     }
 
 	else super.AdjustPlayerDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType);
-}
-
-simulated function ClientPlayerDamaged(byte DamageFactor)
-{
-	local float DF;
-	if (level.NetMode != NM_Client)
-		return;
-	DF = float(DamageFactor)/255;
-	ApplyDamageFactor(DF);
-	bForceReaim=true;
-}
-
-simulated function ApplyDamageFactor (float DF)
-{
-	Reaim(0.1, 0.3*AimAdjustTime, DF*2, DF*2*(-3500 + 7000 * FRand()), DF*2*(-3000 + 6000 * FRand()));
 }
 
 function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDrain )
@@ -242,49 +223,45 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 
 defaultproperties
 {
-     DropSound=Sound'PlayerSounds.BFootsteps.BFootstepSnow5'
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticProTextures.Sandbags.Icon_Sandbags'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-	 InventorySize=2
-     SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
-     bNoMag=True
-     WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(ModeName="Place")
-     GunLength=0.000000
-     AimSpread=0
-     AimDamageThreshold=25.000000
-     ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=0
-     FireModeClass(0)=Class'BallisticProV55.SandbagFire'
-     FireModeClass(1)=Class'BallisticProV55.SandbagFire'
-     PutDownTime=0.900000
-     BringUpTime=0.700000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.000000
-     CurrentRating=0.000000
-     bMeleeWeapon=True
-     bNoInstagibReplace=True
-     Description="Generic sandbags, as used in militaries for decades. Useful for laying temporary cover. Can be used as a base for most deployed weapons, reducing the chance of the user being directly hit by attacks. May be picked up with the Use key when no other players are near them. Vulnerable to destruction if hit by high-powered weaponry."
-     DisplayFOV=65.000000
-     Priority=12
-     HudColor=(G=200)
-     CenteredOffsetY=7.000000
-     CenteredRoll=0
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=0
-     GroupOffset=8
-     PickupClass=Class'BallisticProV55.SandbagPickup'
-     PlayerViewOffset=(X=40.000000,Z=-10.000000)
-     AttachmentClass=Class'BallisticProV55.SandbagAttachment'
-     IconMaterial=Texture'BallisticProTextures.Sandbags.SmallIcon_Sandbags'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="Sandbags"
-     Mesh=SkeletalMesh'BallisticProAnims.SandBagFP'
-     DrawScale=0.600000
-     SoundVolume=150
-     TransientSoundRadius=256.000000
+	DropSound=Sound'PlayerSounds.BFootsteps.BFootstepSnow5'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticProTextures.Sandbags.Icon_Sandbags'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
+	bNoMag=True
+	WeaponModes(0)=(bUnavailable=True)
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(ModeName="Place")
+	GunLength=0.000000
+	ParamsClass=Class'SandbagWeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.SandbagFire'
+	FireModeClass(1)=Class'BallisticProV55.SandbagFire'
+	PutDownTime=0.900000
+	BringUpTime=0.700000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.000000
+	CurrentRating=0.000000
+	bMeleeWeapon=True
+	bNoInstagibReplace=True
+	Description="Generic sandbags, as used in militaries for decades. Useful for laying temporary cover. Can be used as a base for most deployed weapons, reducing the chance of the user being directly hit by attacks. May be picked up with the Use key when no other players are near them. Vulnerable to destruction if hit by high-powered weaponry."
+	DisplayFOV=65.000000
+	Priority=12
+	HudColor=(G=200)
+	CenteredOffsetY=7.000000
+	CenteredRoll=0
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=0
+	GroupOffset=8
+	PickupClass=Class'BallisticProV55.SandbagPickup'
+	PlayerViewOffset=(X=40.000000,Z=-10.000000)
+	AttachmentClass=Class'BallisticProV55.SandbagAttachment'
+	IconMaterial=Texture'BallisticProTextures.Sandbags.SmallIcon_Sandbags'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="Sandbags"
+	Mesh=SkeletalMesh'BallisticProAnims.SandBagFP'
+	DrawScale=0.600000
+	SoundVolume=150
+	TransientSoundRadius=256.000000
 }

@@ -22,8 +22,6 @@ var() config float		RecoilScale;		// Used for scaling general weapon recoil.
 var() config bool		bNoJumpOffset;		// Prevents weapons shifting and being offset when jumping or sprinting
 var() config bool		bNoLongGun;			// Disable 'long gun' features
 var() config bool		bNoReloading;		// Disables reloading and weapons use boring old style ammo handling...
-var() config bool		bSightFireOnly;		//Prevents hipfire entirely.
-var() config bool		bRelaxedHipfire;		//Reduces HipRecoilFactor and BallisticProShotgunFire's HipSpreadFactor by a fixed amount
 // ----------------------------------------------------------------------------
 var struct RepInfo_BCore
 {
@@ -32,8 +30,6 @@ var struct RepInfo_BCore
 	var bool		bNoJumpOffset;
 	var bool		bNoLongGun;
 	var bool		bNoReloading;
-	var bool		bSightFireOnly;
-	var bool		bRelaxedHipfire;
 }BCoreRep;
 
 replication
@@ -50,16 +46,12 @@ simulated function InitClientVars()
 	bNoJumpOffset	= BCoreRep.bNoJumpOffset;
 	bNoLongGun		= BCoreRep.bNoLongGun;
 	bNoReloading	= BCoreRep.bNoReloading;
-	bSightFireOnly = BCoreRep.bSightFireOnly;
-	bRelaxedHipfire = BCoreRep.bRelaxedHipfire;
 
 	class.default.AccuracyScale	= AccuracyScale;
 	class.default.RecoilScale	= RecoilScale;
 	class.default.bNoJumpOffset	= bNoJumpOffset;
 	class.default.bNoLongGun	= bNoLongGun;
 	class.default.bNoReloading	= bNoReloading;
-	class.default.bSightFireOnly = bSightFireOnly;
-	class.default.bRelaxedHipfire = bRelaxedHipfire;
 
 	Log("InitClientVars: "$ModString);
 
@@ -77,8 +69,6 @@ function ServerInitialize()
 	BCoreRep.bNoJumpOffset	= bNoJumpOffset;
 	BCoreRep.bNoLongGun		= bNoLongGun;
 	BCoreRep.bNoReloading	= bNoReloading;
-	BCoreRep.bSightFireOnly = bSightFireOnly;
-	BCoreRep.bRelaxedHipfire = bRelaxedHipfire;
 
 	Log("ServerInitialize: "$ModString);
 }

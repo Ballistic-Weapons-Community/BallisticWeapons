@@ -23,12 +23,6 @@ var       float		HUDRefreshTime;		// Used to keep the damn thing pretty
 // Check if there is ammo in mag if we use it or is there some in inventory if we don't
 simulated function bool AllowFire()
 {
-	if (BW.BCRepClass.default.bSightFireOnly && !BW.bScopeView)
-	{
-		if (PlayerController(Instigator.Controller) != None)
-			PlayerController(Instigator.Controller).ClientMessage("You can only fire from sights.");
-		return false;
-	}
 	if (!CheckReloading())
 		return false;		// Is weapon busy reloading
 	if (!CheckWeaponMode())
@@ -260,8 +254,8 @@ defaultproperties
      FlashScaleFactor=2.000000
      BrassClass=Class'BWBPRecolorsPro.Brass_ShotgunZap'
      BrassOffset=(X=-1.000000,Z=-1.000000)
-     RecoilPerShot=768.000000
-     VelocityRecoil=180.000000
+     FireRecoil=768.000000
+     FirePushbackForce=180.000000
      XInaccuracy=150.000000
      YInaccuracy=150.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.HyperBeamCannon.343Primary-Hit',Volume=1.600000)

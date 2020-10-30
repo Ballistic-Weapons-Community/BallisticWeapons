@@ -24,7 +24,7 @@ defaultproperties
 {
 	SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
 	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-	RecoilPerShot=96.000000
+	FireRecoil=96.000000
 	FireChaos=0.130000
 	BallisticFireSound=(Sound=Sound'BallisticSounds3.A42.A42-Fire',Volume=0.700000)
 	bPawnRapidFireAnim=True

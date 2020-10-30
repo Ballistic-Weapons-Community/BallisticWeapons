@@ -66,8 +66,6 @@ simulated function ClientSetViewRotation(Rotator R)
 // Aim goes bad when player takes damage
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
-	local float DF;
-	
 	if (bBerserk)
 		Damage *= 0.75;
 		
@@ -76,12 +74,9 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 		RecoverController();
 		
 	if (AimKnockScale == 0)
-		return;
+          return;
 
-	DF = FMin(1, (float(Damage)/AimDamageThreshold) * AimKnockScale);
-	ApplyDamageFactor(DF);
-	ClientPlayerDamaged(255*DF);
-	bForceReaim=true;
+	AimComponent.ApplyDamageFactor(Damage);
 }
 
 function byte BestMode()
@@ -119,8 +114,6 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 defaultproperties
 {
      PanicThreshold=4.000000
-     PlayerSpeedFactor=0.850000
-     PlayerJumpFactor=0.850000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BWBPOtherPackTex3.Akeron.BigIcon_Akeron'
@@ -153,21 +146,11 @@ defaultproperties
      bNoMeshInScope=True
      bNoCrosshairInScope=True
      SightOffset=(X=-30.000000,Y=-17.000000,Z=15.000000)
-     SightingTime=0.500000
+
      MinZoom=2.000000
      MaxZoom=8.000000
      ZoomStages=2
-     SightAimFactor=0.650000
-     SprintOffSet=(Pitch=-6000,Yaw=-8000)
-     JumpOffSet=(Pitch=-6000,Yaw=-1500)
-     AimAdjustTime=1.000000
-     AimSpread=64
-     ChaosSpeedThreshold=500.000000
-     ChaosAimSpread=512
-	 
-	 ViewRecoilFactor=0.75
-     RecoilDeclineTime=1.000000
-	 
+     ParamsClass=Class'AkeronWeaponParams'
      FireModeClass(0)=Class'BWBPOtherPackPro.AkeronPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.AkeronSecondaryFire'
      SelectAnimRate=0.600000

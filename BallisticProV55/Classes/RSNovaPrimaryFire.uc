@@ -129,10 +129,10 @@ simulated event ModeDoFire()
 		class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(load, BW.InventoryGroup);
     }
     else if (!BW.bUseNetAim && !BW.bScopeView)
-    	FireRecoil();
+    	ApplyRecoil();
 		
 	if (!BW.bScopeView)
-		BW.FireChaos = FClamp(BW.FireChaos + FireChaos, 0, 1);
+		BW.AddFireChaos(FireChaos);
     	
 	BW.LastFireTime = Level.TimeSeconds;
 
@@ -261,14 +261,14 @@ function StartBerserk()
 	{
 		FireRate = default.FireRate * 0.75;
 		FireAnimRate = default.FireAnimRate * 0.75;
-		RecoilPerShot = default.RecoilPerShot * 0.75;
+		FireRecoil = default.FireRecoil * 0.75;
 		FireChaos = default.FireChaos * 0.75;
 	}
 	else
 	{
 		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate * 0.75;
     	FireAnimRate = default.FireAnimRate * 0.75;
-    	RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
+    	FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
 		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos * 0.75;
 	}
 }
@@ -279,14 +279,14 @@ function StopBerserk()
 	{
 		FireRate = default.FireRate;
 		FireAnimRate = default.FireAnimRate;
-		RecoilPerShot = default.RecoilPerShot;
+		FireRecoil = default.FireRecoil;
 		FireChaos = default.FireChaos;
 	}
 	else
 	{
 		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate;
     	FireAnimRate = default.FireAnimRate;
-    	RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil;
+    	FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil;
 		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos;
 	}
 }
@@ -379,7 +379,7 @@ state NovaLightning
         	Instigator.DeactivateSpawnProtection();
 	    }
 		else if (!BW.default.bUseNetAim && !BW.bScopeView)
-			FireRecoil();
+			ApplyRecoil();
 
 	    // client
     	if (Instigator.IsLocallyControlled())
@@ -421,7 +421,7 @@ state NovaLightning
 
 		if (!bAISilent)
 			Instigator.MakeNoise(1.0);
-		FireRecoil();
+		ApplyRecoil();
 
 		TargetAngle = 0.92;
 		foreach Instigator.VisibleCollidingActors( class 'Actor', Victims, 700, Instigator.Location )
@@ -646,7 +646,7 @@ state Zap
 
 		DoTrace(StartTrace, Aim);
 
-		FireRecoil();
+		ApplyRecoil();
 		
 		//Consumes soulpower or HP
 		if (RSNovaStaff(Weapon).SoulPower >= ModePowerDrain)
@@ -808,7 +808,7 @@ state ChainLightning
         	Instigator.DeactivateSpawnProtection();
 	    }
 		else if (!BW.default.bUseNetAim && !BW.bScopeView)
-			FireRecoil();
+			ApplyRecoil();
 
 	    // client
     	if (Instigator.IsLocallyControlled())
@@ -849,7 +849,7 @@ state ChainLightning
 
 		Instigator.MakeNoise(1.0);
 
-		FireRecoil();
+		ApplyRecoil();
 
 		PrevLoc = Instigator.Location;
 		for (i=0;i<ChainVics.length;i++)
@@ -1069,7 +1069,7 @@ defaultproperties
      FireModes(2)=(mFireRate=0.750000,mFireSound=Sound'BWBP4-Sounds.NovaStaff.Nova-LightningBolt',mFireAnim="Fire",mRecoil=256.000000,mAmmoPerFire=2,TargetState="Zap",bModeInstantHit=True)
      FireModes(3)=(mFireRate=0.100000,mFireSound=Sound'BWBP4-Sounds.NovaStaff.Nova-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=256.000000,mAmmoPerFire=1,TargetState="ChainLightning",bModeInstantHit=True)
      MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
-     RecoilPerShot=1024.000000
+     FireRecoil=1024.000000
      FireChaos=0.250000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire',Slot=SLOT_Interact,bNoOverride=False)

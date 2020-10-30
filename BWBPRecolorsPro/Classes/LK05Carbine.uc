@@ -58,13 +58,25 @@ simulated event PostNetReceive()
 	//Do not use default to save postnetreceived shit
 	if (bLaserOn != bOldLaserOn)
 	{
-		if (bLaserOn)
-			AimAdjustTime = default.AimAdjustTime * 1.5;
-		else
-			AimAdjustTime = default.AimAdjustTime;
+		OnLaserSwitched();
 		bOldLaserOn = bLaserOn;
 	}
 	Super.PostNetReceive();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bSilenced)
+		ApplySuppressorAim();
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function CheckSetNetAim()
+{
+	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
 
 //=================================
@@ -86,14 +98,29 @@ exec simulated function SwitchSilencer()
 {
 	if (ReloadState != RS_None)
 		return;
-	if (Clientstate != WS_ReadyToFire)
+	if (ClientState != WS_ReadyToFire)
 		return;
 
 	bSilenced = !bSilenced;
 	ServerSwitchSilencer(bSilenced);
 	PlaySuppressorAttachment(bSilenced);
+	OnSuppressorSwitched();
 	LK05PrimaryFire(FireMode[0]).SwitchSilencerMode(bSilenced);
 	LK05Attachment(ThirdPersonActor).IAOverride(bSilenced);
+}
+
+simulated function OnSuppressorSwitched()
+{
+	if (bSilenced)
+		ApplySuppressorAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function ApplySuppressorAim()
+{
+	AimComponent.AimSpread.Min *= 1.2;
+	AimComponent.AimSpread.Max *= 1.2;
 }
 
 simulated function PlaySuppressorAttachment(bool bSuppressed)
@@ -167,28 +194,11 @@ exec simulated function WeaponSpecial(optional byte i)
 	}
 	else //Laser
 	{
-		bLaserOn = !bLaserOn;
 		ServerSwitchLaser(bLaserOn);
-		if (bLaserOn)
-		{
-			SpawnLaserDot();
-			PlaySound(LaserOnSound,,0.7,,32);
-			AimSpread = LaserAimSpread;
-			BFireMode[0].FireChaos *= 0.8;
-		}
-		else
-		{
-			KillLaserDot();
-			PlaySound(LaserOffSound,,0.7,,32);
-			AimSpread = default.AimSpread;
-			BFireMode[0].FireChaos = BFireMode[0].default.FireChaos;
-		}
-
 		PlayIdle();
-		bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+		CheckSetNetAim();
 	}
 }
-
 
 //=================================
 // Flashlight
@@ -245,30 +255,54 @@ simulated event RenderOverlays( Canvas Canvas )
 	}
 }
 
-
 //=================================
 // Laser
 //=================================
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+	
+	CheckSetNetAim();
+
 	if (ThirdPersonActor!=None)
 		LK05Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
-	if (bLaserOn)
-	{
-		AimAdjustTime = default.AimAdjustTime * 1.5;
-		//AimSpread = LaserAimSpread;
-		BFireMode[0].FireChaos *= 0.8;
-	}
-	else
-	{
-		AimAdjustTime = default.AimAdjustTime;
-		//AimSpread = default.AimSpread;
-		BFireMode[0].FireChaos = BFireMode[0].default.FireChaos;
-	}
+
+	OnLaserSwitched();
 }
 
+simulated function OnLaserSwitched()
+{
+	if (Instigator.IsLocallyControlled())
+	{
+		if (bLaserOn)
+		{
+			SpawnLaserDot();
+			PlaySound(LaserOnSound,,0.7,,32);
+		}
+		else
+		{
+			KillLaserDot();
+			PlaySound(LaserOffSound,,0.7,,32);
+		}
+	}
+
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 1.5;
+	AimComponent.AimSpread.Max *= 0.8;
+}
+
+simulated function SpawnLaserDot(optional vector Loc)
+{
+	if (LaserDot == None)
+		LaserDot = Spawn(class'MD24LaserDot',,,Loc);
+}
 
 simulated function KillLaserDot()
 {
@@ -278,12 +312,6 @@ simulated function KillLaserDot()
 		LaserDot = None;
 	}
 }
-simulated function SpawnLaserDot(optional vector Loc)
-{
-	if (LaserDot == None)
-		LaserDot = Spawn(class'MD24LaserDot',,,Loc);
-}
-
 
 // Draw a laser beam and dot to show exact path of bullets before they're fired
 simulated function DrawLaserSight ( Canvas Canvas )
@@ -500,86 +528,70 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
-     ManualLines(0)="5.56 fire. Higher DPS than comparable weapons, but awkward recoil and highly visible tracers."
-     ManualLines(1)="Attaches or remvoes the suppressor. When active, the suppressor reduces recoil and noise output and hides the muzzle flash, but reduces range."
-     ManualLines(2)="The Weapon Function key, when used, first cycles between the weapon's laser sight and flashlight, and then activates both at once. Activate again to disable both. The laser sight reduces the spread of the hipfire, but compromises stealth.||Effective at close and medium range."
-     LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
-     LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
-     LaserAimSpread=64.000000
-     SilencerBone="Silencer"
-     SilencerBone2="Silencer2"
-     SilencerOnSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOn'
-     SilencerOffSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOff'
-     SilencerOnAnim="SilencerOn"
-     SilencerOffAnim="SilencerOff"
-     TorchOffset=(X=-50.000000)
-     TorchOnSound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-FlashClick'
-     TorchOffSound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-FlashClick'
-     ScopeBone="EOTech"
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.000000
-     BigIconMaterial=Texture'BallisticRecolors4TexPro.LK05.BigIcon_LK05'
-     BigIconCoords=(Y1=36,Y2=225)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
-     BringUpSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-PullOut',Volume=2.200000)
-     PutDownSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-Putaway',Volume=2.200000)
-     MagAmmo=25
-     CockSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-Cock',Volume=2.200000)
-     ClipOutSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-MagOut',Volume=2.400000)
-     ClipInSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-MagIn',Volume=2.400000)
-     ClipInFrame=0.650000
-     WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(Value=4.000000)
-     WeaponModes(3)=(bUnavailable=True)
-     bNoCrosshairInScope=True
-     SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
-     SightDisplayFOV=25.000000
-     SightingTime=0.300000
-     SprintOffSet=(Pitch=-3072,Yaw=-4096)
-	 
-     AimSpread=16
-     ChaosDeclineTime=0.5
-     ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=768
-	 
-	 ViewRecoilFactor=0.35
-     RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.12),(InVal=0.2,OutVal=0.18),(InVal=0.35,OutVal=0.22),(InVal=0.5,OutVal=0.3),(InVal=0.7,OutVal=0.45),(InVal=0.85,OutVal=0.6),(InVal=1.000000,OutVal=0.66)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.050000
-     RecoilYFactor=0.050000
-     RecoilDeclineTime=0.4
-     RecoilDeclineDelay=0.200000
-	 
-     FireModeClass(0)=Class'BWBPRecolorsPro.LK05PrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.LK05SecondaryFire'
-     IdleAnimRate=0.500000
-     SelectAnimRate=1.660000
-     PutDownAnimRate=1.330000
-     PutDownTime=0.400000
-     BringUpTime=0.450000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.70000
-     CurrentRating=0.700000
-     Priority=41
-     HudColor=(B=24,G=48)
-	 bCockOnEmpty=True
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=4
-     PickupClass=Class'BWBPRecolorsPro.LK05Pickup'
-     PlayerViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
-     BobDamping=2.000000
-     AttachmentClass=Class'BWBPRecolorsPro.LK05Attachment'
-     IconMaterial=Texture'BallisticRecolors4TexPro.LK05.SmallIcon_LK05'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="LK-05 Advanced Carbine"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.LK05_FP'
-     DrawScale=0.300000
+	ManualLines(0)="5.56 fire. Higher DPS than comparable weapons, but awkward recoil and highly visible tracers."
+	ManualLines(1)="Attaches or remvoes the suppressor. When active, the suppressor reduces recoil and noise output and hides the muzzle flash, but reduces range."
+	ManualLines(2)="The Weapon Function key, when used, first cycles between the weapon's laser sight and flashlight, and then activates both at once. Activate again to disable both. The laser sight reduces the spread of the hipfire, but compromises stealth.||Effective at close and medium range."
+	LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
+	LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
+	LaserAimSpread=64.000000
+	SilencerBone="Silencer"
+	SilencerBone2="Silencer2"
+	SilencerOnSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOn'
+	SilencerOffSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOff'
+	SilencerOnAnim="SilencerOn"
+	SilencerOffAnim="SilencerOff"
+	TorchOffset=(X=-50.000000)
+	TorchOnSound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-FlashClick'
+	TorchOffSound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-FlashClick'
+	ScopeBone="EOTech"
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.000000
+	BigIconMaterial=Texture'BallisticRecolors4TexPro.LK05.BigIcon_LK05'
+	BigIconCoords=(Y1=36,Y2=225)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
+	BringUpSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-PullOut',Volume=2.200000)
+	PutDownSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-Putaway',Volume=2.200000)
+	CockSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-Cock',Volume=2.200000)
+	ClipOutSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-MagOut',Volume=2.400000)
+	ClipInSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-MagIn',Volume=2.400000)
+	ClipInFrame=0.650000
+	WeaponModes(0)=(bUnavailable=True)
+	WeaponModes(1)=(Value=4.000000)
+	WeaponModes(3)=(bUnavailable=True)
+	bNoCrosshairInScope=True
+	SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
+	SightDisplayFOV=25.000000
+	ParamsClass=Class'LK05WeaponParams'
+	FireModeClass(0)=Class'BWBPRecolorsPro.LK05PrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.LK05SecondaryFire'
+	IdleAnimRate=0.500000
+	SelectAnimRate=1.660000
+	PutDownAnimRate=1.330000
+	PutDownTime=0.400000
+	BringUpTime=0.450000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.70000
+	CurrentRating=0.700000
+	Priority=41
+	HudColor=(B=24,G=48)
+	bCockOnEmpty=True
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=4
+	PickupClass=Class'BWBPRecolorsPro.LK05Pickup'
+	PlayerViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
+	BobDamping=2.000000
+	AttachmentClass=Class'BWBPRecolorsPro.LK05Attachment'
+	IconMaterial=Texture'BallisticRecolors4TexPro.LK05.SmallIcon_LK05'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="LK-05 Advanced Carbine"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.LK05_FP'
+	DrawScale=0.300000
 }

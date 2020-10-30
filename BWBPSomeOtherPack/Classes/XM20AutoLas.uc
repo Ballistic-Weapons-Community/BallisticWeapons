@@ -413,84 +413,72 @@ function byte BestMode()
 
 defaultproperties
 {
-	 PierceThreshold=50
-     ShieldBone="tip"
-     ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
-     ShieldOnSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldOn'
-     ShieldOffSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldOff'
-     ShieldPierceSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldPierce'
-     ShieldHitForce="ShieldReflection"
-     DamageSound=Sound'PackageSounds4Pro.NEX.NEX-Overload'
-     BrokenSound=Sound'BWBP2-Sounds.LightningGun.LG-Ambient'
-     ChargingSound=Sound'WeaponSounds.BaseFiringSounds.BShield1'
-     ShieldSoundVolume=220	 
-	 ShieldPower=100
-	 ShieldPowerMax=200
-	 ShieldGainPerSecond=5.0f
-	 bShowChargingBar=True
-     ManualLines(0)="Each hit heats up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
-     ManualLines(1)="Secondary fire will toggle a directional shield. The shield has a maximum of 200 health points and will reduce incoming damage by 35 points or by 90% of its value, whichever is smaller. If the shield is broken, a minimum reserve level is required to reactivate it."
-     ManualLines(2)="Effective at moderate range, against small arms, and against enemies using healing weapons and items."
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBPSomeOtherPackTex.XM20.BigIcon_XM20'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Energy=True
-	 bNoCrosshairInScope=True
-     SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
-     BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Select')
-     PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
-     MagAmmo=30
-     CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
-     ReloadAnimRate=1.000000
-     ClipHitSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-LeverDown')
-     ClipOutSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipOut')
-     ClipInSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipIn')
-     ClipInFrame=0.650000 
-     CurrentWeaponMode=2
-     SightOffset=(X=20.000000,Y=16.8500000,Z=29.000000)
-	 SightDisplayFOV=15
-     GunLength=80.000000
-     SprintOffSet=(Pitch=-1000,Yaw=-2048)
-
-     ChaosDeclineTime=0.5
-	 
-	 ViewRecoilFactor=0.35
-	 RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.000000),(InVal=0.150000,OutVal=0.020000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.11),(InVal=0.400000,OutVal=0.130000),(InVal=0.600000,OutVal=0.20000),(InVal=0.800000,OutVal=0.25000),(InVal=1.000000,OutVal=0.30000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.550000),(InVal=0.500000,OutVal=0.600000),(InVal=0.600000,OutVal=0.670000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.05
-	 RecoilYFactor=0.05
-     RecoilDeclineTime=0.5
-	 RecoilDeclineDelay=0.15
-	 
-     FireModeClass(0)=Class'BWBPSomeOtherPack.XM20PrimaryFire'
-     FireModeClass(1)=Class'BWBPSomeOtherPack.XM20SecondaryFire'
-     SelectAnimRate=1.500000
-     PutDownAnimRate=2.000000
-     PutDownTime=0.500000
-     BringUpTime=0.400000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.800000
-     CurrentRating=0.800000
-     Description="XM20 Laser Rifle||Manufacturer: UTC Defense Tech|Primary: High Intensity Laser Beam|Secondary: Diffused High Intesity Beams||Having a long history with the UTC, the XM-20 managed to find its place even after most other energy weapons were rendered largely ineffective against Skrith shielding technology, thanks to its own integrated force field generator and ability to turn Cryon ballistic armor to slag with relative ease through concentrated fire."
-     Priority=194
-     HudColor=(B=255,G=150,R=100)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=5
-     GroupOffset=4
-     PickupClass=Class'BWBPSomeOtherPack.XM20Pickup'
-     PlayerViewOffset=(X=4.000000,Y=0.000000,Z=-22.000000)
-     BobDamping=1.800000
-     AttachmentClass=Class'BWBPSomeOtherPack.XM20Attachment'
-	 bUseBigIcon=True
-     IconMaterial=Texture'BWBPSomeOtherPackTex.XM20.Icon_XM20'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="XM20 Laser Rifle"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.XM20_FP'
-     DrawScale=0.500000
+	PierceThreshold=50
+	ShieldBone="tip"
+	ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
+	ShieldOnSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldOn'
+	ShieldOffSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldOff'
+	ShieldPierceSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldPierce'
+	ShieldHitForce="ShieldReflection"
+	DamageSound=Sound'PackageSounds4Pro.NEX.NEX-Overload'
+	BrokenSound=Sound'BWBP2-Sounds.LightningGun.LG-Ambient'
+	ChargingSound=Sound'WeaponSounds.BaseFiringSounds.BShield1'
+	ShieldSoundVolume=220	 
+	ShieldPower=100
+	ShieldPowerMax=200
+	ShieldGainPerSecond=5.0f
+	bShowChargingBar=True
+	ManualLines(0)="Each hit heats up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
+	ManualLines(1)="Secondary fire will toggle a directional shield. The shield has a maximum of 200 health points and will reduce incoming damage by 35 points or by 90% of its value, whichever is smaller. If the shield is broken, a minimum reserve level is required to reactivate it."
+	ManualLines(2)="Effective at moderate range, against small arms, and against enemies using healing weapons and items."
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBPSomeOtherPackTex.XM20.BigIcon_XM20'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Energy=True
+	bNoCrosshairInScope=True
+	SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
+	BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Select')
+	PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
+	CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
+	ReloadAnimRate=1.000000
+	ClipHitSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-LeverDown')
+	ClipOutSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipOut')
+	ClipInSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipIn')
+	ClipInFrame=0.650000 
+	CurrentWeaponMode=2
+	SightOffset=(X=20.000000,Y=16.8500000,Z=29.000000)
+	SightDisplayFOV=15
+	GunLength=80.000000
+	ParamsClass=Class'XM20WeaponParams'
+	FireModeClass(0)=Class'BWBPSomeOtherPack.XM20PrimaryFire'
+	FireModeClass(1)=Class'BWBPSomeOtherPack.XM20SecondaryFire'
+	SelectAnimRate=1.500000
+	PutDownAnimRate=2.000000
+	PutDownTime=0.500000
+	BringUpTime=0.400000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.800000
+	CurrentRating=0.800000
+	Description="XM20 Laser Rifle||Manufacturer: UTC Defense Tech|Primary: High Intensity Laser Beam|Secondary: Diffused High Intesity Beams||Having a long history with the UTC, the XM-20 managed to find its place even after most other energy weapons were rendered largely ineffective against Skrith shielding technology, thanks to its own integrated force field generator and ability to turn Cryon ballistic armor to slag with relative ease through concentrated fire."
+	Priority=194
+	HudColor=(B=255,G=150,R=100)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=5
+	GroupOffset=4
+	PickupClass=Class'BWBPSomeOtherPack.XM20Pickup'
+	PlayerViewOffset=(X=4.000000,Y=0.000000,Z=-22.000000)
+	BobDamping=1.800000
+	AttachmentClass=Class'BWBPSomeOtherPack.XM20Attachment'
+	bUseBigIcon=True
+	IconMaterial=Texture'BWBPSomeOtherPackTex.XM20.Icon_XM20'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="XM20 Laser Rifle"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=5.000000
+	Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.XM20_FP'
+	DrawScale=0.500000
 }

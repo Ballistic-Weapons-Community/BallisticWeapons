@@ -23,9 +23,8 @@ defaultproperties
      SightPivot=(Pitch=-300,Roll=0)
      SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
      SightDisplayFOV=25.000000
-     SightingTime=0.350000
-     SightAimFactor=0.200000
-     ChaosSpeedThreshold=15000.000000
+
+     ParamsClass=Class'M46RDSWeaponParams'
      FireModeClass(0)=Class'BallisticProV55.M46PrimaryFireQS'
      FireModeClass(1)=Class'BallisticProV55.M46SecondaryFireQS'
      GroupOffset=2

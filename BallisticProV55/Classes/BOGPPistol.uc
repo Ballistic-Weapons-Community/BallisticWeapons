@@ -294,76 +294,64 @@ function float SuggestDefenseStyle()	{	return -0.6;	}
 
 defaultproperties
 {
-     GrenadeBone="GrenadePistolGrenade"
-     bShouldDualInLoadout=False
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
-     AIReloadTime=1.500000
-     BigIconMaterial=Texture'BallisticTextures_25.BOGP.BigIcon_BOGP'
-     BigIconCoords=(Y1=32,Y2=230)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Splash=True
-     bWT_Projectile=True
-     ManualLines(0)="Grenade mode launches a grenade with good damage and blast radius. This grenade has an arming delay and upon striking a surface or player when unarmed. will ricochet, dealing only minor damage.|Flare mode will emit a flare which deals upfront damage, burns struck targets over time and obscures their view. If fired into the air, it will eventually explode with a distinctive effect."
-     ManualLines(1)="Used to toggle between grenade and flare modes."
-     ManualLines(2)="The BORT grenade is effective at medium range and when the player has height advantage. The BORT flare is most effective at close range. Recoil and hip spread are low, except when jumping. When dual wielded, the BORT pistols will fire simultaneously."
-     SpecialInfo(0)=(Info="120.0;20.0;0.8;40.0;0.0;0.0;0.6")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=1
-     bNoMag=True
-     CockAnim="Reload"
-     CockAnimRate=1.50000
-     CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock')
-     ReloadAnimRate=1.250000
-     ClipHitSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_Close',Volume=1.000000)
-     ClipOutSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_Open',Volume=1.000000)
-     ClipInSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_GrenLoad',Volume=1.000000)
-     ClipInFrame=0.650000
-     WeaponModes(0)=(ModeName="Grenade")
-     WeaponModes(1)=(ModeName="Flare",ModeID="WM_SemiAuto",Value=1.000000)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-	 bNoCrosshairInScope=True
-	 InventorySize=12
-     SightPivot=(Pitch=300)
-     SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
-     JumpChaos=0.750000
-
-	 ChaosAimSpread=378
-	 ViewRecoilFactor=0.6
-     ChaosDeclineTime=1.000000
-     RecoilYawFactor=0.000000
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilDeclineTime=1.000000
-     RecoilDeclineDelay=0.800000
-	 
-     FireModeClass(0)=Class'BallisticProV55.BOGPPrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.BOGPSecondaryFire'
-     PutDownTime=0.450000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
-     Description="The BORT-85 Break-Open Grenade Pistol is a compact grenade launcher manufactured by NDTR Industries. The need for a simple and easy to use grenade launcher arose towards the end of the first war, especially in the large industrial zones of various Outworld colonies. Skrith favoured these areas, as they were perfect for the aliens which prefered to be hidden and strike with surprise. The simple design had several benefits, as it was relatively compact, and could fire many different types of ammunition."
-     Priority=19
-     HudColor=(G=50)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=8
-     GroupOffset=5
-     PickupClass=Class'BallisticProV55.BOGPPickup'
-     PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
-     AttachmentClass=Class'BallisticProV55.BOGPAttachment'
-     IconMaterial=Texture'BallisticTextures_25.BOGP.SmallIcon_BOGP'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="BORT-85 Grenade Pistol"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticAnims_25.BOGP'
-     DrawScale=0.300000
-     Skins(0)=Texture'BallisticTextures_25.BOGP.BOGP_Main'
-     Skins(1)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	GrenadeBone="GrenadePistolGrenade"
+	bShouldDualInLoadout=False
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
+	AIReloadTime=1.500000
+	BigIconMaterial=Texture'BallisticTextures_25.BOGP.BigIcon_BOGP'
+	BigIconCoords=(Y1=32,Y2=230)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Splash=True
+	bWT_Projectile=True
+	ManualLines(0)="Grenade mode launches a grenade with good damage and blast radius. This grenade has an arming delay and upon striking a surface or player when unarmed. will ricochet, dealing only minor damage.|Flare mode will emit a flare which deals upfront damage, burns struck targets over time and obscures their view. If fired into the air, it will eventually explode with a distinctive effect."
+	ManualLines(1)="Used to toggle between grenade and flare modes."
+	ManualLines(2)="The BORT grenade is effective at medium range and when the player has height advantage. The BORT flare is most effective at close range. Recoil and hip spread are low, except when jumping. When dual wielded, the BORT pistols will fire simultaneously."
+	SpecialInfo(0)=(Info="120.0;20.0;0.8;40.0;0.0;0.0;0.6")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
+	bNoMag=True
+	CockAnim="Reload"
+	CockAnimRate=1.50000
+	CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock')
+	ReloadAnimRate=1.250000
+	ClipHitSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_Close',Volume=1.000000)
+	ClipOutSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_Open',Volume=1.000000)
+	ClipInSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_GrenLoad',Volume=1.000000)
+	ClipInFrame=0.650000
+	WeaponModes(0)=(ModeName="Grenade")
+	WeaponModes(1)=(ModeName="Flare",ModeID="WM_SemiAuto",Value=1.000000)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=300)
+	SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
+	ParamsClass=Class'BOGPWeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.BOGPPrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.BOGPSecondaryFire'
+	PutDownTime=0.450000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.600000
+	CurrentRating=0.600000
+	Description="The BORT-85 Break-Open Grenade Pistol is a compact grenade launcher manufactured by NDTR Industries. The need for a simple and easy to use grenade launcher arose towards the end of the first war, especially in the large industrial zones of various Outworld colonies. Skrith favoured these areas, as they were perfect for the aliens which prefered to be hidden and strike with surprise. The simple design had several benefits, as it was relatively compact, and could fire many different types of ammunition."
+	Priority=19
+	HudColor=(G=50)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=8
+	GroupOffset=5
+	PickupClass=Class'BallisticProV55.BOGPPickup'
+	PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
+	AttachmentClass=Class'BallisticProV55.BOGPAttachment'
+	IconMaterial=Texture'BallisticTextures_25.BOGP.SmallIcon_BOGP'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="BORT-85 Grenade Pistol"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticAnims_25.BOGP'
+	DrawScale=0.300000
+	Skins(0)=Texture'BallisticTextures_25.BOGP.BOGP_Main'
+	Skins(1)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
 }

@@ -173,9 +173,7 @@ simulated function SwitchSilencerMode (bool bNewMode)
 	if (bNewMode)
 	{
 		Damage *= 0.7;
-		RecoilPerShot *= 0.6;
-		BW.RecoilXFactor *= 0.6;
-		BW.RecoilYFactor *= 0.6;
+		FireRecoil *= 0.6;
 		XInaccuracy *= 0.5;
 		YInaccuracy *= 0.5;
 		DamageType=Class'DT_LK05SilAssault';
@@ -186,15 +184,13 @@ simulated function SwitchSilencerMode (bool bNewMode)
 	else
 	{
 		Damage =default.Damage;
-     	DamageType=Class'DT_LK05Assault';
-     	DamageTypeHead=Class'DT_LK05AssaultHead';
-     	DamageTypeArm=Class'DT_LK05Assault';
-		RecoilPerShot = default.RecoilPerShot;
+		FireRecoil = default.FireRecoil;
 		RangeAtten = default.RangeAtten;
-		BW.RecoilXFactor = BW.default.RecoilXFactor;
-		BW.RecoilYFactor = BW.default.RecoilYFactor;
 		XInaccuracy = default.XInaccuracy;
 		YInaccuracy = default.YInaccuracy;
+		DamageType=Class'DT_LK05Assault';
+		DamageTypeHead=Class'DT_LK05AssaultHead';
+		DamageTypeArm=Class'DT_LK05Assault';
 	}
 }
 
@@ -264,7 +260,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassBone="tip"
      BrassOffset=(X=-80.000000,Y=1.000000)
-     RecoilPerShot=160.000000
+     FireRecoil=160.000000
      FireChaos=0.028000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      XInaccuracy=48.000000

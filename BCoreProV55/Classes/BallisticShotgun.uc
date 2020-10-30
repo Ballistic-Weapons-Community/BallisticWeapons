@@ -3,9 +3,9 @@ class BallisticShotgun extends BallisticWeapon
 	HideDropDown
 	CacheExempt;
 
-simulated function SetScopeBehavior()
+simulated function OnScopeViewChanged()
 {
-	Super.SetScopeBehavior();
+	Super.OnScopeViewChanged();
 
 	if (Role == ROLE_Authority)
 		BallisticShotgunAttachment(ThirdPersonActor).bScoped = bScopeView;
@@ -13,6 +13,5 @@ simulated function SetScopeBehavior()
 
 defaultproperties
 {
-     HipRecoilFactor=1.250000
 	 SightZoomFactor=0.85
 }

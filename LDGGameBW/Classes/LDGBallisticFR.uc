@@ -10,8 +10,6 @@ class LDGBallisticFR extends Freon;
 var private const array<Texture> LoadingScreens;
 //#endif
 
-var private const array< class<WeaponPickup> > PrecachePickups;
-
 var private const array<string> LoadingScreenHints;
 var private const string LoadoutHint;
 var private const string ForumLink;
@@ -685,17 +683,6 @@ function RespawnPlayers(optional bool bMoveAlive)
 	Super.RespawnPlayers(bMoveAlive);
 }
 
-//Precache literally everything.
-static function PrecacheGameTextures(LevelInfo myLevel)
-{
-	local int i;
-	
-	Super.PrecacheGameTextures(myLevel);
-
-	for (i=0; i< default.PrecachePickups.Length; i++)
-		default.PrecachePickups[i].static.StaticPrecache(myLevel);
-}
-
 defaultproperties
 {
      LoadingScreens(0)=Texture'LDGGameBW_rc.LoadingScreen.BWLoadingScreen1'
@@ -713,96 +700,6 @@ defaultproperties
      LoadingScreens(12)=Texture'LDGGameBW_rc.LoadingScreen.BWLoadingScreen13'
      LoadingScreens(13)=Texture'LDGGameBW_rc.LoadingScreen.BWLoadingScreen14'
      LoadingScreens(14)=Texture'LDGGameBW_rc.LoadingScreen.BWLoadingScreen15'
-     PrecachePickups(0)=Class'BWBPRecolorsPro.A49Pickup'
-     PrecachePickups(1)=Class'BWBPRecolorsPro.AH208Pickup'
-     PrecachePickups(2)=Class'BWBPRecolorsPro.AH250Pickup'
-     PrecachePickups(3)=Class'BWBPRecolorsPro.AK47Pickup'
-     PrecachePickups(4)=Class'BWBPRecolorsPro.AS50Pickup'
-     PrecachePickups(5)=Class'BWBPRecolorsPro.BulldogPickup'
-     PrecachePickups(6)=Class'BWBPRecolorsPro.ChaffPickup'
-     PrecachePickups(7)=Class'BWBPOtherPackPro.CX61Pickup'
-     PrecachePickups(8)=Class'BWBPRecolorsPro.CYLOPickup'
-     PrecachePickups(9)=Class'BWBPRecolorsPro.CYLOFirestormPickup'
-     PrecachePickups(10)=Class'BWBPRecolorsPro.CoachGunPickup'
-     PrecachePickups(11)=Class'BWBPOtherPackPro.DefibFistsPickup'
-     PrecachePickups(12)=Class'BWBPRecolorsPro.DragonsToothPickup'
-     PrecachePickups(13)=Class'BWBPRecolorsPro.F2000Pickup'
-     PrecachePickups(14)=Class'BWBPRecolorsPro.FG50Pickup'
-     PrecachePickups(15)=Class'BWBPRecolorsPro.FLASHPickup'
-     PrecachePickups(16)=Class'BWBPRecolorsPro.G28Pickup'
-     PrecachePickups(17)=Class'BallisticProV55.A42Pickup'
-     PrecachePickups(18)=Class'BWBPRecolorsPro.ICISPickup'
-     PrecachePickups(19)=Class'BWBPRecolorsPro.LAWPickup'
-     PrecachePickups(20)=Class'BWBPRecolorsPro.LK05Pickup'
-     PrecachePickups(21)=Class'BWBPRecolorsPro.LonghornPickup'
-     PrecachePickups(22)=Class'BWBPRecolorsPro.LS14Pickup'
-     PrecachePickups(23)=Class'BWBPRecolorsPro.M2020GaussPickup'
-     PrecachePickups(24)=Class'BWBPRecolorsPro.MRDRPickup'
-     PrecachePickups(25)=Class'BWBPRecolorsPro.MARSPickup'
-     PrecachePickups(26)=Class'BWBPRecolorsPro.MGLPickup'
-     PrecachePickups(27)=Class'BWBPRecolorsPro.MK781Pickup'
-     PrecachePickups(28)=Class'BWBPRecolorsPro.PS9mPickup'
-     PrecachePickups(29)=Class'BWBPRecolorsPro.SK410Pickup'
-     PrecachePickups(30)=Class'BWBPRecolorsPro.SKASPickup'
-     PrecachePickups(31)=Class'BWBPRecolorsPro.X82Pickup'
-     PrecachePickups(32)=Class'BWBPRecolorsPro.X8Pickup'
-     PrecachePickups(33)=Class'BWBPRecolorsPro.XM84Pickup'
-     PrecachePickups(34)=Class'BallisticProV55.A42Pickup'
-     PrecachePickups(35)=Class'BallisticProV55.A73Pickup'
-     PrecachePickups(36)=Class'BallisticProV55.A500Pickup'
-     PrecachePickups(37)=Class'BallisticProV55.A909Pickup'
-     PrecachePickups(38)=Class'BallisticProV55.AM67Pickup'
-     PrecachePickups(39)=Class'BallisticProV55.BOGPPickup'
-     PrecachePickups(40)=Class'BallisticProV55.BX5Pickup'
-     PrecachePickups(41)=Class'BallisticProV55.D49Pickup'
-     PrecachePickups(42)=Class'BallisticProV55.E23Pickup'
-     PrecachePickups(43)=Class'BallisticProV55.EKS43Pickup'
-     PrecachePickups(44)=Class'BallisticProV55.Fifty9Pickup'
-     PrecachePickups(45)=Class'BallisticProV55.FP7Pickup'
-     PrecachePickups(46)=Class'BallisticProV55.FP9Pickup'
-     PrecachePickups(47)=Class'BallisticProV55.G5Pickup'
-     PrecachePickups(48)=Class'BallisticProV55.GRS9Pickup'
-     PrecachePickups(49)=Class'BallisticProV55.HVCMk9Pickup'
-     PrecachePickups(50)=Class'BallisticProV55.leMatPickup'
-     PrecachePickups(51)=Class'BallisticProV55.M46Pickup'
-     PrecachePickups(52)=Class'BallisticProV55.M50Pickup'
-     PrecachePickups(53)=Class'BallisticProV55.M75Pickup'
-     PrecachePickups(54)=Class'BallisticProV55.M290Pickup'
-     PrecachePickups(55)=Class'BallisticProV55.M353Pickup'
-     PrecachePickups(56)=Class'BallisticProV55.M763Pickup'
-     PrecachePickups(57)=Class'BallisticProV55.M925Pickup'
-     PrecachePickups(58)=Class'BallisticProV55.MACPickup'
-     PrecachePickups(59)=Class'BallisticProV55.MarlinPickup'
-     PrecachePickups(60)=Class'BallisticProV55.MD24Pickup'
-     PrecachePickups(61)=Class'BallisticProV55.MRLPickup'
-     PrecachePickups(62)=Class'BallisticProV55.MRS138Pickup'
-     PrecachePickups(63)=Class'BallisticProV55.MRT6Pickup'
-     PrecachePickups(64)=Class'BallisticProV55.NRP57Pickup'
-     PrecachePickups(65)=Class'BallisticProV55.R9Pickup'
-     PrecachePickups(66)=Class'BallisticProV55.R78Pickup'
-     PrecachePickups(67)=Class'BallisticProV55.RiotPickup'
-     PrecachePickups(68)=Class'BallisticProV55.RS8Pickup'
-     PrecachePickups(69)=Class'BallisticProV55.RSDarkPickup'
-     PrecachePickups(70)=Class'BallisticProV55.RSNovaPickup'
-     PrecachePickups(71)=Class'BallisticProV55.RX22APickup'
-     PrecachePickups(72)=Class'BallisticProV55.SARPickup'
-     PrecachePickups(73)=Class'BallisticProV55.SRS900Pickup'
-     PrecachePickups(74)=Class'BallisticProV55.T10Pickup'
-     PrecachePickups(75)=Class'BallisticProV55.X3Pickup'
-     PrecachePickups(76)=Class'BallisticProV55.X4Pickup'
-     PrecachePickups(77)=Class'BallisticProV55.XK2Pickup'
-     PrecachePickups(78)=Class'BallisticProV55.XMK5Pickup'
-     PrecachePickups(79)=Class'BallisticProV55.XMV850Pickup'
-     PrecachePickups(80)=Class'BallisticProV55.XRS10Pickup'
-     PrecachePickups(81)=Class'BWBPOtherPackPro.PD97Pickup'
-     PrecachePickups(82)=Class'BWBPAirstrikesPro.TargetDesignatorPickup'
-     PrecachePickups(83)=Class'BWBPOtherPackPro.XOXOPickup'
-     PrecachePickups(84)=Class'BWBPOtherPackPro.RaygunPickup'
-     PrecachePickups(85)=Class'BWBPOtherPackPro.WrenchPickup'
-	 PrecachePickups(86)=Class'BWBPSomeOtherPack.MAG78Pickup'
-	 PrecachePickups(87)=Class'BWBPSomeOtherPack.TrenchGunPickup'
-	 PrecachePickups(88)=Class'BWBPSomeOtherPack.XM20Pickup'
-	 PrecachePickups(89)=Class'BallisticJiffyPack.ARPickup'
      LoadingScreenHints(0)="Can't aim well? Press #BB_SCOPE to switch to scope view or iron sights for a better aim."
      LoadingScreenHints(1)="Press #BB_RELOAD to reload your weapon when not in combat."
      LoadingScreenHints(2)="Press #BB_FIREMODE to cycle through weapon firemodes."
@@ -834,7 +731,6 @@ defaultproperties
      BWMutators(3)="LDGGameBW.MutUTCompBW_LDG_FR"
      BWMutators(4)="BWInteractions3.MutBWInteractions"
      HintColor=(B=255,G=255,R=255,A=255)
-     MapColor=(G=255,R=255,A=255)
      DefaultPlayerClassName="LDGGameBW.Freon_Pawn_Normal"
      MapListType="LDGGameBW.LDGBallisticFRMapList"
      MutatorClass="LDGGameBW.LDGBWFRMutator"

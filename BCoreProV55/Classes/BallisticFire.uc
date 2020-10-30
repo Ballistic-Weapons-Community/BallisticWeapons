@@ -12,23 +12,23 @@
 class BallisticFire extends WeaponFire;
 
 // General Variables -----------------------------------------------------------
-var   BallisticWeapon		BW;						// Easy access to BallisticWeapon(Weapon)
-var() BUtil.FullSound		ClipFinishSound;		// Sound to play when mag runs out
-var() BUtil.FullSound		DryFireSound;			// Sound to play when dry firing
+var   BallisticWeapon			BW;						// Easy access to BallisticWeapon(Weapon)
+var() BUtil.FullSound			ClipFinishSound;		// Sound to play when mag runs out
+var() BUtil.FullSound			DryFireSound;			// Sound to play when dry firing
 var   bool						bPlayedDryFire;		// Has dry fire sound been played since ammo ran out
 var() bool						bCockAfterFire;		// Cock the gun after each shot
 var() bool						bCockAfterEmpty;	// Cock the gun if MagAmmo gets to 0
 var() bool						bDryUncock;			// Can still uncock weapon by pressing fire when mag is empty
 var() bool						bUseWeaponMag;	// Use ammo from gun. Uses ammo from weapon's mag is it has one
 var() Actor						MuzzleFlash;			// The muzzleflash actor
-var() class<Actor>			MuzzleFlashClass;	// The actor to use for this fire's muzzleflash
+var() class<Actor>				MuzzleFlashClass;	// The actor to use for this fire's muzzleflash
 var() Name						FlashBone;				// Bone to attach muzzle flash to
 var() float						FlashScaleFactor;	// MuzzleFlash scaling will be DrawScale * FlashScaleFactor
-var() class<actor>			BrassClass;				// Actor to spawn for ejecting brass
+var() class<actor>				BrassClass;				// Actor to spawn for ejecting brass
 var() name						BrassBone;				// Bone where brass will be spawned
 var() bool						bBrassOnCock;		// Eject brass when cocked
 var() Vector					BrassOffset;			// Position offset for brass spawning
-var   int							ConsumedLoad;		// This is the amount of ammo to consume for delayed consume ammo.
+var   int						ConsumedLoad;		// This is the amount of ammo to consume for delayed consume ammo.
 var() bool						bReleaseFireOnDie;	// If bFireOnRelease, mode will fire if holder died before release
 var() bool						bIgnoreReload;		// This firemode can stop the weapon reloading and fire
 var() bool						bIgnoreCocking;		// This mode can cancel weapon cocking to fire
@@ -49,17 +49,18 @@ var() enum EScopeDownOn
 //-----------------------------------------------------------------------------
 
 //Bullet spread variables------------------------------------------------------
-var() float				RecoilPerShot;		// Amount of recoil added each shot
-var() float				VelocityRecoil;		// How much to jolt player back when they fire
-var() float				FireChaos;			// Chaos added to aim when fired. Will be auto calculated if < 0
+var() float				FireRecoil;				// Amount of recoil added each shot
+var() float				FirePushbackForce;		// How much to jolt player back when they fire
+var() float				FireChaos;				// Chaos added to aim when fired. Will be auto calculated if < 0
 var() InterpCurve		FireChaosCurve;
-var() float				XInaccuracy;		// Set amount that bullets can Yaw away from gun's aim
-var() float				YInaccuracy;		// Set amount that bullets can Pitch away from gun's aim
+var() float				XInaccuracy;			// Set amount that bullets can yaw away from gun's aim
+var() float				YInaccuracy;			// Set amount that bullets can pitch away from gun's aim
+
 enum EFireSpreadMode
 {
 	FSM_Rectangle,	// Standard random rectangular box.
-	FSM_Scatter,	// An eliptical spread pattern with higher concentratrion towards the center.
-	FSM_Circle		// More evenly spread eliptical pattern.
+	FSM_Scatter,	// An elliptical spread pattern with higher concentration towards the center.
+	FSM_Circle		// More evenly spread elliptical pattern.
 };
 var() EFireSpreadMode	FireSpreadMode;		// The type of spread pattern to use for X and YInaccuracy
 //-----------------------------------------------------------------------------
@@ -69,25 +70,25 @@ var() EFireSpreadMode	FireSpreadMode;		// The type of spread pattern to use for 
 //Weapons have to be unjammed before firing may resume.
 var(Jamming) enum EUnjamMethod
 {
-	UJM_ReloadAndCock,	// Weapon must be reloaded, clip out, back in and cocked
-	UJM_Reload,				// Weapon must be reloaded, clip out and back in
+	UJM_ReloadAndCock,			// Weapon must be reloaded, clip out, back in and cocked
+	UJM_Reload,					// Weapon must be reloaded, clip out and back in
 	UJM_Cock,					// Weapon must be cocked.
-	UJM_FireNextRound,		// Pressing fire will unjam, but not fire a bullet
+	UJM_FireNextRound,			// Pressing fire will unjam, but not fire a bullet
 	UJM_Fire					// Press fire to unjam and fire the next round
-}							UnjamMethod;					// How to unjam this firemode
-var(Jamming) float	JamChance;					// Chance of weapon jamming each shot
-var(Jamming) float	WaterJamChance;			// Chance of weapon jamming each shot when under water
-var(Jamming) float	JamMoveMultiplier;			// JamChance multiplied by this when player is moving
-var	bool				bIsJammed;					// Is this firemode currently jammed
-var(Jamming) BUtil.FullSound JamSound;			// Sound to play when clip runs out
-var bool					bPendingTryJam;				// Try jam next Timer()
-var(Jamming) bool	bJamWastesAmmo;			// Jamming wastes the ammo that would have been fired
+}								UnjamMethod;			// How to unjam this firemode
+var(Jamming) float				JamChance;				// Chance of weapon jamming each shot
+var(Jamming) float				WaterJamChance;			// Chance of weapon jamming each shot when under water
+var(Jamming) float				JamMoveMultiplier;		// JamChance multiplied by this when player is moving
+var	bool						bIsJammed;				// Is this firemode currently jammed
+var(Jamming) BUtil.FullSound 	JamSound;				// Sound to play when clip runs out
+var bool						bPendingTryJam;			// Try jam next Timer()
+var(Jamming) bool				bJamWastesAmmo;			// Jamming wastes the ammo that would have been fired
 //-----------------------------------------------------------------------------
 
 // Sound Stuff  ---------------------------------------------
 var() BUtil.FullSound		SilencedFireSound;	// Fire sound to play when silenced
 var() BUtil.FullSound		BallisticFireSound;	// Fire sound to play
-var() bool						bAISilent;				// Bots dont hear the fire
+var() bool					bAISilent;				// Bots dont hear the fire
 //-----------------------------------------------------------
 
 //===========================================================================
@@ -95,11 +96,11 @@ var() bool						bAISilent;				// Bots dont hear the fire
 //===========================================================================
 struct FireModeStats
 {
-	var	String	Damage;
+	var	String		Damage;
 	var	int			DamageInt;
 	var	int			DPS;
 	var	float		TTK;
-	var	String	RPM;
+	var	String		RPM;
 	var	int			RPShot;
 	var	int			RPS;
 	var	float		FCPShot;
@@ -113,15 +114,13 @@ simulated function PreBeginPlay()
 {
 	super.PreBeginPlay();
 	BW = BallisticWeapon(Weapon);
-	if (FireChaos < 0)
-		FireChaos = (BW.RecoilDeclineTime*RecoilPerShot)/BW.RecoilMax;
 }
 
 function StartBerserk()
 {
     FireRate = default.FireRate * 0.75;
     FireAnimRate = default.FireAnimRate/0.75;
-    RecoilPerShot = default.RecoilPerShot * 0.75;
+    FireRecoil = default.FireRecoil * 0.75;
     FireChaos = default.FireChaos * 0.75;
 }
 
@@ -129,7 +128,7 @@ function StopBerserk()
 {
     FireRate = default.FireRate;
     FireAnimRate = default.FireAnimRate;
-    RecoilPerShot = default.RecoilPerShot;
+    FireRecoil = default.FireRecoil;
     FireChaos = default.FireChaos;
 }
 
@@ -137,10 +136,10 @@ function StartSuperBerserk()
 {
     FireRate = default.FireRate/Level.GRI.WeaponBerserk;
     FireAnimRate = default.FireAnimRate * Level.GRI.WeaponBerserk;
-    RecoilPerShot = default.RecoilPerShot * Level.GRI.WeaponBerserk;
+    FireRecoil = default.FireRecoil * Level.GRI.WeaponBerserk;
 }
 
-//Stub called by the weapon mode when its FireMode changes if bNotifyModeSwitch is set to true
+//Stub called by the weapon mode when its FireMode changes
 simulated function SwitchWeaponMode (byte NewMode);
 
 // Effect related functions ------------------------------------------------
@@ -213,7 +212,7 @@ simulated function vector GetFireDir(out Vector StartTrace)
     // the to-hit trace always starts right in front of the eye
 	if (StartTrace == vect(0,0,0))
 		StartTrace = Instigator.Location + Instigator.EyePosition();
-	return Vector(BW.GetAimPivot() + BW.GetRecoilPivot()) >> AdjustAim(StartTrace, AimError);
+	return BW.GetFireDir() >> AdjustAim(StartTrace, AimError);
 }
 // Like GetFireDir, but returns a rotator instead
 simulated function rotator GetFireAim(out Vector StartTrace)
@@ -260,7 +259,7 @@ function DoFireEffect()
 {
 	if (!bAISilent)
 		Instigator.MakeNoise(1.0);
-	FireRecoil();
+	ApplyRecoil();
 	bPendingTryJam=true;
 	Super.DoFireEffect();
 }
@@ -324,23 +323,27 @@ simulated function ReloadingGun(optional byte i)
 	}
 }
 
-simulated function FireRecoil ()
+simulated function ApplyRecoil()
 {
 	local Vector VelRecoilVect;
+
 	if (BW != None)
+		BW.AddRecoil(FireRecoil, FireChaos, ThisModeNum);
+
+	if (FirePushbackForce != 0 && Instigator!= None)
 	{
-		if (!BW.bReaiming)
-			BW.Reaim(level.TimeSeconds-Weapon.LastRenderTime, , , , , FireChaos);
-		BW.AddRecoil(RecoilPerShot, ThisModeNum);
-	}
-	if (VelocityRecoil != 0 && Instigator!= None)
-	{
-		VelRecoilVect = Vector(Instigator.GetViewRotation()) * VelocityRecoil;
+		VelRecoilVect = Vector(Instigator.GetViewRotation()) * FirePushbackForce;
 		VelRecoilVect.Z *= 0.25;
 		
 		if (Instigator.Physics != PHYS_Falling)
 			Instigator.Velocity -= VelRecoilVect;
 	}
+}
+	
+simulated event ModeTick(float dt)
+{
+	if (Instigator == None)
+		Log("BallisticFire: ModeTick: No Instigator");
 }
 
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
@@ -491,7 +494,7 @@ simulated event ModeDoFire()
         Instigator.DeactivateSpawnProtection();
     }
     else if (!BW.bUseNetAim && !BW.bScopeView)
-    	FireRecoil();
+    	ApplyRecoil();
 	
 	BW.LastFireTime = Level.TimeSeconds;
 
@@ -596,11 +599,6 @@ simulated function bool CheckReloading()
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
 simulated function bool AllowFire()
 {
-	//Force noobs to scope.
-	if ((BW.BCRepClass.default.bSightFireOnly || class'BallisticWeapon'.default.SightsRestrictionLevel > 0) && BW.bUseSights && BW.SightingState != SS_Active && !BW.bScopeHeld && Instigator.IsLocallyControlled() && PlayerController(Instigator.Controller) != None)
-		BW.ScopeView();
-	if (!BW.bScopeView && (class'BallisticWeapon'.default.SightsRestrictionLevel > 1 || (class'BallisticWeapon'.default.SightsRestrictionLevel > 0 && BW.ZoomType != ZT_Irons)))
-		return false;
 	if (!CheckReloading())
 		return false;		// Is weapon busy reloading
 	if (!CheckWeaponMode())
@@ -645,8 +643,8 @@ static function FireModeStats GetStats()
 	if (default.FireRate < 0.5)
 		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
 	else FS.RPM = 1/default.FireRate@"times/second";
-	FS.RPShot = default.RecoilPerShot;
-	FS.RPS = default.RecoilPerShot / default.FireRate;
+	FS.RPShot = default.FireRecoil;
+	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
 	
@@ -661,7 +659,8 @@ defaultproperties
      FlashBone="tip"
      FlashScaleFactor=1.000000
      BrassBone="ejector"
-     bReleaseFireOnDie=True
+	 bReleaseFireOnDie=True
+	 FireChaos=0
      FireChaosCurve=(Points=((InVal=0.000000,OutVal=1.000000),(InVal=1.000000,OutVal=1.000000)))
      FireSpreadMode=FSM_Circle
      UnjamMethod=UJM_Cock

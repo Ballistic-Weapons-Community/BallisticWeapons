@@ -129,7 +129,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -140,7 +140,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 	}
 	
 	if (ReloadState == RS_GearSwitch)
@@ -283,80 +283,66 @@ defaultproperties
 {
 	AIRating=0.5
 	CurrentRating=0.5
-     ShellBones(0)="Shell1"
-     ShellBones(1)="Shell2"
-     ShellBones(2)="Shell3"
-     ShellBones(3)="Shell4"
-     ShellBones(4)="Shell5"
-     SpareShellBones(0)="SpareShell1"
-     SpareShellBones(1)="SpareShell2"
-     SpareShellBones(2)="SpareShell3"
-     SpareShellBones(3)="SpareShell4"
-     SpareShellBones(4)="SpareShell5"
-	 bShouldDualInLoadout=False
-	 InventorySize=6
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.500000
-     BigIconMaterial=Texture'BWBPOtherPackTex.Bloodhound.BigIcon_PD97'
-     IdleTweenTime=0.000000
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     bWT_Heal=True
-     ManualLines(0)="Fires projectile darts. Upon striking an enemy, these darts release a cloud of pink gas which allows the path of the enemy to be tracked. The darts will also deal damage over time. Upon striking an ally, the darts heal over time instead of dealing damage."
-     ManualLines(1)="Launches a tazer. The user must hold down Altfire or the tazer will be retracted. Upon striking an enemy, transmits a current dealing paltry DPS but slowing the enemy movement."
-     ManualLines(2)="Primarily a support weapon, the Bloodhound is most effective when used as part of a team. Nevertheless, sufficient dart hits can cause high damage. The Bloodhound has very low recoil."
-     SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=5
-     CockAnimRate=1.250000
-     CockSound=(Sound=Sound'BallisticSounds2.AM67.AM67-Cock')
-     ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
-     ClipOutSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipIn')
-     ClipInFrame=0.650000
-     CurrentWeaponMode=0
-     bNoCrosshairInScope=True
-     SightOffset=(X=-10.000000,Y=-4.400000,Z=12.130000)
-     SightDisplayFOV=40.000000
-     SightingTime=0.200000
-     SightAimFactor=0.150000
-     JumpChaos=0.200000
-     AimAdjustTime=0.450000
-     ChaosDeclineTime=0.450000
-	 
-	 ViewRecoilFactor=0.45
-     RecoilXFactor=0.10000
-     RecoilYFactor=0.10000
-     RecoilMax=8192.000000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.500000
-	 
-	 
-     FireModeClass(0)=Class'BWBPOtherPackPro.PD97PrimaryFire'
-     FireModeClass(1)=Class'BWBPOtherPackPro.PD97SecondaryFire'
-     PutDownTime=0.600000
-     BringUpTime=0.900000
-     SelectForce="SwitchToAssaultRifle"
-     bShowChargingBar=True
-     Description="Originally a specialist law enforcement weapon, the PD-97 'Bloodhound' has been adapted into a military role, used to control opponents and track their movement upon the battlefield. While less immediately lethal than most other weapons, its tactical repertoire is not to be underestimated."
-     Priority=24
-     HudColor=(B=250,G=150,R=150)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=2
-     GroupOffset=6
-     PickupClass=Class'BWBPOtherPackPro.PD97Pickup'
-     PlayerViewOffset=(X=5.000000,Y=8.000000,Z=-10.000000)
-     AttachmentClass=Class'BWBPOtherPackPro.PD97Attachment'
-     IconMaterial=Texture'BWBPOtherPackTex.Bloodhound.Icon_PD97'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="PD-97 'Bloodhound'"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BWBPOtherPackAnim.Bloodhound_FP'
-     DrawScale=0.200000
+	ShellBones(0)="Shell1"
+	ShellBones(1)="Shell2"
+	ShellBones(2)="Shell3"
+	ShellBones(3)="Shell4"
+	ShellBones(4)="Shell5"
+	SpareShellBones(0)="SpareShell1"
+	SpareShellBones(1)="SpareShell2"
+	SpareShellBones(2)="SpareShell3"
+	SpareShellBones(3)="SpareShell4"
+	SpareShellBones(4)="SpareShell5"
+	bShouldDualInLoadout=False
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.500000
+	BigIconMaterial=Texture'BWBPOtherPackTex.Bloodhound.BigIcon_PD97'
+	IdleTweenTime=0.000000
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bWT_Heal=True
+	ManualLines(0)="Fires projectile darts. Upon striking an enemy, these darts release a cloud of pink gas which allows the path of the enemy to be tracked. The darts will also deal damage over time. Upon striking an ally, the darts heal over time instead of dealing damage."
+	ManualLines(1)="Launches a tazer. The user must hold down Altfire or the tazer will be retracted. Upon striking an enemy, transmits a current dealing paltry DPS but slowing the enemy movement."
+	ManualLines(2)="Primarily a support weapon, the Bloodhound is most effective when used as part of a team. Nevertheless, sufficient dart hits can cause high damage. The Bloodhound has very low recoil."
+	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
+	CockAnimRate=1.250000
+	CockSound=(Sound=Sound'BallisticSounds2.AM67.AM67-Cock')
+	ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipIn')
+	ClipInFrame=0.650000
+	CurrentWeaponMode=0
+	bNoCrosshairInScope=True
+	SightOffset=(X=-10.000000,Y=-4.400000,Z=12.130000)
+	SightDisplayFOV=40.000000
+	SightingTime=0.200000
+	ParamsClass=Class'PD97WeaponParams'
+	FireModeClass(0)=Class'BWBPOtherPackPro.PD97PrimaryFire'
+	FireModeClass(1)=Class'BWBPOtherPackPro.PD97SecondaryFire'
+	PutDownTime=0.600000
+	BringUpTime=0.900000
+	SelectForce="SwitchToAssaultRifle"
+	bShowChargingBar=True
+	Description="Originally a specialist law enforcement weapon, the PD-97 'Bloodhound' has been adapted into a military role, used to control opponents and track their movement upon the battlefield. While less immediately lethal than most other weapons, its tactical repertoire is not to be underestimated."
+	Priority=24
+	HudColor=(B=250,G=150,R=150)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=2
+	GroupOffset=6
+	PickupClass=Class'BWBPOtherPackPro.PD97Pickup'
+	PlayerViewOffset=(X=5.000000,Y=8.000000,Z=-10.000000)
+	AttachmentClass=Class'BWBPOtherPackPro.PD97Attachment'
+	IconMaterial=Texture'BWBPOtherPackTex.Bloodhound.Icon_PD97'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="PD-97 'Bloodhound'"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.Bloodhound_FP'
+	DrawScale=0.200000
 }

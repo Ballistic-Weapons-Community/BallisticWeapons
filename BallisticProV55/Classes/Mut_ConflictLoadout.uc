@@ -504,7 +504,7 @@ function Class<Inventory> GetInventoryClass(string InventoryClassName)
 function int GetItemSize(class<Inventory> Item)
 {
 	if (class<BallisticWeapon>(Item) != None)
-		return class<BallisticWeapon>(Item).default.InventorySize;
+		return class<BallisticWeapon>(Item).default.ParamsClass.default.Params[0].InventorySize;
 	return 7;
 }
 

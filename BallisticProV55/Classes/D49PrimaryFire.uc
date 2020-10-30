@@ -71,7 +71,7 @@ defaultproperties
      bPenetrate=True
      MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
      FlashScaleFactor=1.200000
-     RecoilPerShot=768.000000
+     FireRecoil=768.000000
      FireChaos=0.400000
      XInaccuracy=48.000000
      YInaccuracy=48.000000

@@ -58,9 +58,7 @@ simulated function Tick(float DT)
 
 	if (bLaserOn && Role == ROLE_Authority && myWeap != None)
 	{
-		LaserRot = Instigator.GetViewRotation();
-		LaserRot += myWeap.GetAimPivot();
-		LaserRot += myWeap.GetRecoilPivot();
+		LaserRot = Instigator.GetViewRotation() + myWeap.GetFireRot();
 	}
 
 	if (Level.NetMode == NM_DedicatedServer)

@@ -20,10 +20,11 @@ function InitTurretWeapon(BallisticTurret Turret)
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
-	BFireMode[0].VelocityRecoil = 0;
-        BFireMode[0].XInaccuracy=1.000000;
-        BFireMode[0].YInaccuracy=1.000000;
-	BFireMode[0].RecoilPerShot=128.000000;
+
+	BFireMode[0].FirePushbackForce = 0;
+    BFireMode[0].XInaccuracy=1.000000;
+    BFireMode[0].YInaccuracy=1.000000;
+	BFireMode[0].FireRecoil=128.000000;
 	BFireMode[0].BrassOffset = vect(0,0,0);
 }
 
@@ -49,9 +50,7 @@ simulated event Timer()
 simulated function Notify_Undeploy ()
 {
 	if (BallisticTurret(Instigator) != None && Role == ROLE_Authority)
-		{
 		BallisticTurret(Instigator).UndeployTurret();
-		}
 }
 
 
@@ -66,19 +65,11 @@ function ServerWeaponSpecial(optional byte i)
 
 }
 
-
-
-
-simulated function Notify_Deploy ();
+simulated function Notify_Deploy();
 
 simulated function PreDrawFPWeapon()
 {
 	SetRotation(Instigator.Rotation);
-}
-
-simulated function TickAim(float DT)
-{
-	Super(BallisticWeapon).TickAim(DT);
 }
 
 simulated event AnimEnd (int Channel)
@@ -117,16 +108,12 @@ simulated event RenderOverlays (Canvas C)
 	Super.RenderOverlays(C);
 }
 
-
-
 simulated function PlayReload()
 {
        ReloadAnim='Reload';
 
 	SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
 }
-
-
 
 simulated function ApplyAimRotation()
 {
@@ -135,7 +122,6 @@ simulated function ApplyAimRotation()
 	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
 //	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
 }
-
 
 // Animation notify to make gun cock after reload
 simulated function Notify_CockAfterReload()
@@ -156,29 +142,24 @@ simulated function PlayCocking(optional byte Type)
 
 defaultproperties
 {
-     ReloadAnimRate=0.800000
-     ClipHitSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipHit',Volume=0.000000,Radius=32.000000)
-     ClipOutSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipOut')
-     ClipInSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipIn')
-     SightingTime=0.000001
-     GunLength=0.000000
-     bUseSpecialAim=True
-     AimSpread=0
-     ViewRecoilFactor=0.100000
-     AimDamageThreshold=2000.000000
-     ChaosAimSpread=0
-     RecoilPitchFactor=0.100000
-     RecoilXFactor=0.200000
-     RecoilMax=1200.000000
-     RecoilDeclineTime=1.000001
-     SelectAnim="Deploy"
-     bCanThrow=False
-     bNoInstagibReplace=True
-     DisplayFOV=90.000000
-     Priority=1
-     PlayerViewOffset=(X=-80.000000)
-     ItemName="FG50 Turret"
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.X83A1_Turret'
-     DrawScale=0.650000
-     CollisionHeight=24.000000
+	ReloadAnimRate=0.800000
+	ClipHitSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipHit',Volume=0.000000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipOut')
+	ClipInSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipIn')
+	SightingTime=0.000001
+	GunLength=0.000000
+	bUseSpecialAim=True
+	 
+
+	ParamsClass=Class'FG50TW_WeaponParams'
+	SelectAnim="Deploy"
+	bCanThrow=False
+	bNoInstagibReplace=True
+	DisplayFOV=90.000000
+	Priority=1
+	PlayerViewOffset=(X=-80.000000)
+	ItemName="FG50 Turret"
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.X83A1_Turret'
+	DrawScale=0.650000
+	CollisionHeight=24.000000
 }

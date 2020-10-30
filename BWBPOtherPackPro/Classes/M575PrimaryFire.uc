@@ -35,7 +35,7 @@ defaultproperties
      FlashScaleFactor=0.700000
      BrassClass=Class'BallisticProV55.Brass_MG'
      BrassOffset=(X=6.000000,Y=10.000000)
-     RecoilPerShot=128.000000
+     FireRecoil=128.000000
      FireChaosCurve=(Points=(,(InVal=0.240000),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
      XInaccuracy=16.000000
      YInaccuracy=16.000000

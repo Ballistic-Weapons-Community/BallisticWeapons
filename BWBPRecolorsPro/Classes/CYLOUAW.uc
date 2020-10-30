@@ -1,7 +1,7 @@
 //=============================================================================
 // CYLOUAW.
 //
-// CYLO Versitile Urban Assault Weapon.
+// CYLO Versatile Urban Assault Weapon.
 //
 // This nasty little gun has all sorts of tricks up its sleeve. Primary fire is
 // a somewhat unreliable assault rifle with random fire rate and a chance to jam.
@@ -18,16 +18,16 @@
 //=============================================================================
 class CYLOUAW extends BallisticWeapon;
 
-var() sound		MeleeFireSound;
+var() sound			MeleeFireSound;
 
 var	bool			bAltNeedCock;			//Should SG cock after reloading
 var	bool			bReloadingShotgun;	//Used to disable primary fire if reloading the shotgun
 var() name			ShotgunLoadAnim, ShotgunEmptyLoadAnim;
 var() name			ShotgunSGAnim;
 var() name			CockSGAnim;
-var() Sound		TubeOpenSound;
-var() Sound		TubeInSound;
-var() Sound		TubeCloseSound;
+var() Sound			TubeOpenSound;
+var() Sound			TubeInSound;
+var() Sound			TubeCloseSound;
 var() int	     	SGShells;
 var byte			OldWeaponMode;
 var() float			GunCockTime;		// Used so players cant interrupt the shotgun.
@@ -498,91 +498,74 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
-     ShotgunLoadAnim="ReloadSG"
-     ShotgunEmptyLoadAnim="ReloadSGEmpty"
-     CockSGAnim="CockSG"
-     TubeOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
-     TubeInSound=Sound'BallisticSounds2.M50.M50GrenLoad'
-     TubeCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
-     SGShells=6
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.000000
-     BigIconMaterial=Texture'BallisticRecolors3TexPro.CYLO.BigIcon_CYLO'
-     BigIconCoords=(X1=16,Y1=30)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     bWT_Shotgun=True
-     bWT_Machinegun=True
-     ManualLines(0)="Automatic fire. Moderate power, fire rate and recoil."
-     ManualLines(1)="Engages the secondary shotgun. Has a shorter range than other shotguns and moderate spread."
-     ManualLines(2)="Effective at close to medium range."
-     SpecialInfo(0)=(Info="240.0;25.0;0.9;85.0;0.1;0.9;0.4")
-     MeleeFireClass=Class'BWBPRecolorsPro.CYLOMeleeFire'
-     BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
-     MagAmmo=22
-     CockAnimPostReload="Cock"
-     CockAnimRate=1.400000
-     CockSound=(Sound=Sound'BallisticSounds2.M50.M50Cock')
-     ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
-     ClipOutSound=(Sound=Sound'BallisticSounds2.M50.M50ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds2.M50.M50ClipIn')
-     ClipInFrame=0.700000
-     bAltTriggerReload=True
-     WeaponModes(0)=(bUnavailable=True)
-     bNoCrosshairInScope=False
-	 SightAimFactor=0.3
-     SightPivot=(Pitch=64)
-     SightOffset=(X=0.000000,Y=13.600000,Z=19.500000)
-     SightDisplayFOV=25.000000
-     GunLength=16.000000
-     CrouchAimFactor=1
-     SprintOffSet=(Pitch=-3000,Yaw=-8000)
-     AimAdjustTime=0.400000
-	 
-     AimSpread=16
-     ChaosDeclineTime=0.5
-     ChaosSpeedThreshold=7000.000000
-     ChaosAimSpread=768
-	 
-	 ViewRecoilFactor=0.3
-	 RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.09),(InVal=0.2,OutVal=0.12),(InVal=0.25,OutVal=0.13),(InVal=0.3,OutVal=0.11),(InVal=0.35,OutVal=0.08),(InVal=0.40000,OutVal=0.050000),(InVal=0.50000,OutVal=-0.020000),(InVal=0.600000,OutVal=-0.040000),(InVal=0.700000,OutVal=0.04),(InVal=0.800000,OutVal=0.070000),(InVal=1.000000,OutVal=0.13)))
-     RecoilYCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.220000),(InVal=0.300000,OutVal=0.2600000),(InVal=0.400000,OutVal=0.4000),(InVal=0.500000,OutVal=0.5500),(InVal=0.600000,OutVal=0.620000),(InVal=0.750000,OutVal=0.770000),(InVal=1.000000,OutVal=1.00000)))
-     RecoilXFactor=0.1
-	 RecoilYFactor=0.1
-     RecoilDeclineTime=0.4
-     RecoilDeclineDelay=0.160000
-	 
-     FireModeClass(0)=Class'BWBPRecolorsPro.CYLOPrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.CYLOSecondaryFire'
-     SelectAnimRate=2.000000
-     PutDownAnimRate=1.600000
-     PutDownTime=0.330000
-     BringUpTime=0.450000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.750000
-     CurrentRating=0.750000
-	 WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
-     Description="Dipheox's most popular weapon, the CYLO Versatile Urban Assault Weapon is designed with one goal in mind: Brutal close quarters combat. The CYLO accomplishes this goal quite well, earning itself the nickname of Badger with its small frame, brutal effectiveness, and unpredictability. UTC refuses to let this weapon in the hands of its soldiers because of its erratic firing and tendency to jam.||The CYLO Versatile UAW is fully capable for urban combat. The rifle's caseless 7.62mm rounds can easily shoot through doors and thin walls, while the shotgun can clear a room quickly with its semi-automatic firing. Proper training with the bayonet can turn the gun itself into a deadly melee weapon."
-     DisplayFOV=55.000000
-     Priority=41
-     HudColor=(G=135)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=4
-     GroupOffset=10
-     PickupClass=Class'BWBPRecolorsPro.CYLOPickup'
-     PlayerViewOffset=(X=8.000000,Z=-14.000000)
-     BobDamping=2.000000
-     AttachmentClass=Class'BWBPRecolorsPro.CYLOAttachment'
-     IconMaterial=Texture'BallisticRecolors3TexPro.CYLO.SmallIcon_CYLO'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="CYLO Urban Assault Weapon"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.CYLO'
-     DrawScale=0.400000
+	ShotgunLoadAnim="ReloadSG"
+	ShotgunEmptyLoadAnim="ReloadSGEmpty"
+	CockSGAnim="CockSG"
+	TubeOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
+	TubeInSound=Sound'BallisticSounds2.M50.M50GrenLoad'
+	TubeCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
+	SGShells=6
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.000000
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.CYLO.BigIcon_CYLO'
+	BigIconCoords=(X1=16,Y1=30)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bWT_Shotgun=True
+	bWT_Machinegun=True
+	ManualLines(0)="Automatic fire. Moderate power, fire rate and recoil."
+	ManualLines(1)="Engages the secondary shotgun. Has a shorter range than other shotguns and moderate spread."
+	ManualLines(2)="Effective at close to medium range."
+	SpecialInfo(0)=(Info="240.0;25.0;0.9;85.0;0.1;0.9;0.4")
+	MeleeFireClass=Class'BWBPRecolorsPro.CYLOMeleeFire'
+	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
+	MagAmmo=22
+	CockAnimPostReload="Cock"
+	CockAnimRate=1.400000
+	CockSound=(Sound=Sound'BallisticSounds2.M50.M50Cock')
+	ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.M50.M50ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.M50.M50ClipIn')
+	ClipInFrame=0.700000
+	bAltTriggerReload=True
+	WeaponModes(0)=(bUnavailable=True)
+	bNoCrosshairInScope=False
+	SightPivot=(Pitch=64)
+	SightOffset=(X=0.000000,Y=13.600000,Z=19.500000)
+	SightDisplayFOV=25.000000
+	GunLength=16.000000
+	ParamsClass=Class'CYLOWeaponParams' 
+	FireModeClass(0)=Class'BWBPRecolorsPro.CYLOPrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.CYLOSecondaryFire'
+	SelectAnimRate=2.000000
+	PutDownAnimRate=1.600000
+	PutDownTime=0.330000
+	BringUpTime=0.450000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.750000
+	CurrentRating=0.750000
+	WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
+	Description="Dipheox's most popular weapon, the CYLO Versatile Urban Assault Weapon is designed with one goal in mind: Brutal close quarters combat. The CYLO accomplishes this goal quite well, earning itself the nickname of Badger with its small frame, brutal effectiveness, and unpredictability. UTC refuses to let this weapon in the hands of its soldiers because of its erratic firing and tendency to jam.||The CYLO Versatile UAW is fully capable for urban combat. The rifle's caseless 7.62mm rounds can easily shoot through doors and thin walls, while the shotgun can clear a room quickly with its semi-automatic firing. Proper training with the bayonet can turn the gun itself into a deadly melee weapon."
+	DisplayFOV=55.000000
+	Priority=41
+	HudColor=(G=135)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=4
+	GroupOffset=10
+	PickupClass=Class'BWBPRecolorsPro.CYLOPickup'
+	PlayerViewOffset=(X=8.000000,Z=-14.000000)
+	BobDamping=2.000000
+	AttachmentClass=Class'BWBPRecolorsPro.CYLOAttachment'
+	IconMaterial=Texture'BallisticRecolors3TexPro.CYLO.SmallIcon_CYLO'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="CYLO Urban Assault Weapon"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.CYLO'
+	DrawScale=0.400000
 }

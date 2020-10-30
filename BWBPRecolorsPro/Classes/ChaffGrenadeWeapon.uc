@@ -242,7 +242,6 @@ defaultproperties
      ClipReleaseSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOn',Volume=0.500000,Radius=48.000000,Pitch=1.700000,bAtten=True)
      PinPullSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
 	 GrenadeBone="MOAC"
-	 InventorySize=2
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticRecolors3TexPro.M4A1.BigIcon_MOAC'
      BigIconCoords=(Y1=16,Y2=240)
@@ -255,7 +254,8 @@ defaultproperties
      ManualLines(2)="Synergises with the MARS-2."
      SpecialInfo(0)=(Info="60.0;5.0;0.25;30.0;0.0;0.0;0.4")
      BringUpSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Putaway')
+	 PutDownSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Putaway')
+	 ParamsClass=Class'ChaffWeaponParams'
      FireModeClass(0)=Class'BWBPRecolorsPro.ChaffPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.ChaffSecondaryFire'
      SelectAnimRate=2.000000

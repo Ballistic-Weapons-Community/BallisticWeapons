@@ -51,7 +51,7 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      FlashBone="tip3"
      FlashScaleFactor=2.600000
-     RecoilPerShot=256.000000
+     FireRecoil=256.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.LS14.Rocket-Launch')
      bSplashDamage=True
      bRecommendSplashDamage=True

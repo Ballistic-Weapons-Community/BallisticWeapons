@@ -31,16 +31,14 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 		bLaserOn;
-	reliable if (Role < ROLE_Authority)
-		ServerSwitchStock;
 }
 
 simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
 
-	SetStockBonePosition();
-	AdjustStockProperties();
+	SetStockRotation();
+	OnStockSwitched();
 }
 
 simulated function float ChargeBar()
@@ -54,6 +52,103 @@ simulated function float ChargeBar()
 	return (FireMode[1].NextFireTime - level.TimeSeconds) / FireMode[1].FireRate;
 }
 
+static function class<Pickup> RecommendAmmoPickup(int Mode)
+{
+	return class'AP_SARClip';
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+	if (bStockOpen)
+		ApplyStockAim();
+}
+
+//======================================================================
+// Weapon mode behaviour
+//
+// Switches mode by animating the stock
+//======================================================================
+exec simulated function SwitchWeaponMode (optional byte ModeNum)	
+{
+	// SAR animates to change weapon mode
+	if (ReloadState != RS_None)
+		return;
+
+	if (ModeNum == 0)
+		ServerSwitchWeaponMode(255);
+	else ServerSwitchWeaponMode(ModeNum-1);
+}
+
+// Cycle through the various weapon modes
+function ServerSwitchWeaponMode (byte NewMode)
+{
+	Log("SAR ServerSwitchWeaponMode: Stock open: "$bStockOpen);
+	
+	if (ReloadState != RS_None)
+		return;
+		
+	NewMode = byte(!bStockOpen);
+		
+	// can feasibly happen
+	if (NewMode == CurrentWeaponMode)
+		return;
+
+	CommonSwitchWeaponMode(NewMode);
+	ClientSwitchWeaponMode(NewMode);
+	NetUpdateTime = Level.TimeSeconds - 1;
+}
+
+simulated function CommonSwitchWeaponMode(byte NewMode)
+{
+	Super.CommonSwitchWeaponMode(NewMode);
+	SwitchStock(bool(NewMode));
+}
+
+simulated function OnStockSwitched()
+{
+	if (bStockOpen)
+		ApplyStockAim();
+	else
+		AimComponent.Recalculate();
+
+	AdjustStockProperties();
+}
+
+simulated function SwitchStock(bool bNewValue)
+{
+	if (bNewValue == bStockOpen)
+		return;
+
+	Log("SAR SwitchStock: Stock open: "$bStockOpen);
+	
+	if (Role == ROLE_Authority)
+		bServerReloading = True;
+	ReloadState = RS_GearSwitch;
+	
+	TemporaryScopeDown(0.4);
+
+	bStockOpen = bNewValue;
+	
+	SetBoneRotation('Stock', rot(0,0,0));
+	
+	if (bNewValue)
+		PlayAnim(StockOpenAnim);
+	else
+		PlayAnim(StockCloseAnim);
+
+	OnStockSwitched();
+}
+
+simulated function ApplyStockAim()
+{
+	if (bStockOpen)
+		AimComponent.CrouchMultiplier *= 0.7f;
+}
+
 simulated function AdjustStockProperties()
 {
 	if (bStockOpen)
@@ -65,13 +160,11 @@ simulated function AdjustStockProperties()
 
 		
 		// Weapon bonuses
-		CrouchAimFactor				= 0.7;
-		BFireMode[0].RecoilPerShot 	= 128;
+		BFireMode[0].FireRecoil 	= 128;
 		BFireMode[0].FireChaos		= 0.030000;
 		
 		// Weapon penalties
 		SightingTime				= 0.35;
-		ViewRecoilFactor 			= 0.35;
 	}
 	else
 	{
@@ -82,61 +175,14 @@ simulated function AdjustStockProperties()
 		
 		// Weapon Bonuses
 		SightingTime = default.SightingTime;
-		ViewRecoilFactor = default.ViewRecoilFactor;
 		
 		// Weapon penalties
-		CrouchAimFactor					= default.CrouchAimFactor;
-		BFireMode[0].RecoilPerShot 		= BFireMode[0].default.RecoilPerShot;
+		BFireMode[0].FireRecoil 		= BFireMode[0].default.FireRecoil;
 		BFireMode[0].FireChaos 			= BFireMode[0].default.FireChaos;
-		
 	}
 }
 
-static function class<Pickup> RecommendAmmoPickup(int Mode)
-{
-	return class'AP_SARClip';
-}
-
-function ServerSwitchStock(bool bNewValue)
-{
-	bStockOpen = bNewValue;
-	SwitchStock(bNewValue);
-	AdjustStockProperties();
-}
-
-//simulated function DoWeaponSpecial(optional byte i)
-exec simulated function WeaponSpecial(optional byte i)
-{
-	if (ReloadState != RS_None)
-		return;
-
-	if (ClientState != WS_ReadyToFire)
-		return;
-
-	bStockOpen = !bStockOpen;
-
-	if (!bStockOpen)
-		SetStockBonePosition();
-
-	TemporaryScopeDown(0.4);
-	ServerSwitchStock(bStockOpen);
-	SwitchStock(bStockOpen);
-	AdjustStockProperties();
-}
-
-simulated function SwitchStock(bool bNewValue)
-{
-	if (Role == ROLE_Authority)
-		bServerReloading = True;
-	ReloadState = RS_GearSwitch;
-	
-	if (bNewValue)
-		PlayAnim(StockOpenAnim);
-	else
-		PlayAnim(StockCloseAnim);
-}
-
-simulated function SetStockBonePosition()
+simulated function SetStockRotation()
 {
 	if (bStockOpen)
 	{
@@ -154,14 +200,14 @@ simulated function PlayIdle()
 {
 	if (bStockOpen && !bStockBoneOpen)
 	{
-		SetStockBonePosition();
+		SetStockRotation();
 		IdleTweenTime=0.0;
 		super.PlayIdle();
 		IdleTweenTime=default.IdleTweenTime;
 	}
 	else
 	{	if (!bStockOpen && bStockBoneOpen)
-			SetStockBonePosition();
+			SetStockRotation();
 		super.PlayIdle();
 	}
 
@@ -170,16 +216,38 @@ simulated function PlayIdle()
 	FreezeAnimAt(0.0);
 }
 
+//=======================================================================
+// Laser handling
+//=======================================================================
+function ServerWeaponSpecial(optional byte i)
+{
+	if (bServerReloading)
+		return;
+	ServerSwitchLaser(!bLaserOn);
+}
+
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 1.5;
+	AimComponent.AimSpread.Max *= 0.8;
+}
+
 simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
 	if (bLaserOn != default.bLaserOn)
 	{
-		if (bLaserOn)
-			AimAdjustTime = default.AimAdjustTime * 1.5;
-		else
-			AimAdjustTime = default.AimAdjustTime;
+		OnLaserSwitched();
+
 		default.bLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
@@ -192,16 +260,17 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	bUseNetAim = default.bUseNetAim || bLaserOn;
 	if (ThirdPersonActor!=None)
 		SARAttachment(ThirdPersonActor).bLaserOn = bLaserOn;
-	if (bLaserOn)
-		AimAdjustTime = default.AimAdjustTime * 1.5;
-	else
-		AimAdjustTime = default.AimAdjustTime;
+
+	OnLaserSwitched();
+
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
 }
 
 simulated function ClientSwitchLaser()
 {
+	OnLaserSwitched();
+
 	if (bLaserOn)
 	{
 		SpawnLaserDot();
@@ -343,35 +412,9 @@ simulated event RenderOverlays( Canvas Canvas )
     bDrawingFirstPerson = false;
 }
 
-simulated function SetScopeBehavior()
+simulated function UpdateNetAim()
 {
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-	
-	if (bScopeView)
-	{
-		ViewAimFactor = 1.0;
-		ViewRecoilFactor = 1.0;
-		AimSpread = 0;
-		ChaosAimSpread *= SightAimFactor;
-		ChaosDeclineTime *= 2.0;
-		ChaosSpeedThreshold *= 0.7;
-	}
-	else
-	{
-		//PositionSights will handle this for clients
-		if(Level.NetMode == NM_DedicatedServer)
-		{
-			ViewAimFactor = default.ViewAimFactor;
-			ViewRecoilFactor = default.ViewRecoilFactor;
-		}
-
-		AimSpread = default.AimSpread;
-		AimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosAimSpread = default.ChaosAimSpread;
-		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosDeclineTime = default.ChaosDeclineTime;
-		ChaosSpeedThreshold = default.ChaosSpeedThreshold;
-	}
 }
 
 simulated function PlayReload()
@@ -463,86 +506,66 @@ defaultproperties
 	bStockOpen=true
 	AIRating=0.72
 	CurrentRating=0.72
-     LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
-     LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
-     StockOpenAnim="StockOn"
-     StockCloseAnim="StockOff"
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.000000
-     BigIconMaterial=Texture'BallisticTextures3.ui.BigIcon_SAR12'
-     BigIconCoords=(Y1=24,Y2=250)
-     SightFXClass=Class'BallisticProV55.SARSightDot'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     bWT_Machinegun=True
-     ManualLines(0)="Automatic 5.56mm fire. Slightly shorter range than full-size assault rifles. Low damage and moderate recoil by default."
-     ManualLines(1)="Engages the frontal flash device. Inflicts a medium-duration blind upon enemies. The effect is more potent the closer the foe is both to the point of aim and to the user."
-     ManualLines(2)="The Weapon Function key engages or disengages the stock. By default, the stock is engaged. Disengaging the stock grants the SAR-12 superior hipfire and shortens the time taken to aim the weapon, but recoil becomes worse and no stabilization bonus is given for crouching.||Effective at close to medium range, depending upon specialisation."
-     SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-     MagAmmo=32
-     CockAnimPostReload="ReloadEndCock"
-     CockAnimRate=1.250000
-     CockSound=(Sound=Sound'BallisticSounds3.SAR.SAR-Cock')
-     ReloadAnimRate=1.100000
-     ClipOutSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipIn')
-     ClipInFrame=0.650000
-     WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(Value=5.000000)
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=350)
-     SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
-     SightDisplayFOV=25.000000
-     SightingTime=0.250000
-	 
-     GunLength=16.000000
-	 
-     CrouchAimFactor=1.000000
-     SightAimFactor=0.200000
-     SprintOffSet=(Pitch=-3000,Yaw=-4000)
-     AimAdjustTime=0.300000
-	 
-     AimSpread=12
-     ChaosDeclineTime=0.5
-     ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=768
-	 
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.230000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.05
-     RecoilYFactor=0.05
-     RecoilDeclineTime=0.5
-     RecoilDeclineDelay=0.14
-	 ViewRecoilFactor=0.45
-	 
-     FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.SARFlashFire'
-	 
-     SelectForce="SwitchToAssaultRifle"
-     bShowChargingBar=True
-     Description="With a growing number of operations and battles taking place in urban and industial enviroments, the UTC realized that their ground infantry units were in dire need of a more effective, balanced weapon system for indoor combat. UTC soldiers fighting in the close confines of urban structures and industrial installatons needed a highly compact, reliable and manouverable weapon, but it needed the power to blast through light walls and take down the agile alien forces they were faced with.||The result was the development of the Sub-Assault Rifle, the most well known of which is the S-AR 12. These weapons have the power of an assault rifle, usually using rifle ammunition such as 5.56mm rounds, and the manouverability of a compact sub-machinegun. Accuracy was not an issue due to the extremely short range of most of the encounters in urban combat."
-     DisplayFOV=55.000000
-     Priority=32
-     HudColor=(G=200,R=100)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=4
-     GroupOffset=4
-     PickupClass=Class'BallisticProV55.SARPickup'
-     PlayerViewOffset=(X=5.000000,Y=9.000000,Z=-11.000000)
-     AttachmentClass=Class'BallisticProV55.SARAttachment'
-     IconMaterial=Texture'BallisticTextures3.ui.SmallIcon_SAR12'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="Sub-Assault Rifle 12"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=130.000000
-     LightRadius=3.000000
-     Mesh=SkeletalMesh'BallisticProAnims.SAR'
-     DrawScale=0.300000
-     SoundPitch=56
-     SoundRadius=32.000000
+	LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
+	LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
+	StockOpenAnim="StockOn"
+	StockCloseAnim="StockOff"
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.000000
+	BigIconMaterial=Texture'BallisticTextures3.ui.BigIcon_SAR12'
+	BigIconCoords=(Y1=24,Y2=250)
+	SightFXClass=Class'BallisticProV55.SARSightDot'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bWT_Machinegun=True
+	ManualLines(0)="Automatic 5.56mm fire. Slightly shorter range than full-size assault rifles. Low damage and moderate recoil by default."
+	ManualLines(1)="Engages the frontal flash device. Inflicts a medium-duration blind upon enemies. The effect is more potent the closer the foe is both to the point of aim and to the user."
+	ManualLines(2)="The Weapon Function key engages or disengages the stock. By default, the stock is engaged. Disengaging the stock grants the SAR-12 superior hipfire and shortens the time taken to aim the weapon, but recoil becomes worse and no stabilization bonus is given for crouching.||Effective at close to medium range, depending upon specialisation."
+	SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
+	CockAnimPostReload="ReloadEndCock"
+	CockAnimRate=1.250000
+	CockSound=(Sound=Sound'BallisticSounds3.SAR.SAR-Cock')
+	ReloadAnimRate=1.100000
+	ClipOutSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipIn')
+	ClipInFrame=0.650000
+	WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=4.000000,RecoilParamsIndex=1)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=350)
+	SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
+	SightDisplayFOV=25.000000
+	GunLength=16.000000
+	ParamsClass=Class'SARWeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.SARFlashFire'
+	SelectForce="SwitchToAssaultRifle"
+	bShowChargingBar=True
+	Description="With a growing number of operations and battles taking place in urban and industial enviroments, the UTC realized that their ground infantry units were in dire need of a more effective, balanced weapon system for indoor combat. UTC soldiers fighting in the close confines of urban structures and industrial installatons needed a highly compact, reliable and manouverable weapon, but it needed the power to blast through light walls and take down the agile alien forces they were faced with.||The result was the development of the Sub-Assault Rifle, the most well known of which is the S-AR 12. These weapons have the power of an assault rifle, usually using rifle ammunition such as 5.56mm rounds, and the manouverability of a compact sub-machinegun. Accuracy was not an issue due to the extremely short range of most of the encounters in urban combat."
+	DisplayFOV=55.000000
+	Priority=32
+	HudColor=(G=200,R=100)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=4
+	GroupOffset=4
+	PickupClass=Class'BallisticProV55.SARPickup'
+	PlayerViewOffset=(X=5.000000,Y=9.000000,Z=-11.000000)
+	AttachmentClass=Class'BallisticProV55.SARAttachment'
+	IconMaterial=Texture'BallisticTextures3.ui.SmallIcon_SAR12'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="Sub-Assault Rifle 12"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=130.000000
+	LightRadius=3.000000
+	Mesh=SkeletalMesh'BallisticProAnims.SAR'
+	DrawScale=0.300000
+	SoundPitch=56
+	SoundRadius=32.000000
 }

@@ -68,8 +68,8 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Shotgun'
      bBrassOnCock=True
      BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
-     RecoilPerShot=512.000000
-     VelocityRecoil=200.000000
+     FireRecoil=512.000000
+     FirePushbackForce=200.000000
      FireChaos=0.500000
      XInaccuracy=350.000000
      YInaccuracy=350.000000

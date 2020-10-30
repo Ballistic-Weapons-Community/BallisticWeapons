@@ -25,10 +25,6 @@ simulated function ClientInitWeaponFromTurret(BallisticTurret Turret)
 	bNeedCock=false;
 }
 
-simulated function TickAim(float DT)
-{
-	Super(BallisticWeapon).TickAim(DT);
-}
 function Notify_Deploy()
 {
 	local vector HitLoc, HitNorm, Start, End;
@@ -198,39 +194,6 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 	}
 }
 
-simulated function SetScopeBehavior()
-{
-	bUseNetAim = default.bUseNetAim || bScopeView;
-		
-	if (bScopeView)
-	{
-		ViewAimFactor = 1.0;
-		ViewRecoilFactor = 1.0;
-		AimAdjustTime *= 2;
-		AimSpread = 0;
-		ChaosAimSpread *= SightAimFactor;
-		ChaosDeclineTime *= 2.0;
-		ChaosSpeedThreshold *= 0.25;
-	}
-	else
-	{
-		//PositionSights will handle this for clients
-		if(Level.NetMode == NM_DedicatedServer)
-		{
-			ViewAimFactor = default.ViewAimFactor;
-			ViewRecoilFactor = default.ViewRecoilFactor;
-		}
-
-		AimAdjustTime = default.AimAdjustTime;
-		AimSpread = default.AimSpread;
-		AimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosAimSpread = default.ChaosAimSpread;
-		ChaosAimSpread *= BCRepClass.default.AccuracyScale;
-		ChaosDeclineTime = default.ChaosDeclineTime;
-		ChaosSpeedThreshold = default.ChaosSpeedThreshold;
-	}
-}
-
 function float GetAIRating()
 {
 	local Bot B;
@@ -259,10 +222,8 @@ function float SuggestAttackStyle()	{	return -0.5;	}
 // tells bot whether to charge or back off while defending against this weapon
 function float SuggestDefenseStyle()	{	return 0.5;	}
 
-
 defaultproperties
 {
-	AimDisplacementDurationMult=1.25
 	BeltLength=8
 	BoxOnSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOn')
 	BoxOffSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOff')
@@ -270,8 +231,6 @@ defaultproperties
 	FlapDownSound=(Sound=Sound'BallisticSounds2.M925.M925-LeverDown')
 	HandleOnSound=Sound'BallisticSounds2.M925.M925-StandOn'
 	HandleOffSound=Sound'BallisticSounds2.M925.M925-StandOff'
-	PlayerSpeedFactor=0.75
-	PlayerJumpFactor=0.75
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=3)
 	TeamSkins(1)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=5)
 	AIReloadTime=4.000000
@@ -291,7 +250,6 @@ defaultproperties
     WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
     WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(bUnavailable=True)
-	MagAmmo=50
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BallisticSounds2.M925.M925-Cock')
 	ReloadAnim="ReloadStart"
@@ -303,27 +261,7 @@ defaultproperties
 	SightPivot=(Pitch=64)
 	SightOffset=(X=-18.000000,Z=7.200000)
 	SightDisplayFOV=40.000000
-	SightingTime=0.700000
-	CrouchAimFactor=0.700000
-	SightAimFactor=0.40000
-	SprintOffSet=(Pitch=-6000,Yaw=-8000)
-	JumpOffSet=(Pitch=-6000,Yaw=-4000)
-	AimAdjustTime=0.400000
-	AimSpread=384
-	ViewRecoilFactor=0.250000
-	ChaosDeclineTime=1.750000
-	ChaosAimSpread=1280
-	
-	
-	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.40000),(InVal=0.500000,OutVal=0.550000),(InVal=0.700000,OutVal=0.70000),(InVal=1.000000)))
-	RecoilYCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.300000),(InVal=0.500000,OutVal=0.550000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.07
-	RecoilYFactor=0.07
-	RecoilMax=12288.000000
-	RecoilDeclineTime=1.500000
-	RecoilDeclineDelay=0.40000
-	
-	
+	ParamsClass=Class'M925WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.M925PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'
 	PutDownTime=0.700000

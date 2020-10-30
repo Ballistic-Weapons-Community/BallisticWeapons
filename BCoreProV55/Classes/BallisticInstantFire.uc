@@ -49,9 +49,10 @@ class BallisticInstantFire extends BallisticFire
 const MAX_WALLS = 5;
 
 //General Vars ----------------------------------------------------------------
-var() Range				TraceRange;			// Min and Max range of trace
-var() float				MaxWaterTraceRange;	// Maximum distance this fire should trace after entering water
-var() float				WallPenetrationForce;		// Maximum thickness of the walls that this bullet gan go through
+var() Range				TraceRange;				// Min and Max range of trace
+var() float				MaxWaterTraceRange;		// Maximum distance this fire should trace after entering water
+var() float				WallPenetrationForce;	// Maximum thickness of the walls that this bullet gan go through
+
 struct TraceInfo					// This holds info about a trace
 {
 	var() Vector 	Start, End, HitNormal, HitLocation, Extent;
@@ -61,24 +62,24 @@ struct TraceInfo					// This holds info about a trace
 //-----------------------------------------------------------------------------
 
 //Damage Vars -----------------------------------------------------------------
-var() float						Damage;			// Damage for nomal shots
-var() float						DamageHead;		// Damage for Headshots
-var() float						DamageLimb;		// Damage for Limbshots
-var() float						RangeAtten;		// Attenuates damage depending on range. At max range, damage is multiplied by this.
-var() float						WaterRangeAtten;// Extra attenuation applied when bullet goes through water. Damage *= Lerp(WaterDist / (MaxRange*WaterRangeFactor), 1, This)
-var() class<DamageType>			DamageType;		// Damage type to use
-var() class<DamageType>			DamageTypeHead;	// Damage type to use for head
-var() class<DamageType>			DamageTypeArm;	// Damage type to use for unimportant limbs
-var() int						KickForce;		// Strength of momentum
-var() float						HookStopFactor;	// How much force is applied to counteract victim running. This * Victim.GroundSpeed
-var() float						HookPullForce;	// Velocity amount added to pull victim towards instigator
-var() int						PenetrateForce;	// The penetrating power of these bullets.
-var() bool						bPenetrate;		// Bullets can go though enemies
-var() float						PDamageFactor;	// Damage multiplied by this with each penetration
-var() float						WallPDamageFactor;	// Damage multiplied by this for each wall penetration
-var() bool						bUseRunningDamage;	// Enable damage variations when running towards/away from enemies
-var() float						RunningSpeedThresh;	// Instigator speed divided by this to figure out Running damage bonus
-var() globalconfig float		DamageModHead, DamageModLimb; //Configurable damage modifiers for base damage
+var() float						Damage;							// Damage for nomal shots
+var() float						DamageHead;						// Damage for Headshots
+var() float						DamageLimb;						// Damage for Limbshots
+var() float						RangeAtten;						// Attenuates damage depending on range. At max range, damage is multiplied by this.
+var() float						WaterRangeAtten;				// Extra attenuation applied when bullet goes through water. Damage *= Lerp(WaterDist / (MaxRange*WaterRangeFactor), 1, This)
+var() class<DamageType>			DamageType;						// Damage type to use
+var() class<DamageType>			DamageTypeHead;					// Damage type to use for head
+var() class<DamageType>			DamageTypeArm;					// Damage type to use for unimportant limbs
+var() int						KickForce;						// Strength of momentum
+var() float						HookStopFactor;					// How much force is applied to counteract victim running. This * Victim.GroundSpeed
+var() float						HookPullForce;					// Velocity amount added to pull victim towards instigator
+var() int						PenetrateForce;					// The penetrating power of these bullets.
+var() bool						bPenetrate;						// Bullets can go though enemies
+var() float						PDamageFactor;					// Damage multiplied by this with each penetration
+var() float						WallPDamageFactor;				// Damage multiplied by this for each wall penetration
+var() bool						bUseRunningDamage;				// Enable damage variations when running towards/away from enemies
+var() float						RunningSpeedThresh;				// Instigator speed divided by this to figure out Running damage bonus
+var() globalconfig float		DamageModHead, DamageModLimb; 	//Configurable damage modifiers for base damage
 var	bool						bNoPositionalDamage;
 //-----------------------------------------------------------------------------
 
@@ -631,14 +632,14 @@ function StartBerserk()
 	{
 		FireRate = default.FireRate * 0.75;
 		FireAnimRate = default.FireAnimRate/0.75;
-		RecoilPerShot = default.RecoilPerShot * 0.75;
+		FireRecoil = default.FireRecoil * 0.75;
 		FireChaos = default.FireChaos * 0.75;
 	}
 	else
 	{
 		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate * 0.75;
 		FireAnimRate = default.FireAnimRate/0.75;
-		RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
+		FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
 		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos * 0.75;
 	}
 }
@@ -649,14 +650,14 @@ function StopBerserk()
 	{
 		FireRate = default.FireRate;
 		FireAnimRate = default.FireAnimRate;
-		RecoilPerShot = default.RecoilPerShot;
+		FireRecoil = default.FireRecoil;
 		FireChaos = default.FireChaos;
 	}
 	else
 	{
 		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate;
 		FireAnimRate = default.FireAnimRate;
-		RecoilPerShot = FireModes[BW.CurrentWeaponMode-1].mRecoil;
+		FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil;
 		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos;
 	}
 }
@@ -668,59 +669,62 @@ simulated function SwitchWeaponMode (byte NewMode)
 	{
 		if (NewMode == 0)
 		{
-			Damage			=					default.Damage;
-			DamageType 	= 					default.DamageType;
-			DamageTypeArm = 				default.DamageTypeArm;
-			DamageTypeHead = 				default.DamageTypeHead;
-			FireRate 		= 					default.FireRate;
-			FireChaos 		=					default.FireChaos;
-			BallisticFireSound.Sound = 	default.BallisticFireSound.Sound;
-			FireLoopAnim 	= 					default.FireLoopAnim;
-			FireAnim 		= 					default.FireAnim;
+			Damage			=				default.Damage;
+			DamageType 		= 				default.DamageType;
+			DamageTypeArm 	= 				default.DamageTypeArm;
+			DamageTypeHead 	= 				default.DamageTypeHead;
+			FireRate 		= 				default.FireRate;
+			FireChaos 		=				default.FireChaos;
+			BallisticFireSound.Sound 	= 	default.BallisticFireSound.Sound;
+			FireLoopAnim 	= 				default.FireLoopAnim;
+			FireAnim 		= 				default.FireAnim;
 			FireEndAnim = 					default.FireEndAnim;
-			RecoilPerShot = 					default.RecoilPerShot;
+			FireRecoil = 					default.FireRecoil;
 			AmmoPerFire = 					default.AmmoPerFire;
 			GoToState('');
 			
 			//AI info
 			bLeadTarget = 					default.bLeadTarget;
-			bInstantHit = 						default.bInstantHit;
+			bInstantHit = 					default.bInstantHit;
 			bSplashDamage = 				default.bSplashDamage;
-			bRecommendSplashDamage = default.bRecommendSplashDamage;
+			bRecommendSplashDamage 		= default.bRecommendSplashDamage;
 		}
 		
 		else
 		{
 			NewMode--;
 			
-			Damage = FireModes[NewMode].mDamage;
-			DamageType = FireModes[NewMode].mDamageType;
-			DamageTypeArm = FireModes[NewMode].mDamageType;
-			DamageTypeHead = FireModes[NewMode].mDamageTypeHead;
-			FireRate = FireModes[NewMode].mFireRate;
-			FireChaos = FireModes[NewMode].mFireChaos;
-			BallisticFireSound.Sound = FireModes[NewMode].mFireSound;
+			Damage 						= FireModes[NewMode].mDamage;
+			DamageType 					= FireModes[NewMode].mDamageType;
+			DamageTypeArm 				= FireModes[NewMode].mDamageType;
+			DamageTypeHead 				= FireModes[NewMode].mDamageTypeHead;
+			FireRate 					= FireModes[NewMode].mFireRate;
+			FireChaos 					= FireModes[NewMode].mFireChaos;
+			BallisticFireSound.Sound 	= FireModes[NewMode].mFireSound;
+
 			if (FireModes[NewMode].bLoopedAnim)
 			{
 				FireLoopAnim = FireModes[NewMode].mFireAnim;
 				FireAnim = '';
 			}
+
 			else
 			{
 				FireLoopAnim = '';
 				FireAnim = FireModes[NewMode].mFireAnim;
 			}
 
-			FireEndAnim = FireModes[NewMode].mFireEndAnim;
-			RecoilPerShot = FireModes[NewMode].mRecoil;
-			AmmoPerFire = FireModes[NewMode].mAmmoPerFire;
+			FireEndAnim 				= FireModes[NewMode].mFireEndAnim;
+			FireRecoil 					= FireModes[NewMode].mRecoil;
+			AmmoPerFire 				= FireModes[NewMode].mAmmoPerFire;
+
 			GoToState(FireModes[NewMode].TargetState);
 			
 			//AI info
-			bLeadTarget = FireModes[NewMode].bModeLead;
-			bInstantHit = FireModes[NewMode].bModeInstantHit;
-			bSplashDamage = FireModes[NewMode].bModeSplash;
-			bRecommendSplashDamage = FireModes[NewMode].bModeRecommendSplash;
+			bLeadTarget 				= FireModes[NewMode].bModeLead;
+			bInstantHit 				= FireModes[NewMode].bModeInstantHit;
+			bSplashDamage 				= FireModes[NewMode].bModeSplash;
+			bRecommendSplashDamage 		= FireModes[NewMode].bModeRecommendSplash;
 			
 			NewMode++;
 		}
@@ -728,7 +732,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		if (Weapon.bBerserk)
 		{
 			FireRate *= 0.75;
-			RecoilPerShot *= 0.75;
+			FireRecoil *= 0.75;
 			FireChaos *= 0.75;
 		}
 		
@@ -744,18 +748,21 @@ static function FireModeStats GetStats()
 {
 	local FireModeStats FS;
 	
-	FS.DamageInt = default.Damage;
-	FS.Damage = String(FS.DamageInt);
-	FS.DPS = FS.DamageInt / default.FireRate;
-	FS.TTK = default.FireRate * (Ceil(175/FS.DamageInt) - 1);
+	FS.DamageInt 	= default.Damage;
+	FS.Damage 		= String(FS.DamageInt);
+	FS.DPS 			= FS.DamageInt / default.FireRate;
+	FS.TTK 			= default.FireRate * (Ceil(175/FS.DamageInt) - 1);
+
 	if (default.FireRate < 0.5)
 		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	else FS.RPM = 1/default.FireRate@"times/second";
-	FS.RPShot = default.RecoilPerShot;
-	FS.RPS = default.RecoilPerShot / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.Range = "Max:"@(int(default.TraceRange.Max / 52.5))@"metres";
+	else 
+		FS.RPM 	= 1/default.FireRate@"times/second";
+		
+	FS.RPShot 		= default.FireRecoil;
+	FS.RPS 			= default.FireRecoil / default.FireRate;
+	FS.FCPShot 		= default.FireChaos;
+	FS.FCPS 		= default.FireChaos / default.FireRate;
+	FS.Range 		= "Max:"@(int(default.TraceRange.Max / 52.5))@"metres";
 	
 	return FS;
 }

@@ -29,9 +29,9 @@ defaultproperties
      TraceRange=(Min=8000.000000,Max=9000.000000)
      WallPenetrationForce=16.000000
      
-     Damage=50.000000
+     Damage=55.000000
      DamageHead=75.000000
-     DamageLimb=50.000000
+     DamageLimb=55.000000
      RangeAtten=0.50000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPRecolorsPro.DTAH250Pistol'
@@ -45,8 +45,8 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
-     RecoilPerShot=768.000000
-     VelocityRecoil=150.000000
+     FireRecoil=512.000000
+     FirePushbackForce=150.000000
      FireChaos=0.200000
      XInaccuracy=8.000000
      YInaccuracy=8.000000

@@ -96,17 +96,13 @@ defaultproperties
 	AIRating=0.8
 	CurrentRating=0.8
 	AIReloadTime=1.500000
-	AimAdjustTime=0.450000
-	AimDisplacementDurationMult=0.75
-	AimSpread=16
+
 	AttachmentClass=Class'BallisticProV55.AM67Attachment'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_AM67'
 	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
 	BringUpTime=0.900000
-	SightAimFactor=1
-	ChaosDeclineTime=0.450000
-	ChaosSpeedThreshold=500.000000
+
 	ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
 	ClipInFrame=0.650000
 	ClipInSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipIn')
@@ -123,10 +119,9 @@ defaultproperties
 	HudColor=(B=25,G=150,R=50)
 	IconCoords=(X2=127,Y2=31)
 	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_AM67'
-	InventorySize=12
 	InventoryGroup=3
 	ItemName="AM67 Assault Pistol"
-	JumpChaos=0.200000
+
 	LightBrightness=150.000000
 	LightEffect=LE_NonIncidence
 	LightHue=30
@@ -140,25 +135,16 @@ defaultproperties
 	ManualLines(1)="Engages the integrated flash device. The fire key must be held until the flash triggers. Blinds enemies for a short duration. Enemies closer both to the player and to the point of aim will be blinded for longer."
 	ManualLines(2)="Effective at close and medium range."
 	Mesh=SkeletalMesh'BallisticProAnims.AM68_FPm'
+	ParamsClass=Class'AM67WeaponParams'
 	PickupClass=Class'BallisticProV55.AM67Pickup'
 	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 	Priority=24
 	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
 	PutDownTime=0.600000
-	
-	ViewRecoilFactor=0.45
-	RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.05),(InVal=0.2,OutVal=0.12),(InVal=0.3,OutVal=0.08),(InVal=0.40000,OutVal=0.05),(InVal=0.50000,OutVal=0.10000),(InVal=0.600000,OutVal=0.170000),(InVal=0.700000,OutVal=0.24),(InVal=0.800000,OutVal=0.30000),(InVal=1.000000,OutVal=0.4)))
-    RecoilYCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.220000),(InVal=0.300000,OutVal=0.300000),(InVal=0.400000,OutVal=0.4500),(InVal=0.500000,OutVal=0.5500),(InVal=0.600000,OutVal=0.620000),(InVal=0.750000,OutVal=0.770000),(InVal=1.000000,OutVal=1.00000)))
 
-	RecoilDeclineDelay=0.6
-	RecoilDeclineTime=1.0
-	
-	RecoilMax=8192.000000
-	RecoilXFactor=0.10000
-	RecoilYFactor=0.10000
+
+
 	ReloadAnimRate=1.250000
-	
-	
 	SelectForce="SwitchToAssaultRifle"
 	SightDisplayFOV=60.000000
 	SightFXClass=Class'BallisticProV55.AM67SightLEDs'

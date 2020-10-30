@@ -50,7 +50,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_GRSNine'
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
-     RecoilPerShot=150.000000
+     FireRecoil=150.000000
      FireChaos=0.120000
      XInaccuracy=72.000000
      YInaccuracy=72.000000

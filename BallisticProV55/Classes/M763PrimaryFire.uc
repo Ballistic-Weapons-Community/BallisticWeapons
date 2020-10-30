@@ -12,11 +12,6 @@ class M763PrimaryFire extends BallisticProShotgunFire;
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
 simulated function bool AllowFire()
 {
-	//Force noobs to scope.
-	if ((BW.BCRepClass.default.bSightFireOnly || class'BallisticWeapon'.default.SightsRestrictionLevel > 0) && BW.bUseSights && BW.SightingState != SS_Active && !BW.bScopeHeld && Instigator.IsLocallyControlled() && PlayerController(Instigator.Controller) != None)
-		BW.ScopeView();
-	if (!BW.bScopeView && class'BallisticWeapon'.default.SightsRestrictionLevel > 0)
-		return false;
 	if (!CheckReloading())
 		return false;		// Is weapon busy reloading
 	if (!CheckWeaponMode())
@@ -105,7 +100,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Shotgun'
      BrassOffset=(X=-1.000000,Z=-1.000000)
      AimedFireAnim="FireCombinedSight"
-     RecoilPerShot=768.000000
+     FireRecoil=768.000000
      FireChaos=0.30000
      XInaccuracy=150.000000
      YInaccuracy=150.000000

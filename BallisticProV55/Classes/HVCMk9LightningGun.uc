@@ -661,69 +661,61 @@ function float SuggestDefenseStyle()	{	return -0.9;	}
 
 defaultproperties
 {
-     VentingSound=Sound'BWBP2-Sounds.LightningGun.LG-Coolant'
-     OverheatSound=Sound'BWBP2-Sounds.LightningGun.LG-OverHeat'
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     UsedAmbientSound=Sound'BWBP2-Sounds.LightningGun.LG-Ambient'
-     AIReloadTime=0.200000
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_HVCMk9'
-     BigIconCoords=(Y1=32,Y2=223)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Hazardous=True
-     bWT_Energy=True
-     bWT_Super=True
-     ManualLines(0)="Projects a continuous stream of lightning. Good damage, no recoil, long range and perfect hip accuracy."
-     ManualLines(1)="Charges up the weapon to unleash a searing bolt of red lightning. Like the primary, has no recoil and perfect hip accuracy."
-     ManualLines(2)="Holding Reload will cool off the weapon, reducing the heat buildup and preventing the threat of overcharge.||Will not function correctly underwater. Causes the user and nearby targets to be electrocuted if so used.||The HVC-Mk9 does not possess any iron sights.||This weapon is effective at all ranges."
-     SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.5;1.0")
-     BringUpSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-Pullout',Volume=0.750000)
-     PutDownSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-Putaway',Volume=0.600000)
-     bNoMag=True
-     WeaponModes(0)=(ModeName="Stream",ModeID="WM_None")
-     WeaponModes(1)=(bUnavailable=True,Value=4.000000)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     bUseSights=False
-     SightPivot=(Pitch=1024)
-     SightOffset=(X=-12.000000,Z=26.000000)
-     SightDisplayFOV=40.000000
-     SprintOffSet=(Pitch=-500,Yaw=-1024)
-	 InventorySize=35
-     AimAdjustTime=0.400000
-     AimSpread=2
-     ChaosSpeedThreshold=600.000000
-     ChaosAimSpread=2
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
-     RecoilDeclineTime=1.000000
-     FireModeClass(0)=Class'BallisticProV55.HVCMk9PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.HVCMk9SecondaryFire'
-     PutDownTime=0.500000
-     BringUpTime=1.000000
-     AIRating=0.90000
-     CurrentRating=0.900000
-     bShowChargingBar=True
-     Description="Krao, the mindless, virtually limitless alien swarm used by the Skrith has caused the appearance of weapons such as shotguns and heavy spread weapons, as well as many unusual designs and inventions, including electrical armaments. The HVC (High Voltage Cannon) Mk9 is one such device, making its first appearance during the second Human-Skrith war. Designed by Nexron Defence, pioneers in terran energy weapon technology, the HVC is indeed suited to destroying Krao drones in vast quantities. In battlefield trials, the 'lightning gun' has proven to be highly effective in close combat against Krao and occasionally proving useful against Cryons and even Skrith.|Using a large energy cell mounted on the user's backpack, it can produce extremely high-voltage charges of electricity."
-     Priority=45
-     HudColor=(B=255,G=150,R=100)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=5
-     PickupClass=Class'BallisticProV55.HVCMk9Pickup'
-     PlayerViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
-     AttachmentClass=Class'BallisticProV55.HVCMk9Attachment'
-     IconMaterial=Texture'BWBP2-Tex.Lighter.SmallIcon_LG'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="HVC-Mk9 Lightning Gun"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=180
-     LightSaturation=100
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBP2b-Anims.Lighter'
-     DrawScale=0.250000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     bFullVolume=True
-     SoundVolume=64
-     SoundRadius=128.000000
+	VentingSound=Sound'BWBP2-Sounds.LightningGun.LG-Coolant'
+	OverheatSound=Sound'BWBP2-Sounds.LightningGun.LG-OverHeat'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	UsedAmbientSound=Sound'BWBP2-Sounds.LightningGun.LG-Ambient'
+	AIReloadTime=0.200000
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_HVCMk9'
+	BigIconCoords=(Y1=32,Y2=223)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Hazardous=True
+	bWT_Energy=True
+	bWT_Super=True
+	ManualLines(0)="Projects a continuous stream of lightning. Good damage, no recoil, long range and perfect hip accuracy."
+	ManualLines(1)="Charges up the weapon to unleash a searing bolt of red lightning. Like the primary, has no recoil and perfect hip accuracy."
+	ManualLines(2)="Holding Reload will cool off the weapon, reducing the heat buildup and preventing the threat of overcharge.||Will not function correctly underwater. Causes the user and nearby targets to be electrocuted if so used.||The HVC-Mk9 does not possess any iron sights.||This weapon is effective at all ranges."
+	SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.5;1.0")
+	BringUpSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-Pullout',Volume=0.750000)
+	PutDownSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-Putaway',Volume=0.600000)
+	bNoMag=True
+	WeaponModes(0)=(ModeName="Stream",ModeID="WM_None")
+	WeaponModes(1)=(bUnavailable=True,Value=4.000000)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bUseSights=False
+	SightPivot=(Pitch=1024)
+	SightOffset=(X=-12.000000,Z=26.000000)
+	SightDisplayFOV=40.000000
+	ParamsClass=Class'HVCMk9WeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.HVCMk9PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.HVCMk9SecondaryFire'
+	PutDownTime=0.500000
+	BringUpTime=1.000000
+	AIRating=0.90000
+	CurrentRating=0.900000
+	bShowChargingBar=True
+	Description="Krao, the mindless, virtually limitless alien swarm used by the Skrith has caused the appearance of weapons such as shotguns and heavy spread weapons, as well as many unusual designs and inventions, including electrical armaments. The HVC (High Voltage Cannon) Mk9 is one such device, making its first appearance during the second Human-Skrith war. Designed by Nexron Defence, pioneers in terran energy weapon technology, the HVC is indeed suited to destroying Krao drones in vast quantities. In battlefield trials, the 'lightning gun' has proven to be highly effective in close combat against Krao and occasionally proving useful against Cryons and even Skrith.|Using a large energy cell mounted on the user's backpack, it can produce extremely high-voltage charges of electricity."
+	Priority=45
+	HudColor=(B=255,G=150,R=100)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=5
+	PickupClass=Class'BallisticProV55.HVCMk9Pickup'
+	PlayerViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
+	AttachmentClass=Class'BallisticProV55.HVCMk9Attachment'
+	IconMaterial=Texture'BWBP2-Tex.Lighter.SmallIcon_LG'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="HVC-Mk9 Lightning Gun"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=180
+	LightSaturation=100
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BWBP2b-Anims.Lighter'
+	DrawScale=0.250000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	bFullVolume=True
+	SoundVolume=64
+	SoundRadius=128.000000
 }

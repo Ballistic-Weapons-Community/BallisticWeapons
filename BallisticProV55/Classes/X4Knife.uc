@@ -49,7 +49,6 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     PlayerSpeedFactor=1.150000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticTextures_25.X4.BigIcon_X4'
      BigIconCoords=(Y2=240)
@@ -60,11 +59,11 @@ defaultproperties
      SpecialInfo(0)=(Info="180.0;6.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
      PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
-     MagAmmo=1
      bCanBlock=False
      bNoMag=True
      GunLength=0.000000
      bAimDisabled=True
+     ParamsClass=Class'X4WeaponParams'
      FireModeClass(0)=Class'BallisticProV55.X4PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.X4SecondaryFire'
      SelectAnimRate=1.250000

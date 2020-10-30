@@ -102,7 +102,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -113,7 +113,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 	}
 	if (ReloadState == RS_GearSwitch)
 	{
@@ -130,7 +130,7 @@ simulated function CommonCockGun(optional byte Type)
 		super.CommonCockGun(Type);
 }
 
-simulated function TickLongGun (float DT)
+simulated function WeaponTick (float DT)
 {
 	if (!FireMode[1].IsFiring())
 	{
@@ -139,7 +139,8 @@ simulated function TickLongGun (float DT)
 		else if (GunLength == 1)
 			GunLength = default.GunLength;
 	}
-	super.TickLongGun(DT);
+
+	super.WeaponTick(DT);
 }
 
 simulated function PlayCocking(optional byte Type)
@@ -224,77 +225,61 @@ function float SuggestDefenseStyle()	{	return 0.4;	}
 
 defaultproperties
 {
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP4-Tex.Marlin.BigIcon_Marlin'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     ManualLines(0)="Lever-action rifle fire. High damage per shot with modest recoil and good penetration. Good shoulder fire properties. This mode fires more quickly when the weapon is aimed."
-     ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
-     ManualLines(2)="As a long-ranged weapon lacking a scope, it has a very quick aiming time. Does not use tracer rounds. Effective at medium to long range."
-     SpecialInfo(0)=(Info="240.0;25.0;0.6;50.0;1.0;0.5;-999.0")
-     MeleeFireClass=Class'BallisticProV55.MarlinMeleeFire'
-     BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
-	 PutDownTime=0.4
-     MagAmmo=8
-     CockAnimRate=1.700000
-     CockSound=(Sound=Sound'BWBP4-Sounds.Marlin.Mar-Cock',Volume=0.750000)
-     ReloadAnim="ReloadLoop"
-     ReloadAnimRate=2.000000
-     ClipInSound=(Sound=SoundGroup'BWBP4-Sounds.Marlin.Mar-ShellIn')
-     ClipInFrame=0.650000
-     bCockOnEmpty=True
-     bCanSkipReload=True
-     bShovelLoad=True
-     StartShovelAnim="StartReload"
-     EndShovelAnim="EndReload"
-     WeaponModes(0)=(ModeName="Lever Action")
-     WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     FullZoomFOV=70.000000
-     bNoCrosshairInScope=True
-     SightOffset=(X=4.000000,Y=-0.070000,Z=4.750000)
-     SightingTime=0.400000
-     CrouchAimFactor=0.750000
-     SprintOffSet=(Pitch=-1000,Yaw=-2048)
-     JumpChaos=0.200000
-     FallingChaos=0.100000
-     SprintChaos=0.200000
-	 
-     ChaosDeclineTime=1.000000
-	 
-	 ViewRecoilFactor=0.5
-	 RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.400000,OutVal=0.10000),(InVal=0.600000,OutVal=0.25000),(InVal=0.800000,OutVal=0.33000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.150000),(InVal=0.400000,OutVal=0.500000),(InVal=0.700000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilDeclineTime=1.000000
-     RecoilDeclineDelay=0.800000
-	 
-	 
-     FireModeClass(0)=Class'BallisticProV55.MarlinPrimaryFire'
-     FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.80000
-     CurrentRating=0.800000
-     bSniping=True
-     Description="Redwood Firearms are well known for their high quality hunting and sport rifles and ammuntion. One of their most successful rifles, the '6000 Deermaster', is widely recognised as an excellent hunting weapon. It has only ever been used by civilians for hunting and sporting competitions. Although not used by miltary forces, for it's inconvenient operational design, it is still a powerful weapon, using specified .341 cal ammunition. The heavy wooden stock is useful as a blunt instrument should the user require it in a desperate situation."
-     Priority=33
-     HudColor=(B=57,G=98,R=140)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=9
-     GroupOffset=1
-     PickupClass=Class'BallisticProV55.MarlinPickup'
-     PlayerViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
-     AttachmentClass=Class'BallisticProV55.MarlinAttachment'
-     IconMaterial=Texture'BWBP4-Tex.Marlin.SmallIcon_Marlin'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="Redwood 6000 'DeerMaster'"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=5.000000
-     Mesh=SkeletalMesh'BallisticProAnims.Marlin'
-     DrawScale=0.500000
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBP4-Tex.Marlin.BigIcon_Marlin'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)="Lever-action rifle fire. High damage per shot with modest recoil and good penetration. Good shoulder fire properties. This mode fires more quickly when the weapon is aimed."
+	ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
+	ManualLines(2)="As a long-ranged weapon lacking a scope, it has a very quick aiming time. Does not use tracer rounds. Effective at medium to long range."
+	SpecialInfo(0)=(Info="240.0;25.0;0.6;50.0;1.0;0.5;-999.0")
+	MeleeFireClass=Class'BallisticProV55.MarlinMeleeFire'
+	BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
+	PutDownTime=0.4
+	CockAnimRate=1.700000
+	CockSound=(Sound=Sound'BWBP4-Sounds.Marlin.Mar-Cock',Volume=0.750000)
+	ReloadAnim="ReloadLoop"
+	ReloadAnimRate=2.000000
+	ClipInSound=(Sound=SoundGroup'BWBP4-Sounds.Marlin.Mar-ShellIn')
+	ClipInFrame=0.650000
+	bCockOnEmpty=True
+	bCanSkipReload=True
+	bShovelLoad=True
+	StartShovelAnim="StartReload"
+	EndShovelAnim="EndReload"
+	WeaponModes(0)=(ModeName="Lever Action")
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	FullZoomFOV=70.000000
+	bNoCrosshairInScope=True
+	SightOffset=(X=4.000000,Y=-0.070000,Z=4.750000)
+	ParamsClass=Class'MarlinWeaponParams'	 
+	FireModeClass(0)=Class'BallisticProV55.MarlinPrimaryFire'
+	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.80000
+	CurrentRating=0.800000
+	bSniping=True
+	Description="Redwood Firearms are well known for their high quality hunting and sport rifles and ammuntion. One of their most successful rifles, the '6000 Deermaster', is widely recognised as an excellent hunting weapon. It has only ever been used by civilians for hunting and sporting competitions. Although not used by miltary forces, for it's inconvenient operational design, it is still a powerful weapon, using specified .341 cal ammunition. The heavy wooden stock is useful as a blunt instrument should the user require it in a desperate situation."
+	Priority=33
+	HudColor=(B=57,G=98,R=140)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=9
+	GroupOffset=1
+	PickupClass=Class'BallisticProV55.MarlinPickup'
+	PlayerViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
+	AttachmentClass=Class'BallisticProV55.MarlinAttachment'
+	IconMaterial=Texture'BWBP4-Tex.Marlin.SmallIcon_Marlin'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="Redwood 6000 'DeerMaster'"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=5.000000
+	Mesh=SkeletalMesh'BallisticProAnims.Marlin'
+	DrawScale=0.500000
 }

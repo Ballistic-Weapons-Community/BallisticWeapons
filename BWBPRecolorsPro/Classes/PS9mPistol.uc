@@ -15,12 +15,12 @@ var() name			GrenadeLoadAnim;	//Anim for grenade reload
 var   bool			bLoaded;
 
 
-var() Sound		GrenSlideSound;		//Sounds for grenade reloading
-var() Sound		GrenLoadSound;		//	
+var() Sound			GrenSlideSound;		//Sounds for grenade reloading
+var() Sound			GrenLoadSound;		//	
 
-var() sound		PartialReloadSound;	// Silencer stuck on sound
+var() sound			PartialReloadSound;	// Silencer stuck on sound
 var() name			HealAnim;		// Anim for murdering Simon
-var() sound		HealSound;		// The sound of a thousand dying orphans
+var() sound			HealSound;		// The sound of a thousand dying orphans
 
 simulated function bool SlaveCanUseMode(int Mode) {return Mode == 0;}
 simulated function bool MasterCanSendMode(int Mode) {return Mode == 0;}
@@ -181,54 +181,51 @@ Begin:
 	GotoState('Lowered');
 }
 
-
-simulated function SetDualMode (bool bDualMode)
+simulated function OnRecoilParamsChanged()
 {
-	AdjustUziProperties(bDualMode);
+	Super.OnRecoilParamsChanged();
+
+	if (IsInDualMode())
+		ApplyDualModeRecoilModifiers();
 }
-simulated function AdjustUziProperties (bool bDualMode)
+
+simulated function OnAimParamsChanged()
 {
-//	AimAdjustTime		= default.AimAdjustTime;
-	AimSpread 			= default.AimSpread;
-	ViewAimFactor		= default.ViewAimFactor;
-	ViewRecoilFactor	= default.ViewRecoilFactor;
-	ChaosDeclineTime	= default.ChaosDeclineTime;
-	ChaosSpeedThreshold	= default.ChaosSpeedThreshold;
-	ChaosAimSpread		= default.ChaosAimSpread;
-	ChaosAimSpread 		*= BCRepClass.default.AccuracyScale;
+	Super.OnAimParamsChanged();
 
-	RecoilPitchFactor	= default.RecoilPitchFactor;
-	RecoilYawFactor		= default.RecoilYawFactor;
-	RecoilXFactor		= default.RecoilXFactor;
-	RecoilYFactor		= default.RecoilYFactor;
-	RecoilDeclineTime	= default.RecoilDeclineTime;
+	if (IsInDualMode())
+		ApplyDualModeAimModifiers();
+}
 
+simulated function OnDualModeChanged(bool bDualMode)
+{
 	if (bDualMode)
 	{
-		if (Instigator.IsLocallyControlled() && SightingState == SS_Active)
-			StopScopeView();
-		SetBoneScale(8, 0.0, SupportHandBone);
-		if (AIController(Instigator.Controller) == None)
-			bUseSpecialAim = true;
-//		AimAdjustTime		*= 1.0;
-		AimSpread			*= 1.4;
-		ViewAimFactor		*= 0.6;
-		ViewRecoilFactor	*= 1.75;
-		ChaosDeclineTime	*= 1.2;
-		ChaosSpeedThreshold	*= 0.8;
-		ChaosAimSpread		*= 1.2;
-		RecoilPitchFactor	*= 1.2;
-		RecoilYawFactor		*= 1.2;
-		RecoilXFactor		*= 1.2;
-		RecoilYFactor		*= 1.2;
-//		RecoilMax			*= 1.0;
-		RecoilDeclineTime	*= 1.2;
+		ApplyDualModeAimModifiers();
+		ApplyDualModeRecoilModifiers();
 	}
-	else
+	else 
 	{
-		SetBoneScale(8, 1.0, SupportHandBone);
-		bUseSpecialAim = false;
+		AimComponent.Recalculate();
+		RcComponent.Recalculate();
 	}
+}
+
+simulated function ApplyDualModeAimModifiers()
+{
+	AimComponent.AimSpread.Min		 *= 1.4;
+	AimComponent.AimSpread.Max		 *= 1.2;
+	AimComponent.ChaosDeclineTime	 *= 1.2;
+	AimComponent.ChaosSpeedThreshold *= 0.8;
+}
+
+simulated function ApplyDualModeRecoilModifiers()
+{
+	RcComponent.PitchFactor			*= 1.2f;
+	RcComponent.YawFactor			*= 1.2f;
+	RcComponent.XRandFactor			*= 1.2f;
+	RcComponent.YRandFactor			*= 1.2f;
+	RcComponent.DeclineTime			*= 1.2f;
 }
 
 // AI Interface =====
@@ -237,7 +234,6 @@ function byte BestMode()
 {
 	return 0;
 }
-
 
 function float GetAIRating()
 {
@@ -299,11 +295,9 @@ defaultproperties
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	bWT_Heal=True
-	InventorySize=5
 	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;2.0;0.1;0.1")
 	BringUpSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-Pickup')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-	MagAmmo=10
 	CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock',Radius=32.000000)
 	ClipHitSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-MagInS1',Volume=1.800000,Radius=32.000000)
 	ClipOutSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-MagOut',Volume=1.800000,Radius=32.000000)
@@ -315,16 +309,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
 	SightDisplayFOV=60.000000
-	SightingTime=0.200000
-	SprintOffSet=(Pitch=-1000,Yaw=-2048)
-	ChaosDeclineTime=0.450000
-	ChaosAimSpread=192
-	
-	ViewRecoilFactor=0.4
-	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.000000),(InVal=0.50000,OutVal=0.120000),,(InVal=0.7000,OutVal=-0.010000),(InVal=1.000000,OutVal=0.000000)))
-	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.200000),(InVal=0.4500000,OutVal=0.40000),(InVal=0.600000,OutVal=0.600000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.050000
-	RecoilYFactor=0.050000
+	ParamsClass=Class'PS9mWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.PS9mPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.PS9mSecondaryFire'
 	PutDownTime=0.700000
@@ -337,7 +322,7 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=2
 	PickupClass=Class'BWBPRecolorsPro.PS9mPickup'
-	PlayerViewOffset=(X=3.000000,Y=-2.000000,Z=-8.500000)
+	PlayerViewOffset=(X=3.000000,Y=-5.000000,Z=-8.500000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBPRecolorsPro.PS9mAttachment'
 	IconMaterial=Texture'BallisticRecolors4TexPro.Stealth.SmallIcon_PS9M'

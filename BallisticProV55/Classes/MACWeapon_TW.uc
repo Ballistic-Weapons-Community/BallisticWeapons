@@ -14,23 +14,19 @@ class MACWeapon_TW extends MACWeapon
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
 {
-	local Rotator BaseAim, BaseRecoil;
+	local Rotator AimPivotDelta, RecoilPivotDelta;
 
 	//DC 110313
-	if (!Instigator.IsFirstPerson() || Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
+	if (Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
 		return;
 
-	BaseRecoil = GetRecoilPivot(true) * ViewRecoilFactor;
-	BaseAim = Aim * ViewAimFactor;
-	if (bForceRecoilUpdate || LastFireTime >= Level.TimeSeconds - RecoilDeclineDelay)
-	{
-		bForceRecoilUpdate = False;
-		Instigator.SetViewRotation((BaseAim - ViewAim) + (BaseRecoil - ViewRecoil));
-	}
+	RecoilPivotDelta 	= RcComponent.CalcViewPivotDelta();
+	AimPivotDelta 		= AimComponent.CalcViewPivotDelta();
+	
+	if (RcComponent.ShouldUpdateView())
+		Instigator.SetViewRotation(AimPivotDelta + RecoilPivotDelta);
 	else
-		Instigator.SetViewRotation(BaseAim - ViewAim);
-	ViewAim = BaseAim;
-	ViewRecoil = BaseRecoil;	
+		Instigator.SetViewRotation(AimPivotDelta);	
 }
 
 simulated function GetViewAxes( out vector xaxis, out vector yaxis, out vector zaxis )
@@ -75,9 +71,9 @@ function InitTurretWeapon(BallisticTurret Turret)
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
-	BFireMode[0].VelocityRecoil = 0;
+	BFireMode[0].FirePushbackForce = 0;
 	BFireMode[0].FireChaos=0.05;
-	BFireMode[0].RecoilPerShot=256.000000;
+	BFireMode[0].FireRecoil=256.000000;
 	BallisticFire(FireMode[0]).BrassOffset = vect(0,0,0);
 }
 simulated function PostNetBeginPlay()
@@ -148,7 +144,7 @@ simulated function ApplyAimRotation()
 {
 	ApplyAimToView();
 
-	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
+	BallisticTurret(Instigator).WeaponPivot = GetFireRot() * (DisplayFOV / Instigator.Controller.FovAngle);
 }
 
 function byte BestMode()
@@ -158,33 +154,23 @@ function byte BestMode()
 
 defaultproperties
 {
-     TeamSkins(0)=(SkinNum=1)
-     ReloadAnimRate=2.500000
-     SightingTime=0.100000
-     GunLength=0.000000
-     bUseSpecialAim=True
-     AimSpread=8
-     ViewAimFactor=1.000000
-     ViewRecoilFactor=0.000000
-     AimDamageThreshold=2000.000000
-     ChaosAimSpread=32
-     RecoilPitchFactor=0.100000
-     RecoilYawFactor=0.500000
-     RecoilXFactor=0.300000
-     RecoilYFactor=0.200000
-     RecoilDeclineTime=1.500000
-     FireModeClass(0)=Class'BallisticProV55.MACTW_PrimaryFire'
-     SelectAnim="Deploy"
-     BringUpTime=1.500000
-     bCanThrow=False
-     bNoInstagibReplace=True
-     DisplayFOV=90.000000
-     ClientState=WS_BringUp
-     Priority=1
-     PlayerViewOffset=(Y=0.000000)
-     ItemName="HAMR Turret"
-     Mesh=SkeletalMesh'BWBP4b-Anims.Artillery-Turret'
-     DrawScale=0.250000
-     PrePivot=(Z=8.000000)
-     Skins(1)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	TeamSkins(0)=(SkinNum=1)
+	ReloadAnimRate=2.500000
+	GunLength=0.000000
+	bUseSpecialAim=True
+	ParamsClass=Class'MACTW_WeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.MACTW_PrimaryFire'
+	SelectAnim="Deploy"
+	BringUpTime=1.500000
+	bCanThrow=False
+	bNoInstagibReplace=True
+	DisplayFOV=90.000000
+	ClientState=WS_BringUp
+	Priority=1
+	PlayerViewOffset=(Y=0.000000)
+	ItemName="HAMR Turret"
+	Mesh=SkeletalMesh'BWBP4b-Anims.Artillery-Turret'
+	DrawScale=0.250000
+	PrePivot=(Z=8.000000)
+	Skins(1)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
 }

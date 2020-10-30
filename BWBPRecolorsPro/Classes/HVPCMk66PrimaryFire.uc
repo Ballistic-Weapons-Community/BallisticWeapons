@@ -79,7 +79,7 @@ defaultproperties
      FailSound=Sound'PackageSounds4Pro.HyperBeamCannon.343Primary-Fail'
      SpawnOffset=(X=100.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BWBPRecolorsPro.BFGFlashEmitter'
-     RecoilPerShot=820.000000
+     FireRecoil=820.000000
      FireChaos=0.600000
      XInaccuracy=8.000000
      YInaccuracy=4.000000

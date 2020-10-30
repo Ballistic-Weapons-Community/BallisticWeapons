@@ -306,12 +306,10 @@ simulated event ModeDoFire()
         Instigator.DeactivateSpawnProtection();
     }
 	else if (!BW.bUseNetAim && !BW.bScopeView)
-    	FireRecoil();
+    	ApplyRecoil();
     
 	if (!BW.bScopeView)
-		BW.FireChaos = FClamp(BW.FireChaos + FireChaos, 0, 1);
-		
-	BW.LastFireTime = Level.TimeSeconds;
+		BW.AddFireChaos(FireChaos);
 
     // client
     if (Instigator.IsLocallyControlled())
@@ -617,8 +615,8 @@ static function FireModeStats GetStats()
 	if (AdjustedFireRate < 0.5)
 		FS.RPM = String(int((1 / AdjustedFireRate) * 60))@default.ShotTypeString$"/min";
 	else FS.RPM = 1/AdjustedFireRate@"times/second";
-	FS.RPShot = default.RecoilPerShot;
-	FS.RPS = default.RecoilPerShot / default.FireRate;
+	FS.RPShot = default.FireRecoil;
+	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
 	FS.Range = "Max:"@(default.TraceRange.Max / 52.5)@"metres";
@@ -668,8 +666,8 @@ defaultproperties
 	BrassBone="EjectorR"
 	BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
 	AimedFireAnim="SightFireCombined"
-	RecoilPerShot=512.000000
-	VelocityRecoil=1200.000000
+	FireRecoil=512.000000
+	FirePushbackForce=1200.000000
 	FireChaos=1.000000
 	XInaccuracy=192.000000
 	YInaccuracy=192.000000

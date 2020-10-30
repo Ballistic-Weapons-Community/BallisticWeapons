@@ -83,20 +83,20 @@ simulated function SwitchSilencerMode(bool bSilenced)
 {
 	if (bSilenced)
 	{
-		XInaccuracy	=	128;
-		YInaccuracy	=	128;
-		RecoilPerShot *= 0.8;
-		Damage *= 0.8;
-		RangeAtten = 0.65;
-		CutOffStartRange=1536;
-		CutOffDistance=2048;
+		XInaccuracy			= 128;
+		YInaccuracy			= 128;
+		FireRecoil 			*= 0.8;
+		Damage 				*= 0.8;
+		RangeAtten 			= 0.65;
+		CutOffStartRange	= 1536;
+		CutOffDistance		= 2048;
 	}
 	
 	else
 	{
 		XInaccuracy=default.XInaccuracy;
 		YInaccuracy=default.YInaccuracy;
-		RecoilPerShot=default.RecoilPerShot;
+		FireRecoil=default.FireRecoil;
 		Damage = default.Damage;
 		RangeAtten = default.RangeAtten;
 		CutOffStartRange = default.CutOffStartRange;
@@ -161,9 +161,9 @@ defaultproperties
      BrassClass=Class'BWBPRecolorsPro.Brass_ShotgunFlechette'
      BrassOffset=(X=-1.000000,Z=-1.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=300.000000
-     VelocityRecoil=50.000000
-     FireChaos=0.300000
+     FireRecoil=300.000000
+     FirePushbackForce=50.000000
+     FireChaos=0.250000
      XInaccuracy=256.000000
      YInaccuracy=256.000000
      SilencedFireSound=(Sound=Sound'PackageSounds4ProExp.Mk781.Mk781-FireSil',Volume=2.300000,Radius=256.000000)

@@ -62,8 +62,8 @@ defaultproperties
      DamageType=Class'BallisticProV55.DTXMV850MGDeploy'
      DamageTypeHead=Class'BallisticProV55.DTXMV850MGDeployHead'
      DamageTypeArm=Class'BallisticProV55.DTXMV850MGDeploy'
-     RecoilPerShot=48.000000
-     VelocityRecoil=0.000000
+     FireRecoil=48.000000
+     FirePushbackForce=0.000000
      FireChaos=0.080000
      aimerror=0.000000
 }

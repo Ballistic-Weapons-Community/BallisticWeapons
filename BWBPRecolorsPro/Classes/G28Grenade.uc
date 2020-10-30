@@ -109,7 +109,6 @@ defaultproperties
      BigIconMaterial=Texture'BallisticRecolors3TexPro.G28.BigIcon_G28'
      BigIconCoords=(Y1=12,Y2=245)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=12
      bWT_Splash=True
      bWT_Grenade=True
      bWT_Heal=True
@@ -119,7 +118,8 @@ defaultproperties
      SpecialInfo(0)=(Info="0.0;0.0;0.0;-1.0;0.0;0.0;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Putaway')
-     CurrentWeaponMode=2
+	 CurrentWeaponMode=2
+	 ParamsClass=Class'G28WeaponParams'
      FireModeClass(0)=Class'BWBPRecolorsPro.G28PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.G28SecondaryFire'
      SelectForce="SwitchToAssaultRifle"

@@ -69,8 +69,6 @@ function AttachToPawn(Pawn P)
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
     local vector HitNormal;
-    local float DF;
-	local float AimDisplacementDuration;
 	
 	local class<BallisticDamageType> BDT;
 	
@@ -201,22 +199,6 @@ function HandlePassiveDamageMitigation( out int Damage, out Vector Momentum, cla
 	// explosions push back
 	Damage = Max(Damage/4, Damage - 15);
 	Momentum *= 2;
-
-}
-
-simulated function ClientPlayerDamaged(byte DamageFactor)
-{
-	local float DF;
-	if (level.NetMode != NM_Client)
-		return;
-	DF = float(DamageFactor)/255;
-	ApplyDamageFactor(DF);
-	bForceReaim=true;
-}
-
-simulated function ApplyDamageFactor (float DF)
-{
-	Reaim(0.1, 0.3*AimAdjustTime, DF*2, DF*2*(-6000 + 12000 * FRand()), DF*2*(-6000 + 12000 * FRand()));
 }
 
 function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDrain )
@@ -257,26 +239,21 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     PlayerSpeedFactor=0.950000
 	 AimDisplacementBlockThreshold=40.000000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPSomeOtherPackTex.BallisticShield.BigIcon_BallisticShield'
      BigIconCoords=(X1=180,Y1=0,X2=320,Y2=255)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=5
      ManualLines(0)="Attacks with the weapon and shield. The shield continues to block whilst attacking."
      ManualLines(1)="Prepared strike with the weapons."
      ManualLines(2)="Hold Weapon Function to block with the shield, which dramatically increases its defensive effectiveness at the cost of your ability to see. The shield is further bolstered in effectiveness if the user is crouching while blocking.||The ballistic shield reduces movement speed whilst active."
      SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
-     MagAmmo=1
      bNoMag=True
      GunLength=0.000000
-     AimSpread=32
-     ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=256
-     FireModeClass(0)=Class'BWBPSomeOtherPack.BallisticShieldPrimaryFire'
+	ParamsClass=Class'BallisticShieldWeaponParams'
+	 FireModeClass(0)=Class'BWBPSomeOtherPack.BallisticShieldPrimaryFire'
      FireModeClass(1)=Class'BWBPSomeOtherPack.BallisticShieldSecondaryFire'
      PutDownTime=0.500000
      BringUpTime=0.500000
@@ -300,5 +277,4 @@ defaultproperties
      ItemName="RSH-1034 Riot Shield"
      Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.BallisticShield_FP'
      DrawScale=1.250000
-	 AimDisplacementDurationMult=0.0
 }

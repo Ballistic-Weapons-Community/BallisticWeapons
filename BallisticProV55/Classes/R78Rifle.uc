@@ -74,6 +74,7 @@ function float SuggestDefenseStyle()	{	return 0.9;	}
 
 defaultproperties
 {
+
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_R78'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -84,8 +85,7 @@ defaultproperties
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
-	 PutDownTime=0.5
-     MagAmmo=7
+	PutDownTime=0.5
      CockAnim="CockQuick"
      //CockSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Cock')
 	 CockSound=(Sound=Sound'PackageSounds4Pro.R78NS.R78NS-Cock')
@@ -108,30 +108,13 @@ defaultproperties
      FullZoomFOV=20.000000
      bNoMeshInScope=True
      bNoCrosshairInScope=True
-	 SightAimFactor=0.25
      SightPivot=(Roll=-1024)
      SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
-     SightingTime=0.550000
      MinZoom=4.000000
      MaxZoom=16.000000
      ZoomStages=2
      GunLength=80.000000
-	 
-     CrouchAimFactor=0.600000
-     SprintOffSet=(Pitch=-1000,Yaw=-2048)
-     AimAdjustTime=0.700000
-	 
-     AimSpread=16
-     ChaosSpeedThreshold=500.000000
-     ChaosAimSpread=512
-	 
-	 ViewRecoilFactor=0.2
-	 RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.12),(InVal=0.2,OutVal=0.16),(InVal=0.40000,OutVal=0.250000),(InVal=0.50000,OutVal=0.30000),(InVal=0.600000,OutVal=0.370000),(InVal=0.700000,OutVal=0.4),(InVal=0.800000,OutVal=0.50000),(InVal=1.000000,OutVal=0.55)))
-     RecoilXFactor=0.10000
-     RecoilYFactor=0.10000
-	 RecoilDeclineDelay=1.25
-     RecoilDeclineTime=1.000000
-	 
+     ParamsClass=Class'R78WeaponParams'
      FireModeClass(0)=Class'BallisticProV55.R78PrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      BringUpTime=0.500000

@@ -15,13 +15,13 @@ simulated function SwitchWeaponMode (byte NewMode)
 	if (NewMode == BURST_MODE)
 	{
 		FireRate = default.FireRate;
-		RecoilPerShot = default.RecoilPerShot;
+		FireRecoil = default.FireRecoil;
 	}
 
 	else if (NewMode == AUTO_MODE)
 	{
 		FireRate = default.FireRate * 0.9f;
-		RecoilPerShot = default.RecoilPerShot * 0.9f;
+		FireRecoil = default.FireRecoil * 0.9f;
 	}
 }
 
@@ -80,7 +80,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Uzi'
      BrassOffset=(X=-18.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=160.000000
+     FireRecoil=160.000000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
      XInaccuracy=48.000000
      YInaccuracy=48.000000

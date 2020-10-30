@@ -196,88 +196,68 @@ function float SuggestDefenseStyle()	{	return -0.6;	}
 defaultproperties
 {
 	bSilenced=True
-	 AimDisplacementDurationMult=0.75
-     SilencerBone="Silencer"
-     SilencerOnAnim="SilencerOn"
-     SilencerOffAnim="SilencerOff"
-     SilencerOnSound=Sound'BallisticSounds2.XK2.XK2-SilenceOn'
-     SilencerOffSound=Sound'BallisticSounds2.XK2.XK2-SilenceOff'
-     SilencerOnTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
-     SilencerOffTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
-	 PlayerSpeedFactor=1.050000
-	 TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.000000
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XK2'
-     BigIconCoords=(X1=24,X2=450)
-     SightFXClass=Class'BallisticProV55.XK2SightLEDs'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     bWT_Machinegun=True
-     ManualLines(0)="Low-velocity submachinegun fire. Low recoil, lower damage output than other submachineguns but controllable and excellent hipfire."
-     ManualLines(1)="Activates the internal compressor when firing. Rounds will inflict less damage, but will slow the target."
-     ManualLines(2)="The Weapon Function key attaches or removes the suppressor. When active, the suppressor reduces recoil and noise output and hides the muzzle flash, but reduces range.||Effective from the hip and at close range."
-     SpecialInfo(0)=(Info="120.0;10.0;0.6;60.0;0.3;0.1;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-     MagAmmo=30
-     CockSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Cock')
-     ClipOutSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipIn')
-     ClipInFrame=0.650000
-     WeaponModes(0)=(bUnavailable=True)
-     WeaponModes(1)=(ModeName="Burst of Three")
-     WeaponModes(2)=(ModeName="Burst of Six",ModeID="WM_BigBurst",Value=6.000000)
-     WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-	 CurrentWeaponMode=3
-	 CockAnimRate=1.25
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=256)
-     SightOffset=(X=5.000000,Z=12.700000)
-     SightDisplayFOV=40.000000
-     SightingTime=0.250000
-     SightAimFactor=0.400000
-	 SightZoomFactor=0.85
-     SprintOffSet=(Pitch=-3000,Yaw=-4000)
-     AimAdjustTime=0.400000
-	 
-     AimSpread=16
-	 AIRating=0.8
-	 CurrentRating=0.8
-     ChaosDeclineTime=0.500000
-     ChaosSpeedThreshold=7500.000000
-     ChaosAimSpread=512
-	 
-	 ViewRecoilFactor=0.45
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.030000),(InVal=0.400000,OutVal=0.050000),(InVal=0.600000,OutVal=0.10000),(InVal=0.800000,OutVal=0.120000),(InVal=1.000000,OutVal=0.16)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.25),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.05000
-     RecoilYFactor=0.05000
-     RecoilDeclineTime=0.5
-     RecoilDeclineDelay=0.15
-	 
-     FireModeClass(0)=Class'BallisticProV55.Xk2PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.Xk2SecondaryFire'
-     SelectForce="SwitchToAssaultRifle"
-     bShowChargingBar=True
-     Description="Yet another high quality weapon by Black & Wood, the XK2 is a lightweight, suppressed sub-machinegun. It has a fast rate of fire, but its low velocity bullets make it less dangerous than other weapons. However, these low velocity rounds do allow the weapon to be easily silenced, turning it into an effective stealth weapon, used by many law enforcement organisations, and Black-Ops military units alike. The weapon's high rate of fire, and quick reload times, means that the soldier can pump out rounds quicker than even the M353, making it very useful for cover-fire."
-     DisplayFOV=55.000000
-     Priority=32
-     HudColor=(B=100,G=150,R=50)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=3
-     GroupOffset=1
-     PickupClass=Class'BallisticProV55.XK2Pickup'
-     PlayerViewOffset=(X=4.000000,Y=8.000000,Z=-11.000000)
-     AttachmentClass=Class'BallisticProV55.Xk2Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_XK2'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="XK2 Submachine Gun"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=130.000000
-     LightRadius=3.000000
-     Mesh=SkeletalMesh'BallisticProAnims.XK2SMG'
-     DrawScale=0.200000
+	SilencerBone="Silencer"
+	SilencerOnAnim="SilencerOn"
+	SilencerOffAnim="SilencerOff"
+	SilencerOnSound=Sound'BallisticSounds2.XK2.XK2-SilenceOn'
+	SilencerOffSound=Sound'BallisticSounds2.XK2.XK2-SilenceOff'
+	SilencerOnTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
+	SilencerOffTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.000000
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XK2'
+	BigIconCoords=(X1=24,X2=450)
+	SightFXClass=Class'BallisticProV55.XK2SightLEDs'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bWT_Machinegun=True
+	ManualLines(0)="Low-velocity submachinegun fire. Low recoil, lower damage output than other submachineguns but controllable and excellent hipfire."
+	ManualLines(1)="Activates the internal compressor when firing. Rounds will inflict less damage, but will slow the target."
+	ManualLines(2)="The Weapon Function key attaches or removes the suppressor. When active, the suppressor reduces recoil and noise output and hides the muzzle flash, but reduces range.||Effective from the hip and at close range."
+	SpecialInfo(0)=(Info="120.0;10.0;0.6;60.0;0.3;0.1;-999.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
+	CockSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Cock')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipIn')
+	ClipInFrame=0.650000
+	WeaponModes(0)=(bUnavailable=True)
+	WeaponModes(1)=(ModeName="Burst of Three")
+	WeaponModes(2)=(ModeName="Burst of Six",ModeID="WM_BigBurst",Value=6.000000)
+	WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+	CurrentWeaponMode=3
+	CockAnimRate=1.25
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=256)
+	SightOffset=(X=5.000000,Z=12.700000)
+	SightDisplayFOV=40.000000
+	AIRating=0.8
+	CurrentRating=0.8
+	SightZoomFactor=0.85
+	ParamsClass=Class'XK2WeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.Xk2PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.Xk2SecondaryFire'
+	SelectForce="SwitchToAssaultRifle"
+	bShowChargingBar=True
+	Description="Yet another high quality weapon by Black & Wood, the XK2 is a lightweight, suppressed sub-machinegun. It has a fast rate of fire, but its low velocity bullets make it less dangerous than other weapons. However, these low velocity rounds do allow the weapon to be easily silenced, turning it into an effective stealth weapon, used by many law enforcement organisations, and Black-Ops military units alike. The weapon's high rate of fire, and quick reload times, means that the soldier can pump out rounds quicker than even the M353, making it very useful for cover-fire."
+	DisplayFOV=55.000000
+	Priority=32
+	HudColor=(B=100,G=150,R=50)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=3
+	GroupOffset=1
+	PickupClass=Class'BallisticProV55.XK2Pickup'
+	PlayerViewOffset=(X=4.000000,Y=8.000000,Z=-11.000000)
+	AttachmentClass=Class'BallisticProV55.Xk2Attachment'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_XK2'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="XK2 Submachine Gun"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=130.000000
+	LightRadius=3.000000
+	Mesh=SkeletalMesh'BallisticProAnims.XK2SMG'
+	DrawScale=0.200000
 }

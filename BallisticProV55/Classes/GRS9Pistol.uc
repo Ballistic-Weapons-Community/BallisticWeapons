@@ -86,9 +86,10 @@ simulated event PostNetReceive()
 	if (bLaserOn != default.bLaserOn)
 	{
 		if (bLaserOn)
-			AimAdjustTime = default.AimAdjustTime * 1.5;
+			AimComponent.AimAdjustTime *= 1.5;
 		else
-			AimAdjustTime = default.AimAdjustTime;
+			AimComponent.AimAdjustTime *= 0.667;
+
 		default.bLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
@@ -104,10 +105,10 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	if (ThirdPersonActor != None)
 		GRS9Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
 	if (bLaserOn)
-		AimAdjustTime = default.AimAdjustTime * 1.5;
+		AimComponent.AimAdjustTime *= 1.5;
 	else
 	{
-		AimAdjustTime = default.AimAdjustTime;
+		AimComponent.AimAdjustTime *= 0.667;
 		bServerReloading = false;
 		bPreventReload=False;
 		ReloadState = RS_None;
@@ -278,17 +279,19 @@ simulated event RenderOverlays( Canvas Canvas )
 	}
 }
 
-// Change some properties when using sights...
-simulated function SetScopeBehavior()
+simulated function UpdateNetAim()
 {
-	super.SetScopeBehavior();
-
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
-	
+}
+
+// Change some properties when using sights...
+simulated function OnScopeViewChanged()
+{
+	super.OnScopeViewChanged();
+
 	if (Hand < 0)
 		SightOffset.Y = default.SightOffset.Y * -1;
 }
-
 
 simulated function PlayCocking(optional byte Type)
 {
@@ -523,8 +526,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="120.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-	MagAmmo=15
-	InventorySize=12
 	CockAnimRate=1.200000
 	CockSound=(Sound=Sound'BWBP4-Sounds.Glock.Glk-Cock',Volume=0.600000)
 	ReloadAnimRate=1.350000
@@ -534,28 +535,9 @@ defaultproperties
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	bNoCrosshairInScope=True
-	
 	SightOffset=(X=-15.000000,Z=5.900000)
 	SightDisplayFOV=60.000000
-	SightingTime=0.200000
-	SightAimFactor=2
-	SprintChaos=0.050000
-	AimAdjustTime=0.350000
-	ChaosDeclineTime=0.450000
-	
-	ViewRecoilFactor=0.35
-	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.12),(InVal=0.300000,OutVal=0.150000),(InVal=0.4,OutVal=0.02),(InVal=0.550000,OutVal=-0.120000),(InVal=0.700000,OutVal=0.050000),(InVal=1.000000,OutVal=0.200000)))
-	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.25000),(InVal=0.450000,OutVal=0.450000),(InVal=0.650000,OutVal=0.75000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
-	
-	RecoilXFactor=0.10000
-	RecoilYFactor=0.10000
-	
-	RecoilDeclineTime=0.750000
-	RecoilDeclineDelay=0.350000
-	RecoilMax=6144
-	
-	HipRecoilFactor=1.5
-	
+	ParamsClass=Class'GRS9WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.GRS9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.GRS9SecondaryFire'
 	SelectAnimRate=1.250000

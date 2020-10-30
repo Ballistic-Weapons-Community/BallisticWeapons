@@ -246,88 +246,69 @@ function float SuggestDefenseStyle()	{	return -0.2;	}
 
 defaultproperties
 {
-	 AIRating=0.7
-	 CurrentRating=0.7
-     StoredGas=1.000000
-     ModeColors(0)=(B=210,G=210,R=75,A=255)
-     ModeColors(1)=(G=100,R=255,A=255)
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.000000
-     BigIconMaterial=Texture'BWBPOtherPackTex.CX61.BigIcon_CX61'
-     BigIconCoords=(Y1=12,Y2=230)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     bWT_Machinegun=True
-     bWT_Heal=True
-     ManualLines(0)="Automatic fire. Lower damage output than other assault rifles, but more controllable."
-     ManualLines(1)="Flamethrower mode launches a stream of fire, dealing minor damage to enemies and causing disorientation.|Healing Gas mode sprays G28 gas, granting health to allies."
-     ManualLines(2)="It is recommended to check which mode of the CX is active before engaging the altfire. Burning allies or healing enemies is not conducive to survival.||The CX61 is effective at close to medium range."
-     SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-     MagAmmo=32
-     CockAnimPostReload="ReloadEndCock"
-     CockSound=(Sound=Sound'BallisticSounds3.SAR.SAR-Cock')
-     ReloadAnimRate=1.100000
-     ClipOutSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipIn')
-     ClipInFrame=0.650000
-     bCockOnEmpty=True
-     WeaponModes(0)=(ModeName="Healing Gas",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Flamethrower",ModeID="WM_FullAuto")
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     bNotifyModeSwitch=True
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=600)
-     SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
-     SightDisplayFOV=25.000000
-     GunLength=16.000000
-     SightAimFactor=0.200000
-     SprintOffSet=(Pitch=-3000,Yaw=-4000)
-     AimAdjustTime=0.400000
-	 
-     AimSpread=16
-     ChaosDeclineTime=1.250000
-     ChaosSpeedThreshold=15000.000000
-     ChaosAimSpread=768
-	 
-	 ViewRecoilFactor=0.4
-     RecoilXCurve=(Points=(,(InVal=0.2,OutVal=-0.03),(InVal=0.4,OutVal=0.11),(InVal=0.5,OutVal=0.13),(InVal=0.6,OutVal=0.15),(InVal=0.8,OutVal=0.16),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.190000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.620000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.05000
-     RecoilYFactor=0.05000
-     RecoilDeclineTime=0.5
-     RecoilDeclineDelay=0.135000
-	 
-	 
-     FireModeClass(0)=Class'BWBPOtherPackPro.CX61PrimaryFire'
-     FireModeClass(1)=Class'BWBPOtherPackPro.CX61SecondaryFire'
-     SelectAnimRate=1.400000
-     PutDownAnimRate=1.800000
-     PutDownTime=0.400000
-     BringUpTime=0.400000
-     SelectForce="SwitchToAssaultRifle"
-     bShowChargingBar=True
-     Description="Cimerion Labs' CX61 Tactical Rifle was engineered as a reliable primary weapon for use by medical personnel. Incorporating a nano-forge capable of producing G28 aerosol for projection by the weapon, it is able to choose between projecting healing spray or igniting the G28 gas in order to emit a blast of flame to disorient foes."
-     DisplayFOV=55.000000
-     Priority=32
-     HudColor=(B=168,G=111,R=83)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=4
-     GroupOffset=9
-     PickupClass=Class'BWBPOtherPackPro.CX61Pickup'
-     PlayerViewOffset=(X=-3.000000,Y=7.000000,Z=-13.500000)
-     AttachmentClass=Class'BWBPOtherPackPro.CX61Attachment'
-     IconMaterial=Texture'BWBPOtherPackTex.CX61.Icon_CX61'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="CX61 Tactical Rifle"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=130.000000
-     LightRadius=3.000000
-     Mesh=SkeletalMesh'BWBPOtherPackAnim.CX61_FP'
-     DrawScale=0.300000
+	AIRating=0.7
+	CurrentRating=0.7
+	StoredGas=1.000000
+	ModeColors(0)=(B=210,G=210,R=75,A=255)
+	ModeColors(1)=(G=100,R=255,A=255)
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.000000
+	BigIconMaterial=Texture'BWBPOtherPackTex.CX61.BigIcon_CX61'
+	BigIconCoords=(Y1=12,Y2=230)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bWT_Machinegun=True
+	bWT_Heal=True
+	ManualLines(0)="Automatic fire. Lower damage output than other assault rifles, but more controllable."
+	ManualLines(1)="Flamethrower mode launches a stream of fire, dealing minor damage to enemies and causing disorientation.|Healing Gas mode sprays G28 gas, granting health to allies."
+	ManualLines(2)="It is recommended to check which mode of the CX is active before engaging the altfire. Burning allies or healing enemies is not conducive to survival.||The CX61 is effective at close to medium range."
+	SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
+	CockAnimPostReload="ReloadEndCock"
+	CockSound=(Sound=Sound'BallisticSounds3.SAR.SAR-Cock')
+	ReloadAnimRate=1.100000
+	ClipOutSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipIn')
+	ClipInFrame=0.650000
+	bCockOnEmpty=True
+	WeaponModes(0)=(ModeName="Healing Gas",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Flamethrower",ModeID="WM_FullAuto")
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=600)
+	SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
+	SightDisplayFOV=25.000000
+	GunLength=16.000000
+	ParamsClass=Class'CX61WeaponParams'
+	FireModeClass(0)=Class'BWBPOtherPackPro.CX61PrimaryFire'
+	FireModeClass(1)=Class'BWBPOtherPackPro.CX61SecondaryFire'
+	SelectAnimRate=1.400000
+	PutDownAnimRate=1.800000
+	PutDownTime=0.400000
+	BringUpTime=0.400000
+	SelectForce="SwitchToAssaultRifle"
+	bShowChargingBar=True
+	Description="Cimerion Labs' CX61 Tactical Rifle was engineered as a reliable primary weapon for use by medical personnel. Incorporating a nano-forge capable of producing G28 aerosol for projection by the weapon, it is able to choose between projecting healing spray or igniting the G28 gas in order to emit a blast of flame to disorient foes."
+	DisplayFOV=55.000000
+	Priority=32
+	HudColor=(B=168,G=111,R=83)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=4
+	GroupOffset=9
+	PickupClass=Class'BWBPOtherPackPro.CX61Pickup'
+	PlayerViewOffset=(X=-3.000000,Y=7.000000,Z=-13.500000)
+	AttachmentClass=Class'BWBPOtherPackPro.CX61Attachment'
+	IconMaterial=Texture'BWBPOtherPackTex.CX61.Icon_CX61'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="CX61 Tactical Rifle"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=130.000000
+	LightRadius=3.000000
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.CX61_FP'
+	DrawScale=0.300000
 }

@@ -18,28 +18,15 @@ var() name			BlockUpAnim;	// Anim for going into blocking
 var() name			BlockDownAnim;	// Anim when blocking stops
 var() name			BlockIdleAnim;	// Anim when in block mode and idle
 
-var float				MeleeSpreadAngle;
+var float			FatigueDeclineTime;
+var float			FatigueDeclineDelay;
+
+var float			MeleeSpreadAngle;
 
 replication
 {
 	reliable if ( Role<ROLE_Authority )
 		ServerSetBlocked;
-}
-
-simulated function TickDisplacement(float DT)
-{
-	if (AimDisplacementEndTime > Level.TimeSeconds)
-	{
-		AimDisplacementFactor = FMin (AimDisplacementFactor + DT/0.2, 0.75);
-		if (!bServerReloading)
-			bServerReloading = True;
-	}
-	else 
-	{
-		AimDisplacementFactor = FMax(AimDisplacementFactor-DT/0.35, 0);
-		if (bServerReloading)
-			bServerReloading=False;
-	}
 }
 
 simulated function PostBeginPlay()
@@ -217,8 +204,8 @@ simulated event Tick (Float DT)
 {
 	Super.Tick (DT);
 	
-	if (LastFireTime < Level.TimeSeconds - RecoilDeclineDelay && MeleeFatigue > 0)
-		MeleeFatigue = FMax(0, MeleeFatigue - DT/RecoilDeclineTime);
+	if (LastFireTime < Level.TimeSeconds - FatigueDeclineDelay && MeleeFatigue > 0)
+		MeleeFatigue = FMax(0, MeleeFatigue - DT/FatigueDeclineTime);
 }
 
 // AI Interface =====
@@ -286,7 +273,6 @@ defaultproperties
 	BlockUpAnim="PrepBlock"
 	BlockDownAnim="EndBlock"
 	BlockIdleAnim="BlockIdle"
-	InventorySize=2
 	bNoMag=True
 	bNonCocking=True
 	AIRating=0.700000
@@ -296,11 +282,7 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bUseSights=False
-	SightingTime=0.000000
-	CrouchAimFactor=1.000000
-	AimSpread=0
-	ChaosAimSpread=0
-	RecoilDeclineTime=4.000000
-	RecoilDeclineDelay=0.750000
+	FatigueDeclineTime=4.000000
+	FatigueDeclineDelay=0.750000
 	bShowChargingBar=True
 }

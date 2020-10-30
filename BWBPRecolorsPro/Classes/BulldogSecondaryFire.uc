@@ -11,12 +11,6 @@ class BulldogSecondaryFire extends BallisticProProjectileFire;
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
 simulated function bool AllowFire()
 {
-	if (BW.BCRepClass.default.bSightFireOnly && !BW.bScopeView)
-	{
-		if (PlayerController(Instigator.Controller) != None)
-			PlayerController(Instigator.Controller).ClientMessage("You can only fire from sights.");
-		return false;
-	}
 	if (!CheckReloading())
 		return false;		// Is weapon busy reloading
 	if (!CheckWeaponMode())
@@ -88,8 +82,8 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      BrassClass=Class'BWBPRecolorsPro.Brass_FRAGSpent'
      BrassOffset=(X=-30.000000,Y=1.000000)
-     RecoilPerShot=2048.000000
-     VelocityRecoil=100.000000
+     FireRecoil=2048.000000
+     FirePushbackForce=100.000000
      FireChaos=1.000000
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-FireTest',Volume=2.500000)
      bWaitForRelease=True

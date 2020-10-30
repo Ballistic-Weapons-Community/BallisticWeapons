@@ -70,7 +70,7 @@ defaultproperties
      FlashScaleFactor=0.800000
      BrassClass=Class'BWBPRecolorsPro.Brass_Tranq'
      BrassOffset=(X=-20.000000,Y=1.000000)
-     RecoilPerShot=64.000000
+     FireRecoil=64.000000
      FireChaos=0.050000
      XInaccuracy=32.000000
      YInaccuracy=32.000000

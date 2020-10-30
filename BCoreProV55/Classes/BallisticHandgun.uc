@@ -51,37 +51,37 @@ class BallisticHandgun extends BallisticWeapon
 	abstract;
 
 // General vars
-var   BallisticHandgun	OtherGun;			// The other Handgun. The gun in the other hand
-var   bool				bIsMaster;			// Is this the master
-var   BallisticHandgun	PendingHandgun;		// The slave that wil be brought up when the master is ready
-var   bool				bIsPendingHandGun;	// This gun is a handgun about to be used as the slave
-var   name				SupportHandBone;	// Bone used to hide/show extra hand for reloading and other two hand anims
-var   BallisticHandgun	LastSlave;			// Last slave this gun had
-var   float				LastMasterTime;		// Time when gun last had slave
-var   bool				bSlavePutDown;		// True on slave when its being putdown. Used to let it know to not do normal putdonw
-var()	bool				bShouldDualInLoadout; 	//True for a gunclass which should be dual wielded in Loadout gts
+var   BallisticHandgun	OtherGun;				// The other Handgun. The gun in the other hand
+var   bool				bIsMaster;				// Is this the master
+var   BallisticHandgun	PendingHandgun;			// The slave that wil be brought up when the master is ready
+var   bool				bIsPendingHandGun;		// This gun is a handgun about to be used as the slave
+var   name				SupportHandBone;		// Bone used to hide/show extra hand for reloading and other two hand anims
+var   BallisticHandgun	LastSlave;				// Last slave this gun had
+var   float				LastMasterTime;			// Time when gun last had slave
+var   bool				bSlavePutDown;			// True on slave when its being putdown. Used to let it know to not do normal putdonw
+var()	bool			bShouldDualInLoadout; 	//True for a gunclass which should be dual wielded in Loadout gts
 var	float				CreationTime;
 
 // Autotracking vars
-var   Pawn				Target;				// The guy getting tracked by our gun
-var   Rotator			TrackerAim;			// Offset from ViewRotation where the tracking gun is aimed
-var   float				TrackSpeed;			// How fast the tracking gun can move (Rotator Units per Second)
-var   bool				bIsAutoTracking;	// Can and is tracking. This tells client to track as well.
-var   bool				bAutoTrack;			// Track key is down. Try tracking if we can
+var   Pawn				Target;					// The guy getting tracked by our gun
+var   Rotator			TrackerAim;				// Offset from ViewRotation where the tracking gun is aimed
+var   float				TrackSpeed;				// How fast the tracking gun can move (Rotator Units per Second)
+var   bool				bIsAutoTracking;		// Can and is tracking. This tells client to track as well.
+var   bool				bAutoTrack;				// Track key is down. Try tracking if we can
 
-var   byte				HandgunGroup;		// Grouping used for firing styles. Similar HGs should be the same, e.g. M806/9mm/RS8/Pistols, Magnum/DesertEagle, Uzi/XK2/XRS10/MPs
-var() float				SingleHeldRate;		// Time between shots when a fire style allows semi-auto gun to fire continuously while fire key is held
+var   byte				HandgunGroup;			// Grouping used for firing styles. Similar HGs should be the same, e.g. M806/9mm/RS8/Pistols, Magnum/DesertEagle, Uzi/XK2/XRS10/MPs
+var() float				SingleHeldRate;			// Time between shots when a fire style allows semi-auto gun to fire continuously while fire key is held
 
 replication
 {
 	// Variables the server sends to the client.
-	reliable if( bNetOwner && bNetDirty && Role==ROLE_Authority )
+	reliable if( bNetOwner && bNetDirty && Role == ROLE_Authority )
 		Target, bIsAutoTracking;
 	// Functions the client calls on the server
-	reliable if( Role<ROLE_Authority )
+	reliable if( Role < ROLE_Authority )
 		ServerStartTracking, ServerStopTracking, SetDualGun, ServerSwap, ServerDoQuickDraw, ServerLeaveDualMode;
 	// Functions the server calls on the client
-	reliable if( Role==ROLE_Authority )
+	reliable if( Role == ROLE_Authority )
 		ClientDualSelect;
 }
 
@@ -137,7 +137,7 @@ simulated function bool CheckScope()
 
 	NextCheckScopeTime = level.TimeSeconds + 0.25;
 	
-	if (IsMaster() || ReloadState != RS_None || (Instigator.Physics == PHYS_Falling && VSize(Instigator.Velocity) > Instigator.GroundSpeed * 1.5) || (SprintControl != None && SprintControl.bSprinting)) //should stop recoil issues where player takes momentum and knocked out of scope, also helps dodge
+	if (IsMaster() || ReloadState != RS_None || (SprintControl != None && SprintControl.bSprinting)) //should stop recoil issues where player takes momentum and knocked out of scope, also helps dodge
 	{
 		StopScopeView();
 		return false;
@@ -149,48 +149,7 @@ simulated function bool CheckScope()
 // Cycle through the various weapon modes
 function ServerSwitchWeaponMode (byte NewMode)
 {
-	if (NewMode == 255)
-		NewMode = CurrentWeaponMode + 1;
-	
-	while (NewMode != CurrentWeaponMode && (NewMode >= WeaponModes.length || WeaponModes[NewMode].bUnavailable) )
-	{
-		if (NewMode >= WeaponModes.length)
-			NewMode = 0;
-		else
-			NewMode++;
-	}
-	if (!WeaponModes[NewMode].bUnavailable)
-		CurrentWeaponMode = NewMode;
-	
-	if (bNotifyModeSwitch)
-	{
-		if (Instigator != None && !Instigator.IsLocallyControlled())
-		{
-			BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
-			BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
-		}
-		ClientSwitchWeaponModes(CurrentWeaponMode);
-	}
-		
-	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
-	// To my knowledge, this is the case.
-	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
-	{
-		BFireMode[0].bBurstMode = True;
-		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
-		if (!Instigator.IsLocallyControlled())
-			ClientSwitchBurstMode(True, WeaponModes[CurrentWeaponMode].Value);
-	}
-	
-	else if(BFireMode[0].bBurstMode)
-	{	
-		BFireMode[0].bBurstMode = False;
-		if (!Instigator.IsLocallyControlled())
-			ClientSwitchBurstMode(False);
-	}
-
-	if (Instigator.IsLocallyControlled())
-		default.LastWeaponMode = CurrentWeaponMode;
+	Super.ServerSwitchWeaponMode(NewMode);
 		
 	if (bIsMaster && OtherGun != None && OtherGun.Class == Class)
 		OtherGun.ServerSwitchWeaponMode(CurrentWeaponMode);
@@ -281,28 +240,10 @@ simulated function PreDrawFPWeapon()
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
 {
-	local Rotator BaseAim, BaseRecoil;
-
-
-
-	if (IsSlave() || /*!Instigator.IsFirstPerson() || */ Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
+	if (IsSlave())
 		return;
-
-		
-	BaseRecoil = GetRecoilPivot(true) * ViewRecoilFactor;
-	BaseAim = Aim * ViewAimFactor;
-	if (bForceRecoilUpdate || LastFireTime >= Level.TimeSeconds - RecoilDeclineDelay)
-	{
-		bForceRecoilUpdate = False;
-		Instigator.SetViewRotation(Instigator.Controller.Rotation + (BaseAim - ViewAim) + (BaseRecoil - ViewRecoil));
-	}
-
-
-
-	else Instigator.SetViewRotation(Instigator.Controller.Rotation + (BaseAim - ViewAim));
-
-	ViewAim = BaseAim;
-	ViewRecoil = BaseRecoil;	
+	
+	Super.ApplyAimToView();
 }
 
 simulated function ReloadFinished ()
@@ -338,6 +279,7 @@ exec simulated function Reload (optional byte i)
 	else if (IsMaster())
 		OtherGun.Reload(i);
 }
+
 function ServerStartReload (optional byte i)
 {
 	if (IsSlave() && Othergun.IsFiring())
@@ -925,7 +867,7 @@ simulated function SlavePutDown()
 	}
 }
 
-simulated function SetDualMode (bool bDualMode)
+simulated final function SetDualMode (bool bDualMode)
 {
 	if (bDualMode)
 	{
@@ -934,25 +876,39 @@ simulated function SetDualMode (bool bDualMode)
 		SetBoneScale(8, 0.0, SupportHandBone);
 		if (AIController(Instigator.Controller) == None)
 			bUseSpecialAim = true;
-			
-		BFireMode[0].FireRate = BFireMode[0].default.FireRate * 1.5;
-		
-		if (bAimDisabled)
-			return;
 	}
 	else
 	{
 		SetBoneScale(8, 1.0, SupportHandBone);
 		bUseSpecialAim = false;
-		BFireMode[0].FireRate = BFireMode[0].default.FireRate;
-		if (bAimDisabled)
-			return;
 	}
+
+	OnDualModeChanged(bDualMode);
 }
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// OnDualModeChanged
+//
+// Event raised whenever dual mode is switched.
+// Override in subclasses instead of SetDualMode to implement behaviour 
+// when changing between modes.
+//
+// Remember to follow OnRecoilParamsChanged / OnAimParamsChanged pattern 
+// as laid out in BallisticWeapon if changing recoil or aim params.
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+simulated function OnDualModeChanged(bool bDualMode)
+{
+	if (bDualMode)
+		BFireMode[0].FireRate = BFireMode[0].default.FireRate * 1.5;
+	else 
+		BFireMode[0].FireRate = BFireMode[0].default.FireRate;
+}
+
+/*
 simulated function StopScopeView(optional bool bNoAnim)
 {
 	OldZoomFOV = PlayerController(Instigator.Controller).FovAngle;
+
 	if (ZoomType != ZT_Irons)
 	{
 		PlayerController(Instigator.Controller).SetFOV(PlayerController(Instigator.Controller).DefaultFOV);
@@ -969,6 +925,7 @@ simulated function StopScopeView(optional bool bNoAnim)
 	if (ZoomOutSound.Sound != None)	class'BUtil'.static.PlayFullSound(self, ZoomOutSound);
 	PlayScopeDown(bNoAnim);
 }
+*/
 
 function ServerSwap(BallisticHandgun Other)
 {
@@ -1598,8 +1555,20 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	}
 }
 
-simulated function bool IsMaster()	{	return (OtherGun != None && bIsMaster);	}
-simulated function bool IsSlave()	{	return (OtherGun != None && !bIsMaster);}
+simulated final function bool IsMaster()
+{	
+	return (OtherGun != None && bIsMaster);	
+}
+
+simulated final function bool IsSlave()
+{	
+	return (OtherGun != None && !bIsMaster);
+}
+
+simulated final function bool IsInDualMode() 
+{ 
+	return OtherGun != None;
+}
 
 simulated function BallisticHandgun	GetMaster()
 {
@@ -1651,9 +1620,18 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 		case RS_EndShovel: s=s$"EndShovel"; break;
 		case RS_Cocking: s=s$"Cocking"; break;
 	}
-	s = s $ ", MagAmmo="$MagAmmo$"Chaos="$Chaos$", Recoil="$Recoil$", ReaimPhase="$ReaimPhase$", State="$GetStateName();
+	s = s $ ", MagAmmo="$MagAmmo$",State="$GetStateName();
 	Canvas.DrawText(s);
+
     YPos += YL;
+	Canvas.SetPos(4,YPos);
+	RcComponent.DrawDebug(Canvas);
+	
+    YPos += YL;
+	Canvas.SetPos(4,YPos);
+	AimComponent.DrawDebug(Canvas);
+
+	YPos += YL;
     Canvas.SetPos(4,YPos);
 
 	Switch( ClientState )
@@ -1693,16 +1671,12 @@ simulated function MeleeReleaseImpl()
 
 defaultproperties
 {
-	 AimDisplacementDurationMult=0.5
      SupportHandBone="Root01"
      bShouldDualInLoadout=True
      TrackSpeed=18000.000000
      SingleHeldRate=0.300000
-     PlayerSpeedFactor=1.100000
-     InventorySize=3
      bWT_Sidearm=True
      SightZoomFactor=0.85
      GunLength=16.000000
      LongGunPivot=(Pitch=5000,Yaw=6000)
-     HipRecoilFactor=1.500000
 }

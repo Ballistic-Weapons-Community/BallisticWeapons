@@ -8,7 +8,7 @@
 class LonghornSecondaryFire extends BallisticProProjectileFire;
 
 var byte ProjectileCount;
-var float HipSpreadFactor;
+var float HipMultiplier;
 
 function ServerPlayFiring()
 {
@@ -34,8 +34,8 @@ simulated function vector GetFireSpread()
 	else
 	{
 		fX = frand();
-		R.Yaw =  XInaccuracy * HipSpreadFactor * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-		R.Pitch = YInaccuracy * HipSpreadFactor *sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+		R.Yaw =  XInaccuracy * HipMultiplier * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+		R.Pitch = YInaccuracy * HipMultiplier *sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 		return Vector(R);
 	}
 }
@@ -85,12 +85,12 @@ function DoFireEffect()
 defaultproperties
 {
      ProjectileCount=6
-	 HipSpreadFactor=2
+	 HipMultiplier=2
      bNoRandomFire=True
      bCockAfterFire=True
      AimedFireAnim="SightFire"
-     RecoilPerShot=1024.000000
-     VelocityRecoil=800.000000
+     FireRecoil=1024.000000
+     FirePushbackForce=800.000000
      FireChaos=1.000000
      XInaccuracy=256.000000
      YInaccuracy=256.000000

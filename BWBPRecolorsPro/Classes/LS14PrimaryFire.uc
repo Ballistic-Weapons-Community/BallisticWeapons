@@ -135,7 +135,7 @@ defaultproperties
      DryFireSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Empty',Volume=1.200000)
      MuzzleFlashClass=Class'BWBPRecolorsPro.LS14FlashEmitter'
      FlashScaleFactor=0.400000
-     RecoilPerShot=150.000000
+     FireRecoil=150.000000
      FireChaos=0.300000
      BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.LS14.Gauss-Fire',Volume=0.900000)
      FireEndAnim=

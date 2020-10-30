@@ -32,11 +32,11 @@ var() float				ThermalRange;	// Maximum range at which it is possible to see ene
 var   ColorModifier		ColorMod;
 var   float				NextPawnListUpdateTime;
 
-simulated function SetScopeView(bool bNewValue)
+simulated function OnScopeViewChanged()
 {
-	super.SetScopeView(bNewValue);
+	super.OnScopeViewChanged();
 		
-	if (!bNewValue)
+	if (!bScopeView)
 	{
 		if (Level.NetMode == NM_Client)
 			AdjustThermalView(false);
@@ -424,100 +424,79 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
-	AimDisplacementDurationMult=1.25
-     ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
-     ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
-     WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
-     Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
-     ThermalRange=3500.000000
-     PlayerSpeedFactor=0.850000
-     PlayerJumpFactor=0.850000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M75'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     ManualLines(0)="Uncharged rail slug shot. High damage, moderate fire rate and recoil, and good penetration."
-     ManualLines(1)="Charged rail slug shot. The railgun will fire when the fire key is released, or immediately upon becoming fully charged. Damage and penetration improve with charge, to extreme levels when fully charged."
-     ManualLines(2)="Weapon Function toggles the thermal scope, allowing the user to see enemies through walls. The further away the opponent, the closer the player's aim needs to be to their position to view them.||As a heavy weapon, the M75 reduces the user's movement speed and jump ability.||The M75 is effective at long range and through cover."
-     SpecialInfo(0)=(Info="300.0;30.0;1.0;80.0;1.0;0.0;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M75.M75Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M75.M75Putaway')
-     MagAmmo=5
-     CockAnimPostReload="Cock2"
-     CockAnimRate=1.350000
-     CockSound=(Sound=Sound'BallisticSounds2.M75.M75Cock')
-     ReloadAnimRate=1.400000
-     ClipHitSound=(Sound=Sound'BallisticSounds2.M75.M75Cliphit')
-     ClipOutSound=(Sound=Sound'BallisticSounds2.M75.M75Clipout')
-     ClipInSound=(Sound=Sound'BallisticSounds2.M75.M75Clipin')
-     ClipInFrame=0.650000
-     bAltTriggerReload=True
-     WeaponModes(0)=(ModeName="Single Fire")
-     WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     ZoomType=ZT_Logarithmic
-     bNoTweenToScope=True
-     ZoomInAnim="ZoomIn"
-     ZoomOutAnim="ZoomOut"
-     ScopeViewTex=Texture'BallisticUI2.M75.M75ScopeView'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-     FullZoomFOV=20.000000
-     bNoMeshInScope=True
-     bNoCrosshairInScope=True
-     SightingTime=0.600000
-     MinZoom=4.000000
-     MaxZoom=16.000000
-     ZoomStages=2
-     SMuzzleFlashOffset=(X=50.000000,Z=-35.000000)
-     GunLength=80.000000
-     CrouchAimFactor=0.600000
-     SprintOffSet=(Pitch=-8000,Yaw=-10000)
-     JumpOffSet=(Pitch=-6000,Yaw=2000)
-     JumpChaos=0.800000
-     AimSpread=64
-     ChaosDeclineTime=0.800000
-	 SightAimFactor=0.5
-     ChaosAimSpread=1536
-	 
-	 ViewRecoilFactor=0.15
-	 RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.18),(InVal=0.40000,OutVal=0.350000),(InVal=0.50000,OutVal=0.420000),(InVal=0.600000,OutVal=0.450000),(InVal=0.700000,OutVal=0.55),(InVal=0.800000,OutVal=0.60000),(InVal=1.000000,OutVal=0.7)))
-     RecoilXFactor=0.250000
-     RecoilYFactor=0.250000
-     RecoilMinRandFactor=0.400000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.500000
-	 
-	 
-     FireModeClass(0)=Class'BallisticProV55.M75PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.M75SecondaryFire'
-     PutDownAnimRate=1.300000
-     PutDownTime=0.800000
-     BringUpTime=0.600000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.700000
-     CurrentRating=0.700000
-     bSniping=True
-     bShowChargingBar=True
-     Description="There are very few things feared by the Skrith and the Railgun is one of them. Railguns use electromagnetism to fire metallic projectiles at incredible speeds, some moving at hundreds of thousands of feet per second. This one uses depleted uranium-dragonium slugs for ammo. Railguns were far too large and heavy for infantry use until Enravion developed the Tactical Infantry Cannon version. No comparable infantry weapon currently available is capable of as much damage in a single shot as the M75. When fully charged it can flip over a tank, or fire right through a concrete building. Designed for use against vehicles, no infantry armor could be considered protection against this weapon. The M75 does have some disadvantages though. Its slow firerate, great weight and highly visible trail make it a weapon that will benefit only the most skilled soldiers."
-     DisplayFOV=45.000000
-     Priority=34
-     HudColor=(B=255,G=25,R=0)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=9
-     PickupClass=Class'BallisticProV55.M75Pickup'
-     PlayerViewOffset=(X=15.000000,Y=11.000000,Z=-12.000000)
-     AttachmentClass=Class'BallisticProV55.M75Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M75'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="M75 Railgun"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=180
-     LightSaturation=100
-     LightBrightness=180.000000
-     LightRadius=8.000000
-     Mesh=SkeletalMesh'BallisticAnims2.Railgun'
-     DrawScale=0.400000
+	ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
+	ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
+	WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
+	Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
+	ThermalRange=3500.000000
+
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M75'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)="Uncharged rail slug shot. High damage, moderate fire rate and recoil, and good penetration."
+	ManualLines(1)="Charged rail slug shot. The railgun will fire when the fire key is released, or immediately upon becoming fully charged. Damage and penetration improve with charge, to extreme levels when fully charged."
+	ManualLines(2)="Weapon Function toggles the thermal scope, allowing the user to see enemies through walls. The further away the opponent, the closer the player's aim needs to be to their position to view them.||As a heavy weapon, the M75 reduces the user's movement speed and jump ability.||The M75 is effective at long range and through cover."
+	SpecialInfo(0)=(Info="300.0;30.0;1.0;80.0;1.0;0.0;0.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M75.M75Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M75.M75Putaway')
+	CockAnimPostReload="Cock2"
+	CockAnimRate=1.350000
+	CockSound=(Sound=Sound'BallisticSounds2.M75.M75Cock')
+	ReloadAnimRate=1.400000
+	ClipHitSound=(Sound=Sound'BallisticSounds2.M75.M75Cliphit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.M75.M75Clipout')
+	ClipInSound=(Sound=Sound'BallisticSounds2.M75.M75Clipin')
+	ClipInFrame=0.650000
+	bAltTriggerReload=True
+	WeaponModes(0)=(ModeName="Single Fire")
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	ZoomType=ZT_Logarithmic
+	bNoTweenToScope=True
+	ZoomInAnim="ZoomIn"
+	ZoomOutAnim="ZoomOut"
+	ScopeViewTex=Texture'BallisticUI2.M75.M75ScopeView'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	FullZoomFOV=20.000000
+	bNoMeshInScope=True
+	bNoCrosshairInScope=True
+	MinZoom=4.000000
+	MaxZoom=16.000000
+	ZoomStages=2
+	SMuzzleFlashOffset=(X=50.000000,Z=-35.000000)
+	GunLength=80.000000
+	ParamsClass=Class'M75WeaponParams'
+    FireModeClass(0)=Class'BallisticProV55.M75PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.M75SecondaryFire'
+	PutDownAnimRate=1.300000
+	PutDownTime=0.800000
+	BringUpTime=0.600000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.700000
+	CurrentRating=0.700000
+	bSniping=True
+	bShowChargingBar=True
+	Description="There are very few things feared by the Skrith and the Railgun is one of them. Railguns use electromagnetism to fire metallic projectiles at incredible speeds, some moving at hundreds of thousands of feet per second. This one uses depleted uranium-dragonium slugs for ammo. Railguns were far too large and heavy for infantry use until Enravion developed the Tactical Infantry Cannon version. No comparable infantry weapon currently available is capable of as much damage in a single shot as the M75. When fully charged it can flip over a tank, or fire right through a concrete building. Designed for use against vehicles, no infantry armor could be considered protection against this weapon. The M75 does have some disadvantages though. Its slow firerate, great weight and highly visible trail make it a weapon that will benefit only the most skilled soldiers."
+	DisplayFOV=45.000000
+	Priority=34
+	HudColor=(B=255,G=25,R=0)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=9
+	PickupClass=Class'BallisticProV55.M75Pickup'
+	PlayerViewOffset=(X=15.000000,Y=11.000000,Z=-12.000000)
+	AttachmentClass=Class'BallisticProV55.M75Attachment'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M75'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="M75 Railgun"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=180
+	LightSaturation=100
+	LightBrightness=180.000000
+	LightRadius=8.000000
+	Mesh=SkeletalMesh'BallisticAnims2.Railgun'
+	DrawScale=0.400000
 }

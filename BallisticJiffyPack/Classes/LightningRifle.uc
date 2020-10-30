@@ -50,17 +50,16 @@ function float SuggestDefenseStyle()	{	return 0.9;	}
 
 defaultproperties
 {
-	 ZoomType=ZT_Logarithmic
+	ZoomType=ZT_Logarithmic
      ZoomInAnim="ZoomIn"
      ScopeViewTex=Texture'BWBPJiffyPackTex.Arc.ARCRifleScope'
      ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
      ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=20.000000
-	 bNoMeshInScope=True
+	bNoMeshInScope=True
      bNoCrosshairInScope=True
      SightOffset=(Z=51.000000)
-     SightingTime=0.450000
-	 MinZoom=2.000000
+	MinZoom=2.000000
      MaxZoom=8.000000
      ZoomStages=4
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
@@ -73,35 +72,18 @@ defaultproperties
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
      BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Pickup')
      PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
-     MagAmmo=4
      ReloadAnimRate=1.000000
      ClipOutSound=(Sound=Sound'PackageSounds4ProExp.LAW.Law-TubeLock')
      ClipInSound=(Sound=Sound'PackageSounds4Pro.BeamCannon.Beam-Up')
      ClipInFrame=0.650000
      bNonCocking=True
-     WeaponModes(0)=(ModeName="Semi-Automatic")
+     WeaponModes(0)=(ModeName="Semi")
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-	 PlayerSpeedFactor=0.950000
-     PlayerJumpFactor=0.950000
      GunLength=60.000000
-     CrouchAimFactor=0.600000
-     SightAimFactor=0.350000
-     SprintOffSet=(Pitch=-8192,Yaw=-12288)
-	 JumpOffSet=(Pitch=-6000,Yaw=2000)
-	 BobDamping=0.800000
-     AimAdjustTime=0.750000
-     AimSpread=192
-     ChaosSpeedThreshold=1200.000000
-	 ChaosDeclineTime=0.750000
-     ChaosAimSpread=1024
-     RecoilYawFactor=0.100000
-     RecoilXFactor=0.400000
-     RecoilYFactor=0.800000
-	 RecoilDeclineDelay=1.000000
-     RecoilDeclineTime=0.800000
-	 ViewRecoilFactor=0.500000
+     BobDamping=0.800000
+     ParamsClass=Class'LightningWeaponParams'
      FireModeClass(0)=Class'BallisticJiffyPack.LightningPrimaryFire'
      FireModeClass(1)=Class'BallisticJiffyPack.LightningSecondaryFire'
      PutDownTime=0.700000
@@ -110,7 +92,7 @@ defaultproperties
      AIRating=0.800000
      CurrentRating=0.800000
      bSniping=True
-	 bShowChargingBar=True
+	bShowChargingBar=True
      Description="ARC-79 Lightning Rifle||Manufacturer: JAX Industrial Firm|Primary: Single lightning bolt|Secondary: Charged lightning bolt with arcing to nearby players"
      DisplayFOV=55.000000
      Priority=33

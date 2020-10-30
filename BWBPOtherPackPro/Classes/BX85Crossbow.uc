@@ -327,22 +327,15 @@ simulated function UpdatePawnList()
 	}
 }
 
-simulated function SetScopeView(bool bNewValue)
+simulated function OnScopeViewChanged()
 {
-
-	bScopeView = bNewValue;
 	if (!bScopeView)
 	{
+		if (Target != None)
+			class'BUtil'.static.PlayFullSound(self, NVOffSound);
 		Target = None;
 		TargetTime=0;
 	}
-	if (Level.NetMode == NM_Client)
-		ServerSetScopeView(bNewValue);
-	bScopeView = bNewValue;
-	SetScopeBehavior();
-
-	if (!bNewValue && Target != None)
-		class'BUtil'.static.PlayFullSound(self, NVOffSound);
 }
 
 // draws red blob that moves, scanline, and target boxes.
@@ -566,101 +559,88 @@ function float SuggestDefenseStyle()	{	return 0.7;	}
 
 defaultproperties
 {
-	 MagBone="Magazine"
-	 ReloadEmptyAnim="ReloadEmpty"	//0 ammo
-	 ReloadAnim2="ReloadMagEmpty"	//1 ammo
-	 ReleaseStateAnim[0]="ReloadMagReleaseState6"	//2 ammo
-	 ReleaseStateAnim[1]="ReloadMagReleaseState5"	//3 ammo
-	 ReleaseStateAnim[2]="ReloadMagReleaseState4"	//4 ammo
-	 ReleaseStateAnim[3]="ReloadMagReleaseState3"	//5 ammo
-	 ReleaseStateAnim[4]="ReloadMagReleaseState2"	//6 ammo
-	 ReleaseStateAnim[5]="ReloadMagReleaseState1"	//7 ammo
-	 ReloadAnim="ReloadStateFinish"
-	 GunArrowBone="1"
-	 ArrowBones(0)=(BoneName="2")
-	 ArrowBones(1)=(BoneName="3")
-	 ArrowBones(2)=(BoneName="4")
-	 ArrowBones(3)=(BoneName="5")
-	 ArrowBones(4)=(BoneName="6")
-	 ArrowBones(5)=(BoneName="7")
-	 ArrowBones(6)=(BoneName="8")
-	 ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
-     ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
-     NVOnSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
-     NVOffSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
-     WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
-     Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
-     ThermalRange=2500.000000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
-     AIReloadTime=1.500000
-     BigIconMaterial=Texture'BWBPOtherPackTex2.XBow.BigIcon_Crossbow'
-     IdleTweenTime=0.000000
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     ManualLines(0)="Launches an instant-hit crossbow bolt. This attack has a long fire interval and moderate damage, but is almost invisible and makes no sound. As such, it is very difficult to detect."
-     ManualLines(1)="Raises the scope."
-     ManualLines(2)="Effective at long range. Excels at stealth."
-     SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=8
-	 CockAnim='CockRotateMag'
-     CockAnimRate=1.250000
-     ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
-     ClipOutSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipIn')
-     ClipInFrame=0.650000
-     CurrentWeaponMode=0
-     ZoomType=ZT_Logarithmic
-     ScopeViewTex=Texture'BWBPOtherPackTex2.R9A1.R9_scope_UI_DO1'
-     FullZoomFOV=50.000000
-     bNoMeshInScope=True
-     bNoCrosshairInScope=True
-     SightOffset=(X=-2.000000,Y=5.000000,Z=5.200000)
-     SightDisplayFOV=40.000000
-     SightingTime=0.450000
-     MinZoom=2.000000
-     MaxZoom=16.000000
-     ZoomStages=3
-     SightAimFactor=0.4
-     JumpChaos=0.200000
-     AimAdjustTime=0.450000
-	 ChaosAimSpread=512
-	 
-	 ViewRecoilFactor=0.5
-     RecoilXFactor=0.050000
-     RecoilYFactor=0.050000
-     RecoilMax=4096.000000
-     RecoilDeclineTime=1.500000
-     RecoilDeclineDelay=0.500000
-	 
-	 CockSound=(Sound=Sound'BWBPOtherPackSound.XBow.CockFast',Volume=1.200000)
-     FireModeClass(0)=Class'BWBPOtherPackPro.BX85PrimaryFire'
-     FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
-     PutDownTime=0.600000
-     BringUpTime=0.900000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.800000
-     CurrentRating=0.800000
-     bShowChargingBar=True
-     Description="Originally a specialist law enforcement weapon, the PD-97 'Bloodhound' has been adapted into a military role, used to control opponents and track their movement upon the battlefield. While less immediately lethal than most other weapons, its tactical repertoire is not to be underestimated."
-     Priority=24
-     HudColor=(B=150,G=150,R=150)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=9
-     PickupClass=Class'BWBPOtherPackPro.BX85Pickup'
-     PlayerViewOffset=(X=10.000000,Y=2.000000,Z=-7.000000)
-     AttachmentClass=Class'BWBPOtherPackPro.BX85Attachment'
-     IconMaterial=Texture'BWBPOtherPackTex2.XBow.Icon_Crossbow'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="BX85 Stealth Crossbow"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BWBPOtherPackAnim.Crossbow_FP'
-     DrawScale=0.200000
-     Skins(0)=Shader'BWBPOtherPackTex2.XBow.XBow_SH1'
+	MagBone="Magazine"
+	ReloadEmptyAnim="ReloadEmpty"	//0 ammo
+	ReloadAnim2="ReloadMagEmpty"	//1 ammo
+	ReleaseStateAnim[0]="ReloadMagReleaseState6"	//2 ammo
+	ReleaseStateAnim[1]="ReloadMagReleaseState5"	//3 ammo
+	ReleaseStateAnim[2]="ReloadMagReleaseState4"	//4 ammo
+	ReleaseStateAnim[3]="ReloadMagReleaseState3"	//5 ammo
+	ReleaseStateAnim[4]="ReloadMagReleaseState2"	//6 ammo
+	ReleaseStateAnim[5]="ReloadMagReleaseState1"	//7 ammo
+	ReloadAnim="ReloadStateFinish"
+	GunArrowBone="1"
+	ArrowBones(0)=(BoneName="2")
+	ArrowBones(1)=(BoneName="3")
+	ArrowBones(2)=(BoneName="4")
+	ArrowBones(3)=(BoneName="5")
+	ArrowBones(4)=(BoneName="6")
+	ArrowBones(5)=(BoneName="7")
+	ArrowBones(6)=(BoneName="8")
+	ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
+	ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
+	NVOnSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
+	NVOffSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
+	WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
+	Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
+	ThermalRange=2500.000000
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
+	AIReloadTime=1.500000
+	BigIconMaterial=Texture'BWBPOtherPackTex2.XBow.BigIcon_Crossbow'
+	IdleTweenTime=0.000000
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)="Launches an instant-hit crossbow bolt. This attack has a long fire interval and moderate damage, but is almost invisible and makes no sound. As such, it is very difficult to detect."
+	ManualLines(1)="Raises the scope."
+	ManualLines(2)="Effective at long range. Excels at stealth."
+	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
+	CockAnim='CockRotateMag'
+	CockAnimRate=1.250000
+	ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipIn')
+	ClipInFrame=0.650000
+	CurrentWeaponMode=0
+	ZoomType=ZT_Logarithmic
+	ScopeViewTex=Texture'BWBPOtherPackTex2.R9A1.R9_scope_UI_DO1'
+	FullZoomFOV=50.000000
+	bNoMeshInScope=True
+	bNoCrosshairInScope=True
+	SightOffset=(X=-2.000000,Y=5.000000,Z=5.200000)
+	SightDisplayFOV=40.000000
+	MinZoom=2.000000
+	MaxZoom=16.000000
+	ZoomStages=3
+	ParamsClass=Class'BX85WeaponParams'
+	CockSound=(Sound=Sound'BWBPOtherPackSound.XBow.CockFast',Volume=1.200000)
+	FireModeClass(0)=Class'BWBPOtherPackPro.BX85PrimaryFire'
+	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
+	PutDownTime=0.600000
+	BringUpTime=0.900000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.800000
+	CurrentRating=0.800000
+	bShowChargingBar=True
+	Description="Originally a specialist law enforcement weapon, the PD-97 'Bloodhound' has been adapted into a military role, used to control opponents and track their movement upon the battlefield. While less immediately lethal than most other weapons, its tactical repertoire is not to be underestimated."
+	Priority=24
+	HudColor=(B=150,G=150,R=150)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=9
+	PickupClass=Class'BWBPOtherPackPro.BX85Pickup'
+	PlayerViewOffset=(X=10.000000,Y=2.000000,Z=-7.000000)
+	AttachmentClass=Class'BWBPOtherPackPro.BX85Attachment'
+	IconMaterial=Texture'BWBPOtherPackTex2.XBow.Icon_Crossbow'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="BX85 Stealth Crossbow"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.Crossbow_FP'
+	DrawScale=0.200000
+	Skins(0)=Shader'BWBPOtherPackTex2.XBow.XBow_SH1'
 }

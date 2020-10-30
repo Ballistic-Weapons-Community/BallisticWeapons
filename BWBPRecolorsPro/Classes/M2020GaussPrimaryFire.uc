@@ -87,7 +87,7 @@ function StartBerserk()
 		default: FireRate = 0.2 * 0.75;
 	}
     FireAnimRate = default.FireAnimRate/0.75;
-    RecoilPerShot = default.RecoilPerShot * 0.75;
+    FireRecoil = default.FireRecoil * 0.75;
     FireChaos = default.FireChaos * 0.75;
 }
 
@@ -100,7 +100,7 @@ function StopBerserk()
 		default: FireRate = 0.2;
 	}
     FireAnimRate = default.FireAnimRate;
-    RecoilPerShot = default.RecoilPerShot;
+    FireRecoil = default.FireRecoil;
     FireChaos = default.FireChaos;
 }
 
@@ -109,8 +109,8 @@ simulated function SwitchWeaponMode (byte NewMode)
 	if (NewMode == 0)
 	{
 		BallisticFireSound.Sound=default.BallisticFireSound.sound;
-		RecoilPerShot=default.RecoilPerShot;
-		VelocityRecoil=default.VelocityRecoil;
+		FireRecoil=default.FireRecoil;
+		FirePushbackForce=default.FirePushbackForce;
 		FireAnim=default.FireAnim;
 		FireChaos=default.FireChaos;
 		Damage=default.Damage;
@@ -127,14 +127,12 @@ simulated function SwitchWeaponMode (byte NewMode)
 	else if (NewMode == 1)
 	{
 		BallisticFireSound.Sound=SpecialFireSound;
-		RecoilPerShot=1024.000000;
-		VelocityRecoil=120.000000;
+		FireRecoil=1024.000000;
+		FirePushbackForce=120.000000;
 		FireAnim='FirePowered';
 		FireRate=1.000000;
 		FireChaos=1;
 		KickForce=3000;
-		BW.RecoilXFactor = 0.2;
-		BW.RecoilYFactor = 0.2;
 		Damage=110.000000;
 		DamageHead=175.000000;
 		DamageLimb=110.000000;
@@ -147,14 +145,12 @@ simulated function SwitchWeaponMode (byte NewMode)
 	else if (NewMode == 2 || NewMode == 3)
 	{
 		BallisticFireSound.Sound=LowPowerFireSound;
-		RecoilPerShot=150.000000;
-		VelocityRecoil=0.000000;
+		FireRecoil=150.000000;
+		FirePushbackForce=0.000000;
 		FlashScaleFactor=1.000000;
 		FireChaos=0.05;
 		bFlashAlt=true;
 		KickForce=5000;
-		BW.RecoilXFactor = 0.1;
-		BW.RecoilYFactor = 0.1;
 		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=true;
 		if (NewMode == 2)
 			FireAnim='FireUnPowered';
@@ -198,7 +194,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
-     RecoilPerShot=320.000000
+     FireRecoil=320.000000
      FireChaos=0.600000
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.M2020.M2020-GaussFire',Volume=6.700000)
      FireEndAnim=

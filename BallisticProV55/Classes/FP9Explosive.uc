@@ -630,65 +630,65 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
-     LaserTweakSound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-LaserTurn',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
-     Button1Sound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-Button1',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
-     Button2Sound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-Button2',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
-     Button3Sound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-Button3',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
-     DeploySound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-Place',Volume=1.000000,Radius=256.000000,Pitch=1.000000)
-     LaserOnAnim="LaserOn"
-     LaserOffAnim="LaserOff"
-     BombBone="FP9Bomb"
-     HandBone="LeftHand"
-     DetonateSound=Sound'BallisticSounds2.FP9A5.FP9-Detonate'
-     LaserScreenMat=Shader'BallisticWeapons2.FP9A5.FP9LCDActiveSD'
-     ScreenMat=Shader'BallisticWeapons2.FP9A5.FP9LCDArmedSD'
-     DetAllDelayTime=0.300000
-     bHasDetonator=True
-     bOldHasDetonator=True
-     DetHandBone="Bone-Arm"
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_FP9A5'
-     BigIconCoords=(Y1=24,Y2=235)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=2
-     bWT_Hazardous=True
-     bWT_Splash=True
-     bWT_Grenade=True
-     bWT_Trap=True
-     ManualLines(0)="Places an FP9 explosive device. If used close to a wall or surface, the weapon will attach itself to the surface: otherwise the bomb falls to the floor. If the laser tripmine is activated, enemies walking into the beam will set off the bomb. If not, the user must detonate the bomb manually by facing it and using the altfire. Bombs may be picked up with the Use key."
-     ManualLines(1)="Detonates the FP9. The user must be facing the mine to detonate, which will be displayed surrounded by a red box."
-     ManualLines(2)="The FP9 has a number of special functions.||When not facing a placed bomb:|The Weapon Function key toggles whether the next bomb placed will use the laser tripwire.||When facing a placed bomb:|The Weapon Function key toggles whether the placed bomb will use the laser tripwire.|The Switch Fire Mode key selects the faced bomb, highlighting it in green.||With a bomb highlighted:|Targeting an area and pressing Switch Weapon Mode will cause the endpoint of the selected bomb's laser, if active, to shift to the targeted location."
-     SpecialInfo(0)=(Info="180.0;10.0;0.4;-1.0;0.0;0.0;0.5")
-     BringUpSound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-Putaway')
-     bNoMag=True
-     WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
-     WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     bUseSights=False
-     GunLength=0.000000
-     bAimDisabled=True
-     FireModeClass(0)=Class'BallisticProV55.FP9PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.FP9SecondaryFire'
-     PutDownTime=0.700000
-     BringUpTime=0.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.200000
-     CurrentRating=0.200000
-     bShowChargingBar=True
-     Description="NDTR's versatile FP9 is a favourite UTC weapon of high quality and extensive use. The FP9A5 greatly enhances the standard explosive by incorporating many tactical features to make it an incredibly versatile bomb. The soldier can deploy or toss the device, and wait to manually detonate it by means of a radio frequency controller, or activate the laser feature, and wait for an unsuspecting foe to walk into the beam. As well as this, the latest model now has the ability to activate the laser mode when the bomb is already deployed, making it even more effective. This allows the user to deactivate the beam, pick it up, and place it elsewhere, or merely to allow oneself to walk past the device without incident."
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=0
-     GroupOffset=18
-     PickupClass=Class'BallisticProV55.FP9Pickup'
-     PlayerViewOffset=(X=10.000000,Y=-1.000000,Z=-6.000000)
-     AttachmentClass=Class'BallisticProV55.FP9Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_FP9Explosive'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="FP9A5 Explosive Device"
-     Mesh=SkeletalMesh'BallisticAnims2.FP9Bomb'
-     DrawScale=0.200000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Texture'BallisticWeapons2.FP9A5.FP9Bomb'
+	LaserTweakSound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-LaserTurn',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
+	Button1Sound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-Button1',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
+	Button2Sound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-Button2',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
+	Button3Sound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-Button3',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
+	DeploySound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-Place',Volume=1.000000,Radius=256.000000,Pitch=1.000000)
+	LaserOnAnim="LaserOn"
+	LaserOffAnim="LaserOff"
+	BombBone="FP9Bomb"
+	HandBone="LeftHand"
+	DetonateSound=Sound'BallisticSounds2.FP9A5.FP9-Detonate'
+	LaserScreenMat=Shader'BallisticWeapons2.FP9A5.FP9LCDActiveSD'
+	ScreenMat=Shader'BallisticWeapons2.FP9A5.FP9LCDArmedSD'
+	DetAllDelayTime=0.300000
+	bHasDetonator=True
+	bOldHasDetonator=True
+	DetHandBone="Bone-Arm"
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_FP9A5'
+	BigIconCoords=(Y1=24,Y2=235)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Hazardous=True
+	bWT_Splash=True
+	bWT_Grenade=True
+	bWT_Trap=True
+	ManualLines(0)="Places an FP9 explosive device. If used close to a wall or surface, the weapon will attach itself to the surface: otherwise the bomb falls to the floor. If the laser tripmine is activated, enemies walking into the beam will set off the bomb. If not, the user must detonate the bomb manually by facing it and using the altfire. Bombs may be picked up with the Use key."
+	ManualLines(1)="Detonates the FP9. The user must be facing the mine to detonate, which will be displayed surrounded by a red box."
+	ManualLines(2)="The FP9 has a number of special functions.||When not facing a placed bomb:|The Weapon Function key toggles whether the next bomb placed will use the laser tripwire.||When facing a placed bomb:|The Weapon Function key toggles whether the placed bomb will use the laser tripwire.|The Switch Fire Mode key selects the faced bomb, highlighting it in green.||With a bomb highlighted:|Targeting an area and pressing Switch Weapon Mode will cause the endpoint of the selected bomb's laser, if active, to shift to the targeted location."
+	SpecialInfo(0)=(Info="180.0;10.0;0.4;-1.0;0.0;0.0;0.5")
+	BringUpSound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-Putaway')
+	bNoMag=True
+	WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bUseSights=False
+	GunLength=0.000000
+	bAimDisabled=True
+	ParamsClass=Class'FP9WeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.FP9PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.FP9SecondaryFire'
+	PutDownTime=0.700000
+	BringUpTime=0.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.200000
+	CurrentRating=0.200000
+	bShowChargingBar=True
+	Description="NDTR's versatile FP9 is a favourite UTC weapon of high quality and extensive use. The FP9A5 greatly enhances the standard explosive by incorporating many tactical features to make it an incredibly versatile bomb. The soldier can deploy or toss the device, and wait to manually detonate it by means of a radio frequency controller, or activate the laser feature, and wait for an unsuspecting foe to walk into the beam. As well as this, the latest model now has the ability to activate the laser mode when the bomb is already deployed, making it even more effective. This allows the user to deactivate the beam, pick it up, and place it elsewhere, or merely to allow oneself to walk past the device without incident."
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=0
+	GroupOffset=18
+	PickupClass=Class'BallisticProV55.FP9Pickup'
+	PlayerViewOffset=(X=10.000000,Y=-1.000000,Z=-6.000000)
+	AttachmentClass=Class'BallisticProV55.FP9Attachment'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_FP9Explosive'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="FP9A5 Explosive Device"
+	Mesh=SkeletalMesh'BallisticAnims2.FP9Bomb'
+	DrawScale=0.200000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Texture'BallisticWeapons2.FP9A5.FP9Bomb'
 }

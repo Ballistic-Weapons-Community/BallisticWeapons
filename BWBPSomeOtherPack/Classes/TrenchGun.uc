@@ -50,6 +50,7 @@ exec function Offset(int index, int value)
 
 	AltDeployable.SpawnOffset = value;
 }
+
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
@@ -242,7 +243,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -253,7 +254,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 	}
 	
 	if (ReloadState == RS_GearSwitch)
@@ -265,9 +266,10 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 }
 
-simulated function ClientSwitchWeaponModes (byte NewMode)
+simulated function CommonSwitchWeaponMode (byte NewMode)
 {
-	Super.ClientSwitchWeaponModes(NewMode);
+	Super.CommonSwitchWeaponMode(NewMode);
+
 	if (NewMode == 1)
 	{
 		SetBoneScale (2, 0.0, ShellTipBone1);
@@ -615,84 +617,72 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-     MatGreenShell=Texture'BWBPSomeOtherPackTex.TechWrench.ExplodoShell'
-     MatBlackShell=Texture'BWBPSomeOtherPackTex.TechWrench.ShockShell'
-     ShellTipBone1="ShellLSuper"
-     ShellTipBone2="ShellRSuper"
-     ShellTipBone3="SpareShellLSuper"
-     ShellTipBone4="SpareShellRSuper"
-     LastShellBone="ShellR"
-	 FireAnimCutThreshold=3.000000
-     AltDeployable=(dClass=Class'BWBPSomeOtherPack.TrenchGunEnergyBarrier',WarpInTime=0.500000,SpawnOffset=52,CheckSlope=False,dDescription="A five-second barrier of infinite durability.",CooldownDelay=2.00) 
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBPSomeOtherPackTex.TechGun.BigIcon_TechGun'
-     BigIconCoords=(Y1=35,Y2=225)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Shotgun=True
-     bWT_Energy=True
-     ManualLines(0)="Fire either a single barrel or both barrels of the loaded ammo type. Charge fire before releasing to fire both barrel simultaneously, tap to fire a single barrel. Electro Shot is capable of displacing targets' aim, with the effectiveness of this being increased by firing both barrels at once. Cryo Shot will temporarily slow targets hit by it, firing both rounds at once also increases the duration of this effect."
-     ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
-     ManualLines(2)="Effective at close ranges, firing both barrels at once increases the duration of the slow down for ice rounds and displacement from electric rounds."
-     SpecialInfo(0)=(Info="160.0;10.0;0.3;40.0;0.0;1.0;0.0")
-     MeleeFireClass=Class'BWBPSomeOtherPack.TrenchGunMeleeFire'
-     BringUpSound=(Sound=Sound'BallisticSounds2.M290.M290Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
-     MagAmmo=2
-     CockAnimRate=0.700000
-	 SingleReloadAnimRate=1.000000
-     ReloadAnimRate=1.250000
-     ClipInFrame=0.800000
-     bNonCocking=True
-     WeaponModes(0)=(ModeName="Explosive Shot",Value=1.000000)
-     WeaponModes(1)=(ModeName="Electro Shot",Value=1.000000)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     bNotifyModeSwitch=True
-     SightPivot=(Pitch=256)
-     SightOffset=(X=30.000000,Y=11.500000,Z=43.500000)
-     SightingTime=0.250000
-     GunLength=60.000000
-     LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
-     LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-	 
-	 ViewRecoilFactor=0.65
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
-     RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.100000
-     RecoilYFactor=0.200000
-     RecoilMax=16384.000000
-     RecoilDeclineTime=0.900000
-     RecoilDeclineDelay=0.400000
-	 
-     FireModeClass(0)=Class'BWBPSomeOtherPack.TrenchGunPrimaryFire'
-     FireModeClass(1)=Class'BWBPSomeOtherPack.TrenchGunSecondaryFire'
-     SelectAnimRate=2.000000
-     PutDownAnimRate=2.000000
-     AIRating=0.800000
-     CurrentRating=0.800000
-     Description="BR-112 Trenchgun || Manufacturer: N/A, field modified || Deep in the mud filled trenches of Indorix Paraxii, the Carcosan Greasers, only days away from a full force Cryon and Skrith invasion, were desperate for a way to weather the impending invasion. Supply errors left them with little more than a surplus of specialized shotgun ammo that was not able to reliably feed into their standard issued shotguns. Ever resourceful, the Carcosan Greasers were able to improvise, and between scavanging as many civilian shotguns as they can and fabricating the rest with their on site nano-forges, they were able to outfit their company with reliable, light weight breach loaded shotguns well adapted to run whatever ammo type they could throw in them. They proceeded to hold the invasion off long enough for the area to be evacuated, holding off weapons fire with their iconic NFUD wrenches being used in tandem  withe their specialized shotguns, wreaking havoc to the systems of the Cryon with their electroshot and freezing the Skrith where they stood."
-     Priority=38
-     HudColor=(B=35,G=100,R=200)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=7
-     PickupClass=Class'BWBPSomeOtherPack.TrenchGunPickup'
-     PlayerViewOffset=(X=-50.000000,Y=20.000000,Z=-30.000000)
-     AttachmentClass=Class'BWBPSomeOtherPack.TrenchGunAttachment'
-     IconMaterial=Texture'BWBPSomeOtherPackTex.TechGun.Icon_TechGun'
-     IconCoords=(X2=127,Y2=30)
-     ItemName="BR-112 Trenchgun"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=25
-     LightSaturation=150
-     LightBrightness=180.000000
-     LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.Techgun_FP'
-     DrawScale=1.250000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Shader'BWBPSomeOtherPackTex.TechWrench.TechWrenchShiny'
-     Skins(2)=Texture'BWBPSomeOtherPackTex.TechWrench.CryoShell'
-     Skins(3)=Texture'BWBPSomeOtherPackTex.TechWrench.CryoShell'
-     Skins(4)=Shader'BWBPSomeOtherPackTex.TechWrench.WrenchShiny'
-	 bShowChargingBar=True
+	MatGreenShell=Texture'BWBPSomeOtherPackTex.TechWrench.ExplodoShell'
+	MatBlackShell=Texture'BWBPSomeOtherPackTex.TechWrench.ShockShell'
+	ShellTipBone1="ShellLSuper"
+	ShellTipBone2="ShellRSuper"
+	ShellTipBone3="SpareShellLSuper"
+	ShellTipBone4="SpareShellRSuper"
+	LastShellBone="ShellR"
+	FireAnimCutThreshold=3.000000
+	AltDeployable=(dClass=Class'BWBPSomeOtherPack.TrenchGunEnergyBarrier',WarpInTime=0.500000,SpawnOffset=52,CheckSlope=False,dDescription="A five-second barrier of infinite durability.",CooldownDelay=2.00) 
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBPSomeOtherPackTex.TechGun.BigIcon_TechGun'
+	BigIconCoords=(Y1=35,Y2=225)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Shotgun=True
+	bWT_Energy=True
+	ManualLines(0)="Fire either a single barrel or both barrels of the loaded ammo type. Charge fire before releasing to fire both barrel simultaneously, tap to fire a single barrel. Electro Shot is capable of displacing targets' aim, with the effectiveness of this being increased by firing both barrels at once. Cryo Shot will temporarily slow targets hit by it, firing both rounds at once also increases the duration of this effect."
+	ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
+	ManualLines(2)="Effective at close ranges, firing both barrels at once increases the duration of the slow down for ice rounds and displacement from electric rounds."
+	SpecialInfo(0)=(Info="160.0;10.0;0.3;40.0;0.0;1.0;0.0")
+	MeleeFireClass=Class'BWBPSomeOtherPack.TrenchGunMeleeFire'
+	BringUpSound=(Sound=Sound'BallisticSounds2.M290.M290Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
+	CockAnimRate=0.700000
+	SingleReloadAnimRate=1.000000
+	ReloadAnimRate=1.250000
+	ClipInFrame=0.800000
+	bNonCocking=True
+	WeaponModes(0)=(ModeName="Explosive Shot",Value=1.000000)
+	WeaponModes(1)=(ModeName="Electro Shot",Value=1.000000)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	SightPivot=(Pitch=256)
+	SightOffset=(X=30.000000,Y=11.500000,Z=43.500000)
+	GunLength=60.000000
+	LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
+	LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
+	ParamsClass=Class'TrenchGunWeaponParams'
+	FireModeClass(0)=Class'BWBPSomeOtherPack.TrenchGunPrimaryFire'
+	FireModeClass(1)=Class'BWBPSomeOtherPack.TrenchGunSecondaryFire'
+	SelectAnimRate=2.000000
+	PutDownAnimRate=2.000000
+	AIRating=0.800000
+	CurrentRating=0.800000
+	Description="BR-112 Trenchgun || Manufacturer: N/A, field modified || Deep in the mud filled trenches of Indorix Paraxii, the Carcosan Greasers, only days away from a full force Cryon and Skrith invasion, were desperate for a way to weather the impending invasion. Supply errors left them with little more than a surplus of specialized shotgun ammo that was not able to reliably feed into their standard issued shotguns. Ever resourceful, the Carcosan Greasers were able to improvise, and between scavanging as many civilian shotguns as they can and fabricating the rest with their on site nano-forges, they were able to outfit their company with reliable, light weight breach loaded shotguns well adapted to run whatever ammo type they could throw in them. They proceeded to hold the invasion off long enough for the area to be evacuated, holding off weapons fire with their iconic NFUD wrenches being used in tandem  withe their specialized shotguns, wreaking havoc to the systems of the Cryon with their electroshot and freezing the Skrith where they stood."
+	Priority=38
+	HudColor=(B=35,G=100,R=200)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=7
+	PickupClass=Class'BWBPSomeOtherPack.TrenchGunPickup'
+	PlayerViewOffset=(X=-50.000000,Y=20.000000,Z=-30.000000)
+	AttachmentClass=Class'BWBPSomeOtherPack.TrenchGunAttachment'
+	IconMaterial=Texture'BWBPSomeOtherPackTex.TechGun.Icon_TechGun'
+	IconCoords=(X2=127,Y2=30)
+	ItemName="BR-112 Trenchgun"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=25
+	LightSaturation=150
+	LightBrightness=180.000000
+	LightRadius=5.000000
+	Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.Techgun_FP'
+	DrawScale=1.250000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Shader'BWBPSomeOtherPackTex.TechWrench.TechWrenchShiny'
+	Skins(2)=Texture'BWBPSomeOtherPackTex.TechWrench.CryoShell'
+	Skins(3)=Texture'BWBPSomeOtherPackTex.TechWrench.CryoShell'
+	Skins(4)=Shader'BWBPSomeOtherPackTex.TechWrench.WrenchShiny'
+	bShowChargingBar=True
 }

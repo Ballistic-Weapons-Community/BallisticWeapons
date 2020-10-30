@@ -67,8 +67,8 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Shotgun'
      bBrassOnCock=True
      BrassOffset=(X=-30.000000,Y=-5.000000,Z=5.000000)
-     RecoilPerShot=512.000000
-     VelocityRecoil=200.000000
+     FireRecoil=512.000000
+     FirePushbackForce=200.000000
      FireChaos=0.500000
      JamSound=(Sound=Sound'BallisticSounds3.Misc.ClipEnd-1',Volume=0.900000)
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.CYLO.CYLO-FireSG',Volume=1.300000,Radius=256.000000)

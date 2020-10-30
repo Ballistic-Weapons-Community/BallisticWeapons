@@ -689,22 +689,8 @@ function float SuggestAttackStyle()	{	return 0.5;	}
 function float SuggestDefenseStyle()	{	return -0.5;	}
 // End AI Stuff =====
 
-
-simulated function Rotator CalcNewAimOffset()
-{
-	local rotator R;
-
-	R = default.AimOffset;
-
-	if (!BCRepClass.default.bNoJumpOffset && SprintControl != None && SprintControl.bSprinting)
-		R += SprintOffset;
-
-	return R;
-}
-
 defaultproperties
 {	 
-	InventorySize=35
      VentingSound=Sound'BWBP2-Sounds.LightningGun.LG-Coolant'
      WarningSound=Sound'PackageSounds4Pro.BFG.BFG-Critical'
      OverheatSound=Sound'BWBP4-Sounds.Misc.BH-Explode'
@@ -727,15 +713,7 @@ defaultproperties
      SightPivot=(Pitch=768)
      SightOffset=(X=-18.000000,Z=23.299999)
      SightDisplayFOV=40.000000
-     SprintOffSet=(Pitch=-3000,Yaw=-5000)
-     AimAdjustTime=0.400000
-     AimSpread=192
-     ChaosSpeedThreshold=3000.000000
-     ChaosAimSpread=1024
-     RecoilYawFactor=0.100000
-     RecoilXFactor=0.300000
-     RecoilYFactor=0.300000
-     RecoilDeclineTime=0.750000
+	 ParamsClass=Class'HVPCMk66WeaponParams'
      FireModeClass(0)=Class'BWBPRecolorsPro.HVPCMk66PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.HVPCMk66SecondaryFire'
      IdleAnimRate=1.200000

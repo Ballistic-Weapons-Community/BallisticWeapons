@@ -85,8 +85,8 @@ defaultproperties
      BrassClass=Class'BallisticJiffyPack.Brass_ShotgunHE'
      BrassOffset=(X=-1.000000,Z=-1.000000)
      AimedFireAnim="SightFire"
-     RecoilPerShot=256.000000
-     VelocityRecoil=150.000000
+     FireRecoil=256.000000
+     FirePushbackForce=150.000000
      FireChaos=0.500000
      XInaccuracy=192.000000
      YInaccuracy=192.000000

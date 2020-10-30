@@ -76,16 +76,36 @@ simulated function PlayIdle()
 	FreezeAnimAt(0.0);
 }
 
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimAdjustTime *= 1.5;
+	AimComponent.AimSpread.Max *= 0.65;
+}
+
 simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
 	if (bLaserOn != default.bLaserOn)
 	{
-		if (bLaserOn)
-			AimAdjustTime = default.AimAdjustTime * 1.5;
-		else
-			AimAdjustTime = default.AimAdjustTime;
+		OnLaserSwitched();
+
 		default.bLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
@@ -105,17 +125,8 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	bUseNetAim = default.bUseNetAim || bLaserOn;
 	if (ThirdPersonActor!=None)
 		MD24Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
-	if (bLaserOn)
-	{
-		AimAdjustTime = default.AimAdjustTime * 1.5;
-		ChaosAimSpread *= 0.65;
-	}
-	
-	else
-	{
-		AimAdjustTime = default.AimAdjustTime;
-		ChaosAimSpread = default.ChaosAimSpread;
-	}
+
+	OnLaserSwitched();
 	
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
@@ -123,17 +134,17 @@ function ServerSwitchLaser(bool bNewLaserOn)
 
 simulated function ClientSwitchLaser()
 {
+	OnLaserSwitched();
+	
 	if (bLaserOn)
 	{
 		SpawnLaserDot();
 		PlaySound(LaserOnSound,,0.7,,32);
-		ChaosAimSpread *= 0.65;
 	}
 	else
 	{
 		KillLaserDot();
 		PlaySound(LaserOffSound,,0.7,,32);
-		ChaosAimSpread = default.ChaosAimSpread;
 	}
 
 	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))
@@ -309,11 +320,15 @@ simulated function bool HasAmmo()
 	return false;	//This weapon is empty
 }
 // Change some properties when using sights...
-simulated function SetScopeBehavior()
+simulated function UpdateNetAim()
 {
-	super.SetScopeBehavior();
-
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+}
+
+simulated function OnScopeViewChanged()
+{
+	Super.OnScopeViewChanged();
+	
 	if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 	{
 		if (bScopeView)
@@ -362,69 +377,57 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 defaultproperties
 {
-     LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
-     LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
-     BulletBone="Bullet"
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.500000
-     BigIconMaterial=Texture'BallisticTextures_25.MD24.BigIcon_MD24'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     ManualLines(0)="Low-recoil pistol fire. Has the option of burst fire. Very controllable."
-     ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
-     ManualLines(2)="The Weapon Function key toggles a laser sight, which reduces the spread of the weapon's hipfire, but exposes the user's position to the enemy. This laser sight makes the MD24 a strong choice for dual wielding.||Effective at close range."
-     SpecialInfo(0)=(Info="120.0;10.0;-999.0;25.0;0.0;0.0;-999.0")
-     MeleeFireClass=Class'BallisticProV55.MD24MeleeFire'
-     BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-     MagAmmo=16
-     CockSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Cock',Volume=0.675000)
-     ReloadAnimRate=1.350000
-     ClipHitSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_ClipHit',Volume=0.800000)
-     ClipOutSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_ClipOut',Volume=0.800000)
-     ClipInSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_ClipIn',Volume=0.800000)
-     ClipInFrame=0.580000
-	 WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     bNoCrosshairInScope=True
-     SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
-     SightDisplayFOV=60.000000
-     SightingTime=0.200000
-	 SightAimFactor=2
-
-     AimAdjustTime=0.450000
-	 
-	 
-	 ViewRecoilFactor=0.65
-     RecoilXFactor=0.03000
-     RecoilYFactor=0.03000
-     RecoilDeclineTime=0.500000
-     RecoilDeclineDelay=0.220000
-	 
-     FireModeClass(0)=Class'BallisticProV55.MD24PrimaryFire'
-     FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
-     Description="The MD24 is a lightweight, medium powered pistol, recently developed by the internal UTC Defense Tech manufacturer for those troops in need of the simple maneuverability. The MD24 is primarily made up of specialised polymers and lightweight metals to make it useful to stealth and Commando units. Fitted with a stock laser pointing device, the MD24 is an easy to use sidearm, especially useful in tight spots."
-     Priority=19
-     HudColor=(B=25,G=150,R=50)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=2
-     GroupOffset=6
-     PickupClass=Class'BallisticProV55.MD24Pickup'
-     PlayerViewOffset=(X=6.500000,Y=6.000000,Z=-6.500000)
-     AttachmentClass=Class'BallisticProV55.MD24Attachment'
-     IconMaterial=Texture'BallisticTextures_25.MD24.SmallIcon_MD24'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="MD24 Pistol"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticProAnims.MD24'
-     DrawScale=0.350000
+	LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
+	LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
+	BulletBone="Bullet"
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.500000
+	BigIconMaterial=Texture'BallisticTextures_25.MD24.BigIcon_MD24'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)="Low-recoil pistol fire. Has the option of burst fire. Very controllable."
+	ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
+	ManualLines(2)="The Weapon Function key toggles a laser sight, which reduces the spread of the weapon's hipfire, but exposes the user's position to the enemy. This laser sight makes the MD24 a strong choice for dual wielding.||Effective at close range."
+	SpecialInfo(0)=(Info="120.0;10.0;-999.0;25.0;0.0;0.0;-999.0")
+	MeleeFireClass=Class'BallisticProV55.MD24MeleeFire'
+	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
+	CockSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Cock',Volume=0.675000)
+	ReloadAnimRate=1.350000
+	ClipHitSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_ClipHit',Volume=0.800000)
+	ClipOutSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_ClipOut',Volume=0.800000)
+	ClipInSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_ClipIn',Volume=0.800000)
+	ClipInFrame=0.580000
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	bNoCrosshairInScope=True
+	SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
+	SightDisplayFOV=60.000000
+	ParamsClass=Class'MD24WeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.MD24PrimaryFire'
+	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.600000
+	CurrentRating=0.600000
+	Description="The MD24 is a lightweight, medium powered pistol, recently developed by the internal UTC Defense Tech manufacturer for those troops in need of the simple maneuverability. The MD24 is primarily made up of specialised polymers and lightweight metals to make it useful to stealth and Commando units. Fitted with a stock laser pointing device, the MD24 is an easy to use sidearm, especially useful in tight spots."
+	Priority=19
+	HudColor=(B=25,G=150,R=50)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=2
+	GroupOffset=6
+	PickupClass=Class'BallisticProV55.MD24Pickup'
+	PlayerViewOffset=(X=6.500000,Y=6.000000,Z=-6.500000)
+	AttachmentClass=Class'BallisticProV55.MD24Attachment'
+	IconMaterial=Texture'BallisticTextures_25.MD24.SmallIcon_MD24'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="MD24 Pistol"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticProAnims.MD24'
+	DrawScale=0.350000
 }

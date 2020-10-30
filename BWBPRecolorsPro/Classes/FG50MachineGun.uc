@@ -64,10 +64,6 @@ simulated event PostNetReceive()
 		return;
 	if (bLaserOn != default.bLaserOn)
 	{
-		if (bLaserOn)
-			AimAdjustTime = default.AimAdjustTime * 1.5;
-		else
-			AimAdjustTime = default.AimAdjustTime;
 		default.bLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
@@ -144,26 +140,21 @@ simulated function bool ConsumeMagAmmo(int Mode, float Load, optional bool bAmou
 	return true;
 }
 
+simulated function CheckSetNetAim()
+{
+	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+}
+
 //=====================================================================
 
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+
+	CheckSetNetAim();
+
 	if (ThirdPersonActor!=None)
 		FG50Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
-	if (bLaserOn)
-	{
-		AimAdjustTime = default.AimAdjustTime * 1.5;
-		AimSpread *= 0.4;
-		ChaosAimSpread *= 0.4;
-	}
-	else
-	{
-		AimAdjustTime = default.AimAdjustTime;
-		AimSpread = default.AimSpread;
-		ChaosAimSpread = default.ChaosAimSpread;	
-	}
     if (!Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
 }
@@ -174,15 +165,11 @@ simulated function ClientSwitchLaser()
 	{
 		SpawnLaserDot();
 		PlaySound(LaserOnSound,,0.7,,32);
-		AimSpread *= 0.4;
-		ChaosAimSpread *= 0.4;
 	}
 	else
 	{
 		KillLaserDot();
-		PlaySound(LaserOffSound,,0.7,,32);
-		AimSpread = default.AimSpread;
-		ChaosAimSpread = default.ChaosAimSpread;	
+		PlaySound(LaserOffSound,,0.7,,32);	
 	}
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 }
@@ -203,12 +190,7 @@ simulated function SpawnLaserDot(optional vector Loc)
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
-	if (Instigator != None && AIController(Instigator.Controller) != None) //Bot Accuracy++
-	{
-		AimSpread *= 0.30;
-		ChaosAimSpread *= 0.20;
-	}
-	else if (Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
+	if (Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
 	{
 		ScreenStart();
 		if (!Instigator.IsLocallyControlled())
@@ -382,9 +364,9 @@ function ServerSwitchWeaponMode(byte NewMode)
 	ServerUpdateLaser(bLaserOn);
 }
 
-simulated function ClientSwitchWeaponModes (byte newMode)
+simulated function CommonSwitchWeaponMode (byte newMode)
 {
-	Super.ClientSwitchWeaponModes(newMode);
+	Super.CommonSwitchWeaponMode(newMode);
 	UpdateScreen();
 }
 
@@ -591,7 +573,7 @@ function byte BestMode()
 
 	if (B.Skill > Rand(6))
 	{
-		if (Chaos < 0.1 || Chaos < 0.5 && VSize(B.Enemy.Location - Instigator.Location) > 500)
+		if (AimComponent.GetChaos() < 0.1 || AimComponent.GetChaos() < 0.5 && VSize(B.Enemy.Location - Instigator.Location) > 500)
 			return 1;
 	}
 	else if (FRand() > 0.75)
@@ -630,97 +612,77 @@ function float SuggestDefenseStyle()	{	return 0.6;	}
 
 defaultproperties
 {
-	AimDisplacementDurationMult=1.25
-     LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
-     LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
-     HeatDeclineDelay=0.400000
-	 bShowChargingBar=True
-     OverheatSound=Sound'PackageSounds4Pro.CYLO.CYLO-OverHeat'
-     ScopeBone="Holosight"
-     BulletBone="Bullet"
-     WeaponScreen=ScriptedTexture'BallisticRecolors3TexPro.FG50.FG50-ScriptLCD'
-     screen=Shader'BallisticRecolors3TexPro.FG50.FG50-ScriptLCD-SD'
-     ScreenBase1=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen'
-     ScreenBase2=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen2'
-     ScreenBase3=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen3'
-     ScreenBase4=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen4'
-     ScreenRedBar=Texture'BallisticRecolors3TexPro.M2020.M2020-ScreenOff'
-     Numbers=Texture'BallisticRecolors3TexPro.PUMA.PUMA-Numbers'
-     MyFontColor=(B=255,G=255,R=255,A=255)
-     PlayerSpeedFactor=0.750000
-     PlayerJumpFactor=0.750000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     AIReloadTime=1.000000
-     BigIconMaterial=Texture'BallisticRecolors3TexPro.FG50.BigIcon_FG50'
-     BigIconCoords=(Y1=36,Y2=225)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     ManualLines(0)="Fires powerful explosive rounds. Upon impact with the enemy, these rounds explode, dealing heavy damage to nearby targets. Sustained DPS is massive. Has no penetration ability.|Controlled mode dramatically improves the hipfire at the cost of fire rate. A laser is projected which may give away the user's position."
-     ManualLines(1)="Fires more rapidly, but overheats the weapon. An extremely powerful burst attack."
-     ManualLines(2)="The FG50 is heavy and restricts movement. Takes a long time to aim. Effective at medium to long range."
-     SpecialInfo(0)=(Info="320.0;35.0;1.0;100.0;0.8;0.5;0.1")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
-     MagAmmo=40
-     CockAnimPostReload="ReloadEndCock"
-     CockSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
-     ClipOutSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-DrumOut',Volume=1.500000,Radius=32.000000)
-     ClipInSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-DrumIn',Volume=1.500000,Radius=32.000000)
-     ClipInFrame=0.650000
-     WeaponModes(0)=(ModeName="Controlled")
-     WeaponModes(1)=(bUnavailable=True)
-     bNotifyModeSwitch=True
-     FullZoomFOV=60.000000
-     bNoCrosshairInScope=True
-     SightOffset=(Y=25.000000,Z=10.300000)
-     SightingTime=0.700000
-     SprintOffSet=(Pitch=-3072,Yaw=-4096)
-     JumpOffSet=(Pitch=-6000,Yaw=2000)
-	 SightAimFactor=0.7
-	 
-     AimSpread=128
-     ChaosDeclineTime=1.750000
-     ChaosAimSpread=1536
-	 ChaosSpeedThreshold=350
-	 
-	 ViewRecoilFactor=0.15
-     RecoilXCurve=(Points=(,(InVal=0.15,OutVal=0.075),(InVal=0.400000,OutVal=0.130000),(InVal=0.550000,OutVal=0.15000),(InVal=0.700000,OutVal=0.21000),(InVal=1.000000,OutVal=0.225000)))
-     RecoilYCurve=(Points=(,(InVal=0.20000,OutVal=0.250000),(InVal=0.400000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.05000
-     RecoilYFactor=0.050000
-	 RecoilMax=16384
-     RecoilDeclineTime=1.500000
-     FireModeClass(0)=Class'BWBPRecolorsPro.FG50PrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.FG50SecondaryFire'
-     IdleAnimRate=0.600000
-	 PutDownAnimRate=1.25
-     PutDownTime=0.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.750000
-     CurrentRating=0.750000
-     Description="The FG50 Heavy Machine Gun is a specialized .50 caliber weapon designed for use on automated weapons platforms and vehicles. Built under contract for the UTC, the NDTR FG50 is the primary weapon for many light assault vehicles and combat drones. An infantry version was developed for UTC's Sub-Orbital Insertion Troops as a high powered combat rifle, after complaints that the current M925 was too bulky to carry and store in Armored Insertion Pods and that the MG33 simply did not pack the punch required to stop a charging Skrith.||Hunter-killer SOIT teams swear by the FG50 now, and praise its ability to fire with precision and accuracy. However ask any veteran and you'll hear many stories about those who disrespected the power of the weapon and foolishly ended up with broken arms and damaged prides. The HMG is not a weapon to toy with."
-     Priority=65
-     HudColor=(B=25,G=25)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=6
-     GroupOffset=3
-     PickupClass=Class'BWBPRecolorsPro.FG50Pickup'
-     PlayerViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
-     BobDamping=2.000000
-     AttachmentClass=Class'BWBPRecolorsPro.FG50Attachment'
-     IconMaterial=Texture'BallisticRecolors3TexPro.FG50.SmallIcon_FG50'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="FG50 Heavy Machinegun"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.FG50_FP'
-     DrawScale=0.500000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Texture'BallisticRecolors3TexPro.FG50.FG50-Main'
-     Skins(2)=Texture'BallisticRecolors3TexPro.FG50.FG50-Misc'
-     Skins(3)=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen'
+	LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
+	LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
+	HeatDeclineDelay=0.400000
+	OverheatSound=Sound'PackageSounds4Pro.CYLO.CYLO-OverHeat'
+	ScopeBone="Holosight"
+	BulletBone="Bullet"
+	WeaponScreen=ScriptedTexture'BallisticRecolors3TexPro.FG50.FG50-ScriptLCD'
+	screen=Shader'BallisticRecolors3TexPro.FG50.FG50-ScriptLCD-SD'
+	ScreenBase1=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen'
+	ScreenBase2=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen2'
+	ScreenBase3=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen3'
+	ScreenBase4=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen4'
+	ScreenRedBar=Texture'BallisticRecolors3TexPro.M2020.M2020-ScreenOff'
+	Numbers=Texture'BallisticRecolors3TexPro.PUMA.PUMA-Numbers'
+	MyFontColor=(B=255,G=255,R=255,A=255)
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	AIReloadTime=1.000000
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.FG50.BigIcon_FG50'
+	BigIconCoords=(Y1=36,Y2=225)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)="Fires powerful explosive rounds. Upon impact with the enemy, these rounds explode, dealing heavy damage to nearby targets. Sustained DPS is massive. Has no penetration ability.|Controlled mode dramatically improves the hipfire at the cost of fire rate. A laser is projected which may give away the user's position."
+	ManualLines(1)="Fires more rapidly, but overheats the weapon. An extremely powerful burst attack."
+	ManualLines(2)="The FG50 is heavy and restricts movement. Takes a long time to aim. Effective at medium to long range."
+	SpecialInfo(0)=(Info="320.0;35.0;1.0;100.0;0.8;0.5;0.1")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
+	MagAmmo=40
+	CockAnimPostReload="ReloadEndCock"
+	CockSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-DrumOut',Volume=1.500000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-DrumIn',Volume=1.500000,Radius=32.000000)
+	ClipInFrame=0.650000
+	bShowChargingBar=True
+	WeaponModes(0)=(ModeName="Controlled",AimParamsIndex=1)
+	WeaponModes(1)=(bUnavailable=True)
+	FullZoomFOV=60.000000
+	bNoCrosshairInScope=True
+	SightOffset=(Y=25.000000,Z=10.300000)
+	ParamsClass=Class'FG50WeaponParams'	 
+	FireModeClass(0)=Class'BWBPRecolorsPro.FG50PrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.FG50SecondaryFire'
+	IdleAnimRate=0.600000
+	PutDownAnimRate=1.25
+	PutDownTime=0.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.750000
+	CurrentRating=0.750000
+	Description="The FG50 Heavy Machine Gun is a specialized .50 caliber weapon designed for use on automated weapons platforms and vehicles. Built under contract for the UTC, the NDTR FG50 is the primary weapon for many light assault vehicles and combat drones. An infantry version was developed for UTC's Sub-Orbital Insertion Troops as a high powered combat rifle, after complaints that the current M925 was too bulky to carry and store in Armored Insertion Pods and that the MG33 simply did not pack the punch required to stop a charging Skrith.||Hunter-killer SOIT teams swear by the FG50 now, and praise its ability to fire with precision and accuracy. However ask any veteran and you'll hear many stories about those who disrespected the power of the weapon and foolishly ended up with broken arms and damaged prides. The HMG is not a weapon to toy with."
+	Priority=65
+	HudColor=(B=25,G=25)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=6
+	GroupOffset=3
+	PickupClass=Class'BWBPRecolorsPro.FG50Pickup'
+	PlayerViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
+	BobDamping=2.000000
+	AttachmentClass=Class'BWBPRecolorsPro.FG50Attachment'
+	IconMaterial=Texture'BallisticRecolors3TexPro.FG50.SmallIcon_FG50'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="FG50 Heavy Machinegun"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.FG50_FP'
+	DrawScale=0.500000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Texture'BallisticRecolors3TexPro.FG50.FG50-Main'
+	Skins(2)=Texture'BallisticRecolors3TexPro.FG50.FG50-Misc'
+	Skins(3)=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen'
 }

@@ -188,7 +188,7 @@ defaultproperties
      FlashBone="Muzzle"
      FlashScaleFactor=0.250000
      AimedFireAnim="SightFire"
-     RecoilPerShot=208.000000
+     FireRecoil=208.000000
      FireChaos=0.065000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      XInaccuracy=48.000000

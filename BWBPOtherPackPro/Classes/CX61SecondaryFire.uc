@@ -37,7 +37,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 	if (Weapon.bBerserk)
 	{
 		FireRate *= 0.75;
-		RecoilPerShot *= 0.75;
+		FireRecoil *= 0.75;
 		FireChaos *= 0.75;
 	}
 	if ( Level.GRI.WeaponBerserk > 1.0 )
@@ -117,7 +117,7 @@ simulated state Flamer
 	
 		CX61Attachment(Weapon.ThirdPersonActor).CX61UpdateFlameHit(Other, HitLocation, HitNormal);
 		
-		CX61AssaultRifle(Weapon).StoredGas -= 0.2;
+		CX61AssaultRifle(Weapon).StoredGas -= 0.1;
 	
 		Super(BallisticFire).DoFireEffect();
 	}
@@ -198,7 +198,7 @@ auto simulated state HealGas
 			Prj.Instigator = Instigator;
 		}
 		
-		CX61AssaultRifle(Weapon).StoredGas -= 0.04;
+		CX61AssaultRifle(Weapon).StoredGas -= 0.02;
 		CX61Attachment(Weapon.ThirdPersonActor).CX61UpdateGasHit(HitLocation);
 	
 		Super(BallisticFire).DoFireEffect();
@@ -271,14 +271,14 @@ static function FireModeStats GetStats()
 	local FireModeStats FS;
 
 	FS.DamageInt = class'CX61FlameProjectile'.default.Damage;
-	FS.Damage = String(FS.DamageInt)@"(flame),"@String(int(class'CX61HealProjectile'.default.Damage))@"(heal)";
+	FS.Damage = String(FS.DamageInt) @ "(flame)," @ String(int(class'CX61HealProjectile'.default.Damage)) @ "(heal)";
 	FS.DPS = FS.DamageInt / default.FireRate;
 	FS.TTK = default.FireRate * (Ceil(175/FS.DamageInt) - 1);
 	if (default.FireRate < 0.5)
 		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
 	else FS.RPM = 1/default.FireRate@"checks/second";
-	FS.RPShot = default.RecoilPerShot;
-	FS.RPS = default.RecoilPerShot / default.FireRate;
+	FS.RPShot = default.FireRecoil;
+	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
 	FS.Range = "Max:"@(3000 / 52.5)@"metres";

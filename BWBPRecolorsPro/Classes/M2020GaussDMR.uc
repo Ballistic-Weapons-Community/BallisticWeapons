@@ -213,7 +213,7 @@ simulated function AdjustMagnetProperties ()
 			class'bUtil'.static.InitMuzzleFlash(Arc, class'M2020ShieldEffect', DrawScale, self, 'tip');
 
 		IdleAnim='IdleShield';
-		BFireMode[0].RecoilPerShot = 64;
+		BFireMode[0].FireRecoil = 64;
 		WeaponModes[3].bUnavailable=false;
 		
 		PreviousWeaponMode = CurrentWeaponMode;
@@ -232,7 +232,7 @@ simulated function AdjustMagnetProperties ()
 
 		IdleAnim='Idle';
 		Instigator.AmbientSound = UsedAmbientSound;
-		BFireMode[0].RecoilPerShot = BFireMode[0].default.RecoilPerShot;
+		BFireMode[0].FireRecoil = BFireMode[0].default.FireRecoil;
 		
 		WeaponModes[0].bUnavailable=false;
 		WeaponModes[1].bUnavailable=false;
@@ -535,112 +535,93 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-     bLaserOn=True
-     DrawSoundLong=Sound'PackageSounds4ProExp.M2020.M2020-DrawLong'
-     VentingSound=Sound'PackageSounds4ProExp.M2020.M2020-IdleShield'
-     OverheatSound=Sound'PackageSounds4Pro.XavPlas.Xav-Overload'
-     ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
-	 PlayerSpeedFactor=0.9
-	 PlayerJumpFactor=0.9
-     MaxHeat=7.000000
-     BulletBone1="Bullet1"
-     BulletBone2="Bullet2"
-     MagnetOpenAnim="ShieldDeploy"
-     MagnetCloseAnim="ShieldUndeploy"
-     MagnetForceCloseAnim="Overheat"
-     WeaponScreen=ScriptedTexture'BallisticRecolors4TexPro.M2020.M2020-ScriptLCD'
-     screen=Shader'BallisticRecolors4TexPro.M2020.M2020-ScriptLCD-SD'
-     ScreenBase1=Texture'BallisticRecolors4TexPro.M2020.M2020-Screen'
-     ScreenBase2=Texture'BallisticRecolors4TexPro.M2020.M2020-ScreenOff'
-     Numbers=Texture'BallisticRecolors4TexPro.M2020.M2020-Numbers'
-     MyFontColor=(B=255,G=255,R=255,A=255)
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=2)
-     AIReloadTime=1.000000
-     BigIconMaterial=Texture'BallisticRecolors4TexPro.M2020.BigIcon_M2020'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     ManualLines(0)="Power mode fires a single powerful shot with high recoil and damage. Fire rate is poor.|Recharge mode fires more quickly for greater sustained DPS but lower individual shot power.|Offline mode (or Deflecting mode when the shield is active) has the lowest power, but does not generate a bullet trail."
-     ManualLines(1)="Raises the scope."
-     ManualLines(2)="The Weapon Function key generates a frontal magnetic deflection shield, locking the rifle to Offline mode. This shield lasts up to 10 seconds and immunizes the user against any frontal attack which is delivered by means of any metal object. ||Effective at long range."
-     SpecialInfo(0)=(Info="240.0;25.0;1.0;80.0;2.0;0.1;0.1")
-     BringUpSound=(Sound=Sound'WeaponSounds.LightningGun.SwitchToLightningGun')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
-     MagAmmo=10
-     CockAnimPostReload="ReloadEndCock"
-     CockSound=(Sound=Sound'BallisticSounds2.M50.M50Cock')
-     ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
-     ClipOutSound=(Sound=Sound'BallisticSounds2.M50.M50ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds2.M50.M50ClipIn')
-     ClipInFrame=0.650000
-     bCockOnEmpty=True
-     WeaponModes(0)=(ModeName="Gauss: Recharge")
-     WeaponModes(1)=(ModeName="Gauss: Power",ModeID="WM_SemiAuto",Value=1.000000)
-     WeaponModes(2)=(ModeName="Gauss: Offline",ModeID="WM_SemiAuto",Value=1.000000)
-     WeaponModes(3)=(ModeName="Gauss: Deflecting",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
-     CurrentWeaponMode=0
-     bNotifyModeSwitch=True
-     ZoomType=ZT_Logarithmic
-     ScopeViewTex=Texture'BallisticRecolors4TexPro.M2020.M2020ScopeView'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
-     FullZoomFOV=20.000000
-     bNoMeshInScope=True
-     bNoCrosshairInScope=True
-     SightOffset=(Y=-3.000000,Z=18.000000)
-     SightingTime=0.650000
-     MinFixedZoomLevel=0.350000
-     MinZoom=2.000000
-     MaxZoom=16.000000
-     ZoomStages=8
-     GunLength=80.000000
-     CrouchAimFactor=0.650000
-     SightAimFactor=0.15
-     SprintOffSet=(Pitch=-3000,Yaw=-4096)
-     JumpOffSet=(Pitch=-6000,Yaw=2000)
-     AimSpread=64
-     ChaosDeclineTime=1.250000
-     ChaosAimSpread=1280
-	 
-	 ViewRecoilFactor=0.2
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
-     RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.180000),(InVal=0.400000,OutVal=0.50000),(InVal=0.600000,OutVal=0.750000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.0500000
-     RecoilYFactor=0.0500000
-     RecoilDeclineDelay=0.700000
-	 
-     FireModeClass(0)=Class'BWBPRecolorsPro.M2020GaussPrimaryFire'
-     FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
-     PutDownTime=0.80000
-     BringUpTime=0.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.800000
-     CurrentRating=0.800000
-     bShowChargingBar=True
-     Description="The M2020 is a 2nd generation Gauss rifle in use by UTC marksmen personnel, currently in the process of being phased out by Enravion 3rd generation M30 models. These 2nd generation Gauss rifles are significantly more portable and powerful than their predecessors, however troops have complained about the M2020 in particular's bulkiness and lack of ergonomics. The rifle itself uses two parallel heavy electromagnets to boost its special 7.62mm rounds to extreme velocities. Charge is variable, and the electromagnets can be disabled at will. |UTC Note: When operating this weapon, keep all metallic objects away from the reciprocaiting chargers. While locking the weapon's magnets open can be fun for pranks, troops are advised to not use it near sensitive military equipment."
-     Priority=65
-     HudColor=(B=255,G=175,R=100)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=9
-     GroupOffset=11
-     PickupClass=Class'BWBPRecolorsPro.M2020GaussPickup'
-     PlayerViewOffset=(Y=12.000000,Z=-12.000000)
-     BobDamping=2.000000
-     AttachmentClass=Class'BWBPRecolorsPro.M2020GaussAttachment'
-     IconMaterial=Texture'BallisticRecolors4TexPro.M2020.SmallIcon_M2020'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="M2020 Gauss DMR"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.M2020_FP'
-     DrawScale=0.350000
-     Skins(0)=Shader'BallisticRecolors4TexPro.M2020.M2020-ShineAlt'
-     Skins(1)=Shader'BallisticRecolors4TexPro.M2020.M2020-Shine'
-     Skins(2)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     bFullVolume=True
-     SoundVolume=64
-     SoundRadius=128.000000
+	bLaserOn=True
+	DrawSoundLong=Sound'PackageSounds4ProExp.M2020.M2020-DrawLong'
+	VentingSound=Sound'PackageSounds4ProExp.M2020.M2020-IdleShield'
+	OverheatSound=Sound'PackageSounds4Pro.XavPlas.Xav-Overload'
+	ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
+	MaxHeat=7.000000
+	BulletBone1="Bullet1"
+	BulletBone2="Bullet2"
+	MagnetOpenAnim="ShieldDeploy"
+	MagnetCloseAnim="ShieldUndeploy"
+	MagnetForceCloseAnim="Overheat"
+	WeaponScreen=ScriptedTexture'BallisticRecolors4TexPro.M2020.M2020-ScriptLCD'
+	screen=Shader'BallisticRecolors4TexPro.M2020.M2020-ScriptLCD-SD'
+	ScreenBase1=Texture'BallisticRecolors4TexPro.M2020.M2020-Screen'
+	ScreenBase2=Texture'BallisticRecolors4TexPro.M2020.M2020-ScreenOff'
+	Numbers=Texture'BallisticRecolors4TexPro.M2020.M2020-Numbers'
+	MyFontColor=(B=255,G=255,R=255,A=255)
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=2)
+	AIReloadTime=1.000000
+	BigIconMaterial=Texture'BallisticRecolors4TexPro.M2020.BigIcon_M2020'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	ManualLines(0)="Power mode fires a single powerful shot with high recoil and damage. Fire rate is poor.|Recharge mode fires more quickly for greater sustained DPS but lower individual shot power.|Offline mode (or Deflecting mode when the shield is active) has the lowest power, but does not generate a bullet trail."
+	ManualLines(1)="Raises the scope."
+	ManualLines(2)="The Weapon Function key generates a frontal magnetic deflection shield, locking the rifle to Offline mode. This shield lasts up to 10 seconds and immunizes the user against any frontal attack which is delivered by means of any metal object. ||Effective at long range."
+	SpecialInfo(0)=(Info="240.0;25.0;1.0;80.0;2.0;0.1;0.1")
+	BringUpSound=(Sound=Sound'WeaponSounds.LightningGun.SwitchToLightningGun')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
+	CockAnimPostReload="ReloadEndCock"
+	CockSound=(Sound=Sound'BallisticSounds2.M50.M50Cock')
+	ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.M50.M50ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.M50.M50ClipIn')
+	ClipInFrame=0.650000
+	bCockOnEmpty=True
+	WeaponModes(0)=(ModeName="Gauss: Recharge",RecoilParamsIndex=0)
+	WeaponModes(1)=(ModeName="Gauss: Power",ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=1)
+	WeaponModes(2)=(ModeName="Gauss: Offline",ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=2)
+	WeaponModes(3)=(ModeName="Gauss: Deflecting",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=2)
+	CurrentWeaponMode=0
+	ZoomType=ZT_Logarithmic
+	ScopeViewTex=Texture'BallisticRecolors4TexPro.M2020.M2020ScopeView'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	FullZoomFOV=20.000000
+	bNoMeshInScope=True
+	bNoCrosshairInScope=True
+	SightOffset=(Y=-3.000000,Z=18.000000)
+	MinFixedZoomLevel=0.350000
+	MinZoom=2.000000
+	MaxZoom=16.000000
+	ZoomStages=8
+	GunLength=80.000000
+	ParamsClass=Class'M2020WeaponParams'
+	FireModeClass(0)=Class'BWBPRecolorsPro.M2020GaussPrimaryFire'
+	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
+	PutDownTime=0.80000
+	BringUpTime=0.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.800000
+	CurrentRating=0.800000
+	bShowChargingBar=True
+	Description="The M2020 is a 2nd generation Gauss rifle in use by UTC marksmen personnel, currently in the process of being phased out by Enravion 3rd generation M30 models. These 2nd generation Gauss rifles are significantly more portable and powerful than their predecessors, however troops have complained about the M2020 in particular's bulkiness and lack of ergonomics. The rifle itself uses two parallel heavy electromagnets to boost its special 7.62mm rounds to extreme velocities. Charge is variable, and the electromagnets can be disabled at will. |UTC Note: When operating this weapon, keep all metallic objects away from the reciprocaiting chargers. While locking the weapon's magnets open can be fun for pranks, troops are advised to not use it near sensitive military equipment."
+	Priority=65
+	HudColor=(B=255,G=175,R=100)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=9
+	GroupOffset=11
+	PickupClass=Class'BWBPRecolorsPro.M2020GaussPickup'
+	PlayerViewOffset=(Y=12.000000,Z=-12.000000)
+	BobDamping=2.000000
+	AttachmentClass=Class'BWBPRecolorsPro.M2020GaussAttachment'
+	IconMaterial=Texture'BallisticRecolors4TexPro.M2020.SmallIcon_M2020'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="M2020 Gauss DMR"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=4.000000
+	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.M2020_FP'
+	DrawScale=0.350000
+	Skins(0)=Shader'BallisticRecolors4TexPro.M2020.M2020-ShineAlt'
+	Skins(1)=Shader'BallisticRecolors4TexPro.M2020.M2020-Shine'
+	Skins(2)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	bFullVolume=True
+	SoundVolume=64
+	SoundRadius=128.000000
 }

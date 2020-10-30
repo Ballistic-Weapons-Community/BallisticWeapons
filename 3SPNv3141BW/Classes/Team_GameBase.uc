@@ -104,6 +104,11 @@ var array<Misc_Player> unreceptiveControllers;
 var config bool		bPracticeRound;
 var config int		PracticeRoundLength;
 
+/* ballistic precache */
+var private const array< class<WeaponPickup> > PrecachePickups;
+
+var Color MapColor;
+
 static function PrecacheGameTextures(LevelInfo MyLevel)
 {
     class'xTeamGame'.static.PrecacheGameTextures(MyLevel);
@@ -111,7 +116,12 @@ static function PrecacheGameTextures(LevelInfo MyLevel)
 
 static function PrecacheGameStaticMeshes(LevelInfo MyLevel)
 {
-	class'xDeathMatch'.static.PrecacheGameStaticMeshes(MyLevel);
+    local int i;
+    
+    class'xDeathMatch'.static.PrecacheGameStaticMeshes(MyLevel);
+    
+    for (i=0; i< default.PrecachePickups.Length; i++)
+        default.PrecachePickups[i].static.StaticPrecache(myLevel);
 }
 
 function InitGameReplicationInfo()
@@ -685,11 +695,16 @@ function int ReduceDamage(int Damage, pawn injured, pawn instigatedBy, vector Hi
             FriendlyFireScale = FF;
             return Result;
         }
+
         else if(injured.GetTeamNum() != instigatedBy.GetTeamNum()) // different teams
         {
             OldDamage = PRI.EnemyDamage;
             NewDamage = OldDamage + Damage;
             PRI.EnemyDamage = NewDamage;
+
+            // add damage tracking for enemy pawn
+            if (Misc_Pawn(injured) != None)
+                Misc_PRI(injured.PlayerReplicationInfo).ReceivedDamage += Damage;
 
             Score = NewDamage - OldDamage;
             if(Score > 0.0)
@@ -2232,15 +2247,15 @@ function AnnounceBest()
 
     local string acc;
     local string dam;
-    local string aim;
-	local string spam;
+    local string kd;
+	local string de;
 
     local Misc_PRI PRI;
     local BallisticPlayerReplicationInfo BWPRI;
     
     local Misc_PRI accuracy;
     local Misc_PRI damage;
-	local Misc_PRI aimer, spammer;
+	local Misc_PRI kill_eff, damage_eff;
     
     local BallisticPlayerReplicationInfo accuracyBW;
 
@@ -2276,15 +2291,13 @@ function AnnounceBest()
 		}
 
 		if(damage == None || (damage.EnemyDamage < PRI.EnemyDamage))
-			damage = PRI;
-			
-		if (AIController(C) == None && PRI.AimableKills > 0)
-		{
-			if(aimer == None || float(PRI.AimedKills)/float(PRI.AimableKills) > float(aimer.AimedKills) / float(aimer.AimableKills))
-				aimer = PRI;
-			if (spammer == None || float(PRI.AimedKills)/float(PRI.AimableKills) < float(spammer.AimedKills) / float(spammer.AimableKills))
-				spammer = PRI;
-		}
+            damage = PRI;
+            
+        if(kill_eff == None || kill_eff.CalcKillEfficiency() < PRI.CalcKillEfficiency())
+            kill_eff = PRI;
+
+        if (damage_eff == None || kill_eff.CalcDamageEfficiency() < PRI.CalcDamageEfficiency())
+            damage_eff = PRI;
 	}
 
     if(accuracy != None && accuracyBW.AveragePercent > 0.0)
@@ -2302,29 +2315,26 @@ function AnnounceBest()
         else
             dam = Text$"Most Damage:"@Blue$damage.PlayerName$Text$";"@damage.EnemyDamage;
     }
-	
-	if (aimer != spammer)
-	{
-		if(aimer != None && aimer.AimableKills > 0)
-		{
-			if(aimer.Team.TeamIndex == 0)
-				aim = Text$"Most Aimed Kills:"@Red$aimer.PlayerName$Text$";"@int((float(aimer.AimedKills)/float(aimer.AimableKills)) * 100)$"%";
-			else
-				aim = Text$"Most Aimed Kills:"@Blue$aimer.PlayerName$Text$";"@int((float(aimer.AimedKills)/float(aimer.AimableKills)) * 100)$"%";
-		}
-		
-		if(spammer != None && spammer.AimableKills > 0)
-		{
-			if(spammer.Team.TeamIndex == 0)
-				spam = Text$"Biggest Spammer:"@Red$spammer.PlayerName$Text$";"@int((float(spammer.AimedKills)/float(spammer.AimableKills)) * 100)$"%";
-			else
-				spam = Text$"Biggest Spammer:"@Blue$spammer.PlayerName$Text$";"@int((float(spammer.AimedKills)/float(spammer.AimableKills))* 100)$"%";
-		}
-	}
 
+    if(kill_eff != None && kill_eff.Kills > 0)
+    {
+        if(kill_eff.Team.TeamIndex == 0)
+            kd = Text$"Highest Kill Efficiency:"@Red$kill_eff.PlayerName$Text$";"@kill_eff.CalcKillEfficiency();
+        else
+            kd = Text$"Highest Kill Efficiency:"@Blue$kill_eff.PlayerName$Text$";"@kill_eff.CalcKillEfficiency();
+    }
+
+    if(damage_eff != None && damage_eff.EnemyDamage > 0)
+    {
+        if(damage_eff.Team.TeamIndex == 0)
+            de = Text$"Highest Damage Efficiency:"@Red$damage_eff.PlayerName$Text$";"@damage_eff.CalcDamageEfficiency();
+        else
+            de = Text$"Highest Damage Efficiency:"@Blue$damage_eff.PlayerName$Text$";"@damage_eff.CalcDamageEfficiency();
+    }
+	
 	for(C = Level.ControllerList; C != None; C = C.NextController)
 		if(Misc_Player(c) != None)
-			Misc_Player(c).ClientListBest(acc, dam, aim, spam);
+			Misc_Player(c).ClientListBest(acc, dam, kd, de);
 }
 
 function SetMapString(Misc_Player Sender, string s)
@@ -2500,8 +2510,51 @@ function ChangeName(Controller Other, string S, bool bNameChange)
 		Broadcast(self, Other.PlayerReplicationInfo.OldName@"is now known as"@Other.PlayerReplicationInfo.PlayerName$".");
 }
 
+//Azarael - per-map loading screens and load map title from level summary
+static function string GetLoadingHint(PlayerController PlayerController, string MapName, Color ColorHint)
+{
+	local UT2K4ServerLoading UT2K4ServerLoading;
+	local string hint;
+	local Material MapLoadScreen;
+	local LevelSummary LS;
+	local LoadScreenRemovalInteraction myInteraction;
+	
+	foreach PlayerController.AllObjects(Class'UT2K4ServerLoading', UT2K4ServerLoading)
+	{
+		//Use map's loading screen if it has one.
+		MapLoadScreen = Material(DynamicLoadObject(MapName $ ".LoadingScreen", class'Material', True));
+		//Don't want to modify standard maps so using a separate package for those.
+		if (MapLoadScreen == None)
+			MapLoadScreen = Material(DynamicLoadObject("StdMapLoadTex_DM."$ MapName, class'Material', True));
+                    
+        if (MapLoadScreen != None)
+        {
+            DrawOpImage(UT2K4ServerLoading.Operations[0]).Image = MapLoadScreen;
+
+            //Wide loading screen. Adjust properties and add corrective Interaction.
+            if (MapLoadScreen.MaterialUSize() == 2048)
+            {
+                myInteraction = LoadScreenRemovalInteraction(PlayerController.Player.InteractionMaster.AddInteraction(String(class'LoadScreenRemovalInteraction'), PlayerController.Player));
+                myInteraction.OpLoading = DrawOpImage(UT2k4ServerLoading.Operations[0]);
+                DrawOpImage(UT2K4ServerLoading.Operations[0]).SubXL = 1820;
+                DrawOpImage(UT2K4ServerLoading.Operations[0]).SubYL = 1024;
+            }
+        }
+        
+        // Use level's title instead of map name
+		LS = LevelSummary(DynamicLoadObject(MapName$".LevelSummary", class'Object', True));
+		if (LS != None && LS.Title != "" && LS.Title != "Untitled" && Len(LS.Title) < 64)
+			DrawOpText(UT2K4ServerLoading.Operations[2]).Text = MakeColorCode(default.MapColor) $ LS.Title;
+		else
+			DrawOpText(UT2K4ServerLoading.Operations[2]).Text = MakeColorCode(default.MapColor) $ DrawOpText(UT2K4ServerLoading.Operations[2]).Text;
+	}
+  
+	return Super.GetLoadingHint(PlayerController, MapName, ColorHint);
+}
+
 defaultproperties
 {
+    MapColor=(G=255,R=255,A=255)
      StartingHealth=100
      MaxHealth=1.000000
      AdrenalinePerDamage=1.000000
@@ -2556,4 +2609,107 @@ defaultproperties
      GameName="BASE"
      Description="One life per round. Don't waste it."
      Acronym="BASE"
+
+     PrecachePickups(0)=Class'BallisticProV55.A42Pickup'
+     PrecachePickups(1)=Class'BallisticProV55.A73Pickup'
+     PrecachePickups(2)=Class'BallisticProV55.A500Pickup'
+     PrecachePickups(3)=Class'BallisticProV55.A909Pickup'
+     PrecachePickups(4)=Class'BallisticProV55.AM67Pickup'
+     PrecachePickups(5)=Class'BallisticProV55.BOGPPickup'
+     PrecachePickups(6)=Class'BallisticProV55.BX5Pickup'
+     PrecachePickups(7)=Class'BallisticProV55.D49Pickup'
+     PrecachePickups(8)=Class'BallisticProV55.E23Pickup'
+     PrecachePickups(9)=Class'BallisticProV55.EKS43Pickup'
+     PrecachePickups(10)=Class'BallisticProV55.Fifty9Pickup'
+     PrecachePickups(11)=Class'BallisticProV55.FP7Pickup'
+     PrecachePickups(12)=Class'BallisticProV55.FP9Pickup'
+     PrecachePickups(13)=Class'BallisticProV55.G5Pickup'
+     PrecachePickups(14)=Class'BallisticProV55.GRS9Pickup'
+     PrecachePickups(15)=Class'BallisticProV55.HVCMk9Pickup'
+     PrecachePickups(16)=Class'BallisticProV55.leMatPickup'
+     PrecachePickups(17)=Class'BallisticProV55.M46Pickup'
+     PrecachePickups(18)=Class'BallisticProV55.M50Pickup'
+     PrecachePickups(19)=Class'BallisticProV55.M75Pickup'
+     PrecachePickups(20)=Class'BallisticProV55.M290Pickup'
+     PrecachePickups(21)=Class'BallisticProV55.M353Pickup'
+     PrecachePickups(22)=Class'BallisticProV55.M763Pickup'
+     PrecachePickups(23)=Class'BallisticProV55.M925Pickup'
+     PrecachePickups(24)=Class'BallisticProV55.MACPickup'
+     PrecachePickups(25)=Class'BallisticProV55.MarlinPickup'
+     PrecachePickups(26)=Class'BallisticProV55.MD24Pickup'
+     PrecachePickups(27)=Class'BallisticProV55.MRLPickup'
+     PrecachePickups(28)=Class'BallisticProV55.MRS138Pickup'
+     PrecachePickups(29)=Class'BallisticProV55.MRT6Pickup'
+     PrecachePickups(30)=Class'BallisticProV55.NRP57Pickup'
+     PrecachePickups(31)=Class'BallisticProV55.R9Pickup'
+     PrecachePickups(32)=Class'BallisticProV55.R78Pickup'
+     PrecachePickups(33)=Class'BallisticProV55.RS8Pickup'
+     PrecachePickups(34)=Class'BallisticProV55.RSDarkPickup'
+     PrecachePickups(35)=Class'BallisticProV55.RSNovaPickup'
+     PrecachePickups(36)=Class'BallisticProV55.RX22APickup'
+     PrecachePickups(37)=Class'BallisticProV55.SARPickup'
+     PrecachePickups(38)=Class'BallisticProV55.SRS900Pickup'
+     PrecachePickups(39)=Class'BallisticProV55.T10Pickup'
+     PrecachePickups(40)=Class'BallisticProV55.X3Pickup'
+     PrecachePickups(41)=Class'BallisticProV55.X4Pickup'
+     PrecachePickups(42)=Class'BallisticProV55.XK2Pickup'
+     PrecachePickups(43)=Class'BallisticProV55.XMK5Pickup'
+     PrecachePickups(44)=Class'BallisticProV55.XMV850Pickup'
+     PrecachePickups(45)=Class'BallisticProV55.XRS10Pickup'
+
+     PrecachePickups(46)=Class'BWBPRecolorsPro.A49Pickup'
+     PrecachePickups(47)=Class'BWBPRecolorsPro.AH208Pickup'
+     PrecachePickups(48)=Class'BWBPRecolorsPro.AH250Pickup'
+     PrecachePickups(49)=Class'BWBPRecolorsPro.AK47Pickup'
+     PrecachePickups(50)=Class'BWBPRecolorsPro.AS50Pickup'
+     PrecachePickups(51)=Class'BWBPRecolorsPro.BulldogPickup'
+     PrecachePickups(52)=Class'BWBPRecolorsPro.ChaffPickup'
+     PrecachePickups(53)=Class'BWBPRecolorsPro.CYLOPickup'
+     PrecachePickups(54)=Class'BWBPRecolorsPro.CYLOFirestormPickup'
+     PrecachePickups(55)=Class'BWBPRecolorsPro.CoachGunPickup'
+     PrecachePickups(56)=Class'BWBPRecolorsPro.DragonsToothPickup'
+     PrecachePickups(57)=Class'BWBPRecolorsPro.F2000Pickup'
+     PrecachePickups(58)=Class'BWBPRecolorsPro.FG50Pickup'
+     PrecachePickups(59)=Class'BWBPRecolorsPro.FLASHPickup'
+     PrecachePickups(60)=Class'BWBPRecolorsPro.G28Pickup'
+     PrecachePickups(61)=Class'BWBPRecolorsPro.ICISPickup'
+     PrecachePickups(62)=Class'BWBPRecolorsPro.LAWPickup'
+     PrecachePickups(63)=Class'BWBPRecolorsPro.LK05Pickup'
+     PrecachePickups(64)=Class'BWBPRecolorsPro.LonghornPickup'
+     PrecachePickups(65)=Class'BWBPRecolorsPro.LS14Pickup'
+     PrecachePickups(66)=Class'BWBPRecolorsPro.M2020GaussPickup'
+     PrecachePickups(67)=Class'BWBPRecolorsPro.MRDRPickup'
+     PrecachePickups(68)=Class'BWBPRecolorsPro.MARSPickup'
+     PrecachePickups(69)=Class'BWBPRecolorsPro.MGLPickup'
+     PrecachePickups(70)=Class'BWBPRecolorsPro.MK781Pickup'
+     PrecachePickups(71)=Class'BWBPRecolorsPro.PS9mPickup'
+     PrecachePickups(72)=Class'BWBPRecolorsPro.SK410Pickup'
+     PrecachePickups(73)=Class'BWBPRecolorsPro.SKASPickup'
+     PrecachePickups(74)=Class'BWBPRecolorsPro.X82Pickup'
+     PrecachePickups(75)=Class'BWBPRecolorsPro.X8Pickup'
+     PrecachePickups(76)=Class'BWBPRecolorsPro.XM84Pickup'
+
+     PrecachePickups(77)=Class'BWBPOtherPackPro.AkeronPickup'
+     PrecachePickups(78)=Class'BWBPOtherPackPro.BX85Pickup'
+     PrecachePickups(79)=Class'BWBPOtherPackPro.CX61Pickup'
+     PrecachePickups(80)=Class'BWBPOtherPackPro.CX85Pickup'
+     PrecachePickups(81)=Class'BWBPOtherPackPro.DefibFistsPickup'
+     PrecachePickups(82)=Class'BWBPOtherPackPro.PD97Pickup'
+     PrecachePickups(83)=Class'BWBPOtherPackPro.ProtonStreamPickup'
+     PrecachePickups(84)=Class'BWBPOtherPackPro.R9A1Pickup'
+     PrecachePickups(85)=Class'BWBPOtherPackPro.RaygunPickup'
+     PrecachePickups(86)=Class'BWBPOtherPackPro.WrenchPickup'
+     PrecachePickups(87)=Class'BWBPOtherPackPro.XOXOPickup'
+     PrecachePickups(88)=Class'BWBPOtherPackPro.Z250Pickup'
+
+     PrecachePickups(89)=Class'BWBPSomeOtherPack.BallisticShieldPickup'
+     PrecachePickups(90)=Class'BWBPSomeOtherPack.FlameSwordPickup'
+	 PrecachePickups(91)=Class'BWBPSomeOtherPack.MAG78Pickup'
+	 PrecachePickups(92)=Class'BWBPSomeOtherPack.TrenchGunPickup'
+     PrecachePickups(93)=Class'BWBPSomeOtherPack.XM20Pickup'
+
+     PrecachePickups(94)=Class'BWBPAirstrikesPro.TargetDesignatorPickup'
+
+     PrecachePickups(95)=Class'BallisticJiffyPack.ARPickup'
+     PrecachePickups(96)=Class'BallisticJiffyPack.LightningPickup'
 }

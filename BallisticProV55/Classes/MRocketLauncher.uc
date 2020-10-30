@@ -216,7 +216,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 		return;
 	}
 }
@@ -381,26 +381,6 @@ simulated event WeaponTick(float DT)
 	}
 }
 
-/*
-simulated function SetScopeView(bool bNewValue)
-{
-	if (Level.NetMode == NM_Client)
-		ServerSetScopeView(bNewValue);
-	if (Role == ROLE_Authority)
-	{
-		BallisticAttachment(ThirdPersonActor).SetAimed(bNewValue);
-		if (bNewValue)
-			PlayerSpeedFactor = 0.6;
-		else PlayerSpeedFactor = default.PlayerSpeedFactor;
-		if (SprintControl.bSprinting)
-			BallisticPawn(Instigator).CalcSpeedUp(1.35);
-		else BallisticPawn(Instigator).CalcSpeedUp(1);	
-	}
-	bScopeView = bNewValue;
-	SetScopeBehavior();
-}
-*/
-
 simulated function bool ConsumeMRLAmmo(int Mode, float Load, float LoadB)
 {
 	if (bNoMag || (BFireMode[Mode] != None && BFireMode[Mode].bUseWeaponMag == false))
@@ -487,87 +467,74 @@ function float SuggestDefenseStyle()	{	return -0.9;	}
 
 defaultproperties
 {
-     ClipOutSoundSmall=Sound'BWBP4-Sounds.MRL.MRL-SmallOff'
-     ClipInSoundSmall=Sound'BWBP4-Sounds.MRL.MRL-SmallOn'
-     RocketCycleAnim="RocketCycle"
-     FrontRockets(0)=(RocketName="RocketA0")
-     FrontRockets(1)=(RocketName="RocketA1")
-     FrontRockets(2)=(RocketName="RocketA2")
-     FrontRockets(3)=(RocketName="RocketA3")
-     FrontRockets(4)=(RocketName="RocketA4")
-     FrontRockets(5)=(RocketName="RocketA5")
-     FrontRockets(6)=(RocketName="RocketA6")
-     FrontRockets(7)=(RocketName="RocketA7")
-     FrontRockets(8)=(RocketName="RocketA8")
-     BackRockets(0)=(RocketName="RocketB1")
-     BackRockets(1)=(RocketName="RocketB2")
-     BackRockets(2)=(RocketName="RocketB3")
-     BigMagAmmo=72
-	 PlayerSpeedFactor=0.75
-	 PlayerJumpFactor=0.75
-     BigIconMaterial=Texture'BWBP4-Tex.MRL.BigIcon_MRL'
-     BigIconCoords=(Y1=30,Y2=225)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     InventorySize=12
-     bWT_Hazardous=True
-     bWT_Splash=True
-     bWT_RapidProj=True
-     bWT_Projectile=True
-     ManualLines(0)="Fires miniature explosive rockets at a modest rate. Moderate damage, good damage output and fast travel time. Capacity is extremely high due to the double-magazine setup. Recoil is almost non-existent as the weapon is a multiple rocket launcher. The rockets also deal radius damage."
-     ManualLines(1)="As the primary fire, but the rate of fire is significantly increased. The rockets travel slowly at first, before launching at full speed."
-     ManualLines(2)="Effective against groups and at medium range."
-     SpecialInfo(0)=(Info="480.0;60.0;1.5;100.0;0.8;2.0;1.5")
-     BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')
-     MagAmmo=36
-     ReloadAnim="Reload1"
-     ReloadAnimRate=1.250000
-     ClipOutSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOff')
-     ClipInSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOn')
-     ClipInFrame=0.700000
-     bNonCocking=True
-     WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-     WeaponModes(1)=(bUnavailable=True)
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
-     SightOffset=(X=-30.000000,Y=-10.000000,Z=15.000000)
-     SightDisplayFOV=50.000000
-	 SightAimFactor=0.25
-     SightingTime=0.65
-     LongGunOffset=(X=8.000000,Y=-5.000000,Z=-3.000000)
-     SprintOffSet=(Pitch=-7000,Yaw=-3000)
-     OffsetAdjustTime=0.600000
-     AimSpread=12
-     ChaosDeclineTime=0.320000
-     ChaosSpeedThreshold=500.000000
-     ChaosAimSpread=2048
-     RecoilXFactor=0.000000
-     RecoilYFactor=0.000000
-     FireModeClass(0)=Class'BallisticProV55.MRLPrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.MRLSecondaryFire'
-     BringUpTime=0.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.850000
-     CurrentRating=0.850000
-     bShowChargingBar=True
-     Description="An experimental product of NDTR's ballistics wing, the JL21 missile launcher is yet another armament in a long line of anti-Krao weapons designed by the terrans. A powerful, heavy and highly volatile construct, the 'PeaceMaker' has thus far proved it's worth in field tests. The 18 barrelled monster, can fire small, short ranged missiles very quickly via several feed mechanisms supplied by 2 large ammunition containers. A very distinctive attribute of the MRL lies in it's missles flight paths, most often than not, following a drunk path and flying about in an apparently random manner. This has proved very efficient against hordes of Krao, yet not as effective against single opponents. The latest feature of the weapon, allows an even faster rate of fire, at the greatly increased cost of ammunition."
-     Priority=39
-     HudColor=(B=57,G=98,R=140)
-     InventoryGroup=8
-     GroupOffset=2
-     PickupClass=Class'BallisticProV55.MRLPickup'
-     PlayerViewOffset=(X=12.000000,Y=9.000000,Z=-12.000000)
-     PlayerViewPivot=(Pitch=1024,Yaw=-512,Roll=1024)
-     AttachmentClass=Class'BallisticProV55.MRLAttachment'
-     IconMaterial=Texture'BWBP4-Tex.MRL.SmallIcon_MRL'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="JL21-MRL PeaceMaker"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=25
-     LightSaturation=100
-     LightBrightness=192.000000
-     LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBP4b-Anims.MRL'
-     DrawScale=0.300000
+	ClipOutSoundSmall=Sound'BWBP4-Sounds.MRL.MRL-SmallOff'
+	ClipInSoundSmall=Sound'BWBP4-Sounds.MRL.MRL-SmallOn'
+	RocketCycleAnim="RocketCycle"
+	FrontRockets(0)=(RocketName="RocketA0")
+	FrontRockets(1)=(RocketName="RocketA1")
+	FrontRockets(2)=(RocketName="RocketA2")
+	FrontRockets(3)=(RocketName="RocketA3")
+	FrontRockets(4)=(RocketName="RocketA4")
+	FrontRockets(5)=(RocketName="RocketA5")
+	FrontRockets(6)=(RocketName="RocketA6")
+	FrontRockets(7)=(RocketName="RocketA7")
+	FrontRockets(8)=(RocketName="RocketA8")
+	BackRockets(0)=(RocketName="RocketB1")
+	BackRockets(1)=(RocketName="RocketB2")
+	BackRockets(2)=(RocketName="RocketB3")
+	BigMagAmmo=72
+	BigIconMaterial=Texture'BWBP4-Tex.MRL.BigIcon_MRL'
+	BigIconCoords=(Y1=30,Y2=225)
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Hazardous=True
+	bWT_Splash=True
+	bWT_RapidProj=True
+	bWT_Projectile=True
+	ManualLines(0)="Fires miniature explosive rockets at a modest rate. Moderate damage, good damage output and fast travel time. Capacity is extremely high due to the double-magazine setup. Recoil is almost non-existent as the weapon is a multiple rocket launcher. The rockets also deal radius damage."
+	ManualLines(1)="As the primary fire, but the rate of fire is significantly increased. The rockets travel slowly at first, before launching at full speed."
+	ManualLines(2)="Effective against groups and at medium range."
+	SpecialInfo(0)=(Info="480.0;60.0;1.5;100.0;0.8;2.0;1.5")
+	BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')
+	ReloadAnim="Reload1"
+	ReloadAnimRate=1.250000
+	ClipOutSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOff')
+	ClipInSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOn')
+	ClipInFrame=0.700000
+	bNonCocking=True
+	WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(2)=(bUnavailable=True)
+	CurrentWeaponMode=0
+	SightOffset=(X=-30.000000,Y=-10.000000,Z=15.000000)
+	SightDisplayFOV=50.000000
+	LongGunOffset=(X=8.000000,Y=-5.000000,Z=-3.000000)
+	ParamsClass=Class'MRLWeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.MRLPrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.MRLSecondaryFire'
+	BringUpTime=0.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.850000
+	CurrentRating=0.850000
+	bShowChargingBar=True
+	Description="An experimental product of NDTR's ballistics wing, the JL21 missile launcher is yet another armament in a long line of anti-Krao weapons designed by the terrans. A powerful, heavy and highly volatile construct, the 'PeaceMaker' has thus far proved it's worth in field tests. The 18 barrelled monster, can fire small, short ranged missiles very quickly via several feed mechanisms supplied by 2 large ammunition containers. A very distinctive attribute of the MRL lies in it's missles flight paths, most often than not, following a drunk path and flying about in an apparently random manner. This has proved very efficient against hordes of Krao, yet not as effective against single opponents. The latest feature of the weapon, allows an even faster rate of fire, at the greatly increased cost of ammunition."
+	Priority=39
+	HudColor=(B=57,G=98,R=140)
+	InventoryGroup=8
+	GroupOffset=2
+	PickupClass=Class'BallisticProV55.MRLPickup'
+	PlayerViewOffset=(X=12.000000,Y=9.000000,Z=-12.000000)
+	PlayerViewPivot=(Pitch=1024,Yaw=-512,Roll=1024)
+	AttachmentClass=Class'BallisticProV55.MRLAttachment'
+	IconMaterial=Texture'BWBP4-Tex.MRL.SmallIcon_MRL'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="JL21-MRL PeaceMaker"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=25
+	LightSaturation=100
+	LightBrightness=192.000000
+	LightRadius=12.000000
+	Mesh=SkeletalMesh'BWBP4b-Anims.MRL'
+	DrawScale=0.300000
 }

@@ -160,7 +160,7 @@ defaultproperties
 	 Damage=50
 	 DamageLimb=50
 	 DamageHead=50
-     RecoilPerShot=960.000000
+     FireRecoil=960.000000
      FireChaos=0.320000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      BallisticFireSound=(Sound=Sound'BWBPOtherPackSound.Raygun.Raygun-FireBig',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)

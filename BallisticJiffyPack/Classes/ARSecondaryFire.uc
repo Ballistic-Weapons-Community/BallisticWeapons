@@ -11,11 +11,6 @@ class ARSecondaryFire extends BallisticProProjectileFire;
 // Check if there is ammo in mag if we use it or is there some in inventory if we don't
 simulated function bool AllowFire()
 {
-	//Force noobs to scope.
-	if ((BW.BCRepClass.default.bSightFireOnly || class'BallisticWeapon'.default.SightsRestrictionLevel > 0) && BW.bUseSights && BW.SightingState != SS_Active && !BW.bScopeHeld && Instigator.IsLocallyControlled() && PlayerController(Instigator.Controller) != None)
-		BW.ScopeView();
-	if (!BW.bScopeView && (class'BallisticWeapon'.default.SightsRestrictionLevel > 1 || (class'BallisticWeapon'.default.SightsRestrictionLevel > 0 && BW.ZoomType != ZT_Irons)))
-		return false;
 	if (!CheckReloading())
 		return false;		// Is weapon busy reloading
 	if (!CheckWeaponMode())
@@ -64,8 +59,8 @@ defaultproperties
      FlashScaleFactor=0.500000
      BrassClass=Class'BallisticJiffyPack.Brass_ShotgunHE'
      BrassOffset=(X=-1.000000,Z=-1.000000)
-     RecoilPerShot=650.000000
-     VelocityRecoil=180.000000
+     FireRecoil=650.000000
+     FirePushbackForce=180.000000
      FireChaos=0.450000
      XInaccuracy=384.000000
      YInaccuracy=384.000000

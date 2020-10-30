@@ -17,6 +17,7 @@ function InitWeaponFromTurret(BallisticTurret Turret)
 	if (!Instigator.IsLocallyControlled())
 		ClientInitWeaponFromTurret(Turret);
 }
+
 simulated function ClientInitWeaponFromTurret(BallisticTurret Turret)
 {
 	bNeedCock=false;
@@ -35,25 +36,20 @@ simulated function Notify_M925HandleOff()
 // Split into recoil and aim to accomodate no view decline
 simulated function ApplyAimToView()
 {
-	local Rotator BaseAim, BaseRecoil;
+	local Rotator AimPivotDelta, RecoilPivotDelta;
 
 	//DC 110313
 	if (Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
 		return;
 
-	BaseRecoil = GetRecoilPivot(true) * ViewRecoilFactor;
-	BaseAim = Aim * ViewAimFactor;
-	if (bForceRecoilUpdate || LastFireTime >= Level.TimeSeconds - RecoilDeclineDelay)
-	{
-		bForceRecoilUpdate = False;
-		Instigator.SetViewRotation((BaseAim - ViewAim) + (BaseRecoil - ViewRecoil));
-	}
+	RecoilPivotDelta 	= RcComponent.CalcViewPivotDelta();
+	AimPivotDelta  		= AimComponent.CalcViewPivotDelta();
+	
+	if (RcComponent.ShouldUpdateView())
+		Instigator.SetViewRotation(AimPivotDelta + RecoilPivotDelta);
 	else
-		Instigator.SetViewRotation(BaseAim - ViewAim);
-	ViewAim = BaseAim;
-	ViewRecoil = BaseRecoil;	
+		Instigator.SetViewRotation(AimPivotDelta);	
 }
-
 
 function InitTurretWeapon(BallisticTurret Turret)
 {
@@ -63,7 +59,7 @@ function InitTurretWeapon(BallisticTurret Turret)
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
-	BFireMode[0].VelocityRecoil = 0;
+	BFireMode[0].FirePushbackForce = 0;
 	BFireMode[0].BrassOffset = vect(0,0,0);
 }
 
@@ -85,17 +81,12 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 	Super(BallisticWeapon).GiveTo(Other, Pickup);
 }
 
-simulated function TickAim(float DT)
-{
-	Super(BallisticWeapon).TickAim(DT);
-}
-
 //attachment fix for deployed
 simulated event Timer()
 {
 	local int Mode;
 
-	ReAim(0.1);
+	AimComponent.Reaim(0.1);
 
     if (ClientState == WS_BringUp)
     {
@@ -205,8 +196,8 @@ simulated function ApplyAimRotation()
 {
 	ApplyAimToView();
 
-	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
-//	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
+	BallisticTurret(Instigator).WeaponPivot = GetFireRot() * (DisplayFOV / Instigator.Controller.FovAngle);
+//	PlayerViewPivot = default.PlayerViewPivot + GetFireRot() * (DisplayFOV / Instigator.Controller.FovAngle);
 }
 
 // Animation notify to make gun cock after reload
@@ -239,94 +230,77 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
-     BeltLength=8
-     BoxOnSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOn')
-     BoxOffSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOff')
-     FlapUpSound=(Sound=Sound'BallisticSounds2.M925.M925-LeverUp')
-     FlapDownSound=(Sound=Sound'BallisticSounds2.M925.M925-LeverDown')
-     HandleOnSound=Sound'BallisticSounds2.M925.M925-StandOn'
-     HandleOffSound=Sound'BallisticSounds2.M925.M925-StandOff'
-     AIReloadTime=4.000000
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M925'
-     SightFXClass=Class'BallisticProV55.M925SightLEDs'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     bWT_Bullet=True
-     bWT_Machinegun=True
-     SpecialInfo(0)=(Info="360.0;30.0;0.8;40.0;0.0;0.0;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.M925.M925-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M925.M925-Putaway')
-     MagAmmo=50
-     CockAnimRate=1.250000
-     CockSound=(Sound=Sound'BallisticSounds2.M925.M925-Cock')
-     ReloadAnim="ReloadStart"
-     ReloadAnimRate=1.250000
-     ClipOutSound=(Sound=Sound'BallisticSounds2.M925.M925-ShellOut')
-     ClipInSound=(Sound=Sound'BallisticSounds2.M925.M925-ShellIn')
-     bCockOnEmpty=True
-     bUseSights=False
-     bNoCrosshairInScope=True
-     SightPivot=(Pitch=64)
-     SightOffset=(X=-18.000000,Z=7.200000)
-     SightDisplayFOV=40.000000
-     SightingTime=0.450000
-     GunLength=0.000000
-     bUseSpecialAim=True
-     CrouchAimFactor=1.000000
-     SightAimFactor=0.350000
-     HipRecoilFactor=1.000000
-     SprintOffSet=(Pitch=-6000,Yaw=-8000)
-     WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
-     AimSpread=2
-     ViewAimFactor=1.000000
-     AimDamageThreshold=2000.000000
-     ChaosDeclineTime=0.320000
-     ChaosSpeedThreshold=850.000000
-     ChaosAimSpread=2
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.00000),(InVal=0.500000,OutVal=0.100000),(InVal=1.000000)))
-     RecoilYCurve=(Points=(,(InVal=0.250000,OutVal=0.230000),(InVal=0.400000,OutVal=0.40000),(InVal=0.550000,OutVal=0.58000),(InVal=0.750000,OutVal=0.720000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.030000
-     RecoilYFactor=0.030000
-     RecoilMax=8192.000000
-     RecoilDeclineTime=0.750000
-     RecoilDeclineDelay=0.400000
-     FireModeClass(0)=Class'BallisticProV55.M925TW_PrimaryFire'
-     FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'
-     SelectAnim="Deploy"
-     SelectAnimRate=0.800000
-     PutDownTime=0.400000
-     BringUpTime=1.500000
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.700000
-     CurrentRating=0.700000
-     bCanThrow=False
-     bNoInstagibReplace=True
-     Description="M925 50 Calibre MachineGun||Manufacturer: Black & Wood|Primary: Medium 50 Cal. Fire|Secondary: Mount Machinegun||The M925 was used during the late stages of the first Human-Skrith war when ballistic weapons first came back into large scale usage. The heavy calibre M925 was extremely effective against the Skrith and their allies and became known as the 'Monster' because it was the first weapon that the Skrith truly feared. Although it has a slower rate of fire than the M353, the 'Monster' has a much heavier bullet and can cause much more damage to an enemy soldier or vehicle in a single shot. It was also used extensively during the 'Wasteland Siege', to hose down thousands of Krao, and proved to be very effective at destroying the alien transport ships, as they were landing."
-     DisplayFOV=90.000000
-     ClientState=WS_BringUp
-     Priority=1
-     HudColor=(B=175,G=175,R=175)
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=6
-     GroupOffset=1
-     PickupClass=Class'BallisticProV55.M925Pickup'
-     PlayerViewOffset=(X=11.000000,Z=-14.000000)
-     AttachmentClass=Class'BallisticProV55.M925Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M925'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="M925 Machinegun Turret"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=6.000000
-     Mesh=SkeletalMesh'BallisticAnims2.M925Turret-1st'
-     DrawScale=0.230000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Texture'BallisticWeapons2.M925.M925Small'
-     Skins(2)=Texture'BallisticWeapons2.M925.M925Main'
-     Skins(3)=Texture'BallisticWeapons2.M925.M925HeatShield'
-     Skins(4)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(5)=Texture'BallisticWeapons2.M925.M925AmmoBox'
-     CollisionHeight=24.000000
+	BeltLength=8
+	BoxOnSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOn')
+	BoxOffSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOff')
+	FlapUpSound=(Sound=Sound'BallisticSounds2.M925.M925-LeverUp')
+	FlapDownSound=(Sound=Sound'BallisticSounds2.M925.M925-LeverDown')
+	HandleOnSound=Sound'BallisticSounds2.M925.M925-StandOn'
+	HandleOffSound=Sound'BallisticSounds2.M925.M925-StandOff'
+	AIReloadTime=4.000000
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M925'
+	SightFXClass=Class'BallisticProV55.M925SightLEDs'
+	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	bWT_Bullet=True
+	bWT_Machinegun=True
+	SpecialInfo(0)=(Info="360.0;30.0;0.8;40.0;0.0;0.0;0.0")
+	BringUpSound=(Sound=Sound'BallisticSounds2.M925.M925-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M925.M925-Putaway')
+	CockAnimRate=1.250000
+	CockSound=(Sound=Sound'BallisticSounds2.M925.M925-Cock')
+	ReloadAnim="ReloadStart"
+	ReloadAnimRate=1.250000
+	ClipOutSound=(Sound=Sound'BallisticSounds2.M925.M925-ShellOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.M925.M925-ShellIn')
+	bCockOnEmpty=True
+	bUseSights=False
+	bNoCrosshairInScope=True
+	SightPivot=(Pitch=64)
+	SightOffset=(X=-18.000000,Z=7.200000)
+	SightDisplayFOV=40.000000
+	SightingTime=0.450000
+	GunLength=0.000000
+	bUseSpecialAim=True
+	WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
+	ParamsClass=Class'M925TW_WeaponParams'
+	FireModeClass(0)=Class'BallisticProV55.M925TW_PrimaryFire'
+	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'
+	SelectAnim="Deploy"
+	SelectAnimRate=0.800000
+	PutDownTime=0.400000
+	BringUpTime=1.500000
+	SelectForce="SwitchToAssaultRifle"
+	AIRating=0.700000
+	CurrentRating=0.700000
+	bCanThrow=False
+	bNoInstagibReplace=True
+	Description="M925 50 Calibre MachineGun||Manufacturer: Black & Wood|Primary: Medium 50 Cal. Fire|Secondary: Mount Machinegun||The M925 was used during the late stages of the first Human-Skrith war when ballistic weapons first came back into large scale usage. The heavy calibre M925 was extremely effective against the Skrith and their allies and became known as the 'Monster' because it was the first weapon that the Skrith truly feared. Although it has a slower rate of fire than the M353, the 'Monster' has a much heavier bullet and can cause much more damage to an enemy soldier or vehicle in a single shot. It was also used extensively during the 'Wasteland Siege', to hose down thousands of Krao, and proved to be very effective at destroying the alien transport ships, as they were landing."
+	DisplayFOV=90.000000
+	ClientState=WS_BringUp
+	Priority=1
+	HudColor=(B=175,G=175,R=175)
+	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+	InventoryGroup=6
+	GroupOffset=1
+	PickupClass=Class'BallisticProV55.M925Pickup'
+	PlayerViewOffset=(X=11.000000,Z=-14.000000)
+	AttachmentClass=Class'BallisticProV55.M925Attachment'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M925'
+	IconCoords=(X2=127,Y2=31)
+	ItemName="M925 Machinegun Turret"
+	LightType=LT_Pulse
+	LightEffect=LE_NonIncidence
+	LightHue=30
+	LightSaturation=150
+	LightBrightness=150.000000
+	LightRadius=6.000000
+	Mesh=SkeletalMesh'BallisticAnims2.M925Turret-1st'
+	DrawScale=0.230000
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Texture'BallisticWeapons2.M925.M925Small'
+	Skins(2)=Texture'BallisticWeapons2.M925.M925Main'
+	Skins(3)=Texture'BallisticWeapons2.M925.M925HeatShield'
+	Skins(4)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(5)=Texture'BallisticWeapons2.M925.M925AmmoBox'
+	CollisionHeight=24.000000
 }

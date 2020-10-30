@@ -76,7 +76,7 @@ simulated event ModeDoFire()
         Instigator.DeactivateSpawnProtection();
     }
     else if (!BW.bUseNetAim)
-    	FireRecoil();
+    	ApplyRecoil();
 
 	BW.LastFireTime = Level.TimeSeconds;
 

@@ -483,7 +483,6 @@ function float SuggestDefenseStyle()	{	return 0.1;	}
 
 defaultproperties
 {
-	AimDisplacementDurationMult=1.25
 	GrenadeLoadAnim="GLReload"
 	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
@@ -491,8 +490,8 @@ defaultproperties
 	BarrelSpinSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelSpinLoop'
 	BarrelStopSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStop'
 	BarrelStartSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStart'
-	PlayerSpeedFactor=0.850000
-	PlayerJumpFactor=0.850000
+	PlayerSpeedFactor=0.900000
+	PlayerJumpFactor=0.900000
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BWBPOtherPackTex2.Z250.BigIcon_Z250'
@@ -526,23 +525,7 @@ defaultproperties
 	SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
 	SightDisplayFOV=45.000000
 	SightingTime=0.550000
-	CrouchAimFactor=0.8
-	SprintOffSet=(Pitch=-6000,Yaw=-8000)
-	JumpOffSet=(Pitch=-6000,Yaw=2000)
-	AimAdjustTime=0.800000
-	AimSpread=64
-	ChaosSpeedThreshold=450.000000
-	ChaosAimSpread=768
-	
-	ViewRecoilFactor=0.35
-	RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.070000),(InVal=0.30000,OutVal=0.090000),(InVal=0.4500000,OutVal=0.230000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.4)))
-	RecoilYCurve=(Points=(,(InVal=0.200000,OutVal=0.170000),(InVal=0.350000,OutVal=0.400000),(InVal=0.500000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-	RecoilXFactor=0.070000
-	RecoilYFactor=0.070000
-	RecoilMax=8192.000000
-	RecoilDeclineTime=1.500000
-	
-	
+	ParamsClass=Class'Z250WeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.Z250PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.Z250SecondaryFire'
 	SelectAnimRate=0.750000

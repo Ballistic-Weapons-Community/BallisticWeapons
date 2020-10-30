@@ -310,8 +310,6 @@ simulated function Timer()
 // Aim goes bad when player takes damage
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
-	local float DF;
-	
 	if (bBerserk)
 		Damage *= 0.75;
 		
@@ -324,14 +322,6 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 			DamageThisCook = 0;
 		}
 	}
-		
-	if (AimKnockScale == 0)
-		return;
-
-	DF = FMin(1, (float(Damage)/AimDamageThreshold) * AimKnockScale);
-	ApplyDamageFactor(DF);
-	ClientPlayerDamaged(255*DF);
-	bForceReaim=true;
 }
 
 simulated function ClientStartReload(optional byte i)
@@ -490,31 +480,29 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {
-     bCookable=True
-     ClipReleaseAnim="ClipOut"
-     FuseDelay=3.000000
-     GrenadeBone="Grenade"
-     PinBone="Pin"
-     ClipBone="tip"
-     SmokeBone="tip"
-     DropThreshold=75
-     InventorySize=3
-     MagAmmo=1
-     bNoMag=True
-     WeaponModes(0)=(ModeName="Auto Throw",ModeID="WM_None",Value=0.000000)
-     WeaponModes(1)=(ModeName="Long Throw",ModeID="WM_None",Value=1.000000)
-     WeaponModes(2)=(ModeName="Short Throw",ModeID="WM_None",Value=2.000000)
-     CurrentWeaponMode=0
-     bUseSights=False
-     SightingTime=0.000000
-     GunLength=0.000000
-     bAimDisabled=True
-     CrouchAimFactor=1.000000
-     SelectAnimRate=1.800000
-     PutDownAnimRate=1.500000
-     PutDownTime=1.000000
-     BringUpTime=1.000000
-     bShowChargingBar=True
-     Priority=1
-     ItemName="Hand Grenade"
+	bCookable=True
+	ClipReleaseAnim="ClipOut"
+	FuseDelay=3.000000
+	GrenadeBone="Grenade"
+	PinBone="Pin"
+	ClipBone="tip"
+	SmokeBone="tip"
+	DropThreshold=75
+	MagAmmo=1
+	bNoMag=True
+	WeaponModes(0)=(ModeName="Auto Throw",ModeID="WM_None",Value=0.000000)
+	WeaponModes(1)=(ModeName="Long Throw",ModeID="WM_None",Value=1.000000)
+	WeaponModes(2)=(ModeName="Short Throw",ModeID="WM_None",Value=2.000000)
+	CurrentWeaponMode=0
+	bUseSights=False
+	SightingTime=0.000000
+	GunLength=0.000000
+	bAimDisabled=True
+	SelectAnimRate=1.800000
+	PutDownAnimRate=1.500000
+	PutDownTime=1.000000
+	BringUpTime=1.000000
+	bShowChargingBar=True
+	Priority=1
+	ItemName="Hand Grenade"
 }

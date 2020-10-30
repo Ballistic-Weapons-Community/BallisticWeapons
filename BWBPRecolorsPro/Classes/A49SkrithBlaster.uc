@@ -317,7 +317,6 @@ defaultproperties
 	ManualLines(1)="Projects a short-range shockwave, dealing low damage and pushing nearby enemies back.||Using this mode generates significant heat, and if the weapon overheats, the user will take damage."
 	ManualLines(2)="Effective at close range. Especially effective at repelling charges and melee."
 	HeatDeclineDelay=0.200000
-	AimDisplacementDurationMult=0.5
 	BlastDamageType=Class'BWBPRecolorsPro.DTA49Shockwave'
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	UsedAmbientSound=Sound'BallisticSounds2.A73.A73Hum1'
@@ -329,7 +328,6 @@ defaultproperties
 	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
 	BringUpSound=(Sound=Sound'BallisticSounds2.A42.A42-Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.A42.A42-Putaway')
-	MagAmmo=32
 	CockAnim="Overheat"
 	ClipOutSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipOut',Volume=1.300000)
 	ClipInSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipHit',Volume=1.300000)
@@ -337,22 +335,9 @@ defaultproperties
 	SightPivot=(Pitch=2000,Roll=-768)
 	SightOffset=(X=-12.000000,Y=33.000000,Z=65.000000)
 	SightDisplayFOV=40.000000
-	SightingTime=0.200000
 	SightZoomFactor=0.85
 	GunLength=0.100000
-	AimAdjustTime=0.350000
-	
-	AimSpread=16
-	ChaosDeclineTime=0.800000
-	ChaosSpeedThreshold=7500.000000
-	ChaosAimSpread=512
-	
-	ViewRecoilFactor=0.4
-	RecoilXCurve=(Points=(,(InVal=0.100000),(InVal=0.200000,OutVal=-0.050000),(InVal=0.400000,OutVal=0.050000),(InVal=0.600000,OutVal=0.070000),(InVal=0.700000),(InVal=1.000000,OutVal=0.100000)))
-	RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.100000),(InVal=0.200000,OutVal=0.200000),(InVal=0.350000,OutVal=0.400000),(InVal=0.540000,OutVal=0.650000),(InVal=0.700000,OutVal=0.720000),(InVal=1.000000,OutVal=0.300000)))
-	RecoilDeclineTime=0.5
-	RecoilDeclineDelay=0.170000
-	
+	ParamsClass=Class'A49WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.A49PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.A49SecondaryFire'
 	PutDownAnimRate=2.300000

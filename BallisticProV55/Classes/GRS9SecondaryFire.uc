@@ -70,10 +70,10 @@ simulated event ModeDoFire()
 	super.ModeDoFire();
 }
 
-simulated function FireRecoil ()
+simulated function ApplyRecoil ()
 {
 	if (BW != None)
-		BW.AddRecoil(RecoilPerShot, ThisModeNum);
+		BW.AddRecoil(FireRecoil, ThisModeNum);
 }
 
 simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)

@@ -219,7 +219,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 			ReloadState = RS_None;
 			ReloadFinished();
 			PlayIdle();
-			ReAim(0.05);
+			AimComponent.ReAim(0.05);
 		}
 		return;
 	}
@@ -230,7 +230,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		ReloadState = RS_None;
 		ReloadFinished();
 		PlayIdle();
-		ReAim(0.05);
+		AimComponent.ReAim(0.05);
 	}
 	
 	if (ReloadState == RS_GearSwitch)
@@ -242,9 +242,10 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 }
 
-simulated function ClientSwitchWeaponModes (byte NewMode)
+simulated function CommonSwitchWeaponMode (byte NewMode)
 {
-	Super.ClientSwitchWeaponModes(NewMode);
+	Super.CommonSwitchWeaponMode(NewMode);
+	
 	if (NewMode == 1)
 	{
 		SetBoneScale (2, 0.0, ShellTipBone1);
@@ -457,7 +458,6 @@ defaultproperties
      MeleeFireClass=Class'BWBPRecolorsPro.CoachGunMeleeFire'
      BringUpSound=(Sound=Sound'BallisticSounds2.M290.M290Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
-     MagAmmo=2
      CockAnimRate=0.700000
      ReloadAnimRate=1.100000
      ClipInFrame=0.800000
@@ -466,21 +466,12 @@ defaultproperties
      WeaponModes(1)=(ModeName="Slug",Value=2.000000)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     bNotifyModeSwitch=True
      SightPivot=(Pitch=256)
      SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
-     SightingTime=0.350000
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
-     LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-     ViewRecoilFactor=0.350000
-     RecoilXCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.300000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
-     RecoilYCurve=(Points=(,(InVal=0.300000,OutVal=0.300000),(InVal=1.000000,OutVal=1.000000)))
-     RecoilXFactor=0.200000
-     RecoilYFactor=0.200000
-     RecoilMax=8192.000000
-     RecoilDeclineTime=0.900000
-     RecoilDeclineDelay=0.400000
+	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
+	 ParamsClass=Class'CoachWeaponParams'
      FireModeClass(0)=Class'BWBPRecolorsPro.CoachGunPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectAnimRate=2.000000

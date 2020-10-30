@@ -12,14 +12,14 @@
 class CYLOAssaultWeapon extends CYLOUAW;
 
 //Heating
-var float			HeatLevel;					// Current Heat level, duh...
+var float				HeatLevel;					// Current Heat level, duh...
 var bool				bCriticalHeat;				// Heat is at critical levels
-var float 			HeatDeclineDelay;		
-var() Sound		OverHeatSound;			// Sound to play when it overheats
-var() Sound		HighHeatSound;			// Sound to play when heat is dangerous
-var() Sound		MedHeatSound;			// Sound to play when heat is moderate
-var Actor 			GlowFX;						// Code from the BFG.
-var float			NextChangeMindTime;	// For AI
+var float 				HeatDeclineDelay;		
+var() Sound				OverHeatSound;				// Sound to play when it overheats
+var() Sound				HighHeatSound;				// Sound to play when heat is dangerous
+var() Sound				MedHeatSound;				// Sound to play when heat is moderate
+var Actor 				GlowFX;						// Code from the BFG.
+var float				NextChangeMindTime;			// For AI
 
 replication
 {
@@ -224,53 +224,34 @@ simulated function Notify_BrassOut()
 
 defaultproperties
 {
-     HeatDeclineDelay=0.200000
-     OverheatSound=Sound'PackageSounds4Pro.CYLO.CYLO-OverHeat'
-     HighHeatSound=Sound'PackageSounds4Pro.CYLO.CYLO-HighHeat'
-     MedHeatSound=Sound'PackageSounds4Pro.CYLO.CYLO-MedHeat'
-     BigIconMaterial=Texture'BallisticRecolors3TexPro.CYLO.BigIcon_CYLOMk2'
-     bWT_Hazardous=True
-     ManualLines(0)="Automatic explosive round fire. While these rounds completely lack any penetrative ability, they explode on impact with players, dealing 70% of their base damage to nearby targets. This makes the CYLO Firestorm V effective against groups of players."
-     ManualLines(1)="Melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab."
-     ManualLines(2)="Not recommended for close range use as its explosive rounds can damage the user. Effective at medium range."
-     SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.2;0.7;0.4")
-     MeleeFireClass=Class'BWBPRecolorsPro.CYLOFirestormMeleeFire'
-     MagAmmo=26
-     WeaponModes(1)=(bUnavailable=True)
-     SightPivot=(Pitch=900)
-     SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
-	 bNoCrosshairInScope=True
-     GunLength=16.500000
-	 
-	 AimSpread=16
-     ChaosDeclineTime=0.5
-     ChaosSpeedThreshold=7000.000000
-     ChaosAimSpread=728
-	 
-	 ViewRecoilFactor=0.4
-	 RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.09),(InVal=0.2,OutVal=0.12),(InVal=0.25,OutVal=0.13),(InVal=0.3,OutVal=0.11),(InVal=0.35,OutVal=0.08),(InVal=0.40000,OutVal=0.050000),(InVal=0.50000,OutVal=-0.020000),(InVal=0.600000,OutVal=-0.040000),(InVal=0.700000,OutVal=0.04),(InVal=0.800000,OutVal=0.070000),(InVal=1.000000,OutVal=0.13)))
-     RecoilYCurve=(Points=(,(InVal=0.1,OutVal=0.07),(InVal=0.2,OutVal=0.220000),(InVal=0.300000,OutVal=0.2600000),(InVal=0.400000,OutVal=0.4000),(InVal=0.500000,OutVal=0.5500),(InVal=0.600000,OutVal=0.620000),(InVal=0.750000,OutVal=0.770000),(InVal=1.000000,OutVal=1.00000)))
-	 
-	 //hard pull right
-	 //RecoilXCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.30000),(InVal=0.300000,OutVal=0.35000),(InVal=0.400000,OutVal=0.40000),(InVal=0.500000,OutVal=0.550000),(InVal=0.800000,OutVal=0.740000),(InVal=1.000000,OutVal=1.000000)))
-     //RecoilYCurve=(Points=(,(InVal=0.1,OutVal=0.1),(InVal=0.2,OutVal=0.180000),(InVal=0.300000,OutVal=0.2500000),(InVal=0.400000,OutVal=0.26000),(InVal=0.500000,OutVal=0.30000),(InVal=0.600000,OutVal=0.350000),(InVal=0.750000,OutVal=0.40000),(InVal=1.000000,OutVal=0.600000)))
-    
- 	 RecoilXFactor=0.1
-	 RecoilYFactor=0.1
-     RecoilDeclineTime=0.4
-     RecoilDeclineDelay=0.180000
-	 
-     FireModeClass(0)=Class'BWBPRecolorsPro.CYLOFirestormPrimaryFire'
-     FireModeClass(1)=Class'BWBPRecolorsPro.CYLOFirestormSecondaryFire'
-     bShowChargingBar=True
-     Description="The CYLO Firestorm V is an upgraded version of Dipheox's most popular weapon. The V has been redesigned from the ground up for maximum efficiency and can now chamber the fearsome 5.56mm incendiary rounds. Upgrades to the ammo feed and clip lock greatly reduce the chance of jams and ensures a more stable rate of fire, however these have been known to malfunction under excessive stress. Likewise, prolonged use of the incendiary ammunition should be avoided due to potential damage to the barrel and control mechanisms.||While not as versatile as its shotgun equipped cousin, the CYLO Firestorm is still very deadly in urban combat. Proper training with the bayonet can turn the gun itself into a deadly melee weapon."
-     HudColor=(G=50)
-     GroupOffset=9
-	 AIRating=0.7
-	 CurrentRating=0.7
-     PickupClass=Class'BWBPRecolorsPro.CYLOFirestormPickup'
-     AttachmentClass=Class'BWBPRecolorsPro.CYLOFirestormAttachment'
-     IconMaterial=Texture'BallisticRecolors3TexPro.CYLO.SmallIcon_CYLOMk2'
-     ItemName="CYLO Firestorm V"
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.CYLOFirestorm_FP'
+	HeatDeclineDelay=0.200000
+	OverheatSound=Sound'PackageSounds4Pro.CYLO.CYLO-OverHeat'
+	HighHeatSound=Sound'PackageSounds4Pro.CYLO.CYLO-HighHeat'
+	MedHeatSound=Sound'PackageSounds4Pro.CYLO.CYLO-MedHeat'
+	bWT_Hazardous=True
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.CYLO.BigIcon_CYLOMk2'
+	ManualLines(0)="Automatic explosive round fire. While these rounds completely lack any penetrative ability, they explode on impact with players, dealing 70% of their base damage to nearby targets. This makes the CYLO Firestorm V effective against groups of players."
+	ManualLines(1)="Melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab."
+	ManualLines(2)="Not recommended for close range use as its explosive rounds can damage the user. Effective at medium range."
+	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.2;0.7;0.4")
+	MeleeFireClass=Class'BWBPRecolorsPro.CYLOFirestormMeleeFire'
+	WeaponModes(1)=(bUnavailable=True)
+	SightPivot=(Pitch=900)
+	SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
+	bNoCrosshairInScope=True
+	GunLength=16.500000
+	ParamsClass=Class'CYLOFirestormWeaponParams' 
+	FireModeClass(0)=Class'BWBPRecolorsPro.CYLOFirestormPrimaryFire'
+	FireModeClass(1)=Class'BWBPRecolorsPro.CYLOFirestormSecondaryFire'
+	bShowChargingBar=True
+	Description="The CYLO Firestorm V is an upgraded version of Dipheox's most popular weapon. The V has been redesigned from the ground up for maximum efficiency and can now chamber the fearsome 5.56mm incendiary rounds. Upgrades to the ammo feed and clip lock greatly reduce the chance of jams and ensures a more stable rate of fire, however these have been known to malfunction under excessive stress. Likewise, prolonged use of the incendiary ammunition should be avoided due to potential damage to the barrel and control mechanisms.||While not as versatile as its shotgun equipped cousin, the CYLO Firestorm is still very deadly in urban combat. Proper training with the bayonet can turn the gun itself into a deadly melee weapon."
+	HudColor=(G=50)
+	GroupOffset=9
+	AIRating=0.7
+	CurrentRating=0.7
+	PickupClass=Class'BWBPRecolorsPro.CYLOFirestormPickup'
+	AttachmentClass=Class'BWBPRecolorsPro.CYLOFirestormAttachment'
+	IconMaterial=Texture'BallisticRecolors3TexPro.CYLO.SmallIcon_CYLOMk2'
+	ItemName="CYLO Firestorm V"
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.CYLOFirestorm_FP'
 }
