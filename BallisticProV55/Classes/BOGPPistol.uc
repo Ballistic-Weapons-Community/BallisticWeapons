@@ -35,7 +35,7 @@ simulated function FirePressed(float F)
 		if (Level.NetMode == NM_Client)
 			SkipReload();
 	}
-	else if (reloadState == RS_None && bNeedCock && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime &&
+	else if (ReloadState == RS_None && bNeedCock && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime &&
 		(Othergun == None || Othergun.bNeedCock || !Othergun.HasAmmo()))
 	{
 		CommonCockGun();
@@ -141,6 +141,8 @@ simulated function ClientSwitchFlare()
 {
 	if(ReloadState > RS_None || !HasAmmo())
 		return;
+
+	CurrentWeaponMode = byte(bUseFlare);
 
 	CommonCockGun(1);
 }

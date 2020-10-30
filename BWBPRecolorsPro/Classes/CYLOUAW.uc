@@ -189,7 +189,7 @@ simulated function PlayCocking(optional byte Type)
 		SafePlayAnim(CockAnim, CockAnimRate, 0.2, , "RELOAD");
 
 	if (SightingState != SS_None)
-		TemporaryScopeDown(Default.SightingTime*Default.SightingTimeScale);
+		TemporaryScopeDown(default.SightingTime);
 }
 
 //===========================================================================
@@ -363,7 +363,7 @@ simulated function CommonStartReload (optional byte i)
 	}
 
 	if (bScopeView && Instigator.IsLocallyControlled())
-		TemporaryScopeDown(Default.SightingTime*Default.SightingTimeScale);
+		TemporaryScopeDown(default.SightingTime);
 	for (m=0; m < NUM_FIRE_MODES; m++)
 		if (BFireMode[m] != None)
 			BFireMode[m].ReloadingGun(i);

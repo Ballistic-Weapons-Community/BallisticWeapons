@@ -123,7 +123,6 @@ struct SpecialInfoEntry
 var() globalconfig 	ModeSaveType 	ModeHandling;
 var() globalconfig  bool			bInvertScope;			// Inverts Prev/Next weap relation to Zoom In/Out
 var() globalconfig 	bool			bSightLock;				// Should iron sights continue when the key is released, once activated?
-var() globalconfig  float			SightingTimeScale;		// Scales the SightingTime for each weapon by this amount.
 var() globalconfig 	bool			bOldCrosshairs;			// Use UT2004 crosshairs instead of BW's
 var() globalconfig 	bool			bEvenBodyDamage;		// Will weapon limb hits cause as much damage as any non-head body region?...
 var() globalconfig	bool			bUseModifiers;			// Uses configurable modifiers in BallisticInstantFire / BallisticProjectile to handle locational damage
@@ -462,8 +461,6 @@ simulated function PostBeginPlay()
 	//Set up channel 1 for sight fire blending.
 	AnimBlendParams(1,0);
 
-	SightingTime = default.SightingTime * default.SightingTimeScale;
-	
 	if (bUseBigIcon)
 	{
 		IconMaterial 	= BigIconMaterial;
@@ -1047,7 +1044,7 @@ simulated function PlayCocking(optional byte Type)
 		SafePlayAnim(CockAnim, CockAnimRate, 0.2, , "RELOAD");
 
 	if (SightingState != SS_None)
-		TemporaryScopeDown(Default.SightingTime*Default.SightingTimeScale);
+		TemporaryScopeDown(default.SightingTime);
 }
 //================================================================================
 // END ANIM PLAY FUNCTIONS
@@ -2380,7 +2377,7 @@ simulated function CommonStartReload (optional byte i)
 	PlayReload();
 
 	if (bScopeView && Instigator.IsLocallyControlled())
-		TemporaryScopeDown(Default.SightingTime*Default.SightingTimeScale);
+		TemporaryScopeDown(Default.SightingTime);
 	for (m=0; m < NUM_FIRE_MODES; m++)
 		if (BFireMode[m] != None)
 			BFireMode[m].ReloadingGun(i);
@@ -4801,7 +4798,10 @@ defaultproperties
 	 
      ReloadAnim="Reload"
      ReloadAnimRate=1.000000
-     ReloadEmptyAnim="ReloadEmpty"
+	 ReloadEmptyAnim="ReloadEmpty"
+	 
+	 StartShovelAnimRate=1.000000
+	 EndShovelAnimRate=1.000000
 	 
      ClipHitSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
      ClipOutSound=(Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
@@ -4824,7 +4824,7 @@ defaultproperties
      SightZoomFactor=0.78
      SightOffset=(Z=2.500000)
      SightDisplayFOV=30.000000
-     SightingTime=0.350000
+	 SightingTime=0.350000
      MinFixedZoomLevel=0.050000
      MinZoom=1.000000
      MaxZoom=2.000000

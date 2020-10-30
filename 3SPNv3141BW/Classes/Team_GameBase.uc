@@ -27,7 +27,7 @@ var string          NextMapString;          // used to save mid-game admin chang
 var byte            Deaths[2];              // set to true if someone on a given team has died (not a flawless)
 
 var bool            bDefaultsReset;
-var bool				bAllowBotRemoval;
+var bool			bAllowBotRemoval;
 /* general and misc */
 
 /* overtime related */
@@ -2296,7 +2296,7 @@ function AnnounceBest()
         if(kill_eff == None || kill_eff.CalcKillEfficiency() < PRI.CalcKillEfficiency())
             kill_eff = PRI;
 
-        if (damage_eff == None || kill_eff.CalcDamageEfficiency() < PRI.CalcDamageEfficiency())
+        if (damage_eff == None || damage_eff.CalcDamageEfficiency() < PRI.CalcDamageEfficiency())
             damage_eff = PRI;
 	}
 
