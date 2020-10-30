@@ -2,34 +2,33 @@ class Misc_PRI extends xPlayerReplicationInfo;
 
 // NR = not automatically replicated
 
-var bool bWarned;               // has been warned for camping (next time will receive penalty) - NR
-var bool bWaterWarned;      // has received warning for being in water - NR
-var int CampCount;              // the number of times penalized for camping - NR
-var int WaterCampCount;	// the number of times anticamp has detected the player in a fog-dense water volume - NR
-var int ConsecutiveCampCount;   // the number of times penalized for camping consecutively - NR
+var bool    bWarned;                // has been warned for camping (next time will receive penalty) - NR
+var bool    bWaterWarned;           // has received warning for being in water - NR
+var int     CampCount;              // the number of times penalized for camping - NR
+var int     WaterCampCount;	        // the number of times anticamp has detected the player in a fog-dense water volume - NR
+var int     ConsecutiveCampCount;   // the number of times penalized for camping consecutively - NR
 
-var int EnemyDamage;            // damage done to enemies - NR
-var int AllyDamage;             // damage done to allies and self - NR
-var float ReverseFF;            // percentage of friendly fire that is returned - NR
+var int     EnemyDamage;            // damage done to enemies - NR
+var int     AllyDamage;             // damage done to allies and self - NR
+var int     ReceivedDamage;         // damage received - NR
+var float   ReverseFF;              // percentage of friendly fire that is returned - NR
 
-var int FlawlessCount;          // number of flawless victories - NR
-var int OverkillCount;          // number of overkills - NR
-var int DarkHorseCount;         // number of darkhorses - NR
+var int     FlawlessCount;          // number of flawless victories - NR
+var int     OverkillCount;          // number of overkills - NR
+var int     DarkHorseCount;         // number of darkhorses - NR
 
-var float DarkSoulPower; 	// Dark Star soul power - NR
-var float NovaSoulPower; 	// Nova Staff soul power - NR
-var float XOXOLewdness; // XOXO Lewdness - NR
+var float   DarkSoulPower; 	        // Dark Star soul power - NR
+var float   NovaSoulPower; 	        // Nova Staff soul power - NR
+var float   XOXOLewdness;           // XOXO Lewdness - NR
 
-var int	AimableKills, AimedKills; //Kills which could have been and were aimed respectively
-
-var int JoinRound;              // the round the player joined on
+var int     JoinRound;              // the round the player joined on
 
 /* camping related */
 var vector LocationHistory[10];
 var int	   NextLocHistSlot;
 var bool   bWarmedUp;
 var int	   ReWarnTime;
-var int          WaterReWarnTime;
+var int    WaterReWarnTime;
 /* camping related */
 
 var class<Misc_PawnReplicationInfo> PawnInfoClass;
@@ -62,6 +61,16 @@ simulated function string GetLocationName()
         return default.StringDead;
 
     return Super.GetLocationName();
+}
+
+function float CalcKillEfficiency()
+{
+    return float(Kills) / FMax(1f, Deaths);
+}
+
+function float CalcDamageEfficiency()
+{
+    return float(EnemyDamage) / FMax(1f, float(ReceivedDamage));
 }
 
 defaultproperties

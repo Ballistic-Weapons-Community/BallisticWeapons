@@ -685,11 +685,16 @@ function int ReduceDamage(int Damage, pawn injured, pawn instigatedBy, vector Hi
             FriendlyFireScale = FF;
             return Result;
         }
+
         else if(injured.GetTeamNum() != instigatedBy.GetTeamNum()) // different teams
         {
             OldDamage = PRI.EnemyDamage;
             NewDamage = OldDamage + Damage;
             PRI.EnemyDamage = NewDamage;
+
+            // add damage tracking for enemy pawn
+            if (Misc_Pawn(injured) != None)
+                Misc_PRI(injured.PlayerReplicationInfo).ReceivedDamage += Damage;
 
             Score = NewDamage - OldDamage;
             if(Score > 0.0)
@@ -2232,15 +2237,15 @@ function AnnounceBest()
 
     local string acc;
     local string dam;
-    local string aim;
-	local string spam;
+    local string kd;
+	local string de;
 
     local Misc_PRI PRI;
     local BallisticPlayerReplicationInfo BWPRI;
     
     local Misc_PRI accuracy;
     local Misc_PRI damage;
-	local Misc_PRI aimer, spammer;
+	local Misc_PRI kill_eff, damage_eff;
     
     local BallisticPlayerReplicationInfo accuracyBW;
 
@@ -2276,15 +2281,13 @@ function AnnounceBest()
 		}
 
 		if(damage == None || (damage.EnemyDamage < PRI.EnemyDamage))
-			damage = PRI;
-			
-		if (AIController(C) == None && PRI.AimableKills > 0)
-		{
-			if(aimer == None || float(PRI.AimedKills)/float(PRI.AimableKills) > float(aimer.AimedKills) / float(aimer.AimableKills))
-				aimer = PRI;
-			if (spammer == None || float(PRI.AimedKills)/float(PRI.AimableKills) < float(spammer.AimedKills) / float(spammer.AimableKills))
-				spammer = PRI;
-		}
+            damage = PRI;
+            
+        if(kill_eff == None || kill_eff.CalcKillEfficiency() < PRI.CalcKillEfficiency())
+            kill_eff = PRI;
+
+        if (damage_eff == None || kill_eff.CalcDamageEfficiency() < PRI.CalcDamageEfficiency())
+            damage_eff = PRI;
 	}
 
     if(accuracy != None && accuracyBW.AveragePercent > 0.0)
@@ -2302,29 +2305,26 @@ function AnnounceBest()
         else
             dam = Text$"Most Damage:"@Blue$damage.PlayerName$Text$";"@damage.EnemyDamage;
     }
-	
-	if (aimer != spammer)
-	{
-		if(aimer != None && aimer.AimableKills > 0)
-		{
-			if(aimer.Team.TeamIndex == 0)
-				aim = Text$"Most Aimed Kills:"@Red$aimer.PlayerName$Text$";"@int((float(aimer.AimedKills)/float(aimer.AimableKills)) * 100)$"%";
-			else
-				aim = Text$"Most Aimed Kills:"@Blue$aimer.PlayerName$Text$";"@int((float(aimer.AimedKills)/float(aimer.AimableKills)) * 100)$"%";
-		}
-		
-		if(spammer != None && spammer.AimableKills > 0)
-		{
-			if(spammer.Team.TeamIndex == 0)
-				spam = Text$"Biggest Spammer:"@Red$spammer.PlayerName$Text$";"@int((float(spammer.AimedKills)/float(spammer.AimableKills)) * 100)$"%";
-			else
-				spam = Text$"Biggest Spammer:"@Blue$spammer.PlayerName$Text$";"@int((float(spammer.AimedKills)/float(spammer.AimableKills))* 100)$"%";
-		}
-	}
 
+    if(kill_eff != None && kill_eff.Kills > 0)
+    {
+        if(kill_eff.Team.TeamIndex == 0)
+            kd = Text$"Highest Kill Efficiency:"@Red$kill_eff.PlayerName$Text$";"@kill_eff.CalcKillEfficiency();
+        else
+            kd = Text$"Highest Kill Efficiency:"@Blue$kill_eff.PlayerName$Text$";"@kill_eff.CalcKillEfficiency();
+    }
+
+    if(damage_eff != None && damage_eff.EnemyDamage > 0)
+    {
+        if(damage_eff.Team.TeamIndex == 0)
+            de = Text$"Highest Damage Efficiency:"@Red$damage_eff.PlayerName$Text$";"@damage_eff.CalcDamageEfficiency();
+        else
+            de = Text$"Highest Damage Efficiency:"@Blue$damage_eff.PlayerName$Text$";"@damage_eff.CalcDamageEfficiency();
+    }
+	
 	for(C = Level.ControllerList; C != None; C = C.NextController)
 		if(Misc_Player(c) != None)
-			Misc_Player(c).ClientListBest(acc, dam, aim, spam);
+			Misc_Player(c).ClientListBest(acc, dam, kd, de);
 }
 
 function SetMapString(Misc_Player Sender, string s)

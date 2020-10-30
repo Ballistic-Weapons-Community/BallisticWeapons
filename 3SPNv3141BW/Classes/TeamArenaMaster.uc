@@ -401,14 +401,7 @@ function ScoreKill(Controller Killer, Controller Other)
 			KPW = BallisticWeapon(Killer.Pawn.Weapon);
 			
 			if(KPW != None)
-			{
-				if (KPW.bUseSights)
-				{
-					Misc_PRI(Killer.PlayerReplicationInfo).AimableKills++;
-					if (KPW.bScopeView)
-						Misc_PRI(Killer.PlayerReplicationInfo).AimedKills++;
-				}
-				
+			{				
 				if( !KPW.bWT_Super)
 				{
 					if (class<BallisticAmmo>(KPW.GetAmmoClass(0)) != None)

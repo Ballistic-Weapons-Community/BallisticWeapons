@@ -72,30 +72,30 @@ function int ReduceHealing (int HealAmount, pawn HealTarget, pawn Healer)
 		{
 			OldDamage = PRI.EnemyDamage;
 			NewDamage = OldDamage + HealAmount;
-			PRI.EnemyDamage = NewDamage;
+            PRI.EnemyDamage = NewDamage;
 
-				Score = NewDamage - OldDamage;
-				if(Score > 0.0)
-				{
-					if(Misc_Player(Healer.Controller) != None)
-					{
-						Misc_Player(Healer.Controller).NewEnemyDamage += Score * 0.01;
-						if(Misc_Player(Healer.Controller).NewEnemyDamage >= 1.0)
-						{
-							ScoreEvent(PRI, int(Misc_Player(Healer.Controller).NewEnemyDamage), "EnemyDamage");
-							Misc_Player(Healer.Controller).NewEnemyDamage -= int(Misc_Player(Healer.Controller).NewEnemyDamage);
-						}
+            Score = NewDamage - OldDamage;
+            if(Score > 0.0)
+            {
+                if(Misc_Player(Healer.Controller) != None)
+                {
+                    Misc_Player(Healer.Controller).NewEnemyDamage += Score * 0.01;
+                    if(Misc_Player(Healer.Controller).NewEnemyDamage >= 1.0)
+                    {
+                        ScoreEvent(PRI, int(Misc_Player(Healer.Controller).NewEnemyDamage), "EnemyDamage");
+                        Misc_Player(Healer.Controller).NewEnemyDamage -= int(Misc_Player(Healer.Controller).NewEnemyDamage);
+                    }
 
-						EyeHeight.z = Healer.EyeHeight;
-						if(FastTrace(HealTarget.Location, Healer.Location + EyeHeight))
-							Misc_Player(Healer.Controller).HitDamage += Score;
-					}
-					PRI.Score += Score * 0.01;
-					if (Healer != HealTarget)
-						Healer.Controller.AwardAdrenaline((Score * 0.10) * AdrenalinePerDamage);
-				}
-			}
-		}
+                    EyeHeight.z = Healer.EyeHeight;
+                    if(FastTrace(HealTarget.Location, Healer.Location + EyeHeight))
+                        Misc_Player(Healer.Controller).HitDamage += Score;
+                }
+                PRI.Score += Score * 0.01;
+                if (Healer != HealTarget)
+                    Healer.Controller.AwardAdrenaline((Score * 0.10) * AdrenalinePerDamage);
+            }
+        }
+    }
 
 	return HealAmount;
 

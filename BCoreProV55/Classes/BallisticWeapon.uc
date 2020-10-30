@@ -820,9 +820,6 @@ simulated event Tick(float DT)
 {
 	super.Tick(DT);
 
-	if (Instigator == None)
-		Log("BallisticWeapon: No Instigator");
-
 	if (Instigator != None && Instigator.Weapon == self && OwnerLastVehicle != Instigator.DrivenVehicle )
 	{
 		if (Instigator.DrivenVehicle != None)

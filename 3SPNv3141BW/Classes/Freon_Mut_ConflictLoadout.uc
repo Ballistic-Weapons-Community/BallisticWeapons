@@ -13,7 +13,6 @@ function ModifyPlayer( pawn Other )
 	local float BonusAmmo;
 	local Inventory Inv;
 	local Weapon W;
-	local BallisticWeapon BW;
 	local class<Inventory> InventoryClass;
 	local ConflictLoadoutLRI CLRI;
 	local string s;
@@ -139,7 +138,6 @@ function ModifyPlayer( pawn Other )
 function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other)
 {
 	local Weapon newWeapon;
-	local BallisticWeapon BW;
 	local bool bHasTrack;
 	local Freon_Player.AmmoTrack TrackInfo;
 
