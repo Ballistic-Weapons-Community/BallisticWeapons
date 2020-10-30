@@ -454,6 +454,11 @@ simulated function ClientSetHeat(float NewHeat)
 	HeatLevel = NewHeat;
 }
 
+simulated function float ChargeBar()
+{
+	return HeatLevel / 10;
+}
+
 //turret
 
 function InitWeaponFromTurret(BallisticTurret Turret)
@@ -629,6 +634,7 @@ defaultproperties
      LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
      LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
      HeatDeclineDelay=0.400000
+	 bShowChargingBar=True
      OverheatSound=Sound'PackageSounds4Pro.CYLO.CYLO-OverHeat'
      ScopeBone="Holosight"
      BulletBone="Bullet"
