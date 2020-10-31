@@ -37,6 +37,19 @@ struct IntRange
 	var int Max;
 };
 
+struct IntVector2
+{
+	var int X;
+	var int Y;
+}
+
+struct IntVector3
+{
+	var int X;
+	var int Y;
+	var int Z;
+}
+
 // FullSounds are a simple way to set up and play sounds with detailed settings
 // All the settings with which to play the sound
 struct FullSound

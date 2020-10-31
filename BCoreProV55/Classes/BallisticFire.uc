@@ -105,7 +105,7 @@ struct FireModeStats
 	var	int			RPS;
 	var	float		FCPShot;
 	var	float		FCPS;
-	var	String	Range;
+	var	String		Range;
 };
 
 var	String		ShotTypeString, EffectString;

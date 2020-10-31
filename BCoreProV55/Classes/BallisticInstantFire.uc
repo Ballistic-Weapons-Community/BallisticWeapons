@@ -48,6 +48,8 @@ class BallisticInstantFire extends BallisticFire
 
 const MAX_WALLS = 5;
 
+const TORSO_RADIUS = 22;
+
 //General Vars ----------------------------------------------------------------
 var() Range				TraceRange;				// Min and Max range of trace
 var() float				MaxWaterTraceRange;		// Maximum distance this fire should trace after entering water
@@ -87,23 +89,23 @@ var	bool						bNoPositionalDamage;
 // Added here to simplify the process a bit as well as for BWStats support
 struct InstantFireModeInfo
 {
-	var int mDamage;
-	var class<DamageType> mDamageType;
-	var class<DamageType> mDamageTypeHead;
-	var float mFireRate;
-	var float mFireChaos;
-	var Sound mFireSound;
-	var Name mFireAnim;
-	var bool bLoopedAnim; // If true, ModeFireAnim is set to FireLoopAnim and FireAnim is cleared.
-	var Name mFireEndAnim;
-	var float mRecoil;
-	var int mAmmoPerFire;
-	var Name TargetState; // Name of the state to switch to.
+	var int 				mDamage;
+	var class<DamageType> 	mDamageType;
+	var class<DamageType> 	mDamageTypeHead;
+	var float 				mFireRate;
+	var float 				mFireChaos;
+	var Sound 				mFireSound;
+	var Name 				mFireAnim;
+	var bool 				bLoopedAnim; // If true, ModeFireAnim is set to FireLoopAnim and FireAnim is cleared.
+	var Name 				mFireEndAnim;
+	var float 				mRecoil;
+	var int 				mAmmoPerFire;
+	var Name 				TargetState; // Name of the state to switch to.
 	//AI info
-	var bool bModeLead;
-	var bool bModeInstantHit;
-	Var bool bModeSplash;
-	var bool bModeRecommendSplash;
+	var bool 				bModeLead;
+	var bool 				bModeInstantHit;
+	var bool 				bModeSplash;
+	var bool 				bModeRecommendSplash;
 };
 
 var array<InstantFireModeInfo> FireModes;
@@ -175,7 +177,7 @@ function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int Pen
 	if (xPawn(Other) != None)
 		Resistance += xPawn(Other).ShieldStrength;
 	// Half resistance for legs
-	if (Vehicle(Other) == None && HitLocation.Z < Other.Location.Z)
+	if (Vehicle(Other) == None && HitLocation.Z < Other.Location.Z - 5)
 		Resistance *= 0.5;
 	// half resitance for head
 	else if (Vehicle(Other) == None && Normal(Dir).Z > -0.5 && (HitLocation.Z > Other.Location.Z + Other.CollisionHeight*0.8) )
@@ -231,11 +233,17 @@ function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor
 				return Dmg;
 			
 			// Torso shots
-			if (HitLocation.Z > Other.GetBoneCoords('spine').Origin.Z - 14) //accounting for groin region here
+
+			// Older version of this check based on spine bone coordinate 
+			// if (HitLocation.Z > Other.GetBoneCoords('spine').Origin.Z - 8) //accounting for groin region here
+
+			// Newer version simply based on middle of collision cylinder (i.e. pawn Location)
+			if (HitLocation.Z > Other.Location.Z - 5)
 			{
 				HitLocation.Z = Other.Location.Z;
+
 				// Torso radius
-				if (VSize(HitLocation - Other.Location) <= 22)
+				if (VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
 					return Dmg;
 			}
 			
@@ -275,10 +283,6 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 	local Vector RelativeVelocity;
 
 	DamageFactor = 1;
-
-	// what the fuck is this? - Az
-	//if (BW.AimDisplacementEndTime > Level.TimeSeconds)
-	//	Damage *= 1 - BW.AimDisplacementFactor;
 
 	if (RangeAtten != 1.0)
 		DamageFactor *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
