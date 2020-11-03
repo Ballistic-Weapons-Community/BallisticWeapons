@@ -51,7 +51,7 @@ final function UnregisterPawn(xPawn pawn) // might not work due to parameter pas
 }
 
 // Functions called from BallisticWeapon
-final function RewindCollisions(float latency)
+final function RewindCollisions(Actor requester, float latency)
 {
     local int i;
 
@@ -61,7 +61,10 @@ final function RewindCollisions(float latency)
     if (StackCount == 0)
     {
         for (i = 0; i < Collisions.Length; ++i)
+        {
+            if (Collisions[i].UnlaggedPawn != requester)
             Collisions[i].EnableUnlag(latency);
+        }
     }
 
     ++StackCount;

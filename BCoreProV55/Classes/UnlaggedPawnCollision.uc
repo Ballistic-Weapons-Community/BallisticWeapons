@@ -46,7 +46,7 @@ function Tick(float DeltaTime)
 /**
 Remember the last ticks' locations for serverside ping compensation.
 */
-function UpdateUnlagLocation()
+final function UpdateUnlagLocation()
 {
     local int i;
 
@@ -91,7 +91,7 @@ function UpdateUnlagLocation()
 /**
 Enable the unlagged collision cylinder.
 */
-function EnableUnlag(float PingTime)
+final function EnableUnlag(float PingTime)
 {
     local vector UnlaggedLocation;
     local float UnlagTime;
@@ -129,19 +129,25 @@ function EnableUnlag(float PingTime)
 /**
 Disable the unlagged collision cylinder for the UnlaggedPawn.
 */
-function DisableUnlag()
+final function DisableUnlag()
 {
-    if (!bUnlagged || Level.NetMode == NM_Standalone || UnlaggedPawn == None || UnlaggedPawn.bCollideActors)
+    if (Level.NetMode == NM_Standalone) 
         return;
-    
-    if (UnlaggedPawn.Health > 0)
-        UnlaggedPawn.SetCollision(bCollideActors, bBlockActors, bBlockPlayers);
+
+    if (!bUnlagged)
+        return;
 
     SetCollision(false, false, false);
     bUnlagged = False;
 
-    if (AIController(UnlaggedPawn.Controller) != None)
-        Spawn(class'TransEffectRed');
+    if (UnlaggedPawn != None && !UnlaggedPawn.bCollideActors && UnlaggedPawn.Health > 0)
+    {
+        log(Name @ "Pawn: Restoring collision parameters");
+        UnlaggedPawn.SetCollision(bCollideActors, bBlockActors, bBlockPlayers);
+    }    
+
+    //if (AIController(UnlaggedPawn.Controller) != None)
+    //    Spawn(class'TransEffectRed');
 }
 
 //=============================================================================

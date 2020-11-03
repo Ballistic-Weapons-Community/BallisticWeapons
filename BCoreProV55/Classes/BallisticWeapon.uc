@@ -912,7 +912,7 @@ final function RewindCollisions()
         
     RewindActive = True;
 
-    RwColMgr.RewindCollisions(PC.PlayerReplicationInfo.Ping * 0.004f);    
+    RwColMgr.RewindCollisions(Instigator, PC.PlayerReplicationInfo.Ping * 0.004f);    
 }
 
 final function RestoreCollisions()
