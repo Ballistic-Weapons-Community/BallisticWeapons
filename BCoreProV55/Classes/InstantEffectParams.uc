@@ -47,7 +47,7 @@ var()   int                 MomentumTransfer;       // Momentum imparted to enem
 var()   float				HookStopFactor;			// How much force is applied to counteract victim running. This * Victim.GroundSpeed
 var()   float				HookPullForce;			// Velocity amount added to pull victim towards instigator
 
-static simulated final function Initialize(BallisticWeapon BW);
+static simulated function Initialize(BallisticWeapon BW);
 
 defaultproperties
 {

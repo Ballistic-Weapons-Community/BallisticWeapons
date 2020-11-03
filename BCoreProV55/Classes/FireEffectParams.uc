@@ -52,7 +52,7 @@ var() bool 				        RecommendSplashDamage;  // primarily deals damage through
 var() float                     BotRefireRate;          // probability that bot will decide to repeatedly fire weapon rather than taking another action
 var() float                     WarnTargetPct;          // probability that a bot attacked with this mode will be warned of the incoming shot and may evade
 
-static simulated final function Initialize(BallisticWeapon BW);
+static simulated function Initialize(BallisticWeapon BW);
 
 defaultproperties
 {

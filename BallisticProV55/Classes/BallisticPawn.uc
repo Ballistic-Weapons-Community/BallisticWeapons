@@ -43,16 +43,20 @@ class BallisticPawn extends xPawn;
 
 #EXEC OBJ LOAD File="BWBPOtherPackTex.utx"
 
-var   byte				DoubleJumpsLeft;
-var   float				LastDoubleJumpTime;
-var	bool					bResetAnimationAction;
+var byte				            DoubleJumpsLeft;
+var float				            LastDoubleJumpTime;
+var	bool				            bResetAnimationAction;
 
-var 	globalconfig	bool	bLocalDisableAnimation;
-var 						bool	bDisablePawnAnimation;
-var	globalconfig	array<String> ModelWhitelist;
+var globalconfig	bool	        bLocalDisableAnimation;
+var 				bool	        bDisablePawnAnimation;
+var	globalconfig	array<String>   ModelWhitelist;
 
-var Actor					OldBase;
-var float					LastMoverLeaveTime, MoverLeaveGrace;
+var Actor					        OldBase;
+var float					        LastMoverLeaveTime, MoverLeaveGrace;
+// Netcode ------------------------
+var RewindCollisionManager          RwColMgr;
+// -------------------------------------------------------
+
 // Network support for hit system ------------------------
 struct ByteVector			// A low res vector
 {
@@ -70,9 +74,9 @@ struct NetHitInfo			// Compressed info for a hit
 };
 var   NetHitInfo	ClientHits[8];			// List of hits replicated to clients
 
-var byte			Latest;					// Serverside. Used to figure out where in the ClientHits array to add new hits
-var byte			HitCounter, OldHitCounter;// Counter incremented to tell client there are new hits
-var int				LastIndex;				// Last hit played clientside
+var byte			            Latest;					// Serverside. Used to figure out where in the ClientHits array to add new hits
+var byte			            HitCounter, OldHitCounter;// Counter incremented to tell client there are new hits
+var int				            LastIndex;				// Last hit played clientside
 // -------------------------------------------------------
 
 // StandAlone/Listen hit recording -----------------------
@@ -2015,6 +2019,12 @@ simulated event Destroyed()
 		else
 			GoreFX[i].Destroy();
 	}
+
+    if (RwColMgr != None)
+    {
+        RwColMgr.UnregisterPawn(self);
+        RwColMgr = None;
+    }
 
 	super.Destroyed();
 }

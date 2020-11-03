@@ -15,8 +15,17 @@ class BCReplicationInfo extends LinkedReplicationInfo config(BallisticProV55);
 
 var() string		ModString;
 
+enum EGameStyle
+{
+	Arena,		// BallisticPro
+	Legacy,		// BallisticV25
+	Realism,	// Kab
+	Tactical	// PvE
+};
+
 // Server Variables -----------------------------------------------------------
 // Weapon
+var() config EGameStyle	GameStyle;
 var() config float		AccuracyScale;		// Used for scaling general weapon accuracy.
 var() config float		RecoilScale;		// Used for scaling general weapon recoil.
 var() config bool		bNoJumpOffset;		// Prevents weapons shifting and being offset when jumping or sprinting
@@ -30,7 +39,7 @@ var struct RepInfo_BCore
 	var bool		bNoJumpOffset;
 	var bool		bNoLongGun;
 	var bool		bNoReloading;
-}BCoreRep;
+} BCoreRep;
 
 replication
 {

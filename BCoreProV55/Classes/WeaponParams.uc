@@ -34,6 +34,8 @@ var() int			        MagAmmo;				//Ammo currently in magazine for Primary and Sec
 
 var() array<RecoilParams>	RecoilParams;
 var() array<AimParams>		AimParams;
+var() array<FireParams>     FireParams;
+var() array<FireParams>     AltFireParams;
 
 defaultproperties
 {

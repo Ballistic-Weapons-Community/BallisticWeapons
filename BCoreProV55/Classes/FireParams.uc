@@ -35,7 +35,7 @@ var() bool						bCockAfterFire;		    // Cock the gun after each shot
 var() Name                      PreFireAnim;            // Pre fire animation
 var() Name                      FireAnim;               // Standard fire animation
 var() Name                      FireLoopAnim;           // Looped fire animation
-var() Name                      FireEndAnimRate;        // End fire animation
+var() Name                      FireEndAnim;            // End fire animation
 
 var() float                     PreFireAnimRate;
 var() float                     FireAnimRate;

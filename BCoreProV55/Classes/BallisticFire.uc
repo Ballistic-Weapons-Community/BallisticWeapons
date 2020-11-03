@@ -11,34 +11,37 @@
 //=============================================================================
 class BallisticFire extends WeaponFire;
 
+// Params
+var   FireParams				Params;
 // General Variables -----------------------------------------------------------
-var   BallisticWeapon			BW;						// Easy access to BallisticWeapon(Weapon)
-var() BUtil.FullSound			ClipFinishSound;		// Sound to play when mag runs out
-var() BUtil.FullSound			DryFireSound;			// Sound to play when dry firing
+var   BallisticWeapon			BW;					// Easy access to BallisticWeapon(Weapon)
+var() BUtil.FullSound			ClipFinishSound;	// Sound to play when mag runs out
+var() BUtil.FullSound			DryFireSound;		// Sound to play when dry firing
 var   bool						bPlayedDryFire;		// Has dry fire sound been played since ammo ran out
 var() bool						bCockAfterFire;		// Cock the gun after each shot
 var() bool						bCockAfterEmpty;	// Cock the gun if MagAmmo gets to 0
 var() bool						bDryUncock;			// Can still uncock weapon by pressing fire when mag is empty
-var() bool						bUseWeaponMag;	// Use ammo from gun. Uses ammo from weapon's mag is it has one
-var() Actor						MuzzleFlash;			// The muzzleflash actor
+var() bool						bUseWeaponMag;		// Use ammo from gun. Uses ammo from weapon's mag is it has one
+var() Actor						MuzzleFlash;		// The muzzleflash actor
 var() class<Actor>				MuzzleFlashClass;	// The actor to use for this fire's muzzleflash
-var() Name						FlashBone;				// Bone to attach muzzle flash to
+var() Name						FlashBone;			// Bone to attach muzzle flash to
 var() float						FlashScaleFactor;	// MuzzleFlash scaling will be DrawScale * FlashScaleFactor
-var() class<actor>				BrassClass;				// Actor to spawn for ejecting brass
-var() name						BrassBone;				// Bone where brass will be spawned
+var() class<actor>				BrassClass;			// Actor to spawn for ejecting brass
+var() name						BrassBone;			// Bone where brass will be spawned
 var() bool						bBrassOnCock;		// Eject brass when cocked
-var() Vector					BrassOffset;			// Position offset for brass spawning
+var() Vector					BrassOffset;		// Position offset for brass spawning
 var   int						ConsumedLoad;		// This is the amount of ammo to consume for delayed consume ammo.
 var() bool						bReleaseFireOnDie;	// If bFireOnRelease, mode will fire if holder died before release
 var() bool						bIgnoreReload;		// This firemode can stop the weapon reloading and fire
 var() bool						bIgnoreCocking;		// This mode can cancel weapon cocking to fire
 var Name 						AimedFireAnim;		// Fire anim to play when scoped
-var Name						EmptyFireAnim, EmptyAimedFireAnim; //Fire anim to play when emptied
+var Name						EmptyFireAnim; 		// Fire anim to play when emptied
+var Name 						EmptyAimedFireAnim;
 // Burst Mode -----------------------------------------------------------------
-var int BurstCount;										// Number of shots fired in this burst thus far
-var int MaxBurst;											// Max shots per burst, set by Weapon
-var bool bBurstMode;									// Weapon fires bursts
-var float	BurstFireRateFactor;						// Multiplies down fire rate in burst mode
+var int BurstCount;									// Number of shots fired in this burst thus far
+var int MaxBurst;									// Max shots per burst, set by Weapon
+var bool bBurstMode;								// Weapon fires bursts
+var float	BurstFireRateFactor;					// Multiplies down fire rate in burst mode
 
 var() enum EScopeDownOn
 {
@@ -49,12 +52,12 @@ var() enum EScopeDownOn
 //-----------------------------------------------------------------------------
 
 //Bullet spread variables------------------------------------------------------
-var() float				FireRecoil;				// Amount of recoil added each shot
-var() float				FirePushbackForce;		// How much to jolt player back when they fire
-var() float				FireChaos;				// Chaos added to aim when fired. Will be auto calculated if < 0
-var() InterpCurve		FireChaosCurve;
-var() float				XInaccuracy;			// Set amount that bullets can yaw away from gun's aim
-var() float				YInaccuracy;			// Set amount that bullets can pitch away from gun's aim
+var() float						FireRecoil;			// Amount of recoil added each shot
+var() float						FirePushbackForce;	// How much to jolt player back when they fire
+var() float						FireChaos;			// Chaos added to aim when fired. Will be auto calculated if < 0
+var() InterpCurve				FireChaosCurve;
+var() float						XInaccuracy;		// Set amount that bullets can yaw away from gun's aim
+var() float						YInaccuracy;		// Set amount that bullets can pitch away from gun's aim
 
 enum EFireSpreadMode
 {
@@ -141,6 +144,31 @@ function StartSuperBerserk()
 
 //Stub called by the weapon mode when its FireMode changes
 simulated function SwitchWeaponMode (byte NewMode);
+
+//================================================================
+// OnFireParamsChanged
+//
+// Called from:
+// - BallisticWeaponParams on weapon initialization 
+// - BallisticWeapon when mode is changed
+//================================================================
+simulated function OnFireParamsChanged(int EffectIndex)
+{
+
+}
+
+//================================================================
+// OnEffectParamsChanged
+//
+// Called from:
+// - BallisticWeaponParams on weapon initialization
+// - OnFireParamsChanged when mode is changed
+// - BallisticWeapon when ammo is changed
+//================================================================
+simulated function OnEffectParamsChanged(int EffectIndex)
+{
+
+}
 
 // Effect related functions ------------------------------------------------
 // Spawn the muzzleflash actor

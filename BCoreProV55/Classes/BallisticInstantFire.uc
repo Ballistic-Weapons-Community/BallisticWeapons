@@ -51,11 +51,11 @@ const MAX_WALLS = 5;
 const TORSO_RADIUS = 22;
 
 //General Vars ----------------------------------------------------------------
-var() Range				TraceRange;				// Min and Max range of trace
-var() float				MaxWaterTraceRange;		// Maximum distance this fire should trace after entering water
-var() float				WallPenetrationForce;	// Maximum thickness of the walls that this bullet gan go through
+var() Range				        TraceRange;				        // Min and Max range of trace
+var() float				        MaxWaterTraceRange;		        // Maximum distance this fire should trace after entering water
+var() float				        WallPenetrationForce;	        // Maximum thickness of the walls that this bullet gan go through
 
-struct TraceInfo					// This holds info about a trace
+struct TraceInfo					                            // This holds info about a trace
 {
 	var() Vector 	Start, End, HitNormal, HitLocation, Extent;
 	var() Material	HitMaterial;
@@ -81,7 +81,7 @@ var() float						PDamageFactor;					// Damage multiplied by this with each penet
 var() float						WallPDamageFactor;				// Damage multiplied by this for each wall penetration
 var() bool						bUseRunningDamage;				// Enable damage variations when running towards/away from enemies
 var() float						RunningSpeedThresh;				// Instigator speed divided by this to figure out Running damage bonus
-var() globalconfig float		DamageModHead, DamageModLimb; 	//Configurable damage modifiers for base damage
+var() globalconfig float		DamageModHead, DamageModLimb; 	// Configurable damage modifiers for base damage
 var	bool						bNoPositionalDamage;
 //-----------------------------------------------------------------------------
 
@@ -154,7 +154,19 @@ function DoFireEffect()
 	Aim = GetFireAim(StartTrace);
 	Aim = Rotator(GetFireSpread() >> Aim);
 
+    if (Level.NetMode == NM_DedicatedServer)
+    {
+        Log("BallisticInstantFire: Requesting rewind");
+        BW.RewindCollisions();
+    }
+
 	DoTrace(StartTrace, Aim);
+
+    if (Level.NetMode == NM_DedicatedServer)
+    {
+        Log("BallisticInstantFire: Undoing rewind");
+        BW.RestoreCollisions();
+    }
 
 	Super.DoFireEffect();
 }
@@ -316,6 +328,12 @@ function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector 
 	local class<DamageType>	HitDT;
 	local Actor				Victim;
 	local Vector 			DamageHitLocation;
+
+    if (UnlaggedPawnCollision(Other) != None)
+    {
+        Other = UnlaggedPawnCollision(Other).UnlaggedPawn;
+        // todo update hitloc
+    }
 
 	if(Other.IsA('xPawn') && !Other.IsA('Monster'))
 		DamageHitLocation = GetDamageHitLocation(xPawn(Other), HitLocation, TraceStart, Dir);

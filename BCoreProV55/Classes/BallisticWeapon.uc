@@ -157,6 +157,9 @@ var Object.Color					CockingColor;			//used by Simple XHairs when weapon needs c
 // END STATIC DEFINITIONS
 //=============================================================================
 
+var     RewindCollisionManager      RwColMgr;                       // Used for rewind-based instant fire tracing
+var     bool                        RewindActive;                   // True if currently in rewind mode (for cleanup)
+
 //=============================================================================
 // WEAPON STATE VARIABLES
 //=============================================================================
@@ -289,28 +292,29 @@ var Vector					SMuzzleFlashOffset;		// Offset for muzzle flash in scope
 //-----------------------------------------------------------------------------
 // Ammo/Reload
 //-----------------------------------------------------------------------------
-var() bool					bNoMag;						//Does not use reloading. Takes ammo straight from inventory
-var() Name					CockAnim;					//Animation to use for cocking
-var() Name					CockAnimPostReload;			//Anim to use for cocking at end of reload
-var() Name					CockSelectAnim;				//Anim used when bringing up a weapon which needs cocking
-var() BUtil.FullSound		CockSound;					//Sound to play for cocking
-var() bool					bCockAfterReload;			//Always cock the gun after reload
-var() bool					bCockOnEmpty;				//Gun will cock when reload ends if mag was empty before reload
-var() bool					bNonCocking;				//Gun doesn't, can't or shouldn't get cocked...
-var() Name					ReloadAnim;					//Anim to use for Reloading. Also anim to use for shovel loop
-var() Name					ReloadEmptyAnim;			//Anim played when reloading an empty weapon
-var() BUtil.FullSound		ClipHitSound;				//Sound to play when magazine gets hit
-var() BUtil.FullSound		ClipOutSound;				//Sound to play when magazine is pulled out
-var() BUtil.FullSound		ClipInSound;				//Sound to play when magazine is put in
-var() float					ClipInFrame;				//RED! Frame at which magazine is put in. Also frame of shovel loop when shell is placed in
-var() bool					bCanSkipReload;				//Can press fire to exit reloading from shovel loop or PreClipIn
-var() bool					bAltTriggerReload;			//Pressing alt fire triggers reload/skip/cock just like primary.
-var() bool					bShovelLoad;				//Ammo is loaded into gun repeatedly, e.g. the loading of a winchester or pump-action shotgun
-var() Name					StartShovelAnim;			//Played before shoveling loop starts
-var() Name					EndShovelAnim;				//Anim to play after shovel loop ends
-var() Name					EndShovelEmptyAnim;			//Played if the weapon needs cocking at the end of the shovel loop
-var() int					ShovelIncrement;			//Amount of ammo to stick in gun each time
-var   bool					bPlayThirdPersonReload; 	//Play an anim on the Pawn for reloading.
+var() int					AmmoType;					// Current ammunition type index (indexes into FireParams for firemodes)
+var() bool					bNoMag;						// Does not use reloading. Takes ammo straight from inventory
+var() Name					CockAnim;					// Animation to use for cocking
+var() Name					CockAnimPostReload;			// Anim to use for cocking at end of reload
+var() Name					CockSelectAnim;				// Anim used when bringing up a weapon which needs cocking
+var() BUtil.FullSound		CockSound;					// Sound to play for cocking
+var() bool					bCockAfterReload;			// Always cock the gun after reload
+var() bool					bCockOnEmpty;				// Gun will cock when reload ends if mag was empty before reload
+var() bool					bNonCocking;				// Gun doesn't, can't or shouldn't get cocked...
+var() Name					ReloadAnim;					// Anim to use for Reloading. Also anim to use for shovel loop
+var() Name					ReloadEmptyAnim;			// Anim played when reloading an empty weapon
+var() BUtil.FullSound		ClipHitSound;				// Sound to play when magazine gets hit
+var() BUtil.FullSound		ClipOutSound;				// Sound to play when magazine is pulled out
+var() BUtil.FullSound		ClipInSound;				// Sound to play when magazine is put in
+var() float					ClipInFrame;				// RED! Frame at which magazine is put in. Also frame of shovel loop when shell is placed in
+var() bool					bCanSkipReload;				// Can press fire to exit reloading from shovel loop or PreClipIn
+var() bool					bAltTriggerReload;			// Pressing alt fire triggers reload/skip/cock just like primary.
+var() bool					bShovelLoad;				// Ammo is loaded into gun repeatedly, e.g. the loading of a winchester or pump-action shotgun
+var() Name					StartShovelAnim;			// Played before shoveling loop starts
+var() Name					EndShovelAnim;				// Anim to play after shovel loop ends
+var() Name					EndShovelEmptyAnim;			// Played if the weapon needs cocking at the end of the shovel loop
+var() int					ShovelIncrement;			// Amount of ammo to stick in gun each time
+var   bool					bPlayThirdPersonReload; 	// Play an anim on the Pawn for reloading.
 var	  float					FireAnimCutThreshold;   	// Cuts the fire anim if the SightingState is higher than this.
 //-----------------------------------------------------------------------------
 // Recoil
@@ -879,6 +883,48 @@ simulated function TickFireCounter (float DT)
 {
 	if (!IsFiring() && FireCount > 0)
 		FireCount = 0;
+}
+
+//================================================================================
+// NETCODE
+//
+// Rewind functions
+//================================================================================
+final function RewindCollisions()
+{
+    local PlayerController PC;
+
+    if (RwColMgr == None)
+    {
+        Log("BallisticWeapon::RewindCollisions: No Manager");
+        return;
+    }
+
+    PC = PlayerController(InstigatorController);
+
+    if (PC == None)
+    {
+        Log("BallisticWeapon::RewindCollisions: Weapon not owned by PlayerController");
+        return;
+    }
+
+    Log("BallisticWeapon::RewindCollisions: Rewinding: Ping:" $ PC.PlayerReplicationInfo.Ping * 0.004f);
+        
+    RewindActive = True;
+
+    RwColMgr.RewindCollisions(PC.PlayerReplicationInfo.Ping * 0.004f);    
+}
+
+final function RestoreCollisions()
+{
+    if (RwColMgr == None || !RewindActive)
+        return;
+
+    Log("BallisticWeapon::RestoreCollisions: Restoring");
+
+    RwColMgr.RestoreCollisions();
+
+    RewindActive = false;
 }
 
 //================================================================================
@@ -3451,6 +3497,14 @@ simulated function Destroyed()
 		MeleeFireMode = None;
 	}
 
+    if (RwColMgr != None)
+    {
+        if (RewindActive)
+            RwColMgr.RestoreCollisions();
+
+        RwColMgr = None;
+    }
+
 	WeaponParams = None;
 
 	RcComponent.Cleanup();
@@ -4792,7 +4846,8 @@ defaultproperties
 	 
 	 MagAmmo=30
 	 
-     CockAnim="Cock"
+	 CockAnim="Cock"
+	 CockAnimRate=1.000000
      CockSelectAnim="PulloutFancy"
      CockSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
 	 
