@@ -137,14 +137,14 @@ final function DisableUnlag()
     if (!bUnlagged)
         return;
 
-    SetCollision(false, false, false);
-    bUnlagged = False;
-
     if (UnlaggedPawn != None && !UnlaggedPawn.bCollideActors && UnlaggedPawn.Health > 0)
     {
         log(Name @ "Pawn: Restoring collision parameters");
         UnlaggedPawn.SetCollision(bCollideActors, bBlockActors, bBlockPlayers);
     }    
+
+    SetCollision(false, false, false);
+    bUnlagged = False;
 
     //if (AIController(UnlaggedPawn.Controller) != None)
     //    Spawn(class'TransEffectRed');
