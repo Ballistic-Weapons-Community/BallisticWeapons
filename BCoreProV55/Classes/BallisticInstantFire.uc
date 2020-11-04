@@ -49,6 +49,7 @@ class BallisticInstantFire extends BallisticFire
 const MAX_WALLS = 5;
 
 const TORSO_RADIUS = 22;
+const HEAD_RADIUS = 10;
 
 //General Vars ----------------------------------------------------------------
 var() Range				        TraceRange;				        // Min and Max range of trace
@@ -155,18 +156,12 @@ function DoFireEffect()
 	Aim = Rotator(GetFireSpread() >> Aim);
 
     if (Level.NetMode == NM_DedicatedServer)
-    {
-        Log("BallisticInstantFire: Requesting rewind");
         BW.RewindCollisions();
-    }
 
 	DoTrace(StartTrace, Aim);
 
     if (Level.NetMode == NM_DedicatedServer)
-    {
-        Log("BallisticInstantFire: Undoing rewind");
         BW.RestoreCollisions();
-    }
 
 	Super.DoFireEffect();
 }
@@ -214,64 +209,110 @@ function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor
 	if (bNoPositionalDamage || Monster(Other) != None)
 		return Dmg;
 		
-	if (Pawn(Other) != None)
-	{
-		if (Vehicle(Other) != None)
-		{
-			// Try to relieve driver of his head...
-			DriverPawn = Vehicle(Other).CheckForHeadShot(HitLocation, Dir, 1.0);
-			if (DriverPawn != None)
-			{
-				Victim = DriverPawn;
-				Dmg = DamageHead;
-				DT = DamageTypeHead;
-			}
-		}
-		
-		else
-		{
-			// Check for head shot
-			Bone = string(Other.GetClosestBone(HitLocation, Dir, BoneDist, 'head', 10));
-			if (InStr(Bone, "head") > -1)
-			{
-				if (class'BallisticWeapon'.default.bUseModifiers)
-					Dmg *= DamageModHead;
-				else Dmg = DamageHead;
-				DT = DamageTypeHead;
-				return Dmg;
-			}
-			
-			if (class'BallisticWeapon'.default.bEvenBodyDamage)
-				return Dmg;
-			
-			// Torso shots
+    if (Vehicle(Other) != None)
+    {
+        // Try to relieve driver of his head...
+        DriverPawn = Vehicle(Other).CheckForHeadShot(HitLocation, Dir, 1.0);
 
-			// Older version of this check based on spine bone coordinate 
-			// if (HitLocation.Z > Other.GetBoneCoords('spine').Origin.Z - 8) //accounting for groin region here
+        if (DriverPawn != None)
+        {
+            Victim = DriverPawn;
+            Dmg = DamageHead;
+            DT = DamageTypeHead;
+        }
 
-			// Newer version simply based on middle of collision cylinder (i.e. pawn Location)
-			if (HitLocation.Z > Other.Location.Z - 5)
-			{
-				HitLocation.Z = Other.Location.Z;
+        return Dmg;
+    }
+    
+    // Pawn target - check for head shot using bone system
+    if (Pawn(Other) != None)
+    {
+        // Check for head shot
+        Bone = string(Other.GetClosestBone(HitLocation, Dir, BoneDist, 'head', 10));
+        if (InStr(Bone, "head") > -1)
+        {
+            if (class'BallisticWeapon'.default.bUseModifiers)
+                Dmg *= DamageModHead;
+            else Dmg = DamageHead;
+            DT = DamageTypeHead;
+            return Dmg;
+        }
 
-				// Torso radius
-				if (VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
-					return Dmg;
-			}
-			
-			//Anything else is limb
-			if (class'BallisticWeapon'.default.bUseModifiers)
-				Dmg *= DamageModLimb;
-			
-			else Dmg = DamageLimb;
-			
-			DT = DamageTypeArm;
-		}
-	}
+        if (class'BallisticWeapon'.default.bEvenBodyDamage)
+            return Dmg;
+
+        // Torso shots
+
+        // Older version of this check based on spine bone coordinate 
+        // if (HitLocation.Z > Other.GetBoneCoords('spine').Origin.Z - 8) //accounting for groin region here
+
+        // Newer version simply based on middle of collision cylinder (i.e. pawn Location)
+        if (HitLocation.Z > Other.Location.Z - 5)
+        {
+            HitLocation.Z = Other.Location.Z;
+
+            // Torso radius
+            if (VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
+                return Dmg;
+        }
+        
+        //Anything else is limb
+        if (class'BallisticWeapon'.default.bUseModifiers)
+            Dmg *= DamageModLimb;
+        
+        else Dmg = DamageLimb;
+        
+        DT = DamageTypeArm;
+    }
+
 	return Dmg;
 }
 
-function Vector GetDamageHitLocation(xPawn Other, Vector HitLocation, vector TraceStart, vector Dir)
+final function float GetDamageForCollision(Actor Other, vector HitLocation, vector Dir, optional out class<DamageType> DT)
+{
+	local float	Dmg;
+
+	Dmg = Damage;
+	DT = DamageType;
+
+    if (HitLocation.Z > Other.Location.Z + Other.CollisionHeight - 5)
+    {
+        HitLocation.Z = Other.Location.Z;
+
+        // Head radius
+        if (VSize(HitLocation - Other.Location) <= HEAD_RADIUS)
+        {
+            if (class'BallisticWeapon'.default.bUseModifiers)
+                Dmg *= DamageModHead;
+            else 
+                Dmg = DamageHead;
+            DT = DamageTypeHead;
+            return Dmg;
+        }
+    }
+
+    if (HitLocation.Z > Other.Location.Z - 5)
+    {
+        HitLocation.Z = Other.Location.Z;
+
+        // Torso radius
+        if (VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
+            return Dmg;
+    }
+    
+    //Anything else is limb
+    if (class'BallisticWeapon'.default.bUseModifiers)
+        Dmg *= DamageModLimb;
+    
+    else Dmg = DamageLimb;
+    
+    DT = DamageTypeArm;
+      
+	return Dmg;
+}
+
+// Actor can be Pawn-derived or UnlaggedPawnCollision
+function Vector GetDamageHitLocation(Actor Other, Vector HitLocation, vector TraceStart, vector Dir)
 {	
 	//Locational damage code from Mr Evil
 	local Vector BoneTestLocation, ClosestLocation;
@@ -331,16 +372,23 @@ function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector 
 
     if (UnlaggedPawnCollision(Other) != None)
     {
-        Other = UnlaggedPawnCollision(Other).UnlaggedPawn;
-        // todo update hitloc
+        DamageHitLocation = GetDamageHitLocation(Other, HitLocation, TraceStart, Dir);
+        Dmg = GetDamageForCollision(Other, DamageHitLocation, Dir, HitDT);
+        Victim = UnlaggedPawnCollision(Other).UnlaggedPawn;
     }
-
-	if(Other.IsA('xPawn') && !Other.IsA('Monster'))
-		DamageHitLocation = GetDamageHitLocation(xPawn(Other), HitLocation, TraceStart, Dir);
-	else
-		DamageHitLocation = HitLocation;
+	else 
+    {   
+        if (Other.IsA('xPawn') && !Other.IsA('Monster'))
+        {
+            DamageHitLocation = GetDamageHitLocation(xPawn(Other), HitLocation, TraceStart, Dir);
+        }
+        else
+        {
+            DamageHitLocation = HitLocation;
+        }
 	
-	Dmg = GetDamage(Other, DamageHitLocation, Dir, Victim, HitDT);
+	    Dmg = GetDamage(Other, DamageHitLocation, Dir, Victim, HitDT);
+    }
 
 	ScaleFactor = ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WallPenForce, WaterHitLocation);
 	

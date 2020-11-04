@@ -41,12 +41,20 @@ function DoFireEffect()
     local Rotator R, Aim;
 	local int i;
 
+    if (Level.NetMode == NM_DedicatedServer)
+        BW.RewindCollisions();
+
+	DoTrace(StartTrace, Aim);
+
 	Aim = GetFireAim(StartTrace);
 	for (i=0;i<TraceCount;i++)
 	{
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
 	}
+
+    if (Level.NetMode == NM_DedicatedServer)
+        BW.RestoreCollisions();
 
 	ApplyHits();
 
@@ -67,14 +75,25 @@ function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector 
 	local Vector 			DamageHitLocation;
 	local bool				bHeadshot;
 
-	//Log("BallisticShotgunFire::OnTraceHit");
-
-	if(Other.IsA('xPawn') && !Other.IsA('Monster'))
-		DamageHitLocation = GetDamageHitLocation(xPawn(Other), HitLocation, TraceStart, Dir);
-	else
-		DamageHitLocation = HitLocation;
+    if (UnlaggedPawnCollision(Other) != None)
+    {
+        DamageHitLocation = GetDamageHitLocation(Other, HitLocation, TraceStart, Dir);
+        Dmg = GetDamageForCollision(Other, DamageHitLocation, Dir, HitDT);
+        Victim = UnlaggedPawnCollision(Other).UnlaggedPawn;
+    }
+	else 
+    {   
+        if (Other.IsA('xPawn') && !Other.IsA('Monster'))
+        {
+            DamageHitLocation = GetDamageHitLocation(xPawn(Other), HitLocation, TraceStart, Dir);
+        }
+        else
+        {
+            DamageHitLocation = HitLocation;
+        }
 	
-	Dmg = GetDamage(Other, DamageHitLocation, Dir, Victim, HitDT);
+	    Dmg = GetDamage(Other, DamageHitLocation, Dir, Victim, HitDT);
+    }
 
 	ScaleFactor = ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WallPenForce, WaterHitLocation);
 	

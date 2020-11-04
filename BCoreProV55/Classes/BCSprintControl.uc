@@ -12,7 +12,7 @@ class BCSprintControl extends Inventory;
 var() float		Stamina;			// Stamina level of player. Players can't sprint when this is out
 var() float		MaxStamina;			// Max level of stamina
 var() float		StaminaDrainRate;	// Amount of stamina lost each second when sprinting
-var() float		StaminaChargeRate;	// Amount  of stamina gained each second when not sprinting
+var() float		StaminaChargeRate;	// Amount of stamina gained each second when not sprinting
 var   bool		bSprinting;			// Currently sprinting
 var   bool		bSprintActive;		// Sprint key is held down
 var() float		SpeedFactor;		// Player speed multiplied by this when sprinting
@@ -28,9 +28,12 @@ replication
 singular function StartSprint()
 {
 	local float NewSpeed;
+
 	if (Stamina <= 0 || Instigator.bIsCrouched || bSprintActive)
 		return;
+
 	bSprintActive = true;
+    
 	if (Instigator != None)
 	{
 		NewSpeed = Instigator.default.GroundSpeed * SpeedFactor;
