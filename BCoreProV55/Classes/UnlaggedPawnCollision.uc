@@ -104,7 +104,7 @@ final function EnableUnlag(float PingTime)
     UpdateUnlagLocation();
     
     InterpCurveGetInputDomain(LocX, UnlagTimeRange.Min, UnlagTimeRange.Max);
-    log(Name @ "Unlagging:" @ PingTime @ UnlagTimeRange.Min @ UnlagTimeRange.Max);
+    //log(Name @ "Unlagging:" @ PingTime @ UnlagTimeRange.Min @ UnlagTimeRange.Max);
     UnlagTime = FClamp(Level.TimeSeconds - PingTime, Level.TimeSeconds - MaxUnlagTime, UnlagTimeRange.Max);
     UnlaggedRadius = InterpCurveEval(CollRadius, UnlagTime);
     UnlaggedHeight = InterpCurveEval(CollHeight, UnlagTime);
@@ -120,8 +120,8 @@ final function EnableUnlag(float PingTime)
     SetCollision(UnlaggedPawn.bCollideActors, UnlaggedPawn.bBlockActors, UnlaggedPawn.bBlockPlayers);
     UnlaggedPawn.SetCollision(false, false, false);
 
-    log(Name @ "Pawn: X:" $ UnlaggedPawn.Location.X $ "Y: " $ UnlaggedPawn.Location.Y $ "Z: " $ UnlaggedPawn.Location.Z);
-    log(Name @ "Collision: X:" $ Location.X $ "Y: " $ Location.Y $ "Z: " $ Location.Z $ " ColH: " $ CollisionHeight $ " ColR:" $ CollisionRadius);
+    //log(Name @ "Pawn: X:" $ UnlaggedPawn.Location.X $ "Y: " $ UnlaggedPawn.Location.Y $ "Z: " $ UnlaggedPawn.Location.Z);
+    //log(Name @ "Collision: X:" $ Location.X $ "Y: " $ Location.Y $ "Z: " $ Location.Z $ " ColH: " $ CollisionHeight $ " ColR:" $ CollisionRadius);
     
     bUnlagged = True;
 }
@@ -139,7 +139,7 @@ final function DisableUnlag()
 
     if (UnlaggedPawn != None && !UnlaggedPawn.bCollideActors && UnlaggedPawn.Health > 0)
     {
-        log(Name @ "Pawn: Restoring collision parameters");
+        //log(Name @ "Pawn: Restoring collision parameters");
         UnlaggedPawn.SetCollision(bCollideActors, bBlockActors, bBlockPlayers);
     }    
 

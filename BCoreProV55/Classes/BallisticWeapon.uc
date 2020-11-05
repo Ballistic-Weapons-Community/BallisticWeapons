@@ -896,7 +896,7 @@ final function RewindCollisions()
 
     if (RwColMgr == None)
     {
-        Log("BallisticWeapon::RewindCollisions: No Manager");
+        //Log("BallisticWeapon::RewindCollisions: No Manager");
         return;
     }
 
@@ -904,11 +904,11 @@ final function RewindCollisions()
 
     if (PC == None)
     {
-        Log("BallisticWeapon::RewindCollisions: Weapon not owned by PlayerController");
+        //Log("BallisticWeapon::RewindCollisions: Weapon not owned by PlayerController");
         return;
     }
 
-    Log("BallisticWeapon::RewindCollisions: Rewinding: Ping:" $ PC.PlayerReplicationInfo.Ping * 0.004f);
+    //Log("BallisticWeapon::RewindCollisions: Rewinding: Ping:" $ PC.PlayerReplicationInfo.Ping * 0.004f);
         
     RewindActive = True;
 
@@ -920,7 +920,7 @@ final function RestoreCollisions()
     if (RwColMgr == None || !RewindActive)
         return;
 
-    Log("BallisticWeapon::RestoreCollisions: Restoring");
+    //Log("BallisticWeapon::RestoreCollisions: Restoring");
 
     RwColMgr.RestoreCollisions();
 

@@ -3,7 +3,7 @@ class X82TW_WeaponParams extends BallisticWeaponParams;
 defaultproperties
 {
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.35
+		ViewBindFactor=1
 		PitchFactor=0.350000
 		YawFactor=0.000000
 		XRandFactor=0.000000

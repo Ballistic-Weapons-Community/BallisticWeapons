@@ -8,6 +8,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.050000,OutVal=0.070000),(InVal=0.100000,OutVal=0.120000),(InVal=0.200000,OutVal=0.200000),(InVal=0.400000,OutVal=0.400000),(InVal=0.550000,OutVal=0.650000),(InVal=0.650000,OutVal=0.750000),(InVal=0.800000,OutVal=0.820000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.03000
 		YRandFactor=0.03000
+        ViewBindFactor=1.000000
 		MaxRecoil=12288.000000
 		DeclineTime=0.500000
 		DeclineDelay=0.150000
