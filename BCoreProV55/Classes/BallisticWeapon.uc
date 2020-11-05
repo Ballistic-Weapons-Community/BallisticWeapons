@@ -2503,8 +2503,10 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 
 	CheckBurstMode();
 
-	if (Instigator.IsLocallyControlled())
-		default.LastWeaponMode = LastMode;
+	if (ModeHandling == MR_Last && Instigator.IsLocallyControlled())
+    {
+        default.LastWeaponMode = CurrentWeaponMode;
+    }
 }
 
 simulated function ClientSwitchWeaponMode (byte NewMode)

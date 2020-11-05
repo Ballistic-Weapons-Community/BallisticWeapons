@@ -203,7 +203,6 @@ defaultproperties
 	DisplayFOV=90.000000
 	ClientState=WS_BringUp
 	Priority=1
-    ParamsClass=Class'X82TW_WeaponParams'
 	PlayerViewOffset=(X=-80.000000)
 	ItemName="Deployed X83 Sniper Rifle"
 	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.X83A1_Turret'
