@@ -10,10 +10,11 @@ class DTMARSGrenade extends DT_BWExplode;
 
 defaultproperties
 {
-     DeathStrings(0)="%k whipped a smoke grenade at %o's face."
+     DeathStrings(0)="%k whipped a MARS2 grenade at %o's face."
      DeathStrings(1)="%o took %k's explosive smoke grenade to the face."
+     SimpleKillString="MARS-2 Grenade"
      WeaponClass=Class'BWBPRecolorsPro.MARSAssaultRifle'
-     DeathString="%k whipped a smoke grenade at %o's face."
+     DeathString="%k whipped a MARS2 grenade at %o's face."
      FemaleSuicide="%o beat the walls with her grenade like a lunatic."
      MaleSuicide="%o beat the walls with his grenade like a lunatic."
      bDelayedDamage=True

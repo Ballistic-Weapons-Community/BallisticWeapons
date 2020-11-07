@@ -165,9 +165,9 @@ defaultproperties
     bPawnRapidFireAnim=True
     bFireOnRelease=True
     MaxHoldTime=2.50000
-    DamageType=Class'BWBPOtherPackPro.DTRaygunPlague'
-    DamageTypeHead=Class'BWBPOtherPackPro.DTRaygunPlague'
-    DamageTypeArm=Class'BWBPOtherPackPro.DTRaygunPlague'
+    DamageType=Class'BWBPOtherPackPro.DTRaygunCharged'
+    DamageTypeHead=Class'BWBPOtherPackPro.DTRaygunCharged'
+    DamageTypeArm=Class'BWBPOtherPackPro.DTRaygunCharged'
     FireAnim="ChargedFire"
     FireEndAnim=
     FireRate=1.200000
@@ -179,7 +179,7 @@ defaultproperties
     ShakeOffsetMag=(X=-3.000000)
     ShakeOffsetRate=(X=-1000.000000)
     ShakeOffsetTime=1.500000
-    ProjectileClass=Class'BWBPOtherPackPro.RaygunChargedProjectile'
+    //ProjectileClass=Class'BWBPOtherPackPro.RaygunChargedProjectile'
     BotRefireRate=0.250000
     WarnTargetPct=0.500000
 }

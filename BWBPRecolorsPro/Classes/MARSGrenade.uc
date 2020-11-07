@@ -86,11 +86,11 @@ defaultproperties
      bNoInitialSpin=True
      bAlignToVelocity=True
      ImpactDamage=65
-     ImpactDamageType=Class'BWBPRecolorsPro.DTChaffGrenade'
+     ImpactDamageType=Class'BWBPRecolorsPro.DTMARSGrenade'
      ImpactManager=Class'BWBPRecolorsPro.IM_ChaffGrenade'
      TrailClass=Class'BWBPRecolorsPro.ChaffTrail'
      TrailOffset=(X=1.600000,Z=6.400000)
-     MyRadiusDamageType=Class'BWBPRecolorsPro.DTChaffGrenadeRadius'
+     MyRadiusDamageType=Class'BWBPRecolorsPro.DTMARSGrenadeRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=0.000000
      MotionBlurRadius=768.000000
@@ -102,7 +102,7 @@ defaultproperties
      Speed=3500.000000
      Damage=75.000000
      DamageRadius=350.000000
-     MyDamageType=Class'BWBPRecolorsPro.DTChaffGrenadeRadius'
+     MyDamageType=Class'BWBPRecolorsPro.DTMARSGrenadeRadius'
      StaticMesh=StaticMesh'BallisticHardware2.M900.M900Grenade'
      bUnlit=False
 }
