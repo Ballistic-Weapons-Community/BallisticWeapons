@@ -122,6 +122,9 @@ function DoFireEffect()
 	Aim = GetFireAim(StartTrace);
 	Aim = Rotator(GetFireSpread() >> Aim);
 
+    if (Level.NetMode == NM_DedicatedServer)
+        BW.RewindCollisions();
+
 	// Do trace for each point
 	for	(i=0; i<NumSwipePoints; i++)
 	{
@@ -130,12 +133,17 @@ function DoFireEffect()
 		PointAim = Rotator(Vector(SwipePoints[i].Offset) >> Aim);
 		MeleeDoTrace(StartTrace, PointAim, i==WallHitPoint, SwipePoints[i].Weight);
 	}
+
+    if (Level.NetMode == NM_DedicatedServer)
+        BW.RestoreCollisions();
+
 	// Do damage for each victim
 	for (i=0; i<SwipeHits.length; i++)
 	{
 		OnTraceHit(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0, 0);
 		SwipeHits[i].Victim = None;
 	}
+
 	SwipeHits.Length = 0;
 
 	Super(BallisticFire).DoFireEffect();

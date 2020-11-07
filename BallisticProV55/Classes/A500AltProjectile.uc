@@ -57,9 +57,53 @@ simulated function BlowUp(vector HitLocation)
 	local vector Start;
 
 	Start = Location/* + 10 * HitNormal*/;
-	TargetedHurtRadius(Damage * (AcidLoad/ACIDMAX), DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
+	ConsistentHurtRadius(Damage, DamageRadius * (AcidLoad/ACIDMAX), MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
 	if ( Role == ROLE_Authority )
 		MakeNoise(1.0);
+}
+
+// Special HurtRadius function. This will hurt everyone except the chosen victim.
+// Useful if you want to spare a directly hit enemy from the radius damage
+function ConsistentHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
+{
+	local actor Victims;
+	local float damageScale, dist;
+	local vector dir;
+
+	if( bHurtEntry )
+		return;
+
+	bHurtEntry = true;
+	foreach CollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
+	{
+		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
+		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim && Victims != HurtWall)
+		{
+			//Cover penetration code for explosives.
+			if (!FastTrace(Victims.Location, Location))
+				continue;
+			dir = Victims.Location;
+			if (Victims.Location.Z > HitLocation.Z)
+				dir.Z = FMax(HitLocation.Z, dir.Z - Victims.CollisionHeight);
+			else dir.Z = FMin(HitLocation.Z, dir.Z + Victims.CollisionHeight);
+			dir -= HitLocation;
+			dist = FMax(1,VSize(dir));
+			dir = dir/dist;
+
+			if ( Instigator == None || Instigator.Controller == None )
+				Victims.SetDelayedDamageInstigatorController( InstigatorController );
+			class'BallisticDamageType'.static.GenericHurt
+			(
+				Victims,
+				DamageAmount,
+				Instigator,
+				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
+				(Momentum * dir),
+				DamageType
+			);
+		 }
+	}
+	bHurtEntry = false;
 }
 
 simulated function Explode(vector HitLocation, vector HitNormal)
@@ -115,9 +159,9 @@ defaultproperties
      MotionBlurTime=4.000000
      Speed=6000.000000
      MaxSpeed=6000.000000
-     Damage=75.000000
-     DamageRadius=256.000000
-     MomentumTransfer=7500.000000
+     Damage=25.000000
+     DamageRadius=768.000000
+     MomentumTransfer=0.000000
      MyDamageType=Class'BallisticProV55.DTA500Splash'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence

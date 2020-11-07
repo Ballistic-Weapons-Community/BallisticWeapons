@@ -185,6 +185,7 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True,Value=4.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
+    ReloadAnimRate=1.25
 	SightPivot=(Pitch=512)
 	SightOffset=(X=15.000000,Y=0.100000,Z=35.000000)
 	SightDisplayFOV=40.000000

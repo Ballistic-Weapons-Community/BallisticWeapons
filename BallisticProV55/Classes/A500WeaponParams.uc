@@ -23,7 +23,7 @@ defaultproperties
     End Object
 
     Begin Object Class=WeaponParams Name=ArenaParams
-        MagAmmo=8
+        MagAmmo=4
         SightingTime=0.300000
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

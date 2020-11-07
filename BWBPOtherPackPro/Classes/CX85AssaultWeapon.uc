@@ -174,7 +174,7 @@ simulated function CommonStartReload (optional byte i)
 	}
 
 	if (bScopeView && Instigator.IsLocallyControlled())
-		TemporaryScopeDown(Default.SightingTime*Default.SightingTimeScale);
+		TemporaryScopeDown(Default.SightingTime);
 	for (m=0; m < NUM_FIRE_MODES; m++)
 		if (BFireMode[m] != None)
 			BFireMode[m].ReloadingGun(i);

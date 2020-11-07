@@ -29,7 +29,8 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 {
 	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
 	
-	Dmg *= 1 + 0.5 * FMin(default.LifeSpan - LifeSpan, 0.75);
+	Dmg *= 1 + 0.5 * FMin(default.LifeSpan - LifeSpan, 0.3);
+
 	return Other;
 }
 
@@ -162,15 +163,15 @@ defaultproperties
      bRandomStartRotaion=False
      TrailClass=Class'BallisticProV55.A500ProjectileTrail'
      MyRadiusDamageType=Class'BallisticProV55.DTA500Blast'
-     bUsePositionalDamage=True
-     DamageHead=45.000000
-     DamageLimb=30.000000
+     bUsePositionalDamage=False
+     DamageHead=33.000000
+     DamageLimb=22.000000
      DamageTypeHead=Class'BallisticProV55.DTA500BlastHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000
 	 MaxSpeed=6500.000000
-	 AccelSpeed=100000.000000
-     Damage=27.000000
+	 AccelSpeed=3000.000000
+     Damage=22.000000
      MomentumTransfer=1000.000000
      MyDamageType=Class'BallisticProV55.DTA500Blast'
      LightType=LT_Steady

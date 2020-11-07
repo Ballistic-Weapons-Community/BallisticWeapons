@@ -13,7 +13,7 @@ class A500SecondaryFire extends BallisticProProjectileFire;
 var Sound ChargingSound;
 var int AcidLoad;
 
-const ACIDMAX = 8;
+const ACIDMAX = 4;
 
 function ModeHoldFire()
 {
@@ -30,7 +30,7 @@ state Hold
     simulated function BeginState()
     {
         AcidLoad = 0;
-        SetTimer(0.75, true);
+        SetTimer(1.25, true);
         Instigator.AmbientSound = ChargingSound;
 		Instigator.SoundRadius = 256;
 		Instigator.SoundVolume = 255;
@@ -69,7 +69,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	if (Proj != None)
 	{
 		Proj.Instigator = Instigator;
-		A500AltProjectile(Proj).AcidLoad = AcidLoad;
+		A500AltProjectile(Proj).AcidLoad = AcidLoad * 2;
 		A500AltProjectile(Proj).AdjustSpeed();
 	}
 }

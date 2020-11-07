@@ -128,7 +128,6 @@ defaultproperties
      SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.0;1.0")
      BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')
-     MagAmmo=6
      CockAnimRate=1.250000
      CockSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever')
      ReloadAnimRate=0.900000

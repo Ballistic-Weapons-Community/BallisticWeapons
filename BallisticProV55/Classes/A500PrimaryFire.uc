@@ -98,19 +98,18 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
-     ProjectileCount=3
-     HipSpreadFactor=1.500000
+     ProjectileCount=5
+     HipSpreadFactor=1.750000
      bNoRandomFire=True
      MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
-     FireRecoil=512.000000
+     FireRecoil=378.000000
      FireChaos=0.400000
-     XInaccuracy=275.000000
-     YInaccuracy=275.000000
-     FireSpreadMode=FSM_Scatter
+     XInaccuracy=220.000000
+     YInaccuracy=220.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
      FireEndAnim=
      FireAnimRate=1.300000
-     FireRate=0.5000
+     FireRate=0.4
      AmmoClass=Class'BallisticProV55.Ammo_A500Cells'
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
@@ -127,5 +126,5 @@ defaultproperties
 	 bSplashDamage=False
 	 bRecommendSplashDamage=False
 	 BotRefireRate=0.7
-     WarnTargetPct=0.500000
+     WarnTargetPct=0.200000
 }

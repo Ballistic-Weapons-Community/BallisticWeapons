@@ -72,7 +72,8 @@ defaultproperties
      FireChaos=0.500000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.G5.G5-Fire1')
      FireEndAnim=
-     FireRate=0.850000
+     FireRate=0.70000
+     FireAnimRate=1.1
      AmmoClass=Class'BWBPOtherPackPro.Ammo_Akeron'
      ShakeRotMag=(X=128.000000,Y=64.000000,Z=16.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

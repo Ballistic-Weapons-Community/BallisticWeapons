@@ -35,9 +35,9 @@ defaultproperties
      TraceRange=(Min=4000.000000,Max=4000.000000)
      WallPenetrationForce=8.000000
      
-     Damage=17.000000
-     DamageHead=25.000000
-     DamageLimb=17.000000
+     Damage=21.000000
+     DamageHead=21.000000
+     DamageLimb=21.000000
      RangeAtten=0.200000
      WaterRangeAtten=0.500000
      DamageType=Class'BallisticProV55.DTGRS9Pistol'
