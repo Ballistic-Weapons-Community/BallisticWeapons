@@ -132,8 +132,8 @@ defaultproperties
      WallHitPoint=4
      TraceRange=(Min=140.000000,Max=140.000000)
      Damage=50.000000
-     DamageHead=50.000000
-     DamageLimb=50.000000
+     
+     
      DamageType=Class'BWBPRecolorsPro.DTChaffSmack'
      DamageTypeHead=Class'BWBPRecolorsPro.DTChaffSmack'
      DamageTypeArm=Class'BWBPRecolorsPro.DTChaffSmack'

@@ -59,8 +59,8 @@ defaultproperties
      WallPenetrationForce=8.000000
      
      Damage=60.000000
-     DamageHead=90.000000
-     DamageLimb=60.000000
+     
+     
      RangeAtten=0.3500000
      WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTD49Revolver'

@@ -197,8 +197,8 @@ defaultproperties
      bRandomStartRotaion=False
      TrailClass=Class'BWBPOtherPackPro.XOXOBombTrail'
      MyRadiusDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
-     DamageHead=100.000000
-     DamageLimb=100.000000
+     
+     
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=2500.000000
      MaxSpeed=2500.000000

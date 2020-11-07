@@ -57,8 +57,8 @@ defaultproperties
   WallPenetrationForce=0
   
   Damage=13.000000
-  DamageHead=20.000000
-  DamageLimb=13.000000
+  
+  
   RangeAtten=0.200000
   DamageType=Class'BallisticProV55.DTMRS138Shotgun'
   DamageTypeHead=Class'BallisticProV55.DTMRS138ShotgunHead'

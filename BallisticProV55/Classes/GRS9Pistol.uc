@@ -425,15 +425,15 @@ simulated function CommonWeaponSpecial(optional byte i)
 	if (ThirdPersonActor != None)
 		GRS9Attachment(ThirdPersonActor).bBigLaser=true;
 	BallisticInstantFire(FireMode[1]).Damage = 75;
-	BallisticInstantFire(FireMode[1]).DamageHead = 75;
-	BallisticInstantFire(FireMode[1]).DamageLimb = 75;
+	BallisticInstantFire(FireMode[1]).HeadMult = 1f;
+	BallisticInstantFire(FireMode[1]).LimbMult = 1f;
 	BallisticInstantFire(FireMode[1]).XInaccuracy = 16;
 	BallisticInstantFire(FireMode[1]).YInaccuracy = 16;
 	FireMode[1].ModeDoFire();
 	LaserAmmo = FMax(0, LaserAmmo - default.LaserAmmo);
 	BallisticInstantFire(FireMode[1]).Damage = BallisticInstantFire(FireMode[1]).default.Damage;
-	BallisticInstantFire(FireMode[1]).DamageHead = BallisticInstantFire(FireMode[1]).default.DamageHead;
-	BallisticInstantFire(FireMode[1]).DamageLimb = BallisticInstantFire(FireMode[1]).default.DamageLimb;
+	BallisticInstantFire(FireMode[1]).HeadMult = BallisticInstantFire(FireMode[1]).default.HeadMult;
+	BallisticInstantFire(FireMode[1]).LimbMult = BallisticInstantFire(FireMode[1]).default.LimbMult;
 	BallisticInstantFire(FireMode[1]).XInaccuracy = 2;
 	BallisticInstantFire(FireMode[1]).YInaccuracy = 2;
 

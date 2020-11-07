@@ -136,8 +136,8 @@ defaultproperties
      CutOffStartRange=768.000000
      WallPenetrationForce=8.000000
      Damage=25.000000
-     DamageHead=25.000000
-     DamageLimb=25.000000
+     
+     
      RangeAtten=0.250000
      WaterRangeAtten=0.400000
      DamageType=Class'BallisticProV55.DTXRS10SMG'
@@ -156,7 +156,7 @@ defaultproperties
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.320000,OutVal=1),(InVal=0.500000,OutVal=1.500000),(InVal=1.000000,OutVal=2.250000)))
      XInaccuracy=48.000000
      YInaccuracy=48.000000
-     SilencedFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-SilenceFire',Volume=0.500000,Radius=32.000000,bAtten=True)
+     SilencedFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-SilenceFire',Volume=1,Radius=128,bAtten=True)
      BallisticFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Fire',Volume=0.900000,Radius=384.000000)
      bPawnRapidFireAnim=True
      FireRate=0.08000

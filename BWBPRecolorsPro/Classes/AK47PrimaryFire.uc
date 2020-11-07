@@ -15,8 +15,8 @@ defaultproperties
      WallPenetrationForce=24.000000
      
      Damage=28.000000
-     DamageHead=56.000000
-     DamageLimb=28.000000
+     
+     
      RangeAtten=0.40000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPRecolorsPro.DT_AK47Assault'

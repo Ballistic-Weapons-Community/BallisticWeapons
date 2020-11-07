@@ -19,8 +19,8 @@ defaultproperties
      SwipePoints(6)=(Weight=3,offset=(Yaw=-2560))
      SwipePoints(7)=(Weight=2,offset=(Yaw=-3840))
      SwipePoints(8)=(Weight=1,offset=(Yaw=-5120))
-     DamageHead=35.000000
-     DamageLimb=35.000000
+     
+     
      DamageType=Class'BallisticProV55.DTM763Hit'
      DamageTypeHead=Class'BallisticProV55.DTM763HitHead'
      DamageTypeArm=Class'BallisticProV55.DTM763Hit'

@@ -144,8 +144,8 @@ defaultproperties
 {
 	TraceRange=(Min=30000.000000,Max=30000.000000)
 	Damage=100.000000
-	DamageHead=150.000000
-	DamageLimb=100.000000
+	
+	
 	WaterRangeAtten=0.800000
 	DamageType=Class'BallisticProV55.DTR78Rifle'
 	DamageTypeHead=Class'BallisticProV55.DTR78RifleHead'

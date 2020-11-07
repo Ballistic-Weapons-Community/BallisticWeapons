@@ -36,8 +36,8 @@ defaultproperties
      SliceAnims(3)="Smash3"
      TraceRange=(Min=150.000000,Max=150.000000)
      Damage=65.000000
-     DamageHead=65.000000
-     DamageLimb=65.000000
+     
+     
      DamageType=Class'BWBPSomeOtherPack.DTBallisticShield'
      DamageTypeHead=Class'BWBPSomeOtherPack.DTBallisticShield'
      DamageTypeArm=Class'BWBPSomeOtherPack.DTBallisticShield'

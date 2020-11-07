@@ -31,8 +31,8 @@ defaultproperties
      WallPenetrationForce=8.000000
      
      Damage=20.000000
-     DamageHead=40.000000
-     DamageLimb=20.000000
+     
+     
      RangeAtten=0.200000
      WaterRangeAtten=0.200000
      DamageType=Class'BWBPRecolorsPro.DT_MRDR88Body'

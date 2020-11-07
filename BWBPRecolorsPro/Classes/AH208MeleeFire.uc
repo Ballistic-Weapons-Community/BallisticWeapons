@@ -73,8 +73,8 @@ defaultproperties
      WallHitPoint=4
      TraceRange=(Min=136.000000,Max=136.000000)
      Damage=70.000000
-     DamageHead=70.000000
-     DamageLimb=70.000000
+     
+     
      DamageType=Class'BWBPRecolorsPro.DTEagle208Melee'
      DamageTypeHead=Class'BWBPRecolorsPro.DTEagle208MeleeHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTEagle208Melee'

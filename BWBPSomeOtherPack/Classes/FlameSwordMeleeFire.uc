@@ -48,8 +48,8 @@ defaultproperties
 	 TraceRange=(Min=180.000000,Max=180.000000)
      WallHitPoint=4
      Damage=65.000000
-     DamageHead=65.000000
-     DamageLimb=65.000000
+     
+     
      DamageType=Class'BWBPSomeOtherPack.DT_FlameSwordChest'
      DamageTypeHead=Class'BWBPSomeOtherPack.DT_FlameSwordHead'
      DamageTypeArm=Class'BWBPSomeOtherPack.DT_FlameSwordChest'

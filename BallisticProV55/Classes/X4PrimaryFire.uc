@@ -37,8 +37,8 @@ defaultproperties
      bCanBackstab=False
      TraceRange=(Min=130.000000,Max=130.000000)
      Damage=55.000000
-     DamageHead=55.000000
-     DamageLimb=55.000000
+     
+     
      DamageType=Class'BallisticProV55.DTX4Knife'
      DamageTypeHead=Class'BallisticProV55.DTX4KnifeHead'
      DamageTypeArm=Class'BallisticProV55.DTX4KnifeLimb'

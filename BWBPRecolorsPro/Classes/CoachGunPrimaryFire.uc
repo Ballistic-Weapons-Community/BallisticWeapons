@@ -86,8 +86,6 @@ simulated function SwitchWeaponMode (byte newMode)
      	FlashScaleFactor=3.000000;
 		
 		Damage=55;
-		DamageHead=83;
-		DamageLimb=55;
 		
 		KickForce = 30000;
 		
@@ -122,16 +120,14 @@ simulated function SwitchWeaponMode (byte newMode)
 		
 		FlashScaleFactor=default.FlashScaleFactor;
 		
-		Damage = Default.Damage;
-		DamageHead = Default.DamageHead;
-		DamageLimb = Default.DamageLimb;
+		Damage = default.Damage;
 		
 		KickForce=default.KickForce;
 		
 		PenetrateForce=0;
 		bPenetrate=False;
 		
-		FireRecoil=Default.FireRecoil;
+		FireRecoil=default.FireRecoil;
 		
 		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
 		BallisticFireSound.Volume=default.BallisticFireSound.Volume;
@@ -652,8 +648,8 @@ defaultproperties
 	WallPenetrationForce=24
 	
 	Damage=11.000000
-	DamageHead=18.000000
-	DamageLimb=11.000000
+	
+	
 	RangeAtten=0.250000
 	DamageType=Class'BWBPRecolorsPro.DTCoachShot'
 	DamageTypeHead=Class'BWBPRecolorsPro.DTCoachShot'

@@ -29,8 +29,8 @@ defaultproperties
      WallPenetrationForce=8.000000
      
      Damage=45.000000
-     DamageHead=45.000000
-     DamageLimb=45.000000
+     
+     
      RangeAtten=0.40000
      WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTleMatRevolver'

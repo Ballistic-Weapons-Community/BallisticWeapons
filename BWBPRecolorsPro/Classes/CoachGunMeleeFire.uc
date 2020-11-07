@@ -19,8 +19,8 @@ defaultproperties
      SwipePoints(6)=(offset=(Pitch=-3000))
      WallHitPoint=4
      Damage=80.000000
-     DamageHead=80.000000
-     DamageLimb=80.000000
+     
+     
      DamageType=Class'BWBPRecolorsPro.DTCoachMelee'
      DamageTypeHead=Class'BWBPRecolorsPro.DTCoachMeleeHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTCoachMelee'

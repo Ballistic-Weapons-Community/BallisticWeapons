@@ -97,8 +97,8 @@ defaultproperties
     WallPenetrationForce=24.000000
     
     Damage=14.000000
-    DamageHead=28.000000
-    DamageLimb=14.000000
+    
+    
     RangeAtten=0.200000
     WaterRangeAtten=0.600000
     DamageType=Class'BallisticProV55.DTXK2Freeze'

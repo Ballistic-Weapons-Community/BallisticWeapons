@@ -457,8 +457,8 @@ defaultproperties
      WallPenetrationForce=0
      
      Damage=22.000000
-     DamageHead=33.000000
-     DamageLimb=22.000000
+     
+     
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPOtherPackPro.DTZ250Bullet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTZ250Bullet'

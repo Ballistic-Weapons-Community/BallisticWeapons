@@ -37,8 +37,8 @@ defaultproperties
      WallPenetrationForce=8.000000
      
      Damage=22.000000
-     DamageHead=33.000000
-     DamageLimb=22.000000
+     
+     
      RangeAtten=0.200000
      WaterRangeAtten=0.500000
      DamageType=Class'BallisticProV55.DTMD24Pistol'

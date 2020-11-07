@@ -144,8 +144,8 @@ defaultproperties
      WallPenetrationForce=16.000000
      
      Damage=20.000000
-     DamageHead=50.000000
-     DamageLimb=20.000000
+     
+     
      RangeAtten=0.350000
 
      DamageType=Class'BWBPRecolorsPro.DTF2000Assault'

@@ -341,8 +341,8 @@ defaultproperties
 	CollisionHeight=1.000000
 	CollisionRadius=1.000000
 	Damage=70.000000
-	DamageHead=70.000000
-	DamageLimb=70.000000
+	
+	
 	DamageRadius=128.000000
 	DamageTypeHead=Class'BallisticProV55.DT_RSDarkSlow'
 	DrawScale3D=(X=1.500000)

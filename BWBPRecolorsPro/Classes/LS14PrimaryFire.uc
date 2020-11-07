@@ -123,8 +123,8 @@ defaultproperties
      WallPenetrationForce=0.000000
      
      Damage=15.000000
-     DamageHead=30.000000
-     DamageLimb=15.000000
+     
+     
      DamageType=Class'BWBPRecolorsPro.DTLS14Body'
      DamageTypeHead=Class'BWBPRecolorsPro.DTLS14Head'
      DamageTypeArm=Class'BWBPRecolorsPro.DTLS14Limb'

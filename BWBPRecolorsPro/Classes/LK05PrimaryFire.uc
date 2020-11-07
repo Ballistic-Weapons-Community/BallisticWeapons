@@ -246,8 +246,8 @@ defaultproperties
      WallPenetrationForce=16.000000
      
      Damage=25.000000
-     DamageHead=50.000000
-     DamageLimb=25.000000
+     
+     
      RangeAtten=0.400000
      WaterRangeAtten=0.700000
      DamageType=Class'BWBPRecolorsPro.DT_LK05Assault'

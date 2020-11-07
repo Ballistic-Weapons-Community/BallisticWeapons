@@ -164,8 +164,8 @@ defaultproperties
      TrailClass=Class'BallisticProV55.A500ProjectileTrail'
      MyRadiusDamageType=Class'BallisticProV55.DTA500Blast'
      bUsePositionalDamage=False
-     DamageHead=33.000000
-     DamageLimb=22.000000
+     
+     
      DamageTypeHead=Class'BallisticProV55.DTA500BlastHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000

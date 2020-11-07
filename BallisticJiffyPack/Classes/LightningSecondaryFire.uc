@@ -135,8 +135,8 @@ defaultproperties
 	TraceRange=(Min=30000.000000,Max=30000.000000)
 	MaxWaterTraceRange=30000
 	Damage=80.000000
-	DamageHead=120.000000
-	DamageLimb=60.000000
+	
+	
 	WaterRangeAtten=0.800000
 	DamageType=Class'BallisticJiffyPack.DT_LightningRifle'
 	DamageTypeHead=Class'BallisticJiffyPack.DT_LightningHead'

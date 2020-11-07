@@ -81,8 +81,8 @@ defaultproperties
      SwipePoints(2)=(Weight=1,offset=(Pitch=-1000,Yaw=-1000))
      WallHitPoint=1
      NumSwipePoints=3
-     DamageHead=75.000000
-     DamageLimb=75.000000
+     
+     
      DamageType=Class'BallisticProV55.DT_RSNovaStab'
      DamageTypeHead=Class'BallisticProV55.DT_RSNovaStabHead'
      DamageTypeArm=Class'BallisticProV55.DT_RSNovaStab'

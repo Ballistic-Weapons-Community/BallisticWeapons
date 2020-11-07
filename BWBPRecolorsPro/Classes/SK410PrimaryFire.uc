@@ -70,8 +70,8 @@ defaultproperties
      ImpactManager=Class'BWBPRecolorsPro.IM_ShellHE'
      TraceRange=(Min=4000.000000,Max=6000.000000)
      Damage=11.000000
-     DamageHead=11.000000
-     DamageLimb=11.000000
+     
+     
      RangeAtten=0.350000
      DamageType=Class'BWBPRecolorsPro.DT_SK410Shotgun'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_SK410ShotgunHead'

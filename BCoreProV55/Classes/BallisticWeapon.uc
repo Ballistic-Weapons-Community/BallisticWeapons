@@ -124,8 +124,6 @@ var() globalconfig 	ModeSaveType 	ModeHandling;
 var() globalconfig  bool			bInvertScope;			// Inverts Prev/Next weap relation to Zoom In/Out
 var() globalconfig 	bool			bSightLock;				// Should iron sights continue when the key is released, once activated?
 var() globalconfig 	bool			bOldCrosshairs;			// Use UT2004 crosshairs instead of BW's
-var() globalconfig 	bool			bEvenBodyDamage;		// Will weapon limb hits cause as much damage as any non-head body region?...
-var() globalconfig	bool			bUseModifiers;			// Uses configurable modifiers in BallisticInstantFire / BallisticProjectile to handle locational damage
 var() globalconfig 	float			AimKnockScale;			// Scale the weapon displacement caused by taking damage
 var() globalconfig 	bool			bDrawCrosshairDot; 		// Draw dot in the centre of crosshairs
 var() globalconfig	bool			bUseBigIcon;			// For HUDFix huds - makes the Icon the BigIcon

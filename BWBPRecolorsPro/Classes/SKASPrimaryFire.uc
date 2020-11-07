@@ -68,8 +68,8 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=7000.000000,Max=7000.000000)
      Damage=13.000000
-     DamageHead=26.000000
-     DamageLimb=13.000000
+     
+     
      RangeAtten=0.250000
      DamageType=Class'BWBPRecolorsPro.DTSKASShotgun'
      DamageTypeHead=Class'BWBPRecolorsPro.DTSKASShotgunHead'

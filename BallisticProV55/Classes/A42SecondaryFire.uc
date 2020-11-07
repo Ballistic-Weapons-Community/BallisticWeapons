@@ -47,8 +47,8 @@ defaultproperties
 	TraceRange=(Min=8000.000000,Max=8000.000000)
 	WallPenetrationForce=8.000000
 	Damage=50.000000
-	DamageHead=75.000000
-	DamageLimb=50.000000
+	
+	
 	DamageType=Class'BallisticProV55.DTA42SkrithBeam'
 	DamageTypeHead=Class'BallisticProV55.DTA42SkrithBeam'
 	DamageTypeArm=Class'BallisticProV55.DTA42SkrithBeam'

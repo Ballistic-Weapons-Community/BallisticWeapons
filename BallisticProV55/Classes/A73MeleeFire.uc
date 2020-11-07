@@ -10,8 +10,8 @@ class A73MeleeFire extends BallisticMeleeFire;
 
 defaultproperties
 {
-     DamageHead=75.000000
-     DamageLimb=75.000000
+     
+     
      DamageType=Class'BallisticProV55.DTA73Stab'
      DamageTypeHead=Class'BallisticProV55.DTA73StabHead'
      DamageTypeArm=Class'BallisticProV55.DTA73Stab'

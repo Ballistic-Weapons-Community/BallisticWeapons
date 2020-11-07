@@ -197,8 +197,8 @@ defaultproperties
 	 bNoPositionalDamage=True
 	 bUseRunningDamage=False
      Damage=140.000000
-     DamageHead=140.000000
-     DamageLimb=140.000000
+     
+     
      DamageType=Class'BWBPRecolorsPro.DT_DTSChest'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_DTSHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_DTSLimb'

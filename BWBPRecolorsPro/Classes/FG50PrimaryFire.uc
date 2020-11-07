@@ -181,8 +181,8 @@ defaultproperties
      WallPenetrationForce=0.000000
      
      Damage=65.000000
-     DamageHead=150.000000
-     DamageLimb=65.000000
+     
+     
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPRecolorsPro.DT_FG50Torso'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_FG50Head'

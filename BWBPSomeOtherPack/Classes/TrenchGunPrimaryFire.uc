@@ -17,7 +17,7 @@ var() class<BCImpactManager>	AltImpactManager;
 var Name						AimedFireEmptyAnim, FireEmptyAnim, AimedFireSingleAnim, FireSingleAnim;
 var() float						ChargeTime, DecayCharge;
 
-var() float						ElectroDamageHead, ElectroDamage, ElectroDamageLimb;
+var() float						ElectroDamage;
 
 struct Point2
 {
@@ -171,8 +171,6 @@ simulated function SwitchWeaponMode (byte newMode)
 	if (newMode == 1) // Electro Mode
 	{
 		Damage = ElectroDamage;
-		DamageHead = ElectroDamageHead;
-		DamageLimb = ElectroDamageLimb;
 
 		PenetrateForce=500;
 		bPenetrate=True;
@@ -197,8 +195,6 @@ simulated function SwitchWeaponMode (byte newMode)
 	else // Explosive Mode
 	{
 		Damage = default.Damage;
-		DamageHead = default.DamageHead;
-		DamageLimb = default.DamageLimb;
 
 		PenetrateForce=0;
 		bPenetrate=False;
@@ -646,12 +642,8 @@ defaultproperties
 	WallPenetrationForce=0
 
 	Damage=10.000000
-	DamageHead=15.000000
-	DamageLimb=10.000000
 
 	ElectroDamage=5.000000
-	ElectroDamageHead=8.000000
-	ElectroDamageLimb=5.000000
 
 	RangeAtten=0.250000
 	PenetrateForce=0

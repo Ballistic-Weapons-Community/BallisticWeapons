@@ -37,8 +37,8 @@ defaultproperties
      FatiguePerStrike=0.035000
      TraceRange=(Min=130.000000,Max=130.000000)
      Damage=45.000000
-     DamageHead=45.000000
-     DamageLimb=45.000000
+     
+     
      DamageType=Class'BWBPRecolorsPro.DTX8Knife'
      DamageTypeHead=Class'BWBPRecolorsPro.DTX8Knife'
      DamageTypeArm=Class'BWBPRecolorsPro.DTX8Knife'

@@ -38,8 +38,8 @@ defaultproperties
      NumSwipePoints=3
      FatiguePerStrike=0.50000
      Damage=80.000000
-     DamageHead=80.000000
-     DamageLimb=80.000000
+     
+     
      DamageType=Class'BWBPSomeOtherPack.DTBallisticShield'
      DamageTypeHead=Class'BWBPSomeOtherPack.DTBallisticShield'
      DamageTypeArm=Class'BWBPSomeOtherPack.DTBallisticShield'

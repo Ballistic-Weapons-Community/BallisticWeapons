@@ -6,8 +6,8 @@
 
 class BallisticTab_ProSettings extends UT2K4TabPanel;
 
-var automated moFloatEdit fl_WalkingPct, fl_CrouchingPct, fl_NadePct, fl_HeadPct, fl_LimbPct;
-var automated moCheckbox ch_MineLights, ch_RunningAnims, ch_DmgModifier, ch_LimitCarry;
+var automated moFloatEdit fl_WalkingPct, fl_CrouchingPct, fl_NadePct;
+var automated moCheckbox ch_MineLights, ch_RunningAnims, ch_LimitCarry;
 var automated moNumericEdit int_MaxWeps;
 
 var BallisticConfigMenuPro p_Anchor;
@@ -36,9 +36,6 @@ function LoadSettings()
 	fl_NadePct.SetValue(class'Mut_BallisticSwap'.default.NadeReplacePercent);
 	ch_MineLights.Checked(class'BallisticReplicationInfo'.default.bUniversalMineLights);
 	ch_RunningAnims.Checked(class'BallisticReplicationInfo'.default.bUseRunningAnims);
-	ch_DmgModifier.Checked(class'BallisticWeapon'.default.bUseModifiers);
-	fl_HeadPct.SetValue(class'BallisticInstantFire'.default.DamageModHead);
-	fl_LimbPct.SetValue(class'BallisticInstantFire'.default.DamageModLimb);
 	ch_LimitCarry.Checked(class'BallisticWeapon'.default.bLimitCarry);
 	int_MaxWeps.SetValue(class'BallisticWeapon'.default.MaxWeaponsPerSlot);
 }
@@ -52,11 +49,6 @@ function SaveSettings()
 	class'BallisticReplicationInfo'.default.bUniversalMineLights = ch_MineLights.IsChecked();
 	class'BallisticReplicationInfo'.default.bUseRunningAnims = ch_RunningAnims.IsChecked();
 	class'Mut_BallisticSwap'.default.NadeReplacePercent = fl_NadePct.GetValue();
-	class'BallisticWeapon'.default.bUseModifiers = ch_DmgModifier.IsChecked();
-	class'BallisticInstantFire'.default.DamageModHead = fl_HeadPct.GetValue();
-	class'BallisticInstantFire'.default.DamageModLimb = fl_LimbPct.GetValue();
-	class'BallisticProjectile'.default.DamageModHead = fl_HeadPct.GetValue();
-	class'BallisticProjectile'.default.DamageModLimb = fl_LimbPct.GetValue();
 	class'BallisticWeapon'.default.bLimitCarry = ch_LimitCarry.IsChecked();
 	class'BallisticWeapon'.default.MaxWeaponsPerSlot = int_MaxWeps.GetValue();	
 	class'BallisticReplicationInfo'.static.StaticSaveConfig();
@@ -73,8 +65,6 @@ function DefaultSettings()
 	ch_MineLights.Checked(True);
 	ch_RunningAnims.Checked(True);
 	fl_NadePct.SetValue(15);
-	fl_HeadPct.SetValue(1.5);
-	fl_LimbPct.SetValue(0.75);
 	ch_LimitCarry.Checked(False);
 	int_MaxWeps.SetValue(1);	
 }
@@ -111,51 +101,6 @@ defaultproperties
      End Object
      fl_CrouchingPct=moFloatEdit'BallisticProV55.BallisticTab_ProSettings.fl_CrouchingPctFloat'
 
-     Begin Object Class=moFloatEdit Name=fl_NadePctFloat
-         MinValue=1.000000
-         MaxValue=100.000000
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.800000
-         Caption="Ammo to Grenades Swap Percentage"
-         OnCreateComponent=fl_NadePctFloat.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Percentage chance of replacing an ammo pickup with a grenade."
-         WinTop=0.300000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     fl_NadePct=moFloatEdit'BallisticProV55.BallisticTab_ProSettings.fl_NadePctFloat'
-
-     Begin Object Class=moFloatEdit Name=fl_HeadPctFloat
-         MinValue=1.000000
-         MaxValue=5.000000
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.800000
-         Caption="Headshot Damage Modifier"
-         OnCreateComponent=fl_HeadPctFloat.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Headshot damage is base damage multiplied by this if modifiers are enabled."
-         WinTop=0.400000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     fl_HeadPct=moFloatEdit'BallisticProV55.BallisticTab_ProSettings.fl_HeadPctFloat'
-
-     Begin Object Class=moFloatEdit Name=fl_LimbPctFloat
-         MinValue=0.100000
-         MaxValue=1.000000
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.800000
-         Caption="Limb Damage Modifier"
-         OnCreateComponent=fl_LimbPctFloat.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Limb damage is base damage multiplied by this if modifiers are enabled."
-         WinTop=0.450000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     fl_LimbPct=moFloatEdit'BallisticProV55.BallisticTab_ProSettings.fl_LimbPctFloat'
-
      Begin Object Class=moCheckBox Name=ch_MineLightsCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
@@ -182,18 +127,20 @@ defaultproperties
      End Object
      ch_RunningAnims=moCheckBox'BallisticProV55.BallisticTab_ProSettings.ch_RunningAnimsCheck'
 
-     Begin Object Class=moCheckBox Name=ch_DmgModifierCheck
+     Begin Object Class=moFloatEdit Name=fl_NadePctFloat
+         MinValue=1.000000
+         MaxValue=100.000000
          ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Use Damage Modifiers"
-         OnCreateComponent=ch_DmgModifierCheck.InternalOnCreateComponent
+         CaptionWidth=0.800000
+         Caption="Ammo to Grenades Swap Percentage"
+         OnCreateComponent=fl_NadePctFloat.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Enable to use config modifiers for head and limb damage."
-         WinTop=0.350000
+         Hint="Percentage chance of replacing an ammo pickup with a grenade."
+         WinTop=0.300000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_DmgModifier=moCheckBox'BallisticProV55.BallisticTab_ProSettings.ch_DmgModifierCheck'
+     fl_NadePct=moFloatEdit'BallisticProV55.BallisticTab_ProSettings.fl_NadePctFloat'
 
      Begin Object Class=moCheckBox Name=ch_LimitCarryCheck
          ComponentJustification=TXTA_Left
@@ -202,7 +149,7 @@ defaultproperties
          OnCreateComponent=ch_LimitCarryCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="If enabled, you can only carry a limited number of weapons of each type."
-         WinTop=0.500000
+         WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -217,7 +164,7 @@ defaultproperties
          OnCreateComponent=int_MaxWepsInt.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Sets the maximum number of weapons a player can carry in each InventoryGroup if Limit Carry is on."
-         WinTop=0.550000
+         WinTop=0.400000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

@@ -249,8 +249,8 @@ defaultproperties
      TrailClass=Class'BallisticProV55.RSNova2Trail'
      MyRadiusDamageType=Class'BallisticProV55.DT_RSNovaFast'
      bUsePositionalDamage=True
-     DamageHead=37.000000
-     DamageLimb=25.000000
+     
+     
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000
      MaxSpeed=14000.000000

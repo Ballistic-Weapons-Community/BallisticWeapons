@@ -278,8 +278,8 @@ defaultproperties
      FireSoundLoop=Sound'BallisticSounds3.RX22A.RX22A-FireLoop'
      TraceRange=(Min=1800.000000,Max=1800.000000)
      Damage=14.000000
-     DamageHead=14.000000
-     DamageLimb=14.000000
+     
+     
      KickForce=1000
      PenetrateForce=50
      FireChaos=0.050000

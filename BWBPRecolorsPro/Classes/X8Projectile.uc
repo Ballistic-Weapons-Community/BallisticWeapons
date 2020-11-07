@@ -84,8 +84,8 @@ defaultproperties
      bRandomStartRotaion=False
      bUsePositionalDamage=True
 	 bIgnoreTerminalVelocity=True
-     DamageHead=150.000000
-     DamageLimb=100.000000
+     
+     
      DamageTypeHead=Class'BWBPRecolorsPro.DTX8KnifeRifleLaunchedHead'
      bWarnEnemy=False
      Speed=7500.000000

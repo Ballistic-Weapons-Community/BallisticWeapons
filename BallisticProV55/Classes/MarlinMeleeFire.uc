@@ -16,8 +16,8 @@ defaultproperties
      SwipePoints(3)=(Weight=1,offset=(Pitch=-1000,Yaw=-1000))
      SwipePoints(4)=(Weight=3,offset=(Pitch=-2048,Yaw=-2048))
      Damage=80.000000
-     DamageHead=80.000000
-     DamageLimb=80.000000
+     
+     
      DamageType=Class'BallisticProV55.DTMarlinMelee'
      DamageTypeHead=Class'BallisticProV55.DTMarlinMeleeHead'
      DamageTypeArm=Class'BallisticProV55.DTMarlinMelee'

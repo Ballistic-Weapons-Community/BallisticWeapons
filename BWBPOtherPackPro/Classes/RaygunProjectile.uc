@@ -65,8 +65,8 @@ defaultproperties
      TrailClass=Class'BWBPOtherPackPro.RaygunShotTrail'
      MyRadiusDamageType=Class'BWBPOtherPackPro.DTRaygun'
      bUsePositionalDamage=True
-     DamageHead=82.000000
-     DamageLimb=41.000000
+     
+     
      DamageTypeHead=Class'BWBPOtherPackPro.DTRaygun'
      Speed=5000.000000
      MaxSpeed=8500.000000

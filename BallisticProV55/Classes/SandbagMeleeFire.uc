@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class SandbagMeleeFire extends BallisticMeleeFire;
 
@@ -36,8 +36,8 @@ defaultproperties
      bCanBackstab=False
      TraceRange=(Min=130.000000,Max=130.000000)
      Damage=140.000000
-     DamageHead=140.000000
-     DamageLimb=140.000000
+     
+     
      DamageType=Class'BallisticProV55.DTX4Knife'
      DamageTypeHead=Class'BallisticProV55.DTX4KnifeHead'
      DamageTypeArm=Class'BallisticProV55.DTX4KnifeLimb'

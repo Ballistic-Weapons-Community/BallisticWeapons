@@ -169,7 +169,7 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 			if (DriverPawn != None)
 			{
 				Other = DriverPawn;
-				Dmg = DamageHead;
+				Dmg *= HeadMult;
 
 				if (DamageTypeHead != None)
 					DT = DamageTypeHead;
@@ -185,9 +185,7 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 			Bone = string(Other.GetClosestBone(HitLocation, Dir, BoneDist, 'head', 10));
 			if (InStr(Bone, "head") > -1)
 			{
-				if (class'BallisticWeapon'.default.bUseModifiers)
-					Dmg *= DamageModHead;
-				else Dmg = DamageHead;
+				Dmg *= HeadMult;
 
 				if (DamageTypeHead != None)
 					DT = DamageTypeHead;
@@ -196,13 +194,7 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 			// Limb shots
 			else if (HitLocation.Z < Other.GetBoneCoords('spine').Origin.Z - 14 || VSize(HitLocationMatchZ - Other.Location) > 22) //accounting for groin region here
 			{
-				if (class'BallisticWeapon'.default.bUseModifiers)
-					Dmg *= DamageModLimb;
-				else if(class'BallisticWeapon'.default.bEvenBodyDamage)
-				{
-					Dmg = Damage;
-				}
-				else Dmg = DamageLimb;
+				Dmg *= LimbMult;
 				if (DamageTypeLimb != None)
 					DT = DamageTypeLimb;
 			}

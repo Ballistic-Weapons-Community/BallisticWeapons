@@ -14,9 +14,9 @@ defaultproperties
      CutOffStartRange=1536.000000
      WallPenetrationForce=12.000000
      
-     DamageHead=90.000000
+     
 	 Damage=60.000000
-     DamageLimb=60.000000
+     
      RangeAtten=0.500000
      WaterRangeAtten=0.300000
      DamageType=Class'BallisticProV55.DTAM67Pistol'

@@ -274,8 +274,8 @@ defaultproperties
      NumSwipePoints=1
      TraceRange=(Min=190.000000,Max=190.000000)
      Damage=20.000000
-     DamageHead=20.000000
-     DamageLimb=20.000000
+     
+     
      DamageType=Class'DT_MAGSAWStab'
      DamageTypeHead=Class'DT_MAGSAWStabHead'
      DamageTypeArm=Class'DT_MAGSAWStab'

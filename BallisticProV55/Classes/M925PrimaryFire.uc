@@ -40,8 +40,8 @@ defaultproperties
      WallPenetrationForce=48.000000
      
      Damage=60.000000
-     DamageHead=100.000000
-     DamageLimb=60.000000
+     
+     
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTM925MG'
      DamageTypeHead=Class'BallisticProV55.DTM925MGHead'

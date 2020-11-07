@@ -66,8 +66,8 @@ struct TraceInfo					                            // This holds info about a trac
 
 //Damage Vars -----------------------------------------------------------------
 var() float						Damage;							// Damage for nomal shots
-var() float						DamageHead;						// Damage for Headshots
-var() float						DamageLimb;						// Damage for Limbshots
+var() float                     HeadMult;                       // Multiplier for mode's effect on head (damage, etc)
+var() float                     LimbMult;                       // Multiplier for mode's effect on limb (damage, etc)
 var() float						RangeAtten;						// Attenuates damage depending on range. At max range, damage is multiplied by this.
 var() float						WaterRangeAtten;				// Extra attenuation applied when bullet goes through water. Damage *= Lerp(WaterDist / (MaxRange*WaterRangeFactor), 1, This)
 var() class<DamageType>			DamageType;						// Damage type to use
@@ -217,7 +217,7 @@ function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor
         if (DriverPawn != None)
         {
             Victim = DriverPawn;
-            Dmg = DamageHead;
+            Dmg *= HeadMult;
             DT = DamageTypeHead;
         }
 
@@ -231,15 +231,10 @@ function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor
         Bone = string(Other.GetClosestBone(HitLocation, Dir, BoneDist, 'head', 10));
         if (InStr(Bone, "head") > -1)
         {
-            if (class'BallisticWeapon'.default.bUseModifiers)
-                Dmg *= DamageModHead;
-            else Dmg = DamageHead;
+            Dmg *= HeadMult;
             DT = DamageTypeHead;
             return Dmg;
         }
-
-        if (class'BallisticWeapon'.default.bEvenBodyDamage)
-            return Dmg;
 
         // Torso shots
 
@@ -256,11 +251,7 @@ function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor
                 return Dmg;
         }
         
-        //Anything else is limb
-        if (class'BallisticWeapon'.default.bUseModifiers)
-            Dmg *= DamageModLimb;
-        
-        else Dmg = DamageLimb;
+        Dmg *= LimbMult;
         
         DT = DamageTypeArm;
     }
@@ -282,10 +273,7 @@ final function float GetDamageForCollision(Actor Other, vector HitLocation, vect
         // Head radius
         if (VSize(HitLocation - Other.Location) <= HEAD_RADIUS)
         {
-            if (class'BallisticWeapon'.default.bUseModifiers)
-                Dmg *= DamageModHead;
-            else 
-                Dmg = DamageHead;
+            Dmg *= HeadMult;
             DT = DamageTypeHead;
             return Dmg;
         }
@@ -300,12 +288,7 @@ final function float GetDamageForCollision(Actor Other, vector HitLocation, vect
             return Dmg;
     }
     
-    //Anything else is limb
-    if (class'BallisticWeapon'.default.bUseModifiers)
-        Dmg *= DamageModLimb;
-    
-    else Dmg = DamageLimb;
-    
+    Dmg *= LimbMult;
     DT = DamageTypeArm;
       
 	return Dmg;
@@ -845,6 +828,6 @@ defaultproperties
      WaterRangeAtten=0.000000
      PDamageFactor=0.700000
      WallPDamageFactor=0.95
-     DamageModHead=1.500000
-     DamageModLimb=0.700000
+     HeadMult=1.5
+     LimbMult=0.7
 }

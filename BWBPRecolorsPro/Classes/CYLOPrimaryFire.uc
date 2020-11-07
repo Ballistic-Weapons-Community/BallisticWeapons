@@ -22,8 +22,8 @@ defaultproperties
      WallPenetrationForce=24.000000
      
      Damage=28.000000
-     DamageHead=56.000000
-     DamageLimb=28.000000
+     
+     
      RangeAtten=0.350000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPRecolorsPro.DTCYLORifle'
@@ -38,7 +38,7 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
      FlashBone="Muzzle"
      FlashScaleFactor=0.500000
-     FireRecoil=180.000000
+     FireRecoil=240.000000
      FireChaos=0.032000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      XInaccuracy=32.000000

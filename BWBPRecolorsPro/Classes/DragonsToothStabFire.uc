@@ -18,8 +18,8 @@ defaultproperties
      bCanBackstab=True
      TraceRange=(Min=200.000000,Max=200.000000)
      Damage=135.000000
-     DamageHead=135.000000
-	DamageLimb=135.000000
+     
+	
 	FireRate=1.5
      DamageType=Class'BWBPRecolorsPro.DT_DTSStabChest'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_DTSStabHead'

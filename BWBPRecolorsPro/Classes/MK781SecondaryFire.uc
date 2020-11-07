@@ -241,8 +241,8 @@ defaultproperties
      ImpactManager=Class'BWBPRecolorsPro.IM_Supercharge'
      TraceRange=(Min=2000.000000,Max=4000.000000)
      Damage=10.000000
-     DamageHead=10.000000
-     DamageLimb=10.000000
+     
+     
      DamageType=Class'BWBPRecolorsPro.DT_Mk781Electro'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_Mk781Electro'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_Mk781Electro'

@@ -114,8 +114,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FireAnim=default.FireAnim;
 		FireChaos=default.FireChaos;
 		Damage=default.Damage;
-		DamageHead=default.DamageHead;
-		DamageLimb=default.DamageLimb;
 		WallPenetrationForce = default.WallPenetrationForce;
 		FlashScaleFactor=default.FlashScaleFactor;
 		bFlashAlt=false;
@@ -134,8 +132,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FireChaos=1;
 		KickForce=3000;
 		Damage=110.000000;
-		DamageHead=175.000000;
-		DamageLimb=110.000000;
 		WallPenetrationForce = 96;
 		FlashScaleFactor=1.600000;
 		KickForce=60000;
@@ -158,8 +154,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 			FireAnim='FireShield';
 		FireRate=0.200000;
 		Damage=40.000000;
-		DamageHead=80.000000;
-		DamageLimb=40.000000;
 		WallPenetrationForce=24;
 	}
 	if (Weapon.bBerserk)
@@ -178,8 +172,8 @@ defaultproperties
      WallPenetrationForce=48.000000
      
      Damage=60.000000
-     DamageHead=120.000000
-     DamageLimb=60.000000
+     
+     
      WaterRangeAtten=0.700000
      DamageType=Class'BWBPRecolorsPro.DT_M2020Pwr'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_M2020HeadPwr'

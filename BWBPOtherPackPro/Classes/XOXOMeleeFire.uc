@@ -21,8 +21,8 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 
 defaultproperties
 {
-     DamageHead=75.000000
-     DamageLimb=75.000000
+     
+     
      DamageType=Class'BWBPOtherPackPro.DTXOXOStab'
      DamageTypeHead=Class'BWBPOtherPackPro.DTXOXOStab'
      DamageTypeArm=Class'BWBPOtherPackPro.DTXOXOStab'

@@ -284,8 +284,8 @@ defaultproperties
 	CollisionHeight=1.000000
 	CollisionRadius=1.000000
 	Damage=60.000000
-	DamageHead=60.000000
-	DamageLimb=60.000000
+	
+	
 	DamageRadius=128.000000
 	DamageTypeHead=Class'BallisticProV55.DT_RSNovaSlow'
 	ImpactManager=Class'BallisticProV55.IM_RSNovaProjectile'

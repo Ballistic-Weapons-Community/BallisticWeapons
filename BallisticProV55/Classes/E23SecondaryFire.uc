@@ -207,8 +207,8 @@ defaultproperties
      FireSoundLoop=Sound'BWBP4-Sounds.VPR.VPR-LaserLoop'
      TraceRange=(Min=10000.000000,Max=10000.000000)
      Damage=10.000000
-     DamageHead=15.000000
-     DamageLimb=10.000000
+     
+     
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTVPRLaser'
      DamageTypeHead=Class'BallisticProV55.DTVPRLaserHead'

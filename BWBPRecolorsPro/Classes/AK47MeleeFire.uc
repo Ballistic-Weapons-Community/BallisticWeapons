@@ -18,7 +18,6 @@ simulated function SwitchBladeMode (bool bLoaded)
 		FireAnim='Pokies';
 		FireAnimRate=0.900000;
 		Damage=default.Damage;
-		DamageLimb=default.DamageLimb;
 	}
 	else
 	{
@@ -27,7 +26,6 @@ simulated function SwitchBladeMode (bool bLoaded)
 		FireAnim='Bash';
 		FireAnimRate=default.FireAnimRate;
 		Damage=60;
-		DamageLimb=60;
 	}
 
 	if (Weapon.bBerserk)
@@ -55,8 +53,8 @@ simulated event ModeHoldFire()
 
 defaultproperties
 {
-     DamageHead=75.000000
-     DamageLimb=75.000000
+     
+     
      DamageType=Class'BWBPRecolorsPro.DT_AK47Hit'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_AK47HitHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_AK47Hit'

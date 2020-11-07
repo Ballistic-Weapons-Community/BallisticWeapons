@@ -413,7 +413,7 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipout')
 	ClipInSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipin')
 	ClipInFrame=0.650000
-	WeaponModes(0)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=5.000000)
+	WeaponModes(0)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=4.000000)
 	WeaponModes(1)=(bUnavailable=True)
     WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 	CurrentWeaponMode=0

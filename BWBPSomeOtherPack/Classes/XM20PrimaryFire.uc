@@ -39,8 +39,8 @@ defaultproperties
 	WallPenetrationForce=64.000000
 
 	Damage=12.000000
-	DamageHead=18.000000
-	DamageLimb=12.000000
+	
+	
 	DamageType=Class'BWBPSomeOtherPack.DTXM20Body'
 	DamageTypeHead=Class'BWBPSomeOtherPack.DTXM20Head'
 	DamageTypeArm=Class'BWBPSomeOtherPack.DTXM20Body'

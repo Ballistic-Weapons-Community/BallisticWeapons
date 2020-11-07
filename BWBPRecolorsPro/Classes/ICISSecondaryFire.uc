@@ -78,8 +78,8 @@ defaultproperties
      SwipePoints(5)=(Weight=-1)
      SwipePoints(6)=(Weight=-1)
      TraceRange=(Min=96.000000,Max=96.000000)
-     DamageHead=75.000000
-     DamageLimb=75.000000
+     
+     
      DamageType=Class'BWBPRecolorsPro.DT_ICIS'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_ICIS'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_ICIS'

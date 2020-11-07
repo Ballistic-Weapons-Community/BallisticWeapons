@@ -130,8 +130,8 @@ defaultproperties
      WallPenetrationForce=8.000000
      
      Damage=18.000000
-     DamageHead=18.000000
-     DamageLimb=18.000000
+     
+     
 
      DamageType=Class'BallisticProV55.DTXK2SMG'
      DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'

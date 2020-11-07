@@ -45,8 +45,8 @@ defaultproperties
 {
      TraceRange=(Min=15000.000000,Max=15000.000000)
      Damage=40.000000
-     DamageHead=80.000000
-     DamageLimb=40.000000
+     
+     
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPRecolorsPro.DT_AS50Torso'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_AS50Head'

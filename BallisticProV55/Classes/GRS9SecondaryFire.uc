@@ -89,8 +89,8 @@ defaultproperties
 	 CutOffDistance=2048
 	 RangeAtten=0.2
      Damage=14.000000
-     DamageHead=14.000000
-     DamageLimb=14.000000
+     
+     
      DamageType=Class'BallisticProV55.DTGRS9Laser'
      DamageTypeHead=Class'BallisticProV55.DTGRS9LaserHead'
      DamageTypeArm=Class'BallisticProV55.DTGRS9Laser'

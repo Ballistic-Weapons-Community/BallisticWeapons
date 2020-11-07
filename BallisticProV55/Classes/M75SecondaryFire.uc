@@ -95,8 +95,8 @@ defaultproperties
 	 bCockAfterFire=True
 
 	 Damage=120.000000
-     DamageHead=150.000000
-	 DamageLimb=120.000000
+     
+	 
 	 RailDamageBonus=50
 	 
      DamageType=Class'BallisticProV55.DTM75RailgunCharged'

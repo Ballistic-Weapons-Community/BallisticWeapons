@@ -172,8 +172,8 @@ defaultproperties
      WallPenetrationForce=0.000000
      
      Damage=32.000000
-     DamageHead=64.000000
-     DamageLimb=32.000000
+     
+     
      RangeAtten=0.350000
      WaterRangeAtten=0.200000
      DamageType=Class'BWBPRecolorsPro.DTCYLOFirestormRifle'

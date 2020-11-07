@@ -36,8 +36,8 @@ defaultproperties
      WallPenetrationForce=8.000000
      
      Damage=40.000000
-     DamageHead=60.000000
-     DamageLimb=40.000000
+     
+     
      RangeAtten=0.30000
      WaterRangeAtten=0.500000
      DamageType=Class'BallisticProV55.DTM806Pistol'

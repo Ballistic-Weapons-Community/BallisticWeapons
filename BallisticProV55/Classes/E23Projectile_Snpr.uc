@@ -90,8 +90,8 @@ defaultproperties
      bRandomStartRotaion=False
      AccelSpeed=100000.000000
      MyRadiusDamageType=Class'BallisticProV55.DTE23Plasma'
-     DamageHead=55.000000
-     DamageLimb=35.000000
+     
+     
      DamageTypeHead=Class'BallisticProV55.DTE23PlasmaHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000

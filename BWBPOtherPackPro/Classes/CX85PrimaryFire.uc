@@ -8,8 +8,8 @@ defaultproperties
      WallPenetrationForce=16.000000
      
      Damage=21.000000
-     DamageHead=42.000000
-     DamageLimb=21.000000
+     
+     
      RangeAtten=0.350000
 
      DamageType=Class'BWBPOtherPackPro.DTCX85Bullet'

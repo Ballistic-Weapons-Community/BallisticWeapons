@@ -321,8 +321,8 @@ defaultproperties
      WallPenetrationForce=16.000000
      
      Damage=22.000000
-     DamageHead=44.000000
-     DamageLimb=22.000000
+     
+     
      WaterRangeAtten=0.200000
      DamageType=Class'BallisticProV55.DTXMV850MG'
      DamageTypeHead=Class'BallisticProV55.DTXMV850MGHead'

@@ -133,8 +133,8 @@ defaultproperties
      TrailClass=Class'BWBPRecolorsPro.BFGSmallTrailEmitter'
      MyRadiusDamageType=Class'BWBPRecolorsPro.DT_BFGChargeSmall'
      bUsePositionalDamage=True
-     DamageHead=130.000000
-     DamageLimb=65.000000
+     
+     
      DamageTypeHead=Class'BWBPRecolorsPro.DT_BFGChargeSmall'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=8000.000000

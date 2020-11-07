@@ -46,12 +46,6 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	super.AdjustPlayerDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType);
 }
 
-simulated function PostBeginPlay()
-{
-	Super.PostBeginPlay();
-	SetBoneScale(5, 0, 'ElecSight');
-}
-
 simulated function DrawWeaponInfo(Canvas C)
 {
 	NewDrawWeaponInfo(C, 0.705*C.ClipY);
@@ -531,9 +525,8 @@ defaultproperties
 	bAltTriggerReload=True
 	WeaponModes(0)=(bUnavailable=True)
 	bNoCrosshairInScope=False
-	SightPivot=(Pitch=64)
-	SightOffset=(X=0.000000,Y=13.600000,Z=19.500000)
-	SightDisplayFOV=25.000000
+	SightPivot=(Pitch=450)
+	SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
 	GunLength=16.000000
 	ParamsClass=Class'CYLOWeaponParams' 
 	FireModeClass(0)=Class'BWBPRecolorsPro.CYLOPrimaryFire'

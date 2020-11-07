@@ -225,8 +225,8 @@ defaultproperties
      FatiguePerStrike=0.150000
      bCanBackstab=False
      Damage=50.000000
-     DamageHead=50.000000
-     DamageLimb=50.000000
+     
+     
      DamageType=Class'BWBPOtherPackPro.DTShockGauntletAlt'
      DamageTypeHead=Class'BWBPOtherPackPro.DTShockGauntletAlt'
      DamageTypeArm=Class'BWBPOtherPackPro.DTShockGauntletAlt'

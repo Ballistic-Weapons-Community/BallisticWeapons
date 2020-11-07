@@ -43,9 +43,9 @@ var() bool					bTearOnExplode;			// If !bNetTemporary, tear this projectile off 
 var() float					NetTrappedDelay;		// How long to remain in nettrapped state before being destroyed
 var() bool					bUsePositionalDamage;	// Enable damage variation depending on hitlocation
 
-var() float					DamageHead;		// Damage for headshots
-var() float					DamageLimb;		// Damage for limb shots
-var() globalconfig float	DamageModHead, DamageModLimb; //Configurable damage modifiers for base damage
+var() float					HeadMult;		        // Multiplier for effect against head
+var() float					LimbMult;		        // Multiplier for effect against limb
+
 var() class<DamageType>		DamageTypeHead;			// Damagetype for headshots
 var() class<DamageType>		DamageTypeLimb;			// Damagetype for limbshots
 
@@ -462,10 +462,11 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 		{
 			// Try to relieve driver of his head...
 			DriverPawn = Vehicle(Other).CheckForHeadShot(HitLocation, Dir, 1.0);
+
 			if (DriverPawn != None)
 			{
 				Other = DriverPawn;
-				Dmg = DamageHead;
+				Dmg *= HeadMult;
 
 				if (DamageTypeHead != None)
 					DT = DamageTypeHead;
@@ -480,11 +481,8 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 			// Check for head shot
 			Bone = string(Other.GetClosestBone(HitLocation, Dir, BoneDist, 'head', 10));
 			if (InStr(Bone, "head") > -1)
-
 			{
-				if (class'BallisticWeapon'.default.bUseModifiers)
-					Dmg *= DamageModHead;
-				else Dmg = DamageHead;
+				Dmg *= HeadMult;
 
 				if (DamageTypeHead != None)
 					DT = DamageTypeHead;
@@ -493,20 +491,13 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 			// Limb shots
 			else if (HitLocation.Z < Other.Location.Z - (Other.CollisionHeight/6) || VSize(HitLocationMatchZ - Other.Location) > 22) //accounting for groin region here
 			{
-				if (class'BallisticWeapon'.default.bUseModifiers)
-					Dmg *= DamageModLimb;
-				else if(class'BallisticWeapon'.default.bEvenBodyDamage)
-				{
-					Dmg = Damage;
-				}
-				else Dmg = DamageLimb;
+				Dmg *= LimbMult;
 
 				if (DamageTypeLimb != None)
 					DT = DamageTypeLimb;
 			}
 		}
 	}
-
 
 	return Other;
 }
@@ -595,8 +586,8 @@ defaultproperties
      bRandomStartRotaion=True
      bTearOnExplode=True
      NetTrappedDelay=0.150000
-     DamageModHead=1.500000
-     DamageModLimb=0.700000
+     HeadMult=1.500000
+     LimbMult=0.700000
      ShakeRadius=-1.000000
      bWarnEnemy=True
      MotionBlurRadius=-1.000000

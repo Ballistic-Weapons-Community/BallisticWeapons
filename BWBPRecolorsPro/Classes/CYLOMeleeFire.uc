@@ -7,8 +7,8 @@ defaultproperties
      SwipePoints(2)=(Weight=2)
      SwipePoints(3)=(Weight=1,offset=(Pitch=-1000,Yaw=-1000))
      SwipePoints(4)=(Weight=3,offset=(Pitch=-2048,Yaw=-2048))
-     DamageHead=75.000000
-     DamageLimb=75.000000
+     
+     
      DamageType=Class'BWBPRecolorsPro.DTCYLOStab'
      DamageTypeHead=Class'BWBPRecolorsPro.DTCYLOStabHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTCYLOStabLimb'

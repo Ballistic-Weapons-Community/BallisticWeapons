@@ -108,8 +108,8 @@ defaultproperties
      bRandomStartRotaion=False
      TrailClass=Class'BWBPOtherPackPro.XOXONukeTrail'
      MyRadiusDamageType=Class'BWBPOtherPackPro.DTXOXOSexplosion'
-     DamageHead=250.000000
-     DamageLimb=250.000000
+     
+     
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=2500.000000
      MaxSpeed=4500.000000
