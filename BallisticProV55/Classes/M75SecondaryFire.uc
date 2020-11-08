@@ -94,8 +94,9 @@ defaultproperties
 	 
 	 bCockAfterFire=True
 
-	 Damage=120.000000
-     
+	 Damage=110.000000
+     HeadMult=1.5f
+     LimbMult=0.9f
 	 
 	 RailDamageBonus=50
 	 

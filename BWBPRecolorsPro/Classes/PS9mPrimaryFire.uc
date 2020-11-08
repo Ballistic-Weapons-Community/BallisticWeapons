@@ -59,7 +59,8 @@ defaultproperties
      WallPenetrationForce=0
      
      Damage=10.000000
-     
+     HeadMult=1f
+     LimbMult=1f
      
      DamageType=Class'BWBPRecolorsPro.DT_PS9MDart'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_PS9MDartHead'

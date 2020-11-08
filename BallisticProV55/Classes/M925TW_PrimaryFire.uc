@@ -134,6 +134,6 @@ defaultproperties
      DamageTypeArm=Class'BallisticProV55.DTM925MGDeploy'
      FireRecoil=250.000000
      FirePushbackForce=0.000000
-     FireRate=0.135000
+     FireRate=0.145000
      aimerror=0.000000
 }

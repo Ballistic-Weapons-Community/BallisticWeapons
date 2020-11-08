@@ -24,7 +24,7 @@ static function string GetString(
 	optional Object OptionalObject
 	)
 {
-	return "You can't carry any more "$default.SlotDescriptions[Switch]$".";
+	return "You can't carry any more weapons.";
 }
 
 static simulated function ClientReceive( 
@@ -48,17 +48,6 @@ static simulated function ClientReceive(
 
 defaultproperties
 {
-     SlotDescriptions(0)="grenades"
-     SlotDescriptions(1)="melee weapons"
-     SlotDescriptions(2)="sidearms"
-     SlotDescriptions(3)="SMGs"
-     SlotDescriptions(4)="assault rifles"
-     SlotDescriptions(5)="energy weapons"
-     SlotDescriptions(6)="machineguns"
-     SlotDescriptions(7)="shotguns"
-     SlotDescriptions(8)="ordnance"
-     SlotDescriptions(9)="sniper rifles"
-     SlotDescriptions(10)="special weapons"
      StackMode=SM_Down
      PosY=0.730000
 }

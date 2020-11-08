@@ -170,7 +170,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 		if (BallisticShield(Victim) != None)
 			BW.TargetedHurtRadius(Damage, 192, class'DT_FG50Explosion', 500, HitLocation, Pawn(Victim));
 		else
-			BW.TargetedHurtRadius(Damage, 768, class'DT_FG50Explosion', 500, HitLocation, Pawn(Victim));
+			BW.TargetedHurtRadius(Damage, 512, class'DT_FG50Explosion', 500, HitLocation, Pawn(Victim));
 	}
 }
 
@@ -181,7 +181,8 @@ defaultproperties
      WallPenetrationForce=0.000000
      
      Damage=65.000000
-     
+     HeadMult=1.5f
+     LimbMult=0.85f
      
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPRecolorsPro.DT_FG50Torso'

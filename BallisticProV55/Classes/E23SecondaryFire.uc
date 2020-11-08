@@ -206,8 +206,10 @@ defaultproperties
 {
      FireSoundLoop=Sound'BWBP4-Sounds.VPR.VPR-LaserLoop'
      TraceRange=(Min=10000.000000,Max=10000.000000)
+
      Damage=10.000000
-     
+     HeadMult=1.5f
+     LimbMult=0.5f
      
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTVPRLaser'
@@ -217,8 +219,8 @@ defaultproperties
      bPenetrate=True
      MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
      FlashScaleFactor=0.750000
-     FireChaos=0.010000
-	 FireRecoil=24
+     FireChaos=0.000000
+	 FireRecoil=0
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireAnim=

@@ -386,7 +386,8 @@ defaultproperties
 {
      FireSoundLoop=Sound'BWBP2-Sounds.LightningGun.LG-FireLoop'
      Damage=10.000000
-     
+     HeadMult=1f
+     LimbMult=1f
      
      DamageType=Class'BallisticProV55.DT_HVCLightning'
      DamageTypeHead=Class'BallisticProV55.DT_HVCLightning'

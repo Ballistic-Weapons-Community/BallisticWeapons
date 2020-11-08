@@ -146,8 +146,9 @@ defaultproperties
 	 RangeAtten=0.3
      WallPenetrationForce=8.000000
      
-     Damage=25.000000
-     
+     Damage=28.000000
+     HeadMult=1.5f
+     LimbMult=0.5f
      
      WaterRangeAtten=0.400000
      DamageType=Class'BallisticProV55.DTRS8Pistol'

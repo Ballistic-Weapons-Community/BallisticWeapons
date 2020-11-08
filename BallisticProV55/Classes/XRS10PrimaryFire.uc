@@ -133,10 +133,11 @@ defaultproperties
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
      CutOffDistance=1536.000000
-     CutOffStartRange=768.000000
+     CutOffStartRange=600.000000
      WallPenetrationForce=8.000000
      Damage=25.000000
-     
+     HeadMult=1.4f
+     LimbMult=0.5f
      
      RangeAtten=0.250000
      WaterRangeAtten=0.400000
@@ -156,10 +157,10 @@ defaultproperties
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.320000,OutVal=1),(InVal=0.500000,OutVal=1.500000),(InVal=1.000000,OutVal=2.250000)))
      XInaccuracy=48.000000
      YInaccuracy=48.000000
-     SilencedFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-SilenceFire',Volume=1,Radius=128,bAtten=True)
+     SilencedFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-SilenceFire',Volume=0.5,Radius=128,bAtten=True)
      BallisticFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Fire',Volume=0.900000,Radius=384.000000)
      bPawnRapidFireAnim=True
-     FireRate=0.08000
+     FireRate=0.1000
      AmmoClass=Class'BallisticProV55.Ammo_XRS10Bullets'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

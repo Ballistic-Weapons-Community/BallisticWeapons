@@ -3,6 +3,7 @@ class ConflictLoadoutConfig extends Object
 	config(BallisticProV55);
 
 var globalconfig array<string> 		SavedInventory;
+var globalconfig int                InitialWeaponIndex;
 var globalconfig bool 				HasPrompted;
 
 static function UpdateSavedInventory(array<BallisticTab_ConflictLoadoutPro.Item> inventory)
@@ -15,6 +16,13 @@ static function UpdateSavedInventory(array<BallisticTab_ConflictLoadoutPro.Item>
 		default.SavedInventory[i] = inventory[i].ClassName;
 		
 	StaticSaveConfig();
+}
+
+static function UpdateSavedInitialIndex(int index)
+{
+    default.InitialWeaponIndex = index;
+
+    StaticSaveConfig();
 }
 
 static function NotifyPrompted()
@@ -38,19 +46,9 @@ static function string BuildSavedInventoryString()
 	return s;
 }
 
-static function string BuildReversedSavedInventoryString()
-{ 
-	local string s;
-	local int i;
-
-	for (i = default.SavedInventory.Length - 1; i >= 0; --i)
-	{
-		if (s == "")
-			s = default.SavedInventory[i];
-		else
-			s = s $ "|" $ default.SavedInventory[i];
-	}
-	return s;
+static function int GetSavedInitialWeaponIndex()
+{
+    return default.InitialWeaponIndex;
 }
 
 defaultproperties 
@@ -59,5 +57,6 @@ defaultproperties
 	SavedInventory(1)="BallisticProV55.M806Pistol"
 	SavedInventory(2)="BallisticProV55.X3Knife"
 	SavedInventory(3)="BallisticProV55.NRP57Grenade"
+    InitialWeaponIndex=0
 	HasPrompted=False
 }

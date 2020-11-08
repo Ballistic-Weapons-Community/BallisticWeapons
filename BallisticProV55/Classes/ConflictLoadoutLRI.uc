@@ -37,6 +37,10 @@ var Mut_ConflictLoadout LoadoutMut;						// The mutator itself
 var bool				bInventoryInitialized;
 var bool				bPendingLoadout;
 var array<string> 		PendingLoadout;						// If set to pending mode, next loadout
+
+var int                 InitialWeaponIndex;
+var int                 PendingInitialWeaponIndex;
+
 var array<string> 		Loadout;								// Current loadout
 
 var array<string> 		FullInventoryList;					// List of all weapons available
@@ -183,18 +187,11 @@ simulated function OnInventoryUpdated()
 simulated function SendSavedInventory()
 {	
 	local string s;
+    local int i;
 
-	// this is a hack for an issue with weapon priority
-	// on standalones, the player holds the first weapon created
-	// when a client, the player holds the last weapon created
-	// so when on a standalone, we send the regular inventory string
-	if (Level.NetMode != NM_Client)
-		s = class'ConflictLoadoutConfig'.static.BuildSavedInventoryString();
-	// otherwise we send a reversed string
-	else
-		s = class'ConflictLoadoutConfig'.static.BuildReversedSavedInventoryString();
-
-	ServerSetInventory(s);
+	s = class'ConflictLoadoutConfig'.static.BuildSavedInventoryString();
+    i = class'ConflictLoadoutConfig'.static.GetSavedInitialWeaponIndex();
+	ServerSetInventory(s, i);
 }
 
 simulated function Tick(float deltatime)
@@ -412,17 +409,26 @@ function SetImmediateMode()
 	LoadoutUpdateMode = LUM_Immediate;
 }
 
+function UpdateInitialWeaponIndex()
+{
+    if (Loadout.Length == 0)
+        InitialWeaponIndex = 0;
+    else 
+        InitialWeaponIndex = Min(InitialWeaponIndex, Loadout.Length - 1);
+}
+
 //===================================================
 // ServerSetInventory
 // Sent from client to update server's loadout. Splits the received
 // string into an array and validates with UpdateInventory.
 //===================================================
-function ServerSetInventory(string ClassesString)
+function ServerSetInventory(string ClassesString, int initial_wep_index)
 {
 	if (!bInventoryInitialized)
 	{
 		bInventoryInitialized = true;
 		Split(ClassesString, "|", Loadout);
+        InitialWeaponIndex = initial_wep_index;
 		UpdateInventory();
 		return;
 	}
@@ -431,10 +437,12 @@ function ServerSetInventory(string ClassesString)
 	{
 		case LUM_Immediate:
 			Split(ClassesString, "|", Loadout);
+            InitialWeaponIndex = initial_wep_index;
 			UpdateInventory();
 			break;
 		case LUM_Delayed:
 			Split(ClassesString, "|", PendingLoadout);
+            PendingInitialWeaponIndex = initial_wep_index;
 			bPendingLoadout = true;
 			break;
 	}
@@ -450,6 +458,8 @@ function UpdatePendingLoadout()
 		return;
 
 	Loadout = PendingLoadout;
+    InitialWeaponIndex = PendingInitialWeaponIndex;
+
 	bPendingLoadout = false;
 	UpdateInventory();
 }
@@ -471,6 +481,8 @@ function UpdateInventory()
  		if (s != "")
  			Loadout[0] = s;
  	}
+
+    UpdateInitialWeaponIndex();
 }
 
 //===================================================

@@ -275,7 +275,7 @@ function ModifyPlayer( pawn Other )
 						continue;
 				
 					if (class<Weapon>(InventoryClass) != None)
-						SpawnConflictWeapon(class<Weapon>(InventoryClass), Other);
+						SpawnConflictWeapon(class<Weapon>(InventoryClass), Other, 255, i == CLRI.InitialWeaponIndex);
 					else 
 						SpawnInventoryItem(InventoryClass, Other);
 
@@ -353,7 +353,7 @@ function SpawnInventoryItem(class<Inventory> InvClass, Pawn Other)
 	}
 }
 
-function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other)
+function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_inventory_group, bool set_as_initial_weapon)
 {
 	local Weapon newWeapon;
 
@@ -365,6 +365,11 @@ function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other)
 	
 		if( newWeapon != None )
 		{
+            if (BallisticWeapon(newWeapon) != None)
+            {
+                BallisticWeapon(newWeapon).NetInventoryGroup = net_inventory_group;
+                BallisticWeapon(newWeapon).bServerDeferInitialSwitch = !set_as_initial_weapon;
+            }
 			newWeapon.GiveTo(Other);
 			newWeapon.PickupFunction(Other);
 				

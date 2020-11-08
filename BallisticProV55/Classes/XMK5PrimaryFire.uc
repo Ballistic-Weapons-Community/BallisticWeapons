@@ -12,12 +12,13 @@ class XMK5PrimaryFire extends BallisticRangeAttenFire;
 defaultproperties
 {
      CutOffDistance=2560.000000
-     CutOffStartRange=1024.000000
+     CutOffStartRange=768.000000
      TraceRange=(Min=4000.000000,Max=4000.000000)
      WallPenetrationForce=8.000000
      
      Damage=22.000000
-     
+     HeadMult=1.4f
+     LimbMult=0.5f
      
      RangeAtten=0.200000
      WaterRangeAtten=0.200000

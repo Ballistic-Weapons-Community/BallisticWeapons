@@ -36,7 +36,8 @@ defaultproperties
      WallPenetrationForce=8.000000
      
      Damage=21.000000
-     
+     HeadMult=1.4f
+     LimbMult=0.5f
      
      RangeAtten=0.200000
      WaterRangeAtten=0.500000
@@ -52,8 +53,8 @@ defaultproperties
      BrassOffset=(X=-30.000000,Y=1.000000)
      FireRecoil=150.000000
      FireChaos=0.120000
-     XInaccuracy=72.000000
-     YInaccuracy=72.000000
+     XInaccuracy=64.000000
+     YInaccuracy=64.000000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.Glock.Glk-Fire',Volume=1.200000)
      FireEndAnim=
 	 AimedFireAnim='SightFire'

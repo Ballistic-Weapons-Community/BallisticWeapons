@@ -7,8 +7,8 @@
 class BallisticTab_ProSettings extends UT2K4TabPanel;
 
 var automated moFloatEdit fl_WalkingPct, fl_CrouchingPct, fl_NadePct;
-var automated moCheckbox ch_MineLights, ch_RunningAnims, ch_LimitCarry;
-var automated moNumericEdit int_MaxWeps;
+var automated moCheckbox ch_MineLights, ch_RunningAnims;
+var automated moNumericEdit int_MaxInventoryCapacity;
 
 var BallisticConfigMenuPro p_Anchor;
 var bool bInitialised;
@@ -36,8 +36,7 @@ function LoadSettings()
 	fl_NadePct.SetValue(class'Mut_BallisticSwap'.default.NadeReplacePercent);
 	ch_MineLights.Checked(class'BallisticReplicationInfo'.default.bUniversalMineLights);
 	ch_RunningAnims.Checked(class'BallisticReplicationInfo'.default.bUseRunningAnims);
-	ch_LimitCarry.Checked(class'BallisticWeapon'.default.bLimitCarry);
-	int_MaxWeps.SetValue(class'BallisticWeapon'.default.MaxWeaponsPerSlot);
+	int_MaxInventoryCapacity.SetValue(class'BallisticWeapon'.default.MaxInventoryCapacity);
 }
 
 function SaveSettings()
@@ -49,8 +48,7 @@ function SaveSettings()
 	class'BallisticReplicationInfo'.default.bUniversalMineLights = ch_MineLights.IsChecked();
 	class'BallisticReplicationInfo'.default.bUseRunningAnims = ch_RunningAnims.IsChecked();
 	class'Mut_BallisticSwap'.default.NadeReplacePercent = fl_NadePct.GetValue();
-	class'BallisticWeapon'.default.bLimitCarry = ch_LimitCarry.IsChecked();
-	class'BallisticWeapon'.default.MaxWeaponsPerSlot = int_MaxWeps.GetValue();	
+	class'BallisticWeapon'.default.MaxInventoryCapacity = int_MaxInventoryCapacity.GetValue();	
 	class'BallisticReplicationInfo'.static.StaticSaveConfig();
 	class'BallisticWeapon'.static.StaticSaveConfig();
 	class'BallisticInstantFire'.static.StaticSaveConfig();
@@ -65,8 +63,7 @@ function DefaultSettings()
 	ch_MineLights.Checked(True);
 	ch_RunningAnims.Checked(True);
 	fl_NadePct.SetValue(15);
-	ch_LimitCarry.Checked(False);
-	int_MaxWeps.SetValue(1);	
+	int_MaxInventoryCapacity.SetValue(0);	
 }
 
 defaultproperties
@@ -142,31 +139,18 @@ defaultproperties
      End Object
      fl_NadePct=moFloatEdit'BallisticProV55.BallisticTab_ProSettings.fl_NadePctFloat'
 
-     Begin Object Class=moCheckBox Name=ch_LimitCarryCheck
+     Begin Object Class=moNumericEdit Name=int_MaxWepsInt
+         MinValue=0
+         MaxValue=999
          ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Limit Carrying Capacity"
-         OnCreateComponent=ch_LimitCarryCheck.InternalOnCreateComponent
+         CaptionWidth=0.800000
+         Caption="Player Inventory Capacity"
+         OnCreateComponent=int_MaxWepsInt.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="If enabled, you can only carry a limited number of weapons of each type."
+         Hint="Sets the player's maximum inventory capacity. 0 is infinite."
          WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_LimitCarry=moCheckBox'BallisticProV55.BallisticTab_ProSettings.ch_LimitCarryCheck'
-
-     Begin Object Class=moNumericEdit Name=int_MaxWepsInt
-         MinValue=1
-         MaxValue=3
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.800000
-         Caption="Maximum Weapons Per Slot"
-         OnCreateComponent=int_MaxWepsInt.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Sets the maximum number of weapons a player can carry in each InventoryGroup if Limit Carry is on."
-         WinTop=0.400000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     int_MaxWeps=moNumericEdit'BallisticProV55.BallisticTab_ProSettings.int_MaxWepsInt'
+     int_MaxInventoryCapacity=moNumericEdit'BallisticProV55.BallisticTab_ProSettings.int_MaxWepsInt'
 }

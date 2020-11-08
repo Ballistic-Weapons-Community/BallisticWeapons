@@ -459,6 +459,8 @@ defaultproperties
      WallHitPoint=2
 	 NumSwipePoints=5
 	 WallPenetrationForce=0
+     HeadMult=1f 
+     LimbMult=1f
      MaxBonusHoldTime=1.500000
      bCanBackstab=True
      TraceRange=(Min=140.000000,Max=140.000000)

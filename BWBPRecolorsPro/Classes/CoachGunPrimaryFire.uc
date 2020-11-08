@@ -86,6 +86,8 @@ simulated function SwitchWeaponMode (byte newMode)
      	FlashScaleFactor=3.000000;
 		
 		Damage=55;
+        HeadMult=1.5f;
+        LimbMult=0.8f;
 		
 		KickForce = 30000;
 		
@@ -121,6 +123,8 @@ simulated function SwitchWeaponMode (byte newMode)
 		FlashScaleFactor=default.FlashScaleFactor;
 		
 		Damage = default.Damage;
+        HeadMult= default.HeadMult;
+        LimbMult=default.LimbMult;
 		
 		KickForce=default.KickForce;
 		

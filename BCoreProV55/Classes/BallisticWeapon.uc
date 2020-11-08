@@ -127,8 +127,7 @@ var() globalconfig 	bool			bOldCrosshairs;			// Use UT2004 crosshairs instead of
 var() globalconfig 	float			AimKnockScale;			// Scale the weapon displacement caused by taking damage
 var() globalconfig 	bool			bDrawCrosshairDot; 		// Draw dot in the centre of crosshairs
 var() globalconfig	bool			bUseBigIcon;			// For HUDFix huds - makes the Icon the BigIcon
-var() globalconfig	bool			bLimitCarry;
-var() globalconfig	byte			MaxWeaponsPerSlot;
+var() globalconfig	byte			MaxInventoryCapacity;   // total InventorySize player can carry
 //=============================================================================
 // END GLOBALLY CONFIGURABLE SETTINGS
 //=============================================================================
@@ -163,6 +162,8 @@ var     bool                        RewindActive;                   // True if c
 //=============================================================================
 var		WeaponParams				WeaponParams;
 var		bool						bPendingBringupTimer;
+var     int                         NetInventoryGroup;
+var     bool                        bDeferInitialSwitch, bServerDeferInitialSwitch;
 //-----------------------------------------------------------------------------
 // AI
 //-----------------------------------------------------------------------------
@@ -400,7 +401,7 @@ replication
 {
 	// Things the server should send to the owning client
 	reliable if( bNetOwner && Role==ROLE_Authority)
-		MagAmmo, bServerReloading; // reload system
+		MagAmmo, bServerReloading, NetInventoryGroup, bServerDeferInitialSwitch;
 
 	// functions on server, called by client
    	reliable if( Role < ROLE_Authority )
@@ -505,6 +506,11 @@ simulated function PostNetBeginPlay()
 
 	if (BCRepClass.default.bNoReloading)
 		bNoMag = true;
+
+    if (NetInventoryGroup != 255)
+        InventoryGroup = NetInventoryGroup;
+
+    bDeferInitialSwitch = bServerDeferInitialSwitch;
 
 	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
 	// To my knowledge, this is the case.
@@ -3321,6 +3327,7 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
     if( Level.NetMode == NM_DedicatedServer || !Instigator.IsHumanControlled() )
         return;
 		
+    // set up mode handling
 	if (Instigator.IsLocallyControlled())
 	{
 		if (ModeHandling == MR_Last)
@@ -3336,7 +3343,8 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
 		}
 	}
 
-    if( Instigator.Weapon == self || Instigator.PendingWeapon == self ) // this weapon was switched to while waiting for replication, switch to it now
+    // if this weapon was switched to while waiting for replication, switch to it now
+    if( Instigator.Weapon == self || Instigator.PendingWeapon == self ) 
     {
         if (Instigator.PendingWeapon != None)
             Instigator.ChangedWeapon();
@@ -3345,18 +3353,34 @@ simulated function ClientWeaponSet(bool bPossiblySwitch)
         return;
     }
 
-    if( Instigator.PendingWeapon != None && Instigator.PendingWeapon.bForceSwitch )
+    // don't allow switching if pending weapon is game-relevant and would block it (bombing run ball launcher)
+    if( Instigator.PendingWeapon != None && Instigator.PendingWeapon.bForceSwitch ) 
         return;
 
-    if( Instigator.Weapon == None )
+    // if there is no active weapon, use this one
+    // we don't want to do this in loadout - we want to set our desired weapon only
+    if( Instigator.Weapon == None ) 
     {
+        if (bDeferInitialSwitch)
+        {
+            bDeferInitialSwitch = false;
+            return;
+        }
+
         Instigator.PendingWeapon = self;
         Instigator.ChangedWeapon();
     }
-    else if ( bPossiblySwitch && !Instigator.Weapon.IsFiring() )
+
+
+
+    // otherwise, check if player would want to switch
+    else if ( bPossiblySwitch && !Instigator.Weapon.IsFiring() ) 
     {
+        // don't switch if player has it disabled
 		if ( PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).bNeverSwitchOnPickup )
 			return;
+
+        // rate weapons against each other to determine if we should switch
         if ( Instigator.PendingWeapon != None )
         {
             if ( RateSelf() > Instigator.PendingWeapon.RateSelf() )
@@ -3412,23 +3436,26 @@ function bool HandlePickupQuery( pickup Item )
             return false;
     }
 	
-	//Strike out BW pickups of a weapon which matches our slot, if we or it is not a superweapon.
-	if (bLimitCarry && class<BallisticWeapon>(Item.InventoryType) != None && class<BallisticWeapon>(Item.InventoryType).default.InventoryGroup == InventoryGroup && (!bWT_Super && !class<BallisticWeapon>(Item.InventoryType).default.bWT_Super))
+	// prevent pickup of a weapon if we don't have enough space for it
+	if (
+            default.MaxInventoryCapacity > 0 && 
+            AIController(InstigatorController) == None && 
+            class<BallisticWeapon>(Item.InventoryType) != None && 
+            (!bWT_Super && !class<BallisticWeapon>(Item.InventoryType).default.bWT_Super)
+        )
 	{
 		BWP = BallisticWeaponPickup(Item);
+
 		if (BWP != None)
 		{
-			if (MaxWeaponsPerSlot == 1)
-				return true;
-			else BWP.Strikes++;
-			if (BWP.Strikes >= MaxWeaponsPerSlot)
+			BWP.DetectedInventorySize += ParamsClass.default.Params[0].InventorySize;
+
+			if (BWP.DetectedInventorySize >= default.MaxInventoryCapacity)
 			{
-				BWP.Strikes = 0;
+				BWP.DetectedInventorySize = 0;
 				return true;
 			}
 		}
-		else if (MaxWeaponsPerSlot == 1 && WeaponLocker(Item) != None)
-			return true;
 	}
 
     if ( Inventory == None )
@@ -4872,6 +4899,8 @@ defaultproperties
      CurrentWeaponMode=2
      LastWeaponMode=255
 	 SavedWeaponMode=255
+
+     NetInventoryGroup=255
 	 
      bUseSights=True
      ScopeXScale=1.000000

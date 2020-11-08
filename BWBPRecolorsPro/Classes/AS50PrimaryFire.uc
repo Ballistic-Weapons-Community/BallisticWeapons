@@ -5,19 +5,14 @@
 //=============================================================================
 class AS50PrimaryFire extends BallisticProInstantFire;
 
-simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
-{
-	BW.TargetedHurtRadius(Damage * 0.5, 192, DamageType, 1, HitLocation,Pawn(Other));
-	return super.ImpactEffect(HitLocation, HitNormal, HitMat, Other, WaterHitLoc);
-}
-
 defaultproperties
 {
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=48.000000
      
-     Damage=80.000000
-     
+     Damage=75.000000
+     HeadMult=1.5f
+     LimbMult=0.9f
      
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPRecolorsPro.DT_AS50Torso'

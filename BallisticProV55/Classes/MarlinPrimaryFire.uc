@@ -71,8 +71,9 @@ defaultproperties
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=24.000000
      
-     Damage=80.000000
-     
+     Damage=75.000000
+     HeadMult=1.5f
+     LimbMult=0.85f
      
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTMarlinRifle'
@@ -91,8 +92,8 @@ defaultproperties
      FireChaos=0.800000
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.Marlin.Mar-Fire')
      FireEndAnim=
-     FireAnimRate=1.250000
-     FireRate=0.750000
+     FireAnimRate=1.150000
+     FireRate=0.80000
      AmmoClass=Class'BallisticProV55.Ammo_Marlin'
      ShakeRotMag=(X=400.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

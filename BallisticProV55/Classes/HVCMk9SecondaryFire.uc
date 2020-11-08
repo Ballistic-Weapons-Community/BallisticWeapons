@@ -290,8 +290,8 @@ defaultproperties
 {
      ChargeSound=Sound'BWBP2-Sounds.LightningGun.LG-Charge'
      Damage=200.000000
-     
-     
+     HeadMult=1f
+     LimbMult=1f
      DamageType=Class'BallisticProV55.DT_HVCRedLightning'
      DamageTypeHead=Class'BallisticProV55.DT_HVCRedLightning'
      DamageTypeArm=Class'BallisticProV55.DT_HVCRedLightning'

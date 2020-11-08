@@ -35,12 +35,13 @@ defaultproperties
 {
 	 CutOffStartRange=5120
 	 CutOffDistance=8192
-	 RangeAtten=0.8
+	 RangeAtten=0.65
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WallPenetrationForce=48.000000
      
      Damage=60.000000
-     
+     HeadMult=1.5f
+     LimbMult=0.85f
      
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTM925MG'

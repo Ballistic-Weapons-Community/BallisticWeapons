@@ -122,16 +122,16 @@ defaultproperties
      SFlashScaleFactor=1.000000
 	 
      CutOffDistance=2560.000000
-     CutOffStartRange=1024.000000
+     CutOffStartRange=768.000000
      TraceRange=(Min=4000.000000,Max=4000.000000)
 	 RangeAtten=0.2
 	 WaterRangeAtten=0.200000
 	 
      WallPenetrationForce=8.000000
      
-     Damage=18.000000
-     
-     
+     Damage=20.000000
+     HeadMult=1.4f
+     LimbMult=0.5f
 
      DamageType=Class'BallisticProV55.DTXK2SMG'
      DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'

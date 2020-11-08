@@ -322,6 +322,19 @@ function bool MaxReached(class<Weapon> weapon, string class_name)
 
 function bool GroupPriorityOver(int inserting_group, int target_group)
 {
+    switch(inserting_group)
+	{
+		case 1: // melee
+        case 2: // sidearm
+			return inserting_group < target_group;
+        case 11:
+            return false;
+		default:
+			return target_group == 11;
+	}
+
+    // old code which puts primaries first
+    /*
 	switch(inserting_group)
 	{
 		case 11: // grenade last
@@ -333,6 +346,7 @@ function bool GroupPriorityOver(int inserting_group, int target_group)
 		default: // primary weapons always come last so we spawn with them online, it seems
 			return target_group == 1 || target_group == 2 || target_group == 11;
 	}
+    */
 }
 
 function int GetInsertionPoint(int inserting_item_grp)
@@ -460,6 +474,7 @@ function bool InternalOnDblClick(GUIComponent Sender)
 	{
 		AddInventory(string(lb_Weapons.List.GetObject()), class<actor>(lb_Weapons.List.GetObject()), lb_Weapons.List.Get());
 	}
+
 	return true;
 }
 
@@ -469,9 +484,42 @@ function bool InternalOnClick(GUIComponent Sender)
 	local float X, ItemSize;
 
 	//Figure out which currently existing item the player clicked on and then remove it.
-	if (Sender==Box_Inventory)
+	if (Sender == Box_Inventory)
 	{
 		X = Box_Inventory.Bounds[0];
+
+		for (i=0;i<Inventory.length;i++)
+		{
+			ItemSize = (Box_Inventory.ActualWidth()/INVENTORY_SIZE_MAX) * Inventory[i].Size;
+			if (Controller.MouseX > X && Controller.MouseX < X + ItemSize)
+			{
+				class'ConflictLoadoutConfig'.static.UpdateSavedInitialIndex(i);
+				return true;
+			}
+			X += ItemSize;
+		}
+	}
+	
+	else if (Sender==BStats && CLRI!=None)
+	{
+		Controller.OpenMenu("BallisticProV55.BallisticConflictInfoMenu");
+		if (BallisticConflictInfoMenu(Controller.ActivePage) != None)
+			BallisticConflictInfoMenu(Controller.ActivePage).LoadWeapons(self);
+	}
+
+	return true;
+}
+
+function bool InternalOnRightClick(GUIComponent Sender)
+{
+	local int i;
+	local float X, ItemSize;
+
+	//Figure out which currently existing item the player clicked on and then remove it.
+	if (Sender == Box_Inventory)
+	{
+		X = Box_Inventory.Bounds[0];
+
 		for (i=0;i<Inventory.length;i++)
 		{
 			ItemSize = (Box_Inventory.ActualWidth()/INVENTORY_SIZE_MAX) * Inventory[i].Size;
@@ -496,7 +544,7 @@ function bool InternalOnClick(GUIComponent Sender)
 }
 
 //===========================================================================
-//Update the boxes when the weapon list changes
+// Update the boxes when the weapon list changes
 //
 // Azarael: Uses Cache.
 //===========================================================================
@@ -575,6 +623,10 @@ function DrawInventory(Canvas C)
 	local float MyX, MyY, MyW, MyH, ScaleFactor;
 	local string s;
 
+    local int initial_wep_index;
+
+    initial_wep_index = class'ConflictLoadoutConfig'.static.GetSavedInitialWeaponIndex();
+
 	ScaleFactor = float(Controller.ResX)/1600;
 	MyX = Box_Inventory.Bounds[0] + 24*ScaleFactor;
 	MyY = Box_Inventory.Bounds[1] + 24*ScaleFactor;
@@ -596,31 +648,41 @@ function DrawInventory(Canvas C)
 
 	X = MyX;
 	C.Style = 6;
+
 	for (i=0;i<Inventory.length;i++)
 	{
 		if (Inventory[i].bBad)
 			C.SetDrawColor(255,64,64,255);
-		else
+        else if (i == initial_wep_index)
+            C.SetDrawColor(192,255,192,255);
+        else 
 			C.SetDrawColor(255,255,255,255);
 
-			//can't exceed twice the height - Azarael
-			ItemSize = (MyW/INVENTORY_SIZE_MAX) * Inventory[i].Size;
-			IconX = FMin(ItemSize, MyH*2.3);
-			IconY = IconX/2;
+        //can't exceed twice the height - Azarael
+        ItemSize = (MyW/INVENTORY_SIZE_MAX) * Inventory[i].Size;
+        IconX = FMin(ItemSize, MyH*2.3);
+        IconY = IconX/2;
 
-			if (Inventory[i].Icon != None)
-			{	C.SetPos(X + (ItemSize - IconX)/2, MyY + (MyH-IconY)/2);
-				C.DrawTile(Inventory[i].Icon, IconX, IconY, 0, 0, Inventory[i].Icon.MaterialUSize(), Inventory[i].Icon.MaterialVSize());	}
-
+        if (Inventory[i].Icon != None)
+        {	C.SetPos(X + (ItemSize - IconX)/2, MyY + (MyH-IconY)/2);
+            C.DrawTile(Inventory[i].Icon, IconX, IconY, 0, 0, Inventory[i].Icon.MaterialUSize(), Inventory[i].Icon.MaterialVSize());	
+        }
 
 		if (Inventory[i].bBad)
 			C.SetDrawColor(255,0,0,255);
+        else if (i == initial_wep_index)
+            C.SetDrawColor(32,255,0,255);
 		else
 			C.SetDrawColor(255,128,0,255);
+
 		C.SetPos(X, MyY);
 		C.DrawTileStretched(BoxTex, ItemSize, MyH);
 
-		C.SetDrawColor(32,255,0,255);
+        if (i == initial_wep_index)
+            C.SetDrawColor(32,255,0,255);
+		else 
+            C.SetDrawColor(255,128,0,255);
+
 		C.Font = Controller.GetMenuFont("UT2SmallFont").GetFont(C.ClipX*0.8);
 		C.StrLen(Inventory[i].Title, XL, YL);
 		if (XL > ItemSize)
@@ -687,6 +749,7 @@ defaultproperties
          bAcceptsInput=True
          OnRendered=BallisticTab_ConflictLoadoutPro.DrawInventory
          OnClick=BallisticTab_ConflictLoadoutPro.InternalOnClick
+         OnRightClick=BallisticTab_ConflictLoadoutPro.InternalOnRightClick
      End Object
      Box_Inventory=GUIImage'BallisticProV55.BallisticTab_ConflictLoadoutPro.Box_InventoryImg'
 

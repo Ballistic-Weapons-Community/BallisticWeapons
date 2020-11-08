@@ -50,8 +50,9 @@ defaultproperties
 	TraceRange=(Min=30000.000000,Max=30000.000000)
 	WallPenetrationForce=0.000000
 	
-	Damage=95.000000
-	
+	Damage=90.000000
+	HeadMult=1.5f
+    LimbMult=0.85f
 	
 	WaterRangeAtten=0.600000
 	DamageType=Class'DTBX85Bolt'

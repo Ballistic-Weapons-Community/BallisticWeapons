@@ -147,7 +147,8 @@ defaultproperties
      WallPenetrationForce=32.000000
      
      Damage=45.000000
-     
+     HeadMult=1.5
+     LimbMult=0.85
      
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPOtherPackPro.DTR9A1Rifle'

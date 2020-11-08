@@ -172,7 +172,8 @@ defaultproperties
      WallPenetrationForce=48.000000
      
      Damage=60.000000
-     
+     HeadMult=1.5f
+     LimbMult=0.85f
      
      WaterRangeAtten=0.700000
      DamageType=Class'BWBPRecolorsPro.DT_M2020Pwr'

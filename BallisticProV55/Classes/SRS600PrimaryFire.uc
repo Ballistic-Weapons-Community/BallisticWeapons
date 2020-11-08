@@ -170,7 +170,8 @@ defaultproperties
      WallPenetrationForce=24.000000
      
      Damage=36.000000
-     
+     HeadMult=1.5f
+     LimbMult=0.8f
      
      RangeAtten=0.450000
      WaterRangeAtten=0.800000

@@ -13,22 +13,22 @@ class BallisticWeaponPickup extends UTWeaponPickup
 
 var() int					MagAmmo;					// How much ammo is in this thing's mag
 var() bool					bOnSide;					// Should lie on its side
-var() StaticMesh			LowPolyStaticMesh;		// Mesh for low poly stuff, like when its far away
+var() StaticMesh			LowPolyStaticMesh;		    // Mesh for low poly stuff, like when its far away
 var() float					LowPolyDist;				// How far must player be to use low poly mesh
 var() float					PickupDrawScale;			// DrawScale may be weird so it looks good in the menu. Use this for in game pickups
 
-var   float					ChangeTime;				// Time when next change should occur
-var	float					PassedRespawnTime; 	//Set on a swapped-in pickup if the replaced pickup was sleeping
-var   int						ReplacementsIndex;		// Index into Mutator Replacement list associated with this pickup
+var   float					ChangeTime;				    // Time when next change should occur
+var	float					PassedRespawnTime; 	        //Set on a swapped-in pickup if the replaced pickup was sleeping
+var   int					ReplacementsIndex;		    // Index into Mutator Replacement list associated with this pickup
 
 var   rotator				LandedRot;
 var   Actor					FadeOutEffect;
 var   Pawn					LastPickedUpBy;
 
 
-var 					float	LastBlockNotificationTime;
+var float	                LastBlockNotificationTime;
 
-var	int						Strikes;				//Number of accesses this HandlePickupQuery
+var	int						DetectedInventorySize;		// Hack. Tracking inventory size calculcated during BallisticWeapon.HandlePickupQuery
 
 replication
 {
@@ -92,9 +92,6 @@ function float BotDesireability(Pawn Bot)
 	// see if bot already has a weapon of this type
 	AlreadyHas = Weapon(Bot.FindInventoryType(InventoryType)); 
 	
-	if ( class'BallisticWeapon'.default.bLimitCarry && AlreadyHas == None && SlotCapacityReached(Bot, InventoryType.default.InventoryGroup, class'BallisticWeapon'.default.MaxWeaponsPerSlot))
-		return 0;
-		
 	if ( AlreadyHas != None )
 	{
 		if ( Bot.Controller.bHuntPlayer )
@@ -154,17 +151,19 @@ auto state Pickup
 		// make sure not touching through wall
 		if ( !FastTrace(Other.Location, Location) )
 			return false;
-				
+
+		DetectedInventorySize = class<BallisticWeapon>(InventoryType).default.ParamsClass.default.Params[0].InventorySize;
+
 		// make sure game will let player pick me up
 		if( Level.Game.PickupQuery(Pawn(Other), self) )
 		{
-			Strikes = 0;
+			DetectedInventorySize = 0;
 			LastPickedUpBy = Pawn(Other);
 			TriggerEvent(Event, self, Pawn(Other));
 			return true;
 		}
 		if (PlayerController(Pawn(Other).Controller) != None && LastPickedUpBy != Pawn(Other))
-			PlayerController(Pawn(Other).Controller).ReceiveLocalizedMessage(class'BallisticWeaponPickupMessage', InventoryType.default.InventoryGroup,,, self);
+			PlayerController(Pawn(Other).Controller).ReceiveLocalizedMessage(class'BallisticWeaponPickupMessage', ,,, self);
 		return false;
 	}
 }
@@ -361,16 +360,19 @@ state FallingPickup
 		if ( !FastTrace(Other.Location, Location) )
 			return false;
 
+        DetectedInventorySize = class<BallisticWeapon>(InventoryType).default.ParamsClass.default.Params[0].InventorySize;
+
+
 		// make sure game will let player pick me up
 		if( Level.Game.PickupQuery(Pawn(Other), self) )
 		{
-			Strikes = 0;
+			DetectedInventorySize = 0;
 			LastPickedUpBy = Pawn(Other);
 			TriggerEvent(Event, self, Pawn(Other));
 			return true;
 		}
 		if (PlayerController(Pawn(Other).Controller) != None && LastPickedUpBy != Pawn(Other))
-			PlayerController(Pawn(Other).Controller).ReceiveLocalizedMessage(class'BallisticWeaponPickupMessage', InventoryType.default.InventoryGroup,,, self);
+			PlayerController(Pawn(Other).Controller).ReceiveLocalizedMessage(class'BallisticWeaponPickupMessage', ,,, self);
 		return false;
 	}
 }
@@ -403,16 +405,18 @@ State FadeOut
 		if ( !FastTrace(Other.Location, Location) )
 			return false;
 		
+        DetectedInventorySize = class<BallisticWeapon>(InventoryType).default.ParamsClass.default.Params[0].InventorySize;
+
 		// make sure game will let player pick me up
 		if( Level.Game.PickupQuery(Pawn(Other), self) )
 		{
-			Strikes = 0;
+			DetectedInventorySize = 0;
 			LastPickedUpBy = Pawn(Other);
 			TriggerEvent(Event, self, Pawn(Other));
 			return true;
 		}
 		if (PlayerController(Pawn(Other).Controller) != None && LastPickedUpBy != Pawn(Other))
-			PlayerController(Pawn(Other).Controller).ReceiveLocalizedMessage(class'BallisticWeaponPickupMessage', InventoryType.default.InventoryGroup,,, self);
+			PlayerController(Pawn(Other).Controller).ReceiveLocalizedMessage(class'BallisticWeaponPickupMessage', ,,, self);
 		return false;
 	}
 }

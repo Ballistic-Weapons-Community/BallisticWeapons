@@ -18,6 +18,8 @@ function ModifyPlayer( pawn Other )
 	local string s;
 	local class<ConflictItem> itemclass;
 
+    local int net_inventory_group, inventory_group_offset;
+
 	Super(Mut_Ballistic).ModifyPlayer(Other);
 	
 	//ModifyPlayer isn't always called on spawn
@@ -62,7 +64,22 @@ function ModifyPlayer( pawn Other )
 						continue;
 				
 					if (class<Weapon>(InventoryClass) != None)
-						SpawnConflictWeapon(class<Weapon>(InventoryClass), Other);
+                    {
+                        // primary weapons and grenades occupy slots 3+
+                        if (InventoryClass.default.InventoryGroup > 2 || InventoryClass.default.InventoryGroup == 0)
+                        {
+                            net_inventory_group = 3 + inventory_group_offset; 
+
+                            if (InventoryClass.default.InventoryGroup != 0) 
+                                ++inventory_group_offset;
+                        }
+                        else 
+                        {
+                            net_inventory_group = 255;
+                        }
+
+						SpawnConflictWeapon(class<Weapon>(InventoryClass), Other, net_inventory_group, i == CLRI.InitialWeaponIndex);
+                    }
 					else 
 						SpawnInventoryItem(InventoryClass, Other);
 
@@ -135,7 +152,7 @@ function ModifyPlayer( pawn Other )
 	Freon_Player(Other.Controller).ClearAmmoTracks();
 }
 
-function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other)
+function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_inventory_group, bool set_as_initial_weapon)
 {
 	local Weapon newWeapon;
 	local bool bHasTrack;
@@ -159,6 +176,11 @@ function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other)
 	
 		if( newWeapon != None )
 		{
+            if (BallisticWeapon(newWeapon) != None)
+            {
+                BallisticWeapon(newWeapon).NetInventoryGroup = net_inventory_group;
+                BallisticWeapon(newWeapon).bServerDeferInitialSwitch = !set_as_initial_weapon;
+            }
 			newWeapon.GiveTo(Other);
 			newWeapon.PickupFunction(Other);
 

@@ -380,7 +380,7 @@ function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector 
 	if (Pawn(Victim) != None)
 		ApplyForce(Pawn(Victim), TraceStart, ScaleFactor);
 
-	ApplyDamage(Victim, Dmg, Instigator, HitLocation, KickForce * Dir * ScaleFactor, HitDT); 
+	ApplyDamage(Victim, Ceil(Dmg), Instigator, HitLocation, KickForce * Dir * ScaleFactor, HitDT); 
 }
 
 function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
