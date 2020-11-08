@@ -21,9 +21,9 @@ defaultproperties
      Damage=80.000000
      
      
-     DamageType=Class'BWBPRecolorsPro.DTCoachMelee'
-     DamageTypeHead=Class'BWBPRecolorsPro.DTCoachMeleeHead'
-     DamageTypeArm=Class'BWBPRecolorsPro.DTCoachMelee'
+     DamageType=Class'BWBPSomeOtherPack.DT_TrenchMelee'
+     DamageTypeHead=Class'BWBPSomeOtherPack.DT_TrenchMeleeHead'
+     DamageTypeArm=Class'BWBPSomeOtherPack.DT_TrenchMelee'
      KickForce=2000
      bUseWeaponMag=False
      bReleaseFireOnDie=False
@@ -34,6 +34,7 @@ defaultproperties
      PreFireAnim="PrepWrench"
      FireAnim="Wrench"
      PreFireAnimRate=2.000000
+     FireAnimRate=1.600000
      TweenTime=0.000000
      FireRate=0.700000
      AmmoClass=Class'BWBPSomeOtherPack.Ammo_TrenchgunShells'

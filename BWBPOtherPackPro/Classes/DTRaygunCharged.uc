@@ -2,10 +2,10 @@ class DTRaygunCharged extends DT_BWMiscDamage;
 
 defaultproperties
 {
-     DeathStrings(0)="%o was blown into tiny bits and pieces by %k's raygun bolt."
-     DeathStrings(1)="%k totally dismantled %o with a searing ball of plasma."
+     DeathStrings(0)="%o was blown into tiny bits and pieces by %k's raygun beam."
+     DeathStrings(1)="%k totally dismantled %o with a searing beam of plasma."
      DeathStrings(2)="%k's spiralling blast vaporized %o."
-     SimpleKillString="Raygun Charged Bolt"
+     SimpleKillString="Raygun Charged Beam"
      BloodManagerName="BallisticProV55.BloodMan_DarkSlow"
 	 InvasionDamageScaling=2
      FlashV=(X=1000.000000,Y=500.000000)
@@ -15,9 +15,9 @@ defaultproperties
      DamageIdent="Energy"
      DamageDescription=",Plasma,"
      WeaponClass=Class'BWBPOtherPackPro.Raygun'
-     DeathString="%k totally dismantled %o with a searing ball of plasma."
-     FemaleSuicide="%o blew herself to bits with a charged bolt."
-     MaleSuicide="%o blew himself to bits with a charged bolt."
+     DeathString="%k totally dismantled %o with a searing beam of plasma."
+     FemaleSuicide="%o blew herself to bits with a charged beam."
+     MaleSuicide="%o blew himself to bits with a charged beam."
      bAlwaysGibs=True
      bExtraMomentumZ=True
      GibModifier=2.000000
