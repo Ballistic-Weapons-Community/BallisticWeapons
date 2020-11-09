@@ -109,65 +109,6 @@ simulated function HitWall( vector HitNormal, actor Wall )
    	Explode(Location, HitNormal);
 }
 
-// Special HurtRadius function. This will hurt everyone except the chosen victim.
-// Useful if you want to spare a directly hit enemy from the radius damage
-function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
-{
-	local actor Victims;
-	local float damageScale, DmgRadiusScale, dist;
-	local vector dir;
-
-	if( bHurtEntry )
-		return;
-
-	bHurtEntry = true;
-	
-	if (Pawn(Victim) == None)
-	{
-		DamageAmount *= 0.5;
-		DamageRadius *= 0.75;
-	}
-	foreach CollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
-	{
-		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
-		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim && Victims != HurtWall)
-		{
-			if (!FastTrace(Victims.Location, Location))
-			{
-				if (!bCoverPenetrator)
-					continue;
-				else DmgRadiusScale = (DamageRadius - GetCoverReductionFor(Victims.Location)) / DamageRadius;
-				
-				if (DamageRadius * DmgRadiusScale < 16)
-					continue;
-			}
-			else DmgRadiusScale = 1;
-			dir = Victims.Location;
-			if (Victims.Location.Z > HitLocation.Z)
-				dir.Z = FMax(HitLocation.Z, dir.Z - Victims.CollisionHeight);
-			else dir.Z = FMin(HitLocation.Z, dir.Z + Victims.CollisionHeight);
-			dir -= HitLocation;
-			dist = FMax(1,VSize(dir));
-			if (bCoverPenetrator && DmgRadiusScale < 1 && VSize(dir) > DamageRadius * DmgRadiusScale)
-				continue;
-			dir = dir/dist;
-			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/ (DamageRadius * DmgRadiusScale));
-			if ( Instigator == None || Instigator.Controller == None )
-				Victims.SetDelayedDamageInstigatorController( InstigatorController );
-			class'BallisticDamageType'.static.GenericHurt
-			(
-				Victims,
-				Square(damageScale) * DamageAmount,
-				Instigator,
-				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
-				(damageScale * Momentum * dir),
-				DamageType
-			);
-		 }
-	}
-	bHurtEntry = false;
-}
-
 defaultproperties
 {
      ImpactSounds(0)=Sound'XEffects.Impact4Snd'
@@ -184,11 +125,11 @@ defaultproperties
      TrailOffset=(X=-14.000000)
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTBulldogFRAGRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     bCoverPenetrator=True
      Speed=7000.000000
      MaxSpeed=7000.000000
      Damage=140.000000
 	 DamageRadius=512.000000
+     WallPenetrationForce=192
      MomentumTransfer=30000.000000
      MyDamageType=Class'BWBPRecolorsPro.DTBulldogFRAG'
      LightType=LT_Steady

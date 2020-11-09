@@ -56,12 +56,6 @@ var() Range				        TraceRange;				        // Min and Max range of trace
 var() float				        MaxWaterTraceRange;		        // Maximum distance this fire should trace after entering water
 var() float				        WallPenetrationForce;	        // Maximum thickness of the walls that this bullet gan go through
 
-struct TraceInfo					                            // This holds info about a trace
-{
-	var() Vector 	Start, End, HitNormal, HitLocation, Extent;
-	var() Material	HitMaterial;
-	var() Actor		HitActor;
-};
 //-----------------------------------------------------------------------------
 
 //Damage Vars -----------------------------------------------------------------
@@ -132,18 +126,6 @@ function float SurfaceScale (int Surf)
 		Case 10:/*EST_Glass*/	return 4.0;
 		default:				return 1.0;
 	}
-}
-// Finds the surface type and returns returns SurfaceScale() for that surface...
-function float ScaleBySurface(Actor Other, Material HitMaterial)
-{
-	local int Surf;
-	if (Vehicle(Other) != None)
-		Surf = 3;
-	else if (HitMaterial == None)
-		Surf = int(Other.SurfaceType);
-	else
-		Surf = int(HitMaterial.SurfaceType);
-	return SurfaceScale(Surf);
 }
 
 // Get aim then run trace...
@@ -484,9 +466,19 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				break;
 			}
 
-			if (WallCount < MAX_WALLS && WallPenForce > 0 && GoThroughWall(Other, HitLocation, HitNormal, WallPenForce * ScaleBySurface(Other, HitMaterial), X, Start, ExitNormal, ExitMaterial))
+			if (
+                    WallCount < MAX_WALLS && WallPenForce > 0 && 
+                    class'WallPenetrationUtil'.static.GoThroughWall
+                    (
+                        Weapon, Instigator, 
+                        HitLocation, HitNormal, 
+                        WallPenForce * SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial)), 
+                        X, Start, 
+                        ExitNormal, ExitMaterial
+                    )
+                )
 			{
-				WallPenForce -= VSize(Start - HitLocation) / ScaleBySurface(Other, HitMaterial);
+				WallPenForce -= VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial));
 
 				WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
 				WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
@@ -568,115 +560,6 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	if (!bAISilent)
 		Instigator.MakeNoise(1.0);
 	return true;
-}
-
-// Returns true if the trace hit the back of a surface, i.e. the surface normal and trace normal
-// are pointed in the same direction...
-static function bool IsBackface(vector Norm, vector Dir)	{	return (Normal(Dir) Dot Normal(Norm) > 0.0);	}
-// Returns true if point is in a solid, i.e. FastTrace() fails at the point
-function bool PointInSolid(vector V)				{	return !Weapon.FastTrace(V, V+vect(1,1,1));		}
-
-function TraceInfo GetTraceInfo (Vector End, Vector Start, optional bool bTraceActors, optional Vector Extent)
-{
-	local TraceInfo TI;
-	TI.Start = Start;	TI.End = End;	TI.Extent = Extent;
-	TI.HitActor = Trace(TI.HitLocation, TI.HitNormal, TI.End, TI.Start, bTraceActors, TI.Extent, TI.HitMaterial);
-	if (TI.HitActor == None)
-		TI.HitLocation = TI.End;
-	return TI;
-}
-
-//Fixme handle BallisticDecorations
-function bool GoThroughWall(actor Other, vector FirstLoc, vector FirstNorm, float MaxWallDepth, vector Dir, out vector ExitLocation, out vector ExitNormal, optional out Material ExitMat)
-{
-	local TraceInfo TBack, TFore;
-	local float CheckDist;
-	local Vector Test, HLoc, HNorm;
-	local Pawn A;
-
-	if (MaxWallDepth <= 0)
-		return false;
-
-	// First, try shorcut method...
-	foreach Weapon.CollidingActors ( class'pawn', A, MaxWallDepth, FirstLoc)
-	{
-		if (A == None || A == Instigator || A.TraceThisActor(HLoc, HNorm, FirstLoc + Dir * MaxWallDepth, FirstLoc))
-			continue;
-		TBack = GetTraceInfo(FirstLoc, HLoc, false);
-		if (TBack.HitActor != None)
-		{
-			if (VSize(TBack.HitLocation - FirstLoc) <= MaxWallDepth)
-			{
-				ExitLocation = TBack.HitLocation + Dir * 1;
-				ExitNormal = TBack.HitNormal;
-				ExitMat = TBack.HitMaterial;
-				return true;
-			}
-		}
-		else
-		{
-			ExitLocation = FirstLoc + Dir * 48;
-			ExitNormal = Dir;
-			return true;
-		}
-	}
-	// Start testing as far in as possible, then move closer until we're back at the start
-	for (CheckDist=MaxWallDepth;CheckDist>0;CheckDist-=48)
-	{
-		Test = FirstLoc + Dir * CheckDist;
-		// Test point is in a solid, try again
-		if (PointInSolid(Test))
-			continue;
-		// Found space, check to make sure its open space and not just inside a static
-		else
-		{
-			// First, Trace back and see whats there...
-			TBack = GetTraceInfo(Test-Dir*CheckDist, Test, true);
-			// We're probably in thick terrain, otherwise we'd have found something
-			if (TBack.HitActor == None)	{
-				return false;	}
-			// A non world actor! Must be in valid space
-			if (!TBack.HitActor.bWorldGeometry && Mover(TBack.HitActor) == None)	{
-				ExitLocation = TBack.HitLocation - Dir * TBack.HitActor.CollisionRadius;
-				ExitNormal = Dir;
-				return true;
-			}
-			// Found the front face of a surface(normal parallel to Fire Dir, Opposite to Back Trace dir)
-			if (VSize(TBack.HitLocation - TBack.Start) > 0.5 && IsbackFace(TBack.HitNormal, Dir))	{
-				ExitLocation = TBack.HitLocation + Dir * 1;
-				ExitNormal = TBack.HitNormal;
-				ExitMat = TBack.HitMaterial;
-				return true;
-			}
-			// Found a back face,
-			else{	// Trace forward(along fire Dir) and see if we're inside a mesh or if the surface was just a plane
-				TFore = GetTraceInfo(Test+Dir*2000, Test, true);
-				if (VSize(TFore.HitLocation - TFore.Start) > 0.5)	{
-					// Hit nothing, we're probably not inside a mesh (hopefully)
-					if (TFore.HitActor == None)	{
-						ExitLocation = TBack.HitLocation + Dir * 1;
-						ExitNormal = -TBack.HitNormal;
-						ExitMat = TBack.HitMaterial;
-						return true;
-					}
-					// Found backface. Looks like its a mesh bigger than MaxWallDepth
-					if (IsBackFace(TFore.HitNormal, Dir))
-						return false;
-					// Hit a front face...
-					else	{
-						ExitLocation = TBack.HitLocation + Dir * 1;
-						ExitNormal = -TBack.HitNormal;
-						ExitMat = TBack.HitMaterial;
-						return true;
-					}
-				}
-				else
-					return false;
-			}
-			break;
-		}
-	}
-	return false;
 }
 
 function StartBerserk()

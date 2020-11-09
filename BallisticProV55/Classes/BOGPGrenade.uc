@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class BOGPGrenade extends BallisticGrenade;
 
@@ -106,6 +106,7 @@ defaultproperties
      Speed=3500.000000
      Damage=120.000000
      DamageRadius=512.000000
+     WallPenetrationForce=128
      MyDamageType=Class'BallisticProV55.DTBOGPGrenadeRadius'
      ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'
      StaticMesh=StaticMesh'BallisticHardware_25.BOGP.BOGP_Grenade'

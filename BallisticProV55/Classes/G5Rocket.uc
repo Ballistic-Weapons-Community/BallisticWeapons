@@ -136,7 +136,6 @@ defaultproperties
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=378.000000
      MotionBlurRadius=512.000000
-     bCoverPenetrator=True
      ShakeRotMag=(X=512.000000,Y=400.000000)
      ShakeRotRate=(X=3000.000000,Z=3000.000000)
      ShakeOffsetMag=(X=20.000000,Y=30.000000,Z=30.000000)
@@ -144,6 +143,7 @@ defaultproperties
      MaxSpeed=25000.000000
      Damage=120.000000
      DamageRadius=768.000000
+     WallPenetrationForce=384
      MomentumTransfer=90000.000000
      MyDamageType=Class'BallisticProV55.DTG5Bazooka'
      LightType=LT_Steady

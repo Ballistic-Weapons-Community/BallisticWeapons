@@ -8,9 +8,10 @@ var   	int 					TransferCDamage;	//Damage to transfer to LightningConductor acto
 var		float					ChargeGainPerSecond, ChargeDecayPerSecond, ChargeOvertime, MaxChargeOvertime;
 var		bool 					AmmoHasBeenCalculated;
 
-simulated event ModeDoFire()
+simulated function ModeDoFire()
 {
-	TransferCDamage = default.Damage * (1 + (0.25*LightningRifle(BW).ChargePower));
+    if (BW.Role == ROLE_Authority)
+	    TransferCDamage = default.Damage * (1 + (0.125 * LightningRifle(BW).ChargePower));
 
 	Load = CalculateAmmoUse();
 	AmmoHasBeenCalculated = true;
@@ -51,9 +52,9 @@ simulated function ModeTick(float DeltaTime)
 	if (bIsFiring)
 	{
 		//Scale charge
-		LightningRifle(BW).SetChargePower(FMin(BW.MagAmmo, LightningRifle(BW).ChargePower + ChargeGainPerSecond * DeltaTime));
+		LightningRifle(BW).SetChargePower(FMin(Min(BW.MagAmmo, class'LightningRifle'.default.MaxCharge), LightningRifle(BW).ChargePower + ChargeGainPerSecond * DeltaTime));
 		
-		if (LightningRifle(BW).ChargePower >= BW.MagAmmo)
+		if (LightningRifle(BW).ChargePower >= Min(BW.MagAmmo, class'LightningRifle'.default.MaxCharge))
 			ChargeOvertime += DeltaTime;
 		
 		if (ChargeOvertime >= MaxChargeOvertime)
@@ -80,14 +81,6 @@ simulated function ModeTick(float DeltaTime)
 	Super.ModeTick(DeltaTime);
 }
 
-function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
-{
-	local float DefDmg;
-	DefDmg = Super.GetDamage(Other, HitLocation, Dir, Victim, DT);
-	
-	return DefDmg * (1 + (0.25*LightningRifle(BW).ChargePower));
-}
-
 simulated function ServerPlayFiring()
 {
 	super.ServerPlayFiring();
@@ -106,6 +99,8 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 {
 	local LightningConductor LConductor;
 
+    Damage *= (1 + (0.25*LightningRifle(BW).ChargePower));
+
 	super.ApplyDamage(Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 
 	if (!class'LightningConductor'.static.ValidTarget(Instigator, Pawn(Target), Instigator.Level))
@@ -121,6 +116,11 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 		LConductor.ChargePower = LightningRifle(BW).ChargePower;
 		LConductor.Initialize(Pawn(Target));
 	}
+
+    else 
+    {
+        log("ApplyDamage: Failed to spawn lightning conductor");
+    }
 }
 
 defaultproperties
@@ -135,7 +135,8 @@ defaultproperties
 	TraceRange=(Min=30000.000000,Max=30000.000000)
 	MaxWaterTraceRange=30000
 	Damage=80.000000
-	
+	HeadMult=1.5f
+    LimbMult=0.9f
 	
 	WaterRangeAtten=0.800000
 	DamageType=Class'BallisticJiffyPack.DT_LightningRifle'
@@ -148,7 +149,7 @@ defaultproperties
 	BrassClass=Class'BallisticProV55.Brass_Rifle'
 	bBrassOnCock=True
 	BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
-	FireRecoil=1536.000000
+	FireRecoil=1024.000000
 	FirePushbackForce=256.000000
 	FireChaos=0.800000
 	BallisticFireSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunShot',Volume=1.600000,Radius=1024.000000)

@@ -235,7 +235,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 					OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
 					break;
 				}
-				if (WallCount < MAX_WALLS && GoThroughWall(Other, HitLocation, HitNormal, WallPenForce, X, Start, ExitNorm))
+				if (WallCount < MAX_WALLS && class'WallPenetrationUtil'.static.GoThroughWall(Weapon, Instigator, HitLocation, HitNormal, WallPenForce, X, Start, ExitNorm))
 				{
 					WallPenForce -= VSize(Start - HitLocation);
 

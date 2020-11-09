@@ -47,7 +47,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      bBrassOnCock=True
      BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
-	 FireRecoil=1536.000000
+	 FireRecoil=400.000000
 	 FirePushbackForce=255.000000
      FireChaos=0.800000
      BallisticFireSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunShot',Volume=1.600000,Radius=1024.000000)

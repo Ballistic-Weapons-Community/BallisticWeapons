@@ -22,9 +22,9 @@ var   int 							CurrentTargetIndex;
 var   Vector 						VertDisplacement;
 var   array<Pawn> 					ShockTargets;
 
-var		int							HitCounter, OldHitCounter;
-var		vector						EffectStart, EffectEnd;
-var		Pawn						EffectSource, EffectDest;
+var int							    HitCounter, OldHitCounter;
+var vector						    EffectStart, EffectEnd;
+var Pawn						    EffectSource, EffectDest;
 
 var 	float						SelfDmgScalar;
 
@@ -102,11 +102,15 @@ function Initialize(Pawn InitialTarget)
 	ShockTargets[ShockTargets.Length - 1] = InitialTarget;
 
 	//Scale up max conductors, conduct radius, etc. according to ChargePower. Now uses default values, easier to balance
-	ConductRadius = default.ConductRadius * (1 + (SquareCoefficient*ChargePower*ChargePower));
+
+    // between 768 * 0.083 * 1 (63) and 768 * 0.083 * 16 (1019)
+	ConductRadius = default.ConductRadius * (1 + (SquareCoefficient * Square(ChargePower)));
+
+    // between 3 * 2 (6) and 3 * 5 (15)
 	MaxConductors = default.MaxConductors * (1 + ChargePower);
 
 	//Check for nearby pawns
-	ForEach CollidingActors(class'Pawn', PVictim, ConductRadius)
+	ForEach RadiusActors(class'Pawn', PVictim, ConductRadius)
 	{		
 		//skip to next victim if instigator, in order to not damage the instigator
 		if (PVictim == Instigator)
@@ -252,12 +256,32 @@ function Propagate()
 		class'BallisticDamageType'.static.GenericHurt(dest, Max(1, (SelfDmgScalar * (Damage)/(CurrentTargetIndex^(1/(1+2*ChargePower))))), Instigator, dest.Location, vect(0,0,0), CDamageType);
 	else*/
 
-	class'BallisticDamageType'.static.GenericHurt(dest, Max(1, (Damage)/(CurrentTargetIndex^(1/(1+2*ChargePower)))), Instigator, dest.Location, vect(0,0,0), CDamageType);
+	class'BallisticDamageType'.static.GenericHurt(dest, CalcDamageForIndex(CurrentTargetIndex), Instigator, dest.Location, vect(0,0,0), CDamageType);
 
 	++CurrentTargetIndex;
 
 	if (CurrentTargetIndex == ShockTargets.Length)
 		Kill();
+}
+
+//============================================================
+// CalcDecayMult
+//
+// Determines damage multiplier every jump. 
+// 40% at minimum factor, 20% at maximum factor
+//============================================================
+final function float CalcDecayMult()
+{
+    return 0.6f /* base power */ + ChargePower * 0.25f /* coeff */ * 0.2f /* max additional power*/;
+}
+
+final function int CalcDamageForIndex(int index)
+{
+    return Max
+    ( 
+        1, 
+        Damage * (CalcDecayMult() ** float(CurrentTargetIndex))
+    );    
 }
 
 //============================================================

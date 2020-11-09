@@ -18,24 +18,23 @@ var float LastModeChangeTime;
 
 var() Material          MatGreenShell;
 var() Material          MatBlackShell;
-var() name		ShellTipBone1;		// Super Slug 1.
-var() name		ShellTipBone2;		// Super Slug 2
-var() name		ShellTipBone3;		// Spare Super Slug 1.
-var() name		ShellTipBone4;		// Spare Super Slug 2
+var() name		        ShellTipBone1;		    // Super Slug 1.
+var() name		        ShellTipBone2;		    // Super Slug 2
+var() name		        ShellTipBone3;		    // Spare Super Slug 1.
+var() name		        ShellTipBone4;		    // Spare Super Slug 2
 
-var() name				LastShellBone;		// Name of the right shell.
-var   bool				bLastShell;			// Checks if only one shell is left
-var   bool				bNowEmpty;			// Checks if it should play modified animation.
+var() name				LastShellBone;		    // Name of the right shell.
+var   bool				bLastShell;			    // Checks if only one shell is left
+var   bool				bNowEmpty;			    // Checks if it should play modified animation.
 
-var() float				SingleReloadAnimRate; // Animation rate for single reload.
+var() float				SingleReloadAnimRate;   // Animation rate for single reload.
 
 struct DeployableInfo
 {
-	var class<Actor> 	dClass;
+	var class<Actor> 	    dClass;
 	var float				WarpInTime;
 	var int					SpawnOffset;
-	var bool				CheckSlope; // should block unless placed on flat enough area
-	var string				dDescription; 	//A simple explanation of what this mode does.
+	var bool				CheckSlope;     // should block unless placed on flat enough area
 	var float				CoolDownDelay;
 };
 
@@ -625,7 +624,7 @@ defaultproperties
 	ShellTipBone4="SpareShellRSuper"
 	LastShellBone="ShellR"
 	FireAnimCutThreshold=3.000000
-	AltDeployable=(dClass=Class'BWBPSomeOtherPack.TrenchGunEnergyBarrier',WarpInTime=0.500000,SpawnOffset=52,CheckSlope=False,dDescription="A five-second barrier of infinite durability.",CooldownDelay=2.00) 
+	AltDeployable=(dClass=Class'BWBPSomeOtherPack.TrenchGunEnergyBarrier',WarpInTime=0.500000,SpawnOffset=52,CheckSlope=False,CooldownDelay=2.00) 
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBPSomeOtherPackTex.TechGun.BigIcon_TechGun'
 	BigIconCoords=(Y1=35,Y2=225)

@@ -37,6 +37,7 @@ simulated function Timer()
 	}
 	
 	DamageRadius=400;
+    WallPenetrationForce=300;
 }
 
 simulated event Tick(float DT)
@@ -70,10 +71,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	local int 		Surf;
 	local Material 	HitMaterial;
 	
-	local byte 		bHard;
 	local bool 		bNoSecondary;
 	local Vector 	tHitNorm, tHitLoc;
-	local float		radScale;
 	
 	if (bExploded)
 		return;
@@ -85,11 +84,9 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	{
 		CheckSurface(HitLocation, HitNormal, Surf);
 	
-		Trace(tHitLoc, tHitNorm, HitLocation, HitLocation + (DamageRadius * SurfaceScale(Surf, bHard) * Normal(Velocity)), False, , HitMaterial);
+		Trace(tHitLoc, tHitNorm, HitLocation, HitLocation + (DamageRadius * SurfaceScale(Surf) * Normal(Velocity)), False, , HitMaterial);
 		
-		radScale = GetCoverReductionFor(HitLocation);
-		
-		if (tHitLoc == vect(0,0,0) || PointInSolid(tHitLoc) || DamageRadius * RadScale < VSize(Location - HitLocation))
+		if (tHitLoc == vect(0,0,0) || PointInSolid(tHitLoc) || WallPenetrationForce < VSize(Location - HitLocation))
 			bNoSecondary = True;
 		
 		if (Instigator == None)
@@ -141,7 +138,7 @@ defaultproperties
      MotionBlurRadius=384.000000
      MotionBlurFactor=6.000000
      MotionBlurTime=8.000000
-     bCoverPenetrator=True
+     WallPenetrationForce=128
      ShakeRotMag=(X=512.000000,Y=400.000000,Z=350.000000)
      ShakeRotRate=(X=7000.000000,Y=7000.000000,Z=5500.000000)
      ShakeRotTime=8.000000

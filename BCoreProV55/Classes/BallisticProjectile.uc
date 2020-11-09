@@ -25,6 +25,13 @@ class BallisticProjectile extends Projectile
 	abstract
 	config(BallisticProV55);
 
+enum ERadiusFallOffType
+{
+    RFO_Linear,
+    RFO_Quadratic,
+    RFO_None
+};
+
 var() class<BCImpactManager>ImpactManager;			// Impact manager to spawn on final hit
 var() class<BCImpactManager>PenetrateManager;		// Impact manager to spawn when going through actors
 var() bool					bCheckHitSurface;		// Check impact surfacetype on explode for surface dependant ImpactManagers
@@ -56,7 +63,8 @@ var() float					MotionBlurRadius;
 var() float					MotionBlurFactor;
 var() float					MotionBlurTime;
 
-var() bool					bCoverPenetrator;
+var() ERadiusFallOffType    RadiusFallOffType;
+var() float                 WallPenetrationForce;
 // camera shakes //
 var() vector ShakeRotMag;           // how far to rot view
 var() vector ShakeRotRate;          // how fast to rot view
@@ -253,22 +261,22 @@ simulated function ShakeView(vector HitLocation)
 }
 
 // Returns the amount by which MaxWallSize should be scaled for each surface type. Override in subclasses to change...
-function float SurfaceScale (int Surf, out byte bHard) //hurp durp you can't have an out bool.
+function float SurfaceScale (int Surf) 
 {
 	switch (Surf)
 	{
-		Case 0:/*EST_Default*/	bHard = 1; return 0.5;
-		Case 1:/*EST_Rock*/		bHard = 1; return 0.5;
-		Case 2:/*EST_Dirt*/			return 0.35;
-		Case 3:/*EST_Metal*/		bHard = 1; return 0.25;
+		Case 0:/*EST_Default*/	return 0.5;
+		Case 1:/*EST_Rock*/		return 0.5;
+		Case 2:/*EST_Dirt*/		return 0.35;
+		Case 3:/*EST_Metal*/	return 0.25;
 		Case 4:/*EST_Wood*/		return 0.55;
-		Case 5:/*EST_Plant*/		return 0.5;
-		Case 6:/*EST_Flesh*/		return 1;
-		Case 7:/*EST_Ice*/			bHard=1;return 0.75;
+		Case 5:/*EST_Plant*/	return 0.5;
+		Case 6:/*EST_Flesh*/	return 1;
+		Case 7:/*EST_Ice*/		return 0.75;
 		Case 8:/*EST_Snow*/		return 1;
-		Case 9:/*EST_Water*/		return 1;
-		Case 10:/*EST_Glass*/		return 1;
-		default:								bHard = 1; return 0.5;
+		Case 9:/*EST_Water*/	return 1;
+		Case 10:/*EST_Glass*/	return 1;
+		default:			    return 0.5;
 	}
 }
 
@@ -507,8 +515,9 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
 {
 	local actor Victims;
-	local float damageScale, DmgRadiusScale, dist;
+	local float damageScale, dist;
 	local vector dir;
+    local bool can_see;
 
 	if( bHurtEntry )
 		return;
@@ -519,34 +528,51 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
 		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim && Victims != HurtWall)
 		{
-			//Cover penetration code for explosives.
-			if (!FastTrace(Victims.Location, Location))
-			{
-				if (!bCoverPenetrator)
-					continue;
-				else DmgRadiusScale = (DamageRadius - GetCoverReductionFor(Victims.Location)) / DamageRadius;
-				
-				if (DamageRadius * DmgRadiusScale < 16)
-					continue;
-			}
-			else DmgRadiusScale = 1;
-			
-			dir = Victims.Location;
-			if (Victims.Location.Z > HitLocation.Z)
-				dir.Z = FMax(HitLocation.Z, dir.Z - Victims.CollisionHeight);
-			else dir.Z = FMin(HitLocation.Z, dir.Z + Victims.CollisionHeight);
-			dir -= HitLocation;
-			dist = FMax(1,VSize(dir));
-			if (bCoverPenetrator && DmgRadiusScale < 1 && VSize(dir) > DamageRadius * DmgRadiusScale)
-				continue;
-			dir = dir/dist;
-			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/ (DamageRadius * DmgRadiusScale));
+            can_see = FastTrace(Victims.Location, Location);
+
+			if (!can_see)
+            {
+                if (WallPenetrationForce == 0)
+                    continue;
+            }
+
+            // UNDerwater EXplosion damage
+            else if (PhysicsVolume.bWaterVolume && Victims.PhysicsVolume == PhysicsVolume)
+                DamageRadius *= 3;
+
+            damageScale = 1f;
+
+            dir = Victims.Location;
+            if (Victims.Location.Z > HitLocation.Z)
+                dir.Z = FMax(HitLocation.Z, dir.Z - Victims.CollisionHeight);
+            else 
+                dir.Z = FMin(HitLocation.Z, dir.Z + Victims.CollisionHeight);
+            dir -= HitLocation;
+            dist = FMax(1, VSize(dir));
+            dir /= dist;
+
+            if (can_see)
+            {
+                if (RadiusFallOffType != RFO_None)
+                    damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius) / DamageRadius);
+                if (RadiusFallOffType == RFO_Quadratic)
+                    damageScale = Square(damageScale);
+            }
+            else 
+            {
+                damageScale = GetPenetrationDamageScale(dir);
+
+                if (damageScale < 0.01f)
+                    continue;
+            }
+
 			if ( Instigator == None || Instigator.Controller == None )
 				Victims.SetDelayedDamageInstigatorController( InstigatorController );
+            
 			class'BallisticDamageType'.static.GenericHurt
 			(
 				Victims,
-				Square(damageScale) * DamageAmount,
+				damageScale * DamageAmount,
 				Instigator,
 				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
 				(damageScale * Momentum * dir),
@@ -557,32 +583,97 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 	bHurtEntry = false;
 }
 
-function float GetCoverReductionFor(vector TargetLoc)
+// Trace to find out how far towards the target we can get
+function float GetPenetrationDamageScale(Vector Dir)
 {
-	local Vector HitLocation, HitLocationTwo, HitNormal;
-	local Material HitMat;
-	local float MatScale, Dist;
-	local byte bHard;
-	
-	Trace(HitLocation, HitNormal, TargetLoc, Location, false, , HitMat);
-	
-	Trace(HitLocationTwo, HitNormal, Location, TargetLoc, false);
-	
-	if (HitMat != None)
-		MatScale = SurfaceScale(int(HitMat.SurfaceType), bHard);
-	else MatScale = 1;
-	
-	Dist = VSize(HitLocation - HitLocationTwo);
-	
-	if (bHard == 0)
-		return Dist / MatScale;
-	else if (Dist / MatScale > DamageRadius)
-		return 0;
-	return 1;
+	local int						WallCount, WallPenForce, WallPenDelta;
+	local Vector					End, X, HitLocation, HitNormal, Start, LastHitLoc, ExitNormal;
+	local Material					HitMaterial, ExitMaterial;
+	local float						Dist;
+	local Actor						Other, LastOther;
+
+	WallPenForce = WallPenetrationForce;
+
+	// Work out the range
+	Dist = DamageRadius;
+
+	Start = Location;
+	X = Normal(Dir);
+	End = Start + X * Dist;
+	LastHitLoc = End;
+	bTraceWater=true;
+
+	while (Dist > 0)		// Loop traces in case we need to go through stuff
+	{
+		Other = Trace(HitLocation, HitNormal, End, Start, true, , HitMaterial);
+
+		bTraceWater=false;
+
+		Dist -= VSize(HitLocation - Start);
+
+		if (Other == None)
+		{
+			LastHitLoc = End;
+			break;
+		}
+
+		// Water
+		if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume) )
+		{
+			Start = HitLocation;
+			End = Start + X * Dist;
+			bTraceWater=false;
+			continue;
+		}
+
+		LastHitLoc = HitLocation;
+			
+		if (Other.bWorldGeometry || Mover(Other) != None)
+		{
+			WallCount++;
+
+			if (
+                    WallPenForce > 0 && 
+                    class'WallPenetrationUtil'.static.GoThroughWall
+                    (
+                        Self, Instigator, 
+                        HitLocation, HitNormal, 
+                        WallPenForce * SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial)), 
+                        X, Start, 
+                        ExitNormal, ExitMaterial
+                    )
+                )
+			{
+
+                WallPenDelta = VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial));
+				WallPenForce -= WallPenDelta;
+
+                Dist -= DamageRadius * (WallPenDelta / WallPenetrationForce);
+
+				bTraceWater=true;
+				continue;
+			}
+
+			break;
+		}
+
+		// Still in the same guy
+		if (Other == Instigator || Other == LastOther)
+		{
+			Start = HitLocation + (X * FMax(32, Other.CollisionRadius * 2));
+			End = Start + X * Dist;
+			bTraceWater=true;
+			continue;
+		}
+		break;
+	}
+
+    return (DamageRadius - Max(0, Dist)) / DamageRadius;
 }
 
 defaultproperties
 {
+     RadiusFallOffType=RFO_Quadratic
      bRandomStartRotaion=True
      bTearOnExplode=True
      NetTrappedDelay=0.150000

@@ -4,25 +4,6 @@ var float ArmingDelay;
 var sound ImpactSounds[6];
 var float OutwardDamageRadius;
 
-simulated function PostNetBeginPlay()
-{
-	Super.PostNetBeginPlay();
-	//SetTimer(ArmingDelay, False);
-}
-
-/*
-simulated function Timer()
-{
-	if(StartDelay > 0)
-	{
-		Super.Timer();
-		return;
-	}
-	
-	bBounce=False;
-}
-*/
-
 simulated function Landed (vector HitNormal)
 {
 	Explode(Location, HitNormal);
@@ -76,7 +57,7 @@ simulated function HitWall( vector HitNormal, actor Wall )
 simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
 {
 	local actor Victims;
-	local float damageScale, DmgRadiusScale, dist;
+	local float damageScale, dist;
 	local vector dir, ClosestLinePoint;
 
 	if( bHurtEntry )
@@ -89,23 +70,27 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim && Victims != HurtWall)
 		{
 			dir = Victims.Location - HitLocation;
+
+            // Damage only targets in front
 			if (Vector(Rotation) dot Normal(Dir) < 0)
 				continue;
+
 			ClosestLinePoint = Location + vector(Rotation) * (( Vector(Rotation) * DamageRadius ) dot ( Victims.Location - Location )) / DamageRadius;
+
 			if (VSize(Victims.Location - ClosestLinePoint) > OutwardDamageRadius)
 				continue;
-			if (!FastTrace(Victims.Location, Location))
-			{
-				DmgRadiusScale = (DamageRadius - GetCoverReductionFor(Victims.Location)) / DamageRadius;
-				
-				if (DamageRadius * DmgRadiusScale < 16)
-					continue;
-			}
+
 			dist = FMax(1,VSize(dir));
 			dir = dir/dist;
+
 			damageScale = 1 - 0.65 * FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);	
+
+            if (!FastTrace(Victims.Location, Location))
+                DamageScale *= 0.75f;
+
 			if ( Instigator == None || Instigator.Controller == None )
 				Victims.SetDelayedDamageInstigatorController( InstigatorController );
+
 			class'BallisticDamageType'.static.GenericHurt
 			(
 				Victims,

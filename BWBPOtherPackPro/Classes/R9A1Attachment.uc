@@ -155,6 +155,8 @@ simulated function Vector GetTipLocation()
 		else
 			return Instigator.Weapon.GetEffectStart();
 	}
+
+    return GetBoneCoords('tip').Origin;
 }
 
 defaultproperties

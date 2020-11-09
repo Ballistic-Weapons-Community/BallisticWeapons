@@ -95,7 +95,6 @@ defaultproperties
      MotionBlurRadius=3536.000000
      MotionBlurFactor=6.000000
      MotionBlurTime=2.000000
-     bCoverPenetrator=True
      ShakeRotMag=(X=576.000000,Y=450.000000,Z=400.000000)
      ShakeRotRate=(X=7000.000000,Y=7000.000000,Z=5500.000000)
      ShakeRotTime=8.000000
@@ -104,8 +103,9 @@ defaultproperties
      ShakeOffsetTime=10.000000
      Speed=1000.000000
      MaxSpeed=30000.000000
-     Damage=350.000000
-     DamageRadius=1024.000000
+     Damage=300.000000
+     DamageRadius=1536.000000
+     WallPenetrationForce=1024
      MomentumTransfer=300000.000000
      MyDamageType=Class'BWBPRecolorsPro.DTLAW'
      LightType=LT_Steady

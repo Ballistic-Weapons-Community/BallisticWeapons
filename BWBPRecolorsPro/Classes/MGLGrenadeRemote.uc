@@ -55,7 +55,7 @@ defaultproperties
      DampenFactor=0.050000
      DampenFactorParallel=0.300000
      DetonateDelay=0.350000
-     ImpactDamage=25
+     ImpactDamage=60
      ImpactDamageType=Class'BWBPRecolorsPro.DTMGLGrenade'
      ImpactManager=Class'BWBPRecolorsPro.IM_MGLGrenade'
 	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
@@ -66,10 +66,10 @@ defaultproperties
      MotionBlurRadius=400.000000
      MotionBlurFactor=3.000000
      MotionBlurTime=4.000000
-     bCoverPenetrator=True
+     WallPenetrationForce=256
      Speed=4500.000000
-     Damage=145.000000
-     DamageRadius=300.000000
+     Damage=140.000000
+     DamageRadius=768.000000
      MyDamageType=Class'BWBPRecolorsPro.DTMGLGrenadeRadius'
      ImpactSound=Sound'PackageSounds4Pro.Misc.FLAK-GrenadeBounce'
      StaticMesh=StaticMesh'BallisticHardware2.M900.M900Grenade'

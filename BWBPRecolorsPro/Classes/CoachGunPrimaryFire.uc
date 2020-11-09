@@ -244,9 +244,19 @@ simulated state Slug
 					if (Other.bWorldGeometry || Mover(Other) != None)
 					{
 						WallCount++;
-						if (WallCount < MAX_WALLS && WallPenForce > 0 && GoThroughWall(Other, HitLocation, HitNormal, WallPenForce * ScaleBySurface(Other, HitMaterial), X, Start, ExitNormal, ExitMaterial))
+						if (
+                                WallCount < MAX_WALLS && WallPenForce > 0 && 
+                                class'WallPenetrationUtil'.static.GoThroughWall
+                                (
+                                    Weapon, Instigator, 
+                                    HitLocation, HitNormal, 
+                                    WallPenForce * SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial)), 
+                                    X, Start, 
+                                    ExitNormal, ExitMaterial
+                                )
+                            )
 						{
-							WallPenForce -= VSize(Start - HitLocation) / ScaleBySurface(Other, HitMaterial);
+							WallPenForce -= VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial));
 			
 							WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
 							WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);

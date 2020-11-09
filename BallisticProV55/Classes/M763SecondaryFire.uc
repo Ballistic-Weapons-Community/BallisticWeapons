@@ -34,8 +34,8 @@ simulated function ModeDoFire()
 function DoTrace (Vector InitialStart, Rotator Dir)
 {
 	local int						PenCount, WallCount;
-	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc, ExitNormal;
-	local Material					HitMaterial, ExitMaterial;
+	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc;
+	local Material					HitMaterial;
 	local float						Dist;
 	local Actor						Other, LastOther;
 	local bool						bHitWall;
@@ -99,13 +99,6 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			if (Other.bWorldGeometry || Mover(Other) != None)
 			{
 				WallCount++;
-				if (WallCount <= MAX_WALLS && WallPenetrationForce > 0 && GoThroughWall(Other, HitLocation, HitNormal, WallPenetrationForce * ScaleBySurface(Other, HitMaterial), X, Start, ExitNormal, ExitMaterial))
-				{
-					WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
-					WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
-					Weapon.bTraceWater=true;
-					continue;
-				}
 				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
 				break;
 			}
