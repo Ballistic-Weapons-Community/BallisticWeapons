@@ -59,7 +59,7 @@ defaultproperties
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=512.000000
      MotionBlurRadius=512.000000
-     WallPenetrationForce=128
+     WallPenetrationForce=256
      Speed=1400.000000
      MaxSpeed=1500.000000
      Damage=150.000000

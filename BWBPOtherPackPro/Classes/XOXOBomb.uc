@@ -189,7 +189,7 @@ defaultproperties
      DampenFactorParallel=0.300000
      DetonateOn=DT_ImpactTimed
 	 PlayerImpactType=PIT_Detonate
-     DetonateDelay=0.800000
+     DetonateDelay=0.600000
      ImpactDamage=60
      ImpactDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
      ImpactManager=Class'BWBPOtherPackPro.IM_XOXO'

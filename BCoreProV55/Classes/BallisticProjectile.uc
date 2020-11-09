@@ -526,7 +526,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 	foreach CollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
 	{
 		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
-		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim && Victims != HurtWall)
+		if( Victims.bCanBeDamaged && (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim && Victims != HurtWall)
 		{
             can_see = FastTrace(Victims.Location, Location);
 
@@ -560,7 +560,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
             }
             else 
             {
-                damageScale = GetPenetrationDamageScale(dir);
+                damageScale = GetPenetrationDamageScale(dir, dist);
 
                 if (damageScale < 0.01f)
                     continue;
@@ -584,32 +584,38 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 }
 
 // Trace to find out how far towards the target we can get
-function float GetPenetrationDamageScale(Vector Dir)
+// n.b. this code does not work correctly for grenades on the ground
+function float GetPenetrationDamageScale(Vector dir, float dist)
 {
 	local int						WallCount, WallPenForce, WallPenDelta;
 	local Vector					End, X, HitLocation, HitNormal, Start, LastHitLoc, ExitNormal;
 	local Material					HitMaterial, ExitMaterial;
-	local float						Dist;
+	local float						pwr;
 	local Actor						Other, LastOther;
 
+    // dist is the distance between explosion centre and target
+    // pwr is the power the blast has left to reach the endpoint
 	WallPenForce = WallPenetrationForce;
 
-	// Work out the range
-	Dist = DamageRadius;
+	pwr = DamageRadius;
 
 	Start = Location;
 	X = Normal(Dir);
-	End = Start + X * Dist;
+	End = Start + X * dist;
 	LastHitLoc = End;
+
 	bTraceWater=true;
 
-	while (Dist > 0)		// Loop traces in case we need to go through stuff
+	while (dist > 0 && pwr > 0)		// Loop traces in case we need to go through stuff
 	{
 		Other = Trace(HitLocation, HitNormal, End, Start, true, , HitMaterial);
 
 		bTraceWater=false;
 
-		Dist -= VSize(HitLocation - Start);
+        //Log("GetPenetrationDamageScale: Trace: Dist: "$dist$" pwr: "$pwr$" reducing by: "$VSize(HitLocation - Start));
+
+		dist -= VSize(HitLocation - Start);
+        pwr -= VSize(HitLocation - Start);
 
 		if (Other == None)
 		{
@@ -634,6 +640,7 @@ function float GetPenetrationDamageScale(Vector Dir)
 
 			if (
                     WallPenForce > 0 && 
+                    WallCount < 5 && 
                     class'WallPenetrationUtil'.static.GoThroughWall
                     (
                         Self, Instigator, 
@@ -648,11 +655,20 @@ function float GetPenetrationDamageScale(Vector Dir)
                 WallPenDelta = VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial));
 				WallPenForce -= WallPenDelta;
 
-                Dist -= DamageRadius * (WallPenDelta / WallPenetrationForce);
+                //Log("GetPenetrationDamageScale: Wall Pen: pwr: "$pwr$", WallPenDelta: "$WallPenDelta);
+
+                dist -= VSize(Start - HitLocation);
+
+                pwr -= DamageRadius * (WallPenDelta / WallPenetrationForce);
+
+                //Log("GetPenetrationDamageScale: Post Wall Pen: pwr: "$pwr);
 
 				bTraceWater=true;
 				continue;
 			}
+
+            else 
+                pwr = 0;
 
 			break;
 		}
@@ -668,7 +684,9 @@ function float GetPenetrationDamageScale(Vector Dir)
 		break;
 	}
 
-    return (DamageRadius - Max(0, Dist)) / DamageRadius;
+    //Log("GetPenetrationDamageScale: pwr: "$pwr$" DamageRadius: "$DamageRadius);
+
+    return FMax(0f, pwr / DamageRadius);
 }
 
 defaultproperties
