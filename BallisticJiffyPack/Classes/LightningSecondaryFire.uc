@@ -99,7 +99,7 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 {
 	local LightningConductor LConductor;
 
-    Damage *= (1 + (0.25*LightningRifle(BW).ChargePower));
+    Damage *= (1 + (0.125*LightningRifle(BW).ChargePower));
 
 	super.ApplyDamage(Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 

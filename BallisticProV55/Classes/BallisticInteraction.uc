@@ -124,7 +124,7 @@ defaultproperties
 {
      bShowSplash=True
      SplashPic=Texture'BallisticTextures_25.ui.SplashScreenNew'
-     VersionText="BallisticPro"
-     FixText="http://www.ldg-gaming.eu/"
+     VersionText="Ballistic Pro"
+     FixText="discord.gg/2XTfKPa"
      bVisible=True
 }

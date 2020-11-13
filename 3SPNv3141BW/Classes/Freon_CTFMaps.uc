@@ -1,9 +1,6 @@
 class Freon_CTFMaps extends Freon;
 
-var xRedFlagBase RFB;
-var xBlueFlagBase BFB;
-var float FlagSepDist;
-var config float MaxDistFactor;
+
 
 // rate whether player should spawn at the chosen navigationPoint or not
 function float RatePlayerStart(NavigationPoint N, byte Team, Controller Player)
@@ -77,47 +74,7 @@ function float RatePlayerStart(NavigationPoint N, byte Team, Controller Player)
 	return FMax(Score, 5);
 } // RatePlayerStart()
 
-simulated event PostBeginPlay()
-{
-	local xRealCTFBase FB;
 
-	FixFlags();
-
-	if (level.NetMode == NM_Client)
-		Destroy();
-		
-	super.PostBeginPlay();
-	
-	foreach AllActors(class'xRealCTFBase', FB)
-	{
-		if (xRedFlagBase(FB) != None)
-			RFB = xRedFlagBase(FB);
-		else if (xBlueFlagBase(FB) != None)
-			BFB = xBlueFlagBase(FB);
-			
-		if (BFB != None && RFB != None)
-		{
-			FlagSepDist = VSize(BFB.Location - RFB.Location);
-			break;
-		}
-	}
-}
-
-simulated function FixFlags()
-{
-	local CTFFlag F;
-	local xCTFBase B;
-
-	ForEach AllActors(Class'CTFFlag', F)
-	{
-		f.HomeBase.bActive = false;
-		F.Destroy();
-	}
-
-	if (level.NetMode != NM_DedicatedServer)
-		ForEach AllActors(Class'xCTFBase', B)
-			B.bHidden=true;
-}
 
 defaultproperties
 {

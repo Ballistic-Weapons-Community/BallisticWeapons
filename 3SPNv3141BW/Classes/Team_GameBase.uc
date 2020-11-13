@@ -109,6 +109,13 @@ var private const array< class<WeaponPickup> > PrecachePickups;
 
 var Color MapColor;
 
+/* ctf map support */
+
+var xRedFlagBase RFB;
+var xBlueFlagBase BFB;
+var float FlagSepDist;
+var config float MaxDistFactor;
+
 static function PrecacheGameTextures(LevelInfo MyLevel)
 {
     class'xTeamGame'.static.PrecacheGameTextures(MyLevel);
@@ -375,6 +382,51 @@ static function bool AllowMutator(string MutatorClassName)
         return false;
 
     return Super.AllowMutator(MutatorClassName);
+}
+
+//===================================================
+// CTF map support
+//===================================================
+simulated event PostBeginPlay()
+{
+	local xRealCTFBase FB;
+
+	FixFlags();
+
+	if (level.NetMode == NM_Client)
+		Destroy();
+		
+	super.PostBeginPlay();
+	
+	foreach AllActors(class'xRealCTFBase', FB)
+	{
+		if (xRedFlagBase(FB) != None)
+			RFB = xRedFlagBase(FB);
+		else if (xBlueFlagBase(FB) != None)
+			BFB = xBlueFlagBase(FB);
+			
+		if (BFB != None && RFB != None)
+		{
+			FlagSepDist = VSize(BFB.Location - RFB.Location);
+			break;
+		}
+	}
+}
+
+simulated function FixFlags()
+{
+	local CTFFlag F;
+	local xCTFBase B;
+
+	ForEach AllActors(Class'CTFFlag', F)
+	{
+		f.HomeBase.bActive = false;
+		F.Destroy();
+	}
+
+	if (level.NetMode != NM_DedicatedServer)
+		ForEach AllActors(Class'xCTFBase', B)
+			B.bHidden=true;
 }
 
 auto state PendingMatch
@@ -849,6 +901,16 @@ function float RatePlayerStart(NavigationPoint N, byte Team, Controller Player)
 
     if ((P == None) || P.PhysicsVolume.bWaterVolume || Player == None)
         return -10000000;
+        
+    // if true, this is a CTF map
+    if (FlagSepDist > 0)
+    {
+	    if (Player.GetTeamNum() == 0 && VSize(P.Location - RFB.Location) > FlagSepDist * MaxDistFactor)
+	    		return -10000000;
+	    		
+	    if (Player.GetTeamNum() == 1 && VSize(P.Location - BFB.Location) > FlagSepDist * MaxDistFactor)
+	    		return -10000000;
+    }
 
     Score = 1000000.0;
 
@@ -2553,7 +2615,8 @@ static function string GetLoadingHint(PlayerController PlayerController, string 
 }
 
 defaultproperties
-{
+{     
+    MaxDistFactor=0.250000
     MapColor=(G=255,R=255,A=255)
      StartingHealth=100
      MaxHealth=1.000000
@@ -2712,4 +2775,9 @@ defaultproperties
 
      PrecachePickups(95)=Class'BallisticJiffyPack.ARPickup'
      PrecachePickups(96)=Class'BallisticJiffyPack.LightningPickup'
+
+    // for ctf support
+     bNetTemporary=True
+     bAlwaysRelevant=True
+     RemoteRole=ROLE_SimulatedProxy
 }

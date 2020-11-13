@@ -28,6 +28,73 @@ var byte		NadeCount;
 
 /* killstreaks */
 
+var PlayerController MyOwner;
+
+// Izumo_CZ's code for netspeed fixing
+simulated function PostNetBeginPlay()
+{
+	local bool plrDirty;
+	local int tcpMaxInternetRate, tcpMaxRate;	
+	
+	if (Level.NetMode == NM_Client)
+	{
+		MyOwner = Level.GetLocalPlayerController();
+		
+		if (MyOwner != None)
+		{	 			
+			//configured speed
+			if (class'Player'.default.ConfiguredInternetSpeed < 20000 && class'Player'.default.ConfiguredInternetSpeed > 9500)
+			{
+				//if speed is between 9.5k - 20k, set it to 20k
+				class'Player'.default.ConfiguredInternetSpeed = 20000;	
+				plrDirty = true;
+			}
+			
+			if (class'Player'.default.ConfiguredLanSpeed < 20000)
+			{
+				class'Player'.default.ConfiguredLanSpeed = 20000;
+				plrDirty = true;
+			}
+			
+			if (plrDirty)			
+				class'Player'.static.StaticSaveConfig();
+			
+			//Tcp driver
+			tcpMaxInternetRate = int(MyOwner.ConsoleCommand("get TcpNetDriver MaxInternetClientRate"));
+			if (tcpMaxInternetRate < 20000)
+				MyOwner.ConsoleCommand("set TcpNetDriver MaxInternetClientRate 20000");
+		
+			tcpMaxRate = int(MyOwner.ConsoleCommand("get TcpNetDriver MaxClientRate"));
+			if (tcpMaxRate < 20000)
+				MyOwner.ConsoleCommand("set TcpNetDriver MaxClientRate 20000");
+				
+			//netspeed console command
+			if (MyOwner.Player.CurrentNetSpeed < 20000 && MyOwner.Player.CurrentNetSpeed > 9500)
+				MyOwner.ConsoleCommand("netspeed 20000");
+		}
+		else
+        {
+            Enable('Tick');
+			GoToState('ClientNotInitialized');
+        }
+	}
+}
+
+state ClientNotInitialized
+{
+    simulated function Tick (float DeltaTime)
+    {
+        MyOwner = Level.GetLocalPlayerController();
+
+        if (MyOwner != None)
+        {
+            PostNetBeginPlay();
+            Disable('Tick');
+            GoToState('None');
+        }
+    }
+}
+
 function AddFireStat(int load, int InventoryGroup)
 {
 	HitStats[InventoryGroup].Fired += Load;

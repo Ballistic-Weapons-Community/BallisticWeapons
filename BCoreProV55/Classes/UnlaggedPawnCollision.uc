@@ -126,6 +126,17 @@ final function EnableUnlag(float PingTime)
     bUnlagged = True;
 }
 
+/*
+If in rewind state, redirect damage taken by the cylinder (explosive rounds, FP9 hijack etc) to the owning Pawn
+*/
+function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector Momentum, class<DamageType> damageType)
+{
+    if (!bUnlagged || UnlaggedPawn == None)
+        return;
+
+	UnlaggedPawn.TakeDamage( Damage, InstigatedBy, Hitlocation, Momentum, damageType);
+}
+
 /**
 Disable the unlagged collision cylinder for the UnlaggedPawn.
 */

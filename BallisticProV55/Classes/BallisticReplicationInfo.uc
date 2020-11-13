@@ -110,5 +110,5 @@ defaultproperties
 {
      WalkingPercentage=0.900000
      CrouchingPercentage=0.450000
-     ModString="Ballistic Weapons v2.5"
+     ModString="Ballistic Weapons Pro"
 }

@@ -73,7 +73,7 @@ defaultproperties
     SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
     BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Pickup')
     PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
-    ReloadAnimRate=1.000000
+    ReloadAnimRate=0.9
     ClipOutSound=(Sound=Sound'PackageSounds4ProExp.LAW.Law-TubeLock')
     ClipInSound=(Sound=Sound'PackageSounds4Pro.BeamCannon.Beam-Up')
     ClipInFrame=0.650000

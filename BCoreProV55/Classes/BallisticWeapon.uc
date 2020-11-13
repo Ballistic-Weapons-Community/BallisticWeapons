@@ -4559,30 +4559,42 @@ simulated function DrawCrosshairs(canvas C)
 
 simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, optional Pawn ExcludedPawn )
 {
-	local actor Victims;
+	local actor target;
 	local float damageScale, dist;
 	local vector dir;
+    local UnlaggedPawnCollision col;
 
 	if( bHurtEntry ) //not handled well...
 		return;
 
 	bHurtEntry = true;
 	
-	foreach VisibleCollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
+	foreach VisibleCollidingActors( class 'Actor', target, DamageRadius, HitLocation )
 	{
 		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
-		if( (Victims != self) && (Victims.Role == ROLE_Authority) && !Victims.IsA('FluidSurfaceInfo') && (ExcludedPawn == None || Victims != ExcludedPawn))
+		if
+            ( 
+                (target != self) && 
+                (target.Role == ROLE_Authority) && 
+                FluidSurfaceInfo(target) == None && 
+                target != ExcludedPawn
+            )
 		{
-			dir = Victims.Location - HitLocation;
+            col = UnlaggedPawnCollision(target);
+
+            if (col != None && col.UnlaggedPawn == ExcludedPawn)
+                continue;
+
+			dir = target.Location - HitLocation;
 			dist = FMax(1,VSize(dir));
 			dir = dir/dist;
-			damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
+			damageScale = 1 - FMax(0,(dist - target.CollisionRadius)/DamageRadius);
 			class'BallisticDamageType'.static.GenericHurt
 			(
-				Victims,
+				target,
 				damageScale * DamageAmount,
 				Instigator,
-				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
+				target.Location - 0.5 * (target.CollisionHeight + target.CollisionRadius) * dir,
 				(damageScale * Momentum * dir),
 				DamageType
 			);
