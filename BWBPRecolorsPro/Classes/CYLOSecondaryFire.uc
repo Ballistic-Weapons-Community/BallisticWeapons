@@ -75,7 +75,7 @@ defaultproperties
      YInaccuracy=350.000000
      JamSound=(Sound=Sound'BallisticSounds3.Misc.ClipEnd-1',Volume=0.900000)
      BallisticFireSound=(Sound=Sound'PackageSounds4Pro.CYLO.CYLO-FireSG',Volume=1.300000,Radius=256.000000)
-     bWaitForRelease=True
+     //bWaitForRelease=True
      FireAnim="FireSG"
      FireEndAnim=
      FireRate=0.700000

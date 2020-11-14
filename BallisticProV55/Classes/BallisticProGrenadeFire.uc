@@ -9,7 +9,9 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	local vector EnemyDir;
 
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
+
 	Proj.Instigator = Instigator;
+
 	if (BallisticProPineapple(Proj) != None)
 	{
 		if (AIController(Instigator.Controller) == None)
@@ -118,15 +120,15 @@ simulated event ModeDoFire()
         ServerPlayFiring();
     }
 
-
-
     // set the next firing time. must be careful here so client and server do not get out of sync
     if (bFireOnRelease)
     {
         if (bIsFiring)
             NextFireTime += MaxHoldTime + FireRate;
         else
+        {
             NextFireTime = Level.TimeSeconds + FireRate;
+        }
     }
     else
     {

@@ -47,9 +47,11 @@ simulated event ModeDoFire()
 
 	if (BallisticHandGrenade(Weapon).ClipReleaseTime == 0)
 	    class'BUtil'.static.PlayFullSound(weapon, BallisticHandGrenade(Weapon).ClipReleaseSound);
+
 	BallisticHandGrenade(Weapon).KillSmoke();
 
 	Super.ModeDoFire();
+    
 	if (BallisticHandGrenade(Weapon).ClipReleaseTime > 0)
 		BallisticHandGrenade(Weapon).ClipReleaseTime=-1.0;
 }

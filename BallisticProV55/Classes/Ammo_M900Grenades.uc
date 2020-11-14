@@ -23,8 +23,8 @@ function bool HandlePickupQuery(Pickup Item)
 
 defaultproperties
 {
-     MaxAmmo=6
-     InitialAmount=3
+     MaxAmmo=4
+     InitialAmount=2
      IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticProV55.AP_M900Grenades'
      IconMaterial=Texture'BallisticUI2.Icons.AmmoIconPage'

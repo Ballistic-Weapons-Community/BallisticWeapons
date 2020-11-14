@@ -92,6 +92,13 @@ enum EZoomType // Azarael
 	ZT_Smooth // Smooth zoom. Replaces bSmoothZoom, allows the weapon to zoom from FOV 90 to FullZoomFOV.
 };
 
+enum EScopeHandling
+{
+    SH_Default,     // Hold to ADS up. Weapon locks into ADS mode. Press once to release.
+    SH_Hold,        // Hold to ADS. Release to drop gun.
+    SH_Toggle,      // Press to ADS. Press again to drop gun.
+};
+
 //=============================================================================
 // STRUCTS
 //=============================================================================
@@ -122,7 +129,7 @@ struct SpecialInfoEntry
 //=============================================================================
 var() globalconfig 	ModeSaveType 	ModeHandling;
 var() globalconfig  bool			bInvertScope;			// Inverts Prev/Next weap relation to Zoom In/Out
-var() globalconfig 	bool			bSightLock;				// Should iron sights continue when the key is released, once activated?
+var() globalconfig 	EScopeHandling  ScopeHandling;			// Should iron sights continue when the key is released, once activated?
 var() globalconfig 	bool			bOldCrosshairs;			// Use UT2004 crosshairs instead of BW's
 var() globalconfig 	float			AimKnockScale;			// Scale the weapon displacement caused by taking damage
 var() globalconfig 	bool			bDrawCrosshairDot; 		// Draw dot in the centre of crosshairs
@@ -185,6 +192,7 @@ var  	float						OldZoomFOV;						// FOV saved for temporary scope down
 var  	float						SightingPhase;					// Current level of progress moving weapon into place for sight view
 var   	bool						bPendingSightUp;				// Currently out of sight view for something. Will go back when done
 var   	bool						bScopeView;						// Currently viewing through scope or sights
+var     bool                        bScopeDesired;                  // Weapon wishes to transition to scope
 var  	bool						bScopeHeld;						// Scope key has not been released
 var   	float						NextCheckScopeTime;				// Used to prevent CheckScope() from exiting scope view for a period of time (eg. Prevent RG recoil from cutting scope view)
 var  	float						LogZoomLevel;					// Separate from PC.ZoomLevel because of bZooming code for Anti TCC
@@ -1226,15 +1234,19 @@ simulated function bool CanUseSights()
 // should begin.
 //
 // If in ADS, ends ADS mode on client and server.
+//
+// Toggle mode: should 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 exec simulated function ScopeView()
 {
-	bScopeHeld=true;
-	bPendingSightUp=false;
+	bScopeHeld      = true;
 
+	bPendingSightUp = false;
+
+    // abort any scope view in progress
 	if (bScopeView)
 	{
-		bScopeHeld=false;
+        bScopeDesired = false;
 		StopScopeView();
 		return;
 	}
@@ -1243,18 +1255,37 @@ exec simulated function ScopeView()
 		return;
 
 	if (!CanUseSights())
-	{
-		bScopeHeld=False;
 		return;
-	}
 
-	ZeroAim(SightingTime); //Level out sights over aim adjust time to stop the "shunt" effect
+    switch (ScopeHandling)
+    {
+        case SH_Default:
+        case SH_Hold:
+            bScopeDesired = true;
+            break;
+        case SH_Toggle:
+            bScopeDesired = !bScopeDesired;
+            break;
+    }
+
+    if (!bScopeDesired)
+    {
+        ServerReaim(0.1);
+
+        if( InstigatorController.IsA( 'PlayerController' ) && ZoomType == ZT_Smooth)
+            PlayerController(InstigatorController).StopZoom();
+    }
+
+    else 
+    {	
+        ZeroAim(SightingTime); //Level out sights over aim adjust time to stop the "shunt" effect
 	
-	if (!IsFiring() && !bNoTweenToScope)
-		TweenAnim(IdleAnim, SightingTime);
+        if (!IsFiring() && !bNoTweenToScope)
+            TweenAnim(IdleAnim, SightingTime);
 
-	if (AimComponent.AllowADS())
-		PlayScopeUp();
+        if (AimComponent.AllowADS())
+            PlayScopeUp();
+    }
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1264,15 +1295,25 @@ exec simulated function ScopeView()
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 exec simulated function ScopeViewRelease()
 {
-	bScopeHeld=false;
+	bScopeHeld = false;
 
 	if (!bUseSights)
 		return;
 
-	if (bScopeView && !bSightLock)
-		StopScopeView();
+    switch (ScopeHandling)
+    { 
+        case SH_Hold:       // abandon ADS on key release
+            if (bScopeView)
+                StopScopeView();
+            bScopeDesired = false;
+            break;
+        case SH_Default:    // abandon ADS attempt on key release
+            bScopeDesired = false;
+        case SH_Toggle:     // do nothing on key release
+            break;
+    }
 
-	if (!bScopeView)
+    if (!bScopeView)
 		ServerReaim(0.1);
 
 	if( InstigatorController.IsA( 'PlayerController' ) && ZoomType == ZT_Smooth)
@@ -1387,7 +1428,7 @@ simulated final function StopScopeView(optional bool bNoAnim)
 	
 	PlayScopeDown(bNoAnim);
 	
-	bScopeHeld=False;
+	bScopeDesired = False;
 
 	EndScopeZoom();
 	ScopeRestoreCrosshair();
@@ -1442,10 +1483,10 @@ simulated function ScopeUpAnimEnd()
 		StartScopeView();
 		bPendingSightUp=false;
 	}
-	else if (bScopeHeld)
+	else if (bScopeDesired)
 	{
 		StartScopeView();
-		bScopeHeld=false;
+        bScopeDesired = false;
 	}
 	else
 		PlayScopeDown();
@@ -2045,7 +2086,7 @@ simulated function TickSighting (float DT)
 		// Raising gun to sight position
 		if (SightingPhase < 1.0)
 		{
-			if ((bScopeHeld || bPendingSightUp) && CanUseSights())
+			if ((bScopeDesired || bPendingSightUp) && CanUseSights())
 				SightingPhase += DT/SightingTime;
 			else
 			{
@@ -2064,7 +2105,7 @@ simulated function TickSighting (float DT)
 		// Lowering gun from sight pos
 		if (SightingPhase > 0.0)
 		{
-			if (bScopeHeld && CanUseSights())
+			if (bScopeDesired && CanUseSights())
 				SightingState = SS_Raising;
 			else
 				SightingPhase -= DT/SightingTime;
@@ -2073,7 +2114,7 @@ simulated function TickSighting (float DT)
 		{	// Got all the way down. Tell the system our anim has ended...
 			SightingPhase = 0.0;
 			SightingState = SS_None;
-			bScopeHeld=False;
+
 			ScopeDownAnimEnd();
 			DisplayFOV = default.DisplayFOV;
 		}
@@ -3147,9 +3188,11 @@ simulated function bool ReadyToFire(int Mode)
 	if (FireMode[Mode] == None)
 		return false;
 
-    if ( ((FireMode[alt] != None && FireMode[alt] != FireMode[Mode]) && FireMode[alt].bModeExclusive && FireMode[alt].bIsFiring)
-		|| !FireMode[Mode].AllowFire()
-		|| (FireMode[Mode].NextFireTime > Level.TimeSeconds + FireMode[Mode].PreFireTime) )
+    Log("Alt fire mode: Hold Time:" @ FireMode[alt].HoldTime);
+
+    if ( (FireMode[alt] != FireMode[Mode] && FireMode[alt].bModeExclusive && (FireMode[alt].bIsFiring || (FireMode[alt].bFireOnRelease && FireMode[alt].HoldTime > 0.0f))) // block if other mode is firing or pending fire
+		|| !FireMode[Mode].AllowFire() // block if this mode disallows fire
+		|| (FireMode[Mode].NextFireTime > Level.TimeSeconds + FireMode[Mode].PreFireTime) ) // block if pre fire time would not last until weapon is ready to fire again
     {
         return false;
     }
@@ -4934,7 +4977,7 @@ defaultproperties
      LongGunOffset=(X=5.000000,Y=10.000000,Z=-11.000000)
      bUseNetAim=True
 	 
-	 bSightLock=True
+	 ScopeHandling=SH_Default
      SelectAnim="Pullout"
      PutDownAnim="putaway"
      SelectAnimRate=1.000000

@@ -9,9 +9,9 @@
 //=============================================================================
 class BallisticTab_PreferencesPro extends UT2K4TabPanel;
 
-var automated moCheckbox	ch_UseBrass, ch_ImpStay, ch_MSmoke, ch_WeaponUI, ch_MotionBlur, ch_SimpleDeathMessages, ch_OldCrosshairs, ch_SightLock;
+var automated moCheckbox	ch_UseBrass, ch_ImpStay, ch_MSmoke, ch_WeaponUI, ch_MotionBlur, ch_SimpleDeathMessages, ch_OldCrosshairs;
 
-var automated moComboBox	co_WeaponDet, co_CamRate, co_EffectDet, co_ModeMemory;
+var automated moComboBox	co_WeaponDet, co_CamRate, co_EffectDet, co_ModeMemory, co_ADSHandling;
 var automated moFloatEdit	fl_BrassTime, fl_ZoomTimeMod;
 
 var			  int			OldWeaponDet;
@@ -25,6 +25,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	if (BallisticConfigMenuPro(Controller.ActivePage) != None)
 		p_Anchor = BallisticConfigMenuPro(Controller.ActivePage);
 }
+
 function ShowPanel(bool bShow)
 {
 	super.ShowPanel(bShow);
@@ -46,7 +47,6 @@ function LoadSettings()
 	ch_MotionBlur.Checked(class'BallisticMod'.default.bUseMotionBlur);
 	ch_SimpleDeathMessages.Checked(class'BallisticDamageType'.default.bSimpleDeathMessages);
     ch_OldCrosshairs.Checked(class'BallisticWeapon'.default.bOldCrosshairs);
-    ch_SightLock.Checked(class'BallisticWeapon'.default.bSightLock);
 
 	for(i=0;i<class'Mut_Ballistic'.default.CamRateOptions.length;i++)
 	    co_CamRate.AddItem(class'Mut_Ballistic'.default.CamRateOptions[i] ,,string(i));
@@ -63,6 +63,12 @@ function LoadSettings()
 	co_ModeMemory.AddItem("Saved Mode" ,,string(2));
 	co_ModeMemory.ReadOnly(True);
 	co_ModeMemory.SetIndex(class'BallisticWeapon'.default.ModeHandling);
+
+    co_ADSHandling.AddItem("Default" ,,string(0));
+	co_ADSHandling.AddItem("Hold" ,,string(1));
+	co_ADSHandling.AddItem("Toggle" ,,string(2));
+	co_ADSHandling.ReadOnly(True);
+	co_ADSHandling.SetIndex(class'BallisticWeapon'.default.ScopeHandling);
 	
 	fl_ZoomTimeMod.SetValue(class'BallisticPlayer'.default.ZoomTimeMod);
 
@@ -79,8 +85,8 @@ function SaveSettings()
 		return;
 	class'Mut_Ballistic'.default.CamUpdateRate 			= string(co_CamRate.GetIndex());
 	class'BallisticWeapon'.default.ModeHandling			= ModeSaveType(co_ModeMemory.GetIndex());
+    class'BallisticWeapon'.default.ScopeHandling		= EScopeHandling(co_ADSHandling.GetIndex());
     class'BallisticWeapon'.default.bOldCrosshairs		=	ch_OldCrosshairs.IsChecked();
-    class'BallisticWeapon'.default.bSightLock			=	ch_SightLock.IsChecked();
 	class'BallisticMod'.default.EffectsDetailMode 		= ELLHDetailMode(co_EffectDet.GetIndex());
 	class'BallisticMod'.default.bEjectBrass 			= ch_useBrass.IsChecked();
 	class'AD_ImpactDecal'.default.bPermanentImpacts		= ch_ImpStay.IsChecked();
@@ -121,7 +127,7 @@ function DefaultSettings()
 	ch_MotionBlur.Checked(false);
 	ch_SimpleDeathMessages.Checked(true);
     co_ModeMemory.SetIndex(0);
-    ch_SightLock.Checked(true);
+    co_ADSHandling.SetIndex(0);
 }
 
 defaultproperties
@@ -262,7 +268,7 @@ defaultproperties
          OnCreateComponent=co_ModeCombo.InternalOnCreateComponent
          IniOption="@Internal"
          IniDefault="High"
-         Hint="Controls how Ballistic handles the initial weapon mode when a weapon is spawned. ||None - the set default mode is always used. Last - the last used mode is used. ||Saved - uses the mode saved by the SetDefaultMode command.||Reset it with ClearDefaultMode and get its name with GetDefaultMode."
+         Hint="Controls how Ballistic handles the initial weapon mode when a weapon is spawned. ||None - the set default mode is always used.||Last - the last used mode is used. ||Saved - uses the mode saved by the SetDefaultMode command.||Reset it with ClearDefaultMode and get its name with GetDefaultMode."
          WinTop=0.700000
          WinLeft=0.250000
      End Object
@@ -298,17 +304,16 @@ defaultproperties
      End Object
      fl_ZoomTimeMod=moFloatEdit'BallisticProV55.BallisticTab_PreferencesPro.fl_ZoomTimeModFloat'
 
-     Begin Object Class=moCheckBox Name=ch_SightLockCheck
+    Begin Object Class=moComboBox Name=co_ADSHandlingCombo
         ComponentJustification=TXTA_Left
-        CaptionWidth=0.900000
-        Caption="Aim Down Sight Lock"
-        OnCreateComponent=ch_SightLockCheck.InternalOnCreateComponent
+        CaptionWidth=0.550000
+        Caption="Aim Down Sight Handling"
+        OnCreateComponent=co_ADSHandlingCombo.InternalOnCreateComponent
         IniOption="@Internal"
-        Hint="If checked, weapons will remain in sight or scope view when the sight key is released."
+        Hint="How the ADS key should function.||Default: Hold to raise the weapon into scope. Weapon stays in scope until key is pressed again.||Hold: Hold key to ADS. Release to lower.||Toggle: Press key to ADS. Press again to lower."
         WinTop=0.750000
         WinLeft=0.250000
-        WinHeight=0.040000
-    End Object
-    ch_SightLock=moCheckBox'ch_SightLockCheck'
+     End Object
+     co_ADSHandling=moComboBox'BallisticProV55.BallisticTab_PreferencesPro.co_ADSHandlingCombo'
 
 }

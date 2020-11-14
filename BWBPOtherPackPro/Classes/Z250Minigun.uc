@@ -98,7 +98,7 @@ simulated function TickSighting (float DT)
 	{	// Raising gun to sight position
 		if (SightingPhase < 1.0)
 		{
-			if ((bScopeHeld || bPendingSightUp) && CanUseSights())
+			if ((bScopeDesired || bPendingSightUp) && CanUseSights())
 				SightingPhase += DT/SightingTime;
 			else
 			{
@@ -119,7 +119,7 @@ simulated function TickSighting (float DT)
 	{	// Lowering gun from sight pos
 		if (SightingPhase > 0.0)
 		{
-			if (bScopeHeld && CanUseSights())
+			if (bScopeDesired && CanUseSights())
 			{
 				SightingState = SS_Raising;
 				if (bDampingFireLoop)
@@ -132,7 +132,6 @@ simulated function TickSighting (float DT)
 		{	// Got all the way down. Tell the system our anim has ended...
 			SightingPhase = 0.0;
 			SightingState = SS_None;
-			bScopeHeld=False;
 			ScopeDownAnimEnd();
 			DisplayFOV = default.DisplayFOV;
 		}

@@ -978,7 +978,7 @@ exec simulated function DualSelect (optional class<Weapon> NewWeaponClass )
 	local BallisticHandgun Best;
     local Inventory Inv;
 
-	if (ClientState != WS_ReadyToFire || ReloadState != RS_None || IsFiring() || bScopeView || bScopeHeld || (OtherGun!=None && (PreventSwap() || OtherGun.PreventSwap())))
+	if (ClientState != WS_ReadyToFire || ReloadState != RS_None || IsFiring() || bScopeView || bScopeHeld || bScopeDesired || (OtherGun!=None && (PreventSwap() || OtherGun.PreventSwap())))
 		return;
 
 	if (Othergun != None)

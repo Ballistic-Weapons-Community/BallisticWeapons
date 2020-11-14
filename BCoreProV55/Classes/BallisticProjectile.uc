@@ -564,6 +564,9 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
                 if (damageScale < 0.01f)
                     continue;
+
+                if (RadiusFallOffType == RFO_Quadratic)
+                    damageScale = Square(damageScale);
             }
 
 			if ( Instigator == None || Instigator.Controller == None )

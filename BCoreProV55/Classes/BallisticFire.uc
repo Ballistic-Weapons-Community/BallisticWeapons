@@ -587,7 +587,7 @@ simulated event ModeDoFire()
 	}
 }
 
-function StopFiring()
+simulated function StopFiring()
 {	
 	if (bBurstMode && BurstCount != 0)
 	{

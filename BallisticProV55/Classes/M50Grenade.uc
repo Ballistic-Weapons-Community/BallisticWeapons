@@ -9,11 +9,12 @@
 class M50Grenade extends BallisticGrenade;
 
 var bool bArmed;
+var float ArmingDelay;
 
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	SetTimer(0.20, False);
+	SetTimer(ArmingDelay, False);
 }
 
 simulated function Timer()
@@ -82,29 +83,30 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
-     DetonateOn=DT_ImpactTimed
-     PlayerImpactType=PIT_Detonate
-     bNoInitialSpin=True
-     bAlignToVelocity=True
-     DetonateDelay=1.000000
-     ImpactDamage=80
-     ImpactDamageType=Class'BallisticProV55.DTM50Grenade'
-     ImpactManager=Class'BallisticProV55.IM_M50Grenade'
-	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
-     TrailClass=Class'BallisticProV55.M50GrenadeTrail'
-     TrailOffset=(X=-8.000000)
-     MyRadiusDamageType=Class'BallisticProV55.DTM50GrenadeRadius'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=512.000000
-     MotionBlurRadius=384.000000
-     MotionBlurFactor=3.000000
-     MotionBlurTime=4.000000
-     Speed=3500.000000
-     Damage=120.000000
-     DamageRadius=512.000000
-     WallPenetrationForce=128
-     MyDamageType=Class'BallisticProV55.DTM50GrenadeRadius'
-     ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BallisticHardware2.M900.M900Grenade'
-     bIgnoreTerminalVelocity=True
+    ArmingDelay=0.3
+    DetonateOn=DT_ImpactTimed
+    PlayerImpactType=PIT_Detonate
+    bNoInitialSpin=True
+    bAlignToVelocity=True
+    DetonateDelay=1.000000
+    ImpactDamage=80
+    ImpactDamageType=Class'BallisticProV55.DTM50Grenade'
+    ImpactManager=Class'BallisticProV55.IM_M50Grenade'
+    ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
+    TrailClass=Class'BallisticProV55.M50GrenadeTrail'
+    TrailOffset=(X=-8.000000)
+    MyRadiusDamageType=Class'BallisticProV55.DTM50GrenadeRadius'
+    SplashManager=Class'BallisticProV55.IM_ProjWater'
+    ShakeRadius=512.000000
+    MotionBlurRadius=384.000000
+    MotionBlurFactor=3.000000
+    MotionBlurTime=4.000000
+    Speed=3500.000000
+    Damage=110.000000
+    DamageRadius=512.000000
+    WallPenetrationForce=128
+    MyDamageType=Class'BallisticProV55.DTM50GrenadeRadius'
+    ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'
+    StaticMesh=StaticMesh'BallisticHardware2.M900.M900Grenade'
+    bIgnoreTerminalVelocity=True
 }
