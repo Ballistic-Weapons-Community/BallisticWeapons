@@ -100,10 +100,14 @@ static function FireModeStats GetStats()
 	
 	FS.DamageInt = default.Damage;
 	FS.Damage = String(FS.DamageInt);
+
+    FS.HeadMult = default.HeadMult;
+    FS.LimbMult = default.LimbMult;
+
 	FS.DPS = default.Damage * 2 / default.FireRate;
 	FS.TTK = default.FireRate * (Ceil(175/default.Damage) - 1);
 	FS.RPM = 1/default.FireRate@"attacks/second";
-	FS.Range = "Max:"@(default.TraceRange.Max / 52.5)@"metres";
+	FS.RangeOpt = "Max:"@(default.TraceRange.Max / 52.5)@"metres";
 	
 	return FS;
 }

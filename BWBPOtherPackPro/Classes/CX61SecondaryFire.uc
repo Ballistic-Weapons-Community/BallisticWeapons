@@ -272,6 +272,10 @@ static function FireModeStats GetStats()
 
 	FS.DamageInt = class'CX61FlameProjectile'.default.Damage;
 	FS.Damage = String(FS.DamageInt) @ "(flame)," @ String(int(class'CX61HealProjectile'.default.Damage)) @ "(heal)";
+
+    FS.HeadMult = 1;
+    FS.LimbMult = 1;
+
 	FS.DPS = FS.DamageInt / default.FireRate;
 	FS.TTK = default.FireRate * (Ceil(175/FS.DamageInt) - 1);
 	if (default.FireRate < 0.5)
@@ -281,7 +285,7 @@ static function FireModeStats GetStats()
 	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.Range = "Max:"@(3000 / 52.5)@"metres";
+	FS.RangeOpt = "Max:"@(3000 / 52.5)@"metres";
 	
 	return FS;
 }

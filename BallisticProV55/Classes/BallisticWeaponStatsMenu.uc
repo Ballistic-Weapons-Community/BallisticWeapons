@@ -24,9 +24,9 @@ var automated GUILabel			    l_WeaponCaption,
 											lb_DShot, lb_DPS, lb_TTK, lb_RPM, lb_Recoil, lb_RPS,
 											lb_DShotAlt, lb_DPSAlt, lb_TTKAlt, lb_RPMAlt, lb_RecoilAlt, lb_RPSAlt,
 											lb_Raise, lb_ViewRecoilFactor, lb_Mag, lb_DPM, lb_Range, lb_RangeAlt, lb_ADSMultiplier, lb_CrouchMultiplier,
-											db_Dshot, db_RPM, db_Recoil,
-											db_DshotAlt, db_RPMAlt, db_RecoilAlt,
-											db_Mag, db_Range, db_RangeAlt, db_ADSMultiplier, db_CrouchMultiplier;
+											db_Dshot, db_HeadMult, db_LimbMult, db_RPM, db_Recoil,
+											db_DshotAlt, db_HeadMultAlt, db_LimbMultAlt, db_RPMAlt, db_RecoilAlt,
+											db_Mag, db_RangeOpt, db_RangeOptAlt, db_RangeDecayed, db_RangeDecayedAlt, db_RangeMax, db_RangeMaxAlt, db_ADSMultiplier, db_CrouchMultiplier;
 var automated moComboBox	        cb_Display;
 var automated GUIScrollTextBox      sb_Desc;
 var automated GUIProgressBar	    pb_DPS, pb_TTK, pb_RPS, pb_DPSAlt, pb_TTKAlt, pb_RPSAlt, pb_Raise, pb_ViewRecoilFactor, pb_DPM;
@@ -50,10 +50,11 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	//pri
 	lb_DShot.Caption = "Damage";
 	lb_DPS.Caption = "DPS";
-	lb_TTK.Caption = "Time to Kill";
+	lb_TTK.Caption = "Time to Kill (175 HP)";
 	lb_RPM.Caption = "Fire Rate";
 	lb_Recoil.Caption = "Recoil/Shot";
 	lb_RPS.Caption = "Recoil/Second";
+    lb_Range.Caption = "Effective Ranges";
 	
 	pb_DPS.High = 520;
 	pb_TTK.High = 1.4f;
@@ -69,6 +70,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_RPMAlt.Caption = "Fire Rate";
 	lb_RecoilAlt.Caption = "Recoil/Shot";
 	lb_RPSAlt.Caption = "Recoil/Second";
+    lb_RangeAlt.Caption = "Effective Ranges";
 	
 	pb_DPSAlt.High = 520;
 	pb_TTKAlt.High = 1.4;
@@ -79,7 +81,6 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_ViewRecoilFactor.Caption = "Recoil View Bind Factor";
 	lb_Mag.Caption = "Capacity";
 	lb_DPM.Caption = "Damage/Mag";
-	lb_Range.Caption = "Effective Range";
 	lb_CrouchMultiplier.Caption = "Crouch Aim Stabilization";
 	lb_ADSMultiplier.Caption = "ADS Aim Stabilization";
 		
@@ -87,21 +88,37 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	pb_TTKAlt.NumDecimals=2;
 	
 	//pri
-	PriBack.ManageComponent(lb_DShot);	    PriBack.Managecomponent(db_DShot);
+	PriBack.ManageComponent(lb_DShot);	    
+    PriBack.Managecomponent(db_DShot);
+    PriBack.Managecomponent(db_HeadMult);
+    PriBack.Managecomponent(db_LimbMult);
+
+    PriBack.ManageComponent(lb_RPM);	    PriBack.Managecomponent(db_RPM);
     PriBack.Managecomponent(lb_DPS);	    PriBack.Managecomponent(pb_DPS);
 	PriBack.Managecomponent(lb_TTK);	    PriBack.Managecomponent(pb_TTK);
-	PriBack.ManageComponent(lb_RPM);	    PriBack.Managecomponent(db_RPM);
-    PriBack.ManageComponent(lb_Range);	    PriBack.ManageComponent(db_Range);
+
+    PriBack.ManageComponent(lb_Range);	    
+    PriBack.ManageComponent(db_RangeOpt); 
+    PriBack.ManageComponent(db_RangeDecayed);
+    PriBack.ManageComponent(db_RangeMax);
 
 	PriBack.ManageComponent(lb_Recoil);	    PriBack.ManageComponent(db_Recoil);
 	PriBack.ManageComponent(lb_RPS);	    PriBack.ManageComponent(pb_RPS);
 	
 	//Alt
-	AltBack.ManageComponent(lb_DShotAlt);	AltBack.Managecomponent(db_DShotAlt);
+	AltBack.ManageComponent(lb_DShotAlt);
+    AltBack.Managecomponent(db_DShotAlt);
+    AltBack.Managecomponent(db_HeadMultAlt);
+    AltBack.Managecomponent(db_LimbMultAlt);
+
+    AltBack.ManageComponent(lb_RPMAlt);	    AltBack.Managecomponent(db_RPMAlt);
     AltBack.Managecomponent(lb_DPSAlt);	    AltBack.Managecomponent(pb_DPSAlt);
     AltBack.Managecomponent(lb_TTKAlt);	    AltBack.Managecomponent(pb_TTKAlt);
-	AltBack.ManageComponent(lb_RPMAlt);	    AltBack.Managecomponent(db_RPMAlt);
-    AltBack.ManageComponent(lb_RangeAlt);	AltBack.ManageComponent(db_RangeAlt);
+
+    AltBack.ManageComponent(lb_RangeAlt);
+    AltBack.ManageComponent(db_RangeOptAlt); 
+    AltBack.ManageComponent(db_RangeDecayedAlt);
+    AltBack.ManageComponent(db_RangeMaxAlt);
 
 	AltBack.ManageComponent(lb_RecoilAlt);	AltBack.ManageComponent(db_RecoilAlt);
 	AltBack.ManageComponent(lb_RPSAlt);	    AltBack.ManageComponent(pb_RPSAlt);
@@ -282,8 +299,12 @@ function UpdateInfo()
 		
 		//pri
 		db_DShot.Caption = FS.Damage;
+        db_HeadMult.Caption = "Head: x"$String(FS.HeadMult);
+        db_LimbMult.Caption = "Limb: x"$String(FS.LimbMult);
 
-        db_Range.Caption = FS.Range;
+        db_RangeOpt.Caption = FS.RangeOpt;
+        db_RangeDecayed.Caption = FS.RangeDecayed;
+        db_RangeMax.Caption = FS.RangeMax;
 		
 		pb_DPS.Value = FMin(FS.DPS, pb_DPS.High);
 		pb_DPS.Caption = FS.DPS @ "(" $ int(FS.DPS / BASELINE_DPS_DIVISOR)$"%)";
@@ -309,16 +330,21 @@ function UpdateInfo()
 			{
 				if (AltBack.bVisible)
 				{
-                    lb_RangeAlt.bVisible = True;
-					lb_RecoilAlt.bVisible = True;
-					lb_RPSAlt.bVisible = True;
-					lb_TTKAlt.bVisible = True;
-					lb_DPSAlt.bVisible = True;
+                    lb_RangeAlt.bVisible = true;
+					lb_RecoilAlt.bVisible = true;
+					lb_RPSAlt.bVisible = true;
+					lb_TTKAlt.bVisible = true;
+					lb_DPSAlt.bVisible = true;
 				
-					pb_DPSAlt.bVisible = True;
-					pb_TTKAlt.bVisible = True;
-					pb_RPSAlt.bVisible = True;
-					db_RecoilAlt.bVisible = True;
+					pb_DPSAlt.bVisible = true;
+                    db_HeadMultAlt.bVisible = true;
+                    db_LimbMultAlt.bVisible = true;
+					pb_TTKAlt.bVisible = true;
+					pb_RPSAlt.bVisible = true;
+					db_RecoilAlt.bVisible = true;
+                    db_RangeOptAlt.bVisible = true;
+                    db_RangeDecayedAlt.bVisible = true;
+                    db_RangeMaxAlt.bVisible = true;
 				}
 			
 				lb_DShotAlt.Caption = "Damage";
@@ -330,25 +356,34 @@ function UpdateInfo()
 			if (AltBack.bVisible)
 			{
 				lb_DShotAlt.Caption = "Effect";
-                lb_RangeAlt.bVisible = False;
-				lb_RecoilAlt.bVisible = False;
-				lb_RPSAlt.bVisible = False;
-				lb_TTKAlt.bVisible = False;
-				lb_DPSAlt.bVisible = False;
+                db_HeadMultAlt.bVisible = false;
+                db_LimbMultAlt.bVisible = false;
+                lb_RangeAlt.bVisible = false;
+				lb_RecoilAlt.bVisible = false;
+				lb_RPSAlt.bVisible = false;
+				lb_TTKAlt.bVisible = false;
+				lb_DPSAlt.bVisible = false;
 				
-				pb_DPSAlt.bVisible = False;
-				pb_TTKAlt.bVisible = False;
-				pb_RPSAlt.bVisible = False;
-				db_RecoilAlt.bVisible = False;
+				pb_DPSAlt.bVisible = false;
+				pb_TTKAlt.bVisible = false;
+				pb_RPSAlt.bVisible = false;
+				db_RecoilAlt.bVisible = false;
+                db_RangeOptAlt.bVisible = false;
+                db_RangeDecayedAlt.bVisible = false;
+                db_RangeMaxAlt.bVisible = false;
 			}
 			
-			bAltStatsVisible=False;
+			bAltStatsVisible=false;
 		}
 		
 
 		db_DShotAlt.Caption = AFS.Damage;
+        db_HeadMultAlt.Caption = "Head: x"$String(AFS.HeadMult);
+        db_LimbMultAlt.Caption = "Limb: x"$String(AFS.LimbMult);
 
-        db_RangeAlt.Caption = AFS.Range;
+        db_RangeOptAlt.Caption = AFS.RangeOpt;
+        db_RangeDecayedAlt.Caption = AFS.RangeDecayed;
+        db_RangeMaxAlt.Caption = AFS.RangeMax;
 
 		pb_DPSAlt.Value = FMin(AFS.DPS, pb_DPSAlt.High);
 		pb_DPSAlt.Caption = AFS.DPS @ "("$int(AFS.DPS / 2.2)$"%)";
@@ -591,13 +626,18 @@ defaultproperties
          WinWidth=0.200000
          WinHeight=0.030000
      End Object
+
      db_Dshot=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_HeadMult=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_LimbMult=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
      db_RPM=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
      db_Recoil=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
      db_DshotAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_HeadMultAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_LimbMultAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
      db_RPMAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
@@ -605,9 +645,13 @@ defaultproperties
 
      db_Mag=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
-     db_Range=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_RangeOpt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_RangeDecayed=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_RangeMax=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
-     db_RangeAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_RangeOptAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_RangeDecayedAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_RangeMaxAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
      db_ADSMultiplier=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 

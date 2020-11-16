@@ -101,6 +101,8 @@ struct FireModeStats
 {
 	var	String		Damage;
 	var	int			DamageInt;
+    var float       HeadMult;
+    var float       LimbMult;
 	var	int			DPS;
 	var	float		TTK;
 	var	String		RPM;
@@ -108,7 +110,7 @@ struct FireModeStats
 	var	int			RPS;
 	var	float		FCPShot;
 	var	float		FCPS;
-	var	String		Range;
+	var	String		RangeOpt, RangeDecayed, RangeMax;
 };
 
 var	String		ShotTypeString, EffectString;

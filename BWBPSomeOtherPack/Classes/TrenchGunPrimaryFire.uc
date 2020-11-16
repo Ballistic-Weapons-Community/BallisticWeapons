@@ -604,7 +604,16 @@ static function FireModeStats GetStats()
 	
 	AdjustedFireRate=0.6;
 	
-	FS.DamageInt = int(default.Damage * default.TraceCount * 2);
+	FS.DamageInt = int(default.Damage * default.TraceCount);
+
+    if (default.RangeAtten < 1f)
+	    FS.Damage 		= String(FS.DamageInt) @ "-" @ String(FS.DamageInt * default.RangeAtten);
+    else 
+        FS.Damage = String(FS.DamageInt);
+
+    FS.HeadMult = default.HeadMult;
+    FS.LimbMult = default.LimbMult;
+
 	FS.Damage = String(FS.DamageInt);
 	FS.DPS = (default.Damage * default.TraceCount) / AdjustedFireRate;
 	FS.TTK = 0.6 * (Ceil(175/FS.DamageInt) - 1);
@@ -615,7 +624,7 @@ static function FireModeStats GetStats()
 	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.Range = "Max:"@(default.TraceRange.Max / 52.5)@"metres";
+	FS.RangeOpt = "Max:"@(default.TraceRange.Max / 52.5)@"metres";
 	
 	return FS;
 }

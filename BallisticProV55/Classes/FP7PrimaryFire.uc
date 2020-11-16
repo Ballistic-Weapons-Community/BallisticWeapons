@@ -15,6 +15,11 @@ static function FireModeStats GetStats()
 
 	FS.DamageInt = class'FP7FireControl'.default.Damage;
 	FS.Damage = String(FS.DamageInt)@"+"@class'FP7FireControl'.default.BaseDamage@"initial";
+
+
+    FS.HeadMult = 1;
+    FS.LimbMult = 1;
+
 	FS.DPS = FS.DamageInt / 0.2;
 	FS.TTK = 0.2 * (Ceil(175/FS.DamageInt ) - 1);
 	FS.RPM = 5@"checks/second";
@@ -22,7 +27,7 @@ static function FireModeStats GetStats()
 	FS.RPS = 0;
 	FS.FCPShot = 0;
 	FS.FCPS = 0;
-	FS.Range = "-";
+	FS.RangeOpt = "-";
 	
 	return FS;
 }

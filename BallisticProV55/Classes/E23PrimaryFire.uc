@@ -205,6 +205,11 @@ static function FireModeStats GetStats()
 
 	FS.DamageInt = default.ProjectileClass.default.Damage;
 	FS.Damage = String(FS.DamageInt)@"-"@String(Int(FS.DamageInt * 1.6));
+
+
+    FS.HeadMult = class<BallisticProjectile>(default.ProjectileClass).default.HeadMult;
+    FS.LimbMult = class<BallisticProjectile>(default.ProjectileClass).default.LimbMult;
+
 	FS.DPS = default.ProjectileClass.default.Damage / default.FireRate;
 	FS.TTK = default.FireRate * (Ceil(175/default.ProjectileClass.default.Damage) - 1);
 	FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
@@ -212,7 +217,7 @@ static function FireModeStats GetStats()
 	FS.RPS = default.FireRecoil / default.FireRate;
 	FS.FCPShot = default.FireChaos;
 	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.Range = "Max dmg: 0.3s";
+	FS.RangeOpt = "Max dmg: 0.3s";
 	
 	return FS;
 }

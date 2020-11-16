@@ -49,7 +49,15 @@ static function FireModeStats GetStats()
     local int opt_range, decay_range, max_range;
 	
 	FS.DamageInt 	= default.Damage;
-	FS.Damage 		= String(FS.DamageInt);
+
+    if (default.RangeAtten < 1f)
+	    FS.Damage 		= FS.DamageInt @ "-" @ int(default.Damage * default.RangeAtten);
+    else 
+        FS.Damage = String(FS.DamageInt);
+
+    FS.HeadMult = default.HeadMult;
+    FS.LimbMult = default.LimbMult;
+
 	FS.DPS 			= FS.DamageInt / default.FireRate;
 	FS.TTK 			= default.FireRate * (Ceil(175/FS.DamageInt) - 1);
 
@@ -67,7 +75,9 @@ static function FireModeStats GetStats()
     decay_range =     (default.CutOffStartRange + default.CutOffDistance) / 52.5f;
     max_range =         default.TraceRange.Max / 52.5f;
 
-	FS.Range = "Opt:"@ opt_range @"m, Dcy:"@ decay_range @"m, Max:"@ max_range @"m";
+	FS.RangeOpt = "Max damage:"@ opt_range @"metres";
+    FS.RangeDecayed = "Min damage:"@ decay_range @"metres";
+    FS.RangeMax = "Max range:"@ max_range @"metres";
 	
 	return FS;
 }
