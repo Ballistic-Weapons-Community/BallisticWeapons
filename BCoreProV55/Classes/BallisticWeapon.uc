@@ -1782,19 +1782,22 @@ simulated final function ScopeRestoreCrosshair()
 
 //------------------------------------------------------------------------
 // Temporary scope drop (in response to long gun, etc)
-// This isn't used in Pro
 //------------------------------------------------------------------------
 // Tell the weapon lower and wait until anims are over to go back to scope/sight view
 simulated function TemporaryScopeDown(optional float NewSightingTime, optional float StartPhase)
 {
 	if (!bScopeView && SightingState == SS_None)
 		return;
+
+    bScopeDesired = false;
+
 	StopScopeView();
 	if (StartPhase != 0.0)
 		SightingPhase = StartPhase;
 }
 
 // anim has ended and we're still pending sight up so tell it to go back up
+// This isn't used in Pro - it's counterintuitive
 simulated function ScopeBackUp(optional float NewSightingTime, optional float StartPhase)
 {
 	if (StartPhase != 0.0)
@@ -3188,9 +3191,7 @@ simulated function bool ReadyToFire(int Mode)
 	if (FireMode[Mode] == None)
 		return false;
 
-    Log("Alt fire mode: Hold Time:" @ FireMode[alt].HoldTime);
-
-    if ( (FireMode[alt] != FireMode[Mode] && FireMode[alt].bModeExclusive && (FireMode[alt].bIsFiring || (FireMode[alt].bFireOnRelease && FireMode[alt].HoldTime > 0.0f))) // block if other mode is firing or pending fire
+    if ( (FireMode[alt] != FireMode[Mode] && FireMode[alt].bModeExclusive && FireMode[alt].bIsFiring) // block if other mode is firing or pending fire
 		|| !FireMode[Mode].AllowFire() // block if this mode disallows fire
 		|| (FireMode[Mode].NextFireTime > Level.TimeSeconds + FireMode[Mode].PreFireTime) ) // block if pre fire time would not last until weapon is ready to fire again
     {

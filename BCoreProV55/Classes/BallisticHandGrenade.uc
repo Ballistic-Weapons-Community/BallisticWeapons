@@ -39,6 +39,28 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	SetBoneScale (2, 1.0, ClipBone);
 }
 
+simulated function bool ReadyToFire(int Mode)
+{
+    local int alt;
+
+    if ( Mode == 0 )
+        alt = 1;
+    else
+        alt = 0;
+
+	if (FireMode[Mode] == None)
+		return false;
+
+    if ( (FireMode[alt] != FireMode[Mode] && FireMode[alt].bModeExclusive && (FireMode[alt].bIsFiring || (FireMode[alt].bFireOnRelease && FireMode[alt].HoldTime > 0.0f))) // block if other mode is firing or pending fire
+		|| !FireMode[Mode].AllowFire() // block if this mode disallows fire
+		|| (FireMode[Mode].NextFireTime > Level.TimeSeconds + FireMode[Mode].PreFireTime) ) // block if pre fire time would not last until weapon is ready to fire again
+    {
+        return false;
+    }
+
+	return true;
+}
+
 simulated function bool PutDown()
 {
 	local BCGhostWeapon GW;

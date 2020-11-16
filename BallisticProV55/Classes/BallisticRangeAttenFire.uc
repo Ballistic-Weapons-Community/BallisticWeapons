@@ -41,6 +41,37 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 	return DamageFactor;
 }
 
+//Accessor for stats
+static function FireModeStats GetStats() 
+{
+	local FireModeStats FS;
+
+    local int opt_range, decay_range, max_range;
+	
+	FS.DamageInt 	= default.Damage;
+	FS.Damage 		= String(FS.DamageInt);
+	FS.DPS 			= FS.DamageInt / default.FireRate;
+	FS.TTK 			= default.FireRate * (Ceil(175/FS.DamageInt) - 1);
+
+	if (default.FireRate < 0.5)
+		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
+	else 
+		FS.RPM 	= 1/default.FireRate@"times/second";
+		
+	FS.RPShot 		= default.FireRecoil;
+	FS.RPS 			= default.FireRecoil / default.FireRate;
+	FS.FCPShot 		= default.FireChaos;
+	FS.FCPS 		= default.FireChaos / default.FireRate;
+
+    opt_range =         default.CutOffStartRange / 52.5f;
+    decay_range =     (default.CutOffStartRange + default.CutOffDistance) / 52.5f;
+    max_range =         default.TraceRange.Max / 52.5f;
+
+	FS.Range = "Opt:"@ opt_range @"m, Dcy:"@ decay_range @"m, Max:"@ max_range @"m";
+	
+	return FS;
+}
+
 defaultproperties
 {
 }

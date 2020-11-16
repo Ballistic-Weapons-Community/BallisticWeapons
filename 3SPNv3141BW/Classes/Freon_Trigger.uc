@@ -194,7 +194,7 @@ state PawnFrozen
         }
 		
         // touch thaw adjustment
-        if(Toucher.Length > 0)
+        if((PawnOwner.Health > 12 || Freon(Level.Game).bRoundOT) && Toucher.Length > 0)
         {
             if(PlayerController(PawnOwner.Controller) != None)
             {
@@ -290,7 +290,12 @@ state PawnFrozen
 					PawnOwner.ThawByTouch(Toucher, false, MostHealth);
 				else
 				{
-					PlayerController(PawnOwner.Controller).ServerViewSelf();
+                    if (PlayerController(PawnOwner.Controller).ViewTarget != PawnOwner)
+                    {   
+                        Freon_Player(PawnOwner.Controller).ApplyThawDelay();
+                        PlayerController(PawnOwner.Controller).ServerViewSelf();
+                    }
+
 					PlayerController(PawnOwner.Controller).ReceiveLocalizedMessage(class'Freon_ThawMessage', 0);
 				}
 				

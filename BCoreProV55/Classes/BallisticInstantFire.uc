@@ -698,7 +698,7 @@ static function FireModeStats GetStats()
 	FS.RPS 			= default.FireRecoil / default.FireRate;
 	FS.FCPShot 		= default.FireChaos;
 	FS.FCPS 		= default.FireChaos / default.FireRate;
-	FS.Range 		= "Max:"@(int(default.TraceRange.Max / 52.5))@"metres";
+	FS.Range 		= "Max:"@(int(default.TraceRange.Max / 52.5))@"m";
 	
 	return FS;
 }

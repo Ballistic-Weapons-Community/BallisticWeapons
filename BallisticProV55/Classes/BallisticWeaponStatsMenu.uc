@@ -15,21 +15,21 @@ const BASELINE_DPS_DIVISOR = 2.42f;
 const BASELINE_TTK_DIVISOR = 0.0065f;
 const BASELINE_RECOIL_DIVISOR = 14.42f;
 
-var Automated GUIImage			MyBack, Box_WeaponList, Box_Desc, Box_WeaponIcon, WeaponIcon;
-var Automated GUISectionBackground GenBack, PriBack, AltBack;
-var Automated GUIButton			BDone;
-var automated GUIHeader 		MyHeader;
+var Automated GUIImage			    MyBack, Box_WeaponList, Box_Desc, Box_WeaponIcon, WeaponIcon;
+var Automated GUISectionBackground  GenBack, PriBack, AltBack;
+var Automated GUIButton			    BDone;
+var automated GUIHeader 		    MyHeader;
 var automated GUIListBox			lb_Weapons;
-var automated GUILabel			l_WeaponCaption, 
-											lb_DShot, lb_DPS, lb_TTK, lb_RPM, lb_Recoil, lb_RPS, lb_Exp, lb_EPS,
-											lb_DShotAlt, lb_DPSAlt, lb_TTKAlt, lb_RPMAlt, lb_RecoilAlt, lb_RPSAlt, lb_ExpAlt, lb_EPSAlt,
-											lb_Raise, lb_HipSpr, lb_Mag, lb_DPM,lb_Range, lb_MovePen, lb_CAF,
-											db_Dshot, db_RPM, db_Exp, db_Recoil,
-											db_DshotAlt, db_RPMAlt, db_ExpAlt, db_RecoilAlt,
-											db_Mag, db_Range, db_MovePen, db_CAF;
-var automated moComboBox	cb_Display;
-var automated GUIScrollTextBox sb_Desc;
-var automated GUIProgressBar	pb_DPS, pb_TTK, pb_RPS, pb_EPS,	pb_DPSAlt, pb_TTKAlt, pb_RPSAlt, pb_EPSAlt, pb_Raise, pb_HipSpr, pb_DPM;
+var automated GUILabel			    l_WeaponCaption, 
+											lb_DShot, lb_DPS, lb_TTK, lb_RPM, lb_Recoil, lb_RPS,
+											lb_DShotAlt, lb_DPSAlt, lb_TTKAlt, lb_RPMAlt, lb_RecoilAlt, lb_RPSAlt,
+											lb_Raise, lb_ViewRecoilFactor, lb_Mag, lb_DPM, lb_Range, lb_RangeAlt, lb_ADSMultiplier, lb_CrouchMultiplier,
+											db_Dshot, db_RPM, db_Recoil,
+											db_DshotAlt, db_RPMAlt, db_RecoilAlt,
+											db_Mag, db_Range, db_RangeAlt, db_ADSMultiplier, db_CrouchMultiplier;
+var automated moComboBox	        cb_Display;
+var automated GUIScrollTextBox      sb_Desc;
+var automated GUIProgressBar	    pb_DPS, pb_TTK, pb_RPS, pb_DPSAlt, pb_TTKAlt, pb_RPSAlt, pb_Raise, pb_ViewRecoilFactor, pb_DPM;
 
 var InterpCurve 						RedCurve, GreenCurve, BlueCurve;
 
@@ -54,77 +54,67 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_RPM.Caption = "Fire Rate";
 	lb_Recoil.Caption = "Recoil/Shot";
 	lb_RPS.Caption = "Recoil/Second";
-	lb_Exp.Caption = "Expansion/Shot";
-	lb_EPS.Caption = "Expansion/Second";
 	
 	pb_DPS.High = 520;
-	pb_TTK.High = 1.4;
-	pb_Raise.High = 0.8;
-	pb_HipSpr.High = 2500;
+	pb_TTK.High = 1.4f;
+	pb_Raise.High = 0.8f;
+	pb_ViewRecoilFactor.High = 1f;
 	pb_DPM.High = 2500;
 	pb_RPS.High = 2750;
-	pb_EPS.High = 4096;
 	
 	//alt
 	lb_DShotAlt.Caption = "Damage";
 	lb_DPSAlt.Caption = "DPS";
-	lb_TTKAlt.Caption = "Time to Kill";
+	lb_TTKAlt.Caption = "Time to Kill (175 HP)";
 	lb_RPMAlt.Caption = "Fire Rate";
 	lb_RecoilAlt.Caption = "Recoil/Shot";
 	lb_RPSAlt.Caption = "Recoil/Second";
-	lb_ExpAlt.Caption = "Expansion/Shot";
-	lb_EPSAlt.Caption = "Expansion/Second";
 	
 	pb_DPSAlt.High = 520;
 	pb_TTKAlt.High = 1.4;
 	pb_RPSAlt.High = 2750;
-
-	pb_EPSAlt.High = 4096;
 	
 	//gen
-	lb_Raise.Caption = "Sight Raise Time";
-	lb_HipSpr.Caption = "Max Hip Spread";
+	lb_Raise.Caption = "ADS Transition Time";
+	lb_ViewRecoilFactor.Caption = "Recoil View Bind Factor";
 	lb_Mag.Caption = "Capacity";
 	lb_DPM.Caption = "Damage/Mag";
 	lb_Range.Caption = "Effective Range";
-	lb_CAF.Caption = "Crouch Stability";
-	lb_MovePen.Caption = "Hip Move Penalty";
+	lb_CrouchMultiplier.Caption = "Crouch Aim Stabilization";
+	lb_ADSMultiplier.Caption = "ADS Aim Stabilization";
 		
 	pb_TTK.NumDecimals=2;
 	pb_TTKAlt.NumDecimals=2;
 	
 	//pri
-	PriBack.ManageComponent(lb_DShot);	PriBack.Managecomponent(db_DShot);
-	PriBack.ManageComponent(lb_RPM);	PriBack.Managecomponent(db_RPM);
-	PriBack.ManageComponent(lb_Recoil);	PriBack.ManageComponent(db_Recoil);
-	PriBack.ManageComponent(lb_Exp);		PriBack.ManageComponent(db_Exp);
+	PriBack.ManageComponent(lb_DShot);	    PriBack.Managecomponent(db_DShot);
+    PriBack.Managecomponent(lb_DPS);	    PriBack.Managecomponent(pb_DPS);
+	PriBack.Managecomponent(lb_TTK);	    PriBack.Managecomponent(pb_TTK);
+	PriBack.ManageComponent(lb_RPM);	    PriBack.Managecomponent(db_RPM);
+    PriBack.ManageComponent(lb_Range);	    PriBack.ManageComponent(db_Range);
 
-	PriBack.Managecomponent(lb_DPS);	PriBack.Managecomponent(pb_DPS);
-	PriBack.Managecomponent(lb_TTK);	PriBack.Managecomponent(pb_TTK);
-	PriBack.ManageComponent(lb_RPS);	PriBack.ManageComponent(pb_RPS);
-	PriBack.ManageComponent(lb_EPS);	PriBack.ManageComponent(pb_EPS);
+	PriBack.ManageComponent(lb_Recoil);	    PriBack.ManageComponent(db_Recoil);
+	PriBack.ManageComponent(lb_RPS);	    PriBack.ManageComponent(pb_RPS);
 	
 	//Alt
 	AltBack.ManageComponent(lb_DShotAlt);	AltBack.Managecomponent(db_DShotAlt);
-	AltBack.ManageComponent(lb_RPMAlt);	AltBack.Managecomponent(db_RPMAlt);
+    AltBack.Managecomponent(lb_DPSAlt);	    AltBack.Managecomponent(pb_DPSAlt);
+    AltBack.Managecomponent(lb_TTKAlt);	    AltBack.Managecomponent(pb_TTKAlt);
+	AltBack.ManageComponent(lb_RPMAlt);	    AltBack.Managecomponent(db_RPMAlt);
+    AltBack.ManageComponent(lb_RangeAlt);	AltBack.ManageComponent(db_RangeAlt);
+
 	AltBack.ManageComponent(lb_RecoilAlt);	AltBack.ManageComponent(db_RecoilAlt);
-	AltBack.ManageComponent(lb_ExpAlt);		AltBack.ManageComponent(db_ExpAlt);
-	
-	AltBack.Managecomponent(lb_DPSAlt);	AltBack.Managecomponent(pb_DPSAlt);
-	AltBack.Managecomponent(lb_TTKAlt);	AltBack.Managecomponent(pb_TTKAlt);
-	AltBack.ManageComponent(lb_RPSAlt);	AltBack.ManageComponent(pb_RPSAlt);
-	AltBack.ManageComponent(lb_EPSAlt);	AltBack.ManageComponent(pb_EPSAlt);
+	AltBack.ManageComponent(lb_RPSAlt);	    AltBack.ManageComponent(pb_RPSAlt);
 	
 	//gen back
-	
-	GenBack.ManageComponent(lb_Range);	GenBack.ManageComponent(db_Range);
-	GenBack.ManageComponent(lb_MovePen);	GenBack.ManageComponent(db_MovePen);
-	GenBack.ManageComponent(lb_Mag);	GenBack.ManageComponent(db_Mag);
-	GenBack.ManageComponent(lb_CAF);	GenBack.ManageComponent(db_CAF);
-	GenBack.ManageComponent(lb_HipSpr);	GenBack.ManageComponent(pb_HipSpr);
-	GenBack.ManageComponent(lb_Raise);	GenBack.ManageComponent(pb_Raise);
-	GenBack.ManageComponent(lb_DPM);	GenBack.ManageComponent(pb_DPM);
-	
+
+    GenBack.ManageComponent(lb_Mag);	                GenBack.ManageComponent(db_Mag);
+    GenBack.ManageComponent(lb_DPM);	                GenBack.ManageComponent(pb_DPM);
+    GenBack.ManageComponent(lb_ViewRecoilFactor);	    GenBack.ManageComponent(pb_ViewRecoilFactor);
+    GenBack.ManageComponent(lb_Raise);	                GenBack.ManageComponent(pb_Raise);
+    GenBack.ManageComponent(lb_ADSMultiplier);	        GenBack.ManageComponent(db_ADSMultiplier);
+	GenBack.ManageComponent(lb_CrouchMultiplier);	    GenBack.ManageComponent(db_CrouchMultiplier);
+
 	sb_Desc.bVisible = False;
 	Box_Desc.bVisible = False;
 	
@@ -261,11 +251,16 @@ function SwitchDisplay(int Index)
 function UpdateInfo()
 {
 	local class<BallisticWeapon> BW;
+    local class<BallisticWeaponParams> params;
+
 	local BallisticFire.FireModeStats FS, AFS;
 	
 	//FIXME DynamicLoadObject
 	BW = class<BallisticWeapon>(DynamicLoadObject(lb_Weapons.List.GetExtra(), class'Class', True));
 	if (BW != None)
+        params = BW.default.ParamsClass;
+
+    if (params != None)
 	{
 		FS = class<BallisticFire>(BW.default.FireModeClass[0]).static.GetStats();
 		AFS = class<BallisticFire>(BW.default.FireModeClass[1]).static.GetStats();
@@ -287,13 +282,15 @@ function UpdateInfo()
 		
 		//pri
 		db_DShot.Caption = FS.Damage;
+
+        db_Range.Caption = FS.Range;
 		
 		pb_DPS.Value = FMin(FS.DPS, pb_DPS.High);
-		pb_DPS.Caption = FS.DPS@"("$int(FS.DPS / BASELINE_DPS_DIVISOR)$"%)";
+		pb_DPS.Caption = FS.DPS @ "(" $ int(FS.DPS / BASELINE_DPS_DIVISOR)$"%)";
 		pb_DPS.BarColor = ColorBar(pb_DPS.Value / pb_DPS.High);
 		
 		pb_TTK.Value = FMin(FS.TTK, pb_TTK.High);
-		pb_TTK.Caption = FS.TTK@"("$int(FS.TTK / BASELINE_TTK_DIVISOR)$"%)";
+		pb_TTK.Caption = FS.TTK @ "("$int(FS.TTK / BASELINE_TTK_DIVISOR)$"%)";
 		pb_TTK.BarColor = ColorBar(pb_TTK.Value / pb_TTK.High);
 		
 		db_RPM.Caption = FS.RPM;
@@ -301,14 +298,8 @@ function UpdateInfo()
 		db_Recoil.Caption = String(FS.RPShot);
 		
 		pb_RPS.Value = FMin(FS.RPS, pb_RPS.High);
-		pb_RPS.Caption = String(FS.RPS)@"("$int(FS.RPS / BASELINE_RECOIL_DIVISOR)$"%)";
+		pb_RPS.Caption = String(FS.RPS) @ "("$int(FS.RPS / BASELINE_RECOIL_DIVISOR)$"%)";
 		pb_RPS.BarColor = ColorBar(pb_RPS.Value / pb_RPS.High);
-		
-		db_Exp.Caption = String(int(FS.FCPShot * pb_HipSpr.Value));
-		
-		pb_EPS.Value = FMin(FS.FCPS * BW.default.ParamsClass.default.Params[0].default.AimParams[0].AimSpread.Max, pb_EPS.High);
-		pb_EPS.Caption = String(int(FS.FCPS * BW.default.ParamsClass.default.Params[0].default.AimParams[0].AimSpread.Max));
-		pb_EPS.BarColor = ColorBar(pb_EPS.Value / pb_EPS.High);
 		
 		//Alt
 		
@@ -318,19 +309,15 @@ function UpdateInfo()
 			{
 				if (AltBack.bVisible)
 				{
-
+                    lb_RangeAlt.bVisible = True;
 					lb_RecoilAlt.bVisible = True;
 					lb_RPSAlt.bVisible = True;
-					lb_ExpAlt.bVisible = True;
-					lb_EPSAlt.bVisible = True;
 					lb_TTKAlt.bVisible = True;
 					lb_DPSAlt.bVisible = True;
 				
 					pb_DPSAlt.bVisible = True;
 					pb_TTKAlt.bVisible = True;
 					pb_RPSAlt.bVisible = True;
-					pb_EPSAlt.bVisible = True;
-					db_ExpAlt.bVisible = True;
 					db_RecoilAlt.bVisible = True;
 				}
 			
@@ -343,18 +330,15 @@ function UpdateInfo()
 			if (AltBack.bVisible)
 			{
 				lb_DShotAlt.Caption = "Effect";
+                lb_RangeAlt.bVisible = False;
 				lb_RecoilAlt.bVisible = False;
 				lb_RPSAlt.bVisible = False;
-				lb_ExpAlt.bVisible = False;
-				lb_EPSAlt.bVisible = False;
 				lb_TTKAlt.bVisible = False;
 				lb_DPSAlt.bVisible = False;
 				
 				pb_DPSAlt.bVisible = False;
 				pb_TTKAlt.bVisible = False;
 				pb_RPSAlt.bVisible = False;
-				pb_EPSAlt.bVisible = False;
-				db_ExpAlt.bVisible = False;
 				db_RecoilAlt.bVisible = False;
 			}
 			
@@ -363,13 +347,15 @@ function UpdateInfo()
 		
 
 		db_DShotAlt.Caption = AFS.Damage;
-		
+
+        db_RangeAlt.Caption = AFS.Range;
+
 		pb_DPSAlt.Value = FMin(AFS.DPS, pb_DPSAlt.High);
-		pb_DPSAlt.Caption = AFS.DPS@"("$int(AFS.DPS / 2.2)$"%)";
+		pb_DPSAlt.Caption = AFS.DPS @ "("$int(AFS.DPS / 2.2)$"%)";
 		pb_DPSAlt.BarColor = ColorBar(pb_DPSAlt.Value / pb_DPSAlt.High);
 		
 		pb_TTKAlt.Value = FMin(AFS.TTK, pb_TTKAlt.High);
-		pb_TTKAlt.Caption = AFS.TTK@"("$int(AFS.TTK / 0.007)$"%)";
+		pb_TTKAlt.Caption = AFS.TTK @ "("$int(AFS.TTK / 0.007)$"%)";
 		pb_TTKAlt.BarColor = ColorBar(pb_TTKAlt.Value / pb_TTKAlt.High);
 		
 		db_RPMAlt.Caption = AFS.RPM;
@@ -377,36 +363,27 @@ function UpdateInfo()
 		db_RecoilAlt.Caption = String(AFS.RPShot);
 		
 		pb_RPSAlt.Value = FMin(AFS.RPS, pb_RPSAlt.High);
-		pb_RPSAlt.Caption = String(AFS.RPS)@"("$int(AFS.RPS / 13.33)$"%)";
+		pb_RPSAlt.Caption = String(AFS.RPS) @ "("$int(AFS.RPS / 13.33)$"%)";
 		pb_RPSAlt.BarColor = ColorBar(pb_RPSAlt.Value / pb_RPSAlt.High);
-		
-		db_ExpAlt.Caption = String(int(AFS.FCPShot * pb_HipSpr.Value));
-		
-		pb_EPSAlt.Value = FMin(AFS.FCPS * BW.default.ParamsClass.default.Params[0].default.AimParams[0].AimSpread.Max, pb_EPSAlt.High);
-		pb_EPSAlt.Caption = String(int(AFS.FCPS * BW.default.ParamsClass.default.Params[0].default.AimParams[0].AimSpread.Max));
-		pb_EPSAlt.BarColor = ColorBar(pb_EPSAlt.Value / pb_EPSAlt.High);
-		
+				
 		//general stats
-		
-		pb_Raise.Value = BW.default.SightingTime;
+		pb_Raise.Value = params.default.Params[0].SightingTime;
 		pb_Raise.Caption = String(pb_Raise.Value);
 		pb_Raise.BarColor = ColorBar(pb_Raise.Value/pb_Raise.High);
 		
-		pb_HipSpr.Value = BW.default.ParamsClass.default.Params[0].default.AimParams[0].AimSpread.Max;
-		pb_HipSpr.Caption = string(BW.default.ParamsClass.default.Params[0].default.AimParams[0].AimSpread.Max)@"("$int(BW.default.ParamsClass.default.Params[0].default.AimParams[0].AimSpread.Max / 12.80)$"%)";
-		pb_HipSpr.BarColor = ColorBar(pb_HipSpr.Value / pb_HipSpr.High);
+		pb_ViewRecoilFactor.Value = params.default.Params[0].RecoilParams[0].ViewBindFactor;
+		pb_ViewRecoilFactor.Caption = string(pb_ViewRecoilFactor.Value * 100)$ "%";
+		pb_ViewRecoilFactor.BarColor = ColorBar(pb_ViewRecoilFactor.Value / pb_ViewRecoilFactor.High);
 		
-		db_Mag.Caption = String(BW.default.MagAmmo);
+		db_Mag.Caption = String(params.default.Params[0].MagAmmo);
 		
-		pb_DPM.Value = FMin(BW.default.MagAmmo * FS.DamageInt, pb_DPM.High);
-		pb_DPM.Caption = String(int(pb_DPM.Value))@"("$int(pb_DPM.Value / 8.8)$"%)";
+		pb_DPM.Value = FMin(params.default.Params[0].MagAmmo * FS.DamageInt, pb_DPM.High);
+		pb_DPM.Caption = String(int(pb_DPM.Value)) @ "("$int(pb_DPM.Value / 8.8)$"%)";
 		pb_DPM.BarColor = ColorBar(pb_DPM.Value / pb_DPM.High);
 		
-		db_Range.Caption = FS.Range;
+		db_CrouchMultiplier.Caption = string(int(100 * (1 - params.default.Params[0].AimParams[0].CrouchMultiplier)))$"%";
 		
-		db_CAF.Caption = string(int(100 * (1 - BW.default.ParamsClass.default.Params[0].default.AimParams[0].CrouchMultiplier)))$"%";
-		
-		db_MovePen.Caption = string(int((class'BallisticPawn'.default.GroundSpeed/BW.default.ParamsClass.default.Params[0].default.AimParams[0].ChaosSpeedThreshold)* 100))$"%";
+		db_ADSMultiplier.Caption = string(int(100 * (1 - params.default.Params[0].AimParams[0].ADSMultiplier)))$"%";
 	}
 }
 
@@ -565,6 +542,7 @@ defaultproperties
          WinWidth=0.200000
          WinHeight=0.030000
      End Object
+
      lb_DShot=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
 
      lb_DPS=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
@@ -576,10 +554,6 @@ defaultproperties
      lb_Recoil=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
 
      lb_RPS=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
-
-     lb_Exp=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
-
-     lb_EPS=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
 
      lb_DShotAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
 
@@ -593,13 +567,9 @@ defaultproperties
 
      lb_RPSAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
 
-     lb_ExpAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
-
-     lb_EPSAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
-
      lb_Raise=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
 
-     lb_HipSpr=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_ViewRecoilFactor=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
 
      lb_Mag=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
 
@@ -607,9 +577,11 @@ defaultproperties
 
      lb_Range=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
 
-     lb_MovePen=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_RangeAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
 
-     lb_CAF=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+     lb_ADSMultiplier=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+
+     lb_CrouchMultiplier=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
 
      Begin Object Class=GUILabel Name=MyData
          TextAlign=TXTA_Center
@@ -623,15 +595,11 @@ defaultproperties
 
      db_RPM=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
-     db_Exp=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
-
      db_Recoil=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
      db_DshotAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
      db_RPMAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
-
-     db_ExpAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
      db_RecoilAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
@@ -639,9 +607,11 @@ defaultproperties
 
      db_Range=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
-     db_MovePen=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_RangeAlt=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
-     db_CAF=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+     db_ADSMultiplier=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
+
+     db_CrouchMultiplier=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.MyData'
 
      Begin Object Class=moComboBox Name=co_DisplayCB
          ComponentJustification=TXTA_Left
@@ -693,19 +663,15 @@ defaultproperties
 
      pb_RPS=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
 
-     pb_EPS=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
-
      pb_DPSAlt=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
 
      pb_TTKAlt=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
 
      pb_RPSAlt=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
 
-     pb_EPSAlt=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
-
      pb_Raise=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
 
-     pb_HipSpr=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+     pb_ViewRecoilFactor=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
 
      pb_DPM=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
 

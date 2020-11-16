@@ -15,7 +15,7 @@ var Material        FrostMap;
 
 var bool            bThawFast;
 
-var bool				bPushed; 	// pushed by some problematic weapon used deliberately to cheese (HMC)
+var bool			bPushed; 	// pushed by some problematic weapon used deliberately to cheese (HMC)
 var Pawn			Pusher;		// the pawn pushing
 
 var config bool	bGibOnEncroach;

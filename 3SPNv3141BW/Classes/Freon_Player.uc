@@ -2,6 +2,8 @@ class Freon_Player extends Misc_Player;
 
 var Freon_Pawn FrozenPawn;
 
+var float       ThawDelay;
+
 struct AmmoTrack
 {
 	var class<BallisticWeapon> 	GunClass;
@@ -274,6 +276,7 @@ state Spectating
 	    {
 		    if((TimerRate <= 0.0) || (TimerRate > 1.0))
 			    bFrozen = false;
+
 		    return;
 	    }
 
@@ -348,7 +351,7 @@ state Frozen extends Spectating
 //
 // Requests that the player be thawed by the server
 //===========================================================================
-function  ServerTryThaw()
+function ServerTryThaw()
 {
     if (PlayerReplicationInfo.bOnlySpectator)
 	{
@@ -361,11 +364,27 @@ function  ServerTryThaw()
 		ClientMessage("THAW DEBUG: You don't have a pawn to thaw.");
 		return;
 	}*/
-	
-	if (FrozenPawn.Health > 99)
-		FrozenPawn.Thaw();
 
-	else ServerViewNextPlayer();
+	// view self before attempting to thaw - need to survey surroundings
+	if (FrozenPawn.Health > 99)
+    {
+        if (ViewTarget != FrozenPawn)
+        {
+            ServerViewSelf();
+            ThawDelay = Level.TimeSeconds + 0.2f;
+        }
+        else if (Level.TimeSeconds >= ThawDelay)
+		    FrozenPawn.Thaw();
+    }
+
+    // attempt to spectate team
+	else
+        ServerViewNextPlayer();
+}
+
+function ApplyThawDelay()
+{
+    ThawDelay = Level.TimeSeconds + 0.2f;
 }
 
 function TakeShot()

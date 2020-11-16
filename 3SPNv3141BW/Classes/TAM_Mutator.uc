@@ -20,8 +20,8 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
         
     if(Other.Class == class'BallisticProV55.RSDarkStar')
     {
-        SpawnWeapon(class'FreonRSDarkStar', Other.Instigator);
-        
+        SpawnWeapon(class'FreonRSDarkStar', BallisticWeapon(Other), Other.Instigator);
+
 	   	if (Other != None)
     		Other.Destroy();
     	return false;
@@ -29,7 +29,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
     
     if(Other.Class == class'BallisticProV55.RSNovaStaff')
     {
-      	SpawnWeapon(class'FreonRSNovaStaff', Other.Instigator);
+      	SpawnWeapon(class'FreonRSNovaStaff', BallisticWeapon(Other), Other.Instigator);
       	
     	if (Other != None)
     		Other.Destroy();
@@ -38,7 +38,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	
 	if(Other.Class == class'XOXOStaff')
     {
-      	SpawnWeapon(class'FreonXOXOStaff', Other.Instigator);
+      	SpawnWeapon(class'FreonXOXOStaff', BallisticWeapon(Other), Other.Instigator);
       	
     	if (Other != None)
     		Other.Destroy();
@@ -48,17 +48,22 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
     return true;
 }
 
-function SpawnWeapon(class<Weapon> newClass, Pawn P)
+function SpawnWeapon(class<BallisticWeapon> newClass, BallisticWeapon original, Pawn P)
 {
-	local Weapon newWeapon;
+	local BallisticWeapon newWeapon;
 
     if( newClass!=None && P != None && (P.FindInventoryType(newClass)==None))
     {
     	newWeapon = P.Spawn(newClass,,,P.Location);
         
         if( newWeapon != None )
-            newWeapon.GiveTo(P);        
+        {
+            newWeapon.NetInventoryGroup = original.NetInventoryGroup;
+            newWeapon.bServerDeferInitialSwitch = original.bServerDeferInitialSwitch;
+            newWeapon.GiveTo(P);     
+        }   
     }
+
 }
 
 function ServerTraveling(string URL, bool bItems)

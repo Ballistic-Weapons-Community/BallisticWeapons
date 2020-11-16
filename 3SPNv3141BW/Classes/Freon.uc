@@ -458,6 +458,38 @@ function EndRound(PlayerReplicationInfo Scorer)
     Super.EndRound(Scorer);
 }
 
+state MatchInProgress
+{
+    function Timer()
+    {
+        local Controller c;
+        local Freon_Player pc;
+
+        local Freon_Pawn pawn;
+        local int RealOTDamage;
+
+        for(c = Level.ControllerList; c != None; c = c.NextController)
+        {
+            pc = Freon_Player(c);
+
+            if (pc == None)
+                continue;
+
+            pawn = pc.FrozenPawn;
+
+            if (pc.FrozenPawn == None)
+                continue;
+
+            if(!pc.FrozenPawn.bFrozen || pc.FrozenPawn.Health < 100)
+                continue;
+
+            pc.ReceiveLocalizedMessage(class'Message_ThawReady');
+        }
+
+        Super.Timer();
+    }
+}
+
 function UpdateLocationHistory(Controller C, Misc_PRI P)
 {
 	if (Freon_PRI(P) != None && Level.TimeSeconds - Freon_PRI(P).LastThawTime < ThawerCampProtectionTime)
