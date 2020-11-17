@@ -17,36 +17,36 @@ class LK05Carbine extends BallisticWeapon;
 
 var   byte		GearStatus;
 
-var   bool		bLaserOn, bOldLaserOn;
-var   LaserActor	Laser;
-var() Sound		LaserOnSound;
-var() Sound		LaserOffSound;
-var   Emitter		LaserDot;
-var() float			LaserAimSpread;
+var   bool		    bLaserOn, bOldLaserOn;
+var   LaserActor    Laser;
+var() Sound		    LaserOnSound;
+var() Sound		    LaserOffSound;
+var   Emitter	    LaserDot;
+var() float		    LaserAimSpread;
 
-var   bool		bSilenced;				// Silencer on. Silenced
-var() name		SilencerBone;			// Bone to use for hiding silencer
-var() name		SilencerBone2;			// Bone to use for hiding silencer
-var() sound		SilencerOnSound;		// Silencer stuck on sound
-var() sound		SilencerOffSound;		//
-var() name		SilencerOnAnim;			// Think hard about this one...
-var() name		SilencerOffAnim;		//
+var   bool		    bSilenced;				// Silencer on. Silenced
+var() name		    SilencerBone;			// Bone to use for hiding silencer
+var() name		    SilencerBone2;			// Bone to use for hiding silencer
+var() sound		    SilencerOnSound;		// Silencer stuck on sound
+var() sound		    SilencerOffSound;		//
+var() name		    SilencerOnAnim;			// Think hard about this one...
+var() name		    SilencerOffAnim;		//
 
-var Projector		FlashLightProj;
-var Emitter		FlashLightEmitter;
-var bool		bLightsOn;
-var bool		bFirstDraw;
-var vector		TorchOffset;
-var() Sound		TorchOnSound;
-var() Sound		TorchOffSound;
+var Projector	    FlashLightProj;
+var Emitter		    FlashLightEmitter;
+var bool		    bLightsOn;
+var bool		    bFirstDraw;
+var vector		    TorchOffset;
+var() Sound		    TorchOnSound;
+var() Sound		    TorchOffSound;
 
-var() name		ScopeBone;			// Bone to use for hiding scope
+var() name		    ScopeBone;			// Bone to use for hiding scope
 
 
 replication
 {
 	reliable if (Role < ROLE_Authority)
-		ServerFlashLight, ServerSwitchSilencer;
+		ServerFlashLight, ServerSwitchSilencer, ServerSwitchLaser;
 	reliable if (Role == ROLE_Authority)
 		bLaserOn;
 }
@@ -55,11 +55,14 @@ simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
+
 	//Do not use default to save postnetreceived shit
 	if (bLaserOn != bOldLaserOn)
 	{
 		OnLaserSwitched();
+
 		bOldLaserOn = bLaserOn;
+        ClientSwitchLaser();
 	}
 	Super.PostNetReceive();
 }
@@ -194,7 +197,7 @@ exec simulated function WeaponSpecial(optional byte i)
 	}
 	else //Laser
 	{
-		ServerSwitchLaser(bLaserOn);
+		ServerSwitchLaser(!bLaserOn);
 		PlayIdle();
 		CheckSetNetAim();
 	}
@@ -258,34 +261,9 @@ simulated event RenderOverlays( Canvas Canvas )
 //=================================
 // Laser
 //=================================
-function ServerSwitchLaser(bool bNewLaserOn)
-{
-	bLaserOn = bNewLaserOn;
-	
-	CheckSetNetAim();
-
-	if (ThirdPersonActor!=None)
-		LK05Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
-
-	OnLaserSwitched();
-}
 
 simulated function OnLaserSwitched()
 {
-	if (Instigator.IsLocallyControlled())
-	{
-		if (bLaserOn)
-		{
-			SpawnLaserDot();
-			PlaySound(LaserOnSound,,0.7,,32);
-		}
-		else
-		{
-			KillLaserDot();
-			PlaySound(LaserOffSound,,0.7,,32);
-		}
-	}
-
 	if (bLaserOn)
 		ApplyLaserAim();
 	else
@@ -297,6 +275,42 @@ simulated function ApplyLaserAim()
 	AimComponent.AimAdjustTime *= 1.5;
 	AimComponent.AimSpread.Max *= 0.8;
 }
+
+function ServerSwitchLaser(bool bNewLaserOn)
+{
+	bLaserOn = bNewLaserOn;
+	
+	CheckSetNetAim();
+
+	if (ThirdPersonActor!=None)
+		LK05Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+
+	OnLaserSwitched();
+
+    if (Instigator.IsLocallyControlled())
+		ClientSwitchLaser();
+}
+
+simulated function ClientSwitchLaser()
+{
+	OnLaserSwitched();
+
+	if (bLaserOn)
+	{
+		SpawnLaserDot();
+		PlaySound(LaserOnSound,,0.7,,32);
+	}
+	else
+	{
+		KillLaserDot();
+		PlaySound(LaserOffSound,,0.7,,32);
+	}
+
+	PlayIdle();
+	bUseNetAim = default.bUseNetAim || bLaserOn;
+}
+
+
 
 simulated function SpawnLaserDot(optional vector Loc)
 {
@@ -550,6 +564,7 @@ defaultproperties
 	BigIconCoords=(Y1=36,Y2=225)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
+    bNetNotify=True
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
 	BringUpSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-PullOut',Volume=2.200000)
 	PutDownSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-Putaway',Volume=2.200000)

@@ -9,7 +9,7 @@
 //=============================================================================
 class SARAssaultRifle extends BallisticWeapon;
 
-var   bool			bLaserOn;
+var   bool			bLaserOn, bOldLaserOn;
 var   LaserActor	Laser;
 var() Sound			LaserOnSound;
 var() Sound			LaserOffSound;
@@ -244,11 +244,11 @@ simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
-	if (bLaserOn != default.bLaserOn)
+	if (bLaserOn != bOldLaserOn)
 	{
 		OnLaserSwitched();
 
-		default.bLaserOn = bLaserOn;
+		bOldLaserOn = bLaserOn;
 		ClientSwitchLaser();
 	}
 	Super.PostNetReceive();
@@ -257,7 +257,9 @@ simulated event PostNetReceive()
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
+    
+	CheckSetNetAim();
+
 	if (ThirdPersonActor!=None)
 		SARAttachment(ThirdPersonActor).bLaserOn = bLaserOn;
 
@@ -332,7 +334,6 @@ simulated function bool PutDown()
 
 simulated function Destroyed ()
 {
-	default.bLaserOn = false;
 	if (Laser != None)
 		Laser.Destroy();
 	if (LaserDot != None)
