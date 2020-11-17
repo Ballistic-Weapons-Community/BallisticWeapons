@@ -87,7 +87,7 @@ defaultproperties
      ClipFinishSound=(Sound=Sound'BallisticSounds3.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)
      DryFireSound=(Sound=Sound'BallisticSounds3.Misc.DryRifle',Volume=0.700000)
      bCockAfterEmpty=True
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+     MuzzleFlashClass=Class'FlashEmitter_AR'
      FlashScaleFactor=0.900000
      BrassClass=Class'BallisticProV55.Brass_SAR'
      BrassBone="tip"

@@ -63,6 +63,8 @@ defaultproperties
      CutOffDistance=1536.000000
      CutOffStartRange=600.000000
      WallPenetrationForce=8.000000
+
+     TraceRange=(Min=3072,Max=3072)
      
      Damage=22.000000
      HeadMult=1.4f
@@ -85,8 +87,8 @@ defaultproperties
      AimedFireAnim="SightFire"
      FireRecoil=160.000000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
-     XInaccuracy=48.000000
-     YInaccuracy=48.000000
+     XInaccuracy=72.000000
+     YInaccuracy=72.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds3.UZI.UZI-Fire',Volume=0.900000)
      bPawnRapidFireAnim=True
      FireRate=0.09

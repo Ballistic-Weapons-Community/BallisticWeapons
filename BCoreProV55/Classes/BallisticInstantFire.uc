@@ -49,7 +49,7 @@ class BallisticInstantFire extends BallisticFire
 const MAX_WALLS = 5;
 
 const TORSO_RADIUS = 22;
-const HEAD_RADIUS = 10;
+const HEAD_RADIUS = 6;
 
 //General Vars ----------------------------------------------------------------
 var() Range				        TraceRange;				        // Min and Max range of trace
@@ -248,7 +248,7 @@ final function float GetDamageForCollision(Actor Other, vector HitLocation, vect
 	Dmg = Damage;
 	DT = DamageType;
 
-    if (HitLocation.Z > Other.Location.Z + Other.CollisionHeight - 5)
+    if (HitLocation.Z > Other.Location.Z + Other.CollisionHeight - 4)
     {
         HitLocation.Z = Other.Location.Z;
 

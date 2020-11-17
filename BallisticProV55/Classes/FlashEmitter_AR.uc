@@ -1,10 +1,4 @@
-//=============================================================================
-// XMk5FlashEmitter.
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2005 RuneStorm. All Rights Reserved.
-//=============================================================================
-class XMk5FlashEmitter extends BallisticEmitter;
+class FlashEmitter_AR extends BallisticEmitter;
 
 simulated event PostBeginPlay()
 {
@@ -32,7 +26,7 @@ defaultproperties
          ColorScale(1)=(RelativeTime=0.100000,Color=(B=255,G=255,R=255,A=255))
          ColorScale(2)=(RelativeTime=0.200000,Color=(B=64,G=64,R=64,A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(A=255))
-         Opacity=0.650000
+         Opacity=0.250000
          FadeOutStartTime=0.037500
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
@@ -40,14 +34,14 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.500000)
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.200000)
-         StartSizeRange=(Y=(Min=0.750000,Max=0.750000),Z=(Min=0.750000,Max=0.750000))
+         StartSizeRange=(Y=(Min=1.00000,Max=1.00000),Z=(Min=1.000000,Max=1.000000))
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.100000,Max=0.100000)
+         LifetimeRange=(Min=0.10000,Max=0.10000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
          StartVelocityRange=(X=(Min=20.000000,Max=20.000000))
      End Object
-     Emitters(0)=MeshEmitter'BallisticProV55.XMk5FlashEmitter.MeshEmitter4'
+     Emitters(0)=MeshEmitter'MeshEmitter4'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter5
          UseColorScale=True
@@ -64,15 +58,15 @@ defaultproperties
          FadeOutStartTime=0.020000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
-         Opacity=0.650000
+		 Opacity=0.375
          StartLocationOffset=(X=20.000000)
-         StartSizeRange=(X=(Min=40.000000,Max=40.000000),Y=(Min=40.000000,Max=40.000000),Z=(Min=40.000000,Max=40.000000))
+         StartSizeRange=(X=(Min=50.000000,Max=50.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
          Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.100000,Max=0.100000)
+         LifetimeRange=(Min=0.10000,Max=0.10000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
-     Emitters(1)=SpriteEmitter'BallisticProV55.XMk5FlashEmitter.SpriteEmitter5'
+     Emitters(1)=SpriteEmitter'SpriteEmitter5'
 
 }

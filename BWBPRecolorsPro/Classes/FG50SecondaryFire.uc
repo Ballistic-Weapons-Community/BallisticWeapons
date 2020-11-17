@@ -190,7 +190,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 		if (BallisticShield(Victim) != None)
 			BW.TargetedHurtRadius(Damage, 192, class'DT_FG50Explosion', 500, HitLocation, Pawn(Victim));
 		else
-			BW.TargetedHurtRadius(Damage, 768, class'DT_FG50Explosion', 500, HitLocation, Pawn(Victim));
+			BW.TargetedHurtRadius(Damage, 512, class'DT_FG50Explosion', 500, HitLocation, Pawn(Victim));
 	}
 }
 

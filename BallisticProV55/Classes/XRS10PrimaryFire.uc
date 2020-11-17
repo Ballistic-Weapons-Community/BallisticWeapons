@@ -132,8 +132,9 @@ defaultproperties
      SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
-     CutOffDistance=1536.000000
+     CutOffDistance=1024.000000
      CutOffStartRange=600.000000
+     TraceRange=(Min=3072,Max=3072)
      WallPenetrationForce=8.000000
      Damage=25.000000
      HeadMult=1.4f
@@ -155,8 +156,8 @@ defaultproperties
      AimedFireAnim="SightFire"
      FireRecoil=140.000000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.320000,OutVal=1),(InVal=0.500000,OutVal=1.500000),(InVal=1.000000,OutVal=2.250000)))
-     XInaccuracy=48.000000
-     YInaccuracy=48.000000
+     XInaccuracy=64.000000
+     YInaccuracy=64.000000
      SilencedFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-SilenceFire',Volume=0.5,Radius=128,bAtten=True)
      BallisticFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Fire',Volume=0.900000,Radius=384.000000)
      bPawnRapidFireAnim=True

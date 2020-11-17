@@ -635,7 +635,7 @@ defaultproperties
 	bWT_Bullet=True
 	ManualLines(0)="Fires powerful explosive rounds. Upon impact with the enemy, these rounds explode, dealing heavy damage to nearby targets. Sustained DPS is massive. Has no penetration ability.|Controlled mode dramatically improves the hipfire at the cost of fire rate. A laser is projected which may give away the user's position."
 	ManualLines(1)="Fires more rapidly, but overheats the weapon. An extremely powerful burst attack."
-	ManualLines(2)="The FG50 is heavy and restricts movement. Takes a long time to aim. Effective at medium to long range."
+	ManualLines(2)="The FG50 is heavy and restricts movement. However, the weight compensates for a significant amount of recoil. Takes a long time to aim. Effective at medium to long range."
 	SpecialInfo(0)=(Info="320.0;35.0;1.0;100.0;0.8;0.5;0.1")
 	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
 	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')

@@ -139,15 +139,14 @@ defaultproperties
      SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
-     CutOffDistance=2560.000000
-     CutOffStartRange=1280.000000
-     TraceCount=6
+     CutOffDistance=1536.000000
+     CutOffStartRange=768.000000
+     TraceCount=8
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_Flechette'
      ImpactManager=Class'BallisticProV55.IM_Shell'
-     TraceRange=(Min=7500.000000,Max=7500.000000)
-     Damage=15.000000
-     
-     
+     TraceRange=(Min=2560.000000,Max=2560.000000)
+     Damage=10.000000
+
      RangeAtten=0.40000
      DamageType=Class'BWBPRecolorsPro.DTM781Shotgun'
      DamageTypeHead=Class'BWBPRecolorsPro.DTM781ShotgunHead'
@@ -170,7 +169,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Mk781.MK781-Fire',Volume=1.300000)
      FireEndAnim=
      FireAnimRate=1.150000
-     FireRate=0.325000
+     FireRate=0.32500
      AmmoClass=Class'BWBPRecolorsPro.Ammo_10GaugeDart'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

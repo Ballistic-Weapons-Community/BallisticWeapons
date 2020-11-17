@@ -21,8 +21,8 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		MagAmmo=6
-		SightingTime=0.3
-        InventorySize=24
+		SightingTime=0.4
+        InventorySize=12
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
     End Object 

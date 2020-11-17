@@ -20,9 +20,9 @@ defaultproperties
 		PlayerSpeedFactor=1.050000
 		PlayerJumpFactor=1.000000
 		InventorySize=12
-		SightMoveSpeedFactor=0.9
+		SightMoveSpeedFactor=1
 		SightingTime=0.250000
-		DisplaceDurationMult=0.75
+		DisplaceDurationMult=0.5
 		MagAmmo=10
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

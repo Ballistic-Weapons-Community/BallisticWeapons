@@ -24,16 +24,21 @@ Keeps track of Pawn positions for unlagging.
 class UnlaggedPawnCollision extends Actor
     notplaceable;
 
+struct SavedRotation
+{
+    var Rotator rotation;
+    var float   time;
+};
 
 //=============================================================================
 // Variables
 //=============================================================================
-var() float         MaxUnlagTime;       // Maximum rewind time in ms. Players with latency higher than this will still be required to lead shots.
-var xPawn           UnlaggedPawn;       // The pawn whom this collision represents
-var bool            bUnlagged;          // If true, this collision represents the owner Pawn's hit cylinder and the owner Pawn's collision is disabled
+var() float         MaxUnlagTime;                           // Maximum rewind time in ms. Players with latency higher than this will still be required to lead shots.
+var xPawn           UnlaggedPawn;                           // The pawn whom this collision represents
+var bool            bUnlagged;                              // If true, this collision represents the owner Pawn's hit cylinder and the owner Pawn's collision is disabled
 var float           LastLocationUpdateTime;
 var InterpCurve     LocX, LocY, LocZ, CollRadius, CollHeight;   // Interpolation curves for determining location, collision radius and collision height for any given period in time
-
+var array<SavedRotation>  Rotations;
 /**
 Update the pawn location for this tick.
 */
@@ -64,6 +69,11 @@ final function UpdateUnlagLocation()
         CollRadius.Points.Remove(0, 1);
         CollHeight.Points.Remove(0, 1);
     }
+
+    while (Rotations.Length > 1 && Rotations[1].time < LastLocationUpdateTime - MaxUnlagTime)
+    {
+        Rotations.Remove(0, 1);
+    }
     
     i = LocX.Points.Length;
 
@@ -86,6 +96,12 @@ final function UpdateUnlagLocation()
     CollHeight.Points.Length = i + 1;
     CollHeight.Points[i].InVal = LastLocationUpdateTime;
     CollHeight.Points[i].OutVal = UnlaggedPawn.CollisionHeight;
+
+    i = Rotations.Length;
+    Rotations.Length = i + 1;
+
+    Rotations[i].Rotation = UnlaggedPawn.Rotation;
+    Rotations[i].time = LastLocationUpdateTime;
 }
 
 /**
@@ -97,6 +113,7 @@ final function EnableUnlag(float PingTime)
     local float UnlagTime;
     local range UnlagTimeRange;
     local float UnlaggedRadius, UnlaggedHeight;
+    local int i;
   
     if (Level.NetMode == NM_Standalone || UnlaggedPawn == None || !UnlaggedPawn.bCollideActors || UnlaggedPawn.Health <= 0)
         return;
@@ -119,6 +136,10 @@ final function EnableUnlag(float PingTime)
     SetCollisionSize(UnlaggedRadius, UnlaggedHeight);
     SetCollision(UnlaggedPawn.bCollideActors, UnlaggedPawn.bBlockActors, UnlaggedPawn.bBlockPlayers);
     UnlaggedPawn.SetCollision(false, false, false);
+
+    for (i = 0; i < Rotations.Length - 1 && Rotations[i].time >= UnlagTime; ++i);
+
+    SetRotation(Rotations[i].Rotation);
 
     //log(Name @ "Pawn: X:" $ UnlaggedPawn.Location.X $ "Y: " $ UnlaggedPawn.Location.Y $ "Z: " $ UnlaggedPawn.Location.Z);
     //log(Name @ "Collision: X:" $ Location.X $ "Y: " $ Location.Y $ "Z: " $ Location.Z $ " ColH: " $ CollisionHeight $ " ColR:" $ CollisionRadius);

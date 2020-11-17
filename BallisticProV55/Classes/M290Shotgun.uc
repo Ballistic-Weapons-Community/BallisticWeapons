@@ -112,7 +112,6 @@ defaultproperties
     BigIconCoords=(Y1=40,X2=490,Y2=225)
     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
     bWT_Shotgun=True
-    bWT_Super=True
     ManualLines(0)="Fires both barrels at once. Deals extreme damage at close to medium range. Spread is tight, recoil is high and fire rate is moderate."
     ManualLines(1)="Fires one barrel at a time. Deals high damage with tighter spread than primary. The interval between two successive shots is short, but the weapon must cock after the second shot, or it may be manually cocked."
     ManualLines(2)="The M290 is reloaded one shell at a time.||Penetration is very poor.||The M290 is extremely effective at close range and effective at medium range."

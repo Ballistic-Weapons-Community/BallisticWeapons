@@ -11,9 +11,9 @@ class XMK5PrimaryFire extends BallisticRangeAttenFire;
 
 defaultproperties
 {
-     CutOffDistance=2560.000000
+     CutOffDistance=1536.000000
      CutOffStartRange=768.000000
-     TraceRange=(Min=4000.000000,Max=4000.000000)
+     TraceRange=(Min=4096.000000,Max=4096.000000)
      WallPenetrationForce=8.000000
      
      Damage=22.000000
@@ -38,8 +38,8 @@ defaultproperties
      FireRecoil=110.000000
      FireChaos=0.035000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
-     XInaccuracy=48.000000
-     YInaccuracy=48.000000
+     XInaccuracy=64.000000
+     YInaccuracy=64.000000
      BallisticFireSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_Fire1',Volume=1.350000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=

@@ -65,13 +65,12 @@ defaultproperties
      HipSpreadFactor=1.50000
      CutOffDistance=1536.000000
      CutOffStartRange=768.000000
-     TraceCount=6
+     TraceCount=7
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_ShotgunHE'
      ImpactManager=Class'BWBPRecolorsPro.IM_ShellHE'
-     TraceRange=(Min=4000.000000,Max=6000.000000)
-     Damage=11.000000
-     
-     
+     TraceRange=(Min=2048.000000,Max=2048.000000)
+     Damage=10.000000
+
      RangeAtten=0.350000
      DamageType=Class'BWBPRecolorsPro.DT_SK410Shotgun'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_SK410ShotgunHead'

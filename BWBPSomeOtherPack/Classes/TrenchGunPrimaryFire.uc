@@ -189,6 +189,9 @@ simulated function SwitchWeaponMode (byte newMode)
 		KickForce=4500;
 		
 		MaxWaterTraceRange=9000;
+
+        TraceRange.Min = 4096;
+        TraceRange.Max = 5120;
 		
 		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(1);
 	}
@@ -639,14 +642,14 @@ defaultproperties
 	ChargeTime=0.35
 	MaxHoldTime=0.0
 	HipSpreadFactor=2.000000
-    CutOffDistance=2048.000000
-    CutOffStartRange=1280.000000
+    CutOffDistance=1536.000000
+    CutOffStartRange=1024.000000
 	TraceCount=11
 	TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 	AltTracerClass=Class'BWBPRecolorsPro.TraceEmitter_Supercharge'
 	AltImpactManager=Class'BWBPRecolorsPro.IM_Supercharge'
 	ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
-	TraceRange=(Min=2000.000000,Max=4000.000000)
+	TraceRange=(Min=2048.000000,Max=2560.000000)
 	
 	WallPenetrationForce=0
 

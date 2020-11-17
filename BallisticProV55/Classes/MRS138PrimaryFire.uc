@@ -49,16 +49,15 @@ defaultproperties
 {
   HipSpreadFactor=1.500000
   CutOffDistance=1536.000000
-  CutOffStartRange=256.000000
+  CutOffStartRange=512.000000
   TraceCount=8
   TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
   ImpactManager=Class'BallisticProV55.IM_Shell'
-  TraceRange=(Min=5000.000000,Max=5000.000000)
+  TraceRange=(Min=2048.000000,Max=2048.000000)
   WallPenetrationForce=0
   
   Damage=13.000000
-  
-  
+
   RangeAtten=0.200000
   DamageType=Class'BallisticProV55.DTMRS138Shotgun'
   DamageTypeHead=Class'BallisticProV55.DTMRS138ShotgunHead'
@@ -76,7 +75,7 @@ defaultproperties
   BallisticFireSound=(Sound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-Fire',Volume=1.500000)
   FireAnim="FireCombined"
   FireEndAnim=
-  FireRate=0.50000
+  FireRate=0.550000
   AmmoClass=Class'BallisticProV55.Ammo_MRS138Shells'
   ShakeRotMag=(X=128.000000,Y=64.000000)
   ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

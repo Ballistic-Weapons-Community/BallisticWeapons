@@ -78,15 +78,14 @@ simulated function DestroyEffects()
 defaultproperties
 {
      HipSpreadFactor=3.000000
-     CutOffDistance=2536.000000
-     CutOffStartRange=1280.000000
+     CutOffDistance=1536.000000
+     CutOffStartRange=1024.000000
      TraceCount=7
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'
-     TraceRange=(Min=7500.000000,Max=7500.000000)
+     TraceRange=(Min=2560.000000,Max=2560.000000)
      Damage=15.000000
-     
-     
+
      RangeAtten=0.25000
      DamageType=Class'BallisticProV55.DTM763Shotgun'
      DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'

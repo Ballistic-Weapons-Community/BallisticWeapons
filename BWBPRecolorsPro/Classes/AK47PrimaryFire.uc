@@ -8,8 +8,8 @@ class AK47PrimaryFire extends BallisticRangeAttenFire;
 
 defaultproperties
 {
-     CutOffDistance=3072.000000
-     CutOffStartRange=1536.000000
+     CutOffDistance=4096.000000
+     CutOffStartRange=2048.000000
      TraceRange=(Min=12000.000000,Max=13000.000000)
      
      WallPenetrationForce=24.000000
@@ -26,7 +26,7 @@ defaultproperties
      PenetrateForce=180
      bPenetrate=True
      DryFireSound=(Sound=Sound'BallisticSounds2.D49.D49-DryFire',Volume=0.700000)
-     MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+     MuzzleFlashClass=Class'AK47FlashEmitter'
      FlashScaleFactor=0.800000
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassBone="tip"

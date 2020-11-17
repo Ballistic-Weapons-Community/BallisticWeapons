@@ -19,7 +19,7 @@ var() sound	FireSoundLoopEnd;
 var bool bFiring;
 
 var() Actor						SMuzzleFlash;		// Silenced Muzzle flash stuff
-var() class<Actor>			SMuzzleFlashClass;
+var() class<Actor>			    SMuzzleFlashClass;
 var() Name						SFlashBone;
 var() float						SFlashScaleFactor;
 
@@ -172,7 +172,7 @@ simulated function SwitchSilencerMode (bool bNewMode)
 {
 	if (bNewMode)
 	{
-		Damage *= 0.7;
+		Damage *= 0.8;
 		FireRecoil *= 0.6;
 		XInaccuracy *= 0.5;
 		YInaccuracy *= 0.5;
@@ -185,7 +185,6 @@ simulated function SwitchSilencerMode (bool bNewMode)
 	{
 		Damage =default.Damage;
 		FireRecoil = default.FireRecoil;
-		RangeAtten = default.RangeAtten;
 		XInaccuracy = default.XInaccuracy;
 		YInaccuracy = default.YInaccuracy;
 		DamageType=Class'DT_LK05Assault';
@@ -246,8 +245,7 @@ defaultproperties
      WallPenetrationForce=16.000000
      
      Damage=25.000000
-     
-     
+
      RangeAtten=0.400000
      WaterRangeAtten=0.700000
      DamageType=Class'BWBPRecolorsPro.DT_LK05Assault'
@@ -256,7 +254,7 @@ defaultproperties
      PenetrateForce=150
      DryFireSound=(Sound=Sound'BallisticSounds2.D49.D49-DryFire',Volume=0.700000)
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-     FlashScaleFactor=0.500000
+     FlashScaleFactor=1
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassBone="tip"
      BrassOffset=(X=-80.000000,Y=1.000000)

@@ -507,7 +507,7 @@ defaultproperties
 	bWT_Bullet=True
 	bWT_Shotgun=True
 	bWT_Machinegun=True
-	ManualLines(0)="Automatic fire. Moderate power, fire rate and recoil."
+	ManualLines(0)="Automatic 7.62mm fire. High power, but shorter effective range and suffers from high recoil."
 	ManualLines(1)="Engages the secondary shotgun. Has a shorter range than other shotguns and moderate spread."
 	ManualLines(2)="Effective at close to medium range."
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;85.0;0.1;0.9;0.4")

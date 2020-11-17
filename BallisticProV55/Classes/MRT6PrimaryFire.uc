@@ -66,9 +66,8 @@ defaultproperties
      TraceCount=14
      TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
      ImpactManager=Class'BallisticProV55.IM_Shell'
-     TraceRange=(Min=5000.000000,Max=5000.000000)
+     TraceRange=(Min=2048.000000,Max=2048.000000)
      Damage=10.000000
-     
      
      RangeAtten=0.500000
      DamageType=Class'BallisticProV55.DTMRT6Shotgun'

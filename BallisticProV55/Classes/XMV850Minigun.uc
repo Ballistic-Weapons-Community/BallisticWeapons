@@ -91,18 +91,16 @@ simulated event PostBeginPlay()
 	XMV850MinigunPrimaryFire(FireMode[0]).Minigun = self;
 }
 
-
-
-	// takes more time to reach higher speeds
-	// this is unrealistic because miniguns are electric with extremely powerful motors and provide constant torque,
-	// but do you really want the xmv to spin up to 3600rpm instantly? I for one don't
+// takes more time to reach higher speeds
+// this is unrealistic because miniguns are electric with extremely powerful motors and provide constant torque,
+// but do you really want the xmv to spin up to 3600rpm instantly? I for one don't
 simulated function float GetRampUpSpeed()
 {
 	local float mult;
 	
 	mult = 1 - (BarrelSpeed / RotationSpeeds[2]);
 	
-	return 0.075f + (0.5f * mult * mult);
+	return 0.075f + (0.5f * Square(mult));
 	
 	/*
 	if (BarrelSpeed < RotationSpeeds[0])

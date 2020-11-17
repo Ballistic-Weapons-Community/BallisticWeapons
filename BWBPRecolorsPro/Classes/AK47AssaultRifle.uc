@@ -11,8 +11,8 @@ var   bool			bLoaded;
 
 var() name			GrenBone;	
 var() name			GrenBoneBase;
-var() Sound		GrenLoadSound;				
-var() Sound		GrenDropSound;		
+var() Sound		    GrenLoadSound;				
+var() Sound		    GrenDropSound;		
 
 var() name			KnifeBackAnim;
 var() name			KnifeThrowAnim;
@@ -364,9 +364,9 @@ defaultproperties
 	BigIconCoords=(Y1=32,Y2=220)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
-	ManualLines(0)="Automatic 7.62mm fire. Higher sustained damage than other weapons in its class, but greater recoil and inferior hipfire ability."
-	ManualLines(1)="Prepares a melee attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. If lacking a knife, becomes a blunt attack, dealing lower base damage but inflicting a short-duration blinding effect when striking. This attack inflicts more damage from behind."
-	ManualLines(2)="The Weapon Function key manages the ballistic knife. If a knife is attached, it will be launched, dealing high damage. This attack is hip-accurate and has no recoil. If no knife is attached, one will be attached if available.||This weapon is effective at medium range."
+	ManualLines(0)="Automatic 7.62mm fire. High sustained damage and long effective range, but high recoil and inferior hipfire controllability."
+	ManualLines(1)="If a knife is attached, it will be launched, dealing high damage. The user must hold the fire key for a short time to prepare the knife for launch.||If no knife is attached, one will be attached if available."
+	ManualLines(2)="The AK-490 has a melee attack option. The damage is weakened if the knife has been fired.||The Weapon Function key ||This weapon is effective at medium range."
 	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.5;0.8;0.0")
 	MeleeFireClass=Class'BWBPRecolorsPro.AK47MeleeFire'
 	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
