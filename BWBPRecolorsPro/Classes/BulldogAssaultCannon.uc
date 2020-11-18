@@ -197,7 +197,6 @@ simulated function FragFired()
 	IdleAnim='Idle';
 }
 
-
 //=============================================
 // Notifies
 //=============================================
@@ -281,18 +280,26 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 simulated event AnimEnded (int Channel, name anim, float frame, float rate) 
 {
+    //Phase out Channel 1 if a sight fire animation has just ended.
+	if (anim == BFireMode[0].AimedFireAnim || anim == BFireMode[1].AimedFireAnim)
+	{
+		AnimBlendParams(1, 0);
+		//Cut the basic fire anim if it's too long.
+		if (SightingState > FireAnimCutThreshold && SafePlayAnim(IdleAnim, 1.0))
+			FreezeAnimAt(0.0);
+		bPreventReload=False;
+	}
+
 	// Modified stuff from Engine.Weapon
+
 	if ((ClientState == WS_ReadyToFire || (ClientState == WS_None && Instigator.Weapon == self)) && ReloadState == RS_None)
     {
-        if (anim == FireMode[0].FireAnim && HasAnim(FireMode[0].FireEndAnim)) // rocket hack
-			SafePlayAnim(FireMode[0].FireEndAnim, FireMode[0].FireEndAnimRate, 0.0);
-        else if (FireMode[1]!=None && anim== FireMode[1].FireAnim && HasAnim(FireMode[1].FireEndAnim))
-            SafePlayAnim(FireMode[1].FireEndAnim, FireMode[1].FireEndAnimRate, 0.0);
-        else if ( /*(FireMode[0] == None || !FireMode[0].bIsFiring) && (FireMode[1] == None || !FireMode[1].bIsFiring) && */MeleeState < MS_Held)
-			bPreventReload=false;
+        if ( /*(FireMode[0] == None || !FireMode[0].bIsFiring) && (FireMode[1] == None || !FireMode[1].bIsFiring) && */MeleeState < MS_Held)
+			bPreventReload = false;
 		if (Channel == 0)
 			PlayIdle();
     }
+
 	// End stuff from Engine.Weapon
 
 	// Start Shovel ended, move on to Shovel loop
@@ -386,7 +393,7 @@ simulated function FirePressed(float F)
 	
 	if (F == 0)
 	{
-		if (reloadState == RS_None && (bNeedCock || !bAltNeedCock) && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime)
+		if (ReloadState == RS_None && (bNeedCock || !bAltNeedCock) && MagAmmo > 0 && !IsFiring() && level.TimeSeconds > FireMode[0].NextfireTime)
 		{
 			CommonCockGun();
 			if (Level.NetMode == NM_Client)
@@ -466,16 +473,24 @@ function ServerStartReload (optional byte i)
 {
 	local int m;
 
+    // Weapon firing or animating
 	if (bPreventReload)
 		return;
+
+    // Already performing reload
 	if (ReloadState != RS_None)
 		return;
-	if (MagAmmo >= default.MagAmmo && (Ammo[1].AmmoAmount < 1 || Grenades >= 6)) //primary full, alt reserves empty
+
+    // primary full, alt reserves empty
+	if (MagAmmo >= default.MagAmmo && (Ammo[1].AmmoAmount < 1 || Grenades >= 6)) 
 		return;
 
-	if (Grenades == 6 && Ammo[0].AmmoAmount < 1) //alt full, primary reserves empty
+    //alt full, primary reserves empty
+	if (Grenades == 6 && Ammo[0].AmmoAmount < 1) 
 		return;
-	if (Ammo[0].AmmoAmount < 1 && Ammo[1].AmmoAmount < 1) //all reserves empty
+
+    //all reserves empty
+	if (Ammo[0].AmmoAmount < 1 && Ammo[1].AmmoAmount < 1) 
 		return;
 
 	for (m=0; m < NUM_FIRE_MODES; m++)
@@ -483,11 +498,13 @@ function ServerStartReload (optional byte i)
 			StopFire(m);
 
 	bServerReloading = true;
+
 	if (Grenades < 6 && Ammo[1].AmmoAmount != 0 && (MagAmmo >= default.MagAmmo/2 || Ammo[0].AmmoAmount < 1))
 	{
 		CommonStartReload(1);	//Server animation
 		ClientStartReload(1);
 	}
+
 	else
 	{
 		CommonStartReload(0);	//Server animation

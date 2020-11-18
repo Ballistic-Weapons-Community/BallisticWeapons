@@ -18,16 +18,7 @@ simulated function bool AllowFire()
 	if (!CheckWeaponMode())
 		return false;		// Will weapon mode allow further firing
 	
-	if (!bUseWeaponMag || BW.bNoMag)
-	{
-		if(!Super.AllowFire())
-		{
-			if (DryFireSound.Sound != None)
-				Weapon.PlayOwnedSound(DryFireSound.Sound,DryFireSound.Slot,DryFireSound.Volume,DryFireSound.bNoOverride,DryFireSound.Radius,DryFireSound.Pitch,DryFireSound.bAtten);
-			return false;	// Does not use ammo from weapon mag. Is there ammo in inventory
-		}
-	}
-	else if (BW.MagAmmo < AmmoPerFire)
+	if (BW.MagAmmo < AmmoPerFire)
 	{
 		if (!bPlayedDryFire && DryFireSound.Sound != None)
 		{
