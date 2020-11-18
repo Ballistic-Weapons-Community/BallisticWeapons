@@ -704,9 +704,10 @@ defaultproperties
 	 ParamsClass=Class'WrenchWeaponParams'
      FireModeClass(0)=Class'WrenchPrimaryFire'
      FireModeClass(1)=Class'WrenchSecondaryFire'
-     SelectAnimRate=1.250000
-     PutDownTime=1.000000
-     BringUpTime=1.000000
+	 PutDownTime=1.750000
+	 PutDownAnimRate=0.650000
+	 BringUpTime=1.750000
+	 SelectAnimRate=0.750000	 
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.200000
      CurrentRating=0.200000

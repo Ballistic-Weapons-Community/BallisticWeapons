@@ -163,7 +163,7 @@ event ModeTick(float DT)
 	}
 	else
 	{
-		DesiredFireRate = (FMin(1.0 / (30 * Minigun.BarrelSpeed), 1));
+		DesiredFireRate = (FMin(1.0 / (30 * (1 + 0.25*int(BW.bBerserk)) * Minigun.BarrelSpeed), 1));
 		if (BW.CurrentWeaponMode == 0)
 			TraceCount = 1;
 		else

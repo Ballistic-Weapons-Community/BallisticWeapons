@@ -213,7 +213,7 @@ simulated function float GetRampUpSpeed()
 	
 	mult = 1 - (BarrelSpeed / RotationSpeeds[2]);
 	
-	return 0.075f + (0.5f * mult * mult);
+	return 0.075f + (0.5f * mult * mult * (1 + 0.25*int(bBerserk)));
 }
 
 // Load in a grenade

@@ -374,8 +374,7 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	ZoomType=ZT_Logarithmic
-	ScopeXScale=1.333300
-	ScopeViewTex=Texture'BallisticRecolors3TexPro.X82.X82ScopeView'
+	ScopeViewTex=Texture'BallisticRecolors3TexPro.X82.X82ScopeViewAlt'
 	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
