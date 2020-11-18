@@ -2764,17 +2764,15 @@ defaultproperties
      PrecachePickups(86)=Class'BWBPOtherPackPro.WrenchPickup'
      PrecachePickups(87)=Class'BWBPOtherPackPro.XOXOPickup'
      PrecachePickups(88)=Class'BWBPOtherPackPro.Z250Pickup'
+     PrecachePickups(89)=Class'BWBPOtherPackPro.BallisticShieldPickup'
+     PrecachePickups(90)=Class'BWBPOtherPackPro.FlameSwordPickup'
+	 PrecachePickups(91)=Class'BWBPOtherPackPro.MAG78Pickup'
+	 PrecachePickups(92)=Class'BWBPOtherPackPro.TrenchGunPickup'
+     PrecachePickups(93)=Class'BWBPOtherPackPro.XM20Pickup'
+     PrecachePickups(94)=Class'BWBPOtherPackPro.ARPickup'
+     PrecachePickups(95)=Class'BWBPOtherPackPro.LightningPickup'
 
-     PrecachePickups(89)=Class'BWBPSomeOtherPack.BallisticShieldPickup'
-     PrecachePickups(90)=Class'BWBPSomeOtherPack.FlameSwordPickup'
-	 PrecachePickups(91)=Class'BWBPSomeOtherPack.MAG78Pickup'
-	 PrecachePickups(92)=Class'BWBPSomeOtherPack.TrenchGunPickup'
-     PrecachePickups(93)=Class'BWBPSomeOtherPack.XM20Pickup'
-
-     PrecachePickups(94)=Class'BWBPAirstrikesPro.TargetDesignatorPickup'
-
-     PrecachePickups(95)=Class'BallisticJiffyPack.ARPickup'
-     PrecachePickups(96)=Class'BallisticJiffyPack.LightningPickup'
+     PrecachePickups(96)=Class'BWBPAirstrikesPro.TargetDesignatorPickup'
 
     // for ctf support
      bNetTemporary=True
