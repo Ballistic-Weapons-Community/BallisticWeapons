@@ -100,7 +100,7 @@ simulated function float GetRampUpSpeed()
 	
 	mult = 1 - (BarrelSpeed / RotationSpeeds[2]);
 	
-	return 0.075f + (0.5f * Square(mult));
+	return 0.075f + (0.5f * Square(mult) * (1 + 0.25*int(bBerserk)));
 	
 	/*
 	if (BarrelSpeed < RotationSpeeds[0])

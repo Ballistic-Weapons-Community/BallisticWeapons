@@ -13,7 +13,7 @@ simulated function SwitchWeaponMode(byte newMode)
 simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
-	SetTimer(1, true);	// XAVEDIT
+	SetTimer(0.4, true);	// XAVEDIT
 }
 
 function Timer()

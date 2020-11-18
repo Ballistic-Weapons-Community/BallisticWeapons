@@ -1915,16 +1915,16 @@ defaultproperties
      DefaultWeapons(31)=Class'BallisticProV55.E23PlasmaRifle'
      DefaultWeapons(32)=Class'BallisticProV55.A73SkrithRifle'	//energy
 	 DefaultWeapons(33)=Class'BWBPRecolorsPro.A49SkrithBlaster'
-     DefaultWeapons(34)=Class'BWBPSomeOtherPack.XM20AutoLas'
+     DefaultWeapons(34)=Class'BWBPOtherPackPro.XM20AutoLas'
      DefaultWeapons(35)=Class'BWBPOtherPackPro.Raygun'
      DefaultWeapons(36)=Class'BWBPOtherPackPro.ProtonStreamer'
 
 	 DefaultWeapons(37)=Class'BallisticProV55.A500Reptile'
      DefaultWeapons(38)=Class'BWBPRecolorsPro.CoachGun'
-     DefaultWeapons(39)=Class'BallisticJiffyPack.ARShotgun'
+     DefaultWeapons(39)=Class'BWBPOtherPackPro.ARShotgun'
      DefaultWeapons(40)=Class'BWBPRecolorsPro.MK781Shotgun'
      DefaultWeapons(41)=Class'BallisticProV55.MRS138Shotgun'	//shotgun
-     DefaultWeapons(42)=Class'BWBPSomeOtherPack.TrenchGun'
+     DefaultWeapons(42)=Class'BWBPOtherPackPro.TrenchGun'
      DefaultWeapons(43)=Class'BallisticProV55.M763Shotgun'
 	 DefaultWeapons(44)=Class'BWBPRecolorsPro.SK410Shotgun'
 
@@ -1966,8 +1966,8 @@ defaultproperties
 
      DefaultWeapons(77)=Class'BWBPRecolorsPro.DragonsToothSword'
 	 DefaultWeapons(78)=Class'BWBPOtherPackPro.DefibFists'
-     DefaultWeapons(79)=Class'BWBPSomeOtherPack.FlameSword'
-     DefaultWeapons(80)=Class'BWBPSomeOtherPack.MAG78Longsword'	//melee
+     DefaultWeapons(79)=Class'BWBPOtherPackPro.FlameSword'
+     DefaultWeapons(80)=Class'BWBPOtherPackPro.MAG78Longsword'	//melee
      DefaultWeapons(81)=Class'BallisticProV55.A909SkrithBlades'
      DefaultWeapons(82)=Class'BallisticProV55.EKS43Katana'
      DefaultWeapons(83)=Class'BallisticProV55.X4Knife'

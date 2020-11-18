@@ -17,7 +17,8 @@ defaultproperties
     End Object
 
     Begin Object Class=WeaponParams Name=UniversalParams
-        PlayerSpeedFactor=1
+        PlayerSpeedFactor=0.65
+        PlayerJumpFactor=0.65
         MagAmmo=1
         InventorySize=12
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
