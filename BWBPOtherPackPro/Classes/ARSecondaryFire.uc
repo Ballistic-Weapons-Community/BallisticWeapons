@@ -54,10 +54,10 @@ defaultproperties
 {
      SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
      bUseWeaponMag=False
-     MuzzleFlashClass=Class'BWBPOtherPackPro.ARHeatEmitter'
+     MuzzleFlashClass=Class'BWBPRecolorsPro.MK781FlashEmitter'
      FlashBone="tip2"
      FlashScaleFactor=0.500000
-     BrassClass=Class'BWBPOtherPackPro.Brass_ShotgunHE'
+     BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
      BrassOffset=(X=-1.000000,Z=-1.000000)
      FireRecoil=650.000000
      FirePushbackForce=180.000000

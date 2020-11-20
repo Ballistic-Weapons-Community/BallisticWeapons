@@ -33,8 +33,6 @@ var() bool					bReady;						//Weapon ready for alt fire
 var() name					SightsBone;					// Bone to use for hiding sight; temporary
 var() name  				SightsBoneHinge;			//Bone to use for hiding sight; temporary
 
-var   actor GLIndicator;
-
 
 struct RevInfo
 {
@@ -579,29 +577,22 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	super.AdjustPlayerDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType);
 }
 
-//simulated function PlayReload()
-//{
-//	SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
-//}
-
 // Animation notify for when the clip is stuck in
 simulated function Notify_ClipUp()
 {
-	SetBoneScale(0,1.0,BulletBone);
+	SetBoneScale(10,1.0,'Shell1');
+	SetBoneScale(11,0.0,'Shell2');
 }
 
 simulated function Notify_ClipOut()
 {
 	Super.Notify_ClipOut();
 
-	if(MagAmmo < 1)
-		SetBoneScale(0,0.0,BulletBone);
-}
-
-// Animation notify for when cocking action starts. Used to time sounds
-simulated function Notify_CockSim()
-{
-	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
+	if (MagAmmo < 1)
+	{
+		SetBoneScale(10,0.0,'Shell1');
+		SetBoneScale(11,0.0,'Shell2');
+	}
 }
 
 simulated function float RateSelf()
@@ -692,7 +683,6 @@ simulated function Notify_BrassOut();
 
 defaultproperties
 {
-	BulletBone="Bullet1"
 	GrenLoadSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.GLShovel',Volume=1.800000)
 	ShovelAnim="GLReload1"
 	SGPrepAnim(0)="GLLoad1"
