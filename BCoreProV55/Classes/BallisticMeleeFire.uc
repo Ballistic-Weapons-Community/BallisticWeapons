@@ -101,10 +101,10 @@ function float ResolveDamageFactors(Actor Victim, vector TraceStart, vector HitL
 		testDir = Normal(HitLocation - TraceStart);
 		testDir.Z = 0;
 	
-		if (Vector(Victim.Rotation) Dot testDir > 0.2)
-			DamageFactor *= 1.5;
-		else if (Vector(Victim.Rotation) Dot testDir > -0.4)
-			DamageFactor *= 1.25;
+		if (Vector(Victim.Rotation) Dot testDir > 0.6)
+			DamageFactor *= 1.3;
+		else if (Vector(Victim.Rotation) Dot testDir > 0.25)
+			DamageFactor *= 1.15;
 	}
 
 	DamageFactor = FMin(3f, DamageFactor);
@@ -468,7 +468,7 @@ defaultproperties
      LimbMult=1f
      MaxBonusHoldTime=1.500000
      bCanBackstab=True
-     TraceRange=(Min=140.000000,Max=140.000000)
+     TraceRange=(Min=128.000000,Max=128.000000)
      Damage=75.000000
      PDamageFactor=0.500000
      RunningSpeedThresh=1000.000000

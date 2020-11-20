@@ -261,7 +261,6 @@ defaultproperties
 	KnifeBone="Blade"
 	PinBone="Pin"
 	PinPullSound=(Sound=Sound'BallisticSounds3.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.600000,bAtten=True)
-	PlayerSpeedFactor=1.150000
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BallisticRecolors3TexPro.BigIcon_X8'
 	BigIconCoords=(Y1=25,Y2=230)

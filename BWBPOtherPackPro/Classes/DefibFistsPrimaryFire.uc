@@ -146,7 +146,7 @@ defaultproperties
      Damage=25.000000
      
 	 
-	 TraceRange=(Min=150,Max=150)
+	 TraceRange=(Min=140,Max=140)
      DamageType=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeArm=Class'BWBPOtherPackPro.DTShockGauntlet'

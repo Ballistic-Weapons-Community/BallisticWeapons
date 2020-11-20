@@ -405,8 +405,8 @@ function ServerPlayFiring()
 
 	else
 	{
-		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
+		if (FireCount == 0 && Weapon.HasAnim(FireLoopAnim))
+			BW.SafeLoopAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
 		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
 	}
 }
@@ -426,8 +426,8 @@ function PlayFiring()
 
 	else
 	{
-		if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
-			BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
+		if (FireCount == 0 && Weapon.HasAnim(FireLoopAnim))
+			BW.SafeLoopAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
 		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
 	}
 	

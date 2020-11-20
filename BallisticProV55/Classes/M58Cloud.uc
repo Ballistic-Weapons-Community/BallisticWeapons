@@ -9,7 +9,7 @@
 class M58Cloud extends BallisticEmitter
 	placeable;
 	
-const LIFETIME = 8;
+const LIFETIME = 15;
 
 simulated function PostBeginPlay()
 {

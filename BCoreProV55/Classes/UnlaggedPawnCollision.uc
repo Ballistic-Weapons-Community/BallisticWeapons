@@ -142,7 +142,7 @@ final function EnableUnlag(float PingTime)
     SetRotation(Rotations[i].Rotation);
 
     //log(Name @ "Pawn: X:" $ UnlaggedPawn.Location.X $ "Y: " $ UnlaggedPawn.Location.Y $ "Z: " $ UnlaggedPawn.Location.Z);
-    //log(Name @ "Collision: X:" $ Location.X $ "Y: " $ Location.Y $ "Z: " $ Location.Z $ " ColH: " $ CollisionHeight $ " ColR:" $ CollisionRadius);
+    //log(Name @ "Collision: X:" $ Location.X $ "Y: " $ Location.Y $ "Z: " $ Location.Z  $ " Rot:" $ Rotation $ " ColH: " $ CollisionHeight $ " ColR:" $ CollisionRadius);
     
     bUnlagged = True;
 }

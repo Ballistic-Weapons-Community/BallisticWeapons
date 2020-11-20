@@ -40,7 +40,7 @@ defaultproperties
          ColorScale(3)=(RelativeTime=0.114286,Color=(B=128,G=128,R=128,A=255))
          ColorScale(4)=(RelativeTime=1.000000,Color=(B=128,G=128,R=128,A=255))
          Opacity=0.700000
-         FadeOutStartTime=2.120000
+         FadeOutStartTime=10.000000
          MaxParticles=20
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=10.000000,Max=20.000000)
@@ -56,7 +56,7 @@ defaultproperties
          DrawStyle=PTDS_AlphaBlend
          Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=8.000000,Max=8.000000)
+         LifetimeRange=(Min=10.000000,Max=10.000000)
          StartVelocityRadialRange=(Min=-500.000000,Max=-300.000000)
          VelocityLossRange=(X=(Min=2.000000,Max=2.000000),Y=(Min=2.000000,Max=2.000000),Z=(Min=4.000000,Max=4.000000))
          GetVelocityDirectionFrom=PTVD_AddRadial
@@ -174,7 +174,7 @@ defaultproperties
          MaxCollisions=(Min=1.000000,Max=1.000000)
          ColorScale(0)=(Color=(B=255,G=255,R=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255))
-         FadeOutStartTime=1.120000
+         FadeOutStartTime=8.000000
          MaxParticles=100
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=100.000000,Max=200.000000)
@@ -188,7 +188,7 @@ defaultproperties
          SubdivisionStart=1
          SubdivisionEnd=1
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=8.000000,Max=8.000000)
+         LifetimeRange=(Min=10.000000,Max=10.000000)
          StartVelocityRange=(X=(Min=-70.000000,Max=70.000000),Y=(Min=-70.000000,Max=70.000000),Z=(Min=-70.000000,Max=70.000000))
          StartVelocityRadialRange=(Min=-80.000000,Max=-50.000000)
          GetVelocityDirectionFrom=PTVD_AddRadial
@@ -228,7 +228,7 @@ defaultproperties
          DrawStyle=PTDS_AlphaBlend
          Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=12.000000,Max=12.000000)
+         LifetimeRange=(Min=8.000000,Max=8.000000)
          StartVelocityRange=(X=(Min=-50.000000,Max=50.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=-50.000000,Max=50.000000))
          StartVelocityRadialRange=(Min=-800.000000,Max=-200.000000)
          VelocityLossRange=(X=(Min=2.000000,Max=2.000000),Y=(Min=2.000000,Max=2.000000),Z=(Min=4.000000,Max=4.000000))
@@ -262,7 +262,7 @@ defaultproperties
          TextureUSubdivisions=1
          TextureVSubdivisions=1
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=8.000000,Max=8.000000)
+         LifetimeRange=(Min=10.000000,Max=10.000000)
          StartVelocityRange=(X=(Min=-30.000000,Max=30.000000),Y=(Min=-30.000000,Max=30.000000),Z=(Min=-30.000000,Max=30.000000))
          StartVelocityRadialRange=(Min=-80.000000,Max=-50.000000)
          GetVelocityDirectionFrom=PTVD_AddRadial

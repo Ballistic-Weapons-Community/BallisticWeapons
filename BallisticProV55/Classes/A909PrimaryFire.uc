@@ -126,7 +126,7 @@ defaultproperties
      NumSwipePoints=5
      FatiguePerStrike=0.030000
      bCanBackstab=False
-     TraceRange=(Min=155.000000,Max=155.000000)
+     TraceRange=(Min=140.000000,Max=140.000000)
      Damage=45.000000
      
      

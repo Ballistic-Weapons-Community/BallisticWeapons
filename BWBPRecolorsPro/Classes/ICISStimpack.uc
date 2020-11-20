@@ -4,14 +4,16 @@
 class ICISStimpack extends BallisticWeapon;
 
 var() sound		HealSound;
+var float       LastRegenTick;
 
 simulated function Notify_SelfInject()
 {
-	local ICISPoisoner IP;
+	//local ICISPoisoner IP;
 	
 	PlaySound(HealSound, SLOT_Misc, 1.5, ,64);
 
-	if (Role == ROLE_Authority)
+    /*
+    if (Role == ROLE_Authority)
 	{
 		if(Instigator == None || Vehicle(Instigator) != None || Instigator.Health <= 0)
 			return;
@@ -25,6 +27,18 @@ simulated function Notify_SelfInject()
 
 		IP.Initialize(Instigator);
 	}
+    */
+}
+
+simulated function Tick(float DT)
+{
+	super.Tick(DT);
+
+	if (!IsFiring() && Level.TimeSeconds >= LastRegenTick)
+    {
+        Ammo[0].AddAmmo(1);
+        LastRegenTick = level.TimeSeconds + 2;
+    }
 }
 
 simulated function bool PutDown()

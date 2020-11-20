@@ -124,15 +124,14 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_A42Projectile'
      PenetrateManager=Class'BallisticProV55.IM_A42Projectile'
      bPenetrate=True
-     AccelSpeed=0.000000
+     AccelSpeed=100000.000000
      TrailClass=Class'BWBPRecolorsPro.A49TrailEmitter'
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTA49Skrith'
      bUsePositionalDamage=True
-     
-     
+
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000
-     MaxSpeed=5500.000000
+     MaxSpeed=6500.000000
      Damage=42.000000
      DamageRadius=48.000000
      MomentumTransfer=100.000000

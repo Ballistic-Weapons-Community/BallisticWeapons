@@ -2316,7 +2316,7 @@ function ServerMeleeHold()
 	MeleeFireMode.HoldStartTime = Level.TimeSeconds;
 	MeleeFireMode.PlayPreFire();
 	GunLength = 1;
-	AddSpeedModification(1.15);
+	AddSpeedModification(1.05);
 	bPreventReload = True;
 }
 

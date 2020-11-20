@@ -431,7 +431,7 @@ defaultproperties
      HealRatio=5.000000
      PulseSound=Sound'BWBP2-Sounds2.LightningGun.LG-FireLoop'
      PulseDamageType=Class'BWBPOtherPackPro.DTShockGauntletPulse'
-     PlayerSpeedFactor=1.150000
+     PlayerSpeedFactor=1.10000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBPOtherPackTex.DefibFists.BigIcon_DefibFists'
      BigIconCoords=(X1=96,Y1=10,X2=418,Y2=245)

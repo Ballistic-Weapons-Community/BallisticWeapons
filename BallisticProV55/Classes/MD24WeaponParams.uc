@@ -16,7 +16,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ArenaParams
-		PlayerSpeedFactor=1.1
+		PlayerSpeedFactor=1.05
 		SightingTime=0.200000
 		MagAmmo=16
         InventorySize=3

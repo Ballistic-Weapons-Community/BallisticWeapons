@@ -272,7 +272,7 @@ defaultproperties
      SwipePoints(0)=(offset=(Yaw=0))
      WallHitPoint=0
      NumSwipePoints=1
-     TraceRange=(Min=190.000000,Max=190.000000)
+     TraceRange=(Min=150.000000,Max=150.000000)
      Damage=20.000000
      
      

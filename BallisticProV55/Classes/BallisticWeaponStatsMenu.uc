@@ -24,12 +24,14 @@ var automated GUILabel			    l_WeaponCaption,
 											lb_DShot, lb_DPS, lb_TTK, lb_RPM, lb_Recoil, lb_RPS,
 											lb_DShotAlt, lb_DPSAlt, lb_TTKAlt, lb_RPMAlt, lb_RecoilAlt, lb_RPSAlt,
 											lb_Raise, lb_ViewRecoilFactor, lb_Mag, lb_DPM, lb_Range, lb_RangeAlt, lb_ADSMultiplier, lb_CrouchMultiplier,
+                                            lb_MoveSpeed, lb_ADSMoveSpeed, lb_Displacement,
+
 											db_Dshot, db_HeadMult, db_LimbMult, db_RPM, db_Recoil,
 											db_DshotAlt, db_HeadMultAlt, db_LimbMultAlt, db_RPMAlt, db_RecoilAlt,
 											db_Mag, db_RangeOpt, db_RangeOptAlt, db_RangeDecayed, db_RangeDecayedAlt, db_RangeMax, db_RangeMaxAlt, db_ADSMultiplier, db_CrouchMultiplier;
 var automated moComboBox	        cb_Display;
 var automated GUIScrollTextBox      sb_Desc;
-var automated GUIProgressBar	    pb_DPS, pb_TTK, pb_RPS, pb_DPSAlt, pb_TTKAlt, pb_RPSAlt, pb_Raise, pb_ViewRecoilFactor, pb_DPM;
+var automated GUIProgressBar	    pb_DPS, pb_TTK, pb_RPS, pb_DPSAlt, pb_TTKAlt, pb_RPSAlt, pb_Raise, pb_ViewRecoilFactor, pb_DPM, pb_MoveSpeed, pb_ADSMoveSpeed, pb_Displacement;
 
 var InterpCurve 						RedCurve, GreenCurve, BlueCurve;
 
@@ -58,9 +60,6 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	
 	pb_DPS.High = 520;
 	pb_TTK.High = 1.4f;
-	pb_Raise.High = 0.8f;
-	pb_ViewRecoilFactor.High = 1f;
-	pb_DPM.High = 2500;
 	pb_RPS.High = 2750;
 	
 	//alt
@@ -77,12 +76,23 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	pb_RPSAlt.High = 2750;
 	
 	//gen
+
 	lb_Raise.Caption = "ADS Transition Time";
 	lb_ViewRecoilFactor.Caption = "Recoil View Bind Factor";
 	lb_Mag.Caption = "Capacity";
 	lb_DPM.Caption = "Damage/Mag";
+    lb_MoveSpeed.Caption = "Movement Speed";
+    lb_ADSMoveSpeed.Caption = "ADS Movement Speed";
 	lb_CrouchMultiplier.Caption = "Crouch Aim Stabilization";
 	lb_ADSMultiplier.Caption = "ADS Aim Stabilization";
+    lb_Displacement.Caption = "Displacement Factor";
+
+    pb_Raise.High = 0.8f;
+	pb_ViewRecoilFactor.High = 1f;
+    pb_Displacement.High = 2f;
+    pb_MoveSpeed.High = 1.15f;
+    pb_ADSMoveSpeed.High = 1.15f;
+	pb_DPM.High = 2500;
 		
 	pb_TTK.NumDecimals=2;
 	pb_TTKAlt.NumDecimals=2;
@@ -127,10 +137,13 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 
     GenBack.ManageComponent(lb_Mag);	                GenBack.ManageComponent(db_Mag);
     GenBack.ManageComponent(lb_DPM);	                GenBack.ManageComponent(pb_DPM);
-    GenBack.ManageComponent(lb_ViewRecoilFactor);	    GenBack.ManageComponent(pb_ViewRecoilFactor);
+    GenBack.ManageComponent(lb_MoveSpeed);	            GenBack.ManageComponent(pb_MoveSpeed);
+    GenBack.ManageComponent(lb_ADSMoveSpeed);	        GenBack.ManageComponent(pb_ADSMoveSpeed);
     GenBack.ManageComponent(lb_Raise);	                GenBack.ManageComponent(pb_Raise);
     GenBack.ManageComponent(lb_ADSMultiplier);	        GenBack.ManageComponent(db_ADSMultiplier);
 	GenBack.ManageComponent(lb_CrouchMultiplier);	    GenBack.ManageComponent(db_CrouchMultiplier);
+    GenBack.ManageComponent(lb_ViewRecoilFactor);	    GenBack.ManageComponent(pb_ViewRecoilFactor);
+    GenBack.ManageComponent(lb_Displacement);	        GenBack.ManageComponent(pb_Displacement);
 
 	sb_Desc.bVisible = False;
 	Box_Desc.bVisible = False;
@@ -407,16 +420,28 @@ function UpdateInfo()
 		pb_Raise.BarColor = ColorBar(pb_Raise.Value/pb_Raise.High);
 		
 		pb_ViewRecoilFactor.Value = params.default.Params[0].RecoilParams[0].ViewBindFactor;
-		pb_ViewRecoilFactor.Caption = string(pb_ViewRecoilFactor.Value * 100)$ "%";
+		pb_ViewRecoilFactor.Caption = string(int(Ceil(pb_ViewRecoilFactor.Value * 100f)))$ "%";
 		pb_ViewRecoilFactor.BarColor = ColorBar(pb_ViewRecoilFactor.Value / pb_ViewRecoilFactor.High);
-		
+
+        pb_MoveSpeed.Value = params.default.Params[0].PlayerSpeedFactor;
+		pb_MoveSpeed.Caption = string(int(Ceil(pb_MoveSpeed.Value * 100f)))$ "%";
+		pb_MoveSpeed.BarColor = ColorBar(pb_MoveSpeed.Value / pb_MoveSpeed.High);
+
+        pb_ADSMoveSpeed.Value = params.default.Params[0].PlayerSpeedFactor * params.default.Params[0].SightMoveSpeedFactor;
+		pb_ADSMoveSpeed.Caption = string(int(Ceil(pb_ADSMoveSpeed.Value * 100f)))$ "%";
+		pb_ADSMoveSpeed.BarColor = ColorBar(pb_ADSMoveSpeed.Value / pb_ADSMoveSpeed.High);
+
+        pb_Displacement.Value = params.default.Params[0].DisplaceDurationMult;
+		pb_Displacement.Caption = string(int(Ceil(pb_Displacement.Value * 100f)))$ "%";
+		pb_Displacement.BarColor = ColorBar(pb_Displacement.Value / pb_Displacement.High);
+
 		db_Mag.Caption = String(params.default.Params[0].MagAmmo);
 		
 		pb_DPM.Value = FMin(params.default.Params[0].MagAmmo * FS.DamageInt, pb_DPM.High);
-		pb_DPM.Caption = String(int(pb_DPM.Value)) @ "("$int(pb_DPM.Value / 8.8)$"%)";
+		pb_DPM.Caption = String(int(pb_DPM.Value)) @ "("$int(pb_DPM.Value / 6.0f)$"%)";
 		pb_DPM.BarColor = ColorBar(pb_DPM.Value / pb_DPM.High);
 		
-		db_CrouchMultiplier.Caption = string(int(100 * (1 - params.default.Params[0].AimParams[0].CrouchMultiplier)))$"%";
+		db_CrouchMultiplier.Caption = string(int(Ceil(100f * (1 - params.default.Params[0].AimParams[0].CrouchMultiplier))))$"%";
 		
 		db_ADSMultiplier.Caption = string(int(100 * (1 - params.default.Params[0].AimParams[0].ADSMultiplier)))$"%";
 	}
@@ -604,6 +629,12 @@ defaultproperties
 
      lb_Raise=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
 
+     lb_MoveSpeed=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+
+     lb_ADSMoveSpeed=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+
+     lb_Displacement=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
+
      lb_ViewRecoilFactor=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
 
      lb_Mag=GUILabel'BallisticProV55.BallisticWeaponStatsMenu.myCaption'
@@ -716,6 +747,12 @@ defaultproperties
      pb_Raise=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
 
      pb_ViewRecoilFactor=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+
+     pb_MoveSpeed=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+
+     pb_ADSMoveSpeed=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
+
+     pb_Displacement=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
 
      pb_DPM=GUIProgressBar'BallisticProV55.BallisticWeaponStatsMenu.myPB'
 
