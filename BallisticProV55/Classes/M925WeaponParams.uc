@@ -24,7 +24,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ArenaParams
-		DisplaceDurationMult=1.25
+		DisplaceDurationMult=1.4
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
 		SightMoveSpeedFactor=0.8

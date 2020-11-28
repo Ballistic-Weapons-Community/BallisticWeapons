@@ -9,6 +9,9 @@
 //=============================================================================
 class SARAssaultRifle extends BallisticWeapon;
 
+const AUTO_MODE = 0;
+const BURST_MODE = 1;
+
 var   bool			bLaserOn, bOldLaserOn;
 var   LaserActor	Laser;
 var() Sound			LaserOnSound;
@@ -91,7 +94,7 @@ function ServerSwitchWeaponMode (byte NewMode)
 	if (ReloadState != RS_None)
 		return;
 		
-	NewMode = byte(!bStockOpen);
+	NewMode = byte(bStockOpen);
 		
 	// can feasibly happen
 	if (NewMode == CurrentWeaponMode)
@@ -105,7 +108,7 @@ function ServerSwitchWeaponMode (byte NewMode)
 simulated function CommonSwitchWeaponMode(byte NewMode)
 {
 	Super.CommonSwitchWeaponMode(NewMode);
-	SwitchStock(bool(NewMode));
+	SwitchStock(NewMode == AUTO_MODE);
 }
 
 simulated function OnStockSwitched()

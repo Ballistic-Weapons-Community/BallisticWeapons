@@ -107,7 +107,6 @@ var config int		PracticeRoundLength;
 /* ballistic precache */
 var private const array< class<WeaponPickup> > PrecachePickups;
 
-var Color MapColor;
 
 /* ctf map support */
 
@@ -2572,6 +2571,7 @@ function ChangeName(Controller Other, string S, bool bNameChange)
 		Broadcast(self, Other.PlayerReplicationInfo.OldName@"is now known as"@Other.PlayerReplicationInfo.PlayerName$".");
 }
 
+/*
 //Azarael - per-map loading screens and load map title from level summary
 static function string GetLoadingHint(PlayerController PlayerController, string MapName, Color ColorHint)
 {
@@ -2613,11 +2613,11 @@ static function string GetLoadingHint(PlayerController PlayerController, string 
   
 	return Super.GetLoadingHint(PlayerController, MapName, ColorHint);
 }
+*/
 
 defaultproperties
 {     
     MaxDistFactor=0.250000
-    MapColor=(G=255,R=255,A=255)
      StartingHealth=100
      MaxHealth=1.000000
      AdrenalinePerDamage=1.000000

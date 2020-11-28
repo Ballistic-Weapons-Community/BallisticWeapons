@@ -699,7 +699,8 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=256)
 	SightOffset=(X=-15.000000,Y=4.490000,Z=7.685000)
-	SightDisplayFOV=35.000000
+	SightDisplayFOV=20.000000
+    SightZoomFactor=0.55 // 2x scope
 	GunLength=48.000000
 	ParamsClass=Class'BulldogWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.BulldogPrimaryFire'

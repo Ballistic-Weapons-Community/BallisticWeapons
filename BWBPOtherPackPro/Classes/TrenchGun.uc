@@ -643,12 +643,14 @@ defaultproperties
 	ReloadAnimRate=1.250000
 	ClipInFrame=0.800000
 	bNonCocking=True
+    bNoCrosshairInScope=True
 	WeaponModes(0)=(ModeName="Explosive Shot",Value=1.000000)
 	WeaponModes(1)=(ModeName="Electro Shot",Value=1.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	SightPivot=(Pitch=256)
-	SightOffset=(X=30.000000,Y=11.500000,Z=43.500000)
+	SightOffset=(X=50.000000,Y=11.500000,Z=43.500000)
+    SightDisplayFov=25
 	GunLength=60.000000
 	LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)

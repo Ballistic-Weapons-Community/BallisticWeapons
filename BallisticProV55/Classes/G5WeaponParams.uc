@@ -17,7 +17,8 @@ defaultproperties
 	End Object
 
     Begin Object Class=WeaponParams Name=ArenaParams
-	    SightingTime=0.550000	 
+	    SightingTime=0.550000	
+        DisplaceDurationMult=1.25
         MagAmmo=2        
 		InventorySize=24
 		PlayerSpeedFactor=0.95

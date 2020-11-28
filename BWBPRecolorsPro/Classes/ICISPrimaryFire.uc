@@ -9,7 +9,10 @@
 class ICISPrimaryFire extends BallisticFire;
 
 const BASE_HEAL = 2;
-const TICKS_PER_RAMP = 2;
+const MAX_HEAL = 10;
+const TICKS_PER_RAMP = 3;
+
+var int TickCount;
 
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
 simulated function bool AllowFire()
@@ -18,18 +21,26 @@ simulated function bool AllowFire()
 		return false;		// Is weapon busy reloading
 	if (!CheckWeaponMode())
 		return false;		// Will weapon mode allow further firing
+    if (Instigator.Health >= BallisticPawn(Instigator).HealthMax) // reached max hp
+        return false;
 
-	return Weapon.AmmoAmount(ThisModeNum) > 0;
+	return Weapon.AmmoAmount(ThisModeNum) > AmmoPerFire;
 }
 
-simulated function DoFireEffect()
+function DoFireEffect()
 {
-    BallisticPawn(Instigator).GiveAttributedHealth(BASE_HEAL + FireCount / TICKS_PER_RAMP, BallisticPawn(Instigator).HealthMax, Instigator);
+    BallisticPawn(Instigator).GiveAttributedHealth(Min(BASE_HEAL + TickCount / TICKS_PER_RAMP, MAX_HEAL), BallisticPawn(Instigator).HealthMax, Instigator);
+    ++TickCount;
+}
+
+function StopFiring()
+{	
+	TickCount = 0;
 }
 
 defaultproperties
 {
-     BallisticFireSound=(Sound=SoundGroup'BallisticSounds_25.X4.X4_Melee',Radius=4.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BallisticSounds_25.X4.X4_Melee',Radius=0.000000,bAtten=True)
      bAISilent=True
      EffectString="Heals over time."
      PreFireTime=0.65
@@ -38,7 +49,7 @@ defaultproperties
      FireEndAnim="HealLoopEnd"
      FireRate=0.35
      AmmoClass=Class'BWBPRecolorsPro.Ammo_ICISStim'
-     AmmoPerFire=1
+     AmmoPerFire=4
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=1.500000

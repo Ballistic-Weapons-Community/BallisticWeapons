@@ -19,6 +19,8 @@ var() float						ChargeTime, DecayCharge;
 
 var() float						ElectroDamage;
 
+var bool                        FlashSide;
+
 struct Point2
 {
 	var int X;
@@ -26,17 +28,6 @@ struct Point2
 };
 
 var() Point2					ElectroInaccuracy, ElectroDoubleInaccuracy, ExplosiveInaccuracy, ExplosiveDoubleInaccuracy;
-
-simulated function DebugMessage(coerce string message)
-{
-	if (PlayerController(BW.Instigator.Controller) != None)
-	{
-		if (BW.Role == ROLE_Authority)
-			PlayerController(BW.Instigator.Controller).ClientMessage("SERVER:"@message);
-		else
-			PlayerController(BW.Instigator.Controller).ClientMessage("CLIENT:"@message);
-	}
-}
 
 //======================================================================
 // ApplyDamage
@@ -376,7 +367,7 @@ function int GetTraceCount(int load)
 {
 	switch(load)
 	{
-		case 2: return (default.TraceCount * 2) - 1;
+		case 2: return (default.TraceCount * 2); // - 1;
 		case 1: return default.TraceCount;
 		default: return default.TraceCount;
 	}
@@ -394,12 +385,18 @@ function DoFireEffect()
 	local int i;
 
 	Aim = GetFireAim(StartTrace);
+
+    if (Level.NetMode == NM_DedicatedServer)
+        BW.RewindCollisions();
 	
 	for (i=0; i < GetTraceCount(Load); i++)
 	{
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
 	}
+
+    if (Level.NetMode == NM_DedicatedServer)
+        BW.RestoreCollisions();
 
 	ApplyHits();
 	
@@ -519,32 +516,36 @@ function FlashMuzzleFlash()
 	local Coords C;
 	local Actor MuzzleSmoke;
 	local vector Start, X, Y, Z;
-	local bool Side;
+    local int i;
 
     if ((Level.NetMode == NM_DedicatedServer) || (AIController(Instigator.Controller) != None) )
 		return;
 	if (!Instigator.IsFirstPerson() || PlayerController(Instigator.Controller).ViewTarget != Instigator)
 		return;
-		
-	Side = TrenchGunAttachment(Weapon.ThirdPersonActor).Side;
 
-	if (Load == 2 || Side)
-	{
-		C = Weapon.GetBoneCoords('tip2');
-		MuzzleFlash2.Trigger(Weapon, Instigator);
-	}
-	
-	if (Load == 2 || !Side)
-	{
-		C = Weapon.GetBoneCoords('tip');
-		MuzzleFlash.Trigger(Weapon, Instigator);
-	}
+    for (i = 0; i < Load; ++i)
+    {
+	    if (FlashSide)
+        {
+            C = Weapon.GetBoneCoords('tip2');
+            MuzzleFlash2.Trigger(Weapon, Instigator);
+        }
 
-    if (!class'BallisticMod'.default.bMuzzleSmoke)
-    	return;
-    Weapon.GetViewAxes(X,Y,Z);
-	Start = C.Origin + X * -180 + Y * 3;
-	MuzzleSmoke = Spawn(class'MRT6Smoke', weapon,, Start, Rotator(X));
+        else
+        {
+            C = Weapon.GetBoneCoords('tip');
+            MuzzleFlash.Trigger(Weapon, Instigator);
+        }
+
+        FlashSide = !FlashSide;
+
+        if (class'BallisticMod'.default.bMuzzleSmoke)
+        {
+            Weapon.GetViewAxes(X,Y,Z);
+            Start = C.Origin + X * -180 + Y * 3;
+            MuzzleSmoke = Spawn(class'MRT6Smoke', weapon,, Start, Rotator(X));
+        }
+    }
 
 	if (!bBrassOnCock)
 		EjectBrass();

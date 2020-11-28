@@ -176,11 +176,19 @@ function DoFireEffect()
 	local int i;
 
 	Aim = GetFireAim(StartTrace);
+
+     if (Level.NetMode == NM_DedicatedServer)
+        BW.RewindCollisions();
+
 	for (i=0;i<TraceCount;i++)
 	{
 		R = Rotator(GetFireSpread() >> Aim);
 		DoTrace(StartTrace, R);
 	}
+
+    if (Level.NetMode == NM_DedicatedServer)
+        BW.RestoreCollisions();
+
 	// Tell the attachment the aim. It will calculate the rest for the clients
 	SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
 

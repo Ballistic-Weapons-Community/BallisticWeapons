@@ -248,6 +248,10 @@ static function string GetDescriptionText(string PropName)
 	return Super.GetDescriptionText(PropName);
 }
 
+//==================================================================================
+// LOADING SCREEN OVERRIDE
+//----------------------------------------------------------------------------------
+
 static function array<string> GetAllLoadHints(optional bool bThisClassOnly)
 {
 	local int i;
@@ -309,7 +313,7 @@ static function string GetLoadingHint(PlayerController PlayerController, string 
 	hint = default.LoadoutHint $ "|" $ hint;
 
 
-	hint = default.ForumLink $ "| |" $  hint;
+	// hint = default.ForumLink $ "| |" $  hint;
 	hint = Repl(hint, "#B#", MakeColorCode(default.BindColor));
 	hint = Repl(hint, "#H#", MakeColorCode(ColorHint));
 
@@ -335,6 +339,14 @@ static function string ParseBallisticBinds(string hint, Color ColorHint)
 
 	return parsed_hint;
 }
+
+//----------------------------------------------------------------------------------
+// END LOADING SCREEN OVERRIDE
+//==================================================================================
+
+//==================================================================================
+// PLAYER FLAGS
+//----------------------------------------------------------------------------------
 
 function AssignInfo(PlayerController PC, string PlayerFlags)
 {
@@ -518,6 +530,14 @@ function Logout(Controller Exiting)
 	Super.Logout(Exiting);
 }
 
+//----------------------------------------------------------------------------------
+// END PLAYER FLAGS
+//==================================================================================
+
+//==================================================================================
+// PLAYER FLAGS
+//----------------------------------------------------------------------------------
+
 function BroadcastDeathMessage(Controller Killer, Controller Other, class<DamageType> damageType)
 {
     if ( (Killer == Other) || (Killer == None) )
@@ -533,6 +553,7 @@ function GetServerInfo( out ServerResponseLine ServerState )
 	if(Level.Title != "Untitled" && Len(Level.Title) < 64)
 		ServerState.MapName = Level.Title;
 }
+
 //Inserted 492 lines.
 //END_BW_GAME_BASE
 
@@ -685,6 +706,7 @@ function RespawnPlayers(optional bool bMoveAlive)
 
 defaultproperties
 {
+     MapColor=(G=255,R=255,A=255)
      LoadingScreens(0)=Texture'LDGGameBW_rc.LoadingScreen.BWLoadingScreen1'
      LoadingScreens(1)=Texture'LDGGameBW_rc.LoadingScreen.BWLoadingScreen2'
      LoadingScreens(2)=Texture'LDGGameBW_rc.LoadingScreen.BWLoadingScreen3'

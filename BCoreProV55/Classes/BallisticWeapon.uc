@@ -4716,6 +4716,18 @@ simulated function vector GetEffectStart()
 // Debug stuff --------------------------------------------------------------------------------------------------
 //
 //===========================================================================
+
+simulated function DebugMessage(coerce string message)
+{
+	if (PlayerController(Instigator.Controller) != None)
+	{
+		if (Role == ROLE_Authority)
+			PlayerController(Instigator.Controller).ClientMessage("SERVER:"@message);
+		else
+			PlayerController(Instigator.Controller).ClientMessage("CLIENT:"@message);
+	}
+}
+
 exec function AlignHelp() { Instigator.ClientMessage("BWBrassOff[X,Y,Z]; BWCenteredOffset; BWPlayerOffset[X,Y,Z]; BWDisplayFOV; BWDrawScale; BWSightOffset[X,Y,Z];"); }
 // These ca be used to align the BrassOffset during the game
 exec function BWBrassOffX (float V)	{	BFireMode[0].BrassOffset.X = V;		BrassMessage();	}

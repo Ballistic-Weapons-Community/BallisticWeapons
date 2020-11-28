@@ -35,6 +35,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		SightingTime=0.300000
+        DisplaceDurationMult=0.75
 		MagAmmo=24
         InventorySize=12
 		RecoilParams(0)=RecoilParams'ArenaBoltRecoilParams'

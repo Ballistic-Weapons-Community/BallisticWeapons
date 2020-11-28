@@ -17,7 +17,7 @@ defaultproperties
 {
      ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
      TrailClass=Class'BallisticProV55.MRS138TazerProjTrail'
-     MyRadiusDamageType=Class'BallisticProV55.DTMRS138Tazer'
+     MyRadiusDamageType=Class'BallisticProV55.DTMRS138TazerLine'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=0.000000
      MotionBlurRadius=0.000000
@@ -26,7 +26,7 @@ defaultproperties
      Speed=12800.000000
      MaxSpeed=12800.000000
      Damage=5.000000
-     MyDamageType=Class'BallisticProV55.DTMRS138Tazer'
+     MyDamageType=Class'BallisticProV55.DTMRS138TazerLine'
      DrawType=DT_None
      StaticMesh=StaticMesh'BallisticHardware_25.OA-SMG.OA-SMG_Dart'
      LifeSpan=0.200000

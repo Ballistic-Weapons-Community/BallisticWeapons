@@ -59,33 +59,6 @@ simulated function ModeTick(float DT)
         return;
 }
 
-// Get aim then run trace...
-function DoFireEffect()
-{
-    local Vector StartTrace;
-    local Rotator Aim, PointAim;
-    local int i;
-
-	Aim = GetFireAim(StartTrace);
-	Aim = Rotator(GetFireSpread() >> Aim);
-
-	// Do trace for each point
-	for	(i=0;i<NumSwipePoints;i++)
-	{
-		if (SwipePoints[i].Weight < 0)
-			continue;
-		PointAim = Rotator(Vector(SwipePoints[i].Offset) >> Aim);
-		MeleeDoTrace(StartTrace, PointAim, i==WallHitPoint, SwipePoints[i].Weight);
-	}
-	// Do damage for each victim
-	for (i=0;i<SwipeHits.length;i++)
-		OnTraceHit(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0, 0);
-	SwipeHits.Length = 0;
-
-	Super(BallisticFire).DoFireEffect();
-
-}
-
 // Do the trace to find out where bullet really goes
 function MeleeDoTrace (Vector InitialStart, Rotator Dir, bool bWallHitter, int Weight)
 {

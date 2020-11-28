@@ -565,6 +565,7 @@ defaultproperties
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
     bNetNotify=True
+    bCockOnEmpty=False
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
 	BringUpSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-PullOut',Volume=2.200000)
 	PutDownSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-Putaway',Volume=2.200000)
@@ -591,7 +592,6 @@ defaultproperties
 	CurrentRating=0.700000
 	Priority=41
 	HudColor=(B=24,G=48)
-	bCockOnEmpty=True
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
 	PickupClass=Class'BWBPRecolorsPro.LK05Pickup'

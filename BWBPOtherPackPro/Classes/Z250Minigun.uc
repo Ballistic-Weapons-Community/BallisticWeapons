@@ -398,6 +398,7 @@ function ServerSwitchWeaponMode (byte NewMode)
 {
 	if (NewMode == 255)
 		NewMode = CurrentWeaponMode + 1;
+
 	while (NewMode != CurrentWeaponMode && (NewMode >= WeaponModes.length || WeaponModes[NewMode].bUnavailable) )
 	{
 		if (NewMode >= WeaponModes.length)
@@ -407,7 +408,11 @@ function ServerSwitchWeaponMode (byte NewMode)
 	}
 	
 	if (!WeaponModes[NewMode].bUnavailable)
-		CurrentWeaponMode = NewMode;
+	{
+		CommonSwitchWeaponMode(NewMode);
+		ClientSwitchWeaponMode(CurrentWeaponMode);
+		NetUpdateTime = Level.TimeSeconds - 1;
+	}
 }
 
 simulated function string GetHUDAmmoText(int Mode)

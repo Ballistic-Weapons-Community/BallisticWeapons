@@ -351,6 +351,9 @@ function DoFireEffect()
 		AimInterval = TurnVelocity * Interval;
 	}
 
+    if (Level.NetMode == NM_DedicatedServer)
+        BW.RewindCollisions();
+
 	for (i=0;i<TraceCount && ConsumedLoad < BW.MagAmmo ;i++)
 	{
 		ConsumedLoad += Load;
@@ -366,6 +369,10 @@ function DoFireEffect()
 		ExtraTime += Interval;
 		ExtraAim += AimInterval;
 	}
+
+    if (Level.NetMode == NM_DedicatedServer)
+        BW.RestoreCollisions();
+
 	SetTimer(FMin(0.1, FireRate/2), false);
 
 //	SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);

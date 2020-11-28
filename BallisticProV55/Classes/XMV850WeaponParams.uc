@@ -22,7 +22,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ArenaParams
-		DisplaceDurationMult=1.25
+		DisplaceDurationMult=1.4
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.800000
 		MagAmmo=300

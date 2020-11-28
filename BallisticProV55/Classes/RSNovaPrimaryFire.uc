@@ -644,7 +644,13 @@ state Zap
 		Aim = GetFireAim(StartTrace);
 		Aim = Rotator(GetFireSpread() >> Aim);
 
+        if (Level.NetMode == NM_DedicatedServer)
+            BW.RewindCollisions();
+
 		DoTrace(StartTrace, Aim);
+
+        if (Level.NetMode == NM_DedicatedServer)
+            BW.RestoreCollisions();
 
 		ApplyRecoil();
 		

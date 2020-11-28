@@ -19,15 +19,13 @@ function PreBeginPlay ()
 
 	if (bEnableScoreBoard)
 	{
-		if ( (LDGBallisticFRTracked(Level.Game) != None && LDGBallisticFRTracked(Level.Game).bAllowViewingOfSkill) || (LDGBallisticFR_CTFMapsTracked(Level.Game) != None && LDGBallisticFR_CTFMapsTracked(Level.Game).bAllowViewingOfSkill) )
+		if (LDGBallisticFRTracked(Level.Game) != None && LDGBallisticFRTracked(Level.Game).bAllowViewingOfSkill)
 		{
 			Level.Game.ScoreBoardType = string(class'UTComp_Scoreboard_NEW_SKILL_FREON');
 			UTCompSRI.ThawPointsConversionRatio = class'LDGBWFreonDataTracking'.default.ThawPointsKillConversion;
 			
 			if (LDGBallisticFRTracked(Level.Game) != None)
 				UTCompSRI.MatchStart = LDGBallisticFRTracked(Level.Game).MatchStart;
-			else if (LDGBallisticFR_CTFMapsTracked(Level.Game) != None)
-				UTCompSRI.MatchStart = LDGBallisticFR_CTFMapsTracked(Level.Game).MatchStart;
 			
 		}
 		else
@@ -123,13 +121,6 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 		{
 			if (PlayerController(Other.Owner) != None)
 				LDGBallisticFRTracked(Level.Game).CheckPendingPlayerController(PlayerController(Other.Owner));
-				
-			InitSkillProps(uPRI);
-		}
-		else if (Level.Game.IsA('LDGBallisticFR_CTFMapsTracked'))
-		{
-			if (PlayerController(Other.Owner) != None)
-				LDGBallisticFR_CTFMapsTracked(Level.Game).CheckPendingPlayerController(PlayerController(Other.Owner));
 				
 			InitSkillProps(uPRI);
 		}

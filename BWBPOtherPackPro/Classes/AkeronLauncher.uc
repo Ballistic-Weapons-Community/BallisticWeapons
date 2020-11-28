@@ -134,8 +134,8 @@ defaultproperties
      ClipOutSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOn')
      ClipInSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff')
      bNonCocking=True
-     WeaponModes(0)=(ModeName="Single Fire")
-     WeaponModes(1)=(ModeName="Continuous Fire",ModeID="WM_SemiAuto")
+     WeaponModes(0)=(ModeName="Guidance: Slow",ModeID="WM_FullAuto")
+     WeaponModes(1)=(ModeName="Guidance: Fast",ModeID="WM_FullAuto")
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
      ZoomType=ZT_Logarithmic

@@ -11,6 +11,7 @@ simulated function bool AllowFire()
 {
 	if (AIController(Instigator.Controller) != None)
 		return false;
+
 	return Super.AllowFire();
 }
 
@@ -18,11 +19,17 @@ function SpawnProjectile(Vector Start, Rotator Dir)
 {
     local AkeronWarhead Warhead;
 	local PlayerController Possessor;
+    local class<AkeronWarhead> WarheadClass;
+
+    if (BW.CurrentWeaponMode == 1)
+        WarheadClass = class'AkeronWarheadFast';
+    else
+        WarheadClass = class'AkeronWarhead';
 	
-    Warhead = Weapon.Spawn(class'AkeronWarhead', Instigator,, Start, Dir);
+    Warhead = Weapon.Spawn(WarheadClass, Instigator,, Start, Dir);
 
     if (Warhead == None)
-		Warhead = Weapon.Spawn(class'AkeronWarhead', Instigator,, Instigator.Location, Dir);
+		Warhead = Weapon.Spawn(WarheadClass, Instigator,, Instigator.Location, Dir);
     
     if (Warhead != None)
     {

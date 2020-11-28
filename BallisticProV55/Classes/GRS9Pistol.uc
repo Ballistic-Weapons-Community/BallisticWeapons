@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class GRS9Pistol extends BallisticHandgun;
+class GRS9Pistol extends BallisticWeapon;
 
 var   bool			bLaserOn;
 var   LaserActor	Laser;
@@ -24,6 +24,7 @@ replication
 		bLaserOn, LaserAmmo;
 }
 
+/*
 //simulated function bool MasterCanSendMode(int Mode) {return Mode == 0;}
 simulated function bool SlaveCanUseMode(int Mode)
 {
@@ -36,6 +37,7 @@ simulated function bool CanAlternate(int Mode)
 		return false;
 	return super.CanAlternate(Mode);
 }
+*/
 
 simulated event WeaponTick(float DT)
 {
@@ -61,6 +63,7 @@ simulated event WeaponTick(float DT)
 	}
 
 }
+
 simulated event Tick (float DT)
 {
 	super.Tick(DT);
@@ -269,7 +272,10 @@ simulated event RenderOverlays( Canvas Canvas )
 	{
 		C = GetBoneCoords('tip2');
 		V = C.Origin;
-		if ((IsSlave() && Othergun.Hand >= 0) || (!IsSlave() && Hand < 0))
+
+        
+		//if ((IsSlave() && Othergun.Hand >= 0) || (!IsSlave() && Hand < 0))
+        if (Hand < 0)
 			R = OrthoRotation(C.XAxis, -C.YAxis, C.ZAxis);
 		else
 			R = OrthoRotation(C.XAxis, C.YAxis, C.ZAxis);
@@ -340,7 +346,10 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 //		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'GRS9AmbientFX', DrawScale, self, 'tip2');
 //		class'BUtil'.static.InitMuzzleFlash (SightFX, class'GRS9SightLEDs', DrawScale, self, 'SightBone');
-		if ((IsSlave() && Othergun.Hand >= 0) || (!IsSlave() && Hand < 0))
+		
+        
+        //if ((IsSlave() && Othergun.Hand >= 0) || (!IsSlave() && Hand < 0))
+        if (Hand < 0)
 		{
 			GRS9AmbientFX(GlowFX).InvertY();
 			GRS9SightLEDs(SightFX).InvertY();
@@ -405,14 +414,17 @@ simulated function PlayReload()
 
 function ServerWeaponSpecial(optional byte i)
 {
-	if (!FireMode[1].IsFiring() && level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo == default.LaserAmmo && !IsInState('DualAction') && !IsInState('PendingDualAction'))
+	if (!FireMode[1].IsFiring() && level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo == default.LaserAmmo/* && !IsInState('DualAction') && !IsInState('PendingDualAction')*/)
 	{
 		ClientWeaponSpecial(i);
 		CommonWeaponSpecial(i);
 	}
-	else if (IsMaster() && GRS9Pistol(OtherGun)!=None)
+    /*
+    else if (IsMaster() && GRS9Pistol(OtherGun)!=None)
 	 	OtherGun.ServerWeaponSpecial(i);
+    */
 }
+
 simulated function ClientWeaponSpecial(optional byte i)
 {
 	if (level.NetMode == NM_Client)
@@ -424,13 +436,19 @@ simulated function CommonWeaponSpecial(optional byte i)
 	bBigLaser=true;
 	if (ThirdPersonActor != None)
 		GRS9Attachment(ThirdPersonActor).bBigLaser=true;
+
+    // Set instant fire props
 	BallisticInstantFire(FireMode[1]).Damage = 75;
 	BallisticInstantFire(FireMode[1]).HeadMult = 1f;
 	BallisticInstantFire(FireMode[1]).LimbMult = 1f;
 	BallisticInstantFire(FireMode[1]).XInaccuracy = 16;
 	BallisticInstantFire(FireMode[1]).YInaccuracy = 16;
+
+
 	FireMode[1].ModeDoFire();
 	LaserAmmo = FMax(0, LaserAmmo - default.LaserAmmo);
+
+    // Reset props
 	BallisticInstantFire(FireMode[1]).Damage = BallisticInstantFire(FireMode[1]).default.Damage;
 	BallisticInstantFire(FireMode[1]).HeadMult = BallisticInstantFire(FireMode[1]).default.HeadMult;
 	BallisticInstantFire(FireMode[1]).LimbMult = BallisticInstantFire(FireMode[1]).default.LimbMult;
@@ -513,7 +531,7 @@ defaultproperties
 	AIRating=0.6
 	CurrentRating=0.6
 	LaserAmmo=3.500000
-	bShouldDualInLoadout=False
+	//bShouldDualInLoadout=False
 	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP4-Tex.Glock.BigIcon_Glock'

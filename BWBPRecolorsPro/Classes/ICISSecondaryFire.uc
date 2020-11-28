@@ -13,6 +13,9 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 {
 	local BallisticPawn BPawn;
 	local ICISPoisoner IP;
+    local float Pwr;
+
+    Pwr = FMin(1f, BW.AmmoAmount(0) / 100.0f);
 
 	BPawn = BallisticPawn(Target);	
 
@@ -21,16 +24,17 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 		if(Instigator == None || Vehicle(Instigator) != None || Instigator.Health <= 0)
 			return;
 		
-		BPawn.GiveAttributedHealth(10, BPawn.HealthMax, Instigator);
+		BPawn.GiveAttributedHealth(10 * Pwr, BPawn.HealthMax, Instigator);
 		
 		IP = Spawn(class'ICISPoisoner', Instigator.Controller);
 		IP.Instigator = Instigator;
+        IP.Pwr = Pwr;
 
 		if(Instigator.Role == ROLE_Authority && Instigator.Controller != None)
 			IP.InstigatorController = Instigator.Controller;
 
 		IP.Initialize(BPawn);
-		ICISStimPack(BW).ConsumeAmmo(1, 1, True);
+		ICISStimPack(BW).ConsumeAmmo(1, 100, True);
 		ICISStimPack(BW).PlaySound(ICISStimPack(BW).HealSound, SLOT_Misc, 1.5, ,64);
 
 	}

@@ -69,6 +69,8 @@ function AttachToPawn(Pawn P)
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
     local vector HitNormal;
+    local vector TestLocation;
+
 	
 	local class<BallisticDamageType> BDT;
 	
@@ -80,7 +82,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 
 	BDT = class<BallisticDamageType>(DamageType);
 	
-	if (BDT != None && CheckReflect(HitLocation, HitNormal, 0.2))
+	if (BDT != None && CheckReflect(InstigatedBy.Location, HitNormal, 0.2))
 	{
 		if (bBlocked)
 		{

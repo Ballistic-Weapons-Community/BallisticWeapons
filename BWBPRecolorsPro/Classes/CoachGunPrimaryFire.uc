@@ -161,11 +161,17 @@ simulated state Slug
 
 		Aim = GetFireAim(StartTrace);
 		R = Rotator(GetFireSpread() >> Aim);
+
+        if (Level.NetMode == NM_DedicatedServer)
+            BW.RewindCollisions();
 		
 		if (ConsumedLoad == 2)
 			DoubleTrace(StartTrace, R, vect(0,8,0));
 		else
 			DoTrace(StartTrace + (vect(0,-12,0) >> Rotator(StartTrace)), R);
+
+        if (Level.NetMode == NM_DedicatedServer)
+            BW.RestoreCollisions();
 
 		Super(BallisticFire).DoFireEffect();
 	}

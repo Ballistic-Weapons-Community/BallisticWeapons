@@ -98,7 +98,6 @@ function DoFireEffect()
 	Aim = GetFireAim(StartTrace);
 	Aim = Rotator(GetFireSpread() >> Aim);
 	
-
 	DoTrace(StartTrace, Aim);
 	
 	if (ProtonStreamAttachment(Weapon.ThirdPersonActor).StreamEffect == None)

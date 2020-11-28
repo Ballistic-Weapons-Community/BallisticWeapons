@@ -15,6 +15,7 @@ var() class<DamageType>	DamageType;		// DamageType done to player
 var() int				Damage;			// Damage done every 1.5 seconds
 var() float				BurnTime;		// How to burn for
 var Controller	InstigatorController;
+var float               Pwr;
 
 function Reset()
 {
@@ -31,7 +32,7 @@ simulated function Initialize(Pawn V)
 	SetLocation(Victim.Location - vect(0, 0, 1)*Victim.CollisionHeight);
 	SetRotation(Victim.Rotation + rot(0, -16384, 0));
 	SetBase(Victim);
-	Victim.GiveHealth(10, Instigator.HealthMax);
+	Victim.GiveHealth(10 * Pwr, Instigator.HealthMax);
 }
 
 simulated event Timer()
@@ -47,7 +48,7 @@ simulated event Timer()
 	if (Victim != None && Level.NetMode != NM_Client)
 	{
 		if (Instigator.bProjTarget)
-			Victim.GiveHealth(10, Instigator.HealthMax);
+			Victim.GiveHealth(10 * Pwr, Instigator.HealthMax);
 	}
 }
 

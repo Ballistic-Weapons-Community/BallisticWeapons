@@ -104,17 +104,18 @@ defaultproperties
          UseRegularSizeScale=False
          AutomaticInitialSpawning=False
          TriggerDisabled=False
+         Opacity=0.75
          ColorScale(0)=(Color=(B=255,G=128,R=128))
          ColorScale(1)=(RelativeTime=0.200000,Color=(B=255,G=192,R=192))
          ColorScale(2)=(RelativeTime=0.300000,Color=(B=96,G=96,R=96,A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(B=32,G=64,R=96))
-         FadeOutStartTime=0.072000
+         FadeOutStartTime=0.035000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          SizeScale(0)=(RelativeSize=0.700000)
-         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.200000)
+         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.400000,Max=0.400000)
+         LifetimeRange=(Min=0.100000,Max=0.100000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
@@ -131,15 +132,16 @@ defaultproperties
          ColorScale(1)=(RelativeTime=0.100000,Color=(G=128,R=255,A=255))
          ColorScale(2)=(RelativeTime=0.300000,Color=(B=128,G=128,R=128,A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(G=64,R=128))
-         FadeOutStartTime=0.072000
+         FadeOutStartTime=0.035000
+         Opacity=0.75
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          StartLocationRange=(X=(Min=16.000000,Max=16.000000))
-         StartSizeRange=(X=(Min=45.000000,Max=45.000000))
+         StartSizeRange=(X=(Min=33.000000,Max=33.000000))
          DrawStyle=PTDS_Brighten
          Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.400000,Max=0.400000)
+         LifetimeRange=(Min=0.100000,Max=0.100000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
@@ -187,6 +189,7 @@ defaultproperties
          ColorScale(2)=(RelativeTime=1.000000,Color=(B=32,G=64,R=192,A=255))
          FadeOutStartTime=0.017500
          FadeInEndTime=0.010000
+         Opacity=0.75
          CoordinateSystem=PTCS_Relative
          MaxParticles=20
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
@@ -195,10 +198,10 @@ defaultproperties
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.250000,Max=0.250000)
+         LifetimeRange=(Min=0.100000,Max=0.100000)
          SpawnOnTriggerRange=(Min=16.000000,Max=20.000000)
          SpawnOnTriggerPPS=50000.000000
-         StartVelocityRange=(X=(Min=200.000000,Max=2000.000000),Y=(Min=-200.000000,Max=200.000000),Z=(Min=-200.000000,Max=200.000000))
+         StartVelocityRange=(X=(Min=150.000000,Max=1500.000000),Y=(Min=-150.000000,Max=150.000000),Z=(Min=-150.000000,Max=150.000000))
      End Object
      Emitters(4)=SpriteEmitter'BallisticProV55.MRT6FlashEmitter.SpriteEmitter20'
 

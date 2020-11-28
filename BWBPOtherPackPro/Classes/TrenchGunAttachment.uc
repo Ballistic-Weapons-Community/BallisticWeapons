@@ -33,7 +33,7 @@ simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
 	
-	Log("TrenchGunAttachment::PostNetBeginPlay: AmmoType: "$AmmoType);
+	//Log("TrenchGunAttachment::PostNetBeginPlay: AmmoType: "$AmmoType);
 }
 
 //======================================================================
@@ -414,8 +414,10 @@ simulated function FlashMuzzleFlash(byte IsDoubleFire)
 			else 
 				class'BUtil'.static.InitMuzzleFlash (AltMuzzleFlash, AltMuzzleFlashClass, DrawScale*FlashScale, self, AltFlashBone);
 		}
+
 		AltMuzzleFlash.Trigger(self, Instigator);
-		if (bRandomFlashRoll)	SetBoneRotation(AltFlashBone, R, 0, 1.f);
+		if (bRandomFlashRoll)
+            SetBoneRotation(AltFlashBone, R, 0, 1.f);
 	}
 	else if (MuzzleFlashClass != None)
 	{
@@ -431,7 +433,8 @@ simulated function FlashMuzzleFlash(byte IsDoubleFire)
 			if (MuzzleFlashRight == None)
 				class'BUtil'.static.InitMuzzleFlash (MuzzleFlashRight, MuzzleFlashClass, DrawScale*FlashScale, self, AltFlashBone);
 			MuzzleFlashRight.Trigger(self, Instigator);
-			if (bRandomFlashRoll)	SetBoneRotation(AltFlashBone, R, 0, 1.f);
+			if (bRandomFlashRoll)
+                SetBoneRotation(AltFlashBone, R, 0, 1.f);
 		}
 	}
 }

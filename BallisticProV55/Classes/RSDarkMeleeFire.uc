@@ -221,6 +221,9 @@ function DoFireEffect()
 	Aim = GetFireAim(StartTrace);
 	Aim = Rotator(GetFireSpread() >> Aim);
 
+    if (Level.NetMode == NM_DedicatedServer)
+        BW.RewindCollisions();
+
 	// Do trace for each point
 	for	(i=0;i<NumSwipePoints;i++)
 	{
@@ -229,6 +232,9 @@ function DoFireEffect()
 		PointAim = Rotator(Vector(SwipePoints[i].Offset) >> Aim);
 		MeleeDoTrace(StartTrace, PointAim, i==WallHitPoint, SwipePoints[i].Weight);
 	}
+
+    if (Level.NetMode == NM_DedicatedServer)
+        BW.RestoreCollisions();
 	
 	bHitThisTick = SwipeHits.Length > 0;
 

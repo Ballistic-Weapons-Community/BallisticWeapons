@@ -186,37 +186,6 @@ simulated event ModeDoFire()
 		BW.PlayerSprint(true);
 }
 
-function DoFireEffect()
-{
-    local Vector StartTrace;
-    local Rotator Aim, PointAim;
-    local int i;
-
-	Aim = GetFireAim(StartTrace);
-	Aim = Rotator(GetFireSpread() >> Aim);
-
-	// Do trace for each point
-	for	(i=0;i<NumSwipePoints;i++)
-	{
-		if (SwipePoints[i].Weight < 0)
-			continue;
-		PointAim = Rotator(Vector(SwipePoints[i].Offset) >> Aim);
-		MeleeDoTrace(StartTrace, PointAim, i==WallHitPoint, SwipePoints[i].Weight);
-	}
-	
-	bHitThisTick = SwipeHits.Length > 0;
-
-	// Do damage for each victim
-	for (i=0;i<SwipeHits.length;i++)
-	{
-		OnTraceHit(SwipeHits[i].Victim, SwipeHits[i].HitLoc, StartTrace, SwipeHits[i].HitDir, 0, 0, 0);
-		SwipeHits[i].Victim = None;
-	}
-	SwipeHits.Length = 0;
-
-	Super(BallisticFire).DoFireEffect();
-}
-
 simulated function StopFiring()
 {
 	Weapon.PlayOwnedSound(SawStop,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius, 0.75 + MAG78Longsword(Weapon).ChainSpeed * 0.375 ,BallisticFireSound.bAtten);

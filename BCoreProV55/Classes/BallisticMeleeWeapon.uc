@@ -75,6 +75,25 @@ exec simulated function WeaponSpecialRelease(optional byte i)
 	IdleAnim = default.IdleAnim;
 }
 
+final function bool CheckBlockArc(Vector HitLocation, Pawn InstigatedBy)
+{
+    local float result;
+
+    /*
+    HACK.
+    Due to rewound collision cylinders, the hit location can be substantially different than the defender's current location
+    I need to think about a fix for this
+    We check to see if the defender is facing the attacker instead
+    */
+    if (Level.NetMode == NM_DedicatedServer)
+        result = Normal(InstigatedBy.Location - (Instigator.Location + Instigator.EyePosition()) ) Dot Vector(Instigator.GetViewRotation());
+
+    else 
+        result = Normal(HitLocation - (Instigator.Location+Instigator.EyePosition()) ) Dot Vector(Instigator.GetViewRotation());
+
+    return result > 0.4;
+}
+
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
 	local class<BallisticDamageType> BDT;
@@ -93,8 +112,7 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	
 	if (BDT != None)
 	{
-		if (bBlocked && !IsFiring() && level.TimeSeconds > LastFireTime + 1 && BDT.default.bCanBeBlocked &&
-		Normal(HitLocation-(Instigator.Location+Instigator.EyePosition())) Dot Vector(Instigator.GetViewRotation()) > 0.4)
+		if (bBlocked && !IsFiring() && level.TimeSeconds > LastFireTime + 1 && BDT.default.bCanBeBlocked && CheckBlockArc(HitLocation, InstigatedBy))
 		{
 			BlockDamage(Damage, InstigatedBy, BDT);
 		}

@@ -48,6 +48,7 @@ function PlayFiring()
 defaultproperties
 {
 	TraceRange=(Min=30000.000000,Max=30000.000000)
+    MaxWaterTraceRange=5000
 	WallPenetrationForce=0.000000
 	
 	Damage=90.000000

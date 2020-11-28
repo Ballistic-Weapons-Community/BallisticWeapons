@@ -1,6 +1,7 @@
 class XOXOBomb extends BallisticGrenade;
 
-var Actor LastHit;
+var Actor   LastHit;
+var float   ArmingDelay;
 
 simulated function PreBeginPlay()
 {
@@ -13,7 +14,7 @@ simulated function PreBeginPlay()
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	SetTimer(0.75, False);
+	SetTimer(ArmingDelay, False);
 }
 
 simulated function Timer()
@@ -187,6 +188,7 @@ defaultproperties
 {
      DampenFactor=0.150000
      DampenFactorParallel=0.300000
+     ArmingDelay=0.75
      DetonateOn=DT_ImpactTimed
 	 PlayerImpactType=PIT_Detonate
      DetonateDelay=0.600000
@@ -198,13 +200,12 @@ defaultproperties
      TrailClass=Class'BWBPOtherPackPro.XOXOBombTrail'
      MyRadiusDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
      
-     
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=2500.000000
      MaxSpeed=2500.000000
      Damage=100.000000
-     DamageRadius=512.000000
-     MomentumTransfer=100.000000
+     DamageRadius=768.000000
+     MomentumTransfer=10000.000000
      MyDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence

@@ -37,7 +37,7 @@ simulated function Tick(float DT)
 	if (!IsFiring() && Level.TimeSeconds >= LastRegenTick)
     {
         Ammo[0].AddAmmo(1);
-        LastRegenTick = level.TimeSeconds + 2;
+        LastRegenTick = level.TimeSeconds + 1;
     }
 }
 

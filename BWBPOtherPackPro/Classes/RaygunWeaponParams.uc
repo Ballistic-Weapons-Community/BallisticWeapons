@@ -22,10 +22,10 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
+        DisplaceDurationMult=0.75
 		InventorySize=12
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
-		DisplaceDurationMult=1
 		MagAmmo=24
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

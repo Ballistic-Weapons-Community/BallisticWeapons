@@ -66,6 +66,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-DartFire',Volume=1.350000)
      bSplashDamage=True
      bRecommendSplashDamage=True
+     bUseWeaponMag=False
      bTossed=True
      FireAnim="Dart_Fire"
      FireForce="AssaultRifleAltFire"

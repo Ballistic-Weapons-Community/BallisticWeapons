@@ -126,11 +126,13 @@ var 	name 			ReloadAnim, CockingAnim, MeleeAnim, MeleeOffhandAnim, MeleeAltAnim,
 var 	float 				ReloadAnimRate, CockAnimRate, MeleeAnimRate, WeaponSpecialRate, StaggerRate;
 var 	bool				bOffhandStrike;
 
-var config array<string> Spammers;
+//Sound -------------------------------
+var()   float            GruntRadius;
+var()   float            FootstepRadius;
 // Cover from decorations -----------------------------
 var 	array<Actor>		CoverAnchors;
 
-//Flying exploit
+// Flying exploit
 var 	bool				bPendingNegation;
 
 // Support for player transparency
@@ -400,19 +402,6 @@ simulated function TickFX(float DeltaTime)
 	}
 }
 
-static function bool IsSpammer(Pawn Other)
-{
-	local int i;
-	
-	for(i=0;i<default.Spammers.Length;i++)
-	{
-		if (Locs(Other.PlayerReplicationInfo.PlayerName) == default.Spammers[i])
-			return true;
-	}
-	
-	return false;
-}
-
 event HitWall(vector HitNormal, actor Wall)
 {
 	if (Controller != None)
@@ -425,7 +414,13 @@ event Landed(vector HitNormal)
 {
 	if (bDirectHitWall)
 		bDirectHitWall=False;
-	Super.Landed(HitNormal);
+
+    super(UnrealPawn).Landed( HitNormal );
+
+    MultiJumpRemaining = MaxMultiJump;
+
+    if ( (Health > 0) && !bHidden && (Level.TimeSeconds - SplashTime > 0.25) )
+        PlayOwnedSound(GetSound(EST_Land), SLOT_Interact, FMin(1, -0.3 * Velocity.Z/JumpZ), true, FootstepRadius + (Velocity.Z * 0.65));
 }
 
 //===========================================================================
@@ -450,7 +445,7 @@ function CheckBob(float DeltaTime, vector Y)
 
 	if (m != n)
 		FootStepping(0);
-	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.35) )
+	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.2) )
 	{
 		LastFootStepTime = Level.TimeSeconds;
 		FootStepping(0);
@@ -500,9 +495,8 @@ simulated function FootStepping(int Side)
 		if (FloorMat !=None)
 			SurfaceNum = FloorMat.SurfaceType;
 	}
-	PlaySound(SoundFootsteps[SurfaceNum], SLOT_Interact, FootstepVolume * SoundScale,,400 * SoundScale );
+	PlaySound(SoundFootsteps[SurfaceNum], SLOT_Interact, FootstepVolume * SoundScale,, FootstepRadius * SoundScale );
 }
-
 
 simulated function AssignInitialPose()
 {
@@ -591,12 +585,6 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 		else 
 		{
 			IdleWeaponAnim = IdleHeavyAnim;
-			if (IsSpammer(self))
-			{
-				IdleHeavyAnim='SPAM_Idle';
-				FireHeavyRapidAnim='SPAM_Burst';
-				FireHeavyBurstAnim='SPAM_Fire';
-			}
 		}
 	}
 }
@@ -2082,9 +2070,21 @@ simulated function vector EyePosition()
 
 function DoDoubleJump( bool bUpdating )
 {
-	super.DoDoubleJump(bUpdating);
+    PlayDoubleJump();
+
+    if ( !bIsCrouched && !bWantsToCrouch )
+    {
+		if ( !IsLocallyControlled() || (AIController(Controller) != None) )
+			MultiJumpRemaining -= 1;
+        Velocity.Z = JumpZ + MultiJumpBoost;
+        SetPhysics(PHYS_Falling);
+        if ( !bUpdating )
+			PlayOwnedSound(GetSound(EST_DoubleJump), SLOT_Pain, GruntVolume, , GruntRadius);
+    }
+
 	if (Role == ROLE_Authority)
 		Inventory.OwnerEvent('Jumped');
+
 	if (class'BallisticReplicationInfo'.default.bLimitDoubleJumps && !bIsCrouched && !bWantsToCrouch)
 	{
 		LastDoubleJumpTime = level.TimeSeconds;
@@ -2174,18 +2174,36 @@ function bool DoJump( bool bUpdating )
 	local float OldJumpZ;
 	local bool  bJR;
 
-	if (Weapon == None || BallisticWeapon(Weapon) == None)
-		return super.DoJump(bUpdating);
-
 	OldJumpZ = JumpZ;
 
-	JumpZ = BallisticWeapon(Weapon).GetModifiedJumpZ(self);
+	if (BallisticWeapon(Weapon) != None)
+    {	
+        JumpZ = BallisticWeapon(Weapon).GetModifiedJumpZ(self);
+    }
 
-	bJR = super.DoJump(bUpdating);
+    if ( !bUpdating && CanDoubleJump() && (Abs(Velocity.Z) < 100) && IsLocallyControlled() )
+    {
+		if ( PlayerController(Controller) != None )
+			PlayerController(Controller).bDoubleJump = true;
+        DoDoubleJump(bUpdating);
+        MultiJumpRemaining -= 1;
 
-	JumpZ = OldJumpZ;
+        JumpZ = OldJumpZ;
+        return true;
+    }
 
-	return bJR;
+    if ( Super(UnrealPawn).DoJump(bUpdating) )
+    {
+		if ( !bUpdating )
+			PlayOwnedSound(GetSound(EST_Jump), SLOT_Pain, GruntVolume, , GruntRadius);
+
+        JumpZ = OldJumpZ;   
+        return true;
+    }
+
+    // wtb: raii
+    JumpZ = OldJumpZ;
+    return false;
 }
 
 function bool AddShieldStrength(int ShieldAmount)
@@ -2250,7 +2268,7 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
 
     CurrentDir = DoubleClickMove;
     SetPhysics(PHYS_Falling);
-    PlayOwnedSound(GetSound(EST_Dodge), SLOT_Pain, GruntVolume,,80);
+    PlayOwnedSound(GetSound(EST_Dodge), SLOT_Pain, GruntVolume, , GruntRadius);
     return true;
 }
 
@@ -2664,15 +2682,6 @@ defaultproperties
 	 //MinTimeBetweenPainSounds=0.600000
      NewDeResSound=SoundGroup'BallisticSounds2.Misc.DeRes'
      MeleeAnim="Melee_Smack"
-     Spammers(0)="jawjaw"
-     Spammers(1)="~michie~"
-     Spammers(2)="nesme"
-     Spammers(3)="damn_skippy"
-     Spammers(4)="dekai"
-     Spammers(5)="racerx"
-     Spammers(6)="<-drweed->"
-     Spammers(7)="mantas_venom"
-     Spammers(8)="anhager"
      Fades(0)=Texture'BallisticProTextures.Icons.stealth_8'
      Fades(1)=Texture'BallisticProTextures.Icons.stealth_16'
      Fades(2)=Texture'BallisticProTextures.Icons.stealth_24'
@@ -2690,7 +2699,10 @@ defaultproperties
      Fades(14)=Texture'BallisticProTextures.Icons.stealth_120'
      Fades(15)=Texture'BallisticProTextures.Icons.stealth_128'
      UDamageSound=Sound'BallisticSounds3.Udamage.UDamageFire'
-     FootstepVolume=0.400000
+     FootstepVolume=0.350000
+     FootstepRadius=400.000000
+     GruntVolume=0.2
+     GruntRadius=256.000000
      DeResTime=4.000000
      RagdollLifeSpan=20.000000
      RagDeathUpKick=0.000000
@@ -2703,6 +2715,7 @@ defaultproperties
      CrouchedPct=0.350000
      HeadRadius=13.000000
      TransientSoundVolume=0.100000
+
      Begin Object Class=KarmaParamsSkel Name=PawnKParams
          KConvulseSpacing=(Max=2.200000)
          KLinearDamping=0.150000
@@ -2715,6 +2728,7 @@ defaultproperties
          KRestitution=0.300000
          KImpactThreshold=500.000000
      End Object
+
      KParams=KarmaParamsSkel'BallisticProV55.BallisticPawn.PawnKParams'
 
 }
