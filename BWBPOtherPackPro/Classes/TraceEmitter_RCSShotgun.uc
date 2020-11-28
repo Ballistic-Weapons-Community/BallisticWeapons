@@ -1,10 +1,10 @@
 //=============================================================================
-// TraceEmitter_ShotgunHE.
+// TraceEmitter_RCSShotgun.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class TraceEmitter_ShotgunHE extends BCTraceEmitter;
+class TraceEmitter_RCSShotgun extends BCTraceEmitter;
 
 simulated function Initialize(float Distance, optional float Power)
 {
@@ -37,7 +37,7 @@ defaultproperties
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=100.000000,Max=4000.000000),Y=(Min=-100.000000,Max=100.000000),Z=(Min=-100.000000,Max=200.000000))
      End Object
-     Emitters(0)=SparkEmitter'BWBPOtherPackPro.TraceEmitter_ShotgunHE.SparkEmitter6'
+     Emitters(0)=SparkEmitter'BWBPOtherPackPro.TraceEmitter_RCSShotgun.SparkEmitter6'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter15
          StaticMesh=StaticMesh'BallisticHardware2.Effects.VBlast'
@@ -53,7 +53,7 @@ defaultproperties
          AutomaticInitialSpawning=False
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
-         ColorMultiplierRange=(X=(Min=0.900000),Y=(Min=0.200000,Max=0.300000),Z=(Min=0.200000,Max=0.500000))
+         ColorMultiplierRange=(X=(Min=0.900000),Y=(Min=0.700000,Max=0.800000),Z=(Min=0.200000,Max=0.500000))
          Opacity=0.320000
          FadeOutStartTime=0.045000
          FadeInEndTime=0.010000
@@ -69,7 +69,7 @@ defaultproperties
          LifetimeRange=(Min=0.200000,Max=0.300000)
          StartVelocityRange=(X=(Min=100.000000,Max=300.000000))
      End Object
-     Emitters(1)=MeshEmitter'BWBPOtherPackPro.TraceEmitter_ShotgunHE.MeshEmitter15'
+     Emitters(1)=MeshEmitter'BWBPOtherPackPro.TraceEmitter_RCSShotgun.MeshEmitter15'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter3
          FadeOut=True
@@ -84,7 +84,7 @@ defaultproperties
          FadeOutStartTime=0.050000
          FadeInEndTime=0.004000
          MaxParticles=2
-         StartLocationRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=-5.000000,Max=5.000000))
+         //StartLocationRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=-5.000000,Max=5.000000))
          StartSizeRange=(X=(Min=20.000000,Max=20.000000),Y=(Min=20.000000,Max=20.000000),Z=(Min=20.000000,Max=20.000000))
          DrawStyle=PTDS_AlphaBlend
          Texture=Texture'BallisticEffects2.Particles.SmokeWisp-Alpha'
@@ -92,7 +92,7 @@ defaultproperties
          TextureVSubdivisions=2
          LifetimeRange=(Min=0.400000,Max=0.400000)
      End Object
-     Emitters(2)=SpriteEmitter'BWBPOtherPackPro.TraceEmitter_ShotgunHE.SpriteEmitter3'
+     Emitters(2)=SpriteEmitter'BWBPOtherPackPro.TraceEmitter_RCSShotgun.SpriteEmitter3'
 
      Begin Object Class=BeamEmitter Name=BeamEmitter3
          BeamDistanceRange=(Min=100.000000,Max=100.000000)
@@ -120,6 +120,6 @@ defaultproperties
          LifetimeRange=(Min=0.269000,Max=0.269000)
          StartVelocityRange=(X=(Min=70.000000,Max=70.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=-10.000000,Max=10.000000))
      End Object
-     Emitters(3)=BeamEmitter'BWBPOtherPackPro.TraceEmitter_ShotgunHE.BeamEmitter3'
+     Emitters(3)=BeamEmitter'BWBPOtherPackPro.TraceEmitter_RCSShotgun.BeamEmitter3'
 
 }

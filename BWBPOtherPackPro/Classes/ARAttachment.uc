@@ -11,12 +11,13 @@ class ARAttachment extends BallisticShotgunAttachment;
 defaultproperties
 {
      FireClass=Class'BWBPOtherPackPro.ARPrimaryFire'
-     MuzzleFlashClass=Class'BWBPOtherPackPro.ARHeatEmitter'
+     MuzzleFlashClass=Class'BWBPRecolorsPro.MK781FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
      FlashScale=0.6
-     BrassClass=Class'BWBPOtherPackPro.Brass_ShotgunHE'
-     TracerClass=Class'BWBPOtherPackPro.TraceEmitter_ShotgunHE'
+     AltFlashBone="tip2"
+     BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
+     TracerClass=Class'BWBPOtherPackPro.TraceEmitter_RCSShotgun'
      TracerChance=0.500000
      ReloadAnim="Reload_AR"
      ReloadAnimRate=0.900000

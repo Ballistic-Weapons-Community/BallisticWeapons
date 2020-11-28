@@ -42,7 +42,7 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 {
 	Super(BallisticProjectile).GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
 	
-	Dmg *= 1 + 1.75 * FMin(default.LifeSpan - LifeSpan, 0.7) / 0.7;
+	Dmg *= 1 + 1.25 * FMin(default.LifeSpan - LifeSpan, 0.7) / 0.7;
 	
 	return Other;
 }
@@ -64,7 +64,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 	bHurtEntry = true;
 	
-	DamageRadius = 128 + 128 * FMin((default.LifeSpan - LifeSpan)/3, 1);
+	DamageRadius = 100 + 75 * FMin((default.LifeSpan - LifeSpan)/3, 1);
 	
 	foreach VisibleCollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
 	{
@@ -106,8 +106,8 @@ defaultproperties
      MotionBlurTime=2.000000
      Speed=3000.000000
      MaxSpeed=7000.000000
-     Damage=75.000000
-     DamageRadius=200.000000
+     Damage=60.000000
+     DamageRadius=100.000000
      MomentumTransfer=50000.000000
      MyDamageType=Class'BallisticProV55.DTA73SkrithPower'
      LightSaturation=128

@@ -67,7 +67,7 @@ defaultproperties
      CutOffDistance=1536.000000
      CutOffStartRange=768.000000
      TraceCount=6
-     TracerClass=Class'BWBPOtherPackPro.TraceEmitter_ShotgunHE'
+     TracerClass=Class'BWBPOtherPackPro.TraceEmitter_RCSShotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=4000.000000,Max=6000.000000)
      Damage=9.000000
@@ -80,9 +80,10 @@ defaultproperties
      KickForce=5000
      PenetrateForce=100
      bPenetrate=True
-     MuzzleFlashClass=Class'BWBPOtherPackPro.ARHeatEmitter'
-     FlashScaleFactor=0.500000
-     BrassClass=Class'BWBPOtherPackPro.Brass_ShotgunHE'
+     MuzzleFlashClass=Class'BWBPRecolorsPro.MK781FlashEmitter'
+     FlashScaleFactor=1.000000
+     BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
+     BrassBone="EjectorDoor"
      BrassOffset=(X=-1.000000,Z=-1.000000)
      AimedFireAnim="SightFire"
      FireRecoil=256.000000

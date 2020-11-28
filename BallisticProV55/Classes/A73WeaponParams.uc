@@ -21,7 +21,8 @@ defaultproperties
 		AimAdjustTime=0.600000
 		AimSpread=(Min=16,Max=768)
 		AimDamageThreshold=75.000000
-		ChaosDeclineTime=1.250000
+		ChaosDeclineTime=1.350000
+		ChaosDeclineDelay=0.300000
 		ChaosSpeedThreshold=15000.000000
 	End Object
 

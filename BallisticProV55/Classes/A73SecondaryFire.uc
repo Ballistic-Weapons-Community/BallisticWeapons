@@ -28,8 +28,8 @@ simulated function vector GetFireSpread()
 	else
 	{
 		fX = frand();
-		R.Yaw =  1024 * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-		R.Pitch = 1024 * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+		R.Yaw =  XInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+		R.Pitch = YInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
 		return Vector(R);
 	}
 }
@@ -80,7 +80,7 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
      AimedFireAnim="Fire"
      FireRecoil=960.000000
-     FireChaos=0.320000
+     FireChaos=0.500000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      BallisticFireSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
