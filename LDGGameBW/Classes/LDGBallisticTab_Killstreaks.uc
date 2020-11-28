@@ -11,8 +11,14 @@ function ShowPanel(bool bShow)
 	
 	if (uPRI != None)
 	{
-		Item_Streak1.Caption = uPRI.KSThresh[0]@"Kills";
-		Item_Streak2.Caption = uPRI.KSThresh[1]@"Kills";
+		Item_Streak1.Caption = uPRI.KS1Threshold@"Kills";
+		Item_Streak2.Caption = uPRI.KS2Threshold@"Kills";
+	}
+	
+    else
+	{
+		Item_Streak1.Caption = "Unknown Threshold";
+		Item_Streak2.Caption = "Unknown Threshold";
 	}
 }
 

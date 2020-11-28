@@ -47,6 +47,7 @@ function ReceivedPlayerFlags(PlayerController PC, string PlayerFlags)
 	}
 
 	uPRI = UTComp_PRI_BW_FR_LDG(class'UTComp_Util'.static.GetUTCompPRI(PC.PlayerReplicationInfo));
+
 	if (uPRI != None)
 	{
 		uPRI.Skill = Skill;
@@ -330,6 +331,7 @@ function int ReduceDamage(int Damage, pawn injured, pawn instigatedBy, vector Hi
 	local Misc_PRI PRI;
 	local int OldDamage;
 	local int NewDamage;
+    local int RealDamage;
 	local float Score;
 	local float RFF;
 	local vector EyeHeight;
@@ -420,7 +422,11 @@ function int ReduceDamage(int Damage, pawn injured, pawn instigatedBy, vector Hi
 			OldDamage = PRI.EnemyDamage;
 			NewDamage = OldDamage + Damage;
 			PRI.EnemyDamage = NewDamage;
-		
+
+            // add damage tracking for enemy pawn
+            if (Misc_Pawn(injured) != None)
+                Misc_PRI(injured.PlayerReplicationInfo).ReceivedDamage += Damage;
+
 			Score = NewDamage - OldDamage;
 			if(Score > 0.0)
 			{

@@ -28,13 +28,27 @@ simulated function Tick(float DT)
 	SetDrawScale3D(DS);
 }
 
+//===============================================================
+// ScaleDistanceDamage
+//
+// A73 power projectile gains an additional 100% damage 
+// over 0.7 seconds of travel time
+//================================================================
+static function float ScaleDistanceDamage(float lifespan)
+{
+	if (class'A73PowerProjectile'.default.LifeSpan - lifespan > 0.05)
+		return 1 + 1 * FMin(class'A73PowerProjectile'.default.LifeSpan - lifespan - 0.05, 0.7) / 0.7;
+		
+	return 1;
+}
+
 // Do radius damage;
 function BlowUp(vector HitLocation)
 {
 	if (Role < ROLE_Authority)
 		return;
 	if (DamageRadius > 0)
-		TargetedHurtRadius(Damage * (1 + 0.5 * FMin(default.LifeSpan - LifeSpan, 1)), DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
+		TargetedHurtRadius(Damage * 0.5 * ScaleDistanceDamage(lifespan), DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
 	MakeNoise(1.0);
 }
 
@@ -42,7 +56,7 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 {
 	Super(BallisticProjectile).GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
 	
-	Dmg *= 1 + 1.25 * FMin(default.LifeSpan - LifeSpan, 0.7) / 0.7;
+    Dmg *= ScaleDistanceDamage(LifeSpan);
 	
 	return Other;
 }
@@ -53,36 +67,39 @@ simulated function InitProjectile ()
 }
 // Special HurtRadius function. This will hurt everyone except the chosen victim.
 // Useful if you want to spare a directly hit enemy from the radius damage
-simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
+simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, optional Actor Victim )
 {
-	local actor Victims;
+	local Actor Target;
 	local float damageScale, dist;
-	local vector dir;
+	local Vector dir;
 
 	if( bHurtEntry )
 		return;
 
 	bHurtEntry = true;
 	
-	DamageRadius = 100 + 75 * FMin((default.LifeSpan - LifeSpan)/3, 1);
+	DamageRadius = default.DamageRadius + 75 * FMin((default.LifeSpan - LifeSpan)/3, 1);
 	
-	foreach VisibleCollidingActors( class 'Actor', Victims, DamageRadius, HitLocation )
+	foreach VisibleCollidingActors( class 'Actor', Target, DamageRadius, HitLocation )
 	{
 		// don't let blast damage affect fluid - VisibleCollisingActors doesn't really work for them - jag
-		if( (Victims != self) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) && Victims != Victim && Victims != HurtWall)
+		if( (Target != self) && (Target.Role == ROLE_Authority) && (!Target.IsA('FluidSurfaceInfo')) && Target != Victim && Target != HurtWall)
 		{
-			dir = Victims.Location - HitLocation;
+			dir = Target.Location - HitLocation;
 			dist = FMax(1,VSize(dir));
 			dir = dir/dist;
-			damageScale = FMax(1 - Sqrt(FMax(0,dist - Victims.CollisionRadius)/DamageRadius),0);
+
+			damageScale = FMax(1 - Sqrt(FMax(0, dist - Target.CollisionRadius)/DamageRadius),0);
+
 			if ( Instigator == None || Instigator.Controller == None )
-				Victims.SetDelayedDamageInstigatorController( InstigatorController );
+				Target.SetDelayedDamageInstigatorController( InstigatorController );
+
 			class'BallisticDamageType'.static.GenericHurt
 			(
-				Victims,
+				Target,
 				Square(damageScale) * DamageAmount,
 				Instigator,
-				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
+				Target.Location - 0.5 * (Target.CollisionHeight + Target.CollisionRadius) * dir,
 				(damageScale * Momentum * dir),
 				DamageType
 			);
@@ -106,7 +123,7 @@ defaultproperties
      MotionBlurTime=2.000000
      Speed=3000.000000
      MaxSpeed=7000.000000
-     Damage=60.000000
+     Damage=70.000000
      DamageRadius=100.000000
      MomentumTransfer=50000.000000
      MyDamageType=Class'BallisticProV55.DTA73SkrithPower'

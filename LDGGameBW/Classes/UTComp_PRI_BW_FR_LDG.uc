@@ -15,6 +15,7 @@ var int KillSpectrumIndex;
 var array<float> KillSpectrum;
 
 var byte KSThresh[2];
+var byte KS1Threshold, KS2Threshold;
 var InterpCurve KS1Curve, KS2Curve;
 
 replication
@@ -23,7 +24,7 @@ replication
 		Skill, ThawPoints, bHideSkill, bDeranked;
 		
 	reliable if  (Role == ROLE_Authority && bNetOwner)
-		KSThresh;
+		KS1Threshold, KS2Threshold;
 		
 	reliable if(ROLE == ROLE_Authority && NewSkillReceiver && bNetOwner)
 		NewSkillReceiver, KillPoints, NewThawPoints, DeathPoints, NewSkill;
@@ -52,10 +53,13 @@ function SetStreakThresholds()
 {
 	KSThresh[0] = InterpCurveEval(KS1Curve, Skill);
 	KSThresh[1] = InterpCurveEval(KS2Curve, Skill);
+
+    KS1Threshold = KSThresh[0];
+    KS2Threshold = KSThresh[1];
 }
 
 defaultproperties
 {
-     KS1Curve=(Points=((OutVal=2.000000),(InVal=2.000000,OutVal=2.000000),(InVal=4.000000,OutVal=3.000000),(InVal=6.500000,OutVal=4.000000),(InVal=10.000000,OutVal=4.000000)))
-     KS2Curve=(Points=((OutVal=4.000000),(InVal=2.000000,OutVal=4.000000),(InVal=3.500000,OutVal=4.000000),(InVal=5.000000,OutVal=6.000000),(InVal=6.500000,OutVal=7.000000),(InVal=7.500000,OutVal=9.000000),(InVal=10.000000,OutVal=9.000000)))
+     KS1Curve=(Points=((InVal=1.000000, OutVal=1.000000),(InVal=2.000000,OutVal=2.000000),(InVal=4.000000,OutVal=3.000000),(InVal=5.000000,OutVal=4.000000),(InVal=6.000000,OutVal=5.000000),(InVal=7.500000,OutVal=6.000000),(InVal=8.000000,OutVal=7.000000),(InVal=10.000000,OutVal=7.000000)))
+     KS2Curve=(Points=((InVal=1.000000, OutVal=2.000000),(InVal=2.000000,OutVal=4.000000),(InVal=4.000000,OutVal=6.000000),(InVal=5.000000,OutVal=9.000000),(InVal=6.000000,OutVal=10.000000),(InVal=7.500000,OutVal=12.000000),(InVal=8.000000,OutVal=14.000000),(InVal=10.000000,OutVal=14.000000)))
 }
