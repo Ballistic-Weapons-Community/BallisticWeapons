@@ -229,8 +229,15 @@ static function FireModeStats GetStats()
 {
 	local FireModeStats FS;
 
-	FS.DamageInt = default.ProjectileClass.default.Damage;
+    local class<BallisticProjectile> BProjClass;
+
+    BProjClass = class<BallisticProjectile>(default.ProjectileClass);
+
+	FS.DamageInt = BProjClass.default.Damage;
 	FS.Damage = String(FS.DamageInt);
+
+    if (BProjClass.default.DamageGainEndTime > 0)
+        FS.Damage @= "-" @ String(Int(FS.DamageInt * (1f + BProjClass.default.MaxDamageGainFactor)));
 
     FS.HeadMult = class<BallisticProjectile>(default.ProjectileClass).default.HeadMult;
     FS.LimbMult = class<BallisticProjectile>(default.ProjectileClass).default.LimbMult;

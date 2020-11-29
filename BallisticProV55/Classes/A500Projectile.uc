@@ -25,15 +25,6 @@ simulated event PostBeginPlay()
 	VelocityDir = Rotation;
 }
 
-simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
-{
-	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
-	
-	Dmg *= 1 + 0.5 * FMin(default.LifeSpan - LifeSpan, 0.3);
-
-	return Other;
-}
-
 simulated function InitProjectile()
 {
 	Super.InitProjectile();
@@ -164,7 +155,9 @@ defaultproperties
      TrailClass=Class'BallisticProV55.A500ProjectileTrail'
      MyRadiusDamageType=Class'BallisticProV55.DTA500Blast'
      bUsePositionalDamage=False
-     
+
+     MaxDamageGainFactor=0.5
+     DamageGainEndTime=0.3
      
      DamageTypeHead=Class'BallisticProV55.DTA500BlastHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'

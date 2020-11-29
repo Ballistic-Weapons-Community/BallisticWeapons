@@ -20,7 +20,7 @@ defaultproperties
      bSnipingDamage=True
      InvasionDamageScaling=2.000000
      DamageIdent="Sniper"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=100
      AimDisplacementDuration=0.300000
      WeaponClass=Class'BallisticProV55.R78Rifle'

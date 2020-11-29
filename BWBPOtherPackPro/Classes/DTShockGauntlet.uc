@@ -16,7 +16,7 @@ defaultproperties
      FlashThreshold=55
      FlashV=(X=400.000000,Y=400.000000,Z=1000.000000)
      FlashF=0.100000
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=40
      AimDisplacementDuration=0.3
      bCanBeBlocked=True

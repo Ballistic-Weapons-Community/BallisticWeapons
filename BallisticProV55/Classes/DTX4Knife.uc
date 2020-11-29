@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class DTX4Knife extends DT_BWBlade;
 
@@ -18,7 +18,7 @@ defaultproperties
      DamageIdent="Melee"
 	 BlockFatiguePenalty=0.1
      AimDisplacementDamageThreshold=40
-     AimDisplacementDuration=1.400000
+     AimDisplacementDuration=0.5
      DamageDescription=",Slash,Stab,"
      WeaponClass=Class'BallisticProV55.X4Knife'
      DeathString="%k cut up %o like a paper-shredder with %kh X4 knife."

@@ -16,7 +16,7 @@ defaultproperties
      DeathStrings(3)="%k launched a HAMR round straight into %o's ear."
      InvasionDamageScaling=2.000000
      DamageIdent="Ordnance"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=150
      WeaponClass=Class'BallisticProV55.MACWeapon'
      DeathString="%o was completely obliterated by %k's HAMR cannon."

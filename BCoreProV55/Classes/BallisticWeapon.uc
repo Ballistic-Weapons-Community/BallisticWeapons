@@ -4207,6 +4207,7 @@ simulated function Rotator GetPlayerAim(optional bool bFire)
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
 	local class<BallisticDamageType> BDT;
+    local float DisplaceDuration;
 	
 	if (InstigatedBy != None && InstigatedBy.Controller != None && InstigatedBy.Controller.SameTeamAs(InstigatorController))
 		return;
@@ -4216,8 +4217,15 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	
 	BDT = class<BallisticDamageType>(DamageType);
 	
-	if (BDT != None && BDT.default.bDisplaceAim && Damage >= BDT.default.AimDisplacementDamageThreshold)
-		AimComponent.DisplaceAim(Damage, BDT.default.AimDisplacementDamageThreshold, BDT.default.AimDisplacementDuration); 				
+	if (BDT != None && BDT.static.Displaces() && Damage >= BDT.default.AimDisplacementDamageThreshold)
+    {
+        DisplaceDuration = BDT.default.AimDisplacementDuration;
+
+        if (BDT.static.ScalingDisplace())
+            DisplaceDuration *= float(Damage) / float(BDT.default.AimDisplacementDamageThreshold);
+
+         AimComponent.DisplaceAim(DisplaceDuration);	
+    }			
 		
 	if (AimKnockScale == 0)
 		return;
@@ -4229,7 +4237,7 @@ final simulated final function ClientDisplaceAim(float Duration)
 {
 	if (Level.NetMode != NM_Client)
 		return;
-	AimComponent.DisplaceAim(0, 0, Duration);
+	AimComponent.DisplaceAim(Duration);
 }
 
 simulated function ClientPlayerDamaged(int Damage)

@@ -41,7 +41,7 @@ defaultproperties
      bHeaddie=True
      InvasionDamageScaling=2.000000
      DamageIdent="Sniper"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=150
      WeaponClass=Class'BallisticProV55.R78Rifle'
      DeathString="%o's head was removed from the scene by %k's R78."

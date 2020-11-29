@@ -18,22 +18,6 @@ simulated function bool AllowFire()
 	return Super.AllowFire();
 }
 
-simulated function vector GetFireSpread()
-{
-	local float fX;
-	local Rotator R;
-
-	if (BW.bScopeView)
-		return super.GetFireSpread();
-	else
-	{
-		fX = frand();
-		R.Yaw =  512 * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-		R.Pitch = 512 * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
-		return Vector(R);
-	}
-}
-
 simulated function PlayStartHold()
 {
 	HoldTime = FMax(DecayCharge,0.1);

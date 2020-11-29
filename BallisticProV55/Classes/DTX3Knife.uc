@@ -16,7 +16,7 @@ defaultproperties
      DeathStrings(3)="%o lurched onto %k's outstretched X3."
      DamageIdent="Melee"
      AimDisplacementDamageThreshold=25
-     AimDisplacementDuration=1.200000
+     AimDisplacementDuration=0.5
 	 BlockFatiguePenalty=0.1
      WeaponClass=Class'BallisticProV55.X3Knife'
      DeathString="%k viciously shanked %o with the X3."

@@ -60,6 +60,6 @@ function SetStreakThresholds()
 
 defaultproperties
 {
-     KS1Curve=(Points=((InVal=1.000000, OutVal=1.000000),(InVal=2.000000,OutVal=2.000000),(InVal=4.000000,OutVal=3.000000),(InVal=5.000000,OutVal=4.000000),(InVal=6.000000,OutVal=5.000000),(InVal=7.500000,OutVal=6.000000),(InVal=8.000000,OutVal=7.000000),(InVal=10.000000,OutVal=7.000000)))
-     KS2Curve=(Points=((InVal=1.000000, OutVal=2.000000),(InVal=2.000000,OutVal=4.000000),(InVal=4.000000,OutVal=6.000000),(InVal=5.000000,OutVal=9.000000),(InVal=6.000000,OutVal=10.000000),(InVal=7.500000,OutVal=12.000000),(InVal=8.000000,OutVal=14.000000),(InVal=10.000000,OutVal=14.000000)))
+     KS1Curve=(Points=((InVal=1.000000,OutVal=1.000000),(InVal=2.000000,OutVal=2.000000),(InVal=4.000000,OutVal=3.000000),(InVal=5.000000,OutVal=4.000000),(InVal=6.000000,OutVal=5.000000),(InVal=7.500000,OutVal=6.000000),(InVal=8.000000,OutVal=7.000000),(InVal=10.000000,OutVal=7.000000)))
+     KS2Curve=(Points=((InVal=1.000000,OutVal=2.000000),(InVal=2.000000,OutVal=4.000000),(InVal=4.000000,OutVal=6.000000),(InVal=5.000000,OutVal=9.000000),(InVal=6.000000,OutVal=10.000000),(InVal=7.500000,OutVal=12.000000),(InVal=8.000000,OutVal=14.000000),(InVal=10.000000,OutVal=14.000000)))
 }

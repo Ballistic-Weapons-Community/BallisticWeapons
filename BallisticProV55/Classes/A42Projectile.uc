@@ -124,6 +124,10 @@ defaultproperties
      TrailClass=Class'BallisticProV55.A42TrailEmitter'
      MyRadiusDamageType=Class'BallisticProV55.DTA42Skrith'
      bUsePositionalDamage=True
+
+     MaxDamageGainFactor=0.35
+     DamageGainStartTime=0.05
+     DamageGainEndTime=0.25
 	 
 	 Damage=30.000000
      

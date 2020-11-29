@@ -14,23 +14,6 @@ replication
 		bComboHit;
 }
 
-static function float ScaleDistanceDamage(float lifespan)
-{
-	if (class'RSDarkFastProjectile'.default.LifeSpan - lifespan > 0.05)
-		return 1 + (0.75 * (FMin(class'RSDarkFastProjectile'.default.LifeSpan - lifespan, 0.4) / 0.4));
-		
-	return 1;
-}
-
-simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
-{
-	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
-	
-	Dmg *= ScaleDistanceDamage(LifeSpan);
-	
-	return Other;
-}
-
 simulated event PostNetReceive()
 {
 	if (bComboHit)
@@ -279,17 +262,20 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_RSDarkProjectile'
      PenetrateManager=Class'BallisticProV55.IM_RSDarkProjectile'
      bRandomStartRotaion=False
-     AccelSpeed=100000.000000
+     AccelSpeed=80000.000000
      TrailClass=Class'BallisticProV55.RSDark2Trail'
      MyRadiusDamageType=Class'BallisticProV55.DT_RSDarkFast'
      bUsePositionalDamage=True
      
+     MaxDamageGainFactor=0.5
+     DamageGainStartTime=0.05
+     DamageGainEndTime=0.2
      
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=5500.000000
-     MaxSpeed=14000.000000
+     Speed=4000.000000
+     MaxSpeed=10000.000000
      bSwitchToZeroCollision=True
-     Damage=36.000000
+     Damage=42.000000
      DamageRadius=0.000000
      MomentumTransfer=100.000000
      MyDamageType=Class'BallisticProV55.DT_RSDarkFast'
@@ -303,7 +289,7 @@ defaultproperties
      bSkipActorPropertyReplication=True
      bOnlyDirtyReplication=True
      AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire2FlyBy'
-     LifeSpan=4.000000
+     LifeSpan=1.000000
      DrawScale=2.000000
      SoundVolume=255
      SoundRadius=75.000000

@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(2)="%o mistakenly brought a gun to %k's ballistic knife fight."
      SimpleKillString="AK490 Bayonet Launched"
      bCanBeBlocked=False
-     bDisplaceAim=False
+     DisplacementType=DSP_None
      WeaponClass=Class'BWBPRecolorsPro.AK47AssaultRifle'
      DeathString="%k showed %o how in %kh country, KNIFE SHOOTS YOU."
      FemaleSuicide="%o played Russian roulette with her knife launcher."

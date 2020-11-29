@@ -16,10 +16,10 @@ defaultproperties
      DeathStrings(3)="%o experienced the power of %k's magnetic accelerator first hand."
      ShieldDamage=150
      DamageIdent="Sniper"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
 	 InvasionDamageScaling=2
      AimDisplacementDamageThreshold=100
-     AimDisplacementDuration=0.60000
+     AimDisplacementDuration=0.40000
      ImpactManager=Class'BWBPRecolorsPro.IM_ExpBullet'
      WeaponClass=Class'BWBPRecolorsPro.M2020GaussDMR'
      DeathString="%k sent a superaccelerated M2020 gauss round through %o."

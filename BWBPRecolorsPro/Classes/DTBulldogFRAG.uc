@@ -16,7 +16,7 @@ defaultproperties
      SimpleKillString="Bulldog FRAG-12"
      InvasionDamageScaling=2
      DamageIdent="Ordnance"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDuration=0.400000
      WeaponClass=Class'BWBPRecolorsPro.BulldogAssaultCannon'
      DeathString="%o was the lucky recipient of %k's FRAG-12."

@@ -19,7 +19,7 @@ defaultproperties
      bCanBeBlocked=True
      ShieldDamage=15
      DamageIdent="Melee"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=25
      AimDisplacementDuration=0.500000
      DamageDescription=",Blunt,Electro"

@@ -134,6 +134,7 @@ defaultproperties
      MyDamageType=Class'BWBPRecolorsPro.DTBulldogFRAG'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence
+     Physics=PHYS_Falling
      LightHue=25
      LightSaturation=100
      LightBrightness=200.000000

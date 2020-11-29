@@ -572,21 +572,8 @@ static function FireModeStats GetStats()
 {
 	local FireModeStats FS;
 
-	FS.DamageInt = default.FireModes[0].mProjClass.default.Damage;
-	FS.Damage = String(FS.DamageInt)@"-"@String(Int(FS.DamageInt * class'RSDarkFastProjectile'.static.ScaleDistanceDamage(0)));
-	FS.DPS = default.FireModes[0].mProjClass.default.Damage / default.FireModes[0].mFireRate;
-	
-    FS.HeadMult = class<BallisticProjectile>(default.FireModes[0].mProjClass).default.HeadMult;
-    FS.LimbMult = class<BallisticProjectile>(default.FireModes[0].mProjClass).default.LimbMult;
-
-	FS.TTK = default.FireModes[0].mFireRate * (Ceil(175/default.FireModes[0].mProjClass.default.Damage) - 1);
-	if (default.FireModes[0].mFireRate < 0.5)
-		FS.RPM = String(int((1 / default.FireModes[0].mFireRate) * 60))@default.ShotTypeString$"/min";
-	else FS.RPM = 1/default.FireModes[0].mFireRate@"times/second";
-	FS.RPShot = default.FireModes[0].mRecoil;
-	FS.RPS = default.FireModes[0].mRecoil / default.FireModes[0].mFireRate;
-	FS.FCPShot = default.FireModes[0].mFireChaos;
-	FS.FCPS = default.FireModes[0].mFireChaos / default.FireModes[0].mFireRate;
+	FS = Super.GetStats();
+    
 	FS.RangeOpt = "Max:"@(10000 / 52.5)@"metres";
 
 	return FS;

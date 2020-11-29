@@ -15,7 +15,7 @@ defaultproperties
      DeathStrings(2)="%k flicked a knife into %o's flesh."
      bCanBeBlocked=False
      DamageIdent="Melee"
-     bDisplaceAim=False
+     DisplacementType=DSP_None
      WeaponClass=Class'BallisticProV55.X3Knife'
      DeathString="%k pegged %o with %kh X3."
      FemaleSuicide="%o threw a knife at herself."

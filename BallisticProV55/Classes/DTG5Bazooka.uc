@@ -16,7 +16,7 @@ defaultproperties
      AimedString="Scoped"
      InvasionDamageScaling=3.000000
      DamageIdent="Ordnance"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=100
      AimDisplacementDuration=0.700000
      WeaponClass=Class'BallisticProV55.G5Bazooka'

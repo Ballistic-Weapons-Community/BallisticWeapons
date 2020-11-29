@@ -17,9 +17,9 @@ defaultproperties
      SimpleKillString="Longhorn Grenade Impact"
      InvasionDamageScaling=2.000000
      DamageIdent="Ordnance"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=120
-     AimDisplacementDuration=0.800000
+     AimDisplacementDuration=0.7
      WeaponClass=Class'BWBPRecolorsPro.LonghornLauncher'
      DeathString="%o grabbed %k's Longhorn by the horns."
      FemaleSuicide="%o tripped on her Longhorn charge."

@@ -20,22 +20,6 @@ simulated event PostNetReceive()
 		Explode(Location, vect(0,0,1));
 }
 
-static function float ScaleDistanceDamage(float lifespan)
-{
-	if (class'RSNovaFastProjectile'.default.LifeSpan - lifespan > 0.05)
-		return 1 + (0.75 * (FMin(class'RSNovaFastProjectile'.default.LifeSpan - lifespan, 0.4) / 0.4));
-		
-	return 1;
-}
-
-simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
-{
-	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
-	
-	Dmg *= ScaleDistanceDamage(LifeSpan);
-	
-	return Other;
-}
 // Spawn impact effects, run BlowUp() and then die.
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
@@ -250,6 +234,9 @@ defaultproperties
      MyRadiusDamageType=Class'BallisticProV55.DT_RSNovaFast'
      bUsePositionalDamage=True
      
+     MaxDamageGainFactor=0.6
+     DamageGainStartTime=0.05
+     DamageGainEndTime=0.25
      
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000

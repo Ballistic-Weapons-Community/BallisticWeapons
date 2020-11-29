@@ -19,9 +19,9 @@ defaultproperties
      BloodManagerName="BallisticProV55.BloodMan_Slash"
      bCanBeBlocked=True
      ShieldDamage=50
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      bMetallic=True
-     AimDisplacementDuration=1.500000
+     AimDisplacementDuration=0.5
      DamageDescription=",Slash,"
      bInstantHit=True
      PawnDamageSounds(0)=SoundGroup'BallisticSounds2.Knife.KnifeFlesh'

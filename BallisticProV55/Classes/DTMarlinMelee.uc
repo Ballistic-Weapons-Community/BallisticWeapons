@@ -14,9 +14,9 @@ defaultproperties
      DeathStrings(1)="%o crumpled and fell before %k's Redwood rifle."
      DeathStrings(2)="%k's Deermaster stock pulverised the life out of %o."
      DamageIdent="Melee"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=60
-     AimDisplacementDuration=1.700000
+     AimDisplacementDuration=0.65
      WeaponClass=Class'BallisticProV55.MarlinRifle'
 	 BlockFatiguePenalty=0.25
      DeathString="%k smashed %o's chest with the back of %kh Deermaster."

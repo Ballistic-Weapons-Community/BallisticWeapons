@@ -12,7 +12,7 @@ defaultproperties
 {
      SimpleKillString="HAMR Self-Damage"
      DamageIdent="Ordnance"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      WeaponClass=Class'BallisticProV55.MACWeapon'
      DeathString="Damagetype bug - HAMR self damage killed another player."
      FemaleSuicide="%o's HAMR knocked her shoulder out."

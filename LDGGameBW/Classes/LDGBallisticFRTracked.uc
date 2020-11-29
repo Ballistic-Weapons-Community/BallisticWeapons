@@ -331,7 +331,6 @@ function int ReduceDamage(int Damage, pawn injured, pawn instigatedBy, vector Hi
 	local Misc_PRI PRI;
 	local int OldDamage;
 	local int NewDamage;
-    local int RealDamage;
 	local float Score;
 	local float RFF;
 	local vector EyeHeight;

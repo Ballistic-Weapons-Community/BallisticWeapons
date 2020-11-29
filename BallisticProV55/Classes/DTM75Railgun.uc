@@ -43,7 +43,7 @@ defaultproperties
      bSnipingDamage=True
      InvasionDamageScaling=2
      DamageIdent="Sniper"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=110
      AimDisplacementDuration=0.450000
      DamageDescription=",Bullet,Electro,"

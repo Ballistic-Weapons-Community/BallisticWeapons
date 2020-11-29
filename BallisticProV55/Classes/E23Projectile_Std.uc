@@ -8,16 +8,6 @@
 //=============================================================================
 class E23Projectile_Std extends BallisticProjectile;
 
-simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
-{
-	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
-	
-	if (default.LifeSpan - LifeSpan > 0.1)
-		Dmg *= 1 + 0.8 * FMin(default.LifeSpan - LifeSpan - 0.1, 0.4) / 0.4;
-		
-	return Other;
-}
-
 simulated function ProcessTouch (Actor Other, vector HitLocation)
 {
 	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
@@ -112,6 +102,9 @@ defaultproperties
      MyRadiusDamageType=Class'BallisticProV55.DTE23Plasma'
      bUsePositionalDamage=True
      
+     MaxDamageGainFactor=0.6
+     DamageGainStartTime=0.05
+     DamageGainEndTime=0.25
      
      DamageTypeHead=Class'BallisticProV55.DTE23PlasmaHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'

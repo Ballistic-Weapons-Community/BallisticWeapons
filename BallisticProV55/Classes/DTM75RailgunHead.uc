@@ -41,9 +41,9 @@ defaultproperties
      bHeaddie=True
      InvasionDamageScaling=1.500000
      DamageIdent="Sniper"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=150
-     AimDisplacementDuration=1.000000
+     AimDisplacementDuration=0.75
      WeaponClass=Class'BallisticProV55.M75Railgun'
      DeathString="%o's mad eyed head got caught in %k's corkscrew."
      FemaleSuicide="%o derailed herself."

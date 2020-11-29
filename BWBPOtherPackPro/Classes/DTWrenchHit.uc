@@ -9,11 +9,11 @@ defaultproperties
      DeathStrings(4)="%k 'fixed' %o."
      DeathStrings(5)="%k realigned %o's anatomy."
      DamageIdent="Melee"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
 	 BlockFatiguePenalty=0.4
 	 BlockPenetration=0.25
      AimDisplacementDamageThreshold=60
-     AimDisplacementDuration=1.000000
+     AimDisplacementDuration=0.75
      WeaponClass=Class'BWBPOtherPackPro.WrenchWarpDevice'
      DeathString="%k permanently adjusted %o's attitude."
      FemaleSuicide="%o adjusted her own attitude."

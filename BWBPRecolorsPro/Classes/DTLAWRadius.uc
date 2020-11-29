@@ -24,7 +24,7 @@ defaultproperties
      SimpleKillString="LAW Rocket"
      InvasionDamageScaling=3.000000
      DamageIdent="Killstreak"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=100
      AimDisplacementDuration=0.500000
      WeaponClass=Class'BWBPRecolorsPro.LAWLauncher'

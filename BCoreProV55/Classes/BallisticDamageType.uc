@@ -11,6 +11,13 @@
 //=============================================================================
 class BallisticDamageType extends WeaponDamageType config(BallisticProV55);
 
+enum EDisplacementType
+{
+    DSP_None,
+    DSP_Linear,
+    DSP_Scaling
+};
+
 var() localized Array<string>		DeathStrings;					// Multiple deathstrings may be interesting...
 var() localized Array<string>		FemaleSuicides, MaleSuicides;	// Multiple suicide messages
 var() localized string				SimpleKillString, SimpleSuicideString;
@@ -42,7 +49,7 @@ var() bool 							bHeaddie; 			// Is a headshot damagetype
 var() bool							bIgnoredOnLifts;	//If used against a player on a lift, or exiting a lift, this damagetype will be ignored completely
 var() float							InvasionDamageScaling; // Scale the damage by this in Invasion (because Invasion requires different balance to PvP)
 var string							DamageIdent;		// The stats slot this damagetype fits into
-var() bool							bDisplaceAim;		// This damagetype forcibly displaces the weapon if it hits
+var() EDisplacementType			    DisplacementType;		// This damagetype forcibly displaces the weapon if it hits
 var() bool							bMetallic; // This damagetype is delivered by means of a metal object (bullet, knife, etc)
 var()	int							AimDisplacementDamageThreshold;
 var() float							AimDisplacementDuration;
@@ -335,6 +342,16 @@ static function bool DoSeverStump (Pawn Victim, name Bone, vector HitRay, int Da
 	return true;
 }
 
+static final function bool Displaces()
+{
+    return default.DisplacementType != DSP_None;
+}
+
+static final function bool ScalingDisplace()
+{
+    return default.DisplacementType == DSP_Scaling;
+} 
+
 defaultproperties
 {
 	bAimable=True
@@ -364,6 +381,7 @@ defaultproperties
 	bKUseTearOffMomentum=True
 	bExtraMomentumZ=False
 	bDirectDamage=False
+    DisplacementType=DSP_None
 	BlockFatiguePenalty=0.1
 	TransientSoundVolume=1.000000
 	TransientSoundRadius=64.000000

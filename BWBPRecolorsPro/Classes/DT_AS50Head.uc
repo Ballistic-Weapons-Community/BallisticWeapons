@@ -40,9 +40,9 @@ defaultproperties
      bHeaddie=True
      InvasionDamageScaling=1.5
      DamageIdent="Sniper"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=100
-     AimDisplacementDuration=0.400000
+     AimDisplacementDuration=0.500000
      DamageDescription=",Bullet,Flame,"
      WeaponClass=Class'BWBPRecolorsPro.AS50Rifle'
      DeathString="%k's FSSG-50 assassinated %o with a headshot."

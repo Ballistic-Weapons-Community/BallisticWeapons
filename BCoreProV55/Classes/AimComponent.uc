@@ -553,27 +553,19 @@ private final simulated function TickLongGun (float DT)
 //=============================================================
 // Weapon Displacement
 //=============================================================
-final simulated function DisplaceAim(int Damage, int DamageThreshold, float Duration)
+final simulated function DisplaceAim(float Duration)
 {
-    local float DisplaceDuration;
+    Duration = FMin(2.0f, Duration * DisplaceDurationMult);
 
     if (Level.TimeSeconds + Duration <= DisplaceEndTime)
         return;
 
-    DisplaceDuration = FMin(2.0f, Duration * DisplaceDurationMult);
+    DisplaceEndTime = Level.TimeSeconds + Duration;
 
-    if (DamageThreshold > 0)
-        DisplaceDuration *= float(Damage) / float(DamageThreshold);
+    BW.OnWeaponDisplaced();
 
-    if (Level.TimeSeconds + DisplaceDuration > DisplaceEndTime)
-    {
-        DisplaceEndTime = Level.TimeSeconds + DisplaceDuration;
-
-        BW.OnWeaponDisplaced();
-
-        if (BW.Role == ROLE_Authority)
-            BW.ClientDisplaceAim(DisplaceDuration);
-    }
+    if (BW.Role == ROLE_Authority)
+        BW.ClientDisplaceAim(Duration);
 }
 
 private final simulated function TickDisplacement(float DT)

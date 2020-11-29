@@ -19,23 +19,6 @@ simulated function PostBeginPlay()
 	StartLocation = Location;
 }
 
-static function float ScaleDistanceDamage(float lifespan)
-{
-	if (class'A73Projectile'.default.LifeSpan - lifespan > 0.05)
-		return 1 + 0.75 * FMin(class'A73Projectile'.default.LifeSpan - lifespan - 0.05, 0.25) / 0.25;
-		
-	return 1;
-}
-
-simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
-{
-	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
-	
-	Dmg *= ScaleDistanceDamage(LifeSpan);
-	
-	return Other;
-}
-
 // Projectile grows as it comes out the gun...
 simulated function Tick(float DT)
 {
@@ -196,6 +179,9 @@ defaultproperties
      MyRadiusDamageType=Class'BallisticProV55.DTA73Skrith'
      bUsePositionalDamage=True
      
+     MaxDamageGainFactor=0.75
+     DamageGainStartTime=0.05
+     DamageGainEndTime=0.25
      
      DamageTypeHead=Class'BallisticProV55.DTA73SkrithHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'

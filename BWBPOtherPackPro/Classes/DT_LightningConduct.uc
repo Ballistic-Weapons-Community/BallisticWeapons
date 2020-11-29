@@ -16,9 +16,9 @@ defaultproperties
 	 SimpleKillString="ARC-79 Lightning Conduction"
      InvasionDamageScaling=2.000000
      DamageIdent="Energy"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=50
-     AimDisplacementDuration=0.800000
+     AimDisplacementDuration=0.400000
      WeaponClass=Class'BWBPOtherPackPro.LightningRifle'
      DeathString="%o was fried by %k's lightning rifle conduction."
      FemaleSuicide="%o was fried by her own lightning rifle conduction."

@@ -16,9 +16,9 @@ defaultproperties
      bCanBeBlocked=True
      ShieldDamage=15
      DamageIdent="Melee"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
 	 InvasionDamageScaling=3
-     AimDisplacementDuration=1.500000
+     AimDisplacementDuration=0.75
      DamageDescription=",Blunt,Electro"
      ImpactManager=Class'BallisticProV55.IM_MRS138TazerHit'
      WeaponClass=Class'BallisticProV55.MRS138Shotgun'

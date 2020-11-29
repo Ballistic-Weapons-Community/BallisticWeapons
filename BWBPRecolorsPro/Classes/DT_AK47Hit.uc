@@ -14,10 +14,10 @@ defaultproperties
      DeathStrings(1)="%k beat %o with %kh Wooden Stock of Killing."
      DeathStrings(2)="%o was killed by a raving %k's AK-490 stock."
      DamageIdent="Melee"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
 	 BlockFatiguePenalty=0.25
      AimDisplacementDamageThreshold=55
-     AimDisplacementDuration=1.700000
+     AimDisplacementDuration=0.65
      WeaponClass=Class'BWBPRecolorsPro.AK47AssaultRifle'
      DeathString="%k RAGED LIKE BEAR and beat %o's face in with an AK!"
      FemaleSuicide="%o beat herself to death with the AK47."

@@ -28,43 +28,21 @@ simulated function Tick(float DT)
 	SetDrawScale3D(DS);
 }
 
-//===============================================================
-// ScaleDistanceDamage
-//
-// A73 power projectile gains an additional 100% damage 
-// over 0.7 seconds of travel time
-//================================================================
-static function float ScaleDistanceDamage(float lifespan)
-{
-	if (class'A73PowerProjectile'.default.LifeSpan - lifespan > 0.05)
-		return 1 + 1 * FMin(class'A73PowerProjectile'.default.LifeSpan - lifespan - 0.05, 0.7) / 0.7;
-		
-	return 1;
-}
-
 // Do radius damage;
 function BlowUp(vector HitLocation)
 {
 	if (Role < ROLE_Authority)
 		return;
 	if (DamageRadius > 0)
-		TargetedHurtRadius(Damage * 0.5 * ScaleDistanceDamage(lifespan), DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
+		TargetedHurtRadius(Damage * 0.5 * GetDamageOverRangeFactor(), DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
 	MakeNoise(1.0);
-}
-
-simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
-{
-	Super(BallisticProjectile).GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
-	
-    Dmg *= ScaleDistanceDamage(LifeSpan);
-	
-	return Other;
 }
 
 simulated function InitProjectile ()
 {
 	InitEffects();
 }
+
 // Special HurtRadius function. This will hurt everyone except the chosen victim.
 // Useful if you want to spare a directly hit enemy from the radius damage
 simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, optional Actor Victim )
@@ -78,7 +56,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 	bHurtEntry = true;
 	
-	DamageRadius = default.DamageRadius + 75 * FMin((default.LifeSpan - LifeSpan)/3, 1);
+	DamageRadius += 75 * FMin((default.LifeSpan - LifeSpan)/3, 1);
 	
 	foreach VisibleCollidingActors( class 'Actor', Target, DamageRadius, HitLocation )
 	{
@@ -117,6 +95,9 @@ defaultproperties
      TrailClass=Class'BallisticProV55.A73PowerTrailEmitter'
      MyRadiusDamageType=Class'BallisticProV55.DTA73SkrithPowerRadius'
      bUsePositionalDamage=False
+     MaxDamageGainFactor=1.00
+     DamageGainStartTime=0.05
+     DamageGainEndTime=0.7
      ShakeRadius=300.000000
      MotionBlurRadius=250.000000
      MotionBlurFactor=2.000000

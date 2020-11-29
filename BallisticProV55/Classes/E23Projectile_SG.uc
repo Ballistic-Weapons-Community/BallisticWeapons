@@ -112,7 +112,9 @@ defaultproperties
      MyRadiusDamageType=Class'BallisticProV55.DTE23Plasma'
      bUsePositionalDamage=True
      
-     
+     MaxDamageGainFactor=0.25
+     DamageGainEndTime=0.3
+
      DamageTypeHead=Class'BallisticProV55.DTE23PlasmaHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000

@@ -14,10 +14,10 @@ defaultproperties
      DeathStrings(1)="%o was beat down by %k's trench gun."
      DeathStrings(2)="%k's trench gun cracked a couple of %o's ribs."
      DamageIdent="Melee"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
 	 BlockFatiguePenalty=0.25
      AimDisplacementDamageThreshold=60
-     AimDisplacementDuration=1.700000
+     AimDisplacementDuration=0.65
      WeaponClass=Class'BWBPOtherPackPro.TrenchGun'
      DeathString="%k pummeled %o with %kh trench gun stock."
      FemaleSuicide="%o bashed herself with the trench gun."

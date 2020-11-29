@@ -1,14 +1,5 @@
 class RaygunProjectile extends BallisticProjectile;
 
-simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
-{
-	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
-	
-	Dmg *= 1 + 0.4 * FMin(default.LifeSpan - LifeSpan, 1);
-	
-	return Other;
-}
-
 // Spawn impact effects, run BlowUp() and then die.
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
@@ -61,16 +52,19 @@ function DoDamage (Actor Other, vector HitLocation)
 defaultproperties
 {
      ImpactManager=Class'BWBPOtherPackPro.IM_Raygun'
-     AccelSpeed=35000.000000
+     AccelSpeed=80000.000000
      TrailClass=Class'BWBPOtherPackPro.RaygunShotTrail'
      MyRadiusDamageType=Class'BWBPOtherPackPro.DTRaygun'
      bUsePositionalDamage=True
      
+     MaxDamageGainFactor=0.5
+     DamageGainStartTime=0.05
+     DamageGainEndTime=0.2
      
      DamageTypeHead=Class'BWBPOtherPackPro.DTRaygun'
-     Speed=5000.000000
-     MaxSpeed=8500.000000
-     Damage=41.000000
+     Speed=4000.000000
+     MaxSpeed=10000.000000
+     Damage=38.000000
      MomentumTransfer=4500.000000
      MyDamageType=Class'BWBPOtherPackPro.DTRaygun'
      ExploWallOut=12.000000
@@ -80,7 +74,7 @@ defaultproperties
      LightBrightness=64.000000
      LightRadius=24.000000
      bDynamicLight=True
-     LifeSpan=9.000000
+     LifeSpan=1.000000
      Skins(0)=FinalBlend'BallisticEffects.GunFire.A73ProjFinal'
      Skins(1)=FinalBlend'BallisticEffects.GunFire.A73Proj2Final'
      Style=STY_Additive

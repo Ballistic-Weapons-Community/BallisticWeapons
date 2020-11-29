@@ -16,9 +16,9 @@ defaultproperties
      DeathStrings(3)="%k's shield cleared a path through %o."
      DeathStrings(4)="%k's shield slam sent %o flying."
      DamageIdent="Melee"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=60
-     AimDisplacementDuration=1.000000
+     AimDisplacementDuration=0.5
      WeaponClass=Class'BWBPOtherPackPro.BallisticShieldWeapon'
      DeathString="%k bashed %o with %kh shield."
      FemaleSuicide="%o came back on her shield, not with it."

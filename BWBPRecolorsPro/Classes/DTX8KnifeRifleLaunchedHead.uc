@@ -16,7 +16,7 @@ defaultproperties
      SimpleKillString="AK490 Bayonet Launched"
      bCanBeBlocked=False
      bHeaddie=True
-     bDisplaceAim=False
+     DisplacementType=DSP_None
      WeaponClass=Class'BWBPRecolorsPro.AK47AssaultRifle'
      DeathString="%k's knife defied all odds to enter %o's vodka-blurred eye."
      FemaleSuicide="%o's AK490 bayonet gave her a surprise."

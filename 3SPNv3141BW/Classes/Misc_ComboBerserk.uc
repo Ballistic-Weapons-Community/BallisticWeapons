@@ -11,33 +11,34 @@ function StartEffect(xPawn P)
 function Timer()
 {
 	local BallisticWeapon heldWeapon;
-	local int ammo;
+    local class<BallisticAmmo> ammo, sec_ammo;
+	local int ammo_count;
 	local float add;
 	
 	if(Pawn(Owner).Role == ROLE_Authority)
 	{
 		heldWeapon = BallisticWeapon(Pawn(Owner).Weapon);
 		
-		if(heldWeapon == None)
+		if(heldWeapon == None || heldWeapon.bWT_Super)
 			return;
 		
-		ammo = heldWeapon.AmmoAmount(0);
+		ammo_count = heldWeapon.AmmoAmount(0);
+
+        ammo = heldWeapon.GetAmmoClass(0);
+        sec_ammo = heldWeapon.GetAmmoClass(1);
 		
-		if(heldWeapon.GetAmmoClass(0) != None)
-		{
-			if(heldWeapon.GetAmmoClass(0).default.InitialAmount > 4)
-			{
-				add = Max(heldWeapon.GetAmmoClass(0).default.InitialAmount * 0.1, 1);
-				heldWeapon.AddAmmo(add, 0);
-			}
-		}
+		if(ammo != None && !ammo.bNoPackResupply && ammo.default.InitialAmount > 4)
+        {
+            add = Max(heldWeapon.GetAmmoClass(0).default.InitialAmount * 0.1, 1);
+            heldWeapon.AddAmmo(add, 0);
+        }
 		
-		if(heldWeapon.GetAmmoClass(1) == None || heldWeapon.GetAmmoClass(0) == heldWeapon.GetAmmoClass(1))
+		if(sec_ammo == None || ammo == sec_ammo)
 			return;
 		
-		ammo = heldWeapon.AmmoAmount(1);
+		ammo_count = heldWeapon.AmmoAmount(1);
 		
-		if(heldWeapon.GetAmmoClass(1).default.InitialAmount > 4)
+		if(!sec_ammo.bNoPackResupply && sec_ammo.default.InitialAmount > 4)
 		{
 			add = Max(heldWeapon.GetAmmoClass(1).default.InitialAmount * 0.1, 1);
 			heldWeapon.AddAmmo(add, 1);

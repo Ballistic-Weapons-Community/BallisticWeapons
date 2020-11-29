@@ -10,7 +10,10 @@ var bool bNoPackResupply;
 
 static function int GetKillResupplyAmmo()
 {
-	return default.InitialAmount/3;
+    if (default.InitialAmount > 0)
+	    return default.InitialAmount/3;
+        
+    return default.MaxAmmo / 6;
 }
 
 function bool AddAmmo(int AmmoToAdd)

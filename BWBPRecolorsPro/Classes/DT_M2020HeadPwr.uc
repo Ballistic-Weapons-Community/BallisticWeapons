@@ -36,9 +36,9 @@ defaultproperties
      AimedString="Scoped"
      bHeaddie=True
      DamageIdent="Sniper"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=150
-     AimDisplacementDuration=0.9
+     AimDisplacementDuration=0.65
 	 InvasionDamageScaling=2
      WeaponClass=Class'BWBPRecolorsPro.M2020GaussDMR'
      DeathString="%o's head got in the way of %k's M2020 gauss round."

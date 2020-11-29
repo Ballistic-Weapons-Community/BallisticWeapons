@@ -14,9 +14,9 @@ defaultproperties
      DeathStrings(1)="%o was pummelled into a heap by %k with the M763."
      DeathStrings(2)="%k beat %o to a pulp with the M763."
      DamageIdent="Melee"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=60
-     AimDisplacementDuration=1.700000
+     AimDisplacementDuration=0.65
 	 BlockFatiguePenalty=0.25
      WeaponClass=Class'BallisticProV55.M763Shotgun'
      DeathString="%k bludgeoned %o to death in a wild frenzy with the M763."

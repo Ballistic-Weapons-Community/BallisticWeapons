@@ -50,6 +50,12 @@ var() bool					bTearOnExplode;			// If !bNetTemporary, tear this projectile off 
 var() float					NetTrappedDelay;		// How long to remain in nettrapped state before being destroyed
 var() bool					bUsePositionalDamage;	// Enable damage variation depending on hitlocation
 
+// damage over range
+var() float                 MaxDamageGainFactor;
+var() float                 DamageGainStartTime;
+var() float                 DamageGainEndTime;
+
+// positional damage modifiers
 var() float					HeadMult;		        // Multiplier for effect against head
 var() float					LimbMult;		        // Multiplier for effect against limb
 
@@ -451,7 +457,15 @@ simulated function bool CanPenetrate(Actor Other)
 		return false;
 	return true;
 }
-simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
+
+final function float GetDamageOverRangeFactor()
+{
+    if (default.LifeSpan - lifespan > DamageGainStartTime)
+        return 1f + MaxDamageGainFactor * FMin(default.LifeSpan - lifespan - DamageGainStartTime, DamageGainEndTime) / DamageGainEndTime;
+    return 1f;
+}
+
+function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
 {
 	local string	Bone;
 	local float		BoneDist;
@@ -460,6 +474,9 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 
 	Dmg = Damage;
 	DT = MyDamageType;
+
+    if (DamageGainEndTime > 0)
+        Dmg *= GetDamageOverRangeFactor();
 
 	if (!bUsePositionalDamage || Monster(Other) != None)
 		return Other;

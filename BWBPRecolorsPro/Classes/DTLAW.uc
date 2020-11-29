@@ -16,7 +16,7 @@ defaultproperties
      SimpleKillString="LAW Rocket"
      InvasionDamageScaling=3.000000
      DamageIdent="Killstreak"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDuration=1.000000
      WeaponClass=Class'BWBPRecolorsPro.LAWLauncher'
      DeathString="%o was disintegrated by %k's mini-nuke."

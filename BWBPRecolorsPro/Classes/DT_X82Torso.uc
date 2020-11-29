@@ -18,7 +18,7 @@ defaultproperties
      bSnipingDamage=True
      InvasionDamageScaling=2.000000
      DamageIdent="Sniper"
-     bDisplaceAim=True
+     DisplacementType=DSP_Linear
      AimDisplacementDuration=0.600000
      WeaponClass=Class'BWBPRecolorsPro.X82Rifle'
      DeathString="%k ripped up %o with a .50 BMG sniper round."

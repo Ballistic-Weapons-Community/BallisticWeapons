@@ -13,9 +13,9 @@ defaultproperties
      SimpleKillString="Trenchgun Electroshock Shell"
      FlashThreshold=0
      FlashV=(X=128.000000,Y=128.000000,Z=128.000000)
-     bDisplaceAim=True
+     DisplacementType=DSP_Scaling
      AimDisplacementDamageThreshold=10
-     AimDisplacementDuration=0.200000
+     AimDisplacementDuration=0.10000
      InvasionDamageScaling=2.000000
      bExtraMomentumZ=True
      DamageIdent="Shotgun"
@@ -23,7 +23,7 @@ defaultproperties
      DeathString="%k electrocuted %o with %kh modified trenchgun."
      FemaleSuicide="%o put the fork in the power outlet."
      MaleSuicide="%o put the spoon in the power outlet."
-	DamageDescription=",Shell,Electro,"
+	 DamageDescription=",Shell,Electro,"
      bCauseConvulsions=True
      bNeverSevers=True
      PawnDamageSounds(0)=Sound'PackageSounds4Pro.Misc.XM84-StunEffect'
