@@ -13,5 +13,5 @@ defaultproperties
      RemoteRole=ROLE_None
 	 RelativeRotation=(Roll=16384)
      Mesh=SkeletalMesh'BallisticProAnims.FMDLeft_TPm'
-     DrawScale=0.200000
+     DrawScale=0.225000
 }
