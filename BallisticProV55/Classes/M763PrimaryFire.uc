@@ -80,11 +80,11 @@ defaultproperties
      HipSpreadFactor=4.000000
      CutOffDistance=2048.000000
      CutOffStartRange=1024.000000
-     TraceCount=7
+     TraceCount=10
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=3072.000000,Max=3072.000000)
-     Damage=15.000000
+     Damage=10.000000
 
      RangeAtten=0.15000
      DamageType=Class'BallisticProV55.DTM763Shotgun'
@@ -106,8 +106,8 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BallisticSounds3.M763.M763Fire1',Volume=1.300000)
      FireAnim="FireCombined"
      FireEndAnim=
-     FireAnimRate=0.95
-     FireRate=0.80000
+     FireAnimRate=0.9
+     FireRate=0.85000
      AmmoClass=Class'BallisticProV55.Ammo_12Gauge'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

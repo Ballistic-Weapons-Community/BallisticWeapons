@@ -69,7 +69,7 @@ defaultproperties
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_ShotgunHE'
      ImpactManager=Class'BWBPRecolorsPro.IM_ShellHE'
      TraceRange=(Min=2048.000000,Max=2048.000000)
-     Damage=10.000000
+     Damage=9.000000
 
      RangeAtten=0.350000
      DamageType=Class'BWBPRecolorsPro.DT_SK410Shotgun'

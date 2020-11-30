@@ -11,23 +11,6 @@ simulated function PreBeginPlay()
 		SetStaticMesh(StaticMesh'BWBPOtherPackStatic.XOXO.X');
 }
 
-static function float ScaleDistanceDamage(float lifespan)
-{
-	if (class'XOXOProjectile'.default.LifeSpan - lifespan > 0.1)
-		return 1 + 0.75 * FMin(class'XOXOProjectile'.default.LifeSpan - lifespan - 0.1, 0.5) / 0.5;
-		
-	return 1;
-}
-
-simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
-{
-	Super.GetDamageVictim(Other, HitLocation, Dir, Dmg, DT);
-	
-	Dmg *= ScaleDistanceDamage(LifeSpan);
-	
-	return Other;
-}
-
 simulated function DoDamage(Actor Other, vector HitLocation)
 {
 	local class<DamageType> DT;
@@ -177,7 +160,10 @@ defaultproperties
      MyRadiusDamageType=Class'BWBPOtherPackPro.DTXOXOFast'
      bUsePositionalDamage=True
      
-     
+     MaxDamageGainFactor=0.6
+     DamageGainStartTime=0.05
+     DamageGainEndTime=0.25
+
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=5500.000000
      MaxSpeed=14000.000000
