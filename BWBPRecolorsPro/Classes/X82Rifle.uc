@@ -250,6 +250,9 @@ simulated event RenderOverlays (Canvas C)
 		SetRotation(Instigator.GetViewRotation());
 	}
 
+	if (bMeatVision)
+		DrawMeatVisionMode(C);
+
 	if (ScopeViewTex != None)
 	{
 		C.ColorModulate.W = 1;
@@ -264,9 +267,6 @@ simulated event RenderOverlays (Canvas C)
 		C.SetPos(C.SizeX - (C.SizeX - (C.SizeY*ScopeXScale))/2, C.OrgY);
 		C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ScopeXScale))/2, C.SizeY, 0, 0, 1, 1024);
 	}
-	
-	if (bMeatVision)
-		DrawMeatVisionMode(C);
 }
 
 simulated function OnScopeViewChanged()

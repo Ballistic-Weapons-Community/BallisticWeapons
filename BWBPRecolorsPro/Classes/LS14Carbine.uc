@@ -33,6 +33,8 @@ var	bool		bWantsToShoot;				//Are we interrupting reload?
 var	bool		bOverloaded;				//You exploded it.
 var float		lastModeChangeTime;
 
+var float 		SelfHeatLevel, SelfHeatDeclineTime;
+
 var() Material	StabBackTex;
 var(Gfx) Color ChargeColor;
 var(Gfx) vector RechargeOrigin;
@@ -57,6 +59,9 @@ replication
 	// Things the server should send to the client.
 	reliable if( bNetOwner && (Role==ROLE_Authority) )
 		Rockets;
+
+	reliable if (ROLE==ROLE_Authority)
+		ClientSetHeat;
 }
 
 simulated event PostNetBeginPlay()
@@ -80,6 +85,34 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 }
 
+simulated function AddHeat(float Amount, float DeclineTime)
+{
+	if (bBerserk)
+		Amount *= 0.75;
+		
+	SelfHeatLevel += Amount;
+	SelfHeatDeclineTime = FMax(Level.TimeSeconds + DeclineTime, SelfHeatDeclineTime);
+	
+	if (SelfHeatLevel >= 9.75)
+	{
+		SelfHeatLevel = 10;
+		class'BallisticDamageType'.static.GenericHurt (Instigator, 15, None, Instigator.Location, vect(0,0,0), class'DTLS14Overheat');
+		return;
+	}
+}
+
+simulated function ClientSetHeat(float NewHeat)
+{
+	SelfHeatLevel = NewHeat;
+}
+
+simulated event Tick (float DT)
+{
+	if (SelfHeatLevel > 0 && Level.TimeSeconds > SelfHeatDeclineTime)
+		SelfHeatLevel = FMax(SelfHeatLevel - 10 * DT, 0);
+	
+	super.Tick(DT);
+}
 
 // Only skips for alternate reload
 simulated function FirePressed(float F)
@@ -654,6 +687,11 @@ simulated function bool IsReloadingGrenade()
 
 function bool CanAttack(Actor Other)
 {
+	// avoid bot suicides
+	if (SelfHeatLevel > 11)
+		return false;
+
+
 	if (!IsGrenadeLoaded())
 	{
 		if (IsReloadingGrenade())
@@ -708,6 +746,11 @@ simulated function PlayShovelLoop()
 {
 	SetBoneScale(2, 1.0, Shells[2].ShellName);
 	SafePlayAnim(ShovelAnim, ShovelAnimRate, 0.0, , "RELOAD");
+}
+
+simulated function float ChargeBar()
+{
+	return SelfHeatLevel / 10;
 }
 
 defaultproperties
@@ -783,6 +826,7 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.800000
 	CurrentRating=0.800000
+	bShowChargingBar=True
 	bSniping=True
 	Description="LS-14 Laser Carbine||Manufacturer: UTC Defense Tech|Primary: Focused Photon Beam|Secondary: Mini Rockets"
 	Priority=194

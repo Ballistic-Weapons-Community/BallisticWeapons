@@ -28,9 +28,10 @@ defaultproperties
      TrailOffset=(X=-4.000000)
      MyRadiusDamageType=Class'BWBPRecolorsPro.DT_LS14RocketRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=4500.000000
-     MaxSpeed=65000.000000
-     Damage=100.000000
+     Speed=750.000000
+     MaxSpeed=9000.000000
+     AccelSpeed=6750.000000
+     Damage=70.000000
      DamageRadius=384.000000
      WallPenetrationForce=192
      MomentumTransfer=10000.000000

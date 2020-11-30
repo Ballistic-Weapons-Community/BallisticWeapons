@@ -16,6 +16,29 @@ var() sound			SpecialFireSound;
 
 var()	float			HeatPerShot;
 
+var 	float 			SelfHeatPerShot, SelfHeatDeclineDelay;
+
+simulated function bool AllowFire()
+{
+	if ((LS14Carbine(Weapon).SelfHeatLevel >= 10) || !super.AllowFire())
+		return false;
+	return true;
+}
+
+function PlayFiring()
+{
+	Super.PlayFiring();
+	LS14Carbine(BW).AddHeat(SelfHeatPerShot, SelfHeatDeclineDelay);
+}
+
+// Get aim then run trace...
+function DoFireEffect()
+{
+	Super.DoFireEffect();
+	if (Level.NetMode == NM_DedicatedServer)
+		LS14Carbine(BW).AddHeat(SelfHeatPerShot, SelfHeatDeclineDelay);
+}
+
 function InitEffects()
 {
 	super.InitEffects();
@@ -29,14 +52,18 @@ simulated function SwitchWeaponMode (byte NewMode)
 	
 	if (NewMode == 0)
 	{
-		HeatPerShot=default.HeatPerShot;
 		bIsDouble=false;
+		HeatPerShot=default.HeatPerShot;
+		SelfHeatPerShot=default.SelfHeatPerShot;
+		SelfHeatDeclineDelay=default.SelfHeatDeclineDelay;
 	}
 	
 	else
 	{
 		bIsDouble=true;
 		HeatPerShot=45;
+		SelfHeatPerShot=default.SelfHeatPerShot*2.5;
+		SelfHeatDeclineDelay=default.SelfHeatDeclineDelay*2;
 	}
 }
 
@@ -117,6 +144,8 @@ function FlashMuzzleFlash()
 
 defaultproperties
 {
+	 SelfHeatPerShot=0.900000
+	 SelfHeatDeclineDelay=0.5
      SpecialFireSound=Sound'PackageSounds4Pro.LS14.Gauss-FireDouble'
      HeatPerShot=15.000000
      TraceRange=(Min=30000.000000,Max=30000.000000)
