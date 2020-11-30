@@ -563,15 +563,16 @@ defaultproperties
      WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
      WeaponModes(1)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto")
      WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
-     CurrentWeaponMode=1
+	 CurrentWeaponMode=1
+	 BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      ScopeViewTex=Texture'BWBPSomeOtherPackTex.XM20B.XM20-ScopeView'
      ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
      ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=40.000000
 	 ZoomType=ZT_Smooth
      bNoMeshInScope=True
-     SightPivot=(Pitch=600,Roll=-1024)
-     SightOffset=(X=-10.000000,Y=9.7500000,Z=22.500000)
+     SightPivot=(Pitch=600)
+     SightOffset=(X=-10.000000,Y=11.7500000,Z=22.500000)
 	 ParamsClass=Class'XM20BWeaponParams'
      FireModeClass(0)=Class'BWBPOtherPackPro.XM20BPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.XM20BSecondaryFire'
