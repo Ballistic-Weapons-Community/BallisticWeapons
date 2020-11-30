@@ -275,7 +275,7 @@ defaultproperties
      Speed=4000.000000
      MaxSpeed=10000.000000
      bSwitchToZeroCollision=True
-     Damage=42.000000
+     Damage=40.000000
      DamageRadius=0.000000
      MomentumTransfer=100.000000
      MyDamageType=Class'BallisticProV55.DT_RSDarkFast'

@@ -23,7 +23,7 @@ defaultproperties
 		SightMoveSpeedFactor=1
 		SightingTime=0.250000
 		DisplaceDurationMult=0.75
-		MagAmmo=10
+		MagAmmo=8
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
     End Object 

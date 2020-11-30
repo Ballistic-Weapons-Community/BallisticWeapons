@@ -25,12 +25,12 @@ enum EGameStyle
 
 // Server Variables -----------------------------------------------------------
 // Weapon
-var() config EGameStyle	GameStyle;
-var() config float		AccuracyScale;		// Used for scaling general weapon accuracy.
-var() config float		RecoilScale;		// Used for scaling general weapon recoil.
-var() config bool		bNoJumpOffset;		// Prevents weapons shifting and being offset when jumping or sprinting
-var() config bool		bNoLongGun;			// Disable 'long gun' features
-var() config bool		bNoReloading;		// Disables reloading and weapons use boring old style ammo handling...
+var() globalconfig EGameStyle	GameStyle;
+var() globalconfig float		AccuracyScale;		// Used for scaling general weapon accuracy.
+var() globalconfig float		RecoilScale;		// Used for scaling general weapon recoil.
+var() globalconfig bool		    bNoJumpOffset;		// Prevents weapons shifting and being offset when jumping or sprinting
+var() globalconfig bool		    bNoLongGun;			// Disable 'long gun' features
+var() globalconfig bool		    bNoReloading;		// Disables reloading and weapons use boring old style ammo handling...
 // ----------------------------------------------------------------------------
 var struct RepInfo_BCore
 {
