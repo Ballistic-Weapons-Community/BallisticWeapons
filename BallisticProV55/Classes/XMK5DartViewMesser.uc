@@ -3,7 +3,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class XMK5DartViewMesser extends Actor;
 
@@ -66,7 +66,7 @@ simulated function AddImpulse(float Amount)
 defaultproperties
 {
      FlashF=-0.150000
-     FlashV=(X=825.000000,Y=900.000000,Z=825.000000)
+     FlashV=(X=128.000000,Y=128.000000,Z=128.000000)
      bHidden=True
      bOnlyRelevantToOwner=True
      bReplicateMovement=False

@@ -39,6 +39,8 @@ var bool            bUnlagged;                              // If true, this col
 var float           LastLocationUpdateTime;
 var InterpCurve     LocX, LocY, LocZ, CollRadius, CollHeight;   // Interpolation curves for determining location, collision radius and collision height for any given period in time
 var array<SavedRotation>  Rotations;
+
+var bool            PawnCollideActors, PawnBlockActors, PawnBlockPlayers;
 /**
 Update the pawn location for this tick.
 */
@@ -134,8 +136,19 @@ final function EnableUnlag(float PingTime)
     
     SetLocation(UnlaggedLocation);
     SetCollisionSize(UnlaggedRadius, UnlaggedHeight);
-    SetCollision(UnlaggedPawn.bCollideActors, UnlaggedPawn.bBlockActors, UnlaggedPawn.bBlockPlayers);
+
+    SetCollision(true, true, true);
+
+/*
+    PawnCollideActors = UnlaggedPawn.bCollideActors;
+    PawnBlockActors = UnlaggedPawn.bBlockActors;
+    PawnBlockPlayers = UnlaggedPawn.bBlockPlayers;
+    
     UnlaggedPawn.SetCollision(false, false, false);
+*/
+
+    UnlaggedPawn.bBlockZeroExtentTraces=False;
+    UnlaggedPawn.bBlockNonZeroExtentTraces=False;
 
     for (i = 0; i < Rotations.Length - 1 && Rotations[i].time >= UnlagTime; ++i);
 
@@ -169,11 +182,16 @@ final function DisableUnlag()
     if (!bUnlagged)
         return;
 
-    if (UnlaggedPawn != None && !UnlaggedPawn.bCollideActors && UnlaggedPawn.Health > 0)
+/*
+    if (UnlaggedPawn != None && UnlaggedPawn.Health > 0)
     {
         //log(Name @ "Pawn: Restoring collision parameters");
-        UnlaggedPawn.SetCollision(bCollideActors, bBlockActors, bBlockPlayers);
+        UnlaggedPawn.SetCollision(PawnCollideActors, PawnBlockActors, PawnBlockPlayers);
     }    
+*/
+
+    UnlaggedPawn.bBlockZeroExtentTraces=True;
+    UnlaggedPawn.bBlockNonZeroExtentTraces=True;
 
     SetCollision(false, false, false);
     bUnlagged = False;

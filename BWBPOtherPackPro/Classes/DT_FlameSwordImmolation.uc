@@ -12,7 +12,7 @@ defaultproperties
      SimpleKillString="Flame Sword Immolation"
      FlashThreshold=0
      FlashV=(X=750.000000,Y=250.000000)
-     FlashF=-0.050000
+     FlashF=-0.030000
      InvasionDamageScaling=2.000000
      DamageIdent="Melee"
      WeaponClass=Class'FlameSword'

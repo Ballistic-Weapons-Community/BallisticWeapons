@@ -31,14 +31,14 @@ function StartBerserk()
 {
 	super.StopBerserk();
 	if (XM20BCarbine(BW).bOvercharged)
-		FireRate=default.OverChargedFireRate*0.75;
+		FireRate= default.OverChargedFireRate * 0.75;
 }
 
 function StopBerserk()
 {
 	super.StopBerserk();
 	if (XM20BCarbine(BW).bOvercharged)
-		FireRate=default.OverChargedFireRate;
+		FireRate = default.OverChargedFireRate;
 }
 
 function StartSuperBerserk()
@@ -52,9 +52,7 @@ function StartSuperBerserk()
 simulated function bool AllowFire()
 {
 	if (LaserCharge > 0 && LaserCharge < MaxCharge)
-	{
 		return false;
-	}
 
 	if (!super.AllowFire())
 	{
@@ -78,7 +76,6 @@ simulated event Timer()
 		//Weapon.AmbientSound = None;
 	}
 }
-
 
 simulated function PlayPreFire()
 {    
@@ -271,7 +268,7 @@ defaultproperties
      PowerFireSound=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-Overcharge'
      RegularFireSound=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-LaserStart'
 	 
-     Damage=16
+     Damage=18
      RangeAtten=0.350000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPOtherPackPro.DT_XM20B_Body'
@@ -294,8 +291,8 @@ defaultproperties
 	 FireEndAnimCharged="LoopOpenEnd"
      TweenTime=0.000000
 	 PreFireTime=0.100000
-     FireRate=0.080000
-	 OverChargedFireRate=0.0300000
+     FireRate=0.08
+	 OverChargedFireRate=0.05
      AmmoClass=Class'BWBPOtherPackPro.Ammo_XM20B'
      AmmoPerFire=1
      BotRefireRate=0.999000
