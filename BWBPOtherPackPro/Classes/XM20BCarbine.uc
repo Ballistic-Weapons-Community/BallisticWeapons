@@ -86,14 +86,14 @@ simulated function ScreenStart()
 
 simulated event RenderTexture( ScriptedTexture Tex )
 {
-	local float laserCharge;
-	laserCharge = 512*XM20BSecondaryFire(Firemode[1]).LaserCharge;
+	local float rLaserCharge;
+	rLaserCharge = 512*XM20BSecondaryFire(FireMode[1]).LaserCharge;
 	
 	//Quick Note: X1,Y1 are start pos, X2,Y2 are size, X3,Y4 are subtexture start, X4,Y4 are subtexture size
 	Tex.DrawTile(0,0,512,512,0,0,512,512,ScreenTex, MyFontColor); //Basic Screen
 
 //	Tex.DrawTile(X1,Y1,X2,Y2,X3,Y3,X4,Y4,ScreenRedBar, MyFontColor);
-	Tex.DrawTile(0,512-laserCharge,512,laserCharge,0,512-laserCharge,512,laserCharge,ScreenRedBar, MyFontColor); //Charge Bar
+	Tex.DrawTile(0,512-rLaserCharge,512,rLaserCharge,0,512-rLaserCharge,512,rLaserCharge,ScreenRedBar, MyFontColor); //Charge Bar
 
 	if (!bNoMag)
 	{
@@ -137,6 +137,36 @@ simulated function Notify_ClipIn()
 }
 
 //=====================================================================
+
+//===========================================================================
+// ManageHeatInteraction
+//
+// Called from primary fire when hitting a target. Objects don't like having iterators used within them
+// and may crash servers otherwise.
+//===========================================================================
+function int ManageHeatInteraction(Pawn P, int HeatPerShot)
+{
+	local XM20BHeatManager HM;
+	local int HeatBonus;
+	
+	foreach P.BasedActors(class'XM20BHeatManager', HM)
+		break;
+	if (HM == None)
+	{
+		HM = Spawn(class'XM20BHeatManager',P,,P.Location + vect(0,0,-30));
+		HM.SetBase(P);
+	}
+	
+	if (HM != None)
+	{
+		HeatBonus = HM.Heat;
+		if (Vehicle(P) != None)
+			HM.AddHeat(HeatPerShot/4);
+		else HM.AddHeat(HeatPerShot);
+	}
+	
+	return heatBonus;
+}
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
@@ -520,8 +550,8 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 simulated function float ChargeBar()
 {
-    return FMin(XM20BSecondaryFire(Firemode[1]).LaserCharge, XM20BSecondaryFire(Firemode[1]).MaxCharge);
-    //return FMin((Heat + XM20BSecondaryFire(Firemode[1]).LaserCharge), 1);
+    return FMin(XM20BSecondaryFire(FireMode[1]).LaserCharge, XM20BSecondaryFire(FireMode[1]).MaxCharge);
+    //return FMin((Heat + XM20BSecondaryFire(FireMode[1]).LaserCharge), 1);
 }
 
 defaultproperties
@@ -552,6 +582,7 @@ defaultproperties
      bWT_Energy=True
      bNoCrosshairInScope=true;
      SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
+	 HudColor=(B=25,G=0,R=150)
      BringUpSound=(Sound=Sound'PackageSounds4Pro.XM20.XM20-Deploy')
      PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
      CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')

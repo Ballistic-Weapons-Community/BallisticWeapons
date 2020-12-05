@@ -14,8 +14,6 @@ function PostBeginPlay()
 {
     Super.PostBeginPlay();
 
-    Log("Mut_RewindCollision loaded");
-
     if (Level.NetMode != NM_DedicatedServer)
     {
         Log("Mut_RewindCollision is not required outside of dedicated servers.");
@@ -43,7 +41,6 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 
 	if (P != None)
 	{
-        Log("CheckReplacement: Registering BallisticPawn collision");
         P.RwColMgr = RwColMgr;
         RwColMgr.RegisterPawn(P);
         return true;
