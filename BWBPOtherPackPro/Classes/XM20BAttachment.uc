@@ -126,6 +126,20 @@ simulated function Tick(float DT)
 	Laser.SetDrawScale3D(Scale3D);
 }
 
+// Return the location of the muzzle.
+simulated function Vector GetTipLocation()
+{
+    local Coords C;
+
+	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
+		return Instigator.Weapon.GetEffectStart();
+
+	if (Instigator != None && level.NetMode != NM_StandAlone && level.NetMode != NM_ListenServer && VSize(C.Origin - Instigator.Location) > 300)
+		return Instigator.Location;
+
+    return GetBoneCoords('Muzzle').Origin;
+}
+
 simulated function Destroyed()
 {
 	if (Laser != None)
