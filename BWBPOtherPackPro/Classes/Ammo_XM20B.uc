@@ -10,8 +10,8 @@ class Ammo_XM20B extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=200
-     InitialAmount=80
+     MaxAmmo=120
+     InitialAmount=60
      bTryHeadShot=True
      IconFlashMaterial=Shader'BallisticRecolors3TexPro.LS14.AmmoIcon_LS14Flash'
      PickupClass=Class'BWBPOtherPackPro.AP_XM20B'

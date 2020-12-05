@@ -41,6 +41,7 @@ defaultproperties
      FireEndAnim=None
      TweenTime=0.000000
      FireRate=0.165000
+     AmmoPerFire=2
      AmmoClass=Class'BWBPOtherPackPro.Ammo_XM20B'
      ShakeRotMag=(X=200.000000,Y=8.000000)
      ShakeRotRate=(X=5000.000000,Y=5000.000000,Z=5000.000000)

@@ -77,6 +77,7 @@ defaultproperties
      FireAnim="Attack"
      TweenTime=0.000000
      FireRate=0.750000
+     bCanBackstab=False
      AmmoClass=Class'BallisticProV55.Ammo_MRS138Shells'
      AmmoPerFire=0
      ShakeRotTime=1.000000

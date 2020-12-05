@@ -46,10 +46,7 @@ defaultproperties
      SwipePoints(5)=(Weight=1,offset=(Pitch=-1500,Yaw=-1500))
      SwipePoints(6)=(offset=(Pitch=-3000))
      WallHitPoint=4
-     TraceRange=(Min=136.000000,Max=136.000000)
-     Damage=70.000000
-     
-     
+     TraceRange=(Min=136.000000,Max=136.000000)     
      DamageType=Class'BWBPRecolorsPro.DTEagle208Melee'
      DamageTypeHead=Class'BWBPRecolorsPro.DTEagle208MeleeHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTEagle208Melee'

@@ -37,8 +37,7 @@ defaultproperties
      FatiguePerStrike=0.060000
      bCanBackstab=False
      TraceRange=(Min=155.000000,Max=155.000000)
-     
-     
+     Damage=75     
      DamageType=Class'BallisticProV55.DTEKS43Katana'
      DamageTypeHead=Class'BallisticProV55.DTEKS43KatanaHead'
      DamageTypeArm=Class'BallisticProV55.DTEKS43KatanaLimb'

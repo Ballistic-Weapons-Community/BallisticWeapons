@@ -24,7 +24,7 @@ defaultproperties
      NumSwipePoints=3
      FatiguePerStrike=0.200000
      TraceRange=(Min=108.000000,Max=108.000000)
-     Damage=90.000000
+     Damage=70.000000
      DamageType=Class'BallisticProV55.DTX4Knife'
      DamageTypeHead=Class'BallisticProV55.DTX4KnifeHead'
      DamageTypeArm=Class'BallisticProV55.DTX4KnifeLimb'
