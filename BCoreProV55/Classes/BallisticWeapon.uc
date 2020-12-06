@@ -3578,14 +3578,20 @@ simulated function Destroyed()
 
 	WeaponParams = None;
 
-	RcComponent.Cleanup();
-	Level.ObjectPool.FreeObject(RcComponent);
-	RcComponent = None;
+    if (RcComponent != None)
+    {
+	    RcComponent.Cleanup();
+	    Level.ObjectPool.FreeObject(RcComponent);
+	    RcComponent = None;
+    }
 
-	AimComponent.Cleanup();
-	Level.ObjectPool.FreeObject(AimComponent);
-	AimComponent = None;
-	
+    if (AimComponent != None)
+    {
+	    AimComponent.Cleanup();
+	    Level.ObjectPool.FreeObject(AimComponent);
+	    AimComponent = None;
+    }
+    
 	Super(Inventory).Destroyed();
 }
 

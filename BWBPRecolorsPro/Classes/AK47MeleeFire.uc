@@ -25,7 +25,7 @@ simulated function SwitchBladeMode (bool bLoaded)
 		PreFireAnim='PrepBash';
 		FireAnim='Bash';
 		FireAnimRate=default.FireAnimRate;
-		Damage=60;
+		Damage=40;
 	}
 
 	if (Weapon.bBerserk)
@@ -53,8 +53,6 @@ simulated event ModeHoldFire()
 
 defaultproperties
 {
-     
-     
      DamageType=Class'BWBPRecolorsPro.DT_AK47Hit'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_AK47HitHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_AK47Hit'

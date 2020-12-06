@@ -8,7 +8,7 @@ var array<Actor> PokedControls;
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	SetTimer(0.20, False);
+	SetTimer(0.15, False);
 }
 
 simulated function Timer()
@@ -222,7 +222,7 @@ defaultproperties
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=1.000000
-     ImpactDamage=75
+     ImpactDamage=50
      ImpactDamageType=Class'BWBPRecolorsPro.DTCryoGrenade'
      ImpactManager=Class'BWBPRecolorsPro.IM_CryoGrenade'
 	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
@@ -230,17 +230,10 @@ defaultproperties
      TrailOffset=(X=1.600000,Z=6.400000)
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTCryoGrenade'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     ShakeRadius=256.000000
-     MotionBlurRadius=768.000000
-     MotionBlurFactor=2.000000
-     MotionBlurTime=10.000000
-     ShakeRotMag=(X=512.000000,Y=400.000000)
-     ShakeRotRate=(X=3000.000000,Z=3000.000000)
-     ShakeOffsetMag=(X=20.000000,Y=30.000000,Z=30.000000)
      Speed=3500.000000
-     Damage=75.000000
-     DamageRadius=300.000000
-     MomentumTransfer=1000.000000
+     Damage=50.000000
+     DamageRadius=512.000000
+     MomentumTransfer=0.000000
      MyDamageType=Class'BWBPRecolorsPro.DTCryoGrenade'
      ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'
      StaticMesh=StaticMesh'BallisticHardware2.M900.M900Grenade'

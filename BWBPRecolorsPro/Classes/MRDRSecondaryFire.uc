@@ -63,7 +63,7 @@ defaultproperties
      SliceAnims(0)="Melee1"
      SliceAnims(1)="Melee2"
      FatiguePerStrike=0.080000
-     Damage=70.000000
+     Damage=45.000000
      
      
      DamageType=Class'BWBPRecolorsPro.DT_MRDR88Spike'

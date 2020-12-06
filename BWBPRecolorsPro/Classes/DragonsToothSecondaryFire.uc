@@ -165,13 +165,11 @@ defaultproperties
      SwipePoints(4)=(offset=(Yaw=-3000))
      WallHitPoint=1
      FatiguePerStrike=0.200000
-     TraceRange=(Min=160.000000,Max=160.000000)
+     TraceRange=(Min=150.000000,Max=150.000000)
 	 bCanBackstab=False
 	 bNoPositionalDamage=True
 	 bUseRunningDamage=False
-     Damage=140.000000
-     
-     
+     Damage=120.000000
      DamageType=Class'BWBPRecolorsPro.DT_DTSChest'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_DTSHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_DTSLimb'

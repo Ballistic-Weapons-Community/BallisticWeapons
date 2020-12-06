@@ -78,10 +78,9 @@ defaultproperties
      NumSwipePoints=5
      FatiguePerStrike=0.100000
      bCanBackstab=False
-     TraceRange=(Min=180.000000,Max=180.000000)
-     Damage=80.000000
-     
-     
+     TraceRange=(Min=160.000000,Max=160.000000)
+     Damage=70.000000
+    
      DamageType=Class'BWBPOtherPackPro.DT_FlameSwordChest'
      DamageTypeHead=Class'BWBPOtherPackPro.DT_FlameSwordHead'
      DamageTypeArm=Class'BWBPOtherPackPro.DT_FlameSwordChest'

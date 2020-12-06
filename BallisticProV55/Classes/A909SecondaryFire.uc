@@ -41,8 +41,8 @@ simulated function bool HasAmmo()
 defaultproperties
 {
      FatiguePerStrike=0.200000
-     TraceRange=(Min=140.000000,Max=140.000000)
-     Damage=100.000000
+     TraceRange=(Min=130.000000,Max=130.000000)
+     Damage=60.000000
      DamageType=Class'BallisticProV55.DTA909Blades'
      DamageTypeHead=Class'BallisticProV55.DTA909Head'
      DamageTypeArm=Class'BallisticProV55.DTA909Limb'

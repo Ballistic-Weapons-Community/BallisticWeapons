@@ -991,6 +991,8 @@ function StartNewRound()
 {
     OnNewRoundStart();
 
+    Log("New round started: Red:" @ Teams[Scorer.Team.TeamIndex].Score @ "Blue:" @ Teams[Scorer.Team.TeamIndex].Score);
+
     RespawnTime = 6;
     LockTime = default.LockTime;
 

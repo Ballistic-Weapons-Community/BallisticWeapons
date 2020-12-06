@@ -8,6 +8,8 @@
 //=============================================================================
 class XM20BPrimaryFire extends BallisticProInstantFire;
 
+var()	float			HeatPerShot;
+
 simulated function bool AllowFire()
 {
     if (super.AllowFire())
@@ -20,16 +22,28 @@ simulated function bool AllowFire()
     return super.AllowFire();
 }
 
+//The XM20B deals increased damage to targets which have already been heated up by a previous strike.
+function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+{	
+	if (Pawn(Target) != None && Pawn(Target).bProjTarget)
+		Damage += XM20BCarbine(BW).ManageHeatInteraction(Pawn(Target), HeatPerShot);
+	
+	if (Monster(Target) != None)
+		Damage = Min(Damage, 35);
+
+	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+}
+
 defaultproperties
 {
+     HeatPerShot=5.000000
      TraceRange=(Min=5000.000000,Max=7500.000000)
-     Damage=35
+     Damage=16
      RangeAtten=0.900000
      WaterRangeAtten=0.700000
      DamageType=Class'BWBPOtherPackPro.DT_XM20B_Body'
      DamageTypeHead=Class'BWBPOtherPackPro.DT_XM20B_Head'
      DamageTypeArm=Class'BWBPOtherPackPro.DT_XM20B_Body'
-     KickForce=27500
      PenetrateForce=600
      bPenetrate=False
      FlashScaleFactor=0.300000
@@ -41,6 +55,7 @@ defaultproperties
      FireEndAnim=None
      TweenTime=0.000000
      FireRate=0.165000
+     AmmoPerFire=2
      AmmoClass=Class'BWBPOtherPackPro.Ammo_XM20B'
      ShakeRotMag=(X=200.000000,Y=8.000000)
      ShakeRotRate=(X=5000.000000,Y=5000.000000,Z=5000.000000)

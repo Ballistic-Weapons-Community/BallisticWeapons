@@ -20,9 +20,8 @@ var() name		FireLoopAnimCharged;
 var() name		FireEndAnimCharged;
 
 var() float	OverChargedFireRate;
-var   float LaserCharge;
-var   float MaxCharge;
 var   int SoundAdjust;
+var float		LaserCharge, MaxCharge;
 var()   sound	ChargeSound;
 var() sound		PowerFireSound;
 var() sound		RegularFireSound;
@@ -52,14 +51,13 @@ function StartSuperBerserk()
 simulated function bool AllowFire()
 {
 	if (LaserCharge > 0 && LaserCharge < MaxCharge)
-	{
 		return false;
-	}
 
 	if (!super.AllowFire())
 	{
 		if (bLaserFiring)
 			StopFiring();
+
 		return false;
 	}
 	return true;
@@ -85,7 +83,6 @@ simulated function PlayPreFire()
     Weapon.AmbientSound = ChargeSound;
     Weapon.ThirdPersonActor.AmbientSound = ChargeSound;
 	super.PlayPreFire();
-
 }
 
 //Intent is for the laser to begin firing once it has spooled up
@@ -134,7 +131,7 @@ simulated function SwitchLaserMode (byte NewMode)
 				FireRate*=0.75;
 
 			XM20BCarbine(BW).ChargeRate=0.600000;
-			Damage=32.000000;
+			Damage=24.000000;
 			PreFireAnim=PreFireAnimCharged;
 			FireLoopAnim=FireLoopAnimCharged;
 			FireEndAnim=FireEndAnimCharged;
@@ -264,14 +261,17 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
-     MaxCharge=1.000000
+	 MaxCharge=1.000000
 	 FireSoundLoop=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-Lase'
      ChargeSound=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-SpartanChargeSound'
 //	 ChargeSound=Sound'BWBPSomeOtherPackSounds.BeamCannon.Beam-Charge'
      PowerFireSound=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-Overcharge'
      RegularFireSound=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-LaserStart'
 	 
-     Damage=16
+	 Damage=15
+	 HeadMult=1.5f
+     LimbMult=0.5f
+
      RangeAtten=0.350000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPOtherPackPro.DT_XM20B_Body'
@@ -284,7 +284,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-LaserStart',Volume=1.200000)
 	 bModeExclusive=False
 	 FireChaos=0
-	 FireRecoil=8
+	 FireRecoil=32
      FireAnim="Fire"
      PreFireAnim="LoopStart"
 	 FireLoopAnim="LoopFire"
@@ -295,7 +295,7 @@ defaultproperties
      TweenTime=0.000000
 	 PreFireTime=0.100000
      FireRate=0.080000
-	 OverChargedFireRate=0.0300000
+	 OverChargedFireRate=0.0500000
      AmmoClass=Class'BWBPOtherPackPro.Ammo_XM20B'
      AmmoPerFire=1
      BotRefireRate=0.999000

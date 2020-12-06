@@ -181,16 +181,12 @@ function ModifyPlayer( pawn Other )
 
 	Pawn = xPawn(Other);
 
-	log("Mut_Killstreak: ModifyPlayer: Pre streak check");
-	
 	if (KLRI.ActiveStreak > 0)
 	{
 		for (i=0; i < NUM_GROUPS; i++)
 		{
 			if (bool(KLRI.ActiveStreak & (2 ** i)))
 			{
-				log("Mut_Killstreak: ModifyPlayer: Got killstreak at "$i);
-
 				//Handle dummies
 				if (Right(GetItemName(KLRI.Killstreaks[i]), 5) ~= "Dummy")
 				{
@@ -410,9 +406,7 @@ function GrantKillstreakReward(Pawn Other, KillstreakLRI KLRI)
 	local class<DummyWeapon> Dummy;
 	local string S;
 	local byte Index;
-	
-	log("GrantKillstreakReward: 1:"@KLRI.Killstreaks[0]$", 2:"@KLRI.Killstreaks[1]);
-	
+
 	if (bool(KLRI.RewardLevel & 2))
 	{
 		Index = 1;
@@ -525,8 +519,6 @@ function String SpawnStreakWeapon(string WeaponString, Pawn Other, byte GroupSlo
 	local class<Weapon> KR;
 	local int j, k, m;
 
-	log("Mut_Killstreak: SpawnStreakWeapon: "$WeaponString);
-	
 	//Dummies are likely to come in here if the target also has Donation set
 	if (InStr(WeaponString, "Dummy") != -1)
 	{
@@ -657,11 +649,11 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 
 defaultproperties
 {
-	Streak1s(0)="BWBPRecolorsPro.G28Grenade
-	Streak1s(1)="BWBPRecolorsPro.AH208Pistol
-	Streak1s(2)="BallisticProV55.G5Bazooka
-	Streak1s(3)="BallisticProV55.MRocketLauncher
-	Streak1s(4)="BallisticProV55.SKASShotgun
+	Streak1s(0)="BWBPRecolorsPro.G28Grenade"
+	Streak1s(1)="BWBPRecolorsPro.AH208Pistol"
+	Streak1s(2)="BallisticProV55.G5Bazooka"
+	Streak1s(3)="BallisticProV55.MRocketLauncher"
+	Streak1s(4)="BallisticProV55.SKASShotgun"
 	Streak1s(5)="BallisticProV55.SRS600Rifle"
 	Streak1s(6)="BallisticProV55.TeamLevelUpDummys"
 

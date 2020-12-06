@@ -36,10 +36,15 @@ var   array<SwipeHit>		SwipeHits;		// Temporary(per fire) record of hits. For co
 
 var	float	HoldStartTime;		//Used if this weapon's mode is 2, which means it's being used for its ModeDoFire function.
 var() float MaxBonusHoldTime;	//Max hold time for bonus damage
+var() float FlankDamageMult;
+var() float BackDamageMult;
+var() float ChargeDamageBonusFactor;
 
 var float	FatiguePerStrike;
 
-var bool bCanBackstab; 	//Backstabs do 1.5x
+var bool bCanBackstab;
+
+
 //-----------------------------------------------------------------------------
 
 simulated function bool AllowFire()
@@ -88,10 +93,10 @@ function float ResolveDamageFactors(Actor Victim, vector TraceStart, vector HitL
 
 	// Damage increases with hold time
 	if (HoldTime > 0)
-		DamageFactor *= 1 + (FMin(HoldTime, MaxBonusHoldTime)/MaxBonusHoldTime);
+		DamageFactor *= 1 + ChargeDamageBonusFactor * (FMin(HoldTime, MaxBonusHoldTime)/MaxBonusHoldTime);
 	else if (ThisModeNum == 2 && HoldStartTime != 0) // check for BallisticWeapon MeleeFireMode
 	{
-		DamageFactor *= 1 + (FMin(Level.TimeSeconds - HoldStartTime, MaxBonusHoldTime)/MaxBonusHoldTime);
+		DamageFactor *= 1 + ChargeDamageBonusFactor * (FMin(Level.TimeSeconds - HoldStartTime, MaxBonusHoldTime)/MaxBonusHoldTime);
 		HoldStartTime = 0.0f;
 	}
 	
@@ -102,9 +107,9 @@ function float ResolveDamageFactors(Actor Victim, vector TraceStart, vector HitL
 		testDir.Z = 0;
 	
 		if (Vector(Victim.Rotation) Dot testDir > 0.6)
-			DamageFactor *= 1.3;
+			DamageFactor *= BackDamageMult;
 		else if (Vector(Victim.Rotation) Dot testDir > 0.25)
-			DamageFactor *= 1.15;
+			DamageFactor *= FlankDamageMult;
 	}
 
 	DamageFactor = FMin(3f, DamageFactor);
@@ -469,7 +474,12 @@ defaultproperties
      MaxBonusHoldTime=1.500000
      bCanBackstab=True
      TraceRange=(Min=128.000000,Max=128.000000)
-     Damage=75.000000
+
+     Damage=50.000000
+     ChargeDamageBonusFactor=1f
+     FlankDamageMult=1.15f
+     BackDamageMult=1.3f
+
      PDamageFactor=0.500000
      RunningSpeedThresh=1000.000000
      bNoPositionalDamage=True

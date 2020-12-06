@@ -150,13 +150,18 @@ function UpdateRocketAcceleration(float DeltaTime, float YawChange, float PitchC
 	local int Pitch;
     local rotator TempRotation;
 
-	YawAccel = (1-2*DeltaTime)*YawAccel + DeltaTime*YawChange;
-	PitchAccel = (1-2*DeltaTime)*PitchAccel + DeltaTime*PitchChange;
+    // calculation is wrong - will produce different handling with different delta time
+    // requires use of powers with a fixed timestep
+	YawAccel    =    (1 - 2 * DeltaTime) * YawAccel     +   DeltaTime * YawChange;
+	PitchAccel  =    (1 - 2 * DeltaTime) * PitchAccel   +   DeltaTime * PitchChange;
+    
 	SetRotation(rotator(Velocity));
 
 	GetAxes(Rotation,X,Y,Z);
+
 	PitchThreshold = 3000;
 	Pitch = Rotation.Pitch & 65535;
+
 	if ( (Pitch > 16384 - PitchThreshold) && (Pitch < 49152 + PitchThreshold) )
 	{
 		if ( Pitch > 49152 - PitchThreshold )
@@ -164,6 +169,7 @@ function UpdateRocketAcceleration(float DeltaTime, float YawChange, float PitchC
 		else if ( Pitch < 16384 + PitchThreshold )
 			PitchAccel = Min(PitchAccel,0);
 	}
+
 	Acceleration = Velocity + 5*(YawAccel*Y + PitchAccel*Z);
 	if ( Acceleration == vect(0,0,0) )
 		Acceleration = Velocity;

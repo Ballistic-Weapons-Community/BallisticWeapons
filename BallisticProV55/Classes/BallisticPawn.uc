@@ -445,7 +445,7 @@ function CheckBob(float DeltaTime, vector Y)
 
 	if (m != n)
 		FootStepping(0);
-	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.2) )
+	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.35) )
 	{
 		LastFootStepTime = Level.TimeSeconds;
 		FootStepping(0);

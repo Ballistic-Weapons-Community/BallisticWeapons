@@ -1,10 +1,7 @@
 class SK410MeleeFire extends BallisticMeleeFire;
 
 defaultproperties
-{
-     Damage=60.000000
-     
-     
+{    
      DamageType=Class'BWBPRecolorsPro.DT_SK410Hit'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_SK410HitHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_SK410Hit'

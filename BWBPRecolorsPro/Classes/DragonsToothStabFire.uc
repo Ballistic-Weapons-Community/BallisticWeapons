@@ -20,7 +20,7 @@ defaultproperties
      Damage=135.000000
      
 	
-	FireRate=1.5
+	 FireRate=1.5
      DamageType=Class'BWBPRecolorsPro.DT_DTSStabChest'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_DTSStabHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_DTSStabChest'
