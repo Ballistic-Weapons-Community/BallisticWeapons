@@ -724,8 +724,8 @@ defaultproperties
 	CurrentWeaponMode=0
 	ZoomType=ZT_Logarithmic
 	MinZoom=2.000000
-	MaxZoom=8.000000
-	ZoomStages=2
+	MaxZoom=4.000000
+	ZoomStages=1
 	ScopeXScale=1.333000
 	ZoomInAnim="ZoomIn"
 	ZoomOutAnim="ZoomOut"
