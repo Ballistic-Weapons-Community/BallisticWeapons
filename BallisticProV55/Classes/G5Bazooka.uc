@@ -52,6 +52,9 @@ simulated function OutOfAmmo()
     DoAutoSwitch();
 }
 
+//============================================================
+// Laser management
+//============================================================
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
@@ -214,6 +217,10 @@ simulated function PlayIdle()
 	FreezeAnimAt(0.0);
 }
 
+//============================================================
+// Scope view
+//============================================================
+
 simulated function OnScopeViewChanged()
 {
 	Super.OnScopeViewChanged();
@@ -224,7 +231,7 @@ simulated function OnScopeViewChanged()
 			class'BUtil'.static.PlayFullSound(self, LockOffSound);
 
 		Target = None;
-		TargetTime=0;
+		TargetTime = 0;
 	}
 }
 
@@ -234,28 +241,7 @@ simulated function StartScopeZoom()
 		class'BUtil'.static.PlayFullSound(self, ZoomInSound);
 
 	if (!bCamView && Instigator.Controller.IsA( 'PlayerController' ))
-	{
-		switch(ZoomType)
-		{
-			case ZT_Smooth: 
-				PlayerController(Instigator.Controller).StartZoomWithMax((90-FullZoomFOV)/88);
-				break;
-			case ZT_Minimum:
-				PlayerController(Instigator.Controller).bZooming=True;
-				PlayerController(Instigator.Controller).SetFOV(FClamp(90.0 - (MinFixedZoomLevel * 88.0), 1, 170));
-				PlayerController(Instigator.Controller).ZoomLevel = MinFixedZoomLevel;
-				PlayerController(Instigator.Controller).DesiredZoomLevel = MinFixedZoomLevel;
-				break;
-			case ZT_Fixed:
-				PlayerController(Instigator.Controller).bZooming=True;
-				PlayerController(Instigator.Controller).SetFOV(FullZoomFOV);
-				PlayerController(Instigator.Controller).ZoomLevel = (90 - FullZoomFOV) / 88;
-				PlayerController(Instigator.Controller).DesiredZoomLevel = (90 - FullZoomFOV) / 88;
-				break;
-			case ZT_Logarithmic:
-				break;
-		}
-	}
+        PlayerZoom(PlayerController(Instigator.Controller));
 }
 
 // Scope up anim just ended. Either go into scope view or move the scope back down again
@@ -266,6 +252,7 @@ simulated function ScopeUpAnimEnd()
  	else
  		super.ScopeUpAnimEnd();
 }
+
 // Scope down anim has just ended. Play idle anims like normal
 simulated function ScopeDownAnimEnd()
 {
@@ -315,7 +302,7 @@ simulated function WeaponTick(float DT)
 	if (Instigator != None && Instigator.IsLocallyControlled())
 		TickLaser(DT);
 
-	if (!bScopeView || CurrentWeaponMode != 1 || Role < Role_Authority)
+	if (!bScopeView || CurrentWeaponMode != 1 || Role < ROLE_Authority)
 		return;
 
 	bWasLockedOn = TargetTime >= LockOnTime;
@@ -736,8 +723,8 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	ZoomType=ZT_Logarithmic
-	MinZoom=4
-	MaxZoom=16
+	MinZoom=2.000000
+	MaxZoom=8.000000
 	ZoomStages=2
 	ScopeXScale=1.333000
 	ZoomInAnim="ZoomIn"
