@@ -456,15 +456,14 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.M290.M290Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
      CockAnimRate=0.700000
-     SingleReloadAnimRate=1.250000
-     ReloadAnimRate=1.250000
+     SingleReloadAnimRate=1.350000
+     ReloadAnimRate=1.350000
      ClipInFrame=0.800000
      bNonCocking=True
      WeaponModes(0)=(ModeName="Shot",Value=1.000000)
      WeaponModes(1)=(ModeName="Slug",Value=1.000000)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     SightPivot=(Pitch=256)
      SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)

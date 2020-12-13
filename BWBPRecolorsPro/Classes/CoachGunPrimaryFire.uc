@@ -17,7 +17,7 @@ var() class<BCImpactManager>	AltImpactManager;
 var Name						AimedFireEmptyAnim, FireEmptyAnim, AimedFireSingleAnim, FireSingleAnim;
 var() float						ChargeTime, DecayCharge;
 
-var() float						SlugDamage;
+var() int   					SlugDamage, SlugDoubleDamage;
 
 var bool                        FlashSide;
 
@@ -38,20 +38,20 @@ function AnimateFiring()
 {
 	if (BW.HasNonMagAmmo(0))
 	{        
-		/*if (Load >= BW.MagAmmo)
-		{*/
+		if (Load >= BW.MagAmmo)
+		{
 			BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
 			
 			if (BW.BlendFire())
 				BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-		/*}
+		}
 		else
 		{
 			BW.SafePlayAnim(FireSingleAnim, FireAnimRate, TweenTime, ,"FIRE");
 			
 			if (BW.BlendFire())
 				BW.SafePlayAnim(AimedFireSingleAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");			
-	    }*/	
+	    }	
 	}
 	else
 	{
@@ -448,6 +448,8 @@ function SwitchShotParams()
 		{
 			XInaccuracy = SlugDoubleInaccuracy.X;
 			YInaccuracy = SlugDoubleInaccuracy.Y;
+
+            Damage = SlugDoubleDamage;
 		}
 	}
 	else
@@ -464,6 +466,8 @@ function SwitchShotParams()
 		{		
 			XInaccuracy = SlugInaccuracy.X;
 			YInaccuracy = SlugInaccuracy.Y;
+
+            Damage = SlugDamage;
 		}
 	}
 }
@@ -477,6 +481,9 @@ defaultproperties
 
     AimedFireAnim="Fire"
     FireAnim="Fire"
+
+    AimedFireSingleAnim="SightFire"
+    FireSingleAnim="SightFire"
 
     ChargeTime=0.35
 	MaxHoldTime=0.0
@@ -497,7 +504,8 @@ defaultproperties
 
 	Damage=11.000000
     MaxHits=13 // inflict maximum of 140 damage to a single target
-    SlugDamage=60
+    SlugDamage=75
+    SlugDoubleDamage=62
 	RangeAtten=0.250000
     PenetrateForce=0
 	bPenetrate=False

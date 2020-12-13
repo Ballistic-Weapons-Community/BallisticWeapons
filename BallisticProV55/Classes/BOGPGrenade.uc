@@ -14,7 +14,7 @@ var bool bArmed;
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	SetTimer(0.20, False);
+	SetTimer(0.30, False);
 }
 
 simulated function Timer()

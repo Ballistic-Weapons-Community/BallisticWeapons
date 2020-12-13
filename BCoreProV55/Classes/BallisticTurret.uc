@@ -147,10 +147,19 @@ simulated function bool HasUDamage()
 
 function AdjustDriverDamage(out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
+    local float DriverEyeZ, TurretBottomZ, DriverHeight;
+
 	if ( InGodMode() )
  		Damage = 0;
 	else if (DamageType.default.bLocationalHit && CheckDefense(instigatedBy.Location))
- 		Damage *= DriverDamageMult + (1 - DriverDamageMult) * FClamp(((Driver.Location.Z + Driver.EyePosition().Z) - Location.Z)/(2 * Driver.CollisionHeight), 0, 1);
+    {
+        DriverEyeZ = Driver.Location.Z + Driver.EyePosition().Z;
+        TurretBottomZ = Location.Z - CollisionHeight;
+        DriverHeight = 2 * Driver.CollisionHeight;
+
+ 		Damage *= DriverDamageMult + (1 - DriverDamageMult) * FClamp( (DriverEyeZ - TurretBottomZ) / DriverHeight, 0, 1);
+    }
+
 	Momentum = vect(0,0,0);
 }
 
