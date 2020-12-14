@@ -24,10 +24,10 @@ function Timer()
 		
 		ammo_count = heldWeapon.AmmoAmount(0);
 
-        ammo = heldWeapon.GetAmmoClass(0);
-        sec_ammo = heldWeapon.GetAmmoClass(1);
+        ammo = class<BallisticAmmo>(heldWeapon.GetAmmoClass(0));
+        sec_ammo = class<BallisticAmmo>(heldWeapon.GetAmmoClass(1));
 		
-		if(ammo != None && !ammo.bNoPackResupply && ammo.default.InitialAmount > 4)
+		if(ammo != None && !ammo.default.bNoPackResupply && ammo.default.InitialAmount > 4)
         {
             add = Max(heldWeapon.GetAmmoClass(0).default.InitialAmount * 0.1, 1);
             heldWeapon.AddAmmo(add, 0);
@@ -38,7 +38,7 @@ function Timer()
 		
 		ammo_count = heldWeapon.AmmoAmount(1);
 		
-		if(!sec_ammo.bNoPackResupply && sec_ammo.default.InitialAmount > 4)
+		if(!sec_ammo.default.bNoPackResupply && sec_ammo.default.InitialAmount > 4)
 		{
 			add = Max(heldWeapon.GetAmmoClass(1).default.InitialAmount * 0.1, 1);
 			heldWeapon.AddAmmo(add, 1);

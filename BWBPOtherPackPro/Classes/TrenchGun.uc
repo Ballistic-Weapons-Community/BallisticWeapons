@@ -1,20 +1,15 @@
 //=============================================================================
-// M290Shotgun.
+// Trench gun.
 //
-// Big double barreled shotgun. Primary fires both barrels at once, secondary
-// fires them seperately. Slower than M763 with less range and uses up ammo
-// quicker, but has tons of damage at close range.
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2005 RuneStorm. All Rights Reserved.
+// Reworked by Azarael "Big Rael" Azarael
 //=============================================================================
 class TrenchGun extends BallisticProShotgun;
 
-var byte OldWeaponMode;
-var actor ReloadSteam;
-var actor ReloadSteam2;
+var byte                OldWeaponMode;
+var actor               ReloadSteam;
+var actor               ReloadSteam2;
 
-var float LastModeChangeTime;
+var float               LastModeChangeTime;
 
 var() Material          MatGreenShell;
 var() Material          MatBlackShell;
@@ -38,9 +33,9 @@ struct DeployableInfo
 	var float				CoolDownDelay;
 };
 
-var DeployableInfo AltDeployable;
-const DeployRange = 512;
-var float	CooldownTime;
+var DeployableInfo      AltDeployable;
+const                   DeployRange = 512;
+var float	            CooldownTime;
 
 exec function Offset(int index, int value)
 {

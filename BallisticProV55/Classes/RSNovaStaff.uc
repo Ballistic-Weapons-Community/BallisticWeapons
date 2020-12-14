@@ -714,8 +714,8 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalIn',Volume=0.700000)
 	ClipInFrame=0.700000
 	WeaponModes(0)=(ModeName="Slow Bolt",ModeID="WM_FullAuto")
-	WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1,AimParamsIndex=1)
-	WeaponModes(2)=(ModeName="Lightning",RecoilParamsIndex=1,AimParamsIndex=1)
+	WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1)
+	WeaponModes(2)=(ModeName="Lightning",RecoilParamsIndex=1)
 	WeaponModes(3)=(ModeName="Thunder Strike",ModeID="WM_FullAuto")
 	WeaponModes(4)=(ModeName="Chain Lightning",ModeID="WM_FullAuto",bUnavailable=True)
 	CurrentWeaponMode=0

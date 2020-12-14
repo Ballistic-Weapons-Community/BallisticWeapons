@@ -11,29 +11,16 @@ const SHOCK_AMMO = 1;
 var bool						Side;
 var byte						AmmoType;
 
-var() class<BCImpactManager>	ImpactManagerAlt;		//Impact Manager to use for iATLATmpact effects
+var() class<BCImpactManager>	ImpactManagerAlt;		//Impact Manager to use for impact effects
 var() class<BCTraceEmitter>		TracerClassAlt;			//Type of tracer to use for alt fire effects
 
 var	Actor						MuzzleFlashRight;
-
 
 replication
 {
 	// Things the server should send to the client.
 	reliable if (Role == ROLE_Authority)
 		AmmoType;
-}
-
-//======================================================================
-// PostNetBeginPlay
-//
-// Debug
-//======================================================================
-simulated function PostNetBeginPlay()
-{
-	Super.PostNetBeginPlay();
-	
-	//Log("TrenchGunAttachment::PostNetBeginPlay: AmmoType: "$AmmoType);
 }
 
 //======================================================================
@@ -452,7 +439,6 @@ defaultproperties
 	 MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
 	 
      FireClass=Class'BWBPOtherPackPro.TrenchGunPrimaryFire'
-
      MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      FlashBone="Tip1"
      AltFlashBone="tip2"

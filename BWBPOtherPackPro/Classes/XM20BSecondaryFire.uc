@@ -73,15 +73,15 @@ simulated event Timer()
 		class'BUtil'.static.KillEmitterEffect (MuzzleFlashBlue);
 		MuzzleFlashBlue=None;
 		bLaserFiring=false;
-		//Weapon.AmbientSound = None;
+		//Instigator.AmbientSound = None;
 	}
 }
 
 
 simulated function PlayPreFire()
 {    
-    Weapon.AmbientSound = ChargeSound;
-    Weapon.ThirdPersonActor.AmbientSound = ChargeSound;
+    Instigator.AmbientSound = ChargeSound;
+    //Weapon.ThirdPersonActor.AmbientSound = ChargeSound;
 	super.PlayPreFire();
 }
 
@@ -196,8 +196,8 @@ function PlayFiring()
 	super.PlayFiring();
 	if (FireSoundLoop != None)
 	{
-		Weapon.AmbientSound = FireSoundLoop;
-		Weapon.ThirdPersonActor.AmbientSound = FireSoundLoop;
+		Instigator.AmbientSound = FireSoundLoop;
+		//Weapon.ThirdPersonActor.AmbientSound = FireSoundLoop;
 	}
 	if (!bLaserFiring)
 	{
@@ -211,8 +211,8 @@ function PlayFiring()
 
 function StopFiring()
 {
-    Weapon.AmbientSound = XM20BCarbine(BW).UsedAmbientSound;
-	Weapon.ThirdPersonActor.AmbientSound = None;
+    Instigator.AmbientSound = XM20BCarbine(BW).UsedAmbientSound;
+	//Weapon.ThirdPersonActor.AmbientSound = None;
 //    HoldTime = 0;
 	bLaserFiring=false;
 	XM20BCarbine(Weapon).ServerSwitchLaser(false);

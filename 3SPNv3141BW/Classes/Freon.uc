@@ -466,7 +466,6 @@ state MatchInProgress
         local Freon_Player pc;
 
         local Freon_Pawn pawn;
-        local int RealOTDamage;
 
         for(c = Level.ControllerList; c != None; c = c.NextController)
         {

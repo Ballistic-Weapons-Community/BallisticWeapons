@@ -1,20 +1,15 @@
 //=============================================================================
-// M290Shotgun.
+// Coach gun.
 //
-// Big double barreled shotgun. Primary fires both barrels at once, secondary
-// fires them seperately. Slower than M763 with less range and uses up ammo
-// quicker, but has tons of damage at close range.
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2005 RuneStorm. All Rights Reserved.
+// Reworked by Azarael "Big Rael" Azarael
 //=============================================================================
 class CoachGun extends BallisticProShotgun;
 
-var byte OldWeaponMode;
-var actor ReloadSteam;
-var actor ReloadSteam2;
+var byte                OldWeaponMode;
+var actor               ReloadSteam;
+var actor               ReloadSteam2;
 
-var float LastModeChangeTime;
+var float               LastModeChangeTime;
 
 var() Material          MatGreenShell;
 var() Material          MatBlackShell;
@@ -26,6 +21,8 @@ var() name				ShellTipBone4;		// Spare Super Slug 2
 var() name				LastShellBone;		// Name of the right shell.
 var   bool				bLastShell;			// Checks if only one shell is left
 var   bool				bNowEmpty;			// Checks if it should play modified animation.
+
+var() float				SingleReloadAnimRate;   // Animation rate for single reload.
 
 simulated function PostBeginPlay()
 {
@@ -80,6 +77,8 @@ function ServerStartReload (optional byte i)
 		if (FireMode[m] != None && FireMode[m].bIsFiring)
 			StopFire(m);
 
+    AnimBlendParams(1, 0);
+
 	bServerReloading = true;
 	CommonStartReload(i);	//Server animation
 	ClientStartReload(i);	//Client animation
@@ -117,17 +116,9 @@ simulated function CommonStartReload (optional byte i)
 simulated function PlayReload()
 {
 	if (MagAmmo == 1 && !bNowEmpty)		// One shell fired and both shells in
-		PlayAnim('ReloadSingle', CockAnimRate, , 0.25);
+		PlayAnim('ReloadSingle', SingleReloadAnimRate, , 0.25);
 	else					// Both shells fired
 		PlayAnim('Reload', ReloadAnimRate, , 0.25);
-}
-
-// Returns true if gun will need reloading after a certain amount of ammo is consumed. Subclass for special stuff
-simulated function bool MayNeedReload(byte Mode, float Load)
-{
-	if (!HasNonMagAmmo(0))
-		return true;
-	return bNeedReload;
 }
 
 simulated function bool CheckScope()
@@ -149,7 +140,6 @@ simulated function bool CheckScope()
 
 simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 {
-
 	if (anim == FireMode[0].FireAnim || (FireMode[1] != None && anim == FireMode[1].FireAnim) )
 		bPreventReload=false;
 
@@ -436,6 +426,12 @@ function float SuggestDefenseStyle()
     return FClamp(Result, -1.0, -0.3);
 }
 // End AI Stuff =====
+simulated function float ChargeBar()
+{
+	if (FireMode[0].bIsFiring)
+		return FMin(1, FireMode[0].HoldTime / CoachGunPrimaryFire(FireMode[0]).ChargeTime);
+	return FMin(1, CoachGunPrimaryFire(FireMode[0]).DecayCharge / CoachGunPrimaryFire(FireMode[0]).ChargeTime);
+}
 
 defaultproperties
 {
@@ -446,6 +442,7 @@ defaultproperties
      ShellTipBone3="SpareShellLSuper"
      ShellTipBone4="SpareShellRSuper"
      LastShellBone="ShellR"
+     FireAnimCutThreshold=3.000000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticRecolors4TexPro.CoachGun.BigIcon_Coach'
      BigIconCoords=(Y1=35,Y2=225)
@@ -459,14 +456,14 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.M290.M290Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
      CockAnimRate=0.700000
-     ReloadAnimRate=1.100000
+     SingleReloadAnimRate=1.350000
+     ReloadAnimRate=1.350000
      ClipInFrame=0.800000
      bNonCocking=True
-     WeaponModes(0)=(ModeName="Shot",Value=2.000000)
-     WeaponModes(1)=(ModeName="Slug",Value=2.000000)
+     WeaponModes(0)=(ModeName="Shot",Value=1.000000)
+     WeaponModes(1)=(ModeName="Slug",Value=1.000000)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     SightPivot=(Pitch=256)
      SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
@@ -501,4 +498,5 @@ defaultproperties
      Skins(1)=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Main'
      Skins(2)=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc'
      Skins(3)=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc'
+     bShowChargingBar=True
 }
