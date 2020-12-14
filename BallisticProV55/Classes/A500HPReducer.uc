@@ -17,7 +17,7 @@ function AddStack(int count)
 	stackCount += count;
 	
 	Instigator.HealthMax = Max(50, baseHealthMax - (stackCount * 5));	
-	Instigator.HealthMax = Max(75, baseHealthMax - (stackCount * 5));	
+	Instigator.SuperHealthMax = Max(75, baseHealthMax - (stackCount * 5));	
 	SetTimer(5, false);
 }
 

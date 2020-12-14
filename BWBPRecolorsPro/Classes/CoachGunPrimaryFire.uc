@@ -533,7 +533,7 @@ defaultproperties
 
 	BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Redwood.Redwood-Fire',Volume=1.200000)
 	FireAnimRate=1.35
-	FireRate=0.600000
+	FireRate=0.400000
 	AmmoClass=Class'BWBPRecolorsPro.Ammo_CoachShells'
 	ShakeRotMag=(X=128.000000,Y=64.000000)
 	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
