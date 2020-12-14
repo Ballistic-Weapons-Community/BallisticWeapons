@@ -635,7 +635,7 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
-	SlugFireSound=Sound'BWBPSomeOtherPackSounds.TechGun.electro_Shot'
+	SlugFireSound=Sound'BWBP_OP_Sounds.TechGun.electro_Shot'
 	AimedFireEmptyAnim="SightFire"
 	FireEmptyAnim="Fire"	
 	AimedFireSingleAnim="SightFire"
@@ -684,7 +684,7 @@ defaultproperties
 	ElectroInaccuracy=(X=128,Y=128)
 	ElectroDoubleInaccuracy=(X=320,Y=192)
 	
-	BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)
+	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)
 	FireAnim="FireCombined"
 	FireAnimRate=0.800000
 	FireRate=0.100000

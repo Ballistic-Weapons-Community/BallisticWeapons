@@ -19,18 +19,18 @@ var   Actor					MuzzleFlashFast;
 var   Actor					MuzzleFlashSlow;
 var   Actor					LightMuzzleFlash;
 
-var() sound				ChnLtngSoundLoop;
-var() sound				FireSoundLoop;
-var() sound				FireSound2;
+var() sound					ChnLtngSoundLoop;
+var() sound					FireSoundLoop;
+var() sound					FireSound2;
 var   bool					bIsZapping;
 var() int					Damage;
 
-var 	float					ModePowerDrain;
+var 	float				ModePowerDrain;
 
 var   bool					bPendingOwnerZap;
 var   float					PendingZapDamage;
 
-var   RSNovaStaff		NovaStaff;
+var   RSNovaStaff			NovaStaff;
 
 var   bool					bChainZapping;
 

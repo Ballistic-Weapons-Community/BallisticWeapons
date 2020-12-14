@@ -10,8 +10,8 @@
 //=============================================================================
 class BallisticShieldPrimaryFire extends BallisticMeleeFire;
 
-var() Array<name> SliceAnims;
-var int SliceAnim;
+var()   Array<name>     SliceAnims;
+var     int             SliceAnim;
 
 simulated event ModeDoFire()
 {
@@ -36,8 +36,7 @@ defaultproperties
      SliceAnims(3)="Smash3"
      TraceRange=(Min=150.000000,Max=150.000000)
      Damage=65.000000
-     
-     
+    
      DamageType=Class'BWBPOtherPackPro.DTBallisticShield'
      DamageTypeHead=Class'BWBPOtherPackPro.DTBallisticShield'
      DamageTypeArm=Class'BWBPOtherPackPro.DTBallisticShield'

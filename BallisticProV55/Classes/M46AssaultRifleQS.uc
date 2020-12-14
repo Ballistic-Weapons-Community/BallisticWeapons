@@ -5,6 +5,14 @@
 //=============================================================================
 class M46AssaultRifleQS extends M46AssaultRifle;
 
+simulated function PostBeginPlay()
+{
+    Super.PostBeginPlay();
+    
+    SetBoneScale (0, 1.0, RDSBone);
+    SetBoneScale (1, 0.0, ScopeBone);
+}
+
 simulated event RenderOverlays (Canvas C)
 {
 	Super(BallisticWeapon).RenderOverlays(C);

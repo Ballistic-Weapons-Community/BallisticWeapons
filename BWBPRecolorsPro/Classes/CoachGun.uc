@@ -34,7 +34,6 @@ simulated function PostBeginPlay()
 		SetBoneScale (3, 1.0, ShellTipBone2);
 		SetBoneScale (4, 1.0, ShellTipBone3);
 		SetBoneScale (5, 1.0, ShellTipBone4);
-		Skins[2]=MatBlackShell;
 		Skins[3]=MatBlackShell;
 	}
 	else
@@ -43,7 +42,6 @@ simulated function PostBeginPlay()
 		SetBoneScale (3, 0.0, ShellTipBone2);
 		SetBoneScale (4, 0.0, ShellTipBone3);
 		SetBoneScale (5, 0.0, ShellTipBone4);
-		Skins[2]=MatGreenShell;
 		Skins[3]=MatGreenShell;
 	}
 }
@@ -247,7 +245,6 @@ simulated function CommonSwitchWeaponMode (byte NewMode)
 		SetBoneScale (3, 0.0, ShellTipBone2);
 		SetBoneScale (4, 1.0, ShellTipBone3);
 		SetBoneScale (5, 1.0, ShellTipBone4);
-		Skins[2]=MatGreenShell;
 		Skins[3]=MatBlackShell;
 	}
 	else
@@ -256,7 +253,6 @@ simulated function CommonSwitchWeaponMode (byte NewMode)
 		SetBoneScale (3, 1.0, ShellTipBone2);
 		SetBoneScale (4, 0.0, ShellTipBone3);
 		SetBoneScale (5, 0.0, ShellTipBone4);
-		Skins[2]=MatBlackShell;
 		Skins[3]=MatGreenShell;
 	}
 }
@@ -280,7 +276,6 @@ simulated function Notify_CoachShellDown()
 	}
 	if (CurrentWeaponMode == 1)
 	{
-		Skins[2]=MatBlackShell;
 		Skins[3]=MatBlackShell;
 		SetBoneScale (2, 1.0, ShellTipBone1);
 		SetBoneScale (3, 1.0, ShellTipBone2);
@@ -289,7 +284,6 @@ simulated function Notify_CoachShellDown()
 	}
 	else
 	{
-		Skins[2]=MatGreenShell;
 		Skins[3]=MatGreenShell;
 		SetBoneScale (2, 0.0, ShellTipBone1);
 		SetBoneScale (3, 0.0, ShellTipBone2);
@@ -449,7 +443,6 @@ defaultproperties
      LastShellBone="ShellR"
      FireAnimCutThreshold=3.000000
      BigIconMaterial=Texture'BWBP_SKC_Tex.CoachGun.BigIcon_Coach'
-     BigIconMaterial=Texture'BallisticRecolors4TexPro.CoachGun.BigIcon_Coach'
      BigIconCoords=(Y1=35,Y2=225)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Shotgun=True
@@ -500,8 +493,8 @@ defaultproperties
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Coachgun'
      DrawScale=1.250000
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-     Skins(1)=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Main'
-     Skins(2)=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc'
-     Skins(3)=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc'
+     Skins(1)=Texture'BWBP_SKC_Tex.CoachGun.DBL-Main'
+     Skins(2)=Texture'BWBP_SKC_Tex.CoachGun.DBL-SawnBits'
+     Skins(3)=Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc'
      bShowChargingBar=True
 }
