@@ -1,20 +1,15 @@
 //=============================================================================
-// M290Shotgun.
+// Trench gun.
 //
-// Big double barreled shotgun. Primary fires both barrels at once, secondary
-// fires them seperately. Slower than M763 with less range and uses up ammo
-// quicker, but has tons of damage at close range.
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2005 RuneStorm. All Rights Reserved.
+// Reworked by Azarael "Big Rael" Azarael
 //=============================================================================
 class TrenchGun extends BallisticProShotgun;
 
-var byte OldWeaponMode;
-var actor ReloadSteam;
-var actor ReloadSteam2;
+var byte                OldWeaponMode;
+var actor               ReloadSteam;
+var actor               ReloadSteam2;
 
-var float LastModeChangeTime;
+var float               LastModeChangeTime;
 
 var() Material          MatGreenShell;
 var() Material          MatBlackShell;
@@ -38,9 +33,9 @@ struct DeployableInfo
 	var float				CoolDownDelay;
 };
 
-var DeployableInfo AltDeployable;
-const DeployRange = 512;
-var float	CooldownTime;
+var DeployableInfo      AltDeployable;
+const                   DeployRange = 512;
+var float	            CooldownTime;
 
 exec function Offset(int index, int value)
 {
@@ -447,28 +442,28 @@ function Notify_BarrierDeploy()
 	/*if (AltDeployable.AmmoReq > Ammo[0].AmmoAmount)
 	{
 		Instigator.ClientMessage("Not enough charge to warp in"@WeaponModes[0].ModeName$".");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
 		return;
 	}*/
 		
 	if (CooldownTime > level.TimeSeconds)
 	{
 		Instigator.ClientMessage("Barrier is still recharging.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
 		return;
 	}		
 		
 	if (HitActor == None || !HitActor.bWorldGeometry)
 	{
 		Instigator.ClientMessage("Must target an unoccupied surface.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
 	if (HitLoc == vect(0,0,0))
 	{
 		Instigator.ClientMessage("Out of range.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
@@ -481,7 +476,7 @@ function Notify_BarrierDeploy()
 	if (!SpaceToDeploy(HitLoc, HitNorm, SlopeRotation, AltDeployable.dClass.default.CollisionHeight, AltDeployable.dClass.default.CollisionRadius))
 	{
 		Instigator.ClientMessage("Insufficient space for construction.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	

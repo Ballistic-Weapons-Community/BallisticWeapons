@@ -131,7 +131,7 @@ defaultproperties
      
      Damage=20.000000
      HeadMult=1.4f
-     LimbMult=0.5f
+     LimbMult=0.6f
 
      DamageType=Class'BallisticProV55.DTXK2SMG'
      DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'

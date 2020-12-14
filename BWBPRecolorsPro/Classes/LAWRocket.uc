@@ -86,7 +86,7 @@ defaultproperties
      ImpactDamageType=Class'BWBPRecolorsPro.DTLAW'
      ImpactManager=Class'BWBPRecolorsPro.IM_LAWSmall'
      bRandomStartRotaion=False
-     AccelSpeed=4000.000000
+     AccelSpeed=8000.000000
      TrailClass=Class'BWBPRecolorsPro.LAWRocketTrail'
      TrailOffset=(X=-14.000000)
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTLAWRadius'
@@ -101,9 +101,9 @@ defaultproperties
      ShakeOffsetMag=(X=40.000000,Y=40.000000,Z=40.000000)
      ShakeOffsetRate=(X=650.000000,Y=650.000000,Z=650.000000)
      ShakeOffsetTime=10.000000
-     Speed=1000.000000
+     Speed=2000.000000
      MaxSpeed=30000.000000
-     Damage=300.000000
+     Damage=225.000000
      DamageRadius=1536.000000
      WallPenetrationForce=1024
      MomentumTransfer=300000.000000

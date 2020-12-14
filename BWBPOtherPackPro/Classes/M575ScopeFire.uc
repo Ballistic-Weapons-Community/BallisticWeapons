@@ -59,7 +59,7 @@ simulated function bool CheckReloading()
 simulated event ModeDoFire()
 {
 	if (AllowFire() && Instigator.IsLocallyControlled() && BW != None)
-    	M575Machinegun(BW).ScopeViewTwoRelease();
+    	M575Machinegun(BW).ScopeViewRelease();
 }
 
 // Send sight key press event to weapon
@@ -67,7 +67,7 @@ simulated function PlayPreFire()
 {
 	if (Instigator.IsLocallyControlled() && BW != None)
 	{
-		M575Machinegun(BW).ScopeViewTwo();
+		M575Machinegun(BW).ScopeView();
 	}
 }
 

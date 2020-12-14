@@ -25,7 +25,7 @@ defaultproperties
      FatiguePerStrike=0.100000
      bCanBackstab=True
      TraceRange=(Min=170.000000,Max=170.000000)
-     Damage=100.000000
+     Damage=140.000000
      DamageType=Class'BWBPRecolorsPro.DT_DTSStabChest'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_DTSStabHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_DTSStabChest'

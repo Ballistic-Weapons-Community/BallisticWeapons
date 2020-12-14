@@ -40,7 +40,7 @@ defaultproperties
      YInaccuracy=16.000000
      BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Fire',Volume=1.100000)
      FireEndAnim=
-     FireRate=0.4000000
+     FireRate=0.32500
      AmmoClass=Class'BallisticProV55.Ammo_50HV'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

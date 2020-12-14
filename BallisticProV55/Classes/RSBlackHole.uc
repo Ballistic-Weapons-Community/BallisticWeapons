@@ -130,6 +130,7 @@ simulated event Timer()
 					else
 						Spawn(class'RSNovaSoul',,, Location);
 				}
+                Charge += 0.5;
 			}
 			else if (Touching[i].Physics == PHYS_Karma)
 				Touching[i].KAddImpulse(Normal(Location - Touching[i].Location) * 60000 * (1-Dist/500) * (Charge/20), Touching[i].Location);
@@ -155,6 +156,11 @@ simulated function BOOM()
 	else
 		Kill();
 //		Destroy();
+}
+
+function Reset()
+{
+	Destroy();
 }
 
 state Exploding

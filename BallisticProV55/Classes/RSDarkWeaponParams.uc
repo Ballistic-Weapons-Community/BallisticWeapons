@@ -18,17 +18,11 @@ defaultproperties
 	    XRandFactor=0.1
 		YRandFactor=0.1
 		DeclineTime=0.5
-		ViewBindFactor=0.3
+		ViewBindFactor=0.5
 		DeclineDelay=0.25
 	End Object
 
-	Begin Object Class=AimParams Name=ArenaBoltAimParams
-		AimSpread=(Min=64,Max=1024)
-		SprintOffSet=(Pitch=-1024,Yaw=-1024)
-		ChaosDeclineTime=1.250000
-	End Object
-
-	Begin Object Class=AimParams Name=ArenaFastAimParams
+	Begin Object Class=AimParams Name=ArenaAimParams
 		SprintOffSet=(Pitch=-1024,Yaw=-1024)
 		ChaosDeclineTime=1.250000
 	End Object
@@ -40,8 +34,7 @@ defaultproperties
         InventorySize=12
 		RecoilParams(0)=RecoilParams'ArenaBoltRecoilParams'
 		RecoilParams(1)=RecoilParams'ArenaFastRecoilParams'
-		AimParams(0)=AimParams'ArenaBoltAimParams'
-		AimParams(1)=AimParams'ArenaFastAimParams'
+		AimParams(0)=AimParams'ArenaAimParams'
     End Object 
     Params(0)=WeaponParams'ArenaParams'
 }
