@@ -8,5 +8,5 @@ class LaserActor_LAW extends LaserActor;
 
 defaultproperties
 {
-     Skins(0)=FinalBlend'BallisticRecolors4TexPro.LAW.YellowLaserFinal'
+     Skins(0)=FinalBlend'BWBP_SKC_TexExp.LAW.YellowLaserFinal'
 }

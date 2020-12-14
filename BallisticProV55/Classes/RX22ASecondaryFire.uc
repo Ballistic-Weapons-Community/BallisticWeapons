@@ -127,7 +127,7 @@ defaultproperties
      FireRecoil=32.000000
      XInaccuracy=128.000000
      YInaccuracy=128.000000
-     BallisticFireSound=(Sound=Sound'BallisticSounds3.RX22A.RX22A-FuelLoop',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FuelLoop',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
      EffectString="Spray gas"
      bPawnRapidFireAnim=True
      FireEndAnim=

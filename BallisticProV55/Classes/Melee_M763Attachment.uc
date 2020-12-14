@@ -1,7 +1,7 @@
 //=============================================================================
 // Melee_M763Attachment.
 // 
-// 3rd person weapon attachment for M763 Shotgun
+// _TPm person weapon attachment for M763 Shotgun
 // 
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.

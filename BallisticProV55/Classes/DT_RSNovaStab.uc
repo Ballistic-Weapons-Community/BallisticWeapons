@@ -23,6 +23,6 @@ defaultproperties
      MaleSuicide="%o poked himself with his Nova Staff."
      bNeverSevers=True
 	 BlockFatiguePenalty=0.25
-     PawnDamageSounds(0)=SoundGroup'BWBP4-Sounds.NovaStaff.Nova-Flesh'
+     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.NovaStaff.Nova-Flesh'
      KDamageImpulse=2000.000000
 }

@@ -1,7 +1,7 @@
 //=============================================================================
 // RSDarkAttachment.
 //
-// 3rd person weapon attachment for Nova Staff
+// _TPm person weapon attachment for Nova Staff
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
@@ -341,5 +341,5 @@ defaultproperties
 	 MeleeStrikeAnim="RifleHip_Burst"
      ReloadAnimRate=1.700000
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP4-Anims.DarkStar-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.DarkStar_TPm'
 }

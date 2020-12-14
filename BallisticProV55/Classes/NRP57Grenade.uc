@@ -53,10 +53,10 @@ defaultproperties
      HeldMomentum=75000
      HeldDamageType=Class'BallisticProV55.DTNRP57Held'
      GrenadeSmokeClass=Class'BallisticProV55.NRP57Trail'
-     ClipReleaseSound=(Sound=Sound'BallisticSounds3.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
-     PinPullSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_NRP57'
+     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_NRP57'
      BigIconCoords=(Y1=16,Y2=245)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Hazardous=True
@@ -66,8 +66,8 @@ defaultproperties
      ManualLines(1)="As primary, except the grenade is rolled underarm."
      ManualLines(2)="As with all grenades, Weapon Function or Reload can be used to release the clip and cook the grenade in the user's hand. Care must be taken not to overcook the grenade, lest the user be blown up. The NRP-57 grenade is effective on the move or against static positions."
      SpecialInfo(0)=(Info="60.0;5.0;0.25;30.0;0.0;0.0;0.4")
-     BringUpSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
      CurrentWeaponMode=1
      ParamsClass=Class'NRP57WeaponParams'
      FireModeClass(0)=Class'BallisticProV55.NRP57PrimaryFire'
@@ -87,9 +87,9 @@ defaultproperties
      PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      AttachmentClass=Class'BallisticProV55.NRP57Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_NRP57'
+     IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_NRP57'
      IconCoords=(X2=127,Y2=31)
      ItemName="NRP-57 'Pineapple'"
-     Mesh=SkeletalMesh'BallisticAnims2.NRP57Grenade'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_NRPGrenade'
      DrawScale=0.400000
 }

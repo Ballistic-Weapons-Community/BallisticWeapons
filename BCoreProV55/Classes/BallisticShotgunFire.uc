@@ -14,7 +14,6 @@ var() class<Emitter>			TracerClass;	// Type of tracer to use
 var() float						TracerChance;	// Chance of tracer effect spawning per trace. 0=never, 1=always
 var() class<BCImpactManager>	ImpactManager;	// Impact manager to use for ListenServer and StandAlone impacts
 var() bool						bDoWaterSplash;	// splash when hitting water, duh...
-var() int                       MaxHits;        // Cannot hit a single target more times than this
 //-----------------------------------------------------------------------------
 //Target collation ------------------------------------------------------------
 struct HitActorInfo
@@ -127,11 +126,6 @@ function TrackHit(Actor Target, int Damage, vector HitLocation, bool bHeadshot)
 		HitActorInfos[i].HitActor = Target;
 		HitActorInfos[i].LastHitLocation = HitLocation;
 	}
-
-    // Guard against overkill from double-barreled shotguns
-    // Nasty, but whatever works
-    if (MaxHits > 0 && HitActorInfos[i].TotalHits == MaxHits)
-        return;
 
 	HitActorInfos[i].Damage += Damage;
 	++HitActorInfos[i].TotalHits;

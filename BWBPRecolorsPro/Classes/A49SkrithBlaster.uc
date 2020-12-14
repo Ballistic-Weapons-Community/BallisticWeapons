@@ -318,19 +318,19 @@ defaultproperties
 	ManualLines(2)="Effective at close range. Especially effective at repelling charges and melee."
 	HeatDeclineDelay=0.200000
 	BlastDamageType=Class'BWBPRecolorsPro.DTA49Shockwave'
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-	UsedAmbientSound=Sound'BallisticSounds2.A73.A73Hum1'
-	BigIconMaterial=Texture'BallisticRecolors3TexPro.A6.BigIcon_A49'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	UsedAmbientSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.A6.BigIcon_A49'
 	BigIconCoords=(Y1=24)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_RapidProj=True
 	bWT_Energy=True
 	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.A42.A42-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.A42.A42-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Putaway')
 	CockAnim="Overheat"
-	ClipOutSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipOut',Volume=1.300000)
-	ClipInSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipHit',Volume=1.300000)
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut',Volume=1.300000)
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit',Volume=1.300000)
 	WeaponModes(0)=(bUnavailable=True)
 	SightPivot=(Pitch=2000,Roll=-768)
 	SightOffset=(X=-12.000000,Y=33.000000,Z=65.000000)
@@ -355,7 +355,7 @@ defaultproperties
 	PlayerViewOffset=(Y=10.000000,Z=-25.000000)
 	BobDamping=1.600000
 	AttachmentClass=Class'BWBPRecolorsPro.A49Attachment'
-	IconMaterial=Texture'BallisticRecolors3TexPro.A6.SmallIcon_A49'
+	IconMaterial=Texture'BWBP_SKC_Tex.A6.SmallIcon_A49'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="A49 Skrith Blaster"
 	LightType=LT_Pulse
@@ -364,7 +364,7 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.SkrithBlaster'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_A49'
 	SoundPitch=56
 	SoundRadius=32.000000
 	bShowChargingBar=True

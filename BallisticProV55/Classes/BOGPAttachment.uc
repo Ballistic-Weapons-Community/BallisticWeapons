@@ -1,7 +1,7 @@
 //=============================================================================
 // BOGPAttachment.
 //
-// 3rd person weapon attachment for BOGP Pistol
+// _TPm person weapon attachment for BOGP Pistol
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
@@ -17,7 +17,7 @@ defaultproperties
      InstantMode=MU_None
      WaterTracerMode=MU_None
      bHeavy=True
-     Mesh=SkeletalMesh'BallisticAnims_25.BOGP_3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.BORT_TPm'
      DrawScale=0.325000
 	 CockingAnim="Reload_BreakOpen"
 }

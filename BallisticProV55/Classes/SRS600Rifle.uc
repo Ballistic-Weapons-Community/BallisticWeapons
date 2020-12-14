@@ -233,10 +233,10 @@ defaultproperties
 	SilencerBone="Silencer"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"
-	SilencerOnSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOn'
-	SilencerOffSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOff'
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=3)
-	BigIconMaterial=Texture'BallisticProTextures.SRS.BigIcon_SRSM2'
+	SilencerOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
+	SilencerOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
+	BigIconMaterial=Texture'BW_Core_WeaponTex.SRS.BigIcon_SRSM2'
 	BigIconCoords=(Y2=240)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -244,13 +244,13 @@ defaultproperties
 	ManualLines(1)="Attaches a suppressor. This reduces the recoil, but also the effective range. The flash is removed and the gunfire becomes less audible."
 	ManualLines(2)="Effective at medium to long range."
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;1.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
 	CockAnimRate=1.200000
-	CockSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-Cock',Volume=0.650000)
-	ClipHitSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-ClipHit')
-	ClipOutSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-ClipOut')
-	ClipInSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-ClipIn')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Cock',Volume=0.650000)
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipHit')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
 	WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -277,7 +277,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.SRS600Pickup'
 	PlayerViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
 	AttachmentClass=Class'BallisticProV55.SRS600Attachment'
-	IconMaterial=Texture'BallisticProTextures.SRS.SmallIcon_SRSM2'
+	IconMaterial=Texture'BW_Core_WeaponTex.SRS.SmallIcon_SRSM2'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="SRS-600 Battle Rifle"
 	LightType=LT_Pulse
@@ -286,10 +286,10 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BallisticProAnims.SRSEO-1st'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS600'
 	DrawScale=0.500000
-	Skins(0)=Texture'BallisticProTextures.SRS.SRSNSGrey'
-	Skins(1)=Texture'BWBP3-Tex.SRS900.SRS900Scope'
-	Skins(2)=Texture'BWBP3-Tex.SRS900.SRS900Ammo'
-	Skins(3)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(0)=Texture'BW_Core_WeaponTex.SRS.SRSNSGrey'
+	Skins(1)=Texture'BW_Core_WeaponTex.SRS900.SRS900Scope'
+	Skins(2)=Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo'
+	Skins(3)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

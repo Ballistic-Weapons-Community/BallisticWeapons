@@ -34,7 +34,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=15.000000,Max=25.000000),Y=(Min=15.000000,Max=25.000000),Z=(Min=15.000000,Max=25.000000))
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticWeapons2.Effects.Smoke7'
+         Texture=Texture'BW_Core_WeaponTex.Effects.Smoke7'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=80.000000,Max=120.000000),Y=(Min=-15.000000,Max=15.000000),Z=(Min=-15.000000,Max=15.000000))
@@ -43,7 +43,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BallisticProV55.T10Spray.SpriteEmitter0'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticHardware2.Effects.VolumetricA4'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VolumetricA4'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -93,7 +93,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.200000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticWeapons2.Effects.Smoke7'
+         Texture=Texture'BW_Core_WeaponTex.Effects.Smoke7'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=40.000000,Max=50.000000))

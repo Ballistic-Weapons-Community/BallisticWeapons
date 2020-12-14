@@ -75,24 +75,24 @@ function float SuggestDefenseStyle()	{	return 0.9;	}
 defaultproperties
 {
 
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_R78'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_R78'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      ManualLines(0)="Bolt-action sniper rifle fire with explosive rounds. High damage, long range, slow fire rate and deals damage to targets near the struck target."
      ManualLines(1)="Engages the scope."
      ManualLines(2)="Does not use tracer rounds. Effective at long range and against clustered enemies."
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
 	PutDownTime=0.5
      CockAnim="CockQuick"
-     //CockSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Cock')
-	 CockSound=(Sound=Sound'PackageSounds4Pro.R78NS.R78NS-Cock')
+     //CockSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Cock')
+	 CockSound=(Sound=Sound'BWBP_SKC_Sounds.R78NS.R78NS-Cock')
      ReloadAnimRate=1.250000
-     ClipHitSound=(Sound=Sound'BallisticSounds2.R78.R78-ClipHit')
-     ClipOutSound=(Sound=Sound'BallisticSounds2.R78.R78-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds2.R78.R78-ClipIn')
+     ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipHit')
+     ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipOut')
+     ClipInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipIn')
      ClipInFrame=0.650000
      bCockOnEmpty=True
      WeaponModes(0)=(ModeName="Semi-Automatic")
@@ -102,9 +102,9 @@ defaultproperties
      ZoomType=ZT_Logarithmic
      ScopeXScale=1.333000
      ZoomInAnim="ZoomIn"
-     ScopeViewTex=Texture'BallisticUI2.R78.RifleScopeView'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+     ScopeViewTex=Texture'BW_Core_WeaponTex.R78.RifleScopeView'
+     ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+     ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=20.000000
      bNoMeshInScope=True
      bNoCrosshairInScope=True
@@ -132,7 +132,7 @@ defaultproperties
      PickupClass=Class'BallisticProV55.R78Pickup'
      PlayerViewOffset=(X=6.000000,Y=8.000000,Z=-11.500000)
      AttachmentClass=Class'BallisticProV55.R78Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_R78'
+     IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_R78'
      IconCoords=(X2=127,Y2=31)
      ItemName="R78A1 Sniper Rifle"
      LightType=LT_Pulse
@@ -141,6 +141,6 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=5.000000
-     Mesh=SkeletalMesh'BallisticProAnims.R78A1Rifle'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R78'
      DrawScale=0.450000
 }

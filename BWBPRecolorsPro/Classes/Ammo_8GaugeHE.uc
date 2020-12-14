@@ -12,8 +12,8 @@ defaultproperties
 {
      MaxAmmo=64
 	 InitialAmount=32
-     IconFlashMaterial=Shader'BallisticRecolors3TexPro.SK410.AmmoIcon_SK410Flash'
+     IconFlashMaterial=Shader'BWBP_SKC_Tex.SK410.AmmoIcon_SK410Flash'
      PickupClass=Class'BWBPRecolorsPro.AP_8Gauge'
-     IconMaterial=Texture'BallisticRecolors3TexPro.SK410.AmmoIcon_SK410'
+     IconMaterial=Texture'BWBP_SKC_Tex.SK410.AmmoIcon_SK410'
      ItemName="8 Gauge HE Shells"
 }

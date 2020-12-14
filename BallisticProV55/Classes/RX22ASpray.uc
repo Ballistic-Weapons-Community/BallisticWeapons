@@ -95,7 +95,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.550000)
          StartSizeRange=(X=(Min=20.000000,Max=20.000000),Y=(Min=20.000000,Max=20.000000),Z=(Min=20.000000,Max=20.000000))
          InitialParticlesPerSecond=45.453999
-         Texture=Texture'BallisticEffects.Particles.BlazingSubdivide'
+         Texture=Texture'BW_Core_WeaponTex.Particles.BlazingSubdivide'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -105,7 +105,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BallisticProV55.RX22ASpray.SpriteEmitter0'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticHardware2.R78.RifleMuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.R78.RifleMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -153,7 +153,7 @@ defaultproperties
          ColorScale(2)=(RelativeTime=1.000000,Color=(G=128,R=255,A=255))
          FadeOutStartTime=0.384000
          MaxParticles=100
-         Texture=Texture'BallisticEffects.Particles.AquaFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.600000,Max=0.600000)
          StartVelocityRange=(X=(Min=2700.000000,Max=3750.000000),Y=(Min=-90.000000,Max=90.000000),Z=(Min=-90.000000,Max=90.000000))
@@ -186,7 +186,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.300000)
          StartSizeRange=(X=(Max=140.000000),Y=(Max=140.000000),Z=(Max=140.000000))
          InitialParticlesPerSecond=25.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.600000,Max=0.600000)
          StartVelocityRange=(X=(Min=2700.000000,Max=3300.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=-50.000000,Max=50.000000))
@@ -224,7 +224,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=0.870000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=60.000000,Max=80.000000),Y=(Min=60.000000,Max=80.000000),Z=(Min=60.000000,Max=80.000000))
          InitialParticlesPerSecond=50.000000
-         Texture=Texture'BallisticEffects.Particles.FlameParts'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          SecondsBeforeInactive=0.000000

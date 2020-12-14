@@ -231,27 +231,27 @@ simulated function bool HasAmmo()
 defaultproperties
 {
 	BeltLength=8
-	BoxOnSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOn')
-	BoxOffSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOff')
-	FlapUpSound=(Sound=Sound'BallisticSounds2.M925.M925-LeverUp')
-	FlapDownSound=(Sound=Sound'BallisticSounds2.M925.M925-LeverDown')
-	HandleOnSound=Sound'BallisticSounds2.M925.M925-StandOn'
-	HandleOffSound=Sound'BallisticSounds2.M925.M925-StandOff'
+	BoxOnSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-BoxOn')
+	BoxOffSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-BoxOff')
+	FlapUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-LeverUp')
+	FlapDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-LeverDown')
+	HandleOnSound=Sound'BW_Core_WeaponSound.M925.M925-StandOn'
+	HandleOffSound=Sound'BW_Core_WeaponSound.M925.M925-StandOff'
 	AIReloadTime=4.000000
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M925'
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M925'
 	SightFXClass=Class'BallisticProV55.M925SightLEDs'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	SpecialInfo(0)=(Info="360.0;30.0;0.8;40.0;0.0;0.0;0.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.M925.M925-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M925.M925-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Putaway')
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BallisticSounds2.M925.M925-Cock')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Cock')
 	ReloadAnim="ReloadStart"
 	ReloadAnimRate=1.250000
-	ClipOutSound=(Sound=Sound'BallisticSounds2.M925.M925-ShellOut')
-	ClipInSound=(Sound=Sound'BallisticSounds2.M925.M925-ShellIn')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellIn')
 	bCockOnEmpty=True
 	bUseSights=False
 	bNoCrosshairInScope=True
@@ -285,7 +285,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.M925Pickup'
 	PlayerViewOffset=(X=11.000000,Z=-14.000000)
 	AttachmentClass=Class'BallisticProV55.M925Attachment'
-	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M925'
+	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M925'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M925 Machinegun Turret"
 	LightType=LT_Pulse
@@ -294,13 +294,13 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=6.000000
-	Mesh=SkeletalMesh'BallisticAnims2.M925Turret-1st'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M925Turret'
 	DrawScale=0.230000
-	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-	Skins(1)=Texture'BallisticWeapons2.M925.M925Small'
-	Skins(2)=Texture'BallisticWeapons2.M925.M925Main'
-	Skins(3)=Texture'BallisticWeapons2.M925.M925HeatShield'
-	Skins(4)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-	Skins(5)=Texture'BallisticWeapons2.M925.M925AmmoBox'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Small'
+	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925Main'
+	Skins(3)=Texture'BW_Core_WeaponTex.M925.M925HeatShield'
+	Skins(4)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(5)=Texture'BW_Core_WeaponTex.M925.M925AmmoBox'
 	CollisionHeight=24.000000
 }

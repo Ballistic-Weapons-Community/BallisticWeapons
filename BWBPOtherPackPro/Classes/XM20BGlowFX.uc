@@ -31,7 +31,7 @@ defaultproperties
     Name="SpriteEmitter0"
     StartLocationRange=(X=(Min=-1.000000,Max=1.000000),Y=(Min=-15.000000,Max=15.000000),Z=(Min=-3.000000,Max=3.000000))
     StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
-    Texture=Texture'BallisticRecolors3TexPro.BFG.PlasmaSubdivide'
+    Texture=Texture'BWBP_SKC_Tex.BFG.PlasmaSubdivide'
     TextureUSubdivisions=4
     TextureVSubdivisions=2
     SubdivisionScale(0)=2.000000

@@ -1,7 +1,7 @@
 //=============================================================================
 // MRLAttachment.
 //
-// 3rd person weapon attachment for MRL
+// _TPm person weapon attachment for MRL
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
@@ -39,6 +39,6 @@ defaultproperties
      InstantMode=MU_None
      FlashMode=MU_Both
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP4b-Anims.MRL-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.MRL_TPm'
      DrawScale=0.250000
 }

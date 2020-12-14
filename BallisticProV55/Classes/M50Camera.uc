@@ -109,13 +109,13 @@ delegate OnCameraDie();
 defaultproperties
 {
 	 Health=200
-     NoiseSound=Sound'BallisticSounds2.M50.M50CamNoise'
-     TrackSound=Sound'BallisticSounds2.M50.M50CamTurn'
-     DieSound=Sound'BallisticSounds2.M50.M50CamDie'
-     PlaceSound=Sound'BallisticSounds2.M50.M50CamPlace'
+     NoiseSound=Sound'BW_Core_WeaponSound.M50.M50CamNoise'
+     TrackSound=Sound'BW_Core_WeaponSound.M50.M50CamTurn'
+     DieSound=Sound'BW_Core_WeaponSound.M50.M50CamDie'
+     PlaceSound=Sound'BW_Core_WeaponSound.M50.M50CamPlace'
      LastFOV=90
      DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BallisticHardware2.M50.M50Camera'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M50.M50Camera'
      bAlwaysRelevant=True
      RemoteRole=ROLE_SimulatedProxy
      SoundVolume=192

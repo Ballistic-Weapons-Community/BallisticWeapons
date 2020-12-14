@@ -1,7 +1,7 @@
 //=============================================================================
 // X4Attachment.
 //
-// 3rd person weapon attachment for the X4 Knife
+// _TPm person weapon attachment for the X4 Knife
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
@@ -21,6 +21,6 @@ defaultproperties
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      MeleeStrikeAnim="Blade_Stab"
      bRapidFire=True
-     Mesh=SkeletalMesh'BallisticAnims_25.X4_3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.X4_TPm'
      DrawScale=0.175000
 }

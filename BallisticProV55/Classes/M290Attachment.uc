@@ -1,7 +1,7 @@
 //=============================================================================
 // M290Attachment.
 //
-// 3rd person weapon attachment for M290 Shotgun
+// _TPm person weapon attachment for M290 Shotgun
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -86,6 +86,6 @@ defaultproperties
      TracerChance=0.500000
      CockingAnim="Cock_Pump"
      CockAnimRate=1.700000
-     Mesh=SkeletalMesh'BallisticAnims2.M290-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M290_TPm'
      DrawScale=0.180000
 }

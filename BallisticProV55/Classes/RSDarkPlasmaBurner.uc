@@ -133,7 +133,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.800000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.500000)
          StartSizeRange=(X=(Min=15.000000,Max=15.000000),Y=(Min=35.000000,Max=65.000000),Z=(Min=50.000000,Max=50.000000))
-         Texture=Texture'BallisticEffects.Particles.BlazingSubdivide'
+         Texture=Texture'BW_Core_WeaponTex.Particles.BlazingSubdivide'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -165,7 +165,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=3.000000)
          StartSizeRange=(X=(Min=25.000000,Max=25.000000),Y=(Min=25.000000,Max=25.000000),Z=(Min=25.000000,Max=25.000000))
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects2.Particles.NewSmoke1f'
+         Texture=Texture'BW_Core_WeaponTex.Particles.NewSmoke1f'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=-25.000000,Max=25.000000),Y=(Min=-25.000000,Max=25.000000),Z=(Min=75.000000,Max=150.000000))
@@ -187,7 +187,7 @@ defaultproperties
          StartLocationRange=(Z=(Min=-25.000000,Max=40.000000))
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=25.000000,Max=55.000000),Y=(Min=25.000000,Max=55.000000),Z=(Min=25.000000,Max=55.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -196,7 +196,7 @@ defaultproperties
      AutoDestroy=True
      Physics=PHYS_Trailer
      RemoteRole=ROLE_SimulatedProxy
-     AmbientSound=Sound'BallisticSounds2.FP7.FP7FireLoop'
+     AmbientSound=Sound'BW_Core_WeaponSound.FP7.FP7FireLoop'
      bFullVolume=True
      SoundVolume=255
      SoundRadius=128.000000

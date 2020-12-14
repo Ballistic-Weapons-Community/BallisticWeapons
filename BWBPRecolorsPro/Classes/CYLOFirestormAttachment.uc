@@ -91,7 +91,7 @@ defaultproperties
      LightMode=MU_Both
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_Incendiary'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      IdleHeavyAnim="PistolHip_Idle"
      IdleRifleAnim="PistolAimed_Idle"
      SingleFireAnim="PistolHip_Fire"
@@ -102,7 +102,7 @@ defaultproperties
      ReloadAnimRate=0.800000
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.CYLOMk2_3rd'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.CYLOFireStorm_TPm'
      RelativeLocation=(Z=1.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.300000

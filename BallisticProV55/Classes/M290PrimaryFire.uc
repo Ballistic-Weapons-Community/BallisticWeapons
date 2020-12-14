@@ -103,7 +103,7 @@ defaultproperties
      FireChaos=0.300000
      XInaccuracy=512.000000
      YInaccuracy=378.000000
-     BallisticFireSound=(Sound=Sound'BallisticSounds3.M290.M290Fire',Volume=1.500000)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Fire',Volume=1.500000)
      FireRate=1.200000
      AmmoClass=Class'BallisticProV55.Ammo_Super12Gauge'
      AmmoPerFire=2

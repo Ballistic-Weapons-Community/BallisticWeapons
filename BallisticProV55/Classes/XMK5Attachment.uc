@@ -1,7 +1,7 @@
 //=============================================================================
 // XMK5Attachment.
 //
-// 3rd person weapon attachment for XMK5 SubMachinegun
+// _TPm person weapon attachment for XMK5 SubMachinegun
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
@@ -17,10 +17,10 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_XMK5SMG'
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
      ReloadAnimRate=1.250000
      bRapidFire=True
-     Mesh=SkeletalMesh'BallisticAnims_25.OA-SMG_3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMK5_TPm'
      DrawScale=0.325000
 }

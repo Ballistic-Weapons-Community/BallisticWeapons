@@ -1,15 +1,20 @@
 //=============================================================================
-// Coach gun.
+// M290Shotgun.
 //
-// Reworked by Azarael "Big Rael" Azarael
+// Big double barreled shotgun. Primary fires both barrels at once, secondary
+// fires them seperately. Slower than M763 with less range and uses up ammo
+// quicker, but has tons of damage at close range.
+//
+// by Nolan "Dark Carnivour" Richert.
+// Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class CoachGun extends BallisticProShotgun;
 
-var byte                OldWeaponMode;
-var actor               ReloadSteam;
-var actor               ReloadSteam2;
+var byte OldWeaponMode;
+var actor ReloadSteam;
+var actor ReloadSteam2;
 
-var float               LastModeChangeTime;
+var float LastModeChangeTime;
 
 var() Material          MatGreenShell;
 var() Material          MatBlackShell;
@@ -22,8 +27,6 @@ var() name				LastShellBone;		// Name of the right shell.
 var   bool				bLastShell;			// Checks if only one shell is left
 var   bool				bNowEmpty;			// Checks if it should play modified animation.
 
-var() float				SingleReloadAnimRate;   // Animation rate for single reload.
-
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
@@ -34,7 +37,7 @@ simulated function PostBeginPlay()
 		SetBoneScale (3, 1.0, ShellTipBone2);
 		SetBoneScale (4, 1.0, ShellTipBone3);
 		SetBoneScale (5, 1.0, ShellTipBone4);
-		Skins[2]=MatBlackShell;
+		//Skins[2]=MatBlackShell;
 		Skins[3]=MatBlackShell;
 	}
 	else
@@ -43,7 +46,7 @@ simulated function PostBeginPlay()
 		SetBoneScale (3, 0.0, ShellTipBone2);
 		SetBoneScale (4, 0.0, ShellTipBone3);
 		SetBoneScale (5, 0.0, ShellTipBone4);
-		Skins[2]=MatGreenShell;
+		//Skins[2]=MatGreenShell;
 		Skins[3]=MatGreenShell;
 	}
 }
@@ -76,8 +79,6 @@ function ServerStartReload (optional byte i)
 	for (m=0; m < NUM_FIRE_MODES; m++)
 		if (FireMode[m] != None && FireMode[m].bIsFiring)
 			StopFire(m);
-
-    AnimBlendParams(1, 0);
 
 	bServerReloading = true;
 	CommonStartReload(i);	//Server animation
@@ -116,9 +117,17 @@ simulated function CommonStartReload (optional byte i)
 simulated function PlayReload()
 {
 	if (MagAmmo == 1 && !bNowEmpty)		// One shell fired and both shells in
-		PlayAnim('ReloadSingle', SingleReloadAnimRate, , 0.25);
+		PlayAnim('ReloadSingle', CockAnimRate, , 0.25);
 	else					// Both shells fired
 		PlayAnim('Reload', ReloadAnimRate, , 0.25);
+}
+
+// Returns true if gun will need reloading after a certain amount of ammo is consumed. Subclass for special stuff
+simulated function bool MayNeedReload(byte Mode, float Load)
+{
+	if (!HasNonMagAmmo(0))
+		return true;
+	return bNeedReload;
 }
 
 simulated function bool CheckScope()
@@ -140,6 +149,7 @@ simulated function bool CheckScope()
 
 simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 {
+
 	if (anim == FireMode[0].FireAnim || (FireMode[1] != None && anim == FireMode[1].FireAnim) )
 		bPreventReload=false;
 
@@ -155,12 +165,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	}
 	
 	//Phase out Channel 1 if a sight fire animation has just ended.
-	if 
-    (
-        anim == BFireMode[0].AimedFireAnim || 
-        anim == CoachGunPrimaryFire(FireMode[0]).AimedFireEmptyAnim || 
-        anim == CoachGunPrimaryFire(FireMode[0]).AimedFireSingleAnim
-    )
+	if (anim == BFireMode[0].AimedFireAnim || anim == CoachGunPrimaryFire(FireMode[0]).AimedFireEmptyAnim)
 	{
 		AnimBlendParams(1, 0);
 		//Cut the basic fire anim if it's too long.
@@ -247,7 +252,7 @@ simulated function CommonSwitchWeaponMode (byte NewMode)
 		SetBoneScale (3, 0.0, ShellTipBone2);
 		SetBoneScale (4, 1.0, ShellTipBone3);
 		SetBoneScale (5, 1.0, ShellTipBone4);
-		Skins[2]=MatGreenShell;
+		//Skins[2]=MatGreenShell;
 		Skins[3]=MatBlackShell;
 	}
 	else
@@ -256,7 +261,7 @@ simulated function CommonSwitchWeaponMode (byte NewMode)
 		SetBoneScale (3, 1.0, ShellTipBone2);
 		SetBoneScale (4, 0.0, ShellTipBone3);
 		SetBoneScale (5, 0.0, ShellTipBone4);
-		Skins[2]=MatBlackShell;
+		//Skins[2]=MatBlackShell;
 		Skins[3]=MatGreenShell;
 	}
 }
@@ -280,7 +285,7 @@ simulated function Notify_CoachShellDown()
 	}
 	if (CurrentWeaponMode == 1)
 	{
-		Skins[2]=MatBlackShell;
+		//Skins[2]=MatBlackShell;
 		Skins[3]=MatBlackShell;
 		SetBoneScale (2, 1.0, ShellTipBone1);
 		SetBoneScale (3, 1.0, ShellTipBone2);
@@ -289,7 +294,7 @@ simulated function Notify_CoachShellDown()
 	}
 	else
 	{
-		Skins[2]=MatGreenShell;
+		//Skins[2]=MatGreenShell;
 		Skins[3]=MatGreenShell;
 		SetBoneScale (2, 0.0, ShellTipBone1);
 		SetBoneScale (3, 0.0, ShellTipBone2);
@@ -431,25 +436,18 @@ function float SuggestDefenseStyle()
     return FClamp(Result, -1.0, -0.3);
 }
 // End AI Stuff =====
-simulated function float ChargeBar()
-{
-	if (FireMode[0].bIsFiring)
-		return FMin(1, FireMode[0].HoldTime / CoachGunPrimaryFire(FireMode[0]).ChargeTime);
-	return FMin(1, CoachGunPrimaryFire(FireMode[0]).DecayCharge / CoachGunPrimaryFire(FireMode[0]).ChargeTime);
-}
 
 defaultproperties
 {
-     MatGreenShell=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc'
-     MatBlackShell=Texture'BallisticRecolors4TexPro.CoachGun.DBL-MiscBlack'
+     MatGreenShell=Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc'
+     MatBlackShell=Texture'BWBP_SKC_Tex.CoachGun.DBL-MiscBlack'
      ShellTipBone1="ShellLSuper"
      ShellTipBone2="ShellRSuper"
      ShellTipBone3="SpareShellLSuper"
      ShellTipBone4="SpareShellRSuper"
      LastShellBone="ShellR"
-     FireAnimCutThreshold=3.000000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticRecolors4TexPro.CoachGun.BigIcon_Coach'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BWBP_SKC_Tex.CoachGun.BigIcon_Coach'
      BigIconCoords=(Y1=35,Y2=225)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Shotgun=True
@@ -458,17 +456,17 @@ defaultproperties
      ManualLines(2)="Effective at close to medium range depending on active mode."
      SpecialInfo(0)=(Info="160.0;10.0;0.3;40.0;0.0;1.0;0.0")
      MeleeFireClass=Class'BWBPRecolorsPro.CoachGunMeleeFire'
-     BringUpSound=(Sound=Sound'BallisticSounds2.M290.M290Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
      CockAnimRate=0.700000
-     SingleReloadAnimRate=1.350000
-     ReloadAnimRate=1.350000
+     ReloadAnimRate=1.100000
      ClipInFrame=0.800000
      bNonCocking=True
-     WeaponModes(0)=(ModeName="Shot",Value=1.000000)
-     WeaponModes(1)=(ModeName="Slug",Value=1.000000)
+     WeaponModes(0)=(ModeName="Shot",Value=2.000000)
+     WeaponModes(1)=(ModeName="Slug",Value=2.000000)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
+     SightPivot=(Pitch=256)
      SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
@@ -488,7 +486,7 @@ defaultproperties
      PickupClass=Class'BWBPRecolorsPro.CoachGunPickup'
      PlayerViewOffset=(X=-10.000000,Y=20.000000,Z=-30.000000)
      AttachmentClass=Class'BWBPRecolorsPro.CoachGunAttachment'
-     IconMaterial=Texture'BallisticRecolors4TexPro.CoachGun.SmallIcon_Coach'
+     IconMaterial=Texture'BWBP_SKC_Tex.CoachGun.SmallIcon_Coach'
      IconCoords=(X2=127,Y2=40)
      ItemName="Redwood Coach Gun"
      LightType=LT_Pulse
@@ -497,11 +495,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=180.000000
      LightRadius=5.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.DoubleShotgun_FP'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Coachgun'
      DrawScale=1.250000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Main'
-     Skins(2)=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc'
-     Skins(3)=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc'
-     bShowChargingBar=True
+	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

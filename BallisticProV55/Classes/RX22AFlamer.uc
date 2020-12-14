@@ -268,13 +268,13 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-	PackOnSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-PackOn',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
-	LeverOnSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-LeverOn',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
-	LeverOffSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-LeverOff',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
+	PackOnSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-PackOn',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
+	LeverOnSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-LeverOn',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
+	LeverOffSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-LeverOff',Volume=0.600000,Radius=48.000000,Pitch=1.000000)
 	ValveAnim="TurnValve"
 
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_RX22A'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_RX22A'
 	BigIconCoords=(Y2=240)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
@@ -287,10 +287,10 @@ defaultproperties
 	ManualLines(1)="Sprays unignited flamer gas. This gas will collect on surfaces or players. When on a surface, it can be ignited later to set a trap for the enemy or to close off areas. When on a player, it increases the damage dealt by the next primary attack."
 	ManualLines(2)="Has a high capacity, but long reload time. Will not function underwater.||Effective at close range. Extremely effective when used defensively."
 	SpecialInfo(0)=(Info="360.0;50.0;0.96;90.0;0.0;0.3;1.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-Putaway')
-	ClipOutSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-PipeOut')
-	ClipInSound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-PipeIn')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Putaway')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-PipeOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-PipeIn')
 	ClipInFrame=0.700000
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(bUnavailable=True)
@@ -313,7 +313,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.RX22APickup'
 	PlayerViewOffset=(X=6.000000,Y=6.000000,Z=-8.000000)
 	AttachmentClass=Class'BallisticProV55.RX22AAttachment'
-	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_RX22A'
+	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_RX22A'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="RX-22A Flamethrower"
 	LightType=LT_Pulse
@@ -322,11 +322,11 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticAnims2.RX22AFlamer'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RX22A'
 	DrawScale=0.300000
-	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-	Skins(1)=Texture'BallisticWeapons2.RX22A.RX22ASkin'
-	Skins(2)=Texture'BallisticWeapons2.RX22A.RX22AShield'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.RX22A.RX22ASkin'
+	Skins(2)=Texture'BW_Core_WeaponTex.RX22A.RX22AShield'
 	bFullVolume=True
 	SoundRadius=128.000000
 }

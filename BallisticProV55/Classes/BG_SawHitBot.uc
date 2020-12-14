@@ -71,7 +71,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=15.000000),Y=(Min=10.000000,Max=15.000000),Z=(Min=10.000000,Max=15.000000))
          InitialParticlesPerSecond=400.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects.Particles.Smoke6'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.500000,Max=2.000000)
          StartVelocityRange=(X=(Min=-50.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Max=30.000000))
@@ -98,7 +98,7 @@ defaultproperties
          StartSizeRange=(X=(Min=2.000000,Max=5.000000))
          InitialParticlesPerSecond=400.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects.Particles.Smoke6'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.350000,Max=0.350000)
          StartVelocityRange=(X=(Min=-400.000000,Max=-150.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=-200.000000,Max=150.000000))
@@ -130,7 +130,7 @@ defaultproperties
          StartSizeRange=(X=(Min=20.000000,Max=30.000000),Y=(Min=20.000000,Max=30.000000),Z=(Min=20.000000,Max=30.000000))
          InitialParticlesPerSecond=400.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects.Particles.Smoke2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          StartVelocityRange=(X=(Min=-200.000000,Max=-50.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=-100.000000,Max=100.000000))
@@ -165,7 +165,7 @@ defaultproperties
          StartSizeRange=(X=(Min=8.000000,Max=10.000000),Y=(Min=8.000000,Max=10.000000),Z=(Min=8.000000,Max=10.000000))
          InitialParticlesPerSecond=30.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticWeapons2.Effects.SparkA1Alpha'
+         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1Alpha'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -195,7 +195,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
          StartSizeRange=(X=(Min=6.000000,Max=12.000000),Y=(Min=6.000000,Max=12.000000),Z=(Min=6.000000,Max=12.000000))
          InitialParticlesPerSecond=100.000000
-         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
+         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000

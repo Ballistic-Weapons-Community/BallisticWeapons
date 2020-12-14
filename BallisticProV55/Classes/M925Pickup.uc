@@ -8,9 +8,9 @@ var() StaticMesh AlternateMesh;
 var() StaticMesh AlternateMeshLo;
 var   StaticMesh DaMesh;
 
-#exec OBJ LOAD FILE=BallisticWeapons2.utx
-#exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -20,28 +20,28 @@ var   StaticMesh DaMesh;
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticWeapons2.M925.M925Main');
-	L.AddPrecacheMaterial(Texture'BallisticWeapons2.M925.M925Small');
-	L.AddPrecacheMaterial(Texture'BallisticWeapons2.M925.M925AmmoBox');
-	L.AddPrecacheMaterial(Texture'BallisticWeapons2.M925.M925HeatShield');
-	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M925.M925MuzzleFlash');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.M925.M925Main');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.M925.M925Small');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.M925.M925AmmoBox');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.M925.M925HeatShield');
+	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M925.M925MuzzleFlash');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.M925.M925Main');
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.M925.M925Small');
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.M925.M925AmmoBox');
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.M925.M925HeatShield');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.M925.M925Main');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.M925.M925Small');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.M925.M925AmmoBox');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.M925.M925HeatShield');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M925.M925MuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Ammo.M925AmmoBox');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M925.M925PickupAltHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M925.M925PickupAltLo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M925.M925PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M925.M925PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M925.M925MuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Ammo.M925AmmoBox');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M925.M925PickupAltHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M925.M925PickupAltLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M925.M925PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M925.M925PickupLo');
 }
 
 simulated event Tick(float DT)
@@ -86,17 +86,17 @@ simulated function PostBeginPlay()
 
 defaultproperties
 {
-     AlternateMesh=StaticMesh'BallisticHardware2.M925.M925PickupAltHi'
-     AlternateMeshLo=StaticMesh'BallisticHardware2.M925.M925PickupAltLo'
+     AlternateMesh=StaticMesh'BW_Core_WeaponStatic.M925.M925PickupAltHi'
+     AlternateMeshLo=StaticMesh'BW_Core_WeaponStatic.M925.M925PickupAltLo'
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BallisticHardware2.M925.M925PickupLo'
+     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.M925.M925PickupLo'
      PickupDrawScale=0.250000
      StandUp=(Y=0.800000)
      InventoryType=Class'BallisticProV55.M925Machinegun'
      RespawnTime=20.000000
      PickupMessage="You picked up the M925 machinegun."
-     PickupSound=Sound'BallisticSounds2.M925.M925-Putaway'
-     StaticMesh=StaticMesh'BallisticHardware2.M925.M925PickupHi'
+     PickupSound=Sound'BW_Core_WeaponSound.M925.M925-Putaway'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M925.M925PickupHi'
      bOrientOnSlope=True
      Physics=PHYS_None
      DrawScale=0.250000

@@ -4,9 +4,9 @@
 class XMV850Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticWeapons2.utx
-#exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,36 +16,36 @@ class XMV850Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticWeapons2.XMV850.XMV850_Main');
-	L.AddPrecacheMaterial(Texture'BallisticWeapons2.XMV850.XMV850_Barrels');
-	L.AddPrecacheMaterial(Texture'BallisticWeapons2.XMV850.XMV850_BackPack');
-	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.XMV850.XMV850backpack');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.XMV850.XMV850_Main');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.XMV850.XMV850_Barrels');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.XMV850.XMV850_BackPack');
+	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850backpack');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.XMV850.XMV850_Main');
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.XMV850.XMV850_Barrels');
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.XMV850.XMV850_BackPack');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.XMV850.XMV850_Main');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.XMV850.XMV850_Barrels');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.XMV850.XMV850_BackPack');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.XMV850.XMV850PickupLD');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.XMV850.XMV850PickupHD');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.XMV850.XMV850backpack');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.XMV850.XMV850AmmoPiickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850PickupLD');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850PickupHD');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850backpack');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850AmmoPiickup');
 }
 
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BallisticHardware2.XMV850.XMV850PickupLD'
+     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850PickupLD'
      PickupDrawScale=0.350000
      InventoryType=Class'BallisticProV55.XMV850Minigun'
      RespawnTime=20.000000
      PickupMessage="You picked up the XMV-850 minigun."
-     PickupSound=Sound'BallisticSounds2.XMV-850.XMV-Putaway'
-     StaticMesh=StaticMesh'BallisticHardware2.XMV850.XMV850PickupHD'
+     PickupSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850PickupHD'
      bOrientOnSlope=True
      Physics=PHYS_None
      DrawScale=0.350000

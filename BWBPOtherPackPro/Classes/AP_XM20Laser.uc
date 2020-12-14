@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=60
      InventoryType=Class'BWBPOtherPackPro.Ammo_XM20Laser'
      PickupMessage="You got 60 XM-20 energy cells."
-     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.LaserCarbine.LS14AmmoPickup'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.LS14AmmoPickup'
      CollisionRadius=8.000000
      CollisionHeight=14.000000
 }

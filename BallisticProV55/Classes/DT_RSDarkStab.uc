@@ -36,7 +36,7 @@ defaultproperties
      FemaleSuicide="%o accidentally shredded herself on her Dark Star."
      MaleSuicide="%o accidentally shredded himself on his Dark Star."
      bNeverSevers=True
-     PawnDamageSounds(0)=SoundGroup'BWBP4-Sounds.DarkStar.Dark-Flesh'
+     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.DarkStar.Dark-Flesh'
      KDamageImpulse=2000.000000
      TransientSoundVolume=0.900000
 }

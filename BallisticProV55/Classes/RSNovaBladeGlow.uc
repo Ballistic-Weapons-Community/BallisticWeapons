@@ -9,7 +9,7 @@ class RSNovaBladeGlow extends BallisticEmitter;
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BWBP4-Hardware.NovaStaff.NovaBladeGlow'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaBladeGlow'
          UseMeshBlendMode=False
          UseParticleColor=True
          SpinParticles=True
@@ -36,7 +36,7 @@ defaultproperties
          MaxParticles=1
          StartLocationOffset=(X=20.000000,Z=-13.000000)
          StartSizeRange=(X=(Min=20.000000,Max=20.000000),Y=(Min=20.000000,Max=20.000000),Z=(Min=20.000000,Max=20.000000))
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -54,7 +54,7 @@ defaultproperties
          MaxParticles=1
          StartLocationOffset=(X=45.000000,Z=-18.000000)
          StartSizeRange=(X=(Min=20.000000,Max=20.000000),Y=(Min=20.000000,Max=20.000000),Z=(Min=20.000000,Max=20.000000))
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -72,7 +72,7 @@ defaultproperties
          MaxParticles=1
          StartLocationOffset=(X=70.000000,Z=-12.000000)
          StartSizeRange=(X=(Min=20.000000,Max=20.000000),Y=(Min=20.000000,Max=20.000000),Z=(Min=20.000000,Max=20.000000))
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object

@@ -63,7 +63,7 @@ defaultproperties
      FireRecoil=768.000000
      FirePushbackForce=255.000000
      FireChaos=1.000000
-     BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.AS50.AS50-Fire',Volume=5.100000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.AS50-Fire',Volume=5.100000,Slot=SLOT_Interact,bNoOverride=False)
      FireAnim="CFire"
      FireEndAnim=
      FireRate=0.350000

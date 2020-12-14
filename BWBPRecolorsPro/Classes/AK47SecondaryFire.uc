@@ -74,7 +74,7 @@ defaultproperties
      SpawnOffset=(X=12.000000,Y=10.000000,Z=-15.000000)
      bUseWeaponMag=False
      FlashBone="tip2"
-     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-KnifeFire',Volume=1.350000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.AK47.AK47-KnifeFire',Volume=1.350000)
      bTossed=True
      bFireOnRelease=True
      bWaitForRelease=True

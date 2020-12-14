@@ -23,7 +23,7 @@ defaultproperties
      DisableDGV(1)=1
      DisableDGV(3)=1
      Begin Object Class=MeshEmitter Name=MeshEmitter6
-         StaticMesh=StaticMesh'BallisticHardware2.M806.PistolMuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M806.PistolMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -48,7 +48,7 @@ defaultproperties
      Emitters(0)=MeshEmitter'BallisticProV55.IE_A42General.MeshEmitter6'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter7
-         StaticMesh=StaticMesh'BallisticHardware2.Effects.RailWaveCircle'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.RailWaveCircle'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -95,7 +95,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=20.000000),Y=(Min=5.000000,Max=20.000000),Z=(Min=5.000000,Max=20.000000))
          InitialParticlesPerSecond=20.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.Smoke4'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.500000,Max=1.500000)
          StartVelocityRange=(X=(Min=5.000000,Max=5.000000),Y=(Min=-2.000000,Max=2.000000),Z=(Min=40.000000,Max=40.000000))
@@ -121,7 +121,7 @@ defaultproperties
          SizeScale(1)=(RelativeSize=0.500000)
          StartSizeRange=(X=(Min=30.000000,Max=30.000000),Y=(Min=30.000000,Max=30.000000),Z=(Min=30.000000,Max=30.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.600000,Max=0.600000)
      End Object
@@ -142,7 +142,7 @@ defaultproperties
          FadeOutStartTime=0.464000
          MaxParticles=25
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.800000,Max=0.800000)
          StartVelocityRange=(X=(Max=200.000000),Y=(Min=-80.000000,Max=80.000000),Z=(Min=-50.000000,Max=80.000000))

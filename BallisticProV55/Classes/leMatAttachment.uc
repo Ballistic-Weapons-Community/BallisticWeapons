@@ -174,7 +174,7 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      AltFlashBone="tip2"
      BrassClass=Class'BallisticProV55.Brass_Magnum'
-     BrassBone="leMat-3rd"
+     BrassBone="leMat_TPm"
      TracerMode=MU_Both
      InstantMode=MU_Both
      FlashMode=MU_Both
@@ -183,7 +183,7 @@ defaultproperties
      TracerChance=0.600000
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
-     Mesh=SkeletalMesh'BWBP4-Anims.leMat-3rd'
+     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.Wilson_TPm'
      DrawScale=0.125000
 }

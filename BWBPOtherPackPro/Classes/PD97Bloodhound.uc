@@ -294,9 +294,9 @@ defaultproperties
 	SpareShellBones(3)="SpareShell4"
 	SpareShellBones(4)="SpareShell5"
 	bShouldDualInLoadout=False
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
-	BigIconMaterial=Texture'BWBPOtherPackTex.Bloodhound.BigIcon_PD97'
+	BigIconMaterial=Texture'BWBP_OP_Tex.Bloodhound.BigIcon_PD97'
 	IdleTweenTime=0.000000
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -305,13 +305,13 @@ defaultproperties
 	ManualLines(1)="Launches a tazer. The user must hold down Altfire or the tazer will be retracted. Upon striking an enemy, transmits a current dealing paltry DPS but slowing the enemy movement."
 	ManualLines(2)="Primarily a support weapon, the Bloodhound is most effective when used as part of a team. Nevertheless, sufficient dart hits can cause high damage. The Bloodhound has very low recoil."
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BallisticSounds2.AM67.AM67-Cock')
-	ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
-	ClipOutSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipOut')
-	ClipInSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipIn')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Cock')
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipIn')
 	ClipInFrame=0.650000
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
@@ -334,7 +334,7 @@ defaultproperties
 	PickupClass=Class'BWBPOtherPackPro.PD97Pickup'
 	PlayerViewOffset=(X=5.000000,Y=8.000000,Z=-10.000000)
 	AttachmentClass=Class'BWBPOtherPackPro.PD97Attachment'
-	IconMaterial=Texture'BWBPOtherPackTex.Bloodhound.Icon_PD97'
+	IconMaterial=Texture'BWBP_OP_Tex.Bloodhound.Icon_PD97'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="PD-97 'Bloodhound'"
 	LightType=LT_Pulse
@@ -343,6 +343,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBPOtherPackAnim.Bloodhound_FP'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Bloodhound'
 	DrawScale=0.200000
 }

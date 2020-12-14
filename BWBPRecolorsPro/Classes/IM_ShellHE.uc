@@ -29,7 +29,7 @@ defaultproperties
      HitDecals(6)=Class'BallisticProV55.AD_ShellConcrete'
      HitDecals(7)=Class'BallisticProV55.AD_ShellConcrete'
      HitDecals(10)=Class'BallisticProV55.AD_ShellConcrete'
-     HitSounds(0)=Sound'PackageSounds4Pro.Bulldog.Bulldog-Impact'
+     HitSounds(0)=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-Impact'
      HitSoundVolume=0.100000
      HitDelay=0.080000
 }

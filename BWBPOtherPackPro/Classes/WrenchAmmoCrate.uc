@@ -36,7 +36,7 @@ state Destroying
 			else
 			{
 				Spawn(class'WrenchWarpEndEmitter', Owner,, Location);
-				PlaySound(Sound'BWBPOtherPackSound.Wrench.Teleport', ,1);
+				PlaySound(Sound'BWBP_OP_Sounds.Wrench.Teleport', ,1);
 			}
 		}
 		
@@ -46,6 +46,6 @@ state Destroying
 
 defaultproperties
 {
-	StaticMesh=StaticMesh'BWBPOtherPackStatic.Wrench.AmmoCrate'
+	StaticMesh=StaticMesh'BWBP_OP_Static.Wrench.AmmoCrate'
     CollisionHeight=32.000000
 }

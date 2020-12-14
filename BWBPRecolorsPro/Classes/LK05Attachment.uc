@@ -222,20 +222,10 @@ defaultproperties
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_MARS'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
      ReloadAnimRate=1.200000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.TP_LK05'
+     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.LK05_TPm'
      RelativeRotation=(Pitch=32768)
      PrePivot=(X=1.000000,Z=-3.000000)
-     Skins(0)=Shader'BallisticRecolors4TexPro.LK05.LK05-SilShine'
-     Skins(1)=Texture'BallisticRecolors4TexPro.LK05.LK05-Bullets'
-     Skins(2)=Shader'BallisticRecolors4TexPro.LK05.LK05-EOTechShader'
-     Skins(3)=Shader'BallisticRecolors4TexPro.LK05.LK05-LAMShine'
-     Skins(4)=Shader'BallisticRecolors4TexPro.LK05.LK05-RecShine'
-     Skins(5)=Shader'BallisticRecolors4TexPro.LK05.LK05-GripShine'
-     Skins(6)=Shader'BallisticRecolors4TexPro.LK05.LK05-VertShine'
-     Skins(7)=Shader'BallisticRecolors4TexPro.LK05.LK05-StockShine'
-     Skins(8)=Shader'BallisticRecolors4TexPro.LK05.LK05-EOTechShine'
-     Skins(9)=Shader'BallisticRecolors4TexPro.LK05.LK05-MagShine'
 }

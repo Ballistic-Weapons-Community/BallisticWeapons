@@ -62,7 +62,7 @@ defaultproperties
 {
      MaterialBlendingOp=PB_Modulate
      FrameBufferBlendingOp=PB_Add
-     ProjTexture=Texture'BWAddPack-RS-Effects.Light.MRS138LightMark'
+     ProjTexture=Texture'BW_Core_WeaponTex.Light.MRS138LightMark'
      FOV=25
      MaxTraceDistance=3072
      bClipBSP=True

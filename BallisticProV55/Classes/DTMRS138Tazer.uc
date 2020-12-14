@@ -31,7 +31,7 @@ defaultproperties
      bNeverSevers=True
 	 BlockFatiguePenalty=0.3
      bExtraMomentumZ=True
-     PawnDamageSounds(0)=SoundGroup'BWAddPack-RS-Sounds.MRS38.RSS-ElectroFlesh'
+     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroFlesh'
      DamageOverlayMaterial=Shader'XGameShaders.PlayerShaders.LightningHit'
      DamageOverlayTime=0.900000
      GibPerterbation=0.250000

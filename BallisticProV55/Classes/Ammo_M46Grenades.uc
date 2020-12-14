@@ -57,9 +57,9 @@ defaultproperties
 {
      MaxAmmo=4
      InitialAmount=2
-     IconFlashMaterial=Shader'BallisticTextures_25.OA-AR.AmmoIcon_OAARFlash'
+     IconFlashMaterial=Shader'BW_Core_WeaponTex.OA-AR.AmmoIcon_OAARFlash'
      PickupClass=Class'BallisticProV55.AP_M46Clip'
-     IconMaterial=Texture'BallisticTextures_25.OA-AR.AmmoIcon_OAAR'
+     IconMaterial=Texture'BW_Core_WeaponTex.OA-AR.AmmoIcon_OAAR'
      IconCoords=(X2=64,Y2=64)
      ItemName="M46 Proximity Grenades"
 }

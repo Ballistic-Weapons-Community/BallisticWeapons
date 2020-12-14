@@ -28,7 +28,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=20.000000,Max=20.000000),Y=(Min=20.000000,Max=20.000000),Z=(Min=10.000000,Max=10.000000))
          InitialParticlesPerSecond=200.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
      Emitters(0)=SpriteEmitter'BWBPRecolorsPro.LonghornGrenadeTrailSmall.SpriteEmitter0'
@@ -49,7 +49,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=40.000000,Max=40.000000),Y=(Min=20.000000,Max=25.000000),Z=(Min=20.000000,Max=25.000000))
          InitialParticlesPerSecond=200.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
      Emitters(1)=SpriteEmitter'BWBPRecolorsPro.LonghornGrenadeTrailSmall.SpriteEmitter5'
@@ -73,7 +73,7 @@ defaultproperties
          DetailMode=DM_High
          StartSizeRange=(X=(Min=70.000000,Max=80.000000),Y=(Min=25.000000,Max=27.000000),Z=(Min=25.000000,Max=27.000000))
          InitialParticlesPerSecond=500000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.750000,Max=1.000000)
      End Object
@@ -96,7 +96,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=25.000000,Max=25.000000),Y=(Min=15.000000,Max=15.000000),Z=(Min=15.000000,Max=15.000000))
          InitialParticlesPerSecond=1.000000
-         Texture=Texture'BallisticEffects.Particles.FlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
          LifetimeRange=(Min=0.401000,Max=0.401000)
      End Object
      Emitters(3)=SpriteEmitter'BWBPRecolorsPro.LonghornGrenadeTrailSmall.SpriteEmitter7'

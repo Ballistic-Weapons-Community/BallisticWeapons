@@ -180,8 +180,8 @@ defaultproperties
      DamageTypeArm=Class'BWBPRecolorsPro.DTCYLOFirestormRifle'
      KickForce=6000
      PenetrateForce=180
-     ClipFinishSound=(Sound=Sound'BallisticSounds3.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)
-     DryFireSound=(Sound=Sound'BallisticSounds3.Misc.DryRifle',Volume=0.700000)
+     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)
+     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.700000)
      bCockAfterEmpty=True
      MuzzleFlashClass=Class'BWBPRecolorsPro.CYLOFirestormHeatEmitter'
      FlashBone="Muzzle"
@@ -192,7 +192,7 @@ defaultproperties
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      XInaccuracy=48.000000
      YInaccuracy=48.000000
-     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.CYLO.CYLO-Fire',Slot=SLOT_Interact,Pitch=1.250000,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Slot=SLOT_Interact,Pitch=1.250000,bNoOverride=False)
      bPawnRapidFireAnim=True
      PreFireAnim=
      FireEndAnim=

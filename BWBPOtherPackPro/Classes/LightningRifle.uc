@@ -53,9 +53,9 @@ defaultproperties
     MaxCharge=4
     ZoomType=ZT_Logarithmic
     ZoomInAnim="ZoomIn"
-    ScopeViewTex=Texture'BWBPJiffyPackTex.Arc.ARCRifleScope'
-    ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-    ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+    ScopeViewTex=Texture'BWBP_OP_Tex.Arc.ARCRifleScope'
+    ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+    ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
     FullZoomFOV=20.000000
     bNoMeshInScope=True
     bNoCrosshairInScope=True
@@ -63,19 +63,19 @@ defaultproperties
     MinZoom=2.000000
     MaxZoom=8.000000
     ZoomStages=4
-    TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-    BigIconMaterial=Texture'BWBPJiffyPackTex.Arc.BigIcon_LightningRifle'
+    TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+    BigIconMaterial=Texture'BWBP_OP_Tex.Arc.BigIcon_LightningRifle'
     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
     bWT_Bullet=True
     ManualLines(0)="Uncharged lightning bolt shot. Deals reasonable damage for a small ammo cost."
     ManualLines(1)="Charged lightning bolt. The rifle will fire when the fire key is released, or immediately upon becoming fully charged. Damage improves with charge, and more ammo is consumed."
     ManualLines(2)="Upon releasing a charged lightning bolt, the electricity will arc between nearby players. The number of conducting players, radius and damage dropoff depends on the charge."
     SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
-    BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Pickup')
-    PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
+    BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Pickup')
+    PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
     ReloadAnimRate=0.9
-    ClipOutSound=(Sound=Sound'PackageSounds4ProExp.LAW.Law-TubeLock')
-    ClipInSound=(Sound=Sound'PackageSounds4Pro.BeamCannon.Beam-Up')
+    ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.LAW.Law-TubeLock')
+    ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Up')
     ClipInFrame=0.650000
     bNonCocking=True
     WeaponModes(0)=(ModeName="Semi")
@@ -104,7 +104,7 @@ defaultproperties
     PickupClass=Class'BWBPOtherPackPro.LightningPickup'
     PlayerViewOffset=(X=20.000000,Y=16.000000,Z=-30.000000)
     AttachmentClass=Class'BWBPOtherPackPro.LightningAttachment'
-    IconMaterial=Texture'BWBPJiffyPackTex.Arc.SmallIcon_LightningRifle'
+    IconMaterial=Texture'BWBP_OP_Tex.Arc.SmallIcon_LightningRifle'
     IconCoords=(X2=127,Y2=31)
     ItemName="ARC-79 Lightning Rifle"
     LightType=LT_Pulse
@@ -113,6 +113,6 @@ defaultproperties
     LightSaturation=150
     LightBrightness=150.000000
     LightRadius=5.000000
-    Mesh=SkeletalMesh'BWBPJiffyPackAnims.LG_FPout'
+    Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_LightningRifle'
     DrawScale=0.800000
 }

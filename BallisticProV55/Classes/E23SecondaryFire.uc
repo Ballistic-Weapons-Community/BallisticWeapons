@@ -204,7 +204,7 @@ simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNor
 
 defaultproperties
 {
-     FireSoundLoop=Sound'BWBP4-Sounds.VPR.VPR-LaserLoop'
+     FireSoundLoop=Sound'BW_Core_WeaponSound.VPR.VPR-LaserLoop'
      TraceRange=(Min=10000.000000,Max=10000.000000)
 
      Damage=10.000000
@@ -221,7 +221,7 @@ defaultproperties
      FlashScaleFactor=0.750000
      FireChaos=0.000000
 	 FireRecoil=0
-     BallisticFireSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireAnim=
      FireLoopAnim="'"

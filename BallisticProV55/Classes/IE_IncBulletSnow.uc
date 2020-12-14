@@ -10,7 +10,7 @@ class IE_IncBulletSnow extends DGVEmitter
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticHardware2.Effects.VolumetricA2'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VolumetricA2'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -61,7 +61,7 @@ defaultproperties
          StartSizeRange=(X=(Min=2.000000,Max=5.000000),Y=(Min=2.000000,Max=5.000000),Z=(Min=2.000000,Max=5.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.FlameParts'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          SecondsBeforeInactive=0.000000
@@ -89,7 +89,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=10.000000),Y=(Min=5.000000,Max=10.000000),Z=(Min=5.000000,Max=10.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.Smoke3'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=3.000000,Max=3.000000)
          StartVelocityRange=(X=(Max=10.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=-5.000000,Max=5.000000))
@@ -119,7 +119,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.200000)
          StartSizeRange=(X=(Min=6.000000,Max=6.000000),Y=(Min=6.000000,Max=6.000000),Z=(Min=6.000000,Max=6.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticEffects.Particles.BlazingSubdivide'
+         Texture=Texture'BW_Core_WeaponTex.Particles.BlazingSubdivide'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -145,7 +145,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=6.500000,Max=6.500000),Y=(Min=6.500000,Max=6.500000),Z=(Min=6.500000,Max=6.500000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticEffects.Particles.FlameParts'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          SecondsBeforeInactive=0.000000

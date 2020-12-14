@@ -92,7 +92,7 @@ defaultproperties
          StartSizeRange=(X=(Min=4.000000,Max=8.000000),Y=(Min=4.000000,Max=8.000000),Z=(Min=4.000000,Max=8.000000))
          InitialParticlesPerSecond=80.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects.Particles.AquaBubble1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaBubble1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.250000,Max=0.250000)
          StartVelocityRange=(X=(Min=2900.000000,Max=3000.000000),Y=(Min=-80.000000,Max=80.000000),Z=(Min=-80.000000,Max=80.000000))
@@ -100,7 +100,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BallisticProV55.RX22AGasSpray.SpriteEmitter16'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BallisticHardware2.Effects.VolumetricA2'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VolumetricA2'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -161,7 +161,7 @@ defaultproperties
          StartSizeRange=(X=(Min=40.000000,Max=40.000000),Y=(Min=40.000000,Max=40.000000),Z=(Min=40.000000,Max=40.000000))
          InitialParticlesPerSecond=40.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects.Particles.FlamePartsAlpha'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlamePartsAlpha'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          SecondsBeforeInactive=0.000000

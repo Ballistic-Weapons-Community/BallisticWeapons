@@ -181,11 +181,11 @@ defaultproperties
      FlashMode=MU_Both
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"
-     Mesh=SkeletalMesh'BWBPOtherPackAnim.R9A1_TP'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.R9A1_TPm'
      RelativeLocation=(X=3.000000,Z=1.000000)
      DrawScale=0.160000
-     Skins(0)=Shader'R9A_tex.R9_body_SH1'
+     Skins(0)=Shader'BWBP_OP_Tex.R9_body_SH1'
 }

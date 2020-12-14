@@ -11,18 +11,18 @@ var float Lewdness;
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.XOXOBase');
-	L.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.XOXO_Light');
-	L.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.hearteffect');
-	L.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.xeffect');
-	L.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.oeffect');	
-	L.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.xenon4');
-	L.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.XOXOMagicBand');
-	L.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.xoxoShaderMask');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.XOXOBase');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.XOXO_Light');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.hearteffect');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.xeffect');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.oeffect');	
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.xenon4');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.XOXOMagicBand');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.xoxoShaderMask');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BWBPOtherPackStatic.XOXO.Heart');
-	L.AddPrecacheStaticMesh(StaticMesh'BWBPOtherPackStatic.XOXO.X');
-	L.AddPrecacheStaticMesh(StaticMesh'BWBPOtherPackStatic.XOXO.O');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.XOXO.Heart');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.XOXO.X');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.XOXO.O');
 }
 
 //===========================================================================
@@ -32,14 +32,14 @@ static function StaticPrecache(LevelInfo L)
 //===========================================================================
 simulated function UpdatePrecacheMaterials()
 {	
-	Level.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.XOXOBase');
-	Level.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.XOXO_Light');
-	Level.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.hearteffect');
-	Level.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.xeffect');
-	Level.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.oeffect');	
-	Level.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.xenon4');
-	Level.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.XOXOMagicBand');
-	Level.AddPrecacheMaterial(Texture'BWBPOtherPackTex.XOXO.xoxoShaderMask');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.XOXOBase');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.XOXO_Light');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.hearteffect');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.xeffect');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.oeffect');	
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.xenon4');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.XOXOMagicBand');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XOXO.xoxoShaderMask');
 }
 
 //===========================================================================
@@ -49,24 +49,24 @@ simulated function UpdatePrecacheMaterials()
 //===========================================================================
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBPOtherPackStatic.XOXO.XOXOPickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBPOtherPackStatic.XOXO.XOXOPickupLo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBPOtherPackStatic.XOXO.XOXOAmmo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBPOtherPackStatic.XOXO.Heart');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBPOtherPackStatic.XOXO.X');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBPOtherPackStatic.XOXO.O');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.XOXO.XOXOPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.XOXO.XOXOPickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.XOXO.XOXOAmmo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.XOXO.Heart');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.XOXO.X');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.XOXO.O');
 }
 
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BWBPOtherPackStatic.XOXO.XOXOPickupLo'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.XOXO.XOXOPickupLo'
      PickupDrawScale=1.450000
      InventoryType=Class'BWBPOtherPackPro.XOXOStaff'
      RespawnTime=20.000000
      PickupMessage="You picked up le big XOXO."
-     PickupSound=Sound'BallisticSounds2.A73.A73Putaway'
-     StaticMesh=StaticMesh'BWBPOtherPackStatic.XOXO.XOXOPickupHi'
+     PickupSound=Sound'BW_Core_WeaponSound.A73.A73Putaway'
+     StaticMesh=StaticMesh'BWBP_OP_Static.XOXO.XOXOPickupHi'
      bOrientOnSlope=True
      Physics=PHYS_None
      DrawScale=0.600000

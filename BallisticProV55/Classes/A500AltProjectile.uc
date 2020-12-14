@@ -9,8 +9,9 @@
 //=============================================================================
 class A500AltProjectile extends BallisticGrenade;
 
-var int BaseImpactDamage, BonusImpactDamage;
-var float AcidLoad;
+var int AcidLoad, BaseImpactDamage, BonusImpactDamage;
+
+const ACIDMAX = 8.0f;
 
 simulated event ProcessTouch( actor Other, vector HitLocation )
 {
@@ -26,7 +27,7 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 	if ( Instigator == None || Instigator.Controller == None )
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
 
-	DirectDamage = BaseImpactDamage + (BonusImpactDamage * AcidLoad);
+	DirectDamage = BaseImpactDamage + (BonusImpactDamage * (AcidLoad / ACIDMAX));
 
 	class'BallisticDamageType'.static.GenericHurt (Other, DirectDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
 	ReduceHP(Other);
@@ -48,7 +49,7 @@ function ReduceHP (Actor Other)
 			hpReducer = A500HPReducer(Pawn(Other).FindInventoryType(class'A500HPReducer'));
 		}
 	
-		hpReducer.AddStack(12 * AcidLoad);
+		hpReducer.AddStack(12 * (AcidLoad / ACIDMAX));
 	}
 }
 simulated function BlowUp(vector HitLocation)
@@ -56,7 +57,7 @@ simulated function BlowUp(vector HitLocation)
 	local vector Start;
 
 	Start = Location/* + 10 * HitNormal*/;
-	TargetedHurtRadius(Damage, DamageRadius * AcidLoad, MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
+	TargetedHurtRadius(Damage, DamageRadius * (AcidLoad/ACIDMAX), MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
 	if ( Role == ROLE_Authority )
 		MakeNoise(1.0);
 }
@@ -90,7 +91,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 function AdjustSpeed()
 {
-	Velocity = Vector(Rotation) * ((default.Speed * 0.25) + (default.Speed * 0.75 * AcidLoad));
+	Velocity = Vector(Rotation) * ((default.Speed * 0.25) + (default.Speed * 0.75 * (float(AcidLoad) / ACIDMAX)));
 }
 
 defaultproperties

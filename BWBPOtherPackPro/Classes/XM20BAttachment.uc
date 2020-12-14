@@ -171,7 +171,7 @@ defaultproperties
 	 MuzzleFlashClass=Class'BWBPOtherPackPro.XM20BFlashEmitter'
      TracerClass=Class'BWBPOtherPackPro.TraceEmitter_XM20B'
      ImpactManager=Class'BWBPOtherPackPro.IM_XM20BLaser'
-     FlyBySound=(Sound=Sound'PackageSounds4Pro.XM20.XM20-FlyBy',Volume=0.700000)
+     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-FlyBy',Volume=0.700000)
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
@@ -179,6 +179,6 @@ defaultproperties
 	 TracerMix=0
      RelativeLocation=(X=-6.000000,Z=12.000000)
      RelativeRotation=(Pitch=32768)
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.TPm_XM20B'
+     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.XM20_TPm'
      DrawScale=0.200000
 }

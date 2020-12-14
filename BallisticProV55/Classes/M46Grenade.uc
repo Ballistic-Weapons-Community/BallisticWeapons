@@ -147,6 +147,6 @@ defaultproperties
      MotionBlurTime=4.000000
      Speed=2700.000000
      MyDamageType=None
-     StaticMesh=StaticMesh'BallisticHardware_25.OA-AR.OA-AR_Grenade'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.OA-AR.OA-AR_Grenade'
      DrawScale=0.450000
 }

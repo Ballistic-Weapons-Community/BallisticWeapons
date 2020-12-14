@@ -10,9 +10,9 @@ defaultproperties
 {
      MaxAmmo=75
      InitialAmount=75
-     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIcon_FlameTankFlash'
+     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIcon_FlameTankFlash'
      PickupClass=Class'BallisticProV55.AP_FlamerGas'
-     IconMaterial=Texture'BallisticUI2.Icons.AmmoIcon_FlameTank'
+     IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIcon_FlameTank'
      IconCoords=(X2=63,Y2=63)
      ItemName="Flamer fuel"
      bNoPackResupply=True

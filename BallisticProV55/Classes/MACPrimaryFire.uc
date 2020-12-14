@@ -125,7 +125,7 @@ defaultproperties
      FireRecoil=2048.000000
      FirePushbackForce=1000.000000
      FireChaos=0.550000
-     BallisticFireSound=(Sound=Sound'BWBP4-Sounds.Artillery.Art-Fire',Radius=768.000000)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Fire',Radius=768.000000)
      FireEndAnim=
      FireRate=1.350000
      AmmoClass=Class'BallisticProV55.Ammo_MAC'

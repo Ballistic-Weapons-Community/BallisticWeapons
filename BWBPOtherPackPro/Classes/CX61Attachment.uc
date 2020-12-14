@@ -273,7 +273,7 @@ simulated function FlameFireEffects()
 
 defaultproperties
 {
-     AltFlyBySound=(Sound=Sound'BallisticSounds2.RX22A.RX22A-FlyBy',Volume=0.700000)
+     AltFlyBySound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FlyBy',Volume=0.700000)
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      BrassClass=Class'BallisticProV55.Brass_Rifle'
@@ -281,13 +281,13 @@ defaultproperties
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      FlyByMode=MU_Primary
      ReloadAnim="Reload_AR"
      ReloadAnimRate=0.800000
      bRapidFire=True
      bAltRapidFire=True
-     Mesh=SkeletalMesh'BWBPOtherPackAnim.CX61_TP'
+     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.CX61_TPm'
      RelativeLocation=(X=-2.000000,Y=-2.000000,Z=8.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.300000

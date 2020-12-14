@@ -77,8 +77,8 @@ defaultproperties
      DamageTypeArm=Class'BallisticProV55.DTFifty9SMG'
      PenetrateForce=135
      bPenetrate=True
-     ClipFinishSound=(Sound=Sound'BallisticSounds3.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
-     DryFireSound=(Sound=Sound'BallisticSounds3.Misc.DryPistol',Volume=0.700000)
+     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
+     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
      bDryUncock=True
      MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
      FlashScaleFactor=0.400000
@@ -89,7 +89,7 @@ defaultproperties
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
      XInaccuracy=72.000000
      YInaccuracy=72.000000
-     BallisticFireSound=(Sound=Sound'BallisticSounds3.UZI.UZI-Fire',Volume=0.900000)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
      bPawnRapidFireAnim=True
      FireRate=0.09
      AutoFireRate=0.0675

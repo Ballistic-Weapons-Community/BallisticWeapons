@@ -84,7 +84,7 @@ defaultproperties
      KickForce=40000
      PenetrateForce=250
      bPenetrate=True
-     DryFireSound=(Sound=Sound'BallisticSounds2.D49.D49-DryFire',Volume=0.700000)
+     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
      bDryUncock=True
      MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
      FlashScaleFactor=1.100000
@@ -93,7 +93,7 @@ defaultproperties
      FireRecoil=1536.000000
      FirePushbackForce=5000.000000
      FireChaos=1.000000
-	 BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.Bulldog.Bulldog-Fire',Volume=7.500000)
+	 BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Bulldog.Bulldog-Fire',Volume=7.500000)
 	 AimedFireAnim="SightFire"
      FireEndAnim=
      FireAnimRate=1.800000

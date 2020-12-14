@@ -114,9 +114,9 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 defaultproperties
 {
      PanicThreshold=4.000000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=4.000000
-     BigIconMaterial=Texture'BWBPOtherPackTex3.Akeron.BigIcon_Akeron'
+     BigIconMaterial=Texture'BWBP_OP_Tex.Akeron.BigIcon_Akeron'
      BigIconCoords=(X1=36,Y1=50,X2=486,Y2=220)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Hazardous=True
@@ -126,13 +126,13 @@ defaultproperties
      ManualLines(1)="Launches a manually guided rocket. While a rocket is active, the user views through the rocket's nose camera. Rockets are fast and quite manoeuverable, but much as the primary fire, have a directed blast and require the enemy to be struck directly to do much damage."
      ManualLines(2)="The Akeron is effective at close to medium range or in specialist situations where indirect fire is required. As a rocket launcher, it has no recoil, but its size makes it cumbersome to use without stability or aiming."
      SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.0;1.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
      CockAnimRate=1.250000
-     CockSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever')
+     CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
      ReloadAnimRate=0.900000
-     ClipOutSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOn')
-     ClipInSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff')
+     ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn')
+     ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff')
      bNonCocking=True
      WeaponModes(0)=(ModeName="Guidance: Slow",ModeID="WM_FullAuto")
      WeaponModes(1)=(ModeName="Guidance: Fast",ModeID="WM_FullAuto")
@@ -140,7 +140,7 @@ defaultproperties
      CurrentWeaponMode=0
      ZoomType=ZT_Logarithmic
      ScopeXScale=1.333000
-     ScopeViewTex=Texture'BWBP4-Tex.Artillery.Artillery-ScopeView'
+     ScopeViewTex=Texture'BW_Core_WeaponTex.Artillery.Artillery-ScopeView'
      FullZoomFOV=10.000000
      bNoMeshInScope=True
      bNoCrosshairInScope=True
@@ -169,7 +169,7 @@ defaultproperties
      PickupClass=Class'BWBPOtherPackPro.AkeronPickup'
      PlayerViewOffset=(X=30.000000,Y=20.000000,Z=-18.000000)
      AttachmentClass=Class'BWBPOtherPackPro.AkeronAttachment'
-     IconMaterial=Texture'BWBPOtherPackTex3.Akeron.Icon_Akeron'
+     IconMaterial=Texture'BWBP_OP_Tex.Akeron.Icon_Akeron'
      IconCoords=(X2=127,Y2=31)
      ItemName="AN-56 Akeron Launcher"
      LightType=LT_Pulse
@@ -178,6 +178,6 @@ defaultproperties
      LightSaturation=100
      LightBrightness=192.000000
      LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBPOtherPackAnim3.Akeron_FP'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Akeron'
      DrawScale=0.300000
 }

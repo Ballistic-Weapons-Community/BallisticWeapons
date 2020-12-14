@@ -175,6 +175,6 @@ defaultproperties
 	Priority=1
 	PlayerViewOffset=(Y=0.000000)
 	ItemName="XMV-850 Minigun Turret"
-	Mesh=SkeletalMesh'BallisticAnims2.XMV850Turret-1st'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XMV850Turret'
 	DrawScale=0.350000
 }

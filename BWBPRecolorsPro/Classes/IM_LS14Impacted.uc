@@ -12,5 +12,5 @@ defaultproperties
 {
      HitEffects(0)=Class'BWBPRecolorsPro.IE_LSCarbine'
      HitDecals(0)=Class'BWBPRecolorsPro.AD_LS14A'
-     HitSounds(0)=Sound'PackageSounds4Pro.LS14.Gauss-Impact'
+     HitSounds(0)=Sound'BWBP_SKC_Sounds.LS14.Gauss-Impact'
 }

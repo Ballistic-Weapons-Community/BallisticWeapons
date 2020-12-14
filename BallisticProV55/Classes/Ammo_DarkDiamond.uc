@@ -12,9 +12,9 @@ defaultproperties
 {
      MaxAmmo=144
      InitialAmount=72
-     IconFlashMaterial=Shader'BWBP4-Tex.DarkStar.AmmoIcon_DarkCrystalFlash'
+     IconFlashMaterial=Shader'BW_Core_WeaponTex.DarkStar.AmmoIcon_DarkCrystalFlash'
      PickupClass=Class'BallisticProV55.AP_DarkDiamond'
-     IconMaterial=Texture'BWBP4-Tex.DarkStar.AmmoIcon_DarkCrystal'
+     IconMaterial=Texture'BW_Core_WeaponTex.DarkStar.AmmoIcon_DarkCrystal'
      IconCoords=(X2=63,Y2=63)
      ItemName="Blood Diamond"
 }

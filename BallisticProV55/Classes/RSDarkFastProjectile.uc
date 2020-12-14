@@ -283,12 +283,12 @@ defaultproperties
      LightEffect=LE_NonIncidence
      LightBrightness=128.000000
      LightRadius=7.000000
-     StaticMesh=StaticMesh'BWBP4-Hardware.DarkStar.DarkProjSmall'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.DarkProjSmall'
      bDynamicLight=True
      bNetTemporary=False
      bSkipActorPropertyReplication=True
      bOnlyDirtyReplication=True
-     AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire2FlyBy'
+     AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire2FlyBy'
      LifeSpan=1.000000
      DrawScale=2.000000
      SoundVolume=255

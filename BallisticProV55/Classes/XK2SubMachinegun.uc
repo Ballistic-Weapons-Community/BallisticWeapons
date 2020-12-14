@@ -199,13 +199,13 @@ defaultproperties
 	SilencerBone="Silencer"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"
-	SilencerOnSound=Sound'BallisticSounds2.XK2.XK2-SilenceOn'
-	SilencerOffSound=Sound'BallisticSounds2.XK2.XK2-SilenceOff'
-	SilencerOnTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
-	SilencerOffTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	SilencerOnSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOn'
+	SilencerOffSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOff'
+	SilencerOnTurnSound=SoundGroup'BW_Core_WeaponSound.XK2.XK2-SilencerTurn'
+	SilencerOffTurnSound=SoundGroup'BW_Core_WeaponSound.XK2.XK2-SilencerTurn'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XK2'
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_XK2'
 	BigIconCoords=(X1=24,X2=450)
 	SightFXClass=Class'BallisticProV55.XK2SightLEDs'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -215,11 +215,11 @@ defaultproperties
 	ManualLines(1)="Activates the internal compressor when firing. Rounds will inflict less damage, but will slow the target."
 	ManualLines(2)="The Weapon Function key attaches or removes the suppressor. When active, the suppressor reduces recoil and noise output and hides the muzzle flash, but reduces range.||Effective from the hip and at close range."
 	SpecialInfo(0)=(Info="120.0;10.0;0.6;60.0;0.3;0.1;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-	CockSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Cock')
-	ClipOutSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipOut')
-	ClipInSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipIn')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Cock')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Burst of Three")
@@ -249,7 +249,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.XK2Pickup'
 	PlayerViewOffset=(X=4.000000,Y=8.000000,Z=-11.000000)
 	AttachmentClass=Class'BallisticProV55.Xk2Attachment'
-	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_XK2'
+	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_XK2'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="XK2 Submachine Gun"
 	LightType=LT_Pulse
@@ -258,6 +258,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BallisticProAnims.XK2SMG'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XK2'
 	DrawScale=0.200000
 }

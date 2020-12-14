@@ -4,9 +4,9 @@
 class MRT6Pickup extends BallisticHandgunPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticWeapons2.utx
-#exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,41 +16,41 @@ class MRT6Pickup extends BallisticHandgunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticWeapons2.MRT6.MRT6Skin');
-	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Concrete');
-	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Metal');
-	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Wood');
-	L.AddPrecacheMaterial(Texture'BallisticEffects.Brass.Cart_Shotgun2');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.MRT6.MRT6Skin');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Metal');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Wood');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Brass.Cart_Shotgun2');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.MRT6.MRT6MuzzleFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MRT6.MRT6MuzzleFlash');
 }
 
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.MRT6.MRT6Skin');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Concrete');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Metal');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Wood');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Brass.Cart_Shotgun2');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.MRT6.MRT6Skin');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Metal');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Wood');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Brass.Cart_Shotgun2');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.MRT6.MRT6MuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Ammo.MRT6Clip');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.MRT6.MRT6PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.MRT6.MRT6PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MRT6.MRT6MuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Ammo.MRT6Clip');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MRT6.MRT6PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MRT6.MRT6PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticHardware2.MRT6.MRT6PickupLo'
+     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.MRT6.MRT6PickupLo'
      PickupDrawScale=0.450000
      InventoryType=Class'BallisticProV55.MRT6Shotgun'
      RespawnTime=20.000000
      PickupMessage="You picked up the MRT-6 shotgun."
-     PickupSound=Sound'BallisticSounds2.MRT6.MRT6Putaway'
-     StaticMesh=StaticMesh'BallisticHardware2.MRT6.MRT6PickupHi'
+     PickupSound=Sound'BW_Core_WeaponSound.MRT6.MRT6Putaway'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRT6.MRT6PickupHi'
      Physics=PHYS_None
      DrawScale=0.800000
      CollisionHeight=3.500000

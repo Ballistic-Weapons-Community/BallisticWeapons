@@ -5,7 +5,7 @@
 //================================================
 class JWRiotShieldWeapon extends BallisticMeleeWeapon;
 
-#exec OBJ LOAD FILE=BallisticProTextures.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 
 var float AimDisplacementBlockThreshold; //Blocking melee will displace the shield. The duration of the displacement is based on how close the damage is to the threshold.
 
@@ -218,16 +218,16 @@ function float SuggestDefenseStyle()
 defaultproperties
 {
 	 AimDisplacementBlockThreshold=40.00
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticProTextures.Misc.BigIcon_Shield'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BW_Core_WeaponTex.Misc.BigIcon_Shield'
      BigIconCoords=(X1=180,Y1=0,X2=320,Y2=255)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      ManualLines(0)="Attacks with the weapon and shield. The shield continues to block whilst attacking."
      ManualLines(1)="Prepared strike with the weapons."
      ManualLines(2)="The ballistic shield reduces movement speed whilst active."
      SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
      bNoMag=True
 	 GunLength=0.000000
 	 ParamsClass=Class'BallisticShieldWeaponParams'
@@ -250,9 +250,9 @@ defaultproperties
      PickupClass=Class'BWBPOtherPackPro.JWRiotShieldPickup'
      PlayerViewOffset=(Y=75.000000,Z=-100.000000)
      AttachmentClass=Class'BWBPOtherPackPro.JWRiotShieldAttachment'
-     IconMaterial=Texture'BallisticProTextures.Icons.Icon_JWRiot'
+     IconMaterial=Texture'BW_Core_WeaponTex.Icons.Icon_JWRiot'
      IconCoords=(X2=256,Y2=31)
      ItemName="Civilian Riot Shield"
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.JWRiotShield_FP'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_CivShield'
      DrawScale=1.250000
 }

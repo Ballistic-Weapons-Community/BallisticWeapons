@@ -63,7 +63,7 @@ defaultproperties
 	PenetrateForce=0
 	bPenetrate=False
 	FireChaos=0.150000
-	BallisticFireSound=(Sound=Sound'BWBPOtherPackSound.XBow.XBow-Fire',Volume=1.000000,Radius=64.000000)
+	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.XBow.XBow-Fire',Volume=1.000000,Radius=64.000000)
 	PreFireAnim=
 	FireAnim="FireCycleRotate"
 	EmptyFireAnim="FireCycle"

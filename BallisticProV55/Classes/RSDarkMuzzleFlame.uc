@@ -39,7 +39,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.370000,RelativeSize=0.600000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=16.000000,Max=20.000000),Y=(Min=120.000000,Max=120.000000),Z=(Min=120.000000,Max=120.000000))
-         Texture=Texture'BallisticEffects.Particles.DirtSpray'
+         Texture=Texture'BW_Core_WeaponTex.Particles.DirtSpray'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRange=(X=(Min=120.000000,Max=120.000000))
@@ -47,7 +47,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BallisticProV55.RSDarkMuzzleFlame.SpriteEmitter12'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter3
-         StaticMesh=StaticMesh'BallisticHardware2.M763.M763MuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M763.M763MuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -93,7 +93,7 @@ defaultproperties
          StartLocationOffset=(X=5.000000)
          StartLocationRange=(X=(Max=10.000000))
          StartSizeRange=(X=(Min=30.000000,Max=40.000000),Y=(Min=30.000000,Max=40.000000),Z=(Min=30.000000,Max=40.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -124,7 +124,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.280000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.700000)
          StartSizeRange=(X=(Min=5.000000,Max=8.000000),Y=(Min=5.000000,Max=8.000000),Z=(Min=5.000000,Max=8.000000))
-         Texture=Texture'BallisticEffects.Particles.BlazingSubdivide'
+         Texture=Texture'BW_Core_WeaponTex.Particles.BlazingSubdivide'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000

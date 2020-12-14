@@ -19,7 +19,7 @@ simulated event PostBeginPlay()
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter7
-         StaticMesh=StaticMesh'BallisticHardware2.M806.PistolMuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M806.PistolMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -64,7 +64,7 @@ defaultproperties
          MaxParticles=1
          StartLocationRange=(X=(Min=80.000000,Max=80.000000))
          StartSizeRange=(X=(Min=300.000000,Max=300.000000),Y=(Min=300.000000,Max=300.000000),Z=(Min=300.000000,Max=300.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -93,7 +93,7 @@ defaultproperties
          StartLocationOffset=(Z=6.000000)
          StartSpinRange=(X=(Min=0.270000,Max=0.270000))
          StartSizeRange=(X=(Min=40.000000,Max=60.000000),Y=(Min=40.000000,Max=60.000000),Z=(Min=40.000000,Max=60.000000))
-         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
+         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -120,7 +120,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.125,Max=0.125))
          StartLocationRange=(X=(Min=10.000000,Max=10.000000))
          StartSizeRange=(X=(Min=40.000000,Max=40.000000),Y=(Min=40.000000,Max=40.000000),Z=(Min=40.000000,Max=40.000000))
-         Texture=Texture'BallisticRecolors4TexPro.M2020.M2020-FlareX1'
+         Texture=Texture'BWBP_SKC_TexExp.M2020.M2020-FlareX1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -145,7 +145,7 @@ defaultproperties
          MaxParticles=3
          StartLocationOffset=(X=120.000000)
          StartSizeRange=(X=(Min=20.000000,Max=30.000000),Y=(Min=110.000000,Max=130.000000),Z=(Min=110.000000,Max=130.000000))
-         Texture=Texture'BallisticEffects.Particles.WaterSpray1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.WaterSpray1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.300000)
          SpawnOnTriggerRange=(Min=15.000000,Max=20.000000)
@@ -173,7 +173,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000),Y=(Max=1.000000),Z=(Max=1.000000))
          StartSizeRange=(X=(Min=30.000000,Max=30.000000),Y=(Min=30.000000,Max=30.000000),Z=(Min=30.000000,Max=30.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticRecolors3TexPro.BFG.PlasmaSubdivide'
+         Texture=Texture'BWBP_SKC_Tex.BFG.PlasmaSubdivide'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          LifetimeRange=(Min=0.640000,Max=0.640000)
@@ -199,7 +199,7 @@ defaultproperties
          StartLocationRange=(X=(Min=-400.000000,Max=-200.000000),Y=(Min=-100.000000,Max=-100.000000),Z=(Min=-100.000000,Max=-100.000000))
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticEffects.Particles.DirtSpray'
+         Texture=Texture'BW_Core_WeaponTex.Particles.DirtSpray'
          LifetimeRange=(Min=0.520000,Max=0.520000)
          SpawnOnTriggerRange=(Min=15.000000,Max=20.000000)
          SpawnOnTriggerPPS=50000.000000
@@ -223,7 +223,7 @@ defaultproperties
          StartLocationRange=(X=(Min=-300.000000,Max=-100.000000),Y=(Min=30.000000,Max=30.000000))
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticEffects.Particles.DirtSpray'
+         Texture=Texture'BW_Core_WeaponTex.Particles.DirtSpray'
          LifetimeRange=(Min=0.520000,Max=0.520000)
          SpawnOnTriggerRange=(Min=15.000000,Max=20.000000)
          SpawnOnTriggerPPS=50000.000000

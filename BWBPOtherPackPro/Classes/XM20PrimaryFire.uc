@@ -46,15 +46,15 @@ defaultproperties
 	DamageTypeArm=Class'BWBPOtherPackPro.DTXM20Body'
 	PenetrateForce=500
 	bPenetrate=True
-	ClipFinishSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-LastShot',Volume=1.000000,Radius=48.000000,bAtten=True)
-	DryFireSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Empty',Volume=1.200000)
+	ClipFinishSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-LastShot',Volume=1.000000,Radius=48.000000,bAtten=True)
+	DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Empty',Volume=1.200000)
 	MuzzleFlashClass=Class'BWBPOtherPackPro.XM20FlashEmitter'
 	FlashScaleFactor=0.400000
 	FireRecoil=128.000000
 	FireChaos=0.07000
 	FireAnim="Fire"
 	AimedFireAnim="SightFire"
-	BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.XM20.XM20-PulseFire',Volume=1.500000)
+	BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.500000)
 	FireEndAnim=
 	FireRate=0.135000
 	AmmoClass=Class'BWBPOtherPackPro.Ammo_XM20Laser'

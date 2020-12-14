@@ -8,5 +8,5 @@ class LaserActor_TripMineRed extends LaserActor_TripMine;
 
 defaultproperties
 {
-     Skins(0)=FinalBlend'BWBP4-Tex.Glock.LaserFB'
+     Skins(0)=FinalBlend'BW_Core_WeaponTex.Glock.LaserFB'
 }

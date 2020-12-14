@@ -282,23 +282,23 @@ simulated event RenderOverlays (Canvas C)
 	if (bThermal)
 	{
 
-    		C.DrawTile(Texture'BallisticRecolors4TexPro.MARS.MARS-ScopeRed', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+    		C.DrawTile(Texture'BWBP_SKC_TexExp.MARS.MARS-ScopeRed', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
 
         	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(Texture'BallisticRecolors4TexPro.MARS.MARS-ScopeRed', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
+        	C.DrawTile(Texture'BWBP_SKC_TexExp.MARS.MARS-ScopeRed', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
 
         	C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(Texture'BallisticRecolors4TexPro.MARS.MARS-ScopeRed', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+        	C.DrawTile(Texture'BWBP_SKC_TexExp.MARS.MARS-ScopeRed', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
 	}
 	else if (bMeatVision)
 	{
-    		C.DrawTile(Texture'BallisticRecolors4TexPro.MARS.MARS-ScopeTarget', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+    		C.DrawTile(Texture'BWBP_SKC_TexExp.MARS.MARS-ScopeTarget', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
 
         	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(Texture'BallisticRecolors4TexPro.MARS.MARS-ScopeTarget', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
+        	C.DrawTile(Texture'BWBP_SKC_TexExp.MARS.MARS-ScopeTarget', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
 
         	C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(Texture'BallisticRecolors4TexPro.MARS.MARS-ScopeTarget', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+        	C.DrawTile(Texture'BWBP_SKC_TexExp.MARS.MARS-ScopeTarget', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
 	}
 	else
 	{
@@ -376,11 +376,11 @@ simulated event DrawMeatVisionMode (Canvas C)
 	C.Style = ERenderStyle.STY_Modulated;
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
 	C.SetDrawColor(255,255,255,255);
-	C.DrawTile(FinalBlend'BallisticRecolors4TexPro.MARS.F2000TargetFinal', (C.SizeY*1.3333333) * 0.75, C.SizeY, 0, 0, 1024, 1024);
+	C.DrawTile(FinalBlend'BWBP_SKC_TexExp.MARS.F2000TargetFinal', (C.SizeY*1.3333333) * 0.75, C.SizeY, 0, 0, 1024, 1024);
 
 	// Draw some panning lines
 	C.SetPos(C.OrgX, C.OrgY);
-	//C.DrawTile(FinalBlend'BallisticUI2.M75.M75LinesFinal', C.SizeX, C.SizeY, 0, 0, 512, 512);
+	//C.DrawTile(FinalBlend'BW_Core_WeaponTex.M75.M75LinesFinal', C.SizeX, C.SizeY, 0, 0, 512, 512);
 
     C.Style = ERenderStyle.STY_Alpha;
 	
@@ -396,7 +396,7 @@ simulated event DrawMeatVisionMode (Canvas C)
 	C.SetPos(V.X, V.Y);
 	V2 = C.WorldToScreen(Target.Location + Y*Target.CollisionRadius - Z*Target.CollisionHeight);
 	C.SetDrawColor(160,185,200,255);
-      C.DrawTileStretched(Texture'BallisticRecolors3TexPro.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
+      C.DrawTileStretched(Texture'BWBP_SKC_Tex.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
 
     V3 = C.WorldToScreen(Target.Location - Z*Target.CollisionHeight);
 }
@@ -412,7 +412,7 @@ simulated event DrawThermalMode (Canvas C)
 	// Draw Spinning Sweeper thing
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
 	C.SetDrawColor(255,255,255,255);
-	C.DrawTile(FinalBlend'BallisticRecolors4TexPro.MARS.F2000IRNVFinal', (C.SizeY*ImageScaleRatio) * 0.75, C.SizeY, 0, 0, 1024, 1024);
+	C.DrawTile(FinalBlend'BWBP_SKC_TexExp.MARS.F2000IRNVFinal', (C.SizeY*ImageScaleRatio) * 0.75, C.SizeY, 0, 0, 1024, 1024);
 }
 
 simulated function AdjustThermalView(bool bNewValue)
@@ -681,20 +681,20 @@ function float SuggestDefenseStyle()	{	return 0.4;	}
 
 defaultproperties
 {
-	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
-	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
-	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
+	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
+	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
+	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
 	GrenadeLoadAnim="GLReload"
-	ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
-	ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
-	NVOnSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
-	NVOffSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
-	WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
-	Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
+	ThermalOnSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
+	ThermalOffSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
+	NVOnSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
+	NVOffSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
+	WallVisionSkin=FinalBlend'BW_Core_WeaponTex.M75.OrangeFinal'
+	Flaretex=FinalBlend'BW_Core_WeaponTex.M75.OrangeFlareFinal'
 	ThermalRange=2500.000000
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BallisticRecolors4TexPro.MARS.BigIcon_F2000'
+	BigIconMaterial=Texture'BWBP_SKC_TexExp.MARS.BigIcon_F2000'
 	BigIconCoords=(Y1=30,Y2=235)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -702,8 +702,8 @@ defaultproperties
 	ManualLines(1)="Launches a smoke grenade. Upon impact, generates a cloud of smoke and deals minor radius damage. There is a bonus for a direct hit."
 	ManualLines(2)="The Weapon Function key switches between various integrated scopes.|The Normal scope offers clear vision.|The Night Vision scope (green) illuminates the environment and shows enemies in orange.|The Infrared scope (red) highlights enemies with a box, even underwater or through smoke or trees.||Effective at medium range."
 	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.8;0.5;0.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Burst",Value=4.000000)
@@ -713,16 +713,16 @@ defaultproperties
 	
 	CockAnimPostReload="ReloadEndCock"
 	CockAnimRate=1.10000
-	CockSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
+	CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
 	ReloadAnimRate=1.10000
-	ClipHitSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagFiddle',Volume=1.400000,Radius=32.000000)
-	ClipOutSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagOut',Volume=1.400000,Radius=32.000000)
-	ClipInSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagIn',Volume=1.400000,Radius=32.000000)
+	ClipHitSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-MagFiddle',Volume=1.400000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-MagOut',Volume=1.400000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-MagIn',Volume=1.400000,Radius=32.000000)
 	ClipInFrame=0.650000
 	ZoomType=ZT_Logarithmic
-	ScopeViewTex=Texture'BallisticRecolors4TexPro.MARS.MARS-Scope'
-	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	ScopeViewTex=Texture'BWBP_SKC_TexExp.MARS.MARS-Scope'
+	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=45.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
@@ -748,7 +748,7 @@ defaultproperties
 	PlayerViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBPRecolorsPro.MARSAttachment'
-	IconMaterial=Texture'BallisticRecolors4TexPro.MARS.SmallIcon_F2000'
+	IconMaterial=Texture'BWBP_SKC_TexExp.MARS.SmallIcon_F2000'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="MARS-2 Assault Rifle"
 	LightType=LT_Pulse
@@ -757,7 +757,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.F2000_FP'
+	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_F2000'
 	DrawScale=0.350000
-	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

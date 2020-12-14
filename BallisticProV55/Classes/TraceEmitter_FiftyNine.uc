@@ -9,7 +9,7 @@ class TraceEmitter_FiftyNine extends BCTraceEmitter;
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticHardware2.Fifty9.Fifty9Tracer'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Fifty9.Fifty9Tracer'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

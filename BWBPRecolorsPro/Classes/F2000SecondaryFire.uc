@@ -70,7 +70,7 @@ defaultproperties
      FireChaos=0.500000
      XInaccuracy=8.000000
      YInaccuracy=8.000000
-     BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bSplashDamage=True
      bRecommendSplashDamage=True
      bTossed=True

@@ -721,7 +721,7 @@ defaultproperties
 
      Begin Object Class=GUIProgressBar Name=myPB
          BarBack=Texture'2K4Menus.NewControls.NewStatusBar'
-         BarTop=Texture'BallisticProTextures.Stats.StatusFillDesat'
+         BarTop=Texture'BW_Core_WeaponTex.Stats.StatusFillDesat'
          BarColor=(G=200)
          CaptionWidth=0.500000
          FontName="UT2SmallFont"

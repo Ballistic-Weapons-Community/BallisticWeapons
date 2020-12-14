@@ -1,7 +1,7 @@
 //=============================================================================
 // FP9Attachment.
 //
-// 3rd person weapon attachment for FP9 Explosive.
+// _TPm person weapon attachment for FP9 Explosive.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -35,6 +35,6 @@ defaultproperties
      FlashMode=MU_None
      LightMode=MU_None
      TrackAnimMode=MU_Primary
-     Mesh=SkeletalMesh'BallisticAnims2.FP9Det-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FP9Det_TPm'
      DrawScale=0.200000
 }

@@ -10,7 +10,7 @@
 //=============================================================================
 class X3Knife extends BallisticMeleeWeapon;
 
-#exec OBJ LOAD File=BallisticSounds3.uax
+#exec OBJ LOAD File=BW_Core_WeaponSound.uax
 
 var   bool			bThrowingKnife;
 var() name			KnifeBackAnim;
@@ -48,7 +48,7 @@ exec simulated function WeaponSpecialRelease(optional byte i)
 {
 	if (!bThrowingKnife || AmmoAmount(0) < 2 || Level.TimeSeconds < NextThrowTime)
 		return;
-	PlaySound(Sound'BallisticSounds3.Knife.KnifeThrow',/*slot*/,1.0,/*nooverride*/,256,/* pitch */,/*attenuate*/);
+	PlaySound(Sound'BW_Core_WeaponSound.Knife.KnifeThrow',/*slot*/,1.0,/*nooverride*/,256,/* pitch */,/*attenuate*/);
 	if (level.NetMode == NM_Client)
 		PlayAnim('Throw', 1.5);
 	ServerWeaponSpecialRelease(i);
@@ -148,15 +148,15 @@ defaultproperties
 {
 	AIRating=0.6
 	CurrentRating=0.6
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_X3'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_X3'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      ManualLines(0)="Slashes with the knife. Short range and less damage than other melee weapons."
      ManualLines(1)="Prepared slash. Gains damage over hold time (maximum bonus reached after 1.5 seconds). Deals more damage from behind."
      ManualLines(2)="The Weapon Function key throws a knife, dealing good damage. Thrown knives have a very short range.||The user's movement speed improves with this weapon active."
      SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
-     PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
      bNoMag=True
      GunLength=0.000000
 	 bAimDisabled=True
@@ -178,9 +178,9 @@ defaultproperties
      PlayerViewOffset=(X=5.000000,Y=7.000000,Z=-8.000000)
      PlayerViewPivot=(Yaw=32768)
      AttachmentClass=Class'BallisticProV55.X3Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_X3'
+     IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_X3'
      IconCoords=(X2=127,Y2=31)
      ItemName="X3 Knife"
-     Mesh=SkeletalMesh'BallisticAnims2.X3'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_X3'
      DrawScale=0.300000
 }

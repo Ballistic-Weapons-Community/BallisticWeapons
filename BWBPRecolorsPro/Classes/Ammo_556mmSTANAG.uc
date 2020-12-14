@@ -12,9 +12,9 @@ class Ammo_556mmSTANAG extends BallisticAmmo;
 defaultproperties
 {
      InitialAmount=90
-     IconFlashMaterial=Shader'BallisticRecolors4TexPro.M4A1.AmmoIcon_556Flash'
+     IconFlashMaterial=Shader'BWBP_SKC_TexExp.M4A1.AmmoIcon_556Flash'
      PickupClass=Class'BWBPRecolorsPro.AP_STANAG'
-     IconMaterial=Texture'BallisticRecolors4TexPro.M4A1.AmmoIcon_556'
+     IconMaterial=Texture'BWBP_SKC_TexExp.M4A1.AmmoIcon_556'
      IconCoords=(X2=64,Y2=64)
      ItemName="5.56mm CAP Ammo"
 }

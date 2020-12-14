@@ -9,7 +9,7 @@ class HAMRShellTrail extends DGVEmitter;
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticHardware2.M806.PistolMuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M806.PistolMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          FadeOut=True
@@ -50,7 +50,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=10.000000,Max=15.000000),Y=(Min=10.000000,Max=15.000000),Z=(Min=10.000000,Max=15.000000))
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects2.Particles.NewSmoke1f'
+         Texture=Texture'BW_Core_WeaponTex.Particles.NewSmoke1f'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Max=15.000000))
@@ -68,7 +68,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          InitialParticlesPerSecond=500000.000000
-         Texture=Texture'BallisticEffects.Particles.Smoke3'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=99.000000,Max=99.000000)
      End Object

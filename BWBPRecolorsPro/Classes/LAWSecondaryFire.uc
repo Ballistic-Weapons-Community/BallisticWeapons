@@ -16,7 +16,7 @@ defaultproperties
      FireRecoil=3096.000000
      XInaccuracy=256.000000
      YInaccuracy=256.000000
-     BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.LAW.LAW-Fire',Volume=4.200000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.LAW.LAW-Fire',Volume=4.200000,Slot=SLOT_Interact,bNoOverride=False)
      bSplashDamage=True
      bRecommendSplashDamage=True
      bTossed=True

@@ -23,7 +23,7 @@ class G5RocketTrail extends DGVEmitter;
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=3.000000)
          StartSizeRange=(X=(Min=20.000000,Max=25.000000))
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.Smoke3'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=3.500000,Max=3.500000)
      End Object
@@ -36,7 +36,7 @@ defaultproperties
      DisableDGV(2)=1
      DisableDGV(4)=1
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticHardware2.M806.PistolMuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M806.PistolMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -76,7 +76,7 @@ defaultproperties
          DetailMode=DM_SuperHigh
          StartLocationOffset=(X=-20.000000)
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.AquaFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=1.000000)
          StartVelocityRange=(X=(Min=-100.000000),Y=(Min=-100.000000,Max=100.000000),Z=(Min=-100.000000,Max=100.000000))
@@ -96,7 +96,7 @@ defaultproperties
          StartSizeRange=(X=(Min=40.000000,Max=80.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.100000,Max=0.100000)
      End Object
@@ -124,7 +124,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.750000)
          StartSizeRange=(X=(Min=25.000000,Max=30.000000))
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects.Particles.Smoke6'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.500000,Max=3.000000)
          StartVelocityRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000))
@@ -141,7 +141,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=15.000000,Max=18.000000))
          InitialParticlesPerSecond=500000.000000
-         Texture=Texture'BallisticEffects.Particles.Smoke3'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=999999.000000,Max=999999.000000)
      End Object

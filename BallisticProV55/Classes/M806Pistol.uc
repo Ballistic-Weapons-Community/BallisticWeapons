@@ -339,22 +339,22 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 defaultproperties
 {
-	LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
-	LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
+	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M806'
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M806'
 	SightFXClass=Class'BallisticProV55.M806SightLEDs'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	bShouldDualInLoadout=False
 	SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-	CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock')
-	ClipHitSound=(Sound=Sound'BallisticSounds2.M806.M806-ClipHit')
-	ClipOutSound=(Sound=Sound'BallisticSounds2.M806.M806-ClipOut')
-	ClipInSound=(Sound=Sound'BallisticSounds2.M806.M806-ClipIn')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock')
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipHit')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
@@ -375,7 +375,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.M806Pickup'
 	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 	AttachmentClass=Class'BallisticProV55.M806Attachment'
-	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M806'
+	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M806'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M806A2 Pistol"
 	LightType=LT_Pulse
@@ -384,6 +384,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticProAnims.M806Pistol'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M806'
 	DrawScale=0.080000
 }

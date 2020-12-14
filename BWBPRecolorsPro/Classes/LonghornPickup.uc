@@ -1,8 +1,8 @@
 class LonghornPickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticRecolors4TexPro.utx
-#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BWBP_SKC_TexExp.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -12,36 +12,36 @@ class LonghornPickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Longhorn.Longhorn-Main');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Longhorn.Longhorn-Ammo');
-	L.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.Longhorn.ClusterProj');
-	L.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.Longhorn.GrenadeProj');
-	L.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.Longhorn.LonghornBrass');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Longhorn.Longhorn-Main');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Longhorn.Longhorn-Ammo');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.Longhorn.ClusterProj');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.Longhorn.GrenadeProj');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.Longhorn.LonghornBrass');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Longhorn.Longhorn-Main');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Longhorn.Longhorn-Ammo');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Longhorn.Longhorn-Main');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Longhorn.Longhorn-Ammo');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.Longhorn.ClusterProj');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.Longhorn.GrenadeProj');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.Longhorn.LonghornAmmo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.Longhorn.LonghornBrass');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.Longhorn.LonghornPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.Longhorn.ClusterProj');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.Longhorn.GrenadeProj');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.Longhorn.LonghornAmmo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.Longhorn.LonghornBrass');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.Longhorn.LonghornPickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Longhorn.LonghornPickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.Longhorn.LonghornPickup'
      PickupDrawScale=0.090000
      InventoryType=Class'BWBPRecolorsPro.LonghornLauncher'
      RespawnTime=10.000000
      PickupMessage="You picked up the Longhorn repeater."
-     PickupSound=Sound'BallisticSounds2.M806.M806Putaway'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Longhorn.LonghornPickup'
+     PickupSound=Sound'BW_Core_WeaponSound.M806.M806Putaway'
+     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.Longhorn.LonghornPickup'
      Physics=PHYS_None
      DrawScale=0.110000
      CollisionHeight=4.000000

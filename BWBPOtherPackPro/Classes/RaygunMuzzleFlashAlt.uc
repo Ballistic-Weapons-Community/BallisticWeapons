@@ -3,7 +3,7 @@ class RaygunMuzzleFlashAlt extends BallisticEmitter;
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BallisticHardware2.M763.M763MuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M763.M763MuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -56,7 +56,7 @@ defaultproperties
          DetailMode=DM_SuperHigh
          StartLocationOffset=(X=5.000000)
          StartSizeRange=(X=(Min=13.000000,Max=13.000000),Y=(Min=13.000000,Max=13.000000),Z=(Min=13.000000,Max=13.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)

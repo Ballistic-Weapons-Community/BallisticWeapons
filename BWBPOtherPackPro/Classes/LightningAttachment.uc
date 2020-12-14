@@ -104,10 +104,10 @@ defaultproperties
      TracerClass=Class'BWBPOtherPackPro.TraceEmitter_Lightning'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      CockAnimRate=1.400000
-     Mesh=SkeletalMesh'BWBPJiffyPackAnims.LG_TPout'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.LightningRifle_TPm'
 	 RelativeRotation=(Pitch=32768,Yaw=2048)
-	 PrePivot=(X=-10.000000,Y=4.000000)
+	 PrePivot=(X=-10.000000)
      DrawScale=0.600000
 }

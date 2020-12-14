@@ -121,7 +121,7 @@ defaultproperties
 	 FirePushbackForce=1300.000000
 	 FireChaos=0.750000
 	 
-	 BallisticFireSound=(Sound=Sound'BallisticSounds3.M75.M75Fire',Radius=768.000000)
+	 BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Fire',Radius=768.000000)
 	 
      bFireOnRelease=True
 	 FireEndAnim="'"

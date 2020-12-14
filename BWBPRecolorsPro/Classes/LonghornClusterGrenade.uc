@@ -339,14 +339,14 @@ defaultproperties
      WallPenetrationForce=192
      MomentumTransfer=100000.000000
      MyDamageType=Class'BWBPRecolorsPro.DT_LonghornBigRadius'
-     ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Metal'
+     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Metal'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence
      LightHue=25
      LightSaturation=192
      LightBrightness=64.000000
      LightRadius=12.000000
-     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Longhorn.GrenadeProj'
+     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.Longhorn.GrenadeProj'
      bDynamicLight=True
      bNetTemporary=False
      AmbientSound=Sound'GeneralAmbience.texture12'

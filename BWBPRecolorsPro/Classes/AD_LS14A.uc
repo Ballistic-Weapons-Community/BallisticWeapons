@@ -6,5 +6,5 @@ class AD_LS14A extends AD_ImpactDecal
 
 defaultproperties
 {
-     ProjTexture=Texture'BallisticRecolors3TexPro.LS14.LS14-Impact'
+     ProjTexture=Texture'BWBP_SKC_Tex.LS14.LS14-Impact'
 }

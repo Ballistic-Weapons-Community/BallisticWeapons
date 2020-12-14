@@ -19,7 +19,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.500000,Max=0.500000))
          StartSizeRange=(X=(Min=4.000000,Max=12.000000),Y=(Min=4.000000,Max=12.000000),Z=(Min=4.000000,Max=12.000000))
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BWBPOtherPackTex.XOXO.hearteffect'
+         Texture=Texture'BWBP_OP_Tex.XOXO.hearteffect'
          LifetimeRange=(Min=0.750000,Max=0.750000)
      End Object
      Emitters(0)=SpriteEmitter'BWBPOtherPackPro.XOXOLoveModeGlow.LuvLuvHeartz'
@@ -39,13 +39,13 @@ defaultproperties
          MaxParticles=25
          StartLocationRange=(X=(Min=-16.000000,Max=16.000000),Y=(Min=-16.000000,Max=16.000000),Z=(Min=-44.000000,Max=-44.000000))
          StartSizeRange=(X=(Min=20.000000,Max=20.000000),Y=(Min=20.000000,Max=20.000000),Z=(Min=20.000000,Max=20.000000))
-         Texture=Texture'BallisticEffects.Particles.Smoke5'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke5'
          LifetimeRange=(Min=1.500000,Max=2.000000)
      End Object
      Emitters(1)=SpriteEmitter'BWBPOtherPackPro.XOXOLoveModeGlow.LuvLuvSmoke'
 
      Begin Object Class=MeshEmitter Name=SuperHeart
-         StaticMesh=StaticMesh'BWBPOtherPackStatic.XOXO.Heart'
+         StaticMesh=StaticMesh'BWBP_OP_Static.XOXO.Heart'
          SpinParticles=True
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
@@ -81,7 +81,7 @@ defaultproperties
          StartSizeRange=(X=(Min=70.000000,Max=70.000000))
          ParticlesPerSecond=2.000000
          InitialParticlesPerSecond=2.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.750000,Max=0.750000)
      End Object

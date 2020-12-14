@@ -351,28 +351,28 @@ function Notify_WrenchDeploy()
 	if (Deployables[CurrentWeaponMode].AmmoReq > Ammo[0].AmmoAmount)
 	{
 		Instigator.ClientMessage("Not enough charge to warp in"@WeaponModes[CurrentWeaponMode].ModeName$".");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 		
 	if (HitActor == None || !HitActor.bWorldGeometry)
 	{
 		Instigator.ClientMessage("Must target an unoccupied surface.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
 	if (HitLoc == vect(0,0,0))
 	{
 		Instigator.ClientMessage("Out of range.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
 	if (Deployables[CurrentWeaponMode].CheckSlope && HitNorm dot vect(0,0,1) < 0.9)
 	{
 		Instigator.ClientMessage("Surface is too steep for construction.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
@@ -381,14 +381,14 @@ function Notify_WrenchDeploy()
 	if (!SpaceToDeploy(HitLoc + HitNorm, HitNorm, rot(0,0,0), Deployables[CurrentWeaponMode].dClass.default.CollisionHeight, Deployables[CurrentWeaponMode].dClass.default.CollisionRadius))
 	{
 		Instigator.ClientMessage("Insufficient space for construction.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 
 	if (Deployables[CurrentWeaponMode].Limit > 0 && DeployableCount[CurrentWeaponMode] >= Deployables[CurrentWeaponMode].Limit)
 	{
 		Instigator.ClientMessage("You have "$DeployableCount[CurrentWeaponMode]$" of this item and the limit is "$Deployables[CurrentWeaponMode].Limit$".");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
@@ -397,21 +397,21 @@ function Notify_WrenchDeploy()
 		foreach RadiusActors(class'WrenchDeployable', D, 512, HitLoc)
 		{
 			Instigator.ClientMessage("Too close to a major deployable.");
-			PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+			PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 			return;
 		}
 
 			foreach RadiusActors(class'ASTurret_Minigun', MT, 512, HitLoc)
 		{
 			Instigator.ClientMessage("Too close to a minigun turret.");
-			PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+			PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 			return;
 		}
 		
 		foreach RadiusActors(class'WrenchPreconstructor', WP, 512, HitLoc)
 		{
 			Instigator.ClientMessage("Too close to a warping deployable.");
-			PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+			PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 			return;
 		}
 	}
@@ -524,21 +524,21 @@ function Notify_BarrierDeploy()
 	if (AltDeployable.AmmoReq > Ammo[0].AmmoAmount)
 	{
 		Instigator.ClientMessage("Not enough charge to warp in"@WeaponModes[0].ModeName$".");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 		
 	if (HitActor == None || !HitActor.bWorldGeometry)
 	{
 		Instigator.ClientMessage("Must target an unoccupied surface.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
 	if (HitLoc == vect(0,0,0))
 	{
 		Instigator.ClientMessage("Out of range.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
@@ -551,7 +551,7 @@ function Notify_BarrierDeploy()
 	if (!SpaceToDeploy(HitLoc, HitNorm, SlopeRotation, AltDeployable.dClass.default.CollisionHeight, AltDeployable.dClass.default.CollisionRadius))
 	{
 		Instigator.ClientMessage("Insufficient space for construction.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
@@ -680,8 +680,8 @@ defaultproperties
      Deployables(4)=(dClass=Class'WrenchAmmoCrate',SpawnOffset=16,WarpInTime=3.000000,AmmoReq=30,CheckSlope=True,dDescription="A crate which restocks ammunition to initial levels.")
      Deployables(5)=(dClass=Class'WrenchMinigunTurret',SpawnOffset=36,WarpInTime=35.000000,AmmoReq=100,Limit=1,CheckSlope=True,dDescription="A static minigun turret. Resistant to attacks. Only one may be placed.")
      AltDeployable=(dClass=Class'WrenchEnergyBarrier',WarpInTime=0.100000,SpawnOffset=52,AmmoReq=10,Limit=0,CheckSlope=False,dDescription="A three-second barrier of infinite durability.")
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBPOtherPackTex.Wrench.BigIcon_Wrench'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BWBP_OP_Tex.Wrench.BigIcon_Wrench'
      BigIconCoords=(Y2=240)
      bAllowWeaponInfoOverride=False
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -690,8 +690,8 @@ defaultproperties
      ManualLines(2)="Grants a 10% speed increase."
      SpecialInfo(0)=(Info="180.0;6.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      MeleeFireClass=Class'WrenchMeleeFire'
-     BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
-     PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
      bNoMag=True
      WeaponModes(0)=(ModeName="Boost Pad",bUnavailable=False,ModeID="WM_FullAuto")
      WeaponModes(1)=(ModeName="Teleporter",bUnavailable=False,ModeID="WM_SemiAuto")
@@ -721,9 +721,9 @@ defaultproperties
      PickupClass=Class'BWBPOtherPackPro.WrenchPickup'
      PlayerViewOffset=(X=10.000000,Z=-7.000000)
      AttachmentClass=Class'BWBPOtherPackPro.WrenchAttachment'
-     IconMaterial=Texture'BWBPOtherPackTex.Wrench.Icon_Wrench'
+     IconMaterial=Texture'BWBP_OP_Tex.Wrench.Icon_Wrench'
      IconCoords=(X2=128,Y2=32)
      ItemName="NFUD Combat Wrench"
-     Mesh=SkeletalMesh'BWBPOtherPackAnim.Techwrench_FP'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Techwrench'
      DrawScale=0.300000
 }

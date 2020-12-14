@@ -262,11 +262,11 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 defaultproperties
 {
 	 MaxCharge=1.000000
-	 FireSoundLoop=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-Lase'
-     ChargeSound=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-SpartanChargeSound'
-//	 ChargeSound=Sound'BWBPSomeOtherPackSounds.BeamCannon.Beam-Charge'
-     PowerFireSound=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-Overcharge'
-     RegularFireSound=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-LaserStart'
+	 FireSoundLoop=Sound'BWBP_SKC_Sounds.XM20B.XM20-Lase'
+     ChargeSound=Sound'BWBP_SKC_Sounds.XM20B.XM20-SpartanChargeSound'
+//	 ChargeSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Charge'
+     PowerFireSound=Sound'BWBP_SKC_Sounds.XM20B.XM20-Overcharge'
+     RegularFireSound=Sound'BWBP_SKC_Sounds.XM20B.XM20-LaserStart'
 	 
 	 Damage=15
 	 HeadMult=1.5f
@@ -281,7 +281,7 @@ defaultproperties
      bPenetrate=True
      FlashBone="tip"
      FlashScaleFactor=0.300000
-     BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-LaserStart',Volume=1.200000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.XM20B.XM20-LaserStart',Volume=1.200000)
 	 bModeExclusive=False
 	 FireChaos=0
 	 FireRecoil=32

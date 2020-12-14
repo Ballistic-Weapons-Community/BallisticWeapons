@@ -1,6 +1,6 @@
 class CX85AssaultWeapon extends BallisticWeapon;
 
-#exec OBJ LOAD File=BallisticSounds2.uax
+#exec OBJ LOAD File=BW_Core_WeaponSound.uax
 
 var array<CX85DartDirect> StuckDarts;
 
@@ -41,7 +41,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
     for( i=0; i<Count; i++ )
     {
 		C.SetPos(C.ClipX - (0.5*i+1) * AmmoDimensions, C.ClipY * (1 - (0.12 * class'HUD'.default.HUDScale)));
-		C.DrawTile( Texture'BWBPOtherPackTex3.CX85.Dart_HUD',AmmoDimensions, AmmoDimensions, 0, 0, 128, 128);
+		C.DrawTile( Texture'BWBP_OP_Tex.CX85.Dart_HUD',AmmoDimensions, AmmoDimensions, 0, 0, 128, 128);
 	}
 	
 	if (bSkipDrawWeaponInfo)
@@ -314,7 +314,7 @@ simulated event DrawTargeting (Canvas C)
 		C.SetPos(V.X, V.Y);
 		V2 = C.WorldToScreen(StuckDarts[i].Tracked.Location + Y*StuckDarts[i].Tracked.CollisionRadius - Z*StuckDarts[i].Tracked.CollisionHeight);
 		C.SetDrawColor(255,255,255,255 * Distancing);
-		C.DrawTileStretched(Texture'BallisticUI2.G5.G5Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
+		C.DrawTileStretched(Texture'BW_Core_WeaponTex.G5.G5Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
 	}
 }
 
@@ -363,13 +363,13 @@ function float SuggestDefenseStyle()	{	return 0.6;	}
 
 defaultproperties
 {
-	DrumInSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOn',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
-	DrumOutSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+	DrumInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
+	DrumOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff',Volume=0.500000,Radius=64.000000,Slot=SLOT_Interact,Pitch=1.000000,bAtten=True)
 	ReloadAltAnim="ReloadAlt"
 	AltAmmo=6
 	BaseTrackDist=3368
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBPOtherPackTex3.CX85.BigIcon_CX85'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBP_OP_Tex.CX85.BigIcon_CX85'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	bWT_Machinegun=True
@@ -377,19 +377,19 @@ defaultproperties
 	ManualLines(1)="Fires a dart. Good fire rate and fast flight speed. Enemies hit by the darts show up on the scope when within a given range of the user. The tracking range increases with successive hits."
 	ManualLines(2)="Weapon Function for this weapon causes all the darts attached to the last player to be hit for the first time to explode. This feature works independently of range.||The CX85 is effective at long range."
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;1.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
 	CockAnimRate=1.200000
-	CockSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6Cock',Volume=0.650000)
-	ClipHitSound=(Sound=Sound'BWBP3-Sounds.SRS900.SRS-ClipHit')
-	ClipOutSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipOut')
-	ClipInSound=(Sound=Sound'BallisticSounds2.XK2.XK2-ClipIn')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Cock',Volume=0.650000)
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipHit')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	ZoomType=ZT_Logarithmic
-	ScopeViewTex=Texture'BWBPOtherPackTex3.CX85.CX85ScopeView'
-	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	ScopeViewTex=Texture'BWBP_OP_Tex.CX85.CX85ScopeView'
+	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
@@ -417,7 +417,7 @@ defaultproperties
 	PickupClass=Class'BWBPOtherPackPro.CX85Pickup'
 	PlayerViewOffset=(X=25.000000,Y=18.000000,Z=-25.000000)
 	AttachmentClass=Class'BWBPOtherPackPro.CX85Attachment'
-	IconMaterial=Texture'BWBPOtherPackTex3.CX85.SmallIcon_CX85'
+	IconMaterial=Texture'BWBP_OP_Tex.CX85.SmallIcon_CX85'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="CX85 Combat Rifle"
 	LightType=LT_Pulse
@@ -426,6 +426,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBPOtherPackAnim3.CX85_FP'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_CX85'
 	DrawScale=0.500000
 }

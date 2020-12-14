@@ -1,7 +1,7 @@
 //=============================================================================
 // E23Attachment.
 //
-// 3rd person weapon attachment for E23 Plasma Rifle
+// _TPm person weapon attachment for E23 Plasma Rifle
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
@@ -178,6 +178,6 @@ defaultproperties
      LightMode=MU_Both
      ReloadAnim="Reload_AR"
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP4-Anims.VPR-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.VPR_TPm'
      DrawScale=0.150000
 }

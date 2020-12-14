@@ -85,7 +85,7 @@ defaultproperties
      FireRecoil=2048.000000
      FirePushbackForce=100.000000
      FireChaos=1.000000
-     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-FireTest',Volume=2.500000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-FireTest',Volume=2.500000)
      bWaitForRelease=True
      FireAnim="SGFire"
      FireForce="AssaultRifleAltFire"

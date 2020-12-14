@@ -39,16 +39,16 @@ simulated event AnimEnd (int Channel)
 
 defaultproperties
 {
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_A909'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_A909'
      BigIconCoords=(X1=24,X2=432)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      ManualLines(0)="Thrusting attack with the blades. Good range, but requires accuracy to hit. The first strike requires twice as long to complete as subsequent strikes. This attack has the highest sustained damage output of all melee weapons."
      ManualLines(1)="Prepares a slash, which will be executed upon release. The damage of this slash increases the longer altfire is held, up to 1.5 seconds for maximum damage output. This attack inflicts more damage from behind."
      ManualLines(2)="The Weapon Function key allows the player to block. Whilst blocking, no attacks are possible, but all melee damage striking the player frontally will be mitigated.||The A909s have extreme damage output at close range, but their short range makes realizing this potential difficult.||The player moves faster with the blades equipped."
      SpecialInfo(0)=(Info="120.0;2.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.A909.A909Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.A909.A909Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A909.A909Pullout')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A909.A909Putaway')
      GunLength=0.000000
      bAimDisabled=True
      ParamsClass=Class'A909WeaponParams'
@@ -70,9 +70,9 @@ defaultproperties
      PickupClass=Class'BallisticProV55.A909Pickup'
      PlayerViewOffset=(X=63.000000,Y=-4.000000,Z=-6.000000)
      AttachmentClass=Class'BallisticProV55.A909Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_A909'
+     IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_A909'
      IconCoords=(X2=127,Y2=31)
      ItemName="A909 Skrith Blades"
-     Mesh=SkeletalMesh'BallisticAnims2.A909Blades'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_A909'
      DrawScale=0.370000
 }

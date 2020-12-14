@@ -23,7 +23,7 @@ defaultproperties
      bLocationalHit=False
      bThrowRagdoll=True
      GibModifier=2.000000
-     PawnDamageSounds(0)=SoundGroup'BallisticSounds2.BulletImpacts.BulletFlesh'
+     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletFlesh'
      GibPerterbation=0.500000
      KDamageImpulse=20000.000000
 }

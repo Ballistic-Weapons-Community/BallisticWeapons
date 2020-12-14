@@ -132,6 +132,6 @@ defaultproperties
      MotionBlurTime=4.000000
      Speed=2500.000000
      MyDamageType=None
-     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.LAW.LAWRocket'
+     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.LAW.LAWRocket'
      DrawScale=0.450000
 }

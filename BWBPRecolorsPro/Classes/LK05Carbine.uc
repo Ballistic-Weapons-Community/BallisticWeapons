@@ -545,33 +545,33 @@ defaultproperties
 	ManualLines(0)="5.56 fire. Higher DPS than comparable weapons, but awkward recoil and highly visible tracers."
 	ManualLines(1)="Attaches or removes the suppressor. When active, the suppressor reduces recoil and hides the muzzle flash. It also affects the rounds fired, reducing their velocity (and therefore, damage) and disabling their tracers."
 	ManualLines(2)="The Weapon Function key, when used, first cycles between the weapon's laser sight and flashlight, and then activates both at once. Activate again to disable both. The laser sight provides a clear indication of where the barrel is pointing, which is useful when the weapon is suppressed, but compromises stealth.||Effective at close and medium range."
-	LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
-	LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
+	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
+	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
 	LaserAimSpread=64.000000
 	SilencerBone="Silencer"
 	SilencerBone2="Silencer2"
-	SilencerOnSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOn'
-	SilencerOffSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOff'
+	SilencerOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
+	SilencerOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"
 	TorchOffset=(X=-50.000000)
-	TorchOnSound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-FlashClick'
-	TorchOffSound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-FlashClick'
+	TorchOnSound=Sound'BW_Core_WeaponSound.MRS38.RSS-FlashClick'
+	TorchOffSound=Sound'BW_Core_WeaponSound.MRS38.RSS-FlashClick'
 	ScopeBone="EOTech"
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BallisticRecolors4TexPro.LK05.BigIcon_LK05'
+	BigIconMaterial=Texture'BWBP_SKC_TexExp.LK05.BigIcon_LK05'
 	BigIconCoords=(Y1=36,Y2=225)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
     bNetNotify=True
     bCockOnEmpty=False
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
-	BringUpSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-PullOut',Volume=2.200000)
-	PutDownSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-Putaway',Volume=2.200000)
-	CockSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-Cock',Volume=2.200000)
-	ClipOutSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-MagOut',Volume=2.400000)
-	ClipInSound=(Sound=Sound'PackageSounds4ProExp.LK05.LK05-MagIn',Volume=2.400000)
+	BringUpSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51-PullOut',Volume=2.200000)
+	PutDownSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51-Putaway',Volume=2.200000)
+	CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.LK05.LK05-Cock',Volume=2.200000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.LK05.LK05-MagOut',Volume=2.400000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.LK05.LK05-MagIn',Volume=2.400000)
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(Value=4.000000)
@@ -598,7 +598,7 @@ defaultproperties
 	PlayerViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBPRecolorsPro.LK05Attachment'
-	IconMaterial=Texture'BallisticRecolors4TexPro.LK05.SmallIcon_LK05'
+	IconMaterial=Texture'BWBP_SKC_TexExp.LK05.SmallIcon_LK05'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="LK-05 Advanced Carbine"
 	LightType=LT_Pulse
@@ -607,6 +607,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.LK05_FP'
+	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_LK05'
 	DrawScale=0.300000
 }

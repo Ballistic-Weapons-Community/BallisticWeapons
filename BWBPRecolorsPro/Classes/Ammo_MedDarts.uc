@@ -54,9 +54,9 @@ defaultproperties
 {
      MaxAmmo=10
      InitialAmount=1
-     IconFlashMaterial=Shader'BallisticTextures_25.OA-SMG.AmmoIcon_OASMGFlash'
+     IconFlashMaterial=Shader'BW_Core_WeaponTex.OA-SMG.AmmoIcon_OASMGFlash'
      PickupClass=Class'BallisticProV55.AP_XMK5Clip'
-     IconMaterial=Texture'BallisticTextures_25.OA-SMG.AmmoIcon_OASMG'
+     IconMaterial=Texture'BW_Core_WeaponTex.OA-SMG.AmmoIcon_OASMG'
      IconCoords=(X2=64,Y2=64)
      ItemName="PS-9m Med Darts"
 }

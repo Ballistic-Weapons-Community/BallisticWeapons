@@ -76,14 +76,14 @@ function DoFireEffect()
 
 defaultproperties
 {
-     FailSound=Sound'PackageSounds4Pro.HyperBeamCannon.343Primary-Fail'
+     FailSound=Sound'BWBP_SKC_Sounds.HyperBeamCannon.343Primary-Fail'
      SpawnOffset=(X=100.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BWBPRecolorsPro.BFGFlashEmitter'
      FireRecoil=820.000000
      FireChaos=0.600000
      XInaccuracy=8.000000
      YInaccuracy=4.000000
-     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.BFG.BFG-Fire',Volume=4.500000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.BFG.BFG-Fire',Volume=4.500000,Slot=SLOT_Interact,bNoOverride=False)
      FireAnim="Fire2"
      FireEndAnim=
      FireRate=2.500000

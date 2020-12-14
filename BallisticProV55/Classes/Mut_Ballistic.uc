@@ -12,7 +12,7 @@ class Mut_Ballistic extends Mutator
 	CacheExempt
 	config(BallisticProV55);
 
-#exec OBJ LOAD File=BallisticSounds2.uax
+#exec OBJ LOAD File=BW_Core_WeaponSound.uax
 
 var globalconfig bool bLogCheckReplacement;
 
@@ -898,7 +898,7 @@ defaultproperties
      Replacements(32)=(OldItemName="XPickups.SuperHealthPack",NewItemNames=("BallisticProV55.IP_SuperHealthKit"))
      Replacements(33)=(OldItemName="XPickups.SuperShieldPack",NewItemNames=("BallisticProV55.IP_BigArmor"))
      Replacements(34)=(OldItemName="XPickups.ShieldPack",NewItemNames=("BallisticProV55.IP_SmallArmor"))
-     UDamageSnd=Sound'BallisticSounds3.Udamage.UDamageFire'
+     UDamageSnd=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
      ItemGroup="Ballistic"
      bSpawnUniqueItems=True
      bPickupsChange=True

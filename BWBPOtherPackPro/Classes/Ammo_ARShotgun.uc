@@ -12,8 +12,8 @@ defaultproperties
 {
      MaxAmmo=120
      InitialAmount=30
-     IconFlashMaterial=Shader'BallisticRecolors3TexPro.SK410.AmmoIcon_SK410Flash'
+     IconFlashMaterial=Shader'BWBP_SKC_Tex.SK410.AmmoIcon_SK410Flash'
      PickupClass=Class'BWBPOtherPackPro.AP_ARShotgun'
-     IconMaterial=Texture'BallisticRecolors3TexPro.SK410.AmmoIcon_SK410'
+     IconMaterial=Texture'BWBP_SKC_Tex.SK410.AmmoIcon_SK410'
      ItemName="RCS Magazine"
 }

@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=20
      InventoryType=Class'BWBPRecolorsPro.Ammo_50Inc'
      PickupMessage="You picked up two FSSG-50 magazines."
-     PickupSound=Sound'BallisticSounds2.Ammo.MGBoxPickup'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.FSSG50.FSSG50AmmoPickup'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.MGBoxPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.FSSG50.FSSG50AmmoPickup'
      DrawScale=0.700000
      CollisionRadius=8.000000
      CollisionHeight=5.500000

@@ -45,7 +45,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.800000)
          StartSizeRange=(X=(Min=180.000000,Max=180.000000),Y=(Min=180.000000,Max=180.000000),Z=(Min=180.000000,Max=180.000000))
          InitialParticlesPerSecond=6.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.250000,Max=0.250000)
      End Object
@@ -69,7 +69,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.400000)
          StartSizeRange=(X=(Min=140.000000,Max=160.000000),Y=(Min=140.000000,Max=160.000000),Z=(Min=140.000000,Max=160.000000))
          InitialParticlesPerSecond=15.000000
-         Texture=Texture'BallisticEffects.Particles.Explode2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          StartVelocityRange=(X=(Min=-200.000000,Max=200.000000),Y=(Min=-200.000000,Max=200.000000),Z=(Min=-200.000000,Max=200.000000))
@@ -98,7 +98,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=40.000000,Max=60.000000),Y=(Min=40.000000,Max=60.000000),Z=(Min=40.000000,Max=60.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticEffects.Particles.FlameParts'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          SecondsBeforeInactive=0.000000
@@ -133,7 +133,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=30.000000,Max=60.000000),Y=(Min=30.000000,Max=60.000000),Z=(Min=30.000000,Max=60.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
+         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -169,7 +169,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.200000)
          InitialParticlesPerSecond=5000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticWeapons2.Effects.Smoke7'
+         Texture=Texture'BW_Core_WeaponTex.Effects.Smoke7'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=-100.000000,Max=100.000000),Y=(Min=-100.000000,Max=100.000000),Z=(Min=-80.000000,Max=200.000000))
@@ -199,7 +199,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=30.000000,Max=30.000000),Y=(Min=30.000000,Max=30.000000),Z=(Min=30.000000,Max=30.000000))
          InitialParticlesPerSecond=20.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=-1000.000000,Max=1000.000000),Y=(Min=-1000.000000,Max=1000.000000),Z=(Min=-200.000000,Max=600.000000))
@@ -226,7 +226,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=7.000000))
          ScaleSizeByVelocityMultiplier=(Y=0.015000)
          InitialParticlesPerSecond=60.000000
-         Texture=Texture'BallisticEffects.Particles.Smoke4'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.800000,Max=0.800000)
          AddVelocityFromOtherEmitter=5

@@ -4,8 +4,8 @@
 class MARSPickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticRecolors4TexPro.utx
-#exec OBJ LOAD FILE=BallisticRecolors4StaticProExp.usx
+#exec OBJ LOAD FILE=BWBP_SKC_TexExp.utx
+#exec OBJ LOAD FILE=BWBP_SKC_StaticExp.usx
 
 //===========================================================================
 // StaticPrecache
@@ -15,35 +15,35 @@ class MARSPickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.F2000-MainGreen');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.F2000-Misc');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.F2000-Scope');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.F2000-ScopeLensAlt');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.MARS-SpecScope');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.F2000-MainGreen');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.F2000-Misc');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.F2000-Scope');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.F2000-ScopeLensAlt');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.MARS-SpecScope');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.F2000-MainGreen');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.F2000-Misc');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.F2000-Scope');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.F2000-ScopeLensAlt');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.MARS-SpecScope');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.F2000-MainGreen');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.F2000-Misc');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.F2000-Scope');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.F2000-ScopeLensAlt');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.MARS-SpecScope');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.F2000.MARSPickup');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.F2000.MARSPickupLow');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.MARS.MARS2_Pickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticProExp.F2000.MARSPickupLow'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.MARS.MARS2_Pickup'
      InventoryType=Class'BWBPRecolorsPro.MARSAssaultRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the MARS-2 assault rifle."
-     PickupSound=Sound'BallisticSounds2.M50.M50Putaway'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.F2000.MARSPickup'
+     PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
+     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.MARS.MARS2_Pickup'
      Physics=PHYS_None
+	 Drawscale=0.2
      CollisionHeight=4.000000
 }

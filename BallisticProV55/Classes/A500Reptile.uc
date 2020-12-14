@@ -163,8 +163,8 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BallisticTextures_25.Reptile.BigIcon_Reptile'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Reptile.BigIcon_Reptile'
 	BigIconCoords=(Y1=30,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Shotgun=True
@@ -174,11 +174,11 @@ defaultproperties
 	ManualLines(1)="Charges a larger, direct-attack projectile with minor radius damage. This projectile creates pools of acid where it strikes. Speed, power, number of pools and radius of coverage all increase with charge."
 	ManualLines(2)="The A500 is effective at close range, or at all ranges when charged. The recoil is low because of the nature of the delivery system."
 	SpecialInfo(0)=(Info="210.0;30.0;0.95;80.0;0.0;0.8;0.8")
-	BringUpSound=(Sound=Sound'BallisticSounds2.A73.A73Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.A73.A73Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
 	MagAmmo=8
-	ClipOutSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_ClipOut',Volume=0.800000)
-	ClipInSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_ClipIn',Volume=0.800000)
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_ClipOut',Volume=0.800000)
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_ClipIn',Volume=0.800000)
 	ClipInFrame=0.700000
 	bNonCocking=True
 	WeaponModes(0)=(ModeName="Blast")
@@ -208,7 +208,7 @@ defaultproperties
 	PlayerViewOffset=(X=-9.000000,Y=13.000000,Z=-15.000000)
 	PlayerViewPivot=(Pitch=600)
 	AttachmentClass=Class'BallisticProV55.A500Attachment'
-	IconMaterial=Texture'BallisticTextures_25.Reptile.SmallIcon_Reptile'
+	IconMaterial=Texture'BW_Core_WeaponTex.Reptile.SmallIcon_Reptile'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="A500 'Reptile' Acid Gun"
 	LightType=LT_Pulse
@@ -217,7 +217,7 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=150.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BallisticAnims_25.Reptile'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_A500AcidGun'
 	DrawScale=0.187500
 	SoundPitch=56
 	SoundRadius=32.000000

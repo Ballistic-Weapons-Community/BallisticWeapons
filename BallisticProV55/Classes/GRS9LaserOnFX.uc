@@ -22,7 +22,7 @@ defaultproperties
          MaxParticles=2
          StartLocationOffset=(X=10.000000)
          StartSizeRange=(X=(Min=40.000000,Max=60.000000),Y=(Min=40.000000,Max=60.000000),Z=(Min=40.000000,Max=60.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.050000,Max=0.100000)
      End Object
@@ -42,7 +42,7 @@ defaultproperties
          MaxParticles=3
          StartLocationOffset=(X=120.000000)
          StartSizeRange=(X=(Min=20.000000,Max=30.000000),Y=(Min=110.000000,Max=130.000000),Z=(Min=110.000000,Max=130.000000))
-         Texture=Texture'BallisticEffects.Particles.WaterSpray1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.WaterSpray1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.300000)
          StartVelocityRange=(X=(Min=10.000000,Max=10.000000))

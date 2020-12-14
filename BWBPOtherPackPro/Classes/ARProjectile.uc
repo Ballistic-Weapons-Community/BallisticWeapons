@@ -171,7 +171,7 @@ defaultproperties
      LightSaturation=100
      LightBrightness=160.000000
      LightRadius=8.000000
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.Bulldog.Frag12Proj'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
      LifeSpan=16.000000
      DrawScale=2.000000
 }

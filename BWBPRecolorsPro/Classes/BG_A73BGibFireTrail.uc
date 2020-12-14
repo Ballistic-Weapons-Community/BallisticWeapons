@@ -45,7 +45,7 @@ defaultproperties
          StartLocationRange=(X=(Min=-2.000000,Max=2.000000),Y=(Min=-2.000000,Max=2.000000),Z=(Min=-2.000000,Max=2.000000))
          StartSpinRange=(X=(Min=0.500000,Max=0.500000))
          StartSizeRange=(X=(Min=6.000000,Max=8.000000),Y=(Min=6.000000,Max=8.000000),Z=(Min=6.000000,Max=8.000000))
-         Texture=Texture'BallisticEffects.Particles.BlazingSubdivide'
+         Texture=Texture'BW_Core_WeaponTex.Particles.BlazingSubdivide'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          LifetimeRange=(Min=0.800000,Max=0.800000)
@@ -76,7 +76,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=1.000000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=0.500000)
          StartSizeRange=(X=(Min=2.000000,Max=2.000000),Y=(Min=2.000000,Max=2.000000),Z=(Min=2.000000,Max=2.000000))
-         Texture=Texture'BallisticEffects.Particles.FlameParts'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          LifetimeRange=(Min=0.200000,Max=0.300000)

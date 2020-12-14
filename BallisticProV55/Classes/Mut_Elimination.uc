@@ -154,7 +154,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 				bSuperRelevant = 0;
 				return false;
 			}
-			if (Conflict.bBallisticItems)
+			if (Conflict.bBW_Core_WeaponTex)
 			{
 				for (i=0;i<Replacements.length;i++)
 					if (Pickup(Other).Class == Replacements[i].OldItem)
@@ -180,7 +180,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 			else if (!Conflict.bKeepWeapons)
 				Other.bHidden = true;
         }
-        else if (!Conflict.bKeepHealth || Conflict.bBallisticItems)
+        else if (!Conflict.bKeepHealth || Conflict.bBW_Core_WeaponTex)
         {
 			Other.bHidden = true;
 			if (xPickupBase(Other).myEmitter != None)

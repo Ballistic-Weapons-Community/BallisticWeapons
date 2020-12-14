@@ -48,8 +48,8 @@ defaultproperties
      AmmoAmount=16
      InventoryType=Class'BWBPRecolorsPro.Ammo_75BOLT'
      PickupMessage="You picked up Bulldog BOLT slugs."
-     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.Bulldog.BullDogAmmo'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.BullDogAmmo'
      DrawScale=0.700000
      CollisionRadius=8.000000
      CollisionHeight=18.000000

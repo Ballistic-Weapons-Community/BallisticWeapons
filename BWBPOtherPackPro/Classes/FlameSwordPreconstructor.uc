@@ -1,6 +1,6 @@
 class FlameSwordPreconstructor extends BallisticEmitter;
 
-#exec OBJ LOAD FILE=BWBPSomeOtherPackSounds.uax
+#exec OBJ LOAD FILE=BWBP_OP_Sounds.uax
 
 var float 	Health, MaxHealth;
 var Vector GroundPoint;
@@ -21,7 +21,7 @@ simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
 	
-	//PlaySound(Sound'BWBPOtherPackSound.Wrench.electric_burst_6', ,1);
+	//PlaySound(Sound'BWBP_OP_Sounds.Wrench.electric_burst_6', ,1);
 }
 
 function Initialize(class<Actor> InClass, float ConstructionTime)
@@ -56,7 +56,7 @@ event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Mo
 	
 	if (Health < 1)
 	{
-		PlaySound(Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Ignite', ,1);
+		PlaySound(Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Ignite', ,1);
 		
 		bDie=True;
 		bTearOff=True;
@@ -69,7 +69,7 @@ simulated function TornOff()
 	SetCollision(false,false,false);
 	if (!bDie)
 		Spawn(class'IE_FireExplosion');
-	PlaySound(Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Ignite', ,1);
+	PlaySound(Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Ignite', ,1);
 	Kill();
 }
 
@@ -262,7 +262,7 @@ defaultproperties
      Emitters(4)=SpriteEmitter'BWBPOtherPackPro.FlameSwordPreconstructor.SpriteEmitter7'*/
 
      RemoteRole=ROLE_SimulatedProxy
-//     AmbientSound=Sound'BWBPOtherPackSound.Wrench.Hum10'
+//     AmbientSound=Sound'BWBP_OP_Sounds.Wrench.Hum10'
      bCanBeDamaged=True
      SoundVolume=255
      SoundRadius=128.000000

@@ -38,16 +38,16 @@ function byte BestMode()
 
 defaultproperties
 {
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_EKS43'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_EKS43'
      BigIconCoords=(Y1=32,Y2=230)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      ManualLines(0)="Slashes with the katana. Has a relatively long range and good damage, but a poor swing rate."
      ManualLines(1)="Prepares a slash, which will be executed upon release. The damage of this slash increases the longer altfire is held, up to 1.5 seconds for maximum damage output. This attack inflicts more damage from behind."
      ManualLines(2)="The Weapon Function key allows the player to block. Whilst blocking, no attacks are possible, but all melee damage striking the player frontally will be mitigated.||The EKS-43 is effective at close range, but has lower DPS than shorter ranged melee weapons."
      SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
      GunLength=0.000000
      bAimDisabled=True
      ParamsClass=Class'EKS43WeaponParams'
@@ -70,9 +70,9 @@ defaultproperties
      PickupClass=Class'BallisticProV55.EKS43Pickup'
      PlayerViewOffset=(X=6.000000,Z=-18.000000)
      AttachmentClass=Class'BallisticProV55.EKS43Attachment'
-     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_EKS43'
+     IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_EKS43'
      IconCoords=(X2=127,Y2=31)
      ItemName="EKS-43 Katana"
-     Mesh=SkeletalMesh'BallisticAnims2.Katana'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Katana'
      DrawScale=0.250000
 }

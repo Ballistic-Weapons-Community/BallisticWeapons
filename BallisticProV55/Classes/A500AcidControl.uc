@@ -69,9 +69,8 @@ function int FindIndex (Pawn Sought)
 	return i;
 }
 
-simulated function Initialize(vector HitNormal, float LoadFactor)
+simulated function Initialize(vector HitNormal, int Load)
 {
-    local int Load;
     local int i, Count, SpreadRadius;
 	local vector Start, End, HitLoc, HitNorm;
 	local Actor T;
@@ -80,8 +79,6 @@ simulated function Initialize(vector HitNormal, float LoadFactor)
 
 	if (level.NetMode == NM_Client)
 		return;
-
-    Load = LoadFactor * 4;
 
 	SpreadRadius = BaseSpreadRadius * (Load ** 0.4f);
 	Count = 2 * (Load ** 1.35f);

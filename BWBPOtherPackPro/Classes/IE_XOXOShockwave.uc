@@ -18,7 +18,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=5.000000)
          StartSizeRange=(X=(Min=150.000000,Max=150.000000))
          InitialParticlesPerSecond=100.000000
-         Texture=Texture'BallisticEffects.Particles.Shockwave'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.401000,Max=0.401000)
      End Object
@@ -41,7 +41,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=3.000000)
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -71,7 +71,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=7.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BWBPOtherPackTex.XOXO.hearteffect'
+         Texture=Texture'BWBP_OP_Tex.XOXO.hearteffect'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(Z=(Min=60.000000,Max=180.000000))

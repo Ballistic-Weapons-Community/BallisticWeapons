@@ -38,7 +38,7 @@ defaultproperties
      LightMode=MU_None
      TrackAnimMode=MU_Both
      AttachmentBone="bip01 l hand"	 
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.BallisticShield_Third'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.BallisticShield_TPm'
 	 RelativeLocation=(X=-10.000000)
      RelativeRotation=(Yaw=-16384,Pitch=25000)
      DrawScale=0.450000

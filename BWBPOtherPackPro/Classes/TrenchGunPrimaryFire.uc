@@ -367,9 +367,9 @@ function int GetTraceCount(int load)
 {
 	switch(load)
 	{
-		case 2: return TraceCount * 2; // - 1;
-		case 1: return TraceCount;
-		default: return TraceCount;
+		case 2: return (default.TraceCount * 2); // - 1;
+		case 1: return default.TraceCount;
+		default: return default.TraceCount;
 	}
 }
 
@@ -635,7 +635,7 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
-	SlugFireSound=Sound'BWBPSomeOtherPackSounds.TechGun.electro_Shot'
+	SlugFireSound=Sound'BWBP_OP_Sounds.TechGun.electro_Shot'
 	AimedFireEmptyAnim="SightFire"
 	FireEmptyAnim="Fire"	
 	AimedFireSingleAnim="SightFire"
@@ -643,21 +643,19 @@ defaultproperties
 	ChargeTime=0.35
 	MaxHoldTime=0.0
 	HipSpreadFactor=2.000000
-
     CutOffDistance=1536.000000
     CutOffStartRange=1024.000000
-
 	TraceCount=11
 	TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-    ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
 	AltTracerClass=Class'BWBPRecolorsPro.TraceEmitter_Supercharge'
 	AltImpactManager=Class'BWBPRecolorsPro.IM_Supercharge'
-
+	ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
 	TraceRange=(Min=2048.000000,Max=2560.000000)
 	
 	WallPenetrationForce=0
 
 	Damage=10.000000
+
 	ElectroDamage=5.000000
 
 	RangeAtten=0.250000
@@ -676,15 +674,16 @@ defaultproperties
 	FireRecoil=512.000000
 	FirePushbackForce=1200.000000
 	FireChaos=1.000000
-
 	XInaccuracy=192.000000
 	YInaccuracy=192.000000
+	
 	ExplosiveInaccuracy=(X=192,Y=192)
 	ExplosiveDoubleInaccuracy=(X=762,Y=576)
+	
 	ElectroInaccuracy=(X=128,Y=128)
 	ElectroDoubleInaccuracy=(X=320,Y=192)
 	
-	BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)
+	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)
 	FireAnim="FireCombined"
 	FireAnimRate=0.800000
 	FireRate=0.100000

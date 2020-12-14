@@ -12,7 +12,7 @@ defaultproperties
 {
      HitEffects(0)=Class'BWBPRecolorsPro.IE_SlugHE'
      HitDecals(0)=Class'BallisticProV55.AD_Explosion'
-     HitSounds(0)=Sound'PackageSounds4Pro.Bulldog.Bulldog-Impact'
+     HitSounds(0)=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-Impact'
      HitSoundVolume=1.400000
      HitSoundRadius=384.000000
      EffectBackOff=96.000000

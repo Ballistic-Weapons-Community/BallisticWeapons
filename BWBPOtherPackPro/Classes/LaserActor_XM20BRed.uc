@@ -8,5 +8,5 @@ class LaserActor_XM20BRed extends LaserActor;
 
 defaultproperties
 {
-     Skins(0)=TexPanner'BallisticRecolors3TexPro.BeamCannon.LaserPannerRed'
+     Skins(0)=TexPanner'BWBP_SKC_Tex.BeamCannon.LaserPannerRed'
 }

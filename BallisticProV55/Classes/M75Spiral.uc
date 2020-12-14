@@ -95,11 +95,11 @@ event Tick(float DT)
 defaultproperties
 {
      DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BallisticHardware2.Effects.RailCylinder2'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.RailCylinder2'
      Physics=PHYS_Rotating
      RemoteRole=ROLE_None
      LifeSpan=0.900000
-     Skins(0)=Texture'BallisticEffects.GunFire.RailSpiralSmoke'
+     Skins(0)=Texture'BW_Core_WeaponTex.GunFire.RailSpiralSmoke'
      bUnlit=True
      bFixedRotationDir=True
      RotationRate=(Roll=32768)

@@ -11,16 +11,29 @@ const SHOCK_AMMO = 1;
 var bool						Side;
 var byte						AmmoType;
 
-var() class<BCImpactManager>	ImpactManagerAlt;		//Impact Manager to use for impact effects
+var() class<BCImpactManager>	ImpactManagerAlt;		//Impact Manager to use for iATLATmpact effects
 var() class<BCTraceEmitter>		TracerClassAlt;			//Type of tracer to use for alt fire effects
 
 var	Actor						MuzzleFlashRight;
+
 
 replication
 {
 	// Things the server should send to the client.
 	reliable if (Role == ROLE_Authority)
 		AmmoType;
+}
+
+//======================================================================
+// PostNetBeginPlay
+//
+// Debug
+//======================================================================
+simulated function PostNetBeginPlay()
+{
+	Super.PostNetBeginPlay();
+	
+	//Log("TrenchGunAttachment::PostNetBeginPlay: AmmoType: "$AmmoType);
 }
 
 //======================================================================
@@ -432,34 +445,25 @@ defaultproperties
 {
 	 TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_IncendiaryHMGBullet'
-	 
      TracerClassAlt=Class'BWBPRecolorsPro.TraceEmitter_Supercharge'
 	 ImpactManagerAlt=Class'BWBPRecolorsPro.IM_Supercharge'
-	 
 	 MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
-	 
      FireClass=Class'BWBPOtherPackPro.TrenchGunPrimaryFire'
      MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
      FlashBone="Tip1"
      AltFlashBone="tip2"
      FlashScale=1.500000
-	 	 
 	 InstantMode = MU_Both
-	 
      BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
-	 
      TrackAnimMode=MU_None
-
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.TechGun_Third'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.TrenchGun_TPm'
      RelativeLocation=(X=5.000000,Z=4.000000)
      RelativeRotation=(Pitch=32768,Roll=-16384)
      DrawScale=0.450000
-	 
  	 SingleFireAnim="Reload_BreakOpenFast"
      SingleAimedFireAnim="Reload_BreakOpenFast"
      RapidFireAnim="RifleHip_Fire"
      RapidAimedFireAnim="RifleAimed_Fire"
-	 
 	 ReloadAnim="Reload_BreakOpen"
 	 CockingAnim="Reload_BreakOpen"
 }

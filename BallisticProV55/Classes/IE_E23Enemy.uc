@@ -27,7 +27,7 @@ defaultproperties
          StartLocationOffset=(X=5.000000)
          StartSizeRange=(X=(Min=5.000000,Max=5.000000),Y=(Min=5.000000,Max=5.000000),Z=(Min=5.000000,Max=5.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRange=(X=(Min=50.000000,Max=400.000000),Y=(Min=-250.000000,Max=250.000000),Z=(Min=-250.000000,Max=250.000000))
@@ -58,7 +58,7 @@ defaultproperties
          StartSizeRange=(X=(Min=1.000000,Max=2.000000),Y=(Min=3.000000,Max=10.000000),Z=(Min=1.000000,Max=2.000000))
          InitialParticlesPerSecond=60.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.WaterRing1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.WaterRing1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.250000,Max=0.250000)
          VelocityLossRange=(X=(Min=3.000000,Max=3.000000),Y=(Min=3.000000,Max=3.000000),Z=(Min=3.000000,Max=3.000000))
@@ -81,7 +81,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=35.000000,Max=40.000000),Y=(Min=35.000000,Max=40.000000),Z=(Min=35.000000,Max=40.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
      End Object
@@ -109,7 +109,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=5.000000),Y=(Min=5.000000,Max=5.000000),Z=(Min=5.000000,Max=5.000000))
          InitialParticlesPerSecond=25.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects2.Particles.NewSmoke1g'
+         Texture=Texture'BW_Core_WeaponTex.Particles.NewSmoke1g'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=5.000000,Max=15.000000),Z=(Min=15.000000,Max=35.000000))
@@ -142,7 +142,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=14.000000),Y=(Min=10.000000,Max=14.000000),Z=(Min=10.000000,Max=14.000000))
          InitialParticlesPerSecond=4.000000
          DrawStyle=PTDS_Modulated
-         Texture=Texture'BWBP4-Tex.VPR.Ripple-VPR'
+         Texture=Texture'BW_Core_WeaponTex.VPR.Ripple-VPR'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object

@@ -28,7 +28,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=25.000000))
          InitialParticlesPerSecond=10000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.Smoke1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=-50.000000,Max=40.000000),Y=(Min=-40.000000,Max=40.000000),Z=(Min=-25.000000,Max=25.000000))
@@ -36,7 +36,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BallisticProV55.IE_BulletPlant.SpriteEmitter0'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip1'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip1'
          UseParticleColor=True
          UseColorScale=True
          FadeOut=True
@@ -58,7 +58,7 @@ defaultproperties
      Emitters(1)=MeshEmitter'BallisticProV55.IE_BulletPlant.MeshEmitter0'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip1'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip1'
          UseParticleColor=True
          UseColorScale=True
          FadeOut=True

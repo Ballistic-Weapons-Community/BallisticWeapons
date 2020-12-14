@@ -72,7 +72,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
     for( i=0; i<Count; i++ )
     {
 		C.SetPos(C.ClipX - (0.5*i+1) * ScaleFactor2, C.ClipY - 100 * ScaleFactor * class'HUD'.default.HudScale);
-		C.DrawTile( Texture'BallisticRecolors3TexPro.CYLO.CYLO-SGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
+		C.DrawTile( Texture'BWBP_SKC_Tex.CYLO.CYLO-SGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
 	}
 	
 	if (bSkipDrawWeaponInfo)
@@ -495,13 +495,13 @@ defaultproperties
 	ShotgunLoadAnim="ReloadSG"
 	ShotgunEmptyLoadAnim="ReloadSGEmpty"
 	CockSGAnim="CockSG"
-	TubeOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
-	TubeInSound=Sound'BallisticSounds2.M50.M50GrenLoad'
-	TubeCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
+	TubeOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
+	TubeInSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
+	TubeCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
 	SGShells=6
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BallisticRecolors3TexPro.CYLO.BigIcon_CYLO'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.CYLO.BigIcon_CYLOMK3'
 	BigIconCoords=(X1=16,Y1=30)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -512,15 +512,15 @@ defaultproperties
 	ManualLines(2)="Effective at close to medium range."
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;85.0;0.1;0.9;0.4")
 	MeleeFireClass=Class'BWBPRecolorsPro.CYLOMeleeFire'
-	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	MagAmmo=22
 	CockAnimPostReload="Cock"
 	CockAnimRate=1.400000
-	CockSound=(Sound=Sound'BallisticSounds2.M50.M50Cock')
-	ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
-	ClipOutSound=(Sound=Sound'BallisticSounds2.M50.M50ClipOut')
-	ClipInSound=(Sound=Sound'BallisticSounds2.M50.M50ClipIn')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Cock')
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipIn')
 	ClipInFrame=0.700000
 	bAltTriggerReload=True
 	WeaponModes(0)=(bUnavailable=True)
@@ -550,7 +550,7 @@ defaultproperties
 	PlayerViewOffset=(X=8.000000,Z=-14.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBPRecolorsPro.CYLOAttachment'
-	IconMaterial=Texture'BallisticRecolors3TexPro.CYLO.SmallIcon_CYLO'
+	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMK3'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="CYLO Urban Assault Weapon"
 	LightType=LT_Pulse
@@ -559,6 +559,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.CYLO'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOUAW'
 	DrawScale=0.400000
 }

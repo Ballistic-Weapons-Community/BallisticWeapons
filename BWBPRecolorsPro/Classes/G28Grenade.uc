@@ -101,12 +101,12 @@ simulated event AnimEnd (int Channel)
 defaultproperties
 {
      FuseDelay=0.500000
-     ClipReleaseSound=(Sound=Sound'BallisticSounds3.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
-     PinPullSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
      GrenadeBone="G28"
      SmokeBone="G28"
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticRecolors3TexPro.G28.BigIcon_G28'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BWBP_SKC_Tex.G28.BigIcon_G28'
      BigIconCoords=(Y1=12,Y2=245)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Splash=True
@@ -116,8 +116,8 @@ defaultproperties
      ManualLines(1)="As primary, except the grenade is rolled underarm."
      ManualLines(2)="Like all grenades, the grenade can be cooked in the hand. However, due to the short fuse time, this is not useful for the G28."
      SpecialInfo(0)=(Info="0.0;0.0;0.0;-1.0;0.0;0.0;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
 	 CurrentWeaponMode=2
 	 ParamsClass=Class'G28WeaponParams'
      FireModeClass(0)=Class'BWBPRecolorsPro.G28PrimaryFire'
@@ -136,9 +136,9 @@ defaultproperties
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      BobDamping=1.000000
      AttachmentClass=Class'BWBPRecolorsPro.G28Attachment'
-     IconMaterial=Texture'BallisticRecolors3TexPro.G28.SmallIcon_G28'
+     IconMaterial=Texture'BWBP_SKC_Tex.G28.SmallIcon_G28'
      IconCoords=(X2=127,Y2=31)
      ItemName="FMD G28 Medicinal Aerosol"
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.G28_FP'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_G28'
      DrawScale=0.400000
 }

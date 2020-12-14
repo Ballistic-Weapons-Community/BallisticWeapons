@@ -9,7 +9,7 @@ class E23SGFlashEmitter extends BallisticEmitter;
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter3
-         StaticMesh=StaticMesh'BWBP4-Hardware.VPR.VPRMuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.VPR.VPRMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -60,7 +60,7 @@ defaultproperties
          MaxParticles=1
          StartLocationOffset=(X=20.000000)
          StartSizeRange=(X=(Min=125.000000,Max=125.000000),Y=(Min=125.000000,Max=125.000000),Z=(Min=125.000000,Max=125.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -91,7 +91,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.370000,RelativeSize=1.500000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.600000)
          StartSizeRange=(X=(Min=10.000000,Max=15.000000),Y=(Min=10.000000,Max=15.000000),Z=(Min=10.000000,Max=15.000000))
-         Texture=Texture'BWBP4-Tex.VPR.VPR-MuzzleEffect'
+         Texture=Texture'BW_Core_WeaponTex.VPR.VPR-MuzzleEffect'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=9.000000,Max=11.000000)

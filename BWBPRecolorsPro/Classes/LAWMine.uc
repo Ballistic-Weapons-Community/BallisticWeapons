@@ -163,7 +163,7 @@ function bool IsStationary()
 
 defaultproperties
 {
-     DetonateSound=Sound'BallisticSounds_25.OA-AR.OA-AR_GrenadeBeep'
+     DetonateSound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_GrenadeBeep'
      ShockRadius=1024
      MyShotDamageType=Class'BWBPRecolorsPro.DTLAWShot'
      ImpactManager2=Class'BWBPRecolorsPro.IM_LAWWave'
@@ -179,7 +179,7 @@ defaultproperties
      Damage=210.000000
      DamageRadius=1536.000000
      MyDamageType=Class'BWBPRecolorsPro.DTLAWMineDet'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.LAW.LAWRocket'
+     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.LAW.LAWRocket'
      bNetTemporary=False
      Physics=PHYS_None
      LifeSpan=0.000000

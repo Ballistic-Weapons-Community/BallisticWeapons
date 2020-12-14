@@ -4,9 +4,9 @@
 class RS8Pickup extends BallisticHandgunPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BWAddPack-RS-Skins.utx
-#exec OBJ LOAD FILE=BWAddPack-RS-Effects.utx
-#exec OBJ LOAD FILE=BWAddPack-RS-Hardware.usx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,29 +16,29 @@ class RS8Pickup extends BallisticHandgunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Shader'BWAddPack-RS-Skins.RS8.RS8-Shiney');
+	L.AddPrecacheMaterial(Shader'BW_Core_WeaponTex.RS8.RS8-Shiney');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Shader'BWAddPack-RS-Skins.RS8.RS8-Shiney');
+	Level.AddPrecacheMaterial(Shader'BW_Core_WeaponTex.RS8.RS8-Shiney');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-//	Level.AddPrecacheStaticMesh(StaticMesh'BWAddPack-RS-Hardware.RS8.RS8Clips');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWAddPack-RS-Hardware.RS8.RS8PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWAddPack-RS-Hardware.RS8.RS8PickupLo');
+//	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.RS8.RS8Clips');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.RS8.RS8PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.RS8.RS8PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWAddPack-RS-Hardware.RS8.RS8PickupLo'
+     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.RS8.RS8PickupLo'
      PickupDrawScale=0.210000
      InventoryType=Class'BallisticProV55.RS8Pistol'
      RespawnTime=20.000000
      PickupMessage="You picked up the RS8 pistol."
-     PickupSound=Sound'BallisticSounds2.XK2.XK2-Putaway'
-     StaticMesh=StaticMesh'BWAddPack-RS-Hardware.RS8.RS8PickupHi'
+     PickupSound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.RS8.RS8PickupHi'
      Physics=PHYS_None
      DrawScale=0.600000
      PrePivot=(Y=-18.000000)

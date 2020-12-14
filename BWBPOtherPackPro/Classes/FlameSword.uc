@@ -152,21 +152,21 @@ function Notify_BarrierDeploy()
 	/*if (AltDeployable.AmmoReq > Ammo[0].AmmoAmount)
 	{
 		Instigator.ClientMessage("Not enough charge to warp in"@WeaponModes[0].ModeName$".");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}*/
 		
 	if (HitActor == None || !HitActor.bWorldGeometry)
 	{
 		Instigator.ClientMessage("Must target an unoccupied surface.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
 	if (HitLoc == vect(0,0,0))
 	{
 		Instigator.ClientMessage("Out of range.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
@@ -179,7 +179,7 @@ function Notify_BarrierDeploy()
 	if (!SpaceToDeploy(HitLoc, HitNorm, SlopeRotation, AltDeployable.dClass.default.CollisionHeight, AltDeployable.dClass.default.CollisionRadius))
 	{
 		Instigator.ClientMessage("Insufficient space for construction.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
@@ -312,17 +312,17 @@ defaultproperties
 {
 	 ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
      AltDeployable=(dClass=Class'BWBPOtherPackPro.FlameSwordBarrier',WarpInTime=0.0010000,SpawnOffset=18,CheckSlope=False,dDescription="A five-second barrier of infinite durability.")
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBPSomeOtherPackTex.FlameSword.BWsword_icon_512'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BWBP_OP_Tex.FlameSword.BWsword_icon_512'
      BigIconCoords=(Y1=40,Y2=240)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      ManualLines(0)="Swings the sword. Inflicts heavy damage and has a long range and wide swing arc."
      ManualLines(1)="Creates a temporary barrier to block all incoming shots, but temporarily removes your hazard shielding."
      ManualLines(2)="Passively grants immunity to fire damage."
      SpecialInfo(0)=(Info="420.0;20.0;-999.0;-1.0;-999.0;0.9;-999.0")
-     BringUpSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Equip',Volume=2.000000)
-	 PutDownSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Unequip',Volume=2.000000)
-	 LoopAmbientSound=Sound'BallisticSounds2.RX22A.RX22A.RX22A-FireLoop'
+     BringUpSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Equip',Volume=2.000000)
+	 PutDownSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Unequip',Volume=2.000000)
+	 LoopAmbientSound=Sound'BW_Core_WeaponSound.RX22A.RX22A.RX22A-FireLoop'
      bNoMag=True
 	 GunLength=0.000000
 	 bAimDisabled=True
@@ -349,10 +349,10 @@ defaultproperties
      PickupClass=Class'BWBPOtherPackPro.FlameSwordPickup'
      BobDamping=1.000000
      AttachmentClass=Class'BWBPOtherPackPro.FlameSwordAttachment'
-     IconMaterial=Texture'BWBPSomeOtherPackTex.FlameSword.BWsword_icon_128'
+     IconMaterial=Texture'BWBP_OP_Tex.FlameSword.BWsword_icon_128'
      IconCoords=(X2=127,Y2=31)
      ItemName="PSI-56 Fire Sword"
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.Sword_FP_Flame'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_FlameSword'
      DrawScale=1.250000
      SoundRadius=32.000000
 	 PlayerViewOffset=(X=20.000000,Y=10.000000,Z=-20.000000)

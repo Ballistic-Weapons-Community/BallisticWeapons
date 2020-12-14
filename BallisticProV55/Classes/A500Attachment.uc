@@ -1,7 +1,7 @@
 //=============================================================================
 // A500Attachment.
 //
-// 3rd person weapon attachment for A500 Reptile
+// _TPm person weapon attachment for A500 Reptile
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
@@ -22,6 +22,6 @@ defaultproperties
      ReloadAnim="Reload_AR"
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BallisticAnims_25.Reptile_3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.A500AcidGun_TPm'
      DrawScale=0.175000
 }

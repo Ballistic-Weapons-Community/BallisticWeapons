@@ -25,7 +25,7 @@ var bool 			bHitThisTick;
 //	SawAttackEnd	Saw Held releasng target going to saw held
 //	SawEnd			Saw Release
 
-//	BWBP4-Sounds.DarkStar.Dark-
+//	BW_Core_WeaponSound.DarkStar.Dark-
 //	Saw			held, idle
 //	SawOpen		Start saw mode
 //	SawClose	Leaving saw mode
@@ -235,9 +235,9 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 
 defaultproperties
 {
-     SawFreeLoop=Sound'BWBP4-Sounds.DarkStar.Dark-Saw'
-     SawHackLoop=Sound'BWBP4-Sounds.DarkStar.Dark-SawPitched'
-     SawStop=Sound'BWBP4-Sounds.DarkStar.Dark-SawClose'
+     SawFreeLoop=Sound'BW_Core_WeaponSound.DarkStar.Dark-Saw'
+     SawHackLoop=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawPitched'
+     SawStop=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawClose'
      SwipePoints(0)=(offset=(Yaw=0))
      WallHitPoint=0
      NumSwipePoints=1
@@ -253,7 +253,7 @@ defaultproperties
      HookStopFactor=1.500000
      HookPullForce=150.000000
      ScopeDownOn=SDO_Fire
-     BallisticFireSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-SawOpen',Volume=0.750000,Radius=256.000000)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawOpen',Volume=0.750000,Radius=256.000000)
      bAISilent=True
      PreFireAnim=
      FireAnim="SawStart"

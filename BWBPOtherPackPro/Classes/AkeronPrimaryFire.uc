@@ -70,7 +70,7 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
      FireRecoil=128.000000
      FireChaos=0.500000
-     BallisticFireSound=(Sound=Sound'BallisticSounds3.G5.G5-Fire1')
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Fire1')
      FireEndAnim=
      FireRate=0.70000
      FireAnimRate=1.1

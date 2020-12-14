@@ -7,6 +7,6 @@ class AD_ShellConcrete extends AD_ImpactDecal
 defaultproperties
 {
      DrawScaleVariance=0.100000
-     ProjTexture=Texture'BallisticEffects2.Decals.Shell_Concrete'
+     ProjTexture=Texture'BW_Core_WeaponTex.Decals.Shell_Concrete'
      DrawScale=0.100000
 }

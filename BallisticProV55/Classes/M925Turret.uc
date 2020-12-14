@@ -91,7 +91,7 @@ defaultproperties
      DriverBackOff=45.000000
      bDrawDriverInTP=True
      VehicleNameString="M925 Machinegun Turret"
-     Mesh=SkeletalMesh'BallisticAnims2.M925Turret-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M925Turret_TPm'
      DrawScale=0.180000
      CollisionHeight=15.000000
 }

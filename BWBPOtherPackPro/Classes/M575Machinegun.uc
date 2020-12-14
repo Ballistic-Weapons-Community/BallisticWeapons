@@ -1,126 +1,177 @@
-class M575Machinegun extends BallisticWeapon;
+//=============================================================================
+// M575Machinegun.
+//
+// The "Guardian" M575 Machinegun has an extremely high fire rate, high ammo
+// capacity and decent damage, but is extremely inacurate and can quickly fight
+// its way from its owner's control. Secondary allows the user to mount the
+// weapon on the ground by crouching.
+//
+//
+// by Nolan "Dark Carnivour" Richert.
+// Copyright(c) 2005 RuneStorm. All Rights Reserved.
+//=============================================================================
+class M575Machinegun extends BallisticMachinegun;
 
-var rotator ScopeSightPivot;
-var vector ScopeSightOffset;
-var() Material ScopeScopeViewTex;
+var		bool		bScopeOn, bScopeAnimEnded;
+var() 	name		ScopeOnAnim, ScopeOffAnim;
+var() 	Material 	ScopeScopeViewTex;
+var 	Rotator		ScopeOffRot, ScopeOnRot;
 
-//===========================================================================
-// Dual scoping
-//===========================================================================
-exec simulated function ScopeView()
+var int				IceCharge;
+var float			LastChargeTime;
+
+const ChargeInterval = 0.5;
+
+replication
 {
-	if (bNoMeshInScope && SightingState != SS_None && SightingState != SS_Active)
-		return;
+	reliable if (Role == ROLE_Authority)
+		IceCharge;
+}
+
+simulated function PostNetBeginPlay()
+{
+	if (bScopeOn)
+		SetBoneRotation('ScopeHinge', ScopeOnRot);
+	else
+		SetBoneRotation('ScopeHinge', ScopeOffRot);
 		
-	if (SightingState == SS_None)
+	bScopeAnimEnded = True;
+	SetScopeProperties();
+	super.PostNetBeginPlay();
+}
+
+simulated event Tick(float DT)
+{
+	if (bScopeAnimEnded)
 	{
-		if (bNoMeshInScope)
-		{
-			SightPivot = default.SightPivot;
-			SightOffset = default.SightOffset;
-			ZoomType = ZT_Irons;
-			ScopeViewTex=None;
-			SightingTime = default.SightingTime;
-			bNoMeshInScope = false;
-		}
-	}
-	
-	Super.ScopeView();
-}
-
-exec simulated function ScopeViewRelease()
-{
-	if (bNoMeshInScope && SightingState != SS_None && SightingState != SS_Active)
-		return;
-		
-	Super.ScopeViewRelease();
-}
-
-simulated function ScopeViewTwo()
-{
-	if (!bNoMeshInScope && SightingState != SS_None && SightingState != SS_Active)
-		return;
-		
-	if (SightingState == SS_None)
-	{
-		ScopeViewTex = ScopeScopeViewTex;
-		
-		if (!bNoMeshInScope)
-		{
-			SightPivot = ScopeSightPivot;
-			SightOffset = ScopeSightOffset;
-			ZoomType = ZT_Fixed;
-			SightingTime = 0.4;
-			bNoMeshInScope = true;
-		}
-	}
-	
-	Super.ScopeView();
-}
-
-simulated function ScopeViewTwoRelease()
-{
-	if (!bNoMeshInScope && SightingState != SS_None && SightingState != SS_Active)
-		return;
-		
-	Super.ScopeViewRelease();
-}
-
-// Swap sighted offset and pivot for left handers
-simulated function SetHand(float InHand)
-{
-	super.SetHand(InHand);
-	if (Hand < 0)
-	{
-		if (bNoMeshInScope)
-		{
-			SightOffset.Y = ScopeSightOffset.Y * -1;
-			SightPivot.Roll = ScopeSightPivot.Roll * -1;
-			SightPivot.Yaw = ScopeSightPivot.Yaw * -1;
-		}
-		
+		if (bScopeOn)
+			SetBoneRotation('ScopeHinge', ScopeOnRot);
 		else
-		{
-			SightOffset.Y = default.SightOffset.Y * -1;
-			SightPivot.Roll = default.SightPivot.Roll * -1;
-			SightPivot.Yaw = default.SightPivot.Yaw * -1;
-		}
+			SetBoneRotation('ScopeHinge', ScopeOffRot);
 	}
+	super.Tick(DT);
+}
+
+/*function Notify_Deploy()
+{
+	local vector HitLoc, HitNorm, Start, End;
+	local actor T;
+	local Rotator CompressedEq;
+    local BallisticTurret Turret;
+    local int Forward;
+
+	if (Instigator.HeadVolume.bWaterVolume)
+		return;
+	// Trace forward and then down. make sure turret is being deployed:
+	//   on world geometry, at least 30 units away, on level ground, not on the other side of an obstacle
+	// BallisticPro specific: Can be deployed upon sandbags providing that sandbag is not hosting
+	// another weapon already. When deployed upon sandbags, the weapon is automatically deployed 
+	// to the centre of the bags.
+	
+	Start = Instigator.Location + Instigator.EyePosition();
+	for (Forward=75;Forward>=45;Forward-=15)
+	{
+		End = Start + vector(Instigator.Rotation) * Forward;
+		T = Trace(HitLoc, HitNorm, End, Start, true, vect(6,6,6));
+		if (T != None && VSize(HitLoc - Start) < 30)
+			return;
+		if (T == None)
+			HitLoc = End;
+		End = HitLoc - vect(0,0,100);
+		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
+		if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
+			break;
+		if (Forward <= 45)
+			return;
+	}
+
+	FireMode[1].bIsFiring = false;
+   	FireMode[1].StopFiring();
+
+	if(Sandbag(T) != None)
+	{
+		HitLoc = T.Location;
+		HitLoc.Z += class'M575Turret'.default.CollisionHeight + 30;
+	}
+	
 	else
 	{
-		if (bNoMeshInScope)
-		{
-			SightOffset.Y = ScopeSightOffset.Y;
-			SightPivot.Roll = ScopeSightPivot.Roll;
-			SightPivot.Yaw = ScopeSightPivot.Yaw;
-		}
-		else
-		{
-			SightOffset.Y = default.SightOffset.Y;
-			SightPivot.Roll = default.SightPivot.Roll;
-			SightPivot.Yaw = default.SightPivot.Yaw;
-		}
+		HitLoc.Z += class'M575Turret'.default.CollisionHeight - 9;
 	}
-}
+	
+	CompressedEq = Instigator.Rotation;
+		
+	//Rotator compression causes disparity between server and client rotations,
+	//which then plays hob with the turret's aim.
+	//Do the compression first then use that to spawn the turret.
+	
+	CompressedEq.Pitch = (CompressedEq.Pitch >> 8) & 255;
+	CompressedEq.Yaw = (CompressedEq.Yaw >> 8) & 255;
+	CompressedEq.Pitch = (CompressedEq.Pitch << 8);
+	CompressedEq.Yaw = (CompressedEq.Yaw << 8);
 
-//End of Scope Stuff
+	Turret = Spawn(class'M575Turret', None,, HitLoc, CompressedEq);
+	
+    if (Turret != None)
+    {
+    	if (Sandbag(T) != None)
+			Sandbag(T).AttachedWeapon = Turret;
+		Turret.InitDeployedTurretFor(self);
+		Turret.TryToDrive(Instigator);
+		Destroy();
+    }
+    else
+		log("Notify_Deploy: Could not spawn turret for M575 Machinegun");
+}*/
 
 simulated function PlayReload()
 {
-	PlayAnim('Reload', ReloadAnimRate, , 0);
+	PlayAnim('ReloadHold', ReloadAnimRate, , 0.25);
 }
 
-simulated function PositionSights ()
+// Play second half of reload anim. It will be different depending on how many bullets are being loaded
+simulated function PlayReloadFinish()
+{
+	SetBoxVisibility();
+	SetBeltVisibility(Ammo[0].AmmoAmount+MagAmmo+1);
+	if (Ammo[0].AmmoAmount+MagAmmo < BeltLength+1)// Belt with no Box
+		PlayAnim('ReloadFinishFew', 0.8*ReloadAnimRate, ,0.0);
+	else						// Full Box and Belt
+		PlayAnim('ReloadFinish', 0.8*ReloadAnimRate, ,0.0);
+}
+
+simulated function Notify_M353FlapOpenedReload ()
+{
+	super.PlayReload();
+}
+
+// Animation notify to make gun cock after reload
+simulated function Notify_CockAfterReload()
+{
+	if (bNeedCock && MagAmmo > 0)
+		CommonCockGun(2);
+	else
+		PlayAnim('ReloadFinishHold', ReloadAnimRate, 0.2);
+}
+
+simulated function PlayCocking(optional byte Type)
+{
+	if (Type == 2 && HasAnim('ReloadEndCock'))
+		PlayAnim('ReloadEndCock', CockAnimRate, 0.2);
+	else
+		PlayAnim(CockAnim, CockAnimRate, 0.2);
+}
+
+/*simulated function PositionSights ()
 {
 	super.PositionSights();
-	
 	if (SightingPhase <= 0.0)
 		SetBoneRotation('TopHandle', rot(0,0,0));
 	else if (SightingPhase >= 1.0 )
 		SetBoneRotation('TopHandle', rot(0,0,-8192));
 	else
 		SetBoneRotation('TopHandle', class'BUtil'.static.RSmerp(SightingPhase, rot(0,0,0), rot(0,0,-8192)));
-}
+}*/
 
 simulated function bool HasAmmo()
 {
@@ -133,7 +184,7 @@ simulated function bool HasAmmo()
 	return false;	//This weapon is empty
 }
 
-function GiveTo(Pawn Other, optional Pickup Pickup)
+/*function GiveTo(Pawn Other, optional Pickup Pickup)
 {
     local int m;
     local weapon w;
@@ -177,7 +228,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
 		
-	if(BallisticTurret(Instigator) == None && Instigator.FindInventoryType(class'SandbagLayer') == None)
+	if(BallisticTurret(Instigator) == None && Instigator.IsHumanControlled() && class'SandbagLayer'.static.ShouldGiveBags(Instigator))
     {
         Bags = Spawn(class'SandbagLayer',,,Instigator.Location);
 		
@@ -197,68 +248,209 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 			Ammo[m] = None;
 		Destroy();
 	}
+}*/
+
+exec simulated function WeaponSpecial(optional byte i)
+{
+	if (ReloadState != RS_None || Clientstate != WS_ReadyToFire || SightingState != SS_None)
+		return;
+		
+	TemporaryScopeDown(0.5);
+	
+	if (Level.NetMode == NM_Client)
+		ServerSwitchScopeType(!bScopeOn);
+	SwitchScopeType(!bScopeOn);
 }
+
+function ServerSwitchScopeType(bool bNewScope)
+{
+	SwitchScopeType(bNewScope);
+}
+
+simulated function SwitchScopeType(bool bNewScope)
+{
+	if (bNewScope == bScopeOn)
+		return;
+	
+	if (Role == ROLE_Authority)
+		bServerReloading=True;
+	
+	TemporaryScopeDown(0.5);
+	ReloadState = RS_GearSwitch;
+	
+	bScopeAnimEnded = False;
+	bScopeOn = bNewScope;
+	
+	SetBoneRotation('ScopeHinge', ScopeOnRot);
+	
+	if (bNewScope)
+		PlayAnim(ScopeOnAnim);
+	else
+		PlayAnim(ScopeOffAnim);
+}
+
+simulated function Notify_ScopeShow(){	UpdateBones();}
+simulated function Notify_ScopeHide(){	UpdateBones();}
+
+simulated function UpdateBones()
+{
+	if (bScopeOn)
+		SetBoneRotation('ScopeHinge', ScopeOnRot);
+	else
+		SetBoneRotation('ScopeHinge', ScopeOffRot);
+}
+
+simulated function AnimEnded (int Channel, name anim, float frame, float rate)
+{
+	if (Anim == ScopeOffAnim || Anim == ScopeOnAnim)
+	{
+		if (Role == ROLE_Authority)
+			bServerReloading=False;
+			
+		bScopeAnimEnded = True;
+		SetScopeProperties();
+	}
+		
+	super.AnimEnded(Channel, anim, frame, rate);
+}
+
+simulated function SetScopeProperties()
+{
+	if (bScopeOn)
+	{
+		ZoomType = ZT_Fixed;
+		SightingTime = 0.6;
+		ScopeViewTex = ScopeScopeViewTex;
+		bNoMeshInScope = true;
+		FullZoomFOV = 50;
+	}
+	else
+	{
+		ZoomType = ZT_Irons;
+		ScopeViewTex=None;
+		SightingTime = default.SightingTime;
+		bNoMeshInScope = false;
+	}
+}
+
+function float GetAIRating()
+{
+	local Bot B;
+	
+	local float Dist;
+	local float Rating;
+
+	B = Bot(Instigator.Controller);
+	
+	if ( B == None )
+		return AIRating;
+
+	Rating = Super.GetAIRating();
+
+	if (B.Enemy == None)
+		return Rating;
+
+	Dist = VSize(B.Enemy.Location - Instigator.Location);
+	
+	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.75, Dist, 1024, 2048); 
+}
+
+simulated function float ChargeBar()
+{
+	return IceCharge/20.0f;
+}
+
+simulated function WeaponTick(float DT)
+{
+	Super.WeaponTick(DT);
+	
+	if (!IsFiring() && IceCharge < 20 && Level.TimeSeconds > LastChargeTime + ChargeInterval)
+	{
+		IceCharge++;
+		LastChargeTime = Level.TimeSeconds;
+	}
+}
+
+// tells bot whether to charge or back off while using this weapon
+function float SuggestAttackStyle()	{	return -0.5;	}
+
+// tells bot whether to charge or back off while defending against this weapon
+function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
-	ScopeSightPivot=(Roll=-8192)
-	ScopeSightOffset=(X=-10.000000,Y=3.750000,Z=13.500000)
-	ScopeScopeViewTex=Texture'BWBPJiffyPackTex.M575.G36ScopeViewDot'
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-	AIReloadTime=4.000000
-	BigIconMaterial=Texture'BWBPOtherPackTex2.M575.BigIcon_M575'
-	BigIconCoords=(Y1=50,Y2=240)
-	SightFXClass=Class'BallisticProV55.M353SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-	bWT_Bullet=True
-	ManualLines(0)="Automatic 5.56mm fire. Has a high rate of fire, moderate damage and good sustained damage output. As a machinegun, it has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."
-	ManualLines(1)="Deploys the machinegun upon the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, becomes perfectly accurate, loses its iron sights and gains a reduction in recoil. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
-	ManualLines(2)="The M575 is a more cumbersome and heavy weapon, and accordingly has poor hipfire and takes some time to aim.||It is effective at medium to long range."
-	SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.4;0.4;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.M353.M353-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M353.M353-Putaway')
-	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
-	ReloadAnimRate=1.450000
-	ClipOutSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellOut')
-	ClipInSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellIn')
-	ClipInFrame=0.650000
-	bCockOnEmpty=True
-	WeaponModes(0)=(bUnavailable=True)
-	WeaponModes(1)=(ModeName="Burst of Three")
-	WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)
-	WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
-	CurrentWeaponMode=3
-	bNoCrosshairInScope=True
-	SightPivot=(Pitch=128)
-	SightOffset=(X=-10.000000,Y=8.740000,Z=9.150000)
-	ParamsClass=Class'M575WeaponParams'
-	FireModeClass(0)=Class'BWBPOtherPackPro.M575PrimaryFire'
-	FireModeClass(1)=Class'BWBPOtherPackPro.M575ScopeFire'
-	SelectAnimRate=1.350000
-	PutDownTime=0.550000
-	BringUpTime=0.700000
-	SelectForce="SwitchToAssaultRifle"
-	AIRating=0.700000
-	CurrentRating=0.700000
-	Description="The M353 'Guardian' Machinegun has seen some of the most brutal battles ever recorded in recent history, and has helped win many of them, the most famous being the bloody 'Wasteland Seige' where 12 million Krao were slaughtered along a 500 mile line of defences. Used primarily as a defensive weapon, the M353's incredible rate of fire can quickly and effectively destroy masses of oncoming foes, especially melee attackers. When the secondary mode is activated, the Guardian becomes much more accurate when the user mounts it on the ground, allowing it to be a very effective defensive weapon. With its high rate of fire and high damage, the M353 becomes very inaccurate after just a few rounds and with its high ammo capacity, comes the difficulty of longer reload times than smaller weapons."
-	DisplayFOV=50.000000
-	Priority=43
-	HudColor=(G=150,R=100)
-	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-	InventoryGroup=6
-	PickupClass=Class'BWBPOtherPackPro.M575Pickup'
-	PlayerViewOffset=(X=3.000000,Y=-1.000000,Z=-6.000000)
-	AttachmentClass=Class'BWBPOtherPackPro.M575Attachment'
-	IconMaterial=Texture'BWBPOtherPackTex2.M575.SmallIcon_M575'
-	IconCoords=(X2=127,Y2=31)
-	ItemName="M575 Light Machine Gun"
-	LightType=LT_Pulse
-	LightEffect=LE_NonIncidence
-	LightHue=30
-	LightSaturation=150
-	LightBrightness=150.000000
-	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBPOtherPackAnim.M575_FP'
-	DrawScale=0.350000
+	 ScopeOnAnim="ScopeOn"
+     ScopeOffAnim="ScopeOff"
+	 ScopeScopeViewTex=Texture'BWBP_OP_Tex.M575.M575Scope'
+	 ScopeOnRot=(Roll=0)
+	 ScopeOffRot=(Roll=-21845)
+     BoxOnSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-BoxOn')
+     BoxOffSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-BoxOff')
+     FlapUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-FlapUp')
+     FlapDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-FlapDown')
+     PlayerSpeedFactor=0.90000
+     PlayerJumpFactor=0.900000
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     AIReloadTime=4.000000
+     BigIconMaterial=Texture'BWBP_OP_Tex.M575.BigIcon_M575'
+     BigIconCoords=(Y1=50,Y2=240)
+     SightFXClass=Class'BWBPOtherPackPro.M575SightLEDs'
+     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     bWT_Bullet=True
+     bWT_Machinegun=True
+     ManualLines(0)="Automatic 5.56mm fire. Has a high rate of fire, moderate damage and good sustained damage output. As a machinegun, it has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."
+     ManualLines(1)="Automatic Ice Rounds. Slows the enemy down a small amount making it easier to hit the primary fire rounds. Does less damage and has a slightly slower fire rate, but will give an advantage once used."
+     ManualLines(2)="Enable the Hybrid Scope. While the hybrid scope is enabled, you will have access to a fixed 2X Scope, which can be taken off when out of combat."
+	 ManualLines(3)="In response to not just the regular UTC troops demanding a new LMG, but also the ODST troops finding the M353 to be inadequate in stopping skrith dead in their tracks, Enravion updated the platform into the new M575 Machine Gun. In addition to firing 7.62mm rounds instead of the old 5.56mm rounds, the M575 also has rail support for all the optics one could ever ask for; when the weapon first debuted, it came with a C-All Red Dot Sight along with a 2x magnifier scope. While the M353 is still hanging around, it is slated to be phased by the M575 within 6 months if all goes well."
+     SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.4;0.4;-999.0")
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway')
+     CockAnimRate=1.250000
+     CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
+     ReloadAnim="ReloadStart"
+     ReloadAnimRate=1.450000
+	 CockingBringUpTime=1.400000
+	 SightFXBone="Muzzle"
+     ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellOut')
+     ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellIn')
+     ClipInFrame=0.650000
+     bCockOnEmpty=True
+     WeaponModes(0)=(bUnavailable=True)
+     WeaponModes(1)=(ModeName="Burst of Three")
+     WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)
+     WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+     CurrentWeaponMode=3
+     bNoCrosshairInScope=True
+	 bShowChargingBar=True
+     SightPivot=(Pitch=128)
+     SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
+     FireModeClass(0)=Class'BWBPOtherPackPro.M575PrimaryFire'
+     FireModeClass(1)=Class'BWBPOtherPackPro.M575SecondaryFire'
+     SelectAnimRate=1.350000
+     PutDownTime=0.550000
+     BringUpTime=0.700000
+     SelectForce="SwitchToAssaultRifle"
+     AIRating=0.7500000
+     CurrentRating=0.7500000
+     Description="In response to not just the regular UTC troops demanding a new LMG, but also the ODST troops finding the M353 to be inadequate in stopping skrith dead in their tracks, Enravion updated the platform into the new M575 Machine Gun. In addition to firing 7.62mm rounds instead of the old 5.56mm rounds, the M575 also has rail support for all the optics one could ever ask for; when the weapon first debuted, it came with a C-All Red Dot Sight along with a 2x magnifier scope. While the M353 is still hanging around, it is slated to be phased by the M575 within 6 months if all goes well."
+     DisplayFOV=50.000000
+     Priority=43
+     HudColor=(G=150,R=100)
+     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+     InventoryGroup=6
+     PickupClass=Class'BWBPOtherPackPro.M575Pickup'
+     PlayerViewOffset=(X=5.000000,Y=4.000000,Z=-7.000000)
+     AttachmentClass=Class'BWBPOtherPackPro.M575Attachment'
+     IconMaterial=Texture'BWBP_OP_Tex.M575.SmallIcon_M575'
+     IconCoords=(X2=127,Y2=31)
+     ItemName="M575 Ice Guardian Machinegun"
+     LightType=LT_Pulse
+     LightEffect=LE_NonIncidence
+     LightHue=30
+     LightSaturation=150
+     LightBrightness=150.000000
+     LightRadius=4.000000
+	 ParamsClass=Class'M575WeaponParams'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_M575'
+     DrawScale=1.000000
 }

@@ -558,22 +558,22 @@ defaultproperties
 {
 	 ChargeRate=2.400000
 	 MyFontColor=(R=255,G=255,B=255,A=255)
-     WeaponScreen=ScriptedTexture'BWBPSomeOtherPackTex.XM20B.XM20-ScriptLCD'
-     WeaponScreenShader=Shader'BWBPSomeOtherPackTex.XM20B.XM20-ScriptLCD-SD'
-	 Numbers=Texture'BWBPSomeOtherPackTex.XM20B.XM20-Numbers'
-	 ScreenTex=Texture'BWBPSomeOtherPackTex.XM20B.XM20-ScreenBase'
-	 ScreenTexBase1=Texture'BWBPSomeOtherPackTex.XM20B.XM20-ScreenBase'
-	 ScreenTexBase2=Texture'BWBPSomeOtherPackTex.XM20B.XM20-ScreenBaseCharged'
-	 ScreenRedBar=Texture'BWBPSomeOtherPackTex.XM20B.XM20-DisplayBars'
+     WeaponScreen=ScriptedTexture'BWBP_SKC_TexExp.XM20B.XM20-ScriptLCD'
+     WeaponScreenShader=Shader'BWBP_SKC_TexExp.XM20B.XM20-ScriptLCD-SD'
+	 Numbers=Texture'BWBP_SKC_TexExp.XM20B.XM20-Numbers'
+	 ScreenTex=Texture'BWBP_SKC_TexExp.XM20B.XM20-ScreenBase'
+	 ScreenTexBase1=Texture'BWBP_SKC_TexExp.XM20B.XM20-ScreenBase'
+	 ScreenTexBase2=Texture'BWBP_SKC_TexExp.XM20B.XM20-ScreenBaseCharged'
+	 ScreenRedBar=Texture'BWBP_SKC_TexExp.XM20B.XM20-DisplayBars'
 	 
 	 CoolRate=1.0
-     ModeCycleSound=Sound'PackageSounds4Pro.AH104.AH104-ModeCycle'
+     ModeCycleSound=Sound'BWBP_SKC_Sounds.AH104.AH104-ModeCycle'
      PlayerSpeedFactor=1.100000
      PlayerJumpFactor=1.100000
      PutDownAnimRate=1.500000
      PutDownTime=1.000000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=0)
-     BigIconMaterial=Texture'BWBPSomeOtherPackTex.XM20B.BigIcon_XM20'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
+     BigIconMaterial=Texture'BWBP_SKC_TexExp.XM20.BigIcon_XM20'
      InventoryGroup=5
      bWT_Bullet=True
      bWT_Hazardous=True
@@ -583,12 +583,12 @@ defaultproperties
      bNoCrosshairInScope=true;
      SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
 	 HudColor=(B=25,G=0,R=150)
-     BringUpSound=(Sound=Sound'PackageSounds4Pro.XM20.XM20-Deploy')
-     PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
-     CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
-     ClipHitSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipHit')
-     ClipOutSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipOut')
-     ClipInSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipIn')
+     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-Deploy')
+     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
+     CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
+     ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
+     ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')
+     ClipInSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipIn')
      ClipInFrame=0.650000
      bNeedCock=False
      WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
@@ -596,9 +596,9 @@ defaultproperties
      WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
 	 CurrentWeaponMode=1
 	 BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-     ScopeViewTex=Texture'BWBPSomeOtherPackTex.XM20B.XM20-ScopeView'
-     ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-     ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+     ScopeViewTex=Texture'BWBP_SKC_TexExp.XM20.XM20-ScopeView'
+     ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+     ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=40.000000
 	 ZoomType=ZT_Smooth
      bNoMeshInScope=True
@@ -620,7 +620,7 @@ defaultproperties
      PlayerViewOffset=(X=6.000000,Y=1.000000,Z=-15.000000)
      BobDamping=1.800000
      AttachmentClass=Class'BWBPOtherPackPro.XM20BAttachment'
-     IconMaterial=Texture'BWBPSomeOtherPackTex.XM20B.SmallIcon_XM20'
+     IconMaterial=Texture'BWBP_SKC_TexExp.XM20B.SmallIcon_XM20'
      IconCoords=(X2=127,Y2=31)
      ItemName="XM20B Laser Carbine"
 	 MagAmmo=40
@@ -630,15 +630,15 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.XM20B_FPm'
+     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_XM20'
      DrawScale=0.350000
-     UsedAmbientSound=Sound'PackageSounds4Pro.XM20.XM20-Idle'
+     UsedAmbientSound=Sound'BWBP_SKC_Sounds.XM20.XM20-Idle'
      bFullVolume=True
      SoundVolume=255
      SoundRadius=256.000000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      //Skins(1)=Combiner'BWBP_SKC_Tex.M30A2.M30A2-GunScope'
-     Skins(2)=Texture'BWBPSomeOtherPackTex.XM20B.XM20-Main'
-     Skins(3)=Texture'BWBPSomeOtherPackTex.XM20B.XM20-Misc'
+     Skins(2)=Texture'BWBP_SKC_TexExp.XM20B.XM20-Main'
+     Skins(3)=Texture'BWBP_SKC_TexExp.XM20B.XM20-Misc'
      Skins(4)=Texture'ONSstructureTextures.CoreGroup.Invisible' //The outermost one
 }

@@ -9,7 +9,7 @@ defaultproperties
 {
      SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BWBPRecolorsPro.VSKSilencedFlash'
-     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-KnifeFire',Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.AK47.AK47-KnifeFire',Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      bWaitForRelease=True

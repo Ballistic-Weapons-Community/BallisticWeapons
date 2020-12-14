@@ -6,5 +6,5 @@ class AD_RailGeneral extends AD_ImpactDecal
 
 defaultproperties
 {
-     ProjTexture=Texture'BallisticEffects2.Decals.RailImpact'
+     ProjTexture=Texture'BW_Core_WeaponTex.Decals.RailImpact'
 }

@@ -11,7 +11,7 @@ class Brass_BOLT extends BWBrass_Default;
 defaultproperties
 {
      StartVelocity=(X=10.000000,Y=-120.000000,Z=20.000000)
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.Bulldog.BOLTbrass'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.BOLTbrass'
      DrawScale=0.450000
      RotationRate=(Pitch=16384,Yaw=32768)
 }

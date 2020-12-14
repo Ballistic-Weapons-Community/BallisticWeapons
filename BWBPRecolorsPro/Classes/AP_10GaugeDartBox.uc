@@ -49,10 +49,10 @@ defaultproperties
      AmmoAmount=18
      InventoryType=Class'BWBPRecolorsPro.Ammo_10GaugeDart'
      PickupMessage="You picked up 18 flechette shells for the Mk.781"
-     PickupSound=Sound'BallisticSounds2.Ammo.ShotBoxPickup'
-     StaticMesh=StaticMesh'BallisticHardware2.Ammo.M763ShellBox'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ShotBoxPickup'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.M763ShellBox'
      DrawScale=0.300000
-     Skins(0)=Texture'BallisticRecolors4TexPro.M1014.M1014ShellBox'
+     Skins(0)=Texture'BWBP_SKC_TexExp.M1014.M1014ShellBox'
      CollisionRadius=8.000000
      CollisionHeight=4.500000
 }

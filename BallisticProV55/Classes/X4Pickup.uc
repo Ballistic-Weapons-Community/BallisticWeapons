@@ -8,9 +8,9 @@
 class X4Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticWeapons2.utx
-#exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticHardware_25.usx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -24,25 +24,25 @@ static function StaticPrecache(LevelInfo L)
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.X3.KnifeA1');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.X3.KnifeA1');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware_25.X4.X4_PickupLo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware_25.X4.X4_PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.X4.X4_PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.X4.X4_PickupHi');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticHardware_25.X4.X4_PickupLo'
+     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.X4.X4_PickupLo'
      PickupDrawScale=0.300000
      InventoryType=Class'BallisticProV55.X4Knife'
      RespawnTime=10.000000
      PickupMessage="You picked up the X4 knife."
-     PickupSound=Sound'BallisticSounds2.Knife.KnifePutaway'
-     StaticMesh=StaticMesh'BallisticHardware_25.X4.X4_PickupHi'
+     PickupSound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.X4.X4_PickupHi'
      Physics=PHYS_None
      DrawScale=0.300000
      CollisionHeight=4.000000

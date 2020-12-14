@@ -3,7 +3,7 @@ class TraceEmitter_BX85Crossbow extends BCTraceEmitter;
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=CrossbowBoltEmitter
-		 StaticMesh=StaticMesh'BallisticHardware_25.OA-SMG.OA-SMG_Dart'
+		 StaticMesh=StaticMesh'BW_Core_WeaponStatic.OA-SMG.OA-SMG_Dart'
          UseMeshBlendMode=False
          RenderTwoSided=True
 		 DrawStyle=PTDS_Regular

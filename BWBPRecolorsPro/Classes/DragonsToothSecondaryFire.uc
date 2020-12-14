@@ -175,7 +175,7 @@ defaultproperties
      DamageTypeArm=Class'BWBPRecolorsPro.DT_DTSLimb'
      KickForce=200
      bReleaseFireOnDie=False
-     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Swipe',Volume=5.500000,Radius=256.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Swipe',Volume=5.500000,Radius=256.000000,bAtten=True)
      bAISilent=True
      FireAnim="Melee3"
      FireAnimRate=0.850000

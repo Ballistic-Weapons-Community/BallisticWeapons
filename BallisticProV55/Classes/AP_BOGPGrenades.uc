@@ -14,8 +14,8 @@ defaultproperties
      AmmoAmount=3
      InventoryType=Class'BallisticProV55.Ammo_BOGPGrenades'
      PickupMessage="You got three BORT-85 grenades."
-     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BallisticHardware_25.BOGP.BOGP_AmmoPickup'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_AmmoPickup'
      DrawScale=0.500000
      CollisionRadius=8.000000
      CollisionHeight=5.200000

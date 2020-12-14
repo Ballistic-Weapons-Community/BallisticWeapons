@@ -10,6 +10,6 @@ defaultproperties
 {
      bHidden=False
      DrawScale3D=(Y=0.600000,Z=0.600000)
-     Skins(0)=FinalBlend'BallisticEffects.LaserFX.Laser3Final'
+     Skins(0)=FinalBlend'BW_Core_WeaponTex.LaserFX.Laser3Final'
      bGameRelevant=True
 }

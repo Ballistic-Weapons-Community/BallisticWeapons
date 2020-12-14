@@ -17,8 +17,8 @@ defaultproperties
      AmmoAmount=8
      InventoryType=Class'BWBPRecolorsPro.Ammo_CYLOSG'
      PickupMessage="You picked a CYLO shotgun tube."
-     PickupSound=Sound'BallisticSounds2.Ammo.ShotBoxPickup'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.CYLO.CYLOPickupSG'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ShotBoxPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOPickupSG'
      DrawScale=1.250000
      CollisionRadius=8.000000
      CollisionHeight=5.200000

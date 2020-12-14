@@ -294,11 +294,11 @@ simulated event DrawMeatVisionMode (Canvas C)
 	// Draw RED stuff
       C.Style = ERenderStyle.STY_Alpha;
 	C.SetPos(C.OrgX, C.OrgY);
-	C.DrawTile(TexOscillator'BallisticRecolors3TexPro.X82.X82MeatOsc', C.SizeX, C.SizeY, 0, 0, 512, 512);
+	C.DrawTile(TexOscillator'BWBP_SKC_Tex.X82.X82MeatOsc', C.SizeX, C.SizeY, 0, 0, 512, 512);
 
 	// Draw some panning lines
 	C.SetPos(C.OrgX, C.OrgY);
-	C.DrawTile(FinalBlend'BallisticUI2.M75.M75LinesFinal', C.SizeX, C.SizeY, 0, 0, 512, 512);
+	C.DrawTile(FinalBlend'BW_Core_WeaponTex.M75.M75LinesFinal', C.SizeX, C.SizeY, 0, 0, 512, 512);
 
 	if (Target == None || !FastTrace(Instigator.Location, Target.Location))
 		return;
@@ -312,7 +312,7 @@ simulated event DrawMeatVisionMode (Canvas C)
 	C.SetPos(V.X, V.Y);
 	V2 = C.WorldToScreen(Target.Location + Y*Target.CollisionRadius - Z*Target.CollisionHeight);
 	C.SetDrawColor(160,185,200,255);
-      C.DrawTileStretched(Texture'BallisticRecolors3TexPro.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
+      C.DrawTileStretched(Texture'BWBP_SKC_Tex.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
 
     V3 = C.WorldToScreen(Target.Location - Z*Target.CollisionHeight);
 }
@@ -353,30 +353,30 @@ defaultproperties
 	ManualLines(0)="High-powered .50 rifle fire. High damage and fire rate, but strong recoil."
 	ManualLines(1)="Deploys the rifle upon the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, becomes perfectly accurate, loses its iron sights and gains a reduction in recoil. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
 	ManualLines(2)="Weapon Function activates infrared vision. Viable infantry targets will be bordered by a box in the weapon's scope.||Effective at long range. Very effective at long range when deployed."
-	NVOnSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
-	NVOffSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=3)
-	BigIconMaterial=Texture'BallisticRecolors3TexPro.X82.BigIcon_X82'
+	NVOnSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
+	NVOffSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
+	BigIconMaterial=Texture'BWBP_SKC_Tex.X82.BigIcon_X82'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="360.0;35.0;1.0;80.0;10.0;0.0;0.0")
-	BringUpSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOn')
-	PutDownSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOff')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
 	CockAnimPostReload="Cock"
 	CockAnimRate=1.700000
-	CockSound=(Sound=Sound'PackageSounds4Pro.X82.X83-Charge',Volume=2.500000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Charge',Volume=2.500000)
 	ReloadAnimRate=0.70000
-	ClipHitSound=(Sound=Sound'PackageSounds4Pro.X82.X83-In',Volume=1.500000)
-	ClipOutSound=(Sound=Sound'PackageSounds4Pro.X82.X83-Out',Volume=1.500000)
+	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-In',Volume=1.500000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X83-Out',Volume=1.500000)
 	ClipInFrame=0.850000
 	bCockOnEmpty=True
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	ZoomType=ZT_Logarithmic
-	ScopeViewTex=Texture'BallisticRecolors3TexPro.X82.X82ScopeViewAlt'
-	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	ScopeViewTex=Texture'BWBP_SKC_Tex.X82.X82ScopeView'
+	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
@@ -411,7 +411,7 @@ defaultproperties
 	PlayerViewOffset=(X=4.000000,Y=6.000000,Z=-7.500000)
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBPRecolorsPro.X82Attachment'
-	IconMaterial=Texture'BallisticRecolors3TexPro.X82.SmallIcon_X82'
+	IconMaterial=Texture'BWBP_SKC_Tex.X82.SmallIcon_X82'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="X83 Sniper Rifle"
 	LightType=LT_Pulse
@@ -420,10 +420,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.X83A1_1st'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X83'
 	DrawScale=0.450000
-	Skins(0)=Shader'BallisticRecolors3TexPro.X82.X82SkinShine'
-	Skins(1)=Texture'UT2004Weapons.Pickups.ClassicSniperAmmoT'
-	Skins(2)=Shader'BallisticRecolors3TexPro.X82.X82SkinShine'
-	Skins(3)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
 }

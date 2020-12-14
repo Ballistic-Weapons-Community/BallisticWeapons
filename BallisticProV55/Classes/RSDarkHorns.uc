@@ -24,7 +24,7 @@ simulated event Timer ()
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BWBP4-Hardware.DarkStar.Horns'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.Horns'
          UseMeshBlendMode=False
          UseParticleColor=True
          SpinParticles=True
@@ -41,7 +41,7 @@ defaultproperties
      Emitters(0)=MeshEmitter'BallisticProV55.RSDarkHorns.MeshEmitter0'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BWBP4-Hardware.DarkStar.Horns'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.Horns'
          UseMeshBlendMode=False
          UseParticleColor=True
          SpinParticles=True
@@ -67,13 +67,13 @@ defaultproperties
          MaxParticles=1
          StartLocationOffset=(X=6.000000)
          StartSizeRange=(X=(Min=30.000000,Max=30.000000),Y=(Min=30.000000,Max=30.000000),Z=(Min=30.000000,Max=30.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
      Emitters(2)=SpriteEmitter'BallisticProV55.RSDarkHorns.SpriteEmitter0'
 
      Physics=PHYS_Trailer
-     AmbientSound=Sound'BWBP4-Sounds.DarkStar.Dark-DemonWail'
+     AmbientSound=Sound'BW_Core_WeaponSound.DarkStar.Dark-DemonWail'
      bFullVolume=True
      SoundVolume=255
      SoundRadius=32.000000

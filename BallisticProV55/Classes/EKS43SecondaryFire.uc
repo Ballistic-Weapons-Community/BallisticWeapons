@@ -47,7 +47,7 @@ defaultproperties
      HookStopFactor=1.700000
      HookPullForce=100.000000
      bReleaseFireOnDie=False
-     BallisticFireSound=(Sound=SoundGroup'BallisticSounds3.EKS43.EKS-Slash',Volume=0.35,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.EKS43.EKS-Slash',Volume=0.35,Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepHack1"

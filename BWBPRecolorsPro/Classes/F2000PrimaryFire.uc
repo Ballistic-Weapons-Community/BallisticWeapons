@@ -152,7 +152,7 @@ defaultproperties
      DamageTypeHead=Class'BWBPRecolorsPro.DTF2000AssaultHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTF2000Assault'
      PenetrateForce=150
-     DryFireSound=(Sound=Sound'BallisticSounds2.D49.D49-DryFire',Volume=0.700000)
+     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
      bCockAfterEmpty=True
      MuzzleFlashClass=Class'BWBPRecolorsPro.MARSFlashEmitter'
      FlashScaleFactor=0.500000
@@ -164,8 +164,8 @@ defaultproperties
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      XInaccuracy=48.000000
      YInaccuracy=48.000000
-     SilencedFireSound=(Sound=Sound'PackageSounds4ProExp.MARS.F2000-SilFire2',Volume=1.100000,Radius=192.000000,bAtten=True)
-     BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
+     SilencedFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.F2000-SilFire2',Volume=1.100000,Radius=192.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireRate=0.080000

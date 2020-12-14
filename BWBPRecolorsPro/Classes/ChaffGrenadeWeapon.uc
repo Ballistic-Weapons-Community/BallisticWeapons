@@ -239,11 +239,11 @@ defaultproperties
      HeldMomentum=75000
      HeldDamageType=Class'BWBPRecolorsPro.DTXM84Held'
      GrenadeSmokeClass=Class'BWBPRecolorsPro.ChaffTrail'
-     ClipReleaseSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOn',Volume=0.500000,Radius=48.000000,Pitch=1.700000,bAtten=True)
-     PinPullSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=0.500000,Radius=48.000000,Pitch=1.700000,bAtten=True)
+     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
 	 GrenadeBone="MOAC"
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticRecolors3TexPro.M4A1.BigIcon_MOAC'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BWBP_SKC_TexExp.M4A1.BigIcon_MOAC'
      BigIconCoords=(Y1=16,Y2=240)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Hazardous=True
@@ -253,8 +253,8 @@ defaultproperties
      ManualLines(1)="Melee attack with the grenade. Damage increases over hold time, with the maximum being reached after 1.5 seconds of holding. As a blunt attack, inflicts a short-duration blind when striking."
      ManualLines(2)="Synergises with the MARS-2."
      SpecialInfo(0)=(Info="60.0;5.0;0.25;30.0;0.0;0.0;0.4")
-     BringUpSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Pullout')
-	 PutDownSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
+	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
 	 ParamsClass=Class'ChaffWeaponParams'
      FireModeClass(0)=Class'BWBPRecolorsPro.ChaffPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.ChaffSecondaryFire'
@@ -274,9 +274,9 @@ defaultproperties
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      BobDamping=1.000000
      AttachmentClass=Class'BWBPRecolorsPro.ChaffAttachment'
-     IconMaterial=Texture'BallisticRecolors3TexPro.M4A1.SmallIcon_MOAC'
+     IconMaterial=Texture'BWBP_SKC_TexExp.M4A1.SmallIcon_MOAC'
      IconCoords=(X2=127,Y2=31)
      ItemName="MOA-C Chaff Grenade"
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.MOAC_FP'
+     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MOAC'
      DrawScale=0.400000
 }

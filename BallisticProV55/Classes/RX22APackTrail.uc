@@ -33,7 +33,7 @@ defaultproperties
      bVerticalZ=False
      bYIsSpread=False
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticHardware2.M806.PistolMuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M806.PistolMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -79,7 +79,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.500000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=120.000000,Max=120.000000),Y=(Min=120.000000,Max=120.000000),Z=(Min=120.000000,Max=120.000000))
-         Texture=Texture'BallisticEffects.Particles.FlameParts'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          LifetimeRange=(Min=0.400000,Max=0.400000)
@@ -104,7 +104,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.500000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=150.000000,Max=150.000000),Y=(Min=150.000000,Max=150.000000),Z=(Min=150.000000,Max=150.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          LifetimeRange=(Min=0.450000,Max=0.450000)
          StartVelocityRange=(X=(Min=2800.000000,Max=2800.000000),Y=(Min=-100.000000,Max=100.000000),Z=(Min=-100.000000,Max=100.000000))
      End Object
@@ -126,7 +126,7 @@ defaultproperties
          StartLocationRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=-10.000000,Max=10.000000))
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=120.000000,Max=150.000000),Y=(Min=120.000000,Max=150.000000),Z=(Min=120.000000,Max=150.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          LifetimeRange=(Min=0.300000,Max=0.500000)
          StartVelocityRange=(X=(Min=-50.000000,Max=100.000000))
      End Object
@@ -149,7 +149,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.500000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=80.000000))
-         Texture=Texture'BallisticEffects.Particles.Smoke3'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=3.000000,Max=3.000000)
      End Object
@@ -176,7 +176,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.370000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.400000)
          StartSizeRange=(X=(Min=180.000000,Max=250.000000),Y=(Min=180.000000,Max=250.000000),Z=(Min=180.000000,Max=250.000000))
-         Texture=Texture'BallisticEffects.Particles.Explode2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.250000,Max=0.400000)
          StartVelocityRange=(X=(Max=400.000000),Y=(Min=-200.000000,Max=200.000000),Z=(Min=-200.000000,Max=200.000000))
@@ -198,7 +198,7 @@ defaultproperties
          DetailMode=DM_SuperHigh
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
          StartSizeRange=(X=(Min=40.000000,Max=60.000000),Y=(Min=40.000000,Max=60.000000),Z=(Min=40.000000,Max=60.000000))
-         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
+         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -231,7 +231,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=50.000000),Y=(Min=50.000000),Z=(Min=50.000000))
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects.Particles.Smoke4'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.500000,Max=1.500000)
          StartVelocityRange=(X=(Min=-50.000000,Max=50.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=-50.000000,Max=50.000000))

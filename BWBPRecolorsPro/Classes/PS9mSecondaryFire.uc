@@ -63,7 +63,7 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      FlashBone="tip2"
      BrassOffset=(X=-20.000000,Y=1.000000)
-     BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-DartFire',Volume=1.350000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.Stealth.Stealth-DartFire',Volume=1.350000)
      bSplashDamage=True
      bRecommendSplashDamage=True
      bUseWeaponMag=False

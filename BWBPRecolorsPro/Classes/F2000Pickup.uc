@@ -1,8 +1,8 @@
 class F2000Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticRecolors4TexPro.utx
-#exec OBJ LOAD FILE=BallisticRecolors4StaticProExp.usx
+#exec OBJ LOAD FILE=BWBP_SKC_TexExp.utx
+#exec OBJ LOAD FILE=BWBP_SKC_StaticExp.usx
 
 //===========================================================================
 // StaticPrecache
@@ -12,37 +12,37 @@ class F2000Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.F2000-IronArctic');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.F2000-MiscIce');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.LK05-EOTech-Ice');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.F2000-IronArctic');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.F2000-Misc');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.LK05.LK05-EOTech-RDS');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M900.M900Grenade');
-	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M900.M900MuzzleFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade');
+	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M900.M900MuzzleFlash');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.F2000-IronArctic');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.F2000-MiscIce');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.MARS.LK05-EOTech-Ice');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.F2000-IronArctic');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MARS.F2000-Misc');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.LK05.LK05-EOTech-RDS');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M900.M900Grenade');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M900.M900MuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyRifleRound');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.F2000Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M900.M900MuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.MARS.MARS3_Pickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticProExp.F2000.F2000Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.MARS.MARS3_Pickup'
      InventoryType=Class'BWBPRecolorsPro.F2000AssaultRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the MARS-3 'Snowstorm' XII."
-     PickupSound=Sound'BallisticSounds2.M50.M50Putaway'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.F2000.F2000Pickup'
+     PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
+     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.MARS.MARS3_Pickup'
      Physics=PHYS_None
-     DrawScale=0.750000
+     DrawScale=0.2
      CollisionHeight=4.000000
 }

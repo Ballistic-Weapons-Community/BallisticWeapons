@@ -137,7 +137,7 @@ defaultproperties
 {
      Damage=25.000000
      DamageType=Class'BallisticProV55.DTRX22AFireTrap'
-     IgniteSound=Sound'BallisticSounds2.RX22A.RX22A-IgniteFire'
+     IgniteSound=Sound'BW_Core_WeaponSound.RX22A.RX22A-IgniteFire'
      RepulsionForceMag=275.000000
      Fuel=8.000000
      MaxFuel=20.000000
@@ -163,7 +163,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.700000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=50.000000,Max=60.000000),Y=(Min=40.000000,Max=50.000000),Z=(Min=40.000000,Max=50.000000))
-         Texture=Texture'BallisticEffects.Particles.BlazingSubdivide'
+         Texture=Texture'BW_Core_WeaponTex.Particles.BlazingSubdivide'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -189,7 +189,7 @@ defaultproperties
          StartLocationOffset=(X=-31.000000)
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=40.000000,Max=60.000000),Y=(Min=40.000000,Max=60.000000),Z=(Min=40.000000,Max=60.000000))
-         Texture=Texture'BallisticEffects.Particles.Explode2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
      End Object
@@ -211,7 +211,7 @@ defaultproperties
          StartLocationRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          StartSizeRange=(X=(Max=70.000000),Y=(Max=70.000000),Z=(Max=70.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.800000,Max=0.800000)
      End Object

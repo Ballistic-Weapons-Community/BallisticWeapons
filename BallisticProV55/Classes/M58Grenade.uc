@@ -23,15 +23,15 @@ simulated function ExplodeInHand()
 
 defaultproperties
 {
-     ClipReleaseSound=(Sound=Sound'BallisticSounds3.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
-     PinPullSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticProTextures.M58.BigIcon_M58'
+     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BW_Core_WeaponTex.M58.BigIcon_M58'
      BigIconCoords=(Y1=12,Y2=240)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      SpecialInfo(0)=(Info="0.0;0.0;0.0;-1.0;0.0;0.0;0.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
      CurrentWeaponMode=1
      FireModeClass(0)=Class'BallisticProV55.M58PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M58SecondaryFire'
@@ -49,9 +49,11 @@ defaultproperties
      PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      AttachmentClass=Class'BallisticProV55.M58Attachment'
-     IconMaterial=Texture'BallisticProTextures.M58.SmallIcon_M58'
+     IconMaterial=Texture'BW_Core_WeaponTex.M58.SmallIcon_M58'
      IconCoords=(X2=127,Y2=31)
      ItemName="M58 Smoke Grenade"
-     Mesh=SkeletalMesh'BallisticProAnims.M58Grenade'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_T10'
      DrawScale=0.400000
+	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+     Skins(1)=Texture'BW_Core_WeaponTex.M58.M58GrenadeSkin'
 }

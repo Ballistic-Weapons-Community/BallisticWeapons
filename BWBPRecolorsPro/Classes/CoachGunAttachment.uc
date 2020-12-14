@@ -1,75 +1,71 @@
 //=============================================================================
 // CoachGunAttachment.
 //
-// 3rd person weapon attachment
+// 3rd person weapon attachment for my sweaty applejuice
+//
+// by Nolan "Dark Carnivour" Richert.
+// Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class CoachGunAttachment extends BallisticShotgunAttachment;
 
-const SHOT_AMMO = 0;
-const SLUG_AMMO = 1;
+var bool		bSlugMode;
+var bool		bOldSlugMode;
 
-var bool						Side;
-var byte						AmmoType;
+var byte	SideFireCount, OldSideFireCount;
 
-var() class<BCImpactManager>    ImpactManagerAlt;		//Impact Manager to use for iATLATmpact effects
-var() class<BCTraceEmitter>	    TracerClassAlt;		    //Type of tracer to use for alt fire effects
+var bool		Side;
+
+var() class<BCImpactManager>ImpactManagerAlt;		//Impact Manager to use for iATLATmpact effects
+var() class<BCTraceEmitter>	TracerClassAlt;		//Type of tracer to use for alt fire effects
 
 var	Actor	MuzzleFlashRight;
+
+var Actor 	sHitActor;
+var int 		sHitSurf;
+var Vector sHitLocation, sHitNormal, sWaterHitLocation;
 
 replication
 {
 	// Things the server should send to the client.
-	reliable if (Role == ROLE_Authority)
-		AmmoType;
+	reliable if(Role==ROLE_Authority)
+		bSlugMode, SideFireCount;
 }
 
-//======================================================================
-// InitFor
-//
-// Sets initial shot mode on attachment to pawn
-//======================================================================
 function InitFor(Inventory I)
 {
 	Super.InitFor(I);
 	
-	AmmoType = BallisticWeapon(I).CurrentWeaponMode;
+	//safe assumption
+	if (CoachGun(I).CurrentWeaponMode == 1)
+		bSlugMode = True;
 }
 
-//======================================================================
-// SwitchWeaponMode
-//
-// Called when weapon changes shot mode
-//======================================================================
-function SwitchWeaponMode(byte WeaponMode)
-{
-	AmmoType = WeaponMode;
-}
-
-//======================================================================
-// PostNetReceive
-//
-// Listen for server firing events and perform effects
-//======================================================================
 simulated event PostNetReceive()
 {
 	if (level.NetMode != NM_Client)
 		return;
+		
+	if (bSlugMode != bOldSlugMode)
+		bOldSlugMode = bSlugMode;
 		
 	if (DirectImpactCount != OldDirectImpactCount)
 	{
 		DoDirectHit(DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
 		OldDirectImpactCount = DirectImpactCount;
 	}
-	
-	// SINGLE FIRE
 	if (FireCount != OldFireCount)
 	{
 		FiringMode = 0;
 		ThirdPersonEffects();
 		OldFireCount = FireCount;
 	}
-	
-	// DOUBLE FIRE
+	//2nd barrel
+	if (SideFireCount != OldSideFireCount)
+	{
+		FiringMode = 2;
+		ThirdPersonEffects();
+		OldSideFireCount = SideFireCount;
+	}
 	if (AltFireCount != OldAltFireCount)
 	{
 		FiringMode = 1;
@@ -78,82 +74,160 @@ simulated event PostNetReceive()
 	}
 }
 
-//======================================================================
-// InstantFireEffects
-//
-// Switch animations, barrel used and fire effects based on shot type
-//======================================================================
-simulated function InstantFireEffects(byte IsDoubleFire)
+//Called for a Coach double shot
+function DoubleUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, Actor sideHitActor, vector sideHitLocation, vector sideHitNormal, int HitSurf, int sideHitSurf, optional vector WaterHitLoc, optional vector sideWaterHitLoc)
 {
-	if (IsDoubleFire == 0)
-	{
-		SingleFireAnim 		= 	'RifleHip_Fire';
-		SingleAimedFireAnim	=	'RifleAimed_Fire';
-	}
-	else
-	{
-		SingleAimedFireAnim	= default.SingleAimedFireAnim;
-		SingleFireAnim		= default.SingleFireAnim;
-	}
+	mHitSurf = HitSurf;
+	sHitSurf = sideHitSurf;
 	
-	if (AmmoType == SLUG_AMMO)
-		SlugFireEffects(IsDoubleFire);
-	else 
-		ShotFireEffects(IsDoubleFire);
+	WaterHitLocation = WaterHitLoc;
+	sWaterHitLocation = sideWaterHitLoc;
+	
+	mHitNormal = HitNormal;
+	mHitActor = HitActor;
+	mHitLocation = HitLocation;
+	FiringMode = 0;
+	FireCount++;
+	ThirdPersonEffects();
+	
+	sHitNormal = sideHitNormal;
+	sHitActor = sideHitActor;
+	sHitLocation = sideHitLocation;
+	FiringMode = 2;
+	SideFireCount++;
+	NetUpdateTime = Level.TimeSeconds - 1;
+	ThirdPersonEffects();
+
 }
 
-//======================================================================
-// ShotFireEffects
-//
-// Spawn shotgun tracers
-//======================================================================
-simulated function ShotFireEffects(byte IsDoubleFire)
+simulated function InstantFireEffects(byte Mode)
+{
+	local Vector HitLocation, Dir, Start;
+	local Material HitMat;
+	
+	if (!bSlugMode)
+		ShotgunFireEffects(Mode);
+	else 
+	// ================== SUPERMAG EFFECTS ===============
+	{
+		if (InstantMode == MU_None || (InstantMode == MU_Secondary && Mode != 1) || (InstantMode == MU_Primary && Mode == 1))
+			return;
+
+		if (mHitLocation == vect(0,0,0))
+			return;
+
+		if (Instigator == none)
+			return;
+
+		SpawnTracer(Mode, mHitLocation);
+		FlyByEffects(Mode, mHitLocation);
+		
+		if (FiringMode == 0)
+		{
+			// Client, trace for hitnormal, hitmaterial and hitactor
+			if (Level.NetMode == NM_Client)
+			{
+				mHitActor = None;
+				Start = Instigator.Location + Instigator.EyePosition();
+		
+				if (WallPenetrates != 0)				{
+					WallPenetrates = 0;
+					DoWallPenetrate(Start, mHitLocation);	}
+
+				Dir = Normal(mHitLocation - Start);
+				mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir*10, mHitLocation - Dir*10, false,, HitMat);
+				// Check for water and spawn splash
+				if (ImpactManager!= None && bDoWaterSplash)
+				DoWaterTrace(Start, mHitLocation);
+
+				if (mHitActor == None)
+					return;
+				// Set the hit surface type
+				if (Vehicle(mHitActor) != None)
+				mHitSurf = 3;
+				else if (HitMat == None)
+					mHitSurf = int(mHitActor.SurfaceType);
+				else
+					mHitSurf = int(HitMat.SurfaceType);
+			}
+			// Server has all the info already...
+			else
+				HitLocation = mHitLocation;
+
+			if (level.NetMode != NM_Client && ImpactManager!= None && WaterHitLocation != vect(0,0,0) && bDoWaterSplash && Level.DetailMode >= DM_High && class'BallisticMod'.default.EffectsDetailMode > 0)
+				ImpactManagerAlt.static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
+			if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
+				return;
+			if (ImpactManagerAlt != None)
+				ImpactManagerAlt.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+		}
+		
+		else
+		{
+			// Client, trace for hitnormal, hitmaterial and hitactor
+			if (Level.NetMode == NM_Client)
+			{
+				sHitActor = None;
+				Start = Instigator.Location + Instigator.EyePosition();
+		
+				if (WallPenetrates != 0)				{
+					WallPenetrates = 0;
+					DoWallPenetrate(Start, sHitLocation);	}
+
+				Dir = Normal(sHitLocation - Start);
+				sHitActor = Trace (HitLocation, sHitNormal, sHitLocation + Dir*10, sHitLocation - Dir*10, false,, HitMat);
+				// Check for water and spawn splash
+				if (ImpactManager!= None && bDoWaterSplash)
+				DoWaterTrace(Start, mHitLocation);
+
+				if (sHitActor == None)
+					return;
+				// Set the hit surface type
+				if (Vehicle(sHitActor) != None)
+				sHitSurf = 3;
+				else if (HitMat == None)
+					sHitSurf = int(sHitActor.SurfaceType);
+				else
+					sHitSurf = int(HitMat.SurfaceType);
+			}
+			// Server has all the info already...
+			else
+				HitLocation = sHitLocation;
+
+			if (level.NetMode != NM_Client && ImpactManager!= None && sWaterHitLocation != vect(0,0,0) && bDoWaterSplash && Level.DetailMode >= DM_High && class'BallisticMod'.default.EffectsDetailMode > 0)
+				ImpactManagerAlt.static.StartSpawn(sWaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - sWaterHitLocation), 9, Instigator);
+			if (sHitActor == None || (!sHitActor.bWorldGeometry && Mover(sHitActor) == None && Vehicle(sHitActor) == None))
+				return;
+			if (ImpactManagerAlt != None)
+				ImpactManagerAlt.static.StartSpawn(HitLocation, sHitNormal, sHitSurf, instigator);
+		}
+
+	}
+}
+// Do trace to find impact info and then spawn the effect
+simulated function ShotgunFireEffects(byte Mode)
 {
 	local Vector HitLocation, Start, End;
 	local Rotator R;
 	local Material HitMat;
-	local int i, j, ShotCount;
+	local int i;
 	local float XS, YS, RMin, RMax, Range, fX;
-	
-	ShotCount = IsDoubleFire + 1;
-	
-	if (mHitLocation == vect(0,0,0))
-		return;
 
-	if (Instigator == None)
-		return;
-		
 	if (Level.NetMode == NM_Client && FireClass != None)
 	{
-		if (IsDoubleFire == 0)
-		{
-			XS = class'CoachGunPrimaryFire'.default.ShotInaccuracy.X; 
-			YS = class'CoachGunPrimaryFire'.default.ShotInaccuracy.Y;
-		}
-		else 
-		{
-			XS = class'CoachGunPrimaryFire'.default.ShotDoubleInaccuracy.X; 
-			YS = class'CoachGunPrimaryFire'.default.ShotDoubleInaccuracy.Y;
-		}
-		
-		if(!bScoped)
+		XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
+		if (!bScoped)
 		{
 			XS *= FireClass.static.GetAttachmentDispersionFactor();
 			YS *= FireClass.static.GetAttachmentDispersionFactor();
 		}
-		
 		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
-		
 		Start = Instigator.Location + Instigator.EyePosition();
-		
-		for (i=0; i < FireClass.default.TraceCount * ShotCount; i++)
+		for (i=0;i<FireClass.default.TraceCount;i++)
 		{
 			mHitActor = None;
-			
 			Range = Lerp(FRand(), RMin, RMax);
-			
 			R = Rotator(mHitLocation);
-			
 			switch (FireClass.default.FireSpreadMode)
 			{
 				case FSM_Scatter:
@@ -171,32 +245,20 @@ simulated function ShotFireEffects(byte IsDoubleFire)
 					R.Pitch += ((FRand()*YS*2)-YS);
 					break;
 			}
-			
 			End = Start + Vector(R) * Range;
-			mHitActor = Trace (HitLocation, mHitNormal, End, Start, true,, HitMat);
-			
+			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
 			if (mHitActor == None)
 			{
 				DoWaterTrace(Start, End);
-				
-				for (j = 0; j < ShotCount; ++j)
-				{
-					SpawnTracer(IsDoubleFire, End);
-					Side = !Side;
-				}
+				SpawnTracer(Mode, End);
 			}
 			else
 			{
 				DoWaterTrace(Start, HitLocation);
-				
-				for (j = 0; j < ShotCount; ++j)
-				{
-					SpawnTracer(IsDoubleFire, HitLocation);
-					Side = !Side;
-				}
+				SpawnTracer(Mode, HitLocation);
 			}
-			
-			if (mHitActor == None)
+
+			if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None))
 				continue;
 
 			if (HitMat == None)
@@ -210,114 +272,13 @@ simulated function ShotFireEffects(byte IsDoubleFire)
 	}
 }
 
-//======================================================================
-// SlugFireEffects
-//
-// Use alternate impact manager
-//======================================================================
-simulated function SlugFireEffects(byte IsDoubleFire)
-{
-	local Vector HitLocation, Start, End;
-	local Rotator R;
-	local Material HitMat;
-	local int i, j, ShotCount;
-	local float XS, YS, RMin, RMax, Range, fX;
-	
-	ShotCount = IsDoubleFire + 1;
-	
-	if (mHitLocation == vect(0,0,0))
-		return;
-	if (Instigator == none)
-		return;
-	
-	if (Level.NetMode == NM_Client && FireClass != None)
-	{
-		if (IsDoubleFire == 0)
-		{
-			XS = class'CoachGunPrimaryFire'.default.SlugInaccuracy.X; 
-			YS = class'CoachGunPrimaryFire'.default.SlugInaccuracy.Y;
-		}
-		else 
-		{
-			XS = class'CoachGunPrimaryFire'.default.SlugDoubleInaccuracy.X; 
-			YS = class'CoachGunPrimaryFire'.default.SlugDoubleInaccuracy.Y;
-		}
-		
-		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
-		
-		Start = Instigator.Location + Instigator.EyePosition();
-		
-		for (i=0; i < ShotCount; i++)
-		{
-			mHitActor = None;
-			
-			Range = Lerp(FRand(), RMin, RMax);
-			
-			R = Rotator(mHitLocation);
-			
-			switch (FireClass.default.FireSpreadMode)
-			{
-				case FSM_Scatter:
-					fX = frand();
-					R.Yaw +=   XS * (frand()*2-1) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * (frand()*2-1) * cos(fX*1.5707963267948966);
-					break;
-				case FSM_Circle:
-					fX = frand();
-					R.Yaw +=   XS * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-					R.Pitch += YS * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
-					break;
-				default:
-					R.Yaw += ((FRand()*XS*2)-XS);
-					R.Pitch += ((FRand()*YS*2)-YS);
-					break;
-			}
-			
-			End = Start + Vector(R) * Range;
-			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
-
-			if (mHitActor == None)
-			{
-				DoWaterTrace(Start, End);
-				
-				for (j = 0; j < ShotCount; ++j)
-				{
-					SpawnTracer(IsDoubleFire, End);
-					Side = !Side;
-				}
-			}
-			else
-			{
-				DoWaterTrace(Start, HitLocation);
-				
-				for (j = 0; j < ShotCount; ++j)
-				{
-					SpawnTracer(IsDoubleFire, HitLocation);
-					Side = !Side;
-				}
-			}
-
-			if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None))
-				continue;
-
-			if (HitMat == None)
-				mHitSurf = int(mHitActor.SurfaceType);
-			else
-				mHitSurf = int(HitMat.SurfaceType);
-
-			if (ImpactManagerAlt != None)
-				ImpactManagerAlt.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
-		}
-	}
-}
-
-
 // Spawn a tracer and water tracer
-simulated function SpawnTracer(byte IsDoubleFire, Vector V)
+simulated function SpawnTracer(byte Mode, Vector V)
 {
 	local BCTraceEmitter Tracer;
 	local Vector TipLoc, WLoc, WNorm;
 	local float Dist;
+	local bool bThisShot;
 
 	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;
@@ -325,12 +286,30 @@ simulated function SpawnTracer(byte IsDoubleFire, Vector V)
 	TipLoc = GetTipLocation();
 	Dist = VSize(V - TipLoc);
 
+	// Count shots to determine if it's time to spawn a tracer
+	if (TracerMix == 0)
+		bThisShot=true;
+	else
+	{
+		TracerCounter++;
+		if (TracerMix < 0)
+		{
+			if (TracerCounter >= -TracerMix)	{
+				TracerCounter = 0;
+				bThisShot=false;			}
+			else
+				bThisShot=true;
+		}
+		else if (TracerCounter >= TracerMix)	{
+			TracerCounter = 0;
+			bThisShot=true;					}
+	}
 	// Spawn a tracer for the appropriate mode
-	if (TracerClass != None)
+	if (TracerClass != None && bThisShot && (TracerChance >= 1 || FRand() < TracerChance) )
 	{
 		if (Dist > 200)
 		{
-			if (AmmoType == SHOT_AMMO)
+			if (!bSlugMode)
 				Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
 			else Tracer = Spawn(TracerClassAlt, self, , TipLoc, Rotator(V - TipLoc));
 		}
@@ -339,7 +318,7 @@ simulated function SpawnTracer(byte IsDoubleFire, Vector V)
 	}
 	// Spawn under water bullet effect
 	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
-		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && AmmoType == SHOT_AMMO) || (WaterTracerMode == MU_Primary && AmmoType != SLUG_AMMO)))
+		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && Mode == 1) || (WaterTracerMode == MU_Primary && Mode != 1)))
 	{
 		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
 			Tracer = Spawn(WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
@@ -355,16 +334,15 @@ simulated function Vector GetTipLocation()
 
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 	{
-		if (!Side)
-			return Instigator.Weapon.GetBoneCoords('tip').Origin;
-		return Instigator.Weapon.GetBoneCoords('Tip2').Origin;
+		if (FiringMode == 2)
+			C = Instigator.Weapon.GetBoneCoords('tip');
+		else C = Instigator.Weapon.GetBoneCoords('Tip2');
 	}
 	else
 	{
-		if (!Side)
+		if (FiringMode == 0)
 			C = GetBoneCoords(FlashBone);
-		else 
-			C = GetBoneCoords(AltFlashBone);
+		else C = GetBoneCoords(AltFlashBone);
 	}
 	if (Instigator != None && level.NetMode != NM_StandAlone && level.NetMode != NM_ListenServer && VSize(C.Origin - Instigator.Location) > 300)
 		return Instigator.Location;
@@ -373,46 +351,44 @@ simulated function Vector GetTipLocation()
 
 // This assumes flash actors are triggered to make them work
 // Override this in subclassed for better control
-simulated function FlashMuzzleFlash(byte IsDoubleFire)
+simulated function FlashMuzzleFlash(byte Mode)
 {
 	local rotator R;
 
+	if (FlashMode == MU_None || (FlashMode == MU_Secondary && Mode != 1) || (FlashMode == MU_Primary && Mode == 1))
+		return;
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return;
 
 	if (bRandomFlashRoll)
 		R.Roll = Rand(65536);
 
-	if (AmmoType == 1 && AltMuzzleFlashClass != None)
+	if (Mode == 1 && AltMuzzleFlashClass != None)
 	{
 		if (AltMuzzleFlash == None)
 		{
 			if (!Side)
-				class'BUtil'.static.InitMuzzleFlash (AltMuzzleFlash, AltMuzzleFlashClass, DrawScale*FlashScale, self, FlashBone);
-			else 
 				class'BUtil'.static.InitMuzzleFlash (AltMuzzleFlash, AltMuzzleFlashClass, DrawScale*FlashScale, self, AltFlashBone);
+			else 	class'BUtil'.static.InitMuzzleFlash (AltMuzzleFlash, AltMuzzleFlashClass, DrawScale*FlashScale, self, FlashBone);
 		}
-
 		AltMuzzleFlash.Trigger(self, Instigator);
-		if (bRandomFlashRoll)
-            SetBoneRotation(AltFlashBone, R, 0, 1.f);
+		if (bRandomFlashRoll)	SetBoneRotation(AltFlashBone, R, 0, 1.f);
 	}
 	else if (MuzzleFlashClass != None)
 	{
-		if(!Side)
+		if(Mode == 0)
 		{
 			if (MuzzleFlash == None)
 				class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, MuzzleFlashClass, DrawScale*FlashScale, self, FlashBone);
 			MuzzleFlash.Trigger(self, Instigator);
 			if (bRandomFlashRoll)	SetBoneRotation(FlashBone, R, 0, 1.f);
 		}
-		else
+		else if (Mode == 2)
 		{
 			if (MuzzleFlashRight == None)
 				class'BUtil'.static.InitMuzzleFlash (MuzzleFlashRight, MuzzleFlashClass, DrawScale*FlashScale, self, AltFlashBone);
 			MuzzleFlashRight.Trigger(self, Instigator);
-			if (bRandomFlashRoll)
-                SetBoneRotation(AltFlashBone, R, 0, 1.f);
+			if (bRandomFlashRoll)	SetBoneRotation(AltFlashBone, R, 0, 1.f);
 		}
 	}
 }
@@ -421,36 +397,25 @@ simulated function EjectBrass(byte Mode);
 
 defaultproperties
 {
-    TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-    ImpactManager=Class'BallisticProV55.IM_Shell'
-
-    TracerClassAlt=Class'BWBPRecolorsPro.TraceEmitter_X83AM'
-    ImpactManagerAlt=Class'BWBPRecolorsPro.IM_ExpBullet'
-
-    MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
-
-    FireClass=Class'BWBPRecolorsPro.CoachGunPrimaryFire'
-    MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-    FlashBone="Tip1"
-    AltFlashBone="tip2"
-    FlashScale=1.500000
-
-    InstantMode = MU_Both
-
-    BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
-
-    TrackAnimMode=MU_None
-
-    Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.TP_DoubleShotgun'
-    RelativeLocation=(X=5.000000,Z=4.000000)
-    RelativeRotation=(Pitch=32768)
-    DrawScale=0.450000
-
-    SingleFireAnim="Reload_BreakOpenFast"
-    SingleAimedFireAnim="Reload_BreakOpenFast"
-    RapidFireAnim="RifleHip_Fire"
-    RapidAimedFireAnim="RifleAimed_Fire"
-
-    ReloadAnim="Reload_BreakOpen"
-    CockingAnim="Reload_BreakOpen"
+     ImpactManagerAlt=Class'BWBPRecolorsPro.IM_ExpBullet'
+     TracerClassAlt=Class'BWBPRecolorsPro.TraceEmitter_X83AM'
+     FireClass=Class'BWBPRecolorsPro.CoachGunPrimaryFire'
+     MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+     ImpactManager=Class'BallisticProV55.IM_Shell'
+     MeleeImpactManager=Class'BallisticProV55.IM_GunHit'
+     FlashBone="Tip1"
+     AltFlashBone="tip2"
+     FlashScale=1.500000
+     BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
+     TrackAnimMode=MU_Secondary
+     TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.Coachgun_TPm'
+     RelativeLocation=(X=5.000000,Z=4.000000)
+     RelativeRotation=(Pitch=32768)
+     DrawScale=0.450000
+ 	 SingleFireAnim="Reload_BreakOpenFast"
+     SingleAimedFireAnim="Reload_BreakOpenFast"
+     RapidFireAnim="Reload_BreakOpenFast"
+     RapidAimedFireAnim="Reload_BreakOpenFast"
+	 ReloadAnim="Reload_BreakOpen"
 }

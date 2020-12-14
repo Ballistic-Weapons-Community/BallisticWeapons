@@ -1,9 +1,9 @@
 class CoachGunPickup extends BallisticHandGunPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticRecolors4TexPro.utx
-#exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticRecolors4StaticProExp.usx
+#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BWBP_SKC_Static.usx
 
 //===========================================================================
 // StaticPrecache
@@ -13,46 +13,46 @@ class CoachGunPickup extends BallisticHandGunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.CoachGun.DBL-Main');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.CoachGun.DBL-MiscBlack');
-	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Concrete');
-	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Metal');
-	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Wood');
-	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.M763Bash');
-	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.M763BashWood');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-Main');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-MiscBlack');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Metal');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Wood');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.M763Bash');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.M763BashWood');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.MRT6.MRT6MuzzleFlash');
-	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyShell');
+	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MRT6.MRT6MuzzleFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.CoachGun.DBL-Main');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.CoachGun.DBL-MiscBlack');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Concrete');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Metal');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Wood');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.M763Bash');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.M763BashWood');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-Main');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-MiscBlack');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Metal');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Wood');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.M763Bash');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.M763BashWood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.MRT6.MRT6MuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyShell');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Ammo.M763ShellBox');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.Redwood.DoubleShotgunPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MRT6.MRT6MuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Ammo.M763ShellBox');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.CoachGun.DoubleShotgunPickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Redwood.DoubleShotgunPickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.CoachGun.DoubleShotgunPickup'
      InventoryType=Class'BWBPRecolorsPro.CoachGun'
      RespawnTime=15.000000
      PickupMessage="You picked up the Redwood Coach Gun."
-     PickupSound=Sound'BallisticSounds2.M290.M290Putaway'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Redwood.DoubleShotgunPickup'
+     PickupSound=Sound'BW_Core_WeaponSound.M290.M290Putaway'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.CoachGun.DoubleShotgunPickup'
      Physics=PHYS_None
      DrawScale=0.650000
      CollisionHeight=3.500000

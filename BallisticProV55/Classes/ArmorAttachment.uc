@@ -40,9 +40,9 @@ simulated function ThirdPersonEffects()
 			R.Pitch*=0.5;
 			Spawn(class'IE_Armor',Instigator,,AHitLocation,R);
 			if (AHitType == 1)
-				PlaySound(SoundGroup'BallisticSounds2.BulletImpacts.ArmorMisc',,0.7,,64,,);
+				PlaySound(SoundGroup'BW_Core_WeaponSound.BulletImpacts.ArmorMisc',,0.7,,64,,);
 			else
-				PlaySound(SoundGroup'BallisticSounds2.BulletImpacts.BulletArmor',,1.0,,64,,);
+				PlaySound(SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletArmor',,1.0,,64,,);
 		}
     }
 }

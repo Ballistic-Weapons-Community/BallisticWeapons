@@ -54,7 +54,7 @@ defaultproperties
      ExplodeManager=Class'BWBPRecolorsPro.IM_ChaffGrenade'
      GrenadeSmokeClass=Class'BWBPRecolorsPro.ChaffTrail'
      TrackAnimMode=MU_Primary
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.TP_MOAC'
+     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.MOAC_TPm'
      RelativeLocation=(X=-2.000000,Y=-3.000000,Z=20.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.650000

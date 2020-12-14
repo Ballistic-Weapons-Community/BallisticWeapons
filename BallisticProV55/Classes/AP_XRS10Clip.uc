@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=48
      InventoryType=Class'BallisticProV55.Ammo_XRS10Bullets'
      PickupMessage="You picked up XRS-10 machine pistol ammo."
-     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWAddPack-RS-Hardware.XRS10.XRS10Clips'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.XRS10.XRS10Clips'
      DrawScale=0.300000
      PrePivot=(Z=-16.000000)
      CollisionRadius=8.000000

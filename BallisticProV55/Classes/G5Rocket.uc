@@ -152,11 +152,11 @@ defaultproperties
      LightSaturation=100
      LightBrightness=200.000000
      LightRadius=15.000000
-     StaticMesh=StaticMesh'BallisticHardware2.G5.G5Rocket'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.G5.G5Rocket'
      bDynamicLight=True
      bNetTemporary=False
      bUpdateSimulatedPosition=True
-     AmbientSound=Sound'BallisticSounds2.G5.G5-RocketFly'
+     AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
      DrawScale=0.500000
      SoundVolume=192
      SoundRadius=128.000000

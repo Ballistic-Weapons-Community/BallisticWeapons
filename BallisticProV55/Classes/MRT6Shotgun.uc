@@ -142,19 +142,19 @@ defaultproperties
 
     bLeftLoaded=True
     bRightLoaded=True
-    TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-    TeamSkins(1)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=3)
-    BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_MRT6'
+    TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+    TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
+    BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_MRT6'
     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
     bWT_Shotgun=True
     bWT_Sidearm=True
     SpecialInfo(0)=(Info="180.0;10.0;-999.0;25.0;0.0;0.8;-999.0")
-    BringUpSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6Pullout')
-    PutDownSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6Putaway')
-    CockSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6Cock')
-    ClipHitSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6ClipHit')
-    ClipOutSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6ClipOut')
-    ClipInSound=(Sound=Sound'BallisticSounds2.MRT6.MRT6ClipIn')
+    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Pullout')
+    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Putaway')
+    CockSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Cock')
+    ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6ClipHit')
+    ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6ClipOut')
+    ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6ClipIn')
     bCockOnEmpty=True
     bAltTriggerReload=True
     WeaponModes(0)=(ModeName="Single Fire")
@@ -176,7 +176,7 @@ defaultproperties
     PickupClass=Class'BallisticProV55.MRT6Pickup'
     PlayerViewOffset=(X=12.000000,Y=3.000000,Z=-8.500000)
     AttachmentClass=Class'BallisticProV55.MRT6Attachment'
-    IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_MRT6'
+    IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_MRT6'
     IconCoords=(X2=127,Y2=31)
     ItemName="MRT-6 Shotgun"
     LightType=LT_Pulse
@@ -185,10 +185,10 @@ defaultproperties
     LightSaturation=130
     LightBrightness=150.000000
     LightRadius=5.000000
-    Mesh=SkeletalMesh'BallisticAnims2.MRT6Shotgun'
+    Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MRT6'
     DrawScale=0.300000
-    Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-    Skins(1)=Texture'BallisticWeapons2.MRT6.MRT6Skin'
-    Skins(2)=Texture'BallisticWeapons2.MRT6.MRT6Small'
-    Skins(3)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+    Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+    Skins(1)=Texture'BW_Core_WeaponTex.MRT6.MRT6Skin'
+    Skins(2)=Texture'BW_Core_WeaponTex.MRT6.MRT6Small'
+    Skins(3)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

@@ -1,7 +1,7 @@
 //=============================================================================
 // MD24Attachment.
 //
-// 3rd person weapon attachment for MD24 Pistol
+// _TPm person weapon attachment for MD24 Pistol
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
@@ -134,12 +134,12 @@ defaultproperties
      TracerClass=Class'BallisticProV55.TraceEmitter_Pistol'
      TracerChance=0.600000
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_Pistol"
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=1.400000
      CockAnimRate=0.800000
      bRapidFire=True
-     Mesh=SkeletalMesh'BallisticAnims_25.MD24_3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.MD24_TPm'
      DrawScale=0.320000
 }

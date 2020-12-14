@@ -35,7 +35,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=0.170000,RelativeSize=1.000000)
          SizeScale(3)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=40.000000,Max=60.000000),Y=(Min=40.000000,Max=60.000000),Z=(Min=40.000000,Max=60.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.350000,Max=0.500000)
      End Object
@@ -84,7 +84,7 @@ defaultproperties
          StartLocationRange=(Z=(Min=-20.000000,Max=20.000000))
          StartSizeRange=(X=(Min=4.000000,Max=7.000000),Y=(Min=4.000000,Max=7.000000),Z=(Min=4.000000,Max=7.000000))
          InitialParticlesPerSecond=5.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          MinSquaredVelocity=1000.000000
          LifetimeRange=(Min=2.500000,Max=2.500000)
@@ -120,7 +120,7 @@ defaultproperties
      Emitters(3)=BeamEmitter'BallisticProV55.HVCMk9_PlayerEffect.BeamEmitter3'
 
      AutoDestroy=True
-     AmbientSound=Sound'BWBP2-Sounds.LightningGun.LG-Flesh'
+     AmbientSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Flesh'
      bHardAttach=True
      SoundVolume=255
      SoundRadius=128.000000

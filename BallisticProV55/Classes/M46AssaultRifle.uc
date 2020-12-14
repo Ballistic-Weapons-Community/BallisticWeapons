@@ -354,12 +354,12 @@ function float SuggestDefenseStyle()	{	return 0.0;	}
 defaultproperties
 {
 	GrenadeLoadAnim="GrenadeReload"
-	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
-	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
-	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
+	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
+	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BallisticTextures_25.OA-AR.BigIcon_OAAR'
+	BigIconMaterial=Texture'BW_Core_WeaponTex.OA-AR.BigIcon_OAAR'
 	BigIconCoords=(Y1=40,Y2=235)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -370,15 +370,15 @@ defaultproperties
 	ManualLines(1)="Deploys a mine. These mines can be detonated with the Weapon Function key shortly after being placed for severe damage. Mines can be picked up with the Use key."
 	ManualLines(2)="Effective at medium to long range."
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;70.0;0.9;0.2;0.7")
-	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	CockAnimPostReload="ReloadEndCock"
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_Cock',Volume=1.100000)
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_Cock',Volume=1.100000)
 	ReloadAnimRate=1.250000
-	ClipHitSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_ClipHit',Volume=1.000000)
-	ClipOutSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_ClipOut',Volume=1.000000)
-	ClipInSound=(Sound=Sound'BallisticSounds_25.OA-AR.OA-AR_ClipIn',Volume=1.000000)
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipHit',Volume=1.000000)
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipOut',Volume=1.000000)
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipIn',Volume=1.000000)
 	ClipInFrame=0.700000
 	WeaponModes(0)=(ModeName="Proximity Detonation",ModeID="WM_FullAuto")
 	WeaponModes(1)=(ModeName="Manual Detonation",ModeID="WM_FullAuto")
@@ -388,9 +388,9 @@ defaultproperties
 	ScopeXScale=1.250000
 	ZoomInAnim="ZoomIn"
 	ZoomOutAnim="ZoomOut"
-	ScopeViewTex=Texture'BWBP3-Tex.SRS900.SRS900ScopeView'
-	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	ScopeViewTex=Texture'BW_Core_WeaponTex.SRS900.SRS900ScopeView'
+	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=60.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
@@ -417,7 +417,7 @@ defaultproperties
 	PlayerViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)
 	PlayerViewPivot=(Pitch=384)
 	AttachmentClass=Class'BallisticProV55.M46Attachment'
-	IconMaterial=Texture'BallisticTextures_25.OA-AR.SmallIcon_OAAR'
+	IconMaterial=Texture'BW_Core_WeaponTex.OA-AR.SmallIcon_OAAR'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M46A1 Combat Rifle"
 	LightType=LT_Pulse
@@ -426,6 +426,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticAnims_25.OA-AR'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M46A1'
 	DrawScale=0.300000
 }

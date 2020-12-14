@@ -68,7 +68,7 @@ simulated function HitWall (Vector HitNormal, Actor Wall)
 defaultproperties
 {
      HitSoundPitch=0.500000
-     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Longhorn.LonghornBrass'
+     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.Longhorn.LonghornBrass'
      DrawScale=0.200000
      RotationRate=(Pitch=40000,Yaw=20000,Roll=30000)
 }

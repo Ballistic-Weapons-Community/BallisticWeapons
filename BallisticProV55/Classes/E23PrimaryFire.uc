@@ -229,13 +229,13 @@ defaultproperties
      PushForce=800.000000
      SGFireCount=3
      SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
-     FireModes(0)=(mProjClass=Class'BallisticProV55.E23Projectile_SG',mFireRate=0.50000,mFireChaos=0.500000,mFireSound=Sound'BWBP4-Sounds.VPR.VPR-SGFire',mFireAnim="Fire2",mRecoil=768.000000,mAmmoPerFire=5,TargetState="Shotgun",bModeLead=True)
-     FireModes(1)=(mProjClass=Class'BallisticProV55.E23Projectile_Snpr',mFireRate=0.650000,mFireChaos=0.350000,mFireSound=Sound'BWBP4-Sounds.VPR.VPR-Fire',mFireAnim="Fire",mRecoil=768.000000,mAmmoPerFire=20,bModeLead=True)
+     FireModes(0)=(mProjClass=Class'BallisticProV55.E23Projectile_SG',mFireRate=0.50000,mFireChaos=0.500000,mFireSound=Sound'BW_Core_WeaponSound.VPR.VPR-SGFire',mFireAnim="Fire2",mRecoil=768.000000,mAmmoPerFire=5,TargetState="Shotgun",bModeLead=True)
+     FireModes(1)=(mProjClass=Class'BallisticProV55.E23Projectile_Snpr',mFireRate=0.650000,mFireChaos=0.350000,mFireSound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',mFireAnim="Fire",mRecoil=768.000000,mAmmoPerFire=20,bModeLead=True)
      MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
      FlashScaleFactor=0.750000
      FireRecoil=96.000000
      FireChaos=0.060000
-     BallisticFireSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireRate=0.150000

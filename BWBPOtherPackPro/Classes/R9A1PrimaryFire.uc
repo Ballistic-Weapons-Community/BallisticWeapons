@@ -12,7 +12,7 @@ class R9A1PrimaryFire extends BallisticRangeAttenFire;
 var BUtil.FullSound FreezeFireSound, LaserFireSound;
 var int	HeatPerShot;
 
-#exec OBJ LOAD File="BallisticProSounds.uax"
+#exec OBJ LOAD File="BW_Core_WeaponSound.uax"
 
 function SwitchWeaponMode (byte NewMode)
 {
@@ -140,8 +140,8 @@ defaultproperties
      CutOffStartRange=4096
 	 CutOffDistance=8192
 	 RangeAtten=0.5
-     FreezeFireSound=(Sound=Sound'BallisticSounds2.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
-     LaserFireSound=(Sound=Sound'BallisticProSounds.R9.EnergyRelayExplode',Volume=3.000000,Radius=256.000000)
+     FreezeFireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
+     LaserFireSound=(Sound=Sound'BW_Core_WeaponSound.R9.EnergyRelayExplode',Volume=3.000000,Radius=256.000000)
      HeatPerShot=25
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=32.000000
@@ -157,8 +157,8 @@ defaultproperties
      KickForce=6000
      PenetrateForce=150
      bPenetrate=True
-     ClipFinishSound=(Sound=Sound'BallisticSounds3.NRP57.NRP57-ClipOut',Volume=0.800000,Radius=48.000000,Pitch=1.250000,bAtten=True)
-     DryFireSound=(Sound=Sound'BallisticSounds3.Misc.DryRifle',Volume=0.700000)
+     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.800000,Radius=48.000000,Pitch=1.250000,bAtten=True)
+     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.700000)
      bCockAfterEmpty=True
      MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
      FlashScaleFactor=1.400000
@@ -167,7 +167,7 @@ defaultproperties
      AimedFireAnim="AimedFire"
      FireRecoil=192.000000
      FireChaos=0.450000
-     BallisticFireSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Fire',Volume=0.800000)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Fire',Volume=0.800000)
      FireEndAnim=
      FireRate=0.225000
      AmmoClass=Class'BWBPOtherPackPro.Ammo_R9A1'

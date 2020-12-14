@@ -1,7 +1,7 @@
 //=============================================================================
 // BX5Attachment.
 //
-// 3rd person weapon attachment for BX5 Mine.
+// _TPm person weapon attachment for BX5 Mine.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -15,6 +15,6 @@ defaultproperties
      FlashMode=MU_None
      LightMode=MU_None
      bHeavy=True
-     Mesh=SkeletalMesh'BallisticAnims2.BX5-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.BX5_TPm'
      DrawScale=0.150000
 }

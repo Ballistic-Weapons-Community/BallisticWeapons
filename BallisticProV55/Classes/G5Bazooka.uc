@@ -10,7 +10,7 @@
 //=============================================================================
 class G5Bazooka extends BallisticWeapon;
 
-#EXEC OBJ LOAD FILE=BallisticUI2.utx
+#EXEC OBJ LOAD FILE=BW_Core_WeaponTex.utx
 
 var() BUtil.FullSound	HatchSound;
 var   bool				bCamView;
@@ -52,9 +52,6 @@ simulated function OutOfAmmo()
     DoAutoSwitch();
 }
 
-//============================================================
-// Laser management
-//============================================================
 function ServerSwitchLaser(bool bNewLaserOn)
 {
 	bLaserOn = bNewLaserOn;
@@ -217,10 +214,6 @@ simulated function PlayIdle()
 	FreezeAnimAt(0.0);
 }
 
-//============================================================
-// Scope view
-//============================================================
-
 simulated function OnScopeViewChanged()
 {
 	Super.OnScopeViewChanged();
@@ -231,7 +224,7 @@ simulated function OnScopeViewChanged()
 			class'BUtil'.static.PlayFullSound(self, LockOffSound);
 
 		Target = None;
-		TargetTime = 0;
+		TargetTime=0;
 	}
 }
 
@@ -241,7 +234,28 @@ simulated function StartScopeZoom()
 		class'BUtil'.static.PlayFullSound(self, ZoomInSound);
 
 	if (!bCamView && Instigator.Controller.IsA( 'PlayerController' ))
-        PlayerZoom(PlayerController(Instigator.Controller));
+	{
+		switch(ZoomType)
+		{
+			case ZT_Smooth: 
+				PlayerController(Instigator.Controller).StartZoomWithMax((90-FullZoomFOV)/88);
+				break;
+			case ZT_Minimum:
+				PlayerController(Instigator.Controller).bZooming=True;
+				PlayerController(Instigator.Controller).SetFOV(FClamp(90.0 - (MinFixedZoomLevel * 88.0), 1, 170));
+				PlayerController(Instigator.Controller).ZoomLevel = MinFixedZoomLevel;
+				PlayerController(Instigator.Controller).DesiredZoomLevel = MinFixedZoomLevel;
+				break;
+			case ZT_Fixed:
+				PlayerController(Instigator.Controller).bZooming=True;
+				PlayerController(Instigator.Controller).SetFOV(FullZoomFOV);
+				PlayerController(Instigator.Controller).ZoomLevel = (90 - FullZoomFOV) / 88;
+				PlayerController(Instigator.Controller).DesiredZoomLevel = (90 - FullZoomFOV) / 88;
+				break;
+			case ZT_Logarithmic:
+				break;
+		}
+	}
 }
 
 // Scope up anim just ended. Either go into scope view or move the scope back down again
@@ -252,7 +266,6 @@ simulated function ScopeUpAnimEnd()
  	else
  		super.ScopeUpAnimEnd();
 }
-
 // Scope down anim has just ended. Play idle anims like normal
 simulated function ScopeDownAnimEnd()
 {
@@ -302,7 +315,7 @@ simulated function WeaponTick(float DT)
 	if (Instigator != None && Instigator.IsLocallyControlled())
 		TickLaser(DT);
 
-	if (!bScopeView || CurrentWeaponMode != 1 || Role < ROLE_Authority)
+	if (!bScopeView || CurrentWeaponMode != 1 || Role < Role_Authority)
 		return;
 
 	bWasLockedOn = TargetTime >= LockOnTime;
@@ -372,8 +385,8 @@ simulated event DrawTargeting (Canvas C)
 	C.SetPos(V.X, V.Y);
 	V2 = C.WorldToScreen(Target.Location + Y*Target.CollisionRadius - Z*Target.CollisionHeight);
 	C.SetDrawColor(255,255,255,255);
-//	C.DrawTile(Texture'BallisticUI2.G5.G5Targetbox', V2.X - V.X, V2.Y - V.Y, 0, 0, 1, 1);
-	C.DrawTileStretched(Texture'BallisticUI2.G5.G5Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
+//	C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5Targetbox', V2.X - V.X, V2.Y - V.Y, 0, 0, 1, 1);
+	C.DrawTileStretched(Texture'BW_Core_WeaponTex.G5.G5Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
 }
 
 simulated function KillLaserDot()
@@ -568,11 +581,11 @@ simulated event RenderOverlays( Canvas Canvas )
 		Canvas.Style = ERenderStyle.STY_Alpha;
 		Canvas.SetPos(0,0);
 		Canvas.DrawColor.A = 48;
-		Canvas.DrawTile( Material'BallisticUI2.M50.Noise1', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 256, 256 ); // !! hardcoded size
+		Canvas.DrawTile( Material'BW_Core_WeaponTex.M50.Noise1', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 256, 256 ); // !! hardcoded size
 		// Tunnel vision
 		Canvas.DrawColor.A = 255;
 		Canvas.SetPos(0,0);
-		Canvas.DrawTile( Material'BallisticUI2.M50.M50CamView', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 1024, 1024 ); // !! hardcoded size
+		Canvas.DrawTile( Material'BW_Core_WeaponTex.M50.M50CamView', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 1024, 1024 ); // !! hardcoded size
 	}
     else
         OldRenderOverlays(Canvas);
@@ -686,14 +699,14 @@ simulated function Notify_G5HideRocket ()
 
 defaultproperties
 {
-	HatchSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever',Volume=0.700000,Pitch=1.000000)
+	HatchSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever',Volume=0.700000,Pitch=1.000000)
 	LockOnTime=1.500000
-	LockOnSound=(Sound=Sound'BallisticSounds2.G5.G5-TargetOn',Volume=0.500000,Pitch=1.000000)
-	LockOffSound=(Sound=Sound'BallisticSounds2.G5.G5-TargetOff',Volume=0.500000,Pitch=1.000000)
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	LockOnSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-TargetOn',Volume=0.500000,Pitch=1.000000)
+	LockOffSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-TargetOff',Volume=0.500000,Pitch=1.000000)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=4.000000
 	LaserAimSpread=(Min=0,Max=256)
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_G5'
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_G5'
 	BigIconCoords=(Y1=36,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
@@ -704,14 +717,14 @@ defaultproperties
 	ManualLines(1)="Toggles the guidance laser. With the guidance laser active, rockets will fly towards the point indicated by the laser at any given time."
 	ManualLines(2)="When firing a mortar rocket. the Weapon Function key will cause the player to view through the rocket's nose camera.|As a bazooka, the G5 has no recoil. With the laser in use, its hipfire is stable, however it will always be lowered when the player jumps. The weapon is effective at medium to long range and with height advantage."
 	SpecialInfo(0)=(Info="300.0;35.0;1.0;80.0;0.8;0.0;1.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
 	ReloadAnim="ReloadLoop"
 	ReloadAnimRate=1.250000
-	ClipOutSound=(Sound=Sound'BallisticSounds2.G5.G5-Load')
-	ClipInSound=(Sound=Sound'BallisticSounds2.G5.G5-LoadHatch')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Load')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-LoadHatch')
 	bCanSkipReload=True
 	bShovelLoad=True
 	StartShovelAnim="StartReload"
@@ -723,15 +736,15 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	ZoomType=ZT_Logarithmic
-	MinZoom=2.000000
-	MaxZoom=4.000000
-	ZoomStages=1
+	MinZoom=4
+	MaxZoom=16
+	ZoomStages=2
 	ScopeXScale=1.333000
 	ZoomInAnim="ZoomIn"
 	ZoomOutAnim="ZoomOut"
-	ScopeViewTex=Texture'BallisticUI2.G5.G5ScopeView'
-	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	ScopeViewTex=Texture'BW_Core_WeaponTex.G5.G5ScopeView'
+	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=10.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
@@ -757,7 +770,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.G5Pickup'
 	PlayerViewOffset=(X=10.000000,Y=10.500000,Z=-6.000000)
 	AttachmentClass=Class'BallisticProV55.G5Attachment'
-	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_G5'
+	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_G5'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="G5 Missile Launcher"
 	LightType=LT_Pulse
@@ -766,6 +779,6 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BallisticAnims2.G5Bazooka'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_G5Bazooka'
 	DrawScale=0.300000
 }

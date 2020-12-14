@@ -16,7 +16,7 @@ simulated event PostBeginPlay()
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter5
-         StaticMesh=StaticMesh'BallisticHardware2.M900.M900MuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900MuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -58,7 +58,7 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          MaxParticles=20
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.AquaFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.700000,Max=0.700000)
          SpawnOnTriggerRange=(Min=20.000000,Max=20.000000)
@@ -82,7 +82,7 @@ defaultproperties
          StartLocationOffset=(X=20.000000)
          StartSizeRange=(X=(Min=50.000000,Max=50.000000))
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)

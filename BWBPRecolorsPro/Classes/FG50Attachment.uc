@@ -169,14 +169,14 @@ defaultproperties
      TracerChance=2.000000
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_MG"
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=1.500000
      CockAnimRate=0.700000
      bRapidFire=True
      bAltRapidFire=True
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.TP_FG50'
+     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FG50_TPm'
      RelativeRotation=(Pitch=32768)
      DrawScale=0.320000
      PrePivot=(Y=-1.000000,Z=-3.000000)

@@ -73,7 +73,7 @@ defaultproperties
      FirePushbackForce=1500.000000
      FireChaos=0.500000
 	 FireRate=1.25
-     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.A49.A49-ShockWave',Volume=2.000000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-ShockWave',Volume=2.000000)
      FireAnim="AltFire"
      AmmoClass=Class'BallisticProV55.Ammo_Cells'
      AmmoPerFire=8

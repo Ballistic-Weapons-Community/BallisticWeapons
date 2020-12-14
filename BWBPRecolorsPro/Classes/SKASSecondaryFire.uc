@@ -90,9 +90,9 @@ defaultproperties
 {
      ChargeRate=1.000000
      PowerLevel=1.000000
-     ChargeSound=Sound'PackageSounds4Pro.SKAS.SKAS-TriCharge'
-     UltraChargeSound=Sound'PackageSounds4Pro.SKAS.SKAS-UltraCharge'
-     UltraFireSound=Sound'PackageSounds4Pro.SKAS.SKAS-Ultra'
+     ChargeSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-TriCharge'
+     UltraChargeSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-UltraCharge'
+     UltraFireSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Ultra'
      CutOffDistance=1536.000000
      CutOffStartRange=1024.000000
      TraceCount=30
@@ -118,7 +118,7 @@ defaultproperties
      FireChaos=1.000000
      XInaccuracy=378.000000
      YInaccuracy=378.000000
-     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.SKAS.SKAS-Triple',Volume=2.200000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Triple',Volume=2.200000)
      bFireOnRelease=True
      bWaitForRelease=True
      FireAnim="FireBig"

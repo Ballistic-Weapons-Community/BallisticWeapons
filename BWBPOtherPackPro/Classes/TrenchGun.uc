@@ -1,15 +1,20 @@
 //=============================================================================
-// Trench gun.
+// M290Shotgun.
 //
-// Reworked by Azarael "Big Rael" Azarael
+// Big double barreled shotgun. Primary fires both barrels at once, secondary
+// fires them seperately. Slower than M763 with less range and uses up ammo
+// quicker, but has tons of damage at close range.
+//
+// by Nolan "Dark Carnivour" Richert.
+// Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class TrenchGun extends BallisticProShotgun;
 
-var byte                OldWeaponMode;
-var actor               ReloadSteam;
-var actor               ReloadSteam2;
+var byte OldWeaponMode;
+var actor ReloadSteam;
+var actor ReloadSteam2;
 
-var float               LastModeChangeTime;
+var float LastModeChangeTime;
 
 var() Material          MatGreenShell;
 var() Material          MatBlackShell;
@@ -33,9 +38,9 @@ struct DeployableInfo
 	var float				CoolDownDelay;
 };
 
-var DeployableInfo      AltDeployable;
-const                   DeployRange = 512;
-var float	            CooldownTime;
+var DeployableInfo AltDeployable;
+const DeployRange = 512;
+var float	CooldownTime;
 
 exec function Offset(int index, int value)
 {
@@ -442,28 +447,28 @@ function Notify_BarrierDeploy()
 	/*if (AltDeployable.AmmoReq > Ammo[0].AmmoAmount)
 	{
 		Instigator.ClientMessage("Not enough charge to warp in"@WeaponModes[0].ModeName$".");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}*/
 		
 	if (CooldownTime > level.TimeSeconds)
 	{
 		Instigator.ClientMessage("Barrier is still recharging.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}		
 		
 	if (HitActor == None || !HitActor.bWorldGeometry)
 	{
 		Instigator.ClientMessage("Must target an unoccupied surface.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
 	if (HitLoc == vect(0,0,0))
 	{
 		Instigator.ClientMessage("Out of range.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
@@ -476,7 +481,7 @@ function Notify_BarrierDeploy()
 	if (!SpaceToDeploy(HitLoc, HitNorm, SlopeRotation, AltDeployable.dClass.default.CollisionHeight, AltDeployable.dClass.default.CollisionRadius))
 	{
 		Instigator.ClientMessage("Insufficient space for construction.");
-		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBPOtherPackSound.Wrench.EnergyStationError', ,1);
+		PlayerController(Instigator.Controller).ClientPlaySound(Sound'BWBP_OP_Sounds.Wrench.EnergyStationError', ,1);
 		return;
 	}
 	
@@ -611,8 +616,8 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-	MatGreenShell=Texture'BWBPSomeOtherPackTex.TechWrench.ExplodoShell'
-	MatBlackShell=Texture'BWBPSomeOtherPackTex.TechWrench.ShockShell'
+	MatGreenShell=Texture'BWBP_OP_Tex.TechWrench.ExplodoShell'
+	MatBlackShell=Texture'BWBP_OP_Tex.TechWrench.ShockShell'
 	ShellTipBone1="ShellLSuper"
 	ShellTipBone2="ShellRSuper"
 	ShellTipBone3="SpareShellLSuper"
@@ -620,8 +625,8 @@ defaultproperties
 	LastShellBone="ShellR"
 	FireAnimCutThreshold=3.000000
 	AltDeployable=(dClass=Class'BWBPOtherPackPro.TrenchGunEnergyBarrier',WarpInTime=0.500000,SpawnOffset=52,CheckSlope=False,CooldownDelay=2.00) 
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBPSomeOtherPackTex.TechGun.BigIcon_TechGun'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBP_OP_Tex.TechGun.BigIcon_TechGun'
 	BigIconCoords=(Y1=35,Y2=225)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Shotgun=True
@@ -631,8 +636,8 @@ defaultproperties
 	ManualLines(2)="Effective at close ranges, firing both barrels at once increases the duration of the slow down for ice rounds and displacement from electric rounds."
 	SpecialInfo(0)=(Info="160.0;10.0;0.3;40.0;0.0;1.0;0.0")
 	MeleeFireClass=Class'BWBPOtherPackPro.TrenchGunMeleeFire'
-	BringUpSound=(Sound=Sound'BallisticSounds2.M290.M290Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
 	CockAnimRate=0.700000
 	SingleReloadAnimRate=1.000000
 	ReloadAnimRate=1.250000
@@ -664,7 +669,7 @@ defaultproperties
 	PickupClass=Class'BWBPOtherPackPro.TrenchGunPickup'
 	PlayerViewOffset=(X=-50.000000,Y=20.000000,Z=-30.000000)
 	AttachmentClass=Class'BWBPOtherPackPro.TrenchGunAttachment'
-	IconMaterial=Texture'BWBPSomeOtherPackTex.TechGun.Icon_TechGun'
+	IconMaterial=Texture'BWBP_OP_Tex.TechGun.Icon_TechGun'
 	IconCoords=(X2=127,Y2=30)
 	ItemName="BR-112 Trenchgun"
 	LightType=LT_Pulse
@@ -673,12 +678,12 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=180.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.Techgun_FP'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.Fpm_Trenchgun'
 	DrawScale=1.250000
-	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-	Skins(1)=Shader'BWBPSomeOtherPackTex.TechWrench.TechWrenchShiny'
-	Skins(2)=Texture'BWBPSomeOtherPackTex.TechWrench.CryoShell'
-	Skins(3)=Texture'BWBPSomeOtherPackTex.TechWrench.CryoShell'
-	Skins(4)=Shader'BWBPSomeOtherPackTex.TechWrench.WrenchShiny'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Shader'BWBP_OP_Tex.TechWrench.TechWrenchShiny'
+	Skins(2)=Texture'BWBP_OP_Tex.TechWrench.CryoShell'
+	Skins(3)=Texture'BWBP_OP_Tex.TechWrench.CryoShell'
+	Skins(4)=Shader'BWBP_OP_Tex.TechWrench.WrenchShiny'
 	bShowChargingBar=True
 }

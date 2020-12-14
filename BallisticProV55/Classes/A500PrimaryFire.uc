@@ -111,7 +111,7 @@ defaultproperties
      FireChaos=0.400000
      XInaccuracy=220.000000
      YInaccuracy=220.000000
-     BallisticFireSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
      FireEndAnim=
      FireAnimRate=1.300000
      FireRate=0.4

@@ -182,7 +182,7 @@ defaultproperties
      Damage=20.000000
      DamageRadius=384.000000
      MyDamageType=Class'BWBPOtherPackPro.DTCX85DartRadius'
-     StaticMesh=StaticMesh'BallisticHardware_25.OA-SMG.OA-SMG_Dart'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.OA-SMG.OA-SMG_Dart'
      CullDistance=2500.000000
      bNetTemporary=False
      Physics=PHYS_None

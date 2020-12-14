@@ -35,10 +35,10 @@ defaultproperties
      bPredictRespawns=True
      RespawnTime=90.000000
      PickupMessage="You got the Damage Amplifier."
-     PickupSound=Sound'BallisticSounds2.Udamage.UDamagePickup'
+     PickupSound=Sound'BW_Core_WeaponSound.Udamage.UDamagePickup'
      PickupForce="UDamagePickup"
      DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BallisticHardware2.Misc.U-Damage'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Misc.U-Damage'
      DrawScale=0.600000
      TransientSoundVolume=0.600000
      TransientSoundRadius=128.000000

@@ -39,7 +39,7 @@ defaultproperties
          MaxParticles=75
          StartSizeRange=(X=(Min=2.000000,Max=4.000000))
          InitialParticlesPerSecond=1000.000000
-         Texture=Texture'BallisticEffects.GunFire.A73MuzzleFlash'
+         Texture=Texture'BW_Core_WeaponTex.GunFire.A73MuzzleFlash'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SubdivisionStart=1
@@ -72,7 +72,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.700000)
          StartSizeRange=(X=(Min=55.000000,Max=65.000000))
          InitialParticlesPerSecond=100000.000000
-         Texture=Texture'BallisticEffects.GunFire.A73MuzzleFlash'
+         Texture=Texture'BW_Core_WeaponTex.GunFire.A73MuzzleFlash'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SubdivisionStart=1
@@ -105,7 +105,7 @@ defaultproperties
          StartSizeRange=(X=(Min=16.000000,Max=20.000000))
          InitialParticlesPerSecond=20.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.Smoke4'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.750000,Max=2.250000)
          StartVelocityRange=(X=(Min=10.000000,Max=60.000000),Y=(Min=-20.000000,Max=20.000000),Z=(Min=-20.000000,Max=20.000000))
@@ -164,7 +164,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.700000)
          StartSizeRange=(X=(Min=150.000000,Max=200.000000))
          InitialParticlesPerSecond=100000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
      End Object
@@ -193,7 +193,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=8.000000,Max=12.000000))
          InitialParticlesPerSecond=600.000000
-         Texture=Texture'BallisticEffects.Particles.FlameParts'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          LifetimeRange=(Min=1.000000,Max=1.000000)

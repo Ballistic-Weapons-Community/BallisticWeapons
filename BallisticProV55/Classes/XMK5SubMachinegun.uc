@@ -266,11 +266,11 @@ function float SuggestDefenseStyle()	{	return -0.6;	}
 defaultproperties
 {
 	DartLoadAnim="Reload2"
-	DartLoadSound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_LoadDart'
-	DartCockSound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_CockDart'
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	DartLoadSound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_LoadDart'
+	DartCockSound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_CockDart'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BallisticTextures_25.OA-SMG.BigIcon_OASMG'
+	BigIconMaterial=Texture'BW_Core_WeaponTex.OA-SMG.BigIcon_OASMG'
 	BigIconCoords=(Y1=16,Y2=210)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -280,16 +280,16 @@ defaultproperties
 	ManualLines(1)="Launches a stun dart. Upon impact with the enemy, deals damage over time and inflicts a blinding effect multiple times upon them."
 	ManualLines(2)="Effective at close range."
 	SpecialInfo(0)=(Info="180.0;15.0;0.7;60.0;0.1;0.4;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	AIRating=0.8
 	CurrentRating=0.8
 	CockAnimPostReload="ReloadEndCock"
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_Cock',Volume=1.350000)
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_Cock',Volume=1.350000)
 	ReloadAnimRate=1.250000
-	ClipOutSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_ClipOut',Volume=1.150000)
-	ClipInSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_ClipIn',Volume=1.150000)
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_ClipOut',Volume=1.150000)
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_ClipIn',Volume=1.150000)
 	ClipInFrame=0.760000
 	WeaponModes(0)=(bUnavailable=True)
 	bNoCrosshairInScope=True
@@ -312,7 +312,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.XMK5Pickup'
 	PlayerViewOffset=(X=2.000000,Y=8.000000,Z=-10.000000)
 	AttachmentClass=Class'BallisticProV55.XMK5Attachment'
-	IconMaterial=Texture'BallisticTextures_25.OA-SMG.SmallIcon_OASMG'
+	IconMaterial=Texture'BW_Core_WeaponTex.OA-SMG.SmallIcon_OASMG'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="XMk5 Submachine Gun"
 	LightType=LT_Pulse
@@ -321,6 +321,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticProAnims.OA-SMG'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XMK5'
 	DrawScale=0.450000
 }

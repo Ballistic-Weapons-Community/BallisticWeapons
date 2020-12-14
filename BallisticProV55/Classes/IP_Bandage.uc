@@ -21,10 +21,10 @@ defaultproperties
      MaxDesireability=0.300000
      bAmbientGlow=False
      PickupMessage="You picked up an N-TOV Bandage +"
-     PickupSound=Sound'BallisticSounds2.Health.NTovPickup'
+     PickupSound=Sound'BW_Core_WeaponSound.Health.NTovPickup'
      PickupForce="HealthPack"
      DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BallisticHardware2.Health.Bandage'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Health.Bandage'
      AmbientGlow=0
      ScaleGlow=0.600000
      TransientSoundRadius=64.000000

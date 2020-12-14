@@ -22,7 +22,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	{
 		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 && Level.Game.bTeamGame )
 		{
-			Skins[1] = Shader'BallisticRecolors3TexPro.DragonToothSword.DTS-Red';
+			Skins[1] = Shader'BWBP_SKC_Tex.DragonToothSword.DTS-Red';
 			if (ThirdPersonActor != None)
 				DragonsToothAttachment(ThirdPersonActor).bRedTeam=true;	
 		}
@@ -129,17 +129,17 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-	//LoopAmbientSound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Loop'
+	//LoopAmbientSound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Loop'
 	LoopAmbientSound=Sound'GeneralAmbience.texture21'
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BallisticRecolors3TexPro.DragonToothSword.BigIcon_DTS'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBP_SKC_Tex.DragonToothSword.BigIcon_DTS'
 	BigIconCoords=(Y1=40,Y2=240)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	ManualLines(0)="Strikes once for fatal damage. Has a good range but a very slow swing rate."
 	ManualLines(1)="Strikes twice consecutively for good damage. Good for baiting block."
 	ManualLines(2)="The Weapon Function key allows the Nanoblade to block incoming frontal melee attacks.||Devastating at close range."
 	SpecialInfo(0)=(Info="420.0;20.0;-999.0;-1.0;-999.0;0.9;-999.0")
-	BringUpSound=(Sound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Draw',Volume=16.100000)
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Draw',Volume=16.100000)
 	bNoMag=True
 	GunLength=0.000000
 	bAimDisabled=True
@@ -165,10 +165,10 @@ defaultproperties
 	PickupClass=Class'BWBPRecolorsPro.DragonsToothPickup'
 	BobDamping=1.000000
 	AttachmentClass=Class'BWBPRecolorsPro.DragonsToothAttachment'
-	IconMaterial=Texture'BallisticRecolors3TexPro.DragonToothSword.SmallIcon_DTS'
+	IconMaterial=Texture'BWBP_SKC_Tex.DragonToothSword.SmallIcon_DTS'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="XM300 Dragon Nanoblade"
-	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.DragonToothFP'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_DTS'
 	DrawScale=1.250000
 	SoundRadius=32.000000
 }

@@ -40,6 +40,6 @@ defaultproperties
      Speed=6500.000000
      Damage=5.000000
      MyDamageType=Class'BWBPRecolorsPro.DT_PS9mMedDart'
-     StaticMesh=StaticMesh'BallisticHardware_25.OA-SMG.OA-SMG_Dart'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.OA-SMG.OA-SMG_Dart'
      LifeSpan=1.500000
 }

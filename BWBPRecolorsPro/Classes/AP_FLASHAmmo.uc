@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=4
      InventoryType=Class'BWBPRecolorsPro.Ammo_FLASH'
      PickupMessage="You picked up 4 Incinerator Rockets"
-     PickupSound=Sound'BallisticSounds2.Ammo.RocketPickup'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Flash.FLASHAmmo'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.RocketPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.Flash.FLASHAmmo'
      DrawScale=0.750000
      CollisionRadius=8.000000
      CollisionHeight=5.000000

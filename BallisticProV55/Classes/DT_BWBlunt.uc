@@ -22,7 +22,7 @@ defaultproperties
      DamageDescription=",Blunt,"
      bInstantHit=True
      bNeverSevers=True
-     PawnDamageSounds(0)=Sound'BallisticSounds2.M763.M763SmashFlesh'
+     PawnDamageSounds(0)=Sound'BW_Core_WeaponSound.M763.M763SmashFlesh'
 	 InvasionDamageScaling=3
      VehicleDamageScaling=0.000000
      VehicleMomentumScaling=0.100000

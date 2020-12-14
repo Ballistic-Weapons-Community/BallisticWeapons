@@ -303,9 +303,9 @@ defaultproperties
      FlashMode=MU_Both
      LightMode=MU_Both
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_Flechette'
-     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.TP_M1014'
+     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.MK781_TPm'
      RelativeRotation=(Pitch=32768)
      DrawScale=0.500000
      PrePivot=(Z=-5.000000)
-     Skins(0)=Texture'BallisticRecolors4TexPro.M1014.M1014-Misc'
+     Skins(0)=Texture'BWBP_SKC_TexExp.M1014.M1014-Misc'
 }

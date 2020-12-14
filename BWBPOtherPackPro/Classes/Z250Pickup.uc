@@ -4,9 +4,9 @@
 class Z250Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticWeapons2.utx
-#exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -31,13 +31,13 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BWBPOtherPackStatic.Z250.Z250_static_test_01'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Z250.Z250_static_test_01'
      PickupDrawScale=0.600000
      InventoryType=Class'BWBPOtherPackPro.Z250Minigun'
      RespawnTime=20.000000
      PickupMessage="You picked up the Z250 minigun."
-     PickupSound=Sound'BallisticSounds2.XMV-850.XMV-Putaway'
-     StaticMesh=StaticMesh'BWBPOtherPackStatic.Z250.Z250_static_test_01'
+     PickupSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway'
+     StaticMesh=StaticMesh'BWBP_OP_Static.Z250.Z250_static_test_01'
      bOrientOnSlope=True
      Physics=PHYS_None
      DrawScale=0.600000

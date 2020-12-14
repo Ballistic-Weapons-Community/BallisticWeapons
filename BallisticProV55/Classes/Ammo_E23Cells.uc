@@ -12,9 +12,9 @@ defaultproperties
 {
      MaxAmmo=600
      InitialAmount=300
-     IconFlashMaterial=Shader'BWBP4-Tex.VPR.AmmoIcon_VPRCellsFlash'
+     IconFlashMaterial=Shader'BW_Core_WeaponTex.VPR.AmmoIcon_VPRCellsFlash'
      PickupClass=Class'BallisticProV55.AP_E23Clip'
-     IconMaterial=Texture'BWBP4-Tex.VPR.AmmoIcon_VPRCells'
+     IconMaterial=Texture'BW_Core_WeaponTex.VPR.AmmoIcon_VPRCells'
      IconCoords=(X2=63,Y2=63)
      ItemName="E23 ViPeR Cell Ammo"
 }

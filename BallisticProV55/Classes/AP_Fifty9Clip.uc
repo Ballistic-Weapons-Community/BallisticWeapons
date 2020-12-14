@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=100
      InventoryType=Class'BallisticProV55.Ammo_FiftyNine'
      PickupMessage="You picked up three Fifty-9 magazines."
-     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BallisticHardware2.Fifty9.Fifty9Clips'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Fifty9.Fifty9Clips'
      DrawScale=0.350000
      PrePivot=(Z=8.000000)
      CollisionRadius=8.000000

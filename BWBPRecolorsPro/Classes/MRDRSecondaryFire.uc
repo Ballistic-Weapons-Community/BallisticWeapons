@@ -73,7 +73,7 @@ defaultproperties
      HookPullForce=100.000000
      bUseWeaponMag=False
      bIgnoreReload=True
-     BallisticFireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      FireAnim="Melee1"
      FireRate=0.500000

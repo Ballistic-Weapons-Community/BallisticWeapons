@@ -12,7 +12,7 @@ defaultproperties
      BrassOffset=(X=0.000000,Y=0.000000,Z=0.000000)
      FirePushbackForce=0.000000
      FireChaos=0.500000
-     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.X82.X82-Fire4',Radius=750.000000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire4',Radius=750.000000)
      FireRate=0.530000
      aimerror=0.000000
 }

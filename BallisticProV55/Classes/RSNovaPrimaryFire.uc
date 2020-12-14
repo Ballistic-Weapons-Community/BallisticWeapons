@@ -13,7 +13,7 @@
 //=============================================================================
 class RSNovaPrimaryFire extends BallisticProProjectileFire;
 
-#exec OBJ LOAD FILE=BWBP4-Sounds.uax
+#exec OBJ LOAD FILE=BW_Core_WeaponSound.uax
 
 var   Actor					MuzzleFlashFast;
 var   Actor					MuzzleFlashSlow;
@@ -52,7 +52,7 @@ simulated function vector GetFireSpread()
 	local float fX;
     local Rotator R;
 
-	if (BW.bScopeView || BW.CurrentWeaponMode != 4)
+	if (BW.bScopeView || (BW.CurrentWeaponMode != 0 && BW.CurrentWeaponMode != 4))
 		return super.GetFireSpread();
 	else
 	{
@@ -524,7 +524,7 @@ state NovaLightning
 				RSNovaStaff(Weapon).AddSoul(-ModePowerDrain);
 			else
 			{
-				Instigator.PlaySound(Sound'BWBP4-Sounds.Dark-ImmolateIgnite',,3.7,,32);
+				Instigator.PlaySound(Sound'BW_Core_WeaponSound.Dark-ImmolateIgnite',,3.7,,32);
 				RSNovaStaff(Weapon).AddSoul(-5);
 				class'BallisticDamageType'.static.GenericHurt (Instigator, 100 * (ModePowerDrain - RSNovaStaff(Weapon).SoulPower), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 3000 + vect(0,0,1000), class'DT_RSNovaBacklash');
 			}
@@ -659,7 +659,7 @@ state Zap
 			RSNovaStaff(Weapon).AddSoul(-ModePowerDrain);
 		else
 		{
-			Instigator.PlaySound(Sound'BWBP4-Sounds.Dark-ImmolateIgnite',,3.7,,32);
+			Instigator.PlaySound(Sound'BW_Core_WeaponSound.Dark-ImmolateIgnite',,3.7,,32);
 			RSNovaStaff(Weapon).AddSoul(-5);
 			class'BallisticDamageType'.static.GenericHurt (Instigator, 100 * (ModePowerDrain - RSNovaStaff(Weapon).SoulPower), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 3000 + vect(0,0,1000), class'DT_RSNovaBacklash');
 		}
@@ -958,7 +958,7 @@ state ChainLightning
 				RSNovaStaff(Weapon).AddSoul(-ModePowerDrain);
 			else
 			{
-				Instigator.PlaySound(Sound'BWBP4-Sounds.Dark-ImmolateIgnite',,3.7,,32);
+				Instigator.PlaySound(Sound'BW_Core_WeaponSound.Dark-ImmolateIgnite',,3.7,,32);
 				RSNovaStaff(Weapon).AddSoul(-5);
 				class'BallisticDamageType'.static.GenericHurt (Instigator, 100 * (ModePowerDrain - RSNovaStaff(Weapon).SoulPower), Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 3000 + vect(0,0,1000), class'DT_RSNovaBacklash');
 			}
@@ -1071,19 +1071,19 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
-     ChnLtngSoundLoop=Sound'BWBP4-Sounds.NovaStaff.Nova-ChainLightning'
-     FireSoundLoop=Sound'BWBP4-Sounds.NovaStaff.Nova-AltFireLoop'
+     ChnLtngSoundLoop=Sound'BW_Core_WeaponSound.NovaStaff.Nova-ChainLightning'
+     FireSoundLoop=Sound'BW_Core_WeaponSound.NovaStaff.Nova-AltFireLoop'
      Damage=2
      SpawnOffset=(X=12.000000,Y=8.000000,Z=-9.000000)
-     FireModes(0)=(mProjClass=Class'BallisticProV55.RSNovaFastProjectile',mFireRate=0.170000,mFireChaos=0.060000,mFireSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire2',mFireAnim="Fire2",mRecoil=150.000000,mAmmoPerFire=1,bModeLead=True,bModeSplash=True)
-     FireModes(1)=(mFireRate=0.100000,mFireSound=Sound'BWBP4-Sounds.NovaStaff.Nova-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=7.000000,mAmmoPerFire=1,TargetState="NovaLightning",bModeInstantHit=True)
-     FireModes(2)=(mFireRate=0.750000,mFireSound=Sound'BWBP4-Sounds.NovaStaff.Nova-LightningBolt',mFireAnim="Fire",mRecoil=256.000000,mAmmoPerFire=2,TargetState="Zap",bModeInstantHit=True)
-     FireModes(3)=(mFireRate=0.100000,mFireSound=Sound'BWBP4-Sounds.NovaStaff.Nova-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=256.000000,mAmmoPerFire=1,TargetState="ChainLightning",bModeInstantHit=True)
+     FireModes(0)=(mProjClass=Class'BallisticProV55.RSNovaFastProjectile',mFireRate=0.170000,mFireChaos=0.060000,mFireSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire2',mFireAnim="Fire2",mRecoil=150.000000,mAmmoPerFire=1,bModeLead=True,bModeSplash=True)
+     FireModes(1)=(mFireRate=0.100000,mFireSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=7.000000,mAmmoPerFire=1,TargetState="NovaLightning",bModeInstantHit=True)
+     FireModes(2)=(mFireRate=0.750000,mFireSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-LightningBolt',mFireAnim="Fire",mRecoil=256.000000,mAmmoPerFire=2,TargetState="Zap",bModeInstantHit=True)
+     FireModes(3)=(mFireRate=0.100000,mFireSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=256.000000,mAmmoPerFire=1,TargetState="ChainLightning",bModeInstantHit=True)
      MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
      FireRecoil=1024.000000
      FireChaos=0.250000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
-     BallisticFireSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire',Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireRate=1.350000

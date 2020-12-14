@@ -8,9 +8,9 @@
 class ICISPickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticWeapons2.utx
-#exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -20,32 +20,32 @@ class ICISPickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Stim.Stim-Main');
-	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
-	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Stim.Stim-Main');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Stim.Stim-Main');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Stim.Stim-Main');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.Stim.StimpackPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.Stim.StimpackPickup');
 }
 
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Stim.StimpackPickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.Stim.StimpackPickup'
      PickupDrawScale=0.270000
      InventoryType=Class'BWBPRecolorsPro.ICISStimpack'
      RespawnTime=10.000000
      PickupMessage="You picked up the FMD ICIS-25 Stimulant Autoinjector"
-     PickupSound=Sound'BallisticSounds2.Knife.KnifePutaway'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Stim.StimpackPickup'
+     PickupSound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway'
+     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.Stim.StimpackPickup'
      Physics=PHYS_None
      DrawScale=0.300000
      CollisionHeight=4.000000

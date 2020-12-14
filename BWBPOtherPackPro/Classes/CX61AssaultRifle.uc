@@ -251,9 +251,9 @@ defaultproperties
 	StoredGas=1.000000
 	ModeColors(0)=(B=210,G=210,R=75,A=255)
 	ModeColors(1)=(G=100,R=255,A=255)
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBPOtherPackTex.CX61.BigIcon_CX61'
+	BigIconMaterial=Texture'BWBP_SKC_TexExp.CX61.BigIcon_CX61'
 	BigIconCoords=(Y1=12,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -263,13 +263,13 @@ defaultproperties
 	ManualLines(1)="Flamethrower mode launches a stream of fire, dealing minor damage to enemies and causing disorientation.|Healing Gas mode sprays G28 gas, granting health to allies."
 	ManualLines(2)="It is recommended to check which mode of the CX is active before engaging the altfire. Burning allies or healing enemies is not conducive to survival.||The CX61 is effective at close to medium range."
 	SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	CockAnimPostReload="ReloadEndCock"
-	CockSound=(Sound=Sound'BallisticSounds3.SAR.SAR-Cock')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Cock')
 	ReloadAnimRate=1.100000
-	ClipOutSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipOut')
-	ClipInSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipIn')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipIn')
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
 	WeaponModes(0)=(ModeName="Healing Gas",ModeID="WM_FullAuto")
@@ -300,7 +300,7 @@ defaultproperties
 	PickupClass=Class'BWBPOtherPackPro.CX61Pickup'
 	PlayerViewOffset=(X=-3.000000,Y=7.000000,Z=-13.500000)
 	AttachmentClass=Class'BWBPOtherPackPro.CX61Attachment'
-	IconMaterial=Texture'BWBPOtherPackTex.CX61.Icon_CX61'
+	IconMaterial=Texture'BWBP_SKC_TexExp.CX61.Icon_CX61'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="CX61 Tactical Rifle"
 	LightType=LT_Pulse
@@ -309,6 +309,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BWBPOtherPackAnim.CX61_FP'
+	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_CX61'
 	DrawScale=0.300000
 }
