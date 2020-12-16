@@ -262,7 +262,7 @@ defaultproperties
 	PinBone="Pin"
 	PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.600000,bAtten=True)
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.BigIcon_X8'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.BigIcon_X8'
 	BigIconCoords=(Y1=25,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	ManualLines(0)="Slashes rapidly with the knife."
@@ -301,9 +301,9 @@ defaultproperties
 	PickupClass=Class'BWBPRecolorsPro.X8Pickup'
 	PlayerViewOffset=(X=20.000000,Z=-10.000000)
 	AttachmentClass=Class'BWBPRecolorsPro.X8Attachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.SmallIcon_X8'
+	IconMaterial=Texture'BWBP_SKC_Tex.SmallIcon_X8'
 	IconCoords=(X2=128,Y2=32)
 	ItemName="X8 Ballistic Knife"
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_X8Knife'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X8Knife'
 	DrawScale=0.300000
 }

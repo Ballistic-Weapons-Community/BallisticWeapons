@@ -64,7 +64,7 @@ defaultproperties
      HitEffects(9)=Class'BallisticProV55.IE_HAMRExplosionDirt'
      HitEffects(10)=Class'BWBPRecolorsPro.IE_RocketExplosionBig'
      HitDecals(0)=Class'BallisticProV55.AD_Explosion'
-     HitSounds(0)=SoundGroup'BWBP_SKC_SoundsExp.LAW.LAW-Boom'
+     HitSounds(0)=SoundGroup'BWBP_SKC_Sounds.LAW.LAW-Boom'
      HitSoundVolume=2.500000
      HitSoundRadius=2548.000000
      EffectBackOff=96.000000

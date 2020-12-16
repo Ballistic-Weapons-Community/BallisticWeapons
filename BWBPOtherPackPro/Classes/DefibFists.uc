@@ -432,7 +432,7 @@ defaultproperties
      PulseSound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireLoop'
      PulseDamageType=Class'BWBPOtherPackPro.DTShockGauntletPulse'
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.Defist.BigIcon_DefibFists'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.Defist.BigIcon_DefibFists'
      BigIconCoords=(X1=96,Y1=10,X2=418,Y2=245)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Heal=True
@@ -465,10 +465,10 @@ defaultproperties
      PickupClass=Class'BWBPOtherPackPro.DefibFistsPickup'
      PlayerViewOffset=(X=40.000000,Z=-10.000000)
      AttachmentClass=Class'BWBPOtherPackPro.DefibFistsAttachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.Defist.Icon_DefibFists'
+     IconMaterial=Texture'BWBP_SKC_Tex.Defist.Icon_DefibFists'
      IconCoords=(X2=127,Y2=31)
      ItemName="FMD H14 Combat Defibrillator"
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_FMD'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FMD'
      DrawScale=0.600000
      bFullVolume=True
      SoundVolume=64

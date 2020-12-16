@@ -9,7 +9,7 @@ defaultproperties
 {
      HitEffects(0)=Class'BWBPRecolorsPro.IE_PumaDet'
      HitDecals(0)=Class'BallisticProV55.AD_HVCRedDecal'
-     HitSounds(0)=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-Explode'
+     HitSounds(0)=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Explode'
      HitSoundVolume=1.500000
      HitSoundRadius=512.000000
 }

@@ -462,10 +462,10 @@ simulated event DrawThermalMode (Canvas C)
 	// Draw Spinning Sweeper thing
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
 	C.SetDrawColor(255,255,255,255);
-	C.DrawTile(FinalBlend'BWBP_SKC_TexExp.FSG50.FSGIRFinal', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
+	C.DrawTile(FinalBlend'BWBP_SKC_Tex.FSG50.FSGIRFinal', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
 	// Draw some panning lines 
 	C.SetPos(C.OrgX, C.OrgY);
-	C.DrawTile(FinalBlend'BWBP_SKC_TexExp.SKAR.SKAR-StaticFinal', C.SizeX, C.SizeY, 0, 0, 512, 512); 
+	C.DrawTile(FinalBlend'BWBP_SKC_Tex.SKAR.SKAR-StaticFinal', C.SizeX, C.SizeY, 0, 0, 512, 512); 
 
 	if (ColorMod == None)
 		return;
@@ -661,18 +661,18 @@ defaultproperties
 	WallVisionSkin=FinalBlend'BW_Core_WeaponTex.M75.OrangeFinal'
 	Flaretex=FinalBlend'BW_Core_WeaponTex.M75.OrangeFlareFinal'
 	ThermalRange=4500.000000
-	ScopeViewTexThermal=Texture'BWBP_SKC_TexExp.FSG50.FSG-ScopeViewThermal'
-	WeaponScreen=ScriptedTexture'BWBP_SKC_TexExp.FSG50.FSG50-ScriptLCD'
-	screen=Shader'BWBP_SKC_TexExp.FSG50.FSG50-ScriptLCD-SD'
-	ScreenBase1=Texture'BWBP_SKC_TexExp.FG50.FG50-Screen'
-	ScreenBase2=Texture'BWBP_SKC_TexExp.FG50.FG50-Screen2'
-	ScreenBase3=Texture'BWBP_SKC_TexExp.FG50.FG50-Screen3'
-	ScreenBase4=Texture'BWBP_SKC_TexExp.FG50.FG50-Screen4'
-	Numbers=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Numbers'
+	ScopeViewTexThermal=Texture'BWBP_SKC_Tex.FSG50.FSG-ScopeViewThermal'
+	WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.FSG50.FSG50-ScriptLCD'
+	screen=Shader'BWBP_SKC_Tex.FSG50.FSG50-ScriptLCD-SD'
+	ScreenBase1=Texture'BWBP_SKC_Tex.FG50.FG50-Screen'
+	ScreenBase2=Texture'BWBP_SKC_Tex.FG50.FG50-Screen2'
+	ScreenBase3=Texture'BWBP_SKC_Tex.FG50.FG50-Screen3'
+	ScreenBase4=Texture'BWBP_SKC_Tex.FG50.FG50-Screen4'
+	Numbers=Texture'BWBP_SKC_Tex.PUMA.PUMA-Numbers'
 	MyFontColor=(B=255,G=255,R=255,A=255)
 
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.FSG50.BigIcon_FSG50'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.FSG50.BigIcon_FSG50'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic .50 cal fire. Extremely unpredictable recoil, but good damage per shot and excellent theoretical sustained damage output."
@@ -684,17 +684,17 @@ defaultproperties
 	MagAmmo=8
 	CockAnimPostReload="Cock"
 	CockAnimRate=1.350000
-	CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
 	ReloadAnimRate=1.250000
-	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.AS50.FG50-MagOut',Volume=1.500000,Radius=32.000000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.AS50.FG50-MagIn',Volume=1.500000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-MagOut',Volume=1.500000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-MagIn',Volume=1.500000,Radius=32.000000)
 	ClipInFrame=0.850000
 	bCockOnEmpty=True
 	bAltTriggerReload=True
 	WeaponModes(1)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	ZoomType=ZT_Logarithmic
-	ScopeViewTex=Texture'BWBP_SKC_TexExp.FSG50.FSG-ScopeView'
+	ScopeViewTex=Texture'BWBP_SKC_Tex.FSG50.FSG-ScopeView'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=15.000000
@@ -724,7 +724,7 @@ defaultproperties
 	PlayerViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBPRecolorsPro.AS50Attachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.FSG50.SmallIcon_FSG50'
+	IconMaterial=Texture'BWBP_SKC_Tex.FSG50.SmallIcon_FSG50'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="FSSG-50 Marksman Rifle"
 	LightType=LT_Pulse
@@ -733,12 +733,12 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_FSSG-50'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FSSG-50'
 	DrawScale=0.500000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Texture'BWBP_SKC_TexExp.FSG50.FSG-Main'
-	Skins(2)=Texture'BWBP_SKC_TexExp.FSG50.FSG-Misc'
-	Skins(3)=Texture'BWBP_SKC_TexExp.FSG50.FSG-Stock'
-	Skins(4)=Texture'BWBP_SKC_TexExp.FSG50.FSG-Scope'
-	Skins(5)=Texture'BWBP_SKC_TexExp.FG50.FG50-Screen'
+	Skins(1)=Texture'BWBP_SKC_Tex.FSG50.FSG-Main'
+	Skins(2)=Texture'BWBP_SKC_Tex.FSG50.FSG-Misc'
+	Skins(3)=Texture'BWBP_SKC_Tex.FSG50.FSG-Stock'
+	Skins(4)=Texture'BWBP_SKC_Tex.FSG50.FSG-Scope'
+	Skins(5)=Texture'BWBP_SKC_Tex.FG50.FG50-Screen'
 }

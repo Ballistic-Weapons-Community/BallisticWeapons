@@ -52,7 +52,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ShotBoxPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.M763ShellBox'
      DrawScale=0.300000
-     Skins(0)=Texture'BWBP_SKC_TexExp.M1014.M1014ShellBox'
+     Skins(0)=Texture'BWBP_SKC_Tex.M1014.M1014ShellBox'
      CollisionRadius=8.000000
      CollisionHeight=4.500000
 }

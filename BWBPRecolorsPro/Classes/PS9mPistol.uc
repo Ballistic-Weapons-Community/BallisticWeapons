@@ -284,24 +284,24 @@ defaultproperties
 	GrenadeLoadAnim="DartOn"
 	GrenSlideSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
-	PartialReloadSound=Sound'BWBP_SKC_SoundsExp.Stealth.Stealth-MagInS2'
+	PartialReloadSound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-MagInS2'
 	HealAnim="Heal"
-	HealSound=Sound'BWBP_SKC_SoundsExp.Stealth.Stealth-Heal'
+	HealSound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Heal'
 	bShouldDualInLoadout=False
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.Stealth.BigIcon_PS9M'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.Stealth.BigIcon_PS9M'
 	BigIconCoords=(X1=96,Y1=16,X2=418,Y2=255)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	bWT_Heal=True
 	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;2.0;0.1;0.1")
-	BringUpSound=(Sound=Sound'BWBP_SKC_SoundsExp.Stealth.Stealth-Pickup')
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Pickup')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock',Radius=32.000000)
-	ClipHitSound=(Sound=Sound'BWBP_SKC_SoundsExp.Stealth.Stealth-MagInS1',Volume=1.800000,Radius=32.000000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.Stealth.Stealth-MagOut',Volume=1.800000,Radius=32.000000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.Stealth.Stealth-MagIn',Volume=1.800000,Radius=32.000000)
+	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-MagInS1',Volume=1.800000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-MagOut',Volume=1.800000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-MagIn',Volume=1.800000,Radius=32.000000)
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Semi-Automatic")
 	WeaponModes(1)=(bUnavailable=True)
@@ -325,7 +325,7 @@ defaultproperties
 	PlayerViewOffset=(X=3.000000,Y=-5.000000,Z=-8.500000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBPRecolorsPro.PS9mAttachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.Stealth.SmallIcon_PS9M'
+	IconMaterial=Texture'BWBP_SKC_Tex.Stealth.SmallIcon_PS9M'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="PS-9m Stealth Pistol"
 	LightType=LT_Pulse
@@ -334,8 +334,8 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_PS9M'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PS9M'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Texture'BWBP_SKC_TexExp.Stealth.Stealth-Main'
+	Skins(1)=Texture'BWBP_SKC_Tex.Stealth.Stealth-Main'
 }

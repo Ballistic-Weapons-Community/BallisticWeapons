@@ -107,7 +107,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
     for( i=0; i<Count; i++ )
     {
 		C.SetPos(C.ClipX - (0.5*i+1) * ScaleFactor2, C.ClipY - 100 * ScaleFactor * class'HUD'.default.HudScale);
-		C.DrawTile( Texture'BWBP_SKC_TexExp.M1014.M1014-SGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
+		C.DrawTile( Texture'BWBP_SKC_Tex.M1014.M1014-SGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
 	}
 
 	if (bSkipDrawWeaponInfo)
@@ -632,7 +632,7 @@ defaultproperties
 	Shells(4)=(ShellName="HShell5")
 	Shells(5)=(ShellName="HShell6")
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.M1014.BigIcon_M1014'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.M1014.BigIcon_M1014'
 	BigIconCoords=(Y1=25,Y2=210)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Shotgun=True
@@ -645,7 +645,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
 	ReloadAnim="ReloadLoop"
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.Mk781.Mk781-ShellPlus',Volume=2.300000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-ShellPlus',Volume=2.300000,Radius=32.000000)
 	ClipInFrame=0.325000
 	bCanSkipReload=True
 	bShovelLoad=True
@@ -677,7 +677,7 @@ defaultproperties
 	PlayerViewOffset=(X=-6.000000,Y=10.000000,Z=-10.000000)
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBPRecolorsPro.MK781Attachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.M1014.SmallIcon_M1014'
+	IconMaterial=Texture'BWBP_SKC_Tex.M1014.SmallIcon_M1014'
 	IconCoords=(X2=127,Y2=35)
 	ItemName="MK781 Combat Shotgun"
 	LightType=LT_Pulse
@@ -686,9 +686,9 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MK781'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MK781'
 	DrawScale=0.130000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Shader'BWBP_SKC_TexExp.M1014.M1014-Shine'
-	Skins(2)=Shader'BWBP_SKC_TexExp.M1014.M1014-MiscShine'
+	Skins(1)=Shader'BWBP_SKC_Tex.M1014.M1014-Shine'
+	Skins(2)=Shader'BWBP_SKC_Tex.M1014.M1014-MiscShine'
 }

@@ -206,8 +206,8 @@ defaultproperties
     DrawScale=0.800000
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Shader'BWBP_SKC_Tex.Eagle.Eagle-GoldShine'
-    Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc'
+    Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack'
     Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeGold'
-    Skins(4)=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontSilver'
+    Skins(4)=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontBlack'
     Skins(5)=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen'
 }

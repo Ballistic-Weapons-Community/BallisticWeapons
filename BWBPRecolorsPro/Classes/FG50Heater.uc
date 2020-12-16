@@ -25,7 +25,7 @@ simulated function SetHeat(float NewHeat)
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BWBP_SKC_StaticExp.FG50.FG50Barrel'
+         StaticMesh=StaticMesh'BWBP_SKC_Static.FG50.FG50Barrel'
          UseMeshBlendMode=False
          UseParticleColor=True
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))

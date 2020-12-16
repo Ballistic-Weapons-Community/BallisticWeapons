@@ -179,7 +179,7 @@ defaultproperties
      Damage=210.000000
      DamageRadius=1536.000000
      MyDamageType=Class'BWBPRecolorsPro.DTLAWMineDet'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.LAW.LAWRocket'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWRocket'
      bNetTemporary=False
      Physics=PHYS_None
      LifeSpan=0.000000

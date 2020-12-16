@@ -11,7 +11,7 @@ var() float AdrenalineAmount;
 #exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 #exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 #exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
-#exec OBJ LOAD FILE=BWBP_SKC_TexExp.utx
+#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
 
 //===========================================================================
 // StaticPrecache
@@ -21,15 +21,15 @@ var() float AdrenalineAmount;
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Defist.LCestus');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Defist.RCestus');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Defist.Graph');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Defist.LCestus');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Defist.RCestus');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Defist.Graph');
 }
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Defist.LCestus');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Defist.RCestus');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Defist.Graph');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Defist.LCestus');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Defist.RCestus');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Defist.Graph');
 }
 
 simulated static function UpdateHUD(HUD H)

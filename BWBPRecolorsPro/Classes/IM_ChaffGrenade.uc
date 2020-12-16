@@ -41,7 +41,7 @@ defaultproperties
      MinFluidDepth=128.000000
      HitEffects(0)=Class'BWBPRecolorsPro.IE_ChaffExplosion'
      HitDecals(0)=Class'BallisticProV55.AD_Explosion'
-     HitSounds(0)=Sound'BWBP_SKC_SoundsExp.Chaff.Chaff-Explode'
+     HitSounds(0)=Sound'BWBP_SKC_Sounds.Chaff.Chaff-Explode'
      HitSoundVolume=1.000000
      HitSoundRadius=1024.000000
      EffectBackOff=64.000000

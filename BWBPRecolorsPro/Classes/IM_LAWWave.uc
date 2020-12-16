@@ -53,7 +53,7 @@ defaultproperties
      SurfaceRange=684.000000
      MinFluidDepth=128.000000
      HitEffects(0)=Class'BWBPRecolorsPro.IE_Shockwave'
-     HitSounds(0)=Sound'BWBP_SKC_SoundsExp.LAW.LAW-Pulse'
+     HitSounds(0)=Sound'BWBP_SKC_Sounds.LAW.LAW-Pulse'
      HitSoundVolume=3.500000
      HitSoundRadius=1600.000000
      EffectBackOff=96.000000

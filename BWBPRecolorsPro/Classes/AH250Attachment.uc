@@ -56,9 +56,9 @@ defaultproperties
      Mesh=SkeletalMesh'BWBP_SKC_Anim.AHDeagle_TPm'
      RelativeLocation=(Z=6.000000)
      DrawScale=0.220000
-     Skins(0)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MainSilverEngraved'
-	 Skins(1)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MainSilverEngraved'
-     Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc'
-     Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed'
-     Skins(4)=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontSilver'
+     Skins(0)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MainBlack'
+	 Skins(1)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MainBlack'
+     Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack'
+     Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope'
+     Skins(4)=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontBlack'
 }

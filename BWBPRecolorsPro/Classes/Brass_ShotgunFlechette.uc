@@ -47,5 +47,5 @@ defaultproperties
      HitSounds(10)=SoundGroup'BW_Core_WeaponSound.Brass.ShellConcrete'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell'
      DrawScale=0.110000
-     Skins(0)=Texture'BWBP_SKC_TexExp.M1014.Cart_ShotgunF'
+     Skins(0)=Texture'BWBP_SKC_Tex.M1014.Cart_ShotgunF'
 }

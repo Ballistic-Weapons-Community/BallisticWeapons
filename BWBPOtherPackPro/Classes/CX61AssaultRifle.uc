@@ -253,7 +253,7 @@ defaultproperties
 	ModeColors(1)=(G=100,R=255,A=255)
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.CX61.BigIcon_CX61'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.CX61.BigIcon_CX61'
 	BigIconCoords=(Y1=12,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -300,7 +300,7 @@ defaultproperties
 	PickupClass=Class'BWBPOtherPackPro.CX61Pickup'
 	PlayerViewOffset=(X=-3.000000,Y=7.000000,Z=-13.500000)
 	AttachmentClass=Class'BWBPOtherPackPro.CX61Attachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.CX61.Icon_CX61'
+	IconMaterial=Texture'BWBP_SKC_Tex.CX61.Icon_CX61'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="CX61 Tactical Rifle"
 	LightType=LT_Pulse
@@ -309,6 +309,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_CX61'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CX61'
 	DrawScale=0.300000
 }

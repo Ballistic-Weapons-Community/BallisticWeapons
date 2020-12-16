@@ -76,7 +76,7 @@ defaultproperties
      SurfaceRange=684.000000
      MinFluidDepth=128.000000
      HitEffects(0)=Class'BWBPRecolorsPro.IE_F2000Shockwave'
-     HitSounds(0)=Sound'BWBP_SKC_SoundsExp.MARS.F2000-Pulse'
+     HitSounds(0)=Sound'BWBP_SKC_Sounds.MARS.F2000-Pulse'
      HitSoundVolume=3.000000
      HitSoundRadius=900.000000
      EffectBackOff=96.000000

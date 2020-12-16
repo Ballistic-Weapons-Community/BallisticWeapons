@@ -52,7 +52,7 @@ defaultproperties
      MomentumTransfer=10000.000000
      MyDamageType=Class'BWBPRecolorsPro.DT_FLASHRadius'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
-     AmbientSound=Sound'BWBP_SKC_SoundsExp.Flash.M202-Flyby'
+     AmbientSound=Sound'BWBP_SKC_Sounds.Flash.M202-Flyby'
      DrawScale=1.000000
      AmbientGlow=32
      SoundVolume=255

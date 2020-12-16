@@ -189,9 +189,9 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     HealSound=Sound'BWBP_SKC_SoundsExp.Stealth.Stealth-Heal'
+     HealSound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Heal'
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.Stim.BigIcon_Stim'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.Stim.BigIcon_Stim'
      BigIconCoords=(Y1=24,Y2=230)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      ManualLines(0)="Injects self with the stimpack, granting 80 health over 10 seconds."
@@ -231,13 +231,13 @@ defaultproperties
      PickupClass=Class'BWBPRecolorsPro.ICISPickup'
      PlayerViewOffset=(X=20.000000,Z=-10.000000)
      AttachmentClass=Class'BWBPRecolorsPro.ICISAttachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.Stim.SmallIcon_Stim'
+     IconMaterial=Texture'BWBP_SKC_Tex.Stim.SmallIcon_Stim'
      IconCoords=(X2=128,Y2=32)
      ItemName="FMD ICIS-25 Stimpack"
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_Stimpack'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Stimpack'
      DrawScale=0.300000
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	 Skins(1)=Texture'BWBP_SKC_TexExp.Stim.Stim-Main'
+	 Skins(1)=Texture'BWBP_SKC_Tex.Stim.Stim-Main'
 	 Skins(2)=Texture'ONSstructureTextures.CoreGroup.Invisible'
 	 Skins(3)=Shader'XEffectMat.goop.GoopShader'
 }

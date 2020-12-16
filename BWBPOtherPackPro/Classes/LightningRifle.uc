@@ -74,7 +74,7 @@ defaultproperties
     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Pickup')
     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
     ReloadAnimRate=0.9
-    ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.LAW.Law-TubeLock')
+    ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.Law-TubeLock')
     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Up')
     ClipInFrame=0.650000
     bNonCocking=True

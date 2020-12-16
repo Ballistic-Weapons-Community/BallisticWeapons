@@ -77,7 +77,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 
 defaultproperties
 {
-     FlySound=Sound'BWBP_SKC_SoundsExp.Flash.M202-Flyby'
+     FlySound=Sound'BWBP_SKC_Sounds.Flash.M202-Flyby'
      RollRange=100000
      ShockRadius=2600
      ScrewRadius=14.000000
@@ -114,7 +114,7 @@ defaultproperties
      LightSaturation=100
      LightBrightness=200.000000
      LightRadius=15.000000
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.LAW.LAWRocket'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWRocket'
      bDynamicLight=True
      AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
      DrawScale=0.500000

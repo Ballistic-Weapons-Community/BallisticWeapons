@@ -19,7 +19,7 @@ defaultproperties
      FireRecoil=1024.000000
      XInaccuracy=400.000000
      YInaccuracy=400.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.Flash.M202-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Flash.M202-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bSplashDamage=True
      bRecommendSplashDamage=True
      FireEndAnim=

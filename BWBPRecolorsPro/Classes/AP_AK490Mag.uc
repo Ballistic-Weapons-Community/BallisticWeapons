@@ -49,7 +49,7 @@ defaultproperties
      InventoryType=Class'BWBPRecolorsPro.Ammo_AK762mm'
      PickupMessage="You picked up two AK-490 magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.AK490.AK490AmmoPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.AK490.AK490AmmoPickup'
      DrawScale=0.600000
      PrePivot=(Z=5.000000)
      CollisionRadius=8.000000

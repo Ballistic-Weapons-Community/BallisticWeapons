@@ -13,5 +13,5 @@ defaultproperties
      StartVelocity=(Z=150.000000)
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound'
      DrawScale=0.090000
-     Skins(0)=Texture'BWBP_SKC_TexExp.VSK.Cart_Tranq'
+     Skins(0)=Texture'BWBP_SKC_Tex.VSK.Cart_Tranq'
 }

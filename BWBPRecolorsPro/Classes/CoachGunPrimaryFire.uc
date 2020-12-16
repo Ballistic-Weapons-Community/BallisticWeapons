@@ -474,7 +474,7 @@ function SwitchShotParams()
 
 defaultproperties
 {
-	SlugFireSound=Sound'BWBP_SKC_SoundsExp.Redwood.SuperMagnum-Fire'
+	SlugFireSound=Sound'BWBP_SKC_Sounds.Redwood.SuperMagnum-Fire'
 
 	AimedFireEmptyAnim="Fire"
 	FireEmptyAnim="Fire"

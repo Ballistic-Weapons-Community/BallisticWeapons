@@ -197,11 +197,11 @@ simulated function Notify_BrassOut()
 
 defaultproperties
 {
-	MatDef=Texture'BWBP_SKC_TexExp.MGL.MGL-ScreenBase'
-	MatArmed=Texture'BWBP_SKC_TexExp.MGL.MGL-Screen'
+	MatDef=Texture'BWBP_SKC_Tex.MGL.MGL-ScreenBase'
+	MatArmed=Texture'BWBP_SKC_Tex.MGL.MGL-Screen'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.MGL.BigIcon_MGL'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.MGL.BigIcon_MGL'
 	IdleTweenTime=0.000000
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
@@ -244,7 +244,7 @@ defaultproperties
 	PickupClass=Class'BWBPRecolorsPro.MGLPickup'
 	PlayerViewOffset=(X=5.000000,Y=-1.000000,Z=-7.000000)
 	AttachmentClass=Class'BWBPRecolorsPro.MGLAttachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.MGL.SmallIcon_MGL'
+	IconMaterial=Texture'BWBP_SKC_Tex.MGL.SmallIcon_MGL'
 	IconCoords=(X2=127,Y2=35)
 	ItemName="Conqueror MGL"
 	LightType=LT_Pulse
@@ -253,10 +253,10 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MGL'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MGL'
 	DrawScale=0.130000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Texture'BWBP_SKC_TexExp.MGL.MGL-Main'
-	Skins(2)=Texture'BWBP_SKC_TexExp.MGL.MGL-ScreenBase'
-	Skins(3)=Shader'BWBP_SKC_TexExp.MGL.MGL-HolosightGlow'
+	Skins(1)=Texture'BWBP_SKC_Tex.MGL.MGL-Main'
+	Skins(2)=Texture'BWBP_SKC_Tex.MGL.MGL-ScreenBase'
+	Skins(3)=Shader'BWBP_SKC_Tex.MGL.MGL-HolosightGlowBasic'
 }

@@ -33,7 +33,7 @@ defaultproperties
      MinFluidDepth=128.000000
      HitEffects(0)=Class'BallisticProV55.IE_GrenadeExplosion'
      HitDecals(0)=Class'BallisticProV55.AD_Explosion'
-     HitSounds(0)=SoundGroup'BWBP_SKC_SoundsExp.MGL.MGL-Explode'
+     HitSounds(0)=SoundGroup'BWBP_SKC_Sounds.MGL.MGL-Explode'
      HitSoundVolume=2.000000
      HitSoundRadius=512.000000
      EffectBackOff=64.000000

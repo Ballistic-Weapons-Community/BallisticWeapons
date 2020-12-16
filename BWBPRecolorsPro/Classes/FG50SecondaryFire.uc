@@ -233,7 +233,7 @@ defaultproperties
      BrassOffset=(X=-80.000000,Y=1.000000)
      FireRecoil=512.000000
      FirePushbackForce=125.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireAnim="CFire"
      FireEndAnim=

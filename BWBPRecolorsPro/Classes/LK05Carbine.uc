@@ -560,18 +560,18 @@ defaultproperties
 	ScopeBone="EOTech"
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.LK05.BigIcon_LK05'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.LK05.BigIcon_LK05'
 	BigIconCoords=(Y1=36,Y2=225)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
     bNetNotify=True
     bCockOnEmpty=False
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
-	BringUpSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51-PullOut',Volume=2.200000)
-	PutDownSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51-Putaway',Volume=2.200000)
-	CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.LK05.LK05-Cock',Volume=2.200000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.LK05.LK05-MagOut',Volume=2.400000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.LK05.LK05-MagIn',Volume=2.400000)
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=2.200000)
+	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=2.200000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-Cock',Volume=2.200000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-MagOut',Volume=2.400000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-MagIn',Volume=2.400000)
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(Value=4.000000)
@@ -598,7 +598,7 @@ defaultproperties
 	PlayerViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBPRecolorsPro.LK05Attachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.LK05.SmallIcon_LK05'
+	IconMaterial=Texture'BWBP_SKC_Tex.LK05.SmallIcon_LK05'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="LK-05 Advanced Carbine"
 	LightType=LT_Pulse
@@ -607,6 +607,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_LK05'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LK05'
 	DrawScale=0.300000
 }

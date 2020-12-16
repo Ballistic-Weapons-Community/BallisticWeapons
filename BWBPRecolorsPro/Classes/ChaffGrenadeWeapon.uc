@@ -243,7 +243,7 @@ defaultproperties
      PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
 	 GrenadeBone="MOAC"
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.M4A1.BigIcon_MOAC'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.M4A1.BigIcon_MOAC'
      BigIconCoords=(Y1=16,Y2=240)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Hazardous=True
@@ -274,9 +274,9 @@ defaultproperties
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      BobDamping=1.000000
      AttachmentClass=Class'BWBPRecolorsPro.ChaffAttachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.M4A1.SmallIcon_MOAC'
+     IconMaterial=Texture'BWBP_SKC_Tex.M4A1.SmallIcon_MOAC'
      IconCoords=(X2=127,Y2=31)
      ItemName="MOA-C Chaff Grenade"
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MOAC'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MOAC'
      DrawScale=0.400000
 }

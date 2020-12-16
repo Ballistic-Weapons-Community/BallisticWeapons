@@ -35,7 +35,7 @@ defaultproperties
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
      MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
      FireRecoil=3072.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.LAW.LAW-FireLoud',Volume=4.200000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-FireLoud',Volume=4.200000,Slot=SLOT_Interact,bNoOverride=False)
      bSplashDamage=True
      bRecommendSplashDamage=True
      FireEndAnim=

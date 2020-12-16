@@ -452,7 +452,7 @@ defaultproperties
 	ScopeBone="EOTech"
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.MARS.BigIcon_F2000Ice'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.MARS.BigIcon_F2000Ice'
 	BigIconCoords=(X1=32,Y1=40,X2=475)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -464,11 +464,11 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	CockAnimPostReload="ReloadEndCock"
 	CockAnimRate=1.10000
-	CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
 	ReloadAnimRate=1.10000
-	ClipHitSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-MagFiddle',Volume=1.200000,Radius=32.000000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-MagOut',Volume=1.200000,Radius=32.000000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-MagIn',Volume=1.200000,Radius=32.000000)
+	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagFiddle',Volume=1.200000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagOut',Volume=1.200000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagIn',Volume=1.200000,Radius=32.000000)
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Burst",Value=4.000000)
@@ -492,7 +492,7 @@ defaultproperties
 	PlayerViewOffset=(X=0.500000,Y=12.000000,Z=-18.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBPRecolorsPro.F2000Attachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.MARS.SmallIcon_F2000Ice'
+	IconMaterial=Texture'BWBP_SKC_Tex.MARS.SmallIcon_F2000Ice'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="MARS-3 'Snowstorm' XII"
 	LightType=LT_Pulse
@@ -501,7 +501,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MARS3'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

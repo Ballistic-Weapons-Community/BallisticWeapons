@@ -15,34 +15,34 @@ class MGLPickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MGL.MGL-Main');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MGL.MGL-Holosight');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MGL.MGL-Screen');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MGL.MGL-ScreenBase');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MGL.MGL-Main');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MGL.MGL-HolosightBasic');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MGL.MGL-Screen');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MGL.MGL-ScreenBase');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MGL.MGL-Main');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MGL.MGL-Holosight');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MGL.MGL-Screen');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.MGL.MGL-ScreenBase');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MGL.MGL-Main');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MGL.MGL-HolosightBasic');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MGL.MGL-Screen');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MGL.MGL-ScreenBase');
 }
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.MGL.MGLPickupHigh');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.MGL.MGLPickupLow');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.MGL.MGLPickupHigh');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.MGL.MGLPickupLow');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.MGL.MGLPickupLow'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MGL.MGLPickupLow'
      InventoryType=Class'BWBPRecolorsPro.MGLauncher'
      RespawnTime=120.000000
      PickupMessage="You picked up the Conqueror multiple grenade launcher."
      PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.MGL.MGLPickupHigh'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.MGL.MGLPickupHigh'
      Physics=PHYS_None
      DrawScale=0.900000
      CollisionHeight=3.000000

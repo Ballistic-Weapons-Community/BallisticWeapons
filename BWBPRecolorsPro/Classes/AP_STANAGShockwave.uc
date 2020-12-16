@@ -31,7 +31,7 @@ defaultproperties
      InventoryType=Class'BWBPRecolorsPro.Ammo_545mmSTANAG'
      PickupMessage="You picked up two MARS magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.MJ51.M4MagazinePickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARSAmmo'
      DrawScale=0.550000
      PrePivot=(Z=5.000000)
      CollisionRadius=8.000000

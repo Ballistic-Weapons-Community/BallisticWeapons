@@ -120,7 +120,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.125,Max=0.125))
          StartLocationRange=(X=(Min=10.000000,Max=10.000000))
          StartSizeRange=(X=(Min=40.000000,Max=40.000000),Y=(Min=40.000000,Max=40.000000),Z=(Min=40.000000,Max=40.000000))
-         Texture=Texture'BWBP_SKC_TexExp.M2020.M2020-FlareX1'
+         Texture=Texture'BWBP_SKC_Tex.M2020.M2020-FlareX1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)

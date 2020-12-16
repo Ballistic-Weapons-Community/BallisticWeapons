@@ -163,13 +163,13 @@ defaultproperties
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=0.700000
      CockAnimRate=0.700000
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FSSG-50_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FSSG-50_TPm'
      RelativeLocation=(X=-17.000000,Z=2.000000)
      RelativeRotation=(Pitch=32768)
      PrePivot=(Y=-5.000000,Z=-1.000000)
-     Skins(0)=Texture'BWBP_SKC_TexExp.FSG50.FSG-Main'
-     Skins(1)=Texture'BWBP_SKC_TexExp.FSG50.FSG-Scope'
+     Skins(0)=Texture'BWBP_SKC_Tex.FSG50.FSG-Main'
+     Skins(1)=Texture'BWBP_SKC_Tex.FSG50.FSG-Scope'
      Skins(2)=Texture'BW_Core_WeaponTex.A73.A73Energy'
-     Skins(3)=Texture'BWBP_SKC_TexExp.FSG50.FSG-Misc'
-     Skins(4)=Texture'BWBP_SKC_TexExp.FSG50.FSG-Stock'
+     Skins(3)=Texture'BWBP_SKC_Tex.FSG50.FSG-Misc'
+     Skins(4)=Texture'BWBP_SKC_Tex.FSG50.FSG-Stock'
 }

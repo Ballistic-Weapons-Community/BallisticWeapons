@@ -4,8 +4,8 @@
 class AH250Pickup extends BallisticHandgunPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BWBP_SKC_TexExp.utx
-#exec OBJ LOAD FILE=BWBP_SKC_StaticExp.usx
+#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
+#exec OBJ LOAD FILE=BWBP_SKC_Static.usx
 
 //===========================================================================
 // StaticPrecache
@@ -15,10 +15,10 @@ class AH250Pickup extends BallisticHandgunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-MainSilverEngraved');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontSilver');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-MainBlack');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontBlack');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope');
 	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-SightReticleGreen');
 	
 	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M925.M925MuzzleFlash');
@@ -26,10 +26,10 @@ static function StaticPrecache(LevelInfo L)
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-MainSilverEngraved');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontSilver');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeRed');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-mAINbLACK');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontBlack');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope');
 	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-SightReticleGreen');
 }
 simulated function UpdatePrecacheStaticMeshes()

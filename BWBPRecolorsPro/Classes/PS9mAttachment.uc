@@ -200,7 +200,7 @@ defaultproperties
      CockingAnim="Cock_RearPull"
      CockAnimRate=0.750000
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.PS9M_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.PS9M_TPm'
      DrawScale=0.250000
-     Skins(0)=Texture'BWBP_SKC_TexExp.Stealth.Stealth-Main'
+     Skins(0)=Texture'BWBP_SKC_Tex.Stealth.Stealth-Main'
 }

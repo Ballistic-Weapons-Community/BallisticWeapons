@@ -416,9 +416,9 @@ defaultproperties
 	PierceThreshold=50
 	ShieldBone="tip"
 	ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
-	ShieldOnSound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-ShieldOn'
-	ShieldOffSound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-ShieldOff'
-	ShieldPierceSound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-ShieldPierce'
+	ShieldOnSound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-ShieldOn'
+	ShieldOffSound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-ShieldOff'
+	ShieldPierceSound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-ShieldPierce'
 	ShieldHitForce="ShieldReflection"
 	DamageSound=Sound'BWBP_SKC_Sounds.NEX.NEX-Overload'
 	BrokenSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'

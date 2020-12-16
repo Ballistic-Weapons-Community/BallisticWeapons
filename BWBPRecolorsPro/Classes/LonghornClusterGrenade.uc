@@ -346,7 +346,7 @@ defaultproperties
      LightSaturation=192
      LightBrightness=64.000000
      LightRadius=12.000000
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.Longhorn.GrenadeProj'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.Longhorn.GrenadeProj'
      bDynamicLight=True
      bNetTemporary=False
      AmbientSound=Sound'GeneralAmbience.texture12'

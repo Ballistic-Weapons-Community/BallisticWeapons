@@ -199,7 +199,7 @@ defaultproperties
      FireRecoil=1024.000000
      FirePushbackForce=300.000000
      FireChaos=1.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.Longhorn.Longhorn-Fire',Volume=1.500000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-Fire',Volume=1.500000)
      bFireOnRelease=True
      FireRate=0.400000
 	 FireAnimRate=1.5

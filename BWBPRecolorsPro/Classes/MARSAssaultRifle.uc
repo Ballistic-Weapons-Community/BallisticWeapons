@@ -282,23 +282,23 @@ simulated event RenderOverlays (Canvas C)
 	if (bThermal)
 	{
 
-    		C.DrawTile(Texture'BWBP_SKC_TexExp.MARS.MARS-ScopeRed', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+    		C.DrawTile(Texture'BWBP_SKC_Tex.MARS.MARS-ScopeRed', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
 
         	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(Texture'BWBP_SKC_TexExp.MARS.MARS-ScopeRed', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
+        	C.DrawTile(Texture'BWBP_SKC_Tex.MARS.MARS-ScopeRed', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
 
         	C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(Texture'BWBP_SKC_TexExp.MARS.MARS-ScopeRed', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+        	C.DrawTile(Texture'BWBP_SKC_Tex.MARS.MARS-ScopeRed', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
 	}
 	else if (bMeatVision)
 	{
-    		C.DrawTile(Texture'BWBP_SKC_TexExp.MARS.MARS-ScopeTarget', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+    		C.DrawTile(Texture'BWBP_SKC_Tex.MARS.MARS-ScopeTarget', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
 
         	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(Texture'BWBP_SKC_TexExp.MARS.MARS-ScopeTarget', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
+        	C.DrawTile(Texture'BWBP_SKC_Tex.MARS.MARS-ScopeTarget', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
 
         	C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(Texture'BWBP_SKC_TexExp.MARS.MARS-ScopeTarget', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
+        	C.DrawTile(Texture'BWBP_SKC_Tex.MARS.MARS-ScopeTarget', (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1);
 	}
 	else
 	{
@@ -376,7 +376,7 @@ simulated event DrawMeatVisionMode (Canvas C)
 	C.Style = ERenderStyle.STY_Modulated;
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
 	C.SetDrawColor(255,255,255,255);
-	C.DrawTile(FinalBlend'BWBP_SKC_TexExp.MARS.F2000TargetFinal', (C.SizeY*1.3333333) * 0.75, C.SizeY, 0, 0, 1024, 1024);
+	C.DrawTile(FinalBlend'BWBP_SKC_Tex.MARS.F2000TargetFinal', (C.SizeY*1.3333333) * 0.75, C.SizeY, 0, 0, 1024, 1024);
 
 	// Draw some panning lines
 	C.SetPos(C.OrgX, C.OrgY);
@@ -412,7 +412,7 @@ simulated event DrawThermalMode (Canvas C)
 	// Draw Spinning Sweeper thing
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
 	C.SetDrawColor(255,255,255,255);
-	C.DrawTile(FinalBlend'BWBP_SKC_TexExp.MARS.F2000IRNVFinal', (C.SizeY*ImageScaleRatio) * 0.75, C.SizeY, 0, 0, 1024, 1024);
+	C.DrawTile(FinalBlend'BWBP_SKC_Tex.MARS.F2000IRNVFinal', (C.SizeY*ImageScaleRatio) * 0.75, C.SizeY, 0, 0, 1024, 1024);
 }
 
 simulated function AdjustThermalView(bool bNewValue)
@@ -694,7 +694,7 @@ defaultproperties
 	ThermalRange=2500.000000
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.MARS.BigIcon_F2000'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.MARS.BigIcon_F2000'
 	BigIconCoords=(Y1=30,Y2=235)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -713,14 +713,14 @@ defaultproperties
 	
 	CockAnimPostReload="ReloadEndCock"
 	CockAnimRate=1.10000
-	CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
 	ReloadAnimRate=1.10000
-	ClipHitSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-MagFiddle',Volume=1.400000,Radius=32.000000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-MagOut',Volume=1.400000,Radius=32.000000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-MagIn',Volume=1.400000,Radius=32.000000)
+	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagFiddle',Volume=1.400000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagOut',Volume=1.400000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagIn',Volume=1.400000,Radius=32.000000)
 	ClipInFrame=0.650000
 	ZoomType=ZT_Logarithmic
-	ScopeViewTex=Texture'BWBP_SKC_TexExp.MARS.MARS-Scope'
+	ScopeViewTex=Texture'BWBP_SKC_Tex.MARS.MARS-Scope'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=45.000000
@@ -748,7 +748,7 @@ defaultproperties
 	PlayerViewOffset=(X=0.500000,Y=14.000000,Z=-20.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBPRecolorsPro.MARSAttachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.MARS.SmallIcon_F2000'
+	IconMaterial=Texture'BWBP_SKC_Tex.MARS.SmallIcon_F2000'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="MARS-2 Assault Rifle"
 	LightType=LT_Pulse
@@ -757,7 +757,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_F2000'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_F2000'
 	DrawScale=0.350000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }
