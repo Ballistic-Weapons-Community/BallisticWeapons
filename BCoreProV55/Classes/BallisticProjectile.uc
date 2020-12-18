@@ -366,7 +366,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 {
     local Vector X;
 
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
+	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner || (UnlaggedPawnCollision(Other) != None && UnlaggedPawnCollision(Other).UnlaggedPawn == Owner))))
 		return;
 
 	// Do damage for direct hits
