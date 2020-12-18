@@ -36,7 +36,7 @@ simulated function PostNetBeginPlay()
 
 function AddSoul(float Amount)
 {
-	SoulPower = FClamp(SoulPower+Amount	, 0, 5);
+	SoulPower = FClamp(SoulPower+Amount, 0, MaxSoulPower + 0.2f);
 	
 	if(!bOnRampage && mPRI != None)
 		mPRI.DarkSoulPower = SoulPower;
@@ -44,7 +44,7 @@ function AddSoul(float Amount)
 
 function ServerWeaponSpecial(optional byte i)
 {
-	if (SoulPower >= 5)
+	if (SoulPower >= MaxSoulpower)
 	{
 		StartRampage();
 		if (mPRI != None)
