@@ -67,10 +67,10 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
-     MaxHeat=20.000000
-     HeatDeclineDelay=0.400000
-     Decay=4.000000
-     DecayInterval=0.350000
+     MaxHeat=30.000000
+     HeatDeclineDelay=0.500000
+     Decay=3.000000
+     DecayInterval=0.400000
      Begin Object Class=SpriteEmitter Name=XM20Smoke
          FadeOut=True
          FadeIn=True

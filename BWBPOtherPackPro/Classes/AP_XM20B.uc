@@ -10,9 +10,9 @@ class AP_XM20B extends BallisticAmmoPickup;
 
 defaultproperties
 {
-     AmmoAmount=80
+     AmmoAmount=100
      InventoryType=Class'BWBPOtherPackPro.Ammo_XM20B'
-     PickupMessage="You got 80 XM energy cells"
+     PickupMessage="You got 100 XM energy cells"
      PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
      StaticMesh=StaticMesh'BallisticRecolors4StaticPro.LaserCarbine.LS14AmmoPickup'
      DrawScale=1.000000

@@ -623,7 +623,6 @@ defaultproperties
      IconMaterial=Texture'BWBPSomeOtherPackTex.XM20B.SmallIcon_XM20'
      IconCoords=(X2=127,Y2=31)
      ItemName="XM20B Laser Carbine"
-	 MagAmmo=40
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=30

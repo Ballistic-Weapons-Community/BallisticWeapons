@@ -130,8 +130,8 @@ simulated function SwitchLaserMode (byte NewMode)
 			if (BW.bBerserk)
 				FireRate*=0.75;
 
+			Damage=15.000000;
 			XM20BCarbine(BW).ChargeRate=0.600000;
-			Damage=24.000000;
 			PreFireAnim=PreFireAnimCharged;
 			FireLoopAnim=FireLoopAnimCharged;
 			FireEndAnim=FireEndAnimCharged;
@@ -144,8 +144,8 @@ simulated function SwitchLaserMode (byte NewMode)
 			if (BW.bBerserk)
 				FireRate*=0.75;
 				
-			XM20BCarbine(BW).ChargeRate=XM20BCarbine(BW).default.ChargeRate;
 			Damage=default.Damage;
+			XM20BCarbine(BW).ChargeRate=XM20BCarbine(BW).default.ChargeRate;
 			PreFireAnim=default.PreFireAnim;
 			FireLoopAnim=default.FireLoopAnim;
 			FireEndAnim=default.FireEndAnim;
@@ -268,7 +268,7 @@ defaultproperties
      PowerFireSound=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-Overcharge'
      RegularFireSound=Sound'BWBPSomeOtherPackSounds.XM20B.XM20-LaserStart'
 	 
-	 Damage=15
+	 Damage=12
 	 HeadMult=1.5f
      LimbMult=0.5f
 
@@ -294,8 +294,8 @@ defaultproperties
 	 FireEndAnimCharged="LoopOpenEnd"
      TweenTime=0.000000
 	 PreFireTime=0.100000
-     FireRate=0.080000
-	 OverChargedFireRate=0.0500000
+     FireRate=0.070000
+	 OverChargedFireRate=0.0350000
      AmmoClass=Class'BWBPOtherPackPro.Ammo_XM20B'
      AmmoPerFire=1
      BotRefireRate=0.999000
