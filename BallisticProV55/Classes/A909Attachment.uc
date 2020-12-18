@@ -1,7 +1,7 @@
 //=============================================================================
 // A909Attachment.
 //
-// _TPm person weapon attachment for A909 Skrith Blades
+// 3rd person weapon attachment for A909 Skrith Blades
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -42,6 +42,6 @@ defaultproperties
      IdleRifleAnim="Punchies_Idle"
      MeleeStrikeAnim="Punchies_JabLeft"
      bHeavy=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.A909Right_TPm'
+     Mesh=SkeletalMesh'BallisticAnims2.A909-3rd'
      DrawScale=0.150000
 }

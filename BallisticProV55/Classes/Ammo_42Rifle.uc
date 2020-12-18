@@ -13,9 +13,9 @@ defaultproperties
      MaxAmmo=60
      InitialAmount=30
      bTryHeadShot=True
-     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIconsFlashing'
+     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticProV55.AP_R78Clip'
-     IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIconPage'
+     IconMaterial=Texture'BallisticUI2.Icons.AmmoIconPage'
      IconCoords=(X1=64,Y1=64,X2=127,Y2=127)
      ItemName=".42 Rifle Rounds"
 }

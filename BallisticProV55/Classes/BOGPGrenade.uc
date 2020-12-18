@@ -14,7 +14,7 @@ var bool bArmed;
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	SetTimer(0.20, False);
+	SetTimer(0.30, False);
 }
 
 simulated function Timer()
@@ -108,8 +108,8 @@ defaultproperties
      DamageRadius=512.000000
      WallPenetrationForce=128
      MyDamageType=Class'BallisticProV55.DTBOGPGrenadeRadius'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_Grenade'
+     ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'
+     StaticMesh=StaticMesh'BallisticHardware_25.BOGP.BOGP_Grenade'
      DrawScale=0.300000
      bIgnoreTerminalVelocity=True
 }

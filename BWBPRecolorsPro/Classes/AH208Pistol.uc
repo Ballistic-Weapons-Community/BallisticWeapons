@@ -149,9 +149,9 @@ defaultproperties
     LAMBone="LAM"
     ScopeBone="Scope"
     BulletBone="Bullet"
-    TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+    TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
     AIReloadTime=1.500000
-    BigIconMaterial=Texture'BWBP_SKC_Tex.Eagle.BigIcon_EagleGold'
+    BigIconMaterial=Texture'BallisticRecolors4TexPro.Eagle.BigIcon_Eagle'
     BigIconCoords=(X1=47,Y1=16,X2=455,Y2=245)
     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
     bWT_Bullet=True
@@ -159,12 +159,12 @@ defaultproperties
     ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
     ManualLines(2)="Effective at all ranges."
     SpecialInfo(0)=(Info="140.0;12.0;0.7;70.0;0.55;0.0;-999.0")
-    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
-    CockSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-Cock',Volume=5.100000,Radius=32.000000)
-    ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-ClipHit',Volume=2.500000,Radius=32.000000)
-    ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-ClipOut',Volume=2.500000,Radius=32.000000)
-    ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-ClipIn',Volume=2.500000,Radius=32.000000)
+    BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+    PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
+    CockSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-Cock',Volume=5.100000,Radius=32.000000)
+    ClipHitSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipHit',Volume=2.500000,Radius=32.000000)
+    ClipOutSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipOut',Volume=2.500000,Radius=32.000000)
+    ClipInSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipIn',Volume=2.500000,Radius=32.000000)
     ClipInFrame=0.650000
     WeaponModes(0)=(ModeName="Semi-Automatic")
     WeaponModes(1)=(ModeName="Mode-2",bUnavailable=True,Value=7.000000)
@@ -193,7 +193,7 @@ defaultproperties
 	PlayerViewOffset=(X=15,Y=12,Z=-37)
     BobDamping=1.200000
     AttachmentClass=Class'BWBPRecolorsPro.AH208Attachment'
-    IconMaterial=Texture'BWBP_SKC_Tex.Eagle.SmallIcon_EagleGold'
+    IconMaterial=Texture'BallisticRecolors4TexPro.Eagle.SmallIcon_Eagle'
     IconCoords=(X2=127,Y2=31)
     ItemName="AH208 Golden Pistol"
     LightType=LT_Pulse
@@ -202,12 +202,12 @@ defaultproperties
     LightSaturation=150
     LightBrightness=150.000000
     LightRadius=4.000000
-    Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AHDeagle'
+    Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.DEagle_FP'
     DrawScale=0.800000
-    Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-    Skins(1)=Shader'BWBP_SKC_Tex.Eagle.Eagle-GoldShine'
-    Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc'
-    Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeGold'
-    Skins(4)=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontSilver'
-    Skins(5)=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen'
+    Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+    Skins(1)=Shader'BallisticRecolors4TexPro.Eagle.Eagle-GoldShine'
+    Skins(2)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-Misc'
+    Skins(3)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-ScopeGold'
+    Skins(4)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-FrontSilver'
+    Skins(5)=Shader'BallisticRecolors4TexPro.Eagle.Eagle-SightDotGreen'
 }

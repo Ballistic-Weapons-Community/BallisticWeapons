@@ -8,7 +8,7 @@ simulated function PreBeginPlay()
 	Super.PreBeginPlay();
 	
 	if (FRand() > 0.5)
-		SetStaticMesh(StaticMesh'BWBP_OP_Static.XOXO.X');
+		SetStaticMesh(StaticMesh'BWBPOtherPackStatic.XOXO.X');
 }
 
 simulated function PostNetBeginPlay()
@@ -213,9 +213,9 @@ defaultproperties
      LightSaturation=120
      LightBrightness=192.000000
      LightRadius=6.000000
-     StaticMesh=StaticMesh'BWBP_OP_Static.XOXO.O'
+     StaticMesh=StaticMesh'BWBPOtherPackStatic.XOXO.O'
      bDynamicLight=True
-     AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire2FlyBy'
+     AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire2FlyBy'
      LifeSpan=8.000000
      DrawScale=3.000000
      Style=STY_Additive

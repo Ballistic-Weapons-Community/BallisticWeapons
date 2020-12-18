@@ -430,7 +430,7 @@ function InternalOnChange(GUIComponent Sender)
 defaultproperties
 {
      Begin Object Class=GUILoadOutItem Name=MeleeImage
-         NAImage=Texture'BW_Core_WeaponTex.Icons.BigIcon_NA'
+         NAImage=Texture'BallisticUI2.Icons.BigIcon_NA'
          Caption="Gear"
          WinTop=0.050000
          WinLeft=0.100000
@@ -443,7 +443,7 @@ defaultproperties
      Item_Melee=GUILoadOutItem'BallisticProV55.BallisticOutfittingWeaponsTab.MeleeImage'
 
      Begin Object Class=GUILoadOutItem Name=SideArmImage
-         NAImage=Texture'BW_Core_WeaponTex.Icons.BigIcon_NA'
+         NAImage=Texture'BallisticUI2.Icons.BigIcon_NA'
          Caption="Sidearm"
          WinTop=0.050000
          WinLeft=0.400000
@@ -456,7 +456,7 @@ defaultproperties
      Item_SideArm=GUILoadOutItem'BallisticProV55.BallisticOutfittingWeaponsTab.SideArmImage'
 
      Begin Object Class=GUILoadOutItem Name=PrimaryImage
-         NAImage=Texture'BW_Core_WeaponTex.Icons.BigIcon_NA'
+         NAImage=Texture'BallisticUI2.Icons.BigIcon_NA'
          Caption="Primary Weapon"
          WinTop=0.350000
          WinLeft=0.250000
@@ -469,7 +469,7 @@ defaultproperties
      Item_Primary=GUILoadOutItem'BallisticProV55.BallisticOutfittingWeaponsTab.PrimaryImage'
 
      Begin Object Class=GUILoadOutItem Name=SecondaryImage
-         NAImage=Texture'BW_Core_WeaponTex.Icons.BigIcon_NA'
+         NAImage=Texture'BallisticUI2.Icons.BigIcon_NA'
          Caption="Secondary Weapon"
          WinTop=0.350000
          WinLeft=0.550000
@@ -482,7 +482,7 @@ defaultproperties
      Item_Secondary=GUILoadOutItem'BallisticProV55.BallisticOutfittingWeaponsTab.SecondaryImage'
 
      Begin Object Class=GUILoadOutItem Name=GrenadeImage
-         NAImage=Texture'BW_Core_WeaponTex.Icons.BigIcon_NA'
+         NAImage=Texture'BallisticUI2.Icons.BigIcon_NA'
          Caption="Grenades"
          WinTop=0.050000
          WinLeft=0.700000

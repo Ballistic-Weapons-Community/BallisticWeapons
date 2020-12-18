@@ -1636,7 +1636,12 @@ simulated function StartScopeZoom()
 	if (ZoomInSound.Sound != None)	
 		class'BUtil'.static.PlayFullSound(self, ZoomInSound);
 
-	switch(ZoomType)
+    PlayerZoom(PC);
+}
+
+simulated final function PlayerZoom(PlayerController PC)
+{
+    switch(ZoomType)
 	{
 		case ZT_Smooth:
 			PC.StartZoomWithMax((90-FullZoomFOV)/88); //PC.DefaultFOV

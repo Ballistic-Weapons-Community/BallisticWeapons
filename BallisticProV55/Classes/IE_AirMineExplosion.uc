@@ -44,7 +44,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.200000)
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke2'
+         Texture=Texture'BallisticEffects.Particles.Smoke2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=3.000000,Max=3.000000)
          StartVelocityRange=(X=(Min=-600.000000,Max=600.000000),Y=(Min=-600.000000,Max=600.000000),Z=(Min=100.000000,Max=100.000000))
@@ -67,7 +67,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=300.000000,Max=300.000000),Y=(Min=300.000000,Max=300.000000),Z=(Min=300.000000,Max=300.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
      End Object
@@ -98,7 +98,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=20.000000),Y=(Min=10.000000,Max=20.000000),Z=(Min=10.000000,Max=20.000000))
          InitialParticlesPerSecond=250.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
+         Texture=Texture'BallisticEffects.Particles.Smoke3'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.800000,Max=0.800000)
          AddVelocityFromOtherEmitter=3
@@ -107,7 +107,7 @@ defaultproperties
      Emitters(2)=SpriteEmitter'BallisticProV55.IE_AirMineExplosion.SpriteEmitter3'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter2
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip2'
+         StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip2'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -146,7 +146,7 @@ defaultproperties
          AddLocationFromOtherEmitter=3
          StartSizeRange=(X=(Min=5.000000,Max=15.000000),Y=(Min=5.000000,Max=15.000000),Z=(Min=5.000000,Max=15.000000))
          InitialParticlesPerSecond=100.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          AddVelocityFromOtherEmitter=3
@@ -167,7 +167,7 @@ defaultproperties
          MaxParticles=80
          DetailMode=DM_SuperHigh
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=-400.000000,Max=400.000000),Y=(Min=-400.000000,Max=400.000000),Z=(Min=-200.000000,Max=200.000000))
@@ -175,7 +175,7 @@ defaultproperties
      Emitters(5)=SparkEmitter'BallisticProV55.IE_AirMineExplosion.SparkEmitter0'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.HBlast'
+         StaticMesh=StaticMesh'BallisticHardware2.Effects.HBlast'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -215,7 +215,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
+         Texture=Texture'BallisticEffects.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object

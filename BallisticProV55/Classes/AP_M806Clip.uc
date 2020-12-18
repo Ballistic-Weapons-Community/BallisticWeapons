@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=21
      InventoryType=Class'BallisticProV55.Ammo_45HV'
      PickupMessage="You picked up .45 high velocity M806 bullets."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.M806Clip'
+     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BallisticHardware2.Ammo.M806Clip'
      DrawScale=0.300000
      CollisionRadius=8.000000
      CollisionHeight=16.000000

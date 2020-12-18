@@ -10,7 +10,7 @@
 //=============================================================================
 class LAWLauncher extends BallisticWeapon;
 
-#EXEC OBJ LOAD FILE=BWBP_SKC_TexExp.utx
+#EXEC OBJ LOAD FILE=BallisticRecolors4TexPro.utx
 
 var() BUtil.FullSound	HatchSound;
 
@@ -326,13 +326,13 @@ simulated function Notify_G5HideRocket ()
 
 defaultproperties
 {
-	HatchSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Cliphit',Volume=0.700000,Pitch=1.000000)
+	HatchSound=(Sound=Sound'BallisticSounds2.M75.M75Cliphit',Volume=0.700000,Pitch=1.000000)
 	RunOffset=(Pitch=-4000,Yaw=-2000)
-	LaserOnSound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOn'
-	LaserOffSound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOff'
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	LaserOnSound=Sound'PackageSounds4Pro.AH104.AH104-SightOn'
+	LaserOffSound=Sound'PackageSounds4Pro.AH104.AH104-SightOff'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=4.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.LAW.BigIcon_LAW'
+	BigIconMaterial=Texture'BallisticRecolors4TexPro.LAW.BigIcon_LAW'
 	BigIconCoords=(Y1=36,Y2=225)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
@@ -343,12 +343,12 @@ defaultproperties
 	ManualLines(1)="Fires a shockwave rocket in an arc. Upon impact, the rocket generates shockwaves which penetrate walls and deal damage to targets in a very wide radius. Damage is reduced if the target is obscured from the rocket. The rocket can be destroyed by enemy fire whilst so placed."
 	ManualLines(2)="Effective against groups and at controlling areas."
 	SpecialInfo(0)=(Info="500.0;60.0;1.0;80.0;2.0;0.0;1.5")
-	BringUpSound=(Sound=Sound'BWBP_SKC_SoundsExp.LAW.LAW-Draw',Volume=1.100000)
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Undeploy',Volume=1.100000)
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
-	ClipHitSound=(Sound=Sound'BWBP_SKC_SoundsExp.LAW.LAW-Cock',Volume=2.100000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.LAW.LAW-TubeUnlock',Volume=2.100000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.LAW.Law-TubeLock',Volume=2.100000)
+	BringUpSound=(Sound=Sound'PackageSounds4ProExp.LAW.LAW-Draw',Volume=1.100000)
+	PutDownSound=(Sound=Sound'BWBP4-Sounds.Artillery.Art-Undeploy',Volume=1.100000)
+	CockSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever')
+	ClipHitSound=(Sound=Sound'PackageSounds4ProExp.LAW.LAW-Cock',Volume=2.100000)
+	ClipOutSound=(Sound=Sound'PackageSounds4ProExp.LAW.LAW-TubeUnlock',Volume=2.100000)
+	ClipInSound=(Sound=Sound'PackageSounds4ProExp.LAW.Law-TubeLock',Volume=2.100000)
 	bNonCocking=True
 	WeaponModes(0)=(ModeName="Single Fire")
 	WeaponModes(1)=(bUnavailable=True)
@@ -356,9 +356,9 @@ defaultproperties
 	CurrentWeaponMode=0
 	ZoomType=ZT_Logarithmic
 	ScopeXScale=1.330000
-	ScopeViewTex=Texture'BWBP_SKC_TexExp.LAW.LAW-ScopeView'
-	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	ScopeViewTex=Texture'BallisticRecolors4TexPro.LAW.LAW-ScopeView'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=10.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
@@ -387,7 +387,7 @@ defaultproperties
 	PlayerViewOffset=(X=10.000000,Z=-7.000000)
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBPRecolorsPro.LAWAttachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.LAW.SmallIcon_LAW'
+	IconMaterial=Texture'BallisticRecolors4TexPro.LAW.SmallIcon_LAW'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="FGM-70 'Shockwave' LAW"
 	LightType=LT_Pulse
@@ -396,6 +396,6 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_LAW'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.LAW_FP'
 	DrawScale=0.400000
 }

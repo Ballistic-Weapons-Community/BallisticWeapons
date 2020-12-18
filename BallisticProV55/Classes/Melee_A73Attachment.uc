@@ -1,7 +1,7 @@
 //=============================================================================
 // Melee_A73Attachment.
 // 
-// _TPm person weapon attachment for A73 Skrith Rifle
+// 3rd person weapon attachment for A73 Skrith Rifle
 // 
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.

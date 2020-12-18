@@ -14,7 +14,7 @@ class R9RangerRifle extends BallisticWeapon;
 
 var float LastModeChangeTime;
 
-#exec OBJ LOAD File=BWBP_OP_Tex.utx
+#exec OBJ LOAD File=R9A_tex.utx
 
 exec simulated function SwitchWeaponMode (optional byte ModeNum)	
 {
@@ -193,22 +193,22 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=5)
-	BigIconMaterial=Texture'BW_Core_WeaponTex.ui.BigIcon_R9'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=5)
+	BigIconMaterial=Texture'BallisticTextures3.ui.BigIcon_R9'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic rifle fire. High damage, long range, high penetration and moderate recoil. Sustained damage output is modest."
 	ManualLines(1)="As primary, except fires subsonic rounds. Loses damage over range but has lower recoil, lesser flash and is quieter."
 	ManualLines(2)="As a long-ranged weapon lacking a scope, it has a reasonably quick aiming time. Does not use tracer rounds. Cumbersome to use in close combat."
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;50.0;1.0;0.2;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
+	CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
 	ReloadAnimRate=1.250000
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipIn')
+	ClipHitSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Regular")
 	WeaponModes(1)=(ModeName="Freeze",ModeID="WM_SemiAuto",Value=1.000000)
@@ -219,7 +219,7 @@ defaultproperties
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=50)
-	SightOffset=(X=25.000000,Y=0.030000,Z=6.200000)
+	SightOffset=(X=25.000000,Y=0.030000,Z=8.000000)
 	SightDisplayFOV=40.000000
 	GunLength=80.000000
 	ParamsClass=Class'R9WeaponParams'
@@ -239,7 +239,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.R9Pickup'
 	PlayerViewOffset=(Y=9.500000,Z=-11.000000)
 	AttachmentClass=Class'BallisticProV55.R9Attachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.ui.SmallIcon_R9'
+	IconMaterial=Texture'BallisticTextures3.ui.SmallIcon_R9'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="R9 Ranger Rifle"
 	LightType=LT_Pulse
@@ -248,7 +248,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
+	Mesh=SkeletalMesh'BallisticProAnims.USSR'
 	DrawScale=0.500000
-	//Skins(4)=Shader'BWBP_OP_Tex.R9_body_SH1'
+	//Skins(4)=Shader'R9A_tex.R9_body_SH1'
 }

@@ -225,11 +225,11 @@ simulated function Notify_BrassOut()
 defaultproperties
 {
 	HeatDeclineDelay=0.200000
-	OverheatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-OverHeat'
-	HighHeatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-HighHeat'
-	MedHeatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-MedHeat'
+	OverheatSound=Sound'PackageSounds4Pro.CYLO.CYLO-OverHeat'
+	HighHeatSound=Sound'PackageSounds4Pro.CYLO.CYLO-HighHeat'
+	MedHeatSound=Sound'PackageSounds4Pro.CYLO.CYLO-MedHeat'
 	bWT_Hazardous=True
-	BigIconMaterial=Texture'BWBP_SKC_Tex.CYLO.BigIcon_CYLOMk4'
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.CYLO.BigIcon_CYLOMk2'
 	ManualLines(0)="Automatic explosive round fire. While these rounds completely lack any penetrative ability, they explode on impact with players, dealing 70% of their base damage to nearby targets. This makes the CYLO Firestorm V effective against groups of players."
 	ManualLines(1)="Melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab."
 	ManualLines(2)="Not recommended for close range use as its explosive rounds can damage the user. Effective at medium range."
@@ -251,7 +251,7 @@ defaultproperties
 	CurrentRating=0.7
 	PickupClass=Class'BWBPRecolorsPro.CYLOFirestormPickup'
 	AttachmentClass=Class'BWBPRecolorsPro.CYLOFirestormAttachment'
-	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMk4'
+	IconMaterial=Texture'BallisticRecolors3TexPro.CYLO.SmallIcon_CYLOMk2'
 	ItemName="CYLO Firestorm V"
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOFirestorm'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.CYLOFirestorm_FP'
 }

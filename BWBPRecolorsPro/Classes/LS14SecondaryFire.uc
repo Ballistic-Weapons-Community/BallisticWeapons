@@ -52,7 +52,7 @@ defaultproperties
      FlashBone="tip3"
      FlashScaleFactor=2.600000
      FireRecoil=256.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Rocket-Launch')
+     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.LS14.Rocket-Launch')
      bSplashDamage=True
      bRecommendSplashDamage=True
      bTossed=True

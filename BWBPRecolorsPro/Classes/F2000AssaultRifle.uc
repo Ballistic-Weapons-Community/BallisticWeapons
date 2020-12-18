@@ -441,18 +441,18 @@ defaultproperties
 	SilencerBone="tip2"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"
-	SilencerOnSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOn'
-	SilencerOffSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOff'
-	SilencerOnTurnSound=SoundGroup'BW_Core_WeaponSound.XK2.XK2-SilencerTurn'
-	SilencerOffTurnSound=SoundGroup'BW_Core_WeaponSound.XK2.XK2-SilencerTurn'
-	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
-	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
-	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
+	SilencerOnSound=Sound'BallisticSounds2.XK2.XK2-SilenceOn'
+	SilencerOffSound=Sound'BallisticSounds2.XK2.XK2-SilenceOff'
+	SilencerOnTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
+	SilencerOffTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
+	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
+	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
+	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
 	GrenadeLoadAnim="GLReload"
 	ScopeBone="EOTech"
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.MARS.BigIcon_F2000Ice'
+	BigIconMaterial=Texture'BallisticRecolors4TexPro.MARS.BigIcon_F2000Alt'
 	BigIconCoords=(X1=32,Y1=40,X2=475)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -460,15 +460,15 @@ defaultproperties
 	ManualLines(1)="Launches a cryogenic grenade. Upon impact, freezes nearby enemies, slowing their movement. The effect is proportional to their distance from the epicentre. This attack will also extinguish the fires of an FP7 grenade."
 	ManualLines(2)="The Weapon Special key attaches a suppressor. This reduces the recoil, but also the effective range. The flash is removed and the gunfire becomes less audible.||Effective at close to medium range."
 	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.8;0.5;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
 	CockAnimPostReload="ReloadEndCock"
 	CockAnimRate=1.10000
-	CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
+	CockSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-BoltPull',Volume=1.100000,Radius=32.000000)
 	ReloadAnimRate=1.10000
-	ClipHitSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-MagFiddle',Volume=1.200000,Radius=32.000000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-MagOut',Volume=1.200000,Radius=32.000000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.MARS.MARS-MagIn',Volume=1.200000,Radius=32.000000)
+	ClipHitSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagFiddle',Volume=1.200000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagOut',Volume=1.200000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'PackageSounds4ProExp.MARS.MARS-MagIn',Volume=1.200000,Radius=32.000000)
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Burst",Value=4.000000)
@@ -492,7 +492,7 @@ defaultproperties
 	PlayerViewOffset=(X=0.500000,Y=12.000000,Z=-18.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBPRecolorsPro.F2000Attachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.MARS.SmallIcon_F2000Ice'
+	IconMaterial=Texture'BallisticRecolors4TexPro.MARS.SmallIcon_F2000Alt'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="MARS-3 'Snowstorm' XII"
 	LightType=LT_Pulse
@@ -501,7 +501,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MARS3'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.MARS3_FP'
 	DrawScale=0.300000
-	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

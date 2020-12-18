@@ -57,7 +57,7 @@ var() globalconfig int		SpawnAreaAllowance;		//All spawn points within this dist
 var() globalconfig bool		bKeepHealth;			//Keep health and armor pickups around
 var() globalconfig bool		bKeepWeapons;			//Keep weapon and ammo pickups around
 var() globalconfig bool		bPurgeActors;			//Purge all actors between rounds
-var() globalconfig bool		bBW_Core_WeaponTex;		//Replace health, armor, etc pickups with BW style pickups
+var() globalconfig bool		bBallisticItems;		//Replace health, armor, etc pickups with BW style pickups
 var() globalconfig bool		bAmmoPacks;				//Replace weapon pickups with BW ammo packs
 var() globalconfig int		RoundLimit;				//Number of rounds to be played before match ends
 
@@ -852,7 +852,7 @@ static function FillPlayInfo(PlayInfo PI)
 	PI.AddSetting(default.GameGroup, "PostRoundDelay",		GetDisplayText("PostRoundDelay"),		50, 1, "Text", "2;0:60"	,,     	,True);
 	PI.AddSetting(default.GameGroup, "SpawnAreaAllowance",	GetDisplayText("SpawnAreaAllowance"),	50, 3, "Text", "2;0:32768"	,,	,True);
 	PI.AddSetting(default.RulesGroup, "bEvolutionMode",		GetDisplayText("bEvolutionMode"),       50, 1, "Check",         ,,		,);
-	PI.AddSetting(default.RulesGroup, "bBW_Core_WeaponTex",	GetDisplayText("bBW_Core_WeaponTex"), 		50, 1, "Check",         ,,     	,);
+	PI.AddSetting(default.RulesGroup, "bBallisticItems",	GetDisplayText("bBallisticItems"), 		50, 1, "Check",         ,,     	,);
 	PI.AddSetting(default.RulesGroup, "bAmmoPacks",			GetDisplayText("bAmmoPacks"), 			50, 1, "Check",         ,,     	,);
 	PI.AddSetting(default.RulesGroup, "bKeepHealth",		GetDisplayText("bKeepHealth"),     		50, 1, "Check",         ,,     	,);
 	PI.AddSetting(default.RulesGroup, "bKeepWeapons",		GetDisplayText("bKeepWeapons"),			50, 1, "Check",         ,,		,);
@@ -871,7 +871,7 @@ static event string GetDisplayText( string PropName )
 	case "bKeepHealth":			return default.DisplayText[3];
 	case "bKeepWeapons":		return default.DisplayText[4];
 	case "bPurgeActors":		return default.DisplayText[5];
-	case "bBW_Core_WeaponTex":		return default.DisplayText[6];
+	case "bBallisticItems":		return default.DisplayText[6];
 	case "bAmmoPacks":			return default.DisplayText[7];
 	case "bEvolutionMode":		return default.DisplayText[8];
 	case "WeapListsVar":		return default.DisplayText[9];
@@ -891,7 +891,7 @@ static event string GetDescriptionText(string PropName)
 	case "bKeepHealth":			return default.DescriptionText[3];
 	case "bKeepWeapons":		return default.DescriptionText[4];
 	case "bPurgeActors":		return default.DescriptionText[5];
-	case "bBW_Core_WeaponTex":		return default.DescriptionText[6];
+	case "bBallisticItems":		return default.DescriptionText[6];
 	case "bAmmoPacks":			return default.DescriptionText[7];
 	case "bEvolutionMode":		return default.DescriptionText[8];
 	case "WeapListsVar":		return default.DescriptionText[9];
@@ -937,7 +937,7 @@ defaultproperties
      PostRoundDelay=5
      SpawnAreaAllowance=768
      bPurgeActors=True
-     bBW_Core_WeaponTex=True
+     bBallisticItems=True
      bAmmoPacks=True
      DisplayText(0)="Round Start Delay"
      DisplayText(1)="Round End Delay"
@@ -993,7 +993,7 @@ defaultproperties
      PlayerControllerClassName="BallisticProV55.BallisticPlayer"
      GameName="BallisticPro: Conflict"
      Description="Rival teams prepare for battle and must eliminate the entire enemy team to score!||A round based Ballistic Weapons game where teams start on opposite sides of the map and players have a chance to choose their starting loadout. Dead players don't respawn until the next round. When one team has been completely eliminated the round ends and teams are reset to a starting location.||www.runestorm.com"
-     ScreenShotName="BW_Core_WeaponTex.ui.Conflict-Sequence"
+     ScreenShotName="BWEliminationTex.ui.Conflict-Sequence"
      DecoTextName="BallisticProV55.Game_BWConflict"
      Acronym="BWCP"
 }

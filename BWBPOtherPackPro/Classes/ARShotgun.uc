@@ -491,7 +491,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
     for( i=0; i<Count; i++ )
     {
 		C.SetPos(C.ClipX - (0.5*i+1) * ScaleFactor2, C.ClipY - 100 * ScaleFactor * class'HUD'.default.HudScale);
-		C.DrawTile( Texture'BWBP_SKC_TexExp.M1014.M1014-SGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
+		C.DrawTile( Texture'BallisticRecolors4TexPro.M1014.M1014-SGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
 	}
 
 	if (bSkipDrawWeaponInfo)
@@ -683,7 +683,7 @@ simulated function Notify_BrassOut();
 
 defaultproperties
 {
-	GrenLoadSound=(Sound=Sound'BWBP_OP_Sounds.AA12.GLShovel',Volume=1.800000)
+	GrenLoadSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.GLShovel',Volume=1.800000)
 	ShovelAnim="GLReload1"
 	SGPrepAnim(0)="GLLoad1"
 	SGPrepAnim(1)="GLLoad2"
@@ -703,8 +703,8 @@ defaultproperties
 	GLLoadGrenadeBones(0)=(GrenName="GrenadeHandle")
 	GLLoadGrenadeBones(1)=(GrenName="HeldGrenade")
 	GLLoadGrenadeBones(2)=(GrenName="EmptyGrenade")
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_OP_Tex.TacBuster.BigIcon_AA12'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBPJiffyPackTex.TacBuster.BigIcon_AA12'
 	BigIconCoords=(Y1=40)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Shotgun=True
@@ -714,12 +714,12 @@ defaultproperties
 	ManualLines(1)="Loads an incendiary grenade and fires. Deals good impact damage and minor radius damage, as well as a blast of fire upon impact."
 	ManualLines(2)="This weapon is heavy and has poor shoulder fire properties.||Effective at close range."
 	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
-	CockSound=(Sound=Sound'BWBP_OP_Sounds.AA12.Cock',Volume=1.400000)
+	BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
+	CockSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.Cock',Volume=1.400000)
 	ReloadAnimRate=0.750000
-	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.AA12.MagOut',Volume=1.300000)
-	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.AA12.MagIn',Volume=1.300000)
+	ClipOutSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.MagOut',Volume=1.300000)
+	ClipInSound=(Sound=Sound'BWBPJiffyPackSounds.AA12.MagIn',Volume=1.300000)
 	StartShovelAnim="PrepReload"
 	StartShovelAnimRate=1.300000
 	EndShovelAnim="FinishReload"
@@ -749,7 +749,7 @@ defaultproperties
 	PickupClass=Class'BWBPOtherPackPro.ARPickup'
 	PlayerViewOffset=(Y=16.000000,Z=-25.000000)
 	AttachmentClass=Class'BWBPOtherPackPro.ARAttachment'
-	IconMaterial=Texture'BWBP_OP_Tex.TacBuster.Icon_AA12'
+	IconMaterial=Texture'BWBPJiffyPackTex.TacBuster.Icon_AA12'
 	IconCoords=(X2=125,Y2=32)
 	ItemName="RCS-715 Tactical Buster"
 	LightType=LT_Pulse
@@ -758,6 +758,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_AssaultShotgun'
+	Mesh=SkeletalMesh'BWBPJiffyPackAnims.AA12_FP'
 	DrawScale=0.600000
 }

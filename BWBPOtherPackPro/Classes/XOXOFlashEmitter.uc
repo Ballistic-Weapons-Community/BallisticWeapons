@@ -10,7 +10,7 @@ simulated event PostBeginPlay()
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter4
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.R78.RifleMuzzleFlash'
+         StaticMesh=StaticMesh'BallisticHardware2.R78.RifleMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -61,7 +61,7 @@ defaultproperties
          MaxParticles=1
          StartLocationOffset=(X=20.000000)
          StartSizeRange=(X=(Min=30.000000,Max=30.000000),Y=(Min=30.000000,Max=30.000000),Z=(Min=30.000000,Max=30.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.250000,Max=0.250000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)

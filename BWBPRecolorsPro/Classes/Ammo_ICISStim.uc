@@ -12,9 +12,9 @@ defaultproperties
      MaxAmmo=100
      InitialAmount=50
      bNoPackResupply=True
-     IconFlashMaterial=Shader'BWBP_SKC_TexExp.Stim.AmmoIcon_StimFlash'
+     IconFlashMaterial=Shader'BallisticRecolors4TexPro.Stim.AmmoIcon_StimFlash'
      PickupClass=Class'BWBPRecolorsPro.ICISPickup'
-     IconMaterial=Texture'BWBP_SKC_TexExp.Stim.AmmoIcon_Stim'
+     IconMaterial=Texture'BallisticRecolors4TexPro.Stim.AmmoIcon_Stim'
      IconCoords=(X1=128,Y1=64,X2=191,Y2=127)
      ItemName="ICIS Stim Ammo"
 }

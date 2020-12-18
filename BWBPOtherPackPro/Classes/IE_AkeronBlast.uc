@@ -51,7 +51,7 @@ defaultproperties
          StartSizeRange=(X=(Min=30.000000,Max=55.000000),Y=(Min=30.000000,Max=55.000000),Z=(Min=30.000000,Max=55.000000))
          InitialParticlesPerSecond=1000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.NewSmoke1g'
+         Texture=Texture'BallisticEffects2.Particles.NewSmoke1g'
          StartVelocityRange=(X=(Min=50.000000,Max=1000.000000),Y=(Min=-260.000000,Max=250.000000),Z=(Min=-260.000000,Max=250.000000))
          VelocityLossRange=(X=(Min=1.000000,Max=1.000000),Y=(Min=2.000000,Max=2.000000),Z=(Min=2.000000,Max=2.000000))
          GetVelocityDirectionFrom=PTVD_StartPositionAndOwner

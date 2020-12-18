@@ -171,7 +171,7 @@ simulated state JetPack
 		}
 	}
 Begin:
-	AmbientSound = Sound'BW_Core_WeaponSound.RX22A.RX22A-FuelLoop';
+	AmbientSound = Sound'BallisticSounds2.RX22A.RX22A-FuelLoop';
 	if (level.NetMode != NM_DedicatedServer)
 	{
 		class'IM_Bullet'.static.StartSpawn(LeakLoc, LeakDir, 3, Instigator);
@@ -234,11 +234,11 @@ simulated state RocketPack
 	}
 Begin:
 	if (Owner != None)
-		owner.PlaySound(sound'BW_Core_WeaponSound.RX22A.RX22A-PackIgnite', Slot_Interact, 0.8, , 128);
+		owner.PlaySound(sound'BallisticSounds2.RX22A.RX22A-PackIgnite', Slot_Interact, 0.8, , 128);
 	else
-		PlaySound(sound'BW_Core_WeaponSound.RX22A.RX22A-PackIgnite', Slot_Interact, 0.8, , 128);
-//	AmbientSound = Sound'BW_Core_WeaponSound.RX22A.RX22A-FireLoop';
-	AmbientSound = Sound'BW_Core_WeaponSound.RX22A.RX22A-PackBurn';
+		PlaySound(sound'BallisticSounds2.RX22A.RX22A-PackIgnite', Slot_Interact, 0.8, , 128);
+//	AmbientSound = Sound'BallisticSounds2.RX22A.RX22A-FireLoop';
+	AmbientSound = Sound'BallisticSounds2.RX22A.RX22A-PackBurn';
 	SoundVolume = 255;
 	SoundRadius = 64;
 
@@ -341,7 +341,7 @@ defaultproperties
 {
      Health=35
      DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.RX22A.FlamerTank'
+     StaticMesh=StaticMesh'BallisticHardware2.RX22A.FlamerTank'
      bActorShadows=True
      bReplicateInstigator=True
      bReplicateMovement=False

@@ -576,8 +576,8 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 defaultproperties
 {
 	bShouldDualInLoadout=False
-	ShellOutSound=Sound'BW_Core_WeaponSound.leMat.LM-ShellOut'
-	ShellInSound=Sound'BW_Core_WeaponSound.leMat.LM-ShellIn'
+	ShellOutSound=Sound'BWBP4-Sounds.leMat.LM-ShellOut'
+	ShellInSound=Sound'BWBP4-Sounds.leMat.LM-ShellIn'
 	bSecLoaded=True
 	SGLoadAnim="Reload2"
 	Shells(0)=(ShellName="Bullet1",BulletName="Slug1")
@@ -592,9 +592,9 @@ defaultproperties
 	Shells(9)=(ShellName="shell",BulletName="shell")
 	LoadedChambers=9
 	HandgunGroup=1
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
-	BigIconMaterial=Texture'BW_Core_WeaponTex.leMat.BigIcon_Wilson41DB'
+	BigIconMaterial=Texture'BWBP4-Tex.leMat.BigIcon_Wilson41DB'
 	BigIconCoords=(X1=48,Y1=40,X2=459)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -602,13 +602,13 @@ defaultproperties
 	ManualLines(1)="Fires the single 16-gauge shotgun shell. Strong at very close range."
 	ManualLines(2)="Effective at close range."
 	SpecialInfo(0)=(Info="120.0;15.0;0.6;50.0;0.9;0.5;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-Cock')
+	CockSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-Cock')
 	ReloadAnimRate=1.300000
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-BulletsOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-BulletsIn')
+	ClipOutSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-BulletsOut')
+	ClipInSound=(Sound=Sound'BWBP4-Sounds.leMat.LM-BulletsIn')
 	ClipInFrame=0.650000
 	bAltTriggerReload=True
 	WeaponModes(1)=(bUnavailable=True)
@@ -635,7 +635,7 @@ defaultproperties
 	PlayerViewOffset=(X=15.000000,Y=11.000000,Z=-7.000000)
 	PlayerViewPivot=(Pitch=512)
 	AttachmentClass=Class'BallisticProV55.leMatAttachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.leMat.SmallIcon_Wilson41DB'
+	IconMaterial=Texture'BWBP4-Tex.leMat.SmallIcon_Wilson41DB'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="Wilson 41"
 	LightType=LT_Pulse
@@ -644,6 +644,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Wilson'
+	Mesh=SkeletalMesh'BallisticProAnims.leMat'
 	DrawScale=0.300000
 }

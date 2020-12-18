@@ -83,7 +83,7 @@ defaultproperties
      PivotBone="StandBase"
      bDrawDriverInTP=True
      VehicleNameString="Mounted XMV-850 Minigun"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMV850Turret_TPm'
+     Mesh=SkeletalMesh'BallisticAnims2.XMV850Turret-3rd'
      DrawScale=0.350000
      CollisionHeight=22.400000
 }

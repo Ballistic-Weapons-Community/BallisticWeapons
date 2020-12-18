@@ -383,15 +383,15 @@ function Notify_ButtonPress()
 		{
 			if (Instigator.PlayerReplicationInfo.Team == None || Instigator.PlayerReplicationInfo.Team.TeamIndex == 1)
 			{
-				xPawn(Instigator).SetOverlayMaterial( Material'BWBP_OP_Tex.General.BlueExplosiveShieldMat', 300, true );
-				ThirdPersonActor.SetOverlayMaterial( Material'BWBP_OP_Tex.General.BlueExplosiveShieldMat', 300, true );
-				SetOverlayMaterial( Material'BWBP_OP_Tex.General.BlueExplosiveShieldMat', 300, true );
+				xPawn(Instigator).SetOverlayMaterial( Material'BWBPOtherPackTex.General.BlueExplosiveShieldMat', 300, true );
+				ThirdPersonActor.SetOverlayMaterial( Material'BWBPOtherPackTex.General.BlueExplosiveShieldMat', 300, true );
+				SetOverlayMaterial( Material'BWBPOtherPackTex.General.BlueExplosiveShieldMat', 300, true );
 			}
 			else
 			{
-				xPawn(Instigator).SetOverlayMaterial( Material'BWBP_OP_Tex.General.RedExplosiveShieldMat', 300, true );
-				ThirdPersonActor.SetOverlayMaterial( Material'BWBP_OP_Tex.General.RedExplosiveShieldMat', 300, true );
-				SetOverlayMaterial( Material'BWBP_OP_Tex.General.RedExplosiveShieldMat', 300, true );
+				xPawn(Instigator).SetOverlayMaterial( Material'BWBPOtherPackTex.General.RedExplosiveShieldMat', 300, true );
+				ThirdPersonActor.SetOverlayMaterial( Material'BWBPOtherPackTex.General.RedExplosiveShieldMat', 300, true );
+				SetOverlayMaterial( Material'BWBPOtherPackTex.General.RedExplosiveShieldMat', 300, true );
 			}
 		}
 	}
@@ -517,19 +517,19 @@ function float SuggestDefenseStyle()	{	return -0.7;	}
 
 defaultproperties
 {
-	ShieldOnSound=Sound'BWBP_OP_Sounds.Raygun.ShieldOn'
-	ShieldOffSound=Sound'BWBP_OP_Sounds.Raygun.ShieldOff'
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=6)
-	BigIconMaterial=Texture'BWBP_OP_Tex.Raygun.raygun_icon_512'
+	ShieldOnSound=Sound'BWBPOtherPackSound.Raygun.ShieldOn'
+	ShieldOffSound=Sound'BWBPOtherPackSound.Raygun.ShieldOff'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=6)
+	BigIconMaterial=Texture'BWBPOtherPackTex.Raygun.raygun_icon_512'
 	BigIconCoords=(Y1=32,Y2=220)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Energy=True
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;80.0;0.0;0.4;0.1")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipIn')
+	BringUpSound=(Sound=Sound'BallisticSounds2.A73.A73Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.A73.A73Putaway')
+	ClipHitSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipIn')
 	ClipInFrame=0.700000
 	bNonCocking=True
 	WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
@@ -561,7 +561,7 @@ defaultproperties
 	PickupClass=Class'BWBPOtherPackPro.RaygunPickup'
 	PlayerViewOffset=(X=5.000000,Z=-5.000000)
 	AttachmentClass=Class'BWBPOtherPackPro.RaygunAttachment'
-	IconMaterial=Texture'BWBP_OP_Tex.Raygun.raygun_icon_128'
+	IconMaterial=Texture'BWBPOtherPackTex.Raygun.raygun_icon_128'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="E58 Raygun"
 	LightType=LT_Pulse
@@ -570,11 +570,11 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Raygun'
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.Raygun_FP'
 	DrawScale=0.187500
-	Skins(0)=Shader'BWBP_OP_Tex.Raygun.raygun_body_SH1'
-	Skins(1)=TexScaler'BWBP_OP_Tex.Raygun.RaygunNumbersScaler'
-	Skins(2)=TexScaler'BWBP_OP_Tex.Raygun.RaygunNumbersScaler2'
+	Skins(0)=Shader'BWBPOtherPackTex.Raygun.raygun_body_SH1'
+	Skins(1)=TexScaler'BWBPOtherPackTex.Raygun.RaygunNumbersScaler'
+	Skins(2)=TexScaler'BWBPOtherPackTex.Raygun.RaygunNumbersScaler2'
 	SoundPitch=56
 	SoundRadius=32.000000
 }

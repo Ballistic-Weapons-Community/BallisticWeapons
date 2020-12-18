@@ -55,7 +55,7 @@ function PlayFiring()
 
 defaultproperties
 {
-     FlareFireSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_FlareFire',Volume=2.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
+     FlareFireSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_FlareFire',Volume=2.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
      SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
      bCockAfterFire=True
      bUseWeaponMag=False
@@ -64,7 +64,7 @@ defaultproperties
      FireChaos=0.700000
      XInaccuracy=64.000000
      YInaccuracy=64.000000
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.BOGP.BOGP_Fire',Volume=1.750000)
+     BallisticFireSound=(Sound=SoundGroup'BallisticSounds_25.BOGP.BOGP_Fire',Volume=1.750000)
      bSplashDamage=True
      bRecommendSplashDamage=True
      bTossed=True

@@ -86,7 +86,7 @@ defaultproperties
          ParticlesPerSecond=4.000000
          InitialParticlesPerSecond=20.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.NewSmoke1g'
+         Texture=Texture'BallisticEffects2.Particles.NewSmoke1g'
          TextureUSubdivisions=1
          TextureVSubdivisions=1
          LifetimeRange=(Min=0.500000,Max=0.750000)

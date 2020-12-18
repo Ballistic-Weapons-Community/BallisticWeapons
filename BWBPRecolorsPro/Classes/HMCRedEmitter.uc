@@ -48,7 +48,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.400000)
          StartSizeRange=(X=(Min=6.000000,Max=8.000000),Y=(Min=6.000000,Max=8.000000),Z=(Min=6.000000,Max=8.000000))
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.SmokeWisp-Alpha'
+         Texture=Texture'BallisticEffects2.Particles.SmokeWisp-Alpha'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -60,7 +60,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BWBPRecolorsPro.HMCRedEmitter.SpriteEmitter26'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter4
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.R78.RifleMuzzleFlash'
+         StaticMesh=StaticMesh'BallisticHardware2.R78.RifleMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -93,7 +93,7 @@ defaultproperties
      Emitters(1)=MeshEmitter'BWBPRecolorsPro.HMCRedEmitter.MeshEmitter4'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter3
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M925.M925MuzzleFlash'
+         StaticMesh=StaticMesh'BallisticHardware2.M925.M925MuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -142,7 +142,7 @@ defaultproperties
          MaxParticles=1
          StartLocationOffset=(X=40.000000)
          StartSizeRange=(X=(Min=30.000000,Max=30.000000),Y=(Min=30.000000,Max=30.000000),Z=(Min=30.000000,Max=30.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)

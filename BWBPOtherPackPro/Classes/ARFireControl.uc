@@ -241,7 +241,7 @@ defaultproperties
      bDynamicLight=True
      bAlwaysRelevant=True
      RemoteRole=ROLE_SimulatedProxy
-     AmbientSound=Sound'BW_Core_WeaponSound.FP7.FP7FireLoop'
+     AmbientSound=Sound'BallisticSounds2.FP7.FP7FireLoop'
      LifeSpan=10.000000
      bFullVolume=True
      SoundVolume=255

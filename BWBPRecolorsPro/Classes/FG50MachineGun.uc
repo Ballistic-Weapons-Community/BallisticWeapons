@@ -612,24 +612,24 @@ function float SuggestDefenseStyle()	{	return 0.6;	}
 
 defaultproperties
 {
-	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
-	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
+	LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
+	LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
 	HeatDeclineDelay=0.400000
-	OverheatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-OverHeat'
+	OverheatSound=Sound'PackageSounds4Pro.CYLO.CYLO-OverHeat'
 	ScopeBone="Holosight"
 	BulletBone="Bullet"
-	WeaponScreen=ScriptedTexture'BWBP_SKC_TexExp.FG50.FG50-ScriptLCD'
-	screen=Shader'BWBP_SKC_TexExp.FG50.FG50-ScriptLCD-SD'
-	ScreenBase1=Texture'BWBP_SKC_TexExp.FG50.FG50-Screen'
-	ScreenBase2=Texture'BWBP_SKC_TexExp.FG50.FG50-Screen2'
-	ScreenBase3=Texture'BWBP_SKC_TexExp.FG50.FG50-Screen3'
-	ScreenBase4=Texture'BWBP_SKC_TexExp.FG50.FG50-Screen4'
-	ScreenRedBar=Texture'BWBP_SKC_TexExp.M2020.M2020-ScreenOff'
-	Numbers=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Numbers'
+	WeaponScreen=ScriptedTexture'BallisticRecolors3TexPro.FG50.FG50-ScriptLCD'
+	screen=Shader'BallisticRecolors3TexPro.FG50.FG50-ScriptLCD-SD'
+	ScreenBase1=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen'
+	ScreenBase2=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen2'
+	ScreenBase3=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen3'
+	ScreenBase4=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen4'
+	ScreenRedBar=Texture'BallisticRecolors3TexPro.M2020.M2020-ScreenOff'
+	Numbers=Texture'BallisticRecolors3TexPro.PUMA.PUMA-Numbers'
 	MyFontColor=(B=255,G=255,R=255,A=255)
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.FG50.BigIcon_FG50'
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.FG50.BigIcon_FG50'
 	BigIconCoords=(Y1=36,Y2=225)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -637,13 +637,13 @@ defaultproperties
 	ManualLines(1)="Fires more rapidly, but overheats the weapon. An extremely powerful burst attack."
 	ManualLines(2)="The FG50 is heavy and restricts movement. However, the weight compensates for a significant amount of recoil. Takes a long time to aim. Effective at medium to long range."
 	SpecialInfo(0)=(Info="320.0;35.0;1.0;100.0;0.8;0.5;0.1")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
 	MagAmmo=40
 	CockAnimPostReload="ReloadEndCock"
-	CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.AS50.FG50-DrumOut',Volume=1.500000,Radius=32.000000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.AS50.FG50-DrumIn',Volume=1.500000,Radius=32.000000)
+	CockSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-DrumOut',Volume=1.500000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-DrumIn',Volume=1.500000,Radius=32.000000)
 	ClipInFrame=0.650000
 	bShowChargingBar=True
 	WeaponModes(0)=(ModeName="Controlled",AimParamsIndex=1)
@@ -670,7 +670,7 @@ defaultproperties
 	PlayerViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBPRecolorsPro.FG50Attachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.FG50.SmallIcon_FG50'
+	IconMaterial=Texture'BallisticRecolors3TexPro.FG50.SmallIcon_FG50'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="FG50 Heavy Machinegun"
 	LightType=LT_Pulse
@@ -679,7 +679,10 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_FG50'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.FG50_FP'
 	DrawScale=0.500000
-	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Texture'BallisticRecolors3TexPro.FG50.FG50-Main'
+	Skins(2)=Texture'BallisticRecolors3TexPro.FG50.FG50-Misc'
+	Skins(3)=Texture'BallisticRecolors3TexPro.FG50.FG50-Screen'
 }

@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=16
      InventoryType=Class'BallisticProV55.Ammo_Marlin'
      PickupMessage="You picked up DeerMaster rounds."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Marlin.Marlin-AmmoBox'
+     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BWBP4-Hardware.Marlin.Marlin-AmmoBox'
      PrePivot=(Z=9.000000)
      CollisionRadius=8.000000
      CollisionHeight=14.000000

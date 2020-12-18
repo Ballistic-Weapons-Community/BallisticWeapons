@@ -20,7 +20,7 @@ defaultproperties
          StartLocationOffset=(X=-225.800003,Y=2.500000,Z=20.500000)
          StartSizeRange=(X=(Min=0.800000,Max=0.800000),Y=(Min=0.800000,Max=0.800000),Z=(Min=0.800000,Max=0.800000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object

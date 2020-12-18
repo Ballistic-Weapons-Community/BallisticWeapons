@@ -21,7 +21,7 @@ defaultproperties
          StartLocationOffset=(X=20.000000)
          StartSizeRange=(X=(Min=40.000000,Max=50.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.100000,Max=0.200000)
      End Object
@@ -46,7 +46,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=3.000000)
          StartSizeRange=(X=(Min=2.000000,Max=3.000000))
          InitialParticlesPerSecond=500000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=9999.000000,Max=9999.000000)
      End Object

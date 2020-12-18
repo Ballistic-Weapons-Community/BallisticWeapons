@@ -34,7 +34,7 @@ defaultproperties
          StartSizeRange=(X=(Min=50.000000,Max=60.000000),Y=(Min=50.000000,Max=60.000000),Z=(Min=50.000000,Max=60.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          StartVelocityRange=(X=(Min=-200.000000,Max=200.000000),Y=(Min=-200.000000,Max=200.000000),Z=(Max=200.000000))
          VelocityLossRange=(X=(Min=2.000000,Max=2.000000),Y=(Min=2.000000,Max=2.000000),Z=(Min=2.000000,Max=2.000000))

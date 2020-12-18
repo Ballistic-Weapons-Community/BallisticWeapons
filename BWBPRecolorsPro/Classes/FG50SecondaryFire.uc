@@ -208,7 +208,7 @@ simulated function InitEffects()
 defaultproperties
 {
      HeatPerShot=1.100000
-     SpecialFireSound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2'
+     SpecialFireSound=Sound'PackageSounds4Pro.X82.X82-Fire2'
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WallPenetrationForce=72.000000
      
@@ -223,7 +223,7 @@ defaultproperties
      PenetrateForce=150
      PDamageFactor=0.800000
      WallPDamageFactor=0.800000
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
+     DryFireSound=(Sound=Sound'BallisticSounds2.D49.D49-DryFire',Volume=0.700000)
      bCockAfterEmpty=True
      MuzzleFlashClass=Class'BWBPRecolorsPro.FG50FlashEmitter'
      FlashScaleFactor=1.500000
@@ -233,7 +233,7 @@ defaultproperties
      BrassOffset=(X=-80.000000,Y=1.000000)
      FireRecoil=512.000000
      FirePushbackForce=125.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireAnim="CFire"
      FireEndAnim=

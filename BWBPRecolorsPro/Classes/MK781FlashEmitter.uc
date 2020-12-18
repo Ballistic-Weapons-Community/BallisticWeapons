@@ -45,7 +45,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=4.000000)
          StartSizeRange=(X=(Min=6.000000,Max=8.000000),Y=(Min=6.000000,Max=8.000000),Z=(Min=6.000000,Max=8.000000))
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.SmokeWisp-Alpha'
+         Texture=Texture'BallisticEffects2.Particles.SmokeWisp-Alpha'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -57,7 +57,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BWBPRecolorsPro.MK781FlashEmitter.SpriteEmitter37'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter10
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRT6.MRT6MuzzleFlash'
+         StaticMesh=StaticMesh'BallisticHardware2.MRT6.MRT6MuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -101,7 +101,7 @@ defaultproperties
          StartLocationRange=(X=(Min=16.000000,Max=16.000000))
          StartSizeRange=(X=(Min=45.000000,Max=45.000000))
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -127,7 +127,7 @@ defaultproperties
          MaxParticles=20
          StartSizeRange=(X=(Min=4.000000,Max=5.000000),Y=(Min=4.000000,Max=5.000000),Z=(Min=4.000000,Max=5.000000))
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
+         Texture=Texture'BallisticEffects.Particles.Smoke3'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          SpawnOnTriggerRange=(Min=2.000000,Max=2.000000)
@@ -155,7 +155,7 @@ defaultproperties
          MaxParticles=20
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
          StartSizeRange=(X=(Min=15.000000,Max=20.000000),Y=(Min=15.000000,Max=20.000000),Z=(Min=15.000000,Max=20.000000))
-         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
+         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000

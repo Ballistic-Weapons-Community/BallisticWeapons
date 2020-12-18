@@ -77,7 +77,7 @@ defaultproperties
          MaxParticles=30
          DetailMode=DM_SuperHigh
          StartSizeRange=(X=(Min=1.000000,Max=2.000000),Y=(Min=1.000000,Max=2.000000),Z=(Min=1.000000,Max=2.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.LightningBoltCut2'
+         Texture=Texture'BWBP2-FX.Particles.LightningBoltCut2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          StartVelocityRange=(X=(Min=0.500000,Max=1.010000),Y=(Min=-1.000000,Max=1.000000),Z=(Min=-1.000000,Max=1.000000))

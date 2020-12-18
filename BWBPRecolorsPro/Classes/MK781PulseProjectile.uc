@@ -78,11 +78,11 @@ defaultproperties
      LightSaturation=100
      LightBrightness=160.000000
      LightRadius=8.000000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.DarkProjBig'
+     StaticMesh=StaticMesh'BWBP4-Hardware.DarkStar.DarkProjBig'
      AmbientSound=Sound'WeaponSounds.ShockRifle.ShockRifleProjectile'
      LifeSpan=16.000000
-     Skins(0)=FinalBlend'BWBP_SKC_Tex.LS14.EMPProjFB'
-     Skins(1)=FinalBlend'BWBP_SKC_Tex.LS14.EMPProjFB'
+     Skins(0)=FinalBlend'BallisticRecolors3TexPro.LS14.EMPProjFB'
+     Skins(1)=FinalBlend'BallisticRecolors3TexPro.LS14.EMPProjFB'
      Style=STY_Additive
      SoundVolume=255
      SoundRadius=75.000000

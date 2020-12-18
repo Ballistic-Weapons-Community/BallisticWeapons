@@ -43,14 +43,14 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.070000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=3.000000,Max=3.000000))
          InitialParticlesPerSecond=10000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
      End Object
      Emitters(0)=SpriteEmitter'SpriteEmitter4'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter4
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VBlast'
+         StaticMesh=StaticMesh'BallisticHardware2.Effects.VBlast'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -97,7 +97,7 @@ defaultproperties
          StartSizeRange=(X=(Min=20.000000,Max=30.000000),Y=(Min=20.000000,Max=30.000000),Z=(Min=20.000000,Max=30.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.400000)
      End Object
@@ -122,7 +122,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
          StartSizeRange=(X=(Min=8.000000,Max=16.000000),Y=(Min=8.000000,Max=16.000000),Z=(Min=8.000000,Max=16.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
+         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -132,7 +132,7 @@ defaultproperties
      Emitters(3)=SpriteEmitter'SpriteEmitter6'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter5
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip2'
+         StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip2'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

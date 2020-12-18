@@ -4,48 +4,48 @@
 class E23Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BWBP4-Tex.utx
+#exec OBJ LOAD FILE=BWBP4-hardware.usx
 
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPR_Main');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPR_Glass');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPRMain-SpecMask');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPRGlass-SpecMask');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPRLaserBeam');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPRBolt');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPR-MuzzleFlash');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPR-MuzzleEffect');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.Ripple-VPR');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPRBolt-Flare');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPR-Impact');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPR_Main');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPR_Glass');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPRMain-SpecMask');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPRGlass-SpecMask');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPRLaserBeam');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPRBolt');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPR-MuzzleFlash');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPR-MuzzleEffect');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.Ripple-VPR');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPRBolt-Flare');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPR-Impact');
 
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.VPR.VPRMuzzleFlash');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.VPR.VPRProjectile');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.VPR.VPRMuzzleFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.VPR.VPRProjectile');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPR_Main');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPR_Glass');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPRMain-SpecMask');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPRGlass-SpecMask');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPRLaserBeam');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPRBolt');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPR-MuzzleFlash');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPR-MuzzleEffect');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.Ripple-VPR');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPRBolt-Flare');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.VPR.VPR-Impact');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPR_Main');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPR_Glass');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPRMain-SpecMask');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPRGlass-SpecMask');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPRLaserBeam');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPRBolt');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPR-MuzzleFlash');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPR-MuzzleEffect');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.Ripple-VPR');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPRBolt-Flare');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.VPR.VPR-Impact');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.VPR.VPR-Ammo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.VPR.VPRMuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.VPR.VPRPickup-HD');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.VPR.VPRPickup-LD');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.VPR.VPRProjectile');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.VPR.VPR-Ammo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.VPR.VPRMuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.VPR.VPRPickup-HD');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.VPR.VPRPickup-LD');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.VPR.VPRProjectile');
 }
 
 event Landed(Vector HitNormal)
@@ -73,13 +73,13 @@ event Landed(Vector HitNormal)
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.VPR.VPRPickup-LD'
+     LowPolyStaticMesh=StaticMesh'BWBP4-Hardware.VPR.VPRPickup-LD'
      PickupDrawScale=0.200000
      InventoryType=Class'BallisticProV55.E23PlasmaRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the E-23 'ViPeR'."
-     PickupSound=Sound'BW_Core_WeaponSound.A73.A73Putaway'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.VPR.VPRPickup-HD'
+     PickupSound=Sound'BallisticSounds2.A73.A73Putaway'
+     StaticMesh=StaticMesh'BWBP4-Hardware.VPR.VPRPickup-HD'
      Physics=PHYS_None
      DrawScale=0.400000
      CollisionHeight=4.500000

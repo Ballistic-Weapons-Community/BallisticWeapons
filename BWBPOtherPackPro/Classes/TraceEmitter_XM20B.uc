@@ -47,7 +47,7 @@ defaultproperties
         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
         StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
         InitialParticlesPerSecond=50000.000000
-        Texture=Texture'BW_Core_WeaponTex.GunFire.RailCoreWave'
+        Texture=Texture'BallisticEffects.GunFire.RailCoreWave'
         LifetimeRange=(Min=0.350000,Max=0.350000)
         StartVelocityRange=(X=(Min=0.010000,Max=0.010000))
     End Object
@@ -78,7 +78,7 @@ defaultproperties
         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
         StartSizeRange=(X=(Min=2.000000,Max=2.000000),Y=(Min=2.000000,Max=2.000000),Z=(Min=2.000000,Max=2.000000))
         InitialParticlesPerSecond=50000.000000
-        Texture=Texture'BWBP_SKC_Tex.BeamCannon.HMCSmokeCore2'
+        Texture=Texture'BallisticRecolors3TexPro.BeamCannon.HMCSmokeCore2'
         LifetimeRange=(Min=0.300000,Max=0.300000)
         StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
     End Object
@@ -113,7 +113,7 @@ defaultproperties
         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.600000)
         StartSizeRange=(X=(Min=5.000000,Max=20.000000),Y=(Min=5.000000,Max=20.000000),Z=(Min=5.000000,Max=20.000000))
         InitialParticlesPerSecond=50000.000000
-        Texture=Texture'BWBP_SKC_Tex.BFG.PlasmaSubdivide'
+        Texture=Texture'BallisticRecolors3TexPro.BFG.PlasmaSubdivide'
         TextureUSubdivisions=4
         TextureVSubdivisions=2
         LifetimeRange=(Min=1.500000,Max=1.500000)
@@ -143,7 +143,7 @@ defaultproperties
         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
         StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
         InitialParticlesPerSecond=50000.000000
-        Texture=Texture'BW_Core_WeaponTex.GunFire.RailCoreWaveCap'
+        Texture=Texture'BallisticEffects.GunFire.RailCoreWaveCap'
         LifetimeRange=(Min=0.350000,Max=0.350000)
         StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
     End Object
@@ -176,7 +176,7 @@ defaultproperties
         StartSizeRange=(X=(Min=8.000000,Max=8.000000),Y=(Min=8.000000,Max=8.000000),Z=(Min=8.000000,Max=8.000000))
         InitialParticlesPerSecond=50000.000000
         DrawStyle=PTDS_Brighten
-        Texture=Texture'BWBP_SKC_Tex.BeamCannon.HMCSmokeCore2'
+        Texture=Texture'BallisticRecolors3TexPro.BeamCannon.HMCSmokeCore2'
         LifetimeRange=(Min=0.300000,Max=0.400000)
         StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
     End Object
@@ -201,7 +201,7 @@ defaultproperties
         StartSpinRange=(X=(Max=1.000000))
         StartSizeRange=(X=(Min=1.000000,Max=1.500000),Y=(Min=1.000000,Max=1.500000),Z=(Min=1.000000,Max=1.500000))
         InitialParticlesPerSecond=200.000000
-        Texture=Texture'BWBP_SKC_Tex.A48.A48MuzzleFlash'
+        Texture=Texture'BallisticRecolors3TexPro.A48.A48MuzzleFlash'
         TextureUSubdivisions=2
         TextureVSubdivisions=2
         SubdivisionStart=1

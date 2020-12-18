@@ -1,6 +1,6 @@
 class MRS138TazerPlayerEffect extends DGVEmitter;
 
-#exec OBJ LOAD File=BWBP_OP_Sounds.uax
+#exec OBJ LOAD File=BWBPOtherPackSound.uax
 
 simulated function StartSound()
 {
@@ -31,7 +31,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=0.170000,RelativeSize=1.000000)
          SizeScale(3)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=40.000000,Max=60.000000),Y=(Min=40.000000,Max=60.000000),Z=(Min=40.000000,Max=60.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.350000,Max=0.500000)
      End Object
@@ -55,7 +55,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
          StartSizeRange=(X=(Min=24.000000,Max=34.000000),Y=(Min=24.000000,Max=34.000000),Z=(Min=24.000000,Max=34.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
+         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -93,7 +93,7 @@ defaultproperties
      Emitters(2)=BeamEmitter'BallisticProV55.MRS138TazerPlayerEffect.MRS138PlayerBoltEmitter'
 
      AutoDestroy=True
-     AmbientSound=Sound'BWBP_OP_Sounds.PD97.BloodhoundTazer'
+     AmbientSound=Sound'BWBPOtherPackSound.PD97.BloodhoundTazer'
      bFullVolume=True
      bHardAttach=True
      SoundVolume=150

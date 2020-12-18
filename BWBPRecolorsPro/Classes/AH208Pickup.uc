@@ -4,9 +4,9 @@
 class AH208Pickup extends BallisticHandgunPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
-#exec OBJ LOAD FILE=BWBP_SKC_Static.usx
+#exec OBJ LOAD FILE=BallisticRecolors4TexPro.utx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BallisticRecolors4StaticProExp.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,35 +16,39 @@ class AH208Pickup extends BallisticHandgunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-MainGoldEngraved');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeGold');
-	L.AddPrecacheMaterial(Shader'BWBP_SKC_Tex.Eagle.Eagle-GoldShine');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Eagle.Eagle-MainGoldEngraved');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Eagle.Eagle-ScopeGold');
+	L.AddPrecacheMaterial(Shader'BallisticRecolors4TexPro.Eagle.Eagle-GoldShine');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M925.M925MuzzleFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M925.M925MuzzleFlash');
 }
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-MainGoldEngraved');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeGold');
-	Level.AddPrecacheMaterial(Shader'BWBP_SKC_Tex.Eagle.Eagle-GoldShine');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Eagle.Eagle-MainGoldEngraved');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Eagle.Eagle-ScopeGold');
+	Level.AddPrecacheMaterial(Shader'BallisticRecolors4TexPro.Eagle.Eagle-GoldShine');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M925.M925MuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.D49.D49AmmoBox');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.DesertEagle.DEaglePickupAlt');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M925.M925MuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.D49.D49AmmoBox');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.DesertEagle.GoldenEaglePickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.DesertEagle.DeaglePickupAlt'
-     PickupDrawScale=1.000000
+     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticProExp.DesertEagle.GoldenEaglePickup'
+     PickupDrawScale=0.400000
      InventoryType=Class'BWBPRecolorsPro.AH208Pistol'
      RespawnTime=10.000000
      PickupMessage="You picked up the AH208 golden pistol."
-     PickupSound=Sound'BW_Core_WeaponSound.MRT6.MRT6Pullout'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.DesertEagle.DeaglePickupAlt'
+     PickupSound=Sound'BallisticSounds2.MRT6.MRT6Pullout'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.DesertEagle.GoldenEaglePickup'
      Physics=PHYS_None
-     DrawScale=1.000000
+     DrawScale=0.400000
+     Skins(0)=FinalBlend'ONSstructureTextures.CoreGroup.InvisibleFinal'
+     Skins(1)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-ScopeGold'
+     Skins(2)=FinalBlend'ONSstructureTextures.CoreGroup.InvisibleFinal'
+     Skins(3)=Shader'BallisticRecolors4TexPro.Eagle.Eagle-GoldShine'
      CollisionHeight=4.000000
 }

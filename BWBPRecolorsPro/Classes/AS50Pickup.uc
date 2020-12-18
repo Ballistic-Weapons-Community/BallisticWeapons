@@ -4,10 +4,11 @@
 class AS50Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BWBP_SKC_TexExp.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
-#exec OBJ LOAD FILE=BWBP_SKC_StaticExp.usx
+
+#exec OBJ LOAD FILE=BallisticRecolors3TexPro.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BallisticRecolors4StaticPro.usx
 
 //===========================================================================
 // StaticPrecache
@@ -17,40 +18,40 @@ class AS50Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.FSG50.FSG-Main');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.FSG50.FSG-Misc');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.FSG50.FSG-Scope');	
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.FSG50.FSG-Stock');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.FSG50.FSG-Main');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.FSG50.FSG-Misc');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.FSG50.FSG-Scope');	
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.FSG50.FSG-Stock');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyRifleRound');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.FSG50.FSG-Main');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.FSG50.FSG-Misc');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.FSG50.FSG-Scope');	
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.FSG50.FSG-Stock');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.FSG50.FSG-Main');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.FSG50.FSG-Misc');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.FSG50.FSG-Scope');	
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.FSG50.FSG-Stock');
 }
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.FSSG50.FSSG50PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.FSSG50.FSSG50AmmoPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyRifleRound');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.FSSG50.FSSG50PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.FSSG50.FSSG50AmmoPickup');
 
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.FSSG50.FSSG50PickupHi'
+     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticPro.FSSG50.FSSG50PickupHi'
      PickupDrawScale=0.750000
      MaxDesireability=0.750000
      InventoryType=Class'BWBPRecolorsPro.AS50Rifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the FSSG-50 marksman rifle."
-     PickupSound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.FSSG50.FSSG50PickupHi'
+     PickupSound=Sound'BWBP4-Sounds.MRL.MRL-BigOn'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.FSSG50.FSSG50PickupHi'
      Physics=PHYS_None
      DrawScale=0.400000
      PrePivot=(Y=-15.000000)

@@ -123,7 +123,7 @@ event NotifyLevelChange()
 defaultproperties
 {
      bShowSplash=True
-     SplashPic=Texture'BW_Core_WeaponTex.ui.SplashScreenNew'
+     SplashPic=Texture'BallisticTextures_25.ui.SplashScreenNew'
      VersionText="Ballistic Pro"
      FixText="discord.gg/2XTfKPa"
      bVisible=True

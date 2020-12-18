@@ -168,7 +168,7 @@ simulated function DrawWeaponUI(Canvas C)
 				C.DrawColor.G = Min(255, C.DrawColor.G+96);
 				C.DrawColor.B = Min(255, C.DrawColor.B+96);
 			}
-			C.DrawTileStretched(Texture'BW_Core_WeaponTex.UI.WeaponUIFrame', XS, YS);
+			C.DrawTileStretched(Texture'BallisticWeapons2.UI.WeaponUIFrame', XS, YS);
 			// Draw the icons. Don't draw highlighted icon now though.
 			if (i == WGroup && j == WItem)
 				continue;
@@ -193,7 +193,7 @@ simulated function DrawWeaponUI(Canvas C)
 			else
 			{
 				C.SetPos((96+132*j)*ScaleFactor, (160 + 96*i)*ScaleFactor);
-				C.DrawTile(Texture'BW_Core_WeaponTex.Icons.BigIcon_NA', XS, YS, 0,0,512,256);
+				C.DrawTile(Texture'BallisticUI2.Icons.BigIcon_NA', XS, YS, 0,0,512,256);
 			}
 		}
 	}
@@ -230,7 +230,7 @@ simulated function DrawWeaponUI(Canvas C)
 			YS = 96 + 64 * SmoothPulsePhase;
 
 			C.SetPos(((160 + 132*WItem) - XS/2)*ScaleFactor, ((192 + 96*WGroup) - YS/2.5)*ScaleFactor);
-			C.DrawTile(Texture'BW_Core_WeaponTex.Icons.BigIcon_NA',
+			C.DrawTile(Texture'BallisticUI2.Icons.BigIcon_NA',
 			XS*ScaleFactor, YS*ScaleFactor, 0, 0, 512, 256);
 		}
 		// Draw name of highlighted item

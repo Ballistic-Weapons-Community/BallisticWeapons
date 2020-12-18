@@ -122,20 +122,20 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {
-     MatGlow1=Shader'BWBP_SKC_Tex.XM84.XM84-Glow2'
-     MatGlow2=Shader'BWBP_SKC_Tex.XM84.XM84-Glow4'
-     MatGlow3=Shader'BWBP_SKC_Tex.XM84.XM84-Glow3'
-     MatSparks=Shader'BWBP_SKC_Tex.XM84.XM84-Glow'
+     MatGlow1=Shader'BallisticRecolors3TexPro.XM84.XM84-Glow2'
+     MatGlow2=Shader'BallisticRecolors3TexPro.XM84.XM84-Glow4'
+     MatGlow3=Shader'BallisticRecolors3TexPro.XM84.XM84-Glow3'
+     MatSparks=Shader'BallisticRecolors3TexPro.XM84.XM84-Glow'
      FuseDelay=2.000000
      HeldDamage=110
      HeldRadius=350
      HeldMomentum=75000
      HeldDamageType=Class'BWBPRecolorsPro.DTXM84Held'
      GrenadeSmokeClass=Class'BWBPRecolorsPro.XM84Trail'
-     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
-     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
-     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_Tex.XM84.BigIcon_XM84'
+     ClipReleaseSound=(Sound=Sound'BallisticSounds3.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     PinPullSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BallisticRecolors3TexPro.XM84.BigIcon_XM84'
      BigIconCoords=(Y1=12,Y2=255)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Hazardous=True
@@ -145,8 +145,8 @@ defaultproperties
      ManualLines(1)="As primary, but the XM84 is rolled underarm."
      ManualLines(2)="While the XM84 can be cooked in hand, its short fuse makes this a bad idea.||Effective in group engagements."
      SpecialInfo(0)=(Info="60.0;5.0;0.25;30.0;0.0;0.0;0.4")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
+     BringUpSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Pullout')
+     PutDownSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Putaway')
 	 CurrentWeaponMode=1
 	 ParamsClass=Class'XM84WeaponParams'
      FireModeClass(0)=Class'BWBPRecolorsPro.XM84PrimaryFire'
@@ -168,10 +168,10 @@ defaultproperties
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      BobDamping=1.000000
      AttachmentClass=Class'BWBPRecolorsPro.XM84Attachment'
-     IconMaterial=Texture'BWBP_SKC_Tex.XM84.SmallIcon_XM84'
+     IconMaterial=Texture'BallisticRecolors3TexPro.XM84.SmallIcon_XM84'
      IconCoords=(X2=127,Y2=31)
      ItemName="XM84 Heavy Tech Grenade"
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XM84'
+     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.XM84Grenade'
      DrawScale=0.400000
-     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
 }

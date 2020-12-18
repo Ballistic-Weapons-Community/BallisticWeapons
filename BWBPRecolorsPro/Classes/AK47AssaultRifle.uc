@@ -47,7 +47,7 @@ simulated function NewDrawWeaponInfo(Canvas C, Float YPos)
     if(bLoaded)
     {
 		C.SetPos(C.ClipX - (2.5) * ScaleFactor2, C.ClipY - 110 * ScaleFactor * class'HUD'.default.HudScale);
-		C.DrawTile( Texture'BWBP_SKC_TexExp.AK490.AK490-KnifeIcon',ScaleFactor2*2, ScaleFactor2, 0, 0, 256, 128);
+		C.DrawTile( Texture'BallisticRecolors3TexPro.AK490.AK490-KnifeIcon',ScaleFactor2*2, ScaleFactor2, 0, 0, 256, 128);
 	}
 
 	DrawCrosshairs(C);
@@ -354,13 +354,13 @@ defaultproperties
 	bLoaded=True
 	GrenBone="KnifeBlade"
 	GrenBoneBase="AttachKnife"
-	GrenLoadSound=Sound'BWBP_SKC_SoundsExp.AK47.Knife-Load'
-	GrenDropSound=Sound'BWBP_SKC_SoundsExp.AK47.Knife-Drop'
+	GrenLoadSound=Sound'PackageSounds4Pro.AK47.Knife-Load'
+	GrenDropSound=Sound'PackageSounds4Pro.AK47.Knife-Drop'
 	BulletBone="Bullet1"
 	BulletBone2="Bullet2"
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.AK490.BigIcon_AK490'
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.AK490.BigIcon_AK490'
 	BigIconCoords=(Y1=32,Y2=220)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -369,15 +369,15 @@ defaultproperties
 	ManualLines(2)="The AK-490 has a melee attack option. The damage is weakened if the knife has been fired.||The Weapon Function key ||This weapon is effective at medium range."
 	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.5;0.8;0.0")
 	MeleeFireClass=Class'BWBPRecolorsPro.AK47MeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
 	CockAnimPostReload="ReloadEndCock"
 	CockingBringUpTime=1.300000
-	CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.AK47.AK47-Cock',Volume=3.500000)
+	CockSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-Cock',Volume=3.500000)
 	ReloadAnimRate=1.250000
-	ClipHitSound=(Sound=Sound'BWBP_SKC_SoundsExp.AK47.AK47-ClipHit',Volume=3.500000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.AK47.AK47-ClipOut',Volume=3.500000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.AK47.AK47-ClipIn',Volume=3.500000)
+	ClipHitSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-ClipHit',Volume=3.500000)
+	ClipOutSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-ClipOut',Volume=3.500000)
+	ClipInSound=(Sound=Sound'PackageSounds4Pro.AK47.AK47-ClipIn',Volume=3.500000)
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
 	WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
@@ -406,7 +406,7 @@ defaultproperties
 	PlayerViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBPRecolorsPro.AK47Attachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.AK490.SmallIcon_AK490'
+	IconMaterial=Texture'BallisticRecolors3TexPro.AK490.SmallIcon_AK490'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="AK-490 Battle Rifle"
 	LightType=LT_Pulse
@@ -415,7 +415,9 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_AK490'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.AK490_FPNew'
 	DrawScale=0.350000
-	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Texture'BallisticRecolors3TexPro.AK490.AK490-Main'
+	Skins(2)=Texture'BallisticRecolors3TexPro.AK490.AK490-Misc'
 }

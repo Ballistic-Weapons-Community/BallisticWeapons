@@ -4,8 +4,8 @@
 class BX85Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BWBP_OP_Tex.utx
-#exec OBJ LOAD FILE=BWBP_OP_Static.usx
+#exec OBJ LOAD FILE=BWBPOtherPackTex.utx
+#exec OBJ LOAD FILE=BWBPOtherPackStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -15,28 +15,28 @@ class BX85Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XBow.XBow_diff');
-	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XBow.XBow_spec');
+	L.AddPrecacheMaterial(Texture'BWBPOtherPackTex2.XBow.XBow_diff');
+	L.AddPrecacheMaterial(Texture'BWBPOtherPackTex2.XBow.XBow_spec');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XBow.XBow_diff');
-	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.XBow.XBow_spec');
+	Level.AddPrecacheMaterial(Texture'BWBPOtherPackTex2.XBow.XBow_diff');
+	Level.AddPrecacheMaterial(Texture'BWBPOtherPackTex2.XBow.XBow_spec');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.XBow.XBow_static');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBPOtherPackStatic.XBow.XBow_static');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.XBow.XBow_static'
+     LowPolyStaticMesh=StaticMesh'BWBPOtherPackStatic.XBow.XBow_static'
      InventoryType=Class'BWBPOtherPackPro.BX85Crossbow'
      RespawnTime=20.000000
      PickupMessage="You picked up the BX85 stealth crossbow."
-     PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.XBow.XBow_static'
+     PickupSound=Sound'BallisticSounds2.M50.M50Putaway'
+     StaticMesh=StaticMesh'BWBPOtherPackStatic.XBow.XBow_static'
      Physics=PHYS_None
      DrawScale=0.250000
      CollisionHeight=4.000000

@@ -4,8 +4,8 @@
 class LS14Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
-#exec OBJ LOAD FILE=BWBP_SKC_Static.usx
+#exec OBJ LOAD FILE=BallisticRecolors3TexPro.utx
+#exec OBJ LOAD FILE=BallisticRecolors4StaticPro.usx
 
 //===========================================================================
 // StaticPrecache
@@ -15,39 +15,39 @@ class LS14Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.LS14.LS14-Main');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.LS14.LS14-Spec');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.LS14.LS14-Impact');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.LS14.ElectroBolt');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.LS14.PlasmaMuzzleFlash2');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.LS14.LS14-Main');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.LS14.LS14-Spec');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.LS14.LS14-Impact');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.LS14.ElectroBolt');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.LS14.PlasmaMuzzleFlash2');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LaserCarbine.PlasmaMuzzleFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.LaserCarbine.PlasmaMuzzleFlash');
 }
 
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.LS14.LS14-Main');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.LS14.LS14-Spec');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.LS14.LS14-Impact');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.LS14.ElectroBolt');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.LS14.PlasmaMuzzleFlash2');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.LS14.LS14-Main');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.LS14.LS14-Spec');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.LS14.LS14-Impact');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.LS14.ElectroBolt');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.LS14.PlasmaMuzzleFlash2');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LaserCarbine.LaserCarbinePickup');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.LaserCarbine.PlasmaMuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.LaserCarbine.LaserCarbinePickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.LaserCarbine.PlasmaMuzzleFlash');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.LaserCarbinePickup'
+     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticPro.LaserCarbine.LaserCarbinePickup'
      PickupDrawScale=1.100000
      InventoryType=Class'BWBPRecolorsPro.LS14Carbine'
      RespawnTime=20.000000
      PickupMessage="You picked up the LS-14 laser carbine."
-     PickupSound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Pickup'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.LaserCarbinePickup'
+     PickupSound=Sound'PackageSounds4Pro.LS14.Gauss-Pickup'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.LaserCarbine.LaserCarbinePickup'
      Physics=PHYS_None
      DrawScale=1.100000
      CollisionHeight=3.000000

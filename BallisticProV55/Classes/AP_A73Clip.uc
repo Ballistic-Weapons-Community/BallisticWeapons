@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=64
      InventoryType=Class'BallisticProV55.Ammo_Cells'
      PickupMessage="You picked up an A73 energy cell."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.A73CellPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.A73Clip'
+     PickupSound=Sound'BallisticSounds2.Ammo.A73CellPickup'
+     StaticMesh=StaticMesh'BallisticHardware2.Ammo.A73Clip'
      DrawScale=0.300000
      CollisionRadius=8.000000
      CollisionHeight=4.800000

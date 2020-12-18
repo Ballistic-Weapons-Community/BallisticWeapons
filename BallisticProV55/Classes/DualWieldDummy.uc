@@ -34,6 +34,6 @@ static function bool ApplyEffect(Pawn Other, byte Level, optional bool bInitial)
 
 defaultproperties
 {
-     BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.DualWield'
+     BigIconMaterial=Texture'BallisticProTextures.Icons.DualWield'
      ItemName="Dual Wield"
 }

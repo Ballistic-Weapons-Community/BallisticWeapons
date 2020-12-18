@@ -115,7 +115,7 @@ defaultproperties
      SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
      bUseWeaponMag=False
      FlashBone="tip2"
-     BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.PD97.BloodhoundTazerFire',Volume=2.250000)
+     BallisticFireSound=(Sound=Sound'BWBPOtherPackSound.PD97.BloodhoundTazerFire',Volume=2.250000)
      bFireOnRelease=True
      PreFireAnim=
      FireAnim="TazerStart"

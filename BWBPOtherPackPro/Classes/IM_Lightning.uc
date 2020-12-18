@@ -10,5 +10,5 @@ defaultproperties
 {
      HitEffects(0)=Class'BWBPOtherPackPro.IE_Lightning'
      HitDecals(0)=Class'BallisticProV55.AD_MRLExplosion'
-     HitSounds(0)=Sound'BWBP_SKC_Sounds.Misc.XM84-Aftershock'
+     HitSounds(0)=Sound'PackageSounds4Pro.Misc.XM84-Aftershock'
 }

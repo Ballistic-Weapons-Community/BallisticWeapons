@@ -13,9 +13,9 @@ defaultproperties
      MaxAmmo=72
      InitialAmount=36
      bTryHeadShot=True
-     IconFlashMaterial=Shader'BW_Core_WeaponTex.ui.AmmoIcon_R9ClipsFlash'
+     IconFlashMaterial=Shader'BallisticTextures3.ui.AmmoIcon_R9ClipsFlash'
      PickupClass=Class'BallisticProV55.AP_R9Clip'
-     IconMaterial=Texture'BW_Core_WeaponTex.ui.AmmoIcon_R9Clips'
+     IconMaterial=Texture'BallisticTextures3.ui.AmmoIcon_R9Clips'
      IconCoords=(X1=64,Y1=64,X2=127,Y2=127)
      ItemName=".348 Rifle Rounds"
 }

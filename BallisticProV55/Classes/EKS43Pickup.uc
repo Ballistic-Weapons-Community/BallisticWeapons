@@ -4,9 +4,9 @@
 class EKS43Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BallisticWeapons2.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,32 +16,32 @@ class EKS43Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.EKS43.Katana');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
+	L.AddPrecacheMaterial(Texture'BallisticWeapons2.EKS43.Katana');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.EKS43.Katana');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
+	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.EKS43.Katana');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.EKS43.KatanaPickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.EKS43.KatanaPickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.EKS43.KatanaPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.EKS43.KatanaPickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.EKS43.KatanaPickupLo'
+     LowPolyStaticMesh=StaticMesh'BallisticHardware2.EKS43.KatanaPickupLo'
      PickupDrawScale=0.200000
      InventoryType=Class'BallisticProV55.EKS43Katana'
      RespawnTime=10.000000
      PickupMessage="You picked up the EKS-43 katana."
-     PickupSound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.EKS43.KatanaPickupHi'
+     PickupSound=Sound'BallisticSounds2.EKS43.EKS-Putaway'
+     StaticMesh=StaticMesh'BallisticHardware2.EKS43.KatanaPickupHi'
      Physics=PHYS_None
      DrawScale=0.200000
      CollisionHeight=4.000000

@@ -66,7 +66,7 @@ defaultproperties
          StartSizeRange=(X=(Max=120.000000),Y=(Max=120.000000),Z=(Max=120.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.NewSmoke1g'
+         Texture=Texture'BallisticEffects2.Particles.NewSmoke1g'
          SecondsBeforeInactive=0.000000
          StartVelocityRadialRange=(Min=-500.000000,Max=-300.000000)
          VelocityLossRange=(X=(Min=1.800000,Max=1.800000),Y=(Min=1.800000,Max=1.800000),Z=(Min=4.000000,Max=4.000000))
@@ -75,7 +75,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BallisticProV55.IE_NRP57Explosion.SpriteEmitter16'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter3
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip2'
+         StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip2'
          UseMeshBlendMode=False
          UseParticleColor=True
          UseCollision=True
@@ -124,7 +124,7 @@ defaultproperties
          ScaleSizeByVelocityMultiplier=(Y=0.001500)
          InitialParticlesPerSecond=120.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.800000,Max=0.800000)
          AddVelocityFromOtherEmitter=1
@@ -148,7 +148,7 @@ defaultproperties
          StartSizeRange=(X=(Min=200.000000,Max=200.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -172,7 +172,7 @@ defaultproperties
          StartSizeRange=(X=(Min=200.000000,Max=200.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -197,7 +197,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=5.000000)
          StartSizeRange=(X=(Min=50.000000,Max=50.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
          InitialParticlesPerSecond=8.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
+         Texture=Texture'BallisticEffects.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.250000,Max=0.250000)
      End Object
@@ -219,7 +219,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.560000,RelativeSize=4.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=5.000000)
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
+         Texture=Texture'BallisticEffects.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
      End Object

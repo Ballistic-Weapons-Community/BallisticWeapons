@@ -187,11 +187,11 @@ simulated function PlayCocking(optional byte Type)
 
 defaultproperties
 {
-	MountFireSound=Sound'BWBP_SKC_Sounds.X82.X82-Fire4'
+	MountFireSound=Sound'PackageSounds4Pro.X82.X82-Fire4'
 	ReloadAnimRate=1.300000
-	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipHit',Volume=0.000000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipOut')
-	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipIn',Volume=1.500000)
+	ClipHitSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipHit',Volume=0.000000)
+	ClipOutSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipOut')
+	ClipInSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipIn',Volume=1.500000)
 	GunLength=0.000000
 	bUseSpecialAim=True
 	ParamsClass=Class'X82TW_WeaponParams'
@@ -205,7 +205,7 @@ defaultproperties
 	Priority=1
 	PlayerViewOffset=(X=-80.000000)
 	ItemName="Deployed X83 Sniper Rifle"
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X83Turret'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.X83A1_Turret'
 	DrawScale=0.650000
 	CollisionHeight=24.000000
 }

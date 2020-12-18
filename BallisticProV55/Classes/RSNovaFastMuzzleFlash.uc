@@ -40,7 +40,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.340000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=60.000000,Max=80.000000),Y=(Min=60.000000,Max=80.000000),Z=(Min=60.000000,Max=80.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -70,7 +70,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.400000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=35.000000,Max=35.000000),Y=(Min=120.000000,Max=120.000000),Z=(Min=120.000000,Max=120.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.WaterSpray1'
+         Texture=Texture'BallisticEffects.Particles.WaterSpray1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -103,7 +103,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.200000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=8.000000,Max=12.000000),Y=(Min=10.000000,Max=20.000000),Z=(Min=10.000000,Max=10.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.DirtSpray'
+         Texture=Texture'BallisticEffects.Particles.DirtSpray'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=8.000000,Max=8.000000)
@@ -136,7 +136,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.200000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=8.000000,Max=12.000000),Y=(Min=10.000000,Max=20.000000),Z=(Min=10.000000,Max=10.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.DirtSpray'
+         Texture=Texture'BallisticEffects.Particles.DirtSpray'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=8.000000,Max=8.000000)
@@ -169,7 +169,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.200000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=8.000000,Max=12.000000),Y=(Min=10.000000,Max=20.000000),Z=(Min=10.000000,Max=10.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.DirtSpray'
+         Texture=Texture'BallisticEffects.Particles.DirtSpray'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=8.000000,Max=8.000000)

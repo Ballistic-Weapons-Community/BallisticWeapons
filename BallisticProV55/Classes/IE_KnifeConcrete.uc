@@ -46,7 +46,7 @@ defaultproperties
 {
      bVerticalZ=False
      Begin Object Class=MeshEmitter Name=MeshEmitter8
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip2'
+         StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip2'
          FadeOut=True
          FadeIn=True
          RespawnDeadParticles=False
@@ -85,7 +85,7 @@ defaultproperties
          StartLocationRange=(Y=(Max=100.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
+         Texture=Texture'BallisticEffects.Particles.AquaFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=50.000000,Max=200.000000),Y=(Max=500.000000),Z=(Max=50.000000))

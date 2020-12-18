@@ -229,15 +229,15 @@ function Notify_SwitchPress()
 		{
 			if (Instigator.PlayerReplicationInfo.Team == None || Instigator.PlayerReplicationInfo.Team.TeamIndex == 1)
 			{
-				xPawn(Instigator).SetOverlayMaterial( Material'BWBP_OP_Tex.General.BlueExplosiveShieldMat', 300, true );
-				ThirdPersonActor.SetOverlayMaterial( Material'BWBP_OP_Tex.General.BlueExplosiveShieldMat', 300, true );
-				SetOverlayMaterial( Material'BWBP_OP_Tex.General.BlueExplosiveShieldMat', 300, true );
+				xPawn(Instigator).SetOverlayMaterial( Material'BWBPOtherPackTex.General.BlueExplosiveShieldMat', 300, true );
+				ThirdPersonActor.SetOverlayMaterial( Material'BWBPOtherPackTex.General.BlueExplosiveShieldMat', 300, true );
+				SetOverlayMaterial( Material'BWBPOtherPackTex.General.BlueExplosiveShieldMat', 300, true );
 			}
 			else
 			{
-				xPawn(Instigator).SetOverlayMaterial( Material'BWBP_OP_Tex.General.RedExplosiveShieldMat', 300, true );
-				ThirdPersonActor.SetOverlayMaterial( Material'BWBP_OP_Tex.General.RedExplosiveShieldMat', 300, true );
-				SetOverlayMaterial( Material'BWBP_OP_Tex.General.RedExplosiveShieldMat', 300, true );
+				xPawn(Instigator).SetOverlayMaterial( Material'BWBPOtherPackTex.General.RedExplosiveShieldMat', 300, true );
+				ThirdPersonActor.SetOverlayMaterial( Material'BWBPOtherPackTex.General.RedExplosiveShieldMat', 300, true );
+				SetOverlayMaterial( Material'BWBPOtherPackTex.General.RedExplosiveShieldMat', 300, true );
 			}
 		}
 	}
@@ -307,14 +307,14 @@ function float GetAIRating()
 
 defaultproperties
 {
-	BigIconMaterial=Texture'BWBP_OP_Tex.ProtonPack.BigIcon_ProtonPack'
+	BigIconMaterial=Texture'BWBPOtherPackTex2.ProtonPack.BigIcon_ProtonPack'
 	BigIconCoords=(Y1=32,X2=512,Y2=225)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Energy=True
 	bWT_Heal=True
 	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BWBP_OP_Sounds.ProtonPack.Proton-Pullout')
-	PutDownSound=(Sound=Sound'BWBP_OP_Sounds.ProtonPack.Proton-Putaway')
+	BringUpSound=(Sound=Sound'BWBPOtherPackSound.ProtonPack.Proton-Pullout')
+	PutDownSound=(Sound=Sound'BWBPOtherPackSound.ProtonPack.Proton-Putaway')
 	bNoMag=True
 	bNonCocking=True
 	WeaponModes(0)=(ModeName="Proton Stream",ModeID="WM_FullAuto")
@@ -345,7 +345,7 @@ defaultproperties
 	PlayerViewOffset=(X=40.000000,Y=15.000000,Z=-20.000000)
 	PlayerViewPivot=(Pitch=1024,Yaw=-1024)
 	AttachmentClass=Class'BWBPOtherPackPro.ProtonStreamAttachment'
-	IconMaterial=Texture'BWBP_OP_Tex.ProtonPack.Icon_ProtonPack'
+	IconMaterial=Texture'BWBPOtherPackTex2.ProtonPack.Icon_ProtonPack'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="E90-N Particle Accelerator"
 	LightType=LT_Pulse
@@ -354,7 +354,7 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_ProtonPack'
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.ProtonPack_FP'
 	DrawScale=0.600000
 	SoundPitch=56
 	SoundRadius=32.000000

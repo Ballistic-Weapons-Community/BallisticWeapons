@@ -107,7 +107,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
     for( i=0; i<Count; i++ )
     {
 		C.SetPos(C.ClipX - (0.5*i+1) * ScaleFactor2, C.ClipY - 100 * ScaleFactor * class'HUD'.default.HudScale);
-		C.DrawTile( Texture'BWBP_SKC_TexExp.M1014.M1014-SGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
+		C.DrawTile( Texture'BallisticRecolors4TexPro.M1014.M1014-SGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
 	}
 
 	if (bSkipDrawWeaponInfo)
@@ -617,12 +617,12 @@ defaultproperties
 	SilencerBone="Silencer"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"
-	SilencerOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
-	SilencerOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
+	SilencerOnSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOn'
+	SilencerOffSound=Sound'BWBP3-Sounds.SRS900.SRS-SilencerOff'
 	SGPrepAnim="LoadSpecial2"
 	ReloadAltAnim="ReloadSpecialFull"
 	ReloadAnimEmpty="ReloadEmpty"
-	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
+	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
 	Grenades=6
 	StartingGrenades=3
 	Shells(0)=(ShellName="HShell1")
@@ -631,8 +631,8 @@ defaultproperties
 	Shells(3)=(ShellName="HShell4")
 	Shells(4)=(ShellName="HShell5")
 	Shells(5)=(ShellName="HShell6")
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.M1014.BigIcon_M1014'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticRecolors4TexPro.M1014.BigIcon_M1014'
 	BigIconCoords=(Y1=25,Y2=210)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Shotgun=True
@@ -641,11 +641,11 @@ defaultproperties
 	ManualLines(1)="Loads an electroshock shell.|Without the suppressor employed, will subsequently generate an electric shot with high power and excellent range.|With the suppressor employed, will generate an arcing bolt with fast travel time and strong impact damage. Deals lesser damage in a radius around the point of impact."
 	ManualLines(2)="The Weapon Function key attaches the suppressor, which removes the flash, reduces recoil, quietens the fire sound of the primary and changes the functionality of the weapon. Due to the suppressor's length, the weapon will offset while jumping if it is attached.||Effective at medium range."
 	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
-	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
+	BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
+	CockSound=(Sound=Sound'PackageSounds4ProExp.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
 	ReloadAnim="ReloadLoop"
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.Mk781.Mk781-ShellPlus',Volume=2.300000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'PackageSounds4ProExp.Mk781.Mk781-ShellPlus',Volume=2.300000,Radius=32.000000)
 	ClipInFrame=0.325000
 	bCanSkipReload=True
 	bShovelLoad=True
@@ -677,7 +677,7 @@ defaultproperties
 	PlayerViewOffset=(X=-6.000000,Y=10.000000,Z=-10.000000)
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBPRecolorsPro.MK781Attachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.M1014.SmallIcon_M1014'
+	IconMaterial=Texture'BallisticRecolors4TexPro.M1014.SmallIcon_M1014'
 	IconCoords=(X2=127,Y2=35)
 	ItemName="MK781 Combat Shotgun"
 	LightType=LT_Pulse
@@ -686,9 +686,9 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MK781'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.M1014_FP'
 	DrawScale=0.130000
-	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Shader'BWBP_SKC_TexExp.M1014.M1014-Shine'
-	Skins(2)=Shader'BWBP_SKC_TexExp.M1014.M1014-MiscShine'
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Shader'BallisticRecolors4TexPro.M1014.M1014-Shine'
+	Skins(2)=Shader'BallisticRecolors4TexPro.M1014.M1014-MiscShine'
 }

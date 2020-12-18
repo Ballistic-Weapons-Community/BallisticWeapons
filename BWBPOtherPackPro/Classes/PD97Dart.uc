@@ -83,7 +83,7 @@ defaultproperties
      Speed=15000.000000
      Damage=10.000000
      MyDamageType=Class'BWBPOtherPackPro.DTPD97Dart'
-     StaticMesh=StaticMesh'BWBP_OP_Static.Bloodhound.BHPoisonDart'
+     StaticMesh=StaticMesh'BWBPOtherPackProjStatic.Bloodhound.BHPoisonDart'
      LifeSpan=2.500000
      bIgnoreTerminalVelocity=True
 }

@@ -13,7 +13,7 @@ class A500SecondaryFire extends BallisticProProjectileFire;
 var Sound ChargingSound;
 var int AcidLoad;
 
-const ACIDMAX = 4;
+const ACIDMAX = 5;
 
 function ModeHoldFire()
 {
@@ -69,28 +69,9 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	if (Proj != None)
 	{
 		Proj.Instigator = Instigator;
-		A500AltProjectile(Proj).AcidLoad = AcidLoad * 2;
+		A500AltProjectile(Proj).AcidLoad = float(AcidLoad)/float(ACIDMAX);
 		A500AltProjectile(Proj).AdjustSpeed();
 	}
-}
-
-// Returns normal for some random spread. This is seperate from GetFireDir for shotgun reasons mainly...
-simulated function vector GetFireSpread()
-{
-	local float fX;
-    	local Rotator R;
-
-	if (BW.bScopeView)
-		return super(BallisticProjectileFire).GetFireSpread();
-
-	fX = frand();
-	R.Yaw =  1536 * sin (FMin(sqrt(frand()), 1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-	if (frand() > 0.5)
-		R.Yaw = -R.Yaw;
-	R.Pitch = 1536 * sin (FMin(sqrt(frand()), 1)  * 1.5707963267948966) * cos(fX*1.5707963267948966);
-	if (frand() > 0.5)
-		R.Pitch = -R.Pitch;
-	return Vector(R);
 }
 
 defaultproperties
@@ -98,7 +79,7 @@ defaultproperties
      ChargingSound=Sound'GeneralAmbience.texture22'
      MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
      FireChaos=0.500000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_AltFire',Volume=1.800000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_AltFire',Volume=1.800000,Slot=SLOT_Interact,bNoOverride=False)
      bFireOnRelease=True
      MaxHoldTime=6.000000
      FireEndAnim=

@@ -142,9 +142,9 @@ defaultproperties
      LightSaturation=100
      LightBrightness=192.000000
      LightRadius=6.000000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.A42.A42Projectile'
+     StaticMesh=StaticMesh'BallisticHardware2.A42.A42Projectile'
      bDynamicLight=True
-     AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
+     AmbientSound=Sound'BallisticSounds2.A73.A73ProjFly'
      LifeSpan=4.000000
      DrawScale3D=(Y=1.000000,Z=1.000000)
      SoundVolume=255

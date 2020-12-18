@@ -41,7 +41,7 @@ defaultproperties
      FireRecoil=768.000000
      FirePushbackForce=350.000000
      FireChaos=0.750000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Fire',Volume=0.750000,Radius=384.000000)
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.M75.M75Fire',Volume=0.750000,Radius=384.000000)
      FireEndAnim="'"
      FireRate=1.500000
      AmmoClass=Class'BallisticProV55.Ammo_20mmRailgun'

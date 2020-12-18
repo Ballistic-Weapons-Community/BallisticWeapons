@@ -52,7 +52,7 @@ defaultproperties
          StartSizeRange=(X=(Min=25.000000,Max=30.000000),Y=(Min=25.000000,Max=30.000000),Z=(Min=25.000000,Max=30.000000))
          InitialParticlesPerSecond=10000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=30.000000,Max=60.000000),Y=(Min=-30.000000,Max=30.000000),Z=(Min=-30.000000,Max=30.000000))
@@ -61,7 +61,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BWBPRecolorsPro.IE_BulletExpWood.SpriteEmitter42'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter19
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.WoodChipA1'
+         StaticMesh=StaticMesh'BallisticHardware2.Impact.WoodChipA1'
          UseParticleColor=True
          FadeOut=True
          RespawnDeadParticles=False
@@ -86,7 +86,7 @@ defaultproperties
      Emitters(1)=MeshEmitter'BWBPRecolorsPro.IE_BulletExpWood.MeshEmitter19'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter20
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.WoodImpactHoleA1'
+         StaticMesh=StaticMesh'BallisticHardware2.Impact.WoodImpactHoleA1'
          UseParticleColor=True
          FadeOut=True
          FadeIn=True
@@ -111,7 +111,7 @@ defaultproperties
      Emitters(2)=MeshEmitter'BWBPRecolorsPro.IE_BulletExpWood.MeshEmitter20'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter21
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VolumetricA3'
+         StaticMesh=StaticMesh'BallisticHardware2.Effects.VolumetricA3'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -158,7 +158,7 @@ defaultproperties
          StartSizeRange=(X=(Min=35.000000,Max=35.000000),Y=(Min=35.000000,Max=35.000000),Z=(Min=35.000000,Max=35.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.350000,Max=0.350000)
      End Object
@@ -181,7 +181,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=20.000000,Max=20.000000),Y=(Min=20.000000,Max=20.000000),Z=(Min=20.000000,Max=20.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
+         Texture=Texture'BallisticEffects.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
      End Object

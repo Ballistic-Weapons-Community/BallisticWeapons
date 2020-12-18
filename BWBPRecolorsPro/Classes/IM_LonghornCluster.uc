@@ -12,7 +12,7 @@ defaultproperties
 {
      HitEffects(0)=Class'BallisticProV55.IE_MRLExplosion'
      HitDecals(0)=Class'BallisticProV55.AD_MRLExplosion'
-     HitSounds(0)=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-Impact'
+     HitSounds(0)=Sound'PackageSounds4Pro.Bulldog.Bulldog-Impact'
      HitSoundVolume=1.500000
      HitSoundRadius=164.000000
 }

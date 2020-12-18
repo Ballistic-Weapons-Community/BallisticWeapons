@@ -27,7 +27,7 @@ defaultproperties
          MaxParticles=1
          StartLocationOffset=(X=-45.000000)
          StartSizeRange=(X=(Min=10.000000,Max=25.000000),Y=(Min=10.000000,Max=25.000000),Z=(Min=10.000000,Max=25.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.100000,Max=0.100000)
      End Object
@@ -41,7 +41,7 @@ defaultproperties
          FadeOutStartTime=1.000000
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          DrawStyle=PTDS_Modulated
-         Texture=Texture'BW_Core_WeaponTex.Particles.NewSmoke1f'
+         Texture=Texture'BallisticEffects2.Particles.NewSmoke1f'
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=20.000000,Max=20.000000))
      End Object
@@ -61,7 +61,7 @@ defaultproperties
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Max=45.000000)
          StartSizeRange=(X=(Min=10.000000,Max=18.000000),Y=(Min=10.000000,Max=18.000000),Z=(Min=10.000000,Max=18.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.SparkA1'
+         Texture=Texture'BWBP2-FX.Particles.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          LifetimeRange=(Min=0.011000,Max=0.031000)
@@ -80,7 +80,7 @@ defaultproperties
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Max=25.000000)
          StartSizeRange=(X=(Min=2.000000,Max=2.000000),Y=(Min=2.000000,Max=2.000000),Z=(Min=2.000000,Max=2.000000))
-         Texture=Texture'BW_Core_WeaponTex.GunFire.A73MuzzleFlash'
+         Texture=Texture'BallisticEffects.GunFire.A73MuzzleFlash'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SubdivisionStart=1

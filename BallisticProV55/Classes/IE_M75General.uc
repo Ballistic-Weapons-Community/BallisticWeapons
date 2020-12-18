@@ -29,7 +29,7 @@ defaultproperties
      DisableDGV(6)=1
      DisableDGV(8)=1
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.RailWaveCircle'
+         StaticMesh=StaticMesh'BallisticHardware2.Effects.RailWaveCircle'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -75,7 +75,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.500000)
          StartSizeRange=(X=(Min=80.000000,Max=80.000000),Y=(Min=80.000000,Max=80.000000),Z=(Min=80.000000,Max=80.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
+         Texture=Texture'BallisticEffects.Particles.FlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
      End Object
@@ -101,7 +101,7 @@ defaultproperties
          DetailMode=DM_SuperHigh
          StartSizeRange=(X=(Min=25.000000,Max=30.000000),Y=(Min=25.000000,Max=30.000000),Z=(Min=25.000000,Max=30.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
      End Object
@@ -135,7 +135,7 @@ defaultproperties
          StartSizeRange=(X=(Min=30.000000,Max=30.000000),Y=(Min=30.000000,Max=30.000000),Z=(Min=30.000000,Max=30.000000))
          InitialParticlesPerSecond=500.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
+         Texture=Texture'BallisticEffects.Particles.Smoke4'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Max=150.000000),Y=(Min=-40.000000,Max=40.000000),Z=(Max=20.000000))
@@ -162,14 +162,14 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Max=120.000000),Y=(Max=120.000000),Z=(Max=120.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
+         Texture=Texture'BallisticEffects.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.250000,Max=0.250000)
      End Object
      Emitters(4)=SpriteEmitter'BallisticProV55.IE_M75General.SpriteEmitter5'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip2'
+         StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip2'
          UseMeshBlendMode=False
          UseParticleColor=True
          UseCollision=True
@@ -222,7 +222,7 @@ defaultproperties
          ScaleSizeByVelocityMultiplier=(Y=0.002000)
          InitialParticlesPerSecond=100.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          AddVelocityFromOtherEmitter=5
@@ -253,7 +253,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=10.000000,Max=25.000000),Y=(Min=10.000000,Max=25.000000),Z=(Min=10.000000,Max=25.000000))
          InitialParticlesPerSecond=500.000000
-         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
+         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -263,7 +263,7 @@ defaultproperties
      Emitters(7)=SpriteEmitter'BallisticProV55.IE_M75General.SpriteEmitter11'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter2
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VBlast'
+         StaticMesh=StaticMesh'BallisticHardware2.Effects.VBlast'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

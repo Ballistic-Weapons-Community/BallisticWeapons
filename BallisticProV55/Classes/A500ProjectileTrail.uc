@@ -13,7 +13,7 @@ defaultproperties
 {
      bAutoAlignVelocity=True
      Begin Object Class=MeshEmitter Name=MeshEmitter5
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Reptile.Reptile_MuzzleFlash'
+         StaticMesh=StaticMesh'BallisticHardware_25.Reptile.Reptile_MuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -48,7 +48,7 @@ defaultproperties
          StartLocationRange=(X=(Max=45.000000))
          StartSpinRange=(X=(Min=-16384.000000,Max=-16384.000000))
          StartSizeRange=(X=(Min=5.000000,Max=8.000000),Y=(Min=8.000000,Max=16.000000),Z=(Min=5.000000,Max=8.000000))
-         Texture=Texture'BW_Core_WeaponTex.Reptile.AcidDrops01'
+         Texture=Texture'BallisticTextures_25.Reptile.AcidDrops01'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          LifetimeRange=(Min=0.180000,Max=0.220000)
@@ -72,7 +72,7 @@ defaultproperties
          StartSpinRange=(X=(Min=-16384.000000,Max=-16384.000000))
          StartSizeRange=(X=(Min=4.000000,Max=6.000000),Y=(Min=12.000000,Max=25.000000),Z=(Min=4.000000,Max=6.000000))
          InitialParticlesPerSecond=10.000000
-         Texture=Texture'BW_Core_WeaponTex.Reptile.AcidDrops01'
+         Texture=Texture'BallisticTextures_25.Reptile.AcidDrops01'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          LifetimeRange=(Min=0.100000,Max=0.120000)

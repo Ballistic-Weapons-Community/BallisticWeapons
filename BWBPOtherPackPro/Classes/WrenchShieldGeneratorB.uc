@@ -62,7 +62,7 @@ state Destroying
 			else
 			{
 				Spawn(class'WrenchWarpEndEmitter', Owner,, Location);
-				PlaySound(Sound'BWBP_OP_Sounds.Wrench.Teleport', ,1);
+				PlaySound(Sound'BWBPOtherPackSound.Wrench.Teleport', ,1);
 			}
 		}
 		
@@ -74,8 +74,8 @@ defaultproperties
 {
      TeamSkinIndex=0
      TeamSkins(0)=Texture'DespTech.T4-2'
-     TeamSkins(1)=Texture'BWBP_OP_Tex.Wrench.ShieldGenerator_BLU'
-     StaticMesh=StaticMesh'BWBP_OP_Static.Wrench.ShieldGenCore'
+     TeamSkins(1)=Texture'BWBPOtherPackTex.Wrench.ShieldGenerator_BLU'
+     StaticMesh=StaticMesh'BWBPOtherPackStatic.Wrench.ShieldGenCore'
      DrawScale3D=(X=1.500000,Y=1.500000)
      CollisionRadius=48.000000
      CollisionHeight=32.000000

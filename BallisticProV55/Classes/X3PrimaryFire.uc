@@ -48,7 +48,7 @@ defaultproperties
      DamageTypeHead=Class'BallisticProV55.DTX3KnifeHead'
      DamageTypeArm=Class'BallisticProV55.DTX3KnifeLimb'
      KickForce=100
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Knife.KnifeSlash',Radius=378.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BallisticSounds2.Knife.KnifeSlash',Radius=378.000000,bAtten=True)
      bAISilent=True
      FireAnim="Slice1"
      FireAnimRate=1.800000

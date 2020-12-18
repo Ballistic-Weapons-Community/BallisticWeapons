@@ -10,7 +10,7 @@ defaultproperties
 {
      HitEffects(0)=Class'BallisticProV55.IE_RSDarkFireBomb'
      HitDecals(0)=Class'BallisticProV55.AD_RSDarkSlow'
-     HitSounds(0)=Sound'BW_Core_WeaponSound.DarkStar.Dark-FireBallExplode'
+     HitSounds(0)=Sound'BWBP4-Sounds.DarkStar.Dark-FireBallExplode'
      HitSoundVolume=1.300000
      HitSoundRadius=256.000000
 }

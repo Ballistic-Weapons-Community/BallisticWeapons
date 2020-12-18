@@ -540,9 +540,9 @@ simulated function float ChargeBar()
 defaultproperties
 {
 	bLaserOn=True
-	DrawSoundLong=Sound'BWBP_SKC_SoundsExp.M2020.M2020-DrawLong'
-	VentingSound=Sound'BWBP_SKC_SoundsExp.M2020.M2020-IdleShield'
-	OverheatSound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Overload'
+	DrawSoundLong=Sound'PackageSounds4ProExp.M2020.M2020-DrawLong'
+	VentingSound=Sound'PackageSounds4ProExp.M2020.M2020-IdleShield'
+	OverheatSound=Sound'PackageSounds4Pro.XavPlas.Xav-Overload'
 	ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
 	MaxHeat=7.000000
 	BulletBone1="Bullet1"
@@ -550,15 +550,15 @@ defaultproperties
 	MagnetOpenAnim="ShieldDeploy"
 	MagnetCloseAnim="ShieldUndeploy"
 	MagnetForceCloseAnim="Overheat"
-	WeaponScreen=ScriptedTexture'BWBP_SKC_TexExp.M2020.M2020-ScriptLCD'
-	screen=Shader'BWBP_SKC_TexExp.M2020.M2020-ScriptLCD-SD'
-	ScreenBase1=Texture'BWBP_SKC_TexExp.M2020.M2020-Screen'
-	ScreenBase2=Texture'BWBP_SKC_TexExp.M2020.M2020-ScreenOff'
-	Numbers=Texture'BWBP_SKC_TexExp.M2020.M2020-Numbers'
+	WeaponScreen=ScriptedTexture'BallisticRecolors4TexPro.M2020.M2020-ScriptLCD'
+	screen=Shader'BallisticRecolors4TexPro.M2020.M2020-ScriptLCD-SD'
+	ScreenBase1=Texture'BallisticRecolors4TexPro.M2020.M2020-Screen'
+	ScreenBase2=Texture'BallisticRecolors4TexPro.M2020.M2020-ScreenOff'
+	Numbers=Texture'BallisticRecolors4TexPro.M2020.M2020-Numbers'
 	MyFontColor=(B=255,G=255,R=255,A=255)
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=2)
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=2)
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.M2020.BigIcon_M2020'
+	BigIconMaterial=Texture'BallisticRecolors4TexPro.M2020.BigIcon_M2020'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	ManualLines(0)="Power mode fires a single powerful shot with high recoil and damage. Fire rate is poor.|Recharge mode fires more quickly for greater sustained DPS but lower individual shot power.|Offline mode (or Deflecting mode when the shield is active) has the lowest power, but does not generate a bullet trail."
@@ -566,12 +566,12 @@ defaultproperties
 	ManualLines(2)="The Weapon Function key generates a frontal magnetic deflection shield, locking the rifle to Offline mode. This shield lasts up to 10 seconds and immunizes the user against any frontal attack which is delivered by means of any metal object. ||Effective at long range."
 	SpecialInfo(0)=(Info="240.0;25.0;1.0;80.0;2.0;0.1;0.1")
 	BringUpSound=(Sound=Sound'WeaponSounds.LightningGun.SwitchToLightningGun')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
 	CockAnimPostReload="ReloadEndCock"
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Cock')
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipIn')
+	CockSound=(Sound=Sound'BallisticSounds2.M50.M50Cock')
+	ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.M50.M50ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.M50.M50ClipIn')
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
 	WeaponModes(0)=(ModeName="Gauss: Recharge",RecoilParamsIndex=0)
@@ -580,9 +580,9 @@ defaultproperties
 	WeaponModes(3)=(ModeName="Gauss: Deflecting",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=2)
 	CurrentWeaponMode=0
 	ZoomType=ZT_Logarithmic
-	ScopeViewTex=Texture'BWBP_SKC_TexExp.M2020.M2020ScopeView'
-	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	ScopeViewTex=Texture'BallisticRecolors4TexPro.M2020.M2020ScopeView'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
@@ -611,7 +611,7 @@ defaultproperties
 	PlayerViewOffset=(Y=12.000000,Z=-12.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBPRecolorsPro.M2020GaussAttachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.M2020.SmallIcon_M2020'
+	IconMaterial=Texture'BallisticRecolors4TexPro.M2020.SmallIcon_M2020'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M2020 Gauss DMR"
 	LightType=LT_Pulse
@@ -620,12 +620,12 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_M2020'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.M2020_FP'
 	DrawScale=0.350000
+	Skins(0)=Shader'BallisticRecolors4TexPro.M2020.M2020-ShineAlt'
+	Skins(1)=Shader'BallisticRecolors4TexPro.M2020.M2020-Shine'
+	Skins(2)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
 	bFullVolume=True
 	SoundVolume=64
 	SoundRadius=128.000000
-	Skins(0)=Shader'BWBP_SKC_TexExp.M2020.M2020-ShineAlt'
-	Skins(1)=Shader'BWBP_SKC_TexExp.M2020.M2020-Shine'
-	Skins(2)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

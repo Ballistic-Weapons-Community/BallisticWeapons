@@ -18,17 +18,17 @@ simulated function PostBeginplay()
 
 defaultproperties
 {
-     AlternateMesh=StaticMesh'BW_Core_WeaponStatic.Armor.SmallArmor2'
+     AlternateMesh=StaticMesh'BallisticHardware2.Armor.SmallArmor2'
      ArmorCharge=75
      MaxDesireability=1.000000
      InventoryType=Class'BallisticProV55.BallisticArmor'
      RespawnTime=30.000000
 	 bPredictRespawns=True
      PickupMessage="You picked up a vest and helmet."
-     PickupSound=Sound'BW_Core_WeaponSound.Armor.LightArmorPickup'
+     PickupSound=Sound'BallisticSounds2.Armor.LightArmorPickup'
      PickupForce="ShieldPack"
      DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Armor.SmallArmor'
+     StaticMesh=StaticMesh'BallisticHardware2.Armor.SmallArmor'
      DrawScale=0.500000
      TransientSoundVolume=0.500000
      TransientSoundRadius=64.000000

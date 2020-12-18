@@ -4,9 +4,9 @@
 class MRDRPickup extends BallisticHandgunPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BallisticWeapons2.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,33 +16,33 @@ class MRDRPickup extends BallisticHandgunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MRDR.MRDR-Main');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MRDR.MRDR-Spec');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MRDR.MRDRMuzzleFlash');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.MRDR.MRDR-Main');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.MRDR.MRDR-Spec');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.MRDR.MRDRMuzzleFlash');
 }
 
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MRDR.MRDR-Main');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MRDR.MRDR-Spec');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.MRDR.MRDRMuzzleFlash');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.MRDR.MRDR-Main');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.MRDR.MRDR-Spec');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.MRDR.MRDRMuzzleFlash');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.MRDR.MRDR88AmmoPickup');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.MRDR.MRDR88Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.MRDR.MRDR88AmmoPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.MRDR.MRDR88Pickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MRDR.MRDR88Pickup'
+     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticPro.MRDR.MRDR88Pickup'
      PickupDrawScale=0.250000
      InventoryType=Class'BWBPRecolorsPro.MRDRMachinePistol'
      RespawnTime=20.000000
      PickupMessage="You picked up the MR-DR88 machine pistol."
-     PickupSound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.MRDR.MRDR88Pickup'
+     PickupSound=Sound'BallisticSounds2.XK2.XK2-Putaway'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.MRDR.MRDR88Pickup'
      Physics=PHYS_None
      DrawScale=0.500000
      PrePivot=(Y=-16.000000)

@@ -1,7 +1,7 @@
 //=============================================================================
 // M46Attachment.
 //
-// _TPm person weapon attachment for M46 Assault Rifle
+// 3rd person weapon attachment for M46 Assault Rifle
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
@@ -51,12 +51,12 @@ defaultproperties
      LightMode=MU_Both
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=1.400000
      CockAnimRate=1.050000
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M46A1_TPm'
+     Mesh=SkeletalMesh'BallisticAnims_25.OA-AR_3rd'
      DrawScale=0.275000
 }

@@ -1,7 +1,7 @@
 //=============================================================================
 // XMV850MinigunAttachment.
 //
-// _TPm person weapon attachment for XMV850 Minigun
+// 3rd person weapon attachment for XMV850 Minigun
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
@@ -118,7 +118,7 @@ simulated event Tick(float DT)
 		}
 		// FIXME: Revive this... and make belts connect
 //		TestBoneMove();
-		// Make _TPm person mesh spin barrels
+		// Make 3rd person mesh spin barrels
 		BarrelTurn += BarrelSpeed * 655360 * DT;
 		BT.Roll = BarrelTurn;
 		if (XMV850Turret(Instigator) != None)
@@ -345,11 +345,11 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Minigun'
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'
      TracerChance=0.800000
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_MG"
      ReloadAnimRate=1.500000
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMV850_TPm'
+     Mesh=SkeletalMesh'BallisticAnims2.XMV850-3rd'
      DrawScale=0.300000
 }

@@ -10,7 +10,7 @@ class IE_ProjWater extends BallisticEmitter
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter3
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VolumetricA4'
+         StaticMesh=StaticMesh'BallisticHardware2.Effects.VolumetricA4'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -61,7 +61,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          InitialParticlesPerSecond=7.000000
          DrawStyle=PTDS_Modulated
-         Texture=Texture'BW_Core_WeaponTex.Particles.RippleA1'
+         Texture=Texture'BallisticEffects.Particles.RippleA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.500000,Max=1.500000)
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000))
@@ -83,7 +83,7 @@ defaultproperties
          StartSizeRange=(X=(Min=2.000000,Max=3.000000),Y=(Min=2.000000,Max=3.000000),Z=(Min=2.000000,Max=3.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.WaterParticle1'
+         Texture=Texture'BallisticEffects.Particles.WaterParticle1'
          SecondsBeforeInactive=0.000000
          InitialTimeRange=(Max=0.250000)
          LifetimeRange=(Min=1.250000,Max=1.250000)
@@ -108,7 +108,7 @@ defaultproperties
          StartSizeRange=(X=(Min=3.000000,Max=5.000000),Y=(Min=3.000000,Max=5.000000),Z=(Min=3.000000,Max=5.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.AquaBubble1'
+         Texture=Texture'BallisticEffects.Particles.AquaBubble1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.250000,Max=1.250000)
          StartVelocityRange=(X=(Min=-15.000000,Max=15.000000),Y=(Min=-15.000000,Max=15.000000),Z=(Min=-100.000000,Max=-10.000000))

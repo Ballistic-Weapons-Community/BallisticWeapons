@@ -9,7 +9,7 @@ class TraceEmitter_HMG extends BCTraceEmitter;
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.TracerA1'
+         StaticMesh=StaticMesh'BallisticHardware2.Effects.TracerA1'
          UseMeshBlendMode=False
          RenderTwoSided=True
          RespawnDeadParticles=False
@@ -49,7 +49,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000),Y=(Max=1.000000),Z=(Max=1.000000))
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
+         Texture=Texture'BallisticEffects.Particles.FlareB2'
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=11000.000000,Max=11000.000000))
      End Object
@@ -70,7 +70,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=15.000000,Max=15.000000),Y=(Min=15.000000,Max=15.000000),Z=(Min=15.000000,Max=15.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
+         Texture=Texture'BallisticEffects.Particles.FlareA1'
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=11000.000000,Max=11000.000000))
      End Object

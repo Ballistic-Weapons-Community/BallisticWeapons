@@ -748,25 +748,25 @@ function float SuggestDefenseStyle()	{	return -0.2;	}
 defaultproperties
 {
 	MaxSoulPower=3
-     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BW_Core_WeaponTex.DarkStar.BigIcon_DarkStar'
+     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BWBP4-Tex.DarkStar.BigIcon_DarkStar'
      BigIconCoords=(Y1=28,Y2=225)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      ManualLines(0)="Slow Bolts deal moderate damage, gain damage over range, set the enemy alight, blocking healing, and steal 20% of damage dealt as HP, but cost HP equal to 20% of their base damage to use.|Rapid Fire bolts have high damage, gain damage over range and steal 20% of damage dealt as HP, but cost HP equal to 10% of their base damage to use.|The Flamer mode deals low damage to all enemies within the projected flames, costing low soul power, and prevents them from healing.|Fire Bombs deal severe damage in a wide radius, costing high soul power."
      ManualLines(1)="Engages the chainsaw. This weapon deals high sustained damage, displaces the enemy's aim, leeches damage dealt as HP for the user and reduces damage taken from frontal melee attacks by 75%."
      ManualLines(2)="All of this weapon's modes have the potential to inflict damage to the wielder. Enemies killed by this weapon leave souls behind. These can be collected to power the Flamer, Immolation and Fire Bomb modes. Use of those modes without external soul power will consume the user's soul, dealing significant backlash damage.||With full soul power, the weapon can enter rampage mode, reducing all damage taken and increasing both speed and jump height. In this mode, soul power will drain over time.||Very effective at close and medium range."
      SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.0;1.0;1.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Putaway')
+     BringUpSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-Pullout')
+     PutDownSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-Putaway')
      ReloadAnimRate=1.250000
-     ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemHit',Volume=0.700000)
-     ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemOut',Volume=0.700000)
-     ClipInSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemIn',Volume=0.700000)
+     ClipHitSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemHit',Volume=0.700000)
+     ClipOutSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemOut',Volume=0.700000)
+     ClipInSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemIn',Volume=0.700000)
      ClipInFrame=0.700000
      WeaponModes(0)=(ModeName="Bolt",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1,AimParamsIndex=1)
-     WeaponModes(2)=(ModeName="Flame",RecoilParamsIndex=1,AimParamsIndex=1)
-     WeaponModes(3)=(ModeName="Cone Immolation",ModeID="WM_FullAuto",bUnavailable=True,RecoilParamsIndex=1,AimParamsIndex=1)
+     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1)
+     WeaponModes(2)=(ModeName="Flame",RecoilParamsIndex=1)
+     WeaponModes(3)=(ModeName="Cone Immolation",ModeID="WM_FullAuto",bUnavailable=True,RecoilParamsIndex=1)
      WeaponModes(4)=(ModeName="Fire Bomb",ModeID="WM_FullAuto")
      CurrentWeaponMode=0
      SightPivot=(Pitch=1024)
@@ -789,7 +789,7 @@ defaultproperties
      PickupClass=Class'BallisticProV55.RSDarkPickup'
      PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-6.000000)
      AttachmentClass=Class'BallisticProV55.RSDarkAttachment'
-     IconMaterial=Texture'BW_Core_WeaponTex.DarkStar.SmallIcon_DarkStar'
+     IconMaterial=Texture'BWBP4-Tex.DarkStar.SmallIcon_DarkStar'
      IconCoords=(X2=127,Y2=31)
      ItemName="Dark Star"
      LightType=LT_Pulse
@@ -797,12 +797,12 @@ defaultproperties
      LightSaturation=64
      LightBrightness=192.000000
      LightRadius=12.000000
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_DarkStar'
+     Mesh=SkeletalMesh'BWBP4-Anims.DarkStar'
      DrawScale=0.300000
-     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-     Skins(1)=Shader'BW_Core_WeaponTex.DarkStar.DarkStar-Shiny'
-     Skins(2)=Shader'BW_Core_WeaponTex.DarkStar.DarkStarDiamond_SD'
-     Skins(3)=Texture'BW_Core_WeaponTex.DarkStar.DarkStarChain'
+     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+     Skins(1)=Shader'BWBP4-Tex.DarkStar.DarkStar-Shiny'
+     Skins(2)=Shader'BWBP4-Tex.DarkStar.DarkStarDiamond_SD'
+     Skins(3)=Texture'BWBP4-Tex.DarkStar.DarkStarChain'
      bFullVolume=True
      SoundRadius=32.000000
 }

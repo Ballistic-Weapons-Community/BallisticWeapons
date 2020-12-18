@@ -21,7 +21,7 @@ defaultproperties
      FemaleSuicide="%o leapt into her own fire like an idiot."
      MaleSuicide="%o leapt into his own fire like an idiot."
      bDelayedDamage=True
-     PawnDamageSounds(0)=Sound'BW_Core_WeaponSound.FP7.FP7BurnFlesh'
+     PawnDamageSounds(0)=Sound'BallisticSounds2.FP7.FP7BurnFlesh'
      KDamageImpulse=20000.000000
      VehicleDamageScaling=0.350000
 }

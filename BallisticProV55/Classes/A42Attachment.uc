@@ -1,7 +1,7 @@
 //=============================================================================
 // A42Attachment.
 //
-// _TPm person weapon attachment for A42 Skrith Pistol
+// 3rd person weapon attachment for A42 Skrith Pistol
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -60,6 +60,6 @@ defaultproperties
      LightMode=MU_Both
      TracerClass=Class'BallisticProV55.TraceEmitter_A42Beam'
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.A42_TPm'
+     Mesh=SkeletalMesh'BallisticAnims2.A42-3rd'
      DrawScale=0.080000
 }

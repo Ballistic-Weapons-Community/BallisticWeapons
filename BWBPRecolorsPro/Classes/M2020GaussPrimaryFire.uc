@@ -165,8 +165,8 @@ simulated function SwitchWeaponMode (byte NewMode)
 
 defaultproperties
 {
-     SpecialFireSound=Sound'BWBP_SKC_SoundsExp.M2020.M2020-GaussFireSuper'
-     LowPowerFireSound=Sound'BWBP_SKC_SoundsExp.M2020.M2020-GaussFireLow'
+     SpecialFireSound=Sound'PackageSounds4ProExp.M2020.M2020-GaussFireSuper'
+     LowPowerFireSound=Sound'PackageSounds4ProExp.M2020.M2020-GaussFireLow'
      MuzzleFlashClass2=Class'BallisticProV55.M50FlashEmitter'
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=48.000000
@@ -191,7 +191,7 @@ defaultproperties
      BrassOffset=(X=-30.000000,Y=1.000000)
      FireRecoil=320.000000
      FireChaos=0.600000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.M2020.M2020-GaussFire',Volume=6.700000)
+     BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.M2020.M2020-GaussFire',Volume=6.700000)
      FireEndAnim=
      FireRate=0.325000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_42HVG'

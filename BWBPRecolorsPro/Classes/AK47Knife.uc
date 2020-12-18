@@ -77,7 +77,7 @@ defaultproperties
      MaxSpeed=8500.000000
      Damage=90.000000
      MyDamageType=Class'BWBPRecolorsPro.DTX8KnifeRifleLaunched'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.X8.X8Proj'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.X8.X8Proj'
      Physics=PHYS_Falling
      LifeSpan=0.000000
      DrawScale=0.150000

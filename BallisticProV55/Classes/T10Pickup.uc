@@ -4,8 +4,8 @@
 class T10Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BallisticWeapons2.utx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
 
 //===========================================================================
 // StaticPrecache
@@ -15,31 +15,31 @@ class T10Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.T10.T10GrenadeSkin');
+	L.AddPrecacheMaterial(Texture'BallisticWeapons2.T10.T10GrenadeSkin');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.T10.T10GrenadeSkin');
+	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.T10.T10GrenadeSkin');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.T10.T10Clip');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.T10.T10Projectile');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.T10.T10Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.T10.T10Clip');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.T10.T10Projectile');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.T10.T10Pickup');
 }
 
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.T10.T10Pickup'
+     LowPolyStaticMesh=StaticMesh'BallisticHardware2.T10.T10Pickup'
      PickupDrawScale=0.350000
      bWeaponStay=False
      InventoryType=Class'BallisticProV55.T10Grenade'
      RespawnTime=20.000000
      PickupMessage="You picked up the T10 toxic grenade."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.GrenadePickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.T10.T10Pickup'
+     PickupSound=Sound'BallisticSounds2.Ammo.GrenadePickup'
+     StaticMesh=StaticMesh'BallisticHardware2.T10.T10Pickup'
      bOrientOnSlope=True
      Physics=PHYS_None
      DrawScale=0.700000

@@ -85,7 +85,7 @@ defaultproperties
      Damage=0.000000
      DamageRadius=0.000000
      MyDamageType=Class'BallisticProV55.DTFP7Grenade'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.FP7.FP7Proj'
+     ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'
+     StaticMesh=StaticMesh'BallisticHardware2.FP7.FP7Proj'
      DrawScale=0.500000
 }

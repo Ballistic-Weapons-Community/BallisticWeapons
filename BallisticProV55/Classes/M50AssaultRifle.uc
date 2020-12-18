@@ -363,16 +363,16 @@ simulated event RenderOverlays( Canvas Canvas )
 		Canvas.Style = ERenderStyle.STY_Alpha;
 		Canvas.SetPos(0,0);
 		if (Camera.bBusted)
-			Canvas.DrawTile( Material'BW_Core_WeaponTex.M50.NoiseComb', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 256, 256 ); // !! hardcoded size
+			Canvas.DrawTile( Material'BallisticUI2.M50.NoiseComb', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 256, 256 ); // !! hardcoded size
 		else
 		{
 			Canvas.DrawColor.A = 48;
-			Canvas.DrawTile( Material'BW_Core_WeaponTex.M50.Noise1', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 256, 256 ); // !! hardcoded size
+			Canvas.DrawTile( Material'BallisticUI2.M50.Noise1', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 256, 256 ); // !! hardcoded size
 		}
 		// Tunnel vision
 		Canvas.DrawColor.A = 255;
 		Canvas.SetPos(0,0);
-		Canvas.DrawTile( Material'BW_Core_WeaponTex.M50.M50CamView', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 1024, 1024 ); // !! hardcoded size
+		Canvas.DrawTile( Material'BallisticUI2.M50.M50CamView', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 1024, 1024 ); // !! hardcoded size
 	}
     else
         Super.RenderOverlays(Canvas);
@@ -644,20 +644,20 @@ function float SuggestDefenseStyle()	{	return 0.0;	}
 defaultproperties
 {
 	GrenadeLoadAnim="GrenadeReload"
-	CamTex=ScriptedTexture'BW_Core_WeaponTex.M50.M50LCDTex'
-	CamGrabSound=Sound'BW_Core_WeaponSound.M50.M50CamPlace'
-	LCDCamOnTex=Shader'BW_Core_WeaponTex.M50.M50LCDTex_SD'
-	CamInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-	CamOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	CamTex=ScriptedTexture'BallisticUI2.M50.M50LCDTex'
+	CamGrabSound=Sound'BallisticSounds2.M50.M50CamPlace'
+	LCDCamOnTex=Shader'BallisticUI2.M50.M50LCDTex_SD'
+	CamInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	CamOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	CamUpAnim="CamUp"
 	CamDownAnim="CamDown"
 	CamUpdateRate=0.500000
-	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
-	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
-	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
+	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
+	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M50'
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M50'
 	BigIconCoords=(Y1=40,Y2=235)
 	SightFXClass=Class'BallisticProV55.M50SightLEDs'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -669,14 +669,14 @@ defaultproperties
 	ManualLines(1)="Launches a grenade from the underslung launcher. This grenade has an arming delay and will ricochet from targets hit during this arming period, dealing minor damage. The arming delay can be used to shoot around corners."
 	ManualLines(2)="A TX409-Tactical Video camera system is also included with this weapon. It allows the user to deploy a tactical camera to any surface using the Weapon Function key. To survey an area from a safe distance using the gun-mounted LCD, press Weapon Function again. Care should always be taken to deploy TX409-TV cameras in a hidden location to prevent them from being destroyed by enemies.||The M50 is effective at medium to long range."
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.M50.M50Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M50.M50Putaway')
 	CockAnimPostReload="ReloadEndCock"
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Cock')
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipIn')
+	CockSound=(Sound=Sound'BallisticSounds2.M50.M50Cock')
+	ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.M50.M50ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.M50.M50ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(Value=3.000000,bUnavailable=True)
@@ -701,7 +701,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.M50Pickup'
 	PlayerViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
 	AttachmentClass=Class'BallisticProV55.M50Attachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M50'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M50'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M50 Assault Rifle"
 	LightType=LT_Pulse
@@ -710,12 +710,12 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.Fpm_M50'
+	Mesh=SkeletalMesh'BallisticProAnims.M50Assault'
 	DrawScale=0.300000
-	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Shader'BW_Core_WeaponTex.M50.M50Skin1Shiney'
-	Skins(2)=Shader'BW_Core_WeaponTex.M50.M50Skin2Shiney'
-	Skins(3)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
-	Skins(4)=Texture'BW_Core_WeaponTex.M50.M50Laser'
-	Skins(5)=Texture'BW_Core_WeaponTex.M50.M50Gren'
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Shader'BallisticWeapons2.M50.M50Skin1Shiney'
+	Skins(2)=Shader'BallisticWeapons2.M50.M50Skin2Shiney'
+	Skins(3)=Combiner'BallisticUI2.M50.NoiseComb'
+	Skins(4)=Texture'BallisticWeapons2.M50.M50Laser'
+	Skins(5)=Texture'BallisticWeapons2.M50.M50Gren'
 }

@@ -9,7 +9,7 @@ class AD_A500BlastSplat extends AD_ImpactDecal;
 
 defaultproperties
 {
-     DecalTextures(0)=Texture'BW_Core_WeaponTex.Reptile.AcidSplat_Small'
+     DecalTextures(0)=Texture'BallisticTextures_25.Reptile.AcidSplat_Small'
      MaterialBlendingOp=PB_AlphaBlend
      FrameBufferBlendingOp=PB_Add
 }

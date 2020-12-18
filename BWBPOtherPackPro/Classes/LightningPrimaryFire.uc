@@ -27,7 +27,7 @@ simulated function PlayFiring()
 
 defaultproperties
 {
-	 LightningSound=(Sound=Sound'BWBP_OP_Sounds.Lightning.LightningGunCrackle',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
+	 LightningSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunCrackle',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
      TraceRange=(Min=30000.000000,Max=30000.000000)
      MaxWaterTraceRange=30000
      Damage=80.000000
@@ -50,7 +50,7 @@ defaultproperties
 	 FireRecoil=400.000000
 	 FirePushbackForce=255.000000
      FireChaos=0.800000
-     BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.Lightning.LightningGunShot',Volume=1.600000,Radius=1024.000000)
+     BallisticFireSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunShot',Volume=1.600000,Radius=1024.000000)
 	 FireEndAnim=
      FireRate=0.600000
      AmmoClass=Class'BWBPOtherPackPro.Ammo_LightningRifle'

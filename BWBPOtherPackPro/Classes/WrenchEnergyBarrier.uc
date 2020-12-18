@@ -40,7 +40,7 @@ simulated function TornOff()
 	if (EffectWhenDestroyed != None && EffectIsRelevant(location,false))
 	{
 		Spawn( EffectWhenDestroyed, Owner,, Location );
-		//PlaySound(Sound'BWBP_OP_Sounds.Wrench.Teleport', ,1);
+		//PlaySound(Sound'BWBPOtherPackSound.Wrench.Teleport', ,1);
 	}
 		
 	Destroy();
@@ -58,7 +58,7 @@ state Destroying
 		if (EffectWhenDestroyed != None && EffectIsRelevant(location,false))
 		{
 			Spawn( EffectWhenDestroyed, Owner,, Location );
-			PlaySound(Sound'BWBP_OP_Sounds.Wrench.Teleport', ,1);
+			PlaySound(Sound'BWBPOtherPackSound.Wrench.Teleport', ,1);
 		}
 		
 		Sleep(0.5);
@@ -73,7 +73,7 @@ function bool BlocksShotAt(Actor Other)
 defaultproperties
 {
      EffectWhenDestroyed=Class'BWBPOtherPackPro.WrenchWarpEndEmitter'
-     StaticMesh=StaticMesh'BWBP_OP_Static.Wrench.EnergyWall'
+     StaticMesh=StaticMesh'BWBPOtherPackStatic.Wrench.EnergyWall'
      bStasis=False
      bNetInitialRotation=True
      NetUpdateFrequency=10.000000

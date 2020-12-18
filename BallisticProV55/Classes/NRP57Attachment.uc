@@ -1,7 +1,7 @@
 //=============================================================================
 // NRP57Attachment.
 //
-// _TPm person weapon attachment for NRP57 Grenade.
+// 3rd person weapon attachment for NRP57 Grenade.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -12,6 +12,6 @@ defaultproperties
 {
      ExplodeManager=Class'BallisticProV55.IM_NRP57Grenade'
      GrenadeSmokeClass=Class'BallisticProV55.NRP57Trail'
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.NRPGrenade_TPm'
+     Mesh=SkeletalMesh'BallisticAnims2.Grenade-3rd'
      DrawScale=0.100000
 }

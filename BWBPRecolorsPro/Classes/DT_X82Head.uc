@@ -47,7 +47,7 @@ defaultproperties
      bAlwaysSevers=True
      bSpecial=True
      bExtraMomentumZ=True
-     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
+     PawnDamageSounds(0)=SoundGroup'BallisticSounds2.BulletImpacts.Headshot'
      GibPerterbation=0.200000
      KDamageImpulse=10000.000000
      VehicleDamageScaling=0.650000

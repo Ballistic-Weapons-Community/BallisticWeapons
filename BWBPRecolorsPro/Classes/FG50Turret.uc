@@ -116,7 +116,7 @@ defaultproperties
      PivotBone="Pitch"
      DriverBackOff=100.000000
      VehicleNameString="FG50 Mounted MG"
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X83Turret'
+     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.X83A1_Turret_3rd'
      DrawScale=0.420000
      CollisionHeight=18.000000
 }

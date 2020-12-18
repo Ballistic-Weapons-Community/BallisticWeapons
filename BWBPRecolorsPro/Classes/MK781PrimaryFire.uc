@@ -165,8 +165,8 @@ defaultproperties
      FireChaos=0.250000
      XInaccuracy=256.000000
      YInaccuracy=256.000000
-     SilencedFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.Mk781.Mk781-FireSil',Volume=2.300000,Radius=256.000000)
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.Mk781.MK781-Fire',Volume=1.300000)
+     SilencedFireSound=(Sound=Sound'PackageSounds4ProExp.Mk781.Mk781-FireSil',Volume=2.300000,Radius=256.000000)
+     BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Mk781.MK781-Fire',Volume=1.300000)
      FireEndAnim=
      FireAnimRate=1.150000
      FireRate=0.32500

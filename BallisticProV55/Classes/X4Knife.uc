@@ -9,7 +9,7 @@
 //=============================================================================
 class X4Knife extends BallisticMeleeWeapon;
 
-#exec OBJ LOAD File=BW_Core_WeaponSound.uax
+#exec OBJ LOAD File=BallisticSounds3.uax
 
 // choose between regular or alt-fire
 function byte BestMode()
@@ -49,16 +49,16 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BW_Core_WeaponTex.X4.BigIcon_X4'
+     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BallisticTextures_25.X4.BigIcon_X4'
      BigIconCoords=(Y2=240)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      ManualLines(0)="Slashes with the knife. Solid damage output and short range."
      ManualLines(1)="Prepared slash. Gains damage over hold time (maximum bonus reached after 1.5 seconds). Deals more damage from behind."
      ManualLines(2)="The user's movement speed improves with this weapon active."
      SpecialInfo(0)=(Info="180.0;6.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
+     BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
+     PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
      bCanBlock=False
      bNoMag=True
      GunLength=0.000000
@@ -83,9 +83,9 @@ defaultproperties
      PickupClass=Class'BallisticProV55.X4Pickup'
      PlayerViewOffset=(X=4.000000,Y=8.000000,Z=-10.000000)
      AttachmentClass=Class'BallisticProV55.X4Attachment'
-     IconMaterial=Texture'BW_Core_WeaponTex.X4.SmallIcon_X4'
+     IconMaterial=Texture'BallisticTextures_25.X4.SmallIcon_X4'
      IconCoords=(X2=128,Y2=32)
      ItemName="X4 Knife"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_X4'
+     Mesh=SkeletalMesh'BallisticAnims_25.X4'
      DrawScale=0.300000
 }

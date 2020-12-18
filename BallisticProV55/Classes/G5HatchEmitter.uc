@@ -32,7 +32,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=20.000000,Max=25.000000))
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
+         Texture=Texture'BallisticEffects.Particles.Smoke3'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.500000,Max=2.500000)
          SpawnOnTriggerRange=(Min=30.000000,Max=30.000000)

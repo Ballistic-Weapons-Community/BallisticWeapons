@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=5
      InventoryType=Class'BallisticProV55.Ammo_MAC'
      PickupMessage="You picked up 4 HAMR shells."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.RocketPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Artillery.Artillery-Ammo'
+     PickupSound=Sound'BallisticSounds2.Ammo.RocketPickup'
+     StaticMesh=StaticMesh'BWBP4-Hardware.Artillery.Artillery-Ammo'
      DrawScale=0.350000
      PrePivot=(Z=-13.000000)
      CollisionRadius=8.000000

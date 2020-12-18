@@ -139,9 +139,9 @@ defaultproperties
      LightSaturation=100
      LightBrightness=200.000000
      LightRadius=15.000000
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.Bulldog.Frag12Proj'
      bDynamicLight=True
-     AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
+     AmbientSound=Sound'BallisticSounds2.G5.G5-RocketFly'
      DrawScale=2.500000
      SoundVolume=192
      SoundRadius=128.000000

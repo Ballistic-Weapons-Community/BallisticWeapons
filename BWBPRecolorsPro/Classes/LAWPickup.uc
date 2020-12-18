@@ -4,10 +4,10 @@
 class LAWPickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BWBP_SKC_TexExp.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
-#exec OBJ LOAD FILE=BWBP_SKC_StaticExp.usx
+#exec OBJ LOAD FILE=BallisticRecolors4TexPro.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BallisticRecolors4StaticProExp.usx
 
 //===========================================================================
 // StaticPrecache
@@ -17,51 +17,51 @@ class LAWPickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.LAW.LAW-Main');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.LAW.LAW-Rocket');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.LAW.LAW-ScopeView');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.Explode2');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.Shockwave');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Explosion1');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Explosion2');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Explosion3');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Explosion4');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.LAW.LAW-Main');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.LAW.LAW-Rocket');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.LAW.LAW-ScopeView');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Particles.Explode2');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Particles.Shockwave');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Explosion1');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Explosion2');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Explosion3');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Explosion4');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.LAW.LAWRocket');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.BazookaMuzzleFlash');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.BazookaBackFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.LAW.LAWRocket');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.G5.BazookaMuzzleFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.G5.BazookaBackFlash');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.LAW.LAW-Main');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.LAW.LAW-Rocket');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.LAW.LAW-ScopeView');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.Explode2');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.Shockwave');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Explosion1');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Explosion2');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Explosion3');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Explosion4');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.LAW.LAW-Main');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.LAW.LAW-Rocket');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.LAW.LAW-ScopeView');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Particles.Explode2');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Particles.Shockwave');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Explosion1');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Explosion2');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Explosion3');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Explosion4');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.LAW.LAWRocket');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.BazookaMuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.BazookaBackFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.LAW.LAWAmmo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.LAW.LAWPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.LAW.LAWRocket');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.G5.BazookaMuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.G5.BazookaBackFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.LAW.LAWAmmo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.LAW.LAWPickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.LAW.LAWPickup'
+     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticProExp.LAW.LAWPickup'
      PickupDrawScale=0.700000
      InventoryType=Class'BWBPRecolorsPro.LAWLauncher'
      RespawnTime=120.000000
      PickupMessage="You picked up the FGM-70 'Shockwave' LAW."
-     PickupSound=Sound'BW_Core_WeaponSound.G5.G5-Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.LAW.LAWPickup'
+     PickupSound=Sound'BallisticSounds2.G5.G5-Putaway'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.LAW.LAWPickup'
      Physics=PHYS_None
      DrawScale=0.700000
      CollisionHeight=6.000000

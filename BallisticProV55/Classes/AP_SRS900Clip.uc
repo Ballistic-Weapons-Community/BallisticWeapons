@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=40
      InventoryType=Class'BallisticProV55.Ammo_RS762mm'
      PickupMessage="You picked up two SRS-900 magazines."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.SRS900.SRS900Clip'
+     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BWBP3Hardware.SRS900.SRS900Clip'
      DrawScale=0.650000
      PrePivot=(Z=-9.000000)
      CollisionRadius=8.000000

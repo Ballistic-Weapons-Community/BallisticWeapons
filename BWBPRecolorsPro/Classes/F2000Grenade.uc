@@ -235,8 +235,8 @@ defaultproperties
      DamageRadius=512.000000
      MomentumTransfer=0.000000
      MyDamageType=Class'BWBPRecolorsPro.DTCryoGrenade'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade'
+     ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'
+     StaticMesh=StaticMesh'BallisticHardware2.M900.M900Grenade'
      bUnlit=False
      bIgnoreTerminalVelocity=True
 }

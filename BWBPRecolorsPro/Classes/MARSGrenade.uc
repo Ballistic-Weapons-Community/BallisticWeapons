@@ -103,6 +103,6 @@ defaultproperties
      Damage=75.000000
      DamageRadius=350.000000
      MyDamageType=Class'BWBPRecolorsPro.DTMARSGrenadeRadius'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade'
+     StaticMesh=StaticMesh'BallisticHardware2.M900.M900Grenade'
      bUnlit=False
 }

@@ -51,7 +51,7 @@ defaultproperties
      FireChaos=0.200000
      XInaccuracy=2.000000
      YInaccuracy=2.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-Fire3',Volume=4.100000)
+     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-Fire3',Volume=4.100000)
      FireEndAnim=
      FireRate=0.40000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_44MagnumScope'

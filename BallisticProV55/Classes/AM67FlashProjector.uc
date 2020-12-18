@@ -4,7 +4,7 @@ defaultproperties
 {
      MaterialBlendingOp=PB_Add
      FrameBufferBlendingOp=PB_Add
-     ProjTexture=Texture'BW_Core_WeaponTex.Effects.ClampedFlare1'
+     ProjTexture=Texture'BallisticWeapons2.Effects.ClampedFlare1'
      FOV=30
      MaxTraceDistance=1536
      bClipBSP=True

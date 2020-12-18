@@ -260,17 +260,17 @@ defaultproperties
 	bCanBlock=False
 	KnifeBone="Blade"
 	PinBone="Pin"
-	PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.600000,bAtten=True)
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.BigIcon_X8'
+	PinPullSound=(Sound=Sound'BallisticSounds3.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.600000,bAtten=True)
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.BigIcon_X8'
 	BigIconCoords=(Y1=25,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	ManualLines(0)="Slashes rapidly with the knife."
 	ManualLines(1)="When held, readies the ballistic knife. When released, the knife is fired in a straight trajectory, dealing good damage to targets hit."
 	ManualLines(2)="Effective at close range and while moving."
 	SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
+	PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
 	MagAmmo=1
 	bNoMag=True
 	WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
@@ -301,9 +301,9 @@ defaultproperties
 	PickupClass=Class'BWBPRecolorsPro.X8Pickup'
 	PlayerViewOffset=(X=20.000000,Z=-10.000000)
 	AttachmentClass=Class'BWBPRecolorsPro.X8Attachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.SmallIcon_X8'
+	IconMaterial=Texture'BallisticRecolors3TexPro.SmallIcon_X8'
 	IconCoords=(X2=128,Y2=32)
 	ItemName="X8 Ballistic Knife"
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_X8Knife'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.BalKnife_FP'
 	DrawScale=0.300000
 }

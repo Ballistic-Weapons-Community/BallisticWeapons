@@ -175,7 +175,7 @@ defaultproperties
      LightSaturation=192
      LightBrightness=32.000000
      LightRadius=4.000000
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.Longhorn.ClusterProj'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Longhorn.ClusterProj'
      bDynamicLight=True
      LifeSpan=3.000000
      DrawScale=0.500000

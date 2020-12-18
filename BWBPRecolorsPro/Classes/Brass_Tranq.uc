@@ -11,7 +11,7 @@ class Brass_Tranq extends BWBrass_Default;
 defaultproperties
 {
      StartVelocity=(Z=150.000000)
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound'
+     StaticMesh=StaticMesh'BallisticHardware2.Brass.EmptyRifleRound'
      DrawScale=0.090000
-     Skins(0)=Texture'BWBP_SKC_TexExp.VSK.Cart_Tranq'
+     Skins(0)=Texture'BallisticRecolors4TexPro.VSK.Cart_Tranq'
 }

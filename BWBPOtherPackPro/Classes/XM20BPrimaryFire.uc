@@ -49,6 +49,7 @@ defaultproperties
      FlashScaleFactor=0.300000
      MuzzleFlashClass=Class'BWBPOtherPackPro.XM20BFlashEmitter'
      FireRecoil=96.000000
+     YInaccuracy=16.000000
      BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.XM20.XM20-PulseFire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      FireEndAnim=None
      TweenTime=0.000000

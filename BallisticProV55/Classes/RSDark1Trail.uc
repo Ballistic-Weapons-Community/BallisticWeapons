@@ -19,7 +19,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=35.000000,Max=35.000000),Y=(Min=35.000000,Max=35.000000),Z=(Min=35.000000,Max=35.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
+         Texture=Texture'BallisticEffects.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.100000,Max=0.500000)
      End Object
@@ -37,7 +37,7 @@ defaultproperties
          StartSizeRange=(X=(Min=7.000000,Max=7.000000),Y=(Min=7.000000,Max=7.000000),Z=(Min=7.000000,Max=7.000000))
          InitialParticlesPerSecond=5000.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BW_Core_WeaponTex.DarkStar.HotFlareA2'
+         Texture=Texture'BWBP4-Tex.DarkStar.HotFlareA2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -56,7 +56,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=5.000000),Y=(Min=14.000000,Max=14.000000),Z=(Min=14.000000,Max=14.000000))
          InitialParticlesPerSecond=5000.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=0.100000,Max=0.100000))
@@ -79,7 +79,7 @@ defaultproperties
          StartLocationOffset=(X=-20.000000)
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
          StartSizeRange=(X=(Min=20.000000,Max=40.000000),Y=(Min=20.000000,Max=20.000000),Z=(Min=20.000000,Max=20.000000))
-         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
+         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -107,7 +107,7 @@ defaultproperties
          StartSizeRange=(X=(Min=3.000000,Max=4.000000))
          InitialParticlesPerSecond=500000.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=9999.000000,Max=9999.000000)
      End Object

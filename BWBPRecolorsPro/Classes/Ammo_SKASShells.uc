@@ -12,9 +12,9 @@ defaultproperties
 {
      MaxAmmo=48
      InitialAmount=24
-     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIcon_BP1Flash'
+     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIcon_BP1Flash'
      PickupClass=Class'BWBPRecolorsPro.AP_SKASDrum'
-     IconMaterial=Texture'BW_Core_WeaponTex.ui.RS-AmmoIconPage'
+     IconMaterial=Texture'BWAddPack-RS-Skins.ui.RS-AmmoIconPage'
      IconCoords=(X2=63,Y2=63)
      ItemName="SKAS-21 Shells"
 }

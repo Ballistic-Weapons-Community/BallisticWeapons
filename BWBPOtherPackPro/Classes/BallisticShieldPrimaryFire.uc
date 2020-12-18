@@ -43,7 +43,7 @@ defaultproperties
      DamageTypeArm=Class'BWBPOtherPackPro.DTBallisticShield'
      KickForce=13000
      HookStopFactor=1.700000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Radius=32.000000,bAtten=True)
      bAISilent=True
      FireAnim="Bash1"
      FireRate=0.750000

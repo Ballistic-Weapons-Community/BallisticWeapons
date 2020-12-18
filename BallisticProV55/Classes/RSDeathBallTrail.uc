@@ -21,7 +21,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=19.000000,Max=20.000000),Y=(Min=19.000000,Max=20.000000),Z=(Min=19.000000,Max=20.000000))
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.DarkStar.HotFlareA2'
+         Texture=Texture'BWBP4-Tex.DarkStar.HotFlareA2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -42,7 +42,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=16.000000,Max=18.000000),Y=(Min=16.000000,Max=18.000000),Z=(Min=16.000000,Max=18.000000))
          DrawStyle=PTDS_Darken
-         Texture=Texture'BW_Core_WeaponTex.DarkStar.HotFlareA2'
+         Texture=Texture'BWBP4-Tex.DarkStar.HotFlareA2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -62,7 +62,7 @@ defaultproperties
          StartSizeRange=(X=(Min=15.000000,Max=18.000000))
          InitialParticlesPerSecond=500000.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=999999.000000,Max=999999.000000)
      End Object
@@ -85,7 +85,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.500000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.500000)
          StartSizeRange=(X=(Min=20.000000,Max=20.000000),Y=(Min=20.000000,Max=20.000000),Z=(Min=20.000000,Max=20.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareC1'
+         Texture=Texture'BallisticEffects.Particles.FlareC1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -112,7 +112,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=250.000000)
          StartSizeRange=(X=(Min=35.000000,Max=45.000000),Y=(Min=35.000000,Max=45.000000),Z=(Min=35.000000,Max=45.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
      End Object

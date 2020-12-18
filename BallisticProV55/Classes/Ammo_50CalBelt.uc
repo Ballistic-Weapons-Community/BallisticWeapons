@@ -12,9 +12,9 @@ defaultproperties
 {
      MaxAmmo=100
      InitialAmount=50
-     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIconsFlashing'
+     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticProV55.AP_M925Belt'
-     IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIconPage'
+     IconMaterial=Texture'BallisticUI2.Icons.AmmoIconPage'
      IconCoords=(X1=384,X2=447,Y2=63)
      ItemName=".50 MG Belt Ammo"
 }

@@ -171,7 +171,7 @@ defaultproperties
          StartSizeRange=(X=(Min=75.000000,Max=75.000000),Y=(Min=75.000000,Max=75.000000),Z=(Min=75.000000,Max=75.000000))
          InitialParticlesPerSecond=5000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
+         Texture=Texture'BallisticEffects.Particles.Smoke3'
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=-150.000000,Max=150.000000),Y=(Min=-150.000000,Max=150.000000),Z=(Min=-100.000000,Max=100.000000))
          VelocityLossRange=(X=(Min=0.500000,Max=0.500000),Y=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
@@ -221,7 +221,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000),Y=(Max=1.000000),Z=(Max=1.000000))
          InitialParticlesPerSecond=5000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
+         Texture=Texture'BallisticEffects.Particles.Smoke3'
          LifetimeRange=(Min=7.000000,Max=7.000000)
          InitialDelayRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(Z=(Min=15.000000,Max=15.000000))
@@ -335,7 +335,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000),Y=(Max=1.000000),Z=(Max=1.000000))
          InitialParticlesPerSecond=5000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
+         Texture=Texture'BallisticEffects.Particles.Smoke3'
          LifetimeRange=(Min=7.000000,Max=7.000000)
          InitialDelayRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(Z=(Min=15.000000,Max=15.000000))
@@ -367,7 +367,7 @@ defaultproperties
          SizeScale(3)=(RelativeTime=1.000000,RelativeSize=13.000000)
          StartSizeRange=(X=(Min=12.000000,Max=12.000000),Y=(Min=12.000000,Max=12.000000),Z=(Min=12.000000,Max=12.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
+         Texture=Texture'BallisticEffects.Particles.Explode2'
          LifetimeRange=(Min=1.000000,Max=1.000000)
          InitialDelayRange=(Min=0.650000,Max=0.650000)
      End Object

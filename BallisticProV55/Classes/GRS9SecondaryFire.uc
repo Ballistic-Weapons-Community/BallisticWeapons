@@ -84,7 +84,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 defaultproperties
 {
-     FireSoundLoop=Sound'BW_Core_WeaponSound.Glock.Glk-LaserBurn'
+     FireSoundLoop=Sound'BWBP4-Sounds.Glock.Glk-LaserBurn'
 	 CutOffStartRange=768
 	 CutOffDistance=2048
 	 RangeAtten=0.2
@@ -101,7 +101,7 @@ defaultproperties
      FireChaos=0.000000
      XInaccuracy=2.000000
      YInaccuracy=2.000000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-LaserFire')
+     BallisticFireSound=(Sound=Sound'BWBP4-Sounds.Glock.Glk-LaserFire')
      FireAnim="Idle"
      FireRate=0.080000
      AmmoClass=Class'BallisticProV55.Ammo_GRSNine'

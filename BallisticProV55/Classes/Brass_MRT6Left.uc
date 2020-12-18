@@ -9,5 +9,5 @@ class Brass_MRT6Left extends Brass_Shotgun;
 defaultproperties
 {
      StartVelocity=(Y=-25.000000)
-     Skins(0)=Texture'BW_Core_WeaponTex.Brass.Cart_Shotgun2'
+     Skins(0)=Texture'BallisticEffects.Brass.Cart_Shotgun2'
 }

@@ -53,7 +53,7 @@ defaultproperties
      BrassOffset=(X=-30.000000,Y=1.000000)
      FireRecoil=256.000000
      FireChaos=0.2
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Fire',Volume=0.700000)
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.M806.M806Fire',Volume=0.700000)
      FireEndAnim=
 	 AimedFireAnim="SightFire"
      FireRate=0.25000

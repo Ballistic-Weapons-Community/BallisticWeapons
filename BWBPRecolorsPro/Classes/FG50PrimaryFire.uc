@@ -176,7 +176,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 
 defaultproperties
 {
-     SpecialFireSound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2'
+     SpecialFireSound=Sound'PackageSounds4Pro.X82.X82-Fire2'
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WallPenetrationForce=0.000000
      
@@ -192,7 +192,7 @@ defaultproperties
      PenetrateForce=150
      PDamageFactor=0.800000
      WallPDamageFactor=0.800000
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
+     DryFireSound=(Sound=Sound'BallisticSounds2.D49.D49-DryFire',Volume=0.700000)
      bCockAfterEmpty=True
      MuzzleFlashClass=Class'BWBPRecolorsPro.FG50FlashEmitter'
      FlashScaleFactor=1.000000
@@ -205,7 +205,7 @@ defaultproperties
      FirePushbackForce=150.000000
      FireChaos=0.200000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.240000,OutVal=1),(InVal=0.350000,OutVal=1.500000),(InVal=0.660000,OutVal=2.250000),(InVal=1.000000,OutVal=3.500000)))
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireAnimRate=2.400000

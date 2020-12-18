@@ -1,7 +1,7 @@
 //=============================================================================
 // LightningAttachment.
 //
-// _TPm person weapon attachment for HVC-Mk9 Lightning Gun
+// 3rd person weapon attachment for HVC-Mk9 Lightning Gun
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
@@ -252,7 +252,7 @@ simulated function Tick(float DT)
 defaultproperties
 {
      ImpactManagerAlt=Class'BallisticProV55.IM_HVCRedLightning'
-     DischargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-WaterDischarge'
+     DischargeSound=Sound'BWBP2-Sounds.LightningGun.LG-WaterDischarge'
      AltMuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
      ImpactManager=Class'BallisticProV55.IM_HVCBlueLightning'
      bDoWaterSplash=False
@@ -263,6 +263,6 @@ defaultproperties
      FlashMode=MU_Secondary
      TracerClass=Class'BallisticProV55.TraceEmitter_HVCRedLightning'
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.HVC_TPm'
+     Mesh=SkeletalMesh'BWBP2b-Anims.HVC-3rd'
      DrawScale=0.150000
 }

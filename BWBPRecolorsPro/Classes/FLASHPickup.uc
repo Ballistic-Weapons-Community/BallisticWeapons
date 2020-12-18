@@ -4,8 +4,8 @@
 class FLASHPickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BWBP_SKC_TexExp.utx
-#exec OBJ LOAD FILE=BWBP_SKC_StaticExp.usx
+#exec OBJ LOAD FILE=BallisticRecolors4TexPro.utx
+#exec OBJ LOAD FILE=BallisticRecolors4StaticProExp.usx
 
 //===========================================================================
 // StaticPrecache
@@ -15,32 +15,32 @@ class FLASHPickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Flash.FLASH-Main');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Flash.FLASH-Rocket');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Flash.FLASH-Scope');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Flash.FLASH-Main');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Flash.FLASH-Rocket');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Flash.FLASH-Scope');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Flash.FLASH-Main');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Flash.FLASH-Rocket');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.Flash.FLASH-Scope');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Flash.FLASH-Main');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Flash.FLASH-Rocket');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.Flash.FLASH-Scope');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.Flash.FLASHAmmo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.Flash.FLASHPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.Flash.FLASHAmmo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticProExp.Flash.FLASHPickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.Flash.FLASHPickup'
+     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Flash.FLASHPickup'
      PickupDrawScale=0.600000
      InventoryType=Class'BWBPRecolorsPro.FLASHLauncher'
      RespawnTime=120.000000
      PickupMessage="You picked up the AT40 'STREAK' incendiary rocket launcher."
-     PickupSound=Sound'BW_Core_WeaponSound.G5.G5-Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.Flash.FLASHPickup'
+     PickupSound=Sound'BallisticSounds2.G5.G5-Putaway'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Flash.FLASHPickup'
      Physics=PHYS_None
      DrawScale=0.600000
      CollisionHeight=6.000000

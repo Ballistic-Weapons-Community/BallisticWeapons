@@ -12,5 +12,5 @@ defaultproperties
 {
      HitEffects(0)=Class'BWBPOtherPackPro.IE_ProtonStream'
      HitDecals(0)=Class'BallisticProV55.AD_BulletDirt'
-     HitSounds(0)=Sound'BWBP_SKC_Sounds.LS14.Gauss-Impact'
+     HitSounds(0)=Sound'PackageSounds4Pro.LS14.Gauss-Impact'
 }

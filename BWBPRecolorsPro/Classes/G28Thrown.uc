@@ -8,7 +8,7 @@
 //=============================================================================
 class G28Thrown extends BallisticPineapple;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponSound.uax
+#exec OBJ LOAD FILE=BallisticSounds2.uax
 
 var() class<damageType>	ShotDamageType;	// Damagetype to use when detonated by damage
 var   Emitter PATrail;
@@ -103,8 +103,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		Trail = Spawn( TrailClass, self,, Location + class'BUtil'.static.AlignedOffset(Rotation,TrailOffset), OrthoRotation(X,Y,Z) );
 		if (Trail != None)
 			Trail.SetBase (self);
-		PlaySound(sound'BW_Core_WeaponSound.T10.T10-Ignite',, 0.7,, 128, 1.0, true);
-		AmbientSound = Sound'BW_Core_WeaponSound.T10.T10-toxinLoop';
+		PlaySound(sound'BallisticSounds3.T10.T10-Ignite',, 0.7,, 128, 1.0, true);
+		AmbientSound = Sound'BallisticSounds2.T10.T10-toxinLoop';
 	}
 	bExploded=true;
 	LifeSpan = 12;
@@ -219,8 +219,8 @@ defaultproperties
      Damage=120.000000
      DamageRadius=300.000000
      MyDamageType=Class'BWBPRecolorsPro.DTG28Grenade'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.G28.G28Proj'
+     ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.G28.G28Proj'
      SoundVolume=192
      SoundRadius=128.000000
 }

@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=36
      InventoryType=Class'BallisticProV55.Ammo_RS8Bullets'
      PickupMessage="You picked up four RS8 magazines."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.RS8.RS8Clips'
+     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BWAddPack-RS-Hardware.RS8.RS8Clips'
      DrawScale=0.300000
      PrePivot=(Z=-12.000000)
      CollisionRadius=8.000000

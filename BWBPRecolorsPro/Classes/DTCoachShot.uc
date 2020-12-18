@@ -1,5 +1,6 @@
 class DTCoachShot extends DT_BWShell;
 
+/*
 // Call this to do damage to something. This lets the damagetype modify the things if it needs to
 static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLocation, vector Momentum, class<DamageType> DT)
 {
@@ -20,6 +21,7 @@ static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLoc
 		C.Instigator = Instigator;
 	}
 }
+*/
 
 defaultproperties
 {

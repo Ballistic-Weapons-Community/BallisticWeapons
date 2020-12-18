@@ -66,7 +66,7 @@ defaultproperties
      DamageTypeHead=Class'BWBPRecolorsPro.DT_PS9MDartHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_PS9MDart'
      PenetrateForce=150
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
+     DryFireSound=(Sound=Sound'BallisticSounds2.D49.D49-DryFire',Volume=0.700000)
      MuzzleFlashClass=Class'BWBPRecolorsPro.VSKSilencedFlash'
      FlashScaleFactor=0.800000
      BrassClass=Class'BWBPRecolorsPro.Brass_Tranq'
@@ -75,7 +75,7 @@ defaultproperties
      FireChaos=0.050000
      XInaccuracy=32.000000
      YInaccuracy=32.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.Stealth.Stealth-Fire',Volume=0.25,Radius=16,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.Stealth.Stealth-Fire',Volume=0.25,Radius=16,Slot=SLOT_Interact,bNoOverride=False)
      bAISilent=True
      FireEndAnim=
      FireRate=0.075000

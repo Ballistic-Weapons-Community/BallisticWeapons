@@ -96,7 +96,7 @@ simulated event Timer()
 	{
 		if (Proj != None)
 		{
-			PlaySound(Sound'BW_Core_WeaponSound.BX5.BX5-Jump',,1.0,,64,,);
+			PlaySound(Sound'BallisticSounds2.BX5.BX5-Jump',,1.0,,64,,);
 			Proj.SpringOff();
 			GoToState('FadeOut');
 		}
@@ -108,7 +108,7 @@ simulated event TornOff()
 	if(Proj == None)
 		return;
 		
-	PlaySound(Sound'BW_Core_WeaponSound.BX5.BX5-Jump',,1.0,,64,,);
+	PlaySound(Sound'BallisticSounds2.BX5.BX5-Jump',,1.0,,64,,);
 	Proj.SpringOff();
 	GoToState('FadeOut');
 }
@@ -193,7 +193,7 @@ defaultproperties
 {
      Health=30
      StartDelay=0.300000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.BX5.MineSBase2'
+     StaticMesh=StaticMesh'BallisticHardware2.BX5.MineSBase2'
      CullDistance=2500.000000
      bNetTemporary=False
      Physics=PHYS_None

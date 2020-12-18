@@ -76,7 +76,7 @@ defaultproperties
      FlashMode=MU_Both
 	 ReloadAnim="Reload_MG"
 	 ReloadAnimRate=1.00000
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FLASH_TPm'
+     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.TP_FLASH'
      DrawScale=0.600000
      PrePivot=(Z=5.000000)
 }

@@ -36,7 +36,7 @@ defaultproperties
          StartLocationRange=(X=(Max=1000.000000))
          StartSizeRange=(X=(Min=1.000000,Max=2.000000),Y=(Min=1.000000,Max=2.000000),Z=(Min=1.000000,Max=2.000000))
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.AquaBubble1'
+         Texture=Texture'BallisticEffects.Particles.AquaBubble1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.500000,Max=2.500000)
          SpawnOnTriggerRange=(Min=100.000000,Max=100.000000)

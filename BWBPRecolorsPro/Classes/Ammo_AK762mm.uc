@@ -13,9 +13,9 @@ defaultproperties
      MaxAmmo=150
      InitialAmount=75
      bTryHeadShot=True
-     IconFlashMaterial=Shader'BWBP_SKC_TexExp.AK490.AmmoIcon_AK490Flash'
+     IconFlashMaterial=Shader'BallisticRecolors3TexPro.AK490.AmmoIcon_AK490Flash'
      PickupClass=Class'BWBPRecolorsPro.AP_AK490Mag'
-     IconMaterial=Texture'BWBP_SKC_TexExp.AK490.AmmoIcon_AK490'
+     IconMaterial=Texture'BallisticRecolors3TexPro.AK490.AmmoIcon_AK490'
      IconCoords=(X2=64,Y2=64)
      ItemName="7.62 AP Rifle Rounds"
 }

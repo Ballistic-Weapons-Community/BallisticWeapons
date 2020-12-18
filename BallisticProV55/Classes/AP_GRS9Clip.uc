@@ -12,8 +12,8 @@ defaultproperties
 {
      InventoryType=Class'BallisticProV55.Ammo_GRSNine'
      PickupMessage="You picked up GRS-9 rounds."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Glock.Glock-Ammo'
+     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BWBP4-Hardware.Glock.Glock-Ammo'
      DrawScale=0.160000
      PrePivot=(Z=50.000000)
      CollisionRadius=8.000000

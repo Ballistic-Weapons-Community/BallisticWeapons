@@ -197,11 +197,11 @@ simulated function Notify_BrassOut()
 
 defaultproperties
 {
-	MatDef=Texture'BWBP_SKC_TexExp.MGL.MGL-ScreenBase'
-	MatArmed=Texture'BWBP_SKC_TexExp.MGL.MGL-Screen'
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.MGL.BigIcon_MGL'
+	MatDef=Texture'BallisticRecolors4TexPro.MGL.MGL-ScreenBase'
+	MatArmed=Texture'BallisticRecolors4TexPro.MGL.MGL-Screen'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	TeamSkins(1)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BallisticRecolors4TexPro.MGL.BigIcon_MGL'
 	IdleTweenTime=0.000000
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
@@ -212,11 +212,11 @@ defaultproperties
 	ManualLines(1)="Employs a manually controlled grenade. Pressing altfire again detonates the grenade."
 	ManualLines(2)="Effective with height advantage and at medium range."
 	SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
-	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff',Volume=1.700000,Radius=32.000000)
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn',Volume=1.700000,Radius=32.000000)
+	BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
+	CockSound=(Sound=Sound'PackageSounds4Pro.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOff',Volume=1.700000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'BallisticSounds2.BX5.BX5-SecOn',Volume=1.700000,Radius=32.000000)
 	ClipInFrame=0.325000
 	StartShovelAnim="ReloadStart"
 	EndShovelAnim="ReloadEnd"
@@ -244,7 +244,7 @@ defaultproperties
 	PickupClass=Class'BWBPRecolorsPro.MGLPickup'
 	PlayerViewOffset=(X=5.000000,Y=-1.000000,Z=-7.000000)
 	AttachmentClass=Class'BWBPRecolorsPro.MGLAttachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.MGL.SmallIcon_MGL'
+	IconMaterial=Texture'BallisticRecolors4TexPro.MGL.SmallIcon_MGL'
 	IconCoords=(X2=127,Y2=35)
 	ItemName="Conqueror MGL"
 	LightType=LT_Pulse
@@ -253,10 +253,10 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MGL'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.Conqueror_FP'
 	DrawScale=0.130000
-	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Texture'BWBP_SKC_TexExp.MGL.MGL-Main'
-	Skins(2)=Texture'BWBP_SKC_TexExp.MGL.MGL-ScreenBase'
-	Skins(3)=Shader'BWBP_SKC_TexExp.MGL.MGL-HolosightGlow'
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Texture'BallisticRecolors4TexPro.MGL.MGL-Main'
+	Skins(2)=Texture'BallisticRecolors4TexPro.MGL.MGL-ScreenBase'
+	Skins(3)=Shader'BallisticRecolors4TexPro.MGL.MGL-HolosightGlow'
 }

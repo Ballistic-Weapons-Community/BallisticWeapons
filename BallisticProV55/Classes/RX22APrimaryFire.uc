@@ -275,7 +275,7 @@ simulated function InitEffects()
 
 defaultproperties
 {
-     FireSoundLoop=Sound'BW_Core_WeaponSound.RX22A.RX22A-FireLoop'
+     FireSoundLoop=Sound'BallisticSounds3.RX22A.RX22A-FireLoop'
      TraceRange=(Min=1800.000000,Max=1800.000000)
      Damage=14.000000
      
@@ -283,7 +283,7 @@ defaultproperties
      KickForce=1000
      PenetrateForce=50
      FireChaos=0.050000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Ignite',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.RX22A.RX22A-Ignite',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireAnim="FireLoop"
      FireEndAnim=

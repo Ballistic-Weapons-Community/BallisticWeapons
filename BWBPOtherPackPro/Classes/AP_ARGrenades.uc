@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=3
      InventoryType=Class'BWBPOtherPackPro.Ammo_ARGrenades'
      PickupMessage="You picked up 3 grenades for the RCS."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.GrenadePickup'
-     StaticMesh=StaticMesh'BWBP_OP_Static.TacticalBuster.AA12GrenadePickup'
+     PickupSound=Sound'BallisticSounds2.Ammo.GrenadePickup'
+     StaticMesh=StaticMesh'BWBPJiffyPackStatic.TacticalBuster.AA12GrenadePickup'
      DrawScale=2.000000
      CollisionRadius=8.000000
      CollisionHeight=10.000000

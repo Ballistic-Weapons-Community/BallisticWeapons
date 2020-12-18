@@ -4,9 +4,9 @@
 class MRS138Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BWAddPack-RS-Skins.utx
+#exec OBJ LOAD FILE=BWAddPack-RS-Effects.utx
+#exec OBJ LOAD FILE=BWAddPack-RS-Hardware.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,32 +16,32 @@ class MRS138Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Shader'BW_Core_WeaponTex.MRS138.MRS138Shiney');
-	L.AddPrecacheMaterial(Shader'BW_Core_WeaponTex.MRS138.MRS138HeatShiney');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.MRS138.MRS138Shell');
+	L.AddPrecacheMaterial(Shader'BWAddPack-RS-Skins.MRS138.MRS138Shiney');
+	L.AddPrecacheMaterial(Shader'BWAddPack-RS-Skins.MRS138.MRS138HeatShiney');
+	L.AddPrecacheMaterial(Texture'BWAddPack-RS-Skins.MRS138.MRS138Shell');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Shader'BW_Core_WeaponTex.MRS138.MRS138Shiney');
-	Level.AddPrecacheMaterial(Shader'BW_Core_WeaponTex.MRS138.MRS138HeatShiney');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.MRS138.MRS138Shell');
+	Level.AddPrecacheMaterial(Shader'BWAddPack-RS-Skins.MRS138.MRS138Shiney');
+	Level.AddPrecacheMaterial(Shader'BWAddPack-RS-Skins.MRS138.MRS138HeatShiney');
+	Level.AddPrecacheMaterial(Texture'BWAddPack-RS-Skins.MRS138.MRS138Shell');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MRS138.MRS138PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MRS138.MRS138PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWAddPack-RS-Hardware.MRS138.MRS138PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWAddPack-RS-Hardware.MRS138.MRS138PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.MRS138.MRS138PickupLo'
+     LowPolyStaticMesh=StaticMesh'BWAddPack-RS-Hardware.MRS138.MRS138PickupLo'
      PickupDrawScale=0.190000
      InventoryType=Class'BallisticProV55.MRS138Shotgun'
      RespawnTime=20.000000
      PickupMessage="You picked up the MRS-138 tactical shotgun."
-     PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRS138.MRS138PickupHi'
+     PickupSound=Sound'BallisticSounds2.M763.M763Putaway'
+     StaticMesh=StaticMesh'BWAddPack-RS-Hardware.MRS138.MRS138PickupHi'
      Physics=PHYS_None
      DrawScale=0.250000
      PrePivot=(Y=-18.000000)

@@ -42,8 +42,8 @@ defaultproperties
      KickForce=1250
      PenetrateForce=0
      bPenetrate=False
-     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
+     ClipFinishSound=(Sound=Sound'BallisticSounds3.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
+     DryFireSound=(Sound=Sound'BallisticSounds3.Misc.DryPistol',Volume=0.700000)
      MuzzleFlashClass=Class'BWBPRecolorsPro.MRDRFlashEmitter'
      FlashScaleFactor=0.600000
      BrassClass=Class'BallisticProV55.Brass_Pistol'
@@ -52,7 +52,7 @@ defaultproperties
      FireChaos=0.100000
      XInaccuracy=48.000000
      YInaccuracy=48.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-Fire')
+     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.MRDR.MRDR-Fire')
      bPawnRapidFireAnim=True
      FireRate=0.120000
      AmmoClass=Class'BallisticProV55.Ammo_9mm'

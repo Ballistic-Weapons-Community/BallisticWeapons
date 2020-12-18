@@ -26,7 +26,7 @@ defaultproperties
 	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
 	FireRecoil=96.000000
 	FireChaos=0.130000
-	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Fire',Volume=0.700000)
+	BallisticFireSound=(Sound=Sound'BallisticSounds3.A42.A42-Fire',Volume=0.700000)
 	bPawnRapidFireAnim=True
 	FireEndAnim=
 	XInaccuracy=32

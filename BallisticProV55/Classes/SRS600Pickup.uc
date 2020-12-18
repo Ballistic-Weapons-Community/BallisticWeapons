@@ -9,23 +9,23 @@ class SRS600Pickup extends SRS900Pickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.SRS900.SRS900Main');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.SRS900.SRS900Scope');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo');
+	L.AddPrecacheMaterial(Texture'BWBP3-Tex.SRS900.SRS900Main');
+	L.AddPrecacheMaterial(Texture'BWBP3-Tex.SRS900.SRS900Scope');
+	L.AddPrecacheMaterial(Texture'BWBP3-Tex.SRS900.SRS900Ammo');
 }
 	
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.SRS900.SRS900Main');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.SRS900.SRS900Scope');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo');
+	Level.AddPrecacheMaterial(Texture'BWBP3-Tex.SRS900.SRS900Main');
+	Level.AddPrecacheMaterial(Texture'BWBP3-Tex.SRS900.SRS900Scope');
+	Level.AddPrecacheMaterial(Texture'BWBP3-Tex.SRS900.SRS900Ammo');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.SRS900.SRS900Clip');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.SRS900.SRS900PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.SRS900.SRS900PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyRifleRound');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP3Hardware.SRS900.SRS900Clip');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP3Hardware.SRS900.SRS900PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP3Hardware.SRS900.SRS900PickupLo');
 }
 
 defaultproperties

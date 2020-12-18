@@ -26,11 +26,11 @@ simulated function PostNetBeginPlay()
 		{
 			if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 || bRedTeam )
 			{
-				Skins[0] = Shader'BWBP_SKC_Tex.DragonToothSword.DTS-Red3rd';
+				Skins[0] = Shader'BallisticRecolors3TexPro.DragonToothSword.DTS-Red3rd';
 				LightHue=5;
 			}			
 			else if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 1 )
-				Skins[0] = Shader'BWBP_SKC_Tex.DragonToothSword.DTS-Shine3rd';
+				Skins[0] = Shader'BallisticRecolors3TexPro.DragonToothSword.DTS-Shine3rd';
 		}
 	
 		if (Owner == None || Instigator == Owner)
@@ -54,7 +54,7 @@ defaultproperties
      LightBrightness=150.000000
      LightRadius=64.000000
      bDynamicLight=True
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.DTS_TPm'
+     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.DragonsTooth_third'
      RelativeLocation=(Z=6.000000)
      DrawScale=0.120000
 }

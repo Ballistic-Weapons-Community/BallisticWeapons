@@ -12,9 +12,9 @@ defaultproperties
 {
      MaxAmmo=48
      InitialAmount=24
-     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIcon_AM67Flash'
+     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIcon_AM67Flash'
      PickupClass=Class'BallisticProV55.AP_AM67Clip'
-     IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIcon_AM67'
+     IconMaterial=Texture'BallisticUI2.Icons.AmmoIcon_AM67'
      IconCoords=(X2=63,Y2=63)
      ItemName=".50 High Velocity Bullets"
 }

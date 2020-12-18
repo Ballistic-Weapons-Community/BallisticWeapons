@@ -4,9 +4,9 @@ defaultproperties
 {
      MaxAmmo=50
      InitialAmount=26
-     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIcon_BP1Flash'
+     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIcon_BP1Flash'
      PickupClass=Class'BWBPOtherPackPro.AP_TrenchgunBox'
-     IconMaterial=Texture'BW_Core_WeaponTex.ui.RS-AmmoIconPage'
+     IconMaterial=Texture'BWAddPack-RS-Skins.ui.RS-AmmoIconPage'
      IconCoords=(X2=63,Y2=63)
      ItemName="Trenchgun Shells"
      DrawScale=0.250000

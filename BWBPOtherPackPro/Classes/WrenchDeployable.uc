@@ -104,7 +104,7 @@ simulated function TornOff()
 		else
 		{
 			Spawn(class'WrenchWarpEndEmitter', Owner,, Location);
-			PlaySound(Sound'BWBP_OP_Sounds.Wrench.Teleport', ,1);
+			PlaySound(Sound'BWBPOtherPackSound.Wrench.Teleport', ,1);
 		}
 	}
 		
@@ -127,7 +127,7 @@ state Destroying
 			else
 			{
 				Spawn(class'WrenchWarpEndEmitter', Owner,, Location);
-				PlaySound(Sound'BWBP_OP_Sounds.Wrench.Teleport', ,1);
+				PlaySound(Sound'BWBPOtherPackSound.Wrench.Teleport', ,1);
 			}
 		}
 		
@@ -150,10 +150,10 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     DamagedSounds(0)=Sound'BW_Core_WeaponSound.BulletImpacts.BulletMetal1'
-     DamagedSounds(1)=Sound'BW_Core_WeaponSound.BulletImpacts.BulletMetal2'
-     DamagedSounds(2)=Sound'BW_Core_WeaponSound.BulletImpacts.BulletMetal3'
-     DamagedSounds(3)=Sound'BW_Core_WeaponSound.BulletImpacts.BulletMetal4'
+     DamagedSounds(0)=Sound'BallisticSounds2.BulletImpacts.BulletMetal1'
+     DamagedSounds(1)=Sound'BallisticSounds2.BulletImpacts.BulletMetal2'
+     DamagedSounds(2)=Sound'BallisticSounds2.BulletImpacts.BulletMetal3'
+     DamagedSounds(3)=Sound'BallisticSounds2.BulletImpacts.BulletMetal4'
      TeamSkinIndex=255
      EffectWhenDestroyed=Class'UT2k4Assault.FX_SpaceFighter_Explosion'
      Health=250

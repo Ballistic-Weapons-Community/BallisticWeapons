@@ -27,7 +27,7 @@ defaultproperties
 {
      DisableDGV(0)=1
      Begin Object Class=MeshEmitter Name=MeshEmitter6
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VolumetricA3'
+         StaticMesh=StaticMesh'BallisticHardware2.Effects.VolumetricA3'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -84,7 +84,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=8.000000),Y=(Min=5.000000,Max=8.000000),Z=(Min=5.000000,Max=8.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlamePartsAlpha'
+         Texture=Texture'BallisticEffects.Particles.FlamePartsAlpha'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          SecondsBeforeInactive=0.000000
@@ -120,7 +120,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=20.000000),Y=(Min=10.000000,Max=20.000000),Z=(Min=10.000000,Max=20.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Max=20.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=-10.000000,Max=10.000000))

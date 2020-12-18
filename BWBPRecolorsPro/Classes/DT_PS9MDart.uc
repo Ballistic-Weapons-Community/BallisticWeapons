@@ -31,7 +31,7 @@ defaultproperties
      bCausesBlood=False
      bDelayedDamage=True
      bNeverSevers=True
-     PawnDamageSounds(0)=Sound'BWBP_SKC_SoundsExp.VSK.VSK-ImpactFlesh'
+     PawnDamageSounds(0)=Sound'PackageSounds4ProExp.VSK.VSK-ImpactFlesh'
      DamageOverlayMaterial=Shader'XGameShaders.PlayerShaders.LinkHit'
      DamageOverlayTime=0.900000
      GibPerterbation=0.001000

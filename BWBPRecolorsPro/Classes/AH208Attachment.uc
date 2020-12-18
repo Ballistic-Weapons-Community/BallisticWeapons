@@ -27,16 +27,16 @@ defaultproperties
      BrassBone="Scope"
      TracerClass=Class'BallisticProV55.TraceEmitter_Pistol'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_Pistol"
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=0.850000
      CockAnimRate=0.900000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.AHDeagle_TPm'
+     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.TP_Eagle'
      RelativeLocation=(Z=6.000000)
      DrawScale=0.220000
-     Skins(1)=Shader'BWBP_SKC_Tex.Eagle.Eagle-GoldShine'
-     Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Misc'
-     Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeGold'
-     Skins(4)=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontSilver'
+     Skins(0)=Shader'BallisticRecolors4TexPro.Eagle.Eagle-GoldShine'
+     Skins(1)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-Misc'
+     Skins(2)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-ScopeGold'
+     Skins(3)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-FrontSilver'
 }

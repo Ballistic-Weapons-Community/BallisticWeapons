@@ -13,9 +13,9 @@ defaultproperties
      MaxAmmo=200
      InitialAmount=100
      bTryHeadShot=True
-     IconFlashMaterial=Shader'BWBP_SKC_Tex.LS14.AmmoIcon_LS14Flash'
+     IconFlashMaterial=Shader'BallisticRecolors3TexPro.LS14.AmmoIcon_LS14Flash'
      PickupClass=Class'BWBPOtherPackPro.AP_XM20B'
-     IconMaterial=Texture'BWBP_SKC_Tex.LS14.AmmoIcon_LS14'
+     IconMaterial=Texture'BallisticRecolors3TexPro.LS14.AmmoIcon_LS14'
      IconCoords=(X1=64,Y1=64,X2=127,Y2=127)
      ItemName="XM Energy Cells"
 }

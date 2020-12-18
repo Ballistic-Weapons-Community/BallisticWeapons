@@ -149,7 +149,7 @@ defaultproperties
      bVerticalZ=False
      bYIsSpread=False
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M806.PistolMuzzleFlash'
+         StaticMesh=StaticMesh'BallisticHardware2.M806.PistolMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -213,7 +213,7 @@ defaultproperties
          StartSizeRange=(X=(Min=60.000000,Max=60.000000),Y=(Min=60.000000,Max=60.000000),Z=(Min=60.000000,Max=60.000000))
          InitialParticlesPerSecond=40.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.DarkStar.Plasma-A'
+         Texture=Texture'BWBP4-Tex.DarkStar.Plasma-A'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRange=(X=(Min=1200.000000,Max=1200.000000))
@@ -246,7 +246,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=120.000000,Max=120.000000),Y=(Min=120.000000,Max=120.000000),Z=(Min=120.000000,Max=120.000000))
          InitialParticlesPerSecond=20.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareC1'
+         Texture=Texture'BallisticEffects.Particles.FlareC1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.450000,Max=0.500000)
          StartVelocityRange=(X=(Min=1100.000000,Max=1250.000000))
@@ -254,7 +254,7 @@ defaultproperties
      Emitters(2)=SpriteEmitter'BallisticProV55.RSDarkFlameSpray.SpriteEmitter8'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter2
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.GlowChunk'
+         StaticMesh=StaticMesh'BWBP4-Hardware.DarkStar.GlowChunk'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -306,7 +306,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=1.000000,Max=1.500000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
          InitialParticlesPerSecond=80.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
+         Texture=Texture'BallisticEffects.Particles.Smoke4'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          AddVelocityFromOtherEmitter=3
@@ -338,7 +338,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=15.000000,Max=40.000000),Y=(Min=120.000000,Max=150.000000),Z=(Min=120.000000,Max=150.000000))
          InitialParticlesPerSecond=28.000000
-         Texture=Texture'BW_Core_WeaponTex.DarkStar.Plasma-A'
+         Texture=Texture'BWBP4-Tex.DarkStar.Plasma-A'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRange=(X=(Min=1120.000000,Max=1250.000000))
@@ -369,7 +369,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=15.000000,Max=40.000000),Y=(Min=200.000000,Max=200.000000),Z=(Min=200.000000,Max=200.000000))
          InitialParticlesPerSecond=12.000000
-         Texture=Texture'BW_Core_WeaponTex.DarkStar.Plasma-A-AlphaAdd'
+         Texture=Texture'BWBP4-Tex.DarkStar.Plasma-A-AlphaAdd'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRange=(X=(Min=1120.000000,Max=1250.000000))

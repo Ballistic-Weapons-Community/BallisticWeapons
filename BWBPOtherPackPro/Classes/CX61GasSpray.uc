@@ -94,7 +94,7 @@ defaultproperties
          StartSizeRange=(X=(Min=45.000000,Max=45.000000),Y=(Min=45.000000,Max=45.000000),Z=(Min=45.000000,Max=45.000000))
          InitialParticlesPerSecond=80.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BWBP_SKC_TexExp.CX61.CX61Gas'
+         Texture=Texture'BWBPOtherPackTex.CX61.CX61Gas'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.750000,Max=0.750000)
          StartVelocityRange=(X=(Min=1250.000000,Max=1250.000000),Y=(Min=-80.000000,Max=80.000000),Z=(Min=-80.000000,Max=80.000000))
@@ -102,7 +102,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BWBPOtherPackPro.CX61GasSpray.SpriteEmitter7'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VolumetricA2'
+         StaticMesh=StaticMesh'BallisticHardware2.Effects.VolumetricA2'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

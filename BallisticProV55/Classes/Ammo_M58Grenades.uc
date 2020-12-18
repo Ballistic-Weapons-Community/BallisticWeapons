@@ -12,9 +12,9 @@ defaultproperties
 {
      MaxAmmo=4
      InitialAmount=2
-     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIconPageV2Flash'
+     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconPageV2Flash'
      PickupClass=Class'BallisticProV55.M58Pickup'
-     IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIconPageV2'
+     IconMaterial=Texture'BallisticUI2.Icons.AmmoIconPageV2'
      IconCoords=(X1=64,X2=127,Y2=63)
      ItemName="M58 Grenade Ammo"
 }

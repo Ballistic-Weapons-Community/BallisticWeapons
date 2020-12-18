@@ -103,7 +103,7 @@ defaultproperties
      FireChaos=0.30000
      XInaccuracy=150.000000
      YInaccuracy=150.000000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.M763.M763Fire1',Volume=1.300000)
      FireAnim="FireCombined"
      FireEndAnim=
      FireAnimRate=0.9

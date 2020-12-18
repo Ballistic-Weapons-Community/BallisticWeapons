@@ -6,7 +6,7 @@ simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
 
-	PlaySound(Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Ignite', ,1);
+	PlaySound(Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Ignite', ,1);
 	
 	if (Level.NetMode != NM_DedicatedServer)
 		Spawn(EffectWhenDestroyed, Owner,, Location );
@@ -50,7 +50,7 @@ simulated function TornOff()
 	if (EffectWhenDestroyed != None && EffectIsRelevant(location,false))
 	{
 		Spawn( EffectWhenDestroyed, Owner,, Location );
-		PlaySound(Sound'BW_Core_WeaponSound.RX22A.RX22A-FlyBy', ,1);
+		PlaySound(Sound'BallisticSounds2.RX22A.RX22A-FlyBy', ,1);
 	}
 		
 	Destroy();
@@ -68,7 +68,7 @@ state Destroying
 		if (EffectWhenDestroyed != None && EffectIsRelevant(location,false))
 		{
 			Spawn( EffectWhenDestroyed, Owner,, Location );
-			PlaySound(Sound'BW_Core_WeaponSound.RX22A.RX22A-FlyBy', ,1);
+			PlaySound(Sound'BallisticSounds2.RX22A.RX22A-FlyBy', ,1);
 		}
 		
 		Sleep(0.5);
@@ -83,7 +83,7 @@ function bool BlocksShotAt(Actor Other)
 defaultproperties
 {
      EffectWhenDestroyed=Class'BallisticProV55.IE_FireExplosion'
-     StaticMesh=StaticMesh'BWBP_OP_Static.FlameSword.FlameSword_Shield'
+     StaticMesh=StaticMesh'BWBPSomeOtherPackStatic.FlameSword.FlameSword_Shield'
 	 bStasis=False
 	 bUnlit=True
      bNetInitialRotation=True

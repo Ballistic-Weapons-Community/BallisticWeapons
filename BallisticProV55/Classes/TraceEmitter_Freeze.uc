@@ -9,7 +9,7 @@ simulated function Initialize(float Distance, optional float Power)
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=FreezeBullets
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Fifty9.Fifty9Tracer'
+         StaticMesh=StaticMesh'BallisticHardware2.Fifty9.Fifty9Tracer'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -46,7 +46,7 @@ defaultproperties
          StartSizeRange=(X=(Min=3.000000,Max=7.000000),Y=(Min=5.000000,Max=15.000000),Z=(Min=5.000000,Max=15.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke2'
+         Texture=Texture'BallisticEffects.Particles.Smoke2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.900000,Max=0.900000)
          StartVelocityRange=(X=(Max=9000.000000))

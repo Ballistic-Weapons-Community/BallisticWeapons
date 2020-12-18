@@ -377,12 +377,12 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 defaultproperties
 {
-	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
-	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
+	LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
+	LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
 	BulletBone="Bullet"
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
-	BigIconMaterial=Texture'BW_Core_WeaponTex.MD24.BigIcon_MD24'
+	BigIconMaterial=Texture'BallisticTextures_25.MD24.BigIcon_MD24'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	ManualLines(0)="Low-recoil pistol fire. Has the option of burst fire. Very controllable."
@@ -390,13 +390,13 @@ defaultproperties
 	ManualLines(2)="The Weapon Function key toggles a laser sight, which reduces the spread of the weapon's hipfire, but exposes the user's position to the enemy. This laser sight makes the MD24 a strong choice for dual wielding.||Effective at close range."
 	SpecialInfo(0)=(Info="120.0;10.0;-999.0;25.0;0.0;0.0;-999.0")
 	MeleeFireClass=Class'BallisticProV55.MD24MeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Cock',Volume=0.675000)
+	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
+	CockSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Cock',Volume=0.675000)
 	ReloadAnimRate=1.350000
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipHit',Volume=0.800000)
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipOut',Volume=0.800000)
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_ClipIn',Volume=0.800000)
+	ClipHitSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_ClipHit',Volume=0.800000)
+	ClipOutSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_ClipOut',Volume=0.800000)
+	ClipInSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_ClipIn',Volume=0.800000)
 	ClipInFrame=0.580000
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
@@ -419,7 +419,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.MD24Pickup'
 	PlayerViewOffset=(X=6.500000,Y=6.000000,Z=-6.500000)
 	AttachmentClass=Class'BallisticProV55.MD24Attachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.MD24.SmallIcon_MD24'
+	IconMaterial=Texture'BallisticTextures_25.MD24.SmallIcon_MD24'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="MD24 Pistol"
 	LightType=LT_Pulse
@@ -428,6 +428,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MD24'
+	Mesh=SkeletalMesh'BallisticProAnims.MD24'
 	DrawScale=0.350000
 }

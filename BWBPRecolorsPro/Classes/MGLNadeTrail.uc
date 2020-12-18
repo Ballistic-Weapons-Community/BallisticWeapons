@@ -22,7 +22,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=5.000000,Max=5.000000),Y=(Min=5.000000,Max=5.000000),Z=(Min=5.000000,Max=5.000000))
          InitialParticlesPerSecond=1.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
+         Texture=Texture'BallisticEffects.Particles.FlareA1'
          LifetimeRange=(Min=0.401000,Max=0.401000)
      End Object
      Emitters(0)=SpriteEmitter'BWBPRecolorsPro.MGLNadeTrail.SpriteEmitter0'
@@ -38,7 +38,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=1.000000,Max=1.000000))
          InitialParticlesPerSecond=500000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
+         Texture=Texture'BallisticEffects.Particles.FlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=999999.000000,Max=999999.000000)
      End Object

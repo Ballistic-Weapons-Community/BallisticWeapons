@@ -1,7 +1,7 @@
 //=============================================================================
 // RSNovaAttachment.
 //
-// _TPm person weapon attachment for Nova Staff
+// 3rd person weapon attachment for Nova Staff
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
@@ -521,7 +521,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     WingSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Flying'
+     WingSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Flying'
      MuzzleFlashClass=Class'BallisticProV55.RSNovaLightMuzzleFlash'
      AltMuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
      ImpactManager=Class'BallisticProV55.IM_NovaStaffBlades'
@@ -535,6 +535,6 @@ defaultproperties
      MeleeAnimRate=1.000000
      TrackNum(1)=0
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.NovaStaff_TPm'
+     Mesh=SkeletalMesh'BWBP4-Anims.NovaStaff-3rd'
      DrawScale=0.650000
 }

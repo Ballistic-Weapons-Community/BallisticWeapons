@@ -6,6 +6,6 @@ class AD_A73Lob extends AD_ImpactDecal
 
 defaultproperties
 {
-     ProjTexture=Texture'BW_Core_WeaponTex.Decals.A42Scorch'
+     ProjTexture=Texture'BallisticEffects2.Decals.A42Scorch'
      DrawScale=0.750000
 }

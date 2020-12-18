@@ -19,7 +19,7 @@ defaultproperties
      DisableDGV(2)=1
      bAutoInit=False
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.A73.A73MuzzleFlash'
+         StaticMesh=StaticMesh'BallisticHardware2.A73.A73MuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -67,7 +67,7 @@ defaultproperties
 		 Opacity=0.5
          StartLocationRange=(Y=(Min=-5.000000,Max=5.000000),Z=(Min=-5.000000,Max=5.000000))
          StartSizeRange=(X=(Min=9.000000,Max=15.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
+         Texture=Texture'BallisticEffects.Particles.FlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          SpawnOnTriggerRange=(Min=2.000000,Max=5.000000)
@@ -94,7 +94,7 @@ defaultproperties
          StartLocationRange=(X=(Min=160.000000,Max=160.000000))
          StartSizeRange=(X=(Min=110.000000,Max=140.000000),Y=(Min=110.000000,Max=140.000000),Z=(Min=110.000000,Max=140.000000))
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)

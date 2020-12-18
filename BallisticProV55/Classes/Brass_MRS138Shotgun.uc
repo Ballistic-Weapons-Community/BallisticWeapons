@@ -8,5 +8,5 @@ class Brass_MRS138Shotgun extends Brass_Shotgun;
 
 defaultproperties
 {
-     Skins(0)=Texture'BW_Core_WeaponTex.MRS138.Cart_RSShell'
+     Skins(0)=Texture'BWAddPack-RS-Skins.MRS138.Cart_RSShell'
 }

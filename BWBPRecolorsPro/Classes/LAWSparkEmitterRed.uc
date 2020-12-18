@@ -44,7 +44,7 @@ defaultproperties
          StartLocationRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-2.000000,Max=2.000000),Z=(Min=-2.500000,Max=2.500000))
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
          StartSizeRange=(X=(Min=2.000000,Max=8.000000),Y=(Min=4.000000,Max=4.000000),Z=(Min=4.000000,Max=4.000000))
-         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
+         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -64,7 +64,7 @@ defaultproperties
          StartLocationOffset=(X=-25.000000)
          StartSpinRange=(X=(Min=1.000000,Max=1.000000))
          StartSizeRange=(X=(Min=35.000000,Max=35.000000),Y=(Min=35.000000,Max=35.000000),Z=(Min=35.000000,Max=35.000000))
-         Texture=Texture'BW_Core_WeaponTex.Effects.ClampedFlare1'
+         Texture=Texture'BallisticWeapons2.Effects.ClampedFlare1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRange=(Z=(Min=0.100000,Max=0.100000))

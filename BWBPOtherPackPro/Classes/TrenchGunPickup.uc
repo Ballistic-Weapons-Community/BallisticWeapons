@@ -1,9 +1,9 @@
 class TrenchGunPickup extends BallisticHandGunPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BWBP_OP_Tex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BWBP_OP_Static.usx
+#exec OBJ LOAD FILE=BWBPSomeOtherPackTex.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BWBPSomeOtherPackStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -13,48 +13,48 @@ class TrenchGunPickup extends BallisticHandGunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.TechWrench.TechWrenchShiny');
-	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.TechWrench.CryoShell');
-	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.TechWrench.ShockShell');
-	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.TechWrench.WrenchShiny');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Metal');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Wood');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.M763Bash');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.M763BashWood');
+	L.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.TechWrench.TechWrenchShiny');
+	L.AddPrecacheMaterial(Texture'BWBPSomeOtherPackTex.TechWrench.CryoShell');
+	L.AddPrecacheMaterial(Texture'BWBPSomeOtherPackTex.TechWrench.ShockShell');
+	L.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.TechWrench.WrenchShiny');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Concrete');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Metal');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Wood');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.M763Bash');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.M763BashWood');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MRT6.MRT6MuzzleFlash');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.MRT6.MRT6MuzzleFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyShell');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Shader'BWBP_OP_Tex.TechWrench.TechWrenchShiny');
-	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.TechWrench.CryoShell');
-	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.TechWrench.ShockShell');
-	Level.AddPrecacheMaterial(Shader'BWBP_OP_Tex.TechWrench.WrenchShiny');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Metal');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Wood');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.M763Bash');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.M763BashWood');
+	Level.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.TechWrench.TechWrenchShiny');
+	Level.AddPrecacheMaterial(Texture'BWBPSomeOtherPackTex.TechWrench.CryoShell');
+	Level.AddPrecacheMaterial(Texture'BWBPSomeOtherPackTex.TechWrench.ShockShell');
+	Level.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.TechWrench.WrenchShiny');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Concrete');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Metal');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Wood');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.M763Bash');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.M763BashWood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MRT6.MRT6MuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Ammo.M763ShellBox');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.TechGun.TechGunPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.MRT6.MRT6MuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyShell');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Ammo.M763ShellBox');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBPSomeOtherPackStatic.TechGun.TechGunPickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.TechGun.TechGunPickup'
+     LowPolyStaticMesh=StaticMesh'BWBPSomeOtherPackStatic.TechGun.TechGunPickup'
      InventoryType=Class'BWBPOtherPackPro.TrenchGun'
      RespawnTime=15.000000
      PickupMessage="You picked up the BR-112 sapper's trenchgun."
-     PickupSound=Sound'BW_Core_WeaponSound.M290.M290Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.TechGun.TechGunPickup'
+     PickupSound=Sound'BallisticSounds2.M290.M290Putaway'
+     StaticMesh=StaticMesh'BWBPSomeOtherPackStatic.TechGun.TechGunPickup'
      Physics=PHYS_None
      DrawScale=1.50000
      CollisionHeight=3.500000

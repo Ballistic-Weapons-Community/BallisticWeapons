@@ -66,7 +66,7 @@ defaultproperties
          StartSizeRange=(X=(Min=55.000000,Max=70.000000),Y=(Min=55.000000,Max=70.000000),Z=(Min=55.000000,Max=70.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.200000,Max=1.600000)
          StartVelocityRadialRange=(Min=-500.000000,Max=-300.000000)
@@ -93,7 +93,7 @@ defaultproperties
          StartSizeRange=(X=(Min=40.000000,Max=40.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -115,7 +115,7 @@ defaultproperties
          StartSizeRange=(X=(Min=40.000000,Max=40.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -141,7 +141,7 @@ defaultproperties
          StartSizeRange=(X=(Min=2.000000,Max=3.500000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
+         Texture=Texture'BallisticEffects.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(Z=(Min=40.000000,Max=120.000000))
@@ -166,7 +166,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=3.000000)
          StartSizeRange=(X=(Min=55.000000,Max=55.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
+         Texture=Texture'BallisticEffects.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object

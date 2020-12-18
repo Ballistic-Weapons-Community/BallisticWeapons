@@ -20,7 +20,7 @@ defaultproperties
      DamageTypeArm=Class'BWBPOtherPackPro.DT_CX61Chest'
      PenetrateForce=180
      bPenetrate=True
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
+     DryFireSound=(Sound=Sound'BallisticSounds2.D49.D49-DryFire',Volume=0.700000)
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
      FlashScaleFactor=0.700000
      BrassClass=Class'BallisticProV55.Brass_Rifle'
@@ -32,7 +32,7 @@ defaultproperties
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      XInaccuracy=48.000000
      YInaccuracy=48.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.CX61.CX61-Fire',Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBPOtherPackSound.CX61.CX61-Fire',Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireAnim="SightFire"
      FireEndAnim=

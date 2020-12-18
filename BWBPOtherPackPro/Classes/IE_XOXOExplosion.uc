@@ -33,7 +33,7 @@ defaultproperties
          StartSizeRange=(X=(Max=75.000000),Y=(Max=75.000000),Z=(Max=75.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.250000,Max=2.250000)
          StartVelocityRadialRange=(Min=-500.000000,Max=-300.000000)
@@ -60,7 +60,7 @@ defaultproperties
          StartSizeRange=(X=(Min=120.000000,Max=120.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -82,7 +82,7 @@ defaultproperties
          StartSizeRange=(X=(Min=120.000000,Max=120.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -109,7 +109,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=7.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BWBP_OP_Tex.XOXO.oeffect'
+         Texture=Texture'BWBPOtherPackTex.XOXO.oeffect'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(Z=(Min=60.000000,Max=180.000000))
@@ -134,7 +134,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=3.000000)
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -164,7 +164,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=7.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BWBP_OP_Tex.XOXO.xeffect'
+         Texture=Texture'BWBPOtherPackTex.XOXO.xeffect'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(Z=(Min=60.000000,Max=180.000000))

@@ -10,7 +10,7 @@
 //=============================================================================
 class FLASHLauncher extends BallisticWeapon;
 
-#EXEC OBJ LOAD FILE=BWBP_SKC_TexExp.utx
+#EXEC OBJ LOAD FILE=BallisticRecolors4TexPro.utx
 
 var   bool          bRunOffsetting;
 var() rotator       RunOffset;
@@ -202,10 +202,10 @@ defaultproperties
 {
 
 	RunOffset=(Pitch=-4000,Yaw=-2000)
-	HatchSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Cliphit',Volume=0.700000,Pitch=1.000000)
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=5)
+	HatchSound=(Sound=Sound'BallisticSounds2.M75.M75Cliphit',Volume=0.700000,Pitch=1.000000)
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=5)
 	AIReloadTime=4.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.Flash.BigIcon_FLASH'
+	BigIconMaterial=Texture'BallisticRecolors4TexPro.Flash.BigIcon_FLASH'
 	BigIconCoords=(Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
@@ -216,11 +216,11 @@ defaultproperties
 	ManualLines(1)="Dumps the entire load of remaining rockets at once. Overlapping fire patches will only deal damage once. Invariably fatal to any target directly struck."
 	ManualLines(2)="As a rocket launcher, it has no recoil. Ineffective while jumping and at close range due to the risk of burning the user."
 	SpecialInfo(0)=(Info="500.0;60.0;1.0;80.0;2.0;0.0;1.5")
-	BringUpSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51-PullOut',Volume=2.200000)
-	PutDownSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51-Putaway',Volume=2.200000)
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Lever')
-	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.Flash.FLASH-PullOut',Volume=1.100000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.Flash.FLASH-Insert',Volume=1.100000)
+	BringUpSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-PullOut',Volume=2.200000)
+	PutDownSound=(Sound=Sound'PackageSounds4Pro.MJ51.MJ51-Putaway',Volume=2.200000)
+	CockSound=(Sound=Sound'BallisticSounds2.G5.G5-Lever')
+	ClipOutSound=(Sound=Sound'PackageSounds4ProExp.Flash.FLASH-PullOut',Volume=1.100000)
+	ClipInSound=(Sound=Sound'PackageSounds4ProExp.Flash.FLASH-Insert',Volume=1.100000)
 	bNonCocking=True
 	ShovelIncrement=4
 	WeaponModes(0)=(ModeName="Incendiary Rocket",ModeID="WM_FullAuto")
@@ -228,9 +228,9 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	ZoomType=ZT_Fixed
-	ScopeViewTex=Texture'BW_Core_WeaponTex.G5.G5ScopeView'
-	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	ScopeViewTex=Texture'BallisticUI2.G5.G5ScopeView'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=90.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
@@ -254,7 +254,7 @@ defaultproperties
 	PlayerViewOffset=(X=10.000000,Z=-12.000000)
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBPRecolorsPro.FLASHAttachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.Flash.SmallIcon_FLASH'
+	IconMaterial=Texture'BallisticRecolors4TexPro.Flash.SmallIcon_FLASH'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="AT40 STREAK"
 	LightType=LT_Pulse
@@ -263,12 +263,12 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_FLASH'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.FLASH_FP'
 	DrawScale=0.400000
-	Skins(0)=Texture'BWBP_SKC_TexExp.Flash.FLASH-Scope'
-	Skins(1)=Texture'BW_Core_WeaponTex.M353.M353_Ammo'
-	Skins(2)=Texture'BWBP_SKC_TexExp.Flash.FLASH-Main'
-	Skins(3)=Texture'BWBP_SKC_TexExp.Flash.FLASH-Lens'
-	Skins(4)=Texture'BWBP_SKC_TexExp.Flash.FLASH-Rocket'
-	Skins(5)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Texture'BallisticRecolors4TexPro.Flash.FLASH-Scope'
+	Skins(1)=Texture'BallisticWeapons2.M353.M353_Ammo'
+	Skins(2)=Texture'BallisticRecolors4TexPro.Flash.FLASH-Main'
+	Skins(3)=Texture'BallisticRecolors4TexPro.Flash.FLASH-Lens'
+	Skins(4)=Texture'BallisticRecolors4TexPro.Flash.FLASH-Rocket'
+	Skins(5)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
 }

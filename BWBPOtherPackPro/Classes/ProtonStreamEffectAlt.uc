@@ -112,7 +112,7 @@ defaultproperties
          MaxParticles=1
          UseRotationFrom=PTRS_Normal
          StartSizeRange=(X=(Min=50.000000,Max=50.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
-         Texture=Texture'BWBP_OP_Tex.ProtonPack.StreamCoreAlt'
+         Texture=Texture'BWBPOtherPackTex2.ProtonPack.StreamCoreAlt'
          LifetimeRange=(Min=0.050000,Max=0.050000)
      End Object
      Emitters(0)=BeamEmitter'BWBPOtherPackPro.ProtonStreamEffectAlt.CoreBeam'

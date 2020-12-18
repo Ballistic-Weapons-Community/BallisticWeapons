@@ -4,9 +4,9 @@
 class X8Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BallisticWeapons2.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,35 +16,35 @@ class X8Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.AK490.Knife-Misc');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.AK490.AK490-Misc');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.AK490.Knife-Misc');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.AK490.AK490-Misc');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.X8.X8Proj');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.X8.X8Proj');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.AK490.Knife-Misc');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.AK490.AK490-Misc');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.AK490.Knife-Misc');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.AK490.AK490-Misc');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.X8.X8Pickup');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.X8.X8Proj');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.X8.X8Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.X8.X8Proj');
 }
 
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.X8.X8Pickup'
+     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticPro.X8.X8Pickup'
      PickupDrawScale=0.270000
      InventoryType=Class'BWBPRecolorsPro.X8Knife'
      RespawnTime=10.000000
      PickupMessage="You picked up the X8 ballistic knife."
-     PickupSound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.X8.X8Pickup'
+     PickupSound=Sound'BallisticSounds2.Knife.KnifePutaway'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.X8.X8Pickup'
      Physics=PHYS_None
      DrawScale=0.300000
      CollisionHeight=4.000000

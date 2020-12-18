@@ -416,12 +416,12 @@ defaultproperties
 	PierceThreshold=50
 	ShieldBone="tip"
 	ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
-	ShieldOnSound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-ShieldOn'
-	ShieldOffSound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-ShieldOff'
-	ShieldPierceSound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-ShieldPierce'
+	ShieldOnSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldOn'
+	ShieldOffSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldOff'
+	ShieldPierceSound=Sound'PackageSounds4ProExp.PUMA.PUMA-ShieldPierce'
 	ShieldHitForce="ShieldReflection"
-	DamageSound=Sound'BWBP_SKC_Sounds.NEX.NEX-Overload'
-	BrokenSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
+	DamageSound=Sound'PackageSounds4Pro.NEX.NEX-Overload'
+	BrokenSound=Sound'BWBP2-Sounds.LightningGun.LG-Ambient'
 	ChargingSound=Sound'WeaponSounds.BaseFiringSounds.BShield1'
 	ShieldSoundVolume=220	 
 	ShieldPower=100
@@ -431,19 +431,19 @@ defaultproperties
 	ManualLines(0)="Each hit heats up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
 	ManualLines(1)="Secondary fire will toggle a directional shield. The shield has a maximum of 200 health points and will reduce incoming damage by 35 points or by 90% of its value, whichever is smaller. If the shield is broken, a minimum reserve level is required to reactivate it."
 	ManualLines(2)="Effective at moderate range, against small arms, and against enemies using healing weapons and items."
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_OP_Tex.XM20.BigIcon_XM20'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBPSomeOtherPackTex.XM20.BigIcon_XM20'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Energy=True
 	bNoCrosshairInScope=True
 	SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Select')
-	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
+	BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Select')
+	PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
+	CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
 	ReloadAnimRate=1.000000
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-LeverDown')
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-ClipIn')
+	ClipHitSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-LeverDown')
+	ClipOutSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipOut')
+	ClipInSound=(Sound=Sound'BWBP4-Sounds.VPR.VPR-ClipIn')
 	ClipInFrame=0.650000 
 	CurrentWeaponMode=2
 	SightOffset=(X=20.000000,Y=16.8500000,Z=29.000000)
@@ -470,7 +470,7 @@ defaultproperties
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBPOtherPackPro.XM20Attachment'
 	bUseBigIcon=True
-	IconMaterial=Texture'BWBP_OP_Tex.XM20.Icon_XM20'
+	IconMaterial=Texture'BWBPSomeOtherPackTex.XM20.Icon_XM20'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="XM20 Laser Rifle"
 	LightType=LT_Pulse
@@ -479,6 +479,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_XM20Blue'
+	Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.XM20_FP'
 	DrawScale=0.500000
 }

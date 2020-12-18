@@ -147,8 +147,8 @@ defaultproperties
      DamageTypeArm=Class'BallisticProV55.DTXRS10SMG'
      PenetrateForce=135
      bPenetrate=True
-     ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
+     ClipFinishSound=(Sound=Sound'BallisticSounds3.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)
+     DryFireSound=(Sound=Sound'BallisticSounds3.Misc.DryPistol',Volume=0.700000)
      bDryUncock=True
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
      BrassClass=Class'BallisticProV55.Brass_Pistol'
@@ -158,8 +158,8 @@ defaultproperties
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.320000,OutVal=1),(InVal=0.500000,OutVal=1.500000),(InVal=1.000000,OutVal=2.250000)))
      XInaccuracy=64.000000
      YInaccuracy=64.000000
-     SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-SilenceFire',Volume=0.5,Radius=128,bAtten=True)
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Fire',Volume=0.900000,Radius=384.000000)
+     SilencedFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-SilenceFire',Volume=0.5,Radius=128,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Fire',Volume=0.900000,Radius=384.000000)
      bPawnRapidFireAnim=True
      FireRate=0.1000
      AmmoClass=Class'BallisticProV55.Ammo_XRS10Bullets'

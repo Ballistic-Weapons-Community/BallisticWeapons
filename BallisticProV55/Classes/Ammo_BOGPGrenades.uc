@@ -13,9 +13,9 @@ defaultproperties
 {
      MaxAmmo=20
      InitialAmount=10
-     IconFlashMaterial=Shader'BW_Core_WeaponTex.BOGP.AmmoIcon_BOGPFlash'
+     IconFlashMaterial=Shader'BallisticTextures_25.BOGP.AmmoIcon_BOGPFlash'
      PickupClass=Class'BallisticProV55.AP_BOGPGrenades'
-     IconMaterial=Texture'BW_Core_WeaponTex.BOGP.AmmoIcon_BOGP'
+     IconMaterial=Texture'BallisticTextures_25.BOGP.AmmoIcon_BOGP'
      IconCoords=(X2=64,Y2=64)
      ItemName="BORT-85 Grenades"
 }

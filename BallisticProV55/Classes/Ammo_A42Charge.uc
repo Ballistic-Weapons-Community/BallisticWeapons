@@ -12,9 +12,9 @@ defaultproperties
 {
      MaxAmmo=24
      InitialAmount=24
-     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIconsFlashing'
+     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=None
-     IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIconPage'
+     IconMaterial=Texture'BallisticUI2.Icons.AmmoIconPage'
      IconCoords=(X1=256,Y1=64,X2=319,Y2=127)
      ItemName="Skrith Fusion Charge"
 }

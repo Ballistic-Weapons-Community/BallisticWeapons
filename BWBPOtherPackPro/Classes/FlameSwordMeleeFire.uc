@@ -57,7 +57,7 @@ defaultproperties
      bUseWeaponMag=False
      bReleaseFireOnDie=False
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Swing',Volume=4.000000,Radius=256.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Swing',Volume=4.000000,Radius=256.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepSwing"

@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=40
      InventoryType=Class'BWBPRecolorsPro.Ammo_Laser'
      PickupMessage="You got 40 LS-14 energy cells."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.LS14AmmoPickup'
+     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.LaserCarbine.LS14AmmoPickup'
      CollisionRadius=8.000000
      CollisionHeight=14.000000
 }

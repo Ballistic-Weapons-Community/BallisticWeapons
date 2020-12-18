@@ -189,17 +189,17 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     HealSound=Sound'BWBP_SKC_SoundsExp.Stealth.Stealth-Heal'
-     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.Stim.BigIcon_Stim'
+     HealSound=Sound'PackageSounds4ProExp.Stealth.Stealth-Heal'
+     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BallisticRecolors4TexPro.Stim.BigIcon_Stim'
      BigIconCoords=(Y1=24,Y2=230)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      ManualLines(0)="Injects self with the stimpack, granting 80 health over 10 seconds."
      ManualLines(1)="Melee attack. Damage improves over hold time, with max bonus reached after 1.5 seconds. Deals increased damage from behind."
 	 ManualLines(2)="Attacking allies with the stimpack will apply its effect to them."
      SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
+     BringUpSound=(Sound=Sound'BallisticSounds2.Knife.KnifePullOut')
+     PutDownSound=(Sound=Sound'BallisticSounds2.Knife.KnifePutaway')
      bNoMag=True
      bNonCocking=True
      WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
@@ -231,13 +231,13 @@ defaultproperties
      PickupClass=Class'BWBPRecolorsPro.ICISPickup'
      PlayerViewOffset=(X=20.000000,Z=-10.000000)
      AttachmentClass=Class'BWBPRecolorsPro.ICISAttachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.Stim.SmallIcon_Stim'
+     IconMaterial=Texture'BallisticRecolors4TexPro.Stim.SmallIcon_Stim'
      IconCoords=(X2=128,Y2=32)
      ItemName="FMD ICIS-25 Stimpack"
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_Stimpack'
+     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.Stimpack_FP'
      DrawScale=0.300000
-	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	 Skins(1)=Texture'BWBP_SKC_TexExp.Stim.Stim-Main'
+	 Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	 Skins(1)=Texture'BallisticRecolors4TexPro.Stim.Stim-Main'
 	 Skins(2)=Texture'ONSstructureTextures.CoreGroup.Invisible'
 	 Skins(3)=Shader'XEffectMat.goop.GoopShader'
 }

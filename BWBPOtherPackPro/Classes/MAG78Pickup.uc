@@ -4,10 +4,10 @@
 class MAG78Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BWBP_OP_Tex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BWBP_OP_Static.usx
+#exec OBJ LOAD FILE=BallisticWeapons2.utx
+#exec OBJ LOAD FILE=BWBPSomeOtherPackTex.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BWBPSomeOtherPackStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -17,32 +17,32 @@ class MAG78Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.Longsword.ChainsawLongswordShiny');
-	L.AddPrecacheMaterial(TexScaler'BWBP_OP_Tex.Longsword.LongswordChainScaler');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
+	L.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.Longsword.ChainsawLongswordShiny');
+	L.AddPrecacheMaterial(TexScaler'BWBPSomeOtherPackTex.Longsword.LongswordChainScaler');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Shader'BWBP_OP_Tex.Longsword.ChainsawLongswordShiny');
-	Level.AddPrecacheMaterial(TexScaler'BWBP_OP_Tex.Longsword.LongswordChainScaler');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
+	Level.AddPrecacheMaterial(Shader'BWBPSomeOtherPackTex.Longsword.ChainsawLongswordShiny');
+	Level.AddPrecacheMaterial(TexScaler'BWBPSomeOtherPackTex.Longsword.LongswordChainScaler');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MAGSaw.ChainsawSwordPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBPSomeOtherPackStatic.MAGSaw.ChainsawSwordPickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.MAGSaw.ChainsawSwordPickup'
+     LowPolyStaticMesh=StaticMesh'BWBPSomeOtherPackStatic.MAGSaw.ChainsawSwordPickup'
      InventoryType=Class'BWBPOtherPackPro.MAG78Longsword'
      RespawnTime=10.000000
      PickupMessage="You picked up the MAG-SAW longsword."
-     PickupSound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.MAGSaw.ChainsawSwordPickup'
+     PickupSound=Sound'BallisticSounds2.EKS43.EKS-Putaway'
+     StaticMesh=StaticMesh'BWBPSomeOtherPackStatic.MAGSaw.ChainsawSwordPickup'
      Physics=PHYS_None
      DrawScale=1.60000
      CollisionHeight=3.500000

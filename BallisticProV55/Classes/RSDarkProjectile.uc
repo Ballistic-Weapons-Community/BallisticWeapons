@@ -337,7 +337,7 @@ simulated function DestroyEffects()
 defaultproperties
 {
 	AccelSpeed=100000.000000
-	AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire1FlyBy'
+	AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire1FlyBy'
 	CollisionHeight=1.000000
 	CollisionRadius=1.000000
 	Damage=70.000000
@@ -370,7 +370,7 @@ defaultproperties
 	SoundVolume=255
 	Speed=5000.000000
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
-	StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.DarkProjBig'
+	StaticMesh=StaticMesh'BWBP4-Hardware.DarkStar.DarkProjBig'
 	TrailClass=Class'BallisticProV55.RSDark1Trail'
 	bDynamicLight=True
 	bNetTemporary=False

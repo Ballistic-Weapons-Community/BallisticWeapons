@@ -4,10 +4,10 @@
 class SKASPickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BWBP_SKC_Static.usx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BallisticRecolors3TexPro.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BallisticRecolors4StaticPro.usx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
 
 
 auto state Pickup
@@ -28,42 +28,42 @@ auto state Pickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.SKAS.SKASShotgun');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Metal');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Wood');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.SKAS.SKAS-CamoU');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Concrete');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Metal');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Wood');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M763.M763MuzzleFlash');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M763.M763Flash1');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M763.M763MuzzleFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M763.M763Flash1');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyShell');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.SKAS.SKASShotgun');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Metal');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Wood');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.SKAS.SKAS-CamoU');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Concrete');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Metal');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Wood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M763.M763MuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M763.M763Flash1');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.SKAS.SKASShotgunAmmo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.SKAS.SKASShotgunPickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.SKAS.SKASShotgunPickupLow');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M763.M763MuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M763.M763Flash1');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyShell');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.SKAS.SKASShotgunAmmo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.SKAS.SKASShotgunPickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.SKAS.SKASShotgunPickupLow');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.SKAS.SKASShotgunPickupLow'
+     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticPro.SKAS.SKASShotgunPickupLow'
      PickupDrawScale=0.600000
      InventoryType=Class'BWBPRecolorsPro.SKASShotgun'
      RespawnTime=90.000000
      PickupMessage="You picked up the SKAS-21 automatic shotgun."
-     PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.SKAS.SKASShotgunPickupHi'
+     PickupSound=Sound'BallisticSounds2.M763.M763Putaway'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.SKAS.SKASShotgunPickupHi'
      Physics=PHYS_None
      DrawScale=0.600000
      CollisionHeight=3.000000

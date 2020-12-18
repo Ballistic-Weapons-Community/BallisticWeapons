@@ -153,7 +153,7 @@ defaultproperties
      InstantMode=MU_None
      ReloadAnim="Reload_MG"
 	 ReloadAnimRate=1.000000
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.LAW_TPm'
+     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.TP_LAW'
      DrawScale=0.350000
      PrePivot=(Z=5.000000)
 }

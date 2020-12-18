@@ -44,7 +44,7 @@ defaultproperties
          StartSizeRange=(X=(Min=37.000000,Max=37.000000),Y=(Min=37.000000,Max=37.000000),Z=(Min=37.000000,Max=37.000000))
          InitialParticlesPerSecond=500.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.SmokeWisp-Alpha'
+         Texture=Texture'BallisticEffects2.Particles.SmokeWisp-Alpha'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          LifetimeRange=(Min=1.000000,Max=1.000000)

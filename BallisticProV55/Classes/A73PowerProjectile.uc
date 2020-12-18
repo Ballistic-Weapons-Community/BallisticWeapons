@@ -111,10 +111,10 @@ defaultproperties
      LightSaturation=128
      LightBrightness=225.000000
      LightRadius=18.000000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.A42.A42Projectile'
+     StaticMesh=StaticMesh'BallisticHardware2.A42.A42Projectile'
      LifeSpan=9.000000
-     Skins(0)=FinalBlend'BW_Core_WeaponTex.GunFire.A73ProjFinal'
-     Skins(1)=FinalBlend'BW_Core_WeaponTex.GunFire.A73Proj2Final'
+     Skins(0)=FinalBlend'BallisticEffects.GunFire.A73ProjFinal'
+     Skins(1)=FinalBlend'BallisticEffects.GunFire.A73Proj2Final'
      SoundRadius=128.000000
      bFixedRotationDir=False
      bOrientToVelocity=True

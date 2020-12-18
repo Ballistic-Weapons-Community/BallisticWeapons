@@ -15,7 +15,7 @@ defaultproperties
      TrackAnimMode=MU_Primary
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.X8Knife_TPm'
+     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.TP_BalKnife'
      RelativeRotation=(Pitch=32768)
      DrawScale=0.500000
 }

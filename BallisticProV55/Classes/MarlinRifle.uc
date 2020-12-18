@@ -225,8 +225,8 @@ function float SuggestDefenseStyle()	{	return 0.4;	}
 
 defaultproperties
 {
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BW_Core_WeaponTex.Marlin.BigIcon_Marlin'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBP4-Tex.Marlin.BigIcon_Marlin'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	ManualLines(0)="Lever-action rifle fire. High damage per shot with modest recoil and good penetration. Good shoulder fire properties. This mode fires more quickly when the weapon is aimed."
@@ -234,14 +234,14 @@ defaultproperties
 	ManualLines(2)="As a long-ranged weapon lacking a scope, it has a very quick aiming time. Does not use tracer rounds. Effective at medium to long range."
 	SpecialInfo(0)=(Info="240.0;25.0;0.6;50.0;1.0;0.5;-999.0")
 	MeleeFireClass=Class'BallisticProV55.MarlinMeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
 	PutDownTime=0.4
 	CockAnimRate=1.700000
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Cock',Volume=0.750000)
+	CockSound=(Sound=Sound'BWBP4-Sounds.Marlin.Mar-Cock',Volume=0.750000)
 	ReloadAnim="ReloadLoop"
 	ReloadAnimRate=2.000000
-	ClipInSound=(Sound=SoundGroup'BW_Core_WeaponSound.Marlin.Mar-ShellIn')
+	ClipInSound=(Sound=SoundGroup'BWBP4-Sounds.Marlin.Mar-ShellIn')
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
 	bCanSkipReload=True
@@ -271,7 +271,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.MarlinPickup'
 	PlayerViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
 	AttachmentClass=Class'BallisticProV55.MarlinAttachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.Marlin.SmallIcon_Marlin'
+	IconMaterial=Texture'BWBP4-Tex.Marlin.SmallIcon_Marlin'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="Redwood 6000 'DeerMaster'"
 	LightType=LT_Pulse
@@ -280,6 +280,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Marlin'
+	Mesh=SkeletalMesh'BallisticProAnims.Marlin'
 	DrawScale=0.500000
 }

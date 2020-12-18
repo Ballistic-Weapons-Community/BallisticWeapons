@@ -93,10 +93,10 @@ defaultproperties
      TracerClass=Class'BWBPOtherPackPro.TraceEmitter_XM20Las'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Primary
-     FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-FlyBy',Volume=0.700000)
+     FlyBySound=(Sound=Sound'PackageSounds4Pro.XM20.XM20-FlyBy',Volume=0.700000)
      FlyByBulletSpeed=-1.000000
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.XM20Blue_TPm'
+     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.XM20Third'
      RelativeLocation=(X=-3.000000,Z=2.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.200000

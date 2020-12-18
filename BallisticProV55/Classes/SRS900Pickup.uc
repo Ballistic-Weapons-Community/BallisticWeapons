@@ -4,8 +4,8 @@
 class SRS900Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BWBP3-Tex.utx
+#exec OBJ LOAD FILE=BWBP3Hardware.usx
 
 //===========================================================================
 // StaticPrecache
@@ -15,34 +15,34 @@ class SRS900Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.SRS900.SRS900Main');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.SRS900.SRS900Scope');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo');
+	L.AddPrecacheMaterial(Texture'BWBP3-Tex.SRS900.SRS900Main');
+	L.AddPrecacheMaterial(Texture'BWBP3-Tex.SRS900.SRS900Scope');
+	L.AddPrecacheMaterial(Texture'BWBP3-Tex.SRS900.SRS900Ammo');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.SRS900.SRS900Main');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.SRS900.SRS900Scope');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo');
+	Level.AddPrecacheMaterial(Texture'BWBP3-Tex.SRS900.SRS900Main');
+	Level.AddPrecacheMaterial(Texture'BWBP3-Tex.SRS900.SRS900Scope');
+	Level.AddPrecacheMaterial(Texture'BWBP3-Tex.SRS900.SRS900Ammo');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.SRS900.SRS900Clip');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.SRS900.SRS900PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.SRS900.SRS900PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyRifleRound');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP3Hardware.SRS900.SRS900Clip');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP3Hardware.SRS900.SRS900PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP3Hardware.SRS900.SRS900PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.SRS900.SRS900PickupLo'
+     LowPolyStaticMesh=StaticMesh'BWBP3Hardware.SRS900.SRS900PickupLo'
      PickupDrawScale=0.500000
      InventoryType=Class'BallisticProV55.SRS900Rifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the SRS-900 battle rifle."
-     PickupSound=Sound'BW_Core_WeaponSound.R78.R78Putaway'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.SRS900.SRS900PickupHi'
+     PickupSound=Sound'BallisticSounds2.R78.R78Putaway'
+     StaticMesh=StaticMesh'BWBP3Hardware.SRS900.SRS900PickupHi'
      Physics=PHYS_None
      DrawScale=0.500000
      CollisionHeight=3.000000

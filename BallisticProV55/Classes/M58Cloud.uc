@@ -76,7 +76,7 @@ defaultproperties
          ParticlesPerSecond=4.000000
          InitialParticlesPerSecond=4.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.NewSmoke1g'
+         Texture=Texture'BallisticEffects2.Particles.NewSmoke1g'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=6.000000,Max=6.000000)
          StartVelocityRange=(X=(Min=-70.000000,Max=70.000000),Y=(Min=-70.000000,Max=70.000000),Z=(Min=-10.000000))
@@ -107,7 +107,7 @@ defaultproperties
          ParticlesPerSecond=4.000000
          InitialParticlesPerSecond=4.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=3.000000,Max=3.000000)
      End Object

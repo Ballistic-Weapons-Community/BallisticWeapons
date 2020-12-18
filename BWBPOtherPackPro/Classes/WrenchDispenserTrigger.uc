@@ -58,7 +58,7 @@ event Touch(actor Other)
 		Weapon(Inv).FillToInitialAmmo();
 	}
 	
-	Owner.PlaySound(Sound'BW_Core_WeaponSound.Ammo.AmmoPackPickup');
+	Owner.PlaySound(Sound'BallisticSounds2.Ammo.AmmoPackPickup');
 	
 	if (PlayerController(Toucher.Controller) != None)
 		PlayerController(Toucher.Controller).ReceiveLocalizedMessage(class'AmmoCrateLocalMessage');

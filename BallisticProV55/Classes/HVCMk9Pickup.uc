@@ -4,9 +4,9 @@
 class HVCMk9Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BWBP2-Tex.utx
+#exec OBJ LOAD FILE=BWBP2-FX.utx
+#exec OBJ LOAD FILE=BWBP2Hardware.usx
 
 var float	HeatLevel;
 var float	HeatTime;
@@ -40,47 +40,47 @@ function InitDroppedPickupFor(Inventory Inv)
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.LightGunSkin');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.LightGlassSkin');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.LighterPackSkin');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.LighterAmmoSkin');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.SparkA1');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.FlareC2');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.LightningBolt2');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.LightningBoltCut2');
+	L.AddPrecacheMaterial(Texture'BWBP2-Tex.Lighter.LightGunSkin');
+	L.AddPrecacheMaterial(Texture'BWBP2-Tex.Lighter.LightGlassSkin');
+	L.AddPrecacheMaterial(Texture'BWBP2-Tex.Lighter.LighterPackSkin');
+	L.AddPrecacheMaterial(Texture'BWBP2-Tex.Lighter.LighterAmmoSkin');
+	L.AddPrecacheMaterial(Texture'BWBP2-FX.Particles.SparkA1');
+	L.AddPrecacheMaterial(Texture'BWBP2-FX.Particles.FlareC2');
+	L.AddPrecacheMaterial(Texture'BWBP2-FX.Particles.LightningBolt2');
+	L.AddPrecacheMaterial(Texture'BWBP2-FX.Particles.LightningBoltCut2');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.LightningGun.LighterPack');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP2Hardware.LightningGun.LighterPack');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.LightGunSkin');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.LightGlassSkin');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.LighterPackSkin');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.LighterAmmoSkin');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.SparkA1');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.FlareC2');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.LightningBolt2');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.LightningBoltCut2');
+	Level.AddPrecacheMaterial(Texture'BWBP2-Tex.Lighter.LightGunSkin');
+	Level.AddPrecacheMaterial(Texture'BWBP2-Tex.Lighter.LightGlassSkin');
+	Level.AddPrecacheMaterial(Texture'BWBP2-Tex.Lighter.LighterPackSkin');
+	Level.AddPrecacheMaterial(Texture'BWBP2-Tex.Lighter.LighterAmmoSkin');
+	Level.AddPrecacheMaterial(Texture'BWBP2-FX.Particles.SparkA1');
+	Level.AddPrecacheMaterial(Texture'BWBP2-FX.Particles.FlareC2');
+	Level.AddPrecacheMaterial(Texture'BWBP2-FX.Particles.LightningBolt2');
+	Level.AddPrecacheMaterial(Texture'BWBP2-FX.Particles.LightningBoltCut2');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.LightningGun.LighterAmmo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.LightningGun.LighterPack');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.LightningGun.LighterPickupHD');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.LightningGun.LighterPickupLD');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP2Hardware.LightningGun.LighterAmmo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP2Hardware.LightningGun.LighterPack');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP2Hardware.LightningGun.LighterPickupHD');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP2Hardware.LightningGun.LighterPickupLD');
 }
 
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.LightningGun.LighterPickupLD'
+     LowPolyStaticMesh=StaticMesh'BWBP2Hardware.LightningGun.LighterPickupLD'
      PickupDrawScale=0.250000
      InventoryType=Class'BallisticProV55.HVCMk9LightningGun'
      RespawnTime=120.000000
      PickupMessage="You got the HVC-Mk9 lightning gun."
-     PickupSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.LightningGun.LighterPickupHD'
+     PickupSound=Sound'BWBP2-Sounds.LightningGun.LG-Putaway'
+     StaticMesh=StaticMesh'BWBP2Hardware.LightningGun.LighterPickupHD'
      Physics=PHYS_None
      DrawScale=0.400000
      PrePivot=(Z=-3.000000)

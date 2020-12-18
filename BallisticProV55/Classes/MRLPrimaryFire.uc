@@ -185,7 +185,7 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.MRLFlashEmitter'
      FireRecoil=0.000000
      FireChaos=0.170000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireRate=0.110000

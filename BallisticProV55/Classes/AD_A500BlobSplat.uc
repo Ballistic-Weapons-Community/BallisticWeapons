@@ -9,7 +9,7 @@ class AD_A500BlobSplat extends AD_ImpactDecal;
 
 defaultproperties
 {
-     DecalTextures(0)=Texture'BW_Core_WeaponTex.Reptile.AcidSplat_Large'
+     DecalTextures(0)=Texture'BallisticTextures_25.Reptile.AcidSplat_Large'
      StayTime=10.000000
      ZoomDist=-25.000000
      DrawScaleVariance=0.100000

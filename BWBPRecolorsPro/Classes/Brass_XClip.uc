@@ -18,6 +18,6 @@ defaultproperties
 {
      StartVelocity=(X=20.000000,Y=0.000000)
      bHitSounds=False
-     StaticMesh=StaticMesh'BWBP_SKC_Static.XM84.XM84Clip'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.XM84.XM84Clip'
      DrawScale=1.500000
 }

@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=8
      InventoryType=Class'BWBPRecolorsPro.Ammo_Longhorn'
      PickupMessage="You picked up a box of Longhorn grenades."
-     PickupSound=Sound'BWBP_SKC_SoundsExp.LAW.Law-TubeLock'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.Longhorn.LonghornAmmo'
+     PickupSound=Sound'PackageSounds4ProExp.LAW.Law-TubeLock'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticProExp.Longhorn.LonghornAmmo'
      DrawScale=0.400000
      CollisionRadius=8.000000
      CollisionHeight=4.500000

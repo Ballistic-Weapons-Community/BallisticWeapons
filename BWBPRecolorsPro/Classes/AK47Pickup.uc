@@ -4,10 +4,10 @@
 class AK47Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BWBP_SKC_TexExp.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BallisticWeapons2.utx
+#exec OBJ LOAD FILE=BallisticRecolors3TexPro.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
 
 //===========================================================================
 // StaticPrecache
@@ -17,33 +17,33 @@ class AK47Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.AK490.AK490-Main');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.AK490.AK490-Misc');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.AK490.AK490-Main');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.AK490.AK490-Misc');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyRifleRound');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.AK490.AK490-Main');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_TexExp.AK490.AK490-Misc');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.AK490.AK490-Main');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.AK490.AK490-Misc');
 }
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.AK490.AK490Pickup');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_StaticExp.AK490.AK490AmmoPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyRifleRound');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.AK490.AK490Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.AK490.AK490AmmoPickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.AK490.AK490Pickup'
+     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticPro.AK490.AK490Pickup'
      PickupDrawScale=0.140000
      InventoryType=Class'BWBPRecolorsPro.AK47AssaultRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the AK-490 battle rifle."
-     PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.AK490.AK490Pickup'
+     PickupSound=Sound'BallisticSounds2.M50.M50Putaway'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.AK490.AK490Pickup'
      Physics=PHYS_None
      DrawScale=0.250000
      CollisionHeight=4.000000

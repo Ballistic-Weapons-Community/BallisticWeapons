@@ -160,8 +160,8 @@ simulated function Notify_BrassOut();
 defaultproperties
 {
     BulletBone="Bullet1"
-    TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-    BigIconMaterial=Texture'BWBP_SKC_Tex.SK410.BigIcon_SK410'
+    TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+    BigIconMaterial=Texture'BallisticRecolors3TexPro.SK410.BigIcon_SK410'
     BigIconCoords=(Y1=40)
     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
     bWT_Shotgun=True
@@ -171,13 +171,13 @@ defaultproperties
     ManualLines(2)="Has a melee attack. Damage improves over hold time, with a max bonus being reached at 1.5 seconds of holding. As a blunt attack, has lower damage than sharp melee attacks but inflicts a minor blind effect upon striking. Deals more damage from behind.||Extremely effective at close range and against charges and melee."
     SpecialInfo(0)=(Info="300.0;30.0;0.5;60.0;0.0;1.0;0.0")
     MeleeFireClass=Class'BWBPRecolorsPro.SK410MeleeFire'
-    BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
-    PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
+    BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
+    PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
     CockAnimRate=1.250000
-    CockSound=(Sound=Sound'BWBP_SKC_Sounds.SK410.SK410-Cock',Volume=1.400000)
+    CockSound=(Sound=Sound'PackageSounds4Pro.SK410.SK410-Cock',Volume=1.400000)
     ReloadAnimRate=1.250000
-    ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.SK410.SK410-MagOut',Volume=1.300000)
-    ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.SK410.SK410-MagIn',Volume=1.300000)
+    ClipOutSound=(Sound=Sound'PackageSounds4Pro.SK410.SK410-MagOut',Volume=1.300000)
+    ClipInSound=(Sound=Sound'PackageSounds4Pro.SK410.SK410-MagIn',Volume=1.300000)
     WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
     WeaponModes(1)=(ModeName="Automatic Slug",bUnavailable=True,ModeID="WM_FullAuto")
     WeaponModes(2)=(ModeName="0451-EXECUTE",bUnavailable=True)
@@ -205,7 +205,7 @@ defaultproperties
     PickupClass=Class'BWBPRecolorsPro.SK410Pickup'
     PlayerViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
     AttachmentClass=Class'BWBPRecolorsPro.SK410Attachment'
-    IconMaterial=Texture'BWBP_SKC_Tex.SK410.SmallIcon_SK410'
+    IconMaterial=Texture'BallisticRecolors3TexPro.SK410.SmallIcon_SK410'
     IconCoords=(X2=127,Y2=35)
     ItemName="SK-410 Assault Shotgun"
     LightType=LT_Pulse
@@ -214,10 +214,10 @@ defaultproperties
     LightSaturation=150
     LightBrightness=150.000000
     LightRadius=5.000000
-    Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_SK410'
+    Mesh=SkeletalMesh'BallisticRecolors4AnimPro.SK410_FP'
     DrawScale=0.350000
-    Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-    Skins(1)=Texture'BWBP_SKC_Tex.SK410.SK410-C-CamoSnow'
-    Skins(2)=Texture'BWBP_SKC_Tex.SK410.SK410-Misc'
-    Skins(3)=Shader'BWBP_SKC_Tex.SK410.SK410-LightsOn'
+    Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+    Skins(1)=Texture'BallisticRecolors3TexPro.SK410.SK410-C-CamoSnow'
+    Skins(2)=Texture'BallisticRecolors3TexPro.SK410.SK410-Misc'
+    Skins(3)=Shader'BallisticRecolors3TexPro.SK410.SK410-LightsOn'
 }

@@ -19,6 +19,6 @@ defaultproperties
 {
      bRandomRotate=False
      DrawScaleVariance=0.050000
-     ProjTexture=Texture'BW_Core_WeaponTex.Decals.A73BladeCutWood'
+     ProjTexture=Texture'BallisticEffects2.Decals.A73BladeCutWood'
      DrawScale=0.200000
 }

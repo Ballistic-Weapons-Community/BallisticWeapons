@@ -1,7 +1,7 @@
 //=============================================================================
 // Fifty9Attachment.
 //
-// _TPm person weapon attachment for the Fifty 9
+// 3rd person weapon attachment for the Fifty 9
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
@@ -63,12 +63,12 @@ defaultproperties
      TracerClass=Class'BallisticProV55.TraceEmitter_FiftyNine'
      TracerChance=0.500000
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=1.400000
      CockAnimRate=1.250000
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.Fifty9_TPm'
+     Mesh=SkeletalMesh'BallisticAnims2.Fifty9-3rd'
      DrawScale=0.190000
 }

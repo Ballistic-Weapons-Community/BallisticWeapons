@@ -27,7 +27,7 @@ defaultproperties
 	 BlockFatiguePenalty=0.2
 	 BlockPenetration=0.2
      GibModifier=4.000000
-     PawnDamageSounds(0)=Sound'BWBP_SKC_Sounds.DTS.NanoSwordHitFlesh'
+     PawnDamageSounds(0)=Sound'PackageSounds4Pro.DTS.NanoSwordHitFlesh'
      GibPerterbation=0.200000
      KDamageImpulse=1000.000000
      VehicleDamageScaling=0.350000

@@ -24,8 +24,8 @@ class MRLTrailEmitter extends BallisticEmitter;
         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=3.000000)
         StartSizeRange=(X=(Min=3.000000,Max=3.000000))
         InitialParticlesPerSecond=500000.000000
-        Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
-//		Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+        Texture=Texture'BallisticEffects.Particles.Smoke3'
+//		Texture=Texture'BallisticEffects.Particles.HotFlareA1'
         SecondsBeforeInactive=0.000000
         LifetimeRange=(Min=3.500000,Max=3.500000)
     End Object
@@ -46,7 +46,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=2.000000,Max=2.000000))
          InitialParticlesPerSecond=500000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
+         Texture=Texture'BallisticEffects.Particles.Smoke3'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=999999.000000,Max=999999.000000)
      End Object
