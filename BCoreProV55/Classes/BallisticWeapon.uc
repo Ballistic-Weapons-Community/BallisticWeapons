@@ -1473,7 +1473,7 @@ simulated function PlayScopeUp()
 // Scope up anim just ended. Either go into scope view or move the scope back down again
 simulated function ScopeUpAnimEnd()
 {
-	if (!bUseSights || Instigator.Physics == PHYS_Falling || (SprintControl != None && SprintControl.bSprinting))
+	if (!bUseSights || (SprintControl != None && SprintControl.bSprinting))
 	{
 		PlayScopeDown();
 		return;
