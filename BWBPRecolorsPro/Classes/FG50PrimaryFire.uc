@@ -27,6 +27,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FirePushbackForce=64.000000;
 		FireRate=0.6;
 		FireChaos=0.07;
+		FireRecoil=384;
 		FireAnim='CFire';
 		DamageType=Class'DT_FG50Controlled';
 		DamageTypeArm=Class'DT_FG50Controlled';
@@ -40,6 +41,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FirePushbackForce=default.FirePushbackForce;
 		FireRate = default.FireRate;
 		FireChaos = default.FireChaos;
+		FireRecoil=default.FireRecoil;
 		FireAnim='Fire';
 		DamageType=Class'DT_FG50Torso';
 		DamageTypeArm=Class'DT_FG50Limb';

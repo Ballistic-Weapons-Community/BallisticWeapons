@@ -498,10 +498,8 @@ function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDr
     RefNormal = FaceDir;
 
 	//scalar "dot" product returns product of norm of both vectors (in this case, their size is 1) multiplied by the cosine of the angle between them
-	//reversing this convention, we get the protection arc angle = 180-arccos(X), so we measure a cone with slant angle X/2, around the player's face
+	//reversing this convention, we get the protection arc angle = 180-arccos(X), so we measure a cone with slant angle X, around the player's face
 	//eg. 180-arccos(-0.37) = 68 degree protection arc (original value), so cos(180-68)=-0.37 is the value to use
-
-    // revert on this per earlier game - Azarael
 
     if ( FaceDir dot HitDir < -0.37 )	// 68 degree protection arc
         return true;

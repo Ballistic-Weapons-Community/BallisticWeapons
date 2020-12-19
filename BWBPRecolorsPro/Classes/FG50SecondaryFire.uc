@@ -207,7 +207,7 @@ simulated function InitEffects()
 
 defaultproperties
 {
-     HeatPerShot=1.100000
+     HeatPerShot=1.200000
      SpecialFireSound=Sound'PackageSounds4Pro.X82.X82-Fire2'
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WallPenetrationForce=72.000000
@@ -238,7 +238,7 @@ defaultproperties
      FireAnim="CFire"
      FireEndAnim=
      FireAnimRate=2.400000
-     FireRate=0.140000
+     FireRate=0.165000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_50IncDrum'
      ShakeRotMag=(X=512.000000,Y=512.000000)
      ShakeRotRate=(X=20000.000000,Y=20000.000000,Z=20000.000000)
