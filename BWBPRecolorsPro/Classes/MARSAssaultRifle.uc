@@ -25,6 +25,7 @@ var   bool					bMeatVision;
 var   Pawn					Target;
 var   float					TargetTime;
 var   float					LastSendTargetTime;
+var   float                 NextTargetFindTime, TargetFindInterval;
 var   vector				TargetLocation;
 var   Actor					NVLight;
 
@@ -193,28 +194,33 @@ simulated event WeaponTick(float DT)
 	else
 		SetNVLight(false);
 
-	if (!bScopeView || Role < Role_Authority)
+	if (!bScopeView || Role < ROLE_Authority || Level.TimeSeconds < NextTargetFindTime)
 		return;
+
+    NextTargetFindTime = Level.TimeSeconds + TargetFindInterval;
 
 	Start = Instigator.Location + Instigator.EyePosition();
 	BestAim = 0.995;
 	Targ = Instigator.Controller.PickTarget(BestAim, BestDist, Vector(Instigator.GetViewRotation()), Start, 20000);
-	if (Targ != None)
-	{
-		if (Targ != Target)
-		{
-			Target = Targ;
-			TargetTime = 0;
-		}
-		else if (Vehicle(Targ) != None)
-			TargetTime += 1.2 * DT * (BestAim-0.95) * 20;
-		else
-			TargetTime += DT * (BestAim-0.95) * 20;
-	}
-	else
-	{
-		TargetTime = FMax(0, TargetTime - DT * 0.5);
-	}
+
+    if (!FastTrace(Targ.Location, Instigator.Location))
+        Targ = None;
+
+    if (Targ != Target)
+    {
+        Target = Targ;
+        TargetTime = 0;
+    }
+
+	if (Targ == None)
+    {
+    	TargetTime = FMax(0, TargetTime - DT * 0.5);
+        return;
+    }
+    else if (Vehicle(Targ) != None)
+        TargetTime += 1.2 * DT * (BestAim-0.95) * 20;
+    else
+        TargetTime += DT * (BestAim-0.95) * 20;
 }
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
@@ -708,6 +714,8 @@ defaultproperties
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Burst",Value=4.000000)
 	WeaponModes(2)=(ModeName="Auto")
+
+    TargetFindInterval=0.2
 	
 	CurrentWeaponMode=2
 	

@@ -200,11 +200,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	ColorMod = ColorModifier(Level.ObjectPool.AllocateObject(class'ColorModifier'));
 	if ( ColorMod != None )
 	{
-		ColorMod.Material = FinalBlend'BallisticEffects.M75.OrangeFinal';
+		ColorMod.Material = Texture'Engine.MenuWhite';
 		ColorMod.Color.R = 255;
-		ColorMod.Color.G = 255;
-		ColorMod.Color.B = 255;
-		ColorMod.Color.A = 255;
+		ColorMod.Color.G = 0;
+		ColorMod.Color.B = 0;
+		ColorMod.Color.A = 0;
 		ColorMod.AlphaBlend = false;
 		ColorMod.RenderTwoSided=True;
 	}
@@ -320,10 +320,8 @@ simulated function WeaponTick (float DeltaTime)
 
 }
 
-
-simulated event RenderOverlays (Canvas C)
+simulated final function SetScreenMode()
 {
-	local Vector X, Y, Z;
 	if (CurrentWeaponMode == 0)
 	{
 		if (MagAmmo == 0)
@@ -342,11 +340,35 @@ simulated event RenderOverlays (Canvas C)
 	NumpadYOffset1=(5+(MagAmmo/10)*49);
 	NumpadYOffset2=(5+(MagAmmo%10)*49);
 
-
 	if (Instigator.IsLocallyControlled())
 	{
 		WeaponScreen.Revision++;
 	}
+}
+
+simulated final function DrawScopeTex(Canvas C)
+{
+    local Material ScopeTex;
+
+    if (bThermal)
+        ScopeTex = ScopeViewTexThermal;
+    else 
+        ScopeTex = ScopeViewTex;
+
+    C.DrawTile(ScopeTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1024);
+
+    C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
+    C.DrawTile(ScopeTex, C.SizeY, C.SizeY, 0, 0, 1024, 1024);
+
+    C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
+    C.DrawTile(ScopeTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1024);
+}
+
+simulated function RenderOverlays (Canvas C)
+{
+	local Vector X, Y, Z;
+
+    SetScreenMode();
 
 	if (!bScopeView)
 	{
@@ -357,10 +379,10 @@ simulated event RenderOverlays (Canvas C)
 	}
 	
 	C.ColorModulate.W = 1;
+
 	if (bThermal)
-	{
 		DrawThermalMode(C);
-	}
+
 	if (!bNoMeshInScope)
 	{
 		Super.RenderOverlays(C);
@@ -390,31 +412,8 @@ simulated event RenderOverlays (Canvas C)
 	C.SetPos(C.OrgX, C.OrgY);
 	C.Style = ERenderStyle.STY_Alpha;
 
-	if (bThermal)
-	{
-    		C.DrawTile(ScopeViewTexThermal, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1024);
-
-        	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(ScopeViewTexThermal, C.SizeY, C.SizeY, 0, 0, 1024, 1024);
-
-        	C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(ScopeViewTexThermal, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1024);
-	}
-	else
-    	{
-
-    		C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1024);
-
-        	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(ScopeViewTex, C.SizeY, C.SizeY, 0, 0, 1024, 1024);
-
-        	C.SetPos(C.SizeX - (C.SizeX - C.SizeY)/2, C.OrgY);
-        	C.DrawTile(ScopeViewTex, (C.SizeX - C.SizeY)/2, C.SizeY, 0, 0, 1, 1024);
-		
-	}
-
+    DrawScopeTex(C);
 }
-
 
 simulated function UpdatePawnList()
 {
@@ -446,121 +445,136 @@ simulated function UpdatePawnList()
 // Draws players through walls and all the other Thermal Mode stuff
 simulated event DrawThermalMode (Canvas C)
 {
-	local Pawn P;
-	local int i, j;
-	local float Dist, DotP, ImageScaleRatio;//, OtherRatio;
+	local Pawn              P;
+	local int               i, j;
+	local float             Dist, DotP, ImageScaleRatio;//, OtherRatio;
 	local Array<Material>	OldSkins;
-	local int OldSkinCount;
-	local bool bLOS, bFocused;
-	local vector Start;
+	local int               OldSkinCount;
+	local bool              bFocused;
+	local vector            Start;
 	local Array<Material>	AttOldSkins0;
 	local Array<Material>	AttOldSkins1;
 
 	ImageScaleRatio = 1.3333333;
 
 	C.Style = ERenderStyle.STY_Modulated;
+
 	// Draw Spinning Sweeper thing
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
 	C.SetDrawColor(255,255,255,255);
 	C.DrawTile(FinalBlend'BallisticRecolors3TexPro.FSG50.FSGIRFinal', C.SizeY, C.SizeY, 0, 0, 1024, 1024);
+
 	// Draw some panning lines 
 	C.SetPos(C.OrgX, C.OrgY);
 	C.DrawTile(FinalBlend'BallisticRecolors3TexPro.SKAR.SKAR-StaticFinal', C.SizeX, C.SizeY, 0, 0, 512, 512); 
 
 	if (ColorMod == None)
 		return;
-	// Draw the players with an orange effect
+
+	// Draw the players with a red effect
 	C.Style = ERenderStyle.STY_Alpha;
 	Start = Instigator.Location + Instigator.EyePosition();
+
 	for (j=0;j<PawnList.length;j++)
 	{
 		if (PawnList[j] != None && PawnList[j] != Level.GetLocalPlayerController().Pawn)
 		{
 			P = PawnList[j];
 			bFocused=false;
-			bLos=false;
-			ThermalRange = default.ThermalRange + 2000 * FMin(1, VSize(P.Velocity) / 450);
+
+            // Check player in range
+			ThermalRange = default.ThermalRange;
+
 			Dist = VSize(P.Location - Instigator.Location);
 			if (Dist > ThermalRange)
 				continue;
+
+            // Check appropriate angle
 			DotP = Normal(P.Location - Start) Dot Vector(Instigator.GetViewRotation());
-			if ( DotP < Cos((Instigator.Controller.FovAngle/1.7) * 0.017453) )
+			if ( DotP < Cos((Instigator.Controller.FovAngle/1.7) * 0.25) )
 				continue;
-			// If we have a clear LOS then they can be drawn
-			if (Instigator.LineOfSightTo(P))
-				bLOS=true;
-			if (bLOS)
-			{
-				DotP = (DotP-0.6) / 0.4;
 
-				DotP = FMax(DotP, 0);
+            // Check visibility to target
+            if (!FastTrace(P.Location, Instigator.Location))
+                continue;
 
-				if (Dist < 500)
-					ColorMod.Color.R = DotP * 255.0;
-				else
-					ColorMod.Color.R = DotP * ( 255 - FClamp((Dist-500)/((ThermalRange-500)*0.8), 0, 1) * 255 );
+            /*
+            DotP = (DotP-0.6) / 0.4;
 
-				// Remember old skins, set new skins, turn on unlit...
-				OldSkinCount = P.Skins.length;
-				for (i=0;i<Max(2, OldSkinCount);i++)
-				{	if (OldSkinCount > i) OldSkins[i] = P.Skins[i]; else OldSkins[i]=None;	P.Skins[i] = ColorMod;	}
-				P.bUnlit=true;
+            DotP = FMax(DotP, 0);
 
-				for (i=0;i<P.Attached.length;i++)
-					if (P.Attached[i] != None)
-					{
-						if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
-						{
-							if (P.Attached[i].Skins.length > 0)
-							{	AttOldSkins0[i] = P.Attached[i].Skins[0];	P.Attached[i].Skins[0] = ColorMod;	}
-							else
-							{	AttOldSkins0[i] = None;	P.Attached[i].Skins[0] = ColorMod;	}
-							if (P.Attached[i].Skins.length > 1)
-							{	AttOldSkins1[i] = P.Attached[i].Skins[1];	P.Attached[i].Skins[1] = ColorMod;	}
-							if (P.Attached[i].Skins.length > 1)
-							{	AttOldSkins1[i] = None;	P.Attached[i].Skins[1] = ColorMod;	}
-						}
-						else
-							P.Attached[i].SetDrawType(DT_None);
-					}
+            if (Dist < 500)
+                ColorMod.Color.R = DotP * 255.0;
+            else
+                ColorMod.Color.R = DotP * ( 255 - FClamp((Dist-500)/((ThermalRange-500)*0.8), 0, 1) * 255 );
+            */
 
-				C.DrawActor(P, false, true);
+            // Remember old skins, set new skins, turn on unlit...
+            OldSkinCount = P.Skins.length;
 
-				// Set old skins back, Unlit off
-				P.Skins.length = OldSkinCount;
-				for (i=0;i<P.Skins.length;i++)
-					P.Skins[i] = OldSkins[i];
-				P.bUnlit=false;
+            for (i=0;i<Max(2, OldSkinCount);i++)
+            {	
+                if (OldSkinCount > i) 
+                    OldSkins[i] = P.Skins[i]; 
+                else 
+                    OldSkins[i]=None;	
+                
+                P.Skins[i] = ColorMod;	
+            }
+            P.bUnlit=true;
 
-				for (i=0;i<P.Attached.length;i++)
-					if (P.Attached[i] != None)
-					{
-						if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
-						{
-							if (AttOldSkins1[i] == None)
-							{
-								if (AttOldSkins0[i] == None)
-									P.Attached[i].Skins.length = 0;
-								else
-								{
-									P.Attached[i].Skins.length = 1;
-									P.Attached[i].Skins[0] = AttOldSkins0[i];
-								}
-							}
-							else
-							{
-								P.Attached[i].Skins[0] = AttOldSkins0[i];
-								P.Attached[i].Skins[1] = AttOldSkins1[i];
-							}
-						}
-						else
-							P.Attached[i].SetDrawType(P.Attached[i].default.DrawType);
-					}
-				AttOldSkins0.length = 0;
-				AttOldSkins1.length = 0;
-			}
-			else
-				continue;
+            for (i=0;i<P.Attached.length;i++)
+                if (P.Attached[i] != None)
+                {
+                    if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
+                    {
+                        if (P.Attached[i].Skins.length > 0)
+                        {	AttOldSkins0[i] = P.Attached[i].Skins[0];	P.Attached[i].Skins[0] = ColorMod;	}
+                        else
+                        {	AttOldSkins0[i] = None;	P.Attached[i].Skins[0] = ColorMod;	}
+                        if (P.Attached[i].Skins.length > 1)
+                        {	AttOldSkins1[i] = P.Attached[i].Skins[1];	P.Attached[i].Skins[1] = ColorMod;	}
+                        if (P.Attached[i].Skins.length > 1)
+                        {	AttOldSkins1[i] = None;	P.Attached[i].Skins[1] = ColorMod;	}
+                    }
+                    else
+                        P.Attached[i].SetDrawType(DT_None);
+                }
+
+            C.DrawActor(P, false, true);
+
+            // Set old skins back, Unlit off
+            P.Skins.length = OldSkinCount;
+            for (i=0;i<P.Skins.length;i++)
+                P.Skins[i] = OldSkins[i];
+            P.bUnlit=false;
+
+            for (i=0;i<P.Attached.length;i++)
+                if (P.Attached[i] != None)
+                {
+                    if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
+                    {
+                        if (AttOldSkins1[i] == None)
+                        {
+                            if (AttOldSkins0[i] == None)
+                                P.Attached[i].Skins.length = 0;
+                            else
+                            {
+                                P.Attached[i].Skins.length = 1;
+                                P.Attached[i].Skins[0] = AttOldSkins0[i];
+                            }
+                        }
+                        else
+                        {
+                            P.Attached[i].Skins[0] = AttOldSkins0[i];
+                            P.Attached[i].Skins[1] = AttOldSkins1[i];
+                        }
+                    }
+                    else
+                        P.Attached[i].SetDrawType(P.Attached[i].default.DrawType);
+                }
+            AttOldSkins0.length = 0;
+            AttOldSkins1.length = 0;
 		}
 	}
 }

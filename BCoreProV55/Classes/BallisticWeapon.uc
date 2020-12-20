@@ -626,7 +626,7 @@ simulated final function bool BlendFire()
 	{
 		case SS_None: return false;
 		case SS_Raising: AnimBlendToAlpha(1, 1, (1-SightingPhase) * SightingTime); return true;
-		case SS_Lowering: AnimBlendToAlpha(1, 1, SightingPhase * SightingTime); return true;
+		case SS_Lowering: AnimBlendToAlpha(1, 0, SightingPhase * SightingTime); return true;
 		case SS_Active: AnimBlendParams(1,1); return true;
 	}
 	
@@ -1446,6 +1446,8 @@ simulated function PlayScopeDown(optional bool bNoAnim)
 	    SafePlayAnim(ZoomOutAnim, 1.0);
 	else if (SightingState == SS_Active || SightingState == SS_Raising)
 		SightingState = SS_Lowering;
+
+    BlendFire();
 
 	InstigatorController.bRun = 0;
 }

@@ -169,14 +169,13 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 {
 	local float BoneDist;
 
-	if (Other == Instigator && (!bCanHitOwner))
+	if (!bCanHitOwner && (Other == Instigator || (UnlaggedPawnCollision(Other) != None && UnlaggedPawnCollision(Other).UnlaggedPawn == Instigator)))
 		return;
 	if (Other == HitActor)
 		return;
 	if (Base != None)
 		return;
-
-
+        
 	if ( Instigator == None || Instigator.Controller == None )
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
 	if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact)

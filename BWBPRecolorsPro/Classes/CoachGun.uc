@@ -447,7 +447,7 @@ defaultproperties
      ShellTipBone3="SpareShellLSuper"
      ShellTipBone4="SpareShellRSuper"
      LastShellBone="ShellR"
-     FireAnimCutThreshold=3.000000
+     FireAnimCutThreshold=1.100000
      TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BallisticRecolors4TexPro.CoachGun.BigIcon_Coach'
      BigIconCoords=(Y1=35,Y2=225)
@@ -461,8 +461,8 @@ defaultproperties
      BringUpSound=(Sound=Sound'BallisticSounds2.M290.M290Pullout')
      PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
      CockAnimRate=0.700000
-     SingleReloadAnimRate=1.350000
-     ReloadAnimRate=1.350000
+     SingleReloadAnimRate=1.500000
+     ReloadAnimRate=1.500000
      ClipInFrame=0.800000
      bNonCocking=True
      WeaponModes(0)=(ModeName="Shot",Value=1.000000)
