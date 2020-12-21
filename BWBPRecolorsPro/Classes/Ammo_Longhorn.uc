@@ -7,8 +7,8 @@ static function int GetKillResupplyAmmo()
 
 defaultproperties
 {
-     MaxAmmo=48
-     InitialAmount=8
+     MaxAmmo=40
+     InitialAmount=20
      IconFlashMaterial=Shader'BallisticRecolors4TexPro.Longhorn.AmmoIcon_LonghornFlash'
      PickupClass=Class'BWBPRecolorsPro.AP_SMRTGrenade'
      IconMaterial=Texture'BallisticRecolors4TexPro.Longhorn.AmmoIcon_Longhorn'
