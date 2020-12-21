@@ -20,11 +20,11 @@ var   float							SquareCoefficient;
 var	  int 							DmgScalar;
 var   int 							CurrentTargetIndex;
 var   Vector 						VertDisplacement;
-var   array<Pawn> 					ShockTargets;
+var   array<Actor> 					ShockTargets;
 
 var int							    HitCounter, OldHitCounter;
 var vector						    EffectStart, EffectEnd;
-var Pawn						    EffectSource, EffectDest;
+var Actor						    EffectSource, EffectDest;
 
 var 	float						SelfDmgScalar;
 
@@ -39,7 +39,7 @@ replication
 //
 // Updates replicated shock effect variables
 //============================================================
-function ReplicateShock(vector start, vector end, Pawn src, Pawn dest)
+function ReplicateShock(vector start, vector end, Actor src, Actor dest)
 {
 	EffectStart = start;
 	EffectEnd = end;
@@ -73,9 +73,9 @@ simulated function PostNetReceive()
 //
 // Draws shock effect on network client
 //============================================================
-simulated function ClientDrawShock(vector start, vector end, Pawn src, Pawn dest)
+simulated function ClientDrawShock(vector start, vector end, Actor src, Actor dest)
 {
-	// if we have valid Pawn references, use them to accurize the effect
+	// if we have valid Actor references, use them to accurize the effect
 	if (src != None)
 		start = src.Location;
 	if (dest != None)
@@ -89,7 +89,7 @@ simulated function ClientDrawShock(vector start, vector end, Pawn src, Pawn dest
 //
 // Builds target list and begins propagation
 //============================================================
-function Initialize(Pawn InitialTarget)
+function Initialize(Actor InitialTarget)
 {
 	/*
 	local int i, ShortestDistIndex;
@@ -109,7 +109,7 @@ function Initialize(Pawn InitialTarget)
     // between 3 * 2 (6) and 3 * 5 (15)
 	MaxConductors = default.MaxConductors * (1 + ChargePower);
 
-	//Check for nearby pawns
+	//Check for nearby pawns. If "valid", will add to list of pawns to affect
 	ForEach RadiusActors(class'Pawn', PVictim, ConductRadius)
 	{		
 		//skip to next victim if instigator, in order to not damage the instigator
@@ -124,7 +124,7 @@ function Initialize(Pawn InitialTarget)
 		if (PVictim == InitialTarget)
 			continue;
 		
-		//Gather all nearby pawns. If "valid", will add to list of pawns to affect
+		//Check if "valid"
 		if (ValidTarget(Instigator, PVictim, Level))
 		{
 			ShockTargets.Insert(ShockTargets.Length, 1);
@@ -157,7 +157,8 @@ function Initialize(Pawn InitialTarget)
 	*/
 
 	if (ShockTargets.Length == 1) // no targets found, no work to do
-		Destroy();
+		Kill();
+
 	else
 		StartElectrocution();
 }
@@ -168,7 +169,7 @@ function Initialize(Pawn InitialTarget)
 // Returns true if target is valid 
 // for electroshock propagation
 //============================================================
-static function bool ValidTarget(Pawn Instigator, Pawn Target, LevelInfo Level)
+static function bool ValidTarget(Pawn Instigator, Actor Target, LevelInfo Level)
 {
 	local byte Team, InTeam;
 
@@ -177,13 +178,13 @@ static function bool ValidTarget(Pawn Instigator, Pawn Target, LevelInfo Level)
 		return false;
 
 	// uncontrolled pawn is neutral - valid target
-	if (Target.Controller == None)
+	if (Pawn(Target).Controller == None)
 		return true;
 
 	Team = Instigator.Controller.GetTeamNum();
-	InTeam = Target.Controller.GetTeamNum();
+	InTeam = Pawn(Target).Controller.GetTeamNum();
 
-	return (Level.TimeSeconds - Target.SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime && (InTeam == 255 || InTeam != Team));
+	return (Level.TimeSeconds - Pawn(Target).SpawnTime > DeathMatch(Level.Game).SpawnProtectionTime && (InTeam == 255 || InTeam != Team));
 }
 
 //============================================================
@@ -234,7 +235,7 @@ function Timer()
 //============================================================
 function Propagate()
 {
-	local Pawn src, dest;
+	local Actor src, dest;
 
 	src = ShockTargets[CurrentTargetIndex - 1];
 	dest = ShockTargets[CurrentTargetIndex];
@@ -291,6 +292,13 @@ final function int CalcDamageForIndex(int index)
 //============================================================
 function Kill()
 {
+	local int i;
+	for (i=0; i<=ShockTargets.Length; i++)	//iterate through the array and destroy any orbs
+	{
+		if (LightningProjectile(ShockTargets[i]) != None)
+			LightningProjectile(ShockTargets[i]).Explode(ShockTargets[i].Location, -ShockTargets[i].Acceleration);
+	}
+
 	ShockTargets.Remove(0, ShockTargets.Length);
 	SetTimer(0.0, false);
 	Destroy();
@@ -309,6 +317,6 @@ defaultproperties
 	CDamageType=Class'BWBPOtherPackPro.DT_LightningConduct'
 	SquareCoefficient=0.083333
 	ConductRadius=1024.000000
-	MaxConductors=3
+	MaxConductors=4
 	SelfDmgScalar=0.600000
 }
