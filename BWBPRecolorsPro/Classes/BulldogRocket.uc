@@ -53,23 +53,6 @@ simulated function Landed (vector HitNormal)
 	Explode(Location, HitNormal);
 }	
 
-simulated event ProcessTouch( actor Other, vector HitLocation )
-{
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	
-	if (Other == HitActor)
-		return;
-
-	if ( Instigator == None || Instigator.Controller == None )
-		Other.SetDelayedDamageInstigatorController( InstigatorController );
-				
-	if (Role == ROLE_Authority)		// Do damage for direct hits, but only once to the same actor
-		DoDamage(Other, HitLocation);
-	HitActor = Other;
-	Explode(HitLocation, Normal(HitLocation-Other.Location));
-}
-
 simulated function HitWall( vector HitNormal, actor Wall )
 {
     if ( !Wall.bStatic && !Wall.bWorldGeometry 

@@ -23,6 +23,15 @@ simulated event Timer()
 	bFixedRotationDir = True;
 	RotationRate.Pitch = -100000;
 }
+
+simulated function bool CanTouch(Actor Other)
+{
+    if (bHitPlayer)
+		return false;
+    
+    return Super.CanTouch(Other);
+}
+
 simulated function ProcessTouch (Actor Other, vector HitLocation)
 {
 	if (Other == None)
@@ -34,15 +43,14 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 			TakeBack(Pawn(Other));
 		return;
 	}
-	else if (Other == Instigator || Other == Owner)
-		return;
-	if (bHitPlayer)
+
+	if (!CanTouch(Other))
 		return;
 
 	if (Role == ROLE_Authority)
 		DoDamage(Other, HitLocation);
 	bHitPlayer = true;
-//	SetLocation(HitLocation + (HitLocation-Other.Location) * 2)
+
 	SetLocation(HitLocation);
 	Velocity = Normal(HitLocation-Other.Location)*100;
 }

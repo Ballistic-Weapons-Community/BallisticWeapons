@@ -116,17 +116,12 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 	HurtWall = None;
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch (Actor Other)
 {
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)) || RSDarkProjectile(Other)!=None || RSDarkFastProjectile(Other)!=None)
-		return;
+	if (RSDarkProjectile(Other) != None || RSDarkFastProjectile(Other) != None)
+		return false;
 
-	if (Role == ROLE_Authority)		// Do damage for direct hits
-		DoDamage(Other, HitLocation);
-
-	HitActor = Other;
-	Explode(HitLocation, vect(0,0,1));
+    return Super.CanTouch(Other);
 }
 
 simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )

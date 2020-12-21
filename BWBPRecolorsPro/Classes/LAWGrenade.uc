@@ -5,34 +5,12 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class LAWGrenade extends BallisticGrenade;
 
 var Actor StuckActor;
 var bool bPlaced;
-
-simulated event ProcessTouch(Actor Other, vector HitLocation )
-{
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Base != None)
-		return;
-
-	if(Pawn(Other) != None)
-	{
-		StuckActor = Other;
-		HitActor = Other;
-		Explode(HitLocation, Normal(HitLocation-Other.Location));
-		
-		if ( Instigator == None || Instigator.Controller == None )
-			Other.SetDelayedDamageInstigatorController( InstigatorController );
-			
-		class'BallisticDamageType'.static.GenericHurt(Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
-	}
-	else
-		Super.ProcessTouch(Other,HitLocation);
-}
 
 simulated event HitWall(vector HitNormal, actor Wall)
 {

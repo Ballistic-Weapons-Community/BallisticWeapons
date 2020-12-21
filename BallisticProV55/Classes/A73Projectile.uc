@@ -143,31 +143,6 @@ simulated function DestroyEffects()
 	}
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
-{
-    local Vector X;
-
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
-
-	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits, but only do it once to the same actor
-		DoDamage(Other, HitLocation);
-	if (CanPenetrate(Other) && Other != HitActor)
-	{	// Projectile can go right through enemies
-		HitActor = Other;
-		X = Normal(Velocity);
-		SetLocation(HitLocation + (X * (Other.CollisionHeight*2*X.Z + Other.CollisionRadius*2*(1-X.Z)) * 1.2));
-	    if ( EffectIsRelevant(Location,false) && PenetrateManager != None)
-			PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, Other.SurfaceType, Owner, 4/*HF_NoDecals*/);
-	}
-	else
-	{	// Spawn projectile death effects and try radius damage
-		HitActor = Other;
-		Explode(HitLocation, vect(0,0,1));
-	}
-}
-
 defaultproperties
 {
      ImpactManager=Class'BallisticProV55.IM_A73Projectile'

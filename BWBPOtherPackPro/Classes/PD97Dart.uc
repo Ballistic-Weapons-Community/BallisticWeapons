@@ -5,22 +5,17 @@ var bool bPlaced;
 
 var PD97Bloodhound Master;
 
-simulated event ProcessTouch(Actor Other, vector HitLocation )
+simulated function bool Impact(Actor Other, vector HitLocation )
 {
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Base != None)
-		return;
-
 	if(Pawn(Other) != None)
 	{
 		StuckActor = Other;
 		HitActor = Other;
 		Explode(HitLocation, Normal(HitLocation-Other.Location));
-		class'BallisticDamageType'.static.GenericHurt(Other, Damage, Instigator, HitLocation, Velocity, MyDamageType);
+        return true;
 	}
-	else
-		Super.ProcessTouch(Other,HitLocation);
+
+    return false;
 }
 
 simulated function Explode(vector HitLocation, vector HitNormal)

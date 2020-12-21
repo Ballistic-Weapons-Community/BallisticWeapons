@@ -20,27 +20,23 @@ simulated event Timer()
 	bFixedRotationDir = True;
 	RotationRate.Pitch = -100000;
 }
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+
+simulated function bool CanTouch (Actor Other)
 {
-	if (Other == None)
-		return;
-
-	if (bStuckInWall)
-		return;
-
-	else if (Other == Instigator || Other == Owner)
-		return;
-	if (bHitPlayer)
-		return;
-
-	if (Role == ROLE_Authority)
-		DoDamage(Other, HitLocation);
-	bHitPlayer = true;
-	SetLocation(HitLocation);
-	Velocity = Normal(HitLocation-Other.Location)*100;
-	SetPhysics(PHYS_Falling);
+	if (bStuckInWall || bHitPlayer)
+        return false;
+    return Super.CanTouch(Other);
 }
 
+simulated function bool Impact(Actor Other, Vector HitLocation)
+{
+	bHitPlayer = true;
+	SetPhysics(PHYS_Falling);
+	SetLocation(HitLocation);
+	Velocity = Normal(HitLocation-Other.Location)*100;
+
+    return true;
+}
 
 simulated event Landed( vector HitNormal )
 {

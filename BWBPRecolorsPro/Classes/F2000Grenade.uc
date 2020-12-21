@@ -94,48 +94,12 @@ simulated event HitWall(vector HitNormal, actor Wall)
     }
 }
 
-simulated event ProcessTouch( actor Other, vector HitLocation )
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 {
-	local float BoneDist;
+    Super.ApplyImpactEffect(Other, HitLocation);
 
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Other == HitActor)
-		return;
-	if (Base != None)
-		return;
-
-
-	if ( Instigator == None || Instigator.Controller == None )
-		Other.SetDelayedDamageInstigatorController( InstigatorController );
-	if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact)
-	{
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
-		HitActor = Other;
-		if (Pawn(Other) != None)
-			ApplySlowdown(Pawn(Other), Damage/8);
-		Explode(HitLocation, Normal(HitLocation-Other.Location));
-		return;
-	}
-	if ( PlayerImpactType == PIT_Bounce || (PlayerImpactType == PIT_Stick && (VSize (Velocity) < MinStickVelocity)) )
-	{
-		HitWall (Normal(HitLocation - Other.Location), Other);
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
-	}
-	else if ( PlayerImpactType == PIT_Stick && Base == None )
-	{
-		SetPhysics(PHYS_None);
-		if (DetonateOn == DT_ImpactTimed)
-			SetTimer(DetonateDelay, false);
-		HitActor = Other;
-		if (Other != Instigator && Other.DrawType == DT_Mesh)
-			Other.AttachToBone( Self, Other.GetClosestBone( Location, Velocity, BoneDist) );
-		else
-			SetBase (Other);
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
-		SetRotation (Rotator(Velocity));
-		Velocity = vect(0,0,0);
-	}
+	if (Pawn(Other) != None && (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact))
+		ApplySlowdown(Pawn(Other), Damage/8);
 }
 
 // Special HurtRadius function. This will hurt everyone except the chosen Excluded.

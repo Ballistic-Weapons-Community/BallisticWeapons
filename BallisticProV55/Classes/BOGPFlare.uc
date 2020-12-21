@@ -6,7 +6,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class BOGPFlare extends BallisticGrenade;
 
@@ -57,20 +57,14 @@ simulated event Tick(float DT)
 	Super.Tick(DT);
 }
 
-simulated event ProcessTouch(Actor Other, vector HitLocation )
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 {
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-
-	if(Pawn(Other) != None)
+    if(Pawn(Other) != None)
 	{
 		IgniteActor(Other);
 		HitActor = Other;
-		Explode(HitLocation, Normal(HitLocation-Other.Location));
 		class'BallisticDamageType'.static.GenericHurt(Other, Max(5,ImpactDamage*(1.0-FallOff)), Instigator, HitLocation, Velocity, ImpactDamageType);
 	}
-	else
-		Super.ProcessTouch(Other,HitLocation);
 }
 
 simulated function FizzleOut()

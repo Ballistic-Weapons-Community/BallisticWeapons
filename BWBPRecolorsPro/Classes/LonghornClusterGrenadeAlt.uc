@@ -119,30 +119,25 @@ simulated event HitWall(vector HitNormal, actor Wall)
     }
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 {
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
-		
-	if(Pawn(Other) != None)
-        Velocity *= 0.8; // Clusters don't bounce as far off of players
+    if ( Instigator == None || Instigator.Controller == None )
+		Other.SetDelayedDamageInstigatorController( InstigatorController );
 
-	// Do damage for direct hits
-	if (Role == ROLE_Authority && HitActor == None)		
-	{
-		HitActor = Other;
-		if (default.LifeSpan - LifeSpan > ArmingDelay)
-		{
-			class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType);
-			Explode(HitLocation, vect(0,0,1));
-		}
-		else 
-		{
-			class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
-			Destroy();
-		}
-	}
+    if (default.LifeSpan - LifeSpan > ArmingDelay)
+        class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType);
+    else 
+        class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
+}
+
+simulated function bool Impact(Actor Other, Vector HitLocation)
+{
+    if (default.LifeSpan - LifeSpan > ArmingDelay)
+        Explode(HitLocation, vect(0,0,1));
+    else 
+        Destroy();
+
+    return true;
 }
 
 // Destroy effects

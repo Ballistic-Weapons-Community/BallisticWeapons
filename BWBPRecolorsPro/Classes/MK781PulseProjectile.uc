@@ -37,19 +37,6 @@ simulated event Tick(float DT)
 	R.Roll = Rotation.Roll;
 	SetRotation(Rotator(velocity)+R);
 }
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
-{
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner || ( vehicle(Instigator)!=None&&Other==Vehicle(Instigator).Driver ) )))
-		return;
-
-	if (Role == ROLE_Authority)		// Do damage for direct hits
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType);
-
-	// Spawn projectile death effects and try radius damage
-	HitActor = Other;
-	Explode(HitLocation, vect(0,0,1));
-}
 
 simulated event Timer()
 {

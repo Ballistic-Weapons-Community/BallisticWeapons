@@ -267,12 +267,12 @@ function Propagate()
 //============================================================
 // CalcDecayMult
 //
-// Determines damage multiplier every jump. 
-// 40% at minimum factor, 20% at maximum factor
+// Determines damage loss every jump. 
+// -30% at minimum factor, -15% at maximum factor
 //============================================================
 final function float CalcDecayMult()
 {
-    return 0.6f /* base power */ + ChargePower * 0.25f /* coeff */ * 0.2f /* max additional power*/;
+    return 0.7f /* base power */ + ChargePower * 0.25f /* coeff */ * 0.15f /* max additional power*/;
 }
 
 final function int CalcDamageForIndex(int index)
@@ -308,7 +308,7 @@ defaultproperties
 	TracerClass=Class'BWBPOtherPackPro.TraceEmitter_LightningConduct'
 	CDamageType=Class'BWBPOtherPackPro.DT_LightningConduct'
 	SquareCoefficient=0.083333
-	ConductRadius=768.000000
+	ConductRadius=1024.000000
 	MaxConductors=3
 	SelfDmgScalar=0.600000
 }

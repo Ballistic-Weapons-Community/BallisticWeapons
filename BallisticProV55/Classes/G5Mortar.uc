@@ -192,35 +192,32 @@ event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Mo
 	Explode(Location, Normal(Velocity));
 }
 
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch(Actor Other)
 {
-	if (G5MortarDamageHull(Other) != None && (Other == DamageHull || DamageHull == None))
-		return;
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	
-	if (Other == HitActor)
-		return;
-	
-	if (Role == ROLE_Authority)
-	{
-		if(!bArmed)
-		{
-			class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, ImpactMomentumTransfer * Normal(Velocity), ImpactDamageType);
-			Destroy();
-		}
+    if (G5MortarDamageHull(Other) != None && (Other == DamageHull || DamageHull == None))
+		return false;
 
-		else
-		{
-			if ( Instigator == None || Instigator.Controller == None )
-				Other.SetDelayedDamageInstigatorController( InstigatorController );
-			
-			class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity),MyDamageType);
-			HitActor = Other;
-			Explode(HitLocation, Normal(HitLocation-Other.Location));
-			return;
-		}
-	}
+    return Super.CanTouch(Other);
+}
+
+simulated function ApplyImpactEffect(Actor Other, vector HitLocation)
+{
+    if ( Instigator == None || Instigator.Controller == None )
+		Other.SetDelayedDamageInstigatorController( InstigatorController );
+
+    if (!bArmed)
+        class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, ImpactMomentumTransfer * Normal(Velocity), ImpactDamageType);
+    else 
+        class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity),MyDamageType);
+}
+
+simulated function bool Impact(Actor Other, vector HitLocation)
+{
+    if (bArmed)
+        return false;
+
+    Destroy();
+    return true;
 }
 
 simulated singular function HitWall(vector HitNormal, actor Wall)

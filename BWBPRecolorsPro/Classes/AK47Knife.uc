@@ -9,22 +9,21 @@ class AK47Knife extends BallisticProjectile;
 var   bool			bStuckInWall;
 var   bool			bHitPlayer;
 
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch (Actor Other)
 {
-	if (Other == None)
-		return;
-
-	else if (Other == Instigator || Other == Owner)
-		return;
 	if (bStuckInWall || bHitPlayer)
-		return;
+        return false;
+    return Super.CanTouch(Other);
+}
 
-	if (Role == ROLE_Authority)
-		DoDamage(Other, HitLocation);
+simulated function bool Impact(Actor Other, Vector HitLocation)
+{
 	bHitPlayer = true;
 	SetPhysics(PHYS_Falling);
 	SetLocation(HitLocation);
 	Velocity = Normal(HitLocation-Other.Location)*100;
+
+    return true;
 }
 
 simulated event Landed( vector HitNormal )

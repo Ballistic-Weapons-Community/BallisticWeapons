@@ -6,22 +6,17 @@ class F2000ShockwaveGrenade extends BallisticGrenade;
 var Actor StuckActor;
 var bool bPlaced;
 
-simulated event ProcessTouch(Actor Other, vector HitLocation )
+simulated function bool Impact(Actor Other, Vector HitLocation)
 {
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Base != None)
-		return;
-
 	if(Pawn(Other) != None)
 	{
 		StuckActor = Other;
 		HitActor = Other;
 		Explode(HitLocation, Normal(HitLocation-Other.Location));
-		class'BallisticDamageType'.static.GenericHurt(Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
+        return true;
 	}
-	else
-		Super.ProcessTouch(Other,HitLocation);
+
+    return false;
 }
 
 simulated event HitWall(vector HitNormal, actor Wall)

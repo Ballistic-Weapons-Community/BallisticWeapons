@@ -8,23 +8,6 @@
 //=============================================================================
 class SK410HEProjectile extends BallisticGrenade;
 
-simulated event ProcessTouch( actor Other, vector HitLocation )
-{
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Other == HitActor)
-		return;
-	if (Base != None)
-		return;
-
-	if ( Instigator == None || Instigator.Controller == None )
-		Other.SetDelayedDamageInstigatorController( InstigatorController );
-
-	class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
-	HitActor = Other;
-	Explode(HitLocation, Normal(HitLocation-Other.Location));
-}
-
 simulated event HitWall(vector HitNormal, actor Wall)
 {
     local Vector VNorm;

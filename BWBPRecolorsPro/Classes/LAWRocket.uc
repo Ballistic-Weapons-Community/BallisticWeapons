@@ -60,21 +60,6 @@ simulated event HitWall(vector HitNormal, actor Wall)
 	Explode(Location, HitNormal);
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
-{
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
-
-	if (Role == ROLE_Authority)		// Do damage for direct hits
-	{
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
-		DoDamage(Other, HitLocation);
-	}
-
-	Explode(HitLocation, vect(0,0,1));
-}
-
 defaultproperties
 {
      FlySound=Sound'PackageSounds4ProExp.Flash.M202-Flyby'

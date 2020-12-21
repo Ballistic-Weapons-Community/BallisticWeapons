@@ -5,30 +5,25 @@ var bool bPlaced;
 
 var CX85AssaultWeapon Master;
 
-simulated event ProcessTouch(Actor Other, vector HitLocation )
+simulated function bool Impact(Actor Other, vector HitLocation )
 {
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Base != None)
-		return;
-
 	if(Pawn(Other) != None)
 	{
 		StuckActor = Other;
 		HitActor = Other;
 		Explode(HitLocation, Normal(HitLocation-Other.Location));
-		class'BallisticDamageType'.static.GenericHurt(Other, Damage, Instigator, HitLocation, Velocity, MyDamageType);
+        return true;
 	}
-	else
-		Super.ProcessTouch(Other,HitLocation);
+
+    return false;
 }
 
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
-	local Vector	LastHitLoc, LastHitNorm;
-	local Rotator 	R;
-	local CX85DartDirect Proj, MasterProj;
-	local float BoneDist;
+	local Vector	        LastHitLoc, LastHitNorm;
+	local Rotator 	        R;
+	local CX85DartDirect    Proj, MasterProj;
+	local float             BoneDist;
 
 	if(bPlaced)
 		return;

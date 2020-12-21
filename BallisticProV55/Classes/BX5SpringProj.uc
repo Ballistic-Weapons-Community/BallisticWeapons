@@ -88,11 +88,12 @@ simulated event Timer()
 		super.Timer();
 }
 
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch(Actor Other)
 {
-	if (BX5SpringMine(Other) != None || BX5VehicleMine(Other) != None)
-		return;
-	super.ProcessTouch (Other, HitLocation);
+    if (BX5SpringMine(Other) != None || BX5VehicleMine(Other) != None)
+		return false;
+
+    return super.CanTouch(Other);
 }
 
 simulated function SpringOff()

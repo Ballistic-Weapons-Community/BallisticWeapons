@@ -170,7 +170,9 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 // Hit something interesting
 simulated function ProcessTouch (Actor Other, vector HitLocation)
 {
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)) || RSNovaProjectile(Other)!=None || RSNovaFastProjectile(Other)!=None)
+    if (!CanTouch(Other))
+        return;
+	if (RSNovaProjectile(Other)!=None || RSNovaFastProjectile(Other)!=None)
 		return;
 
 	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits

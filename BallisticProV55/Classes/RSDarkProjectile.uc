@@ -215,14 +215,23 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 	HurtWall = None;
 }
 
+simulated function bool CanTouch (Actor Other)
+{
+	if (RSDarkProjectile(Other) != None || RSDarkFastProjectile(Other) != None)
+		return false;
+
+    return Super.CanTouch(Other);
+}
 
 // Hit something interesting
 simulated function ProcessTouch (Actor Other, vector HitLocation)
 {
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)) || RSDarkProjectile(Other)!=None || RSDarkFastProjectile(Other)!=None)
-		return;
+    if (!CanTouch(Other))
+        return;
+
 	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits
 		DoDamage(Other, HitLocation);
+    
 	if (Pawn(Other) != None && Pawn(Other).Health <= 0)
 		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 2, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
 	else

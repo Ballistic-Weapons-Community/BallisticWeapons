@@ -12,17 +12,10 @@ class A500AltProjectile extends BallisticGrenade;
 var int BaseImpactDamage, BonusImpactDamage;
 var float AcidLoad;
 
-simulated event ProcessTouch( actor Other, vector HitLocation )
+simulated function ApplyImpactEffect( actor Other, vector HitLocation )
 {
 	local int DirectDamage;
 
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Other == HitActor)
-		return;
-	if (Base != None)
-		return;
-		
 	if ( Instigator == None || Instigator.Controller == None )
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
 
@@ -30,8 +23,6 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 
 	class'BallisticDamageType'.static.GenericHurt (Other, DirectDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
 	ReduceHP(Other);
-	HitActor = Other;
-	Explode(HitLocation, Normal(HitLocation-Other.Location));
 }
 
 function ReduceHP (Actor Other)

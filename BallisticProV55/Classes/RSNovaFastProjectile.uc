@@ -158,30 +158,12 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 	HurtWall = None;
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch (Actor Other)
 {
-    local Vector X;
+	if (RSNovaProjectile(Other) != None || RSNovaFastProjectile(Other) != None)
+		return false;
 
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)) || RSNovaProjectile(Other)!=None || RSNovaFastProjectile(Other)!=None)
-		return;
-
-	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits
-		DoDamage(Other, HitLocation);
-
-	if (CanPenetrate(Other) && Other != HitActor)
-	{	// Projectile can go right through enemies
-		HitActor = Other;
-		X = Normal(Velocity);
-		SetLocation(HitLocation + (X * (Other.CollisionHeight*2*X.Z + Other.CollisionRadius*2*(1-X.Z)) * 1.2));
-	    if ( EffectIsRelevant(Location,false) && PenetrateManager != None)
-			PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 4, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
-	}
-	else
-	{	// Spawn projectile death effects and try radius damage
-		HitActor = Other;
-		Explode(HitLocation, vect(0,0,1));
-	}
+    return Super.CanTouch(Other);
 }
 
 event TakeDamage( int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)

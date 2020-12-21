@@ -8,18 +8,6 @@
 //=============================================================================
 class E23Projectile_Std extends BallisticProjectile;
 
-simulated function ProcessTouch (Actor Other, vector HitLocation)
-{
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
-
-	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits
-		DoDamage(Other, HitLocation);
-
-	HitActor = Other;
-	Explode(HitLocation, Normal(HitLocation - Other.Location));
-}
-
 simulated function HitWall(vector HitNormal, actor Wall)
 {
 	local Vehicle HealVehicle;

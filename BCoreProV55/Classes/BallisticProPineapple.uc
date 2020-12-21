@@ -68,48 +68,15 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	else Destroy();
 }
 
-simulated event ProcessTouch( actor Other, vector HitLocation )
+simulated function bool CanTouch(Actor Other)
 {
-	local float BoneDist;
+    if (!Super.CanTouch(Other))
+        return false;
 
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Base != None)
-		return;
-    if(bHasImpacted && Pawn(Other) != None)
-		return;
-
-	if ( Instigator == None || Instigator.Controller == None )
-		Other.SetDelayedDamageInstigatorController( InstigatorController );
-	if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact)
-	{
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
-		HitActor = Other;
-		Explode(HitLocation, Normal(HitLocation-Other.Location));
-		return;
-	}
-	if ( PlayerImpactType == PIT_Bounce || (PlayerImpactType == PIT_Stick && (VSize (Velocity) < MinStickVelocity)) )
-	{
-		HitWall (Normal(HitLocation - Other.Location), Other);
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
-	}
-	else if ( PlayerImpactType == PIT_Stick && Base == None )
-	{
-		SetPhysics(PHYS_None);
-		if (DetonateOn == DT_ImpactTimed)
-			SetTimer(DetonateDelay, false);
-		HitActor = Other;
-		if (Other != Instigator && Other.DrawType == DT_Mesh)
-			Other.AttachToBone( Self, Other.GetClosestBone( Location, Velocity, BoneDist) );
-		else
-			SetBase (Other);
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
-		SetRotation (Rotator(Velocity));
-		Velocity = vect(0,0,0);
-	}
+    return (!bHasImpacted || Pawn(Other) == None);
 }
 
-simulated event PostBeginPlay ()
+simulated event PostBeginPlay()
 {
 	local Rotator R;
 	

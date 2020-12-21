@@ -234,12 +234,13 @@ simulated function Tick(float DT)
    	Laser.SetDrawScale3D(V);
 }
 
+
 // Don't touch anything when deployed
-simulated event ProcessTouch( actor Other, vector HitLocation )
+simulated function bool CanTouch(Actor Other)
 {
 	if (bDeployed)
-		return;
-	super.ProcessTouch(Other, HitLocation);
+		return false;
+	return Super.CanTouch(Other);
 }
 
 // Call this to make it go BOOM...

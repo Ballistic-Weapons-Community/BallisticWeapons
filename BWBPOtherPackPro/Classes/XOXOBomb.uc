@@ -1,6 +1,5 @@
 class XOXOBomb extends BallisticGrenade;
 
-var Actor   LastHit;
 var float   ArmingDelay;
 
 simulated function PreBeginPlay()
@@ -31,31 +30,23 @@ simulated function Timer()
 	else Explode(Location, vect(0,0,1));
 }
 
-simulated event ProcessTouch( actor Other, vector HitLocation )
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 {
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Other == HitActor)
-		return;
-	if (Base != None)
-		return;
+    DoDamage(Other, HitLocation);
+}
 
-	if ( Instigator == None || Instigator.Controller == None )
-		Other.SetDelayedDamageInstigatorController( InstigatorController );
+simulated function bool Impact( actor Other, vector HitLocation )
+{
 	if (Other.bProjTarget && (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact))
-	{
-		Explode(HitLocation, Normal(HitLocation-Other.Location));
-		return;
-	}
+        return false;
+
 	if ( !Other.bProjTarget || PlayerImpactType == PIT_Bounce )
 	{
 		HitWall (Normal(HitLocation - Other.Location), Other);
-		if (Other != LastHit)
-		{
-			class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
-			LastHit = Other;
-		}
+        return true;
 	}
+
+    return false;
 }
 
 simulated event Landed( vector HitNormal )
@@ -192,7 +183,7 @@ defaultproperties
      DetonateOn=DT_ImpactTimed
 	 PlayerImpactType=PIT_Detonate
      DetonateDelay=0.600000
-     ImpactDamage=60
+     ImpactDamage=100
      ImpactDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
      ImpactManager=Class'BWBPOtherPackPro.IM_XOXO'
      PenetrateManager=Class'BWBPOtherPackPro.IM_XOXO'

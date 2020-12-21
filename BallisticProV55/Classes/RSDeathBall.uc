@@ -118,11 +118,12 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 */	}
 }
 
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch (Actor Other)
 {
 	if (RSDarkProjectile(Other) != None || RSDarkFastProjectile(Other) != None || RSNovaProjectile(Other) != None || RSNovaFastProjectile(Other) != None)
-		return;
-	super.ProcessTouch(Other, HitLocation);
+		return false;
+
+	return super.CanTouch(Other);
 }
 
 simulated singular function HitWall(vector HitNormal, actor Wall)

@@ -71,8 +71,8 @@ defaultproperties
      bSplashDamage=True
      bRecommendSplashDamage=True
      bTossed=True
-     bFireOnRelease=True
-     bWaitForRelease=True
+     bFireOnRelease=False
+     bWaitForRelease=False
      PreFireAnim=
      FireAnim="GLFire"
      FireForce="AssaultRifleAltFire"

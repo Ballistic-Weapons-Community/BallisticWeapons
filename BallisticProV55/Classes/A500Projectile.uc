@@ -39,36 +39,27 @@ simulated event Tick(float DT)
 	Super.Tick(DT);
 }
 
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function ApplyImpactEffect(Actor Other, vector HitLocation)
 {
-	local Vector ClosestLocation, temp, BoneTestLocation;
-	
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
+    local Vector ClosestLocation, BoneTestLocation, temp;
 
-	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits
-	{
-		if (xPawn(Other) != None)
-		{
-			//Find a point on the victim's Z axis at the same height as the HitLocation.
-			ClosestLocation = Other.Location;
-			ClosestLocation.Z += (HitLocation - Other.Location).Z;
-			
-			//Extend the hit along the projectile's Velocity to a point where it is closest to the victim's Z axis.
-			temp = Normal(Velocity);
-			temp *= VSize(ClosestLocation - HitLocation);
-			BoneTestLocation = temp;
-			BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(temp);
-			BoneTestLocation += HitLocation;
-			
-			DoDamage(Other, BoneTestLocation);
-		}
-		
-		else DoDamage(Other, HitLocation);
-	}
-
-	HitActor = Other;
-	PTExplode(HitLocation, Normal(HitLocation - Other.Location));
+    if (xPawn(Other) != None)
+    {
+        //Find a point on the victim's Z axis at the same height as the HitLocation.
+        ClosestLocation = Other.Location;
+        ClosestLocation.Z += (HitLocation - Other.Location).Z;
+        
+        //Extend the hit along the projectile's Velocity to a point where it is closest to the victim's Z axis.
+        temp = Normal(Velocity);
+        temp *= VSize(ClosestLocation - HitLocation);
+        BoneTestLocation = temp;
+        BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(temp);
+        BoneTestLocation += HitLocation;
+        
+        DoDamage(Other, BoneTestLocation);
+    }
+    
+    else DoDamage(Other, HitLocation);
 }
 
 function DoDamage (Actor Other, vector HitLocation)
@@ -108,10 +99,9 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 		}
 		MakeNoise(1.0);
 	}
-	if (Wall != None && Pawn(Wall)!=None)
-		PTExplode(Location + ExploWallOut * HitNormal, HitNormal);
-	else
-		Explode(Location + ExploWallOut * HitNormal, HitNormal);
+
+	Explode(Location + ExploWallOut * HitNormal, HitNormal);
+
 	if ( (ExplosionDecal != None) && (Level.NetMode != NM_DedicatedServer)  )
 	{
 		if ( ExplosionDecal.Default.CullDistance != 0 )
@@ -133,7 +123,7 @@ simulated event Landed( vector HitNormal )
 	Explode(Location + ExploWallout * HitNormal, HitNormal);
 }
 
-simulated function PTExplode(vector HitLocation, vector HitNormal)
+simulated function Explode(vector HitLocation, vector HitNormal)
 {
 	if (bExploded)
 		return;

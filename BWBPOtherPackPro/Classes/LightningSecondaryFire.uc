@@ -11,7 +11,7 @@ var		bool 					AmmoHasBeenCalculated;
 simulated function ModeDoFire()
 {
     if (BW.Role == ROLE_Authority)
-	    TransferCDamage = default.Damage * (1 + (0.125 * LightningRifle(BW).ChargePower));
+	    TransferCDamage = default.Damage * (1 + (0.25 * LightningRifle(BW).ChargePower));
 
 	Load = CalculateAmmoUse();
 	AmmoHasBeenCalculated = true;

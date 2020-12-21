@@ -48,22 +48,27 @@ simulated event Tick(float DT)
 	SetRotation(Rotator(velocity)+R);
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch(Actor Other)
 {
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner || ( vehicle(Instigator)!=None&&Other==Vehicle(Instigator).Driver ) )))
-		return;
+    if (Vehicle(Instigator) != None && Other == Vehicle(Instigator).Driver)
+		return false;
 
-	if (Role == ROLE_Authority && HitActor != Other)		// Do damage for direct hits
-		class'BallisticDamageType'.static.GenericHurt (Other, Damage + 75 * FMin(default.LifeSpan - LifeSpan, 0.4)/ 0.4, Instigator, HitLocation, (MomentumTransfer * Normal(Velocity)) + vect(0,0,250), MyDamageType);
+    return Super.CanTouch(Other);
+}
 
-	// Spawn projectile death effects and try radius damage
-	HitActor = Other;
-	Explode(HitLocation, vect(0,0,1));
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
+{
+    if ( Instigator == None || Instigator.Controller == None )
+		Other.SetDelayedDamageInstigatorController( InstigatorController );
+
+    class'BallisticDamageType'.static.GenericHurt(Other, Damage + 75 * FMin(default.LifeSpan - LifeSpan, 0.4)/ 0.4, Instigator, HitLocation, (MomentumTransfer * Normal(Velocity)) + vect(0,0,250), MyDamageType);
 }
 
 // Returns true if point is in a solid, i.e. FastTrace() fails at the point
-function bool PointInSolid(vector V)				{	return !FastTrace(V, V+vect(1,1,1));		}
+final function bool PointInSolid(vector V)
+{	
+    return !FastTrace(V, V+vect(1,1,1));		
+}
 
 // Spawn impact effects, run BlowUp() and then die.
 simulated function Explode(vector HitLocation, vector HitNormal)
