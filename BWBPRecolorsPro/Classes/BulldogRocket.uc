@@ -108,9 +108,8 @@ defaultproperties
      TrailOffset=(X=-14.000000)
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTBulldogFRAGRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     AccelSpeed=100000
-     Speed=6500.000000
-     MaxSpeed=12000.000000
+     Speed=7000.000000
+     MaxSpeed=7000.000000
      Damage=140.000000
 	 DamageRadius=512.000000
      WallPenetrationForce=192

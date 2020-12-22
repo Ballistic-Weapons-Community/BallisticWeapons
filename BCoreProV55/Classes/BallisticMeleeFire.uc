@@ -473,7 +473,7 @@ defaultproperties
      LimbMult=1f
      MaxBonusHoldTime=1.500000
      bCanBackstab=True
-     TraceRange=(Min=128.000000,Max=128.000000)
+     TraceRange=(Min=145.000000,Max=145.000000)
 
      Damage=50.000000
      ChargeDamageBonusFactor=1f

@@ -18,7 +18,7 @@ defaultproperties
      DisplacementType=DSP_Linear
 	 BlockFatiguePenalty=0.2
      AimDisplacementDamageThreshold=60
-     AimDisplacementDuration=0.65
+     AimDisplacementDuration=1
      WeaponClass=Class'BWBPRecolorsPro.SK410Shotgun'
      DeathString="%k saved Soviet shells and just beat %o to death."
      FemaleSuicide="%o wanted her SK-410 to be closer to her."

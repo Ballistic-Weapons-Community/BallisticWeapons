@@ -241,10 +241,8 @@ defaultproperties
      SwipePoints(0)=(offset=(Yaw=0))
      WallHitPoint=0
      NumSwipePoints=1
-     TraceRange=(Min=150.000000,Max=150.000000)
+     TraceRange=(Min=160.000000,Max=160.000000)
      Damage=20.000000
-     
-     
      DamageType=Class'DT_MAGSAWStab'
      DamageTypeHead=Class'DT_MAGSAWStabHead'
      DamageTypeArm=Class'DT_MAGSAWStab'

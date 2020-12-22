@@ -226,7 +226,7 @@ defaultproperties
      bCanBackstab=False
      Damage=50.000000
      
-     TraceRange=(Min=140,Max=140)
+     TraceRange=(Min=130,Max=130)
      DamageType=Class'BWBPOtherPackPro.DTShockGauntletAlt'
      DamageTypeHead=Class'BWBPOtherPackPro.DTShockGauntletAlt'
      DamageTypeArm=Class'BWBPOtherPackPro.DTShockGauntletAlt'

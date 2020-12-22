@@ -45,11 +45,9 @@ defaultproperties
      SwipePoints(4)=(offset=(Yaw=0))
      SwipePoints(5)=(Weight=1,offset=(Pitch=-1500,Yaw=-1500))
      SwipePoints(6)=(offset=(Pitch=-3000))
-	 TraceRange=(Min=180.000000,Max=180.000000)
+	 TraceRange=(Min=175.000000,Max=175.000000)
      WallHitPoint=4
      Damage=65.000000
-     
-     
      DamageType=Class'BWBPOtherPackPro.DT_FlameSwordChest'
      DamageTypeHead=Class'BWBPOtherPackPro.DT_FlameSwordHead'
      DamageTypeArm=Class'BWBPOtherPackPro.DT_FlameSwordChest'

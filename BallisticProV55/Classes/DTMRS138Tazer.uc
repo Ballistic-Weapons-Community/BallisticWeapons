@@ -18,7 +18,7 @@ defaultproperties
      DamageIdent="Melee"
      DisplacementType=DSP_Linear
 	 InvasionDamageScaling=3
-     AimDisplacementDuration=0.75
+     AimDisplacementDuration=1
      DamageDescription=",Blunt,Electro"
      ImpactManager=Class'BallisticProV55.IM_MRS138TazerHit'
      WeaponClass=Class'BallisticProV55.MRS138Shotgun'

@@ -416,7 +416,7 @@ simulated function CommonLoadFrag()
 	if (Role == ROLE_Authority)
 		bServerReloading=true;
 	ReloadState = RS_Cocking;
-	PlayAnim(SGPrepAnim,1.25, 0.0);
+	PlayAnim(SGPrepAnim,1.0, 0.0);
 }
 
 function ServerLoadFrag()
@@ -698,9 +698,8 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=256)
-	SightOffset=(X=-15.000000,Y=4.490000,Z=7.685000)
-	SightDisplayFOV=20.000000
-    SightZoomFactor=0.55 // 2x scope
+	SightOffset=(X=-18.000000,Y=4.490000,Z=6.350000)
+	SightDisplayFOV=35.000000
 	GunLength=48.000000
 	ParamsClass=Class'BulldogWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.BulldogPrimaryFire'
@@ -729,6 +728,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.PoliceDogFPm'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.BullDogFP'
 	DrawScale=0.200000
 }

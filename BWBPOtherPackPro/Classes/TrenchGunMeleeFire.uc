@@ -19,8 +19,6 @@ defaultproperties
      SwipePoints(6)=(offset=(Pitch=-3000))
      WallHitPoint=4
      Damage=80.000000
-     
-     
      DamageType=Class'BWBPOtherPackPro.DT_TrenchMelee'
      DamageTypeHead=Class'BWBPOtherPackPro.DT_TrenchMeleeHead'
      DamageTypeArm=Class'BWBPOtherPackPro.DT_TrenchMelee'

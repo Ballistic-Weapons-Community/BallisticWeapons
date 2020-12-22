@@ -34,7 +34,7 @@ defaultproperties
      SliceAnims(1)="Smash1"
      SliceAnims(2)="Bash1"
      SliceAnims(3)="Smash3"
-     TraceRange=(Min=150.000000,Max=150.000000)
+     TraceRange=(Min=140.000000,Max=140.000000)
      Damage=65.000000
      
      

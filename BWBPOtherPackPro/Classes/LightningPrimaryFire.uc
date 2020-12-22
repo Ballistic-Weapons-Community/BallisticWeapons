@@ -11,7 +11,7 @@ var		bool 					AmmoHasBeenCalculated;
 simulated function ModeDoFire()
 {
     if (BW.Role == ROLE_Authority)
-	    TransferCDamage = default.Damage * (1 + (0.125 * LightningRifle(BW).ChargePower));
+	    TransferCDamage = default.Damage * (1 + (0.25 * LightningRifle(BW).ChargePower));
 
 	Load = CalculateAmmoUse();
 	AmmoHasBeenCalculated = true;
@@ -99,7 +99,7 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 {
 	local LightningConductor LConductor;
 
-    Damage *= (1 + (0.125*LightningRifle(BW).ChargePower));
+    Damage *= (1 + (0.25 * LightningRifle(BW).ChargePower));
 
 	super.ApplyDamage(Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 

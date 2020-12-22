@@ -7,8 +7,6 @@ defaultproperties
      SwipePoints(2)=(Weight=2)
      SwipePoints(3)=(Weight=1,offset=(Pitch=-1000,Yaw=-1000))
      SwipePoints(4)=(Weight=3,offset=(Pitch=-2048,Yaw=-2048))
-     
-     
      DamageType=Class'BWBPRecolorsPro.DTCYLOFirestormStab'
      DamageTypeHead=Class'BWBPRecolorsPro.DTCYLOFirestormStabHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTCYLOFirestormStab'

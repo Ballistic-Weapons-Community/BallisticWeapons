@@ -33,7 +33,7 @@ defaultproperties
      SwipePoints(0)=(offset=(Yaw=-1536))
      SwipePoints(1)=(offset=(Yaw=0))
      SwipePoints(2)=(offset=(Yaw=1536))
-	 TraceRange=(Min=150.000000,Max=150.000000)
+	 TraceRange=(Min=140.000000,Max=140.000000)
      WallHitPoint=1
      NumSwipePoints=3
      FatiguePerStrike=0.50000

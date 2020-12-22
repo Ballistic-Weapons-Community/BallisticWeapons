@@ -34,10 +34,8 @@ defaultproperties
      SliceAnims(1)="Swing2"
      FatiguePerStrike=0.064000
      bCanBackstab=False
-     TraceRange=(Min=165.000000,Max=165.000000)
+     TraceRange=(Min=175.000000,Max=175.000000)
 	 Damage=80.000000
-     
-     
      DamageType=Class'BWBPOtherPackPro.DT_MAGSAWStab'
      DamageTypeHead=Class'BWBPOtherPackPro.DT_MAGSAWStabHead'
      DamageTypeArm=Class'BWBPOtherPackPro.DT_MAGSAWStab'

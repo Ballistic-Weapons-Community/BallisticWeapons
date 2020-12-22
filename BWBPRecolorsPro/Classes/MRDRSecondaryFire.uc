@@ -62,10 +62,9 @@ defaultproperties
 {
      SliceAnims(0)="Melee1"
      SliceAnims(1)="Melee2"
+     TraceRange=(Min=130.000000,Max=130.000000)
      FatiguePerStrike=0.080000
      Damage=45.000000
-     
-     
      DamageType=Class'BWBPRecolorsPro.DT_MRDR88Spike'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_MRDR88SpikeHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_MRDR88Spike'

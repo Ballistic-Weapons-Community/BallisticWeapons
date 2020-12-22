@@ -144,9 +144,7 @@ defaultproperties
 	 ElectroDamageBonus=30
 	 ElectroHeal=30
      Damage=25.000000
-     
-	 
-	 TraceRange=(Min=140,Max=140)
+	 TraceRange=(Min=130,Max=130)
      DamageType=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeArm=Class'BWBPOtherPackPro.DTShockGauntlet'

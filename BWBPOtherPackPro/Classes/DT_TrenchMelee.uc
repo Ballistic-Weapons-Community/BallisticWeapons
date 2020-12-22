@@ -17,7 +17,7 @@ defaultproperties
      DisplacementType=DSP_Linear
 	 BlockFatiguePenalty=0.25
      AimDisplacementDamageThreshold=60
-     AimDisplacementDuration=0.65
+     AimDisplacementDuration=1
      WeaponClass=Class'BWBPOtherPackPro.TrenchGun'
      DeathString="%k pummeled %o with %kh trench gun stock."
      FemaleSuicide="%o bashed herself with the trench gun."

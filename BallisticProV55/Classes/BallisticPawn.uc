@@ -2699,10 +2699,13 @@ defaultproperties
      Fades(14)=Texture'BallisticProTextures.Icons.stealth_120'
      Fades(15)=Texture'BallisticProTextures.Icons.stealth_128'
      UDamageSound=Sound'BallisticSounds3.Udamage.UDamageFire'
+
      FootstepVolume=0.350000
-     FootstepRadius=400.000000
+     FootstepRadius=350.000000
+
      GruntVolume=0.2
-     GruntRadius=256.000000
+     GruntRadius=150.000000
+     
      DeResTime=4.000000
      RagdollLifeSpan=20.000000
      RagDeathUpKick=0.000000

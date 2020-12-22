@@ -35,7 +35,7 @@ defaultproperties
      SliceAnims(3)="Slash4"
      FatiguePerStrike=0.060000
      bCanBackstab=False
-     TraceRange=(Min=120.000000,Max=120.000000)
+     TraceRange=(Min=130.000000,Max=130.000000)
      Damage=55.000000
      
      

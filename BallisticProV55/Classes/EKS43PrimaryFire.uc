@@ -36,7 +36,7 @@ defaultproperties
      SliceAnims(3)="Slash4"
      FatiguePerStrike=0.060000
      bCanBackstab=False
-     TraceRange=(Min=155.000000,Max=155.000000)
+     TraceRange=(Min=165.000000,Max=165.000000)
      Damage=75     
      DamageType=Class'BallisticProV55.DTEKS43Katana'
      DamageTypeHead=Class'BallisticProV55.DTEKS43KatanaHead'

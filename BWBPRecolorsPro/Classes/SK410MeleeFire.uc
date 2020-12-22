@@ -5,6 +5,7 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DT_SK410Hit'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_SK410HitHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_SK410Hit'
+     TraceRange=(Min=130.000000,Max=130.000000)
      bUseWeaponMag=False
      bReleaseFireOnDie=False
      bIgnoreReload=True

@@ -165,7 +165,7 @@ defaultproperties
      SwipePoints(4)=(offset=(Yaw=-3000))
      WallHitPoint=1
      FatiguePerStrike=0.200000
-     TraceRange=(Min=150.000000,Max=150.000000)
+     TraceRange=(Min=165.000000,Max=165.000000)
 	 bCanBackstab=False
 	 bNoPositionalDamage=True
 	 bUseRunningDamage=False
