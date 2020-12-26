@@ -28,10 +28,14 @@ static function TraceInfo GetTraceInfo (Actor tracer, Vector End, Vector Start, 
     TI.End = End;	
     TI.Extent = Extent;
 
+    //Log("GetTraceInfo: Start: " $ TI.Start $ " End: " $ TI.End);
+
 	TI.HitActor = tracer.Trace(TI.HitLocation, TI.HitNormal, TI.End, TI.Start, bTraceActors, TI.Extent, TI.HitMaterial);
 
 	if (TI.HitActor == None)
 		TI.HitLocation = TI.End;
+
+    //Log("GetTraceInfo: Hit: " $ TI.HitActor $ " TI.HitLocation: " $ TI.HitLocation);
 
 	return TI;
 }
@@ -54,7 +58,7 @@ static function bool GoThroughWall(Actor source, Actor Instigator, vector FirstL
 {
 	local TraceInfo TBack, TFore;
 	local float CheckDist;
-	local Vector Test, HLoc; //, HNorm;
+	local Vector Test, HLoc, HNorm;
 	local Pawn A;
 
     //Log("GoThroughWall: Src "$source$" Instigator "$Instigator$" FirstLoc "$FirstLoc$" FirstNorm "$FirstNorm$" MaxWallDepth "$MaxWallDepth$" Dir "$Dir);
@@ -65,7 +69,7 @@ static function bool GoThroughWall(Actor source, Actor Instigator, vector FirstL
 	// First, try shortcut method...
 	foreach source.CollidingActors(class'Pawn', A, MaxWallDepth, FirstLoc)
 	{
-		if (A == None || A == Instigator || A.FastTrace(source.Location, A.Location)) // FIXME: Changed from TraceThisActor
+		if (A == None || A == Instigator || A.TraceThisActor(HLoc, HNorm, FirstLoc + Dir * MaxWallDepth, FirstLoc))
 			continue;
             
 		TBack = GetTraceInfo(source, FirstLoc, HLoc, false);
@@ -77,6 +81,8 @@ static function bool GoThroughWall(Actor source, Actor Instigator, vector FirstL
 				ExitLocation = TBack.HitLocation + Dir * 1;
 				ExitNormal = TBack.HitNormal;
 				ExitMat = TBack.HitMaterial;
+
+                //Log("GoThroughWall: Actor 1: TBack.HitLocation: "$TBack.HitLocation$" ExitLocation: "$ExitLocation$" ExitNormal: "$ExitNormal);
 				return true;
 			}
 		}
@@ -84,12 +90,19 @@ static function bool GoThroughWall(Actor source, Actor Instigator, vector FirstL
 		{
 			ExitLocation = FirstLoc + Dir * 48;
 			ExitNormal = Dir;
+            //Log("GoThroughWall: Actor 2: ExitLocation: "$ExitLocation$" ExitNormal: "$ExitNormal);
 			return true;
 		}
 	}
 
+    if (MaxWallDepth <= 48)
+        CheckDist = MaxWallDepth;
+    else 
+        CheckDist = Max(MaxWallDepth % 48, 16);
+
 	// Start testing as far in as possible, then move closer until we're back at the start
-	for (CheckDist = MaxWallDepth; CheckDist > 0; CheckDist -= 48)
+    // empty initializer not valid in unrealscript for
+	for ( CheckDist = CheckDist; CheckDist < MaxWallDepth; CheckDist += 48)
 	{
 		Test = FirstLoc + Dir * CheckDist;
 		// Test point is in a solid, try again
@@ -98,11 +111,12 @@ static function bool GoThroughWall(Actor source, Actor Instigator, vector FirstL
 		// Found space, check to make sure its open space and not just inside a static
 		else
 		{
-			// First, Trace back and see whats there...
+			// First, trace back and see what's there...
 			TBack = GetTraceInfo(source, Test-Dir*CheckDist, Test, true);
 			// We're probably in thick terrain, otherwise we'd have found something
 			if (TBack.HitActor == None)
             {
+                //Log("GoThroughWall: Hit nothing");
 				return false;	
             }
 
@@ -111,45 +125,50 @@ static function bool GoThroughWall(Actor source, Actor Instigator, vector FirstL
             {
 				ExitLocation = TBack.HitLocation - Dir * TBack.HitActor.CollisionRadius;
 				ExitNormal = Dir;
+                //Log("GoThroughWall: Trace hit non-world Actor: ExitLocation: "$ExitLocation$" ExitNormal: "$ExitNormal);
 				return true;
 			}
+
 			// Found the front face of a surface(normal parallel to Fire Dir, Opposite to Back Trace dir)
-			if (VSize(TBack.HitLocation - TBack.Start) > 0.5 && IsbackFace(TBack.HitNormal, Dir))	
+			if (VSize(TBack.HitLocation - TBack.Start) > 0.5 && IsBackFace(TBack.HitNormal, Dir))	
             {
 				ExitLocation = TBack.HitLocation + Dir * 1;
 				ExitNormal = TBack.HitNormal;
 				ExitMat = TBack.HitMaterial;
+                //Log("GoThroughWall: Front face of surface: ExitLocation: "$ExitLocation$" ExitNormal: "$ExitNormal);
 				return true;
 			}
-			// Found a back face,
-			else
-            {	// Trace forward(along fire Dir) and see if we're inside a mesh or if the surface was just a plane
-				TFore = GetTraceInfo(source, Test+Dir*2000, Test, true);
-				if (VSize(TFore.HitLocation - TFore.Start) > 0.5)	
+
+			// Found a back face.
+            // Trace forward(along fire Dir) and see if we're inside a mesh or if the surface was just a plane
+            TFore = GetTraceInfo(source, Test+Dir*2000, Test, true);
+            if (VSize(TFore.HitLocation - TFore.Start) > 0.5)	
+            {
+                // Hit nothing, we're probably not inside a mesh (hopefully)
+                if (TFore.HitActor == None)	
                 {
-					// Hit nothing, we're probably not inside a mesh (hopefully)
-					if (TFore.HitActor == None)	
-                    {
-						ExitLocation = TBack.HitLocation + Dir * 1;
-						ExitNormal = -TBack.HitNormal;
-						ExitMat = TBack.HitMaterial;
-						return true;
-					}
-					// Found backface. Looks like its a mesh bigger than MaxWallDepth
-					if (IsBackFace(TFore.HitNormal, Dir))
-						return false;
-					// Hit a front face...
-					else	
-                    {
-						ExitLocation = TBack.HitLocation + Dir * 1;
-						ExitNormal = -TBack.HitNormal;
-						ExitMat = TBack.HitMaterial;
-						return true;
-					}
-				}
-				else
-					return false;
-			}
+                    ExitLocation = TBack.HitLocation + Dir * 1;
+                    ExitNormal = -TBack.HitNormal;
+                    ExitMat = TBack.HitMaterial;
+                    //Log("GoThroughWall: Back face (empty space): ExitLocation: "$ExitLocation$" ExitNormal: "$ExitNormal);
+                    return true;
+                }
+                // Found backface. Looks like its a mesh bigger than MaxWallDepth
+                if (IsBackFace(TFore.HitNormal, Dir))
+                    return false;
+                // Hit a front face...
+                else	
+                {
+                    ExitLocation = TBack.HitLocation + Dir * 1;
+                    ExitNormal = -TBack.HitNormal;
+                    ExitMat = TBack.HitMaterial;
+                    //Log("GoThroughWall: Plane: ExitLocation: "$ExitLocation$" ExitNormal: "$ExitNormal);
+                    return true;
+                }
+            }
+            else
+                return false;
+			
 			break;
 		}
 	}

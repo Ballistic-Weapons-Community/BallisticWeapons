@@ -526,7 +526,7 @@ defaultproperties
 	YInaccuracy=220.000000
 
 	ShotInaccuracy=(X=220,Y=220)
-	ShotDoubleInaccuracy=(X=768,Y=378)
+	ShotDoubleInaccuracy=(X=512,Y=378)
 
 	SlugInaccuracy=(X=16,Y=0)
 	SlugDoubleInaccuracy=(X=48,Y=0)

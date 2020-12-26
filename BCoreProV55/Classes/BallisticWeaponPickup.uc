@@ -137,7 +137,7 @@ auto state Pickup
 	function BeginState()
 	{
 		if (!bDropped && class<BallisticWeapon>(InventoryType) != None)
-			MagAmmo = class<BallisticWeapon>(InventoryType).default.MagAmmo;
+			MagAmmo = class<BallisticWeapon>(InventoryType).default.ParamsClass.default.Params[0].MagAmmo;
 		Super.BeginState();
 	}
 	
@@ -207,7 +207,7 @@ function GiveWeaponAmmo (Weapon W, Pawn Other)
 		return;
 	}
 	if (class<BallisticWeapon>(InventoryType) != None && class<BallisticWeapon>(InventoryType).default.bNoMag == false)
-		W.AddAmmo(class<BallisticWeapon>(InventoryType).default.MagAmmo*2, 0);	//BE: Doubled amount of ammo recieved from weapon pickups.
+		W.AddAmmo(class<BallisticWeapon>(InventoryType).default.ParamsClass.default.Params[0].MagAmmo * 2, 0);	//BE: Doubled amount of ammo recieved from weapon pickups.
 	else
 		W.AddAmmo(W.GetAmmoClass(0).default.InitialAmount, 0);
 	if (W.GetAmmoClass(1) != None && W.GetAmmoClass(1) != W.GetAmmoClass(0))
@@ -256,7 +256,7 @@ simulated function GetAmmoAmount (int m, Weapon W)
 	if (bThrown)
 	{
 		if (BallisticWeapon(W)!=None && BallisticWeapon(W).bNoMag==false)
-			AmmoAmount[m] = Min(W.AmmoAmount(m), BallisticWeapon(W).default.MagAmmo);
+			AmmoAmount[m] = Min(W.AmmoAmount(m), BallisticWeapon(W).default.ParamsClass.default.Params[0].MagAmmo);
 		else
 			AmmoAmount[m] = Min(W.AmmoAmount(m), W.GetAmmoClass(m).default.InitialAmount);
 	}
