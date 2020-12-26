@@ -674,7 +674,7 @@ defaultproperties
 	ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
 	WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
 	Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
-	ThermalRange=4500.000000
+	ThermalRange=9000.000000
 	ScopeViewTexThermal=Texture'BallisticRecolors3TexPro.FSG50.FSG-ScopeViewThermal'
 	WeaponScreen=ScriptedTexture'BallisticRecolors3TexPro.FSG50.FSG50-ScriptLCD'
 	screen=Shader'BallisticRecolors3TexPro.FSG50.FSG50-ScriptLCD-SD'
