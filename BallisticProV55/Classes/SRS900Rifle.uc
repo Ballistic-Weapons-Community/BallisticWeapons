@@ -500,7 +500,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BallisticProAnims.SRS900Edit'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS900'
 	DrawScale=0.500000
 	Skins(0)=Texture'BW_Core_WeaponTex.SRS900.SRS900Main'
 	Skins(1)=Texture'BW_Core_WeaponTex.SRS900.SRS900Scope'

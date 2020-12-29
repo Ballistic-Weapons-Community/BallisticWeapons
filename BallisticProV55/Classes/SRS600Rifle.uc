@@ -236,7 +236,7 @@ defaultproperties
 	SilencerOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
 	SilencerOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
-	BigIconMaterial=Texture'BallisticProTextures.SRS.BigIcon_SRSM2'
+	BigIconMaterial=Texture'BW_Core_WeaponTex.SRS.BigIcon_SRSM2'
 	BigIconCoords=(Y2=240)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -277,7 +277,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.SRS600Pickup'
 	PlayerViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
 	AttachmentClass=Class'BallisticProV55.SRS600Attachment'
-	IconMaterial=Texture'BallisticProTextures.SRS.SmallIcon_SRSM2'
+	IconMaterial=Texture'BW_Core_WeaponTex.SRS.SmallIcon_SRSM2'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="SRS-600 Battle Rifle"
 	LightType=LT_Pulse
@@ -288,7 +288,7 @@ defaultproperties
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS600'
 	DrawScale=0.500000
-	Skins(0)=Texture'BallisticProTextures.SRS.SRSNSGrey'
+	Skins(0)=Texture'BW_Core_WeaponTex.SRS.SRSNSGrey'
 	Skins(1)=Texture'BW_Core_WeaponTex.SRS900.SRS900Scope'
 	Skins(2)=Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo'
 	Skins(3)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

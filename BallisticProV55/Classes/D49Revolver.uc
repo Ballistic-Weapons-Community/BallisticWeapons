@@ -512,7 +512,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticProAnims.D49Revolver'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_D49'
 	DrawScale=0.220000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.D49.D49-Shiney'

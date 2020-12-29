@@ -525,7 +525,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BallisticProAnims.RS8'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.RS8.RS8-Shiney'

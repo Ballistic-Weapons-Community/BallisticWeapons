@@ -6,12 +6,11 @@ class JWRiotShieldPickup extends BallisticWeaponPickup
 
 #exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 #exec OBJ LOAD FILE=BWBP_OP_Tex.utx
-#exec OBJ LOAD FILE=BallisticProTextures.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 #exec OBJ LOAD FILE=BWBP_OP_Static.usx
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(FinalBlend'BallisticProTextures.Misc.RiotShieldFinal');
 	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.OtherShields.JWTruncheon');
 	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
 	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');

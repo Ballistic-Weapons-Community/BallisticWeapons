@@ -39,5 +39,5 @@ defaultproperties
      PickupClass=Class'BallisticProV55.M46PickupQS'
      AttachmentClass=Class'BallisticProV55.M46AttachmentQS'
      ItemName="M46 Red Dot Sight"
-     Mesh=SkeletalMesh'BallisticProAnims.OA-AR-RDS'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M46A1'
 }

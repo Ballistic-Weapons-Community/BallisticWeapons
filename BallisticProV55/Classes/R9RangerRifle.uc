@@ -248,7 +248,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BallisticProAnims.USSR'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
 	DrawScale=0.500000
 	//Skins(4)=Shader'R9A_tex.R9_body_SH1'
 }

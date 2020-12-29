@@ -12,7 +12,7 @@ class R9A1PrimaryFire extends BallisticRangeAttenFire;
 var BUtil.FullSound FreezeFireSound, LaserFireSound;
 var int	HeatPerShot;
 
-#exec OBJ LOAD File="BallisticProSounds.uax"
+#exec OBJ LOAD File="BW_Core_WeaponSound.uax"
 
 function SwitchWeaponMode (byte NewMode)
 {
@@ -141,7 +141,7 @@ defaultproperties
 	 CutOffDistance=8192
 	 RangeAtten=0.5
      FreezeFireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
-     LaserFireSound=(Sound=Sound'BallisticProSounds.R9.EnergyRelayExplode',Volume=3.000000,Radius=256.000000)
+     LaserFireSound=(Sound=Sound'BW_Core_WeaponSound.R9.EnergyRelayExplode',Volume=3.000000,Radius=256.000000)
      HeatPerShot=25
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=32.000000

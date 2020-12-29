@@ -321,6 +321,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticProAnims.OA-SMG'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XMK5'
 	DrawScale=0.450000
 }

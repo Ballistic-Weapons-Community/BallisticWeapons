@@ -710,7 +710,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticProAnims.M50Assault'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M50'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	Skins(1)=Shader'BW_Core_WeaponTex.M50.M50Skin1Shiney'

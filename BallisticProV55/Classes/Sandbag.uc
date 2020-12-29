@@ -165,7 +165,7 @@ defaultproperties
      EffectWhenDestroyed=Class'BallisticProV55.IE_SandbagExplosion'
      Health=250
      DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BallisticProStatic.Sandbags.UTSandbags'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Sandbags.UTSandbags'
      CullDistance=0.000000
      bWorldGeometry=True
      bAlwaysRelevant=True

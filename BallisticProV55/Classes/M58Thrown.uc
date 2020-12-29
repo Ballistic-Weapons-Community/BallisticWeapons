@@ -114,7 +114,7 @@ defaultproperties
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      DamageRadius=200.000000
      ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BallisticProStatic.M58.M58Projectile'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M58.M58Projectile'
      bAlwaysRelevant=True
      DrawScale=0.350000
      SoundVolume=192

@@ -302,6 +302,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticProAnims.M353Machinegun'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M353'
 	DrawScale=0.350000
 }

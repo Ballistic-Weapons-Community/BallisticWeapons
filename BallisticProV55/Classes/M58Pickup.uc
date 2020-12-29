@@ -4,18 +4,17 @@
 class M58Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticProTextures.utx
-#exec OBJ LOAD FILE=BallisticProStatic.usx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 #exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticProTextures.M58.M58GrenadeSkin');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.M58.M58GrenadeSkin');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.T10.T10Clip');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticProStatic.M58.M58Projectile');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M58.M58Projectile');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.T10.T10Pickup');
 }
 
