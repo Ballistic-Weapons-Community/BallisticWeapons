@@ -11,6 +11,6 @@ class Brass_Railgun extends BWBrass_Default;
 defaultproperties
 {
      StartVelocity=(Y=100.000000)
-     StaticMesh=StaticMesh'BallisticHardware2.Brass.EmptyPistolRound'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Brass.EmptyPistolRound'
      DrawScale=0.250000
 }

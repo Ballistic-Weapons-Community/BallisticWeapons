@@ -134,7 +134,7 @@ defaultproperties
 	MaxChargeOvertime=3.0f
 	ChargeGainPerSecond=2.5f
 	ChargeDecayPerSecond=9.0f
-	LightningSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunCrackle',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
+	LightningSound=(Sound=Sound'BWBP_OP_Sounds.Lightning.LightningGunCrackle',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
 	TraceRange=(Min=30000.000000,Max=30000.000000)
 	MaxWaterTraceRange=30000
 	Damage=80.000000
@@ -155,7 +155,7 @@ defaultproperties
 	FireRecoil=1024.000000
 	FirePushbackForce=256.000000
 	FireChaos=0.800000
-	BallisticFireSound=(Sound=Sound'BWBPJiffyPackSounds.Lightning.LightningGunShot',Volume=1.600000,Radius=1024.000000)
+	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.Lightning.LightningGunShot',Volume=1.600000,Radius=1024.000000)
 	bFireOnRelease=True
 	FireAnim="FireCharged"
 	FireRate=1.050000

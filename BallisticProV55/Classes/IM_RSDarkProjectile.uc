@@ -29,11 +29,11 @@ defaultproperties
      HitDecals(2)=Class'BallisticProV55.AD_RSDarkSlow'
      HitDecals(3)=Class'BallisticProV55.AD_RSDarkFast'
      HitDecals(4)=Class'BallisticProV55.AD_RSDarkFast'
-     HitSounds(0)=Sound'BWBP4-Sounds.DarkStar.Dark-SlowImpact'
-     HitSounds(1)=Sound'BWBP4-Sounds.DarkStar.Dark-SlowImpact'
-     HitSounds(2)=Sound'BWBP4-Sounds.DarkStar.Dark-SlowImpact'
-     HitSounds(3)=Sound'BallisticSounds2.A73.A73Impact'
-     HitSounds(4)=Sound'BallisticSounds2.A73.A73Impact'
+     HitSounds(0)=Sound'BW_Core_WeaponSound.DarkStar.Dark-SlowImpact'
+     HitSounds(1)=Sound'BW_Core_WeaponSound.DarkStar.Dark-SlowImpact'
+     HitSounds(2)=Sound'BW_Core_WeaponSound.DarkStar.Dark-SlowImpact'
+     HitSounds(3)=Sound'BW_Core_WeaponSound.A73.A73Impact'
+     HitSounds(4)=Sound'BW_Core_WeaponSound.A73.A73Impact'
      HitSoundVolume=1.300000
      HitSoundRadius=256.000000
 }

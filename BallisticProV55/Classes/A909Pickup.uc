@@ -4,9 +4,9 @@
 class A909Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticWeapons2.utx
-#exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,33 +16,33 @@ class A909Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticWeapons2.A909.WristBladeSkin');
-	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.A73BladeCut');
-	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.A73BladeCutWood');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.A909.WristBladeSkin');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.A73BladeCut');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.A73BladeCutWood');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.A909.WristBladeSkin');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.A73BladeCut');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.A73BladeCutWood');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.A909.WristBladeSkin');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.A73BladeCut');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.A73BladeCutWood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.A909.A909Hi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.A909.A909Lo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A909.A909Hi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A909.A909Lo');
 }
 
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BallisticHardware2.A909.A909Lo'
+     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.A909.A909Lo'
      PickupDrawScale=0.300000
      InventoryType=Class'BallisticProV55.A909SkrithBlades'
      RespawnTime=10.000000
      PickupMessage="You picked up the A909 Skrith wrist blades."
-     PickupSound=Sound'BallisticSounds2.A909.A909Putaway'
-     StaticMesh=StaticMesh'BallisticHardware2.A909.A909Hi'
+     PickupSound=Sound'BW_Core_WeaponSound.A909.A909Putaway'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.A909.A909Hi'
      bOrientOnSlope=True
      Physics=PHYS_None
      DrawScale=0.350000

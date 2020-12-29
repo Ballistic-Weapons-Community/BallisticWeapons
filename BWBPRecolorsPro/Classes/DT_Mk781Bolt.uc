@@ -17,7 +17,7 @@ defaultproperties
      FemaleSuicide="%o brought a capacitor to a wall fight."
      MaleSuicide="%o brought a capacitor to a wall fight."
      bCauseConvulsions=True
-     PawnDamageSounds(0)=Sound'PackageSounds4Pro.Misc.XM84-StunEffect'
+     PawnDamageSounds(0)=Sound'BWBP_SKC_Sounds.Misc.XM84-StunEffect'
      DamageOverlayMaterial=Shader'XGameShaders.PlayerShaders.LightningHit'
      DamageOverlayTime=0.900000
      GibPerterbation=0.200000

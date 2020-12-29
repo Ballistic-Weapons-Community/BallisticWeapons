@@ -90,7 +90,7 @@ defaultproperties
      AimedFireAnim="SightFireCock"
      FireRecoil=768.000000
      FireChaos=0.800000
-     BallisticFireSound=(Sound=Sound'BWBP4-Sounds.Marlin.Mar-Fire')
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Fire')
      FireEndAnim=
      FireAnimRate=1.150000
      FireRate=0.80000

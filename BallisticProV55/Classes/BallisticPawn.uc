@@ -41,7 +41,7 @@ class BallisticPawn extends xPawn;
 
 #EXEC OBJ LOAD File="BallisticThird.ukx"
 
-#EXEC OBJ LOAD File="BWBPOtherPackTex.utx"
+#EXEC OBJ LOAD File="BWBP_OP_Tex.utx"
 
 var byte				            DoubleJumpsLeft;
 var float				            LastDoubleJumpTime;
@@ -2680,7 +2680,7 @@ defaultproperties
      LowImpactVelocity=500.000000
      TimeBetweenImpacts=1.000000
 	 //MinTimeBetweenPainSounds=0.600000
-     NewDeResSound=SoundGroup'BallisticSounds2.Misc.DeRes'
+     NewDeResSound=SoundGroup'BW_Core_WeaponSound.Misc.DeRes'
      MeleeAnim="Melee_Smack"
      Fades(0)=Texture'BallisticProTextures.Icons.stealth_8'
      Fades(1)=Texture'BallisticProTextures.Icons.stealth_16'
@@ -2698,7 +2698,7 @@ defaultproperties
      Fades(13)=Texture'BallisticProTextures.Icons.stealth_112'
      Fades(14)=Texture'BallisticProTextures.Icons.stealth_120'
      Fades(15)=Texture'BallisticProTextures.Icons.stealth_128'
-     UDamageSound=Sound'BallisticSounds3.Udamage.UDamageFire'
+     UDamageSound=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
 
      FootstepVolume=0.350000
      FootstepRadius=350.000000

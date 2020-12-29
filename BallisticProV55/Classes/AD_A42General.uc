@@ -6,6 +6,6 @@ class AD_A42General extends AD_ImpactDecal
 
 defaultproperties
 {
-     ProjTexture=Texture'BallisticEffects2.Decals.A42Scorch'
+     ProjTexture=Texture'BW_Core_WeaponTex.Decals.A42Scorch'
      DrawScale=0.180000
 }

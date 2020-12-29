@@ -32,7 +32,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=10.000000))
          InitialParticlesPerSecond=100000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects.Particles.Smoke6'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=20.000000,Max=50.000000))
@@ -41,7 +41,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BallisticProV55.IE_ShellWood.SpriteEmitter42'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter14
-         StaticMesh=StaticMesh'BallisticHardware2.Impact.WoodChipA1'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.WoodChipA1'
          UseParticleColor=True
          FadeOut=True
          FadeIn=True

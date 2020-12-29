@@ -3,7 +3,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class IE_BOGPFlareFizzle extends BallisticEmitter
 	placeable;
@@ -74,7 +74,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.500000,Max=0.500000))
          StartSizeRange=(X=(Min=12.000000,Max=12.000000),Y=(Min=12.000000,Max=12.000000),Z=(Min=12.000000,Max=12.000000))
          InitialParticlesPerSecond=99999.000000
-         Texture=Texture'BallisticEffects.Particles.BlazingSubdivide'
+         Texture=Texture'BW_Core_WeaponTex.Particles.BlazingSubdivide'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -101,7 +101,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=10.000000,Max=20.000000),Y=(Min=10.000000,Max=20.000000),Z=(Min=10.000000,Max=20.000000))
          InitialParticlesPerSecond=1000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          LifetimeRange=(Min=6.000000,Max=6.000000)
          StartVelocityRange=(X=(Min=-500.000000,Max=500.000000),Y=(Min=-500.000000,Max=500.000000),Z=(Min=-200.000000,Max=500.000000))
      End Object
@@ -122,7 +122,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=160.000000,Max=250.000000),Y=(Min=160.000000,Max=250.000000),Z=(Min=160.000000,Max=250.000000))
          InitialParticlesPerSecond=40.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          LifetimeRange=(Min=0.250000,Max=0.250000)
      End Object
      Emitters(2)=SpriteEmitter'BallisticProV55.IE_BOGPFlareFizzle.SpriteEmitter10'
@@ -149,7 +149,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=3.000000)
          StartSizeRange=(X=(Min=2.000000,Max=4.000000),Y=(Min=2.000000,Max=4.000000),Z=(Min=2.000000,Max=4.000000))
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.Smoke4'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=-8.000000,Max=8.000000),Y=(Min=-8.000000,Max=8.000000),Z=(Min=10.000000,Max=50.000000))
          VelocityLossRange=(Z=(Max=0.500000))
@@ -172,7 +172,7 @@ defaultproperties
          StartSizeRange=(X=(Min=8.000000,Max=9.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.Smoke2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=3.500000,Max=3.500000)
          VelocityLossRange=(X=(Min=0.600000,Max=0.600000),Y=(Min=0.600000,Max=0.600000))
@@ -193,7 +193,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=700.000000,Max=1000.000000),Y=(Min=700.000000,Max=1000.000000),Z=(Min=700.000000,Max=1000.000000))
          InitialParticlesPerSecond=200.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          LifetimeRange=(Min=0.100000,Max=0.100000)
      End Object
      Emitters(5)=SpriteEmitter'BallisticProV55.IE_BOGPFlareFizzle.SpriteEmitter5'

@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class IM_BOGPFlareScorch extends BCImpactManager;
 
@@ -64,7 +64,7 @@ defaultproperties
 {
      HitEffects(0)=Class'BallisticProV55.IE_BOGPFlareImpact'
      HitDecals(0)=Class'BallisticProV55.AD_RX22AScorch'
-     HitSounds(0)=Sound'BallisticSounds_25.BOGP.BOGP_FlareImpact'
+     HitSounds(0)=Sound'BW_Core_WeaponSound.BOGP.BOGP_FlareImpact'
      HitSoundVolume=3.000000
      HitSoundRadius=1024.000000
      EffectBackOff=96.000000

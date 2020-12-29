@@ -193,22 +193,22 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=5)
-	BigIconMaterial=Texture'BallisticTextures3.ui.BigIcon_R9'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=5)
+	BigIconMaterial=Texture'BW_Core_WeaponTex.ui.BigIcon_R9'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic rifle fire. High damage, long range, high penetration and moderate recoil. Sustained damage output is modest."
 	ManualLines(1)="As primary, except fires subsonic rounds. Loses damage over range but has lower recoil, lesser flash and is quieter."
 	ManualLines(2)="As a long-ranged weapon lacking a scope, it has a reasonably quick aiming time. Does not use tracer rounds. Cumbersome to use in close combat."
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;50.0;1.0;0.2;0.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
 	ReloadAnimRate=1.250000
-	ClipHitSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipHit')
-	ClipOutSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipOut')
-	ClipInSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipIn')
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Regular")
 	WeaponModes(1)=(ModeName="Freeze",ModeID="WM_SemiAuto",Value=1.000000)
@@ -239,7 +239,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.R9Pickup'
 	PlayerViewOffset=(Y=9.500000,Z=-11.000000)
 	AttachmentClass=Class'BallisticProV55.R9Attachment'
-	IconMaterial=Texture'BallisticTextures3.ui.SmallIcon_R9'
+	IconMaterial=Texture'BW_Core_WeaponTex.ui.SmallIcon_R9'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="R9 Ranger Rifle"
 	LightType=LT_Pulse

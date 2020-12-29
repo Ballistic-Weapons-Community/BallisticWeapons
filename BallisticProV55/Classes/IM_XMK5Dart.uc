@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class IM_XMK5Dart extends BCImpactManager;
 
@@ -32,7 +32,7 @@ defaultproperties
      HitDecals(7)=Class'BallisticProV55.AD_BulletIce'
      HitDecals(8)=Class'BallisticProV55.AD_BulletDirt'
      HitDecals(10)=Class'BallisticProV55.AD_BulletConcrete'
-     HitSounds(0)=Sound'BallisticSounds_25.OA-SMG.OA-SMG_DartImpact'
+     HitSounds(0)=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_DartImpact'
      HitSoundVolume=1.250000
      HitSoundRadius=128.000000
      HitDelay=0.080000

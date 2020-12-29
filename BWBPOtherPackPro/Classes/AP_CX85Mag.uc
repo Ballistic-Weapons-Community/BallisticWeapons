@@ -21,8 +21,8 @@ defaultproperties
      AmmoAmount=90
      InventoryType=Class'BallisticProV55.Ammo_556mm'
      PickupMessage="You got two CX85 magazines."
-     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBPOtherPackStatic3.CX85.CX85Ammo'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BWBP_OP_Static.CX85.CX85Ammo'
      DrawScale=0.800000
      CollisionRadius=8.000000
      CollisionHeight=5.200000

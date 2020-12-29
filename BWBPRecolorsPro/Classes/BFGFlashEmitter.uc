@@ -16,7 +16,7 @@ simulated event PostBeginPlay()
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter5
-         StaticMesh=StaticMesh'BallisticHardware2.M75.M75MuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M75.M75MuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -39,7 +39,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.370000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.200000)
          StartSizeRange=(X=(Min=1.500000,Max=1.500000),Y=(Min=1.300000,Max=1.300000),Z=(Min=1.300000,Max=1.300000))
-         Texture=Texture'BallisticRecolors3TexPro.BFG.BFGMuzzleFlash'
+         Texture=Texture'BWBP_SKC_Tex.BFG.BFGMuzzleFlash'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -72,7 +72,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.070000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=60.000000,Max=180.000000),Y=(Min=60.000000,Max=180.000000),Z=(Min=60.000000,Max=180.000000))
-         Texture=Texture'BallisticRecolors3TexPro.BFG.BFGMuzzleFlash'
+         Texture=Texture'BWBP_SKC_Tex.BFG.BFGMuzzleFlash'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=3.000000,Max=3.000000)
@@ -99,7 +99,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.370000,RelativeSize=0.500000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=400.000000,Max=400.000000),Y=(Min=400.000000,Max=400.000000),Z=(Min=400.000000,Max=400.000000))
-         Texture=Texture'BallisticRecolors3TexPro.BFG.BFGMuzzleFlash'
+         Texture=Texture'BWBP_SKC_Tex.BFG.BFGMuzzleFlash'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)

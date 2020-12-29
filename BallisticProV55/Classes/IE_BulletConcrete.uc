@@ -53,7 +53,7 @@ defaultproperties
          StartSizeRange=(X=(Min=20.000000,Max=40.000000),Y=(Min=20.000000,Max=40.000000),Z=(Min=20.000000,Max=40.000000))
          InitialParticlesPerSecond=10000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects.Particles.Smoke6'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=60.000000,Max=100.000000),Y=(Min=-20.000000,Max=20.000000),Z=(Min=-5.000000,Max=20.000000))
@@ -83,7 +83,7 @@ defaultproperties
          StartSizeRange=(X=(Min=7.000000,Max=8.000000))
          InitialParticlesPerSecond=30.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects.Particles.Smoke6'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.200000)
          StartVelocityRange=(X=(Min=2.000000,Max=5.000000),Y=(Min=-2.000000,Max=2.000000))
@@ -91,7 +91,7 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BallisticProV55.IE_BulletConcrete.SpriteEmitter28'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter12
-         StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip2'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip2'
          UseMeshBlendMode=False
          UseParticleColor=True
          FadeOut=True
@@ -115,7 +115,7 @@ defaultproperties
      Emitters(2)=MeshEmitter'BallisticProV55.IE_BulletConcrete.MeshEmitter12'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter13
-         StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip3'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip3'
          UseMeshBlendMode=False
          UseParticleColor=True
          FadeOut=True
@@ -145,7 +145,7 @@ defaultproperties
      Emitters(3)=MeshEmitter'BallisticProV55.IE_BulletConcrete.MeshEmitter13'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter14
-         StaticMesh=StaticMesh'BallisticHardware2.Effects.VolumetricA3'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VolumetricA3'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -192,7 +192,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=5.000000,Max=12.000000),Y=(Min=5.000000,Max=12.000000),Z=(Min=5.000000,Max=12.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
+         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          LifetimeRange=(Min=0.300000,Max=0.300000)

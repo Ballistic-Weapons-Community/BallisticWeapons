@@ -346,7 +346,7 @@ defaultproperties
      FireChaos=0.120000
      XInaccuracy=16.000000
      YInaccuracy=16.000000
-     BallisticFireSound=(Sound=Sound'BallisticSounds3.XMV-850.XMV-Fire-1',Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Fire-1',Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireRate=0.050000
      AmmoClass=Class'BallisticProV55.Ammo_MinigunRounds'

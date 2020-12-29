@@ -6,5 +6,5 @@ class AD_A73BGeneral extends AD_ImpactDecal
 
 defaultproperties
 {
-     ProjTexture=Texture'BallisticRecolors3TexPro.A73b.A73BScorch'
+     ProjTexture=Texture'BWBP_SKC_Tex.A73b.A73BScorch'
 }

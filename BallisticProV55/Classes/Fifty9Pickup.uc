@@ -4,9 +4,9 @@
 class Fifty9Pickup extends BallisticHandgunPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticWeapons2.utx
-#exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,30 +16,30 @@ class Fifty9Pickup extends BallisticHandgunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticWeapons2.Fifty9.Fifty9Skin');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Fifty9.Fifty9Skin');
 }
 
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.Fifty9.Fifty9Skin');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Fifty9.Fifty9Skin');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Ammo.XK2Clip');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Fifty9.Fifty9PickupLD');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Fifty9.Fifty9PickupHD');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Ammo.XK2Clip');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Fifty9.Fifty9PickupLD');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Fifty9.Fifty9PickupHD');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticHardware2.Fifty9.Fifty9PickupLD'
+     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.Fifty9.Fifty9PickupLD'
      PickupDrawScale=0.350000
      InventoryType=Class'BallisticProV55.Fifty9MachinePistol'
      RespawnTime=20.000000
      PickupMessage="You picked up the Fifty-9 machine pistol."
-     PickupSound=Sound'BallisticSounds2.XK2.XK2-Putaway'
-     StaticMesh=StaticMesh'BallisticHardware2.Fifty9.Fifty9PickupHD'
+     PickupSound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Fifty9.Fifty9PickupHD'
      Physics=PHYS_None
      DrawScale=0.600000
      PrePivot=(Y=-16.000000)

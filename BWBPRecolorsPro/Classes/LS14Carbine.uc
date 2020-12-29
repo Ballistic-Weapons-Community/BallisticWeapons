@@ -232,7 +232,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
     	{
 //		C.SetPos(C.ClipX - (0.5*i+1) * ScaleFactor2, YPos);
 		C.SetPos(C.ClipX - (0.5*i+1) * ScaleFactor2, C.ClipY - 100 * ScaleFactor * class'HUD'.default.HudScale);
-		C.DrawTile(Texture'BallisticRecolors3TexPro.LS14.LS14-RocketIcon', ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
+		C.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14-RocketIcon', ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
 	}
 	if ( Rockets > 8 )
 	{
@@ -240,7 +240,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 		for( i=8; i<Count; i++ )
 		{
 			C.SetPos(C.ClipX - (0.5*(i-8)+1) * ScaleFactor2, YPos - ScaleFactor2);
-			C.DrawTile(Texture'BallisticRecolors3TexPro.LS14.LS14-RocketIcon', ScaleFactor2, ScaleFactor2, 174, 259, 46, 45);
+			C.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14-RocketIcon', ScaleFactor2, ScaleFactor2, 174, 259, 46, 45);
 		}
 	}
 }
@@ -271,20 +271,20 @@ simulated event RenderOverlays (Canvas Canvas)
 	        Canvas.SetDrawColor(255,255,255,255);
 
         	Canvas.SetPos(Canvas.OrgX, Canvas.OrgY);
-    		Canvas.DrawTile(Texture'BallisticRecolors3TexPro.LS14.LS14ScopeDbl', (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1024);
+    		Canvas.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14ScopeDbl', (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1024);
 
         	Canvas.SetPos((Canvas.SizeX - Canvas.SizeY)/2, Canvas.OrgY);
-        	Canvas.DrawTile(Texture'BallisticRecolors3TexPro.LS14.LS14ScopeDbl', Canvas.SizeY, Canvas.SizeY, 0, 0, 1024, 1024);
+        	Canvas.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14ScopeDbl', Canvas.SizeY, Canvas.SizeY, 0, 0, 1024, 1024);
 
         	Canvas.SetPos(Canvas.SizeX - (Canvas.SizeX - Canvas.SizeY)/2, Canvas.OrgY);
-        	Canvas.DrawTile(Texture'BallisticRecolors3TexPro.LS14.LS14ScopeDbl', (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1024);
+        	Canvas.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14ScopeDbl', (Canvas.SizeX - Canvas.SizeY)/2, Canvas.SizeY, 0, 0, 1, 1024);
 		}
 		else if (CurrentWeaponMode == 2)
 		{
 			// We're in double mode
 			Canvas.SetPos(Canvas.OrgX+ Canvas.OrgX/4, Canvas.OrgY + Canvas.OrgY/4);
 			Canvas.SetDrawColor(255,255,255,255);
-			Canvas.DrawTile(Texture'BallisticRecolors3TexPro.LS14.LS14ScopeDbl', 1024, 1024, 0, 0, 1024, 1024);
+			Canvas.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14ScopeDbl', 1024, 1024, 0, 0, 1024, 1024);
 		}
 		else
 		{
@@ -324,7 +324,7 @@ simulated event DrawElectro (Canvas C)
 	// Draw Green Circle
 	// Draw some panning lines
 	C.SetPos(C.OrgX, C.OrgY);
-	C.DrawTile(TexPanner'BallisticRecolors3TexPro.LS14.ElectroShock', C.SizeX, C.SizeY, 0, 0, 512, 512);
+	C.DrawTile(TexPanner'BWBP_SKC_Tex.LS14.ElectroShock', C.SizeX, C.SizeY, 0, 0, 512, 512);
 }
 
 //===========================================================================
@@ -759,9 +759,9 @@ defaultproperties
 	ManualLines(1)="Launches miniature rockets. These rockets deal high damage and good radius damage. The rockets have a short period of low speed before igniting."
 	ManualLines(2)="Effective at long range and against enemies using healing weapons and items."
 
-	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
-	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
-	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
+	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
+	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
+	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
 	GrenadeLoadAnim="RLLoad"
 	GrenadeLoadAnimRate=1.500000
 	SingleGrenadeLoadAnim="RLLoadLoop"
@@ -778,8 +778,8 @@ defaultproperties
 	Shells(0)=(ShellName="RocketThree")
 	Shells(1)=(ShellName="RocketTwo")
 	Shells(2)=(ShellName="RocketOne")
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BallisticRecolors3TexPro.LS14.BigIcon_LS14'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBP_SKC_Tex.LS14.BigIcon_LS14'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	bWT_Hazardous=True
@@ -787,13 +787,13 @@ defaultproperties
 	bWT_Projectile=True
 	bWT_Energy=True
 	SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
-	BringUpSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Select')
-	PutDownSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Deselect')
-	CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Select')
+	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Deselect')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
 	ReloadAnimRate=1.150000
-	ClipHitSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipHit')
-	ClipOutSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipOut')
-	ClipInSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipIn')
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipIn')
 	ClipInFrame=0.650000
 	StartShovelAnim="RLLoadPrep"
 	StartShovelAnimRate=2.000000
@@ -804,9 +804,9 @@ defaultproperties
 	WeaponModes(2)=(ModeName="Bot Firemode",bUnavailable=True)
 	CurrentWeaponMode=0
 	ZoomType=ZT_Logarithmic
-	ScopeViewTex=Texture'BallisticRecolors3TexPro.LS14.LS14Scope'
-	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	ScopeViewTex=Texture'BWBP_SKC_Tex.LS14.LS14Scope'
+	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
@@ -838,7 +838,7 @@ defaultproperties
 	PlayerViewOffset=(X=-5.000000,Y=12.000000,Z=-15.000000)
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBPRecolorsPro.LS14Attachment'
-	IconMaterial=Texture'BallisticRecolors3TexPro.LS14.SmallIcon_LS14'
+	IconMaterial=Texture'BWBP_SKC_Tex.LS14.SmallIcon_LS14'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="LS-14 Laser Rifle"
 	LightType=LT_Pulse
@@ -847,6 +847,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.LS14Carbine'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LS14'
 	DrawScale=0.300000
 }

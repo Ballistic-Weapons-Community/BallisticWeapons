@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class WrenchAttachment extends BallisticMeleeAttachment;
 
@@ -22,6 +22,6 @@ defaultproperties
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      MeleeStrikeAnim="Blade_Stab"
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBPOtherPackAnim.Techwrench_TP'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.Techwrench_TPm'
      DrawScale=1.000000
 }

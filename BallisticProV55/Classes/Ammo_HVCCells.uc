@@ -13,9 +13,9 @@ defaultproperties
      bNoPackResupply=True
      MaxAmmo=150
      InitialAmount=150
-     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIcon_LGFlash'
+     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIcon_LGFlash'
      PickupClass=Class'BallisticProV55.AP_HVCMk9Cell'
-     IconMaterial=Texture'BWBP2-Tex.Lighter.AmmoIconLG'
+     IconMaterial=Texture'BW_Core_WeaponTex.Lighter.AmmoIconLG'
      IconCoords=(X2=63,Y2=63)
      ItemName="HVC Lightning Cells"
 }

@@ -1,6 +1,6 @@
 class XOXOLewdness extends BallisticEmitter;
 
-#exec OBJ LOAD File=BWBP4-Tex.utx
+#exec OBJ LOAD File=BW_Core_WeaponTex.utx
 
 var float	Brakes;
 var float	MaxSpeed;
@@ -264,7 +264,7 @@ static function XOXOLewdness DistributeLewd(vector StartLoc, Pawn Killer, Pawn V
 
 defaultproperties
 {
-     CollectSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Soul'
+     CollectSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Soul'
      MySoulPower=1.000000
      Begin Object Class=SpriteEmitter Name=LewdGlow
          UseColorScale=True
@@ -288,7 +288,7 @@ defaultproperties
          StartSizeRange=(X=(Min=70.000000,Max=70.000000))
          ParticlesPerSecond=2.000000
          InitialParticlesPerSecond=2.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.750000,Max=0.750000)
      End Object
@@ -309,14 +309,14 @@ defaultproperties
          SpinsPerSecondRange=(X=(Min=0.050000,Max=0.100000),Y=(Min=0.050000,Max=0.100000),Z=(Min=0.050000,Max=0.100000))
          StartSpinRange=(X=(Max=1.000000),Y=(Max=1.000000),Z=(Max=1.000000))
          StartSizeRange=(X=(Min=5.000000,Max=5.000000),Y=(Min=5.000000,Max=5.000000),Z=(Min=5.000000,Max=5.000000))
-         Texture=Texture'BWBPOtherPackTex.XOXO.hearteffect'
+         Texture=Texture'BWBP_OP_Tex.XOXO.hearteffect'
          LifetimeRange=(Min=1.500000,Max=1.500000)
          StartVelocityRange=(X=(Min=-20.000000,Max=20.000000),Y=(Min=-20.000000,Max=20.000000),Z=(Min=-20.000000,Max=20.000000))
      End Object
      Emitters(1)=SpriteEmitter'BWBPOtherPackPro.XOXOLewdness.LewdHearts'
 
      Begin Object Class=MeshEmitter Name=BigHeart
-         StaticMesh=StaticMesh'BWBPOtherPackStatic.XOXO.Heart'
+         StaticMesh=StaticMesh'BWBP_OP_Static.XOXO.Heart'
          SpinParticles=True
          AutomaticInitialSpawning=False
          CoordinateSystem=PTCS_Relative

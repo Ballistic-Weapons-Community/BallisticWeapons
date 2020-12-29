@@ -37,7 +37,7 @@ defaultproperties
          SizeScale(3)=(RelativeTime=1.200000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=3.000000,Max=4.000000),Y=(Min=3.000000,Max=4.000000),Z=(Min=3.000000,Max=4.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticRecolors3TexPro.Bulldog.BulldogSmokeCore'
+         Texture=Texture'BWBP_SKC_Tex.Bulldog.BulldogSmokeCore'
          LifetimeRange=(Min=1.200000,Max=1.200000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object
@@ -67,7 +67,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.200000)
          StartSizeRange=(X=(Min=1.000000,Max=5.000000),Y=(Min=1.000000,Max=5.000000),Z=(Min=1.000000,Max=5.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticEffects.Particles.Smoke3'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
          LifetimeRange=(Min=1.500000,Max=1.500000)
          StartVelocityRange=(X=(Max=5.000000))
      End Object
@@ -93,7 +93,7 @@ defaultproperties
          StartSizeRange=(X=(Min=3.000000,Max=3.000000),Y=(Min=3.000000,Max=3.000000),Z=(Min=3.000000,Max=3.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticRecolors3TexPro.Bulldog.BulldogSmokeCore'
+         Texture=Texture'BWBP_SKC_Tex.Bulldog.BulldogSmokeCore'
          LifetimeRange=(Min=2.500000,Max=2.500000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object

@@ -78,5 +78,5 @@ defaultproperties
 	 FireAnimRate=1.25
      AmmoClass=Class'BWBPOtherPackPro.Ammo_TrenchgunShells'
      AmmoPerFire=0
-	 //BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-Ignite',Volume=4.100000,Radius=256.000000,bAtten=True)
+	 //BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Ignite',Volume=4.100000,Radius=256.000000,bAtten=True)
 }

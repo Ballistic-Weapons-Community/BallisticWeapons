@@ -20,6 +20,6 @@ defaultproperties
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      MeleeStrikeAnim="Blade_Stab"
      bHeavy=True
-     Mesh=SkeletalMesh'BallisticAnims2.Knife3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.X3_TPm'
      DrawScale=0.110000
 }

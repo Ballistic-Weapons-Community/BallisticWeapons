@@ -6,5 +6,5 @@ class AD_A73General extends AD_ImpactDecal
 
 defaultproperties
 {
-     ProjTexture=Texture'BallisticEffects2.Decals.A73Scorch'
+     ProjTexture=Texture'BW_Core_WeaponTex.Decals.A73Scorch'
 }

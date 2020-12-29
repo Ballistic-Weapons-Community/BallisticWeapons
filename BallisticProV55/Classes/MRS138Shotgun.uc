@@ -426,24 +426,24 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(0)=(ModeName="Semi-Automatic")
-	TorchOnSound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-FlashClick'
+	TorchOnSound=Sound'BW_Core_WeaponSound.MRS38.RSS-FlashClick'
 	TorchOffset=(X=-330.000000,Y=-35.000000,Z=50.000000)
-	TorchOffSound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-FlashClick'
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	TorchOffSound=Sound'BW_Core_WeaponSound.MRS38.RSS-FlashClick'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	StartShovelAnimRate=1.400000
 	StartShovelAnim="PrepReload"
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;40.0;0.0;1.0;-999.0")
-	Skins(3)=Texture'BWAddPack-RS-Skins.MRS138.MRS138Shell'
-	Skins(2)=Shader'BWAddPack-RS-Skins.MRS138.MRS138HeatShiney'
-	Skins(1)=Shader'BWAddPack-RS-Skins.MRS138.MRS138Shiney'
-	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(3)=Texture'BW_Core_WeaponTex.MRS138.MRS138Shell'
+	Skins(2)=Shader'BW_Core_WeaponTex.MRS138.MRS138HeatShiney'
+	Skins(1)=Shader'BW_Core_WeaponTex.MRS138.MRS138Shiney'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	SightOffset=(X=15,Z=21.500000)
 	SightPivot=(Pitch=256)
 	SightDisplayFOV=40
 	ReloadAnimRate=1.500000
 	ReloadAnim="ReloadLoop"
 	PutDownTime=0.35
-	PutDownSound=(Sound=Sound'BallisticSounds2.M763.M763Putaway')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	PutDownAnimRate=1.5
 	Priority=36
 	PlayerViewOffset=(Y=10.000000,Z=-14.000000)
@@ -462,7 +462,7 @@ defaultproperties
 	LightBrightness=150.000000
 	ItemName="MRS-138 Tactical Shotgun"
 	InventoryGroup=7
-	IconMaterial=Texture'BWAddPack-RS-Skins.MRS138.SmallIcon_MRS138'
+	IconMaterial=Texture'BW_Core_WeaponTex.MRS138.SmallIcon_MRS138'
 	IconCoords=(X2=127,Y2=31)
 	HudColor=(B=255,G=150,R=100)
 	GunLength=32.000000
@@ -478,12 +478,12 @@ defaultproperties
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	CurrentWeaponMode=0
 	CurrentRating=0.800000
-	CockSound=(Sound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-Cock',Volume=0.800000)
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-Cock',Volume=0.800000)
 	CockAnimRate=1.200000
-	ClipInSound=(Sound=Sound'BWAddPack-RS-Sounds.MRS38.RSS-ShellIn')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-ShellIn')
 	ClipInFrame=0.375000
-	BringUpSound=(Sound=Sound'BallisticSounds2.M763.M763Pullout')
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_MRS138'
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_MRS138'
 	BigIconCoords=(Y1=36,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	AttachmentClass=Class'BallisticProV55.MRS138Attachment'

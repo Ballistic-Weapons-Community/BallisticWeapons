@@ -153,7 +153,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=2.500000)
          StartSizeRange=(X=(Min=4.000000,Max=6.000000),Y=(Min=4.000000,Max=15.000000),Z=(Min=4.000000,Max=6.000000))
          InitialParticlesPerSecond=100.000000
-         Texture=Texture'BallisticTextures_25.Reptile.AcidDrops01'
+         Texture=Texture'BW_Core_WeaponTex.Reptile.AcidDrops01'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -221,7 +221,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=5.000000)
          StartSizeRange=(X=(Min=4.000000,Max=10.000000),Y=(Min=4.000000,Max=10.000000),Z=(Min=4.000000,Max=10.000000))
          InitialParticlesPerSecond=35.000000
-         Texture=Texture'BallisticEffects.Particles.AquaBubbleA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaBubbleA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.750000,Max=0.750000)
          StartVelocityRange=(X=(Min=-55.000000,Max=55.000000),Y=(Min=-55.000000,Max=55.000000),Z=(Min=25.000000,Max=95.000000))

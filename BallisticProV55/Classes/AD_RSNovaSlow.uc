@@ -6,6 +6,6 @@ class AD_RSNovaSlow extends AD_ImpactDecal
 
 defaultproperties
 {
-     ProjTexture=Texture'BWBP4-Tex.NovaStaff.Nova-ScorchA'
+     ProjTexture=Texture'BW_Core_WeaponTex.NovaStaff.Nova-ScorchA'
      DrawScale=0.200000
 }

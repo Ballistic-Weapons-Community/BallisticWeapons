@@ -178,7 +178,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 
 defaultproperties
 {
-     SpecialFireSound=Sound'PackageSounds4Pro.X82.X82-Fire2'
+     SpecialFireSound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2'
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WallPenetrationForce=0.000000
      

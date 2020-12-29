@@ -77,7 +77,7 @@ defaultproperties
      FireChaos=0.050000
      XInaccuracy=2.000000
      YInaccuracy=2.000000
-     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.BFG.BFG-SmallFire',Volume=2.000000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.BFG.BFG-SmallFire',Volume=2.000000,Slot=SLOT_Interact,bNoOverride=False)
      FireAnim="Fire2"
      FireEndAnim=
      FireRate=0.110000

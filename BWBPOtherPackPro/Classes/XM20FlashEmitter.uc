@@ -16,7 +16,7 @@ simulated event PostBeginPlay()
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticRecolors4StaticPro.LaserCarbine.PlasmaMuzzleFlash'
+         StaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.PlasmaMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -69,7 +69,7 @@ defaultproperties
          StartLocationOffset=(X=14.000000)
          StartSizeRange=(X=(Min=140.000000,Max=140.000000),Y=(Min=140.000000,Max=140.000000),Z=(Min=140.000000,Max=140.000000))
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.600000,Max=0.600000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -78,7 +78,7 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BWBPOtherPackPro.XM20FlashEmitter.SpriteEmitter0'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BallisticHardware2.Effects.FBlast'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.FBlast'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -123,7 +123,7 @@ defaultproperties
          MaxParticles=2
          StartLocationOffset=(X=10.000000)
          StartSizeRange=(X=(Min=240.000000,Max=240.000000),Y=(Min=240.000000,Max=240.000000),Z=(Min=240.000000,Max=240.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -150,7 +150,7 @@ defaultproperties
          MaxParticles=3
          StartLocationOffset=(X=140.000000)
          StartSizeRange=(X=(Min=90.000000,Max=120.000000),Y=(Min=360.000000,Max=480.000000),Z=(Min=360.000000,Max=480.000000))
-         Texture=Texture'BallisticEffects.Particles.WaterSpray1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.WaterSpray1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.300000)
          SpawnOnTriggerRange=(Min=3.000000,Max=3.000000)

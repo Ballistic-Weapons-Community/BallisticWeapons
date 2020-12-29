@@ -79,7 +79,7 @@ defaultproperties
      ChargingSound=Sound'GeneralAmbience.texture22'
      MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
      FireChaos=0.500000
-     BallisticFireSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_AltFire',Volume=1.800000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_AltFire',Volume=1.800000,Slot=SLOT_Interact,bNoOverride=False)
      bFireOnRelease=True
      MaxHoldTime=6.000000
      FireEndAnim=

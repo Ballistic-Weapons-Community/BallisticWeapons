@@ -10,7 +10,7 @@ class IE_BloodBullet extends BallisticEmitter
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BallisticHardware2.Effects.BloodVolumetric'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.BloodVolumetric'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

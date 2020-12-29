@@ -18,7 +18,7 @@ defaultproperties
          MaxParticles=1
          StartLocationOffset=(X=1.500000)
          StartSizeRange=(X=(Min=35.000000,Max=35.000000),Y=(Min=35.000000,Max=35.000000),Z=(Min=35.000000,Max=35.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          LifetimeRange=(Min=1.000000,Max=1.000000)
      End Object
      Emitters(0)=SpriteEmitter'BallisticProV55.MRS138TorchEffect.SpriteEmitter0'
@@ -44,7 +44,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=60.000000,Max=60.000000),Y=(Min=60.000000,Max=60.000000),Z=(Min=60.000000,Max=60.000000))
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.AquaFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=350.000000,Max=350.000000))
      End Object
@@ -55,5 +55,5 @@ defaultproperties
      LightRadius=64.000000
      bHidden=True
      DrawScale=0.300000
-     Skins(0)=Texture'BallisticEffects.Particles.FlareA1'
+     Skins(0)=Texture'BW_Core_WeaponTex.Particles.FlareA1'
 }

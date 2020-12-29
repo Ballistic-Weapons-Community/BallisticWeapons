@@ -9,7 +9,7 @@ class TraceEmitter_Pulse extends BCTraceEmitter;
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticRecolors4StaticPro.LaserCarbine.TracerA2'
+         StaticMesh=StaticMesh'BWBP_SKC_Static.LaserCarbine.TracerA2'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

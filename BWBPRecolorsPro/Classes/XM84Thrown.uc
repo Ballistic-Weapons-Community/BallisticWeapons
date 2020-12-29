@@ -136,7 +136,7 @@ defaultproperties
      Damage=45.000000
      DamageRadius=768.000000
      MyDamageType=Class'BWBPRecolorsPro.DTXM84GrenadeRadius'
-     ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.XM84.XM84Projectile'
+     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.XM84.XM84Projectile'
      DrawScale=1.000000
 }

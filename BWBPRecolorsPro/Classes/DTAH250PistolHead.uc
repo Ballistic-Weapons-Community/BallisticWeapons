@@ -40,6 +40,6 @@ defaultproperties
      MaleSuicide="%o killed himself with the AH250."
      bAlwaysSevers=True
      bSpecial=True
-     PawnDamageSounds(0)=SoundGroup'BallisticSounds2.BulletImpacts.Headshot'
+     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
      VehicleDamageScaling=0.150000
 }

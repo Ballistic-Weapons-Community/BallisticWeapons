@@ -252,7 +252,7 @@ simulated function Tick(float DT)
 defaultproperties
 {
      ImpactManagerAlt=Class'BallisticProV55.IM_HVCRedLightning'
-     DischargeSound=Sound'BWBP2-Sounds.LightningGun.LG-WaterDischarge'
+     DischargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-WaterDischarge'
      AltMuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
      ImpactManager=Class'BallisticProV55.IM_HVCBlueLightning'
      bDoWaterSplash=False
@@ -263,6 +263,6 @@ defaultproperties
      FlashMode=MU_Secondary
      TracerClass=Class'BallisticProV55.TraceEmitter_HVCRedLightning'
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP2b-Anims.HVC-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.HVC_TPm'
      DrawScale=0.150000
 }

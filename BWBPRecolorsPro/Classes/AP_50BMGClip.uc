@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=8
      InventoryType=Class'BWBPRecolorsPro.Ammo_50BMG'
      PickupMessage="You got two X83 magazines."
-     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.X83.X82A2Mag'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.X83.X82A2Mag'
      PrePivot=(Z=13.000000)
      CollisionRadius=8.000000
      CollisionHeight=10.000000

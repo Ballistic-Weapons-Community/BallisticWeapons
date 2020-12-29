@@ -10,5 +10,5 @@ class MAG78ChainsawPanner extends TexPanner;
 
 defaultproperties
 {
-    Material=TexScaler'BWBPSomeOtherPackTex.Longsword.LongswordChainScaler'
+    Material=TexScaler'BWBP_OP_Tex.Longsword.LongswordChainScaler'
 }

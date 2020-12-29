@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=16
      InventoryType=Class'BWBPRecolorsPro.Ammo_8GaugeHE'
      PickupMessage="You picked up 16 rounds of HE shotgun shells"
-     PickupSound=Sound'BallisticSounds2.Ammo.ShotBoxPickup'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.SK410.SK410Ammo'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ShotBoxPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.SK410.SK410Ammo'
      DrawScale=0.400000
      CollisionRadius=8.000000
      CollisionHeight=4.500000

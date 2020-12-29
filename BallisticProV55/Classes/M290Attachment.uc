@@ -86,6 +86,6 @@ defaultproperties
      TracerChance=0.500000
      CockingAnim="Cock_Pump"
      CockAnimRate=1.700000
-     Mesh=SkeletalMesh'BallisticAnims2.M290-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M290_TPm'
      DrawScale=0.180000
 }

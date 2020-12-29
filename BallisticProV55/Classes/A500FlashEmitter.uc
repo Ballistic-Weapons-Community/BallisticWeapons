@@ -3,7 +3,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class A500FlashEmitter extends BallisticEmitter;
 
@@ -34,7 +34,7 @@ defaultproperties
          MaxParticles=25
          StartSpinRange=(X=(Min=-16384.000000,Max=-16384.000000))
          StartSizeRange=(X=(Min=25.000000,Max=30.000000),Y=(Min=35.000000),Z=(Min=50.000000,Max=50.000000))
-         Texture=Texture'BallisticTextures_25.Reptile.AcidDrops01'
+         Texture=Texture'BW_Core_WeaponTex.Reptile.AcidDrops01'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -46,7 +46,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BallisticProV55.A500FlashEmitter.SpriteEmitter10'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter2
-         StaticMesh=StaticMesh'BallisticHardware_25.Reptile.Reptile_MuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Reptile.Reptile_MuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

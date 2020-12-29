@@ -8,5 +8,5 @@ class LaserActor_RSBlueThird extends LaserActor;
 
 defaultproperties
 {
-     Skins(0)=FinalBlend'BWAddPack-RS-Effects.Laser.BlueLaser2Final'
+     Skins(0)=FinalBlend'BW_Core_WeaponTex.Laser.BlueLaser2Final'
 }

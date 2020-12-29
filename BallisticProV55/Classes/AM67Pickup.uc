@@ -4,8 +4,8 @@
 class AM67Pickup extends BallisticHandgunPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticWeapons2.utx
-#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -15,29 +15,29 @@ class AM67Pickup extends BallisticHandgunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticWeapons2.AM67.AM67Main');
-	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M806.PistolMuzzleFlash');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.AM67.AM67Main');
+	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M806.PistolMuzzleFlash');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.AM67.AM67Main');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.AM67.AM67Main');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M806.PistolMuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.AM67.AM67Clips');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M806.PistolMuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.AM67.AM67Clips');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticHardware2.AM67.PickupLD'
+     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.AM67.PickupLD'
      PickupDrawScale=0.190000
      InventoryType=Class'BallisticProV55.AM67Pistol'
      RespawnTime=10.000000
      PickupMessage="You picked up the AM67 assault pistol."
-     PickupSound=Sound'BallisticSounds2.M806.M806Putaway'
-     StaticMesh=StaticMesh'BallisticHardware2.AM67.PickupLD'
+     PickupSound=Sound'BW_Core_WeaponSound.M806.M806Putaway'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.AM67.PickupLD'
      Physics=PHYS_None
      DrawScale=0.400000
      PrePivot=(Y=-26.000000)

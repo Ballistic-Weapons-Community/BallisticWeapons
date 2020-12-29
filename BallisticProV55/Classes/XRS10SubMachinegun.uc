@@ -390,15 +390,15 @@ defaultproperties
 	SilencerBone="Silencer"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"
-	SilencerOnSound=Sound'BallisticSounds2.XK2.XK2-SilenceOn'
-	SilencerOffSound=Sound'BallisticSounds2.XK2.XK2-SilenceOff'
-	SilencerOnTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
-	SilencerOffTurnSound=SoundGroup'BallisticSounds2.XK2.XK2-SilencerTurn'
-	LaserOnSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
-	LaserOffSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	SilencerOnSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOn'
+	SilencerOffSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOff'
+	SilencerOnTurnSound=SoundGroup'BW_Core_WeaponSound.XK2.XK2-SilencerTurn'
+	SilencerOffTurnSound=SoundGroup'BW_Core_WeaponSound.XK2.XK2-SilencerTurn'
+	LaserOnSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
+	LaserOffSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XRS10'
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_XRS10'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	bWT_Machinegun=True
@@ -406,12 +406,12 @@ defaultproperties
 	ManualLines(1)="Toggles the laser sight. While active, reduces the hipfire spread, but broadcasts the user's position to the enemy."
 	ManualLines(2)="The Weapon Function key attaches a suppressor, reducing recoil, range and noise output and removing the flash.||This weapon is highly effective at very close range."
 	SpecialInfo(0)=(Info="60.0;5.0;0.4;-1.0;0.0;0.2;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	MagAmmo=30
-	CockSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Cock')
-	ClipOutSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipout')
-	ClipInSound=(Sound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-Clipin')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Cock')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Clipout')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Clipin')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=4.000000)
 	WeaponModes(1)=(bUnavailable=True)
@@ -433,7 +433,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.XRS10Pickup'
 	PlayerViewOffset=(X=5.000000,Y=11.000000,Z=-11.000000)
 	AttachmentClass=Class'BallisticProV55.XRS10Attachment'
-	IconMaterial=Texture'BWAddPack-RS-Skins.XRS10.SmallIcon_XRS10'
+	IconMaterial=Texture'BW_Core_WeaponTex.XRS10.SmallIcon_XRS10'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="XRS-10 Machine Pistol"
 	LightType=LT_Pulse
@@ -444,8 +444,8 @@ defaultproperties
 	LightRadius=3.000000
 	Mesh=SkeletalMesh'BallisticProAnims.XRS10'
 	DrawScale=0.200000
-	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-	Skins(1)=Shader'BWAddPack-RS-Skins.XRS10.XRS10Shiney'
-	Skins(2)=Shader'BWAddPack-RS-Skins.XRS10.XRS10LaserShiney'
-	Skins(3)=Shader'BWAddPack-RS-Skins.XRS10.XRS10SilencerShiney'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Shader'BW_Core_WeaponTex.XRS10.XRS10Shiney'
+	Skins(2)=Shader'BW_Core_WeaponTex.XRS10.XRS10LaserShiney'
+	Skins(3)=Shader'BW_Core_WeaponTex.XRS10.XRS10SilencerShiney'
 }

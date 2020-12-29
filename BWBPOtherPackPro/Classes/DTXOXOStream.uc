@@ -18,7 +18,7 @@ defaultproperties
      bInstantHit=True
      bNeverSevers=True
      GibModifier=0.500000
-     DamageOverlayMaterial=Shader'BWBPOtherPackTex.XOXO.XOXOProjShader'
+     DamageOverlayMaterial=Shader'BWBP_OP_Tex.XOXO.XOXOProjShader'
      DamageOverlayTime=0.100000
      GibPerterbation=0.250000
      KDamageImpulse=20000.000000

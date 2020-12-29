@@ -11,6 +11,6 @@ defaultproperties
      DrawType=DT_Mesh
      bOnlyDrawIfAttached=True
      RemoteRole=ROLE_None
-     Mesh=SkeletalMesh'BallisticAnims2.FP9-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FP9Bomb_TPm'
      DrawScale=0.200000
 }

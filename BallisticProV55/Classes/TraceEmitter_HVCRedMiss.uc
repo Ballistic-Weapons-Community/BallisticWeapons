@@ -39,7 +39,7 @@ defaultproperties
          MaxParticles=15
          DetailMode=DM_SuperHigh
          StartSizeRange=(X=(Min=5.000000,Max=12.000000),Y=(Min=5.000000,Max=12.000000),Z=(Min=5.000000,Max=12.000000))
-         Texture=Texture'BWBP2-FX.Particles.LightningBoltCut2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.LightningBoltCut2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.800000,Max=0.800000)
          StartVelocityRange=(X=(Min=0.500000,Max=1.010000),Y=(Min=-1.000000,Max=1.000000),Z=(Min=-1.000000,Max=1.000000))
@@ -77,7 +77,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.800000)
          StartSizeRange=(X=(Min=10.000000,Max=20.000000),Y=(Min=10.000000,Max=20.000000),Z=(Min=10.000000,Max=20.000000))
          InitialParticlesPerSecond=40.000000
-         Texture=Texture'BWBP2-FX.Particles.LightningBoltCut2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.LightningBoltCut2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.800000,Max=0.800000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
@@ -127,7 +127,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=60.000000,Max=60.000000),Y=(Min=60.000000,Max=60.000000),Z=(Min=60.000000,Max=60.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.800000,Max=0.800000)
      End Object

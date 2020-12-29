@@ -18,7 +18,7 @@ function UpdateWings(float Phase)
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BWBP4-Hardware.NovaStaff.Wing'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.NovaStaff.Wing'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -43,7 +43,7 @@ defaultproperties
      Emitters(0)=MeshEmitter'BallisticProV55.RSNovaWings.MeshEmitter0'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BWBP4-Hardware.NovaStaff.Wing'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.NovaStaff.Wing'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -82,12 +82,12 @@ defaultproperties
          StartLocationOffset=(X=-16.000000,Z=20.000000)
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=80.000000,Max=90.000000),Y=(Min=80.000000,Max=90.000000),Z=(Min=80.000000,Max=90.000000))
-         Texture=Texture'BWBP4-Tex.NovaStaff.NovaAura'
+         Texture=Texture'BW_Core_WeaponTex.NovaStaff.NovaAura'
          LifetimeRange=(Min=1.000000,Max=1.000000)
      End Object
      Emitters(2)=SpriteEmitter'BallisticProV55.RSNovaWings.SpriteEmitter2'
 
      Physics=PHYS_Trailer
-     AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Flight'
+     AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Flight'
      bOwnerNoSee=True
 }

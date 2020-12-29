@@ -631,7 +631,7 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
-	SlugFireSound=Sound'BWBPSomeOtherPackSounds.TechGun.electro_Shot'
+	SlugFireSound=Sound'BWBP_OP_Sounds.TechGun.electro_Shot'
 	AimedFireEmptyAnim="SightFire"
 	FireEmptyAnim="Fire"	
 	AimedFireSingleAnim="SightFire"

@@ -9,7 +9,7 @@ class HVCMk9Pack extends Actor;
 defaultproperties
 {
      DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BWBP2Hardware.LightningGun.LighterPack'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.LightningGun.LighterPack'
      bOnlyDrawIfAttached=True
      RemoteRole=ROLE_None
      RelativeLocation=(X=20.000000,Y=-2.000000)

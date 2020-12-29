@@ -298,7 +298,7 @@ defaultproperties
      DamageRadius=128.000000
      MomentumTransfer=90000.000000
      MyDamageType=Class'BallisticProV55.DTBX5Radius'
-     StaticMesh=StaticMesh'BallisticHardware2.BX5.MineV2'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.BX5.MineV2'
      CullDistance=3000.000000
      bNetTemporary=False
      Physics=PHYS_None

@@ -43,7 +43,7 @@ defaultproperties
      DamageTypeHead=Class'BWBPRecolorsPro.DTX8Knife'
      DamageTypeArm=Class'BWBPRecolorsPro.DTX8Knife'
      KickForce=100
-     BallisticFireSound=(Sound=SoundGroup'BallisticSounds_25.X4.X4_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      bCanBackstab=False
      FireAnim="Slash1"

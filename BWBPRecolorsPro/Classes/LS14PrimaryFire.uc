@@ -146,7 +146,7 @@ defaultproperties
 {
 	 SelfHeatPerShot=0.900000
 	 SelfHeatDeclineDelay=0.5
-     SpecialFireSound=Sound'PackageSounds4Pro.LS14.Gauss-FireDouble'
+     SpecialFireSound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FireDouble'
      HeatPerShot=15.000000
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=0.000000
@@ -160,13 +160,13 @@ defaultproperties
      PenetrateForce=500
      bPenetrate=True
      FireModes(0)=(mDamage=45,mDamageType=Class'BWBPRecolorsPro.DTLS14Twin',mDamageTypeHead=Class'BWBPRecolorsPro.DTLS14Twin',mFireRate=0.500000,mFireChaos=1.000000,mRecoil=512.000000,mAmmoPerFire=2,bModeInstantHit=True)
-     ClipFinishSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-LastShot',Volume=1.000000,Radius=48.000000,bAtten=True)
-     DryFireSound=(Sound=Sound'PackageSounds4Pro.LS14.Gauss-Empty',Volume=1.200000)
+     ClipFinishSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-LastShot',Volume=1.000000,Radius=48.000000,bAtten=True)
+     DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Empty',Volume=1.200000)
      MuzzleFlashClass=Class'BWBPRecolorsPro.LS14FlashEmitter'
      FlashScaleFactor=0.400000
      FireRecoil=150.000000
      FireChaos=0.300000
-     BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.LS14.Gauss-Fire',Volume=0.900000)
+     BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LS14.Gauss-Fire',Volume=0.900000)
      FireEndAnim=
      FireRate=0.150000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_Laser'

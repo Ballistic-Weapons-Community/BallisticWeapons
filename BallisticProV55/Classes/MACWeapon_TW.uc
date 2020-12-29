@@ -169,8 +169,8 @@ defaultproperties
 	Priority=1
 	PlayerViewOffset=(Y=0.000000)
 	ItemName="HAMR Turret"
-	Mesh=SkeletalMesh'BWBP4b-Anims.Artillery-Turret'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HAMRTurret'
 	DrawScale=0.250000
 	PrePivot=(Z=8.000000)
-	Skins(1)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

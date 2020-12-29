@@ -124,12 +124,12 @@ defaultproperties
      LightSaturation=120
      LightBrightness=192.000000
      LightRadius=6.000000
-     StaticMesh=StaticMesh'BWBPOtherPackStatic.XOXO.O'
+     StaticMesh=StaticMesh'BWBP_OP_Static.XOXO.O'
      bDynamicLight=True
      bNetTemporary=False
      bSkipActorPropertyReplication=True
      bOnlyDirtyReplication=True
-     AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire2FlyBy'
+     AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire2FlyBy'
      LifeSpan=4.000000
      DrawScale=3.000000
      Style=STY_Additive

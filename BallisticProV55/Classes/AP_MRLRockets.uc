@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=54
      InventoryType=Class'BallisticProV55.Ammo_MRL'
      PickupMessage="You picked up 54 Peacemaker rockets."
-     PickupSound=Sound'BallisticSounds2.Ammo.RocketPickup'
-     StaticMesh=StaticMesh'BWBP4-Hardware.MRL.JL21-Ammo'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.RocketPickup'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.JL21-Ammo'
      DrawScale=0.400000
      PrePivot=(Z=-10.000000)
      CollisionRadius=8.000000

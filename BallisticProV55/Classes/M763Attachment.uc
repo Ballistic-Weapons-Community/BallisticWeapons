@@ -179,6 +179,6 @@ defaultproperties
      MeleeStrikeAnim="Melee_swing"
      SingleFireAnim="RifleHip_FireCock"
      SingleAimedFireAnim="RifleAimed_FireCock"
-     Mesh=SkeletalMesh'BallisticAnims2.M763-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M763_TPm'
      DrawScale=0.080000
 }

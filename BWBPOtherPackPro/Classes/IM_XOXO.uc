@@ -24,9 +24,9 @@ defaultproperties
      HitDecals(0)=Class'BallisticProV55.AD_A42General'
      HitDecals(1)=Class'BallisticProV55.AD_A42General'
      HitDecals(2)=Class'BallisticProV55.AD_Explosion'
-     HitSounds(0)=Sound'BWBPOtherPackSound.XOXO.XOXO-ImpactBig'
-     HitSounds(1)=Sound'BWBPOtherPackSound.XOXO.XOXO-ImpactSmall'
-     HitSounds(2)=Sound'BWBPOtherPackSound.XOXO.XOXO-Sexplosion'
+     HitSounds(0)=Sound'BWBP_OP_Sounds.XOXO.XOXO-ImpactBig'
+     HitSounds(1)=Sound'BWBP_OP_Sounds.XOXO.XOXO-ImpactSmall'
+     HitSounds(2)=Sound'BWBP_OP_Sounds.XOXO.XOXO-Sexplosion'
      HitSoundVolume=1.300000
      HitSoundRadius=378.000000
 }

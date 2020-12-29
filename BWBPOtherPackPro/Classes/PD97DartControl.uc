@@ -150,7 +150,7 @@ defaultproperties
          StartSizeRange=(X=(Min=-75.000000,Max=75.000000),Y=(Min=-75.000000,Max=75.000000),Z=(Min=-75.000000,Max=75.000000))
          InitialParticlesPerSecond=20.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects2.Particles.NewSmoke1g'
+         Texture=Texture'BW_Core_WeaponTex.Particles.NewSmoke1g'
          TextureUSubdivisions=1
          TextureVSubdivisions=1
          StartVelocityRange=(X=(Min=-45.000000,Max=45.000000),Y=(Min=-45.000000,Max=45.000000),Z=(Min=-45.000000,Max=45.000000))
@@ -161,7 +161,7 @@ defaultproperties
      bReplicateInstigator=True
      Physics=PHYS_Trailer
      RemoteRole=ROLE_SimulatedProxy
-     AmbientSound=Sound'BallisticSounds2.FP7.FP7FireLoop'
+     AmbientSound=Sound'BW_Core_WeaponSound.FP7.FP7FireLoop'
      SoundRadius=128.000000
      bNotOnDedServer=False
 }

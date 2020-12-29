@@ -48,7 +48,7 @@ defaultproperties
          StartSizeRange=(X=(Min=8.000000,Max=8.000000),Y=(Min=8.000000,Max=8.000000),Z=(Min=8.000000,Max=8.000000))
          InitialParticlesPerSecond=75.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects2.Particles.NewSmoke1f'
+         Texture=Texture'BW_Core_WeaponTex.Particles.NewSmoke1f'
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRadialRange=(Min=80.000000,Max=250.000000)
          GetVelocityDirectionFrom=PTVD_AddRadial

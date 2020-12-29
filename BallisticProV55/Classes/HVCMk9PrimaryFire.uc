@@ -390,7 +390,7 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
-     FireSoundLoop=Sound'BWBP2-Sounds.LightningGun.LG-FireLoop'
+     FireSoundLoop=Sound'BW_Core_WeaponSound.LightningGun.LG-FireLoop'
      Damage=10.000000
      HeadMult=1f
      LimbMult=1f
@@ -402,7 +402,7 @@ defaultproperties
 	 MaxWaterTraceRange=9000
      bNoPositionalDamage=True
      FireChaos=0.000000
-     BallisticFireSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-FireStart')
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart')
      bPawnRapidFireAnim=True
      FireRate=0.070000
      AmmoClass=Class'BallisticProV55.Ammo_HVCCells'

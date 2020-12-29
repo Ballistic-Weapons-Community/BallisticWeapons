@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class A500Attachment extends BallisticAttachment;
 
@@ -22,6 +22,6 @@ defaultproperties
      ReloadAnim="Reload_AR"
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BallisticAnims_25.Reptile_3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.A500AcidGun_TPm'
      DrawScale=0.175000
 }

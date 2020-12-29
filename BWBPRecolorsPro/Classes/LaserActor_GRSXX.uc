@@ -8,5 +8,5 @@ class LaserActor_GRSXX extends LaserActor;
 
 defaultproperties
 {
-     Skins(0)=FinalBlend'BallisticRecolors3TexPro.Glock_Gold.GoldLaserFB'
+     Skins(0)=FinalBlend'BWBP_SKC_Tex.Glock_Gold.GoldLaserFB'
 }

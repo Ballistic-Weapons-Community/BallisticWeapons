@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class Ammo_MARSGrenades extends BallisticAmmo;
 
@@ -57,9 +57,9 @@ defaultproperties
 {
      MaxAmmo=3
      InitialAmount=2
-     IconFlashMaterial=Shader'BallisticTextures_25.OA-AR.AmmoIcon_OAARFlash'
+     IconFlashMaterial=Shader'BW_Core_WeaponTex.OA-AR.AmmoIcon_OAARFlash'
      PickupClass=Class'BWBPRecolorsPro.AP_STANAGShockwave'
-     IconMaterial=Texture'BallisticTextures_25.OA-AR.AmmoIcon_OAAR'
+     IconMaterial=Texture'BW_Core_WeaponTex.OA-AR.AmmoIcon_OAAR'
      IconCoords=(X2=64,Y2=64)
      ItemName="MARS-3 Shockwave Grenades"
 }

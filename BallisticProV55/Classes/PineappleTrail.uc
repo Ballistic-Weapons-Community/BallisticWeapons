@@ -23,7 +23,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=50.000000,Max=50.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
          InitialParticlesPerSecond=20.000000
-         Texture=Texture'BallisticEffects.Particles.AquaFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
          SecondsBeforeInactive=0.000000
      End Object
      Emitters(0)=SpriteEmitter'BallisticProV55.PineappleTrail.SpriteEmitter8'
@@ -47,7 +47,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=35.000000,Max=35.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=20.000000))
          InitialParticlesPerSecond=500000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
      End Object

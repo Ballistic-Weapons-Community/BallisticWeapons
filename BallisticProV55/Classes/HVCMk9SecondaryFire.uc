@@ -288,7 +288,7 @@ simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNor
 
 defaultproperties
 {
-     ChargeSound=Sound'BWBP2-Sounds.LightningGun.LG-Charge'
+     ChargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Charge'
      Damage=200.000000
      HeadMult=1f
      LimbMult=1f
@@ -300,7 +300,7 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
      FireRecoil=96.000000
      FirePushbackForce=1600.000000
-     BallisticFireSound=(Sound=Sound'BWBP2-Sounds2.LightningGun.LG-SecFire',Volume=0.900000)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-SecFire',Volume=0.900000)
      bFireOnRelease=True
      FireAnim="Fire2"
      FireEndAnim=

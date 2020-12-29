@@ -52,7 +52,7 @@ defaultproperties
          StartSizeRange=(X=(Min=25.000000,Max=30.000000),Y=(Min=25.000000,Max=30.000000),Z=(Min=25.000000,Max=30.000000))
          InitialParticlesPerSecond=10000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects.Particles.Smoke6'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=30.000000,Max=60.000000),Y=(Min=-30.000000,Max=30.000000),Z=(Min=-30.000000,Max=30.000000))
@@ -61,7 +61,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BallisticProV55.IE_BulletWood.SpriteEmitter42'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter19
-         StaticMesh=StaticMesh'BallisticHardware2.Impact.WoodChipA1'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.WoodChipA1'
          UseParticleColor=True
          FadeOut=True
          RespawnDeadParticles=False
@@ -85,7 +85,7 @@ defaultproperties
      Emitters(1)=MeshEmitter'BallisticProV55.IE_BulletWood.MeshEmitter19'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter20
-         StaticMesh=StaticMesh'BallisticHardware2.Impact.WoodImpactHoleA1'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.WoodImpactHoleA1'
          UseParticleColor=True
          FadeOut=True
          FadeIn=True
@@ -110,7 +110,7 @@ defaultproperties
      Emitters(2)=MeshEmitter'BallisticProV55.IE_BulletWood.MeshEmitter20'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter21
-         StaticMesh=StaticMesh'BallisticHardware2.Effects.VolumetricA3'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VolumetricA3'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -160,7 +160,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.200000)
          StartSizeRange=(X=(Min=6.000000,Max=6.000000),Y=(Min=6.000000,Max=6.000000),Z=(Min=6.000000,Max=6.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticEffects.Particles.BlazingSubdivide'
+         Texture=Texture'BW_Core_WeaponTex.Particles.BlazingSubdivide'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -186,7 +186,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=6.500000,Max=6.500000),Y=(Min=6.500000,Max=6.500000),Z=(Min=6.500000,Max=6.500000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticEffects.Particles.FlameParts'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          SecondsBeforeInactive=0.000000

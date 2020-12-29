@@ -42,6 +42,6 @@ defaultproperties
      MaleSuicide="%o wanted to experience magnetic acceleration first hand!"
      bAlwaysSevers=True
      bSpecial=True
-     PawnDamageSounds(0)=SoundGroup'BallisticSounds2.BulletImpacts.Headshot'
+     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
      KDamageImpulse=1000.000000
 }

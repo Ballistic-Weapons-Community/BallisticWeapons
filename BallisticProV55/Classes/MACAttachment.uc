@@ -114,6 +114,6 @@ defaultproperties
      FlashScale=2.500000
      BrassClass=Class'BallisticProV55.Brass_HAMR'
      InstantMode=MU_None
-     Mesh=SkeletalMesh'BWBP4b-Anims.Artillery-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.HAMR_TPm'
      DrawScale=0.200000
 }

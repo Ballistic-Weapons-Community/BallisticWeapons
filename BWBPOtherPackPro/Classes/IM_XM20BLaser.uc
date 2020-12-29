@@ -10,5 +10,5 @@ defaultproperties
 {
      HitEffects(0)=Class'BWBPOtherPackPro.IE_XM20BImpact'
      HitDecals(0)=Class'BWBPOtherPackPro.AD_XM20BScorch'
-     HitSounds(0)=Sound'PackageSounds4Pro.XM20.XM20-Impact'
+     HitSounds(0)=Sound'BWBP_SKC_Sounds.XM20.XM20-Impact'
 }

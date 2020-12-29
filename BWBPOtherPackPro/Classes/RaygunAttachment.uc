@@ -33,7 +33,7 @@ defaultproperties
      ReloadAnim="Reload_MG"
      ReloadAnimRate=2.000000
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBPOtherPackAnim.Raygun_TP'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.Raygun_TPm'
      RelativeLocation=(Z=7.000000)
      DrawScale=0.350000
      SoundRadius=256.000000

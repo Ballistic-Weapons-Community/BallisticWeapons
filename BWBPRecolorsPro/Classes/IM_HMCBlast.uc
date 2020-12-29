@@ -31,7 +31,7 @@ defaultproperties
      HitDecals(7)=Class'BWBPRecolorsPro.AD_HMCBlast'
      HitDecals(8)=Class'BWBPRecolorsPro.AD_HMCBlast'
      HitDecals(10)=Class'BWBPRecolorsPro.AD_HMCBlast'
-     HitSounds(9)=SoundGroup'BallisticSounds2.BulletImpacts.BulletWater'
+     HitSounds(9)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletWater'
      HitSoundVolume=1.400000
      HitSoundRadius=256.000000
 }

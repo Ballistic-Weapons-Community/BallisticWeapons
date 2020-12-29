@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=14
      InventoryType=Class'BallisticProV55.Ammo_20mmRailgun'
      PickupMessage="You picked up railgun slugs."
-     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BallisticHardware2.Ammo.M75Clip'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.M75Clip'
      DrawScale=0.300000
      CollisionRadius=8.000000
      CollisionHeight=14.000000

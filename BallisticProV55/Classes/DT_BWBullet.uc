@@ -44,7 +44,7 @@ defaultproperties
      bInstantHit=True
      bRagdollBullet=True
      bBulletHit=True
-     PawnDamageSounds(0)=SoundGroup'BallisticSounds2.BulletImpacts.BulletFlesh'
+     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletFlesh'
      VehicleDamageScaling=0.350000
      VehicleMomentumScaling=0.150000
 }

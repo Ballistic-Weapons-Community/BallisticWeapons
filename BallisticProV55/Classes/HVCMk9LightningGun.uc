@@ -661,12 +661,12 @@ function float SuggestDefenseStyle()	{	return -0.9;	}
 
 defaultproperties
 {
-	VentingSound=Sound'BWBP2-Sounds.LightningGun.LG-Coolant'
-	OverheatSound=Sound'BWBP2-Sounds.LightningGun.LG-OverHeat'
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-	UsedAmbientSound=Sound'BWBP2-Sounds.LightningGun.LG-Ambient'
+	VentingSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Coolant'
+	OverheatSound=Sound'BW_Core_WeaponSound.LightningGun.LG-OverHeat'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	UsedAmbientSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
 	AIReloadTime=0.200000
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_HVCMk9'
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_HVCMk9'
 	BigIconCoords=(Y1=32,Y2=223)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
@@ -676,8 +676,8 @@ defaultproperties
 	ManualLines(1)="Charges up the weapon to unleash a searing bolt of red lightning. Like the primary, has no recoil and perfect hip accuracy."
 	ManualLines(2)="Holding Reload will cool off the weapon, reducing the heat buildup and preventing the threat of overcharge.||Will not function correctly underwater. Causes the user and nearby targets to be electrocuted if so used.||The HVC-Mk9 does not possess any iron sights.||This weapon is effective at all ranges."
 	SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.5;1.0")
-	BringUpSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-Pullout',Volume=0.750000)
-	PutDownSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-Putaway',Volume=0.600000)
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Pullout',Volume=0.750000)
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
 	bNoMag=True
 	WeaponModes(0)=(ModeName="Stream",ModeID="WM_None")
 	WeaponModes(1)=(bUnavailable=True,Value=4.000000)
@@ -703,7 +703,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.HVCMk9Pickup'
 	PlayerViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
 	AttachmentClass=Class'BallisticProV55.HVCMk9Attachment'
-	IconMaterial=Texture'BWBP2-Tex.Lighter.SmallIcon_LG'
+	IconMaterial=Texture'BW_Core_WeaponTex.Lighter.SmallIcon_LG'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="HVC-Mk9 Lightning Gun"
 	LightType=LT_Pulse
@@ -712,9 +712,9 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP2b-Anims.Lighter'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HVC'
 	DrawScale=0.250000
-	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	bFullVolume=True
 	SoundVolume=64
 	SoundRadius=128.000000

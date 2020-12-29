@@ -4,9 +4,9 @@ defaultproperties
 {
      MaxAmmo=36
      InitialAmount=18
-     IconFlashMaterial=Shader'BWBPOtherPackTex3.Akeron.AmmoIcon_AkeronFlash'
+     IconFlashMaterial=Shader'BWBP_OP_Tex.Akeron.AmmoIcon_AkeronFlash'
      PickupClass=Class'BWBPOtherPackPro.AP_AkeronPod'
-     IconMaterial=Texture'BWBPOtherPackTex3.Akeron.AmmoIcon_Akeron'
+     IconMaterial=Texture'BWBP_OP_Tex.Akeron.AmmoIcon_Akeron'
      IconCoords=(X1=128,Y1=64,X2=191,Y2=127)
      ItemName="Akeron Rockets"
 }

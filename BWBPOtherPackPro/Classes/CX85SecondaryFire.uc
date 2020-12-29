@@ -42,7 +42,7 @@ defaultproperties
      FlashBone="tip2"
      FireRecoil=256.000000
      FireChaos=0.500000
-     BallisticFireSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_FireDart',Volume=1.350000)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=1.350000)
      bModeExclusive=False
      PreFireAnim=
      FireAnim="FireAlt"

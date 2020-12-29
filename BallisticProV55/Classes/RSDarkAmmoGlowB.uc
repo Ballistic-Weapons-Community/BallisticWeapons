@@ -18,7 +18,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=20.000000,Max=20.000000),Y=(Min=20.000000,Max=20.000000),Z=(Min=20.000000,Max=20.000000))
          InitialParticlesPerSecond=50.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
      Emitters(0)=SpriteEmitter'BallisticProV55.RSDarkAmmoGlowB.SpriteEmitter12'

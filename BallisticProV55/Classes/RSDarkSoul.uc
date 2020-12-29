@@ -387,7 +387,7 @@ static function RSDarkSoul SpawnSoul(vector StartLoc, Pawn Killer, Pawn Victim, 
 
 defaultproperties
 {
-     CollectSound=Sound'BWBP4-Sounds.DarkStar.Dark-Soul'
+     CollectSound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Soul'
      MySoulPower=1.000000
      Begin Object Class=TrailEmitter Name=TrailEmitter2
          TrailShadeType=PTTST_Linear
@@ -398,7 +398,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=25.000000,Max=30.000000))
          DrawStyle=PTDS_Darken
-         Texture=Texture'BWBP4-Tex.DarkStar.DarkTrail'
+         Texture=Texture'BW_Core_WeaponTex.DarkStar.DarkTrail'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=999999.000000,Max=999999.000000)
      End Object
@@ -419,7 +419,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=75.000000,Max=75.000000),Y=(Min=75.000000,Max=75.000000),Z=(Min=75.000000,Max=75.000000))
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
      End Object
@@ -440,7 +440,7 @@ defaultproperties
          SpinsPerSecondRange=(X=(Max=0.025000))
          StartSpinRange=(X=(Min=0.500000,Max=0.500000))
          StartSizeRange=(X=(Min=48.000000,Max=50.000000),Y=(Min=48.000000,Max=50.000000),Z=(Min=48.000000,Max=50.000000))
-         Texture=Texture'BWBP4-Tex.DarkStar.EvilSoul'
+         Texture=Texture'BW_Core_WeaponTex.DarkStar.EvilSoul'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.500000,Max=1.500000)
      End Object
@@ -464,7 +464,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.310000,RelativeSize=0.500000)
          SizeScale(2)=(RelativeTime=1.000000)
          StartSizeRange=(X=(Min=25.000000,Max=25.000000),Y=(Min=25.000000,Max=25.000000),Z=(Min=25.000000,Max=25.000000))
-         Texture=Texture'BallisticEffects.Particles.AquaFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRange=(X=(Min=-100.000000,Max=-100.000000),Z=(Min=-300.000000,Max=-300.000000))

@@ -345,11 +345,11 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Minigun'
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'
      TracerChance=0.800000
-     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_MG"
      ReloadAnimRate=1.500000
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BallisticAnims2.XMV850-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.XMV850_TPm'
      DrawScale=0.300000
 }

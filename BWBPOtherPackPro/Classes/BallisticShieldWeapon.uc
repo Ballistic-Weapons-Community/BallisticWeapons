@@ -5,7 +5,7 @@
 //================================================
 class BallisticShieldWeapon extends BallisticMeleeWeapon;
 
-#exec OBJ LOAD FILE=BallisticProTextures.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 
 var float AimDisplacementBlockThreshold; //Blocking melee will displace the shield. The duration of the displacement is based on how close the damage is to the threshold.
 
@@ -242,16 +242,16 @@ function float SuggestDefenseStyle()
 defaultproperties
 {
 	 AimDisplacementBlockThreshold=40.000000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBPSomeOtherPackTex.BallisticShield.BigIcon_BallisticShield'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BWBP_OP_Tex.BallisticShield.BigIcon_BallisticShield'
      BigIconCoords=(X1=180,Y1=0,X2=320,Y2=255)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      ManualLines(0)="Attacks with the weapon and shield. The shield continues to block whilst attacking."
      ManualLines(1)="Prepared strike with the weapons."
      ManualLines(2)="Hold Weapon Function to block with the shield, which dramatically increases its defensive effectiveness at the cost of your ability to see. The shield is further bolstered in effectiveness if the user is crouching while blocking.||The ballistic shield reduces movement speed whilst active."
      SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
      bNoMag=True
      GunLength=0.000000
 	ParamsClass=Class'BallisticShieldWeaponParams'
@@ -274,9 +274,9 @@ defaultproperties
      PickupClass=Class'BWBPOtherPackPro.BallisticShieldPickup'
      PlayerViewOffset=(Y=75.000000,Z=-125.000000)
      AttachmentClass=Class'BWBPOtherPackPro.BallisticShieldAttachment'
-     IconMaterial=Texture'BWBPSomeOtherPackTex.BallisticShield.Icon_BallisticShield'
+     IconMaterial=Texture'BWBP_OP_Tex.BallisticShield.Icon_BallisticShield'
      IconCoords=(X2=110,Y2=32)
      ItemName="RSH-1034 Riot Shield"
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.BallisticShield_FP'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_BallisticShield'
      DrawScale=1.250000
 }

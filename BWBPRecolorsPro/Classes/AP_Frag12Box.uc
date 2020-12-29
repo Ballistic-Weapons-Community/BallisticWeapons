@@ -17,8 +17,8 @@ defaultproperties
      AmmoAmount=3
      InventoryType=Class'BWBPRecolorsPro.Ammo_20mmGrenade'
      PickupMessage="You picked up 3 FRAG-12 explosives."
-     PickupSound=Sound'BallisticSounds2.Ammo.GrenadePickup'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.Bulldog.BullDogAmmoGL'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.GrenadePickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Ammo'
      DrawScale=0.800000
      CollisionRadius=8.000000
      CollisionHeight=10.000000

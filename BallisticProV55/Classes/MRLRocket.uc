@@ -98,8 +98,8 @@ defaultproperties
      WallPenetrationForce=64
      MomentumTransfer=5500.000000
      MyDamageType=Class'BallisticProV55.DT_MRL'
-     StaticMesh=StaticMesh'BWBP4-Hardware.MRL.MRLRocket'
-     AmbientSound=Sound'BWBP4-Sounds.MRL.MRL-RocketFly'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
+     AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'
      DrawScale=0.350000
      SoundVolume=64
      bFixedRotationDir=True

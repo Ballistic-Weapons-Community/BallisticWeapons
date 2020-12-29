@@ -126,7 +126,7 @@ defaultproperties
         ParticlesPerSecond=60.000000
         InitialParticlesPerSecond=500.000000
         DrawStyle=PTDS_AlphaBlend
-        Texture=Texture'BallisticEffects2.Particles.SmokeWisp-Alpha'
+        Texture=Texture'BW_Core_WeaponTex.Particles.SmokeWisp-Alpha'
         TextureUSubdivisions=4
         TextureVSubdivisions=2
         LifetimeRange=(Min=1.000000,Max=1.000000)
@@ -156,7 +156,7 @@ defaultproperties
         StartSizeRange=(X=(Min=15.000000,Max=15.000000),Y=(Min=15.000000,Max=15.000000),Z=(Min=15.000000,Max=15.000000))
         InitialParticlesPerSecond=5.000000
         DrawStyle=PTDS_AlphaBlend
-        Texture=Texture'BallisticEffects2.Particles.NewSmoke1f'
+        Texture=Texture'BW_Core_WeaponTex.Particles.NewSmoke1f'
         LifetimeRange=(Min=0.500000,Max=0.500000)
         StartVelocityRadialRange=(Min=20.000000,Max=250.000000)
         GetVelocityDirectionFrom=PTVD_AddRadial
@@ -188,7 +188,7 @@ defaultproperties
      AutoDestroy=True
      Physics=PHYS_Trailer
      RemoteRole=ROLE_SimulatedProxy
-     AmbientSound=Sound'BallisticSounds2.RX22A.RX22A-PackBurn'
+     AmbientSound=Sound'BW_Core_WeaponSound.RX22A.RX22A-PackBurn'
      bFullVolume=True
      SoundVolume=64
      SoundRadius=128.000000

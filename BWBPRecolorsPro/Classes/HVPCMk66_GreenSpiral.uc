@@ -34,7 +34,7 @@ defaultproperties
          SpinsPerSecondRange=(X=(Min=-0.250000,Max=-0.250000))
          StartSpinRange=(X=(Min=-0.450000,Max=-0.450000))
          StartSizeRange=(X=(Min=20.000000,Max=20.000000),Y=(Min=20.000000,Max=20.000000),Z=(Min=20.000000,Max=20.000000))
-         Texture=Texture'BWBP2-FX.Particles.FlareC2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareC2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=-50.000000,Max=-50.000000))
@@ -57,7 +57,7 @@ defaultproperties
          StartLocationOffset=(X=-12.000000)
          StartLocationRange=(X=(Min=-35.000000))
          StartSizeRange=(X=(Min=3.000000,Max=4.000000),Y=(Min=3.000000,Max=4.000000),Z=(Min=3.000000,Max=4.000000))
-         Texture=Texture'BWBP2-FX.Particles.LightningBoltCut2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.LightningBoltCut2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          StartVelocityRange=(X=(Min=-0.200000,Max=0.200000),Y=(Min=-3.000000,Max=1.000000),Z=(Max=3.000000))

@@ -147,7 +147,7 @@ defaultproperties
      Speed=3000.000000
      Damage=40.000000
      MyDamageType=Class'BallisticProV55.DTX3KnifeThrown'
-     StaticMesh=StaticMesh'BallisticHardware2.X3.X3PickupHi'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.X3.X3PickupHi'
      bNetTemporary=False
      Physics=PHYS_Falling
      LifeSpan=0.000000

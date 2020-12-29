@@ -40,7 +40,7 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          StartSizeRange=(X=(Min=8.000000,Max=12.000000),Y=(Min=8.000000,Max=12.000000),Z=(Min=8.000000,Max=12.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          LifetimeRange=(Min=0.100000,Max=0.200000)
      End Object
      Emitters(1)=SpriteEmitter'BallisticProV55.RSNovaArc.SpriteEmitter0'

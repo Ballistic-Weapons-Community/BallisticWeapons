@@ -26,7 +26,7 @@ defaultproperties
      KickForce=1500
      PenetrateForce=200
      bPenetrate=True
-     DryFireSound=(Sound=Sound'BallisticSounds2.D49.D49-DryFire',Volume=0.700000)
+     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
      bDryUncock=True
      MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
      FlashScaleFactor=0.900000
@@ -38,7 +38,7 @@ defaultproperties
      FireChaos=0.2
      XInaccuracy=16.000000
      YInaccuracy=16.000000
-     BallisticFireSound=(Sound=Sound'BallisticSounds3.AM67.AM67-Fire',Volume=1.100000)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Fire',Volume=1.100000)
      FireEndAnim=
      FireRate=0.325
      AmmoClass=Class'BallisticProV55.Ammo_50HV'

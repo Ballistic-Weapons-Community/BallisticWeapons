@@ -20,6 +20,6 @@ defaultproperties
      ItemName="Ammo"
      ItemAmount="+50%"
      Description="Extra Ammo.|Provides 50% extra starting ammo for all selected weapons."
-     Icon=Texture'BWEliminationTex.ui.Icon_Ammo'
+     Icon=Texture'BW_Core_WeaponTex.ui.Icon_Ammo'
      bBonusAmmo=True
 }

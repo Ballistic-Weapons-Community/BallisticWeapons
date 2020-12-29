@@ -267,9 +267,9 @@ function bool CanHeal(Actor Other)
 
 defaultproperties
 {
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-	UsedAmbientSound=Sound'BallisticSounds2.A73.A73Hum1'
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_A73'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	UsedAmbientSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_A73'
 	BigIconCoords=(Y1=32,Y2=220)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_RapidProj=True
@@ -279,12 +279,12 @@ defaultproperties
 	ManualLines(2)="Has a melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab.||The A73 is effective at close range and very effective at medium range. It is also capable of healing nodes and vehicles with its plasma attacks. As an energy weapon, the A73 has lower recoil than conventional arms and its projectiles penetrate players but not walls and surfaces."
 	SpecialInfo(0)=(Info="240.0;20.0;0.9;80.0;0.0;0.4;0.1")
 	MeleeFireClass=Class'BallisticProV55.A73MeleeFire'
-	BringUpSound=(Sound=Sound'BallisticSounds2.A73.A73Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.A73.A73Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Putaway')
 	ReloadAnimRate=1.250000
-	ClipHitSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipHit')
-	ClipOutSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipOut')
-	ClipInSound=(Sound=Sound'BallisticSounds2.A73.A73-ClipIn')
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipIn')
 	ClipInFrame=0.700000
 	bNonCocking=True
 	WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
@@ -312,7 +312,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.A73Pickup'
 	PlayerViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
 	AttachmentClass=Class'BallisticProV55.A73Attachment'
-	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_A73'
+	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_A73'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="A73 Skrith Rifle"
 	LightType=LT_Pulse
@@ -323,11 +323,11 @@ defaultproperties
 	LightRadius=12.000000
 	Mesh=SkeletalMesh'BallisticProAnims.A73SkrithRifle'
 	DrawScale=0.187500
-	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-	Skins(1)=Texture'BallisticWeapons2.A73.A73AmmoSkin'
-	Skins(2)=Shader'BallisticWeapons2.A73.A73Skin_SD'
-	Skins(3)=Texture'BallisticWeapons2.A73.A73SkinB'
-	Skins(4)=Shader'BallisticWeapons2.A73.A73BladeShader'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.A73.A73AmmoSkin'
+	Skins(2)=Shader'BW_Core_WeaponTex.A73.A73Skin_SD'
+	Skins(3)=Texture'BW_Core_WeaponTex.A73.A73SkinB'
+	Skins(4)=Shader'BW_Core_WeaponTex.A73.A73BladeShader'
 	SoundPitch=56
 	SoundRadius=32.000000
 }

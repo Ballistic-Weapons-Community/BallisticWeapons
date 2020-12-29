@@ -15,7 +15,7 @@ defaultproperties
      BrassClass=Class'BWBPRecolorsPro.Brass_XClip'
      BrassBone="tip"
      BrassOffset=(X=10.000000)
-     BallisticFireSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
      PreFireAnim="PrepThrow"
      FireAnim="Throw"
      FireRate=2.000000

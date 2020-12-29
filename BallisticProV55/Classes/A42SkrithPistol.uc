@@ -232,8 +232,8 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_A42'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_A42'
 	BigIconCoords=(X1=80,Y1=24,X2=410,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_RapidProj=True
@@ -242,8 +242,8 @@ defaultproperties
 	ManualLines(1)="A charging hitscan beam whose lethality increases with charge. Both pistols will charge and fire simultaneously if dual wielded."
 	ManualLines(2)="Due to rechargeable batteries, the A42 will regain ammo at a slow rate when not in use. It is moderately effective at close range, with low recoil and good hipfire. A42 plasma will repair nodes and vehicles. The projectile attack will only penetrate players and not the environment."
 	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.A42.A42-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.A42.A42-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Putaway')
 	MagAmmo=18
 	bShouldDualInLoadout=False
 	bNonCocking=True
@@ -267,7 +267,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.A42Pickup'
 	PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-10.000000)
 	AttachmentClass=Class'BallisticProV55.A42Attachment'
-	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_A42'
+	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_A42'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="A42 Skrith Sidearm"
 	LightType=LT_Pulse
@@ -276,10 +276,10 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BallisticAnims2.A42'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_A42'
 	DrawScale=0.110000
-	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-	Skins(1)=Shader'BallisticWeapons2.A42.A42Skin_SD'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Shader'BW_Core_WeaponTex.A42.A42Skin_SD'
 	SoundPitch=56
 	SoundRadius=32.000000
 	

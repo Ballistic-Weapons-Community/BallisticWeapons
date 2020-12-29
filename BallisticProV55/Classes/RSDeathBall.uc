@@ -236,7 +236,7 @@ defaultproperties
      bDynamicLight=True
      bNetTemporary=False
      bUpdateSimulatedPosition=True
-     AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire1FlyBy'
+     AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire1FlyBy'
      LifeSpan=0.000000
      SoundVolume=255
      SoundRadius=75.000000

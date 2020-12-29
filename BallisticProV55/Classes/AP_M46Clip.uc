@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AP_M46Clip extends BallisticAmmoPickup;
 
@@ -30,8 +30,8 @@ defaultproperties
      AmmoAmount=50
      InventoryType=Class'BallisticProV55.Ammo_M46Clip'
      PickupMessage="You picked up assorted M46 battle rifle ammunition."
-     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BallisticHardware_25.OA-AR.OA-AR_Ammo'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.OA-AR.OA-AR_Ammo'
      DrawScale=0.400000
      CollisionRadius=8.000000
      CollisionHeight=5.200000

@@ -16,7 +16,7 @@ simulated event PostBeginPlay()
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter2
-         StaticMesh=StaticMesh'BallisticHardware2.G5.BazookaMuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.G5.BazookaMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -57,7 +57,7 @@ defaultproperties
          MaxParticles=1
          StartLocationOffset=(X=20.000000)
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.800000,Max=0.800000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)

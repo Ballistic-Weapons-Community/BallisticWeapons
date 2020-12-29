@@ -97,12 +97,12 @@ defaultproperties
      FlashMode=MU_Both
      TracerClass=Class'BallisticProV55.TraceEmitter_Railgun'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=Sound'BallisticSounds2.FlyBys.RailFlyBy',Volume=1.200000)
+     FlyBySound=(Sound=Sound'BW_Core_WeaponSound.FlyBys.RailFlyBy',Volume=1.200000)
      FlyByBulletSpeed=-1.000000
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"
-     AmbientSound=Sound'BallisticSounds2.M75.M75Hum'
-     Mesh=SkeletalMesh'BallisticAnims2.Railgun-3rd'
+     AmbientSound=Sound'BW_Core_WeaponSound.M75.M75Hum'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M75_TPm'
      DrawScale=0.130000
      SoundVolume=48
      SoundRadius=128.000000

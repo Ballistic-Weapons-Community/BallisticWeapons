@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AP_XMK5Clip extends BallisticAmmoPickup;
 
@@ -30,8 +30,8 @@ defaultproperties
      AmmoAmount=80
      InventoryType=Class'BallisticProV55.Ammo_XMK5Clip'
      PickupMessage="You picked up XMk5 SMG rounds and darts."
-     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BallisticHardware_25.OA-SMG.OA-SMG_Ammo'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.OA-SMG.OA-SMG_Ammo'
      DrawScale=0.400000
      CollisionRadius=8.000000
      CollisionHeight=5.200000

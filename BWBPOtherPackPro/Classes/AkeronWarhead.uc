@@ -135,7 +135,7 @@ simulated function PostNetBeginPlay()
 		Controller.SetRotation(Rotation);
 		PlayerController(Controller).SetViewTarget(self);
 		Controller.GotoState(LandMovementState);
-		PlayOwnedSound(Sound'BallisticSounds3.G5.G5-Fire1',SLOT_Interact,1.0);
+		PlayOwnedSound(Sound'BW_Core_WeaponSound.G5.G5-Fire1',SLOT_Interact,1.0);
 	}
 }
 
@@ -631,7 +631,7 @@ defaultproperties
      EyeHeight=0.000000
 
 	 DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BallisticHardware_25.BOGP.BOGP_Grenade'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_Grenade'
 	 DrawScale=0.500000
 	 AmbientGlow=96
 
@@ -658,7 +658,7 @@ defaultproperties
      ImpactManager=Class'BWBPOtherPackPro.IM_Akeron'
 	 ArmThreshold=0.150000
 
-	 AmbientSound=Sound'BallisticSounds2.G5.G5-RocketFly'
+	 AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
      SoundRadius=100.000000
 
 	 bCanTeleport=False

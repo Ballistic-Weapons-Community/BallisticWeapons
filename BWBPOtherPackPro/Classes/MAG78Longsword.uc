@@ -244,16 +244,16 @@ function float SuggestDefenseStyle()
 
 defaultproperties
 {
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBPSomeOtherPackTex.Longsword.BigIcon_MAGSaw'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BWBP_OP_Tex.Longsword.BigIcon_MAGSaw'
      BigIconCoords=(Y1=32,Y2=230)
      BCRepClass=Class'BallisticReplicationInfo'
      ManualLines(0)="Slashes with the longsword. Has a long range and moderate damage output."
      ManualLines(1)="Prepares a thrust, which will be extended to longpoint upon getting within reach of anything, rapidly dealing damage through the animation. This attack inflicts more damage from behind."
      ManualLines(2)="The Weapon Function key allows the player to block. Whilst blocking, no attacks are possible, but all melee damage striking the player frontally will be mitigated.||The MAG-SAW is effective at close range, but has lower DPS than shorter ranged melee weapons."
      SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-     BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
      bNoMag=True
      GunLength=0.000000
 	 bAimDisabled=True
@@ -277,13 +277,13 @@ defaultproperties
      PickupClass=Class'MAG78Pickup'
      PlayerViewOffset=(X=10.000000,Z=-20.000000)
      AttachmentClass=Class'MAG78Attachment'
-     IconMaterial=Texture'BWBPSomeOtherPackTex.Longsword.Icon_MAGSaw'
+     IconMaterial=Texture'BWBP_OP_Tex.Longsword.Icon_MAGSaw'
      IconCoords=(X2=127,Y2=31)
 	 bUseBigIcon=True
      ItemName="MAG-SAW Longsword"
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.ChainsawLongsword_FP'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_MAGSAW'
      DrawScale=1.250000
-	 Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Shader'BWBPSomeOtherPackTex.Longsword.ChainsawLongswordShiny'
-	 Skins(2)=Texture'BWBP4-Tex.DarkStar.DarkStarChain'
+	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+     Skins(1)=Shader'BWBP_OP_Tex.Longsword.ChainsawLongswordShiny'
+	 Skins(2)=Texture'BW_Core_WeaponTex.DarkStar.DarkStarChain'
 }

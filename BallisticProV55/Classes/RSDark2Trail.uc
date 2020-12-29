@@ -19,7 +19,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=35.000000,Max=35.000000),Y=(Min=35.000000,Max=35.000000),Z=(Min=35.000000,Max=35.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticEffects.Particles.AquaFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.100000,Max=0.500000)
      End Object
@@ -43,7 +43,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=15.000000),Y=(Min=10.000000,Max=15.000000),Z=(Min=10.000000,Max=15.000000))
          InitialParticlesPerSecond=5000.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.AquaBubbleA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaBubbleA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.700000,Max=1.000000)
      End Object
@@ -65,7 +65,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          InitialParticlesPerSecond=5000.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.Shockwave'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -92,7 +92,7 @@ defaultproperties
          StartSizeRange=(X=(Min=3.000000,Max=4.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=9999.000000,Max=9999.000000)
      End Object

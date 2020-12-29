@@ -138,6 +138,6 @@ defaultproperties
 	 ReloadAnim="Reload_MG"
 	 ReloadAnimRate=1.500000
      bRapidFire=True
-     Mesh=SkeletalMesh'BallisticAnims2.Bazooka-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.G5Bazooka_TPm'
      DrawScale=0.230000
 }

@@ -134,7 +134,7 @@ defaultproperties
      DamageTypeHead=Class'BallisticProV55.DTA909Head'
      DamageTypeArm=Class'BallisticProV55.DTA909Limb'
      KickForce=100
-     BallisticFireSound=(Sound=SoundGroup'BallisticSounds3.A909.A909Slash',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.A909.A909Slash',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      FireAnim="PrepHack"
      FireAnimRate=1.200000

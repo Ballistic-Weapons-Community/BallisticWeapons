@@ -4,9 +4,9 @@
 class M290Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticWeapons2.utx
-#exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,33 +16,33 @@ class M290Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticWeapons2.M290.M290Shotgun');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.M290.M290Shotgun');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.M290.M290Shotgun');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Concrete');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Metal');
-	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Wood');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.M290.M290Shotgun');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Metal');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Wood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyShell');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Ammo.M763ShellBox');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M290.M290PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M290.M290PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Ammo.M763ShellBox');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M290.M290PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M290.M290PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticHardware2.M290.M290PickupLo'
+     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.M290.M290PickupLo'
      PickupDrawScale=0.200000
      InventoryType=Class'BallisticProV55.M290Shotgun'
      RespawnTime=120.000000
      PickupMessage="You picked up the M290 shotgun."
-     PickupSound=Sound'BallisticSounds2.M290.M290Putaway'
-     StaticMesh=StaticMesh'BallisticHardware2.M290.M290PickupHi'
+     PickupSound=Sound'BW_Core_WeaponSound.M290.M290Putaway'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M290.M290PickupHi'
      Physics=PHYS_None
      DrawScale=0.200000
      CollisionHeight=3.500000

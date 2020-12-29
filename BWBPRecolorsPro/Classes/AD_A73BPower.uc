@@ -6,6 +6,6 @@ class AD_A73BPower extends AD_ImpactDecal
 
 defaultproperties
 {
-     ProjTexture=Texture'BallisticRecolors3TexPro.A73b.A73BScorch'
+     ProjTexture=Texture'BWBP_SKC_Tex.A73b.A73BScorch'
      DrawScale=0.800000
 }

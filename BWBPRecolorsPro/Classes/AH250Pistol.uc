@@ -220,35 +220,35 @@ defaultproperties
 	ManualLines(0)="High-powered semi-automatic fire."
 	ManualLines(1)="Engages the scope."
 	ManualLines(2)="Effective at medium range."
-	LaserOnSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
-	LaserOffSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
+	LaserOnSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
+	LaserOffSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
 	RDSBone="RedDotSight"
 	MuzzBone="Compensator"
 	LAMBone="LAM"
 	ScopeBone="Scope"
 	BulletBone="Bullet"
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
-	BigIconMaterial=Texture'BallisticRecolors4TexPro.Eagle.BigIcon_EagleAlt'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.Eagle.BigIcon_EagleAlt'
 	BigIconCoords=(X1=48,Y1=0,X2=455,Y2=255)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="140.0;12.0;0.7;70.0;0.55;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
-	CockSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-Cock',Volume=5.100000,Radius=48.000000)
-	ClipHitSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipHit',Volume=2.500000,Radius=48.000000)
-	ClipOutSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipOut',Volume=2.500000,Radius=48.000000)
-	ClipInSound=(Sound=Sound'PackageSounds4Pro.Eagle.Eagle-ClipIn',Volume=2.500000,Radius=48.000000)
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-Cock',Volume=5.100000,Radius=48.000000)
+	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-ClipHit',Volume=2.500000,Radius=48.000000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-ClipOut',Volume=2.500000,Radius=48.000000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-ClipIn',Volume=2.500000,Radius=48.000000)
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Semi")
 	WeaponModes(1)=(ModeName="Mode-2",bUnavailable=True,Value=7.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	ZoomType=ZT_Fixed
-	ScopeViewTex=Texture'BallisticRecolors4TexPro.Eagle.Eagle-ScopeView'
-	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
+	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=40.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
@@ -274,7 +274,7 @@ defaultproperties
 	PlayerViewOffset=(X=15,Y=12,Z=-37)
 	BobDamping=1.200000
 	AttachmentClass=Class'BWBPRecolorsPro.AH250Attachment'
-	IconMaterial=Texture'BallisticRecolors4TexPro.Eagle.SmallIcon_EagleAlt'
+	IconMaterial=Texture'BWBP_SKC_Tex.Eagle.SmallIcon_EagleAlt'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="AH250 Assault Pistol"
 	LightType=LT_Pulse
@@ -283,12 +283,12 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.DEagle_FP'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AHDeagle'
 	DrawScale=0.800000
-	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-	Skins(1)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-MainBlack'
-	Skins(2)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-MiscBlack'
-	Skins(3)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-Scope'
-	Skins(4)=Texture'BallisticRecolors4TexPro.Eagle.Eagle-FrontBlack'
-	Skins(5)=Shader'BallisticRecolors4TexPro.Eagle.Eagle-SightDotGreen'
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MainBlack'
+	Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack'
+	Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope'
+	Skins(4)=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontBlack'
+	Skins(5)=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen'
 }

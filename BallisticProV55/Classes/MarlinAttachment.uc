@@ -20,6 +20,6 @@ defaultproperties
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      FlyByMode=MU_Primary
      MeleeStrikeAnim="Melee_Smash"
-     Mesh=SkeletalMesh'BWBP4-Anims.Marlin-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.Marlin_TPm'
      DrawScale=0.125000
 }

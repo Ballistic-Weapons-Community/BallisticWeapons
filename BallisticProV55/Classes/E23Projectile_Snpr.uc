@@ -73,9 +73,9 @@ defaultproperties
     LightSaturation=96
     LightBrightness=192.000000
     LightRadius=6.000000
-    StaticMesh=StaticMesh'BWBP4-Hardware.VPR.VPRProjectile'
+    StaticMesh=StaticMesh'BW_Core_WeaponStatic.VPR.VPRProjectile'
     bDynamicLight=True
-    AmbientSound=Sound'BallisticSounds2.A73.A73ProjFly'
+    AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
     LifeSpan=4.000000
     DrawScale3D=(X=2.000000,Y=1.300000,Z=1.300000)
     Style=STY_Additive

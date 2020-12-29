@@ -8,7 +8,7 @@
 //=============================================================================
 class A49Attachment extends HandgunAttachment;
 
-#EXEC OBJ LOAD FILE=BallisticRecolors4AnimPro.ukx
+#EXEC OBJ LOAD FILE=BWBP_SKC_Anim.ukx
 
 defaultproperties
 {
@@ -23,7 +23,7 @@ defaultproperties
      ReloadAnim="Reload_AR"
      ReloadAnimRate=1.200000
      bRapidFire=True
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.3RD-A49'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.A49_TPm'
      RelativeLocation=(X=-5.000000,Y=-3.000000,Z=10.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.250000

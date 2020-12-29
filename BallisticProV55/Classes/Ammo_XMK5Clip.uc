@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class Ammo_XMK5Clip extends BallisticAmmo;
 
@@ -51,9 +51,9 @@ defaultproperties
 {
      MaxAmmo=192
      InitialAmount=96
-     IconFlashMaterial=Shader'BallisticTextures_25.OA-SMG.AmmoIcon_OASMGFlash'
+     IconFlashMaterial=Shader'BW_Core_WeaponTex.OA-SMG.AmmoIcon_OASMGFlash'
      PickupClass=Class'BallisticProV55.AP_XMK5Clip'
-     IconMaterial=Texture'BallisticTextures_25.OA-SMG.AmmoIcon_OASMG'
+     IconMaterial=Texture'BW_Core_WeaponTex.OA-SMG.AmmoIcon_OASMG'
      IconCoords=(X2=64,Y2=64)
      ItemName="10mm XMk5 Rounds"
 }

@@ -8,7 +8,7 @@
 //=============================================================================
 class T10Thrown extends BallisticPineapple;
 
-#exec OBJ LOAD FILE=BallisticSounds2.uax
+#exec OBJ LOAD FILE=BW_Core_WeaponSound.uax
 
 var   Emitter PATrail;
 
@@ -71,8 +71,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		Trail = Spawn( TrailClass, self,, Location + class'BUtil'.static.AlignedOffset(Rotation,TrailOffset), OrthoRotation(X,Y,Z) );
 		if (Trail != None)
 			Trail.SetBase (self);
-		PlaySound(sound'BallisticSounds3.T10.T10-Ignite',, 0.7,, 128, 1.0, true);
-		AmbientSound = Sound'BallisticSounds2.T10.T10-toxinLoop';
+		PlaySound(sound'BW_Core_WeaponSound.T10.T10-Ignite',, 0.7,, 128, 1.0, true);
+		AmbientSound = Sound'BW_Core_WeaponSound.T10.T10-toxinLoop';
 	}
 	bExploded=true;
 	LifeSpan = 8;
@@ -118,8 +118,8 @@ defaultproperties
      Damage=20.000000
      DamageRadius=200.000000
      MyDamageType=Class'BallisticProV55.DTT10Grenade'
-     ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BallisticHardware2.T10.T10Projectile'
+     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.T10.T10Projectile'
      DrawScale=0.350000
      SoundVolume=192
      SoundRadius=128.000000

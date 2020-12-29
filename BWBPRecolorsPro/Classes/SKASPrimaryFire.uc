@@ -57,10 +57,10 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-     SuperFireSound=Sound'PackageSounds4Pro.SKAS.SKAS-Power'
-     ClassicFireSound=Sound'PackageSounds4Pro.SKAS.SKAS-Classic'
-     UltraFireSound=Sound'PackageSounds4Pro.SKAS.SKAS-Ultra2'
-     XR4FireSound=Sound'PackageSounds4Pro.XR4.XR4-Fire'
+     SuperFireSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Power'
+     ClassicFireSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Classic'
+     UltraFireSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Ultra2'
+     XR4FireSound=Sound'BWBP_SKC_Sounds.XR4.XR4-Fire'
      CutOffDistance=1536.000000
      CutOffStartRange=1024.000000
      TraceCount=7
@@ -85,7 +85,7 @@ defaultproperties
      FireChaos=0.300000
      XInaccuracy=310.000000
      YInaccuracy=310.000000
-     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.SKAS.SKAS-Single',Volume=1.300000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Single',Volume=1.300000)
      FireAnim="FireRot"
      FireEndAnim=
      FireAnimRate=1.500000

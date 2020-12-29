@@ -16,7 +16,7 @@ defaultproperties
          Opacity=0.760000
          MaxParticles=1
          StartSizeRange=(X=(Min=15.000000,Max=15.000000),Y=(Min=37.000000,Max=37.000000),Z=(Min=52.000000,Max=52.000000))
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(Z=(Min=1.000000,Max=1.000000))
      End Object
@@ -30,7 +30,7 @@ defaultproperties
          Opacity=0.710000
          MaxParticles=1
          StartSizeRange=(X=(Min=15.000000,Max=15.000000),Y=(Min=37.000000,Max=37.000000),Z=(Min=52.000000,Max=52.000000))
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(Z=(Min=1.000000,Max=1.000000))
      End Object

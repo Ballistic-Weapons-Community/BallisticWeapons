@@ -39,7 +39,7 @@ defaultproperties
          MaxParticles=15
          StartSizeRange=(X=(Min=3.000000,Max=4.000000))
          InitialParticlesPerSecond=100.000000
-         Texture=Texture'BallisticEffects.GunFire.A73MuzzleFlash'
+         Texture=Texture'BW_Core_WeaponTex.GunFire.A73MuzzleFlash'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SubdivisionStart=1
@@ -71,7 +71,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.400000)
          StartSizeRange=(X=(Min=20.000000,Max=30.000000))
          InitialParticlesPerSecond=100000.000000
-         Texture=Texture'BallisticEffects.GunFire.A73MuzzleFlash'
+         Texture=Texture'BW_Core_WeaponTex.GunFire.A73MuzzleFlash'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SubdivisionStart=1
@@ -103,7 +103,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=5.000000))
          InitialParticlesPerSecond=10.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.Smoke4'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.500000,Max=1.500000)
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=20.000000,Max=30.000000))
@@ -134,7 +134,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=10.000000,Max=20.000000),Y=(Min=10.000000,Max=20.000000),Z=(Min=10.000000,Max=20.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
+         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000

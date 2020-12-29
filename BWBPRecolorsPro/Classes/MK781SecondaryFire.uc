@@ -240,8 +240,8 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 defaultproperties
 {
      SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
-     PulseFireSound=Sound'PackageSounds4ProExp.Autolaser.AutoLaser-Fire'
-     ShotFireSound=Sound'PackageSounds4ProExp.HyperBeamCannon.343Primary-Hit'
+     PulseFireSound=Sound'BWBP_SKC_Sounds.Autolaser.AutoLaser-Fire'
+     ShotFireSound=Sound'BWBP_SKC_Sounds.HyperBeamCannon.343Primary-Hit'
      CutOffDistance=1.000000
      CutOffStartRange=1.000000
      TraceCount=7
@@ -266,7 +266,7 @@ defaultproperties
      FirePushbackForce=180.000000
      XInaccuracy=150.000000
      YInaccuracy=150.000000
-     BallisticFireSound=(Sound=Sound'PackageSounds4ProExp.HyperBeamCannon.343Primary-Hit',Volume=1.600000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.HyperBeamCannon.343Primary-Hit',Volume=1.600000)
      FireEndAnim=
      FireRate=0.800000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_10GaugeZap'

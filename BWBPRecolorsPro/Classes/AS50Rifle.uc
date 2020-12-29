@@ -692,8 +692,8 @@ defaultproperties
 	ManualLines(1)="Incendiary shot. Deals moderate damage and ignites struck targets, causing them to burn brightly, emit smoke, suffer view flash and take damage over time. Further hits extend the duration of this effect."
 	ManualLines(2)="The Weapon Function key toggles the IR component of the weapon's scope. This is useful for highlighting enemies through environmental features like water or trees, or through smoke.||The FSSG-50 is heavy and burdens the player, reducing movement speed and jump height. It takes time to aim.||The FSSG-50 is effective at long range."
 	SpecialInfo(0)=(Info="360.0;35.0;1.0;90.0;10.0;0.0;0.1")
-	BringUpSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOn')
-	PutDownSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOff')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
 	MagAmmo=8
 	CockAnimPostReload="Cock"
 	CockAnimRate=1.350000

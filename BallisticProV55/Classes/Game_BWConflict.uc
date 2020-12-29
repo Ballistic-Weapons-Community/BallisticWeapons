@@ -993,7 +993,7 @@ defaultproperties
      PlayerControllerClassName="BallisticProV55.BallisticPlayer"
      GameName="BallisticPro: Conflict"
      Description="Rival teams prepare for battle and must eliminate the entire enemy team to score!||A round based Ballistic Weapons game where teams start on opposite sides of the map and players have a chance to choose their starting loadout. Dead players don't respawn until the next round. When one team has been completely eliminated the round ends and teams are reset to a starting location.||www.runestorm.com"
-     ScreenShotName="BWEliminationTex.ui.Conflict-Sequence"
+     ScreenShotName="BW_Core_WeaponTex.ui.Conflict-Sequence"
      DecoTextName="BallisticProV55.Game_BWConflict"
      Acronym="BWCP"
 }

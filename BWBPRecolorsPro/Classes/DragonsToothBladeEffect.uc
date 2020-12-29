@@ -31,7 +31,7 @@ defaultproperties
          MaxParticles=5
          StartSizeRange=(X=(Min=0.000000,Max=13.799000),Y=(Min=0.000000,Max=1.799000),Z=(Min=0.000000,Max=1.799000))
          InitialParticlesPerSecond=50.000000
-         Texture=Texture'BallisticRecolors3TexPro.DragonToothSword.DTS-Glow'
+         Texture=Texture'BWBP_SKC_Tex.DragonToothSword.DTS-Glow'
          TextureUSubdivisions=1
          TextureVSubdivisions=1
          SecondsBeforeInactive=0.000000

@@ -449,8 +449,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
 	 
      TrackAnimMode=MU_None
-
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.TechGun_Third'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.TrenchGun_TPm'
      RelativeLocation=(X=5.000000,Z=4.000000)
      RelativeRotation=(Pitch=32768,Roll=-16384)
      DrawScale=0.450000

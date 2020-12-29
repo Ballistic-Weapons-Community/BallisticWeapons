@@ -154,7 +154,7 @@ defaultproperties
 	 ReloadAnimRate=0.450000
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
-     Mesh=SkeletalMesh'BallisticAnims2.D49-3rd'
+     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.D49_TPm'
      DrawScale=0.150000
 }

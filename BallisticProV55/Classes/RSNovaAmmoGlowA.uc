@@ -17,7 +17,7 @@ defaultproperties
          Opacity=0.430000
          MaxParticles=1
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=25.000000,Max=25.000000),Z=(Min=35.000000,Max=35.000000))
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(Z=(Min=1.000000,Max=1.000000))
      End Object
@@ -45,7 +45,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.750000)
          StartSizeRange=(X=(Min=15.000000,Max=15.000000),Y=(Min=15.000000,Max=15.000000),Z=(Min=15.000000,Max=15.000000))
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticWeapons2.Effects.Smoke7'
+         Texture=Texture'BW_Core_WeaponTex.Effects.Smoke7'
          LifetimeRange=(Min=3.000000,Max=3.000000)
          StartVelocityRange=(X=(Min=-2.000000,Max=2.000000),Y=(Min=-2.000000,Max=2.000000),Z=(Max=10.000000))
      End Object

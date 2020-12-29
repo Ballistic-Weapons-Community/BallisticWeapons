@@ -85,7 +85,7 @@ defaultproperties
      FlashScale=0.750000
      BrassMode=MU_None
      InstantMode=MU_None
-     Mesh=SkeletalMesh'BWBPOtherPackAnim3.Akeron_TP'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.Akeron_TPm'
      RelativeLocation=(Z=5.000000)
      RelativeRotation=(Pitch=-32768)
      DrawScale=0.280000

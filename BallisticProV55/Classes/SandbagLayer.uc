@@ -224,12 +224,12 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 defaultproperties
 {
 	DropSound=Sound'PlayerSounds.BFootsteps.BFootstepSnow5'
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BallisticProTextures.Sandbags.Icon_Sandbags'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
 	bNoMag=True
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(bUnavailable=True)

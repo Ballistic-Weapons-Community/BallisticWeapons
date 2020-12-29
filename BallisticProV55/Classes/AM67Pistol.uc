@@ -99,16 +99,16 @@ defaultproperties
 
 	AttachmentClass=Class'BallisticProV55.AM67Attachment'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_AM67'
-	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_AM67'
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	BringUpTime=0.900000
 
-	ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
 	ClipInFrame=0.650000
-	ClipInSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipIn')
-	ClipOutSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipIn')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BallisticSounds2.AM67.AM67-Cock')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Cock')
 	CurrentWeaponMode=0
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	Description="Another of Enravion's fine creations, the AM67 Assault Pistol was designed for close quarters combat against Cryon and Skrith warriors.|Initially constructed before the second war, Enravion produced the AM67, primarily for anti-Cryon operations, but it later proved to perform well in close-quarters combat when terran forces were ambushed by the stealthy Skrith warriors."
@@ -118,7 +118,7 @@ defaultproperties
 	GroupOffset=6
 	HudColor=(B=25,G=150,R=50)
 	IconCoords=(X2=127,Y2=31)
-	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_AM67'
+	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_AM67'
 	InventoryGroup=3
 	ItemName="AM67 Assault Pistol"
 
@@ -134,12 +134,12 @@ defaultproperties
 	ManualLines(0)="High-powered bullet fire. Recoil is high."
 	ManualLines(1)="Engages the integrated flash device. The fire key must be held until the flash triggers. Blinds enemies for a short duration. Enemies closer both to the player and to the point of aim will be blinded for longer."
 	ManualLines(2)="Effective at close and medium range."
-	Mesh=SkeletalMesh'BallisticProAnims.AM68_FPm'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_AM67'
 	ParamsClass=Class'AM67WeaponParams'
 	PickupClass=Class'BallisticProV55.AM67Pickup'
 	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 	Priority=24
-	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	PutDownTime=0.600000
 
 
@@ -151,7 +151,7 @@ defaultproperties
 	SightOffset=(X=10.000000,Z=9.900000)
 	SightingTime=0.250000
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	bNoCrosshairInScope=True
 	bShouldDualInLoadout=False
 	bShowChargingBar=True

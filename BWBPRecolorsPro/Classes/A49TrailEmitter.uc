@@ -7,7 +7,7 @@
 class A49TrailEmitter extends BallisticEmitter;
 /*
     Begin Object Class=MeshEmitter Name=MeshEmitter0
-        StaticMesh=StaticMesh'BallisticHardware2.A42.A42MuzzleFlash'
+        StaticMesh=StaticMesh'BW_Core_WeaponStatic.A42.A42MuzzleFlash'
         UseMeshBlendMode=False
         RenderTwoSided=True
         UseParticleColor=True
@@ -54,7 +54,7 @@ defaultproperties
          StartLocationOffset=(X=50.000000)
          StartSizeRange=(X=(Min=30.000000,Max=40.000000))
          InitialParticlesPerSecond=40000.000000
-         Texture=Texture'BallisticEffects.Particles.AquaFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.150000,Max=0.300000)
      End Object
@@ -73,7 +73,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=2.500000,Max=3.000000))
          InitialParticlesPerSecond=500000.000000
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=999999.000000,Max=999999.000000)
      End Object

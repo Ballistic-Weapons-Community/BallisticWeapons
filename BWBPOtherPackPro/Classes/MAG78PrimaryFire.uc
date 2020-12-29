@@ -40,7 +40,7 @@ defaultproperties
      DamageTypeHead=Class'BWBPOtherPackPro.DT_MAGSAWStabHead'
      DamageTypeArm=Class'BWBPOtherPackPro.DT_MAGSAWStab'
      KickForce=100
-     BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.LongSword.SawSwing',Radius=378.000000,bAtten=True,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.LongSword.SawSwing',Radius=378.000000,bAtten=True,bNoOverride=False)
      bAISilent=True
      FireAnim="Swing1"
      FireRate=0.75

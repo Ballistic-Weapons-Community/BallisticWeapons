@@ -109,6 +109,6 @@ defaultproperties
      Damage=140.000000
      DamageRadius=768.000000
      MyDamageType=Class'BWBPRecolorsPro.DTMGLGrenadeRadius'
-     ImpactSound=Sound'PackageSounds4Pro.Misc.FLAK-GrenadeBounce'
-     StaticMesh=StaticMesh'BallisticHardware2.M900.M900Grenade'
+     ImpactSound=Sound'BWBP_SKC_Sounds.Misc.FLAK-GrenadeBounce'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade'
 }

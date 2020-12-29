@@ -10,6 +10,6 @@ class Brass_FP7Clip extends Brass_GClip;
 
 defaultproperties
 {
-     StaticMesh=StaticMesh'BallisticHardware2.Brass.FP7Clip'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Brass.FP7Clip'
      DrawScale=0.600000
 }

@@ -6,5 +6,5 @@ class AD_E23General extends AD_ImpactDecal
 
 defaultproperties
 {
-     ProjTexture=Texture'BWBP4-Tex.VPR.VPR-Impact'
+     ProjTexture=Texture'BW_Core_WeaponTex.VPR.VPR-Impact'
 }

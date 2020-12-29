@@ -11,6 +11,6 @@ class M58Attachment extends BallisticGrenadeAttachment;
 defaultproperties
 {
      ExplodeManager=Class'BallisticProV55.IM_Grenade'
-     Mesh=SkeletalMesh'BallisticProAnims.M58-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.T10_TPm'
      DrawScale=0.175000
 }

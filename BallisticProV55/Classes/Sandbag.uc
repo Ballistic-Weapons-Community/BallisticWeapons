@@ -157,11 +157,11 @@ auto state Working
 
 defaultproperties
 {
-     DamagedSounds(0)=Sound'BallisticSounds2.BulletImpacts.BulletDirt1'
-     DamagedSounds(1)=Sound'BallisticSounds2.BulletImpacts.BulletDirt2'
-     DamagedSounds(2)=Sound'BallisticSounds2.BulletImpacts.BulletDirt3'
-     DamagedSounds(3)=Sound'BallisticSounds2.BulletImpacts.BulletDirt4'
-     DestroyedSound=Sound'BallisticSounds_25.BOGP.BOGP_FlareImpact'
+     DamagedSounds(0)=Sound'BW_Core_WeaponSound.BulletImpacts.BulletDirt1'
+     DamagedSounds(1)=Sound'BW_Core_WeaponSound.BulletImpacts.BulletDirt2'
+     DamagedSounds(2)=Sound'BW_Core_WeaponSound.BulletImpacts.BulletDirt3'
+     DamagedSounds(3)=Sound'BW_Core_WeaponSound.BulletImpacts.BulletDirt4'
+     DestroyedSound=Sound'BW_Core_WeaponSound.BOGP.BOGP_FlareImpact'
      EffectWhenDestroyed=Class'BallisticProV55.IE_SandbagExplosion'
      Health=250
      DrawType=DT_StaticMesh

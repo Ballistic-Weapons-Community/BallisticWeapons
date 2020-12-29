@@ -11,6 +11,6 @@ class T10Attachment extends BallisticGrenadeAttachment;
 defaultproperties
 {
      ExplodeManager=Class'BallisticProV55.IM_Grenade'
-     Mesh=SkeletalMesh'BallisticAnims2.T10-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.T10_TPm'
      DrawScale=0.175000
 }

@@ -4,9 +4,9 @@
 class CYLOFirestormPickup extends BallisticWeaponPickup
 	placeable;
 	
-#exec OBJ LOAD FILE=BallisticRecolors3TexPro.utx
-#exec OBJ LOAD FILE=BallisticRecolors4StaticPro.usx
-#exec OBJ LOAD FILE=BallisticRecolors3TexPro.utx
+#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
+#exec OBJ LOAD FILE=BWBP_SKC_Static.usx
+#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
 
 var float	HeatLevel;
 var float	HeatTime;
@@ -30,31 +30,30 @@ function InitDroppedPickupFor(Inventory Inv)
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.CYLO.FirestormBase');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.CYLO.CYLOMagFirestorm');
-	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.CYLO.Reflex');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CYLO.FirestormBase');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CYLO.CYLOMagFirestorm');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CYLO.Reflex');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.CYLO.FirestormBase');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.CYLO.CYLOMagFirestorm');
-	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.CYLO.Reflex');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CYLO.FirestormBase');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CYLO.CYLOMagFirestorm');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CYLO.Reflex');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.CYLO.CYLOMk2');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.CYLO.CYLOPickupLow');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.CYLO.CYLOFirestorm');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticPro.CYLO.CYLOMk2'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOFirestorm'
      InventoryType=Class'BWBPRecolorsPro.CYLOAssaultWeapon'
      RespawnTime=20.000000
      PickupMessage="You picked up the CYLO 'Firestorm' V."
-     PickupSound=Sound'BallisticSounds2.M50.M50Putaway'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.CYLO.CYLOMk2'
+     PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOFirestorm'
      Physics=PHYS_None
      CollisionHeight=4.000000
 }

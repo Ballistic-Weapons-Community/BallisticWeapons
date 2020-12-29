@@ -14,8 +14,8 @@ defaultproperties
      HitEffects(1)=Class'BWBPOtherPackPro.IE_RaygunProjectile'
      HitDecals(0)=Class'BallisticProV55.AD_Explosion'
      HitDecals(1)=Class'BallisticProV55.AD_RSDarkFast'
-     HitSounds(0)=Sound'BWBPOtherPackSound.Raygun.Raygun-ImpactBig'
-     HitSounds(1)=Sound'BWBPOtherPackSound.Raygun.Raygun-Impact'
+     HitSounds(0)=Sound'BWBP_OP_Sounds.Raygun.Raygun-ImpactBig'
+     HitSounds(1)=Sound'BWBP_OP_Sounds.Raygun.Raygun-Impact'
      HitSoundVolume=1.000000
      HitSoundRadius=2048.000000
 }

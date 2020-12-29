@@ -194,8 +194,8 @@ defaultproperties
      DamageRadius=300.000000
      MomentumTransfer=20000.000000
      MyDamageType=Class'BWBPOtherPackPro.DTAkeron'
-     StaticMesh=StaticMesh'BallisticHardware_25.BOGP.BOGP_Grenade'
-     AmbientSound=Sound'BWBP4-Sounds.MRL.MRL-RocketFly'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_Grenade'
+     AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'
      DrawScale=0.750000
      SoundVolume=64
      bBounce=False

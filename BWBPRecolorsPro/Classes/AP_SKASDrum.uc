@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=24
      InventoryType=Class'BWBPRecolorsPro.Ammo_SKASShells'
      PickupMessage="You picked up a SKAS drum."
-     PickupSound=Sound'BallisticSounds2.Ammo.ShotBoxPickup'
-     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.SKAS.SKASShotgunAmmo'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ShotBoxPickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.SKAS.SKASShotgunAmmo'
      DrawScale=0.600000
      CollisionRadius=8.000000
      CollisionHeight=4.800000

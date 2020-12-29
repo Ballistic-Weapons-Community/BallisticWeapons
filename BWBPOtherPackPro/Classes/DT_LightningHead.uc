@@ -45,7 +45,7 @@ defaultproperties
      MaleSuicide="%o sniped off his own head."
      bAlwaysSevers=True
      bSpecial=True
-     PawnDamageSounds(0)=SoundGroup'BallisticSounds2.BulletImpacts.Headshot'
+     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
 	 DamageOverlayMaterial=Shader'XGameShaders.PlayerShaders.LightningHit'
      DamageOverlayTime=0.300000
      KDamageImpulse=2000.000000

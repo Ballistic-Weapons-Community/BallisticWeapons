@@ -12,9 +12,9 @@ defaultproperties
 {
      MaxAmmo=4
      InitialAmount=2
-     IconFlashMaterial=Shader'BallisticRecolors3TexPro.G28.AmmoIcon_MedFlash'
+     IconFlashMaterial=Shader'BWBP_SKC_Tex.G28.AmmoIcon_MedFlash'
      PickupClass=Class'BWBPRecolorsPro.G28Pickup'
-     IconMaterial=Texture'BallisticRecolors3TexPro.G28.AmmoIcon_Med'
+     IconMaterial=Texture'BWBP_SKC_Tex.G28.AmmoIcon_Med'
      IconCoords=(X2=64,Y2=64)
      ItemName="G28 Medicinal Aerosol Ammo"
      bNoPackResupply=True

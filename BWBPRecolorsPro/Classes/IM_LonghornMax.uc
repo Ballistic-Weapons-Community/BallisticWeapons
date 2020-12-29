@@ -21,7 +21,7 @@ simulated function SpawnEffects (int HitSurfaceType, vector Norm, optional byte 
 			if (bHitWater && ImpactDepth < SurfaceRange)
 				Spawn (Class'IE_WaterSurfaceBlast', Owner,, WLoc);
 			HitEffects[0]=Class'IE_UnderWaterExplosion';
-			HitSounds[0]=SoundGroup'BallisticSounds2.Explosions.Explode-UW';
+			HitSounds[0]=SoundGroup'BW_Core_WeaponSound.Explosions.Explode-UW';
 		}
 	}
 	super.SpawnEffects(HitSurfaceType, Norm, Flags);
@@ -33,7 +33,7 @@ defaultproperties
      MinFluidDepth=128.000000
      HitEffects(0)=Class'BWBPRecolorsPro.IE_LonghornExplosionMax'
      HitDecals(0)=Class'BallisticProV55.AD_Explosion'
-     HitSounds(0)=SoundGroup'PackageSounds4Pro.Misc.GL-Detonate'
+     HitSounds(0)=SoundGroup'BWBP_SKC_Sounds.Misc.GL-Detonate'
      HitSoundVolume=8.000000
      HitSoundRadius=2500.000000
      EffectBackOff=64.000000

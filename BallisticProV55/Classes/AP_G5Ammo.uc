@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=2
      InventoryType=Class'BallisticProV55.Ammo_RPG'
      PickupMessage="You picked up a pair of G5 rocket propelled grenades."
-     PickupSound=Sound'BallisticSounds2.Ammo.RocketPickup'
-     StaticMesh=StaticMesh'BallisticHardware2.Ammo.G5Rockets'
+     PickupSound=Sound'BW_Core_WeaponSound.Ammo.RocketPickup'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.G5Rockets'
      DrawScale=0.500000
      CollisionRadius=8.000000
      CollisionHeight=5.000000

@@ -43,7 +43,7 @@ simulated event ModeDoFire()
 defaultproperties
 {
 	ChargeTime=1.000000
-	ChargeSound=Sound'BallisticSounds2.A42.A42-Charge'
+	ChargeSound=Sound'BW_Core_WeaponSound.A42.A42-Charge'
 	TraceRange=(Min=8000.000000,Max=8000.000000)
 	WallPenetrationForce=8.000000
 	Damage=50.000000
@@ -58,7 +58,7 @@ defaultproperties
 	FireRecoil=512.000000
 	XInaccuracy=128.000000
 	YInaccuracy=128.000000
-	BallisticFireSound=(Sound=Sound'BallisticSounds3.A42.A42-SecFire',Volume=0.800000)
+	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-SecFire',Volume=0.800000)
 	bFireOnRelease=True
 	FireAnim="SecFire"
 	FireRate=0.300000

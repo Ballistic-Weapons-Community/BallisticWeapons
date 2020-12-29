@@ -21,7 +21,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=4.000000,Max=20.000000),Y=(Min=2.000000,Max=10.000000),Z=(Min=2.000000,Max=10.000000))
          InitialParticlesPerSecond=500.000000
-         Texture=Texture'BallisticEffects.Particles.AquaBubbleA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaBubbleA1'
          LifetimeRange=(Min=1.000000,Max=1.700000)
          StartVelocityRadialRange=(Min=15.000000,Max=250.000000)
          GetVelocityDirectionFrom=PTVD_AddRadial
@@ -51,7 +51,7 @@ defaultproperties
          StartSizeRange=(X=(Min=15.000000,Max=35.000000),Y=(Min=15.000000,Max=35.000000),Z=(Min=15.000000,Max=35.000000))
          InitialParticlesPerSecond=500.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.Smoke5'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke5'
          LifetimeRange=(Min=1.000000,Max=3.000000)
          StartVelocityRange=(X=(Min=-900.000000,Max=900.000000),Y=(Min=-900.000000,Max=900.000000),Z=(Max=1300.000000))
          VelocityLossRange=(X=(Max=6.000000),Y=(Max=6.000000),Z=(Max=6.000000))
@@ -78,7 +78,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=3.000000)
          StartSizeRange=(X=(Min=80.000000,Max=80.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
          InitialParticlesPerSecond=500.000000
-         Texture=Texture'BallisticEffects.Particles.AquaFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
          LifetimeRange=(Min=0.900000,Max=0.900000)
      End Object
      Emitters(2)=SpriteEmitter'BWBPOtherPackPro.IE_Z250GasExplode.SpriteEmitter5'
@@ -102,7 +102,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=3.000000)
          StartSizeRange=(X=(Min=80.000000,Max=80.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
          InitialParticlesPerSecond=500.000000
-         Texture=Texture'BallisticEffects.Particles.Explode2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
          LifetimeRange=(Min=0.900000,Max=0.900000)
      End Object
      Emitters(3)=SpriteEmitter'BWBPOtherPackPro.IE_Z250GasExplode.SpriteEmitter0'

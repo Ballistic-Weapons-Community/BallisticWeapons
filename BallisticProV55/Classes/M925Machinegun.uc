@@ -225,16 +225,16 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 defaultproperties
 {
 	BeltLength=8
-	BoxOnSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOn')
-	BoxOffSound=(Sound=Sound'BallisticSounds2.M925.M925-BoxOff')
-	FlapUpSound=(Sound=Sound'BallisticSounds2.M925.M925-LeverUp')
-	FlapDownSound=(Sound=Sound'BallisticSounds2.M925.M925-LeverDown')
-	HandleOnSound=Sound'BallisticSounds2.M925.M925-StandOn'
-	HandleOffSound=Sound'BallisticSounds2.M925.M925-StandOff'
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=3)
-	TeamSkins(1)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=5)
+	BoxOnSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-BoxOn')
+	BoxOffSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-BoxOff')
+	FlapUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-LeverUp')
+	FlapDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-LeverDown')
+	HandleOnSound=Sound'BW_Core_WeaponSound.M925.M925-StandOn'
+	HandleOffSound=Sound'BW_Core_WeaponSound.M925.M925-StandOff'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
+	TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=5)
 	AIReloadTime=4.000000
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M925'
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M925'
 	BigIconCoords=(Y1=36,Y2=235)
 	SightFXClass=Class'BallisticProV55.M925SightLEDs'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -244,18 +244,18 @@ defaultproperties
 	ManualLines(1)="Deploys the machinegun on the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, automatic fire is available. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
 	ManualLines(2)="The M925, as a heavy machine gun, burdens the player, reducing movement speed and jump height. It also has poor shoulder fire properties and a long sighting time.||It is effective at medium to long range and when employed defensively."
 	SpecialInfo(0)=(Info="360.0;30.0;0.8;40.0;0.0;0.0;0.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.M925.M925-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M925.M925-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Putaway')
 	CurrentWeaponMode=0
     WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
     WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BallisticSounds2.M925.M925-Cock')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Cock')
 	ReloadAnim="ReloadStart"
 	ReloadAnimRate=1.150000
-	ClipOutSound=(Sound=Sound'BallisticSounds2.M925.M925-ShellOut')
-	ClipInSound=(Sound=Sound'BallisticSounds2.M925.M925-ShellIn')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-ShellIn')
 	bCockOnEmpty=True
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=64)
@@ -278,7 +278,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.M925Pickup'
 	PlayerViewOffset=(X=9.000000,Y=5.000000,Z=-7.000000)
 	AttachmentClass=Class'BallisticProV55.M925Attachment'
-	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M925'
+	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M925'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M925 Heavy Machine Gun"
 	LightType=LT_Pulse
@@ -290,9 +290,9 @@ defaultproperties
 	Mesh=SkeletalMesh'BallisticProAnims.M925MG'
 	DrawScale=0.140000
 	Skins(0)=Texture'BallisticProTextures.M925.M925Masked'
-	Skins(1)=Texture'BallisticWeapons2.M925.M925Small'
-	Skins(2)=Texture'BallisticWeapons2.M925.M925HeatShield'
-	Skins(3)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-	Skins(4)=Texture'BallisticWeapons2.M925.M925AmmoBox'
-	Skins(5)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Small'
+	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925HeatShield'
+	Skins(3)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(4)=Texture'BW_Core_WeaponTex.M925.M925AmmoBox'
+	Skins(5)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

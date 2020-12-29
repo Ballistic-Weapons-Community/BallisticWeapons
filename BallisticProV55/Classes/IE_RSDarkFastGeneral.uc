@@ -96,7 +96,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=40.000000,Max=40.000000),Y=(Min=40.000000,Max=40.000000),Z=(Min=40.000000,Max=40.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BWBP4-Tex.DarkStar.DarkShock'
+         Texture=Texture'BW_Core_WeaponTex.DarkStar.DarkShock'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
      End Object
@@ -123,7 +123,7 @@ defaultproperties
          StartSizeRange=(X=(Min=15.000000,Max=15.000000),Y=(Min=15.000000,Max=15.000000),Z=(Min=15.000000,Max=15.000000))
          InitialParticlesPerSecond=5000.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.FlareC1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareC1'
          SecondsBeforeInactive=0.000000
      End Object
      Emitters(1)=SpriteEmitter'BallisticProV55.IE_RSDarkFastGeneral.SpriteEmitter1'
@@ -148,14 +148,14 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000)
          StartSizeRange=(X=(Min=80.000000,Max=80.000000),Y=(Min=80.000000,Max=80.000000),Z=(Min=80.000000,Max=80.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
      End Object
      Emitters(2)=SpriteEmitter'BallisticProV55.IE_RSDarkFastGeneral.SpriteEmitter2'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip2'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip2'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -205,7 +205,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=2.000000,Max=3.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          InitialParticlesPerSecond=160.000000
-         Texture=Texture'BallisticEffects.Particles.FlameParts'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          SecondsBeforeInactive=0.000000
@@ -216,7 +216,7 @@ defaultproperties
      Emitters(4)=SpriteEmitter'BallisticProV55.IE_RSDarkFastGeneral.SpriteEmitter4'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BallisticHardware2.Effects.FBlast'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.FBlast'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

@@ -13,7 +13,7 @@ simulated function SwitchBladeMode (bool bLoaded)
 {
 	if (bLoaded)
 	{
-		BallisticFireSound.Sound=Sound'BallisticSounds3.A73.A73Stab';
+		BallisticFireSound.Sound=Sound'BW_Core_WeaponSound.A73.A73Stab';
 		PreFireAnim='PrepPokies';
 		FireAnim='Pokies';
 		FireAnimRate=0.900000;
@@ -61,7 +61,7 @@ defaultproperties
      bReleaseFireOnDie=False
      bIgnoreReload=True
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=Sound'BWBP4-Sounds.Marlin.Mar-Melee',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Melee',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepBash"

@@ -10,7 +10,7 @@ defaultproperties
     FireRecoil=400.000000
     FirePushbackForce=255.000000
     FireChaos=0.800000
-    BallisticFireSound=(Sound=Sound'PackageSounds4Pro.Misc.LS14-EnergyRocket',Volume=1.000000,Slot=SLOT_Interact,bNoOverride=False)
+    BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.LS14-EnergyRocket',Volume=1.000000,Slot=SLOT_Interact,bNoOverride=False)
     FireEndAnim=
     FireRate=0.600000
     AmmoClass=Class'BWBPOtherPackPro.Ammo_LightningRifle'

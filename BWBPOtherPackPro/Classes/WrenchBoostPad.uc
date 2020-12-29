@@ -37,7 +37,7 @@ state Destroying
 			else
 			{
 				Spawn(class'WrenchWarpEndEmitter', Owner,, Location);
-				PlaySound(Sound'BWBPOtherPackSound.Wrench.Teleport', ,1);
+				PlaySound(Sound'BWBP_OP_Sounds.Wrench.Teleport', ,1);
 			}
 		}
 		
@@ -49,9 +49,9 @@ defaultproperties
 {
 	Health=100
 	TeamSkinIndex=2
-	TeamSkins(0)=Shader'BWBPOtherPackTex.Wrench.BoostShaderRed'
-	TeamSkins(1)=Shader'BWBPOtherPackTex.Wrench.BoostShaderBlue'
-	StaticMesh=StaticMesh'BWBPOtherPackStatic.Wrench.BoostPad'
+	TeamSkins(0)=Shader'BWBP_OP_Tex.Wrench.BoostShaderRed'
+	TeamSkins(1)=Shader'BWBP_OP_Tex.Wrench.BoostShaderBlue'
+	StaticMesh=StaticMesh'BWBP_OP_Static.Wrench.BoostPad'
 	DrawScale3D=(X=0.750000,Y=0.750000,Z=0.500000)
 	CollisionHeight=4.000000
 }

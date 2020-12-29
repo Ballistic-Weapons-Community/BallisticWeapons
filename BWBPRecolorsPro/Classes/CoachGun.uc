@@ -434,16 +434,16 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
-     MatGreenShell=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc'
-     MatBlackShell=Texture'BallisticRecolors4TexPro.CoachGun.DBL-MiscBlack'
+     MatGreenShell=Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc'
+     MatBlackShell=Texture'BWBP_SKC_Tex.CoachGun.DBL-MiscBlack'
      ShellTipBone1="ShellLSuper"
      ShellTipBone2="ShellRSuper"
      ShellTipBone3="SpareShellLSuper"
      ShellTipBone4="SpareShellRSuper"
      LastShellBone="ShellR"
      FireAnimCutThreshold=1.100000
-     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BallisticRecolors4TexPro.CoachGun.BigIcon_Coach'
+     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BWBP_SKC_Tex.CoachGun.BigIcon_Coach'
      BigIconCoords=(Y1=35,Y2=225)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Shotgun=True
@@ -452,8 +452,8 @@ defaultproperties
      ManualLines(2)="Effective at close to medium range depending on active mode."
      SpecialInfo(0)=(Info="160.0;10.0;0.3;40.0;0.0;1.0;0.0")
      MeleeFireClass=Class'BWBPRecolorsPro.CoachGunMeleeFire'
-     BringUpSound=(Sound=Sound'BallisticSounds2.M290.M290Pullout')
-     PutDownSound=(Sound=Sound'BallisticSounds2.M290.M290Putaway')
+     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Pullout')
+     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Putaway')
      CockAnimRate=0.700000
      SingleReloadAnimRate=1.500000
      ReloadAnimRate=1.500000
@@ -482,7 +482,7 @@ defaultproperties
      PickupClass=Class'BWBPRecolorsPro.CoachGunPickup'
      PlayerViewOffset=(X=-10.000000,Y=20.000000,Z=-30.000000)
      AttachmentClass=Class'BWBPRecolorsPro.CoachGunAttachment'
-     IconMaterial=Texture'BallisticRecolors4TexPro.CoachGun.SmallIcon_Coach'
+     IconMaterial=Texture'BWBP_SKC_Tex.CoachGun.SmallIcon_Coach'
      IconCoords=(X2=127,Y2=40)
      ItemName="Redwood Coach Gun"
      LightType=LT_Pulse
@@ -491,15 +491,11 @@ defaultproperties
      LightSaturation=150
      LightBrightness=180.000000
      LightRadius=5.000000
-     Mesh=SkeletalMesh'BallisticRecolors4AnimProExp.DoubleShotgun_FP'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CoachGun'
      DrawScale=1.250000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Main'
-     Skins(2)=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc'
-     Skins(3)=Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc'
+
      bShowChargingBar=True
      Skins(1)=Texture'BWBP_SKC_Tex.CoachGun.DBL-Main'
      Skins(2)=Texture'BWBP_SKC_Tex.CoachGun.DBL-SawnBits'
      Skins(3)=Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc'
-     bShowChargingBar=True
 }

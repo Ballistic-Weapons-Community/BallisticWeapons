@@ -17,7 +17,7 @@ defaultproperties
      bReleaseFireOnDie=False
      bIgnoreReload=True
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=Sound'BallisticSounds3.A73.A73Stab',Volume=0.5,Radius=32.000000,Pitch=1.250000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Stab',Volume=0.5,Radius=32.000000,Pitch=1.250000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepMelee1"

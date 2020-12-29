@@ -43,7 +43,7 @@ defaultproperties
          MaxParticles=2
          StartLocationRange=(X=(Min=-2.000000,Max=2.000000),Y=(Min=-8.000000,Max=8.000000))
          StartSizeRange=(X=(Min=10.000000,Max=20.000000),Y=(Min=10.000000,Max=20.000000),Z=(Min=10.000000,Max=20.000000))
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          LifetimeRange=(Min=0.100000,Max=0.200000)
      End Object
      Emitters(1)=SpriteEmitter'BWBPOtherPackPro.DefibFistsTazerEffect.SpriteEmitter9'
@@ -60,7 +60,7 @@ defaultproperties
          FadeInEndTime=0.029000
          CoordinateSystem=PTCS_Relative
          StartSizeRange=(X=(Min=3.000000,Max=4.000000),Y=(Min=3.000000,Max=4.000000),Z=(Min=3.000000,Max=4.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          LifetimeRange=(Min=0.100000,Max=0.100000)
          StartVelocityRange=(X=(Min=80.000000,Max=80.000000))
      End Object
@@ -79,7 +79,7 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          StartLocationOffset=(Y=-6.000000)
          StartSizeRange=(X=(Min=3.000000,Max=4.000000),Y=(Min=3.000000,Max=4.000000),Z=(Min=3.000000,Max=4.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          LifetimeRange=(Min=0.100000,Max=0.100000)
          StartVelocityRange=(X=(Min=80.000000,Max=80.000000))
      End Object

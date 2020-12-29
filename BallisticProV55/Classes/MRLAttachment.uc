@@ -39,6 +39,6 @@ defaultproperties
      InstantMode=MU_None
      FlashMode=MU_Both
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP4b-Anims.MRL-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.MRL_TPm'
      DrawScale=0.250000
 }

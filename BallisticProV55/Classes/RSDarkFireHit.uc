@@ -175,7 +175,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.340000,RelativeSize=0.600000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=200.000000,Max=200.000000),Y=(Min=200.000000,Max=200.000000),Z=(Min=200.000000,Max=200.000000))
-         Texture=Texture'BWBP4-Tex.DarkStar.Plasma-B-AlphaAdd'
+         Texture=Texture'BW_Core_WeaponTex.DarkStar.Plasma-B-AlphaAdd'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.700000,Max=0.700000)
          StartVelocityRange=(Y=(Min=-80.000000,Max=80.000000),Z=(Min=-80.000000,Max=80.000000))
@@ -208,7 +208,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.370000,RelativeSize=0.600000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=150.000000,Max=150.000000),Y=(Min=150.000000,Max=150.000000),Z=(Min=150.000000,Max=150.000000))
-         Texture=Texture'BWBP4-Tex.DarkStar.Plasma-A-AlphaAdd'
+         Texture=Texture'BW_Core_WeaponTex.DarkStar.Plasma-A-AlphaAdd'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.700000,Max=0.700000)
          StartVelocityRange=(Y=(Min=-100.000000,Max=100.000000),Z=(Min=-100.000000,Max=100.000000))
@@ -216,7 +216,7 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BallisticProV55.RSDarkFireHit.SpriteEmitter6'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticHardware2.Effects.FBlast'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.FBlast'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -268,7 +268,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.370000,RelativeSize=0.700000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=60.000000,Max=60.000000),Y=(Min=60.000000,Max=60.000000),Z=(Min=60.000000,Max=60.000000))
-         Texture=Texture'BWBP4-Tex.DarkStar.Plasma-A-AlphaAdd'
+         Texture=Texture'BW_Core_WeaponTex.DarkStar.Plasma-A-AlphaAdd'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRadialRange=(Min=-300.000000,Max=-300.000000)
@@ -297,7 +297,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.310000,RelativeSize=0.500000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=200.000000,Max=240.000000),Y=(Min=200.000000,Max=240.000000),Z=(Min=200.000000,Max=240.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareC1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareC1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.700000)
      End Object

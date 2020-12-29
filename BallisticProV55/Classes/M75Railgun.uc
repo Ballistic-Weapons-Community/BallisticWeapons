@@ -58,7 +58,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	ColorMod = ColorModifier(Level.ObjectPool.AllocateObject(class'ColorModifier'));
 	if ( ColorMod != None )
 	{
-		ColorMod.Material = FinalBlend'BallisticEffects.M75.OrangeFinal';
+		ColorMod.Material = FinalBlend'BW_Core_WeaponTex.M75.OrangeFinal';
 		ColorMod.Color.R = 255;
 		ColorMod.Color.G = 96;
 		ColorMod.Color.B = 0;
@@ -256,15 +256,15 @@ simulated event DrawThermalMode (Canvas C)
 	// Draw Spinning Sweeper thing
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
 	C.SetDrawColor(255,255,255,255);
-	C.DrawTile(FinalBlend'BallisticUI2.M75.M75SeekerFinal', (C.SizeY*ImageScaleRatio) * 0.75, C.SizeY, 0, 0, 1024, 1024);
+	C.DrawTile(FinalBlend'BW_Core_WeaponTex.M75.M75SeekerFinal', (C.SizeY*ImageScaleRatio) * 0.75, C.SizeY, 0, 0, 1024, 1024);
 	
 	// Draw Expanding Circle thing
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
-	C.DrawTile(FinalBlend'BallisticUI2.M75.M75RadarFinal', (C.SizeY*ImageScaleRatio) * 0.75, C.SizeY, 0, 0, 1024, 1024);
+	C.DrawTile(FinalBlend'BW_Core_WeaponTex.M75.M75RadarFinal', (C.SizeY*ImageScaleRatio) * 0.75, C.SizeY, 0, 0, 1024, 1024);
 	
 	// Draw some panning lines
 	C.SetPos(C.OrgX, C.OrgY);
-	C.DrawTile(FinalBlend'BallisticUI2.M75.M75LinesFinal', C.SizeX, C.SizeY, 0, 0, 512, 512);
+	C.DrawTile(FinalBlend'BW_Core_WeaponTex.M75.M75LinesFinal', C.SizeX, C.SizeY, 0, 0, 512, 512);
 
 	if (ColorMod == None)
 		return;
@@ -424,29 +424,29 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
-	ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
-	ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
-	WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
-	Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
+	ThermalOnSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
+	ThermalOffSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
+	WallVisionSkin=FinalBlend'BW_Core_WeaponTex.M75.OrangeFinal'
+	Flaretex=FinalBlend'BW_Core_WeaponTex.M75.OrangeFlareFinal'
 	ThermalRange=3500.000000
 
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M75'
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M75'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	ManualLines(0)="Uncharged rail slug shot. High damage, moderate fire rate and recoil, and good penetration."
 	ManualLines(1)="Charged rail slug shot. The railgun will fire when the fire key is released, or immediately upon becoming fully charged. Damage and penetration improve with charge, to extreme levels when fully charged."
 	ManualLines(2)="Weapon Function toggles the thermal scope, allowing the user to see enemies through walls. The further away the opponent, the closer the player's aim needs to be to their position to view them.||As a heavy weapon, the M75 reduces the user's movement speed and jump ability.||The M75 is effective at long range and through cover."
 	SpecialInfo(0)=(Info="300.0;30.0;1.0;80.0;1.0;0.0;0.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.M75.M75Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M75.M75Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Putaway')
 	CockAnimPostReload="Cock2"
 	CockAnimRate=1.350000
-	CockSound=(Sound=Sound'BallisticSounds2.M75.M75Cock')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Cock')
 	ReloadAnimRate=1.400000
-	ClipHitSound=(Sound=Sound'BallisticSounds2.M75.M75Cliphit')
-	ClipOutSound=(Sound=Sound'BallisticSounds2.M75.M75Clipout')
-	ClipInSound=(Sound=Sound'BallisticSounds2.M75.M75Clipin')
+	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Cliphit')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Clipout')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Clipin')
 	ClipInFrame=0.650000
 	bAltTriggerReload=True
 	WeaponModes(0)=(ModeName="Single Fire")
@@ -457,9 +457,9 @@ defaultproperties
 	bNoTweenToScope=True
 	ZoomInAnim="ZoomIn"
 	ZoomOutAnim="ZoomOut"
-	ScopeViewTex=Texture'BallisticUI2.M75.M75ScopeView'
-	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	ScopeViewTex=Texture'BW_Core_WeaponTex.M75.M75ScopeView'
+	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
@@ -488,7 +488,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.M75Pickup'
 	PlayerViewOffset=(X=15.000000,Y=11.000000,Z=-12.000000)
 	AttachmentClass=Class'BallisticProV55.M75Attachment'
-	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M75'
+	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M75'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M75 Railgun"
 	LightType=LT_Pulse
@@ -497,6 +497,6 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=180.000000
 	LightRadius=8.000000
-	Mesh=SkeletalMesh'BallisticAnims2.Railgun'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M75'
 	DrawScale=0.400000
 }

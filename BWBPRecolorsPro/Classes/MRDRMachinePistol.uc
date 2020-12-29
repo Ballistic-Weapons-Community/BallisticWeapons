@@ -177,9 +177,9 @@ defaultproperties
 {
 	bShouldDualInLoadout=False
 	HandgunGroup=2
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BallisticRecolors3TexPro.MRDR.BigIcon_MRDR'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.MRDR.BigIcon_MRDR'
 	BigIconCoords=(X1=64,Y1=0,Y2=255)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -188,11 +188,11 @@ defaultproperties
 	ManualLines(1)="Continuous melee attack. Lower DPS than dedicated melee weapons."
 	ManualLines(2)="As a wrist-mounted weapon, it has no iron sights, but possesses superior hip accuracy.||Moderately effective at close range."
 	SpecialInfo(0)=(Info="60.0;3.0;0.1;125.0;0.0;0.2;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
-	CockSound=(Sound=Sound'PackageSounds4Pro.MRDR.MRDR-Cock',Volume=0.800000)
-	ClipOutSound=(Sound=Sound'PackageSounds4Pro.MRDR.MRDR-ClipOut',Volume=0.700000)
-	ClipInSound=(Sound=Sound'PackageSounds4Pro.MRDR.MRDR-ClipIn',Volume=0.700000)
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-Cock',Volume=0.800000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-ClipOut',Volume=0.700000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-ClipIn',Volume=0.700000)
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Small Burst",Value=5.000000)
@@ -219,7 +219,7 @@ defaultproperties
 	PickupClass=Class'BWBPRecolorsPro.MRDRPickup'
 	PlayerViewOffset=(X=-8.000000,Y=8.000000,Z=-8.000000)
 	AttachmentClass=Class'BWBPRecolorsPro.MRDRAttachment'
-	IconMaterial=Texture'BallisticRecolors3TexPro.MRDR.SmallIcon_MRDR'
+	IconMaterial=Texture'BWBP_SKC_Tex.MRDR.SmallIcon_MRDR'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="MR-DR88 Machine Pistol"
 	LightType=LT_Pulse
@@ -228,6 +228,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.KnuckleBuster'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MRDR'
 	DrawScale=0.300000
 }

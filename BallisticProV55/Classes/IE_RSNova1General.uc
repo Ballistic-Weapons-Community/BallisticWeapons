@@ -84,7 +84,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.400000)
          StartSizeRange=(X=(Min=130.000000,Max=130.000000),Y=(Min=130.000000,Max=130.000000),Z=(Min=130.000000,Max=130.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
      End Object
@@ -116,7 +116,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.500000)
          StartSizeRange=(X=(Min=13.000000,Max=15.000000),Y=(Min=13.000000,Max=15.000000),Z=(Min=13.000000,Max=15.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
      End Object
@@ -150,7 +150,7 @@ defaultproperties
          StartSizeRange=(X=(Min=35.000000,Max=40.000000),Y=(Min=35.000000,Max=40.000000),Z=(Min=35.000000,Max=40.000000))
          InitialParticlesPerSecond=12.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticWeapons2.Effects.Smoke7'
+         Texture=Texture'BW_Core_WeaponTex.Effects.Smoke7'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=3.000000)
          StartVelocityRange=(X=(Min=10.000000,Max=20.000000),Y=(Min=-20.000000,Max=20.000000),Z=(Min=100.000000,Max=100.000000))
@@ -159,7 +159,7 @@ defaultproperties
      Emitters(2)=SpriteEmitter'BallisticProV55.IE_RSNova1General.SpriteEmitter3'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BWBP4-Hardware.NovaStaff.Nova-GlowChips'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.NovaStaff.Nova-GlowChips'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -207,7 +207,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=120.000000,Max=140.000000),Y=(Min=120.000000,Max=140.000000),Z=(Min=120.000000,Max=140.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticEffects.Particles.Explode2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
          LifetimeRange=(Min=0.400000,Max=0.400000)
          InitialDelayRange=(Min=0.150000,Max=0.150000)
      End Object
@@ -228,7 +228,7 @@ defaultproperties
          StartLocationOffset=(X=5.000000)
          StartSizeRange=(X=(Min=6.000000,Max=12.000000),Y=(Min=6.000000,Max=12.000000),Z=(Min=6.000000,Max=12.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Max=500.000000),Y=(Min=-500.000000,Max=500.000000),Z=(Min=-400.000000,Max=500.000000))
@@ -259,7 +259,7 @@ defaultproperties
          StartSizeRange=(X=(Min=1.000000,Max=2.000000),Y=(Min=10.000000,Max=15.000000),Z=(Min=5.000000,Max=5.000000))
          InitialParticlesPerSecond=120.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.Smoke5'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke5'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          VelocityLossRange=(X=(Min=3.000000,Max=3.000000),Y=(Min=3.000000,Max=3.000000),Z=(Min=3.000000,Max=3.000000))

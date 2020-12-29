@@ -18,7 +18,7 @@ defaultproperties
      KickForce=4000
      PenetrateForce=150
      bPenetrate=True
-     DryFireSound=(Sound=Sound'BallisticSounds2.D49.D49-DryFire',Volume=0.700000)
+     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
      bCockAfterEmpty=True
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
      FlashScaleFactor=0.800000
@@ -27,7 +27,7 @@ defaultproperties
      BrassOffset=(X=-80.000000,Y=1.000000)
      FireRecoil=120.000000
      FireChaos=0.080000
-     BallisticFireSound=(Sound=Sound'BallisticSounds3.SAR.SAR-Fire',Volume=0.900000,Slot=SLOT_Interact,Pitch=1.500000,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Fire',Volume=0.900000,Slot=SLOT_Interact,Pitch=1.500000,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireRate=0.090000

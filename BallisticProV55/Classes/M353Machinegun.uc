@@ -241,13 +241,13 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
-	BoxOnSound=(Sound=Sound'BallisticSounds2.M353.M353-BoxOn')
-	BoxOffSound=(Sound=Sound'BallisticSounds2.M353.M353-BoxOff')
-	FlapUpSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapUp')
-	FlapDownSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapDown')
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BoxOnSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-BoxOn')
+	BoxOffSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-BoxOff')
+	FlapUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-FlapUp')
+	FlapDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-FlapDown')
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=4.000000
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M353'
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M353'
 	BigIconCoords=(Y1=50,Y2=240)
 	SightFXClass=Class'BallisticProV55.M353SightLEDs'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -257,14 +257,14 @@ defaultproperties
 	ManualLines(1)="Deploys the machinegun upon the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, becomes perfectly accurate, loses its iron sights and gains a reduction in recoil. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
 	ManualLines(2)="The M353 is a more cumbersome and heavy weapon, and accordingly has poor hipfire and takes some time to aim.||It is effective at medium to long range."
 	SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.4;0.4;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.M353.M353-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M353.M353-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway')
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
 	ReloadAnim="ReloadStart"
 	ReloadAnimRate=1.250000
-	ClipOutSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellOut')
-	ClipInSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellIn')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellIn')
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
 	WeaponModes(0)=(bUnavailable=True)
@@ -293,7 +293,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.M353Pickup'
 	PlayerViewOffset=(X=2.000000,Y=3.500000,Z=-4.000000)
 	AttachmentClass=Class'BallisticProV55.M353Attachment'
-	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M353'
+	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M353'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M353 Light Machine Gun"
 	LightType=LT_Pulse

@@ -10,5 +10,5 @@ class Brass_Z250Shell extends Brass_Minigun;
 
 defaultproperties
 {
-     StaticMesh=StaticMesh'BWBPOtherPackStatic.Z250.Z250_shell'
+     StaticMesh=StaticMesh'BWBP_OP_Static.Z250.Z250_shell'
 }

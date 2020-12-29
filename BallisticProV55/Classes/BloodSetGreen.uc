@@ -47,7 +47,7 @@ defaultproperties
      CharredStump=Class'BallisticProV55.BWStump_CharredAlien'
      AltStumpMesh=StaticMesh'BWGoreHardwarePro.AlienStumps.Alien-LimbStump2'
      AltCharStumpMesh=StaticMesh'BWGoreHardwarePro.AlienStumps.Alien-StumpCharred2'
-     BulletHitSound=SoundGroup'BallisticSounds2.BulletImpacts.BulletAlien'
+     BulletHitSound=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletAlien'
      ScreenEffectMisc=Class'BallisticProV55.BG_ScnBloodAlien'
      ScreenEffectSlice=Class'BallisticProV55.BG_ScnBloodSliceAlien'
      ScreenEffectSaw=Class'BallisticProV55.BG_ScnBloodSawAlien'

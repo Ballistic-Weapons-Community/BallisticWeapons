@@ -3,7 +3,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class IE_A500BlastImpact extends DGVEmitter
 	placeable;
@@ -42,7 +42,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=2.000000,Max=3.250000),Y=(Min=2.000000,Max=3.250000),Z=(Min=2.000000,Max=3.250000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticEffects.Particles.AquaBubbleA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.AquaBubbleA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRange=(X=(Min=50.000000,Max=400.000000),Y=(Min=-250.000000,Max=250.000000),Z=(Min=-250.000000,Max=250.000000))
@@ -73,7 +73,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=3.000000,Max=6.000000),Y=(Min=4.000000,Max=15.000000),Z=(Min=3.000000,Max=6.000000))
          InitialParticlesPerSecond=60.000000
-         Texture=Texture'BallisticTextures_25.Reptile.AcidDrops01'
+         Texture=Texture'BW_Core_WeaponTex.Reptile.AcidDrops01'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -107,7 +107,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.250000)
          StartSizeRange=(X=(Min=20.000000,Max=35.000000),Y=(Min=20.000000,Max=35.000000),Z=(Min=20.000000,Max=35.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticTextures_25.Reptile.AcidSplash01'
+         Texture=Texture'BW_Core_WeaponTex.Reptile.AcidSplash01'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          StartVelocityRange=(X=(Max=20.000000),Y=(Min=-25.000000,Max=25.000000),Z=(Min=-25.000000,Max=25.000000))
@@ -136,7 +136,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=3.000000,Max=4.000000),Y=(Min=4.000000,Max=10.000000),Z=(Min=3.000000,Max=4.000000))
          InitialParticlesPerSecond=500000.000000
-         Texture=Texture'BallisticTextures_25.Reptile.AcidDrops01'
+         Texture=Texture'BW_Core_WeaponTex.Reptile.AcidDrops01'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000

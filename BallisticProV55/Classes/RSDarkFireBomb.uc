@@ -236,7 +236,7 @@ defaultproperties
      bSkipActorPropertyReplication=True
      bOnlyDirtyReplication=True
      Physics=PHYS_Falling
-     AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire1FlyBy'
+     AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire1FlyBy'
      LifeSpan=16.000000
      DrawScale=1.500000
      SoundVolume=255

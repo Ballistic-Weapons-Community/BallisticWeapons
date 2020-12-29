@@ -11,7 +11,7 @@ defaultproperties
      DrawType=DT_Mesh
      bOnlyDrawIfAttached=True
      RemoteRole=ROLE_None
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.JW2x4_Third'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.JunkShieldClub_TPm'
 	 RelativeRotation=(Pitch=32768)
      DrawScale=0.450000
 }

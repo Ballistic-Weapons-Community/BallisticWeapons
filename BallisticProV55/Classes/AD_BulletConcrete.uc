@@ -7,6 +7,6 @@ class AD_BulletConcrete extends AD_ImpactDecal
 defaultproperties
 {
      DrawScaleVariance=0.050000
-     ProjTexture=Texture'BallisticEffects2.Decals.Bullet_Concrete'
+     ProjTexture=Texture'BW_Core_WeaponTex.Decals.Bullet_Concrete'
      DrawScale=0.100000
 }

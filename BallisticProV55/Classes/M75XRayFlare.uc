@@ -38,7 +38,7 @@ defaultproperties
          UseSkeletalLocationAs=PTSU_Location
          SkeletalScale=(X=0.390000,Y=0.390000,Z=0.390000)
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRange=(Z=(Min=-10.000000,Max=-1.000000))

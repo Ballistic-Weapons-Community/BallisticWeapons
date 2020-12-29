@@ -33,8 +33,8 @@ defaultproperties
      LightBrightness=150.000000
      LightRadius=64.000000
      bDynamicLight=True
-     AmbientSound=Sound'BWBPSomeOtherPackSounds.FlameSword.FlameSword-IdleLite'
-     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.FlameSword_Third'
+     AmbientSound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-IdleLite'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.FlameSword_TPm'
      RelativeLocation=(Z=6.000000)
 	 RelativeRotation=(Pitch=32768)
      DrawScale=0.700000

@@ -21,7 +21,7 @@ simulated event PostBeginPlay()
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticHardware2.M763.M763MuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M763.M763MuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -77,7 +77,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.500000,RelativeSize=0.600000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=40.000000,Max=50.000000),Y=(Min=60.000000,Max=60.000000),Z=(Min=60.000000,Max=60.000000))
-         Texture=Texture'BallisticEffects.Particles.DirtSpray'
+         Texture=Texture'BW_Core_WeaponTex.Particles.DirtSpray'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          SpawnOnTriggerRange=(Min=2.000000,Max=2.000000)
@@ -107,7 +107,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=7.000000,Max=7.000000),Y=(Min=90.000000,Max=90.000000),Z=(Min=90.000000,Max=90.000000))
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -137,7 +137,7 @@ defaultproperties
          StartLocationOffset=(X=5.000000)
          StartLocationRange=(X=(Max=10.000000))
          StartSizeRange=(X=(Min=1.500000,Max=2.500000),Y=(Min=12.000000,Max=24.000000),Z=(Min=12.000000,Max=24.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          SpawnOnTriggerRange=(Min=10.000000,Max=10.000000)
@@ -164,7 +164,7 @@ defaultproperties
          MaxParticles=3
          Opacity=0.5
          StartSizeRange=(X=(Min=60.000000,Max=60.000000),Y=(Min=60.000000,Max=60.000000),Z=(Min=60.000000,Max=60.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -193,7 +193,7 @@ defaultproperties
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=45.000000,Max=45.000000)
          StartSizeRange=(X=(Min=6.000000,Max=8.000000),Y=(Min=6.000000,Max=8.000000),Z=(Min=6.000000,Max=8.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
          LifetimeRange=(Min=0.800000,Max=0.800000)
          SpawnOnTriggerRange=(Min=12.000000,Max=10.000000)
          SpawnOnTriggerPPS=5000.000000
@@ -234,7 +234,7 @@ defaultproperties
          SizeScale(6)=(RelativeTime=1.000000,RelativeSize=1.500000)
          StartSizeRange=(X=(Min=5.000000,Max=5.000000),Y=(Min=8.000000,Max=8.000000),Z=(Min=8.000000,Max=8.000000))
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.Particles.WaterSpray1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.WaterSpray1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.200000,Max=1.200000)
          SpawnOnTriggerRange=(Min=15.000000,Max=15.000000)

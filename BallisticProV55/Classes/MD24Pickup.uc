@@ -3,14 +3,14 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class MD24Pickup extends BallisticHandgunPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BallisticWeapons2.utx
-#exec OBJ LOAD FILE=BallisticEffects.utx
-#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -20,31 +20,31 @@ class MD24Pickup extends BallisticHandgunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BallisticTextures_25.MD24.MD24_Main');
-	L.AddPrecacheMaterial(Texture'BallisticTextures_25.MD24.MD24_Clip');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.MD24.MD24_Main');
+	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.MD24.MD24_Clip');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BallisticTextures_25.MD24.MD24_Main');
-	Level.AddPrecacheMaterial(Texture'BallisticTextures_25.MD24.MD24_Clip');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.MD24.MD24_Main');
+	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.MD24.MD24_Clip');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware_25.MD24.MD24_Ammo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware_25.MD24.MD24_PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware_25.MD24.MD24_PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MD24.MD24_Ammo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MD24.MD24_PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.MD24.MD24_PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BallisticHardware_25.MD24.MD24_PickupLo'
+     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.MD24.MD24_PickupLo'
      PickupDrawScale=0.600000
      InventoryType=Class'BallisticProV55.MD24Pistol'
      RespawnTime=10.000000
      PickupMessage="You picked up the MD24 pistol."
-     PickupSound=Sound'BallisticSounds2.M806.M806Putaway'
-     StaticMesh=StaticMesh'BallisticHardware_25.MD24.MD24_PickupHi'
+     PickupSound=Sound'BW_Core_WeaponSound.M806.M806Putaway'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.MD24.MD24_PickupHi'
      Physics=PHYS_None
      DrawScale=0.600000
      CollisionHeight=4.000000

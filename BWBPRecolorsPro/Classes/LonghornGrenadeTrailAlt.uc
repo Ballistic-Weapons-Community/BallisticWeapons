@@ -49,7 +49,7 @@ defaultproperties
          DetailMode=DM_High
          StartSpinRange=(X=(Max=1.000000),Y=(Max=1.000000),Z=(Max=1.000000))
          StartSizeRange=(X=(Min=4.000000,Max=8.000000),Y=(Min=4.000000,Max=8.000000),Z=(Min=4.000000,Max=8.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
          LifetimeRange=(Min=3.000000,Max=3.000000)
          StartVelocityRange=(X=(Min=-256.000000,Max=256.000000),Y=(Min=-256.000000,Max=256.000000),Z=(Min=200.000000,Max=800.000000))
      End Object
@@ -67,7 +67,7 @@ defaultproperties
          MaxParticles=1
          StartLocationRange=(X=(Min=-8.000000,Max=-8.000000))
          StartSizeRange=(X=(Min=20.000000,Max=25.000000),Y=(Min=20.000000,Max=25.000000),Z=(Min=20.000000,Max=25.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
      Emitters(1)=SpriteEmitter'BWBPRecolorsPro.LonghornGrenadeTrailAlt.SpriteEmitter4'
@@ -88,7 +88,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=20.000000,Max=25.000000),Y=(Min=20.000000,Max=25.000000),Z=(Min=20.000000,Max=25.000000))
          InitialParticlesPerSecond=200.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
      Emitters(2)=SpriteEmitter'BWBPRecolorsPro.LonghornGrenadeTrailAlt.SpriteEmitter5'
@@ -112,7 +112,7 @@ defaultproperties
          DetailMode=DM_High
          StartSizeRange=(X=(Min=50.000000,Max=55.000000),Y=(Min=25.000000,Max=27.000000),Z=(Min=25.000000,Max=27.000000))
          InitialParticlesPerSecond=500000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.750000,Max=1.000000)
      End Object
@@ -131,7 +131,7 @@ defaultproperties
          MaxParticles=40
          StartSpinRange=(X=(Max=1.000000),Y=(Max=1.000000),Z=(Max=1.000000))
          StartSizeRange=(X=(Min=4.000000,Max=8.000000),Y=(Min=4.000000,Max=8.000000),Z=(Min=4.000000,Max=8.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
          LifetimeRange=(Min=3.000000,Max=3.000000)
          StartVelocityRange=(X=(Min=-256.000000,Max=256.000000),Y=(Min=-256.000000,Max=256.000000),Z=(Min=200.000000,Max=800.000000))
      End Object
@@ -160,7 +160,7 @@ defaultproperties
          StartSizeRange=(X=(Min=15.000000,Max=25.000000),Y=(Min=15.000000,Max=25.000000),Z=(Min=15.000000,Max=25.000000))
          InitialParticlesPerSecond=20.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects.Particles.Smoke4'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.500000,Max=2.000000)
          StartVelocityRange=(X=(Min=-25.000000,Max=25.000000),Y=(Min=-25.000000,Max=25.000000),Z=(Min=80.000000,Max=105.000000))
@@ -184,7 +184,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=15.000000,Max=15.000000),Y=(Min=15.000000,Max=15.000000),Z=(Min=15.000000,Max=15.000000))
          InitialParticlesPerSecond=1.000000
-         Texture=Texture'BallisticEffects.Particles.FlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
          LifetimeRange=(Min=0.401000,Max=0.401000)
      End Object
      Emitters(6)=SpriteEmitter'BWBPRecolorsPro.LonghornGrenadeTrailAlt.SpriteEmitter7'

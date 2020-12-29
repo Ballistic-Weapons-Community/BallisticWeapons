@@ -31,7 +31,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=8.000000)
          InitialParticlesPerSecond=8.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.Explode2'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -58,7 +58,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=12.000000)
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BallisticEffects.GunFire.RailShock'
+         Texture=Texture'BW_Core_WeaponTex.GunFire.RailShock'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -84,7 +84,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.100000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=12.000000)
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticEffects.GunFire.RailShock'
+         Texture=Texture'BW_Core_WeaponTex.GunFire.RailShock'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -111,7 +111,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.100000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=9.000000)
          InitialParticlesPerSecond=10.000000
-         Texture=Texture'BallisticEffects.Particles.WaterRing1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.WaterRing1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.650000,Max=0.650000)
      End Object
@@ -164,7 +164,7 @@ defaultproperties
          StartLocationOffset=(X=5.000000)
          StartSizeRange=(X=(Min=10.000000,Max=24.000000),Y=(Min=10.000000,Max=24.000000),Z=(Min=10.000000,Max=24.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.500000,Max=1.500000)
          StartVelocityRange=(X=(Min=-1250.000000,Max=1250.000000),Y=(Min=-1250.000000,Max=1250.000000),Z=(Min=-1250.000000,Max=1250.000000))
@@ -194,7 +194,7 @@ defaultproperties
          StartSizeRange=(X=(Min=2.000000,Max=6.000000),Y=(Min=15.000000,Max=25.000000),Z=(Min=5.000000,Max=5.000000))
          InitialParticlesPerSecond=350.000000
          DrawStyle=PTDS_Darken
-         Texture=Texture'BallisticEffects.Particles.Smoke5'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke5'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          VelocityLossRange=(X=(Min=3.000000,Max=3.000000),Y=(Min=3.000000,Max=3.000000),Z=(Min=3.000000,Max=3.000000))
@@ -228,7 +228,7 @@ defaultproperties
          StartSizeRange=(X=(Max=150.000000),Y=(Max=150.000000),Z=(Max=150.000000))
          InitialParticlesPerSecond=75.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BallisticEffects2.Particles.NewSmoke1f'
+         Texture=Texture'BW_Core_WeaponTex.Particles.NewSmoke1f'
          SecondsBeforeInactive=0.000000
          StartVelocityRange=(X=(Min=-500.000000,Max=500.000000),Y=(Min=-500.000000,Max=500.000000),Z=(Min=-500.000000,Max=500.000000))
          VelocityLossRange=(X=(Max=6.000000))

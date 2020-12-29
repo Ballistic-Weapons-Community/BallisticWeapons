@@ -131,7 +131,7 @@ defaultproperties
      DriverBackOff=100.000000
      bDrawDriverInTP=True
      VehicleNameString="X-83 A1 Mounted Rifle"
-     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.X83A1_Turret_3rd'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.X83Turret_TPm'
      DrawScale=0.420000
      CollisionHeight=18.000000
 }

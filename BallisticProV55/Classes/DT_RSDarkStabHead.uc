@@ -38,7 +38,7 @@ defaultproperties
      bAlwaysSevers=True
      bSpecial=True
 	 BlockFatiguePenalty=0.05
-     PawnDamageSounds(0)=SoundGroup'BWBP4-Sounds.DarkStar.Dark-Flesh'
+     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.DarkStar.Dark-Flesh'
      KDamageImpulse=2000.000000
      TransientSoundVolume=0.900000
 }

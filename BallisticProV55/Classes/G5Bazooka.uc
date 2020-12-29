@@ -10,7 +10,7 @@
 //=============================================================================
 class G5Bazooka extends BallisticWeapon;
 
-#EXEC OBJ LOAD FILE=BallisticUI2.utx
+#EXEC OBJ LOAD FILE=BW_Core_WeaponTex.utx
 
 var() BUtil.FullSound	HatchSound;
 var   bool				bCamView;
@@ -372,8 +372,8 @@ simulated event DrawTargeting (Canvas C)
 	C.SetPos(V.X, V.Y);
 	V2 = C.WorldToScreen(Target.Location + Y*Target.CollisionRadius - Z*Target.CollisionHeight);
 	C.SetDrawColor(255,255,255,255);
-//	C.DrawTile(Texture'BallisticUI2.G5.G5Targetbox', V2.X - V.X, V2.Y - V.Y, 0, 0, 1, 1);
-	C.DrawTileStretched(Texture'BallisticUI2.G5.G5Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
+//	C.DrawTile(Texture'BW_Core_WeaponTex.G5.G5Targetbox', V2.X - V.X, V2.Y - V.Y, 0, 0, 1, 1);
+	C.DrawTileStretched(Texture'BW_Core_WeaponTex.G5.G5Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
 }
 
 simulated function KillLaserDot()
@@ -568,11 +568,11 @@ simulated event RenderOverlays( Canvas Canvas )
 		Canvas.Style = ERenderStyle.STY_Alpha;
 		Canvas.SetPos(0,0);
 		Canvas.DrawColor.A = 48;
-		Canvas.DrawTile( Material'BallisticUI2.M50.Noise1', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 256, 256 ); // !! hardcoded size
+		Canvas.DrawTile( Material'BW_Core_WeaponTex.M50.Noise1', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 256, 256 ); // !! hardcoded size
 		// Tunnel vision
 		Canvas.DrawColor.A = 255;
 		Canvas.SetPos(0,0);
-		Canvas.DrawTile( Material'BallisticUI2.M50.M50CamView', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 1024, 1024 ); // !! hardcoded size
+		Canvas.DrawTile( Material'BW_Core_WeaponTex.M50.M50CamView', Canvas.SizeX, Canvas.SizeY, 0.0, 0.0, 1024, 1024 ); // !! hardcoded size
 	}
     else
         OldRenderOverlays(Canvas);

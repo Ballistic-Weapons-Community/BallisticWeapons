@@ -115,6 +115,6 @@ defaultproperties
      MotionBlurTime=4.000000
      Speed=3500.000000
      MyDamageType=None
-     StaticMesh=StaticMesh'BallisticHardware2.M900.M900Grenade'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade'
      bUnlit=False
 }

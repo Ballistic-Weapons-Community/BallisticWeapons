@@ -53,11 +53,11 @@ defaultproperties
      LightSaturation=20
      LightBrightness=160.000000
      LightRadius=12.000000
-     StaticMesh=StaticMesh'BWBP4-Hardware.DarkStar.DarkProjBig'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.DarkProjBig'
      AmbientSound=Sound'IndoorAmbience.electricity1'
      LifeSpan=16.000000
-     Skins(0)=FinalBlend'BallisticRecolors3TexPro.BFG.BFGProj2FB'
-     Skins(1)=FinalBlend'BallisticRecolors3TexPro.BFG.BFGProjFB'
+     Skins(0)=FinalBlend'BWBP_SKC_Tex.BFG.BFGProj2FB'
+     Skins(1)=FinalBlend'BWBP_SKC_Tex.BFG.BFGProjFB'
      Style=STY_Additive
      SoundVolume=255
      SoundRadius=75.000000

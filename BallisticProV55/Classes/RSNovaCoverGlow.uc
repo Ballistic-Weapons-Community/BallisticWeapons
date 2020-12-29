@@ -18,7 +18,7 @@ function InvertY()
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BWBP4-Hardware.NovaStaff.NovaGemGlow'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaGemGlow'
          UseMeshBlendMode=False
          UseParticleColor=True
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
@@ -47,7 +47,7 @@ defaultproperties
          StartLocationOffset=(X=-52.000000,Z=7.000000)
          StartLocationRange=(X=(Max=16.000000))
          StartSizeRange=(X=(Min=10.000000,Max=20.000000),Y=(Min=10.000000,Max=20.000000),Z=(Min=10.000000,Max=20.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
      End Object
@@ -66,10 +66,10 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          MaxParticles=3
          DetailMode=DM_SuperHigh
-         MeshSpawningStaticMesh=StaticMesh'BWBP4-Hardware.NovaStaff.NovaGemGlow'
+         MeshSpawningStaticMesh=StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaGemGlow'
          MeshSpawning=PTMS_Random
          StartSizeRange=(X=(Min=1.000000,Max=4.000000),Y=(Min=1.000000,Max=4.000000),Z=(Min=1.000000,Max=4.000000))
-         Texture=Texture'BallisticEffects.Particles.FlareB1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
      End Object
@@ -95,7 +95,7 @@ defaultproperties
          SpinsPerSecondRange=(X=(Max=0.050000))
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=2.000000,Max=4.000000),Y=(Min=2.000000,Max=4.000000),Z=(Min=2.000000,Max=4.000000))
-         Texture=Texture'BallisticEffects.Particles.Smoke4'
+         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=3.000000,Max=6.000000))

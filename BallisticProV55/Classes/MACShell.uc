@@ -132,7 +132,7 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 
 defaultproperties
 {
-     FlySound=Sound'BWBP4-Sounds.Artillery.Art-FlyBy'
+     FlySound=Sound'BW_Core_WeaponSound.Artillery.Art-FlyBy'
      ImpactManager=Class'BallisticProV55.IM_HAMR'
      bCheckHitSurface=True
      bRandomStartRotaion=False
@@ -156,7 +156,7 @@ defaultproperties
      DamageRadius=192.000000
      MomentumTransfer=100000.000000
      MyDamageType=Class'BallisticProV55.DT_MAC'
-     StaticMesh=StaticMesh'BWBP4-Hardware.Artillery.Artillery-Projectile'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Artillery.Artillery-Projectile'
      Physics=PHYS_Falling
      DrawScale=0.300000
      SoundVolume=192

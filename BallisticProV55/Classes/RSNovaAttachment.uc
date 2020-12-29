@@ -521,7 +521,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     WingSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Flying'
+     WingSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Flying'
      MuzzleFlashClass=Class'BallisticProV55.RSNovaLightMuzzleFlash'
      AltMuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
      ImpactManager=Class'BallisticProV55.IM_NovaStaffBlades'
@@ -535,6 +535,6 @@ defaultproperties
      MeleeAnimRate=1.000000
      TrackNum(1)=0
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP4-Anims.NovaStaff-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.NovaStaff_TPm'
      DrawScale=0.650000
 }

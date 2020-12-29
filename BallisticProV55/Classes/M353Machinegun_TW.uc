@@ -242,26 +242,26 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
-	BoxOnSound=(Sound=Sound'BallisticSounds2.M353.M353-BoxOn')
-	BoxOffSound=(Sound=Sound'BallisticSounds2.M353.M353-BoxOff')
-	FlapUpSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapUp')
-	FlapDownSound=(Sound=Sound'BallisticSounds2.M353.M353-FlapDown')
-	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BoxOnSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-BoxOn')
+	BoxOffSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-BoxOff')
+	FlapUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-FlapUp')
+	FlapDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-FlapDown')
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=4.000000
-	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_M353'
+	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M353'
 	SightFXClass=Class'BallisticProV55.M353SightLEDs'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	SpecialInfo(0)=(Info="300.0;25.0;0.7;-1.0;0.4;0.4;-999.0")
-	BringUpSound=(Sound=Sound'BallisticSounds2.M353.M353-Pullout')
-	PutDownSound=(Sound=Sound'BallisticSounds2.M353.M353-Putaway')
+	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Pullout')
+	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Putaway')
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
+	CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
 	ReloadAnim="ReloadStart"
 	ReloadAnimRate=1.250000
-	ClipOutSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellOut')
-	ClipInSound=(Sound=Sound'BallisticSounds2.M353.M353-ShellIn')
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-ShellIn')
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
 	WeaponModes(1)=(ModeName="Burst of Three")
@@ -295,7 +295,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.M353Pickup'
 	PlayerViewOffset=(X=11.000000,Z=-14.000000)
 	AttachmentClass=Class'BallisticProV55.M353Attachment'
-	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_M353'
+	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_M353'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="M353 Machinegun Turret"
 	LightType=LT_Pulse
@@ -304,7 +304,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BallisticAnims2.M353Turret-1st'
+	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M353Turret'
 	DrawScale=0.600000
 	CollisionHeight=26.000000
 }

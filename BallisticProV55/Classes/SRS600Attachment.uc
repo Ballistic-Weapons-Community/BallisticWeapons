@@ -11,5 +11,5 @@ simulated function Vector GetTipLocation()
 }
 defaultproperties
 {
-     Mesh=SkeletalMesh'BallisticProAnims.SRSEO-3rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.SRS600_TPm'
 }

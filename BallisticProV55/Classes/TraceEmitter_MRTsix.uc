@@ -31,7 +31,7 @@ defaultproperties
          MaxParticles=12
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRange=(X=(Min=100.000000,Max=4000.000000),Y=(Min=-150.000000,Max=150.000000),Z=(Min=-100.000000,Max=200.000000))
@@ -39,7 +39,7 @@ defaultproperties
      Emitters(0)=SparkEmitter'BallisticProV55.TraceEmitter_MRTsix.SparkEmitter1'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter15
-         StaticMesh=StaticMesh'BallisticHardware2.Effects.VBlast'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VBlast'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

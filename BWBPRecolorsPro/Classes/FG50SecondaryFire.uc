@@ -208,7 +208,7 @@ simulated function InitEffects()
 defaultproperties
 {
      HeatPerShot=1.200000
-     SpecialFireSound=Sound'PackageSounds4Pro.X82.X82-Fire2'
+     SpecialFireSound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2'
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WallPenetrationForce=72.000000
      

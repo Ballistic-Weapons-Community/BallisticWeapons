@@ -12,6 +12,6 @@ defaultproperties
 {
      ExplodeManager=Class'BallisticProV55.IM_Grenade'
      GrenadeSmokeClass=Class'BallisticProV55.NRP57Trail'
-     Mesh=SkeletalMesh'BallisticAnims2.FP73rd'
+     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FP7_TPm'
      DrawScale=0.250000
 }

@@ -4,9 +4,9 @@ defaultproperties
 {
      MaxAmmo=64
      InitialAmount=32
-     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIcon_BP1Flash'
+     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIcon_BP1Flash'
      PickupClass=Class'BWBPRecolorsPro.AP_CoachBox'
-     IconMaterial=Texture'BWAddPack-RS-Skins.ui.RS-AmmoIconPage'
+     IconMaterial=Texture'BW_Core_WeaponTex.ui.RS-AmmoIconPage'
      IconCoords=(X2=63,Y2=63)
      ItemName="Coach Gun Shells"
      DrawScale=0.250000

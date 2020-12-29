@@ -22,10 +22,10 @@ defaultproperties
      RespawnTime=60.000000
 	 bPredictRespawns=True
      PickupMessage="You picked up a Super Health Kit +"
-     PickupSound=Sound'BallisticSounds2.Health.SuperHealthPickup'
+     PickupSound=Sound'BW_Core_WeaponSound.Health.SuperHealthPickup'
      PickupForce="LargeHealthPickup"
      DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BallisticHardware2.Health.SuperHealth'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Health.SuperHealth'
      DrawScale=0.800000
      AmbientGlow=0
      ScaleGlow=0.600000

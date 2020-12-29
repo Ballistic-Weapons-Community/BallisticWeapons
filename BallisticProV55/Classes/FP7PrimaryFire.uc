@@ -39,7 +39,7 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_FP7Clip'
      BrassBone="tip"
      BrassOffset=(X=-20.000000,Z=-2.000000)
-     BallisticFireSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
      PreFireAnim="PrepThrow"
      FireAnim="Throw"
      AmmoClass=Class'BallisticProV55.Ammo_FP7Grenades'

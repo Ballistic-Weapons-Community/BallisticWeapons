@@ -32,7 +32,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=120.000000,Max=120.000000),Y=(Min=120.000000,Max=120.000000),Z=(Min=120.000000,Max=120.000000))
          DrawStyle=PTDS_Modulated
-         Texture=Texture'BallisticEffects.Particles.RippleA1'
+         Texture=Texture'BW_Core_WeaponTex.Particles.RippleA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.750000,Max=0.750000)
          SpawnOnTriggerRange=(Min=4.000000,Max=4.000000)

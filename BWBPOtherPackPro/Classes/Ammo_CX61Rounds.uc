@@ -11,9 +11,9 @@ defaultproperties
      MaxAmmo=192
      InitialAmount=96
      bTryHeadShot=True
-     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
+     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIconsFlashing'
      PickupClass=Class'BWBPOtherPackPro.AP_CX61Mag'
-     IconMaterial=Texture'BallisticUI2.Icons.AmmoIconPage'
+     IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIconPage'
      IconCoords=(X1=128,X2=191,Y2=63)
      ItemName="CX61 Flechette Rounds"
 }
