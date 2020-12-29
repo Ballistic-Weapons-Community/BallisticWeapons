@@ -27,8 +27,8 @@ var() Name		SGPrepAnim;			//Anim for loading a rocket
 var() Name		CockingAnim;			//Restated here so the guns can call it
 var() Name		ShovelAnim;			//Anim for shovelling, separated from basic reload anim here.
 
-var   int       	VisGrenades;			//Rockets currently visible in tube.
-var   int       	Grenades;				//Rockets currently in the gun.
+var   int       VisGrenades;			//Rockets currently visible in tube.
+var   int       Grenades;				//Rockets currently in the gun.
 var   bool		bAltNeedCock;			//Weapon ready for alt fire
 var   byte		ShellIndex;
 
@@ -41,6 +41,12 @@ replication
 		Grenades;
 	reliable if (Role < ROLE_Authority)
 		ServerLoadFrag;
+}
+
+simulated function PostBeginPlay()
+{
+    Super.PostBeginPlay();
+    SetBoneScale (6, 0.0, 'Scope');
 }
 
 // Add extra Ballistic info to the debug readout
