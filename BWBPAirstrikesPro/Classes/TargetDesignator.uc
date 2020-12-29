@@ -1,6 +1,6 @@
 class TargetDesignator extends BallisticWeapon;
 
-#exec OBJ LOAD File=BWBPOtherPackTex.utx
+#exec OBJ LOAD File=BWBP_OP_Tex.utx
 
 struct StrikeInfoStruct
 {
@@ -377,7 +377,7 @@ defaultproperties
     StrikeInfo(9)=(BombClass=Class'BWBPAirstrikesPro.MK77Projectile',Cooldown=60,BomberSpeed=5500.000000,MinZDist=2048.000000,MinRange=7000.000000,ModeDescription="Targeted incendiary missile with secondary explosion.")
     StrikeInfo(10)=(Cooldown=45,MinZDist=2048.000000,MinRange=8192.000000,bRemoteFired=True,Dropper=Class'BWBPAirstrikesPro.MLRSDropper',ModeDescription="Remote rocket attack saturates the targeted area after a delay.")
     StrikeInfo(11)=(BombClass=Class'BWBPAirstrikesPro.NapalmBomb',Cooldown=60,BomberSpeed=5500.000000,BombRange=7500.000000,BombInterval=0.200000,MinZDist=4096.000000,MinRange=8192.000000,BombOffset=(Y=500.000000),ModeDescription="Carpet bombs in a line with napalm bombs. Very strong.")
-    BigIconMaterial=Texture'BWBPOtherPackTex.Designator.BigIcon_Designator'
+    BigIconMaterial=Texture'BWBP_OP_Tex.Designator.BigIcon_Designator'
     bAllowWeaponInfoOverride=False
     bWT_Super=True
     bNoMag=True
@@ -398,7 +398,7 @@ defaultproperties
     ScopeXScale=1.400000
     ZoomInAnim="Raise"
     ZoomOutAnim="Lower"
-    ScopeViewTex=Texture'BWBPOtherPackTex.Designator.DesignatorScreen'
+    ScopeViewTex=Texture'BWBP_OP_Tex.Designator.DesignatorScreen'
     FullZoomFOV=20.000000
     bNoMeshInScope=True
     bNoCrosshairInScope=True
@@ -430,11 +430,11 @@ defaultproperties
     PlayerViewOffset=(X=50.000000,Y=20.100000,Z=-13.000000)
     BobDamping=1.575000
     AttachmentClass=Class'BWBPAirstrikesPro.TargetDesignatorAttachment'
-    IconMaterial=Texture'BWBPOtherPackTex.Designator.SmallIcon_Designator'
+    IconMaterial=Texture'BWBP_OP_Tex.Designator.SmallIcon_Designator'
     IconCoords=(X2=128,Y2=32)
     ItemName="MAU-52 Target Designator"
-    Mesh=SkeletalMesh'BWBPOtherPackAnim.Designator_FP'
+    Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Designator'
     DrawScale=0.600000
     AmbientGlow=64
-    TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+    TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 }

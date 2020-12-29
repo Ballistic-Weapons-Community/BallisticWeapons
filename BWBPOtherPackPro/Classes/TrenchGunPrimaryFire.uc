@@ -642,6 +642,8 @@ defaultproperties
 
     CutOffDistance=2048.000000
     CutOffStartRange=1024.000000
+
+	TraceCount=10
 	TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
     ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
 	AltTracerClass=Class'BWBPRecolorsPro.TraceEmitter_Supercharge'
@@ -653,6 +655,7 @@ defaultproperties
 
 	Damage=12.000000
 	ElectroDamage=7.000000
+
     MaxHits=14 // inflict maximum of 156 damage to a single target
 
 	RangeAtten=0.250000
@@ -681,6 +684,7 @@ defaultproperties
 	ElectroInaccuracy=(X=150,Y=150)
 	ElectroDoubleInaccuracy=(X=378,Y=220)
 	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)	FireAnim="FireCombined"
+	FireAnim="FireCombined"
 	FireAnimRate=0.800000
 	FireRate=0.100000
 	AmmoClass=Class'BWBPOtherPackPro.Ammo_TrenchgunShells'
