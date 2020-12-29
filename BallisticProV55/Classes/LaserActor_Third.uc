@@ -8,5 +8,5 @@ class LaserActor_Third extends LaserActor;
 
 defaultproperties
 {
-     Skins(0)=FinalBlend'BW_Core_WeaponTex.LaserFX.Laser2Final'
+     Skins(0)=FinalBlend'BallisticEffects.LaserFX.Laser2Final'
 }

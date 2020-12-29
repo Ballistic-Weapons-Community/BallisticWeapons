@@ -10,7 +10,7 @@ class IE_BulletWater extends BallisticEmitter
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter18
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VolumetricA4'
+         StaticMesh=StaticMesh'BallisticHardware2.Effects.VolumetricA4'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -58,7 +58,7 @@ defaultproperties
          StartSizeRange=(X=(Min=1.000000,Max=2.000000),Y=(Min=1.000000,Max=2.000000),Z=(Min=1.000000,Max=2.000000))
          InitialParticlesPerSecond=9999999.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.AquaBubble1'
+         Texture=Texture'BallisticEffects.Particles.AquaBubble1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=-100.000000),Y=(Min=-8.000000,Max=8.000000),Z=(Min=-8.000000,Max=8.000000))
@@ -86,7 +86,7 @@ defaultproperties
          StartSizeRange=(X=(Min=2.000000,Max=5.000000),Y=(Min=2.000000,Max=5.000000),Z=(Min=2.000000,Max=5.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.AquaBubble1'
+         Texture=Texture'BallisticEffects.Particles.AquaBubble1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=-40.000000,Max=-10.000000))
@@ -115,7 +115,7 @@ defaultproperties
          StartSizeRange=(X=(Min=20.000000,Max=30.000000),Y=(Min=20.000000,Max=30.000000),Z=(Min=20.000000,Max=30.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke1'
+         Texture=Texture'BallisticEffects.Particles.Smoke1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          StartVelocityRange=(X=(Min=-80.000000,Max=80.000000),Y=(Min=-80.000000,Max=80.000000),Z=(Min=100.000000,Max=200.000000))
@@ -144,7 +144,7 @@ defaultproperties
          StartSizeRange=(X=(Min=3.000000,Max=8.000000),Y=(Min=2.000000,Max=5.000000),Z=(Min=2.000000,Max=5.000000))
          InitialParticlesPerSecond=8.000000
          DrawStyle=PTDS_Modulated
-         Texture=Texture'BW_Core_WeaponTex.Particles.RippleA1'
+         Texture=Texture'BallisticEffects.Particles.RippleA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.800000,Max=1.200000)
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000))
@@ -168,7 +168,7 @@ defaultproperties
          StartSizeRange=(X=(Min=8.000000,Max=12.000000),Y=(Min=8.000000,Max=12.000000),Z=(Min=8.000000,Max=12.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1Alpha'
+         Texture=Texture'BallisticWeapons2.Effects.SparkA1Alpha'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000

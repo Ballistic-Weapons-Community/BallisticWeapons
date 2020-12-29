@@ -5,7 +5,7 @@ defaultproperties
      DeathStrings(0)="%o got spiked by %k's XOXO."
      DamageIdent="Melee"
      AimDisplacementDamageThreshold=75
-     AimDisplacementDuration=0.65
+     AimDisplacementDuration=1
      DamageDescription=",Stab,"
      WeaponClass=Class'BWBPOtherPackPro.XOXOStaff'
      DeathString="%o got spiked by %k's XOXO."
@@ -13,6 +13,6 @@ defaultproperties
      MaleSuicide="%o plunged his XOXO into his teammate."
      bNeverSevers=True
 	 BlockFatiguePenalty=0.25
-     PawnDamageSounds(0)=Sound'BW_Core_WeaponSound.A73.A73StabFlesh'
+     PawnDamageSounds(0)=Sound'BallisticSounds2.A73.A73StabFlesh'
      KDamageImpulse=2000.000000
 }

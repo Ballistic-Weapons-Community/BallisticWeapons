@@ -143,9 +143,9 @@ simulated function PlayCocking(optional byte Type)
 defaultproperties
 {
 	ReloadAnimRate=0.800000
-	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipHit',Volume=0.000000,Radius=32.000000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipOut')
-	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipIn')
+	ClipHitSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipHit',Volume=0.000000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipOut')
+	ClipInSound=(Sound=Sound'PackageSounds4Pro.X82.X82-ClipIn')
 	SightingTime=0.000001
 	GunLength=0.000000
 	bUseSpecialAim=True
@@ -159,7 +159,7 @@ defaultproperties
 	Priority=1
 	PlayerViewOffset=(X=-80.000000)
 	ItemName="FG50 Turret"
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.X83Turret_TPm'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.X83A1_Turret'
 	DrawScale=0.650000
 	CollisionHeight=24.000000
 }

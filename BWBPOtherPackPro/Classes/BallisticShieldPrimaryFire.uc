@@ -34,7 +34,7 @@ defaultproperties
      SliceAnims(1)="Smash1"
      SliceAnims(2)="Bash1"
      SliceAnims(3)="Smash3"
-     TraceRange=(Min=150.000000,Max=150.000000)
+     TraceRange=(Min=140.000000,Max=140.000000)
      Damage=65.000000
     
      DamageType=Class'BWBPOtherPackPro.DTBallisticShield'
@@ -42,7 +42,7 @@ defaultproperties
      DamageTypeArm=Class'BWBPOtherPackPro.DTBallisticShield'
      KickForce=13000
      HookStopFactor=1.700000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Radius=32.000000,bAtten=True)
      bAISilent=True
      FireAnim="Bash1"
      FireRate=0.750000

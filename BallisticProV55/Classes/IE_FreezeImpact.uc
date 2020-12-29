@@ -25,7 +25,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=15.000000),Y=(Min=5.000000,Max=15.000000),Z=(Min=5.000000,Max=15.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke2'
+         Texture=Texture'BallisticEffects.Particles.Smoke2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Max=15.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=-5.000000,Max=5.000000))
@@ -48,7 +48,7 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          MaxParticles=30
          InitialParticlesPerSecond=9999999.000000
-         Texture=Texture'BW_Core_WeaponTex.GunFire.BulletStreak1'
+         Texture=Texture'BallisticEffects.GunFire.BulletStreak1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRange=(X=(Max=100.000000),Y=(Min=-100.000000,Max=100.000000),Z=(Min=-100.000000,Max=100.000000))
@@ -75,7 +75,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=15.000000,Max=30.000000),Y=(Min=15.000000,Max=30.000000),Z=(Min=15.000000,Max=30.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.500000)
      End Object
@@ -100,7 +100,7 @@ defaultproperties
          StartSizeRange=(X=(Min=3.000000,Max=5.000000),Y=(Min=3.000000,Max=5.000000),Z=(Min=3.000000,Max=5.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Regular
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlamePartsAlpha'
+         Texture=Texture'BallisticEffects.Particles.FlamePartsAlpha'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          SecondsBeforeInactive=0.000000

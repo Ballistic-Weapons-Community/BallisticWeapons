@@ -132,8 +132,6 @@ defaultproperties
      WallHitPoint=4
      TraceRange=(Min=140.000000,Max=140.000000)
      Damage=50.000000
-     
-     
      DamageType=Class'BWBPRecolorsPro.DTChaffSmack'
      DamageTypeHead=Class'BWBPRecolorsPro.DTChaffSmack'
      DamageTypeArm=Class'BWBPRecolorsPro.DTChaffSmack'
@@ -141,7 +139,7 @@ defaultproperties
      bReleaseFireOnDie=False
      bIgnoreReload=True
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,Pitch=0.800000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Radius=32.000000,Pitch=0.800000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepSmack"

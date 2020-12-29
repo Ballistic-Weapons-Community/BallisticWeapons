@@ -119,17 +119,17 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 		if (!bAltNeedCock)
 		{
 			C.DrawColor = class'HUD'.default.RedColor;
-			C.DrawTile( Texture'BWBP_SKC_Tex.Bulldog.Bulldog-FRAGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
+			C.DrawTile( Texture'BallisticRecolors3TexPro.Bulldog.Bulldog-FRAGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
 			C.DrawColor = class'HUD'.default.WhiteColor;
 		}
 			
-		else C.DrawTile( Texture'BWBP_SKC_Tex.Bulldog.Bulldog-FRAGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
+		else C.DrawTile( Texture'BallisticRecolors3TexPro.Bulldog.Bulldog-FRAGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
 			
 		if (Grenades > 1)
 			for( i=1; i<Count; i++ )
 			{
 				C.SetPos(C.ClipX - (0.5*i+1) * ScaleFactor2, C.ClipY - 100 * ScaleFactor * class'HUD'.default.HudScale);
-				C.DrawTile( Texture'BWBP_SKC_Tex.Bulldog.Bulldog-FRAGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
+				C.DrawTile( Texture'BallisticRecolors3TexPro.Bulldog.Bulldog-FRAGIcon',ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
 			}
 	}
 	
@@ -416,7 +416,7 @@ simulated function CommonLoadFrag()
 	if (Role == ROLE_Authority)
 		bServerReloading=true;
 	ReloadState = RS_Cocking;
-	PlayAnim(SGPrepAnim,1.25, 0.0);
+	PlayAnim(SGPrepAnim,1.0, 0.0);
 }
 
 function ServerLoadFrag()
@@ -649,12 +649,12 @@ defaultproperties
 {
 	AIRating=0.8
 	CurrentRating=0.8
-	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
-	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
-	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
-	CockSoundQuick=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-CockQuick'
-	CockSoundAlt=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-CockAlt'
-	CockSoundAltQ=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-CockAltQuick'
+	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
+	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
+	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
+	CockSoundQuick=Sound'PackageSounds4Pro.Bulldog.Bulldog-CockQuick'
+	CockSoundAlt=Sound'PackageSounds4Pro.Bulldog.Bulldog-CockAlt'
+	CockSoundAltQ=Sound'PackageSounds4Pro.Bulldog.Bulldog-CockAltQuick'
 	SGPrepAnim="SGPrep"
 	CockingAnim="Cock"
 	ShovelAnim="SGReload"
@@ -666,9 +666,9 @@ defaultproperties
 	Shells(3)="Shell4"
 	Shells(4)="Shell5"
 	Shells(5)="Shell6"
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
-	BigIconMaterial=Texture'BWBP_SKC_Tex.Bulldog.BigIcon_Bulldog'
+	BigIconMaterial=Texture'BallisticRecolors3TexPro.Bulldog.BigIcon_Bulldog'
 	BigIconCoords=(Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -676,15 +676,15 @@ defaultproperties
 	ManualLines(1)="Readies a FRAG-12 if one is not already loaded; otherwise, fires the loaded FRAG-12. FRAG-12s move along a straight trajectory, dealing high damage upon impact and to enemies close to the point of impact. Has lesser recoil than the primary fire."
 	ManualLines(2)="As it lacks a scope, has a quicker aim time than scoped weapons. Effective at medium to long range."
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;70.0;0.75;0.5;0.0")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-PullOut',Volume=1.800000)
-	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-PutAway',Volume=1.400000)
+	BringUpSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-PullOut',Volume=1.800000)
+	PutDownSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-PutAway',Volume=1.400000)
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-Cock',Volume=1.800000)
+	CockSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-Cock',Volume=1.800000)
 	ReloadAnim="Reload2"
 	ReloadAnimRate=1.250000
-	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-MagHit')
-	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-MagOut',Volume=1.100000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-MagIn',Volume=2.100000)
+	ClipHitSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-MagHit')
+	ClipOutSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-MagOut',Volume=1.100000)
+	ClipInSound=(Sound=Sound'PackageSounds4Pro.Bulldog.Bulldog-MagIn',Volume=2.100000)
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
 	bCanSkipReload=True
@@ -698,9 +698,8 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=256)
-	SightOffset=(X=-15.000000,Y=4.490000,Z=7.685000)
-	SightDisplayFOV=20.000000
-    SightZoomFactor=0.55 // 2x scope
+	SightOffset=(X=-18.000000,Y=4.490000,Z=6.350000)
+	SightDisplayFOV=35.000000
 	GunLength=48.000000
 	ParamsClass=Class'BulldogWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.BulldogPrimaryFire'
@@ -720,7 +719,7 @@ defaultproperties
 	PlayerViewOffset=(X=11.000000,Y=2.000000,Z=-6.000000)
 	BobDamping=1.600000
 	AttachmentClass=Class'BWBPRecolorsPro.BulldogAttachment'
-	IconMaterial=Texture'BWBP_SKC_Tex.Bulldog.SmallIcon_Bulldog'
+	IconMaterial=Texture'BallisticRecolors3TexPro.Bulldog.SmallIcon_Bulldog'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="Bulldog Autocannon"
 	LightType=LT_Pulse
@@ -729,6 +728,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Bulldog'
+	Mesh=SkeletalMesh'BallisticRecolors4AnimPro.BullDogFP'
 	DrawScale=0.200000
 }

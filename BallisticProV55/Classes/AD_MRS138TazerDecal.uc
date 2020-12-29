@@ -8,6 +8,6 @@ defaultproperties
 {
      DrawScaleVariance=0.050000
      bWaitForInit=True
-     ProjTexture=Texture'BW_Core_WeaponTex.Tazer.ElectroMark'
+     ProjTexture=Texture'BWAddPack-RS-Effects.Tazer.ElectroMark'
      DrawScale=0.200000
 }

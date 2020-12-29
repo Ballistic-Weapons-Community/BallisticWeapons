@@ -39,9 +39,9 @@ defaultproperties
          ColorScale(2)=(RelativeTime=0.064286,Color=(B=128,G=128,R=64,A=255))
          ColorScale(3)=(RelativeTime=0.114286,Color=(B=128,G=128,R=128,A=255))
          ColorScale(4)=(RelativeTime=1.000000,Color=(B=128,G=128,R=128,A=255))
-         Opacity=0.700000
+         Opacity=1.000000
          FadeOutStartTime=10.000000
-         MaxParticles=20
+         MaxParticles=35
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=10.000000,Max=20.000000)
          SpinsPerSecondRange=(X=(Max=0.100000))
@@ -54,7 +54,7 @@ defaultproperties
          StartSizeRange=(X=(Max=120.000000),Y=(Max=120.000000),Z=(Max=120.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=10.000000,Max=10.000000)
          StartVelocityRadialRange=(Min=-500.000000,Max=-300.000000)
@@ -81,7 +81,7 @@ defaultproperties
          StartSizeRange=(X=(Min=200.000000,Max=200.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -103,7 +103,7 @@ defaultproperties
          StartSizeRange=(X=(Min=200.000000,Max=200.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -129,7 +129,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=10.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
+         Texture=Texture'BallisticEffects.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(Z=(Min=100.000000,Max=300.000000))
@@ -148,7 +148,7 @@ defaultproperties
          AutomaticInitialSpawning=False
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
-         Opacity=0.400000
+         Opacity=0.700000
          FadeOutStartTime=0.100000
          MaxParticles=1
          StartSpinRange=(X=(Max=1.000000))
@@ -182,7 +182,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=10.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          TextureUSubdivisions=1
          TextureVSubdivisions=1
          SubdivisionStart=1
@@ -226,7 +226,7 @@ defaultproperties
          StartSizeRange=(X=(Max=170.000000),Y=(Max=170.000000),Z=(Max=170.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=8.000000,Max=8.000000)
          StartVelocityRange=(X=(Min=-50.000000,Max=50.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=-50.000000,Max=50.000000))
@@ -258,7 +258,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=10.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
+         Texture=Texture'BallisticEffects.Particles.Explode2'
          TextureUSubdivisions=1
          TextureVSubdivisions=1
          SecondsBeforeInactive=0.000000

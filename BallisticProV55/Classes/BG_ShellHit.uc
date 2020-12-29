@@ -34,7 +34,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          InitialParticlesPerSecond=400.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.800000,Max=0.800000)
          StartVelocityRange=(X=(Min=-50.000000),Y=(Min=-30.000000,Max=30.000000),Z=(Max=20.000000))
@@ -62,7 +62,7 @@ defaultproperties
          StartSizeRange=(X=(Min=6.000000,Max=10.000000),Y=(Min=6.000000,Max=10.000000),Z=(Min=6.000000,Max=10.000000))
          InitialParticlesPerSecond=4000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.WaterSpray1Alpha'
+         Texture=Texture'BallisticEffects.Particles.WaterSpray1Alpha'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRange=(X=(Min=-15.000000,Max=-15.000000))
@@ -70,7 +70,7 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BallisticProV55.BG_ShellHit.SpriteEmitter20'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.BloodVolumetric'
+         StaticMesh=StaticMesh'BallisticHardware2.Effects.BloodVolumetric'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -119,7 +119,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          InitialParticlesPerSecond=50.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1Alpha'
+         Texture=Texture'BallisticWeapons2.Effects.SparkA1Alpha'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000

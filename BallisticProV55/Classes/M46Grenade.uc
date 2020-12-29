@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class M46Grenade extends BallisticGrenade;
 
@@ -13,16 +13,20 @@ var Actor StuckActor;
 var bool bPlaced;
 var M46AssaultRifle M46;
 
-simulated event ProcessTouch(Actor Other, vector HitLocation )
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 {
-    local Vector VNorm, HitNormal;
-	
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Base != None)
-		return;
+    if ( Instigator == None || Instigator.Controller == None )
+		Other.SetDelayedDamageInstigatorController( InstigatorController );
+			
+    class'BallisticDamageType'.static.GenericHurt(Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
+}
 
-	if(Pawn(Other) != None)
+simulated function bool Impact(Actor Other, Vector HitLocation)
+{
+    local Vector HitNormal;
+    local Vector VNorm;
+
+    if(Pawn(Other) != None)
 	{
 		HitNormal = Normal(HitLocation - Other.Location);
 		VNorm = (Velocity dot HitNormal) * HitNormal;
@@ -31,11 +35,11 @@ simulated event ProcessTouch(Actor Other, vector HitLocation )
 		if (RandomSpin != 0)
 			RandSpin(100000);
 		Speed = VSize(Velocity);
-		
-		class'BallisticDamageType'.static.GenericHurt(Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
+
+        return true;
 	}
-	else
-		Super.ProcessTouch(Other,HitLocation);
+
+     return false;
 }
 
 simulated event HitWall(vector HitNormal, actor Wall)
@@ -50,8 +54,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	local Actor 	LastTrace;
 	local Vector	Start, End, LastHitLoc, LastHitNorm;
 	local Rotator 	R;
-	local M46Mine Proj;
-	local float BoneDist;
+	local M46Mine   Proj;
+	local float     BoneDist;
 
 	if(bPlaced)
 		return;
@@ -147,6 +151,6 @@ defaultproperties
      MotionBlurTime=4.000000
      Speed=2700.000000
      MyDamageType=None
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.OA-AR.OA-AR_Grenade'
+     StaticMesh=StaticMesh'BallisticHardware_25.OA-AR.OA-AR_Grenade'
      DrawScale=0.450000
 }

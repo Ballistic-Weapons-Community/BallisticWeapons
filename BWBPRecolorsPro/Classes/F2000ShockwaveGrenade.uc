@@ -6,22 +6,17 @@ class F2000ShockwaveGrenade extends BallisticGrenade;
 var Actor StuckActor;
 var bool bPlaced;
 
-simulated event ProcessTouch(Actor Other, vector HitLocation )
+simulated function bool Impact(Actor Other, Vector HitLocation)
 {
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Base != None)
-		return;
-
 	if(Pawn(Other) != None)
 	{
 		StuckActor = Other;
 		HitActor = Other;
 		Explode(HitLocation, Normal(HitLocation-Other.Location));
-		class'BallisticDamageType'.static.GenericHurt(Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
+        return true;
 	}
-	else
-		Super.ProcessTouch(Other,HitLocation);
+
+    return false;
 }
 
 simulated event HitWall(vector HitNormal, actor Wall)
@@ -120,6 +115,6 @@ defaultproperties
      MotionBlurTime=4.000000
      Speed=3500.000000
      MyDamageType=None
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade'
+     StaticMesh=StaticMesh'BallisticHardware2.M900.M900Grenade'
      bUnlit=False
 }

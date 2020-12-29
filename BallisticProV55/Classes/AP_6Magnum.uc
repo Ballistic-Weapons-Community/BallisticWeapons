@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=12
      InventoryType=Class'BallisticProV55.Ammo_44Magnum'
      PickupMessage="You picked up 12 .44 rounds."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.D49.D49AmmoBox'
+     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BallisticHardware2.D49.D49AmmoBox'
      DrawScale=0.250000
      PrePivot=(Z=70.000000)
      CollisionRadius=8.000000

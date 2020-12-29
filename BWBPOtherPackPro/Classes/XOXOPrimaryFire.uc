@@ -1,6 +1,6 @@
 class XOXOPrimaryFire extends BallisticProProjectileFire;
 
-#exec OBJ LOAD File=BW_Core_WeaponSound.uax
+#exec OBJ LOAD File=BWBP4-Sounds.uax
 
 state Bomb
 {
@@ -185,14 +185,14 @@ static function FireModeStats GetStats()
 defaultproperties
 {
      SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
-     FireModes(0)=(mProjClass=Class'BWBPOtherPackPro.XOXOBomb',mFireRate=1.350000,mFireChaos=0.750000,mFireSound=Sound'BWBP_OP_Sounds.XOXO.XOXO-FireBig',mFireAnim="Fire",mRecoil=1024.000000,mAmmoPerFire=16,TargetState="Bomb",bModeLead=True,bModeSplash=True)
-     FireModes(1)=(mFireRate=0.900000,mFireSound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Shockwave',mFireAnim="LustWave",TargetState="Shockwave",bModeInstantHit=True,bModeRecommendSplash=True)
-     FireModes(2)=(mProjClass=Class'BWBPOtherPackPro.XOXONukeProjectile',mFireRate=0.500000,mFireChaos=1.000000,mFireSound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Sexplosion-Fire',mFireAnim="Fire",mRecoil=1024.000000,mAmmoPerFire=1,TargetState="Sexplosion",bModeLead=True,bModeSplash=True,bModeRecommendSplash=True)
+     FireModes(0)=(mProjClass=Class'BWBPOtherPackPro.XOXOBomb',mFireRate=1.350000,mFireChaos=0.750000,mFireSound=Sound'BWBPOtherPackSound.XOXO.XOXO-FireBig',mFireAnim="Fire",mRecoil=1024.000000,mAmmoPerFire=16,TargetState="Bomb",bModeLead=True,bModeSplash=True)
+     FireModes(1)=(mFireRate=0.900000,mFireSound=Sound'BWBPOtherPackSound.XOXO.XOXO-Shockwave',mFireAnim="LustWave",TargetState="Shockwave",bModeInstantHit=True,bModeRecommendSplash=True)
+     FireModes(2)=(mProjClass=Class'BWBPOtherPackPro.XOXONukeProjectile',mFireRate=0.500000,mFireChaos=1.000000,mFireSound=Sound'BWBPOtherPackSound.XOXO.XOXO-Sexplosion-Fire',mFireAnim="Fire",mRecoil=1024.000000,mAmmoPerFire=1,TargetState="Sexplosion",bModeLead=True,bModeSplash=True,bModeRecommendSplash=True)
      MuzzleFlashClass=Class'BWBPOtherPackPro.XOXOFlashEmitter'
      FireRecoil=160.000000
      FireChaos=0.060000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
-     BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Fire',Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-Fire',Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireAnim="Fire2"
      FireEndAnim=

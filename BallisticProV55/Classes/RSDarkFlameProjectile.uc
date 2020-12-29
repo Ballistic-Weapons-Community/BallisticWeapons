@@ -102,10 +102,27 @@ simulated function Timer()
 		super.Timer();
 }
 
+simulated function bool CanTouch(Actor Other)
+{
+    local int i;
+
+    if (!Super.CanTouch(Other))
+        return false;
+
+    if (Other.Base == Instigator)
+		return false;
+
+	for(i=0;i<AlreadyHit.length;i++)
+		if (AlreadyHit[i] == Other)
+			return false;
+
+    return true;
+}
+
 // Hit something interesting
 simulated function ProcessTouch (Actor Other, vector HitLocation)
 {
-//    local Vector X;
+//  local Vector X;
     local int i;
 	local bool bWasAlive;
 //	local RSDarkSoul Soul;
@@ -114,13 +131,8 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 	local Vehicle HealVehicle;
 	local float AdjustedDamage;
 
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
-	if (Other.Base == Instigator)
-		return;
-	for(i=0;i<AlreadyHit.length;i++)
-		if (AlreadyHit[i] == Other)
-			return;
+    if (!CanTouch(Other))
+        return;
 
 	if (Role == ROLE_Authority)
 	{

@@ -25,7 +25,7 @@ simulated function SetHeat(float NewHeat)
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.RX22A.FlamerCanHeater'
+         StaticMesh=StaticMesh'BallisticHardware2.RX22A.FlamerCanHeater'
          UseMeshBlendMode=False
          UseParticleColor=True
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
@@ -49,7 +49,7 @@ defaultproperties
          MaxParticles=2
          StartLocationOffset=(X=-6.000000)
          StartSizeRange=(X=(Min=30.000000,Max=30.000000),Y=(Min=25.000000,Max=25.000000),Z=(Min=25.000000,Max=25.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
+         Texture=Texture'BallisticEffects.Particles.AquaFlareA1'
          LifetimeRange=(Min=0.800000,Max=0.800000)
      End Object
      Emitters(1)=SpriteEmitter'BallisticProV55.RX22AHeater.SpriteEmitter3'
@@ -75,7 +75,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=10.000000,Max=12.000000),Y=(Min=10.000000,Max=12.000000),Z=(Min=10.000000,Max=12.000000))
          DrawStyle=PTDS_Modulated
-         Texture=Texture'BW_Core_WeaponTex.RX22A.WarpSmoke'
+         Texture=Texture'BallisticWeapons2.RX22A.WarpSmoke'
          LifetimeRange=(Min=0.300000,Max=0.500000)
          StartVelocityRange=(X=(Min=-10.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=-10.000000))
      End Object

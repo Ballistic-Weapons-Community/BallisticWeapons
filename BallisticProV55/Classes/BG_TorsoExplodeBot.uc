@@ -317,7 +317,7 @@ defaultproperties
          StartSizeRange=(X=(Min=30.000000,Max=40.000000),Y=(Min=30.000000,Max=40.000000),Z=(Min=30.000000,Max=40.000000))
          InitialParticlesPerSecond=400.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          StartVelocityRange=(X=(Min=-10.000000,Max=60.000000),Y=(Min=-75.000000,Max=75.000000),Z=(Max=200.000000))
          VelocityLossRange=(X=(Min=1.300000,Max=1.300000),Y=(Min=1.300000,Max=1.300000),Z=(Min=3.000000,Max=3.000000))
@@ -346,7 +346,7 @@ defaultproperties
          StartSizeRange=(X=(Min=80.000000),Y=(Min=80.000000),Z=(Min=80.000000))
          InitialParticlesPerSecond=400.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke2'
+         Texture=Texture'BallisticEffects.Particles.Smoke2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=-20.000000,Max=80.000000),Y=(Min=-60.000000,Max=60.000000),Z=(Min=140.000000,Max=220.000000))
@@ -374,7 +374,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
          StartSizeRange=(X=(Min=10.000000,Max=15.000000),Y=(Min=10.000000,Max=15.000000),Z=(Min=10.000000,Max=15.000000))
          InitialParticlesPerSecond=150.000000
-         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
+         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -437,14 +437,14 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=2.250000)
          InitialParticlesPerSecond=50.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.WaterRing1'
+         Texture=Texture'BallisticEffects.Particles.WaterRing1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
      Emitters(5)=SpriteEmitter'BallisticProV55.BG_TorsoExplodeBot.SpriteEmitter0'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip2'
+         StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip2'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

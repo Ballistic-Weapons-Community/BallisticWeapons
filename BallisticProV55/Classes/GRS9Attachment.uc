@@ -1,7 +1,7 @@
 //=============================================================================
 // GRS9Attachment.
 //
-// _TPm person weapon attachment for GRS9 Pistol
+// 3rd person weapon attachment for GRS9 Pistol
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
@@ -155,11 +155,11 @@ defaultproperties
      TracerChance=0.600000
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
      FlyByMode=MU_Primary
      ReloadAnim="Reload_Pistol"
      CockingAnim="Cock_RearPull"
      CockAnimRate=0.800000
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.GRS9_TPm'
+     Mesh=SkeletalMesh'BWBP4-Anims.Glock-3rd'
      DrawScale=0.070000
 }

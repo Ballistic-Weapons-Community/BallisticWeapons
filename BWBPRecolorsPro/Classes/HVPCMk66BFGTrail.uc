@@ -21,7 +21,7 @@ defaultproperties
          StartLocationOffset=(X=100.000000)
          StartSizeRange=(X=(Min=60.000000,Max=80.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BWBP_SKC_Tex.BFG.BFGProj2'
+         Texture=Texture'BallisticRecolors3TexPro.BFG.BFGProj2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.150000,Max=0.200000)
      End Object

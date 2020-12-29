@@ -39,7 +39,7 @@ defaultproperties
          StartSizeRange=(X=(Min=750.000000,Max=750.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.900000,Max=0.900000)
      End Object
@@ -64,7 +64,7 @@ defaultproperties
          SpinsPerSecondRange=(X=(Max=2.000000))
          StartSizeRange=(X=(Min=70.000000,Max=80.000000),Y=(Min=70.000000,Max=80.000000),Z=(Min=70.000000,Max=80.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.050000,Max=0.050000)
          StartVelocityRange=(Z=(Min=-100.000000))
@@ -97,7 +97,7 @@ defaultproperties
          StartSizeRange=(X=(Min=150.000000,Max=300.000000),Y=(Min=150.000000,Max=300.000000),Z=(Min=150.000000,Max=300.000000))
          InitialParticlesPerSecond=40.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BWBP_SKC_Tex.BFG.BFGProj2'
+         Texture=Texture'BallisticRecolors3TexPro.BFG.BFGProj2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.650000,Max=0.650000)
      End Object

@@ -12,6 +12,6 @@ defaultproperties
 {
      ExplodeManager=Class'BWBPRecolorsPro.IM_XM84Grenade'
      GrenadeSmokeClass=Class'BWBPRecolorsPro.XM84Trail'
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.XM84_TPm'
+     Mesh=SkeletalMesh'BallisticRecolors4AnimPro.XM84_third'
      DrawScale=0.500000
 }

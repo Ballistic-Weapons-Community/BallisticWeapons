@@ -36,7 +36,7 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 
 defaultproperties
 {
-     HeatPerShot=5.000000
+     HeatPerShot=8.000000
      TraceRange=(Min=5000.000000,Max=7500.000000)
      Damage=16
      RangeAtten=0.900000
@@ -49,12 +49,11 @@ defaultproperties
      FlashScaleFactor=0.300000
      MuzzleFlashClass=Class'BWBPOtherPackPro.XM20BFlashEmitter'
      FireRecoil=96.000000
-     XInaccuracy=16.000000
      YInaccuracy=16.000000
-     BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=SoundGroup'PackageSounds4Pro.XM20.XM20-PulseFire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      FireEndAnim=None
      TweenTime=0.000000
-     FireRate=0.165000
+     FireRate=0.150000
      AmmoPerFire=2
      AmmoClass=Class'BWBPOtherPackPro.Ammo_XM20B'
      ShakeRotMag=(X=200.000000,Y=8.000000)

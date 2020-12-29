@@ -10,7 +10,7 @@ class IE_ShellIce extends DGVEmitter
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter4
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.Ice1'
+         StaticMesh=StaticMesh'BallisticHardware2.Impact.Ice1'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -47,7 +47,7 @@ defaultproperties
          StartSizeRange=(X=(Min=6.000000,Max=10.000000),Y=(Min=6.000000,Max=10.000000),Z=(Min=6.000000,Max=10.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
+         Texture=Texture'BallisticEffects.Particles.Smoke3'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=3.000000,Max=3.000000)
          StartVelocityRange=(X=(Max=5.000000),Y=(Min=-6.000000,Max=6.000000),Z=(Min=-6.000000,Max=6.000000))
@@ -74,7 +74,7 @@ defaultproperties
          StartSizeRange=(X=(Min=2.000000,Max=6.000000),Y=(Min=2.000000,Max=6.000000),Z=(Min=2.000000,Max=6.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlamePartsAlpha'
+         Texture=Texture'BallisticEffects.Particles.FlamePartsAlpha'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          SecondsBeforeInactive=0.000000

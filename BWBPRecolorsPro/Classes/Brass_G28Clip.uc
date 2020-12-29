@@ -10,6 +10,6 @@ class Brass_G28Clip extends Brass_GClip;
 
 defaultproperties
 {
-     StaticMesh=StaticMesh'BWBP_SKC_Static.G28.G28Clip'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.G28.G28Clip'
      Texture=None
 }

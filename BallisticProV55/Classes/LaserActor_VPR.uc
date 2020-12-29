@@ -8,5 +8,5 @@ class LaserActor_VPR extends LaserActor;
 
 defaultproperties
 {
-     Skins(0)=FinalBlend'BW_Core_WeaponTex.VPR.VPRLaser-Final'
+     Skins(0)=FinalBlend'BWBP4-Tex.VPR.VPRLaser-Final'
 }

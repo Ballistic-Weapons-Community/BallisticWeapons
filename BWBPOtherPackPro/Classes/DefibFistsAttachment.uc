@@ -118,7 +118,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     DischargeSound=Sound'BW_Core_WeaponSound.LightningGun.LG-WaterDischarge'
+     DischargeSound=Sound'BWBP2-Sounds.LightningGun.LG-WaterDischarge'
      MeleeAltStrikeAnim="Punchies_UppercutRight"
      ImpactManager=Class'BallisticProV55.IM_MRS138TazerHit'
      BrassMode=MU_None

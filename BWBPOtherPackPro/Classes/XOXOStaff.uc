@@ -341,8 +341,8 @@ defaultproperties
 	ShockwaveDamage=80
 	ShockwaveMomentum=40000
 	ShockwaveDamageType=Class'BWBPOtherPackPro.DTXOXOShockwave'
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_OP_Tex.XOXO.BigIcon_XOXO'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBPOtherPackTex.XOXO.BigIcon_XOXO'
 	BigIconCoords=(Y1=16,Y2=220)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	ManualLines(0)="The Bomb firemode shoots Xes and Os, that explode and deal relatively high damage on direct hit and also release smaller, shrapnel-like Xes and Os that deal some area damage. The projectile travels relatively slow though and has to deal with noticeable trajectory.|The Fast Charge has high RPM, deals good damage and travels in a straight line. Gains damage over range.|Lust creates a shockwave, damaging and knocking back nearby enemies. Every shockwave has vampiristic abilities, healing you and random teammates on the map, no matter wher they are, the health of your enemies will be evenly distributed between you and your team. This mode costs Lewdness to use."
@@ -350,12 +350,12 @@ defaultproperties
 	ManualLines(2)="Has a melee attack.|By killing enemies, you can collect their lewdness (similar to Dark Star and Nova Staff souls) and fill up your luv-o-meter. Filling it up, makes it possible to activate love-mode by pressing the Weapon Special-Key. This gives you damage resistance, improved jump, reduces the Lewdness cost of Lust Shockwave and allows the Sexplosion to be used.||The Sexplosion is an impressive firemode, which creates a gargantuan ball of love, acting bomb-like, but much slower. Upon impact, it explodes violently and kills pretty much everyone in proximity. The Sexplosion however wastes the complete charge of Le Big Xoxo and ends Love-Mode. Think twice, before wasting it!"
 	SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;0.0;1.0;1.0")
 	MeleeFireClass=Class'BWBPOtherPackPro.XOXOMeleeFire'
-	BringUpSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Pullout')
-	PutDownSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Putdown')
+	BringUpSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-Pullout')
+	PutDownSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-Putdown')
 	ReloadAnimRate=1.250000
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemHit',Volume=0.700000)
-	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-MagOut',Volume=0.700000)
-	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-MagIn',Volume=0.700000)
+	ClipHitSound=(Sound=Sound'BWBP4-Sounds.DarkStar.Dark-GemHit',Volume=0.700000)
+	ClipOutSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-MagOut',Volume=0.700000)
+	ClipInSound=(Sound=Sound'BWBPOtherPackSound.XOXO.XOXO-MagIn',Volume=0.700000)
 	ClipInFrame=0.700000
 	bNonCocking=True
 	WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
@@ -385,7 +385,7 @@ defaultproperties
 	PickupClass=Class'BWBPOtherPackPro.XOXOPickup'
 	PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-9.000000)
 	AttachmentClass=Class'BWBPOtherPackPro.XOXOAttachment'
-	IconMaterial=Texture'BWBP_OP_Tex.XOXO.SmallIcon_XOXO'
+	IconMaterial=Texture'BWBPOtherPackTex.XOXO.SmallIcon_XOXO'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="Le Big XOXO"
 	LightType=LT_Pulse
@@ -393,7 +393,7 @@ defaultproperties
 	LightSaturation=64
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_XOXO'
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.XOXO_FP'
 	DrawScale=0.300000
 	bFullVolume=True
 	SoundRadius=32.000000

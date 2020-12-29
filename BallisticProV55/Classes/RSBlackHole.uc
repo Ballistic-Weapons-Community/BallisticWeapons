@@ -214,7 +214,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.800000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.200000)
          StartSizeRange=(X=(Min=150.000000,Max=180.000000),Y=(Min=150.000000,Max=180.000000),Z=(Min=150.000000,Max=180.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke1'
+         Texture=Texture'BallisticEffects.Particles.Smoke1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=-10.000000,Max=10.000000))
@@ -244,7 +244,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=1.000000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.400000)
          StartSizeRange=(X=(Min=200.000000,Max=215.000000),Y=(Min=200.000000,Max=215.000000),Z=(Min=200.000000,Max=215.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.WaterRing1'
+         Texture=Texture'BallisticEffects.Particles.WaterRing1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=-20.000000,Max=20.000000),Y=(Min=-20.000000,Max=20.000000),Z=(Min=-20.000000,Max=20.000000))
@@ -266,7 +266,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.100000)
          StartSizeRange=(X=(Min=190.000000,Max=200.000000),Y=(Min=190.000000,Max=200.000000),Z=(Min=190.000000,Max=200.000000))
          DrawStyle=PTDS_Darken
-         Texture=Texture'BW_Core_WeaponTex.DarkStar.HotFlareA2'
+         Texture=Texture'BWBP4-Tex.DarkStar.HotFlareA2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
      End Object
@@ -291,7 +291,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=4.000000)
          StartSizeRange=(X=(Min=35.000000,Max=50.000000),Y=(Min=35.000000,Max=50.000000),Z=(Min=35.000000,Max=50.000000))
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke7c'
+         Texture=Texture'BallisticEffects2.Particles.Smoke7c'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
      End Object
@@ -313,7 +313,7 @@ defaultproperties
          SpinsPerSecondRange=(X=(Max=0.050000))
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=25.000000,Max=75.000000),Y=(Min=25.000000,Max=75.000000),Z=(Min=25.000000,Max=75.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
      End Object
@@ -355,7 +355,7 @@ defaultproperties
      bAlwaysRelevant=True
      bNetInitialRotation=True
      RemoteRole=ROLE_SimulatedProxy
-     AmbientSound=Sound'BW_Core_WeaponSound.Misc.BH-Ambient'
+     AmbientSound=Sound'BWBP4-Sounds.Misc.BH-Ambient'
      bCanBeDamaged=True
      bFullVolume=True
      SoundVolume=255

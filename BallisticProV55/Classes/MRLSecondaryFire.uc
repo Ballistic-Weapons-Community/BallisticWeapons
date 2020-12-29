@@ -184,7 +184,7 @@ defaultproperties
      FireChaos=0.080000
      XInaccuracy=768.000000
      YInaccuracy=768.000000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireRate=0.070000

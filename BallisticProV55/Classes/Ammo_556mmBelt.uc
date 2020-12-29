@@ -12,9 +12,9 @@ defaultproperties
 {
      MaxAmmo=100
      InitialAmount=100
-     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIconsFlashing'
+     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticProV55.AP_M353Belt'
-     IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIconPage'
+     IconMaterial=Texture'BallisticUI2.Icons.AmmoIconPage'
      IconCoords=(X1=256,X2=319,Y2=63)
      ItemName="5.56mm MG Belt Ammo"
 }

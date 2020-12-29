@@ -156,7 +156,7 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          StartSizeRange=(X=(Min=50.000000,Max=50.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
-         Texture=Texture'BWBP_OP_Tex.ProtonPack.StreamCore'
+         Texture=Texture'BWBPOtherPackTex2.ProtonPack.StreamCore'
          LifetimeRange=(Min=0.050000,Max=0.050000)
      End Object
      Emitters(0)=BeamEmitter'BWBPOtherPackPro.ProtonStreamEffect.CoreBeam'

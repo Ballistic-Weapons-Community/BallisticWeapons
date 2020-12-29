@@ -19,7 +19,7 @@ event ModeDoFire()
 	Start = Instigator.Location + Instigator.EyePosition();
 	if (Trace(HitLoc,HitNorm,Start + vector(Instigator.GetViewRotation()) * 120, Start, true) == None)
     {
-		BallisticFireSound.Sound = Sound'BW_Core_WeaponSound.FP9A5.FP9-Throw';
+		BallisticFireSound.Sound = Sound'BallisticSounds2.FP9A5.FP9-Throw';
     	FireAnim = 'Throw';
     }
     else
@@ -76,7 +76,7 @@ defaultproperties
 {
      SpawnOffset=(X=15.000000,Y=-10.000000,Z=-5.000000)
      bUseWeaponMag=False
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.FP9A5.FP9-Throw')
+     BallisticFireSound=(Sound=Sound'BallisticSounds2.FP9A5.FP9-Throw')
      bAISilent=True
      bSplashDamage=True
      bRecommendSplashDamage=True

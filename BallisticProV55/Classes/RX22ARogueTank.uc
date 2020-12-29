@@ -113,7 +113,7 @@ simulated state RocketPack
 	}
 */
 Begin:
-	AmbientSound = Sound'BW_Core_WeaponSound.RX22A.RX22A-PackBurn';
+	AmbientSound = Sound'BallisticSounds2.RX22A.RX22A-PackBurn';
 	SoundVolume = 255;
 	SoundRadius = 64;
 
@@ -125,7 +125,7 @@ Begin:
 	SetTimer(0.1, true);
 
 	if (DeathStage < 7){
-		PlaySound(sound'BW_Core_WeaponSound.RX22A.RX22A-PackIgnite', Slot_Interact, 0.8, , 128);
+		PlaySound(sound'BallisticSounds2.RX22A.RX22A-PackIgnite', Slot_Interact, 0.8, , 128);
 		ThrustDir = vect(0,0,1200);
 		AddVelocity(ThrustDir);
 		Sleep(0.5); //0.5
@@ -201,7 +201,7 @@ simulated event Destroyed()
 defaultproperties
 {
      DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.RX22A.FlamerTank'
+     StaticMesh=StaticMesh'BallisticHardware2.RX22A.FlamerTank'
      Physics=PHYS_Falling
      RemoteRole=ROLE_SimulatedProxy
      RelativeLocation=(X=28.000000,Y=28.000000)

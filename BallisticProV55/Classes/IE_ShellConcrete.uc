@@ -34,7 +34,7 @@ defaultproperties
          StartSizeRange=(X=(Min=25.000000,Max=35.000000))
          InitialParticlesPerSecond=200000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          StartVelocityRange=(X=(Min=15.000000,Max=80.000000))
@@ -43,7 +43,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BallisticProV55.IE_ShellConcrete.SpriteEmitter38'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter12
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip2'
+         StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip2'
          RenderTwoSided=True
          FadeOut=True
          RespawnDeadParticles=False

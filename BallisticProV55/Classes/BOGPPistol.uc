@@ -298,9 +298,9 @@ defaultproperties
 {
 	GrenadeBone="GrenadePistolGrenade"
 	bShouldDualInLoadout=False
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=1)
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
 	AIReloadTime=1.500000
-	BigIconMaterial=Texture'BW_Core_WeaponTex.BOGP.BigIcon_BOGP'
+	BigIconMaterial=Texture'BallisticTextures_25.BOGP.BigIcon_BOGP'
 	BigIconCoords=(Y1=32,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Splash=True
@@ -309,16 +309,16 @@ defaultproperties
 	ManualLines(1)="Used to toggle between grenade and flare modes."
 	ManualLines(2)="The BORT grenade is effective at medium range and when the player has height advantage. The BORT flare is most effective at close range. Recoil and hip spread are low, except when jumping. When dual wielded, the BORT pistols will fire simultaneously."
 	SpecialInfo(0)=(Info="120.0;20.0;0.8;40.0;0.0;0.0;0.6")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
 	bNoMag=True
 	CockAnim="Reload"
 	CockAnimRate=1.50000
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock')
+	CockSound=(Sound=Sound'BallisticSounds2.M806.M806-Cock')
 	ReloadAnimRate=1.250000
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_Close',Volume=1.000000)
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_Open',Volume=1.000000)
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_GrenLoad',Volume=1.000000)
+	ClipHitSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_Close',Volume=1.000000)
+	ClipOutSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_Open',Volume=1.000000)
+	ClipInSound=(Sound=Sound'BallisticSounds_25.BOGP.BOGP_GrenLoad',Volume=1.000000)
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Grenade")
 	WeaponModes(1)=(ModeName="Flare",ModeID="WM_SemiAuto",Value=1.000000)
@@ -343,7 +343,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.BOGPPickup'
 	PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
 	AttachmentClass=Class'BallisticProV55.BOGPAttachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.BOGP.SmallIcon_BOGP'
+	IconMaterial=Texture'BallisticTextures_25.BOGP.SmallIcon_BOGP'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="BORT-85 Grenade Pistol"
 	LightType=LT_Pulse
@@ -352,8 +352,8 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_BORT'
+	Mesh=SkeletalMesh'BallisticAnims_25.BOGP'
 	DrawScale=0.300000
-	Skins(0)=Texture'BW_Core_WeaponTex.BOGP.BOGP_Main'
-	Skins(1)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(0)=Texture'BallisticTextures_25.BOGP.BOGP_Main'
+	Skins(1)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
 }

@@ -165,7 +165,7 @@ defaultproperties
      SwipePoints(4)=(offset=(Yaw=-3000))
      WallHitPoint=1
      FatiguePerStrike=0.200000
-     TraceRange=(Min=150.000000,Max=150.000000)
+     TraceRange=(Min=165.000000,Max=165.000000)
 	 bCanBackstab=False
 	 bNoPositionalDamage=True
 	 bUseRunningDamage=False
@@ -175,7 +175,7 @@ defaultproperties
      DamageTypeArm=Class'BWBPRecolorsPro.DT_DTSLimb'
      KickForce=200
      bReleaseFireOnDie=False
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.DTS.DragonsTooth-Swipe',Volume=5.500000,Radius=256.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.DTS.DragonsTooth-Swipe',Volume=5.500000,Radius=256.000000,bAtten=True)
      bAISilent=True
      FireAnim="Melee3"
      FireAnimRate=0.850000

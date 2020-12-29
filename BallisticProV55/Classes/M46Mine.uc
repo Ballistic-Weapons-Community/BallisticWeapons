@@ -14,7 +14,7 @@ function bool IsStationary()
 
 defaultproperties
 {
-     DetonateSound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_GrenadeBeep'
+     DetonateSound=Sound'BallisticSounds_25.OA-AR.OA-AR_GrenadeBeep'
      ImpactManager=Class'BallisticProV55.IM_Grenade'
      MyRadiusDamageType=Class'BallisticProV55.DTM46GrenadeRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
@@ -24,7 +24,7 @@ defaultproperties
      MotionBlurTime=4.000000
      WallPenetrationForce=128
      MyDamageType=Class'BallisticProV55.DTM46GrenadeRadius'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.OA-AR.OA-AR_Grenade'
+     StaticMesh=StaticMesh'BallisticHardware_25.OA-AR.OA-AR_Grenade'
      CullDistance=2500.000000
      bNetTemporary=False
      Physics=PHYS_None

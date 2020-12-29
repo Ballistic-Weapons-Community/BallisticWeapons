@@ -32,7 +32,7 @@ defaultproperties
          StartLocationOffset=(X=-35.000000)
          StartSpinRange=(X=(Min=0.500000,Max=0.500000))
          StartSizeRange=(X=(Min=20.000000,Max=20.000000),Y=(Min=20.000000,Max=20.000000),Z=(Min=20.000000,Max=20.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.100000,Max=0.100000)
          StartVelocityRange=(X=(Min=1750.000000,Max=1750.000000))
@@ -55,7 +55,7 @@ defaultproperties
          StartLocationOffset=(Z=15.000000)
          StartLocationRange=(X=(Min=-20.000000,Max=55.000000))
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=20.000000,Max=35.000000),Z=(Min=10.000000,Max=10.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.BlazingSubdivide'
+         Texture=Texture'BallisticEffects.Particles.BlazingSubdivide'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000

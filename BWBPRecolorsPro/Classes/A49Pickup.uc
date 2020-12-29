@@ -4,9 +4,9 @@
 class A49Pickup extends BallisticHandgunPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BallisticWeapons2.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,51 +16,51 @@ class A49Pickup extends BallisticHandgunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.A6.A6PlasmaMask');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.A6.A6Skin');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.A6.A6PlasmaMask');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.A6.A6SpecMask');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.A6.Ripple-A49');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.A42.A42_Exp');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.A42Scorch');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.GunFire.A73MuzzleFlash');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.GunFire.A42Projectile');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.GunFire.A42Projectile2');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.A6.A6PlasmaMask');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.A6.A6Skin');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.A6.A6PlasmaMask');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.A6.A6SpecMask');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.A6.Ripple-A49');
+	L.AddPrecacheMaterial(Texture'BallisticWeapons2.A42.A42_Exp');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.A42Scorch');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.GunFire.A73MuzzleFlash');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.GunFire.A42Projectile');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.GunFire.A42Projectile2');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42Projectile');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42MuzzleFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.A42.A42Projectile');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.A42.A42MuzzleFlash');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.A6.A6PlasmaMask');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.A6.A6Skin');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.A6.A6PlasmaMask');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.A6.A6SpecMask');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.A6.Ripple-A49');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.A42.A42_Exp');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.A42Scorch');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.GunFire.A73MuzzleFlash');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.GunFire.A42Projectile');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.GunFire.A42Projectile2');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.A6.A6PlasmaMask');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.A6.A6Skin');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.A6.A6PlasmaMask');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.A6.A6SpecMask');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.A6.Ripple-A49');
+	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.A42.A42_Exp');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.A42Scorch');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.GunFire.A73MuzzleFlash');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.GunFire.A42Projectile');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.GunFire.A42Projectile2');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42Projectile');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42MuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.A42.A42Projectile');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.A42.A42MuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.A42.A42PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.A42.A42PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.A49.A49Pickup'
+     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticPro.A49.A49Pickup'
      PickupDrawScale=0.187000
      InventoryType=Class'BWBPRecolorsPro.A49SkrithBlaster'
      RespawnTime=20.000000
      PickupMessage="You picked up the A49 Skrith blaster."
-     PickupSound=Sound'BW_Core_WeaponSound.A42.A42-Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.A49.A49Pickup'
+     PickupSound=Sound'BallisticSounds2.A42.A42-Putaway'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.A49.A49Pickup'
      Physics=PHYS_None
      DrawScale=0.300000
      CollisionHeight=4.500000

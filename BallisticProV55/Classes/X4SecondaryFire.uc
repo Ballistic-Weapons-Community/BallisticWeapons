@@ -23,7 +23,7 @@ defaultproperties
      WallHitPoint=1
      NumSwipePoints=3
      FatiguePerStrike=0.200000
-     TraceRange=(Min=108.000000,Max=108.000000)
+     TraceRange=(Min=130.000000,Max=130.000000)
      Damage=70.000000
      DamageType=Class'BallisticProV55.DTX4Knife'
      DamageTypeHead=Class'BallisticProV55.DTX4KnifeHead'
@@ -32,7 +32,7 @@ defaultproperties
      HookStopFactor=1.700000
      HookPullForce=100.000000
      bReleaseFireOnDie=False
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BallisticSounds_25.X4.X4_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepMelee"

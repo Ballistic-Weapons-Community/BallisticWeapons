@@ -322,12 +322,12 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_MinigunBullet'
      BrassClass=Class'BallisticProV55.Brass_Minigun'
      TracerClass=Class'BWBPRecolorsPro.TraceEmitter_Incendiary'
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_MG"
      ReloadAnimRate=1.500000
      bHeavy=True
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.Z250_TPm'
+     Mesh=SkeletalMesh'BWBPOtherPackAnim.Z250_TP'
      RelativeLocation=(X=3.000000,Z=8.000000)
      DrawScale=0.350000
 }

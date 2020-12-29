@@ -472,15 +472,15 @@ defaultproperties
 	SilencerBone="Silencer"
 	SilencerOnAnim="SilencerOn"
 	SilencerOffAnim="SilencerOff"
-	SilencerOnSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOn'
-	SilencerOffSound=Sound'BW_Core_WeaponSound.XK2.XK2-SilenceOff'
-	SilencerOnTurnSound=Sound'BW_Core_WeaponSound.Pistol.RSP-SilencerTurn'
-	SilencerOffTurnSound=Sound'BW_Core_WeaponSound.Pistol.RSP-SilencerTurn'
-	LaserOnSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
-	LaserOffSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	SilencerOnSound=Sound'BallisticSounds2.XK2.XK2-SilenceOn'
+	SilencerOffSound=Sound'BallisticSounds2.XK2.XK2-SilenceOff'
+	SilencerOnTurnSound=Sound'BWAddPack-RS-Sounds.Pistol.RSP-SilencerTurn'
+	SilencerOffTurnSound=Sound'BWAddPack-RS-Sounds.Pistol.RSP-SilencerTurn'
+	LaserOnSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
+	LaserOffSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_RS8'
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_RS8'
 	BigIconCoords=(X1=64,Y1=70,X2=418)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -488,13 +488,13 @@ defaultproperties
 	ManualLines(1)="Attaches a suppressor, reducing the effective range but removing the flash and reducing the noise output."
 	ManualLines(2)="Weapon Function toggles a laser sight, reducing the hipfire spread."
 	SpecialInfo(0)=(Info="0.0;-5.0;-999.0;-1.0;0.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-Cock')
+	CockSound=(Sound=Sound'BWAddPack-RS-Sounds.Pistol.RSP-Cock')
 	ReloadAnimRate=1.250000
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-ClipIn')
+	ClipOutSound=(Sound=Sound'BWAddPack-RS-Sounds.Pistol.RSP-ClipOut')
+	ClipInSound=(Sound=Sound'BWAddPack-RS-Sounds.Pistol.RSP-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
@@ -516,7 +516,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.RS8Pickup'
 	PlayerViewOffset=(X=3.000000,Y=9.000000,Z=-12.000000)
 	AttachmentClass=Class'BallisticProV55.RS8Attachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.RS8.SmallIcon_RS8'
+	IconMaterial=Texture'BWAddPack-RS-Skins.RS8.SmallIcon_RS8'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="RS8 Pistol"
 	LightType=LT_Pulse
@@ -525,8 +525,8 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RS8'
+	Mesh=SkeletalMesh'BallisticProAnims.RS8'
 	DrawScale=0.300000
-	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Shader'BW_Core_WeaponTex.RS8.RS8-Shiney'
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Shader'BWAddPack-RS-Skins.RS8.RS8-Shiney'
 }

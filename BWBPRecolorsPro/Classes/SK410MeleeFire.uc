@@ -5,11 +5,12 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DT_SK410Hit'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_SK410HitHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_SK410Hit'
+     TraceRange=(Min=130.000000,Max=130.000000)
      bUseWeaponMag=False
      bReleaseFireOnDie=False
      bIgnoreReload=True
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=32.000000,Pitch=0.800000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Volume=0.5,Radius=32.000000,Pitch=0.800000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepBash"

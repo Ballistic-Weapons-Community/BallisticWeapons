@@ -13,7 +13,7 @@ defaultproperties
 	 BlockFatiguePenalty=0.4
 	 BlockPenetration=0.25
      AimDisplacementDamageThreshold=60
-     AimDisplacementDuration=0.75
+     AimDisplacementDuration=1
      WeaponClass=Class'BWBPOtherPackPro.WrenchWarpDevice'
      DeathString="%k permanently adjusted %o's attitude."
      FemaleSuicide="%o adjusted her own attitude."

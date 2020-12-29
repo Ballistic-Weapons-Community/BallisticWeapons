@@ -17,9 +17,9 @@ defaultproperties
 {
      MaxAmmo=12
      InitialAmount=6
-     IconFlashMaterial=Shader'BWBP_SKC_Tex.Bulldog.AmmoIcon_BOLTFlash'
+     IconFlashMaterial=Shader'BallisticRecolors3TexPro.Bulldog.AmmoIcon_FRAGFlash'
      PickupClass=Class'BWBPRecolorsPro.AP_Frag12Box'
-     IconMaterial=Texture'BWBP_SKC_Tex.Bulldog.AmmoIcon_BOLT'
+     IconMaterial=Texture'BallisticRecolors3TexPro.Bulldog.AmmoIcon_FRAG'
      IconCoords=(X2=64,Y2=64)
      ItemName="FRAG-12 Grenades"
 }

@@ -11,8 +11,8 @@ defaultproperties
      AmmoAmount=75
      InventoryType=Class'BallisticProV55.Ammo_FlamerGas'
      PickupMessage="You picked up a tank of flamethrower gas."
-     PickupSound=Sound'BW_Core_WeaponSound.RX22A.RX22A-AmmoPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.RX22A.FlamerAmmo'
+     PickupSound=Sound'BallisticSounds2.RX22A.RX22A-AmmoPickup'
+     StaticMesh=StaticMesh'BallisticHardware2.RX22A.FlamerAmmo'
      DrawScale=0.300000
      PrePivot=(Z=4.000000)
      CollisionRadius=8.000000

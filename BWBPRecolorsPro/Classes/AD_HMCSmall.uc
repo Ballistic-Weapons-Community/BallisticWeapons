@@ -6,5 +6,5 @@ class AD_HMCSmall extends AD_ImpactDecal
 
 defaultproperties
 {
-     ProjTexture=Texture'BWBP_SKC_Tex.BeamCannon.HMC-Impact'
+     ProjTexture=Texture'BallisticRecolors3TexPro.BeamCannon.HMC-Impact'
 }

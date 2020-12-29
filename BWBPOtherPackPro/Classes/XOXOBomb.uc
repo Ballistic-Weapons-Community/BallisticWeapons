@@ -1,6 +1,5 @@
 class XOXOBomb extends BallisticGrenade;
 
-var Actor   LastHit;
 var float   ArmingDelay;
 
 simulated function PreBeginPlay()
@@ -8,7 +7,7 @@ simulated function PreBeginPlay()
 	Super.PreBeginPlay();
 	
 	if (FRand() > 0.5)
-		SetStaticMesh(StaticMesh'BWBP_OP_Static.XOXO.X');
+		SetStaticMesh(StaticMesh'BWBPOtherPackStatic.XOXO.X');
 }
 
 simulated function PostNetBeginPlay()
@@ -31,31 +30,23 @@ simulated function Timer()
 	else Explode(Location, vect(0,0,1));
 }
 
-simulated event ProcessTouch( actor Other, vector HitLocation )
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 {
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Other == HitActor)
-		return;
-	if (Base != None)
-		return;
+    DoDamage(Other, HitLocation);
+}
 
-	if ( Instigator == None || Instigator.Controller == None )
-		Other.SetDelayedDamageInstigatorController( InstigatorController );
+simulated function bool Impact( actor Other, vector HitLocation )
+{
 	if (Other.bProjTarget && (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact))
-	{
-		Explode(HitLocation, Normal(HitLocation-Other.Location));
-		return;
-	}
+        return false;
+
 	if ( !Other.bProjTarget || PlayerImpactType == PIT_Bounce )
 	{
 		HitWall (Normal(HitLocation - Other.Location), Other);
-		if (Other != LastHit)
-		{
-			class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
-			LastHit = Other;
-		}
+        return true;
 	}
+
+    return false;
 }
 
 simulated event Landed( vector HitNormal )
@@ -192,7 +183,7 @@ defaultproperties
      DetonateOn=DT_ImpactTimed
 	 PlayerImpactType=PIT_Detonate
      DetonateDelay=0.600000
-     ImpactDamage=60
+     ImpactDamage=100
      ImpactDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
      ImpactManager=Class'BWBPOtherPackPro.IM_XOXO'
      PenetrateManager=Class'BWBPOtherPackPro.IM_XOXO'
@@ -213,9 +204,9 @@ defaultproperties
      LightSaturation=120
      LightBrightness=192.000000
      LightRadius=6.000000
-     StaticMesh=StaticMesh'BWBP_OP_Static.XOXO.O'
+     StaticMesh=StaticMesh'BWBPOtherPackStatic.XOXO.O'
      bDynamicLight=True
-     AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire2FlyBy'
+     AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire2FlyBy'
      LifeSpan=8.000000
      DrawScale=3.000000
      Style=STY_Additive

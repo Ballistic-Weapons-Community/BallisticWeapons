@@ -510,13 +510,13 @@ defaultproperties
 	bStockOpen=true
 	AIRating=0.72
 	CurrentRating=0.72
-	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
-	LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
+	LaserOnSound=Sound'BallisticSounds2.M806.M806LSight'
+	LaserOffSound=Sound'BallisticSounds2.M806.M806LSight'
 	StockOpenAnim="StockOn"
 	StockCloseAnim="StockOff"
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BW_Core_WeaponTex.ui.BigIcon_SAR12'
+	BigIconMaterial=Texture'BallisticTextures3.ui.BigIcon_SAR12'
 	BigIconCoords=(Y1=24,Y2=250)
 	SightFXClass=Class'BallisticProV55.SARSightDot'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -526,14 +526,14 @@ defaultproperties
 	ManualLines(1)="Engages the frontal flash device. Inflicts a medium-duration blind upon enemies. The effect is more potent the closer the foe is both to the point of aim and to the user."
 	ManualLines(2)="The Weapon Function key engages or disengages the stock. By default, the stock is engaged. Disengaging the stock grants the SAR-12 superior hipfire and shortens the time taken to aim the weapon, but recoil becomes worse and no stabilization bonus is given for crouching.||Effective at close to medium range, depending upon specialisation."
 	SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
 	CockAnimPostReload="ReloadEndCock"
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Cock')
+	CockSound=(Sound=Sound'BallisticSounds3.SAR.SAR-Cock')
 	ReloadAnimRate=1.100000
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipIn')
+	ClipOutSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds3.SAR.SAR-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
 	WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=4.000000,RecoilParamsIndex=1)
@@ -559,7 +559,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.SARPickup'
 	PlayerViewOffset=(X=5.000000,Y=9.000000,Z=-11.000000)
 	AttachmentClass=Class'BallisticProV55.SARAttachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.ui.SmallIcon_SAR12'
+	IconMaterial=Texture'BallisticTextures3.ui.SmallIcon_SAR12'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="Sub-Assault Rifle 12"
 	LightType=LT_Pulse
@@ -568,7 +568,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SAR12'
+	Mesh=SkeletalMesh'BallisticProAnims.SAR'
 	DrawScale=0.300000
 	SoundPitch=56
 	SoundRadius=32.000000

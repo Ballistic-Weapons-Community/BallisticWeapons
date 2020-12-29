@@ -13,10 +13,10 @@ defaultproperties
      AmmoAmount=30
      InventoryType=Class'BWBPRecolorsPro.Ammo_42HVG'
      PickupMessage="You got three Gauss magazines."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.M50Magazine'
+     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BallisticHardware2.Ammo.M50Magazine'
      DrawScale=0.400000
-     Skins(0)=Texture'BWBP_SKC_Tex.M30A2.M30A2-SB'
+     Skins(0)=Texture'BallisticRecolors4TexPro.M30A2.M30A2-SB'
      CollisionRadius=8.000000
      CollisionHeight=5.200000
 }

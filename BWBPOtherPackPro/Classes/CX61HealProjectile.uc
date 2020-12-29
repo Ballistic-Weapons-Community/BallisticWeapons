@@ -31,28 +31,29 @@ function DoDamage (Actor Other, vector HitLocation)
 	}
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch (Actor Other)
 {
     local int i;
 
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
+    if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
+		return false;
 	if (Other.Base == Instigator)
-		return;
+		return false;
 	for(i=0;i<AlreadyHit.length;i++)
 		if (AlreadyHit[i] == Other)
-			return;
+			return false;
 
-	if (Role == ROLE_Authority)
-		DoDamage(Other, HitLocation);
-	
-	if (CanPenetrate(Other) && Other != HitActor)
-	{	// Projectile can go right through enemies
-		AlreadyHit[AlreadyHit.length] = Other;
-		HitActor = Other;
-	}
-	else	Destroy();
+    return true;
+}
+
+simulated function Penetrate(Actor Other, Vector HitLocation)
+{
+    AlreadyHit[AlreadyHit.length] = Other;
+}
+
+simulated function Explode(vector a, vector b)
+{
+    Destroy();
 }
 
 defaultproperties

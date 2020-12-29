@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=24
      InventoryType=Class'BallisticProV55.Ammo_50HV'
      PickupMessage="You picked up three AM67 magazines."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.AM67.AM67Clips'
+     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BallisticHardware2.AM67.AM67Clips'
      DrawScale=0.200000
      PrePivot=(Z=6.000000)
      CollisionRadius=8.000000

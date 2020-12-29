@@ -4,74 +4,74 @@
 class RSNovaPickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BWBP4-Tex.utx
+#exec OBJ LOAD FILE=BWBP4-Hardware.usx
 
 var float SoulPower;
 
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.NovaProjectile');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.NovaProjectile2');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.Projectile3');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.Projectile4');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.GoodSoul');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.Nova-ScorchA');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.Nova-ScorchB');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaAura');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaStaff-AmmoPod');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaStaff-SpecMask');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaStaff_Ammo');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaStaff_Blades');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaStaff_Main');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaWing');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.Lighter.NovaProjectile');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.Lighter.NovaProjectile2');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.Lighter.Projectile3');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.Lighter.Projectile4');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.GoodSoul');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.Nova-ScorchA');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.Nova-ScorchB');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaAura');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaStaff-AmmoPod');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaStaff-SpecMask');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaStaff_Ammo');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaStaff_Blades');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaStaff_Main');
+	L.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaWing');
 
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaBladeGlow');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.Nova-GlowChips');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaProjectile');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaProjectile2');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.Wing');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.NovaBladeGlow');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.Nova-GlowChips');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.NovaProjectile');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.NovaProjectile2');
+	L.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.Wing');
 }
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.NovaProjectile');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.NovaProjectile2');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.Projectile3');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Lighter.Projectile4');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.GoodSoul');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.Nova-ScorchA');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.Nova-ScorchB');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaAura');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaStaff-AmmoPod');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaStaff-SpecMask');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaStaff_Ammo');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaStaff_Blades');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaStaff_Main');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.NovaStaff.NovaWing');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.Lighter.NovaProjectile');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.Lighter.NovaProjectile2');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.Lighter.Projectile3');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.Lighter.Projectile4');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.GoodSoul');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.Nova-ScorchA');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.Nova-ScorchB');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaAura');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaStaff-AmmoPod');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaStaff-SpecMask');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaStaff_Ammo');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaStaff_Blades');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaStaff_Main');
+	Level.AddPrecacheMaterial(Texture'BWBP4-Tex.NovaStaff.NovaWing');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.Nova-Ammo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaBladeGlow');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaGemGlow');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.Nova-GlowChips');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaPickup-HD');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaPickup-LD');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaProjectile');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaProjectile2');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.NovaStaff.Wing');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.Nova-Ammo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.NovaBladeGlow');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.NovaGemGlow');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.Nova-GlowChips');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.NovaPickup-HD');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.NovaPickup-LD');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.NovaProjectile');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.NovaProjectile2');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP4-Hardware.NovaStaff.Wing');
 }
 
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaPickup-LD'
+     LowPolyStaticMesh=StaticMesh'BWBP4-Hardware.NovaStaff.NovaPickup-LD'
      PickupDrawScale=0.900000
      InventoryType=Class'BallisticProV55.RSNovaStaff'
      RespawnTime=20.000000
      PickupMessage="You picked up the Nova Staff."
-     PickupSound=Sound'BW_Core_WeaponSound.A73.A73Putaway'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.NovaStaff.NovaPickup-HD'
+     PickupSound=Sound'BallisticSounds2.A73.A73Putaway'
+     StaticMesh=StaticMesh'BWBP4-Hardware.NovaStaff.NovaPickup-HD'
      bOrientOnSlope=True
      Physics=PHYS_None
      DrawScale=0.700000

@@ -34,17 +34,17 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     HitSounds(0)=SoundGroup'BW_Core_WeaponSound.Brass.ShellConcrete'
-     HitSounds(1)=SoundGroup'BW_Core_WeaponSound.Brass.ShellConcrete'
-     HitSounds(2)=SoundGroup'BW_Core_WeaponSound.Brass.ShellConcrete'
-     HitSounds(3)=SoundGroup'BW_Core_WeaponSound.Brass.ShellMetal'
-     HitSounds(4)=SoundGroup'BW_Core_WeaponSound.Brass.ShellWood'
-     HitSounds(5)=SoundGroup'BW_Core_WeaponSound.Brass.ShellWood'
-     HitSounds(6)=SoundGroup'BW_Core_WeaponSound.Brass.ShellConcrete'
-     HitSounds(7)=SoundGroup'BW_Core_WeaponSound.Brass.ShellConcrete'
-     HitSounds(8)=SoundGroup'BW_Core_WeaponSound.Brass.ShellConcrete'
-     HitSounds(9)=SoundGroup'BW_Core_WeaponSound.Brass.ShellConcrete'
-     HitSounds(10)=SoundGroup'BW_Core_WeaponSound.Brass.ShellConcrete'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell'
+     HitSounds(0)=SoundGroup'BallisticSounds2.Brass.ShellConcrete'
+     HitSounds(1)=SoundGroup'BallisticSounds2.Brass.ShellConcrete'
+     HitSounds(2)=SoundGroup'BallisticSounds2.Brass.ShellConcrete'
+     HitSounds(3)=SoundGroup'BallisticSounds2.Brass.ShellMetal'
+     HitSounds(4)=SoundGroup'BallisticSounds2.Brass.ShellWood'
+     HitSounds(5)=SoundGroup'BallisticSounds2.Brass.ShellWood'
+     HitSounds(6)=SoundGroup'BallisticSounds2.Brass.ShellConcrete'
+     HitSounds(7)=SoundGroup'BallisticSounds2.Brass.ShellConcrete'
+     HitSounds(8)=SoundGroup'BallisticSounds2.Brass.ShellConcrete'
+     HitSounds(9)=SoundGroup'BallisticSounds2.Brass.ShellConcrete'
+     HitSounds(10)=SoundGroup'BallisticSounds2.Brass.ShellConcrete'
+     StaticMesh=StaticMesh'BallisticHardware2.Brass.EmptyShell'
      DrawScale=0.110000
 }

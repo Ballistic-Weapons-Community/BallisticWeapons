@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// CopyrightÂ© 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class LAWGrenade extends BallisticGrenade;
 

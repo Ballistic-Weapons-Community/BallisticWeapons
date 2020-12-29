@@ -118,7 +118,7 @@ simulated function DestroyEffects()
 defaultproperties
 {
      HatchSmokeClass=Class'BallisticProV55.G5HatchEmitter'
-     SteamSound=Sound'BW_Core_WeaponSound.G5.G5-Steam'
+     SteamSound=Sound'BallisticSounds2.G5.G5-Steam'
      MinMortarRange=1024
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
      bCockAfterFire=True
@@ -127,7 +127,7 @@ defaultproperties
      FireChaos=0.500000
      XInaccuracy=4.000000
      YInaccuracy=4.000000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Fire1')
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.G5.G5-Fire1')
      FireEndAnim=
      FireRate=0.800000
      AmmoClass=Class'BallisticProV55.Ammo_RPG'

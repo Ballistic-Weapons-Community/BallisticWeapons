@@ -149,13 +149,13 @@ defaultproperties
      LightSaturation=70
      LightBrightness=192.000000
      LightRadius=12.000000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.A73.A73Projectile'
+     StaticMesh=StaticMesh'BallisticHardware2.A73.A73Projectile'
      bDynamicLight=True
-     AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
+     AmbientSound=Sound'BallisticSounds2.A73.A73ProjFly'
      LifeSpan=6.000000
      DrawScale3D=(X=0.250000,Y=1.500000,Z=1.500000)
-     Skins(0)=FinalBlend'BWBP_SKC_Tex.BFG.BFGProjFB'
-     Skins(1)=FinalBlend'BWBP_SKC_Tex.BFG.BFGProj2FB'
+     Skins(0)=FinalBlend'BallisticRecolors3TexPro.BFG.BFGProjFB'
+     Skins(1)=FinalBlend'BallisticRecolors3TexPro.BFG.BFGProj2FB'
      Style=STY_Additive
      SoundVolume=255
      SoundRadius=75.000000

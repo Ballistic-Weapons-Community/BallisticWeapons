@@ -49,9 +49,9 @@ defaultproperties
      MaxAmmo=108
      InitialAmount=54
      bTryHeadShot=True
-     IconFlashMaterial=Shader'BW_Core_WeaponTex.leMat.AmmoIcon_Wilson41DBFlash'
+     IconFlashMaterial=Shader'BWBP4-Tex.leMat.AmmoIcon_Wilson41DBFlash'
      PickupClass=Class'BallisticProV55.AP_leMat'
-     IconMaterial=Texture'BW_Core_WeaponTex.leMat.AmmoIcon_Wilson41DB'
+     IconMaterial=Texture'BWBP4-Tex.leMat.AmmoIcon_Wilson41DB'
      IconCoords=(X2=63,Y2=63)
      ItemName=".41 Wilson DB Bullets"
 }

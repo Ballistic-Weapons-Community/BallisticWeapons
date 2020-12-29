@@ -46,7 +46,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=3.000000,Max=4.000000),Y=(Min=3.000000,Max=4.000000),Z=(Min=3.000000,Max=4.000000))
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.300000)
          SpawnOnTriggerRange=(Min=300.000000,Max=600.000000)
@@ -56,7 +56,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BallisticProV55.MRS138FlashEmitter.SpriteEmitter1'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M806.PistolMuzzleFlash'
+         StaticMesh=StaticMesh'BallisticHardware2.M806.PistolMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -102,7 +102,7 @@ defaultproperties
          MaxParticles=1
          StartLocationOffset=(X=12.000000)
          StartLocationRange=(X=(Min=16.000000,Max=16.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
+         Texture=Texture'BallisticEffects.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.100000,Max=0.100000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -128,7 +128,7 @@ defaultproperties
          MaxParticles=20
          StartLocationOffset=(X=30.000000)
          StartSizeRange=(X=(Min=2.500000,Max=5.000000),Y=(Min=2.500000,Max=5.000000),Z=(Min=2.500000,Max=5.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          LifetimeRange=(Min=0.080000,Max=0.080000)
          SpawnOnTriggerRange=(Min=20.000000,Max=14.000000)
          SpawnOnTriggerPPS=50000.000000

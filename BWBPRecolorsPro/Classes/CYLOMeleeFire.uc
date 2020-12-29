@@ -7,8 +7,6 @@ defaultproperties
      SwipePoints(2)=(Weight=2)
      SwipePoints(3)=(Weight=1,offset=(Pitch=-1000,Yaw=-1000))
      SwipePoints(4)=(Weight=3,offset=(Pitch=-2048,Yaw=-2048))
-     
-     
      DamageType=Class'BWBPRecolorsPro.DTCYLOStab'
      DamageTypeHead=Class'BWBPRecolorsPro.DTCYLOStabHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTCYLOStabLimb'
@@ -19,7 +17,7 @@ defaultproperties
      bReleaseFireOnDie=False
      bIgnoreReload=True
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Stab',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.A73.A73Stab',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepMelee1"

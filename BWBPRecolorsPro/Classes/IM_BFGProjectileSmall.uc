@@ -12,7 +12,7 @@ defaultproperties
 {
      HitEffects(0)=Class'BWBPRecolorsPro.IE_BFGSmall'
      HitDecals(0)=Class'BallisticProV55.AD_MRLExplosion'
-     HitSounds(0)=Sound'BWBP_SKC_Sounds.BFG.BFG-SmallImpact'
+     HitSounds(0)=Sound'PackageSounds4Pro.BFG.BFG-SmallImpact'
      HitSoundVolume=1.000000
      HitSoundRadius=128.000000
 }

@@ -40,18 +40,6 @@ simulated function PostNetBeginPlay()
 	super.PostNetBeginPlay();
 }
 
-simulated function ProcessTouch (Actor Other, vector HitLocation)
-{
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
-
-	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits
-		DoDamage(Other, HitLocation);
-
-	HitActor = Other;
-	PTExplode(HitLocation, Normal(HitLocation - Other.Location));
-}
-
 simulated singular function HitWall(vector HitNormal, actor Wall)
 {
 	local PlayerController PC;
@@ -69,10 +57,7 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 		}
 		MakeNoise(1.0);
 	}
-	if (Wall != None && Pawn(Wall)!=None)
-		PTExplode(Location + ExploWallOut * HitNormal, HitNormal);
-	else
-		Explode(Location + ExploWallOut * HitNormal, HitNormal);
+	Explode(Location + ExploWallOut * HitNormal, HitNormal);
 	if ( (ExplosionDecal != None) && (Level.NetMode != NM_DedicatedServer)  )
 	{
 		if ( ExplosionDecal.Default.CullDistance != 0 )
@@ -87,21 +72,6 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 			Spawn(ExplosionDecal,self,,Location, rotator(-HitNormal));
 	}
 	HurtWall = None;
-}
-
-simulated function PTExplode(vector HitLocation, vector HitNormal)
-{
-	if (bExploded)
-		return;
-
-    if (ImpactManager != None && level.NetMode != NM_DedicatedServer)
-		ImpactManager.static.StartSpawn(HitLocation, HitNormal, 1, Level.GetLocalPlayerController()/*.Pawn*/);
-	BlowUp(HitLocation);
-	bExploded=true;
-
-	if (bTearOnExplode && (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer))
-		bTearOff = true;
-	Destroy();
 }
 
 defaultproperties
@@ -129,9 +99,9 @@ defaultproperties
      LightSaturation=96
      LightBrightness=192.000000
      LightRadius=6.000000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.VPR.VPRProjectile'
+     StaticMesh=StaticMesh'BWBP4-Hardware.VPR.VPRProjectile'
      bDynamicLight=True
-     AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
+     AmbientSound=Sound'BallisticSounds2.A73.A73ProjFly'
      LifeSpan=4.000000
      DrawScale=0.750000
      Style=STY_Additive

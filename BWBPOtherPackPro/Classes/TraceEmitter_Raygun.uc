@@ -34,7 +34,7 @@ defaultproperties
         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
         StartSizeRange=(X=(Min=30.000000,Max=30.000000),Y=(Min=30.000000,Max=30.000000),Z=(Min=30.000000,Max=30.000000))
         InitialParticlesPerSecond=50000.000000
-        Texture=Texture'BW_Core_WeaponTex.GunFire.RailSmokeCore'
+        Texture=Texture'BallisticEffects.GunFire.RailSmokeCore'
         SecondsBeforeInactive=0.000000
         LifetimeRange=(Min=0.400000,Max=0.400000)
         StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
@@ -60,7 +60,7 @@ defaultproperties
         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
         StartSizeRange=(X=(Min=22.000000,Max=22.000000),Y=(Min=22.000000,Max=22.000000),Z=(Min=22.000000,Max=22.000000))
         InitialParticlesPerSecond=50000.000000
-        Texture=Texture'BW_Core_WeaponTex.GunFire.RailCoreWave'
+        Texture=Texture'BallisticEffects.GunFire.RailCoreWave'
         SecondsBeforeInactive=0.000000
         LifetimeRange=(Min=0.270000,Max=0.270000)
         StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
@@ -155,7 +155,7 @@ defaultproperties
         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=2.000000)
         StartSizeRange=(X=(Min=5.000000,Max=5.000000),Y=(Min=5.000000,Max=5.000000),Z=(Min=5.000000,Max=5.000000))
         InitialParticlesPerSecond=1000.000000
-        Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+        Texture=Texture'BallisticEffects.Particles.HotFlareA1'
         LifetimeRange=(Min=0.500000,Max=0.500000)
     End Object
     Emitters(5)=SpriteEmitter'SpriteEmitter7'

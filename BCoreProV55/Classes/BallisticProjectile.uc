@@ -361,35 +361,89 @@ function BlowUp(vector HitLocation)
 	MakeNoise(1.0);
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+//===============================================================
+// ProcessTouch
+//
+// First-line function called when making contact with an Actor.
+//===============================================================
+simulated function ProcessTouch(Actor Other, Vector HitLocation)
+{
+    local bool bContinueAfterImpact;
+
+    if (UnlaggedPawnCollision(Other) != None)
+        Other = UnlaggedPawnCollision(Other).UnlaggedPawn;
+
+    if (!CanTouch(Other))
+        return;
+
+    if (Other != HitActor)
+    {
+        // Do damage for direct hits
+        if (Other.Role == ROLE_Authority)		
+            ApplyImpactEffect(Other, HitLocation);
+
+        HitActor = Other;
+
+        bContinueAfterImpact = Impact(Other, HitLocation);
+
+	    // Spawn projectile death effects and try radius damage
+        if (!bContinueAfterImpact && Role == ROLE_Authority)
+		    Explode(HitLocation, vect(0,0,1));
+    }
+}
+
+//===============================================================
+// CanTouch
+//
+// Returns whether this Actor is a valid touch for this projectile.
+//===============================================================
+simulated function bool CanTouch(Actor Other)
+{
+    return Other != None && (bCanHitOwner || (Other != Instigator && Other != Owner));
+}
+
+//===============================================================
+// Penetrate
+//
+// Handles necessary adjustments for a projectile to be seen as 
+// "penetrating" an Actor it's hit
+//===============================================================
+simulated function Penetrate(Actor Other, Vector HitLocation)
 {
     local Vector X;
 
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
-
-	// Do damage for direct hits
-	if (Role == ROLE_Authority && HitActor != Other)		
-		DoDamage(Other, HitLocation);
-		
-	if (CanPenetrate(Other) && Other != HitActor)
-	{	// Projectile can go right through enemies
-		HitActor = Other;
-		X = Normal(Velocity);
-		SetLocation(HitLocation + (X * (Other.CollisionHeight*2*X.Z + Other.CollisionRadius*2*(1-X.Z)) * 1.2));
-	    if ( EffectIsRelevant(Location,false) && PenetrateManager != None)
-			PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, Other.SurfaceType, Owner, 4/*HF_NoDecals*/);
-	}
-	else if (Role == ROLE_Authority)
-	{	
-		// Spawn projectile death effects and try radius damage
-
-		HitActor = Other;
-		Explode(HitLocation, vect(0,0,1));
-	}
+    X = Normal(Velocity);
+    SetLocation(HitLocation + (X * (Other.CollisionHeight*2*X.Z + Other.CollisionRadius*2*(1-X.Z)) * 1.2));
+    if ( EffectIsRelevant(Location,false) && PenetrateManager != None)
+         PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, Other.SurfaceType, Owner, 4/*HF_NoDecals*/);
 }
 
+//===============================================================
+// Impact
+//
+// Called when a projectile has struck an actor directly, after 
+// ApplyImpactEffect is used to affect that actor (damage, DoT, etc)
+//
+// Returns true if the function has handled the projectile's 
+// future behaviour. Returns false if the projectile should 
+// explode instead.
+//===============================================================
+simulated function bool Impact(Actor Other, Vector HitLocation)
+{
+    if (!CanPenetrate(Other))
+        return false;
+
+    Penetrate(Other, HitLocation);
+
+    return true;
+}
+
+//===============================================================
+// HitWall
+//
+// Called when a projectile has struck an Actor classed as 
+// either world geometry or a vehicle.
+//===============================================================
 simulated singular function HitWall(vector HitNormal, actor Wall)
 {
 	local PlayerController PC;
@@ -422,6 +476,16 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 			Spawn(ExplosionDecal,self,,Location, rotator(-HitNormal));
 	}
 	HurtWall = None;
+}
+
+//===============================================================
+// ApplyImpactEffect
+//
+// Called on the server when this projectile strikes a valid target.
+//===============================================================
+simulated function ApplyImpactEffect(Actor Other, vector HitLocation)
+{
+    DoDamage(Other, HitLocation);
 }
 
 simulated function DoDamage(Actor Other, vector HitLocation)

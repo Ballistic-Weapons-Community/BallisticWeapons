@@ -61,7 +61,7 @@ simulated function SpawnEffects (int HitSurfaceType, vector Norm, optional byte 
 defaultproperties
 {
      HitEffects(0)=Class'BallisticProV55.IE_BOGPFlareFizzle'
-     HitSounds(0)=Sound'BW_Core_WeaponSound.BOGP.BOGP_FlareImpact'
+     HitSounds(0)=Sound'BallisticSounds_25.BOGP.BOGP_FlareImpact'
      HitSoundVolume=3.000000
      HitSoundRadius=1024.000000
      EffectBackOff=96.000000

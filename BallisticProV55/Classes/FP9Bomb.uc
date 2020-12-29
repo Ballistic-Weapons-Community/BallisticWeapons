@@ -234,12 +234,13 @@ simulated function Tick(float DT)
    	Laser.SetDrawScale3D(V);
 }
 
+
 // Don't touch anything when deployed
-simulated event ProcessTouch( actor Other, vector HitLocation )
+simulated function bool CanTouch(Actor Other)
 {
 	if (bDeployed)
-		return;
-	super.ProcessTouch(Other, HitLocation);
+		return false;
+	return Super.CanTouch(Other);
 }
 
 // Call this to make it go BOOM...
@@ -439,10 +440,10 @@ defaultproperties
      LaserDamageType=Class'BallisticProV55.DTFP9BombLaser'
      ShotDamageType=Class'BallisticProV55.DTFP9BombShot'
      Health=15
-     LaserOnSound=Sound'BW_Core_WeaponSound.FP9A5.FP9-LaserOn'
-     LaserOffSound=Sound'BW_Core_WeaponSound.FP9A5.FP9-LaserOff'
+     LaserOnSound=Sound'BallisticSounds2.FP9A5.FP9-LaserOn'
+     LaserOffSound=Sound'BallisticSounds2.FP9A5.FP9-LaserOff'
      OldLaserRange=-1.000000
-     LaserSkin=Shader'BW_Core_WeaponTex.FP9A5.FP9LCDActiveSD'
+     LaserSkin=Shader'BallisticWeapons2.FP9A5.FP9LCDActiveSD'
      BombDetonateDelay=1.500000
      DetonateOn=DT_None
      DampenFactor=0.500000
@@ -466,15 +467,15 @@ defaultproperties
      DamageRadius=1024.000000
      MomentumTransfer=90000.000000
      MyDamageType=Class'BallisticProV55.DTNRP57Grenade'
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.FP9A5.FP9-Bounce'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.FP9.FP9Proj'
+     ImpactSound=SoundGroup'BallisticSounds2.FP9A5.FP9-Bounce'
+     StaticMesh=StaticMesh'BallisticHardware2.FP9.FP9Proj'
      bNetTemporary=False
      bAlwaysRelevant=True
      LifeSpan=0.000000
      DrawScale=0.250000
-     Skins(0)=Texture'BW_Core_WeaponTex.FP9A5.FP9Bomb'
-     Skins(1)=Texture'BW_Core_WeaponTex.FP9A5.FP9Chain'
-     Skins(2)=Shader'BW_Core_WeaponTex.FP9A5.FP9LCDArmedSD'
+     Skins(0)=Texture'BallisticWeapons2.FP9A5.FP9Bomb'
+     Skins(1)=Texture'BallisticWeapons2.FP9A5.FP9Chain'
+     Skins(2)=Shader'BallisticWeapons2.FP9A5.FP9LCDArmedSD'
      bUnlit=False
      CollisionRadius=6.000000
      CollisionHeight=8.000000

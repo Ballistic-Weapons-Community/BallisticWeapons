@@ -38,7 +38,7 @@ defaultproperties
          SizeScale(3)=(RelativeTime=0.980000,RelativeSize=4.000000)
          StartSizeRange=(X=(Min=3.000000,Max=4.000000),Y=(Min=3.000000,Max=4.000000),Z=(Min=3.000000,Max=4.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BWBP_SKC_Tex.X82.X83SmokeCore'
+         Texture=Texture'BallisticRecolors3TexPro.X82.X83SmokeCore'
          LifetimeRange=(Min=0.400100,Max=0.400100)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object
@@ -68,7 +68,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.200000)
          StartSizeRange=(X=(Min=1.000000,Max=5.000000),Y=(Min=1.000000,Max=5.000000),Z=(Min=1.000000,Max=5.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
+         Texture=Texture'BallisticEffects.Particles.Smoke3'
          LifetimeRange=(Min=1.500000,Max=1.500000)
          StartVelocityRange=(X=(Max=5.000000))
      End Object
@@ -96,7 +96,7 @@ defaultproperties
          StartSizeRange=(X=(Min=3.000000,Max=3.000000),Y=(Min=3.000000,Max=3.000000),Z=(Min=3.000000,Max=3.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BWBP_SKC_Tex.X82.X83SmokeCore'
+         Texture=Texture'BallisticRecolors3TexPro.X82.X83SmokeCore'
          LifetimeRange=(Min=0.801000,Max=0.801000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
      End Object

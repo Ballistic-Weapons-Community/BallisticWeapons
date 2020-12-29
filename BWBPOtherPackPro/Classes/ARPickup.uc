@@ -4,12 +4,13 @@
 class ARPickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
-#exec OBJ LOAD FILE=BWBP_OP_Tex.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BallisticRecolors3TexPro.utx
+#exec OBJ LOAD FILE=BallisticRecolors4TexPro.utx
+#exec OBJ LOAD FILE=BWBPJiffyPackTex.utx
 
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
-#exec OBJ LOAD FILE=BWBP_OP_Static.usx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
+#exec OBJ LOAD FILE=BWBPJiffyPackStatic.usx
 
 //===========================================================================
 // StaticPrecache
@@ -19,51 +20,51 @@ class ARPickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.TacBuster.TacBusterShiny');
-	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.TacBuster.BusterGrenadeShiny');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CYLO.Reflex');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Metal');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Wood');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.M763Bash');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.M763BashWood');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M763.M763MuzzleFlash');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M763.M763Flash1');
+	L.AddPrecacheMaterial(Shader'BWBPJiffyPackTex.TacBuster.TacBusterShiny');
+	L.AddPrecacheMaterial(Shader'BWBPJiffyPackTex.TacBuster.BusterGrenadeShiny');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.CYLO.Reflex');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Concrete');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Metal');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Wood');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.M763Bash');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.M763BashWood');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M763.M763MuzzleFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M763.M763Flash1');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Shader'BWBP_OP_Tex.TacBuster.TacBusterShiny');
-	Level.AddPrecacheMaterial(Shader'BWBP_OP_Tex.TacBuster.BusterGrenadeShiny');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CoachGun.DBL-Misc');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CYLO.Reflex');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.SK410.SK410-Misc');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Concrete');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Metal');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Shell_Wood');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.M763Bash');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.M763BashWood');
+	Level.AddPrecacheMaterial(Shader'BWBPJiffyPackTex.TacBuster.TacBusterShiny');
+	Level.AddPrecacheMaterial(Shader'BWBPJiffyPackTex.TacBuster.BusterGrenadeShiny');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors4TexPro.CoachGun.DBL-Misc');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.CYLO.Reflex');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.SK410.SK410-Misc');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Concrete');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Metal');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Shell_Wood');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.M763Bash');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.M763BashWood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M763.M763MuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M763.M763Flash1');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyShell');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.TacticalBuster.AA12Pickup');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.TacticalBuster.AA12AmmoPickup');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.TacticalBuster.AA12GrenadePickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M763.M763MuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.M763.M763Flash1');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Brass.EmptyShell');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBPJiffyPackStatic.TacticalBuster.AA12Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBPJiffyPackStatic.TacticalBuster.AA12AmmoPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBPJiffyPackStatic.TacticalBuster.AA12GrenadePickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.TacticalBuster.AA12Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBPJiffyPackStatic.TacticalBuster.AA12Pickup'
      PickupDrawScale=1.300000
      InventoryType=Class'BWBPOtherPackPro.ARShotgun'
      RespawnTime=20.000000
      PickupMessage="You picked up the RCS-715 Tactical Buster."
-     PickupSound=Sound'BW_Core_WeaponSound.M763.M763Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.TacticalBuster.AA12Pickup'
+     PickupSound=Sound'BallisticSounds2.M763.M763Putaway'
+     StaticMesh=StaticMesh'BWBPJiffyPackStatic.TacticalBuster.AA12Pickup'
      Physics=PHYS_None
      DrawScale=2.000000
      CollisionHeight=3.000000

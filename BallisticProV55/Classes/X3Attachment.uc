@@ -1,7 +1,7 @@
 //=============================================================================
 // X3Attachment.
 //
-// _TPm person weapon attachment for the X3 Knife
+// 3rd person weapon attachment for the X3 Knife
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -20,6 +20,6 @@ defaultproperties
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      MeleeStrikeAnim="Blade_Stab"
      bHeavy=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.X3_TPm'
+     Mesh=SkeletalMesh'BallisticAnims2.Knife3rd'
      DrawScale=0.110000
 }

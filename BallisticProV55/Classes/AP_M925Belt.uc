@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=50
      InventoryType=Class'BallisticProV55.Ammo_50CalBelt'
      PickupMessage="You picked up a belt of .50 cal rounds."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.MGBoxPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.M925AmmoBox'
+     PickupSound=Sound'BallisticSounds2.Ammo.MGBoxPickup'
+     StaticMesh=StaticMesh'BallisticHardware2.Ammo.M925AmmoBox'
      DrawScale=0.300000
      CollisionRadius=8.000000
      CollisionHeight=7.500000

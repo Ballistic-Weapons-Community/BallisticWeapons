@@ -9,7 +9,7 @@ class XMV850Pack extends Actor;
 defaultproperties
 {
      DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.XMV850.XMv850backpack'
+     StaticMesh=StaticMesh'BallisticHardware2.XMV850.XMv850backpack'
      bOnlyDrawIfAttached=True
      RemoteRole=ROLE_None
      RelativeLocation=(X=15.000000,Y=7.000000)

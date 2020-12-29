@@ -62,10 +62,9 @@ defaultproperties
 {
      SliceAnims(0)="Melee1"
      SliceAnims(1)="Melee2"
+     TraceRange=(Min=130.000000,Max=130.000000)
      FatiguePerStrike=0.080000
      Damage=45.000000
-     
-     
      DamageType=Class'BWBPRecolorsPro.DT_MRDR88Spike'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_MRDR88SpikeHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_MRDR88Spike'
@@ -73,7 +72,7 @@ defaultproperties
      HookPullForce=100.000000
      bUseWeaponMag=False
      bIgnoreReload=True
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      FireAnim="Melee1"
      FireRate=0.500000

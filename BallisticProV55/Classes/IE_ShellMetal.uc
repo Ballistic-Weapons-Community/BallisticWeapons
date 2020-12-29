@@ -26,7 +26,7 @@ defaultproperties
          StartLocationRange=(Y=(Min=-20.000000,Max=20.000000),Z=(Min=-15.000000,Max=15.000000))
          StartSizeRange=(X=(Min=1.500000,Max=3.000000))
          InitialParticlesPerSecond=100000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
      End Object
@@ -46,7 +46,7 @@ defaultproperties
          StartLocationRange=(Y=(Min=-15.000000,Max=15.000000),Z=(Min=-10.000000,Max=10.000000))
          StartSizeRange=(X=(Min=0.500000,Max=1.500000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.500000,Max=1.500000)
          StartVelocityRange=(X=(Min=25.000000,Max=100.000000),Y=(Min=-20.000000,Max=20.000000),Z=(Min=-20.000000,Max=70.000000))
@@ -66,7 +66,7 @@ defaultproperties
          FadeOutStartTime=0.500000
          StartLocationRange=(Y=(Min=-15.000000,Max=15.000000),Z=(Min=-15.000000,Max=12.000000))
          InitialParticlesPerSecond=100000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
+         Texture=Texture'BallisticEffects.Particles.Smoke3'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.250000,Max=1.250000)
          StartVelocityRange=(X=(Min=25.000000,Max=100.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=-20.000000,Max=50.000000))
@@ -91,7 +91,7 @@ defaultproperties
          StartSizeRange=(X=(Min=5.000000,Max=15.000000),Y=(Min=5.000000,Max=15.000000),Z=(Min=5.000000,Max=15.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          LifetimeRange=(Min=0.200000,Max=0.400000)
      End Object
      Emitters(3)=SpriteEmitter'BallisticProV55.IE_ShellMetal.SpriteEmitter1'

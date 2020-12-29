@@ -12,9 +12,9 @@ defaultproperties
 {
      MaxAmmo=2
      InitialAmount=1
-     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIconsFlashing'
+     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BallisticProV55.NRP57Pickup'
-     IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIconPage'
+     IconMaterial=Texture'BallisticUI2.Icons.AmmoIconPage'
      IconCoords=(Y1=64,X2=63,Y2=127)
      ItemName="NRP57 Pineapple Ammo"
 }

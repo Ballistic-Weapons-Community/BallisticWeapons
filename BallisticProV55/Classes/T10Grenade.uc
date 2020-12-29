@@ -56,10 +56,10 @@ simulated function ExplodeInHand()
 defaultproperties
 {
      FuseDelay=2.000000
-     ClipReleaseSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
-     PinPullSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
-     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_T10'
+     ClipReleaseSound=(Sound=Sound'BallisticSounds3.NRP57.NRP57-ClipOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     PinPullSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-PinOut',Volume=0.500000,Radius=48.000000,Pitch=1.000000,bAtten=True)
+     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+     BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_T10'
      BigIconCoords=(Y1=12,Y2=240)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Hazardous=True
@@ -69,8 +69,8 @@ defaultproperties
      ManualLines(1)="As primary, except the throw is underarm."
      ManualLines(2)="As with all grenades, Reload and Weapon Function keys will remove the pin. With the T10 this is important, as throwing a grenade when the fuse is about to expire leads to the grenade spreading gas as it travels in the air, granting greater coverage. Overcooking the grenade will result in the gassing of the user. Effective in corridors and against static positions."
      SpecialInfo(0)=(Info="0.0;0.0;0.0;-1.0;0.0;0.0;0.0")
-     BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
+     BringUpSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Pullout')
+     PutDownSound=(Sound=Sound'BallisticSounds2.NRP57.NRP57-Putaway')
      CurrentWeaponMode=1
      ParamsClass=Class'T10WeaponParams'
      FireModeClass(0)=Class'BallisticProV55.T10PrimaryFire'
@@ -88,9 +88,9 @@ defaultproperties
      PlayerViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)
      PlayerViewPivot=(Pitch=1024,Yaw=-1024)
      AttachmentClass=Class'BallisticProV55.T10Attachment'
-     IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_T10'
+     IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_T10'
      IconCoords=(X2=127,Y2=31)
      ItemName="T10 Toxic Grenade"
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_T10'
+     Mesh=SkeletalMesh'BallisticAnims2.T10Grenade'
      DrawScale=0.400000
 }

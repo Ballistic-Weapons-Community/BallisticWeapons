@@ -446,11 +446,11 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {
-	RevReloadSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Click',Volume=0.400000,Radius=48.000000,Pitch=1.000000)
-	RevOpenSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Open',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
-	RevCloseSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Close',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
-	RevSpinSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Spin',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
-	DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
+	RevReloadSound=(Sound=Sound'BallisticSounds2.D49.D49-Click',Volume=0.400000,Radius=48.000000,Pitch=1.000000)
+	RevOpenSound=(Sound=Sound'BallisticSounds2.D49.D49-Open',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
+	RevCloseSound=(Sound=Sound'BallisticSounds2.D49.D49-Close',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
+	RevSpinSound=(Sound=Sound'BallisticSounds2.D49.D49-Spin',Volume=0.500000,Radius=48.000000,Pitch=1.000000)
+	DryFireSound=(Sound=Sound'BallisticSounds2.D49.D49-DryFire',Volume=0.700000)
 	Shells(0)=(BulletName="Bullet1",ShellName="Shell1",NextShell=2)
 	Shells(1)=(BulletName="Bullet4",ShellName="Shell4",NextShell=3)
 	Shells(2)=(BulletName="Bullet2",ShellName="Shell2",NextShell=4)
@@ -459,9 +459,9 @@ defaultproperties
 	Shells(5)=(BulletName="Bullet6",ShellName="Shell6")
 	bShouldDualInLoadout=False
 	HandgunGroup=1
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
-	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_D49'
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_D49'
 	SightFXClass=Class'BallisticProV55.D49SightLEDs'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -469,13 +469,13 @@ defaultproperties
 	ManualLines(1)="Fires both barrels at once. Twice as much recoil as the single fire with lower sustained damage output."
 	ManualLines(2)="The D49 is very effective at close range. However, it suffers from a cripplingly long reload time. When dual wielded, both pistols will fire simultaneously, allowing the altfire to be used for an extremely powerful attack."
 	SpecialInfo(0)=(Info="120.0;10.0;0.6;50.0;1.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
 	CockAnimRate=1.750000
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Cock')
+	CockSound=(Sound=Sound'BallisticSounds2.D49.D49-Cock')
 	ReloadAnimRate=1.750000
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-ShellOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-ShellIn')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.D49.D49-ShellOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.D49.D49-ShellIn')
 	ClipInFrame=0.650000
 	bAltTriggerReload=True
 	WeaponModes(1)=(bUnavailable=True)
@@ -503,7 +503,7 @@ defaultproperties
 	PlayerViewOffset=(X=-2.000000,Y=13.000000,Z=-12.000000)
 	PlayerViewPivot=(Pitch=512)
 	AttachmentClass=Class'BallisticProV55.D49Attachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_D49'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_D49'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="D49 Revolver"
 	LightType=LT_Pulse
@@ -512,9 +512,9 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_D49'
+	Mesh=SkeletalMesh'BallisticProAnims.D49Revolver'
 	DrawScale=0.220000
-	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Shader'BW_Core_WeaponTex.D49.D49-Shiney'
-	Skins(2)=Shader'BW_Core_WeaponTex.D49.D49Shells-Shiney'
+	Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+	Skins(1)=Shader'BallisticWeapons2.D49.D49-Shiney'
+	Skins(2)=Shader'BallisticWeapons2.D49.D49Shells-Shiney'
 }

@@ -1,7 +1,7 @@
 //=============================================================================
 // G5Attachment.
 //
-// _TPm person weapon attachment for G5 Bazooka
+// 3rd person weapon attachment for G5 Bazooka
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -138,6 +138,6 @@ defaultproperties
 	 ReloadAnim="Reload_MG"
 	 ReloadAnimRate=1.500000
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.G5Bazooka_TPm'
+     Mesh=SkeletalMesh'BallisticAnims2.Bazooka-3rd'
      DrawScale=0.230000
 }

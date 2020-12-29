@@ -118,11 +118,12 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 */	}
 }
 
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch (Actor Other)
 {
 	if (RSDarkProjectile(Other) != None || RSDarkFastProjectile(Other) != None || RSNovaProjectile(Other) != None || RSNovaFastProjectile(Other) != None)
-		return;
-	super.ProcessTouch(Other, HitLocation);
+		return false;
+
+	return super.CanTouch(Other);
 }
 
 simulated singular function HitWall(vector HitNormal, actor Wall)
@@ -235,7 +236,7 @@ defaultproperties
      bDynamicLight=True
      bNetTemporary=False
      bUpdateSimulatedPosition=True
-     AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire1FlyBy'
+     AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire1FlyBy'
      LifeSpan=0.000000
      SoundVolume=255
      SoundRadius=75.000000

@@ -32,7 +32,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.500000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=5.000000,Max=8.000000),Y=(Min=5.000000,Max=8.000000),Z=(Min=5.000000,Max=8.000000))
-         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
+         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          LifetimeRange=(Min=0.400000,Max=0.400000)
@@ -67,7 +67,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=0.170000,RelativeSize=0.800000)
          SizeScale(3)=(RelativeTime=1.000000,RelativeSize=0.700000)
          StartSizeRange=(X=(Min=40.000000,Max=40.000000),Y=(Min=40.000000,Max=40.000000),Z=(Min=40.000000,Max=40.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          LifetimeRange=(Min=0.600000,Max=0.600000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=5000.000000
@@ -75,7 +75,7 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BallisticProV55.RX22AIgniter.SpriteEmitter5'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter2
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.A42.A42MuzzleFlash'
+         StaticMesh=StaticMesh'BallisticHardware2.A42.A42MuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

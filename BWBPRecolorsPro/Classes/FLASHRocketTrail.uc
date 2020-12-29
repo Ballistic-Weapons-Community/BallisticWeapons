@@ -19,7 +19,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=3.200000,Max=5.000000))
          InitialParticlesPerSecond=2000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=999999.000000,Max=999999.000000)
      End Object
@@ -50,7 +50,7 @@ defaultproperties
          SizeScale(3)=(RelativeTime=1.000000,RelativeSize=0.750000)
          StartSizeRange=(X=(Min=5.000000,Max=7.500000))
          InitialParticlesPerSecond=50.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          InitialDelayRange=(Min=0.050000,Max=0.050000)
@@ -58,7 +58,7 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BWBPRecolorsPro.FLASHRocketTrail.SpriteEmitter0'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M806.PistolMuzzleFlash'
+         StaticMesh=StaticMesh'BallisticHardware2.M806.PistolMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -104,7 +104,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=2.500000,Max=3.000000))
          DrawStyle=PTDS_Darken
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.500000,Max=3.000000)
          StartVelocityRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000))

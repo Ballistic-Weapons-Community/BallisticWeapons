@@ -165,31 +165,47 @@ singular function BaseChange()
 	}
 }
 
-simulated event ProcessTouch( actor Other, vector HitLocation )
+simulated function bool CanTouch(Actor Other)
 {
-	local float BoneDist;
+    if (Base != None)
+        return false;
 
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Other == HitActor)
-		return;
-	if (Base != None)
-		return;
+    return Super.CanTouch(Other);
+}
 
-
-	if ( Instigator == None || Instigator.Controller == None )
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
+{
+    if ( Instigator == None || Instigator.Controller == None )
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
-	if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact)
+
+    if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact)
+        class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
+    else 
+        class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
+}
+
+//===============================================================
+// Impact
+//
+// Called when a projectile has struck an actor directly, after 
+// ApplyImpactEffect is used to affect that actor (damage, DoT, etc)
+//
+// Returns true if the function has handled the projectile's 
+// future behaviour. Returns false if the projectile should 
+// explode instead.
+//===============================================================
+simulated function bool Impact(Actor Other, Vector HitLocation)
+{
+    local float BoneDist;
+
+    if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact)
 	{
-		class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
 		HitActor = Other;
 		Explode(HitLocation, Normal(HitLocation-Other.Location));
-		return;
 	}
-	if ( PlayerImpactType == PIT_Bounce || (PlayerImpactType == PIT_Stick && (VSize (Velocity) < MinStickVelocity)) )
+	else if ( PlayerImpactType == PIT_Bounce || (PlayerImpactType == PIT_Stick && (VSize (Velocity) < MinStickVelocity)) )
 	{
 		HitWall (Normal(HitLocation - Other.Location), Other);
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
 	}
 	else if ( PlayerImpactType == PIT_Stick && Base == None )
 	{
@@ -201,10 +217,12 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 			Other.AttachToBone( Self, Other.GetClosestBone( Location, Velocity, BoneDist) );
 		else
 			SetBase (Other);
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
+
 		SetRotation (Rotator(Velocity));
 		Velocity = vect(0,0,0);
 	}
+
+    return true;
 }
 
 simulated event HitWall(vector HitNormal, actor Wall)

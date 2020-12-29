@@ -124,7 +124,7 @@ defaultproperties
          StartSizeRange=(X=(Min=3.000000,Max=5.000000))
          UseSkeletalLocationAs=PTSU_Location
          SkeletalScale=(X=0.380000,Y=0.380000,Z=0.380000)
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
+         Texture=Texture'BallisticEffects.Particles.FlameParts'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          SecondsBeforeInactive=0.000000
@@ -147,7 +147,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=20.000000))
          UseSkeletalLocationAs=PTSU_Location
          SkeletalScale=(X=0.380000,Y=0.380000,Z=0.380000)
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.600000,Max=2.000000)
      End Object
@@ -177,7 +177,7 @@ defaultproperties
          UseSkeletalLocationAs=PTSU_SpawnOffset
          SkeletalScale=(X=0.380000,Y=0.380000,Z=0.380000)
          DrawStyle=PTDS_Darken
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
+         Texture=Texture'BallisticEffects.Particles.Smoke4'
          SecondsBeforeInactive=0.000000
          StartVelocityRange=(X=(Min=-20.000000,Max=20.000000),Y=(Min=-20.000000,Max=20.000000),Z=(Min=140.000000,Max=160.000000))
          VelocityLossRange=(Z=(Min=0.500000,Max=0.500000))
@@ -206,7 +206,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=15.000000,Max=20.000000),Y=(Min=15.000000,Max=20.000000),Z=(Min=15.000000,Max=20.000000))
          SkeletalScale=(X=0.380000,Y=0.380000,Z=0.380000)
-         Texture=Texture'BW_Core_WeaponTex.Particles.BlazingSubdivide'
+         Texture=Texture'BallisticEffects.Particles.BlazingSubdivide'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -224,7 +224,7 @@ defaultproperties
      LightBrightness=200.000000
      LightRadius=15.000000
      bDynamicLight=True
-     AmbientSound=Sound'BW_Core_WeaponSound.FP7.FP7FireLoop'
+     AmbientSound=Sound'BallisticSounds2.FP7.FP7FireLoop'
      bFullVolume=True
      bHardAttach=True
      SoundVolume=255

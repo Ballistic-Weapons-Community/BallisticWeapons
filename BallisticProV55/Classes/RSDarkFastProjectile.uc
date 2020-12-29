@@ -173,32 +173,12 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 	HurtWall = None;
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch(Actor Other)
 {
-    local Vector X;
+	if (RSDarkProjectile(Other) != None || RSDarkFastProjectile(Other) != None)
+		return false;
 
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)) || RSDarkProjectile(Other)!=None || RSDarkFastProjectile(Other)!=None)
-		return;
-
-	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits
-	{
-		DoDamage(Other, HitLocation);
-	}
-
-	if (CanPenetrate(Other) && Other != HitActor)
-	{	// Projectile can go right through enemies
-		HitActor = Other;
-		X = Normal(Velocity);
-		SetLocation(HitLocation + (X * (Other.CollisionHeight*2*X.Z + Other.CollisionRadius*2*(1-X.Z)) * 1.2));
-	    if ( EffectIsRelevant(Location,false) && PenetrateManager != None)
-			PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 4, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
-	}
-	else
-	{	// Spawn projectile death effects and try radius damage
-		HitActor = Other;
-		Explode(HitLocation, vect(0,0,1));
-	}
+    return Super.CanTouch(Other);
 }
 
 function int ManageHeatInteraction(Pawn P)
@@ -283,12 +263,12 @@ defaultproperties
      LightEffect=LE_NonIncidence
      LightBrightness=128.000000
      LightRadius=7.000000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.DarkProjSmall'
+     StaticMesh=StaticMesh'BWBP4-Hardware.DarkStar.DarkProjSmall'
      bDynamicLight=True
      bNetTemporary=False
      bSkipActorPropertyReplication=True
      bOnlyDirtyReplication=True
-     AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire2FlyBy'
+     AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire2FlyBy'
      LifeSpan=1.000000
      DrawScale=2.000000
      SoundVolume=255

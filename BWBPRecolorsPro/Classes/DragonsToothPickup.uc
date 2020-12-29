@@ -4,9 +4,9 @@
 class DragonsToothPickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BWBP_SKC_Static.usx
+#exec OBJ LOAD FILE=BallisticRecolors3TexPro.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BallisticRecolors4StaticPro.usx
 //===========================================================================
 // StaticPrecache
 //
@@ -15,42 +15,42 @@ class DragonsToothPickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DragonTooth-Main');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DragonTooth-Red');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DragonToothCore-Red');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTS-Glow');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTSAplhaMask');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTSMask');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DragonTooth-Main');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DragonTooth-Red');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DragonToothCore-Red');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DTS-Glow');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DTSAplhaMask');
+	L.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DTSMask');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DragonTooth-Main');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DragonTooth-Red');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DragonToothCore-Red');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTS-Glow');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTSAplhaMask');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.DragonToothSword.DTSMask');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DragonTooth-Main');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DragonTooth-Red');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DragonToothCore-Red');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DTS-Glow');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DTSAplhaMask');
+	Level.AddPrecacheMaterial(Texture'BallisticRecolors3TexPro.DragonToothSword.DTSMask');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticRecolors4StaticPro.DTS.DragonsToothPickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickup'
+     LowPolyStaticMesh=StaticMesh'BallisticRecolors4StaticPro.DTS.DragonsToothPickup'
      PickupDrawScale=1.000000
      InventoryType=Class'BWBPRecolorsPro.DragonsToothSword'
      RespawnTime=50.000000
      PickupMessage="You picked up the XM300 Dragon nanoblade."
-     PickupSound=Sound'BWBP_SKC_Sounds.NEX.NEX-Pullout'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.DTS.DragonsToothPickup'
+     PickupSound=Sound'PackageSounds4Pro.NEX.NEX-Pullout'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.DTS.DragonsToothPickup'
      Physics=PHYS_None
      DrawScale=0.600000
      CollisionHeight=4.000000

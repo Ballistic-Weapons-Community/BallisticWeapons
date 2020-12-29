@@ -278,9 +278,9 @@ defaultproperties
 	StockOpenAnim="StockOut"
 	StockCloseAnim="StockIn"
 	StockChaosAimSpread=2048
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_Fifty9'
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_Fifty9'
 	BigIconCoords=(Y1=24)
 	SightFXClass=Class'BallisticProV55.Fifty9SightLEDs'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -290,12 +290,12 @@ defaultproperties
 	ManualLines(1)="Continually slashes with the attached blade. Damage output is modest and range is low."
 	ManualLines(2)="The Fifty-9's stock can be engaged or disengaged with the Weapon Function key. With the stock engaged, the recoil is reduced but the hipfire spread increases. The Fifty-9 is extremely effective at very close range."
 	SpecialInfo(0)=(Info="120.0;10.0;0.8;40.0;0.0;0.4;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
 	MagAmmo=25
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Cock',Volume=0.800000)
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-ClipOut',Volume=0.700000)
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-ClipIn',Volume=0.700000)
+	CockSound=(Sound=Sound'BallisticSounds2.UZI.UZI-Cock',Volume=0.800000)
+	ClipOutSound=(Sound=Sound'BallisticSounds2.UZI.UZI-ClipOut',Volume=0.700000)
+	ClipInSound=(Sound=Sound'BallisticSounds2.UZI.UZI-ClipIn',Volume=0.700000)
 	ClipInFrame=0.650000
 	CurrentWeaponMode=0
     WeaponModes(0)=(ModeName="Burst",ModeID="WM_Burst",Value=5.000000)
@@ -321,7 +321,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.Fifty9Pickup'
 	PlayerViewOffset=(X=14.000000,Y=8.000000,Z=-10.000000)
 	AttachmentClass=Class'BallisticProV55.Fifty9Attachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_Fifty9'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_Fifty9'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="Fifty-9 Machine Pistol"
 	LightType=LT_Pulse
@@ -330,6 +330,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_Fifty9'
+	Mesh=SkeletalMesh'BallisticProAnims.UZI'
 	DrawScale=0.300000
 }

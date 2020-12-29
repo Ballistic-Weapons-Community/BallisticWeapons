@@ -16,7 +16,7 @@ simulated event PostBeginPlay()
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARSMuzzleFlash'
+         StaticMesh=StaticMesh'BallisticRecolors4StaticPro.MARS.MARSMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -66,7 +66,7 @@ defaultproperties
          StartLocationOffset=(X=14.000000)
          StartSizeRange=(X=(Min=110.000000,Max=110.000000),Y=(Min=110.000000,Max=110.000000),Z=(Min=110.000000,Max=110.000000))
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.100000,Max=0.100000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -75,7 +75,7 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BWBPRecolorsPro.MARSFlashEmitter.SpriteEmitter0'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter1
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.FBlast'
+         StaticMesh=StaticMesh'BallisticHardware2.Effects.FBlast'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

@@ -37,7 +37,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.100000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=12.000000,Max=16.000000),Y=(Min=20.000000,Max=40.000000),Z=(Min=10.000000,Max=10.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.DirtSpray'
+         Texture=Texture'BallisticEffects.Particles.DirtSpray'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          SpawnOnTriggerRange=(Min=10.000000,Max=10.000000)
@@ -68,7 +68,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.100000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=12.000000,Max=16.000000),Y=(Min=20.000000,Max=40.000000),Z=(Min=10.000000,Max=10.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.DirtSpray'
+         Texture=Texture'BallisticEffects.Particles.DirtSpray'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          SpawnOnTriggerRange=(Min=10.000000,Max=10.000000)
@@ -99,7 +99,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.100000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=12.000000,Max=16.000000),Y=(Min=20.000000,Max=40.000000),Z=(Min=10.000000,Max=10.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.DirtSpray'
+         Texture=Texture'BallisticEffects.Particles.DirtSpray'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          SpawnOnTriggerRange=(Min=10.000000,Max=10.000000)
@@ -135,7 +135,7 @@ defaultproperties
          SizeScale(5)=(RelativeTime=0.680000,RelativeSize=0.800000)
          SizeScale(6)=(RelativeTime=1.000000,RelativeSize=0.500000)
          StartSizeRange=(X=(Min=12.000000,Max=12.000000),Y=(Min=12.000000,Max=12.000000),Z=(Min=12.000000,Max=12.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareC1'
+         Texture=Texture'BallisticEffects.Particles.FlareC1'
          LifetimeRange=(Min=0.600000,Max=0.600000)
          SpawnOnTriggerRange=(Min=20.000000,Max=20.000000)
          SpawnOnTriggerPPS=80.000000
@@ -162,7 +162,7 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          StartLocationOffset=(X=10.000000)
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
+         Texture=Texture'BallisticEffects.Particles.FlareA1'
          LifetimeRange=(Min=0.300000,Max=0.300000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=50000.000000
@@ -191,7 +191,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.400000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=40.000000,Max=40.000000),Y=(Min=160.000000,Max=160.000000),Z=(Min=160.000000,Max=160.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.WaterSpray1'
+         Texture=Texture'BallisticEffects.Particles.WaterSpray1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -223,7 +223,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.310000,RelativeSize=0.800000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=20.000000,Max=40.000000),Y=(Min=20.000000,Max=40.000000),Z=(Min=20.000000,Max=40.000000))
-         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
+         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -258,7 +258,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.310000,RelativeSize=0.800000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=20.000000,Max=40.000000),Y=(Min=20.000000,Max=40.000000),Z=(Min=20.000000,Max=40.000000))
-         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
+         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000

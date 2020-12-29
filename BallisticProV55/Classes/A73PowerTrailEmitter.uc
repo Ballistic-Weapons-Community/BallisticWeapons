@@ -24,7 +24,7 @@ defaultproperties
          StartLocationOffset=(X=-20.000000)
          StartSizeRange=(X=(Min=50.000000,Max=80.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.400000)
      End Object
@@ -46,7 +46,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Min=15.000000,Max=20.000000))
          InitialParticlesPerSecond=500000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=9999.000000,Max=9999.000000)
      End Object
@@ -73,7 +73,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.400000)
          StartSizeRange=(X=(Min=3.000000,Max=4.000000),Y=(Min=3.000000,Max=4.000000),Z=(Min=3.000000,Max=4.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BW_Core_WeaponTex.GunFire.A73MuzzleFlash'
+         Texture=Texture'BallisticEffects.GunFire.A73MuzzleFlash'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SubdivisionStart=1
@@ -103,7 +103,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=3.000000,Max=6.000000))
          InitialParticlesPerSecond=60.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
+         Texture=Texture'BallisticEffects.Particles.FlameParts'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          LifetimeRange=(Min=0.600000,Max=1.200000)

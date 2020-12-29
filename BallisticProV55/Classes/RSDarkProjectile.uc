@@ -215,14 +215,23 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 	HurtWall = None;
 }
 
+simulated function bool CanTouch (Actor Other)
+{
+	if (RSDarkProjectile(Other) != None || RSDarkFastProjectile(Other) != None)
+		return false;
+
+    return Super.CanTouch(Other);
+}
 
 // Hit something interesting
 simulated function ProcessTouch (Actor Other, vector HitLocation)
 {
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)) || RSDarkProjectile(Other)!=None || RSDarkFastProjectile(Other)!=None)
-		return;
+    if (!CanTouch(Other))
+        return;
+
 	if (Role == ROLE_Authority && Other != HitActor)		// Do damage for direct hits
 		DoDamage(Other, HitLocation);
+    
 	if (Pawn(Other) != None && Pawn(Other).Health <= 0)
 		PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, 2, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);
 	else
@@ -337,7 +346,7 @@ simulated function DestroyEffects()
 defaultproperties
 {
 	AccelSpeed=100000.000000
-	AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire1FlyBy'
+	AmbientSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Fire1FlyBy'
 	CollisionHeight=1.000000
 	CollisionRadius=1.000000
 	Damage=70.000000
@@ -370,7 +379,7 @@ defaultproperties
 	SoundVolume=255
 	Speed=5000.000000
 	SplashManager=Class'BallisticProV55.IM_ProjWater'
-	StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.DarkProjBig'
+	StaticMesh=StaticMesh'BWBP4-Hardware.DarkStar.DarkProjBig'
 	TrailClass=Class'BallisticProV55.RSDark1Trail'
 	bDynamicLight=True
 	bNetTemporary=False

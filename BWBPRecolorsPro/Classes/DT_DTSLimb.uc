@@ -23,6 +23,6 @@ defaultproperties
      DeathString="%k chopped %o down with the Dragon's Tooth."
      FemaleSuicide="%o's Dragon Tooth bit off her arm."
      MaleSuicide="%o's Dragon Tooth bit off his arm."
-     PawnDamageSounds(0)=Sound'BWBP_SKC_Sounds.DTS.NanoSwordHitFlesh'
+     PawnDamageSounds(0)=Sound'PackageSounds4Pro.DTS.NanoSwordHitFlesh'
      KDamageImpulse=1000.000000
 }

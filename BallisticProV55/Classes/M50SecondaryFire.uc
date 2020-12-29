@@ -82,7 +82,7 @@ defaultproperties
      bUseWeaponMag=False
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      FlashBone="tip2"
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50GrenFire')
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.M50.M50GrenFire')
      bFireOnRelease=True
      bWaitForRelease=True
      PreFireTime=0.450000

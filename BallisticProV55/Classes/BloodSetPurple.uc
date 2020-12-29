@@ -45,7 +45,7 @@ defaultproperties
      StumpDripper=Class'BallisticProV55.BG_StumpSpurterBot'
      DefaultStump=None
      CharredStump=None
-     BulletHitSound=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletBot'
+     BulletHitSound=SoundGroup'BallisticSounds2.BulletImpacts.BulletBot'
      ScreenEffectMisc=Class'BallisticProV55.BG_ScnBloodBot'
      ScreenEffectSlice=Class'BallisticProV55.BG_ScnBloodSliceBot'
      ScreenEffectSaw=Class'BallisticProV55.BG_ScnBloodSawBot'

@@ -1,12 +1,12 @@
 //=============================================================================
-// DTM575MGHead.
+// DT_M2020HeadOff.
 //
-// Damage type for the M575 Machinegun headshot
+// DamageType for M2020 headshots, gauss offline or deflecting
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DTM575MGHead extends DT_BWBullet;
+class DT_M2020HeadOff extends DT_BWBullet;
 
 // HeadShot stuff from old sniper damage ------------------
 static function IncrementKills(Controller Killer)
@@ -29,20 +29,19 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%k gave an eye for an eye a whole new meaning when he shot %o's head off."
-     DeathStrings(1)="%o lost more than his sight when %k's M575 saw him."
-     DeathStrings(2)="%k blinded %o with his M575, and decapitated him for good measure."
-	 DeathStrings(3)="%o couldn’t see %k putting several holes into his head."
-	 DeathStrings(4)="%k took %o's vision and his life at the same time."
-	 DeathStrings(5)="%o's skull was hollowed out by %k's hybrid beast."
+     DeathStrings(0)="%o's head got in the way of %k's M2020 gauss round."
+     DeathStrings(1)="%k's M2020 opened %o's mind to the wonders of electromagnets"
+     DeathStrings(2)="%k's M2020 wiped the smile clean off %o's face."
+     HipString="Luck"
+     AimedString="Scoped"
      bHeaddie=True
-     DamageIdent="Machinegun"
-     WeaponClass=Class'BWBPOtherPackPro.M575Machinegun'
-     DeathString="%k furiously machinegunned %o's head off."
-     FemaleSuicide="%o shot herself in the head with the M575."
-     MaleSuicide="%o shot himself in the head with the M575."
-     bFastInstantHit=True
+     DamageIdent="Sniper"
+     WeaponClass=Class'BWBPRecolorsPro.M2020GaussDMR'
+     DeathString="%o's head got in the way of %k's M2020 gauss round."
+     FemaleSuicide="%o wanted to experience magnetic acceleration first hand!"
+     MaleSuicide="%o wanted to experience magnetic acceleration first hand!"
      bAlwaysSevers=True
      bSpecial=True
-     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
+     PawnDamageSounds(0)=SoundGroup'BallisticSounds2.BulletImpacts.Headshot'
+     KDamageImpulse=1000.000000
 }

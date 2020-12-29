@@ -61,7 +61,7 @@ simulated function HitWall (Vector HitNormal, Actor Wall)
 defaultproperties
 {
      StartVelocity=(Z=150.000000)
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound'
+     StaticMesh=StaticMesh'BallisticHardware2.Brass.EmptyRifleRound'
      LifeSpan=4.000000
      DrawScale=0.090000
 }

@@ -43,7 +43,7 @@ defaultproperties
      bReleaseFireOnDie=False
      bIgnoreReload=True
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepMelee"

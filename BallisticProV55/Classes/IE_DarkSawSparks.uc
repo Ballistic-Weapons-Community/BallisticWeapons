@@ -23,7 +23,7 @@ defaultproperties
          StartLocationOffset=(X=57.000000)
          StartLocationRange=(Z=(Min=-5.000000,Max=5.000000))
          StartSizeRange=(X=(Min=2.000000,Max=4.000000),Y=(Min=2.000000,Max=4.000000),Z=(Min=2.000000,Max=4.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
+         Texture=Texture'BallisticEffects.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.250000,Max=0.250000)
          StartVelocityRange=(X=(Min=-50.000000,Max=1.010000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=-800.000000,Max=-200.000000))
@@ -45,7 +45,7 @@ defaultproperties
          StartLocationOffset=(Z=-5.000000)
          AddLocationFromOtherEmitter=0
          StartSizeRange=(X=(Min=0.700000,Max=1.000000),Y=(Min=10.000000,Max=40.000000),Z=(Min=10.000000,Max=40.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
+         Texture=Texture'BallisticEffects.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.150000,Max=0.150000)
          AddVelocityFromOtherEmitter=0
@@ -73,7 +73,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.280000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=5.000000,Max=8.000000),Y=(Min=5.000000,Max=8.000000),Z=(Min=5.000000,Max=8.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB2'
+         Texture=Texture'BallisticEffects.Particles.FlareB2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.150000,Max=0.250000)
      End Object

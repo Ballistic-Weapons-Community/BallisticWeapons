@@ -41,11 +41,11 @@ event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Mo
 	Explode(Location, Normal(Velocity));
 }
 
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch (Actor Other)
 {
 	if (G5MortarDamageHull(Other) != None && (Other == DamageHull || DamageHull == None))
-		return;
-	super.ProcessTouch(Other, HitLocation);
+		return false;
+	return super.CanTouch(Other);
 }
 
 function HitWall(vector HitNormal, actor Wall)

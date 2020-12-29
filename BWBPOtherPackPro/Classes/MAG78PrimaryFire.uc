@@ -34,15 +34,13 @@ defaultproperties
      SliceAnims(1)="Swing2"
      FatiguePerStrike=0.064000
      bCanBackstab=False
-     TraceRange=(Min=165.000000,Max=165.000000)
+     TraceRange=(Min=175.000000,Max=175.000000)
 	 Damage=80.000000
-     
-     
      DamageType=Class'BWBPOtherPackPro.DT_MAGSAWStab'
      DamageTypeHead=Class'BWBPOtherPackPro.DT_MAGSAWStabHead'
      DamageTypeArm=Class'BWBPOtherPackPro.DT_MAGSAWStab'
      KickForce=100
-     BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.LongSword.SawSwing',Radius=378.000000,bAtten=True,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBPSomeOtherPackSounds.LongSword.SawSwing',Radius=378.000000,bAtten=True,bNoOverride=False)
      bAISilent=True
      FireAnim="Swing1"
      FireRate=0.75

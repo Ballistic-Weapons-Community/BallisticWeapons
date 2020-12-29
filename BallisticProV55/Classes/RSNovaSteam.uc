@@ -34,7 +34,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          InitialParticlesPerSecond=20.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Effects.Smoke7'
+         Texture=Texture'BallisticWeapons2.Effects.Smoke7'
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=-45.000000,Max=-15.000000))
      End Object

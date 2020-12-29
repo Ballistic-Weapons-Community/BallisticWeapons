@@ -6,7 +6,7 @@
 //=============================================================================
 class SARSightDot extends BallisticEmitter;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BallisticProTextures.utx
 
 //shamelessly lifted from Kab
 
@@ -22,7 +22,7 @@ defaultproperties
          MaxParticles=1
          StartLocationOffset=(X=-20.000000,Z=27.250000)
          StartSizeRange=(X=(Min=11.000000,Max=11.000000),Y=(Min=11.000000,Max=11.000000),Z=(Min=11.000000,Max=11.000000))
-         Texture=Texture'BW_Core_WeaponTex.SAR.SAR-SightRed'
+         Texture=Texture'BallisticProTextures.SAR.SAR-SightRed'
          LifetimeRange=(Min=1.000000,Max=1.000000)
      End Object
      Emitters(0)=SpriteEmitter'BallisticProV55.SARSightDot.SpriteEmitter0'

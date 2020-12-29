@@ -7,6 +7,6 @@ class AD_GunBash extends AD_ImpactDecal
 defaultproperties
 {
      DrawScaleVariance=0.050000
-     ProjTexture=Texture'BW_Core_WeaponTex.Decals.M763Bash'
+     ProjTexture=Texture'BallisticEffects2.Decals.M763Bash'
      DrawScale=0.200000
 }

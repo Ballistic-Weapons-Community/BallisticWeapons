@@ -58,14 +58,14 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.070000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=146.000000,Max=166.000000))
          InitialParticlesPerSecond=10000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.100000,Max=1.100000)
      End Object
      Emitters(0)=SpriteEmitter'BWBPRecolorsPro.IE_FRAGExplosion.SpriteEmitter6'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter4
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VBlast'
+         StaticMesh=StaticMesh'BallisticHardware2.Effects.VBlast'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -115,7 +115,7 @@ defaultproperties
          StartSizeRange=(X=(Min=200.000000,Max=300.000000),Y=(Min=200.000000,Max=300.000000),Z=(Min=200.000000,Max=300.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.400000)
      End Object
@@ -140,7 +140,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
          StartSizeRange=(X=(Min=0.000000,Max=40.000000),Y=(Min=0.000000,Max=40.000000),Z=(Min=0.000000,Max=40.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BW_Core_WeaponTex.Effects.SparkA1'
+         Texture=Texture'BallisticWeapons2.Effects.SparkA1'
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -150,7 +150,7 @@ defaultproperties
      Emitters(3)=SpriteEmitter'BWBPRecolorsPro.IE_FRAGExplosion.SpriteEmitter8'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter5
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip2'
+         StaticMesh=StaticMesh'BallisticHardware2.Impact.ConcreteChip2'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -198,7 +198,7 @@ defaultproperties
          StartSizeRange=(X=(Min=140.000000,Max=140.000000),Y=(Min=140.000000,Max=140.000000),Z=(Min=140.000000,Max=140.000000))
          InitialParticlesPerSecond=1000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke1'
+         Texture=Texture'BallisticEffects.Particles.Smoke1'
          StartVelocityRange=(X=(Min=300.000000,Max=300.000000),Y=(Min=-150.000000,Max=150.000000),Z=(Min=-150.000000,Max=150.000000))
          VelocityLossRange=(X=(Min=0.900000,Max=0.900000),Y=(Min=0.900000,Max=0.900000),Z=(Min=2.990000,Max=2.990000))
      End Object
@@ -224,7 +224,7 @@ defaultproperties
          StartSizeRange=(X=(Min=75.000000,Max=75.000000),Y=(Min=75.000000,Max=75.000000),Z=(Min=75.000000,Max=75.000000))
          InitialParticlesPerSecond=5000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
+         Texture=Texture'BallisticEffects.Particles.Smoke6'
          StartVelocityRange=(X=(Min=-50.000000,Max=50.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=-50.000000,Max=50.000000))
      End Object
      Emitters(6)=SpriteEmitter'BWBPRecolorsPro.IE_FRAGExplosion.SpriteEmitter0'
@@ -245,7 +245,7 @@ defaultproperties
          StartSizeRange=(Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.Shockwave'
+         Texture=Texture'BallisticEffects.Particles.Shockwave'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -277,7 +277,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=4.000000)
          StartSizeRange=(X=(Min=50.000000,Max=80.000000),Y=(Min=50.000000,Max=80.000000),Z=(Min=50.000000,Max=80.000000))
          InitialParticlesPerSecond=15.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
+         Texture=Texture'BallisticEffects.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          StartVelocityRange=(X=(Min=-25.000000,Max=25.000000),Y=(Min=-25.000000,Max=25.000000))
@@ -298,7 +298,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=5.000000)
          StartSizeRange=(X=(Min=50.000000,Max=50.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.Explode2'
+         Texture=Texture'BallisticEffects.Particles.Explode2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
@@ -323,7 +323,7 @@ defaultproperties
          SpinsPerSecondRange=(X=(Max=2.000000))
          StartSizeRange=(X=(Min=20.000000,Max=30.000000),Y=(Min=20.000000,Max=30.000000),Z=(Min=20.000000,Max=30.000000))
          InitialParticlesPerSecond=50000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.050000,Max=0.050000)
          StartVelocityRange=(Z=(Min=-100.000000))

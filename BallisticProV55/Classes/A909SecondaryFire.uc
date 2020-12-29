@@ -41,7 +41,7 @@ simulated function bool HasAmmo()
 defaultproperties
 {
      FatiguePerStrike=0.200000
-     TraceRange=(Min=130.000000,Max=130.000000)
+     TraceRange=(Min=150.000000,Max=150.000000)
      Damage=60.000000
      DamageType=Class'BallisticProV55.DTA909Blades'
      DamageTypeHead=Class'BallisticProV55.DTA909Head'
@@ -50,7 +50,7 @@ defaultproperties
      HookStopFactor=1.700000
      HookPullForce=100.000000
      bReleaseFireOnDie=False
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.A909.A909Slash',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BallisticSounds3.A909.A909Slash',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepBigHack3"

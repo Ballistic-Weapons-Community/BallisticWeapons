@@ -10,5 +10,5 @@ class RSDarkChainsawPanner extends TexPanner;
 
 defaultproperties
 {
-     Material=TexScaler'BW_Core_WeaponTex.DarkStar.DarkStarChainScaler'
+     Material=TexScaler'BWBP4-Tex.DarkStar.DarkStarChainScaler'
 }

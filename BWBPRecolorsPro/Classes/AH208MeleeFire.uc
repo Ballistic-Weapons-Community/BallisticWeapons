@@ -46,7 +46,7 @@ defaultproperties
      SwipePoints(5)=(Weight=1,offset=(Pitch=-1500,Yaw=-1500))
      SwipePoints(6)=(offset=(Pitch=-3000))
      WallHitPoint=4
-     TraceRange=(Min=136.000000,Max=136.000000)     
+     TraceRange=(Min=130.000000,Max=130.000000)     
      DamageType=Class'BWBPRecolorsPro.DTEagle208Melee'
      DamageTypeHead=Class'BWBPRecolorsPro.DTEagle208MeleeHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTEagle208Melee'
@@ -54,7 +54,7 @@ defaultproperties
      bReleaseFireOnDie=False
      bIgnoreReload=True
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.35,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Volume=0.35,Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepPistolWhip"

@@ -4,9 +4,9 @@
 class G5Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BallisticWeapons2.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,48 +16,48 @@ class G5Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.G5.G5Bazooka');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.G5.G5Rocket');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.G5.G5Scope');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.G5.G5Inner');
+	L.AddPrecacheMaterial(Texture'BallisticWeapons2.G5.G5Bazooka');
+	L.AddPrecacheMaterial(Texture'BallisticWeapons2.G5.G5Rocket');
+	L.AddPrecacheMaterial(Texture'BallisticWeapons2.G5.G5Scope');
+	L.AddPrecacheMaterial(Texture'BallisticWeapons2.G5.G5Inner');
 	
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.G5Rocket');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.BazookaMuzzleFlash');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.BazookaBackFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.G5.G5Rocket');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.G5.BazookaMuzzleFlash');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.G5.BazookaBackFlash');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.G5.G5Bazooka');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.G5.G5Rocket');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.G5.G5Scope');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.G5.G5Inner');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.Explode2');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Particles.Shockwave');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Explosion1');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Explosion2');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Explosion3');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.Explosion4');
+	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.G5.G5Bazooka');
+	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.G5.G5Rocket');
+	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.G5.G5Scope');
+	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.G5.G5Inner');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Particles.Explode2');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Particles.Shockwave');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Explosion1');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Explosion2');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Explosion3');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.Explosion4');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.G5Rocket');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.BazookaMuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.BazookaBackFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Ammo.G5Rockets');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.G5PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.G5.G5PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.G5.G5Rocket');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.G5.BazookaMuzzleFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.G5.BazookaBackFlash');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.Ammo.G5Rockets');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.G5.G5PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.G5.G5PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.G5.G5PickupLo'
+     LowPolyStaticMesh=StaticMesh'BallisticHardware2.G5.G5PickupLo'
      PickupDrawScale=0.500000
      InventoryType=Class'BallisticProV55.G5Bazooka'
      RespawnTime=60.000000
      PickupMessage="You picked up the G5 missile launcher."
-     PickupSound=Sound'BW_Core_WeaponSound.G5.G5-Putaway'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.G5.G5PickupHi'
+     PickupSound=Sound'BallisticSounds2.G5.G5-Putaway'
+     StaticMesh=StaticMesh'BallisticHardware2.G5.G5PickupHi'
      Physics=PHYS_None
      DrawScale=0.450000
      CollisionHeight=6.000000

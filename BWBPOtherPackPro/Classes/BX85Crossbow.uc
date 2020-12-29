@@ -27,6 +27,7 @@ var   bool				bMeatVision;
 var   Pawn				Target;
 var   float				TargetTime;
 var   float				LastSendTargetTime;
+var   float             NextTargetFindTime, TargetFindInterval;
 var   vector			TargetLocation;
 var   Actor				NVLight;
 
@@ -170,28 +171,33 @@ simulated event WeaponTick(float DT)
 	else
 		SetNVLight(false);
 
-	if (!bScopeView || Role < Role_Authority)
+	if (!bScopeView || Role < ROLE_Authority || Level.TimeSeconds < NextTargetFindTime)
 		return;
+
+    NextTargetFindTime = Level.TimeSeconds + TargetFindInterval;
 
 	Start = Instigator.Location + Instigator.EyePosition();
 	BestAim = 0.995;
 	Targ = Instigator.Controller.PickTarget(BestAim, BestDist, Vector(Instigator.GetViewRotation()), Start, 20000);
-	if (Targ != None)
-	{
-		if (Targ != Target)
-		{
-			Target = Targ;
-			TargetTime = 0;
-		}
-		else if (Vehicle(Targ) != None)
-			TargetTime += 1.2 * DT * (BestAim-0.95) * 20;
-		else
-			TargetTime += DT * (BestAim-0.95) * 20;
-	}
-	else
-	{
-		TargetTime = FMax(0, TargetTime - DT * 0.5);
-	}
+
+    if (!FastTrace(Targ.Location, Instigator.Location))
+        Targ = None;
+
+    if (Targ != Target)
+    {
+        Target = Targ;
+        TargetTime = 0;
+    }
+
+	if (Targ == None)
+    {
+    	TargetTime = FMax(0, TargetTime - DT * 0.5);
+        return;
+    }
+    else if (Vehicle(Targ) != None)
+        TargetTime += 1.2 * DT * (BestAim-0.95) * 20;
+    else
+        TargetTime += DT * (BestAim-0.95) * 20;
 }
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
@@ -368,7 +374,7 @@ simulated event DrawMeatVisionMode (Canvas C)
 	C.SetPos(V.X, V.Y);
 	V2 = C.WorldToScreen(Target.Location + Y*Target.CollisionRadius - Z*Target.CollisionHeight);
 	C.SetDrawColor(160,185,200,255);
-      C.DrawTileStretched(Texture'BWBP_SKC_Tex.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
+      C.DrawTileStretched(Texture'BallisticRecolors3TexPro.X82.X82Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
 
     V3 = C.WorldToScreen(Target.Location - Z*Target.CollisionHeight);
 }
@@ -577,16 +583,16 @@ defaultproperties
 	ArrowBones(4)=(BoneName="6")
 	ArrowBones(5)=(BoneName="7")
 	ArrowBones(6)=(BoneName="8")
-	ThermalOnSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
-	ThermalOffSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
-	NVOnSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
-	NVOffSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
-	WallVisionSkin=FinalBlend'BW_Core_WeaponTex.M75.OrangeFinal'
-	Flaretex=FinalBlend'BW_Core_WeaponTex.M75.OrangeFlareFinal'
+	ThermalOnSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOn',Volume=0.500000,Pitch=1.000000)
+	ThermalOffSound=(Sound=Sound'BallisticSounds2.M75.M75ThermalOff',Volume=0.500000,Pitch=1.000000)
+	NVOnSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOn',Volume=1.600000,Pitch=0.900000)
+	NVOffSound=(Sound=Sound'PackageSounds4Pro.AH104.AH104-SightOff',Volume=1.600000,Pitch=0.900000)
+	WallVisionSkin=FinalBlend'BallisticEffects.M75.OrangeFinal'
+	Flaretex=FinalBlend'BallisticEffects.M75.OrangeFlareFinal'
 	ThermalRange=2500.000000
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=1)
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
 	AIReloadTime=1.500000
-	BigIconMaterial=Texture'BWBP_OP_Tex.XBow.BigIcon_Crossbow'
+	BigIconMaterial=Texture'BWBPOtherPackTex2.XBow.BigIcon_Crossbow'
 	IdleTweenTime=0.000000
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -594,17 +600,17 @@ defaultproperties
 	ManualLines(1)="Raises the scope."
 	ManualLines(2)="Effective at long range. Excels at stealth."
 	SpecialInfo(0)=(Info="120.0;15.0;0.8;50.0;0.0;0.5;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.M806.M806Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.M806.M806Putaway')
 	CockAnim='CockRotateMag'
 	CockAnimRate=1.250000
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipHit')
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipIn')
+	ClipHitSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.AM67.AM67-ClipIn')
 	ClipInFrame=0.650000
 	CurrentWeaponMode=0
 	ZoomType=ZT_Logarithmic
-	ScopeViewTex=Texture'BWBP_OP_Tex.R9A1.R9_scope_UI_DO1'
+	ScopeViewTex=Texture'BWBPOtherPackTex2.R9A1.R9_scope_UI_DO1'
 	FullZoomFOV=50.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
@@ -614,7 +620,7 @@ defaultproperties
 	MaxZoom=16.000000
 	ZoomStages=3
 	ParamsClass=Class'BX85WeaponParams'
-	CockSound=(Sound=Sound'BWBP_OP_Sounds.XBow.CockFast',Volume=1.200000)
+	CockSound=(Sound=Sound'BWBPOtherPackSound.XBow.CockFast',Volume=1.200000)
 	FireModeClass(0)=Class'BWBPOtherPackPro.BX85PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	PutDownTime=0.600000
@@ -631,7 +637,7 @@ defaultproperties
 	PickupClass=Class'BWBPOtherPackPro.BX85Pickup'
 	PlayerViewOffset=(X=10.000000,Y=2.000000,Z=-7.000000)
 	AttachmentClass=Class'BWBPOtherPackPro.BX85Attachment'
-	IconMaterial=Texture'BWBP_OP_Tex.XBow.Icon_Crossbow'
+	IconMaterial=Texture'BWBPOtherPackTex2.XBow.Icon_Crossbow'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="BX85 Stealth Crossbow"
 	LightType=LT_Pulse
@@ -640,7 +646,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Crossbow'
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.Crossbow_FP'
 	DrawScale=0.200000
-	Skins(0)=Shader'BWBP_OP_Tex.XBow.XBow_SH1'
+	Skins(0)=Shader'BWBPOtherPackTex2.XBow.XBow_SH1'
 }

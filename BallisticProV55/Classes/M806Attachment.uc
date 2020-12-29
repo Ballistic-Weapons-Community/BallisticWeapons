@@ -1,7 +1,7 @@
 //=============================================================================
 // M806Attachment.
 //
-// _TPm person weapon attachment for M806 Pistol
+// 3rd person weapon attachment for M806 Pistol
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -92,7 +92,7 @@ defaultproperties
      TracerChance=0.600000
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M806_TPm'
+     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
+     Mesh=SkeletalMesh'BallisticAnims2.Pistol-3rd'
      DrawScale=0.038000
 }

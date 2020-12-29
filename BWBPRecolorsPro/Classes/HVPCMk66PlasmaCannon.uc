@@ -691,22 +691,22 @@ function float SuggestDefenseStyle()	{	return -0.5;	}
 
 defaultproperties
 {	 
-     VentingSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Coolant'
-     WarningSound=Sound'BWBP_SKC_Sounds.BFG.BFG-Critical'
-     OverheatSound=Sound'BW_Core_WeaponSound.Misc.BH-Explode'
-     PrimaryWarningSound=Sound'BW_Core_WeaponSound.LightningGun.LG-OverHeat'
-     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     UsedAmbientSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
+     VentingSound=Sound'BWBP2-Sounds.LightningGun.LG-Coolant'
+     WarningSound=Sound'PackageSounds4Pro.BFG.BFG-Critical'
+     OverheatSound=Sound'BWBP4-Sounds.Misc.BH-Explode'
+     PrimaryWarningSound=Sound'BWBP2-Sounds.LightningGun.LG-OverHeat'
+     TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+     UsedAmbientSound=Sound'BWBP2-Sounds.LightningGun.LG-Ambient'
      AIReloadTime=0.200000
-     BigIconMaterial=Texture'BWBP_SKC_Tex.BFG.BigIcon_BFG'
+     BigIconMaterial=Texture'BallisticRecolors3TexPro.BFG.BigIcon_BFG'
      BigIconCoords=(Y1=30,Y2=235)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Hazardous=True
      bWT_Energy=True
      bWT_Super=True
      SpecialInfo(0)=(Info="600.0;80.0;1.0;100.0;0.5;0.8;5.0")
-     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Select',Volume=2.200000)
-     PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
+     BringUpSound=(Sound=Sound'PackageSounds4Pro.XavPlas.Xav-Select',Volume=2.200000)
+     PutDownSound=(Sound=Sound'BWBP2-Sounds.LightningGun.LG-Putaway',Volume=0.600000)
      bNoMag=True
      WeaponModes(1)=(bUnavailable=True,Value=4.000000)
      bNoCrosshairInScope=True
@@ -731,7 +731,7 @@ defaultproperties
      PlayerViewOffset=(X=-3.000000,Y=9.500000,Z=-9.500000)
      BobDamping=1.600000
      AttachmentClass=Class'BWBPRecolorsPro.HVPCMk66Attachment'
-     IconMaterial=Texture'BWBP_SKC_Tex.BFG.SmallIcon_BFG'
+     IconMaterial=Texture'BallisticRecolors3TexPro.BFG.SmallIcon_BFG'
      IconCoords=(X2=127,Y2=31)
      ItemName="E-V Plasma Cannon 9000"
      LightType=LT_Pulse
@@ -740,10 +740,10 @@ defaultproperties
      LightSaturation=100
      LightBrightness=192.000000
      LightRadius=12.000000
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HVC'
+     Mesh=SkeletalMesh'BWBP2b-Anims.Lighter'
      DrawScale=0.450000
-     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-     Skins(1)=Texture'BWBP_SKC_Tex.BFG.BFG-Skin'
+     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
+     Skins(1)=Texture'BallisticRecolors3TexPro.BFG.BFG-Skin'
      bFullVolume=True
      SoundVolume=64
      SoundRadius=128.000000

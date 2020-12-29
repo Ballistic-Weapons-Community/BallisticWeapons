@@ -418,16 +418,16 @@ function float SuggestDefenseStyle()	{	return -0.9;	}
 
 defaultproperties
 {
-	RulerTex=Texture'BW_Core_WeaponTex.Artillery.Lines'
-	PointerTex=Texture'BW_Core_WeaponTex.Artillery.Pointer'
-	DeploySound=Sound'BW_Core_WeaponSound.Artillery.Art-Deploy'
-	UndeploySound=Sound'BW_Core_WeaponSound.Artillery.Art-Undeploy'
+	RulerTex=Texture'BWBP4-Tex.Artillery.Lines'
+	PointerTex=Texture'BWBP4-Tex.Artillery.Pointer'
+	DeploySound=Sound'BWBP4-Sounds.Artillery.Art-Deploy'
+	UndeploySound=Sound'BWBP4-Sounds.Artillery.Art-Undeploy'
 	Shells(0)="Shell1"
 	Shells(1)="Shell2"
 	Shells(2)="Shell3"
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=2)
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=2)
 	AIReloadTime=4.000000
-	BigIconMaterial=Texture'BW_Core_WeaponTex.Artillery.BigIcon_Artillery'
+	BigIconMaterial=Texture'BWBP4-Tex.Artillery.BigIcon_Artillery'
 	BigIconCoords=(Y1=24,Y2=225)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
@@ -438,11 +438,11 @@ defaultproperties
 	ManualLines(1)="Deploys the HAMR. Unlike machineguns, it cannot be deployed upon sandbags, only upon the ground or a wall. While deployed, recoil is reduced, fire rate improves and the user takes less damage from any frontal locational-hit attack."
 	ManualLines(2)="While viewing through the HAMR's optical system, the Weapon Function key will cause the targeting system to simulate the trajectory, travel time and impact radius of a shell fired from the HAMR at the current aim rotation. This can be used to finely target a shot at long range.||The HAMR is heavy and will badly restrict the player's movement while it is active.||Effective at medium to long range. Extremely effective against groups and with height advantage."
 	SpecialInfo(0)=(Info="300.0;40.0;1.0;90.0;0.8;0.0;1.2")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')
 	ReloadAnim="ReloadLoop"
 	ReloadAnimRate=2.250000
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-ShellIn')
+	ClipInSound=(Sound=Sound'BWBP4-Sounds.Artillery.Art-ShellIn')
 	bNonCocking=True
 	bCanSkipReload=True
 	bShovelLoad=True
@@ -456,9 +456,9 @@ defaultproperties
 	MaxZoom=16
 	ZoomStages=3
 	ScopeXScale=1.333000
-	ScopeViewTex=Texture'BW_Core_WeaponTex.Artillery.Artillery-ScopeView'
-	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
-	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
+	ScopeViewTex=Texture'BWBP4-Tex.Artillery.Artillery-ScopeView'
+	ZoomInSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
+	ZoomOutSound=(Sound=Sound'BallisticSounds2.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=10.000000
 	bNoMeshInScope=True
 	bNoCrosshairInScope=True
@@ -488,7 +488,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.MACPickup'
 	PlayerViewOffset=(X=3.000000,Y=12.000000,Z=-3.000000)
 	AttachmentClass=Class'BallisticProV55.MACAttachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.Artillery.SmallIcon_Artillery'
+	IconMaterial=Texture'BWBP4-Tex.Artillery.SmallIcon_Artillery'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="Heavy Anti-Materiel Rifle"
 	LightType=LT_Pulse
@@ -497,8 +497,8 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_HAMR'
+	Mesh=SkeletalMesh'BWBP4b-Anims.Artillery'
 	DrawScale=0.300000
-	Skins(0)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Main'
-	Skins(1)=Texture'BW_Core_WeaponTex.Artillery.Artillery_Glass'
+	Skins(0)=Texture'BWBP4-Tex.Artillery.Artillery_Main'
+	Skins(1)=Texture'BWBP4-Tex.Artillery.Artillery_Glass'
 }

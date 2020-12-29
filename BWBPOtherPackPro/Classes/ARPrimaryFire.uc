@@ -91,7 +91,7 @@ defaultproperties
      FireChaos=0.500000
      XInaccuracy=192.000000
      YInaccuracy=192.000000
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.XMV-850.XMV-Fire-3')
+     BallisticFireSound=(Sound=SoundGroup'BallisticSounds2.XMV-850.XMV-Fire-3')
      FireEndAnim=
      FireAnimRate=2.50000
      FireRate=0.200000

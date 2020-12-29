@@ -17,12 +17,12 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.Raygun.RaygunPickupLow'
+     LowPolyStaticMesh=StaticMesh'BWBPOtherPackStatic.Raygun.RaygunPickupLow'
      InventoryType=Class'BWBPOtherPackPro.Raygun'
      RespawnTime=20.000000
      PickupMessage="You picked up the E58 Raygun."
-     PickupSound=Sound'BW_Core_WeaponSound.A73.A73Putaway'
-     StaticMesh=StaticMesh'BWBP_OP_Static.Raygun.RaygunPickup'
+     PickupSound=Sound'BallisticSounds2.A73.A73Putaway'
+     StaticMesh=StaticMesh'BWBPOtherPackStatic.Raygun.RaygunPickup'
      Physics=PHYS_None
      DrawScale=1.250000
      CollisionHeight=4.500000

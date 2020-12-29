@@ -135,7 +135,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	if (!Other.bWorldGeometry && Mover(Other) == None && Pawn(Other) == None || level.NetMode == NM_Client)
 		return false;
 
-	if (!Other.bWorldGeometry && Mover(Other) == None && Other.bProjTarget)
+	if (!Other.bWorldGeometry && Mover(Other) == None && BallisticShield(Other) == None && Other.bProjTarget)
 	{
 		Spawn (class'IE_IncMinigunBulletConcrete', ,, HitLocation,);
 	}
@@ -174,6 +174,8 @@ simulated function SwitchWeaponMode (byte newMode)
 		DamageType=Class'DT_TrenchGunElectro';
 		DamageTypeArm=Class'DT_TrenchGunElectro';
 		DamageTypeHead=Class'DT_TrenchGunElectro';
+
+        MaxHits=0;
 		
 		RangeAtten = 1.0; // electrical shots shouldn't be losing damage at range
 		
@@ -201,6 +203,8 @@ simulated function SwitchWeaponMode (byte newMode)
 		DamageType=Class'DT_TrenchGunExplosive';
 		DamageTypeArm=Class'DT_TrenchGunExplosive';
 		DamageTypeHead=Class'DT_TrenchGunExplosive';
+
+        MaxHits = default.MaxHits;
 		
 		RangeAtten = default.RangeAtten;
 		
@@ -572,10 +576,6 @@ function SwitchShotParams()
 		{
 			XInaccuracy = ElectroDoubleInaccuracy.X;
 			YInaccuracy = ElectroDoubleInaccuracy.Y;
-			
-			DamageType=Class'DT_TrenchGunElectro';
-			DamageTypeArm=Class'DT_TrenchGunElectro';
-			DamageTypeHead=Class'DT_TrenchGunElectro';	
 		}
 	}
 	else
@@ -589,11 +589,7 @@ function SwitchShotParams()
 		}
 		
 		if (BW.CurrentWeaponMode == 1)
-		{
-			DamageType=Class'DT_TrenchGunElectro';
-			DamageTypeArm=Class'DT_TrenchGunElectro';
-			DamageTypeHead=Class'DT_TrenchGunElectro';	
-			
+		{			
 			XInaccuracy = ElectroInaccuracy.X;
 			YInaccuracy = ElectroInaccuracy.Y;
 		}
@@ -635,19 +631,17 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
-	SlugFireSound=Sound'BWBP_OP_Sounds.TechGun.electro_Shot'
+	SlugFireSound=Sound'BWBPSomeOtherPackSounds.TechGun.electro_Shot'
 	AimedFireEmptyAnim="SightFire"
 	FireEmptyAnim="Fire"	
 	AimedFireSingleAnim="SightFire"
 	FireSingleAnim="Fire"
 	ChargeTime=0.35
 	MaxHoldTime=0.0
-	HipSpreadFactor=2.000000
+	HipSpreadFactor=2.500000
 
-    CutOffDistance=1536.000000
+    CutOffDistance=2048.000000
     CutOffStartRange=1024.000000
-
-	TraceCount=11
 	TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
     ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
 	AltTracerClass=Class'BWBPRecolorsPro.TraceEmitter_Supercharge'
@@ -657,8 +651,9 @@ defaultproperties
 	
 	WallPenetrationForce=0
 
-	Damage=10.000000
-	ElectroDamage=5.000000
+	Damage=12.000000
+	ElectroDamage=7.000000
+    MaxHits=14 // inflict maximum of 156 damage to a single target
 
 	RangeAtten=0.250000
 	PenetrateForce=0
@@ -677,15 +672,15 @@ defaultproperties
 	FirePushbackForce=1200.000000
 	FireChaos=1.000000
 
-	XInaccuracy=192.000000
-	YInaccuracy=192.000000
-	ExplosiveInaccuracy=(X=192,Y=192)
-	ExplosiveDoubleInaccuracy=(X=762,Y=576)
-	ElectroInaccuracy=(X=128,Y=128)
-	ElectroDoubleInaccuracy=(X=320,Y=192)
-	
-	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)
-	FireAnim="FireCombined"
+	XInaccuracy=220.000000
+	YInaccuracy=220.000000
+
+	ExplosiveInaccuracy=(X=220,Y=220)
+	ExplosiveDoubleInaccuracy=(X=512,Y=378)
+
+	ElectroInaccuracy=(X=150,Y=150)
+	ElectroDoubleInaccuracy=(X=378,Y=220)
+	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)	FireAnim="FireCombined"
 	FireAnimRate=0.800000
 	FireRate=0.100000
 	AmmoClass=Class'BWBPOtherPackPro.Ammo_TrenchgunShells'

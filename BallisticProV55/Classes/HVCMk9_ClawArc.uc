@@ -40,7 +40,7 @@ defaultproperties
          MaxParticles=1
          DetailMode=DM_SuperHigh
          StartSizeRange=(X=(Min=15.000000,Max=20.000000),Y=(Min=15.000000,Max=20.000000),Z=(Min=15.000000,Max=20.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          LifetimeRange=(Min=0.100000,Max=0.100000)
      End Object
      Emitters(1)=SpriteEmitter'BallisticProV55.HVCMk9_ClawArc.SpriteEmitter5'

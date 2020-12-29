@@ -108,22 +108,15 @@ simulated event HitWall(vector HitNormal, actor Wall)
     }
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function ApplyImpactEffect(Actor Other, vector HitLocation)
 {
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
-		
-	if(Pawn(Other) != None)
-        Velocity *= 0.8; // Clusters don't bounce as far off of players
+    class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
+}
 
-	// Do damage for direct hits
-	if (Role == ROLE_Authority && HitActor != Other)		
-	{
-		HitActor = Other;
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
-		Destroy();
-	}
+simulated function bool Impact (Actor Other, vector HitLocation)
+{
+    Destroy();
+    return true;
 }
 
 // Destroy effects

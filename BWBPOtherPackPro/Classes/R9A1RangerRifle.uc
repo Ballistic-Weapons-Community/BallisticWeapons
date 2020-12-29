@@ -1,6 +1,6 @@
 class R9A1RangerRifle extends BallisticWeapon;
 
-#exec OBJ LOAD File=BWBP_OP_Tex.utx
+#exec OBJ LOAD File=R9A_tex.utx
 
 var float LastModeChangeTime;
 
@@ -254,9 +254,9 @@ simulated function ScopeViewTwo()
 	{
 		switch(CurrentWeaponMode)
 		{
-			case 1: ScopeViewTex = FinalBlend'BWBP_OP_Tex.R9A1.R9_scope_UI_FB1'; break;
-			case 2: ScopeViewTex = FinalBlend'BWBP_OP_Tex.R9A1.R9_scope_UI_FB2'; break;
-			default: ScopeViewTex = Texture'BWBP_OP_Tex.R9A1.R9_scope_UI_DO1';
+			case 1: ScopeViewTex = FinalBlend'BWBPOtherPackTex2.R9A1.R9_scope_UI_FB1'; break;
+			case 2: ScopeViewTex = FinalBlend'BWBPOtherPackTex2.R9A1.R9_scope_UI_FB2'; break;
+			default: ScopeViewTex = Texture'BWBPOtherPackTex2.R9A1.R9_scope_UI_DO1';
 		}
 		
 		if (!bNoMeshInScope)
@@ -445,22 +445,22 @@ defaultproperties
 {
 	ScopeSightPivot=(Pitch=50)
 	ScopeSightOffset=(X=35.000000,Y=0.050000,Z=12.550000)
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_OP_Tex.R9A1.BigIcon_R9A1'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBPOtherPackTex2.R9A1.BigIcon_R9A1'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic, long-range, moderate recoil rifle fire with three choices of ammunition, switched between using the fire mode function.||Standard rounds inflict good damage with high penetration.||Freeze rounds inflict lower damage, but progressively slow struck targets.||Heat Ray shots inflict low initial damage, but heat up the target, causing subsequent shots to inflict more damage. This effect wears off over time."
 	ManualLines(1)="Raises the scope."
 	ManualLines(2)="The R9A1 has both a scope (secondary fire) and iron sights (normal key).||Modes are switched by holding the Fire Mode key and then scrolling the mouse.||Effective at long range and against enemies making use of healing items and weapons."
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;50.0;1.0;0.2;0.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.R78.R78Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.R78.R78Putaway')
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Cock')
+	CockSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Cock')
 	ReloadAnimRate=1.250000
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipHit')
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipIn')
+	ClipHitSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds3.USSR.USSR-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Regular")
 	WeaponModes(1)=(ModeName="Freeze",ModeID="WM_SemiAuto",Value=1.000000)
@@ -490,7 +490,7 @@ defaultproperties
 	PickupClass=Class'BWBPOtherPackPro.R9A1Pickup'
 	PlayerViewOffset=(Y=9.500000,Z=-11.000000)
 	AttachmentClass=Class'BWBPOtherPackPro.R9A1Attachment'
-	IconMaterial=Texture'BWBP_OP_Tex.R9A1.SmallIcon_R9A1'
+	IconMaterial=Texture'BWBPOtherPackTex2.R9A1.SmallIcon_R9A1'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="R9A1 Ranger Rifle"
 	LightType=LT_Pulse
@@ -499,6 +499,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_R9A1'
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.R9A1_FP'
 	DrawScale=0.500000
 }

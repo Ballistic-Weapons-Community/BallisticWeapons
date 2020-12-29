@@ -41,7 +41,7 @@ class BallisticPawn extends xPawn;
 
 #EXEC OBJ LOAD File="BallisticThird.ukx"
 
-#EXEC OBJ LOAD File="BWBP_OP_Tex.utx"
+#EXEC OBJ LOAD File="BWBPOtherPackTex.utx"
 
 var byte				            DoubleJumpsLeft;
 var float				            LastDoubleJumpTime;
@@ -2680,29 +2680,32 @@ defaultproperties
      LowImpactVelocity=500.000000
      TimeBetweenImpacts=1.000000
 	 //MinTimeBetweenPainSounds=0.600000
-     NewDeResSound=SoundGroup'BW_Core_WeaponSound.Misc.DeRes'
+     NewDeResSound=SoundGroup'BallisticSounds2.Misc.DeRes'
      MeleeAnim="Melee_Smack"
-     Fades(0)=Texture'BW_Core_WeaponTex.Icons.stealth_8'
-     Fades(1)=Texture'BW_Core_WeaponTex.Icons.stealth_16'
-     Fades(2)=Texture'BW_Core_WeaponTex.Icons.stealth_24'
-     Fades(3)=Texture'BW_Core_WeaponTex.Icons.stealth_32'
-     Fades(4)=Texture'BW_Core_WeaponTex.Icons.stealth_40'
-     Fades(5)=Texture'BW_Core_WeaponTex.Icons.stealth_48'
-     Fades(6)=Texture'BW_Core_WeaponTex.Icons.stealth_56'
-     Fades(7)=Texture'BW_Core_WeaponTex.Icons.stealth_64'
-     Fades(8)=Texture'BW_Core_WeaponTex.Icons.stealth_72'
-     Fades(9)=Texture'BW_Core_WeaponTex.Icons.stealth_80'
-     Fades(10)=Texture'BW_Core_WeaponTex.Icons.stealth_88'
-     Fades(11)=Texture'BW_Core_WeaponTex.Icons.stealth_96'
-     Fades(12)=Texture'BW_Core_WeaponTex.Icons.stealth_104'
-     Fades(13)=Texture'BW_Core_WeaponTex.Icons.stealth_112'
-     Fades(14)=Texture'BW_Core_WeaponTex.Icons.stealth_120'
-     Fades(15)=Texture'BW_Core_WeaponTex.Icons.stealth_128'
-     UDamageSound=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
+     Fades(0)=Texture'BallisticProTextures.Icons.stealth_8'
+     Fades(1)=Texture'BallisticProTextures.Icons.stealth_16'
+     Fades(2)=Texture'BallisticProTextures.Icons.stealth_24'
+     Fades(3)=Texture'BallisticProTextures.Icons.stealth_32'
+     Fades(4)=Texture'BallisticProTextures.Icons.stealth_40'
+     Fades(5)=Texture'BallisticProTextures.Icons.stealth_48'
+     Fades(6)=Texture'BallisticProTextures.Icons.stealth_56'
+     Fades(7)=Texture'BallisticProTextures.Icons.stealth_64'
+     Fades(8)=Texture'BallisticProTextures.Icons.stealth_72'
+     Fades(9)=Texture'BallisticProTextures.Icons.stealth_80'
+     Fades(10)=Texture'BallisticProTextures.Icons.stealth_88'
+     Fades(11)=Texture'BallisticProTextures.Icons.stealth_96'
+     Fades(12)=Texture'BallisticProTextures.Icons.stealth_104'
+     Fades(13)=Texture'BallisticProTextures.Icons.stealth_112'
+     Fades(14)=Texture'BallisticProTextures.Icons.stealth_120'
+     Fades(15)=Texture'BallisticProTextures.Icons.stealth_128'
+     UDamageSound=Sound'BallisticSounds3.Udamage.UDamageFire'
+
      FootstepVolume=0.350000
-     FootstepRadius=400.000000
+     FootstepRadius=350.000000
+
      GruntVolume=0.2
-     GruntRadius=256.000000
+     GruntRadius=150.000000
+     
      DeResTime=4.000000
      RagdollLifeSpan=20.000000
      RagDeathUpKick=0.000000

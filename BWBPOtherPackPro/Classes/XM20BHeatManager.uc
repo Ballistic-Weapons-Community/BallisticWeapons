@@ -67,10 +67,10 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
-     MaxHeat=20.000000
-     HeatDeclineDelay=0.400000
-     Decay=4.000000
-     DecayInterval=0.350000
+     MaxHeat=30.000000
+     HeatDeclineDelay=0.500000
+     Decay=3.000000
+     DecayInterval=0.400000
      Begin Object Class=SpriteEmitter Name=XM20Smoke
          FadeOut=True
          FadeIn=True
@@ -93,7 +93,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=2.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=15.000000,Max=15.000000),Y=(Min=30.000000,Max=30.000000),Z=(Min=30.000000,Max=30.000000))
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
+         Texture=Texture'BallisticEffects.Particles.Smoke4'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Min=-20.000000,Max=20.000000),Y=(Min=-20.000000,Max=20.000000))

@@ -134,7 +134,7 @@ defaultproperties
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=4.000000,Max=7.000000))
          InitialParticlesPerSecond=60.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlameParts'
+         Texture=Texture'BallisticEffects.Particles.FlameParts'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          LifetimeRange=(Min=1.000000,Max=1.000000)
@@ -160,7 +160,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.500000,Max=0.500000))
          StartSizeRange=(X=(Min=30.000000,Max=50.000000))
          InitialParticlesPerSecond=4.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.BlazingSubdivide'
+         Texture=Texture'BallisticEffects.Particles.BlazingSubdivide'
          TextureUSubdivisions=4
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
@@ -185,7 +185,7 @@ defaultproperties
          StartLocationRange=(X=(Min=-30.000000,Max=30.000000),Y=(Min=-30.000000,Max=30.000000),Z=(Max=30.000000))
          StartSizeRange=(X=(Min=7.000000,Max=70.000000),Y=(Min=7.000000,Max=70.000000),Z=(Min=7.000000,Max=70.000000))
          DrawStyle=PTDS_Brighten
-         Texture=Texture'BW_Core_WeaponTex.Particles.AquaFlareA1'
+         Texture=Texture'BallisticEffects.Particles.AquaFlareA1'
          LifetimeRange=(Min=0.100000,Max=0.500000)
          StartVelocityRange=(Z=(Max=30.000000))
      End Object

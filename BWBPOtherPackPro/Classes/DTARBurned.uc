@@ -22,6 +22,6 @@ defaultproperties
      FemaleSuicide="%o went out in a blaze of her own glory."
      MaleSuicide="%o went out in a blaze of his own glory."
      bDelayedDamage=True
-     PawnDamageSounds(0)=Sound'BW_Core_WeaponSound.FP7.FP7BurnFlesh'
+     PawnDamageSounds(0)=Sound'BallisticSounds2.FP7.FP7BurnFlesh'
      KDamageImpulse=20000.000000
 }

@@ -122,7 +122,7 @@ defaultproperties
      HookStopFactor=1.700000
      HookPullForce=100.000000
      bReleaseFireOnDie=False
-     BallisticFireSound=(Sound=SoundGroup'BWBP_OP_Sounds.Wrench.Wrench-Swing',Radius=378.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'JunkWarSounds.Wrench.Wrench-Swing',Radius=378.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="PrepSmash"

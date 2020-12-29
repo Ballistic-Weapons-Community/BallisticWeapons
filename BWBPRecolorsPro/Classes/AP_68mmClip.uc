@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=50
      InventoryType=Class'BWBPRecolorsPro.Ammo_68mm'
      PickupMessage="You got two 6.8mm magazines."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.M50Magazine'
+     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BallisticHardware2.Ammo.M50Magazine'
      DrawScale=0.400000
      CollisionRadius=8.000000
      CollisionHeight=5.200000

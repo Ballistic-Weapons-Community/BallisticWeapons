@@ -40,7 +40,7 @@ defaultproperties
      SliceAnims(3)="Slice4"
      FatiguePerStrike=0.035000
      bCanBackstab=False
-     TraceRange=(Min=120.000000,Max=120.000000)
+     TraceRange=(Min=130.000000,Max=130.000000)
      Damage=35.000000
      
      
@@ -48,7 +48,7 @@ defaultproperties
      DamageTypeHead=Class'BallisticProV55.DTX3KnifeHead'
      DamageTypeArm=Class'BallisticProV55.DTX3KnifeLimb'
      KickForce=100
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Knife.KnifeSlash',Radius=378.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BallisticSounds2.Knife.KnifeSlash',Radius=378.000000,bAtten=True)
      bAISilent=True
      FireAnim="Slice1"
      FireAnimRate=1.800000

@@ -1,7 +1,7 @@
 //=============================================================================
 // A73Attachment.
 //
-// _TPm person weapon attachment for A73 Skrith Rifle
+// 3rd person weapon attachment for A73 Skrith Rifle
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -18,6 +18,6 @@ defaultproperties
      ReloadAnim="Reload_MG"
      ReloadAnimRate=1.50000
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.A73_TPm'
+     Mesh=SkeletalMesh'BallisticAnims2.A73-3rd'
      DrawScale=1.700000
 }

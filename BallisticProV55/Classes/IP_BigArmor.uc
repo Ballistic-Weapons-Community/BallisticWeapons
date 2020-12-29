@@ -14,10 +14,10 @@ defaultproperties
      RespawnTime=60.000000
 	 bPredictRespawns=True
      PickupMessage="You picked up heavy combat armor."
-     PickupSound=Sound'BW_Core_WeaponSound.Armor.BigArmorPickup'
+     PickupSound=Sound'BallisticSounds2.Armor.BigArmorPickup'
      PickupForce="LargeShieldPickup"
      DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Armor.BigArmor'
+     StaticMesh=StaticMesh'BallisticHardware2.Armor.BigArmor'
      DrawScale=0.500000
      TransientSoundVolume=0.500000
      TransientSoundRadius=64.000000

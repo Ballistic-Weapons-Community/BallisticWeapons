@@ -8,7 +8,7 @@
 //=============================================================================
 class M58Thrown extends BallisticPineapple;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponSound.uax
+#exec OBJ LOAD FILE=BallisticSounds2.uax
 
 var   Emitter PATrail;
 
@@ -69,8 +69,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		Trail = Spawn( TrailClass, self,, Location + class'BUtil'.static.AlignedOffset(Rotation,TrailOffset), OrthoRotation(X,Y,Z) );
 		if (Trail != None)
 			Trail.SetBase (self);
-		PlaySound(sound'BW_Core_WeaponSound.T10.T10-Ignite',, 0.7,, 128, 1.0, true);
-		AmbientSound = Sound'BW_Core_WeaponSound.T10.T10-toxinLoop';
+		PlaySound(sound'BallisticSounds3.T10.T10-Ignite',, 0.7,, 128, 1.0, true);
+		AmbientSound = Sound'BallisticSounds2.T10.T10-toxinLoop';
 	}
 	bExploded=true;
 	LifeSpan = 12;
@@ -113,8 +113,8 @@ defaultproperties
      TrailOffset=(Z=8.000000)
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      DamageRadius=200.000000
-     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M58.M58Projectile'
+     ImpactSound=SoundGroup'BallisticSounds2.NRP57.NRP57-Concrete'
+     StaticMesh=StaticMesh'BallisticProStatic.M58.M58Projectile'
      bAlwaysRelevant=True
      DrawScale=0.350000
      SoundVolume=192

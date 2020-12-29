@@ -64,7 +64,7 @@ defaultproperties
      SliceAnims(1)="Melee2"
      FatiguePerStrike=0.090000
      bCanBackstab=False
-     TraceRange=(Min=140.000000,Max=140.000000)
+     TraceRange=(Min=150.000000,Max=150.000000)
      Damage=45.000000
      
      
@@ -75,7 +75,7 @@ defaultproperties
      HookPullForce=100.000000
      bUseWeaponMag=False
      bIgnoreReload=True
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BallisticSounds3.UZI.Melee',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      FireAnim="Melee1"
      FireAnimRate=1.5

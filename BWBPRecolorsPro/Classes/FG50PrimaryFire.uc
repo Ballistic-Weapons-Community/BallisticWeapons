@@ -27,6 +27,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FirePushbackForce=64.000000;
 		FireRate=0.6;
 		FireChaos=0.07;
+		FireRecoil=384;
 		FireAnim='CFire';
 		DamageType=Class'DT_FG50Controlled';
 		DamageTypeArm=Class'DT_FG50Controlled';
@@ -40,6 +41,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FirePushbackForce=default.FirePushbackForce;
 		FireRate = default.FireRate;
 		FireChaos = default.FireChaos;
+		FireRecoil=default.FireRecoil;
 		FireAnim='Fire';
 		DamageType=Class'DT_FG50Torso';
 		DamageTypeArm=Class'DT_FG50Limb';
@@ -176,7 +178,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 
 defaultproperties
 {
-     SpecialFireSound=Sound'BWBP_SKC_Sounds.X82.X82-Fire2'
+     SpecialFireSound=Sound'PackageSounds4Pro.X82.X82-Fire2'
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WallPenetrationForce=0.000000
      

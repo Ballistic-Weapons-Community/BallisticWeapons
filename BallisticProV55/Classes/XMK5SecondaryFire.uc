@@ -92,7 +92,7 @@ defaultproperties
      FlashBone="tip2"
      XInaccuracy=512.000000
      YInaccuracy=512.000000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=1.350000)
+     BallisticFireSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_FireDart',Volume=1.350000)
      bTossed=True
      bModeExclusive=False
      PreFireAnim=

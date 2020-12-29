@@ -36,7 +36,7 @@ defaultproperties
          MaxParticles=50
          StartSpinRange=(X=(Max=1.000000))
          StartSizeRange=(X=(Min=2.000000,Max=4.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke5'
+         Texture=Texture'BallisticEffects.Particles.Smoke5'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=-5.000000,Max=5.000000))
@@ -56,7 +56,7 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          StartSizeRange=(X=(Min=5.000000,Max=12.000000))
-         Texture=Texture'BW_Core_WeaponTex.Particles.HotFlareA1'
+         Texture=Texture'BallisticEffects.Particles.HotFlareA1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.500000)
      End Object

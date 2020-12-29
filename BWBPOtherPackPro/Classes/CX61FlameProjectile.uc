@@ -18,62 +18,60 @@ event Tick(float DT)
 	}
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch (Actor Other)
 {
     local int i;
-	local CX61ActorFire Burner;
 
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
+    if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
+		return false;
 	if (Other.Base == Instigator)
-		return;
+		return false;
 	for(i=0;i<AlreadyHit.length;i++)
 		if (AlreadyHit[i] == Other)
-			return;
+			return false;
 
-	if (Role == ROLE_Authority)
-	{
-		DoDamage(Other, HitLocation);
+    return true;
+}
 
-		if (Pawn(other) != None && Pawn(Other).Health > 0 && Vehicle(Other) == None)
-		{
-			for (i=0;i<Other.Attached.length;i++)
-			{
-				if (CX61ActorFire(Other.Attached[i])!=None)
-				{
-					CX61ActorFire(Other.Attached[i]).AddFuel(0.15);
-					break;
-				}
-			}
-			if (i>=Other.Attached.length)
-			{
-				Burner = Spawn(class'CX61ActorFire',Other,,Other.Location);
-				Burner.Initialize(Other);
-				if (Instigator!=None)
-				{
-					Burner.Instigator = Instigator;
-					Burner.InstigatorController = Instigator.Controller;
-				}
-			}
-		}
-	}
-	if (CanPenetrate(Other) && Other != HitActor)
-	{	// Projectile can go right through enemies
-		AlreadyHit[AlreadyHit.length] = Other;
-		HitActor = Other;
-	}
-	else
-	{
-		HurtRadius(Damage, DamageRadius, MyRadiusDamageType, MomentumTransfer, EndPoint);
-		Destroy();
-	}
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
+{
+    local int i;
+    local CX61ActorFire Burner;
+
+    DoDamage(Other, HitLocation);
+
+    if (Pawn(Other) != None && Pawn(Other).Health > 0 && Vehicle(Other) == None)
+    {
+        for (i=0;i<Other.Attached.length;i++)
+        {
+            if (CX61ActorFire(Other.Attached[i])!=None)
+            {
+                CX61ActorFire(Other.Attached[i]).AddFuel(0.15);
+                break;
+            }
+        }
+        if (i>=Other.Attached.length)
+        {
+            Burner = Spawn(class'CX61ActorFire',Other,,Other.Location);
+            Burner.Initialize(Other);
+            if (Instigator!=None)
+            {
+                Burner.Instigator = Instigator;
+                Burner.InstigatorController = Instigator.Controller;
+            }
+        }
+    }
+}
+
+simulated function Penetrate(Actor Other, Vector HitLocation)
+{
+    AlreadyHit[AlreadyHit.length] = Other;
 }
 
 defaultproperties
 {
      MyRadiusDamageType=Class'BWBPOtherPackPro.DT_CX61Burned'
-     Damage=7.000000
+     Damage=8.000000
      MyDamageType=Class'BWBPOtherPackPro.DT_CX61Burned'
      LifeSpan=0.300000
      CollisionRadius=28.000000

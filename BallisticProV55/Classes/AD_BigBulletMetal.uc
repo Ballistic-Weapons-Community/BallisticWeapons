@@ -7,6 +7,6 @@ class AD_BigBulletMetal extends AD_ImpactDecal
 defaultproperties
 {
      DrawScaleVariance=0.050000
-     ProjTexture=Texture'BW_Core_WeaponTex.Decals.Bullet_Metal'
+     ProjTexture=Texture'BallisticEffects2.Decals.Bullet_Metal'
      DrawScale=0.200000
 }

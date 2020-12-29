@@ -11,6 +11,6 @@ class Brass_Rifle extends BWBrass_Default;
 defaultproperties
 {
      StartVelocity=(Z=150.000000)
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Brass.EmptyRifleRound'
+     StaticMesh=StaticMesh'BallisticHardware2.Brass.EmptyRifleRound'
      DrawScale=0.090000
 }

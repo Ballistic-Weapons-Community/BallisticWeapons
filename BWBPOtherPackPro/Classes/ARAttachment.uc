@@ -21,7 +21,7 @@ defaultproperties
      TracerChance=0.500000
      ReloadAnim="Reload_AR"
      ReloadAnimRate=0.900000
-     Mesh=SkeletalMesh'BWBP_OP_Anim.AssaultShotgun_TPm'
+     Mesh=SkeletalMesh'BWBPJiffyPackAnims.AA12_Third'
      RelativeRotation=(Pitch=32768,Roll=-16384)
      DrawScale=0.500000
      PrePivot=(X=1.000000,Z=-5.000000)

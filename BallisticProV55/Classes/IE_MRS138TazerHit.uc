@@ -30,7 +30,7 @@ defaultproperties
          MaxParticles=1
          StartSizeRange=(X=(Max=120.000000),Y=(Max=120.000000),Z=(Max=120.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.600000)
      End Object
@@ -52,7 +52,7 @@ defaultproperties
          FadeInEndTime=0.084000
          MaxParticles=30
          InitialParticlesPerSecond=1000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.800000)
          StartVelocityRange=(X=(Max=300.000000),Y=(Min=-150.000000,Max=150.000000),Z=(Min=-150.000000,Max=150.000000))
@@ -80,7 +80,7 @@ defaultproperties
          StartLocationOffset=(X=2.000000)
          StartSizeRange=(X=(Min=2.000000,Max=4.000000),Y=(Min=2.000000,Max=4.000000),Z=(Min=2.000000,Max=4.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
+         Texture=Texture'BallisticEffects.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=2.000000,Max=2.000000)
          StartVelocityRange=(X=(Max=80.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=-20.000000,Max=100.000000))

@@ -50,9 +50,9 @@ defaultproperties
 {
      MaxAmmo=200
      InitialAmount=100
-     IconFlashMaterial=Shader'BWBP_OP_Tex.CX85.CX85-AmmoIconFlash'
+     IconFlashMaterial=Shader'BWBPOtherPackTex3.CX85.CX85-AmmoIconFlash'
      PickupClass=Class'BWBPOtherPackPro.AP_CX85Mag'
-     IconMaterial=Texture'BWBP_OP_Tex.CX85.CX85-AmmoIcon'
+     IconMaterial=Texture'BWBPOtherPackTex3.CX85.CX85-AmmoIcon'
      IconCoords=(X2=64,Y2=64)
      ItemName="CX85 Ammo"
 }

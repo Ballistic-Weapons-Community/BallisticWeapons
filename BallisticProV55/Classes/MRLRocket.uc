@@ -31,31 +31,6 @@ simulated event Landed( vector HitNormal )
 	HitWall( HitNormal, Level );
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
-{
-    local Vector X;
-
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
-
-	if (Role == ROLE_Authority && HitActor != Other)		// Do damage for direct hits
-		DoDamage(Other, HitLocation);
-	if (CanPenetrate(Other) && Other != HitActor)
-	{	// Projectile can go right through enemies
-		HitActor = Other;
-		X = Normal(Velocity);
-		SetLocation(HitLocation + (X * (Other.CollisionHeight*2*X.Z + Other.CollisionRadius*2*(1-X.Z)) * 1.2));
-	    if ( EffectIsRelevant(Location,false) && PenetrateManager != None)
-			PenetrateManager.static.StartSpawn(HitLocation, Other.Location-HitLocation, Other.SurfaceType, Owner, 4/*HF_NoDecals*/);
-	}
-	else
-	{	// Spawn projectile death effects and try radius damage
-		HitActor = Other;
-		Explode(HitLocation, vect(0,0,1));
-	}
-}
-
 // Special HurtRadius function. This will hurt everyone except the chosen victim.
 // Useful if you want to spare a directly hit enemy from the radius damage
 function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
@@ -123,8 +98,8 @@ defaultproperties
      WallPenetrationForce=64
      MomentumTransfer=5500.000000
      MyDamageType=Class'BallisticProV55.DT_MRL'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
-     AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'
+     StaticMesh=StaticMesh'BWBP4-Hardware.MRL.MRLRocket'
+     AmbientSound=Sound'BWBP4-Sounds.MRL.MRL-RocketFly'
      DrawScale=0.350000
      SoundVolume=64
      bFixedRotationDir=True

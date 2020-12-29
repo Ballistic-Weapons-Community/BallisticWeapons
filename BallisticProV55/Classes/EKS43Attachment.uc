@@ -21,6 +21,6 @@ defaultproperties
      LightMode=MU_None
      TrackAnimMode=MU_Both
      bHeavy=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.Katana_TPm'
+     Mesh=SkeletalMesh'BallisticAnims2.Katana-3rd'
      DrawScale=0.100000
 }

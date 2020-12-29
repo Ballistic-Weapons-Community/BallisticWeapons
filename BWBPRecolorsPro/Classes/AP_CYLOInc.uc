@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=78
      InventoryType=Class'BWBPRecolorsPro.Ammo_CYLOInc'
      PickupMessage="You picked up Firestorm incendiary rounds."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOAmmo'
+     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.CYLO.CYLOAmmo'
      DrawScale=2.350000
      CollisionRadius=8.000000
      CollisionHeight=5.200000

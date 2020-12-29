@@ -7,7 +7,7 @@
 //=============================================================================
 class Z250Minigun extends BallisticWeapon;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BallisticWeapons2.utx
 
 var() name		GrenadeLoadAnim;	//Anim for grenade reload
 var() Sound		GrenOpenSound;		//Sounds for grenade reloading
@@ -488,17 +488,17 @@ function float SuggestDefenseStyle()	{	return 0.1;	}
 defaultproperties
 {
 	GrenadeLoadAnim="GLReload"
-	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
-	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
-	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
-	BarrelSpinSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelSpinLoop'
-	BarrelStopSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStop'
-	BarrelStartSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStart'
+	GrenOpenSound=Sound'BallisticSounds2.M50.M50GrenOpen'
+	GrenLoadSound=Sound'BallisticSounds2.M50.M50GrenLoad'
+	GrenCloseSound=Sound'BallisticSounds2.M50.M50GrenClose'
+	BarrelSpinSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelSpinLoop'
+	BarrelStopSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStop'
+	BarrelStartSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStart'
 	PlayerSpeedFactor=0.900000
 	PlayerJumpFactor=0.900000
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=4.000000
-	BigIconMaterial=Texture'BWBP_OP_Tex.Z250.BigIcon_Z250'
+	BigIconMaterial=Texture'BWBPOtherPackTex2.Z250.BigIcon_Z250'
 	BigIconCoords=(X1=30,X2=470,Y2=220)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -507,13 +507,13 @@ defaultproperties
 	ManualLines(1)="Secondary fire launches a fuel grenade, which spreads fuel on the ground. This fuel can be ignited using the primary fire or other fire-based weapons. Enemies hit by the grenade or who walk into the fuel spilled will be ignited and receive damage, in addition to the damage inflicted by the ground fires."
 	ManualLines(2)="Effective against groups of players and at area denial."
 	SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Putaway')
 	MagAmmo=100
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-ClipIn')
+	CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
+	ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="600 RPM",ModeID="WM_FullAuto")
 	WeaponModes(1)=(ModeName="900 RPM",ModeID="WM_FullAuto")
@@ -550,7 +550,7 @@ defaultproperties
 	PickupClass=Class'BWBPOtherPackPro.Z250Pickup'
 	PlayerViewOffset=(Y=15.000000,Z=-25.000000)
 	AttachmentClass=Class'BWBPOtherPackPro.Z250Attachment'
-	IconMaterial=Texture'BWBP_OP_Tex.Z250.Icon_Z250'
+	IconMaterial=Texture'BWBPOtherPackTex2.Z250.Icon_Z250'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="Z-250 Minigun"
 	LightType=LT_Pulse
@@ -559,7 +559,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_Z250'
+	Mesh=SkeletalMesh'BWBPOtherPackAnim.Z250_FP'
 	DrawScale=0.600000
 	SoundRadius=128.000000
 }

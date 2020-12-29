@@ -11,9 +11,9 @@ defaultproperties
      MaxAmmo=100
      InitialAmount=40
      bTryHeadShot=True
-     IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIconsFlashing'
+     IconFlashMaterial=Shader'BallisticUI2.Icons.AmmoIconsFlashing'
      PickupClass=Class'BWBPRecolorsPro.AP_42MachineGun'
-     IconMaterial=Texture'BWBP_SKC_Tex.M30A2.AmmoIcon_M30A2'
+     IconMaterial=Texture'BallisticRecolors4TexPro.M30A2.AmmoIcon_M30A2'
      IconCoords=(X1=128,X2=191,Y2=63)
      ItemName="7.62 Gauss Rounds"
 }

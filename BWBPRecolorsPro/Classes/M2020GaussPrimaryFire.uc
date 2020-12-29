@@ -106,7 +106,7 @@ function StopBerserk()
 
 simulated function SwitchWeaponMode (byte NewMode)
 {
-	if (NewMode == 0)
+	if (NewMode == 0)	//gauss normal
 	{
 		BallisticFireSound.Sound=default.BallisticFireSound.sound;
 		FireRecoil=default.FireRecoil;
@@ -114,6 +114,11 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FireAnim=default.FireAnim;
 		FireChaos=default.FireChaos;
 		Damage=default.Damage;
+
+		DamageType=default.DamageType;
+     	DamageTypeHead=default.DamageTypeHead;
+     	DamageTypeArm=default.DamageTypeArm;
+
 		WallPenetrationForce = default.WallPenetrationForce;
 		FlashScaleFactor=default.FlashScaleFactor;
 		bFlashAlt=false;
@@ -122,7 +127,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FireRate=Default.FireRate;
 	}
 	
-	else if (NewMode == 1)
+	else if (NewMode == 1)	//gauss power
 	{
 		BallisticFireSound.Sound=SpecialFireSound;
 		FireRecoil=1024.000000;
@@ -132,13 +137,18 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FireChaos=1;
 		KickForce=3000;
 		Damage=110.000000;
+
+		DamageType=default.DamageType;
+     	DamageTypeHead=default.DamageTypeHead;
+     	DamageTypeArm=default.DamageTypeArm;
+
 		WallPenetrationForce = 96;
 		FlashScaleFactor=1.600000;
 		KickForce=60000;
 		bFlashAlt=false;
 		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
 	}
-	else if (NewMode == 2 || NewMode == 3)
+	else if (NewMode == 2 || NewMode == 3)	//gauss offline or gauss deflection
 	{
 		BallisticFireSound.Sound=LowPowerFireSound;
 		FireRecoil=150.000000;
@@ -154,6 +164,11 @@ simulated function SwitchWeaponMode (byte NewMode)
 			FireAnim='FireShield';
 		FireRate=0.200000;
 		Damage=40.000000;
+
+		DamageType=Class'BWBPRecolorsPro.DT_M2020Off';
+     	DamageTypeHead=Class'BWBPRecolorsPro.DT_M2020HeadOff';
+     	DamageTypeArm=Class'BWBPRecolorsPro.DT_M2020Off';
+
 		WallPenetrationForce=24;
 	}
 	if (Weapon.bBerserk)

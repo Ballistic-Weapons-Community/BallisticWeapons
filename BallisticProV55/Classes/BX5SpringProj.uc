@@ -88,11 +88,12 @@ simulated event Timer()
 		super.Timer();
 }
 
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch(Actor Other)
 {
-	if (BX5SpringMine(Other) != None || BX5VehicleMine(Other) != None)
-		return;
-	super.ProcessTouch (Other, HitLocation);
+    if (BX5SpringMine(Other) != None || BX5VehicleMine(Other) != None)
+		return false;
+
+    return super.CanTouch(Other);
 }
 
 simulated function SpringOff()
@@ -138,7 +139,7 @@ defaultproperties
      DamageRadius=256.000000
      MomentumTransfer=80000.000000
      MyDamageType=Class'BallisticProV55.DTBX5SpringRadius'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.BX5.MineSProj2'
+     StaticMesh=StaticMesh'BallisticHardware2.BX5.MineSProj2'
      bNetTemporary=False
      Physics=PHYS_None
      LifeSpan=0.000000

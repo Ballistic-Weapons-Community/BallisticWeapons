@@ -47,7 +47,7 @@ defaultproperties
      bFastInstantHit=True
      bAlwaysGibs=True
      bSpecial=True
-     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'
+     PawnDamageSounds(0)=SoundGroup'BallisticSounds2.BulletImpacts.Headshot'
      GibPerterbation=0.200000
      KDamageImpulse=1000.000000
 }

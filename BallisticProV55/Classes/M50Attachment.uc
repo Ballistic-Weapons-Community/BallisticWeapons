@@ -1,7 +1,7 @@
 //=============================================================================
 // M50Attachment.
 //
-// _TPm person weapon attachment for M50 Assault Rifle
+// 3rd person weapon attachment for M50 Assault Rifle
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
@@ -19,12 +19,12 @@ defaultproperties
      LightMode=MU_Both
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+     FlyBySound=(Sound=SoundGroup'BallisticSounds2.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=1.250000
      CockAnimRate=1.400000
      bRapidFire=True
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.M50_TPm'
+     Mesh=SkeletalMesh'BallisticAnims2.M50Third'
      DrawScale=0.160000
 }

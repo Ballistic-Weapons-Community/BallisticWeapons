@@ -33,7 +33,7 @@ defaultproperties
 {
      DisableDGV(0)=1
      Begin Object Class=MeshEmitter Name=MeshEmitter2
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Artillery.Blast-FX'
+         StaticMesh=StaticMesh'BWBP4-Hardware.Artillery.Blast-FX'
          RenderTwoSided=True
          UseParticleColor=True
          FadeOut=True
@@ -84,7 +84,7 @@ defaultproperties
          StartSizeRange=(X=(Min=15.000000,Max=20.000000),Y=(Min=15.000000,Max=20.000000),Z=(Min=15.000000,Max=20.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
+         Texture=Texture'BallisticEffects.Particles.Smoke4'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=3.000000,Max=3.000000)
          StartVelocityRange=(X=(Min=-75.000000,Max=75.000000),Y=(Min=-75.000000,Max=75.000000),Z=(Min=250.000000,Max=750.000000))
@@ -111,7 +111,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Y=(Min=10.000000,Max=10.000000),Z=(Min=10.000000,Max=10.000000))
          InitialParticlesPerSecond=5000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke3'
+         Texture=Texture'BallisticEffects.Particles.Smoke3'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.500000,Max=1.500000)
          StartVelocityRange=(X=(Min=-250.000000,Max=250.000000),Y=(Min=-250.000000,Max=250.000000),Z=(Min=100.000000,Max=1000.000000))
@@ -136,7 +136,7 @@ defaultproperties
          StartSizeRange=(X=(Min=10.000000,Max=10.000000),Z=(Min=500.000000,Max=1000.000000))
          InitialParticlesPerSecond=100.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'BW_Core_WeaponTex.Particles.Smoke2'
+         Texture=Texture'BallisticEffects.Particles.Smoke2'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=1.000000,Max=1.000000)
          AddVelocityFromOtherEmitter=2

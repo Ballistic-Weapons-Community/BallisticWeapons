@@ -53,23 +53,6 @@ simulated function Landed (vector HitNormal)
 	Explode(Location, HitNormal);
 }	
 
-simulated event ProcessTouch( actor Other, vector HitLocation )
-{
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	
-	if (Other == HitActor)
-		return;
-
-	if ( Instigator == None || Instigator.Controller == None )
-		Other.SetDelayedDamageInstigatorController( InstigatorController );
-				
-	if (Role == ROLE_Authority)		// Do damage for direct hits, but only once to the same actor
-		DoDamage(Other, HitLocation);
-	HitActor = Other;
-	Explode(HitLocation, Normal(HitLocation-Other.Location));
-}
-
 simulated function HitWall( vector HitNormal, actor Wall )
 {
     if ( !Wall.bStatic && !Wall.bWorldGeometry 
@@ -139,9 +122,9 @@ defaultproperties
      LightSaturation=100
      LightBrightness=200.000000
      LightRadius=15.000000
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.Bulldog.Frag12Proj'
      bDynamicLight=True
-     AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
+     AmbientSound=Sound'BallisticSounds2.G5.G5-RocketFly'
      DrawScale=2.500000
      SoundVolume=192
      SoundRadius=128.000000

@@ -162,13 +162,13 @@ simulated event Tick(float DT)
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.AmmoPackLo'
+     LowPolyStaticMesh=StaticMesh'BallisticHardware2.Ammo.AmmoPackLo'
      LowPolyDist=500.000000
      MaxDesireability=0.700000
      PickupMessage="You picked up an ammo pack."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.AmmoPackPickup'
+     PickupSound=Sound'BallisticSounds2.Ammo.AmmoPackPickup'
      PickupForce="HealthPack"
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.AmmoPackHi'
+     StaticMesh=StaticMesh'BallisticHardware2.Ammo.AmmoPackHi'
      DrawScale=0.350000
      CollisionRadius=16.000000
      CollisionHeight=15.000000

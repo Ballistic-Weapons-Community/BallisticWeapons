@@ -25,13 +25,13 @@ simulated function SwitchWeaponMode (byte NewMode)
 	if(NewMode == 0)
 	{
 		BallisticFireSound.Sound=None;
-		FireSoundLoop=Sound'BW_Core_WeaponSound.T10.T10-toxinLoop';
+		FireSoundLoop=Sound'BallisticSounds2.T10.T10-toxinLoop';
 		GotoState('HealGas');
 	}
 	else
 	{
-		BallisticFireSound.Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Ignite';
-		FireSoundLoop=Sound'BW_Core_WeaponSound.RX22A.RX22A-FireLoop';
+		BallisticFireSound.Sound=Sound'BallisticSounds3.RX22A.RX22A-Ignite';
+		FireSoundLoop=Sound'BallisticSounds3.RX22A.RX22A-FireLoop';
 		GotoState('Flamer');
 	}
 	if (Weapon.bBerserk)
@@ -292,7 +292,7 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
-     FireSoundLoop=Sound'BW_Core_WeaponSound.T10.T10-ToxinLoop'
+     FireSoundLoop=Sound'BallisticSounds2.T10.T10-ToxinLoop'
      FlashBone="'"
      FireChaos=0.050000
      BallisticFireSound=(Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)

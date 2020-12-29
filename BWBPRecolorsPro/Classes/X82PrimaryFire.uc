@@ -39,7 +39,7 @@ defaultproperties
      FireRecoil=768.000000
      FirePushbackForce=255.000000
      FireChaos=0.700000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire',Volume=10.000000,Radius=1024.000000)
+     BallisticFireSound=(Sound=Sound'PackageSounds4Pro.X82.X82-Fire',Volume=10.000000,Radius=1024.000000)
      FireEndAnim=
      FireRate=0.750000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_50BMG'

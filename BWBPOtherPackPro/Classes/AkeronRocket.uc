@@ -9,23 +9,6 @@ simulated function Landed (vector HitNormal)
 	Explode(Location, HitNormal);
 }	
 
-simulated event ProcessTouch( actor Other, vector HitLocation )
-{
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	
-	if (Other == HitActor)
-		return;
-
-	if ( Instigator == None || Instigator.Controller == None )
-		Other.SetDelayedDamageInstigatorController( InstigatorController );
-				
-	if (Role == ROLE_Authority)		// Do damage for direct hits, but only once to the same actor
-		DoDamage(Other, HitLocation);
-	HitActor = Other;
-	Explode(HitLocation, Normal(HitLocation-Other.Location));
-}
-
 simulated function HitWall( vector HitNormal, actor Wall )
 {
     if ( !Wall.bStatic && !Wall.bWorldGeometry 
@@ -211,8 +194,8 @@ defaultproperties
      DamageRadius=300.000000
      MomentumTransfer=20000.000000
      MyDamageType=Class'BWBPOtherPackPro.DTAkeron'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_Grenade'
-     AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'
+     StaticMesh=StaticMesh'BallisticHardware_25.BOGP.BOGP_Grenade'
+     AmbientSound=Sound'BWBP4-Sounds.MRL.MRL-RocketFly'
      DrawScale=0.750000
      SoundVolume=64
      bBounce=False

@@ -1,7 +1,7 @@
 //=============================================================================
 // MACAttachment.
 //
-// _TPm person weapon attachment for HAMR
+// 3rd person weapon attachment for HAMR
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
@@ -114,6 +114,6 @@ defaultproperties
      FlashScale=2.500000
      BrassClass=Class'BallisticProV55.Brass_HAMR'
      InstantMode=MU_None
-     Mesh=SkeletalMesh'BW_Core_WeaponAnim.HAMR_TPm'
+     Mesh=SkeletalMesh'BWBP4b-Anims.Artillery-3rd'
      DrawScale=0.200000
 }

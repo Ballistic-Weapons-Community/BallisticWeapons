@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=12
      InventoryType=Class'BWBPOtherPackPro.Ammo_LightningRifle'
      PickupMessage="You picked up ARC-79 Lightning Rifle cylinders."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_OP_Static.LightningGun.LG_Mag'
+     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BWBPJiffyPackStatic.LightningGun.LG_Mag'
      DrawScale=0.500000
 	 PrePivot=(Z=30.000000)
      CollisionRadius=8.000000

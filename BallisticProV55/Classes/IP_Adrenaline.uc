@@ -53,10 +53,10 @@ defaultproperties
      bAmbientGlow=False
      RespawnTime=30.000000
      PickupMessage="Adrenaline +3"
-     PickupSound=Sound'BW_Core_WeaponSound.Health.AdrenalinPickup'
+     PickupSound=Sound'BallisticSounds2.Health.AdrenalinPickup'
      PickupForce="AdrenelinPickup"
      DrawType=DT_StaticMesh
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Health.A-Pod'
+     StaticMesh=StaticMesh'BallisticHardware2.Health.A-Pod'
      DrawScale=0.150000
      TransientSoundRadius=64.000000
      CollisionRadius=8.000000

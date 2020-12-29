@@ -696,9 +696,9 @@ function float SuggestDefenseStyle()	{	return -0.2;	}
 
 defaultproperties
 {
-	WingSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Flying'
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BW_Core_WeaponTex.NovaStaff.BigIcon_NovaStaff'
+	WingSound=Sound'BWBP4-Sounds.NovaStaff.Nova-Flying'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBP4-Tex.NovaStaff.BigIcon_NovaStaff'
 	BigIconCoords=(Y1=32,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Heal=True
@@ -706,12 +706,12 @@ defaultproperties
 	ManualLines(1)="Melee attack. Damage increases the longer Altfire is held, up to 1.5 seconds for maximum bonus. Deals more damage from behind. Leeches half of the damage dealt as health for the wielder."
 	ManualLines(2)="Enemies killed by this weapon leave souls behind. These can be collected to power the Lightning, Thunder Strike and Chain Lightning modes. Use of those modes without external soul power will cause the user's soul to be used instead, dealing significant backlash damage.||With full soulpower, the weapon can enter rampage mode, reducing all damage taken and granting the ability to fly. In this mode, soulpower will drain over time.||Effective at close and medium range."
 	SpecialInfo(0)=(Info="300.0;40.0;1.0;80.0;1.0;0.0;1.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Putaway')
+	BringUpSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Pullout')
+	PutDownSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-Putaway')
 	PutDownAnimRate=1.4
 	ReloadAnimRate=1.250000
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-CrystalOut',Volume=0.700000)
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-CrystalIn',Volume=0.700000)
+	ClipOutSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalOut',Volume=0.700000)
+	ClipInSound=(Sound=Sound'BWBP4-Sounds.NovaStaff.Nova-CrystalIn',Volume=0.700000)
 	ClipInFrame=0.700000
 	WeaponModes(0)=(ModeName="Slow Bolt",ModeID="WM_FullAuto")
 	WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1)
@@ -740,7 +740,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.RSNovaPickup'
 	PlayerViewOffset=(X=20.000000,Y=5.000000,Z=-6.000000)
 	AttachmentClass=Class'BallisticProV55.RSNovaAttachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.NovaStaff.SmallIcon_NovaStaff'
+	IconMaterial=Texture'BWBP4-Tex.NovaStaff.SmallIcon_NovaStaff'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="Nova Staff"
 	LightType=LT_Pulse
@@ -749,7 +749,7 @@ defaultproperties
 	LightSaturation=96
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_NovaStaff'
+	Mesh=SkeletalMesh'BWBP4-Anims.NovaStaff'
 	DrawScale=0.300000
 	bFullVolume=True
 	SoundRadius=32.000000

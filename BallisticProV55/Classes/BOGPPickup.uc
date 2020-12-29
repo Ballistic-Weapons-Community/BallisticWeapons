@@ -8,9 +8,9 @@
 class BOGPPickup extends BallisticHandgunPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BallisticWeapons2.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
 
 //===========================================================================
 // StaticPrecache
@@ -20,31 +20,31 @@ class BOGPPickup extends BallisticHandgunPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.BOGP.BOGP_Main');
-	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_Grenade');
+	L.AddPrecacheMaterial(Texture'BallisticTextures_25.BOGP.BOGP_Main');
+	L.AddPrecacheStaticMesh(StaticMesh'BallisticHardware_25.BOGP.BOGP_Grenade');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.BOGP.BOGP_Main');
+	Level.AddPrecacheMaterial(Texture'BallisticTextures_25.BOGP.BOGP_Main');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_PickupLo');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_AmmoPickup');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_Grenade');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware_25.BOGP.BOGP_PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware_25.BOGP.BOGP_PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware_25.BOGP.BOGP_AmmoPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware_25.BOGP.BOGP_Grenade');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_PickupLo'
+     LowPolyStaticMesh=StaticMesh'BallisticHardware_25.BOGP.BOGP_PickupLo'
      PickupDrawScale=0.500000
      InventoryType=Class'BallisticProV55.BOGPPistol'
      RespawnTime=10.000000
      PickupMessage="You picked up the BORT-85 grenade pistol."
-     PickupSound=Sound'BW_Core_WeaponSound.M806.M806Putaway'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_PickupHi'
+     PickupSound=Sound'BallisticSounds2.M806.M806Putaway'
+     StaticMesh=StaticMesh'BallisticHardware_25.BOGP.BOGP_PickupHi'
      Physics=PHYS_None
      DrawScale=0.500000
      CollisionHeight=4.000000

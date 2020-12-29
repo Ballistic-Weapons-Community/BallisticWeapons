@@ -8,23 +8,6 @@
 //=============================================================================
 class SK410HEProjectile extends BallisticGrenade;
 
-simulated event ProcessTouch( actor Other, vector HitLocation )
-{
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Other == HitActor)
-		return;
-	if (Base != None)
-		return;
-
-	if ( Instigator == None || Instigator.Controller == None )
-		Other.SetDelayedDamageInstigatorController( InstigatorController );
-
-	class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
-	HitActor = Other;
-	Explode(HitLocation, Normal(HitLocation-Other.Location));
-}
-
 simulated event HitWall(vector HitNormal, actor Wall)
 {
     local Vector VNorm;
@@ -147,7 +130,7 @@ defaultproperties
      LightSaturation=100
      LightBrightness=160.000000
      LightRadius=8.000000
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.Bulldog.Frag12Proj'
      LifeSpan=16.000000
      DrawScale=2.000000
 }

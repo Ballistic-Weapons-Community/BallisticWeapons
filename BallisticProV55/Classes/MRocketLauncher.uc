@@ -54,8 +54,8 @@ replication
 
 // RocketCycle
 
-// BW_Core_WeaponSound.MRL.MRL-SmallOn
-// BW_Core_WeaponSound.MRL.MRL-SmallOff
+// BWBP4-Sounds.MRL.MRL-SmallOn
+// BWBP4-Sounds.MRL.MRL-SmallOff
 
 // FrontVisibleRockets = MagAmmo - SmallAmmo - LoadedFrontBarrels
 // BackVisibleRockets  = SmallAmmo - LoadedBackBarrels
@@ -467,8 +467,8 @@ function float SuggestDefenseStyle()	{	return -0.9;	}
 
 defaultproperties
 {
-	ClipOutSoundSmall=Sound'BW_Core_WeaponSound.MRL.MRL-SmallOff'
-	ClipInSoundSmall=Sound'BW_Core_WeaponSound.MRL.MRL-SmallOn'
+	ClipOutSoundSmall=Sound'BWBP4-Sounds.MRL.MRL-SmallOff'
+	ClipInSoundSmall=Sound'BWBP4-Sounds.MRL.MRL-SmallOn'
 	RocketCycleAnim="RocketCycle"
 	FrontRockets(0)=(RocketName="RocketA0")
 	FrontRockets(1)=(RocketName="RocketA1")
@@ -483,7 +483,7 @@ defaultproperties
 	BackRockets(1)=(RocketName="RocketB2")
 	BackRockets(2)=(RocketName="RocketB3")
 	BigMagAmmo=72
-	BigIconMaterial=Texture'BW_Core_WeaponTex.MRL.BigIcon_MRL'
+	BigIconMaterial=Texture'BWBP4-Tex.MRL.BigIcon_MRL'
 	BigIconCoords=(Y1=30,Y2=225)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
@@ -494,12 +494,12 @@ defaultproperties
 	ManualLines(1)="As the primary fire, but the rate of fire is significantly increased. The rockets travel slowly at first, before launching at full speed."
 	ManualLines(2)="Effective against groups and at medium range."
 	SpecialInfo(0)=(Info="480.0;60.0;1.5;100.0;0.8;2.0;1.5")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.G5.G5-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.G5.G5-Putaway')
 	ReloadAnim="Reload1"
 	ReloadAnimRate=1.250000
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOff')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-BigOn')
+	ClipOutSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOff')
+	ClipInSound=(Sound=Sound'BWBP4-Sounds.MRL.MRL-BigOn')
 	ClipInFrame=0.700000
 	bNonCocking=True
 	WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
@@ -526,7 +526,7 @@ defaultproperties
 	PlayerViewOffset=(X=12.000000,Y=9.000000,Z=-12.000000)
 	PlayerViewPivot=(Pitch=1024,Yaw=-512,Roll=1024)
 	AttachmentClass=Class'BallisticProV55.MRLAttachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.MRL.SmallIcon_MRL'
+	IconMaterial=Texture'BWBP4-Tex.MRL.SmallIcon_MRL'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="JL21-MRL PeaceMaker"
 	LightType=LT_Pulse
@@ -535,6 +535,6 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=192.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_MRL'
+	Mesh=SkeletalMesh'BWBP4b-Anims.MRL'
 	DrawScale=0.300000
 }

@@ -5,7 +5,7 @@
 //================================================
 class JWJunkShieldWeapon extends BallisticMeleeWeapon;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BallisticProTextures.utx
 
 var float AimDisplacementBlockThreshold; //Blocking melee will displace the shield. The duration of the displacement is based on how close the damage is to the threshold.
 
@@ -217,16 +217,16 @@ function float SuggestDefenseStyle()
 defaultproperties
 {
 	AimDisplacementBlockThreshold=40.00
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_OP_Tex.OtherShields.BigIcon_JWJunkShield'
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
+	BigIconMaterial=Texture'BWBPSomeOtherPackTex.OtherShields.BigIcon_JWJunkShield'
 	BigIconCoords=(X1=180,Y1=0,X2=320,Y2=255)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	ManualLines(0)="Attacks with the weapon and shield. The shield continues to block whilst attacking."
 	ManualLines(1)="Prepared strike with the weapons."
 	ManualLines(2)="The ballistic shield reduces movement speed whilst active."
 	SpecialInfo(0)=(Info="240.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.EKS43.EKS-Putaway')
 	bNoMag=True
 	GunLength=0.000000
 	ParamsClass=Class'BallisticShieldWeaponParams'
@@ -249,9 +249,9 @@ defaultproperties
 	PickupClass=Class'BWBPOtherPackPro.JWJunkShieldPickup'
 	PlayerViewOffset=(Y=75.000000,Z=-100.000000)
 	AttachmentClass=Class'BWBPOtherPackPro.JWJunkShieldAttachment'
-	IconMaterial=Texture'BWBP_OP_Tex.OtherShields.Icon_JWJunkShield'
+	IconMaterial=Texture'BWBPSomeOtherPackTex.OtherShields.Icon_JWJunkShield'
 	IconCoords=(X2=132,Y2=32)
 	ItemName="Scavenged Junk Shield"
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_JunkShield'
+	Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.JWJunkShield_FP'
 	DrawScale=1.250000
 }

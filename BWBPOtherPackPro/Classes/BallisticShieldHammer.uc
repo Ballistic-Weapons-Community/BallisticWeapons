@@ -11,7 +11,7 @@ defaultproperties
      DrawType=DT_Mesh
      bOnlyDrawIfAttached=True
      RemoteRole=ROLE_None
-     Mesh=SkeletalMesh'BWBP_OP_Anim.BallisticShieldHammer_TPm'
+     Mesh=SkeletalMesh'BWBPSomeOtherPackAnims.Warhammer_Third'
 	 RelativeRotation=(Pitch=32768)
      DrawScale=0.450000
 }

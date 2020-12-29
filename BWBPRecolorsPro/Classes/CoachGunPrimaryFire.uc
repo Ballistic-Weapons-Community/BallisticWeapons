@@ -502,10 +502,10 @@ defaultproperties
 
 	WallPenetrationForce=0
 
-	Damage=11.000000
-    MaxHits=13 // inflict maximum of 140 damage to a single target
-    SlugDamage=75
-    SlugDoubleDamage=62
+	Damage=12.000000
+    MaxHits=14 // inflict maximum of 156 damage to a single target
+    SlugDamage=80
+    SlugDoubleDamage=70
 	RangeAtten=0.250000
     PenetrateForce=0
 	bPenetrate=False
@@ -526,14 +526,14 @@ defaultproperties
 	YInaccuracy=220.000000
 
 	ShotInaccuracy=(X=220,Y=220)
-	ShotDoubleInaccuracy=(X=768,Y=378)
+	ShotDoubleInaccuracy=(X=512,Y=378)
 
 	SlugInaccuracy=(X=16,Y=0)
 	SlugDoubleInaccuracy=(X=48,Y=0)
 
 	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)
 	FireAnimRate=1.35
-	FireRate=0.400000
+	FireRate=0.300000
 	AmmoClass=Class'BWBPRecolorsPro.Ammo_CoachShells'
 	ShakeRotMag=(X=128.000000,Y=64.000000)
 	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

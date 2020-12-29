@@ -532,9 +532,9 @@ defaultproperties
 	CurrentRating=0.6
 	LaserAmmo=3.500000
 	//bShouldDualInLoadout=False
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BW_Core_WeaponTex.Glock.BigIcon_Glock'
+	BigIconMaterial=Texture'BWBP4-Tex.Glock.BigIcon_Glock'
 	BigIconCoords=(Y1=30,Y2=230)
 	SightFXBone="SightBone"
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -542,14 +542,14 @@ defaultproperties
 	ManualLines(1)="Projects a laser beam. Has extremely low DPS, but consistent damage over range and recharges over time."
 	ManualLines(2)="The Weapon Function key causes a hitscan single-shot beam to be projected from the unit, dealing good damage. The GRS-9 is effective at close range."
 	SpecialInfo(0)=(Info="120.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.XK2.XK2-Putaway')
 	CockAnimRate=1.200000
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-Cock',Volume=0.600000)
+	CockSound=(Sound=Sound'BWBP4-Sounds.Glock.Glk-Cock',Volume=0.600000)
 	ReloadAnimRate=1.350000
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-ClipHit',Volume=0.700000)
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-ClipIn')
+	ClipHitSound=(Sound=Sound'BWBP4-Sounds.Glock.Glk-ClipHit',Volume=0.700000)
+	ClipOutSound=(Sound=Sound'BWBP4-Sounds.Glock.Glk-ClipOut')
+	ClipInSound=(Sound=Sound'BWBP4-Sounds.Glock.Glk-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	bNoCrosshairInScope=True
@@ -570,7 +570,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.GRS9Pickup'
 	PlayerViewOffset=(X=6.000000,Y=8.000000,Z=-9.000000)
 	AttachmentClass=Class'BallisticProV55.GRS9Attachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.Glock.SmallIcon_Glock'
+	IconMaterial=Texture'BWBP4-Tex.Glock.SmallIcon_Glock'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="GRS-9 Pistol"
 	LightType=LT_Pulse
@@ -579,7 +579,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_GRS9'
+	Mesh=SkeletalMesh'BallisticProAnims.Glock'
 	DrawScale=0.150000
 	bFullVolume=True
 	SoundRadius=128.000000

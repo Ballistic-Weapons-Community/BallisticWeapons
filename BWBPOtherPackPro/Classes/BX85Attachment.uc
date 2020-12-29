@@ -266,22 +266,22 @@ simulated function Tick(float deltaTime)
 
 defaultproperties
 {
-     Fades(0)=Texture'BW_Core_WeaponTex.Icons.stealth_8'
-     Fades(1)=Texture'BW_Core_WeaponTex.Icons.stealth_16'
-     Fades(2)=Texture'BW_Core_WeaponTex.Icons.stealth_24'
-     Fades(3)=Texture'BW_Core_WeaponTex.Icons.stealth_32'
-     Fades(4)=Texture'BW_Core_WeaponTex.Icons.stealth_40'
-     Fades(5)=Texture'BW_Core_WeaponTex.Icons.stealth_48'
-     Fades(6)=Texture'BW_Core_WeaponTex.Icons.stealth_56'
-     Fades(7)=Texture'BW_Core_WeaponTex.Icons.stealth_64'
-     Fades(8)=Texture'BW_Core_WeaponTex.Icons.stealth_72'
-     Fades(9)=Texture'BW_Core_WeaponTex.Icons.stealth_80'
-     Fades(10)=Texture'BW_Core_WeaponTex.Icons.stealth_88'
-     Fades(11)=Texture'BW_Core_WeaponTex.Icons.stealth_96'
-     Fades(12)=Texture'BW_Core_WeaponTex.Icons.stealth_104'
-     Fades(13)=Texture'BW_Core_WeaponTex.Icons.stealth_112'
-     Fades(14)=Texture'BW_Core_WeaponTex.Icons.stealth_120'
-     Fades(15)=Texture'BW_Core_WeaponTex.Icons.stealth_128'
+     Fades(0)=Texture'BallisticProTextures.Icons.stealth_8'
+     Fades(1)=Texture'BallisticProTextures.Icons.stealth_16'
+     Fades(2)=Texture'BallisticProTextures.Icons.stealth_24'
+     Fades(3)=Texture'BallisticProTextures.Icons.stealth_32'
+     Fades(4)=Texture'BallisticProTextures.Icons.stealth_40'
+     Fades(5)=Texture'BallisticProTextures.Icons.stealth_48'
+     Fades(6)=Texture'BallisticProTextures.Icons.stealth_56'
+     Fades(7)=Texture'BallisticProTextures.Icons.stealth_64'
+     Fades(8)=Texture'BallisticProTextures.Icons.stealth_72'
+     Fades(9)=Texture'BallisticProTextures.Icons.stealth_80'
+     Fades(10)=Texture'BallisticProTextures.Icons.stealth_88'
+     Fades(11)=Texture'BallisticProTextures.Icons.stealth_96'
+     Fades(12)=Texture'BallisticProTextures.Icons.stealth_104'
+     Fades(13)=Texture'BallisticProTextures.Icons.stealth_112'
+     Fades(14)=Texture'BallisticProTextures.Icons.stealth_120'
+     Fades(15)=Texture'BallisticProTextures.Icons.stealth_128'
 	 
 	 TracerClass=Class'TraceEmitter_BX85Crossbow'
      TracerChance=1.000000
@@ -298,7 +298,7 @@ defaultproperties
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=1.250000
      CockAnimRate=1.400000
-     Mesh=SkeletalMesh'BWBP_OP_Anim.Crossbow_TPm'
+     Mesh=SkeletalMesh'BWBPOtherPackAnim.Crossbow_TP'
      DrawScale=1.000000
-     Skins(0)=Shader'BWBP_OP_Tex.XBow.XBow_SH1'
+     Skins(0)=Shader'BWBPOtherPackTex2.XBow.XBow_SH1'
 }

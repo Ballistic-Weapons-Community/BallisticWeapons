@@ -28,7 +28,7 @@
 //=============================================================================
 class XMV850Minigun extends BallisticWeapon;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BallisticWeapons2.utx
 
 var   float DesiredSpeed, BarrelSpeed;
 var   int	BarrelTurn;
@@ -56,7 +56,7 @@ simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
 	if (Instigator!=None && Instigator.IsLocallyControlled())
-		Shader'BW_Core_WeaponTex.XMV850.XMV850_Barrels_SD'.FallbackMaterial = Texture'BW_Core_WeaponTex.XMV850.XMV850_Barrels';
+		Shader'BallisticWeapons2.XMV850.XMV850_Barrels_SD'.FallbackMaterial = Texture'BallisticWeapons2.XMV850.XMV850_Barrels';
 }
 
 function InitWeaponFromTurret(BallisticTurret Turret)
@@ -400,16 +400,16 @@ function float SuggestDefenseStyle()	{	return 1;	}
 defaultproperties
 {
 
-	BarrelSpinSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelSpinLoop'
-	BarrelStopSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStop'
-	BarrelStartSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStart'
-	DeploySound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Deploy'
-	UndeploySound=Sound'BW_Core_WeaponSound.XMV-850.XMV-UnDeploy'
+	BarrelSpinSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelSpinLoop'
+	BarrelStopSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStop'
+	BarrelStartSound=Sound'BallisticSounds2.XMV-850.XMV-BarrelStart'
+	DeploySound=Sound'BallisticSounds2.XMV-850.XMV-Deploy'
+	UndeploySound=Sound'BallisticSounds2.XMV-850.XMV-UnDeploy'
 
 
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=1)
+	TeamSkins(0)=(RedTex=Shader'BallisticWeapons2.Hands.RedHand-Shiny',BlueTex=Shader'BallisticWeapons2.Hands.BlueHand-Shiny',SkinNum=1)
 	AIReloadTime=4.000000
-	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_XMV850'
+	BigIconMaterial=Texture'BallisticUI2.Icons.BigIcon_XMV850'
 	BigIconCoords=(Y2=255)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -418,14 +418,14 @@ defaultproperties
 	ManualLines(1)="Deploys the minigun upon the ground or a nearby wall. May also be deployed upon sandbags. Whilst deployed, becomes perfectly accurate, loses its iron sights and gains a reduction in recoil. Locational damage (damage which can target an area on the body) taken from the front is significantly reduced."
 	ManualLines(2)="The XMV-850 is one of the heaviest weapons in the game and halves your movement speed when equipped.||Effective at medium range. Extremely effective from ambush and deployed mode."
 	SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Putaway')
+	BringUpSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Pullout')
+	PutDownSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-Putaway')
 
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Cock')
+	CockSound=(Sound=Sound'BallisticSounds2.M353.M353-Cock')
 	ReloadAnimRate=1.300000
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-ClipIn')
+	ClipHitSound=(Sound=Sound'BallisticSounds2.M50.M50ClipHit')
+	ClipOutSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipOut')
+	ClipInSound=(Sound=Sound'BallisticSounds2.XMV-850.XMV-ClipIn')
 	ClipInFrame=0.650000
 
 	WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
@@ -462,7 +462,7 @@ defaultproperties
 	PickupClass=Class'BallisticProV55.XMV850Pickup'
 	PlayerViewOffset=(X=11.000000,Y=8.000000,Z=-14.000000)
 	AttachmentClass=Class'BallisticProV55.XMV850MinigunAttachment'
-	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_XMV850'
+	IconMaterial=Texture'BallisticUI2.Icons.SmallIcon_XMV850'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="XMV-850 Minigun"
 	LightType=LT_Pulse
@@ -471,7 +471,8 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_XMV850'
+	Mesh=SkeletalMesh'BallisticAnims2.XMV-850Minigun'
 	DrawScale=0.600000
+	Skins(0)=Texture'BallisticWeapons2.XMV850.XMV850_Main'
 	SoundRadius=128.000000
 }

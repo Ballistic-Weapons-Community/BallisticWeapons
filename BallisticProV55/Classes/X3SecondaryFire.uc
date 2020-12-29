@@ -44,7 +44,7 @@ defaultproperties
      WallHitPoint=1
      NumSwipePoints=3
      FatiguePerStrike=0.200000
-     TraceRange=(Min=108.000000,Max=108.000000)
+     TraceRange=(Min=130.000000,Max=130.000000)
      
      
      DamageType=Class'BallisticProV55.DTX3Knife'
@@ -54,7 +54,7 @@ defaultproperties
      HookStopFactor=1.700000
      HookPullForce=100.000000
      bReleaseFireOnDie=False
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Knife.KnifeSlash',Radius=378.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BallisticSounds2.Knife.KnifeSlash',Radius=378.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="BigBack1"

@@ -49,33 +49,24 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	Super.Explode(HitLocation, HitNormal);
 }
 
-simulated event ProcessTouch( actor Other, vector HitLocation )
+simulated function ApplyImpactEffect(Actor Other, vector HitLocation)
 {
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	
-	if (Other == HitActor)
-		return;
-	
-	if (Role == ROLE_Authority)
-	{
-		if(!bArmed)
-		{
-			class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, ImpactMomentumTransfer * Normal(Velocity), ImpactDamageType);
-			Destroy();
-		}
-
-		else
-		{
-			if ( Instigator == None || Instigator.Controller == None )
-				Other.SetDelayedDamageInstigatorController( InstigatorController );
+    if ( Instigator == None || Instigator.Controller == None )
+		Other.SetDelayedDamageInstigatorController( InstigatorController );
 			
-			class'BallisticDamageType'.static.GenericHurt (Other, ArmedImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity),MyDamageType);
-			HitActor = Other;
-			Explode(HitLocation, Normal(HitLocation-Other.Location));
-			return;
-		}
-	}
+    if (!bArmed)
+        class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, ImpactMomentumTransfer * Normal(Velocity), ImpactDamageType);
+    else 
+        class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity),MyDamageType);
+}
+
+simulated function bool Impact(Actor Other, vector HitLocation)
+{
+    if (bArmed)
+        return false;
+
+    Destroy();
+    return true;
 }
 
 simulated singular function HitWall( vector HitNormal, actor Wall )
@@ -152,11 +143,11 @@ defaultproperties
      LightSaturation=100
      LightBrightness=200.000000
      LightRadius=15.000000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.G5.G5Rocket'
+     StaticMesh=StaticMesh'BallisticHardware2.G5.G5Rocket'
      bDynamicLight=True
      bNetTemporary=False
      bUpdateSimulatedPosition=True
-     AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
+     AmbientSound=Sound'BallisticSounds2.G5.G5-RocketFly'
      DrawScale=0.500000
      SoundVolume=192
      SoundRadius=128.000000

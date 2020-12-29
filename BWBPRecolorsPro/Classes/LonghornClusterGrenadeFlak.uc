@@ -104,16 +104,28 @@ simulated function InitEffects ()
 	}
 }
 
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
+{
+    if ( Instigator == None || Instigator.Controller == None )
+		Other.SetDelayedDamageInstigatorController( InstigatorController );
+
+    if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact || (default.LifeSpan - LifeSpan > EXP_LIFE_TIME && !bHasImpacted))
+		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
+	else if ( PlayerImpactType == PIT_Bounce || (PlayerImpactType == PIT_Stick && (VSize (Velocity) < MinStickVelocity)) )
+		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
+	else if ( PlayerImpactType == PIT_Stick && Base == None )
+		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
+}
+
+//================================================================
+// FIXME - can't be arsed with this right now
+//================================================================
 simulated event ProcessTouch( actor Other, vector HitLocation )
 {
 	local float BoneDist;
 
-	if (Other == Instigator && (!bCanHitOwner))
-		return;
-	if (Other == HitActor)
-		return;
-	if (Base != None)
-		return;
+    if (!CanTouch(Other))
+        return;
 		
 	// Should override complete ProcessTouch to prevent clusters from damaging the same player from impact multiple times within X time.
 	if(Pawn(Other) != None)
@@ -123,19 +135,13 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 		   	class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage*0.5, Instigator, HitLocation, Velocity, ImpactDamageType);
 	}
 
-	if ( Instigator == None || Instigator.Controller == None )
-		Other.SetDelayedDamageInstigatorController( InstigatorController );
 	if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact || (default.LifeSpan - LifeSpan > EXP_LIFE_TIME && !bHasImpacted))
 	{
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
-		HitActor = Other;
 		Explode(HitLocation, Normal(HitLocation-Other.Location));
-		return;
 	}
-	if ( PlayerImpactType == PIT_Bounce || (PlayerImpactType == PIT_Stick && (VSize (Velocity) < MinStickVelocity)) )
+	else if ( PlayerImpactType == PIT_Bounce || (PlayerImpactType == PIT_Stick && (VSize (Velocity) < MinStickVelocity)) )
 	{
 		HitWall (Normal(HitLocation - Other.Location), Other);
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
 	}
 	else if ( PlayerImpactType == PIT_Stick && Base == None )
 	{
@@ -145,12 +151,12 @@ simulated event ProcessTouch( actor Other, vector HitLocation )
 			bDetonating=True;
 			SetTimer(DetonateDelay, false);
 		}
-		HitActor = Other;
+
 		if (Other != Instigator && Other.DrawType == DT_Mesh)
 			Other.AttachToBone( Self, Other.GetClosestBone( Location, Velocity, BoneDist) );
 		else
 			SetBase (Other);
-		class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
+
 		SetRotation (Rotator(Velocity));
 		Velocity = vect(0,0,0);
 	}

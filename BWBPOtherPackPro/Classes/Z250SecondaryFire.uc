@@ -67,12 +67,12 @@ defaultproperties
      bUseWeaponMag=False
      MuzzleFlashClass=Class'BWBPOtherPackPro.Z250GrenadeFlashEmitter'
      FlashBone="GLtip"
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50GrenFire')
+     BallisticFireSound=(Sound=Sound'BallisticSounds3.M50.M50GrenFire')
      bSplashDamage=True
      bRecommendSplashDamage=True
      bTossed=True
-     bFireOnRelease=True
-     bWaitForRelease=True
+     bFireOnRelease=False
+     bWaitForRelease=False
      PreFireAnim=
      FireAnim="GLFire"
      FireForce="AssaultRifleAltFire"

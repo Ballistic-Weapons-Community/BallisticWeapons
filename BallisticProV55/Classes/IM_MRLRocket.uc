@@ -13,7 +13,7 @@ defaultproperties
      HitEffects(0)=Class'BallisticProV55.IE_MRLExplosion'
      HitDecals(0)=Class'BallisticProV55.AD_MRLExplosion'
      DecalScale=0.250000
-     HitSounds(0)=SoundGroup'BW_Core_WeaponSound.MRL.MRL-Explode'
+     HitSounds(0)=SoundGroup'BWBP4-Sounds.MRL.MRL-Explode'
      HitSoundVolume=0.700000
      HitSoundRadius=256.000000
      HitSoundPitch=1.300000

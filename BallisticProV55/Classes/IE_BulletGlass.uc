@@ -34,7 +34,7 @@ defaultproperties
      Emitters(2)=SpriteEmitter'BallisticProV55.IE_BulletGlass.SpriteEmitter2'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.Shard1'
+         StaticMesh=StaticMesh'BallisticHardware2.Impact.Shard1'
          UseMeshBlendMode=False
          UseParticleColor=True
          FadeOut=True

@@ -13,8 +13,8 @@ defaultproperties
      AmmoAmount=6
      InventoryType=Class'BWBPRecolorsPro.Ammo_10GaugeZap'
      PickupMessage="You picked up 6 electroshock MK781 shells."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ShotBoxPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.M763ShellBox'
+     PickupSound=Sound'BallisticSounds2.Ammo.ShotBoxPickup'
+     StaticMesh=StaticMesh'BallisticHardware2.Ammo.M763ShellBox'
      DrawScale=0.300000
      CollisionRadius=8.000000
      CollisionHeight=4.500000

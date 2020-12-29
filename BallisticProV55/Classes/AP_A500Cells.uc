@@ -14,8 +14,8 @@ defaultproperties
      AmmoAmount=16
      InventoryType=Class'BallisticProV55.Ammo_A500Cells'
      PickupMessage="You picked up some A500 Skrith chemicals."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.A73CellPickup'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.Reptile.Reptile_Ammo'
+     PickupSound=Sound'BallisticSounds2.Ammo.A73CellPickup'
+     StaticMesh=StaticMesh'BallisticHardware_25.Reptile.Reptile_Ammo'
      DrawScale=0.300000
      CollisionRadius=8.000000
      CollisionHeight=4.800000

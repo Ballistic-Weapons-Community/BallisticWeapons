@@ -35,7 +35,7 @@ defaultproperties
      SwipePoints(5)=(Weight=-1)
      SwipePoints(6)=(Weight=-1)
      FatiguePerStrike=0.035000
-     TraceRange=(Min=120.000000,Max=120.000000)
+     TraceRange=(Min=130.000000,Max=130.000000)
      Damage=45.000000
      
      
@@ -43,7 +43,7 @@ defaultproperties
      DamageTypeHead=Class'BWBPRecolorsPro.DTX8Knife'
      DamageTypeArm=Class'BWBPRecolorsPro.DTX8Knife'
      KickForce=100
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BallisticSounds_25.X4.X4_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      bCanBackstab=False
      FireAnim="Slash1"

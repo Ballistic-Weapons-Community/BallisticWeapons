@@ -4,9 +4,9 @@
 class X3Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+#exec OBJ LOAD FILE=BallisticWeapons2.utx
+#exec OBJ LOAD FILE=BallisticEffects.utx
+#exec OBJ LOAD FILE=BallisticHardware2.usx
 
 //===========================================================================
 // StaticPrecache
@@ -16,32 +16,32 @@ class X3Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.X3.KnifeA1');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
-	L.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
+	L.AddPrecacheMaterial(Texture'BallisticWeapons2.X3.KnifeA1');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
+	L.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.X3.KnifeA1');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCut');
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.Decals.KnifeCutWood');
+	Level.AddPrecacheMaterial(Texture'BallisticWeapons2.X3.KnifeA1');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCut');
+	Level.AddPrecacheMaterial(Texture'BallisticEffects.Decals.KnifeCutWood');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.X3.X3PickupHi');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.X3.X3PickupLo');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.X3.X3PickupHi');
+	Level.AddPrecacheStaticMesh(StaticMesh'BallisticHardware2.X3.X3PickupLo');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BW_Core_WeaponStatic.X3.X3PickupLo'
+     LowPolyStaticMesh=StaticMesh'BallisticHardware2.X3.X3PickupLo'
      PickupDrawScale=0.250000
      InventoryType=Class'BallisticProV55.X3Knife'
      RespawnTime=10.000000
      PickupMessage="You picked up the X3 combat knife."
-     PickupSound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway'
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.X3.X3PickupHi'
+     PickupSound=Sound'BallisticSounds2.Knife.KnifePutaway'
+     StaticMesh=StaticMesh'BallisticHardware2.X3.X3PickupHi'
      Physics=PHYS_None
      DrawScale=0.450000
      CollisionHeight=4.000000

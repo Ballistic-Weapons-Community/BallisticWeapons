@@ -47,8 +47,8 @@ defaultproperties
      AmmoAmount=66
      InventoryType=Class'BWBPRecolorsPro.Ammo_CYLO'
      PickupMessage="You picked up CYLO UAW rounds."
-     PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOAmmo'
+     PickupSound=Sound'BallisticSounds2.Ammo.ClipPickup'
+     StaticMesh=StaticMesh'BallisticRecolors4StaticPro.CYLO.CYLOAmmo'
      DrawScale=2.250000
      CollisionRadius=8.000000
      CollisionHeight=5.200000

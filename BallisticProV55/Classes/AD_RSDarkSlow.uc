@@ -6,6 +6,6 @@ class AD_RSDarkSlow extends AD_ImpactDecal
 
 defaultproperties
 {
-     ProjTexture=Texture'BW_Core_WeaponTex.DarkStar.Dark-ScorchA'
+     ProjTexture=Texture'BWBP4-Tex.DarkStar.Dark-ScorchA'
      DrawScale=0.200000
 }
