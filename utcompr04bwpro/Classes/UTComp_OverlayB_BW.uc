@@ -5,7 +5,7 @@ var Shader wpShad[16];
 
 var float OnJoinMessageDrawTimeBW;
 
-#exec TEXTURE IMPORT FILE="Textures\BackgroundOverlayBW.bmp" NAME="BackgroundOverlayBW" GROUP="Overlay" DXT=3
+#exec TEXTURE IMPORT FILE="Textures\BackgroundOverlayBW.tga" NAME="BackgroundOverlayBW" GROUP="Overlay" DXT=3
 
 event Initialized()
 {

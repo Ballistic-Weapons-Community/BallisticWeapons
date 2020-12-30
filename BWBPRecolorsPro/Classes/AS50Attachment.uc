@@ -166,7 +166,7 @@ defaultproperties
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FSSG-50_TPm'
      RelativeLocation=(X=-17.000000,Z=2.000000)
      RelativeRotation=(Pitch=32768)
-     PrePivot=(Y=-5.000000,Z=-1.000000)
+     PrePivot=(Z=-1.000000)
      Skins(0)=Texture'BWBP_SKC_Tex.FSG50.FSG-Main'
      Skins(1)=Texture'BWBP_SKC_Tex.FSG50.FSG-Scope'
      Skins(2)=Texture'BW_Core_WeaponTex.A73.A73Energy'
