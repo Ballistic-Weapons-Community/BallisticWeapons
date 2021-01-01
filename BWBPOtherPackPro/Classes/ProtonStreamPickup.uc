@@ -6,7 +6,6 @@ class ProtonStreamPickup extends BallisticWeaponPickup
 
 #exec OBJ LOAD FILE=BWBP_OP_Static.usx
 #exec OBJ LOAD FILE=BWBP_OP_Tex.utx
-#exec OBJ LOAD FILE=R9A_tex.utx
 
 simulated function UpdatePrecacheMaterials()
 {
