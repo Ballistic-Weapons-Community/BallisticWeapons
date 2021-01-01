@@ -54,4 +54,6 @@ defaultproperties
      ItemName="M58 Smoke Grenade"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_T10'
      DrawScale=0.400000
+	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	 Skins(1)=Texture'BW_Core_WeaponTex.M58.M58GrenadeSkin'
 }

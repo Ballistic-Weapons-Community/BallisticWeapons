@@ -704,7 +704,7 @@ defaultproperties
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=256)
-	SightOffset=(X=-18.000000,Y=4.490000,Z=6.350000)
+	SightOffset=(X=-18.000000,Y=4.475000,Z=6.800000)
 	SightDisplayFOV=35.000000
 	GunLength=48.000000
 	ParamsClass=Class'BulldogWeaponParams'

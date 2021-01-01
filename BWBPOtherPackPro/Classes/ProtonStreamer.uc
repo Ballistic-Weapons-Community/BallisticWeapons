@@ -307,6 +307,7 @@ function float GetAIRating()
 
 defaultproperties
 {
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.ProtonPack.BigIcon_ProtonPack'
 	BigIconCoords=(Y1=32,X2=512,Y2=225)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'

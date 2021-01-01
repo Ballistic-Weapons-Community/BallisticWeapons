@@ -33,4 +33,5 @@ defaultproperties
      Physics=PHYS_None
      DrawScale=0.700000
      CollisionHeight=5.600000
+	 Skins(0)=Texture'BW_Core_WeaponTex.M58.M58GrenadeSkin'
 }

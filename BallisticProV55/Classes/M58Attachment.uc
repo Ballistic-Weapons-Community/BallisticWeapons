@@ -13,4 +13,5 @@ defaultproperties
      ExplodeManager=Class'BallisticProV55.IM_Grenade'
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.T10_TPm'
      DrawScale=0.175000
+	 Skins(0)=Texture'BW_Core_WeaponTex.M58.M58GrenadeSkin'
 }

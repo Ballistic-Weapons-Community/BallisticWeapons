@@ -230,6 +230,8 @@ simulated function bool HasAmmo()
 
 defaultproperties
 {
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
+	TeamSkins(1)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=4)
 	BeltLength=8
 	BoxOnSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-BoxOn')
 	BoxOffSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-BoxOff')
