@@ -16,6 +16,7 @@ var() class<BCTraceEmitter> 		TracerClass;
 var() class<BallisticDamageType>	CDamageType;
 var   float							ChargePower;
 var   float							SquareCoefficient;
+var   bool 							bIsCombo;
 
 var	  int 							DmgScalar;
 var   int 							CurrentTargetIndex;
@@ -108,6 +109,12 @@ function Initialize(Actor InitialTarget)
 
     // between 3 * 2 (6) and 3 * 5 (15)
 	MaxConductors = default.MaxConductors * (1 + ChargePower);
+
+	if (bIsCombo)	//if firing off a lightning projectile
+	{
+		MaxConductors--;
+		ConductRadius /= 2;
+	}
 
 	//Check for nearby pawns. If "valid", will add to list of pawns to affect
 	ForEach RadiusActors(class'Pawn', PVictim, ConductRadius)
@@ -237,7 +244,11 @@ function Propagate()
 {
 	local Actor src, dest;
 
-	src = ShockTargets[CurrentTargetIndex - 1];
+	if (bIsCombo)
+		src = self;
+	else
+		src = ShockTargets[CurrentTargetIndex - 1];
+
 	dest = ShockTargets[CurrentTargetIndex];
 
 	// pawns may be destroyed for some reason beyond our control
@@ -261,7 +272,7 @@ function Propagate()
 
 	++CurrentTargetIndex;
 
-	if (CurrentTargetIndex == ShockTargets.Length)
+	if (CurrentTargetIndex >= ShockTargets.Length)
 		Kill();
 }
 
@@ -293,10 +304,14 @@ final function int CalcDamageForIndex(int index)
 function Kill()
 {
 	local int i;
-	for (i=0; i<=ShockTargets.Length; i++)	//iterate through the array and destroy any orbs
+
+	if (bIsCombo)
 	{
-		if (LightningProjectile(ShockTargets[i]) != None)
-			LightningProjectile(ShockTargets[i]).Explode(ShockTargets[i].Location, -ShockTargets[i].Acceleration);
+		for (i=0; i<=ShockTargets.Length-1; i++)	//iterate through the array and destroy any orbs
+		{
+			if (LightningProjectile(ShockTargets[i]) != None)
+				LightningProjectile(ShockTargets[i]).Explode(ShockTargets[i].Location, -ShockTargets[i].Acceleration);
+		}
 	}
 
 	ShockTargets.Remove(0, ShockTargets.Length);
@@ -316,7 +331,7 @@ defaultproperties
 	TracerClass=Class'BWBPOtherPackPro.TraceEmitter_LightningConduct'
 	CDamageType=Class'BWBPOtherPackPro.DT_LightningConduct'
 	SquareCoefficient=0.083333
-	ConductRadius=1024.000000
+	ConductRadius=768.000000
 	MaxConductors=4
 	SelfDmgScalar=0.600000
 }

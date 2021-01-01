@@ -31,7 +31,7 @@ var name			BulletBone2;
 
 var Actor			Arc;				// The top arcs
 
-var   float			MagnetSwitchTime;
+var   float			MagnetSwitchTime, MagnetSwitchFireRate;
 var   name			MagnetOpenAnim;
 var   name			MagnetCloseAnim;
 var   name			MagnetForceCloseAnim;
@@ -169,7 +169,7 @@ exec simulated function WeaponSpecial(optional byte i)
 	bMagnetOpen = !bMagnetOpen;
 
 	TemporaryScopeDown(0.4);
-	MagnetSwitchTime = level.TimeSeconds + 2.5;
+	MagnetSwitchTime = level.TimeSeconds + MagnetSwitchFireRate;
 	PlayMagnetSwitching(bMagnetOpen);
 	AdjustMagnetProperties();
 	if(Level.NetMode == NM_Client)
@@ -202,6 +202,7 @@ simulated function Overheat(bool bForceClose)
 	else
 		PlayAnim(MagnetCloseAnim);
 	bMagnetOpen=false;
+	MagnetSwitchTime = level.TimeSeconds + 5;	//delay before magnet can be turned on again
 	AdjustMagnetProperties();
 }
 
@@ -545,6 +546,7 @@ defaultproperties
 	OverheatSound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Overload'
 	ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
 	MaxHeat=7.000000
+	MagnetSwitchFireRate=1.000000
 	BulletBone1="Bullet1"
 	BulletBone2="Bullet2"
 	MagnetOpenAnim="ShieldDeploy"

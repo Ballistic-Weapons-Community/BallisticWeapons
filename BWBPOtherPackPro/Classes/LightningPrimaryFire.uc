@@ -117,6 +117,10 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 		LConductor.Instigator = Instigator;
 		LConductor.Damage = TransferCDamage;
 		LConductor.ChargePower = LightningRifle(BW).ChargePower;
+
+		if (LightningProjectile(Target) != None)	//projectile is op, pls nerf
+			LConductor.bIsCombo = true;
+
 		LConductor.Initialize(Target);
 	}
 
@@ -158,7 +162,7 @@ defaultproperties
 	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.Lightning.LightningGunShot',Volume=1.600000,Radius=1024.000000)
 	bFireOnRelease=True
 	FireAnim="FireCharged"
-	FireRate=1.050000
+	FireRate=0.850000
 	FireAnimRate=0.800000
 	AmmoClass=Class'BWBPOtherPackPro.Ammo_LightningRifle'
 	AmmoPerFire=1

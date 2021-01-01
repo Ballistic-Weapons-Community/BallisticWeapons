@@ -35,6 +35,12 @@ replication
 		IceCharge;
 }
 
+simulated function PostNetBeginPlay()
+{
+	SetBoneScale(2, 0.0, 'AMP');
+	super.PostNetBeginPlay();
+}
+
 simulated function WeaponTick(float DT)
 {
 	Super.WeaponTick(DT);
