@@ -69,9 +69,6 @@ simulated function Vector GetTipLocation()
 	else
 		Loc = GetBoneCoords('tip').Origin;
 		
-	if (VSize(Loc - Instigator.Location) > 200)
-		return Instigator.Location;
-		
     return Loc;
 }
 
@@ -92,8 +89,7 @@ simulated function Vector GetTipLocationStyleTwo()
 	}
 	else
 		Loc = GetBoneCoords('tip2').Origin + Y*200;
-	if (VSize(Loc - Instigator.Location) > 200)
-		return Instigator.Location;
+
     return Loc;
 }
 

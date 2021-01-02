@@ -129,8 +129,6 @@ simulated function Vector GetTipLocation()
 	else
 		C = GetBoneCoords('tip');
 		
-	if (Instigator != None && VSize(C.Origin - Instigator.Location) > 200)
-		return Instigator.Location;
     return C.Origin;
 }
 

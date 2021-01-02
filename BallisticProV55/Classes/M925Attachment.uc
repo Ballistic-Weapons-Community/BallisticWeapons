@@ -18,18 +18,11 @@ simulated Event PostNetBeginPlay()
 // Return the location of the muzzle.
 simulated function Vector GetTipLocation()
 {
-    local Coords C;
-
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return Instigator.Weapon.GetEffectStart();
 	if (BallisticTurret(Instigator) != None)
-		C = Instigator.GetBoneCoords('tip');
-	else
-		C = GetBoneCoords('tip');
-
-	if (Instigator != None && VSize(C.Origin - Instigator.Location) > 250)
-		return Instigator.Location;
-    return C.Origin;
+		return Instigator.GetBoneCoords('tip').Origin;
+	return GetBoneCoords('tip').Origin;
 }
 // Return location of brass ejector
 simulated function Vector GetEjectorLocation(optional out Rotator EjectorAngle)

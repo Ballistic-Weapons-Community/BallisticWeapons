@@ -66,23 +66,20 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 simulated function Vector GetTipLocation()
 {
-    local Vector X, Y, Z, Loc;
+    local Vector X, Y, Z;
 
 	if (Instigator.IsFirstPerson())
 	{
 		if (M75Railgun(Instigator.Weapon).bScopeView)
 		{
 			Instigator.Weapon.GetViewAxes(X,Y,Z);
-			Loc = Instigator.Location + Instigator.EyePosition() + X*20 + Z*-10;
+			return Instigator.Location + Instigator.EyePosition() + X*20 + Z*-10;
 		}
 		else
-			Loc = Instigator.Weapon.GetBoneCoords('tip').Origin + class'BUtil'.static.AlignedOffset(Instigator.GetViewRotation(), SpawnOffset);
+			return Instigator.Weapon.GetBoneCoords('tip').Origin + class'BUtil'.static.AlignedOffset(Instigator.GetViewRotation(), SpawnOffset);
 	}
-	else
-		Loc = GetBoneCoords('tip').Origin;
-	if (VSize(Loc - Instigator.Location) > 200)
-		return Instigator.Location;
-    return Loc;
+
+	return GetBoneCoords('tip').Origin;
 }
 
 defaultproperties

@@ -33,8 +33,7 @@ simulated function Vector GetTipLocation()
 	}
 	else
 		Loc = GetBoneCoords('tip').Origin;
-	if (VSize(Loc - Instigator.Location) > 200)
-		return Instigator.Location;
+
     return Loc;
 }
 

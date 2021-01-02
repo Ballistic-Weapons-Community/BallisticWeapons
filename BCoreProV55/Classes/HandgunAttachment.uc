@@ -51,12 +51,7 @@ simulated function Vector GetTipLocation()
 			return Instigator.Weapon.GetEffectStart();
 	}
 	
-	C = GetBoneCoords('tip');
-		
-	if (Instigator != None && VSize(C.Origin - Instigator.Location) > 200)
-		return Instigator.Location;
-		
-    return C.Origin;
+	return GetBoneCoords('tip').Origin;
 }
 
 simulated function Destroyed()

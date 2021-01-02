@@ -366,8 +366,7 @@ simulated function Vector GetTipLocation()
 		else 
 			C = GetBoneCoords(AltFlashBone);
 	}
-	if (Instigator != None && level.NetMode != NM_StandAlone && level.NetMode != NM_ListenServer && VSize(C.Origin - Instigator.Location) > 300)
-		return Instigator.Location;
+
     return C.Origin;
 }
 

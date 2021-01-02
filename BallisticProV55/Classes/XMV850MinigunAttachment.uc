@@ -304,14 +304,9 @@ simulated function Vector GetTipLocation()
 		return Instigator.Weapon.GetEffectStart();
 	
 	if (BallisticTurret(Instigator) != None)
-		C = Instigator.GetBoneCoords('tip');
+		return Instigator.GetBoneCoords('tip').Origin;
 		
-	else C = GetBoneCoords('tip');
-	
-	if (Instigator != None && VSize(C.Origin - Instigator.Location) > 250)
-		return Instigator.Location;
-		
-    return C.Origin;
+	return GetBoneCoords('tip').Origin;
 }
 
 // Return location of brass ejector

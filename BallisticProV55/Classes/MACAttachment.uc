@@ -21,14 +21,11 @@ simulated function Vector GetTipLocation()
     local Coords C;
 
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
-		C = Instigator.Weapon.GetBoneCoords('tip');
+		return Instigator.Weapon.GetBoneCoords('tip').Origin;
 	else if (BallisticTurret(Instigator) != None)
-		C = Instigator.GetBoneCoords('tip');
-	else
-		C = GetBoneCoords('tip');
-	if (Instigator != None && VSize(C.Origin - Instigator.Location) > 250)
-		return Instigator.Location;
-    return C.Origin;
+		return Instigator.GetBoneCoords('tip').Origin;
+;
+	return GetBoneCoords('tip').Origin;
 }
 // Return location of brass ejector
 simulated function Vector GetEjectorLocation(optional out Rotator EjectorAngle)

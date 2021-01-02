@@ -708,6 +708,7 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
      local bool bNoUpgrade;
      local float Overflow;
 
+    // handle spree of dead pawn
      if ( KilledPawn != None && KilledPawn.GetSpree() > 4 )
      {
           if ( (Killer != None) )
@@ -721,6 +722,7 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
 
           if ( Killer != None && Killer.bIsPlayer )
           {
+              // kill of player by player
                KillerPRI = GunGamePRI(Killer.PlayerReplicationInfo);
 
                if ( UnrealPlayer(Killer) != None )
@@ -775,7 +777,13 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
 
      //If bNoUpgrade is true right here, then a self kill happened, downgrade and skip the rest of the GunGame code
      if ( bNoUpgrade )
-          KilledPRI.AdjustLevel( -1 );
+     {
+         // Check for bullshit
+         // if dead Pawn's PRI records more suicides than the current gun level, they're probably doing stupid shit.
+         // stop that
+         if (KilledPRI.Suicides < KilledPRI.GunLevel)
+            KilledPRI.AdjustLevel( -1 );
+     }
      else
      {
           //Here I get the very last weapondamage actively done to Killed. So I know when Killed has been pushed out, which weapon caused that

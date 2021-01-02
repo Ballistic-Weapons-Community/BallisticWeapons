@@ -197,9 +197,6 @@ simulated function Vector GetTipLocation()
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)	
 		return Instigator.Weapon.GetEffectStart();
 
-	if (Instigator != None && level.NetMode != NM_StandAlone && level.NetMode != NM_ListenServer && VSize(C.Origin - Instigator.Location) > 300)
-		return Instigator.Location;
-		
     return GetBoneCoords('tip').Origin;
 }
 

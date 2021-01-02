@@ -25,6 +25,7 @@ simulated function Vector GetTipLocation()
 	}
 	else
 		C = GetBoneCoords('tip');
+        
     return C.Origin;
 }
 

@@ -44,10 +44,8 @@ simulated function Vector GetTipLocation()
 		C = GetBoneCoords('tip');
 	     return C.Origin;
 	}
-	if (Instigator != None && VSize(C.Origin - Instigator.Location) > 250)
-		return Instigator.Location;
-
 }
+
 // Return location of brass ejector
 simulated function Vector GetEjectorLocation(optional out Rotator EjectorAngle)
 {

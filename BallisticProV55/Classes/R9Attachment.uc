@@ -136,6 +136,7 @@ simulated function Vector GetTipLocation()
 		C = Instigator.Weapon.GetBoneCoords('tip');
 	else
 		C = GetBoneCoords('tip');
+        
     return C.Origin;
 }
 
