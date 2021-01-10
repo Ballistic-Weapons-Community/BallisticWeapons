@@ -517,10 +517,10 @@ defaultproperties
 	MagAmmo=22
 	CockAnimPostReload="Cock"
 	CockAnimRate=1.400000
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Cock')
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipIn')
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut')
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn')
 	ClipInFrame=0.700000
 	bAltTriggerReload=True
 	WeaponModes(0)=(bUnavailable=True)

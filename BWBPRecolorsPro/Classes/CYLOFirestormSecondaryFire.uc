@@ -71,7 +71,7 @@ defaultproperties
      FirePushbackForce=200.000000
      FireChaos=0.500000
      JamSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.900000)
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-FireSG',Volume=1.300000,Radius=256.000000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-FlameFire',Volume=1.300000,Radius=256.000000)
      FireAnim="FireSG"
      FireEndAnim=
      FireRate=0.5
