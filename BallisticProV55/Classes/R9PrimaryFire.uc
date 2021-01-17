@@ -133,20 +133,22 @@ function PlayFiring()
 
 defaultproperties
 {
-     FreezeFireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
+	 RangeAtten=0.5
+	 FreezeFireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
      LaserFireSound=(Sound=Sound'BW_Core_WeaponSound.R9.EnergyRelayExplode',Volume=3.000000,Radius=256.000000)
      HeatPerShot=45
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=64.000000
      
-     Damage=65.000000
-     
+     Damage=45.000000
+     HeadMult=1.5
+     LimbMult=0.85
      
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTR9Rifle'
      DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
      DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
-     KickForce=12000
+     KickForce=6000
      PenetrateForce=150
      bPenetrate=True
      ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.800000,Radius=48.000000,Pitch=1.250000,bAtten=True)
@@ -157,11 +159,11 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassOffset=(X=-40.000000,Y=-2.000000,Z=6.000000)
      AimedFireAnim="AimedFire"
-     FireRecoil=384.000000
+     FireRecoil=192.000000
      FireChaos=0.450000
      BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Fire',Volume=0.800000)
      FireEndAnim=
-     FireRate=0.300000
+     FireRate=0.225000
      AmmoClass=Class'BallisticProV55.Ammo_348Rifle'
      ShakeRotMag=(X=400.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

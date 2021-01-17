@@ -491,9 +491,9 @@ defaultproperties
 	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
-	BarrelSpinSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelSpinLoop'
-	BarrelStopSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStop'
-	BarrelStartSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStart'
+	BarrelSpinSound=Sound'BWBP_SKC_Sounds.550.Mini-Rotor'
+	BarrelStopSound=Sound'BWBP_SKC_Sounds.550.Mini-Down'
+	BarrelStartSound=Sound'BWBP_SKC_Sounds.550.Mini-Up'
 	PlayerSpeedFactor=0.900000
 	PlayerJumpFactor=0.900000
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
