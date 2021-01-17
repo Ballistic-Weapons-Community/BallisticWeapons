@@ -29,15 +29,16 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%o's head was brutally gunned off by %k's M50."
-     DeathStrings(1)="%o ate too much of %k's M50 lead."
-     DeathStrings(2)="%k annihilated %o's head with the M50."
+     DeathStrings(0)="%o died due to lead poisoning and decapitation thanks to %k's MX32."
+     DeathStrings(1)="%k turned %o's head to stew meat."
+     DeathStrings(2)="%o's gray matter was ejected by %k's MX32."
+     DeathStrings(3)="%k’s low caliber leadstorm shredded %o's head finely."
      bHeaddie=True
      DamageIdent="Assault"
      WeaponClass=Class'BWBPOtherPackPro.MX32Weapon'
-     DeathString="%o's head was brutally gunned off by %k with the M50."
-     FemaleSuicide="%o saw a bullet coming up the barrel of her M50."
-     MaleSuicide="%o saw a bullet coming up the barrel of his M50."
+     DeathString="%o died due to lead poisoning and decapitation thanks to %k's MX32."
+     FemaleSuicide="%o saw a bullet coming up the barrel of her MX32."
+     MaleSuicide="%o saw a bullet coming up the barrel of his MX32."
      bFastInstantHit=True
      bAlwaysSevers=True
      bSpecial=True

@@ -10,15 +10,15 @@ class DTMX32PrimaryLimb extends DT_BWBullet;
 
 defaultproperties
 {
-     DeathStrings(0)="%o was gunned down by %k with the M50."
-     DeathStrings(1)="%o's foot was shot to ribbons by %k's M50."
-     DeathStrings(2)="%k shot %o's kneecaps off with the M50."
-     DeathStrings(3)="%k reduced %o's arms to nothing with the M50."
+     DeathStrings(0)="%o's rib cage was shattered by %k's MX32."
+     DeathStrings(1)="%k opened up several holes in %o's lungs with the MX32."
+     DeathStrings(2)="%o got a much needed colon cleansing thanks to %k."
+     DeathStrings(3)="%k reduced %o's limbs to beef jerky."
      DamageIdent="Assault"
      WeaponClass=Class'BWBPOtherPackPro.MX32Weapon'
-     DeathString="%o was gunned down by %k with the M50."
-     FemaleSuicide="%o nailed herself with the M50."
-     MaleSuicide="%o nailed himself with the M50."
+     DeathString="%o's rib cage was shattered by %k's MX32."
+     FemaleSuicide="%o nailed herself with the MX32."
+     MaleSuicide="%o nailed himself with the MX32."
      bFastInstantHit=True
      GibPerterbation=0.100000
      KDamageImpulse=3000.000000

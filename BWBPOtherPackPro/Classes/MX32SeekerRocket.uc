@@ -95,11 +95,11 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
-     TurnRate=12288.000000
-     AccelSpeed=2500.000000
+     TurnRate=24576.000000
+     AccelSpeed=2000.000000
 	 MaxAccelSpeed=10000.000000
-     Speed=300.000000
-     MaxSpeed=6500.000000
+     Speed=200.000000
+     MaxSpeed=5200.000000
      LifeSpan=0.000000
 	 bTearOff=False
 	 bNetTemporary=False
