@@ -611,8 +611,8 @@ defaultproperties
      FireModeClass(0)=Class'BWBPOtherPackPro.MX32PrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.MX32SecondaryFire'
 	 WeaponModes(0)=(bUnavailable=True)
-	 WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto")
-	 WeaponModes(2)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
+	 WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
+	 WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 	 ParamsClass=Class'MX32WeaponParams'
 	 
 	 MagAmmo=50
