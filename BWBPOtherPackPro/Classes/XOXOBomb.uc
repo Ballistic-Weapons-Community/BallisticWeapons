@@ -1,6 +1,6 @@
 class XOXOBomb extends BallisticGrenade;
 
-var float   ArmingDelay;
+var float       ArmingDelay;
 
 simulated function PreBeginPlay()
 {
@@ -125,7 +125,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 			PlaySound(ImpactSound, SLOT_Misc, 1.5);
 		if (ImpactManager != None)
 			ImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Owner);
-    	}
+    }
 }
 
 simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<DamageType> DamageType, float Momentum, vector HitLocation, Optional actor Victim )
@@ -189,30 +189,36 @@ defaultproperties
      PenetrateManager=Class'BWBPOtherPackPro.IM_XOXO'
      bRandomStartRotaion=False
      TrailClass=Class'BWBPOtherPackPro.XOXOBombTrail'
-     MyRadiusDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
+
      
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=2500.000000
      MaxSpeed=2500.000000
      Damage=100.000000
      DamageRadius=768.000000
-     MomentumTransfer=10000.000000
+     MomentumTransfer=30000.000000
      MyDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
+     MyRadiusDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
+
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence
      LightHue=220
      LightSaturation=120
      LightBrightness=192.000000
      LightRadius=6.000000
-     StaticMesh=StaticMesh'BWBP_OP_Static.XOXO.O'
      bDynamicLight=True
-     AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire2FlyBy'
-     LifeSpan=8.000000
+
+     StaticMesh=StaticMesh'BWBP_OP_Static.XOXO.O'
      DrawScale=3.000000
      Style=STY_Additive
+     RotationRate=(Roll=16384)
+
+     AmbientSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire2FlyBy'
      SoundVolume=255
      SoundRadius=75.000000
+     LifeSpan=8.000000
+
      CollisionRadius=2.000000
      CollisionHeight=2.000000
-     RotationRate=(Roll=16384)
+
 }

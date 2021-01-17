@@ -11,8 +11,8 @@ class Ammo_LAW extends BallisticAmmo;
 defaultproperties
 {
      bNoPackResupply=True
-     MaxAmmo=1
-     InitialAmount=1
+     MaxAmmo=2
+     InitialAmount=2
      IconFlashMaterial=Shader'BWBP_SKC_Tex.LAW.AmmoIcon_LAWFlash'
      PickupClass=Class'BWBPRecolorsPro.AP_LAWTube'
      IconMaterial=Texture'BWBP_SKC_Tex.LAW.AmmoIcon_LAW'

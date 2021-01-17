@@ -99,12 +99,12 @@ simulated function PostNetBeginPlay()
 
 simulated function InitProjectile ()
 {
-		Velocity = Speed * Vector(VelocityDir);
-		if (RandomSpin != 0 && !bNoInitialSpin)
-			RandSpin(RandomSpin);
-		if (DetonateOn == DT_Timer)
-			SetTimer(DetonateDelay, false);
-		Super.InitProjectile();
+    Velocity = Speed * Vector(VelocityDir);
+    if (RandomSpin != 0 && !bNoInitialSpin)
+        RandSpin(RandomSpin);
+    if (DetonateOn == DT_Timer)
+        SetTimer(DetonateDelay, false);
+    Super.InitProjectile();
 }
 
 simulated event Timer()
@@ -119,6 +119,7 @@ simulated event Timer()
 		//InitEffects();
 		return;
 	}
+
 	Explode(Location, vect(0,0,1));
 }
 
@@ -200,7 +201,6 @@ simulated function bool Impact(Actor Other, Vector HitLocation)
 
     if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact)
 	{
-		HitActor = Other;
 		Explode(HitLocation, Normal(HitLocation-Other.Location));
 	}
 	else if ( PlayerImpactType == PIT_Bounce || (PlayerImpactType == PIT_Stick && (VSize (Velocity) < MinStickVelocity)) )
@@ -212,7 +212,6 @@ simulated function bool Impact(Actor Other, Vector HitLocation)
 		SetPhysics(PHYS_None);
 		if (DetonateOn == DT_ImpactTimed)
 			SetTimer(DetonateDelay, false);
-		HitActor = Other;
 		if (Other != Instigator && Other.DrawType == DT_Mesh)
 			Other.AttachToBone( Self, Other.GetClosestBone( Location, Velocity, BoneDist) );
 		else
@@ -308,8 +307,11 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	End.Z = -DamageRadius;
 	
 	A = Trace(HitLoc, HitNorm, End, , False);
+
+    // rarely used
 	if (TerrainInfo(A) != None && bAllowTerrainPoking)
 		TerrainInfo(A).PokeTerrain(Location, DamageRadius, DamageRadius/PokeReductionFactor);
+
     if (ImpactManager != None)
 	{
 		if (Instigator == None)

@@ -207,7 +207,7 @@ defaultproperties
      FireSoundLoop=Sound'BW_Core_WeaponSound.VPR.VPR-LaserLoop'
      TraceRange=(Min=10000.000000,Max=10000.000000)
 
-     Damage=10.000000
+     Damage=13.000000
      HeadMult=1.5f
      LimbMult=0.5f
      

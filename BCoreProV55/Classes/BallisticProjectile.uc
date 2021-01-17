@@ -200,6 +200,7 @@ simulated function Timer()
 		return;
 	}
 }
+
 // Returns false so that physics volumes don't play any sounds
 simulated function bool CanSplash()
 {

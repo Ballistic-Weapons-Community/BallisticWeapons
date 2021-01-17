@@ -473,8 +473,8 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 
     if ( CheckReflect(HitLocation, HitNormal, 0) )
     {
-		Damage = 0;
-		Momentum = vect(0,0,0);
+		Damage /= 5;
+		Momentum /= 5;
 		
 		M2020GaussAttachment(ThirdPersonActor).BlockEffectCount += 1;
 		

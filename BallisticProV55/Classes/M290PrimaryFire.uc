@@ -76,14 +76,15 @@ function FlashMuzzleFlash()
 defaultproperties
 {
 	 HipSpreadFactor=2
-     CutOffDistance=1536.000000
+     CutOffDistance=2048.000000
      CutOffStartRange=768.000000
      TraceCount=20
+     MaxHits=18
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=2560.000000,Max=2560.000000)
-     Damage=10.000000
-     RangeAtten=0.20000
+     Damage=12.000000
+     RangeAtten=0.25000
      DamageType=Class'BallisticProV55.DTM290Shotgun'
      DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
      DamageTypeArm=Class'BallisticProV55.DTM290Shotgun'

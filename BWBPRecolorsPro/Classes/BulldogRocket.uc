@@ -5,13 +5,12 @@
 //
 // by Sergeant Kelly and edited by Azarael
 //=============================================================================
-class BulldogRocket extends BallisticProjectile;
+class BulldogRocket extends BallisticGrenade;
+
+var float                   ArmingDelay;
 
 var sound 					ImpactSounds[6];
-var int 					ImpactDamage;
 var int						ImpactKickForce;
-var class<DamageType> 		ImpactDamageType;
-var class<BCImpactManager>	ReflectImpactManager;
 var vector					StartLoc;
 
 replication
@@ -45,7 +44,7 @@ simulated function Timer()
 		return;
 	}
 	
-	bBounce=False;
+	DetonateOn = DT_Impact;
 }
 
 simulated function Landed (vector HitNormal)
@@ -53,83 +52,93 @@ simulated function Landed (vector HitNormal)
 	Explode(Location, HitNormal);
 }	
 
-simulated function HitWall( vector HitNormal, actor Wall )
+simulated function HitWall( vector HitNormal, Actor Wall )
 {
-    if ( !Wall.bStatic && !Wall.bWorldGeometry 
-		&& ((Mover(Wall) == None) || Mover(Wall).bDamageTriggered) )
-    {
-        if ( Level.NetMode != NM_Client )
-		{
-			if ( Instigator == None || Instigator.Controller == None )
-				Wall.SetDelayedDamageInstigatorController( InstigatorController );
-            Wall.TakeDamage( Damage, instigator, Location, MomentumTransfer * Normal(Velocity), MyDamageType);
-		}
-        Destroy();
-        return;
-    }
+    local Vector VNorm;
 
-	if(bBounce)
-	{	
-		if ( !Level.bDropDetail )
-			PlaySound(ImpactSounds[Rand(6)]);
-		bBounce=False;
-		Velocity = 0.75 * (Velocity - 2.0*HitNormal*(Velocity dot HitNormal));
+	if (DetonateOn == DT_Impact)
+	{
+		Explode(Location, HitNormal);
 		return;
-   	}
-	else if (Pawn(Wall) == None && (Level.NetMode != NM_DedicatedServer) && (!Level.bDropDetail) && (Level.DetailMode != DM_Low) && EffectIsRelevant(Location,false))
+	}
+    
+    bCanHitOwner=true;
+	bHasImpacted=true;
+
+    VNorm = (Velocity dot HitNormal) * HitNormal;
+    Velocity = -VNorm * DampenFactor + (Velocity - VNorm) * DampenFactorParallel;
+
+    Speed = VSize(Velocity/2);
+
+	RandSpin(100000);
+
+	if (Speed < 20)
+	{
+		bBounce = False;
+		SetPhysics(PHYS_None);
+		if (Trail != None && !TrailWhenStill)
+		{
+			DestroyEffects();
+		}
+	}
+	else if (Pawn(Wall) == None && (Level.NetMode != NM_DedicatedServer) && (Speed > 100) && (!Level.bDropDetail) && (Level.DetailMode != DM_Low) && EffectIsRelevant(Location,false))
 	{
 		if (ImpactSound != None)
 			PlaySound(ImpactSound, SLOT_Misc, 1.5);
-		if (ReflectImpactManager != None)
-		{
-			if (Instigator == None)
-				ReflectImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Level.GetLocalPlayerController()/*.Pawn*/);
-			else
-				ReflectImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Instigator);			
-		}
+		if (ImpactManager != None)
+			ImpactManager.static.StartSpawn(Location, HitNormal, Wall.SurfaceType, Owner);
     }
-   	
-   	Explode(Location, HitNormal);
 }
 
 defaultproperties
 {
+     DampenFactor=0.15000
+     DampenFactorParallel=0.300000
+     ArmingDelay=0.15
+     DetonateOn=DT_None
+	 PlayerImpactType=PIT_Detonate
      ImpactSounds(0)=Sound'XEffects.Impact4Snd'
      ImpactSounds(1)=Sound'XEffects.Impact6Snd'
      ImpactSounds(2)=Sound'XEffects.Impact7Snd'
      ImpactSounds(3)=Sound'XEffects.Impact3'
      ImpactSounds(4)=Sound'XEffects.Impact1'
      ImpactSounds(5)=Sound'XEffects.Impact2'
-     ImpactDamage=80
+
+     ImpactDamage=125
      ImpactDamageType=Class'BWBPRecolorsPro.DT_BulldogImpact'
      ImpactManager=Class'BWBPRecolorsPro.IM_BulldogFRAG'
 	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
      TrailClass=Class'BallisticProV55.MRLTrailEmitter'
      TrailOffset=(X=-14.000000)
-     MyRadiusDamageType=Class'BWBPRecolorsPro.DTBulldogFRAGRadius'
+
+
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=7000.000000
      MaxSpeed=7000.000000
-     Damage=140.000000
+     Damage=110.000000
 	 DamageRadius=512.000000
      WallPenetrationForce=192
-     MomentumTransfer=30000.000000
+     MomentumTransfer=15000.000000
      MyDamageType=Class'BWBPRecolorsPro.DTBulldogFRAG'
+     MyRadiusDamageType=Class'BWBPRecolorsPro.DTBulldogFRAGRadius'
+
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence
-     Physics=PHYS_Falling
      LightHue=25
      LightSaturation=100
      LightBrightness=200.000000
      LightRadius=15.000000
-     StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
      bDynamicLight=True
+
+     StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
+     RotationRate=(Roll=32768)
+
      AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
-     DrawScale=2.500000
      SoundVolume=192
      SoundRadius=128.000000
-     bBounce=True
-     bFixedRotationDir=True
+
+     DrawScale=2.500000
+
      bIgnoreTerminalVelocity=True
-     RotationRate=(Roll=32768)
+
 }

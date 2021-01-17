@@ -268,7 +268,7 @@ defaultproperties
      PowerFireSound=Sound'BWBP_SKC_Sounds.XM20B.XM20-Overcharge'
      RegularFireSound=Sound'BWBP_SKC_Sounds.XM20B.XM20-LaserStart'
 	 
-	 Damage=12
+	 Damage=16
 	 HeadMult=1.5f
      LimbMult=0.5f
 

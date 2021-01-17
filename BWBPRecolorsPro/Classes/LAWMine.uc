@@ -167,7 +167,7 @@ defaultproperties
      ShockRadius=1024
      MyShotDamageType=Class'BWBPRecolorsPro.DTLAWShot'
      ImpactManager2=Class'BWBPRecolorsPro.IM_LAWWave'
-     Health=250
+     Health=175
      ImpactManager=Class'BallisticProV55.IM_RPG'
      StartDelay=0.300000
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTLAWMineDet'

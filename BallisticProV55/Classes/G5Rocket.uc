@@ -84,8 +84,9 @@ simulated singular function HitWall( vector HitNormal, actor Wall )
  
 	if(!bArmed)
 	{	
-		if ( !Level.bDropDetail && (FRand() < 0.4) )
-			Playsound(ImpactSounds[Rand(6)]);
+		if (!Level.bDropDetail)
+			PlaySound(ImpactSounds[Rand(6)]);
+
 		Velocity = 0.45 * (Velocity - 1.33*HitNormal*(Velocity dot HitNormal)); //reflection is not complete
 		SetRotation(Rotator(Velocity));
 		AccelSpeed *= 0.75;

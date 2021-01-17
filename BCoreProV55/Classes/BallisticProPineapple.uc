@@ -35,12 +35,17 @@ simulated event Timer()
 		InitProjectile();
 		return;
 	}
+
+    HitActor = None;
+/*
 	if (HitActor != None)
 	{
 		if ( Instigator == None || Instigator.Controller == None )
 			HitActor.SetDelayedDamageInstigatorController( InstigatorController );
 		class'BallisticDamageType'.static.GenericHurt (HitActor, Damage, Instigator, Location, MomentumTransfer * (HitActor.Location - Location), MyDamageType);
 	}
+*/
+
 	Explode(Location, vect(0,0,1));
 }
 

@@ -371,8 +371,11 @@ defaultproperties
 	 
 	FireModeClass(0)=Class'BWBPRecolorsPro.LAWPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.LAWSecondaryFire'
-	PutDownTime=2.500000
-	BringUpTime=3.000000
+
+	PutDownTime=1.900000
+	BringUpTime=2.250000
+    SelectAnimRate=1.4
+    PutDownAnimRate=1.4
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.90000
 	CurrentRating=0.90000
