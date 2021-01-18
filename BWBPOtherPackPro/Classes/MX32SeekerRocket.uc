@@ -58,7 +58,7 @@ simulated function Tick(float DT)
 		Destroy();
 
 	if (AccelSpeed < MaxAccelSpeed)
-		AccelSpeed = FMin(MaxAccelSpeed, AccelSpeed + 400 * DT);
+		AccelSpeed = FMin(MaxAccelSpeed, AccelSpeed + 1000 * DT);
 
 	if (Speed < MaxSpeed)
 		Speed = FMin(MaxSpeed, Speed + AccelSpeed * DT);
@@ -96,10 +96,10 @@ simulated function Tick(float DT)
 defaultproperties
 {
      TurnRate=24576.000000
-     AccelSpeed=2000.000000
-	 MaxAccelSpeed=10000.000000
-     Speed=200.000000
-     MaxSpeed=5200.000000
+     AccelSpeed=5000.000000
+	 MaxAccelSpeed=20000.000000
+     Speed=20.000000
+     MaxSpeed=40020.000000
      LifeSpan=0.000000
 	 bTearOff=False
 	 bNetTemporary=False
