@@ -91,5 +91,5 @@ defaultproperties
      CockAnimRate=1.400000
      bRapidFire=True
      Mesh=SkeletalMesh'BWBP_OP_Anim.MX32_TPm'
-     DrawScale=0.160000
+     DrawScale=1.000000
 }

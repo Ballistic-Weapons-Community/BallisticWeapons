@@ -590,9 +590,9 @@ defaultproperties
      bWT_Splash=True
      bWT_Machinegun=True
      bWT_Projectile=True
-     ManualLines(0)="Automatic 5.56 bullet fire. Low damage per shot with medium range, low penetration and low recoil."
-     ManualLines(1)="Launches a grenade from the underslung launcher. This grenade has an arming delay and will ricochet from targets hit during this arming period, dealing minor damage. The arming delay can be used to shoot around corners."
-     ManualLines(2)="A TX409-Tactical Video camera system is also included with this weapon. It allows the user to deploy a tactical camera to any surface using the Weapon Function key. To survey an area from a safe distance using the gun-mounted LCD, press Weapon Function again. Care should always be taken to deploy TX409-TV cameras in a hidden location to prevent them from being destroyed by enemies.||The M50 is effective at medium to long range."
+     ManualLines(0)="Automatic 5.56 bullet fire. Low damage per shot with medium range, low penetration and medium recoil."
+     ManualLines(1)="Fires a gas-powered rocket barrage, with heavy inaccuracy and recoil with repeated shots."
+     ManualLines(2)="Activates a guiding laser, which stabilises secondary fire and directs rockets. Suitable for further distances."
      SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
@@ -610,6 +610,9 @@ defaultproperties
 	 
      FireModeClass(0)=Class'BWBPOtherPackPro.MX32PrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.MX32SecondaryFire'
+	 WeaponModes(0)=(bUnavailable=True)
+	 WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
+	 WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 	 ParamsClass=Class'MX32WeaponParams'
 	 
 	 MagAmmo=50
@@ -617,7 +620,7 @@ defaultproperties
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000
      CurrentRating=0.600000
-     Description="Add me."
+     Description="In the ongoing efforts of the Anti-Krao Buster Movement, several weapons have entered the foray but nothing quite like the MX32 Rocket Machinegun.  Originally designed for geneboosted soldiers and light mech units, the MX32 is a behemoth of a weapon, able to decimate hordes of Krao with it’s signature rocket barrage especially when paired with its guiding laser. Due to weight issues and lack of options when in close quarters, newer models have lighter materials and the ability to shoot low caliber bullets when things are danger close."
 	 Priority=41
      HudColor=(B=170,G=170,R=210)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

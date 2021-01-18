@@ -10,16 +10,16 @@ class DT_MX32Rocket extends DT_BWExplode;
 
 defaultproperties
 {
-     DeathStrings(0)="%k made a night-light out of %o's stomach with a rocket."
-     DeathStrings(1)="%o tried to catch %k's rocket in a lapse of judgement."
-     DeathStrings(2)="%k lodged a rocket down %o's throat."
-     DeathStrings(3)="%k launched a rocket right up %o's nostril."
+     DeathStrings(0)="%o's heart went boom, along with the rest of him due to %k's barrage."
+     DeathStrings(1)="%k made it rain with a storm of rockets landing on %o's head."
+     DeathStrings(2)="%o couldn’t outrun a guided cloud of rockets coming from %k’s MX32."
+     DeathStrings(3)="%k directed some explosive maelstrom on %o, blowing him to smithereens."
      SimpleKillString="MX-32 Rocket"
      DamageIdent="Sniper"
      WeaponClass=Class'BWBPOtherPackPro.MX32Weapon'
-     DeathString="%k made a night-light out of %o's stomach with a rocket."
-     FemaleSuicide="%o had her heart set aflame by a LS-14 rocket."
-     MaleSuicide="%o had his heart set aflame by a LS-14 rocket."
+     DeathString="%o's heart went boom, along with the rest of him due to %k's barrage."
+     FemaleSuicide="%o had her heart set aflame by a MX32 rocket."
+     MaleSuicide="%o had his heart set aflame by a MX32 rocket."
      bDelayedDamage=True
      bExtraMomentumZ=True
 }
