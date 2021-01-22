@@ -7,7 +7,7 @@ defaultproperties
      TraceRange=(Min=12000.000000,Max=15000.000000)
      WallPenetrationForce=1.000000
      
-     Damage=25.000000
+     Damage=23.000000
      RangeAtten=0.350000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBPOtherPackPro.DTMX32Primary'

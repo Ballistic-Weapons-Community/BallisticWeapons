@@ -17,7 +17,7 @@ defaultproperties
      Begin Object Class=MeshEmitter Name=MeshEmitter5
          StaticMesh=StaticMesh'BW_Core_WeaponStatic.A42.A42MuzzleFlash'
          UseMeshBlendMode=False
-         RenderTwoSided=True
+		 RenderTwoSided=True
          UseParticleColor=True
          UseColorScale=True
          FadeOut=True
