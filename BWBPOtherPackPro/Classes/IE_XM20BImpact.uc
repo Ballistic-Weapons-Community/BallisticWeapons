@@ -57,7 +57,6 @@ defaultproperties
         FadeOut=True
         FadeIn=True
         RespawnDeadParticles=False
-        ZTest=False
         UseSizeScale=True
         UseRegularSizeScale=False
         UniformSize=True
@@ -156,7 +155,6 @@ defaultproperties
         FadeOut=True
         FadeIn=True
         RespawnDeadParticles=False
-        ZTest=False
         UseSizeScale=True
         UseRegularSizeScale=False
         UniformSize=True
@@ -190,7 +188,6 @@ defaultproperties
         FadeOut=True
         FadeIn=True
         RespawnDeadParticles=False
-        ZTest=False
         SpinParticles=True
         UseSizeScale=True
         UseRegularSizeScale=False

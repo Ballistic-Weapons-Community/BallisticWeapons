@@ -129,7 +129,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.AIMS-Fire2',Volume=1.000000)
      bSplashDamage=True
      bRecommendSplashDamage=True
-     bTossed=True
+     bTossed=False
      bModeExclusive=False
 	 FireAnim="RocketFire"
      AimedFireAnim="SightFire"

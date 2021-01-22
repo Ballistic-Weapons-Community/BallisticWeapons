@@ -365,7 +365,7 @@ simulated function UpdateBones()
 
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (ReloadState != RS_None)
+	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
 	if (Clientstate != WS_ReadyToFire)
 		return;

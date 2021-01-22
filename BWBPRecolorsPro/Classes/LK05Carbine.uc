@@ -99,7 +99,7 @@ function ServerSwitchSilencer(bool bNewValue)
 
 exec simulated function SwitchSilencer() 
 {
-	if (ReloadState != RS_None)
+	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
 	if (ClientState != WS_ReadyToFire)
 		return;
