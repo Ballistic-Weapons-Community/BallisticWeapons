@@ -23,6 +23,11 @@ simulated function AdjustLaserParams(bool bLaserOn)
 		XInaccuracy=default.XInaccuracy;
 		YInaccuracy=default.YInaccuracy;
 	}
+	if (Weapon.bBerserk)
+		FireRate *= 0.75;
+	if ( Level.GRI.WeaponBerserk > 1.0 )
+	    FireRate /= Level.GRI.WeaponBerserk;
+
 }
 
 simulated function bool CheckRockets()
