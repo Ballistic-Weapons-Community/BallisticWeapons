@@ -9,8 +9,6 @@
 //=============================================================================
 class PS9mSecondaryFire extends BallisticProProjectileFire;
 
-var   bool		bLoaded;
-
 //Do the spread on the client side
 function PlayFiring()
 {
@@ -40,6 +38,7 @@ simulated function bool CheckGrenade()
 		weapon.GetAnimParams(channel, seq, frame, rate);
 		if (seq == PS9mPistol(Weapon).GrenadeLoadAnim)
 			return false;
+
 		PS9mPistol(Weapon).LoadGrenade();
 		bIsFiring=false;
 		return false;
@@ -51,8 +50,10 @@ simulated event ModeDoFire()
 {
 	if (!AllowFire())
 		return;
+
 	if (!CheckGrenade())
 		return;
+
 	Super.ModeDoFire();
 	PS9mPistol(Weapon).bLoaded = false;
 }
@@ -72,6 +73,7 @@ defaultproperties
      FireForce="AssaultRifleAltFire"
      FireRate=0.600000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_MedDarts'
+	 AmmoPerFire=0
      ShakeRotTime=2.000000
      ShakeOffsetMag=(X=-20.000000)
      ShakeOffsetRate=(X=-1000.000000)

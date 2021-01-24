@@ -96,11 +96,11 @@ simulated event ModeDoFire()
     if (LaserCharge + 0.01 >= MaxCharge || AIController(Instigator.Controller) != None ) //Fire at max charge, bots ignore charging
     {
 		super.ModeDoFire();
-        XM20BCarbine(BW).CoolRate = XM20BCarbine(BW).default.CoolRate * (1 + 2*int(BW.bBerserk));
+        XM20BCarbine(BW).CoolRate = XM20BCarbine(BW).default.CoolRate * (1 + 0.2*int(BW.bBerserk));
     }
     else
     {
-        XM20BCarbine(BW).CoolRate = XM20BCarbine(BW).default.CoolRate * 3 * (1 + 2*int(BW.bBerserk));
+        XM20BCarbine(BW).CoolRate = XM20BCarbine(BW).default.CoolRate * 3 * (1 + 0.2*int(BW.bBerserk));
     }
 
 	//Overheat and lock the gun for a bit
@@ -123,34 +123,32 @@ simulated function ModeTick(float DT)
 
 simulated function SwitchLaserMode (byte NewMode)
 {
-		if (NewMode == 2) //overcharged
-        {
-			XM20BCarbine(BW).bOvercharged=true;
-			FireRate=default.OverChargedFireRate;
-			if (BW.bBerserk)
-				FireRate*=0.75;
-
-			Damage=15.000000;
-			XM20BCarbine(BW).ChargeRate=0.600000;
-			PreFireAnim=PreFireAnimCharged;
-			FireLoopAnim=FireLoopAnimCharged;
-			FireEndAnim=FireEndAnimCharged;
-			FlashScaleFactor=0.5;
-        }
-        else
-        {
-			XM20BCarbine(BW).bOvercharged=false;
-			FireRate=default.FireRate;
-			if (BW.bBerserk)
-				FireRate*=0.75;
-				
-			Damage=default.Damage;
-			XM20BCarbine(BW).ChargeRate=XM20BCarbine(BW).default.ChargeRate;
-			PreFireAnim=default.PreFireAnim;
-			FireLoopAnim=default.FireLoopAnim;
-			FireEndAnim=default.FireEndAnim;
-			FlashScaleFactor=default.FlashScaleFactor;
-        }
+	if (NewMode == 2) //overcharged
+    {
+		XM20BCarbine(BW).bOvercharged=true;
+		FireRate=default.OverChargedFireRate;
+		Damage=15.000000;
+		XM20BCarbine(BW).ChargeRate=0.600000;
+		PreFireAnim=PreFireAnimCharged;
+		FireLoopAnim=FireLoopAnimCharged;
+		FireEndAnim=FireEndAnimCharged;
+		FlashScaleFactor=0.5;
+	}
+    else
+    {
+		XM20BCarbine(BW).bOvercharged=false;
+		FireRate=default.FireRate;				
+		Damage=default.Damage;
+		XM20BCarbine(BW).ChargeRate=XM20BCarbine(BW).default.ChargeRate;
+		PreFireAnim=default.PreFireAnim;
+		FireLoopAnim=default.FireLoopAnim;
+		FireEndAnim=default.FireEndAnim;
+		FlashScaleFactor=default.FlashScaleFactor;
+    }
+	if (Weapon.bBerserk)
+		FireRate *= 0.75;
+	if ( Level.GRI.WeaponBerserk > 1.0 )
+	    FireRate /= Level.GRI.WeaponBerserk;
 }
 
 

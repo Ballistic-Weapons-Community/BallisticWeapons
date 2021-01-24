@@ -8,9 +8,9 @@ defaultproperties
      TrailOffset=(X=-4.000000)
      MyRadiusDamageType=Class'BWBPOtherPackPro.DT_MX32RocketRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=500.000000
-     AccelSpeed=12000.000000
-	 MaxSpeed=8500.000000
+     Speed=1500.000000
+     AccelSpeed=20000.000000
+	MaxSpeed=12500.000000
      Damage=48.000000
      DamageRadius=100.000000
      MyDamageType=Class'BWBPOtherPackPro.DT_MX32Rocket'

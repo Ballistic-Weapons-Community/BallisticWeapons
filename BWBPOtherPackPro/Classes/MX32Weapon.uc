@@ -123,24 +123,6 @@ simulated function Destroyed ()
 	Super.Destroyed();
 }
 
-simulated function vector ConvertFOVs (vector InVec, float InFOV, float OutFOV, float Distance)
-{
-	local vector ViewLoc, Outvec, Dir, X, Y, Z;
-	local rotator ViewRot;
-
-	ViewLoc = Instigator.Location + Instigator.EyePosition();
-	ViewRot = Instigator.GetViewRotation();
-	Dir = InVec - ViewLoc;
-	GetAxes(ViewRot, X, Y, Z);
-
-    OutVec.X = Distance / tan(OutFOV * PI / 360);
-    OutVec.Y = (Dir dot Y) * (Distance / tan(InFOV * PI / 360)) / (Dir dot X);
-    OutVec.Z = (Dir dot Z) * (Distance / tan(InFOV * PI / 360)) / (Dir dot X);
-    OutVec = OutVec >> ViewRot;
-
-	return OutVec + ViewLoc;
-}
-
 // Draw a laser beam and dot to show exact path of bullets before they're fired
 simulated function DrawLaserSight ( Canvas Canvas )
 {
@@ -170,7 +152,8 @@ simulated function DrawLaserSight ( Canvas Canvas )
 
 	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs)
 	Laser.SetLocation(Loc);
-	HitLocation = ConvertFOVs(End, Instigator.Controller.FovAngle, DisplayFOV, 400);
+	HitLocation = class'BUtil'.static.ConvertFOVs(Instigator.Location + Instigator.EyePosition(), Instigator.GetViewRotation(), End, Instigator.Controller.FovAngle, DisplayFOV, 400);
+
 	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
 		Laser.SetRotation(Rotator(HitLocation - Loc));
 	else
@@ -188,7 +171,8 @@ simulated function DrawLaserSight ( Canvas Canvas )
 simulated event RenderOverlays( Canvas Canvas )
 {
 	super.RenderOverlays(Canvas);
-	DrawLaserSight(Canvas);
+	if (!IsInState('Lowered'))
+		DrawLaserSight(Canvas);
 }
 
 // Notifys for greande loading sounds
@@ -607,6 +591,7 @@ defaultproperties
      bNoCrosshairInScope=True
      SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
      SightDisplayFOV=20.000000
+	 ZoomType=ZT_Irons
 	 
      FireModeClass(0)=Class'BWBPOtherPackPro.MX32PrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.MX32SecondaryFire'
