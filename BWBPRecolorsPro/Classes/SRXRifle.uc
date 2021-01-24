@@ -6,7 +6,6 @@ var() name		SilencerOnAnim;			// Think hard about this one...
 var() name		SilencerOffAnim;		//
 var() sound		SilencerOnSound;		// Silencer stuck on sound
 var() sound		SilencerOffSound;		//
-var() float		SilencerSwitchTime;		//
 
 var() array<Material> CamoMaterials; //We're using this for the amp
 
@@ -18,7 +17,7 @@ var() sound		AmplifierOnSound;		// Silencer stuck on sound
 var() sound		AmplifierOffSound;		//
 var() sound		AmplifierPowerOnSound;		// Silencer stuck on sound
 var() sound		AmplifierPowerOffSound;		//
-var() float		AmplifierSwitchTime;		//
+var() float		SwitchTime;		//
 
 var	  Rotator	RearSightBoneRot;
 
@@ -135,27 +134,28 @@ simulated function Notify_ClipIn()
 
 exec simulated function ToggleAmplifier(optional byte i)
 {
-	if (level.TimeSeconds < AmplifierSwitchTime || level.TimeSeconds < SilencerSwitchTime || ReloadState != RS_None || SightingState != SS_None)
+	if (level.TimeSeconds < SwitchTime || ReloadState != RS_None || SightingState != SS_None || bSilenced)
 		return;
 		
-	if (bSilenced)
+	/*if (bSilenced)
 	{
 		WeaponSpecial();
 		return;
-	}
+	}*/
+
 	TemporaryScopeDown(0.5);
-	AmplifierSwitchTime = level.TimeSeconds + 2.0;
+	SwitchTime = level.TimeSeconds + 2.0;
 	bAmped = !bAmped;
 	ServerSwitchAmplifier(bAmped);
 	SwitchAmplifier(bAmped);
 }
 
-simulated function ServerSwitchAmplifier(bool bNewValue)
+function ServerSwitchAmplifier(bool bNewValue)
 {
 	bServerReloading=True;
 	ReloadState = RS_GearSwitch;
 
-	AmplifierSwitchTime = level.TimeSeconds + 2.0;
+	SwitchTime = level.TimeSeconds + 2.0;
 	bAmped = bNewValue;
 	if (bAmped)
 	{
@@ -235,25 +235,25 @@ simulated function ClientSwitchWeaponMode (byte newMode)
 
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (level.TimeSeconds < SilencerSwitchTime || level.TimeSeconds < AmplifierSwitchTime || ReloadState != RS_None || SightingState != SS_None)
+	if (level.TimeSeconds < SwitchTime || ReloadState != RS_None || SightingState != SS_None || bAmped)
 		return;
 		
-	if (bAmped)
+	/*if (bAmped)
 	{
 		ToggleAmplifier();
 		return;
-	}
+	}*/
 		
 	TemporaryScopeDown(0.5);
-	SilencerSwitchTime = level.TimeSeconds + 2.0;
+	SwitchTime = level.TimeSeconds + 2.0;
 	bSilenced = !bSilenced;
 	ServerSwitchSilencer(bSilenced);
 	SwitchSilencer(bSilenced);
 }
 
-simulated function ServerSwitchSilencer(bool bNewValue)
+function ServerSwitchSilencer(bool bNewValue)
 {
-	SilencerSwitchTime = level.TimeSeconds + 2.0;
+	SwitchTime = level.TimeSeconds + 2.0;
 	bSilenced = bNewValue;
 	BFireMode[0].bAISilent = bSilenced;
 	

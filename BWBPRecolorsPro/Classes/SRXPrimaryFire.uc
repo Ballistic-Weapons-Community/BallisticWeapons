@@ -34,7 +34,7 @@ var() float						SFlashScaleFactor;
 
 simulated function bool AllowFire()
 {
-	if (level.TimeSeconds < SRXRifle(Weapon).SilencerSwitchTime || level.TimeSeconds < SRXRifle(Weapon).AmplifierSwitchTime)
+	if (level.TimeSeconds < SRXRifle(Weapon).SwitchTime)
 		return false;
 		
 	return super.AllowFire();

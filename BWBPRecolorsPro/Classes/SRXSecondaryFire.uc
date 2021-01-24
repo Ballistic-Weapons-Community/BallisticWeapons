@@ -2,7 +2,9 @@ class SRXSecondaryFire extends BallisticFire;
 
 simulated event ModeDoFire()
 {
-	if (Weapon.Role == ROLE_Authority && AllowFire())
+	if (!Instigator.IsLocallyControlled())
+          return;
+     if (AllowFire())
 		SRXRifle(Weapon).ToggleAmplifier();
 }
 
