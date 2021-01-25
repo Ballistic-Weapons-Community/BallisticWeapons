@@ -18,8 +18,6 @@ var() sound		BlackFireSound;
 var() sound		Amp1FireSound; //Incendiary Red
 var() sound		Amp2FireSound; //???
 var() sound		RegularFireSound;
-var bool		bFlashAmp1;
-var bool		bFlashAmp2;
 var() Actor						MuzzleFlashAmp1;		
 var() class<Actor>				MuzzleFlashClassAmp1;	
 var() Actor						MuzzleFlashAmp2;		
@@ -31,14 +29,6 @@ var() Actor						SMuzzleFlash;		// Silenced Muzzle flash stuff
 var() class<Actor>				SMuzzleFlashClass;
 var() Name						SFlashBone;
 var() float						SFlashScaleFactor;
-
-simulated function bool AllowFire()
-{
-	if (level.TimeSeconds < SRXRifle(Weapon).SwitchTime)
-		return false;
-		
-	return super.AllowFire();
-}
 
 function InitEffects()
 {
@@ -64,9 +54,9 @@ function FlashMuzzleFlash()
 		
     if (SRXRifle(Weapon).bSilenced && SMuzzleFlash != None)
         SMuzzleFlash.Trigger(Weapon, Instigator);
-    else if (MuzzleFlashAmp1 != None && bFlashAmp1)
+    else if (MuzzleFlashAmp1 != None && SRXRifle(Weapon).CurrentWeaponMode == 1)
        	MuzzleFlashAmp1.Trigger(Weapon, Instigator);
-    else if (MuzzleFlashAmp2 != None && bFlashAmp2)
+    else if (MuzzleFlashAmp2 != None && SRXRifle(Weapon).CurrentWeaponMode == 2)
         MuzzleFlashAmp2.Trigger(Weapon, Instigator);
 	else
 		MuzzleFlash.Trigger(Weapon, Instigator);
@@ -97,11 +87,9 @@ simulated function SwitchWeaponMode (byte NewMode)
 		DamageTypeArm=default.DamageTypeArm;
 		FireRate=Default.FireRate;
 		FlashScaleFactor=default.FlashScaleFactor;
-		bFlashAmp1=false;
-		bFlashAmp2=false;
 		RangeAtten=default.RangeAtten;
 	}
-	else if (NewMode == 3) //Incendiary Amp
+	else if (NewMode == 1) //Incendiary Amp
 	{
 		BallisticFireSound.Sound=Amp1FireSound;
 		BallisticFireSound.Volume=1.500000;
@@ -112,11 +100,9 @@ simulated function SwitchWeaponMode (byte NewMode)
 		DamageTypeArm=class'DTSRXRifle_Incendiary';
 		FireRate=0.280000;
 		FlashScaleFactor=1.100000;
-		bFlashAmp1=true;
-		bFlashAmp2=false;
 		RangeAtten=1.000000;
 	}
-	else if (NewMode == 4) //Acid Amp
+	else if (NewMode == 2) //Acid Amp
 	{
 		BallisticFireSound.Sound=Amp2FireSound;
 		BallisticFireSound.Volume=1.200000;
@@ -127,8 +113,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 		DamageTypeArm=class'DTSRXRifle_Corrosive';
 		FireRate=0.120000;
 		FlashScaleFactor=0.400000;
-		bFlashAmp1=false;
-		bFlashAmp2=true;
 		RangeAtten=1.000000;
 	}
 	else
@@ -142,8 +126,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 		DamageTypeArm=default.DamageTypeArm;
 		FireRate=Default.FireRate;
 		FlashScaleFactor=default.FlashScaleFactor;
-		bFlashAmp1=false;
-		bFlashAmp2=false;
 		RangeAtten=default.RangeAtten;
 	}
 	if (Weapon.bBerserk)
@@ -188,9 +170,9 @@ function PlayFiring()
 
 	if (SRXRifle(Weapon) != None && SRXRifle(Weapon).bSilenced && SilencedFireSound.Sound != None)
 		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,true);
-	else if (SRXRifle(Weapon) != None && bFlashAmp1 && Amp1FireSound != None)
+	else if (SRXRifle(Weapon) != None && SRXRifle(Weapon).CurrentWeaponMode == 1 && Amp1FireSound != None)
 		Weapon.PlayOwnedSound(Amp1FireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
-	else if (SRXRifle(Weapon) != None && bFlashAmp2 && Amp2FireSound != None)
+	else if (SRXRifle(Weapon) != None && SRXRifle(Weapon).CurrentWeaponMode == 2 && Amp2FireSound != None)
 		Weapon.PlayOwnedSound(Amp2FireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
@@ -198,7 +180,7 @@ function PlayFiring()
 	CheckClipFinished();
 }
 
-function SetSilenced(bool bSilenced)
+simulated function SetSilenced(bool bSilenced)
 {
 	if (bSilenced)
 	{
@@ -225,7 +207,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 {
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (Victim.bProjTarget && BallisticShield(Victim) == None && bFlashAmp1)
+	if (Victim.bProjTarget && BallisticShield(Victim) == None && SRXRifle(Weapon).CurrentWeaponMode == 1)
 		BW.TargetedHurtRadius(Damage, 384, class'DTSRXRifle_Incendiary', 200, HitLocation, Pawn(Victim));
 }
 
@@ -244,7 +226,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	else
 		Surf = int(HitMat.SurfaceType);
 		
-	if ((Other == None || Other.bWorldGeometry) && bFlashAmp1)
+	if ((Other == None || Other.bWorldGeometry) && SRXRifle(Weapon).CurrentWeaponMode == 1)
 		BW.TargetedHurtRadius(5, 150, class'DTSRXRifle_Incendiary', 50, HitLocation);
 
 	// Tell the attachment to spawn effects and so on
