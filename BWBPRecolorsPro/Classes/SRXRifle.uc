@@ -6,7 +6,6 @@ var() name		SilencerOnAnim;			// Think hard about this one...
 var() name		SilencerOffAnim;		//
 var() sound		SilencerOnSound;		// Silencer stuck on sound
 var() sound		SilencerOffSound;		//
-var() float		SilencerSwitchTime;		//
 
 var() array<Material> CamoMaterials; //We're using this for the amp
 
@@ -18,7 +17,6 @@ var() sound		AmplifierOnSound;		// Silencer stuck on sound
 var() sound		AmplifierOffSound;		//
 var() sound		AmplifierPowerOnSound;		// Silencer stuck on sound
 var() sound		AmplifierPowerOffSound;		//
-var() float		AmplifierSwitchTime;		//
 
 var	  Rotator	RearSightBoneRot;
 
@@ -34,7 +32,9 @@ var	float	AmmoBarPos;
 
 replication
 {
-   	reliable if( Role<ROLE_Authority )
+	reliable if (Role == ROLE_Authority)
+		ClientScreenStart;
+   	reliable if (Role < ROLE_Authority)
 		ServerSwitchSilencer, ServerSwitchAmplifier;	
 }
 
@@ -84,48 +84,28 @@ simulated event RenderTexture( ScriptedTexture Tex )
 	
 simulated function UpdateScreen()
 {
+	if (Instigator != None && AIController(Instigator.Controller) != None) //Bots cannot update your screen
+		return;
+
 	if (Instigator.IsLocallyControlled())
-	{
-			WeaponScreen.Revision++;
-	}
+		WeaponScreen.Revision++;
 }
 	
 // Consume ammo from one of the possible sources depending on various factors
 simulated function bool ConsumeMagAmmo(int Mode, float Load, optional bool bAmountNeededIsMax)
 {
+	local bool bSuper;
 
-	if (bNoMag || (BFireMode[Mode] != None && BFireMode[Mode].bUseWeaponMag == false))
-		ConsumeAmmo(Mode, Load, bAmountNeededIsMax);
-	else
-	{
-		if (MagAmmo < Load)
-			MagAmmo = 0;
-		else
-			MagAmmo -= Load;
-	}
-
+	bSuper = super.ConsumeMagAmmo(Mode, Load, bAmountNeededIsMax);
 	UpdateScreen();
-	return true;
+
+	return bSuper;
 }
 
 // Animation notify for when the clip is stuck in
 simulated function Notify_ClipIn()
 {
-	local int AmmoNeeded;
-
-	if (ReloadState == RS_None)
-		return;
-	ReloadState = RS_PostClipIn;
-	PlayOwnedSound(ClipInSound.Sound,ClipInSound.Slot,ClipInSound.Volume,ClipInSound.bNoOverride,ClipInSound.Radius,ClipInSound.Pitch,ClipInSound.bAtten);
-	if (level.NetMode != NM_Client)
-	{
-		AmmoNeeded = default.MagAmmo-MagAmmo;
-		if (AmmoNeeded > Ammo[0].AmmoAmount)
-			MagAmmo+=Ammo[0].AmmoAmount;
-		else
-			MagAmmo = default.MagAmmo;
-		Ammo[0].UseAmmo (AmmoNeeded, True);
-	}
+	super.Notify_ClipIn();
 	UpdateScreen();
 }
 
@@ -135,41 +115,45 @@ simulated function Notify_ClipIn()
 
 exec simulated function ToggleAmplifier(optional byte i)
 {
-	if (level.TimeSeconds < AmplifierSwitchTime || level.TimeSeconds < SilencerSwitchTime || ReloadState != RS_None || SightingState != SS_None)
+	if (ReloadState != RS_None || SightingState != SS_None || bSilenced)
 		return;
 		
-	if (bSilenced)
+	/*if (bSilenced)
 	{
 		WeaponSpecial();
 		return;
-	}
+	}*/
+
 	TemporaryScopeDown(0.5);
-	AmplifierSwitchTime = level.TimeSeconds + 2.0;
+
 	bAmped = !bAmped;
+
 	ServerSwitchAmplifier(bAmped);
 	SwitchAmplifier(bAmped);
 }
 
-simulated function ServerSwitchAmplifier(bool bNewValue)
+function ServerSwitchAmplifier(bool bNewValue)
 {
+	bAmped = bNewValue;
+
+	SwitchAmplifier(bAmped);
+
 	bServerReloading=True;
 	ReloadState = RS_GearSwitch;
 
-	AmplifierSwitchTime = level.TimeSeconds + 2.0;
-	bAmped = bNewValue;
 	if (bAmped)
 	{
 			WeaponModes[0].bUnavailable=true;
-			WeaponModes[3].bUnavailable=false;
-			WeaponModes[4].bUnavailable=false;
-			CurrentWeaponMode=3;
-			ServerSwitchWeaponMode(3);
+			WeaponModes[1].bUnavailable=false;
+			WeaponModes[2].bUnavailable=false;
+			CurrentWeaponMode=1;
+			ServerSwitchWeaponMode(1);
 	}
 	else
 	{
 			WeaponModes[0].bUnavailable=false;
-			WeaponModes[3].bUnavailable=true;
-			WeaponModes[4].bUnavailable=true;
+			WeaponModes[1].bUnavailable=true;
+			WeaponModes[2].bUnavailable=true;
 			CurrentWeaponMode=0;
 			ServerSwitchWeaponMode(0);
 	}
@@ -189,13 +173,13 @@ simulated function SwitchAmplifier(bool bNewValue)
 	if (Role == ROLE_Authority)
 		SRXAttachment(ThirdPersonActor).SetAmped(bNewValue);
 		
-	if (CurrentWeaponMode == 3)	//red
+	if (CurrentWeaponMode == 1)	//red
 	{
 		SRXAttachment(ThirdPersonActor).SetAmpColour(true, false);
 		Skins[14]=CamoMaterials[0];
 		Skins[15]=CamoMaterials[2];
 	}
-	else if (CurrentWeaponMode == 4)	//green
+	else if (CurrentWeaponMode == 2)	//green
 	{
 		SRXAttachment(ThirdPersonActor).SetAmpColour(false, true);
 		Skins[14]=CamoMaterials[1];
@@ -207,21 +191,21 @@ simulated function ServerSwitchWeaponMode (byte newMode)
 {
 	super.ServerSwitchWeaponMode (newMode);
 	if (!Instigator.IsLocallyControlled())
-		SRXPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);		
-		
-	ClientSwitchWeaponMode (CurrentWeaponMode);
+		SRXPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 }
 
-simulated function ClientSwitchWeaponMode (byte newMode)
+simulated function CommonSwitchWeaponMode (byte newMode)
 {
+	super.CommonSwitchWeaponMode(newMode);
+
 	SRXPrimaryFire(FireMode[0]).SwitchWeaponMode(newMode);
-	if (newMode == 3)	//red
+	if (newMode == 1)	//red
 	{
 		SRXAttachment(ThirdPersonActor).SetAmpColour(true, false);
 		Skins[14]=CamoMaterials[0];
 		Skins[15]=CamoMaterials[2];
 	}
-	else if (newMode == 4)	//green
+	else if (newMode == 2)	//green
 	{
 		SRXAttachment(ThirdPersonActor).SetAmpColour(false, true);
 		Skins[14]=CamoMaterials[1];
@@ -235,30 +219,32 @@ simulated function ClientSwitchWeaponMode (byte newMode)
 
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (level.TimeSeconds < SilencerSwitchTime || level.TimeSeconds < AmplifierSwitchTime || ReloadState != RS_None || SightingState != SS_None)
+	if (ReloadState != RS_None || SightingState != SS_None || bAmped)
 		return;
 		
-	if (bAmped)
+	/*if (bAmped)
 	{
 		ToggleAmplifier();
 		return;
-	}
+	}*/
 		
 	TemporaryScopeDown(0.5);
-	SilencerSwitchTime = level.TimeSeconds + 2.0;
+	
 	bSilenced = !bSilenced;
+
 	ServerSwitchSilencer(bSilenced);
 	SwitchSilencer(bSilenced);
 }
 
-simulated function ServerSwitchSilencer(bool bNewValue)
+function ServerSwitchSilencer(bool bNewValue)
 {
-	SilencerSwitchTime = level.TimeSeconds + 2.0;
 	bSilenced = bNewValue;
-	BFireMode[0].bAISilent = bSilenced;
-	
+
+	SwitchSilencer(bSilenced);
+
 	bServerReloading=True;
 	ReloadState = RS_GearSwitch;
+	BFireMode[0].bAISilent = bSilenced;
 	
 	if (bSilenced)
 	{
@@ -505,10 +491,8 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipHit')
 	ClipInFrame=0.650000
-	WeaponModes(1)=(bUnavailable=True)
-    WeaponModes(2)=(bUnavailable=True)
-    WeaponModes(3)=(ModeName="Amplified: Explosive",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
-    WeaponModes(4)=(ModeName="Amplified: Corrosive",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
+	WeaponModes(1)=(ModeName="Amplified: Explosive",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+    WeaponModes(2)=(ModeName="Amplified: Corrosive",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
 	CurrentWeaponMode=0
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
