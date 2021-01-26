@@ -93,8 +93,8 @@ simulated function SwitchWeaponMode (byte NewMode)
 	{
 		BallisticFireSound.Sound=Amp1FireSound;
 		BallisticFireSound.Volume=1.500000;
-		FireRecoil=512.000000;
-		Damage=50.000000;
+		FireRecoil=640.000000;
+		Damage=45.000000;
 		DamageType=class'DTSRXRifle_Incendiary';
 		DamageTypeHead=class'DTSRXRifleHead_Incendiary';
 		DamageTypeArm=class'DTSRXRifle_Incendiary';
@@ -107,11 +107,11 @@ simulated function SwitchWeaponMode (byte NewMode)
 		BallisticFireSound.Sound=Amp2FireSound;
 		BallisticFireSound.Volume=1.200000;
 		FireRecoil=128.000000;
-		Damage=20.000000;
+		Damage=16.000000;
 		DamageType=class'DTSRXRifle_Corrosive';
 		DamageTypeHead=class'DTSRXRifleHead_Corrosive';
 		DamageTypeArm=class'DTSRXRifle_Corrosive';
-		FireRate=0.120000;
+		FireRate=0.160000;
 		FlashScaleFactor=0.400000;
 		RangeAtten=1.000000;
 	}
@@ -280,7 +280,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire',Radius=1536.000000,Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
      bPawnRapidFireAnim=True
      FireEndAnim=
-     FireRate=0.20000
+     FireRate=0.200000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_SRXBullets'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
@@ -290,5 +290,5 @@ defaultproperties
      ShakeOffsetTime=2.000000
      WarnTargetPct=0.200000
      aimerror=800.000000
-	 BurstFireRateFactor=0.55
+	 BurstFireRateFactor=0.30
 }
