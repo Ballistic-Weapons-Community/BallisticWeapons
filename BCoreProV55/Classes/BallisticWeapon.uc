@@ -522,7 +522,7 @@ simulated function PostNetBeginPlay()
 
 	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
 	// To my knowledge, this is the case.
-	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
+	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst" || WeaponModes[CurrentWeaponMode].ModeID ~= "WM_BigBurst")
 	{
 		BFireMode[0].bBurstMode = True;
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;
@@ -2578,7 +2578,7 @@ simulated function CheckBurstMode()
 {	
 	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
 	// To my knowledge, this is the case.
-	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst")
+	if (WeaponModes[CurrentWeaponMode].ModeID ~= "WM_Burst" || WeaponModes[CurrentWeaponMode].ModeID ~= "WM_BigBurst")
 	{
 		BFireMode[0].bBurstMode = True;
 		BFireMode[0].MaxBurst = WeaponModes[CurrentWeaponMode].Value;

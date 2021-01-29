@@ -166,9 +166,19 @@ simulated function SwitchAmplifier(bool bNewValue)
 	ReloadState = RS_GearSwitch;
 
 	if (bNewValue)
+	{
 		PlayAnim(AmplifierOnAnim);
+		WeaponModes[0].bUnavailable=true;
+		WeaponModes[1].bUnavailable=false;
+		WeaponModes[2].bUnavailable=false;
+	}
 	else
+	{
 		PlayAnim(AmplifierOffAnim);
+		WeaponModes[0].bUnavailable=false;
+		WeaponModes[1].bUnavailable=true;
+		WeaponModes[2].bUnavailable=true;
+	}
 		
 	if (Role == ROLE_Authority)
 		SRXAttachment(ThirdPersonActor).SetAmped(bNewValue);
@@ -491,8 +501,8 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipHit')
 	ClipInFrame=0.650000
-	WeaponModes(1)=(ModeName="Amplified: Explosive",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
-    WeaponModes(2)=(ModeName="Amplified: Corrosive",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
+	WeaponModes(1)=(ModeName="Amplified: Explosive",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True,RecoilParamsIndex=1)
+    WeaponModes(2)=(ModeName="Amplified: Corrosive",ModeID="WM_BigBurst",Value=4.000000,bUnavailable=True,RecoilParamsIndex=2)
 	CurrentWeaponMode=0
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
