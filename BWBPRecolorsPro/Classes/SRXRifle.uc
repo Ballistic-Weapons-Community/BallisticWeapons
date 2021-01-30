@@ -81,6 +81,14 @@ simulated event RenderTexture( ScriptedTexture Tex )
 	}
 	
 }
+
+simulated event RenderOverlays( Canvas C )
+{
+	if (Instigator.IsLocallyControlled())
+		WeaponScreen.Revision++;
+
+	super.RenderOverlays(C);
+}
 	
 simulated function UpdateScreen()
 {
@@ -94,12 +102,17 @@ simulated function UpdateScreen()
 // Consume ammo from one of the possible sources depending on various factors
 simulated function bool ConsumeMagAmmo(int Mode, float Load, optional bool bAmountNeededIsMax)
 {
-	local bool bSuper;
-
-	bSuper = super.ConsumeMagAmmo(Mode, Load, bAmountNeededIsMax);
+	if (bNoMag || (BFireMode[Mode] != None && BFireMode[Mode].bUseWeaponMag == false))
+		ConsumeAmmo(Mode, Load, bAmountNeededIsMax);
+	else
+	{
+		if (MagAmmo < Load)
+			MagAmmo = 0;
+		else
+			MagAmmo -= Load;
+	}
 	UpdateScreen();
-
-	return bSuper;
+	return true;
 }
 
 // Animation notify for when the clip is stuck in
@@ -109,28 +122,52 @@ simulated function Notify_ClipIn()
 	UpdateScreen();
 }
 
-//==============================================
-// Amp Code
-//==============================================
-
-exec simulated function ToggleAmplifier(optional byte i)
+//mount or unmount silencer, but take off amp where necessary
+exec simulated function WeaponSpecial(optional byte i)
 {
-	if (ReloadState != RS_None || SightingState != SS_None || bSilenced)
+	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
 		
-	/*if (bSilenced)
+	TemporaryScopeDown(0.5);
+	
+	if (bAmped)	//take off amp
 	{
-		WeaponSpecial();
+		bAmped = !bAmped;
+		ServerSwitchAmplifier(bAmped);
+		SwitchAmplifier(bAmped);
+	}
+	else
+	{
+		bSilenced = !bSilenced;
+		ServerSwitchSilencer(bSilenced);
+		SwitchSilencer(bSilenced);
+	}
+}
+//mount or unmount amp, but take off silencer where necessary
+exec simulated function ToggleAmplifier(optional byte i)
+{
+	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
-	}*/
 
 	TemporaryScopeDown(0.5);
 
-	bAmped = !bAmped;
-
-	ServerSwitchAmplifier(bAmped);
-	SwitchAmplifier(bAmped);
+	if (bSilenced)	//take off silencer
+	{
+		bSilenced = !bSilenced;
+		ServerSwitchSilencer(bSilenced);
+		SwitchSilencer(bSilenced);
+	}
+	else
+	{
+		bAmped = !bAmped;
+		ServerSwitchAmplifier(bAmped);
+		SwitchAmplifier(bAmped);
+	}
 }
+
+//==============================================
+// Amp Code
+//==============================================
 
 function ServerSwitchAmplifier(bool bNewValue)
 {
@@ -226,25 +263,6 @@ simulated function CommonSwitchWeaponMode (byte newMode)
 //==============================================
 // Suppressor Code
 //==============================================
-
-exec simulated function WeaponSpecial(optional byte i)
-{
-	if (ReloadState != RS_None || SightingState != SS_None || bAmped)
-		return;
-		
-	/*if (bAmped)
-	{
-		ToggleAmplifier();
-		return;
-	}*/
-		
-	TemporaryScopeDown(0.5);
-	
-	bSilenced = !bSilenced;
-
-	ServerSwitchSilencer(bSilenced);
-	SwitchSilencer(bSilenced);
-}
 
 function ServerSwitchSilencer(bool bNewValue)
 {
@@ -402,11 +420,10 @@ simulated function TickSighting (float DT)
 			SightingPhase = 0.0;
 			SightingState = SS_None;
 			ScopeDownAnimEnd();
-			DisplayFOv = default.DisplayFOV;
+			DisplayFOV = default.DisplayFOV;
 		}
 	}
 }
-
 
 // Secondary fire doesn't count for this weapon
 simulated function bool HasAmmo()

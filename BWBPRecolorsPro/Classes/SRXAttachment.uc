@@ -60,7 +60,7 @@ simulated event PostNetReceive()
 	if (bAmp2 != bOldAmp2)	//green amp
 	{
 		bOldAmp2 = bAmp2;
-		if (bAmped && bAmp1)
+		if (bAmped && bAmp2)
 		{
 			Skins[13]=CamoMaterials[1];
 			Skins[14]=CamoMaterials[3];
@@ -87,6 +87,29 @@ simulated function SetAmped(bool bIsAmped)
 		SetBoneScale (1, 1.0, 'AMP');
 	else
 		SetBoneScale (1, 0.0, 'AMP');
+}
+
+simulated event ThirdPersonEffects()
+{
+    if ( Level.NetMode != NM_DedicatedServer && Instigator != None)
+	{
+		if (bSilenced)
+		{
+			SetBoneScale (0, 1.0, 'Silencer');
+			SetBoneScale (1, 0.0, 'AMP');
+		}
+		else if (bAmped)
+		{
+			SetBoneScale (0, 0.0, 'Silencer');
+			SetBoneScale (1, 1.0, 'AMP');
+		}
+		else
+		{
+			SetBoneScale (0, 0.0, 'Silencer');
+			SetBoneScale (0, 0.0, 'AMP');			
+		}
+    }
+	super.ThirdPersonEffects();
 }
 
 simulated function SetAmpColour(bool bIsAmp1, bool bIsAmp2)

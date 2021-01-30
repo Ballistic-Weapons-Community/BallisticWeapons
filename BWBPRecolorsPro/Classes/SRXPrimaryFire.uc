@@ -81,6 +81,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		BallisticFireSound.Sound=default.BallisticFireSound.sound;
 		BallisticFireSound.Volume=default.BallisticFireSound.Volume;
 		FireRecoil=default.FireRecoil;
+		FireChaos=default.FireChaos;
 		Damage = default.Damage;
 		DamageType=default.DamageType;
 		DamageTypeHead=default.DamageTypeHead;
@@ -93,7 +94,8 @@ simulated function SwitchWeaponMode (byte NewMode)
 	{
 		BallisticFireSound.Sound=Amp1FireSound;
 		BallisticFireSound.Volume=1.500000;
-		FireRecoil=640.000000;
+		FireRecoil=256.000000;
+		FireChaos=0.350000;
 		Damage=45.000000;
 		DamageType=class'DTSRXRifle_Incendiary';
 		DamageTypeHead=class'DTSRXRifleHead_Incendiary';
@@ -107,6 +109,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		BallisticFireSound.Sound=Amp2FireSound;
 		BallisticFireSound.Volume=1.200000;
 		FireRecoil=128.000000;
+		FireChaos=0.150000;
 		Damage=16.000000;
 		DamageType=class'DTSRXRifle_Corrosive';
 		DamageTypeHead=class'DTSRXRifleHead_Corrosive';
@@ -120,6 +123,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		BallisticFireSound.Sound=default.BallisticFireSound.sound;
 		BallisticFireSound.Volume=default.BallisticFireSound.Volume;
 		FireRecoil=default.FireRecoil;
+		FireChaos=default.FireChaos;
 		Damage = default.Damage;
 		DamageType=default.DamageType;
 		DamageTypeHead=default.DamageTypeHead;
@@ -135,34 +139,54 @@ simulated function SwitchWeaponMode (byte NewMode)
 
 }
 
-//Disable fire anim when scoped
-function PlayFiring()
+//// server propagation of firing ////
+function ServerPlayFiring()
 {
-	if (SRXRifle(Weapon).bSilenced)
+	if (SRXRifle(Weapon) != None && SRXRifle(Weapon).bSilenced && SilencedFireSound.Sound != None)
+		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,true);
+	else if (SRXRifle(Weapon) != None && SRXRifle(Weapon).CurrentWeaponMode == 1 && Amp1FireSound != None)
+		Weapon.PlayOwnedSound(Amp1FireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
+	else if (SRXRifle(Weapon) != None && SRXRifle(Weapon).CurrentWeaponMode == 2 && Amp2FireSound != None)
+		Weapon.PlayOwnedSound(Amp2FireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
+	else if (BallisticFireSound.Sound != None)
+		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
+
+	CheckClipFinished();
+
+	if (AimedFireAnim != '')
 	{
-		//SRXRifle(Weapon).StealthImpulse(0.3);
-		Weapon.SetBoneScale (0, 1.0, SRXRifle(Weapon).SilencerBone);
+		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+		if (BW.BlendFire())		
+			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
 	}
+
 	else
 	{
-		Weapon.SetBoneScale (0, 0.0, SRXRifle(Weapon).SilencerBone);
+		if (FireCount == 0 && Weapon.HasAnim(FireLoopAnim))
+			BW.SafeLoopAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
+		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
 	}
-    if (ScopeDownOn == SDO_Fire)
-        BW.TemporaryScopeDown(0.5, 0.9);
-        
-    if (AimedFireAnim != '')
-    {
-        BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-        if (BW.BlendFire())        
-            BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
-    }
+}
 
-    else
-    {
-        if (FireCount == 0 && Weapon.HasAnim(FireLoopAnim))
-            BW.SafeLoopAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-        else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
-    }
+//Do the spread on the client side
+function PlayFiring()
+{
+	if (ScopeDownOn == SDO_Fire)
+		BW.TemporaryScopeDown(0.5, 0.9);
+		
+	if (AimedFireAnim != '')
+	{
+		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+		if (BW.BlendFire())		
+			BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, 1, "AIMEDFIRE");
+	}
+
+	else
+	{
+		if (FireCount == 0 && Weapon.HasAnim(FireLoopAnim))
+			BW.SafeLoopAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
+		else BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	}
 	
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
@@ -241,8 +265,8 @@ defaultproperties
      Amp1FireSound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-LoudFire'
      Amp2FireSound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-SpecialFire'
 	 AmpFlashBone="tip2"
-     Amp1FlashScaleFactor=0.100000
-	 Amp2FlashScaleFactor=0.400000
+     Amp1FlashScaleFactor=0.300000
+	 Amp2FlashScaleFactor=0.300000
 	 
 	 SMuzzleFlashClass=Class'BWBPRecolorsPro.SRXSilencedFlash'
 	 MuzzleFlashClassAmp1=Class'BWBPRecolorsPro.FG50FlashEmitter'
@@ -254,7 +278,7 @@ defaultproperties
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=24.000000
      
-     Damage=36.000000
+     Damage=40.000000
      HeadMult=1.4f
      LimbMult=0.8f
      
@@ -269,18 +293,18 @@ defaultproperties
      ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)
      bCockAfterEmpty=True
      MuzzleFlashClass=Class'BWBPRecolorsPro.SRXFlashEmitter'
-     FlashScaleFactor=0.2500000
+     FlashScaleFactor=0.2000000
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
      AimedFireAnim="SightFire"
      FireRecoil=160.000000
-     FireChaos=0.065000
+     FireChaos=0.05000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire2',Volume=0.500000,Radius=500.000000,bAtten=True)
      BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire',Radius=1536.000000,Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
      bPawnRapidFireAnim=True
      FireEndAnim=
-     FireRate=0.200000
+     FireRate=0.185000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_SRXBullets'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

@@ -6,13 +6,6 @@
 //=============================================================================
 class SRXFlashEmitter extends BallisticEmitter;
 
-simulated event PostBeginPlay()
-{
-	Super.PostBeginPlay();
-	if (WeaponAttachment(Owner) != None)
-		Emitters[1].ZTest = true;
-}
-
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter7
@@ -22,6 +15,7 @@ defaultproperties
          UseParticleColor=True
          UseColorScale=True
          FadeOut=True
+         ZTest=True
          RespawnDeadParticles=False
          UseSizeScale=True
          UseRegularSizeScale=False
@@ -48,7 +42,7 @@ defaultproperties
          UseColorScale=True
          FadeOut=True
          RespawnDeadParticles=False
-         ZTest=False
+         ZTest=True
          UniformSize=True
          AutomaticInitialSpawning=False
          TriggerDisabled=False
@@ -75,6 +69,7 @@ defaultproperties
          UseColorScale=True
          FadeOut=True
          FadeIn=True
+         ZTest=True
          RespawnDeadParticles=False
          SpinParticles=True
          UniformSize=True
