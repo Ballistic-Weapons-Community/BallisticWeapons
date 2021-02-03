@@ -10,22 +10,16 @@ function PlayFiring()
 	if (BW.MagAmmo - ConsumedLoad < 1)
 	{
 		BW.IdleAnim = 'OpenIdle';
-          BW.ReloadAnim = 'OpenReload';
-          
-          if (BW.bScopeView)
-               FireAnim = 'OpenSightFire';
-          else 
-               FireAnim = 'OpenFire';
+          BW.ReloadAnim = 'OpenReload';     
+          AimedFireAnim = 'OpenSightFire';
+          FireAnim = 'OpenFire';
 	}
 	else
 	{
 		BW.IdleAnim = 'Idle';
           BW.ReloadAnim = 'Reload';
-          
-          if (BW.bScopeView)
-               FireAnim='SightFire';
-          else
-               FireAnim = 'Fire';
+          AimedFireAnim= 'SightFire';
+          FireAnim = 'Fire';
 	}
 	super.PlayFiring();
 }

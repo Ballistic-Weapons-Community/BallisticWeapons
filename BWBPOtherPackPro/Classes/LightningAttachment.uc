@@ -108,6 +108,5 @@ defaultproperties
      CockAnimRate=1.400000
      Mesh=SkeletalMesh'BWBP_OP_Anim.LightningRifle_TPm'
 	 RelativeRotation=(Pitch=32768,Yaw=2048)
-	 PrePivot=(X=-10.000000,Y=4.000000)
      DrawScale=0.600000
 }

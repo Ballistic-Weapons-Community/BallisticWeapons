@@ -55,6 +55,17 @@ simulated event ModeDoFire()
 	bLoaded = false;
 }
 
+function StopFiring()
+{
+    local int channel;
+    local name seq;
+    local float frame, rate;
+    
+    weapon.GetAnimParams(channel, seq, frame, rate);
+    if (Seq == PreFireAnim)
+        Weapon.PlayAnim(Weapon.IdleAnim, 1.0, 0.5);
+}
+
 defaultproperties
 {
      bLoaded=True
@@ -68,8 +79,10 @@ defaultproperties
      YInaccuracy=8.000000
      BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bModeExclusive=False
-     FireAnim="GrenadeFire"
+	 PreFireAnim="GLPrepFire"	 
+     FireAnim="GLFire"
      FireForce="AssaultRifleAltFire"
+	 AimedFireAnim="GLSightFireFromPrep"	 
      FireRate=2.000000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_MARSGrenades'
      ShakeRotTime=2.000000
