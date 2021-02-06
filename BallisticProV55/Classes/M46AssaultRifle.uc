@@ -411,7 +411,9 @@ defaultproperties
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1
-	ParamsClass=Class'M46WeaponParams'	 
+	ParamsClass=Class'M46WeaponParams'
+    AmmoClass(0)=Class'BallisticProV55.Ammo_M46Clip'	
+	AmmoClass(1)=Class'BallisticProV55.Ammo_M46Clip'
 	FireModeClass(0)=Class'BallisticProV55.M46PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M46SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

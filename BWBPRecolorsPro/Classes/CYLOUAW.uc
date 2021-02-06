@@ -517,10 +517,10 @@ defaultproperties
 	MagAmmo=22
 	CockAnimPostReload="Cock"
 	CockAnimRate=1.400000
-	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock')
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock',Volume=2.000000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
-	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut')
-	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn')
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut',Volume=2.000000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=2.000000)
 	ClipInFrame=0.700000
 	bAltTriggerReload=True
 	WeaponModes(0)=(bUnavailable=True)
@@ -529,6 +529,8 @@ defaultproperties
 	SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
 	GunLength=16.000000
 	ParamsClass=Class'CYLOWeaponParams' 
+	AmmoClass[0]=Class'BWBPRecolorsPro.Ammo_CYLOInc'
+	AmmoClass[1]=Class'BWBPRecolorsPro.Ammo_CYLOInc'
 	FireModeClass(0)=Class'BWBPRecolorsPro.CYLOPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.CYLOSecondaryFire'
 	SelectAnimRate=2.000000

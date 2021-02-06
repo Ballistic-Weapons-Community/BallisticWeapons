@@ -151,6 +151,7 @@ defaultproperties
 	PutDownTime=0.500000
 	BringUpTime=0.700000
 	SelectForce="SwitchToAssaultRifle"
+	BlockIdleAnim="BlockIdle"	
 	AIRating=0.800000
 	CurrentRating=0.800000
 	bMeleeWeapon=True

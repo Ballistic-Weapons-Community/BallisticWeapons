@@ -346,6 +346,7 @@ defaultproperties
      bRecommendSplashDamage=True
      bFireOnRelease=True
      FireEndAnim=
+	 FireAnim="Point"
      FireRate=0.600000
      AmmoClass=Class'XWeapons.BallAmmo'
      BotRefireRate=1.000000

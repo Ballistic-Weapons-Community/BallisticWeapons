@@ -59,6 +59,17 @@ simulated event ModeDoFire()
 	bLoaded = false;
 }
 
+function StopFiring()
+{
+    local int channel;
+    local name seq;
+    local float frame, rate;
+    
+    weapon.GetAnimParams(channel, seq, frame, rate);
+    if (Seq == PreFireAnim)
+        Weapon.PlayAnim(Weapon.IdleAnim, 1.0, 0.5);
+}
+
 defaultproperties
 {
      bLoaded=True
@@ -75,9 +86,11 @@ defaultproperties
      bRecommendSplashDamage=True
      bTossed=True
      bModeExclusive=False
-     FireAnim="GrenadeFire"
+	 PreFireAnim="GLPrepFire"	 
+     FireAnim="GLFire"
      FireForce="AssaultRifleAltFire"
-     FireRate=2.000000
+	 AimedFireAnim="GLSightFireFromPrep"	 
+     FireRate=0.800000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_F2000Grenades'
      ShakeRotTime=2.000000
      ShakeOffsetMag=(X=-20.000000)

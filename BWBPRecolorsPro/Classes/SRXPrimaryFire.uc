@@ -110,7 +110,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		BallisticFireSound.Volume=1.200000;
 		FireRecoil=128.000000;
 		FireChaos=0.150000;
-		Damage=16.000000;
+		Damage=25.000000;
 		DamageType=class'DTSRXRifle_Corrosive';
 		DamageTypeHead=class'DTSRXRifleHead_Corrosive';
 		DamageTypeArm=class'DTSRXRifle_Corrosive';
@@ -297,11 +297,10 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
      AimedFireAnim="SightFire"
-     FireRecoil=160.000000
-     FireChaos=0.05000
-     FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
-     SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire2',Volume=0.500000,Radius=500.000000,bAtten=True)
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire',Radius=1536.000000,Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+     FireRecoil=200.000000
+     FireChaos=0.100000
+     SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire2',Volume=0.500000,Radius=256.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireRate=0.185000
