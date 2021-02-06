@@ -330,27 +330,6 @@ static function class<Pickup> RecommendAmmoPickup(int Mode)
 	return class'AP_SRXClip';
 }
 
-//Kaboodles' neat idle anim fix.
-simulated function PlayIdle()
-{
-	if (BFireMode[0].IsFiring())
-		return;
-	if (bPendingSightUp)
-		ScopeBackUp();
-	else if (SightingState != SS_None)
-	{
-		if (SafePlayAnim(IdleAnim, 1.0))
-			FreezeAnimAt(0.0);
-	}
-	else if (bScopeView)
-	{
-		if(SafePlayAnim(ZoomOutAnim, 1.0))
-			FreezeAnimAt(0.0);
-	}
-	else
-	    SafeLoopAnim(IdleAnim, IdleAnimRate, IdleTweenTime, ,"IDLE");
-}
-
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	super.BringUp(PrevWeapon);
@@ -377,52 +356,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	else
 		SetBoneScale (0, 0.0, SilencerBone);
 
-}
-
-
-// HARDCODED SIGHTING TIME
-simulated function TickSighting (float DT)
-{
-	if (SightingState == SS_None || SightingState == SS_Active)
-		return;
-
-	if (SightingState == SS_Raising)
-	{	// Raising gun to sight position
-		if (SightingPhase < 1.0)
-		{
-			if ((bScopeHeld || bPendingSightUp) && CanUseSights())
-				SightingPhase += DT/0.25;
-			else
-			{
-				SightingState = SS_Lowering;
-
-				Instigator.Controller.bRun = 0;
-			}
-		}
-		else
-		{	// Got all the way up. Now go to scope/sight view
-			SightingPhase = 1.0;
-			SightingState = SS_Active;
-			ScopeUpAnimEnd();
-		}
-	}
-	else if (SightingState == SS_Lowering)
-	{	// Lowering gun from sight pos
-		if (SightingPhase > 0.0)
-		{
-			if (bScopeHeld && CanUseSights())
-				SightingState = SS_Raising;
-			else
-				SightingPhase -= DT/0.25;
-		}
-		else
-		{	// Got all the way down. Tell the system our anim has ended...
-			SightingPhase = 0.0;
-			SightingState = SS_None;
-			ScopeDownAnimEnd();
-			DisplayFOV = default.DisplayFOV;
-		}
-	}
 }
 
 // Secondary fire doesn't count for this weapon
@@ -522,6 +455,7 @@ defaultproperties
     WeaponModes(2)=(ModeName="Amplified: Corrosive",ModeID="WM_BigBurst",Value=4.000000,bUnavailable=True,RecoilParamsIndex=2)
 	CurrentWeaponMode=0
 	FullZoomFOV=70.000000
+	ZoomType=ZT_Irons
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=-128,Yaw=16)
 	SightOffset=(X=-10.000000,Y=-0.670000,Z=27.200000)

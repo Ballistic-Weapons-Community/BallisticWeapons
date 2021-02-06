@@ -55,7 +55,7 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-	 ArmorDrain=1.000000
+	 ArmorDrain=0.750000
      DeathStrings(0)="%o became a muse for %k after their face turned to goop."
      DeathStrings(1)="%k made %o's head bubble and boil until it was all gone."
      DeathStrings(2)="%o found that %k's acid wasn't a mind altering substance, it was a mind ender."

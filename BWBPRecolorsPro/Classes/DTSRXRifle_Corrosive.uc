@@ -36,7 +36,7 @@ static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLoc
 
 defaultproperties
 {
-	 ArmorDrain=0.750000
+	 ArmorDrain=0.325000
      DeathStrings(0)="%o's veins are glowing bright with acid thanks to %k."
      DeathStrings(1)="%k injected some acid into %o's system and they melted from the inside."
      DeathStrings(2)="%o's armor and flesh fused into a bloody mess due to %k's acidic SRK."

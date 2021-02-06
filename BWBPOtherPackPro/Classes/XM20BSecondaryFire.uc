@@ -73,7 +73,7 @@ simulated event Timer()
 		class'BUtil'.static.KillEmitterEffect (MuzzleFlashBlue);
 		MuzzleFlashBlue=None;
 		bLaserFiring=false;
-		//Instigator.AmbientSound = None;
+		Instigator.AmbientSound = None;
 	}
 }
 
@@ -81,7 +81,7 @@ simulated event Timer()
 simulated function PlayPreFire()
 {    
     Instigator.AmbientSound = ChargeSound;
-    //Weapon.ThirdPersonActor.AmbientSound = ChargeSound;
+    Weapon.ThirdPersonActor.AmbientSound = ChargeSound;
 	super.PlayPreFire();
 }
 
@@ -195,7 +195,26 @@ function PlayFiring()
 	if (FireSoundLoop != None)
 	{
 		Instigator.AmbientSound = FireSoundLoop;
-		//Weapon.ThirdPersonActor.AmbientSound = FireSoundLoop;
+		Weapon.ThirdPersonActor.AmbientSound = FireSoundLoop;
+	}
+	if (!bLaserFiring)
+	{
+		if (XM20BCarbine(BW).bOvercharged)
+			Weapon.PlayOwnedSound(PowerFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+		else
+			Weapon.PlayOwnedSound(RegularFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+	}
+	bLaserFiring=true;
+}
+
+//Server fire
+function ServerPlayFiring()
+{
+	super.ServerPlayFiring();
+	if (FireSoundLoop != None)
+	{
+		Instigator.AmbientSound = FireSoundLoop;
+		Weapon.ThirdPersonActor.AmbientSound = FireSoundLoop;
 	}
 	if (!bLaserFiring)
 	{
@@ -210,7 +229,7 @@ function PlayFiring()
 function StopFiring()
 {
     Instigator.AmbientSound = XM20BCarbine(BW).UsedAmbientSound;
-	//Weapon.ThirdPersonActor.AmbientSound = None;
+	Weapon.ThirdPersonActor.AmbientSound = None;
 //    HoldTime = 0;
 	bLaserFiring=false;
 	XM20BCarbine(Weapon).ServerSwitchLaser(false);

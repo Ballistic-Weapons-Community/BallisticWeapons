@@ -90,7 +90,7 @@ defaultproperties
      FireAnim="GLFire"
      FireForce="AssaultRifleAltFire"
 	 AimedFireAnim="GLSightFireFromPrep"	 
-     FireRate=2.000000
+     FireRate=0.800000
      AmmoClass=Class'BWBPRecolorsPro.Ammo_F2000Grenades'
      ShakeRotTime=2.000000
      ShakeOffsetMag=(X=-20.000000)
