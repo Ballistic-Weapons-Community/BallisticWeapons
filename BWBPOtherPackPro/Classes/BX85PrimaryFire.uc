@@ -59,7 +59,6 @@ defaultproperties
 	DamageType=Class'DTBX85Bolt'
 	DamageTypeHead=Class'DTBX85Bolt'
 	DamageTypeArm=Class'DTBX85Bolt'
-	KickForce=6000
 	PenetrateForce=0
 	bPenetrate=False
 	FireChaos=0.150000

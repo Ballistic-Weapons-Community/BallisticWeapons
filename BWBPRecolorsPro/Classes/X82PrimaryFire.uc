@@ -29,7 +29,7 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DT_X82Torso'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_X82Head'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_X82Torso'
-     KickForce=25000
+     KickForce=10000
      PenetrateForce=450
      bPenetrate=True
      MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'

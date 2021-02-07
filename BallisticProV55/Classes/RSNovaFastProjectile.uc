@@ -104,9 +104,6 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 
 	else Victim = GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT);
 
-	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-		BallisticPawn(Instigator).GiveAttributedHealth(int(Dmg * 0.6f), Instigator.SuperHealthMax, Instigator, True);
-
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 	{
 		if (Monster(Victim) == None || Pawn(Victim).default.Health > 275)
@@ -114,6 +111,9 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	}
 	else if (Vehicle(Victim) != None && Vehicle(Victim).Driver!=None && Vehicle(Victim).Driver.Health > 0)
 		bWasAlive = true;
+
+    if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim.bProjTarget && xPawn(Victim) != None && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+		BallisticPawn(Instigator).GiveAttributedHealth(int(Dmg * 0.6f), Instigator.SuperHealthMax, Instigator, True);
 
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), DT);
 

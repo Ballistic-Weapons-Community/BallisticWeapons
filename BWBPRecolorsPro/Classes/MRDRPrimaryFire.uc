@@ -39,7 +39,6 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DT_MRDR88Body'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_MRDR88Head'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_MRDR88Body'
-     KickForce=1250
      PenetrateForce=0
      bPenetrate=False
      ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-2',Volume=0.800000,Radius=48.000000,bAtten=True)

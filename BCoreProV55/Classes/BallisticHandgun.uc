@@ -1090,6 +1090,7 @@ simulated function bool AllowWeapNextUI()
 
 simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 {
+    /*
 	local BallisticHandgun Best;
     local Inventory Inv;
 
@@ -1123,12 +1124,14 @@ simulated function Weapon PrevWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 				PendingHandgun = None;
 	    }
 	}
+    */
 	return Super.PrevWeapon(CurrentChoice, CurrentWeapon);
 }
 
 simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 {
-	local BallisticHandgun Best;
+    /*
+    local BallisticHandgun Best;
 	local bool bFoundOtherOne;
     local Inventory Inv;
 
@@ -1164,6 +1167,8 @@ simulated function Weapon NextWeapon(Weapon CurrentChoice, Weapon CurrentWeapon)
 				PendingHandgun = None;
 	    }
 	}
+    */
+
 	return Super.NextWeapon(CurrentChoice, CurrentWeapon);
 }
 

@@ -17,7 +17,6 @@ defaultproperties
      DamageType=Class'BallisticProV55.DTM46AssaultQS'
      DamageTypeHead=Class'BallisticProV55.DTM46AssaultQSHead'
      DamageTypeArm=Class'BallisticProV55.DTM46AssaultQS'
-     KickForce=10000
      PenetrateForce=150
      bPenetrate=True
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)

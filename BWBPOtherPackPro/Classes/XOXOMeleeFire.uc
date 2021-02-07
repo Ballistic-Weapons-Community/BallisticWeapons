@@ -4,14 +4,14 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 {
 	local bool  bWasAlive;
 
-	if (BallisticPawn(Instigator) != None && XOXOStaff(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-		BallisticPawn(Instigator).GiveAttributedHealth(Damage * 0.66, Instigator.HealthMax, Instigator, True);
-
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 	{
 		if (Monster(Victim) == None || Pawn(Victim).default.Health > 275)
 			bWasAlive = true;
 	}
+
+    if (BallisticPawn(Instigator) != None && XOXOStaff(Instigator.Weapon) != None && Victim.bProjTarget && xPawn(Victim) != None && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+		BallisticPawn(Instigator).GiveAttributedHealth(Damage * 0.66, Instigator.HealthMax, Instigator, True);
 
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	

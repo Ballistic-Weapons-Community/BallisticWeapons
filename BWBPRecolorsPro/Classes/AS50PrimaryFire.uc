@@ -18,7 +18,7 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DT_AS50Torso'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_AS50Head'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_AS50Limb'
-     KickForce=20000
+     KickForce=1000
      PenetrateForce=450
      bPenetrate=True
      PDamageFactor=0.800000

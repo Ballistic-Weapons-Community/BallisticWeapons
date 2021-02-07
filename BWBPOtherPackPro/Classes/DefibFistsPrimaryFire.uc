@@ -148,7 +148,7 @@ defaultproperties
      DamageType=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTShockGauntlet'
      DamageTypeArm=Class'BWBPOtherPackPro.DTShockGauntlet'
-     KickForce=50000
+     KickForce=1000
      bUseWeaponMag=False
      BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=32.000000,bAtten=True)
      bAISilent=True

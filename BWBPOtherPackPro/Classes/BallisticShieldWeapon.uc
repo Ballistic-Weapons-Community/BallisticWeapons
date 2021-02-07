@@ -109,12 +109,12 @@ function HandleCrouchBlockingDamageMitigation( out int Damage, out Vector Moment
 	if (DamageType.default.bCanBeBlocked)
 	{
 		Damage = 0;
-		Momentum *= 2;
+		Momentum *= 1.25;
 		return;
 	}
 
 	Damage *= 0.2;
-	Momentum *= 2;
+		Momentum *= 1.25;
 	return;
 
 	// defend against melee, ballistics and other blockables completely, but with pushback
@@ -122,7 +122,7 @@ function HandleCrouchBlockingDamageMitigation( out int Damage, out Vector Moment
 	if (DamageType.default.bCanBeBlocked || DamageType.default.bMetallic) 
 	{
 		Damage = Max(Damage/6, Damage - 35);
-		Momentum *= 2;
+		Momentum *= 1.25;
 		return;
 	}
 
@@ -134,7 +134,7 @@ function HandleCrouchBlockingDamageMitigation( out int Damage, out Vector Moment
 	}
 
 	Damage = Max(Damage/20, Damage - 50);
-	Momentum *= 2;
+		Momentum *= 1.25;
 }
 
 function HandleBlockingDamageMitigation( out int Damage, out Vector Momentum, class<BallisticDamageType> DamageType)
@@ -146,19 +146,19 @@ function HandleBlockingDamageMitigation( out int Damage, out Vector Momentum, cl
 	if (DamageType.default.bCanBeBlocked)
 	{
 		Damage = 0;
-		Momentum *= 2;
+		Momentum *= 1.25;
 		return;
 	}
 
 	Damage *= 0.3;
-	Momentum *= 2;
+	Momentum *= 1.25;
 	return;
 
 	// damage reduction against ballistics
 	if (DamageType.default.bMetallic)
 	{
 		Damage = Max(Damage/5, Damage - 20);
-		Momentum *= 2;
+		Momentum *= 1.25;
 		return;
 	}
 
@@ -170,7 +170,7 @@ function HandleBlockingDamageMitigation( out int Damage, out Vector Momentum, cl
 	}
 
 	Damage = Max(1, Damage - 30);
-	Momentum *= 2;
+	Momentum *= 1.25;
 }
 
 function HandlePassiveDamageMitigation( out int Damage, out Vector Momentum, class<BallisticDamageType> DamageType)
@@ -180,14 +180,14 @@ function HandlePassiveDamageMitigation( out int Damage, out Vector Momentum, cla
 
 	// actually have to block to reduce melee damage
 	Damage *= 0.45;
-	Momentum *= 2;
+	Momentum *= 1.25;
 	return;
 
 	// moderate passive damage reduction against ballistics
 	if (DamageType.default.bMetallic)
 	{
 		Damage = Max(Damage/3, Damage - 10);
-		Momentum *= 2;
+		Momentum *= 1.25;
 		return;
 	}
 
@@ -200,7 +200,7 @@ function HandlePassiveDamageMitigation( out int Damage, out Vector Momentum, cla
 
 	// explosions push back
 	Damage = Max(Damage/4, Damage - 15);
-	Momentum *= 2;
+	Momentum *= 1.25;
 }
 
 function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDrain )

@@ -106,7 +106,7 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DTSKASShotgunAlt'
      DamageTypeHead=Class'BWBPRecolorsPro.DTSKASShotgunHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTSKASShotgunAlt'
-     KickForce=20000
+     KickForce=400
      PenetrateForce=100
      bPenetrate=True
      bCockAfterEmpty=True

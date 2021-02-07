@@ -77,7 +77,7 @@ defaultproperties
      DamageType=Class'BWBPOtherPackPro.DT_ARShotgun'
      DamageTypeHead=Class'BWBPOtherPackPro.DT_ARShotgunHead'
      DamageTypeArm=Class'BWBPOtherPackPro.DT_ARShotgun'
-     KickForce=5000
+     KickForce=500
      PenetrateForce=100
      bPenetrate=True
      MuzzleFlashClass=Class'BWBPRecolorsPro.MK781FlashEmitter'

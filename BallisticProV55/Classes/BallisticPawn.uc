@@ -1810,8 +1810,18 @@ simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
 	if (PlayerReplicationInfo.CharacterName ~= "Abaddon")
 		rec = class'xUtil'.static.FindPlayerRecord("AbaddonB");
 
+    else if (PlayerReplicationInfo.CharacterName ~= "Kaela")
+		rec = class'xUtil'.static.FindPlayerRecord("KaelaB");
+
+    else if (PlayerReplicationInfo.CharacterName ~= "Zarina")
+		rec = class'xUtil'.static.FindPlayerRecord("ZarinaB");
+
+    else if (PlayerReplicationInfo.CharacterName ~= "Jakob")
+		rec = class'xUtil'.static.FindPlayerRecord("JakobB");
+
     Species = rec.Species;
 	RagdollOverride = rec.Ragdoll;
+
 	if ( !Species.static.Setup(self,rec) )
 	{
 		rec = class'xUtil'.static.FindPlayerRecord(GetDefaultCharacter());
@@ -1821,9 +1831,7 @@ simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
 	ResetPhysicsBasedAnim();
 
 	// If you're using an advantage-conferring skin you're going to be as bright as the bloody Sun
-	if (rec.DefaultName == "Jakob")
-		AmbientGlow = 128;
-	else if (rec.DefaultName == "July")
+	if (rec.DefaultName == "July")
 		AmbientGlow = 64;
 
 	BloodSet = class'BWBloodSetHunter'.static.GetBloodSetFor(self);
@@ -2701,10 +2709,10 @@ defaultproperties
      UDamageSound=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
 
      FootstepVolume=0.350000
-     FootstepRadius=350.000000
+     FootstepRadius=400.000000
 
      GruntVolume=0.2
-     GruntRadius=150.000000
+     GruntRadius=300.000000
      
      DeResTime=4.000000
      RagdollLifeSpan=20.000000
@@ -2717,7 +2725,7 @@ defaultproperties
      WalkingPct=0.900000
      CrouchedPct=0.350000
      HeadRadius=13.000000
-     TransientSoundVolume=0.100000
+     TransientSoundVolume=0.300000
 
      Begin Object Class=KarmaParamsSkel Name=PawnKParams
          KConvulseSpacing=(Max=2.200000)

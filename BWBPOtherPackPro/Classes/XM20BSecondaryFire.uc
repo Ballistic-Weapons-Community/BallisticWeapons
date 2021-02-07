@@ -74,14 +74,14 @@ simulated event Timer()
 		MuzzleFlashBlue=None;
 		bLaserFiring=false;
 		Instigator.AmbientSound = None;
+        Instigator.SoundVolume = Instigator.Default.SoundVolume;
 	}
 }
-
 
 simulated function PlayPreFire()
 {    
     Instigator.AmbientSound = ChargeSound;
-    Weapon.ThirdPersonActor.AmbientSound = ChargeSound;
+    Instigator.SoundVolume = 255;
 	super.PlayPreFire();
 }
 
@@ -118,7 +118,6 @@ simulated function ModeTick(float DT)
 		return;
 	}
 	LaserCharge = FMin(LaserCharge + XM20BCarbine(BW).ChargeRate*DT*(1 + 2*int(BW.bBerserk)), MaxCharge);
-
 }
 
 simulated function SwitchLaserMode (byte NewMode)
@@ -195,7 +194,7 @@ function PlayFiring()
 	if (FireSoundLoop != None)
 	{
 		Instigator.AmbientSound = FireSoundLoop;
-		Weapon.ThirdPersonActor.AmbientSound = FireSoundLoop;
+        Instigator.SoundVolume = 255;
 	}
 	if (!bLaserFiring)
 	{
@@ -211,10 +210,11 @@ function PlayFiring()
 function ServerPlayFiring()
 {
 	super.ServerPlayFiring();
+
 	if (FireSoundLoop != None)
 	{
 		Instigator.AmbientSound = FireSoundLoop;
-		Weapon.ThirdPersonActor.AmbientSound = FireSoundLoop;
+        Instigator.SoundVolume = 255;
 	}
 	if (!bLaserFiring)
 	{
@@ -229,7 +229,7 @@ function ServerPlayFiring()
 function StopFiring()
 {
     Instigator.AmbientSound = XM20BCarbine(BW).UsedAmbientSound;
-	Weapon.ThirdPersonActor.AmbientSound = None;
+    Instigator.SoundVolume = Instigator.Default.SoundVolume;
 //    HoldTime = 0;
 	bLaserFiring=false;
 	XM20BCarbine(Weapon).ServerSwitchLaser(false);
@@ -284,6 +284,8 @@ defaultproperties
 //	 ChargeSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Charge'
      PowerFireSound=Sound'BWBP_SKC_Sounds.XM20B.XM20-Overcharge'
      RegularFireSound=Sound'BWBP_SKC_Sounds.XM20B.XM20-LaserStart'
+
+     MaxWaterTraceRange=5000
 	 
 	 Damage=16
 	 HeadMult=1.5f
@@ -312,7 +314,7 @@ defaultproperties
      TweenTime=0.000000
 	 PreFireTime=0.100000
      FireRate=0.070000
-	 OverChargedFireRate=0.0350000
+	 OverChargedFireRate=0.045
      AmmoClass=Class'BWBPOtherPackPro.Ammo_XM20B'
      AmmoPerFire=1
      BotRefireRate=0.999000

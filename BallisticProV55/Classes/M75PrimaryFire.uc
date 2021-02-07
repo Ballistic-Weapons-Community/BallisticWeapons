@@ -30,7 +30,7 @@ defaultproperties
      DamageType=Class'BallisticProV55.DTM75Railgun'
      DamageTypeHead=Class'BallisticProV55.DTM75RailgunHead'
      DamageTypeArm=Class'BallisticProV55.DTM75Railgun'
-     KickForce=40000
+     KickForce=10000
      PenetrateForce=500
      bPenetrate=True
      PDamageFactor=0.700000

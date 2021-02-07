@@ -96,6 +96,8 @@ defaultproperties
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
      ProjectileClass=Class'BWBPRecolorsPro.BulldogRocket'
+
+     FireRate=0.8
 	 
 	 // AI
 	 bInstantHit=False

@@ -157,7 +157,6 @@ defaultproperties
      DamageType=Class'BallisticProV55.DTSRS900Rifle'
      DamageTypeHead=Class'BallisticProV55.DTSRS900RifleHead'
      DamageTypeArm=Class'BallisticProV55.DTSRS900Rifle'
-     KickForce=2000
      PenetrateForce=180
      bPenetrate=True
      ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)

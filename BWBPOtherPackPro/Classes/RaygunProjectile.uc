@@ -62,7 +62,7 @@ defaultproperties
      DamageGainEndTime=0.2
      
      DamageTypeHead=Class'BWBPOtherPackPro.DTRaygun'
-     Speed=4000.000000
+     Speed=4500.000000
      MaxSpeed=10000.000000
      Damage=38.000000
      MomentumTransfer=4500.000000

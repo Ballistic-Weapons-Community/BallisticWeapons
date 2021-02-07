@@ -73,7 +73,7 @@ defaultproperties
      TraceRange=(Min=8000.000000,Max=9000.000000)
      WallPenetrationForce=8.000000
      
-     Damage=120.000000
+     Damage=100.000000
      HeadMult=1.25f
      LimbMult=0.8f
      
@@ -82,7 +82,6 @@ defaultproperties
      DamageType=Class'BallisticProV55.DTD49Revolver'
      DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
      DamageTypeArm=Class'BallisticProV55.DTD49Revolver'
-     KickForce=4000
      PenetrateForce=200
      bPenetrate=True
      MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'

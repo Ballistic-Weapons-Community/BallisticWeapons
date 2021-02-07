@@ -287,7 +287,6 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DTSRXRifle'
      DamageTypeHead=Class'BWBPRecolorsPro.DTSRXRifleHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTSRXRifle'
-     KickForce=2000
      PenetrateForce=120
      bPenetrate=True
      ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)

@@ -15,7 +15,6 @@ defaultproperties
      DamageType=Class'BWBPOtherPackPro.DTCX85Bullet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTCX85BulletHead'
      DamageTypeArm=Class'BWBPOtherPackPro.DTCX85Bullet'
-     KickForce=4000
      PenetrateForce=150
      bPenetrate=True
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)

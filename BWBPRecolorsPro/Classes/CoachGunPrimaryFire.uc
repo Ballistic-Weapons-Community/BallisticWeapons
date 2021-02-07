@@ -165,7 +165,7 @@ simulated function SwitchWeaponMode (byte newMode)
 		TraceRange.Min=9000;
 		TraceRange.Max=9000;
 
-        KickForce = 30000;
+        KickForce = 500;
 		
      	FlashScaleFactor=3.000000;
 
@@ -513,7 +513,7 @@ defaultproperties
 	DamageType=Class'BWBPRecolorsPro.DTCoachShot'
 	DamageTypeHead=Class'BWBPRecolorsPro.DTCoachShot'
 	DamageTypeArm=Class'BWBPRecolorsPro.DTCoachShot'
-	KickForce=8000
+	KickForce=500
 	MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 	FlashScaleFactor=1.500000
 	BrassBone="EjectorR"

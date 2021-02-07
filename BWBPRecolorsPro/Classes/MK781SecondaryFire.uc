@@ -254,7 +254,7 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DT_Mk781Electro'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_Mk781Electro'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_Mk781Electro'
-     KickForce=8000
+     KickForce=700
      PenetrateForce=100
      bPenetrate=True
      bUseWeaponMag=False

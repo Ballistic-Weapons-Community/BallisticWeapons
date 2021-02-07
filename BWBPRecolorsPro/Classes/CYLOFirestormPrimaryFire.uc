@@ -178,7 +178,6 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DTCYLOFirestormRifle'
      DamageTypeHead=Class'BWBPRecolorsPro.DTCYLOFirestormRifleHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTCYLOFirestormRifle'
-     KickForce=6000
      PenetrateForce=180
      ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.Misc.ClipEnd-1',Volume=0.800000,Radius=48.000000,bAtten=True)
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.700000)

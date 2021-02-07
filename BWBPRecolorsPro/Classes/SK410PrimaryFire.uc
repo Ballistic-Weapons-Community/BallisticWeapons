@@ -75,7 +75,7 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DT_SK410Shotgun'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_SK410ShotgunHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_SK410Shotgun'
-     KickForce=5000
+     KickForce=1000
      PenetrateForce=0
      bPenetrate=False
      MuzzleFlashClass=Class'BWBPRecolorsPro.SK410HeatEmitter'

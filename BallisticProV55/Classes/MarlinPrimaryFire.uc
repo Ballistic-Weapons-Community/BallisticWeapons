@@ -79,7 +79,6 @@ defaultproperties
      DamageType=Class'BallisticProV55.DTMarlinRifle'
      DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'
      DamageTypeArm=Class'BallisticProV55.DTMarlinRifle'
-     KickForce=6000
      PenetrateForce=150
      bPenetrate=True
      bCockAfterFire=True

@@ -38,7 +38,6 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DTAH250Pistol'
      DamageTypeHead=Class'BWBPRecolorsPro.DTAH250PistolHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTAH250Pistol'
-     KickForce=2500
      PenetrateForce=200
      bPenetrate=True
      MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'

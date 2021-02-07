@@ -53,7 +53,6 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DT_AS50Torso'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_AS50Head'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_AS50Limb'
-     KickForce=6000
      PDamageFactor=0.000000
      WallPDamageFactor=0.850000
      MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'

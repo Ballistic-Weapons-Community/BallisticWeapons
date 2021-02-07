@@ -155,12 +155,10 @@ defaultproperties
      TraceRange=(Min=768.000000,Max=768.000000)
      Damage=35.000000
      
-     
      RangeAtten=0.250000
      DamageType=Class'BallisticProV55.DTM763Shotgun'
      DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
      DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
-     KickForce=25000
 	 PenetrateForce=100
 	 
 	 WallPenetrationForce=0

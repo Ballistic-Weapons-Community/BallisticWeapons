@@ -144,7 +144,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 
 		WallPenetrationForce = 96;
 		FlashScaleFactor=1.600000;
-		KickForce=60000;
+		KickForce=1000;
 		bFlashAlt=false;
 		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
 	}
@@ -156,7 +156,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FlashScaleFactor=1.000000;
 		FireChaos=0.05;
 		bFlashAlt=true;
-		KickForce=5000;
+		KickForce = default.KickForce;
 		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=true;
 		if (NewMode == 2)
 			FireAnim='FireUnPowered';
@@ -194,7 +194,6 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DT_M2020Pwr'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_M2020HeadPwr'
      DamageTypeArm=Class'BWBPRecolorsPro.DT_M2020LimbPwr'
-     KickForce=20000
      PenetrateForce=600
      bPenetrate=True
      PDamageFactor=0.750000

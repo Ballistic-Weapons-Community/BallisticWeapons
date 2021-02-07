@@ -62,7 +62,7 @@ defaultproperties
   DamageType=Class'BallisticProV55.DTMRS138Shotgun'
   DamageTypeHead=Class'BallisticProV55.DTMRS138ShotgunHead'
   DamageTypeArm=Class'BallisticProV55.DTMRS138Shotgun'
-  KickForce=4000
+  KickForce=400
   PenetrateForce=0
   bPenetrate=False
   MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'

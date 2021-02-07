@@ -81,7 +81,7 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DTBulldog'
      DamageTypeHead=Class'BWBPRecolorsPro.DTBulldogHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTBulldog'
-     KickForce=40000
+     KickForce=1000
      PenetrateForce=250
      bPenetrate=True
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)

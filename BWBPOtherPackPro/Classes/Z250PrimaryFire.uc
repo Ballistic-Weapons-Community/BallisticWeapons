@@ -475,7 +475,7 @@ defaultproperties
      DamageType=Class'BWBPOtherPackPro.DTZ250Bullet'
      DamageTypeHead=Class'BWBPOtherPackPro.DTZ250Bullet'
      DamageTypeArm=Class'BWBPOtherPackPro.DTZ250Bullet'
-     KickForce=6000
+     KickForce=1000
      PenetrateForce=150
      MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
      FlashScaleFactor=0.800000

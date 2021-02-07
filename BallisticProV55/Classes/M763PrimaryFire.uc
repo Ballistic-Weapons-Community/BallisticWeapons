@@ -90,7 +90,7 @@ defaultproperties
      DamageType=Class'BallisticProV55.DTM763Shotgun'
      DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
      DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
-     KickForce=5000
+     KickForce=500
      PenetrateForce=0
 	 bPenetrate=False
 	 WallPenetrationForce=0

@@ -23,7 +23,6 @@ defaultproperties
      DamageType=Class'BallisticProV55.DTAM67Pistol'
      DamageTypeHead=Class'BallisticProV55.DTAM67PistolHead'
      DamageTypeArm=Class'BallisticProV55.DTAM67Pistol'
-     KickForce=1500
      PenetrateForce=200
      bPenetrate=True
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)

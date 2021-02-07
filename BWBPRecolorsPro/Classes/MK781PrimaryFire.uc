@@ -151,7 +151,7 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DTM781Shotgun'
      DamageTypeHead=Class'BWBPRecolorsPro.DTM781ShotgunHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTM781Shotgun'
-     KickForce=4000
+     KickForce=400
      PenetrateForce=0
 	 bPenetrate=false
 	 WallPenetrationForce=0

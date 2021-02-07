@@ -96,7 +96,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 				Square(damageScale) * DamageAmount,
 				Instigator,
 				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
-				(damageScale * Momentum * 0.6 * dir),
+				GetMomentumVector(damageScale * 0.6 * dir),
 				DamageType
 			);
 		 }

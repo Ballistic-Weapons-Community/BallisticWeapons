@@ -7,7 +7,7 @@ simulated function AdjustLaserParams(bool bLaserOn)
 	if (bLaserOn)
 	{	
 		//properties for directed rockets
-		FireRate=0.18;
+		//FireRate=0.18;
 		FireRecoil/=2;
 		FireChaos/=1.3;
 		XInaccuracy/=1.2;
@@ -17,7 +17,7 @@ simulated function AdjustLaserParams(bool bLaserOn)
 	else
 	{
 		//properties for normal rockets
-		FireRate=default.FireRate;
+		//FireRate=default.FireRate;
 		FireRecoil=default.FireRecoil;
 		FireChaos=default.FireChaos;
 		XInaccuracy=default.XInaccuracy;
@@ -126,7 +126,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 defaultproperties
 {
 	 bUseWeaponMag=False
-	 Rockets=12
+	 Rockets=18
      SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      FlashBone="RocketTip6"

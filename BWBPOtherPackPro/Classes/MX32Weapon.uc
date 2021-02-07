@@ -317,7 +317,7 @@ simulated function ClientStartReload(optional byte i)
 simulated function bool CheckWeaponMode (int Mode)
 {
 	if (Mode == 1)
-		return FireCount < 12;
+		return FireCount < 18;
 	return super.CheckWeaponMode(Mode);
 }
 
@@ -420,22 +420,16 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	ScaleFactor2 = 99 * C.ClipX/3200;
 	C.Style = ERenderStyle.STY_Alpha;
 	C.DrawColor = class'HUD'.Default.WhiteColor;
-	Count = Min(12,MX32SecondaryFire(FireMode[1]).Rockets);
-    	for( i=0; i<Count; i++ )
-    	{
+
+
+	Count = Min(18,MX32SecondaryFire(FireMode[1]).Rockets);
+
+    for( i=0; i<Count; i++ )
+    {
 //		C.SetPos(C.ClipX - (0.35*i+1) * ScaleFactor2, YPos);
 		C.SetPos(C.ClipX - (0.35*i+1) * ScaleFactor2, C.ClipY - 120 * ScaleFactor * class'HUD'.default.HudScale);
 		C.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14-RocketIcon', ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
 	}
-	/*if ( MX32SecondaryFire(FireMode[1]).Rockets > 6 )
-	{
-		Count = Min(16,MX32SecondaryFire(FireMode[1]).Rockets);
-		for( i=8; i<Count; i++ )
-		{
-			C.SetPos(C.ClipX - (0.5*(i-8)+1) * ScaleFactor2, YPos - ScaleFactor2);
-			C.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14-RocketIcon', ScaleFactor2, ScaleFactor2, 174, 259, 46, 45);
-		}
-	}*/
 }
 
 // AI Interface =====

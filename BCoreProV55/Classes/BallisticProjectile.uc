@@ -32,6 +32,10 @@ enum ERadiusFallOffType
     RFO_None
 };
 
+const MAX_MOMENTUM_Z = 10000.0f;
+
+var   bool                  bLimitMomentumZ;        // Prevents Z momentum exceeding certain value
+
 var() class<BCImpactManager>ImpactManager;			// Impact manager to spawn on final hit
 var() class<BCImpactManager>PenetrateManager;		// Impact manager to spawn when going through actors
 var() bool					bCheckHitSurface;		// Check impact surfacetype on explode for surface dependant ImpactManagers
@@ -267,6 +271,16 @@ simulated function ShakeView(vector HitLocation)
 	}
 }
 
+simulated function Vector GetMomentumVector(Vector input)
+{
+    input *= MomentumTransfer;
+
+    if (bLimitMomentumZ && input.Z > MAX_MOMENTUM_Z)
+        input *= MAX_MOMENTUM_Z / input.Z;
+
+    return input;
+}
+
 // Returns the amount by which MaxWallSize should be scaled for each surface type. Override in subclasses to change...
 function float SurfaceScale (int Surf) 
 {
@@ -357,8 +371,10 @@ function BlowUp(vector HitLocation)
 {
 	if (Role < ROLE_Authority)
 		return;
+
 	if (DamageRadius > 0)
 		TargetedHurtRadius(Damage, DamageRadius, MyRadiusDamageType, MomentumTransfer, HitLocation, HitActor);
+        
 	MakeNoise(1.0);
 }
 
@@ -455,7 +471,7 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 		{
 			if ( Instigator == None || Instigator.Controller == None )
 				Wall.SetDelayedDamageInstigatorController( InstigatorController );
-			Wall.TakeDamage( Damage, instigator, Location, MomentumTransfer * Normal(Velocity), MyDamageType);
+			Wall.TakeDamage( Damage, instigator, Location, GetMomentumVector(Normal(Velocity)), MyDamageType);
 			if (DamageRadius > 0 && Vehicle(Wall) != None && Vehicle(Wall).Health > 0)
 				Vehicle(Wall).DriverRadiusDamage(Damage, DamageRadius, InstigatorController, MyDamageType, MomentumTransfer, Location);
 			HurtWall = Wall;
@@ -511,9 +527,9 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(temp);
 		BoneTestLocation += HitLocation;
 		
-		class'BallisticDamageType'.static.GenericHurt (GetDamageVictim(Other, BoneTestLocation, Normal(Velocity), Dmg, DT), Dmg, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), DT);
+		class'BallisticDamageType'.static.GenericHurt (GetDamageVictim(Other, BoneTestLocation, Normal(Velocity), Dmg, DT), Dmg, Instigator, HitLocation, GetMomentumVector(Normal(Velocity)), DT);
 	}
-	else class'BallisticDamageType'.static.GenericHurt (GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT), Dmg, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), DT);
+	else class'BallisticDamageType'.static.GenericHurt (GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT), Dmg, Instigator, HitLocation, GetMomentumVector(Normal(Velocity)), DT);
 }
 
 simulated function bool CanPenetrate(Actor Other)
@@ -653,14 +669,14 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 			if ( Instigator == None || Instigator.Controller == None )
 				Victims.SetDelayedDamageInstigatorController( InstigatorController );
-            
+
 			class'BallisticDamageType'.static.GenericHurt
 			(
 				Victims,
 				damageScale * DamageAmount,
 				Instigator,
 				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
-				(damageScale * Momentum * dir),
+				GetMomentumVector(damageScale * dir),
 				DamageType
 			);
 		 }
@@ -776,24 +792,25 @@ function float GetPenetrationDamageScale(Vector dir, float dist)
 
 defaultproperties
 {
-     RadiusFallOffType=RFO_Quadratic
-     bRandomStartRotaion=True
-     bTearOnExplode=True
-     NetTrappedDelay=0.150000
-     HeadMult=1.500000
-     LimbMult=0.700000
-     ShakeRadius=-1.000000
-     bWarnEnemy=True
-     MotionBlurRadius=-1.000000
-     MotionBlurFactor=4.000000
-     MotionBlurTime=5.000000
-     ShakeRotMag=(X=256.000000,Y=256.000000,Z=256.000000)
-     ShakeRotRate=(X=2500.000000,Y=2500.000000,Z=2500.000000)
-     ShakeRotTime=6.000000
-     ShakeOffsetMag=(X=10.000000,Y=10.000000,Z=20.000000)
-     ShakeOffsetRate=(X=200.000000,Y=200.000000,Z=200.000000)
-     ShakeOffsetTime=6.000000
-     MaxSpeed=0.000000
-     DamageRadius=0.000000
-     DrawType=DT_StaticMesh
+    bLimitMomentumZ=True
+    RadiusFallOffType=RFO_Quadratic
+    bRandomStartRotaion=True
+    bTearOnExplode=True
+    NetTrappedDelay=0.150000
+    HeadMult=1.500000
+    LimbMult=0.700000
+    ShakeRadius=-1.000000
+    bWarnEnemy=True
+    MotionBlurRadius=-1.000000
+    MotionBlurFactor=4.000000
+    MotionBlurTime=5.000000
+    ShakeRotMag=(X=256.000000,Y=256.000000,Z=256.000000)
+    ShakeRotRate=(X=2500.000000,Y=2500.000000,Z=2500.000000)
+    ShakeRotTime=6.000000
+    ShakeOffsetMag=(X=10.000000,Y=10.000000,Z=20.000000)
+    ShakeOffsetRate=(X=200.000000,Y=200.000000,Z=200.000000)
+    ShakeOffsetTime=6.000000
+    MaxSpeed=0.000000
+    DamageRadius=0.000000
+    DrawType=DT_StaticMesh
 }

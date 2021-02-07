@@ -96,9 +96,6 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 
 	else Victim = GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT);
 
-	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-		BallisticPawn(Instigator).GiveAttributedHealth(int(Dmg * 0.6f), Instigator.SuperHealthMax, Instigator, True);
-
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 	{
 		if (Monster(Victim) == None || Pawn(Victim).default.Health > 275)
@@ -107,7 +104,10 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 	else if (Vehicle(Victim) != None && Vehicle(Victim).Driver!=None && Vehicle(Victim).Driver.Health > 0)
 		bWasAlive = true;
 
-	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), DT);
+	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && xPawn(Victim) != None && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+		BallisticPawn(Instigator).GiveAttributedHealth(int(Dmg * 0.6f), Instigator.SuperHealthMax, Instigator, True);
+
+	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, GetMomentumVector(Normal(Velocity)), DT);
 
 	if (bWasAlive && Pawn(Victim).Health <= 0)
 		class'RSNovaSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Other), self);
@@ -242,12 +242,17 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 				Square(damageScale) * DamageAmount,
 				Instigator,
 				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
-				(damageScale * Momentum * dir),
+				GetMomentumVector(damageScale * dir),
 				DamageType
 			);
 			
-			if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victims != Instigator && Victims.bProjTarget && (Pawn(Victims).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+			if 
+            (
+                BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victims != Instigator && Victims.bProjTarget && 
+                xPawn(Victims) != None && (Pawn(Victims).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255)
+            )
 				BallisticPawn(Instigator).GiveAttributedHealth(damageScale * DamageAmount * 0.6f, Instigator.SuperHealthMax, Instigator, True);
+                
 			if (bWasAlive && Pawn(Victims).Health <= 0)
 				class'RSNovaSoul'.static.SpawnSoul(HitLocation, Instigator, Pawn(Victims), self);
 		}

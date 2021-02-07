@@ -20,7 +20,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FireRate=1.75;
 		FireAnim='SemiFire';
 		FireAnimRate=1.45;
-    	KickForce=13000;
+    	KickForce=800;
 		FireRecoil=128;
      	FireChaos=0.2;
      	FlashScaleFactor=1.5;
@@ -73,7 +73,7 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DTSKASShotgun'
      DamageTypeHead=Class'BWBPRecolorsPro.DTSKASShotgunHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTSKASShotgun'
-     KickForce=10000
+     KickForce=400
      PenetrateForce=100
      bPenetrate=True
      bCockAfterEmpty=True

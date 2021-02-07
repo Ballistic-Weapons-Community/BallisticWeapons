@@ -11,8 +11,8 @@ defaultproperties
 		MaxRecoil=6144
 		CrouchMultiplier=1
 		HipMultiplier=1
-		ViewBindFactor=0.65
-		DeclineDelay=0.20
+		ViewBindFactor=0.5
+		DeclineDelay=0.09
 	End Object
 
 	Begin Object Class=RecoilParams Name=ArenaAutoRecoilParams

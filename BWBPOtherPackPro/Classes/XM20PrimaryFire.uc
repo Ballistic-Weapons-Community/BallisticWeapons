@@ -36,6 +36,7 @@ defaultproperties
 	CutOffDistance=3072.000000
 	CutOffStartRange=1536.000000
 	TraceRange=(Min=11000.000000,Max=12000.000000)
+    MaxWaterTraceRange=11000
 	WallPenetrationForce=64.000000
 
 	Damage=12.000000

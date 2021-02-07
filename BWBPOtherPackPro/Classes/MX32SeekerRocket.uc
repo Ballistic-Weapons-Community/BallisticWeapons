@@ -57,7 +57,7 @@ simulated function Tick(float DT)
 	if (bExploded)
 		Destroy();
 
-	if (Speed < MaxSpeed)
+	if (bArmed && Speed < MaxSpeed)
 		Speed = FMin(MaxSpeed, Speed + AccelSpeed * DT);
 
 	// Guide the projectile
@@ -92,12 +92,13 @@ simulated function Tick(float DT)
 
 defaultproperties
 {
-     TurnRate=32768.000000
-     AccelSpeed=10000.000000
-     Speed=20.000000
-     MaxSpeed=500020.000000
-     LifeSpan=0.000000
-	 bTearOff=False
-	 bNetTemporary=False
-	 bUpdateSimulatedPosition=True
+    ArmingDelay=0.5
+    TurnRate=32768.000000
+    Speed=250
+    AccelSpeed=10000.000000
+    FlightSpeed=20000
+    LifeSpan=0.000000
+	bTearOff=False
+	bNetTemporary=False
+	bUpdateSimulatedPosition=True
 }

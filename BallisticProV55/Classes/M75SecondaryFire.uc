@@ -27,7 +27,7 @@ simulated event ModeDoFire()
 	WallPenetrationForce 	= default.WallPenetrationForce 		+ RailWallPenetrationForceBonus * Square(RailPower);
 	PenetrateForce 			= default.PenetrateForce 			+ RailPenetrateForceBonus 		* RailPower;
 	KickForce 				= default.KickForce 				+ RailKickForceBonus 			* RailPower;
-	FireRecoil 			= default.FireRecoil 			+ RailFireRecoilPenalty 		* RailPower;
+	FireRecoil 			    = default.FireRecoil 			    + RailFireRecoilPenalty 		* RailPower;
 
 	Super.ModeDoFire();
 
@@ -104,13 +104,12 @@ defaultproperties
      DamageTypeHead=Class'BallisticProV55.DTM75RailgunChargedHead'
 	 DamageTypeArm=Class'BallisticProV55.DTM75RailgunCharged'
 
-	 KickForce=30000
-	 RailKickForceBonus=45000
+	 KickForce=10000
+	 RailKickForceBonus=10000
 
 	 bPenetrate=True
 	 PenetrateForce=700
 	 RailPenetrateForceBonus=2500
-
 
      MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
      BrassClass=Class'BallisticProV55.Brass_Railgun'

@@ -478,6 +478,7 @@ function InitEffects()
 
 defaultproperties
 {
+     MaxWaterTraceRange=5000
      BoostMuzzleFlashClass=Class'BWBPOtherPackPro.ProtonFlashEmitterBoost'
      Damage=5.000000
      DamageType=Class'BWBPOtherPackPro.DTProtonStreamer'

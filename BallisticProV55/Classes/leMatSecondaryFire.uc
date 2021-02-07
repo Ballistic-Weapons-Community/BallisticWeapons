@@ -58,7 +58,6 @@ defaultproperties
      DamageType=Class'BallisticProV55.DTleMatShotgun'
      DamageTypeHead=Class'BallisticProV55.DTleMatShotgunHead'
      DamageTypeArm=Class'BallisticProV55.DTleMatShotgun'
-     KickForce=10000
      PenetrateForce=100
      bPenetrate=True
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.600000)

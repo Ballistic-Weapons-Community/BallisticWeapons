@@ -62,6 +62,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+    bLimitMomentumZ=False
      FlySound=Sound'BWBP_SKC_Sounds.Flash.M202-Flyby'
      RollRange=100000
      ShockRadius=2600

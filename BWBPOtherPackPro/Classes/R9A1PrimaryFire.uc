@@ -16,14 +16,19 @@ var int	HeatPerShot;
 
 function SwitchWeaponMode (byte NewMode)
 {
-	if (NewMode == 1)
+    switch (NewMode)
+    { 
+    case 1:
 		GoToState('Freeze');
-	else if (NewMode == 2)
+        break;
+	case 2:
 		GoToState('Laser');
-	else
-	{
+        break;
+    default:
 		Damage = default.Damage;
+        MaxWaterTraceRange = default.MaxWaterTraceRange;
 		GoToState('');
+        break;
 	}
 }
 
@@ -33,6 +38,7 @@ state Freeze
 	function BeginState()
 	{
 		Damage = 35;
+        MaxWaterTraceRange = default.MaxWaterTraceRange;
 	}
 	function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 	{	
@@ -60,6 +66,7 @@ state Laser
 	function BeginState()
 	{
 		Damage = 20;
+        MaxWaterTraceRange=5000;
 	}
 	//Deals increased damage to targets which have already been heated up by a previous strike.
 	function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
@@ -154,7 +161,6 @@ defaultproperties
      DamageType=Class'BWBPOtherPackPro.DTR9A1Rifle'
      DamageTypeHead=Class'BWBPOtherPackPro.DTR9A1RifleHead'
      DamageTypeArm=Class'BWBPOtherPackPro.DTR9A1Rifle'
-     KickForce=6000
      PenetrateForce=150
      bPenetrate=True
      ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-ClipOut',Volume=0.800000,Radius=48.000000,Pitch=1.250000,bAtten=True)

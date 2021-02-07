@@ -102,7 +102,7 @@ defaultproperties
      DamageType=Class'BallisticProV55.DTMRT6Shotgun'
      DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
      DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'
-     KickForce=3500
+     KickForce=400
      PenetrateForce=100
      bPenetrate=True
      bCockAfterFire=True

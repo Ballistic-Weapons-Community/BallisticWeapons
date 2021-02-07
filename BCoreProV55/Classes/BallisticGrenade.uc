@@ -180,9 +180,9 @@ simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
 
     if (PlayerImpactType == PIT_Detonate || DetonateOn == DT_Impact)
-        class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
+        class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, GetMomentumVector(Normal(Velocity)), ImpactDamageType);
     else 
-        class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
+        class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage, Instigator, HitLocation, GetMomentumVector(Normal(Velocity)), ImpactDamageType);
 }
 
 //===============================================================

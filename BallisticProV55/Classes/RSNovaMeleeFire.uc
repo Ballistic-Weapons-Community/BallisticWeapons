@@ -59,7 +59,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 			bWasAlive = true;
 	}
 		
-	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim.bProjTarget && xPawn(Victim) != None && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
 		BallisticPawn(Instigator).GiveAttributedHealth(Damage / 3, Instigator.SuperHealthMax, Instigator, True);
 
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);

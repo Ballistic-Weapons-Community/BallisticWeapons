@@ -115,7 +115,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 
 	else Victim = GetDamageVictim(Other, HitLocation, Normal(Velocity), Dmg, DT);
 	
-	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+	if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim != Instigator && Victim.bProjTarget && xPawn(Victim) != None && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
 		BallisticPawn(Instigator).GiveAttributedHealth(Dmg * 0.2, Instigator.SuperHealthMax, Instigator, True);
 
 	/*

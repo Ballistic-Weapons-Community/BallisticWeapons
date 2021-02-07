@@ -59,7 +59,7 @@ defaultproperties
      DamageType=Class'BWBPRecolorsPro.DTCYLOShotgun'
      DamageTypeHead=Class'BWBPRecolorsPro.DTCYLOShotgunHead'
      DamageTypeArm=Class'BWBPRecolorsPro.DTCYLOShotgun'
-     KickForce=10000
+     KickForce=400
      PenetrateForce=100
      bPenetrate=True
      bUseWeaponMag=False

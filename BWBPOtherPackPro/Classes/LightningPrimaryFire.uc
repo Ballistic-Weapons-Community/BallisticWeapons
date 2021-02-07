@@ -149,7 +149,6 @@ defaultproperties
 	DamageType=Class'BWBPOtherPackPro.DT_LightningRifle'
 	DamageTypeHead=Class'BWBPOtherPackPro.DT_LightningHead'
 	DamageTypeArm=Class'BWBPOtherPackPro.DT_LightningRifle'
-	KickForce=6000
 	PDamageFactor=0.800000
 	MuzzleFlashClass=Class'BWBPOtherPackPro.LightningFlashEmitter'
 	FlashScaleFactor=0.600000
