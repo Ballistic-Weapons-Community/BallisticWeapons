@@ -108,7 +108,6 @@ defaultproperties
     MaxSpeed=6000.000000
     Damage=25.000000
     DamageRadius=768.000000
-    MomentumTransfer=0.000000
     MyDamageType=Class'BallisticProV55.DTA500Splash'
     LightType=LT_Steady
     LightEffect=LE_QuadraticNonIncidence

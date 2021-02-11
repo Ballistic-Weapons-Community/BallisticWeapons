@@ -11,66 +11,120 @@
 //=============================================================================
 class BallisticFire extends WeaponFire;
 
-// Params
-var   FireParams				Params;
-// General Variables -----------------------------------------------------------
-var   BallisticWeapon			BW;					// Easy access to BallisticWeapon(Weapon)
-var() BUtil.FullSound			ClipFinishSound;	// Sound to play when mag runs out
-var() BUtil.FullSound			DryFireSound;		// Sound to play when dry firing
-var   bool						bPlayedDryFire;		// Has dry fire sound been played since ammo ran out
-var() bool						bCockAfterFire;		// Cock the gun after each shot
-var() bool						bCockAfterEmpty;	// Cock the gun if MagAmmo gets to 0
-var() bool						bDryUncock;			// Can still uncock weapon by pressing fire when mag is empty
-var() bool						bUseWeaponMag;		// Use ammo from gun. Uses ammo from weapon's mag is it has one
-var() Actor						MuzzleFlash;		// The muzzleflash actor
-var() class<Actor>				MuzzleFlashClass;	// The actor to use for this fire's muzzleflash
-var() Name						FlashBone;			// Bone to attach muzzle flash to
-var() float						FlashScaleFactor;	// MuzzleFlash scaling will be DrawScale * FlashScaleFactor
-var() class<actor>				BrassClass;			// Actor to spawn for ejecting brass
-var() name						BrassBone;			// Bone where brass will be spawned
-var() bool						bBrassOnCock;		// Eject brass when cocked
-var() Vector					BrassOffset;		// Position offset for brass spawning
-var   int						ConsumedLoad;		// This is the amount of ammo to consume for delayed consume ammo.
-var() bool						bReleaseFireOnDie;	// If bFireOnRelease, mode will fire if holder died before release
-var() bool						bIgnoreReload;		// This firemode can stop the weapon reloading and fire
-var() bool						bIgnoreCocking;		// This mode can cancel weapon cocking to fire
-var Name 						AimedFireAnim;		// Fire anim to play when scoped
-var Name						EmptyFireAnim; 		// Fire anim to play when emptied
-var Name 						EmptyAimedFireAnim;
-// Burst Mode -----------------------------------------------------------------
-var int BurstCount;									// Number of shots fired in this burst thus far
-var int MaxBurst;									// Max shots per burst, set by Weapon
-var bool bBurstMode;								// Weapon fires bursts
-var float	BurstFireRateFactor;					// Multiplies down fire rate in burst mode
-
-var() enum EScopeDownOn
-{
-	SDO_Never,	// Don't do anything for this fire
-	SDO_Fire,	// Lower on fire
-	SDO_PreFire // Lower on PreFire
-}								ScopeDownOn;		// What can cause the the gun to be lowered out of scope/sight view
-//-----------------------------------------------------------------------------
-
-//Bullet spread variables------------------------------------------------------
-var() float						FireRecoil;			// Amount of recoil added each shot
-var() float						FirePushbackForce;	// How much to jolt player back when they fire
-var() float						FireChaos;			// Chaos added to aim when fired. Will be auto calculated if < 0
-var() InterpCurve				FireChaosCurve;
-var() float						XInaccuracy;		// Set amount that bullets can yaw away from gun's aim
-var() float						YInaccuracy;		// Set amount that bullets can pitch away from gun's aim
-
 enum EFireSpreadMode
 {
 	FSM_Rectangle,	// Standard random rectangular box.
 	FSM_Scatter,	// An elliptical spread pattern with higher concentration towards the center.
 	FSM_Circle		// More evenly spread elliptical pattern.
 };
-var() EFireSpreadMode	FireSpreadMode;		// The type of spread pattern to use for X and YInaccuracy
-//-----------------------------------------------------------------------------
 
-//Weapon Jamming---------------------------------------------------------------
-//This is gonna annoy some people. Weapons can have a chance that each shot will jam.
-//Weapons have to be unjammed before firing may resume.
+enum EScopeDownOn
+{
+	SDO_Never,	// Don't do anything for this fire
+	SDO_Fire,	// Lower on fire
+	SDO_PreFire // Lower on PreFire
+};
+
+//=============================================================================
+// STATE VARIABLES
+//=============================================================================
+var   FireParams				Params;
+var   BallisticWeapon			BW;					// Easy access to BallisticWeapon(Weapon)
+var   int						ConsumedLoad;		// This is the amount of ammo to consume for delayed consume ammo.
+//=============================================================================
+// END STATE VARIABLES
+//=============================================================================
+
+//=============================================================================
+// GENERAL WEAPON FIRE VARIABLES
+//
+// These variables are consistent for every instance of a fire mode and are 
+// user-defined but generally not modified within the game. 
+// Contains things like display offsets, icon coords etc
+//=============================================================================
+//-----------------------------------------------------------------------------
+// Appearance
+//-----------------------------------------------------------------------------
+var() Name						FlashBone;			// Bone to attach muzzle flash to
+var() class<actor>				BrassClass;			// Actor to spawn for ejecting brass
+var() name						BrassBone;			// Bone where brass will be spawned
+var() bool						bBrassOnCock;		// Eject brass when cocked
+var() Vector					BrassOffset;		// Position offset for brass spawning
+//-----------------------------------------------------------------------------
+// Cocking/Reloading
+//-----------------------------------------------------------------------------
+var   bool						bPlayedDryFire;		// Has dry fire sound been played since ammo ran out
+var() bool						bCockAfterFire;		// Cock the gun after each shot
+var() bool						bCockAfterEmpty;	// Cock the gun if MagAmmo gets to 0
+var() bool						bDryUncock;			// Can still uncock weapon by pressing fire when mag is empty
+var() bool						bIgnoreReload;		// This firemode can stop the weapon reloading and fire
+var() bool						bIgnoreCocking;		// This mode can cancel weapon cocking to fire
+var() bool						bUseWeaponMag;		// Use ammo from gun. Uses ammo from weapon's mag is it has one
+//-----------------------------------------------------------------------------
+// Sighting
+//-----------------------------------------------------------------------------
+var() EScopeDownOn				ScopeDownOn;		// What can cause the the gun to be lowered out of scope/sight view
+//-----------------------------------------------------------------------------
+// Sound
+//-----------------------------------------------------------------------------
+var() BUtil.FullSound			ClipFinishSound;	// Sound to play when mag runs out
+var() BUtil.FullSound			DryFireSound;		// Sound to play when dry firing
+//=============================================================================
+// END GENERAL WEAPON FIRE VARIABLES
+//=============================================================================
+
+//=============================================================================
+// GAMEPLAY VARIABLES
+//
+// These variables are user-defined, and may additionally be modified either 
+// by the game ruleset or by weapon modes and attachments.
+//=============================================================================
+//-----------------------------------------------------------------------------
+// Appearance
+//-----------------------------------------------------------------------------
+var() class<Actor>			MuzzleFlashClass;	// The actor class to use for this fire's muzzle flash
+var() Actor					MuzzleFlash;		// The muzzleflash actor
+var() float					FlashScaleFactor;	// MuzzleFlash scaling will be DrawScale * FlashScaleFactor
+//-----------------------------------------------------------------------------
+// Animation
+//-----------------------------------------------------------------------------
+var Name 					AimedFireAnim;		// Fire anim to play when scoped
+var Name					EmptyFireAnim; 		// Fire anim to play when emptied
+var Name 					EmptyAimedFireAnim;
+//-----------------------------------------------------------------------------
+// Handling
+//-----------------------------------------------------------------------------
+var() bool					bReleaseFireOnDie;	// If bFireOnRelease, mode will fire if holder died before release
+//-----------------------------------------------------------------------------
+// Burst Mode
+//-----------------------------------------------------------------------------
+var int                     BurstCount;			// Number of shots fired in this burst thus far
+var int                     MaxBurst;			// Max shots per burst, set by Weapon
+var bool                    bBurstMode;			// Weapon fires bursts
+var float	                BurstFireRateFactor;// Multiplies down fire rate in burst mode
+//-----------------------------------------------------------------------------
+// Dispersion
+//-----------------------------------------------------------------------------
+var() float					FireRecoil;			// Amount of recoil added each shot
+var() float					FirePushbackForce;	// How much to jolt player back when they fire
+var() float					FireChaos;			// Chaos added to aim when fired. Will be auto calculated if < 0
+var() InterpCurve			FireChaosCurve;
+var() float					XInaccuracy;		// Set amount that bullets can yaw away from gun's aim
+var() float					YInaccuracy;		// Set amount that bullets can pitch away from gun's aim
+var() EFireSpreadMode	    FireSpreadMode;		// The type of spread pattern to use for X and YInaccuracy
+//-----------------------------------------------------------------------------
+// Sound
+//-----------------------------------------------------------------------------
+var() BUtil.FullSound		SilencedFireSound;	// Fire sound to play when silenced
+var() BUtil.FullSound		BallisticFireSound;	// Fire sound to play
+var() bool					bAISilent;			// Bots dont hear the fire
+//=============================================================================
+// END GAMEPLAY VARIABLES
+//=============================================================================
+
+//=============================================================================
+// JAMMING, that I don't care about
+//=============================================================================
 var(Jamming) enum EUnjamMethod
 {
 	UJM_ReloadAndCock,			// Weapon must be reloaded, clip out, back in and cocked
@@ -86,16 +140,12 @@ var	bool						bIsJammed;				// Is this firemode currently jammed
 var(Jamming) BUtil.FullSound 	JamSound;				// Sound to play when clip runs out
 var bool						bPendingTryJam;			// Try jam next Timer()
 var(Jamming) bool				bJamWastesAmmo;			// Jamming wastes the ammo that would have been fired
-//-----------------------------------------------------------------------------
-
-// Sound Stuff  ---------------------------------------------
-var() BUtil.FullSound		SilencedFireSound;	// Fire sound to play when silenced
-var() BUtil.FullSound		BallisticFireSound;	// Fire sound to play
-var() bool					bAISilent;				// Bots dont hear the fire
-//-----------------------------------------------------------
+//=============================================================================
+// END JAMMING
+//=============================================================================
 
 //===========================================================================
-//Statistics variables
+// Statistics variables
 //===========================================================================
 struct FireModeStats
 {

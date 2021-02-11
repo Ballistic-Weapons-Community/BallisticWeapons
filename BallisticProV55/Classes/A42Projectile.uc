@@ -135,7 +135,6 @@ defaultproperties
      Speed=3000.000000
      MaxSpeed=4500.000000
      DamageRadius=48.000000
-     MomentumTransfer=100.000000
      MyDamageType=Class'BallisticProV55.DTA42Skrith'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence

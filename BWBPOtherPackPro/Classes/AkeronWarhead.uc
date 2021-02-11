@@ -652,7 +652,7 @@ defaultproperties
 
 	 Damage=110.000000
      DamageRadius=300.000000
-     MomentumTransfer=20000.000000
+     MomentumTransfer=70000.000000
      MyDamageType=Class'BWBPOtherPackPro.DTAkeronGuided'
 	 OutwardDamageRadius=96.000000
      ImpactManager=Class'BWBPOtherPackPro.IM_Akeron'

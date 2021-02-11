@@ -304,7 +304,7 @@ defaultproperties
 	LightSaturation=90
 	LightType=LT_Steady
 	MaxSpeed=10000.000000
-	MomentumTransfer=90000.000000
+	MomentumTransfer=70000.000000
 	MyDamageType=Class'BallisticProV55.DT_RSNovaSlow'
 	MyRadiusDamageType=Class'BallisticProV55.DT_RSNovaSlow'
 	PenetrateManager=Class'BallisticProV55.IM_RSNovaProjectile'

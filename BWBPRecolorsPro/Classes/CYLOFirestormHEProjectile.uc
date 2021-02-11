@@ -122,7 +122,7 @@ defaultproperties
      MaxSpeed=15000.000000
      Damage=50.000000
      DamageRadius=192.000000
-     MomentumTransfer=100000.000000
+     MomentumTransfer=50000.000000
      MyDamageType=Class'BWBPRecolorsPro.DTCYLOFirestormHESlug'
      LightHue=180
      LightSaturation=100

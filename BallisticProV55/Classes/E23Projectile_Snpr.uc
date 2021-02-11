@@ -65,7 +65,6 @@ defaultproperties
     MaxSpeed=50000.000000
     Damage=35.000000
     DamageRadius=64.000000
-    MomentumTransfer=100.000000
     MyDamageType=Class'BallisticProV55.DTE23Plasma'
     LightType=LT_Steady
     LightEffect=LE_QuadraticNonIncidence

@@ -192,7 +192,7 @@ defaultproperties
      MaxSpeed=35000.000000
      Damage=105.000000
      DamageRadius=300.000000
-     MomentumTransfer=20000.000000
+     MomentumTransfer=70000.000000
      MyDamageType=Class'BWBPOtherPackPro.DTAkeron'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.BOGP.BOGP_Grenade'
      AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'

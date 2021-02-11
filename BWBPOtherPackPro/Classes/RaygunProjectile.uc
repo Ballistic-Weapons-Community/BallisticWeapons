@@ -65,7 +65,6 @@ defaultproperties
      Speed=4500.000000
      MaxSpeed=10000.000000
      Damage=38.000000
-     MomentumTransfer=4500.000000
      MyDamageType=Class'BWBPOtherPackPro.DTRaygun'
      ExploWallOut=12.000000
      LightType=LT_Steady

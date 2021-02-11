@@ -134,7 +134,6 @@ defaultproperties
      MaxSpeed=8500.000000
      Damage=32.000000
      DamageRadius=48.000000
-     MomentumTransfer=100.000000
      MyDamageType=Class'BWBPRecolorsPro.DTA49Skrith'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence

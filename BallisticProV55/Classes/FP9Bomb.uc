@@ -465,7 +465,7 @@ defaultproperties
      Speed=350.000000
      Damage=150.000000
      DamageRadius=1024.000000
-     MomentumTransfer=90000.000000
+     MomentumTransfer=50000.000000
      MyDamageType=Class'BallisticProV55.DTNRP57Grenade'
      ImpactSound=SoundGroup'BW_Core_WeaponSound.FP9A5.FP9-Bounce'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.FP9.FP9Proj'

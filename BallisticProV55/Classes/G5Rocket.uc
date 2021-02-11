@@ -116,7 +116,7 @@ defaultproperties
      ImpactSounds(5)=Sound'XEffects.Impact2'
 	 ImpactDamage=100.000000
 	 ArmedImpactDamage=150.000000
-     ImpactMomentumTransfer=200000.000000
+     ImpactMomentumTransfer=60000.000000
      ImpactDamageType=Class'BallisticProV55.DTG5Unarmed'
      ArmingDelay=0.200000
      ImpactManager=Class'BallisticProV55.IM_RPG'
@@ -136,7 +136,7 @@ defaultproperties
      Damage=120.000000
      DamageRadius=768.000000
      WallPenetrationForce=384
-     MomentumTransfer=90000.000000
+     MomentumTransfer=75000.000000
      MyDamageType=Class'BallisticProV55.DTG5Bazooka'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence

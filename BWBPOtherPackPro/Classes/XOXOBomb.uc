@@ -196,7 +196,7 @@ defaultproperties
      MaxSpeed=2500.000000
      Damage=100.000000
      DamageRadius=768.000000
-     MomentumTransfer=30000.000000
+     MomentumTransfer=-30000.000000
      MyDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
      MyRadiusDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
 

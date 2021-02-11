@@ -59,7 +59,7 @@ defaultproperties
      MaxSpeed=5000.000000
      Damage=100.000000
      DamageRadius=256.000000
-     MomentumTransfer=10000.000000
+     MomentumTransfer=70000.000000
      MyDamageType=Class'BWBPRecolorsPro.DT_Mk781Bolt'
      LightHue=180
      LightSaturation=100

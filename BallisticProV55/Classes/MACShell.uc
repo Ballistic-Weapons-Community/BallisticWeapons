@@ -155,7 +155,7 @@ defaultproperties
      MaxSpeed=9000.000000
      Damage=210.000000
      DamageRadius=192.000000
-     MomentumTransfer=100000.000000
+     MomentumTransfer=70000.000000
      MyDamageType=Class'BallisticProV55.DT_MAC'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Artillery.Artillery-Projectile'
      Physics=PHYS_Falling

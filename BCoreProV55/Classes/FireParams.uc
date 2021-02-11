@@ -22,6 +22,8 @@ var() bool					    bReleaseFireOnDie;	    // If bFireOnRelease, mode will fire i
 
 var() float                     PreFireTime;            // seconds before first shot
 var() float                     MaxHoldTime;            // weapon will release fire automatically after this period of time
+
+var() Name                      TargetState;            // switch to this state on activation
 //-----------------------------------------------------------------------------
 // Ballistic General
 //-----------------------------------------------------------------------------
@@ -42,7 +44,9 @@ var() float                     FireAnimRate;
 var() float                     FireLoopAnimRate;
 var() float                     FireEndAnimRate;
 
-var() Name 						AimedFireAnim;		    // Fire anim to play when scoped
+var() bool                      bLoopedAnim;            // Uses looped animation instead of repeated single fire animation
+
+var() Name 						AimedFireAnim;		    // Fire anim to play when ADS
 //-----------------------------------------------------------------------------
 // Subobjects
 //-----------------------------------------------------------------------------

@@ -34,7 +34,7 @@ defaultproperties
      Damage=70.000000
      DamageRadius=384.000000
      WallPenetrationForce=192
-     MomentumTransfer=10000.000000
+     MomentumTransfer=50000.000000
      MyDamageType=Class'BWBPRecolorsPro.DT_LS14Rocket'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
      AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'

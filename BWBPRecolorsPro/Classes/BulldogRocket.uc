@@ -118,7 +118,7 @@ defaultproperties
      Damage=110.000000
 	 DamageRadius=512.000000
      WallPenetrationForce=192
-     MomentumTransfer=15000.000000
+     MomentumTransfer=60000.000000
      MyDamageType=Class'BWBPRecolorsPro.DTBulldogFRAG'
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTBulldogFRAGRadius'
 

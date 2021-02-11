@@ -106,7 +106,7 @@ defaultproperties
      MaxSpeed=7000.000000
      Damage=70.000000
      DamageRadius=100.000000
-     MomentumTransfer=50000.000000
+     MomentumTransfer=2000.000000
      MyDamageType=Class'BallisticProV55.DTA73SkrithPower'
      LightSaturation=128
      LightBrightness=225.000000

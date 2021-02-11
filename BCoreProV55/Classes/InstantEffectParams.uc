@@ -15,7 +15,8 @@ class InstantEffectParams extends FireEffectParams
 //-----------------------------------------------------------------------------
 // Range
 //-----------------------------------------------------------------------------
-var()   Range               TraceRange;             // Maximum range of this fire mode
+var()   Range               TraceRange;             // Maximum range of this shot type
+var()   Range               WaterTraceRange;        // Maximum range through water
 var()   InterpCurve         RangeAttenCurve;        // Interpolation curve for damage reduction over range
 //-----------------------------------------------------------------------------
 // Damage
