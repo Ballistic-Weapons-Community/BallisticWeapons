@@ -76,26 +76,26 @@ var() BUtil.FullSound			DryFireSound;		// Sound to play when dry firing
 //-----------------------------------------------------------------------------
 // Appearance
 //-----------------------------------------------------------------------------
-var() class<Actor>			MuzzleFlashClass;	// The actor class to use for this fire's muzzle flash
-var() Actor					MuzzleFlash;		// The muzzleflash actor
-var() float					FlashScaleFactor;	// MuzzleFlash scaling will be DrawScale * FlashScaleFactor
+var() class<Actor>			            MuzzleFlashClass;	// The actor class to use for this fire's muzzle flash
+var() Actor					            MuzzleFlash;		// The muzzleflash actor
+var() float					            FlashScaleFactor;	// MuzzleFlash scaling will be DrawScale * FlashScaleFactor
 //-----------------------------------------------------------------------------
 // Animation
 //-----------------------------------------------------------------------------
-var Name 					AimedFireAnim;		// Fire anim to play when scoped
-var Name					EmptyFireAnim; 		// Fire anim to play when emptied
-var Name 					EmptyAimedFireAnim;
+var Name 					            AimedFireAnim;		// Fire anim to play when scoped
+var Name					            EmptyFireAnim; 		// Fire anim to play when emptied
+var Name 					            EmptyAimedFireAnim;
 //-----------------------------------------------------------------------------
 // Handling
 //-----------------------------------------------------------------------------
-var() bool					bReleaseFireOnDie;	// If bFireOnRelease, mode will fire if holder died before release
+var() bool					            bReleaseFireOnDie;	// If bFireOnRelease, mode will fire if holder died before release
 //-----------------------------------------------------------------------------
 // Burst Mode
 //-----------------------------------------------------------------------------
-var int                     BurstCount;			// Number of shots fired in this burst thus far
-var int                     MaxBurst;			// Max shots per burst, set by Weapon
-var bool                    bBurstMode;			// Weapon fires bursts
-var float	                BurstFireRateFactor;// Multiplies down fire rate in burst mode
+var int                                 BurstCount;			// Number of shots fired in this burst thus far
+var int                                 MaxBurst;			// Max shots per burst, set by Weapon
+var bool                                bBurstMode;			// Weapon fires bursts
+var float	                            BurstFireRateFactor;// Multiplies down fire rate in burst mode
 //-----------------------------------------------------------------------------
 // Dispersion
 //-----------------------------------------------------------------------------
@@ -109,9 +109,9 @@ var() FireEffectParams.FireSpreadMode	FireSpreadMode;		// The type of spread pat
 //-----------------------------------------------------------------------------
 // Sound
 //-----------------------------------------------------------------------------
-var() BUtil.FullSound		SilencedFireSound;	// Fire sound to play when silenced
-var() BUtil.FullSound		BallisticFireSound;	// Fire sound to play
-var() bool					bAISilent;			// Bots dont hear the fire
+var() BUtil.FullSound		            SilencedFireSound;	// Fire sound to play when silenced
+var() BUtil.FullSound		            BallisticFireSound;	// Fire sound to play
+var() bool					            bAISilent;			// Bots dont hear the fire
 //=============================================================================
 // END GAMEPLAY VARIABLES
 //=============================================================================
@@ -121,19 +121,19 @@ var() bool					bAISilent;			// Bots dont hear the fire
 //=============================================================================
 var(Jamming) enum EUnjamMethod
 {
-	UJM_ReloadAndCock,			// Weapon must be reloaded, clip out, back in and cocked
-	UJM_Reload,					// Weapon must be reloaded, clip out and back in
-	UJM_Cock,					// Weapon must be cocked.
-	UJM_FireNextRound,			// Pressing fire will unjam, but not fire a bullet
-	UJM_Fire					// Press fire to unjam and fire the next round
-}								UnjamMethod;			// How to unjam this firemode
-var(Jamming) float				JamChance;				// Chance of weapon jamming each shot
-var(Jamming) float				WaterJamChance;			// Chance of weapon jamming each shot when under water
-var(Jamming) float				JamMoveMultiplier;		// JamChance multiplied by this when player is moving
-var	bool						bIsJammed;				// Is this firemode currently jammed
-var(Jamming) BUtil.FullSound 	JamSound;				// Sound to play when clip runs out
-var bool						bPendingTryJam;			// Try jam next Timer()
-var(Jamming) bool				bJamWastesAmmo;			// Jamming wastes the ammo that would have been fired
+	UJM_ReloadAndCock,			            // Weapon must be reloaded, clip out, back in and cocked
+	UJM_Reload,					            // Weapon must be reloaded, clip out and back in
+	UJM_Cock,					            // Weapon must be cocked.
+	UJM_FireNextRound,			            // Pressing fire will unjam, but not fire a bullet
+	UJM_Fire					            // Press fire to unjam and fire the next round
+}								            UnjamMethod;			// How to unjam this firemode
+var(Jamming) float				            JamChance;				// Chance of weapon jamming each shot
+var(Jamming) float				            WaterJamChance;			// Chance of weapon jamming each shot when under water
+var(Jamming) float				            JamMoveMultiplier;		// JamChance multiplied by this when player is moving
+var	bool						            bIsJammed;				// Is this firemode currently jammed
+var(Jamming) BUtil.FullSound 	            JamSound;				// Sound to play when clip runs out
+var bool						            bPendingTryJam;			// Try jam next Timer()
+var(Jamming) bool				            bJamWastesAmmo;			// Jamming wastes the ammo that would have been fired
 //=============================================================================
 // END JAMMING
 //=============================================================================
@@ -159,42 +159,40 @@ struct FireModeStats
 
 var	String		ShotTypeString, EffectString;
 
-simulated function InitializeFromParams(FireParams params)
+simulated final function ApplyFireParams()
 {
-    local FireEffectParams effect_params;
+    FireRate                = Params.FireInterval;
+    AmmoPerFire             = Params.AmmoPerFire;
 
-    FireRate                = params.FireInterval;
-    AmmoPerFire             = params.AmmoPerFire;
+    bWaitForRelease         = Params.bWaitForRelease;
+    bReleaseFireOnDie       = Params.bReleaseFireOnDie;
 
-    bWaitForRelease         = params.bWaitForRelease;
-    bReleaseFireOnDie       = params.bReleaseFireOnDie;
+    PreFireTime             = Params.PreFireTime;
+    MaxHoldTime             = Params.MaxHoldTime;
 
-    PreFireTime             = params.PreFireTime;
-    MaxHoldTime             = params.MaxHoldTime;
+    GoToState(Params.TargetState);
 
-    GoToState(params.TargetState);
+    BurstFireRateFactor     = Params.BurstFireRateFactor;
+    bCockAfterFire          = Params.bCockAfterFire;
 
-    BurstFireRateFactor     = params.BurstFireRateFactor;
-    bCockAfterFire          = params.bCockAfterFire;
+    PreFireAnim             = Params.PreFireAnim; 
+    FireAnim                = Params.FireAnim;
+    FireLoopAnim            = Params.FireLoopAnim;
+    FireEndAnim             = Params.FireEndAnim;
 
-    PreFireAnim             = params.PreFireAnim; 
-    FireAnim                = params.FireAnim;
-    FireLoopAnim            = params.FireLoopAnim;
-    FireEndAnim             = params.FireEndAnim;
+    PreFireAnimRate         = Params.PreFireAnimRate;
+    FireAnimRate            = Params.FireAnimRate;
+    FireLoopAnimRate        = Params.FireLoopAnimRate;
+    FireEndAnimRate         = Params.FireEndAnimRate;
 
-    PreFireAnimRate         = params.PreFireAnimRate;
-    FireAnimRate            = params.FireAnimRate;
-    FireLoopAnimRate        = params.FireLoopAnimRate;
-    FireEndAnimRate         = params.FireEndAnimRate;
+    AimedFireAnim           = Params.AimedFireAnim;
+}
 
-    AimedFireAnim           = params.AimedFireAnim;
-
-    // assign effect
-
-    effect_params           = params.FireEffectParams[0];
-
+simulated function ApplyFireEffectParams(FireEffectParams effect_params)
+{
+    // must check on existing muzzle flash for replacement
     MuzzleFlashClass        = effect_params.MuzzleFlashClass;
-
+    FlashScaleFactor        = effect_params.FlashScaleFactor;
     BallisticFireSound      = effect_params.FireSound;
     FireRecoil              = effect_params.Recoil;
     FirePushbackForce       = effect_params.PushbackForce;
@@ -250,20 +248,20 @@ simulated function SwitchWeaponMode (byte NewMode);
 //================================================================
 simulated function OnFireParamsChanged(int EffectIndex)
 {
-
+    ApplyFireParams();
+    OnEffectParamsChanged(EffectIndex);
 }
 
 //================================================================
 // OnEffectParamsChanged
 //
 // Called from:
-// - BallisticWeaponParams on weapon initialization
-// - OnFireParamsChanged when mode is changed
+// - OnFireParamsChanged when initialized or mode is changed
 // - BallisticWeapon when ammo is changed
 //================================================================
 simulated function OnEffectParamsChanged(int EffectIndex)
 {
-
+    ApplyFireEffectParams(Params.FireEffectParams[EffectIndex]);
 }
 
 // Effect related functions ------------------------------------------------

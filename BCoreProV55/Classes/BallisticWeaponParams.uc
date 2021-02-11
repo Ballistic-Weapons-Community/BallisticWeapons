@@ -31,7 +31,7 @@ var WeaponParams                  Params[2];
 static simulated final function Initialize(BallisticWeapon BW)
 {
     SetWeaponParams(BW);
-    //SetFireParams(BW);
+    SetFireParams(BW);
     SetRecoilParams(BW);
     SetAimParams(BW);
 
@@ -46,11 +46,42 @@ static simulated final function SetWeaponParams(BallisticWeapon BW)
 
 static simulated final function SetFireParams(BallisticWeapon BW)
 {
-    BW.BFireMode[0].Params = default.Params[BW.default.BCRepClass.default.GameStyle].FireParams[BW.CurrentWeaponMode];
-    BW.BFireMode[0].OnFireParamsChanged(BW.AmmoType);
+    if (default.Params[BW.default.BCRepClass.default.GameStyle].FireParams.Length > 0)
+    {
+        BW.BFireMode[0].Params = default.Params[BW.default.BCRepClass.default.GameStyle].FireParams
+        [
+            Min
+            (
+                BW.CurrentWeaponMode, 
+                default.Params[BW.default.BCRepClass.default.GameStyle].FireParams.Length - 1
+            )
+        ];
 
-    BW.BFireMode[1].Params = default.Params[BW.default.BCRepClass.default.GameStyle].AltFireParams[BW.CurrentWeaponMode];
-    BW.BFireMode[1].OnFireParamsChanged(BW.AmmoType);
+        BW.BFireMode[0].OnFireParamsChanged(BW.AmmoType);
+    }
+
+    else 
+    {
+        Log("BallisticWeaponParams: Could not initialize " $ BW.ItemName $ "'s primary fire; no fire params configured");
+    }
+
+    if (default.Params[BW.default.BCRepClass.default.GameStyle].AltFireParams.Length > 0)
+    {
+        BW.BFireMode[1].Params = default.Params[BW.default.BCRepClass.default.GameStyle].AltFireParams
+        [
+            Min
+            (
+                BW.CurrentWeaponMode, 
+                default.Params[BW.default.BCRepClass.default.GameStyle].AltFireParams.Length - 1
+            )
+        ];
+        BW.BFireMode[1].OnFireParamsChanged(BW.AmmoType);
+    }
+
+    else 
+    {
+        Log("BallisticWeaponParams: Could not initialize " $ BW.ItemName $ "'s alternate fire; no fire params configured");
+    }
 }
 
 static simulated final function SetRecoilParams(BallisticWeapon BW)

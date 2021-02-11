@@ -28,6 +28,7 @@ enum FireSpreadMode
 // Appearance
 //-----------------------------------------------------------------------------
 var() class<Actor>				MuzzleFlashClass;	    // The actor class to use for this fire's muzzle flash
+var() float                     FlashScaleFactor;
 //-----------------------------------------------------------------------------
 // Sound
 //-----------------------------------------------------------------------------
@@ -56,8 +57,11 @@ static simulated function Initialize(BallisticWeapon BW);
 
 defaultproperties
 {
+    FlashScaleFactor=1f
     // AI //
     SplashDamage=false
     RecommendSplashDamage=false
     BotRefireRate=0.95
+
+    FireSound=(Volume=1.000000,Radius=512.000000,Pitch=1.000000,bNoOverride=True)
 }

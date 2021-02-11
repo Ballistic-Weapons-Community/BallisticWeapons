@@ -105,13 +105,13 @@ struct InstantFireModeInfo
 
 var array<InstantFireModeInfo> FireModes;
 
-simulated function InitializeFromParams(FireParams params)
+simulated function ApplyFireEffectParams(FireEffectParams params)
 {
     local InstantEffectParams effect_params;
 
-    super.InitializeFromParams(params);
+    super.ApplyFireEffectParams(params);
 
-    effect_params = InstantEffectParams(params.FireEffectParams[0]);
+    effect_params = InstantEffectParams(params);
 
     TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
     MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water

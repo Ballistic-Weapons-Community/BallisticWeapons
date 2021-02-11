@@ -35,13 +35,13 @@ simulated function PostNetBeginPlay()
 		TracerChance *= 0.3;
 }
 
-simulated function InitializeFromParams(FireParams params)
+simulated function ApplyFireEffectParams(FireEffectParams params)
 {
     local ShotgunEffectParams effect_params;
 
-    super.InitializeFromParams(params);
+    super.ApplyFireEffectParams(params);
 
-    effect_params = ShotgunEffectParams(params.FireEffectParams[0]);
+    effect_params = ShotgunEffectParams(params);
 
     TraceCount = effect_params.TraceCount;
     TracerClass = effect_params.TracerClass;

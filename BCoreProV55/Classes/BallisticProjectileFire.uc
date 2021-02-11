@@ -38,13 +38,13 @@ struct ProjFireModeInfo
 
 var array<ProjFireModeInfo> FireModes;
 
-simulated function InitializeFromParams(FireParams params)
+simulated function ApplyFireEffectParams(FireEffectParams params)
 {
     local ProjectileEffectParams effect_params;
 
-    super.InitializeFromParams(params);
+    super.ApplyFireEffectParams(params);
 
-    effect_params = ProjectileEffectParams(params.FireEffectParams[0]);
+    effect_params = ProjectileEffectParams(params);
 
     ProjectileClass =  effect_params.ProjectileClass;
     SpawnOffset = effect_params.SpawnOffset;

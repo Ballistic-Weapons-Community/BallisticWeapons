@@ -10,8 +10,8 @@ defaultproperties
 		DeclineTime=0.5
 		MaxRecoil=6144
 		CrouchMultiplier=1
-		HipMultiplier=1
-		ViewBindFactor=0.5
+		HipMultiplier=1.5
+		ViewBindFactor=0.2
 		DeclineDelay=0.09
 	End Object
 
@@ -28,6 +28,67 @@ defaultproperties
 		DeclineDelay=0.09
 	End Object
 
+    Begin Object Class=InstantEffectParams Name=BurstFireEffect
+        DecayRange=(Min=600,Max=1536)
+        PenetrationEnergy=8.000000
+        TraceRange=(Min=3072,Max=3072)
+        Damage=22.000000
+        HeadMult=1.4f
+        LimbMult=0.5f
+        RangeAtten=0.250000
+        DamageType=Class'BallisticProV55.DTFifty9SMG'
+        DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
+        DamageTypeArm=Class'BallisticProV55.DTFifty9SMG'
+        PenetrateForce=135
+        bPenetrate=True
+        MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
+        FlashScaleFactor=0.400000
+        Recoil=160.000000
+        Inaccuracy=(X=72,Y=72)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
+	    SplashDamage=False
+	    RecommendSplashDamage=False
+	    BotRefireRate=0.99
+        WarnTargetPct=0.2
+    End Object
+
+    Begin Object Class=InstantEffectParams Name=AutoFireEffect
+        DecayRange=(Min=600,Max=1536)
+        PenetrationEnergy=8.000000
+        TraceRange=(Min=3072,Max=3072)
+        Damage=22.000000
+        HeadMult=1.4f
+        LimbMult=0.5f
+        RangeAtten=0.250000
+        DamageType=Class'BallisticProV55.DTFifty9SMG'
+        DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
+        DamageTypeArm=Class'BallisticProV55.DTFifty9SMG'
+        PenetrateForce=135
+        bPenetrate=True
+        MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
+        FlashScaleFactor=0.400000
+        Recoil=144.000000
+        Inaccuracy=(X=72,Y=72)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
+	    SplashDamage=False
+	    RecommendSplashDamage=False
+	    BotRefireRate=0.99
+        WarnTargetPct=0.2
+    End Object
+
+    Begin Object Class=FireParams Name=BurstFireParams
+        AimedFireAnim="SightFire"
+        FireInterval=0.09
+        BurstFireRateFactor=0.55
+        FireEffectParams(0)=InstantEffectParams'BurstFireEffect'
+    End Object
+
+    Begin Object Class=FireParams Name=AutoFireParams
+        AimedFireAnim="SightFire"
+        FireInterval=0.0675
+        FireEffectParams(0)=InstantEffectParams'AutoFireEffect'
+    End Object
+
 	Begin Object Class=AimParams Name=ArenaAimParams
 		ADSMultiplier=2
 		SprintOffset=(Pitch=-3000,Yaw=-4000)
@@ -42,6 +103,8 @@ defaultproperties
 		SightingTime=0.2
 		RecoilParams(0)=RecoilParams'ArenaBurstRecoilParams'
 		RecoilParams(1)=RecoilParams'ArenaAutoRecoilParams'
+        FireParams(0)=FireParams'BurstFireParams'
+        FireParams(1)=FireParams'AutoFireParams'
         AimParams(0)=AimParams'ArenaAimParams'
     End Object 
     Params(0)=WeaponParams'ArenaParams'

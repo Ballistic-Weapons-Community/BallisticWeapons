@@ -464,6 +464,10 @@ simulated function PostBeginPlay()
     local int m;
 	Super.PostBeginPlay();
 
+    for (m = 0; m < NUM_FIRE_MODES; m++)
+    	if (FireMode[m] != None && BallisticFire(FireMode[m]) != None)
+			BFireMode[m] = BallisticFire(FireMode[m]);
+
 	CreateRecoilComponent();
 	CreateAimComponent();
 
@@ -477,10 +481,6 @@ simulated function PostBeginPlay()
 		IconMaterial 	= BigIconMaterial;
 		IconCoords 		= BigIconCoords;
 	}		
-
-    for (m = 0; m < NUM_FIRE_MODES; m++)
-    	if (FireMode[m] != None && BallisticFire(FireMode[m]) != None)
-			BFireMode[m] = BallisticFire(FireMode[m]);
 
 	//Abuse the existing fire mode class for its ModeDoFire.
 	if (MeleeFireClass != None)
@@ -2544,6 +2544,8 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 
 	LastMode = CurrentWeaponMode;
 	CurrentWeaponMode = NewMode;
+
+    ParamsClass.static.SetFireParams(self);
 
 	BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
 	BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);

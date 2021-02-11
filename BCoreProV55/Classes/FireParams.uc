@@ -53,6 +53,9 @@ static simulated final function Initialize(BallisticWeapon BW, int ModeIndex, in
 
 defaultproperties
 {
+    FireInterval=0.5
+    AmmoPerFire=1
+
     PreFireAnim=PreFire
     FireAnim=Fire
     FireLoopAnim=FireLoop
@@ -64,5 +67,4 @@ defaultproperties
     FireEndAnimRate=1.0
 
     PreFireTime=0.0
-    FireInterval=0.5
 }

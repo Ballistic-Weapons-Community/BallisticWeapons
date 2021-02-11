@@ -3,6 +3,18 @@ class BallisticRangeAttenFire extends BallisticProInstantFire;
 var() float CutOffDistance;
 var() float CutOffStartRange;
 
+simulated function ApplyFireEffectParams(FireEffectParams params)
+{
+    local InstantEffectParams effect_params;
+
+    super.ApplyFireEffectParams(params);
+
+    effect_params = InstantEffectParams(params);
+
+    CutOffStartRange = effect_params.DecayRange.Min;
+    CutOffDistance = effect_params.DecayRange.Max;
+}
+
 static function float GetRangeAttenFactor(vector start, vector end, int cut_off_start, int cut_off_dist, float range_atten)
 {
 	local float dist;

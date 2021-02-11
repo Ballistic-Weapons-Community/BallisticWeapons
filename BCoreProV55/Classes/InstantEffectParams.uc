@@ -17,6 +17,7 @@ class InstantEffectParams extends FireEffectParams
 //-----------------------------------------------------------------------------
 var()   Range               TraceRange;             // Maximum range of this shot type
 var()   float               WaterTraceRange;        // Maximum range through water
+var()   Range               DecayRange;             // Decays from 1 to range atten over min to max
 var()   float               RangeAtten;             // Damage reduction over range
 //-----------------------------------------------------------------------------
 // Damage
