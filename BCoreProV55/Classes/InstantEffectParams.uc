@@ -16,8 +16,8 @@ class InstantEffectParams extends FireEffectParams
 // Range
 //-----------------------------------------------------------------------------
 var()   Range               TraceRange;             // Maximum range of this shot type
-var()   Range               WaterTraceRange;        // Maximum range through water
-var()   InterpCurve         RangeAttenCurve;        // Interpolation curve for damage reduction over range
+var()   float               WaterTraceRange;        // Maximum range through water
+var()   float               RangeAtten;             // Damage reduction over range
 //-----------------------------------------------------------------------------
 // Damage
 //-----------------------------------------------------------------------------
@@ -53,7 +53,8 @@ static simulated function Initialize(BallisticWeapon BW);
 defaultproperties
 {
     TraceRange=(Min=5000.000000,Max=5000.000000)
-    RangeAttenCurve=(Points=((InVal=0,OutVal=1),(InVal=1,OutVal=1)))
+    WaterTraceRange=128f
+    RangeAtten=1f
 
     Damage=1
     HeadMult=1.25f
@@ -62,6 +63,6 @@ defaultproperties
     UseRunningDamage=False
     RunningSpeedThreshold=300
 
-    PDamageFactor=0.7
-    WallPDamageFactor=0.95
+    PDamageFactor=0.75f
+    WallPDamageFactor=0.95f
 }

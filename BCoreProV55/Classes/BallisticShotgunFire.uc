@@ -35,6 +35,20 @@ simulated function PostNetBeginPlay()
 		TracerChance *= 0.3;
 }
 
+simulated function InitializeFromParams(FireParams params)
+{
+    local ShotgunEffectParams effect_params;
+
+    super.InitializeFromParams(params);
+
+    effect_params = ShotgunEffectParams(params.FireEffectParams[0]);
+
+    TraceCount = effect_params.TraceCount;
+    TracerClass = effect_params.TracerClass;
+    ImpactManager = effect_params.ImpactManager;
+    MaxHits = effect_params.MaxHits;
+}
+
 // Get aim then run several individual traces using different spread for each one
 function DoFireEffect()
 {

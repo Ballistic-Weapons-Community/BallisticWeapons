@@ -1,4 +1,4 @@
-class ShotgunEffectParams extends InstantEffectsParams;
+class ShotgunEffectParams extends InstantEffectParams;
 
 var() int						TraceCount;		// Number of fire traces to use
 var() class<Emitter>			TracerClass;	// Type of tracer to use
@@ -8,5 +8,5 @@ var() int                       MaxHits;        // Cannot hit a single target mo
 
 defaultproperties
 {
-    
+
 }

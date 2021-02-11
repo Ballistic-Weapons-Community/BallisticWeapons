@@ -38,6 +38,18 @@ struct ProjFireModeInfo
 
 var array<ProjFireModeInfo> FireModes;
 
+simulated function InitializeFromParams(FireParams params)
+{
+    local ProjectileEffectParams effect_params;
+
+    super.InitializeFromParams(params);
+
+    effect_params = ProjectileEffectParams(params.FireEffectParams[0]);
+
+    ProjectileClass =  effect_params.ProjectileClass;
+    SpawnOffset = effect_params.SpawnOffset;
+}
+
 // Became complicated when acceleration came into the picture
 // Override for even wierder situations
 function float MaxRange()

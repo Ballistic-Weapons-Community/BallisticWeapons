@@ -43,9 +43,6 @@ var() float                     PreFireAnimRate;
 var() float                     FireAnimRate;
 var() float                     FireLoopAnimRate;
 var() float                     FireEndAnimRate;
-
-var() bool                      bLoopedAnim;            // Uses looped animation instead of repeated single fire animation
-
 var() Name 						AimedFireAnim;		    // Fire anim to play when ADS
 //-----------------------------------------------------------------------------
 // Subobjects

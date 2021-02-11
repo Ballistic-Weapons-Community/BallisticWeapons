@@ -105,6 +105,41 @@ struct InstantFireModeInfo
 
 var array<InstantFireModeInfo> FireModes;
 
+simulated function InitializeFromParams(FireParams params)
+{
+    local InstantEffectParams effect_params;
+
+    super.InitializeFromParams(params);
+
+    effect_params = InstantEffectParams(params.FireEffectParams[0]);
+
+    TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
+    MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
+    // FIXME - CutOffStartRange
+    RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range
+
+    Damage = effect_params.Damage;
+    HeadMult = effect_params.HeadMult;
+    LimbMult = effect_params.LimbMult;
+
+    DamageType = effect_params.DamageType;
+    DamageTypeHead = effect_params.DamageTypeHead;	
+    DamageTypeArm = effect_params.DamageTypeArm;
+    bUseRunningDamage = effect_params.UseRunningDamage;
+    RunningSpeedThresh = effect_params.RunningSpeedThreshold;
+
+    WallPenetrationForce = effect_params.PenetrationEnergy;
+    PenetrateForce = effect_params.PenetrateForce;
+    bPenetrate = effect_params.bPenetrate;
+
+    // Note - Deprecate these two
+    PDamageFactor = effect_params.PDamageFactor;		    // Damage multiplied by this with each penetration
+    WallPDamageFactor = effect_params.WallPDamageFactor;		// Damage multiplied by this for each wall penetration
+
+    HookStopFactor = effect_params.HookStopFactor;	
+    HookPullForce = effect_params.HookPullForce;
+}
+
 // Maximum range. Used by AI and such...
 function float MaxRange()	{	return TraceRange.Max;	}
 

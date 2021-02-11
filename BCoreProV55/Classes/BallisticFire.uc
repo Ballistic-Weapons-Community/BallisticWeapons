@@ -9,14 +9,8 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticFire extends WeaponFire;
-
-enum EFireSpreadMode
-{
-	FSM_Rectangle,	// Standard random rectangular box.
-	FSM_Scatter,	// An elliptical spread pattern with higher concentration towards the center.
-	FSM_Circle		// More evenly spread elliptical pattern.
-};
+class BallisticFire extends WeaponFire
+    DependsOn(FireEffectParams);
 
 enum EScopeDownOn
 {
@@ -105,13 +99,13 @@ var float	                BurstFireRateFactor;// Multiplies down fire rate in bu
 //-----------------------------------------------------------------------------
 // Dispersion
 //-----------------------------------------------------------------------------
-var() float					FireRecoil;			// Amount of recoil added each shot
-var() float					FirePushbackForce;	// How much to jolt player back when they fire
-var() float					FireChaos;			// Chaos added to aim when fired. Will be auto calculated if < 0
-var() InterpCurve			FireChaosCurve;
-var() float					XInaccuracy;		// Set amount that bullets can yaw away from gun's aim
-var() float					YInaccuracy;		// Set amount that bullets can pitch away from gun's aim
-var() EFireSpreadMode	    FireSpreadMode;		// The type of spread pattern to use for X and YInaccuracy
+var() float					            FireRecoil;			// Amount of recoil added each shot
+var() float					            FirePushbackForce;	// How much to jolt player back when they fire
+var() float					            FireChaos;			// Chaos added to aim when fired. Will be auto calculated if < 0
+var() InterpCurve			            FireChaosCurve;
+var() float					            XInaccuracy;		// Set amount that bullets can yaw away from gun's aim
+var() float					            YInaccuracy;		// Set amount that bullets can pitch away from gun's aim
+var() FireEffectParams.FireSpreadMode	FireSpreadMode;		// The type of spread pattern to use for X and YInaccuracy
 //-----------------------------------------------------------------------------
 // Sound
 //-----------------------------------------------------------------------------
@@ -164,6 +158,56 @@ struct FireModeStats
 };
 
 var	String		ShotTypeString, EffectString;
+
+simulated function InitializeFromParams(FireParams params)
+{
+    local FireEffectParams effect_params;
+
+    FireRate                = params.FireInterval;
+    AmmoPerFire             = params.AmmoPerFire;
+
+    bWaitForRelease         = params.bWaitForRelease;
+    bReleaseFireOnDie       = params.bReleaseFireOnDie;
+
+    PreFireTime             = params.PreFireTime;
+    MaxHoldTime             = params.MaxHoldTime;
+
+    GoToState(params.TargetState);
+
+    BurstFireRateFactor     = params.BurstFireRateFactor;
+    bCockAfterFire          = params.bCockAfterFire;
+
+    PreFireAnim             = params.PreFireAnim; 
+    FireAnim                = params.FireAnim;
+    FireLoopAnim            = params.FireLoopAnim;
+    FireEndAnim             = params.FireEndAnim;
+
+    PreFireAnimRate         = params.PreFireAnimRate;
+    FireAnimRate            = params.FireAnimRate;
+    FireLoopAnimRate        = params.FireLoopAnimRate;
+    FireEndAnimRate         = params.FireEndAnimRate;
+
+    AimedFireAnim           = params.AimedFireAnim;
+
+    // assign effect
+
+    effect_params           = params.FireEffectParams[0];
+
+    MuzzleFlashClass        = effect_params.MuzzleFlashClass;
+
+    BallisticFireSound      = effect_params.FireSound;
+    FireRecoil              = effect_params.Recoil;
+    FirePushbackForce       = effect_params.PushbackForce;
+    FireChaos               = effect_params.Chaos;
+    XInaccuracy             = effect_params.Inaccuracy.X;
+    YInaccuracy             = effect_params.Inaccuracy.Y;
+    FireSpreadMode          = effect_params.SpreadMode;
+
+    bSplashDamage           = effect_params.SplashDamage;
+    bRecommendSplashDamage  = effect_params.RecommendSplashDamage;
+    BotRefireRate           = effect_params.BotRefireRate;
+    WarnTargetPct           = effect_params.WarnTargetPct;
+}
 
 simulated function PreBeginPlay()
 {
