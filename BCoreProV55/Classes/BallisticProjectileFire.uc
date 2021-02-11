@@ -130,10 +130,7 @@ function StartBerserk()
 {
 	if (FireModes.Length == 0 || BW.CurrentWeaponMode == 0)
 	{
-		FireRate = default.FireRate * 0.75;
-		FireAnimRate = default.FireAnimRate/0.75;
-		FireRecoil = default.FireRecoil * 0.75;
-		FireChaos = default.FireChaos * 0.75;
+        Super.StartBerserk();
 	}
 	else
 	{
@@ -148,10 +145,7 @@ function StopBerserk()
 {
 	if (FireModes.Length == 0 || BW.CurrentWeaponMode == 0)
 	{
-		FireRate = default.FireRate;
-		FireAnimRate = default.FireAnimRate;
-		FireRecoil = default.FireRecoil;
-		FireChaos = default.FireChaos;
+		Super.StopBerserk();
 	}
 	else
 	{
@@ -172,19 +166,19 @@ simulated function SwitchWeaponMode (byte NewMode)
 			ProjectileClass = 					default.ProjectileClass;
 			FireRate 		= 					default.FireRate;
 			FireChaos 		=					default.FireChaos;
-			BallisticFireSound.Sound = 	default.BallisticFireSound.Sound;
+			BallisticFireSound.Sound = 	        default.BallisticFireSound.Sound;
 			FireLoopAnim 	= 					default.FireLoopAnim;
 			FireAnim 		= 					default.FireAnim;
-			FireEndAnim = 					default.FireEndAnim;
-			FireRecoil = 					default.FireRecoil;
-			AmmoPerFire = 					default.AmmoPerFire;
+			FireEndAnim = 					    default.FireEndAnim;
+			FireRecoil = 					    default.FireRecoil;
+			AmmoPerFire = 					    default.AmmoPerFire;
 			GoToState('');
 			
 			//AI info
-			bLeadTarget = 					default.bLeadTarget;
+			bLeadTarget = 					    default.bLeadTarget;
 			bInstantHit = 						default.bInstantHit;
-			bSplashDamage = 				default.bSplashDamage;
-			bRecommendSplashDamage = default.bRecommendSplashDamage;
+			bSplashDamage = 				    default.bSplashDamage;
+			bRecommendSplashDamage =            default.bRecommendSplashDamage;
 		}
 		
 		else

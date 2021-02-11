@@ -76,6 +76,22 @@ defaultproperties
         WarnTargetPct=0.2
     End Object
 
+    Begin Object Class=MeleeEffectParams Name=MeleeSwipeEffect
+        Fatigue=0.090000
+        TraceRange=(Min=150.000000,Max=150.000000)
+        Damage=45.000000
+        DamageType=Class'BallisticProV55.DTFifty9Blade'
+        DamageTypeHead=Class'BallisticProV55.DTFifty9BladeHead'
+        DamageTypeArm=Class'BallisticProV55.DTFifty9Blade'
+        HookStopFactor=1.700000
+        HookPullForce=100.000000
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=0.5,Radius=32.000000,bAtten=True)
+        SplashDamage=False
+        RecommendSplashDamage=False
+        BotRefireRate=0.99
+        WarnTargetPct=0.3
+    End Object
+
     Begin Object Class=FireParams Name=BurstFireParams
         AimedFireAnim="SightFire"
         FireInterval=0.09
@@ -87,6 +103,14 @@ defaultproperties
         AimedFireAnim="SightFire"
         FireInterval=0.0675
         FireEffectParams(0)=InstantEffectParams'AutoFireEffect'
+    End Object
+
+    Begin Object Class=FireParams Name=MeleeFireParams
+        FireAnim="Melee1"
+        FireAnimRate=1.5
+        FireInterval=0.300000
+        AmmoPerFire=0
+        FireEffectParams(0)=MeleeEffectParams'MeleeSwipeEffect'
     End Object
 
 	Begin Object Class=AimParams Name=ArenaAimParams
@@ -105,6 +129,7 @@ defaultproperties
 		RecoilParams(1)=RecoilParams'ArenaAutoRecoilParams'
         FireParams(0)=FireParams'BurstFireParams'
         FireParams(1)=FireParams'AutoFireParams'
+        AltFireParams(0)=FireParams'MeleeFireParams'
         AimParams(0)=AimParams'ArenaAimParams'
     End Object 
     Params(0)=WeaponParams'ArenaParams'

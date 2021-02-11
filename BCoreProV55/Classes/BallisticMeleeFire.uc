@@ -29,23 +29,36 @@ struct SwipeHit
 	var() Vector	HitLoc;		// The hitloc of the trace
 	var() Vector	HitDir;		// Direction of the trace
 };
-var() array<SwipePoint>		SwipePoints;	// The rotational offset points used to determin the path of the swipe
-var() int					WallHitPoint;	// Which of the points should be sued for wall hits
-var() int					NumSwipePoints;	// Which of the points should be sued for wall hits
-var   array<SwipeHit>		SwipeHits;		// Temporary(per fire) record of hits. For comparing multiple hits on same targets
+var()   array<SwipePoint>	SwipePoints;	// The rotational offset points used to determin the path of the swipe
+var()   int					WallHitPoint;	// Which of the points should be sued for wall hits
+var()   int					NumSwipePoints;	// Which of the points should be sued for wall hits
+var     array<SwipeHit>		SwipeHits;		// Temporary(per fire) record of hits. For comparing multiple hits on same targets
 
-var	float	HoldStartTime;		//Used if this weapon's mode is 2, which means it's being used for its ModeDoFire function.
-var() float MaxBonusHoldTime;	//Max hold time for bonus damage
-var() float FlankDamageMult;
-var() float BackDamageMult;
-var() float ChargeDamageBonusFactor;
+var	    float	            HoldStartTime;		//Used if this weapon's mode is 2, which means it's being used for its ModeDoFire function.
+var()   float               MaxBonusHoldTime;	//Max hold time for bonus damage
+var()   float               FlankDamageMult;
+var()   float               BackDamageMult;
+var()   float               ChargeDamageBonusFactor;
 
-var float	FatiguePerStrike;
+var     float	            FatiguePerStrike;
 
-var bool bCanBackstab;
-
+var     bool                bCanBackstab;
 
 //-----------------------------------------------------------------------------
+
+simulated function ApplyFireEffectParams(FireEffectParams params)
+{
+    local MeleeEffectParams effect_params;
+
+    super.ApplyFireEffectParams(params);
+
+    effect_params = MeleeEffectParams(params);
+
+    ChargeDamageBonusFactor = effect_params.ChargeDamageBonusFactor;
+    FlankDamageMult = effect_params.FlankDamageMult;
+    BackDamageMult = effect_params.BackDamageMult;
+    FatiguePerStrike = effect_params.Fatigue;
+}
 
 simulated function bool AllowFire()
 {
@@ -469,13 +482,15 @@ defaultproperties
      WallHitPoint=2
 	 NumSwipePoints=5
 	 WallPenetrationForce=0
-     HeadMult=1f 
-     LimbMult=1f
+
      MaxBonusHoldTime=1.500000
      bCanBackstab=True
      TraceRange=(Min=145.000000,Max=145.000000)
 
      Damage=50.000000
+     HeadMult=1f 
+     LimbMult=1f
+     RangeAtten=1.0f
      ChargeDamageBonusFactor=1f
      FlankDamageMult=1.15f
      BackDamageMult=1.3f

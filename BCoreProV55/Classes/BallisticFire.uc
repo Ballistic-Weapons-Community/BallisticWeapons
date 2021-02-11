@@ -215,25 +215,59 @@ simulated function PreBeginPlay()
 
 function StartBerserk()
 {
-    FireRate = default.FireRate * 0.75;
-    FireAnimRate = default.FireAnimRate/0.75;
-    FireRecoil = default.FireRecoil * 0.75;
-    FireChaos = default.FireChaos * 0.75;
+    if (Params == None || Params.FireEffectParams.Length == 0)
+    {
+        FireRate = default.FireRate * 0.8f;
+        FireAnimRate = default.FireAnimRate * 1.25f;
+        FireRecoil = default.FireRecoil * 0.8f;
+        FireChaos = default.FireChaos * 0.8f;
+    }
+
+    else 
+    {
+        FireRate = Params.FireInterval * 0.8f;
+        FireAnimRate = Params.FireAnimRate * 1.25f;
+        FireRecoil = Params.FireEffectParams[BW.AmmoType].Recoil * 0.8f;
+        FireChaos = Params.FireEffectParams[BW.AmmoType].Chaos* 0.8f; 
+    }
 }
 
 function StopBerserk()
 {
-    FireRate = default.FireRate;
-    FireAnimRate = default.FireAnimRate;
-    FireRecoil = default.FireRecoil;
-    FireChaos = default.FireChaos;
+    if (Params == None || Params.FireEffectParams.Length == 0)
+    {
+        FireRate = default.FireRate;
+        FireAnimRate = default.FireAnimRate;
+        FireRecoil = default.FireRecoil;
+        FireChaos = default.FireChaos;
+    }
+
+    else 
+    {
+        FireRate = Params.FireInterval;
+        FireAnimRate = Params.FireAnimRate;
+        FireRecoil = Params.FireEffectParams[BW.AmmoType].Recoil;
+        FireChaos = Params.FireEffectParams[BW.AmmoType].Chaos;
+    }
 }
 
 function StartSuperBerserk()
 {
-    FireRate = default.FireRate/Level.GRI.WeaponBerserk;
-    FireAnimRate = default.FireAnimRate * Level.GRI.WeaponBerserk;
-    FireRecoil = default.FireRecoil * Level.GRI.WeaponBerserk;
+    if (Params == None || Params.FireEffectParams.Length == 0)
+    {
+        FireRate = default.FireRate/Level.GRI.WeaponBerserk;
+        FireAnimRate = default.FireAnimRate*Level.GRI.WeaponBerserk;
+        FireRecoil = default.FireRecoil/Level.GRI.WeaponBerserk;
+        FireChaos = default.FireChaos/Level.GRI.WeaponBerserk;
+    }
+
+    else 
+    {
+        FireRate = Params.FireInterval/Level.GRI.WeaponBerserk;
+        FireAnimRate = Params.FireAnimRate*Level.GRI.WeaponBerserk;
+        FireRecoil = Params.FireEffectParams[BW.AmmoType].Recoil/Level.GRI.WeaponBerserk;
+        FireChaos = Params.FireEffectParams[BW.AmmoType].Chaos/Level.GRI.WeaponBerserk; 
+    }
 }
 
 //Stub called by the weapon mode when its FireMode changes
@@ -262,6 +296,9 @@ simulated function OnFireParamsChanged(int EffectIndex)
 simulated function OnEffectParamsChanged(int EffectIndex)
 {
     ApplyFireEffectParams(Params.FireEffectParams[EffectIndex]);
+    
+    if (BW.bBerserk)
+        StartBerserk();
 }
 
 // Effect related functions ------------------------------------------------

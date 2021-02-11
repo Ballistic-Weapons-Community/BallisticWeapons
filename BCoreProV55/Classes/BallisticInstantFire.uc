@@ -601,11 +601,8 @@ function StartBerserk()
 {
 	if (FireModes.Length == 0 || BW.CurrentWeaponMode == 0)
 	{
-		FireRate = default.FireRate * 0.75;
-		FireAnimRate = default.FireAnimRate/0.75;
-		FireRecoil = default.FireRecoil * 0.75;
-		FireChaos = default.FireChaos * 0.75;
-	}
+        Super.StartBerserk();
+    }
 	else
 	{
 		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate * 0.75;
@@ -619,10 +616,7 @@ function StopBerserk()
 {
 	if (FireModes.Length == 0 || BW.CurrentWeaponMode == 0)
 	{
-		FireRate = default.FireRate;
-		FireAnimRate = default.FireAnimRate;
-		FireRecoil = default.FireRecoil;
-		FireChaos = default.FireChaos;
+		Super.StopBerserk();
 	}
 	else
 	{

@@ -62,26 +62,11 @@ defaultproperties
 {
      SliceAnims(0)="Melee1"
      SliceAnims(1)="Melee2"
-     FatiguePerStrike=0.090000
      bCanBackstab=False
-     TraceRange=(Min=150.000000,Max=150.000000)
-     Damage=45.000000
-     
-     
-     DamageType=Class'BallisticProV55.DTFifty9Blade'
-     DamageTypeHead=Class'BallisticProV55.DTFifty9BladeHead'
-     DamageTypeArm=Class'BallisticProV55.DTFifty9Blade'
-     HookStopFactor=1.700000
-     HookPullForce=100.000000
      bUseWeaponMag=False
      bIgnoreReload=True
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
-     FireAnim="Melee1"
-     FireAnimRate=1.5
-     FireRate=0.300000
      AmmoClass=Class'BallisticProV55.Ammo_FiftyNine'
-     AmmoPerFire=0
      ShakeRotMag=(X=64.000000,Y=128.000000)
      ShakeRotRate=(X=2500.000000,Y=2500.000000,Z=2500.000000)
      ShakeRotTime=2.500000
@@ -90,8 +75,4 @@ defaultproperties
 	 bInstantHit=True
 	 bLeadTarget=False
 	 bTossed=False
-	 bSplashDamage=False
-	 bRecommendSplashDamage=False
-	 BotRefireRate=0.99
-     WarnTargetPct=0.3
 }
