@@ -10,15 +10,8 @@
 class BOGPPistol extends BallisticHandgun;
 
 var() name	GrenadeBone;
-var	bool	bUseFlare, bOldUseFlare;
 var bool	bHideHead, bCockOtherGun;
 var float	LastFlareTime, FlareSwitchTime;
-
-replication
-{
-	reliable if (Role == ROLE_Authority)
-		bUseFlare;
-}
 
 // Fire pressed. Change weapon if out of ammo, reload if empty mag or skip reloading if possible
 simulated function FirePressed(float F)
@@ -112,41 +105,6 @@ simulated function bool CanAlternate(int Mode)
 	return super.CanAlternate(Mode);
 }
 
-simulated event PostNetReceive()
-{
-	if (bUseFlare != bOldUseFlare)
-	{
-		bOldUseFlare = bUseFlare;
-		ClientSwitchFlare();
-	}
-	Super.PostNetReceive();
-}
-
-function ServerSwitchFlare(bool bNewUseFlare)
-{
-	if(FlareSwitchTime > Level.TimeSeconds || bIsPendingHandGun || PendingHandgun != None)
-		return;
-
-	bUseFlare = bNewUseFlare;
-	
-	CurrentWeaponMode = byte(bNewUseFlare);
-	
-	if(ReloadState > RS_None || !HasAmmo())
-		return;
-
-	CommonCockGun(1);
-}
-
-simulated function ClientSwitchFlare()
-{
-	if(ReloadState > RS_None || !HasAmmo())
-		return;
-
-	CurrentWeaponMode = byte(bUseFlare);
-
-	CommonCockGun(1);
-}
-
 exec simulated function SwitchWeaponMode (optional byte ModeNum)	
 {
 	if (ReloadState != RS_None)
@@ -157,12 +115,20 @@ exec simulated function SwitchWeaponMode (optional byte ModeNum)
 	else ServerSwitchWeaponMode(ModeNum-1);
 }
 
-function ServerSwitchWeaponMode(byte NewMode)
+// Cycle through the various weapon modes
+function ServerSwitchWeaponMode (byte NewMode)
 {
-	if (ReloadState != RS_None)
+	if (ReloadState != RS_None || NewMode == CurrentWeaponMode || !HasAmmo())
 		return;
-		
-	ServerSwitchFlare(!bUseFlare);
+
+    Super.ServerSwitchWeaponMode(NewMode);
+}
+
+simulated function CommonSwitchWeaponMode(byte NewMode)
+{
+	Super.CommonSwitchWeaponMode(NewMode);
+
+	CommonCockGun();
 }
 
 // Implement restrictions on when we can fire the weapon depending on when our partner fired.
@@ -208,8 +174,9 @@ simulated function bool PutDown()
 
 	bSuccess = Super.PutDown();
 
-	if(bSuccess)
+	if (bSuccess)
 		FlareSwitchTime=Level.TimeSeconds+2.0;
+
 	return bSuccess;
 }
 
