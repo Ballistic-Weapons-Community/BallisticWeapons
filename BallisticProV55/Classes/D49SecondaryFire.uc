@@ -68,41 +68,13 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
-     CutOffDistance=2536.000000
-     CutOffStartRange=1024.000000
-     TraceRange=(Min=8000.000000,Max=9000.000000)
-     WallPenetrationForce=8.000000
-     
-     Damage=100.000000
-     HeadMult=1.25f
-     LimbMult=0.8f
-     
-     RangeAtten=0.350000
-     WaterRangeAtten=0.800000
-     DamageType=Class'BallisticProV55.DTD49Revolver'
-     DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
-     DamageTypeArm=Class'BallisticProV55.DTD49Revolver'
-     PenetrateForce=200
-     bPenetrate=True
-     MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
-     FlashBone="tip2"
-     FlashScaleFactor=1.200000
-     FireRecoil=2048.000000
-     FireChaos=0.800000
-     XInaccuracy=48.000000
-     YInaccuracy=48.000000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-Fire',Volume=1.300000)
-     FireEndAnim=
-     FireRate=0.9
      AmmoClass=Class'BallisticProV55.Ammo_44Magnum'
-     AmmoPerFire=2
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000
      ShakeOffsetMag=(X=-5.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
-	 
 	 // AI
 	 bInstantHit=True
 	 bLeadTarget=False
@@ -110,5 +82,4 @@ defaultproperties
 	 bSplashDamage=False
 	 bRecommendSplashDamage=False
 	 BotRefireRate=0.7
-     WarnTargetPct=0.5
 }

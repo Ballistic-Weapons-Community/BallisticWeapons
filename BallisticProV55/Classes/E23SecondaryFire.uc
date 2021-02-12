@@ -205,28 +205,7 @@ simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNor
 defaultproperties
 {
      FireSoundLoop=Sound'BW_Core_WeaponSound.VPR.VPR-LaserLoop'
-     TraceRange=(Min=10000.000000,Max=10000.000000)
-
-     Damage=11.000000
-     HeadMult=1.5f
-     LimbMult=0.5f
-     
-     WaterRangeAtten=0.800000
-     DamageType=Class'BallisticProV55.DTVPRLaser'
-     DamageTypeHead=Class'BallisticProV55.DTVPRLaserHead'
-     DamageTypeArm=Class'BallisticProV55.DTVPRLaser'
-     PenetrateForce=200
-     bPenetrate=True
-     MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
-     FlashScaleFactor=0.750000
-     FireChaos=0.000000
-	 FireRecoil=0
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
-     FireAnim=
-     FireLoopAnim="'"
-     FireEndAnim=
-     FireRate=0.085000
      AmmoClass=Class'BallisticProV55.Ammo_E23Cells'
 	 
 	 // AI
@@ -236,5 +215,4 @@ defaultproperties
 	 bSplashDamage=False
 	 bRecommendSplashDamage=False
 	 BotRefireRate=0.99
-     WarnTargetPct=0.2
 }

@@ -67,7 +67,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 	{
 		MuzzleFlash = MuzzleFlashMulti;
 		BotRefireRate=0.8000;
-		WarnTargetPct=0.20000;
 		NextFireTime = NextSGFireTime;
 	}
 
@@ -75,59 +74,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 	{
 		MuzzleFlash = MuzzleFlashPulse;
 		BotRefireRate=0.9000;
-		WarnTargetPct=0.10000;
 	}
-}
-
-function StartBerserk()
-{
-	if (BW.CurrentWeaponMode == 0)
-	{
-		FireRate = default.FireRate * 0.75;
-		FireAnimRate = default.FireAnimRate * 0.75;
-		FireRecoil = default.FireRecoil * 0.75;
-		FireChaos = default.FireChaos * 0.75;
-	}
-	else
-	{
-		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate * 0.75;
-    	FireAnimRate = default.FireAnimRate * 0.75;
-    	FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
-		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos * 0.75;
-	}
-}
-
-function StopBerserk()
-{
-	if (BW.CurrentWeaponMode == 0)
-	{
-		FireRate = default.FireRate;
-		FireAnimRate = default.FireAnimRate;
-		FireRecoil = default.FireRecoil;
-		FireChaos = default.FireChaos;
-	}
-	else
-	{
-		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate;
-    	FireAnimRate = default.FireAnimRate;
-    	FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil;
-		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos;
-	}
-}
-
-function StartSuperBerserk()
-{
-	if (BW.CurrentWeaponMode == 3)
-    	FireRate = 0.6;
-	else if (BW.CurrentWeaponMode == 2)
-    	FireRate = 0.08;
-	else if (BW.CurrentWeaponMode == 1)
-    	FireRate = 1.5;
-	else
-    	FireRate = 0.15;
-    FireRate /= Level.GRI.WeaponBerserk;
-    FireAnimRate = default.FireAnimRate * Level.GRI.WeaponBerserk;
-    ReloadAnimRate = default.ReloadAnimRate * Level.GRI.WeaponBerserk;
 }
 
 simulated state Shotgun
@@ -150,6 +97,7 @@ simulated state Shotgun
 				Proj.Instigator = Instigator;
 		}
 	}
+
 	function PlayFiring()
 	{
 		if (ScopeDownOn == SDO_Fire)
@@ -177,6 +125,7 @@ simulated state Shotgun
 		NextSGFireTime = NextFireTime + FireRate;
         NextSGFireTime = FMax(NextSGFireTime, Level.TimeSeconds);
 	}
+
 	simulated function EndState()
 	{
 		NextSGFireTime = NextFireTime;
@@ -228,27 +177,15 @@ defaultproperties
      PushStopFactor=0.100000
      PushForce=800.000000
      SGFireCount=3
-     SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
-     FireModes(0)=(mProjClass=Class'BallisticProV55.E23Projectile_SG',mFireRate=0.50000,mFireChaos=0.500000,mFireSound=Sound'BW_Core_WeaponSound.VPR.VPR-SGFire',mFireAnim="Fire2",mRecoil=768.000000,mAmmoPerFire=5,TargetState="Shotgun",bModeLead=True)
-     FireModes(1)=(mProjClass=Class'BallisticProV55.E23Projectile_Snpr',mFireRate=0.650000,mFireChaos=0.350000,mFireSound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',mFireAnim="Fire",mRecoil=768.000000,mAmmoPerFire=20,bModeLead=True)
-     MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
-     FlashScaleFactor=0.750000
-     FireRecoil=96.000000
-     FireChaos=0.060000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
-     FireEndAnim=
-     FireRate=0.150000
      AmmoClass=Class'BallisticProV55.Ammo_E23Cells'
-     AmmoPerFire=5
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=1.500000
      ShakeOffsetMag=(X=-3.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
-     ProjectileClass=Class'BallisticProV55.E23Projectile_Std'
-	 
+
 	 // AI
 	 bInstantHit=False
 	 bLeadTarget=True
@@ -256,7 +193,6 @@ defaultproperties
 	 bSplashDamage=False
 	 bRecommendSplashDamage=False
 	 BotRefireRate=0.99
-     WarnTargetPct=0.2
 	 
      aimerror=400.000000
 }
