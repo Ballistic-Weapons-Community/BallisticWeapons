@@ -22,6 +22,49 @@ defaultproperties
         ChaosSpeedThreshold=500.000000
     End Object
 
+    Begin Object Class=InstantEffectParams Name=ArenaPriEffectParams
+        DecayRange=(Min=1536,Max=2560)
+        PenetrationEnergy=12 
+        Damage=60.000000
+        HeadMult=1.5f
+        LimbMult=0.8f
+        RangeAtten=0.500000
+        DamageType=Class'BallisticProV55.DTAM67Pistol'
+        DamageTypeHead=Class'BallisticProV55.DTAM67PistolHead'
+        DamageTypeArm=Class'BallisticProV55.DTAM67Pistol'
+        PenetrateForce=200
+        bPenetrate=True
+        MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
+        FlashScaleFactor=0.900000
+        Recoil=450.000000
+        Chaos=0.2
+        Inaccuracy=(X=16,Y=16)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Fire',Volume=1.100000)
+        WarnTargetPct=0.400000
+    End Object
+
+    Begin Object Class=FireEffectParams Name=ArenaFlashEffectParams
+        MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
+        WarnTargetPct=1.000000
+    End Object
+
+    Begin Object Class=FireParams Name=ArenaPriFireParams
+        AimedFireAnim="SightFire"
+        FireEndAnim=
+        FireInterval=0.325
+        FireEffectParams(0)=InstantEffectParams'ArenaPriEffectParams'
+    End Object 
+
+    Begin Object Class=FireParams Name=ArenaFlashFireParams
+        MaxHoldTime=0.500000
+        FireAnim="SecFire"
+        FireEndAnim=
+        FireInterval=10.000000
+        AmmoPerFire=0
+        FireEffectParams(0)=FireEffectParams'ArenaFlashEffectParams'
+    End Object
+
     Begin Object Class=WeaponParams Name=ArenaParams
         PlayerSpeedFactor=1.05
         DisplaceDurationMult=0.75
@@ -29,6 +72,8 @@ defaultproperties
         InventorySize=12
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+        FireParams(0)=FireParams'ArenaPriFireParams'
+        AltFireParams(0)=FireParams'ArenaFlashFireParams'
     End Object 
     Params(0)=WeaponParams'ArenaParams'
 }

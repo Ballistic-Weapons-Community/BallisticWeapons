@@ -106,15 +106,6 @@ defaultproperties
      ProjectileCount=5
      HipSpreadFactor=1.750000
      bNoRandomFire=True
-     MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
-     FireRecoil=378.000000
-     FireChaos=0.400000
-     XInaccuracy=220.000000
-     YInaccuracy=220.000000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
-     FireEndAnim=
-     FireAnimRate=1.300000
-     FireRate=0.4
      AmmoClass=Class'BallisticProV55.Ammo_A500Cells'
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
@@ -122,14 +113,11 @@ defaultproperties
      ShakeOffsetMag=(X=-3.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
-     ProjectileClass=Class'BallisticProV55.A500Projectile'
-	 
+
 	 // AI
 	 bInstantHit=True
 	 bLeadTarget=True
 	 bTossed=True
-	 bSplashDamage=False
-	 bRecommendSplashDamage=False
+
 	 BotRefireRate=0.7
-     WarnTargetPct=0.200000
 }

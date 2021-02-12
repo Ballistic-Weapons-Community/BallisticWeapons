@@ -161,19 +161,12 @@ defaultproperties
      ChargeSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
      ChargeSoundPitch=32
      bUseWeaponMag=False
-     MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
      FlashBone="tip2"
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
      EffectString="Blinding flash"
      bFireOnRelease=True
      bModeExclusive=False
-	 MaxHoldTime=0.500000
-     FireAnim="SecFire"
-     FireEndAnim=
-     FireRate=10.000000
      AmmoClass=Class'BallisticProV55.Ammo_50HV'
-     AmmoPerFire=0
-	 
+
 	 // AI
 	 bInstantHit=True
 	 bLeadTarget=False
@@ -181,5 +174,4 @@ defaultproperties
 	 bSplashDamage=False
 	 bRecommendSplashDamage=False
 	 BotRefireRate=0.3
-     WarnTargetPct=1.000000
 }

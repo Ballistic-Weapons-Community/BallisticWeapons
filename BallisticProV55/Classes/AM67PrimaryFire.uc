@@ -10,36 +10,12 @@ class AM67PrimaryFire extends BallisticRangeAttenFire;
 
 defaultproperties
 {
-     CutOffDistance=2560.000000
-     CutOffStartRange=1536.000000
-     WallPenetrationForce=12.000000
-    
-	 Damage=60.000000
-     HeadMult=1.5f
-     LimbMult=0.8f
-     
-     RangeAtten=0.500000
      WaterRangeAtten=0.300000
-     DamageType=Class'BallisticProV55.DTAM67Pistol'
-     DamageTypeHead=Class'BallisticProV55.DTAM67PistolHead'
-     DamageTypeArm=Class'BallisticProV55.DTAM67Pistol'
-     PenetrateForce=200
-     bPenetrate=True
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
      bDryUncock=True
-     MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
-     FlashScaleFactor=0.900000
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
-     AimedFireAnim="SightFire"
-     FireRecoil=450.000000
-     FireChaos=0.2
-     XInaccuracy=16.000000
-     YInaccuracy=16.000000
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Fire',Volume=1.100000)
-     FireEndAnim=
-     FireRate=0.325
      AmmoClass=Class'BallisticProV55.Ammo_50HV'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
@@ -55,5 +31,5 @@ defaultproperties
 	 bSplashDamage=False
 	 bRecommendSplashDamage=False
 	 BotRefireRate=0.7
-     WarnTargetPct=0.400000
+
 }

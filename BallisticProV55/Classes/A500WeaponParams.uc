@@ -22,11 +22,50 @@ defaultproperties
         ChaosSpeedThreshold=1000.000000
     End Object
 
+    Begin Object Class=ProjectileEffectParams Name=ArenaMultiEffectParams
+        ProjectileClass=Class'BallisticProV55.A500Projectile'
+        MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
+        Recoil=378.000000
+        Chaos=0.400000
+        Inaccuracy=(X=220,Y=220)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+        SplashDamage=False
+	    RecommendSplashDamage=False
+        WarnTargetPct=0.200000
+    End Object
+
+    Begin Object Class=ProjectileEffectParams Name=ArenaChargeEffectParams
+        ProjectileClass=Class'BallisticProV55.A500AltProjectile'
+        MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
+        Chaos=0.500000
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_AltFire',Volume=1.800000,Slot=SLOT_Interact,bNoOverride=False)
+        SplashDamage=True
+        RecommendSplashDamage=False
+        WarnTargetPct=0.800000
+    End Object
+
+    Begin Object Class=FireParams Name=ArenaMultiFireParams
+        FireEndAnim=
+        FireAnimRate=1.300000
+        FireInterval=0.4
+        FireEffectParams(0)=ProjectileEffectParams'ArenaMultiEffectParams'
+    End Object
+
+    Begin Object Class=FireParams Name=ArenaChargeFireParams
+        AmmoPerFire=0
+        FireEndAnim=
+        FireInterval=1.500000
+        MaxHoldTime=6.000000
+        FireEffectParams(0)=ProjectileEffectParams'ArenaChargeEffectParams'
+    End Object
+
     Begin Object Class=WeaponParams Name=ArenaParams
         MagAmmo=5
         SightingTime=0.300000
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+        FireParams(0)=FireParams'ArenaMultiFireParams'
+        AltFireParams(0)=FireParams'ArenaChargeFireParams'
     End Object 
     Params(0)=WeaponParams'ArenaParams'
 }

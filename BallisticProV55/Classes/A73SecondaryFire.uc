@@ -18,22 +18,6 @@ simulated function bool AllowFire()
 	return true;
 }
 
-simulated function vector GetFireSpread()
-{
-	local float fX;
-    local Rotator R;
-
-	if (BW.bScopeView)
-		return super.GetFireSpread();
-	else
-	{
-		fX = frand();
-		R.Yaw =  XInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-		R.Pitch = YInaccuracy * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
-		return Vector(R);
-	}
-}
-
 function PlayFiring()
 {
 	Super.PlayFiring();
@@ -76,28 +60,18 @@ defaultproperties
 {
 	 HeatPerShot=3.40000
 	 HeatDeclineDelay=0.8
-     SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
-     MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
-     AimedFireAnim="Fire"
-     FireRecoil=960.000000
-     FireChaos=0.500000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
-     FireEndAnim=
-     FireRate=0.800000
      AmmoClass=Class'BallisticProV55.Ammo_Cells'
-     AmmoPerFire=8
+
      ShakeRotMag=(X=32.000000,Y=8.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=1.500000
      ShakeOffsetMag=(X=-3.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=1.500000
-     ProjectileClass=Class'BallisticProV55.A73PowerProjectile'
-	 
+
 	 // AI
      BotRefireRate=0.50000
 	 bInstantHit=True
-     WarnTargetPct=0.500000
 }

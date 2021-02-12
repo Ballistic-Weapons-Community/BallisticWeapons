@@ -124,23 +124,12 @@ defaultproperties
      SwipePoints(4)=(offset=(Yaw=1536))
      WallHitPoint=2
      NumSwipePoints=5
-     FatiguePerStrike=0.030000
+
      bCanBackstab=False
-     TraceRange=(Min=150.000000,Max=150.000000)
-     Damage=45.000000
-     
-     
-     DamageType=Class'BallisticProV55.DTA909Blades'
-     DamageTypeHead=Class'BallisticProV55.DTA909Head'
-     DamageTypeArm=Class'BallisticProV55.DTA909Limb'
-     KickForce=100
-     BallisticFireSound=(Sound=SoundGroup'BW_Core_WeaponSound.A909.A909Slash',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
-     FireAnim="PrepHack"
-     FireAnimRate=1.200000
-     FireRate=0.350000
+
      AmmoClass=Class'BallisticProV55.Ammo_Knife'
-     AmmoPerFire=0
+
      ShakeRotMag=(X=64.000000,Y=384.000000)
      ShakeRotRate=(X=3500.000000,Y=3500.000000,Z=3500.000000)
      ShakeRotTime=2.000000
@@ -149,8 +138,6 @@ defaultproperties
 	 bInstantHit=True
 	 bLeadTarget=False
 	 bTossed=False
-	 bSplashDamage=False
-	 bRecommendSplashDamage=False
+
 	 BotRefireRate=0.99
-     WarnTargetPct=0.300000
 }
