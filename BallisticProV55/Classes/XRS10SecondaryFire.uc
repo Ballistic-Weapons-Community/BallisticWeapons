@@ -22,8 +22,6 @@ defaultproperties
      EffectString="Laser sight"
      bWaitForRelease=True
      bModeExclusive=False
-     FireRate=0.700000
      AmmoClass=Class'BallisticProV55.Ammo_XRS10Bullets'
-     AmmoPerFire=0
      BotRefireRate=0.300000
 }
