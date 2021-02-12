@@ -17,9 +17,6 @@ class FireParams extends Object
 var() float                     FireInterval;           // analogous to FireRate but correctly named
 var() int                       AmmoPerFire;            // Ammo cost per fire 
 
-var() bool                      bWaitForRelease;        // if true, fire button must be released between each shot
-var() bool					    bReleaseFireOnDie;	    // If bFireOnRelease, mode will fire if holder died before release
-
 var() float                     PreFireTime;            // seconds before first shot
 var() float                     MaxHoldTime;            // weapon will release fire automatically after this period of time
 

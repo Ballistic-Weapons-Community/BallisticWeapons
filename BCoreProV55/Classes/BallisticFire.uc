@@ -164,9 +164,6 @@ simulated final function ApplyFireParams()
     FireRate                = Params.FireInterval;
     AmmoPerFire             = Params.AmmoPerFire;
 
-    bWaitForRelease         = Params.bWaitForRelease;
-    bReleaseFireOnDie       = Params.bReleaseFireOnDie;
-
     PreFireTime             = Params.PreFireTime;
     MaxHoldTime             = Params.MaxHoldTime;
 

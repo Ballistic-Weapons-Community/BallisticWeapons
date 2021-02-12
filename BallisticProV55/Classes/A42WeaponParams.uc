@@ -22,6 +22,48 @@ defaultproperties
         ADSMultiplier=2 
     End Object
 
+    Begin Object Class=ProjectileEffectParams Name=ArenaProjEffectParams
+	    SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
+	    MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
+	    Recoil=96.000000
+	    Chaos=0.130000
+	    FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Fire',Volume=0.700000)
+	    Inaccuracy=(X=32,Y=32)
+	    ProjectileClass=Class'BallisticProV55.A42Projectile'
+        WarnTargetPct=0.200000
+    End Object
+
+    Begin Object Class=FireParams Name=ArenaProjFireParams
+        FireInterval=0.16
+        FireEndAnim=
+        FireEffectParams(0)=ProjectileEffectParams'ArenaProjEffectParams'
+    End Object
+
+    Begin Object Class=InstantEffectParams Name=ArenaBeamEffectParams
+    	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
+    	TraceRange=(Min=8000.000000,Max=8000.000000)
+        PenetrationEnergy=8.000000
+        PenetrateForce=150
+        Damage=50.000000
+        DamageType=Class'BallisticProV55.DTA42SkrithBeam'
+        DamageTypeHead=Class'BallisticProV55.DTA42SkrithBeam'
+        DamageTypeArm=Class'BallisticProV55.DTA42SkrithBeam'
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-SecFire',Volume=0.800000)
+        Recoil=512.000000
+	    Inaccuracy=(X=128,Y=128)
+        MomentumTransfer=80000
+        SplashDamage=False
+        RecommendSplashDamage=False
+        WarnTargetPct=0.500000
+    End Object
+
+    Begin Object Class=FireParams Name=ArenaBeamFireParams
+        AmmoPerFire=7
+        FireAnim="SecFire"
+	    FireInterval=0.300000
+        FireEffectParams(0)=InstantEffectParams'ArenaBeamEffectParams'
+    End Object
+
     Begin Object Class=WeaponParams Name=ArenaParams
         MagAmmo=18
         InventorySize=6
@@ -30,6 +72,8 @@ defaultproperties
         DisplaceDurationMult=0.5
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+        FireParams(0)=FireParams'ArenaProjFireParams'
+        AltFireParams(0)=FireParams'ArenaBeamFireParams'
     End Object 
     Params(0)=WeaponParams'ArenaParams'
 }

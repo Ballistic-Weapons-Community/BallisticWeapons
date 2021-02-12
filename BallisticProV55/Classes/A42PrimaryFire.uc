@@ -22,16 +22,7 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
-	SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
-	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-	FireRecoil=96.000000
-	FireChaos=0.130000
-	BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Fire',Volume=0.700000)
 	bPawnRapidFireAnim=True
-	FireEndAnim=
-	XInaccuracy=32
-	YInaccuracy=32
-	FireRate=0.160000
 	AmmoClass=Class'BallisticProV55.Ammo_A42Charge'
 	ShakeRotMag=(X=32.000000,Y=8.000000)
 	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
@@ -39,9 +30,7 @@ defaultproperties
 	ShakeOffsetMag=(X=-3.000000)
 	ShakeOffsetRate=(X=-1000.000000)
 	ShakeOffsetTime=1.500000
-	ProjectileClass=Class'BallisticProV55.A42Projectile'
 	 
 	// AI
 	AimError=600
-    WarnTargetPct=0.200000
 }
