@@ -22,6 +22,7 @@ var() float				MaxRecoil;					// The maximum recoil amount
 var() float				DeclineTime;				// Time it takes for Recoil to decline maximum to zero
 var() float				DeclineDelay;				// The time between firing and when recoil should start decaying
 var() float             ViewBindFactor;           	// How much of the recoil is applied to the player's view rotation
+var() float             ADSViewBindFactor;          // Above for ADS.
 var() float             HipMultiplier;            	// Hipfire recoil is scaled up by this value
 var() float             CrouchMultiplier;         	// Crouch recoil is scaled by this value
 
@@ -47,6 +48,7 @@ defaultproperties
     DeclineTime=2.000000
     DeclineDelay=0.300000
     ViewBindFactor=1.000000
+    ADSViewBindFactor=1.000000
     HipMultiplier=1.600000
 	CrouchMultiplier=0.750000
 }
