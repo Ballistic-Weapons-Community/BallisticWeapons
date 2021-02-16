@@ -12,7 +12,12 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     effect_params = InstantEffectParams(params);
 
     CutOffStartRange = effect_params.DecayRange.Min;
-    CutOffDistance = effect_params.DecayRange.Max;
+
+    // handle params
+    if (effect_params.DecayRange.Max > 0)
+        CutOffDistance = effect_params.DecayRange.Max;
+    else 
+        CutOffDistance = effect_params.TraceRange.Max;
 }
 
 static function float GetRangeAttenFactor(vector start, vector end, int cut_off_start, int cut_off_dist, float range_atten)
