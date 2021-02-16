@@ -378,7 +378,7 @@ defaultproperties
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
-	bNoMeshInScope=True
+
 	bNoCrosshairInScope=True
 	SightPivot=(Roll=-1024)
 	SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
@@ -386,7 +386,7 @@ defaultproperties
 	MaxZoom=32.000000
 	ZoomStages=3
 	GunLength=80.000000
-	ParamsClass=Class'X82WeaponParams'
+	ParamsClasses(0)=Class'X82WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.X82PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.X82SecondaryFire'
 	SelectAnim="Takeout"

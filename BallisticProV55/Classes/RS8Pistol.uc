@@ -501,7 +501,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-15.000000,Z=8.700000)
 	SightDisplayFOV=60.000000
-	ParamsClass=Class'RS8WeaponParams'
+	ParamsClasses(0)=Class'RS8WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.RS8PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RS8SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

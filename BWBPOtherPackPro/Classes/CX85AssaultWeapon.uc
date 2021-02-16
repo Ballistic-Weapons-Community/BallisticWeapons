@@ -391,7 +391,6 @@ defaultproperties
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
-	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightOffset=(X=-20.000000,Z=35.000000)
 	SightingTime=0.650000
@@ -399,7 +398,7 @@ defaultproperties
 	MaxZoom=8.000000
 	ZoomStages=2
 	GunLength=72.000000
-	ParamsClass=Class'CX85WeaponParams'
+	ParamsClasses(0)=Class'CX85WeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.CX85PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.CX85SecondaryFire'
 	PutDownTime=0.700000

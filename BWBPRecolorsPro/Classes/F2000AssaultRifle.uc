@@ -476,7 +476,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
 	SightDisplayFOV=25.000000
-	ParamsClass=Class'F2000WeaponParams'
+	ParamsClasses(0)=Class'F2000WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.F2000PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.F2000SecondaryFire'
 	PutDownTime=0.700000

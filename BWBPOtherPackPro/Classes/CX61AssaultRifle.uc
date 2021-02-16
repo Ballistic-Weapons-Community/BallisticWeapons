@@ -281,7 +281,7 @@ defaultproperties
 	SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
 	SightDisplayFOV=25.000000
 	GunLength=16.000000
-	ParamsClass=Class'CX61WeaponParams'
+	ParamsClasses(0)=Class'CX61WeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.CX61PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.CX61SecondaryFire'
 	SelectAnimRate=1.400000

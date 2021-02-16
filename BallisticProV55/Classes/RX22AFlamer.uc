@@ -297,7 +297,7 @@ defaultproperties
 	SightPivot=(Pitch=768)
 	SightOffset=(X=-12.000000,Z=14.300000)
 	SightDisplayFOV=40.000000
-	ParamsClass=Class'RX22AWeaponParams'
+	ParamsClasses(0)=Class'RX22AWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.RX22APrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RX22ASecondaryFire'
 	BringUpTime=1.200000

@@ -280,7 +280,7 @@ defaultproperties
 	bUseSights=False
 	GunLength=0.000000
 	bAimDisabled=True
-	ParamsClass=Class'X8WeaponParams'
+	ParamsClasses(0)=Class'X8WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.X8PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.X8SecondaryFire'
 	SelectAnimRate=2.500000

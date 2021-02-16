@@ -732,7 +732,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightDisplayFOV=40.000000
 	GunLength=48.000000
-	ParamsClass=Class'ARWeaponParams'
+	ParamsClasses(0)=Class'ARWeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.ARPrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.ARSecondaryFire'
 	SelectAnimRate=0.900000

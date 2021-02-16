@@ -174,7 +174,7 @@ defaultproperties
     SightOffset=(X=20.000000,Y=-7.350000,Z=45.400002)
     SightDisplayFOV=40.000000
     GunLength=4.000000
-    ParamsClass=Class'AH208WeaponParams'
+    ParamsClasses(0)=Class'AH208WeaponParams'
     FireModeClass(0)=Class'BWBPRecolorsPro.AH208PrimaryFire'
     FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
     MeleeFireClass=Class'BWBPRecolorsPro.AH208MeleeFire'

@@ -203,7 +203,7 @@ defaultproperties
 	GunLength=0.100000
 	AIRating=0.6
 	CurrentRating=0.6
-	ParamsClass=Class'MRDRWeaponParams'
+	ParamsClasses(0)=Class'MRDRWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.MRDRPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.MRDRSecondaryFire'
 	PutDownTime=0.400000

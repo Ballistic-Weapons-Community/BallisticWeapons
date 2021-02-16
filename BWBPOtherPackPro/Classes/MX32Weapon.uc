@@ -592,7 +592,7 @@ defaultproperties
 	 WeaponModes(0)=(bUnavailable=True)
 	 WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
 	 WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
-	 ParamsClass=Class'MX32WeaponParams'
+	 ParamsClasses(0)=Class'MX32WeaponParams'
 	 
 	 MagAmmo=50
      PutDownAnimRate=1.500000

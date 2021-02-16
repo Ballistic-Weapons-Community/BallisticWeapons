@@ -194,7 +194,7 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipIn',Volume=1.500000)
 	GunLength=0.000000
 	bUseSpecialAim=True
-	ParamsClass=Class'X82TW_WeaponParams'
+	ParamsClasses(0)=Class'X82TW_WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.X82TW_PrimaryFire'
 	SelectAnim="Deploy"
 	BringUpTime=1.000000

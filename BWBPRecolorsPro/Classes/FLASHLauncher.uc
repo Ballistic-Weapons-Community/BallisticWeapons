@@ -43,7 +43,7 @@ simulated event RenderOverlays (Canvas C)
 			RenderSightFX(C);
 		return;
 	}
-	if (!bNoMeshInScope)
+	if (ZoomType == ZT_Irons)
 	{
 		Super.RenderOverlays(C);
 		if (SightFX != None)
@@ -232,10 +232,9 @@ defaultproperties
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=90.000000
-	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightOffset=(Y=5.300000,Z=23.299999)
-	ParamsClass=Class'FLASHWeaponParams'
+	ParamsClasses(0)=Class'FLASHWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.FLASHPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.FLASHSecondaryFire'
 	PutDownTime=1.400000

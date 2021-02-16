@@ -707,7 +707,7 @@ defaultproperties
 	SightOffset=(X=-18.000000,Y=4.475000,Z=6.800000)
 	SightDisplayFOV=35.000000
 	GunLength=48.000000
-	ParamsClass=Class'BulldogWeaponParams'
+	ParamsClasses(0)=Class'BulldogWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.BulldogPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.BulldogSecondaryFire'
 	PutDownAnimRate=1.700000

@@ -701,7 +701,7 @@ defaultproperties
      WeaponModes(5)=(ModeName="Minigun Turret",ModeID="WM_SemiAuto")
      GunLength=0.000000
      bAimDisabled=True
-	 ParamsClass=Class'WrenchWeaponParams'
+	 ParamsClasses(0)=Class'WrenchWeaponParams'
      FireModeClass(0)=Class'WrenchPrimaryFire'
      FireModeClass(1)=Class'WrenchSecondaryFire'
 	 PutDownTime=1.750000

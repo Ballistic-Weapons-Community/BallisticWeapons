@@ -264,7 +264,7 @@ defaultproperties
 	GunLength=0.000000
 	bUseSpecialAim=True
 	WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
-	ParamsClass=Class'M925TW_WeaponParams'
+	ParamsClasses(0)=Class'M925TW_WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.M925TW_PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'
 	SelectAnim="Deploy"

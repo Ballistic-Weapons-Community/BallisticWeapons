@@ -143,7 +143,7 @@ defaultproperties
 	bNoMag=True
 	GunLength=0.000000
 	bAimDisabled=True
-	ParamsClass=Class'DragonsToothWeaponParams'
+	ParamsClasses(0)=Class'DragonsToothWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.DragonsToothPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.DragonsToothSecondaryFire'
 	SelectAnim="PulloutFancy"

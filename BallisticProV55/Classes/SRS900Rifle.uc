@@ -468,14 +468,13 @@ defaultproperties
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
-	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightOffset=(X=20.000000,Z=11.750000)
 	MinZoom=2.000000
 	MaxZoom=8.000000
 	ZoomStages=2
 	GunLength=72.000000
-	ParamsClass=Class'SRS900WeaponParams'
+	ParamsClasses(0)=Class'SRS900WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.SRS900PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	BringUpTime=0.500000

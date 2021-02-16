@@ -298,7 +298,7 @@ defaultproperties
 	SightOffset=(X=1.000000,Z=17.750000)
 	SightDisplayFOV=25.000000
 	GunLength=40.000000
-	ParamsClass=Class'XMK5WeaponParams'
+	ParamsClasses(0)=Class'XMK5WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.XMK5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XMK5SecondaryFire'
 	PutDownTime=0.350000

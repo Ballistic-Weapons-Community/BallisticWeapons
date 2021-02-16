@@ -318,7 +318,7 @@ defaultproperties
 	SightOffset=(X=-10.000000,Y=-4.400000,Z=12.130000)
 	SightDisplayFOV=40.000000
 	SightingTime=0.200000
-	ParamsClass=Class'PD97WeaponParams'
+	ParamsClasses(0)=Class'PD97WeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.PD97PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.PD97SecondaryFire'
 	PutDownTime=0.600000

@@ -337,7 +337,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	SightZoomFactor=0.85
 	GunLength=0.100000
-	ParamsClass=Class'A49WeaponParams'
+	ParamsClasses(0)=Class'A49WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.A49PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.A49SecondaryFire'
 	PutDownAnimRate=2.300000

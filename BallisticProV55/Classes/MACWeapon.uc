@@ -460,13 +460,12 @@ defaultproperties
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=10.000000
-	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=450)
 	SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
 	SightDisplayFOV=70.000000
 	GunLength=96.000000
-	ParamsClass=Class'MACWeaponParams'
+	ParamsClasses(0)=Class'MACWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.MACPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.MACSecondaryFire'
 	SelectAnimRate=0.600000

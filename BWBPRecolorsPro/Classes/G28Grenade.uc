@@ -119,7 +119,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
 	 CurrentWeaponMode=2
-	 ParamsClass=Class'G28WeaponParams'
+	 ParamsClasses(0)=Class'G28WeaponParams'
      FireModeClass(0)=Class'BWBPRecolorsPro.G28PrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.G28SecondaryFire'
      SelectForce="SwitchToAssaultRifle"

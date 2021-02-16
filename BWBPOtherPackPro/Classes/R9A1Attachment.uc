@@ -147,7 +147,7 @@ simulated function Vector GetTipLocation()
 				return Instigator.Location;
 		}
 			
-		if (BW.bScopeView && BW.bNoMeshInScope)
+		if (BW.bScopeView && BW.ZoomType != ZT_Irons)
 		{
 			Instigator.Weapon.GetViewAxes(X,Y,Z);
 			return Instigator.Location + X*20 + Z*5;

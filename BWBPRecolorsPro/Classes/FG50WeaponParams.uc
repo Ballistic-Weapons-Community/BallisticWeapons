@@ -43,5 +43,5 @@ defaultproperties
 		AimParams(0)=AimParams'ArenaStandardAimParams'
 		AimParams(1)=AimParams'ArenaControlledAimParams'
     End Object 
-    Params(0)=WeaponParams'ArenaParams'
+    Layouts(0)=WeaponParams'ArenaParams'
 }

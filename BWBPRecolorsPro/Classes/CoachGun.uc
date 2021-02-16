@@ -467,7 +467,7 @@ defaultproperties
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-	 ParamsClass=Class'CoachWeaponParams'
+	 ParamsClasses(0)=Class'CoachWeaponParams'
      FireModeClass(0)=Class'BWBPRecolorsPro.CoachGunPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectAnimRate=2.000000

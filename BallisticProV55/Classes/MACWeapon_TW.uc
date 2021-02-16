@@ -158,7 +158,7 @@ defaultproperties
 	ReloadAnimRate=2.500000
 	GunLength=0.000000
 	bUseSpecialAim=True
-	ParamsClass=Class'MACTW_WeaponParams'
+	ParamsClasses(0)=Class'MACTW_WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.MACTW_PrimaryFire'
 	SelectAnim="Deploy"
 	BringUpTime=1.500000

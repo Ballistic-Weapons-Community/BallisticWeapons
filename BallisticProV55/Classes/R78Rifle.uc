@@ -106,7 +106,6 @@ defaultproperties
      ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
      ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=20.000000
-     bNoMeshInScope=True
      bNoCrosshairInScope=True
      SightPivot=(Roll=-1024)
      SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
@@ -114,7 +113,7 @@ defaultproperties
      MaxZoom=16.000000
      ZoomStages=2
      GunLength=80.000000
-     ParamsClass=Class'R78WeaponParams'
+     ParamsClasses(0)=Class'R78WeaponParams'
      FireModeClass(0)=Class'BallisticProV55.R78PrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      BringUpTime=0.500000

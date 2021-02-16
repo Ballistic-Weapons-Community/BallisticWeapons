@@ -165,7 +165,7 @@ defaultproperties
     SightOffset=(X=-30.000000,Z=11.000000)
     SightZoomFactor=0.85
     GunLength=24.000000
-    ParamsClass=Class'MRT6WeaponParams'
+    ParamsClasses(0)=Class'MRT6WeaponParams'
     FireModeClass(0)=Class'BallisticProV55.MRT6PrimaryFire'
     FireModeClass(1)=Class'BallisticProV55.MRT6SecondaryFire'
     Description="MRT6 Shotgun Sidearm||Manufacturer: Wot ya Packin Gun Corp|Primary: Dual Barrel Shot|Secondary: Single Barrel Shot"

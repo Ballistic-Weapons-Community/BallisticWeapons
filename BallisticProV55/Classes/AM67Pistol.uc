@@ -135,7 +135,7 @@ defaultproperties
 	ManualLines(1)="Engages the integrated flash device. The fire key must be held until the flash triggers. Blinds enemies for a short duration. Enemies closer both to the player and to the point of aim will be blinded for longer."
 	ManualLines(2)="Effective at close and medium range."
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_AM67'
-	ParamsClass=Class'AM67WeaponParams'
+	ParamsClasses(0)=Class'AM67WeaponParams'
 	PickupClass=Class'BallisticProV55.AM67Pickup'
 	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 	Priority=24

@@ -35,6 +35,7 @@ class BallisticWeapon extends Weapon
 	abstract
  	config(BallisticProV55)
 	DependsOn(BUtil)
+    DependsOn(WeaponParams)
 	HideDropDown
 	CacheExempt;
 
@@ -81,15 +82,6 @@ enum ModeSaveType
 	MR_None,				//Don't remember any weapon modes.
 	MR_Last,				//Remember the last mode used.
 	MR_SavedDefault			//Remember the mode saved manually using the SaveMode command.
-};
-
-enum EZoomType // Azarael
-{
-	ZT_Irons, // Iron sights or simple non-magnifying aiming aid such as a red dot sight or holographic. Smoothly zooms into FullZoomFOV as the weapon repositions to sights view.
-	ZT_Fixed, // Fixed scope zoom. Does not allow any change in zoom and goes straight to FullZoomFOV when StartScopeView is called.
-	ZT_Logarithmic, //Zooms between MinZoom and MaxZoom magnification levels in relative steps.
-	ZT_Minimum, // Minimum zoom level. Zooms straight to the lowest zoom level and stops on scope up. Will zoom between FOV (90 - (88 * MinFixedZoomLevel)) and FullZoomFOV.
-	ZT_Smooth // Smooth zoom. Replaces bSmoothZoom, allows the weapon to zoom from FOV 90 to FullZoomFOV.
 };
 
 enum EScopeHandling
@@ -237,7 +229,7 @@ var AimComponent					AimComponent;
 // user-defined but generally not modified within the game. 
 // Contains things like display offsets, icon coords etc
 //=============================================================================
-var() class<BallisticWeaponParams>	ParamsClass;
+var() array< class<BallisticWeaponParams> >	ParamsClasses;
 //-----------------------------------------------------------------------------
 // Replication
 //-----------------------------------------------------------------------------
@@ -281,20 +273,17 @@ var() bool					bNoTweenToScope;		// Don't tween to the first idle frame to fix t
 var() config float 			ScopeXScale;			// Manual scaling for scopes
 var() name					ZoomInAnim;				// Anim to play for raising weapon to view through Scope or sights
 var() name					ZoomOutAnim;			// Anim to play when lowering weapon after viewing through scope or sights
-var() Material				ScopeViewTex;			// Texture displayed in Scope View. Fills the screen
 var() BUtil.FullSound		ZoomInSound;			// Sound when zooming in
 var() BUtil.FullSound		ZoomOutSound;			// Sound when zooming out
-var() float					FullZoomFOV;			// The FOV that can be reached when fully zoomed in
-var() bool					bNoMeshInScope;			// Weapon mesh is hidden when in scope/sight view
-var() bool					bNoCrosshairInScope;	// Crosshair will be hidden when in scope or sights
-var() float					SightZoomFactor; 		// Base FOV multiplied by this to give sight aim factor
-var() name					SightBone;				// Bone at which camera should be to view through sights. Uses origin if none
-var() Rotator				SightPivot;				// Rotate the weapon by this when in sight view
-var() Vector				SightOffset;			// Offset of actual sight view position from SightBone or mesh origin.
 var() float					SightDisplayFOV;		// DisplayFOV for drawing gun in scope/sight view
 var float 					MinFixedZoomLevel; 		// Minimum zoom level for ZT_Minimum.
 var float					MinZoom, MaxZoom;		// Min and max magnification levels for ZT_Logarithmic.
 var int						ZoomStages;				// Number of zoom stages
+var() float					SightZoomFactor; 		// ZT_Irons only. Base FOV multiplied by this to give sight aim factor
+var() float					FullZoomFOV;			// The FOV that can be reached when fully zoomed in
+var() Material				ScopeViewTex;			// Texture displayed in Scope View. Fills the screen
+var() bool					bNoCrosshairInScope;	// Crosshair will be hidden when in scope or sights
+var() name					SightBone;				// Bone at which camera should be to view through sights. Uses origin if none
 var Vector					SMuzzleFlashOffset;		// Offset for muzzle flash in scope
 //-----------------------------------------------------------------------------
 // Ammo/Reload
@@ -370,37 +359,43 @@ var	Object.Color	HeaderColor, TextColor;
 // by the game ruleset or by weapon modes and attachments.
 //=============================================================================
 //-----------------------------------------------------------------------------
+// Layout
+//-----------------------------------------------------------------------------
+var() byte                      LayoutIndex;            // Index of layout parameters to use for this weapon instance
+//-----------------------------------------------------------------------------
 // Move speed
 //-----------------------------------------------------------------------------
-var() float					PlayerSpeedFactor;		// Instigator movement speed is multiplied by this when this weapon is in use
-var() float					PlayerJumpFactor;		// Player JumpZ multiplied by this when holding this weapon
+var() float					    PlayerSpeedFactor;		// Instigator movement speed is multiplied by this when this weapon is in use
+var() float					    PlayerJumpFactor;		// Player JumpZ multiplied by this when holding this weapon
 //-----------------------------------------------------------------------------
 // Effects
 //-----------------------------------------------------------------------------
-var() Sound					UsedAmbientSound;		// Use this instead of AmbientSound to have gun hum when in use
+var() Sound					    UsedAmbientSound;		// Use this instead of AmbientSound to have gun hum when in use
 //-----------------------------------------------------------------------------
 // Sights
 //-----------------------------------------------------------------------------
-var() EZoomType 			ZoomType;				// Type of zoom used for ADS
-var() float					SightingTime;			// Time it takes to move weapon to and from sight view
+var() WeaponParams.EZoomType    ZoomType;				// Type of zoom used for ADS
+var() float					    SightingTime;			// Time it takes to move weapon to and from sight view
+var() Rotator				    SightPivot;				// Rotate the weapon by this when in sight view
+var() Vector				    SightOffset;			// Offset of actual sight view position from SightBone or mesh origin.
 //-----------------------------------------------------------------------------
 // Ammo/Reloading
 //-----------------------------------------------------------------------------
-var() travel int			MagAmmo;				//Ammo currently in magazine for Primary and Secondary. Max is whatever the default is.
+var() travel int			    MagAmmo;				//Ammo currently in magazine for Primary and Secondary. Max is whatever the default is.
 
-var() float					CockAnimRate;			//Rate to play cock anim at
-var() float					CockSelectAnimRate; 	//Rate for this anim
-var() float					CockingBringUpTime;		//Time in code before weapon is ready
-var() float					ReloadAnimRate;			//Rate to play Reload Anim at
-var() float					StartShovelAnimRate;	//Rate for start anim
-var() float					EndShovelAnimRate;		//Rate for end anim
+var() float					    CockAnimRate;			//Rate to play cock anim at
+var() float					    CockSelectAnimRate; 	//Rate for this anim
+var() float					    CockingBringUpTime;		//Time in code before weapon is ready
+var() float					    ReloadAnimRate;			//Rate to play Reload Anim at
+var() float					    StartShovelAnimRate;	//Rate for start anim
+var() float					    EndShovelAnimRate;		//Rate for end anim
 //-----------------------------------------------------------------------------
 // Aim
 //-----------------------------------------------------------------------------
-var(Aim) bool				bAimDisabled;		// Disables the entire aiming system. Bullets go exactly where crosshair is aimed.
-var(Aim) bool				bUseNetAim;			// Aim info is replicated to clients. Otherwise client and server aim will be separate
-var(Aim) bool				bUseSpecialAim;		// Firemodes will use GetPlayerAim instead of normal AdjustAim. Used for autotracking and other special aiming functions
-var() float					GunLength;			// How far weapon extends from player. Used by long-gun check
+var(Aim) bool				    bAimDisabled;		// Disables the entire aiming system. Bullets go exactly where crosshair is aimed.
+var(Aim) bool				    bUseNetAim;			// Aim info is replicated to clients. Otherwise client and server aim will be separate
+var(Aim) bool				    bUseSpecialAim;		// Firemodes will use GetPlayerAim instead of normal AdjustAim. Used for autotracking and other special aiming functions
+var() float					    GunLength;			// How far weapon extends from player. Used by long-gun check
 //=============================================================================
 // END GAMEPLAY VARIABLES
 //=============================================================================
@@ -409,7 +404,7 @@ replication
 {
 	// Things the server should send to the owning client
 	reliable if( bNetOwner && Role==ROLE_Authority)
-		MagAmmo, bServerReloading, NetInventoryGroup, bServerDeferInitialSwitch;
+		MagAmmo, bServerReloading, NetInventoryGroup, LayoutIndex, bServerDeferInitialSwitch;
 
 	// functions on server, called by client
    	reliable if( Role < ROLE_Authority )
@@ -471,8 +466,6 @@ simulated function PostBeginPlay()
 	CreateRecoilComponent();
 	CreateAimComponent();
 
-	ParamsClass.static.Initialize(self);
-
 	//Set up channel 1 for sight fire blending.
 	AnimBlendParams(1,0);
 
@@ -512,6 +505,9 @@ simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
 
+    // Forced to delay initialization because of the need to wait for LayoutIndex to be replicated
+	ParamsClasses[BCRepClass.default.GameStyle].static.Initialize(self);
+
 	if (BCRepClass.default.bNoReloading)
 		bNoMag = true;
 
@@ -533,6 +529,8 @@ simulated function PostNetBeginPlay()
 
 simulated final function OnWeaponParamsChanged()
 {
+    local int i;
+
 	SightingTime 				= WeaponParams.SightingTime;
 	default.SightingTime 		= WeaponParams.SightingTime;
 
@@ -544,6 +542,26 @@ simulated final function OnWeaponParamsChanged()
 
 	PlayerJumpFactor 			= WeaponParams.PlayerJumpFactor;
 	default.PlayerJumpFactor	= WeaponParams.PlayerJumpFactor;
+
+    ZoomType                    = WeaponParams.ZoomType;
+
+    if (WeaponParams.SightOffset != vect(0,0,0))
+    {
+        SightOffset = WeaponParams.SightOffset;
+        default.SightOffset = WeaponParams.SightOffset;
+    }
+
+    if (WeaponParams.SightPivot != rot(0,0,0))
+    {
+        SightPivot = WeaponParams.SightPivot;
+        default.SightPivot = WeaponParams.SightPivot;
+    }
+
+    for (i = 0; i < WeaponParams.WeaponMaterialSwaps.Length; ++i)
+        Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = WeaponParams.WeaponMaterialSwaps[i].Material;
+
+    for (i = 0; i < WeaponParams.WeaponBoneScales.Length; ++i)
+        SetBoneScale(WeaponParams.WeaponBoneScales[i].Slot, WeaponParams.WeaponBoneScales[i].Scale, WeaponParams.WeaponBoneScales[i].BoneName);
 }
 
 simulated final function CreateRecoilComponent()
@@ -1418,7 +1436,7 @@ simulated final function StopScopeView(optional bool bNoAnim)
 {
 	SetScopeView(false);
 	
-	if (bNoMeshInScope)
+	if (ZoomType != ZT_Irons)
 	{
 		if (BFireMode[0] != None && BFireMode[0].MuzzleFlash != None)
 			AttachToBone(BFireMode[0].MuzzleFlash, 'tip');
@@ -1957,7 +1975,8 @@ simulated event RenderOverlays (Canvas C)
 			RenderSightFX(C);
 		return;
 	}
-	if (!bNoMeshInScope)
+
+	if (ZoomType == ZT_Irons)
 	{
 		WeaponRenderOverlays(C);
 		if (SightFX != None)
@@ -1983,7 +2002,7 @@ simulated event RenderOverlays (Canvas C)
 	}
 
 	// Draw Scope View
-    if (ScopeViewTex != None)
+    if (ScopeViewTex != None && ZoomType != ZT_Irons)
     {
 		C.ColorModulate.W = 1;
    		C.SetDrawColor(255,255,255,255);
@@ -2545,19 +2564,19 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 	LastMode = CurrentWeaponMode;
 	CurrentWeaponMode = NewMode;
 
-    ParamsClass.static.SetFireParams(self);
+    ParamsClasses[BCRepClass.default.GameStyle].static.SetFireParams(self);
 
 	BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
 	BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
 
 	if (WeaponModes[LastMode].RecoilParamsIndex != WeaponModes[CurrentWeaponMode].RecoilParamsIndex)
 	{
-		ParamsClass.static.SetRecoilParams(self);
+		ParamsClasses[BCRepClass.default.GameStyle].static.SetRecoilParams(self);
 	}
 
 	if (WeaponModes[LastMode].AimParamsIndex != WeaponModes[CurrentWeaponMode].AimParamsIndex)
 	{
-		ParamsClass.static.SetAimParams(self);
+		ParamsClasses[BCRepClass.default.GameStyle].static.SetAimParams(self);
 	}
 
 	CheckBurstMode();
@@ -3503,7 +3522,7 @@ function bool HandlePickupQuery( pickup Item )
 
 		if (BWP != None)
 		{
-			BWP.DetectedInventorySize += ParamsClass.default.Params[0].InventorySize;
+			BWP.DetectedInventorySize += ParamsClasses[BCRepClass.default.GameStyle].default.Layouts[0].InventorySize;
 
 			if (BWP.DetectedInventorySize >= default.MaxInventoryCapacity)
 			{

@@ -112,7 +112,7 @@ static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 	if (BW != None)
 	{
 		WI.BigIconMaterial		= BW.default.BigIconMaterial;
-		WI.InventorySize		= BW.default.ParamsClass.default.Params[0].InventorySize;
+		WI.InventorySize		= BW.default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle].default.Layouts[0].InventorySize;
 		WI.bIsBW				= true;
 	}
 

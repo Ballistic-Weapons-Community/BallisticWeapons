@@ -151,7 +151,7 @@ defaultproperties
 	bUseSpecialAim=True
 	 
 
-	ParamsClass=Class'FG50TW_WeaponParams'
+	ParamsClasses(0)=Class'FG50TW_WeaponParams'
 	SelectAnim="Deploy"
 	bCanThrow=False
 	bNoInstagibReplace=True

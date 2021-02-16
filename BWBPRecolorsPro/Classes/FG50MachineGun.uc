@@ -651,7 +651,7 @@ defaultproperties
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
 	SightOffset=(Y=25.000000,Z=10.300000)
-	ParamsClass=Class'FG50WeaponParams'	 
+	ParamsClasses(0)=Class'FG50WeaponParams'	 
 	FireModeClass(0)=Class'BWBPRecolorsPro.FG50PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.FG50SecondaryFire'
 	IdleAnimRate=0.600000

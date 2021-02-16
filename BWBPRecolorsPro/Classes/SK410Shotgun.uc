@@ -187,7 +187,7 @@ defaultproperties
     SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
     SightDisplayFOV=30
     GunLength=48.000000
-    ParamsClass=Class'SK410WeaponParams'
+    ParamsClasses(0)=Class'SK410WeaponParams'
     FireModeClass(0)=Class'BWBPRecolorsPro.SK410PrimaryFire'
     FireModeClass(1)=Class'BWBPRecolorsPro.SK410SecondaryFire'
     SelectAnimRate=1.600000

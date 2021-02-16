@@ -252,7 +252,7 @@ simulated event RenderOverlays (Canvas C)
     	if (bThermal)
 		DrawThermalMode(C);
 
-	if (!bNoMeshInScope)
+	if (ZoomType == ZT_Irons)
 	{
 		Super.RenderOverlays(C);
 		if (SightFX != None)
@@ -732,14 +732,14 @@ defaultproperties
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=45.000000
-	bNoMeshInScope=True
+
 	bNoCrosshairInScope=True
 	SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1
 	SMuzzleFlashOffset=(X=15.000000,Z=-10.000000)
-	ParamsClass=Class'MARSWeaponParams'
+	ParamsClasses(0)=Class'MARSWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.MARSPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.MARSSecondaryFire'
 	PutDownTime=0.700000

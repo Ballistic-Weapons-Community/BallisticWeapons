@@ -461,7 +461,7 @@ defaultproperties
 	SightOffset=(X=-10.000000,Y=-0.670000,Z=27.200000)
 	SightDisplayFOV=25.000000
 	GunLength=72.000000
-	ParamsClass=Class'SRXWeaponParams'
+	ParamsClasses(0)=Class'SRXWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.SRXPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.SRXSecondaryFire'
 	SelectAnimRate=1.350000

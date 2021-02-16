@@ -509,7 +509,7 @@ defaultproperties
 	SightOffset=(X=-30.000000,Y=-10.000000,Z=15.000000)
 	SightDisplayFOV=50.000000
 	LongGunOffset=(X=8.000000,Y=-5.000000,Z=-3.000000)
-	ParamsClass=Class'MRLWeaponParams'
+	ParamsClasses(0)=Class'MRLWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.MRLPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.MRLSecondaryFire'
 	BringUpTime=0.500000

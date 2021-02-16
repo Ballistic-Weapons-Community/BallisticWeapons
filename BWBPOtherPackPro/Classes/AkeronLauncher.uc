@@ -142,14 +142,13 @@ defaultproperties
      ScopeXScale=1.333000
      ScopeViewTex=Texture'BW_Core_WeaponTex.Artillery.Artillery-ScopeView'
      FullZoomFOV=10.000000
-     bNoMeshInScope=True
      bNoCrosshairInScope=True
      SightOffset=(X=-30.000000,Y=-17.000000,Z=15.000000)
 
      MinZoom=2.000000
      MaxZoom=8.000000
      ZoomStages=2
-     ParamsClass=Class'AkeronWeaponParams'
+     ParamsClasses(0)=Class'AkeronWeaponParams'
      FireModeClass(0)=Class'BWBPOtherPackPro.AkeronPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.AkeronSecondaryFire'
      SelectAnimRate=0.600000

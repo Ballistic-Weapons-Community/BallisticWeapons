@@ -353,7 +353,7 @@ defaultproperties
 	SightDisplayFOV=60.000000
 	SightPivot=(Pitch=128)
 	GunLength=48.000000
-	ParamsClass=Class'M763WeaponParams'
+	ParamsClasses(0)=Class'M763WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.M763PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M763SecondaryFire'
 	AIRating=0.750000

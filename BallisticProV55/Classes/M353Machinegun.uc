@@ -275,7 +275,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=128)
 	SightOffset=(X=-6.000000,Z=5.30000)
-	ParamsClass=Class'M353WeaponParams'
+	ParamsClasses(0)=Class'M353WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.M353PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M353SecondaryFire'
 	SelectAnimRate=1.350000

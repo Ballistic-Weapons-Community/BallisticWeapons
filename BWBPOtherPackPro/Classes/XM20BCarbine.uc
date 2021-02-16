@@ -601,10 +601,9 @@ defaultproperties
      ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=40.000000
 	 ZoomType=ZT_Smooth
-     bNoMeshInScope=True
      SightPivot=(Pitch=600)
      SightOffset=(X=-10.000000,Y=11.7500000,Z=22.500000)
-	 ParamsClass=Class'XM20BWeaponParams'
+	 ParamsClasses(0)=Class'XM20BWeaponParams'
      FireModeClass(0)=Class'BWBPOtherPackPro.XM20BPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.XM20BSecondaryFire'
      BringUpTime=0.800000

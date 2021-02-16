@@ -529,7 +529,7 @@ defaultproperties
 	SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
 	SightDisplayFOV=45.000000
 	SightingTime=0.550000
-	ParamsClass=Class'Z250WeaponParams'
+	ParamsClasses(0)=Class'Z250WeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.Z250PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.Z250SecondaryFire'
 	SelectAnimRate=0.750000

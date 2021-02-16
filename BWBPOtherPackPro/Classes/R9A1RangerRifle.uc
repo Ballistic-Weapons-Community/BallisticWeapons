@@ -218,19 +218,18 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 //===========================================================================
 exec simulated function ScopeView()
 {
-	if (bNoMeshInScope && SightingState != SS_None && SightingState != SS_Active)
+	if (ZoomType == ZT_Fixed && SightingState != SS_None && SightingState != SS_Active)
 		return;
 		
 	if (SightingState == SS_None)
 	{
-		if (bNoMeshInScope)
+		if (ZoomType == ZT_Fixed)
 		{
 			SightPivot = IronSightPivot;
 			SightOffset = IronSightOffset;
 			ZoomType = ZT_Irons;
 			ScopeViewTex = None;
 			SightingTime = default.SightingTime;
-			bNoMeshInScope = false;
 		}
 	}
 	
@@ -239,7 +238,7 @@ exec simulated function ScopeView()
 
 exec simulated function ScopeViewRelease()
 {
-	if (bNoMeshInScope && SightingState != SS_None && SightingState != SS_Active)
+	if (ZoomType != ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
 		return;
 		
 	Super.ScopeViewRelease();
@@ -247,7 +246,7 @@ exec simulated function ScopeViewRelease()
 
 simulated function ScopeViewTwo()
 {
-	if (!bNoMeshInScope && SightingState != SS_None && SightingState != SS_Active)
+	if (ZoomType == ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
 		return;
 		
 	if (SightingState == SS_None)
@@ -259,13 +258,12 @@ simulated function ScopeViewTwo()
 			default: ScopeViewTex = Texture'BWBP_OP_Tex.R9A1.R9_scope_UI_DO1';
 		}
 		
-		if (!bNoMeshInScope)
+		if (ZoomType == ZT_Irons)
 		{
 			SightPivot = ScopeSightPivot;
 			SightOffset = ScopeSightOffset;
 			ZoomType = ZT_Fixed;
 			SightingTime = 0.4;
-			bNoMeshInScope = true;
 		}
 	}
 	
@@ -274,7 +272,7 @@ simulated function ScopeViewTwo()
 
 simulated function ScopeViewTwoRelease()
 {
-	if (!bNoMeshInScope && SightingState != SS_None && SightingState != SS_Active)
+	if (ZoomType == ZT_Irons && SightingState != SS_None && SightingState != SS_Active)
 		return;
 		
 	Super.ScopeViewRelease();
@@ -289,7 +287,7 @@ simulated function SetHand(float InHand)
 	super.SetHand(InHand);
 	if (Hand < 0)
 	{
-		if (bNoMeshInScope)
+		if (ZoomType != ZT_Irons)
 		{
 			ScopeSightOffset.Y = ScopeSightOffset.Y * -1;
 			ScopeSightPivot.Roll = ScopeSightPivot.Roll * -1;
@@ -472,7 +470,7 @@ defaultproperties
 	SightOffset=(X=15.000000,Y=2.850000,Z=9.000000)
 	SightDisplayFOV=25.000000
 	GunLength=80.000000
-	ParamsClass=Class'R9A1WeaponParams'
+	ParamsClasses(0)=Class'R9A1WeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.R9A1PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.R9A1ScopeFire'
 	SightingTime=0.4

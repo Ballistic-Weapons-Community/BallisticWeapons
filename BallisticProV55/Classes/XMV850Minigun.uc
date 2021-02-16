@@ -441,7 +441,7 @@ defaultproperties
 	SightPivot=(Pitch=700,Roll=2048)
 	SightOffset=(X=8.000000,Z=28.000000)
 	SightDisplayFOV=45.000000
-	ParamsClass=Class'XMV850WeaponParams'
+	ParamsClasses(0)=Class'XMV850WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.XMV850MinigunPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XMV850MinigunSecondaryFire'
 	SelectAnimRate=0.750000

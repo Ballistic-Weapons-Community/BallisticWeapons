@@ -229,7 +229,7 @@ simulated event RenderOverlays (Canvas C)
     	if (bThermal)
 		DrawThermalMode(C);
 
-	if (!bNoMeshInScope)
+	if (ZoomType == ZT_Irons)
 	{
 		Super.RenderOverlays(C);
 		if (SightFX != None)
@@ -612,14 +612,13 @@ defaultproperties
 	ZoomType=ZT_Logarithmic
 	ScopeViewTex=Texture'BWBP_OP_Tex.R9A1.R9_scope_UI_DO1'
 	FullZoomFOV=50.000000
-	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightOffset=(X=-2.000000,Y=5.000000,Z=5.200000)
 	SightDisplayFOV=40.000000
 	MinZoom=2.000000
 	MaxZoom=16.000000
 	ZoomStages=3
-	ParamsClass=Class'BX85WeaponParams'
+	ParamsClasses(0)=Class'BX85WeaponParams'
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.XBow.CockFast',Volume=1.200000)
 	FireModeClass(0)=Class'BWBPOtherPackPro.BX85PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'

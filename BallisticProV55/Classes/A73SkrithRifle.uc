@@ -295,7 +295,7 @@ defaultproperties
 	SightPivot=(Pitch=450)
 	SightOffset=(X=10.000000,Z=12.150000)
 	SightDisplayFOV=60.000000
-	ParamsClass=Class'A73WeaponParams'
+	ParamsClasses(0)=Class'A73WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.A73PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A73SecondaryFire'
 	BringUpTime=0.500000

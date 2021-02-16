@@ -57,7 +57,6 @@ defaultproperties
     ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
     ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
     FullZoomFOV=20.000000
-    bNoMeshInScope=True
     bNoCrosshairInScope=True
     SightOffset=(Z=51.000000)
     MinZoom=2.000000
@@ -84,7 +83,7 @@ defaultproperties
     CurrentWeaponMode=0
     GunLength=60.000000
     BobDamping=0.800000
-    ParamsClass=Class'LightningWeaponParams'
+    ParamsClasses(0)=Class'LightningWeaponParams'
     FireModeClass(0)=Class'BWBPOtherPackPro.LightningPrimaryFire'
     FireModeClass(1)=Class'BWBPOtherPackPro.LightningSecondaryFire'
     PutDownTime=0.700000

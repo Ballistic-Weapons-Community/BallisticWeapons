@@ -386,7 +386,7 @@ defaultproperties
 	SightPivot=(Pitch=64)
 	SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
 	SightDisplayFOV=40.000000
-	ParamsClass=Class'AK490WeaponParams'
+	ParamsClasses(0)=Class'AK490WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.AK47PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.AK47SecondaryFire'
 	IdleAnimRate=0.400000

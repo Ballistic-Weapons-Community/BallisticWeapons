@@ -403,7 +403,6 @@ defaultproperties
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=60.000000
-	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=600,Roll=-1024)
 	SightOffset=(Y=-1.000000,Z=12.500000)
@@ -411,7 +410,7 @@ defaultproperties
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1
-	ParamsClass=Class'M46WeaponParams'
+	ParamsClasses(0)=Class'M46WeaponParams'
     AmmoClass(0)=Class'BallisticProV55.Ammo_M46Clip'	
 	AmmoClass(1)=Class'BallisticProV55.Ammo_M46Clip'
 	FireModeClass(0)=Class'BallisticProV55.M46PrimaryFire'

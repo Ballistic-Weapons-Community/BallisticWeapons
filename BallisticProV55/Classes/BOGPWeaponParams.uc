@@ -73,5 +73,5 @@ defaultproperties
         FireParams(1)=FireParams'ArenaFlareFireParams'
         AltFireParams(0)=FireParams'ArenaAltFireParams'
     End Object 
-    Params(0)=WeaponParams'ArenaParams'
+    Layouts(0)=WeaponParams'ArenaParams'
 }

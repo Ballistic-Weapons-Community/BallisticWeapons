@@ -240,7 +240,7 @@ defaultproperties
 	SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
 	bNoCrosshairInScope=True
 	GunLength=16.500000
-	ParamsClass=Class'CYLOFirestormWeaponParams' 
+	ParamsClasses(0)=Class'CYLOFirestormWeaponParams' 
 	FireModeClass(0)=Class'BWBPRecolorsPro.CYLOFirestormPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.CYLOFirestormSecondaryFire'
 	bShowChargingBar=True

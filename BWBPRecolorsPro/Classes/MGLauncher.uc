@@ -228,7 +228,7 @@ defaultproperties
 	SightPivot=(Pitch=512)
 	SightOffset=(X=-30.000000,Y=12.450000,Z=14.850000)
 	GunLength=48.000000
-	ParamsClass=Class'MGLWeaponParams'
+	ParamsClasses(0)=Class'MGLWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.MGLPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.MGLSecondaryFire'
 	SelectAnimRate=1.500000

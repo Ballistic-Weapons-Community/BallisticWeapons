@@ -555,7 +555,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-15.000000,Z=5.900000)
 	SightDisplayFOV=60.000000
-	ParamsClass=Class'GRS9WeaponParams'
+	ParamsClasses(0)=Class'GRS9WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.GRS9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.GRS9SecondaryFire'
 	SelectAnimRate=1.250000

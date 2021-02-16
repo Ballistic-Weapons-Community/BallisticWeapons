@@ -361,7 +361,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=7.000000,Y=0.01,Z=3.600000)
 	SightDisplayFOV=60.000000
-	ParamsClass=Class'M806WeaponParams'
+	ParamsClasses(0)=Class'M806WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.M806PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M806SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

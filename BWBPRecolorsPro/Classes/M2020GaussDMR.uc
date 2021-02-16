@@ -297,7 +297,7 @@ simulated event RenderOverlays (Canvas C)
 			RenderSightFX(C);
 		return;
 	}
-	if (!bNoMeshInScope)
+	if (ZoomType == ZT_Irons)
 	{
 		Super.RenderOverlays(C);
 		if (SightFX != None)
@@ -586,7 +586,6 @@ defaultproperties
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
-	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightOffset=(Y=-3.000000,Z=18.000000)
 	MinFixedZoomLevel=0.350000
@@ -594,7 +593,7 @@ defaultproperties
 	MaxZoom=16.000000
 	ZoomStages=8
 	GunLength=80.000000
-	ParamsClass=Class'M2020WeaponParams'
+	ParamsClasses(0)=Class'M2020WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.M2020GaussPrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	PutDownTime=0.80000

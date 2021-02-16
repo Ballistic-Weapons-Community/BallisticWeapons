@@ -132,5 +132,5 @@ defaultproperties
         AltFireParams(0)=FireParams'MeleeFireParams'
         AimParams(0)=AimParams'ArenaAimParams'
     End Object 
-    Params(0)=WeaponParams'ArenaParams'
+    Layouts(0)=WeaponParams'ArenaParams'
 }

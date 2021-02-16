@@ -51,7 +51,7 @@ defaultproperties
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A909.A909Putaway')
      GunLength=0.000000
      bAimDisabled=True
-     ParamsClass=Class'A909WeaponParams'
+     ParamsClasses(0)=Class'A909WeaponParams'
      FireModeClass(0)=Class'BallisticProV55.A909PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.A909SecondaryFire'
      PutDownAnimRate=2.200000

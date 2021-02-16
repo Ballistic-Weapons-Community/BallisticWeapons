@@ -303,7 +303,7 @@ defaultproperties
 	bUseSights=False
 	GunLength=0.000000
 	bAimDisabled=True
-	ParamsClass=Class'BX5WeaponParams'
+	ParamsClasses(0)=Class'BX5WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.BX5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.BX5SecondaryFire'
 	PutDownTime=0.700000

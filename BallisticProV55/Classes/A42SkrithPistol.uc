@@ -251,7 +251,7 @@ defaultproperties
 	SightPivot=(Pitch=1024,Roll=-768)
 	SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 	SightDisplayFOV=40.000000
-	ParamsClass=Class'A42WeaponParams'
+	ParamsClasses(0)=Class'A42WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.A42PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A42SecondaryFire'
 	BringUpTime=0.500000

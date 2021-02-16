@@ -367,7 +367,7 @@ defaultproperties
 	SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
 	SightDisplayFOV=40.000000
 	GunLength=128.000000
-	ParamsClass=Class'XOXOWeaponParams'
+	ParamsClasses(0)=Class'XOXOWeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.XOXOPrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.XOXOSecondaryFire'
 	PutDownAnimRate=1.350000

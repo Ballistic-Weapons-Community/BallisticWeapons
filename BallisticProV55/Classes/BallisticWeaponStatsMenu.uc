@@ -287,8 +287,9 @@ function UpdateInfo()
 	
 	//FIXME DynamicLoadObject
 	BW = class<BallisticWeapon>(DynamicLoadObject(lb_Weapons.List.GetExtra(), class'Class', True));
+
 	if (BW != None)
-        params = BW.default.ParamsClass;
+        params = BW.default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle];
 
     if (params != None)
 	{
@@ -415,35 +416,35 @@ function UpdateInfo()
 		pb_RPSAlt.BarColor = ColorBar(pb_RPSAlt.Value / pb_RPSAlt.High);
 				
 		//general stats
-		pb_Raise.Value = params.default.Params[0].SightingTime;
+		pb_Raise.Value = params.default.Layouts[0].SightingTime;
 		pb_Raise.Caption = String(pb_Raise.Value);
 		pb_Raise.BarColor = ColorBar(pb_Raise.Value/pb_Raise.High);
 		
-		pb_ViewRecoilFactor.Value = params.default.Params[0].RecoilParams[0].ViewBindFactor;
+		pb_ViewRecoilFactor.Value = params.default.Layouts[0].RecoilParams[0].ViewBindFactor;
 		pb_ViewRecoilFactor.Caption = string(int(Ceil(pb_ViewRecoilFactor.Value * 100f)))$ "%";
 		pb_ViewRecoilFactor.BarColor = ColorBar(pb_ViewRecoilFactor.Value / pb_ViewRecoilFactor.High);
 
-        pb_MoveSpeed.Value = params.default.Params[0].PlayerSpeedFactor;
+        pb_MoveSpeed.Value = params.default.Layouts[0].PlayerSpeedFactor;
 		pb_MoveSpeed.Caption = string(int(Ceil(pb_MoveSpeed.Value * 100f)))$ "%";
 		pb_MoveSpeed.BarColor = ColorBar(pb_MoveSpeed.Value / pb_MoveSpeed.High);
 
-        pb_ADSMoveSpeed.Value = params.default.Params[0].PlayerSpeedFactor * params.default.Params[0].SightMoveSpeedFactor;
+        pb_ADSMoveSpeed.Value = params.default.Layouts[0].PlayerSpeedFactor * params.default.Layouts[0].SightMoveSpeedFactor;
 		pb_ADSMoveSpeed.Caption = string(int(Ceil(pb_ADSMoveSpeed.Value * 100f)))$ "%";
 		pb_ADSMoveSpeed.BarColor = ColorBar(pb_ADSMoveSpeed.Value / pb_ADSMoveSpeed.High);
 
-        pb_Displacement.Value = params.default.Params[0].DisplaceDurationMult;
+        pb_Displacement.Value = params.default.Layouts[0].DisplaceDurationMult;
 		pb_Displacement.Caption = string(int(Ceil(pb_Displacement.Value * 100f)))$ "%";
 		pb_Displacement.BarColor = ColorBar(pb_Displacement.Value / pb_Displacement.High);
 
-		db_Mag.Caption = String(params.default.Params[0].MagAmmo);
+		db_Mag.Caption = String(params.default.Layouts[0].MagAmmo);
 		
-		pb_DPM.Value = FMin(params.default.Params[0].MagAmmo * FS.DamageInt, pb_DPM.High);
+		pb_DPM.Value = FMin(params.default.Layouts[0].MagAmmo * FS.DamageInt, pb_DPM.High);
 		pb_DPM.Caption = String(int(pb_DPM.Value)) @ "("$int(pb_DPM.Value / 6.0f)$"%)";
 		pb_DPM.BarColor = ColorBar(pb_DPM.Value / pb_DPM.High);
 		
-		db_CrouchMultiplier.Caption = string(int(Ceil(100f * (1 - params.default.Params[0].AimParams[0].CrouchMultiplier))))$"%";
+		db_CrouchMultiplier.Caption = string(int(Ceil(100f * (1 - params.default.Layouts[0].AimParams[0].CrouchMultiplier))))$"%";
 		
-		db_ADSMultiplier.Caption = string(int(100 * (1 - params.default.Params[0].AimParams[0].ADSMultiplier)))$"%";
+		db_ADSMultiplier.Caption = string(int(100 * (1 - params.default.Layouts[0].AimParams[0].ADSMultiplier)))$"%";
 	}
 }
 

@@ -36,5 +36,5 @@ defaultproperties
 		RecoilParams(1)=RecoilParams'ArenaFastRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
     End Object 
-    Params(0)=WeaponParams'ArenaParams'
+    Layouts(0)=WeaponParams'ArenaParams'
 }

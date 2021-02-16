@@ -449,7 +449,7 @@ defaultproperties
 	SightOffset=(X=20.000000,Y=16.8500000,Z=29.000000)
 	SightDisplayFOV=15
 	GunLength=80.000000
-	ParamsClass=Class'XM20WeaponParams'
+	ParamsClasses(0)=Class'XM20WeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.XM20PrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.XM20SecondaryFire'
 	SelectAnimRate=1.500000

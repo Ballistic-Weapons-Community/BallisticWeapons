@@ -230,7 +230,7 @@ defaultproperties
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
      bNoMag=True
 	 GunLength=0.000000
-	 ParamsClass=Class'BallisticShieldWeaponParams'
+	 ParamsClasses(0)=Class'BallisticShieldWeaponParams'
      FireModeClass(0)=Class'BWBPOtherPackPro.BallisticShieldPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.BallisticShieldSecondaryFire'
      PutDownTime=0.500000

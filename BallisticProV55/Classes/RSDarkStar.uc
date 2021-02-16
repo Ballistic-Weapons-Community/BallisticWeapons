@@ -773,7 +773,7 @@ defaultproperties
      SightOffset=(X=-22.000000,Z=10.000000)
      SightDisplayFOV=40.000000
 	 GunLength=128.000000
-	 ParamsClass=Class'RSDarkWeaponParams'
+	 ParamsClasses(0)=Class'RSDarkWeaponParams'
      FireModeClass(0)=Class'BallisticProV55.RSDarkPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.RSDarkMeleeFire'
      BringUpTime=0.500000

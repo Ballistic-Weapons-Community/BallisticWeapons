@@ -327,7 +327,7 @@ defaultproperties
 	SightPivot=(Pitch=1024,Roll=-768)
 	SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 	SightDisplayFOV=40.000000
-	ParamsClass=Class'ProtonWeaponParams'
+	ParamsClasses(0)=Class'ProtonWeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.ProtonStreamPrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.ProtonStreamSecondaryFire'
 	SelectAnimRate=1.250000

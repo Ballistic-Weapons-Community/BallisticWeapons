@@ -212,7 +212,7 @@ defaultproperties
     SightPivot=(Pitch=1024)
     SightOffset=(X=-20.000000,Y=9.700000,Z=19.000000)
     GunLength=32.000000
-    ParamsClass=Class'SKASWeaponParams'
+    ParamsClasses(0)=Class'SKASWeaponParams'
     FireModeClass(0)=Class'BWBPRecolorsPro.SKASPrimaryFire'
     FireModeClass(1)=Class'BWBPRecolorsPro.SKASSecondaryFire'
     IdleAnimRate=0.100000

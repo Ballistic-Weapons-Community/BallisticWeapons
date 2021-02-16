@@ -461,14 +461,13 @@ defaultproperties
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
-	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	MinZoom=4.000000
 	MaxZoom=16.000000
 	ZoomStages=2
 	SMuzzleFlashOffset=(X=50.000000,Z=-35.000000)
 	GunLength=80.000000
-	ParamsClass=Class'M75WeaponParams'
+	ParamsClasses(0)=Class'M75WeaponParams'
     FireModeClass(0)=Class'BallisticProV55.M75PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M75SecondaryFire'
 	PutDownAnimRate=1.300000

@@ -9,8 +9,7 @@
 // Notes:
 //
 // Compositional chain will be as follows:
-//  + WeaponLayout [int Index] - defines mesh, texture set etc
-//      + WeaponParams  [int GameStyle] - defines gameplay characteristics, selected based on game style
+//      + WeaponParams - defines gameplay characteristics, indexed by weapon layout
 //          + RecoilParams    [int CurrentWeaponMode] - defines weapon recoil parameters, selected based on weapon mode
 //          + AimParams       [int CurrentWeaponMode] - defines weapon aim params, selected based on weapon mode
 //          + [Alt]FireParams [int CurrentWeaponMode] - defines weapon fire params, two arrays depending on weapon mode requested
@@ -26,7 +25,7 @@
 //=============================================================================
 class BallisticWeaponParams extends Object;
 
-var WeaponParams                  Params[2];
+var array<WeaponParams>                  Layouts;
 
 static simulated final function Initialize(BallisticWeapon BW)
 {
@@ -40,20 +39,20 @@ static simulated final function Initialize(BallisticWeapon BW)
 
 static simulated final function SetWeaponParams(BallisticWeapon BW)
 {
-    BW.WeaponParams = default.Params[BW.default.BCRepClass.default.GameStyle];
+    BW.WeaponParams = default.Layouts[BW.LayoutIndex];
     BW.OnWeaponParamsChanged();
 }
 
 static simulated final function SetFireParams(BallisticWeapon BW)
 {
-    if (default.Params[BW.default.BCRepClass.default.GameStyle].FireParams.Length > 0)
+    if (default.Layouts[BW.LayoutIndex].FireParams.Length > 0)
     {
-        BW.BFireMode[0].Params = default.Params[BW.default.BCRepClass.default.GameStyle].FireParams
+        BW.BFireMode[0].Params = default.Layouts[BW.LayoutIndex].FireParams
         [
             Min
             (
                 BW.CurrentWeaponMode, 
-                default.Params[BW.default.BCRepClass.default.GameStyle].FireParams.Length - 1
+                default.Layouts[BW.LayoutIndex].FireParams.Length - 1
             )
         ];
 
@@ -65,14 +64,14 @@ static simulated final function SetFireParams(BallisticWeapon BW)
         Log("BallisticWeaponParams: Could not initialize " $ BW.ItemName $ "'s primary fire; no fire params configured");
     }
 
-    if (default.Params[BW.default.BCRepClass.default.GameStyle].AltFireParams.Length > 0)
+    if (default.Layouts[BW.LayoutIndex].AltFireParams.Length > 0)
     {
-        BW.BFireMode[1].Params = default.Params[BW.default.BCRepClass.default.GameStyle].AltFireParams
+        BW.BFireMode[1].Params = default.Layouts[BW.LayoutIndex].AltFireParams
         [
             Min
             (
                 BW.CurrentWeaponMode, 
-                default.Params[BW.default.BCRepClass.default.GameStyle].AltFireParams.Length - 1
+                default.Layouts[BW.LayoutIndex].AltFireParams.Length - 1
             )
         ];
         BW.BFireMode[1].OnFireParamsChanged(BW.AmmoType);
@@ -86,14 +85,14 @@ static simulated final function SetFireParams(BallisticWeapon BW)
 
 static simulated final function SetRecoilParams(BallisticWeapon BW)
 {
-    BW.RcComponent.Params = default.Params[BW.default.BCRepClass.default.GameStyle].RecoilParams[BW.GetRecoilParamsIndex()];
+    BW.RcComponent.Params = default.Layouts[BW.LayoutIndex].RecoilParams[BW.GetRecoilParamsIndex()];
 	BW.RcComponent.Recalculate();
 }
 
 static simulated final function SetAimParams(BallisticWeapon BW)
 {
-    BW.AimComponent.Params = default.Params[BW.default.BCRepClass.default.GameStyle].AimParams[BW.GetAimParamsIndex()];
-    BW.AimComponent.DisplaceDurationMult = default.Params[BW.default.BCRepClass.default.GameStyle].default.DisplaceDurationMult;
+    BW.AimComponent.Params = default.Layouts[BW.LayoutIndex].AimParams[BW.GetAimParamsIndex()];
+    BW.AimComponent.DisplaceDurationMult = default.Layouts[BW.LayoutIndex].DisplaceDurationMult;
 	BW.AimComponent.Recalculate();
 }
 

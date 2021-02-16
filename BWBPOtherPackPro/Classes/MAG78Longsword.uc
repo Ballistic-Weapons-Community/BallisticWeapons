@@ -257,7 +257,7 @@ defaultproperties
      bNoMag=True
      GunLength=0.000000
 	 bAimDisabled=True
-	 ParamsClass=Class'MAG78WeaponParams'
+	 ParamsClasses(0)=Class'MAG78WeaponParams'
      FireModeClass(0)=Class'MAG78PrimaryFire'
      FireModeClass(1)=Class'MAG78SecondaryFire'
      PutDownTime=0.500000

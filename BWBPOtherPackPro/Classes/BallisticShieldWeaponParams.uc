@@ -24,5 +24,5 @@ defaultproperties
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
     End Object 
-    Params(0)=WeaponParams'UniversalParams'
+    Layouts(0)=WeaponParams'UniversalParams'
 }

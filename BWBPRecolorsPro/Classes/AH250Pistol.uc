@@ -250,12 +250,11 @@ defaultproperties
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=40.000000
-	bNoMeshInScope=True
 	bNoCrosshairInScope=True
 	SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
 	SightDisplayFOV=40.000000
 	GunLength=4.000000
-	ParamsClass=Class'AH250WeaponParams'
+	ParamsClasses(0)=Class'AH250WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.AH250PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	MeleeFireClass=Class'BWBPRecolorsPro.AH250MeleeFire'

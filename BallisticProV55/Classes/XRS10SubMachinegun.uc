@@ -420,7 +420,7 @@ defaultproperties
 	SightOffset=(X=-15.000000,Z=9.500000)
 	SightDisplayFOV=60.000000
 	SightZoomFactor=0.85
-	ParamsClass=Class'XRS10WeaponParams'
+	ParamsClasses(0)=Class'XRS10WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.XRS10PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XRS10SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

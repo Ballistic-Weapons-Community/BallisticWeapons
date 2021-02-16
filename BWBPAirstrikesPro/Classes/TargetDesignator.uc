@@ -136,7 +136,7 @@ simulated event RenderOverlays (Canvas C)
 			RenderSightFX(C);
 		return;
 	}
-	if (!bNoMeshInScope)
+	if (ZoomType == ZT_Irons)
 	{
 		WeaponRenderOverlays(C);
 		if (SightFX != None)
@@ -400,10 +400,9 @@ defaultproperties
     ZoomOutAnim="Lower"
     ScopeViewTex=Texture'BWBP_OP_Tex.Designator.DesignatorScreen'
     FullZoomFOV=20.000000
-    bNoMeshInScope=True
     bNoCrosshairInScope=True
     bAimDisabled=True
-    ParamsClass=Class'TargetDesignatorWeaponParams'
+    ParamsClasses(0)=Class'TargetDesignatorWeaponParams'
     FireModeClass(0)=Class'BWBPAirstrikesPro.TargetDesignatorFire'
     FireModeClass(1)=Class'BWBPAirstrikesPro.TargetDesignatorScopeFire'
     SelectAnimRate=3.100000

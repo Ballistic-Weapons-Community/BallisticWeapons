@@ -579,7 +579,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
 	SightDisplayFOV=25.000000
-	ParamsClass=Class'LK05WeaponParams'
+	ParamsClasses(0)=Class'LK05WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.LK05PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.LK05SecondaryFire'
 	IdleAnimRate=0.500000

@@ -309,7 +309,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
 	SightDisplayFOV=60.000000
-	ParamsClass=Class'PS9mWeaponParams'
+	ParamsClasses(0)=Class'PS9mWeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.PS9mPrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.PS9mSecondaryFire'
 	PutDownTime=0.700000

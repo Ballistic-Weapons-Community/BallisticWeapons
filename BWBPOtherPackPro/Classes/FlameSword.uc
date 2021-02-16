@@ -326,7 +326,7 @@ defaultproperties
      bNoMag=True
 	 GunLength=0.000000
 	 bAimDisabled=True
-	 ParamsClass=Class'FlameSwordWeaponParams'
+	 ParamsClasses(0)=Class'FlameSwordWeaponParams'
      FireModeClass(0)=Class'BWBPOtherPackPro.FlameSwordPrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.FlameSwordSecondaryFire'
 	 MeleeFireClass=Class'BWBPOtherPackPro.FlameSwordMeleeFire'

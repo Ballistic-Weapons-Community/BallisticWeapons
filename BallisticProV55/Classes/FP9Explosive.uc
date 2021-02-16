@@ -668,7 +668,7 @@ defaultproperties
 	bUseSights=False
 	GunLength=0.000000
 	bAimDisabled=True
-	ParamsClass=Class'FP9WeaponParams'
+	ParamsClasses(0)=Class'FP9WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.FP9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.FP9SecondaryFire'
 	PutDownTime=0.700000

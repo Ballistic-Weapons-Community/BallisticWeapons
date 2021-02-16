@@ -274,7 +274,7 @@ defaultproperties
 	SightOffset=(X=-4.000000,Z=5.200000)
 	GunLength=0.000000
 	bUseSpecialAim=True
-	ParamsClass=Class'M353TW_WeaponParams'
+	ParamsClasses(0)=Class'M353TW_WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.M353TW_PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M353SecondaryFire'
 	SelectAnim="Deploy"

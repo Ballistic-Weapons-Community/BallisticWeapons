@@ -467,7 +467,7 @@ defaultproperties
 	HudColor=(B=255,G=150,R=100)
 	GunLength=32.000000
 	GroupOffset=3
-	ParamsClass=Class'MRS138WeaponParams'
+	ParamsClasses(0)=Class'MRS138WeaponParams'
 	FireModeClass(1)=Class'BallisticProV55.MRS138SecondaryFire'
 	FireModeClass(0)=Class'BallisticProV55.MRS138PrimaryFire'
 	EndShovelAnimRate=1.600000

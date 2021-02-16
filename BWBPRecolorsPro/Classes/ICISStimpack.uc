@@ -210,7 +210,7 @@ defaultproperties
      SightingTime=0.000000
      GunLength=0.000000
      bAimDisabled=True
-	 ParamsClass=Class'ICISWeaponParams'
+	 ParamsClasses(0)=Class'ICISWeaponParams'
 	 FireModeClass(0)=Class'BWBPRecolorsPro.ICISPrimaryFire'
      FireModeClass(1)=Class'BWBPRecolorsPro.ICISSecondaryFire'
      SelectAnimRate=2.500000

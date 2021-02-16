@@ -544,7 +544,7 @@ defaultproperties
 	SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
 	SightDisplayFOV=25.000000
 	SightZoomFactor=0.85
-	ParamsClass=Class'RaygunWeaponParams'
+	ParamsClasses(0)=Class'RaygunWeaponParams'
 	FireModeClass(0)=Class'BWBPOtherPackPro.RaygunPrimaryFire'
 	FireModeClass(1)=Class'BWBPOtherPackPro.RaygunSecondaryFire'
 	BringUpTime=0.500000

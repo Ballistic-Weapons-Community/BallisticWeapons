@@ -723,7 +723,7 @@ defaultproperties
 	SightOffset=(X=-60.000000,Z=15.000000)
 	SightDisplayFOV=40.000000
 	GunLength=128.000000
-	ParamsClass=Class'RSNovaWeaponParams'
+	ParamsClasses(0)=Class'RSNovaWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.RSNovaPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RSNovaMeleeFire'
 	BringUpTime=0.500000

@@ -117,5 +117,5 @@ defaultproperties
         FireParams(2)=FireParams'ArenaSniperFireParams'
         AltFireParams(0)=FireParams'ArenaLaserFireParams'
     End Object 
-    Params(0)=WeaponParams'ArenaParams'
+    Layouts(0)=WeaponParams'ArenaParams'
 }

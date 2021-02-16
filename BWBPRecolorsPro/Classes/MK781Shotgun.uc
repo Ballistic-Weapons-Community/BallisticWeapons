@@ -662,7 +662,7 @@ defaultproperties
 	SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
 	SightDisplayFOV=20.000000
 	GunLength=48.000000
-	ParamsClass=Class'MK781WeaponParams'
+	ParamsClasses(0)=Class'MK781WeaponParams'
 	FireModeClass(0)=Class'BWBPRecolorsPro.MK781PrimaryFire'
 	FireModeClass(1)=Class'BWBPRecolorsPro.MK781SecondaryFire'
 	PutDownTime=0.500000

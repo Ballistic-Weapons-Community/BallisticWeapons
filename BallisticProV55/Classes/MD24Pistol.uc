@@ -404,7 +404,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
 	SightDisplayFOV=60.000000
-	ParamsClass=Class'MD24WeaponParams'
+	ParamsClasses(0)=Class'MD24WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.MD24PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	SelectForce="SwitchToAssaultRifle"

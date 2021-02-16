@@ -294,7 +294,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=300)
 	SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
-	ParamsClass=Class'BOGPWeaponParams'
+	ParamsClasses(0)=Class'BOGPWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.BOGPPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.BOGPSecondaryFire'
 	PutDownTime=0.450000

@@ -255,7 +255,7 @@ defaultproperties
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
 	SightOffset=(X=4.000000,Y=-0.070000,Z=4.750000)
-	ParamsClass=Class'MarlinWeaponParams'	 
+	ParamsClasses(0)=Class'MarlinWeaponParams'	 
 	FireModeClass(0)=Class'BallisticProV55.MarlinPrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	SelectForce="SwitchToAssaultRifle"
