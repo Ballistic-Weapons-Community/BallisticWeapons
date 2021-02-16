@@ -138,7 +138,6 @@ defaultproperties
      WeaponModes(1)=(ModeName="Guidance: Fast",ModeID="WM_FullAuto")
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     ZoomType=ZT_Logarithmic
      ScopeXScale=1.333000
      ScopeViewTex=Texture'BW_Core_WeaponTex.Artillery.Artillery-ScopeView'
      FullZoomFOV=10.000000

@@ -706,7 +706,6 @@ defaultproperties
 	bAltTriggerReload=True
 	WeaponModes(1)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	ZoomType=ZT_Logarithmic
 	ScopeViewTex=Texture'BWBP_SKC_Tex.FSG50.FSG-ScopeView'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)

@@ -99,7 +99,7 @@ defaultproperties
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
-     ZoomType=ZT_Logarithmic
+
      ScopeXScale=1.333000
      ZoomInAnim="ZoomIn"
      ScopeViewTex=Texture'BW_Core_WeaponTex.R78.RifleScopeView'

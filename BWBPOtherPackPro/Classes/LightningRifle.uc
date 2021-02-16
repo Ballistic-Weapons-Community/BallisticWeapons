@@ -51,7 +51,6 @@ function float SuggestDefenseStyle()	{	return 0.9;	}
 defaultproperties
 {
     MaxCharge=4
-    ZoomType=ZT_Logarithmic
     ZoomInAnim="ZoomIn"
     ScopeViewTex=Texture'BWBP_OP_Tex.Arc.ARCRifleScope'
     ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)

@@ -470,7 +470,6 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(ModeName="Sniper Pulse",ModeID="WM_SemiAuto",Value=1.000000)
 	CurrentWeaponMode=0
-	ZoomType=ZT_Logarithmic
 	MinZoom=2
 	MaxZoom=8
 	ZoomStages=2

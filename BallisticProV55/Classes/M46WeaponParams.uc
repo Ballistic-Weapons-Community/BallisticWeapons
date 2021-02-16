@@ -26,8 +26,23 @@ defaultproperties
         SightMoveSpeedFactor=0.8
         MagAmmo=24
         InventorySize=12
+        ZoomType=ZT_Logarithmic
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
     End Object 
+
+    Begin Object Class=WeaponParams Name=ArenaRDSParams
+        SightingTime=0.350000
+        MagAmmo=24
+        InventorySize=12
+        SightPivot=(Pitch=-300,Roll=0)
+        SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
+        WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
+        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
+        AimParams(0)=AimParams'ArenaAimParams'
+    End Object 
+
     Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(1)=WeaponParams'ArenaRDSParams'
 }

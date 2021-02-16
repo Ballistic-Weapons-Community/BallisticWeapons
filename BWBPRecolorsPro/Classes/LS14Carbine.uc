@@ -803,7 +803,6 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(ModeName="Bot Firemode",bUnavailable=True)
 	CurrentWeaponMode=0
-	ZoomType=ZT_Logarithmic
 	ScopeViewTex=Texture'BWBP_SKC_Tex.LS14.LS14Scope'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)

@@ -14,6 +14,7 @@ var automated moCheckbox	ch_UseItemizer, ch_LeaveSuper, ch_BrightPickups, ch_Spa
 							ch_BrightPlayers, ch_StableSprint, ch_NoLongGun, ch_KillRogueWPs, ch_ForceBWPawn, ch_NoReloading, ch_NoDodging, ch_DoubleJump;
 var automated moSlider		sl_Accuracy, sl_Recoil, sl_Damage, sl_VDamage;
 var automated moFloatEdit	fl_Damage, fl_VDamage;
+var automated moComboBox	co_GameStyle;
 
 var BallisticConfigMenuPro		p_Anchor;
 var bool					bInitialized;
@@ -54,6 +55,13 @@ function LoadSettings()
 	ch_NoReloading.Checked(class'BallisticReplicationInfo'.default.bNoReloading);
 	ch_NoDodging.Checked(class'BallisticReplicationInfo'.default.bNoDodging);
 	ch_DoubleJump.Checked(class'BallisticReplicationInfo'.default.bLimitDoubleJumps);
+
+    co_GameStyle.AddItem("Arena" ,,string(0));
+	co_GameStyle.AddItem("Classic" ,,string(1));
+	co_GameStyle.AddItem("Realism" ,,string(2));
+    co_GameStyle.AddItem("Tactical" ,,string(3));
+	co_GameStyle.ReadOnly(True);
+	co_GameStyle.SetIndex(class'BallisticReplicationInfo'.default.GameStyle);
 }
 
 function SaveSettings()
@@ -70,6 +78,7 @@ function SaveSettings()
 	class'BallisticReplicationInfo'.default.AccuracyScale	= sl_Accuracy.GetValue();
 	class'BallisticReplicationInfo'.default.RecoilScale		= sl_Recoil.GetValue();
 	class'BallisticReplicationInfo'.default.bBrightPlayers	= ch_BrightPlayers.IsChecked();
+    class'BallisticReplicationInfo'.default.GameStyle       = EGameStyle(co_GameStyle.GetIndex());
 	class'Rules_Ballistic'.default.DamageScale 				= fl_Damage.GetValue();
 	class'Rules_Ballistic'.default.VehicleDamageScale		= fl_VDamage.GetValue();
 	class'BallisticReplicationInfo'.default.bNoJumpOffset	= ch_StableSprint.IsChecked();
@@ -78,7 +87,7 @@ function SaveSettings()
 	class'Mut_Ballistic'.default.bForceBallisticPawn		= ch_ForceBWPawn.IsChecked();
 	class'BallisticReplicationInfo'.default.bNoReloading	= ch_NoReloading.IsChecked();
 	class'BallisticReplicationInfo'.default.bNoDodging		= ch_NoDodging.IsChecked();
-	class'BallisticReplicationInfo'.default.bLimitDoubleJumps 			= ch_DoubleJump.IsChecked();
+	class'BallisticReplicationInfo'.default.bLimitDoubleJumps = ch_DoubleJump.IsChecked();
 
 	class'BallisticReplicationInfo'.static.StaticSaveConfig();
 	class'BallisticWeapon'.static.StaticSaveConfig();
@@ -89,6 +98,7 @@ function SaveSettings()
 
 function DefaultSettings()
 {
+    co_GameStyle.SetIndex(0);
 	ch_RandomDefaults.Checked(true);
 	ch_UseItemizer.Checked(true);
 	eb_ItemGroup.SetText("Ballistic");
@@ -139,18 +149,61 @@ function DefaultSettings()
 
 defaultproperties
 {
-     Begin Object Class=moEditBox Name=eb_ItemGroupEdit
-         CaptionWidth=0.250000
-         Caption="Itemizer Group"
-         OnCreateComponent=eb_ItemGroupEdit.InternalOnCreateComponent
-         Hint="The name of the Itemizer layout you want to use. Defaults to 'Ballistic'."
-         WinTop=0.250000
+    Begin Object Class=moComboBox Name=co_GameStyleCombo
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.550000
+         Caption="Game Style"
+         OnCreateComponent=co_GameStyleCombo.InternalOnCreateComponent
+         IniOption="@Internal"
+         IniDefault="High"
+         Hint="Determines the general gameplay of Ballistic Weapons."
+         WinTop=0.050000
          WinLeft=0.250000
-         WinHeight=0.060000
      End Object
-     eb_ItemGroup=moEditBox'BallisticProV55.BallisticTab_RulesPro.eb_ItemGroupEdit'
+     co_GameStyle=moComboBox'co_GameStyleCombo'
 
-     Begin Object Class=moCheckBox Name=UseItemizerCheck
+    /*
+    Begin Object Class=moCheckBox Name=ch_RandomDefaultsCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Random Default Weapons"
+         OnCreateComponent=ch_RandomDefaultsCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Players will spawn with a random sidearm instead of stock pistol."
+         WinTop=0.050000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_RandomDefaults=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_RandomDefaultsCheck'
+    */
+    
+    Begin Object Class=moCheckBox Name=ch_PickupsChangeCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Pickups Change"
+         OnCreateComponent=ch_PickupsChangeCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Pickups randomly change after they have been picked up."
+         WinTop=0.100000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_PickupsChange=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_PickupsChangeCheck'
+
+     Begin Object Class=moCheckBox Name=ch_SpawnUniqueCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Prefer Unique Pickups"
+         OnCreateComponent=ch_SpawnUniqueCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Game will prefer to spawn pickups that are the least common at the time."
+         WinTop=0.150000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_SpawnUnique=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_SpawnUniqueCheck'
+
+    Begin Object Class=moCheckBox Name=UseItemizerCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
          Caption="Use itemizer"
@@ -162,6 +215,17 @@ defaultproperties
          WinHeight=0.040000
      End Object
      ch_UseItemizer=moCheckBox'BallisticProV55.BallisticTab_RulesPro.UseItemizerCheck'
+
+     Begin Object Class=moEditBox Name=eb_ItemGroupEdit
+         CaptionWidth=0.250000
+         Caption="Itemizer Group"
+         OnCreateComponent=eb_ItemGroupEdit.InternalOnCreateComponent
+         Hint="The name of the Itemizer layout you want to use. Defaults to 'Ballistic'."
+         WinTop=0.250000
+         WinLeft=0.250000
+         WinHeight=0.060000
+     End Object
+     eb_ItemGroup=moEditBox'BallisticProV55.BallisticTab_RulesPro.eb_ItemGroupEdit'
 
      Begin Object Class=moCheckBox Name=ch_LeaveSuperCheck
          ComponentJustification=TXTA_Left
@@ -188,45 +252,6 @@ defaultproperties
          WinHeight=0.040000
      End Object
      ch_BrightPickups=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_BrightPickupsCheck'
-
-     Begin Object Class=moCheckBox Name=ch_SpawnUniqueCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Prefer Unique Pickups"
-         OnCreateComponent=ch_SpawnUniqueCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Game will prefer to spawn pickups that are the least common at the time."
-         WinTop=0.150000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_SpawnUnique=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_SpawnUniqueCheck'
-
-     Begin Object Class=moCheckBox Name=ch_PickupsChangeCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Pickups Change"
-         OnCreateComponent=ch_PickupsChangeCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Pickups randomly change after they have been picked up."
-         WinTop=0.100000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_PickupsChange=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_PickupsChangeCheck'
-
-     Begin Object Class=moCheckBox Name=ch_RandomDefaultsCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Random Default Weapons"
-         OnCreateComponent=ch_RandomDefaultsCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Players will spawn with a random sidearm instead of stock pistol."
-         WinTop=0.050000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_RandomDefaults=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_RandomDefaultsCheck'
 
      Begin Object Class=moCheckBox Name=ch_BrightPlayersCheck
          ComponentJustification=TXTA_Left
@@ -280,58 +305,6 @@ defaultproperties
      End Object
      ch_KillRogueWPs=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_KillRogueWPsCheck'
 
-     Begin Object Class=moCheckBox Name=ch_ForceBWPawnCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Force Ballistic Pawn"
-         OnCreateComponent=ch_ForceBWPawnCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="BW mutators will try to force BallisticPawn even when game specific pawn is used (WARNING: Could cause severe problems in some gametypes)"
-         WinTop=0.800000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_ForceBWPawn=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_ForceBWPawnCheck'
-
-     Begin Object Class=moCheckBox Name=ch_NoReloadingCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Disable Reloading"
-         OnCreateComponent=ch_NoReloadingCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Disables weapons needing to be reloaded"
-         WinTop=0.850000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_NoReloading=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_NoReloadingCheck'
-
-     Begin Object Class=moCheckBox Name=ch_NoDodgingCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="No Dodging"
-         OnCreateComponent=ch_NoDodgingCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Disables dodging for all players"
-         WinTop=0.900000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_NoDodging=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_NoDodgingCheck'
-
-     Begin Object Class=moCheckBox Name=ch_DoubleJumpCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Limit Double Jump"
-         OnCreateComponent=ch_MotionBlurCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Limits the Double Jump capabilities of players."
-         WinTop=0.950000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_DoubleJump=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_DoubleJumpCheck'
-
      Begin Object Class=moSlider Name=sl_AccuracySlider
          MaxValue=2.000000
          Caption="Inaccuracy Scale"
@@ -383,5 +356,57 @@ defaultproperties
          WinHeight=0.040000
      End Object
      fl_VDamage=moFloatEdit'BallisticProV55.BallisticTab_RulesPro.fl_VDamageFloat'
+
+     Begin Object Class=moCheckBox Name=ch_ForceBWPawnCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Force Ballistic Pawn"
+         OnCreateComponent=ch_ForceBWPawnCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="BW mutators will try to force BallisticPawn even when game specific pawn is used (WARNING: Could cause severe problems in some gametypes)"
+         WinTop=0.800000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_ForceBWPawn=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_ForceBWPawnCheck'
+
+     Begin Object Class=moCheckBox Name=ch_NoReloadingCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Disable Reloading"
+         OnCreateComponent=ch_NoReloadingCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Disables weapons needing to be reloaded"
+         WinTop=0.850000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_NoReloading=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_NoReloadingCheck'
+
+     Begin Object Class=moCheckBox Name=ch_NoDodgingCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="No Dodging"
+         OnCreateComponent=ch_NoDodgingCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Disables dodging for all players"
+         WinTop=0.900000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_NoDodging=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_NoDodgingCheck'
+
+    Begin Object Class=moCheckBox Name=ch_DoubleJumpCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Limit Double Jump"
+         OnCreateComponent=ch_MotionBlurCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Limits the Double Jump capabilities of players."
+         WinTop=0.950000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_DoubleJump=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_DoubleJumpCheck'
 
 }

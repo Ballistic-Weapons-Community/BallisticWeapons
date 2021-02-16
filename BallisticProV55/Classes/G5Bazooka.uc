@@ -722,7 +722,7 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Mortar",ModeID="WM_SemiAuto")
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	ZoomType=ZT_Logarithmic
+
 	MinZoom=2.000000
 	MaxZoom=8.000000
 	ZoomStages=2

@@ -394,7 +394,6 @@ defaultproperties
     WeaponModes(10)=(ModeName="MLRS Rocket Barrage",ModeID="WM_FullAuto")
     WeaponModes(11)=(ModeName="Napalm Carpet Bombing",ModeID="WM_FullAuto")
     CurrentWeaponMode=4
-    ZoomType=ZT_Smooth
     ScopeXScale=1.400000
     ZoomInAnim="Raise"
     ZoomOutAnim="Lower"

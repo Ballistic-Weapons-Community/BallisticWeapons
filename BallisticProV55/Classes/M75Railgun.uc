@@ -453,7 +453,6 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	ZoomType=ZT_Logarithmic
 	bNoTweenToScope=True
 	ZoomInAnim="ZoomIn"
 	ZoomOutAnim="ZoomOut"

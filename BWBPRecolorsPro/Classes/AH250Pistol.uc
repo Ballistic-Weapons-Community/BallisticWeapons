@@ -245,7 +245,6 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Mode-2",bUnavailable=True,Value=7.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	ZoomType=ZT_Fixed
 	ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)

@@ -609,7 +609,6 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-ClipIn')
 	ClipInFrame=0.650000
 	CurrentWeaponMode=0
-	ZoomType=ZT_Logarithmic
 	ScopeViewTex=Texture'BWBP_OP_Tex.R9A1.R9_scope_UI_DO1'
 	FullZoomFOV=50.000000
 	bNoCrosshairInScope=True

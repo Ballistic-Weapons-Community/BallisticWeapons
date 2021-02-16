@@ -600,7 +600,6 @@ defaultproperties
      ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
      ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=40.000000
-	 ZoomType=ZT_Smooth
      SightPivot=(Pitch=600)
      SightOffset=(X=-10.000000,Y=11.7500000,Z=22.500000)
 	 ParamsClasses(0)=Class'XM20BWeaponParams'

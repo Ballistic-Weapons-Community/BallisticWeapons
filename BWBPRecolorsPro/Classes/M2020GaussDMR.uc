@@ -581,7 +581,6 @@ defaultproperties
 	WeaponModes(2)=(ModeName="Gauss: Offline",ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=2)
 	WeaponModes(3)=(ModeName="Gauss: Deflecting",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000,RecoilParamsIndex=2)
 	CurrentWeaponMode=0
-	ZoomType=ZT_Logarithmic
 	ScopeViewTex=Texture'BWBP_SKC_Tex.M2020.M2020ScopeView'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)

@@ -19,6 +19,7 @@ defaultproperties
         PlayerSpeedFactor=1.150000
         MagAmmo=1
         InventorySize=24
+        ZoomType=ZT_Smooth
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
     End Object 

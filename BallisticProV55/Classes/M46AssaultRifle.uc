@@ -17,9 +17,6 @@ var() name		GrenadeLoadAnim;	//Anim for grenade reload
 var() Sound		GrenOpenSound;		//Sounds for grenade reloading
 var() Sound		GrenLoadSound;		//
 var() Sound		GrenCloseSound;		//
-
-var() Name      RDSBone, ScopeBone;
-
 var	float		LastDetonationTime;
 
 var 	array<M46Mine> Mines;
@@ -28,13 +25,6 @@ replication
 {
 	unreliable if (Role == Role_Authority)
 		ClientGrenadePickedUp;
-}
-
-simulated function PostBeginPlay()
-{
-    Super.PostBeginPlay();
-    
-    SetBoneScale (0, 0.0, RDSBone);
 }
 
 // Notifys for greande loading sounds
@@ -375,8 +365,6 @@ defaultproperties
 	bWT_Splash=True
 	bWT_Machinegun=True
 	bWT_Projectile=True
-    RDSBone="RDS"
-    ScopeBone="Scope"
 	ManualLines(0)="Automatic battle rifle fire. Moderate damage per shot with greater range and penetration than assault rifles. Recoil is moderate."
 	ManualLines(1)="Deploys a mine. These mines can be detonated with the Weapon Function key shortly after being placed for severe damage. Mines can be picked up with the Use key."
 	ManualLines(2)="Effective at medium to long range."
@@ -395,7 +383,6 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Manual Detonation",ModeID="WM_FullAuto")
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=1
-	ZoomType=ZT_Logarithmic
 	ScopeXScale=1.250000
 	ZoomInAnim="ZoomIn"
 	ZoomOutAnim="ZoomOut"

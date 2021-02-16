@@ -727,7 +727,6 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagOut',Volume=1.400000,Radius=32.000000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-MagIn',Volume=1.400000,Radius=32.000000)
 	ClipInFrame=0.650000
-	ZoomType=ZT_Logarithmic
 	ScopeViewTex=Texture'BWBP_SKC_Tex.MARS.MARS-Scope'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)

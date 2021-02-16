@@ -23,6 +23,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.350000		
 		MagAmmo=4
+        ZoomType=ZT_Fixed
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
     End Object 

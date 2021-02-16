@@ -584,16 +584,13 @@ defaultproperties
      ClipInFrame=0.650000
      bNoCrosshairInScope=True
      SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
-     SightDisplayFOV=20.000000
-	 ZoomType=ZT_Irons
-	 
+     SightDisplayFOV=20.000000 
      FireModeClass(0)=Class'BWBPOtherPackPro.MX32PrimaryFire'
      FireModeClass(1)=Class'BWBPOtherPackPro.MX32SecondaryFire'
 	 WeaponModes(0)=(bUnavailable=True)
 	 WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
 	 WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 	 ParamsClasses(0)=Class'MX32WeaponParams'
-	 
 	 MagAmmo=50
      PutDownAnimRate=1.500000
      SelectForce="SwitchToAssaultRifle"

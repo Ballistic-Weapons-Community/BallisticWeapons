@@ -21,6 +21,7 @@ defaultproperties
          UseRegularSizeScale=False
          AutomaticInitialSpawning=False
          TriggerDisabled=False
+         Opacity=0.65
          ColorScale(0)=(Color=(B=255,G=255,R=255))
          ColorScale(1)=(RelativeTime=0.100000,Color=(B=255,G=255,R=255,A=255))
          ColorScale(2)=(RelativeTime=0.300000,Color=(B=64,G=64,R=64,A=255))
@@ -32,7 +33,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          DrawStyle=PTDS_Brighten
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.300000,Max=0.300000)
+         LifetimeRange=(Min=0.100000,Max=0.100000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
@@ -50,7 +51,7 @@ defaultproperties
          ColorScale(1)=(RelativeTime=0.100000,Color=(G=192,R=255,A=255))
          ColorScale(2)=(RelativeTime=0.300000,Color=(A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(G=64,R=128))
-         Opacity=0.890000
+         Opacity=0.60000
          FadeOutStartTime=0.054000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
@@ -58,7 +59,7 @@ defaultproperties
          StartSizeRange=(X=(Min=300.000000,Max=300.000000),Y=(Min=300.000000,Max=300.000000),Z=(Min=300.000000,Max=300.000000))
          Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.300000,Max=0.300000)
+         LifetimeRange=(Min=0.100000,Max=0.100000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
@@ -83,6 +84,7 @@ defaultproperties
          FadeInEndTime=0.015000
          CoordinateSystem=PTCS_Relative
          MaxParticles=20
+         Opacity=0.65
          StartLocationOffset=(Z=6.000000)
          StartSpinRange=(X=(Min=0.270000,Max=0.270000))
          StartSizeRange=(X=(Min=40.000000,Max=60.000000),Y=(Min=40.000000,Max=60.000000),Z=(Min=40.000000,Max=60.000000))
@@ -90,7 +92,7 @@ defaultproperties
          TextureUSubdivisions=2
          TextureVSubdivisions=2
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.300000,Max=0.300000)
+         LifetimeRange=(Min=0.100000,Max=0.100000)
          SpawnOnTriggerRange=(Min=15.000000,Max=20.000000)
          SpawnOnTriggerPPS=50000.000000
          StartVelocityRange=(X=(Min=100.000000,Max=3500.000000),Y=(Min=-400.000000,Max=400.000000),Z=(Min=-400.000000,Max=400.000000))

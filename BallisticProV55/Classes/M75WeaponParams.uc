@@ -30,6 +30,7 @@ defaultproperties
         SightingTime=0.6
         MagAmmo=5
         InventorySize=12
+        ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
     End Object 

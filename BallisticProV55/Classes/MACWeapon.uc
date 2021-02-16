@@ -451,7 +451,6 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	ZoomType=ZT_Logarithmic
 	MinZoom=2
 	MaxZoom=16
 	ZoomStages=3

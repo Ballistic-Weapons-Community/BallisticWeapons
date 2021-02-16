@@ -23,6 +23,7 @@ defaultproperties
 		InventorySize=24
 		PlayerSpeedFactor=0.95
 		SightMoveSpeedFactor=0.8
+        ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
     End Object 

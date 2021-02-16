@@ -28,6 +28,7 @@ defaultproperties
 		SightingTime=0.40000
 		DisplaceDurationMult=1
 		MagAmmo=50
+        ZoomType=ZT_Smooth
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
     End Object 

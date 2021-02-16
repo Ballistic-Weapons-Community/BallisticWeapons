@@ -455,7 +455,6 @@ defaultproperties
     WeaponModes(2)=(ModeName="Amplified: Corrosive",ModeID="WM_BigBurst",Value=4.000000,bUnavailable=True,RecoilParamsIndex=2)
 	CurrentWeaponMode=0
 	FullZoomFOV=70.000000
-	ZoomType=ZT_Irons
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=-128,Yaw=16)
 	SightOffset=(X=-10.000000,Y=-0.670000,Z=27.200000)

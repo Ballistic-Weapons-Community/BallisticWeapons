@@ -561,7 +561,11 @@ simulated final function OnWeaponParamsChanged()
         Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = WeaponParams.WeaponMaterialSwaps[i].Material;
 
     for (i = 0; i < WeaponParams.WeaponBoneScales.Length; ++i)
+    {
+        Log("Scaling: Bone "$WeaponParams.WeaponBoneScales[i].BoneName $" in slot "$ WeaponParams.WeaponBoneScales[i].Slot $ " to scale " $WeaponParams.WeaponBoneScales[i].Scale);
         SetBoneScale(WeaponParams.WeaponBoneScales[i].Slot, WeaponParams.WeaponBoneScales[i].Scale, WeaponParams.WeaponBoneScales[i].BoneName);
+
+    }
 }
 
 simulated final function CreateRecoilComponent()
@@ -2090,7 +2094,6 @@ simulated function PositionSights()
 		AimComponent.UpdateADSTransition(SightingPhase);
 		RcComponent.UpdateADSTransition(SightingPhase);
 
-		//Don't do this for scoped weapons
 		if (ZoomType == ZT_Irons)
 	        PC.DesiredFOV = PC.DefaultFOV * (Lerp(SightingPhase, 1, SightZoomFactor));
 	}

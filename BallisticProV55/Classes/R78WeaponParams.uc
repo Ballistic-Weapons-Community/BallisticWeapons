@@ -25,6 +25,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.8
 		MagAmmo=7
         InventorySize=12
+        ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
     End Object 

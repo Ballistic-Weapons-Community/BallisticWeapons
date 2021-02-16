@@ -462,7 +462,6 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
-	ZoomType=ZT_Logarithmic
 	ScopeXScale=1.333000
 	ScopeViewTex=Texture'BW_Core_WeaponTex.SRS900.SRS900ScopeView'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
