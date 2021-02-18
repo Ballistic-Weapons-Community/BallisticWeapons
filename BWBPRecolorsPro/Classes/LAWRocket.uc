@@ -71,7 +71,7 @@ defaultproperties
      ImpactDamage=85
      ImpactDamageType=Class'BWBPRecolorsPro.DTLAW'
      ImpactManager=Class'BWBPRecolorsPro.IM_LAWSmall'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      AccelSpeed=8000.000000
      TrailClass=Class'BWBPRecolorsPro.LAWRocketTrail'
      TrailOffset=(X=-14.000000)

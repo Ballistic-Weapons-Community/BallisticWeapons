@@ -128,7 +128,7 @@ defaultproperties
 {
      TeamLightColor=128
      ImpactManager=Class'BallisticProV55.IM_AirMine'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      TrailClass=Class'BallisticProV55.NRP57Trail'
      MyRadiusDamageType=Class'BallisticProV55.DTBX5SpringRadius'
      bTearOnExplode=False

@@ -207,7 +207,7 @@ defaultproperties
 {
      ImpactManager=Class'BallisticProV55.IM_RSDarkFireBomb'
      PenetrateManager=Class'BallisticProV55.IM_RSDarkFireBomb'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      TrailClass=Class'BallisticProV55.RSDarkFireBombTrail'
      MyRadiusDamageType=Class'BallisticProV55.DT_RSDarkFireBomb'
      bTearOnExplode=False

@@ -182,7 +182,7 @@ defaultproperties
      ImpactSounds(5)=Sound'XEffects.Impact2'
      OutwardDamageRadius=96.000000
      ImpactManager=Class'BWBPOtherPackPro.IM_Akeron'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      AccelSpeed=100000.000000
      TrailClass=Class'BallisticProV55.G5RocketTrail'
      TrailOffset=(X=-4.000000)

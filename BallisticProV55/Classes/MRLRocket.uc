@@ -85,7 +85,7 @@ defaultproperties
 {
      RollRange=192000
      ImpactManager=Class'BallisticProV55.IM_MRLRocket'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      AccelSpeed=10000.000000
      TrailClass=Class'BallisticProV55.MRLTrailEmitter'
      TrailOffset=(X=-4.000000)

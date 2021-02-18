@@ -23,7 +23,7 @@ simulated event Landed( vector HitNormal )
 defaultproperties
 {
      ImpactManager=Class'BallisticProV55.IM_MRLRocket'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      TrailClass=Class'BallisticProV55.MRLTrailEmitter'
      TrailOffset=(X=-4.000000)
      MyRadiusDamageType=Class'BWBPRecolorsPro.DT_LS14RocketRadius'

@@ -85,7 +85,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 defaultproperties
 {
      ImpactManager=Class'BallisticProV55.IM_E23Projectile'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      AccelSpeed=100000.000000
      MyRadiusDamageType=Class'BallisticProV55.DTE23Plasma'
      bUsePositionalDamage=True

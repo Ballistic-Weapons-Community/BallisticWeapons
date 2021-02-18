@@ -209,7 +209,7 @@ defaultproperties
      NewSpeed=-0.120000
      DampenFactorParallel=0.800000
      bNoInitialSpin=True
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      StartDelay=0.300000
      NetTrappedDelay=1.000000
      bNetTemporary=False

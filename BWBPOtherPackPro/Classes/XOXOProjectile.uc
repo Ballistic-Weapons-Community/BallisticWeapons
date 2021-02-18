@@ -154,7 +154,7 @@ defaultproperties
 {
      ImpactManager=Class'BWBPOtherPackPro.IM_XOXO'
      PenetrateManager=Class'BWBPOtherPackPro.IM_XOXO'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      AccelSpeed=100000.000000
      TrailClass=Class'BWBPOtherPackPro.XOXOShotTrail'
      MyRadiusDamageType=Class'BWBPOtherPackPro.DTXOXOFast'

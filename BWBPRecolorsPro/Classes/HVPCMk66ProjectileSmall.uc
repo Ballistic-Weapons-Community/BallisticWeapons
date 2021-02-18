@@ -129,7 +129,7 @@ defaultproperties
      ImpactManager=Class'BWBPRecolorsPro.IM_BFGProjectileSmall'
      PenetrateManager=Class'BWBPRecolorsPro.IM_BFGProjectileSmall'
      bPenetrate=True
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      TrailClass=Class'BWBPRecolorsPro.BFGSmallTrailEmitter'
      MyRadiusDamageType=Class'BWBPRecolorsPro.DT_BFGChargeSmall'
      bUsePositionalDamage=True

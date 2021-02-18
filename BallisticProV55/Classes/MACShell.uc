@@ -136,7 +136,7 @@ defaultproperties
      FlySound=Sound'BW_Core_WeaponSound.Artillery.Art-FlyBy'
      ImpactManager=Class'BallisticProV55.IM_HAMR'
      bCheckHitSurface=True
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      TrailClass=Class'BallisticProV55.HAMRShellTrail'
      MyRadiusDamageType=Class'BallisticProV55.DT_MACRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'

@@ -187,7 +187,7 @@ defaultproperties
      ImpactDamageType=Class'BWBPOtherPackPro.DTXOXOBomb'
      ImpactManager=Class'BWBPOtherPackPro.IM_XOXO'
      PenetrateManager=Class'BWBPOtherPackPro.IM_XOXO'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      TrailClass=Class'BWBPOtherPackPro.XOXOBombTrail'
 
      

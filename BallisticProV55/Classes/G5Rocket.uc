@@ -120,7 +120,7 @@ defaultproperties
      ImpactDamageType=Class'BallisticProV55.DTG5Unarmed'
      ArmingDelay=0.200000
      ImpactManager=Class'BallisticProV55.IM_RPG'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      AccelSpeed=5000.000000
      TrailClass=Class'BallisticProV55.G5RocketTrail'
      TrailOffset=(X=-14.000000)

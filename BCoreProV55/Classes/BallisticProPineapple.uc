@@ -137,7 +137,7 @@ defaultproperties
 {
      NewDetonateDelay=-0.120000
      bNoInitialSpin=True
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      StartDelay=0.300000
      NetTrappedDelay=1.000000
      bNetTemporary=False

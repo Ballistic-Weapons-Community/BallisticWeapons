@@ -138,7 +138,7 @@ function UsedBy(Pawn User)
 defaultproperties
 {
      ImpactManager=Class'BallisticProV55.IM_KnifeThrown'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      bUsePositionalDamage=True
      
      

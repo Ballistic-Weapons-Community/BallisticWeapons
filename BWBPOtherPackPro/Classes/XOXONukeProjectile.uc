@@ -105,7 +105,7 @@ defaultproperties
 {
      ImpactManager=Class'BWBPOtherPackPro.IM_XOXO'
      PenetrateManager=Class'BWBPOtherPackPro.IM_XOXO'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      TrailClass=Class'BWBPOtherPackPro.XOXONukeTrail'
      MyRadiusDamageType=Class'BWBPOtherPackPro.DTXOXOSexplosion'
      

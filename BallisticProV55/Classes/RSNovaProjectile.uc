@@ -327,7 +327,7 @@ defaultproperties
 	bNetTemporary=False
 	bOnlyDirtyReplication=True
 	bProjTarget=True
-	bRandomStartRotaion=False
+	bRandomStartRotation=False
 	bSkipActorPropertyReplication=True
 	bSwitchToZeroCollision=True
 	bTearOnExplode=False

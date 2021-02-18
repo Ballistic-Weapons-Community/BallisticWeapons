@@ -83,7 +83,7 @@ defaultproperties
     IgniteSound=sound'CicadaSnds.MissileIgnite'
     ArmingDelay=0.2
     ImpactManager=Class'BallisticProV55.IM_MRLRocket'
-    bRandomStartRotaion=False
+    bRandomStartRotation=False
     TrailClass=Class'BallisticProV55.MRLTrailEmitter'
     TrailOffset=(X=-4.000000)
     MyRadiusDamageType=Class'BWBPOtherPackPro.DT_MX32RocketRadius'

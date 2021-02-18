@@ -210,7 +210,7 @@ defaultproperties
 {
      ImpactManager=Class'BallisticProV55.IM_RSNovaProjectile'
      PenetrateManager=Class'BallisticProV55.IM_RSNovaProjectile'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      AccelSpeed=100000.000000
      TrailClass=Class'BallisticProV55.RSNova2Trail'
      MyRadiusDamageType=Class'BallisticProV55.DT_RSNovaFast'

@@ -452,7 +452,7 @@ defaultproperties
      ImpactDamage=15
      ImpactDamageType=Class'BallisticProV55.DTFP9Bomb'
      ImpactManager=Class'BallisticProV55.IM_RPG'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      StartDelay=0.300000
      MyRadiusDamageType=Class'BallisticProV55.DTFP9BombRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'

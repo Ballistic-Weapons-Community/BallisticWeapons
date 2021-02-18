@@ -48,7 +48,7 @@ defaultproperties
      ImpactDamage=100
      ImpactManager=Class'BWBPRecolorsPro.IM_EMPRocketAlt'
      bCheckHitSurface=True
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      AccelSpeed=50000.000000
      TrailClass=Class'Onslaught.ONSBluePlasmaSmallFireEffect'
      MyRadiusDamageType=Class'BWBPRecolorsPro.DT_Mk781Bolt'

@@ -148,7 +148,7 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_A73Projectile'
      PenetrateManager=Class'BallisticProV55.IM_A73Projectile'
      bPenetrate=True
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      AccelSpeed=100000.000000
      TrailClass=Class'BallisticProV55.A73TrailEmitter'
      MyRadiusDamageType=Class'BallisticProV55.DTA73Skrith'

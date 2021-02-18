@@ -241,7 +241,7 @@ defaultproperties
 {
      ImpactManager=Class'BallisticProV55.IM_RSDarkProjectile'
      PenetrateManager=Class'BallisticProV55.IM_RSDarkProjectile'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      AccelSpeed=80000.000000
      TrailClass=Class'BallisticProV55.RSDark2Trail'
      MyRadiusDamageType=Class'BallisticProV55.DT_RSDarkFast'

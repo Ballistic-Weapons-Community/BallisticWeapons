@@ -81,7 +81,7 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 defaultproperties
 {
      ImpactManager=Class'BallisticProV55.IM_KnifeThrown'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      bUsePositionalDamage=True
 	 bIgnoreTerminalVelocity=True
      

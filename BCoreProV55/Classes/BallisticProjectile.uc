@@ -25,65 +25,109 @@ class BallisticProjectile extends Projectile
 	abstract
 	config(BallisticProV55);
 
+// Determines how an explosive or radius-affecting projectile's effect declines over distance
 enum ERadiusFallOffType
 {
-    RFO_Linear,
-    RFO_Quadratic,
-    RFO_None
+    RFO_Linear,     // Effect multiplied by ((damage radius - distance from centre) / damage radius)
+    RFO_Quadratic,  // Effect multiplied by square of ((damage radius - distance from centre) / damage radius)
+    RFO_None        // Effect is consistent for any distance
 };
 
 const MAX_MOMENTUM_Z = 10000.0f;
 
-var   bool                  bLimitMomentumZ;        // Prevents Z momentum exceeding certain value
+//=============================================================================
+// STATE VARIABLES
+//=============================================================================
+var	    Actor					Trail;					// The trail Actor
+var     Actor					HitActor;				// Actor that got hit directly
+var     bool					bCanHitOwner;			// Bounced or turned around or something so it can hit owner
+var     bool					bExploded;				// Already Blown up. Used by troublesome rocekts that keep going off on clients
+var     Vector                  TearOffHitNormal;
+//=============================================================================
+// END STATE VARIABLES
+//=============================================================================
 
-var() class<BCImpactManager>ImpactManager;			// Impact manager to spawn on final hit
-var() class<BCImpactManager>PenetrateManager;		// Impact manager to spawn when going through actors
-var() bool					bCheckHitSurface;		// Check impact surfacetype on explode for surface dependant ImpactManagers
-var() bool					bPenetrate;				// Will go through enemies
-var() bool					bRandomStartRotaion;	// Set random roll on startup
-var() float					AccelSpeed;				// Acceleration speed
-var() float					StartDelay;				// Used to delay projectile's entry into the world
-var() class<Actor>			TrailClass;				// Actor to use for trail
-var	  Actor					Trail;					// The trail Actor
-var() Vector				TrailOffset;			// Offset from location at which to spawn trail
-var() class<DamageType>		MyRadiusDamageType;		// DamageType to use for splash damage
-var   actor					HitActor;				// Actor that got hit directly
-var   bool					bCanHitOwner;			// Bounced or turned around or something so it can hit owner
-var   bool					bExploded;				// Already Blown up. Used by troublesome rocekts that keep going off on clients
-var() bool					bTearOnExplode;			// If !bNetTemporary, tear this projectile off when it explodes
-var() float					NetTrappedDelay;		// How long to remain in nettrapped state before being destroyed
-var() bool					bUsePositionalDamage;	// Enable damage variation depending on hitlocation
+//=============================================================================
+// GENERAL PROJECTILE VARIABLES
+//
+// These variables are consistent for every instance of a projectile and are 
+// user-defined but generally not modified within the game. 
+//=============================================================================
+//-----------------------------------------------------------------------------
+// Appearance
+//-----------------------------------------------------------------------------
+var() class<BCImpactManager>    ImpactManager;			// Impact manager to spawn on final hit
+var() class<BCImpactManager>    PenetrateManager;		// Impact manager to spawn when going through actors
+var() class<BCImpactManager>    SplashManager;			// Impact manager to spawn for splashes
+var() class<Actor>			    TrailClass;				// Actor to use for trail
+var() Vector				    TrailOffset;			// Offset from location at which to spawn trail
+var() bool					    bRandomStartRotation;	// Set random roll on startup
+//-----------------------------------------------------------------------------
+// Handling
+//-----------------------------------------------------------------------------
+var() bool					    bCheckHitSurface;		// Check impact surfacetype on explode for surface dependant ImpactManagers
+var() bool					    bPenetrate;				// Will go through enemies
+var() float					    StartDelay;				// Used to delay projectile's entry into the world
+var() bool					    bTearOnExplode;			// If not NetTemporary, tear this projectile off when it explodes
+var() float					    NetTrappedDelay;		// How long to remain in nettrapped state before being destroyed
+//-----------------------------------------------------------------------------
+// Damage
+//-----------------------------------------------------------------------------
+var() class<DamageType>		    DamageTypeHead;			// Damagetype for headshots
+var() class<DamageType>		    DamageTypeLimb;			// Damagetype for limbshots
+var() class<DamageType>		    MyRadiusDamageType;		// DamageType to use for splash damage
+var() bool                      bLimitMomentumZ;        // Prevents Z momentum exceeding certain value
+var() bool					    bUsePositionalDamage;	// Enable damage variation depending on hitlocation
+var() float                     WallPenetrationForce;
+//-----------------------------------------------------------------------------
+// AI
+//-----------------------------------------------------------------------------
+var() bool					    bWarnEnemy;				// Warn enemies that it's coming for em
+//-----------------------------------------------------------------------------
+// View Shake
+//-----------------------------------------------------------------------------
+var() float	 				    ShakeRadius;			// Shake the view of players withing this radius when Exploding
+var() vector                    ShakeRotMag;           // how far to rot view
+var() vector                    ShakeRotRate;          // how fast to rot view
+var() float                     ShakeRotTime;          // how much time to rot the instigator's view
+var() vector                    ShakeOffsetMag;        // max view offset vertically
+var() vector                    ShakeOffsetRate;       // how fast to offset view vertically
+var() float                     ShakeOffsetTime;       // how much time to offset view
+//-----------------------------------------------------------------------------
+// Blur
+//-----------------------------------------------------------------------------
+var() float					    MotionBlurRadius;
+var() float					    MotionBlurFactor;
+var() float					    MotionBlurTime;
+//=============================================================================
+// END GENERAL PROJECTILE VARIABLES
+//=============================================================================
 
-// damage over range
-var() float                 MaxDamageGainFactor;
-var() float                 DamageGainStartTime;
-var() float                 DamageGainEndTime;
-
+//=============================================================================
+// GAMEPLAY VARIABLES
+//
+// These variables are user-defined, and may additionally be modified either 
+// by the game ruleset or by weapon modes and attachments.
+//=============================================================================
+//-----------------------------------------------------------------------------
+// Handling
+//-----------------------------------------------------------------------------
+var() float					    AccelSpeed;				// Acceleration speed
+//-----------------------------------------------------------------------------
+// Damage
+//-----------------------------------------------------------------------------
 // positional damage modifiers
-var() float					HeadMult;		        // Multiplier for effect against head
-var() float					LimbMult;		        // Multiplier for effect against limb
-
-var() class<DamageType>		DamageTypeHead;			// Damagetype for headshots
-var() class<DamageType>		DamageTypeLimb;			// Damagetype for limbshots
-
-var() class<BCImpactManager>SplashManager;			// Impact manager to spawn for splashes
-var() float	 				ShakeRadius;			// Shake the view of players withing this radius when Exploding
-var() bool					bWarnEnemy;				// Warn enemies that it's coming for em
-var() float					MotionBlurRadius;
-var() float					MotionBlurFactor;
-var() float					MotionBlurTime;
-
-var() ERadiusFallOffType    RadiusFallOffType;
-var() float                 WallPenetrationForce;
-// camera shakes //
-var() vector ShakeRotMag;           // how far to rot view
-var() vector ShakeRotRate;          // how fast to rot view
-var() float  ShakeRotTime;          // how much time to rot the instigator's view
-var() vector ShakeOffsetMag;        // max view offset vertically
-var() vector ShakeOffsetRate;       // how fast to offset view vertically
-var() float  ShakeOffsetTime;       // how much time to offset view
-
-var Vector TearOffHitNormal;
+var() float					    HeadMult;		        // Multiplier for effect against head
+var() float					    LimbMult;		        // Multiplier for effect against limb
+// damage over range
+var() float                     MaxDamageGainFactor;
+var() float                     DamageGainStartTime;
+var() float                     DamageGainEndTime;
+// radius damage
+var() ERadiusFallOffType        RadiusFallOffType;
+//=============================================================================
+// END GAMEPLAY VARIABLES
+//=============================================================================
 
 replication
 {
@@ -106,7 +150,7 @@ simulated function PostBeginPlay()
 	Velocity = Vector(Rotation);
 	Velocity *= Speed;
 
-	if(bRandomStartRotaion) //lol
+	if(bRandomStartRotation)
 	{
 		R = Rotation;
 		R.Roll = Rand(65536);
@@ -794,7 +838,7 @@ defaultproperties
 {
     bLimitMomentumZ=True
     RadiusFallOffType=RFO_Quadratic
-    bRandomStartRotaion=True
+    bRandomStartRotation=True
     bTearOnExplode=True
     NetTrappedDelay=0.150000
     HeadMult=1.500000

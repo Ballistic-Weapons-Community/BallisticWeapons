@@ -210,7 +210,7 @@ defaultproperties
 {
      Health=50
      ImpactManager=Class'BallisticProV55.IM_RSDarkProjectile'
-     bRandomStartRotaion=False
+     bRandomStartRotation=False
      AccelSpeed=100.000000
      TrailClass=Class'BallisticProV55.RSDeathBallTrail'
      MyRadiusDamageType=Class'BallisticProV55.DT_RSDeathBall'
