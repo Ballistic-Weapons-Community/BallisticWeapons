@@ -145,40 +145,31 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-     ImpactManager=Class'BallisticProV55.IM_A73Projectile'
-     PenetrateManager=Class'BallisticProV55.IM_A73Projectile'
-     bPenetrate=True
-     bRandomStartRotation=False
-     AccelSpeed=100000.000000
-     TrailClass=Class'BallisticProV55.A73TrailEmitter'
-     MyRadiusDamageType=Class'BallisticProV55.DTA73Skrith'
-     bUsePositionalDamage=True
-     
-     MaxDamageGainFactor=0.75
-     DamageGainStartTime=0.05
-     DamageGainEndTime=0.25
-     
-     DamageTypeHead=Class'BallisticProV55.DTA73SkrithHead'
-     SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=5500.000000
-     MaxSpeed=14000.000000
-     Damage=36.000000
-     MyDamageType=Class'BallisticProV55.DTA73Skrith'
-     LightType=LT_Steady
-     LightEffect=LE_QuadraticNonIncidence
-     LightHue=180
-     LightSaturation=100
-     LightBrightness=192.000000
-     LightRadius=6.000000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.A73.A73Projectile'
-     bDynamicLight=True
-     AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
-     LifeSpan=4.000000
-     Style=STY_Additive
-     SoundVolume=255
-     SoundRadius=75.000000
-     CollisionRadius=1.000000
-     CollisionHeight=1.000000
-     bFixedRotationDir=True
-     RotationRate=(Roll=16384)
+    ImpactManager=Class'BallisticProV55.IM_A73Projectile'
+    PenetrateManager=Class'BallisticProV55.IM_A73Projectile'
+    bPenetrate=True
+    bRandomStartRotation=False
+    TrailClass=Class'BallisticProV55.A73TrailEmitter'
+    MyRadiusDamageType=Class'BallisticProV55.DTA73Skrith'
+    bUsePositionalDamage=True    
+    DamageTypeHead=Class'BallisticProV55.DTA73SkrithHead'
+    SplashManager=Class'BallisticProV55.IM_ProjWater'
+    MyDamageType=Class'BallisticProV55.DTA73Skrith'
+    LightType=LT_Steady
+    LightEffect=LE_QuadraticNonIncidence
+    LightHue=180
+    LightSaturation=100
+    LightBrightness=192.000000
+    LightRadius=6.000000
+    StaticMesh=StaticMesh'BW_Core_WeaponStatic.A73.A73Projectile'
+    bDynamicLight=True
+    AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
+    LifeSpan=4.000000
+    Style=STY_Additive
+    SoundVolume=255
+    SoundRadius=75.000000
+    CollisionRadius=1.000000
+    CollisionHeight=1.000000
+    bFixedRotationDir=True
+    RotationRate=(Roll=16384)
 }

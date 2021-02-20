@@ -224,8 +224,8 @@ function StartBerserk()
     {
         FireRate = Params.FireInterval * 0.8f;
         FireAnimRate = Params.FireAnimRate * 1.25f;
-        FireRecoil = Params.FireEffectParams[BW.AmmoType].Recoil * 0.8f;
-        FireChaos = Params.FireEffectParams[BW.AmmoType].Chaos* 0.8f; 
+        FireRecoil = Params.FireEffectParams[BW.AmmoIndex].Recoil * 0.8f;
+        FireChaos = Params.FireEffectParams[BW.AmmoIndex].Chaos* 0.8f; 
     }
 }
 
@@ -243,8 +243,8 @@ function StopBerserk()
     {
         FireRate = Params.FireInterval;
         FireAnimRate = Params.FireAnimRate;
-        FireRecoil = Params.FireEffectParams[BW.AmmoType].Recoil;
-        FireChaos = Params.FireEffectParams[BW.AmmoType].Chaos;
+        FireRecoil = Params.FireEffectParams[BW.AmmoIndex].Recoil;
+        FireChaos = Params.FireEffectParams[BW.AmmoIndex].Chaos;
     }
 }
 
@@ -262,8 +262,8 @@ function StartSuperBerserk()
     {
         FireRate = Params.FireInterval/Level.GRI.WeaponBerserk;
         FireAnimRate = Params.FireAnimRate*Level.GRI.WeaponBerserk;
-        FireRecoil = Params.FireEffectParams[BW.AmmoType].Recoil/Level.GRI.WeaponBerserk;
-        FireChaos = Params.FireEffectParams[BW.AmmoType].Chaos/Level.GRI.WeaponBerserk; 
+        FireRecoil = Params.FireEffectParams[BW.AmmoIndex].Recoil/Level.GRI.WeaponBerserk;
+        FireChaos = Params.FireEffectParams[BW.AmmoIndex].Chaos/Level.GRI.WeaponBerserk; 
     }
 }
 

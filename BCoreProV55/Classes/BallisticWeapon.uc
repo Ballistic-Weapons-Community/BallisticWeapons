@@ -288,7 +288,7 @@ var Vector					SMuzzleFlashOffset;		// Offset for muzzle flash in scope
 //-----------------------------------------------------------------------------
 // Ammo/Reload
 //-----------------------------------------------------------------------------
-var() int					AmmoType;					// Current ammunition type index (indexes into FireParams for firemodes)
+var() int					AmmoIndex;					// Current ammunition type index (indexes into FireParams for firemodes)
 var() bool					bNoMag;						// Does not use reloading. Takes ammo straight from inventory
 var() Name					CockAnim;					// Animation to use for cocking
 var() Name					CockAnimPostReload;			// Anim to use for cocking at end of reload
@@ -561,11 +561,7 @@ simulated final function OnWeaponParamsChanged()
         Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = WeaponParams.WeaponMaterialSwaps[i].Material;
 
     for (i = 0; i < WeaponParams.WeaponBoneScales.Length; ++i)
-    {
-        Log("Scaling: Bone "$WeaponParams.WeaponBoneScales[i].BoneName $" in slot "$ WeaponParams.WeaponBoneScales[i].Slot $ " to scale " $WeaponParams.WeaponBoneScales[i].Scale);
         SetBoneScale(WeaponParams.WeaponBoneScales[i].Slot, WeaponParams.WeaponBoneScales[i].Scale, WeaponParams.WeaponBoneScales[i].BoneName);
-
-    }
 }
 
 simulated final function CreateRecoilComponent()

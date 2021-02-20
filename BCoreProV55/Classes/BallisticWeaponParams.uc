@@ -56,7 +56,7 @@ static simulated final function SetFireParams(BallisticWeapon BW)
             )
         ];
 
-        BW.BFireMode[0].OnFireParamsChanged(BW.AmmoType);
+        BW.BFireMode[0].OnFireParamsChanged(BW.AmmoIndex);
     }
 
     else 
@@ -74,7 +74,7 @@ static simulated final function SetFireParams(BallisticWeapon BW)
                 default.Layouts[BW.LayoutIndex].AltFireParams.Length - 1
             )
         ];
-        BW.BFireMode[1].OnFireParamsChanged(BW.AmmoType);
+        BW.BFireMode[1].OnFireParamsChanged(BW.AmmoIndex);
     }
 
     else 
@@ -94,6 +94,48 @@ static simulated final function SetAimParams(BallisticWeapon BW)
     BW.AimComponent.Params = default.Layouts[BW.LayoutIndex].AimParams[BW.GetAimParamsIndex()];
     BW.AimComponent.DisplaceDurationMult = default.Layouts[BW.LayoutIndex].DisplaceDurationMult;
 	BW.AimComponent.Recalculate();
+}
+
+static simulated final function SetProjectileParams(BallisticWeapon BW, BallisticProjectile proj)
+{
+    if (proj.ModeIndex == 0)
+    {
+        if (default.Layouts[BW.LayoutIndex].FireParams.Length > 0)
+        {
+            proj.ApplyParams
+            (
+                ProjectileEffectParams
+                (
+                    default.Layouts[BW.LayoutIndex].FireParams
+                    [
+                        Min
+                        (
+                            BW.CurrentWeaponMode, 
+                            default.Layouts[BW.LayoutIndex].FireParams.Length - 1
+                        )
+                    ].FireEffectParams[BW.AmmoIndex]
+                )
+            );
+        }
+    }
+    
+    else if (default.Layouts[BW.LayoutIndex].AltFireParams.Length > 0)
+    {
+        proj.ApplyParams
+        (
+            ProjectileEffectParams
+            (
+                default.Layouts[BW.LayoutIndex].AltFireParams
+                [
+                    Min
+                    (
+                        BW.CurrentWeaponMode, 
+                        default.Layouts[BW.LayoutIndex].AltFireParams.Length - 1
+                    )
+                ].FireEffectParams[BW.AmmoIndex]
+            )
+        );
+    }
 }
 
 // Subclass function for overriding

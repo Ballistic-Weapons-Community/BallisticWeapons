@@ -88,34 +88,26 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
-     FallSpeed=300.000000
-     ImpactManager=Class'BallisticProV55.IM_A73Lob'
-     bPenetrate=False
-     AccelSpeed=8000.000000
-     TrailClass=Class'BallisticProV55.A73PowerTrailEmitter'
-     MyRadiusDamageType=Class'BallisticProV55.DTA73SkrithPowerRadius'
-     bUsePositionalDamage=False
-     MaxDamageGainFactor=1.00
-     DamageGainStartTime=0.05
-     DamageGainEndTime=0.7
-     ShakeRadius=300.000000
-     MotionBlurRadius=250.000000
-     MotionBlurFactor=2.000000
-     MotionBlurTime=2.000000
-     Speed=3000.000000
-     MaxSpeed=7000.000000
-     Damage=70.000000
-     DamageRadius=100.000000
-     MomentumTransfer=2000.000000
-     MyDamageType=Class'BallisticProV55.DTA73SkrithPower'
-     LightSaturation=128
-     LightBrightness=225.000000
-     LightRadius=18.000000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.A42.A42Projectile'
-     LifeSpan=9.000000
-     Skins(0)=FinalBlend'BW_Core_WeaponTex.GunFire.A73ProjFinal'
-     Skins(1)=FinalBlend'BW_Core_WeaponTex.GunFire.A73Proj2Final'
-     SoundRadius=128.000000
-     bFixedRotationDir=False
-     bOrientToVelocity=True
+    ModeIndex=1
+    FallSpeed=300.000000
+    ImpactManager=Class'BallisticProV55.IM_A73Lob'
+    bPenetrate=False
+    TrailClass=Class'BallisticProV55.A73PowerTrailEmitter'
+    MyRadiusDamageType=Class'BallisticProV55.DTA73SkrithPowerRadius'
+    bUsePositionalDamage=False
+    ShakeRadius=300.000000
+    MotionBlurRadius=250.000000
+    MotionBlurFactor=2.000000
+    MotionBlurTime=2.000000
+    MyDamageType=Class'BallisticProV55.DTA73SkrithPower'
+    LightSaturation=128
+    LightBrightness=225.000000
+    LightRadius=18.000000
+    StaticMesh=StaticMesh'BW_Core_WeaponStatic.A42.A42Projectile'
+    LifeSpan=9.000000
+    Skins(0)=FinalBlend'BW_Core_WeaponTex.GunFire.A73ProjFinal'
+    Skins(1)=FinalBlend'BW_Core_WeaponTex.GunFire.A73Proj2Final'
+    SoundRadius=128.000000
+    bFixedRotationDir=False
+    bOrientToVelocity=True
 }

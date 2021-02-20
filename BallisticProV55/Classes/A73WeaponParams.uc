@@ -41,6 +41,13 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=ArenaProjEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
     	SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        Speed=5500.000000
+        AccelSpeed=100000.000000
+        MaxSpeed=14000.000000
+        Damage=36.000000
+        MaxDamageGainFactor=0.75
+        DamageGainStartTime=0.05
+        DamageGainEndTime=0.25
     	Recoil=130.000000
 	    Chaos=0.020000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
@@ -62,6 +69,15 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=ArenaPowerEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
         SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        Speed=3000.000000
+        AccelSpeed=8000.000000
+        MaxSpeed=7000.000000
+        Damage=70.000000
+        DamageRadius=100.000000
+        MomentumTransfer=2000.000000
+        MaxDamageGainFactor=1.00
+        DamageGainStartTime=0.05
+        DamageGainEndTime=0.7
         Recoil=960.000000
         Chaos=0.500000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)

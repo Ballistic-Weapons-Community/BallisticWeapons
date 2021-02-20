@@ -23,15 +23,8 @@
 //=============================================================================
 class BallisticProjectile extends Projectile
 	abstract
+    DependsOn(ProjectileEffectParams)
 	config(BallisticProV55);
-
-// Determines how an explosive or radius-affecting projectile's effect declines over distance
-enum ERadiusFallOffType
-{
-    RFO_Linear,     // Effect multiplied by ((damage radius - distance from centre) / damage radius)
-    RFO_Quadratic,  // Effect multiplied by square of ((damage radius - distance from centre) / damage radius)
-    RFO_None        // Effect is consistent for any distance
-};
 
 const MAX_MOMENTUM_Z = 10000.0f;
 
@@ -65,6 +58,7 @@ var() bool					    bRandomStartRotation;	// Set random roll on startup
 //-----------------------------------------------------------------------------
 // Handling
 //-----------------------------------------------------------------------------
+var() int                       ModeIndex;              // For parameter indexing - is primary or alt fire shot
 var() bool					    bCheckHitSurface;		// Check impact surfacetype on explode for surface dependant ImpactManagers
 var() bool					    bPenetrate;				// Will go through enemies
 var() float					    StartDelay;				// Used to delay projectile's entry into the world
@@ -124,7 +118,7 @@ var() float                     MaxDamageGainFactor;
 var() float                     DamageGainStartTime;
 var() float                     DamageGainEndTime;
 // radius damage
-var() ERadiusFallOffType        RadiusFallOffType;
+var() ProjectileEffectParams.ERadiusFallOffType        RadiusFallOffType;
 //=============================================================================
 // END GAMEPLAY VARIABLES
 //=============================================================================
@@ -133,6 +127,44 @@ replication
 {
 	reliable if (bTearOff && Role == ROLE_Authority)
 		TearOffHitNormal;
+}
+
+simulated function PreBeginPlay()
+{
+    local BallisticWeapon BW;
+    Super.PreBeginPlay();
+
+    if (Instigator == None)
+        return;
+
+    BW = BallisticWeapon(Instigator.Weapon);
+
+    if (BW == None)
+        return;
+
+    BW.default.ParamsClasses[BW.default.BCRepClass.default.GameStyle].static.SetProjectileParams(BW, self);
+}
+
+simulated function ApplyParams(ProjectileEffectParams params)
+{
+    if (Role != ROLE_Authority)
+        return;
+
+    Damage = params.Damage;
+    DamageRadius = params.DamageRadius;
+    MomentumTransfer = params.MomentumTransfer;
+
+    HeadMult = params.HeadMult;
+    LimbMult = params.LimbMult;
+
+    Speed = params.Speed;
+    AccelSpeed = params.AccelSpeed;
+    MaxSpeed = params.MaxSpeed;
+
+    MaxDamageGainFactor = params.MaxDamageGainFactor;
+    DamageGainStartTime = params.DamageGainStartTime;
+    DamageGainEndTime = params.DamageGainEndTime;
+    RadiusFallOffType = params.RadiusFallOffType;
 }
 
 simulated event TornOff()
