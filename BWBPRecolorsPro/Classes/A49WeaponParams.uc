@@ -30,13 +30,18 @@ defaultproperties
     //=================================================================
 
 	Begin Object Class=ProjectileEffectParams Name=ArenaProjEffectParams
-     	SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        ProjectileClass=Class'BWBPRecolorsPro.A49Projectile'
+        SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        Speed=5500.000000
+        AccelSpeed=100000.000000
+        MaxSpeed=8500.000000
+        Damage=32.000000
+        DamageRadius=48.000000
      	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
 		FlashScaleFactor=0.150000
      	Recoil=108.000000
      	Chaos=0.070000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-Fire',Volume=0.700000,Pitch=1.200000)
-		ProjectileClass=Class'BWBPRecolorsPro.A49Projectile'
 		WarnTargetPct=0.2
 	End Object
 

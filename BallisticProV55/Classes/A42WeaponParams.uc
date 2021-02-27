@@ -23,13 +23,21 @@ defaultproperties
     End Object
 
     Begin Object Class=ProjectileEffectParams Name=ArenaProjEffectParams
-	    SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
+    	ProjectileClass=Class'BallisticProV55.A42Projectile'
+        SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
+        Damage=30.000000
+        Speed=3000.000000
+        MaxSpeed=4500.000000
+        DamageRadius=48.000000
+        AccelSpeed=60000.000000
+        MaxDamageGainFactor=0.35
+        DamageGainStartTime=0.05
+        DamageGainEndTime=0.25
 	    MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
 	    Recoil=96.000000
 	    Chaos=0.130000
 	    FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Fire',Volume=0.700000)
 	    Inaccuracy=(X=32,Y=32)
-	    ProjectileClass=Class'BallisticProV55.A42Projectile'
         WarnTargetPct=0.200000
     End Object
 

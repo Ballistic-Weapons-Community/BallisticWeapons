@@ -51,10 +51,10 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_GRSNine'
      BrassBone="tip"
      BrassOffset=(X=-30.000000,Y=1.000000)
-     FireRecoil=150.000000
+     FireRecoil=120.000000
      FireChaos=0.120000
-     XInaccuracy=72.000000
-     YInaccuracy=72.000000
+     XInaccuracy=64.000000
+     YInaccuracy=64.000000
      BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-Fire',Volume=1.200000)
      FireEndAnim=
 	 AimedFireAnim='SightFire'

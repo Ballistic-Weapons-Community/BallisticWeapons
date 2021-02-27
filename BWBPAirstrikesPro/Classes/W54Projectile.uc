@@ -89,7 +89,7 @@ simulated event FellOutOfWorld(eKillZType KillType)
 	BlowUp(Location);
 }
 
-function Explode(vector HitLocation, vector HitNormal)
+simulated function Explode(vector HitLocation, vector HitNormal)
 {
 	local Emitter E;
 

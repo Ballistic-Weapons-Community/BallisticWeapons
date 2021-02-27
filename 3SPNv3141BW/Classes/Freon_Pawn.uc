@@ -284,6 +284,7 @@ function TakeDamage(int Damage, Pawn InstigatedBy, Vector HitLocation, Vector Mo
 
         if ( InstigatedBy != None && InstigatedBy != self )
             LastHitBy = InstigatedBy.Controller;
+
 		if (class<BallisticDamageType>(DamageType) != None && class<BallisticDamageType>(DamageType).default.bPowerPush)
 		{
 			bPushed=True;
@@ -703,10 +704,7 @@ event FellOutOfWorld(eKillZType KillType)
 		return;
 	if ( (Controller != None) && Controller.AvoidCertainDeath() )
 		return;
-		
-	if (bPushed && Pusher != None)
-		Pusher.TakeDamage(1000, self, vect(0,0,0), vect(0,0,0), class'DamType_Git');
-	
+        
 	if (TryTeleport())
 	{
 		if (!bPushed)

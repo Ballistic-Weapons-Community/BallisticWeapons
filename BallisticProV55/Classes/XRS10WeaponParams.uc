@@ -62,10 +62,14 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 
+    Begin Object Class=FireEffectParams Name=ArenaSecEffectParams
+        BotRefireRate=0.3
+    End Object
+
 	Begin Object Class=FireParams Name=ArenaSecFireParams
 		FireInterval=0.700000
 		AmmoPerFire=0
-		//FireEffectParams(0)=FireEffectParams'ArenaSecEffectParams'
+		FireEffectParams(0)=FireEffectParams'ArenaSecEffectParams'
 	End Object
 
 	Begin Object Class=WeaponParams Name=ArenaParams

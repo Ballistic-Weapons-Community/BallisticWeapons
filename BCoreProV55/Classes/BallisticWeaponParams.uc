@@ -59,10 +59,11 @@ static simulated final function SetFireParams(BallisticWeapon BW)
         BW.BFireMode[0].OnFireParamsChanged(BW.AmmoIndex);
     }
 
-    else 
+/*    else 
     {
         Log("BallisticWeaponParams: Could not initialize " $ BW.ItemName $ "'s primary fire; no fire params configured");
     }
+*/
 
     if (default.Layouts[BW.LayoutIndex].AltFireParams.Length > 0)
     {
@@ -77,10 +78,12 @@ static simulated final function SetFireParams(BallisticWeapon BW)
         BW.BFireMode[1].OnFireParamsChanged(BW.AmmoIndex);
     }
 
+/*
     else 
     {
         Log("BallisticWeaponParams: Could not initialize " $ BW.ItemName $ "'s alternate fire; no fire params configured");
     }
+*/
 }
 
 static simulated final function SetRecoilParams(BallisticWeapon BW)

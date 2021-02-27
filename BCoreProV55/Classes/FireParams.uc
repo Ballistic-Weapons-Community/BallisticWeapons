@@ -64,4 +64,6 @@ defaultproperties
     FireEndAnimRate=1.0
 
     PreFireTime=0.0
+
+    BurstFireRateFactor=0.65
 }

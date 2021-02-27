@@ -24,7 +24,14 @@ defaultproperties
 
     Begin Object Class=ProjectileEffectParams Name=ArenaMultiEffectParams
         ProjectileClass=Class'BallisticProV55.A500Projectile'
-        MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
+        MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'  
+        Speed=5500.000000
+        MaxSpeed=6500.000000
+        AccelSpeed=3000.000000
+        Damage=22.000000
+        MomentumTransfer=1000.000000
+        MaxDamageGainFactor=0.5
+        DamageGainEndTime=0.3
         Recoil=378.000000
         Chaos=0.400000
         Inaccuracy=(X=220,Y=220)
@@ -37,6 +44,11 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=ArenaChargeEffectParams
         ProjectileClass=Class'BallisticProV55.A500AltProjectile'
         MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
+        Speed=6000.000000
+        MaxSpeed=6000.000000
+        Damage=25.000000
+        DamageRadius=768.000000
+        RadiusFallOffType=RFO_None
         Chaos=0.500000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_AltFire',Volume=1.800000,Slot=SLOT_Interact,bNoOverride=False)
         SplashDamage=True

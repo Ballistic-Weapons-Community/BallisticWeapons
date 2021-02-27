@@ -24,6 +24,14 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.E23Projectile_Std'
         SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
         MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
+        Speed=5500.000000
+        MaxSpeed=14000.000000
+        AccelSpeed=100000.000000
+        Damage=35.000000
+        DamageRadius=16.000000
+        MaxDamageGainFactor=0.6
+        DamageGainStartTime=0.05
+        DamageGainEndTime=0.25
         FlashScaleFactor=0.750000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         Chaos=0.06
@@ -35,6 +43,13 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.E23Projectile_SG'
         SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
         MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
+        Speed=5500.000000
+        MaxSpeed=5500.000000
+        AccelSpeed=60000.000000
+        Damage=35.000000
+        DamageRadius=64.000000
+        MaxDamageGainFactor=0.25
+        DamageGainEndTime=0.3
         FlashScaleFactor=0.750000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-SGFire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         Chaos=0.5
@@ -46,6 +61,11 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.E23Projectile_Snpr'
         SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
         MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
+        Speed=5500.000000
+        MaxSpeed=50000.000000
+        AccelSpeed=100000.000000
+        Damage=35.000000
+        DamageRadius=64.000000
         FlashScaleFactor=0.750000
         Chaos=0.350000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)

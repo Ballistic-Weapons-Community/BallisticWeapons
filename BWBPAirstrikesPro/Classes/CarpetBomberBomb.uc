@@ -26,7 +26,7 @@ simulated function PostBeginPlay()
 	RandSpin(125000);
 }
 
-function Explode(vector HitLocation, vector HitNormal)
+simulated function Explode(vector HitLocation, vector HitNormal)
 {
 	local Emitter E;
 	//local Actor li;

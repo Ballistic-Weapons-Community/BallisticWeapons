@@ -48,7 +48,7 @@ exec function Offset(int index, int value)
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
-	
+
 	if (CurrentWeaponMode == 1)
 	{
 		SetBoneScale (2, 1.0, ShellTipBone1);

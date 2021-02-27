@@ -144,22 +144,19 @@ function FlashMuzzleFlash()
 
 defaultproperties
 {
-	 SelfHeatPerShot=0.900000
+	 SelfHeatPerShot=0.600000
 	 SelfHeatDeclineDelay=0.5
      SpecialFireSound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FireDouble'
-     HeatPerShot=15.000000
+     HeatPerShot=10.000000
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=0.000000
-     
-     Damage=15.000000
-     
-     
+     Damage=20.000000
      DamageType=Class'BWBPRecolorsPro.DTLS14Body'
      DamageTypeHead=Class'BWBPRecolorsPro.DTLS14Head'
      DamageTypeArm=Class'BWBPRecolorsPro.DTLS14Limb'
      PenetrateForce=500
      bPenetrate=True
-     FireModes(0)=(mDamage=45,mDamageType=Class'BWBPRecolorsPro.DTLS14Twin',mDamageTypeHead=Class'BWBPRecolorsPro.DTLS14Twin',mFireRate=0.500000,mFireChaos=1.000000,mRecoil=512.000000,mAmmoPerFire=2,bModeInstantHit=True)
+     FireModes(0)=(mDamage=40,mDamageType=Class'BWBPRecolorsPro.DTLS14Twin',mDamageTypeHead=Class'BWBPRecolorsPro.DTLS14Twin',mFireRate=0.500000,mFireChaos=1.000000,mRecoil=512.000000,mAmmoPerFire=2,bModeInstantHit=True)
      ClipFinishSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-LastShot',Volume=1.000000,Radius=48.000000,bAtten=True)
      DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Empty',Volume=1.200000)
      MuzzleFlashClass=Class'BWBPRecolorsPro.LS14FlashEmitter'

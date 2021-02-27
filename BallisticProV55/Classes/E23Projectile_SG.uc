@@ -78,19 +78,10 @@ defaultproperties
 {
      ImpactManager=Class'BallisticProV55.IM_E23Projectile'
      bRandomStartRotation=False
-     AccelSpeed=60000.000000
      MyRadiusDamageType=Class'BallisticProV55.DTE23Plasma'
      bUsePositionalDamage=True
-     
-     MaxDamageGainFactor=0.25
-     DamageGainEndTime=0.3
-
      DamageTypeHead=Class'BallisticProV55.DTE23PlasmaHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=5500.000000
-     MaxSpeed=5500.000000
-     Damage=35.000000
-     DamageRadius=64.000000
      MyDamageType=Class'BallisticProV55.DTE23Plasma'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence

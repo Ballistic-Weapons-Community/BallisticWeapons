@@ -108,8 +108,8 @@ defaultproperties
 	 RailKickForceBonus=10000
 
 	 bPenetrate=True
-	 PenetrateForce=700
-	 RailPenetrateForceBonus=2500
+	 PenetrateForce=500
+	 RailPenetrateForceBonus=1000
 
      MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
      BrassClass=Class'BallisticProV55.Brass_Railgun'

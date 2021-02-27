@@ -83,8 +83,8 @@ defaultproperties
         DamageType=Class'BallisticProV55.DTFifty9Blade'
         DamageTypeHead=Class'BallisticProV55.DTFifty9BladeHead'
         DamageTypeArm=Class'BallisticProV55.DTFifty9Blade'
-        HookStopFactor=1.700000
-        HookPullForce=100.000000
+        //HookStopFactor=1.700000
+        //HookPullForce=100.000000
         FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Volume=0.5,Radius=32.000000,bAtten=True)
         SplashDamage=False
         RecommendSplashDamage=False

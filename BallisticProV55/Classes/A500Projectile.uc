@@ -146,16 +146,10 @@ defaultproperties
      MyRadiusDamageType=Class'BallisticProV55.DTA500Blast'
      bUsePositionalDamage=False
 
-     MaxDamageGainFactor=0.5
-     DamageGainEndTime=0.3
      
      DamageTypeHead=Class'BallisticProV55.DTA500BlastHead'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=5500.000000
-	 MaxSpeed=6500.000000
-	 AccelSpeed=3000.000000
-     Damage=22.000000
-     MomentumTransfer=1000.000000
+
      MyDamageType=Class'BallisticProV55.DTA500Blast'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence

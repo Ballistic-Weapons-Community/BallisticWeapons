@@ -124,21 +124,15 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_A42Projectile'
      PenetrateManager=Class'BallisticProV55.IM_A42Projectile'
      bPenetrate=True
-     AccelSpeed=100000.000000
      TrailClass=Class'BWBPRecolorsPro.A49TrailEmitter'
      MyRadiusDamageType=Class'BWBPRecolorsPro.DTA49Skrith'
      bUsePositionalDamage=True
-
      SplashManager=Class'BallisticProV55.IM_ProjWater'
-     Speed=5500.000000
-     MaxSpeed=8500.000000
-     Damage=32.000000
-     DamageRadius=48.000000
      MyDamageType=Class'BWBPRecolorsPro.DTA49Skrith'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence
-     LightHue=180
-     LightSaturation=100
+     LightHue=150
+     LightSaturation=50
      LightBrightness=192.000000
      LightRadius=6.000000
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.A42.A42Projectile'

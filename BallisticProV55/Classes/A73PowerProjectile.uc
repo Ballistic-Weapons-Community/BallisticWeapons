@@ -100,7 +100,8 @@ defaultproperties
     MotionBlurFactor=2.000000
     MotionBlurTime=2.000000
     MyDamageType=Class'BallisticProV55.DTA73SkrithPower'
-    LightSaturation=128
+    LightHue=150
+    LightSaturation=0
     LightBrightness=225.000000
     LightRadius=18.000000
     StaticMesh=StaticMesh'BW_Core_WeaponStatic.A42.A42Projectile'

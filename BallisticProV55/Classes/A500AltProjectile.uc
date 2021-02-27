@@ -86,7 +86,6 @@ function AdjustSpeed()
 
 defaultproperties
 {
-    RadiusFallOffType=RFO_None
     DetonateOn=DT_Impact
     PlayerImpactType=PIT_Detonate
     bNoInitialSpin=True
@@ -104,10 +103,6 @@ defaultproperties
     MotionBlurRadius=384.000000
     MotionBlurFactor=3.000000
     MotionBlurTime=4.000000
-    Speed=6000.000000
-    MaxSpeed=6000.000000
-    Damage=25.000000
-    DamageRadius=768.000000
     MyDamageType=Class'BallisticProV55.DTA500Splash'
     LightType=LT_Steady
     LightEffect=LE_QuadraticNonIncidence
