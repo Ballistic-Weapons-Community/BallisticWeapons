@@ -52,5 +52,5 @@ defaultproperties
      bRapidFire=True
      bAltRapidFire=True
      Mesh=SkeletalMesh'BWBP_SKC_Anim.F2000_TPm'
-     DrawScale=1.000000
+     DrawScale=1.500000
 }

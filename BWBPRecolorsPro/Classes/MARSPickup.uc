@@ -44,6 +44,6 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
      StaticMesh=StaticMesh'BWBP_SKC_Static.MARS.MARS2_Pickup'
      Physics=PHYS_None
-	 Drawscale=0.2
+	 Drawscale=0.15
      CollisionHeight=4.000000
 }

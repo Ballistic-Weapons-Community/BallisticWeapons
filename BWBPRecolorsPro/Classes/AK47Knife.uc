@@ -69,7 +69,8 @@ defaultproperties
      bRandomStartRotation=False
      bUsePositionalDamage=True
 	 bIgnoreTerminalVelocity=True
-     
+     TrailClass=Class'BallisticProV55.MRLTrailEmitter'
+	 TrailOffset=(X=-2.000000)
      
      DamageTypeHead=Class'BWBPRecolorsPro.DTX8KnifeRifleLaunchedHead'
      bWarnEnemy=False

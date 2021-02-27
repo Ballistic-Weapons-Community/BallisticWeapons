@@ -31,7 +31,7 @@ defaultproperties
      bPawnRapidFireAnim=True
 	 FireRecoil=128
      FireEndAnim=
-     FireRate=0.108000
+     FireRate=0.113000
      AmmoClass=Class'BWBPOtherPackPro.Ammo_MX32Bullets'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

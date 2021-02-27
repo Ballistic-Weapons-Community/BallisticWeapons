@@ -76,6 +76,7 @@ simulated function Destroyed()
 defaultproperties
 {
      MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+	 FlashScale=0.200000
      AltMuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      AltFlashBone="tip2"
