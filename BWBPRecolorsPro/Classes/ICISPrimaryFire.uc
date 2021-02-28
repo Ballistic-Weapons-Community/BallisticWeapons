@@ -35,6 +35,9 @@ function StopFiring()
 {
 	Instigator.AmbientSound = None;
     TickCount = 0;
+
+    if (BW.Role == ROLE_Authority)
+        BW.RemoveSpeedModification(0.75);
 }
 
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
@@ -52,6 +55,11 @@ simulated function bool AllowFire()
 
 function DoFireEffect()
 {
+    if (TickCount == 0)
+    {
+        if (BW.Role == ROLE_Authority)
+            BW.AddSpeedModification(0.75);
+    }
     BallisticPawn(Instigator).GiveAttributedHealth(Min(BASE_HEAL + TickCount / TICKS_PER_RAMP, MAX_HEAL), BallisticPawn(Instigator).HealthMax, Instigator);
     ++TickCount;
 }

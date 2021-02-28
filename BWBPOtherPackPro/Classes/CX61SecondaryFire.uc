@@ -22,7 +22,7 @@ simulated function bool HasAmmo()
 
 simulated function SwitchWeaponMode (byte NewMode)
 {
-	if(NewMode == 0)
+	if(NewMode == 1)
 	{
 		BallisticFireSound.Sound=None;
 		FireSoundLoop=Sound'BW_Core_WeaponSound.T10.T10-toxinLoop';
@@ -34,6 +34,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FireSoundLoop=Sound'BW_Core_WeaponSound.RX22A.RX22A-FireLoop';
 		GotoState('Flamer');
 	}
+
 	if (Weapon.bBerserk)
 	{
 		FireRate *= 0.75;
@@ -70,7 +71,7 @@ function StopFlaming()
 
 function float MaxRange()	{	return 800;	}
 
-simulated state Flamer
+auto simulated state Flamer
 {
 	function DoFireEffect()
 	{
@@ -155,7 +156,7 @@ simulated state Flamer
 	}
 }
 
-auto simulated state HealGas
+simulated state HealGas
 {
 	function DoFireEffect()
 	{
@@ -292,7 +293,7 @@ static function FireModeStats GetStats()
 
 defaultproperties
 {
-     FireSoundLoop=Sound'BW_Core_WeaponSound.T10.T10-ToxinLoop'
+     FireSoundLoop=Sound'BW_Core_WeaponSound.RX22A.RX22A-FireLoop'
      FlashBone="'"
      FireChaos=0.050000
      BallisticFireSound=(Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)

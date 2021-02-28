@@ -30,6 +30,7 @@ simulated function Notify_SelfInject()
     */
 }
 
+/*
 simulated function Tick(float DT)
 {
 	super.Tick(DT);
@@ -40,6 +41,7 @@ simulated function Tick(float DT)
         LastRegenTick = level.TimeSeconds + 1;
     }
 }
+*/
 
 simulated function bool PutDown()
 {

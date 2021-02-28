@@ -381,8 +381,6 @@ function float SurfaceScale (int Surf)
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
 	local int Surf;
-
-    Log("BallisticProjectile::Explode");
 	
 	if (!bNetTemporary && Role != ROLE_Authority)
         return;
@@ -408,8 +406,6 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	
 	if (!bNetTemporary && bTearOnExplode && (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer))
 	{
-        Log("BallisticProjectile::Explode: Net trapped");
-
 		Velocity = vect(0,0,0);
 		SetCollision(false,false,false);
 		TearOffHitNormal = HitNormal;
@@ -418,16 +414,12 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	}
 	
 	else 
-    {
-        Log("BallisticProjectile::Explode: Destroying");
 		Destroy();
-    }
 
 }
 
 function HideProjectile()
 {
-    Log("BallisticProjectile::HideProjectile");
 	SetPhysics(PHYS_None);
 	bAlwaysRelevant=True; //required to force bTearOff update
 	bHidden=True;

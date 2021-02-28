@@ -9,13 +9,15 @@
 //=============================================================================
 class ICISSecondaryFire extends BallisticMeleeFire;
 
+var byte        AmmoCost;
+
 function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
 	local BallisticPawn BPawn;
 	local ICISPoisoner IP;
     local float Pwr;
 
-    Pwr = FMin(1f, BW.AmmoAmount(0) / 100.0f);
+    Pwr = FMin(1f, BW.AmmoAmount(0) / float(AmmoCost));
 
 	BPawn = BallisticPawn(Target);	
 
@@ -34,7 +36,7 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 			IP.InstigatorController = Instigator.Controller;
 
 		IP.Initialize(BPawn);
-		ICISStimPack(BW).ConsumeAmmo(1, 100, True);
+		ICISStimPack(BW).ConsumeAmmo(1, AmmoCost, True);
 		ICISStimPack(BW).PlaySound(ICISStimPack(BW).HealSound, SLOT_Misc, 1.5, ,64);
 
 	}
@@ -83,6 +85,7 @@ defaultproperties
      SwipePoints(6)=(Weight=-1)
      TraceRange=(Min=96.000000,Max=96.000000)
      
+     AmmoCost=50
      
      DamageType=Class'BWBPRecolorsPro.DT_ICIS'
      DamageTypeHead=Class'BWBPRecolorsPro.DT_ICIS'

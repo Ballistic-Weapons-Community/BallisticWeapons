@@ -10,7 +10,7 @@ class Ammo_ICISStim extends BallisticAmmo;
 defaultproperties
 {
      MaxAmmo=100
-     InitialAmount=50
+     InitialAmount=100
      bNoPackResupply=True
      IconFlashMaterial=Shader'BWBP_SKC_Tex.Stim.AmmoIcon_StimFlash'
      PickupClass=Class'BWBPRecolorsPro.ICISPickup'

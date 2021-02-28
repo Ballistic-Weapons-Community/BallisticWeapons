@@ -249,8 +249,8 @@ defaultproperties
 	AIRating=0.7
 	CurrentRating=0.7
 	StoredGas=1.000000
-	ModeColors(0)=(B=210,G=210,R=75,A=255)
-	ModeColors(1)=(G=100,R=255,A=255)
+	ModeColors(0)=(G=100,R=255,A=255)
+    ModeColors(1)=(B=210,G=210,R=75,A=255)
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.CX61.BigIcon_CX61'
@@ -272,8 +272,8 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipIn')
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
-	WeaponModes(0)=(ModeName="Healing Gas",ModeID="WM_FullAuto")
-	WeaponModes(1)=(ModeName="Flamethrower",ModeID="WM_FullAuto")
+    WeaponModes(0)=(ModeName="Flamethrower",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Healing Gas",ModeID="WM_FullAuto")
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
