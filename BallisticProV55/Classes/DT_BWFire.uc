@@ -16,13 +16,14 @@ static function DoBloodEffects( vector HitLocation, float Damage, vector Momentu
 
 defaultproperties
 {
-     bIgniteFires=True
-     DamageDescription=",Flame,Hazard,NonSniper,"
-     bLocationalHit=False
-     bCausesBlood=False
-     bNeverSevers=True
-     GibPerterbation=0.500000
-     KDamageImpulse=1000.000000
-     VehicleDamageScaling=0.600000
-     VehicleMomentumScaling=0.000000
+    DamageBasis=DB_Heat
+    bIgniteFires=True
+    DamageDescription=",Flame,Hazard,NonSniper,"
+    bLocationalHit=False
+    bCausesBlood=False
+    bNeverSevers=True
+    GibPerterbation=0.500000
+    KDamageImpulse=1000.000000
+    VehicleDamageScaling=0.600000
+    VehicleMomentumScaling=0.000000
 }

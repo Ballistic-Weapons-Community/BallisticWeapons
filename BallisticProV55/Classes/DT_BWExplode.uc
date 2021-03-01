@@ -16,14 +16,15 @@ static function DoBloodEffects( vector HitLocation, float Damage, vector Momentu
 
 defaultproperties
 {
-     EffectChance=1.000000
-     BloodManagerName="BallisticProV55.BloodMan_Exploded"
-     bIgniteFires=True
-     DamageDescription=",Explode,Hazard,NonSniper,"
-     bLocationalHit=False
-     bThrowRagdoll=True
-     GibModifier=2.000000
-     PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletFlesh'
-     GibPerterbation=0.500000
-     KDamageImpulse=20000.000000
+    DamageBasis=DB_Explosive
+    EffectChance=1.000000
+    BloodManagerName="BallisticProV55.BloodMan_Exploded"
+    bIgniteFires=True
+    DamageDescription=",Explode,Hazard,NonSniper,"
+    bLocationalHit=False
+    bThrowRagdoll=True
+    GibModifier=2.000000
+    PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.BulletFlesh'
+    GibPerterbation=0.500000
+    KDamageImpulse=20000.000000
 }

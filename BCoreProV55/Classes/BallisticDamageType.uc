@@ -18,44 +18,91 @@ enum EDisplacementType
     DSP_Scaling
 };
 
+enum EDamageBasis
+{
+    DB_Physical,
+    DB_Heat,
+    DB_Plasma,
+    DB_Cold,
+    DB_Explosive,
+    DB_Poison,
+    DB_Electric
+};
+
+//===================================================================================
+// DEATH MESSAGES
+//===================================================================================
+var   globalconfig bool				bSimpleDeathMessages;           // Simplifies death message strings to "Killer [Damage Type String] Killed"
 var() localized Array<string>		DeathStrings;					// Multiple deathstrings may be interesting...
 var() localized Array<string>		FemaleSuicides, MaleSuicides;	// Multiple suicide messages
 var() localized string				SimpleKillString, SimpleSuicideString;
 var() localized string				HipString, AimedString;
 var() localized string				His, Her, Himself, Herself, Him, MHer, He, She;
-
-var() float							EffectChance;		// Chance of blood effect appearing
-var() class<BloodManager>			BloodManager;		// BloodManager loaded from BloodManagerName
-var() string						BloodManagerName;	// BloodManager to use for this damagetype
-var   bool							bCantLoadBlood;		// No able to load BloodManager. So we know not to keep trying...
-
-var	  bool							bAimable;			// Tracked as spam if used unaimed
-
+//===================================================================================
+// BLOOD
+//===================================================================================
+var() float							EffectChance;		    // Chance of blood effect appearing
+var() class<BloodManager>			BloodManager;		    // BloodManager loaded from BloodManagerName
+var() string						BloodManagerName;	    // BloodManager to use for this damagetype
+var() bool				            bMultiSever;			// Don't just sever the hitbone, try the other bones too
+var() bool				            bOnlySeverLimbs;		// Do not sever spine or pelvis, no matter how much damage
+var() bool				            bSeverPreventsBlood;	// No blood hit effects if the bone was severed
+var() bool				            bNoSeverStumps;			// Don't spawn attached stumps
+var   bool							bCantLoadBlood;		    // No able to load BloodManager. So we know not to keep trying...
+//===================================================================================
+// VFX
+//===================================================================================
+var() class<BCImpactManager>        ImpactManager;          // Impact effects associated with this damage
+var() byte							ArmorHitType;		    // Tells BArmor what effects to use (Bullet, Misc or None)
+//===================================================================================
+// MOTION BLUR
+//===================================================================================
+var() float MinMotionBlurDamage;					// Damage that must be done to start causing motion blur
+var() float MotionBlurDamageRange;					// Damage amount beyond MinMotionBlurDamage at which max blur is acheived
+var() float MotionBlurFactor;						// Amount of blur to apply. 0 None, 1 Full, >1 Stays full longer  (scaled depending on damage)
+var() float MotionBlurTime;							// How long blur is applied (also scaled depending on damage... obviously)
+var() bool	bUseMotionBlur;							// use motion blur effects for this DT
+//===================================================================================
+// FLASH
+//===================================================================================
 var int								FlashThreshold;
 var vector 							FlashV;
 var float							FlashF;
-
-var() bool							bCanBeBlocked;		// This damage(eg. sword slash) can be blocked with a shield, sword or whatever...
-var() float							BlockPenetration;	// Scaler for damage to do through block, if any
-var() float							BlockFatiguePenalty;// Fatigue for the defender who blocks this attack
-var() int							ShieldDamage;		// Damage this can do to shields that block it (for future mod purposses, used by JunkWar)
-var() bool							bDetonatesBombs;	// This damage can detonate bombs, mines, etc...
-var() bool							bIgniteFires;		// This damage can ignite flammable things and cause fires.
-var() byte							ArmorHitType;		// Tells BArmor what effects to use (Bullet, Misc or None)
-var() bool							bSnipingDamage;   	// Ballistic Freon - extend camp check longer than normal
-var() bool							bPowerPush;		 	// 3SPN: Attacks of this damagetype impart a lot of momentum and are commonly used for abusive purposes
-var() bool							bNegatesMomentum; 	// Arrests horizontal momentum of struck target
-var() bool 							bHeaddie; 			// Is a headshot damagetype
-var() bool							bIgnoredOnLifts;	//If used against a player on a lift, or exiting a lift, this damagetype will be ignored completely
-var() float							InvasionDamageScaling; // Scale the damage by this in Invasion (because Invasion requires different balance to PvP)
-var string							DamageIdent;		// The stats slot this damagetype fits into
+//===================================================================================
+// BLOCKING
+//===================================================================================
+var() bool							bCanBeBlocked;		    // This damage(eg. sword slash) can be blocked with a shield, sword or whatever...
+var() float							BlockPenetration;	    // Scaler for damage to do through block, if any
+var() float							BlockFatiguePenalty;    // Fatigue for the defender who blocks this attack
+var() int							ShieldDamage;		    // Damage this can do to shields that block it (for future mod purposses, used by JunkWar)
+//===================================================================================
+// DISPLACEMENT
+//===================================================================================
 var() EDisplacementType			    DisplacementType;		// This damagetype forcibly displaces the weapon if it hits
-var() bool							bMetallic; // This damagetype is delivered by means of a metal object (bullet, knife, etc)
-var()	int							AimDisplacementDamageThreshold;
+var() int							AimDisplacementDamageThreshold;
 var() float							AimDisplacementDuration;
-
-var globalconfig bool				bSimpleDeathMessages;
-
+//===================================================================================
+// DAMAGE INTERACTIONS
+//===================================================================================
+var() EDamageBasis                  DamageBasis;            // Basis on which this type inflicts damage (fire, physical damage, etc)
+var() float                         Penetration;            // Used to resolve damage against armor and for wall penetration
+var() bool							bDetonatesBombs;	    // This damage can detonate bombs, mines, etc...
+var() bool							bIgniteFires;		    // This damage can ignite flammable things and cause fires. FIXME replace with damage basis
+var() bool							bMetallic;              // This damagetype is delivered by means of a metal object (bullet, knife, etc)
+//===================================================================================
+// GAMEPLAY
+//===================================================================================
+var() bool							bAimable;			    // Tracked as spam if used unaimed
+var() bool							bSnipingDamage;   	    // Ballistic Freon - extend camp check longer than normal
+var() bool							bPowerPush;		 	    // 3SPN: Attacks of this damagetype impart a lot of momentum and are commonly used for abusive purposes
+var() bool							bNegatesMomentum; 	    // Arrests horizontal momentum of struck target
+var() bool 							bHeaddie; 			    // Is a headshot damagetype
+var() bool							bIgnoredOnLifts;	    // If used against a player on a lift, or exiting a lift, this damagetype will be ignored completely
+var() float							InvasionDamageScaling;  // Scale the damage by this in Invasion (because Invasion requires different balance to PvP)
+var() string						DamageIdent;		    // The stats slot this damagetype fits into
+//===================================================================================
+// DEPRECATED
+//===================================================================================
 var() string	DamageDescription;	// Words that describe this damagetype. e.g. ",Poison,Melee,Bite," or ",Electro,Lightning,"
 									// Makes it easier for systems to identify the damage and work accordingly...
 									// Always seperate the keywords with commas like in examples!
@@ -83,21 +130,9 @@ Some Standard Damage Description Words:
 	,NonSniper,		Not possible for this damage to be the result of marksmanship. eg. Traps, Mines, Bombs, Explosives
 */
 
-var() class<BCImpactManager> ImpactManager; // Impact effects associated with this damage
-
-// New gore system vars
-var() bool				bMultiSever;				// Don't just sever the hitbone, try the other bones too
-var() bool				bOnlySeverLimbs;			// Do not sever spine or pelvis, no matter how much damage
-var() bool				bSeverPreventsBlood;		// No blood hit effects if the bone was severed
-var() bool				bNoSeverStumps;				// Don't spawn attached stumps
-
-// Motion blur caused by this damage
-var() float MinMotionBlurDamage;					// Damage that must be done to start causing motion blur
-var() float MotionBlurDamageRange;					// Damage amount beyond MinMotionBlurDamage at which max blur is acheived
-var() float MotionBlurFactor;						// Amount of blur to apply. 0 None, 1 Full, >1 Stays full longer  (scaled depending on damage)
-var() float MotionBlurTime;							// How long blur is applied (also scaled depending on damage... obviously)
-var() bool	bUseMotionBlur;							// use motion blur effects for this DT
-
+//===================================================================================
+// DEATH MESSAGES
+//===================================================================================
 // This lets you put some his/her type words in the death messages
 // %ke:	killer he/she
 // %ve: vicitm he/she
@@ -179,13 +214,18 @@ static function string DeathMessage(PlayerReplicationInfo Killer, PlayerReplicat
 		{
 			if(default.SimpleKillString == "")
 				t = default.WeaponClass.default.ItemName;
-			else t = default.SimpleKillString;
+			else 
+                t = default.SimpleKillString;
+
 			if(default.HipString != "")
 				t @= default.HipString;
+
 			if (default.DamageIdent == "Melee" && default.WeaponClass.default.InventoryGroup != 1)
 				t @= "Melee";
+
 			if (default.bHeaddie)
 				t @= "Headshot";
+
 			s = "%k ["$t$"] %o";
 		}
 	}
@@ -208,12 +248,17 @@ static function string ScopedDeathMessage(PlayerReplicationInfo Killer, PlayerRe
 	{
 		if(default.SimpleKillString == "")
 			t = default.WeaponClass.default.ItemName;
-		else t = default.SimpleKillString;
+		else 
+            t = default.SimpleKillString;
+
 		if (default.DamageIdent == "Melee" && default.WeaponClass.default.InventoryGroup != 1)
 			t @= "Melee";
-		t @= default.AimedString;
+        else 
+		    t @= default.AimedString;
+
 		if (default.bHeaddie)
 			t @= "Headshot";
+
 		s = "%k ["$t$"] %o";
 	}
 	
@@ -245,12 +290,16 @@ static function bool IsDamage(string TypeString)
 	return InStr(default.DamageDescription, TypeString) >= 0;
 }
 
+//===================================================================================
+// GAMEPLAY
+//===================================================================================
 // Call this to do damage to something. This lets the damagetype modify the things if it needs to
 static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLocation, vector Momentum, class<DamageType> DT)
 {
 	Victim.TakeDamage(Damage, Instigator, HitLocation, Momentum, DT);
 }
-// Compatability for Hurt(), Call this with the DamageType if it might not be a BallisticDamageType
+
+// Compatibility for Hurt(), Call this with the DamageType if it might not be a BallisticDamageType
 // Use like this: class'BallisticDamageType'.static.GenericHurt (..., QuestionableDamagetype);
 static function GenericHurt (Actor Victim, float Damage, Pawn Instigator, vector HitLocation, vector Momentum, class<DamageType> DT)
 {
@@ -260,6 +309,14 @@ static function GenericHurt (Actor Victim, float Damage, Pawn Instigator, vector
 		Victim.TakeDamage(Damage, Instigator, HitLocation, Momentum, DT);
 }
 
+static function bool IgnitesFires()
+{
+    return default.DamageBasis == DB_Heat || default.DamageBasis == DB_Plasma || default.DamageBasis == DB_Explosive;
+}
+
+//===================================================================================
+// BLOOD
+//===================================================================================
 // Spawn some blood effects
 static function DoBloodEffects( vector HitLocation, float Damage, vector Momentum, Pawn Victim, bool bLowDetail )
 {
@@ -297,18 +354,6 @@ static function class<Effects> GetPawnDamageEffect( vector HitLocation, float Da
 	return super.GetPawnDamageEffect(HitLocation, Damage, Momentum, Victim, bLowDetail);
 }
 
-// Apply motion blur
-static function LocalHitEffects (Pawn Victim, name HitBone, vector HitLocation, vector HitRay, int Damage)
-{
-	local float ScaleFactor;
-
-	if (default.bUseMotionBlur && Victim.level.NetMode != NM_DedicatedServer && Victim.level.GetLocalPlayerController().ViewTarget == Victim /*Victim.IsLocallyControlled() PlayerController(Victim.Controller) != None*/ && Damage > default.MinMotionBlurDamage)
-	{
-		ScaleFactor = FMin(1.0, (Damage-default.MinMotionBlurDamage)/default.MotionBlurDamageRange);
-		class'BC_MotionBlurActor'.static.DoMotionBlur(PlayerController(Victim.Controller), default.MotionBlurFactor * ScaleFactor, default.MotionBlurTime * ScaleFactor);
-	}
-}
-
 // Pawn gives damage type a chance to modify hit properties. Called from PlayHit, so changes affect only effects, TakeDamage will be done already.
 static function ModifyHit (Pawn Victim, out float Damage, vector Momentum, out vector HitLocation, out vector HitRay, out name HitBone);
 
@@ -342,6 +387,23 @@ static function bool DoSeverStump (Pawn Victim, name Bone, vector HitRay, int Da
 	return true;
 }
 
+//===================================================================================
+// MOTION BLUR
+//===================================================================================
+static function LocalHitEffects (Pawn Victim, name HitBone, vector HitLocation, vector HitRay, int Damage)
+{
+	local float ScaleFactor;
+
+	if (default.bUseMotionBlur && Victim.level.NetMode != NM_DedicatedServer && Victim.level.GetLocalPlayerController().ViewTarget == Victim /*Victim.IsLocallyControlled() PlayerController(Victim.Controller) != None*/ && Damage > default.MinMotionBlurDamage)
+	{
+		ScaleFactor = FMin(1.0, (Damage-default.MinMotionBlurDamage)/default.MotionBlurDamageRange);
+		class'BC_MotionBlurActor'.static.DoMotionBlur(PlayerController(Victim.Controller), default.MotionBlurFactor * ScaleFactor, default.MotionBlurTime * ScaleFactor);
+	}
+}
+
+//===================================================================================
+// DISPLACEMENT
+//===================================================================================
 static final function bool Displaces()
 {
     return default.DisplacementType != DSP_None;
