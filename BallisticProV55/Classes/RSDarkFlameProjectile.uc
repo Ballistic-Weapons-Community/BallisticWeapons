@@ -25,6 +25,7 @@ function InitFlame(vector End)
 	StartPoint = Location;
 //	LifeSpan = VSize(FireDir) / 3000;
 }
+
 event Tick(float DT)
 {
 	super.Tick(DT);
@@ -218,7 +219,7 @@ defaultproperties
      Speed=3000.000000
      Damage=6.000000
      DamageRadius=192.000000
-     MomentumTransfer=5000.000000
+     MomentumTransfer=0.000000
      MyDamageType=Class'BallisticProV55.DT_RSDarkPlasma'
      bHidden=True
      RemoteRole=ROLE_None

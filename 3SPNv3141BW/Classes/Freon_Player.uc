@@ -26,10 +26,13 @@ function AwardAdrenaline(float amount)
     Super.AwardAdrenaline(amount);
 }
 
+/*
 exec simulated function CallSuddenDeath()
 {
 	ServerTrySuddenDeath();
 }
+*/
+
 //===========================================================================
 // Sudden death. Puts the game into TAM mode.
 // This only works if called by the last person alive.
