@@ -46,6 +46,7 @@ var float						DeclineTime;					// Time it takes for Recoil to decline maximum t
 var float						DeclineDelay;					// The time between firing and when recoil should start decaying
 var float             			HipMultiplier;            		// Hipfire recoil is scaled up by this value
 var float             			CrouchMultiplier;         		// Crouch recoil is scaled by this value
+var bool                        bViewDecline;                   // Weapon will move back down through its recoil path when recoil is declining
 
 //=============================================================================
 // STATE
@@ -94,7 +95,7 @@ final simulated function bool ShouldUpdateView()
 {
     local bool ret;
 
-    ret = bForceUpdate || (Recoil > 0 && HoldingRecoil());
+    ret = bViewDecline || bForceUpdate || (Recoil > 0 && HoldingRecoil());
 
     bForceUpdate = false;
 
@@ -138,6 +139,7 @@ final simulated function Recalculate()
 	DeclineDelay		= Params.DeclineDelay;
 	HipMultiplier 		= Params.HipMultiplier;
 	CrouchMultiplier 	= Params.CrouchMultiplier;
+    bViewDecline        = Params.bViewDecline;
 
 	if (ViewBindFactor == 0)
 		ViewBindFactor = Params.ViewBindFactor;

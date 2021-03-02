@@ -25,6 +25,7 @@ var() float             ViewBindFactor;           	// How much of the recoil is 
 var() float             ADSViewBindFactor;          // Above for ADS.
 var() float             HipMultiplier;            	// Hipfire recoil is scaled up by this value
 var() float             CrouchMultiplier;         	// Crouch recoil is scaled by this value
+var() bool              bViewDecline;               // Weapon will move back down through its recoil path when recoil is declining
 
 final function float EvaluateXRecoil(float Recoil)
 {
@@ -51,4 +52,5 @@ defaultproperties
     ADSViewBindFactor=1.000000
     HipMultiplier=1.600000
 	CrouchMultiplier=0.750000
+    bViewDecline=False
 }
