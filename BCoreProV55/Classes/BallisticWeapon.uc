@@ -505,6 +505,8 @@ simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
 
+    assert(ParamsClasses[BCRepClass.default.GameStyle] != None);
+    
     // Forced to delay initialization because of the need to wait for LayoutIndex to be replicated
 	ParamsClasses[BCRepClass.default.GameStyle].static.Initialize(self);
 
@@ -530,6 +532,8 @@ simulated function PostNetBeginPlay()
 simulated final function OnWeaponParamsChanged()
 {
     local int i;
+
+    assert(WeaponParams != None);
 
 	SightingTime 				= WeaponParams.SightingTime;
 	default.SightingTime 		= WeaponParams.SightingTime;

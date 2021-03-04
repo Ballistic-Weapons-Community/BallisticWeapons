@@ -247,7 +247,9 @@ final simulated function Cleanup()
 // Gameplay
 //=============================================================
 final simulated function Recalculate()
-{
+{    
+    assert(Params != None);
+    
     AimSpread           = Params.AimSpread;
     AimAdjustTime       = Params.AimAdjustTime;
     ChaosDeclineTime    = Params.ChaosDeclineTime;
