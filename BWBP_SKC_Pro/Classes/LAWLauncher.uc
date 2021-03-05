@@ -366,6 +366,7 @@ defaultproperties
 	ZoomStages=6
 
 	ParamsClasses(0)=Class'LAWWeaponParams'
+	ParamsClasses(1)=Class'LAWWeaponParamsClassic'
 	 
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LAWPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LAWSecondaryFire'

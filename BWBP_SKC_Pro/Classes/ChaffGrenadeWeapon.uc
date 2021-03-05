@@ -256,6 +256,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
 	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
 	 ParamsClasses(0)=Class'ChaffWeaponParams'
+	 ParamsClasses(1)=Class'ChaffWeaponParamsClassic'
      FireModeClass(0)=Class'BWBP_SKC_Pro.ChaffPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.ChaffSecondaryFire'
      SelectAnimRate=2.000000

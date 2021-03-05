@@ -149,6 +149,7 @@ defaultproperties
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
 	 CurrentWeaponMode=1
 	 ParamsClasses(0)=Class'XM84WeaponParams'
+	 ParamsClasses(1)=Class'XM84WeaponParamsClassic'
      FireModeClass(0)=Class'BWBP_SKC_Pro.XM84PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.XM84SecondaryFire'
      SelectAnimRate=2.000000

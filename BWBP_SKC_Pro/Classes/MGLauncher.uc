@@ -229,6 +229,7 @@ defaultproperties
 	SightOffset=(X=-30.000000,Y=12.450000,Z=14.850000)
 	GunLength=48.000000
 	ParamsClasses(0)=Class'MGLWeaponParams'
+	ParamsClasses(1)=Class'MGLWeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MGLPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MGLSecondaryFire'
 	SelectAnimRate=1.500000

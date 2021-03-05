@@ -241,6 +241,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	GunLength=16.500000
 	ParamsClasses(0)=Class'CYLOFirestormWeaponParams' 
+	ParamsClasses(1)=Class'CYLOFirestormWeaponParamsClassic' 
 	FireModeClass(0)=Class'BWBP_SKC_Pro.CYLOFirestormPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.CYLOFirestormSecondaryFire'
 	bShowChargingBar=True

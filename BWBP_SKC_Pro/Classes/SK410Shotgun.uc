@@ -188,6 +188,7 @@ defaultproperties
     SightDisplayFOV=30
     GunLength=48.000000
     ParamsClasses(0)=Class'SK410WeaponParams'
+    ParamsClasses(1)=Class'SK410WeaponParamsClassic'
     FireModeClass(0)=Class'BWBP_SKC_Pro.SK410PrimaryFire'
     FireModeClass(1)=Class'BWBP_SKC_Pro.SK410SecondaryFire'
     SelectAnimRate=1.600000

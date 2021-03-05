@@ -717,6 +717,7 @@ defaultproperties
 	ZoomStages=2
 	GunLength=80.000000
 	ParamsClasses(0)=Class'AS50WeaponParams'	 
+	ParamsClasses(1)=Class'AS50WeaponParamsClassic'	 
 	FireModeClass(0)=Class'BWBP_SKC_Pro.AS50PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.AS50SecondaryFire'
 	IdleAnimRate=0.600000

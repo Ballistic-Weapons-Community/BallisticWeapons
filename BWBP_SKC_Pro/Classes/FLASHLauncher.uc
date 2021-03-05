@@ -234,6 +234,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(Y=5.300000,Z=23.299999)
 	ParamsClasses(0)=Class'FLASHWeaponParams'
+	ParamsClasses(1)=Class'FLASHWeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.FLASHPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.FLASHSecondaryFire'
 	PutDownTime=1.400000

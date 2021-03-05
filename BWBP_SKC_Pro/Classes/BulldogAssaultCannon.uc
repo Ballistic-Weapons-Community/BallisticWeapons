@@ -708,6 +708,7 @@ defaultproperties
 	SightDisplayFOV=35.000000
 	GunLength=48.000000
 	ParamsClasses(0)=Class'BulldogWeaponParams'
+	ParamsClasses(1)=Class'BulldogWeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.BulldogPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.BulldogSecondaryFire'
 	PutDownAnimRate=1.700000

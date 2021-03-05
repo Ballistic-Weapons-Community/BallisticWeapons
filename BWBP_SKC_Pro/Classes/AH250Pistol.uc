@@ -254,6 +254,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	GunLength=4.000000
 	ParamsClasses(0)=Class'AH250WeaponParams'
+	ParamsClasses(1)=Class'AH250WeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.AH250PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	MeleeFireClass=Class'BWBP_SKC_Pro.AH250MeleeFire'

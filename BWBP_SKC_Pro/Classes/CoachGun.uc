@@ -468,6 +468,7 @@ defaultproperties
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
 	 ParamsClasses(0)=Class'CoachWeaponParams'
+	 ParamsClasses(1)=Class'CoachWeaponParamsClassic' //Note: Needs state code
      FireModeClass(0)=Class'BWBP_SKC_Pro.CoachGunPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectAnimRate=2.000000

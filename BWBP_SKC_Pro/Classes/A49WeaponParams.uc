@@ -44,7 +44,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-Fire',Volume=0.700000,Pitch=1.200000)
 		WarnTargetPct=0.2
 	End Object
-
+		
 	Begin Object Class=FireParams Name=ArenaProjFireParams
 		FireEndAnim=
 		FireInterval=0.120000
@@ -70,6 +70,10 @@ defaultproperties
      	AmmoPerFire=8
 		FireEffectParams(0)=FireEffectParams'ArenaAltEffectParams'
 	End Object
+    
+	//=================================================================
+	// BASIC PARAMS
+	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		PlayerSpeedFactor=1.050000
@@ -83,6 +87,7 @@ defaultproperties
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaProjFireParams'
         AltFireParams(0)=FireParams'ArenaAltFireParams'
-    End Object 
+    End Object
+	
     Layouts(0)=WeaponParams'ArenaParams'
 }

@@ -2,6 +2,11 @@ class AH250WeaponParams extends BallisticWeaponParams;
 
 defaultproperties
 {
+		
+	//=================================================================
+	// RECOIL
+	//=================================================================
+
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		XCurve=(Points=((InVal=0.0,OutVal=0.0),(InVal=0.15,OutVal=0.1),(InVal=0.35,OutVal=-0.05),(InVal=0.5,OutVal=0.02),(InVal=0.7,OutVal=-0.06),(InVal=1.0,OutVal=0.0)))
 		ViewBindFactor=0.5
@@ -12,12 +17,20 @@ defaultproperties
 		DeclineTime=1
 	End Object
 
+	//=================================================================
+	// AIM
+	//=================================================================
+
 	Begin Object Class=AimParams Name=ArenaAimParams
 		ADSMultiplier=2
 		AimSpread=(Min=16,Max=256)
 		ChaosDeclineTime=0.60000
 	End Object
-
+    
+	//=================================================================
+	// BASIC PARAMS
+	//=================================================================	
+	
 	Begin Object Class=WeaponParams Name=ArenaParams
 		PlayerSpeedFactor=1.050000
 		PlayerJumpFactor=1.000000
@@ -29,6 +42,7 @@ defaultproperties
         ZoomType=ZT_Fixed
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
-    End Object 
+    End Object
+
     Layouts(0)=WeaponParams'ArenaParams'
 }

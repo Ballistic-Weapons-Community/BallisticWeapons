@@ -213,6 +213,7 @@ defaultproperties
     SightOffset=(X=-20.000000,Y=9.700000,Z=19.000000)
     GunLength=32.000000
     ParamsClasses(0)=Class'SKASWeaponParams'
+    ParamsClasses(1)=Class'SKASWeaponParamsClassic'
     FireModeClass(0)=Class'BWBP_SKC_Pro.SKASPrimaryFire'
     FireModeClass(1)=Class'BWBP_SKC_Pro.SKASSecondaryFire'
     IdleAnimRate=0.100000

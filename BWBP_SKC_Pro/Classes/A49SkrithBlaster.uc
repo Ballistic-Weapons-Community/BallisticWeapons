@@ -338,6 +338,7 @@ defaultproperties
 	SightZoomFactor=0.85
 	GunLength=0.100000
 	ParamsClasses(0)=Class'A49WeaponParams'
+	ParamsClasses(1)=Class'A49WeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.A49PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.A49SecondaryFire'
 	PutDownAnimRate=2.300000

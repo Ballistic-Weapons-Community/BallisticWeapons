@@ -593,6 +593,7 @@ defaultproperties
 	ZoomStages=8
 	GunLength=80.000000
 	ParamsClasses(0)=Class'M2020WeaponParams'
+	ParamsClasses(1)=Class'M2020WeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.M2020GaussPrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	PutDownTime=0.80000

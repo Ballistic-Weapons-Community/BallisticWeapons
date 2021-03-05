@@ -310,6 +310,7 @@ defaultproperties
 	SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
 	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'PS9mWeaponParams'
+	ParamsClasses(1)=Class'PS9mWeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.PS9mPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.PS9mSecondaryFire'
 	PutDownTime=0.700000
