@@ -262,6 +262,7 @@ defaultproperties
 	SightDisplayFOV=25.000000
 	GunLength=72.000000
 	ParamsClasses(0)=Class'SRS600WeaponParams'
+	ParamsClasses(1)=Class'SRS600WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.SRS600PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	SelectAnimRate=1.350000

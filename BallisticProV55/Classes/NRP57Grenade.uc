@@ -70,6 +70,7 @@ defaultproperties
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
      CurrentWeaponMode=1
      ParamsClasses(0)=Class'NRP57WeaponParams'
+     ParamsClasses(1)=Class'NRP57WeaponParamsClassic'
      FireModeClass(0)=Class'BallisticProV55.NRP57PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.NRP57SecondaryFire'
      SelectAnimRate=2.250000

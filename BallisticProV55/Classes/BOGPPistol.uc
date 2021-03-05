@@ -295,6 +295,7 @@ defaultproperties
 	SightPivot=(Pitch=300)
 	SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
 	ParamsClasses(0)=Class'BOGPWeaponParams'
+	ParamsClasses(1)=Class'BOGPWeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.BOGPPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.BOGPSecondaryFire'
 	PutDownTime=0.450000

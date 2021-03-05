@@ -619,6 +619,7 @@ defaultproperties
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
 	ParamsClasses(0)=Class'leMatWeaponParams'
+	ParamsClasses(1)=Class'leMatWeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.leMatPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.leMatSecondaryFire'
 	PutDownTime=0.700000

@@ -545,6 +545,7 @@ defaultproperties
 	SightDisplayFOV=25.000000
 	GunLength=16.000000
 	ParamsClasses(0)=Class'SARWeaponParams'
+	ParamsClasses(1)=Class'SARWeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.SARFlashFire'
 	SelectForce="SwitchToAssaultRifle"

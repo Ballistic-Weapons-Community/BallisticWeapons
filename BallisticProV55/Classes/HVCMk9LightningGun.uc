@@ -688,6 +688,7 @@ defaultproperties
 	SightOffset=(X=-12.000000,Z=26.000000)
 	SightDisplayFOV=40.000000
 	ParamsClasses(0)=Class'HVCMk9WeaponParams'
+	ParamsClasses(1)=Class'HVCMk9WeaponParamsClassic' \\todo: lots of state code
 	FireModeClass(0)=Class'BallisticProV55.HVCMk9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.HVCMk9SecondaryFire'
 	PutDownTime=0.500000

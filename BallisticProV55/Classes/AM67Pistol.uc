@@ -136,6 +136,7 @@ defaultproperties
 	ManualLines(2)="Effective at close and medium range."
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_AM67'
 	ParamsClasses(0)=Class'AM67WeaponParams'
+	ParamsClasses(1)=Class'AM67WeaponParamsClassic'
 	PickupClass=Class'BallisticProV55.AM67Pickup'
 	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 	Priority=24

@@ -38,6 +38,7 @@ defaultproperties
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.400000
      ParamsClasses(0)=Class'M58WeaponParams'
+     ParamsClasses(1)=Class'M58WeaponParams'
      CurrentRating=0.400000
      Description="M58 Smoke Grenade||Manuacturer: UTC Defense Tech|Primary: Throw Grenade|Secondary: Roll Grenade|Special: Release Clip||Smoke grenades have been around since the 20th century, used for signaling troops or disguising movements through heavy smoke, they're extremely versatile. They're still in use today and the M58 Smoke Grenade is the latest model introduced by the UTC Defense Tech. Designed to spew out vivid gray smoke, the M58 allows the user to perform a wide range of activities from tactical retreats to confuse and disorient the enemy, and when used in tangent with thermal vision and good fire power, it can create ambushes as well. However, the smoke isn't damaging as well as having a short amount of time before the heavy cloud disperses, removing the element of surprise."
      Priority=3

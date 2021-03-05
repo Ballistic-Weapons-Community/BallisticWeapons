@@ -484,6 +484,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-30.000000,Y=-0.400000,Z=14.500000)
 	ParamsClasses(0)=Class'D49WeaponParams'
+	ParamsClasses(1)=Class'D49WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.D49PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.D49SecondaryFire'
 	PutDownAnimRate=1.250000

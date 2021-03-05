@@ -304,6 +304,7 @@ defaultproperties
 	GunLength=0.000000
 	bAimDisabled=True
 	ParamsClasses(0)=Class'BX5WeaponParams'
+	ParamsClasses(1)=Class'BX5WeaponParamsClassic' //todo: state to properly set spring mine dmg
 	FireModeClass(0)=Class'BallisticProV55.BX5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.BX5SecondaryFire'
 	PutDownTime=0.700000

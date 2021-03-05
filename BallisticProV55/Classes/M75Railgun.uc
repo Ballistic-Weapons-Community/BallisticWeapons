@@ -467,6 +467,7 @@ defaultproperties
 	SMuzzleFlashOffset=(X=50.000000,Z=-35.000000)
 	GunLength=80.000000
 	ParamsClasses(0)=Class'M75WeaponParams'
+	ParamsClasses(1)=Class'M75WeaponParamsClassic' //todo: state code for charge, alt fire??
     FireModeClass(0)=Class'BallisticProV55.M75PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M75SecondaryFire'
 	PutDownAnimRate=1.300000

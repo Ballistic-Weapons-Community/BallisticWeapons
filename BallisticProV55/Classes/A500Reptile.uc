@@ -191,6 +191,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	GunLength=48.000000
 	ParamsClasses(0)=Class'A500WeaponParams'
+	ParamsClasses(1)=Class'A500WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.A500PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A500SecondaryFire'
 	BringUpTime=0.500000
