@@ -1303,7 +1303,7 @@ exec simulated function ScopeView()
         ZeroAim(SightingTime); //Level out sights over aim adjust time to stop the "shunt" effect
 	
         if (!IsFiring() && !bNoTweenToScope)
-            TweenAnim(IdleAnim, SightingTime);
+            SafeTweenAnim(IdleAnim, SightingTime);
 
         if (AimComponent.AllowADS())
             PlayScopeUp();

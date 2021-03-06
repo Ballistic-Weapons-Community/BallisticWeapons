@@ -123,6 +123,7 @@ defaultproperties
 	 BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Fire',Radius=768.000000)
 	 
      bFireOnRelease=True
+
 	 FireEndAnim="'"
 	 
 	 FireRate=1.50000

@@ -454,9 +454,12 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoTweenToScope=True
-	ZoomInAnim="ZoomIn"
-	ZoomOutAnim="ZoomOut"
+	//ZoomInAnim="ZoomIn"
+	//ZoomOutAnim="ZoomOut"
 	ScopeViewTex=Texture'BW_Core_WeaponTex.M75.M75ScopeView'
+	SightOffset=(X=-24,Y=-4.8,Z=24.25)
+	SightPivot=(Roll=-2048)
+	SightDisplayFOV=15
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000

@@ -10,13 +10,15 @@ function PlayFiring()
 	if (BW.MagAmmo - ConsumedLoad < 1)
 	{
 		BW.IdleAnim = 'OpenIdle';
-		BW.ReloadAnim = 'OpenReload';
+		BW.ReloadAnim = 'OpenReloadFast';
+          AimedFireAnim = 'OpenSightFire';
 		FireAnim = 'OpenFire';
 	}
 	else
 	{
 		BW.IdleAnim = 'Idle';
 		BW.ReloadAnim = 'Reload';
+          AimedFireAnim= 'SightFire';
 		FireAnim = 'Fire';
 	}
 	super.PlayFiring();
@@ -40,6 +42,7 @@ defaultproperties
      DamageTypeArm=Class'BWBP_SKC_Pro.DTAH250Pistol'
      PenetrateForce=200
      bPenetrate=True
+     AimedFireAnim='SightFire'
      MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
      FlashScaleFactor=0.500000
      BrassClass=Class'BallisticProV55.Brass_Pistol'
