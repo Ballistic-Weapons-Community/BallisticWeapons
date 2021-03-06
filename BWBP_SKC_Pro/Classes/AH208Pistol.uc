@@ -29,7 +29,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 	{
 		IdleAnim = 'OpenIdle';
-		ReloadAnim = 'OpenReload';
+		ReloadAnim = 'OpenReloadFast';
 		SelectAnim = 'OpenPullout';
 		BringUpTime=default.BringUpTime;
 		SetBoneScale(4,0.0,BulletBone);
@@ -75,7 +75,7 @@ simulated event AnimEnd (int Channel)
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 		{
 			IdleAnim = 'OpenIdle';
-			ReloadAnim = 'OpenReload';
+			ReloadAnim = 'OpenReloadFast';
 			PutDownAnim = 'OpenPutaway';
 			SelectAnim = 'OpenPullout';
 		}

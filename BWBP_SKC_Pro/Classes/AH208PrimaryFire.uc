@@ -10,7 +10,7 @@ function PlayFiring()
 	if (BW.MagAmmo - ConsumedLoad < 1)
 	{
 		BW.IdleAnim = 'OpenIdle';
-          BW.ReloadAnim = 'OpenReload';     
+          BW.ReloadAnim = 'OpenReloadFast';     
           AimedFireAnim = 'OpenSightFire';
           FireAnim = 'OpenFire';
 	}

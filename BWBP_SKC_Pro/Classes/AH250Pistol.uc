@@ -4,121 +4,18 @@
 //=============================================================================
 class AH250Pistol extends BallisticWeapon;
 
-var   Emitter		LaserDot;
-var   LaserActor	Laser;
-var   bool			bLaserOn;
-var() Sound			LaserOnSound;
-var() Sound			LaserOffSound;
-
 var(AH250Pistol) name		RDSBone;			// Bone to use for hiding Red Dot Sight
 var(AH250Pistol) name		MuzzBone;			// Bone to use for hiding Compensator
 var(AH250Pistol) name		LAMBone;			// Bone to use for hiding LAM
 var(AH250Pistol) name		ScopeBone;			// Bone to use for hiding scope
 var(AH208Pistol) name		BulletBone;			// Bone to use for hiding bullet
 
-replication
-{
-	reliable if (Role == ROLE_Authority)
-		bLaserOn;
-}
-
 simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
 	
 	SetBoneScale (0, 0.0, RDSBone);
-	//SetBoneScale (5, 0.0, LAMBone);
-}
-
-simulated event PostNetReceive()
-{
-	if (level.NetMode != NM_Client)
-		return;
-	if (bLaserOn != default.bLaserOn)
-	{
-		OnLaserSwitched();
-
-		default.bLaserOn = bLaserOn;
-		ClientSwitchLaser();
-	}
-	Super.PostNetReceive();
-}
-
-function ServerWeaponSpecial(optional byte i)
-{
-	if (bServerReloading)
-		return;
-	ServerSwitchLaser(!bLaserOn);
-}
-
-function ServerSwitchLaser(bool bNewLaserOn)
-{
-	bLaserOn = bNewLaserOn;
-	bUseNetAim = default.bUseNetAim || bLaserOn;
-	if (ThirdPersonActor!=None)
-		AH250Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
-
-	OnLaserSwitched();
-
-    if (Instigator.IsLocallyControlled())
-		ClientSwitchLaser();
-}
-
-simulated function ClientSwitchLaser()
-{
-	OnLaserSwitched();
-
-	if (bLaserOn)
-	{
-		SpawnLaserDot();
-		PlaySound(LaserOnSound,,0.7,,32);
-	}
-	else
-	{
-		KillLaserDot();
-		PlaySound(LaserOffSound,,0.7,,32);
-	}
-
-	if (!IsinState('DualAction') && !IsinState('PendingDualAction'))
-		PlayIdle();
-
-	bUseNetAim = default.bUseNetAim || bLaserOn;
-}
-
-simulated function OnLaserSwitched()
-{
-	if (bLaserOn)
-		ApplyLaserAim();
-	else
-		AimComponent.Recalculate();
-}
-
-simulated function OnAimParamsChanged()
-{
-	Super.OnAimParamsChanged();
-
-	if (bLaserOn)
-		ApplyLaserAim();
-}
-
-simulated function ApplyLaserAim()
-{
-	AimComponent.AimAdjustTime *= 1.5;
-	AimComponent.AimSpread.Max *= 0.65;
-}
-
-simulated function KillLaserDot()
-{
-	if (LaserDot != None)
-	{
-		LaserDot.Kill();
-		LaserDot = None;
-	}
-}
-simulated function SpawnLaserDot(optional vector Loc)
-{
-	if (LaserDot == None)
-		LaserDot = Spawn(class'M806LaserDot',,,Loc);
+	SetBoneScale (5, 0.0, LAMBone);
 }
 
 simulated function BringUp(optional Weapon PrevWeapon)
@@ -126,7 +23,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 	{
 		IdleAnim = 'OpenIdle';
-		ReloadAnim = 'OpenReloadFast';
+		ReloadAnim = 'OpenReload';
 		SelectAnim = 'OpenPullout';
 		BringUpTime=default.BringUpTime;
 		SetBoneScale(4,0.0,BulletBone);
@@ -140,89 +37,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 	
 	Super.BringUp(PrevWeapon);
-
-	if (Instigator != None && Laser == None && PlayerController(Instigator.Controller) != None)
-		Laser = Spawn(class'LaserActor');
-	if (Instigator != None && LaserDot == None && PlayerController(Instigator.Controller) != None)
-		SpawnLaserDot();
-	if (Instigator != None && AIController(Instigator.Controller) != None)
-		ServerSwitchLaser(FRand() > 0.5);
-}
-
-simulated function bool PutDown()
-{
-	if (Super.PutDown())
-	{
-		KillLaserDot();
-		if (ThirdPersonActor != None)
-			AH250Attachment(ThirdPersonActor).bLaserOn = false;
-		return true;
-	}
-	return false;
-}
-
-simulated function Destroyed ()
-{
-	default.bLaserOn = false;
-	if (LaserDot != None)
-		LaserDot.Destroy();
-	if (Laser != None)
-		Laser.Destroy();
-	Super.Destroyed();
-}
-
-// Draw a laser beam and dot to show exact path of bullets before they're fired
-simulated function DrawLaserSight ( Canvas Canvas )
-{
-	local Vector HitLocation, Start, End, HitNormal, Scale3D, Loc;
-	local Rotator AimDir;
-	local Actor Other;
-
-	if ((ClientState == WS_Hidden) || (!bLaserOn) || Instigator == None || Instigator.Controller == None || Laser==None)
-		return;
-
-	AimDir = BallisticFire(FireMode[0]).GetFireAim(Start);
-	if (bScopeView)
-		Loc = Instigator.Location + vect(0,0,1)*(Instigator.EyeHeight-8);
-	else
-		Loc = GetBoneCoords(LAMBone).Origin;
-
-	End = Start + Normal(Vector(AimDir))*5000;
-	Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
-	if (Other == None)
-		HitLocation = End;
-
-	// Draw dot at end of beam
-	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
-		SpawnLaserDot(HitLocation);
-	else
-		KillLaserDot();
-	if (LaserDot != None)
-		LaserDot.SetLocation(HitLocation);
-	Canvas.DrawActor(LaserDot, false, false, Instigator.Controller.FovAngle);
-
-	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs)
-	Laser.SetLocation(Loc);
-	HitLocation = ConvertFOVs(End, Instigator.Controller.FovAngle, DisplayFOV, 400);
-	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
-		Laser.SetRotation(Rotator(HitLocation - Loc));
-	else
-	{
-		AimDir = GetBoneRotation(LAMBone);
-		Laser.SetRotation(AimDir);
-	}
-	Scale3D.X = VSize(HitLocation-Loc)/128;
-	Scale3D.Y = 1;
-	Scale3D.Z = 1;
-	Laser.SetDrawScale3D(Scale3D);
-	Canvas.DrawActor(Laser, false, false, DisplayFOV);
-}
-
-simulated event RenderOverlays(Canvas C)
-{
-	super.RenderOverlays(C);
-	if (!IsInState('Lowered'))
-		DrawLaserSight(C);
 }
 
 // Animation notify for when cocking action starts. Used to time sounds
@@ -254,7 +68,7 @@ simulated event AnimEnd (int Channel)
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 		{
 			IdleAnim = 'OpenIdle';
-			ReloadAnim = 'OpenReloadFast';
+			ReloadAnim = 'OpenReload';
 			PutDownAnim = 'OpenPutaway';
 			SelectAnim = 'OpenPullout';
 		}
@@ -329,8 +143,6 @@ defaultproperties
 	ManualLines(0)="High-powered semi-automatic fire."
 	ManualLines(1)="Engages the scope."
 	ManualLines(2)="Effective at medium range."
-	LaserOnSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
-	LaserOffSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
 	RDSBone="RedDotSight"
 	MuzzBone="Compensator"
 	LAMBone="LAM"
