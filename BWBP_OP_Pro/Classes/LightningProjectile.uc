@@ -22,7 +22,7 @@ event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Mo
 defaultproperties
 {
      ImpactManager=Class'BWBP_OP_Pro.IM_LightningArcProj'
-     AccelSpeed=500.000000
+     AccelSpeed=1500.000000
      MyRadiusDamageType=Class'BWBP_OP_Pro.DT_LightningProjectile'
      bTearOnExplode=True
      MotionBlurRadius=300.000000
@@ -30,8 +30,8 @@ defaultproperties
      ShakeRotTime=2.000000
      ShakeOffsetMag=(Y=15.000000,Z=15.000000)
      ShakeOffsetTime=2.000000
-     Speed=250.000000
-     MaxSpeed=5000.000000
+     Speed=750.000000
+     MaxSpeed=1500.000000
      bSwitchToZeroCollision=True
      Damage=70.000000
      DamageRadius=100.000000
@@ -50,7 +50,7 @@ defaultproperties
      LifeSpan=16.000000
      Style=STY_Additive
      SoundVolume=255
-     SoundRadius=75.000000
+     SoundRadius=150.000000
      CollisionRadius=16.000000
      CollisionHeight=16.000000
      bCollideActors=True
