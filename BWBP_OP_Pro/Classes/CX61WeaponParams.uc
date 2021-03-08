@@ -2,6 +2,55 @@ class CX61WeaponParams extends BallisticWeaponParams;
 
 defaultproperties
 {
+    //=================================================================
+    // PRIMARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
+		TraceRange=(Min=9000.000000,Max=9000.000000)
+		RangeAtten=0.350000
+		Damage=22
+		DamageType=Class'BWBP_OP_Pro.DT_CX61Chest'
+		DamageTypeHead=Class'BWBP_OP_Pro.DT_CX61Head'
+		DamageTypeArm=Class'BWBP_OP_Pro.DT_CX61Chest'
+		PenetrateForce=180
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=0.700000
+		Recoil=128.000000
+		Chaos=0.030000
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=0.115000
+		FireAnim="SightFire"
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.200000	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
+		
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
+		Chaos=0.050000
+		WarnTargetPct=0.200000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		FireInterval=0.090000
+		AmmoPerFire=0
+		FireAnim=
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
+	End Object
+
+	//=================================================================
+	// RECOIL
+	//=================================================================
+
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.4
 		XCurve=(Points=(,(InVal=0.2,OutVal=-0.03),(InVal=0.4,OutVal=0.11),(InVal=0.5,OutVal=0.13),(InVal=0.6,OutVal=0.15),(InVal=0.8,OutVal=0.16),(InVal=1.000000)))
@@ -12,6 +61,10 @@ defaultproperties
 		DeclineDelay=0.135000
 	End Object
 
+	//=================================================================
+	// AIM
+	//=================================================================
+
 	Begin Object Class=AimParams Name=ArenaAimParams
 		AimSpread=(Min=16,Max=768)
 		ADSMultiplier=0.200000
@@ -20,6 +73,10 @@ defaultproperties
 		ChaosDeclineTime=1.250000
 		ChaosSpeedThreshold=15000.000000
 	End Object
+
+	//=================================================================
+	// BASIC PARAMS
+	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		PlayerSpeedFactor=1
@@ -31,6 +88,8 @@ defaultproperties
 		MagAmmo=32
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
 }
