@@ -2,6 +2,54 @@ class PD97WeaponParams extends BallisticWeaponParams;
 
 defaultproperties
 {
+    //=================================================================
+    // PRIMARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
+		ProjectileClass=Class'BWBP_OP_Pro.PD97Dart'
+		SpawnOffset=(X=15.000000,Y=15.000000,Z=-20.000000)
+		Speed=15000.000000
+		Damage=10
+		Recoil=256.000000
+		Chaos=0.150000
+		BotRefireRate=0.700000
+		WarnTargetPct=0.300000	
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=0.400000
+		PreFireAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.100000	
+		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryEffectParams'
+	End Object
+		
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
+		ProjectileClass=Class'BWBP_OP_Pro.PD97TazerProj'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=10240.000000
+		Damage=5
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		FireInterval=0.900000
+		AmmoPerFire=0
+		PreFireAnim=
+		FireAnim="TazerFire"	
+		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
+	End Object
+		
+	//=================================================================
+	// RECOIL
+	//=================================================================
+
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.45
 		XRandFactor=0.10000
@@ -11,12 +59,20 @@ defaultproperties
 		DeclineDelay=0.500000
 	End Object
 
+	//=================================================================
+	// AIM
+	//=================================================================
+
 	Begin Object Class=AimParams Name=ArenaAimParams
 		ADSMultiplier=0.150000
 		JumpChaos=0.200000
 		AimAdjustTime=0.450000
 		ChaosDeclineTime=0.450000
 	End Object
+
+	//=================================================================
+	// BASIC PARAMS
+	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		PlayerSpeedFactor=1.05
@@ -28,6 +84,8 @@ defaultproperties
 		MagAmmo=5
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
 }

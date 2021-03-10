@@ -2,6 +2,62 @@ class M50WeaponParams extends BallisticWeaponParams;
 
 defaultproperties
 {
+    //=================================================================
+    // PRIMARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
+		TraceRange=(Min=12000.000000,Max=15000.000000)
+		RangeAtten=0.350000
+		Damage=20
+		DamageType=Class'BallisticProV55.DTM50Assault'
+		DamageTypeHead=Class'BallisticProV55.DTM50AssaultHead'
+		DamageTypeArm=Class'BallisticProV55.DTM50AssaultLimb'
+		PenetrateForce=150
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+		FlashScaleFactor=0.800000
+		Recoil=118.000000
+		Chaos=0.02
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=0.090000
+		FireEndAnim=
+		AimedFireAnim="AimedFire"	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
+		
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
+		ProjectileClass=Class'BallisticProV55.M50Grenade'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=3500.000000
+		Damage=110
+		DamageRadius=512.000000
+		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		Recoil=None
+		Chaos=None
+		BotRefireRate=0.3
+		WarnTargetPct=0.5	
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		FireInterval=0.800000
+		PreFireTime=0.450000
+		PreFireAnim="GrenadePrepFire"
+		FireAnim="GrenadeFire"	
+		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
+	End Object
+		
+	//=================================================================
+	// RECOIL
+	//=================================================================
+
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.35
 		CrouchMultiplier=0.750000
@@ -13,6 +69,10 @@ defaultproperties
 		DeclineTime=0.5
 	End Object
 
+	//=================================================================
+	// AIM
+	//=================================================================
+
 	Begin Object Class=AimParams Name=ArenaAimParams
 		ADSMultiplier=0.200000
 		SprintOffSet=(Pitch=-3000,Yaw=-4000)
@@ -21,12 +81,18 @@ defaultproperties
 		ChaosSpeedThreshold=5000.000000
 	End Object
 
+	//=================================================================
+	// BASIC PARAMS
+	//=================================================================	
+
     Begin Object Class=WeaponParams Name=ArenaParams
         SightingTime=0.35
         MagAmmo=30
         InventorySize=12
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
 }

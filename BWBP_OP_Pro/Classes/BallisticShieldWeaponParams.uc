@@ -13,8 +13,6 @@ defaultproperties
 		DamageTypeHead=Class'BWBP_OP_Pro.DTBallisticShield'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTBallisticShield'
 		HookStopFactor=1.700000
-		Recoil=None
-		Chaos=None
 		BotRefireRate=0.99
 		WarnTargetPct=0.3
 	End Object
@@ -38,8 +36,6 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_OP_Pro.DTBallisticShield'
 		HookStopFactor=1.700000
 		HookPullForce=100.000000
-		Recoil=None
-		Chaos=None
 		BotRefireRate=0.99
 		WarnTargetPct=0.5
 	End Object

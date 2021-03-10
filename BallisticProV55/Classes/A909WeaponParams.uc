@@ -6,26 +6,6 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 
-    Begin Object Class=FireParams Name=ArenaPriFireParams
-        AmmoPerFire=0
-        FireAnim="PrepHack"
-        FireAnimRate=1.200000
-        FireInterval=0.350000
-        FireEffectParams(0)=MeleeEffectParams'ArenaPriEffectParams'
-    End Object
-
-    Begin Object Class=FireParams Name=ArenaSecFireParams
-        AmmoPerFire=0
-        PreFireAnim="PrepBigHack3"
-        FireAnim="BigHack3"
-        FireInterval=1.000000
-        FireEffectParams(0)=MeleeEffectParams'ArenaSecEffectParams'
-    End Object
-
-    //=================================================================
-    // SECONDARY FIRE
-    //=================================================================	
-
     Begin Object Class=MeleeEffectParams Name=ArenaPriEffectParams
         TraceRange=(Min=150.000000,Max=150.000000)
         Damage=45.000000
@@ -38,6 +18,18 @@ defaultproperties
         WarnTargetPct=0.300000
         BotRefireRate=0.99
     End Object
+
+    Begin Object Class=FireParams Name=ArenaPriFireParams
+        AmmoPerFire=0
+        FireAnim="PrepHack"
+        FireAnimRate=1.200000
+        FireInterval=0.350000
+        FireEffectParams(0)=MeleeEffectParams'ArenaPriEffectParams'
+    End Object
+
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
 
     Begin Object Class=MeleeEffectParams Name=ArenaSecEffectParams
         Fatigue=0.200000
@@ -52,6 +44,14 @@ defaultproperties
         FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.A909.A909Slash',Volume=0.5,Radius=32.000000,bAtten=True)
         WarnTargetPct=0.500000
         BotRefireRate=0.5
+    End Object
+
+    Begin Object Class=FireParams Name=ArenaSecFireParams
+        AmmoPerFire=0
+        PreFireAnim="PrepBigHack3"
+        FireAnim="BigHack3"
+        FireInterval=1.000000
+        FireEffectParams(0)=MeleeEffectParams'ArenaSecEffectParams'
     End Object
 
 	//=================================================================

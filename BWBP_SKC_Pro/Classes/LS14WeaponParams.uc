@@ -2,6 +2,64 @@ class LS14WeaponParams extends BallisticWeaponParams;
 
 defaultproperties
 {
+    //=================================================================
+    // PRIMARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
+		TraceRange=(Min=30000.000000,Max=30000.000000)
+		Damage=20
+		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
+		PenetrateForce=500
+		bPenetrate=True
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
+		FlashScaleFactor=0.400000
+		Recoil=150.000000
+		Chaos=0.300000
+		BotRefireRate=0.99
+		WarnTargetPct=0.30000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=0.150000
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
+		
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.LS14Rocket'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=750.000000
+		MaxSpeed=9000.000000
+		AccelSpeed=6750.000000
+		Damage=70
+		DamageRadius=384.000000
+		MomentumTransfer=50000.000000
+		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		FlashScaleFactor=2.600000
+		Recoil=256.000000
+		BotRefireRate=0.600000
+		WarnTargetPct=0.300000	
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		FireInterval=0.600000
+		AmmoPerFire=0
+		PreFireAnim="GrenadePrepFire"
+		FireAnim="RLFire"	
+		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
+	End Object
+		
+	//=================================================================
+	// RECOIL
+	//=================================================================
+
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.2
 		XCurve=(Points=(,(InVal=0.150000,OutVal=0.1),(InVal=0.250000,OutVal=0.180000),(InVal=0.400000,OutVal=0.250000),(InVal=0.600000,OutVal=0.350000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.5)))
@@ -12,6 +70,10 @@ defaultproperties
 		DeclineDelay=0.2
 	End Object
 
+	//=================================================================
+	// AIM
+	//=================================================================
+
 	Begin Object Class=AimParams Name=ArenaAimParams
 		AimSpread=(Min=64,Max=384)
 		SprintOffset=(Pitch=-1000,Yaw=-2048)
@@ -19,6 +81,10 @@ defaultproperties
 		ChaosDeclineTime=1.0
 		ChaosDeclineDelay=0.5
 	End Object
+
+	//=================================================================
+	// BASIC PARAMS
+	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		PlayerSpeedFactor=1
@@ -31,6 +97,8 @@ defaultproperties
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
 }

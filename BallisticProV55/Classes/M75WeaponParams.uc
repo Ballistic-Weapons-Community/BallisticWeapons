@@ -2,6 +2,49 @@ class M75WeaponParams extends BallisticWeaponParams;
 
 defaultproperties
 {
+    //=================================================================
+    // PRIMARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=FireEffectParams Name=ArenaPrimaryEffectParams
+		MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
+		FlashScaleFactor=0.750000
+		Recoil=768.000000
+		Chaos=0.750000
+		BotRefireRate=0.3
+		WarnTargetPct=0.75
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=1.500000
+		bCockAfterFire=True
+		FireEndAnim="'"
+		FireEffectParams(0)=FireEffectParams'ArenaPrimaryEffectParams'
+	End Object
+		
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
+		MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
+		Recoil=1024.000000
+		Chaos=0.750000
+		BotRefireRate=0.3
+		WarnTargetPct=0.75
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		FireInterval=1.50000
+		bCockAfterFire=True
+		FireEndAnim="'"
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
+	End Object
+		
+	//=================================================================
+	// RECOIL
+	//=================================================================
+
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.15
 		CrouchMultiplier=0.600000
@@ -13,6 +56,10 @@ defaultproperties
 		DeclineDelay=0.500000
 	End Object
 
+	//=================================================================
+	// AIM
+	//=================================================================
+
 	Begin Object Class=AimParams Name=ArenaAimParams
 		SprintOffset=(Pitch=-8000,Yaw=-10000)
 		JumpOffset=(Pitch=-6000,Yaw=2000)
@@ -21,6 +68,10 @@ defaultproperties
 		ChaosDeclineTime=0.800000
 		ADSMultiplier=0.5
 	End Object
+
+	//=================================================================
+	// BASIC PARAMS
+	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		DisplaceDurationMult=1.25
@@ -33,6 +84,8 @@ defaultproperties
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
 }
