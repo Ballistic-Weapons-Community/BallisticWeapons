@@ -94,8 +94,8 @@ simulated function SwitchWeaponMode (byte NewMode)
 	{
 		BallisticFireSound.Sound=Amp1FireSound;
 		BallisticFireSound.Volume=1.500000;
-		FireRecoil=256.000000;
-		FireChaos=0.350000;
+		FireRecoil=320.000000;
+		FireChaos=0.450000;
 		Damage=45.000000;
 		DamageType=class'DTSRXRifle_Incendiary';
 		DamageTypeHead=class'DTSRXRifleHead_Incendiary';
@@ -108,7 +108,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 	{
 		BallisticFireSound.Sound=Amp2FireSound;
 		BallisticFireSound.Volume=1.200000;
-		FireRecoil=128.000000;
+		FireRecoil=64.000000;
 		FireChaos=0.150000;
 		Damage=25.000000;
 		DamageType=class'DTSRXRifle_Corrosive';
@@ -212,6 +212,7 @@ simulated function SetSilenced(bool bSilenced)
 		RangeAtten *= 1.2;
 		XInaccuracy *= 0.75;
 		YInaccuracy *= 0.75;
+		Damage *= 0.75;
 
 		BW.SightingTime = BW.default.SightingTime * 1.25;
 	}
@@ -222,6 +223,7 @@ simulated function SetSilenced(bool bSilenced)
 		RangeAtten = default.RangeAtten;
 		XInaccuracy = default.XInaccuracy;
 		YInaccuracy = default.YInaccuracy;
+		Damage = default.Damage;
 
 		BW.SightingTime = BW.default.SightingTime;
 	}
@@ -296,8 +298,8 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      BrassOffset=(X=-10.000000,Y=1.000000,Z=-1.000000)
      AimedFireAnim="SightFire"
-     FireRecoil=200.000000
-     FireChaos=0.100000
+     FireRecoil=192.000000
+     FireChaos=0.300000
      SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire2',Volume=0.500000,Radius=256.000000,bAtten=True)
      BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
      bPawnRapidFireAnim=True

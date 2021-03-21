@@ -26,7 +26,7 @@ event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Mo
 		LConductor.Instigator = Instigator;
 		LConductor.Damage = 120;
 		LConductor.ChargePower = 2;
-          LConductor.bIsCombo = true;
+        LConductor.bIsCombo = true;
 
 		LConductor.Initialize(self);
 	}
@@ -68,7 +68,7 @@ State WaitForCombo
 defaultproperties
 {
      ImpactManager=Class'BWBP_OP_Pro.IM_LightningArcProj'
-     AccelSpeed=1500.000000
+     AccelSpeed=-100.000000
      MyRadiusDamageType=Class'BWBP_OP_Pro.DT_LightningProjectile'
      bTearOnExplode=True
      MotionBlurRadius=300.000000
@@ -79,7 +79,7 @@ defaultproperties
      Speed=750.000000
      MaxSpeed=1500.000000
      bSwitchToZeroCollision=True
-     Damage=70.000000
+     Damage=20.000000
      DamageRadius=1.000000
      MyDamageType=Class'BWBP_OP_Pro.DT_LightningProjectile'
      bDynamicLight=True
@@ -93,7 +93,7 @@ defaultproperties
      DrawScale=0.300000
      bNetTemporary=False
      AmbientSound=Sound'WeaponSounds.ShockRifleProjectile'
-     LifeSpan=16.000000
+     LifeSpan=7.500000
      Style=STY_Additive
      SoundVolume=255
      SoundRadius=150.000000
