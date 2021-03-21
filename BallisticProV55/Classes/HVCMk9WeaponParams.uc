@@ -16,6 +16,7 @@ defaultproperties
 		Chaos=0.000000
 		BotRefireRate=0.99
 		WarnTargetPct=0.3
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart')
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -38,6 +39,7 @@ defaultproperties
 		Recoil=96.000000
 		BotRefireRate=0.4
 		WarnTargetPct=0.8
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-SecFire',Volume=0.900000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

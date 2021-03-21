@@ -21,6 +21,7 @@ event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Mo
 
 defaultproperties
 {
+     ModeIndex=1
      ImpactManager=Class'BWBP_OP_Pro.IM_LightningArcProj'
      AccelSpeed=1500.000000
      MyRadiusDamageType=Class'BWBP_OP_Pro.DT_LightningProjectile'

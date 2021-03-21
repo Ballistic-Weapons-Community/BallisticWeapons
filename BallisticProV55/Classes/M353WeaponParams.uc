@@ -21,6 +21,7 @@ defaultproperties
 		FlashScaleFactor=0.700000
 		Recoil=96.000000
 		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams

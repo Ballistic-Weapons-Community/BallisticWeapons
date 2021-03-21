@@ -58,6 +58,7 @@ simulated function Explode(vector a, vector b)
 
 defaultproperties
 {
+     ModeIndex=1
      bPenetrate=True
      Speed=3000.000000
      Damage=5.000000

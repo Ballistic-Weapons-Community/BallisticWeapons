@@ -13,6 +13,7 @@ defaultproperties
 		Chaos=0.750000
 		BotRefireRate=0.3
 		WarnTargetPct=0.75
+		BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Fire',Volume=0.750000,Radius=384.000000)
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -32,6 +33,7 @@ defaultproperties
 		Chaos=0.750000
 		BotRefireRate=0.3
 		WarnTargetPct=0.75
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Fire',Radius=768.000000)
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

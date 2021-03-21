@@ -13,6 +13,7 @@ defaultproperties
         DamageRadius=200.000000
         BotRefireRate=0.3
         WarnTargetPct=0.75	
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
     End Object
 
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams

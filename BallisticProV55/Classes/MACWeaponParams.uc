@@ -16,14 +16,15 @@ defaultproperties
 		MomentumTransfer=70000.000000
 		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 		FlashScaleFactor=2.500000
-		Recoil=2048.000000
+		Recoil=256.000000
 		Chaos=0.550000
 		BotRefireRate=0.7
 		WarnTargetPct=0.75	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Fire',Radius=768.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=1.350000
+		FireInterval=0.800000
 		FireEndAnim=	
 		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryEffectParams'
 	End Object
@@ -31,7 +32,6 @@ defaultproperties
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
-	
 	
 	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
 		BotRefireRate=0.300000
@@ -83,6 +83,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
 }

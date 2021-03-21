@@ -19,6 +19,7 @@ defaultproperties
 		Recoil=0.000000
 		Chaos=0.170000
 		WarnTargetPct=0.200000	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -43,6 +44,7 @@ defaultproperties
 		Recoil=0.000000
 		Chaos=0.080000
 		WarnTargetPct=0.200000	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

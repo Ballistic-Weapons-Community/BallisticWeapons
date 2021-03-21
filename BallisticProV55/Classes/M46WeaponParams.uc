@@ -23,6 +23,7 @@ defaultproperties
         Chaos=0.032000
         BotRefireRate=0.99
         WarnTargetPct=0.2
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_Fire1',Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
     End Object
 
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -45,6 +46,7 @@ defaultproperties
         Chaos=None
         BotRefireRate=0.3
         WarnTargetPct=0.8	
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_FireGren',Volume=1.750000)
     End Object
 
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams

@@ -99,6 +99,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
+     ModeIndex=1
      DetonateOn=DT_Impact
      bNoInitialSpin=True
      bAlignToVelocity=True

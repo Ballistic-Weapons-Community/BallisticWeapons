@@ -23,6 +23,7 @@ defaultproperties
         Chaos=0.300000
         BotRefireRate=0.7
         WarnTargetPct=0.75	
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Fire',Volume=1.500000)
     End Object
 
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -54,6 +55,7 @@ defaultproperties
         Chaos=0.250000
         BotRefireRate=0.7
         WarnTargetPct=0.5	
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290SingleFire',Volume=1.200000)
     End Object
 
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams

@@ -20,7 +20,8 @@ defaultproperties
 		Recoil=512.000000
 		Chaos=0.400000
 		BotRefireRate=0.7
-		WarnTargetPct=0.5	
+		WarnTargetPct=0.5
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-Fire',Volume=1.500000)	
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -42,6 +43,7 @@ defaultproperties
 		Damage=5
 		BotRefireRate=0.3
 		WarnTargetPct=0.5	
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.PD97.BloodhoundTazerFire',Volume=2.250000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

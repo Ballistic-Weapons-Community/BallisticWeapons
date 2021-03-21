@@ -23,6 +23,7 @@ defaultproperties
 		Chaos=0.200000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.300000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Fire',Volume=4.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams

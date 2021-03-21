@@ -23,6 +23,7 @@ defaultproperties
         Chaos=0.120000
         BotRefireRate=0.99
         WarnTargetPct=0.2
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-Fire',Volume=1.200000)
     End Object
 
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -48,6 +49,7 @@ defaultproperties
         Chaos=0.000000
         BotRefireRate=0.999000
         WarnTargetPct=0.010000
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-LaserFire')
     End Object
 
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams

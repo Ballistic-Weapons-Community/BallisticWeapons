@@ -20,6 +20,7 @@ defaultproperties
 		Recoil=118.000000
 		Chaos=0.02
 		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Fire2',Volume=0.900000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -40,10 +41,9 @@ defaultproperties
 		Damage=110
 		DamageRadius=512.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-		Recoil=None
-		Chaos=None
 		BotRefireRate=0.3
 		WarnTargetPct=0.5	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50GrenFire')
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

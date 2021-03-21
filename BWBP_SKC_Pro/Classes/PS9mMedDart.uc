@@ -29,6 +29,7 @@ function DoDamage (Actor Other, vector HitLocation)
 
 defaultproperties
 {
+     ModeIndex=1
      ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
      TrailClass=Class'BallisticProV55.PineappleTrail'
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_PS9mMedDart'

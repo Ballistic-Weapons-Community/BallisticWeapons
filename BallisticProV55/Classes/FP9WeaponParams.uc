@@ -15,6 +15,7 @@ defaultproperties
         MomentumTransfer=50000.000000
         BotRefireRate=0.300000
         WarnTargetPct=0.9	
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.FP9A5.FP9-Throw')
     End Object
 
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams

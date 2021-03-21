@@ -22,6 +22,7 @@ defaultproperties
 		Chaos=0.800000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Fire')
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams

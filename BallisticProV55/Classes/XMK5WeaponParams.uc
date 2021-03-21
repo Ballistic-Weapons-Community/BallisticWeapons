@@ -22,6 +22,7 @@ defaultproperties
 		Recoil=110.000000
 		Chaos=0.035000
 		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_Fire1',Volume=1.350000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -42,6 +43,7 @@ defaultproperties
 		Damage=30
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Volume=1.350000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

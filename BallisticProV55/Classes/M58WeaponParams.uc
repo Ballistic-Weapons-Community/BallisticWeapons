@@ -11,6 +11,7 @@ defaultproperties
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
         Damage=0
         DamageRadius=200.000000
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
     End Object
 
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -31,6 +32,7 @@ defaultproperties
         PreFireAnim="PrepRoll"
         FireAnim="Roll"
         FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
     End Object
 		
 	//=================================================================

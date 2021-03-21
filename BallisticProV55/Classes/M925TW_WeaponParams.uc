@@ -21,6 +21,7 @@ defaultproperties
 		Recoil=250.000000
 		Chaos=0.150000
 		WarnTargetPct=0.200000
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.M925.M925-Fire',Volume=0.800000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams

@@ -22,6 +22,7 @@ defaultproperties
 		Recoil=210.000000
 		Chaos=0.065000
 		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams

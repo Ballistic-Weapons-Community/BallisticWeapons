@@ -21,6 +21,7 @@ defaultproperties
 		Recoil=192.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-Fire',Volume=1.100000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams

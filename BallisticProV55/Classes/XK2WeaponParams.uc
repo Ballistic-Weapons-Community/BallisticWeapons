@@ -20,6 +20,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		Recoil=72.000000
 		Chaos=0.025000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Fire',Volume=0.500000,Radius=384.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -44,6 +45,7 @@ defaultproperties
 		FlashScaleFactor=0.250000
 		Recoil=98.000000
 		Chaos=0.050000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

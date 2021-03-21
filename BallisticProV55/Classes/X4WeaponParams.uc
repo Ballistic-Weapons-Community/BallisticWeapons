@@ -14,6 +14,7 @@ defaultproperties
         DamageTypeArm=Class'BallisticProV55.DTX4KnifeLimb'
         BotRefireRate=0.9900000
         WarnTargetPct=0.300000
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -38,6 +39,7 @@ defaultproperties
         HookPullForce=100.000000
         BotRefireRate=0.500000
         WarnTargetPct=0.50000
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams

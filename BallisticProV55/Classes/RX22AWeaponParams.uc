@@ -13,6 +13,7 @@ defaultproperties
 		Chaos=0.050000
 		BotRefireRate=0.99
 		WarnTargetPct=0.4
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Ignite',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -29,6 +30,7 @@ defaultproperties
 	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
 		Recoil=32.000000
 		WarnTargetPct=0.500000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FuelLoop',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
