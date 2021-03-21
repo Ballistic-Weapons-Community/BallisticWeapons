@@ -2,6 +2,11 @@ class LightningRifle extends BallisticWeapon;
 
 var float		ChargePower, ChargeIndex, MaxCharge;	//Charge power of secondary fire - affects damage, ammo usage and conductivity
 
+var LightningProjectile ComboTarget;    // used by AI
+var bool            bRegisterTarget;
+var bool            bWaitForCombo;
+var vector          ComboStart;
+
 struct RevInfo
 {
 	var() name	BoneName;
@@ -17,33 +22,153 @@ simulated function SetChargePower(float NewChargePower)
 	ChargePower = NewChargePower;
 	ChargeIndex = int(NewChargePower);
 }
-
 // AI Interface =====
-function byte BestMode()	{	return 0;	}
+
+function SetComboTarget(LightningProjectile L)
+{
+    if ( !bRegisterTarget || (bot(Instigator.Controller) == None) || (Instigator.Controller.Enemy == None) )
+        return;
+
+    bRegisterTarget = false;
+    ComboStart = Instigator.Location;
+    ComboTarget = L;
+    //ComboTarget.Monitor(Bot(Instigator.Controller).Enemy);
+}
+
+function float RangedAttackTime()
+{
+    local bot B;
+
+    B = Bot(Instigator.Controller);
+    if ( (B == None) || (B.Enemy == None) )
+        return 0;
+
+    if ( B.CanComboMoving() )
+        return 0;
+
+    return FMin(2,0.3 + VSize(B.Enemy.Location - Instigator.Location)/class'LightningProjectile'.default.Speed);
+}
+
+simulated function bool StartFire(int mode)
+{
+    if ( bWaitForCombo && (Bot(Instigator.Controller) != None) )
+    {
+        if ( (ComboTarget == None) || ComboTarget.bDeleteMe )
+            bWaitForCombo = false;
+        else
+            return false;
+    }
+    return Super.StartFire(mode);
+}
+
+function DoCombo()
+{
+    if ( bWaitForCombo )
+    {
+        bWaitForCombo = false;
+        if ( (Instigator != None) && (Instigator.Weapon == self) )
+            StartFire(0);
+    }
+}
+
+function byte BestMode()
+{
+    local float EnemyDist, MaxDist;
+    local bot B;
+
+    bWaitForCombo = false;
+    B = Bot(Instigator.Controller);
+    if ( (B == None) || (B.Enemy == None) )
+        return 0;
+
+    if (B.IsShootingObjective())
+        return 0;
+
+    if ( !B.EnemyVisible() )
+    {
+        if ( (ComboTarget != None) && !ComboTarget.bDeleteMe && B.CanCombo() )
+        {
+            bWaitForCombo = true;
+            return 0;
+        }
+        ComboTarget = None;
+        if ( B.CanCombo() && B.ProficientWithWeapon() )
+        {
+            bRegisterTarget = true;
+            return 1;
+        }
+        return 0;
+    }
+
+    EnemyDist = VSize(B.Enemy.Location - Instigator.Location);
+    if ( B.Skill > 5 )
+        MaxDist = 4 * class'LightningProjectile'.default.Speed;
+    else
+        MaxDist = 3 * class'LightningProjectile'.default.Speed;
+
+    if ( (EnemyDist > MaxDist) || (EnemyDist < 150) )
+    {
+        ComboTarget = None;
+        return 0;
+    }
+
+    if ( (ComboTarget != None) && !ComboTarget.bDeleteMe && B.CanCombo() )
+    {
+        bWaitForCombo = true;
+        return 0;
+    }
+
+    ComboTarget = None;
+
+    if ( (EnemyDist > 2500) && (FRand() < 0.5) )
+        return 0;
+
+    if ( B.CanCombo() && B.ProficientWithWeapon() )
+    {
+        bRegisterTarget = true;
+        return 1;
+    }
+    if ( FRand() < 0.7 )
+        return 0;
+    return 1;
+}
 
 function float GetAIRating()
 {
-	local Bot B;
-	
-	local float Dist;
-	local float Rating;
+    local Bot B;
 
-	B = Bot(Instigator.Controller);
-	
-	if ( B == None )
-		return AIRating;
+    B = Bot(Instigator.Controller);
+    if ( B == None )
+        return AIRating;
 
-	Rating = Super.GetAIRating();
+    if ( B.Enemy == None )
+    {
+        if ( (B.Target != None) && VSize(B.Target.Location - B.Pawn.Location) > 8000 )
+            return 0.9;
+        return AIRating;
+    }
 
-	if (B.Enemy == None)
-		return Rating;
+    if ( bWaitForCombo )
+        return 1.5;
+    if ( !B.ProficientWithWeapon() )
+        return AIRating;
+    if ( B.Stopped() )
+    {
+        if ( !B.EnemyVisible() && (VSize(B.Enemy.Location - Instigator.Location) < 5000) )
+            return (AIRating + 0.5);
+        return (AIRating + 0.3);
+    }
+    else if ( VSize(B.Enemy.Location - Instigator.Location) > 1600 )
+        return (AIRating + 0.1);
+    else if ( B.Enemy.Location.Z > B.Location.Z + 200 )
+        return (AIRating + 0.15);
 
-	Dist = VSize(B.Enemy.Location - Instigator.Location);
-	
-	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.5, Dist, 2048, 3072); 
+    return AIRating;
 }
+// end AI Interface
+
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return -0.9;	}
+function float SuggestAttackStyle()	{	return -0.4;	}
 // tells bot whether to charge or back off while defending against this weapon
 function float SuggestDefenseStyle()	{	return 0.9;	}
 // End AI Stuff =====

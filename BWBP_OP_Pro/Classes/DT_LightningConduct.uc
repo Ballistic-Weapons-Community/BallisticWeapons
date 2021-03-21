@@ -15,6 +15,7 @@ defaultproperties
 	DeathStrings(2)="%k's lightning conduction jumped to %o's body."
 	SimpleKillString="ARC-79 Lightning Conduction"
      InvasionDamageScaling=2.000000
+     bLocationalHit=false
      DamageIdent="Energy"
      DisplacementType=DSP_Linear
      AimDisplacementDamageThreshold=50

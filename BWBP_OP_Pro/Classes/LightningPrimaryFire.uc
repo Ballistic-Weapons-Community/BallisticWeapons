@@ -108,10 +108,11 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 	local LightningConductor LConductor;
 
     Damage *= (1 + (0.25 * LightningRifle(BW).ChargePower));
-
 	super.ApplyDamage(Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 
-	if (LightningProjectile(Target) == None)	//saves running the below if the target is the lightning orb
+	if (LightningProjectile(Target) != None)
+		return;
+	else
 	{
 		if (!class'LightningConductor'.static.ValidTarget(Instigator, Pawn(Target), Instigator.Level))
 			return;

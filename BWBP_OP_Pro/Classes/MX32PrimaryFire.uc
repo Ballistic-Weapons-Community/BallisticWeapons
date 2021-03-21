@@ -7,7 +7,7 @@ defaultproperties
      TraceRange=(Min=12000.000000,Max=15000.000000)
      WallPenetrationForce=1.000000
      
-     Damage=23.000000
+     Damage=22.000000
      RangeAtten=0.350000
      WaterRangeAtten=0.800000
      DamageType=Class'BWBP_OP_Pro.DTMX32Primary'
@@ -31,7 +31,7 @@ defaultproperties
      bPawnRapidFireAnim=True
 	 FireRecoil=128
      FireEndAnim=
-     FireRate=0.113000
+     FireRate=0.115000
      AmmoClass=Class'BWBP_OP_Pro.Ammo_MX32Bullets'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

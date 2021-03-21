@@ -40,7 +40,7 @@ replication
 
 simulated function PostNetBeginPlay()
 {
-	//SetBoneScale(3, 0.0, 'Sight');
+	SetBoneScale(3, 0.0, 'IronsFront');
 	SetBoneRotation('Sight',RearSightBoneRot);
 	super.PostNetBeginPlay();
 }

@@ -181,7 +181,7 @@ static function bool ValidTarget(Pawn Instigator, Actor Target, LevelInfo Level)
 	local byte Team, InTeam;
 
 	// target should never be none because this function is only ever called from CollidingActors
-	if (Target == None || !Target.bProjTarget)
+	if (Pawn(Target) == None || !Pawn(Target).bProjTarget)
 		return false;
 
 	// uncontrolled pawn is neutral - valid target
