@@ -164,8 +164,6 @@ simulated function bool ShouldDrawPlayer(Misc_PRI PRI)
     return true;
 }
 
-
-
 simulated function DrawPlayers(Canvas C)
 {
     local int i;
