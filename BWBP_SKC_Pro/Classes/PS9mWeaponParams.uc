@@ -20,6 +20,7 @@ defaultproperties
 		Recoil=64.000000
 		Chaos=0.050000
 		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Fire',Volume=0.25,Radius=16,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -40,6 +41,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-DartFire',Volume=1.350000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

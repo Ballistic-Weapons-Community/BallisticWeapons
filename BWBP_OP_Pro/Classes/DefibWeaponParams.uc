@@ -14,6 +14,7 @@ defaultproperties
         DamageTypeArm=Class'BWBP_OP_Pro.DTShockGauntlet'
         BotRefireRate=0.800000
         WarnTargetPct=0.050000
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=32.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -36,6 +37,7 @@ defaultproperties
         DamageTypeArm=Class'BWBP_OP_Pro.DTShockGauntletAlt'
         BotRefireRate=0.800000
         WarnTargetPct=0.050000
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=32.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams

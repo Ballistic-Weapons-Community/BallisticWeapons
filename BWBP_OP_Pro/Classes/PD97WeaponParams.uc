@@ -15,6 +15,7 @@ defaultproperties
 		Chaos=0.150000
 		BotRefireRate=0.700000
 		WarnTargetPct=0.300000	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.OA-SMG.OA-SMG_FireDart',Radius=128,Volume=0.5)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -36,6 +37,7 @@ defaultproperties
 		Damage=5
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.PD97.BloodhoundTazerFire',Volume=2.250000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

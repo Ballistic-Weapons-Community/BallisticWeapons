@@ -20,6 +20,7 @@ defaultproperties
 		Recoil=220.000000
 		Chaos=0.032000
 		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Volume=1.600000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -50,6 +51,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.700000
 		WarnTargetPct=0.500000	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-FireSG',Volume=1.300000,Radius=256.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

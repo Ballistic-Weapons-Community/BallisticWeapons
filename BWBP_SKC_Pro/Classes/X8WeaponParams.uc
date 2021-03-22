@@ -14,6 +14,7 @@ defaultproperties
         DamageTypeArm=Class'BWBP_SKC_Pro.DTX8Knife'
         BotRefireRate=0.800000
         WarnTargetPct=0.100000
+        FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -32,6 +33,7 @@ defaultproperties
         SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
         Damage=0
         MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Radius=32.000000,bAtten=True)
     End Object
 
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams

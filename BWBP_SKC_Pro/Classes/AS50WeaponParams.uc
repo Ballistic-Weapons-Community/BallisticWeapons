@@ -23,6 +23,7 @@ defaultproperties
 		Chaos=1.000000
 		BotRefireRate=0.5
 		WarnTargetPct=0.4
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.AS50-Fire',Volume=5.100000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -52,6 +53,7 @@ defaultproperties
 		Chaos=1.000000
 		BotRefireRate=0.50000
 		WarnTargetPct=0.40000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.AS50-Fire',Volume=5.100000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

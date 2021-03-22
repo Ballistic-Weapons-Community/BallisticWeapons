@@ -15,6 +15,7 @@ defaultproperties
 		HookStopFactor=1.700000
 		BotRefireRate=0.99
 		WarnTargetPct=0.3
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,bAtten=True)
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -38,6 +39,7 @@ defaultproperties
 		HookPullForce=100.000000
 		BotRefireRate=0.99
 		WarnTargetPct=0.5
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,bAtten=True)
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

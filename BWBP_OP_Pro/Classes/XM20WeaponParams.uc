@@ -20,6 +20,7 @@ defaultproperties
 		Chaos=0.07000
 		BotRefireRate=0.99
 		WarnTargetPct=0.30000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.500000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams

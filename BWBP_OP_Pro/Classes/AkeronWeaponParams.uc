@@ -20,6 +20,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.5
 		WarnTargetPct=0.25	
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Fire1')
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -46,7 +47,8 @@ defaultproperties
 		Recoil=64.000000
 		Chaos=0.500000
 		BotRefireRate=0.500000
-		WarnTargetPct=0.300000	
+		WarnTargetPct=0.300000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Fire1')	
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

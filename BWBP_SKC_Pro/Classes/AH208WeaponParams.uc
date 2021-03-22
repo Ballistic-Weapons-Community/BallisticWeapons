@@ -23,13 +23,14 @@ defaultproperties
 		Chaos=0.350000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-Fire4',Volume=4.100000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
 		FireInterval=0.400000
 		FireEndAnim=
 		AimedFireAnim='SightFire'	
-	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 
 	//=================================================================

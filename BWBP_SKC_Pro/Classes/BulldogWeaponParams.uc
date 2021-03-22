@@ -23,6 +23,7 @@ defaultproperties
 		Chaos=1.000000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Bulldog.Bulldog-Fire',Volume=7.500000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -50,6 +51,7 @@ defaultproperties
 		Chaos=1.000000
 		BotRefireRate=0.5
 		WarnTargetPct=0.75	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-FireTest',Volume=2.500000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

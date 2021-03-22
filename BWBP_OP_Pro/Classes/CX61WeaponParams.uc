@@ -20,6 +20,7 @@ defaultproperties
 		Recoil=128.000000
 		Chaos=0.030000
 		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CX61.CX61-Fire',Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -38,6 +39,7 @@ defaultproperties
 	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
 		Chaos=0.050000
 		WarnTargetPct=0.200000
+		FireSound=(Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

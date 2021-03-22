@@ -24,6 +24,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.500000	
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.XMV-850.XMV-Fire-3')
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -53,7 +54,8 @@ defaultproperties
 		Recoil=650.000000
 		Chaos=0.450000
 		BotRefireRate=0.600000
-		WarnTargetPct=0.400000	
+		WarnTargetPct=0.400000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.GL-Fire',Volume=1.300000)	
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

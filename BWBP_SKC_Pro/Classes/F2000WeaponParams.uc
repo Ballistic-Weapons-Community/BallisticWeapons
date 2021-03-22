@@ -19,13 +19,14 @@ defaultproperties
 		Recoil=140.000000
 		Chaos=0.02000
 		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
 		FireInterval=0.080000
 		FireEndAnim=
 		AimedFireAnim="SightFire"	
-	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 		
     //=================================================================
@@ -44,6 +45,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.300000
 		WarnTargetPct=0.600000	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

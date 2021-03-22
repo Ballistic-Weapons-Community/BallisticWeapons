@@ -17,6 +17,7 @@ defaultproperties
 		Chaos=0.650000
 		BotRefireRate=0.5
 		WarnTargetPct=0.75	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MGL.MGL-Fire',Volume=9.200000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -40,6 +41,7 @@ defaultproperties
 		Chaos=0.650000
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MGL.MGL-Fire',Volume=9.200000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

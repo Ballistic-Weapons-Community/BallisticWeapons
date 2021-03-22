@@ -18,6 +18,7 @@ defaultproperties
 		Recoil=820.000000
 		Chaos=0.600000
 		WarnTargetPct=0.200000	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.BFG.BFG-Fire',Volume=4.500000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -44,6 +45,7 @@ defaultproperties
 		Recoil=100.000000
 		Chaos=0.050000
 		WarnTargetPct=0.200000	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.BFG.BFG-SmallFire',Volume=2.000000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

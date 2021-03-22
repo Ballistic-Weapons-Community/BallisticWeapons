@@ -14,6 +14,7 @@ defaultproperties
         DamageTypeArm=Class'BWBP_OP_Pro.DT_FlameSwordChest'
         BotRefireRate=0.800000
         WarnTargetPct=0.800000
+        FireSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Swing',Volume=4.000000,Radius=256.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams

@@ -21,6 +21,7 @@ defaultproperties
 		FlashScaleFactor=0.600000
 		Recoil=64.000000
 		Chaos=0.100000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-Fire')
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -42,6 +43,7 @@ defaultproperties
 		HookPullForce=100.000000
 		BotRefireRate=0.800000
 		WarnTargetPct=0.100000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=32.000000,bAtten=True)
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

@@ -22,6 +22,7 @@ defaultproperties
 		Chaos=0.070000
 		BotRefireRate=0.70000
 		WarnTargetPct=0.200000	
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.Raygun.Raygun-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -47,6 +48,7 @@ defaultproperties
 		Chaos=0.320000
 		BotRefireRate=0.250000
 		WarnTargetPct=0.500000
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.Raygun.Raygun-FireBig',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

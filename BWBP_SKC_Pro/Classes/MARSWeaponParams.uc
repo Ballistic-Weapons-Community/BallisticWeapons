@@ -19,6 +19,7 @@ defaultproperties
 		Recoil=120.000000
 		Chaos=0.032000
 		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -42,7 +43,8 @@ defaultproperties
 		Recoil=1024.000000
 		Chaos=0.500000
 		BotRefireRate=0.3
-		WarnTargetPct=0.5	
+		WarnTargetPct=0.5
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

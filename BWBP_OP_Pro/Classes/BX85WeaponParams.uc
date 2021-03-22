@@ -14,10 +14,10 @@ defaultproperties
 		DamageType=Class'DTBX85Bolt'
 		DamageTypeHead=Class'DTBX85Bolt'
 		DamageTypeArm=Class'DTBX85Bolt'
-		Recoil=None
 		Chaos=0.150000
 		BotRefireRate=0.500000
 		WarnTargetPct=0.500000
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.XBow.XBow-Fire',Volume=1.000000,Radius=64.000000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams

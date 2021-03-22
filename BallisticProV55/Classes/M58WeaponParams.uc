@@ -25,14 +25,13 @@ defaultproperties
     //=================================================================	
 	
     Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
-
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams
         PreFireAnim="PrepRoll"
         FireAnim="Roll"
         FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
     End Object
 		
 	//=================================================================
