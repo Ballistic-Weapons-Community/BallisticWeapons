@@ -16,7 +16,6 @@ defaultproperties
 		MaxRecoil=1024.000000
 		DeclineTime=1.500000
 		ViewBindFactor=0.450000
-		ADSViewBindFactor=0.450000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.600000
 		bViewDecline=True
@@ -71,10 +70,20 @@ defaultproperties
     //=================================================================
     // SECONDARY FIRE
     //=================================================================
-
+	
+	Begin Object Class=FireEffectParams Name=ArenaAltEffectParams
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.A49FlashEmitter'
+		FlashScaleFactor=1.200000
+     	Recoil=2048.000000
+     	Chaos=0.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-ShockWave',Volume=2.000000)
+     	WarnTargetPct=0.100000
+		PushbackForce=2000.000000
+	End Object
+	
 	Begin Object Class=FireParams Name=ArenaAltFireParams
 		FireAnim="AltFire"
-		FireInterval=1.25
+		FireInterval=1.7
      	AmmoPerFire=8
 		FireEffectParams(0)=FireEffectParams'ArenaAltEffectParams'
 	End Object

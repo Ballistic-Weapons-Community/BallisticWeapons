@@ -43,7 +43,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.F2000Grenade'
+		ProjectileClass=Class'BWBP_SKC_Pro.F2000ShockwaveGrenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=1800.000000
 		HeadMult=2.000000
@@ -80,7 +80,6 @@ defaultproperties
 		MaxRecoil=7000
 		DeclineTime=1.5
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.800000
 		bViewDecline=True

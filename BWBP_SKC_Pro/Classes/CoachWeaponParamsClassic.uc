@@ -39,40 +39,6 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 		End Object
 		
-    //=================================================================
-    // SECONDARY FIRE
-    //=================================================================	
-	
-	
-		Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
-			TraceRange=(Min=128.000000,Max=128.000000)
-			WaterTraceRange=5000.0
-			Damage=75
-			HeadMult=1.5
-			LimbMult=0.5
-			DamageType=Class'BWBP_SKC_Pro.DTCoachMelee'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachMeleeHead'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachMelee'
-			ChargeDamageBonusFactor=1
-			PenetrationEnergy=0.000000
-			FireSound=(Sound=Sound'BWBP4-Sounds.Marlin.Mar-Melee',Radius=32.000000,bAtten=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.900000
-			WarnTargetPct=0.050000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.700000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			PreFireAnim="PrepMelee"
-			FireAnim="Melee"
-			PreFireAnimRate=1.300000
-			FireAnimRate=1.200000
-			FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
-		End Object
-		
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -86,7 +52,6 @@ defaultproperties
 		MaxRecoil=9192.000000
 		DeclineTime=0.900000
 		ViewBindFactor=0.900000
-		ADSViewBindFactor=0.900000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.850000
 		bViewDecline=True
@@ -119,7 +84,6 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
 

@@ -9,6 +9,15 @@
 //=============================================================================
 class MRDRMachinePistol extends BallisticHandgun;
 
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle == 1)
+	{
+		bUseSights=True;
+	}
+}
+
 static function class<Pickup> RecommendAmmoPickup(int Mode)
 {
 	return class'AP_MRDRClip';

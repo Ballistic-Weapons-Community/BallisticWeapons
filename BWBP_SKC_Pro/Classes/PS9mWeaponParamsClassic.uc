@@ -79,7 +79,6 @@ defaultproperties
 		YRandFactor=0.200000
 		MaxRecoil=2048.000000
 		ViewBindFactor=0.600000
-		ADSViewBindFactor=0.600000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.500000
 		bViewDecline=True

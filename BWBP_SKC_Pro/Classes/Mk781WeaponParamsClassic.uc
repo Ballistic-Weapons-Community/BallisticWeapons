@@ -96,7 +96,6 @@ defaultproperties
 		YRandFactor=0.700000
 		DeclineDelay=0.200000
 		ViewBindFactor=0.900000
-		ADSViewBindFactor=0.900000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -126,12 +125,27 @@ defaultproperties
 		MagAmmo=6
 		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
 		SightPivot=(Pitch=-64,Yaw=10)
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicRDSParams
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		MagAmmo=6
+		SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicRDSParams'
 
 
 }

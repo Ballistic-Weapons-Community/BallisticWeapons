@@ -181,6 +181,7 @@ function ApplySlowdown(pawn Other, float Damage)
 
 defaultproperties
 {
+     ModeIndex=1
      DetonateOn=DT_ImpactTimed
      PlayerImpactType=PIT_Detonate
      bNoInitialSpin=True

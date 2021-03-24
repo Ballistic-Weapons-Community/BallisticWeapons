@@ -7,38 +7,74 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=7500000.000000,Max=7500000.000000)
-			WaterTraceRange=6000000.0
-			DecayRange=(Min=0.0,Max=0.0)
-			Damage=65
-			HeadMult=2.230769
-			LimbMult=0.538461
-			DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
-			PenetrationEnergy=72.000000
-			PenetrateForce=200
-			bPenetrate=True
-			PDamageFactor=0.800000
-			WallPDamageFactor=0.800000
-			MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
-			FlashScaleFactor=1.500000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=512.000000
-			Chaos=-1.0
-			Inaccuracy=(X=3,Y=3)
-			WarnTargetPct=0.200000
-		End Object
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=15000.000000,Max=15000.000000)
+		WaterTraceRange=6000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=65
+		HeadMult=2.0
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
+		PenetrationEnergy=72.000000
+		PenetrateForce=200
+		bPenetrate=True
+		PDamageFactor=0.800000
+		WallPDamageFactor=0.800000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=512.000000
+		Chaos=-1.0
+		Inaccuracy=(X=3,Y=3)
+		WarnTargetPct=0.200000
+		PushbackForce=125.000000
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.200000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
-		
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.200000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
+	
+	//=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams
+		TraceRange=(Min=15000.000000,Max=15000.000000)
+		WaterTraceRange=6000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=65
+		HeadMult=2.0
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
+		PenetrationEnergy=72.000000
+		PenetrateForce=200
+		bPenetrate=True
+		PDamageFactor=0.800000
+		WallPDamageFactor=0.800000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=512.000000
+		Chaos=-1.0
+		Inaccuracy=(X=3,Y=3)
+		WarnTargetPct=0.200000
+		PushbackForce=125.000000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.165000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
+	End Object
+	
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -53,7 +89,6 @@ defaultproperties
 		DeclineTime=2.2
 		DeclineDelay=0.3
 		ViewBindFactor=0.700000
-		ADSViewBindFactor=0.700000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.100000
 		bViewDecline=True

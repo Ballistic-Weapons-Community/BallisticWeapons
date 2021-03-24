@@ -1,3 +1,15 @@
+//=============================================================================
+// LAWMine.
+//
+// A giant missile that just happened to get stuck in a wall and is melting you.
+//
+// Will emit 5 damaging pulses that ignore walls. If shot or past 5 pulses,
+// it will blow up. Detonation strength decays with each pulse.
+//
+// by Sarge and Azarael
+// uses code by Nolan "Dark Carnivour" Richert.
+// Copyright© 2011 RuneStorm. All Rights Reserved.
+//=============================================================================
 class LAWMine extends BallisticProjectile;
 
 var() Sound						DetonateSound;

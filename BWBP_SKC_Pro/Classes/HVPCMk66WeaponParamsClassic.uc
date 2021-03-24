@@ -81,7 +81,6 @@ defaultproperties
 		MaxRecoil=256.000000
 		DeclineTime=0.750000
 		ViewBindFactor=0.450000
-		ADSViewBindFactor=0.450000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

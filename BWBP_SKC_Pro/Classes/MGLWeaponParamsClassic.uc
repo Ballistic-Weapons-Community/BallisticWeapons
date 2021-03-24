@@ -18,7 +18,7 @@ defaultproperties
 			LimbMult=1.0
 			MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 			FireSound=(Sound=Sound'BWBP_SKC_Sounds.MGL.MGL-Fire',Volume=9.200000)
-			Recoil=0.0
+			Recoil=256.0
 			Chaos=-1.0
 			SplashDamage=True
 			RecommendSplashDamage=True
@@ -47,7 +47,7 @@ defaultproperties
 			LimbMult=1.0
 			MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 			FireSound=(Sound=Sound'BWBP_SKC_Sounds.MGL.MGL-Fire',Volume=9.200000)
-			Recoil=0.0
+			Recoil=256.0
 			Chaos=-1.0
 			SplashDamage=True
 			RecommendSplashDamage=True
@@ -71,8 +71,7 @@ defaultproperties
 		XRandFactor=0.400000
 		YRandFactor=0.400000
 		DeclineTime=0.900000
-		ViewBindFactor=0.900000
-		ADSViewBindFactor=0.900000
+		ViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -86,7 +85,7 @@ defaultproperties
 		AimSpread=(Min=16,Max=2560)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
-		ViewBindFactor=0.450000
+		ViewBindFactor=0.250000
 		SprintChaos=0.400000
 		ChaosDeclineTime=2.000000
 	End Object

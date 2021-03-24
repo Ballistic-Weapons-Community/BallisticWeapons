@@ -43,7 +43,7 @@ defaultproperties
 	
 	
 		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-			ProjectileClass=Class'BWBP_SKC_Pro.LAWGrenade'
+			ProjectileClass=Class'BWBP_SKC_Pro.LAWGrenadeHvy'
 			SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 			Speed=2500.000000
 			HeadMult=2.000000

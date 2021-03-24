@@ -49,6 +49,10 @@ replication
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle == 1)
+	{
+		StartingGrenades = 6;
+	}
 	Grenades = StartingGrenades;
 }
 

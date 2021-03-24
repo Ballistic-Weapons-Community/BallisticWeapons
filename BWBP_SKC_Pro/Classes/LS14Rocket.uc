@@ -41,4 +41,5 @@ defaultproperties
      SoundVolume=64
      bFixedRotationDir=True
      RotationRate=(Roll=32768)
+	 ModeIndex=1
 }

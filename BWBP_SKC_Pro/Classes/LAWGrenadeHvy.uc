@@ -1,13 +1,13 @@
 //=============================================================================
-// LAWGrenade.
+// LAWGrenadeHvy.
 //
-// Damage Over Time missile fired by LAW.
+// Damage Over Time missile fired by LAW. Classic version.
 //
-// by Logan "BlackEagle" Richert.
-// uses code by Nolan "Dark Carnivour" Richert.
-// CopyrightÂ© 2011 RuneStorm. All Rights Reserved.
+// by Sarge
+// uses code by DC and BE.
+// Copyright© 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class LAWGrenade extends BallisticGrenade;
+class LAWGrenadeHvy extends BallisticGrenade;
 
 var Actor StuckActor;
 var bool bPlaced;
@@ -24,10 +24,6 @@ simulated event ProcessTouch(Actor Other, vector HitLocation )
 		StuckActor = Other;
 		HitActor = Other;
 		Explode(HitLocation, Normal(HitLocation-Other.Location));
-		
-		if ( Instigator == None || Instigator.Controller == None )
-			Other.SetDelayedDamageInstigatorController( InstigatorController );
-			
 		class'BallisticDamageType'.static.GenericHurt(Other, ImpactDamage, Instigator, HitLocation, Velocity, ImpactDamageType);
 	}
 	else
@@ -92,7 +88,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	R.Roll = Rand(65536);
 	if(StuckActor == None)
 	{
-		Proj = Spawn (class'LAWMine',,, LastHitLoc, R);
+		Proj = Spawn (class'LAWMineHvy',,, LastHitLoc, R);
 		Proj.Instigator = Instigator;
 		Proj.bHardAttach = true;
 		Proj.SetBase(LastTrace);
@@ -134,5 +130,4 @@ defaultproperties
      MyDamageType=None
      StaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWRocket'
      DrawScale=0.450000
-	 ModeIndex=1
 }
