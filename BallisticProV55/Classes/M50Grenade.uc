@@ -109,4 +109,5 @@ defaultproperties
     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
     StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade'
     bIgnoreTerminalVelocity=True
+	ModeIndex=1
 }

@@ -25,7 +25,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-Fire',Volume=1.500000)
 			Recoil=512.000000
@@ -44,39 +44,6 @@ defaultproperties
 			FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
 		End Object
 		
-    //=================================================================
-    // SECONDARY FIRE
-    //=================================================================	
-	
-	
-		Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
-			TraceRange=(Min=128.000000,Max=128.000000)
-			WaterTraceRange=5000.0
-			Damage=25.0
-			HeadMult=1.68
-			LimbMult=0.8
-			DamageType=Class'BallisticProV55.DTMRS138Tazer'
-			DamageTypeHead=Class'BallisticProV55.DTMRS138Tazer'
-			DamageTypeArm=Class'BallisticProV55.DTMRS138Tazer'
-			ChargeDamageBonusFactor=1
-			PenetrationEnergy=0.000000
-			SpreadMode=None
-			FireSound=(Sound=SoundGroup'BWAddPack-RS-Sounds.MRS38.RSS-ElectroSwing',Radius=32.000000,bAtten=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.900000
-			WarnTargetPct=0.050000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.300000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			PreFireAnim="PrepAttack"
-			FireAnim="Attack"
-			FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
-		End Object
-		
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -90,7 +57,6 @@ defaultproperties
 		MaxRecoil=1024.000000
 		DeclineTime=0.900000
 		ViewBindFactor=0.900000
-		ADSViewBindFactor=0.900000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -123,7 +89,6 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
 

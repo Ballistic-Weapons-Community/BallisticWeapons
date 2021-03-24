@@ -34,6 +34,8 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle == 1)
+		E23PrimaryFire(FireMode[0]).SGFireCount = 9;
 	E23PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 	if (Laser == None)
 		Laser = spawn(class'LaserActor_VPR');
@@ -482,7 +484,7 @@ defaultproperties
 	SightOffset=(X=-8.000000,Z=9.300000)
 	SightDisplayFOV=25.000000
 	ParamsClasses(0)=Class'E23WeaponParams'
-	ParamsClasses(1)=Class'E23WeaponParamsClassic' //todo
+	ParamsClasses(1)=Class'E23WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.E23PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.E23SecondaryFire'
 	SelectAnimRate=1.250000

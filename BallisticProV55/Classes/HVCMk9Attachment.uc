@@ -25,10 +25,23 @@ var class<BCImpactManager> ImpactManagerAlt;
 
 var() Sound DischargeSound;			// Sound of water discharge
 
+//[2.5] Tracking Zap
+var HVCMk9_TrackingZapClassic TargetZap;
+
+var actor		ZapTargets[6];						// List of targets from server
+var vector		ZapLures[3];						// 'wall hits' to which lightning is lured
+var byte		TargZapCount, TargZapCountOld;		// Update counters
+var byte		FreeZapCount, FreeZapCountOld;
+var byte		KillZapCount, KillZapCountOld;
+var array<actor>	OldTargets;		// List of last targets sent to client (used by server only)
+var array<vector>	OldLures;		// List of last lures sent to client (used by server only)
+
 replication
 {
 	reliable if (Role==ROLE_Authority)
 		bDischarge, ChargePower, StreamEffect;
+	reliable if (Role==ROLE_Authority && bNetDirty)
+		ZapTargets, TargZapCount, FreeZapCount, KillZapCount, ZapLures;
 	reliable if (Role==ROLE_Authority && bNetOwner && bNetInitial)
 		LG;
 }
@@ -99,6 +112,167 @@ function EndStream()
 	}
 }
 
+//===========================================================================
+// [2.5] Zap Tracking Code
+//
+//===========================================================================
+
+simulated function ClientReceiveTargets()
+{
+	local int i;
+	local array<actor> Ts;
+	local array<vector> Vs;
+
+	for (i=0;i<6;i++)
+		if (ZapTargets[i] != None)
+			Ts[Ts.length] = ZapTargets[i];
+	for (i=0;i<3;i++)
+		if (ZapLures[i] != vect(0,0,0))
+			Vs[Vs.length] = ZapLures[i];
+	SetTargetZap(Ts, Vs);
+}
+
+function ServerSendTargets(array<actor> Ts, array<vector> Vs)
+{
+	local int i;
+
+	if (Ts.length == OldTargets.length)
+	{	for (i=0;i<Ts.length;i++)
+			if (Ts[i] != OldTargets[i])
+				break;
+		if (i>=Ts.length)
+			i = 666;
+//			return;
+	}
+	if (i != 666)
+	{
+		for (i=0;i<6;i++)
+		{
+			if (i >= Ts.length || Ts[i] == None)
+				ZapTargets[i] = None;
+			else
+				ZapTargets[i] = Ts[i];
+		}
+	}
+	i=0;
+	if (Vs.length == OldLures.Length)
+	{
+		for (i=0;i<Vs.length;i++)
+		{
+			if (Vs[i] != OldLures[i])
+				break;
+		}
+		if (i>=Vs.length)
+			i = 666;
+	}
+	if (i != 666)
+	{
+		for (i=0;i<3;i++)
+		{
+			if (i >= Vs.length || Vs[i] == vect(0,0,0))
+				ZapLures[i] = vect(0,0,0);
+			else
+				ZapLures[i] = Vs[i];
+		}
+	}
+	OldTargets = Ts;
+	OldLures = Vs;
+	TargZapCount++;
+}
+simulated function SetTargetZap(array<actor> Ts, array<vector> Vs)
+{
+	if (level.NetMode == NM_DedicatedServer || level.NetMode == NM_ListenServer)
+		ServerSendTargets(Ts, Vs);
+	if (level.NetMode == NM_DedicatedServer)
+		return;
+	xPawn(Instigator).StartFiring(bHeavy, true);
+	StartMuzzleZap();
+	KillFreeZap();
+	if (TargetZap == None)
+	{
+		TargetZap = spawn(class'HVCMk9_TrackingZapClassic', self);
+		AttachToBone(TargetZap, 'tip');
+		TargetZap.SetTargets(Ts, Vs);
+		TargetZap.UpdateTargets();
+	}
+	else
+		TargetZap.SetTargets(Ts, Vs);
+	if (level.NetMode == NM_Client && LG != None)
+		LG.SetTargetZap(Ts, Vs);
+}
+
+simulated function SetFreeZap ()
+{
+	if (level.NetMode == NM_DedicatedServer || level.NetMode == NM_ListenServer)
+		FreeZapCount++;
+	if (level.NetMode == NM_DedicatedServer)
+		return;
+	xPawn(Instigator).StartFiring(bHeavy, true);
+	StartMuzzleZap();
+	KillTargetZap();
+	if (FreeZap == None)
+	{
+		FreeZap = spawn(class'HVCMk9_FreeZap', self);
+		UpdateFreeZap();
+		AttachToBone(FreeZap, 'tip');
+	}
+	if (level.NetMode == NM_Client && LG != None)
+		LG.SetFreeZap();
+}
+
+simulated function UpdateFreeZap()
+{
+	local vector End, X,Y,Z;
+	if (FreeZap != None)
+	{
+		GetAxes(Instigator.GetViewRotation(), X,Y,Z);
+		End = X * 1000;
+		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(End, End);
+		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.X.Min -= 500 * Abs(X.Z);
+		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.X.Max += 500 * Abs(X.Z);
+		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.Y.Min -= 500 * Abs(X.X);
+		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.Y.Max += 500 * Abs(X.X);
+		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.Z.Min -= 500 * (1-Abs(X.Z));
+		BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.Z.Max += 500 * (1-Abs(X.Z));
+
+		BeamEmitter(FreeZap.Emitters[2]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(End+vect(100,100,100), End-vect(100,100,100));
+	}
+}
+
+simulated function KillZap ()
+{
+	if (Role == ROLE_Authority)
+		KillZapCount++;
+	if (level.NetMode == NM_DedicatedServer)
+		return;
+	xPawn(Instigator).StopFiring();
+	StopMuzzleZap();
+	KillTargetZap();
+	KillFreeZap();
+	if (level.NetMode == NM_Client && LG != None)
+		LG.KillZap();
+}
+
+simulated function KillTargetZap()
+{
+	OldTargets.length=0;
+	if (TargetZap != None)
+	{
+		TargetZap.KillFlashes();
+		TargetZap.Kill();
+		TargetZap = None;
+	}
+}
+simulated function KillFreeZap()
+{
+	if (FreeZap != None)
+	{
+		FreeZap.Kill();
+		FreeZap = None;
+	}
+}
+//==================================
+
 simulated function SetOverlayMaterial( Material mat, float time, bool bOverride )
 {
 	Super.SetOverlayMaterial(mat, time, bOverride);
@@ -119,6 +293,19 @@ simulated event PostNetReceive()
 	{	
 		bDischargeOld = bDischarge;
 		DoWaterDischarge();					
+	}
+	//[2.5] Zap netcode
+	if (TargZapCount != TargZapCountOld)	
+	{	TargZapCountOld = TargZapCount;
+		ClientReceiveTargets();				
+	}
+	if (FreeZapCount != FreeZapCountOld)	
+	{	FreeZapCountOld = FreeZapCount;
+		SetFreeZap();						
+	}
+	if (KillZapCount != KillZapCountOld)	
+	{	KillZapCountOld = KillZapCount;
+		KillZap();							
 	}
 	super.PostNetReceive();
 }
@@ -148,6 +335,10 @@ simulated function Destroyed()
 {
 	if (Pack != None)
 		Pack.Destroy();
+	if (FreeZap != None)
+		FreeZap.Kill();
+	if (TargetZap != None)
+	{	TargetZap.KillFlashes();	TargetZap.Kill();	}
 	if (StreamEffect != None)
 		StreamEffect.Kill();
 	if (MuzzleFlash != None)
@@ -201,8 +392,8 @@ simulated function InstantFireEffects(byte Mode)
 	local Vector HitLocation, Dir, Start;
 	local Material HitMat;
 
-	//if (Mode == 0)
-	//	return;
+	if (Mode == 0 && HVCMk9LightningGun(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
+		return;
 	if (mHitLocation == vect(0,0,0))
 		return;
 	SpawnTracer(Mode, mHitLocation);
@@ -230,7 +421,7 @@ simulated function InstantFireEffects(byte Mode)
  	else
 		HitLocation = mHitLocation;
 		
-	if (Mode == 0)
+	if (Mode == 0 && HVCMk9LightningGun(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
 		if (ImpactManager != None)
 		ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 
@@ -242,11 +433,29 @@ simulated function Tick(float DT)
 {
 	super.Tick(DT);
 
-	if (Level.NetMode == NM_DedicatedServer)
-		return;
-	
-	if (StreamEffect != None && !Instigator.IsFirstPerson())
-		StreamEffect.SetLocation(GetBoneCoords('tip2').Origin);
+	if (HVCMk9LightningGun(Instigator.Weapon).BCRepClass.default.GameStyle != 1)
+	{
+		if (Level.NetMode == NM_DedicatedServer)
+			return;
+		
+		if (StreamEffect != None && !Instigator.IsFirstPerson())
+			StreamEffect.SetLocation(GetBoneCoords('tip2').Origin);
+	}
+	else
+	{
+		if (Instigator!= None && Instigator.IsFirstPerson())
+			return;
+		if (TargetZap != None)
+		{
+			if (TargetZap.base != self)
+			{
+				AttachToBone(TargetZap, 'tip');
+				TargetZap.bHidden = false;
+			}
+			TargetZap.UpdateTargets();
+		}
+		UpdateFreeZap();
+	}
 }
 
 defaultproperties

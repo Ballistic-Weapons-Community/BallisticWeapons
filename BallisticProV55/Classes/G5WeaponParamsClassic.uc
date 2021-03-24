@@ -19,7 +19,7 @@ defaultproperties
 			MomentumTransfer=90000.000000
 			HeadMult=1.0
 			LimbMult=1.0
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
 			FireSound=(Sound=Sound'BallisticSounds3.G5.G5-Fire1')
 			Recoil=64.000000
@@ -45,7 +45,7 @@ defaultproperties
 	
 	
 		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
 			Recoil=0.0
 			Chaos=-1.0
@@ -71,7 +71,6 @@ defaultproperties
 		MaxRecoil=512.000000
 		DeclineTime=1.000000
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

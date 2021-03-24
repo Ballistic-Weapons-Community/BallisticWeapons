@@ -7,69 +7,63 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-			ProjectileClass=Class'BallisticProV55.A73Projectile'
-			SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
-			Speed=50.000000
-			MaxSpeed=3000.000000
-			AccelSpeed=60000.000000
-			Damage=20.0
-			DamageRadius=64.000000
-			MomentumTransfer=100.000000
-			HeadMult=2.0
-			LimbMult=0.45
-			SpreadMode=None
-			MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
-			FireSound=(Sound=Sound'BallisticSounds3.A73.A73Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=40.000000
-			Chaos=-1.0
-			Inaccuracy=(X=8,Y=4)
-			WarnTargetPct=0.200000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+		ProjectileClass=Class'BallisticProV55.A73Projectile'
+		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+		Speed=50.000000
+		MaxSpeed=3000.000000
+		AccelSpeed=60000.000000
+		Damage=20.0
+		DamageRadius=64.000000
+		MomentumTransfer=100.000000
+		HeadMult=2.0
+		LimbMult=0.45
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
+		FireSound=(Sound=Sound'BallisticSounds3.A73.A73Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=40.000000
+		Chaos=-1.0
+		Inaccuracy=(X=8,Y=4)
+		WarnTargetPct=0.200000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.100000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
-		End Object
-		
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.100000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	End Object
+
     //=================================================================
     // SECONDARY FIRE
-    //=================================================================	
-	
-	
-		Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams
-			TraceRange=(Min=160.000000,Max=160.000000)
-			WaterTraceRange=5000.0
-			DecayRange=(Min=0.0,Max=0.0)
-			Damage=65.0
-			HeadMult=1.538461
-			LimbMult=0.461538
-			DamageType=Class'BallisticProV55.DTA73Stab'
-			DamageTypeHead=Class'BallisticProV55.DTA73StabHead'
-			DamageTypeArm=Class'BallisticProV55.DTA73Stab'
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			HookStopFactor=1.700000
-			HookPullForce=100.000000
-			SpreadMode=None
-			FireSound=(Sound=Sound'BallisticSounds3.A73.A73Stab',Radius=32.000000,bAtten=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.700000
-			WarnTargetPct=0.050000
-		End Object
+    //=================================================================
 
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.300000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			PreFireAnim="PrepStab"
-			FireAnim="Stab"	
-		FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
-		End Object
+    Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+    	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
+        SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        Speed=3000.000000
+        AccelSpeed=8000.000000
+        MaxSpeed=7000.000000
+        Damage=70.000000
+        DamageRadius=100.000000
+        MomentumTransfer=2000.000000
+        MaxDamageGainFactor=1.00
+        DamageGainStartTime=0.05
+        DamageGainEndTime=0.7
+        Recoil=960.000000
+        Chaos=0.500000
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+        ProjectileClass=Class'BallisticProV55.A73PowerProjectile'
+        WarnTargetPct=0.500000
+    End Object
+
+    Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+        AmmoPerFire=8
+	    FireEndAnim=
+        AimedFireAnim="Fire"
+	    FireInterval=0.800000
+        FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+    End Object
 		
 	//=================================================================
 	// RECOIL
@@ -85,7 +79,6 @@ defaultproperties
 		MaxRecoil=1024.000000
 		DeclineTime=1.500000
 		ViewBindFactor=0.250000
-		ADSViewBindFactor=0.250000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.600000
 		bViewDecline=True

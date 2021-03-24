@@ -19,7 +19,7 @@ defaultproperties
 			MomentumTransfer=20000.000000
 			HeadMult=1.0
 			LimbMult=1.0
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.MRLFlashEmitter'
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
 			Recoil=5.000000
@@ -45,7 +45,7 @@ defaultproperties
 			SpawnOffset=(X=28.000000,Y=8.000000,Z=-6.000000)
 			HeadMult=2.000000
 			LimbMult=0.500000
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
 			Recoil=32.000000
 			Chaos=0.020000
@@ -70,7 +70,6 @@ defaultproperties
 		YRandFactor=0.500000
 		MaxRecoil=2048.000000
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

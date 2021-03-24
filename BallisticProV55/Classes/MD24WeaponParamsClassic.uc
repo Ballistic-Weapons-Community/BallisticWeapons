@@ -23,7 +23,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 			FlashScaleFactor=0.750000
 			FireSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Fire',Volume=4.000000)
@@ -59,7 +59,7 @@ defaultproperties
 			PenetrationEnergy=0.000000
 			HookStopFactor=1.700000
 			HookPullForce=100.000000
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			FireSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Melee',Volume=1.500000,Radius=32.000000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
@@ -89,7 +89,7 @@ defaultproperties
 		DeclineTime=0.500000
 		DeclineDelay=0.100000
 		ViewBindFactor=0.200000
-		ADSViewBindFactor=0.200000
+		ADSViewBindFactor=0.300000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

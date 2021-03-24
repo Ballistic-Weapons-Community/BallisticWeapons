@@ -23,7 +23,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 			FlashScaleFactor=1.200000
 			FireSound=(Sound=Sound'BallisticSounds3.D49.D49-FireSingle',Volume=1.200000)
@@ -62,7 +62,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 			FlashScaleFactor=1.200000
 			FireSound=(Sound=Sound'BallisticSounds3.D49.D49-Fire',Volume=1.300000)
@@ -93,7 +93,7 @@ defaultproperties
 		DeclineTime=0.800000
 		DeclineDelay=0.100000
 		ViewBindFactor=0.200000
-		ADSViewBindFactor=0.200000
+		ADSViewBindFactor=0.300000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

@@ -23,7 +23,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 			FlashScaleFactor=0.800000
 			FireSound=(Sound=Sound'BallisticSounds3.M50.M50Fire2',Volume=0.900000,Slot=SLOT_Interact,bNoOverride=False)
@@ -51,7 +51,7 @@ defaultproperties
 			Damage=120.000000
 			HeadMult=1.0
 			LimbMult=1.0
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 			FireSound=(Sound=Sound'BallisticSounds3.M50.M50GrenFire')
 			Recoil=0.0
@@ -81,7 +81,6 @@ defaultproperties
 		YRandFactor=0.300000
 		MaxRecoil=2048.000000
 		ViewBindFactor=0.600000
-		ADSViewBindFactor=0.600000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.500000
 		bViewDecline=True

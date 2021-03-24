@@ -7,7 +7,6 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
 		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
 			ProjectileClass=Class'BallisticProV55.MACShell'
 			SpawnOffset=(X=28.000000,Y=10.000000)
@@ -18,12 +17,13 @@ defaultproperties
 			MomentumTransfer=80000.000000
 			HeadMult=1.0
 			LimbMult=1.0
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 			FlashScaleFactor=2.500000
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Fire')
 			Recoil=8000.000000
 			Chaos=0.800000
+			PushbackForce=1000.000000
 			Inaccuracy=(X=4,Y=4)
 			SplashDamage=True
 			RecommendSplashDamage=True
@@ -44,7 +44,7 @@ defaultproperties
 	
 	
 		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
 			Recoil=0.0
 			Chaos=-1.0
@@ -71,7 +71,6 @@ defaultproperties
 		MaxRecoil=8192.000000
 		DeclineTime=3.000000
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

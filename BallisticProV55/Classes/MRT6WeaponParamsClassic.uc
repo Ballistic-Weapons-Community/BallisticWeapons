@@ -25,12 +25,13 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 			FlashScaleFactor=1.200000
 			FireSound=(Sound=Sound'BallisticSounds3.MRT6.MRT6Fire')
 			Recoil=4096.000000
 			Chaos=0.800000
+			PushbackForce=1200.000000
 			Inaccuracy=(X=3000,Y=1500)
 			BotRefireRate=0.900000
 			WarnTargetPct=0.100000	
@@ -67,12 +68,13 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 			FlashScaleFactor=1.200000
 			FireSound=(Sound=Sound'BallisticSounds3.MRT6.MRT6SingleFire')
 			Recoil=2048.000000
 			Chaos=0.500000
+			PushbackForce=600.000000
 			Inaccuracy=(X=1500,Y=1000)
 			BotRefireRate=0.900000
 			WarnTargetPct=0.100000	
@@ -99,7 +101,6 @@ defaultproperties
 		MaxRecoil=8192.000000
 		DeclineTime=0.700000
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

@@ -2,29 +2,76 @@ class M75WeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 {
-
     //=================================================================
     // PRIMARY FIRE
     //=================================================================	
 	
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=20000.000000,Max=20000.000000)
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=325.0
+		HeadMult=1.1
+		LimbMult=0.5
+		DamageType=Class'BallisticProV55.DTM75Railgun'
+		DamageTypeHead=Class'BallisticProV55.DTM75RailgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM75Railgun'
+		PenetrateForce=700
+		bPenetrate=True
+		PDamageFactor=0.95
+		WallPDamageFactor=0.7
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Fire',Radius=350.000000)
+		Recoil=3072.000000
+		Chaos=-1.0
+		PushbackForce=1300.000000
+		BotRefireRate=0.300000
+		WarnTargetPct=0.050000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.300000
+		BurstFireRateFactor=1.00
+		bCockAfterFire=True	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
+
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
 	
-		Begin Object Class=FireEffectParams Name=ClassicPrimaryEffectParams
-			SpreadMode=None
+		Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams
+			TraceRange=(Min=20000.000000,Max=20000.000000)
+			WaterTraceRange=5000.0
+			DecayRange=(Min=0.0,Max=0.0)
+			Damage=325.0
+			HeadMult=1.1
+			LimbMult=0.5
+			DamageType=Class'BallisticProV55.DTM75Railgun'
+			DamageTypeHead=Class'BallisticProV55.DTM75RailgunHead'
+			DamageTypeArm=Class'BallisticProV55.DTM75Railgun'
+			PenetrateForce=700
+			bPenetrate=True
+			PDamageFactor=0.95
+			WallPDamageFactor=0.7
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
-			FireSound=(Sound=Sound'BallisticSounds3.M75.M75Fire',Radius=350.000000)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Fire',Radius=350.000000)
 			Recoil=3072.000000
 			Chaos=-1.0
+			PushbackForce=1300.000000
 			BotRefireRate=0.300000
 			WarnTargetPct=0.050000
 		End Object
-		
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+
+		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
 			FireInterval=0.300000
 			BurstFireRateFactor=1.00
-			bCockAfterFire=True
-			FireEffectParams(0)=FireEffectParams'ClassicPrimaryEffectParams'
+			bCockAfterFire=True	
+		FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
 		End Object
-		
+	
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -37,7 +84,6 @@ defaultproperties
 		MaxRecoil=3072.000000
 		DeclineTime=1.000000
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.400000
 		bViewDecline=True

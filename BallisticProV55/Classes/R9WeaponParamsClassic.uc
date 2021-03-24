@@ -23,7 +23,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 			FlashScaleFactor=2.000000
 			FireSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Fire',Volume=0.800000)
@@ -51,7 +51,6 @@ defaultproperties
 		YRandFactor=0.200000
 		MaxRecoil=2048.000000
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.300000
 		bViewDecline=True
@@ -85,7 +84,6 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
 

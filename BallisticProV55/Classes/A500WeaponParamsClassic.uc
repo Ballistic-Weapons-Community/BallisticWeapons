@@ -17,7 +17,7 @@ defaultproperties
 			MomentumTransfer=100.000000
 			HeadMult=1.875
 			LimbMult=0.4375
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
 			FireSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 			Recoil=256.000000
@@ -45,7 +45,7 @@ defaultproperties
 			MomentumTransfer=1000.000000
 			HeadMult=1.0
 			LimbMult=1.0
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
 			FireSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_AltFire',Volume=1.800000,Slot=SLOT_Interact,bNoOverride=False)
 			Recoil=0.0
@@ -75,7 +75,6 @@ defaultproperties
 		MaxRecoil=1024.000000
 		DeclineTime=1.500000
 		ViewBindFactor=0.250000
-		ADSViewBindFactor=0.250000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.600000
 		bViewDecline=True

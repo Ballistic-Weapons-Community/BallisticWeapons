@@ -7,7 +7,6 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
 		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
 			TraceRange=(Min=12000.000000,Max=15000.000000)
 			WaterTraceRange=12000.0
@@ -23,7 +22,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.M353FlashEmitter'
 			FlashScaleFactor=1.200000
 			FireSound=(Sound=Sound'BallisticSounds3.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
@@ -40,27 +39,6 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 		End Object
 		
-    //=================================================================
-    // SECONDARY FIRE
-    //=================================================================	
-	
-	
-		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
-			SpreadMode=None
-			FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.300000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.700000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			FireAnim="Undeploy"
-			FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
-		End Object
-		
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -73,7 +51,6 @@ defaultproperties
 		YRandFactor=0.400000
 		MaxRecoil=3000.000000
 		ViewBindFactor=0.450000
-		ADSViewBindFactor=0.450000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.500000
 		bViewDecline=True
@@ -107,7 +84,6 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
 

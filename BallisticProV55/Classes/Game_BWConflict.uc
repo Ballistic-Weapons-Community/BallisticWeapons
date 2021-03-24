@@ -612,7 +612,7 @@ event InitGame( string Options, out string Error )
 {
 	Super.InitGame(Options, Error);
 	
-	AddMutator("BallisticV25.Mut_SpatialLoadout", True);
+	AddMutator("BallisticProV55.Mut_SpatialLoadout", True);
 
 	bForceRespawn = true;
 }

@@ -23,7 +23,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Fire')
 			Recoil=1024.000000
@@ -57,7 +57,7 @@ defaultproperties
 			DamageTypeArm=Class'BallisticProV55.DTMarlinMelee'
 			ChargeDamageBonusFactor=1
 			PenetrationEnergy=0.000000
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.Marlin.Mar-Melee',Radius=32.000000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
@@ -89,7 +89,6 @@ defaultproperties
 		DeclineTime=1.000000
 		DeclineDelay=0.100000
 		ViewBindFactor=0.300000
-		ADSViewBindFactor=0.300000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.300000
 		bViewDecline=True

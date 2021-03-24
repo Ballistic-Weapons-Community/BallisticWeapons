@@ -23,7 +23,7 @@ defaultproperties
         FlashScaleFactor=0.750000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         Chaos=0.06
-        Recoil=96
+        Recoil=40
         WarnTargetPct=0.1
     End Object
 
@@ -59,7 +59,7 @@ defaultproperties
         TargetState="Shotgun"
         FireAnim="Fire2"
         FireEndAnim=
-        FireInterval=0.50000
+        FireInterval=1.50000
         FireEffectParams(0)=ProjectileEffectParams'ClassicMultiEffectParams'
     End Object
 
@@ -81,20 +81,21 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=ClassicSniperFireParams
-        AmmoPerFire=20
+        AmmoPerFire=4
         FireAnim="Fire"
         FireEndAnim=
-        FireInterval=0.650000
+        FireInterval=0.600000
         FireEffectParams(0)=ProjectileEffectParams'ClassicSniperEffectParams'
     End Object
 
 	//Laser
     Begin Object Class=InstantEffectParams Name=ClassicLaserEffectParams
-        TraceRange=(Min=10000.000000,Max=10000.000000)
-        WaterTraceRange=5000
-        Damage=11.000000
-        HeadMult=1.5f
-        LimbMult=0.5f
+        TraceRange=(Min=3000.000000,Max=3000.000000)
+        WaterTraceRange=2100
+		RangeAtten=0.400000
+        Damage=16.000000
+        HeadMult=1.3f
+        LimbMult=0.7f
         DamageType=Class'BallisticProV55.DTVPRLaser'
         DamageTypeHead=Class'BallisticProV55.DTVPRLaserHead'
         DamageTypeArm=Class'BallisticProV55.DTVPRLaser'
@@ -102,17 +103,18 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
         FlashScaleFactor=0.750000
-        Chaos=0.000000
-	    Recoil=0
+        Chaos=0.005000
+        Recoil=4
+		Inaccuracy=(X=8,Y=4)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
-        WarnTargetPct=0.2
+        WarnTargetPct=0.01
     End Object
 
     Begin Object Class=FireParams Name=ClassicLaserFireParams
         FireAnim=
         FireLoopAnim="'"
         FireEndAnim=
-        FireInterval=0.085000
+        FireInterval=0.080000
         FireEffectParams(0)=InstantEffectParams'ClassicLaserEffectParams'
     End Object
 		
@@ -131,7 +133,6 @@ defaultproperties
 		MaxRecoil=1024.000000
 		DeclineTime=1.500000
 		ViewBindFactor=0.250000
-		ADSViewBindFactor=0.250000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.500000
 		bViewDecline=True

@@ -23,7 +23,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
 			FlashScaleFactor=0.600000
 			FireSound=(Sound=Sound'BallisticSounds3.UZI.UZI-Fire',Volume=0.900000)
@@ -56,7 +56,7 @@ defaultproperties
 			PenetrationEnergy=0.000000
 			HookStopFactor=1.700000
 			HookPullForce=100.000000
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			FireSound=(Sound=SoundGroup'BallisticSounds3.UZI.Melee',Radius=32.000000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
@@ -83,7 +83,6 @@ defaultproperties
 		MaxRecoil=8192.000000
 		DeclineTime=0.800000
 		ViewBindFactor=0.200000
-		ADSViewBindFactor=0.200000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.800000
 		bViewDecline=True

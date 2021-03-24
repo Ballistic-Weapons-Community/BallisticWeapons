@@ -19,7 +19,7 @@ defaultproperties
 			MomentumTransfer=90000.000000
 			HeadMult=1.375
 			LimbMult=0.625
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Slot=SLOT_Interact,bNoOverride=False)
 			Recoil=60.000000
@@ -54,7 +54,7 @@ defaultproperties
 			PenetrationEnergy=0.000000
 			HookStopFactor=1.700000
 			HookPullForce=150.000000
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.NovaStaff.Nova-Melee',Radius=32.000000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
@@ -84,10 +84,19 @@ defaultproperties
 		MaxRecoil=8192.000000
 		DeclineTime=1.000000
 		ViewBindFactor=0.250000
-		ADSViewBindFactor=0.250000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
+	End Object
+
+	Begin Object Class=RecoilParams Name=ClassicFastRecoilParams
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.05
+		YRandFactor=0.05
+		DeclineTime=0.5
+		ViewBindFactor=0.65
+		DeclineDelay=0.25
 	End Object
 
 	//=================================================================
@@ -116,6 +125,7 @@ defaultproperties
 		SightOffset=(X=-16.000000,Z=14.000000)
 		SightPivot=(Pitch=1200)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicFastRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'

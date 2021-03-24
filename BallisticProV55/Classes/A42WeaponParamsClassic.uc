@@ -19,7 +19,7 @@ defaultproperties
 			MomentumTransfer=100.000000
 			HeadMult=2.0
 			LimbMult=0.533333
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
 			FireSound=(Sound=Sound'BallisticSounds3.A42.A42-Fire',Volume=0.700000)
 			Recoil=24.000000
@@ -55,7 +55,7 @@ defaultproperties
 			PenetrateForce=150
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
 			FireSound=(Sound=Sound'BallisticSounds3.A42.A42-SecFire',Volume=0.800000)
 			Recoil=96.000000
@@ -85,7 +85,6 @@ defaultproperties
 		DeclineTime=1.000000
 		DeclineDelay=0.100000
 		ViewBindFactor=0.100000
-		ADSViewBindFactor=0.100000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

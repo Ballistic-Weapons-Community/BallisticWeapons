@@ -25,7 +25,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
 			FlashScaleFactor=2.000000
 			FireSound=(Sound=Sound'BallisticSounds3.M763.M763Fire1',Volume=1.300000)
@@ -60,7 +60,7 @@ defaultproperties
 			DamageTypeArm=Class'BallisticProV55.DTM763Hit'
 			ChargeDamageBonusFactor=1
 			PenetrationEnergy=0.000000
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			FireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Radius=32.000000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
@@ -90,7 +90,6 @@ defaultproperties
 		MaxRecoil=1024.000000
 		DeclineTime=0.900000
 		ViewBindFactor=0.900000
-		ADSViewBindFactor=0.900000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

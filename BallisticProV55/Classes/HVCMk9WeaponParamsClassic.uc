@@ -7,9 +7,8 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
 		Begin Object Class=FireEffectParams Name=ClassicPrimaryEffectParams
-			SpreadMode=None
+			SpreadMode=FSM_Circle
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart')
 			Recoil=64.000000
 			Chaos=-1.0
@@ -40,11 +39,12 @@ defaultproperties
 			DamageTypeArm=Class'BallisticProV55.DT_HVCRedLightning'
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-SecFire',Volume=0.900000)
 			Recoil=96.000000
 			Chaos=-1.0
+			PushbackForce=1600.000000
 			Inaccuracy=(X=2,Y=2)
 			BotRefireRate=1.000000
 			WarnTargetPct=0.200000
@@ -70,7 +70,6 @@ defaultproperties
 		MaxRecoil=1024.000000
 		DeclineTime=1.000000
 		ViewBindFactor=0.250000
-		ADSViewBindFactor=0.250000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

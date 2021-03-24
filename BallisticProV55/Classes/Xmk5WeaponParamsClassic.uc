@@ -2,72 +2,69 @@ class XMK5WeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 {
-
     //=================================================================
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=7000.000000,Max=7000.000000)
-			WaterTraceRange=5600.0
-			DecayRange=(Min=0.0,Max=0.0)
-			RangeAtten=0.600000
-			Damage=15.0
-			HeadMult=3.666666
-			LimbMult=0.6
-			DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
-			DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
-			DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
-			PenetrationEnergy=24.000000
-			PenetrateForce=175
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			SpreadMode=None
-			MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-			FlashScaleFactor=0.800000
-			FireSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_Fire1',Volume=1.350000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=100.000000
-			Chaos=-1.0
-			Inaccuracy=(X=8,Y=8)
-			WarnTargetPct=0.200000
-		End Object
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=7000.000000,Max=7000.000000)
+		WaterTraceRange=5600.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.600000
+		Damage=15.0
+		HeadMult=3.7
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
+		DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
+		DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
+		PenetrationEnergy=24.000000
+		PenetrateForce=175
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=0.800000
+		FireSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_Fire1',Volume=1.350000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=100.000000
+		Chaos=-1.0
+		Inaccuracy=(X=8,Y=8)
+		WarnTargetPct=0.200000
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.100000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.100000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-			ProjectileClass=Class'BallisticProV55.XMK5Dart'
-			SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-			Speed=4500.000000
-			Damage=30.000000
-			HeadMult=1.0
-			LimbMult=1.0
-			SpreadMode=None
-			FireSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_FireDart',Volume=1.350000)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.300000
-			WarnTargetPct=0.300000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+		ProjectileClass=Class'BallisticProV55.XMK5Dart'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=4500.000000
+		Damage=30.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BallisticSounds_25.OA-SMG.OA-SMG_FireDart',Volume=1.350000)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=2.000000
-			BurstFireRateFactor=1.00
-			PreFireAnim=
-			FireAnim="Fire2"	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=2.000000
+		BurstFireRateFactor=1.00
+		PreFireAnim=
+		FireAnim="Fire2"	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -81,7 +78,6 @@ defaultproperties
 		MaxRecoil=3000.000000
 		DeclineTime=0.800000
 		ViewBindFactor=0.750000
-		ADSViewBindFactor=0.750000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

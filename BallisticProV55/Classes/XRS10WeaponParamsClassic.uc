@@ -23,7 +23,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Fire',Volume=0.900000)
 			Recoil=64.000000
@@ -43,7 +43,7 @@ defaultproperties
 	
 	
 		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
 			Recoil=0.0
 			Chaos=-1.0
@@ -69,7 +69,6 @@ defaultproperties
 		MaxRecoil=8192.000000
 		DeclineTime=0.800000
 		ViewBindFactor=0.200000
-		ADSViewBindFactor=0.200000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.800000
 		bViewDecline=True

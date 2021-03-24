@@ -24,7 +24,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 			FlashScaleFactor=2.500000
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-Fire',Volume=1.200000)
@@ -62,7 +62,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-LaserFire')
 			Recoil=0.0
 			Chaos=-1.0
@@ -92,7 +92,7 @@ defaultproperties
 		DeclineTime=0.350000
 		DeclineDelay=0.100000
 		ViewBindFactor=0.200000
-		ADSViewBindFactor=0.200000
+		ADSViewBindFactor=0.300000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.800000
 		bViewDecline=True

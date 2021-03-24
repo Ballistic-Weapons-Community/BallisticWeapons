@@ -13,8 +13,8 @@ defaultproperties
 			WaterTraceRange=6400.0
 			DecayRange=(Min=0.0,Max=0.0)
 			Damage=60.0
-			HeadMult=1.666666
-			LimbMult=0.366666
+			HeadMult=1.7
+			LimbMult=0.4
 			DamageType=Class'BallisticProV55.DTleMatRevolver'
 			DamageTypeHead=Class'BallisticProV55.DTleMatrevolverHead'
 			DamageTypeArm=Class'BallisticProV55.DTleMatRevolver'
@@ -23,7 +23,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 			FlashScaleFactor=0.600000
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-Fire',Volume=1.200000)
@@ -54,8 +54,8 @@ defaultproperties
 			TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 			ImpactManager=Class'BallisticProV55.IM_Shell'
 			Damage=22.0
-			HeadMult=1.363636
-			LimbMult=0.272727
+			HeadMult=1.4
+			LimbMult=0.3
 			DamageType=Class'BallisticProV55.DTleMatShotgun'
 			DamageTypeHead=Class'BallisticProV55.DTleMatShotgunHead'
 			DamageTypeArm=Class'BallisticProV55.DTleMatShotgun'
@@ -64,7 +64,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Circle
 			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 			FlashScaleFactor=2.000000
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-SecFire',Volume=1.300000)
@@ -95,7 +95,6 @@ defaultproperties
 		DeclineTime=0.800000
 		DeclineDelay=0.100000
 		ViewBindFactor=0.200000
-		ADSViewBindFactor=0.200000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

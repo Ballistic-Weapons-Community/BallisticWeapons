@@ -23,7 +23,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 			FireSound=(Sound=Sound'BallisticSounds3.R78.R78-Fire')
 			Recoil=3072.000000
@@ -52,7 +52,6 @@ defaultproperties
 		MaxRecoil=3072.000000
 		DeclineTime=1.000000
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.300000
 		bViewDecline=True

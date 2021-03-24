@@ -32,4 +32,5 @@ defaultproperties
      LifeSpan=0.200000
      DrawScale=1.500000
      bIgnoreTerminalVelocity=True
+	 ModeIndex=1
 }

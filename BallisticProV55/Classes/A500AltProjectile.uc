@@ -112,4 +112,5 @@ defaultproperties
     LightRadius=8.000000
     bDynamicLight=True
     DrawScale=1.000000
+	ModeIndex=1
 }

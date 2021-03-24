@@ -21,7 +21,7 @@ defaultproperties
 			PenetrationEnergy=0.000000
 			HookStopFactor=1.700000
 			HookPullForce=100.000000
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			FireSound=(Sound=SoundGroup'BallisticSounds3.A909.A909Slash',Radius=32.000000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
@@ -56,7 +56,7 @@ defaultproperties
 			PenetrationEnergy=0.000000
 			HookStopFactor=1.700000
 			HookPullForce=100.000000
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			FireSound=(Sound=SoundGroup'BallisticSounds3.A909.A909Slash',Radius=32.000000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
@@ -83,7 +83,6 @@ defaultproperties
 		YRandFactor=0.500000
 		MaxRecoil=2048.000000
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

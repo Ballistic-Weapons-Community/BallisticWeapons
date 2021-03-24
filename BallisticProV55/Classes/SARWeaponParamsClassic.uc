@@ -24,7 +24,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			SpreadMode=None
+			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 			FlashScaleFactor=2.000000
 			FireSound=(Sound=Sound'BallisticSounds3.SAR.SAR-Fire',Volume=0.900000,Slot=SLOT_Interact,bNoOverride=False)
@@ -41,26 +41,6 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 		End Object
 		
-    //=================================================================
-    // SECONDARY FIRE
-    //=================================================================	
-	
-	
-		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
-			SpreadMode=None
-			FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.300000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.700000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
-		End Object
-		
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -73,7 +53,6 @@ defaultproperties
 		MaxRecoil=3840.000000
 		DeclineTime=0.800000
 		ViewBindFactor=0.200000
-		ADSViewBindFactor=0.200000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.900000
 		bViewDecline=True
@@ -107,7 +86,6 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
 
