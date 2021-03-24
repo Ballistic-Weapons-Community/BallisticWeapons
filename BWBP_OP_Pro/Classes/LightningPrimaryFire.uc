@@ -2,7 +2,8 @@ class LightningPrimaryFire extends BallisticProInstantFire;
 
 var()	Name					ChargeAnim;		//Animation to use when charging
 var() 	BUtil.FullSound			LightningSound;	//Crackling sound to play
-var() 	Sound					ChargeLoopSound; //Sound to play/scale pitch when charging
+var() 	Sound					ChargeLoopSound; //Sound to play
+var()   byte                    ChargeLoopSoundVolume; 
 var		byte					ChargeSoundPitch;
 var   	int 					TransferCDamage;	//Damage to transfer to LightningConductor actor
 var		float					ChargeGainPerSecond, ChargeDecayPerSecond, ChargeOvertime, MaxChargeOvertime;
@@ -21,8 +22,12 @@ simulated function ModeDoFire()
 
 simulated function PlayStartHold()
 {	
-	Weapon.AmbientSound = ChargeLoopSound;
-	Weapon.ThirdPersonActor.AmbientSound = ChargeLoopSound;
+    if (BW.Role == ROLE_Authority)
+    {	
+        Instigator.AmbientSound = ChargeLoopSound;
+        Instigator.SoundVolume = ChargeLoopSoundVolume;
+        Instigator.SoundPitch = ChargeSoundPitch;
+    }
 
 	AdjustChargeVolume();
 
@@ -30,13 +35,10 @@ simulated function PlayStartHold()
 	BW.SafeLoopAnim(ChargeAnim, 1.0, TweenTime, ,"IDLE");
 }
 
-simulated function AdjustChargeVolume()
+function AdjustChargeVolume()
 {
-	Weapon.SoundVolume = 127 + LightningRifle(BW).ChargePower * 32;
-	Weapon.SoundPitch = ChargeSoundPitch * (1 + FMax(LightningRifle(BW).ChargePower, 0.1)/4);
-	
-	Weapon.ThirdPersonActor.SoundVolume = 127 + LightningRifle(BW).ChargePower * 32;
-	Weapon.ThirdPersonActor.SoundPitch = ChargeSoundPitch * (1 + FMax(LightningRifle(BW).ChargePower,0.1)/4);
+	Instigator.SoundVolume  = 127 + LightningRifle(BW).ChargePower * 64;
+	Instigator.SoundPitch   = ChargeSoundPitch * (1 + FMax(LightningRifle(BW).ChargePower, 0.1)/2);
 }
 
 simulated function int CalculateAmmoUse()
@@ -60,28 +62,34 @@ simulated function ModeTick(float DeltaTime)
 		if (ChargeOvertime >= MaxChargeOvertime)
 			bIsFiring = false;
 	}
+
+
 	else if (LightningRifle(BW).ChargePower > 0 && AmmoHasBeenCalculated)
 	{
 		LightningRifle(BW).SetChargePower(FMax(0.0, LightningRifle(BW).ChargePower - ChargeDecayPerSecond * DeltaTime));
+
 		if (LightningRifle(BW).ChargePower == 0)
 		{
 			AmmoHasBeenCalculated = false;
 			
-			Weapon.AmbientSound = None;
-			Weapon.ThirdPersonActor.AmbientSound = None;
+            if (Weapon.Role == ROLE_Authority)
+            {
+                Instigator.AmbientSound = None;
+                Instigator.SoundVolume = Instigator.Default.SoundVolume;
+                Instigator.SoundPitch = Instigator.default.SoundPitch;
+            }
 		}
 			
 		ChargeOvertime = 0;
 	}
 	
-	if (Weapon.AmbientSound != None && Weapon.ThirdPersonActor.AmbientSound != None)
+	if (Weapon.Role == ROLE_Authority && Instigator.AmbientSound == ChargeLoopSound)
 		AdjustChargeVolume();
-		
 		
 	Super.ModeTick(DeltaTime);
 }
 
-simulated function ServerPlayFiring()
+function ServerPlayFiring()
 {
 	super.ServerPlayFiring();
 	if (LightningSound.Sound != None)
@@ -100,10 +108,11 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 	local LightningConductor LConductor;
 
     Damage *= (1 + (0.25 * LightningRifle(BW).ChargePower));
-
 	super.ApplyDamage(Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 
-	if (LightningProjectile(Target) == None)	//saves running the below if the target is the lightning orb
+	if (LightningProjectile(Target) != None)
+		return;
+	else
 	{
 		if (!class'LightningConductor'.static.ValidTarget(Instigator, Pawn(Target), Instigator.Level))
 			return;
@@ -134,10 +143,11 @@ defaultproperties
 {
 	ChargeAnim="ChargeLoop"
 	ChargeLoopSound=Sound'IndoorAmbience.machinery18'
+    ChargeLoopSoundVolume=200
 	ChargeSoundPitch=32
-	MaxChargeOvertime=3.0f
-	ChargeGainPerSecond=2.5f
-	ChargeDecayPerSecond=9.0f
+	MaxChargeOvertime=2.0f
+	ChargeGainPerSecond=1f
+	ChargeDecayPerSecond=4.5f
 	LightningSound=(Sound=Sound'BWBP_OP_Sounds.Lightning.LightningGunCrackle',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
 	TraceRange=(Min=30000.000000,Max=30000.000000)
 	MaxWaterTraceRange=30000

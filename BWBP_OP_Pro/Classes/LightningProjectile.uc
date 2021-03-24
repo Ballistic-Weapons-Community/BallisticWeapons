@@ -8,21 +8,67 @@
 //=============================================================================
 class LightningProjectile extends BallisticProjectile;
 
+var Pawn ComboTarget;       // for AI use
+
 // Got hit, explode with a tiny delay
 event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
 {
+     local LightningConductor LConductor;
+
 	if (class<DT_LightningRifle>(DamageType) == None)
 		return;
 
-    Damage = 1;
+     //Initiates Lightning Conduction actor
+	LConductor = Spawn(class'LightningConductor',Instigator,,Location);
+
+	if (LConductor != None)
+	{
+		LConductor.Instigator = Instigator;
+		LConductor.Damage = 120;
+		LConductor.ChargePower = 2;
+        LConductor.bIsCombo = true;
+
+		LConductor.Initialize(self);
+	}
+
+     Damage = 1;
 
 	Explode(Location, Normal(Velocity));
+}
+
+function Monitor(Pawn P)
+{
+    ComboTarget = P;
+
+    if ( ComboTarget != None )
+        GotoState('WaitForCombo');
+}
+
+State WaitForCombo
+{
+    function Tick(float DeltaTime)
+    {
+        if ( (ComboTarget == None) || ComboTarget.bDeleteMe
+            || (Instigator == None) || (ShockRifle(Instigator.Weapon) == None) )
+        {
+            GotoState('');
+            return;
+        }
+
+        if ( (VSize(ComboTarget.Location - Location) <= 0.5 * 768 + ComboTarget.CollisionRadius)
+            || ((Velocity Dot (ComboTarget.Location - Location)) <= 0) )
+        {
+            LightningRifle(Instigator.Weapon).DoCombo();
+            GotoState('');
+            return;
+        }
+    }
 }
 
 defaultproperties
 {
      ImpactManager=Class'BWBP_OP_Pro.IM_LightningArcProj'
-     AccelSpeed=500.000000
+     AccelSpeed=-100.000000
      MyRadiusDamageType=Class'BWBP_OP_Pro.DT_LightningProjectile'
      bTearOnExplode=True
      MotionBlurRadius=300.000000
@@ -30,11 +76,11 @@ defaultproperties
      ShakeRotTime=2.000000
      ShakeOffsetMag=(Y=15.000000,Z=15.000000)
      ShakeOffsetTime=2.000000
-     Speed=250.000000
-     MaxSpeed=5000.000000
+     Speed=750.000000
+     MaxSpeed=1500.000000
      bSwitchToZeroCollision=True
-     Damage=70.000000
-     DamageRadius=100.000000
+     Damage=20.000000
+     DamageRadius=1.000000
      MyDamageType=Class'BWBP_OP_Pro.DT_LightningProjectile'
      bDynamicLight=True
      LightType=LT_Steady
@@ -47,10 +93,10 @@ defaultproperties
      DrawScale=0.300000
      bNetTemporary=False
      AmbientSound=Sound'WeaponSounds.ShockRifleProjectile'
-     LifeSpan=16.000000
+     LifeSpan=7.500000
      Style=STY_Additive
      SoundVolume=255
-     SoundRadius=75.000000
+     SoundRadius=150.000000
      CollisionRadius=16.000000
      CollisionHeight=16.000000
      bCollideActors=True

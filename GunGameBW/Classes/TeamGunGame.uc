@@ -1879,30 +1879,30 @@ defaultproperties
      DefaultWeapons(0)=Class'BallisticProV55.X3Knife'	//standard weapon
 
      DefaultWeapons(1)=Class'BallisticProV55.HVCMk9LightningGun'
-     DefaultWeapons(2)=Class'BWBPRecolorsPro.LAWLauncher'
+     DefaultWeapons(2)=Class'BWBP_SKC_Pro.LAWLauncher'
      DefaultWeapons(3)=Class'BallisticProV55.MACWeapon'
-     DefaultWeapons(4)=Class'BWBPRecolorsPro.MGLauncher'	//ks2
-     DefaultWeapons(5)=Class'BWBPRecolorsPro.FLASHLauncher'
+     DefaultWeapons(4)=Class'BWBP_SKC_Pro.MGLauncher'	//ks2
+     DefaultWeapons(5)=Class'BWBP_SKC_Pro.FLASHLauncher'
      DefaultWeapons(6)=Class'BallisticProV55.RX22AFlamer'
      DefaultWeapons(7)=Class'BallisticProV55.M290Shotgun'
 
      DefaultWeapons(8)=Class'BallisticProV55.MRocketLauncher'
      DefaultWeapons(9)=Class'BallisticProV55.G5Bazooka'
-     DefaultWeapons(10)=Class'BWBPRecolorsPro.SKASShotgun'	//ks1
-     DefaultWeapons(11)=Class'BWBPRecolorsPro.AH208Pistol'
+     DefaultWeapons(10)=Class'BWBP_SKC_Pro.SKASShotgun'	//ks1
+     DefaultWeapons(11)=Class'BWBP_SKC_Pro.AH208Pistol'
 	 DefaultWeapons(12)=Class'BallisticProV55.SRS600Rifle'
 
 	 DefaultWeapons(13)=Class'BallisticProV55.M50AssaultRifle'
 	 DefaultWeapons(14)=Class'BallisticProV55.M46AssaultRifle'
 	 DefaultWeapons(15)=Class'BallisticProV55.M46AssaultRifleQS'
-     DefaultWeapons(16)=Class'BWBPRecolorsPro.MARSAssaultRifle'
-     DefaultWeapons(17)=Class'BWBPRecolorsPro.F2000AssaultRifle'
-     DefaultWeapons(18)=Class'BWBPRecolorsPro.CYLOAssaultWeapon'	//ar
-     DefaultWeapons(19)=Class'BWBPRecolorsPro.CYLOUAW'
-	 DefaultWeapons(20)=Class'BWBPRecolorsPro.LK05Carbine'
+     DefaultWeapons(16)=Class'BWBP_SKC_Pro.MARSAssaultRifle'
+     DefaultWeapons(17)=Class'BWBP_SKC_Pro.F2000AssaultRifle'
+     DefaultWeapons(18)=Class'BWBP_SKC_Pro.CYLOAssaultWeapon'	//ar
+     DefaultWeapons(19)=Class'BWBP_SKC_Pro.CYLOUAW'
+	 DefaultWeapons(20)=Class'BWBP_SKC_Pro.LK05Carbine'
 	 DefaultWeapons(21)=Class'BallisticProV55.SARAssaultRifle'
-	 DefaultWeapons(22)=Class'BWBPRecolorsPro.AK47AssaultRifle'
-     DefaultWeapons(23)=Class'BWBPOtherPackPro.CX61AssaultRifle'
+	 DefaultWeapons(22)=Class'BWBP_SKC_Pro.AK47AssaultRifle'
+     DefaultWeapons(23)=Class'BWBP_OP_Pro.CX61AssaultRifle'
 	 
      DefaultWeapons(24)=Class'BallisticProV55.Fifty9MachinePistol'
      DefaultWeapons(25)=Class'BallisticProV55.XK2SubMachinegun'
@@ -1911,67 +1911,67 @@ defaultproperties
 
 	 DefaultWeapons(28)=Class'BallisticProV55.RSNovaStaff'
      DefaultWeapons(29)=Class'BallisticProV55.RSDarkStar'
-     DefaultWeapons(30)=Class'BWBPOtherPackPro.XOXOStaff'
+     DefaultWeapons(30)=Class'BWBP_OP_Pro.XOXOStaff'
      DefaultWeapons(31)=Class'BallisticProV55.E23PlasmaRifle'
      DefaultWeapons(32)=Class'BallisticProV55.A73SkrithRifle'	//energy
-	 DefaultWeapons(33)=Class'BWBPRecolorsPro.A49SkrithBlaster'
-     DefaultWeapons(34)=Class'BWBPOtherPackPro.XM20AutoLas'
-     DefaultWeapons(35)=Class'BWBPOtherPackPro.Raygun'
-     DefaultWeapons(36)=Class'BWBPOtherPackPro.ProtonStreamer'
+	 DefaultWeapons(33)=Class'BWBP_SKC_Pro.A49SkrithBlaster'
+     DefaultWeapons(34)=Class'BWBP_OP_Pro.XM20AutoLas'
+     DefaultWeapons(35)=Class'BWBP_OP_Pro.Raygun'
+     DefaultWeapons(36)=Class'BWBP_OP_Pro.ProtonStreamer'
 
 	 DefaultWeapons(37)=Class'BallisticProV55.A500Reptile'
-     DefaultWeapons(38)=Class'BWBPRecolorsPro.CoachGun'
-     DefaultWeapons(39)=Class'BWBPOtherPackPro.ARShotgun'
-     DefaultWeapons(40)=Class'BWBPRecolorsPro.MK781Shotgun'
+     DefaultWeapons(38)=Class'BWBP_SKC_Pro.CoachGun'
+     DefaultWeapons(39)=Class'BWBP_OP_Pro.ARShotgun'
+     DefaultWeapons(40)=Class'BWBP_SKC_Pro.MK781Shotgun'
      DefaultWeapons(41)=Class'BallisticProV55.MRS138Shotgun'	//shotgun
-     DefaultWeapons(42)=Class'BWBPOtherPackPro.TrenchGun'
+     DefaultWeapons(42)=Class'BWBP_OP_Pro.TrenchGun'
      DefaultWeapons(43)=Class'BallisticProV55.M763Shotgun'
-	 DefaultWeapons(44)=Class'BWBPRecolorsPro.SK410Shotgun'
+	 DefaultWeapons(44)=Class'BWBP_SKC_Pro.SK410Shotgun'
 
 	 DefaultWeapons(45)=Class'BallisticProV55.M353Machinegun'
 	 DefaultWeapons(46)=Class'BallisticProV55.M925Machinegun'
-	 DefaultWeapons(47)=Class'BWBPOtherPackPro.Z250Minigun'	//mg
+	 DefaultWeapons(47)=Class'BWBP_OP_Pro.Z250Minigun'	//mg
      DefaultWeapons(48)=Class'BallisticProV55.XMV850Minigun'
-     DefaultWeapons(49)=Class'BWBPRecolorsPro.FG50MachineGun'
+     DefaultWeapons(49)=Class'BWBP_SKC_Pro.FG50MachineGun'
 
-     DefaultWeapons(50)=Class'BWBPRecolorsPro.BulldogAssaultCannon'
-	 DefaultWeapons(51)=Class'BWBPOtherPackPro.AkeronLauncher'	//ordnance
-	 DefaultWeapons(52)=Class'BWBPRecolorsPro.LonghornLauncher'
+     DefaultWeapons(50)=Class'BWBP_SKC_Pro.BulldogAssaultCannon'
+	 DefaultWeapons(51)=Class'BWBP_OP_Pro.AkeronLauncher'	//ordnance
+	 DefaultWeapons(52)=Class'BWBP_SKC_Pro.LonghornLauncher'
 
 	 DefaultWeapons(53)=Class'BallisticProV55.R78Rifle'
 	 DefaultWeapons(54)=Class'BallisticProV55.SRS900Rifle'
-	 DefaultWeapons(55)=Class'BWBPOtherPackPro.R9A1RangerRifle'
+	 DefaultWeapons(55)=Class'BWBP_OP_Pro.R9A1RangerRifle'
 	 DefaultWeapons(56)=Class'BallisticProV55.MarlinRifle'
-	 DefaultWeapons(57)=Class'BWBPOtherPackPro.CX85AssaultWeapon'
-	 DefaultWeapons(58)=Class'BWBPRecolorsPro.LS14Carbine'	//sniper
-     DefaultWeapons(59)=Class'BWBPRecolorsPro.M2020GaussDMR'
-     DefaultWeapons(60)=Class'BWBPRecolorsPro.AS50Rifle'
-	 DefaultWeapons(61)=Class'BWBPOtherPackPro.BX85Crossbow'
-	 DefaultWeapons(62)=Class'BWBPRecolorsPro.X82Rifle'
+	 DefaultWeapons(57)=Class'BWBP_OP_Pro.CX85AssaultWeapon'
+	 DefaultWeapons(58)=Class'BWBP_SKC_Pro.LS14Carbine'	//sniper
+     DefaultWeapons(59)=Class'BWBP_SKC_Pro.M2020GaussDMR'
+     DefaultWeapons(60)=Class'BWBP_SKC_Pro.AS50Rifle'
+	 DefaultWeapons(61)=Class'BWBP_OP_Pro.BX85Crossbow'
+	 DefaultWeapons(62)=Class'BWBP_SKC_Pro.X82Rifle'
      DefaultWeapons(63)=Class'BallisticProV55.M75Railgun'
 
 	 DefaultWeapons(64)=Class'BallisticProV55.AM67Pistol'
-     DefaultWeapons(65)=Class'BWBPRecolorsPro.AH250Pistol'
+     DefaultWeapons(65)=Class'BWBP_SKC_Pro.AH250Pistol'
      DefaultWeapons(66)=Class'BallisticProV55.D49Revolver'
      DefaultWeapons(67)=Class'BallisticProV55.leMatRevolver'
      DefaultWeapons(68)=Class'BallisticProV55.GRS9Pistol'
 	 DefaultWeapons(69)=Class'BallisticProV55.MRT6Shotgun'
      DefaultWeapons(70)=Class'BallisticProV55.RS8Pistol'	//pistol
-     DefaultWeapons(71)=Class'BWBPRecolorsPro.PS9mPistol'
-	 DefaultWeapons(72)=Class'BWBPRecolorsPro.MRDRMachinePistol'
+     DefaultWeapons(71)=Class'BWBP_SKC_Pro.PS9mPistol'
+	 DefaultWeapons(72)=Class'BWBP_SKC_Pro.MRDRMachinePistol'
      DefaultWeapons(73)=Class'BallisticProV55.A42SkrithPistol'
 	 DefaultWeapons(74)=Class'BallisticProV55.MD24Pistol'
 	 DefaultWeapons(75)=Class'BallisticProV55.BOGPPistol'
-     DefaultWeapons(76)=Class'BWBPOtherPackPro.PD97Bloodhound'
+     DefaultWeapons(76)=Class'BWBP_OP_Pro.PD97Bloodhound'
 
-     DefaultWeapons(77)=Class'BWBPRecolorsPro.DragonsToothSword'
-	 DefaultWeapons(78)=Class'BWBPOtherPackPro.DefibFists'
-     DefaultWeapons(79)=Class'BWBPOtherPackPro.FlameSword'
-     DefaultWeapons(80)=Class'BWBPOtherPackPro.MAG78Longsword'	//melee
+     DefaultWeapons(77)=Class'BWBP_SKC_Pro.DragonsToothSword'
+	 DefaultWeapons(78)=Class'BWBP_OP_Pro.DefibFists'
+     DefaultWeapons(79)=Class'BWBP_OP_Pro.FlameSword'
+     DefaultWeapons(80)=Class'BWBP_OP_Pro.MAG78Longsword'	//melee
      DefaultWeapons(81)=Class'BallisticProV55.A909SkrithBlades'
      DefaultWeapons(82)=Class'BallisticProV55.EKS43Katana'
      DefaultWeapons(83)=Class'BallisticProV55.X4Knife'
-     DefaultWeapons(84)=Class'BWBPRecolorsPro.X8Knife'
+     DefaultWeapons(84)=Class'BWBP_SKC_Pro.X8Knife'
 
      LoginMenuClass="GunGameBW.UT2K4GunGameLoginMenu"
      bWeaponStay=False

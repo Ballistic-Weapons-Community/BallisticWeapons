@@ -505,6 +505,8 @@ simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
 
+    assert(ParamsClasses[BCRepClass.default.GameStyle] != None);
+    
     // Forced to delay initialization because of the need to wait for LayoutIndex to be replicated
 	ParamsClasses[BCRepClass.default.GameStyle].static.Initialize(self);
 
@@ -530,6 +532,8 @@ simulated function PostNetBeginPlay()
 simulated final function OnWeaponParamsChanged()
 {
     local int i;
+
+    assert(WeaponParams != None);
 
 	SightingTime 				= WeaponParams.SightingTime;
 	default.SightingTime 		= WeaponParams.SightingTime;
@@ -1318,7 +1322,7 @@ exec simulated function ScopeView()
         ZeroAim(SightingTime); //Level out sights over aim adjust time to stop the "shunt" effect
 	
         if (!IsFiring() && !bNoTweenToScope)
-            TweenAnim(IdleAnim, SightingTime);
+            SafeTweenAnim(IdleAnim, SightingTime);
 
         if (AimComponent.AllowADS())
             PlayScopeUp();

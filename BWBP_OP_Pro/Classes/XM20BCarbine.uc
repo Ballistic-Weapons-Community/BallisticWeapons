@@ -575,6 +575,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
      BigIconMaterial=Texture'BWBP_SKC_Tex.XM20.BigIcon_XM20'
      InventoryGroup=5
+	 GroupOffset=8
      bWT_Bullet=True
      bWT_Hazardous=True
      bWT_Splash=True

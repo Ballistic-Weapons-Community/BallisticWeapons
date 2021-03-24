@@ -129,6 +129,8 @@ final simulated function Cleanup()
 //=============================================================
 final simulated function Recalculate()
 {
+    assert(Params != None);
+    
 	PitchFactor 		= Params.PitchFactor;
 	YawFactor 			= Params.YawFactor;
 	XRandFactor 		= Params.XRandFactor;

@@ -17,26 +17,6 @@ simulated function PostBeginPlay()
 	SetBoneScale (1, 0.0, 'LAM');
 }
 
-simulated function Vector GetTipLocation()
-{
-    local Vector X, Y, Z, Loc;
-
-	if (Instigator.IsFirstPerson())
-	{
-		if (AH250Pistol(Instigator.Weapon).bScopeView)
-		{
-			Instigator.Weapon.GetViewAxes(X,Y,Z);
-			Loc = Instigator.Location + Instigator.EyePosition() + X*20 + Z*-10;
-		}
-		else
-			Loc = Instigator.Weapon.GetBoneCoords('tip').Origin + class'BUtil'.static.AlignedOffset(Instigator.GetViewRotation(), SpawnOffset);
-	}
-	else
-		Loc = GetBoneCoords('tip').Origin;
-
-    return Loc;
-}
-
 defaultproperties
 {
      MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'

@@ -168,6 +168,8 @@ exec simulated function WeaponSpecial(optional byte i)
 
 	bMagnetOpen = !bMagnetOpen;
 
+	ReloadState = RS_GearSwitch;
+
 	TemporaryScopeDown(0.4);
 	MagnetSwitchTime = level.TimeSeconds + MagnetSwitchFireRate;
 	PlayMagnetSwitching(bMagnetOpen);
@@ -201,8 +203,11 @@ simulated function Overheat(bool bForceClose)
 		PlayAnim(MagnetForceCloseAnim);
 	else
 		PlayAnim(MagnetCloseAnim);
+
+	ReloadState = RS_GearSwitch;
 	bMagnetOpen=false;
 	MagnetSwitchTime = level.TimeSeconds + 5;	//delay before magnet can be turned on again
+	class'BallisticDamageType'.static.GenericHurt (Instigator, 30, None, Instigator.Location, vect(0,0,0), class'DT_M2020Overheat');
 	AdjustMagnetProperties();
 }
 
@@ -258,9 +263,9 @@ simulated event WeaponTick (float DT)
 simulated event Tick (float DT)
 {
 	if (bMagnetOpen)
-		AddHeat(DT, false);
+		AddHeat(DT*200, false);
 	else if (Heatlevel > 0)
-		Heatlevel = FMax(HeatLevel - DT * 0.35f, 0);
+		Heatlevel = FMax(HeatLevel - (DT*200) * 0.45f, 0);
 	else
 		Heatlevel = 0;
 
@@ -360,6 +365,8 @@ simulated event AnimEnd (int Channel)
 		AdjustMagnetProperties();
 		PlayReload();
 	}
+	if (anim == MagnetForceCloseAnim || anim == MagnetOpenAnim)
+		ReloadState = RS_None;
 
 	Super.AnimEnd(Channel);
 }
@@ -369,7 +376,7 @@ simulated function PlayReload()
 	if (bMagnetOpen)
 		SafePlayAnim(MagnetCloseAnim, 1.2, , 0, "RELOAD");
 	else
-		SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
+		super.PlayReload();
 }
 
 // Prepare to reload, set reload state, start anims. Called on client and server
@@ -473,11 +480,12 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 
     if ( CheckReflect(HitLocation, HitNormal, 0) )
     {
+		AddHeat(Damage*2.5, false);
+
 		Damage /= 5;
 		Momentum /= 5;
-		
+
 		M2020GaussAttachment(ThirdPersonActor).BlockEffectCount += 1;
-		
 		M2020GaussAttachment(ThirdPersonActor).DoBlockEffect();
 		
 		PlaySound(ShieldHitSound, SLOT_None);
@@ -491,7 +499,8 @@ function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDr
     local Vector HitDir;
     local Vector FaceDir;
 
-    if (!bMagnetOpen) return false;
+    if (!bMagnetOpen) 
+		return false;
 
     FaceDir = Vector(Instigator.Controller.Rotation);
     HitDir = Normal(Instigator.Location - HitLocation + Vect(0,0,8));
@@ -545,8 +554,8 @@ defaultproperties
 	VentingSound=Sound'BWBP_SKC_Sounds.M2020.M2020-IdleShield'
 	OverheatSound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Overload'
 	ShieldHitSound=ProceduralSound'WeaponSounds.ShieldGun.ShieldReflection'
-	MaxHeat=7.000000
-	MagnetSwitchFireRate=1.000000
+	MaxHeat=2400.000000	//12 seconds * 20 = 2000. this change is to avoid precision errors with adding epsilon of heat
+	MagnetSwitchFireRate=2.000000
 	BulletBone1="Bullet1"
 	BulletBone2="Bullet2"
 	MagnetOpenAnim="ShieldDeploy"

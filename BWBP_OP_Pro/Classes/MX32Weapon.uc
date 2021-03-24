@@ -417,7 +417,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 		C.DrawTile(Texture'Engine.MenuWhite', 200 * ScaleFactor * class'HUD'.default.HudScale * SprintFactor, 30 * ScaleFactor * class'HUD'.default.HudScale, 0, 0, 1, 1);
 	}
 
-	ScaleFactor2 = 99 * C.ClipX/3200;
+	ScaleFactor2 = 85 * C.ClipX/3200;
 	C.Style = ERenderStyle.STY_Alpha;
 	C.DrawColor = class'HUD'.Default.WhiteColor;
 
@@ -426,8 +426,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 
     for( i=0; i<Count; i++ )
     {
-//		C.SetPos(C.ClipX - (0.35*i+1) * ScaleFactor2, YPos);
-		C.SetPos(C.ClipX - (0.35*i+1) * ScaleFactor2, C.ClipY - 120 * ScaleFactor * class'HUD'.default.HudScale);
+		C.SetPos(C.ClipX - (0.22*i+1) * ScaleFactor2, C.ClipY - 100 * ScaleFactor * class'HUD'.default.HudScale);
 		C.DrawTile(Texture'BWBP_SKC_Tex.LS14.LS14-RocketIcon', ScaleFactor2, ScaleFactor2, 0, 0, 128, 128);
 	}
 }

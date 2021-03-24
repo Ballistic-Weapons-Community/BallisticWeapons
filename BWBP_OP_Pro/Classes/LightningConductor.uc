@@ -181,7 +181,7 @@ static function bool ValidTarget(Pawn Instigator, Actor Target, LevelInfo Level)
 	local byte Team, InTeam;
 
 	// target should never be none because this function is only ever called from CollidingActors
-	if (Target == None || !Target.bProjTarget)
+	if (Pawn(Target) == None || !Pawn(Target).bProjTarget)
 		return false;
 
 	// uncontrolled pawn is neutral - valid target
@@ -280,11 +280,11 @@ function Propagate()
 // CalcDecayMult
 //
 // Determines damage loss every jump. 
-// -30% at minimum factor, -15% at maximum factor
+// -50% at minimum factor, -33% at maximum factor
 //============================================================
 final function float CalcDecayMult()
 {
-    return 0.7f /* base power */ + ChargePower * 0.25f /* coeff */ * 0.15f /* max additional power*/;
+    return 0.5f /* base power */ + ChargePower * 0.5f /* coeff */ * 0.17f /* max additional power*/;
 }
 
 final function int CalcDamageForIndex(int index)

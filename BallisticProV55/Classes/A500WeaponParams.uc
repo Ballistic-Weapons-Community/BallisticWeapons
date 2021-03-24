@@ -28,9 +28,9 @@ defaultproperties
         Speed=5500.000000
         MaxSpeed=6500.000000
         AccelSpeed=3000.000000
-        Damage=22.000000
+        Damage=20.000000
         MomentumTransfer=1000.000000
-        MaxDamageGainFactor=0.5
+        MaxDamageGainFactor=0.2
         DamageGainEndTime=0.3
         Recoil=378.000000
         Chaos=0.400000
@@ -59,7 +59,7 @@ defaultproperties
     Begin Object Class=FireParams Name=ArenaMultiFireParams
         FireEndAnim=
         FireAnimRate=1.300000
-        FireInterval=0.4
+        FireInterval=0.5
         FireEffectParams(0)=ProjectileEffectParams'ArenaMultiEffectParams'
     End Object
 

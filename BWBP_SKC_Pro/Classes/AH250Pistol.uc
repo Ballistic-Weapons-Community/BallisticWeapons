@@ -4,23 +4,11 @@
 //=============================================================================
 class AH250Pistol extends BallisticWeapon;
 
-var   Emitter		LaserDot;
-var   bool			bLaserOn;
-
-var() Sound			LaserOnSound;
-var() Sound			LaserOffSound;
-
 var(AH250Pistol) name		RDSBone;			// Bone to use for hiding Red Dot Sight
 var(AH250Pistol) name		MuzzBone;			// Bone to use for hiding Compensator
 var(AH250Pistol) name		LAMBone;			// Bone to use for hiding LAM
 var(AH250Pistol) name		ScopeBone;			// Bone to use for hiding scope
 var(AH208Pistol) name		BulletBone;			// Bone to use for hiding bullet
-
-replication
-{
-	reliable if (Role < ROLE_Authority)
-		ServerUpdateLaser;
-}
 
 simulated function PostBeginPlay()
 {
@@ -49,71 +37,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 	
 	Super.BringUp(PrevWeapon);
-}
-
-simulated function Destroyed ()
-{
-	default.bLaserOn = false;
-	if (LaserDot != None)
-		LaserDot.Destroy();
-	Super.Destroyed();
-}
-
-simulated function KillLaserDot()
-{
-	if (LaserDot != None)
-	{
-		LaserDot.Kill();
-		LaserDot = None;
-	}
-}
-
-simulated function SpawnLaserDot(optional vector Loc)
-{
-	if (LaserDot == None)
-		LaserDot = Spawn(class'G5LaserDot',,,Loc);
-}
-
-simulated function bool PutDown()
-{
-	if (super.PutDown())
-	{
-		bLaserOn=false;
-		KillLaserDot();
-		return true;
-	}
-	return false;
-}
-
-simulated function DrawLaserSight ( Canvas Canvas )
-{
-	local Vector HitLocation, Start, End, HitNormal;
-	local Rotator AimDir;
-	local Actor Other;
-
-	if (ClientState != WS_ReadyToFire || Firemode[1].bIsFiring || !bLaserOn/* || !bScopeView */|| ReloadState != RS_None || IsInState('DualAction')/* || Level.TimeSeconds - FireMode[0].NextFireTime < 0.2*/)
-	{
-		KillLaserDot();
-		return;
-	}
-
-	AimDir = BallisticFire(FireMode[0]).GetFireAim(Start);
-
-	End = Start + Normal(Vector(AimDir))*5000;
-	Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
-	if (Other == None)
-		HitLocation = End;
-
-	// Draw dot at end of beam
-	SpawnLaserDot(HitLocation);
-	if (LaserDot != None)
-		LaserDot.SetLocation(HitLocation);
-	Canvas.DrawActor(LaserDot, false, false, Instigator.Controller.FovAngle);
-}
-
-function ServerUpdateLaser(bool bNewLaserOn)
-{
-	bUseNetAim = default.bUseNetAim || bScopeView || bNewLaserOn;
 }
 
 // Animation notify for when cocking action starts. Used to time sounds
@@ -220,8 +143,6 @@ defaultproperties
 	ManualLines(0)="High-powered semi-automatic fire."
 	ManualLines(1)="Engages the scope."
 	ManualLines(2)="Effective at medium range."
-	LaserOnSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
-	LaserOffSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
 	RDSBone="RedDotSight"
 	MuzzBone="Compensator"
 	LAMBone="LAM"

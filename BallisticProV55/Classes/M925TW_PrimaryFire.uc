@@ -91,16 +91,17 @@ simulated event ModeDoFire()
     }
     else if (bBurstMode)
     {
-    	if (BurstCount > MaxBurst)
+		BurstCount++;
+    	if (BurstCount >= MaxBurst)
     	{
-    		NextFireTime += FireRate * 1.7;
+    		NextFireTime += FireRate * (1 + (MaxBurst * (1.0f - BurstFireRateFactor)));
     		NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
     		Weapon.StopFire(ThisModeNum);
     		BurstCount = 0;
     	}
     	else
     	{
-    		NextFireTime += FireRate * 0.8;
+    		NextFireTime += FireRate * BurstFireRateFactor;
   			NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
   		}
     }

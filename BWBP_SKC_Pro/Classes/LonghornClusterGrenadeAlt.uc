@@ -188,7 +188,7 @@ defaultproperties
      MotionBlurTime=1.000000
      Speed=7500.000000
      MaxSpeed=7500.000000
-     Damage=30.000000
+     Damage=25.000000
      DamageRadius=256.000000
      MomentumTransfer=25000.000000
      MyDamageType=Class'BWBP_SKC_Pro.DT_LonghornShotRadius'
