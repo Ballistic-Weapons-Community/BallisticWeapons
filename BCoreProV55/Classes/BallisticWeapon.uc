@@ -562,6 +562,25 @@ simulated final function OnWeaponParamsChanged()
 
     for (i = 0; i < WeaponParams.WeaponBoneScales.Length; ++i)
         SetBoneScale(WeaponParams.WeaponBoneScales[i].Slot, WeaponParams.WeaponBoneScales[i].Scale, WeaponParams.WeaponBoneScales[i].BoneName);
+	
+	if (WeaponParams.WeaponModes.Length != 0)
+	{
+		for (i = 0; i < WeaponModes.Length; ++i)
+		{
+			WeaponModes[i].bUnavailable = true; //Lock down old modes in case old list length is longer
+		}
+		for (i = 0; i < WeaponParams.WeaponModes.Length; ++i)
+		{
+			WeaponModes[i].ModeName = WeaponParams.WeaponModes[i].ModeName;
+			WeaponModes[i].bUnavailable = WeaponParams.WeaponModes[i].bUnavailable;
+			WeaponModes[i].ModeID = WeaponParams.WeaponModes[i].ModeID;
+			WeaponModes[i].Value = WeaponParams.WeaponModes[i].Value;
+			WeaponModes[i].RecoilParamsIndex = WeaponParams.WeaponModes[i].RecoilParamsIndex;
+			WeaponModes[i].AimParamsIndex = WeaponParams.WeaponModes[i].AimParamsIndex;
+		}
+		CurrentWeaponMode = WeaponParams.InitialWeaponMode;
+	}
+		
 }
 
 simulated final function CreateRecoilComponent()

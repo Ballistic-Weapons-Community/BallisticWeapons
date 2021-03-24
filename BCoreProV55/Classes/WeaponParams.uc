@@ -23,6 +23,16 @@ struct BoneScale
     var()   float       Scale;
 };
 
+struct WeaponModeType							// All the settings for a weapon firing mode
+{
+	var() localized string 	ModeName;			// Display name for this mode
+	var() bool 				bUnavailable;		// Is it disabled and hidden(not in use)
+	var() string 			ModeID;				// A non localized ID to easily identify this mode. Format: WM_????????, e.g. WM_FullAuto or WM_Burst
+	var() float 			Value;				// Just a useful extra numerical value. Could be max count for burst mode or whatever...
+	var() int 				RecoilParamsIndex;	// Index of the recoil parameters to use for this mode
+	var() int				AimParamsIndex;		// Index of the aim parameters to use for this mode
+};
+
 enum EZoomType
 {
 	ZT_Irons, // Iron sights or simple non-magnifying aiming aid such as a red dot sight or holographic. Smoothly zooms into FullZoomFOV as the weapon repositions to sights view.
@@ -63,6 +73,11 @@ var() float					DisplaceDurationMult;   // Duration multiplier for aim displacem
 // Ammo
 //-----------------------------------------------------------------------------
 var() int			        MagAmmo;				//Ammo currently in magazine for Primary and Secondary. Max is whatever the default is.
+//-----------------------------------------------------------------------------
+// Firemodes
+//-----------------------------------------------------------------------------
+var() int InitialWeaponMode;
+var() array<WeaponModeType> WeaponModes;				//A list of the available weapon firing modes and their info for this weapon
 
 var() array<RecoilParams>	RecoilParams;
 var() array<AimParams>		AimParams;
