@@ -86,6 +86,7 @@ function AdjustSpeed()
 
 defaultproperties
 {
+    ModeIndex=1
     DetonateOn=DT_Impact
     PlayerImpactType=PIT_Detonate
     bNoInitialSpin=True

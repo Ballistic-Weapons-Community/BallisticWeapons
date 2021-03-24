@@ -83,6 +83,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+    ModeIndex=1
     ArmingDelay=0.3
     DetonateOn=DT_ImpactTimed
     PlayerImpactType=PIT_Detonate

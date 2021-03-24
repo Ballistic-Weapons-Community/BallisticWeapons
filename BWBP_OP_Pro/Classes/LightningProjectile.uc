@@ -67,6 +67,7 @@ State WaitForCombo
 
 defaultproperties
 {
+     ModeIndex=1
      ImpactManager=Class'BWBP_OP_Pro.IM_LightningArcProj'
      AccelSpeed=-100.000000
      MyRadiusDamageType=Class'BWBP_OP_Pro.DT_LightningProjectile'

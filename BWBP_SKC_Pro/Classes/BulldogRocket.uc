@@ -92,6 +92,7 @@ simulated function HitWall( vector HitNormal, Actor Wall )
 
 defaultproperties
 {
+     ModeIndex=1
      DampenFactor=0.15000
      DampenFactorParallel=0.300000
      ArmingDelay=0.15

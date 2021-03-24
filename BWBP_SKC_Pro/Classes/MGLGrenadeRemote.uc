@@ -48,6 +48,7 @@ function RemoteDetonate()
 
 defaultproperties
 {
+     ModeIndex=1
      DetonateOn=DT_None
      PlayerImpactType=PIT_Detonate
      bNoInitialSpin=True

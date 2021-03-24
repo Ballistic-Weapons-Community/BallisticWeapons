@@ -2,6 +2,70 @@ class CYLOWeaponParams extends BallisticWeaponParams;
 
 defaultproperties
 {
+    //=================================================================
+    // PRIMARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
+		TraceRange=(Min=8000.000000,Max=12000.000000)
+		RangeAtten=0.350000
+		Damage=28
+		DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLORifleHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLORifle'
+		PenetrateForce=180
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=0.500000
+		Recoil=220.000000
+		Chaos=0.032000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Volume=1.600000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=0.1050000
+		PreFireAnim=
+		FireEndAnim=	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
+		
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=ShotgunEffectParams Name=ArenaSecondaryEffectParams
+		TraceRange=(Min=5000.000000,Max=5000.000000)
+		RangeAtten=0.750000
+		TraceCount=9
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		Damage=10
+		DamageType=Class'BWBP_SKC_Pro.DTCYLOShotgun'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOShotgunHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOShotgun'
+		PenetrateForce=100
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		Recoil=512.000000
+		Chaos=0.500000
+		BotRefireRate=0.700000
+		WarnTargetPct=0.500000	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-FireSG',Volume=1.300000,Radius=256.000000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		FireInterval=0.700000
+		AmmoPerFire=0
+		FireAnim="FireSG"
+		FireEndAnim=	
+		FireEffectParams(0)=ShotgunEffectParams'ArenaSecondaryEffectParams'
+	End Object
+
+	//=================================================================
+	// RECOIL
+	//=================================================================
+
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.3
 		XCurve=(Points=(,(InVal=0.1,OutVal=0.09),(InVal=0.2,OutVal=0.12),(InVal=0.25,OutVal=0.13),(InVal=0.3,OutVal=0.11),(InVal=0.35,OutVal=0.08),(InVal=0.40000,OutVal=0.050000),(InVal=0.50000,OutVal=-0.020000),(InVal=0.600000,OutVal=-0.040000),(InVal=0.700000,OutVal=0.04),(InVal=0.800000,OutVal=0.070000),(InVal=1.000000,OutVal=0.13)))
@@ -13,6 +77,10 @@ defaultproperties
 		CrouchMultiplier=1
 	End Object
 
+	//=================================================================
+	// AIM
+	//=================================================================
+
 	Begin Object Class=AimParams Name=ArenaAimParams
 		ADSMultiplier=0.3
 		AimSpread=(Min=16,Max=768)
@@ -21,6 +89,10 @@ defaultproperties
 		ChaosDeclineTime=0.5
 		ChaosSpeedThreshold=7000.000000
 	End Object
+
+	//=================================================================
+	// BASIC PARAMS
+	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		PlayerSpeedFactor=1
@@ -32,6 +104,8 @@ defaultproperties
 		MagAmmo=22
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
 }

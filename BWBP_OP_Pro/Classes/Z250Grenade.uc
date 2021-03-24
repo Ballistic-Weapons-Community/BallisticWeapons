@@ -140,6 +140,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+     ModeIndex=1
      DetonateOn=DT_Impact
      PlayerImpactType=PIT_Detonate
      bNoInitialSpin=True

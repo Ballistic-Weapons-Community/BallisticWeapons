@@ -3,6 +3,58 @@ class A49WeaponParams extends BallisticWeaponParams;
 defaultproperties
 {
     //=================================================================
+    // PRIMARY FIRE
+    //=================================================================
+
+	Begin Object Class=ProjectileEffectParams Name=ArenaProjEffectParams
+        ProjectileClass=Class'BWBP_SKC_Pro.A49Projectile'
+        SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+        Speed=5500.000000
+        AccelSpeed=100000.000000
+        MaxSpeed=8500.000000
+        Damage=32.000000
+        DamageRadius=48.000000
+     	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
+		FlashScaleFactor=0.150000
+     	Recoil=108.000000
+     	Chaos=0.070000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-Fire',Volume=0.700000,Pitch=1.200000)
+		WarnTargetPct=0.2
+		BotRefireRate=0.99
+	End Object
+		
+	Begin Object Class=FireParams Name=ArenaProjFireParams
+		FireEndAnim=
+		FireInterval=0.120000
+		FireEffectParams(0)=ProjectileEffectParams'ArenaProjEffectParams'
+	End Object
+
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================
+
+	Begin Object Class=FireEffectParams Name=ArenaAltEffectParams
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.A49FlashEmitter'
+		FlashScaleFactor=1.200000
+     	Recoil=512.000000
+     	Chaos=0.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-ShockWave',Volume=2.000000)
+     	WarnTargetPct=0.100000
+		BotRefireRate=0.900000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaAltFireParams
+		FireAnim="AltFire"
+		FireInterval=1.25
+     	AmmoPerFire=8
+		FireEffectParams(0)=FireEffectParams'ArenaAltEffectParams'
+	End Object
+    
+	//=================================================================
+	// BASIC PARAMS
+	//=================================================================	
+
+    //=================================================================
     // RECOIL
     //=================================================================
 
@@ -25,52 +77,6 @@ defaultproperties
 		ChaosSpeedThreshold=7500.000000
 	End Object
 
-    //=================================================================
-    // PRIMARY FIRE
-    //=================================================================
-
-	Begin Object Class=ProjectileEffectParams Name=ArenaProjEffectParams
-        ProjectileClass=Class'BWBP_SKC_Pro.A49Projectile'
-        SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
-        Speed=5500.000000
-        AccelSpeed=100000.000000
-        MaxSpeed=8500.000000
-        Damage=32.000000
-        DamageRadius=48.000000
-     	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-		FlashScaleFactor=0.150000
-     	Recoil=108.000000
-     	Chaos=0.070000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-Fire',Volume=0.700000,Pitch=1.200000)
-		WarnTargetPct=0.2
-	End Object
-		
-	Begin Object Class=FireParams Name=ArenaProjFireParams
-		FireEndAnim=
-		FireInterval=0.120000
-		FireEffectParams(0)=ProjectileEffectParams'ArenaProjEffectParams'
-	End Object
-
-    //=================================================================
-    // SECONDARY FIRE
-    //=================================================================
-
-	Begin Object Class=FireEffectParams Name=ArenaAltEffectParams
-		MuzzleFlashClass=Class'BWBP_SKC_Pro.A49FlashEmitter'
-		FlashScaleFactor=1.200000
-     	Recoil=512.000000
-     	Chaos=0.500000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-ShockWave',Volume=2.000000)
-     	WarnTargetPct=0.100000
-	End Object
-
-	Begin Object Class=FireParams Name=ArenaAltFireParams
-		FireAnim="AltFire"
-		FireInterval=1.25
-     	AmmoPerFire=8
-		FireEffectParams(0)=FireEffectParams'ArenaAltEffectParams'
-	End Object
-    
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
