@@ -28,7 +28,7 @@ defaultproperties
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
 			FlashScaleFactor=2.000000
-			FireSound=(Sound=Sound'BallisticSounds3.M763.M763Fire1',Volume=1.300000)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
 			Recoil=512.000000
 			Chaos=-1.0
 			Inaccuracy=(X=700,Y=450)
@@ -61,7 +61,7 @@ defaultproperties
 			ChargeDamageBonusFactor=1
 			PenetrationEnergy=0.000000
 			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Radius=32.000000,bAtten=True)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
 			BotRefireRate=0.900000

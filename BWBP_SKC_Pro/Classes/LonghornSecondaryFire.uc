@@ -97,7 +97,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-FireAlt',Volume=1.700000)
      FireAnimRate=2.00000
      FireRate=0.800000
-     ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenadeAlt'
+     ProjectileClass=Class'BWBP_SKC_Pro.LonghornMicroClusterAlt'
 	 
 	  // AI
 	 bInstantHit=False

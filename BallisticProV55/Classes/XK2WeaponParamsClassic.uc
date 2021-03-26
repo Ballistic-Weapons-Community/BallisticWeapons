@@ -25,7 +25,7 @@ defaultproperties
 			WallPDamageFactor=0.4
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-			FireSound=(Sound=Sound'BallisticSounds3.XK2.XK2-Fire',Volume=0.500000)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Fire',Volume=0.500000)
 			Recoil=48.000000
 			Chaos=-1.0
 			Inaccuracy=(X=8,Y=8)
@@ -77,6 +77,11 @@ defaultproperties
 		MagAmmo=50
 		SightOffset=(Y=-0.550000,Z=14.900000)
 		SightPivot=(Pitch=600,Roll=-512)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Burst of Six",ModeID="WM_BigBurst",Value=6.000000)
+		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=3
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

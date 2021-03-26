@@ -26,7 +26,7 @@ defaultproperties
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 			FlashScaleFactor=2.000000
-			FireSound=(Sound=Sound'BallisticSounds3.USSR.USSR-Fire',Volume=0.800000)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Fire',Volume=0.800000)
 			Recoil=128.000000
 			Chaos=-1.0
 			BotRefireRate=0.150000

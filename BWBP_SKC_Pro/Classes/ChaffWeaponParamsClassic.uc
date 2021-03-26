@@ -47,7 +47,7 @@ defaultproperties
 			DamageTypeArm=Class'BWBP_SKC_Pro.DTChaffSmack'
 			ChargeDamageBonusFactor=1
 			PenetrationEnergy=0.000000
-			FireSound=(Sound=Sound'BallisticSounds3.M763.M763Swing',Radius=32.000000,Pitch=0.800000,bAtten=True)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,Pitch=0.800000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
 			BotRefireRate=0.900000

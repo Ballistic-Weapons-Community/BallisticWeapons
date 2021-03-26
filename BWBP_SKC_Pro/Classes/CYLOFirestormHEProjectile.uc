@@ -104,7 +104,6 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 defaultproperties
 {
-     ModeIndex=1
      DetonateOn=DT_Impact
      bNoInitialSpin=True
      bAlignToVelocity=True

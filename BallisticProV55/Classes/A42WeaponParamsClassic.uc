@@ -18,10 +18,10 @@ defaultproperties
 			DamageRadius=48.000000
 			MomentumTransfer=100.000000
 			HeadMult=2.0
-			LimbMult=0.533333
+			LimbMult=0.55
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-			FireSound=(Sound=Sound'BallisticSounds3.A42.A42-Fire',Volume=0.700000)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Fire',Volume=0.700000)
 			Recoil=24.000000
 			Chaos=-1.0
 			Inaccuracy=(X=8,Y=4)
@@ -30,6 +30,14 @@ defaultproperties
 
 		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 			FireInterval=0.250000
+			AmmoPerFire=5
+			BurstFireRateFactor=1.00
+			FireEndAnim=	
+		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+		End Object
+
+		Begin Object Class=FireParams Name=ClassicPrimaryFireParamsBurst
+			FireInterval=0.080000
 			AmmoPerFire=5
 			BurstFireRateFactor=1.00
 			FireEndAnim=	
@@ -46,8 +54,8 @@ defaultproperties
 			WaterTraceRange=5000.0
 			DecayRange=(Min=0.0,Max=0.0)
 			Damage=65.0
-			HeadMult=1.615384
-			LimbMult=0.384615
+			HeadMult=1.6
+			LimbMult=0.4
 			DamageType=Class'BallisticProV55.DTA42SkrithBeam'
 			DamageTypeHead=Class'BallisticProV55.DTA42SkrithBeam'
 			DamageTypeArm=Class'BallisticProV55.DTA42SkrithBeam'
@@ -57,7 +65,7 @@ defaultproperties
 			WallPDamageFactor=0.4
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-			FireSound=(Sound=Sound'BallisticSounds3.A42.A42-SecFire',Volume=0.800000)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-SecFire',Volume=0.800000)
 			Recoil=96.000000
 			Chaos=-1.0
 			Inaccuracy=(X=2,Y=2)
@@ -115,9 +123,15 @@ defaultproperties
 		MagAmmo=300
 		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 		SightPivot=(Pitch=1024,Roll=-768)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'

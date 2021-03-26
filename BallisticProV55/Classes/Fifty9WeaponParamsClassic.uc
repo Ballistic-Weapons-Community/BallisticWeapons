@@ -26,7 +26,7 @@ defaultproperties
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
 			FlashScaleFactor=0.600000
-			FireSound=(Sound=Sound'BallisticSounds3.UZI.UZI-Fire',Volume=0.900000)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
 			Recoil=64.000000
 			Chaos=-1.0
 			Inaccuracy=(X=32,Y=32)
@@ -57,7 +57,7 @@ defaultproperties
 			HookStopFactor=1.700000
 			HookPullForce=100.000000
 			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=SoundGroup'BallisticSounds3.UZI.Melee',Radius=32.000000,bAtten=True)
+			FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Radius=32.000000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
 			BotRefireRate=0.800000
@@ -113,6 +113,10 @@ defaultproperties
 		MagAmmo=45
 		SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
 		SightPivot=(Pitch=900,Roll=-800)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

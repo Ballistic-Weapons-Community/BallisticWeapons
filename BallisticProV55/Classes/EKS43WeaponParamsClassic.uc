@@ -22,7 +22,7 @@ defaultproperties
 			HookStopFactor=1.700000
 			HookPullForce=100.000000
 			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=SoundGroup'BallisticSounds3.EKS43.EKS-Slash',Radius=32.000000,bAtten=True)
+			FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.EKS43.EKS-Slash',Radius=32.000000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
 			BotRefireRate=0.800000
@@ -55,7 +55,7 @@ defaultproperties
 			HookStopFactor=1.700000
 			HookPullForce=100.000000
 			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=SoundGroup'BallisticSounds3.EKS43.EKS-Slash',Radius=32.000000,bAtten=True)
+			FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.EKS43.EKS-Slash',Radius=32.000000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
 			BotRefireRate=0.800000

@@ -20,7 +20,7 @@ defaultproperties
 		LimbMult=0.45
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
-		FireSound=(Sound=Sound'BallisticSounds3.A73.A73Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=40.000000
 		Chaos=-1.0
 		Inaccuracy=(X=8,Y=4)

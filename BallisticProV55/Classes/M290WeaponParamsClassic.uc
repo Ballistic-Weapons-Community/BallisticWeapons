@@ -28,7 +28,7 @@ defaultproperties
 			SpreadMode=FSM_Circle
 			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 			FlashScaleFactor=1.200000
-			FireSound=(Sound=Sound'BallisticSounds3.M290.M290Fire',Volume=1.500000)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Fire',Volume=1.500000)
 			Recoil=768.000000
 			Chaos=-1.0
 			PushbackForce=1000.000000
@@ -70,7 +70,7 @@ defaultproperties
 			SpreadMode=FSM_Circle
 			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 			FlashScaleFactor=3.500000
-			FireSound=(Sound=Sound'BallisticSounds3.M290.M290SingleFire',Volume=1.200000)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290SingleFire',Volume=1.200000)
 			Recoil=256.000000
 			Chaos=-1.0
 			PushbackForce=600.000000

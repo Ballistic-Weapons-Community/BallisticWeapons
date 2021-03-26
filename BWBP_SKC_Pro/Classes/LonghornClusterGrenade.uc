@@ -101,13 +101,13 @@ function ManualDetonate(bool bBig)
 	
 	if (bBig)
 	{
-		FlakClass		= Class'LonghornClusterGrenadeImpact';
+		FlakClass		= Class'LonghornMicroClusterImpact';
 		DamageRadius 	*= 2;
 		DetonationType 	= DET_Artillery;
 	 }
 	else
 	{
-		FlakClass		= Class'LonghornClusterGrenadeFlak';
+		FlakClass		= Class'LonghornMicroClusterFlak';
 		Damage 			= 60;
 		DetonationType 	= DET_Manual;
 		MomentumTransfer= 20000;
@@ -320,7 +320,7 @@ defaultproperties
      bNoInitialSpin=True
      bAlignToVelocity=True
      flakcount=6
-     FlakClass=Class'BWBP_SKC_Pro.LonghornClusterGrenadeDud'
+     FlakClass=Class'BWBP_SKC_Pro.LonghornMicroClusterDud'
      ImpactDamage=100
      ImpactDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigDirect'
      ImpactManager=Class'BWBP_SKC_Pro.IM_SMARTGrenade'

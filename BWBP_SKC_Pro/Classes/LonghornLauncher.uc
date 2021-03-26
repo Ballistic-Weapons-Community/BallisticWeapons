@@ -5,7 +5,7 @@
 // cluster. Shooting in the air will make it rain down with increased damage.
 // Primary fire can be held to remotely detonate
 //
-// by Marc "Sergeant_Kelly"
+// by Marc "Sergeant_Kelly", Casey "The_Xavious, and Azarael
 //=============================================================================
 class LonghornLauncher extends BallisticWeapon;
 

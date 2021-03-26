@@ -126,7 +126,6 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-     ModeIndex=1
      ImpactManager=Class'BWBP_SKC_Pro.IM_BFGProjectileSmall'
      PenetrateManager=Class'BWBP_SKC_Pro.IM_BFGProjectileSmall'
      bPenetrate=True

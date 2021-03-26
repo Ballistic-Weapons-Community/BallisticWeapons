@@ -7,46 +7,55 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-			ProjectileClass=Class'BallisticProV55.NRP57Thrown'
-			SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
-			Damage=250.000000
-			DamageRadius=450.000000
-			HeadMult=1.0
-			LimbMult=1.0
-			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
-			Recoil=0.0
-			Chaos=-1.0
-			WarnTargetPct=0.500000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+		ProjectileClass=Class'BallisticProV55.NRP57Thrown'
+		SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
+        Speed=1000.000000
+        MaxSpeed=1500.000000
+		Damage=250.000000
+		DamageRadius=450.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		WarnTargetPct=0.500000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			BurstFireRateFactor=1.00
-			PreFireAnim="PrepThrow"
-			FireAnim="Throw"	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		BurstFireRateFactor=1.00
+		PreFireAnim="PrepThrow"
+		FireAnim="Throw"	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
+
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+		ProjectileClass=Class'BallisticProV55.NRP57Rolled'
+		SpawnOffset=(Z=-14.000000)
+        Speed=1000.000000
+        MaxSpeed=1500.000000
+		Damage=250.000000
+		DamageRadius=450.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		WarnTargetPct=0.500000	
+	End Object
 	
-	
-		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
-			SpreadMode=FSM_Rectangle
-			FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
-			Recoil=0.0
-			Chaos=-1.0
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			BurstFireRateFactor=1.00
-			PreFireAnim="PrepRoll"
-			FireAnim="Roll"
-			FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		BurstFireRateFactor=1.00
+		PreFireAnim="PrepRoll"
+		FireAnim="Roll"
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

@@ -25,7 +25,7 @@ defaultproperties
 			WallPDamageFactor=0.4
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-			FireSound=(Sound=Sound'BallisticSounds3.R78.R78-Fire')
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-Fire')
 			Recoil=3072.000000
 			Chaos=-1.0
 			BotRefireRate=0.300000
@@ -81,6 +81,7 @@ defaultproperties
 		MagAmmo=7
 		SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
 		SightPivot=(Roll=-1024)
+        ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

@@ -19,7 +19,7 @@ defaultproperties
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
 			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=Sound'BallisticSounds3.RX22A.RX22A-Ignite',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Ignite',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 			Recoil=64.000000
 			Chaos=0.050000
 			Inaccuracy=(X=32,Y=32)
@@ -41,7 +41,7 @@ defaultproperties
 	
 		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
 			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=Sound'BallisticSounds3.RX22A.RX22A-FuelLoop',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FuelLoop',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 			Recoil=32.000000
 			Chaos=-1.0
 			Inaccuracy=(X=128,Y=128)

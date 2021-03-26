@@ -579,10 +579,10 @@ defaultproperties
 	BringUpSound=(Sound=Sound'WeaponSounds.LightningGun.SwitchToLightningGun')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	CockAnimPostReload="ReloadEndCock"
-	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-Cock',Volume=2.000000)
-	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-MagHit',Volume=2.000000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-MagOut',Volume=2.000000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-MagIn',Volume=2.000000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-Cock',Volume=1.400000)
+	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-MagHit',Volume=1.400000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-MagOut',Volume=1.400000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-MagIn',Volume=1.400000)
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
 	WeaponModes(0)=(ModeName="Gauss: Recharge",RecoilParamsIndex=0)

@@ -106,70 +106,73 @@ function StopBerserk()
 
 simulated function SwitchWeaponMode (byte NewMode)
 {
-	if (NewMode == 0)	//gauss normal
+	if (M2020GaussDMR(Weapon).BCRepClass.default.GameStyle != 1) //todo: remove once stock firemodes done
 	{
-		BallisticFireSound.Sound=default.BallisticFireSound.sound;
-		FireRecoil=default.FireRecoil;
-		FirePushbackForce=default.FirePushbackForce;
-		FireAnim=default.FireAnim;
-		FireChaos=default.FireChaos;
-		Damage=default.Damage;
+		if (NewMode == 0)	//gauss normal
+		{
+			BallisticFireSound.Sound=default.BallisticFireSound.sound;
+			FireRecoil=default.FireRecoil;
+			FirePushbackForce=default.FirePushbackForce;
+			FireAnim=default.FireAnim;
+			FireChaos=default.FireChaos;
+			Damage=default.Damage;
 
-		DamageType=default.DamageType;
-     	DamageTypeHead=default.DamageTypeHead;
-     	DamageTypeArm=default.DamageTypeArm;
+			DamageType=default.DamageType;
+			DamageTypeHead=default.DamageTypeHead;
+			DamageTypeArm=default.DamageTypeArm;
 
-		WallPenetrationForce = default.WallPenetrationForce;
-		FlashScaleFactor=default.FlashScaleFactor;
-		bFlashAlt=false;
-		KickForce = default.KickForce;
-		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
-		FireRate=Default.FireRate;
-	}
-	
-	else if (NewMode == 1)	//gauss power
-	{
-		BallisticFireSound.Sound=SpecialFireSound;
-		FireRecoil=1024.000000;
-		FirePushbackForce=120.000000;
-		FireAnim='FirePowered';
-		FireRate=1.000000;
-		FireChaos=1;
-		KickForce=3000;
-		Damage=110.000000;
+			WallPenetrationForce = default.WallPenetrationForce;
+			FlashScaleFactor=default.FlashScaleFactor;
+			bFlashAlt=false;
+			KickForce = default.KickForce;
+			M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
+			FireRate=Default.FireRate;
+		}
+		
+		else if (NewMode == 1)	//gauss power
+		{
+			BallisticFireSound.Sound=SpecialFireSound;
+			FireRecoil=1024.000000;
+			FirePushbackForce=120.000000;
+			FireAnim='FirePowered';
+			FireRate=1.000000;
+			FireChaos=1;
+			KickForce=3000;
+			Damage=110.000000;
 
-		DamageType=default.DamageType;
-     	DamageTypeHead=default.DamageTypeHead;
-     	DamageTypeArm=default.DamageTypeArm;
+			DamageType=default.DamageType;
+			DamageTypeHead=default.DamageTypeHead;
+			DamageTypeArm=default.DamageTypeArm;
 
-		WallPenetrationForce = 96;
-		FlashScaleFactor=1.600000;
-		KickForce=1000;
-		bFlashAlt=false;
-		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
-	}
-	else if (NewMode == 2 || NewMode == 3)	//gauss offline or gauss deflection
-	{
-		BallisticFireSound.Sound=LowPowerFireSound;
-		FireRecoil=150.000000;
-		FirePushbackForce=0.000000;
-		FlashScaleFactor=1.000000;
-		FireChaos=0.05;
-		bFlashAlt=true;
-		KickForce = default.KickForce;
-		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=true;
-		if (NewMode == 2)
-			FireAnim='FireUnPowered';
-		else
-			FireAnim='FireShield';
-		FireRate=0.200000;
-		Damage=40.000000;
+			WallPenetrationForce = 96;
+			FlashScaleFactor=1.600000;
+			KickForce=1000;
+			bFlashAlt=false;
+			M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
+		}
+		else if (NewMode == 2 || NewMode == 3)	//gauss offline or gauss deflection
+		{
+			BallisticFireSound.Sound=LowPowerFireSound;
+			FireRecoil=150.000000;
+			FirePushbackForce=0.000000;
+			FlashScaleFactor=1.000000;
+			FireChaos=0.05;
+			bFlashAlt=true;
+			KickForce = default.KickForce;
+			M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=true;
+			if (NewMode == 2)
+				FireAnim='FireUnPowered';
+			else
+				FireAnim='FireShield';
+			FireRate=0.200000;
+			Damage=40.000000;
 
-		DamageType=Class'BWBP_SKC_Pro.DT_M2020Off';
-     	DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadOff';
-     	DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020Off';
+			DamageType=Class'BWBP_SKC_Pro.DT_M2020Off';
+			DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadOff';
+			DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020Off';
 
-		WallPenetrationForce=24;
+			WallPenetrationForce=24;
+		}
 	}
 	if (Weapon.bBerserk)
 		FireRate *= 0.75;

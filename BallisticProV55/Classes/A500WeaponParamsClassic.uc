@@ -19,7 +19,7 @@ defaultproperties
 			LimbMult=0.4375
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
-			FireSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 			Recoil=256.000000
 			Chaos=-1.0
 			Inaccuracy=(X=950,Y=600)
@@ -47,7 +47,7 @@ defaultproperties
 			LimbMult=1.0
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
-			FireSound=(Sound=Sound'BallisticSounds_25.Reptile.Rep_AltFire',Volume=1.800000,Slot=SLOT_Interact,bNoOverride=False)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_AltFire',Volume=1.800000,Slot=SLOT_Interact,bNoOverride=False)
 			Recoil=0.0
 			Chaos=-1.0
 			WarnTargetPct=0.200000	

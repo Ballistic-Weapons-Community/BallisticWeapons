@@ -21,7 +21,7 @@ defaultproperties
 			PenetrationEnergy=0.000000
 			HookStopFactor=1.300000
 			HookPullForce=100.000000
-			FireSound=(Sound=SoundGroup'BallisticSounds_25.X4.X4_Melee',Radius=32.000000,bAtten=True)
+			FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Radius=32.000000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
 			BotRefireRate=0.800000

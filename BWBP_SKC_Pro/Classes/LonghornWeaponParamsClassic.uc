@@ -3,57 +3,63 @@ class LonghornWeaponParamsClassic extends BallisticWeaponParams;
 defaultproperties
 {
 
-    //=================================================================
-    // PRIMARY FIRE
-    //=================================================================	
+	//=================================================================
+	// PRIMARY FIRE
+	//=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-			ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenade'
-			Speed=3500.000000
-			Damage=70
-			DamageRadius=450.000000
-			MomentumTransfer=20000.000000
-			HeadMult=1.0
-			LimbMult=1.0
-			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-			FlashScaleFactor=1.500000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-Fire',Volume=1.500000)
-			Recoil=512.000000
-			Chaos=-1.0
-			Inaccuracy=(X=150,Y=300)
-			BotRefireRate=0.900000
-			WarnTargetPct=0.100000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenadeNoDud'
+		Speed=3500.000000
+		Damage=70
+		DamageRadius=450.000000
+		MomentumTransfer=20000.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-Fire',Volume=1.500000)
+		Recoil=512.000000
+		Chaos=-1.0
+		PushbackForce=300.000000
+		Inaccuracy=(X=150,Y=300)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.40000
-			BurstFireRateFactor=1.00
-			bCockAfterFire=True	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.40000
+		BurstFireRateFactor=1.00
+		bCockAfterFire=True	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
-    //=================================================================
-    // SECONDARY FIRE
-    //=================================================================	
+	//=================================================================
+	// SECONDARY FIRE
+	//=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-			ProjectileClass=Class'LonghornClusterGrenadeAlt'
-			HeadMult=2.000000
-			LimbMult=0.500000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-FireAlt',Volume=1.700000)
-			Recoil=0.0
-			Chaos=-1.0
-			Inaccuracy=(X=500,Y=500)
-			WarnTargetPct=0.500000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+		ProjectileClass=Class'LonghornMicroClusterAltImpact'
+		Speed=3800.000000
+		Damage=25.000000
+		DamageRadius=250.000000
+		MomentumTransfer=15000.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-FireAlt',Volume=1.700000)
+		Recoil=0.0
+		Chaos=-1.0
+		PushbackForce=800.000000
+		Inaccuracy=(X=500,Y=500)
+		WarnTargetPct=0.500000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			BurstFireRateFactor=1.00
-			bCockAfterFire=True	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		BurstFireRateFactor=1.00
+		bCockAfterFire=True	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

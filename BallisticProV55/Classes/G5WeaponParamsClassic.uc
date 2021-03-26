@@ -21,7 +21,7 @@ defaultproperties
 			LimbMult=1.0
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-			FireSound=(Sound=Sound'BallisticSounds3.G5.G5-Fire1')
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Fire1')
 			Recoil=64.000000
 			Chaos=-1.0
 			Inaccuracy=(X=4,Y=4)

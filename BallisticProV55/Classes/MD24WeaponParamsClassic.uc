@@ -26,7 +26,7 @@ defaultproperties
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 			FlashScaleFactor=0.750000
-			FireSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Fire',Volume=4.000000)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Fire',Volume=4.000000)
 			Recoil=3600.000000
 			Chaos=-1.0
 			Inaccuracy=(X=4,Y=4)
@@ -60,7 +60,7 @@ defaultproperties
 			HookStopFactor=1.700000
 			HookPullForce=100.000000
 			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=Sound'BallisticSounds_25.MD24.MD24_Melee',Volume=1.500000,Radius=32.000000,bAtten=True)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Melee',Volume=1.500000,Radius=32.000000,bAtten=True)
 			Recoil=0.0
 			Chaos=-1.0
 			BotRefireRate=0.800000

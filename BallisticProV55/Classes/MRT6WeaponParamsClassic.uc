@@ -28,7 +28,7 @@ defaultproperties
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 			FlashScaleFactor=1.200000
-			FireSound=(Sound=Sound'BallisticSounds3.MRT6.MRT6Fire')
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Fire')
 			Recoil=4096.000000
 			Chaos=0.800000
 			PushbackForce=1200.000000
@@ -71,7 +71,7 @@ defaultproperties
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 			FlashScaleFactor=1.200000
-			FireSound=(Sound=Sound'BallisticSounds3.MRT6.MRT6SingleFire')
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6SingleFire')
 			Recoil=2048.000000
 			Chaos=0.500000
 			PushbackForce=600.000000

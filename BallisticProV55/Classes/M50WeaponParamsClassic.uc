@@ -26,7 +26,7 @@ defaultproperties
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 			FlashScaleFactor=0.800000
-			FireSound=(Sound=Sound'BallisticSounds3.M50.M50Fire2',Volume=0.900000,Slot=SLOT_Interact,bNoOverride=False)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Fire2',Volume=0.900000,Slot=SLOT_Interact,bNoOverride=False)
 			Recoil=72.000000
 			Chaos=-1.0
 			Inaccuracy=(X=2,Y=2)
@@ -53,7 +53,7 @@ defaultproperties
 			LimbMult=1.0
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-			FireSound=(Sound=Sound'BallisticSounds3.M50.M50GrenFire')
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50GrenFire')
 			Recoil=0.0
 			Chaos=-1.0
 			SplashDamage=True

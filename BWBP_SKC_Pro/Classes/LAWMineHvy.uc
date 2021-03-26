@@ -232,7 +232,7 @@ function bool IsStationary()
 
 defaultproperties
 {
-//     DetonateSound=Sound'BallisticSounds_25.OA-AR.OA-AR_GrenadeBeep'
+//     DetonateSound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_GrenadeBeep'
      DetonateSound=Sound'BWBP_SKC_Sounds.LAW.LAW-MineAlarm'
      Health=70
      ImpactManager=Class'BallisticProV55.IM_RPG'

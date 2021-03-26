@@ -18,7 +18,7 @@ defaultproperties
 			LimbMult=1.0
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-			FireSound=(Sound=SoundGroup'BallisticSounds_25.BOGP.BOGP_Fire',Volume=1.750000)
+			FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.BOGP.BOGP_Fire',Volume=1.750000)
 			Recoil=0.0
 			Chaos=-1.0
 			SplashDamage=True

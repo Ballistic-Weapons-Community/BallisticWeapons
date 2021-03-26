@@ -26,7 +26,7 @@ defaultproperties
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 			FlashScaleFactor=0.900000
-			FireSound=(Sound=Sound'BallisticSounds3.AM67.AM67-Fire',Volume=1.100000)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-Fire',Volume=1.100000)
 			Recoil=2048.000000
 			Chaos=0.300000
 			Inaccuracy=(X=4,Y=4)
@@ -49,7 +49,7 @@ defaultproperties
 		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
-			FireSound=(Sound=Sound'BallisticSounds3.AM67.AM67-SecFire',Volume=0.600000)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
 			Recoil=0.0
 			Chaos=-1.0
 			BotRefireRate=0.300000
@@ -108,6 +108,9 @@ defaultproperties
 		MagAmmo=14
 		SightOffset=(X=-15.000000,Y=-0.700000,Z=12.300000)
 		SightPivot=(Pitch=1024,Roll=-1024)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
