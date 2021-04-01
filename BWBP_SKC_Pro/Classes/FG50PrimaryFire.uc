@@ -21,32 +21,10 @@ simulated function bool AllowFire()
 simulated function SwitchWeaponMode (byte NewMode)
 {
 	if (NewMode == 0)
-	{
-		BallisticFireSound.Sound=SpecialFireSound;
-		BallisticFireSound.Pitch=1.0;
 		FirePushbackForce=64.000000;
-		FireRate=0.6;
-		FireChaos=0.07;
-		FireRecoil=384;
-		FireAnim='CFire';
-		DamageType=Class'DT_FG50Controlled';
-		DamageTypeArm=Class'DT_FG50Controlled';
-		DamageTypeHead=Class'DT_FG50Controlled';
-	}
 	else
-	{
-		BallisticFireSound.Sound=default.BallisticFireSound.sound;
-		BallisticFireSound.Pitch=default.BallisticFireSound.pitch;
-		FireRecoil=default.FireRecoil;
 		FirePushbackForce=default.FirePushbackForce;
-		FireRate = default.FireRate;
-		FireChaos = default.FireChaos;
-		FireRecoil=default.FireRecoil;
-		FireAnim='Fire';
-		DamageType=Class'DT_FG50Torso';
-		DamageTypeArm=Class'DT_FG50Limb';
-		DamageTypeHead=Class'DT_FG50Head';
-	}
+
 	if (Weapon.bBerserk)
 		FireRate *= 0.75;
 	if ( Level.GRI.WeaponBerserk > 1.0 )
