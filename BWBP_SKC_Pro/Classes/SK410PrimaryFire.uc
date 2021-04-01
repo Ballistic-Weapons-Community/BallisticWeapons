@@ -52,36 +52,6 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	return true;
 }
 
-/*function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
-{
-     local int i;
-     local SK410ActorFire Burner;
-	
-     super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
-	
-     if (Pawn(Target) != None && Pawn(Target).Health > 0 && Vehicle(Target) == None)
-     {
-		for (i=0;i<Target.Attached.length;i++)
-		{
-			if (SK410ActorFire(Target.Attached[i]) != None)
-			{
-				SK410ActorFire(Target.Attached[i]).AddFuel(1);
-				break;
-			}
-		}
-		if (i>=Target.Attached.length)
-		{
-			Burner = Spawn(class'SK410ActorFire',Target,,Target.Location + vect(0,0,-30));
-			Burner.Initialize(Target);
-			if (Instigator!=None)
-			{
-				Burner.Instigator = Instigator;
-				Burner.InstigatorController = Instigator.Controller;
-			}
-		}
-	}
-}*/
-
 simulated function DestroyEffects()
 {
     if (MuzzleFlash != None)
