@@ -52,7 +52,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	return true;
 }
 
-function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+/*function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {
      local int i;
      local SK410ActorFire Burner;
@@ -80,7 +80,7 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 			}
 		}
 	}
-}
+}*/
 
 simulated function DestroyEffects()
 {
@@ -98,7 +98,7 @@ defaultproperties
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunHE'
      ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
      TraceRange=(Min=2048.000000,Max=2048.000000)
-     Damage=9.000000
+     Damage=11.000000
 
      RangeAtten=0.350000
      DamageType=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
