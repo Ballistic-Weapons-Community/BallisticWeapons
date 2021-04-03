@@ -276,7 +276,7 @@ defaultproperties
 	CurrentRating=0.700000
 	bCanThrow=False
 	bNoInstagibReplace=True
-	Description="M925 50 Calibre MachineGun||Manufacturer: Black & Wood|Primary: Medium 50 Cal. Fire|Secondary: Mount Machinegun||The M925 was used during the late stages of the first Human-Skrith war when ballistic weapons first came back into large scale usage. The heavy calibre M925 was extremely effective against the Skrith and their allies and became known as the 'Monster' because it was the first weapon that the Skrith truly feared. Although it has a slower rate of fire than the M353, the 'Monster' has a much heavier bullet and can cause much more damage to an enemy soldier or vehicle in a single shot. It was also used extensively during the 'Wasteland Siege', to hose down thousands of Krao, and proved to be very effective at destroying the alien transport ships, as they were landing."
+	Description="M925 .50 cal Machinegun||Manufacturer: Black & Wood|Primary: Medium 50 Cal. Fire|Secondary: Mount Machinegun||The M925 was used during the late stages of the first Human-Skrith war when ballistic weapons first came back into large scale usage. The heavy calibre M925 was extremely effective against the Skrith and their allies and became known as the 'Monster' because it was the first weapon that the Skrith truly feared. Although it has a slower rate of fire than the M353, the 'Monster' has a much heavier bullet and can cause much more damage to an enemy soldier or vehicle in a single shot. It was also used extensively during the 'Wasteland Siege', to hose down thousands of Krao, and proved to be very effective at destroying the alien transport ships, as they were landing."
 	DisplayFOV=90.000000
 	ClientState=WS_BringUp
 	Priority=1

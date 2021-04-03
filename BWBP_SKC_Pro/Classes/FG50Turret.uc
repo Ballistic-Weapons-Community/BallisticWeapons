@@ -8,21 +8,10 @@
 //=============================================================================
 class FG50Turret extends BallisticTurret;
 
-
-function Fire( optional float F )
+simulated function vector CalcDrawOffset(inventory Inv)
 {
-	super.Fire();
-	if (Weapon!=None)
-		Weapon.Fire(F);
+	return vect(0,0,1) * (Inv.CollisionHeight - CollisionHeight);
 }
-function AltFire( optional float F )
-{
-	super.AltFire();
-	if (Weapon!=None)
-		Weapon.AltFire(F);
-}
-
-function SetAbandoned();
 
 function InitTurretWeapon(Weapon Weap)
 {
@@ -82,41 +71,27 @@ function float BotDesireability(Actor S, int TeamIndex, Actor Objective)
 	return MaxDesireability * 0.5 + (MaxDesireability * 0.5) * (MagAmmoAmount / 50.0);
 }
 
-simulated function NextWeapon()
-{
-	if (Weapon != None && BallisticWeapon(Weapon) != None)
-		super(Pawn).NextWeapon();
-	else
-		super.NextWeapon();
-}
-
-simulated function PrevWeapon()
-{
-	if (Weapon != None && BallisticWeapon(Weapon) != None)
-		super(Pawn).PrevWeapon();
-	else
-		super.PrevWeapon();
-}
-
 defaultproperties
 {
-     UndeployedWeaponName="FG50MachineGun"
-     WeaponClassName="FG50MG_TW"
-     GunYawBounds=(Min=-7000.000000,Max=7000.000000)
-     GunPitchBounds=(Min=-4000.000000,Max=4000.000000)
-     CamYawBounds=(Min=-7000.000000,Max=7000.000000)
-     CamPitchBounds=(Min=-4000.000000,Max=4000.000000)
+     UndeployedWeaponName="BWBP_SKC_Pro.FG50MachineGun"
+     WeaponClassName="BWBP_SKC_Pro.FG50MG_TW"
+     GunYawBounds=(Min=-12000.000000,Max=12000.000000)
+     GunPitchBounds=(Min=-10000.000000,Max=8192.000000)
+     CamYawBounds=(Min=-12000.000000,Max=12000.000000)
+     CamPitchBounds=(Max=12000.000000)
      GunYawSpeed=24000.000000
-     GunPitchSpeed=24000.000000
-     CamTrackYawSpeed=24000.000000
-     CamTrackPitchSpeed=24000.000000
+     GunPitchSpeed=32768.000000
+     CamTrackYawSpeed=32768.000000
+     CamTrackPitchSpeed=32768.000000
      AbandonedPitch=2600
      CameraOffset=(X=-90.000000,Y=-14.000000,Z=14.000000)
-     GunBone="GunPitch"
-     PivotBone="Pitch"
-     DriverBackOff=100.000000
-     VehicleNameString="FG50 Mounted MG"
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.X83Turret_TPm'
+     CameraElevation=5.000000
+     GunBone="Weapon"
+     PivotBone="StandPivot"
+     DriverBackOff=45.000000
+     bDrawDriverInTP=True
+     VehicleNameString="FG50 Mounted Machinegun"
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FG50_Turret_TPm'
      DrawScale=0.420000
      CollisionHeight=18.000000
 }

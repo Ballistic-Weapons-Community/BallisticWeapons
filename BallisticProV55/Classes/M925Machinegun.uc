@@ -94,7 +94,7 @@ function Notify_Deploy()
 		Destroy();
     }
     else
-		log("Notify_Deploy: Could not spawn turret for M925Machinegun");
+		log("Notify_Deploy: Could not spawn turret for M925 Machinegun.");
 }
 
 simulated function PositionSights ()

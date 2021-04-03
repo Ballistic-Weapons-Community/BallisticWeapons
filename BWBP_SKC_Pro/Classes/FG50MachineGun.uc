@@ -8,33 +8,34 @@
 class FG50MachineGun extends BallisticWeapon;
 
 //aiming
-var	Emitter		LaserDot;
-var	LaserActor	Laser;
-var() Sound		LaserOnSound;
-var() Sound		LaserOffSound;
-var	bool			bLaserOn;
+var	Emitter		        LaserDot;
+var	LaserActor	        Laser;
+var() Sound		        LaserOnSound;
+var() Sound		        LaserOffSound;
+var	bool			    bLaserOn;
 
 //heat
-var	FG50Heater		Heater;
+var	FG50Heater		    Heater;
 var	float				HeatLevel;
 var	float 				HeatDeclineDelay;
-var() Sound			OverHeatSound;		// Sound to play when it overheats
+var() Sound			    OverHeatSound;		// Sound to play when it overheats
 
 var() name				ScopeBone;			// Bone to use for hiding scope
 var name				BulletBone; 			//What it says on the tin
 
-var	int	NumpadYOffset1; //Ammo tens
-var	int	NumpadYOffset2; //Ammo ones
-var() ScriptedTexture WeaponScreen;
+var	int	                NumpadYOffset1; //Ammo tens
+var	int	                NumpadYOffset2; //Ammo ones
+var() ScriptedTexture   WeaponScreen;
+var() int               ScreenIndex;
 
-var() Material	Screen;
-var() Material	ScreenBaseX;
-var() Material	ScreenBase1; //Norm
-var() Material	ScreenBase2; //Stabilized
-var() Material	ScreenBase3; //Empty
-var() Material	ScreenBase4; //Stabilized + Empty
-var() Material	ScreenRedBar; //Red crap for the heat bar
-var() Material	Numbers;
+var() Material	        Screen;
+var() Material	        ScreenBaseX;
+var() Material	        ScreenBase1; //Norm
+var() Material	        ScreenBase2; //Stabilized
+var() Material	        ScreenBase3; //Empty
+var() Material	        ScreenBase4; //Stabilized + Empty
+var() Material	        ScreenRedBar; //Red crap for the heat bar
+var() Material	        Numbers;
 
 var protected const color MyFontColor; //Why do I even need this?
 
@@ -82,7 +83,7 @@ simulated function ScreenStart()
 {
 	if (Instigator.IsLocallyControlled())
 		WeaponScreen.Client = self;
-	Skins[3] = Screen; //Set up scripted texture.
+	Skins[ScreenIndex] = Screen; //Set up scripted texture.
 	UpdateScreen();//Give it some numbers n shit
 	if (Instigator.IsLocallyControlled())
 		WeaponScreen.Revision++;
@@ -516,7 +517,7 @@ function Notify_Deploy()
 			HitLoc = End;
 		End = HitLoc - vect(0,0,100);
 		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
-		if (T != None && T.bWorldGeometry && HitNorm.Z >= 0.7 && FastTrace(HitLoc, Start))
+		if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
 			break;
 		if (Forward <= 45)
 			return;
@@ -525,34 +526,40 @@ function Notify_Deploy()
 	FireMode[1].bIsFiring = false;
    	FireMode[1].StopFiring();
 
-	HitLoc.Z += class'FG50Turret'.default.CollisionHeight - 9;
+	if(Sandbag(T) != None)
+	{
+		HitLoc = T.Location;
+		HitLoc.Z += class'FG50Turret'.default.CollisionHeight + 15;
+	}
+	
+	else
+	{
+		HitLoc.Z += class'FG50Turret'.default.CollisionHeight - 9;
+	}
 
+	CompressedEq = Instigator.Rotation;
+		
 	//Rotator compression causes disparity between server and client rotations,
 	//which then plays hob with the turret's aim.
 	//Do the compression first then use that to spawn the turret.
-
-	if(Level.NetMode == NM_DedicatedServer)
-	{
-	CompressedEq = Instigator.Rotation;
+	
 	CompressedEq.Pitch = (CompressedEq.Pitch >> 8) & 255;
 	CompressedEq.Yaw = (CompressedEq.Yaw >> 8) & 255;
 	CompressedEq.Pitch = (CompressedEq.Pitch << 8);
 	CompressedEq.Yaw = (CompressedEq.Yaw << 8);
 
-	Turret = Spawn(class'FG50Turret', None,, HitLoc, CompressedEq);
-	}
-
-else Turret = Spawn(class'FG50Turret', None,, HitLoc, Instigator.Rotation);
+    Turret = Spawn(class'FG50Turret', None,, HitLoc, Instigator.Rotation);
 
     if (Turret != None)
     {
+    	if (Sandbag(T) != None)
+			Sandbag(T).AttachedWeapon = Turret;
 		Turret.InitDeployedTurretFor(self);
-//		PlaySound(DeploySound, Slot_Interact, 0.7,,64,1,true);
 		Turret.TryToDrive(Instigator);
 		Destroy();
     }
     else
-		log("Notify_Deploy: Could not spawn turret for X82Rifle");
+		log("Notify_Deploy: Could not spawn turret for FG50 Machinegun.");
 }
 
 
@@ -618,6 +625,7 @@ defaultproperties
 	OverheatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-OverHeat'
 	ScopeBone="Holosight"
 	BulletBone="Bullet"
+    ScreenIndex=3
 	WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.FG50.FG50-ScriptLCD'
 	screen=Shader'BWBP_SKC_Tex.FG50.FG50-ScriptLCD-SD'
 	ScreenBase1=Texture'BWBP_SKC_Tex.FG50.FG50-Screen'
@@ -653,7 +661,7 @@ defaultproperties
 	SightOffset=(Y=25.000000,Z=10.300000)
 	ParamsClasses(0)=Class'FG50WeaponParams'	 
 	FireModeClass(0)=Class'BWBP_SKC_Pro.FG50PrimaryFire'
-	FireModeClass(1)=Class'BWBP_SKC_Pro.FG50SecondaryFire'
+	FireModeClass(1)=Class'BWBP_SKC_Pro.FG50DeployFire'
 	IdleAnimRate=0.600000
 	PutDownAnimRate=1.25
 	PutDownTime=0.500000
