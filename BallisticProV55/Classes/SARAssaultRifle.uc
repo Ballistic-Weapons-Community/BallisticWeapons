@@ -160,13 +160,7 @@ simulated function AdjustStockProperties()
 	    LongGunPivot 	= rot(4000, -12000, 0);
     	LongGunOffset	= vect(15, 20, -7);
 		GunLength 		= 64;
-
 		
-		// Weapon bonuses
-		BFireMode[0].FireRecoil 	= 128;
-		BFireMode[0].FireChaos		= 0.030000;
-		
-		// Weapon penalties
 		SightingTime				= 0.35;
 	}
 	else
@@ -176,12 +170,7 @@ simulated function AdjustStockProperties()
     	LongGunPivot		= default.LongGunPivot;
     	LongGunOffset		= default.LongGunOffset;
 		
-		// Weapon Bonuses
 		SightingTime = default.SightingTime;
-		
-		// Weapon penalties
-		BFireMode[0].FireRecoil 		= BFireMode[0].default.FireRecoil;
-		BFireMode[0].FireChaos 			= BFireMode[0].default.FireChaos;
 	}
 }
 

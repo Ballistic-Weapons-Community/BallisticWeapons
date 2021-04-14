@@ -41,24 +41,10 @@ function DoFireEffect()
 simulated function SwitchCannonMode (byte NewMode)
 {
 	if (NewMode == 0)
-	{
-		BallisticFireSound.Sound=SpecialFireSound;
-		FireAnim='CFire';
-		BallisticFireSound.Pitch=1.0;
-		FirePushbackForce=64.000000;
-		FireRate=0.6;
-		FireChaos=0.5;
-	}
-	
+		FirePushbackForce=64.000000;	
 	else
-	{
-		BallisticFireSound.Sound=default.BallisticFireSound.sound;
-		FireAnim='Fire';
-		BallisticFireSound.Pitch=default.BallisticFireSound.pitch;
-		FireRecoil=default.FireRecoil;
 		FirePushbackForce=default.FirePushbackForce;
-		FireRate = default.FireRate;
-	}
+
 	if (Weapon.bBerserk)
 		FireRate *= 0.75;
 	if ( Level.GRI.WeaponBerserk > 1.0 )
