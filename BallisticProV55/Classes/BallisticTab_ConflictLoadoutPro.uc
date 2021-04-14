@@ -17,7 +17,7 @@ var bool					bLoadInitialized;
 var automated GUIListBox	lb_Weapons;
 var Automated GUIImage		Box_WeapList, Box_Inventory, Pic_Weapon, Box_WeapIcon;
 var automated GUILabel   	l_WeapTitle;
-var automated GUIScrollTextBox	lb_Desc;
+var automated GUIScrollTextBox	tb_Desc;
 var Automated GUIButton BStats;
 var automated GUILabel	l_StatTime, l_StatFrags, l_StatEfficiency, l_StatDamageRate, l_StatSniperEff, l_StatShotgunEff, l_StatHazardEff, l_StatHeading, l_Loading;
 
@@ -128,7 +128,7 @@ function OnLRIAcquired()
 		}
 		else
 			DisplaySkills();
-		lb_Desc.WinHeight = 0.23;
+		tb_Desc.WinHeight = 0.23;
 	}
 	else
 	{
@@ -559,7 +559,7 @@ function InternalOnChange(GUIComponent Sender)
 		//Section header.
 		if (lb_Weapons.List.IsSection())
 		{
-			lb_Desc.SetContent(class'BallisticWeaponClassInfo'.static.GetClassDescription(lb_Weapons.List.SelectedText()));
+			tb_Desc.SetContent(class'BallisticWeaponClassInfo'.static.GetClassDescription(lb_Weapons.List.SelectedText()));
 			Pic_Weapon.Image = None;
 			return;
 		}
@@ -570,13 +570,13 @@ function InternalOnChange(GUIComponent Sender)
 			if (class<BallisticWeapon>(lb_Weapons.List.GetObject()) != None)
 			{
 				Pic_Weapon.Image = class<BallisticWeapon>(lb_Weapons.List.GetObject()).default.BigIconMaterial;
-				lb_Desc.SetContent(class<BallisticWeapon>(lb_Weapons.List.GetObject()).static.GetShortManual());
+				tb_Desc.SetContent(class<BallisticWeapon>(lb_Weapons.List.GetObject()).static.GetShortManual());
 				return;
 			}
 			if (class<ConflictItem>(lb_Weapons.List.GetObject()) != None)
 			{
 				Pic_Weapon.Image = class<ConflictItem>(lb_Weapons.List.GetObject()).default.Icon;
-				lb_Desc.SetContent(class<ConflictItem>(lb_Weapons.List.GetObject()).default.Description);
+				tb_Desc.SetContent(class<ConflictItem>(lb_Weapons.List.GetObject()).default.Description);
 				return;
 			}
 			return;
@@ -589,7 +589,7 @@ function InternalOnChange(GUIComponent Sender)
 			if (BW != None)
 			{
 				Pic_Weapon.Image = BW.default.BigIconMaterial;
-				lb_Desc.SetContent(BW.static.GetShortManual());
+				tb_Desc.SetContent(BW.static.GetShortManual());
 				lb_Weapons.List.SetObjectAtIndex(lb_Weapons.List.Index, BW);
 			}
 		}
@@ -800,7 +800,7 @@ defaultproperties
          bAcceptsInput=False
          bNeverFocus=True
      End Object
-     lb_Desc=GUIScrollTextBox'BallisticProV55.BallisticTab_ConflictLoadoutPro.WeaponDescription'
+     tb_Desc=GUIScrollTextBox'BallisticProV55.BallisticTab_ConflictLoadoutPro.WeaponDescription'
 
      Begin Object Class=GUIButton Name=BStatButton
          Caption="Stats"

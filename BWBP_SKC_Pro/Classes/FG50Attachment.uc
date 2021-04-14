@@ -24,6 +24,13 @@ replication
 		LaserRot;
 }
 
+simulated Event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BallisticTurret(Instigator) != None)
+		bHidden=true;
+}
+
 function InitFor(Inventory I)
 {
 	Super.InitFor(I);

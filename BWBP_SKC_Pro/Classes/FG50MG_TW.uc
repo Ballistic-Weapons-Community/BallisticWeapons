@@ -12,6 +12,38 @@ class FG50MG_TW extends FG50Machinegun
 
 var() sound		MountFireSound;
 
+function InitWeaponFromTurret(BallisticTurret Turret)
+{
+	bNeedCock = false;
+	Ammo[0].AmmoAmount = Turret.AmmoAmount[0];
+	if (!Instigator.IsLocallyControlled())
+		ClientInitWeaponFromTurret(Turret);
+}
+
+simulated function ClientInitWeaponFromTurret(BallisticTurret Turret)
+{
+	bNeedCock=false;
+}
+
+// Rotates the player's view according to Aim
+// Split into recoil and aim to accomodate no view decline
+simulated function ApplyAimToView()
+{
+	local Rotator AimPivotDelta, RecoilPivotDelta;
+
+	//DC 110313
+	if (Instigator.Controller == None || AIController(Instigator.Controller) != None || !Instigator.IsLocallyControlled())
+		return;
+
+	RecoilPivotDelta 	= RcComponent.CalcViewPivotDelta();
+	AimPivotDelta  		= AimComponent.CalcViewPivotDelta();
+	
+	if (RcComponent.ShouldUpdateView())
+		Instigator.SetViewRotation(AimPivotDelta + RecoilPivotDelta);
+	else
+		Instigator.SetViewRotation(AimPivotDelta);	
+}
+
 function InitTurretWeapon(BallisticTurret Turret)
 {
 	Ammo[0].AmmoAmount = Turret.AmmoAmount[0];
@@ -20,31 +52,8 @@ function InitTurretWeapon(BallisticTurret Turret)
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
-
 	BFireMode[0].FirePushbackForce = 0;
-    BFireMode[0].XInaccuracy=1.000000;
-    BFireMode[0].YInaccuracy=1.000000;
-	BFireMode[0].FireRecoil=128.000000;
 	BFireMode[0].BrassOffset = vect(0,0,0);
-}
-
-simulated function PostNetBeginPlay()
-{
-	super.PostNetBeginPlay();
-	if ((BallisticTurret(Owner) != None && BallisticTurret(Owner).bWeaponDeployed) || (BallisticTurret(Instigator) != None && BallisticTurret(Instigator).bWeaponDeployed))
-	{
-		SelectAnim = IdleAnim;
-		SelectAnimRate = IdleAnimRate;
-		BringUpTime = 0.1;
-	}
-}
-
-simulated event Timer()
-{
-    if (ClientState == WS_BringUp && BallisticTurret(Instigator) != None)
-     	BallisticTurret(Instigator).bWeaponDeployed = true;
-
-	super.Timer();
 }
 
 simulated function Notify_Undeploy ()
@@ -53,23 +62,91 @@ simulated function Notify_Undeploy ()
 		BallisticTurret(Instigator).UndeployTurret();
 }
 
-
-function ServerWeaponSpecial(optional byte i)
-{
-
-   	if (BallisticTurret(Instigator) != None)
-	{
-		PlayAnim('Undeploy');
-      		Notify_UnDeploy();
-	}
-
-}
-
-simulated function Notify_Deploy();
+simulated function Notify_Deploy ();
 
 simulated function PreDrawFPWeapon()
 {
 	SetRotation(Instigator.Rotation);
+}
+
+function GiveTo(Pawn Other, optional Pickup Pickup)
+{
+	Super(BallisticWeapon).GiveTo(Other, Pickup);
+}
+
+//attachment fix for deployed
+simulated event Timer()
+{
+	local int Mode;
+
+	AimComponent.Reaim(0.1);
+
+    if (ClientState == WS_BringUp)
+    {
+		for( Mode = 0; Mode < NUM_FIRE_MODES; Mode++ )
+			if (FireMode[Mode] != None)
+				FireMode[Mode].InitEffects();
+        PlayIdle();
+        ClientState = WS_ReadyToFire;
+		if (!bOldCrosshairs && PlayerController(Instigator.Controller) != None && PlayerController(Instigator.Controller).MyHud != None)
+			PlayerController(Instigator.Controller).MyHud.bCrosshairShow = false;
+
+		if (bNeedCock)
+		{
+			if (MagAmmo > 0)
+				CommonCockGun();
+		}
+		
+
+		//handle attachment here, hack to force apparition
+		//without this tracers will not appear in 1st when 
+		//wep is first deployed
+		if (Role < ROLE_Authority)
+		return;
+		
+		if (ThirdPersonActor != None )
+		{
+			ThirdPersonActor.Destroy();
+			ThirdPersonActor = Spawn(AttachmentClass,Owner);
+			InventoryAttachment(ThirdPersonActor).InitFor(self);
+		}
+
+		ThirdPersonActor.SetLocation(Instigator.Location);
+		ThirdPersonActor.SetBase(Instigator);
+    }
+    
+    else if (ClientState == WS_PutDown)
+    {
+		if (SightFX != None)
+		{
+			SightFX.Destroy();
+			SightFX=None;
+		}
+
+		if ( Instigator.PendingWeapon == None )
+		{
+			PlayIdle();
+			ClientState = WS_ReadyToFire;
+		}
+		else
+		{
+			ClientState = WS_Hidden;
+			Instigator.ChangedWeapon();
+			for( Mode = 0; Mode < NUM_FIRE_MODES; Mode++ )
+				if (FireMode[Mode] != None)
+					FireMode[Mode].DestroyEffects();
+			if (PlayerSpeedFactor != 0 && PlayerSpeedUp)
+			{
+				Instigator.GroundSpeed *= (1/PlayerSpeedFactor);
+				PlayerSpeedUp = false;
+			}
+		}
+    }
+	else if (Clientstate == WS_None && Instigator.PendingWeapon == none && bNeedCock)
+	{
+		if (MagAmmo > 0)
+			CommonCockGun();
+	}
 }
 
 simulated event AnimEnd (int Channel)
@@ -108,19 +185,19 @@ simulated event RenderOverlays (Canvas C)
 	Super.RenderOverlays(C);
 }
 
+simulated function ApplyAimRotation()
+{
+	ApplyAimToView();
+
+	BallisticTurret(Instigator).WeaponPivot = GetFireRot() * (DisplayFOV / Instigator.Controller.FovAngle);
+//	PlayerViewPivot = default.PlayerViewPivot + GetFireRot() * (DisplayFOV / Instigator.Controller.FovAngle);
+}
+
 simulated function PlayReload()
 {
        ReloadAnim='Reload';
 
 	SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
-}
-
-simulated function ApplyAimRotation()
-{
-	ApplyAimToView();
-
-	BallisticTurret(Instigator).WeaponPivot = (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
-//	PlayerViewPivot = default.PlayerViewPivot + (GetAimPivot() + GetRecoilPivot()) * (DisplayFOV / Instigator.Controller.FovAngle);
 }
 
 // Animation notify to make gun cock after reload
@@ -140,6 +217,17 @@ simulated function PlayCocking(optional byte Type)
 		PlayAnim('Cock', CockAnimRate, 0.2);
 }
 
+simulated function bool HasAmmo()
+{
+	//First Check the magazine
+	if (FireMode[0] != None && MagAmmo >= FireMode[0].AmmoPerFire)
+		return true;
+	//If it is a non-mag or the magazine is empty
+	if (Ammo[0] != None && FireMode[0] != None && Ammo[0].AmmoAmount >= FireMode[0].AmmoPerFire)
+			return true;
+	return false;	//This weapon is empty
+}
+
 defaultproperties
 {
 	ReloadAnimRate=0.800000
@@ -148,18 +236,19 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipIn')
 	SightingTime=0.000001
 	GunLength=0.000000
+    bUseSights=False
 	bUseSpecialAim=True
-	 
-
 	ParamsClasses(0)=Class'FG50TW_WeaponParams'
 	SelectAnim="Deploy"
+    BringUpTime=1.000000
 	bCanThrow=False
 	bNoInstagibReplace=True
 	DisplayFOV=90.000000
+    ClientState=WS_BringUp
 	Priority=1
 	PlayerViewOffset=(X=-80.000000)
 	ItemName="FG50 Turret"
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_X83Turret'
-	DrawScale=0.650000
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FG50_Turret'
+	DrawScale=0.50000
 	CollisionHeight=24.000000
 }

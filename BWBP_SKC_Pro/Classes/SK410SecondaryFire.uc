@@ -42,7 +42,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-FireFRAG',Volume=1.300000)
      FireEndAnim=
      FireAnimRate=1.250000
-     FireRate=0.350000
+     FireRate=0.650000
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_8GaugeHE'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
