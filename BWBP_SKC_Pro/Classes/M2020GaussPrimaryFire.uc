@@ -131,21 +131,20 @@ simulated function SwitchWeaponMode (byte NewMode)
 		
 		else if (NewMode == 1)	//gauss power
 		{
-			BallisticFireSound.Sound=SpecialFireSound;
-			FireRecoil=1024.000000;
+			//BallisticFireSound.Sound=SpecialFireSound;
+			//FireRecoil=1024.000000;
 			FirePushbackForce=120.000000;
-			FireAnim='FirePowered';
-			FireRate=1.000000;
-			FireChaos=1;
-			KickForce=3000;
-			Damage=110.000000;
+			//FireAnim='FirePowered';
+			//FireRate=1.000000;
+			//FireChaos=1;
+			//Damage=110.000000;
 
-			DamageType=default.DamageType;
-			DamageTypeHead=default.DamageTypeHead;
-			DamageTypeArm=default.DamageTypeArm;
+			//DamageType=default.DamageType;
+			//DamageTypeHead=default.DamageTypeHead;
+			//DamageTypeArm=default.DamageTypeArm;
 
-			WallPenetrationForce = 96;
-			FlashScaleFactor=1.600000;
+			//WallPenetrationForce = 96;
+			//FlashScaleFactor=1.600000;
 			KickForce=1000;
 			bFlashAlt=false;
 			M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
@@ -153,19 +152,19 @@ simulated function SwitchWeaponMode (byte NewMode)
 		else if (NewMode == 2 || NewMode == 3)	//gauss offline or gauss deflection
 		{
 			BallisticFireSound.Sound=LowPowerFireSound;
-			FireRecoil=150.000000;
+			//FireRecoil=150.000000;
 			FirePushbackForce=0.000000;
-			FlashScaleFactor=1.000000;
-			FireChaos=0.05;
+			//FlashScaleFactor=1.000000;
+			//FireChaos=0.05;
 			bFlashAlt=true;
 			KickForce = default.KickForce;
 			M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=true;
-			if (NewMode == 2)
+			/*if (NewMode == 2)
 				FireAnim='FireUnPowered';
 			else
-				FireAnim='FireShield';
-			FireRate=0.200000;
-			Damage=40.000000;
+				FireAnim='FireShield';*/
+			//FireRate=0.200000;
+			//Damage=40.000000;
 
 			DamageType=Class'BWBP_SKC_Pro.DT_M2020Off';
 			DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadOff';

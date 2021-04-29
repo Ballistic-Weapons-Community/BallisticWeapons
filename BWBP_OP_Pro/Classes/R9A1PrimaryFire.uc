@@ -14,7 +14,7 @@ var int	HeatPerShot;
 
 #exec OBJ LOAD File="BW_Core_WeaponSound.uax"
 
-function SwitchWeaponMode (byte NewMode)
+/*function SwitchWeaponMode (byte NewMode)
 {
     switch (NewMode)
     { 
@@ -30,10 +30,39 @@ function SwitchWeaponMode (byte NewMode)
 		GoToState('');
         break;
 	}
+}*/
+
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+{
+	local Inv_Slowdown Slow;
+
+	if (BW.CurrentWeaponMode == 1)
+	{
+		super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+
+		if (Pawn(Victim) != None && Pawn(Victim).Health > 0 && Vehicle(Victim) == None)
+		{
+			Slow = Inv_Slowdown(Pawn(Victim).FindInventoryType(class'Inv_Slowdown'));
+
+			if (Slow == None)
+			{
+				Pawn(Victim).CreateInventory("BallisticProV55.Inv_Slowdown");
+				Slow = Inv_Slowdown(Pawn(Victim).FindInventoryType(class'Inv_Slowdown'));
+			}
+
+			Slow.AddSlow(0.7, 1);
+		}
+		return;		
+	}
+	else if (BW.CurrentWeaponMode == 2)
+	{
+		if (Pawn(Victim) != None && Pawn(Victim).bProjTarget)
+			Damage += R9A1RangerRifle(BW).ManageHeatInteraction(Pawn(Victim), HeatPerShot);	
+	}
+	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 }
 
-
-state Freeze
+/*state Freeze
 {
 	function BeginState()
 	{
@@ -76,7 +105,7 @@ state Laser
 		
 		super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	}
-}
+}*/
 
 //// server propagation of firing ////
 function ServerPlayFiring()
