@@ -8,20 +8,22 @@ simulated function AdjustLaserParams(bool bLaserOn)
 	{	
 		//properties for directed rockets
 		//FireRate=0.18;
-		FireRecoil/=2;
-		FireChaos/=1.3;
-		XInaccuracy/=1.2;
-		YInaccuracy/=1.2;
+		//FireRecoil/=2;
+		//FireChaos/=1.3;
+		//XInaccuracy/=1.2;
+		//YInaccuracy/=1.2;
+		//ProjectileClass = class'BWBP_OP_Pro.MX32SeekerRocket';
 	}
 
 	else
 	{
 		//properties for normal rockets
 		//FireRate=default.FireRate;
-		FireRecoil=default.FireRecoil;
-		FireChaos=default.FireChaos;
-		XInaccuracy=default.XInaccuracy;
-		YInaccuracy=default.YInaccuracy;
+		//FireRecoil=default.FireRecoil;
+		//FireChaos=default.FireChaos;
+		//XInaccuracy=default.XInaccuracy;
+		//YInaccuracy=default.YInaccuracy;
+		//ProjectileClass = class'BWBP_OP_Pro.MX32Rocket';
 	}
 	if (Weapon.bBerserk)
 		FireRate *= 0.75;
@@ -105,10 +107,10 @@ function StopFiring()
 
 function DoFireEffect()
 {	
-	if (MX32Weapon(Weapon).bLaserOn)
+	/*if (MX32Weapon(Weapon).bLaserOn)
 		ProjectileClass = class'BWBP_OP_Pro.MX32SeekerRocket';
 	else
-		ProjectileClass = class'BWBP_OP_Pro.MX32Rocket';
+		ProjectileClass = class'BWBP_OP_Pro.MX32Rocket';*/
 	
 	Super.DoFireEffect();
 }

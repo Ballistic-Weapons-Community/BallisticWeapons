@@ -87,24 +87,24 @@ defaultproperties
      ProjectileCount=6
 	 HipMultiplier=2
      bNoRandomFire=True
-     bCockAfterFire=True
-     AimedFireAnim="SightFire"
-     FireRecoil=1024.000000
-     FirePushbackForce=800.000000
-     FireChaos=1.000000
-     XInaccuracy=256.000000
-     YInaccuracy=256.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-FireAlt',Volume=1.700000)
-     FireAnimRate=2.00000
-     FireRate=0.800000
-     ProjectileClass=Class'BWBP_SKC_Pro.LonghornMicroClusterAlt'
+     //bCockAfterFire=True
+     //AimedFireAnim="SightFire"
+     //FireRecoil=1024.000000
+     //FirePushbackForce=800.000000
+     //FireChaos=1.000000
+     //XInaccuracy=256.000000
+     //YInaccuracy=256.000000
+     //BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-FireAlt',Volume=1.700000)
+     //FireAnimRate=2.00000
+     //FireRate=0.800000
+     //ProjectileClass=Class'BWBP_SKC_Pro.LonghornMicroClusterAlt'
 	 
 	  // AI
 	 bInstantHit=False
 	 bLeadTarget=True
 	 bTossed=False
-	 bSplashDamage=True
-	 bRecommendSplashDamage=False
-	 BotRefireRate=0.7
-     WarnTargetPct=0.3
+	 //bSplashDamage=True
+	 //bRecommendSplashDamage=False
+	 //BotRefireRate=0.7
+     //WarnTargetPct=0.3
 }

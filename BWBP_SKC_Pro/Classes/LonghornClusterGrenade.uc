@@ -332,12 +332,12 @@ defaultproperties
      MotionBlurRadius=384.000000
      MotionBlurFactor=3.000000
      MotionBlurTime=4.000000
-     Speed=6000.000000
-     MaxSpeed=6000.000000
-     Damage=150.000000
-     DamageRadius=450.000000
+     //Speed=6000.000000
+     //MaxSpeed=6000.000000
+     //Damage=150.000000
+     //DamageRadius=450.000000
      WallPenetrationForce=192
-     MomentumTransfer=100000.000000
+     //MomentumTransfer=100000.000000
      MyDamageType=Class'BWBP_SKC_Pro.DT_LonghornBigRadius'
      ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Metal'
      LightType=LT_Steady

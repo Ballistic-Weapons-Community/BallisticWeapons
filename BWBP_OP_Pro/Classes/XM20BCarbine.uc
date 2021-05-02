@@ -397,7 +397,7 @@ simulated event RenderOverlays( Canvas C )
 {
 	local float	ScaleFactor;//, XL, XY;
 
-	if (CurrentWeaponMode == 1)
+	if (CurrentWeaponMode == 0)
 	{
 		ScreenTex=ScreenTexBase1;
 	}
@@ -481,8 +481,8 @@ function byte BestMode()
 	else if (MagAmmo < 1)
 		return 1;
 
-	if (CurrentWeaponMode != 2)
-		CurrentWeaponMode = 2;
+	if (CurrentWeaponMode != 1)
+		CurrentWeaponMode = 1;
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	Height = B.Enemy.Location.Z - Instigator.Location.Z;
 	VDot = Normal(B.Enemy.Velocity) Dot Normal(Instigator.Location - B.Enemy.Location);
@@ -592,10 +592,10 @@ defaultproperties
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-ClipIn')
      ClipInFrame=0.650000
      bNeedCock=False
-     WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
-     WeaponModes(1)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto")
-     WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
-	 CurrentWeaponMode=1
+     WeaponModes(0)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto")
+     WeaponModes(1)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
+     WeaponModes(2)=(ModeName="Laser Beam",bUnavailable=True)
+	 CurrentWeaponMode=0
 	 BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeView'
      ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
