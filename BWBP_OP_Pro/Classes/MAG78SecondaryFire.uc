@@ -241,26 +241,12 @@ defaultproperties
      SwipePoints(0)=(offset=(Yaw=0))
      WallHitPoint=0
      NumSwipePoints=1
-     TraceRange=(Min=160.000000,Max=160.000000)
-     Damage=20.000000
-     DamageType=Class'DT_MAGSAWStab'
-     DamageTypeHead=Class'DT_MAGSAWStabHead'
-     DamageTypeArm=Class'DT_MAGSAWStab'
 	 FatiguePerStrike=0
      KickForce=500
-     HookStopFactor=1.500000
-     HookPullForce=150.000000
      ScopeDownOn=SDO_Fire
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawOpen',Volume=0.750000,Radius=256.000000)
      bAISilent=True
-     PreFireAnim=
-     FireAnim="SawStart"
-     FireEndAnim="SawEnd"
-     FireRate=0.100000
      AmmoClass=Class'Ammo_MAGSAWCharge'
-     AmmoPerFire=1
      ShakeRotMag=(X=64.000000,Y=16.000000)
      ShakeRotRate=(X=1024.000000,Y=1024.000000,Z=512.000000)
      ShakeRotTime=1.000000
-     WarnTargetPct=0.050000
 }
