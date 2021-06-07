@@ -145,6 +145,8 @@ defaultproperties
         MagAmmo=25        
 		InventorySize=12
 		SightingTime=0.2
+		SightPivot=(Pitch=512)
+		SightOffset=(X=-10.000000,Z=12.00000)
 		RecoilParams(0)=RecoilParams'ArenaBurstRecoilParams'
 		RecoilParams(1)=RecoilParams'ArenaAutoRecoilParams'
         FireParams(0)=FireParams'BurstFireParams'

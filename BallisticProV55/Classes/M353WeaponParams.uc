@@ -79,7 +79,9 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-        PlayerSpeedFactor=0.950000
+        SightPivot=(Pitch=128)
+		SightOffset=(X=-6.000000,Z=5.30000)
+		PlayerSpeedFactor=0.950000
         PlayerJumpFactor=0.950000
         DisplaceDurationMult=1.25
         SightMoveSpeedFactor=0.8

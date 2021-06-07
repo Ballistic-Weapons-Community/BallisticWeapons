@@ -122,27 +122,27 @@ simulated function ModeTick(float DT)
 
 simulated function SwitchLaserMode (byte NewMode)
 {
-	if (NewMode == 2) //overcharged
+	if (NewMode == 1) //overcharged
     {
 		XM20BCarbine(BW).bOvercharged=true;
-		FireRate=default.OverChargedFireRate;
-		Damage=15.000000;
+		//FireRate=default.OverChargedFireRate;
+		//Damage=15.000000;
 		XM20BCarbine(BW).ChargeRate=0.600000;
-		PreFireAnim=PreFireAnimCharged;
-		FireLoopAnim=FireLoopAnimCharged;
-		FireEndAnim=FireEndAnimCharged;
-		FlashScaleFactor=0.5;
+		//PreFireAnim=PreFireAnimCharged;
+		//FireLoopAnim=FireLoopAnimCharged;
+		//FireEndAnim=FireEndAnimCharged;
+		//FlashScaleFactor=0.5;
 	}
     else
     {
 		XM20BCarbine(BW).bOvercharged=false;
-		FireRate=default.FireRate;				
-		Damage=default.Damage;
+		//FireRate=default.FireRate;				
+		//Damage=default.Damage;
 		XM20BCarbine(BW).ChargeRate=XM20BCarbine(BW).default.ChargeRate;
-		PreFireAnim=default.PreFireAnim;
-		FireLoopAnim=default.FireLoopAnim;
-		FireEndAnim=default.FireEndAnim;
-		FlashScaleFactor=default.FlashScaleFactor;
+		//PreFireAnim=default.PreFireAnim;
+		//FireLoopAnim=default.FireLoopAnim;
+		//FireEndAnim=default.FireEndAnim;
+		//FlashScaleFactor=default.FlashScaleFactor;
     }
 	if (Weapon.bBerserk)
 		FireRate *= 0.75;

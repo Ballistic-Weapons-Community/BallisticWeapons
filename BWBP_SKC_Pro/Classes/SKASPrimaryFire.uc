@@ -14,36 +14,37 @@ var() sound		XR4FireSound;
 
 simulated function SwitchWeaponMode (byte NewMode)
 {
-	if (NewMode == 2)
+	if (NewMode == 1)
 	{
-		BallisticFireSound.Sound=SuperFireSound;
-		FireRate=1.75;
-		FireAnim='SemiFire';
-		FireAnimRate=1.45;
-    	KickForce=800;
-		FireRecoil=128;
-     	FireChaos=0.2;
-     	FlashScaleFactor=1.5;
+		//BallisticFireSound.Sound=SuperFireSound;
+		//FireRate=1.75;
+		//FireAnim='SemiFire';
+		//FireAnimRate=1.45;
+    	     KickForce=800;
+		//FireRecoil=128;
+     	//FireChaos=0.2;
+          //bCockAfterFire=True;
+     	//FlashScaleFactor=1.5;
      	XInaccuracy=35.000000;
      	YInaccuracy=35.000000;
-		CutOffDistance=4096;
-		CutOffStartRange=2048;
+		//CutOffDistance=4096;
+		//CutOffStartRange=2048;
 	}
 	
 	else
 	{
-		FireRate=default.FireRate;
+		//FireRate=default.FireRate;
 		RangeAtten=Default.RangeAtten;
-		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
-		FireAnim=default.FireAnim;
+		//BallisticFireSound.Sound=default.BallisticFireSound.Sound;
+		//FireAnim=default.FireAnim;
 		KickForce=Default.KickForce;
-		FireRecoil=Default.FireRecoil;
-     	FireChaos=Default.FireChaos;
+		//FireRecoil=Default.FireRecoil;
+     	//FireChaos=Default.FireChaos;
 		bCockAfterFire=False;
      	XInaccuracy=default.XInaccuracy;
      	YInaccuracy=default.YInaccuracy;
-		CutOffDistance=	Default.CutOffDistance;
-		CutOffStartRange=Default.CutOffStartRange;
+		//CutOffDistance=	Default.CutOffDistance;
+		//CutOffStartRange=Default.CutOffStartRange;
 	}
 }
 
