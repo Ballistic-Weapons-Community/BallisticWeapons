@@ -65,6 +65,8 @@ var() EZoomType             ZoomType;               // Type of zoom. Precise con
 var() array<MaterialSwap>   WeaponMaterialSwaps;
 var() array<BoneScale>      WeaponBoneScales;
 var() array<MaterialSwap>   AttachmentMaterialSwaps;
+var() Vector                ViewOffset;            // Offset when at rest
+var() String				WeaponName;
 //-----------------------------------------------------------------------------
 // Aim
 //-----------------------------------------------------------------------------

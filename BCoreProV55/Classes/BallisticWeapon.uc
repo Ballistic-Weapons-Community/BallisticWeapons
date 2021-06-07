@@ -549,6 +549,12 @@ simulated final function OnWeaponParamsChanged()
 
     ZoomType                    = WeaponParams.ZoomType;
 
+	if (WeaponParams.WeaponName != "")
+    {
+        ItemName=WeaponParams.WeaponName;
+        default.ItemName = WeaponParams.WeaponName;
+    }
+	
     if (WeaponParams.SightOffset != vect(0,0,0))
     {
         SightOffset = WeaponParams.SightOffset;
@@ -561,6 +567,12 @@ simulated final function OnWeaponParamsChanged()
         default.SightPivot = WeaponParams.SightPivot;
     }
 
+	if (WeaponParams.ViewOffset != vect(0,0,0))
+    {
+        PlayerViewOffset = WeaponParams.ViewOffset;
+        default.PlayerViewOffset = WeaponParams.ViewOffset;
+    }
+	
     for (i = 0; i < WeaponParams.WeaponMaterialSwaps.Length; ++i)
         Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = WeaponParams.WeaponMaterialSwaps[i].Material;
 
@@ -4454,6 +4466,10 @@ simulated function OnRecoilParamsChanged()
 function InitWeaponFromTurret(BallisticTurret Turret);
 simulated function ClientInitWeaponFromTurret(BallisticTurret Turret);
 function InitTurretWeapon(BallisticTurret Turret);
+//same for automated turrets
+function InitWeaponFromAutoTurret(BallisticAutoTurret AutoTurret);
+simulated function ClientInitWeaponFromAutoTurret(BallisticAutoTurret AutoTurret);
+function InitAutoTurretWeapon(BallisticAutoTurret AutoTurret);
 
 // End input functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
