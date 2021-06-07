@@ -142,7 +142,7 @@ simulated function PreBeginPlay()
     if (BW == None)
         return;
 
-    BW.default.ParamsClasses[BW.default.BCRepClass.default.GameStyle].static.SetProjectileParams(BW, self);
+    BW.default.ParamsClasses[BW.GameStyleIndex].static.SetProjectileParams(BW, self);
 }
 
 simulated function ApplyParams(ProjectileEffectParams params)

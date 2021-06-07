@@ -361,6 +361,7 @@ var	Object.Color	HeaderColor, TextColor;
 //-----------------------------------------------------------------------------
 // Layout
 //-----------------------------------------------------------------------------
+var() byte                      GameStyleIndex;         // Game style parameters to use for this weapon
 var() byte                      LayoutIndex;            // Index of layout parameters to use for this weapon instance
 //-----------------------------------------------------------------------------
 // Move speed
@@ -403,11 +404,11 @@ var() float					    GunLength;			// How far weapon extends from player. Used by 
 replication
 {
 	// Things the server should send to the owning client
-	reliable if( bNetOwner && Role==ROLE_Authority)
-		MagAmmo, bServerReloading, NetInventoryGroup, LayoutIndex, bServerDeferInitialSwitch;
+	reliable if (bNetOwner && Role == ROLE_Authority)
+		MagAmmo, bServerReloading, NetInventoryGroup, GameStyleIndex, LayoutIndex, bServerDeferInitialSwitch;
 
 	// functions on server, called by client
-   	reliable if( Role < ROLE_Authority )
+   	reliable if (Role < ROLE_Authority)
 		ServerReloadRelease, ServerStartReload, ServerSkipReload, ServerCockGun, ServerStopReload, ServerReloaded, // reload system
 		ServerZeroAim, ServerReaim, // aim system
 		ServerWeaponSpecial, ServerWeaponSpecialRelease, // weapon special ability
@@ -417,7 +418,7 @@ replication
 
 
 	// functions on client, called by server
-   	reliable if( Role == ROLE_Authority )
+   	reliable if (Role == ROLE_Authority)
 		ClientReloadRelease, ClientStartReload, ClientCockGun, ClientWeaponReloaded, // reload system
 		ReceiveNetAim, ClientDisplaceAim, // aim system
 		ReceiveNetRecoil, // recoil system
@@ -457,6 +458,13 @@ simulated final function vector ViewAlignedOffset (vector Offset) { return class
 simulated function PostBeginPlay()
 {
     local int m;
+
+    if (Role == ROLE_Authority)
+    {
+        if (ParamsClasses[int(BCRepClass.default.GameStyle)] != None)
+        GameStyleIndex = int(BCRepClass.default.GameStyle);
+    }
+
 	Super.PostBeginPlay();
 
     for (m = 0; m < NUM_FIRE_MODES; m++)
@@ -505,10 +513,10 @@ simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
 
-    assert(ParamsClasses[BCRepClass.default.GameStyle] != None);
+    assert(ParamsClasses[GameStyleIndex] != None);
     
-    // Forced to delay initialization because of the need to wait for LayoutIndex to be replicated
-	ParamsClasses[BCRepClass.default.GameStyle].static.Initialize(self);
+    // Forced to delay initialization because of the need to wait for GameStyleIndex and LayoutIndex to be replicated
+	ParamsClasses[GameStyleIndex].static.Initialize(self);
 
 	if (BCRepClass.default.bNoReloading)
 		bNoMag = true;
@@ -2598,19 +2606,19 @@ simulated function CommonSwitchWeaponMode(byte NewMode)
 	LastMode = CurrentWeaponMode;
 	CurrentWeaponMode = NewMode;
 
-    ParamsClasses[BCRepClass.default.GameStyle].static.SetFireParams(self);
+    ParamsClasses[GameStyleIndex].static.SetFireParams(self);
 
 	BFireMode[0].SwitchWeaponMode(CurrentWeaponMode);
 	BFireMode[1].SwitchWeaponMode(CurrentWeaponMode);
 
 	if (WeaponModes[LastMode].RecoilParamsIndex != WeaponModes[CurrentWeaponMode].RecoilParamsIndex)
 	{
-		ParamsClasses[BCRepClass.default.GameStyle].static.SetRecoilParams(self);
+		ParamsClasses[GameStyleIndex].static.SetRecoilParams(self);
 	}
 
 	if (WeaponModes[LastMode].AimParamsIndex != WeaponModes[CurrentWeaponMode].AimParamsIndex)
 	{
-		ParamsClasses[BCRepClass.default.GameStyle].static.SetAimParams(self);
+		ParamsClasses[GameStyleIndex].static.SetAimParams(self);
 	}
 
 	CheckBurstMode();
@@ -3556,7 +3564,7 @@ function bool HandlePickupQuery( pickup Item )
 
 		if (BWP != None)
 		{
-			BWP.DetectedInventorySize += ParamsClasses[BCRepClass.default.GameStyle].default.Layouts[0].InventorySize;
+			BWP.DetectedInventorySize += ParamsClasses[GameStyleIndex].default.Layouts[0].InventorySize;
 
 			if (BWP.DetectedInventorySize >= default.MaxInventoryCapacity)
 			{
@@ -4965,6 +4973,30 @@ simulated final function bool HasSecondaryAmmo()
 simulated final function ClientWeaponReloaded()
 {
 	bNeedReload=False;
+}
+
+static simulated final function int GetPickupMagAmmo()
+{
+    local int i;
+
+    i = int(default.BCRepClass.default.GameStyle);
+
+    if (default.ParamsClasses[i] == None)
+        i = 0;
+
+    return default.ParamsClasses[i].default.Layouts[0].MagAmmo;
+}
+
+static simulated final function int GetInventorySize()
+{
+    local int i;
+
+    i = int(default.BCRepClass.default.GameStyle);
+
+    if (default.ParamsClasses[i] == None)
+        i = 0;
+
+    return default.ParamsClasses[i].default.Layouts[0].InventorySize;
 }
 
 static function String GetManual()

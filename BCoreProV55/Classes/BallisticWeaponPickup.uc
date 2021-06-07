@@ -137,7 +137,7 @@ auto state Pickup
 	function BeginState()
 	{
 		if (!bDropped && class<BallisticWeapon>(InventoryType) != None)
-			MagAmmo = class<BallisticWeapon>(InventoryType).default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle].default.Layouts[0].MagAmmo;
+			MagAmmo = class<BallisticWeapon>(InventoryType).static.GetPickupMagAmmo();
 		Super.BeginState();
 	}
 	
@@ -152,7 +152,7 @@ auto state Pickup
 		if ( !FastTrace(Other.Location, Location) )
 			return false;
 
-		DetectedInventorySize = class<BallisticWeapon>(InventoryType).default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle].default.Layouts[0].InventorySize;
+		DetectedInventorySize = class<BallisticWeapon>(InventoryType).static.GetInventorySize();
 
 		// make sure game will let player pick me up
 		if( Level.Game.PickupQuery(Pawn(Other), self) )
@@ -207,7 +207,7 @@ function GiveWeaponAmmo (Weapon W, Pawn Other)
 		return;
 	}
 	if (class<BallisticWeapon>(InventoryType) != None && class<BallisticWeapon>(InventoryType).default.bNoMag == false)
-		W.AddAmmo(class<BallisticWeapon>(InventoryType).default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle].default.Layouts[0].MagAmmo * 2, 0);	//BE: Doubled amount of ammo recieved from weapon pickups.
+		W.AddAmmo(class<BallisticWeapon>(InventoryType).static.GetPickupMagAmmo() * 2, 0);	//BE: Doubled amount of ammo recieved from weapon pickups.
 	else
 		W.AddAmmo(W.GetAmmoClass(0).default.InitialAmount, 0);
 	if (W.GetAmmoClass(1) != None && W.GetAmmoClass(1) != W.GetAmmoClass(0))
@@ -256,7 +256,7 @@ simulated function GetAmmoAmount (int m, Weapon W)
 	if (bThrown)
 	{
 		if (BallisticWeapon(W)!=None && BallisticWeapon(W).bNoMag==false)
-			AmmoAmount[m] = Min(W.AmmoAmount(m), BallisticWeapon(W).default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle].default.Layouts[0].MagAmmo);
+			AmmoAmount[m] = Min(W.AmmoAmount(m), BallisticWeapon(W).static.GetPickupMagAmmo());
 		else
 			AmmoAmount[m] = Min(W.AmmoAmount(m), W.GetAmmoClass(m).default.InitialAmount);
 	}
@@ -360,7 +360,7 @@ state FallingPickup
 		if ( !FastTrace(Other.Location, Location) )
 			return false;
 
-        DetectedInventorySize = class<BallisticWeapon>(InventoryType).default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle].default.Layouts[0].InventorySize;
+        DetectedInventorySize = class<BallisticWeapon>(InventoryType).static.GetInventorySize();
 
 
 		// make sure game will let player pick me up
@@ -405,7 +405,7 @@ State FadeOut
 		if ( !FastTrace(Other.Location, Location) )
 			return false;
 		
-        DetectedInventorySize = class<BallisticWeapon>(InventoryType).default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle].default.Layouts[0].InventorySize;
+        DetectedInventorySize = class<BallisticWeapon>(InventoryType).static.GetInventorySize();
 
 		// make sure game will let player pick me up
 		if( Level.Game.PickupQuery(Pawn(Other), self) )
