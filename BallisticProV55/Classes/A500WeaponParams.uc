@@ -94,7 +94,9 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-        MagAmmo=5
+        SightPivot=(Pitch=512)
+		SightOffset=(X=15.000000,Y=0.100000,Z=35.000000)
+		MagAmmo=5
         SightingTime=0.300000
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

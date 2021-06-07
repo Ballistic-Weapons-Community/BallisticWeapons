@@ -99,6 +99,7 @@ defaultproperties
         SightingTime=0.200000
         PlayerSpeedFactor=1.050000
         DisplaceDurationMult=0.5
+		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
         FireParams(0)=FireParams'ArenaProjFireParams'

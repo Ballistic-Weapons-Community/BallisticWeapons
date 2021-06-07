@@ -75,7 +75,9 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-        InventorySize=35
+        SightPivot=(Pitch=1024)
+		SightOffset=(X=-12.000000,Z=26.000000)
+		InventorySize=35
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

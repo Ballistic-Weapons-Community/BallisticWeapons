@@ -102,7 +102,7 @@ defaultproperties
     End Object 
 
     Begin Object Class=WeaponParams Name=ArenaRDSParams
-        SightingTime=0.350000
+		SightingTime=0.350000
         MagAmmo=24
         InventorySize=12
         SightPivot=(Pitch=-300,Roll=0)

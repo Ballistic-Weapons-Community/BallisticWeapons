@@ -86,6 +86,8 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		SightOffset=(X=15,Z=21.500000)
+		SightPivot=(Pitch=256)
 		SightingTime=0.3
 		MagAmmo=6
         InventorySize=12

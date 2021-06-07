@@ -22,7 +22,7 @@ defaultproperties
 		Chaos=0.2
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Fire',Volume=0.700000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -73,6 +73,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		SightOffset=(X=7.000000,Y=0.01,Z=3.600000)
 		DisplaceDurationMult=0.5
 		PlayerSpeedFactor=1.05
 		SightingTime=0.20000

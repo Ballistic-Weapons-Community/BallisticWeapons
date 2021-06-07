@@ -48,8 +48,8 @@ defaultproperties
         InventorySize=2
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
-        FireParams(0)=FireParams'ArenaPrimaryFireParams'
-        AltFireParams(0)=FireParams'ArenaPrimaryFireParams'
+        FireParams(0)=FireParams'ArenaFireParams'
+        AltFireParams(0)=FireParams'ArenaFireParams'
     End Object 
     Layouts(0)=WeaponParams'UniversalParams'
 }
