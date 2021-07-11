@@ -64,7 +64,7 @@ defaultproperties
      DamageTypeHead=Class'BWBP_OP_Pro.DTRaygun'
      Speed=4500.000000
      MaxSpeed=10000.000000
-     Damage=38.000000
+     Damage=42.000000
      MyDamageType=Class'BWBP_OP_Pro.DTRaygun'
      ExploWallOut=12.000000
      LightType=LT_Steady

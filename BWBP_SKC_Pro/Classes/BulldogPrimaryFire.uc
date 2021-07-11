@@ -75,7 +75,7 @@ defaultproperties
      
      Damage=100.000000
      HeadMult=1.5f
-     LimbMult=0.9f
+     LimbMult=0.8f
      
      WaterRangeAtten=0.800000
      DamageType=Class'BWBP_SKC_Pro.DTBulldog'
@@ -90,14 +90,14 @@ defaultproperties
      FlashScaleFactor=1.100000
      BrassClass=Class'BWBP_SKC_Pro.Brass_BOLT'
      BrassOffset=(X=-30.000000,Y=1.000000)
-     FireRecoil=1024.000000
+     FireRecoil=1280.000000
      FirePushbackForce=3000.000000
      FireChaos=1.000000
 	 BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Bulldog.Bulldog-Fire',Volume=7.500000)
 	 AimedFireAnim="SightFire"
      FireEndAnim=
      FireAnimRate=2.000000
-     FireRate=0.8
+     FireRate=0.9
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_75BOLT'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

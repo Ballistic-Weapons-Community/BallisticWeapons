@@ -661,7 +661,7 @@ defaultproperties
 	SightOffset=(Y=25.000000,Z=10.300000)
 	ParamsClasses(0)=Class'FG50WeaponParams'	 
 	FireModeClass(0)=Class'BWBP_SKC_Pro.FG50PrimaryFire'
-	FireModeClass(1)=Class'BWBP_SKC_Pro.FG50DeployFire'
+	FireModeClass(1)=Class'BWBP_SKC_Pro.FG50SecondaryFire'
 	IdleAnimRate=0.600000
 	PutDownAnimRate=1.25
 	PutDownTime=0.500000
