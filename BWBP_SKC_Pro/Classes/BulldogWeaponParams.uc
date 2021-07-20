@@ -11,7 +11,7 @@ defaultproperties
 		RangeAtten=0.5
 		Damage=100
 		HeadMult=1.5f
-		LimbMult=0.9f
+		LimbMult=0.8f
 		DamageType=Class'BWBP_SKC_Pro.DTBulldog'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTBulldogHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTBulldog'
@@ -19,7 +19,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		FlashScaleFactor=1.100000
-		Recoil=1024.000000
+		Recoil=1280.000000
 		Chaos=1.000000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5
@@ -27,7 +27,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.8
+		FireInterval=0.9
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=2.000000	

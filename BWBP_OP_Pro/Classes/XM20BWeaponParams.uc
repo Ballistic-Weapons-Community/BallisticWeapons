@@ -61,7 +61,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=ArenaOverChargeEffectParams
 		RangeAtten=0.350000
-		Damage=15
+		Damage=20
 		HeadMult=1.5f
 		LimbMult=0.5f
 		DamageType=Class'BWBP_OP_Pro.DT_XM20B_Body'

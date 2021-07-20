@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=90
+		Damage=80
 		HeadMult=1.5f
 		LimbMult=0.85f
 		DamageType=Class'DTBX85Bolt'

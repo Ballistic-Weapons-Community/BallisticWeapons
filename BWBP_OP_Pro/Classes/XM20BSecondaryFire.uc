@@ -126,7 +126,7 @@ simulated function SwitchLaserMode (byte NewMode)
     {
 		XM20BCarbine(BW).bOvercharged=true;
 		//FireRate=default.OverChargedFireRate;
-		//Damage=15.000000;
+		//Damage=20.000000;
 		XM20BCarbine(BW).ChargeRate=0.600000;
 		//PreFireAnim=PreFireAnimCharged;
 		//FireLoopAnim=FireLoopAnimCharged;
@@ -314,7 +314,7 @@ defaultproperties
      TweenTime=0.000000
 	 PreFireTime=0.100000
      FireRate=0.070000
-	 OverChargedFireRate=0.045
+	 OverChargedFireRate=0.05
      AmmoClass=Class'BWBP_OP_Pro.Ammo_XM20B'
      AmmoPerFire=1
      BotRefireRate=0.999000

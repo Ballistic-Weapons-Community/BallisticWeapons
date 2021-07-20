@@ -157,7 +157,7 @@ defaultproperties
      MotionBlurRadius=384.000000
      MotionBlurFactor=3.000000
      MotionBlurTime=4.000000
-     Speed=3500.000000
+     Speed=4000.000000
      Damage=30.000000
      DamageRadius=64.000000
      MyDamageType=Class'BallisticProV55.DTM50GrenadeRadius'

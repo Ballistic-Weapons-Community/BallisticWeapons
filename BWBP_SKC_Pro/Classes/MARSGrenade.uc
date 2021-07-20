@@ -100,9 +100,10 @@ defaultproperties
      ShakeRotMag=(X=0.000000,Y=0.000000)
      ShakeRotRate=(X=0.000000,Z=0.000000)
      ShakeOffsetMag=(X=0.000000,Y=0.000000,Z=0.000000)
-     Speed=3500.000000
-     Damage=75.000000
-     DamageRadius=350.000000
+     Speed=6000.000000
+     MaxSpeed=6000.000000
+     Damage=50.000000
+     DamageRadius=256.000000
      MyDamageType=Class'BWBP_SKC_Pro.DTMARSGrenadeRadius'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade'
      bUnlit=False
