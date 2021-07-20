@@ -23,6 +23,7 @@ defaultproperties
         Chaos=0.300000
         BotRefireRate=0.800000
         WarnTargetPct=0.400000	
+		Inaccuracy=(X=310,Y=310)
         FireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Single',Volume=1.300000)
     End Object
 
@@ -52,6 +53,7 @@ defaultproperties
         Chaos=0.200000
         BotRefireRate=0.800000
         WarnTargetPct=0.400000
+		Inaccuracy=(X=35,Y=35)
         FireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Power',Volume=1.300000)	
     End Object
 
@@ -84,6 +86,7 @@ defaultproperties
         Chaos=1.000000
         BotRefireRate=0.900000
         WarnTargetPct=0.100000	
+		Inaccuracy=(X=378,Y=378)
         FireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Triple',Volume=2.200000)
     End Object
 

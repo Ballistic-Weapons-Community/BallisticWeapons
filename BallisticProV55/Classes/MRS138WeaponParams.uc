@@ -21,6 +21,7 @@ defaultproperties
 		Chaos=0.400000
 		BotRefireRate=0.7
 		WarnTargetPct=0.5
+		Inaccuracy=(X=256,Y=256)
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-Fire',Volume=1.500000)	
 	End Object
 

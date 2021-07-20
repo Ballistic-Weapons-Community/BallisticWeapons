@@ -22,6 +22,7 @@ defaultproperties
         Chaos=0.450000
         BotRefireRate=0.7
         WarnTargetPct=0.75	
+		Inaccuracy=(X=600,Y=378)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Fire')
     End Object
 
@@ -54,6 +55,7 @@ defaultproperties
         Chaos=0.200000
         BotRefireRate=0.7
         WarnTargetPct=0.5	
+		Inaccuracy=(X=378,Y=378)
         FireSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6SingleFire')
     End Object
 

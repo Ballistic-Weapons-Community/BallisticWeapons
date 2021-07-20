@@ -21,7 +21,8 @@ defaultproperties
         Recoil=378.000000
         Chaos=0.400000
         BotRefireRate=0.900000
-        WarnTargetPct=0.500000	
+        WarnTargetPct=0.500000
+		Inaccuracy=(X=256,Y=256)
         FireSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Blast',Volume=1.300000)
     End Object
 

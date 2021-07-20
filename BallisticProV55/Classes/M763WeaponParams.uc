@@ -21,7 +21,8 @@ defaultproperties
 		Recoil=768.000000
 		Chaos=0.30000
 		BotRefireRate=0.7
-		WarnTargetPct=0.5	
+		WarnTargetPct=0.5
+		Inaccuracy=(X=200,Y=200)
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
 	End Object
 
