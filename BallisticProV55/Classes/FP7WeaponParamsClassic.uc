@@ -2,7 +2,6 @@ class FP7WeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 {
-
     //=================================================================
     // PRIMARY FIRE
     //=================================================================	

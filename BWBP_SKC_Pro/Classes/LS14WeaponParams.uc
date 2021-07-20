@@ -42,6 +42,7 @@ defaultproperties
 		DamageRadius=384.000000
 		MomentumTransfer=50000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Rocket-Launch')
 		FlashScaleFactor=2.600000
 		Recoil=256.000000
 		BotRefireRate=0.600000

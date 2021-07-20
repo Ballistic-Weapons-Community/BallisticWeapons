@@ -122,8 +122,8 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=28
-		SightOffset=(X=-25.000000,Z=8.000000)
-		SightPivot=(Pitch=900)
+		SightOffset=(Y=13.600000,Z=21.000000)
+		WeaponBoneScales(0)=(BoneName="ElecSight",Slot=8,Scale=0f)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

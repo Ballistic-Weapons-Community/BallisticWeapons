@@ -43,11 +43,11 @@ replication
 		ServerLoadFrag;
 }
 
-simulated function PostBeginPlay()
+/*simulated function PostBeginPlay()
 {
     Super.PostBeginPlay();
     SetBoneScale (6, 0.0, 'Scope');
-}
+}*/
 
 // Add extra Ballistic info to the debug readout
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)

@@ -102,6 +102,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000

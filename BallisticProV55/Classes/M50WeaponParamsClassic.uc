@@ -48,6 +48,7 @@ defaultproperties
 		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
 			ProjectileClass=Class'BallisticProV55.M50Grenade'
 			SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+			Speed=1000.000000
 			Damage=120.000000
 			HeadMult=1.0
 			LimbMult=1.0

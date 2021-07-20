@@ -12,7 +12,13 @@ defaultproperties
         Damage=45
         DamageRadius=768.000000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
-    End Object
+		Speed=1400.000000
+        MaxSpeed=1500.000000
+		HeadMult=1.0
+		LimbMult=1.0
+        BotRefireRate=0.4
+        WarnTargetPct=0.75	
+	End Object
 
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
         FireInterval=2.000000
@@ -25,14 +31,24 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-    Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
-
+    Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.XM84Rolled'
+        SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
+        Damage=45
+        DamageRadius=768.000000
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
+		Speed=1400.000000
+        MaxSpeed=1500.000000
+		HeadMult=1.0
+		LimbMult=1.0
+        BotRefireRate=0.4
+        WarnTargetPct=0.75
     End Object
 		
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams
         PreFireAnim="PrepRoll"
         FireAnim="Roll"
-        FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
+        FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
     End Object
 		
 	//=================================================================

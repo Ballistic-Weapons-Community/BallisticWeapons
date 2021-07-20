@@ -14,6 +14,7 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DT_LightningRifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_LightningHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_LightningRifle'
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.Lightning.LightningGunShot',Volume=1.600000,Radius=1024.000000)
 		PDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_OP_Pro.LightningFlashEmitter'
 		FlashScaleFactor=0.600000
@@ -36,6 +37,7 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.LightningProjectile'
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.LS14-EnergyRocket',Volume=1.000000,Slot=SLOT_Interact,bNoOverride=False)
 		Speed=750.000000
 		MaxSpeed=1500.000000
 		AccelSpeed=1500.000000
