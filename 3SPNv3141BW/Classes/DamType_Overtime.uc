@@ -8,4 +8,5 @@ defaultproperties
      MaleSuicide="%o spent too much time exploring."
      bCausesBlood=False
      bExtraMomentumZ=False
+     bArmorStops=False
 }

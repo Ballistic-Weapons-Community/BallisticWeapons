@@ -309,13 +309,8 @@ function SetupPlayer(Pawn P)
             formula = 0.25 / GoalScore;
         else
             formula = 0.0;
-
-        armor = StartingArmor - (((StartingArmor * formula) * difference));
-
-        p.Health = Max(40, health);
-        p.HealthMax = health;
-        p.SuperHealthMax = int(health * MaxHealth);
         
+        armor = StartingArmor - (((StartingArmor * formula) * difference));       
         xPawn(p).ShieldStrengthMax = armor; // Max(0, int(armor * MaxHealth));
         p.AddShieldStrength(Max(0, armor));
     }

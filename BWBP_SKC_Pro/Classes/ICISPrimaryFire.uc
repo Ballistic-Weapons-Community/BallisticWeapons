@@ -46,10 +46,10 @@ function StopFiring()
 simulated function bool AllowFire()
 {
 	if (!CheckReloading())
-		return false;		// Is weapon busy reloading
+		return false;		            // Is weapon busy reloading
 	if (!CheckWeaponMode())
-		return false;		// Will weapon mode allow further firing
-    if (Instigator.Health >= BallisticPawn(Instigator).HealthMax) // reached max hp
+		return false;		            // Will weapon mode allow further firing
+    if (Instigator.Health <= 2)         // avoid suicide
         return false;
 
 	return Weapon.AmmoAmount(ThisModeNum) > AmmoPerFire;

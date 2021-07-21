@@ -20,10 +20,7 @@ defaultproperties
      MaleSuicides(1)="%o got addicted to some heavy stuff."
      MaleSuicides(2)="%o overdosed on experimental military drugs."
      MaleSuicides(3)="%o couldn't let go of the needle."
-     SimpleKillString="ICIS Withdrawal"
-     FlashThreshold=0
-     FlashV=(X=1500.000000,Y=1500.000000)
-     FlashF=0.200000
+     SimpleKillString="ICIS Overdose"
      bDetonatesBombs=False
      DamageDescription=",Gas,GearSafe,Hazard,"
      MinMotionBlurDamage=1.000000
