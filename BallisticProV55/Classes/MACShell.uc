@@ -153,7 +153,7 @@ defaultproperties
      ShakeOffsetTime=10.000000
      Speed=9000.000000
      MaxSpeed=9000.000000
-     Damage=210.000000
+     Damage=160.000000
      DamageRadius=192.000000
      MomentumTransfer=70000.000000
      MyDamageType=Class'BallisticProV55.DT_MAC'

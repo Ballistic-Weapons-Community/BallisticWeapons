@@ -311,7 +311,7 @@ defaultproperties
      bPrimaryGrenade=True
      ZBonus=40000.000000
      DamageDropoffFactor=0.100000
-     ExplosiveImpactDamage=150
+     ExplosiveImpactDamage=130
      ArmingDelay=0.180000
      DetonateOn=DT_ImpactTimed
      PlayerImpactType=PIT_Detonate
@@ -334,7 +334,7 @@ defaultproperties
      MotionBlurTime=4.000000
      Speed=6000.000000
      MaxSpeed=6000.000000
-     Damage=150.000000
+     Damage=130.000000
      DamageRadius=450.000000
      WallPenetrationForce=192
      MomentumTransfer=100000.000000

@@ -148,7 +148,7 @@ defaultproperties
      CutOffStartRange=3072.000000
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=24.000000
-     Damage=36.000000
+     Damage=34.000000
      HeadMult=1.5f
      LimbMult=0.8f
      
