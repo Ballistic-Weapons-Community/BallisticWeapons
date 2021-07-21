@@ -1,9 +1,9 @@
 class Freon extends TeamArenaMaster;
 
-var float ThawerCampProtectionTime;
-var float AutoThawTime;
-var float ThawSpeed;
-var bool  bTeamHeal;
+var         float           ThawerCampProtectionTime;
+var         float           AutoThawTime;
+var         float           ThawSpeed;
+var config  bool            bTeamHeal;
 
 var bool bSuddenDeathMode;
 
@@ -16,6 +16,7 @@ static function FillPlayInfo(PlayInfo PI)
     Super.FillPlayInfo(PI);
 
     PI.AddSetting("3SPN", "bOTDamageFreezes", "Overtime Damage Freezes", 0, 110, "Check");
+    PI.AddSetting("3SPN", "bTeamHeal", "Proximity Healing", 0, 110, "Check");
 }
 
 function bool PreventSever (Pawn Killed, name boneName, int Damage, class<DamageType> DamageType)
@@ -28,6 +29,7 @@ static function string GetDescriptionText(string PropName)
     switch(PropName)
     {
         case "bOTDamageFreezes":      return "Check to make overtime damage freeze only.";
+        case "bTeamHeal":             return "Check to allow proximity team healing.";
     }
 
     return Super.GetDescriptionText(PropName);
@@ -517,7 +519,7 @@ defaultproperties
      ThawerCampProtectionTime=2.000000
      AutoThawTime=90.000000
      ThawSpeed=5.000000
-     bTeamHeal=True
+     bTeamHeal=False
      bDisableTeamCombos=False
      TeamAIType(0)=Class'3SPNv3141BW.Freon_TeamAI'
      TeamAIType(1)=Class'3SPNv3141BW.Freon_TeamAI'

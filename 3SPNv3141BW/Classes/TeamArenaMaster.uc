@@ -316,7 +316,7 @@ function SetupPlayer(Pawn P)
         p.HealthMax = health;
         p.SuperHealthMax = int(health * MaxHealth);
         
-        xPawn(p).ShieldStrengthMax = Max(0, int(armor * MaxHealth));
+        xPawn(p).ShieldStrengthMax = armor; // Max(0, int(armor * MaxHealth));
         p.AddShieldStrength(Max(0, armor));
     }
     else
