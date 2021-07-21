@@ -66,13 +66,14 @@ function int ArmorAbsorbDamage(int Damage, class<DamageType> DamageType, vector 
 		}
 		ArmorImpactEffect(HitLocation);
 	}
-	if( (DamageType!=None) && (ProtectionType==DamageType) )
+	if( (DamageType != None) && (ProtectionType == DamageType) )
 		return 0;
 
 	if (!DamageType.default.bArmorStops)
 		return Damage;
 
 	ArmorDamage = (Damage * ArmorAbsorption) / 100;
+
 	if( ArmorDamage >= Charge )
 	{
 		ArmorDamage = Charge;
@@ -142,7 +143,7 @@ simulated function SetShieldDisplay(int Amount)
 defaultproperties
 {
      MaxCharge=200
-     ArmorAbsorption=90
+     ArmorAbsorption=100
      AbsorptionPriority=1
      Charge=50
      AttachmentClass=Class'BallisticProV55.ArmorAttachment'

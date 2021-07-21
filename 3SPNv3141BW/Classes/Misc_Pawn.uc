@@ -81,7 +81,7 @@ function RemovePowerups()
     Super.RemovePowerups();
 }
 
-// 75% armor absorbtion rate
+// Armor is now primary health
 function int ShieldAbsorb(int dam)
 {
     local float Shield;
@@ -92,15 +92,11 @@ function int ShieldAbsorb(int dam)
     SetOverlayMaterial(ShieldHitMat, ShieldHitMatTime, false);
     PlaySound(Sound'WeaponSounds.ArmorHit', SLOT_Pain, 2 * TransientSoundVolume,, 400);
 
-    Shield = ShieldStrength - (dam * 0.75 + 0.5);
-    dam *= 0.25;
-    if(Shield < 0)
-    {
-        dam += -(Shield);
-        Shield = 0;
-    }
+    Absorption = FMin(ShieldStrength, dam);
+    
+    dam -= Absorption;
+    ShieldStrength -= Absorption;
 
-    ShieldStrength = Shield;
     return dam;
 }
 

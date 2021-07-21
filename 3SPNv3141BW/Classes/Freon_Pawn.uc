@@ -179,11 +179,11 @@ function TakeDamage(int Damage, Pawn InstigatedBy, Vector HitLocation, Vector Mo
 
     ActualDamage = Level.Game.ReduceDamage( Damage, self, InstigatedBy, HitLocation, Momentum, DamageType );
 
-		if (instigatedBy != None && instigatedBy != self && class<BallisticDamageType>(damageType) != None)
-		{
-			if (!Level.Game.bTeamGame || (instigatedBy.GetTeamNum() != GetTeamNum() && GetTeamNum() != 255))
-				SetBWHitStats(instigatedBy.PlayerReplicationInfo, class<BallisticDamageType>(DamageType).default.DamageIdent, actualDamage);
-		}
+    if (instigatedBy != None && instigatedBy != self && class<BallisticDamageType>(damageType) != None)
+    {
+        if (!Level.Game.bTeamGame || (instigatedBy.GetTeamNum() != GetTeamNum() && GetTeamNum() != 255))
+            SetBWHitStats(instigatedBy.PlayerReplicationInfo, class<BallisticDamageType>(DamageType).default.DamageIdent, actualDamage);
+    }
 
     if( DamageType.default.bArmorStops && ( ActualDamage > 0 ) )
         ActualDamage = ShieldAbsorb( ActualDamage );

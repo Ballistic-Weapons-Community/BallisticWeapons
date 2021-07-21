@@ -310,7 +310,6 @@ function SetupPlayer(Pawn P)
         else
             formula = 0.0;
 
-        health = StartingHealth - (((StartingHealth * formula) * difference));
         armor = StartingArmor - (((StartingArmor * formula) * difference));
 
         p.Health = Max(40, health);
@@ -512,7 +511,7 @@ defaultproperties
      bDisableTeamCombos=True
      bChallengeMode=True
      StartingArmor=100
-     MaxHealth=1.250000
+     MaxHealth=1.50000
      MinsPerRound=4
      bForceRespawn=True
      SpawnProtectionTime=0.000000

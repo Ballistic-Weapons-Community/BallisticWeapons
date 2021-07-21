@@ -99,8 +99,8 @@ defaultproperties
      ShakeRotMag=(X=0.000000,Y=0.000000)
      ShakeRotRate=(X=0.000000,Z=0.000000)
      ShakeOffsetMag=(X=0.000000,Y=0.000000,Z=0.000000)
-     Speed=6000.000000
-     MaxSpeed=6000.000000
+     Speed=7000.000000
+     MaxSpeed=7000.000000
      Damage=50.000000
      DamageRadius=256.000000
      MyDamageType=Class'BWBP_SKC_Pro.DTMARSGrenadeRadius'

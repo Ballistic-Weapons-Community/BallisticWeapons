@@ -211,8 +211,8 @@ defaultproperties
          ColorScale(2)=(RelativeTime=0.064286,Color=(B=128,G=128,R=64,A=255))
          ColorScale(3)=(RelativeTime=0.114286,Color=(B=128,G=128,R=128,A=255))
          ColorScale(4)=(RelativeTime=1.000000,Color=(B=128,G=128,R=128,A=255))
-         Opacity=0.630000
-         FadeOutStartTime=2.120000
+         Opacity=0.90000
+         FadeOutStartTime=4.000000
          MaxParticles=40
          StartLocationShape=PTLS_Sphere
          SphereRadiusRange=(Min=10.000000,Max=20.000000)
@@ -228,7 +228,7 @@ defaultproperties
          DrawStyle=PTDS_AlphaBlend
          Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
          SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=8.000000,Max=8.000000)
+         LifetimeRange=(Min=10.000000,Max=10.000000)
          StartVelocityRange=(X=(Min=-75.000000,Max=75.000000),Y=(Min=-75.000000,Max=75.000000),Z=(Min=-75.000000,Max=75.000000))
          StartVelocityRadialRange=(Min=-1200.000000,Max=-300.000000)
          VelocityLossRange=(X=(Min=3.000000,Max=3.000000),Y=(Min=3.000000,Max=3.000000),Z=(Min=6.000000,Max=6.000000))
