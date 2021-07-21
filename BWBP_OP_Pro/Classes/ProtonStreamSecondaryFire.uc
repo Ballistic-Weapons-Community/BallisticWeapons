@@ -480,7 +480,7 @@ defaultproperties
 {
      MaxWaterTraceRange=5000
      BoostMuzzleFlashClass=Class'BWBP_OP_Pro.ProtonFlashEmitterBoost'
-     Damage=5.000000
+     Damage=2.000000
      DamageType=Class'BWBP_OP_Pro.DTProtonStreamer'
      MuzzleFlashClass=Class'BWBP_OP_Pro.ProtonFlashEmitterAlt'
      FireRecoil=1.000000

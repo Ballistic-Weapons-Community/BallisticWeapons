@@ -863,14 +863,36 @@ function bool GiveAttributedHealth(int HealAmount, int HealMax, Pawn Healer, opt
 	{
 		AddShieldStrength(HealAmount);
 		if (Healer != none && Healer != self)
-			MessageHeal(Healer);
+			MessageHeal(Healer, 1);
 		return true;
 	}
 
 	if (OldHealth == Health)
 		return false;
 	if (Healer != none && Healer != self)
-		MessageHeal(Healer);
+		MessageHeal(Healer, 0);
+    return true;
+}
+
+//Tracks the person who healed us
+function bool GiveAttributedShield(int HealAmount, Pawn Healer)
+{
+	local int OldShield;
+	
+	if (bPreventHealing && bProjTarget)
+	{
+		MessageAttributedHealBlock(Healer);
+		return false;
+	}
+
+	AddShieldStrength(HealAmount);
+
+	if (OldShield == ShieldStrength)
+		return false;
+
+	if (Healer != none && Healer != self)
+		MessageHeal(Healer, 1);
+
     return true;
 }
 
@@ -885,12 +907,12 @@ function bool GiveHealth(int HealAmount, int HealMax)
 	return Super.GiveHealth(HealAmount, HealMax);	
 }
 
-function MessageHeal (Pawn Healer)
+function MessageHeal (Pawn Healer, int index)
 {
 	if (PlayerController(Controller) != None && NextHealMessageTime < Level.TimeSeconds)
 	{
 		NextHealMessageTime = Level.TimeSeconds + 1;
-		PlayerController(Controller).ReceiveLocalizedMessage(class'BallisticHealMessage', 0, Healer.PlayerReplicationInfo);
+		PlayerController(Controller).ReceiveLocalizedMessage(class'BallisticHealMessage', index, Healer.PlayerReplicationInfo);
 	}
 }
 

@@ -1,7 +1,7 @@
 //=============================================================================
 // ICISSecondaryFire.
 //
-// Preps and stabs the needle into people! Only heals teammates
+// Preps and stabs the needle into enemies.
 //
 // by Marc Sergeant Kelly Moylan
 // uses code by Nolan "Dark Carnivour" Richert.
@@ -21,27 +21,18 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 
 	BPawn = BallisticPawn(Target);	
 
-	if(IsValidHealTarget(BPawn))
-	{
-		if(Instigator == None || Vehicle(Instigator) != None || Instigator.Health <= 0)
-			return;
-		
-		BPawn.GiveAttributedHealth(10 * Pwr, BPawn.HealthMax, Instigator);
-		
-		IP = Spawn(class'ICISPoisoner', Instigator.Controller);
-		IP.Instigator = Instigator;
-        IP.Pwr = Pwr;
+    super.ApplyDamage(Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 
-		if(Instigator.Role == ROLE_Authority && Instigator.Controller != None)
-			IP.InstigatorController = Instigator.Controller;
+    IP = Spawn(class'ICISPoisoner', Instigator.Controller);
+    IP.Instigator = Instigator;
+    IP.Pwr = Pwr;
 
-		IP.Initialize(BPawn);
-		ICISStimPack(BW).ConsumeAmmo(1, AmmoCost, True);
-		ICISStimPack(BW).PlaySound(ICISStimPack(BW).HealSound, SLOT_Misc, 1.5, ,64);
+    if(Instigator.Role == ROLE_Authority && Instigator.Controller != None)
+        IP.InstigatorController = Instigator.Controller;
 
-	}
-
-	//super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+    IP.Initialize(BPawn);
+    ICISStimPack(BW).ConsumeAmmo(1, AmmoCost, True);
+    ICISStimPack(BW).PlaySound(ICISStimPack(BW).HealSound, SLOT_Misc, 1.5, ,64);
 }
 
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
@@ -55,26 +46,6 @@ simulated function bool AllowFire()
 	return Weapon.AmmoAmount(ThisModeNum) > 0;
 }
 
-function bool IsValidHealTarget(Pawn Target)
-{
-	if(Target==None||Target==Instigator)
-		return False;
-
-	if(Target.Health<=0)
-		return False;
-		
-	if (!Target.bProjTarget)
-		return false;
-
-	if(!Level.Game.bTeamGame)
-		return False;
-
-	if(Vehicle(Target)!=None)
-		return False;
-
-	return (Target.Controller!=None&&Instigator.Controller.SameTeamAs(Target.Controller));
-}
-
 defaultproperties
 {
      SwipePoints(0)=(offset=(Pitch=4000,Yaw=2000))
@@ -84,9 +55,7 @@ defaultproperties
      SwipePoints(5)=(Weight=-1)
      SwipePoints(6)=(Weight=-1)
      TraceRange=(Min=96.000000,Max=96.000000)
-     
-     AmmoCost=50
-     
+     AmmoCost=50     
      DamageType=Class'BWBP_SKC_Pro.DT_ICIS'
      DamageTypeHead=Class'BWBP_SKC_Pro.DT_ICIS'
      DamageTypeArm=Class'BWBP_SKC_Pro.DT_ICIS'

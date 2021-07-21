@@ -752,6 +752,7 @@ defaultproperties
      BWMutators(2)="LDGGameBW.MutThawProtection"
      BWMutators(3)="LDGGameBW.MutUTCompBW_LDG_FR"
      BWMutators(4)="BWInteractions3.MutBWInteractions"
+     BWMutators(5)="BallisticProV55.Mut_ShieldRegeneration"
      HintColor=(B=255,G=255,R=255,A=255)
      DefaultPlayerClassName="LDGGameBW.Freon_Pawn_Normal"
      MapListType="LDGGameBW.LDGBallisticFRMapList"

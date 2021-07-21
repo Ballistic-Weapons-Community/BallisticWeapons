@@ -498,8 +498,8 @@ state NovaLightning
 				if (Instigator.HasUDamage())
 					AdjustedDamage *= 2;
 				if (BallisticPawn(Target) != None)
-					BallisticPawn(Target).GiveAttributedHealth(5, Pawn(Target).SuperHealthMax, Instigator);
-				else Pawn(Target).GiveHealth(5, Pawn(Target).SuperHealthMax);
+					BallisticPawn(Target).GiveAttributedShield(2, Instigator);
+				else Pawn(Target).AddShieldStrength(2);
 				NovaStaff.SetTargetZap(Target, true);
 				return;
 			}

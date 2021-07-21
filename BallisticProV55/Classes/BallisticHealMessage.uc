@@ -14,7 +14,11 @@ static function string GetString(
     else
         PlayerName = RelatedPRI_1.PlayerName;
 
-    return PlayerName @ "is healing you.";
+    switch (SwitchNum)
+    {
+        case 0: return PlayerName @ "is healing you."; break;
+        default: return PlayerName @ "is restoring your shields."; break;
+    }
 }
 
 defaultproperties

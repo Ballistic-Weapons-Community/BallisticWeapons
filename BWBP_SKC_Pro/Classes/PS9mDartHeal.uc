@@ -5,16 +5,16 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class PS9mDartHeal extends Actor
 	placeable;
 
-var   Actor				Victim;			// The poor guy being poisoned
-var() class<DamageType>	DamageType;		// DamageType done to player
-var() int				Damage;			// Damage done every 0.5 seconds
-var() float				PoisonTime;		// How long does it last
-var Controller	InstigatorController;
+var     Actor				Victim;			        // The poor guy being poisoned
+var()   class<DamageType>	DamageType;		        // DamageType done to player
+var()   int				    HealValue;		        // Damage done every 0.5 seconds
+var()   int				    TickCount;		        // Number of ticks
+var     Controller	        InstigatorController;
 
 function Reset()
 {
@@ -34,22 +34,22 @@ function Initialize(Actor V)
 
 event Timer()
 {
-	if(PoisonTime == -2)
+	if(TickCount == -2)
 		return;
 
-	PoisonTime-=1.0;
-
-	if(PoisonTime <= 0)
-		Destroy();
-
-	if (Victim != None && Level.NetMode != NM_Client && PoisonTime > 0)
+    if (Victim != None && Level.NetMode != NM_Client && TickCount > 0)
 	{
 		if(Instigator == None || Instigator.Controller == None)
 			Victim.SetDelayedDamageInstigatorController( InstigatorController );
 		if(BallisticPawn(Victim) != None)
-			BallisticPawn(Victim).GiveAttributedHealth(Damage, Pawn(Victim).HealthMax, Instigator);
-		else Pawn(Victim).GiveHealth(Damage, Pawn(Victim).HealthMax);
+			BallisticPawn(Victim).GiveAttributedHealth(HealValue, Pawn(Victim).HealthMax, Instigator);
+		else Pawn(Victim).GiveHealth(HealValue, Pawn(Victim).HealthMax);
 	}
+
+	--TickCount;
+
+	if(TickCount <= 0)
+		Destroy();
 }
 
 simulated event Tick(float DT)
@@ -60,9 +60,9 @@ simulated event Tick(float DT)
 		Destroy();
 	if (Pawn(Victim) != None && Pawn(Victim).Health <= 0)
 		Destroy();
-	if (level.netMode == NM_DedicatedServer && PoisonTime <= 0)
+	if (level.NetMode == NM_DedicatedServer && TickCount <= 0)
 		Destroy();
-	if (PoisonTime == -2)
+	if (TickCount == -2)
 		return;
 	else if (xPawn(Victim) != None && xPawn(Victim).bDeRes)
 	{
@@ -74,8 +74,8 @@ simulated event Tick(float DT)
 defaultproperties
 {
      DamageType=Class'BWBP_SKC_Pro.DT_PS9mMedDart'
-     Damage=25
-     PoisonTime=5.000000
+     HealValue=8
+     TickCount=5
      bHidden=True
      bOnlyRelevantToOwner=True
      bReplicateMovement=False

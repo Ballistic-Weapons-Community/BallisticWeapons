@@ -84,7 +84,7 @@ function RemovePowerups()
 // Armor is now primary health
 function int ShieldAbsorb(int dam)
 {
-    local float Shield;
+    local float Absorption;
 
     if(ShieldStrength == 0)
         return dam;
