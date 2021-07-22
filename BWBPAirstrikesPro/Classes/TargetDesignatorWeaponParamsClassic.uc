@@ -1,4 +1,4 @@
-class TargetDesignatorWeaponParams extends BallisticWeaponParams;
+class TargetDesignatorWeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 {    
@@ -32,6 +32,12 @@ defaultproperties
 		WeaponModes(9)=(ModeName="MK-77 Incendiary Bomb",ModeID="WM_FullAuto")
 		WeaponModes(10)=(ModeName="MLRS Rocket Barrage",ModeID="WM_FullAuto")
 		WeaponModes(11)=(ModeName="Napalm Carpet Bombing",ModeID="WM_FullAuto")
+		//WeaponModes(12)=(ModeName="BLU-82 'Daisy Cutter'",ModeID="WM_FullAuto")
+		//WeaponModes(13)=(ModeName="BLU-96 Fuel-Air Bomb",ModeID="WM_FullAuto")
+		//WeaponModes(14)=(ModeName="GBU-38 500lb JDAM",ModeID="WM_FullAuto")
+		//WeaponModes(15)=(ModeName="GBU-43 MOAB",ModeID="WM_FullAuto")
+		//WeaponModes(16)=(ModeName="LUU-4 Illumination Flare",ModeID="WM_FullAuto")
+		//WeaponModes(17)=(ModeName="W54 Nuclear Warhead",ModeID="WM_FullAuto")
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
     End Object 
