@@ -6,7 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=FireEffectParams Name=ArenaPrimaryEffectParams
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
 		FlashScaleFactor=0.750000
 		Recoil=768.000000
@@ -21,14 +21,14 @@ defaultproperties
 		FireInterval=1.500000
 		bCockAfterFire=True
 		FireEndAnim="'"
-		FireEffectParams(0)=FireEffectParams'ArenaPrimaryEffectParams'
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
+	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
 		MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
 		Recoil=1024.000000
 		Chaos=0.750000
@@ -42,7 +42,7 @@ defaultproperties
 		FireInterval=1.50000
 		bCockAfterFire=True
 		FireEndAnim="'"
-		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
+		FireEffectParams(0)=InstantEffectParams'ArenaSecondaryEffectParams'
 	End Object
 		
 	//=================================================================

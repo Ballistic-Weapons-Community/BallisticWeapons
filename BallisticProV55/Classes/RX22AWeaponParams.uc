@@ -6,10 +6,10 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
-		TraceRange=(Min=1800.000000,Max=1800.000000)
+	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
+		//TraceRange=(Min=1800.000000,Max=1800.000000)
 		Damage=14
-		PenetrateForce=50
+		//PenetrateForce=50
 		Chaos=0.050000
 		BotRefireRate=0.99
 		WarnTargetPct=0.4
@@ -20,14 +20,14 @@ defaultproperties
 		FireInterval=0.090000
 		FireAnim="FireLoop"
 		FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryEffectParams'
 	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
+	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
 		Recoil=32.000000
 		WarnTargetPct=0.500000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FuelLoop',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
@@ -36,7 +36,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
 		FireInterval=0.100000
 		FireEndAnim=
-		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
 	End Object
 		
 	//=================================================================

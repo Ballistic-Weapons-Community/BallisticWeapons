@@ -8,16 +8,16 @@ defaultproperties
     //=================================================================	
 	
 	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=1800.000000,Max=1800.000000)
-			WaterTraceRange=5000.0
-			DecayRange=(Min=0.0,Max=0.0)
+		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+			//TraceRange=(Min=1800.000000,Max=1800.000000)
+			//WaterTraceRange=5000.0
+			//DecayRange=(Min=0.0,Max=0.0)
 			Damage=17.0
 			HeadMult=3.3
 			LimbMult=0.6
-			PenetrateForce=50
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
+			//PenetrateForce=50
+			//PDamageFactor=0.6
+			//WallPDamageFactor=0.4
 			SpreadMode=FSM_Rectangle
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Ignite',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 			Recoil=64.000000
@@ -31,7 +31,7 @@ defaultproperties
 			BurstFireRateFactor=1.00
 			FireAnim="FireLoop"
 			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 		End Object
 		
     //=================================================================
@@ -39,7 +39,7 @@ defaultproperties
     //=================================================================	
 	
 	
-		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
+		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
 			SpreadMode=FSM_Rectangle
 			FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FuelLoop',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 			Recoil=32.000000
@@ -52,7 +52,7 @@ defaultproperties
 			FireInterval=0.100000
 			BurstFireRateFactor=1.00
 			FireEndAnim=
-			FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+			FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
 		End Object
 		
 	//=================================================================

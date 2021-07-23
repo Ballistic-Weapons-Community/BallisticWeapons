@@ -14,8 +14,6 @@ class R9RangerRifle extends BallisticWeapon;
 
 var float LastModeChangeTime;
 
-#exec OBJ LOAD File=R9A_tex.utx
-
 exec simulated function SwitchWeaponMode (optional byte ModeNum)	
 {
 	if (ClientState == WS_ReadyToFire && ReloadState == RS_None) 

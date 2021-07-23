@@ -7,7 +7,7 @@ defaultproperties
     //=================================================================	
 	
     Begin Object Class=FireEffectParams Name=ArenaPrimaryEffectParams
-		Damage=1
+		//Damage=1
     End Object
     
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams

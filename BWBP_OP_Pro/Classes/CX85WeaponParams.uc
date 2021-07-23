@@ -39,7 +39,7 @@ defaultproperties
 		Speed=35000.000000
 		MaxSpeed=100000.000000
 		AccelSpeed=100000.000000
-		Damage=3
+		Damage=8
 		Recoil=256.000000
 		Chaos=0.500000
 		BotRefireRate=0.300000

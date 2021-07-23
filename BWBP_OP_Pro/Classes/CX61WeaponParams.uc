@@ -33,21 +33,46 @@ defaultproperties
 	End Object
 		
     //=================================================================
-    // SECONDARY FIRE
+    // SECONDARY FIRE - FIRE
     //=================================================================	
 	
-	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
+	Begin Object Class=ProjectileEffectParams Name=ArenaFireSecondaryEffectParams
+		ProjectileClass=Class'BWBP_OP_Pro.CX61FlameProjectile'
 		Chaos=0.050000
 		WarnTargetPct=0.200000
-		Damage=2
+		Damage=8
+		DamageRadius=192
+		Speed=3000
+		MaxSpeed=3000
 		FireSound=(Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 	
-	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+	Begin Object Class=FireParams Name=ArenaFireSecondaryFireParams
 		FireInterval=0.090000
 		AmmoPerFire=0
 		FireAnim=
-		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'ArenaFireSecondaryEffectParams'
+	End Object
+
+	//=================================================================
+    // SECONDARY FIRE - HEAL
+    //=================================================================	
+	
+	Begin Object Class=ProjectileEffectParams Name=ArenaHealSecondaryEffectParams
+		ProjectileClass=Class'BWBP_OP_Pro.CX61HealProjectile'
+		Chaos=0.050000
+		WarnTargetPct=0.200000
+		Damage=2
+		DamageRadius=32
+		Speed=3000
+		FireSound=(Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaHealSecondaryFireParams
+		FireInterval=0.090000
+		AmmoPerFire=0
+		FireAnim=
+		FireEffectParams(0)=ProjectileEffectParams'ArenaHealSecondaryEffectParams'
 	End Object
 
 	//=================================================================
@@ -89,10 +114,14 @@ defaultproperties
 		SightingTime=0.300000
 		DisplaceDurationMult=1
 		MagAmmo=32
+		WeaponModes(0)=(ModeName="Flamethrower",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Healing Gas",ModeID="WM_FullAuto")
+		WeaponModes(2)=(bUnavailable=True)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ArenaFireSecondaryFireParams'
+		AltFireParams(1)=FireParams'ArenaHealSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
 }
