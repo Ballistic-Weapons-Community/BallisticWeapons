@@ -39,6 +39,7 @@ defaultproperties
 	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
 		Chaos=0.050000
 		WarnTargetPct=0.200000
+		Damage=2
 		FireSound=(Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 	

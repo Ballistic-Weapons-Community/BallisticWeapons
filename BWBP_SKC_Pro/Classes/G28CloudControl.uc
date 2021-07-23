@@ -12,10 +12,10 @@
 class G28CloudControl extends Actor;
 
 var   array<G28GasCloud>		Clouds;
-var() int					Damage;
-var() class<DamageType>		DamageType;
-var   vector				CloudSpawnLoc, OldCloudSpawnLoc;
-var   bool					bNoMore;
+var() int					    Damage;
+var() class<DamageType>		    DamageType;
+var   vector				    CloudSpawnLoc, OldCloudSpawnLoc;
+var   bool					    bNoMore;
 
 replication
 {
@@ -147,7 +147,7 @@ simulated event PostNetReceive()
 
 defaultproperties
 {
-     Damage=4
+     Damage=3
      DamageType=Class'BWBP_SKC_Pro.DTG28Gas'
      bHidden=True
      bAlwaysRelevant=True

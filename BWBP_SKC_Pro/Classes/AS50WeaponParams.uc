@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=75
+		Damage=85
 		HeadMult=1.5f
 		LimbMult=0.9f
 		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'
@@ -27,7 +27,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.350000
+		FireInterval=0.800000
 		FireAnim="CFire"
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'

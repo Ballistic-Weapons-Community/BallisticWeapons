@@ -13,6 +13,7 @@ defaultproperties
 		Chaos=0.750000
 		BotRefireRate=0.3
 		WarnTargetPct=0.75
+		Damage=80
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Fire',Volume=0.750000,Radius=384.000000)
 	End Object
 	
@@ -31,6 +32,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
 		Recoil=1024.000000
 		Chaos=0.750000
+		Damage=80
 		BotRefireRate=0.3
 		WarnTargetPct=0.75
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Fire',Radius=768.000000)

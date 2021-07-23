@@ -7,11 +7,11 @@ defaultproperties
     //=================================================================	
 	
     Begin Object Class=FireEffectParams Name=ArenaPrimaryEffectParams
-
+		Damage=1
     End Object
     
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-        FireInterval=0.35
+        FireInterval=0.5
         AmmoPerFire=4
         PreFireTime=0.65
         PreFireAnim="PrepHealLoop"

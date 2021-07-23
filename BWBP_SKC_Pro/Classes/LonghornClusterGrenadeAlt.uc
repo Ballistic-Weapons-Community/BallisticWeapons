@@ -176,7 +176,7 @@ defaultproperties
      DampenFactorParallel=0.250000
      bAlignToVelocity=True
      DetonateDelay=1.250000
-     ImpactDamage=23
+     ImpactDamage=20
      ImpactDamageType=Class'BWBP_SKC_Pro.DT_LonghornShotDirect'
      ImpactManager=Class'BWBP_SKC_Pro.IM_LonghornCluster'
      TrailClass=Class'BWBP_SKC_Pro.LonghornGrenadeTrailAlt'
@@ -188,7 +188,7 @@ defaultproperties
      MotionBlurTime=1.000000
      Speed=7500.000000
      MaxSpeed=7500.000000
-     Damage=25.000000
+     Damage=22.000000
      DamageRadius=256.000000
      MomentumTransfer=25000.000000
      MyDamageType=Class'BWBP_SKC_Pro.DT_LonghornShotRadius'

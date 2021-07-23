@@ -190,7 +190,7 @@ defaultproperties
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      Speed=4000.000000
      MaxSpeed=35000.000000
-     Damage=105.000000
+     Damage=90.000000
      DamageRadius=300.000000
      MomentumTransfer=70000.000000
      MyDamageType=Class'BWBP_OP_Pro.DTAkeron'

@@ -47,7 +47,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_SKC_Pro.LonghornMicroClusterAlt'
      	Speed=7500.000000
     	MaxSpeed=7500.000000
-    	Damage=25.000000
+    	Damage=22.000000
     	DamageRadius=256.000000
    	  	MomentumTransfer=25000.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-FireAlt',Volume=1.700000)

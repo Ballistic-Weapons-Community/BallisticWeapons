@@ -10,7 +10,7 @@ defaultproperties
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=48.000000
      
-     Damage=75.000000
+     Damage=85.000000
      HeadMult=1.5f
      LimbMult=0.9f
      
@@ -33,7 +33,7 @@ defaultproperties
      BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.AS50-Fire',Volume=5.100000,Slot=SLOT_Interact,bNoOverride=False)
      FireAnim="CFire"
      FireEndAnim=
-     FireRate=0.350000
+     FireRate=0.8000
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_50Inc'
      ShakeRotMag=(X=450.000000,Y=64.000000)
      ShakeRotRate=(X=12400.000000,Y=12400.000000,Z=12400.000000)

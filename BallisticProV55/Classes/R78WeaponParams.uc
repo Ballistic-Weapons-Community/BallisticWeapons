@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=100
+		Damage=80
 		HeadMult=1.5f
 		LimbMult=0.9f
 		DamageType=Class'BallisticProV55.DTR78Rifle'
@@ -51,8 +51,8 @@ defaultproperties
 	Begin Object Class=AimParams Name=ArenaAimParams
 		ADSMultiplier=0.25
 		SprintOffSet=(Pitch=-1000,Yaw=-2048)
-		AimAdjustTime=0.700000
-		AimSpread=(Min=64,Max=512)
+		AimAdjustTime=0.600000
+		AimSpread=(Min=64,Max=1024)
 		ChaosSpeedThreshold=500.000000
 	End Object
 

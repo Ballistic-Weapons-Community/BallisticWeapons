@@ -9,7 +9,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.5
-		Damage=100
+		Damage=80
 		HeadMult=1.5f
 		LimbMult=0.8f
 		DamageType=Class'BWBP_SKC_Pro.DTBulldog'
@@ -27,7 +27,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.9
+		FireInterval=0.85
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=2.000000	

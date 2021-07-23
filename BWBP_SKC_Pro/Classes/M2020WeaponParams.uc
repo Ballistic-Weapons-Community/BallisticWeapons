@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaRechargeEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=60
+		Damage=50
 		HeadMult=1.5f
 		LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
@@ -35,7 +35,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=ArenaPowerEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=110
+		Damage=95
 		HeadMult=1.5f
 		LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'
@@ -64,7 +64,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=ArenaOfflineEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=40
+		Damage=34
 		HeadMult=1.5f
 		LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DT_M2020Pwr'

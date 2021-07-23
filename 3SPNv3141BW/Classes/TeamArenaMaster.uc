@@ -309,15 +309,9 @@ function SetupPlayer(Pawn P)
             formula = 0.25 / GoalScore;
         else
             formula = 0.0;
-
-        health = StartingHealth - (((StartingHealth * formula) * difference));
-        armor = StartingArmor - (((StartingArmor * formula) * difference));
-
-        p.Health = Max(40, health);
-        p.HealthMax = health;
-        p.SuperHealthMax = int(health * MaxHealth);
         
-        xPawn(p).ShieldStrengthMax = Max(0, int(armor * MaxHealth));
+        armor = StartingArmor - (((StartingArmor * formula) * difference));       
+        xPawn(p).ShieldStrengthMax = armor; // Max(0, int(armor * MaxHealth));
         p.AddShieldStrength(Max(0, armor));
     }
     else
@@ -512,7 +506,7 @@ defaultproperties
      bDisableTeamCombos=True
      bChallengeMode=True
      StartingArmor=100
-     MaxHealth=1.250000
+     MaxHealth=1.50000
      MinsPerRound=4
      bForceRespawn=True
      SpawnProtectionTime=0.000000

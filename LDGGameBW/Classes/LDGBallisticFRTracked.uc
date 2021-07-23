@@ -346,19 +346,19 @@ function int ReduceDamage(int Damage, pawn injured, pawn instigatedBy, vector Hi
 	}
 	
 	if(DamageType == Class'DamTypeSuperShockBeam')
-		return Super(xTeamGame).ReduceDamage(Damage, injured, instigatedBy, HitLocation, Momentum, DamageType);
+		return TeamGameReduceDamage(Damage, injured, instigatedBy, HitLocation, Momentum, DamageType);
 	
 	if((Misc_Pawn(instigatedBy) != None || BallisticTurret(instigatedBy) != None) && instigatedBy.Controller != None && injured.GetTeamNum() != 255 && instigatedBy.GetTeamNum() != 255)
 	{
 		PRI = Misc_PRI(instigatedBy.PlayerReplicationInfo);
 		if(PRI == None)
-			return Super(xTeamGame).ReduceDamage(Damage, injured, instigatedBy, HitLocation, Momentum, DamageType);
+			return TeamGameReduceDamage(Damage, injured, instigatedBy, HitLocation, Momentum, DamageType);
 		
 		/* same teams */
 		if(injured.GetTeamNum() == instigatedBy.GetTeamNum() && FriendlyFireScale > 0.0)
 		{
 			if(injured == instigatedBy)
-				return Super(xTeamGame).ReduceDamage(Damage, injured, instigatedBy, HitLocation, Momentum, DamageType);
+				return TeamGameReduceDamage(Damage, injured, instigatedBy, HitLocation, Momentum, DamageType);
 				
 			if (!ClassIsChildOf(DamageType, class'DT_BWExplode') && Freon_Player_UTComp_LDG(instigatedBy.Controller) != None && Freon_Player_UTComp_LDG(injured.Controller) != None)
 			{
@@ -463,7 +463,126 @@ function int ReduceDamage(int Damage, pawn injured, pawn instigatedBy, vector Hi
 		}
 	}
 	
-	return Super(xTeamGame).ReduceDamage(Damage, injured, instigatedBy, HitLocation, Momentum, DamageType);
+	return TeamGameReduceDamage(Damage, injured, instigatedBy, HitLocation, Momentum, DamageType);
+}
+
+function int TeamGameReduceDamage( int Damage, pawn injured, pawn instigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType )
+{
+	local int InjuredTeam, InstigatorTeam;
+	local controller InstigatorController;
+
+	if ( InstigatedBy != None )
+		InstigatorController = InstigatedBy.Controller;
+
+	if ( InstigatorController == None )
+	{
+		if ( DamageType.default.bDelayedDamage )
+			InstigatorController = injured.DelayedDamageInstigatorController;
+		if ( InstigatorController == None )
+			return DeathMatchReduceDamage( Damage,injured,instigatedBy,HitLocation,Momentum,DamageType );
+	}
+
+	InjuredTeam = Injured.GetTeamNum();
+	InstigatorTeam = InstigatorController.GetTeamNum();
+	if ( InstigatorController != injured.Controller )
+	{
+		if ( (InjuredTeam != 255) && (InstigatorTeam != 255) )
+		{
+			if ( InjuredTeam == InstigatorTeam )
+			{
+				if ( class<WeaponDamageType>(DamageType) != None || class<VehicleDamageType>(DamageType) != None )
+					Momentum *= TeammateBoost;
+				if ( (Bot(injured.Controller) != None) && (InstigatorController.Pawn != None) )
+					Bot(Injured.Controller).YellAt(InstigatorController.Pawn);
+				else if ( (PlayerController(Injured.Controller) != None)
+						&& Injured.Controller.AutoTaunt() )
+					Injured.Controller.SendMessage(InstigatorController.PlayerReplicationInfo, 'FRIENDLYFIRE', Rand(3), 5, 'TEAM');
+
+				if ( FriendlyFireScale==0.0 || (Vehicle(injured) != None && Vehicle(injured).bNoFriendlyFire) )
+				{
+					if ( GameRulesModifiers != None )
+						return GameRulesModifiers.NetDamage( Damage, 0,injured,instigatedBy,HitLocation,Momentum,DamageType );
+					else
+						return 0;
+				}
+				Damage *= FriendlyFireScale;
+			}
+			else if ( !injured.IsHumanControlled() && (injured.Controller != None)
+					&& (injured.PlayerReplicationInfo != None) && (injured.PlayerReplicationInfo.HasFlag != None) )
+				injured.Controller.SendMessage(None, 'OTHER', injured.Controller.GetMessageIndex('INJURED'), 15, 'TEAM');
+		}
+	}
+
+	return DeathMatchReduceDamage( Damage,injured,instigatedBy,HitLocation,Momentum,DamageType );
+}
+
+function int DeathMatchReduceDamage( int Damage, pawn injured, pawn instigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType )
+{
+    local float InstigatorSkill;
+
+	if ( (instigatedBy != None) && (InstigatedBy != Injured) && (Level.TimeSeconds - injured.SpawnTime < SpawnProtectionTime)
+		&& (class<WeaponDamageType>(DamageType) != None || class<VehicleDamageType>(DamageType) != None) )
+		return 0;
+
+    Damage = GameInfoReduceDamage( Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType );
+
+    if ( instigatedBy == None)
+        return Damage;
+
+    if ( Level.Game.GameDifficulty <= 3 )
+    {
+        if ( injured.IsPlayerPawn() && (injured == instigatedby) && (Level.NetMode == NM_Standalone) )
+            Damage *= 0.5;
+
+        //skill level modification
+        if ( (AIController(instigatedBy.Controller) != None)
+			&& ((Level.NetMode == NM_Standalone) || (TurretController(InstigatedBy.Controller) != None)) )
+        {
+            InstigatorSkill = AIController(instigatedBy.Controller).Skill;
+            if ( (InstigatorSkill <= 3) && injured.IsHumanControlled() )
+			{
+				if ( ((instigatedBy.Weapon != None) && instigatedBy.Weapon.bMeleeWeapon)
+					|| ((injured.Weapon != None) && injured.Weapon.bMeleeWeapon && (VSize(injured.location - instigatedBy.Location) < 600)) )
+						Damage = Damage * (0.76 + 0.08 * InstigatorSkill);
+				else
+						Damage = Damage * (0.25 + 0.15 * InstigatorSkill);
+            }
+        }
+    }
+
+    return (Damage * instigatedBy.DamageScaling);
+}
+
+function int GameInfoReduceDamage( int Damage, pawn injured, pawn instigatedBy, vector HitLocation, out vector Momentum, class<DamageType> DamageType )
+{
+    local int OriginalDamage;
+    local armor FirstArmor, NextArmor;
+
+    OriginalDamage = Damage;
+
+    if( injured.PhysicsVolume.bNeutralZone )
+        Damage = 0;
+    else if ( injured.InGodMode() ) // God mode
+        return 0;
+
+    // apply modifiers first due to damagepopup
+    if ( GameRulesModifiers != None )
+        Damage = GameRulesModifiers.NetDamage( OriginalDamage, Damage,injured,instigatedBy,HitLocation,Momentum,DamageType );
+
+    //then check if carrying armor
+    if ( (injured.Inventory != None) && (Damage > 0) ) 
+    {
+        FirstArmor = injured.inventory.PrioritizeArmor(Damage, DamageType, HitLocation);
+
+        while( (FirstArmor != None) && (Damage > 0) )
+        {
+			NextArmor = FirstArmor.nextArmor;
+            Damage = FirstArmor.ArmorAbsorbDamage(Damage, DamageType, HitLocation);
+            FirstArmor = NextArmor;
+        }
+    }
+
+    return Damage;
 }
 
 defaultproperties

@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=110
+		Damage=95
 		HeadMult=1.5f
 		LimbMult=0.9f
 		DamageType=Class'BWBP_SKC_Pro.DT_X82Torso'

@@ -37,7 +37,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_SKC_Pro.PS9mMedDart'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=6500.000000
-		Damage=5
+		Damage=20
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	

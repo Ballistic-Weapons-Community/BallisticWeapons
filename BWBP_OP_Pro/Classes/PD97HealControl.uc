@@ -63,6 +63,7 @@ event Timer()
 
 defaultproperties
 {
+    Damage=1
      Begin Object Class=SpriteEmitter Name=SpriteEmitter1
          FadeOut=True
          SpinParticles=True

@@ -211,7 +211,7 @@ defaultproperties
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=24.000000
      
-     Damage=40.000000
+     Damage=34.000000
      HeadMult=1.4f
      LimbMult=0.8f
      

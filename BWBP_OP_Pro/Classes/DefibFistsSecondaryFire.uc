@@ -30,10 +30,9 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 	{
 		if (DefibFists(BW).ElectroCharge >= RequiredBonusCharge)
 		{
-			PrevHealth = BPawn.Health;
-
-			BPawn.GiveAttributedHealth(ElectroHeal, BPawn.HealthMax, Instigator);
-			DefibFists(Weapon).PointsHealed += BPawn.Health - PrevHealth;
+			PrevHealth = BPawn.ShieldStrength;
+			BPawn.GiveAttributedShield(ElectroHeal, Instigator);
+			DefibFists(Weapon).PointsHealed += BPawn.ShieldStrength - PrevHealth;
 			DefibFists(BW).ElectroCharge -= RequiredBonusCharge;
 			DefibFists(BW).LastRegen = Level.TimeSeconds + 0.5;
 			return;
@@ -221,11 +220,10 @@ defaultproperties
 	 RequiredBonusCharge=33
 	 RequiredShockwaveCharge=75
 	 ElectroDamageBonus=50
-	 ElectroHeal=50
+	 ElectroHeal=25
      FatiguePerStrike=0.150000
      bCanBackstab=False
      Damage=50.000000
-     
      TraceRange=(Min=130,Max=130)
      DamageType=Class'BWBP_OP_Pro.DTShockGauntletAlt'
      DamageTypeHead=Class'BWBP_OP_Pro.DTShockGauntletAlt'

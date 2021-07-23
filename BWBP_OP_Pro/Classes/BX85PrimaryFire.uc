@@ -51,7 +51,7 @@ defaultproperties
     MaxWaterTraceRange=5000
 	WallPenetrationForce=0.000000
 	
-	Damage=80.000000
+	Damage=70.000000
 	HeadMult=1.5f
     LimbMult=0.85f
 	

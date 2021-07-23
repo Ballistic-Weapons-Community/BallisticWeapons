@@ -61,7 +61,7 @@ defaultproperties
      ModeIndex=1
      bPenetrate=True
      Speed=3000.000000
-     Damage=5.000000
+     Damage=2.000000
      MyDamageType=Class'BWBP_OP_Pro.DT_CX61Burned'
      bHidden=True
      RemoteRole=ROLE_None

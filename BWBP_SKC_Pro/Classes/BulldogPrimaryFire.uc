@@ -73,7 +73,7 @@ defaultproperties
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=96.000000
      
-     Damage=100.000000
+     Damage=80.000000
      HeadMult=1.5f
      LimbMult=0.8f
      
@@ -97,7 +97,7 @@ defaultproperties
 	 AimedFireAnim="SightFire"
      FireEndAnim=
      FireAnimRate=2.000000
-     FireRate=0.9
+     FireRate=0.85
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_75BOLT'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

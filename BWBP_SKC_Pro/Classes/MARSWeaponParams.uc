@@ -36,8 +36,8 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=6000.000000
-		MaxSpeed=6000.000000
+		Speed=7000.000000
+		MaxSpeed=7000.000000
 		Damage=50
 		DamageRadius=256.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'

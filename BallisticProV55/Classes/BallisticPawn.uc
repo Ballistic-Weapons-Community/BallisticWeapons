@@ -114,6 +114,7 @@ var() float				TimeBetweenImpacts;	// Minimum time between impact mark spawning
 var   vector			LastImpactNormal;	// Normal of last impact
 var   vector			LastImpactLocation;	// Location of last impact
 // -------------------------------------------------------
+var   vector            BloodFlashV, ShieldFlashV;
 
 // New Bw style DeRes vars -------------------------------
 var Projector			NewDeResDecal;		// Projector used to great symbol decal on teh floor under the corpse
@@ -150,6 +151,8 @@ var		bool				bPreventHealing;
 var		Pawn				HealPreventer;
 var		int					PreventHealCount;
 var 	class<LocalMessage> HealBlockMessage;
+
+var     float               LastDamagedTime;
 
 replication
 {
@@ -863,14 +866,36 @@ function bool GiveAttributedHealth(int HealAmount, int HealMax, Pawn Healer, opt
 	{
 		AddShieldStrength(HealAmount);
 		if (Healer != none && Healer != self)
-			MessageHeal(Healer);
+			MessageHeal(Healer, 1);
 		return true;
 	}
 
 	if (OldHealth == Health)
 		return false;
 	if (Healer != none && Healer != self)
-		MessageHeal(Healer);
+		MessageHeal(Healer, 0);
+    return true;
+}
+
+//Tracks the person who healed us
+function bool GiveAttributedShield(int HealAmount, Pawn Healer)
+{
+	local int OldShield;
+	
+	if (bPreventHealing && bProjTarget)
+	{
+		MessageAttributedHealBlock(Healer);
+		return false;
+	}
+
+	AddShieldStrength(HealAmount);
+
+	if (OldShield == ShieldStrength)
+		return false;
+
+	if (Healer != none && Healer != self)
+		MessageHeal(Healer, 1);
+
     return true;
 }
 
@@ -885,12 +910,12 @@ function bool GiveHealth(int HealAmount, int HealMax)
 	return Super.GiveHealth(HealAmount, HealMax);	
 }
 
-function MessageHeal (Pawn Healer)
+function MessageHeal (Pawn Healer, int index)
 {
 	if (PlayerController(Controller) != None && NextHealMessageTime < Level.TimeSeconds)
 	{
 		NextHealMessageTime = Level.TimeSeconds + 1;
-		PlayerController(Controller).ReceiveLocalizedMessage(class'BallisticHealMessage', 0, Healer.PlayerReplicationInfo);
+		PlayerController(Controller).ReceiveLocalizedMessage(class'BallisticHealMessage', index, Healer.PlayerReplicationInfo);
 	}
 }
 
@@ -2523,10 +2548,13 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
  
 		if ( (Physics == PHYS_None) && (DrivenVehicle == None) )
 			SetMovementPhysics();
+
 		if (Physics == PHYS_Walking && damageType.default.bExtraMomentumZ)
 			momentum.Z = FMax(momentum.Z, 0.4 * VSize(momentum));
+
 		if ( instigatedBy == self )
 			momentum *= 0.6;
+
 		momentum = momentum/Mass;
 		
 		if (Momentum.Z > 950)
@@ -2535,23 +2563,23 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 			Momentum *= (-300 / Momentum.Z);
  
 		if (Weapon != None)
-				Weapon.AdjustPlayerDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType );
-		if (DrivenVehicle != None)
-				DrivenVehicle.AdjustDriverDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType );
-		if ( (InstigatedBy != None) && InstigatedBy.HasUDamage() )
-				Damage *= 2;
+			Weapon.AdjustPlayerDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType );
+		
+        if (DrivenVehicle != None)
+			DrivenVehicle.AdjustDriverDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType );
+		
+        if ( (InstigatedBy != None) && InstigatedBy.HasUDamage() )
+			Damage *= 2;
+
 		actualDamage = Level.Game.ReduceDamage(Damage, self, instigatedBy, HitLocation, Momentum, DamageType);
 			   
 		if (instigatedBy != None && instigatedBy != self && class<BallisticDamageType>(damageType) != None)
 		{
-				if (!Level.Game.bTeamGame || (instigatedBy.GetTeamNum() != GetTeamNum() && GetTeamNum() != 255))
-					SetBWHitStats(instigatedBy.PlayerReplicationInfo, class<BallisticDamageType>(DamageType).default.DamageIdent, actualDamage);
+			if (!Level.Game.bTeamGame || (instigatedBy.GetTeamNum() != GetTeamNum() && GetTeamNum() != 255))
+				SetBWHitStats(instigatedBy.PlayerReplicationInfo, class<BallisticDamageType>(DamageType).default.DamageIdent, actualDamage);
 		}
-	   
-		if( DamageType.default.bArmorStops && (actualDamage > 0) )
-				actualDamage = ShieldAbsorb(actualDamage);
-				
-		// If we're attached to a cover object, share the damage from frontal locational hits to that object instead
+
+        // If we're attached to a cover object, share the damage from frontal locational hits to that object instead
 		if (CoverAnchors.Length > 0 && DamageType.default.bArmorStops)
 		{
 			while (CoverAnchors[0] == None && CoverAnchors.Length > 0)
@@ -2566,12 +2594,20 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 				actualDamage *= 0.2;
 			}
 		}
- 
+
+		if( DamageType.default.bArmorStops && (actualDamage > 0) )
+			actualDamage = ShieldAbsorb(actualDamage);
+				
 		Health -= actualDamage;
+
+        if (Damage > 0 && (instigatedBy == None || instigatedBy.GetTeamNum() != GetTeamNum() || GetTeamNum() == 255))
+		    LastDamagedTime = Level.TimeSeconds;
+
 		if ( HitLocation == vect(0,0,0) )
-				HitLocation = Location;
+			HitLocation = Location;
  
 		PlayHit(actualDamage,InstigatedBy, hitLocation, damageType, Momentum);
+
 		if ( Health <= 0 )
 		{
 			// pawn died
@@ -2609,11 +2645,25 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 			if (VSize(Momentum) > 50000)
 				bPendingNegation=True;
 			if ( Controller != None )
-					Controller.NotifyTakeHit(instigatedBy, HitLocation, actualDamage, DamageType, Momentum);
+				Controller.NotifyTakeHit(instigatedBy, HitLocation, actualDamage, DamageType, Momentum);
 			if ( instigatedBy != None && instigatedBy != self )
-					LastHitBy = instigatedBy.Controller;
+				LastHitBy = instigatedBy.Controller;
+            //if (PlayerController(Controller) != None)
+            //    HandleViewFlash(Damage);
 		}
 		MakeNoise(1.0);
+}
+
+function HandleViewFlash(int damage)
+{
+    local int rnd;
+
+    rnd = FClamp(Damage, 15, 70);
+
+	if (ShieldStrength > 0)
+        PlayerController(Controller).ClientFlash( -0.019 * rnd, ShieldFlashV);
+    else 
+		PlayerController(Controller).ClientFlash( -0.019 * rnd, rnd * BloodFlashV);       
 }
 
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
@@ -2707,6 +2757,9 @@ defaultproperties
      Fades(14)=Texture'BW_Core_WeaponTex.Icons.stealth_120'
      Fades(15)=Texture'BW_Core_WeaponTex.Icons.stealth_128'
      UDamageSound=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
+
+	 BloodFlashV=(X=26.5,Y=4.5,Z=4.5)
+	 ShieldFlashV=(X=400.000000,Y=400.000000,Z=400.000000)
 
      FootstepVolume=0.350000
      FootstepRadius=400.000000

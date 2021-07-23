@@ -137,7 +137,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 			//FireAnim='FirePowered';
 			//FireRate=1.000000;
 			//FireChaos=1;
-			//Damage=110.000000;
+			//Damage=95.000000;
 
 			//DamageType=default.DamageType;
 			//DamageTypeHead=default.DamageTypeHead;
@@ -164,7 +164,7 @@ simulated function SwitchWeaponMode (byte NewMode)
 			else
 				FireAnim='FireShield';*/
 			//FireRate=0.200000;
-			//Damage=40.000000;
+			//Damage=34.000000;
 
 			DamageType=Class'BWBP_SKC_Pro.DT_M2020Off';
 			DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadOff';
@@ -188,7 +188,7 @@ defaultproperties
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=48.000000
      
-     Damage=60.000000
+     Damage=50.000000
      HeadMult=1.5f
      LimbMult=0.85f
      

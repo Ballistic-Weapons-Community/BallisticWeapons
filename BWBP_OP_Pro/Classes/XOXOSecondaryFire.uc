@@ -122,9 +122,10 @@ function bool MaintainConnection(vector AimVec)
 {
 	local int HealAmount;
 	
-	HealAmount = 5;
+	HealAmount = 2;
+
 	if (XOXOStaff(BW).bLoveMode)
-		HealAmount *= 3;
+		HealAmount *= 2;
 		
 	if (Instigator.Controller.bFire == 1 || AimVec dot Normal(LockedTarget.Location - Instigator.Location) < 0.9 || !Weapon.FastTrace(LockedTarget.Location, Instigator.Location))
 	{

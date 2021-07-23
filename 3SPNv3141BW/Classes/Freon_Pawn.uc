@@ -24,8 +24,6 @@ var array<Freon.WeaponData> MyWD;
 
 var Sound           ImpactSounds[6];
 
-var float LastDamagedTime;
-
 replication
 {
     reliable if(bNetDirty && Role == ROLE_Authority)
@@ -168,6 +166,11 @@ function TakeDamage(int Damage, Pawn InstigatedBy, Vector HitLocation, Vector Mo
 
     Momentum = Momentum / Mass;
 
+    if (Momentum.Z > 950)
+		Momentum.Z = 950;
+	if (Momentum.Z < -300)
+		Momentum *= (-300 / Momentum.Z);
+
     if ( Weapon != None )
         Weapon.AdjustPlayerDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType );
 
@@ -179,11 +182,30 @@ function TakeDamage(int Damage, Pawn InstigatedBy, Vector HitLocation, Vector Mo
 
     ActualDamage = Level.Game.ReduceDamage( Damage, self, InstigatedBy, HitLocation, Momentum, DamageType );
 
-		if (instigatedBy != None && instigatedBy != self && class<BallisticDamageType>(damageType) != None)
-		{
-			if (!Level.Game.bTeamGame || (instigatedBy.GetTeamNum() != GetTeamNum() && GetTeamNum() != 255))
-				SetBWHitStats(instigatedBy.PlayerReplicationInfo, class<BallisticDamageType>(DamageType).default.DamageIdent, actualDamage);
-		}
+    if (instigatedBy != None && instigatedBy != self && class<BallisticDamageType>(damageType) != None)
+    {
+        if (!Level.Game.bTeamGame || (instigatedBy.GetTeamNum() != GetTeamNum() && GetTeamNum() != 255))
+            SetBWHitStats(instigatedBy.PlayerReplicationInfo, class<BallisticDamageType>(DamageType).default.DamageIdent, actualDamage);
+    }
+
+    // If we're attached to a cover object, share the damage from frontal locational hits to that object instead
+    if (CoverAnchors.Length > 0 && DamageType.default.bArmorStops)
+    {
+        while (CoverAnchors[0] == None && CoverAnchors.Length > 0)
+            CoverAnchors.Remove(0, 1);
+
+        HitLocationMatchZ = HitLocation;
+        HitLocationMatchZ.Z = Location.Z;
+        
+        if ( (DamageType.default.bInstantHit && Normal(instigatedBy.Location - Location) dot Vector(Rotation) > 0) || (Normal(HitLocationMatchZ - Location) dot Vector(Rotation) > 0))
+        {
+            CoverAnchors[0].TakeDamage(actualDamage * 0.8, instigatedby, CoverAnchors[0].Location, vect(0,0,0), DamageType);
+            actualDamage *= 0.2;
+        }
+    }
+
+    if (ActualDamage > 0)
+        LastDamagedTime = Level.TimeSeconds;
 
     if( DamageType.default.bArmorStops && ( ActualDamage > 0 ) )
         ActualDamage = ShieldAbsorb( ActualDamage );
