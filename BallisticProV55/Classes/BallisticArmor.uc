@@ -11,6 +11,7 @@
 class BallisticArmor extends Armor;
 
 var() int MaxCharge;
+var() vector ShieldFlashV;
 
 var   byte HitType;
 
@@ -82,6 +83,9 @@ function int ArmorAbsorbDamage(int Damage, class<DamageType> DamageType, vector 
 	else
 		Charge -= ArmorDamage;
 
+    if (PlayerController(Instigator.Controller) != None)
+        PlayerController(Instigator.Controller).ClientFlash( -0.019 * FClamp(ArmorDamage, 20, 60), ShieldFlashV);
+
 	SetShieldDisplay(0);
 	SetTimer(0.05, false);
 
@@ -142,6 +146,7 @@ simulated function SetShieldDisplay(int Amount)
 
 defaultproperties
 {
+     ShieldFlashV=(X=400.000000,Y=400.000000,Z=400.000000)
      MaxCharge=200
      ArmorAbsorption=100
      AbsorptionPriority=1

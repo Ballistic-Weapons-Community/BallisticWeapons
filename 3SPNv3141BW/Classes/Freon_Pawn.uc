@@ -127,7 +127,8 @@ function TakeDamage(int Damage, Pawn InstigatedBy, Vector HitLocation, Vector Mo
 {
     local int ActualDamage;
     local Controller Killer;
-	
+	local vector HitLocationMatchZ;
+
     if ( DamageType == None )
     {
         if ( InstigatedBy != None ) 
@@ -299,7 +300,18 @@ function TakeDamage(int Damage, Pawn InstigatedBy, Vector HitLocation, Vector Mo
 // L7 -->
         PlayHit( ActualDamage, InstigatedBy, HitLocation, DamageType, Momentum );
 // L7 <--
-        AddVelocity( Momentum );
+
+        if (class<BallisticDamageType>(damageType) != None && class<BallisticDamageType>(damageType).default.bNegatesMomentum)
+        {
+            HitLocationMatchZ = Velocity;
+            HitLocationMatchZ.Z = 0;
+            AddVelocity( momentum - HitLocationMatchZ);
+        }
+        else
+            AddVelocity( momentum );
+
+        if (VSize(Momentum) > 50000)
+			bPendingNegation=True;
 
         if ( Controller != None ) 
             Controller.NotifyTakeHit( InstigatedBy, HitLocation, ActualDamage, DamageType, Momentum );

@@ -876,7 +876,7 @@ defaultproperties
     bRandomStartRotation=True
     bTearOnExplode=True
     NetTrappedDelay=0.150000
-    HeadMult=1.500000
+    HeadMult=1.40000
     LimbMult=0.700000
     ShakeRadius=-1.000000
     bWarnEnemy=True
