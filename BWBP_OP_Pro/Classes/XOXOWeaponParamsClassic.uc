@@ -1,4 +1,4 @@
-class XOXOWeaponParams extends BallisticWeaponParams;
+class XOXOWeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -7,13 +7,13 @@ defaultproperties
 	//=================================================================	
 	
 	// FAST FIRE
-	Begin Object Class=ProjectileEffectParams Name=ArenaFastPrimaryEffectParams
+	Begin Object Class=ProjectileEffectParams Name=ClassicFastPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.XOXOProjectile'
 		SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
 		Speed=5500.000000
 		MaxSpeed=14000.000000
 		AccelSpeed=100000.000000
-		Damage=38
+		Damage=20
 		DamageRadius=48.000000
 		MomentumTransfer=-1000.000000
 		MaxDamageGainFactor=0.6
@@ -26,23 +26,23 @@ defaultproperties
 		WarnTargetPct=0.200000	
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaFastPrimaryFireParams
-		FireInterval=0.170000
-		AmmoPerFire=3
+	Begin Object Class=FireParams Name=ClassicFastPrimaryFireParams
+		FireInterval=0.100000
+		AmmoPerFire=1
 		FireAnim="Fire2"
 		FireEndAnim=	
-	FireEffectParams(0)=ProjectileEffectParams'ArenaFastPrimaryEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'ClassicFastPrimaryEffectParams'
 	End Object
 	
 	// BOMB FIRE
-	Begin Object Class=ProjectileEffectParams Name=ArenaBombPrimaryEffectParams
+	Begin Object Class=ProjectileEffectParams Name=ClassicBombPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.XOXOBomb'
 		SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
 		Speed=2500.000000
 		MaxSpeed=2500.000000
 		AccelSpeed=100000.000000
 		Damage=100
-		DamageRadius=768.000000
+		DamageRadius=1028.000000
 		MomentumTransfer=-30000.000000
 		MaxDamageGainFactor=0.6
 		DamageGainStartTime=0.05
@@ -54,17 +54,17 @@ defaultproperties
 		WarnTargetPct=0.200000	
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaBombPrimaryFireParams
-		FireInterval=1.350000
-		AmmoPerFire=16
+	Begin Object Class=FireParams Name=ClassicBombPrimaryFireParams
+		FireInterval=0.350000
+		AmmoPerFire=10
 		FireAnim="Fire"
 		FireEndAnim=	
-	FireEffectParams(0)=ProjectileEffectParams'ArenaBombPrimaryEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'ClassicBombPrimaryEffectParams'
 	End Object
 	
 	// SHOCKWAVE FIRE
-	Begin Object Class=InstantEffectParams Name=ArenaLustPrimaryEffectParams
-		Damage=80
+	Begin Object Class=InstantEffectParams Name=ClassicLustPrimaryEffectParams
+		Damage=120
 		//DamageRadius=1024.000000
 		MomentumTransfer=4000.000000
 		HeadMult=1.5f
@@ -77,23 +77,23 @@ defaultproperties
 		WarnTargetPct=0.200000	
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaLustPrimaryFireParams
+	Begin Object Class=FireParams Name=ClassicLustPrimaryFireParams
 		FireInterval=0.900000
 		AmmoPerFire=10
 		FireAnim="LustWave"
 		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'ArenaLustPrimaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'ClassicLustPrimaryEffectParams'
 	End Object
 	
 	// NUKE FIRE
-	Begin Object Class=ProjectileEffectParams Name=ArenaNukePrimaryEffectParams
+	Begin Object Class=ProjectileEffectParams Name=ClassicNukePrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.XOXONukeProjectile'
 		SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
 		Speed=2500.000000
 		MaxSpeed=4500.000000
 		AccelSpeed=100000.000000
-		Damage=250
-		DamageRadius=2048.000000
+		Damage=500
+		DamageRadius=4096.000000
 		MomentumTransfer=100.000000
 		//MaxDamageGainFactor=0.6
 		//DamageGainStartTime=0.05
@@ -105,19 +105,19 @@ defaultproperties
 		WarnTargetPct=0.200000	
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaNukePrimaryFireParams
+	Begin Object Class=FireParams Name=ClassicNukePrimaryFireParams
 		FireInterval=0.500000
 		AmmoPerFire=1
 		FireAnim="Fire"
 		FireEndAnim=	
-	FireEffectParams(0)=ProjectileEffectParams'ArenaNukePrimaryEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'ClassicNukePrimaryEffectParams'
 	End Object
 	
 	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
+	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams
 		Damage=7
 		DamageType=Class'BWBP_OP_Pro.DTXOXOStream'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
@@ -126,7 +126,7 @@ defaultproperties
 		WarnTargetPct=0.200000
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
 		FireInterval=0.070000
 		FireAnim="SecFireLoop"
 		FireEndAnim="SecFireEnd"	
@@ -137,7 +137,7 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 	
-	Begin Object Class=RecoilParams Name=ArenaFastRecoilParams
+	Begin Object Class=RecoilParams Name=ClassicFastRecoilParams
 		ViewBindFactor=0.35
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=0.045000),(InVal=0.300000,OutVal=0.150000),(InVal=0.600000,OutVal=0.210000),(InVal=0.700000,OutVal=0.150000),(InVal=1.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.200000,OutVal=0.200000),(InVal=1.000000,OutVal=1.000000)))
@@ -147,7 +147,7 @@ defaultproperties
 		DeclineDelay=0.250000
 	End Object
 
-	Begin Object Class=RecoilParams Name=ArenaBombRecoilParams
+	Begin Object Class=RecoilParams Name=ClassicBombRecoilParams
 		ViewBindFactor=0.35
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=0.045000),(InVal=0.300000,OutVal=0.150000),(InVal=0.600000,OutVal=0.210000),(InVal=0.700000,OutVal=0.150000),(InVal=1.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.200000,OutVal=0.200000),(InVal=1.000000,OutVal=1.000000)))
@@ -157,7 +157,7 @@ defaultproperties
 		DeclineTime=1.500000
 	End Object
 
-	Begin Object Class=RecoilParams Name=ArenaLustRecoilParams
+	Begin Object Class=RecoilParams Name=ClassicLustRecoilParams
 		ViewBindFactor=0.35
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=0.045000),(InVal=0.300000,OutVal=0.150000),(InVal=0.600000,OutVal=0.210000),(InVal=0.700000,OutVal=0.150000),(InVal=1.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.200000,OutVal=0.200000),(InVal=1.000000,OutVal=1.000000)))
@@ -167,7 +167,7 @@ defaultproperties
 		DeclineDelay=0.250000
 	End Object
 
-	Begin Object Class=RecoilParams Name=ArenaNukeRecoilParams
+	Begin Object Class=RecoilParams Name=ClassicNukeRecoilParams
 		ViewBindFactor=0.35
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.030000),(InVal=0.200000,OutVal=0.045000),(InVal=0.300000,OutVal=0.150000),(InVal=0.600000,OutVal=0.210000),(InVal=0.700000,OutVal=0.150000),(InVal=1.000000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.200000,OutVal=0.200000),(InVal=1.000000,OutVal=1.000000)))
@@ -181,24 +181,24 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ArenaFastAimParams
+	Begin Object Class=AimParams Name=ClassicFastAimParams
 		SprintOffset=(Pitch=-1024,Yaw=-1024)
 		ChaosDeclineTime=1.250000
 	End Object
 
-	Begin Object Class=AimParams Name=ArenaBombAimParams
+	Begin Object Class=AimParams Name=ClassicBombAimParams
 		AimSpread=(Min=128,Max=1024)
 		SprintOffset=(Pitch=-1024,Yaw=-1024)
 		ChaosDeclineTime=1.250000
 	End Object
 	
-	Begin Object Class=AimParams Name=ArenaLustAimParams
+	Begin Object Class=AimParams Name=ClassicLustAimParams
 		AimSpread=(Min=128,Max=1024)
 		SprintOffset=(Pitch=-1024,Yaw=-1024)
 		ChaosDeclineTime=1.250000
 	End Object
 	
-	Begin Object Class=AimParams Name=ArenaNukeAimParams
+	Begin Object Class=AimParams Name=ClassicNukeAimParams
 		AimSpread=(Min=128,Max=1024)
 		SprintOffset=(Pitch=-1024,Yaw=-1024)
 		ChaosDeclineTime=1.250000
@@ -208,8 +208,8 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-	Begin Object Class=WeaponParams Name=ArenaParams
-		SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
+	Begin Object Class=WeaponParams Name=ClassicParams
+		SightOffset=(X=5.000000,Y=0.650000,Z=10.600000)
 		SightPivot=(Pitch=768)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
@@ -222,19 +222,19 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Bomb",ModeID="WM_FullAuto",RecoilParamsIndex=1,AimParamsIndex=1)
 		WeaponModes(2)=(ModeName="Lust Shockwave",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(3)=(ModeName="Sexplosion",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
-		FireParams(0)=FireParams'ArenaFastPrimaryFireParams'
-		FireParams(1)=FireParams'ArenaBombPrimaryFireParams'
-		FireParams(2)=FireParams'ArenaLustPrimaryFireParams'
-		FireParams(3)=FireParams'ArenaNukePrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
-		RecoilParams(0)=RecoilParams'ArenaFastRecoilParams'
-		RecoilParams(1)=RecoilParams'ArenaBombRecoilParams'
-		RecoilParams(2)=RecoilParams'ArenaLustRecoilParams'
-		RecoilParams(3)=RecoilParams'ArenaNukeRecoilParams'
-		AimParams(0)=AimParams'ArenaFastAimParams'
-		AimParams(1)=AimParams'ArenaBombAimParams'
-		AimParams(2)=AimParams'ArenaLustAimParams'
-		AimParams(3)=AimParams'ArenaNukeAimParams'
+		FireParams(0)=FireParams'ClassicFastPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicBombPrimaryFireParams'
+		FireParams(2)=FireParams'ClassicLustPrimaryFireParams'
+		FireParams(3)=FireParams'ClassicNukePrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		RecoilParams(0)=RecoilParams'ClassicFastRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicBombRecoilParams'
+		RecoilParams(2)=RecoilParams'ClassicLustRecoilParams'
+		RecoilParams(3)=RecoilParams'ClassicNukeRecoilParams'
+		AimParams(0)=AimParams'ClassicFastAimParams'
+		AimParams(1)=AimParams'ClassicBombAimParams'
+		AimParams(2)=AimParams'ClassicLustAimParams'
+		AimParams(3)=AimParams'ClassicNukeAimParams'
     End Object 
-    Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(0)=WeaponParams'ClassicParams'
 }
