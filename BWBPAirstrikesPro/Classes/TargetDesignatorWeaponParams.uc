@@ -2,18 +2,53 @@ class TargetDesignatorWeaponParams extends BallisticWeaponParams;
 
 defaultproperties
 {    
-    Begin Object Class=RecoilParams Name=UniversalRecoilParams
+    //=================================================================
+	// PRIMARY FIRE - APPLIES TO ALL WEAPON MODES
+	//=================================================================	
+	
+	Begin Object Class=FireEffectParams Name=ArenaPrimaryEffectParams
+		BotRefireRate=1.000000
+		WarnTargetPct=0.100000
+	End Object
+		
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=0.600000
+		FireAnim="Point"
+		FireEndAnim=
+	FireEffectParams(0)=FireEffectParams'ArenaPrimaryEffectParams'
+	End Object
+
+	//=================================================================
+	// SECONDARY FIRE - SCOPE
+	//=================================================================	
+	
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
+	End Object
+	
+	//=================================================================
+	// RECOIL
+	//=================================================================
+	
+	Begin Object Class=RecoilParams Name=UniversalRecoilParams
         ViewBindFactor=0.00
         PitchFactor=0
         YawFactor=0
         DeclineTime=1.500000
     End Object
 
+	//=================================================================
+	// AIM
+	//=================================================================
+
     Begin Object Class=AimParams Name=UniversalAimParams
         ViewBindFactor=0.00
         AimSpread=(Min=0,Max=0)
         ChaosDeclineTime=0.320000
     End Object
+
+	//=================================================================
+	// BASIC PARAMS
+	//=================================================================	
 
     Begin Object Class=WeaponParams Name=UniversalParams
         PlayerSpeedFactor=1.150000
@@ -34,6 +69,8 @@ defaultproperties
 		WeaponModes(11)=(ModeName="Napalm Carpet Bombing",ModeID="WM_FullAuto")
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'UniversalParams'
 }
