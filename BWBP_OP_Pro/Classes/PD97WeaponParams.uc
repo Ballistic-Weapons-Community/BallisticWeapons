@@ -10,7 +10,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_OP_Pro.PD97Dart'
 		SpawnOffset=(X=15.000000,Y=15.000000,Z=-20.000000)
 		Speed=15000.000000
-		Damage=10
+		Damage=20
 		Recoil=256.000000
 		Chaos=0.150000
 		BotRefireRate=0.700000

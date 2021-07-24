@@ -14,6 +14,9 @@ defaultproperties
         FireInterval=0.5
         AmmoPerFire=4
         PreFireTime=0.65
+		PreFireAnimRate=1.5
+		PreFireTime=0.43
+		FireEndAnimRate=1.5
         PreFireAnim="PrepHealLoop"
         FireLoopAnim="HealLoopA"
         FireEndAnim="HealLoopEnd"
