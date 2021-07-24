@@ -56,10 +56,14 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 	if (Pawn(StuckActor).Controller != None && Instigator.Controller != None && Pawn(StuckActor).Controller.SameTeamAs(Instigator.Controller))
 		DC = Spawn (class'PD97HealControl',StuckActor,, StuckActor.Location,StuckActor.Rotation);
-	else DC = Spawn (class'PD97DartControl',StuckActor,, StuckActor.Location,StuckActor.Rotation);
+	else 
+        DC = Spawn (class'PD97DartControl',StuckActor,, StuckActor.Location,StuckActor.Rotation);
+
 	DC.Initialize(Pawn(StuckActor), Master);
+
 	if (Instigator.Controller != None)
 		DC.InstigatorController = Instigator.Controller;
+
 	Master.AddControl(DC);
 
 	Destroy();
@@ -77,7 +81,7 @@ defaultproperties
      MotionBlurFactor=0.000000
      MotionBlurTime=0.000000
      Speed=15000.000000
-     Damage=10.000000
+     Damage=20.000000
      MyDamageType=Class'BWBP_OP_Pro.DTPD97Dart'
      StaticMesh=StaticMesh'BWBP_OP_Static.Bloodhound.BHPoisonDart'
      LifeSpan=2.500000

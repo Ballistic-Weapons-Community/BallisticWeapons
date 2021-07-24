@@ -147,6 +147,12 @@ simulated function RemoteKill()
 	Destroy();
 }
 
+function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
+{
+	if (ICISPrimaryFire(FireMode[0]).TickCount > 0)
+        Damage *= 0.75;
+}
+
 // AI Interface =====
 function bool CanAttack(Actor Other)
 {

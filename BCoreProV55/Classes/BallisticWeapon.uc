@@ -2373,6 +2373,8 @@ function UpdateSpeed()
 	NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
 	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
 		NewSpeed *= 1.4;
+    if (SprintControl != None && SprintControl.bSprinting)
+        NewSpeed *= SprintControl.SpeedFactor;
 	if (Instigator.GroundSpeed != NewSpeed)
 		Instigator.GroundSpeed = NewSpeed;
 }

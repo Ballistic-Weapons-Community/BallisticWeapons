@@ -72,7 +72,7 @@ simulated event Tick(float DT)
 
 defaultproperties
 {
-    Damage=20
+    Damage=10
     BurnTime=8.000000
     AutoDestroy=True
     bDynamicLight=True

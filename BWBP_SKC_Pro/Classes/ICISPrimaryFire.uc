@@ -39,7 +39,7 @@ function StopFiring()
     TickCount = 0;
 
     if (BW.Role == ROLE_Authority)
-        BW.RemoveSpeedModification(1.3);
+        BW.RemoveSpeedModification(1.2);
 }
 
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
@@ -60,7 +60,7 @@ function DoFireEffect()
     if (TickCount == 0)
     {
         if (BW.Role == ROLE_Authority)
-            BW.AddSpeedModification(1.3);
+            BW.AddSpeedModification(1.2);
     }
 
     class'BallisticDamageType'.static.GenericHurt (Instigator, Damage, Instigator, Instigator.Location, vect(0,0,0), DamageType);
@@ -72,9 +72,11 @@ function DoFireEffect()
 defaultproperties
 {
     bAISilent=True
-    EffectString="Increases movement speed, but damages the user."
+    EffectString="Increases movement speed by 20% and resistance to damage by 25%, but damages the user over time."
     Damage=1
-    PreFireTime=0.65
+    PreFireAnimRate=1.5
+    PreFireTime=0.43
+    FireEndAnimRate=1.5
     PreFireAnim="PrepHealLoop"
     FireLoopAnim="HealLoopA"
     FireEndAnim="HealLoopEnd"

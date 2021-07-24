@@ -126,7 +126,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
-     Damage=4.000000
+     Damage=2.000000
      BaseDuration=8.000000
      DamageType=Class'BWBP_OP_Pro.DTPD97Poison'
      Begin Object Class=SpriteEmitter Name=SpriteEmitter0
