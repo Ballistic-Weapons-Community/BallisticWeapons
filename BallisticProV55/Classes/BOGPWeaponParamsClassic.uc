@@ -8,7 +8,7 @@ defaultproperties
     //=================================================================	
 	
 	
-		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+		Begin Object Class=ProjectileEffectParams Name=ClassicGrenadeEffectParams
 			ProjectileClass=Class'BallisticProV55.BOGPGrenade'
 			SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 			Speed=1750.000000
@@ -27,13 +27,36 @@ defaultproperties
 			WarnTargetPct=0.300000	
 		End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		Begin Object Class=FireParams Name=ClassicGrenadeFireParams
 			FireInterval=0.100000
 			BurstFireRateFactor=1.00
 			bCockAfterFire=True
 			PreFireAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'ClassicGrenadeEffectParams'
 		End Object
+		
+		Begin Object Class=ProjectileEffectParams Name=ClassicFlareEffectParams
+			ProjectileClass=Class'BallisticProV55.BOGPFlare'
+			SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+			Speed=5500.000000
+			MaxSpeed=7500.000000
+			AccelSpeed=100000.000000
+			Damage=40.000000
+			DamageRadius=64.000000
+			MomentumTransfer=0.000000
+			MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+			Chaos=0.700000
+			Inaccuracy=(X=64,Y=64)
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.BOGP.BOGP_FlareFire',Volume=2.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
+			WarnTargetPct=0.100000
+			BotRefireRate=0.300000
+		End Object
+	
+		Begin Object Class=FireParams Name=ClassicFlareFireParams
+			PreFireAnim=
+			FireEffectParams(0)=ProjectileEffectParams'ClassicFlareEffectParams'
+			bCockAfterFire=True
+		End Object 
 		
     //=================================================================
     // SECONDARY FIRE
@@ -101,7 +124,8 @@ defaultproperties
 		SightPivot=(Pitch=1024,Roll=-1024)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(0)=FireParams'ClassicGrenadeFireParams'
+		FireParams(1)=FireParams'ClassicFlareFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
