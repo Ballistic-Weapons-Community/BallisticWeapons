@@ -26,7 +26,6 @@ defaultproperties
      DeathString="%o was fatally corrupted by %k's tech grenade."
      FemaleSuicide="%o had a tactical error with her tactical grenade."
      MaleSuicide="%o had a tactical error with his tactical grenade."
-     bArmorStops=False
      bCauseConvulsions=True
      bDelayedDamage=True
      bNeverSevers=True

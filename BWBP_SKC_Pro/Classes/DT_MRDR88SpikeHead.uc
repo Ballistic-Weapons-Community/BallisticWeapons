@@ -21,7 +21,6 @@ defaultproperties
      DeathString="%k rammed %kh spiky MR-DR88 into %o's head."
      FemaleSuicide="%o  picked her nose with a 3 inch spike."
      MaleSuicide="%o picked his nose with a 3 inch spike."
-     bArmorStops=False
      bAlwaysSevers=True
      bSpecial=True
 	 BlockFatiguePenalty=0.15

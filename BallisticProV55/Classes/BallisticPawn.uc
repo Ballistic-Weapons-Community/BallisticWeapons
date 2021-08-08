@@ -2648,8 +2648,8 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 				Controller.NotifyTakeHit(instigatedBy, HitLocation, actualDamage, DamageType, Momentum);
 			if ( instigatedBy != None && instigatedBy != self )
 				LastHitBy = instigatedBy.Controller;
-            //if (PlayerController(Controller) != None)
-            //    HandleViewFlash(Damage);
+            if (PlayerController(Controller) != None)
+                HandleViewFlash(actualDamage);
 		}
 		MakeNoise(1.0);
 }
@@ -2658,12 +2658,19 @@ function HandleViewFlash(int damage)
 {
     local int rnd;
 
-    rnd = FClamp(Damage, 15, 70);
+    if (damage == 0)
+        return;
+
+    rnd = FClamp(damage, 25, 70);
 
 	if (ShieldStrength > 0)
+    {
         PlayerController(Controller).ClientFlash( -0.019 * rnd, ShieldFlashV);
+    }
     else 
-		PlayerController(Controller).ClientFlash( -0.019 * rnd, rnd * BloodFlashV);       
+    {
+		PlayerController(Controller).ClientFlash( -0.019 * rnd, rnd * BloodFlashV);  
+    }     
 }
 
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
@@ -2759,7 +2766,7 @@ defaultproperties
      UDamageSound=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
 
 	 BloodFlashV=(X=26.5,Y=4.5,Z=4.5)
-	 ShieldFlashV=(X=400.000000,Y=400.000000,Z=400.000000)
+     ShieldFlashV=(X=400.000000,Y=400.000000,Z=400.000000)
 
      FootstepVolume=0.350000
      FootstepRadius=400.000000

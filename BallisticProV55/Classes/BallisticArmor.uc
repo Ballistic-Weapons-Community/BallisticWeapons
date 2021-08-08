@@ -11,8 +11,7 @@
 class BallisticArmor extends Armor;
 
 var() int MaxCharge;
-var() vector ShieldFlashV;
-
+var vector ShieldFlashV;
 var   byte HitType;
 
 event PostBeginPlay()
@@ -51,6 +50,7 @@ function ArmorImpactEffect(vector HitLocation)
 function int ArmorAbsorbDamage(int Damage, class<DamageType> DamageType, vector HitLocation)
 {
 	local int ArmorDamage;
+    local int rnd;
 
 	if ( DamageType.default.bArmorStops )
 	{
@@ -83,8 +83,12 @@ function int ArmorAbsorbDamage(int Damage, class<DamageType> DamageType, vector 
 	else
 		Charge -= ArmorDamage;
 
-    if (PlayerController(Instigator.Controller) != None)
-        PlayerController(Instigator.Controller).ClientFlash( -0.019 * FClamp(ArmorDamage, 20, 60), ShieldFlashV);
+    if (ArmorDamage > 0 && Owner != None && PlayerController(Pawn(Owner).Controller) != None)
+    {
+        rnd = FClamp(ArmorDamage, 25, 70);
+
+        PlayerController(Pawn(Owner).Controller).ClientFlash( -0.019 * rnd, ShieldFlashV);
+    }
 
 	SetShieldDisplay(0);
 	SetTimer(0.05, false);

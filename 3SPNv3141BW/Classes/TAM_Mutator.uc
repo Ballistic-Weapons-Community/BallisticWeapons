@@ -17,33 +17,6 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 		Other.Destroy();
 		return false; // I fucking hate this shit - Azarael
 	}
-        
-    if(Other.Class == class'BallisticProV55.RSDarkStar')
-    {
-        SpawnWeapon(class'FreonRSDarkStar', BallisticWeapon(Other), Other.Instigator);
-
-	   	if (Other != None)
-    		Other.Destroy();
-    	return false;
-    }
-    
-    if(Other.Class == class'BallisticProV55.RSNovaStaff')
-    {
-      	SpawnWeapon(class'FreonRSNovaStaff', BallisticWeapon(Other), Other.Instigator);
-      	
-    	if (Other != None)
-    		Other.Destroy();
-        return false;
-    }
-	
-	if(Other.Class == class'XOXOStaff')
-    {
-      	SpawnWeapon(class'FreonXOXOStaff', BallisticWeapon(Other), Other.Instigator);
-      	
-    	if (Other != None)
-    		Other.Destroy();
-        return false;
-    } 
 	
     return true;
 }

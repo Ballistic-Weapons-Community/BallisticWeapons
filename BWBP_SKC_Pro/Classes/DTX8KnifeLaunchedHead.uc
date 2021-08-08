@@ -20,7 +20,6 @@ defaultproperties
      DeathString="%k's knife defied all odds to enter %o's eye."
      FemaleSuicide="%o acupunctured her face."
      MaleSuicide="%o acupunctured his face."
-     bArmorStops=False
      bNeverSevers=True
      KDamageImpulse=1000.000000
 }

@@ -14,7 +14,6 @@ defaultproperties
      DeathString="%k's radiation overdose was too much for %o."
      FemaleSuicide="%o irradiated herself."
      MaleSuicide="%o irradiated himself."
-     bArmorStops=False
      bAlwaysGibs=True
      bDetonatesGoop=False
      GibModifier=2.000000

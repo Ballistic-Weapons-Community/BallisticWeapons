@@ -30,7 +30,6 @@ simulated function Notify_SelfInject()
     */
 }
 
-/*
 simulated function Tick(float DT)
 {
 	super.Tick(DT);
@@ -41,7 +40,7 @@ simulated function Tick(float DT)
         LastRegenTick = level.TimeSeconds + 1;
     }
 }
-*/
+
 
 simulated function bool PutDown()
 {
@@ -147,12 +146,6 @@ simulated function RemoteKill()
 	Destroy();
 }
 
-function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
-{
-	if (ICISPrimaryFire(FireMode[0]).TickCount > 0)
-        Damage *= 0.75;
-}
-
 // AI Interface =====
 function bool CanAttack(Actor Other)
 {
@@ -179,6 +172,12 @@ function float GetAIRating()
 		return 1;
 		
 	return 0;
+}
+
+//Overwrites old HasAmmo() so that we can use our weapons when there is still ammo in the mag
+simulated function bool HasAmmo()
+{
+	return true;
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -241,7 +240,7 @@ defaultproperties
      AttachmentClass=Class'BWBP_SKC_Pro.ICISAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.Stim.SmallIcon_Stim'
      IconCoords=(X2=128,Y2=32)
-     ItemName="ICIS-25 Stimpack"
+     ItemName="FMD ICIS-25 Stimpack"
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Stimpack'
      DrawScale=0.300000
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

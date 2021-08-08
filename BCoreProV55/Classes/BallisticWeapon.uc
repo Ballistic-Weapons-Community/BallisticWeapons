@@ -2338,14 +2338,26 @@ function RemoveSpeedModification(float value)
 function UpdateSpeed()
 {
 	local float NewSpeed;
-	
+
 	NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
+    //log("BW UpdateSpeed: "$Instigator.default.GroundSpeed$" * "$PlayerSpeedFactor);
+
 	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
+    {
+        //log("BW UpdateSpeed: "$NewSpeed$" * 1.4");
 		NewSpeed *= 1.4;
+    }
+
     if (SprintControl != None && SprintControl.bSprinting)
+    {
+        //log("BW UpdateSpeed: "$NewSpeed$" * "$SprintControl.SpeedFactor);
         NewSpeed *= SprintControl.SpeedFactor;
+    }
+
 	if (Instigator.GroundSpeed != NewSpeed)
 		Instigator.GroundSpeed = NewSpeed;
+
+    //log("BW UpdateSpeed: "$NewSpeed);
 }
 
 function ServerMeleeHold()
@@ -2746,6 +2758,7 @@ simulated function bool HasAmmo()
 {
 	return (HasMagAmmo(255) || HasNonMagAmmo(255) || MeleeFireMode != None);	//This weapon is empty?
 }
+
 simulated function bool HasMagAmmo(byte Mode)
 {
 	if (!bNoMag)

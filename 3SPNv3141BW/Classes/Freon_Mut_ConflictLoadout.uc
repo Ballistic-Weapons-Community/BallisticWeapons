@@ -70,7 +70,7 @@ function ModifyPlayer( pawn Other )
                         {
                             net_inventory_group = 3 + inventory_group_offset; 
 
-                            if (InventoryClass.default.InventoryGroup != 0) 
+                            //if (InventoryClass.default.InventoryGroup != 0) 
                                 ++inventory_group_offset;
                         }
                         else 
@@ -106,6 +106,9 @@ function ModifyPlayer( pawn Other )
 				}
 			}
 		}
+
+        // stimpack is guaranteed
+        SpawnConflictWeapon(class'ICISStimpack', Other, 0, false);
 	}
 
 	if (SpaceUsed < INVENTORY_SIZE_MAX)
@@ -152,11 +155,27 @@ function ModifyPlayer( pawn Other )
 	Freon_Player(Other.Controller).ClearAmmoTracks();
 }
 
+final function class<Weapon> CheckSwitchWeaponClass(class<Weapon> input)
+{
+    if(input == class'BallisticProV55.RSDarkStar')
+        return class'FreonRSDarkStar';
+    
+    if(input == class'BallisticProV55.RSNovaStaff')
+        return class'FreonRSNovaStaff';
+	
+	if(input == class'BWBP_OP_Pro.XOXOStaff')
+        return class'FreonXOXOStaff';
+
+    return input;
+}
+
 function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_inventory_group, bool set_as_initial_weapon)
 {
 	local Weapon newWeapon;
 	local bool bHasTrack;
 	local Freon_Player.AmmoTrack TrackInfo;
+
+    WepClass = CheckSwitchWeaponClass(WepClass);
 
 	TrackInfo = Freon_Player(Other.Controller).GetAmmoTrackFor(WepClass);
 
@@ -176,7 +195,7 @@ function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_invento
 	
 		if( newWeapon != None )
 		{
-            if (BallisticWeapon(newWeapon) != None)
+            if (BallisticWeapon(newWeapon) != None) // could have pulled a subclass that has group already set
             {
                 BallisticWeapon(newWeapon).NetInventoryGroup = net_inventory_group;
                 BallisticWeapon(newWeapon).bServerDeferInitialSwitch = !set_as_initial_weapon;

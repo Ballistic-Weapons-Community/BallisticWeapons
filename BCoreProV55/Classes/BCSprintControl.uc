@@ -16,6 +16,8 @@ var() float		StaminaChargeRate;	// Amount of stamina gained each second when not
 var   bool		bSprinting;			// Currently sprinting
 var   bool		bSprintActive;		// Sprint key is held down
 var() float		SpeedFactor;		// Player speed multiplied by this when sprinting
+var float		SprintRechargeDelay; // Retrigger delay
+var float		NextAlignmentCheckTime;
 
 replication
 {
@@ -27,42 +29,55 @@ replication
 //return
 singular function StartSprint()
 {
-	local float NewSpeed;
-
-	if (Stamina <= 0 || Instigator.bIsCrouched || bSprintActive)
+	if (Stamina <= 0  || Instigator.Physics != PHYS_Walking || Instigator.bIsCrouched || bSprintActive || !CheckDirection())
 		return;
 
 	bSprintActive = true;
-    
+
 	if (Instigator != None)
-	{
-		NewSpeed = Instigator.default.GroundSpeed * SpeedFactor;
-		if (BallisticWeapon(Instigator.Weapon) != None)
-			NewSpeed *=  BallisticWeapon(Instigator.Weapon).PlayerSpeedFactor;
-		if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
-			NewSpeed *= 1.4;
+        UpdateSpeed();
+}
+
+function UpdateSpeed()
+{
+	local float NewSpeed;
+
+	NewSpeed = Instigator.default.GroundSpeed;
+    
+	if (BallisticWeapon(Instigator.Weapon) != None)
+    {
+        NewSpeed *= BallisticWeapon(Instigator.Weapon).PlayerSpeedFactor;
+        //log("SC UpdateSpeed: "$Instigator.default.GroundSpeed$" * "$BallisticWeapon(Instigator.Weapon).PlayerSpeedFactor);
+    }
+
+	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
+    {
+        //log("SC UpdateSpeed: "$NewSpeed$" * 1.4");
+		NewSpeed *= 1.4;
+    }
+
+    if (bSprintActive)
+    {
+        //log("SC UpdateSpeed: "$NewSpeed$" * "$SpeedFactor);
+        NewSpeed *= SpeedFactor;
+    }
+
+	if (Instigator.GroundSpeed != NewSpeed)
 		Instigator.GroundSpeed = NewSpeed;
-	}
+
+    //log("SC UpdateSpeed: "$NewSpeed);
 }
 
 // Sprint Key released. Used on Client and Server
 singular function StopSprint()
 {
-	local float NewSpeed;
-	
 	if (!bSprintActive)
 		return;
+
 	bSprintActive = false;
 	
 	if (Instigator != None)
-	{
-		NewSpeed = Instigator.default.GroundSpeed;
-		if (BallisticWeapon(Instigator.Weapon) != None)
-			NewSpeed *=  BallisticWeapon(Instigator.Weapon).PlayerSpeedFactor;
-		if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
-			NewSpeed *= 1.4;
-		Instigator.GroundSpeed = NewSpeed;
-	}
+		UpdateSpeed();
 }
 
 simulated function OwnerEvent(name EventName)
@@ -81,9 +96,23 @@ simulated function ClientJumped()
 	Stamina = FMax(0, Stamina - StaminaDrainRate * 0.5);
 }
 
+simulated function bool CheckDirection()
+{
+	if (Normal(Instigator.Velocity) Dot Vector(Instigator.Rotation) < 0.2)
+		return false;
+	NextAlignmentCheckTime=Level.TimeSeconds + 0.35;
+	return true;	
+}
+
 simulated event Tick(float DT)
 {
+	// Add a check here to see if sprint can continue
+	// Timed, based on dot product of rotation
 	// Drain stamina while sprinting
+	
+	if (Instigator == None)
+		Destroy();
+		
 	if (bSprintActive && Instigator.Physics != PHYS_Falling && VSize(Instigator.Acceleration) > 100 && VSize(Instigator.Velocity) > 50)
 	{
 		if (!bSprinting)
@@ -94,16 +123,18 @@ simulated event Tick(float DT)
 			if (Instigator != None && Instigator.Inventory != None)
 				Instigator.Inventory.OwnerEvent('StartSprint');
 		}
-		Stamina -= StaminaDrainRate * DT;
+		
+		if (Instigator.bIsCrouched)
+			Stamina -= StaminaDrainRate * DT * 1.5;
+		else Stamina -= StaminaDrainRate * DT;
 		if (Role == ROLE_Authority)
 		{
-			if (Stamina <= 0 || Instigator.bIsCrouched || Instigator.Physics != PHYS_Walking)
+			if (Stamina <= 0 || Instigator.Physics != PHYS_Walking ||(Level.TimeSeconds >= NextAlignmentCheckTime && !CheckDirection()))
 				StopSprint();
 		}
 	}
-
 	// Stamina charges when not sprinting
-	else
+	else// if (VSize(RV) < Instigator.default.GroundSpeed * 0.8)
 	{
 		if (bSprinting)
 		{
@@ -114,7 +145,14 @@ simulated event Tick(float DT)
 				Instigator.Inventory.OwnerEvent('StopSprint');
 		}
 		if (Stamina < MaxStamina)
-			Stamina += StaminaChargeRate * DT;
+		{
+			if (VSize(Instigator.Velocity) == 0)
+				Stamina += StaminaChargeRate * DT;
+			else if (Instigator.bIsCrouched)
+				Stamina += StaminaChargeRate * DT/2;
+			if (Level.TimeSeconds > SprintRechargeDelay)
+				Stamina += StaminaChargeRate * DT;
+		}
 	}
 	Stamina = FClamp(Stamina, 0, MaxStamina);
 }
@@ -131,8 +169,8 @@ defaultproperties
 {
      Stamina=100.000000
      MaxStamina=100.000000
-     StaminaDrainRate=10.000000
-     StaminaChargeRate=7.000000
+     StaminaDrainRate=15.000000
+     StaminaChargeRate=20.000000
      SpeedFactor=1.350000
      bReplicateInstigator=True
 }
