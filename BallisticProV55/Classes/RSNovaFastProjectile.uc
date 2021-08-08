@@ -113,7 +113,7 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 		bWasAlive = true;
 
     if (BallisticPawn(Instigator) != None && RSNovaStaff(Instigator.Weapon) != None && Victim.bProjTarget && xPawn(Victim) != None && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
-		BallisticPawn(Instigator).GiveAttributedHealth(int(Dmg * 0.6f), Instigator.SuperHealthMax, Instigator, True);
+		BallisticPawn(Instigator).GiveAttributedShield(int(Dmg * 0.6f), Instigator);
 
 	class'BallisticDamageType'.static.GenericHurt (Victim, Dmg, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), DT);
 

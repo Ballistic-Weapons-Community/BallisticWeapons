@@ -28,7 +28,6 @@ defaultproperties
      DeathString="%k administered a healthy dose of ass-whuppin' to %o."
      FemaleSuicide="%o zapped herself."
      MaleSuicide="%o zapped himself."
-     bArmorStops=False
      bInstantHit=True
      bCauseConvulsions=True
      bNeverSevers=True

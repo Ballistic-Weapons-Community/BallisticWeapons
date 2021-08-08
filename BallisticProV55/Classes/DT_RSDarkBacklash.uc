@@ -21,7 +21,6 @@ defaultproperties
      FemaleSuicide="%o angered her Dark Star."
      MaleSuicide="%o angered his Dark Star."
      bSkeletize=True
-     bDelayedDamage=True
      KDamageImpulse=2000.000000
      VehicleDamageScaling=2.000000
 }

@@ -19,7 +19,6 @@ defaultproperties
      DeathString="%k's X8 Ballistic Knife reached out and touched %o."
      FemaleSuicide="%o shot a knife at herself."
      MaleSuicide="%o shot a knife at himself."
-     bArmorStops=False
      bNeverSevers=True
      KDamageImpulse=1000.000000
      VehicleDamageScaling=0.100000

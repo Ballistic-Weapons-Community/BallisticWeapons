@@ -44,7 +44,6 @@ defaultproperties
      DeathString="%o's head got in the way of %k's M2020 gauss round."
      FemaleSuicide="%o wanted to experience magnetic acceleration first hand!"
      MaleSuicide="%o wanted to experience magnetic acceleration first hand!"
-     bArmorStops=False
      bFastInstantHit=True
      bAlwaysSevers=True
      bSpecial=True

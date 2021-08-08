@@ -5,7 +5,7 @@
 // Also adds a rules class that awards a health bonus for killing players.
 //
 // by Logan "Black Eagle" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// CopyrightÂ© 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class Mut_Regeneration extends Mutator
 	config(BallisticProV55);
@@ -56,8 +56,8 @@ defaultproperties
      RegenAmount=3
      RegenDelay=6.000000
      HealthCap=100
-     HealthBonus=10
-     HealthBonusCap=199
+     HealthBonus=25
+     HealthBonusCap=150
      VehiclesRegen=True
      FriendlyName="BallisticPro: Regeneration"
      Description="Periodically restores health to injured players and vehicles, and awards bonus player health for kills...||http://www.runestorm.com"

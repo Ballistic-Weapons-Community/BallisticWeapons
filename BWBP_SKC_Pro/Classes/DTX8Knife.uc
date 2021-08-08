@@ -5,7 +5,7 @@
 //
 // by Logan "BlackEagle" Richert.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class DTX8Knife extends DT_BWBlade;
 
@@ -20,7 +20,6 @@ defaultproperties
      DeathString="%k chopped %o up into little delicious bits."
      FemaleSuicide="%o fell on her X8 knife."
      MaleSuicide="%o fell on his X8 knife."
-     bArmorStops=False
 	 BlockFatiguePenalty=0.1
      KDamageImpulse=1000.000000
      VehicleDamageScaling=0.500000

@@ -20,7 +20,6 @@ defaultproperties
      DeathString="%o got shanked real good by %k's MR-DR88."
      FemaleSuicide="%o happily stabbed herself to death."
      MaleSuicide="%o happily stabbed himself to death."
-     bArmorStops=False
      bNeverSevers=True
 	 BlockFatiguePenalty=0.15
      PawnDamageSounds(0)=Sound'BW_Core_WeaponSound.A73.A73StabFlesh'

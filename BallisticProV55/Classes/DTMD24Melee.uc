@@ -20,7 +20,6 @@ defaultproperties
      DeathString="%o was beaten like an egg by %k's MD24."
      FemaleSuicide="%o beat herself up with an MD24."
      MaleSuicide="%o beat himself up with an MD24."
-     bArmorStops=False
 	 BlockFatiguePenalty=0.1
      KDamageImpulse=1000.000000
      VehicleDamageScaling=0.300000

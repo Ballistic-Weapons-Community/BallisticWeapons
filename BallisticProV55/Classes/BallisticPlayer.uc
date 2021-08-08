@@ -50,6 +50,10 @@ var 	float							LastUIDrawTime;
 var class<Weapon>						LastLoadoutClasses[7];
 var class<Weapon>						LastStreaks[2];
 
+var float                               DesiredFlashScale;
+var Vector                              DesiredFlashFog;
+
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -1163,6 +1167,8 @@ ignores SeePlayer, HearNoise, Bump, ServerSpectate;
 
 // end Titan RPG handling
 
+/*
+
 function ViewFlash(float DeltaTime)
 {
     local vector goalFog;
@@ -1191,6 +1197,55 @@ function ViewFlash(float DeltaTime)
 	FlashFog.X = UpdateFlashComponent(FlashFog.X,step,goalFog.X);
 	FlashFog.Y = UpdateFlashComponent(FlashFog.Y,step,goalFog.Y);
 	FlashFog.Z = UpdateFlashComponent(FlashFog.Z,step,goalFog.Z);
+}
+
+*/
+
+function ClientFlash( float scale, vector fog )
+{
+	DesiredFlashScale = scale;
+	DesiredFlashFog = 0.001 * fog;
+}
+
+function ViewFlash(float DeltaTime)
+{
+	local vector goalFog;
+	local float goalScale, delta;
+    local PhysicsVolume ViewVolume;
+
+    if ( Pawn != None )
+    {
+		if ( bBehindView )
+			ViewVolume = Level.GetPhysicsVolume(CalcViewLocation);
+		else
+			ViewVolume = Pawn.HeadVolume;
+    }
+
+	delta = FMin(0.1, DeltaTime);
+	goalScale = 1 + DesiredFlashScale + ConstantGlowScale;
+	goalFog = DesiredFlashFog + ConstantGlowFog;
+
+    if (ViewVolume != None ) 
+    {
+        goalScale += ViewVolume.ViewFlash.X;
+        goalFog += ViewVolume.ViewFog;
+    }
+
+	DesiredFlashScale -= DesiredFlashScale * 2 * delta;
+	DesiredFlashFog -= DesiredFlashFog * 2 * delta;
+	FlashScale.X += (goalScale - FlashScale.X) * 10 * delta;
+	FlashFog += (goalFog - FlashFog) * 10 * delta;
+
+	if ( FlashScale.X > 0.981 )
+		FlashScale.X = 1;
+	FlashScale = FlashScale.X * vect(1,1,1);
+
+	if ( FlashFog.X < 0.003 )
+		FlashFog.X = 0;
+	if ( FlashFog.Y < 0.003 )
+		FlashFog.Y = 0;
+	if ( FlashFog.Z < 0.003 )
+		FlashFog.Z = 0;
 }
 
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)

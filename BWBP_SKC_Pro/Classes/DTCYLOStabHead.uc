@@ -22,7 +22,6 @@ defaultproperties
      DeathString="%o was was mauled by %k's CYLO."
      FemaleSuicide="%o sliced her own head in half with the CYLO."
      MaleSuicide="%o sliced his own head in half with the CYLO."
-     bArmorStops=False
      bAlwaysSevers=True
      bSpecial=True
 	 BlockFatiguePenalty=0.25

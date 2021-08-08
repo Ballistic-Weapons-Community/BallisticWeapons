@@ -25,7 +25,6 @@ defaultproperties
      DeathString="%o was impaled on %k's CYLO."
      FemaleSuicide="%o cut herself on her CYLO."
      MaleSuicide="%o cut himself on his CYLO."
-     bArmorStops=False
      bNeverSevers=True
 	 BlockFatiguePenalty=0.25
      PawnDamageSounds(0)=Sound'BW_Core_WeaponSound.A73.A73StabFlesh'

@@ -25,7 +25,6 @@ defaultproperties
      DeathString="%o was electrified by %k's MRS-138."
      FemaleSuicide="%o zapped herself."
      MaleSuicide="%o zapped himself."
-     bArmorStops=False
      bInstantHit=True
      bCauseConvulsions=True
      bNeverSevers=True
