@@ -8,7 +8,7 @@
 //=============================================================================
 class SRS900Attachment extends BallisticAttachment;
 
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Vector X, Y, Z;
 

@@ -379,7 +379,7 @@ simulated event WeaponTick(float DT)
 	{
 		if (Flame != None)
 		{
-			Flame.SetLocation(RSDarkAttachment(ThirdPersonActor).GetTipLocation());
+			Flame.SetLocation(RSDarkAttachment(ThirdPersonActor).GetModeTipLocation());
 			Flame.SetRotation(rotator(GetFireDir() >> GetPlayerAim()));
 		}
 	}

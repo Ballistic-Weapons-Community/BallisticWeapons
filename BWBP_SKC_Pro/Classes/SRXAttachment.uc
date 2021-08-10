@@ -130,7 +130,7 @@ simulated function SetAmpColour(bool bIsAmp1, bool bIsAmp2)
 	}
 }
 
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Vector X, Y, Z;
 
@@ -171,13 +171,13 @@ simulated function InstantFireEffects(byte Mode)
 
 		if (WallPenetrates != 0)				{
 			WallPenetrates = 0;
-			DoWallPenetrate(Start, mHitLocation);	}
+			DoWallPenetrate(Mode, Start, mHitLocation);	}
 
 		Dir = Normal(mHitLocation - Start);
 		mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir*10, mHitLocation - Dir*10, false,, HitMat);
 		// Check for water and spawn splash
 		if (ImpactManager!= None && bDoWaterSplash)
-			DoWaterTrace(Start, mHitLocation);
+			DoWaterTrace(Mode, Start, mHitLocation);
 
 		if (mHitActor == None)
 			return;
@@ -217,7 +217,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;
 
-	TipLoc = GetTipLocation();
+	TipLoc = GetModeTipLocation();
 	Dist = VSize(V - TipLoc);
 
 	// Count shots to determine if it's time to spawn a tracer

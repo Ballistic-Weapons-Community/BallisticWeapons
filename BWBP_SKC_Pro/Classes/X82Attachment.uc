@@ -22,7 +22,7 @@ simulated Event PostNetBeginPlay()
 }
 
 // Return the location of the muzzle.
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Coords C;
     local Vector X, Y, Z, Loc;

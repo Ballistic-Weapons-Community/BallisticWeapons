@@ -1,6 +1,24 @@
 class CX85Attachment extends BallisticAttachment;
 
-simulated function Vector GetTipLocation()
+simulated function GenerateModeInfo()
+{
+    Super.GenerateModeInfo();
+
+    ModeInfos[1].ImpactManager = class'BallisticProV55.IM_Bullet';
+    ModeInfos[1].TracerClass = class'TraceEmitter_BX85Crossbow';
+    ModeInfos[1].WaterTracerClass = class'BallisticProV55.TraceEmitter_WaterBullet';
+    ModeInfos[1].TracerChance = 1;
+    ModeInfos[1].TracerMix = 0;
+    ModeInfos[1].bTrackAnim = false;
+    ModeInfos[1].bInstant = true;
+    ModeInfos[1].bTracer = true;
+    ModeInfos[1].bWaterTracer = true;
+    ModeInfos[1].bFlash = false;
+    ModeInfos[1].bLight = false;
+    ModeInfos[1].bBrass = false;
+}
+
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Vector X, Y, Z;
 	
@@ -12,11 +30,19 @@ simulated function Vector GetTipLocation()
 			return Instigator.Location + X*20 + Z*5;
 		}
 		else
-			return Instigator.Weapon.GetEffectStart();
+			return CX85AssaultWeapon(Instigator.Weapon).GetModeEffectStart(Mode);
 	}
 	
 	else
-		return GetBoneCoords('tip').Origin;
+    {
+        switch(Mode)
+        {
+        case 1:
+		    return GetBoneCoords('tip2').Origin;
+        default:
+            return GetBoneCoords('tip').Origin;
+        }
+    }
 }
 
 defaultproperties
@@ -26,8 +52,8 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      AltFlashBone="tip2"
      BrassClass=Class'BallisticProV55.Brass_Rifle'
-     FlashMode=MU_Both
-     LightMode=MU_Both
+     FlashMode=MU_Primary
+     LightMode=MU_Primary
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)

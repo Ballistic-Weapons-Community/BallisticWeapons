@@ -40,10 +40,10 @@ simulated function SpawnTracer(byte Mode, Vector V)
 		return;
 	if (VSize(V) < 2)
 		V = Instigator.Location + Instigator.EyePosition() + V * 5000;
-	Dist = VSize(V - GetTipLocation());
+	Dist = VSize(V - GetModeTipLocation(Mode));
 	if (Dist > 25)
 	{
-		Tracer = Spawn(class'TraceEmitter_A42Beam', self, , GetTipLocation(), Rotator(V - GetTipLocation()));
+		Tracer = Spawn(class'TraceEmitter_A42Beam', self, , GetModeTipLocation(Mode), Rotator(V - GetModeTipLocation(Mode)));
 		Tracer.Initialize(Dist);
 	}
 }

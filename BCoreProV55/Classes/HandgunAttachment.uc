@@ -39,7 +39,7 @@ simulated function Hide(bool NewbHidden)
 }
 
 // Return the location of the muzzle.
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Coords C;
 

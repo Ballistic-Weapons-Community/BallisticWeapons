@@ -87,12 +87,12 @@ simulated function InstantFireEffects(byte Mode)
 			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
 			if (mHitActor == None)
 			{
-				DoWaterTrace(Start, End);
+				DoWaterTrace(Mode, Start, End);
 				SpawnTracer(Mode, End);
 			}
 			else
 			{
-				DoWaterTrace(Start, HitLocation);
+				DoWaterTrace(Mode, Start, HitLocation);
 				SpawnTracer(Mode, HitLocation);
 			}
 

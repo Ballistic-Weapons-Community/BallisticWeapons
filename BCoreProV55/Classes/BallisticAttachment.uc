@@ -31,6 +31,28 @@ enum EModeUsed
 	MU_None
 };
 
+struct ModeInfo
+{
+    var class<BCImpactManager>    ImpactManager;
+    var class<BCTraceEmitter>     TracerClass;
+    var class<BCTraceEmitter>     WaterTracerClass;
+    var class<Actor>              MuzzleFlashClass;
+    var float                     TracerChance;
+    var int                       TracerMix;
+    var int                       TracerCounter;
+    var name                      FlashBone;
+    var name                      TipBone;
+    var bool                      bTrackAnim;
+    var bool                      bInstant;
+    var bool                      bTracer;
+    var bool                      bWaterTracer;
+    var bool                      bFlash;
+    var bool                      bLight;
+    var bool                      bBrass;
+};
+
+var   ModeInfo                      ModeInfos[2];
+
 var() class<actor>					MuzzleFlashClass;					//Effect to spawn fot mode 0 muzzle flash
 var   actor							MuzzleFlash;						//The flash actor itself
 var() class<actor>					AltMuzzleFlashClass;				//Effect to spawn fot mode 1 muzzle flash
@@ -88,6 +110,7 @@ var()	 name						SingleFireAnim, SingleAimedFireAnim,  RapidFireAnim, RapidAimed
 // Useful for impacts with vehicles, actors that don't have client-side collision and other special cases
 struct DirectImp
 {
+    var() byte      Mode;
 	var() vector	HitLoc;		// Impact location
 	var() byte		HitSurf;	// Surface type
 	var() byte		HitNorm;	// Compressed normal. BUtil.NormToByte can be used to compress and BUtil.ByteToNorm can be used to decompress
@@ -130,8 +153,60 @@ replication
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
-	if (TracerChance < 2 && (level.DetailMode <= DM_High || class'BallisticMod'.default.EffectsDetailMode <= 1))
-		TracerChance *= 0.5;
+
+    GenerateModeInfo();
+}
+
+//==========================================================
+// FlaggedForMode
+//
+// Returns whether an EModeUsed variable applies for the 
+// current mode index
+//==========================================================
+simulated final function bool FlaggedForMode(EModeUsed enum, int mode)
+{
+    local byte flags;
+
+    mode += 1;
+    flags = enum + 1;
+
+    return (flags & mode) == mode;
+}
+
+//==========================================================
+// GenerateModeInfo
+//
+// Temporary function to generate mode information 
+// for new system
+//==========================================================
+simulated function GenerateModeInfo()
+{
+    local int i;
+
+    ModeInfos[0].MuzzleFlashClass = MuzzleFlashClass;
+    ModeInfos[1].MuzzleFlashClass = AltMuzzleFlashClass;
+
+    ModeInfos[0].FlashBone = FlashBone;
+    ModeInfos[1].FlashBone = AltFlashBone;
+
+    for(i = 0; i < 2; ++i)
+    {
+        ModeInfos[i].ImpactManager = ImpactManager;
+        ModeInfos[i].TracerClass = TracerClass;
+        ModeInfos[i].WaterTracerClass = WaterTracerClass;
+        ModeInfos[i].TracerChance = TracerChance;
+        ModeInfos[i].TracerMix = TracerMix;
+        ModeInfos[i].bTrackAnim = FlaggedForMode(TrackAnimMode, i);
+        ModeInfos[i].bInstant = FlaggedForMode(InstantMode, i);
+        ModeInfos[i].bTracer = FlaggedForMode(TracerMode, i);
+        ModeInfos[i].bWaterTracer = FlaggedForMode(WaterTracerMode, i);
+        ModeInfos[i].bFlash = FlaggedForMode(FlashMode, i);
+        ModeInfos[i].bLight = FlaggedForMode(LightMode, i);
+        ModeInfos[i].bBrass = FlaggedForMode(BrassMode, i);
+
+        if (ModeInfos[i].TracerChance < 2 && (level.DetailMode <= DM_High || class'BallisticMod'.default.EffectsDetailMode <= 1))
+		    ModeInfos[i].TracerChance *= 0.5;
+    }
 }
 
 simulated function PostNetBeginPlay()
@@ -147,7 +222,7 @@ simulated event PostNetReceive()
 		return;
 	if (DirectImpactCount != OldDirectImpactCount)
 	{
-		DoDirectHit(DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
+		DoDirectHit(0, DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
 		OldDirectImpactCount = DirectImpactCount;
 	}
 	if (FireCount != OldFireCount)
@@ -189,11 +264,14 @@ simulated event ThirdPersonEffects()
     }
 }
 
-// Return the location of the muzzle.
 simulated function Vector GetTipLocation()
 {
-    local Coords C;
+    return GetModeTipLocation(0);
+}
 
+// Return the location of the muzzle.
+simulated function Vector GetModeTipLocation(optional byte Mode)
+{
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)	
 		return Instigator.Weapon.GetEffectStart();
 
@@ -227,7 +305,7 @@ simulated function EjectBrass(byte Mode)
 		return;
 	if (BrassClass == None)
 		return;
-	if (BrassMode == MU_None || (BrassMode == MU_Secondary && Mode != 1) || (BrassMode == MU_Primary && Mode != 0))
+	if (!ModeInfos[Mode].bBrass)
 		return;
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return;
@@ -241,7 +319,7 @@ simulated function InstantFireEffects(byte Mode)
 	local Vector HitLocation, Dir, Start;
 	local Material HitMat;
 
-	if (InstantMode == MU_None || (InstantMode == MU_Secondary && Mode != 1) || (InstantMode == MU_Primary && Mode != 0))
+	if (!ModeInfos[Mode].bInstant)
 		return;
 	if (mHitLocation == vect(0,0,0))
 		return;
@@ -260,14 +338,14 @@ simulated function InstantFireEffects(byte Mode)
 		if (WallPenetrates != 0)
 		{
 			WallPenetrates = 0;
-			DoWallPenetrate(Start, mHitLocation);	
+			DoWallPenetrate(Mode, Start, mHitLocation);	
 		}
 
 		Dir = Normal(mHitLocation - Start);
 		mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir*10, mHitLocation - Dir*10, false,, HitMat);
 		// Check for water and spawn splash
-		if (ImpactManager!= None && bDoWaterSplash)
-			DoWaterTrace(Start, mHitLocation);
+		if (ModeInfos[Mode].ImpactManager != None && bDoWaterSplash)
+			DoWaterTrace(Mode, Start, mHitLocation);
 
 		if (mHitActor == None)
 			return;
@@ -283,12 +361,12 @@ simulated function InstantFireEffects(byte Mode)
  	else
 		HitLocation = mHitLocation;
 
-	if (level.NetMode != NM_Client && ImpactManager!= None && WaterHitLocation != vect(0,0,0) && bDoWaterSplash && Level.DetailMode >= DM_High && class'BallisticMod'.default.EffectsDetailMode > 0)
-		ImpactManager.static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
+	if (level.NetMode != NM_Client && ModeInfos[Mode].ImpactManager != None && WaterHitLocation != vect(0,0,0) && bDoWaterSplash && Level.DetailMode >= DM_High && class'BallisticMod'.default.EffectsDetailMode > 0)
+		ModeInfos[Mode].ImpactManager.static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
 	if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
 		return;
-	if (ImpactManager != None)
-		ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+	if (ModeInfos[Mode].ImpactManager != None)
+		ModeInfos[Mode].ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 }
 
 // Does all the effects for an instant-hit kind of fire.
@@ -334,7 +412,7 @@ simulated function FlyByEffects(byte Mode, Vector HitLoc)
 	if (FlyByMode == MU_None || (FlyByMode == MU_Secondary && Mode == 0) || (FlyByMode == MU_Primary && Mode != 0))
 		return;
 
-	TipLoc = GetTipLocation();
+	TipLoc = GetModeTipLocation(Mode);
 	if (level.GetLocalPlayerController().ViewTarget != None)
 		ViewLoc = level.GetLocalPlayerController().ViewTarget.Location;
 	else
@@ -359,7 +437,7 @@ simulated function FlyByEffects(byte Mode, Vector HitLoc)
 
 
 // Find the wall entry and exit 'wounds' and do the effects...
-simulated function DoWallPenetrate(vector Start, vector End)
+simulated function DoWallPenetrate(byte Mode, vector Start, vector End)
 {
 	local vector HitLoc, HitNorm;
 	local actor Other;
@@ -370,18 +448,18 @@ simulated function DoWallPenetrate(vector Start, vector End)
 	if (Other != None)
 	{
 		if (HitMat == None)Surf = int(Other.SurfaceType); else Surf = int(HitMat.SurfaceType);
-		WallPenetrateEffect(HitLoc, HitNorm, Surf);
+		WallPenetrateEffect(Mode, HitLoc, HitNorm, Surf);
 
 		Other = Trace (HitLoc, HitNorm, Start, End, false,,HitMat);
 		if (Other != None)
 		{
 			if (HitMat == None)Surf = int(Other.SurfaceType); else Surf = int(HitMat.SurfaceType);
-			WallPenetrateEffect(HitLoc, HitNorm, Surf, true);
+			WallPenetrateEffect(Mode, HitLoc, HitNorm, Surf, true);
 		}
 	}
 }
 // Find the water and spawn a splash...
-simulated function DoWaterTrace(vector Start, vector End)
+simulated function DoWaterTrace(int Mode, vector Start, vector End)
 {
 	local vector HitLoc, HitNorm;
 	local actor Other;
@@ -393,7 +471,7 @@ simulated function DoWaterTrace(vector Start, vector End)
 	Other = Trace (HitLoc, HitNorm, End, Start, true);
 	bTraceWater=false;
 	if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume && VSize(HitLoc - Start) > 1) )
-		ImpactManager.static.StartSpawn(HitLoc, Normal(Start - HitLoc), 9, Instigator);
+		ModeInfos[Mode].ImpactManager.static.StartSpawn(HitLoc, Normal(Start - HitLoc), 9, Instigator);
 	else
 		WaterHitLocation = vect(0,0,0);
 }
@@ -408,42 +486,42 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;
 
-	TipLoc = GetTipLocation();
+	TipLoc = GetModeTipLocation(Mode);
 	Dist = VSize(V - TipLoc);
 
 	// Count shots to determine if it's time to spawn a tracer
-	if (TracerMix == 0)
+	if (ModeInfos[Mode].TracerMix == 0)
 		bThisShot=true;
 	else
 	{
-		TracerCounter++;
+		ModeInfos[Mode].TracerCounter++;
 		if (TracerMix < 0)
 		{
-			if (TracerCounter >= -TracerMix)	{
-				TracerCounter = 0;
+			if (ModeInfos[Mode].TracerCounter >= -ModeInfos[Mode].TracerMix)	{
+				ModeInfos[Mode].TracerCounter = 0;
 				bThisShot=false;			}
 			else
 				bThisShot=true;
 		}
-		else if (TracerCounter >= TracerMix)	{
-			TracerCounter = 0;
+		else if (ModeInfos[Mode].TracerCounter >= ModeInfos[Mode].TracerMix)	{
+			ModeInfos[Mode].TracerCounter = 0;
 			bThisShot=true;					}
 	}
 	// Spawn a tracer
-	if (TracerClass != None && TracerMode != MU_None && (TracerMode == MU_Both || (TracerMode == MU_Secondary && Mode != 0) || (TracerMode == MU_Primary && Mode == 0)) &&
-		bThisShot && (TracerChance >= 1 || FRand() < TracerChance))
+	if (ModeInfos[Mode].bTracer && ModeInfos[Mode].TracerClass != None &&
+		bThisShot && (ModeInfos[Mode].TracerChance >= 1 || FRand() < ModeInfos[Mode].TracerChance))
 	{
 		if (Dist > 200)
-			Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
+			Tracer = Spawn(ModeInfos[Mode].TracerClass, self, , TipLoc, Rotator(V - TipLoc));
 		if (Tracer != None)
 			Tracer.Initialize(Dist);
 	}
 	// Spawn under water bullet effect
-	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
-		 WaterTracerMode != MU_None && (WaterTracerMode == MU_Both || (WaterTracerMode == MU_Secondary && Mode != 0) || (WaterTracerMode == MU_Primary && Mode == 0)))
+	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh 
+    && ModeInfos[Mode].WaterTracerClass != None && ModeInfos[Mode].bWaterTracer)
 	{
 		if (!Instigator.PhysicsVolume.TraceThisActor(WLoc, WNorm, TipLoc, V))
-			Tracer = Spawn(WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
+			Tracer = Spawn(ModeInfos[Mode].WaterTracerClass, self, , TipLoc, Rotator(WLoc - TipLoc));
 		if (Tracer != None)
 			Tracer.Initialize(VSize(WLoc - TipLoc));
 	}
@@ -454,7 +532,7 @@ simulated function FlashMuzzleFlash(byte Mode)
 {
 	local rotator R;
 
-	if (FlashMode == MU_None || (FlashMode == MU_Secondary && Mode == 0) || (FlashMode == MU_Primary && Mode != 0))
+	if (!ModeInfos[Mode].bFlash)
 		return;
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return;
@@ -462,17 +540,17 @@ simulated function FlashMuzzleFlash(byte Mode)
 	if (bRandomFlashRoll)
 		R.Roll = Rand(65536);
 
-	if (Mode != 0 && AltMuzzleFlashClass != None)
+	if (Mode != 0 && ModeInfos[1].MuzzleFlashClass != None)
 	{
 		if (AltMuzzleFlash == None)
-			class'BUtil'.static.InitMuzzleFlash (AltMuzzleFlash, AltMuzzleFlashClass, DrawScale*FlashScale, self, AltFlashBone);
+			class'BUtil'.static.InitMuzzleFlash (AltMuzzleFlash, ModeInfos[1].MuzzleFlashClass, DrawScale*FlashScale, self, ModeInfos[1].FlashBone);
 		AltMuzzleFlash.Trigger(self, Instigator);
 		if (bRandomFlashRoll)	SetBoneRotation(AltFlashBone, R, 0, 1.f);
 	}
-	else if (Mode == 0 && MuzzleFlashClass != None)
+	else if (Mode == 0 && ModeInfos[Mode].MuzzleFlashClass != None)
 	{
 		if (MuzzleFlash == None)
-			class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, MuzzleFlashClass, DrawScale*FlashScale, self, FlashBone);
+			class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, ModeInfos[0].MuzzleFlashClass, DrawScale*FlashScale, self, ModeInfos[0].FlashBone);
 		MuzzleFlash.Trigger(self, Instigator);
 		if (bRandomFlashRoll)	SetBoneRotation(FlashBone, R, 0, 1.f);
 	}
@@ -498,7 +576,7 @@ simulated function PlayPawnFiring(byte Mode)
 	//Do this with a mask maybe? - Azarael
 	if (Mode == 255)
 		PlayMeleeFiring();
-	else if (TrackAnimMode == MU_Both || (TrackAnimMode == MU_Primary && Mode == 0) || (TrackAnimMode == MU_Secondary && Mode == 1))
+	else if (ModeInfos[Mode].bTrackAnim)
 		PlayPawnTrackAnim(Mode);
 	else
 	{
@@ -630,7 +708,7 @@ simulated function BoneTrack GetTrack(byte Mode, int Index)
 // Either the weapon will flash or this attachment will
 simulated function FlashWeaponLight(byte Mode)
 {
-	if (LightMode == MU_None || (LightMode == MU_Secondary && Mode == 0) || (LightMode == MU_Primary && Mode != 0))
+	if (!ModeInfos[Mode].bLight)
 		return;
 	if (Instigator == None || Level.bDropDetail || ((Level.TimeSeconds - LastRenderTime > 0.2) && (PlayerController(Instigator.Controller) == None)))
 	{
@@ -677,22 +755,22 @@ simulated function Timer()
 function UpdateBlockHit();
 
 // Tell client to do wall penetrate effects and call local ones for listenserver or standalone games
-function UpdateWallPenetrate(vector HitLocation, vector HitNormal, int HitSurf, optional bool bExit)
+function UpdateWallPenetrate(byte Mode, vector HitLocation, vector HitNormal, int HitSurf, optional bool bExit)
 {
 	WallPenetrates = Max(WallPenetrates+1, 1);
-	WallPenetrateEffect(HitLocation, HitNormal, HitSurf, bExit);
+	WallPenetrateEffect(Mode, HitLocation, HitNormal, HitSurf, bExit);
 }
 // Spawn some wall penetration effects...
-simulated function WallPenetrateEffect(vector HitLocation, vector HitNormal, int HitSurf, optional bool bExit)
+simulated function WallPenetrateEffect(byte Mode, vector HitLocation, vector HitNormal, int HitSurf, optional bool bExit)
 {
-	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0 || level.NetMode == NM_DedicatedServer || ImpactManager == None)
+	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0 || level.NetMode == NM_DedicatedServer || ModeInfos[Mode].ImpactManager == None)
 		return;
 	if (bExit && (Level.DetailMode == DM_High || class'BallisticMod'.default.EffectsDetailMode == 1) )
 		return;
 	if (bExit)
-		ImpactManager.static.StartSpawn(HitLocation, HitNormal, HitSurf, instigator, 2/*HF_NoSound*/);
+		ModeInfos[Mode].ImpactManager.static.StartSpawn(HitLocation, HitNormal, HitSurf, instigator, 2/*HF_NoSound*/);
 	else
-		ImpactManager.static.StartSpawn(HitLocation, HitNormal, HitSurf, instigator);
+		ModeInfos[Mode].ImpactManager.static.StartSpawn(HitLocation, HitNormal, HitSurf, instigator);
 }
 
 // Update Hit stuff. This just adds the surface info
@@ -740,19 +818,20 @@ function MeleeUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, in
 	MeleeFireEffects();
 }
 
-simulated function DoDirectHit(vector HitLocation, vector HitNormal, int HitSurf)
+simulated function DoDirectHit(byte Mode, vector HitLocation, vector HitNormal, int HitSurf)
 {
-    if ( Level.NetMode != NM_DedicatedServer && Instigator != None && ImpactManager != None)
-		ImpactManager.static.StartSpawn(HitLocation, HitNormal, HitSurf, Instigator);
+    if ( Level.NetMode != NM_DedicatedServer && Instigator != None && ModeInfos[Mode].ImpactManager != None)
+		ModeInfos[Mode].ImpactManager.static.StartSpawn(HitLocation, HitNormal, HitSurf, Instigator);
 }
 
-function UpdateDirectHit (vector HitLocation, vector HitNormal, int HitSurf)
+function UpdateDirectHit (byte Mode, vector HitLocation, vector HitNormal, int HitSurf)
 {
+    DirectImpact.Mode = Mode;
 	DirectImpact.HitLoc  = HitLocation;
 	DirectImpact.HitNorm = class'BUtil'.static.NormToByte(HitNormal);
 	DirectImpact.HitSurf = HitSurf;
 	DirectImpactCount++;
-	DoDirectHit(HitLocation, HitNormal, HitSurf);
+	DoDirectHit(Mode, HitLocation, HitNormal, HitSurf);
 }
 
 defaultproperties

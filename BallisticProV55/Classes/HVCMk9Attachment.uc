@@ -372,14 +372,14 @@ simulated function SpawnTracer(byte Mode, Vector V)
 		if (VSize(V) < 2)
 		{
 			V = Instigator.Location + Instigator.EyePosition() + V * 1400;
-			Tracer = Spawn(class'TraceEmitter_HVCRedMiss', self, , GetTipLocation(), Rotator(V - GetTipLocation()));
+			Tracer = Spawn(class'TraceEmitter_HVCRedMiss', self, , GetModeTipLocation(), Rotator(V - GetModeTipLocation()));
 			Tracer.Initialize(Dist, float(ChargePower));
 			return;
 		}
-		Dist = VSize(V - GetTipLocation());
+		Dist = VSize(V - GetModeTipLocation());
 		if (Dist > 25)
 		{
-			Tracer = Spawn(class'TraceEmitter_HVCRedLightning', self, , GetTipLocation(), Rotator(V - GetTipLocation()));
+			Tracer = Spawn(class'TraceEmitter_HVCRedLightning', self, , GetModeTipLocation(), Rotator(V - GetModeTipLocation()));
 			Tracer.Initialize(Dist, float(ChargePower)/255);
 		}
 	}
@@ -407,7 +407,7 @@ simulated function InstantFireEffects(byte Mode)
 
 		if (WallPenetrates != 0)				{
 			WallPenetrates = 0;
-			DoWallPenetrate(Start, mHitLocation);	}
+			DoWallPenetrate(Mode, Start, mHitLocation);	}
 
 		Dir = Normal(mHitLocation - Start);
 		bTraceWater=true;

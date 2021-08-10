@@ -139,7 +139,7 @@ simulated function InstantFireEffects(byte Mode)
 
 		if (WallPenetrates != 0)				{
 			WallPenetrates = 0;
-			DoWallPenetrate(Start, mHitLocation);	}
+			DoWallPenetrate(Mode, Start, mHitLocation);	}
 
 		Dir = Normal(mHitLocation - Start);
 		bTraceWater=true;

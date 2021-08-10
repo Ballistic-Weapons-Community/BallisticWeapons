@@ -226,12 +226,12 @@ simulated function MinigunShotEffects(rotator Aim, byte Mode)
 	T = Trace(HitLoc, HitNorm, End, Start, false,,HitMat);
 	if (T == None)
 	{
-		DoWaterTrace(Start, End);
+		DoWaterTrace(Mode, Start, End);
 		SpawnTracer(Mode, End);
 	}
 	else
 	{
-		DoWaterTrace(Start, HitLoc);
+		DoWaterTrace(Mode, Start, HitLoc);
 		SpawnTracer(Mode, HitLoc);
 	}
 	if (T == None || (!T.bWorldGeometry && Mover(T) == None))
@@ -261,7 +261,7 @@ simulated function FlyByEffects(byte Mode, Vector HitLoc)
 	if (FlyByMode == MU_None || (FlyByMode == MU_Secondary && Mode == 0) || (FlyByMode == MU_Primary && Mode != 0))
 		return;
 
-	TipLoc = GetTipLocation();
+	TipLoc = GetModeTipLocation();
 	ViewLoc = level.GetLocalPlayerController().ViewTarget.Location;
 	Dir = Normal(HitLoc-TipLoc);
 	// >>> Find PointX which will be the point closest to ViewLoc on the traceline
@@ -296,7 +296,7 @@ simulated Event PostNetBeginPlay()
 }
 
 // Return the location of the muzzle.
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Coords C;
 

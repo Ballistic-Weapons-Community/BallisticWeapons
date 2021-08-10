@@ -91,13 +91,13 @@ simulated function InstantFireEffects(byte Mode)
 
 		if (WallPenetrates != 0)				{
 			WallPenetrates = 0;
-			DoWallPenetrate(Start, mHitLocation);	}
+			DoWallPenetrate(Mode, Start, mHitLocation);	}
 
 		Dir = Normal(mHitLocation - Start);
 		mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir*10, mHitLocation - Dir*10, false,, HitMat);
 		// Check for water and spawn splash
 		if (ImpactManager!= None && bDoWaterSplash)
-			DoWaterTrace(Start, mHitLocation);
+			DoWaterTrace(Mode, Start, mHitLocation);
 
 		if (mHitActor == None)
 			return;
@@ -123,7 +123,7 @@ simulated function InstantFireEffects(byte Mode)
 
 // Return the location of the muzzle.
 // Specifies muzzle because moved tip didn't work (offset the tracer in much the same way as the muzzle)
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Coords C;
 	
@@ -153,7 +153,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;
 
-	TipLoc = GetTipLocation();
+	TipLoc = GetModeTipLocation();
 	Dist = VSize(V - TipLoc);
 
 	// Count shots to determine if it's time to spawn a tracer

@@ -44,7 +44,7 @@ simulated function UpdateEndpoint()
 		if (!Instigator.IsFirstPerson())
 		{
 			bHidden = False;
-			SetLocation(GunAttachment.GetTipLocation());
+			SetLocation(GunAttachment.GetModeTipLocation());
 		}
 	}
 	else

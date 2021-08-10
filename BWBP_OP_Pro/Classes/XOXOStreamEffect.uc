@@ -30,11 +30,11 @@ simulated function PostNetReceive()
 simulated function UpdateEndpoint()
 {
 	local byte i;
-	local xWeaponAttachment Attachment;
+	local XOXOAttachment Attachment;
 	local vector OffsetVector;
 	
 	if (Instigator != None && Instigator.Weapon != None && Instigator.Weapon.ThirdPersonActor != None)	
-		Attachment = XWeaponAttachment(Instigator.Weapon.ThirdPersonActor);
+		Attachment = XOXOAttachment(Instigator.Weapon.ThirdPersonActor);
 	
 	SetRotation(rot(0,0,0));
 	
@@ -45,7 +45,7 @@ simulated function UpdateEndpoint()
 			bHidden = False;
 			
 			if (Attachment != None)
-				SetLocation(Attachment.GetTipLocation());
+				SetLocation(Attachment.GetModeTipLocation());
 		}
 	}
 	

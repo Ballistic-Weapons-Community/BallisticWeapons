@@ -16,7 +16,7 @@ simulated Event PostNetBeginPlay()
 }
 
 // Return the location of the muzzle.
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return Instigator.Weapon.GetEffectStart();

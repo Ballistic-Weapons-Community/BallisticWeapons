@@ -128,13 +128,13 @@ simulated function InstantFireEffects(byte Mode)
 
 		if (WallPenetrates != 0)				{
 			WallPenetrates = 0;
-			DoWallPenetrate(Start, mHitLocation);	}
+			DoWallPenetrate(Mode, Start, mHitLocation);	}
 
 		Dir = Normal(mHitLocation - Start);
 		mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir*10, mHitLocation - Dir*10, false,, HitMat);
 		// Check for water and spawn splash
 		if (ImpactManager!= None && bDoWaterSplash)
-			DoWaterTrace(Start, mHitLocation);
+			DoWaterTrace(Mode, Start, mHitLocation);
 
 		if (mHitActor == None)
 			return;
@@ -197,14 +197,14 @@ simulated function FlameFireEffects()
 		class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, MuzzleFlashClass, DrawScale*FlashScale, self, FlashBone);
 
 	if (Flame == None)
-		Flame = Spawn(class'RSDarkFlameSpray',Instigator,,GetTipLocation(), rotator(mHitLocation - GetTipLocation()));
+		Flame = Spawn(class'RSDarkFlameSpray',Instigator,,GetModeTipLocation(), rotator(mHitLocation - GetModeTipLocation()));
 	if (Instigator.IsFirstPerson())
 	{}
 //		Flame.bHidden = true;
 	else
 	{
 		Flame.bHidden = false;
-		Flame.SetLocation(GetTipLocation());
+		Flame.SetLocation(GetModeTipLocation());
 		Flame.SetRotation(Rotator(mHitLocation - Flame.Location));
 	}
 	Flame.SetFlameRange(VSize(mHitLocation - Flame.Location));

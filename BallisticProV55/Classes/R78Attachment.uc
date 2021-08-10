@@ -8,7 +8,7 @@
 //=============================================================================
 class R78Attachment extends BallisticAttachment;
 
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Coords C;
     local Vector X, Y, Z;
@@ -52,13 +52,13 @@ simulated function InstantFireEffects(byte Mode)
 
 		if (WallPenetrates != 0)				{
 			WallPenetrates = 0;
-			DoWallPenetrate(Start, mHitLocation);	}
+			DoWallPenetrate(Mode, Start, mHitLocation);	}
 
 		Dir = Normal(mHitLocation - Start);
 		mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir * 10, mHitLocation - Dir * 10, true,, HitMat); // CYLO needs to trace actors to find Pawns 
 		// Check for water and spawn splash
 		if (ImpactManager!= None && bDoWaterSplash)
-			DoWaterTrace(Start, mHitLocation);
+			DoWaterTrace(Mode, Start, mHitLocation);
 
 		if (mHitActor == None)
 		{

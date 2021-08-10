@@ -21,7 +21,7 @@ replication
 		CurAlpha;
 }
 
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Coords C;
     local Vector X, Y, Z;

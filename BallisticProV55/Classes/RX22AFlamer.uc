@@ -121,12 +121,12 @@ simulated function WeaponTick (float DT)
 	{
 		if (Flame != None)
 		{
-			Flame.SetLocation(RX22AAttachment(ThirdPersonActor).GetTipLocation());
+			Flame.SetLocation(RX22AAttachment(ThirdPersonActor).GetModeTipLocation());
 			Flame.SetRotation(rotator(GetFireDir() >> GetPlayerAim()));
 		}
 		else if (GasSpray != None)
 		{
-			GasSpray.SetLocation(RX22AAttachment(ThirdPersonActor).GetTipLocation());
+			GasSpray.SetLocation(RX22AAttachment(ThirdPersonActor).GetModeTipLocation());
 			GasSpray.SetRotation(rotator(GetFireDir() >> GetPlayerAim()));
 		}
 	}

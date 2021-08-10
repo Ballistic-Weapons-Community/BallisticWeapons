@@ -80,14 +80,14 @@ simulated function ShotgunFireEffects(byte Mode)
 			if (mHitActor == None)
 			{
 				TracerClass = class<BCTraceEmitter>(FireClass.default.TracerClass);
-				DoWaterTrace(Start, End);
+				DoWaterTrace(Mode, Start, End);
 				SpawnTracer(Mode, End);
 				TracerClass = default.TracerClass;
 			}
 			else
 			{
 				TracerClass = class<BCTraceEmitter>(FireClass.default.TracerClass);
-				DoWaterTrace(Start, HitLocation);
+				DoWaterTrace(Mode, Start, HitLocation);
 				SpawnTracer(Mode, HitLocation);
 				TracerClass = default.TracerClass;
 			}

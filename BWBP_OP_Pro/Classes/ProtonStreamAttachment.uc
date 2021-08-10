@@ -107,7 +107,6 @@ function StartStream()
 			ProtonStreamer(Instigator.Weapon).StreamEffect = StreamEffect;
 		StreamEffect.Instigator = Instigator;
 		StreamEffect.Target = LockedTarget;
-		StreamEffect.ProtonAttachment = self;
 		StreamEffect.UpdateEndpoint();
 	}
 }

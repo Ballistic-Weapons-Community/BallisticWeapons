@@ -551,16 +551,21 @@ function HitVehicleEffect(vector HitLocation, vector HitNormal, Actor Other)
 	else
 		Surf = 3;
 
-	BallisticAttachment(Weapon.ThirdPersonActor).UpdateDirectHit(HitLocation, HitNormal, Surf);
-//	BallisticAttachment(Weapon.ThirdPersonActor).UpdateWallPenetrate(HitLocation, HitNormal, Surf);
+	BallisticAttachment(Weapon.ThirdPersonActor).UpdateDirectHit(ThisModeNum, HitLocation, HitNormal, Surf);
+//	BallisticAttachment(Weapon.ThirdPersonActor).UpdateWallPenetrate(ThisModeNum, HitLocation, HitNormal, Surf);
 }
 
 // Called to do the effects for a bullet going in or coming out a wall
 function WallPenetrateEffect(Actor Other, vector HitLocation, vector HitNormal, Material HitMat, optional bool bExit)
 {
 	local int Surf;
-	if (HitMat == None)Surf = int(Other.SurfaceType); else Surf = int(HitMat.SurfaceType);
-	BallisticAttachment(Weapon.ThirdPersonActor).UpdateWallPenetrate(HitLocation, HitNormal, Surf, bExit);
+
+	if (HitMat == None) 
+        Surf = int(Other.SurfaceType); 
+    else 
+        Surf = int(HitMat.SurfaceType);
+
+	BallisticAttachment(Weapon.ThirdPersonActor).UpdateWallPenetrate(ThisModeNum, HitLocation, HitNormal, Surf, bExit);
 }
 
 // Tells the attachment to play fire anims and so on, but without impact effects

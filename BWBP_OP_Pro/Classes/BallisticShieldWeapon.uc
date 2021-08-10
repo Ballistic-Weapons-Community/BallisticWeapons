@@ -69,9 +69,6 @@ function AttachToPawn(Pawn P)
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
     local vector HitNormal;
-    local vector TestLocation;
-
-	
 	local class<BallisticDamageType> BDT;
 	
 	if (InstigatedBy != None && InstigatedBy.Controller != None && InstigatedBy.Controller.SameTeamAs(InstigatorController))

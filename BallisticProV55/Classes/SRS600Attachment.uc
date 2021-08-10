@@ -1,6 +1,6 @@
 class SRS600Attachment extends SRS900Attachment;
 
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
 	if (Instigator != None && Instigator.IsFirstPerson())
 	{

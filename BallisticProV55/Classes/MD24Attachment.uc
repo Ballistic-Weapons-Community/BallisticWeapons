@@ -62,7 +62,7 @@ simulated function Tick(float DT)
 		Start = Location;
 	X = LaserRot;
 
-	Loc = GetTipLocation();
+	Loc = GetModeTipLocation();
 
 	End = Start + (Vector(X)*5000);
 	Other = Trace (HitLocation, HitNormal, End, Start, true);

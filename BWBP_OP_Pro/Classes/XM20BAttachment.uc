@@ -94,7 +94,7 @@ simulated function Tick(float DT)
 		Start = Location;
 	X = LaserRot;
 
-	Loc = GetTipLocation();
+	Loc = GetModeTipLocation();
 
 	if (AIController(Instigator.Controller)!=None)
 	{
@@ -127,10 +127,8 @@ simulated function Tick(float DT)
 }
 
 // Return the location of the muzzle.
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
-    local Coords C;
-
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return Instigator.Weapon.GetEffectStart();
         

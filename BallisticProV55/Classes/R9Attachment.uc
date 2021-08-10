@@ -50,14 +50,14 @@ simulated function InstantFireEffects(byte Mode)
 		if (WallPenetrates != 0)
 		{
 			WallPenetrates = 0;
-			DoWallPenetrate(Start, mHitLocation);	
+			DoWallPenetrate(Mode, Start, mHitLocation);	
 		}
 
 		Dir = Normal(mHitLocation - Start);
 		mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir*10, mHitLocation - Dir*10, false,, HitMat);
 		// Check for water and spawn splash
 		if (ImpactManagers[CurrentTracerMode] != None && bDoWaterSplash)
-			DoWaterTrace(Start, mHitLocation);
+			DoWaterTrace(Mode, Start, mHitLocation);
 
 		if (mHitActor == None)
 			return;
@@ -82,7 +82,7 @@ simulated function InstantFireEffects(byte Mode)
 }
 
 // Spawn some wall penetration effects...
-simulated function WallPenetrateEffect(vector HitLocation, vector HitNormal, int HitSurf, optional bool bExit)
+simulated function WallPenetrateEffect(byte Mode, vector HitLocation, vector HitNormal, int HitSurf, optional bool bExit)
 {
 	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0 || level.NetMode == NM_DedicatedServer || ImpactManagers[CurrentTracerMode] == None)
 		return;
@@ -94,9 +94,9 @@ simulated function WallPenetrateEffect(vector HitLocation, vector HitNormal, int
 		ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, HitNormal, HitSurf, instigator);
 }
 
-simulated function DoDirectHit(vector HitLocation, vector HitNormal, int HitSurf)
+simulated function DoDirectHit(byte Mode, vector HitLocation, vector HitNormal, int HitSurf)
 {
-    if ( Level.NetMode != NM_DedicatedServer && Instigator != None && ImpactManager != None)
+    if ( Level.NetMode != NM_DedicatedServer && Instigator != None && ImpactManagers[CurrentTracerMode] != None)
 		ImpactManagers[CurrentTracerMode].static.StartSpawn(HitLocation, HitNormal, HitSurf, Instigator);
 }
 
@@ -110,7 +110,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;
 
-	TipLoc = GetTipLocation();
+	TipLoc = GetModeTipLocation();
 	Dist = VSize(V - TipLoc);
 
 	if (Dist > 200)
@@ -128,7 +128,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	}
 }
 
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Coords C;
 

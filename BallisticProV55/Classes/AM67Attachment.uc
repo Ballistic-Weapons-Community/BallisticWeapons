@@ -17,14 +17,14 @@ simulated function InstantFireEffects(byte Mode)
 		super.InstantFireEffects(Mode);
 		return;
 	}
-//	L = GetTipLocation();
+//	L = GetModeTipLocation();
 	L = Instigator.Location + Instigator.EyePosition();
 	Dir = Normal(mHitLocation - L);
 
 	if (Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		Spawn(class'AM67FlashProjector',Instigator,,L+Dir*25,rotator(Dir));
 	else
-		Spawn(class'AM67FlashProjector',Instigator,,GetTipLocation(),rotator(Dir));
+		Spawn(class'AM67FlashProjector',Instigator,,GetModeTipLocation(Mode),rotator(Dir));
 }
 
 simulated function FlashMuzzleFlash(byte Mode)

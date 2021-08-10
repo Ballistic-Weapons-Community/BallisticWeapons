@@ -12,7 +12,7 @@ class M46Attachment extends BallisticAttachment;
 var() vector		ScopedTracerOffset;
 
 // Return the location of the muzzle.
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Coords C;
 	local vector TheVect;

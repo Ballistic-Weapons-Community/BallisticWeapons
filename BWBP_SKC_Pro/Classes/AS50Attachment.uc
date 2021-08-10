@@ -11,7 +11,7 @@ class AS50Attachment extends BallisticAttachment;
 var() class<BCTraceEmitter>	AltTracerClass;		//Type of tracer to use for instant fire effects
 
 // Return the location of the muzzle.
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Vector X, Y, Z, Loc;
 
@@ -103,7 +103,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	if (/*Level.DetailMode < DM_High || */class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;
 
-	TipLoc = GetTipLocation();
+	TipLoc = GetModeTipLocation();
 	Dist = VSize(V - TipLoc);
 
 	// Count shots to determine if it's time to spawn a tracer
