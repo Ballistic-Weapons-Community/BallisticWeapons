@@ -144,7 +144,7 @@ function BlowUp(vector HitLocation)
 			class'BallisticDamageType'.static.GenericHurt
 			(
 				Base,
-				Damage * (1 + Slaves.Length) * (1.05 ** Slaves.Length),
+				Damage * ((1 + Slaves.Length) ** 1.4),
 				Instigator,
 				HitLocation,
 				MomentumTransfer * Normal(Base.Location-Location),
@@ -179,7 +179,7 @@ defaultproperties
      MotionBlurRadius=384.000000
      MotionBlurFactor=3.000000
      MotionBlurTime=4.000000
-     Damage=20.000000
+     Damage=10.000000
      DamageRadius=384.000000
      MyDamageType=Class'BWBP_OP_Pro.DTCX85DartRadius'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.OA-SMG.OA-SMG_Dart'
@@ -189,9 +189,11 @@ defaultproperties
      LifeSpan=0.000000
      DrawScale=0.450000
      bUnlit=False
-     CollisionRadius=16.000000
-     CollisionHeight=16.000000
+     CollisionRadius=2.000000
+     CollisionHeight=2.000000
+     bCollideActors=False
      bCollideWorld=False
+     bBlockActors=False
      bProjTarget=True
      bNetNotify=True
 }

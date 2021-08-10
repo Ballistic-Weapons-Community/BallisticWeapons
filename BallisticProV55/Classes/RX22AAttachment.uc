@@ -133,13 +133,13 @@ simulated function InstantFireEffects(byte Mode)
 			GasSpray = None;
 		}
 		if (Flame == None)
-			Flame = Spawn(class'RX22ASpray',Instigator,,GetTipLocation(), rotator(mHitLocation - GetTipLocation()));
+			Flame = Spawn(class'RX22ASpray',Instigator,,GetModeTipLocation(), rotator(mHitLocation - GetModeTipLocation()));
 		if (Instigator.IsFirstPerson())
 			Flame.bHidden = true;
 		else
 		{
 			Flame.bHidden = false;
-			Flame.SetLocation(GetTipLocation());
+			Flame.SetLocation(GetModeTipLocation());
 			Flame.SetRotation(Rotator(mHitLocation - Flame.Location));
 		}
 		Flame.SetFlameRange(VSize(mHitLocation - Flame.Location));
@@ -172,13 +172,13 @@ simulated function InstantFireEffects(byte Mode)
 		}
 
 		if (GasSpray == None)
-			GasSpray = Spawn(class'RX22AGasSpray',Instigator,,GetTipLocation(), rotator(mHitLocation - GetTipLocation()));
+			GasSpray = Spawn(class'RX22AGasSpray',Instigator,,GetModeTipLocation(), rotator(mHitLocation - GetModeTipLocation()));
 		if (Instigator.IsFirstPerson())
 			GasSpray.bHidden = true;
 		else
 		{
 			GasSpray.bHidden = false;
-			GasSpray.SetLocation(GetTipLocation());
+			GasSpray.SetLocation(GetModeTipLocation());
 			GasSpray.SetRotation(Rotator(mHitLocation - GasSpray.Location));
 		}
 		GasSpray.SetFlameRange(VSize(mHitLocation - GasSpray.Location));

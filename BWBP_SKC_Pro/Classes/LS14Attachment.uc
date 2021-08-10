@@ -26,31 +26,31 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 	if (VSize(V) < 2)
 		V = Instigator.Location + Instigator.EyePosition() + V * 10000;
-	Dist = VSize(V-GetTipLocation());
+	Dist = VSize(V-GetModeTipLocation());
 
 	// Spawn Trace Emitter Effect
 	if (bDouble)
 	{
-		TER = Spawn(class'TraceEmitter_LS14C', self, , GetTipLocation(), Rotator(V - GetTipLocation()));
-		TEL = Spawn(class'TraceEmitter_LS14B', self, , GetTipLocationStyleTwo(), Rotator(V - GetTipLocation()));
+		TER = Spawn(class'TraceEmitter_LS14C', self, , GetModeTipLocation(), Rotator(V - GetModeTipLocation()));
+		TEL = Spawn(class'TraceEmitter_LS14B', self, , GetModeTipLocationStyleTwo(), Rotator(V - GetModeTipLocation()));
 		TEL.Initialize(Dist, LasPower);
 		TER.Initialize(Dist, LasPower);
 	}	
 	else if (FireIndex)
 	{
-		TEA = Spawn(class'TraceEmitter_LS14B', self, , GetTipLocation(), Rotator(V - GetTipLocation()));
+		TEA = Spawn(class'TraceEmitter_LS14B', self, , GetModeTipLocation(), Rotator(V - GetModeTipLocation()));
 		TEA.Initialize(Dist, LasPower);
 	}
 	else
 	{
-		TER = Spawn(class'TraceEmitter_LS14C', self, , GetTipLocationStyleTwo(), Rotator(V - GetTipLocation()));
+		TER = Spawn(class'TraceEmitter_LS14C', self, , GetModeTipLocationStyleTwo(), Rotator(V - GetModeTipLocation()));
 		TER.Initialize(Dist, LasPower);
 	}
 	
 	FireIndex = !FireIndex;
 }
 
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Vector X, Y, Z, Loc;
 
@@ -72,7 +72,7 @@ simulated function Vector GetTipLocation()
     return Loc;
 }
 
-simulated function Vector GetTipLocationStyleTwo()
+simulated function Vector GetModeTipLocationStyleTwo()
 {
     local Vector X, Y, Z, Loc;
 

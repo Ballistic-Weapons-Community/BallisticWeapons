@@ -2,7 +2,6 @@ class ProtonStreamEffect extends BallisticEmitter;
 
 var Actor Target;
 var ProtonStreamer pPack;
-var ProtonStreamAttachment ProtonAttachment;
 var	bool	bAltColor;
 var vector StartPoint, EndPoint;
 
@@ -65,11 +64,11 @@ simulated function SetAltColor(bool bColorAlt)
 simulated function UpdateEndpoint()
 {
 	local byte i;
-	local xWeaponAttachment Attachment;
+	local ProtonStreamAttachment Attachment;
 	local vector OffsetVector;
 	
 	if (Instigator != None && Instigator.Weapon != None && Instigator.Weapon.ThirdPersonActor != None)	
-		Attachment = XWeaponAttachment(Instigator.Weapon.ThirdPersonActor);
+		Attachment = ProtonStreamAttachment(Instigator.Weapon.ThirdPersonActor);
 	
 	SetRotation(rot(0,0,0));
 	
@@ -80,7 +79,7 @@ simulated function UpdateEndpoint()
 			bHidden = False;
 			
 			if (Attachment != None)
-				SetLocation(Attachment.GetTipLocation());
+				SetLocation(Attachment.GetModeTipLocation());
 		}
 	}
 	else if (Attachment != None)

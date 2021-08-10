@@ -7,13 +7,13 @@ var array<CX85DartDirect> StuckDarts;
 var BUtil.FullSound DrumInSound, DrumOutSound;
 
 var Name 			ReloadAltAnim;
-var int 				AltAmmo;
+var int 			AltAmmo;
 
 var int				BaseTrackDist;
 
 var	float			LastDetonationTime;
 
-var bool				bPendingReceive; //Used when a dart has struck but not yet been replicated. Prevents detonation because of the desynchronised nature of the array.
+var bool			bPendingReceive; //Used when a dart has struck but not yet been replicated. Prevents detonation because of the desynchronised nature of the array.
 
 replication
 {
@@ -21,6 +21,33 @@ replication
 	    AltAmmo, bPendingReceive, ClientAddProjectile, ClientRemoveProjectile;
 }
 
+simulated function vector GetModeEffectStart(byte mode)
+{
+    // 1st person
+    if (Instigator.IsFirstPerson())
+    {
+        if ( WeaponCentered() )
+			return CenteredEffectStart();
+			
+        if (mode == 0)
+		    return ConvertFOVs(GetBoneCoords('tip').Origin, DisplayFOV, Instigator.Controller.FovAngle, 32);
+        else 
+            return ConvertFOVs(GetBoneCoords('tip2').Origin, DisplayFOV, Instigator.Controller.FovAngle, 32);
+    }
+    // 3rd person
+    else
+    {
+        return (Instigator.Location +
+            Instigator.EyeHeight*Vect(0,0,0.5) +
+            Vector(Instigator.Rotation) * 40.0);
+    }
+}
+
+//==================================================================
+// NewDrawWeaponInfo
+//
+// Draws icons for number of darts in mag
+//==================================================================
 simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 {
 	local int i,Count;
@@ -38,7 +65,7 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 	C.DrawColor = class'HUD'.Default.WhiteColor;
 	Count = Min(6,AltAmmo);
 	
-    for( i=0; i<Count; i++ )
+    for( i=0; i < Count; i++ )
     {
 		C.SetPos(C.ClipX - (0.5*i+1) * AmmoDimensions, C.ClipY * (1 - (0.12 * class'HUD'.default.HUDScale)));
 		C.DrawTile( Texture'BWBP_OP_Tex.CX85.Dart_HUD',AmmoDimensions, AmmoDimensions, 0, 0, 128, 128);
@@ -101,6 +128,8 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 
 
 //===========================================================================
+// ServerStartReload
+//
 // Generic code for weapons which have multiple magazines.
 //===========================================================================
 function ServerStartReload (optional byte i)
@@ -145,6 +174,11 @@ function ServerStartReload (optional byte i)
 		Instigator.SetAnimAction('ReloadGun');
 }
 
+//==================================================================
+// ClientStartReload
+//
+// Dispatch reload based on desired mag
+//==================================================================
 simulated function ClientStartReload(optional byte i)
 {
 	if (Level.NetMode == NM_Client)
@@ -156,25 +190,33 @@ simulated function ClientStartReload(optional byte i)
 	}
 }
 
-// Prepare to reload, set reload state, start anims. Called on client and server
+//==================================================================
+// CommonStartReload
+//
+// Handle multiple magazines
+//==================================================================
 simulated function CommonStartReload (optional byte i)
 {
 	local int m;
+
 	if (ClientState == WS_BringUp)
 		ClientState = WS_ReadyToFire;
-	if (i == 1)
-	{
-		ReloadState = RS_PreClipOut;
-		PlayReloadAlt();
-	}
-	else
-	{
-		ReloadState = RS_StartShovel;
+
+    switch(i)
+    {
+    case 0:
+    	ReloadState = RS_StartShovel;
 		PlayReload();
-	}
+        break;
+    case 1:
+    	ReloadState = RS_PreClipOut;
+		PlayReloadAlt();
+        break;
+    }
 
 	if (bScopeView && Instigator.IsLocallyControlled())
 		TemporaryScopeDown(Default.SightingTime);
+
 	for (m=0; m < NUM_FIRE_MODES; m++)
 		if (BFireMode[m] != None)
 			BFireMode[m].ReloadingGun(i);
@@ -216,7 +258,9 @@ simulated function Notify_DrumIn()
 }
 
 //===========================================================================
-// Add/Remove master mines from array.
+// AddProjectile
+//
+// Adds/removes master mines from array on authoritative instance of weapon.
 //
 // Done this way because of replication.
 //===========================================================================
@@ -227,11 +271,22 @@ function AddProjectile(CX85DartDirect Proj)
 	bPendingReceive=False;
 }
 
+//===========================================================================
+// ClientAddProjectile
+//
+// Adds/removes master mines from client version of weapon.
+//===========================================================================
 simulated function ClientAddProjectile(CX85DartDirect Proj)
 {
 	StuckDarts[StuckDarts.Length] = Proj;
 }
 
+//===========================================================================
+// LostChild
+//
+// Called when an Actor spawned by this Weapon is destroyed.
+// Checks for the Actor being a stuck dart, and removes the tracking if so.
+//===========================================================================
 function LostChild(Actor Proj)
 {
 	local int i;
@@ -248,6 +303,12 @@ function LostChild(Actor Proj)
 	}
 }
 
+//===========================================================================
+// ClientRemoveProjectile
+//
+// Called when a dart spawned by this Weapon is destroyed.
+// Removes the tracking from the client.
+//===========================================================================
 simulated function ClientRemoveProjectile(Actor Proj)
 {
 	local int i;
@@ -259,6 +320,8 @@ simulated function ClientRemoveProjectile(Actor Proj)
 }
 
 //===========================================================================
+// WeaponSpecial
+//
 // Allows the detonation of darts.
 //===========================================================================
 exec simulated function WeaponSpecial(optional byte i)
@@ -269,6 +332,11 @@ exec simulated function WeaponSpecial(optional byte i)
 	LastDetonationTime = Level.TimeSeconds;
 }
 
+//===========================================================================
+// ServerWeaponSpecial
+//
+// Allows the detonation of darts.
+//===========================================================================
 function ServerWeaponSpecial(optional byte i)
 {
 	if (Instigator.bNoWeaponFiring || bPendingReceive || LastDetonationTime + 0.75 > Level.TimeSeconds || StuckDarts.Length == 0)
@@ -278,6 +346,11 @@ function ServerWeaponSpecial(optional byte i)
 	LastDetonationTime = Level.TimeSeconds;
 }
 
+//===========================================================================
+// RenderOverlays
+//
+// Draw targeting overlay if scoped.
+//===========================================================================
 simulated function RenderOverlays (Canvas C)
 {
 	Super.RenderOverlays(C);
@@ -286,6 +359,11 @@ simulated function RenderOverlays (Canvas C)
 		DrawTargeting(C);
 }
 
+//===========================================================================
+// DrawTargeting
+//
+// Draw target boxes for tracked opponents.
+//===========================================================================
 simulated event DrawTargeting (Canvas C)
 {
 	local Vector V, V2, X, Y, Z;

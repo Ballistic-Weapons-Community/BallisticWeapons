@@ -55,16 +55,16 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 	if (VSize(V) < 2)
 		V = Instigator.Location + Instigator.EyePosition() + V * 10000;
-	Dist = VSize(V-GetTipLocation());
+	Dist = VSize(V-GetModeTipLocation());
 	// Spawn Siral Effect
-	Spiral = Spawn(class'M75Spiral', self, , GetTipLocation(), Rotator(V - GetTipLocation()));
+	Spiral = Spawn(class'M75Spiral', self, , GetModeTipLocation(), Rotator(V - GetModeTipLocation()));
 	Spiral.InitSpiral(Dist, RailPower);
 	// Spawn Trace Emitter Effect
-	TER = Spawn(class'TraceEmitter_Railgun', self, , GetTipLocation(), Rotator(V - GetTipLocation()));
+	TER = Spawn(class'TraceEmitter_Railgun', self, , GetModeTipLocation(), Rotator(V - GetModeTipLocation()));
 	TER.Initialize(Dist, RailPower);
 }
 
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Vector X, Y, Z;
 

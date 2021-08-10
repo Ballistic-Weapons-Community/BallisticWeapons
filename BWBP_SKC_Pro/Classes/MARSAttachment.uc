@@ -12,7 +12,7 @@ class MARSAttachment extends BallisticAttachment;
 var Vector		SpawnOffset;
 
 
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Vector X, Y, Z, Loc;
 

@@ -71,7 +71,7 @@ event bool EncroachingOn( actor Other )
 
 simulated event Tick( float DT )
 {
-	local float tempspeed,tangtargetdir,tangveldir,rotmult;
+	local float tangtargetdir,tangveldir,rotmult;
 	local vector tvector,vvector,Trot,tempvel,tloc;
 	SetRotation(Rotator(Velocity));
 	SetPhysics(PHYS_Falling);
@@ -193,8 +193,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 function Timer()
 {
 	local Controller C;
-	local vector targetdir;
-	local float velh,velv;
+
 	//Enemies who don't have anything else to shoot at will try to shoot WiCNuke down
 	for (C = Level.ControllerList; C != None; C = C.NextController)
 		if ( AIController(C) != None && C.Pawn != None && C.GetTeamNum() != Team && AIController(C).Skill >= 2.0

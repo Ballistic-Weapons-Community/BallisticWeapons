@@ -199,7 +199,7 @@ simulated function BigZapInstantFireEffects()
  	else
 		HitLocation = mHitLocation;
 
-	Zap = spawn(class'RSNova_OneShotZap', Instigator, , GetTipLocation());
+	Zap = spawn(class'RSNova_OneShotZap', Instigator, , GetModeTipLocation());
 
 	if (mHitActor == None)
 		Zap.SetTarget(HitLocation, false);
@@ -213,7 +213,7 @@ simulated function UpdateChainZap ()
 	local int i;
 	local vector Prev;
 
-	Prev = GetTipLocation();
+	Prev = GetModeTipLocation();
 	for (i=0;i<ChainVicNum;i++)
 	{
 		if (ChainVics[i] != None)

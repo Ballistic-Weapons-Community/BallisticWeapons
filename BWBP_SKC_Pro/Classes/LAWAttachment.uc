@@ -81,7 +81,7 @@ simulated function Tick(float DT)
 		Start = Location;
 	X = LaserRot;
 
-//	Loc = GetTipLocation();
+//	Loc = GetModeTipLocation();
 	Loc = GetBoneCoords('tip3').Origin;
 
 	End = Start + (Vector(X)*5000);

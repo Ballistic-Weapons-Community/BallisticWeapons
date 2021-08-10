@@ -69,7 +69,7 @@ simulated function Tick(float DT)
 	if (LaserDot != None)
 		LaserDot.SetLocation(LaserEndLoc);
 
-	Loc = GetTipLocation();
+	Loc = GetModeTipLocation();
 
 	Laser.SetLocation(Loc);
 	Laser.SetRotation(Rotator(LaserEndLoc - Loc));

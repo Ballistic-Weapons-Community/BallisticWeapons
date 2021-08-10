@@ -133,13 +133,13 @@ simulated function InstantFireEffects(byte Mode)
 
 		if (WallPenetrates != 0)				{
 			WallPenetrates = 0;
-			DoWallPenetrate(Start, mHitLocation);	}
+			DoWallPenetrate(Mode, Start, mHitLocation);	}
 
 		Dir = Normal(mHitLocation - Start);
 		mHitActor = Trace (HitLocation, mHitNormal, mHitLocation + Dir*10, mHitLocation - Dir*10, true,, HitMat); //needs to pick up pawns to spawn explosion fx
 		// Check for water and spawn splash
 		if (ImpactManager!= None && bDoWaterSplash)
-			DoWaterTrace(Start, mHitLocation);
+			DoWaterTrace(Mode, Start, mHitLocation);
 
 		if (mHitActor == None)
 			return;
@@ -224,12 +224,12 @@ simulated function MinigunShotEffects(rotator Aim, byte Mode)
 	T = Trace(HitLoc, HitNorm, End, Start, true,,HitMat);
 	if (T == None)
 	{
-		DoWaterTrace(Start, End);
+		DoWaterTrace(Mode, Start, End);
 		SpawnTracer(Mode, End);
 	}
 	else
 	{
-		DoWaterTrace(Start, HitLoc);
+		DoWaterTrace(Mode, Start, HitLoc);
 		SpawnTracer(Mode, HitLoc);
 	}
 	if (!T.bWorldGeometry && Mover(T) == None && T.bProjTarget)
@@ -264,7 +264,7 @@ simulated function FlyByEffects(byte Mode, Vector HitLoc)
 	if (FlyByMode == MU_None || (FlyByMode == MU_Secondary && Mode == 0) || (FlyByMode == MU_Primary && Mode != 0))
 		return;
 
-	TipLoc = GetTipLocation();
+	TipLoc = GetModeTipLocation();
 	ViewLoc = level.GetLocalPlayerController().ViewTarget.Location;
 	Dir = Normal(HitLoc-TipLoc);
 	// >>> Find PointX which will be the point closest to ViewLoc on the traceline
@@ -306,7 +306,7 @@ simulated function Vector GetEjectorLocation(optional out Rotator EjectorAngle)
 }
 
 // Return the location of the muzzle.
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		return Instigator.Weapon.GetEffectStart();

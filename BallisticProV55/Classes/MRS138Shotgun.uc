@@ -315,7 +315,7 @@ simulated function WeaponTick (float DT)
 	if (TazerLineEffect != None && !Instigator.IsFirstPerson() && AIController(Instigator.Controller) == None)
 	{
 		TazerLineEffect.bHidden = False;
-		TazerLineEffect.SetLocation(BallisticAttachment(ThirdPersonActor).GetTipLocation());
+		TazerLineEffect.SetLocation(BallisticAttachment(ThirdPersonActor).GetModeTipLocation());
 	}
 }
 

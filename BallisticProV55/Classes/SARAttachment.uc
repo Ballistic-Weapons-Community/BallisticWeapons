@@ -70,7 +70,7 @@ simulated function Tick(float DT)
 		Start = Location;
 	X = LaserRot;
 
-//	Loc = GetTipLocation();
+//	Loc = GetModeTipLocation();
 	Loc = GetBoneCoords('tip2').Origin;
 
 	End = Start + (Vector(X)*5000);
@@ -102,14 +102,14 @@ simulated function InstantFireEffects(byte Mode)
 		super.InstantFireEffects(Mode);
 		return;
 	}
-//	L = GetTipLocation();
+//	L = GetModeTipLocation();
 	L = Instigator.Location + Instigator.EyePosition();
 	Dir = Normal(mHitLocation - L);
 
 	if (Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		Spawn(class'AM67FlashProjector',Instigator,,L+Dir*25,rotator(Dir));
 	else
-		Spawn(class'AM67FlashProjector',Instigator,,GetTipLocation(),rotator(Dir));
+		Spawn(class'AM67FlashProjector',Instigator,,GetModeTipLocation(),rotator(Dir));
 }
 
 defaultproperties

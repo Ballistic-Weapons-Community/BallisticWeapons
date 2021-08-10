@@ -74,13 +74,13 @@ simulated function InstantFireEffects(byte Mode)
 	else
 	{
 		if (Flame == None)
-			Flame = Spawn(class'RX22ASpray',Instigator,,GetTipLocation(), rotator(mHitLocation - GetTipLocation()));
+			Flame = Spawn(class'RX22ASpray',Instigator,,GetModeTipLocation(), rotator(mHitLocation - GetModeTipLocation()));
 		if (Instigator.IsFirstPerson())
 			Flame.bHidden = true;
 		else
 		{
 			Flame.bHidden = false;
-			Flame.SetLocation(GetTipLocation());
+			Flame.SetLocation(GetModeTipLocation());
 			Flame.SetRotation(Rotator(mHitLocation - Flame.Location));
 		}
 		
@@ -103,7 +103,7 @@ simulated function FlyByEffects(byte Mode, Vector HitLoc)
 	if (FlyByMode == MU_None || (FlyByMode == MU_Secondary && Mode == 0) || (FlyByMode == MU_Primary && Mode != 0))
 		return;
 
-	TipLoc = GetTipLocation();
+	TipLoc = GetModeTipLocation();
 	if (level.GetLocalPlayerController().ViewTarget != None)
 		ViewLoc = level.GetLocalPlayerController().ViewTarget.Location;
 	else
@@ -188,12 +188,12 @@ simulated function GasEffects()
 		class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, MuzzleFlashClass, DrawScale*FlashScale, self, FlashBone);
 
 	if (GasSpray == None)
-		GasSpray = Spawn(class'CX61GasSpray',Instigator,,GetTipLocation(), rotator(mHitLocation - GetTipLocation()));
+		GasSpray = Spawn(class'CX61GasSpray',Instigator,,GetModeTipLocation(), rotator(mHitLocation - GetModeTipLocation()));
 		
 	if (!Instigator.IsFirstPerson())
 	{
 		GasSpray.bHidden = false;
-		GasSpray.SetLocation(GetTipLocation());
+		GasSpray.SetLocation(GetModeTipLocation());
 		GasSpray.SetRotation(Rotator(mHitLocation - GasSpray.Location));
 	}
 	GasSpray.SetFlameRange(VSize(mHitLocation - GasSpray.Location));
@@ -219,7 +219,7 @@ simulated function FlameFireEffects()
 		class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, MuzzleFlashClass, DrawScale*FlashScale, self, FlashBone);
 
 	if (Flame == None)
-		Flame = Spawn(class'RX22ASpray',Instigator,,GetTipLocation(), rotator(mHitLocation - GetTipLocation()));
+		Flame = Spawn(class'RX22ASpray',Instigator,,GetModeTipLocation(), rotator(mHitLocation - GetModeTipLocation()));
 		
 	if (Instigator.IsFirstPerson())
 	{}
@@ -227,7 +227,7 @@ simulated function FlameFireEffects()
 	else
 	{
 		Flame.bHidden = false;
-		Flame.SetLocation(GetTipLocation());
+		Flame.SetLocation(GetModeTipLocation());
 		Flame.SetRotation(Rotator(mHitLocation - Flame.Location));
 	}
 	

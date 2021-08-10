@@ -57,7 +57,7 @@ simulated event PostNetReceive()
 		
 	if (DirectImpactCount != OldDirectImpactCount)
 	{
-		DoDirectHit(DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
+		DoDirectHit(0, DirectImpact.HitLoc, class'BUtil'.static.ByteToNorm(DirectImpact.HitNorm), DirectImpact.HitSurf);
 		OldDirectImpactCount = DirectImpactCount;
 	}
 	
@@ -177,7 +177,7 @@ simulated function ExplosiveFireEffects(byte IsDoubleFire)
 			
 			if (mHitActor == None)
 			{
-				DoWaterTrace(Start, End);
+				DoWaterTrace(0, Start, End);
 				
 				for (j = 0; j < ShotCount; ++j)
 				{
@@ -187,7 +187,7 @@ simulated function ExplosiveFireEffects(byte IsDoubleFire)
 			}
 			else
 			{
-				DoWaterTrace(Start, HitLocation);
+				DoWaterTrace(0, Start, HitLocation);
 				
 				for (j = 0; j < ShotCount; ++j)
 				{
@@ -289,7 +289,7 @@ simulated function ElectroFireEffects(byte IsDoubleFire)
 			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
 			if (mHitActor == None)
 			{
-				DoWaterTrace(Start, End);
+				DoWaterTrace(0, Start, End);
 				
 				for (j = 0; j < ShotCount; ++j)
 				{
@@ -299,7 +299,7 @@ simulated function ElectroFireEffects(byte IsDoubleFire)
 			}
 			else
 			{
-				DoWaterTrace(Start, HitLocation);
+				DoWaterTrace(0, Start, HitLocation);
 				
 				for (j = 0; j < ShotCount; ++j)
 				{
@@ -332,7 +332,7 @@ simulated function SpawnTracer(byte IsDoubleFire, Vector V)
 	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;
 
-	TipLoc = GetTipLocation();
+	TipLoc = GetModeTipLocation();
 	Dist = VSize(V - TipLoc);
 
 	// Spawn a tracer for the appropriate mode
@@ -359,7 +359,7 @@ simulated function SpawnTracer(byte IsDoubleFire, Vector V)
 }
 
 // Return the location of the muzzle.
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Coords C;
 

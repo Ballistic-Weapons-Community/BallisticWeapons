@@ -36,7 +36,7 @@ simulated function InstantFireEffects(byte Mode)
 		if (WallPenetrates != 0)				
 		{
 			WallPenetrates = 0;
-			DoWallPenetrate(Start, mHitLocation);	
+			DoWallPenetrate(Mode, Start, mHitLocation);	
 		}
 
 		Dir = Normal(mHitLocation - Start);
@@ -44,7 +44,7 @@ simulated function InstantFireEffects(byte Mode)
 		
 		// Check for water and spawn splash
 		if (ImpactManager!= None && bDoWaterSplash)
-			DoWaterTrace(Start, mHitLocation);
+			DoWaterTrace(Mode, Start, mHitLocation);
 
 		if (mHitActor == None)
 			return;

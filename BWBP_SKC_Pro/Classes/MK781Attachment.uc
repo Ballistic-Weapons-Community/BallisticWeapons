@@ -104,12 +104,12 @@ simulated function InstantFireEffects(byte Mode)
 			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
 			if (mHitActor == None)
 			{
-				DoWaterTrace(Start, End);
+				DoWaterTrace(Mode, Start, End);
 				SpawnTracer(Mode, End);
 			}
 			else
 			{
-				DoWaterTrace(Start, HitLocation);
+				DoWaterTrace(Mode, Start, HitLocation);
 				SpawnTracer(Mode, HitLocation);
 			}
 
@@ -162,12 +162,12 @@ simulated function InstantFireEffects(byte Mode)
 			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
 			if (mHitActor == None)
 			{
-				DoWaterTrace(Start, End);
+				DoWaterTrace(Mode, Start, End);
 				SpawnTracer(Mode, End);
 			}
 			else
 			{
-				DoWaterTrace(Start, HitLocation);
+				DoWaterTrace(Mode, Start, HitLocation);
 				SpawnTracer(Mode, HitLocation);
 			}
 
@@ -197,7 +197,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	if (Level.DetailMode < DM_High || class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;
 
-	TipLoc = GetTipLocation();
+	TipLoc = GetModeTipLocation();
 	Dist = VSize(V - TipLoc);
 
 	// Count shots to determine if it's time to spawn a tracer
@@ -269,12 +269,12 @@ simulated function FlashMuzzleFlash(byte Mode)
 }
 
 // Return the location of the muzzle.
-simulated function Vector GetTipLocation()
+simulated function Vector GetModeTipLocation(optional byte Mode)
 {
     local Coords C;
 	
 	if (!bSilenced)
-		return Super.GetTipLocation();
+		return Super.GetModeTipLocation();
 
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 		C = Instigator.Weapon.GetBoneCoords('tip2');

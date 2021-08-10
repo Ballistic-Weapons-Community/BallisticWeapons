@@ -90,7 +90,7 @@ simulated function Tick(float DT)
 		Start = Location;
 	X = LaserRot;
 
-	Loc = GetTipLocation();
+	Loc = GetModeTipLocation();
 	if (AIController(Instigator.Controller)!=None)
 	{
 		HitLocation = mHitLocation;
