@@ -57,7 +57,7 @@ defaultproperties
 			FireInterval=0.700000
 			AmmoPerFire=0
 			BurstFireRateFactor=1.00
-			FireAnim="Undeploy"
+			FireAnim="Drop"
 			FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
 		End Object
 		

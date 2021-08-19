@@ -33,6 +33,7 @@ defaultproperties
 			Chaos=0.800000
 			PushbackForce=1200.000000
 			Inaccuracy=(X=3000,Y=1500)
+			HipSpreadFactor=1.000000
 			BotRefireRate=0.900000
 			WarnTargetPct=0.100000	
 		End Object
@@ -76,6 +77,7 @@ defaultproperties
 			Chaos=0.500000
 			PushbackForce=600.000000
 			Inaccuracy=(X=1500,Y=1000)
+			HipSpreadFactor=1.000000
 			BotRefireRate=0.900000
 			WarnTargetPct=0.100000	
 		End Object
