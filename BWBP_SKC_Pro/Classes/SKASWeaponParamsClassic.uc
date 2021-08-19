@@ -30,6 +30,7 @@ defaultproperties
 			Recoil=300.000000
 			Chaos=-1.0
 			Inaccuracy=(X=900,Y=900)
+			HipSpreadFactor=1.000000
 			BotRefireRate=0.900000
 			WarnTargetPct=0.100000	
 		End Object
@@ -71,6 +72,7 @@ defaultproperties
 			Recoil=2048.000000
 			Chaos=-1.0
 			Inaccuracy=(X=1600,Y=1600)
+			HipSpreadFactor=1.000000
 			BotRefireRate=0.900000
 			WarnTargetPct=0.100000	
 		End Object
