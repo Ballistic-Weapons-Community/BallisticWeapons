@@ -9,7 +9,7 @@ This version is based around providing the best possible gameplay and balance fo
 # Attribution
 
 The majority of the original codebase was written by RuneStorm.
-This project also contains modified code from Sergeant Kelly's Bonus Pack and Herr General's Airstrikes, as well as the UTComp mutator and GunGame.
+This project also contains modified code from Sergeant Kelly's Bonus Pack and Herr General's Airstrikes, as well as the UTComp mutator, 3SPN's AM/TAM/Freon, and GunGame.
 
 The following people have contributed code to BallisticPro itself:
 
