@@ -462,7 +462,7 @@ simulated event RenderOverlays (Canvas C)
             else
                 C.DrawTile(GeneralUITexArena, 38*ScaleFactor, 38*ScaleFactor, 192 ,128, 32, 32);
         }
-		
+
         // Draw Suppressor Indicator
         C.SetDrawColor(255,0,0,255);
         C.SetPos((C.ClipX / 2) - (38 * ScaleFactor), (C.ClipY / 2) - (256 * ScaleFactor) /* + (179 * ScaleFactor)*/);
@@ -650,7 +650,7 @@ defaultproperties
 	//Arena Scope Stuff
 	GeneralUITexArena=Texture'BW_Core_WeaponTex.SRS900-SUI.SRS900UI'
 	ScopeViewOverlayTexArena=FinalBlend'BW_Core_WeaponTex.SRS900-SUI.SRSScopeViewOverlay_FB'
-	
+
 	Skins(0)=Texture'BW_Core_WeaponTex.SRS900.SRS900Main'
 	Skins(1)=Texture'BW_Core_WeaponTex.SRS900.SRS900Scope'
 	Skins(2)=Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo'
