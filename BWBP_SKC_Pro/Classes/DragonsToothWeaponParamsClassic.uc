@@ -32,7 +32,7 @@ defaultproperties
 			FireInterval=1.100000
 			AmmoPerFire=0
 			BurstFireRateFactor=1.00
-			FireAnim="Slash1"
+			FireAnim="Swing1"
 			FireAnimRate=0.850000
 			FireEffectParams(0)=MeleeEffectParams'ClassicPrimaryEffectParams'
 		End Object
