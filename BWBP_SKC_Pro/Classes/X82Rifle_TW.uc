@@ -195,6 +195,9 @@ defaultproperties
 	GunLength=0.000000
 	bUseSpecialAim=True
 	ParamsClasses(0)=Class'X82TW_WeaponParams'
+	ParamsClasses(1)=Class'X82TW_WeaponParamsClassic'
+	ParamsClasses(2)=Class'X82TW_WeaponParams'
+	ParamsClasses(3)=Class'X82TW_WeaponParams'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.X82TW_PrimaryFire'
 	SelectAnim="Deploy"
 	BringUpTime=1.000000
