@@ -8,36 +8,39 @@ defaultproperties
     //=================================================================	
 	
 	
-		Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=2500.000000,Max=4500.000000)
-			WaterTraceRange=5000.0
-			DecayRange=(Min=0.0,Max=0.0)
-			RangeAtten=0.400000
-			Damage=30
-			HeadMult=1.5
-			LimbMult=0.5
-			DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachShot'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachShot'
-			PenetrateForce=100
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-			FlashScaleFactor=1.500000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)
-			Recoil=256.000000
-			Chaos=-1.0
-			Inaccuracy=(X=900,Y=750)
-			BotRefireRate=0.100000
-			WarnTargetPct=0.100000
-		End Object
+	Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=2500.000000,Max=4500.000000)
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.400000
+		Damage=30
+		TraceCount=10
+		HeadMult=1.5
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachShot'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachShot'
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)
+		Recoil=256.000000
+		Chaos=-1.0
+		Inaccuracy=(X=900,Y=750)
+		BotRefireRate=0.100000
+		WarnTargetPct=0.100000
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.150000
-			BurstFireRateFactor=1.00	
-		FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.150000
+		BurstFireRateFactor=1.00	
+	FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

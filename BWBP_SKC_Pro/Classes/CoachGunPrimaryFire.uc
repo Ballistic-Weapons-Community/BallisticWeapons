@@ -11,6 +11,9 @@
 class CoachGunPrimaryFire extends BallisticProShotgunFire;
 
 var() Actor						MuzzleFlash2;		// The muzzleflash actor
+var() sound						SlugFireSound;
+var() class<BCTraceEmitter>		AltTracerClass;	
+var() class<BCImpactManager>	AltImpactManager;	
 var Name						AimedFireEmptyAnim, FireEmptyAnim, AimedFireSingleAnim, FireSingleAnim;
 var() float						ChargeTime, DecayCharge;
 
@@ -127,20 +130,82 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
     ImpactManager.static.StartSpawn(HitLocation, HitNormal, Surf, instigator);
 	
-	if (TracerClass != None && Level.DetailMode > DM_Low && class'BallisticMod'.default.EffectsDetailMode > 0 && VSize(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()) > 200 && FRand() < TracerChance)
-		Spawn(TracerClass, instigator, , BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation(), Rotator(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()));
+	if (TracerClass != None && Level.DetailMode > DM_Low && class'BallisticMod'.default.EffectsDetailMode > 0 && VSize(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetTipLocation()) > 200 && FRand() < TracerChance)
+		Spawn(TracerClass, instigator, , BallisticAttachment(Weapon.ThirdPersonActor).GetTipLocation(), Rotator(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetTipLocation()));
 	
 	return true;
 }
 
 simulated function SwitchWeaponMode (byte newMode)
 {
-	CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(newMode);
-
 	if (newMode == 1) //Slug Mode
+	{
+        Damage = SlugDamage;
+        HeadMult=1.5f;
+        LimbMult=0.8f;
+        TraceCount = 1;
+
+        PenetrateForce=500;
+		bPenetrate=True;
+
+        BallisticFireSound.Sound=SlugFireSound;
+		BallisticFireSound.Volume=7.1;
+
+        TracerClass=AltTracerClass;
+		ImpactManager=AltImpactManager;
+
+        DamageType=Class'DTCoachSlug';
+		DamageTypeArm=Class'DTCoachSlug';
+		DamageTypeHead=Class'DTCoachSlug';
+
+        RangeAtten=0.250000;
+		CutOffStartRange=1536;
+		CutOffDistance=4096;
+
+		TraceRange.Min=9000;
+		TraceRange.Max=9000;
+
         KickForce = 500;
+		
+     	FlashScaleFactor=3.000000;
+
+		CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(1);
+	}
 	else //Shot Mode
+	{
+        Damage = default.Damage;
+        HeadMult= default.HeadMult;
+        LimbMult=default.LimbMult;
+        
+		TraceCount=default.TraceCount;
+
+        PenetrateForce=0;
+		bPenetrate=False;
+	
+		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
+		BallisticFireSound.Volume=default.BallisticFireSound.Volume;
+
+        TracerClass=default.TracerClass;
+		ImpactManager=default.ImpactManager;
+
+        DamageType=Class'DTCoachShot';
+		DamageTypeArm=Class'DTCoachShot';
+		DamageTypeHead=Class'DTCoachShot';
+
+        CutOffDistance=default.CutOffDistance;
+        CutOffStartRange=default.CutOffStartRange;
+		RangeAtten=default.RangeAtten;
+
+		
+		TraceRange.Min=default.TraceRange.Min;
+		TraceRange.Max=default.TraceRange.Max;
+		
+		FlashScaleFactor=default.FlashScaleFactor;		
 		KickForce=default.KickForce;
+		FireRecoil=default.FireRecoil;
+
+		CoachGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(0);
+	}
 
     SwitchShotParams();
 }
@@ -165,6 +230,13 @@ simulated function ModeTick(float DeltaTime)
 //======================================================================
 simulated event ModeDoFire()
 {
+	if (CoachGun(BW).BCRepClass.default.GameStyle == 1)
+	{
+		super.ModeDoFire();
+		return;
+	}
+	
+
 	//DebugMessage("ModeDoFire: Load:"$Load$" ConsumedLoad:"$ConsumedLoad);
 	
 	if (!AllowFire())
@@ -409,6 +481,8 @@ function SwitchShotParams()
 
 defaultproperties
 {
+	SlugFireSound=Sound'BWBP_SKC_Sounds.Redwood.SuperMagnum-Fire'
+
 	AimedFireEmptyAnim="Fire"
 	FireEmptyAnim="Fire"
 
@@ -428,6 +502,8 @@ defaultproperties
 	TraceCount=10
 	TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 	ImpactManager=Class'BallisticProV55.IM_Shell'
+	AltTracerClass=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'
+	AltImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
 
 	TraceRange=(Min=2560.000000,Max=3072.000000)
 
@@ -435,7 +511,7 @@ defaultproperties
 
 	Damage=12.000000
     MaxHits=14 // inflict maximum of 156 damage to a single target
-	SlugDamage=80
+    SlugDamage=80
     SlugDoubleDamage=70
 	RangeAtten=0.250000
     PenetrateForce=0
@@ -462,6 +538,7 @@ defaultproperties
 	SlugInaccuracy=(X=16,Y=0)
 	SlugDoubleInaccuracy=(X=48,Y=0)
 
+	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)
 	FireAnimRate=1.35
 	FireRate=0.300000
 	AmmoClass=Class'BWBP_SKC_Pro.Ammo_CoachShells'
