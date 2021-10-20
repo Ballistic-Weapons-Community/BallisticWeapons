@@ -8,7 +8,7 @@ defaultproperties
     //=================================================================	
 	
 	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
 			TraceRange=(Min=2500.000000,Max=4500.000000)
 			WaterTraceRange=5000.0
 			DecayRange=(Min=0.0,Max=0.0)
@@ -36,7 +36,7 @@ defaultproperties
 		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 			FireInterval=0.150000
 			BurstFireRateFactor=1.00	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+		FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
 		End Object
 		
 	//=================================================================
@@ -79,8 +79,8 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=2
-		SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
-		//SightPivot=(Pitch=256)
+		SightOffset=(X=-40.000000,Y=9.500000,Z=32.000000)
+		SightPivot=(Pitch=256)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
