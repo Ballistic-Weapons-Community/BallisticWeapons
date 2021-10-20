@@ -24,6 +24,15 @@ var   bool				bNowEmpty;			// Checks if it should play modified animation.
 
 var() float				SingleReloadAnimRate;   // Animation rate for single reload.
 
+
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle == 1)
+	{
+		CoachGunPrimaryFire(FireMode[0]).bFireOnRelease = false;
+	}
+}
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
