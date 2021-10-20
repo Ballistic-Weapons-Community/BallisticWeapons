@@ -34,7 +34,7 @@ defaultproperties
     //=================================================================	
 	
 	
-		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
+		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
 			FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
 			Recoil=0.0
 			Chaos=-1.0
