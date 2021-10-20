@@ -55,7 +55,7 @@ defaultproperties
 			FireInterval=1.000000
 			AmmoPerFire=0
 			BurstFireRateFactor=1.00
-			FireAnim="Drop"
+			FireAnim="Deploy"
 			FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
 		End Object
 		
@@ -95,13 +95,18 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		SightPivot=(Pitch=450)
+		SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
 		InventorySize=51
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.000000
+		SightingTime=0.450000
+		//SightingTime=0.000000
+        //ZoomType=ZT_Smooth
+        ZoomType=ZT_Logarithmic
 		MagAmmo=5
-		SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
+		//SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
