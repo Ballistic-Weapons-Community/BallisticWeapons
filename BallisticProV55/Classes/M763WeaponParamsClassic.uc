@@ -117,7 +117,7 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
-		SightOffset=(X=-4.000000,Z=6.500000)
+		SightOffset=(X=5.000000,Z=18.500000)
 		SightPivot=(Pitch=512)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
