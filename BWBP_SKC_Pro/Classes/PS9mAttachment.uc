@@ -57,6 +57,16 @@ simulated event PostBeginPlay()
 	SetBoneScale (0, 0.0, 'Dart');
 	SetBoneScale (1, 0.0, 'FartAssist');
 }
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (PS9mPistol(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
+	{
+		TracerChance=1;
+		TracerMix=0;
+	}
+}
+
 
 // Does all the effects for an instant-hit kind of fire.
 // On the client, this uses mHitLocation to find all the other info needed.

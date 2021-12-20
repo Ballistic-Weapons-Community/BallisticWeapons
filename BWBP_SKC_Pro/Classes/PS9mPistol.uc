@@ -299,9 +299,9 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Pickup')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-Cock',Radius=32.000000)
-	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-MagInS1',Volume=1.800000,Radius=32.000000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-MagOut',Volume=1.800000,Radius=32.000000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-MagIn',Volume=1.800000,Radius=32.000000)
+	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-MagInS1',Volume=1.100000,Radius=32.000000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-MagOut',Volume=1.100000,Radius=32.000000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-MagIn',Volume=1.100000,Radius=32.000000)
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Semi-Automatic")
 	WeaponModes(1)=(bUnavailable=True)
@@ -310,6 +310,7 @@ defaultproperties
 	SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
 	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'PS9mWeaponParams'
+	ParamsClasses(1)=Class'PS9mWeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.PS9mPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.PS9mSecondaryFire'
 	PutDownTime=0.700000

@@ -11,6 +11,20 @@ var() float 	CutOffDistance;
 var() float 	CutOffStartRange;
 var int	 		MaxSpreadFactor;
 
+
+
+simulated function ApplyFireEffectParams(FireEffectParams params)
+{
+    local ShotgunEffectParams effect_params;
+
+    super.ApplyFireEffectParams(params);
+
+    effect_params = ShotgunEffectParams(params);
+
+	HipSpreadFactor = effect_params.HipSpreadFactor;
+}
+
+
 function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
 {
 	local float  DamageFactor;

@@ -5,8 +5,9 @@ var() class<Emitter>			TracerClass;	// Type of tracer to use
 var() class<BCImpactManager>	ImpactManager;	// Impact manager to use for ListenServer and StandAlone impacts
 var() bool						bDoWaterSplash;	// splash when hitting water, duh...
 var() int                       MaxHits;        // Cannot hit a single target more times than this
+var() float						HipSpreadFactor;//Spread increases by this amount when shooting from the hip
 
 defaultproperties
 {
-
+     HipSpreadFactor=2.00000
 }

@@ -567,11 +567,11 @@ defaultproperties
     bNetNotify=True
     bCockOnEmpty=False
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
-	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=2.200000)
-	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=2.200000)
-	CockSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-Cock',Volume=2.200000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-MagOut',Volume=2.400000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-MagIn',Volume=2.400000)
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=1.600000)
+	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=1.600000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-Cock',Volume=1.200000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-MagOut',Volume=1.400000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-MagIn',Volume=1.400000)
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(Value=4.000000)
@@ -580,6 +580,7 @@ defaultproperties
 	SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
 	SightDisplayFOV=25.000000
 	ParamsClasses(0)=Class'LK05WeaponParams'
+	ParamsClasses(1)=Class'LK05WeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LK05PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LK05SecondaryFire'
 	IdleAnimRate=0.500000

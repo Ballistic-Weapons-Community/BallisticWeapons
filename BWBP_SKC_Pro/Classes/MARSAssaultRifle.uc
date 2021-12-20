@@ -739,6 +739,7 @@ defaultproperties
 	ZoomStages=1
 	SMuzzleFlashOffset=(X=15.000000,Z=-10.000000)
 	ParamsClasses(0)=Class'MARSWeaponParams'
+	ParamsClasses(1)=Class'MARSWeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MARSPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MARSSecondaryFire'
 	PutDownTime=0.700000

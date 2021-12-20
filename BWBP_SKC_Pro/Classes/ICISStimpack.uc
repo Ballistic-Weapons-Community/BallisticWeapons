@@ -218,6 +218,7 @@ defaultproperties
      GunLength=0.000000
      bAimDisabled=True
 	 ParamsClasses(0)=Class'ICISWeaponParams'
+	 //ParamsClasses(1)=Class'ICISWeaponParamsClassic'
 	 FireModeClass(0)=Class'BWBP_SKC_Pro.ICISPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.ICISSecondaryFire'
      SelectAnimRate=2.500000

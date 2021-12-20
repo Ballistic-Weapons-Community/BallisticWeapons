@@ -48,6 +48,21 @@ function ServerSwitchLaser(bool bNewLaserOn)
 		
 	MX32SecondaryFire(FireMode[1]).AdjustLaserParams(bLaserOn);
 
+	if (bLaserOn)
+	{
+		WeaponModes[0].bUnavailable=true;
+		WeaponModes[1].bUnavailable=false;
+		CurrentWeaponMode=1;
+		ServerSwitchWeaponMode(1);
+	}
+	else
+	{
+		WeaponModes[0].bUnavailable=false;
+		WeaponModes[1].bUnavailable=true;
+		CurrentWeaponMode=0;
+		ServerSwitchWeaponMode(0);		
+	}
+
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
 }
@@ -56,11 +71,15 @@ simulated function ClientSwitchLaser()
 {
 	if (bLaserOn)
 	{
+		WeaponModes[0].bUnavailable=true;
+		WeaponModes[1].bUnavailable=false;
 		SpawnLaserDot();
 		PlaySound(LaserOnSound,,0.7,,32);
 	}
 	else
 	{
+		WeaponModes[0].bUnavailable=false;
+		WeaponModes[1].bUnavailable=true;
 		KillLaserDot();
 		PlaySound(LaserOffSound,,0.7,,32);
 	}
@@ -586,9 +605,10 @@ defaultproperties
      SightDisplayFOV=20.000000 
      FireModeClass(0)=Class'BWBP_OP_Pro.MX32PrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.MX32SecondaryFire'
-	 WeaponModes(0)=(bUnavailable=True)
-	 WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=3.000000)
-	 WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+	 WeaponModes(0)=(ModeName="Auto Rockets",ModeID="WM_FullAuto")
+	 WeaponModes(1)=(ModeName="Guided Rockets",ModeID="WM_FullAuto",bUnavailable=true)
+	 WeaponModes(2)=(bUnavailable=true)
+	 CurrentWeaponMode=0
 	 ParamsClasses(0)=Class'MX32WeaponParams'
 	 MagAmmo=50
      PutDownAnimRate=1.500000

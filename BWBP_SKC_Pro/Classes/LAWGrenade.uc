@@ -134,4 +134,5 @@ defaultproperties
      MyDamageType=None
      StaticMesh=StaticMesh'BWBP_SKC_Static.LAW.LAWRocket'
      DrawScale=0.450000
+	 ModeIndex=1
 }

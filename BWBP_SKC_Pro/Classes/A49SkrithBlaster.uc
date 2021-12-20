@@ -329,8 +329,8 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Putaway')
 	CockAnim="Overheat"
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut',Volume=1.300000)
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit',Volume=1.300000)
+	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipOut')
+	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73-ClipHit')
 	WeaponModes(0)=(bUnavailable=True)
 	SightPivot=(Pitch=2000,Roll=-768)
 	SightOffset=(X=-12.000000,Y=33.000000,Z=65.000000)
@@ -338,6 +338,7 @@ defaultproperties
 	SightZoomFactor=0.85
 	GunLength=0.100000
 	ParamsClasses(0)=Class'A49WeaponParams'
+	ParamsClasses(1)=Class'A49WeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.A49PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.A49SecondaryFire'
 	PutDownAnimRate=2.300000

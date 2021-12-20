@@ -15,8 +15,6 @@ var() sound		ExtraFireSound;
 var() sound		SilentFireSound;
 var() sound		BlackFireSound;
 
-var() sound		Amp1FireSound; //Incendiary Red
-var() sound		Amp2FireSound; //???
 var() sound		RegularFireSound;
 var() Actor						MuzzleFlashAmp1;		
 var() class<Actor>				MuzzleFlashClassAmp1;	
@@ -76,67 +74,10 @@ simulated function DestroyEffects()
 
 simulated function SwitchWeaponMode (byte NewMode)
 {
-	if (NewMode == 0) //Standard Fire
-	{
-		BallisticFireSound.Sound=default.BallisticFireSound.sound;
-		BallisticFireSound.Volume=default.BallisticFireSound.Volume;
-		FireRecoil=default.FireRecoil;
-		FireChaos=default.FireChaos;
-		Damage = default.Damage;
-		DamageType=default.DamageType;
-		DamageTypeHead=default.DamageTypeHead;
-		DamageTypeArm=default.DamageTypeArm;
-		FireRate=Default.FireRate;
-		FlashScaleFactor=default.FlashScaleFactor;
-		RangeAtten=default.RangeAtten;
-	}
-	else if (NewMode == 1) //Incendiary Amp
-	{
-		BallisticFireSound.Sound=Amp1FireSound;
-		BallisticFireSound.Volume=1.500000;
-		FireRecoil=320.000000;
-		FireChaos=0.450000;
-		Damage=45.000000;
-		DamageType=class'DTSRXRifle_Incendiary';
-		DamageTypeHead=class'DTSRXRifleHead_Incendiary';
-		DamageTypeArm=class'DTSRXRifle_Incendiary';
-		FireRate=0.280000;
-		FlashScaleFactor=1.100000;
-		RangeAtten=1.000000;
-	}
-	else if (NewMode == 2) //Acid Amp
-	{
-		BallisticFireSound.Sound=Amp2FireSound;
-		BallisticFireSound.Volume=1.200000;
-		FireRecoil=64.000000;
-		FireChaos=0.150000;
-		Damage=25.000000;
-		DamageType=class'DTSRXRifle_Corrosive';
-		DamageTypeHead=class'DTSRXRifleHead_Corrosive';
-		DamageTypeArm=class'DTSRXRifle_Corrosive';
-		FireRate=0.160000;
-		FlashScaleFactor=0.400000;
-		RangeAtten=1.000000;
-	}
-	else
-	{
-		BallisticFireSound.Sound=default.BallisticFireSound.sound;
-		BallisticFireSound.Volume=default.BallisticFireSound.Volume;
-		FireRecoil=default.FireRecoil;
-		FireChaos=default.FireChaos;
-		Damage = default.Damage;
-		DamageType=default.DamageType;
-		DamageTypeHead=default.DamageTypeHead;
-		DamageTypeArm=default.DamageTypeArm;
-		FireRate=Default.FireRate;
-		FlashScaleFactor=default.FlashScaleFactor;
-		RangeAtten=default.RangeAtten;
-	}
 	if (Weapon.bBerserk)
 		FireRate *= 0.75;
 	if ( Level.GRI.WeaponBerserk > 1.0 )
 	    FireRate /= Level.GRI.WeaponBerserk;
-
 }
 
 //// server propagation of firing ////
@@ -144,10 +85,6 @@ function ServerPlayFiring()
 {
 	if (SRXRifle(Weapon) != None && SRXRifle(Weapon).bSilenced && SilencedFireSound.Sound != None)
 		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,true);
-	else if (SRXRifle(Weapon) != None && SRXRifle(Weapon).CurrentWeaponMode == 1 && Amp1FireSound != None)
-		Weapon.PlayOwnedSound(Amp1FireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
-	else if (SRXRifle(Weapon) != None && SRXRifle(Weapon).CurrentWeaponMode == 2 && Amp2FireSound != None)
-		Weapon.PlayOwnedSound(Amp2FireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
 
@@ -194,10 +131,6 @@ function PlayFiring()
 
 	if (SRXRifle(Weapon) != None && SRXRifle(Weapon).bSilenced && SilencedFireSound.Sound != None)
 		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,true);
-	else if (SRXRifle(Weapon) != None && SRXRifle(Weapon).CurrentWeaponMode == 1 && Amp1FireSound != None)
-		Weapon.PlayOwnedSound(Amp1FireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
-	else if (SRXRifle(Weapon) != None && SRXRifle(Weapon).CurrentWeaponMode == 2 && Amp2FireSound != None)
-		Weapon.PlayOwnedSound(Amp2FireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
 	else if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
 
@@ -264,8 +197,6 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 defaultproperties
 {
-     Amp1FireSound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-LoudFire'
-     Amp2FireSound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-SpecialFire'
 	 AmpFlashBone="tip2"
      Amp1FlashScaleFactor=0.300000
 	 Amp2FlashScaleFactor=0.300000

@@ -29,17 +29,17 @@ static function IncrementKills(Controller Killer)
 
 defaultproperties
 {
-     DeathStrings(0)="%o's head got in the way of %k's M2020 gauss round."
-     DeathStrings(1)="%k's M2020 opened %o's mind to the wonders of electromagnets"
+     DeathStrings(0)="%o's head got in the way of %k's M2020 round."
+     DeathStrings(1)="%k's M2020 opened %o's cranium"
      DeathStrings(2)="%k's M2020 wiped the smile clean off %o's face."
      HipString="Luck"
      AimedString="Scoped"
      bHeaddie=True
      DamageIdent="Sniper"
      WeaponClass=Class'BWBP_SKC_Pro.M2020GaussDMR'
-     DeathString="%o's head got in the way of %k's M2020 gauss round."
-     FemaleSuicide="%o wanted to experience magnetic acceleration first hand!"
-     MaleSuicide="%o wanted to experience magnetic acceleration first hand!"
+     DeathString="%o's head got in the way of %k's M2020 round."
+     FemaleSuicide="%o looked down her M2020 barrel."
+     MaleSuicide="%o looked down his M2020 barrel."
      bAlwaysSevers=True
      bSpecial=True
      PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.BulletImpacts.Headshot'

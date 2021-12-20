@@ -64,6 +64,7 @@ defaultproperties
      GunLength=0.000000
      bAimDisabled=True
      ParamsClasses(0)=Class'X4WeaponParams'
+     ParamsClasses(1)=Class'X4WeaponParamsClassic'
      FireModeClass(0)=Class'BallisticProV55.X4PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.X4SecondaryFire'
      SelectAnimRate=1.250000

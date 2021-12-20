@@ -140,17 +140,18 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+     ModeIndex=1
      DetonateOn=DT_Impact
      PlayerImpactType=PIT_Detonate
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=1.000000
      ImpactDamage=20
-     ImpactDamageType=Class'BallisticProV55.DTM50Grenade'
+     ImpactDamageType=Class'BWBP_OP_Pro.DTZ250Grenade'
      ImpactManager=Class'BWBP_OP_Pro.IM_Z250Grenade'
      TrailClass=Class'BallisticProV55.M50GrenadeTrail'
      TrailOffset=(X=-8.000000)
-     MyRadiusDamageType=Class'BallisticProV55.DTM50GrenadeRadius'
+     MyRadiusDamageType=Class'BWBP_OP_Pro.DTZ250GrenadeRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      ShakeRadius=512.000000
      MotionBlurRadius=384.000000
@@ -159,7 +160,7 @@ defaultproperties
      Speed=4000.000000
      Damage=30.000000
      DamageRadius=64.000000
-     MyDamageType=Class'BallisticProV55.DTM50GrenadeRadius'
+     MyDamageType=Class'BWBP_OP_Pro.DTZ250GrenadeRadius'
      ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.M900.M900Grenade'
      bIgnoreTerminalVelocity=True

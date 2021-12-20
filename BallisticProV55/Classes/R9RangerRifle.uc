@@ -14,8 +14,6 @@ class R9RangerRifle extends BallisticWeapon;
 
 var float LastModeChangeTime;
 
-#exec OBJ LOAD File=R9A_tex.utx
-
 exec simulated function SwitchWeaponMode (optional byte ModeNum)	
 {
 	if (ClientState == WS_ReadyToFire && ReloadState == RS_None) 
@@ -223,6 +221,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	GunLength=80.000000
 	ParamsClasses(0)=Class'R9WeaponParams'
+	ParamsClasses(1)=Class'R9WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.R9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.R9SecondaryFire'
 	SelectAnimRate=1.100000

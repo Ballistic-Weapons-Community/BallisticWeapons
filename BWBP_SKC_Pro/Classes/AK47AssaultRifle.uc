@@ -3,6 +3,9 @@
 //
 // A powerful 7.62mm powerhouse. Fills a similar role to the CYLO UAW, albiet is
 // far more reliable and has a launchable bayonet in place of the shotgun.
+//
+// by Sarge, based on code by DC
+// Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AK47AssaultRifle extends BallisticWeapon;
 
@@ -387,6 +390,7 @@ defaultproperties
 	SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
 	SightDisplayFOV=40.000000
 	ParamsClasses(0)=Class'AK490WeaponParams'
+	ParamsClasses(1)=Class'AK490WeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.AK47PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.AK47SecondaryFire'
 	IdleAnimRate=0.400000

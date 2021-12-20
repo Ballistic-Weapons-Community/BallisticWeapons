@@ -738,6 +738,7 @@ defaultproperties
 	SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 	SightingTime=0.500000
 	ParamsClasses(0)=Class'G5WeaponParams'
+	ParamsClasses(1)=Class'G5WeaponParamsClassic' //todo: seeker stats
 	FireModeClass(0)=Class'BallisticProV55.G5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.G5SecondaryFire'
 	SelectAnimRate=0.600000

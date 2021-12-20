@@ -71,6 +71,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
+     ModeIndex=1
      ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
      TrailClass=Class'BWBP_OP_Pro.PD97DartTrail'
      MyRadiusDamageType=Class'BWBP_OP_Pro.DTPD97Dart'

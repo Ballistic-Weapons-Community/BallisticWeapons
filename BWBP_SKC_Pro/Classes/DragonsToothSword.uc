@@ -144,6 +144,7 @@ defaultproperties
 	GunLength=0.000000
 	bAimDisabled=True
 	ParamsClasses(0)=Class'DragonsToothWeaponParams'
+	ParamsClasses(1)=Class'DragonsToothWeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.DragonsToothPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.DragonsToothSecondaryFire'
 	SelectAnim="PulloutFancy"

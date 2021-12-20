@@ -75,9 +75,11 @@ function ServerSwitchSilencer(bool bNewValue)
 	XK2PrimaryFire(BFireMode[0]).SetSilenced(bNewValue);
 }
 
-/*
+
 exec simulated function WeaponSpecial(optional byte i)
 {
+	if (BCRepClass.default.GameStyle != 1)
+		return;
 	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
 	if (Clientstate != WS_ReadyToFire)
@@ -88,7 +90,7 @@ exec simulated function WeaponSpecial(optional byte i)
 	SwitchSilencer(bSilenced);
 	ReloadState = RS_GearSwitch;
 }
-*/
+
 
 simulated function SwitchSilencer(bool bNewValue)
 {
@@ -241,6 +243,7 @@ defaultproperties
 	CurrentRating=0.8
 	SightZoomFactor=0.85
 	ParamsClasses(0)=Class'XK2WeaponParams'
+	ParamsClasses(1)=Class'XK2WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.Xk2PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.Xk2SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

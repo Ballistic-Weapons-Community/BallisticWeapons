@@ -251,9 +251,11 @@ function ServerSwitchSilencer(bool bNewValue)
 	XRS10PrimaryFire(BFireMode[0]).SetSilenced(bNewValue);
 }
 
-/*
+
 exec simulated function WeaponSpecial(optional byte i)
 {
+	if (BCRepClass.default.GameStyle != 1)
+		return;
 	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
 	if (Clientstate != WS_ReadyToFire)
@@ -264,7 +266,7 @@ exec simulated function WeaponSpecial(optional byte i)
 	SwitchSilencer(bSilenced);
 	ReloadState = RS_GearSwitch;
 }
-*/
+
 
 simulated function SwitchSilencer(bool bNewValue)
 {
@@ -421,6 +423,7 @@ defaultproperties
 	SightDisplayFOV=60.000000
 	SightZoomFactor=0.85
 	ParamsClasses(0)=Class'XRS10WeaponParams'
+	ParamsClasses(1)=Class'XRS10WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.XRS10PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XRS10SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

@@ -764,7 +764,7 @@ defaultproperties
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemIn',Volume=0.700000)
      ClipInFrame=0.700000
      WeaponModes(0)=(ModeName="Bolt",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1)
+     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto"/*,RecoilParamsIndex=1*/)
      WeaponModes(2)=(ModeName="Flame",RecoilParamsIndex=1)
      WeaponModes(3)=(ModeName="Cone Immolation",ModeID="WM_FullAuto",bUnavailable=True,RecoilParamsIndex=1)
      WeaponModes(4)=(ModeName="Fire Bomb",ModeID="WM_FullAuto")
@@ -774,6 +774,7 @@ defaultproperties
      SightDisplayFOV=40.000000
 	 GunLength=128.000000
 	 ParamsClasses(0)=Class'RSDarkWeaponParams'
+	 ParamsClasses(1)=Class'RSDarkWeaponParams'
      FireModeClass(0)=Class'BallisticProV55.RSDarkPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.RSDarkMeleeFire'
      BringUpTime=0.500000

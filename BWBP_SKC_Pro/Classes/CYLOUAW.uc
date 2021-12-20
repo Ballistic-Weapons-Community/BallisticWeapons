@@ -529,6 +529,7 @@ defaultproperties
 	SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
 	GunLength=16.000000
 	ParamsClasses(0)=Class'CYLOWeaponParams' 
+	ParamsClasses(1)=Class'CYLOWeaponParamsClassic' 
 	AmmoClass[0]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
 	AmmoClass[1]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.CYLOPrimaryFire'

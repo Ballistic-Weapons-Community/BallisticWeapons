@@ -153,4 +153,5 @@ defaultproperties
      MyDamageType=None
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.OA-AR.OA-AR_Grenade'
      DrawScale=0.450000
+	 ModeIndex=1
 }

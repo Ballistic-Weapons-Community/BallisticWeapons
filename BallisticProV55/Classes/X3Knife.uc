@@ -161,6 +161,7 @@ defaultproperties
      GunLength=0.000000
 	 bAimDisabled=True
 	 ParamsClasses(0)=Class'X3WeaponParams'
+	 //ParamsClasses(1)=Class'X3WeaponParamsClassic'
      FireModeClass(0)=Class'BallisticProV55.X3PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.X3SecondaryFire'
      SelectAnimRate=2.000000

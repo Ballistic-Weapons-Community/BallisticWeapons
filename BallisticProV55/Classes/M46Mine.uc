@@ -14,6 +14,7 @@ function bool IsStationary()
 
 defaultproperties
 {
+     ModeIndex=1
      DetonateSound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_GrenadeBeep'
      ImpactManager=Class'BallisticProV55.IM_Grenade'
      MyRadiusDamageType=Class'BallisticProV55.DTM46GrenadeRadius'

@@ -686,6 +686,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	EffectOffset=(X=100,Z=7)
 	ParamsClasses(0)=Class'M50WeaponParams'
+	ParamsClasses(1)=Class'M50WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.M50PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M50SecondaryFire'
 	PutDownAnimRate=1.500000

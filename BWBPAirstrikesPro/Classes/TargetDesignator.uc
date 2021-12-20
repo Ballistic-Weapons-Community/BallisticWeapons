@@ -365,7 +365,9 @@ defaultproperties
     ManualLines(1)="Raises the scope. The color of the scope changes from green to red, depending on whether or not the player is sufficiently far away from the aim point to call in the current airstrike."
     ManualLines(2)="Switch modes by holding down the Fire Mode key and scrolling the mouse.||Effective at medium range. Extremely effective at long range, against cover, and against groups."
 
-    StrikeInfo(0)=(BombClass=Class'BWBPAirstrikesPro.AIM9Missile',Cooldown=15,BomberSpeed=6000.000000,BombRange=2500.000000,BombInterval=0.350000,MinZDist=4096.000000,ModeDescription="Multiple missile attack targeted accurately on the indicated location.")
+    //Pro
+	
+	StrikeInfo(0)=(BombClass=Class'BWBPAirstrikesPro.AIM9Missile',Cooldown=15,BomberSpeed=6000.000000,BombRange=2500.000000,BombInterval=0.350000,MinZDist=4096.000000,ModeDescription="Multiple missile attack targeted accurately on the indicated location.")
     StrikeInfo(1)=(BombClass=Class'BWBPAirstrikesPro.CarpetBomberBomb',Cooldown=60,BomberSpeed=5500.000000,BombRange=7500.000000,BombInterval=0.150000,MinZDist=4096.000000,MinRange=4096.000000,BombOffset=(Y=250.000000),ModeDescription="Drops bombs with good blast radius in a line with midpoint on targeted location.")
     StrikeInfo(2)=(BombClass=Class'BWBPAirstrikesPro.CBU30BaseShell',Cooldown=30,BomberSpeed=9000.000000,MinZDist=2048.000000,MinRange=1024.000000,ModeDescription="Drops a cluster bomb. The clusters release toxic gas.")
     StrikeInfo(3)=(BombClass=Class'BWBPAirstrikesPro.CBU58BaseShell',Cooldown=45,BomberSpeed=9000.000000,MinZDist=2048.000000,MinRange=1536.000000,ModeDescription="Drops a cluster bomb. The clusters start raging fires.")
@@ -377,11 +379,24 @@ defaultproperties
     StrikeInfo(9)=(BombClass=Class'BWBPAirstrikesPro.MK77Projectile',Cooldown=60,BomberSpeed=5500.000000,MinZDist=2048.000000,MinRange=7000.000000,ModeDescription="Targeted incendiary missile with secondary explosion.")
     StrikeInfo(10)=(Cooldown=45,MinZDist=2048.000000,MinRange=8192.000000,bRemoteFired=True,Dropper=Class'BWBPAirstrikesPro.MLRSDropper',ModeDescription="Remote rocket attack saturates the targeted area after a delay.")
     StrikeInfo(11)=(BombClass=Class'BWBPAirstrikesPro.NapalmBomb',Cooldown=60,BomberSpeed=5500.000000,BombRange=7500.000000,BombInterval=0.200000,MinZDist=4096.000000,MinRange=8192.000000,BombOffset=(Y=500.000000),ModeDescription="Carpet bombs in a line with napalm bombs. Very strong.")
-    BigIconMaterial=Texture'BWBP_OP_Tex.Designator.BigIcon_Designator'
+    
+	//Classic
+	
+	//StrikeInfo(12)=(BombClass=Class'BWBPAirstrikesPro.BLU82Projectile',Cooldown=45,BomberSpeed=10000.000000,BombRange=320.000000,BombInterval=0.330000,MinZDist=2048.000000,MinRange=14000.000000,ModeDescription="Extremely powerful, wide-ranged nuclear attack.")
+    //StrikeInfo(13)=(BombClass=Class'BWBPAirstrikesPro.BLU96Projectile',Cooldown=45,BomberSpeed=10000.000000,BombRange=320.000000,BombInterval=0.330000,MinZDist=2048.000000,MinRange=14000.000000,ModeDescription="Powerful, wide-ranged fuel-air bomb.")
+    //StrikeInfo(14)=(BombClass=Class'BWBPAirstrikesPro.GBU38Projectile',Cooldown=45,BomberSpeed=10000.000000,BombRange=320.000000,BombInterval=0.330000,MinZDist=2048.000000,MinRange=12000.000000,ModeDescription="Drops a single accurate bomb of monstrous power.")
+    //StrikeInfo(15)=(BombClass=Class'BWBPAirstrikesPro.GBU43Projectile',Cooldown=45,BomberSpeed=10000.000000,BombRange=320.000000,BombInterval=0.330000,MinZDist=2048.000000,MinRange=12000.000000,ModeDescription="Drops a single accurate bomb of monstrous power.")
+    //StrikeInfo(16)=(BombClass=Class'BWBPAirstrikesPro.LUU4BaseShell',Cooldown=45,BomberSpeed=10000.000000,BombRange=320.000000,BombInterval=0.330000,MinZDist=512.000000,MinRange=1.000000,ModeDescription="Illuminates the map. Is not an attack.")
+    //StrikeInfo(17)=(BombClass=Class'BWBPAirstrikesPro.W54Projectile',Cooldown=45,BomberSpeed=1000.000000,BombRange=320.000000,BombInterval=0.330000,MinZDist=2048.000000,MinRange=18000.000000,ModeDescription="Drops a tactical nuke, wiping out anything nearby.")
+	
+	BigIconMaterial=Texture'BWBP_OP_Tex.Designator.BigIcon_Designator'
     bAllowWeaponInfoOverride=False
     bWT_Super=True
     bNoMag=True
-    WeaponModes(0)=(ModeName="AIM-9 Missiles",ModeID="WM_FullAuto")
+    
+	//Pro
+	
+	WeaponModes(0)=(ModeName="AIM-9 Missiles",ModeID="WM_FullAuto")
     WeaponModes(1)=(ModeName="Carpet Bombing",ModeID="WM_FullAuto")
     WeaponModes(2)=(ModeName="CBU-30 Chemical Cluster Bomb")
     WeaponModes(3)=(ModeName="CBU-58 Incendiary Cluster Bomb",ModeID="WM_FullAuto")
@@ -393,6 +408,16 @@ defaultproperties
     WeaponModes(9)=(ModeName="MK-77 Incendiary Bomb",ModeID="WM_FullAuto")
     WeaponModes(10)=(ModeName="MLRS Rocket Barrage",ModeID="WM_FullAuto")
     WeaponModes(11)=(ModeName="Napalm Carpet Bombing",ModeID="WM_FullAuto")
+	
+	//Classic
+	
+	//WeaponModes(12)=(ModeName="BLU-82 'Daisy Cutter'",ModeID="WM_FullAuto,bUnavailable=True")
+    //WeaponModes(13)=(ModeName="BLU-96 Fuel-Air Bomb",ModeID="WM_FullAuto,bUnavailable=True")
+    //WeaponModes(14)=(ModeName="GBU-38 500lb JDAM",ModeID="WM_FullAuto,bUnavailable=True")
+    //WeaponModes(15)=(ModeName="GBU-43 MOAB",ModeID="WM_FullAuto,bUnavailable=True")
+    //WeaponModes(16)=(ModeName="LUU-4 Illumination Flare",ModeID="WM_FullAuto,bUnavailable=True")
+    //WeaponModes(17)=(ModeName="W54 Nuclear Warhead",ModeID="WM_FullAuto,bUnavailable=True")
+	
     CurrentWeaponMode=4
     ScopeXScale=1.400000
     ZoomInAnim="Raise"
@@ -402,6 +427,7 @@ defaultproperties
     bNoCrosshairInScope=True
     bAimDisabled=True
     ParamsClasses(0)=Class'TargetDesignatorWeaponParams'
+	ParamsClasses(1)=Class'TargetDesignatorWeaponParamsClassic'
     FireModeClass(0)=Class'BWBPAirstrikesPro.TargetDesignatorFire'
     FireModeClass(1)=Class'BWBPAirstrikesPro.TargetDesignatorScopeFire'
     SelectAnimRate=3.100000

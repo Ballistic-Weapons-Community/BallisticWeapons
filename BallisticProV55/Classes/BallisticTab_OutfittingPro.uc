@@ -43,7 +43,7 @@ struct LoadOutBox
 var LoadoutBox	Boxes[NUM_BOXES_TOTAL]; //DM, and the two teams
 var localized string		BoxNames[NUM_BOXES];
 var int			SelectedBox;
-
+var() localized string Headings[12];
 
 struct LOWeapInfo
 {
@@ -96,16 +96,16 @@ function LoadList()
 	local bool OtherLoaded, MiscLoaded;
 	local BC_WeaponInfoCache.WeaponInfo WI;
 
-	lb_NewWeapons.CheckList.Add(class'BallisticWeaponClassInfo'.static.GetHeading(0),,"MELEE",true);
-	lb_NewWeapons.CheckList.Add(class'BallisticWeaponClassInfo'.static.GetHeading(1),,"SIDEARM",true);
-	lb_NewWeapons.CheckList.Add(class'BallisticWeaponClassInfo'.static.GetHeading(2),,"SPREAD",true);
-	lb_NewWeapons.CheckList.Add(class'BallisticWeaponClassInfo'.static.GetHeading(3),,"SMG",true);
-	lb_NewWeapons.CheckList.Add(class'BallisticWeaponClassInfo'.static.GetHeading(4),,"AR",true);
-	lb_NewWeapons.CheckList.Add(class'BallisticWeaponClassInfo'.static.GetHeading(5),,"MG",true);
-	lb_NewWeapons.CheckList.Add(class'BallisticWeaponClassInfo'.static.GetHeading(6),,"SNIPER",true);
-	lb_NewWeapons.CheckList.Add(class'BallisticWeaponClassInfo'.static.GetHeading(7),,"HEAVY",true);
-	lb_NewWeapons.CheckList.Add(class'BallisticWeaponClassInfo'.static.GetHeading(8),,"SPECIAL",true);
-	lb_NewWeapons.CheckList.Add(class'BallisticWeaponClassInfo'.static.GetHeading(9),,"TRAPS",true);
+	lb_NewWeapons.CheckList.Add(Headings[0],,"MELEE",true);
+	lb_NewWeapons.CheckList.Add(Headings[1],,"SIDEARM",true);
+	lb_NewWeapons.CheckList.Add(Headings[2],,"SPREAD",true);
+	lb_NewWeapons.CheckList.Add(Headings[3],,"SMG",true);
+	lb_NewWeapons.CheckList.Add(Headings[4],,"AR",true);
+	lb_NewWeapons.CheckList.Add(Headings[5],,"MG",true);
+	lb_NewWeapons.CheckList.Add(Headings[6],,"SNIPER",true);
+	lb_NewWeapons.CheckList.Add(Headings[7],,"HEAVY",true);
+	lb_NewWeapons.CheckList.Add(Headings[8],,"SPECIAL",true);
+	lb_NewWeapons.CheckList.Add(Headings[9],,"TRAPS",true);
 
 	for (j=0;j<12;j++)
 		Index[j] = j+1;
@@ -174,7 +174,7 @@ function LoadList()
 					if (!MiscLoaded)
 					{
 						MiscLoaded=true;
-						lb_NewWeapons.CheckList.Add(class'BallisticWeaponClassInfo'.static.GetHeading(10),,"MISC",true);
+						lb_NewWeapons.CheckList.Add(Headings[10],,"MISC",true);
 					}
 					lb_NewWeapons.CheckList.Insert(Index[10], Recs[i].FriendlyName,, string(j));
 					Index[10]++;
@@ -186,7 +186,7 @@ function LoadList()
 				if (!OtherLoaded)
 				{
 					OtherLoaded=true;
-					lb_NewWeapons.CheckList.Add(class'BallisticWeaponClassInfo'.static.GetHeading(11),,"OTHER",true);
+					lb_NewWeapons.CheckList.Add(Headings[11],,"OTHER",true);
 				}
 				lb_NewWeapons.CheckList.Insert(Index[11], Recs[i].FriendlyName,, string(j));
 				Index[11]++;
@@ -551,6 +551,13 @@ function SaveSettings()
 	SaveConfig();
 }
 
+static function String GetHeading (int i)
+{
+	if (i == 0)
+		return default.Headings[9];
+	return default.Headings[i-1];
+}
+
 //INCOMPLETE!
 function DefaultSettings()
 {
@@ -798,4 +805,16 @@ defaultproperties
      BoxNames(2)="Primary"
      BoxNames(3)="Secondary"
      BoxNames(4)="Grenade"
+	 Headings(0)="Melee"
+     Headings(1)="Sidearms"
+     Headings(2)="Sub Machineguns"
+     Headings(3)="Assault Rifles"
+     Headings(4)="Energy Weapons"
+     Headings(5)="Heavy Machineguns"
+     Headings(6)="Shotguns"
+     Headings(7)="Ordnance"
+     Headings(8)="Sniper Rifles"
+     Headings(9)="Grenades"
+     Headings(10)="Miscellaneous"
+     Headings(11)="Non-BW"
 }

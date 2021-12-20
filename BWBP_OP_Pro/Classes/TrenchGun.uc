@@ -641,7 +641,7 @@ defaultproperties
     bNoCrosshairInScope=True
 	WeaponModes(0)=(ModeName="Explosive Shot",Value=1.000000)
 	WeaponModes(1)=(ModeName="Electro Shot",Value=1.000000)
-	WeaponModes(2)=(bUnavailable=True)
+	WeaponModes(2)=(ModeName="Ice Shot",Value=1.000000,bUnavailable=True)
 	CurrentWeaponMode=0
 	SightPivot=(Pitch=256)
 	SightOffset=(X=50.000000,Y=11.500000,Z=43.500000)

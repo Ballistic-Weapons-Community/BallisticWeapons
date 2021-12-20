@@ -468,6 +468,7 @@ defaultproperties
 	GunLength=32.000000
 	GroupOffset=3
 	ParamsClasses(0)=Class'MRS138WeaponParams'
+	ParamsClasses(1)=Class'MRS138WeaponParamsClassic'
 	FireModeClass(1)=Class'BallisticProV55.MRS138SecondaryFire'
 	FireModeClass(0)=Class'BallisticProV55.MRS138PrimaryFire'
 	EndShovelAnimRate=1.600000

@@ -714,6 +714,7 @@ defaultproperties
      SightOffset=(X=-18.000000,Z=23.299999)
      SightDisplayFOV=40.000000
 	 ParamsClasses(0)=Class'HVPCMk66WeaponParams'
+	 ParamsClasses(1)=Class'HVPCMk66WeaponParamsClassic'
      FireModeClass(0)=Class'BWBP_SKC_Pro.HVPCMk66PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.HVPCMk66SecondaryFire'
      IdleAnimRate=1.200000

@@ -41,6 +41,28 @@ function DoFireEffect()
 		A49SkrithBlaster(BW).AddHeat(HeatPerShot);
 }
 
+//Now we fly into space!
+/*
+simulated function ApplyRecoil()
+{
+	if (A49SkrithBlaster(BW).BCRepClass.default.GameStyle == 1)
+	{
+		if (BW != None)
+			BW.AddRecoil(FireRecoil, FireChaos, ThisModeNum);
+		if (FirePushbackForce != 0 && Instigator!= None)
+		{
+			if (Instigator.Physics == PHYS_Falling)
+				Instigator.Velocity -= Vector(Instigator.GetViewRotation()) * FirePushbackForce * 0.25;
+			else
+				Instigator.Velocity -= Vector(Instigator.GetViewRotation()) * FirePushbackForce;
+		}
+	}
+	else
+	{
+		super.ApplyRecoil();
+	}
+}*/
+
 //Accessor for stats
 static function FireModeStats GetStats() 
 {
@@ -64,7 +86,6 @@ defaultproperties
 {
     FirePushbackForce=1500.000000
 	Damage=35.000000
-
     forceMag=1000.000000
 	HeatPerShot=10
     AmmoClass=Class'BallisticProV55.Ammo_Cells'

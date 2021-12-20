@@ -229,6 +229,7 @@ defaultproperties
 	SightOffset=(X=-30.000000,Y=12.450000,Z=14.850000)
 	GunLength=48.000000
 	ParamsClasses(0)=Class'MGLWeaponParams'
+	ParamsClasses(1)=Class'MGLWeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MGLPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MGLSecondaryFire'
 	SelectAnimRate=1.500000
@@ -237,7 +238,7 @@ defaultproperties
 	BringUpTime=0.660000
 	AIRating=0.900000
 	CurrentRating=0.900000
-	Description="The big, bad Conqueror” is an alias to the VDML-6 Multiple Grenade Launcher, designed as a heavier, tactical version of the old world M32, and a more direct way of punting grenades down range, unlike the PUMA’s Airburst grenades or the Longhorn’s smart cluster. Black and Wood designed this weapon to bring down explosives over the Skrith’s plasma barriers with haste, the user can fire timed grenades to flush out any hiders, or impact to wreck enemies without bouncing off of them (note, when fired at a short range, the impact fuse will not engage). But when tactics are needed, the “Conqueror” can also fire remote detonated grenades for traps. So far, the Conqueror has already conquered 2 services and will be seeing more as they come."
+	Description="The big, bad Conqueror' is an alias to the VDML-6 Multiple Grenade Launcher, designed as a heavier, tactical version of the old world M32, and a more direct way of punting grenades down range, unlike the PUMA's Airburst grenades or the Longhorn's smart cluster. Black and Wood designed this weapon to bring down explosives over the Skrith's plasma barriers with haste, the user can fire timed grenades to flush out any hiders, or impact to wreck enemies without bouncing off of them (note, when fired at a short range, the impact fuse will not engage). But when tactics are needed, the 'Conqueror' can also fire remote detonated grenades for traps. So far, the Conqueror has already conquered 2 services and will be seeing more as they come."
 	Priority=245
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=8

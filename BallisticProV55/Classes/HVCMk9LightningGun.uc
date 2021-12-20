@@ -54,6 +54,16 @@ replication
 		ClientOverCharge, ClientSetHeat;
 }
 
+
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle == 1)
+		HVCMk9PrimaryFire(FireMode[0]).GotoState('BranchingFire');
+	else
+		HVCMk9PrimaryFire(FireMode[0]).GotoState('DirectFire');
+}
+
 // -----------------------------------------------
 // Events and target related stuff called from firemodes
 
@@ -63,6 +73,64 @@ simulated function ClientOverCharge()
 		StopFire(0);
 	if (Firemode[1].bIsFiring)
 		StopFire(1);
+}
+
+// [2.5] Get the tracking zap emitter from attachment
+simulated function HVCMk9_TrackingZapClassic GetTargetZap()
+{
+	if (ThirdPersonActor == None)
+		return None;
+	return HVCMk9Attachment(ThirdPersonActor).TargetZap;
+}
+// [2.5] Activate the target zap and/or give it the list of targets (Server->Attachment->Client)
+simulated function SetTargetZap(array<actor> Ts, array<vector> Vs)
+{
+	if (!FireMode[0].IsFiring())
+		return;
+	if (Role == ROLE_Authority)
+		HVCMk9Attachment(ThirdPersonActor).SetTargetZap(Ts, Vs);
+	if (!Instigator.IsLocallyControlled())
+		return;
+	if (level.DetailMode > DM_High)
+	{	if (ClawSpark1 == None)	class'BUtil'.static.InitMuzzleFlash (ClawSpark1, class'HVCMk9_ClawArc', DrawScale, self, 'ClawTip1');
+		if (ClawSpark2 == None)	class'BUtil'.static.InitMuzzleFlash (ClawSpark2, class'HVCMk9_ClawArc', DrawScale, self, 'ClawTip2');	}
+}
+// [2.5] Activate free zap (Server->Attachment->Client)
+simulated function SetFreeZap()
+{
+	if (Role == ROLE_Authority)
+		HVCMk9Attachment(ThirdPersonActor).SetFreeZap();
+	if (!Instigator.IsLocallyControlled())
+		return;
+	if (FreeZap != None)
+	{	if (bCanKillZap)	FreeZap.Destroy();
+		else				return;
+	}
+	KillTargetZap();
+	FreeZap = spawn(class'HVCMk9_FreeZap', self);
+	FreeZap.bHidden = true;
+	bCanKillZap = false;
+}
+// [2.5] Kill all zaps (Server->Attachment->Client)
+simulated function KillZap()
+{
+	if (Role == ROLE_Authority)
+		HVCMk9Attachment(ThirdPersonActor).KillZap();
+	if (Instigator.IsLocallyControlled())
+	{	KillTargetZap();		KillFreeZap();		}
+}
+// [2.5] Kill the target zap (local only)
+simulated function KillTargetZap()
+{
+	if (ClawSpark1 != None)		Emitter(ClawSpark1).Kill();
+	if (ClawSpark2 != None)		Emitter(ClawSpark2).Kill();
+	Instigator.SoundPitch=64;
+}
+// [2.5] Kill the free zap (local only)
+simulated function KillFreeZap()
+{
+	if (FreeZap != None)
+	{	FreeZap.Kill();	bCanKillZap = true;	}
 }
 
 
@@ -75,12 +143,57 @@ simulated function float ChargeBar()
 }
 simulated event Tick (float DT)
 {
-	if (HeatLevel > 0)
+	local int i;
+	
+	if (BCRepClass.default.GameStyle != 1)
 	{
-		if (bIsVenting)
-			Heatlevel = FMax(HeatLevel - 4 * DT, 0);
-		else
-			Heatlevel = FMax(HeatLevel - 0.4 * DT, 0);
+		if (HeatLevel > 0)
+		{
+			if (bIsVenting)
+				Heatlevel = FMax(HeatLevel - 4 * DT, 0);
+			else
+				Heatlevel = FMax(HeatLevel - 0.4 * DT, 0);
+		}
+	}
+	else //[2.5] Heat and target management
+	{
+		if (HeatLevel > 0)
+		{
+			if (bIsVenting)
+				Heatlevel = FMax(HeatLevel - 2.5 * DT, 0);
+			else
+				Heatlevel = FMax(HeatLevel - 0.25 * DT, 0);
+		}
+		if (HVCMk9PrimaryFire(FireMode[0]) != None)
+		{
+			for(i=0;i<HVCMk9PrimaryFire(FireMode[0]).OldTargets.length;i++)
+			{
+				if (HVCMk9PrimaryFire(FireMode[0]).OldTargets[i].Vic == None)
+				{
+					HVCMk9PrimaryFire(FireMode[0]).OldTargets.Remove(i, 1);
+					i--;
+				}
+				else
+					HVCMk9PrimaryFire(FireMode[0]).OldTargets[i].Zaps = FMax(0, HVCMk9PrimaryFire(FireMode[0]).OldTargets[i].Zaps-DT);
+			}
+			for(i=0;i<HVCMk9PrimaryFire(FireMode[0]).OldLures.length;i++)
+			{
+				if (HVCMk9PrimaryFire(FireMode[0]).OldLures[i].Loc == vect(0,0,0))
+				{
+					HVCMk9PrimaryFire(FireMode[0]).OldLures.Remove(i, 1);
+					i--;
+				}
+				else
+				{
+					HVCMk9PrimaryFire(FireMode[0]).OldLures[i].Zaps -= -DT;
+					if (HVCMk9PrimaryFire(FireMode[0]).OldLures[i].Zaps <= 0)
+					{
+						HVCMk9PrimaryFire(FireMode[0]).OldLures.Remove(i, 1);
+						i--;
+					}
+				}
+			}
+		}
 	}
 	super.Tick(DT);
 }
@@ -206,7 +319,7 @@ simulated event WeaponTick(float DT)
 	if (!Instigator.IsLocallyControlled())
 		return;
 
-	if (FireMode[1].bIsFiring)	
+	if ((BCRepClass.default.GameStyle != 1 && GetTargetZap() != None) || FireMode[1].bIsFiring)	
 	{	
 		if (ClawAlpha < 1)
 		{
@@ -270,17 +383,50 @@ simulated event WeaponTick(float DT)
 
 simulated event RenderOverlays (Canvas C)
 {
+	local vector End, X,Y,Z;
 	if (Spiral != None)
 		Spiral.SetRelativeRotation(rot(0,0,1)*RotorSpin);
 
 	Super.RenderOverlays(C);
 	
-	if (StreamEffect != None)
+	
+	if (BCRepClass.default.GameStyle != 1)
 	{
-		StreamEffect.bHidden = true;
-		StreamEffect.SetLocation(ConvertFOVs(GetBoneCoords('Muzzle').Origin, DisplayFOV, Instigator.Controller.FovAngle, 96));
-		StreamEffect.UpdateEndpoint();
-		C.DrawActor(StreamEffect, false, false, Instigator.Controller.FovAngle);
+		if (StreamEffect != None)
+		{
+			StreamEffect.bHidden = true;
+			StreamEffect.SetLocation(ConvertFOVs(GetBoneCoords('Muzzle').Origin, DisplayFOV, Instigator.Controller.FovAngle, 96));
+			StreamEffect.UpdateEndpoint();
+			C.DrawActor(StreamEffect, false, false, Instigator.Controller.FovAngle);
+		}
+	}
+	else //[2.5] Multi-target zap rendering
+	{
+		if (FreeZap != None)
+		{
+			GetViewAxes(X,Y,Z);
+			FreeZap.SetLocation(ConvertFOVs(GetBoneCoords('tip').Origin, DisplayFOV, Instigator.Controller.FovAngle, 96));
+			FreeZap.SetRotation(rotator(Vector(GetAimPivot()*0.5) >> Instigator.GetViewRotation()));
+			End = X * 1000;
+			BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(End, End);
+			BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.X.Min -= 500 * Abs(X.Z);
+			BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.X.Max += 500 * Abs(X.Z);
+			BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.Y.Min -= 500 * Abs(X.X);
+			BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.Y.Max += 500 * Abs(X.X);
+			BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.Z.Min -= 500 * (1-Abs(X.Z));
+			BeamEmitter(FreeZap.Emitters[0]).BeamEndPoints[0].Offset.Z.Max += 500 * (1-Abs(X.Z));
+
+			BeamEmitter(FreeZap.Emitters[2]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(End+vect(100,100,100), End-vect(100,100,100));
+
+			C.DrawActor(FreeZap, false, false, Instigator.Controller.FovAngle);
+		}
+		if (GetTargetZap() != None)
+		{
+			GetTargetZap().bHidden = true;
+			GetTargetZap().SetLocation(ConvertFOVs(GetBoneCoords('tip').Origin, DisplayFOV, Instigator.Controller.FovAngle, 96));
+			GetTargetZap().UpdateTargets();
+			C.DrawActor(GetTargetZap(), false, false, Instigator.Controller.FovAngle);
+		}
 	}
 }
 
@@ -466,6 +612,8 @@ function ServerReloadRelease(optional byte i)
 
 simulated function Destroyed()
 {
+	if (FreeZap != None)
+		FreeZap.Destroy();
 	if (Arc1 != None)
 		Arc1.Destroy();
 	if (Arc2 != None)
@@ -688,6 +836,7 @@ defaultproperties
 	SightOffset=(X=-12.000000,Z=26.000000)
 	SightDisplayFOV=40.000000
 	ParamsClasses(0)=Class'HVCMk9WeaponParams'
+	ParamsClasses(1)=Class'HVCMk9WeaponParamsClassic' \\todo: lots of state code
 	FireModeClass(0)=Class'BallisticProV55.HVCMk9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.HVCMk9SecondaryFire'
 	PutDownTime=0.500000

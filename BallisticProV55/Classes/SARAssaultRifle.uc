@@ -160,13 +160,7 @@ simulated function AdjustStockProperties()
 	    LongGunPivot 	= rot(4000, -12000, 0);
     	LongGunOffset	= vect(15, 20, -7);
 		GunLength 		= 64;
-
 		
-		// Weapon bonuses
-		BFireMode[0].FireRecoil 	= 128;
-		BFireMode[0].FireChaos		= 0.030000;
-		
-		// Weapon penalties
 		SightingTime				= 0.35;
 	}
 	else
@@ -176,12 +170,7 @@ simulated function AdjustStockProperties()
     	LongGunPivot		= default.LongGunPivot;
     	LongGunOffset		= default.LongGunOffset;
 		
-		// Weapon Bonuses
 		SightingTime = default.SightingTime;
-		
-		// Weapon penalties
-		BFireMode[0].FireRecoil 		= BFireMode[0].default.FireRecoil;
-		BFireMode[0].FireChaos 			= BFireMode[0].default.FireChaos;
 	}
 }
 
@@ -545,6 +534,7 @@ defaultproperties
 	SightDisplayFOV=25.000000
 	GunLength=16.000000
 	ParamsClasses(0)=Class'SARWeaponParams'
+	//ParamsClasses(1)=Class'SARWeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.SARFlashFire'
 	SelectForce="SwitchToAssaultRifle"

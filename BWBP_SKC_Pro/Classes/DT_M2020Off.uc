@@ -10,14 +10,14 @@ class DT_M2020Off extends DT_BWBullet;
 
 defaultproperties
 {
-     DeathStrings(0)="%k sent a superaccelerated M2020 gauss round through %o."
-     DeathStrings(1)="%o was polarized by %k's heavy gauss rifle."
-     DeathStrings(2)="%k hunted down %o with %kh advanced gauss gun."
-     DeathStrings(3)="%o experienced the power of %k's magnetic accelerator first hand."
+     DeathStrings(0)="%k sent an M2020 round through %o."
+     DeathStrings(1)="%o was perforated by %k's heavy gauss rifle."
+     DeathStrings(2)="%k hunted down %o with %kh advanced M2020."
+     DeathStrings(3)="%o died to %k's M2020 even with the magnets off."
      DamageIdent="Sniper"
-     ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
+     //ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
      WeaponClass=Class'BWBP_SKC_Pro.M2020GaussDMR'
-     DeathString="%k sent a superaccelerated M2020 gauss round through %o."
+     DeathString="%k sent an M2020 round through %o."
      FemaleSuicide="%o polarized herself."
      MaleSuicide="%o polarized himself."
 }

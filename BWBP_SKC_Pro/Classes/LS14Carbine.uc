@@ -815,6 +815,7 @@ defaultproperties
 	ZoomStages=1
 	GunLength=80.000000
 	ParamsClasses(0)=Class'LS14WeaponParams'
+	ParamsClasses(1)=Class'LS14WeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LS14PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LS14SecondaryFire'
 	SelectAnimRate=1.500000

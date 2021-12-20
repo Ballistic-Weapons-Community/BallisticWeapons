@@ -169,6 +169,7 @@ function bool IsStationary()
 
 defaultproperties
 {
+     ModeIndex=1
      bNoFXOnExplode=True
      TrackCount=1
      ImpactManager=Class'BallisticProV55.IM_MRLRocket'

@@ -2,6 +2,54 @@ class M353WeaponParams extends BallisticWeaponParams;
 
 defaultproperties
 {
+    //=================================================================
+    // PRIMARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
+		TraceRange=(Min=15000.000000,Max=15000.000000)
+		RangeAtten=0.35
+		Damage=20
+		HeadMult=1.5f
+		LimbMult=0.8f
+		DamageType=Class'BallisticProV55.DTM353MG'
+		DamageTypeHead=Class'BallisticProV55.DTM353MGHead'
+		DamageTypeArm=Class'BallisticProV55.DTM353MG'
+		PenetrateForce=150
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.M353FlashEmitter'
+		FlashScaleFactor=0.700000
+		Recoil=96.000000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=0.08000
+		FireEndAnim=
+		AimedFireAnim="SightFire"	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
+		
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		FireInterval=0.700000
+		AmmoPerFire=0
+		FireAnim="Undeploy"
+		FireEffectParams(0)=FireEffectParams'ArenaSecondaryEffectParams'
+	End Object
+		
+	//=================================================================
+	// RECOIL
+	//=================================================================
+
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		HipMultiplier=1.5
 		ViewBindFactor=0.500000
@@ -14,6 +62,10 @@ defaultproperties
 		DeclineDelay=0.150000
 	End Object
 
+	//=================================================================
+	// AIM
+	//=================================================================
+
 	Begin Object Class=AimParams Name=ArenaAimParams
 		ADSMultiplier=0.5
 		AimSpread=(Min=128,Max=1024)
@@ -22,8 +74,14 @@ defaultproperties
 		ChaosDeclineTime=1.600000
 	End Object
 
+	//=================================================================
+	// BASIC PARAMS
+	//=================================================================	
+
     Begin Object Class=WeaponParams Name=ArenaParams
-        PlayerSpeedFactor=0.950000
+        SightPivot=(Pitch=128)
+		SightOffset=(X=-6.000000,Z=5.30000)
+		PlayerSpeedFactor=0.950000
         PlayerJumpFactor=0.950000
         DisplaceDurationMult=1.25
         SightMoveSpeedFactor=0.8
@@ -32,6 +90,8 @@ defaultproperties
         InventorySize=12
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
 }

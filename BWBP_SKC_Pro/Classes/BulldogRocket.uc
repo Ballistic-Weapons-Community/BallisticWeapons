@@ -140,5 +140,6 @@ defaultproperties
      DrawScale=2.500000
 
      bIgnoreTerminalVelocity=True
+	 ModeIndex=1
 
 }

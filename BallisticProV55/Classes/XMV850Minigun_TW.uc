@@ -163,8 +163,8 @@ defaultproperties
 	ParamsClasses(0)=Class'XMV850TW_WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.XMV850TW_PrimaryFire'
 	WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
-	WeaponModes(1)=(bUnavailable=False)
-	WeaponModes(2)=(bUnavailable=False)
+	WeaponModes(1)=(ModeName="2400 RPM",ModeID="WM_FullAuto",bUnavailable=False)
+	WeaponModes(2)=(ModeName="3600 RPM",ModeID="WM_FullAuto",bUnavailable=False)
 	SelectAnim="Deploy"
 	SelectAnimRate=1.000000
 	BringUpTime=1.400000

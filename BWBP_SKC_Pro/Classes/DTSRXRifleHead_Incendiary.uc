@@ -35,7 +35,7 @@ defaultproperties
      DeathStrings(3)="%k blew up %o's game and their brains with a SRK."
 	 bIgniteFires=True
 	 EffectChance=1.000000
-     BloodManagerName="BallisticFix.BloodMan_GRS9Laser"
+     BloodManagerName="BallisticProV55.BloodMan_GRS9Laser"
 	 DamageDescription=",Bullet,Flame,Hazard,"
      AimedString="Scoped"
      bHeaddie=True

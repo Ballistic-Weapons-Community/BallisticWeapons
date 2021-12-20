@@ -137,6 +137,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 defaultproperties
 {
+     ModeIndex=1
      ImpactManager=Class'BWBP_OP_Pro.IM_Raygun'
      AccelSpeed=11000.000000
      TrailClass=Class'BWBP_OP_Pro.RaygunChargedShotTrail'

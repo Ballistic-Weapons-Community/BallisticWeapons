@@ -202,17 +202,17 @@ defaultproperties
     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-ClipIn',Volume=2.000000)
     ClipInFrame=0.650000
     bCockOnEmpty=True
-    WeaponModes(0)=(ModeName="Semi-Automatic",bUnavailable=True)
-    WeaponModes(1)=(ModeName="Automatic",ModeID="WM_FullAuto")
-    WeaponModes(2)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
-    WeaponModes(3)=(ModeName="Semi-Auto",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
-    WeaponModes(4)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
-    WeaponModes(5)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
-    CurrentWeaponMode=1
+    WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
+    WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
+    WeaponModes(2)=(ModeName="Semi-Auto",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
+    WeaponModes(3)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
+    WeaponModes(4)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
+    CurrentWeaponMode=0
     SightPivot=(Pitch=1024)
     SightOffset=(X=-20.000000,Y=9.700000,Z=19.000000)
     GunLength=32.000000
     ParamsClasses(0)=Class'SKASWeaponParams'
+    ParamsClasses(1)=Class'SKASWeaponParamsClassic'
     FireModeClass(0)=Class'BWBP_SKC_Pro.SKASPrimaryFire'
     FireModeClass(1)=Class'BWBP_SKC_Pro.SKASSecondaryFire'
     IdleAnimRate=0.100000

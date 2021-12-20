@@ -80,6 +80,7 @@ simulated function Timer()
 
 defaultproperties
 {
+    ModeIndex=1
     IgniteSound=sound'CicadaSnds.MissileIgnite'
     ArmingDelay=0.2
     ImpactManager=Class'BallisticProV55.IM_MRLRocket'

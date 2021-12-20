@@ -6,35 +6,6 @@ class A73WeaponParams extends BallisticWeaponParams;
 defaultproperties
 {
     //=================================================================
-    // RECOIL
-    //=================================================================
-
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
-		ViewBindFactor=0.3
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.070000),(InVal=0.600000,OutVal=-0.060000),(InVal=0.700000,OutVal=-0.060000),(InVal=1.000000)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.350000),(InVal=0.450000,OutVal=0.550000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.100000
-		YRandFactor=0.100000
-		DeclineTime=0.5
-		DeclineDelay=0.170000
- 	End Object
-
-    //=================================================================
-    // AIM
-    //=================================================================
-
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.300000
-		SprintOffSet=(Pitch=-3000,Yaw=-4000)
-		AimAdjustTime=0.600000
-		AimSpread=(Min=16,Max=768)
-		AimDamageThreshold=75.000000
-		ChaosDeclineTime=1.350000
-		ChaosDeclineDelay=0.300000
-		ChaosSpeedThreshold=15000.000000
-	End Object
-
-    //=================================================================
     // PRIMARY FIRE
     //=================================================================
 
@@ -53,6 +24,7 @@ defaultproperties
         FireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 	    ProjectileClass=Class'BallisticProV55.A73Projectile'
         WarnTargetPct=0.200000
+        BotRefireRate=0.500000
     End Object
 
     Begin Object Class=FireParams Name=ArenaProjFireParams
@@ -83,6 +55,7 @@ defaultproperties
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         ProjectileClass=Class'BallisticProV55.A73PowerProjectile'
         WarnTargetPct=0.500000
+        BotRefireRate=0.500000
     End Object
 
     Begin Object Class=FireParams Name=ArenaPowerFireParams
@@ -94,11 +67,43 @@ defaultproperties
     End Object
 
     //=================================================================
+    // RECOIL
+    //=================================================================
+
+	Begin Object Class=RecoilParams Name=ArenaRecoilParams
+		ViewBindFactor=0.3
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.050000),(InVal=0.300000,OutVal=0.070000),(InVal=0.600000,OutVal=-0.060000),(InVal=0.700000,OutVal=-0.060000),(InVal=1.000000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=0.300000),(InVal=0.300000,OutVal=0.350000),(InVal=0.450000,OutVal=0.550000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
+		XRandFactor=0.100000
+		YRandFactor=0.100000
+		DeclineTime=0.5
+		DeclineDelay=0.170000
+ 	End Object
+
+    //=================================================================
+    // AIM
+    //=================================================================
+
+	Begin Object Class=AimParams Name=ArenaAimParams
+		ADSMultiplier=0.300000
+		SprintOffSet=(Pitch=-3000,Yaw=-4000)
+		AimAdjustTime=0.600000
+		AimSpread=(Min=16,Max=768)
+		AimDamageThreshold=75.000000
+		ChaosDeclineTime=1.350000
+		ChaosDeclineDelay=0.300000
+		ChaosSpeedThreshold=15000.000000
+	End Object
+
+    //=================================================================
     // WEAPON
     //=================================================================
 
     Begin Object Class=WeaponParams Name=ArenaParams
         MagAmmo=32
+		SightPivot=(Pitch=450)
+		SightOffset=(X=10.000000,Z=12.150000)
+		InventorySize=12
 	    RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
         FireParams(0)=FireParams'ArenaProjFireParams'

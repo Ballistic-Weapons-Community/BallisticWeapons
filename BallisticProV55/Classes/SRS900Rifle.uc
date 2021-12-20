@@ -99,7 +99,7 @@ simulated event WeaponTick(float DT)
 	local float Speed, NewSR, P;
 	local vector Start, HitLoc, HitNorm;
 	local actor T;
-	
+
 	super.WeaponTick(DT);
 
 	if (!Instigator.IsLocallyControlled())
@@ -619,6 +619,7 @@ defaultproperties
 	ZoomStages=2
 	GunLength=72.000000
 	ParamsClasses(0)=Class'SRS900WeaponParams'
+	ParamsClasses(1)=Class'SRS900WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.SRS900PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	BringUpTime=0.500000

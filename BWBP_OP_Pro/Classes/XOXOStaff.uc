@@ -368,6 +368,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	GunLength=128.000000
 	ParamsClasses(0)=Class'XOXOWeaponParams'
+	ParamsClasses(1)=Class'XOXOWeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_OP_Pro.XOXOPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.XOXOSecondaryFire'
 	PutDownAnimRate=1.350000

@@ -9,6 +9,15 @@
 //=============================================================================
 class MRDRMachinePistol extends BallisticHandgun;
 
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle == 1)
+	{
+		bUseSights=True;
+	}
+}
+
 static function class<Pickup> RecommendAmmoPickup(int Mode)
 {
 	return class'AP_MRDRClip';
@@ -204,6 +213,7 @@ defaultproperties
 	AIRating=0.6
 	CurrentRating=0.6
 	ParamsClasses(0)=Class'MRDRWeaponParams'
+	ParamsClasses(1)=Class'MRDRWeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MRDRPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MRDRSecondaryFire'
 	PutDownTime=0.400000

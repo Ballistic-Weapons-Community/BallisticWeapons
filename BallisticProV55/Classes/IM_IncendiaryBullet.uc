@@ -1,8 +1,8 @@
 //=============================================================================
 // IM_IncendiaryBullet.
 //
-// ImpactManager subclass for incendiary minigun bullets which need to be faster
-// and get custom effects.
+// ImpactManager subclass for incendiary bullets which need to be faster
+// and get custom effects. Used by CYLO.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.

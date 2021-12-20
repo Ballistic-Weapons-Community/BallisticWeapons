@@ -20,6 +20,16 @@ replication
 		ClientSetHeat;
 }
 
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle == 1)
+	{
+		A73PrimaryFire(FireMode[0]).HeatPerShot = 0;
+		A73SecondaryFire(FireMode[1]).HeatPerShot = 0;
+	}
+}
+
 simulated event WeaponTick(float DT)
 {
 	super.WeaponTick(DT);
@@ -296,6 +306,7 @@ defaultproperties
 	SightOffset=(X=10.000000,Z=12.150000)
 	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'A73WeaponParams'
+	ParamsClasses(1)=Class'A73WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.A73PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A73SecondaryFire'
 	BringUpTime=0.500000

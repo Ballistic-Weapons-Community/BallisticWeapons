@@ -252,6 +252,7 @@ defaultproperties
 	SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 	SightDisplayFOV=40.000000
 	ParamsClasses(0)=Class'A42WeaponParams'
+	ParamsClasses(1)=Class'A42WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.A42PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A42SecondaryFire'
 	BringUpTime=0.500000

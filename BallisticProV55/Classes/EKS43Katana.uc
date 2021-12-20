@@ -51,6 +51,7 @@ defaultproperties
      GunLength=0.000000
      bAimDisabled=True
      ParamsClasses(0)=Class'EKS43WeaponParams'
+     ParamsClasses(1)=Class'EKS43WeaponParamsClassic'
      FireModeClass(0)=Class'BallisticProV55.EKS43PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.EKS43SecondaryFire'
      SelectAnimRate=1.5

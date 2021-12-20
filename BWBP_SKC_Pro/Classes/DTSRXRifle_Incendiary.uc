@@ -16,7 +16,7 @@ defaultproperties
      DeathStrings(3)="%k blew off %o's bad kneecaps, doing them a solid."
 	 bIgniteFires=True
 	 EffectChance=1.000000
-     BloodManagerName="BallisticFix.BloodMan_GRS9Laser"
+     BloodManagerName="BallisticProV55.BloodMan_GRS9Laser"
 	 DamageDescription=",Bullet,Flame,Hazard,"
      AimedString="Scoped"
      DamageIdent="Sniper"

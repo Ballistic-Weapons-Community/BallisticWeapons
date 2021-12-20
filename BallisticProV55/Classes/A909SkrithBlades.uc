@@ -52,6 +52,7 @@ defaultproperties
      GunLength=0.000000
      bAimDisabled=True
      ParamsClasses(0)=Class'A909WeaponParams'
+     ParamsClasses(1)=Class'A909WeaponParamsClassic'
      FireModeClass(0)=Class'BallisticProV55.A909PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.A909SecondaryFire'
      PutDownAnimRate=2.200000
