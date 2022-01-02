@@ -467,6 +467,7 @@ function float SuggestDefenseStyle()	{	return -0.9;	}
 
 defaultproperties
 {
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	ClipOutSoundSmall=Sound'BW_Core_WeaponSound.MRL.MRL-SmallOff'
 	ClipInSoundSmall=Sound'BW_Core_WeaponSound.MRL.MRL-SmallOn'
 	RocketCycleAnim="RocketCycle"

@@ -53,7 +53,7 @@ defaultproperties
      FireAnim="Slice1"
      FireAnimRate=1.800000
      FireRate=0.250000
-     AmmoClass=Class'BallisticProV55.Ammo_Knife'
+     AmmoClass=Class'BallisticProV55.Ammo_X3Knife'
      AmmoPerFire=0
      ShakeRotMag=(X=64.000000,Y=128.000000)
      ShakeRotRate=(X=2500.000000,Y=2500.000000,Z=2500.000000)

@@ -219,7 +219,7 @@ defaultproperties
 	PutDownTime=0.400000
 	BringUpTime=0.500000
 	SelectForce="SwitchToAssaultRifle"
-	bShowChargingBar=True
+	bShowChargingBar=False
 	Description="This bull pup style weapon, made by UTC Defense Tech, features a ring magazine holding 36 rounds of 9mm ammunition that wraps around the forearm and has a spiked steel knuckle on it. Because the bulk of the weight sits on the forearm and not on the wrist, this weapon is very easy to use either single or in pairs. With the unique magazine, some users may find reloading this weapon to be challenging, UTC designed an entirely new feed system for this weapon and as such is still in its experimental stages. This DR88 model uses the same Krome muzzle flash system as the Fifty-9 for massive amounts of style."
 	Priority=143
 	HudColor=(B=150,G=150,R=150)

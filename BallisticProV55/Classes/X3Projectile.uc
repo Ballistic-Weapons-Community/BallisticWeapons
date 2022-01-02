@@ -64,10 +64,10 @@ function TakeBack(Pawn Other)
 	if (!bStuckInWall || !Other.bCanPickupInventory)
 		return;
 
-	Ammo = Ammunition(Other.FindInventoryType(class'Ammo_Knife'));
+	Ammo = Ammunition(Other.FindInventoryType(class'Ammo_X3Knife'));
 	if(Ammo == None)
     {
-		Ammo = Spawn(class'Ammo_Knife');
+		Ammo = Spawn(class'Ammo_X3Knife');
 		Other.AddInventory(Ammo);
    	}
    	AmmoAmount = Ammo.AmmoAmount;
@@ -82,10 +82,10 @@ function TakeBack(Pawn Other)
 			newWeapon.ConsumeAmmo(0, 9999, true);
         }
     }
-/*	Ammo = Ammunition(Other.FindInventoryType(class'Ammo_Knife'));
+/*	Ammo = Ammunition(Other.FindInventoryType(class'Ammo_X3Knife'));
 	if(Ammo == None)
     {
-		Ammo = Spawn(class'Ammo_Knife');
+		Ammo = Spawn(class'Ammo_X3Knife');
 		Other.AddInventory(Ammo);
    	}
 */	Ammo.AddAmmo(AmmoAmount + 1);
