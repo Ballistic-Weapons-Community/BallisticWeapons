@@ -113,6 +113,7 @@ var   float				LastImpactTime;		// Time of last impact mark spawn
 var() float				TimeBetweenImpacts;	// Minimum time between impact mark spawning
 var   vector			LastImpactNormal;	// Normal of last impact
 var   vector			LastImpactLocation;	// Location of last impact
+var config  bool		bNoViewFlash;       // Toggle the use of the new viewflash effects when u get damaged
 // -------------------------------------------------------
 var   vector            BloodFlashV, ShieldFlashV;
 
@@ -2661,6 +2662,9 @@ function HandleViewFlash(int damage)
     if (damage == 0)
         return;
 
+	if (bNoViewFlash)
+        return;
+		
     rnd = FClamp(damage, 25, 70);
 
 	if (ShieldStrength > 0)
@@ -2773,7 +2777,7 @@ defaultproperties
 
      GruntVolume=0.2
      GruntRadius=300.000000
-     
+	 bNoViewFlash=True
      DeResTime=4.000000
      RagdollLifeSpan=20.000000
      RagDeathUpKick=0.000000
