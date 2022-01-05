@@ -214,7 +214,7 @@ defaultproperties
          Caption="No Damage Screen Flashes"
          OnCreateComponent=ch_ViewFlashCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Disable screen flashes when u get damaged."
+         Hint="Disable screen flashes when you get damaged."
          WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
