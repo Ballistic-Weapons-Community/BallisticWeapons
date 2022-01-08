@@ -111,9 +111,9 @@ defaultproperties
          MinValue=1
          MaxValue=999
          ComponentWidth=0.175000
-         Caption="Player health:"
+         Caption="Starting Health:"
          OnCreateComponent=ne_playerHealthEdit.InternalOnCreateComponent
-         Hint="The health players spawn with."
+         Hint="The Health Players spawn with."
          WinTop=0.050000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -124,9 +124,9 @@ defaultproperties
          MinValue=1
          MaxValue=999
          ComponentWidth=0.175000
-         Caption="Player health cap:"
+         Caption="Health Cap:"
          OnCreateComponent=ne_playerHealthEdit.InternalOnCreateComponent
-         Hint="The players health cap."
+         Hint="The Players Health cap."
          WinTop=0.100000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -137,23 +137,49 @@ defaultproperties
          MinValue=1
          MaxValue=999
          ComponentWidth=0.175000
-         Caption="Player super health cap:"
+         Caption="Super Health Cap:"
          OnCreateComponent=ne_playerHealthEdit.InternalOnCreateComponent
-         Hint="The super health cap."
+         Hint="The Super Health cap."
          WinTop=0.150000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
      ne_playerSuperHealthCap=moNumericEdit'BallisticProV55.BallisticTab_Player.ne_playerSuperHealthCapEdit'
 
+	 Begin Object Class=moNumericEdit Name=ne_iArmorC
+         MinValue=0
+         MaxValue=999
+         ComponentWidth=0.175000
+         Caption="Starting Armour:"
+         OnCreateComponent=ne_iArmorC.InternalOnCreateComponent
+         Hint="The Armour Players Spawn with."
+         WinTop=0.200000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ne_iArmor=moNumericEdit'BallisticProV55.BallisticTab_Player.ne_iArmorC'
+
+     Begin Object Class=moNumericEdit Name=ne_iArmorCapC
+         MinValue=0
+         MaxValue=999
+         ComponentWidth=0.175000
+         Caption="Armour Cap:"
+         OnCreateComponent=ne_iArmorCapC.InternalOnCreateComponent
+         Hint="The Armour Cap."
+         WinTop=0.250000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ne_iArmorCap=moNumericEdit'BallisticProV55.BallisticTab_Player.ne_iArmorCapC'
+
      Begin Object Class=moNumericEdit Name=ne_iAdrenalineC
          MinValue=0
          MaxValue=999
          ComponentWidth=0.175000
-         Caption="Player adrenaline:"
+         Caption="Starting Adrenaline:"
          OnCreateComponent=ne_iAdrenalineC.InternalOnCreateComponent
          Hint="The adrenaline players spawn with."
-         WinTop=0.250000
+         WinTop=0.300000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -163,10 +189,10 @@ defaultproperties
          MinValue=0
          MaxValue=999
          ComponentWidth=0.175000
-         Caption="Player adrenaline cap:"
+         Caption="Adrenaline Cap:"
          OnCreateComponent=ne_iAdrenalineCapC.InternalOnCreateComponent
          Hint="The adrenaline cap."
-         WinTop=0.300000
+         WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -176,9 +202,9 @@ defaultproperties
          MinValue=0.000000
          MaxValue=999.000000
          ComponentWidth=0.175000
-         Caption="Die sound amplifier:"
+         Caption="Death Sound Amplifier:"
          OnCreateComponent=fe_dieSoundAmplifierC.InternalOnCreateComponent
-         Hint="The die sound amplifier."
+         Hint="The Death Sound Amplifier."
          WinTop=0.400000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -189,9 +215,9 @@ defaultproperties
          MinValue=0.000000
          MaxValue=999.000000
          ComponentWidth=0.175000
-         Caption="Die sound range amplifier:"
+         Caption="Death Sound Range Amplifier:"
          OnCreateComponent=fe_dieSoundRangeAmplifierC.InternalOnCreateComponent
-         Hint="The die sound range amplifier."
+         Hint="The Death Sound Range Amplifier."
          WinTop=0.450000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -202,9 +228,9 @@ defaultproperties
          MinValue=0.000000
          MaxValue=999.000000
          ComponentWidth=0.175000
-         Caption="Hit sound amplifier:"
+         Caption="Player Impact Sound Amplifier:"
          OnCreateComponent=fe_hitSoundAmplifierC.InternalOnCreateComponent
-         Hint="The hit sound amplifier."
+         Hint="The Hit Sound Amplifier."
          WinTop=0.500000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -215,9 +241,9 @@ defaultproperties
          MinValue=0.000000
          MaxValue=999.000000
          ComponentWidth=0.175000
-         Caption="Hit sound range amplifier:"
+         Caption="Player Impact Sound Range Amplifier:"
          OnCreateComponent=fe_hitSoundRangeAmplifierC.InternalOnCreateComponent
-         Hint="The hit sound range amplifier."
+         Hint="The Hit Sound Range Amplifier."
          WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -228,9 +254,9 @@ defaultproperties
          MinValue=0.000000
          MaxValue=999.000000
          ComponentWidth=0.175000
-         Caption="Footstep sound amplifier:"
+         Caption="Footstep sound Amplifier:"
          OnCreateComponent=fe_footStepAmplifierC.InternalOnCreateComponent
-         Hint="The footstep sound amplifier."
+         Hint="The Footstep Sound Amplifier."
          WinTop=0.600000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -241,7 +267,7 @@ defaultproperties
          MinValue=0.000000
          MaxValue=999.000000
          ComponentWidth=0.175000
-         Caption="Jump damage amplifier:"
+         Caption="Jump Damage Amplifier:"
          OnCreateComponent=fe_jumpDamageAmplifierC.InternalOnCreateComponent
          Hint="The damage amplifier when you jump on other players or actors."
          WinTop=0.650000
@@ -250,31 +276,6 @@ defaultproperties
      End Object
      fe_jumpDamageAmplifier=moFloatEdit'BallisticProV55.BallisticTab_Player.fe_jumpDamageAmplifierC'
 
-     Begin Object Class=moNumericEdit Name=ne_iArmorC
-         MinValue=0
-         MaxValue=999
-         ComponentWidth=0.175000
-         Caption="Player armor:"
-         OnCreateComponent=ne_iArmorC.InternalOnCreateComponent
-         Hint="The armor players spawn with."
-         WinTop=0.750000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ne_iArmor=moNumericEdit'BallisticProV55.BallisticTab_Player.ne_iArmorC'
-
-     Begin Object Class=moNumericEdit Name=ne_iArmorCapC
-         MinValue=0
-         MaxValue=999
-         ComponentWidth=0.175000
-         Caption="Player armor cap:"
-         OnCreateComponent=ne_iArmorCapC.InternalOnCreateComponent
-         Hint="The armor cap."
-         WinTop=0.800000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ne_iArmorCap=moNumericEdit'BallisticProV55.BallisticTab_Player.ne_iArmorCapC'
 
      Begin Object Class=moFloatEdit Name=fe_MaxFallSpeedC
          MinValue=0.000000
@@ -283,7 +284,7 @@ defaultproperties
          Caption="Falling damage beyond speed:"
          OnCreateComponent=fe_MaxFallSpeedC.InternalOnCreateComponent
          Hint="Max speed players can land without taking damage (also limits what paths bots can use!)."
-         WinTop=0.850000
+         WinTop=0.700000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
