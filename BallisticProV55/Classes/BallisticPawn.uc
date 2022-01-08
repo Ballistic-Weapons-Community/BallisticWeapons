@@ -53,6 +53,7 @@ var	globalconfig	array<String>   ModelWhitelist;
 
 var Actor					        OldBase;
 var float					        LastMoverLeaveTime, MoverLeaveGrace;
+
 // Netcode ------------------------
 var RewindCollisionManager          RwColMgr;
 // -------------------------------------------------------
@@ -123,6 +124,12 @@ var Sound				NewDeResSound;		// DeRes sound
 var array<Shader>		NewDeResShaders;	// Shaders used to set opacity
 var array<FinalBlend>	NewDeResFinalBlends;// FinalBlends' alpha ref is used to create the dissolving effect
 // -------------------------------------------------------
+
+//Player
+var     BallisticPlayerReplicationInfo BPRI;
+var     BallisticReplicationInfo BRI;
+var     bool            pawnNetInit;
+
 // Animations -------------------------------------------
 var 	name 			ReloadAnim, CockingAnim, MeleeAnim, MeleeOffhandAnim, MeleeAltAnim, MeleeBlockAnim, MeleeWindupAnim, WeaponSpecialAnim, StaggerAnim;
 var 	float 				ReloadAnimRate, CockAnimRate, MeleeAnimRate, WeaponSpecialRate, StaggerRate;
@@ -204,6 +211,17 @@ simulated event PostNetBeginPlay()
 		WalkAnims[2]='RunL';
 		WalkAnims[3]='RunR';
 	}
+	
+	if(!pawnNetInit)
+    {
+        pawnNetInit = true;
+        if(Controller != none)
+        {
+            if(Controller.Adrenaline < Class'BallisticReplicationInfo'.default.iAdrenaline) Controller.Adrenaline = Class'BallisticReplicationInfo'.default.iAdrenaline;
+            Controller.AdrenalineMax = Class'BallisticReplicationInfo'.default.iAdrenalineCap;
+            BPRI = class'Mut_Ballistic'.static.GetBPRI(Controller.PlayerReplicationInfo);
+        }
+    }
 }
 
 simulated function CreateColorStyle()

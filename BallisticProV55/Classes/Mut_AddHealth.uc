@@ -1,4 +1,6 @@
 class Mut_AddHealth extends Mutator
+	HideDropDown
+	CacheExempt
 config(BallisticProV55);
 
 var() config int NewHP, NewHealthMax, NewSHealthMax;

@@ -69,6 +69,9 @@ var() localized Array<string> CamRateOptions;	// List of camera update rate opti
 var   bool 					bSpawnedIA;		//Interaction has been spawnd for local player.
 var   bool					bDoItemize;		//Spawn itemizer items next tick
 
+//PlayerChangedClass
+var   globalconfig float    FootstepAmplifier;
+
 var   BCReplicationInfo	BallisticReplicationInfo;
 
 var	int						CRCount;
@@ -96,14 +99,10 @@ static function BallisticPlayerReplicationInfo GetBPRI(PlayerReplicationInfo PRI
 	
 	for(lPRI = PRI.CustomReplicationInfo.NextReplicationInfo; lPRI != None; lPRI=lPRI.NextReplicationInfo)
 	{
-
-
 		if(BallisticPlayerReplicationInfo(lPRI)!=None)
 			return BallisticPlayerReplicationInfo(lPRI);
 		if (lPRI == lPRI.NextReplicationInfo)
 		{
-
-
 			log("A LinkedReplicationInfo links to itself, aborting");
 			break;
 		}
@@ -213,6 +212,46 @@ function ModifyPlayer(Pawn Other)
 
 		Other.bCanWalkOffLedges=true;
 	}
+	else if(xPawn(Other) != None)
+    {
+        // Player
+        Other.Health = class'BallisticReplicationInfo'.default.playerHealth;  // health the player starts with
+        Other.HealthMax = class'BallisticReplicationInfo'.default.playerHealthCap; // maximum health a player can have
+        Other.SuperHealthMax = class'BallisticReplicationInfo'.default.playerSuperHealthCap; // maximum superhealth a player can have
+        xPawn(Other).ShieldStrengthMax = class'BallisticReplicationInfo'.default.iArmorCap;
+        Other.AddShieldStrength(class'BallisticReplicationInfo'.default.iArmor);
+        Other.MaxFallSpeed = class'BallisticReplicationInfo'.default.MaxFallSpeed;
+        xPawn(Other).FootstepVolume *= FootstepAmplifier;
+
+        Other.Controller.AdrenalineMax = class'BallisticReplicationInfo'.default.iAdrenalineCap;
+        if(Other.Controller.Adrenaline < class'BallisticReplicationInfo'.default.iAdrenaline)
+        {
+            Other.Controller.Adrenaline = class'BallisticReplicationInfo'.default.iAdrenaline;
+        }
+
+        if(BallisticPawn(Other) != none)
+        {
+            BallisticPawn(Other).BPRI = class'Mut_Ballistic'.static.GetBPRI(Other.Controller.PlayerReplicationInfo);
+        }
+
+        /*if (bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
+        {
+            SC = Spawn(class'BCSprintControl',Other);
+            SC.Stamina = InitStamina;
+            SC.MaxStamina = InitMaxStamina;
+            SC.StaminaDrainRate = InitStaminaDrainRate;
+            SC.StaminaChargeRate = InitStaminaChargeRate;
+            SC.SpeedFactor = InitSpeedFactor;
+            SC.JumpDrainFactor = JumpDrainFactor;
+
+            if(BallisticPawn(Other) == none)
+                SC.newHudIndicator = false;
+
+            SC.GiveTo(Other);
+            Sprinters[Sprinters.length] = SC;
+        }*/
+    }
+	
 	// A hack to prevent continued walking after respawning.
 	if(Other.Controller != None)
 		Other.Controller.bRun = 0;
@@ -903,7 +942,8 @@ defaultproperties
      bSpawnUniqueItems=True
      bPickupsChange=True
      bRandomDefaultWeapons=True
-     CamUpdateRate="1"
+     footstepAmplifier=1.500000
+	 CamUpdateRate="1"
      CamRateOptions(0)="No Update"
      CamRateOptions(1)="Slow 2 FPS"
      CamRateOptions(2)="Medium 5 FPS"

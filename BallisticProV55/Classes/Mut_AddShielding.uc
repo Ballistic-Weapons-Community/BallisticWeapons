@@ -1,4 +1,6 @@
 class Mut_AddShielding extends Mutator
+	HideDropDown
+	CacheExempt
 	config(BallisticProV55);
 
 var() config int NewSS;

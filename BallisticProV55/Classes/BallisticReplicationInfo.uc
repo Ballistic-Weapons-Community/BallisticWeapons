@@ -17,6 +17,7 @@
 class BallisticReplicationInfo extends BCReplicationInfo config(BallisticProV55);
 
 // Server Variables -----------------------------------------------------------
+
 // Pawn
 var() Config bool		bBrightPlayers;		// Players have ambient glow to glow in the dark like the standard pawns.
 var() Config bool		bNoDodging;			// Disables dodging.
@@ -25,6 +26,22 @@ var() Config float		WalkingPercentage;   // Let players configure the walking mo
 var() Config float		CrouchingPercentage; // Let players configure the crouching movespeed percentage.
 var() Config bool 		bUseRunningAnims; // Pawns will use running anims for walking.
 var() Config bool		bUniversalMineLights; // All BX-5 mines are lit.
+
+//Player
+var() config int 		playerHealth;  // health the player starts with
+var() config int 		playerHealthCap; // maximum health a player can have
+var() config int 		playerSuperHealthCap; // maximum superhealth a player can have
+var() config int 		iAdrenaline;  // maximum adrenaline a player starts with
+var() config int 		iAdrenalineCap;  // maximum adrenaline a player can have
+var() config int 		iArmor;  // armor the player starts with
+var() config int 		iArmorCap;  // maximum armor the player can have
+var() config float 		dieSoundAmplifier;  // amplifies the die sound
+var() config float 		dieSoundRangeAmplifier; // amplifies the range
+var() config float 		hitSoundAmplifier;  // amplifies the hit sound
+var() config float 		hitSoundRangeAmplifier;  // amplifies the range
+var() config float 		jumpDamageAmplifier;  // amplifies the jump damage
+var() config float 		MaxFallSpeed; // beyond this speed, players will take damage when landing on a surface
+
 // ----------------------------------------------------------------------------
 var struct RepInfo_BW
 {
@@ -35,6 +52,21 @@ var struct RepInfo_BW
 	var float		CrouchingPercentage;
 	var bool		bUseRunningAnims;
 	var bool		bUniversalMineLights;
+	
+	//Player
+	var int playerHealth;  // health the player starts with
+    var int playerHealthCap; // maximum health a player can have
+    var int playerSuperHealthCap; // maximum superhealth a player can have
+    var int iAdrenaline;  // maximum adrenaline a player starts with
+    var int iAdrenalineCap;  // maximum adrenaline a player can have
+    var int iArmor;  // armor the player starts with
+    var int iArmorCap;  // maximum armor the player can have
+    var float dieSoundAmplifier;  // amplifies the die sound
+    var float dieSoundRangeAmplifier; // amplifies the range
+    var float hitSoundAmplifier;  // amplifies the hit sound
+    var float hitSoundRangeAmplifier;  // amplifies the range
+    var float jumpDamageAmplifier;  // amplifies the jump damage
+
 }BWRep;
 
 replication
@@ -63,6 +95,21 @@ simulated function InitClientVars()
 	class.default.CrouchingPercentage = CrouchingPercentage;
 	class.default.bUniversalMineLights = bUniversalMineLights;
 	class.default.bUseRunningAnims = bUseRunningAnims;
+	
+	// Player
+    playerHealth = BWRep.playerHealth;
+    playerHealthCap = BWRep.playerHealthCap;
+    playerSuperHealthCap = BWRep.playerSuperHealthCap;
+    iAdrenaline = BWRep.iAdrenaline;
+    iAdrenalineCap = BWRep.iAdrenalineCap;
+    iArmor = BWRep.iArmor;
+    iArmorCap = BWRep.iArmorCap;
+    dieSoundAmplifier = BWRep.dieSoundAmplifier;
+    dieSoundRangeAmplifier = BWRep.dieSoundRangeAmplifier;
+    hitSoundAmplifier = BWRep.hitSoundAmplifier;
+    hitSoundRangeAmplifier = BWRep.hitSoundRangeAmplifier;
+    jumpDamageAmplifier = BWRep.jumpDamageAmplifier;
+	
 	super.InitClientVars();
 
 	Log("bBrightPlayers: "$bBrightPlayers);
@@ -91,6 +138,20 @@ function ServerInitialize()
 	BWRep.bUniversalMineLights = bUniversalMineLights;
 	BWRep.bUseRunningAnims = bUseRunningAnims;
 
+	// Player
+    BWRep.playerHealth = playerHealth;
+    BWRep.playerHealthCap = playerHealthCap;
+    BWRep.playerSuperHealthCap = playerSuperHealthCap;
+    BWRep.iAdrenaline = iAdrenaline;
+    BWRep.iAdrenalineCap = iAdrenalineCap;
+    BWRep.iArmor = iArmor;
+    BWRep.iArmorCap = iArmorCap;
+    BWRep.dieSoundAmplifier = dieSoundAmplifier;
+    BWRep.dieSoundRangeAmplifier = dieSoundRangeAmplifier;
+    BWRep.hitSoundAmplifier = hitSoundAmplifier;
+    BWRep.hitSoundRangeAmplifier = hitSoundRangeAmplifier;
+    BWRep.jumpDamageAmplifier = jumpDamageAmplifier;
+
 	super.ServerInitialize();
 }
 
@@ -111,4 +172,20 @@ defaultproperties
      WalkingPercentage=0.900000
      CrouchingPercentage=0.450000
      ModString="Ballistic Weapons Pro"
+	 
+	 //Player
+	 //PlayerSpeedScale=1.000000
+	 PlayerHealth=100
+     PlayerHealthCap=100
+     PlayerSuperHealthCap=150
+     iAdrenaline=0
+     iAdrenalineCap=100
+     iArmor=100
+     iArmorCap=100
+     dieSoundAmplifier=6.500000
+     dieSoundRangeAmplifier=1.000000
+     hitSoundAmplifier=8.000000
+     hitSoundRangeAmplifier=1.500000
+     JumpDamageAmplifier=80.000000
+	 MaxFallSpeed=800.000000
 }
