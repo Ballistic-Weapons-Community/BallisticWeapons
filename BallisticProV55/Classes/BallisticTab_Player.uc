@@ -6,25 +6,27 @@
 //=============================================================================
 class BallisticTab_Player extends UT2K4TabPanel;
 
-var automated moNumericEdit     ne_playerHealth;
-var automated moNumericEdit     ne_playerHealthCap;
-var automated moNumericEdit     ne_playerSuperHealthCap;
-var automated moNumericEdit     ne_iAdrenaline;
-var automated moNumericEdit     ne_iAdrenalineCap;
-var automated moFloatEdit       fe_dieSoundAmplifier;
-var automated moFloatEdit       fe_dieSoundRangeAmplifier;
-var automated moFloatEdit       fe_hitSoundAmplifier;
-var automated moFloatEdit       fe_hitSoundRangeAmplifier;
-var automated moFloatEdit       fe_footStepAmplifier;
-var automated moFloatEdit       fe_jumpDamageAmplifier;
-
-var automated moNumericEdit     ne_iArmor;
-var automated moNumericEdit     ne_iArmorCap;
-
-var automated moFloatEdit       fe_MaxFallSpeed;
+var automated moNumericEdit     ne_playerHealth;			//Starting Health
+var automated moNumericEdit     ne_playerHealthCap;			//Health Cap
+var automated moNumericEdit     ne_playerSuperHealthCap;	//Super Health Cap
+var automated moNumericEdit     ne_iAdrenaline;				//Starting Adrenaline
+var automated moNumericEdit     ne_iAdrenalineCap;			//Adrenaline Cap
+var automated moFloatEdit       fe_dieSoundAmplifier;		//Death Sound Amplification
+var automated moFloatEdit       fe_dieSoundRangeAmplifier;	//Death Sound Range Amplification
+var automated moFloatEdit       fe_hitSoundAmplifier;		//Damage Audio Sound Amplification
+var automated moFloatEdit       fe_hitSoundRangeAmplifier;	//Damage Audio Sound Range Amplification
+var automated moFloatEdit       fe_footStepAmplifier;		//Footstep Sound Amplification
+var automated moFloatEdit       fe_jumpDamageAmplifier;		//Jump & Dodge Sound Amplification
+var automated moNumericEdit     ne_iArmor;					//Starting Armour
+var automated moNumericEdit     ne_iArmorCap;				//ArmourCap
+var automated moFloatEdit       fe_MaxFallSpeed;			//Max Fall Speed
 
 var BallisticConfigMenuPro         p_Anchor;
 var bool                        bInitialized;
+
+//==================================================================
+// General Menu Code
+//==================================================================
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
@@ -43,6 +45,10 @@ function ShowPanel(bool bShow)
     LoadSettings();
     bInitialized = true;
 }
+
+//==================================================================
+// Settings & Defaults
+//==================================================================
 
 function LoadSettings()
 {

@@ -28,11 +28,11 @@ var() editconst noexport BallisticTab_Crosshairs		p_Cross;
 var() editconst noexport BallisticTab_LoadoutPro		p_LoadoutNew;
 
 // WIP
+Var() editconst noexport BallisticTab_GameRules			p_GameRules;
 Var() editconst noexport BallisticTab_WeaponRules		p_Weapons;
 
-
 var() localized string 	HeaderCaption;
-var() localized string	RulesTabLabel,RulesTabHint, OptionsTabLabel,OptionsTabHint, BloodTabLabel,BloodTabHint, SwapTabLabel,SwapTabHint,LoadoutTabLabel,LoadoutTabHint,CrossTabLabel,CrossTabHint,LoadoutNewTabLabel,LoadoutNewTabHint,ProSettingsTabLabel,ProSettingsTabHint,PlayerTabLabel,PlayerTabHint,WeaponsTabLabel,WeaponsTabHint;
+var() localized string	RulesTabLabel,RulesTabHint, OptionsTabLabel,OptionsTabHint, BloodTabLabel,BloodTabHint, SwapTabLabel,SwapTabHint,LoadoutTabLabel,LoadoutTabHint,CrossTabLabel,CrossTabHint,LoadoutNewTabLabel,LoadoutNewTabHint,ProSettingsTabLabel,ProSettingsTabHint,PlayerTabLabel,PlayerTabHint,WeaponsTabLabel,WeaponsTabHint,GameTabLabel,GameTabHint;
 var()		  string	DetailSettings[9];
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
@@ -41,9 +41,14 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 
 	MyHeader.DockedTabs = c_Tabs;
 	//Rules
-	p_Rules		 	= BallisticTab_RulesPro(c_Tabs.AddTab(RulesTabLabel,"BallisticProV55.BallisticTab_RulesPro",,RulesTabHint));
-	p_ProSettings	= BallisticTab_ProSettings(c_Tabs.AddTab(ProSettingsTabLabel,"BallisticProV55.BallisticTab_ProSettings",,ProSettingsTabHint));
+	
+	//WIP
+	//p_GameRules	= BallisticTab_GameRules(c_Tabs.AddTab(GameTabLabel,"BallisticProV55.BallisticTab_GameRules",,GameTabHint));
 	//p_Weapons		= BallisticTab_WeaponRules(c_Tabs.AddTab(WeaponsTabLabel,"BallisticProV55.BallisticTab_WeaponRules",,WeaponsTabHint));
+	//p_Player     	= BallisticTab_Player(c_Tabs.AddTab(PlayerTabLabel,"BallisticProV55.BallisticTab_Player",,PlayerTabHint)); 
+	
+	p_Rules			= BallisticTab_RulesPro(c_Tabs.AddTab(RulesTabLabel,"BallisticProV55.BallisticTab_RulesPro",,RulesTabHint));
+	p_ProSettings	= BallisticTab_ProSettings(c_Tabs.AddTab(ProSettingsTabLabel,"BallisticProV55.BallisticTab_ProSettings",,ProSettingsTabHint));
 	p_Player     	= BallisticTab_Player(c_Tabs.AddTab(PlayerTabLabel,"BallisticProV55.BallisticTab_Player",,PlayerTabHint)); 
 	
 	//Preferences
@@ -103,7 +108,9 @@ function bool InternalOnClick(GUIComponent Sender)
 			 case p_ProSettings:   	p_ProSettings.LoadSettings(); break;
 			 
 			 //WIP
+			 case p_GameRules:		p_GameRules.LoadSettings(); break;
 			 case p_Weapons:		p_Weapons.LoadSettings(); break;
+			 case p_Player:			p_Player.LoadSettings(); break;
 		}
 
 	}
@@ -121,7 +128,9 @@ function bool InternalOnClick(GUIComponent Sender)
 			 case p_ProSettings:   	p_ProSettings.DefaultSettings(); break;
 			 
 			 //WIP
+			 case p_GameRules:		p_GameRules.DefaultSettings(); break;
 			 case p_Weapons:		p_Weapons.DefaultSettings(); break;
+			 case p_Player:			p_Player.DefaultSettings(); break;
 		}
 	}
 	return true;
@@ -159,11 +168,12 @@ function LoadSettings()
 	p_Loadout.LoadSettings();
 	p_Cross.LoadSettings();
 	p_LoadoutNew.LoadSettings();
-	p_Player.LoadSettings();
 	p_ProSettings.LoadSettings();
 	
 	//WIP
+	p_GameRules.LoadSettings();
 	p_Weapons.LoadSettings();
+	p_Player.LoadSettings();
 }
 
 function SaveSettings()
@@ -173,13 +183,14 @@ function SaveSettings()
 	p_Blood.SaveSettings();
 	p_Swap.SaveSettings();
 	p_Loadout.SaveSettings();
-	p_Player.SaveSettings();
 	p_Cross.SaveSettings();
 	p_LoadoutNew.SaveSettings();
 	p_ProSettings.SaveSettings();
 	
 	//WIP
+	p_GameRules.SaveSettings();
 	p_Weapons.SaveSettings();
+	p_Player.SaveSettings();
 }
 
 function DefaultSettings()
@@ -188,14 +199,15 @@ function DefaultSettings()
 	p_Options.DefaultSettings();
 	p_Blood.DefaultSettings();
 	p_Swap.DefaultSettings();
-	p_Player.DefaultSettings();
 	p_Loadout.DefaultSettings();
 	p_Cross.DefaultSettings();
 	p_LoadoutNew.DefaultSettings();
 	p_ProSettings.DefaultSettings();
 	
 	//WIP
+	p_GameRules.DefaultSettings();
 	p_Weapons.DefaultSettings();
+	p_Player.DefaultSettings();
 }
 
 final function string GetDisplayString(string ConfigString)
@@ -301,13 +313,19 @@ defaultproperties
      End Object
      c_Tabs=GUITabControl'BallisticProV55.BallisticConfigMenuPro.PageTabs'
 
-     HeaderCaption="Ballistic Settings"
+     //WIP
+	 HeaderCaption="Ballistic Settings"
+	 GameTabLabel="Game Rules"
+	 GameTabHint="Adjust rules and settings that affect the behaviour of the game."
+	 WeaponsTabLabel="Weapons Rules"
+	 WeaponsTabHint="Adjust rules and settings that affect the behaviour of the Weapons."
+	 PlayerTabLabel="Player Rules"
+     PlayerTabHint="Adjust rules and settings that affect the Player Settings"
+	 
      RulesTabLabel="Game Rules"
      RulesTabHint="Adjust rules and settings that affect the behaviour of the game."
      OptionsTabLabel="Preferences"
      OptionsTabHint="Configure your own personal preferences."
-     PlayerTabLabel="Player Rules"
-     PlayerTabHint="Player related settings"
 	 BloodTabLabel="Blood"
      BloodTabHint="Configure Ballistic blood and gore settings."
      SwapTabLabel="Swapping"
@@ -319,11 +337,6 @@ defaultproperties
      LoadoutNewTabLabel="Evolution Loadout"
      LoadoutNewTabHint="Adjust the loadout and requirement settings for the 'Ballistic Evolution Loadout' mutator."
      ProSettingsTabLabel="Additional Game Rules"
-     
-	 //WIP
-	 WeaponsTabLabel="Weapons Rules"
-	 WeaponsTabHint="Adjust rules and settings that affect the behaviour of the Weapons."
-	 
 	 ProSettingsTabHint="BallisticPro specific game settings, affecting walk and crouch speed."
 	 DetailSettings(0)="UltraLow"
      DetailSettings(1)="VeryLow"
