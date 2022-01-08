@@ -31,11 +31,14 @@ var() globalconfig float		RecoilScale;		// Used for scaling general weapon recoi
 var() globalconfig bool		    bNoJumpOffset;		// Prevents weapons shifting and being offset when jumping or sprinting
 var() globalconfig bool		    bNoLongGun;			// Disable 'long gun' features
 var() globalconfig bool		    bNoReloading;		// Disables reloading and weapons use boring old style ammo handling...
+var() globalconfig float      	ReloadSpeedScale;   // Buff reload speeds
+
 // ----------------------------------------------------------------------------
 var struct RepInfo_BCore
 {
 	var float		AccuracyScale;
 	var float		RecoilScale;
+	var float       ReloadSpeedScale;
 	var bool		bNoJumpOffset;
 	var bool		bNoLongGun;
 	var bool		bNoReloading;
@@ -52,12 +55,14 @@ simulated function InitClientVars()
 {
 	AccuracyScale	= BCoreRep.AccuracyScale;
 	RecoilScale		= BCoreRep.RecoilScale;
+	ReloadSpeedScale = BCoreRep.ReloadSpeedScale;
 	bNoJumpOffset	= BCoreRep.bNoJumpOffset;
 	bNoLongGun		= BCoreRep.bNoLongGun;
 	bNoReloading	= BCoreRep.bNoReloading;
 
 	class.default.AccuracyScale	= AccuracyScale;
 	class.default.RecoilScale	= RecoilScale;
+	class.default.ReloadSpeedScale = ReloadSpeedScale;
 	class.default.bNoJumpOffset	= bNoJumpOffset;
 	class.default.bNoLongGun	= bNoLongGun;
 	class.default.bNoReloading	= bNoReloading;
@@ -75,6 +80,7 @@ function ServerInitialize()
 {
 	BCoreRep.AccuracyScale	= AccuracyScale;
 	BCoreRep.RecoilScale	= RecoilScale;
+	BCoreRep.ReloadSpeedScale = ReloadSpeedScale;
 	BCoreRep.bNoJumpOffset	= bNoJumpOffset;
 	BCoreRep.bNoLongGun		= bNoLongGun;
 	BCoreRep.bNoReloading	= bNoReloading;
@@ -119,5 +125,6 @@ defaultproperties
      ModString="Ballistic Pro Core"
      AccuracyScale=1.000000
      RecoilScale=1.000000
+	 ReloadSpeedScale=1.000000
      bOnlyDirtyReplication=False
 }

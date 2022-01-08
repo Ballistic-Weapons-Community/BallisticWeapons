@@ -79,6 +79,7 @@ replication
 simulated function InitClientVars()
 {
 	local BallisticPawn P;
+	local int i;
 
 	bBrightPlayers		= BWRep.bBrightPlayers;
 	bNoDodging			= BWRep.bNoDodging;
@@ -95,6 +96,9 @@ simulated function InitClientVars()
 	class.default.CrouchingPercentage = CrouchingPercentage;
 	class.default.bUniversalMineLights = bUniversalMineLights;
 	class.default.bUseRunningAnims = bUseRunningAnims;
+	
+	//Weapons
+	class.default.ReloadSpeedScale = ReloadSpeedScale;
 	
 	// Player
     playerHealth = BWRep.playerHealth;

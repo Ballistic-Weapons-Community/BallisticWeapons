@@ -548,6 +548,14 @@ simulated function PostNetBeginPlay()
     if (NetInventoryGroup != 255)
         InventoryGroup = NetInventoryGroup;
 
+	if (BCRepClass.default.ReloadSpeedScale != 1)
+    {
+        CockAnimRate *= BCRepClass.default.ReloadSpeedScale;
+        ReloadAnimRate *= BCRepClass.default.ReloadSpeedScale;
+        StartShovelAnimRate *= BCRepClass.default.ReloadSpeedScale;
+        EndShovelAnimRate *= BCRepClass.default.ReloadSpeedScale;
+    }
+
     bDeferInitialSwitch = bServerDeferInitialSwitch;
 
 	// Azarael - This assumes that all firemodes implementing burst modify the primary fire alone.
@@ -821,8 +829,8 @@ simulated function StartBerserk()
 	bBerserk = true;
 	UpdateBerserkRecoil();
 
-	ReloadAnimRate = default.ReloadAnimRate / 0.75;
-    CockAnimRate = default.CockAnimRate / 0.75;
+	ReloadAnimRate = (default.ReloadAnimRate * BCRepClass.default.ReloadSpeedScale) / 0.75;
+    CockAnimRate = (default.CockAnimRate * BCRepClass.default.ReloadSpeedScale) / 0.75;
     
     if (FireMode[0] != None)
         FireMode[0].StartBerserk();
@@ -835,8 +843,8 @@ simulated function StopBerserk()
 	bBerserk = false;
 	UpdateBerserkRecoil();
 
-	ReloadAnimRate = default.ReloadAnimRate;
-    CockAnimRate = default.CockAnimRate;
+	ReloadAnimRate = default.ReloadAnimRate * BCRepClass.default.ReloadSpeedScale;
+    CockAnimRate = default.CockAnimRate * BCRepClass.default.ReloadSpeedScale;
     
     if ( (Level.GRI != None) && Level.GRI.WeaponBerserk > 1.0 )
 		return;

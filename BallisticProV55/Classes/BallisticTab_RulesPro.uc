@@ -25,6 +25,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	if (BallisticConfigMenuPro(Controller.ActivePage) != None)
 		p_Anchor = BallisticConfigMenuPro(Controller.ActivePage);
 }
+
 function ShowPanel(bool bShow)
 {
 	super.ShowPanel(bShow);

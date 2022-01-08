@@ -629,7 +629,7 @@ simulated event SetAnimAction(name NewAction)
 			if (ReloadAnim != '')
 			{
 				AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
-				PlayAnim(ReloadAnim, ReloadAnimRate, 0.25, 1);
+				PlayAnim(ReloadAnim, ReloadAnimRate * class'BallisticReplicationInfo'.default.ReloadSpeedScale, 0.25 / class'BallisticReplicationInfo'.default.ReloadSpeedScale, 1);
 				FireState=FS_PlayOnce;
 				bResetAnimationAction=True;
 			}
