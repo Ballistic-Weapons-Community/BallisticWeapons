@@ -402,6 +402,8 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
+	SightFXClass=Class'BallisticProV55.MD24SightLED'
+    SightFXBone="Slide"
 	SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
 	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'MD24WeaponParams'

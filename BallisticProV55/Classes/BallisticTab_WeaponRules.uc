@@ -11,16 +11,28 @@
 //=============================================================================
 class BallisticTab_WeaponRules extends UT2K4TabPanel;
 
-// Weapon Spawning, Itemizer, Offsets & Weapon Properties
-var automated moEditBox   	eb_ItemGroup;
-var automated moCheckbox	ch_UseItemizer, ch_RandomDefaults, ch_StableSprint, ch_NoLongGun, ch_NoReloading, ch_MineLights, ch_RunningAnims;
-							
-// Recoil, Accuracy, Movement & Damage Scales
-var automated moSlider		sl_Accuracy, sl_Recoil, sl_Damage, sl_VDamage;
-var automated moFloatEdit	fl_Damage, fl_VDamage, fl_WalkingPct, fl_CrouchingPct, fl_ReloadSpeed;
+var automated moEditBox   	eb_ItemGroup;		//The name of the Itemizer layout you want to use.
+var automated moCheckbox	ch_UseItemizer; 	//Enable Itemizer to spawn aditional pickups in maps.
+var automated moCheckbox	ch_RandomDefaults;	//Players will spawn with a random weapon instead of stock pistol.
+var automated moCheckbox	ch_StableSprint;	//Disable Weapon Displacement when Running & Jumping
+var automated moCheckbox	ch_NoLongGun;		//Disable Weapon Displacement when Near a Wall
+var automated moCheckbox	ch_NoReloading;		//Disable Reloading
+var automated moCheckbox	ch_RunningAnims;	//Running Animations while ADS
+var automated moCheckbox	ch_MineLights;		//All Players can see Lights on Mines
+var automated moSlider		sl_Accuracy;		//Accuracy Scale
+var automated moSlider		sl_Recoil;			//Recoil Scale
+var automated moFloatEdit	fl_Damage;			//Damage Scale against Players & Pawns
+var automated moFloatEdit	fl_VDamage;			//Damage Scale against Vehicles
+var automated moFloatEdit	fl_WalkingPct;		//ADS Move Speed Percentage
+var automated moFloatEdit	fl_CrouchingPct;	//Crouch Move Speed Percentage
+var automated moFloatEdit	fl_ReloadSpeed;		//Reload Rate Scale
 
-var BallisticConfigMenuPro		p_Anchor;
+var BallisticConfigMenuPro	p_Anchor;
 var bool					bInitialized;
+
+//==================================================================
+// General Menu Code
+//==================================================================
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
@@ -37,6 +49,10 @@ function ShowPanel(bool bShow)
 	LoadSettings();
 	bInitialized = true;
 }
+
+//==================================================================
+// Settings & Defaults
+//==================================================================
 
 function LoadSettings()
 {
@@ -105,7 +121,7 @@ function DefaultSettings()
 
 defaultproperties
 {
-Begin Object Class=moSlider Name=sl_AccuracySlider
+	 Begin Object Class=moSlider Name=sl_AccuracySlider
          MaxValue=2.000000
          Caption="Inaccuracy Scale"
          OnCreateComponent=sl_AccuracySlider.InternalOnCreateComponent
