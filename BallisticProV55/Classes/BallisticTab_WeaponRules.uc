@@ -271,7 +271,7 @@ defaultproperties
      End Object
      ch_NoReloading=moCheckBox'BallisticProV55.BallisticTab_WeaponRules.ch_NoReloadingCheck'
 
-     Begin Object Class=moCheckBox Name=ch_RandomDefaultsCheck
+     /*Begin Object Class=moCheckBox Name=ch_RandomDefaultsCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
          Caption="Random Default Weapons"
@@ -282,7 +282,7 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_RandomDefaults=moCheckBox'BallisticProV55.BallisticTab_WeaponRules.ch_RandomDefaultsCheck'
+     ch_RandomDefaults=moCheckBox'BallisticProV55.BallisticTab_WeaponRules.ch_RandomDefaultsCheck'*/
 	 
 	 Begin Object Class=moCheckBox Name=ch_MineLightsCheck
          ComponentJustification=TXTA_Left
@@ -291,7 +291,7 @@ defaultproperties
          OnCreateComponent=ch_MineLightsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles BX5 mine lights for all players."
-         WinTop=0.650000
+         WinTop=0.600000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -304,7 +304,7 @@ defaultproperties
          OnCreateComponent=UseItemizerCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Use the Itemizer to spawn aditional pickups in maps."
-         WinTop=0.700000
+         WinTop=0.6500000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -315,7 +315,7 @@ defaultproperties
          Caption="Itemizer Group"
          OnCreateComponent=eb_ItemGroupEdit.InternalOnCreateComponent
          Hint="The name of the Itemizer layout you want to use. Defaults to 'Ballistic'."
-         WinTop=0.750000
+         WinTop=0.700000
          WinLeft=0.250000
          WinHeight=0.060000
      End Object

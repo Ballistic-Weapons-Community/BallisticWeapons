@@ -19,7 +19,6 @@ var automated GUITabControl	c_Tabs;
 
 var() editconst noexport BallisticTab_RulesPro			p_Rules;
 var() editconst noexport BallisticTab_ProSettings 		p_ProSettings;
-var() editconst noexport BallisticTab_Player         	p_Player;
 var() editconst noexport BallisticTab_PreferencesPro	p_Options;
 var() editconst noexport BallisticTab_BloodPro			p_Blood;
 var() editconst noexport BallisticTab_SwappingsPro		p_Swap;
@@ -30,9 +29,11 @@ var() editconst noexport BallisticTab_LoadoutPro		p_LoadoutNew;
 // WIP
 Var() editconst noexport BallisticTab_GameRules			p_GameRules;
 Var() editconst noexport BallisticTab_WeaponRules		p_Weapons;
+var() editconst noexport BallisticTab_Player         	p_Player;
+var() editconst noexport BallisticTab_Pickups			p_Pickups;
 
 var() localized string 	HeaderCaption;
-var() localized string	RulesTabLabel,RulesTabHint, OptionsTabLabel,OptionsTabHint, BloodTabLabel,BloodTabHint, SwapTabLabel,SwapTabHint,LoadoutTabLabel,LoadoutTabHint,CrossTabLabel,CrossTabHint,LoadoutNewTabLabel,LoadoutNewTabHint,ProSettingsTabLabel,ProSettingsTabHint,PlayerTabLabel,PlayerTabHint,WeaponsTabLabel,WeaponsTabHint,GameTabLabel,GameTabHint;
+var() localized string	RulesTabLabel,RulesTabHint, OptionsTabLabel,OptionsTabHint, BloodTabLabel,BloodTabHint, SwapTabLabel,SwapTabHint,LoadoutTabLabel,LoadoutTabHint,CrossTabLabel,CrossTabHint,LoadoutNewTabLabel,LoadoutNewTabHint,ProSettingsTabLabel,ProSettingsTabHint,PlayerTabLabel,PlayerTabHint,WeaponsTabLabel,WeaponsTabHint,GameTabLabel,GameTabHint,PickupsTabLabel,PickupsTabHint;
 var()		  string	DetailSettings[9];
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
@@ -43,9 +44,10 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	//Rules
 	
 	//WIP
-	//p_GameRules	= BallisticTab_GameRules(c_Tabs.AddTab(GameTabLabel,"BallisticProV55.BallisticTab_GameRules",,GameTabHint));
+	//p_GameRules		= BallisticTab_GameRules(c_Tabs.AddTab(GameTabLabel,"BallisticProV55.BallisticTab_GameRules",,GameTabHint));
 	//p_Weapons		= BallisticTab_WeaponRules(c_Tabs.AddTab(WeaponsTabLabel,"BallisticProV55.BallisticTab_WeaponRules",,WeaponsTabHint));
-	//p_Player     	= BallisticTab_Player(c_Tabs.AddTab(PlayerTabLabel,"BallisticProV55.BallisticTab_Player",,PlayerTabHint)); 
+	//p_Player     	= BallisticTab_Player(c_Tabs.AddTab(PlayerTabLabel,"BallisticProV55.BallisticTab_Player",,PlayerTabHint));
+	//p_Pickups     	= BallisticTab_Pickups(c_Tabs.AddTab(PickupsTabLabel,"BallisticProV55.BallisticTab_Pickups",,PickupsTabHint)); 
 	
 	p_Rules			= BallisticTab_RulesPro(c_Tabs.AddTab(RulesTabLabel,"BallisticProV55.BallisticTab_RulesPro",,RulesTabHint));
 	p_ProSettings	= BallisticTab_ProSettings(c_Tabs.AddTab(ProSettingsTabLabel,"BallisticProV55.BallisticTab_ProSettings",,ProSettingsTabHint));
@@ -111,6 +113,7 @@ function bool InternalOnClick(GUIComponent Sender)
 			 case p_GameRules:		p_GameRules.LoadSettings(); break;
 			 case p_Weapons:		p_Weapons.LoadSettings(); break;
 			 case p_Player:			p_Player.LoadSettings(); break;
+			 case p_Pickups:		p_Pickups.LoadSettings(); break;
 		}
 
 	}
@@ -131,6 +134,7 @@ function bool InternalOnClick(GUIComponent Sender)
 			 case p_GameRules:		p_GameRules.DefaultSettings(); break;
 			 case p_Weapons:		p_Weapons.DefaultSettings(); break;
 			 case p_Player:			p_Player.DefaultSettings(); break;
+			 case p_Pickups:		p_Pickups.DefaultSettings(); break;
 		}
 	}
 	return true;
@@ -174,6 +178,7 @@ function LoadSettings()
 	p_GameRules.LoadSettings();
 	p_Weapons.LoadSettings();
 	p_Player.LoadSettings();
+	p_Pickups.LoadSettings();
 }
 
 function SaveSettings()
@@ -191,6 +196,7 @@ function SaveSettings()
 	p_GameRules.SaveSettings();
 	p_Weapons.SaveSettings();
 	p_Player.SaveSettings();
+	p_Pickups.SaveSettings();
 }
 
 function DefaultSettings()
@@ -208,6 +214,7 @@ function DefaultSettings()
 	p_GameRules.DefaultSettings();
 	p_Weapons.DefaultSettings();
 	p_Player.DefaultSettings();
+	p_Pickups.DefaultSettings();
 }
 
 final function string GetDisplayString(string ConfigString)
@@ -321,6 +328,8 @@ defaultproperties
 	 WeaponsTabHint="Adjust rules and settings that affect the behaviour of the Weapons."
 	 PlayerTabLabel="Player Rules"
      PlayerTabHint="Adjust rules and settings that affect the Player Settings"
+	 PickupsTabLabel="Pickup Rules"
+     PickupsTabHint="Adjust rules and settings that affect the Equipment Pickup Settings"
 	 
      RulesTabLabel="Game Rules"
      RulesTabHint="Adjust rules and settings that affect the behaviour of the game."
