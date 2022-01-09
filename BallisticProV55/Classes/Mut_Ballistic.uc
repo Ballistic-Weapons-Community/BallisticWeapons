@@ -741,6 +741,17 @@ simulated function PreBeginPlay()
 
 	if (level.Game != None)
 	{
+		Level.Game.AddGameModifier(Spawn(class'Rules_KillRewards'));
+		
+		if(DeathMatch(Level.Game) != none)
+        {
+           DeathMatch(Level.Game).ADR_Kill = class'BallisticReplicationInfo'.default.ADRKill;
+           DeathMatch(Level.Game).ADR_MajorKill = class'BallisticReplicationInfo'.default.ADRMajorKill;
+           DeathMatch(Level.Game).ADR_MinorBonus = class'BallisticReplicationInfo'.default.ADRMinorBonus;
+           DeathMatch(Level.Game).ADR_KillTeamMate = class'BallisticReplicationInfo'.default.ADRKillTeamMate;
+           DeathMatch(Level.Game).ADR_MinorError = class'BallisticReplicationInfo'.default.ADRMinorError;
+        }
+		
 		if (level.Game.DefaultPlayerClassName ~= "XGame.xPawn" || bForceBallisticPawn)
 			level.Game.DefaultPlayerClassName = "BallisticProV55.BallisticPawn";
 		if (level.Game.PlayerControllerClassName ~= "XGame.xPlayer")

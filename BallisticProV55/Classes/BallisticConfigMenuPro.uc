@@ -31,9 +31,10 @@ Var() editconst noexport BallisticTab_GameRules			p_GameRules;
 Var() editconst noexport BallisticTab_WeaponRules		p_Weapons;
 var() editconst noexport BallisticTab_Player         	p_Player;
 var() editconst noexport BallisticTab_Pickups			p_Pickups;
+var() editconst noexport BallisticTab_KillRewards		p_KillRewards;
 
 var() localized string 	HeaderCaption;
-var() localized string	RulesTabLabel,RulesTabHint, OptionsTabLabel,OptionsTabHint, BloodTabLabel,BloodTabHint, SwapTabLabel,SwapTabHint,LoadoutTabLabel,LoadoutTabHint,CrossTabLabel,CrossTabHint,LoadoutNewTabLabel,LoadoutNewTabHint,ProSettingsTabLabel,ProSettingsTabHint,PlayerTabLabel,PlayerTabHint,WeaponsTabLabel,WeaponsTabHint,GameTabLabel,GameTabHint,PickupsTabLabel,PickupsTabHint;
+var() localized string	RulesTabLabel,RulesTabHint, OptionsTabLabel,OptionsTabHint, BloodTabLabel,BloodTabHint, SwapTabLabel,SwapTabHint,LoadoutTabLabel,LoadoutTabHint,CrossTabLabel,CrossTabHint,LoadoutNewTabLabel,LoadoutNewTabHint,ProSettingsTabLabel,ProSettingsTabHint,PlayerTabLabel,PlayerTabHint,WeaponsTabLabel,WeaponsTabHint,GameTabLabel,GameTabHint,PickupsTabLabel,PickupsTabHint,KillRewardsTabLabel,KillRewardsTabHint;
 var()		  string	DetailSettings[9];
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
@@ -48,6 +49,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	p_Weapons		= BallisticTab_WeaponRules(c_Tabs.AddTab(WeaponsTabLabel,"BallisticProV55.BallisticTab_WeaponRules",,WeaponsTabHint));
 	p_Player     	= BallisticTab_Player(c_Tabs.AddTab(PlayerTabLabel,"BallisticProV55.BallisticTab_Player",,PlayerTabHint));
 	p_Pickups     	= BallisticTab_Pickups(c_Tabs.AddTab(PickupsTabLabel,"BallisticProV55.BallisticTab_Pickups",,PickupsTabHint)); 
+	p_KillRewards   = BallisticTab_KillRewards(c_Tabs.AddTab(KillRewardsTabLabel,"BallisticProV55.BallisticTab_KillRewards",,KillRewardsTabHint)); 
 	
 	//p_Rules			= BallisticTab_RulesPro(c_Tabs.AddTab(RulesTabLabel,"BallisticProV55.BallisticTab_RulesPro",,RulesTabHint));
 	//p_ProSettings	= BallisticTab_ProSettings(c_Tabs.AddTab(ProSettingsTabLabel,"BallisticProV55.BallisticTab_ProSettings",,ProSettingsTabHint));
@@ -59,8 +61,8 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	p_Cross		 	= BallisticTab_Crosshairs(c_Tabs.AddTab(CrossTabLabel,"BallisticProV55.BallisticTab_Crosshairs",,CrossTabHint));
 	
 	//Inventory
-	p_LoadoutNew 	= BallisticTab_LoadoutPro(c_Tabs.AddTab(LoadoutNewTabLabel,"BallisticProV55.BallisticTab_LoadoutPro",,LoadoutNewTabHint));
 	p_Loadout	 	= BallisticTab_OutfittingPro(c_Tabs.AddTab(LoadoutTabLabel,"BallisticProV55.BallisticTab_OutfittingPro",,LoadoutTabHint));
+	p_LoadoutNew 	= BallisticTab_LoadoutPro(c_Tabs.AddTab(LoadoutNewTabLabel,"BallisticProV55.BallisticTab_LoadoutPro",,LoadoutNewTabHint));
 	p_Swap		 	= BallisticTab_SwappingsPro(c_Tabs.AddTab(SwapTabLabel,"BallisticProV55.BallisticTab_SwappingsPro",,SwapTabHint));
 }
 
@@ -114,6 +116,7 @@ function bool InternalOnClick(GUIComponent Sender)
 			 case p_Weapons:		p_Weapons.LoadSettings(); break;
 			 case p_Player:			p_Player.LoadSettings(); break;
 			 case p_Pickups:		p_Pickups.LoadSettings(); break;
+			 case p_KillRewards:	p_KillRewards.LoadSettings(); break;
 		}
 
 	}
@@ -135,6 +138,7 @@ function bool InternalOnClick(GUIComponent Sender)
 			 case p_Weapons:		p_Weapons.DefaultSettings(); break;
 			 case p_Player:			p_Player.DefaultSettings(); break;
 			 case p_Pickups:		p_Pickups.DefaultSettings(); break;
+			 case p_KillRewards:	p_KillRewards.DefaultSettings(); break;
 		}
 	}
 	return true;
@@ -179,6 +183,7 @@ function LoadSettings()
 	p_Weapons.LoadSettings();
 	p_Player.LoadSettings();
 	p_Pickups.LoadSettings();
+	p_KillRewards.LoadSettings();
 }
 
 function SaveSettings()
@@ -197,6 +202,7 @@ function SaveSettings()
 	p_Weapons.SaveSettings();
 	p_Player.SaveSettings();
 	p_Pickups.SaveSettings();
+	p_KillRewards.SaveSettings();
 }
 
 function DefaultSettings()
@@ -215,6 +221,7 @@ function DefaultSettings()
 	p_Weapons.DefaultSettings();
 	p_Player.DefaultSettings();
 	p_Pickups.DefaultSettings();
+	p_KillRewards.DefaultSettings();
 }
 
 final function string GetDisplayString(string ConfigString)
@@ -330,6 +337,8 @@ defaultproperties
      PlayerTabHint="Adjust rules and settings that affect the Player Settings"
 	 PickupsTabLabel="Pickup Rules"
      PickupsTabHint="Adjust rules and settings that affect the Equipment Pickup Settings"
+	 KillRewardsTabLabel="Kill Rewards"
+     KillRewardsTabHint="Adjust rules and settings that affect Kill Rewards"
 	 
      RulesTabLabel="Game Rules"
      RulesTabHint="Adjust rules and settings that affect the behaviour of the game."
