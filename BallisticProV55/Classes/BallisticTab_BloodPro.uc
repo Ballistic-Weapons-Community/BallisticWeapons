@@ -8,7 +8,7 @@
 //=============================================================================
 class BallisticTab_BloodPro extends UT2K4TabPanel;
 
-var automated moCheckbox	ch_BloodDrags, ch_BloodImpacts, ch_BloodPools, ch_BloodSplats, ch_BloodExplodes, ch_BloodFX, ch_Stmups, ch_Chunks, ch_ScreenFX, ch_ViewFlash;
+var automated moCheckbox	ch_BloodDrags, ch_BloodImpacts, ch_BloodPools, ch_BloodSplats, ch_BloodExplodes, ch_BloodFX, ch_Stmups, ch_Chunks, ch_ScreenFX;
 var automated moFloatEdit	fl_BloodTimeScale;
 var automated moSlider		sl_GibMulti;
 
@@ -43,7 +43,6 @@ function LoadSettings()
 	ch_Stmups.Checked(class'BloodManager'.default.bUseStumps);
 	ch_Chunks.Checked(class'BloodManager'.default.bUseChunks);
 	ch_ScreenFX.Checked(class'BloodManager'.default.bUseScreenFX);
-	ch_ViewFlash.Checked(class'BallisticPawn'.default.bNoViewFlash);	
 	sl_GibMulti.SetValue(class'BloodManager'.default.GibMultiplier);	
 	
 }
@@ -62,8 +61,7 @@ function SaveSettings()
 	class'BloodManager'.default.bUseBloodEffects	= ch_BloodFX.IsChecked();
 	class'BloodManager'.default.bUseStumps			= ch_Stmups.IsChecked();
 	class'BloodManager'.default.bUseChunks			= ch_Chunks.IsChecked();
-	class'BloodManager'.default.bUseScreenFX		= ch_ScreenFX.IsChecked();
-	class'BallisticPawn'.default.bNoViewFlash		= ch_ViewFlash.IsChecked();		
+	class'BloodManager'.default.bUseScreenFX		= ch_ScreenFX.IsChecked();	
 	class'BloodManager'.default.GibMultiplier		= sl_GibMulti.GetValue();
 
 	class'BWBloodControl'.static.StaticSaveConfig();
@@ -85,7 +83,6 @@ function DefaultSettings()
 	ch_Stmups.Checked(true);
 	ch_Chunks.Checked(true);
 	ch_ScreenFX.Checked(false);
-	ch_ViewFlash.Checked(true);	
 	sl_GibMulti.SetValue(1);
 }
 
@@ -208,19 +205,6 @@ defaultproperties
      End Object
      ch_ScreenFX=moCheckBox'BallisticProV55.BallisticTab_BloodPro.ch_ScreenFXCheck'
 
-     Begin Object Class=moCheckBox Name=ch_ViewFlashCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="No Damage Screen Flashes"
-         OnCreateComponent=ch_ViewFlashCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Disable screen flashes when you get damaged."
-         WinTop=0.550000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_ViewFlash=moCheckBox'BallisticProV55.BallisticTab_BloodPro.ch_ViewFlashCheck'
-
      Begin Object Class=moFloatEdit Name=fl_BloodTimeScaleFloat
          MinValue=0.000000
          MaxValue=100.000000
@@ -230,7 +214,7 @@ defaultproperties
          OnCreateComponent=fl_BloodTimeScaleFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Scales the life time of blood effects. 0 = Forever."
-         WinTop=0.600000
+         WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -242,7 +226,7 @@ defaultproperties
          Caption="Gib Multiplier"
          OnCreateComponent=sl_GibMultiSlider.InternalOnCreateComponent
          Hint="Multiplies number of gibs spawned. 1 = Normal, 0 = None. WARNING: Higher than 1 may kill performance!"
-         WinTop=0.650000
+         WinTop=0.600000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

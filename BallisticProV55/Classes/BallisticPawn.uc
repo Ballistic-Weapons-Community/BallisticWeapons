@@ -115,6 +115,7 @@ var() float				TimeBetweenImpacts;	// Minimum time between impact mark spawning
 var   vector			LastImpactNormal;	// Normal of last impact
 var   vector			LastImpactLocation;	// Location of last impact
 var config  bool		bNoViewFlash;       // Toggle the use of the new viewflash effects when u get damaged
+var     BCSprintControl Sprinter;
 // -------------------------------------------------------
 var   vector            BloodFlashV, ShieldFlashV;
 
@@ -422,6 +423,17 @@ simulated function TickFX(float DeltaTime)
 		else
 			Texture = Texture'BlueMarker_t';
 	}
+}
+
+function bool AddInventory( inventory NewItem )
+{
+    local bool ret;
+    ret = Super.AddInventory(NewItem);
+
+    if(NewItem != none && BCSprintControl(NewItem) != none)
+        sprinter = BCSprintControl(NewItem);
+
+    return ret;
 }
 
 event HitWall(vector HitNormal, actor Wall)

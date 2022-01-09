@@ -31,10 +31,11 @@ Var() editconst noexport BallisticTab_GameRules			p_GameRules;
 Var() editconst noexport BallisticTab_WeaponRules		p_Weapons;
 var() editconst noexport BallisticTab_Player         	p_Player;
 var() editconst noexport BallisticTab_Pickups			p_Pickups;
+var() editconst noexport BallisticTab_Sprint			p_Sprint;
 var() editconst noexport BallisticTab_KillRewards		p_KillRewards;
 
 var() localized string 	HeaderCaption;
-var() localized string	RulesTabLabel,RulesTabHint, OptionsTabLabel,OptionsTabHint, BloodTabLabel,BloodTabHint, SwapTabLabel,SwapTabHint,LoadoutTabLabel,LoadoutTabHint,CrossTabLabel,CrossTabHint,LoadoutNewTabLabel,LoadoutNewTabHint,ProSettingsTabLabel,ProSettingsTabHint,PlayerTabLabel,PlayerTabHint,WeaponsTabLabel,WeaponsTabHint,GameTabLabel,GameTabHint,PickupsTabLabel,PickupsTabHint,KillRewardsTabLabel,KillRewardsTabHint;
+var() localized string	RulesTabLabel,RulesTabHint, OptionsTabLabel,OptionsTabHint, BloodTabLabel,BloodTabHint, SwapTabLabel,SwapTabHint,LoadoutTabLabel,LoadoutTabHint,CrossTabLabel,CrossTabHint,LoadoutNewTabLabel,LoadoutNewTabHint,ProSettingsTabLabel,ProSettingsTabHint,PlayerTabLabel,PlayerTabHint,WeaponsTabLabel,WeaponsTabHint,GameTabLabel,GameTabHint,PickupsTabLabel,PickupsTabHint,KillRewardsTabLabel,KillRewardsTabHint,SprintTabLabel,SprintTabHint;
 var()		  string	DetailSettings[9];
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
@@ -48,7 +49,8 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	p_GameRules		= BallisticTab_GameRules(c_Tabs.AddTab(GameTabLabel,"BallisticProV55.BallisticTab_GameRules",,GameTabHint));
 	p_Weapons		= BallisticTab_WeaponRules(c_Tabs.AddTab(WeaponsTabLabel,"BallisticProV55.BallisticTab_WeaponRules",,WeaponsTabHint));
 	p_Player     	= BallisticTab_Player(c_Tabs.AddTab(PlayerTabLabel,"BallisticProV55.BallisticTab_Player",,PlayerTabHint));
-	p_Pickups     	= BallisticTab_Pickups(c_Tabs.AddTab(PickupsTabLabel,"BallisticProV55.BallisticTab_Pickups",,PickupsTabHint)); 
+	p_Pickups     	= BallisticTab_Pickups(c_Tabs.AddTab(PickupsTabLabel,"BallisticProV55.BallisticTab_Pickups",,PickupsTabHint));
+	//p_Sprint     	= BallisticTab_Sprint(c_Tabs.AddTab(SprintTabLabel,"BallisticProV55.BallisticTab_Sprint",,SprintTabHint));	//Settings dont work Needs Fixing
 	p_KillRewards   = BallisticTab_KillRewards(c_Tabs.AddTab(KillRewardsTabLabel,"BallisticProV55.BallisticTab_KillRewards",,KillRewardsTabHint)); 
 	
 	//p_Rules			= BallisticTab_RulesPro(c_Tabs.AddTab(RulesTabLabel,"BallisticProV55.BallisticTab_RulesPro",,RulesTabHint));
@@ -116,6 +118,7 @@ function bool InternalOnClick(GUIComponent Sender)
 			 case p_Weapons:		p_Weapons.LoadSettings(); break;
 			 case p_Player:			p_Player.LoadSettings(); break;
 			 case p_Pickups:		p_Pickups.LoadSettings(); break;
+			 case p_Sprint:			p_Sprint.LoadSettings(); break;
 			 case p_KillRewards:	p_KillRewards.LoadSettings(); break;
 		}
 
@@ -138,6 +141,7 @@ function bool InternalOnClick(GUIComponent Sender)
 			 case p_Weapons:		p_Weapons.DefaultSettings(); break;
 			 case p_Player:			p_Player.DefaultSettings(); break;
 			 case p_Pickups:		p_Pickups.DefaultSettings(); break;
+			 case p_Sprint:			p_Sprint.DefaultSettings(); break;
 			 case p_KillRewards:	p_KillRewards.DefaultSettings(); break;
 		}
 	}
@@ -183,6 +187,7 @@ function LoadSettings()
 	p_Weapons.LoadSettings();
 	p_Player.LoadSettings();
 	p_Pickups.LoadSettings();
+	p_Sprint.LoadSettings();
 	p_KillRewards.LoadSettings();
 }
 
@@ -202,6 +207,7 @@ function SaveSettings()
 	p_Weapons.SaveSettings();
 	p_Player.SaveSettings();
 	p_Pickups.SaveSettings();
+	p_Sprint.SaveSettings();
 	p_KillRewards.SaveSettings();
 }
 
@@ -221,6 +227,7 @@ function DefaultSettings()
 	p_Weapons.DefaultSettings();
 	p_Player.DefaultSettings();
 	p_Pickups.DefaultSettings();
+	p_Sprint.DefaultSettings();
 	p_KillRewards.DefaultSettings();
 }
 
@@ -339,6 +346,8 @@ defaultproperties
      PickupsTabHint="Adjust rules and settings that affect the Equipment Pickup Settings"
 	 KillRewardsTabLabel="Kill Rewards"
      KillRewardsTabHint="Adjust rules and settings that affect Kill Rewards"
+	 SprintTabLabel="Sprint"
+	 SprintTabHint="Adjust rules and settings that affect Sprinting"
 	 
      RulesTabLabel="Game Rules"
      RulesTabHint="Adjust rules and settings that affect the behaviour of the game."

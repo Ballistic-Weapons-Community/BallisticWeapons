@@ -72,6 +72,16 @@ var   bool					bDoItemize;		//Spawn itemizer items next tick
 //PlayerChangedClass
 var   globalconfig float    FootstepAmplifier;
 
+// Sprint
+var   Array<BCSprintControl> 	Sprinters;
+var   globalconfig bool     	bUseSprint;
+var   globalconfig float    	InitStamina;
+var   globalconfig float    	InitMaxStamina;
+var   globalconfig float    	InitStaminaDrainRate;
+var   globalconfig float    	InitStaminaChargeRate;
+var   globalconfig float    	InitSpeedFactor;
+var   globalconfig float    	JumpDrainFactor;
+
 var   BCReplicationInfo	BallisticReplicationInfo;
 
 var	int						CRCount;
@@ -197,6 +207,7 @@ function ModifyPlayer(Pawn Other)
 {
 	local class<Weapon> FW;
 	local int i;
+	local BCSprintControl SC;
 
 	if (!DMMode && BallisticPawn(Other) == None)
 	{
@@ -234,7 +245,7 @@ function ModifyPlayer(Pawn Other)
             BallisticPawn(Other).BPRI = class'Mut_Ballistic'.static.GetBPRI(Other.Controller.PlayerReplicationInfo);
         }
 
-        /*if (bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
+        if (bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
         {
             SC = Spawn(class'BCSprintControl',Other);
             SC.Stamina = InitStamina;
@@ -245,11 +256,10 @@ function ModifyPlayer(Pawn Other)
             SC.JumpDrainFactor = JumpDrainFactor;
 
             if(BallisticPawn(Other) == none)
-                SC.newHudIndicator = false;
 
             SC.GiveTo(Other);
             Sprinters[Sprinters.length] = SC;
-        }*/
+        }
     }
 	
 	// A hack to prevent continued walking after respawning.
@@ -911,6 +921,36 @@ function Array<Class<Weapon> > GetAllWeaponClasses()
 	return Weaps;
 }
 
+function BCSprintControl GetSprintControl(PlayerController Sender)
+{
+    local int i;
+
+    for (i=0;i<Sprinters.length;i++)
+        if (Sprinters[i] != None && Sprinters[i].Instigator != None && Sprinters[i].Instigator.Controller == Sender)
+            return Sprinters[i];
+    return None;
+}
+
+function Mutate(string MutateString, PlayerController Sender)
+{
+    local BCSprintControl SC;
+
+    if (MutateString ~= "BStartSprint" && bUseSprint)
+    {
+        SC = GetSprintControl(Sender);
+        if (SC != None)
+            SC.StartSprint();
+    }
+    else if (MutateString ~= "BStopSprint" && bUseSprint)
+    {
+        SC = GetSprintControl(Sender);
+        if (SC != None)
+            SC.StopSprint();
+    }
+
+    super.Mutate(MutateString, Sender);
+}
+
 defaultproperties
 {
      Replacements(0)=(OldItemName="XWeapons.ShieldGun",NewItemNames=("BallisticProV55.X3Pickup","BallisticProV55.A909Pickup","BallisticProV55.EKS43Pickup","BallisticProV55.X4Pickup"))
@@ -949,7 +989,16 @@ defaultproperties
      Replacements(33)=(OldItemName="XPickups.SuperShieldPack",NewItemNames=("BallisticProV55.IP_BigArmor"))
      Replacements(34)=(OldItemName="XPickups.ShieldPack",NewItemNames=("BallisticProV55.IP_SmallArmor"))
      UDamageSnd=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
-     ItemGroup="Ballistic"
+     
+	 bUseSprint=True
+     InitStamina=100.000000
+     InitMaxStamina=100.000000
+     InitStaminaDrainRate=15.000000
+     InitStaminaChargeRate=20.000000
+     InitSpeedFactor=1.350000
+     JumpDrainFactor=2.000000
+	 
+	 ItemGroup="Ballistic"
      bSpawnUniqueItems=True
      bPickupsChange=True
      bRandomDefaultWeapons=True
