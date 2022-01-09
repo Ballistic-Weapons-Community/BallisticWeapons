@@ -166,7 +166,7 @@ defaultproperties
      ne_iArmor=moNumericEdit'BallisticProV55.BallisticTab_Player.ne_iArmorC'
 
      Begin Object Class=moNumericEdit Name=ne_iArmorCapC
-         MinValue=0
+         MinValue=1
          MaxValue=999
          ComponentWidth=0.175000
          Caption="Armour Cap:"
@@ -192,7 +192,7 @@ defaultproperties
      ne_iAdrenaline=moNumericEdit'BallisticProV55.BallisticTab_Player.ne_iAdrenalineC'
 
      Begin Object Class=moNumericEdit Name=ne_iAdrenalineCapC
-         MinValue=0
+         MinValue=50
          MaxValue=999
          ComponentWidth=0.175000
          Caption="Adrenaline Cap:"
