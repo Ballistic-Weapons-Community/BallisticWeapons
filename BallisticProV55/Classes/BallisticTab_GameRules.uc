@@ -11,15 +11,14 @@
 //=============================================================================
 class BallisticTab_GameRules extends UT2K4TabPanel;
 
-var automated moComboBox	co_GameStyle;		//Choose Params
+var automated moComboBox	co_GameStyle;				//Choose Params
 //Add Killsteaks Here
-var automated moCheckbox	ch_ViewFlash;		//Damage Indication Flash Toggle
-var automated moFloatEdit	fl_NadePct;			//Swap Ammo For Grenade Percentage
-var automated moCheckbox	ch_BrightPickups;	//Bright Pickups Toggle
-var automated moCheckbox	ch_PickupsChange;	//Toggle Pickups Change After Obtained
-var automated moCheckbox	ch_SpawnUnique;		//Sawn Least Common Weapon Toggle
-var automated moCheckbox	ch_LeaveSuper;		//Leave Non-BW Superweapons in Rotation
-var automated moCheckbox	ch_KillRogueWPs;	//Kill All Non-BW Weapons that are forced into the map
+var automated moCheckbox	ch_ViewFlash;				//Damage Indication Flash Toggle
+var automated moNumericEdit int_MaxInventoryCapacity;	//Inventory Capacity
+var automated moCheckbox	ch_BrightPlayers;			//Bright Players
+var automated moCheckbox	ch_ForceBWPawn;				//Force Ballistic Pawn
+var automated moCheckbox	ch_NoDodging;				//Disables Dodging
+var automated moCheckbox	ch_DoubleJump;				//Limits Double Jump
 
 var BallisticConfigMenuPro	p_Anchor;
 var bool					bInitialized;
@@ -58,12 +57,11 @@ function LoadSettings()
 	co_GameStyle.SetIndex(class'BallisticReplicationInfo'.default.GameStyle);
 	
 	ch_ViewFlash.Checked(class'BallisticPawn'.default.bNoViewFlash);
-	fl_NadePct.SetValue(class'Mut_BallisticSwap'.default.NadeReplacePercent);
-	ch_BrightPickups.Checked(class'Mut_Ballistic'.default.bBrightPickups);
-	ch_PickupsChange.Checked(class'Mut_Ballistic'.default.bPickupsChange);
-	ch_SpawnUnique.Checked(class'Mut_Ballistic'.default.bSpawnUniqueItems);
-	ch_KillRogueWPs.Checked(class'Mut_Ballistic'.default.bKillRogueWeaponPickups);
-	ch_LeaveSuper.Checked(class'Mut_Ballistic'.default.bLeaveSuper);
+	int_MaxInventoryCapacity.SetValue(class'BallisticWeapon'.default.MaxInventoryCapacity);
+	ch_BrightPlayers.Checked(class'BallisticReplicationInfo'.default.bBrightPlayers);
+	ch_ForceBWPawn.Checked(class'Mut_Ballistic'.default.bForceBallisticPawn);
+	ch_NoDodging.Checked(class'BallisticReplicationInfo'.default.bNoDodging);
+	ch_DoubleJump.Checked(class'BallisticReplicationInfo'.default.bLimitDoubleJumps);
 }
 
 function SaveSettings()
@@ -72,12 +70,11 @@ function SaveSettings()
 		return;
 	class'BallisticReplicationInfo'.default.GameStyle       = EGameStyle(co_GameStyle.GetIndex());
 	class'BallisticPawn'.default.bNoViewFlash				= ch_ViewFlash.IsChecked();
-	class'Mut_BallisticSwap'.default.NadeReplacePercent = fl_NadePct.GetValue();
-	class'Mut_Ballistic'.default.bBrightPickups		 		= ch_BrightPickups.IsChecked();
-	class'Mut_Ballistic'.default.bPickupsChange 			= ch_PickupsChange.IsChecked();
-	class'Mut_Ballistic'.default.bSpawnUniqueItems 			= ch_SpawnUnique.IsChecked();
-	class'Mut_Ballistic'.default.bKillRogueWeaponPickups	= ch_KillRogueWPs.IsChecked();
-	class'Mut_Ballistic'.default.bLeaveSuper 				= ch_LeaveSuper.IsChecked();
+	class'BallisticWeapon'.default.MaxInventoryCapacity 	= int_MaxInventoryCapacity.GetValue();	
+	class'BallisticReplicationInfo'.default.bBrightPlayers	= ch_BrightPlayers.IsChecked();
+    class'Mut_Ballistic'.default.bForceBallisticPawn		= ch_ForceBWPawn.IsChecked();
+	class'BallisticReplicationInfo'.default.bNoDodging		= ch_NoDodging.IsChecked();
+	class'BallisticReplicationInfo'.default.bLimitDoubleJumps = ch_DoubleJump.IsChecked();
 	
 	class'BallisticReplicationInfo'.static.StaticSaveConfig();
 	class'BallisticWeapon'.static.StaticSaveConfig();
@@ -90,12 +87,11 @@ function DefaultSettings()
 {
 	co_GameStyle.SetIndex(0);
 	ch_ViewFlash.Checked(true);
-	fl_NadePct.SetValue(15);
-	ch_BrightPickups.Checked(false);
-	ch_PickupsChange.Checked(true);
-	ch_SpawnUnique.Checked(true);
-	ch_KillRogueWPs.Checked(false);
-	ch_LeaveSuper.Checked(false);
+	int_MaxInventoryCapacity.SetValue(0);
+	ch_BrightPlayers.Checked(false);
+	ch_ForceBWPawn.Checked(false);
+	ch_NoDodging.Checked(false);
+	ch_DoubleJump.Checked(false);
 }
 
 defaultproperties
@@ -128,85 +124,72 @@ defaultproperties
          WinHeight=0.040000
      End Object
      ch_ViewFlash=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_ViewFlashCheck'
-
-	 Begin Object Class=moFloatEdit Name=fl_NadePctFloat
-         MinValue=1.000000
-         MaxValue=100.000000
+	 
+	 Begin Object Class=moNumericEdit Name=int_MaxWepsInt
+         MinValue=0
+         MaxValue=999
          ComponentJustification=TXTA_Left
          CaptionWidth=0.800000
-         Caption="Ammo to Grenades Swap %"
-         OnCreateComponent=fl_NadePctFloat.InternalOnCreateComponent
+         Caption="Player Inventory Capacity"
+         OnCreateComponent=int_MaxWepsInt.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Percentage chance of replacing an ammo pickup with a grenade."
+         Hint="Sets the player's maximum inventory capacity. 0 is infinite."
          WinTop=0.150000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     fl_NadePct=moFloatEdit'BallisticProV55.BallisticTab_GameRules.fl_NadePctFloat'
-	 
-	 Begin Object Class=moCheckBox Name=ch_BrightPickupsCheck
+     int_MaxInventoryCapacity=moNumericEdit'BallisticProV55.BallisticTab_GameRules.int_MaxWepsInt'
+
+	 Begin Object Class=moCheckBox Name=ch_BrightPlayersCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Bright Pickups"
-         OnCreateComponent=ch_BrightPickupsCheck.InternalOnCreateComponent
+         Caption="Bright Players"
+         OnCreateComponent=ch_BrightPlayersCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Enable to make pickups bright and easier to see. Does not affect multiplayer."
+         Hint="Makes players glow in the dark like normal UT2004. Only affects BW gametypes - standard gametypes have bright players already."
          WinTop=0.200000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_BrightPickups=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_BrightPickupsCheck'
+     ch_BrightPlayers=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_BrightPlayersCheck'
 
-	 Begin Object Class=moCheckBox Name=ch_PickupsChangeCheck
+	 Begin Object Class=moCheckBox Name=ch_ForceBWPawnCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Pickups Change"
-         OnCreateComponent=ch_PickupsChangeCheck.InternalOnCreateComponent
+         Caption="Force Ballistic Pawn"
+         OnCreateComponent=ch_ForceBWPawnCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Pickups randomly change after they have been picked up."
+         Hint="BW mutators will try to force BallisticPawn even when game specific pawn is used (WARNING: Could cause severe problems in some gametypes)"
          WinTop=0.250000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_PickupsChange=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_PickupsChangeCheck'
-	 
-	 Begin Object Class=moCheckBox Name=ch_SpawnUniqueCheck
+     ch_ForceBWPawn=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_ForceBWPawnCheck'
+
+	 Begin Object Class=moCheckBox Name=ch_NoDodgingCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Prefer Unique Pickups"
-         OnCreateComponent=ch_SpawnUniqueCheck.InternalOnCreateComponent
+         Caption="Disable Dodging"
+         OnCreateComponent=ch_NoDodgingCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Game will prefer to spawn pickups that are the least common at the time."
+         Hint="Disables dodging for all players"
          WinTop=0.300000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_SpawnUnique=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_SpawnUniqueCheck'
-	 
-	 Begin Object Class=moCheckBox Name=ch_KillRogueWPsCheck
+     ch_NoDodging=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_NoDodgingCheck'
+
+    Begin Object Class=moCheckBox Name=ch_DoubleJumpCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="No Rogue Weapon Pickups"
-         OnCreateComponent=ch_KillRogueWPsCheck.InternalOnCreateComponent
+         Caption="Limit Double Jump"
+         OnCreateComponent=ch_DoubleJumpCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="BW mutators will remove/replace unlisted weapon pickups. (e.g. In-map Instagib rifles)"
+         Hint="Limits the Double Jump capabilities of players."
          WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_KillRogueWPs=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_KillRogueWPsCheck'
-
-	 Begin Object Class=moCheckBox Name=ch_LeaveSuperCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Keep Super Weapons"
-         OnCreateComponent=ch_LeaveSuperCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Enable to leave super weapons in."
-         WinTop=0.400000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_LeaveSuper=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_LeaveSuperCheck'
+     ch_DoubleJump=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_DoubleJumpCheck'
 
 }

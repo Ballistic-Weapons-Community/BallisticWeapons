@@ -132,46 +132,113 @@ function DefaultSettings()
 
 defaultproperties
 {
-     Begin Object Class=moCheckBox Name=ch_UseBrassCheck
+     Begin Object Class=moComboBox Name=co_WeaponDetCombo
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.550000
+         Caption="Weapon Detail"
+         OnCreateComponent=co_WeaponDetCombo.InternalOnCreateComponent
+         IniOption="@Internal"
+         IniDefault="High"
+         Hint="Choose the detail level for weapon textures. This should be set after changing the 'Character Detail' setting in the options menu as it will override this setting."
+         WinTop=0.050000
+         WinLeft=0.250000
+     End Object
+     co_WeaponDet=moComboBox'BallisticProV55.BallisticTab_PreferencesPro.co_WeaponDetCombo'
+	 
+	 Begin Object Class=moComboBox Name=co_EffectDetCombo
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.550000
+         Caption="Effects Quality"
+         OnCreateComponent=co_EffectDetCombo.InternalOnCreateComponent
+         IniOption="@Internal"
+         IniDefault="High"
+         Hint="Choose the quality level for Ballistic effects. Remember, if the 'World Detail' setting is lower, it will affect the quality of BW effects."
+         WinTop=0.100000
+         WinLeft=0.250000
+     End Object
+     co_EffectDet=moComboBox'BallisticProV55.BallisticTab_PreferencesPro.co_EffectDetCombo'
+	 
+	 Begin Object Class=moComboBox Name=co_CamRateCombo
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.550000
+         Caption="Camera Update Rate"
+         OnCreateComponent=co_CamRateCombo.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="How fast camera view screens like the M50's LCD should update."
+         WinTop=0.150000
+         WinLeft=0.250000
+     End Object
+     co_CamRate=moComboBox'BallisticProV55.BallisticTab_PreferencesPro.co_CamRateCombo'
+
+	 Begin Object Class=moComboBox Name=co_ADSHandlingCombo
+        ComponentJustification=TXTA_Left
+        CaptionWidth=0.550000
+        Caption="Aim Down Sight Handling"
+        OnCreateComponent=co_ADSHandlingCombo.InternalOnCreateComponent
+        IniOption="@Internal"
+        Hint="How the ADS key should function.||Default: Hold to raise the weapon into scope. Weapon stays in scope until key is pressed again.||Hold: Hold key to ADS. Release to lower.||Toggle: Press key to ADS. Press again to lower."
+        WinTop=0.200000
+        WinLeft=0.250000
+     End Object
+     co_ADSHandling=moComboBox'BallisticProV55.BallisticTab_PreferencesPro.co_ADSHandlingCombo'
+
+	 Begin Object Class=moComboBox Name=co_ModeCombo
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.550000
+         Caption="Weapon Mode Memory"
+         OnCreateComponent=co_ModeCombo.InternalOnCreateComponent
+         IniOption="@Internal"
+         IniDefault="High"
+         Hint="Controls how Ballistic handles the initial weapon mode when a weapon is spawned. ||None - the set default mode is always used.||Last - the last used mode is used. ||Saved - uses the mode saved by the SetDefaultMode command.||Reset it with ClearDefaultMode and get its name with GetDefaultMode."
+         WinTop=0.250000
+         WinLeft=0.250000
+     End Object
+     co_ModeMemory=moComboBox'BallisticProV55.BallisticTab_PreferencesPro.co_ModeCombo'
+
+	 Begin Object Class=moFloatEdit Name=fl_ZoomTimeModFloat
+         MinValue=1.000000
+         MaxValue=4.000000
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.700000
+         Caption="Zoom Time Mod"
+         OnCreateComponent=fl_ZoomTimeModFloat.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Multiplier for the rate of change of zoom levels. 1 to 4."
+         WinTop=0.300000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     fl_ZoomTimeMod=moFloatEdit'BallisticProV55.BallisticTab_PreferencesPro.fl_ZoomTimeModFloat'
+
+	 Begin Object Class=moCheckBox Name=ch_UseBrassCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
          Caption="Eject Brass"
          OnCreateComponent=ch_UseBrassCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Allow weapons to spew out shell casings and similar effects."
-         WinTop=0.250000
+         WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
      ch_UseBrass=moCheckBox'BallisticProV55.BallisticTab_PreferencesPro.ch_UseBrassCheck'
 
-     Begin Object Class=moCheckBox Name=ch_ImpStayCheck
+	 Begin Object Class=moFloatEdit Name=fl_BrassTimeFloat
+         MinValue=0.000000
+         MaxValue=100.000000
          ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Permanent Impact Marks [!]"
-         OnCreateComponent=ch_ImpStayCheck.InternalOnCreateComponent
+         CaptionWidth=0.700000
+         Caption="Brass Life Scale [!]"
+         OnCreateComponent=fl_BrassTimeFloat.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Impact marks like bullet holes and explosion scorches stay forever. WARNING: This can kill performance on most machines!"
+         Hint="Scales the life time of ejected brass. 0 = Forever."
          WinTop=0.400000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_ImpStay=moCheckBox'BallisticProV55.BallisticTab_PreferencesPro.ch_ImpStayCheck'
+     fl_BrassTime=moFloatEdit'BallisticProV55.BallisticTab_PreferencesPro.fl_BrassTimeFloat'
 
-     Begin Object Class=moCheckBox Name=ch_MSmokeCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Muzzle Smoke"
-         OnCreateComponent=ch_MSmokeCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Enable muzzle smoke emitting when firing guns."
-         WinTop=0.350000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_MSmoke=moCheckBox'BallisticProV55.BallisticTab_PreferencesPro.ch_MSmokeCheck'
-
-     Begin Object Class=moCheckBox Name=ch_WeaponUICheck
+	 Begin Object Class=moCheckBox Name=ch_WeaponUICheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
          Caption="Weapon Selection UI"
@@ -184,136 +251,56 @@ defaultproperties
      End Object
      ch_WeaponUI=moCheckBox'BallisticProV55.BallisticTab_PreferencesPro.ch_WeaponUICheck'
 
-     Begin Object Class=moCheckBox Name=ch_MotionBlurCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Motion Blur [!]"
-         OnCreateComponent=ch_MotionBlurCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Enable the use of motion blur effects. WARNING: This may have undesirable effects on some machines!"
-         WinTop=0.500000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_MotionBlur=moCheckBox'BallisticProV55.BallisticTab_PreferencesPro.ch_MotionBlurCheck'
-
-     Begin Object Class=moCheckBox Name=ch_SimpleDeathMessagesCheck
+	 Begin Object Class=moCheckBox Name=ch_SimpleDeathMessagesCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
          Caption="Simplify Death Messages"
          OnCreateComponent=ch_SimpleDeathMessagesCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Renders death messages as Killer [Weapon] Killed"
-         WinTop=0.550000
+         WinTop=0.500000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
      ch_SimpleDeathMessages=moCheckBox'BallisticProV55.BallisticTab_PreferencesPro.ch_SimpleDeathMessagesCheck'
-
-     Begin Object Class=moCheckBox Name=ch_OldCrosshairsCheck
+	 
+	 Begin Object Class=moCheckBox Name=ch_MSmokeCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="UT2004 Crosshairs"
-         OnCreateComponent=ch_OldCrosshairsCheck.InternalOnCreateComponent
+         Caption="Muzzle Smoke"
+         OnCreateComponent=ch_MSmokeCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Drops back to UT2004 crosshairs."
+         Hint="Enable muzzle smoke emitting when firing guns."
+         WinTop=0.550000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_MSmoke=moCheckBox'BallisticProV55.BallisticTab_PreferencesPro.ch_MSmokeCheck'
+
+	 Begin Object Class=moCheckBox Name=ch_ImpStayCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Permanent Impact Marks [!]"
+         OnCreateComponent=ch_ImpStayCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Impact marks like bullet holes and explosion scorches stay forever. WARNING: This can kill performance on most machines!"
          WinTop=0.600000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_OldCrosshairs=moCheckBox'BallisticProV55.BallisticTab_PreferencesPro.ch_OldCrosshairsCheck'
+     ch_ImpStay=moCheckBox'BallisticProV55.BallisticTab_PreferencesPro.ch_ImpStayCheck'
 
-     Begin Object Class=moComboBox Name=co_WeaponDetCombo
+	 Begin Object Class=moCheckBox Name=ch_MotionBlurCheck
          ComponentJustification=TXTA_Left
-         CaptionWidth=0.550000
-         Caption="Weapon Detail"
-         OnCreateComponent=co_WeaponDetCombo.InternalOnCreateComponent
+         CaptionWidth=0.900000
+         Caption="Motion Blur [!]"
+         OnCreateComponent=ch_MotionBlurCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         IniDefault="High"
-         Hint="Choose the detail level for weapon textures. This should be set after changing the 'Character Detail' setting in the options menu as it will override this setting."
-         WinTop=0.150000
-         WinLeft=0.250000
-     End Object
-     co_WeaponDet=moComboBox'BallisticProV55.BallisticTab_PreferencesPro.co_WeaponDetCombo'
-
-     Begin Object Class=moComboBox Name=co_CamRateCombo
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.550000
-         Caption="Camera Update Rate"
-         OnCreateComponent=co_CamRateCombo.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="How fast camera view screens like the M50's LCD should update."
-         WinTop=0.100000
-         WinLeft=0.250000
-     End Object
-     co_CamRate=moComboBox'BallisticProV55.BallisticTab_PreferencesPro.co_CamRateCombo'
-
-     Begin Object Class=moComboBox Name=co_EffectDetCombo
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.550000
-         Caption="Effects Quality"
-         OnCreateComponent=co_EffectDetCombo.InternalOnCreateComponent
-         IniOption="@Internal"
-         IniDefault="High"
-         Hint="Choose the quality level for Ballistic effects. Remember, if the 'World Detail' setting is lower, it will affect the quality of BW effects."
-         WinTop=0.200000
-         WinLeft=0.250000
-     End Object
-     co_EffectDet=moComboBox'BallisticProV55.BallisticTab_PreferencesPro.co_EffectDetCombo'
-
-     Begin Object Class=moComboBox Name=co_ModeCombo
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.550000
-         Caption="Weapon Mode Memory"
-         OnCreateComponent=co_ModeCombo.InternalOnCreateComponent
-         IniOption="@Internal"
-         IniDefault="High"
-         Hint="Controls how Ballistic handles the initial weapon mode when a weapon is spawned. ||None - the set default mode is always used.||Last - the last used mode is used. ||Saved - uses the mode saved by the SetDefaultMode command.||Reset it with ClearDefaultMode and get its name with GetDefaultMode."
-         WinTop=0.700000
-         WinLeft=0.250000
-     End Object
-     co_ModeMemory=moComboBox'BallisticProV55.BallisticTab_PreferencesPro.co_ModeCombo'
-
-     Begin Object Class=moFloatEdit Name=fl_BrassTimeFloat
-         MinValue=0.000000
-         MaxValue=100.000000
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.700000
-         Caption="Brass Life Scale [!]"
-         OnCreateComponent=fl_BrassTimeFloat.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Scales the life time of ejected brass. 0 = Forever."
-         WinTop=0.300000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     fl_BrassTime=moFloatEdit'BallisticProV55.BallisticTab_PreferencesPro.fl_BrassTimeFloat'
-
-     Begin Object Class=moFloatEdit Name=fl_ZoomTimeModFloat
-         MinValue=1.000000
-         MaxValue=4.000000
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.700000
-         Caption="Zoom Time Mod"
-         OnCreateComponent=fl_ZoomTimeModFloat.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Multiplier for the rate of change of zoom levels. 1 to 4."
+         Hint="Enable the use of motion blur effects. WARNING: This may have undesirable effects on some machines!"
          WinTop=0.650000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     fl_ZoomTimeMod=moFloatEdit'BallisticProV55.BallisticTab_PreferencesPro.fl_ZoomTimeModFloat'
-
-    Begin Object Class=moComboBox Name=co_ADSHandlingCombo
-        ComponentJustification=TXTA_Left
-        CaptionWidth=0.550000
-        Caption="Aim Down Sight Handling"
-        OnCreateComponent=co_ADSHandlingCombo.InternalOnCreateComponent
-        IniOption="@Internal"
-        Hint="How the ADS key should function.||Default: Hold to raise the weapon into scope. Weapon stays in scope until key is pressed again.||Hold: Hold key to ADS. Release to lower.||Toggle: Press key to ADS. Press again to lower."
-        WinTop=0.750000
-        WinLeft=0.250000
-     End Object
-     co_ADSHandling=moComboBox'BallisticProV55.BallisticTab_PreferencesPro.co_ADSHandlingCombo'
-
+     ch_MotionBlur=moCheckBox'BallisticProV55.BallisticTab_PreferencesPro.ch_MotionBlurCheck'
+	 
 }

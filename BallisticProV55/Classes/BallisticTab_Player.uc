@@ -211,7 +211,7 @@ defaultproperties
          Caption="Death Sound Amplifier:"
          OnCreateComponent=fe_dieSoundAmplifierC.InternalOnCreateComponent
          Hint="The Death Sound Amplifier."
-         WinTop=0.400000
+         WinTop=0.450000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -224,7 +224,7 @@ defaultproperties
          Caption="Death Sound Range Amplifier:"
          OnCreateComponent=fe_dieSoundRangeAmplifierC.InternalOnCreateComponent
          Hint="The Death Sound Range Amplifier."
-         WinTop=0.450000
+         WinTop=0.500000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -234,10 +234,10 @@ defaultproperties
          MinValue=0.000000
          MaxValue=999.000000
          ComponentWidth=0.175000
-         Caption="Player Impact Sound Amplifier:"
+         Caption="Hit Sound Amplifier:"
          OnCreateComponent=fe_hitSoundAmplifierC.InternalOnCreateComponent
          Hint="The Hit Sound Amplifier."
-         WinTop=0.500000
+         WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -247,10 +247,10 @@ defaultproperties
          MinValue=0.000000
          MaxValue=999.000000
          ComponentWidth=0.175000
-         Caption="Player Impact Sound Range Amplifier:"
+         Caption="Hit Sound Range Amplifier:"
          OnCreateComponent=fe_hitSoundRangeAmplifierC.InternalOnCreateComponent
-         Hint="The Hit Sound Range Amplifier."
-         WinTop=0.550000
+         Hint="The Player Hit Sound Range Amplifier."
+         WinTop=0.600000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -263,7 +263,7 @@ defaultproperties
          Caption="Footstep sound Amplifier:"
          OnCreateComponent=fe_footStepAmplifierC.InternalOnCreateComponent
          Hint="The Footstep Sound Amplifier."
-         WinTop=0.600000
+         WinTop=0.650000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -276,7 +276,7 @@ defaultproperties
          Caption="Jump Damage Amplifier:"
          OnCreateComponent=fe_jumpDamageAmplifierC.InternalOnCreateComponent
          Hint="The damage amplifier when you jump on other players or actors."
-         WinTop=0.650000
+         WinTop=0.700000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -290,7 +290,7 @@ defaultproperties
          Caption="Falling damage beyond speed:"
          OnCreateComponent=fe_MaxFallSpeedC.InternalOnCreateComponent
          Hint="Max speed players can land without taking damage (also limits what paths bots can use!)."
-         WinTop=0.700000
+         WinTop=0.750000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

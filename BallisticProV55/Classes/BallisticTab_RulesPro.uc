@@ -401,7 +401,7 @@ defaultproperties
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
          Caption="Limit Double Jump"
-         OnCreateComponent=ch_MotionBlurCheck.InternalOnCreateComponent
+         OnCreateComponent=ch_DoubleJumpCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Limits the Double Jump capabilities of players."
          WinTop=0.950000

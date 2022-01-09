@@ -44,14 +44,14 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	//Rules
 	
 	//WIP
-	//p_GameRules		= BallisticTab_GameRules(c_Tabs.AddTab(GameTabLabel,"BallisticProV55.BallisticTab_GameRules",,GameTabHint));
-	//p_Weapons		= BallisticTab_WeaponRules(c_Tabs.AddTab(WeaponsTabLabel,"BallisticProV55.BallisticTab_WeaponRules",,WeaponsTabHint));
-	//p_Player     	= BallisticTab_Player(c_Tabs.AddTab(PlayerTabLabel,"BallisticProV55.BallisticTab_Player",,PlayerTabHint));
-	//p_Pickups     	= BallisticTab_Pickups(c_Tabs.AddTab(PickupsTabLabel,"BallisticProV55.BallisticTab_Pickups",,PickupsTabHint)); 
+	p_GameRules		= BallisticTab_GameRules(c_Tabs.AddTab(GameTabLabel,"BallisticProV55.BallisticTab_GameRules",,GameTabHint));
+	p_Weapons		= BallisticTab_WeaponRules(c_Tabs.AddTab(WeaponsTabLabel,"BallisticProV55.BallisticTab_WeaponRules",,WeaponsTabHint));
+	p_Player     	= BallisticTab_Player(c_Tabs.AddTab(PlayerTabLabel,"BallisticProV55.BallisticTab_Player",,PlayerTabHint));
+	p_Pickups     	= BallisticTab_Pickups(c_Tabs.AddTab(PickupsTabLabel,"BallisticProV55.BallisticTab_Pickups",,PickupsTabHint)); 
 	
-	p_Rules			= BallisticTab_RulesPro(c_Tabs.AddTab(RulesTabLabel,"BallisticProV55.BallisticTab_RulesPro",,RulesTabHint));
-	p_ProSettings	= BallisticTab_ProSettings(c_Tabs.AddTab(ProSettingsTabLabel,"BallisticProV55.BallisticTab_ProSettings",,ProSettingsTabHint));
-	p_Player     	= BallisticTab_Player(c_Tabs.AddTab(PlayerTabLabel,"BallisticProV55.BallisticTab_Player",,PlayerTabHint)); 
+	//p_Rules			= BallisticTab_RulesPro(c_Tabs.AddTab(RulesTabLabel,"BallisticProV55.BallisticTab_RulesPro",,RulesTabHint));
+	//p_ProSettings	= BallisticTab_ProSettings(c_Tabs.AddTab(ProSettingsTabLabel,"BallisticProV55.BallisticTab_ProSettings",,ProSettingsTabHint));
+	//p_Player     	= BallisticTab_Player(c_Tabs.AddTab(PlayerTabLabel,"BallisticProV55.BallisticTab_Player",,PlayerTabHint)); 
 	
 	//Preferences
 	p_Options	 	= BallisticTab_PreferencesPro(c_Tabs.AddTab(OptionsTabLabel,"BallisticProV55.BallisticTab_PreferencesPro",,OptionsTabHint));
