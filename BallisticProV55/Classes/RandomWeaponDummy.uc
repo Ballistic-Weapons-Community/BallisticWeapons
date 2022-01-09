@@ -1,9 +1,8 @@
-class RandomWeaponDummy extends BallisticWeapon
-	abstract
-	HideDropDown;
+class RandomWeaponDummy extends BallisticWeapon;
 
 defaultproperties
 {
-     InventoryGroup=99
+     BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_NA'
+	 InventoryGroup=99
      ItemName="Random Weapon"
 }
