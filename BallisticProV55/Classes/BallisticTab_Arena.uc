@@ -14,7 +14,6 @@ var Automated GUIButton		BSave;				// Save Preset
 var Automated GUIButton		BDelete;			// Delete Preset
 var Automated GUIButton		BAddAll;			// Fill Button
 var Automated GUIButton		BRemoveAll;			// Empty Button
-var Automated GUIButton		BDone;				// Save Settings
 
 var automated GUIListBox	lb_UsedWeapons;		// Selected Weapons List
 var automated GUIListBox	lb_UnusedWeapons;	// Unselected Weapons List
@@ -221,14 +220,6 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_UsedWeapons.List.OnDblClick = InternalOnDblClick;
 }
 
-function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
-{
-	if (Key == 0x0D && State == 3)	// Enter
-		return InternalOnClick(BDone);
-
-	return false;
-}
-
 function bool InternalOnClick(GUIComponent Sender)
 {
 	local int i;
@@ -264,21 +255,6 @@ function bool InternalOnClick(GUIComponent Sender)
 
 		lb_UnusedWeapons.List.Add(lb_UsedWeapons.List.Get(), , lb_UsedWeapons.List.GetExtra());
 		lb_UsedWeapons.List.Remove(lb_UsedWeapons.List.Index);
-	}
-	else if (Sender==BDone) // DONE
-	{
-		if (lb_UsedWeapons.List.Elements.length < 1)
-			class'Mut_BallisticArena'.default.WeaponClassNames.length = 1;
-		else
-		{
-			class'Mut_BallisticArena'.default.WeaponClassNames.length = 0;
-			for (i=0;i<lb_UsedWeapons.List.Elements.length;i++)
-				class'Mut_BallisticArena'.default.WeaponClassNames[i] = lb_UsedWeapons.List.GetExtraAtIndex(i);
-
-		}
-		class'Mut_BallisticArena'.default.bRandomPickOne = ch_Random.IsChecked();
-		class'Mut_BallisticArena'.default.bRandomPerSpawn = ch_PerSpawn.IsChecked();
-		class'Mut_BallisticArena'.static.StaticSaveConfig();
 	}
 	return true;
 }
@@ -345,12 +321,26 @@ function DefaultSettings()
 
 function SaveSettings()
 {
-    if (!bInitialized)
+    local int i;
+	local ArenaPreset NewPreset;
+	
+	if (!bInitialized)
         return;
-    class'Mut_BallisticArena'.default.bRandomPickOne	= ch_Random.IsChecked();
-	class'Mut_BallisticArena'.default.bRandomPerSpawn	= ch_PerSpawn.IsChecked();
-    class'Mut_BallisticArena'.static.StaticSaveConfig();
+		
+	if (lb_UsedWeapons.List.Elements.length < 1)
+			class'Mut_BallisticArena'.default.WeaponClassNames.length = 1;
+	else
+	{
+		class'Mut_BallisticArena'.default.WeaponClassNames.length = 0;
+		for (i=0;i<lb_UsedWeapons.List.Elements.length;i++)
+			class'Mut_BallisticArena'.default.WeaponClassNames[i] = lb_UsedWeapons.List.GetExtraAtIndex(i);
+
+	}
+	class'Mut_BallisticArena'.default.bRandomPickOne = ch_Random.IsChecked();
+	class'Mut_BallisticArena'.default.bRandomPerSpawn = ch_PerSpawn.IsChecked();
+	class'Mut_BallisticArena'.static.StaticSaveConfig();
 	SaveConfig();
+	
 }
 
 defaultproperties
@@ -524,17 +514,6 @@ defaultproperties
          WinHeight=0.030000
      End Object
      l_PresetLabel=GUILabel'BallisticProV55.BallisticTab_Arena.PresetLabel'
-	 
-	 Begin Object Class=GUIButton Name=DoneButton
-         Caption="SAVE"
-         WinTop=0.525000
-         WinLeft=0.450000
-         WinWidth=0.100000
-         TabOrder=0
-         OnClick=BallisticTab_Arena.InternalOnClick
-         OnKeyEvent=DoneButton.InternalOnKeyEvent
-     End Object
-     bDone=GUIButton'BallisticProV55.BallisticTab_Arena.DoneButton'
 
 	 Presets(0)=(PresetName="Sidearm Shootout",WeaponClassNames=("BallisticProV55.M806Pistol","BallisticProV55.A42SkrithPistol","BallisticProV55.XK2SubMachinegun","BallisticProV55.MRT6Shotgun","BallisticProV55.AM67Pistol","BallisticProV55.D49Revolver","BallisticProV55.Fifty9MachinePistol","BallisticProV55.RS8Pistol","BallisticProV55.XRS10SubMachinegun"))
      Presets(1)=(PresetName="Monster Weapons",WeaponClassNames=("BallisticProV55.G5Bazooka","BallisticProV55.HVCMk9LightningGun","BallisticProV55.M75Railgun","BallisticProV55.RX22AFlamer","BallisticProV55.XMV850Minigun"))
