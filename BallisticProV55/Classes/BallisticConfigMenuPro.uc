@@ -339,7 +339,7 @@ defaultproperties
          BackgroundStyleName="TabBackground"
          WinLeft=0.110000
          WinWidth=0.780000
-         WinHeight=0.040000
+         WinHeight=0.080000
          RenderWeight=0.490000
          TabOrder=3
          bAcceptsInput=True
