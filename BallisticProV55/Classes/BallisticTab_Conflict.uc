@@ -30,8 +30,6 @@ var automated GUILabel		l_Blue;					//Label Blue
 var automated GUILabel		l_Unused;				//Label Unused
 var automated moComboBox	co_LoadOpt;				//Loadout Options
 
-var Automated GUIButton		BDone;					//Save Test
-
 var BallisticConfigMenuPro	p_Anchor;
 var bool					bInitialized;
 
@@ -40,14 +38,6 @@ var() localized string Headings[4];
 //==================================================================
 // General Menu Code
 //==================================================================
-
-function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
-{
-	if (Key == 0x0D && State == 3)	// Enter
-		return InternalOnClick(BDone);
-
-	return false;
-}
 
 function int WeaponRank(string PackageName, optional string ClassName, optional GUIListElem El)
 {
@@ -278,6 +268,20 @@ function ShowPanel(bool bShow)
 	bInitialized = true;
 }
 
+function bool InternalOnDblClick(GUIComponent Sender)
+{
+	if (Sender==lb_UnusedWeapons.List)
+	{
+		InternalOnClick(BAddRed);
+		InternalOnClick(BAddBlue);
+	}
+	else if (Sender==lb_UsedRedWeapons.List)
+		InternalOnClick(BRemoveRed);
+	else if (Sender==lb_UsedBlueWeapons.List)
+		InternalOnClick(BRemoveBlue);
+	return true;
+}
+
 function bool InternalOnClick(GUIComponent Sender)
 {
 	local int i, j, k;
@@ -336,48 +340,6 @@ function bool InternalOnClick(GUIComponent Sender)
 	{
 		lb_UsedRedWeapons.List.Remove(lb_UsedRedWeapons.List.Index);
 	}
-	else if (Sender==BDone) // DONE
-	{
-		class'Mut_ConflictLoadout'.default.LoadoutOption = co_LoadOpt.GetIndex();
-		class'Mut_ConflictLoadout'.default.ConflictWeapons.length = 0;
-
-		for (i=0;i<lb_UnusedWeapons.List.Elements.length;i++)
-		{
-			if (lb_UnusedWeapons.List.Elements[i].bSection)
-				continue;
-			k = class'Mut_ConflictLoadout'.default.ConflictWeapons.length;
-			class'Mut_ConflictLoadout'.default.ConflictWeapons.length = k+1;
-			class'Mut_ConflictLoadout'.default.ConflictWeapons[k].ClassName = lb_UnusedWeapons.List.GetExtraAtIndex(i);
-			for (j=0;j<lb_UsedRedWeapons.List.Elements.length;j++)
-				if (lb_UsedRedWeapons.List.GetExtraAtIndex(j) ~= lb_UnusedWeapons.List.GetExtraAtIndex(i))
-				{
-					class'Mut_ConflictLoadout'.default.ConflictWeapons[k].bRed = true;
-					break;
-				}
-			for (j=0;j<lb_UsedBlueWeapons.List.Elements.length;j++)
-				if (lb_UsedBlueWeapons.List.GetExtraAtIndex(j) ~= lb_UnusedWeapons.List.GetExtraAtIndex(i))
-				{
-					class'Mut_ConflictLoadout'.default.ConflictWeapons[k].bBlue = true;
-					break;
-				}
-		}
-		class'Mut_ConflictLoadout'.static.StaticSaveConfig();
-	}
-
-	return true;
-}
-
-function bool InternalOnDblClick(GUIComponent Sender)
-{
-	if (Sender==lb_UnusedWeapons.List)
-	{
-		InternalOnClick(BAddRed);
-		InternalOnClick(BAddBlue);
-	}
-	else if (Sender==lb_UsedRedWeapons.List)
-		InternalOnClick(BRemoveRed);
-	else if (Sender==lb_UsedBlueWeapons.List)
-		InternalOnClick(BRemoveBlue);
 	return true;
 }
 
@@ -385,15 +347,14 @@ function bool InternalOnDblClick(GUIComponent Sender)
 // Settings & Defaults
 //==================================================================
 
-function LoadSettings()
-{
-}
-
 function SaveSettings()
 {
 	
 	local int i, j, k;
 	
+	class'Mut_ConflictLoadout'.default.LoadoutOption = co_LoadOpt.GetIndex();
+	class'Mut_ConflictLoadout'.default.ConflictWeapons.length = 0;
+
 	for (i=0;i<lb_UnusedWeapons.List.Elements.length;i++)
 	{
 		if (lb_UnusedWeapons.List.Elements[i].bSection)
@@ -414,10 +375,12 @@ function SaveSettings()
 				break;
 			}
 	}
-	class'Mut_ConflictLoadout'.default.LoadoutOption = co_LoadOpt.GetIndex();
-	class'Mut_ConflictLoadout'.default.ConflictWeapons.length = 0;
 	class'Mut_ConflictLoadout'.static.StaticSaveConfig();
 	SaveConfig();
+}
+
+function LoadSettings()
+{
 }
 
 function DefaultSettings()
@@ -632,21 +595,10 @@ defaultproperties
          IniDefault="High"
          Hint="Choose the type of loadout."
          WinTop=0.825000
-         WinLeft=0.350000
-         WinWidth=0.200000
+         WinLeft=0.275000
+         WinWidth=0.300000
      End Object
      co_LoadOpt=moComboBox'BallisticProV55.BallisticTab_Conflict.LoadOptCombo'
-	 
-	 Begin Object Class=GUIButton Name=DoneButton
-         Caption="SAVE"
-         WinTop=0.825000
-         WinLeft=0.300000
-         WinWidth=0.100000
-         TabOrder=0
-         OnClick=BallisticTab_Conflict.InternalOnClick
-         OnKeyEvent=DoneButton.InternalOnKeyEvent
-     End Object
-     bDone=GUIButton'BallisticProV55.BallisticTab_Conflict.DoneButton'
 
      Headings(0)="Ballistic Weapons"
      Headings(1)="Items"
