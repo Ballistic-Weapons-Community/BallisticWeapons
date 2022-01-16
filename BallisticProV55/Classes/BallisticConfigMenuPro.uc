@@ -34,9 +34,10 @@ var() editconst noexport BallisticTab_Pickups			p_Pickups;
 var() editconst noexport BallisticTab_Sprint			p_Sprint;
 var() editconst noexport BallisticTab_KillRewards		p_KillRewards;
 var() editconst noexport BallisticTab_Arena				p_Arena;
+var() editconst noexport BallisticTab_Conflict			p_Conflict;
 
 var() localized string 	HeaderCaption;
-var() localized string	RulesTabLabel,RulesTabHint, OptionsTabLabel,OptionsTabHint, BloodTabLabel,BloodTabHint, SwapTabLabel,SwapTabHint,LoadoutTabLabel,LoadoutTabHint,CrossTabLabel,CrossTabHint,LoadoutNewTabLabel,LoadoutNewTabHint,ProSettingsTabLabel,ProSettingsTabHint,PlayerTabLabel,PlayerTabHint,WeaponsTabLabel,WeaponsTabHint,GameTabLabel,GameTabHint,PickupsTabLabel,PickupsTabHint,KillRewardsTabLabel,KillRewardsTabHint,SprintTabLabel,SprintTabHint, ArenaTabLabel, ArenaTabHint;
+var() localized string	RulesTabLabel,RulesTabHint, OptionsTabLabel,OptionsTabHint, BloodTabLabel,BloodTabHint, SwapTabLabel,SwapTabHint,LoadoutTabLabel,LoadoutTabHint,CrossTabLabel,CrossTabHint,LoadoutNewTabLabel,LoadoutNewTabHint,ProSettingsTabLabel,ProSettingsTabHint,PlayerTabLabel,PlayerTabHint,WeaponsTabLabel,WeaponsTabHint,GameTabLabel,GameTabHint,PickupsTabLabel,PickupsTabHint,KillRewardsTabLabel,KillRewardsTabHint,SprintTabLabel,SprintTabHint, ArenaTabLabel, ArenaTabHint, ConflictTabLabel, ConflictTabHint;
 var()		  string	DetailSettings[9];
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
@@ -64,6 +65,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	p_Cross		 	= BallisticTab_Crosshairs(c_Tabs.AddTab(CrossTabLabel,"BallisticProV55.BallisticTab_Crosshairs",,CrossTabHint));
 	
 	//Inventory
+	p_Conflict	 	= BallisticTab_Conflict(c_Tabs.AddTab(ConflictTabLabel,"BallisticProV55.BallisticTab_Conflict",,ConflictTabHint));
 	p_Loadout	 	= BallisticTab_OutfittingPro(c_Tabs.AddTab(LoadoutTabLabel,"BallisticProV55.BallisticTab_OutfittingPro",,LoadoutTabHint));
 	p_LoadoutNew 	= BallisticTab_LoadoutPro(c_Tabs.AddTab(LoadoutNewTabLabel,"BallisticProV55.BallisticTab_LoadoutPro",,LoadoutNewTabHint));
 	p_Swap		 	= BallisticTab_SwappingsPro(c_Tabs.AddTab(SwapTabLabel,"BallisticProV55.BallisticTab_SwappingsPro",,SwapTabHint));
@@ -122,7 +124,8 @@ function bool InternalOnClick(GUIComponent Sender)
 			 case p_Pickups:		p_Pickups.LoadSettings(); break;
 			 case p_Sprint:			p_Sprint.LoadSettings(); break;
 			 case p_KillRewards:	p_KillRewards.LoadSettings(); break;
-			 case p_Arena:			p_KillRewards.LoadSettings(); break;
+			 case p_Arena:			p_Arena.LoadSettings(); break;
+			 case p_Conflict:		p_Conflict.LoadSettings(); break;
 		}
 
 	}
@@ -147,6 +150,7 @@ function bool InternalOnClick(GUIComponent Sender)
 			 case p_Sprint:			p_Sprint.DefaultSettings(); break;
 			 case p_KillRewards:	p_KillRewards.DefaultSettings(); break;
 			 case p_Arena:			p_Arena.DefaultSettings(); break;
+			 case p_Conflict:		p_Conflict.DefaultSettings(); break;
 		}
 	}
 	return true;
@@ -194,6 +198,7 @@ function LoadSettings()
 	p_Sprint.LoadSettings();
 	p_KillRewards.LoadSettings();
 	p_Arena.LoadSettings();
+	p_Conflict.LoadSettings();
 }
 
 function SaveSettings()
@@ -215,6 +220,7 @@ function SaveSettings()
 	p_Sprint.SaveSettings();
 	p_KillRewards.SaveSettings();
 	p_Arena.SaveSettings();
+	p_Conflict.SaveSettings();
 }
 
 function DefaultSettings()
@@ -236,6 +242,7 @@ function DefaultSettings()
 	p_Sprint.DefaultSettings();
 	p_KillRewards.DefaultSettings();
 	p_Arena.DefaultSettings();
+	p_Conflict.DefaultSettings();
 }
 
 final function string GetDisplayString(string ConfigString)
@@ -357,6 +364,8 @@ defaultproperties
 	 SprintTabHint="Adjust rules and settings that affect Sprinting"
 	 ArenaTabLabel="Arena"
 	 ArenaTabHint"Change which weapons are used by the 'Ballistic Arena' Mutator."
+	 ConflictTabLabel="Conflict Loadout"
+	 ConflictTabHint="Change which weapons are used by the 'Ballistic Conflict' Mutator."
 	 
      RulesTabLabel="Game Rules"
      RulesTabHint="Adjust rules and settings that affect the behaviour of the game."
