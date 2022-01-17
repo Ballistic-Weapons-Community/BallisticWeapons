@@ -487,6 +487,10 @@ defaultproperties
 	ParamsClasses(1)=Class'D49WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.D49PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.D49SecondaryFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(A=142),StartSize1=144,StartSize2=15)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
+	
 	PutDownAnimRate=1.250000
 	PutDownTime=0.500000
 	SelectForce="SwitchToAssaultRifle"

@@ -134,6 +134,11 @@ defaultproperties
     WeaponModes(0)=(ModeName="Single Fire")
     WeaponModes(1)=(bUnavailable=True)
     WeaponModes(2)=(bUnavailable=True)
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(R=0,A=192),Color2=(A=223),StartSize1=186,StartSize2=152)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
+    NDCrosshairChaosFactor=0.600000
+	
     CurrentWeaponMode=0
     bNoCrosshairInScope=True
     SightPivot=(Pitch=256)

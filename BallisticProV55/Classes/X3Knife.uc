@@ -164,6 +164,10 @@ defaultproperties
 	 //ParamsClasses(1)=Class'X3WeaponParamsClassic'
      FireModeClass(0)=Class'BallisticProV55.X3PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.X3SecondaryFire'
+	 
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.X3OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.X3InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(R=0,A=192),Color2=(B=255,A=192),StartSize1=103,StartSize2=87)
+     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=8.000000)
+     
      SelectAnimRate=2.000000
      PutDownTime=0.200000
      BringUpTime=0.200000

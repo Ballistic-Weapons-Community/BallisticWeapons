@@ -268,6 +268,10 @@ defaultproperties
 	ParamsClasses(1)=Class'M925TW_WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.M925TW_PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=128),StartSize1=94)
+    NDCrosshairInfo=(SpreadRatios=(Y2=1.000000))
+	
 	SelectAnim="Deploy"
 	SelectAnimRate=0.800000
 	PutDownTime=0.400000

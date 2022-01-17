@@ -35,6 +35,10 @@ defaultproperties
      CurrentWeaponMode=1
      FireModeClass(0)=Class'BallisticProV55.M58PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.M58SecondaryFire'
+	 
+	 NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',USize1=256,VSize1=256,USize2=128,VSize2=128,Color1=(B=255,G=255,R=0,A=114),Color2=(B=255,G=255,R=255,A=148),StartSize1=96,StartSize2=46)
+	 
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.400000
      ParamsClasses(0)=Class'M58WeaponParams'

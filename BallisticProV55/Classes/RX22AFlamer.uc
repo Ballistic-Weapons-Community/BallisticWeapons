@@ -301,6 +301,11 @@ defaultproperties
 	ParamsClasses(1)=Class'RX22AWeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.RX22APrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RX22ASecondaryFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc8',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.G5OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=94),Color2=(A=181),StartSize1=115,StartSize2=82)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
+    NDCrosshairChaosFactor=0.700000
+	
 	BringUpTime=1.200000
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.9

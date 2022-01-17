@@ -54,6 +54,10 @@ defaultproperties
      ParamsClasses(1)=Class'EKS43WeaponParamsClassic'
      FireModeClass(0)=Class'BallisticProV55.EKS43PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.EKS43SecondaryFire'
+	 
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.X3OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.X3InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=159,G=64,R=0),Color2=(B=255),StartSize1=98,StartSize2=101)
+     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=8.000000)
+	 
      SelectAnimRate=1.5
      PutDownAnimRate=1.5
      PutDownTime=0.300000

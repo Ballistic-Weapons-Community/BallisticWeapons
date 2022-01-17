@@ -382,6 +382,9 @@ defaultproperties
 	WeaponModes(0)=(ModeName="Proximity Detonation",ModeID="WM_FullAuto")
 	WeaponModes(1)=(ModeName="Manual Detonation",ModeID="WM_FullAuto")
 	WeaponModes(2)=(bUnavailable=True)
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,R=129,A=140),StartSize1=84,StartSize2=26)
+	
 	CurrentWeaponMode=1
 	ScopeXScale=1.250000
 	ZoomInAnim="ZoomIn"

@@ -100,6 +100,8 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
 
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.R78OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.R78InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=192),StartSize1=98,StartSize2=87)
+
      ScopeXScale=1.333000
      ZoomInAnim="ZoomIn"
      ScopeViewTex=Texture'BW_Core_WeaponTex.R78.RifleScopeView'

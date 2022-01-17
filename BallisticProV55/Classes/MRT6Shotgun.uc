@@ -169,6 +169,10 @@ defaultproperties
     ParamsClasses(1)=Class'MRT6WeaponParamsClassic'
     FireModeClass(0)=Class'BallisticProV55.MRT6PrimaryFire'
     FireModeClass(1)=Class'BallisticProV55.MRT6SecondaryFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,A=128),Color2=(B=53,G=86,R=110,A=192),StartSize1=168,StartSize2=166)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=8.000000)
+
     Description="MRT6 Shotgun Sidearm||Manufacturer: Wot ya Packin Gun Corp|Primary: Dual Barrel Shot|Secondary: Single Barrel Shot"
     Priority=35
     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

@@ -505,6 +505,10 @@ defaultproperties
 	ParamsClasses(1)=Class'RS8WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.RS8PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RS8SecondaryFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=203,R=0,A=160),StartSize1=79,StartSize2=33)
+    NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
+	
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.600000
 	CurrentRating=0.6

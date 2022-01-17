@@ -469,6 +469,9 @@ defaultproperties
 	ParamsClasses(1)=Class'M75WeaponParamsClassic' //todo: state code for charge, alt fire??
     FireModeClass(0)=Class'BallisticProV55.M75PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M75SecondaryFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.R78InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=95,R=0,A=171),Color2=(B=255,G=100,R=0),StartSize1=103,StartSize2=101)
+    
 	PutDownAnimRate=1.300000
 	PutDownTime=0.800000
 	BringUpTime=0.600000

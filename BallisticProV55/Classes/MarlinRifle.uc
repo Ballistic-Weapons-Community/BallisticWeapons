@@ -252,6 +252,9 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(A=138),StartSize1=61,StartSize2=10)
+	
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
 	SightOffset=(X=4.000000,Y=-0.070000,Z=4.750000)

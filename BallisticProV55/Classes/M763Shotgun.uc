@@ -357,6 +357,10 @@ defaultproperties
 	ParamsClasses(1)=Class'M763WeaponParamsClassic' //todo: primary anim, alt + melee
 	FireModeClass(0)=Class'BallisticProV55.M763PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M763SecondaryFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=192),StartSize1=126,StartSize2=105)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
+	
 	AIRating=0.750000
 	CurrentRating=0.750000
 	Description="The Avenger single barreled shotgun is the standard spread weapon of the UTC infantry divisions. Its high damage, reliability and good range for a shotgun have made this gun one of the humans' favourites; the M763 has blown open more Krao drones than can be counted. After its many successes, even during trials by the UTC's Reunited Jamaican Army, defending from wave upon wave of Krao minions during the 'Red Storm' Skrith invasion, the Avenger became the standard issue shotgun and a favorite of many forces including the UTC RJA Division."

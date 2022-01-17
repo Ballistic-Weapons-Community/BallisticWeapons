@@ -559,6 +559,10 @@ defaultproperties
 	ParamsClasses(1)=Class'GRS9WeaponParamsClassic' //todo: auto to semi
 	FireModeClass(0)=Class'BallisticProV55.GRS9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.GRS9SecondaryFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806InA',USize2=256,VSize2=256,Color1=(R=96,A=175),Color2=(B=255),StartSize1=100,StartSize2=110)
+    NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
+	
 	SelectAnimRate=1.250000
 	PutDownAnimRate=1.250000
 	SelectForce="SwitchToAssaultRifle"

@@ -769,6 +769,11 @@ defaultproperties
      WeaponModes(3)=(ModeName="Cone Immolation",ModeID="WM_FullAuto",bUnavailable=True,RecoilParamsIndex=1)
      WeaponModes(4)=(ModeName="Fire Bomb",ModeID="WM_FullAuto")
      CurrentWeaponMode=0
+	 
+	 NDCrosshairCfg=(Pic1=TexRotator'BW_Core_WeaponTex.DarkStar.DarkOutA-Rot',Pic2=TexRotator'BW_Core_WeaponTex.DarkStar.DarkInA-Rot',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=209),Color2=(G=181),StartSize1=106,StartSize2=50)
+     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.250000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
+     NDCrosshairChaosFactor=0.500000
+	 
      SightPivot=(Pitch=1024)
      SightOffset=(X=-22.000000,Z=10.000000)
      SightDisplayFOV=40.000000

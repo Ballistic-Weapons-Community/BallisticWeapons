@@ -839,6 +839,11 @@ defaultproperties
 	ParamsClasses(1)=Class'HVCMk9WeaponParamsClassic' \\todo: lots of state code
 	FireModeClass(0)=Class'BallisticProV55.HVCMk9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.HVCMk9SecondaryFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=61,R=28,A=164),Color2=(G=53,A=224),StartSize1=94,StartSize2=87)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
+    NDCrosshairChaosFactor=0.700000
+	
 	PutDownTime=0.500000
 	BringUpTime=1.000000
 	AIRating=0.90000

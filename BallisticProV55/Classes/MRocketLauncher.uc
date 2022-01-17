@@ -514,6 +514,10 @@ defaultproperties
 	ParamsClasses(1)=Class'MRLWeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.MRLPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.MRLSecondaryFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=119),Color2=(A=73),StartSize1=166,StartSize2=101)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
+    
 	BringUpTime=0.500000
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.850000

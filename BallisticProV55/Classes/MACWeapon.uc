@@ -450,6 +450,10 @@ defaultproperties
 	EndShovelAnim="ReloadEnd"
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc5',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=185),Color2=(A=198),StartSize1=95,StartSize2=46)
+	NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.250000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
+	
 	CurrentWeaponMode=0
 	MinZoom=2
 	MaxZoom=16

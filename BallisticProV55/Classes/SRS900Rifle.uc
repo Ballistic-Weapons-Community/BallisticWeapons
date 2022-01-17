@@ -607,6 +607,9 @@ defaultproperties
 	WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(G=255,A=108),Color2=(G=0),StartSize1=103,StartSize2=19)
+	
 	ScopeXScale=1.333000
 	ScopeViewTex=Texture'BW_Core_WeaponTex.SRS900-SUI.SRS900ScopeView'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)

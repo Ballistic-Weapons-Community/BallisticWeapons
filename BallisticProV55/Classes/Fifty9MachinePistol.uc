@@ -302,6 +302,11 @@ defaultproperties
     WeaponModes(1)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)
 	WeaponModes(2)=(bUnavailable=True)
 	bNoCrosshairInScope=True
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=114),Color2=(B=99,G=228),StartSize1=126,StartSize2=33)
+    NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
+    NDCrosshairChaosFactor=0.300000
+	
 	SightPivot=(Pitch=512)
 	SightOffset=(X=-10.000000,Z=12.00000)
 	SightDisplayFOV=60.000000
