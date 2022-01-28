@@ -924,7 +924,7 @@ function bool AutoTaunt()
 //Prevent rolling view bug caused by taking massive damage.
 function DamageShake(int damage)
 {
-    Super.DamageShake(Min(damage, 50));
+    Super.DamageShake(Min(damage, 0));
 }
 
 //AskForPawn label fix
