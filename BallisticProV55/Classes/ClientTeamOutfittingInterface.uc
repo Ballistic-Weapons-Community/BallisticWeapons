@@ -4,7 +4,7 @@
 // Team Loadout's means of getting items to the clients.
 //=============================================================================
 class ClientTeamOutfittingInterface extends Actor
-	config(BallisticV25);
+	config(BallisticProV55);
 
 var Mut_TeamOutfitting Mut;		// The outfitting mutator
 var PlayerController PC;	// PlayerController associated with this COI
