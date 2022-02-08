@@ -127,7 +127,8 @@ simulated function RenderOverlays(Canvas C)
 simulated function DrawWeaponUI(Canvas C)
 {
 	local int i, j;
-	local float ScaleFactor, XS, YS, IconXSize, IconYSize, OutXSize, SmoothPulsePhase;
+	local float ScaleFactor, XS, YS, IconXSize, IconYSize, OutXSize, SmoothPulsePhase, XOffset, YOffset, XL,YL, YLC;
+	local string ammoTxt;
 
 	if (CheckInventoryChange())
 		ListItems();
@@ -138,7 +139,7 @@ simulated function DrawWeaponUI(Canvas C)
 	else
 		SmoothPulsePhase = Smerp(IconPulsePhase*2, 0, 1);
 
-	ScaleFactor = FMin(float(C.SizeX)/1600, float(C.SizeY)/1200) * class'HUD'.default.HudScale;
+	ScaleFactor = FMin(float(C.SizeX)/2000, float(C.SizeY)/1500) * class'HUD'.default.HudScale;
 //	ScaleFactor = float(C.SizeX) / 1600 * class'HUD'.default.HudScale;
 	XS = 128*ScaleFactor; YS = 64*ScaleFactor;
 	LastUIDrawTime = Level.TimeSeconds;
