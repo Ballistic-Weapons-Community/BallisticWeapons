@@ -97,9 +97,9 @@ defaultproperties
 {
     ArmingDelay=0.5
     TurnRate=49152.000000
-    Speed=250
     AccelSpeed=10000.000000
-    FlightSpeed=10000
+	Speed=500.000000
+    FlightSpeed=10000.000000
     LifeSpan=0.000000
 	bTearOff=False
 	bNetTemporary=False
