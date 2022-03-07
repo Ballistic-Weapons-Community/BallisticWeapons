@@ -209,6 +209,21 @@ function ModifyPlayer(Pawn Other)
 	local int i;
 	local BCSprintControl SC;
 
+	//adds sprint support to mutator
+    if (xPawn(Other) != None && bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
+	{
+		SC = Spawn(class'BCSprintControl',Other);
+		SC.Stamina = InitStamina;
+		SC.MaxStamina = InitMaxStamina;
+		SC.StaminaDrainRate = InitStaminaDrainRate;
+		SC.StaminaChargeRate = InitStaminaChargeRate;
+		SC.SpeedFactor = InitSpeedFactor;
+		SC.JumpDrainFactor = JumpDrainFactor;
+
+		SC.GiveTo(Other);
+		Sprinters[Sprinters.length] = SC;
+	}
+
 	if (!DMMode && BallisticPawn(Other) == None)
 	{
 		ClientModifyPlayer(Other);
@@ -243,22 +258,6 @@ function ModifyPlayer(Pawn Other)
         if(BallisticPawn(Other) != none)
         {
             BallisticPawn(Other).BPRI = class'Mut_Ballistic'.static.GetBPRI(Other.Controller.PlayerReplicationInfo);
-        }
-
-        if (bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
-        {
-            SC = Spawn(class'BCSprintControl',Other);
-            SC.Stamina = InitStamina;
-            SC.MaxStamina = InitMaxStamina;
-            SC.StaminaDrainRate = InitStaminaDrainRate;
-            SC.StaminaChargeRate = InitStaminaChargeRate;
-            SC.SpeedFactor = InitSpeedFactor;
-            SC.JumpDrainFactor = JumpDrainFactor;
-
-            if(BallisticPawn(Other) == none)
-
-            SC.GiveTo(Other);
-            Sprinters[Sprinters.length] = SC;
         }
     }
 	

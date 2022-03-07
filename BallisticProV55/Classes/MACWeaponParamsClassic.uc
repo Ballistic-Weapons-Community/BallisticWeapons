@@ -10,8 +10,8 @@ defaultproperties
 		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
 			ProjectileClass=Class'BallisticProV55.MACShell'
 			SpawnOffset=(X=28.000000,Y=10.000000)
-			Speed=25000.000000
-			MaxSpeed=25000.000000
+			Speed=5000.000000
+			MaxSpeed=5000.000000
 			Damage=350.000000
 			DamageRadius=192.000000
 			MomentumTransfer=80000.000000
