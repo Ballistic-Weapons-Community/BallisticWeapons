@@ -82,6 +82,7 @@ defaultproperties
 		SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
 		SightPivot=(Roll=-1024)
         ZoomType=ZT_Logarithmic
+		WeaponBoneScales(0)=(BoneName="Silencer",Slot=78,Scale=0f)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

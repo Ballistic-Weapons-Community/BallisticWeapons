@@ -2,6 +2,8 @@
 // BW-Sloth - Realistic movement mut.
 //=============================================================================
 class Mut_Sloth extends Mutator 
+	HideDropDown
+	CacheExempt
 	config(BallisticProV55);
 
 var config bool bUseSloth;

@@ -11,6 +11,7 @@
 //=============================================================================
 class BallisticTab_GameRules extends UT2K4TabPanel;
 
+var automated moComboBox	co_InventoryMode;			//Choose Inventoy Mode
 var automated moComboBox	co_GameStyle;				//Choose Params
 //Add Killsteaks Here
 var automated moCheckbox	ch_ViewFlash;				//Damage Indication Flash Toggle
@@ -19,6 +20,8 @@ var automated moCheckbox	ch_BrightPlayers;			//Bright Players
 var automated moCheckbox	ch_ForceBWPawn;				//Force Ballistic Pawn
 var automated moCheckbox	ch_NoDodging;				//Disables Dodging
 var automated moCheckbox	ch_DoubleJump;				//Limits Double Jump
+//var automated moCheckbox	ch_Regen;					//Enables Health Regen
+//var automated moCheckbox	ch_ShieldRegen;				//Enables Shield Regen
 
 var BallisticConfigMenuPro	p_Anchor;
 var bool					bInitialized;
@@ -49,6 +52,15 @@ function ShowPanel(bool bShow)
 
 function LoadSettings()
 {
+	//co_InventoryMode.AddItem("Pickups" ,,string(0));
+	//co_InventoryMode.AddItem("Standard Loadout" ,,string(1));
+	//co_InventoryMode.AddItem("Conflict Loadout" ,,string(2));
+	//co_InventoryMode.AddItem("Evolution Loadout" ,,string(3));
+	//co_InventoryMode.AddItem("Arena" ,,string(4));
+	//co_InventoryMode.AddItem("Melee" ,,string(5));
+	//co_InventoryMode.ReadOnly(True);
+	//co_InventoryMode.SetIndex(class'Mut_Ballistic'.default.InventoryMode);
+	
 	co_GameStyle.AddItem("Arena" ,,string(0));
 	co_GameStyle.AddItem("Classic" ,,string(1));
 	co_GameStyle.AddItem("Realism" ,,string(2));
@@ -62,19 +74,24 @@ function LoadSettings()
 	ch_ForceBWPawn.Checked(class'Mut_Ballistic'.default.bForceBallisticPawn);
 	ch_NoDodging.Checked(class'BallisticReplicationInfo'.default.bNoDodging);
 	ch_DoubleJump.Checked(class'BallisticReplicationInfo'.default.bLimitDoubleJumps);
+	//ch_Regen.Checked(class'Mut_Regeneration'.default.bUseRegen);
+	//ch_ShieldRegen.Checked(class'Mut_ShieldRegeneration'.default.bUseShieldRegen);
+	
 }
 
 function SaveSettings()
 {
 	if (!bInitialized)
 		return;
-	class'BallisticReplicationInfo'.default.GameStyle       = EGameStyle(co_GameStyle.GetIndex());
-	class'BallisticPawn'.default.bNoViewFlash				= ch_ViewFlash.IsChecked();
-	class'BallisticWeapon'.default.MaxInventoryCapacity 	= int_MaxInventoryCapacity.GetValue();	
-	class'BallisticReplicationInfo'.default.bBrightPlayers	= ch_BrightPlayers.IsChecked();
-    class'Mut_Ballistic'.default.bForceBallisticPawn		= ch_ForceBWPawn.IsChecked();
-	class'BallisticReplicationInfo'.default.bNoDodging		= ch_NoDodging.IsChecked();
-	class'BallisticReplicationInfo'.default.bLimitDoubleJumps = ch_DoubleJump.IsChecked();
+	class'BallisticReplicationInfo'.default.GameStyle       	= EGameStyle(co_GameStyle.GetIndex());
+	class'BallisticPawn'.default.bNoViewFlash					= ch_ViewFlash.IsChecked();
+	class'BallisticWeapon'.default.MaxInventoryCapacity 		= int_MaxInventoryCapacity.GetValue();	
+	class'BallisticReplicationInfo'.default.bBrightPlayers		= ch_BrightPlayers.IsChecked();
+    class'Mut_Ballistic'.default.bForceBallisticPawn			= ch_ForceBWPawn.IsChecked();
+	class'BallisticReplicationInfo'.default.bNoDodging			= ch_NoDodging.IsChecked();
+	class'BallisticReplicationInfo'.default.bLimitDoubleJumps 	= ch_DoubleJump.IsChecked();
+	//class'Mut_Regeneration'.default.bUseRegen					= ch_Regen.IsChecked();
+	//class'Mut_ShieldRegeneration'.default.bUseShieldRegen		= ch_ShieldRegen.IsChecked();
 	
 	class'BallisticReplicationInfo'.static.StaticSaveConfig();
 	class'BallisticWeapon'.static.StaticSaveConfig();
@@ -92,6 +109,8 @@ function DefaultSettings()
 	ch_ForceBWPawn.Checked(false);
 	ch_NoDodging.Checked(false);
 	ch_DoubleJump.Checked(false);
+	//ch_Regen.Checked(True);
+	//ch_ShieldRegen.Checked(True);
 }
 
 defaultproperties
@@ -191,5 +210,31 @@ defaultproperties
          WinHeight=0.040000
      End Object
      ch_DoubleJump=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_DoubleJumpCheck'
-
+	 /*
+	 Begin Object Class=moCheckBox Name=ch_RegenCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Enable Health Regeneration"
+         OnCreateComponent=ch_RegenCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Limits the Double Jump capabilities of players."
+         WinTop=0.400000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_Regen=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_RegenCheck'
+	 
+	 Begin Object Class=moCheckBox Name=ch_ShieldRegenCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Enable Shield Regeneration"
+         OnCreateComponent=ch_ShieldRegenCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Limits the Double Jump capabilities of players."
+         WinTop=0.450000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_ShieldRegen=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_ShieldRegenCheck'
+	*/
 }
