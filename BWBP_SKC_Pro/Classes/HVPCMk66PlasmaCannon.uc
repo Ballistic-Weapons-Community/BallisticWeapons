@@ -717,6 +717,9 @@ defaultproperties
 	 ParamsClasses(1)=Class'HVPCMk66WeaponParamsClassic'
      FireModeClass(0)=Class'BWBP_SKC_Pro.HVPCMk66PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.HVPCMk66SecondaryFire'
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc4',USize2=256,VSize2=256,Color1=(G=248,R=0),Color2=(B=153,G=168,R=170,A=173),StartSize2=82)
+     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
+     NDCrosshairChaosFactor=0.700000
      IdleAnimRate=1.200000
      PutDownTime=0.500000
      BringUpTime=0.500000

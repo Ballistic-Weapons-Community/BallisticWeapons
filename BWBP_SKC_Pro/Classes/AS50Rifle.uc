@@ -720,7 +720,8 @@ defaultproperties
 	ParamsClasses(1)=Class'AS50WeaponParamsClassic'	 
 	FireModeClass(0)=Class'BWBP_SKC_Pro.AS50PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.AS50SecondaryFire'
-	IdleAnimRate=0.600000
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=255,R=0,A=153),Color2=(B=0,G=0,R=0,A=255),StartSize1=22,StartSize2=61)
+    IdleAnimRate=0.600000
 	PutDownTime=0.600000
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.80000

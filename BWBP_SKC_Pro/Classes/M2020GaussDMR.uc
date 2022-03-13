@@ -605,6 +605,7 @@ defaultproperties
 	//ParamsClasses(1)=Class'M2020WeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.M2020GaussPrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=207,G=229,R=231,A=197),Color2=(B=226,G=0,R=0,A=255),StartSize1=77,StartSize2=68)
 	PutDownTime=0.80000
 	BringUpTime=0.500000
 	SelectForce="SwitchToAssaultRifle"

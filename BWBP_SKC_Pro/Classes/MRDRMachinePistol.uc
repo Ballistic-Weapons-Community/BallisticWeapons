@@ -203,6 +203,9 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-ClipOut',Volume=0.700000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-ClipIn',Volume=0.700000)
 	ClipInFrame=0.650000
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,R=134,A=71),Color2=(B=99,G=228,R=255,A=161),StartSize1=99,StartSize2=33)
+    NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
+    NDCrosshairChaosFactor=0.300000
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Small Burst",Value=5.000000)
 	bUseSights=False

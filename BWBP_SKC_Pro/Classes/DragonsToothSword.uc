@@ -147,6 +147,8 @@ defaultproperties
 	ParamsClasses(1)=Class'DragonsToothWeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.DragonsToothPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.DragonsToothSecondaryFire'
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.X3OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc11',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=207),Color2=(B=255,G=27,R=71,A=93),StartSize1=98,StartSize2=101)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=8.000000)
 	SelectAnim="PulloutFancy"
 	SelectAnimRate=1.250000
 	PutDownTime=0.500000

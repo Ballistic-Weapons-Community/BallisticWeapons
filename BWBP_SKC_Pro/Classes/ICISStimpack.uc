@@ -221,6 +221,8 @@ defaultproperties
 	 //ParamsClasses(1)=Class'ICISWeaponParamsClassic'
 	 FireModeClass(0)=Class'BWBP_SKC_Pro.ICISPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.ICISSecondaryFire'
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.X3OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.X3InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(R=129,A=192),Color2=(G=196,R=0,A=192),StartSize1=99,StartSize2=107)
+     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=8.000000)
      SelectAnimRate=2.500000
      PutDownAnimRate=1.500000
      PutDownTime=0.200000

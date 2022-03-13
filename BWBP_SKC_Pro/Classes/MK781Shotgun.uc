@@ -651,6 +651,7 @@ defaultproperties
 	ReloadAnim="ReloadLoop"
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-ShellPlus',Volume=2.300000,Radius=32.000000)
 	ClipInFrame=0.325000
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,R=255,A=192),Color2=(B=170,G=0,R=0,A=255),StartSize1=66,StartSize2=90)
 	bCanSkipReload=True
 	bShovelLoad=True
 	StartShovelAnim="ReloadStart"

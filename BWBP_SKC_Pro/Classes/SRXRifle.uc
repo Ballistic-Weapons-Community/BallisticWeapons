@@ -470,7 +470,8 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.80000
 	CurrentRating=0.80000
-	Description="All weapons evolve over time, adapting to new environments and forms of combat, the SRK-650 Battle Rifle is no exception. NDTR's improvement over the original SRS-900 model, the SRK was created to stand up to the harsh winters of Kalendra with more rugged ergonomics, a holo-sight for closer ranged engagements and a digital ammo counter. But NDTR went one step and beyond by allowing the SRK to not just accept silencers, but also the new elemental AMP tech to counter Cryon armor and Krao hordes with acidic and explosive tech respectively. Slated to join it's longer ranged brother in due time, the SRK will be a blessing for the UTC troops, and a curse for their enemies."
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross3',pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=128,VSize1=128,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=192),Color2=(B=255,G=255,R=255,A=123),StartSize1=20,StartSize2=57)
+    Description="All weapons evolve over time, adapting to new environments and forms of combat, the SRK-650 Battle Rifle is no exception. NDTR's improvement over the original SRS-900 model, the SRK was created to stand up to the harsh winters of Kalendra with more rugged ergonomics, a holo-sight for closer ranged engagements and a digital ammo counter. But NDTR went one step and beyond by allowing the SRK to not just accept silencers, but also the new elemental AMP tech to counter Cryon armor and Krao hordes with acidic and explosive tech respectively. Slated to join it's longer ranged brother in due time, the SRK will be a blessing for the UTC troops, and a curse for their enemies."
 	Priority=40
 	HudColor=(B=50,G=50,R=200)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

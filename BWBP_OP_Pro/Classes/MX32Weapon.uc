@@ -608,6 +608,7 @@ defaultproperties
 	 WeaponModes(0)=(ModeName="Auto Rockets",ModeID="WM_FullAuto")
 	 WeaponModes(1)=(ModeName="Guided Rockets",ModeID="WM_FullAuto",bUnavailable=true)
 	 WeaponModes(2)=(bUnavailable=true)
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.G5OutA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,USize2=128,VSize2=128,Color1=(B=255,G=255,R=255,A=255),Color2=(B=0,G=0,R=255,A=255),StartSize1=110,StartSize2=30)
 	 CurrentWeaponMode=0
 	 ParamsClasses(0)=Class'MX32WeaponParams'
 	 MagAmmo=50

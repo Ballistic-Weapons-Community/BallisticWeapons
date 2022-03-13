@@ -371,6 +371,10 @@ defaultproperties
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LAWPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LAWSecondaryFire'
 
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc8',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc11',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=104),Color2=(B=0,G=255,R=255,A=117),StartSize1=45,StartSize2=41)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.250000,X2=1.000000,Y2=1.000000),MaxScale=2.000000)
+    NDCrosshairChaosFactor=0.750000
+    
 	PutDownTime=1.900000
 	BringUpTime=2.250000
     SelectAnimRate=1.4

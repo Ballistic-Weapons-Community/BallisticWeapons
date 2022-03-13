@@ -165,6 +165,8 @@ defaultproperties
 	WeaponModes(0)=(ModeName="Semi")
 	WeaponModes(1)=(ModeName="Mode-2",bUnavailable=True,Value=7.000000)
 	WeaponModes(2)=(bUnavailable=True)
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.G5OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=122),Color2=(B=122),StartSize1=64,StartSize2=76)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
 	CurrentWeaponMode=0
 	ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)

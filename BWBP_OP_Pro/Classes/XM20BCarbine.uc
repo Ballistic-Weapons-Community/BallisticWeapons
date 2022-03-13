@@ -581,6 +581,7 @@ defaultproperties
      bWT_Splash=True
      bWT_Projectile=True
      bWT_Energy=True
+     NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc5',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=192),Color2=(B=158,G=150,R=0,A=124),StartSize1=54,StartSize2=59)
      bNoCrosshairInScope=true;
      SpecialInfo(0)=(Info="240.0;15.0;1.1;90.0;1.0;0.0;0.3")
 	 HudColor=(B=25,G=0,R=150)
