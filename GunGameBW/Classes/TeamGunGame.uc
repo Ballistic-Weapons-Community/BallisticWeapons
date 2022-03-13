@@ -678,6 +678,7 @@ function bool AllowBecomeActivePlayer(PlayerController P)
 }
 
 //I need a function that is called on Players and on Bots to add a GGRegistry for each of them, assign the GunGameGRI and add whether adrenaline shall be enabled or not
+//specific to TeamGunGame, need to assign Players/Bots the same gun level as the rest of the team
 //Login() for Players, SpawnBot() for AI
 event PlayerController Login
 (
@@ -686,7 +687,10 @@ event PlayerController Login
     out string Error
 )
 {
+	 local int TeamGunLevel;
      local PlayerController P;
+	 local Controller C;
+	 
      P = Super.Login(Portal, Options, Error);
 
      if ( P != None )
@@ -707,6 +711,18 @@ event PlayerController Login
                else
                     Registry.Remove(Registry.Length-1, 1);
           }
+		  
+		  //if the match has started, check the team's gun level, and update if required
+		  if (GunGamePRI(P.PlayerReplicationInfo) != None && GameReplicationInfo.bMatchHasBegun)
+		  {			   
+			   for (C = Level.ControllerList; C != None; C = C.NextController)
+			   {
+					if (C.PlayerReplicationInfo.Team == P.PlayerReplicationInfo.Team)
+						TeamGunLevel = Max(TeamGunLevel, GunGamePRI(C.PlayerReplicationInfo).GunLevel);
+			   }
+			   if (TeamGunLevel != 1)
+					GunGamePRI(P.PlayerReplicationInfo).GunLevel = TeamGunLevel;
+		  }
      }
 
      return P;
@@ -714,7 +730,10 @@ event PlayerController Login
 
 function Bot SpawnBot(optional string botName)
 {
+	 local int TeamGunLevel;
      local Bot B;
+	 local Controller C;
+	 
      B = Super.SpawnBot(botName);
 
      if ( B != None && B.bIsPlayer )
@@ -735,10 +754,72 @@ function Bot SpawnBot(optional string botName)
                else
                     Registry.Remove(Registry.Length-1, 1);
           }
+		  
+		  //if the match has started, check the team's gun level, and update if required
+		  if (GunGamePRI(B.PlayerReplicationInfo) != None && GameReplicationInfo.bMatchHasBegun)
+		  {		   
+			   for (C = Level.ControllerList; C != None; C = C.NextController)
+			   {
+					if (C.PlayerReplicationInfo.Team == B.PlayerReplicationInfo.Team)
+						TeamGunLevel = Max(TeamGunLevel, GunGamePRI(C.PlayerReplicationInfo).GunLevel);
+			   }
+			   if (TeamGunLevel != 1)
+					GunGamePRI(B.PlayerReplicationInfo).GunLevel = TeamGunLevel;
+		  }
+		  
      }
 
      return B;
 }
+
+//update the GunLevel of the player changing teams
+function bool ChangeTeam(Controller Other, int num, bool bNewTeam)
+{
+	local int TeamGunLevel;
+	local PlayerController P;
+	local Bot B;
+	local Controller C;
+
+	if (super.ChangeTeam(Other, num, bNewTeam))
+	{
+		if (PlayerController(Other) != None)
+		{
+			P = PlayerController(Other);
+		
+			if (GunGamePRI(P.PlayerReplicationInfo) != None && GameReplicationInfo.bMatchHasBegun)
+			{
+				for (C = Level.ControllerList; C != None; C = C.NextController)
+				{
+					log("TeamGunGame::ChangeTeam : num = "$num$ "; C.GetTeamNum() = "$C.GetTeamNum()$"; ");
+					if (C.GetTeamNum() == num && C != Other)
+						TeamGunLevel = Max(TeamGunLevel, GunGamePRI(C.PlayerReplicationInfo).GunLevel);
+				}
+				if (TeamGunLevel != 1)
+					GunGamePRI(P.PlayerReplicationInfo).GunLevel = TeamGunLevel;
+			}
+		}
+		else if (Bot(Other) != None)
+		{
+			B = Bot(Other);
+			
+			if (GunGamePRI(B.PlayerReplicationInfo) != None && GameReplicationInfo.bMatchHasBegun)
+			{
+				for (C = Level.ControllerList; C != None; C = C.NextController)
+				{
+					log("TeamGunGame::ChangeTeam : num = "$num$ "; C.GetTeamNum() = "$C.GetTeamNum()$" ; ");
+					if (C.GetTeamNum() == num && C != Other)
+						TeamGunLevel = Max(TeamGunLevel, GunGamePRI(C.PlayerReplicationInfo).GunLevel);
+				}
+				if (TeamGunLevel != 1)
+					GunGamePRI(B.PlayerReplicationInfo).GunLevel = TeamGunLevel;
+			}
+		}
+		
+		return true;
+	}
+	return false;
+}
+
 
 //Removed some things from here, added custom spawn rotation system
 function RestartPlayer( Controller aPlayer )
@@ -1092,7 +1173,7 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
      local bool bNoUpgrade;
      local bool bEnemyKill;
      local float Overflow;
-
+	 
      bEnemyKill = ( !bTeamGame || ((Killer != None) && (Killer != Killed) && (Killed != None) && (Killer.PlayerReplicationInfo != None) && (Killed.PlayerReplicationInfo != None) && (Killer.PlayerReplicationInfo.Team != Killed.PlayerReplicationInfo.Team)) );
 
      if ( KilledPawn != None && KilledPawn.GetSpree() > 4 )
@@ -1145,7 +1226,7 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
           Killed.PlayerReplicationInfo.Deaths += 1;
           Killed.PlayerReplicationInfo.NetUpdateTime = FMin(Killed.PlayerReplicationInfo.NetUpdateTime, Level.TimeSeconds + 0.3 * FRand());
           BroadcastDeathMessage(Killer, Killed, damageType);
-
+		  
           if ( (Killer == Killed) || (Killer == None) )
           {
                bNoUpgrade = true;
@@ -1153,8 +1234,10 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
                if ( Killer == None )
                     KillEvent("K", None, Killed.PlayerReplicationInfo, DamageType);	//"SelfKill by Environment"
                else
-                    KillEvent("K", Killer.PlayerReplicationInfo, Killed.PlayerReplicationInfo, DamageType);	//"SelfKill by Weapon"
+					KillEvent("K", Killer.PlayerReplicationInfo, Killed.PlayerReplicationInfo, DamageType);	//"SelfKill by Weapon"
           }
+		  
+		  
           else
           {
                if ( !bEnemyKill )
@@ -1170,7 +1253,12 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
 
      //If bNoUpgrade is true right here, then a self kill happened, downgrade and skip the rest of the GunGame code
      if ( bNoUpgrade )
-          KilledPRI.AdjustLevel( -1 );
+	 {
+		  AdjustLevelWholeTeam(false, -1, KillerPRI, KilledPRI, Killer, Killed);	 
+		  SetEquipmentWholeTeam(false, KillerPRI, KilledPRI, Killer, Killed);
+		  //KilledPRI.AdjustLevel( -1 );
+	 }
+          
      else
      {
           if ( bEnemyKill )  //Skip if it was a teamkill, as we don't need to check the validity of the kill here
@@ -1197,7 +1285,8 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
                          {
                               case 0:  switch (VictoryCondition)  //Decrease victim
                                        {
-                                            case 0:  KilledPRI.AdjustLevel( StdWeaponFactor * -1 );
+                                            case 0:  AdjustLevelWholeTeam(false, StdWeaponFactor * -1, KillerPRI, KilledPRI, Killer, Killed);	
+													 //KilledPRI.AdjustLevel( StdWeaponFactor * -1 );
                                                      break;
 
                                             case 1:  if ( KilledPRI.Score <= 0.0 )  //Don't be that rude and decrease furthermore
@@ -1226,15 +1315,18 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
                                             case 0:  if ( (KilledPRI.GunLevel - StdWeaponFactor) >= 1 )
                                                      {
                                                           Overflow = StdWeaponFactor;
-                                                          KilledPRI.AdjustLevel( StdWeaponFactor * -1 );
+														  AdjustLevelWholeTeam(false, StdWeaponFactor * -1, KillerPRI, KilledPRI, Killer, Killed);
+                                                          //KilledPRI.AdjustLevel( StdWeaponFactor * -1 );
                                                      }
                                                      else
                                                      {
                                                           Overflow = KilledPRI.GunLevel - 1;  //Save the Overflow and add it to Killer's GunLevel later
-                                                          KilledPRI.AdjustLevel( StdWeaponFactor * -1 );
+														  AdjustLevelWholeTeam(false, StdWeaponFactor * -1, KillerPRI, KilledPRI, Killer, Killed);
+                                                          //KilledPRI.AdjustLevel( StdWeaponFactor * -1 );
                                                      }
 
-                                                     KillerPRI.DelayedAdjustLevel( Overflow );  //Delayed level up to handle massive upgrades at the same time (Redeemer)
+													 DelayedAdjustLevelWholeTeam(true, Overflow, KillerPRI, KilledPRI, Killer, Killed);
+                                                     //KillerPRI.DelayedAdjustLevel( Overflow );  //Delayed level up to handle massive upgrades at the same time (Redeemer)
                                                      break;
 
                                             case 1:  if ( KilledPRI.Score <= 0.0 )  //When victim has nothing then killer doesn't get anything too!
@@ -1274,7 +1366,8 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
 
                               case 2:  switch (VictoryCondition)  //Increase killer
                                        {
-                                            case 0:  KillerPRI.DelayedAdjustLevel( StdWeaponFactor );  //Delayed level up to handle massive upgrades at the same time (Redeemer)
+                                            case 0:  DelayedAdjustLevelWholeTeam(true, StdWeaponFactor, KillerPRI, KilledPRI, Killer, Killed);
+													 //KillerPRI.DelayedAdjustLevel( StdWeaponFactor );  //Delayed level up to handle massive upgrades at the same time (Redeemer)
                                                      break;
 
                                             case 1:  KillerPRI.Score += StdWeaponFactor;
@@ -1313,25 +1406,18 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
 
           if ( !bEnemyKill )
           {
-               KillerPRI.DelayedAdjustLevel( -1 );
+			   DelayedAdjustLevelWholeTeam(true, -1, KillerPRI, KilledPRI, Killer, Killed);
+               //KillerPRI.DelayedAdjustLevel( -1 );
           }
           else if ( !bNoUpgrade && !Registry[KillerPRI.RegistryID].bBlockMultiKills ) //Skip the rest of the code for one second when this player has already levelled.
           {
                //Now we know that it was a valid kill. Check if player is able to be updated
                if ( KillerPRI.ValidKill() )  //Whether player is able to level up
                {
-                    KillerPRI.AdjustLevel( 1 );
-					if (PlayerController(Killer) != None)
-						PlayerController(Killer).ClientPlaySound(default.LvlUpSound,True,3,SLOT_Talk);
-						
-					//Eject player from any turret and destroy the turret - applies to weapons that deploy
-					if (Vehicle(Killer.Pawn) != None)
-					{
-						if (BallisticTurret(Killer.Pawn) != None)
-							BallisticTurret(Killer.Pawn).UndeployTurret();
-						else
-							Vehicle(Killer.Pawn).EjectDriver();
-					}	
+				    AdjustLevelWholeTeam(true, 1, KillerPRI, KilledPRI, Killer, Killed);
+                    //KillerPRI.AdjustLevel( 1 );
+					/*if (PlayerController(Killer) != None)
+						PlayerController(Killer).ClientPlaySound(default.LvlUpSound,True,3,SLOT_Talk);*/
 						
                     if ( VictoryCondition != 0 && KillerPRI.GunLevel == HighestLevel )  //Set up WeaponList rotation, if VC == 1 or 2 --> GoalScore/lives decides on who wins
                     {
@@ -1346,17 +1432,21 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
                                    KillerPRI.NumLives = Max((KillerPRI.NumLives - IterationAward), 0); //MaxLives = limit, one won't get further lives
                          }
 
-                         KillerPRI.AdjustLevel( -HighestLevel );
+						 AdjustLevelWholeTeam(true, -HighestLevel, KillerPRI, KilledPRI, Killer, Killed);
+                         //KillerPRI.AdjustLevel( -HighestLevel );
                     }
 					//If the player has killed with a guided akeron rocket, set a timer to handle equipment after the player no longer posesses the rocket
-					if (AkeronWarhead(Killer.Pawn) != None)
+					/*if (AkeronWarhead(Killer.Pawn) != None)
 					{
 						timerKillerPRI = KillerPRI;
 						timerKiller = Killer;
 						SetTimer(1.5, false);
-					}
+					}*/
 					else if ( KillerPRI.GunLevel < HighestLevel && !KillerPRI.bInDelayedProcess )
-						SetEquipment(KillerPRI, Killer.Pawn);
+					{
+						//SetEquipment(KillerPRI, Killer.Pawn);
+						SetEquipmentWholeTeam(true, KillerPRI, KilledPRI, Killer, Killed);
+					}
                }
           }
      }
@@ -1369,13 +1459,154 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
      NotifyKilled(Killer,Killed,KilledPawn);
 }
 
-function Timer()
+/*function Timer()
 {
 	//If the player is still possessing a guided akeron rocket, just try again until they aren't (assuming they can't be an akeron rocket forever. never give up!)
 	if (AkeronWarhead(timerKiller.Pawn) != None)
 		SetTimer(1.5, false);
 	else if ( timerKillerPRI.GunLevel < HighestLevel && !timerKillerPRI.bInDelayedProcess )
 		SetEquipment(timerKillerPRI, timerKiller.Pawn);
+}*/
+
+//adjust level of entire team
+//TeamAdjust = true for Killer team, TeamAdjust = false for Killed team
+//AdjustAmount is the amount to increase or decrease 
+function AdjustLevelWholeTeam(bool TeamAdjust, int AdjustAmount, GunGamePRI KillerPRI, GunGamePRI KilledPRI, Controller Killer, Controller Killed)
+{
+	local GunGamePRI KillerTeamMemberPRI, KilledTeamMemberPRI;
+	local Controller C;
+	
+	//upgrade entire killer team, or downgrade entire team depending on TeamAdjust
+	if (TeamAdjust)
+	{
+		//KillerPRI.AdjustLevel(AdjustAmount);
+		
+		if (AdjustAmount > 0 && PlayerController(Killer) != None)
+			PlayerController(Killer).ClientPlaySound(default.LvlUpSound,True,3,SLOT_Talk);
+		
+		for (C = Level.ControllerList; C != None; C = C.NextController)
+		{
+			if (C.PlayerReplicationInfo != None && Killer.PlayerReplicationInfo.Team == C.PlayerReplicationInfo.Team && GunGamePRI(C.PlayerReplicationInfo) != None)
+			{
+				KillerTeamMemberPRI = GunGamePRI(C.PlayerReplicationInfo);
+				KillerTeamMemberPRI.AdjustLevel(AdjustAmount);
+				
+				if (AdjustAmount > 0 && PlayerController(C) != None)
+					PlayerController(C).ClientPlaySound(default.LvlUpSound,True,3,SLOT_Talk);
+			}	
+		}
+	}
+	else
+	{
+		//KilledPRI.AdjustLevel(AdjustAmount);
+		
+		for (C = Level.ControllerList; C != None; C = C.NextController)
+		{
+			if (C.PlayerReplicationInfo != None && Killed.PlayerReplicationInfo.Team == C.PlayerReplicationInfo.Team && GunGamePRI(C.PlayerReplicationInfo) != None)
+			{
+				KilledTeamMemberPRI = GunGamePRI(C.PlayerReplicationInfo);
+				KilledTeamMemberPRI.AdjustLevel(AdjustAmount);
+			}	
+		}
+	}
+}
+
+//adjust level of entire team (delayed for overkills from redeemers etc.)
+//TeamAdjust = true for Killer team, TeamAdjust = false for Killed team
+//AdjustAmount is the amount to increase or decrease 
+function DelayedAdjustLevelWholeTeam(bool TeamAdjust, int AdjustAmount, GunGamePRI KillerPRI, GunGamePRI KilledPRI, Controller Killer, Controller Killed)
+{
+	local GunGamePRI KillerTeamMemberPRI, KilledTeamMemberPRI;
+	local Controller C;
+
+	//upgrade entire killer team, or downgrade entire team depending on TeamAdjust
+	if (TeamAdjust)
+	{
+		//KillerPRI.DelayedAdjustLevel(AdjustAmount);
+		
+		if (AdjustAmount > 0 && PlayerController(Killer) != None)
+			PlayerController(Killer).ClientPlaySound(default.LvlUpSound,True,3,SLOT_Talk);
+		
+		for (C = Level.ControllerList; C != None; C = C.NextController)
+		{
+			if (C.PlayerReplicationInfo != None && Killer.PlayerReplicationInfo.Team == C.PlayerReplicationInfo.Team && GunGamePRI(C.PlayerReplicationInfo) != None)
+			{
+				KillerTeamMemberPRI = GunGamePRI(C.PlayerReplicationInfo);
+				KillerTeamMemberPRI.AdjustLevel(AdjustAmount);
+				
+				if (AdjustAmount > 0 && PlayerController(C) != None)
+					PlayerController(C).ClientPlaySound(default.LvlUpSound,True,3,SLOT_Talk);
+			}	
+		}
+	}
+	else
+	{
+		//KilledPRI.DelayedAdjustLevel(AdjustAmount);
+		
+		for (C = Level.ControllerList; C != None; C = C.NextController)
+		{
+			if (C.PlayerReplicationInfo != None && Killed.PlayerReplicationInfo.Team == C.PlayerReplicationInfo.Team && GunGamePRI(C.PlayerReplicationInfo) != None)
+			{
+				KilledTeamMemberPRI = GunGamePRI(C.PlayerReplicationInfo);
+				KilledTeamMemberPRI.AdjustLevel(AdjustAmount);
+			}	
+		}
+	}
+}
+
+//set equipment of entire team
+//TeamAdjust = true for Killer team, TeamAdjust = false for Killed team
+//AdjustAmount is the amount to increase or decrease 
+function SetEquipmentWholeTeam(bool TeamAdjust, GunGamePRI KillerPRI, GunGamePRI KilledPRI, Controller Killer, Controller Killed)
+{
+	local GunGamePRI KillerTeamMemberPRI, KilledTeamMemberPRI;
+	local Controller C;
+
+	//upgrade entire killer team, or downgrade entire team depending on TeamAdjust
+	if (TeamAdjust)
+	{
+		//SetEquipment(KillerPRI, Killer.Pawn);
+	
+		for (C = Level.ControllerList; C != None; C = C.NextController)
+		{
+			if (C.Pawn != None && C.PlayerReplicationInfo != None && Killer.PlayerReplicationInfo.Team == C.PlayerReplicationInfo.Team && GunGamePRI(C.PlayerReplicationInfo) != None)
+			{	
+				//Eject player from any turret and destroy the turret - applies to weapons that deploy
+				if (Vehicle(C.Pawn) != None)
+				{
+					if (BallisticTurret(C.Pawn) != None)
+						BallisticTurret(C.Pawn).UndeployTurret();
+					else
+						Vehicle(C.Pawn).EjectDriver();
+				}	
+			
+				KillerTeamMemberPRI = GunGamePRI(C.PlayerReplicationInfo);
+				SetEquipment(KillerTeamMemberPRI, C.Pawn);
+			}	
+		}
+	}
+	else
+	{
+		//SetEquipment(KilledPRI, Killed.Pawn);
+		
+		for (C = Level.ControllerList; C != None; C = C.NextController)
+		{
+			if (C.Pawn != None && C.PlayerReplicationInfo != None && Killed.PlayerReplicationInfo.Team == C.PlayerReplicationInfo.Team && GunGamePRI(C.PlayerReplicationInfo) != None)
+			{	
+				//Eject player from any turret and destroy the turret - applies to weapons that deploy
+				if (Vehicle(C.Pawn) != None)
+				{
+					if (BallisticTurret(C.Pawn) != None)
+						BallisticTurret(C.Pawn).UndeployTurret();
+					else
+						Vehicle(C.Pawn).EjectDriver();
+				}	
+			
+				KilledTeamMemberPRI = GunGamePRI(C.PlayerReplicationInfo);
+				SetEquipment(KilledTeamMemberPRI, C.Pawn);
+			}	
+		}
+	}
 }
 
 //Give Killer a new weapons and initialize deletion of old weapon
@@ -1898,8 +2129,8 @@ defaultproperties
      DefaultWeapons(16)=Class'BWBP_SKC_Pro.MARSAssaultRifle'
      DefaultWeapons(17)=Class'BWBP_SKC_Pro.F2000AssaultRifle'
      DefaultWeapons(18)=Class'BWBP_SKC_Pro.CYLOAssaultWeapon'	//ar
-     DefaultWeapons(19)=Class'BWBP_SKC_Pro.CYLOUAW'
-	 DefaultWeapons(20)=Class'BWBP_SKC_Pro.LK05Carbine'
+	 DefaultWeapons(19)=Class'BWBP_SKC_Pro.LK05Carbine'
+	 DefaultWeapons(20)=Class'BWBP_SKC_Pro.CYLOUAW'
 	 DefaultWeapons(21)=Class'BallisticProV55.SARAssaultRifle'
 	 DefaultWeapons(22)=Class'BWBP_SKC_Pro.AK47AssaultRifle'
      DefaultWeapons(23)=Class'BWBP_OP_Pro.CX61AssaultRifle'

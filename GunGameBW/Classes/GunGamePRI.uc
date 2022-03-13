@@ -68,7 +68,7 @@ function DelayedAdjustLevel( int value )
      if ( !bInDelayedProcess )
      {
           bInDelayedProcess = true;
-          DelayedLevellingTime = Level.TimeSeconds + 0.8;
+          DelayedLevellingTime = Level.TimeSeconds + 2.0;
           Enable('Tick');
      }
 }
