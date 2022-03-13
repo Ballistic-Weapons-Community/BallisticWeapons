@@ -82,6 +82,14 @@ var   globalconfig float    	InitStaminaChargeRate;
 var   globalconfig float    	InitSpeedFactor;
 var   globalconfig float    	JumpDrainFactor;
 
+//Sloth
+var globalconfig bool bUseSloth;
+var globalconfig float StrafeScale;
+var globalconfig float BackScale;
+var globalconfig float GroundSpeedScale;
+var globalconfig float AirSpeedScale;
+var globalconfig float AccelRateScale;
+
 var   BCReplicationInfo	BallisticReplicationInfo;
 
 var	int						CRCount;
@@ -209,6 +217,21 @@ function ModifyPlayer(Pawn Other)
 	local int i;
 	local BCSprintControl SC;
 
+	//adds sprint support to mutator
+    if (xPawn(Other) != None && bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
+	{
+		SC = Spawn(class'BCSprintControl',Other);
+		SC.Stamina = InitStamina;
+		SC.MaxStamina = InitMaxStamina;
+		SC.StaminaDrainRate = InitStaminaDrainRate;
+		SC.StaminaChargeRate = InitStaminaChargeRate;
+		SC.SpeedFactor = InitSpeedFactor;
+		SC.JumpDrainFactor = JumpDrainFactor;
+
+		SC.GiveTo(Other);
+		Sprinters[Sprinters.length] = SC;
+	}
+
 	if (!DMMode && BallisticPawn(Other) == None)
 	{
 		ClientModifyPlayer(Other);
@@ -244,22 +267,6 @@ function ModifyPlayer(Pawn Other)
         {
             BallisticPawn(Other).BPRI = class'Mut_Ballistic'.static.GetBPRI(Other.Controller.PlayerReplicationInfo);
         }
-
-        if (bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
-        {
-            SC = Spawn(class'BCSprintControl',Other);
-            SC.Stamina = InitStamina;
-            SC.MaxStamina = InitMaxStamina;
-            SC.StaminaDrainRate = InitStaminaDrainRate;
-            SC.StaminaChargeRate = InitStaminaChargeRate;
-            SC.SpeedFactor = InitSpeedFactor;
-            SC.JumpDrainFactor = JumpDrainFactor;
-
-            if(BallisticPawn(Other) == none)
-
-            SC.GiveTo(Other);
-            Sprinters[Sprinters.length] = SC;
-        }
     }
 	
 	// A hack to prevent continued walking after respawning.
@@ -283,6 +290,15 @@ function ModifyPlayer(Pawn Other)
 
 	// Add ammo for default weapon
 	AddStartingAmmo(Other);
+	
+	if (bUseSloth && BallisticPawn(Other) != None)
+	{
+		BallisticPawn(Other).StrafeScale = StrafeScale;
+		BallisticPawn(Other).BackScale = BackScale;
+		BallisticPawn(Other).GroundSpeed = GroundSpeedScale;
+		BallisticPawn(Other).AirSpeed = AirSpeedScale;
+		BallisticPawn(Other).AccelRate = AccelRateScale;
+	}
 
 	Super.ModifyPlayer(Other);
 }
@@ -480,6 +496,7 @@ function ItemChange(Pickup Other)
 simulated event Timer()
 {
 	local int i;
+	
 	if (!bLWsInitialized)
 		AdjustLockerWeapons();
  	if (Role < ROLE_Authority)
@@ -849,6 +866,7 @@ simulated function BeginPlay()
 	}
 	// Stuff won't be ready now, do it after its had a chance to init...
 	SetTimer(0.05, false);
+	
 	Super.BeginPlay();
 }
 
@@ -997,6 +1015,13 @@ defaultproperties
      InitStaminaChargeRate=20.000000
      InitSpeedFactor=1.350000
      JumpDrainFactor=2.000000
+	 
+	 bUseSloth=False
+     StrafeScale=0.700000
+     BackScale=0.600000
+     GroundSpeedScale=270.000000
+     AirSpeedScale=270.000000
+     AccelRateScale=256.000000
 	 
 	 ItemGroup="Ballistic"
      bSpawnUniqueItems=True

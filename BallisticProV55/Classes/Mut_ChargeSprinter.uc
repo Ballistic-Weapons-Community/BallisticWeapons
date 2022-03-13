@@ -7,7 +7,9 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Mut_ChargeSprinter extends Mutator;
+class Mut_ChargeSprinter extends Mutator
+	HideDropDown
+	CacheExempt;
 
 var   Array<BCSprintControl> Sprinters;
 

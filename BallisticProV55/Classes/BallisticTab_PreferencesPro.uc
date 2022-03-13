@@ -93,7 +93,7 @@ function SaveSettings()
 	class'BallisticMod'.default.bMuzzleSmoke 			= ch_MSmoke.IsChecked();
 	class'BallisticBrass'.default.LifeTimeScale			= fl_BrassTime.GetValue();
 	class'BallisticPlayer'.default.bUseWeaponUI 			= ch_WeaponUI.IsChecked();
-	class'BallisticMod'.default.bUseMotionBlur 				= false; //ch_MotionBlur.IsChecked();
+	class'BallisticMod'.default.bUseMotionBlur 				= ch_MotionBlur.IsChecked();
 	class'BallisticDamageType'.default.bSimpleDeathMessages	= ch_SimpleDeathMessages.IsChecked();
 	class'BallisticPlayer'.default.ZoomTimeMod			= fl_ZoomTimeMod.GetValue();
 	
