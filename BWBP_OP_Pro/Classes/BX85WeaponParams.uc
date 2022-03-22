@@ -12,7 +12,7 @@ defaultproperties
 		HeadMult=1.5f
 		LimbMult=0.85f
 		DamageType=Class'DTBX85Bolt'
-		DamageTypeHead=Class'DTBX85Bolt'
+		DamageTypeHead=Class'DTBX85BoltHead'
 		DamageTypeArm=Class'DTBX85Bolt'
 		Chaos=0.150000
 		BotRefireRate=0.500000
