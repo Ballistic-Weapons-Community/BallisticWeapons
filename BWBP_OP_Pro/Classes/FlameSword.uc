@@ -332,6 +332,8 @@ defaultproperties
 	 MeleeFireClass=Class'BWBP_OP_Pro.FlameSwordMeleeFire'
      SelectAnim="PulloutFancy"
      SelectAnimRate=1.250000
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.PentagramOutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.PentagramInA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=104,R=255,A=160),Color2=(B=0,G=169,R=255,A=67),StartSize1=91,StartSize2=96)
+	 NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
      PutDownTime=0.500000
      BringUpTime=0.700000
      SelectForce="SwitchToAssaultRifle"

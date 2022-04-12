@@ -155,6 +155,8 @@ defaultproperties
      PutDownTime=0.800000
      BringUpTime=1.000000
      SelectForce="SwitchToAssaultRifle"
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(G=78,R=155,A=54),Color2=(G=235,R=1),StartSize1=181,StartSize2=14)
+     NDCrosshairInfo=(SpreadRatios=(Y2=0.500000))
      AIRating=0.80000
      CurrentRating=0.80000
      Description="The AN-56 Akeron Launcher was introduced to fulfill a pressing need for indirect fire options within the UTC ranks. Launching directed-blast rockets for the safety of allied units, it has quickly become a staple due to its optional ability to attack fortifications with manually guided rockets without requiring the user's exposure to enemy fire. However, whilst guiding a rocket, the user is vulnerable to flank attacks, and the weapon is best employed with the support of teammates. Should the user choose to eschew manual guidance, undirected rockets can be launched at a fast rate from the weapon's three barrels."

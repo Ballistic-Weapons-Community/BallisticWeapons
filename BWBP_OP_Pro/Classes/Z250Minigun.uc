@@ -536,6 +536,8 @@ defaultproperties
 	PutDownTime=0.800000
 	BringUpTime=2.000000
 	SelectForce="SwitchToAssaultRifle"
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=62,G=165,R=0,A=114),Color2=(B=38,G=19,R=0,A=221),StartSize1=123,StartSize2=71)
+	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	AIRating=0.800000
 	CurrentRating=0.800000
 	Description="Add me."

@@ -375,6 +375,7 @@ defaultproperties
 	PutDownTime=0.600000
 	BringUpTime=0.500000
 	SelectForce="SwitchToAssaultRifle"
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',USize1=256,VSize1=256,Color1=(B=213,G=113),Color2=(B=63,G=71),StartSize2=54)
 	AIRating=0.70000
 	CurrentRating=0.70000
 	bShowChargingBar=True
