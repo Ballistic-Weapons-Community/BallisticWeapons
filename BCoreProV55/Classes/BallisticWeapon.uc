@@ -4497,6 +4497,10 @@ simulated function OnRecoilParamsChanged()
 function InitWeaponFromTurret(BallisticTurret Turret);
 simulated function ClientInitWeaponFromTurret(BallisticTurret Turret);
 function InitTurretWeapon(BallisticTurret Turret);
+//same for automated turrets
+function InitWeaponFromAutoTurret(BallisticAutoTurret AutoTurret);
+simulated function ClientInitWeaponFromAutoTurret(BallisticAutoTurret AutoTurret);
+function InitAutoTurretWeapon(BallisticAutoTurret AutoTurret);
 
 // End input functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 

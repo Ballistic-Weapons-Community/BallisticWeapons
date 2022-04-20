@@ -549,6 +549,8 @@ defaultproperties
 	FireModeClass(1)=Class'BWBP_OP_Pro.RaygunSecondaryFire'
 	BringUpTime=0.500000
 	SelectForce="SwitchToAssaultRifle"
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.A73InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=86,R=0),Color2=(G=140),StartSize1=65,StartSize2=61)
+    NDCrosshairInfo=(SpreadRatios=(Y2=0.500000))
 	AIRating=0.750000
 	CurrentRating=0.750000
 	bShowChargingBar=True

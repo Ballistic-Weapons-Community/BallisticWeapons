@@ -593,6 +593,8 @@ defaultproperties
 	ThermalRange=2500.000000
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=1)
 	AIReloadTime=1.500000
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=43,G=50,R=42,A=171),Color2=(B=16,G=27,R=104,A=151),StartSize1=96,StartSize2=76)
+	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	BigIconMaterial=Texture'BWBP_OP_Tex.XBow.BigIcon_Crossbow'
 	IdleTweenTime=0.000000
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'

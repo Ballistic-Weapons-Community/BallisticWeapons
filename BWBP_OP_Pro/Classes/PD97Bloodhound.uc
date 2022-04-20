@@ -324,6 +324,8 @@ defaultproperties
 	PutDownTime=0.600000
 	BringUpTime=0.900000
 	SelectForce="SwitchToAssaultRifle"
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=186,R=12),Color2=(R=0),StartSize1=58,StartSize2=50)
+    NDCrosshairInfo=(SpreadRatios=(Y2=0.500000))
 	bShowChargingBar=True
 	Description="Originally a specialist law enforcement weapon, the PD-97 'Bloodhound' has been adapted into a military role, used to control opponents and track their movement upon the battlefield. While less immediately lethal than most other weapons, its tactical repertoire is not to be underestimated."
 	Priority=24
