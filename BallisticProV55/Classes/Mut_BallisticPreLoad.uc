@@ -82,8 +82,8 @@ defaultproperties
 	 bEnablePreloading=True
      bAddToServerPackages=True
      GroupName="BallisticPro: Resource Preload"
-     FriendlyName="BallisticPro: Resource Preload (NEW)"
-     Description="Preloads weapon resources, designed for use with BallisticPro."
+     FriendlyName="BallisticPro: Resource Preload"
+     Description="Preloads weapon resources, designed for use with BallisticPro. This will improve overall performance on all machines"
      bAlwaysRelevant=True
      RemoteRole=ROLE_SimulatedProxy
 

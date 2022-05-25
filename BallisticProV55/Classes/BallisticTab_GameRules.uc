@@ -22,6 +22,7 @@ var automated moCheckbox	ch_NoDodging;				//Disables Dodging
 var automated moCheckbox	ch_DoubleJump;				//Limits Double Jump
 //var automated moCheckbox	ch_Regen;					//Enables Health Regen
 //var automated moCheckbox	ch_ShieldRegen;				//Enables Shield Regen
+//var automated moCheckbox	ch_PreCacheWeapons;			//Precache Weapons
 
 var BallisticConfigMenuPro	p_Anchor;
 var bool					bInitialized;
@@ -76,6 +77,7 @@ function LoadSettings()
 	ch_DoubleJump.Checked(class'BallisticReplicationInfo'.default.bLimitDoubleJumps);
 	//ch_Regen.Checked(class'Mut_Regeneration'.default.bUseRegen);
 	//ch_ShieldRegen.Checked(class'Mut_ShieldRegeneration'.default.bUseShieldRegen);
+	//ch_PreCacheWeapons.Checked(class'Mut_Ballistic'.default.bEnablePreloading);
 	
 }
 
@@ -92,12 +94,14 @@ function SaveSettings()
 	class'BallisticReplicationInfo'.default.bLimitDoubleJumps 	= ch_DoubleJump.IsChecked();
 	//class'Mut_Regeneration'.default.bUseRegen					= ch_Regen.IsChecked();
 	//class'Mut_ShieldRegeneration'.default.bUseShieldRegen		= ch_ShieldRegen.IsChecked();
+	//class'Mut_Ballistic'.default.bEnablePreloading		= ch_PreCacheWeapons.IsChecked();
 	
 	class'BallisticReplicationInfo'.static.StaticSaveConfig();
 	class'BallisticWeapon'.static.StaticSaveConfig();
 	class'Mut_Ballistic'.static.StaticSaveConfig();
 	class'BallisticPawn'.static.StaticSaveConfig();
 	class'Rules_Ballistic'.static.StaticSaveConfig();
+	class'Mut_Ballistic'.static.StaticSaveConfig();
 }
 
 function DefaultSettings()
@@ -111,6 +115,7 @@ function DefaultSettings()
 	ch_DoubleJump.Checked(false);
 	//ch_Regen.Checked(True);
 	//ch_ShieldRegen.Checked(True);
+	//ch_PreCacheWeapons.Checked(True);
 }
 
 defaultproperties
@@ -210,7 +215,22 @@ defaultproperties
          WinHeight=0.040000
      End Object
      ch_DoubleJump=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_DoubleJumpCheck'
+	 
 	 /*
+	 Begin Object Class=moCheckBox Name=ch_PreCacheCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Pre-Cache Weapons"
+         OnCreateComponent=ch_PreCacheCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Pre-Cache Weapons at the start of the match"
+         WinTop=0.400000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_PreCacheWeapons=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_PreCacheCheck'
+	 
+	 
 	 Begin Object Class=moCheckBox Name=ch_RegenCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
@@ -218,7 +238,7 @@ defaultproperties
          OnCreateComponent=ch_RegenCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Limits the Double Jump capabilities of players."
-         WinTop=0.400000
+         WinTop=0.450000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -231,7 +251,7 @@ defaultproperties
          OnCreateComponent=ch_ShieldRegenCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Limits the Double Jump capabilities of players."
-         WinTop=0.450000
+         WinTop=0.500000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
