@@ -380,7 +380,7 @@ simulated event AnimEnd (int Channel)
 
     GetAnimParams(0, Anim, Frame, Rate);
 
-	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
+	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim)
 	{
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 		{
@@ -492,7 +492,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-Cock')
-	ReloadAnimRate=1.250000	
+	ReloadAnimRate=1.250000
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.Pistol.RSP-ClipIn')
 	ClipInFrame=0.650000

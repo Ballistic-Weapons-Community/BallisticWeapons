@@ -62,13 +62,6 @@ var   bool				bSlavePutDown;			// True on slave when its being putdown. Used to 
 var()	bool			bShouldDualInLoadout; 	//True for a gunclass which should be dual wielded in Loadout gts
 var	float				CreationTime;
 
-var	bool				bUseDualReload;			// Use dual, simultaneous reloading, vs. individual gun reloading.
-var bool 				bDualMixing;			// Can dual wield non-identical weapons
-var() Name				DualReloadAnim;			// Anim to use for when bUseDualReload is set
-var() Name				DualReloadEmptyAnim;	// Anim to use for when bUseDualReload is set
-var() float				DualReloadAnimRate;		// Rate to play dual reload anim at
-var() float				DualReloadAnimDelay;	// Time to delay reload animation of slave pistol (muh realism)
-
 // Autotracking vars
 var   Pawn				Target;					// The guy getting tracked by our gun
 var   Rotator			TrackerAim;				// Offset from ViewRotation where the tracking gun is aimed
@@ -273,9 +266,7 @@ simulated function bool CanReload ()
 
 exec simulated function Reload (optional byte i)
 {
-	if (bUseDualReload)
-		Super.Reload(i);
-	if (bIsPendingHandGun || PendingHandGun != None || IsInState('Lowered') || ClientState != WS_ReadyToFire)
+	if (bIsPendingHandGun || PendingHandGun != None/* || IsInState('Lowered')*/ || ClientState != WS_ReadyToFire)
 		return;
 	if (OtherGun == None)
 		Super.Reload(i);
@@ -289,23 +280,6 @@ exec simulated function Reload (optional byte i)
 		OtherGun.Reload(i);
 }
 
-simulated function PlayReload()
-{
-	if (bUseDualReload && HasAnim(DualReloadAnim) && HasAnim(DualReloadEmptyAnim))
-	{
-		if (IsMaster())
-		{
-			SetTimer(DualReloadAnimDelay, false);
-			return;
-		}
-		if (MagAmmo < 1)
-			SafePlayAnim(DualReloadEmptyAnim, DualReloadAnimRate, , 0, "RELOAD");
-		else
-			SafePlayAnim(DualReloadAnim, DualReloadAnimRate, , 0, "RELOAD");
-	}
-	else
-		super.PlayReload();
-}
 function ServerStartReload (optional byte i)
 {
 	if (IsSlave() && Othergun.IsFiring())
@@ -315,7 +289,7 @@ function ServerStartReload (optional byte i)
 
 simulated function CommonStartReload (optional byte i)
 {
-	if (OtherGun == None || OtherGun.IsInState('Lowered') || bUseDualReload)
+	if (OtherGun == None || OtherGun.IsInState('Lowered'))
 	{
 		Super.CommonStartReload(i);
 		return;
@@ -663,14 +637,6 @@ function float GetAIRating()
 simulated event Timer()
 {
 	local int Mode;
-
-	if ((ReloadState == RS_StartShovel || ReloadState == RS_PreClipOut) && IsMaster() && bUseDualReload && HasAnim(DualReloadAnim) && HasAnim(DualReloadEmptyAnim))
-	{
-		if (MagAmmo < 1)
-			SafePlayAnim(DualReloadEmptyAnim, DualReloadAnimRate, , 0, "RELOAD");
-		else
-			SafePlayAnim(DualReloadAnim, DualReloadAnimRate, , 0, "RELOAD");
-	}
 
 	if (Instigator != None && AIController(Instigator.Controller) != None && ClientState == WS_BringUp && Othergun == None && PendingHandgun == None && !bIsPendingHandgun)
 	{
@@ -1712,11 +1678,6 @@ defaultproperties
 {
      SupportHandBone="Root01"
      bShouldDualInLoadout=True
-	 bUseDualReload=True
-	 DualReloadAnim="DualReload"
-	 DualReloadEmptyAnim="DualReloadOpen"
-	 DualReloadAnimRate=1.000000
-	 DualReloadAnimDelay=0.200000
      TrackSpeed=18000.000000
      SingleHeldRate=0.300000
      bWT_Sidearm=True
