@@ -147,24 +147,34 @@ simulated function PreBeginPlay()
 
 simulated function ApplyParams(ProjectileEffectParams params)
 {
-    if (Role != ROLE_Authority)
-        return;
+    /*if (Role != ROLE_Authority)
+        return;*/
 
     Damage = params.Damage;
+	default.Damage = params.Damage;
+	
     DamageRadius = params.DamageRadius;
+	default.DamageRadius = params.DamageRadius;
+	
     MomentumTransfer = params.MomentumTransfer;
+	default.MomentumTransfer = params.MomentumTransfer;
 
     HeadMult = params.HeadMult;
     LimbMult = params.LimbMult;
 
     Speed = params.Speed;
-    AccelSpeed = params.AccelSpeed;
-    MaxSpeed = params.MaxSpeed;
+	default.Speed = params.Speed;
+	
+    AccelSpeed = params.AccelSpeed;    
+	default.AccelSpeed = params.AccelSpeed;
+	
+    MaxSpeed = params.MaxSpeed;    
+	default.MaxSpeed = params.MaxSpeed;
 
-    MaxDamageGainFactor = params.MaxDamageGainFactor;
-    DamageGainStartTime = params.DamageGainStartTime;
-    DamageGainEndTime = params.DamageGainEndTime;
-    RadiusFallOffType = params.RadiusFallOffType;
+    MaxDamageGainFactor = params.MaxDamageGainFactor;    
+    DamageGainStartTime = params.DamageGainStartTime;    
+    DamageGainEndTime = params.DamageGainEndTime;    
+    RadiusFallOffType = params.RadiusFallOffType;    
 }
 
 simulated event TornOff()
