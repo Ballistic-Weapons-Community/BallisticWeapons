@@ -58,9 +58,9 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
-		HVCMk9PrimaryFire(FireMode[0]).GotoState('BranchingFire');
-	else
+	//if (BCRepClass.default.GameStyle == 1)
+		//HVCMk9PrimaryFire(FireMode[0]).GotoState('BranchingFire');
+	//else
 		HVCMk9PrimaryFire(FireMode[0]).GotoState('DirectFire');
 }
 
