@@ -1414,10 +1414,11 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
                //Now we know that it was a valid kill. Check if player is able to be updated
                if ( KillerPRI.ValidKill() )  //Whether player is able to level up
                {
-				    AdjustLevelWholeTeam(true, 1, KillerPRI, KilledPRI, Killer, Killed);
-                    //KillerPRI.AdjustLevel( 1 );
-					/*if (PlayerController(Killer) != None)
-						PlayerController(Killer).ClientPlaySound(default.LvlUpSound,True,3,SLOT_Talk);*/
+					//If the player has killed with a guided akeron rocket, make use of DelayedAdjustLevel
+					if (AkeronWarhead(Killer.Pawn) != None)
+						DelayedAdjustLevelWholeTeam(true, 1, KillerPRI, KilledPRI, Killer, Killed);
+					else
+						AdjustLevelWholeTeam(true, 1, KillerPRI, KilledPRI, Killer, Killed);
 						
                     if ( VictoryCondition != 0 && KillerPRI.GunLevel == HighestLevel )  //Set up WeaponList rotation, if VC == 1 or 2 --> GoalScore/lives decides on who wins
                     {
@@ -1435,14 +1436,8 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
 						 AdjustLevelWholeTeam(true, -HighestLevel, KillerPRI, KilledPRI, Killer, Killed);
                          //KillerPRI.AdjustLevel( -HighestLevel );
                     }
-					//If the player has killed with a guided akeron rocket, set a timer to handle equipment after the player no longer posesses the rocket
-					/*if (AkeronWarhead(Killer.Pawn) != None)
-					{
-						timerKillerPRI = KillerPRI;
-						timerKiller = Killer;
-						SetTimer(1.5, false);
-					}*/
-					else if ( KillerPRI.GunLevel < HighestLevel && !KillerPRI.bInDelayedProcess )
+					
+					if ( KillerPRI.GunLevel < HighestLevel && !KillerPRI.bInDelayedProcess )
 					{
 						//SetEquipment(KillerPRI, Killer.Pawn);
 						SetEquipmentWholeTeam(true, KillerPRI, KilledPRI, Killer, Killed);
@@ -1458,15 +1453,6 @@ function Killed( Controller Killer, Controller Killed, Pawn KilledPawn, class<Da
      DiscardInventory(KilledPawn);
      NotifyKilled(Killer,Killed,KilledPawn);
 }
-
-/*function Timer()
-{
-	//If the player is still possessing a guided akeron rocket, just try again until they aren't (assuming they can't be an akeron rocket forever. never give up!)
-	if (AkeronWarhead(timerKiller.Pawn) != None)
-		SetTimer(1.5, false);
-	else if ( timerKillerPRI.GunLevel < HighestLevel && !timerKillerPRI.bInDelayedProcess )
-		SetEquipment(timerKillerPRI, timerKiller.Pawn);
-}*/
 
 //adjust level of entire team
 //TeamAdjust = true for Killer team, TeamAdjust = false for Killed team
@@ -1532,7 +1518,7 @@ function DelayedAdjustLevelWholeTeam(bool TeamAdjust, int AdjustAmount, GunGameP
 			if (C.PlayerReplicationInfo != None && Killer.PlayerReplicationInfo.Team == C.PlayerReplicationInfo.Team && GunGamePRI(C.PlayerReplicationInfo) != None)
 			{
 				KillerTeamMemberPRI = GunGamePRI(C.PlayerReplicationInfo);
-				KillerTeamMemberPRI.AdjustLevel(AdjustAmount);
+				KillerTeamMemberPRI.DelayedAdjustLevel(AdjustAmount);
 				
 				if (AdjustAmount > 0 && PlayerController(C) != None)
 					PlayerController(C).ClientPlaySound(default.LvlUpSound,True,3,SLOT_Talk);
@@ -1548,7 +1534,7 @@ function DelayedAdjustLevelWholeTeam(bool TeamAdjust, int AdjustAmount, GunGameP
 			if (C.PlayerReplicationInfo != None && Killed.PlayerReplicationInfo.Team == C.PlayerReplicationInfo.Team && GunGamePRI(C.PlayerReplicationInfo) != None)
 			{
 				KilledTeamMemberPRI = GunGamePRI(C.PlayerReplicationInfo);
-				KilledTeamMemberPRI.AdjustLevel(AdjustAmount);
+				KilledTeamMemberPRI.DelayedAdjustLevel(AdjustAmount);
 			}	
 		}
 	}
