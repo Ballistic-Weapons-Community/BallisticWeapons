@@ -112,7 +112,7 @@ defaultproperties
      SwipePoints(2)=(offset=(Yaw=1536))
      WallHitPoint=1
      NumSwipePoints=3
-     FatiguePerStrike=0.200000
+     FatiguePerStrike=0.250000
      TraceRange=(Min=150.000000,Max=150.000000)
      Damage=80.000000
      DamageType=Class'BWBP_OP_Pro.DTWrenchHit'

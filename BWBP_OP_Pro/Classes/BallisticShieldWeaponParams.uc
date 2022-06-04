@@ -9,6 +9,7 @@ defaultproperties
 	Begin Object Class=MeleeEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=140.000000,Max=140.000000)
 		Damage=65
+		Fatigue=0.150000
 		DamageType=Class'BWBP_OP_Pro.DTBallisticShield'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTBallisticShield'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTBallisticShield'
@@ -32,6 +33,7 @@ defaultproperties
 	Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=140.000000,Max=140.000000)
 		Damage=80
+		Fatigue=0.500000
 		DamageType=Class'BWBP_OP_Pro.DTBallisticShield'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTBallisticShield'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTBallisticShield'

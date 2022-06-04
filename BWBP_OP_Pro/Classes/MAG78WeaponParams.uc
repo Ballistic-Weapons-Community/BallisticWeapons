@@ -9,6 +9,7 @@ defaultproperties
     Begin Object Class=MeleeEffectParams Name=ArenaPrimaryEffectParams
         TraceRange=(Min=175.000000,Max=175.000000)
         Damage=80
+		Fatigue=0.064000
         DamageType=Class'BWBP_OP_Pro.DT_MAGSAWStab'
         DamageTypeHead=Class'BWBP_OP_Pro.DT_MAGSAWStabHead'
         DamageTypeArm=Class'BWBP_OP_Pro.DT_MAGSAWStab'

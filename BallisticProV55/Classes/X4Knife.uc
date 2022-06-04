@@ -59,7 +59,7 @@ defaultproperties
      SpecialInfo(0)=(Info="180.0;6.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
-	 bShowChargingBar=False
+	 bShowChargingBar=True
      bCanBlock=False
      bNoMag=True
      GunLength=0.000000
