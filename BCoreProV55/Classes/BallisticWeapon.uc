@@ -589,6 +589,12 @@ simulated final function OnWeaponParamsChanged()
 
     ZoomType                    = WeaponParams.ZoomType;
 
+	if (WeaponParams.WeaponName != "")
+    {
+        ItemName=WeaponParams.WeaponName;
+        default.ItemName = WeaponParams.WeaponName;
+    }
+	
     if (WeaponParams.SightOffset != vect(0,0,0))
     {
         SightOffset = WeaponParams.SightOffset;
@@ -601,11 +607,36 @@ simulated final function OnWeaponParamsChanged()
         default.SightPivot = WeaponParams.SightPivot;
     }
 
+	if (WeaponParams.ViewOffset != vect(0,0,0))
+    {
+        PlayerViewOffset = WeaponParams.ViewOffset;
+        default.PlayerViewOffset = WeaponParams.ViewOffset;
+    }
+	
     for (i = 0; i < WeaponParams.WeaponMaterialSwaps.Length; ++i)
         Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = WeaponParams.WeaponMaterialSwaps[i].Material;
 
     for (i = 0; i < WeaponParams.WeaponBoneScales.Length; ++i)
         SetBoneScale(WeaponParams.WeaponBoneScales[i].Slot, WeaponParams.WeaponBoneScales[i].Scale, WeaponParams.WeaponBoneScales[i].BoneName);
+	
+	if (WeaponParams.WeaponModes.Length != 0)
+	{
+		for (i = 0; i < WeaponModes.Length; ++i)
+		{
+			WeaponModes[i].bUnavailable = true; //Lock down old modes in case old list length is longer
+		}
+		for (i = 0; i < WeaponParams.WeaponModes.Length; ++i)
+		{
+			WeaponModes[i].ModeName = WeaponParams.WeaponModes[i].ModeName;
+			WeaponModes[i].bUnavailable = WeaponParams.WeaponModes[i].bUnavailable;
+			WeaponModes[i].ModeID = WeaponParams.WeaponModes[i].ModeID;
+			WeaponModes[i].Value = WeaponParams.WeaponModes[i].Value;
+			WeaponModes[i].RecoilParamsIndex = WeaponParams.WeaponModes[i].RecoilParamsIndex;
+			WeaponModes[i].AimParamsIndex = WeaponParams.WeaponModes[i].AimParamsIndex;
+		}
+		CurrentWeaponMode = WeaponParams.InitialWeaponMode;
+	}
+		
 }
 
 simulated final function CreateRecoilComponent()
