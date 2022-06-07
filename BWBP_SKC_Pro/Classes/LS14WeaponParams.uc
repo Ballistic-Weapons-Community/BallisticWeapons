@@ -88,6 +88,12 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=21,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="RDS",Slot=22,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=23,Scale=1f)
+		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=24,Scale=0f)
+		WeaponBoneScales(4)=(BoneName="Stock",Slot=25,Scale=1f)
+		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=26,Scale=0f)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
 		InventorySize=12
@@ -95,7 +101,8 @@ defaultproperties
 		SightingTime=0.40000		
 		DisplaceDurationMult=1
 		MagAmmo=20
-        ZoomType=ZT_Logarithmic
+        //ZoomType=ZT_Logarithmic
+		ZoomType=ZT_Irons
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

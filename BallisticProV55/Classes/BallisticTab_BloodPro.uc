@@ -43,7 +43,8 @@ function LoadSettings()
 	ch_Stmups.Checked(class'BloodManager'.default.bUseStumps);
 	ch_Chunks.Checked(class'BloodManager'.default.bUseChunks);
 	ch_ScreenFX.Checked(class'BloodManager'.default.bUseScreenFX);
-	sl_GibMulti.SetValue(class'BloodManager'.default.GibMultiplier);
+	sl_GibMulti.SetValue(class'BloodManager'.default.GibMultiplier);	
+	
 }
 
 function SaveSettings()
@@ -60,7 +61,7 @@ function SaveSettings()
 	class'BloodManager'.default.bUseBloodEffects	= ch_BloodFX.IsChecked();
 	class'BloodManager'.default.bUseStumps			= ch_Stmups.IsChecked();
 	class'BloodManager'.default.bUseChunks			= ch_Chunks.IsChecked();
-	class'BloodManager'.default.bUseScreenFX		= ch_ScreenFX.IsChecked();
+	class'BloodManager'.default.bUseScreenFX		= ch_ScreenFX.IsChecked();	
 	class'BloodManager'.default.GibMultiplier		= sl_GibMulti.GetValue();
 
 	class'BWBloodControl'.static.StaticSaveConfig();

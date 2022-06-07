@@ -62,7 +62,8 @@ defaultproperties
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
 		FireInterval=2.000000
 		BurstFireRateFactor=1.00
-		FireAnim="GrenadeFire"	
+		PreFireAnim="GLPrepFire"
+		FireAnim="GLFire"
 	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
 	End Object
 		

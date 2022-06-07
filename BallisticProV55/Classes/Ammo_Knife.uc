@@ -2,7 +2,7 @@ class Ammo_Knife extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=12
-     InitialAmount=12
+     MaxAmmo=1
+     InitialAmount=1
      ItemName="Knife Ammo"
 }

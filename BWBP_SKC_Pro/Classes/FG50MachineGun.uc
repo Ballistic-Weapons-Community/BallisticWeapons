@@ -637,6 +637,7 @@ defaultproperties
 	MyFontColor=(B=255,G=255,R=255,A=255)
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806InA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=0,A=255),Color2=(B=67,G=66,R=58,A=255),StartSize1=99,StartSize2=86)
 	BigIconMaterial=Texture'BWBP_SKC_Tex.FG50.BigIcon_FG50'
 	BigIconCoords=(Y1=36,Y2=225)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -659,8 +660,8 @@ defaultproperties
 	FullZoomFOV=60.000000
 	bNoCrosshairInScope=True
 	SightOffset=(Y=25.000000,Z=10.300000)
-	ParamsClasses(0)=Class'FG50WeaponParams'
-	ParamsClasses(1)=Class'FG50WeaponParamsClassic'	 
+	ParamsClasses(0)=Class'FG50WeaponParamsNoTurret'
+	//ParamsClasses(1)=Class'FG50WeaponParamsClassic'	 
 	FireModeClass(0)=Class'BWBP_SKC_Pro.FG50PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.FG50DeployFire'
 	IdleAnimRate=0.600000

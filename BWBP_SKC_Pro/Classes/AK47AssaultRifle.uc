@@ -382,6 +382,7 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipOut',Volume=3.500000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-ClipIn',Volume=3.500000)
 	ClipInFrame=0.650000
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50In',USize1=256,VSize1=256,USize2=128,VSize2=128,Color1=(B=255,G=255,R=255,A=172),Color2=(B=0,G=0,R=255,A=197),StartSize1=71,StartSize2=55)
 	bCockOnEmpty=True
 	WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
 	WeaponModes(1)=(bUnavailable=True)

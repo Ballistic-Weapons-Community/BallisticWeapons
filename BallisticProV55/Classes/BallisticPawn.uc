@@ -53,6 +53,7 @@ var	globalconfig	array<String>   ModelWhitelist;
 
 var Actor					        OldBase;
 var float					        LastMoverLeaveTime, MoverLeaveGrace;
+
 // Netcode ------------------------
 var RewindCollisionManager          RwColMgr;
 // -------------------------------------------------------
@@ -113,6 +114,8 @@ var   float				LastImpactTime;		// Time of last impact mark spawn
 var() float				TimeBetweenImpacts;	// Minimum time between impact mark spawning
 var   vector			LastImpactNormal;	// Normal of last impact
 var   vector			LastImpactLocation;	// Location of last impact
+var config  bool		bNoViewFlash;       // Toggle the use of the new viewflash effects when u get damaged
+var     BCSprintControl Sprinter;
 // -------------------------------------------------------
 var   vector            BloodFlashV, ShieldFlashV;
 
@@ -122,6 +125,12 @@ var Sound				NewDeResSound;		// DeRes sound
 var array<Shader>		NewDeResShaders;	// Shaders used to set opacity
 var array<FinalBlend>	NewDeResFinalBlends;// FinalBlends' alpha ref is used to create the dissolving effect
 // -------------------------------------------------------
+
+//Player
+var     BallisticPlayerReplicationInfo BPRI;
+var     BallisticReplicationInfo BRI;
+var     bool            pawnNetInit;
+
 // Animations -------------------------------------------
 var 	name 			ReloadAnim, CockingAnim, MeleeAnim, MeleeOffhandAnim, MeleeAltAnim, MeleeBlockAnim, MeleeWindupAnim, WeaponSpecialAnim, StaggerAnim;
 var 	float 				ReloadAnimRate, CockAnimRate, MeleeAnimRate, WeaponSpecialRate, StaggerRate;
@@ -153,6 +162,10 @@ var		int					PreventHealCount;
 var 	class<LocalMessage> HealBlockMessage;
 
 var     float               LastDamagedTime;
+
+//Sloth variables
+var 	float 				StrafeScale, BackScale, GroundSpeedScale, AccelRateScale;
+var 	float 				MyFriction, OldMovementSpeed;
 
 replication
 {
@@ -203,6 +216,17 @@ simulated event PostNetBeginPlay()
 		WalkAnims[2]='RunL';
 		WalkAnims[3]='RunR';
 	}
+	
+	if(!pawnNetInit)
+    {
+        pawnNetInit = true;
+        if(Controller != none)
+        {
+            if(Controller.Adrenaline < Class'BallisticReplicationInfo'.default.iAdrenaline) Controller.Adrenaline = Class'BallisticReplicationInfo'.default.iAdrenaline;
+            Controller.AdrenalineMax = Class'BallisticReplicationInfo'.default.iAdrenalineCap;
+            BPRI = class'Mut_Ballistic'.static.GetBPRI(Controller.PlayerReplicationInfo);
+        }
+    }
 }
 
 simulated function CreateColorStyle()
@@ -403,6 +427,17 @@ simulated function TickFX(float DeltaTime)
 		else
 			Texture = Texture'BlueMarker_t';
 	}
+}
+
+function bool AddInventory( inventory NewItem )
+{
+    local bool ret;
+    ret = Super.AddInventory(NewItem);
+
+    if(NewItem != none && BCSprintControl(NewItem) != none)
+        sprinter = BCSprintControl(NewItem);
+
+    return ret;
 }
 
 event HitWall(vector HitNormal, actor Wall)
@@ -610,7 +645,7 @@ simulated event SetAnimAction(name NewAction)
 			if (ReloadAnim != '')
 			{
 				AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
-				PlayAnim(ReloadAnim, ReloadAnimRate, 0.25, 1);
+				PlayAnim(ReloadAnim, ReloadAnimRate * class'BallisticReplicationInfo'.default.ReloadSpeedScale, 0.25 / class'BallisticReplicationInfo'.default.ReloadSpeedScale, 1);
 				FireState=FS_PlayOnce;
 				bResetAnimationAction=True;
 			}
@@ -2661,6 +2696,9 @@ function HandleViewFlash(int damage)
     if (damage == 0)
         return;
 
+	if (bNoViewFlash)
+        return;
+		
     rnd = FClamp(damage, 25, 70);
 
 	if (ShieldStrength > 0)
@@ -2735,6 +2773,62 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 		Weapon.DisplayDebug(Canvas,YL,YPos);
 }
 
+//===========================================================================
+//Sloth Handling
+//===========================================================================
+
+simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
+{
+	local Vector X, Y, Z, dir;
+	local float FSpeed, Control, NewSpeed, Drop, XSpeed, YSpeed, CosAngle, MaxStrafeSpeed, MaxBackSpeed;
+
+	//Scaling movement speed
+	if (Physics == PHYS_Walking)
+	{
+		GetAxes(GetViewRotation(),X,Y,Z);
+		MaxStrafeSpeed = GroundSpeed * StrafeScale;
+		MaxBackSpeed = GroundSpeed * BackScale;
+		XSpeed = Abs(X dot Velocity);
+		
+		if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
+		{
+			//limiting backspeed
+			dir = Normal(Velocity);
+			CosAngle = Abs(X dot dir);
+			Velocity = dir * (MaxBackSpeed / CosAngle);
+		}
+		
+		YSpeed = Abs(Y dot velocity);
+		if (YSpeed > MaxStrafeSpeed)
+		{
+			//limiting strafespeed
+			dir = Normal(Velocity);
+			CosAngle = Abs(Y dot dir);
+			Velocity = dir * (MaxStrafeSpeed / CosAngle);
+		}
+
+		//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
+	}
+	 
+	if (Physics==PHYS_Walking)
+	{
+		FSpeed = Vsize(Velocity);
+		 
+		if (VSize(Acceleration) < 1.00 && FSpeed > 1.00)
+		{
+			Control = FMin(100, FSpeed);
+				
+			Drop = Control * DeltaTime * MyFriction;
+			NewSpeed = FSpeed + drop;
+			NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
+			Velocity *= NewSpeed;
+
+		}
+		
+		OldMovementSpeed = Vsize(Velocity);
+	}
+}
+
 defaultproperties
 {
      DoubleJumpsLeft=3
@@ -2773,19 +2867,27 @@ defaultproperties
 
      GruntVolume=0.2
      GruntRadius=300.000000
-     
+	 bNoViewFlash=True
      DeResTime=4.000000
-     RagdollLifeSpan=20.000000
      RagDeathUpKick=0.000000
      bCanWalkOffLedges=True
      bSpecialHUD=True
      Visibility=64
-     GroundSpeed=360.000000
-     LadderSpeed=280.000000
-     WalkingPct=0.900000
-     CrouchedPct=0.350000
      HeadRadius=13.000000
      TransientSoundVolume=0.300000
+	 
+	 StrafeScale=0.700000
+     BackScale=0.600000
+     MyFriction=4.000000
+     RagdollLifeSpan=20.000000
+     GroundSpeed=360.000000
+	 LadderSpeed=280.000000
+     WaterSpeed=150.000000
+     AirSpeed=270.000000
+     WalkingPct=0.900000
+	 CrouchedPct=0.350000
+     DodgeSpeedFactor=1.200000
+     DodgeSpeedZ=190.000000
 
      Begin Object Class=KarmaParamsSkel Name=PawnKParams
          KConvulseSpacing=(Max=2.200000)

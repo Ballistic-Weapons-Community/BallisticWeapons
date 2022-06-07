@@ -59,6 +59,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
 		MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
 		BotRefireRate=0.300000
 	End Object

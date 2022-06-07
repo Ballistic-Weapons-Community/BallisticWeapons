@@ -69,6 +69,27 @@ var() localized Array<string> CamRateOptions;	// List of camera update rate opti
 var   bool 					bSpawnedIA;		//Interaction has been spawnd for local player.
 var   bool					bDoItemize;		//Spawn itemizer items next tick
 
+//PlayerChangedClass
+var   globalconfig float    FootstepAmplifier;
+
+// Sprint
+var   Array<BCSprintControl> 	Sprinters;
+var   globalconfig bool     	bUseSprint;
+var   globalconfig float    	InitStamina;
+var   globalconfig float    	InitMaxStamina;
+var   globalconfig float    	InitStaminaDrainRate;
+var   globalconfig float    	InitStaminaChargeRate;
+var   globalconfig float    	InitSpeedFactor;
+var   globalconfig float    	JumpDrainFactor;
+
+//Sloth
+var globalconfig bool bUseSloth;
+var globalconfig float StrafeScale;
+var globalconfig float BackScale;
+var globalconfig float GroundSpeedScale;
+var globalconfig float AirSpeedScale;
+var globalconfig float AccelRateScale;
+
 var   BCReplicationInfo	BallisticReplicationInfo;
 
 var	int						CRCount;
@@ -96,14 +117,10 @@ static function BallisticPlayerReplicationInfo GetBPRI(PlayerReplicationInfo PRI
 	
 	for(lPRI = PRI.CustomReplicationInfo.NextReplicationInfo; lPRI != None; lPRI=lPRI.NextReplicationInfo)
 	{
-
-
 		if(BallisticPlayerReplicationInfo(lPRI)!=None)
 			return BallisticPlayerReplicationInfo(lPRI);
 		if (lPRI == lPRI.NextReplicationInfo)
 		{
-
-
 			log("A LinkedReplicationInfo links to itself, aborting");
 			break;
 		}
@@ -198,6 +215,22 @@ function ModifyPlayer(Pawn Other)
 {
 	local class<Weapon> FW;
 	local int i;
+	local BCSprintControl SC;
+
+	//adds sprint support to mutator
+    if (xPawn(Other) != None && bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
+	{
+		SC = Spawn(class'BCSprintControl',Other);
+		SC.Stamina = InitStamina;
+		SC.MaxStamina = InitMaxStamina;
+		SC.StaminaDrainRate = InitStaminaDrainRate;
+		SC.StaminaChargeRate = InitStaminaChargeRate;
+		SC.SpeedFactor = InitSpeedFactor;
+		SC.JumpDrainFactor = JumpDrainFactor;
+
+		SC.GiveTo(Other);
+		Sprinters[Sprinters.length] = SC;
+	}
 
 	if (!DMMode && BallisticPawn(Other) == None)
 	{
@@ -213,6 +246,29 @@ function ModifyPlayer(Pawn Other)
 
 		Other.bCanWalkOffLedges=true;
 	}
+	else if(xPawn(Other) != None)
+    {
+        // Player
+        Other.Health = class'BallisticReplicationInfo'.default.playerHealth;  // health the player starts with
+        Other.HealthMax = class'BallisticReplicationInfo'.default.playerHealthCap; // maximum health a player can have
+        Other.SuperHealthMax = class'BallisticReplicationInfo'.default.playerSuperHealthCap; // maximum superhealth a player can have
+        xPawn(Other).ShieldStrengthMax = class'BallisticReplicationInfo'.default.iArmorCap;
+        Other.AddShieldStrength(class'BallisticReplicationInfo'.default.iArmor);
+        Other.MaxFallSpeed = class'BallisticReplicationInfo'.default.MaxFallSpeed;
+        xPawn(Other).FootstepVolume *= FootstepAmplifier;
+
+        Other.Controller.AdrenalineMax = class'BallisticReplicationInfo'.default.iAdrenalineCap;
+        if(Other.Controller.Adrenaline < class'BallisticReplicationInfo'.default.iAdrenaline)
+        {
+            Other.Controller.Adrenaline = class'BallisticReplicationInfo'.default.iAdrenaline;
+        }
+
+        if(BallisticPawn(Other) != none)
+        {
+            BallisticPawn(Other).BPRI = class'Mut_Ballistic'.static.GetBPRI(Other.Controller.PlayerReplicationInfo);
+        }
+    }
+	
 	// A hack to prevent continued walking after respawning.
 	if(Other.Controller != None)
 		Other.Controller.bRun = 0;
@@ -234,6 +290,15 @@ function ModifyPlayer(Pawn Other)
 
 	// Add ammo for default weapon
 	AddStartingAmmo(Other);
+	
+	if (bUseSloth && BallisticPawn(Other) != None)
+	{
+		BallisticPawn(Other).StrafeScale = StrafeScale;
+		BallisticPawn(Other).BackScale = BackScale;
+		BallisticPawn(Other).GroundSpeed = GroundSpeedScale;
+		BallisticPawn(Other).AirSpeed = AirSpeedScale;
+		BallisticPawn(Other).AccelRate = AccelRateScale;
+	}
 
 	Super.ModifyPlayer(Other);
 }
@@ -431,6 +496,7 @@ function ItemChange(Pickup Other)
 simulated event Timer()
 {
 	local int i;
+	
 	if (!bLWsInitialized)
 		AdjustLockerWeapons();
  	if (Role < ROLE_Authority)
@@ -702,6 +768,17 @@ simulated function PreBeginPlay()
 
 	if (level.Game != None)
 	{
+		Level.Game.AddGameModifier(Spawn(class'Rules_KillRewards'));
+		
+		if(DeathMatch(Level.Game) != none)
+        {
+           DeathMatch(Level.Game).ADR_Kill = class'BallisticReplicationInfo'.default.ADRKill;
+           DeathMatch(Level.Game).ADR_MajorKill = class'BallisticReplicationInfo'.default.ADRMajorKill;
+           DeathMatch(Level.Game).ADR_MinorBonus = class'BallisticReplicationInfo'.default.ADRMinorBonus;
+           DeathMatch(Level.Game).ADR_KillTeamMate = class'BallisticReplicationInfo'.default.ADRKillTeamMate;
+           DeathMatch(Level.Game).ADR_MinorError = class'BallisticReplicationInfo'.default.ADRMinorError;
+        }
+		
 		if (level.Game.DefaultPlayerClassName ~= "XGame.xPawn" || bForceBallisticPawn)
 			level.Game.DefaultPlayerClassName = "BallisticProV55.BallisticPawn";
 		if (level.Game.PlayerControllerClassName ~= "XGame.xPlayer")
@@ -789,6 +866,7 @@ simulated function BeginPlay()
 	}
 	// Stuff won't be ready now, do it after its had a chance to init...
 	SetTimer(0.05, false);
+	
 	Super.BeginPlay();
 }
 
@@ -861,6 +939,36 @@ function Array<Class<Weapon> > GetAllWeaponClasses()
 	return Weaps;
 }
 
+function BCSprintControl GetSprintControl(PlayerController Sender)
+{
+    local int i;
+
+    for (i=0;i<Sprinters.length;i++)
+        if (Sprinters[i] != None && Sprinters[i].Instigator != None && Sprinters[i].Instigator.Controller == Sender)
+            return Sprinters[i];
+    return None;
+}
+
+function Mutate(string MutateString, PlayerController Sender)
+{
+    local BCSprintControl SC;
+
+    if (MutateString ~= "BStartSprint" && bUseSprint)
+    {
+        SC = GetSprintControl(Sender);
+        if (SC != None)
+            SC.StartSprint();
+    }
+    else if (MutateString ~= "BStopSprint" && bUseSprint)
+    {
+        SC = GetSprintControl(Sender);
+        if (SC != None)
+            SC.StopSprint();
+    }
+
+    super.Mutate(MutateString, Sender);
+}
+
 defaultproperties
 {
      Replacements(0)=(OldItemName="XWeapons.ShieldGun",NewItemNames=("BallisticProV55.X3Pickup","BallisticProV55.A909Pickup","BallisticProV55.EKS43Pickup","BallisticProV55.X4Pickup"))
@@ -899,11 +1007,28 @@ defaultproperties
      Replacements(33)=(OldItemName="XPickups.SuperShieldPack",NewItemNames=("BallisticProV55.IP_BigArmor"))
      Replacements(34)=(OldItemName="XPickups.ShieldPack",NewItemNames=("BallisticProV55.IP_SmallArmor"))
      UDamageSnd=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
-     ItemGroup="Ballistic"
+     
+	 bUseSprint=True
+     InitStamina=100.000000
+     InitMaxStamina=100.000000
+     InitStaminaDrainRate=15.000000
+     InitStaminaChargeRate=20.000000
+     InitSpeedFactor=1.350000
+     JumpDrainFactor=2.000000
+	 
+	 bUseSloth=False
+     StrafeScale=0.700000
+     BackScale=0.600000
+     GroundSpeedScale=270.000000
+     AirSpeedScale=270.000000
+     AccelRateScale=256.000000
+	 
+	 ItemGroup="Ballistic"
      bSpawnUniqueItems=True
      bPickupsChange=True
      bRandomDefaultWeapons=True
-     CamUpdateRate="1"
+     footstepAmplifier=1.500000
+	 CamUpdateRate="1"
      CamRateOptions(0)="No Update"
      CamRateOptions(1)="Slow 2 FPS"
      CamRateOptions(2)="Medium 5 FPS"

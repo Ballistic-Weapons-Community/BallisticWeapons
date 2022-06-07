@@ -51,7 +51,6 @@ class BallisticAutoTurret extends ASTurret Abstract placeable config(BallisticPr
 
 	Pawn = Thirdpersonapearance
 	Weapon = First person visual
-
 	Vectors of Interest"
 		Location				Central Location of turret. Should be in middle of cyliner and mesh
 		EyePosition				Position of camera offset from Location by CameraOffset along CameraDirection which is interpolated to GunRotation.
@@ -345,7 +344,6 @@ function AddDefaultInventory()
 	
 	if ( Controller != None )
 		Controller.ClientSwitchToBestWeapon();
-	
 }
 
 simulated function PostNetBeginPlay()
@@ -487,7 +485,7 @@ simulated event Tick(float DT)
 
 	Super.Tick(DT);
 
-	
+
 	if (AIController(Controller) != None)
 	{
 		if (Weapon!=None && !Weapon.HasAmmo())
@@ -510,7 +508,7 @@ simulated event Tick(float DT)
 
 		UpdateSimulatedGunRotation();
 	}
-	
+
 	//Azarael log - arm direction code is here
 	if (Driver != None && bDriving)
 	{
@@ -649,7 +647,7 @@ function UndeployTurret ()
 			Destroy();
 			return;
 		}
-		
+
 		if (Level.NetMode == NM_Standalone) //single player worked fine
 		{
 			W = spawn(WC,OldDriver,,,rot(0,0,0));
@@ -661,7 +659,7 @@ function UndeployTurret ()
 				Destroy();
 			}
 		}
-		
+
 		else
 		{
 			BTI = spawn(class'BallisticTurretIntermediary', OldDriver.Controller);
@@ -695,10 +693,10 @@ state NetTrapped
 function PossessedBy(Controller C)
 {
 	super.PossessedBy( C );
-	
+
 	LastUsedTime = Level.TimeSeconds;
 	CheckTurretLimit();
-	
+
 	NetUpdateTime = Level.TimeSeconds - 1;
 	bStasis = false;
 	C.Pawn	= Self;
@@ -760,7 +758,7 @@ simulated event DrivingStatusChanged()
 				PendingWeapon = None;
 				Weapon.BringUp();
 			}
-			
+
 			//else if (PlayerController(Controller)!=None)
 			//	PlayerController(Controller).SwitchToBestWeapon();
 		}
@@ -782,7 +780,7 @@ simulated event DrivingStatusChanged()
 			OldDriver.SetBoneDirection(OldDriver.GetOffHandBoneFor(None), Rotation,, 0, 0);
 			OldDriver.SetBoneDirection('rfarm', Rotation,, 0, 0);
 			OldDriver.SetBoneDirection(OldDriver.GetWeaponBoneFor(None), Rotation,, 0, 0);
-			
+
 			/*
 			if (OldDriver != None && OldDriver.IsLocallyControlled() && OldDriver.Weapon == None && OldDriver.PendingWeapon == None)
 				OldDriver.Controller.SwitchToBestWeapon();
@@ -808,7 +806,7 @@ simulated function ClientKDriverEnter(PlayerController PC)
 	PC.Pawn = Self;
 	Controller = PC;
 	SetOwner( PC );
-	
+
 	if ( PC != None )
 	{
 		if (TurretFOV > 0)
@@ -822,13 +820,13 @@ simulated function ClientKDriverLeave(PlayerController PC)
 
 	if (Driver != None)
 		Driver.bNoWeaponFiring = false;
-		
+
 	if ( PC != None )
 	{
 		if (TurretFOV > 0)
 			PC.DesiredFOV = PC.DefaultFOV;
 	}
-		
+
 	if (BallisticWeapon(Weapon) != None)
 	{
 		if(BallisticWeapon(Weapon).bScopeView)
@@ -970,9 +968,9 @@ event bool KDriverLeave( bool bForceLeave )
 	}
 
 	//SaveTurretWeaponInfo();
-	
+
 	Driver.bNoWeaponFiring = false;
-	
+
 	if (BallisticWeapon(Weapon) != None)
 	{				
 		if(BallisticWeapon(Weapon).bScopeView)
@@ -980,19 +978,19 @@ event bool KDriverLeave( bool bForceLeave )
 			PC.EndZoom();
 		}
 	}
-	
+
 	Level.Game.DriverLeftVehicle(self, Driver);
 
 	// Car now has no driver
 	Driver = None;
 
 	DriverLeft();
-	
+
 	// Put brakes on before you get out :)
     Throttle	= 0;
     Steering	= 0;
 	Rise		= 0;
-	
+
 	AmbientSound = None;
 	if (Weapon != None)
 		Weapon.AmbientSound = None;
@@ -1012,10 +1010,10 @@ function bool TryToDrive(Pawn P)
 	if (bNonHumanControl || (PlayerController(P.Controller) == None) || (Driver != None) || (P.DrivenVehicle != None) || !P.Controller.bIsPlayer
 	     || P.IsA('Vehicle') || Health <= 0)
 		return false;
-		
+
 	if (P.Location.Z - MyUseTrigger.Location.Z > 60 || P.Location.Z - MyUseTrigger.Location.Z < -100)
 		return false;
-		
+
 	if (VSize((P.Location - MyUseTrigger.Location)*vect(1,1,0)) > 40)
 	{
 		if (VSize((P.Location - MyUseTrigger.Location)*vect(1,1,0)) > 120)
@@ -1183,5 +1181,5 @@ defaultproperties
      bBlockZeroExtentTraces=False
      bBlockNonZeroExtentTraces=False
      bRotateToDesired=False
-	 
 }
+

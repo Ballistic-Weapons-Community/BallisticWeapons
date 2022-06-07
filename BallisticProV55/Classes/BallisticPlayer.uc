@@ -53,6 +53,8 @@ var class<Weapon>						LastStreaks[2];
 var float                               DesiredFlashScale;
 var Vector                              DesiredFlashFog;
 
+// Fractional Parts of Pitch/Yaw Input
+var transient float PitchFraction, YawFraction;
 
 replication
 {
@@ -127,7 +129,8 @@ simulated function RenderOverlays(Canvas C)
 simulated function DrawWeaponUI(Canvas C)
 {
 	local int i, j;
-	local float ScaleFactor, XS, YS, IconXSize, IconYSize, OutXSize, SmoothPulsePhase;
+	local float ScaleFactor, XS, YS, IconXSize, IconYSize, OutXSize, SmoothPulsePhase, XOffset, YOffset, XL,YL, YLC;
+	local string ammoTxt;
 
 	if (CheckInventoryChange())
 		ListItems();
@@ -138,7 +141,7 @@ simulated function DrawWeaponUI(Canvas C)
 	else
 		SmoothPulsePhase = Smerp(IconPulsePhase*2, 0, 1);
 
-	ScaleFactor = FMin(float(C.SizeX)/1600, float(C.SizeY)/1200) * class'HUD'.default.HudScale;
+	ScaleFactor = FMin(float(C.SizeX)/2000, float(C.SizeY)/1500) * class'HUD'.default.HudScale;
 //	ScaleFactor = float(C.SizeX) / 1600 * class'HUD'.default.HudScale;
 	XS = 128*ScaleFactor; YS = 64*ScaleFactor;
 	LastUIDrawTime = Level.TimeSeconds;
@@ -924,7 +927,7 @@ function bool AutoTaunt()
 //Prevent rolling view bug caused by taking massive damage.
 function DamageShake(int damage)
 {
-    Super.DamageShake(Min(damage, 50));
+    Super.DamageShake(Min(damage, 0));
 }
 
 //AskForPawn label fix
@@ -1256,6 +1259,92 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 	Canvas.DrawText("Rotation:"@Rotation@"Pawn Rotation:"@Pawn.Rotation@"Smooth View Yaw:"@Pawn.SmoothViewYaw@"Aim rotator:"@BehindViewAimRotator);
 	YPos += YL;
 	Canvas.SetPos(4, YPos);
+}
+
+// Corrected Mouse Movement
+
+function int FractionCorrection(float in, out float fraction) {
+    local int result;
+    local float tmp;
+
+    tmp = in + fraction;
+    result = int(tmp);
+    fraction = tmp - result;
+
+    return result;
+}
+
+function UpdateRotation(float DeltaTime, float maxPitch)
+{
+    local rotator newRotation, ViewRotation;
+
+    if ( bInterpolating || ((Pawn != None) && Pawn.bInterpolating) )
+    {
+        ViewShake(deltaTime);
+        return;
+    }
+
+    // Added FreeCam control for better view control
+    if (bFreeCam == True)
+    {
+        if (bFreeCamZoom == True)
+        {
+            CameraDeltaRad += FractionCorrection(DeltaTime * 0.25 * aLookUp, PitchFraction);
+        }
+        else if (bFreeCamSwivel == True)
+        {
+            CameraSwivel.Yaw += FractionCorrection(16.0 * DeltaTime * aTurn, YawFraction);
+            CameraSwivel.Pitch += FractionCorrection(16.0 * DeltaTime * aLookUp, PitchFraction);
+        }
+        else
+        {
+            CameraDeltaRotation.Yaw += FractionCorrection(32.0 * DeltaTime * aTurn, YawFraction);
+            CameraDeltaRotation.Pitch += FractionCorrection(32.0 * DeltaTime * aLookUp, PitchFraction);
+        }
+    }
+    else
+    {
+        ViewRotation = Rotation;
+
+        if(Pawn != None && Pawn.Physics != PHYS_Flying) // mmmmm
+        {
+            // Ensure we are not setting the pawn to a rotation beyond its desired
+            if( Pawn.DesiredRotation.Roll < 65535 &&
+                (ViewRotation.Roll < Pawn.DesiredRotation.Roll || ViewRotation.Roll > 0))
+                ViewRotation.Roll = 0;
+            else if( Pawn.DesiredRotation.Roll > 0 &&
+                (ViewRotation.Roll > Pawn.DesiredRotation.Roll || ViewRotation.Roll < 65535))
+                ViewRotation.Roll = 0;
+        }
+
+        DesiredRotation = ViewRotation; //save old rotation
+
+        if ( bTurnToNearest != 0 )
+            TurnTowardNearestEnemy();
+        else if ( bTurn180 != 0 )
+            TurnAround();
+        else
+        {
+            TurnTarget = None;
+            bRotateToDesired = false;
+            bSetTurnRot = false;
+            ViewRotation.Yaw += FractionCorrection(32.0 * DeltaTime * aTurn, YawFraction);
+            ViewRotation.Pitch += FractionCorrection(32.0 * DeltaTime * aLookUp, PitchFraction);
+        }
+        if (Pawn != None)
+            ViewRotation.Pitch = Pawn.LimitPitch(ViewRotation.Pitch);
+
+        SetRotation(ViewRotation);
+
+        ViewShake(deltaTime);
+        ViewFlash(deltaTime);
+
+        NewRotation = ViewRotation;
+        //NewRotation.Roll = Rotation.Roll;
+
+        if ( !bRotateToDesired && (Pawn != None) && (!bFreeCamera || !bBehindView) )
+            Pawn.FaceRotation(NewRotation, deltatime);
+    }
 }
 
 defaultproperties

@@ -824,7 +824,7 @@ defaultproperties
 	 ConflictWeapons(105)=(ClassName="BWBPAirstrikesPro.TargetDesignator",bRed=False,bBlue=False)
 	 ConflictWeapons(106)=(ClassName="BWBPAirstrikesPro.X93Painter",bRed=False,bBlue=False)
 	 ConflictWeapons(107)=(ClassName="BWBP_OP_Pro.ARShotgun",bRed=True,bBlue=True)
-     ConfigMenuClassName="BallisticProV55.BallisticConflictWeaponMenuPro"
+     ConfigMenuClassName="BallisticProV55.BallisticConfigMenuPro"
      FriendlyName="BallisticPro: Conflict Loadout"
      Description="Play Ballistic Weapons with an expanded loadout system supporting Evolution configuration and inventory space."
 }

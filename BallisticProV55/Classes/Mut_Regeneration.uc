@@ -10,6 +10,7 @@
 class Mut_Regeneration extends Mutator
 	config(BallisticProV55);
 
+var globalconfig bool     	bUseRegen;
 var globalconfig float		RegenRate;			// Amount of time between restoring 'RegenAmount' health to players.
 var globalconfig int		RegenAmount;		// How much health to restore every 'RegenRate'.
 var globalconfig float		RegenDelay;			// Amount of time between a player being damaged and the regeneration starting.
@@ -22,19 +23,23 @@ event Timer()
 {
 	local int i;
 
-	for (i=0;i<Level.GRI.PRIArray.Length;i++)
+	if (bUseRegen)
 	{
-		if(Level.GRI.PRIArray[i] != None && Controller(Level.GRI.PRIArray[i].Owner) != None && Controller(Level.GRI.PRIArray[i].Owner).Pawn != None)
+		log('28');
+		for (i=0;i<Level.GRI.PRIArray.Length;i++)
 		{
-			if(Vehicle(Controller(Level.GRI.PRIArray[i].Owner).Pawn) != None && VehiclesRegen)
+			if(Level.GRI.PRIArray[i] != None && Controller(Level.GRI.PRIArray[i].Owner) != None && Controller(Level.GRI.PRIArray[i].Owner).Pawn != None)
 			{
-				if(Controller(Level.GRI.PRIArray[i].Owner).Pawn.LastPainTime < (Level.TimeSeconds-(RegenDelay*1.5)) && Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health > 0 && Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health < Controller(Level.GRI.PRIArray[i].Owner).Pawn.HealthMax)
-					Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health = Clamp(Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health+(RegenAmount*2),0,Controller(Level.GRI.PRIArray[i].Owner).Pawn.HealthMax);
-			}
-			else if(Vehicle(Controller(Level.GRI.PRIArray[i].Owner).Pawn) == None)
-			{
-				if(Controller(Level.GRI.PRIArray[i].Owner).Pawn.LastPainTime < (Level.TimeSeconds-RegenDelay) && Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health > 0 && Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health < HealthCap)
-					Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health = Clamp(Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health+RegenAmount,0,HealthCap);
+				if(Vehicle(Controller(Level.GRI.PRIArray[i].Owner).Pawn) != None && VehiclesRegen)
+				{
+					if(Controller(Level.GRI.PRIArray[i].Owner).Pawn.LastPainTime < (Level.TimeSeconds-(RegenDelay*1.5)) && Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health > 0 && Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health < Controller(Level.GRI.PRIArray[i].Owner).Pawn.HealthMax)
+						Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health = Clamp(Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health+(RegenAmount*2),0,Controller(Level.GRI.PRIArray[i].Owner).Pawn.HealthMax);
+				}
+				else if(Vehicle(Controller(Level.GRI.PRIArray[i].Owner).Pawn) == None)
+				{
+					if(Controller(Level.GRI.PRIArray[i].Owner).Pawn.LastPainTime < (Level.TimeSeconds-RegenDelay) && Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health > 0 && Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health < HealthCap)
+						Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health = Clamp(Controller(Level.GRI.PRIArray[i].Owner).Pawn.Health+RegenAmount,0,HealthCap);
+				}
 			}
 		}
 	}
@@ -43,16 +48,21 @@ event Timer()
 event PostBeginPlay()
 {
 	Super.PostBeginPlay();
+	
+	if (bUseRegen)
+	{
+		log('54');
+		SetTimer(RegenRate, true);
 
-	SetTimer(RegenRate, true);
-
-	if(!bDeleteMe)
-		Level.Game.AddGameModifier(Spawn(class'Rules_Regen'));
+		if(!bDeleteMe)
+			Level.Game.AddGameModifier(Spawn(class'Rules_Regen'));
+	}
 }
 
 defaultproperties
 {
-     RegenRate=1.000000
+     bUseRegen=True
+	 RegenRate=1.000000
      RegenAmount=3
      RegenDelay=6.000000
      HealthCap=100

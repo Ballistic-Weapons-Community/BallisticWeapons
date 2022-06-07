@@ -472,12 +472,15 @@ defaultproperties
      WeaponModes(1)=(ModeName="Slug",Value=1.000000)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,A=101),Color2=(G=0,R=0),StartSize1=92,StartSize2=82)
+     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
+     NDCrosshairChaosFactor=0.600000
      SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
 	 ParamsClasses(0)=Class'CoachWeaponParams'
-	 ParamsClasses(1)=Class'CoachWeaponParamsClassic' //Note: Needs state code
+	 //ParamsClasses(1)=Class'CoachWeaponParamsClassic' //Note: Needs state code
      FireModeClass(0)=Class'BWBP_SKC_Pro.CoachGunPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectAnimRate=2.000000

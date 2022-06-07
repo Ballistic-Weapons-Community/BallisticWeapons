@@ -135,7 +135,7 @@ defaultproperties
 {
      Health=100.000000
      MaxHealth=100.000000
-/*     Begin Object Class=SpriteEmitter Name=SpriteEmitter3
+     Begin Object Class=SpriteEmitter Name=SpriteEmitter3
          UseColorScale=True
          FadeOut=True
          FadeIn=True

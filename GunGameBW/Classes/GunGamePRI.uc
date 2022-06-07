@@ -44,20 +44,26 @@ simulated function PostBeginPlay()
 
 event Tick( float DeltaTime )
 {
-     if ( Level.TimeSeconds >= DelayedLevellingTime )
+     if ( Level.TimeSeconds >= DelayedLevellingTime)
      {
-          if ( Controller(Owner) != None && GunLevel < HighestLevel )
+		  //another Akeron Warhead check, in case the player still remains piloting an Akeron
+		  if (Controller(Owner) != None && AkeronWarhead(Controller(Owner).Pawn) != None)
+		  {
+			   DelayedLevellingTime = Level.TimeSeconds + 2.0;			
+			   return;
+		  }
+          else if ( Controller(Owner) != None && GunLevel < HighestLevel )
           {
                if ( GunGame(Level.Game) != None )
                     GunGame(Level.Game).SetEquipment(Self, Controller(Owner).Pawn);
                else if ( TeamGunGame(Level.Game) != None )
                     TeamGunGame(Level.Game).SetEquipment(Self, Controller(Owner).Pawn);
           }
+				
+		  bInDelayedProcess = false;
+		  DelayedLevellingTime = 0.0;
 
-          bInDelayedProcess = false;
-          DelayedLevellingTime = 0.0;
-
-          Disable('Tick');
+		  Disable('Tick');
      }
 }
 
@@ -68,7 +74,7 @@ function DelayedAdjustLevel( int value )
      if ( !bInDelayedProcess )
      {
           bInDelayedProcess = true;
-          DelayedLevellingTime = Level.TimeSeconds + 0.8;
+          DelayedLevellingTime = Level.TimeSeconds + 0.5;
           Enable('Tick');
      }
 }

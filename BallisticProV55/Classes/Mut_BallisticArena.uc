@@ -166,7 +166,7 @@ defaultproperties
      bRandomPickOne=True
      bRandomPerSpawn=True
      bHideLockers=True
-     ConfigMenuClassName="BallisticProV55.BallisticArenaMenu"
+     ConfigMenuClassName="BallisticProV55.BallisticConfigMenuPro"
      FriendlyName="BallisticPro: Arena"
      Description="Like arena, but with all Ballistic items and modifications and the option of multiple/random weapons.||http://www.runestorm.com"
 }

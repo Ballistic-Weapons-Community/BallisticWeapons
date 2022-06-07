@@ -153,6 +153,7 @@ event InitGame( string Options, out string Error )
     if (InventoryMode != "")
     	AddMutator(InventoryMode);
 }
+
 event PlayerController Login( string Portal, string Options, out string Error )
 {
 	local PlayerController pc;

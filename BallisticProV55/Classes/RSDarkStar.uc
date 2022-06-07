@@ -764,17 +764,22 @@ defaultproperties
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-GemIn',Volume=0.700000)
      ClipInFrame=0.700000
      WeaponModes(0)=(ModeName="Bolt",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1)
+     WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto"/*,RecoilParamsIndex=1*/)
      WeaponModes(2)=(ModeName="Flame",RecoilParamsIndex=1)
      WeaponModes(3)=(ModeName="Cone Immolation",ModeID="WM_FullAuto",bUnavailable=True,RecoilParamsIndex=1)
      WeaponModes(4)=(ModeName="Fire Bomb",ModeID="WM_FullAuto")
      CurrentWeaponMode=0
+	 
+	 NDCrosshairCfg=(Pic1=TexRotator'BW_Core_WeaponTex.DarkStar.DarkOutA-Rot',Pic2=TexRotator'BW_Core_WeaponTex.DarkStar.DarkInA-Rot',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=209),Color2=(G=181),StartSize1=106,StartSize2=50)
+     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.250000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
+     NDCrosshairChaosFactor=0.500000
+	 
      SightPivot=(Pitch=1024)
      SightOffset=(X=-22.000000,Z=10.000000)
      SightDisplayFOV=40.000000
 	 GunLength=128.000000
 	 ParamsClasses(0)=Class'RSDarkWeaponParams'
-	 ParamsClasses(1)=Class'RSDarkWeaponParamsClassic'
+	 ParamsClasses(1)=Class'RSDarkWeaponParams' //To Do Classic: State Code
      FireModeClass(0)=Class'BallisticProV55.RSDarkPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.RSDarkMeleeFire'
      BringUpTime=0.500000

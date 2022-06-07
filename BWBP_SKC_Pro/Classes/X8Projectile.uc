@@ -81,6 +81,7 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 defaultproperties
 {
      ModeIndex=1
+	 TrailClass=Class'BallisticProV55.MRLTrailEmitter'
      ImpactManager=Class'BallisticProV55.IM_KnifeThrown'
      bRandomStartRotation=False
      bUsePositionalDamage=True

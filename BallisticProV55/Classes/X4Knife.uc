@@ -59,6 +59,7 @@ defaultproperties
      SpecialInfo(0)=(Info="180.0;6.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')
+	 bShowChargingBar=True
      bCanBlock=False
      bNoMag=True
      GunLength=0.000000
@@ -67,6 +68,10 @@ defaultproperties
      ParamsClasses(1)=Class'X4WeaponParamsClassic'
      FireModeClass(0)=Class'BallisticProV55.X4PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.X4SecondaryFire'
+	 
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.X3OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.X3InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(R=129,A=192),Color2=(G=196,R=0,A=192),StartSize1=99,StartSize2=107)
+     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=8.000000)
+     
      SelectAnimRate=1.250000
      PutDownTime=0.200000
      BringUpTime=0.200000

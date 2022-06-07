@@ -288,7 +288,8 @@ defaultproperties
 	HealAnim="Heal"
 	HealSound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Heal'
 	bShouldDualInLoadout=False
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',pic2=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=25,G=122,R=11,A=255),Color2=(B=255,G=255,R=255,A=255),StartSize1=22,StartSize2=59)
+    TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.Stealth.BigIcon_PS9M'
 	BigIconCoords=(X1=96,Y1=16,X2=418,Y2=255)

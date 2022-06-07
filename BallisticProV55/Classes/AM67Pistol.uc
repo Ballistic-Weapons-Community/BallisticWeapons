@@ -143,7 +143,8 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
 	PutDownTime=0.600000
 
-
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',USize1=256,VSize1=256,Color1=(R=0,A=194),Color2=(R=0),StartSize1=80,StartSize2=26)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
 
 	ReloadAnimRate=1.250000
 	SelectForce="SwitchToAssaultRifle"

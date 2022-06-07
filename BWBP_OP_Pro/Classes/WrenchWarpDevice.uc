@@ -709,6 +709,8 @@ defaultproperties
 	 BringUpTime=1.750000
 	 SelectAnimRate=0.750000	 
      SelectForce="SwitchToAssaultRifle"
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc8',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=0,R=0,A=198),Color2=(B=85,G=246,R=250,A=255),StartSize1=141,StartSize2=38)
+	 NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
      AIRating=0.200000
      CurrentRating=0.200000
      bMeleeWeapon=True

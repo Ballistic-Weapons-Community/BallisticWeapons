@@ -57,7 +57,7 @@ defaultproperties
 	
 	WaterRangeAtten=0.600000
 	DamageType=Class'DTBX85Bolt'
-	DamageTypeHead=Class'DTBX85Bolt'
+	DamageTypeHead=Class'DTBX85BoltHead'
 	DamageTypeArm=Class'DTBX85Bolt'
 	PenetrateForce=0
 	bPenetrate=False

@@ -727,6 +727,8 @@ defaultproperties
 	WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
 	WeaponModes(1)=(ModeName="Semi-Automatic",bUnavailable=true,ModeID="WM_SemiAuto")
 	WeaponModes(2)=(ModeName="Burst",bUnavailable=true,ModeID="WM_Burst")
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.PentagramOutA',USize1=128,VSize1=128,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=61),Color2=(B=0,G=148,R=255,A=158),StartSize1=90,StartSize2=96)
+	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	CurrentWeaponMode=0
 	SightOffset=(X=60.000000,Y=5.690000,Z=35.820000)
 	bNoCrosshairInScope=True

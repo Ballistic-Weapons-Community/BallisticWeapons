@@ -234,6 +234,10 @@ defaultproperties
 	WeaponModes(2)=(ModeName="Burst of Six",ModeID="WM_BigBurst",Value=6.000000)
 	WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 	CurrentWeaponMode=3
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=128),StartSize1=70,StartSize2=82)
+    NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
+	
 	CockAnimRate=1.25
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=256)

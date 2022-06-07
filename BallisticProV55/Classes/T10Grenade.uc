@@ -76,6 +76,10 @@ defaultproperties
      ParamsClasses(1)=Class'T10WeaponParamsClassic'
      FireModeClass(0)=Class'BallisticProV55.T10PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.T10SecondaryFire'
+	 
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',USize1=256,VSize1=256,Color1=(G=255,R=0,A=128),Color2=(B=255,A=130),StartSize1=98,StartSize2=54)
+     NDCrosshairInfo=(SpreadRatios=(Y2=0.500000),MaxScale=8.000000)
+     
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.800000
      CurrentRating=0.800000

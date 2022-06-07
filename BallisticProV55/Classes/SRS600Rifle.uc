@@ -265,6 +265,9 @@ defaultproperties
 	ParamsClasses(1)=Class'SRS600WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.SRS600PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(G=255,A=108),Color2=(G=0),StartSize1=103,StartSize2=19)
+	
 	SelectAnimRate=1.350000
 	BringUpTime=0.350000
 	SelectForce="SwitchToAssaultRifle"

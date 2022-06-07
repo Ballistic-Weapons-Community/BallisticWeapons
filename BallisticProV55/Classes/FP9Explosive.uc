@@ -672,6 +672,10 @@ defaultproperties
 	ParamsClasses(1)=Class'FP9WeaponParams' //todo: params and state code for laser tripmine
 	FireModeClass(0)=Class'BallisticProV55.FP9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.FP9SecondaryFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=192),Color2=(R=0,A=192))
+    NDCrosshairInfo=(SpreadRatios=(Y2=0.500000),MaxScale=8.000000)
+	
 	PutDownTime=0.700000
 	BringUpTime=0.500000
 	SelectForce="SwitchToAssaultRifle"

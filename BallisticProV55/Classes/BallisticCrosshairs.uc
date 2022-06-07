@@ -49,4 +49,8 @@ defaultproperties
      Crosshairs(36)=(FriendlyName="Misc 2",Image=Texture'BW_Core_WeaponTex.Crosshairs.Misc10',USize=256,VSize=256)
      Crosshairs(37)=(FriendlyName="Pentagram Out",Image=Texture'BW_Core_WeaponTex.Crosshairs.PentagramOutA',USize=256,VSize=256)
      Crosshairs(38)=(FriendlyName="Pentagram In",Image=Texture'BW_Core_WeaponTex.Crosshairs.PentagramInA',USize=256,VSize=256)
+	 Crosshairs(39)=(FriendlyName="Nova Out",Image=TexRotator'BW_Core_WeaponTex.NovaStaff.NovaOutA-Rot',USize=256,VSize=256)
+     Crosshairs(40)=(FriendlyName="Nova In",Image=TexRotator'BW_Core_WeaponTex.NovaStaff.NovaInA-Rot',USize=256,VSize=256)
+     Crosshairs(41)=(FriendlyName="DarkStar Out",Image=TexRotator'BW_Core_WeaponTex.DarkStar.DarkOutA-Rot',USize=256,VSize=256)
+     Crosshairs(42)=(FriendlyName="DarkStar In",Image=TexRotator'BW_Core_WeaponTex.DarkStar.DarkInA-Rot',USize=256,VSize=256)
 }

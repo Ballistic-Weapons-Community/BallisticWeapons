@@ -1,4 +1,6 @@
-class Mut_Marathon extends Mut_Sprinter;
+class Mut_Marathon extends Mut_Sprinter
+	HideDropDown
+	CacheExempt;
 
 function ModifyPlayer(Pawn Other)
 {

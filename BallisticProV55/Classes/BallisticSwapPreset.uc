@@ -7,7 +7,7 @@
 // by Azarael
 //===========================================================================
 class BallisticSwapPreset extends Object
-	config(BallisticV25) 
+	config(BallisticProV55) 
 	perobjectconfig
 	DependsOn(BallisticTab_SwappingsPro);
 	

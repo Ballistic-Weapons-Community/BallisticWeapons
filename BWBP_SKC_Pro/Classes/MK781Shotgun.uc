@@ -651,6 +651,7 @@ defaultproperties
 	ReloadAnim="ReloadLoop"
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-ShellPlus',Volume=2.300000,Radius=32.000000)
 	ClipInFrame=0.325000
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,R=255,A=192),Color2=(B=170,G=0,R=0,A=255),StartSize1=66,StartSize2=90)
 	bCanSkipReload=True
 	bShovelLoad=True
 	StartShovelAnim="ReloadStart"
@@ -667,7 +668,7 @@ defaultproperties
 	SightDisplayFOV=20.000000
 	GunLength=48.000000
 	ParamsClasses(0)=Class'MK781WeaponParams'
-	ParamsClasses(1)=Class'MK781WeaponParamsClassic'
+	//ParamsClasses(1)=Class'MK781WeaponParamsClassic' //Classic To Do
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MK781PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MK781SecondaryFire'
 	PutDownTime=0.500000

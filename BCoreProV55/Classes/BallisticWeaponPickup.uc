@@ -24,6 +24,8 @@ var   int					ReplacementsIndex;		    // Index into Mutator Replacement list ass
 var   rotator				LandedRot;
 var   Actor					FadeOutEffect;
 var   Pawn					LastPickedUpBy;
+var   bool					bAlternativePickups;    // tp prevent class<BallisticWeapon>(InventoryType).default.BCRepClass.default.bAlternativePickups;
+var   BallisticPickupTrigger    puTrigger;
 
 
 var float	                LastBlockNotificationTime;
@@ -40,6 +42,21 @@ simulated function PreBeginPlay()
 {
 	if (PickupDrawScale != 0)
 		SetDrawScale(PickupDrawScale);
+	
+	bAlternativePickups = class<BallisticWeapon>(InventoryType).default.BCRepClass.default.bAlternativePickups;
+
+    if(bAlternativePickups)
+    {
+        // spawn pickup trigger
+        puTrigger = Spawn(class'BallisticPickupTrigger',self ,, Location);
+        puTrigger.bwPickUp = self;
+        puTrigger.SetBase(self);
+        puTrigger.SetCollisionSize(CollisionRadius, CollisionHeight);
+
+        // disable collusion
+        SetCollision(false);
+    }
+	
 	super.PrebeginPlay();
 }
 
@@ -138,6 +155,12 @@ auto state Pickup
 	{
 		if (!bDropped && class<BallisticWeapon>(InventoryType) != None)
 			MagAmmo = class<BallisticWeapon>(InventoryType).static.GetPickupMagAmmo();
+		
+		if(bAlternativePickups)
+        {
+            if(puTrigger != none)
+                puTrigger.InitTrigger();
+        }
 		Super.BeginState();
 	}
 	
@@ -335,6 +358,13 @@ event Destroyed()
 {
 	if (FadeOutEffect != None)
 		FadeOutEffect.Destroy();
+		
+	if(bAlternativePickups)
+    {
+        if(puTrigger != none)
+            puTrigger.Destroy();
+    }
+	
 	super.Destroyed();
 }
 

@@ -21,7 +21,8 @@ simulated event PostBeginPlay ()
 
 defaultproperties
 {
-     FireModeNum=1
+     ModeIndex=1
+	 FireModeNum=1
      DampenFactor=0.400000
      DampenFactorParallel=1.000000
 }

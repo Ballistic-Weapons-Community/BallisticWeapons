@@ -240,6 +240,7 @@ defaultproperties
 	SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
 	bNoCrosshairInScope=True
 	GunLength=16.500000
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(R=0),Color2=(G=0),StartSize1=90,StartSize2=93)
 	ParamsClasses(0)=Class'CYLOFirestormWeaponParams' 
 	ParamsClasses(1)=Class'CYLOFirestormWeaponParamsClassic' 
 	FireModeClass(0)=Class'BWBP_SKC_Pro.CYLOFirestormPrimaryFire'

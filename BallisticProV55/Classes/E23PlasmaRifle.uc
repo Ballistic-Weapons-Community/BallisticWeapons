@@ -480,6 +480,10 @@ defaultproperties
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=45.000000
 	bNoCrosshairInScope=True
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.X3OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=72,G=41,R=52,A=121),Color2=(R=201),StartSize1=100,StartSize2=50)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
+    NDCrosshairChaosFactor=1.000000
+	NDCrosshairScaleFactor=1.000000
 	SightPivot=(Pitch=256)
 	SightOffset=(X=-8.000000,Z=9.300000)
 	SightDisplayFOV=25.000000

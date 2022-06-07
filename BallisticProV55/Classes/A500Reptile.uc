@@ -22,73 +22,111 @@ simulated function PostBeginPlay()
 //Draws simple crosshairs to accurately describe hipfire at any FOV and resolution.
 simulated function DrawCrosshairs(canvas C)
 {
-	local float 		ShortBound, LongBound;
-	local float 		OffsetAdjustment;
-	local Color 		SavedDrawColor;
+	local float 				ShortBound, LongBound;
+	local float 				OffsetAdjustment;
+	local Color 				SavedDrawColor;
+	local IntBox				Size;
+	local float					ScaleFactor;
+	local NonDefCrosshairCfg 	CHCfg;
+	
+	ScaleFactor = C.ClipX / 1600;
 
 	// Draw weapon specific Crosshairs
 	if (bOldCrosshairs || bScopeView)
 		return;
 
-	if ((!bNoMag && MagAmmo == 0)|| bNeedCock)
-		SavedDrawColor = MagEmptyColor;
-		
-	else SavedDrawColor = class'HUD'.default.CrosshairColor;
-		
-	C.DrawColor = SavedDrawColor;
-	
-	ShortBound = 2;
-	LongBound= 10;
-	
-	OffsetAdjustment = C.ClipX / 2;
-	OffsetAdjustment *= tan (CrosshairSpreadAngle) / tan((Instigator.Controller.FovAngle/2) * 0.01745329252);
-	
-	//black
-	//hor
-	C.SetDrawColor(0,0,0,255);
-	
-	C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment+1), (C.ClipY/2) - (ShortBound/2+1));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
-	
-	C.SetPos((C.ClipX / 2) + OffsetAdjustment -1, (C.ClipY/2) - (ShortBound/2+1));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
-	
-	//ver
-	C.SetPos((C.ClipX / 2) - (ShortBound/2+1), (C.ClipY/2) - (LongBound + OffsetAdjustment+1));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
-	
-	C.SetPos((C.ClipX / 2) - (Shortbound/2+1), (C.ClipY/2) + OffsetAdjustment-1);
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
-	
-	//centre square
-	if (bDrawCrosshairDot)
+	if (bDrawSimpleCrosshair)
 	{
-		C.DrawColor.A = 255;
-		C.SetPos(C.ClipX / 2 - 2, C.ClipY/2 - 2);
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', 4, 4);
+		if ((!bNoMag && MagAmmo == 0)|| bNeedCock)
+			SavedDrawColor = MagEmptyColor;
+			
+		else SavedDrawColor = class'HUD'.default.CrosshairColor;
+			
+		C.DrawColor = SavedDrawColor;
+		
+		ShortBound = 2;
+		LongBound= 10;
+		
+		OffsetAdjustment = C.ClipX / 2;
+		OffsetAdjustment *= tan (CrosshairSpreadAngle) / tan((Instigator.Controller.FovAngle/2) * 0.01745329252);
+		
+		//black
+		//hor
+		C.SetDrawColor(0,0,0,255);
+		
+		C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment+1), (C.ClipY/2) - (ShortBound/2+1));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
+		
+		C.SetPos((C.ClipX / 2) + OffsetAdjustment -1, (C.ClipY/2) - (ShortBound/2+1));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound+2, ShortBound+2);
+		
+		//ver
+		C.SetPos((C.ClipX / 2) - (ShortBound/2+1), (C.ClipY/2) - (LongBound + OffsetAdjustment+1));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
+		
+		C.SetPos((C.ClipX / 2) - (Shortbound/2+1), (C.ClipY/2) + OffsetAdjustment-1);
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound+2, LongBound+2);
+		
+		//centre square
+		if (bDrawCrosshairDot)
+		{
+			C.DrawColor.A = 255;
+			C.SetPos(C.ClipX / 2 - 2, C.ClipY/2 - 2);
+			C.DrawTileStretched(Texture'Engine.WhiteTexture', 4, 4);
+		}
+		//green
+		C.DrawColor = SavedDrawColor;
+		//hor
+		C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment), (C.ClipY/2) - (ShortBound/2));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
+		
+		C.SetPos((C.ClipX / 2) + OffsetAdjustment, (C.ClipY/2) - (ShortBound/2));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
+		
+		//ver
+		C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) - (LongBound + OffsetAdjustment));
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
+		
+		C.SetPos((C.ClipX / 2) - (Shortbound/2), (C.ClipY/2) + OffsetAdjustment);
+		C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
+		
+		//centre square
+		if (bDrawCrosshairDot)
+		{
+			C.DrawColor.A = 255;
+			C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
+			C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
+		}
 	}
-	//green
-	C.DrawColor = SavedDrawColor;
-	//hor
-	C.SetPos((C.ClipX / 2) - (LongBound + OffsetAdjustment), (C.ClipY/2) - (ShortBound/2));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
-	
-	C.SetPos((C.ClipX / 2) + OffsetAdjustment, (C.ClipY/2) - (ShortBound/2));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', LongBound, ShortBound);
-	
-	//ver
-	C.SetPos((C.ClipX / 2) - (ShortBound/2), (C.ClipY/2) - (LongBound + OffsetAdjustment));
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
-	
-	C.SetPos((C.ClipX / 2) - (Shortbound/2), (C.ClipY/2) + OffsetAdjustment);
-	C.DrawTileStretched(Texture'Engine.WhiteTexture', ShortBound, LongBound);
-	
-	//centre square
-	if (bDrawCrosshairDot)
+	else
 	{
-		C.DrawColor.A = 255;
-		C.SetPos(C.ClipX / 2 - 1, C.ClipY/2 - 1);
-		C.DrawTileStretched(Texture'Engine.WhiteTexture', 2, 2);
+		if (bGlobalCrosshair)
+			CHCfg = class'A500Reptile'.default.NDCrosshairCfg;
+		else
+			CHCfg = NDCrosshairCfg;
+
+		//Work out the exact size of the crosshair
+		Size.X1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.X1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
+		Size.Y1 = CHCfg.StartSize1 * NDCrosshairInfo.SizeFactors.Y1 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y1)) * ScaleFactor * class'HUD'.default.CrosshairScale;
+		Size.X2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.X2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.X2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
+		Size.Y2 = CHCfg.StartSize2 * NDCrosshairInfo.SizeFactors.Y2 * (1 + (NDCrosshairInfo.CurrentScale * NDCrosshairInfo.SpreadRatios.Y2)) * ScaleFactor * class'HUD'.default.CrosshairScale;
+
+		// Draw primary
+		if (CHCfg.Pic1 != None)
+		{
+			C.DrawColor = CHCfg.Color1;
+			if (bScopeView)	C.DrawColor.A = float(C.DrawColor.A) / 1.3;
+			C.SetPos((C.ClipX / 2) - (Size.X1/2), (C.ClipY / 2) - (Size.Y1/2));
+			C.DrawTile (CHCfg.Pic1, Size.X1, Size.Y1, 0, 0, CHCfg.USize1, CHCfg.VSize1);
+		}
+		// Draw secondary
+		if (CHCfg.Pic2 != None)
+		{
+			C.DrawColor = CHCfg.Color2;
+			if (bScopeView)	C.DrawColor.A = float(C.DrawColor.A) / 1.5;
+			C.SetPos((C.ClipX / 2) - (Size.X2/2), (C.ClipY / 2) - (Size.Y2/2));
+			C.DrawTile (CHCfg.Pic2, Size.X2, Size.Y2, 0, 0, CHCfg.USize2, CHCfg.VSize2);
+		}
 	}
 }
 
@@ -186,6 +224,8 @@ defaultproperties
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
     ReloadAnimRate=1.25
+	NDCrosshairCfg=(Pic1=TexRotator'BW_Core_WeaponTex.DarkStar.DarkOutA-Rot',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc3',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,R=0,A=129),Color2=(B=148,R=0,A=141),StartSize1=99,StartSize2=84)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,Y2=0.500000),MaxScale=3.000000)
 	SightPivot=(Pitch=512)
 	SightOffset=(X=15.000000,Y=0.100000,Z=35.000000)
 	SightDisplayFOV=40.000000

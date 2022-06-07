@@ -26,19 +26,24 @@ enum EGameStyle
 // Server Variables -----------------------------------------------------------
 // Weapon
 var() globalconfig EGameStyle	GameStyle;
-var() globalconfig float		AccuracyScale;		// Used for scaling general weapon accuracy.
-var() globalconfig float		RecoilScale;		// Used for scaling general weapon recoil.
-var() globalconfig bool		    bNoJumpOffset;		// Prevents weapons shifting and being offset when jumping or sprinting
-var() globalconfig bool		    bNoLongGun;			// Disable 'long gun' features
-var() globalconfig bool		    bNoReloading;		// Disables reloading and weapons use boring old style ammo handling...
+var() globalconfig float		AccuracyScale;			// Used for scaling general weapon accuracy.
+var() globalconfig float		RecoilScale;			// Used for scaling general weapon recoil.
+var() globalconfig bool		    bNoJumpOffset;			// Prevents weapons shifting and being offset when jumping or sprinting
+var() globalconfig bool		    bNoLongGun;				// Disable 'long gun' features
+var() globalconfig bool		    bNoReloading;			// Disables reloading and weapons use boring old style ammo handling...
+var() globalconfig float      	ReloadSpeedScale;   	// Buff reload speeds
+var() globalconfig bool         bAlternativePickups;	// Press Use to Pickup Weapon
+
 // ----------------------------------------------------------------------------
 var struct RepInfo_BCore
 {
 	var float		AccuracyScale;
 	var float		RecoilScale;
+	var float       ReloadSpeedScale;
 	var bool		bNoJumpOffset;
 	var bool		bNoLongGun;
 	var bool		bNoReloading;
+	var bool        bAlternativePickups;
 } BCoreRep;
 
 replication
@@ -50,17 +55,21 @@ replication
 // Set all defaults to match server vars here
 simulated function InitClientVars()
 {
-	AccuracyScale	= BCoreRep.AccuracyScale;
-	RecoilScale		= BCoreRep.RecoilScale;
-	bNoJumpOffset	= BCoreRep.bNoJumpOffset;
-	bNoLongGun		= BCoreRep.bNoLongGun;
-	bNoReloading	= BCoreRep.bNoReloading;
+	AccuracyScale		= BCoreRep.AccuracyScale;
+	RecoilScale			= BCoreRep.RecoilScale;
+	ReloadSpeedScale 	= BCoreRep.ReloadSpeedScale;
+	bNoJumpOffset		= BCoreRep.bNoJumpOffset;
+	bNoLongGun			= BCoreRep.bNoLongGun;
+	bNoReloading		= BCoreRep.bNoReloading;
+	bAlternativePickups = BCoreRep.bAlternativePickups;
 
-	class.default.AccuracyScale	= AccuracyScale;
-	class.default.RecoilScale	= RecoilScale;
-	class.default.bNoJumpOffset	= bNoJumpOffset;
-	class.default.bNoLongGun	= bNoLongGun;
-	class.default.bNoReloading	= bNoReloading;
+	class.default.AccuracyScale			= AccuracyScale;
+	class.default.RecoilScale			= RecoilScale;
+	class.default.ReloadSpeedScale 		= ReloadSpeedScale;
+	class.default.bNoJumpOffset			= bNoJumpOffset;
+	class.default.bNoLongGun			= bNoLongGun;
+	class.default.bNoReloading			= bNoReloading;
+	class.default.bAlternativePickups 	= bAlternativePickups;
 
 	Log("InitClientVars: "$ModString);
 
@@ -73,11 +82,13 @@ simulated function InitClientVars()
 
 function ServerInitialize()
 {
-	BCoreRep.AccuracyScale	= AccuracyScale;
-	BCoreRep.RecoilScale	= RecoilScale;
-	BCoreRep.bNoJumpOffset	= bNoJumpOffset;
-	BCoreRep.bNoLongGun		= bNoLongGun;
-	BCoreRep.bNoReloading	= bNoReloading;
+	BCoreRep.AccuracyScale			= AccuracyScale;
+	BCoreRep.RecoilScale			= RecoilScale;
+	BCoreRep.ReloadSpeedScale 		= ReloadSpeedScale;
+	BCoreRep.bNoJumpOffset			= bNoJumpOffset;
+	BCoreRep.bNoLongGun				= bNoLongGun;
+	BCoreRep.bNoReloading			= bNoReloading;
+	BCoreRep.bAlternativePickups 	= bAlternativePickups;
 
 	Log("ServerInitialize: "$ModString);
 }
@@ -119,5 +130,7 @@ defaultproperties
      ModString="Ballistic Pro Core"
      AccuracyScale=1.000000
      RecoilScale=1.000000
+	 ReloadSpeedScale=1.000000
+	 bAlternativePickups=False
      bOnlyDirtyReplication=False
 }

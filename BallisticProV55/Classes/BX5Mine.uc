@@ -307,6 +307,8 @@ defaultproperties
 	ParamsClasses(1)=Class'BX5WeaponParamsClassic' //todo: state to properly set spring mine dmg
 	FireModeClass(0)=Class'BallisticProV55.BX5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.BX5SecondaryFire'
+	NDCrosshairCfg=(Pic2=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',USize2=256,VSize2=256,Color1=(B=23,G=78,R=119),Color2=(G=98,R=158),StartSize1=135,StartSize2=87)
+    NDCrosshairInfo=(SpreadRatios=(Y2=0.500000),MaxScale=8.000000)
 	PutDownTime=0.700000
 	BringUpTime=0.500000
 	SelectForce="SwitchToAssaultRifle"

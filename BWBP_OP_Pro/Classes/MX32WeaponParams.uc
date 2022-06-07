@@ -62,7 +62,7 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ArenaGuidedRocketEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.MX32SeekerRocket'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=250.000000
+		Speed=500.000000
 		MaxSpeed=30000.000000
 		AccelSpeed=10000.000000
 		Damage=32

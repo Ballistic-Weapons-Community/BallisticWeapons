@@ -68,6 +68,7 @@ defaultproperties
 		MagAmmo=7
         InventorySize=12
         ZoomType=ZT_Logarithmic
+		WeaponBoneScales(0)=(BoneName="Silencer",Slot=78,Scale=0f)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

@@ -818,6 +818,7 @@ defaultproperties
 	ParamsClasses(1)=Class'LS14WeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LS14PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LS14SecondaryFire'
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc5',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=192),Color2=(B=158,G=150,R=0,A=124),StartSize1=54,StartSize2=59)
 	SelectAnimRate=1.500000
 	PutDownAnimRate=2.000000
 	PutDownTime=0.500000

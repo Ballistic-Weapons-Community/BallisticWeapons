@@ -536,9 +536,11 @@ defaultproperties
 	PutDownTime=0.800000
 	BringUpTime=2.000000
 	SelectForce="SwitchToAssaultRifle"
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=62,G=165,R=0,A=114),Color2=(B=38,G=19,R=0,A=221),StartSize1=123,StartSize2=71)
+	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	AIRating=0.800000
 	CurrentRating=0.800000
-	Description="Add me."
+	Description="Miniguns are devastating tools of destruction in the right hands, able to decimate swarms of Krao and keep the Skrith suppressed. However, not only is the recoil fearsome, but the weight also has become an issue to non-geneboosted soldiers. While a relatively minor complaint to some companies, it didn't stop Majestic Firearms 12 from producing a more lightweight and portable version of a minigun while still retaining a lot of stopping power against heavier units. Enter the Z250 Minigun, not as big as the XMV-850 but still just as deadly, chambered for a specialized .308 HEAP round, it might not fire as fast yet it can still rip apart anyone standing on the wrong end. It can also fire fuel grenades to coat the battlefield in a flammable substance, providing a great area of denial. The Z250 is currently being issued to ODST troops and specialized troops to combat the Krao swarms infecting the universe."
 	DisplayFOV=45.000000
 	Priority=47
 	HudColor=(B=50,G=200,R=25)

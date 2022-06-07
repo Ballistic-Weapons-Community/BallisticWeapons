@@ -187,6 +187,8 @@ defaultproperties
     SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
     SightDisplayFOV=30
     GunLength=48.000000
+    NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=192),Color2=(G=0,A=192),StartSize1=113,StartSize2=120)
+    NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
     ParamsClasses(0)=Class'SK410WeaponParams'
     ParamsClasses(1)=Class'SK410WeaponParamsClassic'
     FireModeClass(0)=Class'BWBP_SKC_Pro.SK410PrimaryFire'

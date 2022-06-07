@@ -9,6 +9,7 @@ defaultproperties
     Begin Object Class=MeleeEffectParams Name=ArenaPrimaryEffectParams
         TraceRange=(Min=175.000000,Max=175.000000)
         Damage=140
+		Fatigue=0.100000
         DamageType=Class'BWBP_SKC_Pro.DT_DTSStabChest'
         DamageTypeHead=Class'BWBP_SKC_Pro.DT_DTSStabHead'
         DamageTypeArm=Class'BWBP_SKC_Pro.DT_DTSStabChest'
@@ -19,6 +20,7 @@ defaultproperties
     
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
         AmmoPerFire=0
+		FireInterval=0.800000
         FireAnim="Stab"
         FireEffectParams(0)=MeleeEffectParams'ArenaPrimaryEffectParams'
     End Object
@@ -30,6 +32,7 @@ defaultproperties
     Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams
         TraceRange=(Min=165.000000,Max=165.000000)
         Damage=120
+		Fatigue=0.200000
         DamageType=Class'BWBP_SKC_Pro.DT_DTSChest'
         DamageTypeHead=Class'BWBP_SKC_Pro.DT_DTSHead'
         DamageTypeArm=Class'BWBP_SKC_Pro.DT_DTSLimb'

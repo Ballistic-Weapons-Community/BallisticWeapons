@@ -48,6 +48,7 @@ defaultproperties
 	 TraceRange=(Min=175.000000,Max=175.000000)
      WallHitPoint=4
      Damage=65.000000
+	 FatiguePerStrike=0.400000
      DamageType=Class'BWBP_OP_Pro.DT_FlameSwordChest'
      DamageTypeHead=Class'BWBP_OP_Pro.DT_FlameSwordHead'
      DamageTypeArm=Class'BWBP_OP_Pro.DT_FlameSwordChest'

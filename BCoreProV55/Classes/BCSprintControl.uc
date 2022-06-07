@@ -18,6 +18,7 @@ var   bool		bSprintActive;		// Sprint key is held down
 var() float		SpeedFactor;		// Player speed multiplied by this when sprinting
 var float		SprintRechargeDelay; // Retrigger delay
 var float		NextAlignmentCheckTime;
+var float       JumpDrainFactor;
 
 replication
 {
@@ -86,14 +87,14 @@ simulated function OwnerEvent(name EventName)
 	if (EventName == 'Jumped' || EventName == 'Dodged')
 	{
 		ClientJumped();
-		Stamina = FMax(0, Stamina - StaminaDrainRate * 0.5);
+		Stamina = FMax(0, Stamina - StaminaDrainRate * 0.5 * JumpDrainFactor);
 	}
 }
 simulated function ClientJumped()
 {
 	if (level.NetMode != NM_Client)
 		return;
-	Stamina = FMax(0, Stamina - StaminaDrainRate * 0.5);
+	Stamina = FMax(0, Stamina - StaminaDrainRate * 0.5 * JumpDrainFactor);
 }
 
 simulated function bool CheckDirection()

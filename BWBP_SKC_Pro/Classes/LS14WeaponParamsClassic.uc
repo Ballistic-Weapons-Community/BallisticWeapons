@@ -110,6 +110,12 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=21,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="RDS",Slot=22,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=23,Scale=1f)
+		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=24,Scale=0f)
+		WeaponBoneScales(4)=(BoneName="Stock",Slot=25,Scale=1f)
+		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=26,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
 		InventorySize=35

@@ -73,6 +73,10 @@ defaultproperties
      ParamsClasses(1)=Class'NRP57WeaponParamsClassic'
      FireModeClass(0)=Class'BallisticProV55.NRP57PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.NRP57SecondaryFire'
+	 
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.NRP57InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=119,R=0,A=192),Color2=(A=192),StartSize1=112,StartSize2=110)
+     NDCrosshairInfo=(SpreadRatios=(Y2=0.500000),MaxScale=8.000000)
+     
      SelectAnimRate=2.250000
      PutDownAnimRate=2.000000
      PutDownTime=0.700000

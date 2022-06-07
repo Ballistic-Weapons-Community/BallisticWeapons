@@ -224,6 +224,9 @@ defaultproperties
 	ParamsClasses(1)=Class'R9WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.R9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.R9SecondaryFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.R78InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=192),StartSize1=160,StartSize2=88)
+	
 	SelectAnimRate=1.100000
 	BringUpTime=0.400000
 	SelectForce="SwitchToAssaultRifle"

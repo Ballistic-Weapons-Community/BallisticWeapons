@@ -20,7 +20,8 @@ replication
 		LastLoc, bSeeking;
 }
 
-simulated function InitProjectile ()
+// WallPenetrationUtil will conflict with this change causing a crash. "it's rare to be able to get unrealscript to foul up that badly"
+/*simulated function InitProjectile ()
 {
 	super.InitProjectile();
 	if (Role == ROLE_Authority && DamageHull == None)
@@ -28,7 +29,7 @@ simulated function InitProjectile ()
 		DamageHull = Spawn(class'G5MortarDamageHull',Instigator,,location,Rotation);
 		DamageHull.SetBase(Self);
 	}
-}
+}*/
 
 // Got hit, explode with a tiny delay
 event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)

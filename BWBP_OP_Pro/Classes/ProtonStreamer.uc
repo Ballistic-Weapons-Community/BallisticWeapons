@@ -335,6 +335,8 @@ defaultproperties
 	PutDownTime=0.600000
 	BringUpTime=0.600000
 	SelectForce="SwitchToAssaultRifle"
+	NDCrosshairCfg=(Pic1=TexRotator'BW_Core_WeaponTex.DarkStar.DarkInA-Rot',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=115,R=113,A=176),Color2=(B=255,G=0,R=109,A=255),StartSize1=74,StartSize2=66)
+	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	AIRating=0.700000
 	CurrentRating=0.700000
 	Description="Psycho-Kinetic Amplifier||Manufacturer: Unknown Skrith Engineers|Primary: Slower moving, Energy Fire|Secondary: Instant Beam||It has a fast fire rate, rechargeable batteries, a good accuracy, low damage, and every Skrith has one. The infamous A42 'Whip', as it was named by the UTC Marines, has been the standard issue Skrith sidearm in both wars. Though it may be accurate, have a fast rate of fire and an unlimited, rechargeable cell, the A42 does very little damage, and has less accuracy than others when running, making it an all-round ineffective weapon. The secondary attack is a recent feature, giving the weapon the ability to charge up a variable shot. This does make the weapon more powerful, yet it is still not as effective as other sidearms. The rechargable cell however, means that it is always there when you need the extra bit of range over the melee weapons."

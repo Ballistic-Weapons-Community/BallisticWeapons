@@ -471,6 +471,9 @@ defaultproperties
 	ParamsClasses(1)=Class'MRS138WeaponParamsClassic'
 	FireModeClass(1)=Class'BallisticProV55.MRS138SecondaryFire'
 	FireModeClass(0)=Class'BallisticProV55.MRS138PrimaryFire'
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=183),Color2=(B=8,G=67,R=29),StartSize1=108,StartSize2=109)
+
 	EndShovelAnimRate=1.600000
 	EndShovelAnim="EndReload"
 	DrawScale=0.400000

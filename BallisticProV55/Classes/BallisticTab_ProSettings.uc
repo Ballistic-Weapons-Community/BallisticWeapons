@@ -129,7 +129,7 @@ defaultproperties
          MaxValue=100.000000
          ComponentJustification=TXTA_Left
          CaptionWidth=0.800000
-         Caption="Ammo to Grenades Swap Percentage"
+         Caption="Ammo to Grenades Swap %"
          OnCreateComponent=fl_NadePctFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Percentage chance of replacing an ammo pickup with a grenade."

@@ -680,6 +680,9 @@ defaultproperties
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(Value=3.000000,bUnavailable=True)
+	
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=158),StartSize1=84,StartSize2=82)
+	
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=200)
 	SightOffset=(Y=0.050000,Z=12.130000)

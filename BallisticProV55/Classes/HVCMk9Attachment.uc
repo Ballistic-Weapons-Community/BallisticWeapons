@@ -392,7 +392,7 @@ simulated function InstantFireEffects(byte Mode)
 	local Vector HitLocation, Dir, Start;
 	local Material HitMat;
 
-	if (Mode == 0 && HVCMk9LightningGun(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
+	if (Mode == 0/* && HVCMk9LightningGun(Instigator.Weapon).BCRepClass.default.GameStyle == 1*/)
 		return;
 	if (mHitLocation == vect(0,0,0))
 		return;
@@ -421,7 +421,7 @@ simulated function InstantFireEffects(byte Mode)
  	else
 		HitLocation = mHitLocation;
 		
-	if (Mode == 0 && HVCMk9LightningGun(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
+	if (Mode == 0/* && HVCMk9LightningGun(Instigator.Weapon).BCRepClass.default.GameStyle == 1*/)
 		if (ImpactManager != None)
 		ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 
@@ -429,7 +429,8 @@ simulated function InstantFireEffects(byte Mode)
 		ImpactManagerAlt.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 }
 
-simulated function Tick(float DT)
+// Kellys Classic Work (Currently Classic is buggy)
+/*simulated function Tick(float DT)
 {
 	super.Tick(DT);
 
@@ -456,6 +457,18 @@ simulated function Tick(float DT)
 		}
 		UpdateFreeZap();
 	}
+
+}*/
+
+simulated function Tick(float DT)
+{
+    super.Tick(DT);
+
+        if (Level.NetMode == NM_DedicatedServer)
+            return;
+        
+    if (StreamEffect != None && !Instigator.IsFirstPerson())
+        StreamEffect.SetLocation(GetBoneCoords('tip2').Origin);
 }
 
 defaultproperties

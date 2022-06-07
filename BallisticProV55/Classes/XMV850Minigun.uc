@@ -436,6 +436,9 @@ defaultproperties
 	RotationSpeeds(1)=0.66 // 2400 RPM - 300 revolutions per minute x 6 shots
 	RotationSpeeds(2)=1.00  // 3600 RPM - 600 revolutions per minute x 6 shots
 
+	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=119),Color2=(B=220,R=0,A=206),StartSize1=101)
+    NDCrosshairInfo=(SpreadRatios=(Y2=0.500000))
+    
 	CurrentWeaponMode=0
 	bShowChargingBar=True
 	SightPivot=(Pitch=700,Roll=2048)
