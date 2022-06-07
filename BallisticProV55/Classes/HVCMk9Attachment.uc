@@ -457,7 +457,6 @@ simulated function InstantFireEffects(byte Mode)
 		}
 		UpdateFreeZap();
 	}
-
 }*/
 
 simulated function Tick(float DT)

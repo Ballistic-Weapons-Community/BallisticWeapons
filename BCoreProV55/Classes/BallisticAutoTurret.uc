@@ -48,7 +48,6 @@ class BallisticAutoTurret extends ASTurret Abstract placeable config(BallisticPr
 		Base is fixed and does not rotate
 		Pivot only yaws
 		Head only pitches, but uses pivot yaw to aim anywhere
-
 	Pawn = Thirdpersonapearance
 	Weapon = First person visual
 	Vectors of Interest"
@@ -341,7 +340,6 @@ function AddDefaultInventory()
 		Weapon.GiveAmmo(0,None, false);
 		Weapon.GiveAmmo(1,None, false);
 	}
-	
 	if ( Controller != None )
 		Controller.ClientSwitchToBestWeapon();
 }
@@ -701,7 +699,7 @@ function PossessedBy(Controller C)
 	bStasis = false;
 	C.Pawn	= Self;
 	AddDefaultInventory();
-	
+
 	if ( Weapon != None )
 	{
 		Weapon.NetUpdateTime = Level.TimeSeconds - 1;
@@ -721,11 +719,11 @@ function UnPossessed()
 		Weapon.ServerStopFire( 0 );
 		Weapon.ServerStopFire( 1 );
 	}
-	
+
 	SaveTurretWeaponInfo();
-	
+
 	Level.Game.DiscardInventory( Self );
-	
+
 	LastUsedTime = Level.TimeSeconds;
 
 	NetUpdateTime = Level.TimeSeconds - 1;
@@ -1021,7 +1019,7 @@ function bool TryToDrive(Pawn P)
 		if (vector(Rotation) Dot Normal(Location - P.Location) < 0.2)
 			return false;
 	}
-	
+
 	if (vector(P.GetViewRotation()) Dot Normal(Location - P.Location) < 0.5)
 		return false;
 
@@ -1121,8 +1119,6 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 }
 
 //==================== Auto Turret Code ================= 
-
-
 
 defaultproperties
 {
