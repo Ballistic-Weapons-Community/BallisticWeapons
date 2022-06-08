@@ -4,8 +4,8 @@
 class CX61Pickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
-#exec OBJ LOAD FILE=BWBP_SKC_Static.usx
+#exec OBJ LOAD FILE=BWBP_OP_Tex.utx
+#exec OBJ LOAD FILE=BWBP_OP_Static.usx
 
 //===========================================================================
 // StaticPrecache
@@ -15,39 +15,39 @@ class CX61Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CX61.CX61-Light');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CX61.CX61-Main');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CX61.CX61-RDS');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CX61.CX61-Mag');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CX61.CX61Gas');
-	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CX61.G28Cloud');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.CX61.CX61-Light');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.CX61.CX61-Main');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.CX61.CX61-RDS');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.CX61.CX61-Mag');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.CX61.CX61Gas');
+	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.CX61.G28Cloud');
 }
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CX61.CX61-Light');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CX61.CX61-Main');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CX61.CX61-RDS');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CX61.CX61-Mag');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CX61.CX61Gas');
-	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.CX61.G28Cloud');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.CX61.CX61-Light');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.CX61.CX61-Main');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.CX61.CX61-RDS');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.CX61.CX61-Mag');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.CX61.CX61Gas');
+	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.CX61.G28Cloud');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.CX61.CX61Pickup');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.CX61.CX61PickupLow');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.CX61.CX61AmmoPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.CX61.CX61Pickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.CX61.CX61PickupLow');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.CX61.CX61AmmoPickup');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.CX61.CX61PickupLow'
+     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.CX61.CX61PickupLow'
      PickupDrawScale=0.550000
      InventoryType=Class'BWBP_OP_Pro.CX61AssaultRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the CX61 tactical rifle."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.CX61.CX61Pickup'
+     StaticMesh=StaticMesh'BWBP_OP_Static.CX61.CX61Pickup'
      Physics=PHYS_None
      DrawScale=0.550000
      CollisionHeight=4.000000
