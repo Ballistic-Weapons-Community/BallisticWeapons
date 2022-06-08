@@ -6,17 +6,14 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class HMCRedEmitter extends BallisticEmitter;
+class XM20BRedEmitter extends BallisticEmitter;
 
 
 simulated event PostBeginPlay()
 {
-	local int i;
-	
 	Super.PostBeginPlay();
-	
 	if (WeaponAttachment(Owner) != None)
-		for(i=0;i<Emitters.Length;i++) Emitters[i].ZTest = true;
+		Emitters[3].ZTest = true;
 }
 
 defaultproperties
@@ -57,7 +54,7 @@ defaultproperties
          SpawnOnTriggerPPS=20.000000
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=50.000000,Max=65.000000))
      End Object
-     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.HMCRedEmitter.SpriteEmitter26'
+     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.XM20BRedEmitter.SpriteEmitter26'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter4
          StaticMesh=StaticMesh'BW_Core_WeaponStatic.R78.RifleMuzzleFlash'
@@ -84,14 +81,14 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.500000)
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.200000)
-																					 
+         StartSizeRange=(Y=(Min=1.500000,Max=1.500000),Z=(Min=1.500000,Max=1.500000))
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.250000,Max=0.250000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
          StartVelocityRange=(X=(Min=20.000000,Max=20.000000))
      End Object
-     Emitters(1)=MeshEmitter'BWBP_SKC_Pro.HMCRedEmitter.MeshEmitter4'
+     Emitters(1)=MeshEmitter'BWBP_SKC_Pro.XM20BRedEmitter.MeshEmitter4'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter3
          StaticMesh=StaticMesh'BW_Core_WeaponStatic.M925.M925MuzzleFlash'
@@ -109,7 +106,6 @@ defaultproperties
          ColorScale(1)=(RelativeTime=0.100000,Color=(B=200,G=192,R=192,A=255))
          ColorScale(2)=(RelativeTime=0.178571,Color=(B=112,G=96,R=96,A=255))
          ColorScale(3)=(RelativeTime=1.000000,Color=(B=160,G=64,R=64,A=255))
-         Opacity=0.850000
          FadeOutStartTime=0.060000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
@@ -117,13 +113,13 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.160000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.400000)
          SecondsBeforeInactive=0.000000
-						 
+         Opacity=0.850000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=50000.000000
          StartVelocityRange=(X=(Min=20.000000,Max=20.000000))
      End Object
-     Emitters(2)=MeshEmitter'BWBP_SKC_Pro.HMCRedEmitter.MeshEmitter3'
+     Emitters(2)=MeshEmitter'BWBP_SKC_Pro.XM20BRedEmitter.MeshEmitter3'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter5
          UseColorScale=True
@@ -143,14 +139,14 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
          StartLocationOffset=(X=40.000000)
-         StartSizeRange=(X=(Min=30.000000,Max=30.000000),Y=(Min=30.000000,Max=30.000000),Z=(Min=30.000000,Max=30.000000))
+         StartSizeRange=(X=(Min=120.000000,Max=120.000000),Y=(Min=120.000000,Max=120.000000),Z=(Min=120.000000,Max=120.000000))
          Texture=Texture'BW_Core_WeaponTex.Particles.FlareB1'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
-     Emitters(3)=SpriteEmitter'BWBP_SKC_Pro.HMCRedEmitter.SpriteEmitter5'
+     Emitters(3)=SpriteEmitter'BWBP_SKC_Pro.XM20BRedEmitter.SpriteEmitter5'
 
-					
+     bNoDelete=False
 }

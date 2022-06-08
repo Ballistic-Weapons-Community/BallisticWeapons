@@ -120,7 +120,7 @@ defaultproperties
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
 	 CurrentWeaponMode=2
 	 ParamsClasses(0)=Class'G28WeaponParams'
-	 //ParamsClasses(1)=Class'G28WeaponParamsClassic' //To Do
+	 ParamsClasses(1)=Class'G28WeaponParamsClassic'
      FireModeClass(0)=Class'BWBP_SKC_Pro.G28PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.G28SecondaryFire'
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Cross1',USize1=256,VSize1=256,USize2=128,VSize2=128,Color1=(B=255,G=255,R=255,A=128),Color2=(B=0,G=0,R=255,A=165),StartSize1=98,StartSize2=54)

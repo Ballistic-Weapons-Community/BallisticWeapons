@@ -1,4 +1,4 @@
-class AH250WeaponParamsClassic extends BallisticWeaponParams;
+class AH208WeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -14,9 +14,9 @@ defaultproperties
 			Damage=80
 			HeadMult=1.4375
 			LimbMult=0.375
-			DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DTAH250PistolHead'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DTAH250Pistol'
+			DamageType=Class'BWBP_SKC_Pro.DTAH208Pistol'
+			DamageTypeHead=Class'BWBP_SKC_Pro.DTAH208PistolHead'
+			DamageTypeArm=Class'BWBP_SKC_Pro.DTAH208Pistol'
 			PenetrationEnergy=32.000000
 			PenetrateForce=200
 			bPenetrate=True
@@ -24,10 +24,10 @@ defaultproperties
 			WallPDamageFactor=0.4
 			MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 			FlashScaleFactor=0.500000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-Fire3',Volume=4.100000)
-			Recoil=2048.000000
+			FireSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-Fire4',Volume=4.100000)
+			Recoil=4096.000000
 			Chaos=-1.0
-			Inaccuracy=(X=4,Y=4)
+			Inaccuracy=(X=8,Y=8)
 			BotRefireRate=0.900000
 			WarnTargetPct=0.100000
 		End Object
@@ -45,12 +45,11 @@ defaultproperties
 	
 	Begin Object Class=RecoilParams Name=ClassicRecoilParams
 		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.600000
-		YRandFactor=0.900000
-		MaxRecoil=7168.000000
-		DeclineTime=1.600000
+		YawFactor=0.400000
+		MaxRecoil=8192.000000
+		DeclineTime=0.600000
 		DeclineDelay=0.200000
-		ViewBindFactor=0.550000
+		ViewBindFactor=0.200000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -61,12 +60,12 @@ defaultproperties
 	//=================================================================
 	
 	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=128,Max=2900)
+		AimSpread=(Min=96,Max=2900)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.150000
 		SprintChaos=0.400000
-		ChaosDeclineTime=1.400000
+		ChaosDeclineTime=0.500000
 		ChaosSpeedThreshold=1400.000000
 	End Object
     
