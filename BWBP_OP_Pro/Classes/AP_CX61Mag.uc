@@ -14,7 +14,7 @@ defaultproperties
      InventoryType=Class'BWBP_OP_Pro.Ammo_CX61Rounds'
      PickupMessage="You picked up two CX61 magazines."
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.CX61.CX61AmmoPickup'
+     StaticMesh=StaticMesh'BWBP_OP_Static.CX61.CX61AmmoPickup'
      DrawScale=0.550000
      PrePivot=(Z=34.000000)
      CollisionRadius=8.000000
