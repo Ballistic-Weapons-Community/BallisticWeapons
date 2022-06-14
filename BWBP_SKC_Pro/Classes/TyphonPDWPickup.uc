@@ -4,19 +4,44 @@
 class TyphonPDWPickup extends BallisticWeaponPickup
 	placeable;
 
-#exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
+#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
 #exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
+
+//===========================================================================
+// StaticPrecache
+//
+// Explicitly called by some gametypes upon the pickup class to preload it.
+// A gametype needing to do this won't spawn any pickups. Don't preload them or their assets here.
+//===========================================================================
+static function StaticPrecache(LevelInfo L)
+{
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Typhon.Typhon-Main');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Typhon.Typhon-SpecMap');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Typhon.Typhon-Misc');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Typhon.Typhon-Mag');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Typhon.Typhon-SpecMapMag');
+	L.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Typhon.Cart_Puma');
+	
+	L.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42MuzzleFlash');
+}
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BW_Core_WeaponTex.M806.M806_Main');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Typhon.Typhon-Main');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Typhon.Typhon-SpecMap');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Typhon.Typhon-Misc');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Typhon.Typhon-Mag');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Typhon.Typhon-SpecMapMag');
+	Level.AddPrecacheMaterial(Texture'BWBP_SKC_Tex.Typhon.Cart_Puma');
 }
 simulated function UpdatePrecacheStaticMeshes()
 {
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Brass.EmptyPistolRound');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M806.PistolMuzzleFlash');
-	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.Ammo.M806Clip');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Typhon.TyphonPickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Puma.PumaShield');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.Puma.ShieldShard');
+	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42MuzzleFlash');
 }
+
 
 defaultproperties
 {
