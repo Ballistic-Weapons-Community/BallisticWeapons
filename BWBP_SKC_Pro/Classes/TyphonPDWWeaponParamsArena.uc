@@ -23,7 +23,7 @@ defaultproperties
 		FlashScaleFactor=0.050000
 		Recoil=150.000000
 		Chaos=0.150000
-		FireSound=(Sound=Sound'BWBP_CC_Sounds.EP110.EP110-Fire',Volume=9.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Fire',Volume=9.500000,Slot=SLOT_Interact,bNoOverride=False)
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
 	End Object

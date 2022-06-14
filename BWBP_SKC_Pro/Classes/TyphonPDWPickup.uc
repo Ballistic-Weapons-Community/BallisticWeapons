@@ -20,13 +20,13 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.PUMA.PumaPickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Typhon.TyphonPickup'
      PickupDrawScale=0.200000
      InventoryType=Class'BWBP_SKC_Pro.TyphonPDW'
      RespawnTime=10.000000
      PickupMessage="You picked up the LRX-5 'Typhon' Pulse PDW."
-     PickupSound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-Pickup'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.PUMA.PumaPickup'
+     PickupSound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Pickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.Typhon.TyphonPickup'
      Physics=PHYS_None
      DrawScale=0.220000
      CollisionHeight=4.000000

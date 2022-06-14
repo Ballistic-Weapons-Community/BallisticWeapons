@@ -604,30 +604,28 @@ defaultproperties
      ShieldBone="Shield"
      bShowChargingBar=True
 
-	 Screen=Shader'BWBP_SKC_TexExp.PUMA.PUMA-ScriptLCD-SD'
-	 ScreenBase1=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen'
-	 ScreenBase2=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen2'
-	 ScreenBase3=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen3'
-	 ScreenBase4=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen4'
-	 ScreenBase5=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen5'
+	 Screen=Shader'BWBP_SKC_Tex.PUMA.PUMA-ScriptLCD-SD'
+	 ScreenBase1=Texture'BWBP_SKC_Tex.PUMA.PUMA-Screen'
+	 ScreenBase2=Texture'BWBP_SKC_Tex.PUMA.PUMA-Screen2'
+	 ScreenBase3=Texture'BWBP_SKC_Tex.PUMA.PUMA-Screen3'
+	 ScreenBase4=Texture'BWBP_SKC_Tex.PUMA.PUMA-Screen4'
+	 ScreenBase5=Texture'BWBP_SKC_Tex.PUMA.PUMA-Screen5'
 	 Numbers=Texture'BWBP_SKC_Tex.PUMA.PUMA-Numbers'
 	 MyFontColor=(R=255,G=255,B=255,A=255)
-     WeaponScreen=ScriptedTexture'BWBP_SKC_TexExp.PUMA.PUMA-ScriptLCD'
+     WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.PUMA.PUMA-ScriptLCD'
 	 
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.500000
-//	 FullZoomFOV=70
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.PUMA.BigIcon_PUMA'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.Typhon.BigIcon_Typhon'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	 bWT_Bullet=True
      SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
-     BringUpSound=(Sound=Sound'BWBP_CC_Sounds.EP110.EP110-Draw')
+     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Draw')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
-	 //ScopeViewTex=Texture'BWBP_CC_Tex.Bullpup.EP110-Scope'
-     CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-Cock',Volume=1.100000)
+     CockSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Cock',Volume=1.100000)
      ReloadAnim="Reload"
-     ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-MagIn',Volume=1.000000)
-     ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-MagOut',Volume=1.000000)
+     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagIn',Volume=1.000000)
+     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagOut',Volume=1.000000)
 	 WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
 	 WeaponModes(1)=(ModeName="Charged Fire",ModeID="WM_FullAuto")
 	 WeaponModes(2)=(ModeName="Charged Shot",bUnavailable=True)
@@ -641,8 +639,8 @@ defaultproperties
      FireModeClass(0)=Class'BWBP_SKC_Pro.TyphonPDWPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.TyphonPDWSecondaryFire'
      SelectForce="SwitchToAssaultRifle"
-	 //NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.R78InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=0,R=137,A=255),Color2=(B=255,G=25,R=23,A=126),StartSize1=96,StartSize2=51)
-	 //NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
+	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.R78InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=0,R=137,A=255),Color2=(B=255,G=25,R=23,A=126),StartSize1=96,StartSize2=51)
+	 NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
      AIRating=0.600000
      CurrentRating=0.600000
      Description="Before the Skrith wars broke out, photon weaponry was declared inhumane by the Neo-Geneva convention due to the effects it had against animal test subjects.  It wasn’t until one battle on Gahanna where photon weaponry found it’s value against the Cyron troopers, discombobulating their gyroscopic sensors long enough to turn the tide, living to fight another day.  Since then, photon weaponry has been deemed legal to use in both wartime situations and underground blood sports. The EP110 is the latest in this field, a bullpup SMG not only able to clear out enclosed spaces, but it also has a discombobulator field able to disorient and destroy anyone caught in its path."
@@ -655,7 +653,7 @@ defaultproperties
      PutDownTime=0.800000
      BringUpTime=1.000000
      AttachmentClass=Class'BWBP_SKC_Pro.TyphonPDWAttachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.PUMA.SmallIcon_PUMA'
+     IconMaterial=Texture'BWBP_SKC_Tex.Typhon.SmallIcon_Typhon'
      IconCoords=(X2=127,Y2=31)
      ItemName="LRX-5 'Typhon' Pulse PDW"
      LightType=LT_Pulse
@@ -666,13 +664,13 @@ defaultproperties
      LightRadius=4.000000
 	 ParamsClasses(0)=Class'TyphonPDWWeaponParamsArena'
 	 ParamsClasses(1)=Class'TyphonPDWWeaponParamsClassic'
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_PUMA'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Typhon'
      DrawScale=0.350000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-     Skins(1)=Shader'BWBP_SKC_TexExp.PUMA.PUMA-Shine'
-     Skins(2)=Shader'BWBP_SKC_TexExp.PUMA.PUMA-ShineMag'
+     Skins(1)=Shader'BWBP_SKC_Tex.Typhon.Typhon-Shine'
+     Skins(2)=Shader'BWBP_SKC_Tex.Typhon.Typhon-ShineMag'
      Skins(3)=Shader'BWBP_SKC_Tex.PUMA.PUMA-ShieldSD'
-     Skins(4)=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Misc'
-     Skins(5)=Shader'BWBP_SKC_TexExp.PUMA.PUMA-HolosightGlow'
-     Skins(6)=Texture'BWBP_SKC_TexExp.PUMA.PUMA-ScreenBasic'
+     Skins(4)=Texture'BWBP_SKC_Tex.Typhon.Typhon-Misc'
+     Skins(5)=Shader'BWBP_SKC_Tex.Typhon.Typhon-HolosightGlow'
+     Skins(6)=Texture'BWBP_SKC_Tex.PUMA.PUMA-ScreenBasic'
 }
