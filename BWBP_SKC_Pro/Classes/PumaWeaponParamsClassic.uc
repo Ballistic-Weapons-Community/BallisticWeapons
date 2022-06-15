@@ -20,7 +20,7 @@ defaultproperties
 			SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 			FlashScaleFactor=0.700000
-			FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-Fire')
+			FireSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Fire')
 			Recoil=512.000000
 			Chaos=-1.0
 			SplashDamage=True

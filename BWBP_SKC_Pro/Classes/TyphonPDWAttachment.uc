@@ -96,7 +96,7 @@ defaultproperties
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.700000)
 	 BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
      bHeavy=True
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.Puma_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.Typhon_TPm'
      RelativeRotation=(Pitch=32768)
      DrawScale=0.550000
      PrePivot=(Z=-5.000000)

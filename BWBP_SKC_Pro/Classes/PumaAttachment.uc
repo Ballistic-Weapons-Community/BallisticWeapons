@@ -85,8 +85,7 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 	 BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
      bHeavy=True
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExpX.TP_PUMA'
-     RelativeRotation=(Pitch=32768)
-     DrawScale=0.550000
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.PUMA_TPm'
+     DrawScale=0.300000
      PrePivot=(Z=-5.000000)
 }

@@ -109,7 +109,7 @@ defaultproperties
      Emitters(1)=SpriteEmitter'BWBP_OP_Pro.ARFlashEmitter.SpriteEmitter26'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter4
-         StaticMesh=StaticMesh'BallisticHardware2.R78.RifleMuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.R78.RifleMuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
@@ -143,7 +143,7 @@ defaultproperties
      Emitters(2)=MeshEmitter'BWBP_OP_Pro.ARFlashEmitter.MeshEmitter4'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter3
-         StaticMesh=StaticMesh'BallisticHardware2.M925.M925MuzzleFlash'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.M925.M925MuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

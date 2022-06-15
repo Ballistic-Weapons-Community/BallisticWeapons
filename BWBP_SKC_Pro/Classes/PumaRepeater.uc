@@ -207,12 +207,7 @@ simulated function UpdateScreen() //Force a screen update
 	}
 }
 
-
 //=====================================================================
-
-
-
-
 
 function ServerSwitchWeaponMode (byte newMode)
 {
@@ -273,16 +268,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
      		BringUpTime=default.BringUpTime;
 		SelectAnim='Pullout';
 	}
-	if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
-	{
-		SetBoneScale(0,0.0,BulletBone);
-		ReloadAnim = 'ReloadEmpty';
-	}
-	else
-	{
-		ReloadAnim = 'Reload';
-	}
-	
 
 	Super.BringUp(PrevWeapon);
 	GunLength = default.GunLength;
@@ -512,44 +497,6 @@ simulated event Timer()
 
 	super.Timer();
 }
-
-
-simulated function PlayReload()
-{
-
-    	if (MagAmmo < 1)
-	{
-       		ReloadAnim='ReloadEmpty';
-       		ClipOutSound.Sound=ClipOutSoundEmpty;
-	}
-    	else
-	{
-       		ReloadAnim='Reload';
-       		ClipOutSound.Sound=default.ClipOutSound.Sound;
-	}
-
-	SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
-}
-
-simulated event AnimEnd (int Channel)
-{
-    local name anim;
-    local float frame, rate;
-
-    GetAnimParams(0, anim, frame, rate);
-
-	if (Anim == 'Fire' || Anim == 'ReloadEmpty')
-	{
-		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
-		{
-			SetBoneScale(0,0.0,BulletBone);
-		}
-	}
-	super.AnimEnd(Channel);
-}
-
-
-
 
 simulated function float RateSelf()
 {
@@ -866,21 +813,20 @@ defaultproperties
      DamageSound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Overload'
      BrokenSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
      ClipOutSoundEmpty=Sound'BWBP_SKC_Sounds.SK410.SK410-MagOut'
-     WeaponScreen=ScriptedTexture'BWBP_SKC_TexExp.PUMA.PUMA-ScriptLCD'
-     screen=Shader'BWBP_SKC_TexExp.PUMA.PUMA-ScriptLCD-SD'
-     ScreenBase1=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen'
-     ScreenBase2=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen2' //Shield
-     ScreenBase3=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen3' //Shield Low
-     ScreenBase4=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen4' //Range Set
-     ScreenBase5=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen5' //Range Set Close
+     WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.PUMA.PUMA-ScriptLCD'
+     screen=Shader'BWBP_SKC_Tex.PUMA.PUMA-ScriptLCD-SD'
+     ScreenBase1=Texture'BWBP_SKC_Tex.PUMA.PUMA-Screen'
+     ScreenBase2=Texture'BWBP_SKC_Tex.PUMA.PUMA-Screen2' //Shield
+     ScreenBase3=Texture'BWBP_SKC_Tex.PUMA.PUMA-Screen3' //Shield Low
+     ScreenBase4=Texture'BWBP_SKC_Tex.PUMA.PUMA-Screen4' //Range Set
+     ScreenBase5=Texture'BWBP_SKC_Tex.PUMA.PUMA-Screen5' //Range Set Close
      Numbers=Texture'BWBP_SKC_Tex.PUMA.PUMA-Numbers'
      MyFontColor=(B=255,G=255,R=255,A=255)
      RangeBeepSound=Sound'MenuSounds.select3'
      ChargingSound=Sound'WeaponSounds.BaseFiringSounds.BShield1'
      ShieldSoundVolume=200
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     //BigIconMaterial=Texture'BWBP_SKC_Tex.PUMA.BigIcon_PUMA2'
-	 BigIconMaterial=Texture'BWBP_SKC_TexExp.PUMA.BigIcon_PUMA'
+	 BigIconMaterial=Texture'BWBP_SKC_Tex.PUMA.BigIcon_PUMA'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Shotgun=True
      bWT_Machinegun=True
@@ -889,18 +835,19 @@ defaultproperties
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
      MagAmmo=8
 	 bNeedCock=False
-     CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-Cock',Volume=1.100000)
-     ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-MagOut',Volume=1.000000)
-     ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-MagIn',Volume=1.000000)
-     //NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=192),Color2=(G=0,A=192),StartSize1=113,StartSize2=120)
-     //NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
+	 bNonCocking=True
+     CockSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Cock',Volume=1.100000)
+     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagOut',Volume=1.000000)
+     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagIn',Volume=1.000000)
+     NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=192),Color2=(G=0,A=192),StartSize1=113,StartSize2=120)
+     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
      WeaponModes(0)=(ModeName="Airburst: Impact Detonation",ModeID="WM_FullAuto")
      WeaponModes(1)=(ModeName="Airburst: Proximity Detonation",ModeID="WM_FullAuto")
      WeaponModes(2)=(ModeName="Airburst: Variable Range Detonation")
      CurrentWeaponMode=1
      bNoCrosshairInScope=True
-     SightPivot=(Pitch=150)
-     SightOffset=(Y=0.250000,Z=16.299999)
+     //SightPivot=(Pitch=150)
+     //SightOffset=(Y=0.250000,Z=16.299999)
      GunLength=48.000000
      FireModeClass(0)=Class'BWBP_SKC_Pro.PumaPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.PumaSecondaryFire'
@@ -916,8 +863,7 @@ defaultproperties
      PickupClass=Class'BWBP_SKC_Pro.PumaPickup'
      PlayerViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
      AttachmentClass=Class'BWBP_SKC_Pro.PumaAttachment'
-     //IconMaterial=Texture'BWBP_SKC_Tex.PUMA.SmallIcon_PUMA2'
-     IconMaterial=Texture'BWBP_SKC_TexExp.PUMA.SmallIcon_PUMA'
+     IconMaterial=Texture'BWBP_SKC_Tex.PUMA.SmallIcon_PUMA'
      IconCoords=(X2=127,Y2=35)
      ItemName="PUMA-77 Repeater"
      LightType=LT_Pulse
@@ -928,11 +874,11 @@ defaultproperties
      LightRadius=5.000000
 	 ParamsClasses(0)=Class'PumaRepeaterWeaponParamsArena'
 	 ParamsClasses(1)=Class'PUMAWeaponParamsClassic'
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_PUMA112'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PUMA'
      DrawScale=0.360000
-     Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     Skins(1)=Shader'BWBP_SKC_TexExpX.PUMA2.PUMA2-MainShine'
-     Skins(2)=Shader'BWBP_SKC_TexExpX.PUMA2.PUMA2-BackShine'
-     Skins(3)=Texture'BWBP_SKC_TexExpX.PUMA.PUMA-Misc'
-     Skins(4)=Texture'BWBP_SKC_TexExpX.PUMA.PUMA-ScreenBasic'
+     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+     Skins(1)=Shader'BWBP_SKC_Tex.PUMA.PUMA-MainShine'
+     Skins(2)=Shader'BWBP_SKC_Tex.PUMA.PUMA-BackShine'
+     Skins(3)=Texture'BWBP_SKC_Tex.Typhon.Typhon-Misc'
+     Skins(4)=Texture'BWBP_SKC_Tex.PUMA.PUMA-ScreenBasic'
 }
