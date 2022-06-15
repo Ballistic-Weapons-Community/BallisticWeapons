@@ -724,7 +724,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	GunLength=128.000000
 	ParamsClasses(0)=Class'RSNovaWeaponParams'
-	ParamsClasses(1)=Class'RSNovaWeaponParams'
+	ParamsClasses(1)=Class'RSNovaWeaponParams'  //To Do Classic: State Code
 	FireModeClass(0)=Class'BallisticProV55.RSNovaPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RSNovaMeleeFire'
 	MeleeFireClass=Class'BallisticProV55.RSNovaMeleeFire'

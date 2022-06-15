@@ -1,5 +1,12 @@
 //=============================================================================
-// LS-14 Laser Rifle
+// LS14Carbine.
+//
+// No, it's not really a carbine. Shut up.
+//
+// A semi-auto laser rifle coded to behave like the ones from call of duty.
+// Secondary fire has a triple drunk rocket launcher that reloads after
+// three shots. Suffers from long-gun and recoil with use.
+// A good long and mid range rifle.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
@@ -9,9 +16,23 @@
 //=============================================================================
 class LS14Carbine extends BallisticWeapon;
 
+//Scripted Ammo Screen Texture
+var() ScriptedTexture WeaponScreen; //Scripted texture to write on
+var() Material	WeaponScreenShader; //Scripted Texture with self illum applied
+var() Material	ScreenBase;
+var() Material	ScreenAmmoBlue; //Norm
+var() Material	ScreenAmmoRed; //Low Ammo
+var protected const color MyFontColor; //Why do I even need this?
+
+var	float	AmmoBarLeftPos;
+var	float	AmmoBarRightPos;
+
 var() Sound		GrenOpenSound;				//Sounds for rocket reloading
 var() Sound		GrenLoadSound;				//
 var() Sound		GrenCloseSound;				//
+
+var() Sound		DoubleVentSound;	//Sound for double fire's vent
+var() Sound		OverHeatSound;		//Sounds for hot firing
 
 var   actor GLIndicator;
 var() name		GrenadeLoadAnim;			//Anim for rocket reload
@@ -61,18 +82,129 @@ replication
 		Rockets;
 
 	reliable if (ROLE==ROLE_Authority)
-		ClientSetHeat;
+		ClientSetHeat, ClientScreenStart;
 }
 
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 	LS14PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+	if (BCRepClass.default.GameStyle == 1)
+	{
+		LS14PrimaryFire(FireMode[0]).default.HeatPerShot = 0;
+		LS14PrimaryFire(FireMode[0]).default.HeatPerShotDouble = 0;
+		LS14PrimaryFire(FireMode[0]).default.SelfHeatPerShot = 1;
+		LS14PrimaryFire(FireMode[0]).default.SelfHeatPerShotDouble = 3.5;
+		LS14PrimaryFire(FireMode[0]).bAnimatedOverheat = true;
+	}
 }
+
+//========================== AMMO COUNTER NON-STATIC TEXTURE ============
+
+simulated function ClientScreenStart()
+{
+	ScreenStart();
+}
+// Called on clients from camera when it gets to postnetbegin
+simulated function ScreenStart()
+{
+	if (Instigator.IsLocallyControlled())
+		WeaponScreen.Client = self;
+	Skins[5] = WeaponScreenShader; //Set up scripted texture.
+	UpdateScreen();//Give it some numbers n shit
+	if (Instigator.IsLocallyControlled())
+		WeaponScreen.Revision++;
+}
+
+simulated event RenderTexture( ScriptedTexture Tex )
+{
+	// 0 is full, 256 is empty
+	AmmoBarLeftPos = 256-(((MagAmmo)/20.0f)*256);
+
+	Tex.DrawTile(0,0,256,256,0,0,256,256,ScreenBase, MyFontColor); //Basic screen
+	if (MagAmmo > 5)
+	{
+		Tex.DrawTile(0,AmmoBarLeftPos,256,256,0,0,256,512,ScreenAmmoBlue, MyFontColor); //Ammo
+		//Tex.DrawTile(-128,AmmoBarRightPos,256,256,0,0,256,256,ScreenAmmoBlue, MyFontColor); //Ammo 2
+	}
+	else
+	{
+		Tex.DrawTile(0,AmmoBarLeftPos,256,256,0,0,256,512,ScreenAmmoRed, MyFontColor); //Ammo
+		//Tex.DrawTile(-128,AmmoBarRightPos,256,256,0,0,256,256,ScreenAmmoRed, MyFontColor); //Ammo 2
+	}
+	
+}
+	
+simulated function UpdateScreen()
+{
+	if (Instigator.IsLocallyControlled())
+	{
+			WeaponScreen.Revision++;
+	}
+}
+	
+// Consume ammo from one of the possible sources depending on various factors
+simulated function bool ConsumeMagAmmo(int Mode, float Load, optional bool bAmountNeededIsMax)
+{
+
+	if (bNoMag || (BFireMode[Mode] != None && BFireMode[Mode].bUseWeaponMag == false))
+		ConsumeAmmo(Mode, Load, bAmountNeededIsMax);
+	else
+	{
+		if (MagAmmo < Load)
+			MagAmmo = 0;
+		else
+			MagAmmo -= Load;
+	}
+
+	//Legacy code for left and right bars, turns out you can't see the right bar
+	/*if (MagAmmo%2 == 1)
+	{
+		AmmoBarLeftPos = 256-(((MagAmmo-1)/20.0f)*256);
+	}
+	else
+	{
+		AmmoBarRightPos = 256-((MagAmmo/20.0f)*256);
+	}*/
+
+	UpdateScreen();
+	return true;
+}
+
+// Animation notify for when the clip is stuck in
+simulated function Notify_ClipIn()
+{
+	local int AmmoNeeded;
+
+	if (ReloadState == RS_None)
+		return;
+	ReloadState = RS_PostClipIn;
+	PlayOwnedSound(ClipInSound.Sound,ClipInSound.Slot,ClipInSound.Volume,ClipInSound.bNoOverride,ClipInSound.Radius,ClipInSound.Pitch,ClipInSound.bAtten);
+	if (level.NetMode != NM_Client)
+	{
+		AmmoNeeded = default.MagAmmo-MagAmmo;
+		if (AmmoNeeded > Ammo[0].AmmoAmount)
+			MagAmmo+=Ammo[0].AmmoAmount;
+		else
+			MagAmmo = default.MagAmmo;
+		Ammo[0].UseAmmo (AmmoNeeded, True);
+	}
+	UpdateScreen();
+}
+
+
+//=====================================================================
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	Super.BringUp(PrevWeapon);
+
+	if (Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
+	{
+		ScreenStart();
+		if (!Instigator.IsLocallyControlled())
+			ClientScreenStart();
+	}
 
 	//	Core Glow Effect
 	if (CoverGlow != None)
@@ -85,19 +217,47 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	}
 }
 
-simulated function AddHeat(float Amount, float DeclineTime)
+//========================== HEAT CODE ============
+
+simulated function AddHeat(float Amount, float OverrideAmount, float DeclineTime)
 {
 	if (bBerserk)
 		Amount *= 0.75;
-		
-	SelfHeatLevel += Amount;
+	
+	if (OverrideAmount == 0)
+		SelfHeatLevel += Amount;
+	else
+		SelfHeatLevel = OverrideAmount;
 	SelfHeatDeclineTime = FMax(Level.TimeSeconds + DeclineTime, SelfHeatDeclineTime);
 	
-	if (SelfHeatLevel >= 9.75)
+	//arena heat
+	if (BCRepClass.default.GameStyle == 0)
 	{
-		SelfHeatLevel = 10;
-		class'BallisticDamageType'.static.GenericHurt (Instigator, 15, None, Instigator.Location, vect(0,0,0), class'DTLS14Overheat');
-		return;
+		if (SelfHeatLevel >= 9.75)
+		{
+			SelfHeatLevel = 10;
+			class'BallisticDamageType'.static.GenericHurt (Instigator, 15, None, Instigator.Location, vect(0,0,0), class'DTLS14Overheat');
+			return;
+		}
+	}
+	else //2.5 style overheat
+	{
+		if (SelfHeatLevel >= 6.5)
+		{
+			if (CurrentWeaponMode == 0)
+			{
+				PlaySound(OverHeatSound,,3.7,,32);
+					BallisticInstantFire(FireMode[0]).FireRate=0.4;
+			}
+			class'BUtil'.static.InitMuzzleFlash (HeatSteam, class'RSNovaSteam', DrawScale, self, 'BarrelGlow');
+		}
+		else
+		{
+			if (CurrentWeaponMode == 2)            
+				BallisticInstantFire(FireMode[0]).FireRate= 0.3;
+			else
+				BallisticInstantFire(FireMode[0]).FireRate= BallisticInstantFire(FireMode[0]).default.FireRate;
+		}
 	}
 }
 
@@ -113,6 +273,50 @@ simulated event Tick (float DT)
 	
 	super.Tick(DT);
 }
+
+//2.5 Classic Overheat anims
+simulated function LS14_DoubleVent()		
+{	
+	if (CurrentWeaponMode == 1)
+	{
+		AddHeat(-1, 0, 0);
+		PlaySound(DoubleVentSound, SLOT_Misc, 0.5, ,32);	
+		class'BUtil'.static.InitMuzzleFlash (HeatSteam, class'RSNovaSteam', DrawScale, self, 'BarrelGlow');
+	}
+}
+simulated function LS14Overheat()		
+{	
+		AddHeat(0, 10, 0);
+		TemporaryScopeDown(0.5);
+		bOverloaded=true;
+		class'BallisticDamageType'.static.GenericHurt (Instigator, 0, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTLS14Body');
+		Firemode[0].NextFireTime += 4.0;
+		class'bUtil'.static.InitMuzzleFlash(BarrelFlare, class'HVCMk9MuzzleFlash', DrawScale, self, 'BarrelGlow');
+}
+simulated function LS14OverheatDbl()		
+{	
+		AddHeat(0, 10, 0);
+		class'BallisticDamageType'.static.GenericHurt (Instigator, 0, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTLS14Body');
+		Firemode[0].NextFireTime += 3.0;
+		class'BUtil'.static.InitMuzzleFlash(VentBarrel, class'CoachSteam', DrawScale, self, 'tip');
+		class'BUtil'.static.InitMuzzleFlash(HeatSteam, class'CoachSteam', DrawScale, self, 'BarrelGlow');
+}
+simulated function LS14OverheatS2()		
+{		
+		if (BarrelFlare != None)	BarrelFlare.Destroy();	
+		class'bUtil'.static.InitMuzzleFlash(BarrelFlareSmall, class'LS14BarrelOverheat', DrawScale, self, 'BarrelGlow');
+}
+simulated function LS14ForceCool()		
+{	
+		AddHeat(0, 6, 0);
+		bOverloaded=false;
+		class'BUtil'.static.InitMuzzleFlash(HeatSteam, class'RSNovaSteam', DrawScale, self, 'BarrelGlow');
+		class'BUtil'.static.InitMuzzleFlash(VentBarrel, class'CoachSteam', DrawScale, self, 'tip');
+		class'BUtil'.static.KillEmitterEffect (BarrelFlare);
+		class'BUtil'.static.KillEmitterEffect (BarrelFlareSmall);
+}
+
+// ======================= Rocket Reload Code ===============
 
 // Only skips for alternate reload
 simulated function FirePressed(float F)
@@ -247,7 +451,16 @@ simulated function NewDrawWeaponInfo(Canvas C, float YPos)
 
 simulated event RenderOverlays (Canvas Canvas)
 {
+	local float tileScaleX;
+	local float tileScaleY;
+	local float HeatBar;
+
 	local float	ScaleFactor;
+
+	local float barOrgX;
+	local float barOrgY;
+	local float barSizeX;
+	local float barSizeY;
 
 	if (!bScopeView)
 	{
@@ -312,6 +525,35 @@ simulated event RenderOverlays (Canvas Canvas)
 			Canvas.SetPos(Canvas.SizeX*0.56, Canvas.SizeY*0.7);
 			Canvas.DrawText(Rockets $ "R", false);
 		}
+
+		// Draw the Charging meter  -AsP
+
+		HeatBar = SelfHeatLevel/10;
+
+		barOrgX = RechargeOrigin.X * tileScaleX;
+		barOrgY = RechargeOrigin.Y * tileScaleY;
+
+		barSizeX = RechargeSize.X * tileScaleX;
+		barSizeY = RechargeSize.Y * tileScaleY;
+
+		Canvas.DrawColor = ChargeColor;
+        	Canvas.DrawColor.A = 255;
+
+		if(HeatBar <1)
+		    	Canvas.DrawColor.R = 255*HeatBar;
+
+		if(HeatBar == 0)
+		    	Canvas.DrawColor.G = 255;
+		else
+		    	Canvas.DrawColor.G = 0;
+
+		Canvas.Style = ERenderStyle.STY_Alpha;
+		if ((Canvas.ClipX/Canvas.ClipY) > 1.5)
+			Canvas.SetPos(Canvas.SizeX*0.366,Canvas.SizeY*0.651);
+		else
+			Canvas.SetPos(Canvas.SizeX*0.316,Canvas.SizeY*0.645);
+		//Canvas.DrawTile(Texture'Engine.WhiteTexture',barSizeX*HeatBar,barSizeY, 0.0, 0.0,Texture'Engine.WhiteTexture'.USize*HeatBar,Texture'Engine.WhiteTexture'.VSize);
+		Canvas.DrawTile(Texture'Engine.WhiteTexture',1+100*HeatBar,15, 0.0, 0.0,Texture'Engine.WhiteTexture'.USize*HeatBar,Texture'Engine.WhiteTexture'.VSize);
 
 		if (BarrelFlare != None)	BarrelFlare.Destroy();
 		if (BarrelFlareSmall != None)	BarrelFlareSmall.Destroy();
@@ -755,6 +997,13 @@ simulated function float ChargeBar()
 
 defaultproperties
 {
+	 MyFontColor=(R=255,G=255,B=255,A=255)
+     WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.LS14.LS14-ScriptLCD'
+     WeaponScreenShader=Shader'BWBP_SKC_Tex.LS14.LS14-ScriptLCD-SD'
+	 ScreenBase=Texture'BWBP_SKC_Tex.LS14.LS14-ScreenBase'
+	 ScreenAmmoBlue=Texture'BWBP_SKC_Tex.LS14.LS14-Screen'
+	 ScreenAmmoRed=Texture'BWBP_SKC_Tex.LS14.LS14-ScreenRed'
+	 
 	ManualLines(0)="Single Fire mode fires one barrel at once for low damage, with good fire rate.||Double Fire fires both barrels, for moderate damage, with low fire rate.||Both modes heat up the target, causing subsequent shots to inflict greater damage. This effect on the target decays with time."
 	ManualLines(1)="Launches miniature rockets. These rockets deal high damage and good radius damage. The rockets have a short period of low speed before igniting."
 	ManualLines(2)="Effective at long range and against enemies using healing weapons and items."
@@ -762,6 +1011,8 @@ defaultproperties
 	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
+    OverHeatSound=Sound'WeaponSounds.BaseImpactAndExplosions.BShieldReflection'
+    DoubleVentSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-MedHeat'
 	GrenadeLoadAnim="RLLoad"
 	GrenadeLoadAnimRate=1.500000
 	SingleGrenadeLoadAnim="RLLoadLoop"
@@ -818,7 +1069,6 @@ defaultproperties
 	ParamsClasses(1)=Class'LS14WeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LS14PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LS14SecondaryFire'
-	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc5',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=192),Color2=(B=158,G=150,R=0,A=124),StartSize1=54,StartSize2=59)
 	SelectAnimRate=1.500000
 	PutDownAnimRate=2.000000
 	PutDownTime=0.500000
@@ -849,4 +1099,11 @@ defaultproperties
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LS14'
 	DrawScale=0.300000
+     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+     Skins(1)=Shader'BWBP_SKC_Tex.LS14.LS14_SD'
+	 Skins(2)=Texture'ONSstructureTextures.CoreGroup.Invisible'
+	 Skins(3)=Texture'ONSstructureTextures.CoreGroup.Invisible'
+	 Skins(4)=Texture'ONSstructureTextures.CoreGroup.Invisible'
+     Skins(5)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
+	 
 }

@@ -423,7 +423,6 @@ defaultproperties
 	ParamsClasses(1)=Class'LonghornWeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LonghornPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LonghornSecondaryFire'
-	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57InA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc7',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=138),Color2=(B=0,G=255,R=255,A=255),StartSize1=137,StartSize2=32)
 	SelectAnimRate=1.100000
 	PutDownAnimRate=1.500000
 	PutDownTime=0.500000

@@ -669,7 +669,7 @@ defaultproperties
 	GunLength=0.000000
 	bAimDisabled=True
 	ParamsClasses(0)=Class'FP9WeaponParams'
-	ParamsClasses(1)=Class'FP9WeaponParams' //todo: params and state code for laser tripmine
+	ParamsClasses(1)=Class'FP9WeaponParamsClassic' //todo: params and state code for laser tripmine
 	FireModeClass(0)=Class'BallisticProV55.FP9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.FP9SecondaryFire'
 	

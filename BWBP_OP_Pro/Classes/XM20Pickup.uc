@@ -45,7 +45,7 @@ defaultproperties
      PickupDrawScale=1.100000
      InventoryType=Class'BWBP_OP_Pro.XM20AutoLas'
      RespawnTime=20.000000
-     PickupMessage="You picked up the XM20 laser rifle."
+     PickupMessage="You picked up the XM20-P prototype laser rifle."
      PickupSound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Pickup'
      StaticMesh=StaticMesh'BWBP_OP_Static.XM20.XM20Pickup'
      Physics=PHYS_None

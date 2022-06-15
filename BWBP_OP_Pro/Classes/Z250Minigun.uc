@@ -24,7 +24,7 @@ var bool bDampingFireLoop;
 
 var Z250FireControl FireControl;
 
-var float		RotationSpeeds[3];
+var float		RotationSpeeds[5];
 
 replication
 {
@@ -515,21 +515,28 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-ClipOut')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-ClipIn')
 	ClipInFrame=0.650000
-	WeaponModes(0)=(ModeName="600 RPM",ModeID="WM_FullAuto")
-	WeaponModes(1)=(ModeName="900 RPM",ModeID="WM_FullAuto")
-	WeaponModes(2)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
+	WeaponModes(0)=(ModeName="400 RPM",ModeID="WM_FullAuto",bUnavailable=True)
+	WeaponModes(1)=(ModeName="600 RPM",ModeID="WM_FullAuto")
+	WeaponModes(2)=(ModeName="800 RPM",ModeID="WM_FullAuto",bUnavailable=True)
+	WeaponModes(3)=(ModeName="900 RPM",ModeID="WM_FullAuto")
+	WeaponModes(4)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
 	 
-	RotationSpeeds(0)=0.33
-	RotationSpeeds(1)=0.5
-	RotationSpeeds(2)=0.66
+	RotationSpeeds(0)=0.22
+	RotationSpeeds(1)=0.33
+	RotationSpeeds(2)=0.44
+	RotationSpeeds(3)=0.5
+	RotationSpeeds(4)=0.66
 
-	CurrentWeaponMode=2
+	CurrentWeaponMode=1
 	bShowChargingBar=True
 	bNoCrosshairInScope=True
 	SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
 	SightDisplayFOV=45.000000
 	SightingTime=0.550000
 	ParamsClasses(0)=Class'Z250WeaponParams'
+	ParamsClasses(1)=Class'Z250MinigunWeaponParamsClassic'
+	ParamsClasses(2)=Class'Z250WeaponParams'
+	ParamsClasses(3)=Class'Z250WeaponParams'
 	FireModeClass(0)=Class'BWBP_OP_Pro.Z250PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.Z250SecondaryFire'
 	SelectAnimRate=0.750000

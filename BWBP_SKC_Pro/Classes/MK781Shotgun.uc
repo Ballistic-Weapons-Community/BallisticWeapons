@@ -668,7 +668,7 @@ defaultproperties
 	SightDisplayFOV=20.000000
 	GunLength=48.000000
 	ParamsClasses(0)=Class'MK781WeaponParams'
-	//ParamsClasses(1)=Class'MK781WeaponParamsClassic'
+	ParamsClasses(1)=Class'MK781WeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MK781PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MK781SecondaryFire'
 	PutDownTime=0.500000

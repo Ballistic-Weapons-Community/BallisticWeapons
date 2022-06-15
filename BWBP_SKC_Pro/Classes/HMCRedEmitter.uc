@@ -43,9 +43,9 @@ defaultproperties
          StartLocationRange=(X=(Min=-30.000000))
          SpinsPerSecondRange=(X=(Max=0.150000))
          StartSpinRange=(X=(Max=1.000000))
-         SizeScale(0)=(RelativeSize=0.500000)
-         SizeScale(1)=(RelativeTime=0.620000,RelativeSize=0.900000)
-         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.400000)
+         SizeScale(0)=(RelativeSize=2.000000)
+         SizeScale(1)=(RelativeTime=0.620000,RelativeSize=3.500000)
+         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=5.000000)
          StartSizeRange=(X=(Min=6.000000,Max=8.000000),Y=(Min=6.000000,Max=8.000000),Z=(Min=6.000000,Max=8.000000))
          DrawStyle=PTDS_AlphaBlend
          Texture=Texture'BW_Core_WeaponTex.Particles.SmokeWisp-Alpha'
@@ -84,6 +84,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=0.500000)
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.200000)
+																					 
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.250000,Max=0.250000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
@@ -112,10 +113,11 @@ defaultproperties
          FadeOutStartTime=0.060000
          CoordinateSystem=PTCS_Relative
          MaxParticles=1
-         SizeScale(0)=(RelativeSize=0.300000)
-         SizeScale(1)=(RelativeTime=0.160000,RelativeSize=0.500000)
-         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.700000)
+         SizeScale(0)=(RelativeSize=0.700000)
+         SizeScale(1)=(RelativeTime=0.160000,RelativeSize=1.000000)
+         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.400000)
          SecondsBeforeInactive=0.000000
+						 
          LifetimeRange=(Min=0.400000,Max=0.400000)
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=50000.000000
@@ -150,4 +152,5 @@ defaultproperties
      End Object
      Emitters(3)=SpriteEmitter'BWBP_SKC_Pro.HMCRedEmitter.SpriteEmitter5'
 
+					
 }

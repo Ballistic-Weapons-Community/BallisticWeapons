@@ -340,10 +340,8 @@ function AddDefaultInventory()
 		Weapon.GiveAmmo(0,None, false);
 		Weapon.GiveAmmo(1,None, false);
 	}
-
 	if ( Controller != None )
 		Controller.ClientSwitchToBestWeapon();
-
 }
 
 simulated function PostNetBeginPlay()
@@ -1122,8 +1120,6 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
 //==================== Auto Turret Code ================= 
 
-
-
 defaultproperties
 {
      GunYawBounds=(Min=-16384.000000,Max=16384.000000)
@@ -1181,5 +1177,5 @@ defaultproperties
      bBlockZeroExtentTraces=False
      bBlockNonZeroExtentTraces=False
      bRotateToDesired=False
-
 }
+
