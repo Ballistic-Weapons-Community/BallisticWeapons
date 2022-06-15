@@ -473,7 +473,7 @@ defaultproperties
 	bUseBigIcon=True
 	IconMaterial=Texture'BWBP_OP_Tex.XM20.Icon_XM20'
 	IconCoords=(X2=127,Y2=31)
-	ItemName="XM20 Laser Rifle"
+	ItemName="XM20-P Prototype Laser Rifle"
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=30

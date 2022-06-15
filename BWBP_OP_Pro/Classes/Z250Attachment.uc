@@ -22,6 +22,15 @@ replication
 		NetBarrelSpeed;
 }
 
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (Z250Minigun(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
+	{
+		ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBulletLarge';
+	}
+}
+
 simulated function FlashMuzzleFlash(byte Mode)
 {
 	local rotator R;

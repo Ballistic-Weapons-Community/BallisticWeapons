@@ -735,6 +735,9 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	GunLength=48.000000
 	ParamsClasses(0)=Class'ARWeaponParams'
+	ParamsClasses(1)=Class'ARWeaponParamsClassic'
+	ParamsClasses(2)=Class'ARWeaponParams'
+	ParamsClasses(3)=Class'ARWeaponParams'
 	FireModeClass(0)=Class'BWBP_OP_Pro.ARPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.ARSecondaryFire'
 	SelectAnimRate=0.900000
