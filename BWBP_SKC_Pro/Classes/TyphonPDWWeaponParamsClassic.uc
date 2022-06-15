@@ -96,9 +96,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=-0.250000,Z=13.600000)
-		SightPivot=(Pitch=1024)
-		ZoomType=ZT_Fixed
+		SightOffset=(X=-4.000000,Y=0.250000,Z=15.700000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
 		InventorySize=12

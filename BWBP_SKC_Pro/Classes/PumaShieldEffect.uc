@@ -1,6 +1,6 @@
 class PumaShieldEffect extends Actor;
 
-#exec OBJ LOAD FILE=BWBP_SKC_TexExp.utx
+#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
 
 var float Brightness, DesiredBrightness;
 var() Material		MatShot;

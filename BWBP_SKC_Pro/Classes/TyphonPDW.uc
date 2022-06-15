@@ -693,7 +693,7 @@ defaultproperties
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
 	 ZoomType=ZT_Irons
-     SightPivot=(Pitch=-1024)
+     //SightPivot=(Pitch=-1024)
      SightOffset=(X=-4.000000,Y=0.250000,Z=11.750000)
 	 SightingTime=0.250000
 	 BobDamping=2.300000

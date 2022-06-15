@@ -4,7 +4,7 @@ defaultproperties
 {
 
     //=================================================================
-    // PRIMARY FIRE
+    // PRIMARY FIRE - Rapid Fire
     //=================================================================	
 	
 	
@@ -20,18 +20,50 @@ defaultproperties
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.TyphonPDWFlashEmitter'
-		FlashScaleFactor=0.050000
+		FlashScaleFactor=0.30000
 		Recoil=150.000000
 		Chaos=0.150000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Fire',Volume=9.500000,Slot=SLOT_Interact,bNoOverride=False)
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
 	End Object
-
+		
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
 		FireInterval=0.125000
 		AimedFireAnim="SightFire"
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
+	
+	//=================================================================
+    // PRIMARY FIRE - Charged Fire
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParamsCharged
+		DamageType=Class'BWBP_SKC_Pro.DT_TyphonPDW'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_TyphonPDWHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_TyphonPDW'
+		DecayRange=(Min=1800,Max=3600)
+		TraceRange=(Max=6000.000000)
+		Damage=51.000000
+		RangeAtten=0.30000
+		Inaccuracy=(X=32,Y=32)
+		PenetrateForce=150
+		bPenetrate=True
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
+		FlashScaleFactor=0.050000
+		Recoil=140.000000
+		Chaos=0.150000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Overblast',Volume=7.800000)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParamsCharged
+		FireInterval=1.500000
+		FireAnim="Fire"
+		AimedFireAnim="Fire"
+		AmmoPerFire=5
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParamsCharged'
 	End Object
 		
 	//=================================================================
@@ -67,11 +99,9 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
 		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=-0.250000,Z=13.600000)
-		SightPivot=(Pitch=1024)
-		ZoomType=ZT_Fixed
-		PlayerSpeedFactor=1
-		PlayerJumpFactor=1
+		SightOffset=(X=-4.000000,Y=0.250000,Z=15.700000)
+		PlayerSpeedFactor=.95
+		PlayerJumpFactor=.95
 		InventorySize=12
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1
@@ -79,6 +109,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		FireParams(1)=FireParams'ArenaPrimaryFireParamsCharged'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ArenaParams'

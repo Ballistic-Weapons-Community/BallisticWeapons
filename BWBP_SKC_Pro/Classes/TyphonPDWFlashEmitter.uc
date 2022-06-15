@@ -5,22 +5,23 @@
 //=============================================================================
 class TyphonPDWFlashEmitter extends BallisticEmitter;
 
-simulated event PostBeginPlay()
+/*simulated event PostBeginPlay()
 {
 	Super.PostBeginPlay();
 	if (WeaponAttachment(Owner) != None)
 		Emitters[1].ZTest = true;
-}
+}*/
 
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter5
          StaticMesh=StaticMesh'BW_Core_WeaponStatic.A42.A42MuzzleFlash'
          UseMeshBlendMode=False
+		 UseColorScale=False
          RenderTwoSided=True
          UseParticleColor=True
-         UseColorScale=True
-         FadeOut=True
+         FadeOut=False
+		 ZTest=False
          RespawnDeadParticles=False
          SpinParticles=True
          UseSizeScale=True
@@ -48,10 +49,10 @@ defaultproperties
      Emitters(0)=MeshEmitter'BWBP_SKC_Pro.TyphonPDWFlashEmitter.MeshEmitter5'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter10
-         UseColorScale=True
-         FadeOut=True
+         FadeOut=False
          RespawnDeadParticles=False
          ZTest=False
+		 UseColorScale=False
          UniformSize=True
          AutomaticInitialSpawning=False
          TriggerDisabled=False

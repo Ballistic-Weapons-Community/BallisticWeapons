@@ -61,7 +61,7 @@ simulated function AdjustProps(byte NewMode)
 		if (PumaRepeater(Weapon).PriDetRangeM < 30)
 			FireRate=0.900000;
 		else
-			FireRate=0.450000;
+			FireRate=0.600000;
 	}
 	else if (NewMode == 1)//Proximity
 	{
@@ -84,7 +84,7 @@ simulated function SwitchCannonMode (byte NewMode)
 		if (PumaRepeater(Weapon).PriDetRangeM < 30)
 		FireRate=0.900000;
 		else
-		FireRate=0.450000;
+		FireRate=0.600000;
 	}
 	else if (NewMode == 1)//Proximity
 	{
@@ -96,7 +96,7 @@ simulated function SwitchCannonMode (byte NewMode)
 	{
 		ProjectileClass=Class'PumaProjectileFast';
 		LastProjectileClass=Class'PumaProjectileFast';
-		FireRate=0.450000;
+		FireRate=0.600000;
 	}
 	else
 	{
@@ -118,7 +118,7 @@ function StartBerserk()
 	if (BW.CurrentWeaponMode == 1)
     	FireRate = 0.90;
 	else
-    	FireRate = 0.45;
+    	FireRate = 0.60;
    	FireRate *= 0.50;
     FireAnimRate = default.FireAnimRate/0.75;
     ReloadAnimRate = default.ReloadAnimRate/0.75;
@@ -130,7 +130,7 @@ function StopBerserk()
 	if (BW.CurrentWeaponMode == 1)
     	FireRate = 0.95;
 	else
-    	FireRate = 0.45;
+    	FireRate = 0.60;
     FireAnimRate = default.FireAnimRate;
     ReloadAnimRate = default.ReloadAnimRate;
 }
@@ -141,7 +141,7 @@ function StartSuperBerserk()
 	if (BW.CurrentWeaponMode == 1)
     	FireRate = 0.95;
 	else
-    	FireRate = 0.45;
+    	FireRate = 0.60;
     FireRate /= Level.GRI.WeaponBerserk;
     FireAnimRate = default.FireAnimRate * Level.GRI.WeaponBerserk;
     ReloadAnimRate = default.ReloadAnimRate * Level.GRI.WeaponBerserk;
@@ -155,7 +155,7 @@ defaultproperties
      BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
      BrassOffset=(X=-20.000000)
      FireRecoil=128.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.PUMA.PUMA-Fire')
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Fire')
      bSplashDamage=True
      bRecommendSplashDamage=True
      bTossed=True

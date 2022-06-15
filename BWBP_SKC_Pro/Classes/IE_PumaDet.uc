@@ -247,5 +247,6 @@ defaultproperties
      LightBrightness=150.000000
      LightRadius=32.000000
      LightPeriod=3
+     bNoDelete=False
      bUnlit=False
 }

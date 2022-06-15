@@ -42,7 +42,6 @@ simulated function UpdatePrecacheStaticMeshes()
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.A42.A42MuzzleFlash');
 }
 
-
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.Typhon.TyphonPickup'
