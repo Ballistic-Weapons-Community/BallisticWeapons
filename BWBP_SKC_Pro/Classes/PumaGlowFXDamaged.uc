@@ -1,8 +1,8 @@
 //=============================================================================
 // PumaGlowFXDamaged.
 //
-// by SK
-// Copyright(c) 2020 SK. All Rights Reserved.
+// by Nolan "Dark Carnivour" Richert.
+// Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
 class PumaGlowFXDamaged extends BallisticEmitter;
 

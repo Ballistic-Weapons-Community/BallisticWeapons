@@ -34,14 +34,18 @@ var	int	NumpadYOffset1; //Used for ammo counter
 var	int	NumpadYOffset2;
 var	int	NumpadYOffset3;
 
+var	int	NumpadYOffset4; //Used for shield power
+var	int	NumpadYOffset5;
+var	int	NumpadYOffset6;
+
 var() Material	Screen;
-var() Material	ScreenBaseX; //Used for shield power - selector
-var() Material	ScreenBaseY; //Used for rangefinder - selector
-var() Material	ScreenBase1; //Used for range finder
-var() Material	ScreenBase2; //
+var() Material	ScreenBaseX; //Used for shield power (base tex)
+var() Material	ScreenBaseY; //Used for ammo (base tex)
+var() Material	ScreenBase1; //Ammo Counter
+var() Material	ScreenBase2; //Shield Power
 var() Material	ScreenBase3; //Low shield power
-var() Material	ScreenBase4; //Rangefinder screen + range set
-var() Material	ScreenBase5; //Rangefinder screen + range set + danger close
+var() Material	ScreenBase4; //Low Ammo
+var() Material	ScreenBase5; //unused
 var() Material	Numbers;
 var protected const color MyFontColor; //Why do I even need this?
 var bool		bRangeSet;
@@ -130,9 +134,13 @@ simulated event RenderTexture( ScriptedTexture Tex )
 		Tex.DrawTile(0,0,256,256,0,0,256,256,ScreenBaseX, MyFontColor);
 	else
 		Tex.DrawTile(0,0,256,256,0,0,256,256,ScreenBaseY, MyFontColor);
+		
 	Tex.DrawTile(0,70,100,100,30,NumpadYOffset1,50,50,Numbers, MyFontColor);
 	Tex.DrawTile(50,70,100,100,30,NumpadYOffset2,50,50,Numbers, MyFontColor);
 	Tex.DrawTile(100,70,100,100,30,NumpadYOffset3,50,50,Numbers, MyFontColor);
+	Tex.DrawTile(90,5,50,50,30,NumpadYOffset4,50,50,Numbers, MyFontColor);
+	Tex.DrawTile(110,5,50,50,30,NumpadYOffset5,50,50,Numbers, MyFontColor);
+	Tex.DrawTile(130,5,50,50,30,NumpadYOffset6,50,50,Numbers, MyFontColor);
 	
 }
 	
@@ -144,6 +152,10 @@ simulated function UpdateScreen() //Force a screen update
 		ScreenBaseX=ScreenBase3;
 	else
 		ScreenBaseX=ScreenBase2;
+	if (MagAmmo <= 5)
+		ScreenBaseY=ScreenBase4;
+	else
+		ScreenBaseY=ScreenBase1;
 
 	if (Instigator.IsLocallyControlled())
 	{
@@ -441,6 +453,31 @@ simulated event RenderOverlays( Canvas Canvas )
 			NumpadYOffset2=(5);
 			NumpadYOffset3=(5);
 		}
+		
+		if (MagAmmo >= 100)
+		{
+			NumpadYOffset4=(5+(MagAmmo/100)*49); //Hundreds place
+			NumpadYOffset5=(5+(MagAmmo/10 % 10)*49);  //Tens place
+			NumpadYOffset6=(5+((MagAmmo%100)%10)*49);  //Ones place
+		}
+		else if (MagAmmo >= 10)
+		{
+			NumpadYOffset4=(5);
+			NumpadYOffset5=(5+(MagAmmo/10)*49);
+			NumpadYOffset6=(5+(MagAmmo%10)*49);
+		}
+		else if (MagAmmo >= 0)
+		{
+			NumpadYOffset4=(5);
+			NumpadYOffset5=(5);
+			NumpadYOffset6=(5+MagAmmo*49);
+		}
+		else
+		{
+			NumpadYOffset4=(5);
+			NumpadYOffset5=(5);
+			NumpadYOffset6=(5);
+		}
 
 	}
 	else
@@ -469,6 +506,32 @@ simulated event RenderOverlays( Canvas Canvas )
 			NumpadYOffset2=(5);
 			NumpadYOffset3=(5);
 		}
+		
+		if (ShieldPower >= 100)
+		{
+			NumpadYOffset4=(5+(int(ShieldPower)/100)*49); //Hundreds place
+			NumpadYOffset5=(5+(int(ShieldPower)/10 % 10)*49);  //Tens place
+			NumpadYOffset6=(5+((int(ShieldPower)%100)%10)*49);  //Ones place
+		}
+		else if (ShieldPower >= 10)
+		{
+			NumpadYOffset4=(5);
+			NumpadYOffset5=(5+(int(ShieldPower)/10)*49);
+			NumpadYOffset6=(5+(int(ShieldPower)%10)*49);
+		}
+		else if (ShieldPower >= 0)
+		{
+			NumpadYOffset4=(5);
+			NumpadYOffset5=(5);
+			NumpadYOffset6=(5+int(ShieldPower)*49);
+		}
+		else
+		{
+			NumpadYOffset4=(5);
+			NumpadYOffset5=(5);
+			NumpadYOffset6=(5);
+		}
+		
 	}
 
 
@@ -605,10 +668,10 @@ defaultproperties
      bShowChargingBar=True
 
 	 Screen=Shader'BWBP_SKC_TexExp.PUMA.PUMA-ScriptLCD-SD'
-	 ScreenBase1=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen'
-	 ScreenBase2=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen2'
-	 ScreenBase3=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen3'
-	 ScreenBase4=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen4'
+	 ScreenBase1=Texture'BWBP_SKC_Tex.Typhon.Typhon-ScreenAmmo'
+	 ScreenBase2=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen2' //Shield
+	 ScreenBase3=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen3' //Shield Low
+	 ScreenBase4=Texture'BWBP_SKC_Tex.Typhon.Typhon-ScreenAmmoLow' //Ammo Low
 	 ScreenBase5=Texture'BWBP_SKC_TexExp.PUMA.PUMA-Screen5'
 	 Numbers=Texture'BWBP_SKC_Tex.PUMA.PUMA-Numbers'
 	 MyFontColor=(R=255,G=255,B=255,A=255)
