@@ -12,11 +12,16 @@ class LS14PrimaryFire extends BallisticProInstantFire;
 var() Actor			MuzzleFlash2;		// The muzzleflash actor
 var   bool			bSecondBarrel;
 var   bool			bIsDouble;
+var		bool		bAnimatedOverheat; //overheat plays special anims
+
 var() sound			SpecialFireSound;
 
-var()	float			HeatPerShot;
+var()	float		HeatPerShot;
+var()	float		HeatPerShotDouble;
 
-var 	float 			SelfHeatPerShot, SelfHeatDeclineDelay;
+var 	float 			SelfHeatPerShot, SelfHeatPerShotDouble, SelfHeatDeclineDelay;
+
+
 
 simulated function bool AllowFire()
 {
@@ -28,7 +33,7 @@ simulated function bool AllowFire()
 function PlayFiring()
 {
 	Super.PlayFiring();
-	LS14Carbine(BW).AddHeat(SelfHeatPerShot, SelfHeatDeclineDelay);
+	LS14Carbine(BW).AddHeat(SelfHeatPerShot, 0, SelfHeatDeclineDelay);
 }
 
 // Get aim then run trace...
@@ -36,7 +41,7 @@ function DoFireEffect()
 {
 	Super.DoFireEffect();
 	if (Level.NetMode == NM_DedicatedServer)
-		LS14Carbine(BW).AddHeat(SelfHeatPerShot, SelfHeatDeclineDelay);
+		LS14Carbine(BW).AddHeat(SelfHeatPerShot, 0, SelfHeatDeclineDelay);
 }
 
 function InitEffects()
@@ -61,8 +66,8 @@ simulated function SwitchWeaponMode (byte NewMode)
 	else
 	{
 		bIsDouble=true;
-		HeatPerShot=45;
-		SelfHeatPerShot=default.SelfHeatPerShot*2.5;
+		HeatPerShot=default.HeatPerShotDouble;
+		SelfHeatPerShot=default.SelfHeatPerShotDouble;
 		SelfHeatDeclineDelay=default.SelfHeatDeclineDelay*2;
 	}
 }
@@ -85,11 +90,25 @@ simulated event ModeDoFire()
 
 	if (AllowFire() && !LS14Carbine(Weapon).bIsReloadingGrenade)
 	{
-		if (bIsDouble)
-			FireAnim='FireBig';
+		//[2.5] Classic Heat Anims
+		if (bAnimatedOverheat)
+		{
+			if (LS14Carbine(Weapon).SelfHeatLevel >= 8.5)
+				FireAnim='Overheat';
+			else if (bIsDouble && LS14Carbine(Weapon).SelfHeatLevel >= 6.5)
+				FireAnim='FiddleOne';
+			else if ((LS14Carbine(Weapon).SelfHeatLevel > 6.5 && LS14Carbine(Weapon).SelfHeatLevel < 8.5) || bIsDouble)
+				FireAnim='FireBig';
+			else
+				FireAnim='Fire';
+		}
 		else
-			FireAnim='Fire';
-
+		{
+			if (bIsDouble)
+				FireAnim='FireBig';
+			else
+				FireAnim='Fire';
+		}
 		if (!bSecondBarrel)
 		{
 			bSecondBarrel=true;
@@ -145,12 +164,15 @@ function FlashMuzzleFlash()
 defaultproperties
 {
 	 SelfHeatPerShot=0.600000
+	 SelfHeatPerShotDouble=1.500000
 	 SelfHeatDeclineDelay=0.5
+	 bAnimatedOverheat=False
      SpecialFireSound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FireDouble'
      HeatPerShot=10.000000
+	 HeatPerShotDouble=45
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=0.000000
-     Damage=18.000000
+     Damage=20.000000
      DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
