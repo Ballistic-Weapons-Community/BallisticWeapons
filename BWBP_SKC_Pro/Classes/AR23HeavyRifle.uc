@@ -312,6 +312,9 @@ defaultproperties
      ClipInFrame=0.700000
      ParamsClasses(0)=Class'AR23WeaponParamsArena'
      ParamsClasses(1)=Class'AR23WeaponParamsClassic'
+	 WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+     WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+     WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
      FullZoomFOV=55.000000
      bNoCrosshairInScope=True
 	 SightPivot=(Pitch=-800,Yaw=0,Roll=0)
