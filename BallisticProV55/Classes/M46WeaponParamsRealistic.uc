@@ -115,12 +115,32 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="M46 Battle Rifle"
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+
+    Begin Object Class=WeaponParams Name=RealisticRDSParams
+        SightingTime=0.350000
+        MagAmmo=24
+		InventorySize=35
+        SightPivot=(Pitch=-300,Roll=0)
+        SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
+		InitialWeaponMode=1
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		WeaponName="M46A1 Battle Rifle"
+        WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+    End Object 
 	Layouts(0)=WeaponParams'RealisticParams'
+    Layouts(1)=WeaponParams'RealisticRDSParams'
 
 
 }
