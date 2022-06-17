@@ -612,6 +612,12 @@ simulated final function OnWeaponParamsChanged()
         PlayerViewOffset = WeaponParams.ViewOffset;
         default.PlayerViewOffset = WeaponParams.ViewOffset;
     }
+
+    if (WeaponParams.ViewPivot != rot(0,0,0))
+    {
+        PlayerViewPivot = WeaponParams.ViewPivot;
+        default.PlayerViewPivot = WeaponParams.ViewPivot;
+    }
 	
     for (i = 0; i < WeaponParams.WeaponMaterialSwaps.Length; ++i)
         Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = WeaponParams.WeaponMaterialSwaps[i].Material;
