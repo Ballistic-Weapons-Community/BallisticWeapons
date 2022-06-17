@@ -58,9 +58,9 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	//if (BCRepClass.default.GameStyle == 1)
-		//HVCMk9PrimaryFire(FireMode[0]).GotoState('BranchingFire');
-	//else
+	if (BCRepClass.default.GameStyle == 1)
+		HVCMk9PrimaryFire(FireMode[0]).GotoState('BranchingFire');
+	else
 		HVCMk9PrimaryFire(FireMode[0]).GotoState('DirectFire');
 }
 
@@ -836,7 +836,8 @@ defaultproperties
 	SightOffset=(X=-12.000000,Z=26.000000)
 	SightDisplayFOV=40.000000
 	ParamsClasses(0)=Class'HVCMk9WeaponParams'
-	ParamsClasses(1)=Class'HVCMk9WeaponParams' \\todo Classic: lots of state code
+	ParamsClasses(1)=Class'HVCMk9WeaponParamsClassic' \\todo: lots of state code
+	ParamsClasses(2)=Class'HVCMk9WeaponParamsClassic' \\todo: lots of state code
 	FireModeClass(0)=Class'BallisticProV55.HVCMk9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.HVCMk9SecondaryFire'
 	

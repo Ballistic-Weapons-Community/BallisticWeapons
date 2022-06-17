@@ -401,7 +401,8 @@ defaultproperties
 	MaxZoom=4.000000
 	ZoomStages=1
 	ParamsClasses(0)=Class'M46WeaponParams'
-	ParamsClasses(1)=Class'M46WeaponParamsClassic' //todo: RDS variant
+	ParamsClasses(1)=Class'M46WeaponParamsClassic' 
+	ParamsClasses(2)=Class'M46WeaponParamsRealistic' 
     AmmoClass(0)=Class'BallisticProV55.Ammo_M46Clip'	
 	AmmoClass(1)=Class'BallisticProV55.Ammo_M46Clip'
 	FireModeClass(0)=Class'BallisticProV55.M46PrimaryFire'

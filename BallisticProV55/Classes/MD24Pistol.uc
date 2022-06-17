@@ -406,12 +406,11 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
     
 	bNoCrosshairInScope=True
-	SightFXClass=Class'BallisticProV55.MD24SightLED'
-    SightFXBone="Slide"
 	SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
 	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'MD24WeaponParams'
 	ParamsClasses(1)=Class'MD24WeaponParamsClassic'
+	ParamsClasses(2)=Class'MD24WeaponParamsRealistic'
 	FireModeClass(0)=Class'BallisticProV55.MD24PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	SelectForce="SwitchToAssaultRifle"

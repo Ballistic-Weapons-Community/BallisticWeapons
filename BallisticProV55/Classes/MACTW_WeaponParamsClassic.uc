@@ -9,8 +9,8 @@ defaultproperties
 		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
 			ProjectileClass=Class'BallisticProV55.MACShell'
 			SpawnOffset=(X=28.000000,Y=10.000000)
-			Speed=5000.000000
-			MaxSpeed=5000.000000
+			Speed=25000.000000
+			MaxSpeed=25000.000000
 			Damage=350.000000
 			DamageRadius=192.000000
 			MomentumTransfer=80000.000000
@@ -101,7 +101,6 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.000000
 		MagAmmo=5
-		ZoomType=ZT_Logarithmic
 		SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

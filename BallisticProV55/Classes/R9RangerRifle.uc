@@ -222,6 +222,7 @@ defaultproperties
 	GunLength=80.000000
 	ParamsClasses(0)=Class'R9WeaponParams'
 	ParamsClasses(1)=Class'R9WeaponParamsClassic'
+	ParamsClasses(2)=Class'R9WeaponParamsRealistic'
 	FireModeClass(0)=Class'BallisticProV55.R9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.R9SecondaryFire'
 	

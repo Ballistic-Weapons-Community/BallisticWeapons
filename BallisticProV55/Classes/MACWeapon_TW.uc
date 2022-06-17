@@ -160,6 +160,7 @@ defaultproperties
 	bUseSpecialAim=True
 	ParamsClasses(0)=Class'MACTW_WeaponParams'
 	ParamsClasses(1)=Class'MACTW_WeaponParamsClassic'
+	ParamsClasses(2)=Class'MACTW_WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.MACTW_PrimaryFire'
 	SelectAnim="Deploy"
 	BringUpTime=1.500000

@@ -312,7 +312,8 @@ defaultproperties
 	SightDisplayFOV=60.000000
 	SightZoomFactor=0.85
 	ParamsClasses(0)=Class'Fifty9WeaponParams'	
-	//ParamsClasses(1)=Class'Fifty9WeaponParamsClassic'	
+	ParamsClasses(1)=Class'Fifty9WeaponParamsClassic'	
+	ParamsClasses(2)=Class'Fifty9WeaponParamsRealistic'	
 	FireModeClass(0)=Class'BallisticProV55.Fifty9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.Fifty9SecondaryFire'
 	PutDownTime=0.400000

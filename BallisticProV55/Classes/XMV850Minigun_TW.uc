@@ -161,6 +161,8 @@ defaultproperties
 	GunLength=0.000000
 	bUseSpecialAim=True
 	ParamsClasses(0)=Class'XMV850TW_WeaponParams'
+	ParamsClasses(1)=Class'XMV850TW_WeaponParams'
+	ParamsClasses(2)=Class'XMV850TW_WeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.XMV850TW_PrimaryFire'
 	WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
 	WeaponModes(1)=(ModeName="2400 RPM",ModeID="WM_FullAuto",bUnavailable=False)

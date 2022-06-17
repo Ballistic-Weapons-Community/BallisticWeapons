@@ -164,26 +164,27 @@ exec simulated function WeaponSpecial(optional byte i)
 {
  	if (AmmoAmount(0) > 0)
 		SetBoneScale (0, 1.0, BombBone);
-	/*
-	if (ChosenBomb == None && AmmoAmount(0) > 0)
+	if (BCRepClass.default.GameStyle == 1)
 	{
-		SetBoneScale (1, 1.0, DetHandBone);
-		if (!bLaserMode)
+		if (ChosenBomb == None && AmmoAmount(0) > 0)
 		{
-			PlayAnim(LaserOnAnim, 1.0, 0.1);
-			if (!bHasDetonator)
-				SetAnimFrame(0.13);
+			SetBoneScale (1, 1.0, DetHandBone);
+			if (!bLaserMode)
+			{
+				PlayAnim(LaserOnAnim, 1.0, 0.1);
+				if (!bHasDetonator)
+					SetAnimFrame(0.13);
+			}
+			else
+			{
+				PlayAnim(LaserOffAnim, 1.0, 0.1);
+				if (!bHasDetonator)
+					SetAnimFrame(0.14);
+			}
 		}
-		else
-		{
-			PlayAnim(LaserOffAnim, 1.0, 0.1);
-			if (!bHasDetonator)
-				SetAnimFrame(0.14);
-		}
+		else if (bHasDetonator)
+			ServerSwitchBombLaser();
 	}
-	else if (bHasDetonator)
-		ServerSwitchBombLaser();
-	*/
 }
 
 exec simulated function Reload (optional byte i)
@@ -670,6 +671,7 @@ defaultproperties
 	bAimDisabled=True
 	ParamsClasses(0)=Class'FP9WeaponParams'
 	ParamsClasses(1)=Class'FP9WeaponParamsClassic' //todo: params and state code for laser tripmine
+	ParamsClasses(2)=Class'FP9WeaponParamsRealistic' //todo: params and state code for laser tripmine
 	FireModeClass(0)=Class'BallisticProV55.FP9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.FP9SecondaryFire'
 	

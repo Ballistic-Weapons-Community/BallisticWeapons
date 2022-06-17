@@ -280,6 +280,7 @@ defaultproperties
 	bUseSpecialAim=True
 	ParamsClasses(0)=Class'M353TW_WeaponParams'
 	ParamsClasses(1)=Class'M353TW_WeaponParamsClassic'
+	ParamsClasses(2)=Class'M353TW_WeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.M353TW_PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M353SecondaryFire'
 	SelectAnim="Deploy"

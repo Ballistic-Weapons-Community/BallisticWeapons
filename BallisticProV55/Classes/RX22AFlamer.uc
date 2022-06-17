@@ -299,6 +299,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	ParamsClasses(0)=Class'RX22AWeaponParams'
 	ParamsClasses(1)=Class'RX22AWeaponParamsClassic'
+	ParamsClasses(2)=Class'RX22AWeaponParamsRealistic'
 	FireModeClass(0)=Class'BallisticProV55.RX22APrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RX22ASecondaryFire'
 	

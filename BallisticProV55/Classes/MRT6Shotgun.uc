@@ -167,6 +167,7 @@ defaultproperties
     GunLength=24.000000
     ParamsClasses(0)=Class'MRT6WeaponParams'
     ParamsClasses(1)=Class'MRT6WeaponParamsClassic'
+    ParamsClasses(2)=Class'MRT6WeaponParamsRealistic'
     FireModeClass(0)=Class'BallisticProV55.MRT6PrimaryFire'
     FireModeClass(1)=Class'BallisticProV55.MRT6SecondaryFire'
 	

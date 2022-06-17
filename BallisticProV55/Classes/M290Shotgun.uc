@@ -145,6 +145,7 @@ defaultproperties
     SightOffset=(X=-50.000000,Y=-0.040000,Z=14.050000)
     ParamsClasses(0)=Class'M290WeaponParams'
     ParamsClasses(1)=Class'M290WeaponParamsClassic'
+    ParamsClasses(2)=Class'M290WeaponParamsRealistic'
     FireModeClass(0)=Class'BallisticProV55.M290PrimaryFire'
     FireModeClass(1)=Class'BallisticProV55.M290SecondaryFire'
     AIRating=0.900000
