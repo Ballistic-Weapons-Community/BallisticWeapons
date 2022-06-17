@@ -20,7 +20,7 @@ defaultproperties
 		Recoil=256.000000
 		Chaos=0.20000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.CX61.CX61-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_SoundsExpX.CX61.CX61-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
@@ -56,7 +56,7 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=ClassicRecoilParams
 		ViewBindFactor=0.2
 		XCurve=(Points=(,(InVal=0.200000,OutVal=-0.060000),(InVal=0.400000,OutVal=0.110000),(InVal=0.500000,OutVal=-0.120000),(InVal=0.600000,OutVal=0.130000),(InVal=0.800000,OutVal=0.160000),(InVal=1.000000)))
-		YCurve=(,(InVal=0.100000,OutVal=0.1000),(InVal=0.200000,OutVal=0.19000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.1000),(InVal=0.200000,OutVal=0.19000),(InVal=0.400000,OutVal=0.360000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.35000
 		YRandFactor=0.35000
 		DeclineTime=1.5
@@ -91,7 +91,7 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Healing Gas",Value=2,ModeID="WM_BigBurst")
 		WeaponModes(2)=(bUnavailable=True)
 		MagAmmo=16
-		ItemName="CX61 Flechette Rifle"
+		WeaponName="CX61 Flechette Rifle"
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

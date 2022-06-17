@@ -11,22 +11,19 @@ defaultproperties
 		TraceRange=(Min=600.000000,Max=3000.000000)
 		WaterTraceRange=5000.0
 		TraceCount=8
-		TracerClass=Class'BallisticV25.TraceEmitter_Shotgun'
-		ImpactManager=Class'BallisticV25.IM_Shell'
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=20.0
 		HeadMult=2.05
 		LimbMult=0.6
-		DamageType=Class'BWBPKabPack.DTAAS20ShotgunBal'
-		DamageTypeHead=Class'BWBPKabPack.DTAAS20ShotgunBal'
-		DamageTypeArm=Class'BWBPKabPack.DTAAS20ShotgunBal'
 		PenetrationEnergy=5.000000
 		PenetrateForce=8
 		bPenetrate=True
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
-		MuzzleFlashClass=Class'BWBPKabPack.M763FlashEmitterBal'
+		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=Sound'BallisticSounds3.M763.M763Fire1',Pitch=1.100000,Volume=1.100000)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Pitch=1.100000,Volume=1.100000)
 		Recoil=900.000000
 		Chaos=0.15000
 		Inaccuracy=(X=700,Y=700)
@@ -41,25 +38,34 @@ defaultproperties
 	FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
-	//=================================================================
-	// SECONDARY FIRE
-	//=================================================================	
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
 	
-	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
-		MuzzleFlashClass=Class'BWBPKabPack.AM67FlashEmitterBal'
-		FireSound=(Sound=Sound'BallisticSounds3.AM67.AM67-SecFire',Volume=0.600000)
-		Recoil=0.0
-		Chaos=-1.0
-		BotRefireRate=0.300000
+	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
+		ProjectileClass=Class'BWBP_OP_Pro.ARProjectile'
+		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+		Speed=4000.000000
+		MaxSpeed=15000.000000
+		AccelSpeed=3000.000000
+		Damage=50
+		DamageRadius=128.000000
+		MomentumTransfer=0.000000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
+		FlashScaleFactor=0.500000
+		Recoil=650.000000
+		Chaos=0.450000
+		BotRefireRate=0.600000
+		WarnTargetPct=0.400000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.GL-Fire',Volume=1.300000)	
 	End Object
-		
+
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
-		FireInterval=7.000000
+		FireInterval=0.650000
 		AmmoPerFire=0
-		BurstFireRateFactor=1.00
-		FireAnim=
-		FireEndAnim=
-	FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
+		FireAnim="GLFire"
+		FireAnimRate=1.250000	
+		FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'
 	End Object
 		
 	//=================================================================
@@ -103,9 +109,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=30
 		SightMoveSpeedFactor=0.500000
-		MagAmmo=10
-		ViewOffset=(X=-8.000000,Y=7.000000,Z=-11.000000)
-		SightOffset=(X=8.000000,Y=-0.045000,Z=8.140000)
+		MagAmmo=20
+		SightOffset=(X=60.000000,Y=5.690000,Z=35.820000)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
