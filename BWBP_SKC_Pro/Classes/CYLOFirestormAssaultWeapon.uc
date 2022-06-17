@@ -1,22 +1,26 @@
 //=============================================================================
-// CYLOUAW.
+// CYLO Mk2 UAW
 //
-// CYLO Versatile Urban Assault Weapon.
+// The upgraded version of the CYLO Urban Assault Rifle. Fires incendiary rounds instead of the normals.
+// Has blade as secondary.
+// The gun can overheat with use and will jam and damage the player if heat is too high.
+// When the gun is overheated it does more damage.
 //
-// This nasty little gun has all sorts of tricks up its sleeve. Primary fire is
-// a somewhat unreliable assault rifle with random fire rate and a chance to jam.
-// Secondary fire is a semi-auto shotgun with its own magazine system. Special
-// fire utilizes the bayonet in an attack by modifying properties of primary fire
-// when activated.
-//
-// The gun is small enough to allow dual wielding, but because the left hand is
-// occupied with the other gun, the shotgun can not be used, so that attack is
-// swapped with a melee attack.
-//
-// by Casey 'Xavious' Johnson, Marc 'Sergeant Kelly' and Azarael
+// by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class CYLOUAW extends BallisticWeapon;
+class CYLOFirestormAssaultWeapon extends BallisticWeapon;
+
+//Heating
+var	bool			bVariableHeatProps;				// Heat changes weapon properties, used in Classic
+var float			HeatLevel;					// Current Heat level, duh...
+var bool			bCriticalHeat;				// Heat is at critical levels
+var float 			HeatDeclineDelay;		
+var() Sound			OverHeatSound;				// Sound to play when it overheats
+var() Sound			HighHeatSound;				// Sound to play when heat is dangerous
+var() Sound			MedHeatSound;				// Sound to play when heat is moderate
+var Actor 			GlowFX;						// Code from the BFG.
+var float			NextChangeMindTime;			// For AI
 
 var() sound			MeleeFireSound;
 
@@ -36,6 +40,8 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 	    SGShells;
+	reliable if (ROLE==ROLE_Authority)
+		ClientOverCharge, ClientSetHeat;
 }
 
 simulated event PostNetBeginPlay()
@@ -43,9 +49,11 @@ simulated event PostNetBeginPlay()
 	super.PostNetBeginPlay();
 	if (BCRepClass.default.GameStyle == 1)
 	{
-		CYLOPrimaryFire(FireMode[0]).bVariableFirerate=true;
+		bVariableHeatProps=true;
 	}
 }
+
+
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
@@ -246,14 +254,6 @@ function bool BotShouldReloadShotgun ()
 	return false;
 }
 
-simulated event WeaponTick(float DT)
-{
-	super.WeaponTick(DT);
-	
-	if (AIController(Instigator.Controller) != None && bAltNeedCock && AmmoAmount(1) > 0 && BotShouldReloadShotgun() && !IsReloadingShotgun())
-		ServerStartReload(1);
-}
-
 simulated event AnimEnd (int Channel)
 {
     local name anim;
@@ -389,81 +389,212 @@ simulated function PlayReloadAlt()
 		SafePlayAnim(ShotgunLoadAnim, 1, , 0, "RELOAD");
 }
 
-// AI Interface =====
-simulated function float RateSelf()
+//===========================================================================
+// Heat Code
+//
+//===========================================================================
+
+simulated function ClientOverCharge()
 {
-	if (!HasAmmo())
-		CurrentRating = 0;
-	else if (Ammo[0].AmmoAmount < 1 && MagAmmo < 1)
-		CurrentRating = Instigator.Controller.RateWeapon(self)*0.3;
-	else
-		return Super.RateSelf();
-	return CurrentRating;
+	if (Firemode[0].bIsFiring)
+		StopFire(1);
 }
 
+simulated event WeaponTick(float DT)
+{
+	super.WeaponTick(DT);
+
+	if (HeatLevel >= 7 && Instigator.IsLocallyControlled() && GlowFX == None && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GlowFX == None || GlowFX.bDeleteMe))
+		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'CYLOFirestormRedGlow', DrawScale, self, 'tip');
+	else if (HeatLevel < 7)
+	{
+		if (GlowFX != None)
+			Emitter(GlowFX).kill();
+	}
+	
+	if (AIController(Instigator.Controller) != None && bAltNeedCock && AmmoAmount(1) > 0 && BotShouldReloadShotgun() && !IsReloadingShotgun())
+		ServerStartReload(1);
+	
+}
+
+simulated function float ChargeBar()
+{
+	return HeatLevel / 12;
+}
+
+simulated event Tick (float DT)
+{
+	if (HeatLevel > 0 && Level.TimeSeconds > LastFireTime + HeatDeclineDelay)
+		Heatlevel = FMax(HeatLevel - 6 * DT, 0);
+
+	super.Tick(DT);
+}
+
+simulated function AddHeat(float Amount)
+{
+	if (bBerserk)
+		Amount *= 0.75;
+
+	HeatLevel += Amount;
+	
+	if (HeatLevel >= 11.75)
+	{
+		Heatlevel = 12;
+		PlaySound(OverHeatSound,,3.7,,32);
+		if (Instigator.Physics != PHYS_Falling)
+			class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTCYLOFirestormOverheat');
+		else class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, vect(0,0,0), class'DTCYLOFirestormOverheat');
+		return;
+	}
+	if (bVariableHeatProps)
+	{
+		if (HeatLevel >= 9.75 && HeatLevel < 10)
+		{
+			Heatlevel = 12;
+			PlaySound(OverHeatSound,,3.7,,32);
+			if (level.Netmode != NM_DedicatedServer )
+				BallisticInstantFire(FireMode[0]).JamChance=0.35;
+			class'BallisticDamageType'.static.GenericHurt (Instigator, 3, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTCYLOFirestormOverheat');
+		}
+
+		if (HeatLevel >= 9.0)
+		{
+			PlaySound(HighHeatSound,,1.0,,32);
+			if (level.Netmode != NM_DedicatedServer )
+				BallisticInstantFire(FireMode[0]).JamChance=0.25;
+			BallisticInstantFire(FireMode[0]).FireRate=0.305500;
+			BallisticInstantFire(FireMode[0]).Damage = 35;
+			BallisticInstantFire(FireMode[0]).MuzzleFlashClass=Class'BWBP_SKC_Pro.CYLOFirestormHeatEmitter';
+			BallisticInstantFire(FireMode[0]).DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormHot';
+			BallisticInstantFire(FireMode[0]).DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormHotHead';
+			BallisticInstantFire(FireMode[0]).DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOFirestormHot';
+		}
+		if (HeatLevel >= 6.0)
+		{
+			PlaySound(MedHeatSound,,0.7,,32);
+			if (level.Netmode != NM_DedicatedServer )
+				BallisticInstantFire(FireMode[0]).JamChance=0.1;
+			BallisticInstantFire(FireMode[0]).FireRate=0.155500;
+			BallisticInstantFire(FireMode[0]).Damage = 30;
+			BallisticInstantFire(FireMode[0]).MuzzleFlashClass=Class'BWBP_SKC_Pro.CYLOFirestormHeatEmitter';
+			BallisticInstantFire(FireMode[0]).DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormHot';
+			BallisticInstantFire(FireMode[0]).DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormHotHead';
+			BallisticInstantFire(FireMode[0]).DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOFirestormHot';
+		}
+		else
+		{
+			if (level.Netmode != NM_DedicatedServer )
+				BallisticInstantFire(FireMode[0]).JamChance=0.002;
+			BallisticInstantFire(FireMode[0]).Damage = BallisticInstantFire(FireMode[0]).default.Damage;
+			BallisticInstantFire(FireMode[0]).MuzzleFlashClass = BallisticInstantFire(FireMode[0]).default.MuzzleFlashClass;
+			BallisticInstantFire(FireMode[0]).FireRate = BallisticInstantFire(FireMode[0]).Params.FireInterval;
+			BallisticInstantFire(FireMode[0]).DamageType = BallisticInstantFire(FireMode[0]).default.DamageType;
+			BallisticInstantFire(FireMode[0]).DamageTypeHead = BallisticInstantFire(FireMode[0]).default.DamageTypeHead;
+			BallisticInstantFire(FireMode[0]).DamageTypeArm = BallisticInstantFire(FireMode[0]).default.DamageTypeArm;
+		}
+	}
+}
+
+simulated function ClientSetHeat(float NewHeat)
+{
+	HeatLevel = NewHeat;
+}
+
+function GiveTo(Pawn Other, optional Pickup Pickup)
+{
+    local int m;
+    local weapon w;
+    local bool bPossiblySwitch, bJustSpawned;
+
+    Instigator = Other;
+    W = Weapon(Other.FindInventoryType(class));
+    if ( W == None )
+    {
+		bJustSpawned = true;
+        Super(Inventory).GiveTo(Other);
+        bPossiblySwitch = true;
+        W = self;
+		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		if (CYLOFirestormPickup(Pickup) != None)
+			HeatLevel = FMax( 0.0, CYLOFirestormPickup(Pickup).HeatLevel - (level.TimeSeconds - CYLOFirestormPickup(Pickup).HeatTime) * 2.55 );
+		if (level.NetMode == NM_ListenServer || level.NetMode == NM_DedicatedServer)
+			ClientSetHeat(HeatLevel);
+    }
+    else if ( !W.HasAmmo() )
+	    bPossiblySwitch = true;
+
+    if ( Pickup == None )
+        bPossiblySwitch = true;
+
+    for (m = 0; m < NUM_FIRE_MODES; m++)
+    {
+        if ( FireMode[m] != None )
+        {
+            FireMode[m].Instigator = Instigator;
+            GiveAmmo(m,WeaponPickup(Pickup),bJustSpawned);
+        }
+    }
+	
+	if (MeleeFireMode != None)
+		MeleeFireMode.Instigator = Instigator;
+
+	if ( (Instigator.Weapon != None) && Instigator.Weapon.IsFiring() )
+		bPossiblySwitch = false;
+
+	if ( Instigator.Weapon != W )
+		W.ClientWeaponSet(bPossiblySwitch);
+		
+	//Disable aim for weapons picked up by AI-controlled pawns
+	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();
+
+    if ( !bJustSpawned )
+	{
+        for (m = 0; m < NUM_FIRE_MODES; m++)
+			Ammo[m] = None;
+		Destroy();
+	}
+}
+
+simulated event Timer()
+{
+	if (Clientstate == WS_PutDown)
+		class'BUtil'.static.KillEmitterEffect (GlowFX);
+	super.Timer();
+}
+
+simulated event Destroyed()
+{
+	if (GlowFX != None)
+		GlowFX.Destroy();
+	super.Destroyed();
+}
+
+// AI Interface =====
 // choose between regular or alt-fire
 function byte BestMode()
 {
 	local Bot B;
-	local float Result, Height, Dist, VDot;
+	local float Dist;
 
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
-		return 0;
+		return 1;
 
-	if (AmmoAmount(1) < 1 || bAltNeedCock)
+	if (HeatLevel > 10)
+		return 1;
+		
+	if (AmmoAmount(1) < 1)
 		return 0;
+		
 	else if (MagAmmo < 1)
 		return 1;
-
+		
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
-	Height = B.Enemy.Location.Z - Instigator.Location.Z;
-	VDot = Normal(B.Enemy.Velocity) Dot Normal(Instigator.Location - B.Enemy.Location);
-
-	Result = FRand()-0.3;
-	// Too far for grenade
-	if (Dist > 800)
-		Result -= (Dist-800) / 2000;
-	if (VSize(B.Enemy.Velocity) > 50)
-	{
-		// Straight lines
-		if (Abs(VDot) > 0.8)
-			Result += 0.1;
-		// Enemy running away
-		if (VDot < 0)
-			Result -= 0.2;
-		else
-			Result += 0.2;
-	}
-	// Higher than enemy
-//	if (Height < 0)
-//		Result += 0.1;
-	// Improve grenade acording to height, but temper using horizontal distance (bots really like grenades when right above you)
-	Dist = VSize(B.Enemy.Location*vect(1,1,0) - Instigator.Location*vect(1,1,0));
-	if (Height < -100)
-		Result += Abs((Height/2) / Dist);
-
-	if (Result > 0.5)
+	
+	if (Dist < 512)
 		return 1;
 	return 0;
-}
-
-function bool CanAttack(Actor Other)
-{
-	if (bAltNeedCock)
-	{
-		if (IsReloadingShotgun())
-		{
-			if ((Level.TimeSeconds - Instigator.LastPainTime > 1.0))
-				return false;
-		}
-		else if (AmmoAmount(1) > 0 && BotShouldReloadShotgun())
-		{
-			ServerStartReload(1);
-			return false;
-		}
-	}
-	return super.CanAttack(Other);
 }
 
 function float GetAIRating()
@@ -485,42 +616,41 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
+	// danger close
+	if (Dist < 256)
+		return 0.2;
+	
 	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
 }
 
 // tells bot whether to charge or back off while using this weapon
-function float SuggestAttackStyle()	{	return 0.6;	}
+function float SuggestAttackStyle()	{	return 0.1;	}
 // tells bot whether to charge or back off while defending against this weapon
-function float SuggestDefenseStyle()	{	return -0.6;	}
+function float SuggestDefenseStyle()	{	return 0.5;	}
 // End AI Stuff =====
 
-simulated function bool HasAmmo()
+simulated function Notify_BrassOut()
 {
-	return true;
+//	BFireMode[0].EjectBrass();
 }
 
 defaultproperties
 {
-	ShotgunLoadAnim="ReloadSG"
-	ShotgunEmptyLoadAnim="ReloadSGEmpty"
-	CockSGAnim="CockSG"
-	TubeOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
-	TubeInSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
-	TubeCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
-	SGShells=6
+	HeatDeclineDelay=0.200000
+	OverheatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-OverHeat'
+	HighHeatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-HighHeat'
+	MedHeatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-MedHeat'
+	bWT_Hazardous=True
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_Tex.CYLO.BigIcon_CYLOMK3'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.CYLO.BigIcon_CYLOMk4'
 	BigIconCoords=(X1=16,Y1=30)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
-	bWT_Bullet=True
-	bWT_Shotgun=True
-	bWT_Machinegun=True
-	ManualLines(0)="Automatic 7.62mm fire. High power, but shorter effective range and suffers from high recoil."
-	ManualLines(1)="Engages the secondary shotgun. Has a shorter range than other shotguns and moderate spread."
-	ManualLines(2)="Effective at close to medium range."
-	SpecialInfo(0)=(Info="240.0;25.0;0.9;85.0;0.1;0.9;0.4")
-	MeleeFireClass=Class'BWBP_SKC_Pro.CYLOMeleeFire'
+	ManualLines(0)="Automatic explosive round fire. While these rounds completely lack any penetrative ability, they explode on impact with players, dealing 70% of their base damage to nearby targets. This makes the CYLO Firestorm V effective against groups of players."
+	ManualLines(1)="Melee attack. The damage of this attack increases to its maximum over 1.5 seconds of holding the altfire key. It inflicts more damage on a backstab."
+	ManualLines(2)="Not recommended for close range use as its explosive rounds can damage the user. Effective at medium range."
+	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.2;0.7;0.4")
+	MeleeFireClass=Class'BWBP_SKC_Pro.CYLOFirestormMeleeFire'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	MagAmmo=22
@@ -531,47 +661,44 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut',Volume=2.000000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=2.000000)
 	ClipInFrame=0.700000
-	bAltTriggerReload=True
-	WeaponModes(0)=(bUnavailable=True)
-	bNoCrosshairInScope=False
-	SightPivot=(Pitch=450)
-	SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
-	GunLength=16.000000
-	ParamsClasses(0)=Class'CYLOWeaponParams' 
-	ParamsClasses(1)=Class'CYLOWeaponParamsClassic' 
-	AmmoClass[0]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
-	AmmoClass[1]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
-	FireModeClass(0)=Class'BWBP_SKC_Pro.CYLOPrimaryFire'
-	FireModeClass(1)=Class'BWBP_SKC_Pro.CYLOSecondaryFire'
+	SightPivot=(Pitch=900)
+	SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
+	bNoCrosshairInScope=True
+	GunLength=16.500000
+	ParamsClasses(0)=Class'CYLOFirestormWeaponParams' 
+	ParamsClasses(1)=Class'CYLOFirestormWeaponParamsClassic' 
+	FireModeClass(0)=Class'BWBP_SKC_Pro.CYLOFirestormPrimaryFire'
+	FireModeClass(1)=Class'BWBP_SKC_Pro.CYLOFirestormSecondaryFire'
+	bShowChargingBar=True
+	HudColor=(G=50)
 	SelectAnimRate=2.000000
 	PutDownAnimRate=1.600000
 	PutDownTime=0.330000
 	BringUpTime=0.450000
 	SelectForce="SwitchToAssaultRifle"
-	AIRating=0.750000
+	AIRating=0.7
 	CurrentRating=0.750000
-	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(R=0),Color2=(G=0),StartSize1=90,StartSize2=93)
+	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
-	Description="Dipheox's most popular weapon, the CYLO Versatile Urban Assault Weapon is designed with one goal in mind: Brutal close quarters combat. The CYLO accomplishes this goal quite well, earning itself the nickname of Badger with its small frame, brutal effectiveness, and unpredictability. UTC refuses to let this weapon in the hands of its soldiers because of its erratic firing and tendency to jam.||The CYLO Versatile UAW is fully capable for urban combat. The rifle's caseless 7.62mm rounds can easily shoot through doors and thin walls, while the shotgun can clear a room quickly with its semi-automatic firing. Proper training with the bayonet can turn the gun itself into a deadly melee weapon."
+	Description="The CYLO Firestorm V is an upgraded version of Dipheox's most popular weapon. The V has been redesigned from the ground up for maximum efficiency and can now chamber the fearsome 5.56mm incendiary rounds. Upgrades to the ammo feed and clip lock greatly reduce the chance of jams and ensures a more stable rate of fire, however these have been known to malfunction under excessive stress. Likewise, prolonged use of the incendiary ammunition should be avoided due to potential damage to the barrel and control mechanisms.||While not as versatile as its shotgun equipped cousin, the CYLO Firestorm is still very deadly in urban combat. Proper training with the bayonet can turn the gun itself into a deadly melee weapon."
 	DisplayFOV=55.000000
 	Priority=41
-	HudColor=(G=135)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=4
-	GroupOffset=10
-	PickupClass=Class'BWBP_SKC_Pro.CYLOPickup'
+	GroupOffset=9
+	PickupClass=Class'BWBP_SKC_Pro.CYLOFirestormPickup'
 	PlayerViewOffset=(X=8.000000,Z=-14.000000)
 	BobDamping=2.000000
-	AttachmentClass=Class'BWBP_SKC_Pro.CYLOAttachment'
-	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMK3'
+	AttachmentClass=Class'BWBP_SKC_Pro.CYLOFirestormAttachment'
+	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMk4'
 	IconCoords=(X2=127,Y2=31)
-	ItemName="CYLO Urban Assault Weapon"
+	ItemName="CYLO Firestorm V"
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=30
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOUAW'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOFirestorm'
 	DrawScale=0.400000
 }

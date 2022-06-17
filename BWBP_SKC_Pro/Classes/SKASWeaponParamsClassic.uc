@@ -7,41 +7,70 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=2000.000000,Max=4000.000000)
-			WaterTraceRange=5000.0
-			RangeAtten=0.300000
-			TraceCount=10
-			TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-			ImpactManager=Class'BallisticProV55.IM_Shell'
-			Damage=30
-			LimbMult=0.333333
-			DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgun'
-			PenetrationEnergy=16.000000
-			PenetrateForce=100
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-			FlashScaleFactor=1.000000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Single',Volume=1.300000)
-			Recoil=300.000000
-			Chaos=-1.0
-			Inaccuracy=(X=900,Y=900)
-			HipSpreadFactor=1.000000
-			BotRefireRate=0.900000
-			WarnTargetPct=0.100000	
-		End Object
+	Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=2000.000000,Max=4000.000000)
+		WaterTraceRange=5000.0
+		RangeAtten=0.300000
+		TraceCount=10
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		Damage=30
+		LimbMult=0.333333
+		DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgun'
+		PenetrationEnergy=16.000000
+		PenetrateForce=100
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=1.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Single',Volume=1.300000)
+		Recoil=300.000000
+		Chaos=-1.0
+		Inaccuracy=(X=900,Y=900)
+		HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.400000
-			BurstFireRateFactor=1.00
-			FireAnim="FireRot"
-			FireEndAnim=	
-			FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.400000
+		BurstFireRateFactor=1.00
+		FireAnim="FireRot"
+		FireEndAnim=	
+		FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
+	End Object
+
+    Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryManualEffectParams
+        TraceRange=(Min=2048.000000,Max=4096.000000)
+        RangeAtten=0.400000
+        TraceCount=7
+        TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+        ImpactManager=Class'BallisticProV55.IM_Shell'
+        Damage=45
+        DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
+        DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
+        DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgun'
+        PenetrateForce=100
+        bPenetrate=True
+        MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+        FlashScaleFactor=2.0
+        Recoil=1024.000000
+        Chaos=0.250000
+        BotRefireRate=0.800000
+        WarnTargetPct=0.400000
+		Inaccuracy=(X=450,Y=450)
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Power',Volume=1.300000)	
+    End Object
+
+    Begin Object Class=FireParams Name=ClassicPrimaryManualFireParams
+        FireInterval=1.750000
+        FireAnim="SemiFire"
+        FireEndAnim=
+        FireAnimRate=1.000000	
+        FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryManualEffectParams'
+    End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -128,11 +157,19 @@ defaultproperties
 		InventorySize=25
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=36
+		WeaponModes(0)=(ModeName="Semi-Automatic")
+		WeaponModes(1)=(ModeName="Automatic",ModeID="WM_FullAuto")
+		WeaponModes(2)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(3)=(ModeName="Semi-Auto",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(4)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
+		WeaponModes(5)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
+		InitialWeaponMode=1
 		SightOffset=(X=-10.000000,Y=2.000000,Z=14.000000)
 		SightPivot=(Pitch=512,Roll=-1024,Yaw=-512)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+        FireParams(1)=FireParams'ClassicPrimaryManualFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'

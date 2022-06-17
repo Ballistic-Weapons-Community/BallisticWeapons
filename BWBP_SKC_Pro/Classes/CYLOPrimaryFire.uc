@@ -11,6 +11,23 @@ class CYLOPrimaryFire extends BallisticRangeAttenFire;
 
 var() sound		RifleFireSound;
 var() sound		MeleeFireSound;
+var	bool	bVariableFirerate;
+
+simulated event ModeDoFire()
+{
+	if (bVariableFirerate)
+	{
+		if (level.Netmode == NM_Standalone)
+		{
+			FireRate = Params.FireInterval + (FRand() * 0.15);
+		}
+		else
+		{
+			FireRate = Params.FireInterval;
+		}
+	}
+	Super.ModeDoFire();
+}
 
 defaultproperties
 {

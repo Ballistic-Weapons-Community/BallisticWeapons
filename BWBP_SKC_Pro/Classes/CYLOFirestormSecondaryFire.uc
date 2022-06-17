@@ -14,7 +14,7 @@ simulated function bool AllowFire()
 		return false;		// Is weapon busy reloading
 	if (!CheckWeaponMode())
 		return false;		// Will weapon mode allow further firing
-	if (CYLOUAW(Weapon).SGShells < 1)
+	if (CYLOFirestormAssaultWeapon(Weapon).SGShells < 1)
 	{
 		if (!bPlayedDryFire && DryFireSound.Sound != None)
 		{
@@ -22,13 +22,13 @@ simulated function bool AllowFire()
 			bPlayedDryFire=true;
 		}
 		if (bDryUncock)
-			CYLOUAW(BW).bAltNeedCock=true;
+			CYLOFirestormAssaultWeapon(BW).bAltNeedCock=true;
 		BW.bNeedReload = BW.MayNeedReload(ThisModeNum, 0);
 
 		BW.EmptyFire(ThisModeNum);
 		return false;		// Is there ammo in weapon's mag
 	}
-	else if (CYLOUAW(BW).bAltNeedCock)
+	else if (CYLOFirestormAssaultWeapon(BW).bAltNeedCock)
 		return false;
     return true;
 }
@@ -39,9 +39,9 @@ simulated event ModeDoFire()
 		return;
 
 	Super.ModeDoFire();
-    CYLOUAW(Weapon).SGShells--;
-	if (Weapon.Role == ROLE_Authority && CYLOUAW(Weapon).SGShells == 0)
-		CYLOUAW(BW).bAltNeedCock = true;
+    CYLOFirestormAssaultWeapon(Weapon).SGShells--;
+	if (Weapon.Role == ROLE_Authority && CYLOFirestormAssaultWeapon(Weapon).SGShells == 0)
+		CYLOFirestormAssaultWeapon(BW).bAltNeedCock = true;
 }
 
 simulated function vector GetFireSpread()

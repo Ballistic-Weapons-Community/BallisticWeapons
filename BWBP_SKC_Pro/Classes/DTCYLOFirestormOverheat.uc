@@ -17,7 +17,7 @@ defaultproperties
      InvasionDamageScaling=1.250000
      DamageIdent="Assault"
      DamageDescription=",Flame,Hazard,"
-     WeaponClass=Class'BWBP_SKC_Pro.CYLOAssaultWeapon'
+     WeaponClass=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
      DeathString="%k somehow managed to burn %o with his overheating Firestorm."
      FemaleSuicide="%o's CYLO Firestorm burned through her hands."
      MaleSuicide="%o's CYLO Firestorm burned through his hands."

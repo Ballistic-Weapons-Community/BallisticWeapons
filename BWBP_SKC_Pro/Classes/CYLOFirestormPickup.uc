@@ -15,9 +15,9 @@ function InitDroppedPickupFor(Inventory Inv)
 {
     Super.InitDroppedPickupFor(Inv);
 
-    if (CYLOAssaultWeapon(Inv) != None)
+    if (CYLOFirestormAssaultWeapon(Inv) != None)
     {
-    	HeatLevel = CYLOAssaultWeapon(Inv).HeatLevel;
+    	HeatLevel = CYLOFirestormAssaultWeapon(Inv).HeatLevel;
     	HeatTime = level.TimeSeconds;
     }
 }
@@ -49,7 +49,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.CYLO.CYLOFirestorm'
-     InventoryType=Class'BWBP_SKC_Pro.CYLOAssaultWeapon'
+     InventoryType=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
      RespawnTime=20.000000
      PickupMessage="You picked up the CYLO 'Firestorm' V."
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'

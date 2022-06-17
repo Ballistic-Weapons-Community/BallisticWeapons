@@ -43,7 +43,7 @@ defaultproperties
      MotionBlurDamageRange=20.000000
      MotionBlurFactor=3.000000
      bUseMotionBlur=True
-     WeaponClass=Class'BWBP_SKC_Pro.CYLOAssaultWeapon'
+     WeaponClass=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
      DeathString="%k's overheating Firestorm roasted %o's head off."
      FemaleSuicide="%o routed herself."
      MaleSuicide="%o routed himself."
