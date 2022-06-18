@@ -327,7 +327,7 @@ defaultproperties
         SizeScale(2)=(RelativeTime=1.000000,RelativeSize=3.000000)
         StartSizeRange=(X=(Min=30.000000,Max=30.000000),Y=(Min=30.000000,Max=30.000000),Z=(Min=30.000000,Max=30.000000))
         DrawStyle=PTDS_AlphaBlend
-        Texture=Texture'BallisticEffects.Particles.Smoke4'
+        Texture=Texture'BW_Core_WeaponTex.Particles.Smoke4'
         SecondsBeforeInactive=0.000000
         LifetimeRange=(Min=3.000000,Max=3.000000)
         StartVelocityRange=(X=(Min=-20.000000,Max=20.000000),Y=(Min=-20.000000,Max=20.000000),Z=(Min=140.000000,Max=180.000000))
@@ -353,7 +353,7 @@ defaultproperties
         StartLocationOffset=(Z=50.000000)
         StartLocationRange=(X=(Min=-10.000000,Max=10.000000),Y=(Min=-10.000000,Max=10.000000),Z=(Min=-20.000000,Max=20.000000))
         StartSizeRange=(X=(Min=80.000000,Max=110.000000),Y=(Min=80.000000,Max=110.000000),Z=(Min=80.000000,Max=110.000000))
-        Texture=Texture'BallisticEffects.Particles.FlareA1'
+        Texture=Texture'BW_Core_WeaponTex.Particles.FlareA1'
         SecondsBeforeInactive=0.000000
         LifetimeRange=(Min=0.250000,Max=0.500000)
         StartVelocityRange=(Z=(Max=20.000000))

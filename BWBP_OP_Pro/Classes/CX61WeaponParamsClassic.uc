@@ -20,7 +20,7 @@ defaultproperties
 		Recoil=256.000000
 		Chaos=0.20000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExpX.CX61.CX61-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-FireHeavy',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams

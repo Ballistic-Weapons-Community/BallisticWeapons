@@ -664,7 +664,7 @@ defaultproperties
      AttachmentClass=Class'BWBP_SKC_Pro.Supercharger_Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.AK91.SmallIcon_AK91'
      IconCoords=(X2=127,Y2=31)
-     ItemName="Van Holt 500KW Supercharger"
+     ItemName="[B] Van Holt 500KW Supercharger"
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=30
