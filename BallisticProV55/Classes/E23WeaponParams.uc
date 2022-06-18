@@ -154,6 +154,7 @@ defaultproperties
         InventorySize=12
         SightMoveSpeedFactor=0.8
         ZoomType=ZT_Logarithmic
+		ViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)
 		SightPivot=(Pitch=256)
 		SightOffset=(X=-8.000000,Z=9.300000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'

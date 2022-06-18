@@ -71,7 +71,7 @@ defaultproperties
 
     Begin Object Class=AimParams Name=UniversalAimParams
         ViewBindFactor=0.00
-        SprintOffSet=(Pitch=-3000,Yaw=-4000)
+        SprintOffSet=(Pitch=0,Yaw=0)
         AimSpread=(Min=0,Max=0)
         ChaosDeclineTime=0.320000
     End Object
@@ -85,6 +85,7 @@ defaultproperties
         DisplaceDurationMult=0.0
         MagAmmo=1
         InventorySize=3
+		ViewOffset=(X=63.000000,Y=-4.000000,Z=-6.000000)
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
         FireParams(0)=FireParams'ArenaPriFireParams'

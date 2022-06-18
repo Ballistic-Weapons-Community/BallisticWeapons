@@ -31,6 +31,7 @@ defaultproperties
 		FireAnim="FireCombined"
 		FireEndAnim=
 		AimedFireAnim="FireCombinedSight"
+		bCockAfterFire=True
 		FireAnimRate=0.9	
 		FireEffectParams(0)=ShotgunEffectParams'ArenaPrimaryEffectParams'
 	End Object
@@ -98,6 +99,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		SightOffset=(X=5.000000,Z=12.900000)
 		SightPivot=(Pitch=128)
+		ViewOffset=(Y=12.000000,Z=-12.000000)
 		MagAmmo=6
         SightingTime=0.350000
         InventorySize=12

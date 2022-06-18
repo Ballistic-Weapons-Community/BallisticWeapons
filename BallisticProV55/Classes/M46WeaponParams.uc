@@ -106,6 +106,8 @@ defaultproperties
 		SightingTime=0.350000
         MagAmmo=24
         InventorySize=12
+		ViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)
+		ViewPivot=(Pitch=384)
         SightPivot=(Pitch=-300,Roll=0)
         SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)

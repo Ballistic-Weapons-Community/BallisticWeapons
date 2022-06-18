@@ -44,7 +44,7 @@ defaultproperties
     ADSMultiplier=1.000000
 
     ViewBindFactor=0.000000
-
+	SprintOffSet=(Pitch=0,Yaw=0)
     SprintChaos=0.100000
     AimDamageThreshold=100
     ChaosDeclineTime=0.640000

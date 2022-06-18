@@ -94,6 +94,7 @@ defaultproperties
         InventorySize=12
 		SightOffset=(X=10.000000,Y=0.04,Z=7.950000)
 		SightingTime=0.250000
+		ViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
         FireParams(0)=FireParams'ArenaPriFireParams'
