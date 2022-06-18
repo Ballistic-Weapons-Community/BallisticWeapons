@@ -108,6 +108,10 @@ defaultproperties
 		ViewOffset=(X=9.000000,Y=7.000000,Z=-7.000000)
 		SightOffset=(X=-12.000000,Y=-1.1750000,Z=14.150000)
 		SightPivot=(Pitch=-160,Roll=-465)
+		InitialWeaponMode=0
+		WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		WeaponModes(1)=(bUnavailable=true)
+		WeaponModes(2)=(bUnavailable=true)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

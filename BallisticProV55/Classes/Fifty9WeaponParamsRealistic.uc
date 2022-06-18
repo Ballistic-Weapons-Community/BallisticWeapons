@@ -109,6 +109,10 @@ defaultproperties
 		ViewOffset=(X=11.000000,Y=7.000000,Z=-9.000000)
 		SightOffset=(X=-10.00000,Z=10.450000)
 		SightPivot=(Pitch=16)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
