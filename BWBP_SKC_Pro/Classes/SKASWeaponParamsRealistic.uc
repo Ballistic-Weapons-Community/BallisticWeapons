@@ -1,4 +1,4 @@
-class SKASWeaponParamsClassic extends BallisticWeaponParams;
+class SKASWeaponParamsRealistic extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -7,7 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
+	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=2000.000000,Max=4000.000000)
 		WaterTraceRange=5000.0
 		RangeAtten=0.300000
@@ -25,7 +25,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Single',Volume=1.300000)
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.XMV-850.XMV-Fire-3')
 		Recoil=300.000000
 		Chaos=-1.0
 		Inaccuracy=(X=900,Y=900)
@@ -34,15 +34,15 @@ defaultproperties
 		WarnTargetPct=0.100000	
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-		FireInterval=0.400000
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
+		FireInterval=0.110000
 		BurstFireRateFactor=1.00
 		FireAnim="FireRot"
 		FireEndAnim=	
-		FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
+		FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
 	End Object
 
-    Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryManualEffectParams
+    Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryManualEffectParams
         TraceRange=(Min=2048.000000,Max=4096.000000)
         RangeAtten=0.400000
         TraceCount=7
@@ -64,12 +64,12 @@ defaultproperties
         FireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Power',Volume=1.300000)	
     End Object
 
-    Begin Object Class=FireParams Name=ClassicPrimaryManualFireParams
+    Begin Object Class=FireParams Name=RealisticPrimaryManualFireParams
         FireInterval=1.750000
         FireAnim="SemiFire"
         FireEndAnim=
         FireAnimRate=1.000000	
-        FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryManualEffectParams'
+        FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryManualEffectParams'
     End Object
 		
     //=================================================================
@@ -77,7 +77,7 @@ defaultproperties
     //=================================================================	
 	
 	
-		Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams
+		Begin Object Class=ShotgunEffectParams Name=RealisticSecondaryEffectParams
 			TraceRange=(Min=3000.000000,Max=4000.000000)
 			WaterTraceRange=5000.0
 			RangeAtten=0.850000
@@ -106,21 +106,21 @@ defaultproperties
 			WarnTargetPct=0.100000	
 		End Object
 
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		Begin Object Class=FireParams Name=RealisticSecondaryFireParams
 			FireInterval=1.700000
 			AmmoPerFire=3
 			BurstFireRateFactor=1.00
 			PreFireAnim="ChargeUp"
 			FireAnim="FireBig"
 			FireEndAnim=	
-			FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams'
+			FireEffectParams(0)=ShotgunEffectParams'RealisticSecondaryEffectParams'
 		End Object
 		
 	//=================================================================
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=ClassicRecoilParams
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams
 		XCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
 		YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
 		PitchFactor=0.000000
@@ -140,7 +140,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
+	Begin Object Class=AimParams Name=RealisticAimParams
 		AimSpread=(Min=512,Max=1024)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
@@ -153,7 +153,7 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
+	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=25
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=36
@@ -164,17 +164,17 @@ defaultproperties
 		WeaponModes(4)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
 		WeaponModes(5)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
 		InitialWeaponMode=1
-		WeaponName="SKAS-21 Super Shotgun"
+		WeaponName="SKAS-21 Automatic Shotgun"
 		SightOffset=(X=-10.000000,Y=2.000000,Z=14.000000)
 		SightPivot=(Pitch=512,Roll=-1024,Yaw=-512)
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-        FireParams(1)=FireParams'ClassicPrimaryFireParams'
-        FireParams(2)=FireParams'ClassicPrimaryManualFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+        FireParams(1)=FireParams'RealisticPrimaryFireParams'
+        FireParams(2)=FireParams'RealisticPrimaryManualFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
-	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(0)=WeaponParams'RealisticParams'
 
 
 }
