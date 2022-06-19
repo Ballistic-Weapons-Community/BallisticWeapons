@@ -24,7 +24,6 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	
 		Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
 			Damage=16
 			 HeadMult=1.5f
@@ -60,6 +59,9 @@ defaultproperties
 		End Object
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
+		SightPivot=(Pitch=600)
+		SightOffset=(X=-10.000000,Y=11.7500000,Z=22.500000)
+		ViewOffset=(X=6.000000,Y=1.000000,Z=-15.000000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
 		InventorySize=12

@@ -258,6 +258,7 @@ defaultproperties
 	GroupOffset=8
 	PickupClass=Class'BallisticProV55.SandbagPickup'
 	PlayerViewOffset=(X=40.000000,Z=-10.000000)
+	bUseSights=False
 	AttachmentClass=Class'BallisticProV55.SandbagAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Sandbags.SmallIcon_Sandbags'
 	IconCoords=(X2=127,Y2=31)

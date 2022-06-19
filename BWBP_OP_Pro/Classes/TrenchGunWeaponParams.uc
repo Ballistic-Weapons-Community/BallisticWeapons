@@ -3,11 +3,9 @@ class TrenchGunWeaponParams extends BallisticWeaponParams;
 defaultproperties
 { 
 	//=================================================================
-	// PRIMARY FIRE
+	// PRIMARY FIRE - Explosive
 	//=================================================================	
 	
-	
-	//EXPLOSIVE FIRE
 	Begin Object Class=ShotgunEffectParams Name=ArenaExploPrimaryEffectParams
 		TraceRange=(Min=2048.000000,Max=2560.000000)
 		RangeAtten=0.250000
@@ -39,7 +37,10 @@ defaultproperties
 	FireEffectParams(0)=ShotgunEffectParams'ArenaExploPrimaryEffectParams'
 	End Object
 	
-	//ELECTRIC FIRE WIP
+	//=================================================================
+	// PRIMARY FIRE - Electric
+	//=================================================================	
+	
 	Begin Object Class=ShotgunEffectParams Name=ArenaElectroPrimaryEffectParams
 		TraceRange=(Min=4096.000000,Max=5120.000000)
 		RangeAtten=0.250000
@@ -113,6 +114,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		ViewOffset=(X=-50.000000,Y=20.000000,Z=-30.000000)
 		SightOffset=(X=50.000000,Y=11.500000,Z=43.500000)
 		SightPivot=(Pitch=256)
 		PlayerSpeedFactor=1

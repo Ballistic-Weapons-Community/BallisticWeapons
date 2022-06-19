@@ -3,7 +3,7 @@ class XOXOWeaponParams extends BallisticWeaponParams;
 defaultproperties
 {
 	//=================================================================
-	// PRIMARY FIRE
+	// PRIMARY FIRE - Rapid Fire
 	//=================================================================	
 	
 	// FAST FIRE
@@ -34,7 +34,10 @@ defaultproperties
 	FireEffectParams(0)=ProjectileEffectParams'ArenaFastPrimaryEffectParams'
 	End Object
 	
-	// BOMB FIRE
+	//=================================================================
+	// PRIMARY FIRE - Bomb
+	//=================================================================	
+	
 	Begin Object Class=ProjectileEffectParams Name=ArenaBombPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.XOXOBomb'
 		SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
@@ -62,7 +65,10 @@ defaultproperties
 	FireEffectParams(0)=ProjectileEffectParams'ArenaBombPrimaryEffectParams'
 	End Object
 	
-	// SHOCKWAVE FIRE
+	//=================================================================
+	// PRIMARY FIRE - Shockwave
+	//=================================================================	
+	
 	Begin Object Class=InstantEffectParams Name=ArenaLustPrimaryEffectParams
 		Damage=80
 		//DamageRadius=1024.000000
@@ -85,7 +91,10 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'ArenaLustPrimaryEffectParams'
 	End Object
 	
-	// NUKE FIRE
+	//=================================================================
+	// PRIMARY FIRE - Nuke
+	//=================================================================	
+
 	Begin Object Class=ProjectileEffectParams Name=ArenaNukePrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.XOXONukeProjectile'
 		SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
@@ -209,6 +218,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		ViewOffset=(X=5.000000,Y=6.000000,Z=-9.000000)
 		SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
 		SightPivot=(Pitch=768)
 		PlayerSpeedFactor=1

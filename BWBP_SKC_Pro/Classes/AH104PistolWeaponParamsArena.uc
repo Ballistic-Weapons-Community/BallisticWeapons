@@ -100,6 +100,7 @@ defaultproperties
 		PlayerSpeedFactor=0.9
 		SightMoveSpeedFactor=0.900000
 		MagAmmo=9
+		ViewOffset=(X=5.000000,Y=5.000000,Z=-9.000000)
 		SightOffset=(X=-15.000000,Y=-0.400000,Z=11.500000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'

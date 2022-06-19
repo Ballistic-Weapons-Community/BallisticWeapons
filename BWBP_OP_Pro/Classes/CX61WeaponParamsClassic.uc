@@ -90,6 +90,7 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Flamethrower",Value=2,ModeID="WM_BigBurst")
 		WeaponModes(1)=(ModeName="Healing Gas",Value=2,ModeID="WM_BigBurst")
 		WeaponModes(2)=(bUnavailable=True)
+		InitialWeaponMode=0
 		MagAmmo=16
 		WeaponName="CX61 Flechette Rifle"
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
