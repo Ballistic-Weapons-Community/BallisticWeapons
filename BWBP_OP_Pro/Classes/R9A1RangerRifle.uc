@@ -75,7 +75,7 @@ function ServerSwitchWeaponMode (byte NewMode)
 
 exec simulated function SwitchWeaponMode (optional byte ModeNum)	
 {
-	if (ClientState == WS_PutDown || ClientState == WS_Hidden)
+	if (ClientState == WS_PutDown || ClientState == WS_Hidden || ReloadState != RS_None)
 		return;
 	bRedirectSwitchToFiremode=True;
 	PendingMode = CurrentWeaponMode;

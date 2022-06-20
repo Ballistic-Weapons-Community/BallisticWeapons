@@ -74,7 +74,6 @@ defaultproperties
 
 		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
 			FireInterval=2.500000
-			BurstFireRateFactor=1.00
 			PreFireAnim="GrenadePrep"
 			FireAnim="GrenadeFire"
 			AimedFireAnim="GrenadeFireAimed"

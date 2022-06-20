@@ -33,7 +33,7 @@ defaultproperties
 		Begin Object Class=FireParams Name=ArenaPrimaryFireParams
 			AimedFireAnim="SightFire"
 			FireInterval=0.170000
-			BurstFireRateFactor=1.00
+			BurstFireRateFactor=0.66
 			FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 		End Object
@@ -67,7 +67,6 @@ defaultproperties
 
 		Begin Object Class=FireParams Name=ArenaSecondaryFireParams
 			FireInterval=2.500000
-			BurstFireRateFactor=1.00
 			PreFireAnim="GrenadePrep"
 			FireAnim="GrenadeFire"
 			AimedFireAnim="GrenadeFireAimed"
