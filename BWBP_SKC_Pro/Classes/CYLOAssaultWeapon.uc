@@ -254,6 +254,6 @@ defaultproperties
 	PickupClass=Class'BWBP_SKC_Pro.CYLOFirestormPickup'
 	AttachmentClass=Class'BWBP_SKC_Pro.CYLOFirestormAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMk4'
-	ItemName="CYLO Firestorm V"
+	ItemName="[Old] CYLO Firestorm V"
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_CYLOFirestorm'
 }
