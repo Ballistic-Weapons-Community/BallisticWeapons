@@ -1,4 +1,4 @@
-class SARWeaponParamsRealistic extends BallisticWeaponParams;
+class F2000WeaponParamsRealistic extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -8,7 +8,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=1200.000000,Max=4800.000000) //5.56mm Short Barrel
+		TraceRange=(Min=1200.000000,Max=4800.000000) //5.56mm short barrel
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.0500000
@@ -23,7 +23,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Fire',Pitch=1.250000,Volume=0.900000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M514H.M514H-Fire',Pitch=1.250000,Volume=0.900000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=775.000000
 		Chaos=0.05000
 		Inaccuracy=(X=12,Y=12)
@@ -34,29 +34,39 @@ defaultproperties
 		FireInterval=0.070000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
+		AimedFireAnim="SightFire"	
 		FireAnimRate=1.2000000	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
-	//=================================================================
-	// SECONDARY FIRE
-	//=================================================================	
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
 	
-	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
-		MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
-		Recoil=0.0
+	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.F2000GrenadeTimed'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=3600.000000
+		Damage=200.000000
+		DamageRadius=400.000000
+		MomentumTransfer=30000.000000
+		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MGL.MGL-Fire',Pitch=1.250000,Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=1024.000000
 		Chaos=-1.0
+		Inaccuracy=(X=8,Y=8)
+		SplashDamage=True
+		RecommendSplashDamage=True
 		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
 	End Object
-		
+
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
-		FireInterval=7.000000
-		AmmoPerFire=0
+		FireInterval=2.000000
 		BurstFireRateFactor=1.00
-		FireAnim=
-		FireEndAnim=
-	FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
+		PreFireAnim="GLPrepFire"
+		FireAnim="GLFire"
+	FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'
 	End Object
 		
 	//=================================================================
@@ -64,8 +74,8 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=RealisticRecoilParams
-		XCurve=(Points=(,(InVal=0.450000,OutVal=0.3500000),(InVal=0.650000,OutVal=0.300000),(InVal=1.000000,OutVal=0.200000)))
-		YCurve=(Points=(,(InVal=0.50000,OutVal=0.350000),(InVal=0.750000,OutVal=0.450000),(InVal=1.000000,OutVal=0.400000)))
+		XCurve=(Points=(,(InVal=0.450000,OutVal=0.40000),(InVal=0.65000,OutVal=0.2000),(InVal=1.0000000,OutVal=0.150000)))
+		YCurve=(Points=(,(InVal=0.500000,OutVal=0.350000),(InVal=0.750000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
 		YawFactor=0.15000
 		XRandFactor=0.165000
 		YRandFactor=0.165000
@@ -73,7 +83,7 @@ defaultproperties
 		DeclineTime=0.750000
 		DeclineDelay=0.175000
 		ViewBindFactor=0.060000
-		ADSViewBindFactor=0.060000
+		ADSViewBindFactor=1.000000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -84,7 +94,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=600,Max=1280)
+		AimSpread=(Min=400,Max=1280)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.060000
@@ -100,9 +110,11 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=30
 		SightMoveSpeedFactor=0.500000
-		MagAmmo=35
-		ViewOffset=(X=-8.000000,Y=7.000000,Z=-11.000000)
-		SightOffset=(X=8.000000,Y=-0.045000,Z=8.140000)
+		MagAmmo=30
+		ViewOffset=(X=-3.000000,Y=9.000000,Z=-16.000000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

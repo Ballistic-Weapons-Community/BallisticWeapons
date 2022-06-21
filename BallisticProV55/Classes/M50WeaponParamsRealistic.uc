@@ -8,7 +8,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=1500.000000,Max=7500.000000)
+		TraceRange=(Min=1500.000000,Max=7500.000000) //5.56mm
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=45.0
