@@ -41,7 +41,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.default.GameStyle != 0)
 	{
 		CYLOPrimaryFire(FireMode[0]).bVariableFirerate=true;
 	}
@@ -526,10 +526,10 @@ defaultproperties
 	MagAmmo=22
 	CockAnimPostReload="Cock"
 	CockAnimRate=1.400000
-	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock',Volume=2.000000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock',Volume=1.500000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
-	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut',Volume=2.000000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=2.000000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut',Volume=1.500000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=1.500000)
 	ClipInFrame=0.700000
 	bAltTriggerReload=True
 	WeaponModes(0)=(bUnavailable=True)
@@ -539,6 +539,7 @@ defaultproperties
 	GunLength=16.000000
 	ParamsClasses(0)=Class'CYLOWeaponParams' 
 	ParamsClasses(1)=Class'CYLOWeaponParamsClassic' 
+	ParamsClasses(2)=Class'CYLOWeaponParamsRealistic' 
 	AmmoClass[0]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
 	AmmoClass[1]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.CYLOPrimaryFire'

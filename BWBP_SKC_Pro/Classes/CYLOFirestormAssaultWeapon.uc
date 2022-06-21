@@ -440,7 +440,7 @@ simulated function AddHeat(float Amount)
 	if (HeatLevel >= 11.75)
 	{
 		Heatlevel = 12;
-		PlaySound(OverHeatSound,,3.7,,32);
+		PlaySound(OverHeatSound,,0.7,,32);
 		if (Instigator.Physics != PHYS_Falling)
 			class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTCYLOFirestormOverheat');
 		else class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, vect(0,0,0), class'DTCYLOFirestormOverheat');
@@ -451,7 +451,7 @@ simulated function AddHeat(float Amount)
 		if (HeatLevel >= 9.75 && HeatLevel < 10)
 		{
 			Heatlevel = 12;
-			PlaySound(OverHeatSound,,3.7,,32);
+			PlaySound(OverHeatSound,,0.7,,32);
 			if (level.Netmode != NM_DedicatedServer )
 				BallisticInstantFire(FireMode[0]).JamChance=0.35;
 			class'BallisticDamageType'.static.GenericHurt (Instigator, 3, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTCYLOFirestormOverheat');
@@ -640,6 +640,13 @@ defaultproperties
 	OverheatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-OverHeat'
 	HighHeatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-HighHeat'
 	MedHeatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-MedHeat'
+	ShotgunLoadAnim="ReloadSG"
+	ShotgunEmptyLoadAnim="ReloadSGEmpty"
+	CockSGAnim="CockSG"
+	TubeOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
+	TubeInSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
+	TubeCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
+	SGShells=6
 	bWT_Hazardous=True
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
@@ -656,10 +663,10 @@ defaultproperties
 	MagAmmo=22
 	CockAnimPostReload="Cock"
 	CockAnimRate=1.400000
-	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock',Volume=2.000000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-Cock',Volume=1.500000)
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50ClipHit')
-	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut',Volume=2.000000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=2.000000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagOut',Volume=1.500000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.Cylo-MagIn',Volume=1.500000)
 	ClipInFrame=0.700000
 	SightPivot=(Pitch=900)
 	SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
@@ -667,6 +674,7 @@ defaultproperties
 	GunLength=16.500000
 	ParamsClasses(0)=Class'CYLOFirestormWeaponParams' 
 	ParamsClasses(1)=Class'CYLOFirestormWeaponParamsClassic' 
+	ParamsClasses(2)=Class'CYLOFirestormWeaponParamsRealistic' 
 	FireModeClass(0)=Class'BWBP_SKC_Pro.CYLOFirestormPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.CYLOFirestormSecondaryFire'
 	bShowChargingBar=True
