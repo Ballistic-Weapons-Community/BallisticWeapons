@@ -62,6 +62,7 @@ var Sound ChargingSound;                // charging sound
 var() byte	ShieldSoundVolume;
 
 var   float ChargeRate, ChargeRateOvercharge;
+var	  float LaserCharge, MaxCharge;
 var()     float Heat, CoolRate;
 
 replication
@@ -75,7 +76,6 @@ replication
 		ServerSwitchShield;
 		
 }
-
 
 simulated event PostNetReceive()
 {
@@ -173,6 +173,7 @@ function ServerSwitchWeaponMode (byte newMode)
 	super.ServerSwitchWeaponMode (newMode);
 	if (!Instigator.IsLocallyControlled())
 		TyphonPDWPrimaryFire(FireMode[0]).SwitchCannonMode(CurrentWeaponMode);
+		
 	ClientSwitchCannonMode (CurrentWeaponMode);
 }
 simulated function ClientSwitchCannonMode (byte newMode)
@@ -215,6 +216,10 @@ simulated function bool PutDown()
 	return false;
 }
 
+simulated function SetLaserCharge(float NewLaserCharge)
+{
+	LaserCharge = NewLaserCharge;
+}
 
 //=====================================================
 //			SHIELD CODE
@@ -643,16 +648,16 @@ function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDr
 simulated function float ChargeBar()
 {
 	if (!bShieldUp)
-		return FMin(TyphonPDWPrimaryFire(FireMode[0]).LaserCharge, TyphonPDWPrimaryFire(FireMode[0]).MaxCharge);
+		return FMin(LaserCharge, MaxCharge);
 	else
 		return (ShieldPower/100);
 }
-
 
 defaultproperties
 {
 	 ChargeRate=5.000000
 	 ChargeRateOvercharge=2.400000
+	 MaxCharge=1.000000
 	 CoolRate=1.0
      BrokenSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
      DamageSound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Overload'
