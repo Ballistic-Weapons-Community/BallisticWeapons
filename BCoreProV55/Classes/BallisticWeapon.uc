@@ -2792,16 +2792,21 @@ exec simulated function DualSelect (optional class<Weapon> NewWeaponClass )
 // Big powerful cheat to give you all the ballistic weapons and some ammo of course
 exec simulated function Reloaded()
 {
-	ServerReloaded();
+	ServerReloaded(-1);
 }
 
-final function ServerReloaded()
+// Slightly less powerful cheat to give you all the ballistic weapons and some ammo of course
+exec simulated function GiveWeapons(int Group)
+{
+	ServerReloaded(Group);
+}
+
+final function ServerReloaded(optional int Group)
 {
 	local class<Weapon> Weap;
 	local Inventory Inv;
 	local int i;
 	local array<CacheManager.WeaponRecord> Recs;
-	
 
 	if ((Level.Netmode != NM_Standalone && !Instigator.PlayerReplicationInfo.bAdmin)|| Instigator == None || Vehicle(Instigator) != None)
 		return;
@@ -2809,9 +2814,10 @@ final function ServerReloaded()
 	class'CacheManager'.static.GetWeaponList(Recs);
 	for (i=0;i<Recs.Length;i++)
 	{
-		if (!class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
+		if (!class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW || (Group != -1 && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).InventoryGroup != Group))
 			continue;
 		Weap = class<Weapon>(DynamicLoadObject(Recs[i].ClassName, class'Class'));
+		
 		if (Weap != None && ClassIsChildOf(Weap, class'BallisticWeapon'))
 			Instigator.GiveWeapon(Recs[i].ClassName);
 	}

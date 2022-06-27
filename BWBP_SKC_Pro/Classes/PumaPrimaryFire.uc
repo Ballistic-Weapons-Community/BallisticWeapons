@@ -104,7 +104,7 @@ function StartBerserk()
 {
 	FireRate = Params.FireInterval;
 
-	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 1)
+	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
 	{
 		if (BW.GameStyleIndex == 0)
 			FireRate *= 1.5;
@@ -121,7 +121,7 @@ function StopBerserk()
 {
 	FireRate = Params.FireInterval;
 	
-	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 1)
+	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
 	{
 		if (BW.GameStyleIndex == 0)
 			FireRate *= 1.5;
@@ -137,7 +137,7 @@ function StartSuperBerserk()
 {
 	FireRate = Params.FireInterval;
 	
-	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 1)
+	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
 	{
 		if (BW.GameStyleIndex == 0)
 			FireRate *= 1.5;
