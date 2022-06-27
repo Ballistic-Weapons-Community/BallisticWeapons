@@ -10,10 +10,96 @@
 //=============================================================================
 class M75PrimaryFire extends BallisticRailgunFire;
 
-simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
+var   float RailPower;
+	
+simulated state ClassicRail
 {
-	M75Attachment(Weapon.ThirdPersonActor).RailPower = 64;
-	super.SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
+	simulated event ModeDoFire()
+	{
+		Damage 					= default.Damage					* RailPower;
+		WallPenetrationForce 	= default.WallPenetrationForce * 0.2 + (default.WallPenetrationForce * 0.8 * RailPower);
+		PenetrateForce 			= default.PenetrateForce 		 	* RailPower;
+		KickForce 				= default.KickForce 				* RailPower;
+		FireRecoil 			    = default.FireRecoil 			    * RailPower;
+
+		Super.ModeDoFire();
+
+		RailPower = 0.0;
+		
+		Weapon.ThirdPersonActor.SoundPitch =  32;
+		Weapon.ThirdPersonActor.SoundVolume =  64;
+		Weapon.ThirdPersonActor.SoundRadius = 128;
+	}
+
+	simulated function ModeTick(float DT)
+	{
+		Super.ModeTick(DT);
+
+		Weapon.ThirdPersonActor.SoundPitch = 32 + RailPower * 12;
+		RailPower = FMin(1.0, RailPower + 0.1666*DT);
+	}
+	simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
+	{
+		M75Attachment(Weapon.ThirdPersonActor).RailPower = 255*RailPower;
+		super.SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
+	}
+
+	simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
+	{
+		Weapon.HurtRadius(60.0*RailPower, 48+48.0*RailPower, DamageType, 25000, HitLocation);
+		return super.ImpactEffect(HitLocation, HitNormal, HitMat, Other, WaterHitLoc);
+	}
+
+	function WallEnterEffect (vector HitLocation, vector HitNormal, vector X, actor other, Material HitMat)
+	{
+		Weapon.HurtRadius(60.0*RailPower, 48+48.0*RailPower, DamageType, 25000, HitLocation);
+		super.WallEnterEffect(HitLocation, HitNormal, X, other, HitMat);
+	}
+	
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local InstantEffectParams effect_params;
+
+		super.ApplyFireEffectParams(params);
+
+		effect_params = InstantEffectParams(params);
+
+		TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
+		MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
+		// FIXME - CutOffStartRange
+		RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range
+
+		default.Damage = effect_params.Damage;
+		HeadMult = effect_params.HeadMult;
+		LimbMult = effect_params.LimbMult;
+
+		DamageType = effect_params.DamageType;
+		DamageTypeHead = effect_params.DamageTypeHead;	
+		DamageTypeArm = effect_params.DamageTypeArm;
+		bUseRunningDamage = effect_params.UseRunningDamage;
+		RunningSpeedThresh = effect_params.RunningSpeedThreshold;
+
+		default.WallPenetrationForce = effect_params.PenetrationEnergy;
+		default.PenetrateForce = effect_params.PenetrateForce;
+		default.FireRecoil              = effect_params.Recoil;
+		bPenetrate = effect_params.bPenetrate;
+
+		// Note - Deprecate these two
+		PDamageFactor = effect_params.PDamageFactor;		    // Damage multiplied by this with each penetration
+		WallPDamageFactor = effect_params.WallPDamageFactor;		// Damage multiplied by this for each wall penetration
+
+		HookStopFactor = effect_params.HookStopFactor;	
+		HookPullForce = effect_params.HookPullForce;
+	}
+
+}
+simulated state ChargedRail
+{
+	simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
+	{
+		M75Attachment(Weapon.ThirdPersonActor).RailPower = 64;
+		super.SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
+	}
 }
 
 defaultproperties

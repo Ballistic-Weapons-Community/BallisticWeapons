@@ -16,6 +16,7 @@ defaultproperties
 		DamageType=Class'BallisticProV55.DTM75Railgun'
 		DamageTypeHead=Class'BallisticProV55.DTM75RailgunHead'
 		DamageTypeArm=Class'BallisticProV55.DTM75Railgun'
+		PenetrationEnergy=1280.000000
 		PenetrateForce=700
 		bPenetrate=True
 		PDamageFactor=0.95
@@ -31,6 +32,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+        TargetState="ClassicRail"
 		FireInterval=0.300000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True	
