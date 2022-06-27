@@ -223,7 +223,6 @@ simulated function ClientSwitchCannonMode (byte newMode)
 	PumaPrimaryFire(FireMode[0]).SwitchCannonMode(newMode);
 }
 
-
 //Adjusts fire rate properties for close range airburst and blue rapid-firing variant
 function ServerAdjustProps(byte newMode)
 {
@@ -235,9 +234,6 @@ simulated function ClientAdjustProps(byte newMode)
 {
 	PumaPrimaryFire(FireMode[0]).AdjustProps(newMode);
 }
-
-
-
 
 simulated function BringUp(optional Weapon PrevWeapon)
 {
@@ -298,9 +294,9 @@ simulated function bool PutDown()
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i) //Programs PUMA distance det
 {
-	PriDetRange = LastRangeFound/6000;
+	PriDetRange = LastRangeFound / BallisticProjectileFire(FireMode[0]).ProjectileClass.default.Speed;
 	PriDetRangeM = LastRangeFoundM; //Shows distance in 'meters'
-	ServerAdjustProps(2);
+	ServerAdjustProps(CurrentWeaponMode);
 	ServerSwitchRange(PriDetRange);
 	SwitchRange(PriDetRange);
 
@@ -858,7 +854,10 @@ defaultproperties
      CurrentRating=0.600000
      bShowChargingBar=True
      Description="PUMA-77 Repeating Pulse Rifle||Manufacturer: Majestic Firearms 12|Primary: Programmable Smart Round|Secondary: Shield Projector||The Type-77 RPR, a well known pulse weapon used during the Skrith wars, is one of the more recognizable light grenade launchers on the market. It was used extensively by the UTC as the PUMA-77 before their widespread adoption of the SRAC-21/G as the automatic grenade launcher of choice. This powerful weapon differs from other conventional grenade launchers in that it utilizes specialized fission batteries as ammunition, which both power and act as the carrier of the projectile. The projectiles themselves can be programmed by the side-mounted rangefinding module and allow soldiers to selectively airburst the rounds to hit targets behind cover. The PUMA-77s seen here are equipped with Frontier Tech's lightweight X57 shield projector, which is a scaled down version of the heavy portable shields used during the first Skrith war."
-     Priority=245
+     ManualLines(0)="Launches a grenade. Changing firemodes changes how the grenade detonates. Can select between impact detonation, enemy proximity detonation, and variable range detonation."
+	 ManualLines(1)="Employs an energy shield. Pressing altfire again removes the shield."
+	 ManualLines(2)="Each grenade settings has varying stats, such as travel speed and damage.|Impact detonation grenades explode on impact with a surface or enemy.|Proximity detonation grenades explode when close to an enemy.|Variable range detonation grenades explode at the chosen range. Pressing the weapon special key sets the chosen range to the position the cursor is on. Be careful not to set the range to too close."
+	 Priority=245
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=8
      PickupClass=Class'BWBP_SKC_Pro.PumaPickup'

@@ -52,73 +52,69 @@ function SetDet(float DetDist)
 	ModifiedDetonateDelay=DetDist;
 }
 
-
-
 simulated function AdjustProps(byte NewMode)
 {
-	if (NewMode == 2) //Range
+	FireRate = Params.FireInterval;
+
+	if (PumaRepeater(Weapon).PriDetRangeM < 30 && NewMode == 2) //Range
 	{
-		if (PumaRepeater(Weapon).PriDetRangeM < 30)
-			FireRate=0.900000;
+		if (BW.GameStyleIndex == 0)
+			FireRate *= 1.2;
 		else
-			FireRate=0.600000;
+			FireRate *= 2;
 	}
-	else if (NewMode == 1)//Proximity
-	{
-		
-		FireRate=0.900000;
-	}
+
 	if (Weapon.bBerserk)
 		FireRate *= 0.50;
 	if ( Level.GRI.WeaponBerserk > 1.0 )
 	    FireRate /= Level.GRI.WeaponBerserk;
 
+	log("AdjustProps : New FireRate : "$FireRate);
 }
 
 simulated function SwitchCannonMode (byte NewMode)
 {
 	if (NewMode == 2) //Range
-	{
-		ProjectileClass=Class'PumaProjectileRShort';
 		LastProjectileClass=Class'PumaProjectileRShort';
-		if (PumaRepeater(Weapon).PriDetRangeM < 30)
-		FireRate=0.900000;
-		else
-		FireRate=0.600000;
-	}
-	else if (NewMode == 1)//Proximity
-	{
-		ProjectileClass=Class'PumaProjectile';
+	else if (NewMode == 1) //Proximity
 		LastProjectileClass=Class'PumaProjectile';
-		FireRate=0.900000;
-	}
-	else if (NewMode == 0)//Off
-	{
-		ProjectileClass=Class'PumaProjectileFast';
+	else if (NewMode == 0) //Off
 		LastProjectileClass=Class'PumaProjectileFast';
-		FireRate=0.600000;
-	}
 	else
-	{
-		ProjectileClass=Class'PumaProjectile';
 		LastProjectileClass=Class'PumaProjectile';
-		FireRate=0.900000;
+
+	FireRate = Params.FireInterval;
+
+	if (PumaRepeater(Weapon).PriDetRangeM < 30 && NewMode == 2) //Range
+	{
+		if (BW.GameStyleIndex == 0)
+			FireRate *= 1.2;
+		else
+			FireRate *= 2;
 	}
+
 	if (Weapon.bBerserk)
 		FireRate *= 0.50;
 	if ( Level.GRI.WeaponBerserk > 1.0 )
 	    FireRate /= Level.GRI.WeaponBerserk;
 
 	Load=AmmoPerFire;
+
+	log("SwitchCannonMode : New FireRate : "$FireRate);
 }
 
 function StartBerserk()
 {
+	FireRate = Params.FireInterval;
 
-	if (BW.CurrentWeaponMode == 1)
-    	FireRate = 0.90;
-	else
-    	FireRate = 0.60;
+	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
+	{
+		if (BW.GameStyleIndex == 0)
+			FireRate *= 1.2;
+		else
+			FireRate *= 2;
+	}
+		
    	FireRate *= 0.50;
     FireAnimRate = default.FireAnimRate/0.75;
     ReloadAnimRate = default.ReloadAnimRate/0.75;
@@ -126,22 +122,32 @@ function StartBerserk()
 
 function StopBerserk()
 {
-
-	if (BW.CurrentWeaponMode == 1)
-    	FireRate = 0.95;
-	else
-    	FireRate = 0.60;
+	FireRate = Params.FireInterval;
+	
+	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
+	{
+		if (BW.GameStyleIndex == 0)
+			FireRate *= 1.2;
+		else
+			FireRate *= 2;
+	}
+	
     FireAnimRate = default.FireAnimRate;
     ReloadAnimRate = default.ReloadAnimRate;
 }
 
 function StartSuperBerserk()
 {
-
-	if (BW.CurrentWeaponMode == 1)
-    	FireRate = 0.95;
-	else
-    	FireRate = 0.60;
+	FireRate = Params.FireInterval;
+	
+	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
+	{
+		if (BW.GameStyleIndex == 0)
+			FireRate *= 1.2;
+		else
+			FireRate *= 2;
+	}
+			
     FireRate /= Level.GRI.WeaponBerserk;
     FireAnimRate = default.FireAnimRate * Level.GRI.WeaponBerserk;
     ReloadAnimRate = default.ReloadAnimRate * Level.GRI.WeaponBerserk;
