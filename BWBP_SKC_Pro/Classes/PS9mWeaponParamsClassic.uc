@@ -63,6 +63,7 @@ defaultproperties
 		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
 			FireInterval=0.600000
 			BurstFireRateFactor=1.00
+			AmmoPerFire=0
 			FireAnim="Dart_Fire"	
 		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
 		End Object

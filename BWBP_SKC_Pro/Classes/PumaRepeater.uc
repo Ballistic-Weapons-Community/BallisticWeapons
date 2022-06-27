@@ -354,18 +354,21 @@ exec simulated function ShieldDeploy(optional byte i) //Was previously weapon sp
 
 function ServerSwitchShield(bool bNewValue)
 {
-    	local PUMAAttachment Attachment;
+    local PUMAAttachment Attachment;
 
 	bShieldUp = bNewValue;
-    	Attachment = PUMAAttachment(ThirdPersonActor);
+    Attachment = PUMAAttachment(ThirdPersonActor);
    
-    	if( Attachment != None && Attachment.PUMAShieldEffect3rd != None )
+    if( Attachment != None && Attachment.PUMAShieldEffect3rd != None )
 	{
 		if (bShieldUp)
         		Attachment.PUMAShieldEffect3rd.bHidden = false;
 		else
         		Attachment.PUMAShieldEffect3rd.bHidden = true;
 	}
+	
+	//Change projectile
+	//OnFireParamsChanged
 
 	AdjustShieldProperties();
 }

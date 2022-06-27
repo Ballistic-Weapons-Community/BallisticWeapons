@@ -636,13 +636,6 @@ simulated function Notify_BrassOut()
 
 defaultproperties
 {
-	ShotgunLoadAnim="ReloadSG"
-	ShotgunEmptyLoadAnim="ReloadSGEmpty"
-	CockSGAnim="CockSG"
-	TubeOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
-	TubeInSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
-	TubeCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
-	SGShells=6
 	HeatDeclineDelay=0.200000
 	OverheatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-OverHeat'
 	HighHeatSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-HighHeat'
@@ -707,7 +700,7 @@ defaultproperties
 	AttachmentClass=Class'BWBP_SKC_Pro.CYLOFirestormAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMk4'
 	IconCoords=(X2=127,Y2=31)
-	ItemName="CYLO Firestorm V"
+	ItemName="[B] CYLO Firestorm V"
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=30

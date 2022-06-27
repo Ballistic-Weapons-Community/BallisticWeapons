@@ -54,6 +54,8 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		Recoil=512.000000
 		Chaos=0.500000
+		Inaccuracy=(X=1400,Y=1100)
+		HipSpreadFactor=1.000000
 		BotRefireRate=0.700000
 		WarnTargetPct=0.500000	
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-FireSG',Volume=1.300000,Radius=256.000000)

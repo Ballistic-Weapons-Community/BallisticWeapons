@@ -82,21 +82,19 @@ simulated function SwitchCannonMode (byte NewMode)
 		ProjectileClass=Class'PumaProjectileRShort';
 		LastProjectileClass=Class'PumaProjectileRShort';
 		if (PumaRepeater(Weapon).PriDetRangeM < 30)
-		FireRate=0.900000;
+			FireRate=0.900000;
 		else
-		FireRate=0.600000;
+			FireRate=0.600000;
 	}
 	else if (NewMode == 1)//Proximity
 	{
 		ProjectileClass=Class'PumaProjectile';
 		LastProjectileClass=Class'PumaProjectile';
-		FireRate=0.900000;
 	}
 	else if (NewMode == 0)//Off
 	{
 		ProjectileClass=Class'PumaProjectileFast';
 		LastProjectileClass=Class'PumaProjectileFast';
-		FireRate=0.600000;
 	}
 	else
 	{

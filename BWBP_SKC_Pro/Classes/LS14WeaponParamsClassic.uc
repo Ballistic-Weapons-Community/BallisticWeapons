@@ -7,38 +7,70 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=1500000.000000,Max=1500000.000000)
-			WaterTraceRange=5000.0
-			DecayRange=(Min=0.0,Max=0.0)
-			Damage=35
-			HeadMult=2.714285
-			LimbMult=0.628571
-			DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
-			PenetrationEnergy=64.000000
-			PenetrateForce=400
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
-			FlashScaleFactor=0.400000
-			FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LS14.Gauss-Fire',Volume=0.900000)
-			Recoil=100.000000
-			Chaos=-1.0
-			BotRefireRate=1.050000
-			WarnTargetPct=0.050000
-		End Object
+	//Long Barrel
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=1500000.000000,Max=1500000.000000)
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=35
+		HeadMult=2.714285
+		LimbMult=0.628571
+		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
+		PenetrationEnergy=64.000000
+		PenetrateForce=400
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
+		FlashScaleFactor=0.400000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LS14.Gauss-Fire',Volume=0.900000)
+		Recoil=100.000000
+		Chaos=-1.0
+		BotRefireRate=1.050000
+		WarnTargetPct=0.050000
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.100000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
-		
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.100000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
+
+	//Carbine
+	Begin Object Class=InstantEffectParams Name=ClassicCarbinePrimaryEffectParams
+		TraceRange=(Min=1500000.000000,Max=1500000.000000)
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=30
+		HeadMult=2.714285
+		LimbMult=0.628571
+		DamageType=Class'BWBP_SKC_Pro.DTLS14Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTLS14Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTLS14Limb'
+		PenetrationEnergy=64.000000
+		PenetrateForce=400
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
+		FlashScaleFactor=0.400000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LS14.Gauss-Fire',Volume=0.900000)
+		Recoil=75.000000
+		Chaos=-0.1
+		BotRefireRate=1.050000
+		WarnTargetPct=0.050000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicCarbinePrimaryFireParams
+		FireInterval=0.100000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicCarbinePrimaryEffectParams'
+	End Object
+	
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
@@ -104,6 +136,15 @@ defaultproperties
 		SprintChaos=1.000000
 		ChaosDeclineTime=1.500000
 	End Object
+	
+	Begin Object Class=AimParams Name=ClassicCarbineAimParams
+		AimSpread=(Min=10,Max=1024)
+		CrouchMultiplier=0.700000
+		ADSMultiplier=0.800000
+		ViewBindFactor=0.250000
+		SprintChaos=1.000000
+		ChaosDeclineTime=1.000000
+	End Object
     
 	//=================================================================
 	// BASIC PARAMS
@@ -127,12 +168,40 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Single Barrel",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
+		WeaponName="LS14 Laser Rifle"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+		Begin Object Class=WeaponParams Name=ClassicCarbineParams
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=21,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="RDS",Slot=22,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=23,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=24,Scale=1f)
+		WeaponBoneScales(4)=(BoneName="Stock",Slot=25,Scale=0f)
+		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=26,Scale=1f)
+		PlayerSpeedFactor=1.100000
+		PlayerJumpFactor=1.100000
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=20
+		SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
+		SightPivot=(Pitch=600,Roll=-1024)
+		ZoomType=ZT_Logarithmic
+		WeaponModes(0)=(ModeName="Single Barrel",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
+		WeaponName="LS10 Laser Carbine"
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicCarbineAimParams'
+		FireParams(0)=FireParams'ClassicCarbinePrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicCarbineParams'
 
 
 }

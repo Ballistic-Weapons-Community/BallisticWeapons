@@ -25,7 +25,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.XMV-850.XMV-Fire-3')
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.SKAS.SKAS-Rapid')
 		Recoil=300.000000
 		Chaos=-1.0
 		Inaccuracy=(X=900,Y=900)
@@ -35,7 +35,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.110000
+		FireInterval=0.130000
 		BurstFireRateFactor=1.00
 		FireAnim="FireRot"
 		FireEndAnim=	
@@ -61,6 +61,7 @@ defaultproperties
         BotRefireRate=0.800000
         WarnTargetPct=0.400000
 		Inaccuracy=(X=450,Y=450)
+		HipSpreadFactor=1.000000
         FireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Power',Volume=1.300000)	
     End Object
 
@@ -122,14 +123,14 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=RealisticRecoilParams
 		XCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.300000,OutVal=-0.200000),(InVal=1.000000,OutVal=-0.300000)))
-		YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=1.000000)))
+		YCurve=(Points=(,(InVal=0.300000,OutVal=0.500000),(InVal=1.000000,OutVal=0.600000)))
 		PitchFactor=0.000000
 		YawFactor=0.00000
 		XRandFactor=1.000000
 		YRandFactor=1.000000
 		MaxRecoil=2048.000000
 		DeclineTime=1.000000
-		DeclineDelay=0.200000
+		DeclineDelay=0.050000
 		ViewBindFactor=0.900000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
