@@ -2,7 +2,6 @@ class PumaWeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 {
-
     //=================================================================
     // PRIMARY FIRE
     //=================================================================	
@@ -33,9 +32,9 @@ defaultproperties
 		FireInterval=0.450000
 		BurstFireRateFactor=1.00
 		FireAnim="FireAlt"	
-	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryImpactEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryImpactEffectParams'
 	End Object
-	
+
 	//Proximity Det
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryProxyEffectParams
 		ProjectileClass=Class'PumaProjectile'
@@ -55,14 +54,14 @@ defaultproperties
 		SplashDamage=True
 		RecommendSplashDamage=True
 		BotRefireRate=0.300000
-		WarnTargetPct=0.300000	
+		WarnTargetPct=0.300000
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryProxyFireParams
 		FireInterval=0.900000
 		BurstFireRateFactor=1.00
-		FireAnim="FireAlt"	
-	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryProxyEffectParams'
+		FireAnim="FireAlt"
+		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryProxyEffectParams'
 	End Object
 
 	//Range Det
@@ -91,9 +90,9 @@ defaultproperties
 		FireInterval=0.450000
 		BurstFireRateFactor=1.00
 		FireAnim="FireAlt"	
-	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryRangeEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryRangeEffectParams'
 	End Object
-
+	
 	//Shield Explosion
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryShieldEffectParams
 		ProjectileClass=Class'PumaProjectileRShort'
@@ -120,9 +119,9 @@ defaultproperties
 		FireInterval=0.450000
 		BurstFireRateFactor=1.00
 		FireAnim="FireAlt"	
-	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryShieldEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryShieldEffectParams'
 	End Object
-	
+		
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -172,6 +171,4 @@ defaultproperties
 		FireParams(3)=FireParams'ClassicPrimaryRangeFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
 }
