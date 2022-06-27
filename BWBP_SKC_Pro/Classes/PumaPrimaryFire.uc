@@ -58,7 +58,7 @@ simulated function AdjustProps(byte NewMode)
 
 	if (PumaRepeater(Weapon).PriDetRangeM < 30 && NewMode == 2) //Range
 	{
-		if (BW.GameStyleIndex == 1)
+		if (BW.GameStyleIndex == 0)
 			FireRate *= 1.5;
 		else
 			FireRate *= 2;
@@ -86,7 +86,7 @@ simulated function SwitchCannonMode (byte NewMode)
 
 	if (PumaRepeater(Weapon).PriDetRangeM < 30 && NewMode == 2) //Range
 	{
-		if (BW.GameStyleIndex == 1)
+		if (BW.GameStyleIndex == 0)
 			FireRate *= 1.5;
 		else
 			FireRate *= 2;
@@ -106,7 +106,7 @@ function StartBerserk()
 
 	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 1)
 	{
-		if (BW.GameStyleIndex == 1)
+		if (BW.GameStyleIndex == 0)
 			FireRate *= 1.5;
 		else
 			FireRate *= 2;
@@ -123,7 +123,7 @@ function StopBerserk()
 	
 	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 1)
 	{
-		if (BW.GameStyleIndex == 1)
+		if (BW.GameStyleIndex == 0)
 			FireRate *= 1.5;
 		else
 			FireRate *= 2;
@@ -139,7 +139,7 @@ function StartSuperBerserk()
 	
 	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 1)
 	{
-		if (BW.GameStyleIndex == 1)
+		if (BW.GameStyleIndex == 0)
 			FireRate *= 1.5;
 		else
 			FireRate *= 2;
