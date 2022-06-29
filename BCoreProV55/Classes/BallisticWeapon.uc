@@ -2711,7 +2711,7 @@ simulated function CheckBurstMode()
 
 simulated function float CalculateBurstRecoilDelay(bool burst)
 {
-	if (burst)
+	if (burst && BFireMode[0].BurstFireRateFactor < 1)
 	{
 		return
 			(BFireMode[0].FireRate * WeaponModes[CurrentWeaponMode].Value * (1f - BFireMode[0].BurstFireRateFactor)) // cooldown of burst

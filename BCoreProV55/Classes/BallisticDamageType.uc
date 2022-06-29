@@ -444,7 +444,7 @@ defaultproperties
 	bAimable=True
 	
 	AimedString="Aimed"
-	PenetratedString="Wallbang"
+	PenetratedString="Penetrated"
 	His="his"
 	Her="her"
 	Himself="himself"

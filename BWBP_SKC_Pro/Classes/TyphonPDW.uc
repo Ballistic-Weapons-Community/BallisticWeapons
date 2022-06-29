@@ -733,8 +733,8 @@ defaultproperties
      ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagIn',Volume=1.000000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagOut',Volume=1.000000)
 	 WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
-	 WeaponModes(1)=(ModeName="Charged Fire",ModeID="WM_FullAuto")
-	 WeaponModes(2)=(ModeName="Charged Shot",bUnavailable=True)
+	 WeaponModes(1)=(ModeName="Power Fire",ModeID="WM_FullAuto")
+	 WeaponModes(2)=(ModeName="Power Shot",bUnavailable=True)
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
 	 ZoomType=ZT_Irons
@@ -750,7 +750,10 @@ defaultproperties
      AIRating=0.600000
      CurrentRating=0.600000
      Description="Before the Skrith wars broke out, photon weaponry was declared inhumane by the Neo-Geneva convention due to the effects it had against animal test subjects.  It wasn’t until one battle on Gahanna where photon weaponry found it’s value against the Cyron troopers, discombobulating their gyroscopic sensors long enough to turn the tide, living to fight another day.  Since then, photon weaponry has been deemed legal to use in both wartime situations and underground blood sports. The EP110 is the latest in this field, a bullpup SMG not only able to clear out enclosed spaces, but it also has a discombobulator field able to disorient and destroy anyone caught in its path."
-     Priority=19
+     ManualLines(0)="Fires laser shots. Has a decent fire rate with moderate DPS and low recoil, but has inaccuracy problems and prefire wind-up time."	 
+	 ManualLines(1)="Employs an energy shield. Pressing altfire again removes the shield."
+	 ManualLines(2)="Can fire rapid or power laser shots. Power shots have higher DPS and AoE damage, at the cost of a higher wind-up time and lower fire rate."
+	 Priority=19
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	 InventoryGroup=3
      GroupOffset=18

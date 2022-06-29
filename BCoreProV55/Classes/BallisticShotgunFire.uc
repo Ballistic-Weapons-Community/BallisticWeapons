@@ -46,7 +46,11 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     TraceCount = effect_params.TraceCount;
     TracerClass = effect_params.TracerClass;
     ImpactManager = effect_params.ImpactManager;
-    MaxHits = effect_params.MaxHits;
+    MaxHits = effect_params.MaxHits;    
+	default.TraceCount = effect_params.TraceCount;
+    default.TracerClass = effect_params.TracerClass;
+    default.ImpactManager = effect_params.ImpactManager;
+    default.MaxHits = effect_params.MaxHits;
 }
 
 // Get aim then run several individual traces using different spread for each one

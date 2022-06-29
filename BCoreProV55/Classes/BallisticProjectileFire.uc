@@ -47,7 +47,9 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     effect_params = ProjectileEffectParams(params);
 
     ProjectileClass =  effect_params.ProjectileClass;
-    SpawnOffset = effect_params.SpawnOffset;
+    SpawnOffset = effect_params.SpawnOffset;    
+	default.ProjectileClass =  effect_params.ProjectileClass;
+    default.SpawnOffset = effect_params.SpawnOffset;
 }
 
 // Became complicated when acceleration came into the picture

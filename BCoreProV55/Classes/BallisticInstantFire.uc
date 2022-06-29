@@ -116,28 +116,46 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
     MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
     // FIXME - CutOffStartRange
-    RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range
+    RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range    
+	default.TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
+    default.MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
+    default.RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range
 
     Damage = effect_params.Damage;
     HeadMult = effect_params.HeadMult;
-    LimbMult = effect_params.LimbMult;
+    LimbMult = effect_params.LimbMult;    
+	default.Damage = effect_params.Damage;
+    default.HeadMult = effect_params.HeadMult;
+    default.LimbMult = effect_params.LimbMult;
 
     DamageType = effect_params.DamageType;
     DamageTypeHead = effect_params.DamageTypeHead;	
     DamageTypeArm = effect_params.DamageTypeArm;
     bUseRunningDamage = effect_params.UseRunningDamage;
-    RunningSpeedThresh = effect_params.RunningSpeedThreshold;
+    RunningSpeedThresh = effect_params.RunningSpeedThreshold;    
+	default.DamageType = effect_params.DamageType;
+    default.DamageTypeHead = effect_params.DamageTypeHead;	
+    default.DamageTypeArm = effect_params.DamageTypeArm;
+    default.bUseRunningDamage = effect_params.UseRunningDamage;
+    default.RunningSpeedThresh = effect_params.RunningSpeedThreshold;
 
     WallPenetrationForce = effect_params.PenetrationEnergy;
     PenetrateForce = effect_params.PenetrateForce;
-    bPenetrate = effect_params.bPenetrate;
+    bPenetrate = effect_params.bPenetrate;    
+	default.WallPenetrationForce = effect_params.PenetrationEnergy;
+    default.PenetrateForce = effect_params.PenetrateForce;
+    default.bPenetrate = effect_params.bPenetrate;
 
     // Note - Deprecate these two
     PDamageFactor = effect_params.PDamageFactor;		    // Damage multiplied by this with each penetration
-    WallPDamageFactor = effect_params.WallPDamageFactor;		// Damage multiplied by this for each wall penetration
+    WallPDamageFactor = effect_params.WallPDamageFactor;		// Damage multiplied by this for each wall penetration    
+	default.PDamageFactor = effect_params.PDamageFactor;
+    default.WallPDamageFactor = effect_params.WallPDamageFactor;
 
     HookStopFactor = effect_params.HookStopFactor;	
-    HookPullForce = effect_params.HookPullForce;
+    HookPullForce = effect_params.HookPullForce;    
+	default.HookStopFactor = effect_params.HookStopFactor;	
+    default.HookPullForce = effect_params.HookPullForce;
 }
 
 // Maximum range. Used by AI and such...
