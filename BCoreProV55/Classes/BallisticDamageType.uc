@@ -36,7 +36,7 @@ var   globalconfig bool				bSimpleDeathMessages;           // Simplifies death m
 var() localized Array<string>		DeathStrings;					// Multiple deathstrings may be interesting...
 var() localized Array<string>		FemaleSuicides, MaleSuicides;	// Multiple suicide messages
 var() localized string				SimpleKillString, SimpleSuicideString;
-var() localized string				HipString, AimedString;
+var() localized string				HipString, AimedString, PenetratedString;
 var() localized string				His, Her, Himself, Herself, Him, MHer, He, She;
 //===================================================================================
 // BLOOD
@@ -265,6 +265,31 @@ static function string ScopedDeathMessage(PlayerReplicationInfo Killer, PlayerRe
 	return static.Detag(s, Victim, Killer);
 }
 
+// Wall penetrated death message (only for Simple DMs and with gametype support)
+static function string PeneDeathMessage(PlayerReplicationInfo Killer, PlayerReplicationInfo Victim)
+{
+	local string s, t;
+	
+	if (default.WeaponClass == None)
+		s = "%k ["$GetItemName(String(default.Class))$"] %o";
+	else 
+	{
+		if(default.SimpleKillString == "")
+			t = default.WeaponClass.default.ItemName;
+		else 
+            t = default.SimpleKillString;
+
+		t @= default.PenetratedString;
+
+		if (default.bHeaddie)
+			t @= "Headshot";
+
+		s = "%k ["$t$"] %o";
+	}
+	
+	return static.Detag(s, Victim, Killer);
+}
+
 static function string SuicideMessage(PlayerReplicationInfo Victim)
 {
 	if (default.bSimpleDeathMessages)
@@ -419,6 +444,7 @@ defaultproperties
 	bAimable=True
 	
 	AimedString="Aimed"
+	PenetratedString="Wallbang"
 	His="his"
 	Her="her"
 	Himself="himself"

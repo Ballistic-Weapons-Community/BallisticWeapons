@@ -87,6 +87,43 @@ simulated event PostNetReceive()
 	Super.PostNetReceive();
 }
 
+// reload anim override for arena params
+simulated function CommonStartReload (optional byte i)
+{
+	local int m;
+	if (ClientState == WS_BringUp)
+		ClientState = WS_ReadyToFire;
+	if (bShovelLoad)
+		ReloadState = RS_StartShovel;
+	else
+		ReloadState = RS_PreClipOut;
+	PlayReload();
+
+	if (bScopeView && Instigator.IsLocallyControlled())
+		TemporaryScopeDown(Default.SightingTime);
+	for (m=0; m < NUM_FIRE_MODES; m++)
+		if (BFireMode[m] != None)
+			BFireMode[m].ReloadingGun(i);
+
+	if (bCockAfterReload)
+		bNeedCock=true;
+	if (bCockOnEmpty && MagAmmo < 1 && GameStyleIndex == 0)
+		bNeedCock=true;
+	bNeedReload=false;
+}
+
+simulated function PlayReload()
+{
+	if (bShovelLoad)
+		SafePlayAnim(StartShovelAnim, StartShovelAnimRate, , 0, "RELOAD");
+	else
+	{
+	    if (MagAmmo < 1 && HasAnim(ReloadEmptyAnim) && GameStyleIndex != 0)
+			SafePlayAnim(ReloadEmptyAnim, ReloadAnimRate, , 0, "RELOAD");
+		else	SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
+	}
+}
+
 //=====================================================
 //			SCREEN CODE
 //=====================================================
@@ -552,6 +589,7 @@ simulated event RenderOverlays( Canvas Canvas )
 		PumaShieldEffect.SetRotation( Instigator.GetViewRotation() );
         Canvas.DrawActor( PumaShieldEffect, false, false, DisplayFOV );
     }
+	
     Super.RenderOverlays(Canvas);
 
 }
@@ -690,6 +728,8 @@ defaultproperties
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Cock',Volume=1.100000)
      ReloadAnim="Reload"
+	 ReloadEmptyAnim="ReloadEmpty"
+	 bCockOnEmpty=True
      ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagIn',Volume=1.000000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagOut',Volume=1.000000)
 	 WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")

@@ -347,11 +347,11 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 		DamageFactor *= PDamageFactor * PenetrateCount;
 
 	if (WallPenetrationForce > 0 && WallCount > 0)
-	{	
+	{
 		DamageFactor *= WallPDamageFactor * WallCount;
 		DamageFactor *= WallPenForce / WallPenetrationForce;
 	}
-
+	
 	if (bUseRunningDamage)
 	{
 		RelativeVelocity = Instigator.Velocity - Other.Velocity;
@@ -428,7 +428,8 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 	local bool						bHitWall;
 
 	WallPenForce = WallPenetrationForce;
-
+	BW.UpdatePenetrationStatus(0);
+	
 	// Work out the range
 	Dist = TraceRange.Min + FRand() * (TraceRange.Max - TraceRange.Min);
 
@@ -440,6 +441,8 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 
 	while (Dist > 0)		// Loop traces in case we need to go through stuff
 	{
+		BW.UpdatePenetrationStatus(PenCount + WallCount);
+		
 		Other = Trace (HitLocation, HitNormal, End, Start, true, , HitMaterial);
 		Weapon.bTraceWater=false;
 		Dist -= VSize(HitLocation - Start);
@@ -477,6 +480,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			if (CanPenetrate(Other, HitLocation, X, PenCount))
 			{
 				PenCount++;
+				
 				Start = HitLocation + (X * Other.CollisionRadius * 2);
 				End = Start + X * Dist;
 				Weapon.bTraceWater=true;
@@ -494,6 +498,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 		if (Other.bWorldGeometry || Mover(Other) != None)
 		{
 			WallCount++;
+			
 			if (Other.bCanBeDamaged)
 			{
 				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
