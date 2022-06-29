@@ -167,13 +167,6 @@ var     float               LastDamagedTime;
 var 	float 				StrafeScale, BackScale, GroundSpeedScale, AccelRateScale;
 var 	float 				MyFriction, OldMovementSpeed;
 
-// UpdateEyeHeight related
-var 	EPhysics 			OldPhysics2;
-var 	vector 				OldLocation;
-var 	float 				OldBaseEyeHeight;
-var 	int 				IgnoreZChangeTicks;
-var 	float 				EyeHeightOffset;
-
 replication
 {
 	reliable if (Role == ROLE_Authority)
@@ -185,9 +178,6 @@ replication
 simulated function PostBeginPlay()
 {
 	super.PostBeginPlay();
-
-    OldBaseEyeHeight = default.BaseEyeHeight;
-    OldLocation = Location;
 
 	if (class'BallisticReplicationInfo'.default.bNoDodging)
 		bCanWallDodge = false;
@@ -2837,58 +2827,6 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 		
 		OldMovementSpeed = Vsize(Velocity);
 	}
-}
-
-event UpdateEyeHeight( float DeltaTime )
-{
-    local vector Delta;
-
-    if (BallisticPlayer(Controller) == none || BallisticPlayer(Controller).bUseNewEyeHeightAlgorithm == false) {
-        super.UpdateEyeHeight(DeltaTime);
-        return;
-    }
-
-    if ( Controller == None )
-    {
-        EyeHeight = 0;
-        return;
-    }
-    if ( Level.NetMode == NM_DedicatedServer )
-    {
-        Eyeheight = BaseEyeheight;
-        return;
-    }
-    if ( bTearOff )
-    {
-        EyeHeight = Default.BaseEyeheight;
-        bUpdateEyeHeight = false;
-        return;
-    }
-
-    if (Controller.WantsSmoothedView()) {
-        Delta = Location - OldLocation;
-
-        // remove lifts from the equation.
-        if (Base != none)
-            Delta -= DeltaTime * Base.Velocity;
-
-        // Step detection heuristic
-        if (IgnoreZChangeTicks == 0 && Abs(Delta.Z) > DeltaTime * GroundSpeed)
-            EyeHeightOffset += FClamp(Delta.Z, -MAXSTEPHEIGHT, MAXSTEPHEIGHT);
-    }
-
-    OldLocation = Location;
-    OldPhysics2 = Physics;
-    if (IgnoreZChangeTicks > 0) IgnoreZChangeTicks--;
-
-    if (Controller.WantsSmoothedView())
-        EyeHeightOffset += BaseEyeHeight - OldBaseEyeHeight;
-    OldBaseEyeHeight = BaseEyeHeight;
-
-    EyeHeightOffset *= Exp(-9.0 * DeltaTime);
-    EyeHeight = BaseEyeHeight - EyeHeightOffset;
-
-    Controller.AdjustView(DeltaTime);
 }
 
 defaultproperties
