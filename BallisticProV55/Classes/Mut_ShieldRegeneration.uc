@@ -17,32 +17,31 @@ event Timer()
 {
 	local int i, MaxShield;
     local Controller C;
-    local BallisticPawn P;
+    local xPawn P;
 
-	if (bUseShieldRegen)
-	{
-		log('24');
-		for (i=0;i<Level.GRI.PRIArray.Length;i++)
-		{
-			if(Level.GRI.PRIArray[i] == None)
-				continue;
-			
-			C = Controller(Level.GRI.PRIArray[i].Owner);
-			
-			if (C == None)
-				continue;
+	if (!bUseShieldRegen)
+        return;
 
-			P = BallisticPawn(C.Pawn);
+    for (i = 0; i < Level.GRI.PRIArray.Length; i++)
+    {
+        if(Level.GRI.PRIArray[i] == None)
+            continue;
+        
+        C = Controller(Level.GRI.PRIArray[i].Owner);
+        
+        if (C == None)
+            continue;
 
-			if (P == None)
-				continue;
+        P = xPawn(C.Pawn);
 
-			MaxShield = FMin(ShieldCap, P.ShieldStrengthMax);
-			
-			if(P.LastDamagedTime < (Level.TimeSeconds - RegenDelay) && P.ShieldStrength < MaxShield)
-				P.AddShieldStrength(Clamp(MaxShield - P.ShieldStrength, 0, RegenAmount));
-		}
-	}
+        if (P == None || P.LastDamagedTime < (Level.TimeSeconds - RegenDelay))
+            continue;
+
+        MaxShield = FMin(ShieldCap, P.ShieldStrengthMax);
+        
+        if (MaxShield > P.ShieldStrength)
+            P.AddShieldStrength(Clamp(MaxShield - P.ShieldStrength, 0, RegenAmount));
+    }
 }
 
 event PostBeginPlay()
@@ -51,7 +50,6 @@ event PostBeginPlay()
 
 	if (bUseShieldRegen)
 	{
-		log('54');
 		SetTimer(RegenRate, true);
 
 		if(!bDeleteMe)
