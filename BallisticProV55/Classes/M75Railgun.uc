@@ -377,7 +377,10 @@ simulated event DrawThermalMode (Canvas C)
 // Charging bar shows RailPower
 simulated function float ChargeBar()
 {
-	return M75SecondaryFire(FireMode[1]).RailPower;
+	if (M75PrimaryFire(FireMode[0]).IsInState('ClassicRail'))
+		return M75PrimaryFire(FireMode[0]).RailPower;
+	else
+		return M75SecondaryFire(FireMode[1]).RailPower;
 }
 
 // Secondary fire doesn't count for this weapon

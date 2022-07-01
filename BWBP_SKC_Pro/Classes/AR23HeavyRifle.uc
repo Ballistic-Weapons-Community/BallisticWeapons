@@ -312,6 +312,7 @@ defaultproperties
      ClipInFrame=0.700000
      ParamsClasses(0)=Class'AR23WeaponParamsArena'
      ParamsClasses(1)=Class'AR23WeaponParamsClassic'
+     ParamsClasses(2)=Class'AR23WeaponParamsRealistic'
 	 WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
      WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
      WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")

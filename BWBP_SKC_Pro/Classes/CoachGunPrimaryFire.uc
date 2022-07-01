@@ -230,7 +230,7 @@ simulated function ModeTick(float DeltaTime)
 //======================================================================
 simulated event ModeDoFire()
 {
-	if (CoachGun(BW).BCRepClass.default.GameStyle == 1)
+	if (CoachGun(BW).BCRepClass.default.GameStyle != 0)
 	{
 		super.ModeDoFire();
 		return;

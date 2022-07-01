@@ -1,4 +1,4 @@
-class AH208WeaponParamsClassic extends BallisticWeaponParams;
+class AH208WeaponParamsRealistic extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -7,7 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
 			TraceRange=(Min=8000.000000,Max=9000.000000)
 			WaterTraceRange=7200.0
 			DecayRange=(Min=0.0,Max=0.0)
@@ -24,7 +24,7 @@ defaultproperties
 			WallPDamageFactor=0.4
 			MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 			FlashScaleFactor=0.500000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-Fire4',Volume=4.100000)
+			FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Pitch=0.900000,Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
 			Recoil=4096.000000
 			Chaos=-1.0
 			Inaccuracy=(X=8,Y=8)
@@ -32,18 +32,18 @@ defaultproperties
 			WarnTargetPct=0.100000
 		End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 			FireInterval=0.550000
 			BurstFireRateFactor=1.00
 			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+		FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 		End Object
 		
 	//=================================================================
 	// RECOIL
 	//=================================================================
 	
-	Begin Object Class=RecoilParams Name=ClassicRecoilParams
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams
 		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
 		YawFactor=0.400000
 		MaxRecoil=8192.000000
@@ -59,7 +59,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 	
-	Begin Object Class=AimParams Name=ClassicAimParams
+	Begin Object Class=AimParams Name=RealisticAimParams
 		AimSpread=(Min=96,Max=2900)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
@@ -73,17 +73,17 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-	Begin Object Class=WeaponParams Name=ClassicParams
+	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=25
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=8
-		SightOffset=(X=20.000000,Y=-7.350000,Z=45.400002)
+		SightOffset=(X=70.000000,Y=-7.350000,Z=45.400000)
 		ViewOffset=(X=0.000000,Y=19.500000,Z=-30.000000)
-		ZoomType=ZT_Irons
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		ZoomType=ZT_Fixed
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 	End Object
 
-	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(0)=WeaponParams'RealisticParams'
 }

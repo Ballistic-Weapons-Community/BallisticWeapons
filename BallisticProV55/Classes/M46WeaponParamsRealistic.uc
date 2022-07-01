@@ -30,6 +30,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
+        AimedFireAnim="AimedFire"
 		FireInterval=0.055000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	

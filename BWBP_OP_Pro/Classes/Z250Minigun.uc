@@ -491,7 +491,7 @@ defaultproperties
 	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
-	BarrelSpinSound=Sound'BWBP_SKC_Sounds.550.Mini-Rotor'
+	BarrelSpinSound=Sound'BWBP_OP_Sounds.Z250.Z250-Spin'
 	BarrelStopSound=Sound'BWBP_SKC_Sounds.550.Mini-Down'
 	BarrelStartSound=Sound'BWBP_SKC_Sounds.550.Mini-Up'
 	PlayerSpeedFactor=0.900000

@@ -27,6 +27,7 @@ defaultproperties
 		Recoil=1536.000000
 		Chaos=0.240000
 		Inaccuracy=(X=950,Y=800)
+		HipSpreadFactor=1.000000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000	
 	End Object

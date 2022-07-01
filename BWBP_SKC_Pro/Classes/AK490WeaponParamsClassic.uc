@@ -38,6 +38,39 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
+	
+	//Burst
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryBurstEffectParams
+		TraceRange=(Min=12000.000000,Max=13000.000000)
+		WaterTraceRange=10400.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.800000
+		Damage=35
+		HeadMult=2.85
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
+		PenetrationEnergy=70.000000
+		PenetrateForce=180
+		bPenetrate=True
+		PDamageFactor=0.600000
+		WallPDamageFactor=0.600000
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=0.800000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.ak47.ak47-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=256.000000
+		Chaos=0.05
+		Inaccuracy=(X=12,Y=12)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireBurstParams
+		FireInterval=0.033000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryBurstEffectParams'
+	End Object
 				
 	//=================================================================
 	// RECOIL
@@ -81,9 +114,15 @@ defaultproperties
 		MagAmmo=20
 		SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
 		SightPivot=(Pitch=64)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireBurstParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
 	End Object
 	
     Layouts(0)=WeaponParams'ClassicParams'
