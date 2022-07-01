@@ -9,23 +9,7 @@
 //=============================================================================
 class PumaPrimaryFire extends BallisticProProjectileFire;
 
-var() class<Projectile> LastProjectileClass;
 var float ModifiedDetonateDelay; //For manual distance det
-
-simulated event ModeDoFire()
-{
-
-	if (!AllowFire())
-		return;
-
-	if (PumaRepeater(Weapon).bShieldUp)
-		ProjectileClass=Class'PumaProjectileClose';
-	else
-		ProjectileClass=LastProjectileClass;
-	
-		super.ModeDoFire();
-
-}
 
 function SpawnProjectile (Vector Start, Rotator Dir)
 {
@@ -56,7 +40,7 @@ simulated function AdjustProps(byte NewMode)
 {
 	FireRate = Params.FireInterval;
 
-	if (PumaRepeater(Weapon).PriDetRangeM < 30 && NewMode == 2) //Range
+	if (PumaRepeater(BW).PriDetRangeM < 30 && NewMode == 2) //Range
 	{
 		if (BW.GameStyleIndex == 0)
 			FireRate *= 1.2;
@@ -68,24 +52,13 @@ simulated function AdjustProps(byte NewMode)
 		FireRate *= 0.50;
 	if ( Level.GRI.WeaponBerserk > 1.0 )
 	    FireRate /= Level.GRI.WeaponBerserk;
-
-	log("AdjustProps : New FireRate : "$FireRate);
 }
 
 simulated function SwitchCannonMode (byte NewMode)
 {
-	if (NewMode == 2) //Range
-		LastProjectileClass=Class'PumaProjectileRShort';
-	else if (NewMode == 1) //Proximity
-		LastProjectileClass=Class'PumaProjectile';
-	else if (NewMode == 0) //Off
-		LastProjectileClass=Class'PumaProjectileFast';
-	else
-		LastProjectileClass=Class'PumaProjectile';
-
 	FireRate = Params.FireInterval;
 
-	if (PumaRepeater(Weapon).PriDetRangeM < 30 && NewMode == 2) //Range
+	if (PumaRepeater(BW).PriDetRangeM < 30 && NewMode == 2) //Range
 	{
 		if (BW.GameStyleIndex == 0)
 			FireRate *= 1.2;
@@ -99,15 +72,13 @@ simulated function SwitchCannonMode (byte NewMode)
 	    FireRate /= Level.GRI.WeaponBerserk;
 
 	Load=AmmoPerFire;
-
-	log("SwitchCannonMode : New FireRate : "$FireRate);
 }
 
 function StartBerserk()
 {
 	FireRate = Params.FireInterval;
 
-	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
+	if (PumaRepeater(BW).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
 	{
 		if (BW.GameStyleIndex == 0)
 			FireRate *= 1.2;
@@ -124,7 +95,7 @@ function StopBerserk()
 {
 	FireRate = Params.FireInterval;
 	
-	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
+	if (PumaRepeater(BW).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
 	{
 		if (BW.GameStyleIndex == 0)
 			FireRate *= 1.2;
@@ -140,7 +111,7 @@ function StartSuperBerserk()
 {
 	FireRate = Params.FireInterval;
 	
-	if (PumaRepeater(Weapon).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
+	if (PumaRepeater(BW).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
 	{
 		if (BW.GameStyleIndex == 0)
 			FireRate *= 1.2;
@@ -155,7 +126,6 @@ function StartSuperBerserk()
 
 defaultproperties
 {
-     LastProjectileClass=Class'BWBP_SKC_Pro.PumaProjectile'
      SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
      BrassClass=Class'BWBP_SKC_Pro.Brass_PUMA'
