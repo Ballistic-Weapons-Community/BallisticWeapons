@@ -13,7 +13,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_TyphonPDW'
 		DecayRange=(Min=900,Max=2400)
 		TraceRange=(Max=6000.000000)
-		Damage=27.000000
+		Damage=25.000000
 		RangeAtten=0.30000
 		Inaccuracy=(X=32,Y=32)
 		PenetrateForce=150
