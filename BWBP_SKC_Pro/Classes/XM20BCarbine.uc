@@ -605,8 +605,7 @@ defaultproperties
      SightOffset=(X=-10.000000,Y=11.7500000,Z=22.500000)
 	 ParamsClasses(0)=Class'XM20BWeaponParams'
 	 ParamsClasses(1)=Class'XM20BWeaponParamsClassic'
-	 ParamsClasses(2)=Class'XM20BWeaponParams'
-	 ParamsClasses(3)=Class'XM20BWeaponParams'
+	 ParamsClasses(2)=Class'XM20BWeaponParamsRealistic'
      FireModeClass(0)=Class'BWBP_SKC_Pro.XM20BPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.XM20BSecondaryFire'
      BringUpTime=0.800000
@@ -624,7 +623,7 @@ defaultproperties
      AttachmentClass=Class'BWBP_SKC_Pro.XM20BAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.XM20B.SmallIcon_XM20'
      IconCoords=(X2=127,Y2=31)
-     ItemName="XM20B Laser Carbine"
+     ItemName="XM20 Laser Carbine"
 	 MagAmmo=40
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence

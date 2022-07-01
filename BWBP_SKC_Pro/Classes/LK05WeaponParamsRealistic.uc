@@ -22,7 +22,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=1.200000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-RapidFire',Volume=1.200000)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LK05.LK05-HeavyFire',Volume=1.800000)
 		Recoil=700.000000
 		Chaos=0.080000
 		Inaccuracy=(X=10,Y=10)
@@ -96,9 +96,18 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=30
+		MagAmmo=25
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
 		ViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
+		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-RecShine',Index=3)
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

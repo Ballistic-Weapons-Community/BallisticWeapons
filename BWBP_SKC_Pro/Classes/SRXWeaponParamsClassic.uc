@@ -81,7 +81,7 @@ defaultproperties
 		DamageTypeHead=class'DTSRXRifleHead_Corrosive';
 		DamageTypeArm=class'DTSRXRifle_Corrosive';
 		bPenetrate=False
-		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
 		FlashScaleFactor=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-SpecialFire',Pitch=1.200000,Volume=1.500000)
 		Recoil=128.000000

@@ -217,6 +217,7 @@ defaultproperties
 	CurrentRating=0.6
 	ParamsClasses(0)=Class'MRDRWeaponParams'
 	ParamsClasses(1)=Class'MRDRWeaponParamsClassic'
+	ParamsClasses(2)=Class'MRDRWeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MRDRPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MRDRSecondaryFire'
 	PutDownTime=0.400000
