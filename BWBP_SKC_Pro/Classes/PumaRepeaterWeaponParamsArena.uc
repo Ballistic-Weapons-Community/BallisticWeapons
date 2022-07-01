@@ -11,7 +11,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectileFast'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=6500.000000
-		Damage=75
+		Damage=80
 		DamageRadius=180.000000
 		MomentumTransfer=30000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
@@ -25,7 +25,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryImpactFireParams
-		FireInterval=0.750000
+		FireInterval=0.900000
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryImpactEffectParams'
 	End Object
@@ -34,8 +34,8 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryProxyEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectile'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=4500.000000
-		Damage=60
+		Speed=4000.000000
+		Damage=70
 		DamageRadius=180.000000
 		MomentumTransfer=30000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
@@ -58,8 +58,8 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryRangeEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectileRShort'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=5500.000000
-		Damage=60
+		Speed=8500.000000
+		Damage=70
 		DamageRadius=180.000000
 		MomentumTransfer=30000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
@@ -73,27 +73,25 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryRangeFireParams
-		FireInterval=1.1250000
+		FireInterval=0.900000
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryRangeEffectParams'
 	End Object
 	
 	//Shield Explosion
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryShieldEffectParams
-		ProjectileClass=Class'PumaProjectileRShort'
+		ProjectileClass=Class'PumaProjectileClose'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=6000.000000
 		Damage=110.000000
-		DamageRadius=360.000000
-		MomentumTransfer=60000.000000
-		HeadMult=1.0
-		LimbMult=1.0
+		DamageRadius=180.000000
+		MomentumTransfer=30000.000000
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.700000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Fire')
 		Recoil=512.000000
-		Chaos=-1.0
+		Chaos=0.5
 		SplashDamage=True
 		RecommendSplashDamage=True
 		BotRefireRate=0.300000
@@ -101,7 +99,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryShieldFireParams
-		FireInterval=0.450000
+		FireInterval=1.125000
 		BurstFireRateFactor=1.00
 		FireAnim="FireAlt"	
 		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryShieldEffectParams'
@@ -179,16 +177,17 @@ defaultproperties
 		ViewOffset=(X=7.000000,Y=6.000000,Z=-13.000000)
 		SightOffset=(X=-10.000000,Y=-0.035000,Z=19.500000)
 		SightPivot=(Pitch=0)
-		//WeaponModes(0)=(ModeName="Airburst: Impact Detonation",ModeID="WM_FullAuto")
-		//WeaponModes(1)=(ModeName="Airburst: Proximity Detonation",ModeID="WM_FullAuto",bUnavailable=True)
-		//WeaponModes(2)=(ModeName="Airburst: Variable Range Detonation")
-		//InitialWeaponMode=0
+		WeaponModes(0)=(ModeName="Airburst: Impact Detonation",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Airburst: Proximity Detonation",ModeID="WM_FullAuto")
+		WeaponModes(2)=(ModeName="Airburst: Variable Range Detonation",ModeID="WM_FullAuto")
+		//WeaponModes(3)=(ModeName="Shield (UNUSED)",bUnavailable=true)
+		InitialWeaponMode=0
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryImpactFireParams'
 		FireParams(1)=FireParams'ArenaPrimaryProxyFireParams'
 		FireParams(2)=FireParams'ArenaPrimaryRangeFireParams'
-		FireParams(3)=FireParams'ArenaPrimaryRangeFireParams'
+		FireParams(3)=FireParams'ArenaPrimaryShieldFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ArenaParams'
