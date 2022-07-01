@@ -18,7 +18,8 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.400000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Fire2',Volume=0.900000,Slot=SLOT_Interact,bNoOverride=False)
+		//FireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		WarnTargetPct=0.200000
 	End Object
 

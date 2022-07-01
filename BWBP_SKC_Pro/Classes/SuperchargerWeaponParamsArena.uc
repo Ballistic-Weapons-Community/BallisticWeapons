@@ -48,7 +48,8 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'A49FlashEmitter'
 		FlashScaleFactor=1.200000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-SecFire',Volume=1.000000)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Fire2',Volume=0.900000,Slot=SLOT_Interact,bNoOverride=False)
+		//FireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-SecFire',Volume=1.000000)
 		Chaos=0.500000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000	
