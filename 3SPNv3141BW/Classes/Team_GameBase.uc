@@ -1584,6 +1584,8 @@ function BroadcastDeathMessage(Controller Killer, Controller Other, class<Damage
 {
     if ( (Killer == Other) || (Killer == None) )
         BroadcastLocalized(self,DeathMessageClass, 1, None, Other.PlayerReplicationInfo, damageType);
+	else if (Killer.Pawn != None && BallisticWeapon(Killer.Pawn.Weapon) != None && BallisticWeapon(Killer.Pawn.Weapon).bHasPenetrated)
+		BroadcastLocalized(self,DeathMessageClass, 3, Killer.PlayerReplicationInfo, Other.PlayerReplicationInfo, damageType);	
     else if (Killer.Pawn != None 
 	&& BallisticWeapon(Killer.Pawn.Weapon) != None 
 	&& BallisticWeapon(Killer.Pawn.Weapon).bScopeView

@@ -92,6 +92,7 @@ defaultproperties
 		SightingTime=0.350000
 		DisplaceDurationMult=1
 		MagAmmo=25
+		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

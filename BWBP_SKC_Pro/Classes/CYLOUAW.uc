@@ -38,6 +38,15 @@ replication
 	    SGShells;
 }
 
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle == 1)
+	{
+		CYLOPrimaryFire(FireMode[0]).bVariableFirerate=true;
+	}
+}
+
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
 	if (MeleeState >= MS_Held)

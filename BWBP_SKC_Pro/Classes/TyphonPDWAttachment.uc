@@ -84,6 +84,7 @@ function SetBrightness(int b, bool hit)
 defaultproperties
 {
 	 FlashBone="tip"
+	 FlashScale=0.1
      MuzzleFlashClass=Class'BWBP_SKC_Pro.TyphonPDWFlashEmitter'
      ImpactManager=Class'BWBP_SKC_Pro.IM_LS14Impacted'
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Pulse'

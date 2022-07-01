@@ -263,6 +263,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	ParamsClasses(0)=Class'M925WeaponParams'
 	ParamsClasses(1)=Class'M925WeaponParamsClassic' //todo: turret
+	ParamsClasses(2)=Class'M925WeaponParamsRealistic' //todo: turret
 	FireModeClass(0)=Class'BallisticProV55.M925PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'
 	

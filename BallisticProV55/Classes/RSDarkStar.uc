@@ -779,7 +779,8 @@ defaultproperties
      SightDisplayFOV=40.000000
 	 GunLength=128.000000
 	 ParamsClasses(0)=Class'RSDarkWeaponParams'
-	 ParamsClasses(1)=Class'RSDarkWeaponParams' //To Do Classic: State Code
+	 ParamsClasses(1)=Class'RSDarkWeaponParamsClassic'
+	 ParamsClasses(2)=Class'RSDarkWeaponParamsClassic'
      FireModeClass(0)=Class'BallisticProV55.RSDarkPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.RSDarkMeleeFire'
      BringUpTime=0.500000

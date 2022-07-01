@@ -79,7 +79,8 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=UniversalParams
-        PlayerSpeedFactor=0.9
+        ViewOffset=(Y=75.000000,Z=-125.000000)
+		PlayerSpeedFactor=0.9
         MagAmmo=1
         InventorySize=5
         DisplaceDurationMult=0

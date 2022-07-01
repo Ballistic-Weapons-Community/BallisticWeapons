@@ -52,9 +52,13 @@ static function string GetString(
             KillerName = default.Blue $ RelatedPRI_1.PlayerName $ default.Text;
     }
 
+	if (Switch == 3 && class<BallisticDamageType>(OptionalObject) != None && class'BallisticDamageType'.default.bSimpleDeathMessages)
+		return class'GameInfo'.static.ParseKillMessage(KillerName, VictimName, class<BallisticDamageType>(OptionalObject).static.PeneDeathMessage(RelatedPRI_1, RelatedPRI_2));
+
 	if (Switch == 2 && class<BallisticDamageType>(OptionalObject) != None && class'BallisticDamageType'.default.bSimpleDeathMessages)
 		return class'GameInfo'.static.ParseKillMessage(KillerName, VictimName, class<BallisticDamageType>(OptionalObject).static.ScopedDeathMessage(RelatedPRI_1, RelatedPRI_2));
-    return class'GameInfo'.static.ParseKillMessage(KillerName, VictimName, class<DamageType>(OptionalObject).static.DeathMessage(RelatedPRI_1, RelatedPRI_2));
+    
+	return class'GameInfo'.static.ParseKillMessage(KillerName, VictimName, class<DamageType>(OptionalObject).static.DeathMessage(RelatedPRI_1, RelatedPRI_2));
 }
 
 defaultproperties

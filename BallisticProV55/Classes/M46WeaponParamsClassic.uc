@@ -34,6 +34,7 @@ defaultproperties
 		End Object
 
 		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+			AimedFireAnim="AimedFire"
 			FireInterval=0.150000
 			BurstFireRateFactor=1.00
 			FireEndAnim=	
@@ -124,6 +125,10 @@ defaultproperties
         SightPivot=(Pitch=-300,Roll=0)
         SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

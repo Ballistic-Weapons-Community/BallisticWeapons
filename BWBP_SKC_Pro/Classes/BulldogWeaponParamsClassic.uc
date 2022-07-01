@@ -113,13 +113,14 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=9,Scale=0f)
 		PlayerSpeedFactor=0.900000
 		PlayerJumpFactor=0.750000
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=8
-		ViewOffset=(X=22.000000,Y=3.000000,Z=-12.000000)
-		SightOffset=(X=-30.000000,Y=9.000000,Z=12.500000)
+		ViewOffset=(X=11.000000,Y=2.000000,Z=-6.000000)
+		SightOffset=(X=-18.000000,Y=4.475000,Z=6.800000)
 		SightPivot=(Pitch=256)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

@@ -330,7 +330,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	PutDownAnimRate=1.5
 	PutDownTime=0.35
-	CockAnimRate=1.700000
+	CockAnimRate=1.100000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Cock1')
 	ReloadAnim="ReloadLoop"
 	ReloadAnimRate=1.100000
@@ -355,6 +355,7 @@ defaultproperties
 	GunLength=48.000000
 	ParamsClasses(0)=Class'M763WeaponParams'
 	ParamsClasses(1)=Class'M763WeaponParamsClassic' //todo: primary anim, alt + melee
+	ParamsClasses(2)=Class'M763WeaponParamsRealistic' //todo: semi-auto
 	FireModeClass(0)=Class'BallisticProV55.M763PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M763SecondaryFire'
 	

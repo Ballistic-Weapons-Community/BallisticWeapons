@@ -254,7 +254,7 @@ function ServerSwitchSilencer(bool bNewValue)
 
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (BCRepClass.default.GameStyle != 1)
+	if (BCRepClass.default.GameStyle == 0)
 		return;
 	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
@@ -428,6 +428,7 @@ defaultproperties
 	SightZoomFactor=0.85
 	ParamsClasses(0)=Class'XRS10WeaponParams'
 	ParamsClasses(1)=Class'XRS10WeaponParamsClassic'
+	ParamsClasses(2)=Class'XRS10WeaponParamsRealistic'
 	FireModeClass(0)=Class'BallisticProV55.XRS10PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XRS10SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

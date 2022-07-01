@@ -55,6 +55,7 @@ defaultproperties
      NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=8.000000)
 	 ParamsClasses(0)=Class'A909WeaponParams'
      ParamsClasses(1)=Class'A909WeaponParamsClassic'
+     ParamsClasses(2)=Class'A909WeaponParamsRealistic'
      FireModeClass(0)=Class'BallisticProV55.A909PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.A909SecondaryFire'
      PutDownAnimRate=2.200000

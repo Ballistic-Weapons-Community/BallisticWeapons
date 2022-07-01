@@ -174,7 +174,11 @@ simulated function ApplyParams(ProjectileEffectParams params)
     MaxDamageGainFactor = params.MaxDamageGainFactor;    
     DamageGainStartTime = params.DamageGainStartTime;    
     DamageGainEndTime = params.DamageGainEndTime;    
-    RadiusFallOffType = params.RadiusFallOffType;    
+    RadiusFallOffType = params.RadiusFallOffType;     
+	default.MaxDamageGainFactor = params.MaxDamageGainFactor;    
+    default.DamageGainStartTime = params.DamageGainStartTime;    
+    default.DamageGainEndTime = params.DamageGainEndTime;    
+    default.RadiusFallOffType = params.RadiusFallOffType;    
 }
 
 simulated event TornOff()

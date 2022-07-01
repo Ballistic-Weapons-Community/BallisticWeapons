@@ -60,63 +60,65 @@ simulated event PostNetReceive()
 		GotoState('RocketPack');
 }
 
-/*
+
 function TakeDamage(int Damage, Pawn InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType)
 {
 	local bool bFire;
-
-	if (Role < ROLE_Authority)
-		return;
-	if (Instigator != None && (Instigator.InGodMode() ||
-	   (Instigator.Controller != None && InstigatedBy != None && InstigatedBy != Instigator && Instigator.Controller.SameTeamAs(InstigatedBy.Controller)) ||
-	    Normal(HitLocation-Location) Dot vector(Rotation) > 0.4))
-	    return;
-
-	if (class<BallisticDamageType>(DamageType) != None)
+	if (Weapon.BCRepClass.default.GameStyle != 0)
 	{
-		// GearSafe damage does not harm the gear, just the guy inside...
-		if (class<BallisticDamageType>(DamageType).static.IsDamage(",GearSafe,"))
+		if (Role < ROLE_Authority)
 			return;
-		else if (/*class<BallisticDamageType>(DamageType).static.IsDamage(",Flame,") || */class<BallisticDamageType>(DamageType).default.bIgniteFires)
+		if (Instigator != None && (Instigator.InGodMode() ||
+		   (Instigator.Controller != None && InstigatedBy != None && InstigatedBy != Instigator && Instigator.Controller.SameTeamAs(InstigatedBy.Controller)) ||
+			Normal(HitLocation-Location) Dot vector(Rotation) > 0.4))
+			return;
+
+		if (class<BallisticDamageType>(DamageType) != None)
 		{
-			Damage = Max(1, Damage * 0.2);
-			bFire=true;
+			// GearSafe damage does not harm the gear, just the guy inside...
+			if (class<BallisticDamageType>(DamageType).static.IsDamage(",GearSafe,"))
+				return;
+			else if (/*class<BallisticDamageType>(DamageType).static.IsDamage(",Flame,") || */class<BallisticDamageType>(DamageType).default.bIgniteFires)
+			{
+				Damage = Max(1, Damage * 0.2);
+				bFire=true;
+			}
 		}
-	}
-	Health -= Damage;
-	if (Health > 0)
-	{
-		if (level.NetMode != NM_DedicatedServer)
+		Health -= Damage;
+		if (Health > 0)
 		{
-			class'IM_Bullet'.static.StartSpawn(HitLocation, normal(HitLocation-Location), 3, Instigator);
-			if (level.NetMode == NM_ListenServer)
+			if (level.NetMode != NM_DedicatedServer)
+			{
+				class'IM_Bullet'.static.StartSpawn(HitLocation, normal(HitLocation-Location), 3, Instigator);
+				if (level.NetMode == NM_ListenServer)
+					HurtLoc = HitLocation;
+			}
+			else
 				HurtLoc = HitLocation;
+			return;
 		}
-		else
-			HurtLoc = HitLocation;
-		return;
-	}
-	if (!GoneOff())
-	{
-		Instigator = InstigatedBy;
-		LeakLoc = HitLocation;
-		LeakDir = Normal(Location-LeakLoc)<<Owner.Rotation;
-		bAlwaysRelevant=True;
-		if (bFire)
+		if (!GoneOff())
+		{
+			Instigator = InstigatedBy;
+			LeakLoc = HitLocation;
+			LeakDir = Normal(Location-LeakLoc)<<Owner.Rotation;
+			bAlwaysRelevant=True;
+			if (bFire)
+			{
+				GotoState('RocketPack');
+				bNetGoRocket=true;
+			}
+			else
+				GotoState('JetPack');
+		}
+		else if (IsInState('JetPack') && bFire)
 		{
 			GotoState('RocketPack');
 			bNetGoRocket=true;
 		}
-		else
-			GotoState('JetPack');
-	}
-	else if (IsInState('JetPack') && bFire)
-	{
-		GotoState('RocketPack');
-		bNetGoRocket=true;
 	}
 }
-*/
+
 
 function AttachmentDestroyed()
 {

@@ -467,6 +467,7 @@ defaultproperties
 	GunLength=80.000000
 	ParamsClasses(0)=Class'M75WeaponParams'
 	ParamsClasses(1)=Class'M75WeaponParamsClassic' //todo: state code for charge, alt fire??
+	ParamsClasses(2)=Class'M75WeaponParamsRealistic' //todo: state code for charge, alt fire??
     FireModeClass(0)=Class'BallisticProV55.M75PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M75SecondaryFire'
 	

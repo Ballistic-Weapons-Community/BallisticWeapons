@@ -46,7 +46,11 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     TraceCount = effect_params.TraceCount;
     TracerClass = effect_params.TracerClass;
     ImpactManager = effect_params.ImpactManager;
-    MaxHits = effect_params.MaxHits;
+    MaxHits = effect_params.MaxHits;    
+	default.TraceCount = effect_params.TraceCount;
+    default.TracerClass = effect_params.TracerClass;
+    default.ImpactManager = effect_params.ImpactManager;
+    default.MaxHits = effect_params.MaxHits;
 }
 
 // Get aim then run several individual traces using different spread for each one
@@ -123,6 +127,133 @@ function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector 
 		bHeadshot = true;
 
 	TrackHit(Victim, Dmg, HitLocation, bHeadshot); 
+}
+
+// Do the trace to find out where bullet really goes
+function DoTrace (Vector InitialStart, Rotator Dir)
+{
+	local int						PenCount, WallCount, WallPenForce;
+	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc, ExitNormal;
+	local Material					HitMaterial, ExitMaterial;
+	local float						Dist;
+	local Actor						Other, LastOther;
+	local bool						bHitWall;
+
+	WallPenForce = WallPenetrationForce;
+	BW.UpdatePenetrationStatus(0);
+	
+	// Work out the range
+	Dist = TraceRange.Min + FRand() * (TraceRange.Max - TraceRange.Min);
+
+	Start = InitialStart;
+	X = Normal(Vector(Dir));
+	End = Start + X * Dist;
+	LastHitLoc = End;
+	Weapon.bTraceWater=true;
+
+	while (Dist > 0)		// Loop traces in case we need to go through stuff
+	{
+		BW.UpdatePenetrationStatus(WallCount);
+		
+		Other = Trace (HitLocation, HitNormal, End, Start, true, , HitMaterial);
+		Weapon.bTraceWater=false;
+		Dist -= VSize(HitLocation - Start);
+
+		if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry))
+			break;
+
+		if (Other == None)
+		{
+			LastHitLoc = End;
+			break;
+		}
+
+		// Water
+		if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume) )
+		{
+			if (VSize(HitLocation - Start) > 1)
+				WaterHitLoc=HitLocation;
+			Start = HitLocation;
+			Dist = Min(Dist, MaxWaterTraceRange);
+			End = Start + X * Dist;
+			Weapon.bTraceWater=false;
+			continue;
+		}
+
+		LastHitLoc = HitLocation;
+			
+		// Got something interesting
+		if (!Other.bWorldGeometry && Other != LastOther)
+		{
+			OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
+		
+			LastOther = Other;
+
+			if (CanPenetrate(Other, HitLocation, X, PenCount))
+			{
+				PenCount++;
+				
+				Start = HitLocation + (X * Other.CollisionRadius * 2);
+				End = Start + X * Dist;
+				Weapon.bTraceWater=true;
+				if (Vehicle(Other) != None)
+					HitVehicleEffect (HitLocation, HitNormal, Other);
+				continue;
+			}
+			else if (Vehicle(Other) != None)
+				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+			else if (Mover(Other) == None)
+				break;
+		}
+
+		// Do impact effect
+		if (Other.bWorldGeometry || Mover(Other) != None)
+		{
+			WallCount++;
+			
+			if (Other.bCanBeDamaged)
+			{
+				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, WallPenForce, WaterHitLoc);
+				break;
+			}
+
+			if (
+                    WallCount < MAX_WALLS && WallPenForce > 0 && 
+                    class'WallPenetrationUtil'.static.GoThroughWall
+                    (
+                        Weapon, Instigator, 
+                        HitLocation, HitNormal, 
+                        WallPenForce * SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial)), 
+                        X, Start, 
+                        ExitNormal, ExitMaterial
+                    )
+                )
+			{
+				WallPenForce -= VSize(Start - HitLocation) / SurfaceScale(class'WallPenetrationUtil'.static.GetSurfaceType(Other, HitMaterial));
+
+				WallPenetrateEffect(Other, HitLocation, HitNormal, HitMaterial);
+				WallPenetrateEffect(Other, Start, ExitNormal, ExitMaterial, true);
+				Weapon.bTraceWater=true;
+				continue;
+			}
+			bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+			
+			break;
+		}
+		// Still in the same guy
+		if (Other == Instigator || Other == LastOther)
+		{
+			Start = HitLocation + (X * FMax(32, Other.CollisionRadius * 2));
+			End = Start + X * Dist;
+			Weapon.bTraceWater=true;
+			continue;
+		}
+		break;
+	}
+	// Never hit a wall, so just tell the attachment to spawn muzzle flashes and play anims, etc
+	if (!bHitWall)
+		NoHitEffect(X, InitialStart, LastHitLoc, WaterHitLoc);
 }
 
 function TrackHit(Actor Target, int Damage, vector HitLocation, bool bHeadshot)

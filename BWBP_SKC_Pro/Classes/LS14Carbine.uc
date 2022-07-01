@@ -1099,11 +1099,11 @@ defaultproperties
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LS14'
 	DrawScale=0.300000
-     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-     Skins(1)=Shader'BWBP_SKC_Tex.LS14.LS14_SD'
-	 Skins(2)=Texture'ONSstructureTextures.CoreGroup.Invisible'
-	 Skins(3)=Texture'ONSstructureTextures.CoreGroup.Invisible'
-	 Skins(4)=Texture'ONSstructureTextures.CoreGroup.Invisible'
-     Skins(5)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
+    Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+    Skins(1)=Shader'BWBP_SKC_Tex.LS14.LS14_SD'
+	Skins(2)=Texture'ONSstructureTextures.CoreGroup.Invisible'
+	Skins(3)=Texture'ONSstructureTextures.CoreGroup.Invisible'
+	Skins(4)=Texture'ONSstructureTextures.CoreGroup.Invisible'
+    Skins(5)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
 	 
 }

@@ -163,7 +163,12 @@ simulated event Tick (float DT)
 {
 	super.Tick(DT);
 	if (StoredGas < default.StoredGas && ( FireMode[1]==None || !FireMode[1].IsFiring() ))
-		StoredGas = FMin(default.StoredGas, StoredGas + (DT / 20));
+	{
+		if (BCRepClass.default.GameStyle == 1)
+			StoredGas = FMin(default.StoredGas, StoredGas + (DT / 10) * (1 + StoredGas/default.StoredGas) );
+		else
+			StoredGas = FMin(default.StoredGas, StoredGas + (DT / 20));
+	}
 }
 
 simulated event Destroyed()
@@ -284,6 +289,9 @@ defaultproperties
 	SightDisplayFOV=25.000000
 	GunLength=16.000000
 	ParamsClasses(0)=Class'CX61WeaponParams'
+	ParamsClasses(1)=Class'CX61WeaponParamsClassic'
+	ParamsClasses(2)=Class'CX61WeaponParamsClassic'
+	ParamsClasses(3)=Class'CX61WeaponParams'
 	FireModeClass(0)=Class'BWBP_OP_Pro.CX61PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.CX61SecondaryFire'
 	SelectAnimRate=1.400000
