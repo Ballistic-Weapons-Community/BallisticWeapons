@@ -26,6 +26,18 @@ replication
 		FlameCount, SprayCount;
 }
 
+simulated Event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+
+	if (CX61AssaultRifle(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
+	{
+		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_CX61Spectre';
+		TracerChance=1;
+		TracerMix=0;
+	}
+}
+
 simulated function Vector GetAltTipLocation()
 {
 	return GetBoneCoords('tip2').Origin;
