@@ -69,6 +69,7 @@ defaultproperties
 		Recoil=768.000000
 		Chaos=-1.0
 		Inaccuracy=(X=1400,Y=1100)
+		HipSpreadFactor=1.000000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000	
 	End Object
@@ -122,8 +123,9 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=28
-		SightOffset=(X=-25.000000,Z=8.000000)
-		SightPivot=(Pitch=900)
+		SightPivot=(Pitch=450)
+		SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
+		ViewOffset=(X=8.000000,Z=-14.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

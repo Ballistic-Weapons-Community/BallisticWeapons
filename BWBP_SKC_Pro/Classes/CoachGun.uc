@@ -28,7 +28,7 @@ var() float				SingleReloadAnimRate;   // Animation rate for single reload.
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.default.GameStyle != 0)
 	{
 		CoachGunPrimaryFire(FireMode[0]).bFireOnRelease = false;
 	}

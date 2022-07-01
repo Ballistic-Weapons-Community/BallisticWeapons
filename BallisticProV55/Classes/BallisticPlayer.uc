@@ -53,8 +53,6 @@ var class<Weapon>						LastStreaks[2];
 var float                               DesiredFlashScale;
 var Vector                              DesiredFlashFog;
 
-var bool								bUseNewEyeHeightAlgorithm;
-
 // Fractional Parts of Pitch/Yaw Input
 var transient float PitchFraction, YawFraction;
 
@@ -63,7 +61,7 @@ replication
 	reliable if (Role == ROLE_Authority)
 		LastLoadoutClasses;
 	reliable if (Role < ROLE_Authority)
-		ServerCamDist, ServerReloaded, ServerSetEyeHeightAlgorithm;
+		ServerCamDist, ServerReloaded;
 }
 
 simulated event PostBeginPlay()
@@ -1010,11 +1008,6 @@ state PlayerDriving
 state PlayerSwimming
 {
 	ignores SeePlayer, HearNoise, Bump, ServerSpectate;
-	
-	    function bool WantsSmoothedView()
-    {
-        return ( !Pawn.bJustLanded );
-    }
 }
 
 state PlayerSpaceFlying
@@ -1273,15 +1266,6 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 	Canvas.SetPos(4, YPos);
 }
 
-function ServerSetEyeHeightAlgorithm(bool B) {
-    bUseNewEyeHeightAlgorithm = B;
-}
-
-function SetEyeHeightAlgorithm(bool B) {
-    bUseNewEyeHeightAlgorithm = B;
-    ServerSetEyeHeightAlgorithm(B);
-}
-
 // Corrected Mouse Movement
 
 function int FractionCorrection(float in, out float fraction) {
@@ -1368,18 +1352,8 @@ function UpdateRotation(float DeltaTime, float maxPitch)
     }
 }
 
-function bool WantsSmoothedView()
-{
-    if (Pawn == none) return false;
-
-    return
-        (((Pawn.Physics == PHYS_Walking) || (Pawn.Physics == PHYS_Spider)) && Pawn.bJustLanded == false) ||
-        (Pawn.Physics == PHYS_Falling && BallisticPawn(Pawn).OldPhysics2 == PHYS_Walking);
-}
-
 defaultproperties
 {
-	 bUseNewEyeHeightAlgorithm=true
      WeapUIEnter=Sound'MenuSounds.selectDshort'
      WeapUIExit=Sound'MenuSounds.selectK'
      WeapUIFail=Sound'MenuSounds.denied1'
