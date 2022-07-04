@@ -700,7 +700,7 @@ defaultproperties
 	AttachmentClass=Class'BWBP_SKC_Pro.CYLOFirestormAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMk4'
 	IconCoords=(X2=127,Y2=31)
-	ItemName="[B] CYLO Firestorm V"
+	ItemName="CYLO Firestorm V"
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=30
