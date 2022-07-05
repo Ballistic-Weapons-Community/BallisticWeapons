@@ -8,8 +8,8 @@
 //=============================================================================
 class ICISPrimaryFire extends BallisticFire;
 
-const BASE_HEAL = 1;
-const MAX_HEAL = 5;
+const BASE_HEAL = 5;
+const MAX_HEAL = 10;
 const TICKS_PER_RAMP = 1;
 
 var() sound		FireSoundLoop;

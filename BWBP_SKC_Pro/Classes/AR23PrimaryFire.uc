@@ -10,7 +10,7 @@
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright© 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class AR23PrimaryFire extends BallisticInstantFire;
+class AR23PrimaryFire extends BallisticProInstantFire;
 
 defaultproperties
 {
@@ -18,8 +18,9 @@ defaultproperties
 	 //CutOffDistance=1536.000000
      //CutOffStartRange=768.000000
      //WaterRangeFactor=0.800000
-     WallPenetrationForce=48.000000
+     //WallPenetrationForce=48.000000
      //MaxWalls=3
+	 //PenetrateForce=250
 	 
 	 Damage=60.000000
      HeadMult=1.4f
@@ -27,7 +28,6 @@ defaultproperties
 	 
      WaterRangeAtten=0.800000
      KickForce=16000
-     PenetrateForce=250
      bPenetrate=True
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
      bCockAfterEmpty=True

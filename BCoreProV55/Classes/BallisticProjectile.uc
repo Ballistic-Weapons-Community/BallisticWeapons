@@ -36,6 +36,7 @@ var     Actor					HitActor;				// Actor that got hit directly
 var     bool					bCanHitOwner;			// Bounced or turned around or something so it can hit owner
 var     bool					bExploded;				// Already Blown up. Used by troublesome rocekts that keep going off on clients
 var     Vector                  TearOffHitNormal;
+var		bool					bApplyParams;			// Apply params to this projectile (allows separation for projectiles such as flak classes)
 //=============================================================================
 // END STATE VARIABLES
 //=============================================================================
@@ -174,7 +175,11 @@ simulated function ApplyParams(ProjectileEffectParams params)
     MaxDamageGainFactor = params.MaxDamageGainFactor;    
     DamageGainStartTime = params.DamageGainStartTime;    
     DamageGainEndTime = params.DamageGainEndTime;    
-    RadiusFallOffType = params.RadiusFallOffType;    
+    RadiusFallOffType = params.RadiusFallOffType;     
+	default.MaxDamageGainFactor = params.MaxDamageGainFactor;    
+    default.DamageGainStartTime = params.DamageGainStartTime;    
+    default.DamageGainEndTime = params.DamageGainEndTime;    
+    default.RadiusFallOffType = params.RadiusFallOffType;    
 }
 
 simulated event TornOff()
@@ -881,6 +886,7 @@ function float GetPenetrationDamageScale(Vector dir, float dist)
 
 defaultproperties
 {
+	bApplyParams=True
     bLimitMomentumZ=True
     RadiusFallOffType=RFO_Quadratic
     bRandomStartRotation=True

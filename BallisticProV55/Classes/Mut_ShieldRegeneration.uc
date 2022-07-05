@@ -7,7 +7,7 @@
 class Mut_ShieldRegeneration extends Mutator
 	config(BallisticProV55);
 
-var globalconfig bool     	bUseShieldRegen;
+var globalconfig bool     	bUseShieldRegen;	
 var globalconfig float		RegenRate;			// Amount of time between restoring 'RegenAmount' health to players.
 var globalconfig int		RegenAmount;		// How much health to restore every 'RegenRate'.
 var globalconfig float		RegenDelay;			// Amount of time between a player being damaged and the regeneration starting.
@@ -20,8 +20,7 @@ event Timer()
     local BallisticPawn P;
 
 	if (bUseShieldRegen)
-	{
-		log('24');
+	{	
 		for (i=0;i<Level.GRI.PRIArray.Length;i++)
 		{
 			if(Level.GRI.PRIArray[i] == None)
@@ -51,7 +50,6 @@ event PostBeginPlay()
 
 	if (bUseShieldRegen)
 	{
-		log('54');
 		SetTimer(RegenRate, true);
 
 		if(!bDeleteMe)

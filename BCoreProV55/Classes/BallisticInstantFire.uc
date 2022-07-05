@@ -116,28 +116,46 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
     MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
     // FIXME - CutOffStartRange
-    RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range
+    RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range    
+	default.TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
+    default.MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
+    default.RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range
 
     Damage = effect_params.Damage;
     HeadMult = effect_params.HeadMult;
-    LimbMult = effect_params.LimbMult;
+    LimbMult = effect_params.LimbMult;    
+	default.Damage = effect_params.Damage;
+    default.HeadMult = effect_params.HeadMult;
+    default.LimbMult = effect_params.LimbMult;
 
     DamageType = effect_params.DamageType;
     DamageTypeHead = effect_params.DamageTypeHead;	
     DamageTypeArm = effect_params.DamageTypeArm;
     bUseRunningDamage = effect_params.UseRunningDamage;
-    RunningSpeedThresh = effect_params.RunningSpeedThreshold;
+    RunningSpeedThresh = effect_params.RunningSpeedThreshold;    
+	default.DamageType = effect_params.DamageType;
+    default.DamageTypeHead = effect_params.DamageTypeHead;	
+    default.DamageTypeArm = effect_params.DamageTypeArm;
+    default.bUseRunningDamage = effect_params.UseRunningDamage;
+    default.RunningSpeedThresh = effect_params.RunningSpeedThreshold;
 
     WallPenetrationForce = effect_params.PenetrationEnergy;
     PenetrateForce = effect_params.PenetrateForce;
-    bPenetrate = effect_params.bPenetrate;
+    bPenetrate = effect_params.bPenetrate;    
+	default.WallPenetrationForce = effect_params.PenetrationEnergy;
+    default.PenetrateForce = effect_params.PenetrateForce;
+    default.bPenetrate = effect_params.bPenetrate;
 
     // Note - Deprecate these two
     PDamageFactor = effect_params.PDamageFactor;		    // Damage multiplied by this with each penetration
-    WallPDamageFactor = effect_params.WallPDamageFactor;		// Damage multiplied by this for each wall penetration
+    WallPDamageFactor = effect_params.WallPDamageFactor;		// Damage multiplied by this for each wall penetration    
+	default.PDamageFactor = effect_params.PDamageFactor;
+    default.WallPDamageFactor = effect_params.WallPDamageFactor;
 
     HookStopFactor = effect_params.HookStopFactor;	
-    HookPullForce = effect_params.HookPullForce;
+    HookPullForce = effect_params.HookPullForce;    
+	default.HookStopFactor = effect_params.HookStopFactor;	
+    default.HookPullForce = effect_params.HookPullForce;
 }
 
 // Maximum range. Used by AI and such...
@@ -347,11 +365,11 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 		DamageFactor *= PDamageFactor * PenetrateCount;
 
 	if (WallPenetrationForce > 0 && WallCount > 0)
-	{	
+	{
 		DamageFactor *= WallPDamageFactor * WallCount;
 		DamageFactor *= WallPenForce / WallPenetrationForce;
 	}
-
+	
 	if (bUseRunningDamage)
 	{
 		RelativeVelocity = Instigator.Velocity - Other.Velocity;
@@ -428,7 +446,8 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 	local bool						bHitWall;
 
 	WallPenForce = WallPenetrationForce;
-
+	BW.UpdatePenetrationStatus(0);
+	
 	// Work out the range
 	Dist = TraceRange.Min + FRand() * (TraceRange.Max - TraceRange.Min);
 
@@ -440,6 +459,8 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 
 	while (Dist > 0)		// Loop traces in case we need to go through stuff
 	{
+		BW.UpdatePenetrationStatus(PenCount + WallCount);
+		
 		Other = Trace (HitLocation, HitNormal, End, Start, true, , HitMaterial);
 		Weapon.bTraceWater=false;
 		Dist -= VSize(HitLocation - Start);
@@ -477,6 +498,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			if (CanPenetrate(Other, HitLocation, X, PenCount))
 			{
 				PenCount++;
+				
 				Start = HitLocation + (X * Other.CollisionRadius * 2);
 				End = Start + X * Dist;
 				Weapon.bTraceWater=true;
@@ -494,6 +516,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 		if (Other.bWorldGeometry || Mover(Other) != None)
 		{
 			WallCount++;
+			
 			if (Other.bCanBeDamaged)
 			{
 				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);

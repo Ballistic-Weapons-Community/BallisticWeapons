@@ -16,6 +16,7 @@ defaultproperties
      DeathStrings(3)="%o couldn't escape getting eviscerated by %k, even if they were around a corner."
 	 DeathStrings(4)="%k launched some contained devastation into %o's face."
 	 DeathStrings(5)="%o got all the acupuncture thanks to %k and their trusty canister of pain."
+	 SimpleKillString="AR23 Shotgun Fire"
      WeaponClass=Class'BWBP_SKC_Pro.AR23HeavyRifle'
      DeathString="%o received a 40mm serving of buckshot from %k's AR23"
      FemaleSuicide="%o made a severe tactical error."

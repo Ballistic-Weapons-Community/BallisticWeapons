@@ -21,6 +21,7 @@ simulated function InitProjectile ()
 
 defaultproperties
 {
+	 bApplyParams=False
      DetonateOn=DT_Impact
      DampenFactor=0.250000
      DampenFactorParallel=0.250000

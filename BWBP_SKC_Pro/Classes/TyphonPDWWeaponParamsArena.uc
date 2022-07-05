@@ -7,21 +7,20 @@ defaultproperties
     // PRIMARY FIRE - Rapid Fire
     //=================================================================	
 	
-	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		DamageType=Class'BWBP_SKC_Pro.DT_TyphonPDW'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_TyphonPDWHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_TyphonPDW'
-		DecayRange=(Min=1800,Max=3600)
+		DecayRange=(Min=900,Max=2400)
 		TraceRange=(Max=6000.000000)
-		Damage=26.000000
+		Damage=25.000000
 		RangeAtten=0.30000
 		Inaccuracy=(X=32,Y=32)
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.TyphonPDWFlashEmitter'
-		FlashScaleFactor=0.30000
-		Recoil=150.000000
+		FlashScaleFactor=0.350000
+		Recoil=48.000000
 		Chaos=0.150000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Fire',Volume=9.500000,Slot=SLOT_Interact,bNoOverride=False)
 		BotRefireRate=0.900000
@@ -42,15 +41,15 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_TyphonPDW'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_TyphonPDWHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_TyphonPDW'
-		DecayRange=(Min=1800,Max=3600)
+		DecayRange=(Min=900,Max=3600)
 		TraceRange=(Max=6000.000000)
-		Damage=51.000000
+		Damage=48.000000
 		RangeAtten=0.30000
 		Inaccuracy=(X=32,Y=32)
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
-		FlashScaleFactor=0.050000
+		FlashScaleFactor=0.350000
 		Recoil=140.000000
 		Chaos=0.150000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Overblast',Volume=7.800000)
@@ -59,10 +58,10 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParamsCharged
-		FireInterval=1.500000
+		FireInterval=0.400000
 		FireAnim="Fire"
-		AimedFireAnim="Fire"
-		AmmoPerFire=5
+		AimedFireAnim="SightFire"
+		AmmoPerFire=2
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParamsCharged'
 	End Object
 		
@@ -100,13 +99,15 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
 		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.250000,Z=15.700000)
+		SightOffset=(X=-4.000000,Y=0.300000,Z=18.700000)
+		SightPivot=(Pitch=1024)
 		PlayerSpeedFactor=.95
 		PlayerJumpFactor=.95
 		InventorySize=12
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1
-		MagAmmo=25
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=1,Scale=0f)
+		MagAmmo=20
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

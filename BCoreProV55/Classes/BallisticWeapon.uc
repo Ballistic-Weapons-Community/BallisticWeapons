@@ -421,6 +421,7 @@ var(Aim) bool				    bAimDisabled;		// Disables the entire aiming system. Bullet
 var(Aim) bool				    bUseNetAim;			// Aim info is replicated to clients. Otherwise client and server aim will be separate
 var(Aim) bool				    bUseSpecialAim;		// Firemodes will use GetPlayerAim instead of normal AdjustAim. Used for autotracking and other special aiming functions
 var() float					    GunLength;			// How far weapon extends from player. Used by long-gun check
+var() bool						bHasPenetrated;		// Has this weapon recently penetrated? Used in announcing wallbang death messages
 //=============================================================================
 // END GAMEPLAY VARIABLES
 //=============================================================================
@@ -2710,7 +2711,7 @@ simulated function CheckBurstMode()
 
 simulated function float CalculateBurstRecoilDelay(bool burst)
 {
-	if (burst)
+	if (burst && BFireMode[0].BurstFireRateFactor < 1)
 	{
 		return
 			(BFireMode[0].FireRate * WeaponModes[CurrentWeaponMode].Value * (1f - BFireMode[0].BurstFireRateFactor)) // cooldown of burst
@@ -5069,6 +5070,14 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
     Canvas.SetPos(4,YPos);
 }
 // End debug -----------------------------------------------------------------------------------------------------------
+
+simulated function UpdatePenetrationStatus(int Count)
+{
+	if (Count > 0)
+		bHasPenetrated = true;
+	else
+		bHasPenetrated = false;
+}
 
 simulated final function bool HasSecondaryAmmo()
 {

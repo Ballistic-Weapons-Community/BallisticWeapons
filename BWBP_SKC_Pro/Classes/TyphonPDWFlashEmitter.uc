@@ -5,13 +5,6 @@
 //=============================================================================
 class TyphonPDWFlashEmitter extends BallisticEmitter;
 
-simulated event PostBeginPlay()
-{
-	Super.PostBeginPlay();
-	if (WeaponAttachment(Owner) != None)
-		Emitters[1].ZTest = true;
-}
-
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter5
@@ -51,14 +44,13 @@ defaultproperties
          UseColorScale=True
          FadeOut=True
          RespawnDeadParticles=False
-         ZTest=False
          UniformSize=True
          AutomaticInitialSpawning=False
          TriggerDisabled=False
          ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
          ColorScale(1)=(RelativeTime=0.100000,Color=(B=255,G=255,R=255,A=255))
          ColorScale(2)=(RelativeTime=0.200000,Color=(B=96,G=96,R=96,A=255))
-         ColorScale(3)=(RelativeTime=1.000000,Color=(B=255,R=128,A=255))
+         ColorScale(3)=(RelativeTime=1.000000,Color=(B=255,R=96,A=255))
          ColorMultiplierRange=(X=(Min=8.000000,Max=0.800000),Y=(Min=0.200000,Max=0.400000),Z=(Min=0.000000,Max=0.200000))
          FadeOutStartTime=0.025000
          CoordinateSystem=PTCS_Relative
@@ -72,7 +64,4 @@ defaultproperties
          SpawnOnTriggerPPS=500000.000000
      End Object
      Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.TyphonPDWFlashEmitter.SpriteEmitter10'
-
-     bNoDelete=False
-	 DrawScale=0.2
 }

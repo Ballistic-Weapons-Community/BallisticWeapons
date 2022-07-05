@@ -6,23 +6,12 @@
 //=============================================================================
 class HMCFlashEmitter extends BallisticEmitter;
 
-simulated event PostBeginPlay()
-{
-	local int i;
-	
-	Super.PostBeginPlay();
-	
-	if (Weapon(Owner) == None)
-		for(i=0;i<Emitters.Length;i++) Emitters[i].ZTest = true;
-}
-
 defaultproperties
 {
      Begin Object Class=SpriteEmitter Name=SpriteEmitter9
-         UseColorScale=True
+		 ZTest=True
          FadeOut=True
          RespawnDeadParticles=False
-         ZTest=False
          UseRegularSizeScale=False
          UniformSize=True
          AutomaticInitialSpawning=False
@@ -42,11 +31,11 @@ defaultproperties
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=50000.000000
      End Object
-     Emitters(0)=SpriteEmitter'BallisticProV55.RSNovaSlowMuzzleFlash.SpriteEmitter9'
+     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.HMCFlashEmitter.SpriteEmitter9'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter10
+		 ZTest=True
          UseDirectionAs=PTDU_Up
-         UseColorScale=True
          FadeOut=True
          RespawnDeadParticles=False
          UseSizeScale=True
@@ -73,10 +62,10 @@ defaultproperties
          SpawnOnTriggerPPS=50000.000000
          StartVelocityRange=(X=(Min=340.000000,Max=340.000000))
      End Object
-     Emitters(1)=SpriteEmitter'BallisticProV55.RSNovaSlowMuzzleFlash.SpriteEmitter10'
+     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.HMCFlashEmitter.SpriteEmitter10'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter26
-         UseColorScale=True
+		 ZTest=True
          FadeOut=True
          FadeIn=True
          RespawnDeadParticles=False
@@ -112,5 +101,4 @@ defaultproperties
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=50.000000,Max=65.000000))
      End Object
      Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.HMCFlashEmitter.SpriteEmitter26'
-
 }

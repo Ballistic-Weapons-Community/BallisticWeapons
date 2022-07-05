@@ -162,6 +162,7 @@ var		int					PreventHealCount;
 var 	class<LocalMessage> HealBlockMessage;
 
 var     float               LastDamagedTime;
+var		class<DamageType>	LastDamagedType;
 
 //Sloth variables
 var 	float 				StrafeScale, BackScale, GroundSpeedScale, AccelRateScale;
@@ -2636,7 +2637,10 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		Health -= actualDamage;
 
         if (Damage > 0 && (instigatedBy == None || instigatedBy.GetTeamNum() != GetTeamNum() || GetTeamNum() == 255))
+		{
 		    LastDamagedTime = Level.TimeSeconds;
+			LastDamagedType = damageType;
+		}
 
 		if ( HitLocation == vect(0,0,0) )
 			HitLocation = Location;

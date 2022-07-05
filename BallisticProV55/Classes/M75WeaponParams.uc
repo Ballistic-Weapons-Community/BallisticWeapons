@@ -39,6 +39,9 @@ defaultproperties
 		Damage=80
 		BotRefireRate=0.3
 		WarnTargetPct=0.75
+		DamageType=Class'BallisticProV55.DTM75Railgun'
+		DamageTypeHead=Class'BallisticProV55.DTM75RailgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM75Railgun'
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Fire',Radius=768.000000)
 	End Object
 	

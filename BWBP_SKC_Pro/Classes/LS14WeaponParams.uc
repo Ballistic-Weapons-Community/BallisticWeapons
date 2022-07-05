@@ -20,6 +20,7 @@ defaultproperties
 		Chaos=0.300000
 		BotRefireRate=0.99
 		WarnTargetPct=0.30000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LS14.Gauss-Fire',Volume=0.900000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams

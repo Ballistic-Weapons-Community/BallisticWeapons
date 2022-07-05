@@ -142,6 +142,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
+	 bApplyParams=False
      FlareClass=Class'BWBP_SKC_Pro.LonghornClusterFlare'
      DetonateOn=DT_None
      DampenFactor=0.120000

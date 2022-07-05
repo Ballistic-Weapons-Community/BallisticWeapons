@@ -101,6 +101,9 @@ static simulated final function SetAimParams(BallisticWeapon BW)
 
 static simulated final function SetProjectileParams(BallisticWeapon BW, BallisticProjectile proj)
 {
+	if (!proj.bApplyParams)
+		return;
+
     if (proj.ModeIndex == 0)
     {
         if (default.Layouts[BW.LayoutIndex].FireParams.Length > 0)

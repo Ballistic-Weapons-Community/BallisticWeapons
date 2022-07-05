@@ -62,6 +62,7 @@ var Sound ChargingSound;                // charging sound
 var() byte	ShieldSoundVolume;
 
 var   float ChargeRate, ChargeRateOvercharge;
+var	  float LaserCharge, MaxCharge;
 var()     float Heat, CoolRate;
 
 replication
@@ -76,7 +77,6 @@ replication
 		
 }
 
-
 simulated event PostNetReceive()
 {
 	if (bShieldUp != bOldShieldUp)
@@ -85,6 +85,43 @@ simulated event PostNetReceive()
 		AdjustShieldProperties(bShieldUp);
 	}
 	Super.PostNetReceive();
+}
+
+// reload anim override for arena params
+simulated function CommonStartReload (optional byte i)
+{
+	local int m;
+	if (ClientState == WS_BringUp)
+		ClientState = WS_ReadyToFire;
+	if (bShovelLoad)
+		ReloadState = RS_StartShovel;
+	else
+		ReloadState = RS_PreClipOut;
+	PlayReload();
+
+	if (bScopeView && Instigator.IsLocallyControlled())
+		TemporaryScopeDown(Default.SightingTime);
+	for (m=0; m < NUM_FIRE_MODES; m++)
+		if (BFireMode[m] != None)
+			BFireMode[m].ReloadingGun(i);
+
+	if (bCockAfterReload)
+		bNeedCock=true;
+	if (bCockOnEmpty && MagAmmo < 1 && GameStyleIndex == 0)
+		bNeedCock=true;
+	bNeedReload=false;
+}
+
+simulated function PlayReload()
+{
+	if (bShovelLoad)
+		SafePlayAnim(StartShovelAnim, StartShovelAnimRate, , 0, "RELOAD");
+	else
+	{
+	    if (MagAmmo < 1 && HasAnim(ReloadEmptyAnim) && GameStyleIndex != 0)
+			SafePlayAnim(ReloadEmptyAnim, ReloadAnimRate, , 0, "RELOAD");
+		else	SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
+	}
 }
 
 //=====================================================
@@ -173,6 +210,7 @@ function ServerSwitchWeaponMode (byte newMode)
 	super.ServerSwitchWeaponMode (newMode);
 	if (!Instigator.IsLocallyControlled())
 		TyphonPDWPrimaryFire(FireMode[0]).SwitchCannonMode(CurrentWeaponMode);
+		
 	ClientSwitchCannonMode (CurrentWeaponMode);
 }
 simulated function ClientSwitchCannonMode (byte newMode)
@@ -215,6 +253,10 @@ simulated function bool PutDown()
 	return false;
 }
 
+simulated function SetLaserCharge(float NewLaserCharge)
+{
+	LaserCharge = NewLaserCharge;
+}
 
 //=====================================================
 //			SHIELD CODE
@@ -547,6 +589,7 @@ simulated event RenderOverlays( Canvas Canvas )
 		PumaShieldEffect.SetRotation( Instigator.GetViewRotation() );
         Canvas.DrawActor( PumaShieldEffect, false, false, DisplayFOV );
     }
+	
     Super.RenderOverlays(Canvas);
 
 }
@@ -643,16 +686,16 @@ function bool CheckReflect( Vector HitLocation, out Vector RefNormal, int AmmoDr
 simulated function float ChargeBar()
 {
 	if (!bShieldUp)
-		return FMin(TyphonPDWPrimaryFire(FireMode[0]).LaserCharge, TyphonPDWPrimaryFire(FireMode[0]).MaxCharge);
+		return FMin(LaserCharge, MaxCharge);
 	else
 		return (ShieldPower/100);
 }
-
 
 defaultproperties
 {
 	 ChargeRate=5.000000
 	 ChargeRateOvercharge=2.400000
+	 MaxCharge=1.000000
 	 CoolRate=1.0
      BrokenSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
      DamageSound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Overload'
@@ -685,11 +728,13 @@ defaultproperties
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
      CockSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Cock',Volume=1.100000)
      ReloadAnim="Reload"
+	 ReloadEmptyAnim="ReloadEmpty"
+	 bCockOnEmpty=True
      ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagIn',Volume=1.000000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagOut',Volume=1.000000)
 	 WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
-	 WeaponModes(1)=(ModeName="Charged Fire",ModeID="WM_FullAuto")
-	 WeaponModes(2)=(ModeName="Charged Shot",bUnavailable=True)
+	 WeaponModes(1)=(ModeName="Power Fire",ModeID="WM_FullAuto")
+	 WeaponModes(2)=(ModeName="Power Shot",bUnavailable=True)
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
 	 ZoomType=ZT_Irons
@@ -705,7 +750,10 @@ defaultproperties
      AIRating=0.600000
      CurrentRating=0.600000
      Description="Before the Skrith wars broke out, photon weaponry was declared inhumane by the Neo-Geneva convention due to the effects it had against animal test subjects.  It wasn’t until one battle on Gahanna where photon weaponry found it’s value against the Cyron troopers, discombobulating their gyroscopic sensors long enough to turn the tide, living to fight another day.  Since then, photon weaponry has been deemed legal to use in both wartime situations and underground blood sports. The EP110 is the latest in this field, a bullpup SMG not only able to clear out enclosed spaces, but it also has a discombobulator field able to disorient and destroy anyone caught in its path."
-     Priority=19
+     ManualLines(0)="Fires laser shots. Has a decent fire rate with moderate DPS and low recoil, but has inaccuracy problems and prefire wind-up time."	 
+	 ManualLines(1)="Employs an energy shield. Pressing altfire again removes the shield."
+	 ManualLines(2)="Can fire rapid or power laser shots. Power shots have higher DPS and AoE damage, at the cost of a higher wind-up time and lower fire rate."
+	 Priority=19
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	 InventoryGroup=3
      GroupOffset=18
