@@ -20,7 +20,7 @@ defaultproperties
 		PenetrateForce=600
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
-		MuzzleFlashClass=Class'BWBP_SKC_Pro.A48FlashEmitter'
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20BFlashEmitter'
 		FlashScaleFactor=0.300000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.350000)
 		Recoil=1.000000
