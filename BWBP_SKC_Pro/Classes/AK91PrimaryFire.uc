@@ -174,7 +174,7 @@ defaultproperties
      BrassOffset=(X=-80.000000,Y=1.000000)
      XInaccuracy=3.200000
      YInaccuracy=3.200000
-     BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
      TweenTime=0.000000
