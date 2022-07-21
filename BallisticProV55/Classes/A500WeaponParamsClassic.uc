@@ -7,59 +7,59 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-			ProjectileClass=Class'BallisticProV55.A500Projectile'
-			Speed=6000.000000
-			MaxSpeed=6000.000000
-			Damage=16.0
-			DamageRadius=64.000000
-			MomentumTransfer=100.000000
-			HeadMult=1.875
-			LimbMult=0.4375
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=256.000000
-			Chaos=-1.0
-			Inaccuracy=(X=950,Y=600)
-			WarnTargetPct=0.200000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+		ProjectileClass=Class'BallisticProV55.A500Projectile'
+		Speed=6000.000000
+		MaxSpeed=6000.000000
+		Damage=16.0
+		DamageRadius=64.000000
+		MomentumTransfer=100.000000
+		HeadMult=1.875
+		LimbMult=0.4375
+		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=256.000000
+		Chaos=-1.0
+		Inaccuracy=(X=950,Y=600)
+		WarnTargetPct=0.200000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.800000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.800000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-			ProjectileClass=Class'BallisticProV55.A500AltProjectile'
-			Damage=80.000000
-			DamageRadius=96.000000
-			MomentumTransfer=1000.000000
-			HeadMult=1.0
-			LimbMult=1.0
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_AltFire',Volume=1.800000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=0.0
-			Chaos=-1.0
-			WarnTargetPct=0.200000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+		ProjectileClass=Class'BallisticProV55.A500AltProjectile'
+		Damage=80.000000
+		DamageRadius=96.000000
+		MomentumTransfer=1000.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_AltFire',Volume=1.800000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=0.0
+		Chaos=-1.0
+		WarnTargetPct=0.200000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.800000
-			AmmoPerFire=2
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.800000
+		AmmoPerFire=2
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

@@ -7,58 +7,58 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-			ProjectileClass=Class'BallisticProV55.MRLRocket'
-			SpawnOffset=(X=28.000000,Y=10.000000,Z=-8.000000)
-			Speed=1000.000000
-			MaxSpeed=5000.000000
-			AccelSpeed=500.000000
-			Damage=30.000000
-			DamageRadius=96.000000
-			MomentumTransfer=20000.000000
-			HeadMult=1.0
-			LimbMult=1.0
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.MRLFlashEmitter'
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
-			Recoil=5.000000
-			Chaos=-1.0
-			Inaccuracy=(X=64,Y=64)
-			WarnTargetPct=0.200000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+		ProjectileClass=Class'BallisticProV55.MRLRocket'
+		SpawnOffset=(X=28.000000,Y=10.000000,Z=-8.000000)
+		Speed=1000.000000
+		MaxSpeed=5000.000000
+		AccelSpeed=500.000000
+		Damage=30.000000
+		DamageRadius=96.000000
+		MomentumTransfer=20000.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.MRLFlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
+		Recoil=5.000000
+		Chaos=-1.0
+		Inaccuracy=(X=64,Y=64)
+		WarnTargetPct=0.200000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.125000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.125000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-			ProjectileClass=Class'BallisticProV55.MRLRocketSecondary'
-			SpawnOffset=(X=28.000000,Y=8.000000,Z=-6.000000)
-			HeadMult=2.000000
-			LimbMult=0.500000
-			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
-			Recoil=32.000000
-			Chaos=0.020000
-			Inaccuracy=(X=512,Y=512)
-			WarnTargetPct=0.200000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+		ProjectileClass=Class'BallisticProV55.MRLRocketSecondary'
+		SpawnOffset=(X=28.000000,Y=8.000000,Z=-6.000000)
+		HeadMult=2.000000
+		LimbMult=0.500000
+		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
+		Recoil=32.000000
+		Chaos=0.020000
+		Inaccuracy=(X=512,Y=512)
+		WarnTargetPct=0.200000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.050000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.050000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

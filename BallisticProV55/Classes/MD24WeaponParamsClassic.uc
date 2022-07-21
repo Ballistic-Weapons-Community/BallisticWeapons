@@ -7,74 +7,72 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Max=6000.000000)
-			WaterTraceRange=3600.0
-			DecayRange=(Min=0.0,Max=0.0)
-			Damage=42.0
-			HeadMult=2.309523
-			LimbMult=0.595238
-			DamageType=Class'BallisticProV55.DTMD24Pistol'
-			DamageTypeHead=Class'BallisticProV55.DTMD24PistolHead'
-			DamageTypeArm=Class'BallisticProV55.DTMD24Pistol'
-			PenetrationEnergy=24.000000
-			PenetrateForce=150
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-			FlashScaleFactor=0.750000
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Fire',Volume=4.000000)
-			Recoil=3600.000000
-			Chaos=-1.0
-			Inaccuracy=(X=4,Y=4)
-			BotRefireRate=0.900000
-			WarnTargetPct=0.100000
-		End Object
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Max=6000.000000)
+		WaterTraceRange=3600.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=42.0
+		HeadMult=2.309523
+		LimbMult=0.595238
+		DamageType=Class'BallisticProV55.DTMD24Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTMD24PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTMD24Pistol'
+		PenetrationEnergy=24.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=0.750000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Fire',Volume=4.000000)
+		Recoil=3600.000000
+		Chaos=-1.0
+		Inaccuracy=(X=4,Y=4)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.250000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.250000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
+	Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
+		TraceRange=(Min=96.000000,Max=96.000000)
+		WaterTraceRange=5000.0
+		Damage=45.0
+		HeadMult=1.777777
+		LimbMult=0.555555
+		DamageType=Class'BallisticProV55.DTMD24Melee'
+		DamageTypeHead=Class'BallisticProV55.DTMD24Melee'
+		DamageTypeArm=Class'BallisticProV55.DTMD24Melee'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.700000
+		HookPullForce=100.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Melee',Volume=1.500000,Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.050000
+	End Object
 	
-		Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
-			TraceRange=(Min=96.000000,Max=96.000000)
-			WaterTraceRange=5000.0
-			Damage=45.0
-			HeadMult=1.777777
-			LimbMult=0.555555
-			DamageType=Class'BallisticProV55.DTMD24Melee'
-			DamageTypeHead=Class'BallisticProV55.DTMD24Melee'
-			DamageTypeArm=Class'BallisticProV55.DTMD24Melee'
-			ChargeDamageBonusFactor=1
-			PenetrationEnergy=0.000000
-			HookStopFactor=1.700000
-			HookPullForce=100.000000
-			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Melee',Volume=1.500000,Radius=32.000000,bAtten=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.800000
-			WarnTargetPct=0.050000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=1.000000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			PreFireAnim="PrepMelee"
-			FireAnim="Melee"
-			FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=1.000000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		PreFireAnim="PrepMelee"
+		FireAnim="Melee"
+		FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

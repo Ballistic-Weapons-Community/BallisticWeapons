@@ -7,69 +7,68 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-			ProjectileClass=Class'BallisticProV55.RSNovaProjectile'
-			SpawnOffset=(X=12.000000,Y=8.000000,Z=-9.000000)
-			Speed=50.000000
-			MaxSpeed=4000.000000
-			AccelSpeed=16000.000000
-			Damage=80.0
-			DamageRadius=192.000000
-			MomentumTransfer=90000.000000
-			HeadMult=1.375
-			LimbMult=0.625
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=60.000000
-			Chaos=-1.0
-			Inaccuracy=(X=8,Y=8)
-			WarnTargetPct=0.200000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+		ProjectileClass=Class'BallisticProV55.RSNovaProjectile'
+		SpawnOffset=(X=12.000000,Y=8.000000,Z=-9.000000)
+		Speed=50.000000
+		MaxSpeed=4000.000000
+		AccelSpeed=16000.000000
+		Damage=80.0
+		DamageRadius=192.000000
+		MomentumTransfer=90000.000000
+		HeadMult=1.375
+		LimbMult=0.625
+		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=60.000000
+		Chaos=-1.0
+		Inaccuracy=(X=8,Y=8)
+		WarnTargetPct=0.200000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.800000
-			AmmoPerFire=3
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.800000
+		AmmoPerFire=3
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
+	Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
+		TraceRange=(Min=200.000000,Max=200.000000)
+		WaterTraceRange=5000.0
+		Damage=55.0
+		HeadMult=1.818181
+		LimbMult=0.454545
+		DamageType=Class'BallisticProV55.DT_RSNovaStab'
+		DamageTypeHead=Class'BallisticProV55.DT_RSNovaStabHead'
+		DamageTypeArm=Class'BallisticProV55.DT_RSNovaStab'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.700000
+		HookPullForce=150.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.NovaStaff.Nova-Melee',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.050000
+	End Object
 	
-		Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
-			TraceRange=(Min=200.000000,Max=200.000000)
-			WaterTraceRange=5000.0
-			Damage=55.0
-			HeadMult=1.818181
-			LimbMult=0.454545
-			DamageType=Class'BallisticProV55.DT_RSNovaStab'
-			DamageTypeHead=Class'BallisticProV55.DT_RSNovaStabHead'
-			DamageTypeArm=Class'BallisticProV55.DT_RSNovaStab'
-			ChargeDamageBonusFactor=1
-			PenetrationEnergy=0.000000
-			HookStopFactor=1.700000
-			HookPullForce=150.000000
-			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.NovaStaff.Nova-Melee',Radius=32.000000,bAtten=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.800000
-			WarnTargetPct=0.050000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.300000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			PreFireAnim="PrepSwipe"
-			FireAnim="Swipe"
-			FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.300000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		PreFireAnim="PrepSwipe"
+		FireAnim="Swipe"
+		FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

@@ -101,6 +101,9 @@ defaultproperties
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-6.000000)
 		SightOffset=(X=-5.000000,Y=-1.315,Z=12.600000)
 		SightPivot=(Pitch=-110,Roll=-675)              //Aligned
+		bAdjustHands=true
+		RootAdjust=(Yaw=-375,Pitch=3500)
+		WristAdjust=(Yaw=-3500,Pitch=-000)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

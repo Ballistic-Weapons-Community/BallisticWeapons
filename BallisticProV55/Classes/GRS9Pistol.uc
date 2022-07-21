@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class GRS9Pistol extends BallisticWeapon;
+class GRS9Pistol extends BallisticHandgun;
 
 var   bool			bLaserOn;
 var   LaserActor	Laser;

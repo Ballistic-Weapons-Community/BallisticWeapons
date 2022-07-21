@@ -14,6 +14,9 @@ defaultproperties
 		Damage=33.0
 		HeadMult=2.181818
 		LimbMult=0.606060
+		DamageType=Class'BallisticProV55.DTGRS9Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTGRS9Pistol'
 		PenetrationEnergy=6.000000
 		PenetrateForce=16
 		bPenetrate=True
@@ -46,6 +49,9 @@ defaultproperties
 		Damage=33.0
 		HeadMult=2.181818
 		LimbMult=0.606060
+		DamageType=Class'BallisticProV55.DTGRS9Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTGRS9Pistol'
 		PenetrationEnergy=6.000000
 		PenetrateForce=16
 		bPenetrate=True
@@ -169,6 +175,9 @@ defaultproperties
 		ViewOffset=(X=6.000000,Y=7.000000,Z=-8.000000)
 		SightOffset=(X=-15.000000,Y=-1.000000,Z=17.600000)
 		SightPivot=(Pitch=-25,Roll=-0)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-300,Pitch=3000)
+		WristAdjust=(Yaw=-3000,Pitch=-000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)

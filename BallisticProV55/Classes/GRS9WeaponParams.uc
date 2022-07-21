@@ -91,6 +91,7 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
+		bDualBlocked=True
         SightOffset=(X=-15.000000,Z=5.900000)
 		ViewOffset=(X=6.000000,Y=8.000000,Z=-9.000000)
 		PlayerSpeedFactor=1.050000

@@ -15,6 +15,9 @@ defaultproperties
 		Damage=37.0
 		HeadMult=2.216216
 		LimbMult=0.594594
+		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
+		DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
+		DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
 		PenetrationEnergy=9.000000
 		PenetrateForce=35
 		bPenetrate=True

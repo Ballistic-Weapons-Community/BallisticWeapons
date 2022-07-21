@@ -14,6 +14,9 @@ defaultproperties
 		Damage=62.0
 		HeadMult=2.129032
 		LimbMult=0.629032
+		DamageType=Class'BallisticProV55.DTAM67Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTAM67PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTAM67Pistol'
 		PenetrationEnergy=12.000000
 		PenetrateForce=40
 		bPenetrate=True
@@ -108,6 +111,10 @@ defaultproperties
 		ViewOffset=(X=9.000000,Y=7.000000,Z=-7.000000)
 		SightOffset=(X=-12.000000,Y=-1.1750000,Z=14.150000)
 		SightPivot=(Pitch=-160,Roll=-465)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-280,Pitch=2500)
+		WristAdjust=(Yaw=-2500,Pitch=-000)
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		InitialWeaponMode=0
 		WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		WeaponModes(1)=(bUnavailable=true)
