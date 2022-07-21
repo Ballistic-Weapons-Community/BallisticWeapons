@@ -403,6 +403,9 @@ var() WeaponParams.EZoomType    ZoomType;				// Type of zoom used for ADS
 var() float					    SightingTime;			// Time it takes to move weapon to and from sight view
 var() Rotator				    SightPivot;				// Rotate the weapon by this when in sight view
 var() Vector				    SightOffset;			// Offset of actual sight view position from SightBone or mesh origin.
+var() bool         				bAdjustHands;      		//Adjust hand position when sighting?
+var() rotator      				WristAdjust;       		//Amount to move wrist bone when using iron sights.
+var() rotator      				RootAdjust;        		//Amount to move arm bone when using iron sights.
 //-----------------------------------------------------------------------------
 // Ammo/Reloading
 //-----------------------------------------------------------------------------
@@ -570,7 +573,7 @@ simulated function PostNetBeginPlay()
 	}
 }
 
-simulated final function OnWeaponParamsChanged()
+simulated function OnWeaponParamsChanged()
 {
     local int i;
 
@@ -590,6 +593,16 @@ simulated final function OnWeaponParamsChanged()
 
     ZoomType                    = WeaponParams.ZoomType;
 
+	bAdjustHands				= WeaponParams.bAdjustHands;
+	if (WeaponParams.WristAdjust != rot(0,0,0))
+    {
+		WristAdjust = WeaponParams.WristAdjust;
+	}
+	if (WeaponParams.RootAdjust != rot(0,0,0))
+    {
+		RootAdjust = WeaponParams.RootAdjust;
+	}
+	
 	if (WeaponParams.WeaponName != "")
     {
         ItemName=WeaponParams.WeaponName;
@@ -643,7 +656,6 @@ simulated final function OnWeaponParamsChanged()
 		}
 		CurrentWeaponMode = WeaponParams.InitialWeaponMode;
 	}
-		
 }
 
 simulated final function CreateRecoilComponent()
@@ -5070,14 +5082,6 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
     Canvas.SetPos(4,YPos);
 }
 // End debug -----------------------------------------------------------------------------------------------------------
-
-simulated function UpdatePenetrationStatus(int Count)
-{
-	if (Count > 0)
-		bHasPenetrated = true;
-	else
-		bHasPenetrated = false;
-}
 
 simulated final function bool HasSecondaryAmmo()
 {

@@ -144,5 +144,78 @@ static simulated final function SetProjectileParams(BallisticWeapon BW, Ballisti
     }
 }
 
+static simulated final function OverrideFireParams(BallisticWeapon BW, int newIndex)
+{
+    if (default.Layouts[BW.LayoutIndex].FireParams.Length > 0)
+    {
+        BW.BFireMode[0].Params = default.Layouts[BW.LayoutIndex].FireParams
+        [
+            Min
+            (
+                newIndex, 
+                default.Layouts[BW.LayoutIndex].FireParams.Length - 1
+            )
+        ];
+
+        BW.BFireMode[0].OnFireParamsChanged(BW.AmmoIndex);
+    }
+
+
+    if (default.Layouts[BW.LayoutIndex].AltFireParams.Length > 0)
+    {
+        BW.BFireMode[1].Params = default.Layouts[BW.LayoutIndex].AltFireParams
+        [
+            Min
+            (
+                newIndex, 
+                default.Layouts[BW.LayoutIndex].AltFireParams.Length - 1
+            )
+        ];
+        BW.BFireMode[1].OnFireParamsChanged(BW.AmmoIndex);
+    }
+}
+
+static simulated final function OverrideProjectileParams(BallisticWeapon BW, BallisticProjectile proj, int newIndex)
+{
+    if (proj.ModeIndex == 0)
+    {
+        if (default.Layouts[BW.LayoutIndex].FireParams.Length > 0)
+        {
+            proj.ApplyParams
+            (
+                ProjectileEffectParams
+                (
+                    default.Layouts[BW.LayoutIndex].FireParams
+                    [
+                        Min
+                        (
+                            newIndex, 
+                            default.Layouts[BW.LayoutIndex].FireParams.Length - 1
+                        )
+                    ].FireEffectParams[BW.AmmoIndex]
+                )
+            );
+        }
+    }
+    
+    else if (default.Layouts[BW.LayoutIndex].AltFireParams.Length > 0)
+    {
+        proj.ApplyParams
+        (
+            ProjectileEffectParams
+            (
+                default.Layouts[BW.LayoutIndex].AltFireParams
+                [
+                    Min
+                    (
+                        newIndex, 
+                        default.Layouts[BW.LayoutIndex].AltFireParams.Length - 1
+                    )
+                ].FireEffectParams[BW.AmmoIndex]
+            )
+        );
+    }
+}
+
 // Subclass function for overriding
 static simulated function OnInitialize(BallisticWeapon BW);
