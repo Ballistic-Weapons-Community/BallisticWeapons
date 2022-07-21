@@ -40,10 +40,10 @@ defaultproperties
          MaxParticles=20
          InitialParticlesPerSecond=200.000000
          DetailMode=DM_High
-         StartLocationOffset=(X=0.000000)
-         StartSizeRange=(X=(Min=5.000000,Max=15.000000),Y=(Min=5.000000,Max=15.000000),Z=(Min=5.000000,Max=15.000000))
+         StartSizeRange=(X=(Min=2.500000,Max=7.000000),Y=(Min=2.500000,Max=7.000000),Z=(Min=2.500000,Max=7.000000))
          Texture=Texture'BW_Core_WeaponTex.Particles.WaterRing1'
          LifetimeRange=(Min=1.000000,Max=1.000000)
+         InitialDelayRange=(Min=0.020000,Max=0.100000)
      End Object
      Emitters(1)=SpriteEmitter'BWBP_OP_Pro.RaygunTrailEmitter.SpriteEmitter2'
 

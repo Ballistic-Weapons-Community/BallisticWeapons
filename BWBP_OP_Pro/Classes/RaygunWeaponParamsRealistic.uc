@@ -10,7 +10,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_OP_Pro.RaygunBlastProjectile'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
 		DamageRadius=100
-		Speed=1200.000000
+		Speed=2300.000000
 		MaxSpeed=8000.000000
 		AccelSpeed=20000.000000
 		Damage=75
