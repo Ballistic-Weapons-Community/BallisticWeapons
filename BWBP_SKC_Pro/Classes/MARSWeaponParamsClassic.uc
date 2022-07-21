@@ -49,6 +49,7 @@ defaultproperties
 		MaxSpeed=7000.000000
 		Damage=50
 		DamageRadius=256.000000
+		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		Recoil=1024.000000
 		Chaos=0.500000

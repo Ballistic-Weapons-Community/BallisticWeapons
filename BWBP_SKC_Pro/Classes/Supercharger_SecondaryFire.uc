@@ -1,148 +1,253 @@
 //=============================================================================
-// A42PrimaryFire.
+// EKS43SecondaryFire.
 //
-// Rapid fire projectiles. Ammo regen timer is also here.
+// Vertical/Diagonal held swipe for the EKS43. Uses swipe system and is prone
+// to headshots because the highest trace that hits an enemy will be used to do
+// the damage and check hit area.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Supercharger_SecondaryFire extends BallisticProjectileFire;
+class Supercharger_SecondaryFire extends BallisticMeleeFire;
 
-var   float		StopFireTime;
-var() sound		XR4FireSound;
+var() Pawn		HookedVictim;
+var() float		HookTime;
 
-simulated function SwitchCannonMode (byte NewMode)
+var() sound		SawFreeLoop;
+var() sound		SawHackLoop;
+var() sound		SawStop;
+
+var bool 			bHitThisTick;
+
+//	SawStart		Normal to held
+//	SawIdle			Saw Held
+//	SawAttack		Saw Held and hitting
+//	SawAttackEnd	Saw Held releasng target going to saw held
+//	SawEnd			Saw Release
+
+//	BW_Core_WeaponSound.DarkStar.Dark-
+//	Saw			held, idle
+//	SawOpen		Start saw mode
+//	SawClose	Leaving saw mode
+//	SawPitch	Attacking enemy with saw
+//	SawHits		Looping impact sounds
+//
+
+simulated function bool AllowFire()
 {
-	if (NewMode == 0)
+	if (!Super(BallisticFire).AllowFire())
 	{
-		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
-		FireRate=default.FireRate;
-		AmmoPerFire=Default.AmmoPerFire;
- 		ProjectileClass=Default.ProjectileClass;
+		if (bIsFiring)
+		{
+			StopFiring();
+			bIsFiring=False;
+		}
+		return false;
 	}
-	else if (NewMode == 1)
-	{
-		BallisticFireSound.Sound=XR4FireSound;
-     		FireRate=2.100000;
-		AmmoPerFire=25;
- 		ProjectileClass=Class'BWBP_SKC_Pro.Supercharger_EMPTorpedo';
+	return true;
+}
+
+//Do the spread on the client side
+function PlayFiring()
+{
+	if (ScopeDownOn == SDO_Fire)
+		BW.TemporaryScopeDown(0.5, 0.0);
+
+	if (Supercharger_AssaultWeapon(Weapon).bLatchedOn)
+		Weapon.AmbientSound = SawHackLoop;
+	else
+		Weapon.AmbientSound = SawFreeLoop;
+
+    if (FireCount == 0)
+    {
+		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+		BW.SafePlayAnim('EndReload', FireAnimRate, TweenTime, ,"FIRE"); //todo
 	}
-	else
-	{
-		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
-		AmmoPerFire=Default.AmmoPerFire;
-		FireRate=default.FireRate;
- 		ProjectileClass=Default.ProjectileClass;
+    else if (FireCount > 4)
+    {
+		if (Supercharger_AssaultWeapon(Weapon).bLatchedOn)
+    		BW.SafeLoopAnim('MeleeLoop', FireAnimRate, TweenTime, ,"FIRE");
+		else
+    		BW.SafeLoopAnim('MeleeLoop', FireAnimRate, TweenTime, ,"FIRE");
+    }
+    ClientPlayForceFeedback(FireForce);  // jdf
+    FireCount++;
+}
+
+function ServerPlayFiring()
+{
+    if (FireCount == 0)
+    {
+		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+		BW.SafePlayAnim('EndReload', FireAnimRate, TweenTime, ,"FIRE");
 	}
-	if (Weapon.bBerserk)
-		FireRate *= 0.75;
-	if ( Level.GRI.WeaponBerserk > 1.0 )
-	    FireRate /= Level.GRI.WeaponBerserk;
-
-	Load=AmmoPerFire;
+    else if (FireCount > 4)
+    {
+		if (Supercharger_AssaultWeapon(Weapon).bLatchedOn)
+    		BW.SafeLoopAnim('MeleeLoop', FireAnimRate, TweenTime, ,"FIRE");
+		else
+    		BW.SafeLoopAnim('MeleeLoop', FireAnimRate, TweenTime, ,"FIRE");
+    }
 }
 
-function StartBerserk()
+simulated event ModeDoFire()
 {
-
-	if (BW.CurrentWeaponMode == 1)
-    	FireRate = 0.85;
-	else
-    	FireRate = 0.15;
-   	FireRate *= 0.75;
-    FireAnimRate = default.FireAnimRate/0.75;
-    ReloadAnimRate = default.ReloadAnimRate/0.75;
-}
-
-function StopBerserk()
-{
-
-	if (BW.CurrentWeaponMode == 1)
-    	FireRate = 0.85;
-	else
-    	FireRate = 0.15;
-    FireAnimRate = default.FireAnimRate;
-    ReloadAnimRate = default.ReloadAnimRate;
-}
-
-function StartSuperBerserk()
-{
-
-	if (BW.CurrentWeaponMode == 1)
-    	FireRate = 0.85;
-	else
-    	FireRate = 0.15;
-    FireRate /= Level.GRI.WeaponBerserk;
-    FireAnimRate = default.FireAnimRate * Level.GRI.WeaponBerserk;
-    ReloadAnimRate = default.ReloadAnimRate * Level.GRI.WeaponBerserk;
-}
-
-
-function DoFireEffect()
-{
-    local Vector StartTrace, StartProj, X, Y, Z, Start, End, HitLocation, HitNormal;
-    local Rotator Aim;
-	local actor Other;
-	local actor Other2;
-
-    Weapon.GetViewAxes(X,Y,Z);
+	BW.GunLength = 1;
 	
-    // the to-hit trace always starts right in front of the eye
-    Start = Instigator.Location + Instigator.EyePosition();
+	if (!AllowFire())
+		return;
 
-    StartTrace = Start + X*SpawnOffset.X + Z*SpawnOffset.Z;
-    if ( !Weapon.WeaponCentered() )
-	    StartTrace = StartTrace + Weapon.Hand * Y*SpawnOffset.Y;
-
-    // Inserted Epic code segment.
-    // check if projectile would spawn through a wall and adjust start location accordingly
-    Other = Trace (HitLocation, HitNormal, StartTrace, Start, true);
-	
-	if (Other != None)
-       StartProj = HitLocation;
-
-	Aim = GetFireAim(StartTrace);
-	Aim = Rotator(GetFireSpread() >> Aim);
-
-	End = Start + (Vector(Aim)*MaxRange());
-	Other2 = Trace (HitLocation, HitNormal, End, Start, true);
-
-	if (Other == None)
+	if (BW != None)
 	{
-		if (Other2 != None)
-			Aim = Rotator(HitLocation-StartTrace);
-		SpawnProjectile(StartTrace, Aim);
+		BW.bPreventReload=true;
+		BW.FireCount++;
+
+		if (BW.ReloadState != RS_None)
+		{
+			if (weapon.Role == ROLE_Authority)
+				BW.bServerReloading=false;
+			BW.ReloadState = RS_None;
+		}
 	}
-	else //If too close, fire at wall instead.
-		SpawnProjectile(StartProj, Aim);
+
+	if (MaxHoldTime > 0.0)
+		HoldTime = FMin(HoldTime, MaxHoldTime);
+
+	if (!bHitThisTick)
+	{
+		ConsumedLoad += Load;
+		SetTimer(FMin(0.1, FireRate/2), false);
+	}
+	
+	// server
+	if (Weapon.Role == ROLE_Authority)
+	{
+		DoFireEffect();
+		
+		if ( (Instigator == None) || (Instigator.Controller == None) )
+			return;
+		if ( AIController(Instigator.Controller) != None )
+			AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
+		Instigator.DeactivateSpawnProtection();
+	}
+	else if (!BW.bUseNetAim && !BW.bScopeView)
+		ApplyRecoil();
+	
+	BW.LastFireTime = Level.TimeSeconds;
 
 
-	SendFireEffect(none, vect(0,0,0), StartTrace, 0);
+	// client
+	if (Instigator.IsLocallyControlled())
+	{
+		ShakeView();
+		PlayFiring();
+		FlashMuzzleFlash();
+		StartMuzzleSmoke();
+	}
+	else // server
+	{
+		ServerPlayFiring();
+	}
+
+	// set the next firing time. must be careful here so client and server do not get out of sync
+	if (bFireOnRelease)
+	{
+		if (bIsFiring)
+			NextFireTime += MaxHoldTime + FireRate;
+		else
+			NextFireTime = Level.TimeSeconds + FireRate;
+	}
+	else
+	{
+		NextFireTime += FireRate * (1 + BW.MeleeFatigue);
+		NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
+	}
+	
+	BW.MeleeFatigue = FMin(BW.MeleeFatigue + FatiguePerStrike, 1);
+	
+	Load = AmmoPerFire;
+	HoldTime = 0;
+
+	if (Instigator.PendingWeapon != Weapon && Instigator.PendingWeapon != None)
+	{
+		bIsFiring = false;
+		Weapon.PutDown();
+	}
+
+	if (BW != None)
+	{
+		BW.bNeedReload = BW.MayNeedReload(ThisModeNum, ConsumedLoad);
+		if (bCockAfterFire || (bCockAfterEmpty && BW.MagAmmo - ConsumedLoad < 1))
+			BW.bNeedCock=true;
+	}
+	BW.GunLength = BW.default.GunLength;
+	if (BW.SprintControl != None && BW.SprintControl.bSprinting)
+		BW.PlayerSprint(true);
+}
+
+simulated function StopFiring()
+{
+	Weapon.PlayOwnedSound(SawStop,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius, 1,BallisticFireSound.bAtten);
+	BW.GunLength = BW.default.GunLength;
+	Weapon.PlayAnim(FireEndAnim, FireEndAnimRate, 0.0, 0);
+}
+
+simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
+{
+	if (Weapon != None && Weapon.Role == ROLE_Authority)
+		Supercharger_AssaultWeapon(Weapon).bLatchedOn = true;
+
+	return super(BallisticMeleeFire).ImpactEffect(HitLocation, HitNormal, HitMat, Other, WaterHitLoc);
+}
+
+function NoHitEffect (Vector Dir, optional vector Start, optional vector HitLocation, optional vector WaterHitLoc)
+{
+	if (Weapon != None && Weapon.Role == ROLE_Authority)
+		Supercharger_AssaultWeapon(Weapon).bLatchedOn = false;
+
+	super.NoHitEffect (Dir, Start, HitLocation, WaterHitLoc);
+}
+
+simulated event ModeTick(float DT)
+{
+	super(BallisticMeleeFire).ModeTick(DT);
+
+	if (!IsFiring())
+	{
+		Supercharger_AssaultWeapon(Weapon).bLatchedOn = false;
+		Weapon.AmbientSound = None;
+	}
+}
+
+function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+{
+	super.ApplyDamage (Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+	
+	if (Pawn(Target) != None && Pawn(Target).Health > 0)
+	{
+		HookedVictim = Pawn(Target);
+		HookTime = Level.TimeSeconds;
+	}
+
+	Supercharger_AssaultWeapon(Weapon).bLatchedOn=true;
 }
 
 defaultproperties
 {
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_HVPCCells'
-     AmmoPerFire=20
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.LS14-EnergyRocket',Volume=1.000000,Slot=SLOT_Interact,bNoOverride=False)
-     FireChaos=0.600000
-	 FireAnim=""
-     FireEndAnim=
-     FireRate=0.900000
-     FlashScaleFactor=0.750000
+     SawFreeLoop=Sound'BW_Core_WeaponSound.DarkStar.Dark-Saw'
+     SawHackLoop=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawPitched'
+     SawStop=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawClose'
+     SwipePoints(0)=(offset=(Yaw=0))
+     WallHitPoint=0
+     NumSwipePoints=1
+	 FatiguePerStrike=0
+     KickForce=500
+     ScopeDownOn=SDO_Fire
+     bAISilent=True
      MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
-     ProjectileClass=Class'BWBP_SKC_Pro.Supercharger_ProtonTorpedo'
-     //RecoilPerShot=820.000000
-     ShakeOffsetMag=(X=-4.000000)
-     ShakeOffsetRate=(X=-1200.000000)
-     ShakeOffsetTime=1.500000
-     ShakeRotMag=(X=32.000000,Y=8.000000)
-     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
-     ShakeRotTime=1.500000
-     SpawnOffset=(X=100.000000,Y=10.000000,Z=9.000000)
-     TweenTime=0.000000
-     WarnTargetPct=0.200000
-     XInaccuracy=4.000000
-     XR4FireSound=Sound'BWBP_SKC_Sounds.Misc.LS14-EnergyRocket2'
-     YInaccuracy=4.000000
+     AmmoClass=Class'BWBP_SKC_Pro.Ammo_HVPCCells'
+     AmmoPerFire=1
+     ShakeRotMag=(X=64.000000,Y=16.000000)
+     ShakeRotRate=(X=1024.000000,Y=1024.000000,Z=512.000000)
+     ShakeRotTime=1.000000
 }

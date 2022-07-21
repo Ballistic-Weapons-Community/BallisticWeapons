@@ -130,7 +130,8 @@ function PlayFiring()
 	if (F2000AssaultRifle(Weapon) != None && F2000AssaultRifle(Weapon).bSilenced && SilencedFireSound.Sound != None)
 		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,,true);
 	else if (BallisticFireSound.Sound != None)
-		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
+		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+
 }
 
 defaultproperties

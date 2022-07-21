@@ -2,6 +2,7 @@ class PumaWeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 {
+
     //=================================================================
     // PRIMARY FIRE
     //=================================================================	
@@ -17,6 +18,7 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.700000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Fire')
@@ -32,9 +34,9 @@ defaultproperties
 		FireInterval=0.450000
 		BurstFireRateFactor=1.00
 		FireAnim="FireAlt"	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryImpactEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryImpactEffectParams'
 	End Object
-
+	
 	//Proximity Det
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryProxyEffectParams
 		ProjectileClass=Class'PumaProjectile'
@@ -46,6 +48,7 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.700000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Fire')
@@ -54,14 +57,14 @@ defaultproperties
 		SplashDamage=True
 		RecommendSplashDamage=True
 		BotRefireRate=0.300000
-		WarnTargetPct=0.300000
+		WarnTargetPct=0.300000	
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryProxyFireParams
 		FireInterval=0.900000
 		BurstFireRateFactor=1.00
-		FireAnim="FireAlt"
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryProxyEffectParams'
+		FireAnim="FireAlt"	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryProxyEffectParams'
 	End Object
 
 	//Range Det
@@ -75,6 +78,7 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.700000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Fire')
@@ -90,12 +94,12 @@ defaultproperties
 		FireInterval=0.450000
 		BurstFireRateFactor=1.00
 		FireAnim="FireAlt"	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryRangeEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryRangeEffectParams'
 	End Object
-	
+
 	//Shield Explosion
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryShieldEffectParams
-		ProjectileClass=Class'PumaProjectileClose'
+		ProjectileClass=Class'PumaProjectileRShort'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=6000.000000
 		Damage=110.000000
@@ -104,6 +108,7 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.700000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-Fire')
@@ -119,9 +124,9 @@ defaultproperties
 		FireInterval=0.450000
 		BurstFireRateFactor=1.00
 		FireAnim="FireAlt"	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryShieldEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryShieldEffectParams'
 	End Object
-		
+	
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -163,11 +168,6 @@ defaultproperties
 		ViewOffset=(X=7.000000,Y=6.000000,Z=-13.000000)
 		SightOffset=(X=-10.000000,Y=-0.035000,Z=19.500000)
 		SightPivot=(Pitch=0)
-		WeaponModes(0)=(ModeName="Airburst: Impact Detonation",ModeID="WM_FullAuto")
-		WeaponModes(1)=(ModeName="Airburst: Proximity Detonation",ModeID="WM_FullAuto")
-		WeaponModes(2)=(ModeName="Airburst: Variable Range Detonation",ModeID="WM_FullAuto")
-		//WeaponModes(3)=(ModeName="Shield (UNUSED)",bUnavailable=true)
-		InitialWeaponMode=0
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryImpactFireParams'
@@ -176,4 +176,6 @@ defaultproperties
 		FireParams(3)=FireParams'ClassicPrimaryRangeFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
+
+
 }

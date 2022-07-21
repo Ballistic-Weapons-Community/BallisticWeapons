@@ -14,68 +14,10 @@ var   Actor		MuzzleFlame;
 var   Actor		Heater;
 var   bool		bIgnited;
 var() sound		FireSoundLoop;
-var() sound		XR4FireSound;
 var() sound		BotFireSound;
-/*
-simulated function SwitchCannonMode (byte NewMode)
-{
-	if (NewMode == 1)
-	{
-		BallisticFireSound.Sound=XR4FireSound;
-		TraceRange.Max=12000;
-		TraceRange.Min=10000;
-     	RangeAtten=0.650000;
-     	WaterRangeAtten=0.800000;
-     	FireChaos=0.05;
-     	XInaccuracy=2;
-     	YInaccuracy=2;
-		Damage = 35;
-		DamageHead = 85;
-		DamageLimb = 20;
 
-     	ShakeRotMag.X=128;
-		ShakeRotMag.Y=64;
-		ShakeRotRate.X=10000;
-		ShakeRotRate.Y=10000;
-		ShakeRotRate.Z=10000;
-     	ShakeRotTime=2.000000;
-     	ShakeOffsetMag.X=-30.000000;
-     	ShakeOffsetRate.X=-1000.000000;
-     	ShakeOffsetTime=2.000000;
-	}
-	else
-	{
-		FireRate=default.FireRate;
-//		AmmoPerFire=Default.AmmoPerFire;
-		RangeAtten=Default.RangeAtten;
-		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
-		FireAnim=default.FireAnim;
-    	 KickForce=Default.KickForce;
-		RecoilPerShot=Default.RecoilPerShot;
-     	FireChaos=Default.FireChaos;
+var() 	bool		bDoOverCharge;
 
-		Damage = default.Damage;
-		DamageHead = default.DamageHead;
-		DamageLimb = default.DamageLimb;
-
-     	ShakeRotMag.X=64;
-		ShakeRotMag.Y=32;
-		ShakeRotRate.X=5000;
-		ShakeRotRate.Y=5000;
-		ShakeRotRate.Z=5000;
-     	ShakeRotTime=1.000000;
-     	ShakeOffsetMag.X=-15.000000;
-     	ShakeOffsetRate.X=-500.000000;
-     	ShakeOffsetTime=1.000000;
-	}
-	if (Weapon.bBerserk)
-		FireRate *= 0.75;
-	if ( Level.GRI.WeaponBerserk > 1.0 )
-	    FireRate /= Level.GRI.WeaponBerserk;
-
-	Load=AmmoPerFire;
-}
-*/
 
 function StartBerserk()
 {
@@ -152,73 +94,26 @@ function DoFireEffect()
 	SendFireEffect(Other, HitLocation, HitNormal, 0);
 
 	Super(BallisticFire).DoFireEffect();
+	Supercharger_AssaultWeapon(Weapon).AddHeat(0.15);
 }
-
-/* Why did I have this here? 
-// Do the trace to find out where bullet really goes
-function DoTrace (Vector InitialStart, Rotator Dir)
-{
-	local int						PenCount, WallCount;
-	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc;
-	local Material					HitMaterial;
-	local float						Dist;
-	local Actor						Other, LastOther;
-
-	// Work out the range
-	Dist = TraceRange.Min + FRand() * (TraceRange.Max - TraceRange.Min);
-
-	Start = InitialStart;
-	X = Normal(Vector(Dir));
-	End = Start + X * Dist;
-	LastHitLoc = End;
-	Weapon.bTraceWater=true;
-
-	while (Dist > 0)		// Loop traces in case we need to go through stuff
-	{
-		// Do the trace
-		Other = Trace (HitLocation, HitNormal, End, Start, true, , HitMaterial);
-		Weapon.bTraceWater=false;
-		Dist -= VSize(HitLocation - Start);
-		if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry))
-			break;
-		if (Other != None)
-		{
-			// Water
-			if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume) )
-			{
-				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other);
-				break;
-			}
-			LastHitLoc = HitLocation;
-			// Got something interesting
-			if (!Other.bWorldGeometry && Other != LastOther)
-			{
-				DoDamage(Other, HitLocation, InitialStart, X, PenCount, WallCount, WaterHitLoc);
-				LastOther = Other;
-			}
-			// Still in the same guy
-			if (Other == Instigator || Other == LastOther)
-			{
-				Start = HitLocation + (X * FMax(32, Other.CollisionRadius * 2));
-				End = Start + X * Dist;
-				Weapon.bTraceWater=true;
-				continue;
-			}
-			break;
-		}
-		else
-		{
-			LastHitLoc = End;
-			break;
-		}
-	}
-}*/
 
 //Do the spread on the client side
 function PlayFiring()
 {
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
+	if(Level.NetMode == NM_Client)
+		Supercharger_AssaultWeapon(BW).AddHeat(0.3);
+		
+	
+	if (Level.NetMode != NM_Client && !bDoOverCharge && Supercharger_AssaultWeapon(Weapon).HeatLevel > 10)
+	{
+		bDoOverCharge = true;
+		Weapon.PlaySound(Supercharger_AssaultWeapon(Weapon).OverHeatSound,Slot_None,0.7,,64,1.0,true);
+		Supercharger_AssaultWeapon(Weapon).ClientOverCharge();
+		Weapon.ServerStopFire(ThisModeNum);
+	}
+	
 	if (Supercharger_AssaultWeapon(Weapon).CurrentWeaponMode == 1)
 	{
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
@@ -250,11 +145,20 @@ function ServerPlayFiring()
 		bIgnited = true;
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 	}
+	
+	if (Weapon.Role == Role_Authority && !bDoOverCharge && Supercharger_AssaultWeapon(Weapon).HeatLevel > 10)
+	{
+		bDoOverCharge = true;
+		Weapon.PlaySound(Supercharger_AssaultWeapon(Weapon).OverHeatSound,Slot_None,0.7,,64,1.0,true);
+		Supercharger_AssaultWeapon(Weapon).ClientOverCharge();
+		Weapon.ServerStopFire(ThisModeNum);
+	}
+	
 }
 
 simulated function bool AllowFire()
 {
-	if (!super.AllowFire() || Instigator.HeadVolume.bWaterVolume)
+	if (!super.AllowFire() || Supercharger_AssaultWeapon(Weapon).HeatLevel >= 10 || Supercharger_AssaultWeapon(Weapon).bIsVenting || Instigator.HeadVolume.bWaterVolume)
 	{
 		if (bIgnited)
 			StopFiring();
@@ -327,7 +231,6 @@ defaultproperties
 //     WaterRangeAtten=0.100000
 //     WaterRangeFactor=0.800000
      XInaccuracy=32.000000
-     XR4FireSound=Sound'BWBP_SKC_Sounds.Misc.LS14-CarbineFire'
      YInaccuracy=32.000000
 //     Damage=(Min=15.000000,Max=15.000000)
 //     DamageHead=(Min=20.000000,Max=20.000000)

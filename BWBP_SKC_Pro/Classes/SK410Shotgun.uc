@@ -191,6 +191,7 @@ defaultproperties
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
     ParamsClasses(0)=Class'SK410WeaponParams'
     ParamsClasses(1)=Class'SK410WeaponParamsClassic'
+    ParamsClasses(2)=Class'SK410WeaponParamsRealistic'
     FireModeClass(0)=Class'BWBP_SKC_Pro.SK410PrimaryFire'
     FireModeClass(1)=Class'BWBP_SKC_Pro.SK410SecondaryFire'
     SelectAnimRate=1.600000

@@ -7,63 +7,63 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-			ProjectileClass=Class'BWBP_SKC_Pro.LAWRocket'
-			SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
-			Speed=7000.000000
-			MaxSpeed=15000.000000
-			AccelSpeed=1500.000000
-			Damage=160.000000
-			DamageRadius=1200.000000
-			MomentumTransfer=300000.000000
-			HeadMult=1.0
-			LimbMult=1.0
-			MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-FireLoud',Volume=4.200000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=6024.000000
-			Chaos=-1.0
-			Inaccuracy=(X=256,Y=256)
-			SplashDamage=True
-			RecommendSplashDamage=True
-			BotRefireRate=0.500000
-			WarnTargetPct=0.300000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.LAWRocket'
+		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
+		Speed=7000.000000
+		MaxSpeed=15000.000000
+		AccelSpeed=1500.000000
+		Damage=160.000000
+		DamageRadius=1200.000000
+		MomentumTransfer=300000.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
+		RadiusFallOffType=RFO_Linear
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-FireLoud',Volume=4.200000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=6024.000000
+		Chaos=-1.0
+		Inaccuracy=(X=256,Y=256)
+		SplashDamage=True
+		RecommendSplashDamage=True
+		BotRefireRate=0.500000
+		WarnTargetPct=0.300000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.950000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.950000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-			ProjectileClass=Class'BWBP_SKC_Pro.LAWGrenadeHvy'
-			SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-			Speed=2500.000000
-			HeadMult=2.000000
-			LimbMult=0.500000
-			MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Fire',Volume=4.200000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=3096.000000
-			Chaos=-1.0
-			Inaccuracy=(X=256,Y=256)
-			SplashDamage=True
-			RecommendSplashDamage=True
-			BotRefireRate=0.300000
-			WarnTargetPct=0.300000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.LAWGrenadeHvy'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=2500.000000
+		HeadMult=2.000000
+		LimbMult=0.500000
+		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		RadiusFallOffType=RFO_Linear
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Fire',Volume=4.200000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=3096.000000
+		Chaos=-1.0
+		Inaccuracy=(X=256,Y=256)
+		SplashDamage=True
+		RecommendSplashDamage=True
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.600000
-			BurstFireRateFactor=1.00	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.600000
+		BurstFireRateFactor=1.00	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

@@ -12,7 +12,7 @@ class MRDRMachinePistol extends BallisticHandgun;
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.default.GameStyle != 0)
 	{
 		bUseSights=True;
 	}
@@ -77,6 +77,94 @@ simulated function Notify_MRDRMelee()
 		BFireMode[1].BallisticFireSound.bAtten);
 }
 
+// Relocate the weapon according to sight view.
+// Improved ironsights.
+// SightZoomFactor used instead of FullZoomFOV.
+simulated function PositionSights()
+{
+	local Vector SightPos, Offset, NewLoc, OldLoc;//, X,Y,Z;
+	local PlayerController PC;
+
+	//bots can't use sights
+	PC=PlayerController(InstigatorController);
+
+	if (SightBone != '')
+		SightPos = GetBoneCoords(SightBone).Origin - Location;
+
+	OldLoc = Instigator.Location + Instigator.CalcDrawOffset(self);
+	Offset = SightOffset; Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 4096;
+	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1-SightingPhase))) - (SightPos + ViewAlignedOffset(Offset));
+
+	if (SightingPhase >= 1.0)
+	{	// Weapon locked in sight view
+		SetLocation(NewLoc);
+		SetRotation(Instigator.GetViewRotation() + SightPivot);
+		DisplayFOV = SightDisplayFOV;
+
+		if (SightingState == SS_Raising)
+		{
+			AimComponent.OnADSViewStart();
+			RcComponent.OnADSViewStart();
+		}
+
+		if (ZoomType == ZT_Irons)
+			PC.DesiredFOV = PC.DefaultFOV * SightZoomFactor;
+	}
+	
+	else if (SightingPhase <= 0.0)
+	{	// Weapon completely lowered
+		SetLocation(OldLoc);
+		SetRotation(Instigator.GetViewRotation());
+		DisplayFOV = default.DisplayFOV;
+		PlayerController(InstigatorController).bZooming = False;
+
+		if (SightingState == SS_Lowering)
+		{
+			AimComponent.OnADSViewEnd();
+			RcComponent.OnADSViewEnd();
+		}
+
+		if(ZoomType == ZT_Irons)
+		{
+	        PC.DesiredFOV = PC.DefaultFOV;
+			PlayerController(InstigatorController).SetFOV(PlayerController(InstigatorController).DefaultFOV);
+			PlayerController(InstigatorController).bZooming = False;
+		}
+	}
+	else
+	{	// Gun is on the move...
+		SetLocation(class'BUtil'.static.VSmerp(SightingPhase, OldLoc, NewLoc));
+		SetRotation(Instigator.GetViewRotation() + SightPivot * SightingPhase);
+		DisplayFOV = Smerp(SightingPhase, default.DisplayFOV, SightDisplayFOV);
+
+		AimComponent.UpdateADSTransition(SightingPhase);
+		RcComponent.UpdateADSTransition(SightingPhase);
+
+		if (ZoomType == ZT_Irons)
+	        PC.DesiredFOV = PC.DefaultFOV * (Lerp(SightingPhase, 1, SightZoomFactor));
+	}
+	if (bAdjustHands)
+    {
+        if (SightingPhase <= 0.0)
+    	{
+        	SetBoneRotation('root', rot(0,0,0));
+        	SetBoneRotation('RightElbow', rot(0,0,0));
+        	SetBoneRotation('rightwrist', rot(0,0,0));
+        }
+    	else if (SightingPhase >= 1.0 )
+    	{
+        	SetBoneRotation('root', RootAdjust);
+        	SetBoneRotation('RightElbow', RootAdjust);
+            SetBoneRotation('rightwrist', WristAdjust);
+    	}
+        else
+    	{
+        	SetBoneRotation('root', class'BUtil'.static.RSmerp(SightingPhase, rot(0,0,0), RootAdjust));
+        	SetBoneRotation('RightElbow', class'BUtil'.static.RSmerp(SightingPhase, rot(0,0,0), RootAdjust));
+            SetBoneRotation('rightwrist', class'BUtil'.static.RSmerp(SightingPhase, rot(0,0,0), WristAdjust));
+        }
+    }
+}
 
 // AI Interface =====
 // choose between regular or alt-fire

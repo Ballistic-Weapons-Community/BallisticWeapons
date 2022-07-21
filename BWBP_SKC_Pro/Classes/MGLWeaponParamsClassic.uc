@@ -15,6 +15,7 @@ defaultproperties
 		DamageRadius=356.000000
 		HeadMult=1.0
 		LimbMult=1.0
+		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MGL.MGL-Fire',Volume=9.200000)
 		Recoil=256.0
@@ -40,6 +41,7 @@ defaultproperties
 		DamageRadius=356.000000
 		HeadMult=1.0
 		LimbMult=1.0
+		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MGL.MGL-FireAlt',Volume=9.200000)
 		Recoil=256.0
@@ -61,29 +63,29 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-			ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenadeRemote'
-			SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-			Speed=4000.000000
-			Damage=130.000000
-			DamageRadius=356.000000
-			HeadMult=1.0
-			LimbMult=1.0
-			MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.MGL.MGL-Fire',Volume=9.200000)
-			Recoil=256.0
-			Chaos=-1.0
-			SplashDamage=True
-			RecommendSplashDamage=True
-			BotRefireRate=0.300000
-			WarnTargetPct=0.300000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenadeRemote'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=4000.000000
+		Damage=130.000000
+		DamageRadius=356.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MGL.MGL-Fire',Volume=9.200000)
+		Recoil=256.0
+		Chaos=-1.0
+		SplashDamage=True
+		RecommendSplashDamage=True
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			BurstFireRateFactor=1.00	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		BurstFireRateFactor=1.00	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

@@ -10,7 +10,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=13000.000000)
 		RangeAtten=0.950000
-		Damage=30
+		Damage=1
 		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
@@ -18,12 +18,15 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.400000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=130
+		Chaos=0.01
+		Inaccuracy=(X=32,Y=32)
 		WarnTargetPct=0.200000
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-		FireInterval=0.140000
+		FireInterval=0.063150
 		FireEndAnim=	
 		AimedFireAnim="SightFire"
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
@@ -33,41 +36,40 @@ defaultproperties
 	// SECONDARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams
-		//TracerChance=1.000000
-		TraceRange=(Min=600.000000,Max=600.000000)
-		RangeAtten=0.200000
-		TraceCount=3
-		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
-		ImpactManager=Class'BWBP_SKC_Pro.IM_GRSXXLaser'
-		Damage=5
-		DamageType=Class'BWBP_SKC_Pro.DTA49Shockwave'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTA49Shockwave'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTA49Shockwave'
-		PenetrateForce=100
-		bPenetrate=True
-		MuzzleFlashClass=Class'A49FlashEmitter'
-		FlashScaleFactor=1.200000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-SecFire',Volume=1.000000)
-		Chaos=0.500000
-		BotRefireRate=0.900000
-		WarnTargetPct=0.100000	
-	End Object
-
-	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=1.700000
-		AmmoPerFire=0
-		FireAnim="FireAlt"	
-	FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams'
-	End Object
+    Begin Object Class=MeleeEffectParams Name=ArenaSecondaryEffectParams
+        TraceRange=(Min=160.000000,Max=160.000000)
+        Damage=20
+		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
+        HookStopFactor=1.500000
+        HookPullForce=150.000000
+        WarnTargetPct=0.05
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawOpen',Volume=0.750000,Radius=256.000000)
+    End Object
+    
+    Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+        FireInterval=0.100000
+        AmmoPerFire=0
+        PreFireAnim=
+        FireAnim="EndReload"
+        FireEndAnim="MeleeLoopEnd"
+        FireEffectParams(0)=MeleeEffectParams'ArenaSecondaryEffectParams'
+    End Object
 		
 	//=================================================================
 	// RECOIL
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=ClassicRecoilParams
-		ViewBindFactor=0.000000
+		XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=-0.300000),(InVal=0.600000,OutVal=-0.250000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000,OutVal=-0.300000)))
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=-0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.300000),(InVal=1.000000,OutVal=0.600000)))
+		ViewBindFactor=0.200000
 		CrouchMultiplier=0.800000
+		XRandFactor=0.25000
+		YRandFactor=0.25000
+		MaxRecoil=1600
 	End Object
 
 	//=================================================================
@@ -75,9 +77,9 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=256,Max=256)
-		ViewBindFactor=0.200000
-		ChaosDeclineTime=1.500000
+		AimSpread=(Min=32,Max=1048)
+		ViewBindFactor=0.050000
+		ChaosDeclineTime=0.800000
 	End Object
     
 	//=================================================================
@@ -88,7 +90,7 @@ defaultproperties
 		SightingTime=0.300000
 		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		SightPivot=(Pitch=64)
-		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
+        ZoomType=ZT_Fixed
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

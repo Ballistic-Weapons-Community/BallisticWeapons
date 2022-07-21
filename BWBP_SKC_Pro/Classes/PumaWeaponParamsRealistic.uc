@@ -11,8 +11,8 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryImpactEffectParams
 		ProjectileClass=Class'PumaProjectileFast'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=6500.000000
-		Damage=60.000000
+		Speed=12500.000000
+		Damage=70.000000
 		DamageRadius=300.000000
 		MomentumTransfer=10000.000000
 		HeadMult=1.0
@@ -40,7 +40,7 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryProxyEffectParams
 		ProjectileClass=Class'PumaProjectile'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=6000.000000
+		Speed=12500.000000
 		Damage=55.000000
 		DamageRadius=270.000000
 		MomentumTransfer=10000.000000
@@ -69,7 +69,7 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryRangeEffectParams
 		ProjectileClass=Class'PUMAProjectileClose'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=6000.000000
+		Speed=12500.000000
 		Damage=55.000000
 		DamageRadius=270.000000
 		MomentumTransfer=10000.000000

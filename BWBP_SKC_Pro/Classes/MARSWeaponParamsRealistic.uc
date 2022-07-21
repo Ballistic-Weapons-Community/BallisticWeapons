@@ -110,7 +110,7 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
-		ViewOffset=(X=-6.000000,Y=9.500000,Z=-18.000000)
+		ViewOffset=(X=-6.000000,Y=9.500000,Z=-21.000000)
 		ZoomType=ZT_Logarithmic
 		MagAmmo=30
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)

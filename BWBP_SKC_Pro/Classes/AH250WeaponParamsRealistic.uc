@@ -36,6 +36,7 @@ defaultproperties
 			FireInterval=0.400000
 			BurstFireRateFactor=1.00
 			FireEndAnim=	
+			FireAnimRate=1.500000	
 		FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 		End Object
 		
@@ -47,10 +48,10 @@ defaultproperties
 		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.600000
 		YRandFactor=0.900000
-		YawFactor=0.100000
+		YawFactor=0.200000
 		MaxRecoil=7168.000000
 		DeclineTime=1.600000
-		DeclineDelay=0.200000
+		DeclineDelay=0.000000
 		ViewBindFactor=0.050000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
@@ -62,7 +63,7 @@ defaultproperties
 	//=================================================================
 	
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=128,Max=2900)
+		AimSpread=(Min=168,Max=2900)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000

@@ -16,6 +16,7 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-Fire',Volume=1.500000)
@@ -47,6 +48,7 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-FireAlt',Volume=1.700000)
 		Recoil=0.0
 		Chaos=-1.0

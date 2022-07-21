@@ -83,7 +83,7 @@ defaultproperties
 		DeclineTime=0.750000
 		DeclineDelay=0.175000
 		ViewBindFactor=0.060000
-		ADSViewBindFactor=1.000000
+		ADSViewBindFactor=0.200000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -111,7 +111,7 @@ defaultproperties
 		InventorySize=30
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=30
-		ViewOffset=(X=-3.000000,Y=9.000000,Z=-16.000000)
+		ViewOffset=(X=-3.000000,Y=8.000000,Z=-17.000000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")

@@ -31,13 +31,14 @@ var Actor	ClawSpark1;			// Sparks attached to claws when tracking enemy
 var Actor	ClawSpark2;
 var float	ClawAlpha;			// An alpha amount for claw movement interpolation
 
+var bool		bLatchedOn;
+
 
 replication
 {
 	reliable if (Role==ROLE_Authority)
-		ChargeControl, ClientOverCharge, ClientSetHeat;
+		ChargeControl, ClientOverCharge, ClientSetHeat, bLatchedOn;
 }
-
 
 
 simulated function PostNetBeginPlay()
@@ -623,6 +624,7 @@ defaultproperties
      WeaponModes(1)=(ModeName="Max Safe Voltage",Value=5.000000)
      WeaponModes(2)=(ModeName="Overload")
 	CurrentWeaponMode=2
+	ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
 //     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=-0.300000),(InVal=0.600000,OutVal=-0.250000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000,OutVal=-0.300000)))
 //     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=-0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.300000),(InVal=1.000000,OutVal=0.600000)))
      SightOffset=(X=-25.000000,Z=19.500000)

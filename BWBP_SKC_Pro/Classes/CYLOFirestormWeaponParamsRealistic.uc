@@ -21,7 +21,7 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.CYLOFirestormHeatEmitter'
-		FlashScaleFactor=1.000000
+		FlashScaleFactor=0.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Slot=SLOT_Interact,Pitch=1.250000,bNoOverride=False)
 		Recoil=780.000000
 		Chaos=0.020000
@@ -50,6 +50,7 @@ defaultproperties
 		MaxRecoil=3840.000000
 		DeclineTime=0.800000
 		ViewBindFactor=0.200000
+		ADSViewBindFactor=0.200000
 		CrouchMultiplier=0.800000
 		bViewDecline=True
 	End Object
