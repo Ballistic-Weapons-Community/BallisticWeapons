@@ -14,6 +14,9 @@ defaultproperties
 		Damage=55.0
 		HeadMult=2.127272
 		LimbMult=0.654545
+        DamageType=Class'BallisticProV55.DTM46Assault'
+        DamageTypeHead=Class'BallisticProV55.DTM46AssaultHead'
+        DamageTypeArm=Class'BallisticProV55.DTM46Assault'
 		PenetrationEnergy=26.000000
 		PenetrateForce=150
 		bPenetrate=True
@@ -111,6 +114,7 @@ defaultproperties
 		ViewPivot=(Pitch=384)
 		SightOffset=(X=0.000000,Z=11.3500000)
 		SightPivot=(Pitch=000,Roll=0)
+        ZoomType=ZT_Logarithmic
 		InitialWeaponMode=1
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)

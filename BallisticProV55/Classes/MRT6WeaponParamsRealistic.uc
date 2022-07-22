@@ -16,6 +16,9 @@ defaultproperties
 		Damage=20.0
 		HeadMult=2.15
 		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTMRT6Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'
 		PenetrationEnergy=16.000000
 		PenetrateForce=10
 		bPenetrate=True
@@ -53,6 +56,9 @@ defaultproperties
 		Damage=20.0
 		HeadMult=2.15
 		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTMRT6Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'
 		PenetrationEnergy=16.000000
 		PenetrateForce=10
 		bPenetrate=True

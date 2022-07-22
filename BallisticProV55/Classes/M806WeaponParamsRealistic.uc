@@ -14,6 +14,9 @@ defaultproperties
 		Damage=47.0
 		HeadMult=2.276595
 		LimbMult=0.617021
+		DamageType=Class'BallisticProV55.DTM806Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTM806PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTM806Pistol'
 		PenetrationEnergy=9.000000
 		PenetrateForce=30
 		bPenetrate=True

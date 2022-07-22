@@ -6,36 +6,35 @@ defaultproperties
     //=================================================================
     // PRIMARY FIRE
     //=================================================================	
-	
-	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			WaterTraceRange=2500.0
-			DecayRange=(Min=0.0,Max=0.0)
-			RangeAtten=0.500000
-			Damage=15.0
-			HeadMult=4.0
-			LimbMult=0.5
-			DamageType=Class'BallisticProV55.DTXK2SMG'
-			DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
-			DamageTypeArm=Class'BallisticProV55.DTXK2SMG'
-			PenetrationEnergy=24.000000
-			PenetrateForce=150
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Fire',Volume=0.500000)
-			Recoil=48.000000
-			Chaos=-1.0
-			Inaccuracy=(X=8,Y=8)
-		End Object
+		
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		WaterTraceRange=2500.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.500000
+		Damage=15.0
+		HeadMult=4.0
+		LimbMult=0.5
+		DamageType=Class'BallisticProV55.DTXK2SMG'
+		DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
+		DamageTypeArm=Class'BallisticProV55.DTXK2SMG'
+		PenetrationEnergy=24.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Fire',Volume=0.500000)
+		Recoil=48.000000
+		Chaos=-1.0
+		Inaccuracy=(X=8,Y=8)
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.070000
-			BurstFireRateFactor=1.00	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.070000
+		BurstFireRateFactor=1.00	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

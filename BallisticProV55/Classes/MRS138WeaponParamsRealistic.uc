@@ -7,13 +7,19 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
+	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=600.000000,Max=3000.000000)
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
+		TraceCount=13
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=20.0
 		HeadMult=2.15
 		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTMRS138Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTMRS138ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTMRS138Shotgun'
 		PenetrateForce=10
 		bPenetrate=True
 		PDamageFactor=0.6
@@ -24,6 +30,7 @@ defaultproperties
 		Recoil=1792.000000
 		Chaos=-1.0
 		Inaccuracy=(X=900,Y=900)
+		HipSpreadFactor=1.000000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
 	End Object
@@ -34,7 +41,7 @@ defaultproperties
 		bCockAfterFire=True
 		FireEndAnim=
 		FireAnimRate=1.3500000	
-	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
+		FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
 	//=================================================================

@@ -7,87 +7,85 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=1500.000000,Max=3500.000000)
-			WaterTraceRange=5000.0
-			RangeAtten=0.200000
-			TraceCount=24
-			TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-			ImpactManager=Class'BallisticProV55.IM_Shell'
-			Damage=25.0
-			LimbMult=0.24
-			DamageType=Class'BallisticProV55.DTM290Shotgun'
-			DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
-			DamageTypeArm=Class'BallisticProV55.DTM290Shotgun'
-			PenetrationEnergy=16.000000
-			PenetrateForce=100
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			SpreadMode=FSM_Circle
-			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-			FlashScaleFactor=1.200000
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Fire',Volume=1.500000)
-			Recoil=768.000000
-			Chaos=-1.0
-			PushbackForce=1000.000000
-			Inaccuracy=(X=1400,Y=800)
-			HipSpreadFactor=1.000000
-			BotRefireRate=0.900000
-			WarnTargetPct=0.100000	
-		End Object
+	Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=1500.000000,Max=3500.000000)
+		WaterTraceRange=5000.0
+		RangeAtten=0.200000
+		TraceCount=24
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		Damage=25.0
+		LimbMult=0.24
+		DamageType=Class'BallisticProV55.DTM290Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM290Shotgun'
+		PenetrationEnergy=16.000000
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Circle
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=1.200000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Fire',Volume=1.500000)
+		Recoil=768.000000
+		Chaos=-1.0
+		PushbackForce=1000.000000
+		Inaccuracy=(X=1400,Y=800)
+		HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.800000
-			AmmoPerFire=2
-			BurstFireRateFactor=1.00
-			bCockAfterFire=True	
-			FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.800000
+		AmmoPerFire=2
+		BurstFireRateFactor=1.00
+		bCockAfterFire=True	
+		FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams
-			TraceRange=(Min=1500.000000,Max=3500.000000)
-			WaterTraceRange=5000.0
-			RangeAtten=0.200000
-			TraceCount=12
-			TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
-			ImpactManager=Class'BallisticProV55.IM_Shell'
-			Damage=25.0
-			LimbMult=0.24
-			DamageType=Class'BallisticProV55.DTM290Shotgun'
-			DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
-			DamageTypeArm=Class'BallisticProV55.DTM290Shotgun'
-			PenetrationEnergy=16.000000
-			PenetrateForce=100
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			SpreadMode=FSM_Circle
-			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-			FlashScaleFactor=3.500000
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290SingleFire',Volume=1.200000)
-			Recoil=256.000000
-			Chaos=-1.0
-			PushbackForce=600.000000
-			Inaccuracy=(X=900,Y=700)
-			HipSpreadFactor=1.000000
-			BotRefireRate=0.900000
-			WarnTargetPct=0.100000	
-		End Object
+	Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams
+		TraceRange=(Min=1500.000000,Max=3500.000000)
+		WaterTraceRange=5000.0
+		RangeAtten=0.200000
+		TraceCount=12
+		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		Damage=25.0
+		LimbMult=0.24
+		DamageType=Class'BallisticProV55.DTM290Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM290Shotgun'
+		PenetrationEnergy=16.000000
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Circle
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=3.500000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290SingleFire',Volume=1.200000)
+		Recoil=256.000000
+		Chaos=-1.0
+		PushbackForce=600.000000
+		Inaccuracy=(X=900,Y=700)
+		HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.400000
-			BurstFireRateFactor=1.00
-			bCockAfterFire=True
-			FireAnim="FireRight"	
-			FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.400000
+		BurstFireRateFactor=1.00
+		bCockAfterFire=True
+		FireAnim="FireRight"	
+		FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

@@ -14,6 +14,9 @@ defaultproperties
 		Damage=45.0
 		HeadMult=2.266666
 		LimbMult=0.666666
+		DamageType=Class'BallisticProV55.DTM50Assault'
+		DamageTypeHead=Class'BallisticProV55.DTM50AssaultHead'
+		DamageTypeArm=Class'BallisticProV55.DTM50AssaultLimb'
 		PenetrationEnergy=18.000000
 		PenetrateForce=50
 		bPenetrate=True

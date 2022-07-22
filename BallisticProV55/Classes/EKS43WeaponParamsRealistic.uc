@@ -13,6 +13,9 @@ defaultproperties
 		Damage=87.0
 		HeadMult=2.183908
 		LimbMult=0.482758
+		DamageType=Class'BallisticProV55.DTEKS43Katana'
+		DamageTypeHead=Class'BallisticProV55.DTEKS43KatanaHead'
+		DamageTypeArm=Class'BallisticProV55.DTEKS43KatanaLimb'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.300000
@@ -42,6 +45,9 @@ defaultproperties
 		Damage=175.0
 		HeadMult=2.497142
 		LimbMult=0.468571
+		DamageType=Class'BallisticProV55.DTEKS43Katana'
+		DamageTypeHead=Class'BallisticProV55.DTEKS43KatanaHead'
+		DamageTypeArm=Class'BallisticProV55.DTEKS43KatanaLimb'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.700000

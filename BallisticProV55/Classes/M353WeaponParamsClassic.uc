@@ -7,37 +7,37 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=12000.000000,Max=15000.000000)
-			WaterTraceRange=12000.0
-			DecayRange=(Min=0.0,Max=0.0)
-			Damage=17.0
-			HeadMult=3.3
-			LimbMult=0.6
-			DamageType=Class'BallisticProV55.DTM353MG'
-			DamageTypeHead=Class'BallisticProV55.DTM353MGHead'
-			DamageTypeArm=Class'BallisticProV55.DTM353MG'
-			PenetrationEnergy=32.000000
-			PenetrateForce=150
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.M353FlashEmitter'
-			FlashScaleFactor=1.200000
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=64.000000
-			Chaos=-1.0
-			Inaccuracy=(X=2,Y=2)
-			WarnTargetPct=0.200000
-		End Object
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=12000.000000,Max=15000.000000)
+		WaterTraceRange=12000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=17.0
+		HeadMult=3.3
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTM353MG'
+		DamageTypeHead=Class'BallisticProV55.DTM353MGHead'
+		DamageTypeArm=Class'BallisticProV55.DTM353MG'
+		PenetrationEnergy=32.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.M353FlashEmitter'
+		FlashScaleFactor=1.200000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=64.000000
+		Chaos=-1.0
+		Inaccuracy=(X=2,Y=2)
+		WarnTargetPct=0.200000
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.080000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.080000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

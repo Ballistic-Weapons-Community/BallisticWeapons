@@ -7,88 +7,86 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=1200.000000,Max=1500.000000)
-			WaterTraceRange=5000.0
-			RangeAtten=0.200000
-			TraceCount=24
-			TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
-			ImpactManager=Class'BallisticProV55.IM_Shell'
-			Damage=25.0
-			LimbMult=0.24
-			DamageType=Class'BallisticProV55.DTMRT6Shotgun'
-			DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
-			DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'
-			PenetrationEnergy=16.000000
-			PenetrateForce=100
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-			FlashScaleFactor=1.200000
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Fire')
-			Recoil=4096.000000
-			Chaos=0.800000
-			PushbackForce=1200.000000
-			Inaccuracy=(X=3000,Y=1500)
-			HipSpreadFactor=1.000000
-			BotRefireRate=0.900000
-			WarnTargetPct=0.100000	
-		End Object
+	Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=1200.000000,Max=1500.000000)
+		WaterTraceRange=5000.0
+		RangeAtten=0.200000
+		TraceCount=24
+		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		Damage=25.0
+		LimbMult=0.24
+		DamageType=Class'BallisticProV55.DTMRT6Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'
+		PenetrationEnergy=16.000000
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=1.200000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Fire')
+		Recoil=4096.000000
+		Chaos=0.800000
+		PushbackForce=1200.000000
+		Inaccuracy=(X=3000,Y=1500)
+		HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.800000
-			AmmoPerFire=2
-			BurstFireRateFactor=1.00
-			bCockAfterFire=True	
-			FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.800000
+		AmmoPerFire=2
+		BurstFireRateFactor=1.00
+		bCockAfterFire=True	
+		FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams
-			TraceRange=(Min=1200.000000,Max=1500.000000)
-			WaterTraceRange=5000.0
-			RangeAtten=0.200000
-			TraceCount=12
-			TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
-			ImpactManager=Class'BallisticProV55.IM_Shell'
-			Damage=27.0
-			HeadMult=1.5
-			LimbMult=0.25
-			DamageType=Class'BallisticProV55.DTMRT6Shotgun'
-			DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
-			DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'
-			PenetrationEnergy=16.000000
-			PenetrateForce=100
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
-			FlashScaleFactor=1.200000
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6SingleFire')
-			Recoil=2048.000000
-			Chaos=0.500000
-			PushbackForce=600.000000
-			Inaccuracy=(X=1500,Y=1000)
-			HipSpreadFactor=1.000000
-			BotRefireRate=0.900000
-			WarnTargetPct=0.100000	
-		End Object
+	Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams
+		TraceRange=(Min=1200.000000,Max=1500.000000)
+		WaterTraceRange=5000.0
+		RangeAtten=0.200000
+		TraceCount=12
+		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		Damage=27.0
+		HeadMult=1.5
+		LimbMult=0.25
+		DamageType=Class'BallisticProV55.DTMRT6Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'
+		PenetrationEnergy=16.000000
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=1.200000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6SingleFire')
+		Recoil=2048.000000
+		Chaos=0.500000
+		PushbackForce=600.000000
+		Inaccuracy=(X=1500,Y=1000)
+		HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.400000
-			BurstFireRateFactor=1.00
-			bCockAfterFire=True
-			FireAnim="FireRight"	
-			FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.400000
+		BurstFireRateFactor=1.00
+		bCockAfterFire=True
+		FireAnim="FireRight"	
+		FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

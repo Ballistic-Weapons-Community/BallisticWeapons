@@ -7,69 +7,67 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			WaterTraceRange=2000.0
-			DecayRange=(Min=0.0,Max=0.0)
-			RangeAtten=0.600000
-			Damage=17.0
-			HeadMult=3.352941
-			LimbMult=0.411764
-			DamageType=Class'BallisticProV55.DTFifty9SMG'
-			DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
-			DamageTypeArm=Class'BallisticProV55.DTFifty9SMG'
-			PenetrationEnergy=16.000000
-			PenetrateForce=135
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
-			FlashScaleFactor=0.600000
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
-			Recoil=64.000000
-			Chaos=-1.0
-			Inaccuracy=(X=32,Y=32)
-		End Object
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		WaterTraceRange=2000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.600000
+		Damage=17.0
+		HeadMult=3.352941
+		LimbMult=0.411764
+		DamageType=Class'BallisticProV55.DTFifty9SMG'
+		DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
+		DamageTypeArm=Class'BallisticProV55.DTFifty9SMG'
+		PenetrationEnergy=16.000000
+		PenetrateForce=135
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
+		FlashScaleFactor=0.600000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
+		Recoil=64.000000
+		Chaos=-1.0
+		Inaccuracy=(X=32,Y=32)
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.080000
-			BurstFireRateFactor=1.00	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.080000
+		BurstFireRateFactor=1.00	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
+	Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
+		TraceRange=(Min=96.000000,Max=96.000000)
+		WaterTraceRange=5000.0
+		Damage=35.0
+		HeadMult=2.428571
+		LimbMult=0.571428
+		DamageType=Class'BallisticProV55.DTFifty9Blade'
+		DamageTypeHead=Class'BallisticProV55.DTFifty9BladeHead'
+		DamageTypeArm=Class'BallisticProV55.DTFifty9Blade'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.700000
+		HookPullForce=100.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.100000
+	End Object
 	
-		Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
-			TraceRange=(Min=96.000000,Max=96.000000)
-			WaterTraceRange=5000.0
-			Damage=35.0
-			HeadMult=2.428571
-			LimbMult=0.571428
-			DamageType=Class'BallisticProV55.DTFifty9Blade'
-			DamageTypeHead=Class'BallisticProV55.DTFifty9BladeHead'
-			DamageTypeArm=Class'BallisticProV55.DTFifty9Blade'
-			ChargeDamageBonusFactor=1
-			PenetrationEnergy=0.000000
-			HookStopFactor=1.700000
-			HookPullForce=100.000000
-			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.UZI.Melee',Radius=32.000000,bAtten=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.800000
-			WarnTargetPct=0.100000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			FireAnim="Melee1"
-			FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Melee1"
+		FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

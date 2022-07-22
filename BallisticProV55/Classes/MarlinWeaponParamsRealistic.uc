@@ -14,6 +14,9 @@ defaultproperties
 		Damage=112.0
 		HeadMult=2.098214
 		LimbMult=0.669642
+		DamageType=Class'BallisticProV55.DTMarlinRifle'
+		DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'
+		DamageTypeArm=Class'BallisticProV55.DTMarlinRifle'
 		PenetrationEnergy=15.000000
 		PenetrateForce=80
 		bPenetrate=True
@@ -49,6 +52,9 @@ defaultproperties
 		Damage=54.0
 		HeadMult=2.129629
 		LimbMult=0.462962
+		DamageType=Class'BallisticProV55.DTMarlinMelee'
+		DamageTypeHead=Class'BallisticProV55.DTMarlinMeleeHead'
+		DamageTypeArm=Class'BallisticProV55.DTMarlinMelee'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		SpreadMode=FSM_Rectangle

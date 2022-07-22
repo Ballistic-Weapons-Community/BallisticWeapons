@@ -14,6 +14,9 @@ defaultproperties
 		Damage=37.0
 		HeadMult=2.216216
 		LimbMult=0.594594
+		DamageType=Class'BallisticProV55.DTRS8Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTRS8PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTRS8Pistol'
 		PenetrationEnergy=9.000000
 		PenetrateForce=35
 		bPenetrate=True

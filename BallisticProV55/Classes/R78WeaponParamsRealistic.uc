@@ -15,6 +15,9 @@ defaultproperties
 		Damage=146.0
 		HeadMult=2.123287
 		LimbMult=0.630136
+		DamageType=Class'BallisticProV55.DTR78Rifle'
+		DamageTypeHead=Class'BallisticProV55.DTR78RifleHead'
+		DamageTypeArm=Class'BallisticProV55.DTR78Rifle'
 		PenetrationEnergy=30.000000
 		PenetrateForce=350
 		bPenetrate=True
@@ -84,6 +87,7 @@ defaultproperties
 		MagAmmo=5
 		ViewOffset=(X=1.000000,Y=6.500000,Z=-12.000000)
 		SightOffset=(X=10.500000,Y=0.000000,Z=17.0500000)
+		WeaponBoneScales(0)=(BoneName="Silencer",Slot=78,Scale=0f)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

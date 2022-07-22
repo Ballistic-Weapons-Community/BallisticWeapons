@@ -14,6 +14,9 @@ defaultproperties
 		Damage=51.0
 		HeadMult=2.254901
 		LimbMult=0.647058
+		DamageType=Class'BallisticProV55.DTleMatRevolver'
+		DamageTypeHead=Class'BallisticProV55.DTleMatrevolverHead'
+		DamageTypeArm=Class'BallisticProV55.DTleMatRevolver'
 		PenetrationEnergy=11.000000
 		PenetrateForce=40
 		bPenetrate=True
@@ -51,6 +54,9 @@ defaultproperties
 		Damage=20.0
 		HeadMult=2.05
 		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTleMatShotgun'
+		DamageTypeHead=Class'BallisticProV55.DTleMatShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTleMatShotgun'
 		PenetrationEnergy=5.000000
 		PenetrateForce=8
 		bPenetrate=True

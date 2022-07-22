@@ -14,6 +14,9 @@ defaultproperties
 		Damage=33.0
 		HeadMult=2.181818
 		LimbMult=0.606060
+		DamageType=Class'BallisticProV55.DTFifty9SMG'
+		DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
+		DamageTypeArm=Class'BallisticProV55.DTFifty9SMG'
 		PenetrationEnergy=7.000000
 		PenetrateForce=20
 		bPenetrate=True
@@ -44,6 +47,9 @@ defaultproperties
 		Damage=57.0
 		HeadMult=2.192982
 		LimbMult=0.456140
+		DamageType=Class'BallisticProV55.DTFifty9Blade'
+		DamageTypeHead=Class'BallisticProV55.DTFifty9BladeHead'
+		DamageTypeArm=Class'BallisticProV55.DTFifty9Blade'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.000000

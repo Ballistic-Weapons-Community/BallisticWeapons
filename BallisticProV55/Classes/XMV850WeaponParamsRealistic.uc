@@ -15,6 +15,9 @@ defaultproperties
 		Damage=45.0
 		HeadMult=2.266666
 		LimbMult=0.666666
+		DamageType=Class'BallisticProV55.DTXMV850MG'
+		DamageTypeHead=Class'BallisticProV55.DTXMV850MGHead'
+		DamageTypeArm=Class'BallisticProV55.DTXMV850MG'
 		PenetrationEnergy=18.000000
 		PenetrateForce=65
 		bPenetrate=True

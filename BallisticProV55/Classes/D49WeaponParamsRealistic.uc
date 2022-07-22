@@ -14,6 +14,9 @@ defaultproperties
 		Damage=87.0
 		HeadMult=2.356321
 		LimbMult=0.586206
+		DamageType=Class'BallisticProV55.DTD49Revolver'
+		DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
+		DamageTypeArm=Class'BallisticProV55.DTD49Revolver'
 		PenetrationEnergy=14.000000
 		PenetrateForce=50
 		bPenetrate=True
@@ -50,6 +53,9 @@ defaultproperties
 		Damage=87.0
 		HeadMult=2.298850
 		LimbMult=0.586206
+		DamageType=Class'BallisticProV55.DTD49Revolver'
+		DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
+		DamageTypeArm=Class'BallisticProV55.DTD49Revolver'
 		PenetrationEnergy=14.000000
 		PenetrateForce=50
 		bPenetrate=True

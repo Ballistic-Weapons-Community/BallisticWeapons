@@ -13,6 +13,9 @@ defaultproperties
 		Damage=38.0
 		HeadMult=2.236842
 		LimbMult=0.447368
+		DamageType=Class'BallisticProV55.DTX3Knife'
+		DamageTypeHead=Class'BallisticProV55.DTX3KnifeHead'
+		DamageTypeArm=Class'BallisticProV55.DTX3KnifeLimb'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.000000
@@ -44,6 +47,9 @@ defaultproperties
 		Damage=74.0
 		HeadMult=2.256756
 		LimbMult=0.445945
+		DamageType=Class'BallisticProV55.DTX3Knife'
+		DamageTypeHead=Class'BallisticProV55.DTX3KnifeHead'
+		DamageTypeArm=Class'BallisticProV55.DTX3KnifeLimb'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.500000

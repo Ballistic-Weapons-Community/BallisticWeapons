@@ -37,7 +37,7 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams
+	Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams
 		TraceRange=(Min=20000.000000,Max=20000.000000)
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
@@ -62,11 +62,11 @@ defaultproperties
 		WarnTargetPct=0.050000
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
 		FireInterval=0.300000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True	
-	FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'RealisticSecondaryEffectParams'
 	End Object
 		
 	//=================================================================
@@ -114,6 +114,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
 		MagAmmo=3
+        ZoomType=ZT_Logarithmic
 		ViewOffset=(X=8.000000,Y=8.000000,Z=-14.000000)
 		SightOffset=(X=15.7500000,Y=0.000000,Z=24.700000)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
