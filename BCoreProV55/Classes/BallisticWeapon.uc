@@ -5083,6 +5083,14 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 }
 // End debug -----------------------------------------------------------------------------------------------------------
 
+simulated function UpdatePenetrationStatus(int Count)
+{
+	if (Count > 0)
+		bHasPenetrated = true;
+	else
+		bHasPenetrated = false;
+}
+
 simulated final function bool HasSecondaryAmmo()
 {
     return (Ammo[1] != None) && (Ammo[1] != Ammo[0]);
