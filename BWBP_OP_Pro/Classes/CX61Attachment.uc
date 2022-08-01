@@ -26,11 +26,11 @@ replication
 		FlameCount, SprayCount;
 }
 
-simulated Event PostNetBeginPlay()
+simulated Event PreBeginPlay()
 {
-	super.PostNetBeginPlay();
+	super.PreBeginPlay();
 
-	if (CX61AssaultRifle(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
+	if (CX61AssaultRifle(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
 	{
 		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_CX61Spectre';
 		TracerChance=1;

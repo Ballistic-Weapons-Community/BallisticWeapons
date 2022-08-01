@@ -595,10 +595,10 @@ defaultproperties
      CockAnimPostReload="ReloadEndCock"
      CockAnimRate=1.250000
 	 ReloadAnimRate=0.800000
-     CockSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Cock',Volume=0.650000)
-	 ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipHit')
-	 ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipOut')
-	 ClipInSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipIn')
+     CockSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-Cock',Volume=1.350000)
+	 ClipHitSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-MagHit',Volume=1.350000)
+	 ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-MagOut',Volume=1.350000)
+	 ClipInSound=(Sound=Sound'BWBP_OP_Sounds.MX32.MX32-MagIn',Volume=1.350000)
      ClipInFrame=0.650000
      bNoCrosshairInScope=True
      SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
@@ -611,6 +611,8 @@ defaultproperties
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.G5OutA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,USize2=128,VSize2=128,Color1=(B=255,G=255,R=255,A=255),Color2=(B=0,G=0,R=255,A=255),StartSize1=110,StartSize2=30)
 	 CurrentWeaponMode=0
 	 ParamsClasses(0)=Class'MX32WeaponParams'
+	 ParamsClasses(1)=Class'MX32WeaponParamsClassic'
+	 ParamsClasses(2)=Class'MX32WeaponParamsRealistic'
 	 MagAmmo=50
      PutDownAnimRate=1.500000
      SelectForce="SwitchToAssaultRifle"
