@@ -52,6 +52,11 @@ var() float					PlayerJumpFactor;		// Player JumpZ multiplied by this when holdi
 //-----------------------------------------------------------------------------
 var() byte					InventorySize;			// How much space this weapon should occupy in an inventory. 0-100. Used by mutators, games, etc...
 //-----------------------------------------------------------------------------
+// Handling
+//-----------------------------------------------------------------------------
+var() float					CockAnimRate;
+var() float					ReloadAnimRate;
+//-----------------------------------------------------------------------------
 // Sighting
 //-----------------------------------------------------------------------------
 var() float					SightMoveSpeedFactor;	// Additional slowdown factor in iron sights
@@ -105,4 +110,6 @@ defaultproperties
     ZoomType=ZT_Irons
     DisplaceDurationMult=1.000000
     MagAmmo=30
+	CockAnimRate=1.000000
+    ReloadAnimRate=1.000000
 }
