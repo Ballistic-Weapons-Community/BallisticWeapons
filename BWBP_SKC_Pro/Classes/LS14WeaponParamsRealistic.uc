@@ -165,7 +165,8 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=20
-		ViewOffset=(X=-4.000000,Y=10.000000,Z=-16.000000)
+		//ViewOffset=(X=-4.000000,Y=10.000000,Z=-16.000000)
+		ViewOffset=(X=-8.000000,Y=9.000000,Z=-16.000000)
 		SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Logarithmic
@@ -173,6 +174,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="LS14 Directed Energy Weapon"
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
@@ -198,6 +201,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="LS10 Laser Carbine"
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticCarbineAimParams'
 		FireParams(0)=FireParams'RealisticCarbinePrimaryFireParams'

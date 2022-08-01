@@ -14,6 +14,9 @@ defaultproperties
 		Damage=135.0
 		HeadMult=2.0
 		LimbMult=0.65
+		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
 		PenetrationEnergy=48.000000
 		PenetrateForce=300
 		bPenetrate=True
@@ -187,6 +190,8 @@ defaultproperties
 		ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
 		SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		SightPivot=(Pitch=32)
+		ReloadAnimRate=0.900000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		AimParams(1)=AimParams'RealisticControlledAimParams'

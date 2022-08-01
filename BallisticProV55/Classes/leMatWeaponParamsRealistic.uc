@@ -130,6 +130,8 @@ defaultproperties
 		bAdjustHands=true
 		RootAdjust=(Yaw=-350,Pitch=2500)
 		WristAdjust=(Yaw=-3000,Pitch=-0000)
+		ReloadAnimRate=1.100000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

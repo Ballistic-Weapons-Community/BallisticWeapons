@@ -16,6 +16,7 @@ defaultproperties
 		Damage=67.0
 		DamageRadius=72.000000
 		MomentumTransfer=200.000000
+		bLimitMomentumZ=False
 		HeadMult=2.089552
 		LimbMult=0.626865
 		SpreadMode=FSM_Rectangle
@@ -40,7 +41,7 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================
 
-    Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+    Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
         SpawnOffset=(X=5.000000,Y=6.000000,Z=-4.000000)
         Speed=400.000000
@@ -49,6 +50,7 @@ defaultproperties
         Damage=100.000000
         DamageRadius=200.000000
         MomentumTransfer=100000.000000
+		bLimitMomentumZ=False
         MaxDamageGainFactor=1.00
         DamageGainStartTime=0.05
         DamageGainEndTime=0.1
@@ -59,13 +61,13 @@ defaultproperties
         WarnTargetPct=0.500000
     End Object
 
-    Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+    Begin Object Class=FireParams Name=RealisticSecondaryFireParams
         AmmoPerFire=6
 	    FireEndAnim=
         AimedFireAnim="Fire"
 	    FireInterval=1.000000
 		FireAnimRate=0.90000	
-        FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+        FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'
     End Object
 		
 	//=================================================================
@@ -114,6 +116,8 @@ defaultproperties
 		ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
 		SightOffset=(X=-1-.000000,Z=14.300000)
 		SightPivot=(Pitch=768)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

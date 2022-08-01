@@ -36,7 +36,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.100000
+		FireInterval=0.140000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 		FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
@@ -65,7 +65,7 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=RealisticSecondaryFireParams
-        FireInterval=0.100000
+        FireInterval=0.140000
         FireEndAnim=
         AimedFireAnim="SightFire"
         FireAnimRate=1.250000	
@@ -131,6 +131,8 @@ defaultproperties
 		MagAmmo=6
 		SightPivot=(Pitch=150)
 		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
+		ReloadAnimRate=1.100000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

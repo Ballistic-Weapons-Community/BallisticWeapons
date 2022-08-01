@@ -79,38 +79,22 @@ defaultproperties
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
-	
-	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams
-		TraceRange=(Min=3000.000000,Max=3000.000000)
-		WaterTraceRange=2100.0
-		DecayRange=(Min=0.0,Max=0.0)
-		RangeAtten=0.350000
-		Damage=6.0
-		HeadMult=2.8
-		LimbMult=0.5
-		DamageType=Class'BallisticProV55.DTGRS9Laser'
-		DamageTypeHead=Class'BallisticProV55.DTGRS9LaserHead'
-		DamageTypeArm=Class'BallisticProV55.DTGRS9Laser'
-		PenetrateForce=200
-		bPenetrate=True
-		PDamageFactor=0.6
-		WallPDamageFactor=0.4
-		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-LaserFire')
-		Recoil=0.0
-		Chaos=-1.0
-		Inaccuracy=(X=2,Y=2)
-		BotRefireRate=0.999000
-		WarnTargetPct=0.010000
-	End Object
 
-	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=0.080000
-		AmmoPerFire=0
-		BurstFireRateFactor=1.00
-		FireAnim="Idle"	
-	FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
-	End Object
+    Begin Object Class=FireEffectParams Name=RealisticFlashEffectParams
+        MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
+        WarnTargetPct=1.000000
+        BotRefireRate=0.3
+    End Object
+
+    Begin Object Class=FireParams Name=RealisticFlashFireParams
+        MaxHoldTime=0.500000
+        FireAnim="SecFire"
+        FireEndAnim=
+        FireInterval=10.000000
+        AmmoPerFire=0
+        FireEffectParams(0)=FireEffectParams'RealisticFlashEffectParams'
+    End Object
 		
 	//=================================================================
 	// RECOIL
@@ -181,14 +165,16 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)
-		InitialWeaponMode=1
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.400000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticBurstRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		FireParams(1)=FireParams'RealisticPrimaryBurstFireParams'
 		FireParams(2)=FireParams'RealisticPrimaryBurstFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(0)=FireParams'RealisticFlashFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
 

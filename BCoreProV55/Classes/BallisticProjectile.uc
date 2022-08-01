@@ -160,6 +160,9 @@ simulated function ApplyParams(ProjectileEffectParams params)
     MomentumTransfer = params.MomentumTransfer;
 	default.MomentumTransfer = params.MomentumTransfer;
 
+	bLimitMomentumZ = params.bLimitMomentumZ;
+	default.bLimitMomentumZ = params.bLimitMomentumZ;
+	
     HeadMult = params.HeadMult;
     LimbMult = params.LimbMult;
 

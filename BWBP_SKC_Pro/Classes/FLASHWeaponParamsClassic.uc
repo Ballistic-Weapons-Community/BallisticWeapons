@@ -110,6 +110,8 @@ defaultproperties
 		MagAmmo=4
 		SightOffset=(X=0.000000,Y=5.300000,Z=23.300000)
 		ZoomType=ZT_Fixed
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

@@ -117,6 +117,8 @@ defaultproperties
         ZoomType=ZT_Logarithmic
 		ViewOffset=(X=8.000000,Y=8.000000,Z=-14.000000)
 		SightOffset=(X=15.7500000,Y=0.000000,Z=24.700000)
+		ReloadAnimRate=1.100000
+		CockAnimRate=1.325000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

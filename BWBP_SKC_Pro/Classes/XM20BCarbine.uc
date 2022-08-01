@@ -221,6 +221,18 @@ simulated function ServerSwitchWeaponMode (byte NewMode)
 simulated function ClientSwitchLaserMode (byte newMode)
 {
 	XM20BSecondaryFire(FireMode[1]).SwitchLaserMode(newMode);
+	if (newMode == 2)
+	{
+		bBigLaser=True;
+		if (ThirdPersonActor != None)
+			XM20BAttachment(ThirdPersonActor).bBigLaser=true;
+	}
+	else
+	{
+		bBigLaser=False;
+		if (ThirdPersonActor != None)
+			XM20BAttachment(ThirdPersonActor).bBigLaser=false;
+	}	
 	UpdateScreen();
 }
 
@@ -352,9 +364,16 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	}
 
 	Scale3D.X = VSize(HitLocation-Loc)/128;
-	Scale3D.Y = 4;
-	Scale3D.Z = 4;
-
+	if (!bBigLaser)
+	{
+		Scale3D.Y = 4;
+		Scale3D.Z = 4;
+	}
+	else
+	{
+		Scale3D.Y = 9;
+		Scale3D.Z = 9;
+	}
 	Laser.SetDrawScale3D(Scale3D);
 	Canvas.DrawActor(Laser, false, false, DisplayFOV);
 }

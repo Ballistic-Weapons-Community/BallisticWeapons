@@ -23,7 +23,7 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C'
 		FlashScaleFactor=0.800000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Fire2',Volume=0.900000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=72.000000
@@ -61,6 +61,7 @@ defaultproperties
 		RecommendSplashDamage=True
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		bLimitMomentumZ=False
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
@@ -113,6 +114,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

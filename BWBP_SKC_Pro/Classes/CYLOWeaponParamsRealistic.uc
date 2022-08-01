@@ -14,6 +14,9 @@ defaultproperties
 		Damage=50
 		HeadMult=2.2
 		LimbMult=0.65
+		DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLORifleHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLORifle'
 		PenetrationEnergy=22.000000
 		PenetrateForce=70
 		bPenetrate=True
@@ -113,7 +116,9 @@ defaultproperties
 		MagAmmo=37
 		SightPivot=(Pitch=450)
 		SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
-		ViewOffset=(X=8.000000,Z=-14.000000)
+		ViewOffset=(X=4.000000,Y=-4,Z=-14.000000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

@@ -51,8 +51,8 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=87.0
-		HeadMult=2.298850
-		LimbMult=0.586206
+		HeadMult=2.3f
+		LimbMult=0.6f
 		DamageType=Class'BallisticProV55.DTD49Revolver'
 		DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
 		DamageTypeArm=Class'BallisticProV55.DTD49Revolver'
@@ -131,6 +131,8 @@ defaultproperties
 		bAdjustHands=true
 		RootAdjust=(Yaw=-375,Pitch=2000)
 		WristAdjust=(Yaw=-2500,Pitch=-0000)
+		ReloadAnimRate=1.700000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

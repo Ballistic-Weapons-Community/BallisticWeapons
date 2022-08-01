@@ -10,6 +10,15 @@ class AS50Attachment extends BallisticAttachment;
 
 var() class<BCTraceEmitter>	AltTracerClass;		//Type of tracer to use for instant fire effects
 
+simulated Event PreBeginPlay()
+{
+	super.PreBeginPlay();
+	if (AS50Rifle(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	{
+		ImpactManager=Class'IM_IncendiaryHMGBullet';
+	}
+}
+
 // Return the location of the muzzle.
 simulated function Vector GetModeTipLocation(optional byte Mode)
 {

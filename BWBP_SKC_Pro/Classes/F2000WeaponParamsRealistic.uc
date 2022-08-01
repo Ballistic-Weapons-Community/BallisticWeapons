@@ -15,6 +15,9 @@ defaultproperties
 		Damage=43.0
 		HeadMult=2.139534
 		LimbMult=0.651162
+		DamageType=Class'BWBP_SKC_Pro.DTF2000Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTF2000AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTF2000Assault'
 		PenetrationEnergy=16.000000
 		PenetrateForce=50
 		bPenetrate=True
@@ -59,6 +62,7 @@ defaultproperties
 		RecommendSplashDamage=True
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		bLimitMomentumZ=False
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
@@ -81,7 +85,7 @@ defaultproperties
 		YRandFactor=0.165000
 		MaxRecoil=3000.000000
 		DeclineTime=0.750000
-		DeclineDelay=0.175000
+		DeclineDelay=0.135000
 		ViewBindFactor=0.060000
 		ADSViewBindFactor=0.200000
 		HipMultiplier=1.000000
@@ -116,6 +120,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

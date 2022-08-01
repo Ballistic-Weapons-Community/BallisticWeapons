@@ -24,7 +24,7 @@ defaultproperties
 		bPenetrate=True
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
-		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		FlashScaleFactor=1.500000
@@ -59,7 +59,7 @@ defaultproperties
         LimbMult=0.6f
         PenetrateForce=500
 		bPenetrate=True
-		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
 		FlashScaleFactor=3.000000
 		Recoil=4096.000000
 		Chaos=1.000000

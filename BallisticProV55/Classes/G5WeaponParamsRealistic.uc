@@ -16,6 +16,7 @@ defaultproperties
 		Damage=250.000000
 		DamageRadius=350.000000
 		MomentumTransfer=75000.000000
+		bLimitMomentumZ=False
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
@@ -81,9 +82,12 @@ defaultproperties
 		InventorySize=51
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.400000
+		ZoomType=ZT_Logarithmic
 		MagAmmo=2
 		ViewOffset=(X=9.000000,Y=9.500000,Z=-3.000000)
 		SightOffset=(X=-2.7500000,Y=-5.40000,Z=4.80000000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

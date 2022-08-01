@@ -8,7 +8,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.LAWRocket'
+		ProjectileClass=Class'BWBP_SKC_Pro.LAWRocketHvy'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
 		Speed=7000.000000
 		MaxSpeed=15000.000000
@@ -110,6 +110,8 @@ defaultproperties
 		MagAmmo=1
 		SightOffset=(Y=6.000000,Z=15.000000)
 		ZoomType=ZT_Logarithmic
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

@@ -23,6 +23,7 @@ defaultproperties
 		Chaos=-1.0
 		SplashDamage=True
 		RecommendSplashDamage=True
+		bLimitMomentumZ=False
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
 	End Object
@@ -123,6 +124,8 @@ defaultproperties
 		MagAmmo=1
 		SightOffset=(X=-8.000000,Y=-0.650000,Z=10.500000)
 		SightPivot=(Pitch=1024,Roll=-1024)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicGrenadeFireParams'

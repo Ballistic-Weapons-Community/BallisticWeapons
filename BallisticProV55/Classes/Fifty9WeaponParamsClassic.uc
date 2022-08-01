@@ -23,7 +23,7 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter_C'
 		FlashScaleFactor=0.600000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.UZI.UZI-Fire',Volume=0.900000)
 		Recoil=64.000000

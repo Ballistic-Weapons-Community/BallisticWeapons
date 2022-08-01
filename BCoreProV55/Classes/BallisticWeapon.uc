@@ -590,6 +590,12 @@ simulated function OnWeaponParamsChanged()
 
 	PlayerJumpFactor 			= WeaponParams.PlayerJumpFactor;
 	default.PlayerJumpFactor	= WeaponParams.PlayerJumpFactor;
+	
+	ReloadAnimRate 					= WeaponParams.ReloadAnimRate;
+	default.ReloadAnimRate				= WeaponParams.ReloadAnimRate;
+	
+	CockAnimRate 					= WeaponParams.CockAnimRate;
+	default.CockAnimRate				= WeaponParams.CockAnimRate;
 
     ZoomType                    = WeaponParams.ZoomType;
 

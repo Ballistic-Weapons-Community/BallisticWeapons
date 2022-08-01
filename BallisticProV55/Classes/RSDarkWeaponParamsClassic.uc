@@ -16,6 +16,7 @@ defaultproperties
 		Damage=80.0
 		DamageRadius=192.000000
 		MomentumTransfer=80000.000000
+		bLimitMomentumZ=False
 		HeadMult=1.375
 		LimbMult=0.625
 		SpreadMode=FSM_Rectangle

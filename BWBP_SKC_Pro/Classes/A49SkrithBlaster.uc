@@ -9,6 +9,8 @@
 //=============================================================================
 class A49SkrithBlaster extends BallisticWeapon;
 
+var	bool		bVariableHeatProps; //Gun heat changes accuracy and RoF
+
 var float		HeatLevel;
 var float 		HeatDeclineDelay;		
 var bool		bIsVenting;			// Busy venting
@@ -28,6 +30,16 @@ replication
 		ClientSetHeat;
 }
 
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle == 1)
+	{
+		bVariableHeatProps=True;
+		A49PrimaryFire(FireMode[0]).bVariableHeatProps = True;
+	}
+}
+
 simulated function float ChargeBar()
 {
 	return HeatLevel / 10;
@@ -38,11 +50,17 @@ simulated function AddHeat(float Amount)
 	HeatLevel += Amount;
 	SoundPitch = 56 + HeatLevel * 11;
 	
-	if (HeatLevel >= 9.75)
+	if (HeatLevel >= 9.75 && !bVariableHeatProps)
 	{
 		Heatlevel = 10;
 		class'BallisticDamageType'.static.GenericHurt (Instigator, 10, None, Instigator.Location, vect(0,0,0), class'DTA49OverHeat');
 		return;
+	}
+	else if (HeatLevel >= 10.5)
+	{
+		Heatlevel = 15;
+		ConsumeMagAmmo(0, 10);
+		CommonCockGun();
 	}
 }
 
@@ -53,7 +71,15 @@ simulated function ClientSetHeat(float NewHeat)
 
 simulated event Tick (float DT)
 {
-	if (HeatLevel > 0 && Level.TimeSeconds > LastFireTime + HeatDeclineDelay)
+	if (bVariableHeatProps && HeatLevel > 0)
+	{
+		if (bIsVenting)
+			Heatlevel = FMax(HeatLevel - 6.5 * DT, 0);
+		else
+			Heatlevel = FMax(HeatLevel - 3.5 * DT, 0);
+		SoundPitch = 56 + HeatLevel * 11;
+	}
+	else if (HeatLevel > 0 && Level.TimeSeconds > LastFireTime + HeatDeclineDelay)
 	{
 		HeatLevel = FMax(HeatLevel - 10 * DT, 0);
 		SoundPitch = 56 + HeatLevel * 11;
@@ -68,6 +94,11 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	SoundPitch = 56;
 
 	GunLength = default.GunLength;
+	
+	if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GlowFX == None || GlowFX.bDeleteMe))
+		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A49GlowFX', DrawScale, self, 'tip');
+
+	
 }
 
 simulated event Timer()
@@ -93,8 +124,7 @@ simulated event Destroyed()
 simulated function CommonCockGun(optional byte Type)
 {
 	local int m;
-	if (bNonCocking)
-		return;
+
 	if (Role == ROLE_Authority)
 		bServerReloading=true;
 	ReloadState = RS_Cocking;
@@ -102,6 +132,33 @@ simulated function CommonCockGun(optional byte Type)
 	for (m=0; m < NUM_FIRE_MODES; m++)
 		if (BFireMode[m] != None)
 			BFireMode[m].CockingGun(Type);
+}
+
+simulated function Notify_VentStart()
+{
+    bIsVenting=true;
+
+	if (VentSteam != None)
+	{
+		VentSteam.Destroy();
+		VentSteam=None;
+	}
+	if (VentSteam2 != None)
+	{
+		VentSteam2.Destroy();
+		VentSteam2=None;
+	}
+	class'BUtil'.static.InitMuzzleFlash (VentSteam2, class'RSNovaSteam', DrawScale, self, 'LeftVent');
+	class'BUtil'.static.InitMuzzleFlash (VentSteam, class'RSNovaSteam', DrawScale, self, 'RightVent');
+
+	VentSteam.SetRelativeRotation(rot(10000,0,0));
+	VentSteam2.SetRelativeRotation(rot(0,32768,0));
+
+}
+
+simulated function Notify_VentEnd()
+{
+    	bIsVenting=false;
 }
 
 // AI Interface =====
@@ -339,6 +396,7 @@ defaultproperties
 	GunLength=0.100000
 	ParamsClasses(0)=Class'A49WeaponParams'
 	ParamsClasses(1)=Class'A49WeaponParamsClassic'
+	ParamsClasses(2)=Class'A49WeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.A49PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.A49SecondaryFire'
 	PutDownAnimRate=2.300000

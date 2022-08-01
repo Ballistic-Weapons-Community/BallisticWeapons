@@ -25,7 +25,7 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter_C'
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRS38.RSS-Fire',Volume=1.500000)
 		Recoil=512.000000
 		Chaos=-1.0
@@ -111,6 +111,8 @@ defaultproperties
 		MagAmmo=7
 		SightOffset=(Z=25.000000)
 		SightPivot=(Pitch=512)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

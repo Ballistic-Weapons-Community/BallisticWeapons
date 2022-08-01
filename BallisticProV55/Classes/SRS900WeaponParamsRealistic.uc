@@ -39,7 +39,21 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
-		
+	
+	//=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
+	End Object	
+	
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -54,7 +68,7 @@ defaultproperties
 		DeclineTime=0.900000
 		DeclineDelay=0.180000;
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
+		ADSViewBindFactor=1.000000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -90,6 +104,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

@@ -48,7 +48,7 @@ defaultproperties
 
     Begin Object Class=FireParams Name=ArenaFlashFireParams
         MaxHoldTime=0.500000
-        FireAnim="SecFire"
+        FireAnim="Idle"
         FireEndAnim=
         FireInterval=10.000000
         AmmoPerFire=0

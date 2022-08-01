@@ -14,7 +14,7 @@ class MRocketLauncher extends BallisticWeapon;
 var   byte							LoadedFrontBarrels;
 var   byte							LoadedBackBarrels;
 var   float							NextLoadTime;
-
+var   float							RocketActiveReloadRate; // how fast we reload when firing
 var   int								BarrelIndex;
 
 var   bool							bSmallReload;
@@ -89,6 +89,16 @@ simulated function PostNetReceive()
 		LoadedFrontBarrels = (NetBarrels>>3) & 15;
 		BarrelIndex = NetBarrelIndex;
 		NetBarrels = 0;
+	}
+}
+
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle != 0)
+	{
+		RocketActiveReloadRate = 0.0833;
+		MRLSecondaryFire(FireMode[1]).RocketMultiplier = 60;
 	}
 }
 
@@ -373,7 +383,7 @@ simulated event WeaponTick(float DT)
 		if (bPlay)
 		{
 			if (FireMode[1].IsFiring())
-				NextLoadTime = Level.TimeSeconds + 0.2;
+				NextLoadTime = Level.TimeSeconds + RocketActiveReloadRate; 
 //				NextLoadTime = Level.TimeSeconds + 0.0666;
 			else
 				NextLoadTime = Level.TimeSeconds + 0.3;
@@ -467,6 +477,7 @@ function float SuggestDefenseStyle()	{	return -0.9;	}
 
 defaultproperties
 {
+	RocketActiveReloadRate=0.2
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	ClipOutSoundSmall=Sound'BW_Core_WeaponSound.MRL.MRL-SmallOff'
 	ClipInSoundSmall=Sound'BW_Core_WeaponSound.MRL.MRL-SmallOn'
