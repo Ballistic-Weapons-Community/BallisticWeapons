@@ -45,7 +45,7 @@ defaultproperties
      Emitters(0)=SparkEmitter'BWBP_SKC_Pro.SparkEmitter0'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BallisticHardware2.Effects.VBlast'
+         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VBlast'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True
