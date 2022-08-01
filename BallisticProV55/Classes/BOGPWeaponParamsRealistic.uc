@@ -24,6 +24,7 @@ defaultproperties
 		Inaccuracy=(X=128,Y=128)
 		SplashDamage=True
 		RecommendSplashDamage=True
+		bLimitMomentumZ=False
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
 	End Object
@@ -98,6 +99,8 @@ defaultproperties
 		ViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
 		SightOffset=(X=-10.000000,Y=-0.650000,Z=10.500000)
 		SightPivot=(Pitch=1024,Roll=-1024)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

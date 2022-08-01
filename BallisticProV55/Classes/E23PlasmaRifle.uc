@@ -489,7 +489,7 @@ defaultproperties
 	SightDisplayFOV=25.000000
 	ParamsClasses(0)=Class'E23WeaponParams'
 	ParamsClasses(1)=Class'E23WeaponParamsClassic'
-	ParamsClasses(2)=Class'E23WeaponParamsClassic'
+	ParamsClasses(2)=Class'E23WeaponParamsRealistic'
 	FireModeClass(0)=Class'BallisticProV55.E23PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.E23SecondaryFire'
 	SelectAnimRate=1.250000

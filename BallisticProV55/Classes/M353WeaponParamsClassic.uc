@@ -23,7 +23,7 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.M353FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.M353FlashEmitter_C'
 		FlashScaleFactor=1.200000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=64.000000
@@ -81,6 +81,8 @@ defaultproperties
 		MagAmmo=150
 		SightOffset=(X=-8.000000,Y=-0.200000,Z=7.500000)
 		SightPivot=(Pitch=512,Roll=-512)
+		CockAnimRate=1.000000
+		ReloadAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

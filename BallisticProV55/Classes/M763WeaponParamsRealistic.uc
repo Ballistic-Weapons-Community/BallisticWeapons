@@ -7,10 +7,13 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
+	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=1200.000000,Max=4800.000000)
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		TraceCount=13
 		Damage=12.0
 		HeadMult=2.25
 		LimbMult=0.666666
@@ -29,16 +32,19 @@ defaultproperties
 		Recoil=920.000000
 		Chaos=0.120000
 		Inaccuracy=(X=800,Y=800)
+		HipSpreadFactor=1.000000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		FireInterval=0.360000
+		FireAnim="Fire"
+		AimedFireAnim="Fire"
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=2.500000	
-	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
+	FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
 	//=================================================================
@@ -115,13 +121,15 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=8
-		ViewOffset=(X=-2.000000,Y=6.000000,Z=-6.000000)
-		SightOffset=(X=5.500000,Z=2.360000)
-		SightPivot=(Pitch=0)
+		ViewOffset=(X=-2.000000,Y=6.000000,Z=-12.000000)
+		SightOffset=(X=5.000000,Y=0,Z=11.500000)
+		SightPivot=(Pitch=-128)
 		InitialWeaponMode=1
 		WeaponModes(0)=(bUnavailable=true,ModeName="Long-Range",bUnavailable=true,Value=0.500000)
 		WeaponModes(1)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(bUnavailable=true)
+		ReloadAnimRate=1.300000
+		CockAnimRate=1.100000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

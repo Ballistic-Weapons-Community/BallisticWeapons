@@ -38,7 +38,21 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
-		
+
+	//=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+	End Object
+	
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -81,6 +95,8 @@ defaultproperties
 		SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
 		SightPivot=(Roll=-1024)
         ZoomType=ZT_Logarithmic
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.250000
 		WeaponBoneScales(0)=(BoneName="Silencer",Slot=78,Scale=0f)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

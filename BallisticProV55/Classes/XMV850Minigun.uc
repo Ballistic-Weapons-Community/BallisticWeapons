@@ -59,6 +59,15 @@ simulated event PreBeginPlay()
 		Shader'BW_Core_WeaponTex.XMV850.XMV850_Barrels_SD'.FallbackMaterial = Texture'BW_Core_WeaponTex.XMV850.XMV850_Barrels';
 }
 
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle == 2)
+	{
+		XMV850MinigunPrimaryFire(FireMode[0]).bRequireSpool=true;
+	}
+}
+
 function InitWeaponFromTurret(BallisticTurret Turret)
 {
 	bNeedCock = false;

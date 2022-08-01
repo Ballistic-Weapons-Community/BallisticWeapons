@@ -12,18 +12,18 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.E23Projectile_Std'
         SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
         MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
-        Speed=5500.000000
-        MaxSpeed=14000.000000
-        AccelSpeed=100000.000000
+        Speed=4500.000000
+        MaxSpeed=12000.000000
+        AccelSpeed=60000.000000
         Damage=35.000000
-        DamageRadius=16.000000
-        MaxDamageGainFactor=0.6
-        DamageGainStartTime=0.05
-        DamageGainEndTime=0.25
+        DamageRadius=64.000000
+        MaxDamageGainFactor=0.00
+        DamageGainEndTime=0.0
         FlashScaleFactor=0.750000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         Chaos=0.06
         Recoil=40
+		Inaccuracy=(X=8,Y=4)
         WarnTargetPct=0.1
     End Object
 
@@ -40,11 +40,11 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.E23Projectile_SG'
         SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
         MuzzleFlashClass=Class'BallisticProV55.E23SGFlashEmitter'
-        Speed=50.000000
-        MaxSpeed=6000.000000
+        Speed=4500.000000
+        MaxSpeed=4500.000000
         AccelSpeed=60000.000000
-        Damage=8.000000
-        DamageRadius=64.000000
+        Damage=20.000000
+        DamageRadius=24.000000
         MaxDamageGainFactor=0.00
         DamageGainEndTime=0.0
         FlashScaleFactor=1.000000
@@ -68,11 +68,13 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.E23Projectile_Snpr'
         SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
         MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
-        Speed=5500.000000
-        MaxSpeed=50000.000000
+        Speed=4500.000000
+        MaxSpeed=20000.000000
         AccelSpeed=100000.000000
-        Damage=35.000000
-        DamageRadius=64.000000
+        Damage=50.000000
+        DamageRadius=16.000000
+        MaxDamageGainFactor=0.00
+        DamageGainEndTime=0.0
         FlashScaleFactor=0.750000
         Chaos=0.350000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
@@ -93,9 +95,9 @@ defaultproperties
         TraceRange=(Min=3000.000000,Max=3000.000000)
         WaterTraceRange=2100
 		RangeAtten=0.400000
-        Damage=16.000000
-        HeadMult=1.3f
-        LimbMult=0.7f
+        Damage=10.000000
+        HeadMult=2.0f
+        LimbMult=1.0f
         DamageType=Class'BallisticProV55.DTVPRLaser'
         DamageTypeHead=Class'BallisticProV55.DTVPRLaserHead'
         DamageTypeArm=Class'BallisticProV55.DTVPRLaser'
@@ -106,7 +108,7 @@ defaultproperties
         Chaos=0.005000
         Recoil=4
 		Inaccuracy=(X=8,Y=4)
-        FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-SRFire',Volume=1.300000,Slot=SLOT_Interact,bNoOverride=False)
         WarnTargetPct=0.01
     End Object
 
@@ -114,7 +116,7 @@ defaultproperties
         FireAnim=
         FireLoopAnim="'"
         FireEndAnim=
-        FireInterval=0.080000
+        FireInterval=0.075000
         FireEffectParams(0)=InstantEffectParams'ClassicLaserEffectParams'
     End Object
 		
@@ -163,6 +165,8 @@ defaultproperties
 		MagAmmo=45
 		SightOffset=(X=-8.000000,Z=9.300000)
 		SightPivot=(Pitch=256)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
         FireParams(0)=FireParams'ClassicSeriesFireParams'

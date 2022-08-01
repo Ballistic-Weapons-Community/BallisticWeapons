@@ -14,6 +14,7 @@ var float	WaitTime;
 var bool	bFireRockets;
 var MRocketLauncher MRL;
 var int ConsumedLoadTwo;
+var int RocketMultiplier;
 
 simulated event PostBeginPlay()
 {
@@ -88,7 +89,7 @@ event ModeTick(float DT)
 	if (IsFiring() && bFireRockets)
 	{
 		WaitTime += DT;
-		RocketsToFire = WaitTime * 13;
+		RocketsToFire = WaitTime * RocketMultiplier; //A:13 C:60
 		if (RocketsToFire > 0)
 		{
 			WaitTime = 0;
@@ -137,6 +138,7 @@ function FireRockets(int RocketsToFire)
 	{
 		R = Rotator(GetFireSpread() >> Aim);
 	    SpawnProjectile(StartTrace, R);
+																																									
 		if (MRL.LoadedBackBarrels-L1 > 0 && (MRL.LoadedFrontBarrels-L2 < 1 || MRL.BigMagAmmo < 1 || float(MRL.BarrelIndex) / 3.0 == MRL.BarrelIndex / 3))
 		{
 			ConsumedLoad += 1;
@@ -147,6 +149,8 @@ function FireRockets(int RocketsToFire)
 			ConsumedLoadTwo += 1;
 			L2++;
 		}
+					 
+					 
 
 		MRL.BarrelIndex++;
 		if (MRL.BarrelIndex >= 18)
@@ -162,6 +166,7 @@ function FireRockets(int RocketsToFire)
 	SetTimer(firerate/2, false);
 
 	SendFireEffect(none, vect(0,0,0), StartTrace, 0);
+									   
 }
 
 simulated event Timer()
@@ -179,6 +184,7 @@ function FlashMuzzleFlash()
 
 defaultproperties
 {
+	 RocketMultiplier=13
      SpawnOffset=(X=28.000000,Y=8.000000,Z=-6.000000)
      FireRecoil=0.000000
      FireChaos=0.080000
@@ -187,6 +193,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.MRL.MRL-Fire',Volume=1.200000,bNoOverride=False)
      bPawnRapidFireAnim=True
      FireEndAnim=
+					   
      FireRate=0.070000
      AmmoClass=Class'BallisticProV55.Ammo_MRL'
      ShakeRotMag=(X=32.000000,Y=8.000000)

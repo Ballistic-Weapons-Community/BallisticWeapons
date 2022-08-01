@@ -22,6 +22,7 @@ defaultproperties
 		Recoil=0.0
 		Chaos=-1.0
 		WarnTargetPct=0.500000	
+		bLimitMomentumZ=False
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
@@ -50,6 +51,7 @@ defaultproperties
 		Recoil=0.0
 		Chaos=-1.0
 		WarnTargetPct=0.500000	
+		bLimitMomentumZ=False
 	End Object
 	
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams

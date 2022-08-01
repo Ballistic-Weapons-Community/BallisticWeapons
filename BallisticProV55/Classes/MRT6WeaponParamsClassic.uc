@@ -25,7 +25,7 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
 		FlashScaleFactor=1.200000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Fire')
 		Recoil=4096.000000
@@ -130,6 +130,8 @@ defaultproperties
 		ViewOffset=(X=12.000000,Y=8.000000,Z=-8.500000)
 		SightOffset=(X=-30.000000,Z=11.000000)
 		SightPivot=(Pitch=768)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

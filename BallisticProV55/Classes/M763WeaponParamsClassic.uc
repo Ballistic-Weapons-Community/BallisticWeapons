@@ -7,78 +7,76 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=2000.000000,Max=4000.000000)
-			WaterTraceRange=5000.0
-			RangeAtten=0.200000
-			TraceCount=12
-			TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-			ImpactManager=Class'BallisticProV55.IM_Shell'
-			Damage=25.0
-			LimbMult=0.24
-			DamageType=Class'BallisticProV55.DTM763Shotgun'
-			DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
-			DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
-			PenetrationEnergy=16.000000
-			PenetrateForce=100
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
-			FlashScaleFactor=2.000000
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
-			Recoil=512.000000
-			Chaos=-1.0
-			Inaccuracy=(X=700,Y=450)
-			HipSpreadFactor=1.000000
-			BotRefireRate=0.900000
-			WarnTargetPct=0.100000	
-		End Object
+	Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=2000.000000,Max=4000.000000)
+		WaterTraceRange=5000.0
+		RangeAtten=0.200000
+		TraceCount=12
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
+		Damage=25.0
+		LimbMult=0.24
+		DamageType=Class'BallisticProV55.DTM763Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
+		PenetrationEnergy=16.000000
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter_C'
+		FlashScaleFactor=2.000000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
+		Recoil=512.000000
+		Chaos=-1.0
+		Inaccuracy=(X=700,Y=450)
+		HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.800000
-			FireAnim="Fire"
-			AimedFireAnim="Fire"
-			BurstFireRateFactor=1.00
-			bCockAfterFire=True
-			FireEndAnim=	
-			FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.800000
+		FireAnim="Fire"
+		AimedFireAnim="Fire"
+		BurstFireRateFactor=1.00
+		bCockAfterFire=True
+		FireEndAnim=	
+		FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	/*
 	
+	Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
+		TraceRange=(Min=128.000000,Max=128.000000)
+		WaterTraceRange=5000.0
+		Damage=65.0
+		HeadMult=1.538461
+		LimbMult=0.461538
+		DamageType=Class'BallisticProV55.DTM763Hit'
+		DamageTypeHead=Class'BallisticProV55.DTM763HitHead'
+		DamageTypeArm=Class'BallisticProV55.DTM763Hit'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.900000
+		WarnTargetPct=0.050000
+	End Object
 	
-		Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
-			TraceRange=(Min=128.000000,Max=128.000000)
-			WaterTraceRange=5000.0
-			Damage=65.0
-			HeadMult=1.538461
-			LimbMult=0.461538
-			DamageType=Class'BallisticProV55.DTM763Hit'
-			DamageTypeHead=Class'BallisticProV55.DTM763HitHead'
-			DamageTypeArm=Class'BallisticProV55.DTM763Hit'
-			ChargeDamageBonusFactor=1
-			PenetrationEnergy=0.000000
-			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,bAtten=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.900000
-			WarnTargetPct=0.050000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.800000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			PreFireAnim="PrepHit"
-			FireAnim="Hit"
-			FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.800000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		PreFireAnim="PrepHit"
+		FireAnim="Hit"
+		FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		*/
 	//=================================================================
 	// RECOIL
@@ -121,6 +119,8 @@ defaultproperties
 		MagAmmo=10
 		SightOffset=(X=5.000000,Z=18.500000)
 		SightPivot=(Pitch=512)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

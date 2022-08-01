@@ -63,7 +63,7 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Circle
-		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
 		FlashScaleFactor=2.000000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.leMat.LM-SecFire',Volume=1.300000)
 		Recoil=512.000000
@@ -123,6 +123,8 @@ defaultproperties
 		MagAmmo=9
 		SightOffset=(X=-30.000000,Y=-0.550000,Z=12.300000)
 		SightPivot=(Pitch=768,Roll=-1024)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

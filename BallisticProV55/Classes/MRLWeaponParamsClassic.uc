@@ -8,7 +8,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-		ProjectileClass=Class'BallisticProV55.MRLRocket'
+		ProjectileClass=Class'BallisticProV55.MRLDrunkRocket'
 		SpawnOffset=(X=28.000000,Y=10.000000,Z=-8.000000)
 		Speed=1000.000000
 		MaxSpeed=5000.000000
@@ -40,7 +40,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-		ProjectileClass=Class'BallisticProV55.MRLRocketSecondary'
+		ProjectileClass=Class'BallisticProV55.MRLDrunkRocketSecondary'
 		SpawnOffset=(X=28.000000,Y=8.000000,Z=-6.000000)
 		HeadMult=2.000000
 		LimbMult=0.500000

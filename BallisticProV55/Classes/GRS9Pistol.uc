@@ -24,6 +24,16 @@ replication
 		bLaserOn, LaserAmmo;
 }
 
+
+simulated event PreBeginPlay()
+{
+	super.PreBeginPlay();
+	if (BCRepClass.default.GameStyle == 2)
+	{
+		FireModeClass[1]=Class'BallisticProV55.GRS9SecondaryFlashFire';
+	}
+}
+
 /*
 //simulated function bool MasterCanSendMode(int Mode) {return Mode == 0;}
 simulated function bool SlaveCanUseMode(int Mode)
@@ -414,7 +424,7 @@ simulated function PlayReload()
 
 function ServerWeaponSpecial(optional byte i)
 {
-	if (!FireMode[1].IsFiring() && level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo == default.LaserAmmo/* && !IsInState('DualAction') && !IsInState('PendingDualAction')*/)
+	if (!FireMode[1].IsFiring() && level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo == default.LaserAmmo && BCRepClass.default.GameStyle != 2/* && !IsInState('DualAction') && !IsInState('PendingDualAction')*/)
 	{
 		ClientWeaponSpecial(i);
 		CommonWeaponSpecial(i);
@@ -462,7 +472,20 @@ simulated function CommonWeaponSpecial(optional byte i)
 
 simulated function float ChargeBar()
 {
-	return FClamp(LaserAmmo/default.LaserAmmo, 0, 1);
+	if (BCRepClass.default.GameStyle == 2)
+	{
+		if (level.TimeSeconds >= FireMode[1].NextFireTime)
+		{
+			if (FireMode[1].bIsFiring)
+				return FMin(1, FireMode[1].HoldTime / FireMode[1].MaxHoldTime);
+			return FMin(1, AM67SecondaryFire(FireMode[1]).DecayCharge / FireMode[1].MaxHoldTime);
+		}
+		return (FireMode[1].NextFireTime - level.TimeSeconds) / FireMode[1].FireRate;
+	}
+	else
+	{
+		return FClamp(LaserAmmo/default.LaserAmmo, 0, 1);
+	}
 }
 
 // Rechargable laser unit means it always has ammo!

@@ -59,6 +59,7 @@ defaultproperties
 		RecommendSplashDamage=True
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
+		bLimitMomentumZ=False
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
@@ -83,7 +84,7 @@ defaultproperties
 		DeclineTime=1.000000
 		DeclineDelay=0.200000;
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
+		ADSViewBindFactor=1.000000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -139,6 +140,8 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="M46A1 Battle Rifle"
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

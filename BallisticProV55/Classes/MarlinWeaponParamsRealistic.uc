@@ -120,6 +120,8 @@ defaultproperties
 		ViewOffset=(X=5.000000,Y=6.500000,Z=-12.000000)
 		SightOffset=(X=12.500000,Y=-0.05500,Z=4.700000)
 		SightPivot=(Pitch=0)
+		ReloadAnimRate=1.500000
+		CockAnimRate=1.750000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

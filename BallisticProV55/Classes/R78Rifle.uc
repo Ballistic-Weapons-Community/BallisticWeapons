@@ -11,6 +11,18 @@
 //=============================================================================
 class R78Rifle extends BallisticWeapon;
 
+
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle != 0)
+	{
+		CockAnim = 'Cock';
+		CockAnimPostReload = 'Cock'; 
+		CockSound.Sound=Sound'BW_Core_WeaponSound.R78.R78-Cock';
+	}
+}
+
 simulated function PlayCocking(optional byte Type)
 {
 	if (Type == 2 && HasAnim(CockAnimPostReload))
