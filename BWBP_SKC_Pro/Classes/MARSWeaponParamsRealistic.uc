@@ -15,6 +15,9 @@ defaultproperties
 		Damage=45.0
 		HeadMult=2.139534
 		LimbMult=0.651162
+		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		PenetrationEnergy=16.000000
 		PenetrateForce=50
 		bPenetrate=True
@@ -80,7 +83,7 @@ defaultproperties
 		YRandFactor=0.165000
 		MaxRecoil=3000.000000
 		DeclineTime=0.850000
-		DeclineDelay=0.200000
+		DeclineDelay=0.150000
 		ViewBindFactor=0.060000
 		ADSViewBindFactor=1.000000
 		HipMultiplier=1.000000
@@ -117,6 +120,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

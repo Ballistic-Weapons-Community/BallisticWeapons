@@ -648,9 +648,12 @@ defaultproperties
 //     RecoilYFactor=0.250000
 //     RecoilMax=1600.000000
 //     RecoilDeclineTime=0.800000
+	PutDownTime=1.500000
+	BringUpTime=1.50000
+    SelectAnimRate=1.0
+    PutDownAnimRate=1.0
      FireModeClass(0)=Class'BWBP_SKC_Pro.Supercharger_PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.Supercharger_SecondaryFire'
-     PutDownTime=0.700000
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000
      CurrentRating=0.600000
@@ -659,9 +662,9 @@ defaultproperties
      DisplayFOV=55.000000
      Priority=41
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=4
+     InventoryGroup=5
      PickupClass=Class'BWBP_SKC_Pro.Supercharger_Pickup'
-     PlayerViewOffset=(X=5.000000,Y=5.000000,Z=-11.000000)
+     PlayerViewOffset=(X=5.000000,Y=5.000000,Z=-14.000000)
      BobDamping=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.Supercharger_Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.AK91.SmallIcon_AK91'

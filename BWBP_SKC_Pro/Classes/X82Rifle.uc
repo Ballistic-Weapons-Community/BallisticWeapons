@@ -388,6 +388,7 @@ defaultproperties
 	GunLength=80.000000
 	ParamsClasses(0)=Class'X82WeaponParams'
 	ParamsClasses(1)=Class'X82WeaponParamsClassic'
+	ParamsClasses(2)=Class'X82WeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.X82PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.X82SecondaryFire'
 	SelectAnim="Takeout"

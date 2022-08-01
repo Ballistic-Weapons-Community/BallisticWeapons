@@ -14,6 +14,9 @@ defaultproperties
 		Damage=48.0
 		HeadMult=2.333333
 		LimbMult=0.666666
+		DamageType=Class'BWBP_SKC_Pro.DT_LK05Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_LK05AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_LK05Assault'
 		PenetrationEnergy=19.000000
 		PenetrateForce=55
 		bPenetrate=True
@@ -22,7 +25,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 			MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=1.200000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LK05.LK05-HeavyFire',Volume=1.800000)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LK05.LK05-HeavyFire',Volume=1.500000)
 		Recoil=700.000000
 		Chaos=0.080000
 		Inaccuracy=(X=10,Y=10)
@@ -109,6 +112,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

@@ -22,7 +22,7 @@ defaultproperties
 		bPenetrate=True
 		PDamageFactor=0.800000
 		WallPDamageFactor=0.800000
-		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter_C'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=512.000000
@@ -50,7 +50,7 @@ defaultproperties
 		PenetrateForce=150
 		PDamageFactor=0.800000
 		WallPDamageFactor=0.800000
-		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter_C'
 		FlashScaleFactor=1.000000
 		Recoil=384.000000
 		Chaos=0.070000
@@ -85,7 +85,7 @@ defaultproperties
 		bPenetrate=True
 		PDamageFactor=0.800000
 		WallPDamageFactor=0.800000
-		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter_C'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Fire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=512.000000
@@ -181,7 +181,10 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
 		SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
+		ViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		AimParams(0)=AimParams'ClassicAimParams'
 		AimParams(1)=AimParams'ArenaControlledAimParams'
 		FireParams(0)=FireParams'ClassicPriControlledFireParams'

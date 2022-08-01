@@ -8,12 +8,15 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=15000.000000,Max=15000.000000)
+		TraceRange=(Min=15000.000000,Max=15000.000000) //50 cal
 		WaterTraceRange=12000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=135.0
 		HeadMult=2.0
 		LimbMult=0.65
+		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AS50Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AS50Limb'
 		PenetrationEnergy=48.000000
 		PenetrateForce=300
 		bPenetrate=True
@@ -23,7 +26,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter_C'
 		FlashScaleFactor=0.800000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.FG50-HeavyFire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=1000.000000
+		Recoil=2600.000000
 		Chaos=0.050000
 		PushbackForce=100.000000
 		Inaccuracy=(X=12,Y=12)
@@ -36,6 +39,7 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 	
+	//Controlled
 	Begin Object Class=InstantEffectParams Name=RealisticPriControlledEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		WaterTraceRange=12000.0
@@ -43,15 +47,16 @@ defaultproperties
 		Damage=135.0
 		HeadMult=2.0
 		LimbMult=0.65
-		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
+		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AS50Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AS50Limb'
+		PenetrationEnergy=48.000000
 		PenetrateForce=150
 		PDamageFactor=0.800000
 		WallPDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=384.000000
+		Recoil=2000.000000
 		Chaos=0.070000
 		WarnTargetPct=0.400000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=6.750000,Slot=SLOT_Interact,bNoOverride=False)
@@ -76,8 +81,10 @@ defaultproperties
 		XRandFactor=0.300000
 		YRandFactor=0.300000
 		MaxRecoil=4000.000000
-		DeclineTime=0.950000
+		DeclineTime=1.250000
+		DeclineDelay=0.400000
 		ViewBindFactor=0.300000
+		ADSViewBindFactor=1.000000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -88,23 +95,29 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=32,Max=3072)
+		AimSpread=(Min=800,Max=2808)
+		OffsetAdjustTime=0.400000
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
 		ChaosDeclineTime=1.600000
 		ChaosSpeedThreshold=375
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
 	End Object
 
 	Begin Object Class=AimParams Name=RealisticControlledAimParams
-		AimAdjustTime=1
-		ADSMultiplier=0.4
-		AimSpread=(Min=16,Max=2048)
+		AimSpread=(Min=800,Max=2108)
+		OffsetAdjustTime=0.400000
+		CrouchMultiplier=0.700000
+		ADSMultiplier=0.400000
+		ViewBindFactor=0.100000
 		ChaosDeclineTime=1.25
 		ChaosSpeedThreshold=350
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		JumpOffset=(Pitch=-6000,Yaw=2000)
+		AimAdjustTime=1
 	End Object 
     
 	//=================================================================
@@ -119,6 +132,8 @@ defaultproperties
 		ViewOffset=(X=4.000000,Y=-10.000000,Z=-15.000000)
 		SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		ZoomType=ZT_Logarithmic
+		ReloadAnimRate=0.900000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		AimParams(1)=AimParams'RealisticControlledAimParams'

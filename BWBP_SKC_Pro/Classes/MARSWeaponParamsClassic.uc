@@ -7,36 +7,35 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=11000.000000,Max=14000.000000)
-			WaterTraceRange=11200.0
-			DecayRange=(Min=0.0,Max=0.0)
-			RangeAtten=0.950000
-			Damage=24
-			HeadMult=3.125
-			LimbMult=0.5
-			DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
-			PenetrationEnergy=32.000000
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
-			FlashScaleFactor=0.900000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.M514H.M514H-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=200.000000
-			Chaos=-1.0
-			Inaccuracy=(X=16,Y=16)
-			WarnTargetPct=0.200000
-		End Object
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=11000.000000,Max=14000.000000)
+		WaterTraceRange=11200.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.950000
+		Damage=24
+		HeadMult=3.125
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
+		PenetrationEnergy=32.000000
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter_C'
+		FlashScaleFactor=0.900000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M514H.M514H-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=200.000000
+		Chaos=-1.0
+		Inaccuracy=(X=16,Y=16)
+		WarnTargetPct=0.200000
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.085700
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.085700
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
 	//=================================================================
     // SECONDARY FIRE
@@ -109,6 +108,8 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
 		ZoomType=ZT_Logarithmic
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

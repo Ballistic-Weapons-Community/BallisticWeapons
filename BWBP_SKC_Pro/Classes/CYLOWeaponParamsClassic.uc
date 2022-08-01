@@ -7,39 +7,38 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=8000.000000,Max=12000.000000)
-			WaterTraceRange=9600.0
-			DecayRange=(Min=0.0,Max=0.0)
-			RangeAtten=0.650000
-			Damage=35
-			HeadMult=2.5
-			LimbMult=0.7
-			DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLORifleHead'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLORifle'
-			PenetrationEnergy=32.000000
-			PenetrateForce=180
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-			FlashScaleFactor=0.500000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Volume=1.600000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=130.000000
-			Chaos=0.010000
-			Inaccuracy=(X=96,Y=96)
-			WarnTargetPct=0.200000
-		End Object
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=8000.000000,Max=12000.000000)
+		WaterTraceRange=9600.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.650000
+		Damage=35
+		HeadMult=2.5
+		LimbMult=0.7
+		DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLORifleHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLORifle'
+		PenetrationEnergy=32.000000
+		PenetrateForce=180
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter_C'
+		FlashScaleFactor=0.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Volume=1.600000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=130.000000
+		Chaos=0.010000
+		Inaccuracy=(X=96,Y=96)
+		WarnTargetPct=0.200000
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.085500
-			BurstFireRateFactor=1.00
-			PreFireAnim=
-			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.085500
+		BurstFireRateFactor=1.00
+		PreFireAnim=
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -64,7 +63,7 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		//FireSpreadMode=FSM_Circle
-		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-FireSG',Volume=1.300000)
 		Recoil=768.000000
 		Chaos=-1.0
@@ -126,6 +125,8 @@ defaultproperties
 		SightPivot=(Pitch=450)
 		SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
 		ViewOffset=(X=8.000000,Z=-14.000000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

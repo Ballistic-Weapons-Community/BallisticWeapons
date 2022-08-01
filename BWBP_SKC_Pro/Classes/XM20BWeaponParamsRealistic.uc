@@ -23,7 +23,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20BFlashEmitter'
 		FlashScaleFactor=0.300000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.350000)
-		Recoil=1.000000
+		Recoil=10.000000
 		Chaos=0.01
 		Inaccuracy=(X=16,Y=16)
 		BotRefireRate=0.900000
@@ -125,7 +125,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
 		SightOffset=(X=-10.000000,Y=9.7500000,Z=22.500000)
-		ViewOffset=(X=0.000000,Y=2.000000,Z=-17.000000)
+		ViewOffset=(X=0.000000,Y=-2.000000,Z=-15.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Smooth
 		WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)

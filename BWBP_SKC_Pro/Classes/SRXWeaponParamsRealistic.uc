@@ -15,6 +15,9 @@ defaultproperties
 		Damage=55.0
 		HeadMult=2.127272
 		LimbMult=0.654545
+		DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTSRXRifleHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTSRXRifle'
 		PenetrationEnergy=24.000000
 		PenetrateForce=125
 		bPenetrate=True
@@ -179,8 +182,11 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
 		MagAmmo=20
+		ViewOffset=(X=-2,Y=8,Z=-25)
 		SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		SightPivot=(Pitch=-128,Yaw=16)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticRecoilParamsInc'
 		RecoilParams(2)=RecoilParams'RealisticRecoilParamsAcid'

@@ -113,8 +113,8 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=60
-		SightOffset=(X=10.000000,Y=-0.400000,Z=13.300000)
-		SightPivot=(Pitch=-325,Roll=800,Yaw=0)
+		SightOffset=(X=10.000000,Y=-0.420000,Z=12.900000)
+		SightPivot=(Pitch=250,Roll=800,Yaw=0)
 		bAdjustHands=true
 		RootAdjust=(Pitch=1000,Yaw=-50)
 		WristAdjust=(Yaw=-2500)
@@ -122,6 +122,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=4.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		ReloadAnimRate=0.850000
+		CockAnimRate=1.200000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

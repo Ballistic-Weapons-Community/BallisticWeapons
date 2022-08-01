@@ -16,6 +16,7 @@ var   Rotator				LaserRot;
 var   vector				PreviousHitLoc;
 var   Emitter				LaserDot;
 var   Vector				SpawnOffset;
+var   bool					bBigLaser;
 
 var   BallisticWeapon 		myWeap;
 
@@ -24,14 +25,14 @@ replication
 	reliable if ( Role==ROLE_Authority )
 		bLaserOn;
 	unreliable if ( Role==ROLE_Authority )
-		LaserRot;
+		LaserRot, bBigLaser;
 }
 
 
 
-simulated event PostNetBeginPlay()
+simulated event PreBeginPlay()
 {
-	super.PostNetBeginPlay();
+	super.PreBeginPlay();
 	if (XM20BCarbine(Instigator.Weapon).BCRepClass.default.GameStyle != 1)
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20P';
@@ -132,8 +133,16 @@ simulated function Tick(float DT)
 	Laser.SetLocation(Loc);
 	Laser.SetRotation(Rotator(HitLocation - Loc));
 	Scale3D.X = VSize(HitLocation-Laser.Location)/128;
+	if (bBigLaser)
+	{
+		Scale3D.Y = 9.5;
+		Scale3D.Z = 9.5;
+	}
+	else
+	{
 		Scale3D.Y = 4.5;
 		Scale3D.Z = 4.5;
+	}
 	Laser.SetDrawScale3D(Scale3D);
 }
 

@@ -89,6 +89,7 @@ defaultproperties
 		YRandFactor=0.700000
 		MaxRecoil=4096.000000
 		ViewBindFactor=0.200000
+		ADSViewBindFactor=0.200000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.500000
 		bViewDecline=True
@@ -118,7 +119,7 @@ defaultproperties
 		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
 		SightPivot=(Pitch=-800)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)
+		WeaponModes(1)=(ModeName="2 Shot Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=0
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

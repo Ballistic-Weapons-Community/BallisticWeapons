@@ -57,9 +57,9 @@ simulated event PostBeginPlay()
 	SetBoneScale (0, 0.0, 'Dart');
 	SetBoneScale (1, 0.0, 'FartAssist');
 }
-simulated event PostNetBeginPlay()
+simulated event PreBeginPlay()
 {
-	super.PostNetBeginPlay();
+	super.PreBeginPlay();
 	if (PS9mPistol(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
 	{
 		TracerChance=1;

@@ -128,6 +128,8 @@ defaultproperties
 		MagAmmo=6
 		SightPivot=(Pitch=150)
 		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

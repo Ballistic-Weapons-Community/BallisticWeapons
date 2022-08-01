@@ -15,6 +15,7 @@ defaultproperties
 		Damage=60.000000
 		DamageRadius=300.000000
 		MomentumTransfer=10000.000000
+		bLimitMomentumZ=False
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
@@ -45,6 +46,7 @@ defaultproperties
 		Damage=55.000000
 		DamageRadius=270.000000
 		MomentumTransfer=10000.000000
+		bLimitMomentumZ=False
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
@@ -75,6 +77,7 @@ defaultproperties
 		Damage=55.000000
 		DamageRadius=270.000000
 		MomentumTransfer=10000.000000
+		bLimitMomentumZ=False
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
@@ -105,6 +108,7 @@ defaultproperties
 		Damage=110.000000
 		DamageRadius=360.000000
 		MomentumTransfer=60000.000000
+		bLimitMomentumZ=False
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
@@ -168,6 +172,8 @@ defaultproperties
 		ViewOffset=(X=7.000000,Y=6.000000,Z=-13.000000)
 		SightOffset=(X=-10.000000,Y=-0.035000,Z=19.500000)
 		SightPivot=(Pitch=0)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryImpactFireParams'

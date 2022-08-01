@@ -232,6 +232,7 @@ defaultproperties
 	GunLength=48.000000
 	ParamsClasses(0)=Class'MGLWeaponParams'
 	ParamsClasses(1)=Class'MGLWeaponParamsClassic'
+	ParamsClasses(2)=Class'MGLWeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MGLPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MGLSecondaryFire'
 	SelectAnimRate=1.500000

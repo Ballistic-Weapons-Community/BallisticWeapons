@@ -7,6 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//Timed
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenadeTimed'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
@@ -22,6 +23,7 @@ defaultproperties
 		Chaos=-1.0
 		SplashDamage=True
 		RecommendSplashDamage=True
+		bLimitMomentumZ=False
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
 	End Object
@@ -32,7 +34,7 @@ defaultproperties
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 	End Object
 		
-			
+	//Impact
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParamsImpact
 		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
@@ -48,6 +50,7 @@ defaultproperties
 		Chaos=-1.0
 		SplashDamage=True
 		RecommendSplashDamage=True
+		bLimitMomentumZ=False
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
 	End Object
@@ -78,6 +81,7 @@ defaultproperties
 		Chaos=-1.0
 		SplashDamage=True
 		RecommendSplashDamage=True
+		bLimitMomentumZ=False
 		BotRefireRate=0.300000
 		WarnTargetPct=0.300000	
 	End Object
@@ -130,6 +134,8 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Timed",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Impact",ModeID="WM_FullAuto")
 		WeaponModes(2)=(ModeName="4-Round Burst",bUnavailable=True)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
