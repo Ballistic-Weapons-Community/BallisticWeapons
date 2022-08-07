@@ -52,6 +52,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DTCYLOShotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOShotgunHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOShotgun'
+		PenetrationEnergy=4.000000
 		PenetrateForce=100
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
@@ -119,6 +120,7 @@ defaultproperties
 		ViewOffset=(X=4.000000,Y=-4,Z=-14.000000)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		WeaponName="CYLO-III 7.62mm Assault Weapon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

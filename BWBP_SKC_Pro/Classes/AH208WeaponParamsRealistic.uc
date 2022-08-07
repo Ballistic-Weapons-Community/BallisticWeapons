@@ -84,6 +84,7 @@ defaultproperties
 		ViewOffset=(X=0.000000,Y=19.500000,Z=-30.000000)
 		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=55,Scale=0f)
 		ZoomType=ZT_Irons
+		WeaponName="AH208 .44 Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

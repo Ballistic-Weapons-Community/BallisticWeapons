@@ -148,6 +148,7 @@ defaultproperties
 		SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
 		ReloadAnimRate=1.200000
 		CockAnimRate=1.000000
+		WeaponName="Mk 781 12ga Flechette Shotgun"
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=3)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=4)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

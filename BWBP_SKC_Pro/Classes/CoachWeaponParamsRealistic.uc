@@ -122,6 +122,7 @@ defaultproperties
 		ViewOffset=(X=-20.000000,Y=20.000000,Z=-40.000000)
 		SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
 		SightPivot=(Pitch=256)
+		WeaponName="Super-10 10ga Coach Gun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

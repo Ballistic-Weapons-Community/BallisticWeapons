@@ -109,6 +109,7 @@ defaultproperties
 		WeaponModes(2)=(ModeName="4-Round Burst",bUnavailable=True)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		WeaponName="MGL-140 40mm Grenade Launcher"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

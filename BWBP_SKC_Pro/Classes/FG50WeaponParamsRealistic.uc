@@ -192,6 +192,7 @@ defaultproperties
 		SightPivot=(Pitch=32)
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000
+		WeaponName="FG-50 .50 Heavy Machinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		AimParams(1)=AimParams'RealisticControlledAimParams'

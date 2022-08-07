@@ -103,6 +103,7 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		CockAnimRate=1.000000
 		ReloadAnimRate=0.400000
+		WeaponName="X83A1 12.7mm Anti-Materiel Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

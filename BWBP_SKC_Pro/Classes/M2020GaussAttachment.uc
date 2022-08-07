@@ -19,12 +19,25 @@ var	 Vector				SpawnOffset;
 var  byte 				OldBlockEffectCount, BlockEffectCount;
 var  M2020BlockEffect 		M2020BlockEffect;
 
+var() class<BCImpactManager>    ImpactManagerAlt;		//Impact Manager to use for gauss effects
+var() class<BCTraceEmitter>	    TracerClassAlt;		    //Type of tracer to use for alt fire effects
+
 replication
 {
 	reliable if ( Role==ROLE_Authority )
 		BlockEffectCount, bLaserOn;
 	unreliable if ( Role==ROLE_Authority )
 		LaserRot;
+}
+
+
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (M2020GaussDMR(Instigator.Weapon).BCRepClass.default.GameStyle == 2)
+	{
+		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_GaussQuick';
+	}
 }
 
 // Does all the effects for an instant-hit kind of fire.
@@ -77,6 +90,8 @@ simulated function InstantFireEffects(byte Mode)
 		ImpactManager.static.StartSpawn(WaterHitLocation, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLocation), 9, Instigator);
 	if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None && Vehicle(mHitActor) == None))
 		return;
+	if (ImpactManagerAlt != None && !bNoEffect)
+		ImpactManagerAlt.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 	if (ImpactManager != None)
 		ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 }
@@ -196,6 +211,7 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
      AltMuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
+     ImpactManagerAlt=Class'BWBP_SKC_Pro.IM_BulletGauss'
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      InstantMode=MU_Both
      FlashMode=MU_Both

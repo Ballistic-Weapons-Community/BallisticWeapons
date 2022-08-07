@@ -118,6 +118,7 @@ defaultproperties
 		SightPivot=(Pitch=900)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		WeaponName="CYLO-V 5.56mm Incendiary Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

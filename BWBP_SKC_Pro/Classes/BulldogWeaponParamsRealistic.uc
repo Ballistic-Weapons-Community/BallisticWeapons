@@ -123,6 +123,7 @@ defaultproperties
 		SightPivot=(Pitch=200)
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000
+		WeaponName="Bulldog .75 Assault Cannon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

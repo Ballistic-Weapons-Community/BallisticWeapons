@@ -8,5 +8,5 @@ defaultproperties
 	 DamageType=Class'BWBP_SKC_Pro.DTEagle250Melee'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTEagle250MeleeHead'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTEagle250Melee'
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_44MagnumScope'
+     AmmoClass=Class'BallisticProV55.Ammo_44Magnum'
 }

@@ -13,6 +13,7 @@
 class XM20BCarbine extends BallisticWeapon;
 
 
+var float		HeatLevel;			// Current Heat level, duh...
 var() Sound		DoubleVentSound;	//Sound for double fire's vent
 var() Sound		OverHeatSound;		// Sound to play when it overheats
 
@@ -54,9 +55,7 @@ var   Emitter		LaserDot;
 var   bool			bBigLaser;
 var   bool			bIsCharging;
 var   bool 			bOvercharged;
-
 var   float ChargeRate, ChargeRateOvercharge;
-var	  float LaserCharge, MaxCharge;
 var()     float Heat, CoolRate;
 
 var float X1, X2, X3, X4, Y1, Y2, Y3, Y4;
@@ -64,7 +63,7 @@ var float X1, X2, X3, X4, Y1, Y2, Y3, Y4;
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		ClientScreenStart, bLaserOn, bOvercharged, ChargeRate, ChargeRateOvercharge;
+		ClientSetHeat, ClientScreenStart, bLaserOn, bOvercharged, ChargeRate, ChargeRateOvercharge;
 }
 
 //========================== AMMO COUNTER NON-STATIC TEXTURE ============
@@ -86,11 +85,14 @@ simulated function ScreenStart()
 
 simulated event RenderTexture( ScriptedTexture Tex )
 {
+	local float rLaserCharge;
+	rLaserCharge = 512*XM20BSecondaryFire(FireMode[1]).LaserCharge;
+	
 	//Quick Note: X1,Y1 are start pos, X2,Y2 are size, X3,Y4 are subtexture start, X4,Y4 are subtexture size
 	Tex.DrawTile(0,0,512,512,0,0,512,512,ScreenTex, MyFontColor); //Basic Screen
 
 //	Tex.DrawTile(X1,Y1,X2,Y2,X3,Y3,X4,Y4,ScreenRedBar, MyFontColor);
-	Tex.DrawTile(0,512-LaserCharge,512,LaserCharge,0,512-LaserCharge,512,LaserCharge,ScreenRedBar, MyFontColor); //Charge Bar
+	Tex.DrawTile(0,512-rLaserCharge,512,rLaserCharge,0,512-rLaserCharge,512,rLaserCharge,ScreenRedBar, MyFontColor); //Charge Bar
 
 	if (!bNoMag)
 	{
@@ -182,6 +184,27 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		
 }
 
+// Heat Junk
+simulated event Tick (float DT)
+{
+	super.Tick(DT);
+	if (FireMode[1].bIsFiring)
+	{
+		CoolRate = 0;
+		bIsCharging = true;
+	}
+	else 
+	{
+		CoolRate = default.CoolRate;
+		bIsCharging = false;
+	}
+    Heat = FMax(0, Heat - CoolRate*DT);
+
+   	if (level.Netmode == NM_DedicatedServer)
+		Heat = 0;
+
+}
+
 simulated event WeaponTick(float DT)
 {
 	super.WeaponTick(DT);
@@ -198,14 +221,24 @@ simulated event WeaponTick(float DT)
 	}
 }
 
-simulated function SetLaserCharge(float NewLaserCharge)
+simulated function Overheat(float Amount)
 {
-	LaserCharge = NewLaserCharge;
+	Heat += Amount;
+	if (Heat > 1.0 && Heat < 1.2)
+	{
+		Heat = 1.4;
+//		PlaySound(OverHeatSound,,6.7,,64);
+	}
+}
+
+simulated function ClientSetHeat(float NewHeat)
+{
+	HeatLevel = NewHeat;
 }
 
 simulated function ServerSwitchWeaponMode (byte NewMode)
 {
-    if (Firemode[1].bIsFiring)
+    if (Firemode[1].bIsFiring || Heat > 0)
         return;
 
 	PlaySound(ModeCycleSound,,4.7,,32);
@@ -535,12 +568,12 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 simulated function float ChargeBar()
 {
-    return FMin(LaserCharge, MaxCharge);
+    return FMin(XM20BSecondaryFire(FireMode[1]).LaserCharge, XM20BSecondaryFire(FireMode[1]).MaxCharge);
+    //return FMin((Heat + XM20BSecondaryFire(FireMode[1]).LaserCharge), 1);
 }
 
 defaultproperties
 {
- 	 MaxCharge=1.000000
 	 ChargeRate=2.400000
 	 ChargeRateOvercharge=0.600000
 	 MyFontColor=(R=255,G=255,B=255,A=255)
@@ -625,7 +658,7 @@ defaultproperties
      SoundRadius=256.000000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      //Skins(1)=Combiner'BWBP_SKC_Tex.M30A2.M30A2-GunScope'
-     Skins(2)=Texture'BWBP_SKC_Tex.XM20B.XM20-Main'
+     Skins(2)=Shader'BWBP_SKC_Tex.XM20B.XM20-Final'
      Skins(3)=Texture'BWBP_SKC_Tex.XM20B.XM20-Misc'
      Skins(4)=Texture'ONSstructureTextures.CoreGroup.Invisible' //The outermost one
 }

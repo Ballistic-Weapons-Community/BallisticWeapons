@@ -134,6 +134,7 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000
+		WeaponName="FSSG-50 12.7mm Anti-Materiel Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		AimParams(1)=AimParams'RealisticControlledAimParams'
