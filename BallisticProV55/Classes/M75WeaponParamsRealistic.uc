@@ -119,6 +119,7 @@ defaultproperties
 		SightOffset=(X=15.7500000,Y=0.000000,Z=24.700000)
 		ReloadAnimRate=1.100000
 		CockAnimRate=1.325000
+		WeaponName="M75-TIC 20mm Infantry Railgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

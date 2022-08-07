@@ -107,6 +107,7 @@ defaultproperties
 		SightPivot=(Pitch=0,Roll=0)
 		CockAnimRate=0.900000
 		ReloadAnimRate=0.900000
+        WeaponName="M353 5.56mm Squad Machinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

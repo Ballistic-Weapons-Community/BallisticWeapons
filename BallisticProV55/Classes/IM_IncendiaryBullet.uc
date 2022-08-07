@@ -4,7 +4,7 @@
 // ImpactManager subclass for incendiary bullets which need to be faster
 // and get custom effects. Used by CYLO.
 //
-// by Nolan "Dark Carnivour" Richert.
+// by SK, based on code by DC
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
 class IM_IncendiaryBullet extends BCImpactManager;

@@ -113,6 +113,7 @@ defaultproperties
 		WeaponModes(2)=(ModeName="3600 RPM",ModeID="WM_FullAuto")
 		ReloadAnimRate=0.800000
 		CockAnimRate=1.000000
+		WeaponName="XMV-858 5.56mm Minigun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

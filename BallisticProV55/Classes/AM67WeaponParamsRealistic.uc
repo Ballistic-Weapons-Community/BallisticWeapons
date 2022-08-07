@@ -136,6 +136,7 @@ defaultproperties
 		WeaponModes(2)=(bUnavailable=true)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.300000
+		WeaponName="AM67 .50 Assault Pistol"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

@@ -9,6 +9,8 @@
 //=============================================================================
 class R78PrimaryFire extends BallisticProInstantFire;
 
+var bool	bExplosive;
+
 //========================================================
 // ApplyDamage
 //
@@ -18,7 +20,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 {
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (Victim.bProjTarget)
+	if (Victim.bProjTarget && bExplosive)
 	{
 		if (BallisticShield(Victim) != None)
 			BW.TargetedHurtRadius(Damage, 105, class'DTR78Explosion', 200, HitLocation, Pawn(Victim));

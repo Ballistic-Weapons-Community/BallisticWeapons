@@ -123,6 +123,7 @@ defaultproperties
 		SightOffset=(X=-3.000000,Z=17.150000)
 		ReloadAnimRate=1.250000
 		CockAnimRate=1.400000
+		WeaponName="MRS138 8ga Riot Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

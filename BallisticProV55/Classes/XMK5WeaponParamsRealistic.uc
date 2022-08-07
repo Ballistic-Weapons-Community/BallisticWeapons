@@ -116,6 +116,7 @@ defaultproperties
 		SightPivot=(Pitch=200)
 		ReloadAnimRate=1.200000
 		CockAnimRate=1.200000
+		WeaponName="XMk5 10mm Urban Submachinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

@@ -106,7 +106,7 @@ defaultproperties
      YInaccuracy=378.000000
      BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M290.M290Fire',Volume=1.500000)
      FireRate=1.200000
-     AmmoClass=Class'BallisticProV55.Ammo_Super12Gauge'
+     AmmoClass=Class'BallisticProV55.Ammo_12Gauge'
      AmmoPerFire=2
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

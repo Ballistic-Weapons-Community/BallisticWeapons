@@ -109,6 +109,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		ViewOffset=(X=63.000000,Y=-4.000000,Z=-6.000000)
+		WeaponName="A909 Skrith Wrist Blades"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

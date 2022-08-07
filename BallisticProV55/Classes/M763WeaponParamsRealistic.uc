@@ -130,6 +130,7 @@ defaultproperties
 		WeaponModes(2)=(bUnavailable=true)
 		ReloadAnimRate=1.300000
 		CockAnimRate=1.100000
+		WeaponName="M763-CS 12ga Combat Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

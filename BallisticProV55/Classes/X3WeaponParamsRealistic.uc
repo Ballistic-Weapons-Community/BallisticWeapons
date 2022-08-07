@@ -110,6 +110,7 @@ defaultproperties
 		MagAmmo=1
 		ViewOffset=(X=6.000000,Y=7.500000,Z=-8.000000)
 		ViewPivot=(Yaw=32768)
+		WeaponName="X3 Combat Knife"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

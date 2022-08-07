@@ -107,6 +107,7 @@ defaultproperties
 		ViewPivot=(Pitch=600)
 		SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
 		SightPivot=(Pitch=1024)
+		WeaponName="A500 'Reptile' Chemical Gun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
