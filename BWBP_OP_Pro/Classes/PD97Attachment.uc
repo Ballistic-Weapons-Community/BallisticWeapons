@@ -2,6 +2,8 @@ class PD97Attachment extends HandgunAttachment;
 
 var Pawn TazerHit, OldTazerHit;
 var PD97TazerEffect TazerEffect;
+var() class<BallisticShotgunFire>	FireClass;
+var bool	bShotgunMode;
 
 replication
 {
@@ -9,6 +11,15 @@ replication
 		TazerHit;
 }
 
+simulated event PreBeginPlay()
+{
+	super.PreBeginPlay();
+	if (PD97Bloodhound(Instigator.Weapon).BCRepClass.default.GameStyle == 2)
+	{
+		bShotgunMode=true;
+		InstantMode=MU_Primary;
+	}
+}
 //===========================================================================
 // PostNetReceive
 //
@@ -74,6 +85,86 @@ simulated function TazeEnd()
 			PD97Bloodhound(Instigator.Weapon).TazerEffect = None;
 	}
 }
+//===========================================================================
+ // Shotgun Mode
+ //
+ // Realisim calls shotgun effects
+//===========================================================================
+simulated function InstantFireEffects(byte Mode)
+{
+	if (bShotgunMode)
+		ShotgunFireEffects(FiringMode);
+
+	super.InstantFireEffects(Mode);
+}
+
+// Do trace to find impact info and then spawn the effect
+// This should be called from sub-classes
+simulated function ShotgunFireEffects(byte Mode)
+{
+	local Vector HitLocation, Start, End;
+	local Rotator R;
+	local Material HitMat;
+	local int i;
+	local float XS, YS, RMin, RMax, Range, fX;
+
+	if (Level.NetMode == NM_Client && FireClass != None)
+	{
+		XS = FireClass.default.XInaccuracy; YS = Fireclass.default.YInaccuracy;
+		RMin = FireClass.default.TraceRange.Min; RMax = FireClass.default.TraceRange.Max;
+		Start = Instigator.Location + Instigator.EyePosition();
+		for (i=0;i<FireClass.default.TraceCount;i++)
+		{
+			mHitActor = None;
+			Range = Lerp(FRand(), RMin, RMax);
+			R = Rotator(mHitLocation);
+			switch (FireClass.default.FireSpreadMode)
+			{
+				case FSM_Scatter:
+					fX = frand();
+					R.Yaw +=   XS * (frand()*2-1) * sin(fX*1.5707963267948966);
+					R.Pitch += YS * (frand()*2-1) * cos(fX*1.5707963267948966);
+					break;
+				case FSM_Circle:
+					fX = frand();
+					R.Yaw +=   XS * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+					R.Pitch += YS * sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+					break;
+				default:
+					R.Yaw += ((FRand()*XS*2)-XS);
+					R.Pitch += ((FRand()*YS*2)-YS);
+					break;
+			}
+			End = Start + Vector(R) * Range;
+			mHitActor = Trace (HitLocation, mHitNormal, End, Start, false,, HitMat);
+			if (mHitActor == None)
+			{
+				TracerClass = class<BCTraceEmitter>(FireClass.default.TracerClass);
+				DoWaterTrace(Mode, Start, End);
+				SpawnTracer(Mode, End);
+				TracerClass = default.TracerClass;
+			}
+			else
+			{
+				TracerClass = class<BCTraceEmitter>(FireClass.default.TracerClass);
+				DoWaterTrace(Mode, Start, HitLocation);
+				SpawnTracer(Mode, HitLocation);
+				TracerClass = default.TracerClass;
+			}
+
+			if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None))
+				continue;
+
+			if (HitMat == None)
+				mHitSurf = int(mHitActor.SurfaceType);
+			else
+				mHitSurf = int(HitMat.SurfaceType);
+
+			if (FireClass.default.ImpactManager != None)
+				FireClass.default.ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, self);
+		}
+	}
+}
 
 simulated function Tick(float DT)
 {
@@ -100,6 +191,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
+     FireClass=Class'BWBP_OP_Pro.PD97PrimaryShotgunFire'
      MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_BigBullet'
      AltFlashBone="ejector"

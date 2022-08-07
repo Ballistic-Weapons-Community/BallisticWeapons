@@ -108,6 +108,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		MagAmmo=24
+		WeaponName="E58 Government Raygun"
         RecoilParams(0)=RecoilParams'RealisticRecoilParams'
         AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

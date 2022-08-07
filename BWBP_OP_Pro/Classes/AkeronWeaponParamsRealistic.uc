@@ -1,4 +1,4 @@
-class AkeronWeaponParams extends BallisticWeaponParams;
+class AkeronWeaponParamsRealistic extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -6,7 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
+	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.AkeronRocket'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
 		Speed=4000.000000
@@ -23,18 +23,18 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.Akeron.Akeron-Fire')
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		FireInterval=0.70000
 		FireEndAnim=
 		FireAnimRate=1.1	
-		FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
+	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.AkeronRocket'
 		SpawnOffset=(X=50.000000,Y=10.000000,Z=-3.000000)
 		Speed=4000.000000
@@ -51,17 +51,17 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Fire1')	
 	End Object
 
-	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
 		FireInterval=0.800000
 		FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'
 	End Object
 
 	//=================================================================
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=ArenaRecoilParams
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams
 		ViewBindFactor=0.75
 		DeclineTime=1.000000
 	End Object
@@ -70,7 +70,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ArenaAimParams
+	Begin Object Class=AimParams Name=RealisticAimParams
 		AimSpread=(Min=64,Max=512)
 		ADSMultiplier=0.650000
 		SprintOffset=(Pitch=-6000,Yaw=-8000)
@@ -83,7 +83,7 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-	Begin Object Class=WeaponParams Name=ArenaParams
+	Begin Object Class=WeaponParams Name=RealisticParams
 		SightOffset=(X=-30.000000,Y=-17.000000,Z=15.000000)
 		ViewOffset=(X=30.000000,Y=20.000000,Z=-18.000000)
 		PlayerSpeedFactor=0.90000
@@ -94,10 +94,11 @@ defaultproperties
 		SightingTime=0.500000
 		MagAmmo=9
         ZoomType=ZT_Logarithmic
-        RecoilParams(0)=RecoilParams'ArenaRecoilParams'
-        AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		WeaponName="AN-56 Akeron Guided Missile Launcher"
+        RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+        AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
     End Object 
-    Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(0)=WeaponParams'RealisticParams'
 }
