@@ -111,6 +111,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=8
