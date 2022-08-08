@@ -40,7 +40,7 @@ defaultproperties
      InvasionDamageScaling=1.250000
      DamageIdent="Assault"
      DamageDescription=",Bullet,Flame,"
-     WeaponClass=Class'BWBP_SKC_Pro.CYLOAssaultWeapon'
+     WeaponClass=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'
      DeathString="%k CYLO IV'd %o's head right off."
      FemaleSuicide="%o routed herself."
      MaleSuicide="%o routed himself."

@@ -94,6 +94,9 @@ defaultproperties
 		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=24,Scale=0f)
 		WeaponBoneScales(4)=(BoneName="Stock",Slot=25,Scale=1f)
 		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=26,Scale=0f)
+		ViewOffset=(X=-5.000000,Y=12.000000,Z=-15.000000)
+		SightPivot=(Pitch=600,Roll=-1024)
+		SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
 		InventorySize=12
@@ -101,8 +104,7 @@ defaultproperties
 		SightingTime=0.40000		
 		DisplaceDurationMult=1
 		MagAmmo=20
-        //ZoomType=ZT_Logarithmic
-		ZoomType=ZT_Irons
+        ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

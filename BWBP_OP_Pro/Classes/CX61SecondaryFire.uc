@@ -118,7 +118,10 @@ auto simulated state Flamer
 	
 		CX61Attachment(Weapon.ThirdPersonActor).CX61UpdateFlameHit(Other, HitLocation, HitNormal);
 		
-		CX61AssaultRifle(Weapon).StoredGas -= 0.1;
+		if (CX61AssaultRifle(Weapon).BCRepClass.default.GameStyle == 1)
+			CX61AssaultRifle(Weapon).StoredGas -= 0.08;
+		else
+			CX61AssaultRifle(Weapon).StoredGas -= 0.1;
 	
 		Super(BallisticFire).DoFireEffect();
 	}

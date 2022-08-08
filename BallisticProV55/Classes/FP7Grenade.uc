@@ -56,6 +56,7 @@ defaultproperties
      CurrentWeaponMode=1
      ParamsClasses(0)=Class'FP7WeaponParams'
      ParamsClasses(1)=Class'FP7WeaponParamsClassic'
+     ParamsClasses(2)=Class'FP7WeaponParamsRealistic'
      FireModeClass(0)=Class'BallisticProV55.FP7PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.FP7SecondaryFire'
      SelectForce="SwitchToAssaultRifle"

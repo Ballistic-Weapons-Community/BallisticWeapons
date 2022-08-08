@@ -30,6 +30,25 @@ simulated function bool CheckGrenade()
 	return true;
 }
 
+// Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
+simulated function bool AllowFire()
+{
+	if (!CheckReloading())
+		return false;		// Is weapon busy reloading
+	if (!CheckWeaponMode())
+		return false;		// Will weapon mode allow further firing
+
+	if(!Super.AllowFire() || !bLoaded)
+	{
+		if (DryFireSound.Sound != None)
+			Weapon.PlayOwnedSound(DryFireSound.Sound,DryFireSound.Slot,DryFireSound.Volume,DryFireSound.bNoOverride,DryFireSound.Radius,DryFireSound.Pitch,DryFireSound.bAtten);
+		BW.EmptyFire(1);
+		return false;	// Does not use ammo from weapon mag. Is there ammo in inventory
+	}
+
+    return true;
+}
+
 simulated event ModeDoFire()
 {
 	if (!AllowFire())
@@ -38,6 +57,17 @@ simulated event ModeDoFire()
 		return;
 	Super.ModeDoFire();
 	bLoaded = false;
+}
+
+function StopFiring()
+{
+	local int channel;
+	local name seq;
+	local float frame, rate;
+	
+	weapon.GetAnimParams(channel, seq, frame, rate);
+	if (Seq == PreFireAnim)
+		Weapon.PlayAnim(Weapon.IdleAnim, 1.0, 0.5);
 }
 
 defaultproperties

@@ -137,6 +137,7 @@ defaultproperties
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_AM67'
 	ParamsClasses(0)=Class'AM67WeaponParams'
 	ParamsClasses(1)=Class'AM67WeaponParamsClassic'
+	ParamsClasses(2)=Class'AM67WeaponParamsRealistic'
 	PickupClass=Class'BallisticProV55.AM67Pickup'
 	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 	Priority=24

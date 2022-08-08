@@ -557,6 +557,7 @@ defaultproperties
 	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'GRS9WeaponParams'
 	ParamsClasses(1)=Class'GRS9WeaponParamsClassic' //todo: auto to semi
+	ParamsClasses(2)=Class'GRS9WeaponParamsRealistic' //todo: auto to semi
 	FireModeClass(0)=Class'BallisticProV55.GRS9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.GRS9SecondaryFire'
 	

@@ -363,6 +363,7 @@ defaultproperties
 	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'M806WeaponParams'
 	ParamsClasses(1)=Class'M806WeaponParamsClassic'
+	ParamsClasses(2)=Class'M806WeaponParamsRealistic'
 	FireModeClass(0)=Class'BallisticProV55.M806PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M806SecondaryFire'
 	

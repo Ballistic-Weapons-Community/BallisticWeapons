@@ -25,7 +25,6 @@ event Timer()
 
 	if (bUseRegen)
 	{
-		log('28');
 		for (i=0;i<Level.GRI.PRIArray.Length;i++)
 		{
 			if(Level.GRI.PRIArray[i] != None && Controller(Level.GRI.PRIArray[i].Owner) != None && Controller(Level.GRI.PRIArray[i].Owner).Pawn != None)
@@ -51,7 +50,6 @@ event PostBeginPlay()
 	
 	if (bUseRegen)
 	{
-		log('54');
 		SetTimer(RegenRate, true);
 
 		if(!bDeleteMe)

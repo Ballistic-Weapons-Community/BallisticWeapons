@@ -309,6 +309,7 @@ defaultproperties
 	SightDisplayFOV=60.000000
 	ParamsClasses(0)=Class'A73WeaponParams'
 	ParamsClasses(1)=Class'A73WeaponParamsClassic'
+	ParamsClasses(2)=Class'A73WeaponParamsRealistic'
 	FireModeClass(0)=Class'BallisticProV55.A73PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A73SecondaryFire'
 	BringUpTime=0.500000

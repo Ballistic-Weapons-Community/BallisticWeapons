@@ -469,6 +469,7 @@ defaultproperties
 	GroupOffset=3
 	ParamsClasses(0)=Class'MRS138WeaponParams'
 	ParamsClasses(1)=Class'MRS138WeaponParamsClassic'
+	ParamsClasses(2)=Class'MRS138WeaponParamsRealistic'
 	FireModeClass(1)=Class'BallisticProV55.MRS138SecondaryFire'
 	FireModeClass(0)=Class'BallisticProV55.MRS138PrimaryFire'
 	

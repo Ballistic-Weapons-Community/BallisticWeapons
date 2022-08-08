@@ -470,6 +470,7 @@ defaultproperties
 	GunLength=96.000000
 	ParamsClasses(0)=Class'MACWeaponParams'
 	ParamsClasses(1)=Class'MACWeaponParamsClassic'
+	ParamsClasses(2)=Class'MACWeaponParamsRealistic'
 	FireModeClass(0)=Class'BallisticProV55.MACPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.MACSecondaryFire'
 	SelectAnimRate=0.600000

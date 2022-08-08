@@ -6,57 +6,55 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
-			DecayRange=(Min=1536,Max=2560)
-			PenetrationEnergy=12 
-			Damage=85.000000
-			HeadMult=1.5f
-			LimbMult=0.8f
-			RangeAtten=0.500000
-			DamageType=Class'BWBP_SKC_Pro.DT_AH104Pistol'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_AH104PistolHead'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_AH104Pistol'
-			PenetrateForce=200
-			bPenetrate=True
-			MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-			FlashScaleFactor=0.900000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Super',Volume=7.100000)
-			Recoil=1024.000000
-			Chaos=0.2
-			Inaccuracy=(X=16,Y=16)
-			WarnTargetPct=0.400000
-			BotRefireRate=0.7
-		End Object
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
+		DecayRange=(Min=1536,Max=2560)
+		PenetrationEnergy=12 
+		Damage=85.000000
+		HeadMult=1.5f
+		LimbMult=0.8f
+		RangeAtten=0.500000
+		DamageType=Class'BWBP_SKC_Pro.DT_AH104Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AH104PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AH104Pistol'
+		PenetrateForce=200
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
+		FlashScaleFactor=0.900000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-Super',Volume=7.100000)
+		Recoil=768.000000
+		Chaos=0.15
+		Inaccuracy=(X=16,Y=16)
+		WarnTargetPct=0.400000
+		BotRefireRate=0.7
+	End Object
 
-		Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-			AimedFireAnim="SightFire"
-			FireEndAnim=
-			FireInterval=0.39
-		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		AimedFireAnim="SightFire"
+		FireEndAnim=
+		FireInterval=0.39
+	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
+	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameLoopStart',Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
+		Recoil=0.01
+		Chaos=0.05
+		Damage=12.000000
+		DamageRadius=192
+		Inaccuracy=(X=0,Y=0)
+		BotRefireRate=0.300000
+	End Object
 	
-		Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlameLoopStart',Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
-			Recoil=0.01
-			Chaos=0.05
-			Damage=12.000000
-			DamageRadius=192
-			Inaccuracy=(X=0,Y=0)
-			BotRefireRate=0.300000
-		End Object
-		
-		Begin Object Class=FireParams Name=ArenaSecondaryFireParams
-			FireInterval=0.090000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		FireInterval=0.090000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -80,7 +78,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=40,Max=1024)
+		AimSpread=(Min=16,Max=320)
 		AimAdjustTime=0.600000
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.7000
@@ -100,6 +98,7 @@ defaultproperties
 		PlayerSpeedFactor=0.9
 		SightMoveSpeedFactor=0.900000
 		MagAmmo=9
+		ViewOffset=(X=5.000000,Y=5.000000,Z=-9.000000)
 		SightOffset=(X=-15.000000,Y=-0.400000,Z=11.500000)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'

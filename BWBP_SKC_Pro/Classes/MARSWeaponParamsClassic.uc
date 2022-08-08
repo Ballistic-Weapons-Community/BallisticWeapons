@@ -39,6 +39,33 @@ defaultproperties
 		End Object
 		
 	//=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=7000.000000
+		MaxSpeed=7000.000000
+		Damage=50
+		DamageRadius=256.000000
+		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		Recoil=1024.000000
+		Chaos=0.500000
+		BotRefireRate=0.3
+		WarnTargetPct=0.5
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.800000
+		PreFireAnim="GLPrepFire"
+		FireAnim="GLFire"
+		AimedFireAnim="GLSightFireFromPrep"	
+		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	End Object
+		
+	//=================================================================
 	// RECOIL
 	//=================================================================
 
@@ -76,6 +103,10 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

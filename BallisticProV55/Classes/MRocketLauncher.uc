@@ -512,6 +512,7 @@ defaultproperties
 	LongGunOffset=(X=8.000000,Y=-5.000000,Z=-3.000000)
 	ParamsClasses(0)=Class'MRLWeaponParams'
 	ParamsClasses(1)=Class'MRLWeaponParamsClassic'
+	ParamsClasses(2)=Class'MRLWeaponParamsRealistic'
 	FireModeClass(0)=Class'BallisticProV55.MRLPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.MRLSecondaryFire'
 	

@@ -62,6 +62,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireSlugParams
 		FireInterval=0.300000
+		AmmoPerFire=2
 		MaxHoldTime=0.0
 		AimedFireAnim="Fire"
 		FireAnimRate=1.35	
@@ -96,6 +97,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
+		ViewOffset=(X=-10.000000,Y=20.000000,Z=-30.000000)
 		PlayerSpeedFactor=1.000000
 		PlayerJumpFactor=1.000000
 		InventorySize=11

@@ -33,6 +33,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 		FireInterval=0.070000
 		BurstFireRateFactor=1.00
+		AimedFireAnim="SightFire"	
 		FireEndAnim=
 		FireAnimRate=2.000000	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
@@ -106,6 +107,10 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.500000,Y=-6.350000,Z=23.150000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

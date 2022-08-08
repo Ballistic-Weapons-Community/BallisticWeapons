@@ -13,15 +13,17 @@ class XM20BSecondaryFire extends BallisticProInstantFire;
 var() sound		FireSoundLoop;
 var   float		StopFireTime;
 var   bool		bLaserFiring;
+var   bool 		bPreventFire;	//prevent fire/recharging when laser is cooling
 var   Actor		MuzzleFlashBlue;
 
 var() name		PreFireAnimCharged;
 var() name		FireLoopAnimCharged;
 var() name		FireEndAnimCharged;
 
+var	int		TraceCount;
+
 var() float	OverChargedFireRate;
 var   int SoundAdjust;
-var float		LaserCharge, MaxCharge;
 var()   sound	ChargeSound;
 var() sound		PowerFireSound;
 var() sound		RegularFireSound;
@@ -47,78 +49,129 @@ function StartSuperBerserk()
 		FireRate = default.OverChargedFireRate/Level.GRI.WeaponBerserk;
 }
 
-// Charge Beam Code
-simulated function bool AllowFire()
-{
-	if (LaserCharge > 0 && LaserCharge < MaxCharge)
-		return false;
-
-	if (!super.AllowFire())
+simulated function ModeTick(float DT)
+{	
+	if (bIsFiring && !bPreventFire && BW.MagAmmo > 0)
+		XM20BCarbine(BW).SetLaserCharge(FMin(XM20BCarbine(BW).LaserCharge + XM20BCarbine(BW).ChargeRate * DT * (1 + 2*int(BW.bBerserk)), XM20BCarbine(BW).MaxCharge));
+	else if (XM20BCarbine(BW).LaserCharge > 0)
 	{
-		if (bLaserFiring)
+		if (level.TimeSeconds > StopFireTime)
 			StopFiring();
-
-		return false;
+			
+		bPreventFire=true;
+		XM20BCarbine(BW).SetLaserCharge(FMax(0.0, XM20BCarbine(BW).LaserCharge - XM20BCarbine(BW).CoolRate * DT * (1 + 2*int(BW.bBerserk))));
+		
+		if (XM20BCarbine(BW).LaserCharge <= 0)
+			bPreventFire=false;
 	}
-	return true;
+		
+	Super.ModeTick(DT);
 }
 
-// Used to delay ammo consumtion
-simulated event Timer()
-{
-	super.Timer();
-
-	if (bLaserFiring && !IsFiring())
-	{
-		class'BUtil'.static.KillEmitterEffect (MuzzleFlashBlue);
-		MuzzleFlashBlue=None;
-		bLaserFiring=false;
-		//Instigator.AmbientSound = None;
-        Instigator.SoundVolume = Instigator.Default.SoundVolume;
-	}
-}
-
-simulated function PlayPreFire()
-{    
-    Instigator.AmbientSound = ChargeSound;
-    //Weapon.ThirdPersonActor.AmbientSound = ChargeSound;
-    Instigator.SoundVolume = 255;
-	super.PlayPreFire();
-}
-
-//Intent is for the laser to begin firing once it has spooled up
+// ModeDoFire from WeaponFire.uc, but with a few changes
 simulated event ModeDoFire()
 {
-    if (!AllowFire())
+    if (!AllowFire() || XM20BCarbine(BW).LaserCharge < XM20BCarbine(BW).MaxCharge || TyphonPDW(BW).bShieldUp || bPreventFire)
         return;
-		
-	BallisticFireSound.Sound = None;
-	
-    if (LaserCharge + 0.01 >= MaxCharge || AIController(Instigator.Controller) != None ) //Fire at max charge, bots ignore charging
+
+	if (BW != None)
+	{
+		BW.bPreventReload=true;
+		BW.FireCount++;
+
+		if (BW.FireCount == 1)
+			NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
+
+		if (BW.ReloadState != RS_None)
+		{
+			if (weapon.Role == ROLE_Authority)
+				BW.bServerReloading=false;
+			BW.ReloadState = RS_None;
+		}
+	}
+
+    Load = AmmoPerFire;
+    HoldTime = 0;
+
+    // server
+    if (Weapon.Role == ROLE_Authority)
     {
-		super.ModeDoFire();
-        XM20BCarbine(BW).CoolRate = XM20BCarbine(BW).default.CoolRate * (1 + 0.2*int(BW.bBerserk));
+        DoFireEffect();
+        if ( (Instigator == None) || (Instigator.Controller == None) )
+			return;
+        if ( AIController(Instigator.Controller) != None )
+            AIController(Instigator.Controller).WeaponFireAgain(BotRefireRate, true);
+        Instigator.DeactivateSpawnProtection();
+        if(BallisticTurret(Weapon.Owner) == None  && class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo) != None)
+			class'Mut_Ballistic'.static.GetBPRI(xPawn(Weapon.Owner).PlayerReplicationInfo).AddFireStat(load, BW.InventoryGroup);
     }
-    else
+	if (!BW.bScopeView)
+		BW.AddFireChaos(FireChaos);
+	
+	BW.LastFireTime = Level.TimeSeconds;
+
+    // client
+    if (Instigator.IsLocallyControlled())
     {
-        XM20BCarbine(BW).CoolRate = XM20BCarbine(BW).default.CoolRate * 3 * (1 + 0.2*int(BW.bBerserk));
+        ShakeView();
+        PlayFiring();
+        FlashMuzzleFlash();
+        StartMuzzleSmoke();
+		TyphonPDW(BW).UpdateScreen();
+    }
+    else // server
+        ServerPlayFiring();
+
+	NextFireTime += FireRate;
+	NextFireTime = FMax(NextFireTime, Level.TimeSeconds);
+
+    if (Instigator.PendingWeapon != Weapon && Instigator.PendingWeapon != None)
+    {
+        bIsFiring = false;
+        Weapon.PutDown();
     }
 
-	//Overheat and lock the gun for a bit
-    //XM20BCarbine(BW).Overheat(LaserCharge);
-    //LaserCharge = 0;
+	BW.bNeedReload = BW.MayNeedReload(ThisModeNum, ConsumedLoad);
 }
 
-simulated function ModeTick(float DT)
+// Get aim then run several individual traces using different spread for each one
+function DoFireEffect()
 {
-	Super.ModeTick(DT);
+    local Vector StartTrace;
+    local Rotator Aim;
+	local int i;
 
-	if ( XM20BCarbine(BW).Heat > 0 || !bIsFiring || XM20BCarbine(BW).MagAmmo == 0 )
+	XM20BCarbine(Weapon).ServerSwitchLaser(true);
+	if (!bLaserFiring)
 	{
-		LaserCharge = FMax(0.0, LaserCharge - XM20BCarbine(BW).CoolRate*DT*(1 + 2*int(BW.bBerserk)));
-		return;
+		if (XM20BCarbine(BW).bOvercharged)
+			Weapon.PlayOwnedSound(PowerFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+		else
+			Weapon.PlayOwnedSound(RegularFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 	}
-	LaserCharge = FMin(LaserCharge + XM20BCarbine(BW).ChargeRate*DT*(1 + 2*int(BW.bBerserk)), MaxCharge);
+	bLaserFiring=true;
+
+	if (!bAISilent)
+		Instigator.MakeNoise(1.0);
+
+    if (Level.NetMode == NM_DedicatedServer)
+        BW.RewindCollisions();
+
+	for (i=0;i<TraceCount && ConsumedLoad < BW.MagAmmo ;i++)
+	{
+		ConsumedLoad += Load;
+		Aim = GetFireAim(StartTrace);
+		Aim = Rotator(GetFireSpread() >> Aim);
+		DoTrace(StartTrace, Aim);
+		ApplyRecoil();
+	}
+
+    if (Level.NetMode == NM_DedicatedServer)
+        BW.RestoreCollisions();
+
+	SetTimer(FMin(0.1, FireRate/2), false);
+
+	Super(WeaponFire).DoFireEffect();
 }
 
 simulated function SwitchLaserMode (byte NewMode)
@@ -139,8 +192,15 @@ simulated function SwitchLaserMode (byte NewMode)
 	    FireRate /= Level.GRI.WeaponBerserk;
 }
 
-
 //effects code
+
+simulated function PlayPreFire()
+{    
+    Instigator.AmbientSound = ChargeSound;
+    //Weapon.ThirdPersonActor.AmbientSound = ChargeSound;
+    Instigator.SoundVolume = 255;
+	super.PlayPreFire();
+}
 
 function InitEffects()
 {
@@ -158,22 +218,6 @@ simulated function DestroyEffects()
 
 //	class'BUtil'.static.KillEmitterEffect (MuzzleFlashRed);
 //	class'BUtil'.static.KillEmitterEffect (MuzzleFlashBlue);
-}
-
-
-//Server fire
-function DoFireEffect()
-{
-	XM20BCarbine(Weapon).ServerSwitchLaser(true);
-	if (!bLaserFiring)
-	{
-		if (XM20BCarbine(BW).bOvercharged)
-			Weapon.PlayOwnedSound(PowerFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
-		else
-			Weapon.PlayOwnedSound(RegularFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
-	}
-	bLaserFiring=true;
-	super.DoFireEffect();
 }
 
 //Client fire
@@ -219,11 +263,9 @@ function StopFiring()
 {
     Instigator.AmbientSound = XM20BCarbine(BW).UsedAmbientSound;
     Instigator.SoundVolume = Instigator.Default.SoundVolume;
-//    HoldTime = 0;
 	bLaserFiring=false;
 	XM20BCarbine(Weapon).ServerSwitchLaser(false);
 	StopFireTime = level.TimeSeconds;
-//	LaserCharge = 0;
 }	
 
 simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
@@ -267,12 +309,12 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
-	 MaxCharge=1.000000
 	 FireSoundLoop=Sound'BWBP_SKC_Sounds.XM20B.XM20-Lase'
      ChargeSound=Sound'BWBP_SKC_Sounds.XM20B.XM20-SpartanChargeSound'
 //	 ChargeSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Charge'
      PowerFireSound=Sound'BWBP_SKC_Sounds.XM20B.XM20-Overcharge'
      RegularFireSound=Sound'BWBP_SKC_Sounds.XM20B.XM20-LaserStart'
+	 TraceCount=1
 
      MaxWaterTraceRange=5000
 	 

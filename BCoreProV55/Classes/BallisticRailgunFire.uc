@@ -172,6 +172,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 	local bool						bHitWall;
 
 	WallPenForce = WallPenetrationForce;
+	BW.UpdatePenetrationStatus(0);
 
 	// Work out the range
 	Dist = TraceRange.Min + FRand() * (TraceRange.Max - TraceRange.Min);
@@ -185,6 +186,8 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 	WallExits.length=0;
 	while (Dist > 0 && HitSameCount < 10)		// Loop traces in case we need to go through stuff
 	{
+		BW.UpdatePenetrationStatus(PenCount + WallCount);
+		
 		// Do the trace
 		Other = Trace (HitLocation, HitNormal, End, Start, true, , HitMaterial);
 		Dist -= VSize(HitLocation - Start);
@@ -217,6 +220,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 				if (CanPenetrate(Other, HitLocation, X, PenCount))
 				{
 					PenCount++;
+					
 					Start = HitLocation + (X * FMax(Other.CollisionRadius * 2, 8.0));
 					End = Start + X * Dist;
 					continue;
@@ -228,6 +232,7 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 			if (Other.bWorldGeometry || Mover(Other) != None)
 			{
 				WallCount++;
+				
 				ExitNorm = X;
 				if (Other.bCanBeDamaged)
 				{

@@ -14,7 +14,7 @@ defaultproperties
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.400000
 		Damage=30
-		TraceCount=10
+		TraceCount=20
 		HeadMult=1.5
 		LimbMult=0.5
 		DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
@@ -28,18 +28,55 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		FlashScaleFactor=1.500000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-FireDouble',Volume=1.200000)
 		Recoil=256.000000
 		Chaos=-1.0
 		Inaccuracy=(X=900,Y=750)
+		HipSpreadFactor=1.000000
 		BotRefireRate=0.100000
 		WarnTargetPct=0.100000
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 		FireInterval=0.150000
+		AmmoPerFire=2
 		BurstFireRateFactor=1.00	
 	FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
+	End Object
+		
+	Begin Object Class=ShotgunEffectParams Name=ArenaPrimarySlugEffectParams
+		TraceRange=(Min=6000.000000,Max=6500.000000)
+		RangeAtten=0.350000
+		TraceCount=2
+	    TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'
+		ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
+		MaxHits=14
+		Damage=115
+		DamageType=Class'BWBP_SKC_Pro.DTCoachSlug'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTCoachSlug'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTCoachSlug'
+        HeadMult=2.2f
+        LimbMult=0.6f
+        PenetrateForce=500
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=3.000000
+		Recoil=4096.000000
+		Chaos=1.000000
+		BotRefireRate=0.60000
+		WarnTargetPct=0.500000	
+		Inaccuracy=(X=48,Y=48)
+		HipSpreadFactor=1.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.SuperMagnum-Fire',Volume=7.100000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireSlugParams
+		FireInterval=0.300000
+		AmmoPerFire=2
+		MaxHoldTime=0.0
+		AimedFireAnim="Fire"
+		FireAnimRate=1.35	
+		FireEffectParams(0)=ShotgunEffectParams'ArenaPrimarySlugEffectParams'
 	End Object
 		
 	//=================================================================
@@ -82,7 +119,8 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=2
-		SightOffset=(X=-40.000000,Y=9.500000,Z=32.000000)
+		ViewOffset=(X=-20.000000,Y=20.000000,Z=-40.000000)
+		SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
 		SightPivot=(Pitch=256)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

@@ -225,7 +225,8 @@ simulated function AdjustMagnetProperties ()
 		PreviousWeaponMode = CurrentWeaponMode;
 		CurrentWeaponMode = 3;
 		
-		M2020GaussPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+		SwitchWeaponMode(CurrentWeaponMode+1);
+		//M2020GaussPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 		
 		WeaponModes[0].bUnavailable=true;
 		WeaponModes[1].bUnavailable=true;
@@ -246,7 +247,8 @@ simulated function AdjustMagnetProperties ()
 		
 		CurrentWeaponMode = PreviousWeaponMode;
 		
-		M2020GaussPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+		SwitchWeaponMode(CurrentWeaponMode+1);
+		//M2020GaussPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 		
 		WeaponModes[3].bUnavailable=true;
 	}

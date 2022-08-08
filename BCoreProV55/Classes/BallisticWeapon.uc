@@ -421,6 +421,7 @@ var(Aim) bool				    bAimDisabled;		// Disables the entire aiming system. Bullet
 var(Aim) bool				    bUseNetAim;			// Aim info is replicated to clients. Otherwise client and server aim will be separate
 var(Aim) bool				    bUseSpecialAim;		// Firemodes will use GetPlayerAim instead of normal AdjustAim. Used for autotracking and other special aiming functions
 var() float					    GunLength;			// How far weapon extends from player. Used by long-gun check
+var() bool						bHasPenetrated;		// Has this weapon recently penetrated? Used in announcing wallbang death messages
 //=============================================================================
 // END GAMEPLAY VARIABLES
 //=============================================================================
@@ -611,6 +612,12 @@ simulated final function OnWeaponParamsChanged()
     {
         PlayerViewOffset = WeaponParams.ViewOffset;
         default.PlayerViewOffset = WeaponParams.ViewOffset;
+    }
+
+    if (WeaponParams.ViewPivot != rot(0,0,0))
+    {
+        PlayerViewPivot = WeaponParams.ViewPivot;
+        default.PlayerViewPivot = WeaponParams.ViewPivot;
     }
 	
     for (i = 0; i < WeaponParams.WeaponMaterialSwaps.Length; ++i)
@@ -2704,7 +2711,7 @@ simulated function CheckBurstMode()
 
 simulated function float CalculateBurstRecoilDelay(bool burst)
 {
-	if (burst)
+	if (burst && BFireMode[0].BurstFireRateFactor < 1)
 	{
 		return
 			(BFireMode[0].FireRate * WeaponModes[CurrentWeaponMode].Value * (1f - BFireMode[0].BurstFireRateFactor)) // cooldown of burst
@@ -2786,16 +2793,21 @@ exec simulated function DualSelect (optional class<Weapon> NewWeaponClass )
 // Big powerful cheat to give you all the ballistic weapons and some ammo of course
 exec simulated function Reloaded()
 {
-	ServerReloaded();
+	ServerReloaded(-1);
 }
 
-final function ServerReloaded()
+// Slightly less powerful cheat to give you all the ballistic weapons and some ammo of course
+exec simulated function GiveWeapons(int Group)
+{
+	ServerReloaded(Group);
+}
+
+final function ServerReloaded(optional int Group)
 {
 	local class<Weapon> Weap;
 	local Inventory Inv;
 	local int i;
 	local array<CacheManager.WeaponRecord> Recs;
-	
 
 	if ((Level.Netmode != NM_Standalone && !Instigator.PlayerReplicationInfo.bAdmin)|| Instigator == None || Vehicle(Instigator) != None)
 		return;
@@ -2803,9 +2815,10 @@ final function ServerReloaded()
 	class'CacheManager'.static.GetWeaponList(Recs);
 	for (i=0;i<Recs.Length;i++)
 	{
-		if (!class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW)
+		if (!class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).bIsBW || (Group != -1 && class'BC_WeaponInfoCache'.static.AutoWeaponInfo(Recs[i].ClassName).InventoryGroup != Group))
 			continue;
 		Weap = class<Weapon>(DynamicLoadObject(Recs[i].ClassName, class'Class'));
+		
 		if (Weap != None && ClassIsChildOf(Weap, class'BallisticWeapon'))
 			Instigator.GiveWeapon(Recs[i].ClassName);
 	}
@@ -5057,6 +5070,14 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
     Canvas.SetPos(4,YPos);
 }
 // End debug -----------------------------------------------------------------------------------------------------------
+
+simulated function UpdatePenetrationStatus(int Count)
+{
+	if (Count > 0)
+		bHasPenetrated = true;
+	else
+		bHasPenetrated = false;
+}
 
 simulated final function bool HasSecondaryAmmo()
 {

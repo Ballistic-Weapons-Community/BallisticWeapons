@@ -3,7 +3,7 @@ class M2020WeaponParams extends BallisticWeaponParams;
 defaultproperties
 {
     //=================================================================
-    // PRIMARY FIRE
+    // PRIMARY FIRE - Recharge
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=ArenaRechargeEffectParams
@@ -33,6 +33,10 @@ defaultproperties
 		FireEffectParams(0)=InstantEffectParams'ArenaRechargeEffectParams'
 	End Object
 
+	//=================================================================
+    // PRIMARY FIRE - Power
+    //=================================================================	
+
 	Begin Object Class=InstantEffectParams Name=ArenaPowerEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		Damage=95
@@ -61,6 +65,10 @@ defaultproperties
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPowerEffectParams'
 	End Object
+
+	//=================================================================
+    // PRIMARY FIRE - Offline
+    //=================================================================	
 
 	Begin Object Class=InstantEffectParams Name=ArenaOfflineEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
@@ -141,6 +149,8 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		ViewOffset=(Y=12.000000,Z=-12.000000)
+		SightOffset=(Y=-3.000000,Z=18.000000)
 		PlayerSpeedFactor=0.95
 		PlayerJumpFactor=0.9
 		InventorySize=12

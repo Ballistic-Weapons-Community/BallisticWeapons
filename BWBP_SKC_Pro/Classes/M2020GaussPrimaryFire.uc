@@ -106,78 +106,29 @@ function StopBerserk()
 
 simulated function SwitchWeaponMode (byte NewMode)
 {
-	if (M2020GaussDMR(Weapon).BCRepClass.default.GameStyle != 1) //todo: remove once stock firemodes done
+	if (NewMode == 0)	//gauss normal
 	{
-		if (NewMode == 0)	//gauss normal
-		{
-			BallisticFireSound.Sound=default.BallisticFireSound.sound;
-			FireRecoil=default.FireRecoil;
-			FirePushbackForce=default.FirePushbackForce;
-			FireAnim=default.FireAnim;
-			FireChaos=default.FireChaos;
-			Damage=default.Damage;
-
-			DamageType=default.DamageType;
-			DamageTypeHead=default.DamageTypeHead;
-			DamageTypeArm=default.DamageTypeArm;
-
-			WallPenetrationForce = default.WallPenetrationForce;
-			FlashScaleFactor=default.FlashScaleFactor;
-			bFlashAlt=false;
-			KickForce = default.KickForce;
-			M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
-			FireRate=Default.FireRate;
-		}
-		
-		else if (NewMode == 1)	//gauss power
-		{
-			//BallisticFireSound.Sound=SpecialFireSound;
-			//FireRecoil=1024.000000;
-			FirePushbackForce=120.000000;
-			//FireAnim='FirePowered';
-			//FireRate=1.000000;
-			//FireChaos=1;
-			//Damage=95.000000;
-
-			//DamageType=default.DamageType;
-			//DamageTypeHead=default.DamageTypeHead;
-			//DamageTypeArm=default.DamageTypeArm;
-
-			//WallPenetrationForce = 96;
-			//FlashScaleFactor=1.600000;
-			KickForce=1000;
-			bFlashAlt=false;
-			M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
-		}
-		else if (NewMode == 2 || NewMode == 3)	//gauss offline or gauss deflection
-		{
-			BallisticFireSound.Sound=LowPowerFireSound;
-			//FireRecoil=150.000000;
-			FirePushbackForce=0.000000;
-			//FlashScaleFactor=1.000000;
-			//FireChaos=0.05;
-			bFlashAlt=true;
-			KickForce = default.KickForce;
-			M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=true;
-			/*if (NewMode == 2)
-				FireAnim='FireUnPowered';
-			else
-				FireAnim='FireShield';*/
-			//FireRate=0.200000;
-			//Damage=34.000000;
-
-			DamageType=Class'BWBP_SKC_Pro.DT_M2020Off';
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_M2020HeadOff';
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_M2020Off';
-
-			WallPenetrationForce=24;
-		}
+		FirePushbackForce=default.FirePushbackForce;
+		bFlashAlt=false;
+		KickForce = default.KickForce;
+		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
 	}
-	if (Weapon.bBerserk)
-		FireRate *= 0.75;
-	if ( Level.GRI.WeaponBerserk > 1.0 )
-	    FireRate /= Level.GRI.WeaponBerserk;
+	
+	else if (NewMode == 1)	//gauss power
+	{
+		FirePushbackForce=120.000000;
+		KickForce=1000;
+		bFlashAlt=false;
+		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=false;
+	}
+	else if (NewMode == 2 || NewMode == 3)	//gauss offline or gauss deflection
+	{
+		FirePushbackForce=0.000000;
+		bFlashAlt=true;
+		KickForce = default.KickForce;
+		M2020GaussAttachment(Weapon.ThirdPersonActor).bNoEffect=true;
 
+	}
 }
 
 defaultproperties

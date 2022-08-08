@@ -10,6 +10,9 @@ defaultproperties
     LayoutIndex=1
     FullZoomFOV=80.000000
     SightDisplayFOV=25.000000
+	ParamsClasses(0)=Class'M46WeaponParams'
+	ParamsClasses(1)=Class'M46WeaponParamsClassic' 
+	ParamsClasses(2)=Class'M46WeaponParamsRealistic' 
     FireModeClass(0)=Class'BallisticProV55.M46PrimaryFireQS'
     FireModeClass(1)=Class'BallisticProV55.M46SecondaryFireQS'
     GroupOffset=2

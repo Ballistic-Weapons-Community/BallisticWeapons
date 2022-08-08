@@ -13,7 +13,7 @@ var() Sound			FailSound;
 
 simulated function bool AllowFire()
 {
-	if ((CYLOAssaultWeapon(Weapon).HeatLevel >= 12) || !super.AllowFire())
+	if ((CYLOFirestormAssaultWeapon(Weapon).HeatLevel >= 12) || !super.AllowFire())
 		return false;
 	return true;
 }
@@ -21,7 +21,7 @@ simulated function bool AllowFire()
 function PlayFiring()
 {
 		Super.PlayFiring();
-		CYLOAssaultWeapon(BW).AddHeat(HeatPerShot);
+		CYLOFirestormAssaultWeapon(BW).AddHeat(HeatPerShot);
 }
 
 function StopFiring()
@@ -34,7 +34,7 @@ function DoFireEffect()
 {
 	Super.DoFireEffect();
 	if (Level.Netmode == NM_DedicatedServer)
-		CYLOAssaultWeapon(BW).AddHeat(HeatPerShot);
+		CYLOFirestormAssaultWeapon(BW).AddHeat(HeatPerShot);
 }
 
 function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
@@ -196,6 +196,7 @@ defaultproperties
      PreFireAnim=
      FireEndAnim=
      FireRate=0.125000
+     UnjamMethod=UJM_Fire
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

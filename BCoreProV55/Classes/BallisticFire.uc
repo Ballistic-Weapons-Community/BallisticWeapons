@@ -161,47 +161,73 @@ var	String		ShotTypeString, EffectString;
 
 simulated final function ApplyFireParams()
 {
-    FireRate                = Params.FireInterval;
-    AmmoPerFire             = Params.AmmoPerFire;
+    FireRate                		= Params.FireInterval;
+	default.FireRate        		= Params.FireInterval;
+	
+    AmmoPerFire             		= Params.AmmoPerFire;
+	default.AmmoPerFire    			= Params.AmmoPerFire;
 
-    PreFireTime             = Params.PreFireTime;
-    MaxHoldTime             = Params.MaxHoldTime;
+    PreFireTime             		= Params.PreFireTime;
+    MaxHoldTime             		= Params.MaxHoldTime;
+	default.PreFireTime     		= Params.PreFireTime;
+    default.MaxHoldTime     		= Params.MaxHoldTime;
 
     GoToState(Params.TargetState);
 
-    BurstFireRateFactor     = Params.BurstFireRateFactor;
-    bCockAfterFire          = Params.bCockAfterFire;
+    BurstFireRateFactor     		= Params.BurstFireRateFactor;
+    bCockAfterFire          		= Params.bCockAfterFire;
+	default.BurstFireRateFactor     = Params.BurstFireRateFactor;
+	default.bCockAfterFire          = Params.bCockAfterFire;
 
-    PreFireAnim             = Params.PreFireAnim; 
-    FireAnim                = Params.FireAnim;
-    FireLoopAnim            = Params.FireLoopAnim;
-    FireEndAnim             = Params.FireEndAnim;
+    PreFireAnim             		= Params.PreFireAnim; 
+    FireAnim                		= Params.FireAnim;
+    FireLoopAnim            		= Params.FireLoopAnim;
+    FireEndAnim             		= Params.FireEndAnim;
 
-    PreFireAnimRate         = Params.PreFireAnimRate;
-    FireAnimRate            = Params.FireAnimRate;
-    FireLoopAnimRate        = Params.FireLoopAnimRate;
-    FireEndAnimRate         = Params.FireEndAnimRate;
+    PreFireAnimRate         		= Params.PreFireAnimRate;
+    FireAnimRate            		= Params.FireAnimRate;
+    FireLoopAnimRate        		= Params.FireLoopAnimRate;
+    FireEndAnimRate         		= Params.FireEndAnimRate;    
+	default.PreFireAnimRate         = Params.PreFireAnimRate;
+    default.FireAnimRate            = Params.FireAnimRate;
+    default.FireLoopAnimRate        = Params.FireLoopAnimRate;
+    default.FireEndAnimRate         = Params.FireEndAnimRate;
 
-    AimedFireAnim           = Params.AimedFireAnim;
+    AimedFireAnim           		= Params.AimedFireAnim;
 }
 
 simulated function ApplyFireEffectParams(FireEffectParams effect_params)
 {
     // must check on existing muzzle flash for replacement
-    MuzzleFlashClass        = effect_params.MuzzleFlashClass;
-    FlashScaleFactor        = effect_params.FlashScaleFactor;
-    BallisticFireSound      = effect_params.FireSound;
-    FireRecoil              = effect_params.Recoil;
-    FirePushbackForce       = effect_params.PushbackForce;
-    FireChaos               = effect_params.Chaos;
-    XInaccuracy             = effect_params.Inaccuracy.X;
-    YInaccuracy             = effect_params.Inaccuracy.Y;
-    FireSpreadMode          = effect_params.SpreadMode;
+    MuzzleFlashClass        		= effect_params.MuzzleFlashClass;
+    FlashScaleFactor        		= effect_params.FlashScaleFactor;
+    BallisticFireSound     	 		= effect_params.FireSound;
+    FireRecoil            			= effect_params.Recoil;
+    FirePushbackForce	     	 	= effect_params.PushbackForce;
+    FireChaos        		       	= effect_params.Chaos;
+    XInaccuracy      		       	= effect_params.Inaccuracy.X;
+    YInaccuracy       	     		= effect_params.Inaccuracy.Y;
+    FireSpreadMode    		      	= effect_params.SpreadMode;
+	
+	default.MuzzleFlashClass        = effect_params.MuzzleFlashClass;
+    default.FlashScaleFactor        = effect_params.FlashScaleFactor;
+    default.BallisticFireSound      = effect_params.FireSound;
+    default.FireRecoil              = effect_params.Recoil;
+    default.FirePushbackForce       = effect_params.PushbackForce;
+    default.FireChaos               = effect_params.Chaos;
+    default.XInaccuracy             = effect_params.Inaccuracy.X;
+    default.YInaccuracy             = effect_params.Inaccuracy.Y;
+    default.FireSpreadMode          = effect_params.SpreadMode;
 
-    bSplashDamage           = effect_params.SplashDamage;
-    bRecommendSplashDamage  = effect_params.RecommendSplashDamage;
-    BotRefireRate           = effect_params.BotRefireRate;
-    WarnTargetPct           = effect_params.WarnTargetPct;
+    bSplashDamage           			= effect_params.SplashDamage;
+    bRecommendSplashDamage  			= effect_params.RecommendSplashDamage;
+    BotRefireRate           			= effect_params.BotRefireRate;
+    WarnTargetPct           			= effect_params.WarnTargetPct;
+	
+	default.bSplashDamage           	= effect_params.SplashDamage;
+    default.bRecommendSplashDamage  	= effect_params.RecommendSplashDamage;
+    default.BotRefireRate           	= effect_params.BotRefireRate;
+    default.WarnTargetPct           	= effect_params.WarnTargetPct;
 }
 
 simulated function PreBeginPlay()

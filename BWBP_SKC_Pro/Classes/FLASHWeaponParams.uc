@@ -17,7 +17,7 @@ defaultproperties
 		Recoil=1024.000000
 		BotRefireRate=0.700000
 		WarnTargetPct=1
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.M202-FireInc',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Flash.M202-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
@@ -77,6 +77,8 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		ViewOffset=(X=10.000000,Z=-12.000000)
+		SightOffset=(Y=5.300000,Z=23.299999)
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
         DisplaceDurationMult=1.25

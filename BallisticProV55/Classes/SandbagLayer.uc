@@ -237,6 +237,7 @@ defaultproperties
 	GunLength=0.000000
 	ParamsClasses(0)=Class'SandbagWeaponParams'
 	ParamsClasses(1)=Class'SandbagWeaponParams'
+	ParamsClasses(2)=Class'SandbagWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.SandbagFire'
 	FireModeClass(1)=Class'BallisticProV55.SandbagFire'
 	PutDownTime=0.900000
@@ -257,6 +258,7 @@ defaultproperties
 	GroupOffset=8
 	PickupClass=Class'BallisticProV55.SandbagPickup'
 	PlayerViewOffset=(X=40.000000,Z=-10.000000)
+	bUseSights=False
 	AttachmentClass=Class'BallisticProV55.SandbagAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Sandbags.SmallIcon_Sandbags'
 	IconCoords=(X2=127,Y2=31)

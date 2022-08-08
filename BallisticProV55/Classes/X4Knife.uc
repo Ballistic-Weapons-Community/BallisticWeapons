@@ -66,6 +66,7 @@ defaultproperties
      bAimDisabled=True
      ParamsClasses(0)=Class'X4WeaponParams'
      ParamsClasses(1)=Class'X4WeaponParamsClassic'
+     ParamsClasses(2)=Class'X4WeaponParamsRealistic'
      FireModeClass(0)=Class'BallisticProV55.X4PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.X4SecondaryFire'
 	 

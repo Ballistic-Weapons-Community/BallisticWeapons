@@ -206,7 +206,10 @@ function TakeDamage(int Damage, Pawn InstigatedBy, Vector HitLocation, Vector Mo
     }
 
     if (ActualDamage > 0)
-        LastDamagedTime = Level.TimeSeconds;
+	{
+		LastDamagedTime = Level.TimeSeconds;
+		LastDamagedType = damageType;
+	}
 
     if( DamageType.default.bArmorStops && ( ActualDamage > 0 ) )
         ActualDamage = ShieldAbsorb( ActualDamage );
@@ -241,8 +244,11 @@ function TakeDamage(int Damage, Pawn InstigatedBy, Vector HitLocation, Vector Mo
 	
     Health -= ActualDamage;
 	
-	if (Damage > 0 && DamageType != class'DamType_Overtime' && (instigatedBy == None || instigatedBy.GetTeamNum() != GetTeamNum() || GetTeamNum() == 255))
+	if (Damage > 0 && (instigatedBy == None || instigatedBy.GetTeamNum() != GetTeamNum() || GetTeamNum() == 255))
+	{
 		LastDamagedTime = Level.TimeSeconds;
+		LastDamagedType = damageType;
+	}
 
     if ( HitLocation == vect(0,0,0) )
         HitLocation = Location;

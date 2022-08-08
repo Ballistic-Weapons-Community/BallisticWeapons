@@ -114,22 +114,38 @@ function ServerSwitchWeaponMode (byte NewMode)
 	
 	if (ReloadState != RS_None)
 		return;
-		
-	NewMode = byte(!bStockOpen);
-		
-	// can feasibly happen
-	if (NewMode == CurrentWeaponMode)
-		return;
+	
+	if (NewMode == 255)
+		NewMode = CurrentWeaponMode + 1;
+	
+	while (NewMode != CurrentWeaponMode && (NewMode >= WeaponModes.length || WeaponModes[NewMode].bUnavailable) )
+	{
+		if (NewMode >= WeaponModes.length)
+			NewMode = 0;
+		else
+			NewMode++;
+	}
 
-	CommonSwitchWeaponMode(NewMode);
-	ClientSwitchWeaponMode(NewMode);
-	NetUpdateTime = Level.TimeSeconds - 1;
+	if (!WeaponModes[NewMode].bUnavailable)
+	{
+		CommonSwitchWeaponMode(NewMode);
+		ClientSwitchWeaponMode(CurrentWeaponMode);
+		NetUpdateTime = Level.TimeSeconds - 1;
+	}
+	
 }
 
 simulated function CommonSwitchWeaponMode(byte NewMode)
 {
 	Super.CommonSwitchWeaponMode(NewMode);
-	SwitchStock(bool(NewMode));
+	if (WeaponModes[NewMode].ModeID ~= "WM_Burst" || WeaponModes[NewMode].ModeId ~= "WM_Burst" || WeaponModes[NewMode].ModeId ~= "WM_BigBurst")
+	{
+		SwitchStock(true);
+	}
+	else
+	{
+		SwitchStock(false);
+	}
 }
 
 simulated function SwitchStock(bool bNewValue)
@@ -312,7 +328,8 @@ defaultproperties
 	SightDisplayFOV=60.000000
 	SightZoomFactor=0.85
 	ParamsClasses(0)=Class'Fifty9WeaponParams'	
-	//ParamsClasses(1)=Class'Fifty9WeaponParamsClassic'	
+	ParamsClasses(1)=Class'Fifty9WeaponParamsClassic'	
+	ParamsClasses(2)=Class'Fifty9WeaponParamsRealistic'	
 	FireModeClass(0)=Class'BallisticProV55.Fifty9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.Fifty9SecondaryFire'
 	PutDownTime=0.400000

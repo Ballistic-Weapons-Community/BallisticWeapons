@@ -214,6 +214,7 @@ defaultproperties
     GunLength=32.000000
     ParamsClasses(0)=Class'SKASWeaponParams'
     ParamsClasses(1)=Class'SKASWeaponParamsClassic'
+    ParamsClasses(2)=Class'SKASWeaponParamsRealistic'
     FireModeClass(0)=Class'BWBP_SKC_Pro.SKASPrimaryFire'
     FireModeClass(1)=Class'BWBP_SKC_Pro.SKASSecondaryFire'
     IdleAnimRate=0.100000
