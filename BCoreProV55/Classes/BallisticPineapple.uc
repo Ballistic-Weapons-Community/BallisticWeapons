@@ -179,7 +179,7 @@ function UsedBy(pawn User)
 	KickPineApple(Force);
 }
 
-event TakeDamage(int Damage, Pawn InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> Damagetype)
+event TakeDamage(int Damage, Pawn InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> Damagetype, optional int HitIndex)
 {
 	if (VSize(Momentum) < 2000)
 		return;

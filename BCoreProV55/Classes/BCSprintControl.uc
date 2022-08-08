@@ -51,11 +51,11 @@ function UpdateSpeed()
         //log("SC UpdateSpeed: "$Instigator.default.GroundSpeed$" * "$BallisticWeapon(Instigator.Weapon).PlayerSpeedFactor);
     }
 
-	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
+	/*if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
     {
         //log("SC UpdateSpeed: "$NewSpeed$" * 1.4");
 		NewSpeed *= 1.4;
-    }
+    }*/
 
     if (bSprintActive)
     {

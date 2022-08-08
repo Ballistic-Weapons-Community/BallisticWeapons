@@ -9,7 +9,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticDamageType extends WeaponDamageType config(BallisticProV55);
+class BallisticDamageType extends KFWeaponDamageType config(BallisticProV55);
 
 enum EDisplacementType
 {

@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticAmmoPickup extends Ammo;
+class BallisticAmmoPickup extends KFAmmoPickup;
 
 var   float					ChangeTime;			// Time when this pickup should change into another item
 var   int					ReplacementsIndex;	// Index into Mutator Replacement list associated with this pickup

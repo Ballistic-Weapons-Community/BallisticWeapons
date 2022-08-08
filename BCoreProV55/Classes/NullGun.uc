@@ -9,7 +9,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class NullGun extends Weapon HideDropDown CacheExempt;
+class NullGun extends KFWeapon HideDropDown CacheExempt;
 
 simulated function bool HasAmmo()
 {

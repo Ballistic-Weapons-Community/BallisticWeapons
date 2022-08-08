@@ -10,7 +10,7 @@ function bool BlocksShotAt(Actor Other)
 
 defaultproperties
 {
-     ShieldHitSound=Sound'ONSVehicleSounds-S.ShieldHit'
+     //ShieldHitSound=Sound'ONSVehicleSounds-S.ShieldHit' (Need to find new reference)
      DrawType=DT_StaticMesh
      bStasis=True
      bAcceptsProjectors=False

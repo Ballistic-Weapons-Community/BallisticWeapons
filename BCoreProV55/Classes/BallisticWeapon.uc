@@ -31,7 +31,7 @@
 // and input components of the weapon as well as the replication channel.
 // Sub objects should handle reloading, aim and recoil systems.
 //=============================================================================
-class BallisticWeapon extends Weapon
+class BallisticWeapon extends KFWeapon
 	abstract
  	config(BallisticProV55)
 	DependsOn(BUtil)
@@ -2430,11 +2430,11 @@ function UpdateSpeed()
 	NewSpeed = Instigator.default.GroundSpeed * PlayerSpeedFactor;
     //log("BW UpdateSpeed: "$Instigator.default.GroundSpeed$" * "$PlayerSpeedFactor);
 
-	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
+	/*if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
     {
         //log("BW UpdateSpeed: "$NewSpeed$" * 1.4");
 		NewSpeed *= 1.4;
-    }
+    }*/
 
     if (SprintControl != None && SprintControl.bSprinting)
     {
@@ -2985,8 +2985,8 @@ simulated function BringUp(optional Weapon PrevWeapon)
 			if (SprintControl != None && SprintControl.bSprinting)
 				NewSpeed *= SprintControl.SpeedFactor;
 
-			if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
-				NewSpeed *= 1.4;
+			//if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
+				//NewSpeed *= 1.4;
 
 			if (Instigator.GroundSpeed != NewSpeed)
 				Instigator.GroundSpeed = NewSpeed;

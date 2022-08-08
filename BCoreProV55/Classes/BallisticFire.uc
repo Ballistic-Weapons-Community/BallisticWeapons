@@ -9,7 +9,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticFire extends WeaponFire
+class BallisticFire extends KFFire
     DependsOn(FireEffectParams);
 
 enum EScopeDownOn

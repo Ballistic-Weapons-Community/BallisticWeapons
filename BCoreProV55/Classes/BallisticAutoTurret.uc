@@ -34,7 +34,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticAutoTurret extends ASTurret Abstract placeable config(BallisticProV55);
+class BallisticAutoTurret extends Vehicle Abstract placeable config(BallisticProV55);
 
 /* Potential future developments ---------
 	May be able to be damaged/destroyed. Control goes back to old pawn when destroyed.

@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticAmmo extends Ammunition;
+class BallisticAmmo extends KFAmmunition;
 
 var bool bNoPackResupply;
 

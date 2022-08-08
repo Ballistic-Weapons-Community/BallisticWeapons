@@ -88,12 +88,12 @@ simulated function InstantFireEffects(byte Mode)
 			if (mHitActor == None)
 			{
 				DoWaterTrace(Mode, Start, End);
-				SpawnTracer(Mode, End);
+				BWSpawnTracer(Mode, End);
 			}
 			else
 			{
 				DoWaterTrace(Mode, Start, HitLocation);
-				SpawnTracer(Mode, HitLocation);
+				BWSpawnTracer(Mode, HitLocation);
 			}
 
 			if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None))

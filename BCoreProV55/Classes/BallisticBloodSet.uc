@@ -189,6 +189,7 @@ static function Actor GetStumpFor (actor Victim, name Bone, bool bCharred)
 	switch (Bone)
 	{
 		case 'head'		:
+			Victim.AttachToBone(NewStump, 'neck');
 			NewStump.SetDrawScale(0.9);
 			NewStump.Prepivot.X = 3;
 			NewStump.Prepivot.Y = 0.5;
@@ -241,7 +242,7 @@ static function Actor GetStumpFor (actor Victim, name Bone, bool bCharred)
 			NewStump.Prepivot.Z = -3.5;
 			break;
 	}
-	if (Bone != 'pelvis')
+	if (Bone != 'pelvis' || Bone != 'head')
 		Victim.AttachToBone(NewStump, Bone);
 	return NewStump;
 }

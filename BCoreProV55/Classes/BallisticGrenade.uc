@@ -338,7 +338,7 @@ defaultproperties
      DampenFactorParallel=0.350000
      RandomSpin=32768.000000
      DetonateDelay=3.000000
-     FlakClass=Class'XWeapons.FlakChunk'
+     FlakClass=Class'KFMod.KFShrapnel'
      TrailWhenStill=True
      MinStickVelocity=200.000000
      PokeReductionFactor=30.000000

@@ -101,8 +101,8 @@ function float ResolveDamageFactors(Actor Victim, vector TraceStart, vector HitL
 	// Reduce damage if using Speed or MiniMe (hits unknown combos as well)
 	combo = xPawn(Instigator).CurrentCombo;
 
-	if(combo != None && ComboDefensive(combo) == None && ComboBerserk(combo) == None)
-		DamageFactor *= 0.5;
+	//if(combo != None && ComboDefensive(combo) == None && ComboBerserk(combo) == None)
+		//DamageFactor *= 0.5;
 
 	// Damage increases with hold time
 	if (HoldTime > 0)

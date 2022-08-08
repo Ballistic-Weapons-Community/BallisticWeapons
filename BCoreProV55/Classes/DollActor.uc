@@ -31,5 +31,5 @@ simulated event PostBeginPlay()
 defaultproperties
 {
      DrawType=DT_Mesh
-     Mesh=SkeletalMesh'Jugg.JuggMaleA'
+     Mesh=SkeletalMesh'KF_Soldier_Trip.British_Soldier1'
 }

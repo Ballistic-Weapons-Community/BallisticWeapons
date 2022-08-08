@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticWeaponPickup extends UTWeaponPickup
+class BallisticWeaponPickup extends KFWeaponPickup
 	config(BallisticProV55)
 
 	placeable;

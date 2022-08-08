@@ -20,7 +20,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class BallisticAttachment extends xWeaponAttachment
+class BallisticAttachment extends KFWeaponAttachment
 	DependsOn(BUtil);
 
 enum EModeUsed
@@ -98,7 +98,7 @@ var() float							FlyByBulletSpeed;					//Used to calculate flyby sound delay (s
 //===========================================================================
 var() Name							ReloadAnim, CockingAnim, WeaponSpecialAnim, StaggerAnim;			// Third person reload animation.
 var() float							ReloadAnimRate, CockAnimRate, WeaponSpecialRate, StaggerRate;  // Used by SetAnimAction for third person "reload" anim rate
-var()  name							IdleHeavyAnim, IdleRifleAnim;
+//var()  name							IdleHeavyAnim, IdleRifleAnim;
 var()	 name						MeleeStrikeAnim;						// Third person melee attack.
 var()	 float						MeleeAnimRate;
 var()	 name						MeleeBlockAnim, MeleeWindupAnim;
@@ -326,7 +326,7 @@ simulated function InstantFireEffects(byte Mode)
 	if (Instigator == none)
 		return;
 
-	SpawnTracer(Mode, mHitLocation);
+	BWSpawnTracer(Mode, mHitLocation);
 	FlyByEffects(Mode, mHitLocation);
 	
 	// Client, trace for hitnormal, hitmaterial and hitactor
@@ -476,7 +476,7 @@ simulated function DoWaterTrace(int Mode, vector Start, vector End)
 		WaterHitLocation = vect(0,0,0);
 }
 // Spawn a tracer and water tracer
-simulated function SpawnTracer(byte Mode, Vector V)
+simulated function BWSpawnTracer(byte Mode, Vector V)
 {
 	local BCTraceEmitter Tracer;
 	local Vector TipLoc, WLoc, WNorm;
