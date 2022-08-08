@@ -462,6 +462,7 @@ defaultproperties
 	GunLength=72.000000
 	ParamsClasses(0)=Class'SRXWeaponParams'
 	ParamsClasses(1)=Class'SRXWeaponParamsClassic'
+	ParamsClasses(2)=Class'SRXWeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.SRXPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.SRXSecondaryFire'
 	SelectAnimRate=1.350000

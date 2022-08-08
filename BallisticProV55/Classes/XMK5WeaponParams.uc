@@ -85,6 +85,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
 		SightPivot=(Pitch=200)
 		SightOffset=(X=1.000000,Z=17.750000)
 		ViewOffset=(X=2.000000,Y=8.000000,Z=-10.000000)

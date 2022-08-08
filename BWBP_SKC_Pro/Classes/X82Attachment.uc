@@ -8,17 +8,23 @@
 //=============================================================================
 class X82Attachment extends BallisticAttachment;
 
-simulated Event PostNetBeginPlay()
+
+simulated Event PreBeginPlay()
 {
-	super.PostNetBeginPlay();
-	if (BallisticTurret(Instigator) != None)
-		bHidden=true;
+	super.PreBeginPlay();
 	if (X82Rifle(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_X83AM';
 		TracerChance=1;
 		TracerMix=0;
 	}
+}
+
+simulated Event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BallisticTurret(Instigator) != None)
+		bHidden=true;
 }
 
 // Return the location of the muzzle.

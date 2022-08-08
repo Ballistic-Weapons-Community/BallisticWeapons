@@ -14,6 +14,9 @@ defaultproperties
 		Damage=125.0
 		HeadMult=2.1
 		LimbMult=0.66
+		DamageType=Class'BallisticProV55.DTM925MG'
+		DamageTypeHead=Class'BallisticProV55.DTM925MGHEad'
+		DamageTypeArm=Class'BallisticProV55.DTM925MG'
 		PenetrationEnergy=48.000000
 		PenetrateForce=300
 		bPenetrate=True
@@ -96,6 +99,8 @@ defaultproperties
 		ViewOffset=(X=5.000000,Y=5.000000,Z=-10.000000)
 		SightOffset=(X=-10.000000,Z=7.095000)
 		SightPivot=(Pitch=32)
+		CockAnimRate=1.000000
+		ReloadAnimRate=0.900000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

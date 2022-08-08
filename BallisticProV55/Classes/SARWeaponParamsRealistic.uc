@@ -15,6 +15,9 @@ defaultproperties
 		Damage=43.0
 		HeadMult=2.139534
 		LimbMult=0.651162
+		DamageType=Class'BallisticProV55.DTSARRifle'
+		DamageTypeHead=Class'BallisticProV55.DTSARRifleHead'
+		DamageTypeArm=Class'BallisticProV55.DTSARRifle'
 		PenetrationEnergy=16.000000
 		PenetrateForce=50
 		bPenetrate=True
@@ -102,7 +105,10 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=35
 		ViewOffset=(X=-8.000000,Y=7.000000,Z=-11.000000)
-		SightOffset=(X=8.000000,Y=-0.045000,Z=8.140000)
+		//SightOffset=(X=8.000000,Y=-0.045000,Z=8.140000)
+		SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
+		ReloadAnimRate=0.925000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

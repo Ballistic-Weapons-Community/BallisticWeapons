@@ -17,11 +17,10 @@ simulated event PostBeginPlay()
 simulated event PreBeginPlay()
 {
 	if (Level.DetailMode < DM_SuperHigh)
-		Emitters[3].Disabled=true;
+		Emitters[2].Disabled=true;
 	if (Level.DetailMode < DM_High)
 	{
 		Emitters[1].Disabled=true;
-		Emitters[2].Disabled=true;
 	}
 	Super.PreBeginPlay();
 }
@@ -64,36 +63,6 @@ defaultproperties
      End Object
      Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter6'
 
-     Begin Object Class=MeshEmitter Name=MeshEmitter4
-         StaticMesh=StaticMesh'BW_Core_WeaponStatic.Effects.VBlast'
-         UseMeshBlendMode=False
-         RenderTwoSided=True
-         UseParticleColor=True
-         FadeOut=True
-         FadeIn=True
-         RespawnDeadParticles=False
-         SpinParticles=True
-         UseSizeScale=True
-         UseRegularSizeScale=False
-         AutomaticInitialSpawning=False
-         ColorScale(0)=(Color=(B=255,G=255,R=255,A=255))
-         ColorScale(1)=(RelativeTime=1.000000,Color=(B=255,G=255,R=255,A=255))
-         Opacity=0.560000
-         FadeOutStartTime=0.180000
-         FadeInEndTime=0.010000
-         CoordinateSystem=PTCS_Relative
-         MaxParticles=1
-         StartLocationRange=(X=(Max=100.000000))
-         StartSpinRange=(Y=(Min=-0.250000,Max=-0.250000))
-         SizeScale(0)=(RelativeSize=0.200000)
-         SizeScale(1)=(RelativeTime=1.000000,RelativeSize=1.000000)
-         StartSizeRange=(X=(Min=2.640000,Max=2.640000),Y=(Min=2.640000,Max=2.640000),Z=(Min=2.640000,Max=2.640000))
-         InitialParticlesPerSecond=50000.000000
-         SecondsBeforeInactive=0.000000
-         LifetimeRange=(Min=0.600000,Max=0.600000)
-     End Object
-     Emitters(1)=MeshEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.MeshEmitter4'
-
      Begin Object Class=SpriteEmitter Name=SpriteEmitter7
          FadeOut=True
          FadeIn=True
@@ -119,7 +88,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.400000)
      End Object
-     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter7'
+     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter7'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter8
          UseDirectionAs=PTDU_Up
@@ -147,7 +116,7 @@ defaultproperties
          LifetimeRange=(Min=0.350000,Max=0.350000)
          StartVelocityRange=(X=(Min=1800.000000,Max=1800.000000),Y=(Min=-540.000000,Max=540.000000),Z=(Max=720.000000))
      End Object
-     Emitters(3)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter8'
+     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter8'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter5
          StaticMesh=StaticMesh'BW_Core_WeaponStatic.Impact.ConcreteChip2'
@@ -175,7 +144,7 @@ defaultproperties
          LifetimeRange=(Min=1.300000,Max=1.300000)
          StartVelocityRange=(X=(Min=550.000000,Max=600.000000),Y=(Min=-150.000000,Max=150.000000),Z=(Min=-150.000000,Max=150.000000))
      End Object
-     Emitters(4)=MeshEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.MeshEmitter5'
+     Emitters(3)=MeshEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.MeshEmitter5'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter34
          UseColorScale=True
@@ -202,7 +171,7 @@ defaultproperties
          StartVelocityRange=(X=(Min=300.000000,Max=300.000000),Y=(Min=-150.000000,Max=150.000000),Z=(Min=-150.000000,Max=150.000000))
          VelocityLossRange=(X=(Min=0.900000,Max=0.900000),Y=(Min=0.900000,Max=0.900000),Z=(Min=2.990000,Max=2.990000))
      End Object
-     Emitters(5)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter34'
+     Emitters(4)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter34'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter0
          UseColorScale=True
@@ -227,7 +196,7 @@ defaultproperties
          Texture=Texture'BW_Core_WeaponTex.Particles.Smoke6'
          StartVelocityRange=(X=(Min=-50.000000,Max=50.000000),Y=(Min=-50.000000,Max=50.000000),Z=(Min=-50.000000,Max=50.000000))
      End Object
-     Emitters(6)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter0'
+     Emitters(5)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter0'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter19
          FadeOut=True
@@ -249,7 +218,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
-     Emitters(7)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter19'
+     Emitters(6)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter19'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter20
          UseColorScale=True
@@ -282,7 +251,7 @@ defaultproperties
          LifetimeRange=(Min=0.400000,Max=0.400000)
          StartVelocityRange=(X=(Min=-25.000000,Max=25.000000),Y=(Min=-25.000000,Max=25.000000))
      End Object
-     Emitters(8)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter20'
+     Emitters(7)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter20'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter21
          FadeOut=True
@@ -302,7 +271,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
-     Emitters(9)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter21'
+     Emitters(8)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter21'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter22
          UseCollision=True
@@ -330,7 +299,7 @@ defaultproperties
          VelocityLossRange=(X=(Min=0.400000,Max=0.400000),Y=(Min=0.400000,Max=0.400000),Z=(Min=0.300000,Max=0.400000))
          AddVelocityFromOtherEmitter=5
      End Object
-     Emitters(10)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter22'
+     Emitters(9)=SpriteEmitter'BWBP_SKC_Pro.IE_FRAGExplosion.SpriteEmitter22'
 
      AutoDestroy=True
      LightType=LT_Pulse

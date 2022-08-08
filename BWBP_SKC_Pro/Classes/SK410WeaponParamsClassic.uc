@@ -6,42 +6,72 @@ defaultproperties
     //=================================================================
     // PRIMARY FIRE
     //=================================================================	
-	
-	
-		Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=4000.000000,Max=6000.000000)
-			WaterTraceRange=5000.0
-			RangeAtten=0.600000
-			TraceCount=8
-			TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunHE'
-			ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
-			Damage=25.0
-			LimbMult=0.4
-			DamageType=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_SK410ShotgunHead'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
-			PenetrationEnergy=16.000000
-			PenetrateForce=100
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			MuzzleFlashClass=Class'BWBP_SKC_Pro.SK410HeatEmitter'
-			FlashScaleFactor=1.600000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Blast',Volume=1.300000)
-			Recoil=640.000000
-			Chaos=-1.0
-			Inaccuracy=(X=1400,Y=1200)
-			HipSpreadFactor=1.000000
-			BotRefireRate=0.900000
-			WarnTargetPct=0.100000	
-		End Object
+		
+	Begin Object Class=ShotgunEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=4000.000000,Max=6000.000000)
+		WaterTraceRange=5000.0
+		RangeAtten=0.600000
+		TraceCount=8
+		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunHE'
+		ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
+		Damage=25.0
+		LimbMult=0.4
+		DamageType=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SK410ShotgunHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
+		PenetrationEnergy=16.000000
+		PenetrateForce=100
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.SK410HeatEmitter'
+		FlashScaleFactor=1.600000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Blast',Volume=1.300000)
+		Recoil=640.000000
+		Chaos=-1.0
+		Inaccuracy=(X=1400,Y=1200)
+		HipSpreadFactor=1.000000
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.300000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-			FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.300000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+		FireEffectParams(0)=ShotgunEffectParams'ClassicPrimaryEffectParams'
+	End Object
+		
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+
+    Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+        ProjectileClass=Class'BWBP_SKC_Pro.SK410HEProjectile'
+        SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+        Speed=6300.000000
+        MaxSpeed=6300.000000
+        AccelSpeed=3000.000000
+        Damage=65
+        DamageRadius=200.000000
+        MomentumTransfer=10000.000000
+		RadiusFallOffType=RFO_Linear
+        MuzzleFlashClass=Class'BWBP_SKC_Pro.SK410HeatEmitter'
+		FlashScaleFactor=1.600000
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-FireFRAG',Volume=1.300000,Pitch=1.200000)
+		Recoil=640.000000
+		Chaos=-1.0
+		Inaccuracy=(X=128,Y=128)
+        BotRefireRate=0.6
+        WarnTargetPct=0.4	
+    End Object
+
+    Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+        FireInterval=0.300000
+        FireEndAnim=
+        AimedFireAnim="SightFire"
+        FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+    End Object
 		
 	//=================================================================
 	// RECOIL
@@ -88,6 +118,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicRDSParams
@@ -97,9 +128,12 @@ defaultproperties
 		MagAmmo=6
 		SightPivot=(Pitch=150)
 		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'

@@ -23,7 +23,7 @@ defaultproperties
 		PenetrateForce=100
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
-		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
 		FlashScaleFactor=1.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Single',Volume=1.300000)
 		Recoil=300.000000
@@ -54,7 +54,7 @@ defaultproperties
         DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgun'
         PenetrateForce=100
         bPenetrate=True
-        MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+        MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
         FlashScaleFactor=2.0
         Recoil=1024.000000
         Chaos=0.250000
@@ -95,7 +95,7 @@ defaultproperties
 			bPenetrate=True
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
+			MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter_C'
 			FlashScaleFactor=1.000000
 			FireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Triple',Volume=2.200000)
 			Recoil=2048.000000
@@ -167,6 +167,8 @@ defaultproperties
 		WeaponName="SKAS-21 Super Shotgun"
 		SightOffset=(X=-10.000000,Y=2.000000,Z=14.000000)
 		SightPivot=(Pitch=512,Roll=-1024,Yaw=-512)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

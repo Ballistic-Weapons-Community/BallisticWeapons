@@ -7,34 +7,34 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-			ProjectileClass=Class'BWBP_SKC_Pro.HVPCMk66Projectile'
-			SpawnOffset=(X=100.000000,Y=10.000000,Z=-9.000000)
-			Speed=1500.000000
-			MaxSpeed=1000000.000000
-			AccelSpeed=100.000000
-			Damage=500.000000
-			DamageRadius=832.000000
-			MomentumTransfer=280000.000000
-			HeadMult=1.0
-			LimbMult=1.0
-			MuzzleFlashClass=Class'BWBP_SKC_Pro.BFGFlashEmitter'
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.BFG.BFG-Fire',Volume=4.500000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=820.000000
-			Chaos=0.600000
-			Inaccuracy=(X=8,Y=4)
-			WarnTargetPct=0.200000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.HVPCMk66Projectile'
+		SpawnOffset=(X=100.000000,Y=10.000000,Z=-9.000000)
+		Speed=1500.000000
+		MaxSpeed=1000000.000000
+		AccelSpeed=100.000000
+		Damage=500.000000
+		DamageRadius=832.000000
+		MomentumTransfer=280000.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.BFGFlashEmitter'
+		RadiusFallOffType=RFO_Linear
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.BFG.BFG-Fire',Volume=4.500000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=820.000000
+		Chaos=0.600000
+		Inaccuracy=(X=8,Y=4)
+		WarnTargetPct=0.200000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=2.500000
-			AmmoPerFire=50
-			BurstFireRateFactor=1.00
-			FireAnim="Fire2"
-			FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=2.500000
+		AmmoPerFire=50
+		BurstFireRateFactor=1.00
+		FireAnim="Fire2"
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE

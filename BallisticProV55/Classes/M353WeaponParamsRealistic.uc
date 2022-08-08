@@ -14,6 +14,9 @@ defaultproperties
 		Damage=45.0
 		HeadMult=2.266666
 		LimbMult=0.666666
+		DamageType=Class'BallisticProV55.DTM353MG'
+		DamageTypeHead=Class'BallisticProV55.DTM353MGHead'
+		DamageTypeArm=Class'BallisticProV55.DTM353MG'
 		PenetrationEnergy=18.000000
 		PenetrateForce=55
 		bPenetrate=True
@@ -100,8 +103,10 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=150
 		ViewOffset=(X=0.000000,Y=3.000000,Z=-5.000000)
-		SightOffset=(X=1.500000,Y=0.000000,Z=5.500000)
-		SightPivot=(Pitch=148,Roll=0)
+		SightOffset=(X=-5.000000,Y=0.000000,Z=4.500000)
+		SightPivot=(Pitch=0,Roll=0)
+		CockAnimRate=0.900000
+		ReloadAnimRate=0.900000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

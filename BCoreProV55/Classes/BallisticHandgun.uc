@@ -61,6 +61,7 @@ var   float				LastMasterTime;			// Time when gun last had slave
 var   bool				bSlavePutDown;			// True on slave when its being putdown. Used to let it know to not do normal putdonw
 var()	bool			bShouldDualInLoadout; 	//True for a gunclass which should be dual wielded in Loadout gts
 var	float				CreationTime;
+var		bool			bDualBlocked;			// Used by params to block dual wielding 
 
 // Autotracking vars
 var   Pawn				Target;					// The guy getting tracked by our gun
@@ -90,6 +91,16 @@ simulated function PostBeginPlay()
 	Super.PostBeginPlay();
 	
 	CreationTime = Level.TimeSeconds;
+}
+
+simulated function OnWeaponParamsChanged()
+{
+    assert(WeaponParams != None);
+	
+	bDualBlocked				= WeaponParams.bDualBlocked;
+
+	super.OnWeaponParamsChanged();
+	
 }
 
 // Scope key pressed. Try go into tracking mode
@@ -234,6 +245,92 @@ simulated function PreDrawFPWeapon()
 
 	if (IsSlave())
 		SetRotation(Instigator.GetViewRotation() + TrackerAim * (DisplayFOV / Instigator.Controller.FovAngle));
+}
+
+// Relocate the weapon according to sight view.
+// Improved ironsights.
+// SightZoomFactor used instead of FullZoomFOV.
+simulated function PositionSights()
+{
+	local Vector SightPos, Offset, NewLoc, OldLoc;//, X,Y,Z;
+	local PlayerController PC;
+
+	//bots can't use sights
+	PC=PlayerController(InstigatorController);
+
+	if (SightBone != '')
+		SightPos = GetBoneCoords(SightBone).Origin - Location;
+
+	OldLoc = Instigator.Location + Instigator.CalcDrawOffset(self);
+	Offset = SightOffset; Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 4096;
+	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1-SightingPhase))) - (SightPos + ViewAlignedOffset(Offset));
+
+	if (SightingPhase >= 1.0)
+	{	// Weapon locked in sight view
+		SetLocation(NewLoc);
+		SetRotation(Instigator.GetViewRotation() + SightPivot);
+		DisplayFOV = SightDisplayFOV;
+
+		if (SightingState == SS_Raising)
+		{
+			AimComponent.OnADSViewStart();
+			RcComponent.OnADSViewStart();
+		}
+
+		if (ZoomType == ZT_Irons)
+			PC.DesiredFOV = PC.DefaultFOV * SightZoomFactor;
+	}
+	
+	else if (SightingPhase <= 0.0)
+	{	// Weapon completely lowered
+		SetLocation(OldLoc);
+		SetRotation(Instigator.GetViewRotation());
+		DisplayFOV = default.DisplayFOV;
+		PlayerController(InstigatorController).bZooming = False;
+
+		if (SightingState == SS_Lowering)
+		{
+			AimComponent.OnADSViewEnd();
+			RcComponent.OnADSViewEnd();
+		}
+
+		if(ZoomType == ZT_Irons)
+		{
+	        PC.DesiredFOV = PC.DefaultFOV;
+			PlayerController(InstigatorController).SetFOV(PlayerController(InstigatorController).DefaultFOV);
+			PlayerController(InstigatorController).bZooming = False;
+		}
+	}
+	else
+	{	// Gun is on the move...
+		SetLocation(class'BUtil'.static.VSmerp(SightingPhase, OldLoc, NewLoc));
+		SetRotation(Instigator.GetViewRotation() + SightPivot * SightingPhase);
+		DisplayFOV = Smerp(SightingPhase, default.DisplayFOV, SightDisplayFOV);
+
+		AimComponent.UpdateADSTransition(SightingPhase);
+		RcComponent.UpdateADSTransition(SightingPhase);
+
+		if (ZoomType == ZT_Irons)
+	        PC.DesiredFOV = PC.DefaultFOV * (Lerp(SightingPhase, 1, SightZoomFactor));
+	}
+	if (bAdjustHands)
+    {
+        if (SightingPhase <= 0.0)
+    	{
+        	SetBoneRotation('root', rot(0,0,0));
+        	SetBoneRotation('Wrist', rot(0,0,0));
+        }
+    	else if (SightingPhase >= 1.0 )
+    	{
+        	SetBoneRotation('root', RootAdjust);
+            SetBoneRotation('Wrist', WristAdjust);
+    	}
+        else
+    	{
+        	SetBoneRotation('root', class'BUtil'.static.RSmerp(SightingPhase, rot(0,0,0), RootAdjust));
+            SetBoneRotation('Wrist', class'BUtil'.static.RSmerp(SightingPhase, rot(0,0,0), WristAdjust));
+        }
+    }
 }
 
 // Rotates the player's view according to Aim
@@ -871,6 +968,8 @@ simulated final function SetDualMode (bool bDualMode)
 {
 	if (bDualMode)
 	{
+		if (bDualBlocked)
+			return;
 		if (Instigator.IsLocallyControlled() && SightingState == SS_Active)
 			StopScopeView();
 		SetBoneScale(8, 0.0, SupportHandBone);

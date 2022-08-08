@@ -14,6 +14,9 @@ defaultproperties
 		Damage=51.0
 		HeadMult=2.254901
 		LimbMult=0.647058
+		DamageType=Class'BallisticProV55.DTleMatRevolver'
+		DamageTypeHead=Class'BallisticProV55.DTleMatrevolverHead'
+		DamageTypeArm=Class'BallisticProV55.DTleMatRevolver'
 		PenetrationEnergy=11.000000
 		PenetrateForce=40
 		bPenetrate=True
@@ -51,6 +54,9 @@ defaultproperties
 		Damage=20.0
 		HeadMult=2.05
 		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTleMatShotgun'
+		DamageTypeHead=Class'BallisticProV55.DTleMatShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTleMatShotgun'
 		PenetrationEnergy=5.000000
 		PenetrateForce=8
 		bPenetrate=True
@@ -121,6 +127,11 @@ defaultproperties
 		ViewPivot=(Pitch=512)
 		SightOffset=(X=-33.000000,Y=-1.5600000,Z=15.800000)
 		SightPivot=(Pitch=95,Roll=-50)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-350,Pitch=2500)
+		WristAdjust=(Yaw=-3000,Pitch=-0000)
+		ReloadAnimRate=1.100000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

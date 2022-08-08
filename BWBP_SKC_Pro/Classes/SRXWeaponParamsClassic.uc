@@ -81,7 +81,7 @@ defaultproperties
 		DamageTypeHead=class'DTSRXRifleHead_Corrosive';
 		DamageTypeArm=class'DTSRXRifle_Corrosive';
 		bPenetrate=False
-		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
 		FlashScaleFactor=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-SpecialFire',Pitch=1.200000,Volume=1.500000)
 		Recoil=128.000000
@@ -180,6 +180,8 @@ defaultproperties
 		MagAmmo=20
 		SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		SightPivot=(Pitch=-128,Yaw=16)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		RecoilParams(1)=RecoilParams'ClassicRecoilParamsInc'
 		RecoilParams(2)=RecoilParams'ClassicRecoilParamsAcid'

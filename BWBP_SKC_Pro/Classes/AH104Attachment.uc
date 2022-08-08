@@ -291,7 +291,7 @@ defaultproperties
      AltFlashBone="ejector"
      BrassClass=Class'BallisticProV55.Brass_Pistol'
      FlashMode=MU_Both
-     TracerClass=Class'BallisticProV55.TraceEmitter_Pistol'
+     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-FlyBy',Volume=1.500000)

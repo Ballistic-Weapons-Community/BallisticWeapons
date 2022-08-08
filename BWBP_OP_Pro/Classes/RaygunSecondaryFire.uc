@@ -133,6 +133,33 @@ simulated event ModeDoFire()
 	HoldTime = 0;
 }
 
+
+
+// Does something to make the effects appear
+simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
+{
+	local int Surf;
+
+	if ((!Other.bWorldGeometry && Mover(Other) == None && Pawn(Other) == None) || level.NetMode == NM_Client)
+		return false;
+
+	if (Vehicle(Other) != None)
+		Surf = 3;
+	else if (HitMat == None)
+		Surf = int(Other.SurfaceType);
+	else
+		Surf = int(HitMat.SurfaceType);
+		
+	if (Raygun(BW).BCRepClass.default.GameStyle != 0 && (Other == None || Other.bWorldGeometry))
+		BW.TargetedHurtRadius(70, 386, class'DTRaygunChargedRadius', 50, HitLocation);
+
+	// Tell the attachment to spawn effects and so on
+	SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
+	if (!bAISilent)
+		Instigator.MakeNoise(1.0);
+	return true;
+}
+
 defaultproperties
 {
     ChargeSound=Sound'IndoorAmbience.machinery18'

@@ -14,6 +14,9 @@ defaultproperties
 		Damage=44.0
 		HeadMult=2.318181
 		LimbMult=0.568181
+		DamageType=Class'BallisticProV55.DTXRS10SMG'
+		DamageTypeHead=Class'BallisticProV55.DTXRS10SMGHead'
+		DamageTypeArm=Class'BallisticProV55.DTXRS10SMG'
 		PenetrationEnergy=9.000000
 		PenetrateForce=35
 		bPenetrate=True
@@ -103,6 +106,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=true)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		ReloadAnimRate=0.900000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

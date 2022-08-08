@@ -7,69 +7,67 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	Begin Object Class=MeleeEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=128.000000,Max=128.000000)
+		WaterTraceRange=5000.0
+		Damage=45.0
+		HeadMult=2.222222
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTEKS43Katana'
+		DamageTypeHead=Class'BallisticProV55.DTEKS43KatanaHead'
+		DamageTypeArm=Class'BallisticProV55.DTEKS43KatanaLimb'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.700000
+		HookPullForce=100.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.EKS43.EKS-Slash',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.100000
+	End Object
 	
-		Begin Object Class=MeleeEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=128.000000,Max=128.000000)
-			WaterTraceRange=5000.0
-			Damage=45.0
-			HeadMult=2.222222
-			LimbMult=0.6
-			DamageType=Class'BallisticProV55.DTEKS43Katana'
-			DamageTypeHead=Class'BallisticProV55.DTEKS43KatanaHead'
-			DamageTypeArm=Class'BallisticProV55.DTEKS43KatanaLimb'
-			ChargeDamageBonusFactor=1
-			PenetrationEnergy=0.000000
-			HookStopFactor=1.700000
-			HookPullForce=100.000000
-			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.EKS43.EKS-Slash',Radius=32.000000,bAtten=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.800000
-			WarnTargetPct=0.100000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			FireAnim="Slash1"
-			FireEffectParams(0)=MeleeEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Slash1"
+		FireEffectParams(0)=MeleeEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
+	Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
+		TraceRange=(Min=128.000000,Max=128.000000)
+		WaterTraceRange=5000.0
+		Damage=80.0
+		HeadMult=1.4375
+		LimbMult=0.4375
+		DamageType=Class'BallisticProV55.DTEKS43Katana'
+		DamageTypeHead=Class'BallisticProV55.DTEKS43KatanaHead'
+		DamageTypeArm=Class'BallisticProV55.DTEKS43KatanaLimb'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.700000
+		HookPullForce=100.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.EKS43.EKS-Slash',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.050000
+	End Object
 	
-		Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
-			TraceRange=(Min=128.000000,Max=128.000000)
-			WaterTraceRange=5000.0
-			Damage=80.0
-			HeadMult=1.4375
-			LimbMult=0.4375
-			DamageType=Class'BallisticProV55.DTEKS43Katana'
-			DamageTypeHead=Class'BallisticProV55.DTEKS43KatanaHead'
-			DamageTypeArm=Class'BallisticProV55.DTEKS43KatanaLimb'
-			ChargeDamageBonusFactor=1
-			PenetrationEnergy=0.000000
-			HookStopFactor=1.700000
-			HookPullForce=100.000000
-			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.EKS43.EKS-Slash',Radius=32.000000,bAtten=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.800000
-			WarnTargetPct=0.050000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.800000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			PreFireAnim="PrepHack1"
-			FireAnim="Hack1"
-			FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.800000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		PreFireAnim="PrepHack1"
+		FireAnim="Hack1"
+		FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

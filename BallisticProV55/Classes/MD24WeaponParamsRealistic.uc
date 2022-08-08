@@ -14,6 +14,9 @@ defaultproperties
 		Damage=37.0
 		HeadMult=2.216216
 		LimbMult=0.594594
+		DamageType=Class'BallisticProV55.DTMD24Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTMD24PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTMD24Pistol'
 		PenetrationEnergy=9.000000
 		PenetrateForce=150
 		bPenetrate=True
@@ -48,6 +51,9 @@ defaultproperties
 		Damage=36.0
 		HeadMult=2.083333
 		LimbMult=0.472222
+		DamageType=Class'BallisticProV55.DTMD24Melee'
+		DamageTypeHead=Class'BallisticProV55.DTMD24Melee'
+		DamageTypeArm=Class'BallisticProV55.DTMD24Melee'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.700000
@@ -117,6 +123,8 @@ defaultproperties
 		ViewOffset=(X=11.000000,Y=6.000000,Z=-6.500000)
 		SightOffset=(X=-14.000000,Y=-0.010000,Z=7.450000)
 		SightPivot=(Pitch=0,Roll=-0)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

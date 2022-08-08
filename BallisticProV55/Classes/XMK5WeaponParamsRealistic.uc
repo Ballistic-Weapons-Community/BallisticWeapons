@@ -8,13 +8,16 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=900.000000,Max=4500.000000)
+		TraceRange=(Min=900.000000,Max=4500.000000) //10mm
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.100000
 		Damage=37.0
 		HeadMult=2.216216
 		LimbMult=0.594594
+		DamageType=Class'BallisticProV55.DTXMK5SubMachinegun'
+		DamageTypeHead=Class'BallisticProV55.DTXMK5SubMachinegunHead'
+		DamageTypeArm=Class'BallisticProV55.DTXMK5SubMachinegun'
 		PenetrationEnergy=9.000000
 		PenetrateForce=35
 		bPenetrate=True
@@ -105,12 +108,15 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
 		InventorySize=20
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=35
 		ViewOffset=(X=2.000000,Y=8.000000,Z=-10.000000)
 		SightOffset=(X=1.000000,Z=17.750000)
 		SightPivot=(Pitch=200)
+		ReloadAnimRate=1.200000
+		CockAnimRate=1.200000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

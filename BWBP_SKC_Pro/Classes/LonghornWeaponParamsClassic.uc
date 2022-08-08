@@ -16,7 +16,8 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-Fire',Volume=1.500000)
 		Recoil=512.000000
@@ -47,6 +48,8 @@ defaultproperties
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter_C'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-FireAlt',Volume=1.700000)
 		Recoil=0.0
 		Chaos=-1.0
@@ -103,6 +106,8 @@ defaultproperties
 		MagAmmo=4
 		SightOffset=(Y=19.60,Z=26.40)
 		SightPivot=(Pitch=150)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

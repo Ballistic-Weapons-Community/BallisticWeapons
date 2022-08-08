@@ -7,69 +7,69 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-			ProjectileClass=Class'BallisticProV55.RSDarkProjectile'
-			SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
-			Speed=50.000000
-			MaxSpeed=4000.000000
-			AccelSpeed=16000.000000
-			Damage=80.0
-			DamageRadius=192.000000
-			MomentumTransfer=80000.000000
-			HeadMult=1.375
-			LimbMult=0.625
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.RSDarkSlowMuzzleFlash'
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Fire',Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=60.000000
-			Chaos=-1.0
-			Inaccuracy=(X=8,Y=8)
-			WarnTargetPct=0.200000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+		ProjectileClass=Class'BallisticProV55.RSDarkProjectile'
+		SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
+		Speed=50.000000
+		MaxSpeed=4000.000000
+		AccelSpeed=16000.000000
+		Damage=80.0
+		DamageRadius=192.000000
+		MomentumTransfer=80000.000000
+		bLimitMomentumZ=False
+		HeadMult=1.375
+		LimbMult=0.625
+		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.RSDarkSlowMuzzleFlash'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Fire',Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=60.000000
+		Chaos=-1.0
+		Inaccuracy=(X=8,Y=8)
+		WarnTargetPct=0.200000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.800000
-			AmmoPerFire=3
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.800000
+		AmmoPerFire=3
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
+	Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
+		TraceRange=(Min=200.000000,Max=200.000000)
+		WaterTraceRange=5000.0
+		Damage=10.0
+		HeadMult=2.5
+		LimbMult=0.5
+		DamageType=Class'BallisticProV55.DT_RSDarkStab'
+		DamageTypeHead=Class'BallisticProV55.DT_RSDarkStabHead'
+		DamageTypeArm=Class'BallisticProV55.DT_RSDarkStab'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.500000
+		HookPullForce=150.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawOpen',Volume=0.750000,Radius=32.000000)
+		Recoil=0.0
+		Chaos=-1.0
+		WarnTargetPct=0.050000
+	End Object
 	
-		Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
-			TraceRange=(Min=200.000000,Max=200.000000)
-			WaterTraceRange=5000.0
-			Damage=10.0
-			HeadMult=2.5
-			LimbMult=0.5
-			DamageType=Class'BallisticProV55.DT_RSDarkStab'
-			DamageTypeHead=Class'BallisticProV55.DT_RSDarkStabHead'
-			DamageTypeArm=Class'BallisticProV55.DT_RSDarkStab'
-			ChargeDamageBonusFactor=1
-			PenetrationEnergy=0.000000
-			HookStopFactor=1.500000
-			HookPullForce=150.000000
-			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawOpen',Volume=0.750000,Radius=32.000000)
-			Recoil=0.0
-			Chaos=-1.0
-			WarnTargetPct=0.050000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.100000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			PreFireAnim=
-			FireAnim="SawStart"
-			FireEndAnim="SawEnd"
-			FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.100000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		PreFireAnim=
+		FireAnim="SawStart"
+		FireEndAnim="SawEnd"
+		FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

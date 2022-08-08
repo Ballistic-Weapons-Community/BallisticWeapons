@@ -13,6 +13,8 @@ defaultproperties
         Damage=350
         DamageRadius=350.000000
         MomentumTransfer=90000.000000
+		bLimitMomentumZ=False
+		RadiusFallOffType=RFO_Linear
         BotRefireRate=0.300000
         WarnTargetPct=0.9	
         FireSound=(Sound=Sound'BW_Core_WeaponSound.FP9A5.FP9-Throw')

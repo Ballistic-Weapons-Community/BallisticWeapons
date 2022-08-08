@@ -93,7 +93,7 @@ defaultproperties
 		bPenetrate=True
 		PDamageFactor=0.600000
 		WallPDamageFactor=0.400000
-		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C'
 		FlashScaleFactor=1.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-GaussFireLow',Volume=1.200000)
 		Recoil=172.000000
@@ -157,6 +157,8 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Gauss: Offline",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(3)=(ModeName="Gauss: Deflecting",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
 		InitialWeaponMode=0
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

@@ -14,6 +14,9 @@ defaultproperties
 		Damage=112.0
 		HeadMult=2.098214
 		LimbMult=0.669642
+		DamageType=Class'BallisticProV55.DTMarlinRifle'
+		DamageTypeHead=Class'BallisticProV55.DTMarlinRifleHead'
+		DamageTypeArm=Class'BallisticProV55.DTMarlinRifle'
 		PenetrationEnergy=15.000000
 		PenetrateForce=80
 		bPenetrate=True
@@ -49,6 +52,9 @@ defaultproperties
 		Damage=54.0
 		HeadMult=2.129629
 		LimbMult=0.462962
+		DamageType=Class'BallisticProV55.DTMarlinMelee'
+		DamageTypeHead=Class'BallisticProV55.DTMarlinMeleeHead'
+		DamageTypeArm=Class'BallisticProV55.DTMarlinMelee'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		SpreadMode=FSM_Rectangle
@@ -108,12 +114,15 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
 		ViewOffset=(X=5.000000,Y=6.500000,Z=-12.000000)
 		SightOffset=(X=12.500000,Y=-0.05500,Z=4.700000)
 		SightPivot=(Pitch=0)
+		ReloadAnimRate=1.500000
+		CockAnimRate=1.750000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

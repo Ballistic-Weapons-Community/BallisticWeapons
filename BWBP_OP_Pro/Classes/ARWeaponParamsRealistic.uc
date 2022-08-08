@@ -23,7 +23,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Pitch=1.100000,Volume=1.100000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Single',Pitch=1.100000,Volume=1.100000)
 		Recoil=900.000000
 		Chaos=0.15000
 		Inaccuracy=(X=700,Y=700)
@@ -82,7 +82,7 @@ defaultproperties
 		DeclineTime=0.900000
 		DeclineDelay=0.200000
 		ViewBindFactor=0.060000
-		ADSViewBindFactor=1.000000
+		ADSViewBindFactor=0.300000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -110,6 +110,7 @@ defaultproperties
 		InventorySize=30
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=20
+		ViewOffset=(X=-20.000000,Y=3.00000,Z=-32.000000)
 		SightOffset=(X=60.000000,Y=5.690000,Z=35.820000)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

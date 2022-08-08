@@ -16,6 +16,7 @@ var   Rotator				LaserRot;
 var   vector				PreviousHitLoc;
 var   Emitter				LaserDot;
 var   Vector				SpawnOffset;
+var   bool					bBigLaser;
 
 var   BallisticWeapon 		myWeap;
 
@@ -24,7 +25,18 @@ replication
 	reliable if ( Role==ROLE_Authority )
 		bLaserOn;
 	unreliable if ( Role==ROLE_Authority )
-		LaserRot;
+		LaserRot, bBigLaser;
+}
+
+
+
+simulated event PreBeginPlay()
+{
+	super.PreBeginPlay();
+	if (XM20BCarbine(Instigator.Weapon).BCRepClass.default.GameStyle != 1)
+	{
+		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20P';
+	}
 }
 
 simulated function KillLaserDot()
@@ -121,8 +133,16 @@ simulated function Tick(float DT)
 	Laser.SetLocation(Loc);
 	Laser.SetRotation(Rotator(HitLocation - Loc));
 	Scale3D.X = VSize(HitLocation-Laser.Location)/128;
+	if (bBigLaser)
+	{
+		Scale3D.Y = 9.5;
+		Scale3D.Z = 9.5;
+	}
+	else
+	{
 		Scale3D.Y = 4.5;
 		Scale3D.Z = 4.5;
+	}
 	Laser.SetDrawScale3D(Scale3D);
 }
 
@@ -166,13 +186,14 @@ defaultproperties
 	 FlashBone="Muzzle"
      AltFlashBone="Muzzle"
 	 MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20BFlashEmitter'
-     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20B'
+     TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20'
      ImpactManager=Class'BWBP_SKC_Pro.IM_XM20BLaser'
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-FlyBy',Volume=0.700000)
      InstantMode=MU_Both
      FlashMode=MU_Both
      LightMode=MU_Both
 	 TracerMode=MU_Primary
+	 TracerChance=1
 	 TracerMix=0
      RelativeLocation=(X=-6.000000,Z=12.000000)
      RelativeRotation=(Pitch=32768)

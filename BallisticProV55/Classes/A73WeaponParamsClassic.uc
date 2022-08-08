@@ -47,6 +47,7 @@ defaultproperties
         Damage=70.000000
         DamageRadius=100.000000
         MomentumTransfer=2000.000000
+		RadiusFallOffType=RFO_Linear
         MaxDamageGainFactor=1.00
         DamageGainStartTime=0.05
         DamageGainEndTime=0.7
@@ -109,6 +110,8 @@ defaultproperties
 		MagAmmo=40
 		SightOffset=(X=-12.000000,Z=14.300000)
 		SightPivot=(Pitch=768)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

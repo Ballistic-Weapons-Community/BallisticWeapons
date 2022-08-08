@@ -58,7 +58,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.default.GameStyle != 0)
 		HVCMk9PrimaryFire(FireMode[0]).GotoState('BranchingFire');
 	else
 		HVCMk9PrimaryFire(FireMode[0]).GotoState('DirectFire');
@@ -145,7 +145,7 @@ simulated event Tick (float DT)
 {
 	local int i;
 	
-	if (BCRepClass.default.GameStyle != 1)
+	if (BCRepClass.default.GameStyle == 0)
 	{
 		if (HeatLevel > 0)
 		{
@@ -319,7 +319,7 @@ simulated event WeaponTick(float DT)
 	if (!Instigator.IsLocallyControlled())
 		return;
 
-	if ((BCRepClass.default.GameStyle != 1 && GetTargetZap() != None) || FireMode[1].bIsFiring)	
+	if ((BCRepClass.default.GameStyle == 0 && GetTargetZap() != None) || FireMode[1].bIsFiring)	
 	{	
 		if (ClawAlpha < 1)
 		{
@@ -390,7 +390,7 @@ simulated event RenderOverlays (Canvas C)
 	Super.RenderOverlays(C);
 	
 	
-	if (BCRepClass.default.GameStyle != 1)
+	if (BCRepClass.default.GameStyle == 0)
 	{
 		if (StreamEffect != None)
 		{
@@ -837,7 +837,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	ParamsClasses(0)=Class'HVCMk9WeaponParams'
 	ParamsClasses(1)=Class'HVCMk9WeaponParamsClassic' \\todo: lots of state code
-	ParamsClasses(2)=Class'HVCMk9WeaponParamsClassic' \\todo: lots of state code
+	ParamsClasses(2)=Class'HVCMk9WeaponParamsRealistic' \\todo: lots of state code
 	FireModeClass(0)=Class'BallisticProV55.HVCMk9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.HVCMk9SecondaryFire'
 	

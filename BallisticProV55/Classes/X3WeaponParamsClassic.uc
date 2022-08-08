@@ -7,71 +7,69 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	Begin Object Class=MeleeEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=96.000000,Max=96.000000)
+		WaterTraceRange=5000.0
+		Damage=35.0
+		HeadMult=2.5
+		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTX3Knife'
+		DamageTypeHead=Class'BallisticProV55.DTX3KnifeHead'
+		DamageTypeArm=Class'BallisticProV55.DTX3KnifeLimb'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.300000
+		HookPullForce=100.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Knife.KnifeSlash',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.100000
+	End Object
 	
-		Begin Object Class=MeleeEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=96.000000,Max=96.000000)
-			WaterTraceRange=5000.0
-			Damage=35.0
-			HeadMult=2.5
-			LimbMult=0.6
-			DamageType=Class'BallisticProV55.DTX3Knife'
-			DamageTypeHead=Class'BallisticProV55.DTX3KnifeHead'
-			DamageTypeArm=Class'BallisticProV55.DTX3KnifeLimb'
-			ChargeDamageBonusFactor=1
-			PenetrationEnergy=0.000000
-			HookStopFactor=1.300000
-			HookPullForce=100.000000
-			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Knife.KnifeSlash',Radius=32.000000,bAtten=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.800000
-			WarnTargetPct=0.100000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.250000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			FireAnim="Slice1"
-			FireAnimRate=2.500000
-			FireEffectParams(0)=MeleeEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.250000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Slice1"
+		FireAnimRate=2.500000
+		FireEffectParams(0)=MeleeEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
+	Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
+		TraceRange=(Min=96.000000,Max=96.000000)
+		WaterTraceRange=5000.0
+		Damage=75.0
+		HeadMult=1.5
+		LimbMult=0.5
+		DamageType=Class'BallisticProV55.DTX3Knife'
+		DamageTypeHead=Class'BallisticProV55.DTX3KnifeHead'
+		DamageTypeArm=Class'BallisticProV55.DTX3KnifeLimb'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		HookStopFactor=1.700000
+		HookPullForce=100.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Knife.KnifeSlash',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.050000
+	End Object
 	
-		Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
-			TraceRange=(Min=96.000000,Max=96.000000)
-			WaterTraceRange=5000.0
-			Damage=75.0
-			HeadMult=1.5
-			LimbMult=0.5
-			DamageType=Class'BallisticProV55.DTX3Knife'
-			DamageTypeHead=Class'BallisticProV55.DTX3KnifeHead'
-			DamageTypeArm=Class'BallisticProV55.DTX3KnifeLimb'
-			ChargeDamageBonusFactor=1
-			PenetrationEnergy=0.000000
-			HookStopFactor=1.700000
-			HookPullForce=100.000000
-			SpreadMode=FSM_Rectangle
-			FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Knife.KnifeSlash',Radius=32.000000,bAtten=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.800000
-			WarnTargetPct=0.050000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.300000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			PreFireAnim="BigBack1"
-			FireAnim="BigStab1"
-			FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.300000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		PreFireAnim="BigBack1"
+		FireAnim="BigStab1"
+		FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL

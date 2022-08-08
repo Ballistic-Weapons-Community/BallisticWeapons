@@ -52,6 +52,11 @@ var() float					PlayerJumpFactor;		// Player JumpZ multiplied by this when holdi
 //-----------------------------------------------------------------------------
 var() byte					InventorySize;			// How much space this weapon should occupy in an inventory. 0-100. Used by mutators, games, etc...
 //-----------------------------------------------------------------------------
+// Handling
+//-----------------------------------------------------------------------------
+var() float					CockAnimRate;
+var() float					ReloadAnimRate;
+//-----------------------------------------------------------------------------
 // Sighting
 //-----------------------------------------------------------------------------
 var() float					SightMoveSpeedFactor;	// Additional slowdown factor in iron sights
@@ -59,6 +64,9 @@ var() float					SightingTime;			// Time it takes to move weapon to and from sigh
 var() Vector                SightOffset;            // Offset when moving weapon to ADS position
 var() Rotator               SightPivot;             // Pivot when moving weapon to ADS position
 var() EZoomType             ZoomType;               // Type of zoom. Precise control is within the weapon's sighting properties
+var() bool         			bAdjustHands;      		//Adjust hand position when sighting?
+var() rotator      			WristAdjust;       		//Amount to move wrist bone when using iron sights.
+var() rotator      			RootAdjust;        		//Amount to move arm bone when using iron sights.
 //-----------------------------------------------------------------------------
 // Appearance
 //-----------------------------------------------------------------------------
@@ -76,6 +84,11 @@ var() float					DisplaceDurationMult;   // Duration multiplier for aim displacem
 // Ammo
 //-----------------------------------------------------------------------------
 var() int			        MagAmmo;				//Ammo currently in magazine for Primary and Secondary. Max is whatever the default is.
+//-----------------------------------------------------------------------------
+// Pistol Dual Wielding
+//-----------------------------------------------------------------------------
+var() bool			        bDualBlocked;			//Prevent this weapon from being dual wielded.
+
 //-----------------------------------------------------------------------------
 // Firemodes
 //-----------------------------------------------------------------------------
@@ -97,4 +110,6 @@ defaultproperties
     ZoomType=ZT_Irons
     DisplaceDurationMult=1.000000
     MagAmmo=30
+	CockAnimRate=1.000000
+    ReloadAnimRate=1.000000
 }

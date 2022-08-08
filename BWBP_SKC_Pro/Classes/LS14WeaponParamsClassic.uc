@@ -75,37 +75,37 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-			ProjectileClass=Class'BWBP_SKC_Pro.LS14Rocket'
-			SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-			Speed=2500.000000
-			MaxSpeed=10000.000000
-			AccelSpeed=1000.000000
-			Damage=50.000000
-			DamageRadius=192.000000
-			MomentumTransfer=20000.000000
-			HeadMult=1.0
-			LimbMult=1.0
-			MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-			FlashScaleFactor=2.600000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Rocket-Launch')
-			Recoil=256.000000
-			Chaos=-1.0
-			SplashDamage=True
-			RecommendSplashDamage=True
-			BotRefireRate=0.300000
-			WarnTargetPct=0.300000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.LS14Rocket'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=2500.000000
+		MaxSpeed=10000.000000
+		AccelSpeed=1000.000000
+		Damage=50.000000
+		DamageRadius=192.000000
+		MomentumTransfer=20000.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		FlashScaleFactor=2.600000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Rocket-Launch')
+		Recoil=256.000000
+		Chaos=-1.0
+		SplashDamage=True
+		RecommendSplashDamage=True
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=0.020000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			PreFireAnim="GrenadePrepFire"
-			FireAnim="RLFire"	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.020000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		PreFireAnim="GrenadePrepFire"
+		FireAnim="RLFire"	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -169,6 +169,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="LS14 Laser Rifle"
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -194,6 +196,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponName="LS10 Laser Carbine"
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicCarbineAimParams'
 		FireParams(0)=FireParams'ClassicCarbinePrimaryFireParams'

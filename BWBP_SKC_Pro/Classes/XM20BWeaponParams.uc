@@ -19,7 +19,34 @@ defaultproperties
 		ChaosDeclineDelay=0.3
 		ChaosSpeedThreshold=2500
 	End Object
+	
+    //=================================================================
+    // PRIMARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
+		TraceRange=(Min=5000.000000,Max=7500.000000)
+		Damage=16
+		DamageType=Class'BWBP_SKC_Pro.DT_XM20B_Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20B_Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20B_Body'
+		PenetrateForce=600
+		bPenetrate=False
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20BFlashEmitter'
+		FlashScaleFactor=0.300000
+		Recoil=96.000000
+		BotRefireRate=0.90
+		WarnTargetPct=0.10000
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.350000)
+	End Object
 
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=0.135000
+		FireEndAnim=
+		AimedFireAnim="SightFire"	
+		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
+	
 	//=================================================================
     // SECONDARY FIRE
     //=================================================================	

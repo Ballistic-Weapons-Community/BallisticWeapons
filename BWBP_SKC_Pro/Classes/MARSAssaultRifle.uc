@@ -21,7 +21,9 @@ var   bool					bUpdatePawns;	// Should viewable pawn list be updated
 var   Pawn					UpdatedPawns[16];// List of pawns to view in thermal scope
 var() material				Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
 var() float					ThermalRange;	// Maximum range at which it is possible to see enemies through walls
+var   ColorModifier		ColorMod;
 var   bool					bMeatVision;
+var	  bool					bThermalSight;  //Thermal MARS's can see through their smoke
 var   Pawn					Target;
 var   float					TargetTime;
 var   float					LastSendTargetTime;
@@ -35,6 +37,15 @@ replication
 		Target, bMeatVision, ClientGrenadePickedUp;
 	reliable if (Role < ROLE_Authority)
 		ServerAdjustThermal;
+}
+
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle != 0)
+	{
+		bThermalSight=True;
+	}
 }
 
 // Notifys for greande loading sounds
@@ -410,7 +421,15 @@ simulated event DrawMeatVisionMode (Canvas C)
 // Draws players through walls and all the other Thermal Mode stuff
 simulated event DrawThermalMode (Canvas C)
 {
-	local float ImageScaleRatio;//, OtherRatio;
+	local Pawn P;
+	local int i, j;
+	local float Dist, DotP, ImageScaleRatio;//, OtherRatio;
+	local Array<Material>	OldSkins;
+	local int OldSkinCount;
+	local bool bLOS, bFocused;
+	local vector Start;
+	local Array<Material>	AttOldSkins0;
+	local Array<Material>	AttOldSkins1;
 
 	ImageScaleRatio = 1.3333333;
 
@@ -419,6 +438,105 @@ simulated event DrawThermalMode (Canvas C)
 	C.SetPos((C.SizeX - C.SizeY)/2, C.OrgY);
 	C.SetDrawColor(255,255,255,255);
 	C.DrawTile(FinalBlend'BWBP_SKC_Tex.MARS.F2000IRNVFinal', (C.SizeY*ImageScaleRatio) * 0.75, C.SizeY, 0, 0, 1024, 1024);
+
+	if (ColorMod == None || !bThermalSight)
+		return;
+	// Draw the players with an orange effect
+	C.Style = ERenderStyle.STY_Alpha;
+	Start = Instigator.Location + Instigator.EyePosition();
+	for (j=0;j<PawnList.length;j++)
+	{
+		if (PawnList[j] != None && PawnList[j] != Level.GetLocalPlayerController().Pawn)
+		{
+			P = PawnList[j];
+			bFocused=false;
+			bLos=false;
+			ThermalRange = default.ThermalRange + 2000 * FMin(1, VSize(P.Velocity) / 450);
+			Dist = VSize(P.Location - Instigator.Location);
+			if (Dist > ThermalRange)
+				continue;
+			DotP = Normal(P.Location - Start) Dot Vector(Instigator.GetViewRotation());
+			if ( DotP < Cos((Instigator.Controller.FovAngle/1.7) * 0.017453) )
+				continue;
+			// If we have a clear LOS then they can be drawn
+			if (Instigator.LineOfSightTo(P))
+				bLOS=true;
+			if (bLOS)
+			{
+				DotP = (DotP-0.6) / 0.4;
+
+				DotP = FMax(DotP, 0);
+
+				if (Dist < 500)
+					ColorMod.Color.R = DotP * 255.0;
+				else
+					ColorMod.Color.R = DotP * ( 255 - FClamp((Dist-500)/((ThermalRange-500)*0.8), 0, 1) * 255 );
+				ColorMod.Color.G = DotP * ( 128.0 - (Dist/ThermalRange)*96.0 );
+
+				// Remember old skins, set new skins, turn on unlit...
+				OldSkinCount = P.Skins.length;
+				for (i=0;i<Max(2, OldSkinCount);i++)
+				{	if (OldSkinCount > i) OldSkins[i] = P.Skins[i]; else OldSkins[i]=None;	P.Skins[i] = ColorMod;	}
+				P.bUnlit=true;
+
+				for (i=0;i<P.Attached.length;i++)
+					if (P.Attached[i] != None)
+					{
+						if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
+						{
+							if (P.Attached[i].Skins.length > 0)
+							{	AttOldSkins0[i] = P.Attached[i].Skins[0];	P.Attached[i].Skins[0] = ColorMod;	}
+							else
+							{	AttOldSkins0[i] = None;	P.Attached[i].Skins[0] = ColorMod;	}
+							if (P.Attached[i].Skins.length > 1)
+							{	AttOldSkins1[i] = P.Attached[i].Skins[1];	P.Attached[i].Skins[1] = ColorMod;	}
+							if (P.Attached[i].Skins.length > 1)
+							{	AttOldSkins1[i] = None;	P.Attached[i].Skins[1] = ColorMod;	}
+						}
+						else
+							P.Attached[i].SetDrawType(DT_None);
+					}
+
+				C.DrawActor(P, false, true);
+
+				// Set old skins back, Unlit off
+				P.Skins.length = OldSkinCount;
+				for (i=0;i<P.Skins.length;i++)
+					P.Skins[i] = OldSkins[i];
+				P.bUnlit=false;
+
+				for (i=0;i<P.Attached.length;i++)
+					if (P.Attached[i] != None)
+					{
+						if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
+						{
+							if (AttOldSkins1[i] == None)
+							{
+								if (AttOldSkins0[i] == None)
+									P.Attached[i].Skins.length = 0;
+								else
+								{
+									P.Attached[i].Skins.length = 1;
+									P.Attached[i].Skins[0] = AttOldSkins0[i];
+								}
+							}
+							else
+							{
+								P.Attached[i].Skins[0] = AttOldSkins0[i];
+								P.Attached[i].Skins[1] = AttOldSkins1[i];
+							}
+						}
+						else
+							P.Attached[i].SetDrawType(P.Attached[i].default.DrawType);
+					}
+				AttOldSkins0.length = 0;
+				AttOldSkins1.length = 0;
+			}
+			else
+				continue;
+		}
+	}
+	
 }
 
 simulated function AdjustThermalView(bool bNewValue)
@@ -428,7 +546,6 @@ simulated function AdjustThermalView(bool bNewValue)
 	if (!bNewValue)
 		bUpdatePawns = false;
 	else
-
 	{
 		bUpdatePawns = true;
 		UpdatePawnList();

@@ -191,7 +191,7 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
-	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=1)
+	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
 	BigIconMaterial=Texture'BW_Core_WeaponTex.ui.BigIcon_R9'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -253,6 +253,8 @@ defaultproperties
 	LightRadius=5.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_R9'
 	DrawScale=0.500000
-    Skins(0)=Shader'BW_Core_WeaponTex.R9.USSR-Shiny' 
-	Skins(1)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'	
+    Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Shader'BW_Core_WeaponTex.R9.USSR-Shiny'
+	Skins(2)=FinalBlend'BW_Core_WeaponTex.SRS.SRS-HSight-FB'
+	Skins(3)=Shader'BW_Core_WeaponTex.SRS.SRS-SelfIllum'
 }

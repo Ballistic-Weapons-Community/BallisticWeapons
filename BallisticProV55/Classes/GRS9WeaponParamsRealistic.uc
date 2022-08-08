@@ -14,6 +14,9 @@ defaultproperties
 		Damage=33.0
 		HeadMult=2.181818
 		LimbMult=0.606060
+		DamageType=Class'BallisticProV55.DTGRS9Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTGRS9Pistol'
 		PenetrationEnergy=6.000000
 		PenetrateForce=16
 		bPenetrate=True
@@ -37,42 +40,61 @@ defaultproperties
 		FireAnimRate=1.550000	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
-		
-    //=================================================================
-    // SECONDARY FIRE
-    //=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams
-		TraceRange=(Min=3000.000000,Max=3000.000000)
-		WaterTraceRange=2100.0
+	//Burst
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryBurstEffectParams
+		TraceRange=(Min=800.000000Max=4000.000000)
+		WaterTraceRange=800.0
 		DecayRange=(Min=0.0,Max=0.0)
-		RangeAtten=0.350000
-		Damage=6.0
-		HeadMult=2.8
-		LimbMult=0.5
-		DamageType=Class'BallisticProV55.DTGRS9Laser'
-		DamageTypeHead=Class'BallisticProV55.DTGRS9LaserHead'
-		DamageTypeArm=Class'BallisticProV55.DTGRS9Laser'
-		PenetrateForce=200
+		Damage=33.0
+		HeadMult=2.181818
+		LimbMult=0.606060
+		DamageType=Class'BallisticProV55.DTGRS9Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTGRS9Pistol'
+		PenetrationEnergy=6.000000
+		PenetrateForce=16
 		bPenetrate=True
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-LaserFire')
-		Recoil=0.0
-		Chaos=-1.0
-		Inaccuracy=(X=2,Y=2)
-		BotRefireRate=0.999000
-		WarnTargetPct=0.010000
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=1.500000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-Fire',Volume=1.200000)
+		Recoil=512.000000
+		Chaos=0.070000
+		Inaccuracy=(X=13,Y=13)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=0.080000
-		AmmoPerFire=0
+	Begin Object Class=FireParams Name=RealisticPrimaryBurstFireParams
+		FireInterval=0.050000
 		BurstFireRateFactor=1.00
-		FireAnim="Idle"	
-	FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
+		FireEndAnim=
+		FireAnimRate=1.550000	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryBurstEffectParams'
 	End Object
+		
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+
+    Begin Object Class=FireEffectParams Name=RealisticFlashEffectParams
+        MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
+        WarnTargetPct=1.000000
+        BotRefireRate=0.3
+    End Object
+
+    Begin Object Class=FireParams Name=RealisticFlashFireParams
+        MaxHoldTime=0.500000
+        FireAnim="SecFire"
+        FireEndAnim=
+        FireInterval=10.000000
+        AmmoPerFire=0
+        FireEffectParams(0)=FireEffectParams'RealisticFlashEffectParams'
+    End Object
 		
 	//=================================================================
 	// RECOIL
@@ -87,6 +109,23 @@ defaultproperties
 		MaxRecoil=2048.000000
 		DeclineTime=0.400000
 		DeclineDelay=0.120000
+		ViewBindFactor=0.200000
+		ADSViewBindFactor=0.200000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+		bViewDecline=True
+	End Object
+	
+	//Burst
+	Begin Object Class=RecoilParams Name=RealisticBurstRecoilParams
+		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
+		PitchFactor=0.600000
+		YawFactor=0.100000
+		XRandFactor=0.4000000
+		YRandFactor=0.400000
+		MaxRecoil=2048.000000
+		DeclineTime=0.600000
+		DeclineDelay=0.180000
 		ViewBindFactor=0.200000
 		ADSViewBindFactor=0.200000
 		HipMultiplier=1.000000
@@ -120,11 +159,22 @@ defaultproperties
 		ViewOffset=(X=6.000000,Y=7.000000,Z=-8.000000)
 		SightOffset=(X=-15.000000,Y=-1.000000,Z=17.600000)
 		SightPivot=(Pitch=-25,Roll=-0)
-		InitialWeaponMode=1
+		bAdjustHands=true
+		RootAdjust=(Yaw=-300,Pitch=3000)
+		WristAdjust=(Yaw=-3000,Pitch=-000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",RecoilParamsIndex=1)
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.400000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		RecoilParams(1)=RecoilParams'RealisticBurstRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryBurstFireParams'
+		FireParams(2)=FireParams'RealisticPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'RealisticFlashFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
 

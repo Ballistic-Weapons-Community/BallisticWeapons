@@ -88,9 +88,9 @@ replication
 	reliable if( bNetOwner && bNetDirty && (Role==ROLE_Authority) )
 		ShieldPower;
 	reliable if (Role == ROLE_Authority)
-        ClientTakeHit, ClientScreenStart, ClientSwitchCannonMode, ClientAdjustProps, ClientSetLastRange, bShieldUp;
+        	ClientTakeHit, ClientScreenStart, ClientSwitchCannonMode, ClientAdjustProps, bShieldUp;
 	reliable if( Role<ROLE_Authority )
-		ServerSwitchRange, ServerSwitchShield, ServerAdjustProps, ServerSetLastRange;
+		ServerSwitchRange, ServerSwitchShield, ServerAdjustProps;
 		
 }
 
@@ -211,12 +211,11 @@ simulated function UpdateScreen() //Force a screen update
 
 function ServerSwitchWeaponMode (byte newMode)
 {
-	if (FireMode[0].IsFiring() || bShieldUp)
+	if (CurrentWeaponMode > 0 && FireMode[0].IsFiring())
 		return;
-		
 	super.ServerSwitchWeaponMode (newMode);
-	
-	PumaPrimaryFire(FireMode[0]).SwitchCannonMode(CurrentWeaponMode);
+	if (!Instigator.IsLocallyControlled())
+		PumaPrimaryFire(FireMode[0]).SwitchCannonMode(CurrentWeaponMode);
 	ClientSwitchCannonMode (CurrentWeaponMode);
 }
 simulated function ClientSwitchCannonMode (byte newMode)
@@ -224,25 +223,25 @@ simulated function ClientSwitchCannonMode (byte newMode)
 	PumaPrimaryFire(FireMode[0]).SwitchCannonMode(newMode);
 }
 
+
 //Adjusts fire rate properties for close range airburst and blue rapid-firing variant
 function ServerAdjustProps(byte newMode)
 {
-	PriDetRange = LastRangeFound / BallisticProjectileFire(FireMode[0]).ProjectileClass.default.Speed;
-	PriDetRangeM = LastRangeFoundM; //Shows distance in 'meters'
-
-	PumaPrimaryFire(FireMode[0]).AdjustProps(newMode);
+	if (!Instigator.IsLocallyControlled())
+		PumaPrimaryFire(FireMode[0]).AdjustProps(newMode);
 	ClientAdjustProps(newMode);
 }
 simulated function ClientAdjustProps(byte newMode)
 {
-	PriDetRange = LastRangeFound / BallisticProjectileFire(FireMode[0]).ProjectileClass.default.Speed;
-	PriDetRangeM = LastRangeFoundM; //Shows distance in 'meters'
-
 	PumaPrimaryFire(FireMode[0]).AdjustProps(newMode);
 }
 
+
+
+
 simulated function BringUp(optional Weapon PrevWeapon)
 {
+
 	if (Instigator != None && AIController(Instigator.Controller) == None)
 	{
 		ScreenStart();
@@ -298,15 +297,13 @@ simulated function bool PutDown()
 
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i) //Programs PUMA distance det
-{	
-	PriDetRange = LastRangeFound / BallisticProjectileFire(FireMode[0]).ProjectileClass.default.Speed;
+{
+	PriDetRange = LastRangeFound/6000;
 	PriDetRangeM = LastRangeFoundM; //Shows distance in 'meters'
-
-	ServerAdjustProps(CurrentWeaponMode);
-	ClientAdjustProps(CurrentWeaponMode);
-	
+	ServerAdjustProps(2);
 	ServerSwitchRange(PriDetRange);
 	SwitchRange(PriDetRange);
+
 }
 
 
@@ -357,50 +354,21 @@ exec simulated function ShieldDeploy(optional byte i) //Was previously weapon sp
 
 function ServerSwitchShield(bool bNewValue)
 {
-	local int LastMode;
-	local PUMAAttachment Attachment;
+    local PUMAAttachment Attachment;
 
 	bShieldUp = bNewValue;
     Attachment = PUMAAttachment(ThirdPersonActor);
    
-	/*
-	hacky params solution - the intention is to set various params without explicitly changing the firemode
-	SetFireParams, SetRecoilParams, etc. passes this weapon as an argument, and each function sets params based on CurrentWeaponMode
-	set CurrentWeaponMode to what is needed, then set it back to the last mode
-	*/
-   
-    LastMode = CurrentWeaponMode;
-
-    if (bShieldUp)
-		CurrentWeaponMode = 3;
-   
-    ParamsClasses[GameStyleIndex].static.SetFireParams(self);
-   
-    if (WeaponModes[LastMode].RecoilParamsIndex != WeaponModes[CurrentWeaponMode].RecoilParamsIndex)
-	{
-		ParamsClasses[GameStyleIndex].static.SetRecoilParams(self);
-	}
-
-	if (WeaponModes[LastMode].AimParamsIndex != WeaponModes[CurrentWeaponMode].AimParamsIndex)
-	{
-		ParamsClasses[GameStyleIndex].static.SetAimParams(self);
-	}
-	
-	CurrentWeaponMode = LastMode;
-   
-	/*
-	end hacky params solution
-	*/
-
     if( Attachment != None && Attachment.PUMAShieldEffect3rd != None )
 	{
 		if (bShieldUp)
-			Attachment.PUMAShieldEffect3rd.bHidden = false;
+        		Attachment.PUMAShieldEffect3rd.bHidden = false;
 		else
-        	Attachment.PUMAShieldEffect3rd.bHidden = true;
+        		Attachment.PUMAShieldEffect3rd.bHidden = true;
 	}
-
 	
+	//Change projectile
+	//OnFireParamsChanged
 
 	AdjustShieldProperties();
 }
@@ -412,10 +380,10 @@ simulated function AdjustShieldProperties(optional bool bDepleted)
 
 	if (bShieldUp && !bDepleted && !bBroken)
 	{
-		Instigator.AmbientSound = ChargingSound;
-		Instigator.SoundVolume = ShieldSoundVolume;
-		if( Attachment != None && Attachment.ShieldEffect3rd != None )
-			Attachment.ShieldEffect3rd.bHidden = false;
+    		Instigator.AmbientSound = ChargingSound;
+    		Instigator.SoundVolume = ShieldSoundVolume;
+    		if( Attachment != None && Attachment.ShieldEffect3rd != None )
+        		Attachment.ShieldEffect3rd.bHidden = false;
 
 		UpdateScreen();
 
@@ -425,15 +393,16 @@ simulated function AdjustShieldProperties(optional bool bDepleted)
 	}
 	else
 	{
-		Attachment = ShieldAttachment(ThirdPersonActor);
-		Instigator.AmbientSound = None;
-		Instigator.SoundVolume = Instigator.Default.SoundVolume;
 
-		if( Attachment != None && Attachment.ShieldEffect3rd != None )
-		{
-			Attachment.ShieldEffect3rd.bHidden = true;
-			StopForceFeedback( "ShieldNoise" );  // jdf
-		}
+    		Attachment = ShieldAttachment(ThirdPersonActor);
+		Instigator.AmbientSound = None;
+    		Instigator.SoundVolume = Instigator.Default.SoundVolume;
+    
+    		if( Attachment != None && Attachment.ShieldEffect3rd != None )
+    		{
+        		Attachment.ShieldEffect3rd.bHidden = true;
+        		StopForceFeedback( "ShieldNoise" );  // jdf
+    		}
 
 		if (Arc != None)
 			Emitter(Arc).kill();
@@ -506,26 +475,22 @@ simulated function TakeHit(int Drain)
 simulated event Timer()
 {
 	local vector Start, HitLoc, HitNorm;
-	local actor T;	
-	local float NewLastRange;
-	local int NewLastRangeM;
+	local actor T;
 
 	if (ClientState == WS_ReadyToFire)
 	{
 		Start = Instigator.Location + Instigator.EyePosition();
 		T = Trace(HitLoc, HitNorm, Start + vector(Instigator.GetViewRotation()) * 15000, Start, true);
 		if (T == None)
-			NewLastRange = -1;
+			LastRangeFound = -1;
 		else
 		{
-			NewLastRange = VSize(HitLoc-Start);
-			NewLastRangeM = int(LastRangeFound/44);
+			LastRangeFound = VSize(HitLoc-Start);
+			LastRangeFoundM = int(LastRangeFound/44);
 		}
-	
-		ServerSetLastRange(NewLastRange, NewLastRangeM);
-		ClientSetLastRange(NewLastRange, NewLastRangeM);
+		return;
 	}
-	else if (ClientState == WS_BringUp)
+	if (ClientState == WS_BringUp)
 		SetTimer(0.2, true);
 	else
 		SetTimer(0.0, false);
@@ -534,20 +499,6 @@ simulated event Timer()
 		class'BUtil'.static.KillEmitterEffect(GlowFX);
 
 	super.Timer();
-}
-
-function ServerSetLastRange(float NewLastRange, int NewLastRangeM)
-{
-	LastRangeFound = NewLastRange;
-	LastRangeFoundM = NewLastRangeM;
-	
-	ClientSetLastRange(NewLastRange, NewLastRangeM);
-}
-
-simulated function ClientSetLastRange(float NewLastRange, int NewLastRangeM)
-{
-	LastRangeFound = NewLastRange;
-	LastRangeFoundM = NewLastRangeM;
 }
 
 simulated function float RateSelf()
@@ -896,8 +847,7 @@ defaultproperties
      NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
      WeaponModes(0)=(ModeName="Airburst: Impact Detonation",ModeID="WM_FullAuto")
      WeaponModes(1)=(ModeName="Airburst: Proximity Detonation",ModeID="WM_FullAuto")
-     WeaponModes(2)=(ModeName="Airburst: Variable Range Detonation",ModeID="WM_FullAuto")
-	 //WeaponModes(3)=(ModeName="Shield (UNUSED)",bUnavailable=true)
+     WeaponModes(2)=(ModeName="Airburst: Variable Range Detonation")
      CurrentWeaponMode=1
      bNoCrosshairInScope=True
      //SightPivot=(Pitch=150)
@@ -911,10 +861,7 @@ defaultproperties
      CurrentRating=0.600000
      bShowChargingBar=True
      Description="PUMA-77 Repeating Pulse Rifle||Manufacturer: Majestic Firearms 12|Primary: Programmable Smart Round|Secondary: Shield Projector||The Type-77 RPR, a well known pulse weapon used during the Skrith wars, is one of the more recognizable light grenade launchers on the market. It was used extensively by the UTC as the PUMA-77 before their widespread adoption of the SRAC-21/G as the automatic grenade launcher of choice. This powerful weapon differs from other conventional grenade launchers in that it utilizes specialized fission batteries as ammunition, which both power and act as the carrier of the projectile. The projectiles themselves can be programmed by the side-mounted rangefinding module and allow soldiers to selectively airburst the rounds to hit targets behind cover. The PUMA-77s seen here are equipped with Frontier Tech's lightweight X57 shield projector, which is a scaled down version of the heavy portable shields used during the first Skrith war."
-     ManualLines(0)="Launches a grenade. Changing firemodes changes how the grenade detonates. Can select between impact detonation, enemy proximity detonation, and variable range detonation."
-	 ManualLines(1)="Employs an energy shield. Pressing altfire again removes the shield."
-	 ManualLines(2)="Each grenade settings has varying stats, such as travel speed and damage.|Impact detonation grenades explode on impact with a surface or enemy.|Proximity detonation grenades explode when close to an enemy.|Variable range detonation grenades explode at the chosen range. Pressing the weapon special key sets the chosen range to the position the cursor is on. Be careful not to set the range to too close."
-	 Priority=245
+     Priority=245
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=8
      PickupClass=Class'BWBP_SKC_Pro.PumaPickup'
@@ -931,6 +878,7 @@ defaultproperties
      LightRadius=5.000000
 	 ParamsClasses(0)=Class'PumaRepeaterWeaponParamsArena'
 	 ParamsClasses(1)=Class'PUMAWeaponParamsClassic'
+	 ParamsClasses(2)=Class'PUMAWeaponParamsRealistic'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PUMA'
      DrawScale=0.360000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

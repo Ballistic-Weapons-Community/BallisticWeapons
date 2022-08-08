@@ -101,6 +101,9 @@ static simulated final function SetAimParams(BallisticWeapon BW)
 
 static simulated final function SetProjectileParams(BallisticWeapon BW, BallisticProjectile proj)
 {
+	if (!proj.bApplyParams)
+		return;
+
     if (proj.ModeIndex == 0)
     {
         if (default.Layouts[BW.LayoutIndex].FireParams.Length > 0)
@@ -133,6 +136,79 @@ static simulated final function SetProjectileParams(BallisticWeapon BW, Ballisti
                     Min
                     (
                         BW.CurrentWeaponMode, 
+                        default.Layouts[BW.LayoutIndex].AltFireParams.Length - 1
+                    )
+                ].FireEffectParams[BW.AmmoIndex]
+            )
+        );
+    }
+}
+
+static simulated final function OverrideFireParams(BallisticWeapon BW, int newIndex)
+{
+    if (default.Layouts[BW.LayoutIndex].FireParams.Length > 0)
+    {
+        BW.BFireMode[0].Params = default.Layouts[BW.LayoutIndex].FireParams
+        [
+            Min
+            (
+                newIndex, 
+                default.Layouts[BW.LayoutIndex].FireParams.Length - 1
+            )
+        ];
+
+        BW.BFireMode[0].OnFireParamsChanged(BW.AmmoIndex);
+    }
+
+
+    if (default.Layouts[BW.LayoutIndex].AltFireParams.Length > 0)
+    {
+        BW.BFireMode[1].Params = default.Layouts[BW.LayoutIndex].AltFireParams
+        [
+            Min
+            (
+                newIndex, 
+                default.Layouts[BW.LayoutIndex].AltFireParams.Length - 1
+            )
+        ];
+        BW.BFireMode[1].OnFireParamsChanged(BW.AmmoIndex);
+    }
+}
+
+static simulated final function OverrideProjectileParams(BallisticWeapon BW, BallisticProjectile proj, int newIndex)
+{
+    if (proj.ModeIndex == 0)
+    {
+        if (default.Layouts[BW.LayoutIndex].FireParams.Length > 0)
+        {
+            proj.ApplyParams
+            (
+                ProjectileEffectParams
+                (
+                    default.Layouts[BW.LayoutIndex].FireParams
+                    [
+                        Min
+                        (
+                            newIndex, 
+                            default.Layouts[BW.LayoutIndex].FireParams.Length - 1
+                        )
+                    ].FireEffectParams[BW.AmmoIndex]
+                )
+            );
+        }
+    }
+    
+    else if (default.Layouts[BW.LayoutIndex].AltFireParams.Length > 0)
+    {
+        proj.ApplyParams
+        (
+            ProjectileEffectParams
+            (
+                default.Layouts[BW.LayoutIndex].AltFireParams
+                [
+                    Min
+                    (
+                        newIndex, 
                         default.Layouts[BW.LayoutIndex].AltFireParams.Length - 1
                     )
                 ].FireEffectParams[BW.AmmoIndex]

@@ -6,38 +6,51 @@ defaultproperties
     //=================================================================
     // PRIMARY FIRE
     //=================================================================	
-	
-	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=10000000.000000,Max=10000000.000000)
-			WaterTraceRange=8000000.0
-			DecayRange=(Min=0.0,Max=0.0)
-			Damage=145
-			HeadMult=2.137931
-			LimbMult=0.586206
-			DamageType=Class'BWBP_SKC_Pro.DT_X82Torso'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_X82Head'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_X82Torso'
-			PenetrationEnergy=72.000000
-			PenetrateForce=450
-			bPenetrate=True
-			PDamageFactor=0.900000
-			WallPDamageFactor=0.900000
-			MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire3',Volume=12.100000,Radius=450.000000)
-			Recoil=1950.000000
-			Chaos=1.500000
-			BotRefireRate=0.300000
-			WarnTargetPct=0.050000
-		End Object
-
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.450000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
 		
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=10000000.000000,Max=10000000.000000)
+		WaterTraceRange=8000000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=145
+		HeadMult=2.137931
+		LimbMult=0.586206
+		DamageType=Class'BWBP_SKC_Pro.DT_X82Torso'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_X82Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_X82Torso'
+		PenetrationEnergy=72.000000
+		PenetrateForce=450
+		bPenetrate=True
+		PDamageFactor=0.900000
+		WallPDamageFactor=0.900000
+		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter_C'
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire3',Volume=12.100000,Radius=450.000000)
+		Recoil=1950.000000
+		Chaos=1.500000
+		BotRefireRate=0.300000
+		WarnTargetPct=0.050000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.450000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
+		
+	//=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+	End Object	
+	
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -50,8 +63,10 @@ defaultproperties
 		MaxRecoil=2048.000000
 		DeclineTime=2.200000
 		ViewBindFactor=0.500000
+		ADSViewBindFactor=1.000000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.850000
+		bViewDecline=True
 	End Object
 
 	//=================================================================
@@ -82,6 +97,8 @@ defaultproperties
 		SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
 		SightPivot=(Roll=-1024)
 		ZoomType=ZT_Logarithmic
+		CockAnimRate=1.000000
+		ReloadAnimRate=0.400000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

@@ -28,6 +28,7 @@ var()   float                       AccelSpeed;
 var()   float                       Damage;
 var()   float	                    DamageRadius;
 var()   float	                    MomentumTransfer;       // Momentum magnitude imparted by impacting projectile.
+var()   bool                      	bLimitMomentumZ;        // Prevents Z momentum exceeding certain value
 var()   float					    HeadMult;		        // Multiplier for effect against head
 var()   float					    LimbMult;		        // Multiplier for effect against limb
 var()   float                       MaxDamageGainFactor;    // Max multiplier for damage gained over range

@@ -476,6 +476,8 @@ defaultproperties
 	ZoomStages=2
 	GunLength=72.000000
 	ParamsClasses(0)=Class'CX85WeaponParams'
+	ParamsClasses(1)=Class'CX85WeaponParamsClassic'
+	ParamsClasses(2)=Class'CX85WeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_OP_Pro.CX85PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.CX85SecondaryFire'
 	PutDownTime=0.700000

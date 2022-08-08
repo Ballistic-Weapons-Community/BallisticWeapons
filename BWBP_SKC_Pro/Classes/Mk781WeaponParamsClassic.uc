@@ -127,6 +127,8 @@ defaultproperties
 		MagAmmo=6
 		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
 		SightPivot=(Pitch=-64,Yaw=10)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
@@ -140,6 +142,8 @@ defaultproperties
 		SightingTime=0.250000
 		MagAmmo=6
 		SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

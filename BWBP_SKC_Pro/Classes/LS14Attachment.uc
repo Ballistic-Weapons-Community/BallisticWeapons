@@ -9,7 +9,7 @@
 class LS14Attachment extends BallisticAttachment;
 var Vector		SpawnOffset;
 var byte 		LasPower;
-var bool			bDouble, FireIndex;
+var bool			bDouble, FireIndex, bBigLaser;
 
 replication
 {
@@ -17,11 +17,22 @@ replication
 		LasPower, bDouble;
 }
 
+
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (LS14Carbine(Instigator.Weapon).BCRepClass.default.GameStyle == 2)
+	{
+		bBigLaser=True;
+	}
+}
+
 simulated function SpawnTracer(byte Mode, Vector V)
 {
 	local TraceEmitter_LS14C TER;
 	local TraceEmitter_LS14B TEL;
 	local TraceEmitter_LS14B TEA;
+	local TraceEmitter_LS14H TEH;
 	local float Dist;
 
 	if (VSize(V) < 2)
@@ -35,7 +46,12 @@ simulated function SpawnTracer(byte Mode, Vector V)
 		TEL = Spawn(class'TraceEmitter_LS14B', self, , GetModeTipLocationStyleTwo(), Rotator(V - GetModeTipLocation()));
 		TEL.Initialize(Dist, LasPower);
 		TER.Initialize(Dist, LasPower);
-	}	
+	}
+	else if (bBigLaser)
+	{
+		TEH = Spawn(class'TraceEmitter_LS14H', self, , GetModeTipLocationStyleTwo(), Rotator(V - GetModeTipLocation()));
+		TEH.Initialize(Dist, LasPower);
+	}
 	else if (FireIndex)
 	{
 		TEA = Spawn(class'TraceEmitter_LS14B', self, , GetModeTipLocation(), Rotator(V - GetModeTipLocation()));

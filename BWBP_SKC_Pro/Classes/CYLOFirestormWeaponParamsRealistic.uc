@@ -15,15 +15,18 @@ defaultproperties
 		Damage=43.0
 		HeadMult=2.139534
 		LimbMult=0.651162
+		DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormRifleHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
 		PenetrationEnergy=16.000000
 		PenetrateForce=50
 		bPenetrate=True
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.CYLOFirestormHeatEmitter'
-		FlashScaleFactor=1.000000
+		FlashScaleFactor=0.300000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire',Slot=SLOT_Interact,Pitch=1.250000,bNoOverride=False)
-		Recoil=780.000000
+		Recoil=700.000000
 		Chaos=0.020000
 		Inaccuracy=(X=48,Y=48)
 		WarnTargetPct=0.200000
@@ -36,20 +39,54 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
+	
+	//=================================================================
+	// SECONDARY FIRE
+	//=================================================================	
+	
+	Begin Object Class=ShotgunEffectParams Name=RealisticSecondaryEffectParams
+		TraceRange=(Min=3072.000000,Max=3072.000000)
+		RangeAtten=0.15000
+		TraceCount=10
+		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunFlameLight'
+		ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
+		Damage=10
+		DamageType=Class'BWBP_SKC_Pro.DTCYLOShotgun'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOShotgunHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOShotgun'
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=1.000000
+		Recoil=768.000000
+		Chaos=0.30000
+		BotRefireRate=0.7
+		WarnTargetPct=0.5	
+		SpreadMode=FSM_Rectangle
+		Inaccuracy=(X=200,Y=200)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.CYLO.CYLO-FlameFire',Volume=1.300000)
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		FireInterval=0.4
+		AmmoPerFire=0
+		FireAnim="FireSG"
+		FireEndAnim=	
+	FireEffectParams(0)=ShotgunEffectParams'RealisticSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=RealisticRecoilParams
-		XCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.100000,OutVal=0.060000),(InVal=0.150000,OutVal=-0.060000),(InVal=0.200000),(InVal=0.400000,OutVal=-0.200000),(InVal=0.600000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.300000),(InVal=1.000000,OutVal=0.000000)))
-		YCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.100000,OutVal=-0.050000),(InVal=0.150000),(InVal=0.200000,OutVal=0.300000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.400000),(InVal=1.000000,OutVal=0.300000)))
+		XCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.800000),(InVal=0.600000,OutVal=0.300000)))
+		YCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.200000,OutVal=0.300000),(InVal=0.600000,OutVal=0.400000),(InVal=1.000000,OutVal=0.300000)))
 		XRandFactor=0.250000
 		YRandFactor=0.250000
 		MinRandFactor=0.300000
 		MaxRecoil=3840.000000
 		DeclineTime=0.800000
 		ViewBindFactor=0.200000
+		ADSViewBindFactor=0.200000
 		CrouchMultiplier=0.800000
 		bViewDecline=True
 	End Object
@@ -76,11 +113,15 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=50
+		ViewOffset=(X=0,Y=-5,Z=-14)
 		SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
 		SightPivot=(Pitch=900)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
 

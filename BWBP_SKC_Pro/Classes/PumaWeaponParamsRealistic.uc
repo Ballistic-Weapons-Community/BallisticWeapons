@@ -11,10 +11,11 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryImpactEffectParams
 		ProjectileClass=Class'PumaProjectileFast'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=6500.000000
-		Damage=60.000000
+		Speed=12500.000000
+		Damage=70.000000
 		DamageRadius=300.000000
 		MomentumTransfer=10000.000000
+		bLimitMomentumZ=False
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
@@ -40,10 +41,11 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryProxyEffectParams
 		ProjectileClass=Class'PumaProjectile'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=6000.000000
+		Speed=12500.000000
 		Damage=55.000000
 		DamageRadius=270.000000
 		MomentumTransfer=10000.000000
+		bLimitMomentumZ=False
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
@@ -69,10 +71,11 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryRangeEffectParams
 		ProjectileClass=Class'PUMAProjectileClose'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=6000.000000
+		Speed=12500.000000
 		Damage=55.000000
 		DamageRadius=270.000000
 		MomentumTransfer=10000.000000
+		bLimitMomentumZ=False
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
@@ -102,6 +105,7 @@ defaultproperties
 		Damage=55.000000
 		DamageRadius=270.000000
 		MomentumTransfer=10000.000000
+		bLimitMomentumZ=False
 		HeadMult=1.0
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
@@ -165,6 +169,8 @@ defaultproperties
 		ViewOffset=(X=7.000000,Y=6.000000,Z=-13.000000)
 		SightOffset=(X=-10.000000,Y=-0.035000,Z=19.500000)
 		SightPivot=(Pitch=0)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryImpactFireParams'

@@ -151,7 +151,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=32,Max=512)
+		AimSpread=(Min=256,Max=1024)
 		SprintOffSet=(Pitch=-7000,Yaw=-3000)
 		OffsetAdjustTime=0.600000
 		JumpOffSet=(Pitch=-6000,Yaw=-1500)
@@ -167,6 +167,8 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=2,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=3,Scale=0f)
 		PlayerSpeedFactor=0.8
 		PlayerJumpFactor=0.8
 		InventorySize=12

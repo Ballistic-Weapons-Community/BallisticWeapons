@@ -15,6 +15,9 @@ defaultproperties
 		Damage=30.0
 		HeadMult=2.566666
 		LimbMult=0.666666
+		DamageType=Class'BallisticProV55.DTXK2SMG'
+		DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
+		DamageTypeArm=Class'BallisticProV55.DTXK2SMG'
 		PenetrationEnergy=11.000000
 		PenetrateForce=15
 		bPenetrate=True
@@ -86,6 +89,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=4.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		ReloadAnimRate=0.950000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

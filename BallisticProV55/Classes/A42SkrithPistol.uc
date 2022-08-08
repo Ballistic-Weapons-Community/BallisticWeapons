@@ -13,6 +13,16 @@ class A42SkrithPistol extends BallisticHandgun;
 var float NextAmmoTickTime;
 var Actor GlowFX;
 
+simulated event PreBeginPlay()
+{
+	super.PreBeginPlay();
+	if (BCRepClass.default.GameStyle == 2)
+	{
+		FireModeClass[0]=Class'BallisticProV55.A42PrimaryFireSpread';
+		FireModeClass[1]=Class'BallisticProV55.A42PrimaryFire';
+	}
+}
+
 simulated function bool CanAlternate(int Mode)
 {
 	if (Mode != 0 && OtherGun != None && A42SkrithPistol(Othergun) == None)

@@ -7,58 +7,56 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=10000.000000,Max=12000.000000)
-			WaterTraceRange=9600.0
-			DecayRange=(Min=0.0,Max=0.0)
-			RangeAtten=0.800000
-			Damage=24
-			HeadMult=3.125
-			LimbMult=0.541666
-			DamageType=Class'BWBP_SKC_Pro.DT_LK05Assault'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_LK05AssaultHead'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_LK05Assault'
-			PenetrationEnergy=32.000000
-			PenetrateForce=75
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			HookStopFactor=0.2
-			HookPullForce=-10
-			MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-			FlashScaleFactor=0.800000
-			FireSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-RapidFire',Volume=1.200000)
-			Recoil=128.000000
-			Chaos=-1.0
-			Inaccuracy=(X=96,Y=96)
-			WarnTargetPct=0.200000
-		End Object
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=10000.000000,Max=12000.000000)
+		WaterTraceRange=9600.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.800000
+		Damage=24
+		HeadMult=3.125
+		LimbMult=0.541666
+		DamageType=Class'BWBP_SKC_Pro.DT_LK05Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_LK05AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_LK05Assault'
+		PenetrationEnergy=32.000000
+		PenetrateForce=75
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		HookStopFactor=0.2
+		HookPullForce=-10
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C'
+		FlashScaleFactor=0.800000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LK05.LK05-RapidFire',Volume=1.200000)
+		Recoil=128.000000
+		Chaos=-1.0
+		Inaccuracy=(X=96,Y=96)
+		WarnTargetPct=0.200000
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.080000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.080000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
+		FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.300000
+	End Object
 	
-		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
-			FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.300000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=1.300000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=1.300000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -102,6 +100,12 @@ defaultproperties
 		SightingTime=0.200000
 		MagAmmo=25
 		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
+		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9)
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

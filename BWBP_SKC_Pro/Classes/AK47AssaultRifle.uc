@@ -372,8 +372,8 @@ defaultproperties
 	ManualLines(2)="The AK-490 has a melee attack option. The damage is weakened if the knife has been fired.||The Weapon Function key ||This weapon is effective at medium range."
 	SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;0.5;0.8;0.0")
 	MeleeFireClass=Class'BWBP_SKC_Pro.AK47MeleeFire'
-	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
-	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-Draw',Volume=3.500000)
+	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-Putaway',Volume=3.500000)
 	CockAnimPostReload="ReloadEndCock"
 	CockingBringUpTime=1.300000
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-Cock',Volume=3.500000)

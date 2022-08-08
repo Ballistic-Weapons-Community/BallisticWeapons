@@ -1,5 +1,19 @@
 class CX85Attachment extends BallisticAttachment;
 
+
+
+simulated Event PreBeginPlay()
+{
+	super.PreBeginPlay();
+
+	if (CX85AssaultWeapon(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	{
+		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_CX61Spectre';
+		TracerChance=1;
+		TracerMix=0;
+	}
+}
+
 simulated function GenerateModeInfo()
 {
     Super.GenerateModeInfo();

@@ -7,38 +7,51 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-			TraceRange=(Min=12000.000000,Max=15000.000000)
-			WaterTraceRange=12000.0
-			DecayRange=(Min=0.0,Max=0.0)
-			Damage=35.0
-			HeadMult=3.0
-			LimbMult=0.5
-			DamageType=Class'BallisticProV55.DTSRS900Rifle'
-			DamageTypeHead=Class'BallisticProV55.DTSRS900RifleHead'
-			DamageTypeArm=Class'BallisticProV55.DTSRS900Rifle'
-			PenetrationEnergy=48.000000
-			PenetrateForce=180
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
-			FlashScaleFactor=0.500000
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=130.000000
-			Chaos=0.015000
-			Inaccuracy=(X=2,Y=2)
-			WarnTargetPct=0.200000
-		End Object
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=12000.000000,Max=15000.000000)
+		WaterTraceRange=12000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=35.0
+		HeadMult=3.0
+		LimbMult=0.5
+		DamageType=Class'BallisticProV55.DTSRS900Rifle'
+		DamageTypeHead=Class'BallisticProV55.DTSRS900RifleHead'
+		DamageTypeArm=Class'BallisticProV55.DTSRS900Rifle'
+		PenetrationEnergy=48.000000
+		PenetrateForce=180
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C'
+		FlashScaleFactor=0.500000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=130.000000
+		Chaos=0.015000
+		Inaccuracy=(X=2,Y=2)
+		WarnTargetPct=0.200000
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=0.125000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.125000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
+	End Object
+	
+	//=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -85,6 +98,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

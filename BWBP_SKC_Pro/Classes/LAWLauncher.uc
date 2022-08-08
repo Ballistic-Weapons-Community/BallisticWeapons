@@ -33,6 +33,18 @@ replication
 		bLaserOn;
 }
 
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle != 0)
+	{
+		PutDownTime=2.500000;
+		BringUpTime=3.00000;
+		SelectAnimRate=1.0;
+		PutDownAnimRate=1.0;
+	}
+}
+
 simulated function OutOfAmmo()
 {
 	local int channel;
@@ -367,6 +379,7 @@ defaultproperties
 
 	ParamsClasses(0)=Class'LAWWeaponParams'
 	ParamsClasses(1)=Class'LAWWeaponParamsClassic'
+	ParamsClasses(2)=Class'LAWWeaponParamsRealistic'
 	 
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LAWPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LAWSecondaryFire'
@@ -382,7 +395,7 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.90000
 	CurrentRating=0.90000
-	Description="The FGM-70 LAW represents an advance in portable nuclear technology. Using clean miniature nuclear rockets with no fallout, it is suitable for general deployment within the common soldiery. Able to inflict devastation either immediately through an explosion or over time through generating penetrative shockwaves, the FGM-70 can change the course of combat."
+	Description="The FGM-70 LAW represents an advancement in portable nuclear technology. Using clean miniature nuclear rockets with no fallout, it is suitable for general deployment within the common soldiery. Able to inflict devastation either immediately through an explosion or over time through generating penetrative shockwaves, the FGM-70 can change the course of combat."
 	Priority=164
 	HudColor=(G=200,R=0)
 	CenteredOffsetY=10.000000

@@ -40,7 +40,7 @@ simulated function bool AllowFire()
 
 function PlayFiring()
 {
-	if (BW.MagAmmo - ConsumedLoad < 1)
+	if (BW.MagAmmo - ConsumedLoad < 1 || M763Shotgun(BW).BCRepClass.default.GameStyle != 0)
 	{
 		AimedFireAnim = 'FireSight';
 		FireAnim = 'Fire';
@@ -55,7 +55,7 @@ function PlayFiring()
 
 function ServerPlayFiring()
 {
-	if (BW.MagAmmo - ConsumedLoad < 1)
+	if (BW.MagAmmo - ConsumedLoad < 1 || M763Shotgun(BW).BCRepClass.default.GameStyle != 0)
 	{
 		AimedFireAnim = 'FireSight';
 		FireAnim = 'Fire';

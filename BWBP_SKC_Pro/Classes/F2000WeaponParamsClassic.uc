@@ -21,7 +21,7 @@ defaultproperties
 		PenetrateForce=150
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
-		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter_C'
 		FlashScaleFactor=0.500000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=96.000000
@@ -50,6 +50,7 @@ defaultproperties
 		HeadMult=2.000000
 		LimbMult=0.500000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
+		RadiusFallOffType=RFO_Linear
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LAW.LAW-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=1024.000000
 		Chaos=-1.0
@@ -57,7 +58,8 @@ defaultproperties
 		SplashDamage=True
 		RecommendSplashDamage=True
 		BotRefireRate=0.300000
-		WarnTargetPct=0.300000	
+		WarnTargetPct=0.300000
+		bLimitMomentumZ=False
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
@@ -111,6 +113,8 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

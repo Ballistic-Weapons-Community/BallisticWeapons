@@ -36,21 +36,55 @@ var() int	     	SGShells;
 var byte			OldWeaponMode;
 var() float			GunCockTime;		// Used so players cant interrupt the shotgun.
 
+var	RX22AFireControl	FireControl;
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
-	    SGShells;
+	    SGShells, FireControl;
 	reliable if (ROLE==ROLE_Authority)
 		ClientOverCharge, ClientSetHeat;
 }
 
+simulated event PreBeginPlay()
+{
+	super.PreBeginPlay();
+	if (BCRepClass.default.GameStyle != 0)
+	{
+		FireModeClass[1]=Class'BWBP_SKC_Pro.CYLOFirestormSecondaryShotgunFire';
+	}
+}
+
 simulated event PostNetBeginPlay()
 {
+	local RX22AFireControl FC;
+	
 	super.PostNetBeginPlay();
+
 	if (BCRepClass.default.GameStyle == 1)
 	{
 		bVariableHeatProps=true;
 	}
+	else if (BCRepClass.default.GameStyle == 2)
+	{
+		CYLOFirestormPrimaryFire(FireMode[0]).HeatPerShot = 0.1;
+	}
+	
+	if (Role == ROLE_Authority && FireControl == None)
+	{
+		foreach DynamicActors (class'RX22AFireControl', FC)
+		{
+			FireControl = FC;
+			return;
+		}
+		FireControl = Spawn(class'RX22AFireControl', None);
+	}
+	
+}
+
+function RX22AFireControl GetFireControl()
+{
+	return FireControl;
 }
 
 
@@ -700,7 +734,7 @@ defaultproperties
 	AttachmentClass=Class'BWBP_SKC_Pro.CYLOFirestormAttachment'
 	IconMaterial=Texture'BWBP_SKC_Tex.CYLO.SmallIcon_CYLOMk4'
 	IconCoords=(X2=127,Y2=31)
-	ItemName="[B] CYLO Firestorm V"
+	ItemName="CYLO Firestorm V"
 	LightType=LT_Pulse
 	LightEffect=LE_NonIncidence
 	LightHue=30

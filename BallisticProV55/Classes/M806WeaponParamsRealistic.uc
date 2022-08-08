@@ -14,6 +14,9 @@ defaultproperties
 		Damage=47.0
 		HeadMult=2.276595
 		LimbMult=0.617021
+		DamageType=Class'BallisticProV55.DTM806Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTM806PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTM806Pistol'
 		PenetrationEnergy=9.000000
 		PenetrateForce=30
 		bPenetrate=True
@@ -101,6 +104,11 @@ defaultproperties
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-6.000000)
 		SightOffset=(X=-5.000000,Y=-1.315,Z=12.600000)
 		SightPivot=(Pitch=-110,Roll=-675)              //Aligned
+		bAdjustHands=true
+		RootAdjust=(Yaw=-375,Pitch=3500)
+		WristAdjust=(Yaw=-3500,Pitch=-000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.400000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

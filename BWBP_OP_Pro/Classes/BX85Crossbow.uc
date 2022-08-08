@@ -51,6 +51,14 @@ replication
 	reliable if (Role < ROLE_Authority)
 		ServerAdjustThermal;
 }
+simulated event PreBeginPlay()
+{
+	super.PreBeginPlay();
+	if (BCRepClass.default.GameStyle != 0)
+	{
+		FireModeClass[0]=Class'BWBP_OP_Pro.BX85PrimaryBoltFire';
+	}
+}
 
 //change mag rotation if after firing, as well as code to continue reloading
 simulated function AnimEnded (int Channel, name anim, float frame, float rate)
@@ -621,6 +629,8 @@ defaultproperties
 	MaxZoom=16.000000
 	ZoomStages=3
 	ParamsClasses(0)=Class'BX85WeaponParams'
+	ParamsClasses(1)=Class'BX85WeaponParamsClassic'
+	ParamsClasses(2)=Class'BX85WeaponParamsRealistic'
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.XBow.CockFast',Volume=1.200000)
 	FireModeClass(0)=Class'BWBP_OP_Pro.BX85PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'

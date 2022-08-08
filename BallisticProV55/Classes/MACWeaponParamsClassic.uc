@@ -7,36 +7,38 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-			ProjectileClass=Class'BallisticProV55.MACShell'
-			SpawnOffset=(X=28.000000,Y=10.000000)
-			Speed=25000.000000
-			MaxSpeed=25000.000000
-			Damage=350.000000
-			DamageRadius=192.000000
-			MomentumTransfer=80000.000000
-			HeadMult=1.0
-			LimbMult=1.0
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-			FlashScaleFactor=2.500000
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Fire')
-			Recoil=8000.000000
-			Chaos=0.800000
-			PushbackForce=1000.000000
-			Inaccuracy=(X=4,Y=4)
-			SplashDamage=True
-			RecommendSplashDamage=True
-			BotRefireRate=0.500000
-			WarnTargetPct=0.300000	
-		End Object
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+		ProjectileClass=Class'BallisticProV55.MACShell'
+		SpawnOffset=(X=28.000000,Y=10.000000)
+		Speed=25000.000000
+		MaxSpeed=25000.000000
+		Damage=350.000000
+		DamageRadius=192.000000
+		MomentumTransfer=80000.000000
+		bLimitMomentumZ=False
+		HeadMult=1.0
+		LimbMult=1.0
+		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
+		FlashScaleFactor=2.500000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Fire')
+		Recoil=8000.000000
+		Chaos=0.800000
+		PushbackForce=1000.000000
+		Inaccuracy=(X=4,Y=4)
+		SplashDamage=True
+		RecommendSplashDamage=True
+		BotRefireRate=0.500000
+		WarnTargetPct=0.300000	
+	End Object
 
-		Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-			FireInterval=1.500000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=1.500000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE

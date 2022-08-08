@@ -7,37 +7,39 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-		Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-			TraceRange=(Min=8000.000000,Max=9000.000000)
-			WaterTraceRange=7200.0
-			DecayRange=(Min=0.0,Max=0.0)
-			Damage=80
-			HeadMult=1.4375
-			LimbMult=0.375
-			DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DTAH250PistolHead'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DTAH250Pistol'
-			PenetrationEnergy=32.000000
-			PenetrateForce=200
-			bPenetrate=True
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
-			FlashScaleFactor=0.500000
-			FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Pitch=0.900000,Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
-			Recoil=2048.000000
-			Chaos=-1.0
-			Inaccuracy=(X=4,Y=4)
-			BotRefireRate=0.900000
-			WarnTargetPct=0.100000
-		End Object
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
+		TraceRange=(Min=8000.000000,Max=9000.000000)
+		WaterTraceRange=7200.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=80
+		HeadMult=1.4375
+		LimbMult=0.375
+		DamageType=Class'BWBP_SKC_Pro.DTAH250Pistol'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTAH250PistolHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTAH250Pistol'
+		PenetrationEnergy=32.000000
+		PenetrateForce=200
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
+		FlashScaleFactor=0.500000
+		//FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Pitch=0.900000,Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-Fire4',Pitch=0.900000,Volume=1.750000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=2048.000000
+		Chaos=-1.0
+		Inaccuracy=(X=4,Y=4)
+		BotRefireRate=0.900000
+		WarnTargetPct=0.100000
+	End Object
 
-		Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-			FireInterval=0.400000
-			BurstFireRateFactor=1.00
-			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
+		FireInterval=0.400000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+		FireAnimRate=1.500000	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -47,10 +49,10 @@ defaultproperties
 		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.600000
 		YRandFactor=0.900000
-		YawFactor=0.100000
+		YawFactor=0.200000
 		MaxRecoil=7168.000000
 		DeclineTime=1.600000
-		DeclineDelay=0.200000
+		DeclineDelay=0.000000
 		ViewBindFactor=0.050000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
@@ -62,7 +64,7 @@ defaultproperties
 	//=================================================================
 	
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=128,Max=2900)
+		AimSpread=(Min=168,Max=2900)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000

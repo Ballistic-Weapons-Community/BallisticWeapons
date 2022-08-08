@@ -115,6 +115,8 @@ defaultproperties
 		InventorySize=45
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

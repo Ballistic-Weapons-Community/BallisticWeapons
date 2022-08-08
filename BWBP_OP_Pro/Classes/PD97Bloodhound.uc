@@ -7,6 +7,11 @@
 //
 // Secondary fire launches a tazer with a limited maximum range. This applies slow and damage 
 // over time. Breaking line of sight or angling around the user will remove the tazer's effect.
+//
+// In classic and realistic, this gun performs differently. Primary is a light missile.
+// Secondary is a tracker dart that guides the missiles.
+//
+// Coded by a bunch of people.
 //===========================================================================
 class PD97Bloodhound extends BallisticHandgun;
 
@@ -18,6 +23,38 @@ var byte DrumPos;
 
 var array<Name> ShellBones[5];
 var array<Name> SpareShellBones[5];
+
+//Gyrojet variables
+var   Pawn			LockedTarget;
+var	  bool			bLockedOn;
+var   Actor			CurrentRocket;			//Current rocket of interest. The rocket that can be used as camera or directed with laser
+var array<Actor> ActiveRockets;
+var() sound		LockedOnSound;		// beep!
+var() sound		LockedOffSound;		// lock it off
+
+
+replication
+{
+	reliable if(Role==ROLE_Authority)
+		CurrentRocket, LockedTarget, bLockedOn;
+
+	reliable if(Role<ROLE_Authority)
+		ServerSetRocketTarget;
+
+	reliable if (Role == ROLE_Authority)
+	    ClientAddProjectile, ClientRemoveProjectile;
+}
+
+
+simulated event PreBeginPlay()
+{
+	super.PreBeginPlay();
+	if (BCRepClass.default.GameStyle != 0)
+	{
+		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryMissileFire';
+		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryTracerFire';
+	}
+}
 
 simulated function ShellFired()
 {
@@ -232,6 +269,12 @@ simulated function WeaponTick (float DT)
 		TazerEffect.bHidden = False;
 		TazerEffect.SetLocation(BallisticAttachment(ThirdPersonActor).GetModeTipLocation());
 	}
+	
+	if (LockedTarget != None )
+	{
+		ServerSetRocketTarget(LockedTarget.Location);
+	}
+	
 }
 
 simulated function vector ConvertFOVs (vector InVec, float InFOV, float OutFOV, float Distance)
@@ -252,6 +295,87 @@ simulated function vector ConvertFOVs (vector InVec, float InFOV, float OutFOV, 
 	return OutVec + ViewLoc;
 }
 
+//===========================================================================
+// Gyrojet implementation.
+//===========================================================================
+
+exec simulated function WeaponSpecial(optional byte i)
+{
+	if (bLockedOn)
+		BreakLock();
+}
+
+
+function AddProjectile(Actor Proj)
+{
+	ActiveRockets[ActiveRockets.Length] = Proj;
+	ClientAddProjectile(Proj);
+}
+
+simulated function ClientAddProjectile(Actor Proj)
+{
+	ActiveRockets[ActiveRockets.Length] = Proj;
+}
+
+function LostChild(Actor Proj)
+{
+	local int i;
+	
+	if (PD97Rocket(Proj) != None)
+	{
+		for (i=0; i < ActiveRockets.Length && ActiveRockets[i] != Proj; i++);
+		
+		if (i < ActiveRockets.Length)
+		{
+			ActiveRockets.Remove(i, 1);
+			ClientRemoveProjectile(Proj);
+		}
+	}
+}
+
+simulated function ClientRemoveProjectile(Actor Proj)
+{
+	local int i;
+	
+	for (i=0; i < ActiveRockets.Length && ActiveRockets[i] != Proj; i++);
+	
+	if (i < ActiveRockets.Length)
+		ActiveRockets.Remove(i, 1);
+}
+
+simulated function GotTarget(Pawn A)
+{
+	LockedTarget = A;
+	bLockedOn = true;
+	Log("bLockedOn: "$bLockedOn);
+	Log("LockedTarget:" $LockedTarget);
+    PlaySound(LockedOnSound,,0.7,,16);
+}
+
+simulated function BreakLock()
+{
+	bLockedOn = false;
+    PlaySound(LockedOffSound,,0.7,,16);
+}
+
+function ServerSetRocketTarget(vector Loc)
+{
+	local int i;
+		//TargetLocation = Loc;
+	for (i=0; i< ActiveRockets.Length; i++)
+	{
+		PD97Rocket(ActiveRockets[i]).SetRocketTarget(LockedTarget);
+	}
+//	if (CurrentRocket != None && PD97Rocket(CurrentRocket) != None)
+//		PD97Rocket(CurrentRocket).SetTargetLocation(Loc);
+}
+
+simulated function vector GetRocketTarget()
+{
+	return LockedTarget.Location;
+}
+
+// AI Stuff
 function byte BestMode()
 {
 	return 0;
@@ -293,6 +417,8 @@ defaultproperties
 	SpareShellBones(2)="SpareShell3"
 	SpareShellBones(3)="SpareShell4"
 	SpareShellBones(4)="SpareShell5"
+    LockedOnSound=Sound'MenuSounds.select3'
+    LockedOffSound=Sound'2K4MenuSounds.Generic.msfxDown'
 	bShouldDualInLoadout=False
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
@@ -319,6 +445,8 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	SightingTime=0.200000
 	ParamsClasses(0)=Class'PD97WeaponParams'
+	ParamsClasses(1)=Class'PD97WeaponParamsClassic'
+	ParamsClasses(2)=Class'PD97WeaponParamsClassic'
 	FireModeClass(0)=Class'BWBP_OP_Pro.PD97PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.PD97SecondaryFire'
 	PutDownTime=0.600000

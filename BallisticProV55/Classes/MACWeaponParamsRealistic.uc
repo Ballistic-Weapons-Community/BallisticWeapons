@@ -81,6 +81,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.000000
 		MagAmmo=5
+        ZoomType=ZT_Logarithmic
 		ViewOffset=(X=3.000000,Y=12.000000,Z=-3.000000)
 		SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

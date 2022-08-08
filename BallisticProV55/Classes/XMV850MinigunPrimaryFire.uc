@@ -18,6 +18,7 @@ var float	LagTime;
 var	int		TraceCount;
 
 var bool	bStarted;
+var bool	bRequireSpool;
 
 var float	NextTVUpdateTime;
 
@@ -260,11 +261,11 @@ simulated event ModeDoFire()
 		return;
 	
 	
-	/*
-	// won't fire if spinning slower than lowest rotation speed
-	if (Minigun.BarrelSpeed <  Minigun.RotationSpeeds[0]) //Minigun.DesiredSpeed)
+	
+	// won't fire if spinning slower than desired speed
+	if (bRequireSpool && Minigun.BarrelSpeed <  Minigun.DesiredSpeed)
         return;
-	*/
+	
 
 	BW.bPreventReload=true;
 	BW.FireCount++;

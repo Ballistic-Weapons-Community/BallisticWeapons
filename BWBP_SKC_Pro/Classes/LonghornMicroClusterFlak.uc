@@ -259,6 +259,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
+	bApplyParams=False
 	DetonateDelayRange=(Min=0.75,Max=1.250000)
 	DetonateOn=DT_ImpactTimed
 	PlayerImpactType=PIT_Detonate

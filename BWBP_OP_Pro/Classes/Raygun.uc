@@ -545,6 +545,8 @@ defaultproperties
 	SightDisplayFOV=25.000000
 	SightZoomFactor=0.85
 	ParamsClasses(0)=Class'RaygunWeaponParams'
+	ParamsClasses(1)=Class'RaygunWeaponParamsClassic'
+	ParamsClasses(2)=Class'RaygunWeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_OP_Pro.RaygunPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.RaygunSecondaryFire'
 	BringUpTime=0.500000

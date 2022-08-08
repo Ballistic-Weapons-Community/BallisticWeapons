@@ -15,6 +15,9 @@ defaultproperties
 		Damage=55.0
 		HeadMult=2.127272
 		LimbMult=0.654545
+		DamageType=Class'BallisticProV55.DTSRS900Rifle'
+		DamageTypeHead=Class'BallisticProV55.DTSRS900RifleHead'
+		DamageTypeArm=Class'BallisticProV55.DTSRS900Rifle'
 		PenetrationEnergy=24.000000
 		PenetrateForce=125
 		bPenetrate=True
@@ -36,7 +39,21 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
-		
+	
+	//=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
+	End Object	
+	
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -51,7 +68,7 @@ defaultproperties
 		DeclineTime=0.900000
 		DeclineDelay=0.180000;
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
+		ADSViewBindFactor=1.000000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -82,10 +99,13 @@ defaultproperties
 		MagAmmo=20
 		ViewOffset=(X=-1.000000,Y=6.000000,Z=-11.000000)
 		SightOffset=(X=24.000000,Z=11.800000)
+        ZoomType=ZT_Logarithmic
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

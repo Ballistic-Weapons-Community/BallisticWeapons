@@ -15,6 +15,9 @@ defaultproperties
 		Damage=45.0
 		HeadMult=2.266666
 		LimbMult=0.666666
+		DamageType=Class'BallisticProV55.DTXMV850MG'
+		DamageTypeHead=Class'BallisticProV55.DTXMV850MGHead'
+		DamageTypeArm=Class'BallisticProV55.DTXMV850MG'
 		PenetrationEnergy=18.000000
 		PenetrateForce=65
 		bPenetrate=True
@@ -105,6 +108,11 @@ defaultproperties
 		ViewOffset=(X=7.000000,Y=6.000000,Z=-18.000000)
 		SightOffset=(X=8.000000,Z=28.000000)
 		SightPivot=(Pitch=700,Roll=2048)
+		WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="2400 RPM",ModeID="WM_FullAuto",bUnavailable=True)
+		WeaponModes(2)=(ModeName="3600 RPM",ModeID="WM_FullAuto")
+		ReloadAnimRate=0.800000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

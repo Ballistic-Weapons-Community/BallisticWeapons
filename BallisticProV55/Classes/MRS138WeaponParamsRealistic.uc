@@ -7,13 +7,19 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
+	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=600.000000,Max=3000.000000)
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
+		TraceCount=13
+		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
+		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=20.0
 		HeadMult=2.15
 		LimbMult=0.6
+		DamageType=Class'BallisticProV55.DTMRS138Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTMRS138ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTMRS138Shotgun'
 		PenetrateForce=10
 		bPenetrate=True
 		PDamageFactor=0.6
@@ -24,17 +30,18 @@ defaultproperties
 		Recoil=1792.000000
 		Chaos=-1.0
 		Inaccuracy=(X=900,Y=900)
+		HipSpreadFactor=1.000000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.500000
+		FireInterval=0.800000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True
 		FireEndAnim=
-		FireAnimRate=1.3500000	
-	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
+		FireAnimRate=0.8500000	
+		FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
 	//=================================================================
@@ -114,6 +121,8 @@ defaultproperties
 		MagAmmo=5
 		ViewOffset=(X=-1.000000,Y=8.500000,Z=-16.000000)
 		SightOffset=(X=-3.000000,Z=17.150000)
+		ReloadAnimRate=1.250000
+		CockAnimRate=1.400000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

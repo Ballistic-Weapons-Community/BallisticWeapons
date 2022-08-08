@@ -14,6 +14,9 @@ defaultproperties
 		Damage=37.0
 		HeadMult=2.216216
 		LimbMult=0.594594
+		DamageType=Class'BallisticProV55.DTRS8Pistol'
+		DamageTypeHead=Class'BallisticProV55.DTRS8PistolHead'
+		DamageTypeArm=Class'BallisticProV55.DTRS8Pistol'
 		PenetrationEnergy=9.000000
 		PenetrateForce=35
 		bPenetrate=True
@@ -100,6 +103,11 @@ defaultproperties
 		ViewOffset=(X=3.000000,Y=8.000000,Z=-9.000000)
 		SightOffset=(X=-18.000000,Y=-2.000000,Z=18.8750000)
 		SightPivot=(Pitch=-200,Roll=-1050)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-290,Pitch=3000)
+		WristAdjust=(Yaw=-3000,Pitch=-000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.200000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

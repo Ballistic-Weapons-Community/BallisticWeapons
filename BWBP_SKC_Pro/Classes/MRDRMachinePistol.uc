@@ -9,10 +9,13 @@
 //=============================================================================
 class MRDRMachinePistol extends BallisticHandgun;
 
+var() Sound		SlideReleaseSound;
+var() Sound		ClipOutSound2;
+
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.default.GameStyle != 0)
 	{
 		bUseSights=True;
 	}
@@ -77,6 +80,104 @@ simulated function Notify_MRDRMelee()
 		BFireMode[1].BallisticFireSound.bAtten);
 }
 
+simulated function Notify_ClipOut2()
+{
+	PlaySound(ClipOutSound2,,0.8);
+}
+
+simulated function Notify_SlideRelease()
+{
+	PlaySound(SlideReleaseSound,,0.8);
+}
+
+// Relocate the weapon according to sight view.
+// Improved ironsights.
+// SightZoomFactor used instead of FullZoomFOV.
+simulated function PositionSights()
+{
+	local Vector SightPos, Offset, NewLoc, OldLoc;//, X,Y,Z;
+	local PlayerController PC;
+
+	//bots can't use sights
+	PC=PlayerController(InstigatorController);
+
+	if (SightBone != '')
+		SightPos = GetBoneCoords(SightBone).Origin - Location;
+
+	OldLoc = Instigator.Location + Instigator.CalcDrawOffset(self);
+	Offset = SightOffset; Offset.X += float(Normalize(Instigator.GetViewRotation()).Pitch) / 4096;
+	NewLoc = (PC.CalcViewLocation-(Instigator.WalkBob * (1-SightingPhase))) - (SightPos + ViewAlignedOffset(Offset));
+
+	if (SightingPhase >= 1.0)
+	{	// Weapon locked in sight view
+		SetLocation(NewLoc);
+		SetRotation(Instigator.GetViewRotation() + SightPivot);
+		DisplayFOV = SightDisplayFOV;
+
+		if (SightingState == SS_Raising)
+		{
+			AimComponent.OnADSViewStart();
+			RcComponent.OnADSViewStart();
+		}
+
+		if (ZoomType == ZT_Irons)
+			PC.DesiredFOV = PC.DefaultFOV * SightZoomFactor;
+	}
+	
+	else if (SightingPhase <= 0.0)
+	{	// Weapon completely lowered
+		SetLocation(OldLoc);
+		SetRotation(Instigator.GetViewRotation());
+		DisplayFOV = default.DisplayFOV;
+		PlayerController(InstigatorController).bZooming = False;
+
+		if (SightingState == SS_Lowering)
+		{
+			AimComponent.OnADSViewEnd();
+			RcComponent.OnADSViewEnd();
+		}
+
+		if(ZoomType == ZT_Irons)
+		{
+	        PC.DesiredFOV = PC.DefaultFOV;
+			PlayerController(InstigatorController).SetFOV(PlayerController(InstigatorController).DefaultFOV);
+			PlayerController(InstigatorController).bZooming = False;
+		}
+	}
+	else
+	{	// Gun is on the move...
+		SetLocation(class'BUtil'.static.VSmerp(SightingPhase, OldLoc, NewLoc));
+		SetRotation(Instigator.GetViewRotation() + SightPivot * SightingPhase);
+		DisplayFOV = Smerp(SightingPhase, default.DisplayFOV, SightDisplayFOV);
+
+		AimComponent.UpdateADSTransition(SightingPhase);
+		RcComponent.UpdateADSTransition(SightingPhase);
+
+		if (ZoomType == ZT_Irons)
+	        PC.DesiredFOV = PC.DefaultFOV * (Lerp(SightingPhase, 1, SightZoomFactor));
+	}
+	if (bAdjustHands)
+    {
+        if (SightingPhase <= 0.0)
+    	{
+        	SetBoneRotation('root', rot(0,0,0));
+        	SetBoneRotation('RightElbow', rot(0,0,0));
+        	SetBoneRotation('rightwrist', rot(0,0,0));
+        }
+    	else if (SightingPhase >= 1.0 )
+    	{
+        	SetBoneRotation('root', RootAdjust);
+        	SetBoneRotation('RightElbow', RootAdjust);
+            SetBoneRotation('rightwrist', WristAdjust);
+    	}
+        else
+    	{
+        	SetBoneRotation('root', class'BUtil'.static.RSmerp(SightingPhase, rot(0,0,0), RootAdjust));
+        	SetBoneRotation('RightElbow', class'BUtil'.static.RSmerp(SightingPhase, rot(0,0,0), RootAdjust));
+            SetBoneRotation('rightwrist', class'BUtil'.static.RSmerp(SightingPhase, rot(0,0,0), WristAdjust));
+        }
+    }
+}
 
 // AI Interface =====
 // choose between regular or alt-fire
@@ -201,7 +302,9 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-Cock',Volume=0.800000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-ClipOut',Volume=0.700000)
+	ClipOutSound2=Sound'BWBP_SKC_Sounds.MRDR.MRDR-ClipRel'
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MRDR.MRDR-ClipIn',Volume=0.700000)
+	SlideReleaseSound=Sound'BW_Core_WeaponSound.M806.M806-ClipHit'
 	ClipInFrame=0.650000
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,R=134,A=71),Color2=(B=99,G=228,R=255,A=161),StartSize1=99,StartSize2=33)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
@@ -217,6 +320,7 @@ defaultproperties
 	CurrentRating=0.6
 	ParamsClasses(0)=Class'MRDRWeaponParams'
 	ParamsClasses(1)=Class'MRDRWeaponParamsClassic'
+	ParamsClasses(2)=Class'MRDRWeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MRDRPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MRDRSecondaryFire'
 	PutDownTime=0.400000

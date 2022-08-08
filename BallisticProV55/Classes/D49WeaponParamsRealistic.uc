@@ -14,6 +14,9 @@ defaultproperties
 		Damage=87.0
 		HeadMult=2.356321
 		LimbMult=0.586206
+		DamageType=Class'BallisticProV55.DTD49Revolver'
+		DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
+		DamageTypeArm=Class'BallisticProV55.DTD49Revolver'
 		PenetrationEnergy=14.000000
 		PenetrateForce=50
 		bPenetrate=True
@@ -48,8 +51,11 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=87.0
-		HeadMult=2.298850
-		LimbMult=0.586206
+		HeadMult=2.3f
+		LimbMult=0.6f
+		DamageType=Class'BallisticProV55.DTD49Revolver'
+		DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
+		DamageTypeArm=Class'BallisticProV55.DTD49Revolver'
 		PenetrationEnergy=14.000000
 		PenetrateForce=50
 		bPenetrate=True
@@ -122,6 +128,11 @@ defaultproperties
 		ViewPivot=(Pitch=512)
 		SightOffset=(X=-20.000000,Y=-3.500000,Z=23.9500000)
 		SightPivot=(Pitch=-175,Roll=-500)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-375,Pitch=2000)
+		WristAdjust=(Yaw=-2500,Pitch=-0000)
+		ReloadAnimRate=1.700000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

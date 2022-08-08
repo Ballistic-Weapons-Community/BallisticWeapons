@@ -31,13 +31,14 @@ var Actor	ClawSpark1;			// Sparks attached to claws when tracking enemy
 var Actor	ClawSpark2;
 var float	ClawAlpha;			// An alpha amount for claw movement interpolation
 
+var bool		bLatchedOn;
+
 
 replication
 {
 	reliable if (Role==ROLE_Authority)
-		ChargeControl, ClientOverCharge, ClientSetHeat;
+		ChargeControl, ClientOverCharge, ClientSetHeat, bLatchedOn;
 }
-
 
 
 simulated function PostNetBeginPlay()
@@ -623,6 +624,7 @@ defaultproperties
      WeaponModes(1)=(ModeName="Max Safe Voltage",Value=5.000000)
      WeaponModes(2)=(ModeName="Overload")
 	CurrentWeaponMode=2
+	ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
 //     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=-0.300000),(InVal=0.600000,OutVal=-0.250000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000,OutVal=-0.300000)))
 //     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=-0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.300000),(InVal=1.000000,OutVal=0.600000)))
      SightOffset=(X=-25.000000,Z=19.500000)
@@ -646,9 +648,12 @@ defaultproperties
 //     RecoilYFactor=0.250000
 //     RecoilMax=1600.000000
 //     RecoilDeclineTime=0.800000
+	PutDownTime=1.500000
+	BringUpTime=1.50000
+    SelectAnimRate=1.0
+    PutDownAnimRate=1.0
      FireModeClass(0)=Class'BWBP_SKC_Pro.Supercharger_PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.Supercharger_SecondaryFire'
-     PutDownTime=0.700000
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000
      CurrentRating=0.600000
@@ -657,9 +662,9 @@ defaultproperties
      DisplayFOV=55.000000
      Priority=41
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=4
+     InventoryGroup=5
      PickupClass=Class'BWBP_SKC_Pro.Supercharger_Pickup'
-     PlayerViewOffset=(X=5.000000,Y=5.000000,Z=-11.000000)
+     PlayerViewOffset=(X=5.000000,Y=5.000000,Z=-14.000000)
      BobDamping=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.Supercharger_Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.AK91.SmallIcon_AK91'
