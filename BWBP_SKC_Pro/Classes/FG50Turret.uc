@@ -88,7 +88,7 @@ defaultproperties
      CameraElevation=5.000000
      GunBone="Weapon"
      PivotBone="StandPivot"
-     DriverBackOff=45.000000
+     DriverBackOff=100.000000
      bDrawDriverInTP=True
      VehicleNameString="FG50 Mounted Machinegun"
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FG50_Turret_TPm'
