@@ -20,6 +20,7 @@ simulated event PostNetBeginPlay()
 		CockAnim = 'Cock';
 		CockAnimPostReload = 'Cock'; 
 		CockSound.Sound=Sound'BW_Core_WeaponSound.R78.R78-Cock';
+		R78PrimaryFire(FireMode[0]).bExplosive = false;
 	}
 }
 
@@ -107,7 +108,7 @@ defaultproperties
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipIn')
      ClipInFrame=0.650000
      bCockOnEmpty=True
-     WeaponModes(0)=(ModeName="Semi-Automatic")
+     WeaponModes(0)=(ModeName="Bolt-Action")
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0

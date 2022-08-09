@@ -89,5 +89,5 @@ defaultproperties
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
     End Object 
-    Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(0)=WeaponParams'ClassicParams'
 }

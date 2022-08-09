@@ -1,57 +1,55 @@
-class R9WeaponParamsRealistic extends BallisticWeaponParams;
+class M353TW_WeaponParamsRealistic extends BallisticWeaponParams;
 
 defaultproperties
 {
-
-	//=================================================================
-	// PRIMARY FIRE
-	//=================================================================	
+    //=================================================================
+    // PRIMARY FIRE
+    //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=2000.000000,Max=10000.000000)
+		TraceRange=(Min=1600.000000,Max=8000.000000)
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
-		Damage=93.0
-		HeadMult=2.387096
-		LimbMult=0.677419
-		DamageType=Class'BallisticProV55.DTR9Rifle'
-		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
-		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
-		PenetrationEnergy=27.000000
-		PenetrateForce=200
+		Damage=45.0
+		HeadMult=2.26
+		LimbMult=0.66
+		DamageType=Class'BallisticProV55.DTM353MG'
+		DamageTypeHead=Class'BallisticProV55.DTM353MGHead'
+		DamageTypeArm=Class'BallisticProV55.DTM353MG'
+		PenetrationEnergy=18.000000
+		PenetrateForce=55
 		bPenetrate=True
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-		FlashScaleFactor=2.000000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.USSR.USSR-Fire',Volume=1.000000,Pitch=1.000000)
-		Recoil=1024.000000
-		Chaos=0.100000
-		Inaccuracy=(X=9,Y=9)
-		BotRefireRate=0.150000
-		WarnTargetPct=0.050000
+		MuzzleFlashClass=Class'BallisticProV55.M353FlashEmitter'
+		FlashScaleFactor=0.850000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=32.000000
+		Chaos=0.080000
+		Inaccuracy=(X=16,Y=16)
+		WarnTargetPct=0.200000
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.250000
+		FireInterval=0.075000
 		BurstFireRateFactor=1.00
-		FireEndAnim=
-		FireAnimRate=2.000000	
+		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
-
-	//=================================================================
+		
+    //=================================================================
     // SECONDARY FIRE
     //=================================================================	
-
+	
 	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
 		BotRefireRate=0.300000
 	End Object
 	
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
-		FireInterval=0.200000
+		FireInterval=0.700000
 		AmmoPerFire=0
+		FireAnim="Undeploy"
 		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
 	End Object
 		
@@ -60,18 +58,19 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=RealisticRecoilParams
-		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
-		PitchFactor=0.60000
+		XCurve=(Points=((InVal=0.000000,OutVal=0.000000),(InVal=1.000000,OutVal=1.000000)))
+		YCurve=(Points=((InVal=0.000000,OutVal=0.000000),(InVal=1.000000,OutVal=1.000000)))
+		PitchFactor=0.100000
 		YawFactor=0.100000
-		XRandFactor=0.250000
-		YRandFactor=0.250000
-		MaxRecoil=2560
-		DeclineTime=0.800000
-		DeclineDelay=0.190000
-		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.500000
+		XRandFactor=0.400000
+		YRandFactor=0.400000
+		MaxRecoil=256.000000
+		DeclineTime=1.000000
+		DeclineDelay=0.500000
+		ViewBindFactor=0.000000
+		ADSViewBindFactor=0.350000
 		HipMultiplier=1.000000
-		CrouchMultiplier=0.700000
+		CrouchMultiplier=1.000000
 		bViewDecline=True
 	End Object
 
@@ -80,36 +79,36 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=680,Max=1664)
-		CrouchMultiplier=0.700000
+		AimSpread=(Min=256,Max=3072)
+		CrouchMultiplier=1.000000
 		ADSMultiplier=0.700000
-		ViewBindFactor=0.125000
+		ViewBindFactor=0.000000
 		SprintChaos=0.400000
-		ChaosDeclineTime=1.200000
-		ChaosSpeedThreshold=550.000000
+		ChaosDeclineTime=1.500000
+		ChaosSpeedThreshold=400
+		AimDamageThreshold=2000.000000
 	End Object
-    
+	
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		WeaponBoneScales(0)=(BoneName="RDS",Slot=13,Scale=0f)
+		PlayerSpeedFactor=0.875000
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
-		MagAmmo=12
-		ViewOffset=(X=-4.000000,Y=9.00000,Z=-13.000000)
-		SightOffset=(X=25.000000,Y=0.025000,Z=6.290000)
-		SightPivot=(Pitch=64,Yaw=0)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.250000
-		WeaponName="R9E2 .308 Ranger Rifle"
+		MagAmmo=150
+		ViewOffset=(X=11.000000,Y=-1.000000,Z=-14.000000)
+		SightOffset=(X=-5.000000,Y=0.000000,Z=4.500000)
+		SightPivot=(Pitch=0,Roll=0)
+		CockAnimRate=0.900000
+		ReloadAnimRate=0.900000
+        WeaponName="Mounted M353 Squad Machinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
-
-
+	
 }
