@@ -231,6 +231,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
 	bNoMag=True
+	bUseSights=False
 	WeaponModes(0)=(bUnavailable=True)
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(ModeName="Place")
@@ -258,7 +259,6 @@ defaultproperties
 	GroupOffset=8
 	PickupClass=Class'BallisticProV55.SandbagPickup'
 	PlayerViewOffset=(X=40.000000,Z=-10.000000)
-	bUseSights=False
 	AttachmentClass=Class'BallisticProV55.SandbagAttachment'
 	IconMaterial=Texture'BW_Core_WeaponTex.Sandbags.SmallIcon_Sandbags'
 	IconCoords=(X2=127,Y2=31)

@@ -149,7 +149,8 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-	    SightingTime=0.550000	 
+	    ReloadAnimRate=1.250000
+		SightingTime=0.550000	 
         MagAmmo=100        
         InventorySize=12
         SightMoveSpeedFactor=0.8

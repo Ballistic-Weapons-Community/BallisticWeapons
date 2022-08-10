@@ -60,6 +60,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		ReloadAnimRate=1.350000
 		SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
 		ViewOffset=(X=6.500000,Y=6.000000,Z=-6.500000)
 		PlayerSpeedFactor=1.05

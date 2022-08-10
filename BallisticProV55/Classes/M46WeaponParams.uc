@@ -90,7 +90,9 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-        SightingTime=0.500000
+        CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
+		SightingTime=0.500000
         SightMoveSpeedFactor=0.8
         MagAmmo=24
         InventorySize=12
@@ -103,6 +105,8 @@ defaultproperties
     End Object 
 
     Begin Object Class=WeaponParams Name=ArenaRDSParams
+		CockAnimRate=1.250000
+		ReloadAnimRate=1.250000
 		SightingTime=0.350000
         MagAmmo=24
         InventorySize=12

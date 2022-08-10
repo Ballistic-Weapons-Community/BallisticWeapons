@@ -61,6 +61,7 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
+		CockAnimRate=1.200000
 		SightOffset=(X=20.000000,Z=11.750000)
 		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
 		MagAmmo=20
