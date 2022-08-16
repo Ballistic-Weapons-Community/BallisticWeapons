@@ -7,13 +7,13 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
-		ProjectileClass=Class'BWBP_OP_Pro.AkeronRocket'
+		ProjectileClass=Class'BWBP_OP_Pro.AkeronRocketHE'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
-		Speed=4000.000000
+		Speed=25000.000000
 		MaxSpeed=35000.000000
 		AccelSpeed=100000.000000
-		Damage=90
-		DamageRadius=300.000000
+		Damage=200
+		DamageRadius=200.000000
 		MomentumTransfer=70000.000000
 		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
 		Recoil=128.000000
@@ -92,7 +92,7 @@ defaultproperties
 		InventorySize=12
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.500000
-		MagAmmo=9
+		MagAmmo=6
         ZoomType=ZT_Logarithmic
 		WeaponName="AN-56 Akeron Guided Missile Launcher"
         RecoilParams(0)=RecoilParams'RealisticRecoilParams'

@@ -121,7 +121,7 @@ simulated function PostBeginPlay()
 
 	if ( Level.NetMode != NM_DedicatedServer)
 	{
-		SmokeTrail = Spawn(class'G5RocketTrail',self,,Location - 40 * Dir);
+		SmokeTrail = Spawn(class'AkeronRocketTrail',self,,Location - 40 * Dir);
 		SmokeTrail.SetBase(self);
 	}
 }
@@ -135,7 +135,7 @@ simulated function PostNetBeginPlay()
 		Controller.SetRotation(Rotation);
 		PlayerController(Controller).SetViewTarget(self);
 		Controller.GotoState(LandMovementState);
-		PlayOwnedSound(Sound'BW_Core_WeaponSound.G5.G5-Fire1',SLOT_Interact,1.0);
+		PlayOwnedSound(Sound'BWBP_OP_Sounds.Akeron.Akeron-Fire',SLOT_Interact,1.0);
 	}
 }
 

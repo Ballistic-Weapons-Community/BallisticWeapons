@@ -148,6 +148,8 @@ defaultproperties
      MaxZoom=8.000000
      ZoomStages=2
      ParamsClasses(0)=Class'AkeronWeaponParams'
+     ParamsClasses(1)=Class'AkeronWeaponParamsClassic'
+     ParamsClasses(2)=Class'AkeronWeaponParamsRealistic'
      FireModeClass(0)=Class'BWBP_OP_Pro.AkeronPrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.AkeronSecondaryFire'
      SelectAnimRate=0.600000
