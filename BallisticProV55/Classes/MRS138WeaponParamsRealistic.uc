@@ -48,32 +48,23 @@ defaultproperties
 	// SECONDARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=MeleeEffectParams Name=RealisticSecondaryEffectParams
-		TraceRange=(Min=72.000000,Max=72.000000)
-		WaterTraceRange=5000.0
-		Damage=75.0
-		HeadMult=1.4
-		LimbMult=0.693333
-		DamageType=Class'BallisticProV55.DTMRS138Tazer'
-		DamageTypeHead=Class'BallisticProV55.DTMRS138Tazer'
-		DamageTypeArm=Class'BallisticProV55.DTMRS138Tazer'
-		ChargeDamageBonusFactor=1
-		PenetrationEnergy=0.000000
-		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroSwing',Radius=32.000000,bAtten=True)
-		Recoil=0.0
-		Chaos=-1.0
-		BotRefireRate=0.900000
-		WarnTargetPct=0.050000
+	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
+		ProjectileClass=Class'BallisticProV55.MRS138TazerProj'
+		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+		Speed=12800.000000
+		MaxSpeed=12800.000000
+		Damage=5
+		BotRefireRate=0.3
+		WarnTargetPct=0.5	
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.PD97.BloodhoundTazerFire',Volume=2.250000)
 	End Object
-		
+
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
-		FireInterval=0.300000
+		FireInterval=0.900000
 		AmmoPerFire=0
-		BurstFireRateFactor=1.00
-		PreFireAnim="PrepAttack"
-		FireAnim="Attack"
-	FireEffectParams(0)=MeleeEffectParams'RealisticSecondaryEffectParams'
+		PreFireAnim=
+		FireAnim="TazerStart"	
+		FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'
 	End Object
 		
 	//=================================================================
@@ -121,6 +112,7 @@ defaultproperties
 		MagAmmo=5
 		ViewOffset=(X=-1.000000,Y=8.500000,Z=-16.000000)
 		SightOffset=(X=-3.000000,Z=17.150000)
+		SightPivot=(Pitch=0,Yaw=0,Roll=0)
 		ReloadAnimRate=1.250000
 		CockAnimRate=1.400000
 		WeaponName="MRS138 8ga Riot Shotgun"

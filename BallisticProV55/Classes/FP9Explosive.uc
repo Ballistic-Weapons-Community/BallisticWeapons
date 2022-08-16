@@ -164,7 +164,7 @@ exec simulated function WeaponSpecial(optional byte i)
 {
  	if (AmmoAmount(0) > 0)
 		SetBoneScale (0, 1.0, BombBone);
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.default.GameStyle != 0)
 	{
 		if (ChosenBomb == None && AmmoAmount(0) > 0)
 		{
