@@ -1,5 +1,5 @@
 //=============================================================================
-// LonghornClusterGrenadeNoDud.
+// LonghornClusterGrenadeNoDud. Used in Classic
 //
 // Feature packed low explosive grenade that spawns cluster bombs on detonate
 // Has fuse that starts on first bounce, or can be detonated manually for less
@@ -11,7 +11,7 @@
 // by Casey "Xavious" Johnson and Azarael
 // Copyright(c) 2012 Casey Johnson. All Rights Reserved.
 //=============================================================================
-class LonghornClusterGrenadeNoDud extends LonghornClusterGrenade;
+class LonghornClusterGrenadeNoDud extends BallisticGrenade;
 
 var bool                 bColored;
 var bool                 bPrimaryGrenade;
@@ -296,7 +296,6 @@ defaultproperties
      DamageRadius=450.000000
      DampenFactor=0.400000
      DampenFactorParallel=0.500000
-     ArmingDelay=0.010000
      DetonateDelay=0.65
      DetonateOn=DT_ImpactTimed
      PlayerImpactType=PIT_Detonate

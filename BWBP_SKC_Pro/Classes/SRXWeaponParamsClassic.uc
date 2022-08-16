@@ -37,6 +37,7 @@ defaultproperties
 		FireInterval=0.150000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
+		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
 	

@@ -83,6 +83,7 @@ defaultproperties
 		ViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
+		bViewDecline=True
 	End Object
 
 	//=================================================================

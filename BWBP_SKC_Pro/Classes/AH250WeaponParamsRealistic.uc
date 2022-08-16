@@ -37,7 +37,7 @@ defaultproperties
 		FireInterval=0.400000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
-		FireAnimRate=1.500000	
+		FireAnimRate=1.300000	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
@@ -52,8 +52,8 @@ defaultproperties
 		YawFactor=0.200000
 		MaxRecoil=7168.000000
 		DeclineTime=1.600000
-		DeclineDelay=0.000000
-		ViewBindFactor=0.050000
+		DeclineDelay=0.200000
+		ViewBindFactor=0.200000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True

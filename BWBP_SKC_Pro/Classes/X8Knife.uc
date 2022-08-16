@@ -284,6 +284,7 @@ defaultproperties
 	bAimDisabled=True
 	ParamsClasses(0)=Class'X8WeaponParams'
 	ParamsClasses(1)=Class'X8WeaponParamsClassic'
+	ParamsClasses(2)=Class'X8WeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.X8PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.X8SecondaryFire'
 	SelectAnimRate=2.500000
