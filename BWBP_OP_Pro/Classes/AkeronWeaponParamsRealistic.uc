@@ -9,14 +9,14 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.AkeronRocketHE'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
-		Speed=25000.000000
+		Speed=15000.000000
 		MaxSpeed=35000.000000
 		AccelSpeed=100000.000000
 		Damage=200
-		DamageRadius=200.000000
+		DamageRadius=150.000000
 		MomentumTransfer=70000.000000
 		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-		Recoil=128.000000
+		Recoil=386.000000
 		Chaos=0.500000
 		BotRefireRate=0.5
 		WarnTargetPct=0.25	
@@ -28,6 +28,33 @@ defaultproperties
 		FireEndAnim=
 		FireAnimRate=1.1	
 		FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
+	End Object
+	
+	//Barrage Rocket
+	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryBarrageEffectParams
+		ProjectileClass=Class'BWBP_OP_Pro.AkeronRocketHE'
+		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
+		Speed=800.000000
+		MaxSpeed=4000.000000
+		AccelSpeed=8000.000000
+		Damage=200
+		DamageRadius=150.000000
+		MomentumTransfer=70000.000000
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
+		Recoil=512.000000
+		Chaos=0.500000
+		Inaccuracy=(X=100,Y=100)
+		BotRefireRate=0.5
+		WarnTargetPct=0.25	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.M202-FireDumb')
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryBarrageFireParams
+		FireInterval=0.10000
+		FireEndAnim=
+		FireAnimRate=1.1	
+		FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryBarrageEffectParams'
 	End Object
 		
     //=================================================================
@@ -92,12 +119,17 @@ defaultproperties
 		InventorySize=12
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.500000
+		WeaponModes(0)=(ModeName="Mode: Barrage",ModeID="WM_BigBurst",Value=3)
+		WeaponModes(1)=(ModeName="Mode: High Velocity",ModeID="WM_SemiAuto",Value=1)
+		WeaponModes(2)=(ModeName="Mode: Barrage",ModeID="WM_BigBurst",Value=3,bUnavailable=True)
+		InitialWeaponMode=0
 		MagAmmo=6
         ZoomType=ZT_Logarithmic
 		WeaponName="AN-56 Akeron Guided Missile Launcher"
         RecoilParams(0)=RecoilParams'RealisticRecoilParams'
         AimParams(0)=AimParams'RealisticAimParams'
-		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		FireParams(0)=FireParams'RealisticPrimaryBarrageFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'RealisticParams'
