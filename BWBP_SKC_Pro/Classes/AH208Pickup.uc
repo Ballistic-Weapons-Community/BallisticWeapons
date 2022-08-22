@@ -32,23 +32,20 @@ simulated function UpdatePrecacheStaticMeshes()
 {
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.M925.M925MuzzleFlash');
 	Level.AddPrecacheStaticMesh(StaticMesh'BW_Core_WeaponStatic.D49.D49AmmoBox');
-	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.DesertEagle.DEaglePickup');
+	Level.AddPrecacheStaticMesh(StaticMesh'BWBP_SKC_Static.DesertEagle.DEaglePickupAlt');
 }
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.DesertEagle.DEaglePickup'
-     PickupDrawScale=0.400000
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.DesertEagle.DEaglePickupAlt'
+     PickupDrawScale=1.000000
      InventoryType=Class'BWBP_SKC_Pro.AH208Pistol'
      RespawnTime=10.000000
      PickupMessage="You picked up the AH208 golden pistol."
      PickupSound=Sound'BW_Core_WeaponSound.MRT6.MRT6Pullout'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.DesertEagle.DEaglePickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.DesertEagle.DEaglePickupAlt'
      Physics=PHYS_None
-     DrawScale=0.400000
-     Skins(0)=FinalBlend'ONSstructureTextures.CoreGroup.InvisibleFinal'
-     Skins(1)=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeGold'
-     Skins(2)=FinalBlend'ONSstructureTextures.CoreGroup.InvisibleFinal'
-     Skins(3)=Shader'BWBP_SKC_Tex.Eagle.Eagle-GoldShine'
+	 Skins(0)=Texture'ONSstructureTextures.CoreGroup.Invisible'
+     Skins(1)=Shader'BWBP_SKC_Tex.Eagle.Eagle-GoldShine'
      CollisionHeight=4.000000
 }
