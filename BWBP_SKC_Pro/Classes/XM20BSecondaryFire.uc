@@ -330,7 +330,6 @@ defaultproperties
      bPenetrate=True
      FlashBone="tip"
      FlashScaleFactor=0.300000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-LaserStart',Volume=1.200000)
 	 bModeExclusive=False
 	 FireChaos=0
 	 FireRecoil=32
