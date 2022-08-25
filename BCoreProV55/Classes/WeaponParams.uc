@@ -41,7 +41,11 @@ enum EZoomType
 	ZT_Minimum, // Minimum zoom level. Zooms straight to the lowest zoom level and stops on scope up. Will zoom between FOV (90 - (88 * MinFixedZoomLevel)) and FullZoomFOV.
 	ZT_Smooth // Smooth zoom. Replaces bSmoothZoom, allows the weapon to zoom from FOV 90 to FullZoomFOV.
 };
-
+//-----------------------------------------------------------------------------
+// Layouts
+//-----------------------------------------------------------------------------
+var() int					Weight;					// How likely it is for this layout to be chosen, higher is more likely
+var() String				LayoutName;
 //-----------------------------------------------------------------------------
 // Movement speed
 //-----------------------------------------------------------------------------
@@ -74,8 +78,10 @@ var() array<MaterialSwap>   WeaponMaterialSwaps;
 var() array<BoneScale>      WeaponBoneScales;
 var() array<MaterialSwap>   AttachmentMaterialSwaps;
 var() Vector                ViewOffset;            // Offset when at rest
-var() Rotator                ViewPivot;            // Pivot when at rest
+var() Rotator               ViewPivot;            // Pivot when at rest
 var() String				WeaponName;
+var() Mesh					LayoutMesh;
+var() class<BallisticGunAugment>	GunAugmentClass;		//The RDS, Suppressor, Bayonet actor. Will look for a socket called "Attach"
 //-----------------------------------------------------------------------------
 // Aim
 //-----------------------------------------------------------------------------

@@ -269,6 +269,7 @@ var() IntBox				BigIconCoords;				// Coords for drawing the BigIcon in the weapo
 var	bool					bSkipDrawWeaponInfo;		// Skips the Ballistic versions of NewDrawWeaponInfo
 var	bool					bAllowWeaponInfoOverride;	// If true, prevents upgraded HUDs from overriding the weapon info display
 var() float					IdleTweenTime;				// Just a general tween time used by anims like idle
+var() BallisticGunAugment	GunAugment;				// Actor to spawn if the layout has an additional optic/suppressor/bayonet
 //-----------------------------------------------------------------------------
 // Sound
 //-----------------------------------------------------------------------------
@@ -387,6 +388,7 @@ var	Object.Color	HeaderColor, TextColor;
 //-----------------------------------------------------------------------------
 var() byte                      GameStyleIndex;         // Game style parameters to use for this weapon
 var() byte                      LayoutIndex;            // Index of layout parameters to use for this weapon instance
+var() bool						bLayoutSet;				// Do we have our layout chosen already
 //-----------------------------------------------------------------------------
 // Move speed
 //-----------------------------------------------------------------------------
@@ -532,6 +534,13 @@ simulated function PostBeginPlay()
 	}
 }
 
+simulated function SetLayoutIndex(byte NewLayoutIndex)
+{
+	LayoutIndex = NewLayoutIndex;
+	bLayoutSet = True;
+	log("Layout set to  "$LayoutIndex);
+}
+
 //===========================================================================
 // PostNetBeginPlay
 //
@@ -539,13 +548,54 @@ simulated function PostBeginPlay()
 //===========================================================================
 simulated function PostNetBeginPlay()
 {
+	local byte i;
+	local float f;
+	local int WeightSum, CurrentWeight;
+	local array<WeaponParams> Layouts;
 	Super.PostNetBeginPlay();
 
     assert(ParamsClasses[GameStyleIndex] != None);
+	
+	//Build a weighted list of random layouts and return a random layout index
+	if (!bLayoutSet/* && BCRepClass.default.bRandomCamo*/)
+	{
+		Layouts = ParamsClasses[GameStyleIndex].default.Layouts;
+				
+		//Build the weighted list
+		for (i=0; i<Layouts.length; i++)
+		{
+			WeightSum += Layouts[i].Weight;
+		}
+		log("WeightSum: "$WeightSum);
+		f = FRand()*WeightSum;
+		
+		for (i=0; i<Layouts.length; i++)
+		{
+			log("f : "$f$", CurrentWeight : "$CurrentWeight$", CurrentWeight+NextWeight : "$CurrentWeight+Layouts[i].Weight);
+			if ( f >= CurrentWeight && f < CurrentWeight+Layouts[i].Weight)
+			{
+				SetLayoutIndex(i);
+				break;
+			}
+			CurrentWeight += Layouts[i].Weight;
+		}
+	}
     
     // Forced to delay initialization because of the need to wait for GameStyleIndex and LayoutIndex to be replicated
 	ParamsClasses[GameStyleIndex].static.Initialize(self);
-
+	
+	//Change mesh if layout dictates it
+	if (WeaponParams.LayoutMesh != None)
+	{
+		LinkMesh(WeaponParams.LayoutMesh);
+	}
+	//Spawn a weapon attachment if required by the layout
+	if (WeaponParams.GunAugmentClass != None)
+	{
+		GunAugment = Spawn(WeaponParams.GunAugmentClass);
+		AttachToBone(GunAugment,'Augment');
+	}
+	
 	if (BCRepClass.default.bNoReloading)
 		bNoMag = true;
 
