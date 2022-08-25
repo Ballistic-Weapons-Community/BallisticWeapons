@@ -28,8 +28,9 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=ArenaAutoFireParams
+		TargetState="SpinUpFire"
         FireInterval=0.300000
-        FireAnim="FireRot"
+        FireAnim="Fire"
         FireEndAnim=
         FireAnimRate=1.500000	
         FireEffectParams(0)=ShotgunEffectParams'ArenaAutoEffectParams'
@@ -58,7 +59,7 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=ArenaManualFireParams
-        FireInterval=0.300000
+        FireInterval=1.750000
         FireAnim="SemiFire"
         FireEndAnim=
         FireAnimRate=1.450000	
@@ -91,6 +92,7 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		TargetState="SpinUpFire"
         FireInterval=1.700000
         AmmoPerFire=3
         FireAnim="FireBig"
@@ -125,8 +127,6 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
-		CockAnimRate=1.250000
-		ReloadAnimRate=1.550000
 		SightPivot=(Pitch=1024)
 		SightOffset=(X=-20.000000,Y=9.700000,Z=19.000000)
 		ViewOffset=(X=-4.000000,Y=1.000000,Z=-10.000000)
@@ -137,6 +137,8 @@ defaultproperties
 		SightingTime=0.350000
 		DisplaceDurationMult=1
 		MagAmmo=24
+		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaAutoFireParams'
