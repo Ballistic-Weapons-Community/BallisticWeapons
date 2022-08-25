@@ -125,13 +125,14 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
 		SightOffset=(X=-10.000000,Y=9.7500000,Z=22.500000)
-		ViewOffset=(X=0.000000,Y=-2.000000,Z=-15.000000)
+		ViewOffset=(X=1.000000,Y=-3.000000,Z=-17.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Smooth
 		WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
 		WeaponModes(1)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto")
 		WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
 		InitialWeaponMode=1
+		WeaponName="XM-20 Experimental Laser System"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

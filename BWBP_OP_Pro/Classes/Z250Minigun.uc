@@ -370,23 +370,24 @@ simulated event Tick (float DT)
 	{
 		BarrelSpeed = BarrelSpeed + FClamp(DesiredSpeed - BarrelSpeed, -0.35*DT, GetRampUpSpeed() *DT);
 		BarrelTurn += BarrelSpeed * 655360 * DT;
+		Instigator.AmbientSound = BarrelSpinSound;
 	}
 	else if (BarrelSpeed > 0)
 	{
-		BarrelSpeed = FMax(BarrelSpeed-0.5*DT, 0.01);
+		Instigator.AmbientSound = None;
+		BarrelSpeed = FMax(BarrelSpeed-1.0*DT, 0.01);
 		OldBarrelTurn = BarrelTurn;
 		BarrelTurn += BarrelSpeed * 655360 * DT;
 		if (BarrelSpeed <= 0.025 && int(OldBarrelTurn/21845.33333) < int(BarrelTurn/21845.33333))
 		{
-			BarrelTurn = int(BarrelTurn/21845.33333) * 21845.33333;
-			BarrelSpeed = 0;
-			PlaySound(BarrelStopSound, SLOT_None, 0.5, , 32, 1.0, true);
-			Instigator.AmbientSound = None;
+				BarrelTurn = int(BarrelTurn/21845.33333) * 21845.33333;
+				BarrelSpeed = 0;
+				PlaySound(BarrelStopSound, SLOT_None, 2.5, , 32, 1.0, true);
+				Z250PrimaryFire(FireMode[0]).bSpinning=false;
 		}
 	}
 	if (BarrelSpeed > 0)
 	{
-		Instigator.AmbientSound = BarrelSpinSound;
 		Instigator.SoundPitch = 32 + 96 * BarrelSpeed;
 	}
 
@@ -491,9 +492,9 @@ defaultproperties
 	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
-	BarrelSpinSound=Sound'BWBP_OP_Sounds.Z250.Z250-Spin'
-	BarrelStopSound=Sound'BWBP_SKC_Sounds.550.Mini-Down'
-	BarrelStartSound=Sound'BWBP_SKC_Sounds.550.Mini-Up'
+	BarrelSpinSound=Sound'BWBP_OP_Sounds.Z250.Z250-Motor'
+	BarrelStopSound=Sound'BWBP_OP_Sounds.Z250.Z250-SpinDown'
+	BarrelStartSound=Sound'BWBP_OP_Sounds.Z250.Z250-SpinUp'
 	PlayerSpeedFactor=0.900000
 	PlayerJumpFactor=0.900000
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
@@ -534,9 +535,8 @@ defaultproperties
 	SightDisplayFOV=45.000000
 	SightingTime=0.550000
 	ParamsClasses(0)=Class'Z250WeaponParams'
-	ParamsClasses(1)=Class'Z250MinigunWeaponParamsClassic'
-	ParamsClasses(2)=Class'Z250WeaponParams'
-	ParamsClasses(3)=Class'Z250WeaponParams'
+	ParamsClasses(1)=Class'Z250WeaponParamsClassic'
+	ParamsClasses(2)=Class'Z250WeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_OP_Pro.Z250PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.Z250SecondaryFire'
 	SelectAnimRate=0.750000

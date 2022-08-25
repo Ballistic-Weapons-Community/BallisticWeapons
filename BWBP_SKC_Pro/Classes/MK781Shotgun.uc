@@ -405,11 +405,13 @@ simulated function SwitchSilencer(bool bNewValue)
 	{
 		PlayAnim(SilencerOnAnim);
 		SightZoomFactor = 0.78;
+		ParamsClasses[GameStyleIndex].static.OverrideFireParams(self,3);
 	}
 	else
 	{
 		PlayAnim(SilencerOffAnim);
 		SightZoomFactor = default.SightZoomFactor;
+		ParamsClasses[GameStyleIndex].static.OverrideFireParams(self,0);
 	}
 }
 

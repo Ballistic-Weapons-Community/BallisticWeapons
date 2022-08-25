@@ -131,6 +131,7 @@ defaultproperties
 		SightPivot=(Pitch=512)                     //Original
 		CockAnimRate=1.400000
 		ReloadAnimRate=1.350000
+		WeaponName="M290 12ga Double-Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

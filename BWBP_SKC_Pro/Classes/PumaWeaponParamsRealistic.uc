@@ -171,6 +171,7 @@ defaultproperties
 		SightPivot=(Pitch=0)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		WeaponName="PUMA-77 Target Engagement System"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryImpactFireParams'

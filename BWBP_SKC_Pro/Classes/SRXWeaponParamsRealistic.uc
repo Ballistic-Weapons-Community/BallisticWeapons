@@ -38,6 +38,7 @@ defaultproperties
 		FireInterval=0.125000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
+		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 	
@@ -187,6 +188,7 @@ defaultproperties
 		SightPivot=(Pitch=-128,Yaw=16)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		WeaponName="SRK-650 7.62mm Marksman Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticRecoilParamsInc'
 		RecoilParams(2)=RecoilParams'RealisticRecoilParamsAcid'

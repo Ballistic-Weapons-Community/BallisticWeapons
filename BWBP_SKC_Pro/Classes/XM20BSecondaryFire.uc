@@ -309,11 +309,10 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
-	 FireSoundLoop=Sound'BWBP_SKC_Sounds.XM20B.XM20-Lase'
-     ChargeSound=Sound'BWBP_SKC_Sounds.XM20B.XM20-SpartanChargeSound'
-//	 ChargeSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Charge'
-     PowerFireSound=Sound'BWBP_SKC_Sounds.XM20B.XM20-Overcharge'
-     RegularFireSound=Sound'BWBP_SKC_Sounds.XM20B.XM20-LaserStart'
+	 FireSoundLoop=Sound'BWBP_SKC_Sounds.XM20.XM20-Lase'
+     ChargeSound=Sound'BWBP_SKC_Sounds.XM20.XM20-SpartanChargeSound'
+     PowerFireSound=Sound'BWBP_SKC_Sounds.XM20.XM20-Overcharge'
+     RegularFireSound=Sound'BWBP_SKC_Sounds.XM20.XM20-LaserStart'
 	 TraceCount=1
 
      MaxWaterTraceRange=5000
@@ -331,7 +330,7 @@ defaultproperties
      bPenetrate=True
      FlashBone="tip"
      FlashScaleFactor=0.300000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.XM20B.XM20-LaserStart',Volume=1.200000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-LaserStart',Volume=1.200000)
 	 bModeExclusive=False
 	 FireChaos=0
 	 FireRecoil=32

@@ -138,7 +138,7 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
-		WeaponName="M46A1 Battle Rifle"
+		WeaponName="M46A2 .310 Battle Rifle"
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000

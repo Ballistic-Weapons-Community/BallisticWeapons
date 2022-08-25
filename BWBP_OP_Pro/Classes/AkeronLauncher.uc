@@ -148,6 +148,8 @@ defaultproperties
      MaxZoom=8.000000
      ZoomStages=2
      ParamsClasses(0)=Class'AkeronWeaponParams'
+     ParamsClasses(1)=Class'AkeronWeaponParamsClassic'
+     ParamsClasses(2)=Class'AkeronWeaponParamsRealistic'
      FireModeClass(0)=Class'BWBP_OP_Pro.AkeronPrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.AkeronSecondaryFire'
      SelectAnimRate=0.600000
@@ -159,7 +161,7 @@ defaultproperties
      NDCrosshairInfo=(SpreadRatios=(Y2=0.500000))
      AIRating=0.80000
      CurrentRating=0.80000
-     Description="The AN-56 Akeron Launcher was introduced to fulfill a pressing need for indirect fire options within the UTC ranks. Launching directed-blast rockets for the safety of allied units, it has quickly become a staple due to its optional ability to attack fortifications with manually guided rockets without requiring the user's exposure to enemy fire. However, whilst guiding a rocket, the user is vulnerable to flank attacks, and the weapon is best employed with the support of teammates. Should the user choose to eschew manual guidance, undirected rockets can be launched at a fast rate from the weapon's three barrels."
+     Description="The AN-56 Akeron Light Missile Launcher was introduced to fulfill a pressing need for mobile indirect fire options within the UTC ranks. Launching directed-blast rockets for the safety of allied units, it has quickly become a staple due to its optional ability to attack fortifications with manually guided rockets without requiring the user's exposure to enemy fire. However, whilst guiding a rocket, the user is vulnerable to flank attacks, and the weapon is best employed with the support of teammates. Should the user choose to eschew manual guidance, undirected rockets can be launched at a fast rate from the weapon's three barrels."
      Priority=44
      HudColor=(B=80,G=95,R=110)
      CenteredOffsetY=10.000000

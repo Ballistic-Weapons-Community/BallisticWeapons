@@ -101,6 +101,7 @@ defaultproperties
 		SightPivot=(Pitch=32)
 		CockAnimRate=1.000000
 		ReloadAnimRate=0.900000
+        WeaponName="M925 .50 Heavy Machinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

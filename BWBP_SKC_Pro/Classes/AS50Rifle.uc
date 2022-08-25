@@ -54,6 +54,21 @@ replication
 		ClientScreenStart;
 }
 
+simulated event PreBeginPlay()
+{
+	super.PreBeginPlay();
+	if (BCRepClass.default.GameStyle == 1)
+	{
+		FireModeClass[0]=Class'BWBP_SKC_Pro.AS50SecondaryFire';
+		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
+	}
+	if (BCRepClass.default.GameStyle == 2)
+	{
+		FireModeClass[0]=Class'BWBP_SKC_Pro.AS50SecondaryFire';
+		FireModeClass[1]=Class'BWBP_SKC_Pro.AS50DeployFire';
+	}
+}
+
 //========================== AMMO COUNTER NON-STATIC TEXTURE ============
 
 simulated function ClientScreenStart()
@@ -161,6 +176,76 @@ simulated function Notify_ClipIn()
 		Ammo[0].UseAmmo (AmmoNeeded, True);
 	}
 	UpdateScreen();
+}
+
+function Notify_Deploy()
+{
+	local vector HitLoc, HitNorm, Start, End;
+	local actor T;
+	local Rotator CompressedEq;
+    local BallisticTurret Turret;
+    local float Forward;
+
+	if (Role < ROLE_Authority)
+		return;
+	if (Instigator.HeadVolume.bWaterVolume)
+		return;
+	// Trace forward and then down. make sure turret is being deployed:
+	//   on world geometry, at least 30 units away, on level ground, not on the other side of an obstacle
+	Start = Instigator.Location + Instigator.EyePosition();
+	for (Forward=75;Forward>=45;Forward-=15)
+	{
+		End = Start + vector(Instigator.Rotation) * Forward;
+		T = Trace(HitLoc, HitNorm, End, Start, true, vect(6,6,6));
+		if (T != None && VSize(HitLoc - Start) < 30)
+			return;
+		if (T == None)
+			HitLoc = End;
+		End = HitLoc - vect(0,0,100);
+		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
+		if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
+			break;
+		if (Forward <= 45)
+			return;
+	}
+
+	FireMode[1].bIsFiring = false;
+   	FireMode[1].StopFiring();
+
+	if(Sandbag(T) != None)
+	{
+		HitLoc = T.Location;
+		HitLoc.Z += class'AS50Turret'.default.CollisionHeight + 15;
+	}
+	
+	else
+	{
+		HitLoc.Z += class'AS50Turret'.default.CollisionHeight - 9;
+	}
+
+	CompressedEq = Instigator.Rotation;
+		
+	//Rotator compression causes disparity between server and client rotations,
+	//which then plays hob with the turret's aim.
+	//Do the compression first then use that to spawn the turret.
+	
+	CompressedEq.Pitch = (CompressedEq.Pitch >> 8) & 255;
+	CompressedEq.Yaw = (CompressedEq.Yaw >> 8) & 255;
+	CompressedEq.Pitch = (CompressedEq.Pitch << 8);
+	CompressedEq.Yaw = (CompressedEq.Yaw << 8);
+
+    Turret = Spawn(class'AS50Turret', None,, HitLoc, Instigator.Rotation);
+
+    if (Turret != None)
+    {
+    	if (Sandbag(T) != None)
+			Sandbag(T).AttachedWeapon = Turret;
+		Turret.InitDeployedTurretFor(self);
+		Turret.TryToDrive(Instigator);
+		Destroy();
+    }
+    else
+		log("Notify_Deploy: Could not spawn turret for AS50 AMR.");
 }
 
 ///==============================================================

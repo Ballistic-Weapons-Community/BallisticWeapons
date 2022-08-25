@@ -10,6 +10,7 @@ class CYLOFirestormPrimaryFire extends BallisticRangeAttenFire;
 
 var   float		StopFireTime, HeatPerShot;
 var() Sound			FailSound;
+var bool 	bVariableHeatProps; //We're in classic, do radius damage
 
 simulated function bool AllowFire()
 {
@@ -151,6 +152,9 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 		Surf = int(Other.SurfaceType);
 	else
 		Surf = int(HitMat.SurfaceType);
+		
+	if (bVariableHeatProps && (Other == None || Other.bWorldGeometry))
+		BW.TargetedHurtRadius(2, 64, class'DTCYLOFirestormRifle', 50, HitLocation);
 
 	// Tell the attachment to spawn effects and so on
 	SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);

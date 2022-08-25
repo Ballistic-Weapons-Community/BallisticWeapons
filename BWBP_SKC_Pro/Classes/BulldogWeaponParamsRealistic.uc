@@ -8,7 +8,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=5500.000000,Max=7000.000000)
+		TraceRange=(Min=5500.000000,Max=7000.000000) //.75 HE shell
 		WaterTraceRange=2100.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.100000
@@ -25,16 +25,16 @@ defaultproperties
 		WallPDamageFactor=0.4
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		FlashScaleFactor=2.100000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.Bulldog.Bulldog-Fire',Volume=7.500000)
-		Recoil=2048.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-HFire',Volume=7.500000)
+		Recoil=3096.000000
 		Chaos=0.15
-		Inaccuracy=(X=16,Y=9)
+		Inaccuracy=(X=32,Y=32)
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.500000
+		FireInterval=1.650000
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=1.5	
@@ -46,19 +46,19 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.BulldogRocket'
+		ProjectileClass=Class'BWBP_SKC_Pro.BulldogRocketFast' //FRAG-12
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=2000.000000
+		Speed=20000.000000
 		MaxSpeed=35000.000000
 		AccelSpeed=35000.000000
-		Damage=110.000000
-		DamageRadius=240.000000
+		Damage=150.000000
+		DamageRadius=200.000000 //4 meter dmg radius, approx 2 meter kill radius
 		MomentumTransfer=30000.000000
 		HeadMult=1.0
 		LimbMult=1.0
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-FireTest',Volume=2.500000)
-		Recoil=1048.000000
+		Recoil=800.000000
 		Chaos=0.15
 		SplashDamage=True
 		RecommendSplashDamage=True
@@ -84,9 +84,9 @@ defaultproperties
 		YawFactor=0.450000
 		XRandFactor=0.450000
 		YRandFactor=0.450000
-		DeclineTime=1.300000
-		DeclineDelay=0.100000
-		ViewBindFactor=0.300000
+		DeclineTime=1.700000
+		DeclineDelay=0.300000
+		ViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -123,6 +123,7 @@ defaultproperties
 		SightPivot=(Pitch=200)
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000
+		WeaponName="Bulldog .75 Assault Cannon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

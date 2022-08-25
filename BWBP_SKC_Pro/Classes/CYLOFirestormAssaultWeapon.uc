@@ -64,6 +64,7 @@ simulated event PostNetBeginPlay()
 	if (BCRepClass.default.GameStyle == 1)
 	{
 		bVariableHeatProps=true;
+		CYLOFirestormPrimaryFire(FireMode[0]).bVariableHeatProps=true;
 	}
 	else if (BCRepClass.default.GameStyle == 2)
 	{

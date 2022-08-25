@@ -39,6 +39,8 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
 		ProjectileClass=Class'BallisticProV55.A500AltProjectile'
+        Speed=1000.000000
+        MaxSpeed=6000.000000
 		Damage=80.000000
 		DamageRadius=96.000000
 		MomentumTransfer=1000.000000

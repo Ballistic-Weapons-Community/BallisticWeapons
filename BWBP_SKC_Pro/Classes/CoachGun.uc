@@ -22,8 +22,20 @@ var() name				LastShellBone;		// Name of the right shell.
 var   bool				bLastShell;			// Checks if only one shell is left
 var   bool				bNowEmpty;			// Checks if it should play modified animation.
 
+var	bool bRightLoaded;
+var bool bLeftLoaded;
+
 var() float				SingleReloadAnimRate;   // Animation rate for single reload.
 
+
+simulated event PreBeginPlay()
+{
+	super.PreBeginPlay();
+	if (BCRepClass.default.GameStyle != 0)
+	{
+		FireModeClass[1]=Class'BWBP_SKC_Pro.CoachGunSecondaryFire';
+	}
+}
 
 simulated event PostNetBeginPlay()
 {
@@ -480,7 +492,8 @@ defaultproperties
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
 	 ParamsClasses(0)=Class'CoachWeaponParams'
-	 ParamsClasses(1)=Class'CoachWeaponParamsClassic' //Note: Needs state code
+	 ParamsClasses(1)=Class'CoachWeaponParamsClassic'
+	 ParamsClasses(2)=Class'CoachWeaponParamsRealistic' 
      FireModeClass(0)=Class'BWBP_SKC_Pro.CoachGunPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectAnimRate=2.000000

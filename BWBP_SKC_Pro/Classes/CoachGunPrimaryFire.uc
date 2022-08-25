@@ -230,9 +230,18 @@ simulated function ModeTick(float DeltaTime)
 //======================================================================
 simulated event ModeDoFire()
 {
-	if (CoachGun(BW).BCRepClass.default.GameStyle != 0)
+	if (BW.BCRepClass.default.GameStyle != 0)
 	{
-		super.ModeDoFire();
+		if (BW.MagAmmo == 1)
+		{
+			Load=1;
+			BW.BFireMode[1].ModeDoFire();
+		}
+		else
+		{
+			Load=2;
+			super.ModeDoFire();
+		}
 		return;
 	}
 	
@@ -444,37 +453,21 @@ function SwitchShotParams()
 	if (Load == 2)
 	{
 		BallisticFireSound.Volume = 2.0;
-		
-		if (BW.CurrentWeaponMode == 0)
+		XInaccuracy = default.XInaccuracy*2.5;
+		YInaccuracy = default.YInaccuracy*1.5;
+		if (BW.CurrentWeaponMode == 1)
 		{
-			XInaccuracy = ShotDoubleInaccuracy.X;
-			YInaccuracy = ShotDoubleInaccuracy.Y;
-		}
-
-		else
-		{
-			XInaccuracy = SlugDoubleInaccuracy.X;
-			YInaccuracy = SlugDoubleInaccuracy.Y;
-
-            Damage = SlugDoubleDamage;
+            Damage = default.Damage*0.9;
 		}
 	}
 	else
 	{
 		BallisticFireSound.Volume = 1.0;
-		
-		if (BW.CurrentWeaponMode == 0)
-		{
-			XInaccuracy = ShotInaccuracy.X;
-			YInaccuracy = ShotInaccuracy.Y;
-		}
-		
+		XInaccuracy = default.XInaccuracy;
+		YInaccuracy = default.YInaccuracy;
 		if (BW.CurrentWeaponMode == 1)
-		{		
-			XInaccuracy = SlugInaccuracy.X;
-			YInaccuracy = SlugInaccuracy.Y;
-
-            Damage = SlugDamage;
+		{
+            Damage = default.Damage;
 		}
 	}
 }
@@ -541,7 +534,7 @@ defaultproperties
 	BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)
 	FireAnimRate=1.35
 	FireRate=0.300000
-	AmmoClass=Class'BWBP_SKC_Pro.Ammo_CoachShells'
+	AmmoClass=Class'BallisticProV55.Ammo_MRS138Shells'
 	ShakeRotMag=(X=128.000000,Y=64.000000)
 	ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
 	ShakeRotTime=2.000000

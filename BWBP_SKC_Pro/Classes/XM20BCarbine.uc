@@ -544,13 +544,13 @@ defaultproperties
 	 ChargeRate=2.400000
 	 ChargeRateOvercharge=0.600000
 	 MyFontColor=(R=255,G=255,B=255,A=255)
-     WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.XM20B.XM20-ScriptLCD'
-     WeaponScreenShader=Shader'BWBP_SKC_Tex.XM20B.XM20-ScriptLCD-SD'
-	 Numbers=Texture'BWBP_SKC_Tex.XM20B.XM20-Numbers'
-	 ScreenTex=Texture'BWBP_SKC_Tex.XM20B.XM20-ScreenBase'
-	 ScreenTexBase1=Texture'BWBP_SKC_Tex.XM20B.XM20-ScreenBase'
-	 ScreenTexBase2=Texture'BWBP_SKC_Tex.XM20B.XM20-ScreenBaseCharged'
-	 ScreenRedBar=Texture'BWBP_SKC_Tex.XM20B.XM20-DisplayBars'
+     WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.XM20.XM20-ScriptLCD'
+     WeaponScreenShader=Shader'BWBP_SKC_Tex.XM20.XM20-ScriptLCD-SD'
+	 Numbers=Texture'BWBP_SKC_Tex.XM20.XM20-Numbers'
+	 ScreenTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScreenBase'
+	 ScreenTexBase1=Texture'BWBP_SKC_Tex.XM20.XM20-ScreenBase'
+	 ScreenTexBase2=Texture'BWBP_SKC_Tex.XM20.XM20-ScreenBaseCharged'
+	 ScreenRedBar=Texture'BWBP_SKC_Tex.XM20.XM20-DisplayBars'
 	 
 	 CoolRate=1.0
      ModeCycleSound=Sound'BWBP_SKC_Sounds.AH104.AH104-ModeCycle'
@@ -607,7 +607,7 @@ defaultproperties
      PlayerViewOffset=(X=6.000000,Y=1.000000,Z=-15.000000)
      BobDamping=1.800000
      AttachmentClass=Class'BWBP_SKC_Pro.XM20BAttachment'
-     IconMaterial=Texture'BWBP_SKC_Tex.XM20B.SmallIcon_XM20'
+     IconMaterial=Texture'BWBP_SKC_Tex.XM20.SmallIcon_XM20'
      IconCoords=(X2=127,Y2=31)
      ItemName="XM20 Laser Carbine"
 	 MagAmmo=40
@@ -625,7 +625,7 @@ defaultproperties
      SoundRadius=256.000000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      //Skins(1)=Combiner'BWBP_SKC_Tex.M30A2.M30A2-GunScope'
-     Skins(2)=Texture'BWBP_SKC_Tex.XM20B.XM20-Main'
-     Skins(3)=Texture'BWBP_SKC_Tex.XM20B.XM20-Misc'
+     Skins(2)=Shader'BWBP_SKC_Tex.XM20.XM20-Final'
+     Skins(3)=Texture'BWBP_SKC_Tex.XM20.XM20-Misc'
      Skins(4)=Texture'ONSstructureTextures.CoreGroup.Invisible' //The outermost one
 }

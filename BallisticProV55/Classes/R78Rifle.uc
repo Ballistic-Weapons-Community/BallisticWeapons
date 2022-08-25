@@ -19,7 +19,9 @@ simulated event PostNetBeginPlay()
 	{
 		CockAnim = 'Cock';
 		CockAnimPostReload = 'Cock'; 
+		ReloadEmptyAnim='ReloadEmptySlow';
 		CockSound.Sound=Sound'BW_Core_WeaponSound.R78.R78-Cock';
+		R78PrimaryFire(FireMode[0]).bExplosive = false;
 	}
 }
 
@@ -36,6 +38,14 @@ simulated function PlayCocking(optional byte Type)
 
 // Animation notify for when cocking action starts. Used to time sounds
 simulated function Notify_CockAimed()
+{
+	bNeedCock = False;
+	ReloadState = RS_Cocking;
+	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
+}
+
+// Animation notify for when cocking action starts. Used to time sounds
+simulated function Notify_CockSlow()
 {
 	bNeedCock = False;
 	ReloadState = RS_Cocking;
@@ -107,7 +117,7 @@ defaultproperties
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipIn')
      ClipInFrame=0.650000
      bCockOnEmpty=True
-     WeaponModes(0)=(ModeName="Semi-Automatic")
+     WeaponModes(0)=(ModeName="Bolt-Action")
      WeaponModes(1)=(bUnavailable=True)
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0

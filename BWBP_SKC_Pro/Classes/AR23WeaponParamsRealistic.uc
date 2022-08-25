@@ -106,6 +106,7 @@ defaultproperties
 		ViewBindFactor=0.200000
 		SprintChaos=0.400000
 		ChaosDeclineTime=2.000000
+		ChaosSpeedThreshold=550.000000
 	End Object
     
 	//=================================================================
@@ -122,6 +123,7 @@ defaultproperties
 		WeaponModes(1)=(ModeName="2 Shot Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=0
+		WeaponName="AR-23 .50 Heavy Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

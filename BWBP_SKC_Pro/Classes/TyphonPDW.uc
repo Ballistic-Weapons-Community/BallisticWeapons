@@ -773,6 +773,7 @@ defaultproperties
      LightRadius=4.000000
 	 ParamsClasses(0)=Class'TyphonPDWWeaponParamsArena'
 	 ParamsClasses(1)=Class'TyphonPDWWeaponParamsClassic'
+	 ParamsClasses(2)=Class'TyphonPDWWeaponParamsRealistic'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Typhon'
      DrawScale=0.350000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

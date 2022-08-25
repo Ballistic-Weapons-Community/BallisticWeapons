@@ -97,6 +97,7 @@ defaultproperties
 		ViewOffset=(X=6.000000,Y=6.000000,Z=-8.000000)
 		SightOffset=(X=-12.000000,Z=14.300000)
 		SightPivot=(Pitch=768)
+		WeaponName="RX220-A Incinerator"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

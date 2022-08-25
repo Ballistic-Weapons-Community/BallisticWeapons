@@ -37,7 +37,8 @@ defaultproperties
 		FireInterval=0.550000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
-		FireAnimRate=1.500000	
+		FireAnimRate=1.300000	
+		AimedFireAnim="Fire"
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
@@ -45,6 +46,22 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 	
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams
+		XCurve=(Points=(,(InVal=1.000000,OutVal=0.000000)))
+		YawFactor=0.400000
+		XRandFactor=1
+		YRandFactor=1
+		MaxRecoil=8192.000000
+		DeclineTime=0.800000
+		DeclineDelay=0.200000
+		ViewBindFactor=0.200000
+		ADSViewBindFactor=0.200000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+		bViewDecline=True
+	End Object
+
+	/*
 	Begin Object Class=RecoilParams Name=RealisticRecoilParams
 		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
 		YawFactor=0.400000
@@ -57,7 +74,8 @@ defaultproperties
 		CrouchMultiplier=0.700000
 		bViewDecline=True
 	End Object
-
+	*/
+	
 	//=================================================================
 	// AIM
 	//=================================================================
@@ -84,6 +102,7 @@ defaultproperties
 		ViewOffset=(X=0.000000,Y=19.500000,Z=-30.000000)
 		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=55,Scale=0f)
 		ZoomType=ZT_Irons
+		WeaponName="AH208 .44 Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

@@ -1,7 +1,7 @@
 //=============================================================================
 // IM_ShellHE.
 //
-// ImpactManager subclass for shotgun impacts
+// ImpactManager subclass for SK410 explosive shotgun shot impacts
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.

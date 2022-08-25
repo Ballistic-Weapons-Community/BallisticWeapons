@@ -102,6 +102,7 @@ defaultproperties
 		ViewOffset=(X=9.000000,Y=9.000000,Z=-10.000000)
 		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 		SightPivot=(Pitch=1024,Roll=-768)
+        WeaponName="A48 Skrith Blaster"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

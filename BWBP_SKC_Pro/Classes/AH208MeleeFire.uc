@@ -60,7 +60,7 @@ defaultproperties
      PreFireAnim="PrepPistolWhip"
      FireAnim="PistolWhip"
      TweenTime=0.000000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_44Gold'
+     AmmoClass=Class'BallisticProV55.Ammo_44Magnum'
      AmmoPerFire=0
      ShakeRotTime=1.000000
      ShakeOffsetMag=(X=5.000000)

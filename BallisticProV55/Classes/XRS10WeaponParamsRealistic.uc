@@ -8,7 +8,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=800.000000,Max=4000.000000)
+		TraceRange=(Min=800.000000,Max=4000.000000) //.45
 		WaterTraceRange=2000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=44.0
@@ -108,6 +108,7 @@ defaultproperties
 		InitialWeaponMode=2
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000
+		WeaponName="XRS-10 .45 Automatic"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

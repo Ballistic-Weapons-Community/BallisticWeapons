@@ -2,6 +2,7 @@ class M353TW_WeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 {
+
 	//=================================================================
     // PRIMARY FIRE
     //=================================================================	
@@ -26,7 +27,7 @@ defaultproperties
 		FlashScaleFactor=1.200000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=64.000000
-		Chaos=-1.0
+		Chaos=0.01
 		Inaccuracy=(X=2,Y=2)
 		WarnTargetPct=0.200000
 	End Object
@@ -43,8 +44,8 @@ defaultproperties
 	//=================================================================
 	
 	Begin Object Class=RecoilParams Name=ClassicRecoilParams
-		XCurve=(Points=(,(OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
-		YCurve=(Points=(,(InVal=0.200000,OutVal=0.600000),))
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
 		YawFactor=0.000000
 		PitchFactor=0.000000
 		XRandFactor=0.500000
@@ -80,11 +81,11 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=150
-		SightOffset=(X=-8.000000,Y=-0.200000,Z=7.500000)
-		SightPivot=(Pitch=512,Roll=-512)
+		//SightOffset=(X=-8.000000,Y=-0.200000,Z=7.500000)
+		//SightPivot=(Pitch=512,Roll=-512)
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
     End Object 
-    Layouts(0)=WeaponParams'ArenaParams'
+    Layouts(0)=WeaponParams'ClassicParams'
 }

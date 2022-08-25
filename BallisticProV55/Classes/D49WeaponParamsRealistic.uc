@@ -133,6 +133,7 @@ defaultproperties
 		WristAdjust=(Yaw=-2500,Pitch=-0000)
 		ReloadAnimRate=1.700000
 		CockAnimRate=1.000000
+		WeaponName="D49 .44 Magnum Revolver"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

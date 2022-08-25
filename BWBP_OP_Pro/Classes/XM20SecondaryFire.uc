@@ -74,6 +74,6 @@ defaultproperties
      FireAnim="Cock"
      FireRate=1.000000
 	 FireAnimRate=1.00
-     AmmoClass=Class'BWBP_OP_Pro.Ammo_XM20Laser'
+     AmmoClass=Class'BWBP_SKC_Pro.Ammo_Laser'
      AmmoPerFire=0
 }

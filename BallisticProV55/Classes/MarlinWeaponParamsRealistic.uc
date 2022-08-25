@@ -114,7 +114,6 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
@@ -123,6 +122,7 @@ defaultproperties
 		SightPivot=(Pitch=0)
 		ReloadAnimRate=1.500000
 		CockAnimRate=1.750000
+		WeaponName="Redwood 7000 .400 'Bearmaster'"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

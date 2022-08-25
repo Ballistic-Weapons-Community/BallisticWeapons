@@ -109,6 +109,7 @@ defaultproperties
 		SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
 		ReloadAnimRate=0.925000
 		CockAnimRate=1.000000
+		WeaponName="AC-12 5.56mm Assault Carbine"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

@@ -59,7 +59,7 @@ defaultproperties
      KickForce=35000
      PenetrateForce=250
      bPenetrate=True
-     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.D49.D49-DryFire',Volume=0.700000)
+     DryFireSound=(Sound=Sound'BWBP_SKC_Sounds.AH104.AH104-DryFire',Volume=1.000000)
      bDryUncock=True
      MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
      FlashScaleFactor=1.100000

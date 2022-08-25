@@ -432,7 +432,7 @@ defaultproperties
 	ManualLines(1)="Secondary fire will toggle a directional shield. The shield has a maximum of 200 health points and will reduce incoming damage by 35 points or by 90% of its value, whichever is smaller. If the shield is broken, a minimum reserve level is required to reactivate it."
 	ManualLines(2)="Effective at moderate range, against small arms, and against enemies using healing weapons and items."
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_OP_Tex.XM20.BigIcon_XM20'
+	BigIconMaterial=Texture'BWBP_OP_Tex.XM20P.BigIcon_XM20P'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Energy=True
 	bNoCrosshairInScope=True
@@ -471,7 +471,7 @@ defaultproperties
 	BobDamping=1.800000
 	AttachmentClass=Class'BWBP_OP_Pro.XM20Attachment'
 	bUseBigIcon=True
-	IconMaterial=Texture'BWBP_OP_Tex.XM20.Icon_XM20'
+	IconMaterial=Texture'BWBP_OP_Tex.XM20P.Icon_XM20P'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="XM20-P Prototype Laser Rifle"
 	LightType=LT_Pulse
@@ -480,6 +480,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_XM20Blue'
+	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_XM20P'
 	DrawScale=0.500000
 }

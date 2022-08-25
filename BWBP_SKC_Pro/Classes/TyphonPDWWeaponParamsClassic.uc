@@ -19,7 +19,7 @@ defaultproperties
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
-		FlashScaleFactor=0.050000
+		FlashScaleFactor=0.50000
 		Recoil=70.000000
 		Chaos=0.150000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Fire',Volume=7.500000,Slot=SLOT_Interact,bNoOverride=False)
@@ -75,6 +75,7 @@ defaultproperties
 		YRandFactor=0.15000
 		DeclineTime=0.9
 		DeclineDelay=0.4000
+		bViewDecline=True
 	End Object
 
 	//=================================================================

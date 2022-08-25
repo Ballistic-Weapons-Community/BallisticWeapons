@@ -4,38 +4,44 @@
 // Yeah. Good luck aiming this thing. It weighs more than the X83 and that says
 // something. Fires full length 50 cals instead of whatever the M925 fires, so
 // it packs one hell of a punch.
+//
+// Realistic version has a bipod, classic and realistic don't overheat
+//
+// by Sarge, based on code by DC
+// modified by Az
 //=============================================================================
 class FG50MachineGun extends BallisticWeapon;
 
 //aiming
-var	Emitter		        LaserDot;
-var	LaserActor	        Laser;
-var() Sound		        LaserOnSound;
-var() Sound		        LaserOffSound;
-var	bool			    bLaserOn;
+var(FG50)	Emitter		        LaserDot;
+var(FG50)	LaserActor	        Laser;
+var(FG50) Sound		        LaserOnSound;
+var(FG50) Sound		        LaserOffSound;
+var(FG50)	bool			    bLaserOn;
 
 //heat
-var	FG50Heater		    Heater;
-var	float				HeatLevel;
-var	float 				HeatDeclineDelay;
-var() Sound			    OverHeatSound;		// Sound to play when it overheats
+var(FG50)	FG50Heater			Heater;
+var(FG50)	float				HeatLevel;
+var(FG50)	float 				HeatDeclineDelay;
+var(FG50) 	Sound			    OverHeatSound;		// Sound to play when it overheats
+var(FG50) 	bool				bDecorativeHeat;	//Heat is harmless, used for C and R
 
-var() name				ScopeBone;			// Bone to use for hiding scope
-var name				BulletBone; 			//What it says on the tin
+var(FG50) 	name				ScopeBone;			// Bone to use for hiding scope
+var(FG50) 	name				BulletBone; 			//What it says on the tin
 
-var	int	                NumpadYOffset1; //Ammo tens
-var	int	                NumpadYOffset2; //Ammo ones
-var() ScriptedTexture   WeaponScreen;
-var() int               ScreenIndex;
+var(FG50)	int	            	NumpadYOffset1; //Ammo tens
+var(FG50)	int	            	NumpadYOffset2; //Ammo ones
+var(FG50) 	ScriptedTexture   	WeaponScreen;
+var(FG50) 	int               	ScreenIndex;
 
-var() Material	        Screen;
-var() Material	        ScreenBaseX;
-var() Material	        ScreenBase1; //Norm
-var() Material	        ScreenBase2; //Stabilized
-var() Material	        ScreenBase3; //Empty
-var() Material	        ScreenBase4; //Stabilized + Empty
-var() Material	        ScreenRedBar; //Red crap for the heat bar
-var() Material	        Numbers;
+var(FG50) 	Material	        Screen;
+var(FG50) 	Material	        ScreenBaseX;
+var(FG50) 	Material	        ScreenBase1; //Norm
+var(FG50) 	Material	        ScreenBase2; //Stabilized
+var(FG50) 	Material	        ScreenBase3; //Empty
+var(FG50) 	Material	        ScreenBase4; //Stabilized + Empty
+var(FG50) 	Material	        ScreenRedBar; //Red crap for the heat bar
+var(FG50) 	Material	        Numbers;
 
 var protected const color MyFontColor; //Why do I even need this?
 
@@ -45,11 +51,31 @@ replication
 		ClientScreenStart, bLaserOn;
 }
 
+simulated event PreBeginPlay()
+{
+	super.PreBeginPlay();
+	if (BCRepClass.default.GameStyle == 1)
+	{
+		FireModeClass[0]=Class'BWBP_SKC_Pro.FG50SecondaryFire';
+		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
+	}
+	if (BCRepClass.default.GameStyle == 2)
+	{
+		FireModeClass[0]=Class'BWBP_SKC_Pro.FG50SecondaryFire';
+		FireModeClass[1]=Class'BWBP_SKC_Pro.FG50DeployFire';
+	}
+}
+
 simulated function PostNetBeginPlay()
 {
 	local Actor A;
 	
 	Super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle != 0)
+	{
+		bDecorativeHeat=true;
+		FG50SecondaryFire(FireMode[0]).HeatPerShot=0.25;
+	}
 	
 	if (Heater == None || Heater.bDeleteMe)
 	{
@@ -426,8 +452,11 @@ simulated function AddHeat(float Amount)
 	if (HeatLevel >= 10)
 	{
 		HeatLevel = 10;
-		PlaySound(OverHeatSound,,3.7,,32);
-		class'BallisticDamageType'.static.GenericHurt (Instigator, 25, None, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTFG50Overheat');
+		if (!bDecorativeHeat)
+		{
+			PlaySound(OverHeatSound,,3.7,,32);
+			class'BallisticDamageType'.static.GenericHurt (Instigator, 25, None, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTFG50Overheat');
+		}
 		return;
 	}
 }

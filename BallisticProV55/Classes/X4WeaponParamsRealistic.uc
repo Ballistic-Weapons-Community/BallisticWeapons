@@ -13,9 +13,9 @@ defaultproperties
 		Damage=46.0
 		HeadMult=2.282608
 		LimbMult=0.456521
-		DamageType=Class'BallisticProV55.DTX4Knife'
-		DamageTypeHead=Class'BallisticProV55.DTX4KnifeHead'
-		DamageTypeArm=Class'BallisticProV55.DTX4KnifeLimb'
+		DamageType=Class'BallisticProV55.DTX4KnifeTox'
+		DamageTypeHead=Class'BallisticProV55.DTX4KnifeHeadTox'
+		DamageTypeArm=Class'BallisticProV55.DTX4KnifeLimbTox'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.300000
@@ -46,9 +46,9 @@ defaultproperties
 		Damage=82.0
 		HeadMult=2.682926
 		LimbMult=0.475609
-		DamageType=Class'BallisticProV55.DTX4Knife'
-		DamageTypeHead=Class'BallisticProV55.DTX4KnifeHead'
-		DamageTypeArm=Class'BallisticProV55.DTX4KnifeLimb'
+		DamageType=Class'BallisticProV55.DTX4KnifeTox'
+		DamageTypeHead=Class'BallisticProV55.DTX4KnifeHeadTox'
+		DamageTypeArm=Class'BallisticProV55.DTX4KnifeLimbTox'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
 		HookStopFactor=1.700000
@@ -109,6 +109,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		ViewOffset=(X=4.000000,Y=8.000000,Z=-10.000000)
+		WeaponName="X4 Venom Blade"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

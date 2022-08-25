@@ -66,11 +66,7 @@ simulated function SwitchSilencerMode(bool bSilenced)
 {
 	if (bSilenced == true)
 	{
-		XInaccuracy=0;
-		YInaccuracy=0;
 		Mk781Attachment(Weapon.ThirdPersonActor).bSilenced=true;
-		ProjectileClass=Class'Mk781PulseProjectile';
-		BallisticFireSound.Sound=PulseFireSound;
 		bLeadTarget=true;
 		bInstantHit=false;
 		GotoState('ElektroSlug');
@@ -81,11 +77,8 @@ simulated function SwitchSilencerMode(bool bSilenced)
 	
 	else
 	{
-		XInaccuracy=default.XInaccuracy;
-		YInaccuracy=default.YInaccuracy;
 		Mk781Attachment(Weapon.ThirdPersonActor).bSilenced=false;
 		ProjectileClass=None;
-		BallisticFireSound.Sound=ShotFireSound;
 		bLeadTarget=false;
 		bInstantHit=true;
 		GotoState('ElektroShot');
@@ -97,6 +90,20 @@ simulated function SwitchSilencerMode(bool bSilenced)
 
 simulated state ElektroSlug
 {
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local ProjectileEffectParams effect_params;
+
+		super(BallisticFire).ApplyFireEffectParams(params);
+
+		effect_params = ProjectileEffectParams(params);
+
+		ProjectileClass =  effect_params.ProjectileClass;
+		SpawnOffset = effect_params.SpawnOffset;    
+		default.ProjectileClass =  effect_params.ProjectileClass;
+		default.SpawnOffset = effect_params.SpawnOffset;
+	}
+
 	// Became complicated when acceleration came into the picture
 	// Override for even weirder situations
 	function float MaxRange()

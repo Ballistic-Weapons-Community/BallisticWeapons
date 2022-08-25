@@ -28,6 +28,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		ReloadAnimRate=1.250000
 		SightingTime=0.300000
         DisplaceDurationMult=0.5
 		MagAmmo=32

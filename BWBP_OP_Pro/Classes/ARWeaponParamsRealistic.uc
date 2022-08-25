@@ -112,6 +112,7 @@ defaultproperties
 		MagAmmo=20
 		ViewOffset=(X=-20.000000,Y=3.00000,Z=-32.000000)
 		SightOffset=(X=60.000000,Y=5.690000,Z=35.820000)
+		WeaponName="RCS-715 12ga Auto-Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

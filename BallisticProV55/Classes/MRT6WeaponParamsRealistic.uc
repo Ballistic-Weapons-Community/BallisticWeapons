@@ -130,6 +130,7 @@ defaultproperties
 		SightPivot=(Pitch=64)
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000
+		WeaponName="MRT6 12ga Shotgun Sidearm"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

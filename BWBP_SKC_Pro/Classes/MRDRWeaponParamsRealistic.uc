@@ -8,13 +8,13 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=1200.000000,Max=4800.000000)
+		TraceRange=(Min=900.000000,Max=4800.000000) //9mm
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.10000
 		Damage=30.0
-		HeadMult=2.566666
-		LimbMult=0.666666
+		HeadMult=2.6
+		LimbMult=0.65
 		DamageType=Class'BWBP_SKC_Pro.DT_MRDR88Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MRDR88Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MRDR88Body'
@@ -124,6 +124,7 @@ defaultproperties
 		InitialWeaponMode=2
 		ReloadAnimRate=0.850000
 		CockAnimRate=1.200000
+		WeaponName="MR-DR88 9mm Wrist Pistol"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

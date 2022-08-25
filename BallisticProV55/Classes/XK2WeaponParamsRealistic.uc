@@ -8,7 +8,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=1200.000000,Max=4800.000000)
+		TraceRange=(Min=1200.000000,Max=4800.000000) //9mm
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.10000
@@ -91,6 +91,7 @@ defaultproperties
 		InitialWeaponMode=2
 		ReloadAnimRate=0.950000
 		CockAnimRate=1.000000
+		WeaponName="XK2-SD 9mm Submachinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

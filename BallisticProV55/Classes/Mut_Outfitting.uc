@@ -486,12 +486,12 @@ static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P)
 			{
 				newWeapon.GiveTo(P);
 			}
-			if (BallisticHandgun(newWeapon) != None && BallisticHandgun(newWeapon).default.bShouldDualInLoadout)
+			/*if (BallisticHandgun(newWeapon) != None && BallisticHandgun(newWeapon).default.bShouldDualInLoadout)
 			{
 				newWeapon = P.Spawn(newClass,,,P.Location);
 				if( newWeapon != None )
 					newWeapon.GiveTo(P);
-			}
+			}*/
 			//Hack for bots - stops them complaining
 			if (Bot(P.Controller) != None && P.Weapon == None && P.PendingWeapon == None)
 			{

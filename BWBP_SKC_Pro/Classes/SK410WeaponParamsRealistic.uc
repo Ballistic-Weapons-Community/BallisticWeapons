@@ -115,8 +115,15 @@ defaultproperties
 		SightingTime=0.250000
 		MagAmmo=6
 		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
+		ReloadAnimRate=1.100000
+		CockAnimRate=1.000000
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=0
 		SightPivot=(Pitch=150)
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		WeaponName="SK-410 8ga Breaching Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
@@ -133,6 +140,11 @@ defaultproperties
 		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
 		ReloadAnimRate=1.100000
 		CockAnimRate=1.000000
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=0
+		WeaponName="SK-410 8ga Breaching Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

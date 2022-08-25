@@ -19,6 +19,21 @@ simulated function PostBeginPlay()
 	CrosshairSpreadAngle = A500PrimaryFire(BFireMode[0]).GetCrosshairInaccAngle();
 }	
 
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle == 1)
+	{
+		A500PrimaryFire(FireMode[0]).HipSpreadFactor = 1;
+		A500PrimaryFire(FireMode[0]).ProjectileCount = 10;
+	}
+	else if (BCRepClass.default.GameStyle == 2)
+	{
+		A500PrimaryFire(FireMode[0]).HipSpreadFactor = 1;
+		A500PrimaryFire(FireMode[0]).ProjectileCount = 12;
+	}
+}
+
 //Draws simple crosshairs to accurately describe hipfire at any FOV and resolution.
 simulated function DrawCrosshairs(canvas C)
 {

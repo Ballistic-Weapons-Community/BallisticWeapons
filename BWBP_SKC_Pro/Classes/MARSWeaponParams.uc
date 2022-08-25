@@ -87,6 +87,8 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		CockAnimRate=1.10000
+		ReloadAnimRate=1.10000
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
 		InventorySize=12

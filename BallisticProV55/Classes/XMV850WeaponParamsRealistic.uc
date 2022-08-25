@@ -108,11 +108,13 @@ defaultproperties
 		ViewOffset=(X=7.000000,Y=6.000000,Z=-18.000000)
 		SightOffset=(X=8.000000,Z=28.000000)
 		SightPivot=(Pitch=700,Roll=2048)
-		WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
+		WeaponModes(0)=(ModeName="1200 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(1)=(ModeName="2400 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(2)=(ModeName="3600 RPM",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		ReloadAnimRate=0.800000
 		CockAnimRate=1.000000
+		WeaponName="XMV-858 5.56mm Minigun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

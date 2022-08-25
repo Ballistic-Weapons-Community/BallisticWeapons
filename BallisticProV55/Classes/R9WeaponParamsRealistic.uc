@@ -40,6 +40,20 @@ defaultproperties
 		FireAnimRate=2.000000	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
+
+	//=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -89,6 +103,7 @@ defaultproperties
 		SightPivot=(Pitch=64,Yaw=0)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.250000
+		WeaponName="R9E2 .308 Ranger Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

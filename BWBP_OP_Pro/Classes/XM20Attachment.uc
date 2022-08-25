@@ -96,7 +96,7 @@ defaultproperties
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-FlyBy',Volume=0.700000)
      FlyByBulletSpeed=-1.000000
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.XM20Blue_TPm'
+     Mesh=SkeletalMesh'BWBP_OP_Anim.XM20P_TPm'
      RelativeLocation=(X=-3.000000,Z=2.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.200000

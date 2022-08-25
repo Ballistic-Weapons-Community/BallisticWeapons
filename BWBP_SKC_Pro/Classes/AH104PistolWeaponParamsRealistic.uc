@@ -114,6 +114,7 @@ defaultproperties
 		MagAmmo=7
 		SightOffset=(X=-30.000000,Y=-0.700000,Z=22.600000)
 		ViewOffset=(X=8,Y=8,Z=-18)
+		WeaponName="AH104 .600 Handcannon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

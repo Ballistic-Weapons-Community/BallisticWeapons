@@ -196,7 +196,7 @@ defaultproperties
 	bUseSpecialAim=True
 	ParamsClasses(0)=Class'X82TW_WeaponParams'
 	ParamsClasses(1)=Class'X82TW_WeaponParamsClassic'
-	ParamsClasses(2)=Class'X82TW_WeaponParams'
+	ParamsClasses(2)=Class'X82TW_WeaponParamsRealistic'
 	ParamsClasses(3)=Class'X82TW_WeaponParams'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.X82TW_PrimaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(B=255,G=255,A=60),Color2=(G=0),StartSize1=22,StartSize2=8)

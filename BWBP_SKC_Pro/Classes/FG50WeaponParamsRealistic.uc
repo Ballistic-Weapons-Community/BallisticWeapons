@@ -54,7 +54,7 @@ defaultproperties
 		WallPDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
-		Recoil=384.000000
+		Recoil=768.000000
 		Chaos=0.070000
 		WarnTargetPct=0.400000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=6.750000,Slot=SLOT_Interact,bNoOverride=False)
@@ -69,72 +69,19 @@ defaultproperties
 	End Object
 		
 	//=================================================================
-	// SECONDARY FIRE
-	//=================================================================	
-	
-	Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams
-		TraceRange=(Min=15000.000000,Max=15000.000000)
-		WaterTraceRange=12000.0
-		DecayRange=(Min=0.0,Max=0.0)
-		Damage=135.0
-		HeadMult=2.0
-		LimbMult=0.65
-		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
-		PenetrationEnergy=72.000000
-		PenetrateForce=200
-		bPenetrate=True
-		PDamageFactor=0.800000
-		WallPDamageFactor=0.800000
-		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
-		FlashScaleFactor=1.500000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.FG50-HeavyFire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=1000.000000
-		Chaos=3.0
-		Inaccuracy=(X=3,Y=3)
-		WarnTargetPct=0.200000
-		PushbackForce=125.000000
-	End Object
+    // SECONDARY FIRE
+    //=================================================================	
 
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
-		FireInterval=0.1200000
-		BurstFireRateFactor=1.00
-		FireEndAnim=	
-	FireEffectParams(0)=InstantEffectParams'RealisticSecondaryEffectParams'
-	End Object
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
+	End Object	
 	
-	Begin Object Class=InstantEffectParams Name=RealisticSecControlledEffectParams
-		TraceRange=(Min=15000.000000,Max=15000.000000)
-		WaterTraceRange=12000.0
-		DecayRange=(Min=0.0,Max=0.0)
-		Damage=135.0
-		HeadMult=2.0
-		LimbMult=0.65
-		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
-		PenetrateForce=150
-		PDamageFactor=0.800000
-		WallPDamageFactor=0.800000
-		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
-		FlashScaleFactor=1.500000
-		Recoil=384.000000
-		Chaos=0.5
-		WarnTargetPct=0.600000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-HFire',Volume=6.750000,Slot=SLOT_Interact,bNoOverride=False)
-	End Object
-
-	Begin Object Class=FireParams Name=RealisticSecControlledFireParams
-		FireInterval=0.500000
-		FireAnim="CFire"
-		FireEndAnim=
-		AimedFireAnim="SGCFireAimed"
-		FireAnimRate=2.400000	
-		FireEffectParams(0)=InstantEffectParams'RealisticSecControlledEffectParams'
-	End Object
-	
-		
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -161,21 +108,25 @@ defaultproperties
 	Begin Object Class=AimParams Name=RealisticAimParams
 		AimSpread=(Min=32,Max=3072)
 		CrouchMultiplier=0.700000
-		ADSMultiplier=0.700000
+		ADSMultiplier=0.800000
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
 		ChaosDeclineTime=1.600000
 		ChaosSpeedThreshold=375
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
 	End Object
 
 	Begin Object Class=AimParams Name=RealisticControlledAimParams
-		AimAdjustTime=1
-		ADSMultiplier=0.4
 		AimSpread=(Min=16,Max=2048)
+		CrouchMultiplier=0.700000
+		ADSMultiplier=0.700000
+		SprintChaos=0.400000
 		ChaosDeclineTime=1.25
 		ChaosSpeedThreshold=350
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		JumpOffset=(Pitch=-6000,Yaw=2000)
+		AimAdjustTime=1
 	End Object 
     
 	//=================================================================
@@ -192,13 +143,13 @@ defaultproperties
 		SightPivot=(Pitch=32)
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000
+		WeaponName="FG-50 .50 Heavy Machinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		AimParams(1)=AimParams'RealisticControlledAimParams'
 		FireParams(0)=FireParams'RealisticPriControlledFireParams'
 		FireParams(2)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecControlledFireParams'
-		AltFireParams(2)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
 

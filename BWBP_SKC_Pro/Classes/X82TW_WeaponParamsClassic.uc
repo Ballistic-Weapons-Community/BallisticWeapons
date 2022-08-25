@@ -59,6 +59,7 @@ defaultproperties
 		MaxRecoil=8192
 		HipMultiplier=1
 		CrouchMultiplier=1
+		bViewDecline=True
 	End Object
 
 	//=================================================================

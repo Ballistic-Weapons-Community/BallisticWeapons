@@ -18,10 +18,10 @@ replication
 		bLoaded;
 }
 
-simulated event PostNetBeginPlay()
+simulated event PreBeginPlay()
 {
-	super.PostNetBeginPlay();
-	if (AK47AssaultRifle(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
+	super.PreBeginPlay();
+	if (AK47AssaultRifle(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq';
 	}
