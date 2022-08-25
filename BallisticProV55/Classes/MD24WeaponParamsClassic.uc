@@ -113,6 +113,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		PlayerSpeedFactor=1.100000
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
@@ -126,7 +127,84 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Black
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_Boom_Tex.MD24.MD24Black',Index=1)
+		Weight=10
+		PlayerSpeedFactor=1.100000
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=14
+		SightOffset=(X=-10.000000,Y=-0.725000,Z=10.300000)
+		SightPivot=(Pitch=1024,Roll=-1024)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Desert
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_Boom_Tex.MD24.MD24Desert',Index=1)
+		Weight=10
+		PlayerSpeedFactor=1.100000
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=14
+		SightOffset=(X=-10.000000,Y=-0.725000,Z=10.300000)
+		SightPivot=(Pitch=1024,Roll=-1024)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Blue
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_Boom_Tex.MD24.MD24Blue',Index=1)
+		Weight=3
+		PlayerSpeedFactor=1.100000
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=14
+		SightOffset=(X=-10.000000,Y=-0.725000,Z=10.300000)
+		SightPivot=(Pitch=1024,Roll=-1024)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Red
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_Boom_Tex.MD24.MD24Red',Index=1)
+		Weight=3
+		PlayerSpeedFactor=1.100000
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=14
+		SightOffset=(X=-10.000000,Y=-0.725000,Z=10.300000)
+		SightPivot=(Pitch=1024,Roll=-1024)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Black'
+	Layouts(2)=WeaponParams'ClassicParams_Desert'
+	Layouts(3)=WeaponParams'ClassicParams_Blue'
+	Layouts(4)=WeaponParams'ClassicParams_Red'
 
 
 }

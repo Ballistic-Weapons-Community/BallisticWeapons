@@ -90,6 +90,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=20
@@ -105,7 +106,178 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Desert
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_KBP_Tex.SRS900.SRS900Main',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_KBP_Tex.SRS900.SRS900Scope',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_KBP_Tex.SRS900.SRS900Ammo',Index=3)
+		Weight=20
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=20
+		SightOffset=(X=20.000000,Z=11.750000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_BlackNoScope
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.SRS.SRSNSGrey',Index=1)
+		Weight=10
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=20
+		SightOffset=(X=20.000000,Z=11.750000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_UrbanNoScope
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSUrban',Index=1)
+		Weight=10
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=20
+		SightOffset=(X=20.000000,Z=11.750000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_DesertNoScope
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSDesert',Index=1)
+		Weight=10
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=20
+		SightOffset=(X=20.000000,Z=11.750000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_GermanNoScope
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSM2German',Index=1)
+		Weight=10
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=20
+		SightOffset=(X=20.000000,Z=11.750000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_BlueNoScope
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSJungle',Index=1)
+		Weight=3
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=20
+		SightOffset=(X=20.000000,Z=11.750000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_RedNoScope
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSTiger',Index=1)
+		Weight=3
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=20
+		SightOffset=(X=20.000000,Z=11.750000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_RedTigerNoScope
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSFlame',Index=1)
+		Weight=1
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=20
+		SightOffset=(X=20.000000,Z=11.750000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Desert'
+	Layouts(2)=WeaponParams'ClassicParams_BlackNoScope'
+	Layouts(3)=WeaponParams'ClassicParams_UrbanNoScope'
+	Layouts(4)=WeaponParams'ClassicParams_DesertNoScope'
+	Layouts(5)=WeaponParams'ClassicParams_GermanNoScope'
+	Layouts(6)=WeaponParams'ClassicParams_RedNoScope'
+	Layouts(7)=WeaponParams'ClassicParams_BlueNoScope'
+	Layouts(8)=WeaponParams'ClassicParams_RedTigerNoScope'
 
 
 }

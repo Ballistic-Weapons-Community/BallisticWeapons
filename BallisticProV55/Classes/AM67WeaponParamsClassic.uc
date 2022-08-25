@@ -103,6 +103,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
+		Weight=7
 		PlayerSpeedFactor=1.100000
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
@@ -119,7 +120,52 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_RDS
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=1f)
+		Weight=2
+		PlayerSpeedFactor=1.100000
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=14
+		SightOffset=(X=10.000000,Y=0.04,Z=7.950000)
+		SightPivot=(Pitch=1024,Roll=-1024)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Gray
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.AM67.AH104-MainMk2',Index=1)
+		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
+		Weight=1
+		PlayerSpeedFactor=1.100000
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=14
+		SightOffset=(X=-15.000000,Y=-0.700000,Z=12.300000)
+		SightPivot=(Pitch=1024,Roll=-1024)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_RDS'
+	Layouts(2)=WeaponParams'ClassicParams_Gray'
 
 
 }

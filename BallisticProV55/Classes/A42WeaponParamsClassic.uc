@@ -117,6 +117,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=8
 		PlayerSpeedFactor=1.100000
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
@@ -135,7 +136,32 @@ defaultproperties
 		FireParams(2)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_R //The Red One
+		Weight=2
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.A48.A48Skin_SD',Index=1)
+		PlayerSpeedFactor=1.100000
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=300
+		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
+		SightPivot=(Pitch=1024,Roll=-768)
+		ViewOffset=(X=8.000000,Y=10.000000,Z=-10.000000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_R'
 
 
 }

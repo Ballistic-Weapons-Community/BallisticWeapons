@@ -106,6 +106,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		PlayerSpeedFactor=1.100000
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
@@ -120,7 +121,28 @@ defaultproperties
 		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Gold
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.Dragon.Dragon_Main-SD',Index=1)
+		Weight=1
+		PlayerSpeedFactor=1.100000
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=12
+		SightOffset=(X=-15.000000,Y=-0.350000,Z=8.750000)
+		SightPivot=(Pitch=1024,Roll=-1024)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Gold'
 
 
 }
