@@ -14,11 +14,13 @@ This project also contains modified code from Sergeant Kelly's Bonus Pack and He
 The following people have contributed code to BallisticPro itself:
 
 - Azarael
-- Sergeant Kelly
 - Captain_Xavious
 - Izumo_CZ
 - Jiffy
+- Nootlord
 - OJMoody
+- Sergeant Kelly
+- SX
 
 Code from other projects remains the property of its original authors. I (Azarael) make no claim to it. Contact me if hosting the modified version in this repository is a problem.
 
