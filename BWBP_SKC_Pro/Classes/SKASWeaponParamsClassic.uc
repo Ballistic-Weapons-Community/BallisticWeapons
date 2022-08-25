@@ -157,13 +157,13 @@ defaultproperties
 		InventorySize=25
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=36
-		WeaponModes(0)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Automatic",ModeID="WM_FullAuto")
-		WeaponModes(2)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(2)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(3)=(ModeName="Semi-Auto",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(4)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
 		WeaponModes(5)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
-		InitialWeaponMode=1
+		InitialWeaponMode=0
 		WeaponName="SKAS-21 Super Shotgun"
 		SightOffset=(X=-10.000000,Y=2.000000,Z=14.000000)
 		SightPivot=(Pitch=512,Roll=-1024,Yaw=-512)
@@ -172,8 +172,8 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-        FireParams(1)=FireParams'ClassicPrimaryFireParams'
-        FireParams(2)=FireParams'ClassicPrimaryManualFireParams'
+        FireParams(1)=FireParams'ClassicPrimaryManualFireParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'

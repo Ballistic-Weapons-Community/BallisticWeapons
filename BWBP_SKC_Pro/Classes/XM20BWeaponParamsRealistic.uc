@@ -55,7 +55,6 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		FlashScaleFactor=0.500000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-LaserStart',Volume=1.200000)
 		Recoil=1.0
 		Chaos=-1.0
 		BotRefireRate=0.999000

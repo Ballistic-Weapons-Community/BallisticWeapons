@@ -90,7 +90,7 @@ simulated event RenderTexture( ScriptedTexture Tex )
 	Tex.DrawTile(0,0,512,512,0,0,512,512,ScreenTex, MyFontColor); //Basic Screen
 
 //	Tex.DrawTile(X1,Y1,X2,Y2,X3,Y3,X4,Y4,ScreenRedBar, MyFontColor);
-	Tex.DrawTile(0,512-LaserCharge,512,LaserCharge,0,512-LaserCharge,512,LaserCharge,ScreenRedBar, MyFontColor); //Charge Bar
+	Tex.DrawTile(0,512-512*LaserCharge,512,512*LaserCharge,0,512-512*LaserCharge,512,512*LaserCharge,ScreenRedBar, MyFontColor); //Charge Bar
 
 	if (!bNoMag)
 	{
@@ -607,7 +607,7 @@ defaultproperties
      PlayerViewOffset=(X=6.000000,Y=1.000000,Z=-15.000000)
      BobDamping=1.800000
      AttachmentClass=Class'BWBP_SKC_Pro.XM20BAttachment'
-     IconMaterial=Texture'BWBP_SKC_Tex.XM20.SmallIcon_XM20'
+     IconMaterial=Texture'BWBP_SKC_Tex.XM20B.SmallIcon_XM20'
      IconCoords=(X2=127,Y2=31)
      ItemName="XM20 Laser Carbine"
 	 MagAmmo=40
