@@ -190,6 +190,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
@@ -212,6 +213,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicRDSParams
+		Weight=30
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
@@ -231,8 +233,112 @@ defaultproperties
 		AltFireParams(3)=FireParams'ClassicSecondaryBoltFireParams'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_Desert
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1014.M1014-MainCamoDesert',Index=1)
+		Weight=10
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		MagAmmo=6
+		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
+		SightPivot=(Pitch=-64,Yaw=10)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		FireParams(3)=FireParams'ClassicPrimarySilFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(1)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(2)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(3)=FireParams'ClassicSecondaryBoltFireParams'
+	End Object	
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Digital
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1014.M1014-MainCamoDigital',Index=1)
+		Weight=10
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		MagAmmo=6
+		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
+		SightPivot=(Pitch=-64,Yaw=10)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		FireParams(3)=FireParams'ClassicPrimarySilFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(1)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(2)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(3)=FireParams'ClassicSecondaryBoltFireParams'
+	End Object	
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_America
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1014.M1014-MainCamoAmerica',Index=1)
+		Weight=3
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		MagAmmo=6
+		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
+		SightPivot=(Pitch=-64,Yaw=10)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		FireParams(3)=FireParams'ClassicPrimarySilFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(1)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(2)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(3)=FireParams'ClassicSecondaryBoltFireParams'
+	End Object	
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Tiger
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1014.M1014-MainCamoTiger',Index=1)
+		Weight=1
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.250000
+		MagAmmo=6
+		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
+		SightPivot=(Pitch=-64,Yaw=10)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		FireParams(3)=FireParams'ClassicPrimarySilFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(1)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(2)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(3)=FireParams'ClassicSecondaryBoltFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicRDSParams'
+	Layouts(2)=WeaponParams'ClassicParams_Desert'
+	Layouts(3)=WeaponParams'ClassicParams_Digital'
+	Layouts(4)=WeaponParams'ClassicParams_America'
+	Layouts(5)=WeaponParams'ClassicParams_Tiger'
 
 
 }

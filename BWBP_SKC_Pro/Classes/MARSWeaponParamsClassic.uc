@@ -99,7 +99,9 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
+	Begin Object Class=WeaponParams Name=ClassicParams //Black, IRNV, no GL
+		Weight=30
+		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MARS2'
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
@@ -114,7 +116,137 @@ defaultproperties
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 	End Object
-	Layouts(0)=WeaponParams'ClassicParams'
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Green //Green, IRNV, HE GL
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-MainGreen',Index=1)
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ZoomType=ZT_Logarithmic
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Urban //Urban, IRNV, Smoke GL
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-MainSplitter',Index=1)
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ZoomType=ZT_Logarithmic
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Beige //Beige, Suppressor, HE GL
+		Weight=30
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-Irons',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.LK05.LK05-EOTechGlow',Index=4)
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ZoomType=ZT_Irons
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		WeaponName="MARS-3 CQB Assault Rifle"
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Arctic //Arctic, Suppressor, Ice GL
+		Weight=10
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.MARS.F2000-IronArctic',Index=1)
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ZoomType=ZT_Irons
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		WeaponName="MARS-3 CQB Assault Rifle"
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Proto //Black prototype, Amp, Shockwave GL
+		Weight=3
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-IronBlack',Index=1)
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ZoomType=ZT_Irons
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		WeaponName="MARS-3 CQB Assault Rifle"
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_SE  //Special White, Suppressor, Shockwave GL
+		Weight=3
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-IronWhite',Index=1)
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ZoomType=ZT_Irons
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		WeaponName="MARS-3 CQB Assault Rifle"
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
+	
+	Layouts(0)=WeaponParams'ClassicParams' //Black
+	Layouts(1)=WeaponParams'ClassicParams_Beige'
+	Layouts(2)=WeaponParams'ClassicParams_Green'
+	Layouts(3)=WeaponParams'ClassicParams_Urban'
+	Layouts(4)=WeaponParams'ClassicParams_Arctic'
+	Layouts(5)=WeaponParams'ClassicParams_Proto'
+	Layouts(6)=WeaponParams'ClassicParams_SE'
 
 
 }

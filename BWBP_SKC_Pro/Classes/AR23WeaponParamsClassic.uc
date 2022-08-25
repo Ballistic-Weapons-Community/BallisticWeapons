@@ -113,22 +113,73 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
+	Begin Object Class=WeaponParams Name=ClassicParams //Stock sight
+		Weight=30
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=9
 		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
 		SightPivot=(Pitch=-800)
-		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
-		InitialWeaponMode=2
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_EOTech
+		Weight=10
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="GLIrons",Slot=52,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Holo",Slot=53,Scale=0f)
+		GunAugmentClass=class'BallisticProV55.Augment_Holo'
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=9
+		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
+		SightPivot=(Pitch=-800)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Wut
+		Weight=10
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="GLIrons",Slot=52,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Holo",Slot=53,Scale=0f)
+		GunAugmentClass=class'BallisticProV55.Augment_RDS'
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=9
+		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
+		SightPivot=(Pitch=-800)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Irons
+		Weight=3
+		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="Holo",Slot=52,Scale=0f)
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=9
+		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
+		SightPivot=(Pitch=-800)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_EOTech'
+	Layouts(2)=WeaponParams'ClassicParams_Irons'
+	Layouts(3)=WeaponParams'ClassicParams_Wut'
 
 
 }

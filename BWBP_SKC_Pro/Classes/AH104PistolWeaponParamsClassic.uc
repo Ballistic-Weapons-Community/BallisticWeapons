@@ -105,6 +105,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=0f)
+		GunAugmentClass=class'BallisticProV55.Augment_RDS'
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
