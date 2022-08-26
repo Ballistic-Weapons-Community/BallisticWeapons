@@ -14,7 +14,18 @@ var   float PowerLevel;
 var   float MaxCharge;
 var   sound	ChargeSound;
 var   sound	UltraChargeSound;
-var() sound		UltraFireSound;
+var() sound	UltraFireSound;
+
+simulated state SpinUpFire
+{
+	simulated function bool AllowFire()
+	{
+		if (SKASShotgun(BW).BarrelSpeed > 0)
+			return false;		
+		
+		return super.AllowFire();
+	}
+}
 
 simulated event ModeDoFire()
 {

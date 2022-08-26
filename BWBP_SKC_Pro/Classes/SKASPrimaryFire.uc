@@ -7,10 +7,70 @@
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class SKASPrimaryFire extends BallisticProShotgunFire;
+
 var() sound		SuperFireSound;
 var() sound		ClassicFireSound;
 var() sound		UltraFireSound;
 var() sound		XR4FireSound;
+
+var bool bRequireSpool;
+
+var rotator OldLookDir, TurnVelocity;
+var SKASShotgun MainGun;
+
+var float	NextTVUpdateTime, OldFireRate;
+
+simulated state SpinUpFire
+{
+	event ModeTick(float DT)
+	{
+		local Rotator BasePlayerView;
+
+		BasePlayerView = BW.GetBasePlayerView();
+		
+		if (Instigator.IsLocallyControlled())
+		{
+			TurnVelocity = (BasePlayerView - OldLookDir) / DT;
+			OldLookDir = BasePlayerView;
+			if (level.NetMode == NM_Client && level.TimeSeconds > NextTVUpdateTime)
+			{
+				MainGun.SetServerTurnVelocity(TurnVelocity.Yaw, TurnVelocity.Pitch);
+				NextTVUpdateTime = level.TimeSeconds + 0.15;
+			}
+		}
+
+		OldFireRate = FireRate;
+
+		if (MainGun.BarrelSpeed <= 0)
+		{
+			FireRate = 0.66;
+		}
+		else
+		{
+			FireRate = default.FireRate / (1 + 0.25*int(BW.bBerserk));
+			FireRate = FMin(0.66, FireRate / MainGun.BarrelSpeed);
+			NextFireTime += FireRate - OldFireRate;
+		}
+
+		super.ModeTick(DT);
+	}
+
+	simulated event ModeDoFire()
+	{
+		if (bRequireSpool && MainGun.BarrelSpeed < MainGun.DesiredSpeed)
+			return;
+			
+		super.ModeDoFire();
+	}
+	
+	simulated function bool AllowFire()
+	{
+		if (MainGun.GetSecCharge() > 0)
+			return false;		
+		
+		return super.AllowFire();
+	}
+}
 
 simulated function SwitchWeaponMode (byte NewMode)
 {
@@ -47,7 +107,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 		//CutOffStartRange=Default.CutOffStartRange;
 	}
 }
-
 
 simulated function DestroyEffects()
 {
@@ -87,7 +146,7 @@ defaultproperties
      XInaccuracy=310.000000
      YInaccuracy=310.000000
      BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Single',Volume=1.300000)
-     FireAnim="FireRot"
+     FireAnim="Fire"
      FireEndAnim=
      FireAnimRate=1.500000
      FireRate=0.300000

@@ -35,11 +35,19 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
+		TargetState="SpinUpFire"
 		FireInterval=0.130000
+		BurstFireRateFactor=1.00
+		FireAnim="Fire"
+		FireEndAnim=	
+		FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticPrimaryFireSemiParams
+		FireInterval=0.050000
 		BurstFireRateFactor=1.00
 		FireAnim="FireRot"
 		FireEndAnim=	
-        FireAnimRate=2.000000	
 		FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
 	End Object
 
@@ -109,11 +117,12 @@ defaultproperties
 		End Object
 
 		Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+			TargetState="SpinUpFire"
 			FireInterval=1.700000
 			AmmoPerFire=3
 			BurstFireRateFactor=1.00
 			PreFireAnim="ChargeUp"
-			FireAnim="FireBig"
+			FireAnim="Fire"
 			FireEndAnim=	
 			FireEffectParams(0)=ShotgunEffectParams'RealisticSecondaryEffectParams'
 		End Object
@@ -159,14 +168,14 @@ defaultproperties
 		InventorySize=25
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=36
-		WeaponModes(0)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Automatic",ModeID="WM_FullAuto")
-		WeaponModes(2)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(2)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(3)=(ModeName="Semi-Auto",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(4)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
 		WeaponModes(5)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
-		InitialWeaponMode=1
-		WeaponName="SKAS-21 10ga Gatling Shotgun"
+		InitialWeaponMode=0
+		WeaponName="SKAS-21 Automatic Shotgun"
 		SightOffset=(X=-10.000000,Y=2.000000,Z=14.000000)
 		SightPivot=(Pitch=512,Roll=-1024,Yaw=-512)
 		ReloadAnimRate=0.900000
@@ -174,8 +183,8 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-        FireParams(1)=FireParams'RealisticPrimaryFireParams'
-        FireParams(2)=FireParams'RealisticPrimaryManualFireParams'
+        FireParams(1)=FireParams'RealisticPrimaryManualFireParams'
+		FireParams(2)=FireParams'RealisticPrimaryFireSemiParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
