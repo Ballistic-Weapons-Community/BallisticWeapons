@@ -1,4 +1,4 @@
-class PumaRepeaterWeaponParamsArena extends BallisticWeaponParams;
+class PumaWeaponParamsArena extends BallisticWeaponParams;
 
 defaultproperties
 {

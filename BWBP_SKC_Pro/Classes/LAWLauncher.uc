@@ -43,6 +43,13 @@ simulated event PostNetBeginPlay()
 		SelectAnimRate=1.0;
 		PutDownAnimRate=1.0;
 	}
+	else
+	{
+	PutDownTime=default.PutDownTime;
+	BringUpTime=default.BringUpTime;
+	SelectAnimRate=default.SelectAnimRate;
+	PutDownAnimRate=default.PutDownAnimRate;
+	}
 }
 
 simulated function OutOfAmmo()

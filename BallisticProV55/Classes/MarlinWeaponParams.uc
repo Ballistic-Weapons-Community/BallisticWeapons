@@ -64,9 +64,9 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		CockAnimRate=1.700000
 		ReloadAnimRate=2.000000
-		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		SightOffset=(X=4.000000,Y=-0.070000,Z=4.750000)
 		ViewOffset=(X=4.000000,Y=11.000000,Z=-10.000000)
 		SightingTime=0.400000
