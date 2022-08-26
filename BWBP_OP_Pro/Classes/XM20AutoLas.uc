@@ -480,6 +480,13 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=5.000000
-	Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_XM20P'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XM20'
 	DrawScale=0.500000
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+    Skins(1)=Texture'ONSstructureTextures.CoreGroup.Invisible'
+    Skins(2)=Shader'BWBP_SKC_Tex.XM20Prototype.XM20-MainProtoShine'
+    Skins(3)=Texture'BWBP_SKC_Tex.XM20Prototype.XM20-MiscProto'
+    Skins(4)=Texture'ONSstructureTextures.CoreGroup.Invisible'
+	Skins(5)=Texture'BWBP_SKC_Tex.XM20Prototype.XM20-WiresProto'
+	Skins(6)=Shader'BWBP_SKC_Tex.CYLO.CYLO-SightShader'
 }

@@ -117,6 +117,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
 		InventorySize=35
