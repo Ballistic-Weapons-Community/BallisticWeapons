@@ -56,10 +56,10 @@ function Timer()
 // Sources: Flamer primary fire with traced hit info
 simulated function FireShotRotated(vector Start, vector End, float Dist, bool bHit, vector HitNorm, Pawn InstigatedBy, actor HitActor, Rotator Dir)
 {
-	local RX22AProjectile Proj;
+	local TrenchGunFlameProjectile Proj;
 	local int i;
 	
-	Proj = Spawn (class'RX22AProjectile',InstigatedBy,, Start, Dir);
+	Proj = Spawn (class'TrenchGunFlameProjectile',InstigatedBy,, Start, Dir);
 	if (Proj != None)
 	{
 		Proj.Instigator = InstigatedBy;
@@ -114,7 +114,7 @@ simulated function DoFlameHit(FlameHit Hit)
 	local int i;
 	local BW_FuelPatch Other;
 
-	BurnRadius(4, 256, class'DTRX22ABurned', 0, Hit.HitLoc, Hit.Instigator);
+	BurnRadius(4, 256, class'DTTrenchBurned', 0, Hit.HitLoc, Hit.Instigator);
 
 	if (NearFire(Hit.HitLoc, Other))
 		Other.AddFuel(0.5);
@@ -199,7 +199,7 @@ function bool HasBurner(Actor Other, out BW_FuelPatch Patch)
 
 function MakeNewFire (vector Loc, vector Norm, Pawn InstigatedBy, actor HitActor)
 {
-	GasNodes[GasNodes.length] = Spawn(class'RX22ASurfaceFire',InstigatedBy,,Loc, rotator(Norm));
+	GasNodes[GasNodes.length] = Spawn(class'TrenchGunSurfaceFire',InstigatedBy,,Loc, rotator(Norm));
 	GroundFires[GroundFires.length] = RX22ASurfaceFire(GasNodes[GasNodes.length-1]);
 	
 	if (RX22ASurfaceFire(GasNodes[GasNodes.length-1]) != None)
@@ -212,9 +212,9 @@ function MakeNewFire (vector Loc, vector Norm, Pawn InstigatedBy, actor HitActor
 
 function MakeNewBurner (Actor Other, int Fuel, Pawn InstigatedBy)
 {
-	local RX22AActorFire PF;
+	local TrenchGunActorFire PF;
 
-	PF = Spawn(class'RX22AActorFire',InstigatedBy,,Other.Location, Other.Rotation);
+	PF = Spawn(class'TrenchGunActorFire',InstigatedBy,,Other.Location, Other.Rotation);
 	PF.SetFuel(Fuel);
 	PF.Initialize(Other);
 
