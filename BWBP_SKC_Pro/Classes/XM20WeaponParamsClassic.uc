@@ -1,4 +1,4 @@
-class XM20BWeaponParamsClassic extends BallisticWeaponParams;
+class XM20WeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 { 
@@ -14,13 +14,13 @@ defaultproperties
 			Damage=20
 			HeadMult=1.75
 			LimbMult=0.75
-			DamageType=Class'BWBP_SKC_Pro.DT_XM20B_Body'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20B_Head'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20B_Body'
+			DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+			DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+			DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
 			PenetrateForce=600
 			PDamageFactor=0.6
 			WallPDamageFactor=0.4
-			MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20BFlashEmitter'
+			MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
 			FlashScaleFactor=0.300000
 			FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 			Recoil=32.000000
@@ -48,9 +48,9 @@ defaultproperties
 			RangeAtten=0.350000
 			Damage=20
 			LimbMult=0.75
-			DamageType=Class'BWBP_SKC_Pro.DT_XM20B_Body'
-			DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20B_Head'
-			DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20B_Body'
+			DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+			DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+			DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
 			PenetrateForce=300
 			bPenetrate=True
 			PDamageFactor=0.6

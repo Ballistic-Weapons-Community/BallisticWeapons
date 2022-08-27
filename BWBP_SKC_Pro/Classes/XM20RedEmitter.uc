@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM20BRedEmitter extends BallisticEmitter;
+class XM20RedEmitter extends BallisticEmitter;
 
 
 simulated event PostBeginPlay()
@@ -54,7 +54,7 @@ defaultproperties
          SpawnOnTriggerPPS=20.000000
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=50.000000,Max=65.000000))
      End Object
-     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.XM20BRedEmitter.SpriteEmitter26'
+     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.XM20RedEmitter.SpriteEmitter26'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter4
          StaticMesh=StaticMesh'BW_Core_WeaponStatic.R78.RifleMuzzleFlash'
@@ -88,7 +88,7 @@ defaultproperties
          SpawnOnTriggerPPS=500000.000000
          StartVelocityRange=(X=(Min=20.000000,Max=20.000000))
      End Object
-     Emitters(1)=MeshEmitter'BWBP_SKC_Pro.XM20BRedEmitter.MeshEmitter4'
+     Emitters(1)=MeshEmitter'BWBP_SKC_Pro.XM20RedEmitter.MeshEmitter4'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter3
          StaticMesh=StaticMesh'BW_Core_WeaponStatic.M925.M925MuzzleFlash'
@@ -119,7 +119,7 @@ defaultproperties
          SpawnOnTriggerPPS=50000.000000
          StartVelocityRange=(X=(Min=20.000000,Max=20.000000))
      End Object
-     Emitters(2)=MeshEmitter'BWBP_SKC_Pro.XM20BRedEmitter.MeshEmitter3'
+     Emitters(2)=MeshEmitter'BWBP_SKC_Pro.XM20RedEmitter.MeshEmitter3'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter5
          UseColorScale=True
@@ -146,7 +146,7 @@ defaultproperties
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
-     Emitters(3)=SpriteEmitter'BWBP_SKC_Pro.XM20BRedEmitter.SpriteEmitter5'
+     Emitters(3)=SpriteEmitter'BWBP_SKC_Pro.XM20RedEmitter.SpriteEmitter5'
 
      bNoDelete=False
 }

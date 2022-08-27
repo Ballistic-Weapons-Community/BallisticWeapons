@@ -10,7 +10,7 @@
 // Modified by Marc 'Sergeant Kelly' Moylan
 // Scope code by Kaboodles
 //=============================================================================
-class XM20BCarbine extends BallisticWeapon;
+class XM20Carbine extends BallisticWeapon;
 
 
 var() Sound		DoubleVentSound;	//Sound for double fire's vent
@@ -143,14 +143,14 @@ simulated function Notify_ClipIn()
 //===========================================================================
 function int ManageHeatInteraction(Pawn P, int HeatPerShot)
 {
-	local XM20BHeatManager HM;
+	local XM20HeatManager HM;
 	local int HeatBonus;
 	
-	foreach P.BasedActors(class'XM20BHeatManager', HM)
+	foreach P.BasedActors(class'XM20HeatManager', HM)
 		break;
 	if (HM == None)
 	{
-		HM = Spawn(class'XM20BHeatManager',P,,P.Location + vect(0,0,-30));
+		HM = Spawn(class'XM20HeatManager',P,,P.Location + vect(0,0,-30));
 		HM.SetBase(P);
 	}
 	
@@ -177,7 +177,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	
 	if (Instigator != None && Laser == None && AIController(Instigator.Controller) == None)
 	{
-		Laser = Spawn(class'BWBP_SKC_Pro.LaserActor_XM20BRed');
+		Laser = Spawn(class'BWBP_SKC_Pro.LaserActor_XM20Red');
 	}
 		
 }
@@ -189,7 +189,7 @@ simulated event WeaponTick(float DT)
 	if (Firemode[1].bIsFiring && MagAmmo != 0)
 	{
 		class'bUtil'.static.InitMuzzleFlash(Glow1, class'HMCBarrelGlowRed', DrawScale, self, 'tip');
-		class'BUtil'.static.InitMuzzleFlash (CoverGlow, class'XM20BGlowFX', DrawScale, self, 'CoreGlowL');
+		class'BUtil'.static.InitMuzzleFlash (CoverGlow, class'XM20GlowFX', DrawScale, self, 'CoreGlowL');
 	}
 	else
 	{
@@ -213,25 +213,25 @@ simulated function ServerSwitchWeaponMode (byte NewMode)
 	super.ServerSwitchWeaponMode(NewMode);
 	
 	if (!Instigator.IsLocallyControlled())
-		XM20BSecondaryFire(FireMode[1]).SwitchLaserMode(CurrentWeaponMode);
+		XM20SecondaryFire(FireMode[1]).SwitchLaserMode(CurrentWeaponMode);
 
 	ClientSwitchLaserMode (CurrentWeaponMode);
 }
 
 simulated function ClientSwitchLaserMode (byte newMode)
 {
-	XM20BSecondaryFire(FireMode[1]).SwitchLaserMode(newMode);
+	XM20SecondaryFire(FireMode[1]).SwitchLaserMode(newMode);
 	if (newMode == 2)
 	{
 		bBigLaser=True;
 		if (ThirdPersonActor != None)
-			XM20BAttachment(ThirdPersonActor).bBigLaser=true;
+			XM20Attachment(ThirdPersonActor).bBigLaser=true;
 	}
 	else
 	{
 		bBigLaser=False;
 		if (ThirdPersonActor != None)
-			XM20BAttachment(ThirdPersonActor).bBigLaser=false;
+			XM20Attachment(ThirdPersonActor).bBigLaser=false;
 	}	
 	UpdateScreen();
 }
@@ -256,7 +256,7 @@ function ServerSwitchLaser(bool bNewLaserOn)
 	bLaserOn = bNewLaserOn;
 	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
 	if (ThirdPersonActor != None)
-		XM20BAttachment(ThirdPersonActor).bLaserOn = bLaserOn;
+		XM20Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
     if (Instigator.IsLocallyControlled())
 		ClientSwitchLaser();
 }
@@ -281,7 +281,7 @@ simulated function KillLaserDot()
 simulated function SpawnLaserDot(vector Loc)
 {
 	if (LaserDot == None)
-		LaserDot = Spawn(class'BWBP_SKC_Pro.IE_XM20BImpact',,,Loc);
+		LaserDot = Spawn(class'BWBP_SKC_Pro.IE_XM20Impact',,,Loc);
 }
 
 
@@ -294,7 +294,7 @@ simulated function bool PutDown()
 	{
 		KillLaserDot();
 		if (ThirdPersonActor != None)
-			XM20BAttachment(ThirdPersonActor).bLaserOn = false;
+			XM20Attachment(ThirdPersonActor).bLaserOn = false;
 		if (Glow1 != None)	Glow1.Destroy();
 		if (CoverGlow != None)	CoverGlow.Destroy();
 	}
@@ -589,11 +589,11 @@ defaultproperties
      FullZoomFOV=40.000000
      SightPivot=(Pitch=600)
      SightOffset=(X=-10.000000,Y=11.7500000,Z=22.500000)
-	 ParamsClasses(0)=Class'XM20BWeaponParams'
-	 ParamsClasses(1)=Class'XM20BWeaponParamsClassic'
-	 ParamsClasses(2)=Class'XM20BWeaponParamsRealistic'
-     FireModeClass(0)=Class'BWBP_SKC_Pro.XM20BPrimaryFire'
-     FireModeClass(1)=Class'BWBP_SKC_Pro.XM20BSecondaryFire'
+	 ParamsClasses(0)=Class'XM20WeaponParams'
+	 ParamsClasses(1)=Class'XM20WeaponParamsClassic'
+	 ParamsClasses(2)=Class'XM20WeaponParamsRealistic'
+     FireModeClass(0)=Class'BWBP_SKC_Pro.XM20PrimaryFire'
+     FireModeClass(1)=Class'BWBP_SKC_Pro.XM20SecondaryFire'
      BringUpTime=0.800000
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000
@@ -603,11 +603,11 @@ defaultproperties
      Description="XM-20 Laser Carbine||Manufacturer: UTC Defense Tech|Primary: Laser Blasts|Secondary: Laser Stream||The XM-20 is an experimental laser weapon that has been designed to bypass the Skrith shielding technology that rendered most UTC energy weapons obsolete. Unlike earlier designs, the XM20 emits variable wavelength photons from an automated phase splitter which rapidly pulses Skrith shields. Fields tests have shown it to be effective so far, and UTC command has ordered this weapon into widespread phase 2 testing. An advanced version of the LS14 laser controller has been installed into this weapon, allowing it to switch between laser pulses or a sustained laser beam. The high powered beam is known to turn Cryon ballistic armor to slag with relative ease!"
      Priority=194
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     PickupClass=Class'BWBP_SKC_Pro.XM20BPickup'
+     PickupClass=Class'BWBP_SKC_Pro.XM20Pickup'
      PlayerViewOffset=(X=6.000000,Y=1.000000,Z=-15.000000)
      BobDamping=1.800000
-     AttachmentClass=Class'BWBP_SKC_Pro.XM20BAttachment'
-     IconMaterial=Texture'BWBP_SKC_Tex.XM20B.SmallIcon_XM20'
+     AttachmentClass=Class'BWBP_SKC_Pro.XM20Attachment'
+     IconMaterial=Texture'BWBP_SKC_Tex.XM20.SmallIcon_XM20'
      IconCoords=(X2=127,Y2=31)
      ItemName="XM20 Laser Carbine"
 	 MagAmmo=40
@@ -625,7 +625,7 @@ defaultproperties
      SoundRadius=256.000000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      //Skins(1)=Combiner'BWBP_SKC_Tex.M30A2.M30A2-GunScope'
-     Skins(2)=Shader'BWBP_SKC_Tex.XM20.XM20-Final'
+     Skins(2)=Texture'BWBP_SKC_Tex.XM20.XM20-Main'
      Skins(3)=Texture'BWBP_SKC_Tex.XM20.XM20-Misc'
      Skins(4)=Texture'ONSstructureTextures.CoreGroup.Invisible' //The outermost one
 }

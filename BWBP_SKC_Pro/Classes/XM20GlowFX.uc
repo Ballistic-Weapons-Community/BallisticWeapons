@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM20BGlowFX extends BallisticEmitter;
+class XM20GlowFX extends BallisticEmitter;
 
 simulated event PostBeginPlay()
 {
@@ -40,7 +40,7 @@ defaultproperties
     LifetimeRange=(Min=0.201000,Max=0.201000)
     StartVelocityRange=(X=(Min=-5.000000,Max=5.000000))
      End Object
-     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.XM20BGlowFX.SpriteEmitter2'
+     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.XM20GlowFX.SpriteEmitter2'
 
      bNoDelete=False
 }

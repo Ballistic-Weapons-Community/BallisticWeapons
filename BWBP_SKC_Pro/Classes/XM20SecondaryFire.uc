@@ -8,7 +8,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM20BSecondaryFire extends BallisticProInstantFire;
+class XM20SecondaryFire extends BallisticProInstantFire;
 
 var() sound		FireSoundLoop;
 var   float		StopFireTime;
@@ -31,37 +31,37 @@ var() sound		RegularFireSound;
 function StartBerserk()
 {
 	super.StopBerserk();
-	if (XM20BCarbine(BW).bOvercharged)
+	if (XM20Carbine(BW).bOvercharged)
 		FireRate=default.OverChargedFireRate*0.75;
 }
 
 function StopBerserk()
 {
 	super.StopBerserk();
-	if (XM20BCarbine(BW).bOvercharged)
+	if (XM20Carbine(BW).bOvercharged)
 		FireRate=default.OverChargedFireRate;
 }
 
 function StartSuperBerserk()
 {
 	super.StartSuperBerserk();
-	if (XM20BCarbine(BW).bOvercharged)
+	if (XM20Carbine(BW).bOvercharged)
 		FireRate = default.OverChargedFireRate/Level.GRI.WeaponBerserk;
 }
 
 simulated function ModeTick(float DT)
 {	
 	if (bIsFiring && !bPreventFire && BW.MagAmmo > 0)
-		XM20BCarbine(BW).SetLaserCharge(FMin(XM20BCarbine(BW).LaserCharge + XM20BCarbine(BW).ChargeRate * DT * (1 + 2*int(BW.bBerserk)), XM20BCarbine(BW).MaxCharge));
-	else if (XM20BCarbine(BW).LaserCharge > 0)
+		XM20Carbine(BW).SetLaserCharge(FMin(XM20Carbine(BW).LaserCharge + XM20Carbine(BW).ChargeRate * DT * (1 + 2*int(BW.bBerserk)), XM20Carbine(BW).MaxCharge));
+	else if (XM20Carbine(BW).LaserCharge > 0)
 	{
 		if (level.TimeSeconds > StopFireTime)
 			StopFiring();
 			
 		bPreventFire=true;
-		XM20BCarbine(BW).SetLaserCharge(FMax(0.0, XM20BCarbine(BW).LaserCharge - XM20BCarbine(BW).CoolRate * DT * (1 + 2*int(BW.bBerserk))));
+		XM20Carbine(BW).SetLaserCharge(FMax(0.0, XM20Carbine(BW).LaserCharge - XM20Carbine(BW).CoolRate * DT * (1 + 2*int(BW.bBerserk))));
 		
-		if (XM20BCarbine(BW).LaserCharge <= 0)
+		if (XM20Carbine(BW).LaserCharge <= 0)
 			bPreventFire=false;
 	}
 		
@@ -71,7 +71,7 @@ simulated function ModeTick(float DT)
 // ModeDoFire from WeaponFire.uc, but with a few changes
 simulated event ModeDoFire()
 {
-    if (!AllowFire() || XM20BCarbine(BW).LaserCharge < XM20BCarbine(BW).MaxCharge || TyphonPDW(BW).bShieldUp || bPreventFire)
+    if (!AllowFire() || XM20Carbine(BW).LaserCharge < XM20Carbine(BW).MaxCharge || TyphonPDW(BW).bShieldUp || bPreventFire)
         return;
 
 	if (BW != None)
@@ -141,10 +141,10 @@ function DoFireEffect()
     local Rotator Aim;
 	local int i;
 
-	XM20BCarbine(Weapon).ServerSwitchLaser(true);
+	XM20Carbine(Weapon).ServerSwitchLaser(true);
 	if (!bLaserFiring)
 	{
-		if (XM20BCarbine(BW).bOvercharged)
+		if (XM20Carbine(BW).bOvercharged)
 			Weapon.PlayOwnedSound(PowerFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 		else
 			Weapon.PlayOwnedSound(RegularFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
@@ -178,13 +178,13 @@ simulated function SwitchLaserMode (byte NewMode)
 {
 	if (NewMode == 2) //overcharged
     {
-		XM20BCarbine(BW).bOvercharged=true;
-		XM20BCarbine(BW).ChargeRate=XM20BCarbine(BW).default.ChargeRateOvercharge;
+		XM20Carbine(BW).bOvercharged=true;
+		XM20Carbine(BW).ChargeRate=XM20Carbine(BW).default.ChargeRateOvercharge;
 	}
     else
     {
-		XM20BCarbine(BW).bOvercharged=false;
-		XM20BCarbine(BW).ChargeRate=XM20BCarbine(BW).default.ChargeRate;
+		XM20Carbine(BW).bOvercharged=false;
+		XM20Carbine(BW).ChargeRate=XM20Carbine(BW).default.ChargeRate;
     }
 	if (Weapon.bBerserk)
 		FireRate *= 0.75;
@@ -231,7 +231,7 @@ function PlayFiring()
 	}
 	if (!bLaserFiring)
 	{
-		if (XM20BCarbine(BW).bOvercharged)
+		if (XM20Carbine(BW).bOvercharged)
 			Weapon.PlayOwnedSound(PowerFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 		else
 			Weapon.PlayOwnedSound(RegularFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
@@ -251,7 +251,7 @@ function ServerPlayFiring()
 	}
 	if (!bLaserFiring)
 	{
-		if (XM20BCarbine(BW).bOvercharged)
+		if (XM20Carbine(BW).bOvercharged)
 			Weapon.PlayOwnedSound(PowerFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 		else
 			Weapon.PlayOwnedSound(RegularFireSound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
@@ -261,16 +261,16 @@ function ServerPlayFiring()
 
 function StopFiring()
 {
-    Instigator.AmbientSound = XM20BCarbine(BW).UsedAmbientSound;
+    Instigator.AmbientSound = XM20Carbine(BW).UsedAmbientSound;
     Instigator.SoundVolume = Instigator.Default.SoundVolume;
 	bLaserFiring=false;
-	XM20BCarbine(Weapon).ServerSwitchLaser(false);
+	XM20Carbine(Weapon).ServerSwitchLaser(false);
 	StopFireTime = level.TimeSeconds;
 }	
 
 simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
 {
-	TargetedHurtRadius(7, 20, class'DT_XM20B_Body', 0, HitLocation, Other);
+	TargetedHurtRadius(7, 20, class'DT_XM20_Body', 0, HitLocation, Other);
 	return super.ImpactEffect(HitLocation, HitNormal, HitMat, Other, WaterHitLoc);
 }
 
@@ -311,6 +311,7 @@ defaultproperties
 {
 	 FireSoundLoop=Sound'BWBP_SKC_Sounds.XM20.XM20-Lase'
      ChargeSound=Sound'BWBP_SKC_Sounds.XM20.XM20-SpartanChargeSound'
+//	 ChargeSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Charge'
      PowerFireSound=Sound'BWBP_SKC_Sounds.XM20.XM20-Overcharge'
      RegularFireSound=Sound'BWBP_SKC_Sounds.XM20.XM20-LaserStart'
 	 TraceCount=1
@@ -323,9 +324,9 @@ defaultproperties
 
      RangeAtten=0.350000
      WaterRangeAtten=0.800000
-     DamageType=Class'BWBP_SKC_Pro.DT_XM20B_Body'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20B_Head'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20B_Body'
+     DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+     DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+     DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
      PenetrateForce=300
      bPenetrate=True
      FlashBone="tip"

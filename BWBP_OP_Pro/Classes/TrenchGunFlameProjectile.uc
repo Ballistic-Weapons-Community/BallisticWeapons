@@ -1,5 +1,5 @@
 //=============================================================================
-// RX22AProjectile.
+// TrenchGunFlameProjectile.
 //
 // The flamer projectile is special. It has a fat collision and is only used
 // for finding actors to burn. It does not collide with the world and must die
@@ -9,9 +9,9 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Supercharger_ZapProjectile extends BallisticProjectile;
+class TrenchGunFlameProjectile extends BallisticProjectile;
 
-var   Supercharger_ChargeControl	ChargeControl;
+var   TrenchGunFireControl	FireControl;
 var   Vector			EndPoint, StartPoint;
 var   array<actor>		AlreadyHit;
 
@@ -26,14 +26,13 @@ function InitFlame(vector End)
 {
 	EndPoint = End;
 	StartPoint = Location;
-//	LifeSpan = VSize(FireDir) / 3000;
 }
+
 event Tick(float DT)
 {
 	super.Tick(DT);
 	if (vector(Rotation) Dot Normal(EndPoint-Location) < 0.0)
 		Destroy();
-
 }
 
 simulated function Timer()
@@ -51,47 +50,57 @@ simulated function Timer()
 		super.Timer();
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch (Actor Other)
 {
-//    local Vector X;
     local int i;
+    
+    if (!Super.CanTouch(Other))
+        return false;
 
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
-	if (Other.Base == Instigator)
-		return;
+    if (Other.Base == Instigator)
+		return false;
+
 	for(i=0;i<AlreadyHit.length;i++)
 		if (AlreadyHit[i] == Other)
-			return;
+			return false;
 
-	if (Role == ROLE_Authority)		// Do damage for direct hits
-		DoDamage(Other, HitLocation);
-	if (CanPenetrate(Other) && Other != HitActor)
-	{	// Projectile can go right through enemies
-		AlreadyHit[AlreadyHit.length] = Other;
-		HitActor = Other;
-	}
-	else
-		Destroy();
+    return true;
+}
 
-	if (Pawn(Other) != None)
-		ChargeControl.FireSinge(Pawn(Other), Instigator, 1); //The 1 designates this weapon is an supercharger, used for death messages
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
+{
+	if ( Instigator == None || Instigator.Controller == None )
+		Other.SetDelayedDamageInstigatorController( InstigatorController );
+
+	class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType);
+
+    if (Pawn(Other) != None)
+		FireControl.FireSinge(Pawn(Other), Instigator);
+}
+
+simulated function Penetrate(Actor Other, Vector HitLocation)
+{
+	AlreadyHit[AlreadyHit.length] = Other;
+}
+
+simulated function Explode (vector a, vector b)
+{
+    Destroy();
 }
 
 defaultproperties
 {
 	 bApplyParams=False
      bPenetrate=True
-     StartDelay=0.050000
+     StartDelay=0.030000
      Speed=3000.000000
-     Damage=5.000000
-     MyDamageType=Class'BallisticProV55.DTRX22ABurned'
+     Damage=18.000000
+     MyDamageType=Class'BWBP_OP_Pro.DTTrenchBurned'
      bHidden=True
      RemoteRole=ROLE_None
-     LifeSpan=0.600000
-     CollisionRadius=32.000000
-     CollisionHeight=32.000000
+     LifeSpan=0.350000
+     CollisionRadius=30.000000
+     CollisionHeight=30.000000
      bCollideActors=False
      bCollideWorld=False
      bBlockZeroExtentTraces=False

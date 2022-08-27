@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM20BPrimaryFire extends BallisticProInstantFire;
+class XM20PrimaryFire extends BallisticProInstantFire;
 
 var()	float			HeatPerShot;
 
@@ -14,7 +14,7 @@ simulated function bool AllowFire()
 {
     if (super.AllowFire())
 	{ 
-		if (XM20BCarbine(BW).bIsCharging)
+		if (XM20Carbine(BW).bIsCharging)
 			return false;
 		else
 			return true;
@@ -22,11 +22,11 @@ simulated function bool AllowFire()
     return super.AllowFire();
 }
 
-//The XM20B deals increased damage to targets which have already been heated up by a previous strike.
+//The XM20 deals increased damage to targets which have already been heated up by a previous strike.
 function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
 {	
 	if (Pawn(Target) != None && Pawn(Target).bProjTarget)
-		Damage += XM20BCarbine(BW).ManageHeatInteraction(Pawn(Target), HeatPerShot);
+		Damage += XM20Carbine(BW).ManageHeatInteraction(Pawn(Target), HeatPerShot);
 	
 	if (Monster(Target) != None)
 		Damage = Min(Damage, 35);
@@ -42,13 +42,13 @@ defaultproperties
      Damage=16
      RangeAtten=0.900000
      WaterRangeAtten=0.700000
-     DamageType=Class'BWBP_SKC_Pro.DT_XM20B_Body'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20B_Head'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20B_Body'
+     DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+     DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+     DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
      PenetrateForce=600
      bPenetrate=False
      FlashScaleFactor=0.300000
-     MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20BFlashEmitter'
+     MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
      FireRecoil=96.000000
      YInaccuracy=16.000000
      BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
