@@ -1,4 +1,7 @@
 Class Mut_BallisticPreLoad extends Mutator 
+	transient
+	HideDropDown
+	CacheExempt
 	config(BallisticProV55);
 
 var config array< class<Weapon> > WeaponClassNames;

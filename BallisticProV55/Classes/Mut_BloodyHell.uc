@@ -7,7 +7,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Mut_BloodyHell extends Mutator;
+class Mut_BloodyHell extends Mutator
+	transient
+	HideDropDown
+	CacheExempt;
 
 function ModifyPlayer(Pawn Other)
 {

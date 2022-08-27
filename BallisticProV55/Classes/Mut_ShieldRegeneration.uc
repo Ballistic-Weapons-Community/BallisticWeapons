@@ -5,6 +5,9 @@
 // Also adds a rules class that awards a health bonus for killing players.
 //=============================================================================
 class Mut_ShieldRegeneration extends Mutator
+	transient
+	HideDropDown
+	CacheExempt
 	config(BallisticProV55);
 
 var globalconfig bool     	bUseShieldRegen;	

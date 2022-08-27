@@ -43,6 +43,11 @@ struct PickupSwap
 };
 var   array<PickupSwap> PickupSwaps;				// Pickups waiting to be swapped
 
+var   globalconfig bool		bRegeneration;			// Enables Regeneration
+var   globalconfig bool		bShieldRegeneration;	// Enables Shield Regeneration
+var   globalconfig bool		bPreloadMeshes;			// Enables Mesh Preloader
+var   globalconfig bool		bBloodyHell;			// Enables BloodyHell
+
 var   globalconfig bool		bUseItemizer;			// Should extra items be spawned using the Itemizer system
 var   globalconfig string	ItemGroup;				// Group to use for Itemizer. Only items of this group will spawned by Itemizer.
 var   globalconfig bool		bLeaveSuper;			// Don't replace super weapons
@@ -766,6 +771,25 @@ simulated function PreBeginPlay()
 	if (Role == ROLE_Authority)
 		BallisticReplicationInfo = class'BallisticReplicationInfo'.static.HitMe(self);
 
+	if (bBloodyHell)
+	{
+		Level.Game.AddMutator("BallisticProV55.Mut_BloodyHell", false);
+	}
+	
+	if (bRegeneration)
+	{
+		Level.Game.AddMutator("BallisticProV55.Mut_Regeneration", false);
+	}
+	
+	if (bShieldRegeneration)
+	{
+		Level.Game.AddMutator("BallisticProV55.Mut_ShieldRegeneration", false);
+	}
+	if (bPreloadMeshes)
+	{
+		Level.Game.AddMutator("BallisticProV55.Mut_BallisticPreLoad", false);
+	}
+
 	if (level.Game != None)
 	{
 		Level.Game.AddGameModifier(Spawn(class'Rules_KillRewards'));
@@ -784,6 +808,7 @@ simulated function PreBeginPlay()
 		if (level.Game.PlayerControllerClassName ~= "XGame.xPlayer")
 			Level.Game.PlayerControllerClassName = "BallisticProV55.BallisticPlayer";
 	}
+	
 	LoadItemClasses();
 	super.PreBeginPlay();
 }
@@ -1022,6 +1047,11 @@ defaultproperties
      GroundSpeedScale=270.000000
      AirSpeedScale=270.000000
      AccelRateScale=256.000000
+	 
+	 bBloodyHell=False
+	 bRegeneration=False
+	 bShieldRegeneration=False
+	 bPreloadMeshes=True
 	 
 	 ItemGroup="Ballistic"
      bSpawnUniqueItems=True
