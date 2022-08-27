@@ -6,7 +6,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Mut_BallisticMelee extends Mut_Ballistic;
+class Mut_BallisticMelee extends Mut_Ballistic
+	transient
+	HideDropDown
+	CacheExempt;
 
 simulated event PreBeginPlay()
 {

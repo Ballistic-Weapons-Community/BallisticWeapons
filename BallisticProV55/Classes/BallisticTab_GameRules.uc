@@ -53,16 +53,16 @@ function ShowPanel(bool bShow)
 
 function LoadSettings()
 {
-	//co_InventoryMode.AddItem("Pickups" ,,string(0));
-	//co_InventoryMode.AddItem("Standard Loadout" ,,string(1));
-	//co_InventoryMode.AddItem("Conflict Loadout" ,,string(2));
-	//co_InventoryMode.AddItem("Evolution Loadout" ,,string(3));
-	//co_InventoryMode.AddItem("Arena" ,,string(4));
-	//co_InventoryMode.AddItem("Melee" ,,string(5));
-	//co_InventoryMode.ReadOnly(True);
-	//co_InventoryMode.SetIndex(class'Mut_Ballistic'.default.InventoryMode);
+	co_InventoryMode.AddItem("Pickups" ,,string(0));
+	co_InventoryMode.AddItem("Standard Loadout" ,,string(1));
+	co_InventoryMode.AddItem("Conflict Loadout" ,,string(2));
+	co_InventoryMode.AddItem("Evolution Loadout" ,,string(3));
+	co_InventoryMode.AddItem("Arena" ,,string(4));
+	co_InventoryMode.AddItem("Melee" ,,string(4));
+	co_InventoryMode.ReadOnly(True);
+	co_InventoryMode.SetIndex(class'Mut_BallisticGlobal'.default.InventoryModeIndex);
 	
-	co_GameStyle.AddItem("Arena" ,,string(0));
+	co_GameStyle.AddItem("PvP" ,,string(0));
 	co_GameStyle.AddItem("Classic" ,,string(1));
 	co_GameStyle.AddItem("Realism" ,,string(2));
 	co_GameStyle.ReadOnly(True);
@@ -84,6 +84,7 @@ function SaveSettings()
 {
 	if (!bInitialized)
 		return;
+	class'Mut_BallisticGlobal'.default.InventoryModeIndex		= co_InventoryMode.GetIndex();
 	class'BallisticReplicationInfo'.default.GameStyle       	= EGameStyle(co_GameStyle.GetIndex());
 	class'BallisticPawn'.default.bNoViewFlash					= ch_ViewFlash.IsChecked();
 	class'BallisticWeapon'.default.MaxInventoryCapacity 		= int_MaxInventoryCapacity.GetValue();	
@@ -93,7 +94,7 @@ function SaveSettings()
 	class'BallisticReplicationInfo'.default.bLimitDoubleJumps 	= ch_DoubleJump.IsChecked();
 	//class'Mut_Regeneration'.default.bUseRegen					= ch_Regen.IsChecked();
 	//class'Mut_ShieldRegeneration'.default.bUseShieldRegen		= ch_ShieldRegen.IsChecked();
-	//class'Mut_Ballistic'.default.bEnablePreloading		= ch_PreCacheWeapons.IsChecked();
+	//class'Mut_Ballistic'.default.bEnablePreloading			= ch_PreCacheWeapons.IsChecked();
 	
 	class'BallisticReplicationInfo'.static.StaticSaveConfig();
 	class'BallisticWeapon'.static.StaticSaveConfig();
@@ -101,10 +102,12 @@ function SaveSettings()
 	class'BallisticPawn'.static.StaticSaveConfig();
 	class'Rules_Ballistic'.static.StaticSaveConfig();
 	class'Mut_Ballistic'.static.StaticSaveConfig();
+	class'Mut_BallisticGlobal'.static.StaticSaveConfig();
 }
 
 function DefaultSettings()
 {
+	co_InventoryMode.SetIndex(0);
 	co_GameStyle.SetIndex(0);
 	ch_ViewFlash.Checked(true);
 	int_MaxInventoryCapacity.SetValue(0);
@@ -118,8 +121,20 @@ function DefaultSettings()
 }
 
 defaultproperties
-{
-	 //To Add Inventory Mode Above "Game Style"
+{	 
+	 Begin Object Class=moComboBox Name=co_InventoryModeCombo
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.550000
+         Caption="Inventory Mode"
+         OnCreateComponent=co_InventoryModeCombo.InternalOnCreateComponent
+         IniOption="@Internal"
+         IniDefault="High"
+         Hint="Determines the Weapon Spawns of Ballistic Weapons"
+         WinTop=0.050000
+         WinLeft=0.250000
+		 WinHeight=0.040000
+     End Object
+     co_InventoryMode=moComboBox'co_InventoryModeCombo'
 	 
 	 Begin Object Class=moComboBox Name=co_GameStyleCombo
          ComponentJustification=TXTA_Left
@@ -129,7 +144,7 @@ defaultproperties
          IniOption="@Internal"
          IniDefault="High"
          Hint="Determines the general gameplay of Ballistic Weapons."
-         WinTop=0.050000
+         WinTop=0.100000
          WinLeft=0.250000
 		 WinHeight=0.040000
      End Object
@@ -142,7 +157,7 @@ defaultproperties
          OnCreateComponent=ch_ViewFlashCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Disable screen flashes when you get damaged."
-         WinTop=0.10000
+         WinTop=0.15000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -157,7 +172,7 @@ defaultproperties
          OnCreateComponent=int_MaxWepsInt.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Sets the player's maximum inventory capacity. 0 is infinite."
-         WinTop=0.150000
+         WinTop=0.200000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -170,7 +185,7 @@ defaultproperties
          OnCreateComponent=ch_BrightPlayersCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Makes players glow in the dark like normal UT2004. Only affects BW gametypes - standard gametypes have bright players already."
-         WinTop=0.200000
+         WinTop=0.250000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -183,7 +198,7 @@ defaultproperties
          OnCreateComponent=ch_ForceBWPawnCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="BW mutators will try to force BallisticPawn even when game specific pawn is used (WARNING: Could cause severe problems in some gametypes)"
-         WinTop=0.250000
+         WinTop=0.300000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -196,7 +211,7 @@ defaultproperties
          OnCreateComponent=ch_NoDodgingCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Disables dodging for all players"
-         WinTop=0.300000
+         WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -209,7 +224,7 @@ defaultproperties
          OnCreateComponent=ch_DoubleJumpCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Limits the Double Jump capabilities of players."
-         WinTop=0.350000
+         WinTop=0.400000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

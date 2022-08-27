@@ -60,6 +60,6 @@ function Destroyed()
 
 defaultproperties
 {
-     FriendlyName="BallisticPro: Rewind Collision"
+     FriendlyName="BallisticPro: Server Rewind Collision"
      Description="This mutator implements rewind-based collision detection for network games. Do not use offline."
 }

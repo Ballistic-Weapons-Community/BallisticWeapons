@@ -6,6 +6,9 @@
 // Adapted from RS code by Azarael.
 //======================================================================
 class Mut_ConflictLoadout extends Mut_Ballistic
+	transient
+	HideDropDown
+	CacheExempt
 	config(BallisticProV55)
 	DependsOn(Mut_Loadout);
 	
