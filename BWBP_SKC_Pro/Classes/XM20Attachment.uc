@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM20BAttachment extends BallisticAttachment;
+class XM20Attachment extends BallisticAttachment;
 
 
 var   bool					bLaserOn;	//Is laser currently active
@@ -33,7 +33,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (XM20BCarbine(Instigator.Weapon).BCRepClass.default.GameStyle != 1)
+	if (XM20Carbine(Instigator.Weapon).BCRepClass.default.GameStyle != 1)
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20P';
 	}
@@ -52,7 +52,7 @@ simulated function SpawnLaserDot(vector Loc)
 {
 	if (LaserDot == None)
 	{
-		LaserDot = Spawn(class'BWBP_SKC_Pro.IE_XM20BImpact',,,Loc);
+		LaserDot = Spawn(class'BWBP_SKC_Pro.IE_XM20Impact',,,Loc);
 		laserDot.bHidden=false;
 	}
 }
@@ -81,7 +81,7 @@ simulated function Tick(float DT)
 		return;
 
 	if (Laser == None)
-		Laser = Spawn(class'BWBP_SKC_Pro.LaserActor_XM20BRed',,,Location);
+		Laser = Spawn(class'BWBP_SKC_Pro.LaserActor_XM20Red',,,Location);
 
 	if (bLaserOn != bOldLaserOn)
 		bOldLaserOn = bLaserOn;
@@ -170,7 +170,7 @@ simulated function InstantFireEffects(byte Mode)
 		if (VSize(PreviousHitLoc - mHitLocation) < 2)
 			return;
 		PreviousHitLoc = mHitLocation;
-		ImpactManager = class'IM_XM20BLaser';
+		ImpactManager = class'IM_XM20Laser';
 	}
 	super.InstantFireEffects(Mode);
 }
@@ -183,9 +183,9 @@ defaultproperties
 {
 	 FlashBone="Muzzle"
      AltFlashBone="Muzzle"
-	 MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20BFlashEmitter'
+	 MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_XM20'
-     ImpactManager=Class'BWBP_SKC_Pro.IM_XM20BLaser'
+     ImpactManager=Class'BWBP_SKC_Pro.IM_XM20Laser'
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-FlyBy',Volume=0.700000)
      InstantMode=MU_Both
      FlashMode=MU_Both

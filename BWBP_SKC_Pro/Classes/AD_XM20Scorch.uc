@@ -1,7 +1,7 @@
 //=============================================================================
 // AD_XM20Scorch.
 //=============================================================================
-class AD_XM20BScorch extends AD_ImpactDecal
+class AD_XM20Scorch extends AD_ImpactDecal
 	placeable;
 
 defaultproperties

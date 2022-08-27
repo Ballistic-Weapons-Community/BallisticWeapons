@@ -1,7 +1,7 @@
 //===========================================================================
 // Manages appearance of heat.
 //===========================================================================
-class XM20BHeatManager extends BallisticEmitter;
+class XM20HeatManager extends BallisticEmitter;
 
 var float Heat, MaxHeat, NextHeatDecayTime, HeatDeclineDelay, Decay, DecayInterval;
 
@@ -99,7 +99,7 @@ defaultproperties
          StartVelocityRange=(X=(Min=-20.000000,Max=20.000000),Y=(Min=-20.000000,Max=20.000000))
          VelocityLossRange=(X=(Min=0.200000,Max=0.200000),Y=(Min=0.200000,Max=0.200000),Z=(Min=0.700000,Max=0.700000))
      End Object
-     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.XM20BHeatManager.XM20Smoke'
+     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.XM20HeatManager.XM20Smoke'
 
      RemoteRole=ROLE_SimulatedProxy
      AmbientSound=Sound'GeneralAmbience.firefx9'

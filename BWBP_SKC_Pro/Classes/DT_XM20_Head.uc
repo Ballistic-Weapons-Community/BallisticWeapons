@@ -10,7 +10,7 @@
 // by Sarge
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class DT_XM20B_Head extends DT_BWMiscDamage;
+class DT_XM20_Head extends DT_BWMiscDamage;
 
 // HeadShot stuff from old sniper damage ------------------
 static function IncrementKills(Controller Killer)
@@ -37,7 +37,7 @@ defaultproperties
      DeathStrings(1)="%k disintegrated %o's face with a laser assault rife."
      DeathStrings(2)="%k's XM-20 burned a neat hole directly through %o's forehead."
      DeathStrings(3)="%o should not have stared into %k's laser."
-     SimpleKillString="XM20B Laser Carbine Head"
+     SimpleKillString="XM20 Laser Carbine Head"
      BloodManagerName="BloodMan_HMCLaser"
      FlashThreshold=0
      FlashV=(X=700.000000,Y=700.000000,Z=2000.000000)
@@ -50,7 +50,7 @@ defaultproperties
      MinMotionBlurDamage=5.000000
      MotionBlurDamageRange=20.000000
      bUseMotionBlur=True
-     WeaponClass=Class'BWBP_SKC_Pro.XM20BCarbine'
+     WeaponClass=Class'BWBP_SKC_Pro.XM20Carbine'
      DeathString="%o looked directly into %k's laser carbine."
      FemaleSuicide="%o blasted her eyes out."
      MaleSuicide="%o blasted himself in the eye."

@@ -1,9 +1,9 @@
 //=============================================================================
-// XM20BFlashEmitter.
+// XM20FlashEmitter.
 //
 // JABOODLES
 //=============================================================================
-class XM20BFlashEmitter extends BallisticEmitter;
+class XM20FlashEmitter extends BallisticEmitter;
 
 simulated event PostBeginPlay()
 {
@@ -45,7 +45,7 @@ defaultproperties
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
-     Emitters(0)=MeshEmitter'BWBP_SKC_Pro.XM20BFlashEmitter.MeshEmitter5'
+     Emitters(0)=MeshEmitter'BWBP_SKC_Pro.XM20FlashEmitter.MeshEmitter5'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter10
          UseColorScale=True
@@ -71,7 +71,7 @@ defaultproperties
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
-     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.XM20BFlashEmitter.SpriteEmitter10'
+     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.XM20FlashEmitter.SpriteEmitter10'
 
      bNoDelete=False
 }

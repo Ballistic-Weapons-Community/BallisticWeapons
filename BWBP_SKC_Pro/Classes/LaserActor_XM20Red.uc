@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class LaserActor_XM20BRed extends LaserActor;
+class LaserActor_XM20Red extends LaserActor;
 
 defaultproperties
 {

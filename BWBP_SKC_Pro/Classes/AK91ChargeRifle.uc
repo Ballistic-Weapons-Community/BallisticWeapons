@@ -57,7 +57,8 @@ simulated event WeaponTick(float DT)
 	super.WeaponTick(DT);
 
 	if (HeatLevel >= 5 && Instigator.IsLocallyControlled() && GlowFX == None && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GlowFX == None || GlowFX.bDeleteMe))
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'HMCBarrelGlow', DrawScale, self, 'tip3');
+		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'HMCBarrelGlow', DrawScale, self, 'LAM');
+		//class'BUtil'.static.InitMuzzleFlash (GlowFX, class'HMCBarrelGlow', DrawScale, self, 'tip3');
 	else if (HeatLevel < 5)
 	{
 		if (GlowFX != None)
@@ -178,48 +179,53 @@ function Supercharger_ChargeControl GetChargeControl()
 //==========================================
 function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 {
- local actor Victims;
- local float damageScale, dist;
- local vector dir;
+	local actor Victims;
+	local float damageScale, dist;
+	local vector dir;
 
- if( bHurtEntry )
-  return;
+	if( bHurtEntry )
+		return;
 
- bHurtEntry = true;
- foreach CollidingActors( class 'Actor', Victims, DamageRadius, Location )
- {
-  if( (Victims != Instigator) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) )
-  {
-   if ( Aim dot Normal (Victims.Location - Location) < 0.5)
-    continue;
-   
-   if (!FastTrace(Victims.Location, Location))
-    continue;
-    
-   dir = Victims.Location - Location;
-   dist = FMax(1,VSize(dir));
+	bHurtEntry = true;
+	foreach CollidingActors( class 'Actor', Victims, DamageRadius, Location )
+	{
+		if( (Victims != Instigator) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) )
+		{
+			if ( Aim dot Normal (Victims.Location - Location) < 0.5)
+				continue;
 
+			if (!FastTrace(Victims.Location, Location))
+				continue;
 
-   dir = dir/dist;
-   damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
-   class'BallisticDamageType'.static.GenericHurt
-   (
-    Victims,
-    damageScale * DamageAmount * Heatlevel,
-    Instigator,
-    Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
-    vect(0,0,0),
-    class'DTA49Shockwave'
-   );
-   
-   if(Pawn(Victims) != None && Pawn(Victims).bProjTarget)
-    Pawn(Victims).AddVelocity(vect(0,0,200) + (Normal(Victims.Acceleration) * -FMin(Pawn(Victims).GroundSpeed, VSize(Victims.Velocity)) + Normal(dir) * 3000 * damageScale));
-      
-   if (Instigator != None && Vehicle(Victims) != None && Vehicle(Victims).Health > 0)
-    Vehicle(Victims).DriverRadiusDamage(DamageAmount, DamageRadius, Instigator.Controller, class'DTA49Shockwave', 0.0f, Location);
-  }
- }
- bHurtEntry = false;
+			dir = Victims.Location - Location;
+			dist = FMax(1,VSize(dir));
+
+			log("HeatLevel is  "$HeatLevel);
+			log("HeatLevel int is  "$int(HeatLevel));
+			dir = dir/dist;
+			//damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
+			class'BallisticDamageType'.static.GenericHurt
+			(
+				Victims,
+				DamageAmount * int(Heatlevel),
+				Instigator,
+				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
+				vect(0,0,0),
+				class'DT_AK91Zapped'
+			);
+
+			if (Pawn(Victims) != None)
+			{
+				ChargeControl.FireSinge(Pawn(Victims), Instigator, 2, int(HeatLevel)); //The 2 designates this weapon is an AK91, used for death messages, adds HeatLevel # of zaps
+				if ( Pawn(Victims).bProjTarget)
+					Pawn(Victims).AddVelocity(vect(0,0,200) + (Normal(Victims.Acceleration) * -FMin(Pawn(Victims).GroundSpeed, VSize(Victims.Velocity)) + Normal(dir) * 3000 * damageScale));
+			}
+
+			if (Instigator != None && Vehicle(Victims) != None && Vehicle(Victims).Health > 0)
+				Vehicle(Victims).DriverRadiusDamage(DamageAmount, DamageRadius, Instigator.Controller, class'DT_AK91Zapped', 0.0f, Location);
+		}
+	}
+	bHurtEntry = false;
 }
 
 simulated event AnimEnd (int Channel)
@@ -428,8 +434,9 @@ defaultproperties
      SightPivot=(Pitch=64)
      SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
      SightDisplayFOV=20.000000
-	 ParamsClasses(0)=Class'AK91ChargeRifleWeaponParamsArena'
-	 ParamsClasses(1)=Class'AK91ChargeRifleWeaponParamsArena'
+	 ParamsClasses(0)=Class'AK91WeaponParamsArena'
+	 ParamsClasses(1)=Class'AK91WeaponParamsClassic'
+	 ParamsClasses(2)=Class'AK91WeaponParamsClassic'
      SightingTime=0.300000
      FireModeClass(0)=Class'BWBP_SKC_Pro.AK91PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.AK91SecondaryFire'
@@ -439,7 +446,7 @@ defaultproperties
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000
      CurrentRating=0.600000
-     Description="AK-91 Charge Rifle||Manufacturer: Zavod Tochnogo Voorujeniya (ZTV Export)|Primary: 7.62 AP Rounds|Secondary: Emergency Vent||Chambering 7.62mm armor piercing rounds, this rifle is a homage to its' distant predecessor, the AK-47. Though the weapons' looks have hardly changed at all, this model features a vastly improved firing mechanism, allowing it to operate in the most punishing of conditions. Equipped with a heavy reinforced stock, launchable ballistic bayonet, and 20 round box mag, this automatic powerhouse is guaranteed to cut through anything in its way. ZVT Exports designed this weapon to be practical and very easy to maintain. With its rugged and reliable design, the AK490 has spread throughout the cosmos and can be found just about anywhere."
+     Description="AK-91 Charge Rifle||Manufacturer: Zavod Tochnogo Voorujeniya (ZTV Export)|Primary: 7.62 AP Rounds|Secondary: Emergency Vent||The AK-91 was designed by ZTV using reverse-engineered amplifier technology to augment the power of their existing AK-490 design. The amp works, but not without its drawbacks, it stores dangerous amounts of charge in an emergency capacitor that must be purged periodically to keep the weapon from catastrophically overheating."
      Priority=65
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=4

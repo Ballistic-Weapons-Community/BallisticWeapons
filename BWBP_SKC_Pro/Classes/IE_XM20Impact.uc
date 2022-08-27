@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class IE_XM20BImpact extends DGVEmitter
+class IE_XM20Impact extends DGVEmitter
 	placeable;
 
 simulated event PreBeginPlay()
@@ -50,7 +50,7 @@ defaultproperties
         LifetimeRange=(Min=0.301000,Max=0.301000)
         StartVelocityRange=(X=(Max=100.000000),Y=(Min=-100.000000,Max=100.000000),Z=(Min=-100.000000,Max=100.000000))
     End Object
-     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.IE_XM20BImpact.SpriteEmitter12'
+     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.IE_XM20Impact.SpriteEmitter12'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter13
         UseColorScale=True
@@ -82,7 +82,7 @@ defaultproperties
         SecondsBeforeInactive=0.000000
         LifetimeRange=(Min=1.500000,Max=1.500000)
     End Object
-     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.IE_XM20BImpact.SpriteEmitter13'
+     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.IE_XM20Impact.SpriteEmitter13'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter14
         FadeOut=True
@@ -113,7 +113,7 @@ defaultproperties
         StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=20.000000,Max=30.000000))
         VelocityLossRange=(X=(Min=0.500000,Max=0.500000),Y=(Min=0.500000,Max=0.500000),Z=(Min=0.500000,Max=0.500000))
     End Object
-     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.IE_XM20BImpact.SpriteEmitter14'
+     Emitters(2)=SpriteEmitter'BWBP_SKC_Pro.IE_XM20Impact.SpriteEmitter14'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter15
         UseDirectionAs=PTDU_Up
@@ -148,7 +148,7 @@ defaultproperties
         LifetimeRange=(Min=0.350000,Max=0.350000)
         StartVelocityRange=(X=(Min=50.000000,Max=500.000000),Y=(Min=-250.000000,Max=250.000000),Z=(Min=-50.000000,Max=350.000000))
     End Object
-     Emitters(3)=SpriteEmitter'BWBP_SKC_Pro.IE_XM20BImpact.SpriteEmitter15'
+     Emitters(3)=SpriteEmitter'BWBP_SKC_Pro.IE_XM20Impact.SpriteEmitter15'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter17
         UseColorScale=True
@@ -180,7 +180,7 @@ defaultproperties
         SecondsBeforeInactive=0.000000
         LifetimeRange=(Min=2.500000,Max=2.500000)
     End Object
-     Emitters(4)=SpriteEmitter'BWBP_SKC_Pro.IE_XM20BImpact.SpriteEmitter17'
+     Emitters(4)=SpriteEmitter'BWBP_SKC_Pro.IE_XM20Impact.SpriteEmitter17'
 
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter18
@@ -219,7 +219,7 @@ defaultproperties
         SecondsBeforeInactive=0.000000
         LifetimeRange=(Min=1.000000,Max=1.000000)
     End Object
-     Emitters(5)=SpriteEmitter'BWBP_SKC_Pro.IE_XM20BImpact.SpriteEmitter18'
+     Emitters(5)=SpriteEmitter'BWBP_SKC_Pro.IE_XM20Impact.SpriteEmitter18'
 
      AutoDestroy=True
 }

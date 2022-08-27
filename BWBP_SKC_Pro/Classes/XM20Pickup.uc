@@ -9,7 +9,7 @@
 //Jiffy: More like "Auto Lad" for the the rite lads in this server
 //
 //=============================================================================
-class XM20BPickup extends BallisticWeaponPickup
+class XM20Pickup extends BallisticWeaponPickup
 	placeable;
 
 #exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
@@ -29,7 +29,7 @@ simulated function UpdatePrecacheStaticMeshes()
 defaultproperties
 {
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.XM20.XM20_Pickup'
-     InventoryType=Class'BWBP_SKC_Pro.XM20BCarbine'
+     InventoryType=Class'BWBP_SKC_Pro.XM20Carbine'
      RespawnTime=20.000000
      PickupMessage="You picked up the XM-20 Laser Carbine."
      PickupSound=Sound'BWBP_SKC_Sounds.LS14.Gauss-Pickup'

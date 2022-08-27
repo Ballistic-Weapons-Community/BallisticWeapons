@@ -1,4 +1,4 @@
-class XM20BWeaponParams extends BallisticWeaponParams;
+class XM20WeaponParams extends BallisticWeaponParams;
 
 defaultproperties
 { 
@@ -27,12 +27,12 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=5000.000000,Max=7500.000000)
 		Damage=16
-		DamageType=Class'BWBP_SKC_Pro.DT_XM20B_Body'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20B_Head'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20B_Body'
+		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		PenetrateForce=600
 		bPenetrate=False
-		MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20BFlashEmitter'
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
 		FlashScaleFactor=0.300000
 		Recoil=96.000000
 		BotRefireRate=0.90
