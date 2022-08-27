@@ -1,4 +1,4 @@
-class G28WeaponParamsClassic extends BallisticWeaponParams;
+class G28WeaponParamsArena extends BallisticWeaponParams;
 
 defaultproperties
 {    
@@ -6,35 +6,35 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-    Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+    Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryEffectParams
         ProjectileClass=Class'BWBP_SKC_Pro.G28Thrown'
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
-        Speed=300.000000
-        MaxSpeed=500.000000
+        Speed=700.000000
+        MaxSpeed=1000.000000
 		Damage=120
         DamageRadius=300.000000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
     End Object
 
-    Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+    Begin Object Class=FireParams Name=ArenaPrimaryFireParams
         PreFireAnim="PrepThrow"
         FireAnim="Throw"	
-        FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+        FireEffectParams(0)=ProjectileEffectParams'ArenaPrimaryEffectParams'
     End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-    Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
+    Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
 		Speed=100.000000
         MaxSpeed=300.000000
     End Object
     
-    Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+    Begin Object Class=FireParams Name=ArenaSecondaryFireParams
         PreFireAnim="PrepRoll"
         FireAnim="Roll"
-        FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+        FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
     End Object
 
 	//=================================================================
@@ -68,8 +68,8 @@ defaultproperties
         InventorySize=12
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'UniversalParams'
 }

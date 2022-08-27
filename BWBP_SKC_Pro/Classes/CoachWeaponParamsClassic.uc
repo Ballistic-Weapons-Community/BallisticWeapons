@@ -111,6 +111,8 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireAnim="Fire"
+		AimedFireAnim="Fire"
 		FireInterval=0.150000
 		AmmoPerFire=1
 		BurstFireRateFactor=1.00	
@@ -147,6 +149,7 @@ defaultproperties
 		FireInterval=0.300000
 		AmmoPerFire=1
 		MaxHoldTime=0.0
+		FireAnim="Fire"
 		AimedFireAnim="Fire"
 		FireAnimRate=1.35	
 		FireEffectParams(0)=ShotgunEffectParams'ClassicSecondarySlugEffectParams'
