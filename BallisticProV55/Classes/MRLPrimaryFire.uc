@@ -20,8 +20,8 @@ simulated event PostBeginPlay()
 // Check if there is ammo in mag if we use weapon's mag or is there some in inventory if we don't
 simulated function bool AllowFire()
 {
-	if (Instigator.Physics != PHYS_Walking)
-		return false;
+	/*if (Instigator.Physics != PHYS_Walking)
+		return false;*/
 		
 	if (MRL.LoadedFrontBarrels < AmmoPerFire && MRL.LoadedBackBarrels < AmmoPerFire)
 	{
