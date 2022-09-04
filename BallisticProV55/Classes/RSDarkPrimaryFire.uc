@@ -79,7 +79,6 @@ simulated event ModeDoFire()
 
 	BW.LastFireTime = Level.TimeSeconds;
 
-
     // client
     if (Instigator.IsLocallyControlled())
     {
@@ -189,27 +188,21 @@ simulated function SwitchWeaponMode (byte NewMode)
 	switch(NewMode)
 	{
 		case 0:
-			MuzzleFlash = MuzzleFlashSlow;
 			ModePowerDrain=0;
 			break;
 		case 1:
-			MuzzleFlash = MuzzleFlashFast;
 			ModePowerDrain=0;
 			break;
 		case 2:
-			MuzzleFlash = None;
 			ModePowerDrain=0;
 			break;
 		case 3:
-			MuzzleFlash = None;
 			ModePowerDrain=0.1;
 			break;
 		case 4:
-			MuzzleFlash = MuzzleFlashSlow;
 			ModePowerDrain=0.5;
 			break;
 		default:
-			MuzzleFlash = MuzzleFlashFast;
 			ModePowerDrain=0;
 			break;
 	}
@@ -231,59 +224,6 @@ function DoFireEffect()
 
 	else if (BW.CurrentWeaponMode == 1)
 		class'BallisticDamageType'.static.GenericHurt (Instigator, 2, Instigator, Instigator.Location, vect(0,0,0), class'DT_RSDarkBacklash');
-}
-
-function StartBerserk()
-{
-	if (BW.CurrentWeaponMode == 0)
-	{
-		FireRate = default.FireRate * 0.75;
-		FireAnimRate = default.FireAnimRate * 0.75;
-		FireRecoil = default.FireRecoil * 0.75;
-		FireChaos = default.FireChaos * 0.75;
-	}
-	else
-	{
-		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate * 0.75;
-    	FireAnimRate = default.FireAnimRate * 0.75;
-    	FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
-		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos * 0.75;
-	}
-}
-
-function StopBerserk()
-{
-	if (BW.CurrentWeaponMode == 0)
-	{
-		FireRate = default.FireRate;
-		FireAnimRate = default.FireAnimRate;
-		FireRecoil = default.FireRecoil;
-		FireChaos = default.FireChaos;
-	}
-	else
-	{
-		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate;
-    	FireAnimRate = default.FireAnimRate;
-    	FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil;
-		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos;
-	}
-}
-
-function StartSuperBerserk()
-{
-	if (BW.CurrentWeaponMode == 4)
-    	FireRate = 0.8;
-	else if (BW.CurrentWeaponMode == 3)
-    	FireRate = 0.1;
-	else if (BW.CurrentWeaponMode == 2)
-    	FireRate = 0.1;
-	else if (BW.CurrentWeaponMode == 1)
-    	FireRate = 0.15;
-	else
-    	FireRate = 0.8;
-    FireRate /= Level.GRI.WeaponBerserk;
-    FireAnimRate = default.FireAnimRate * Level.GRI.WeaponBerserk;
-    ReloadAnimRate = default.ReloadAnimRate * Level.GRI.WeaponBerserk;
 }
 
 event Timer()
@@ -317,7 +257,6 @@ state DarkFlamer
 		local actor Other;
 		local float Dist;
 		local int i;
-		local RSDarkFlameProjectile Prj;
 
 	    // the to-hit trace always starts right in front of the eye
 		Start = Instigator.Location + Instigator.EyePosition();
@@ -344,12 +283,12 @@ state DarkFlamer
 
 		Dist = VSize(HitLocation-Start);
 
-		Prj = Spawn (class'RSDarkFlameProjectile',Instigator,, Start, Rotator(HitLocation-Start));
-		if (Prj != None)
+		SpawnProjectile(Start, Rotator(HitLocation-Start));
+
+		if (RSDarkFlameProjectile(Proj) != None)
 		{
-			Prj.Instigator = Instigator;
-			Prj.InitFlame(HitLocation);
-			Prj.bHitWall = Other != None;
+			RSDarkFlameProjectile(Proj).InitFlame(HitLocation);
+			RSDarkFlameProjectile(Proj).bHitWall = Other != None;
 		}
 
 		RSDarkAttachment(Weapon.ThirdPersonActor).DarkUpdateFlameHit(Other, HitLocation, HitNormal);
@@ -402,6 +341,7 @@ state DarkFlamer
 		{
 			if (bIgnited)
 				StopFiring();
+				
 			return false;
 		}
 		return true;
@@ -584,12 +524,8 @@ defaultproperties
      FireSoundLoop=Sound'BW_Core_WeaponSound.DarkStar.Dark-AltFireLoop'
      Damage=50
      ImmolateSoundLoop=Sound'BW_Core_WeaponSound.DarkStar.Dark-Immolation'
-     SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
-     FireModes(0)=(mProjClass=Class'BallisticProV55.RSDarkFastProjectile',mFireRate=0.145000,mFireChaos=0.090000,mFireSound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Fire2',mFireAnim="Fire2",mRecoil=220.000000,mAmmoPerFire=1,bModeLead=True)
-     FireModes(1)=(mFireRate=0.100000,mFireSound=Sound'BW_Core_WeaponSound.DarkStar.Dark-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=7.000000,mAmmoPerFire=1,TargetState="DarkFlamer",bModeInstantHit=True)
-     FireModes(2)=(mFireRate=0.100000,mFireSound=Sound'BW_Core_WeaponSound.DarkStar.Dark-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=7.000000,mAmmoPerFire=1,TargetState="Immolate",bModeInstantHit=True)
-     FireModes(3)=(mProjClass=Class'BallisticProV55.RSDarkFireBomb',mFireRate=0.800000,mFireChaos=0.150000,mFireSound=Sound'BW_Core_WeaponSound.DarkStar.Dark-FireBall',mFireAnim="Fire",mRecoil=1024.000000,mAmmoPerFire=4,TargetState="Fireball",bModeLead=True,bModeSplash=True,bModeRecommendSplash=True)
-     MuzzleFlashClass=Class'BallisticProV55.RSDarkSlowMuzzleFlash'
+     SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)	 
+	 MuzzleFlashClass=Class'BallisticProV55.RSDarkSlowMuzzleFlash'
      FireRecoil=1024.000000
      FireChaos=0.250000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
