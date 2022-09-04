@@ -135,9 +135,16 @@ simulated function CommonStartReload (optional byte i)
 simulated function PlayReload()
 {
 	if (MagAmmo == 1 && !bNowEmpty)		// One shell fired and both shells in
+	{
 		PlayAnim('ReloadSingle', SingleReloadAnimRate, , 0.25);
+		bLeftLoaded=true;
+	}
 	else					// Both shells fired
+	{
 		PlayAnim('Reload', ReloadAnimRate, , 0.25);
+		bLeftLoaded=true;
+		bRightLoaded=true;
+	}
 }
 
 simulated function bool CheckScope()

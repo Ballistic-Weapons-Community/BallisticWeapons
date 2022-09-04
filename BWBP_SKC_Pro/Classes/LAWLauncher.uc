@@ -38,8 +38,10 @@ simulated event PostNetBeginPlay()
 	super.PostNetBeginPlay();
 	if (BCRepClass.default.GameStyle != 0)
 	{
-		PutDownTime=2.500000;
-		BringUpTime=3.00000;
+		PutDownTime=2.5;
+		default.PutDownTime=2.500000;
+		BringUpTime=3.0;
+		default.BringUpTime=3.00000;
 		SelectAnimRate=1.0;
 		PutDownAnimRate=1.0;
 	}
