@@ -39,13 +39,22 @@ defaultproperties
 	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
 		Chaos=0.050000
 		WarnTargetPct=0.200000
-		FireSound=(Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Ignite',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 	
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
 		FireInterval=0.090000
 		AmmoPerFire=0
 		FireAnim=
+		TargetState="Flamer"
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireHealParams
+		FireInterval=0.090000
+		AmmoPerFire=0
+		FireAnim=
+		TargetState="HealGas"
 		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
 	End Object
 
@@ -98,6 +107,7 @@ defaultproperties
         AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(1)=FireParams'ClassicSecondaryFireHealParams'
     End Object 
     Layouts(0)=WeaponParams'ClassicParams'
 }

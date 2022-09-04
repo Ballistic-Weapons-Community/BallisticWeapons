@@ -105,6 +105,7 @@ simulated function Penetrate(Actor Other, Vector HitLocation)
 
 defaultproperties
 {
+	 bApplyParams=False
     ModeIndex=1
     bPenetrate=True
     MyRadiusDamageType=Class'BWBP_OP_Pro.DT_CX61Burned'
