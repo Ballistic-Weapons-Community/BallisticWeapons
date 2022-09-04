@@ -50,7 +50,6 @@ defaultproperties
 	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
-	
 	Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams
 		TraceRange=(Min=768.000000,Max=768.000000)
 		RangeAtten=0.250000
@@ -131,8 +130,9 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		//AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
 
 

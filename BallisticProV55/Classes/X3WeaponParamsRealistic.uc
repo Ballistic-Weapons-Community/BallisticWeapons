@@ -36,6 +36,28 @@ defaultproperties
 		FireAnimRate=2.000000
 	FireEffectParams(0)=MeleeEffectParams'RealisticPrimaryEffectParams'
 	End Object
+
+	//Projectile
+	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryProjEffectParams
+		Speed=1500
+		Damage=50.0
+		HeadMult=2.5
+		LimbMult=0.6
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifeThrow',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.100000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticPrimaryFireProjParams
+		FireInterval=0.250000
+		AmmoPerFire=1
+		BurstFireRateFactor=1.00
+		FireAnimRate=2.500000
+		FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryProjEffectParams'
+	End Object
 		
 	//=================================================================
 	// SECONDARY FIRE
@@ -114,7 +136,9 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryFireProjParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(1)=FireParams'RealisticPrimaryFireProjParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
 
