@@ -50,7 +50,7 @@ defaultproperties
 	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
-	
+	/*
 	Begin Object Class=MeleeEffectParams Name=RealisticSecondaryEffectParams
 		TraceRange=(Min=120.000000,Max=120.000000)
 		WaterTraceRange=5000.0
@@ -78,7 +78,7 @@ defaultproperties
 		FireAnim="Hit"
 		PreFireAnimRate=1.400000
 	FireEffectParams(0)=MeleeEffectParams'RealisticSecondaryEffectParams'
-	End Object
+	End Object */
 		
 	//=================================================================
 	// RECOIL
@@ -134,8 +134,9 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		//AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+	
 	Layouts(0)=WeaponParams'RealisticParams'
 
 
