@@ -457,7 +457,7 @@ defaultproperties
      AttachmentClass=Class'BWBP_SKC_Pro.AK91Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.AK91.SmallIcon_AK91'
      IconCoords=(X2=127,Y2=31)
-     ItemName="[B] AK-91 Charge Rifle"
+     ItemName="AK-91 Charge Rifle"
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=30

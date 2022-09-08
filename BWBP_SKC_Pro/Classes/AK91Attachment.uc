@@ -22,9 +22,7 @@ defaultproperties
      bRapidFire=True
      TrackAnimMode=MU_Secondary
      RelativeRotation=(Pitch=32768)
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.AK490_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.AK91_TPm'
      DrawScale=0.250000
 	 TracerMix=1
-     Skins(0)=Texture'BWBP_SKC_Tex.AK490.AK490-Misc'
-     Skins(1)=Texture'BWBP_SKC_Tex.AK490.AK490-Main'
 }

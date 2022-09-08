@@ -29,7 +29,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire4',Pitch=1.000000,Volume=1.500000)
 		Recoil=850.000000
 		Chaos=0.100000
-		Inaccuracy=(X=1.5,Y=1.5)
+		Inaccuracy=(X=2,Y=2)
 		WarnTargetPct=0.200000
 		BotRefireRate=0.150000
 	End Object
