@@ -728,7 +728,6 @@ defaultproperties
 	ParamsClasses(2)=Class'RSNovaWeaponParamsClassic'
 	FireModeClass(0)=Class'BallisticProV55.RSNovaPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RSNovaMeleeFire'
-	MeleeFireClass=Class'BallisticProV55.RSNovaMeleeFire'
 	
 	NDCrosshairCfg=(Pic1=TexRotator'BW_Core_WeaponTex.NovaStaff.NovaOutA-Rot',Pic2=TexRotator'BW_Core_WeaponTex.NovaStaff.NovaInA-Rot',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=221,A=130),Color2=(B=184,G=187,R=185,A=229),StartSize1=106,StartSize2=50)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.250000,X2=1.000000,Y2=1.000000),MaxScale=3.000000)
