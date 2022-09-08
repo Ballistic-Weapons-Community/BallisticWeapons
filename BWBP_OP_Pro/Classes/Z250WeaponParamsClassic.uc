@@ -80,7 +80,7 @@ defaultproperties
 		MaxRecoil=8192.000000
 		DeclineTime=2.500000
 		ViewBindFactor=0.500000
-		ADSViewBindFactor=0.900000
+		ADSViewBindFactor=0.950000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.8
 		bViewDecline=True
@@ -98,7 +98,7 @@ defaultproperties
 		ViewBindFactor=0.500000
 		SprintChaos=0.400000
 		ChaosDeclineTime=2.000000
-		ChaosSpeedThreshold=1200.000000
+		ChaosSpeedThreshold=400.000000
 	End Object
     
 //=================================================================

@@ -360,6 +360,38 @@ simulated function RenderOverlays (Canvas C)
 }
 
 //===========================================================================
+// GetFlechetteTarget
+//
+// Find and return the nearest stuck actor to guide the C/R projectiles.
+//===========================================================================
+simulated function vector GetFlechetteTarget()
+{
+	local float ShortestDistance;
+	local Pawn ClosestVictim;
+	local int i;
+	
+	if (StuckDarts.Length == 0)
+		return vect(0,0,0);
+		
+	ShortestDistance = BaseTrackDist;
+	
+	for (i = 0; i < StuckDarts.Length; i++)
+	{	
+		if (StuckDarts[i].Tracked == None || StuckDarts[i].Tracked.Health < 1 || !StuckDarts[i].Tracked.bProjTarget)
+			continue;
+		if (VSize(StuckDarts[i].Tracked.Location - Instigator.Location) > StuckDarts[i].TrackCount * BaseTrackDist)
+			continue;
+		if (Normal(StuckDarts[i].Tracked.Location - Location) Dot Vector(Instigator.GetViewRotation()) < 0.8)
+			continue;
+		if (VSize(StuckDarts[i].Tracked.Location - Instigator.Location) < ShortestDistance)
+			ClosestVictim = StuckDarts[i].Tracked;
+	}
+	if (ClosestVictim != None)
+		return ClosestVictim.Location;
+	else
+		return vect(0,0,0);
+}
+//===========================================================================
 // DrawTargeting
 //
 // Draw target boxes for tracked opponents.
@@ -458,10 +490,10 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
 	CockAnimRate=1.200000
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.MRT6.MRT6Cock',Volume=0.650000)
-	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-ClipHit')
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-ClipIn')
+	CockSound=(Sound=Sound'BWBP_OP_Sounds.CX85.CX85-Cock')
+	ClipHitSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagIn')
+	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.CX85.CX85-MagOut')
+	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.CX85.CX85-MagIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(bUnavailable=True)
 	ScopeViewTex=Texture'BWBP_OP_Tex.CX85.CX85ScopeView'
@@ -477,7 +509,7 @@ defaultproperties
 	GunLength=72.000000
 	ParamsClasses(0)=Class'CX85WeaponParams'
 	ParamsClasses(1)=Class'CX85WeaponParamsClassic'
-	ParamsClasses(2)=Class'CX85WeaponParamsClassic'
+	ParamsClasses(2)=Class'CX85WeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_OP_Pro.CX85PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.CX85SecondaryFire'
 	PutDownTime=0.700000

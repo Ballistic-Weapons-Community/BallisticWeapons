@@ -6,6 +6,38 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
+	//=================================================================
+    // PRIMARY FIRE
+    //=================================================================	
+	
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+		ProjectileClass=Class'BWBP_OP_Pro.CX61Flechette'
+		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+		Speed=15000.000000
+		MaxSpeed=20000.000000
+		AccelSpeed=1000.000000
+		Damage=45
+		DamageRadius=8.000000
+		MomentumTransfer=20000.000000
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
+		FlashScaleFactor=0.700000
+		Recoil=256.000000
+		Chaos=-1.00000
+		WarnTargetPct=0.200000
+		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.CX61.CX61-FireHeavy',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.150000
+		FireAnim="Fire"
+		FireEndAnim=
+		AimedFireAnim="SightFire"
+		FireAnimRate=1.000000	
+		TargetState="Flechette"
+		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	End Object
+	
+	/*
 	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
 		RangeAtten=0.350000
@@ -30,7 +62,7 @@ defaultproperties
 		AimedFireAnim="SightFire"
 		FireAnimRate=1.000000	
 		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-	End Object
+	End Object*/
 		
     //=================================================================
     // SECONDARY FIRE

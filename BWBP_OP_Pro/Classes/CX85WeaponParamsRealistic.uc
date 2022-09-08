@@ -1,4 +1,4 @@
-class CX85WeaponParamsClassic extends BallisticWeaponParams;
+class CX85WeaponParamsRealistic extends BallisticWeaponParams;
 
 defaultproperties
 {
@@ -6,7 +6,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.CX85Flechette'
 		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
 		//TraceRange=(Min=9000.000000,Max=9000.000000)
@@ -14,7 +14,7 @@ defaultproperties
 		MaxSpeed=10000.000000
 		AccelSpeed=1000.000000
 		//RangeAtten=0.350000
-		Damage=45
+		Damage=50
 		//Damage=85.000000
 		DamageRadius=8.000000
 		//DamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
@@ -31,21 +31,21 @@ defaultproperties
 		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.CX85.CX85-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		FireInterval=0.150000
 		FireAnim="Fire"
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1.000000	
 		TargetState="SeekerFlechette"
-		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
 	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams
+	Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.350000
 		Damage=5
@@ -59,26 +59,30 @@ defaultproperties
 		FireSound=(Sound=Sound'AssaultSounds.PD97.TargetCycle01',Volume=1.250000)
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
 		FireInterval=0.300000
 		AmmoPerFire=0
 		PreFireAnim=
 		FireAnim="FireAlt"
-		FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
+		FireEffectParams(0)=InstantEffectParams'RealisticSecondaryEffectParams'
 	End Object
 
 	//=================================================================
 	// RECOIL
 	//=================================================================
 	
-	Begin Object Class=RecoilParams Name=ClassicRecoilParams
-		ViewBindFactor=0.6
-		XCurve=(Points=(,(InVal=0.100000),(InVal=0.250000,OutVal=0.120000),(InVal=0.400000,OutVal=0.180000),(InVal=0.800000,OutVal=0.220000),(InVal=1.000000,OutVal=0.250000)))
-		YCurve=(Points=(,(InVal=0.150000,OutVal=0.120000),(InVal=0.300000,OutVal=0.350000),(InVal=0.500000,OutVal=0.445000),(InVal=0.750000,OutVal=0.750000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.25000
-		YRandFactor=0.25000
-		DeclineTime=1.000000
-		DeclineDelay=0.100000
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams
+		XCurve=(Points=(,(InVal=0.300000,OutVal=0.100000),(InVal=0.600000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
+		YCurve=(Points=(,(InVal=0.500000,OutVal=0.250000),(InVal=0.800000,OutVal=0.450000),(InVal=1.000000,OutVal=0.400000)))
+		XRandFactor=0.35000
+		YRandFactor=0.35000
+		PitchFactor=0.500000
+		YawFactor=0.300000
+		MaxRecoil=3260.000000
+		DeclineTime=0.700000
+		DeclineDelay=0.135000;
+		ViewBindFactor=0.350000
+		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
 	End Object
@@ -87,14 +91,15 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=16,Max=768)
+	Begin Object Class=AimParams Name=RealisticAimParams
+		AimSpread=(Min=16,Max=2772)
 		AimAdjustTime=0.800000
-		CrouchMultiplier=0.700000
+		CrouchMultiplier=0.500000
 		ADSMultiplier=0.700000
-		ViewBindFactor=0.600000
+		ViewBindFactor=0.100000
 		SprintChaos=0.400000
-		ChaosDeclineTime=2.000000
+		ChaosDeclineTime=1.500000
+		ChaosSpeedThreshold=525
 		SprintOffset=(Pitch=-3000,Yaw=-8000)
 	End Object
 
@@ -102,20 +107,22 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 
-	Begin Object Class=WeaponParams Name=ClassicParams
+	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
 		InventorySize=12
 		SightMoveSpeedFactor=0.8
-		SightingTime=0.700000
+		ViewOffset=(X=25,Y=10,Z=-26)
+		SightingTime=0.750000
 		ReloadAnimRate=0.800000
 		DisplaceDurationMult=1
 		MagAmmo=32
         ZoomType=ZT_Logarithmic
-        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-        AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		WeaponName="CX85 15mm Flechette Cannon"
+        RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+        AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
     End Object 
-    Layouts(0)=WeaponParams'ClassicParams'
+    Layouts(0)=WeaponParams'RealisticParams'
 }
