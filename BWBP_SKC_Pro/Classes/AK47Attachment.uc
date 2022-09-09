@@ -73,7 +73,6 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      BrassClass=Class'BallisticProV55.Brass_Rifle'
-     TrackAnimMode=MU_Secondary
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'
      TracerChance=2.000000
      TracerMix=-3

@@ -69,7 +69,7 @@ defaultproperties
      FireAnim="AltFire"
      TweenTime=0.000000
      FireRate=1.700000
-     AmmoClass=Class'BallisticProV55.Ammo_Cells'
+     AmmoClass=Class'BWBP_SKC_Pro.Ammo_AK762mm'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000
