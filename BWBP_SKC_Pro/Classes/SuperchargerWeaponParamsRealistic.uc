@@ -46,7 +46,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=10
 		Chaos=0.01
-		Inaccuracy=(X=64,Y=64)
+		Inaccuracy=(X=512,Y=512)
 		WarnTargetPct=0.200000
 	End Object
 
@@ -128,14 +128,16 @@ defaultproperties
 		SightingTime=0.300000
 		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		SightPivot=(Pitch=64)
-		WeaponModes(0)=(ModeName="Mode: Dolphin",ModeID="WM_FullAuto",Value=5.000000,bUnavailable=True)
-		WeaponModes(1)=(ModeName="Mode: Overcharge",ModeID="WM_FullAuto")
-		WeaponModes(2)=(ModeName="Mode: Precise Charge")
+		WeaponModes(0)=(ModeName="Mode: Area Charge",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Mode: Dolphin",ModeID="WM_FullAuto",Value=5.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Mode: Precise Charge",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
         ZoomType=ZT_Fixed
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
-		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		FireParams(0)=FireParams'RealisticPrimarySpreadFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryFireParams'
+		FireParams(2)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
