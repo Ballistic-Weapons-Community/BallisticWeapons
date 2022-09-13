@@ -23,6 +23,8 @@ var() sound		SilencerOnSound;
 var() sound		SilencerOffSound;
 
 //Classic Scope
+var() Material	ScopeViewTexAlt;
+var() Material ScopeViewOverlayTexClassic;
 var() Material	BulletTex;
 var() Material	ReadoutTex;
 var() Material	ElevationRulerTex;
@@ -399,7 +401,7 @@ simulated event RenderOverlays (Canvas C)
 		SetRotation(Instigator.GetViewRotation());
 		
 		ScaleFactor = C.ClipX / 1600;
-		if (ScopeViewTex != None)
+		if (ScopeViewTexAlt != None)
 		{
 			C.ColorModulate.W = 1;
 			// Draw Bullets
@@ -417,7 +419,7 @@ simulated event RenderOverlays (Canvas C)
 			}
 
 		// Draw Scope view
-		 if (ScopeViewTex != None)
+		 if (ScopeViewTexAlt != None)
 		 {
 			C.SetDrawColor(255,255,255,255);
 			C.SetPos(C.OrgX, C.OrgY);
@@ -425,13 +427,13 @@ simulated event RenderOverlays (Canvas C)
 			//SRS's scope is off from the normal.
 			ImageScaleRatio = 1.24;
 			
-			C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.SizeY, 0, 0, 1, 1024);
+			C.DrawTile(ScopeViewTexAlt, (C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.SizeY, 0, 0, 1, 1024);
 
 			C.SetPos((C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.OrgY);
-			C.DrawTile(ScopeViewTex, (C.SizeY*ImageScaleRatio), C.SizeY, 0, 0, 1024, 1024);
+			C.DrawTile(ScopeViewTexAlt, (C.SizeY*ImageScaleRatio), C.SizeY, 0, 0, 1024, 1024);
 
 			C.SetPos(C.SizeX - (C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.OrgY);
-			C.DrawTile(ScopeViewTex, (C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.SizeY, 0, 0, 1, 1024);
+			C.DrawTile(ScopeViewTexAlt, (C.SizeX - (C.SizeY*ImageScaleRatio))/2, C.SizeY, 0, 0, 1, 1024);
 		}
 
 		}
@@ -620,6 +622,7 @@ defaultproperties
 	
 	ScopeXScale=1.333000
 	ScopeViewTex=Texture'BW_Core_WeaponTex.SRS900-SUI.SRS900ScopeView'
+	ScopeViewTexAlt=Texture'BW_Core_WeaponTex.SRS900.SRS900ScopeView'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	FullZoomFOV=20.000000
@@ -662,9 +665,10 @@ defaultproperties
 	//Arena Scope Stuff
 	GeneralUITexArena=Texture'BW_Core_WeaponTex.SRS900-SUI.SRS900UI'
 	ScopeViewOverlayTexArena=FinalBlend'BW_Core_WeaponTex.SRS900-SUI.SRSScopeViewOverlay_FB'
+	ScopeViewOverlayTexClassic=FinalBlend'BW_Core_WeaponTex.SRS900.SRSScopeViewOverlay_FB'
 
 	Skins(0)=Texture'BW_Core_WeaponTex.SRS900.SRS900Main'
-	Skins(1)=Shader'BW_Core_WeaponTex.SRS900.SRS900ScopeShine'
+	Skins(1)=Texture'BW_Core_WeaponTex.SRS900.SRS900Scope'
 	Skins(2)=Texture'BW_Core_WeaponTex.SRS900.SRS900Ammo'
 	Skins(3)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 }

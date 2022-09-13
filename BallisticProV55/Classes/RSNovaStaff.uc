@@ -23,6 +23,7 @@ var float		lastModeChangeTime;
 var float		NextRegenTime;
 
 var float				SoulPower;
+var float				MaxSouls;
 var bool					bOnRampage;
 var RSNovaWings 	Wings;
 var float				WingPhase;
@@ -31,6 +32,8 @@ var() Sound			WingSound;
 
 var Emitter				FreeChainZap;
 var bool					bCanKillChainZap;
+
+//Classic params
 
 var   RSDarkNovaControl	DNControl;
 
@@ -50,6 +53,11 @@ simulated function PostNetBeginPlay()
 
 	super.PostNetBeginPlay();
 
+	if (GameStyleIndex != 0)
+	{
+		MaxSouls=10;
+	}
+	
 	if (Role == ROLE_Authority && DNControl == None)
 	{
 		foreach DynamicActors (class'RSDarkNovaControl', DNC)
@@ -63,12 +71,12 @@ simulated function PostNetBeginPlay()
 
 function AddSoul(float Amount)
 {
-	SoulPower = FClamp(SoulPower+Amount, 0, 5.2);
+	SoulPower = FClamp(SoulPower+Amount, 0, MaxSouls + 0.2f);
 }
 
 function ServerWeaponSpecial(optional byte i)
 {
-	if (SoulPower >= 5)
+	if (SoulPower >= MaxSouls)
 	{
 		StartRampage();
 		ClientWeaponSpecial(1);
@@ -169,6 +177,15 @@ simulated event WeaponTick(float DT)
 
 	if (Role == ROLE_Authority)
 	{
+		if (GameStyleIndex != 0 && Instigator.Health > 0 && level.TimeSeconds >= NextRegenTime)
+		{
+			if (bOnRampage)
+				Instigator.GiveHealth(2, Instigator.SuperHealthMax);
+			else// if (Instigator.Health < Instigator.HealthMax + Instigator.SuperHealthMax / 2)
+				Instigator.GiveHealth(1, Instigator.HealthMax + (Instigator.SuperHealthMax-Instigator.HealthMax) / 1.96);
+			NextRegenTime = level.TimeSeconds + 0.5;
+		}
+	
 		if (bOnRampage)
 		{
 			SoulPower -= DT/5;
@@ -563,7 +580,7 @@ simulated function float RateSelf()
 
 simulated function float ChargeBar()
 {
-	return SoulPower/5;
+	return SoulPower/MaxSouls;
 }
 
 function GiveTo(Pawn Other, optional Pickup Pickup)
@@ -634,7 +651,7 @@ function byte BestMode()
 		{
 			lastModeChangeTime = level.TimeSeconds;
 			CurrentWeaponMode = 0;
-			RSDarkPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+			RSNovaPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 		}
 	}
 	else
@@ -643,7 +660,7 @@ function byte BestMode()
 		{
 			lastModeChangeTime = level.TimeSeconds;
 			CurrentWeaponMode = 1;
-			RSDarkPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+			RSNovaPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 		}
 	}
 
@@ -696,6 +713,7 @@ function float SuggestDefenseStyle()	{	return -0.2;	}
 
 defaultproperties
 {
+	MaxSouls=5.0
 	WingSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Flying'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.NovaStaff.BigIcon_NovaStaff'
@@ -714,8 +732,8 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-CrystalIn',Volume=0.700000)
 	ClipInFrame=0.700000
 	WeaponModes(0)=(ModeName="Slow Bolt",ModeID="WM_FullAuto")
-	WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1)
-	WeaponModes(2)=(ModeName="Lightning",RecoilParamsIndex=1)
+	WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
+	WeaponModes(2)=(ModeName="Lightning")
 	WeaponModes(3)=(ModeName="Thunder Strike",ModeID="WM_FullAuto")
 	WeaponModes(4)=(ModeName="Chain Lightning",ModeID="WM_FullAuto",bUnavailable=True)
 	CurrentWeaponMode=0
@@ -725,7 +743,7 @@ defaultproperties
 	GunLength=128.000000
 	ParamsClasses(0)=Class'RSNovaWeaponParams'
 	ParamsClasses(1)=Class'RSNovaWeaponParamsClassic'
-	ParamsClasses(2)=Class'RSNovaWeaponParamsClassic'
+	ParamsClasses(2)=Class'RSNovaWeaponParamsRealistic'
 	FireModeClass(0)=Class'BallisticProV55.RSNovaPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RSNovaMeleeFire'
 	

@@ -575,7 +575,7 @@ state Zap
 		else if (Vehicle(Other) != None && Vehicle(Other).Driver!=None && Vehicle(Other).Driver.Health > 0)
 			bWasAlive = true;
 
-		class'BallisticDamageType'.static.GenericHurt (Other, 145, Instigator, HitLocation, 50000 * Dir, class'DT_RSNovaOneShotZap');
+		class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, 50000 * Dir, class'DT_RSNovaOneShotZap');
 
 		if (bWasAlive && Pawn(Other).Health <= 0)
 			class'RSNovaSoul'.static.SpawnSoul(Other.Location, Instigator, Pawn(Other), Weapon);
@@ -891,7 +891,7 @@ state ChainLightning
 					bWasAlive = false;
 
 				ForceDir = (Instigator.Location + vector(Instigator.GetViewRotation()) * 700) - ChainVics[i].ZapVic.Location;
-				class'BallisticDamageType'.static.GenericHurt (ChainVics[i].ZapVic, 6, Instigator, ChainVics[i].ZapVic.Location + (Normal(ChainVics[i].ZapVic.Location - Instigator.Location))*-24, 40000 * FMax(0.1, 1-(VSize(ForceDir)/2000)) * Normal(ForceDir), class'DT_RSNovaChainLightning');
+				class'BallisticDamageType'.static.GenericHurt (ChainVics[i].ZapVic, Damage*2, Instigator, ChainVics[i].ZapVic.Location + (Normal(ChainVics[i].ZapVic.Location - Instigator.Location))*-24, 40000 * FMax(0.1, 1-(VSize(ForceDir)/2000)) * Normal(ForceDir), class'DT_RSNovaChainLightning');
 
 				if (bWasAlive && Pawn(ChainVics[i].ZapVic).Health <= 0)
 					class'RSNovaSoul'.static.SpawnSoul(ChainVics[i].ZapVic.Location, Instigator, Pawn(ChainVics[i].ZapVic), Weapon);

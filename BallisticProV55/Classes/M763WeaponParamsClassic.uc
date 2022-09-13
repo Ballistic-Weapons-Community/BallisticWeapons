@@ -39,7 +39,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 		FireInterval=0.800000
 		FireAnim="FireClassic"
-		AimedFireAnim="FireClassicSight"
+		AimedFireAnim="FireClassic"
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True
 		FireEndAnim=	
@@ -48,34 +48,36 @@ defaultproperties
 		
     //=================================================================
     // SECONDARY FIRE
-    //=================================================================
+    //=================================================================	/*
 	
-	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams
-		TraceRange=(Min=768.000000,Max=768.000000)
-		RangeAtten=0.250000
-		Damage=35
-		DamageType=Class'BallisticProV55.DTM763Shotgun'
-		DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
-		DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
-		PenetrateForce=100
-		bPenetrate=True
-		FlashScaleFactor=2.000000
-		Recoil=1280.000000
-		Chaos=0.500000
-		BotRefireRate=0.3
-		WarnTargetPct=0.75
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
+	Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
+		TraceRange=(Min=128.000000,Max=128.000000)
+		WaterTraceRange=5000.0
+		Damage=65.0
+		HeadMult=1.538461
+		LimbMult=0.461538
+		DamageType=Class'BallisticProV55.DTM763Hit'
+		DamageTypeHead=Class'BallisticProV55.DTM763HitHead'
+		DamageTypeArm=Class'BallisticProV55.DTM763Hit'
+		ChargeDamageBonusFactor=1
+		PenetrationEnergy=0.000000
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.900000
+		WarnTargetPct=0.050000
 	End Object
 	
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=0.750000
-		FireAnim="FireCombined"
-		FireEndAnim=
-		AimedFireAnim="FireCombinedSight"
-		FireAnimRate=1.100000	
+		FireInterval=0.800000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		PreFireAnim="PrepHit"
+		FireAnim="Hit"
 		FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
 	End Object
-
+		*/
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -112,6 +114,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
@@ -124,7 +127,65 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Tactical
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.M763.M763ShotgunShiney',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_KBP_Tex.M763.M763SmallShiney',Index=2)
+		Weight=10
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=10
+		SightOffset=(X=5.000000,Z=18.500000)
+		SightPivot=(Pitch=512)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Wood
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.M781.M781_LargeShine',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.M781.M781_SmallShine',Index=2)
+		Weight=3
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=10
+		SightOffset=(X=5.000000,Z=18.500000)
+		SightPivot=(Pitch=512)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_WoodOld
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M781.M781-OldTrusty',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M781.M781Small',Index=2)
+		Weight=3
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=10
+		SightOffset=(X=5.000000,Z=18.500000)
+		SightPivot=(Pitch=512)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Tactical'
+	Layouts(2)=WeaponParams'ClassicParams_Wood'
+	Layouts(3)=WeaponParams'ClassicParams_WoodOld'
 
 
 }
