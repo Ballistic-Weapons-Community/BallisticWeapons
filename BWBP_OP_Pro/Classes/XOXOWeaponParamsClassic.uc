@@ -10,15 +10,15 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ClassicFastPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.XOXOProjectile'
 		SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
-		Speed=5500.000000
-		MaxSpeed=14000.000000
-		AccelSpeed=100000.000000
+		Speed=5000.000000
+		MaxSpeed=10000.000000
+		AccelSpeed=30000.000000
 		Damage=20
 		DamageRadius=48.000000
 		MomentumTransfer=-1000.000000
-		MaxDamageGainFactor=0.6
-		DamageGainStartTime=0.05
-		DamageGainEndTime=0.25
+		RadiusFallOffType=RFO_Linear
+		bLimitMomentumZ=False
+		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=160.000000
@@ -27,7 +27,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicFastPrimaryFireParams
-		FireInterval=0.100000
+		FireInterval=0.090000
 		AmmoPerFire=1
 		FireAnim="Fire2"
 		FireEndAnim=	
@@ -40,13 +40,13 @@ defaultproperties
 		SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
 		Speed=2500.000000
 		MaxSpeed=2500.000000
-		AccelSpeed=100000.000000
-		Damage=100
+		AccelSpeed=20000.000000
+		Damage=60
 		DamageRadius=1028.000000
 		MomentumTransfer=-30000.000000
-		MaxDamageGainFactor=0.6
-		DamageGainStartTime=0.05
-		DamageGainEndTime=0.25
+		RadiusFallOffType=RFO_Linear
+		bLimitMomentumZ=False
+		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-FireBig',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=1024.000000
@@ -89,15 +89,15 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ClassicNukePrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.XOXONukeProjectile'
 		SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
-		Speed=2500.000000
+		Speed=500.000000
 		MaxSpeed=4500.000000
 		AccelSpeed=100000.000000
 		Damage=500
 		DamageRadius=4096.000000
 		MomentumTransfer=100.000000
-		//MaxDamageGainFactor=0.6
-		//DamageGainStartTime=0.05
-		//DamageGainEndTime=0.25
+		RadiusFallOffType=RFO_Linear
+		bLimitMomentumZ=False
+		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Sexplosion-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=1024.000000
@@ -145,6 +145,7 @@ defaultproperties
 		YRandFactor=0.050000
 		DeclineTime=1.500000
 		DeclineDelay=0.250000
+		bViewDecline=True
 	End Object
 
 	Begin Object Class=RecoilParams Name=ClassicBombRecoilParams
@@ -155,6 +156,7 @@ defaultproperties
 		YRandFactor=1.5
 		DeclineDelay=0.8
 		DeclineTime=1.500000
+		bViewDecline=True
 	End Object
 
 	Begin Object Class=RecoilParams Name=ClassicLustRecoilParams
@@ -165,6 +167,7 @@ defaultproperties
 		YRandFactor=0.050000
 		DeclineTime=1.500000
 		DeclineDelay=0.250000
+		bViewDecline=True
 	End Object
 
 	Begin Object Class=RecoilParams Name=ClassicNukeRecoilParams
@@ -175,6 +178,7 @@ defaultproperties
 		YRandFactor=1.5
 		DeclineDelay=0.8
 		DeclineTime=1.500000
+		bViewDecline=True
 	End Object
 
 	//=================================================================
