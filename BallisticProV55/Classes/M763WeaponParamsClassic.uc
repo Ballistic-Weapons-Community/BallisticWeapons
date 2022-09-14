@@ -114,61 +114,6 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		Weight=30
-		InventorySize=35
-		SightMoveSpeedFactor=0.500000
-		MagAmmo=10
-		SightOffset=(X=5.000000,Z=18.500000)
-		SightPivot=(Pitch=512)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams_Tactical
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.M763.M763ShotgunShiney',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_KBP_Tex.M763.M763SmallShiney',Index=2)
-		Weight=10
-		InventorySize=35
-		SightMoveSpeedFactor=0.500000
-		MagAmmo=10
-		SightOffset=(X=5.000000,Z=18.500000)
-		SightPivot=(Pitch=512)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams_Wood
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.M781.M781_LargeShine',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.M781.M781_SmallShine',Index=2)
-		Weight=3
-		InventorySize=35
-		SightMoveSpeedFactor=0.500000
-		MagAmmo=10
-		SightOffset=(X=5.000000,Z=18.500000)
-		SightPivot=(Pitch=512)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams_WoodOld
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M781.M781-OldTrusty',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M781.M781Small',Index=2)
-		Weight=3
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
@@ -183,9 +128,6 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_Tactical'
-	Layouts(2)=WeaponParams'ClassicParams_Wood'
-	Layouts(3)=WeaponParams'ClassicParams_WoodOld'
 
 
 }
