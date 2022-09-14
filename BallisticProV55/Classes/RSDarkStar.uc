@@ -33,6 +33,7 @@ var   RSDarkFlameSpray		Flame;
 var bool		bLatchedOn;
 
 var   float			SoulPower;
+var float				MaxSouls;
 var   bool			bOnRampage;
 //var() Sound			RampageSound;
 var   RSDarkHorns	Horns;
@@ -58,7 +59,12 @@ simulated function PostNetBeginPlay()
 	local RSDarkNovaControl DNC;
 
 	super.PostNetBeginPlay();
-
+	
+	if (GameStyleIndex != 0)
+	{
+		MaxSoulPower=10;
+	}
+	
 	if (Role == ROLE_Authority && DNControl == None)
 	{
 		foreach DynamicActors (class'RSDarkNovaControl', DNC)
@@ -780,7 +786,7 @@ defaultproperties
 	 GunLength=128.000000
 	 ParamsClasses(0)=Class'RSDarkWeaponParams'
 	 ParamsClasses(1)=Class'RSDarkWeaponParamsClassic'
-	 ParamsClasses(2)=Class'RSDarkWeaponParamsClassic'
+	 ParamsClasses(2)=Class'RSDarkWeaponParamsRealistic'
      FireModeClass(0)=Class'BallisticProV55.RSDarkPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.RSDarkMeleeFire'
      BringUpTime=0.500000

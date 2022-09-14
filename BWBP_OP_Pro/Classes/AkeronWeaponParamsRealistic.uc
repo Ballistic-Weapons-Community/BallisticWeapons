@@ -91,6 +91,7 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=RealisticRecoilParams
 		ViewBindFactor=0.75
 		DeclineTime=1.000000
+		bViewDecline=True
 	End Object
 
 	//=================================================================
@@ -112,7 +113,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=RealisticParams
 		SightOffset=(X=-30.000000,Y=-17.000000,Z=15.000000)
-		ViewOffset=(X=30.000000,Y=20.000000,Z=-18.000000)
+		ViewOffset=(X=20.000000,Y=15.000000,Z=-11.000000)
 		PlayerSpeedFactor=0.90000
 		PlayerJumpFactor=0.90000
         DisplaceDurationMult=1.25
