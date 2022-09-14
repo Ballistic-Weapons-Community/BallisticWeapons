@@ -108,6 +108,7 @@ var() float					    MotionBlurTime;
 // Handling
 //-----------------------------------------------------------------------------
 var() float					    AccelSpeed;				// Acceleration speed
+var() Rotator					StartRotation;			// Initial rotation of the projectile (allows for path manipulation based on an initial reference frame)
 //-----------------------------------------------------------------------------
 // Damage
 //-----------------------------------------------------------------------------
@@ -200,6 +201,8 @@ simulated function PostBeginPlay()
 	Velocity = Vector(Rotation);
 	Velocity *= Speed;
 
+	StartRotation = Rotation;
+
 	if(bRandomStartRotation)
 	{
 		R = Rotation;
@@ -214,6 +217,7 @@ simulated function PostNetBeginPlay()
 	local PlayerController PC;
 	
     Acceleration = Normal(Velocity) * AccelSpeed;
+	StartRotation = Rotation;
 
 	if (StartDelay > 0)
 	{
@@ -889,6 +893,7 @@ function float GetPenetrationDamageScale(Vector dir, float dist)
 
 defaultproperties
 {
+	bNetInitialRotation=True
 	bApplyParams=True
     bLimitMomentumZ=True
     RadiusFallOffType=RFO_Quadratic
