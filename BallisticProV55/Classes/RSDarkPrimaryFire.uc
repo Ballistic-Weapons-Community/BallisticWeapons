@@ -215,7 +215,10 @@ simulated function SwitchWeaponMode (byte NewMode)
 function DoFireEffect()
 {
 	Super.DoFireEffect();
-
+	
+	if (BW.GameStyleIndex != 0)
+		return;
+	
 	if (BW.CurrentWeaponMode == 0)
 	{
 		Instigator.PlaySound(Sound'BW_Core_WeaponSound.Dark-ImmolateIgnite',,3.7,,32);

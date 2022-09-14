@@ -69,7 +69,7 @@ defaultproperties
 
 	//Range Det
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryRangeEffectParams
-		ProjectileClass=Class'PUMAProjectileClose'
+		ProjectileClass=Class'PumaProjectileRShort'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=12500.000000
 		Damage=55.000000
@@ -99,7 +99,7 @@ defaultproperties
 
 	//Shield Shot
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryShieldEffectParams
-		ProjectileClass=Class'PumaProjectileRShort'
+		ProjectileClass=Class'PUMAProjectileClose'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=6000.000000
 		Damage=55.000000

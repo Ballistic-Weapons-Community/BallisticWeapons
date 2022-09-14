@@ -60,7 +60,7 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=ArenaLightningEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
-    	SpawnOffset=
+    	SpawnOffset=(X=0,Y=0,Z=0)
         Speed=
         AccelSpeed=
         MaxSpeed=
@@ -89,11 +89,11 @@ defaultproperties
 
 	Begin Object Class=ProjectileEffectParams Name=ArenaGodStrikeEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
-		SpawnOffset=
+		SpawnOffset=(X=0,Y=0,Z=0)
         Speed=
         AccelSpeed=
         MaxSpeed=
-        Damage=2.000000
+        Damage=145.000000
 		DamageRadius=
 		MomentumTransfer=
 		MaxDamageGainFactor=
@@ -116,11 +116,11 @@ defaultproperties
 
 	Begin Object Class=ProjectileEffectParams Name=ArenaChainLightningEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
-    	SpawnOffset=
+    	SpawnOffset=(X=0,Y=0,Z=0)
         Speed=
         AccelSpeed=
         MaxSpeed=
-        Damage=2.000000
+        Damage=3.000000
 		DamageRadius=
 		MomentumTransfer=
 		MaxDamageGainFactor=

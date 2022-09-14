@@ -597,66 +597,86 @@ defaultproperties
 	OverheatSound=Sound'BW_Core_WeaponSound.LightningGun.LG-OverHeat'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	UsedAmbientSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
-    AIReloadTime=0.200000
-    BigIconMaterial=Texture'BWBP_SKC_Tex.AK91.BigIcon_AK91'
+     AIReloadTime=0.200000
+     BigIconMaterial=Texture'BWBP_SKC_Tex.AK91.BigIcon_AK91'
+     //BallisticInventoryGroup=6
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
 	bWT_Energy=True
-    bWT_Splash=True
-    bWT_RapidProj=True
-    bWT_Projectile=True
-    SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.5;1.0")
+     bWT_Splash=True
+     bWT_RapidProj=True
+     bWT_Projectile=True
+     SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.5;1.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Pullout',Volume=0.750000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
-	MagAmmo=100
-    CockAnimPostReload="Idle"
-    CockAnim="Idle"
-    ClipInFrame=0.700000
-    bNeedCock=False
-    bCockOnEmpty=False
-	bNonCocking=True
-	bNoMag=True
+     MagAmmo=100
+     CockAnimPostReload="Idle"
+     CockAnim="Idle"
+     ClipInFrame=0.700000
+     bNeedCock=False
+     bCockOnEmpty=False
+	 bNonCocking=True
+//	bShowChargingBar=True
+	 bNoMag=True
 	ParamsClasses(0)=Class'SuperchargerWeaponParamsArena'
-	ParamsClasses(1)=Class'SuperchargerWeaponParamsClassic' \\todo: lots of state code
-    WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
-    WeaponModes(1)=(ModeName="Max Safe Voltage",Value=5.000000)
-    WeaponModes(2)=(ModeName="Overload")
+	ParamsClasses(1)=Class'SuperchargerWeaponParamsClassic'
+	ParamsClasses(2)=Class'SuperchargerWeaponParamsRealistic'
+     WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
+     WeaponModes(1)=(ModeName="Max Safe Voltage",Value=5.000000)
+     WeaponModes(2)=(ModeName="Overload")
 	CurrentWeaponMode=2
 	ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
-	SightOffset=(X=-25.000000,Z=19.500000)
-    SightDisplayFOV=40.000000
-	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.R78OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=0,A=255),Color2=(B=0,G=0,R=255,A=255),StartSize1=90,StartSize2=93)
-    GunLength=16.500000
-    LongGunPivot=(Pitch=2000,Yaw=-1024)
-    LongGunOffset=(X=-10.000000,Y=0.000000,Z=-5.000000)
-	PutDownTime=1.100000
-	BringUpTime=1.10000
+//     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=-0.300000),(InVal=0.600000,OutVal=-0.250000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000,OutVal=-0.300000)))
+//     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=-0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.300000),(InVal=1.000000,OutVal=0.600000)))
+     SightOffset=(X=-25.000000,Z=19.500000)
+     SightDisplayFOV=40.000000
+//     CrosshairCfg=(Pic1=Texture'BallisticUI2.Crosshairs.R78OutA',Pic2=Texture'BallisticUI2.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=0,A=255),Color2=(B=0,G=0,R=255,A=255),StartSize1=90,StartSize2=93)
+     GunLength=16.500000
+     LongGunPivot=(Pitch=2000,Yaw=-1024)
+     LongGunOffset=(X=-10.000000,Y=0.000000,Z=-5.000000)
+//     CrouchAimFactor=0.800000
+//     JumpOffSet=(Pitch=1000,Yaw=-500)
+//     JumpChaos=0.300000
+//     AimAdjustTime=0.400000
+//     AimSpread=(X=(Min=-32.000000,Max=32.000000),Y=(Min=-32.000000,Max=32.000000))
+//     ChaosAimSpread=(X=(Min=-1048.000000,Max=1048.000000),Y=(Min=-1600.000000,Max=1600.000000))
+//     ViewAimFactor=0.050000
+//     ViewRecoilFactor=0.200000
+//     ChaosDeclineTime=1.000000
+//     ChaosTurnThreshold=170000.000000
+//     ChaosSpeedThreshold=1200.000000
+//     RecoilXFactor=0.250000
+//     RecoilYFactor=0.250000
+//     RecoilMax=1600.000000
+//     RecoilDeclineTime=0.800000
+	PutDownTime=1.500000
+	BringUpTime=1.50000
     SelectAnimRate=1.0
     PutDownAnimRate=1.0
-    FireModeClass(0)=Class'BWBP_SKC_Pro.Supercharger_PrimaryFire'
-    FireModeClass(1)=Class'BWBP_SKC_Pro.Supercharger_SecondaryFire'
-    SelectForce="SwitchToAssaultRifle"
-    AIRating=0.600000
-    CurrentRating=0.600000
-    bShowChargingBar=True
-    Description="Van Holt 500KW Supercharger||Manufacturer: Dipheox Combat Arms|Primary: Directed Energy Fire|Secondary: Magnetically Contained Projectile||Not much is known about this enigmatic CYLO variation. It is extremely rare and a cloesly guarded secret."
-    DisplayFOV=55.000000
-    Priority=41
-    CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-    InventoryGroup=5
-    PickupClass=Class'BWBP_SKC_Pro.Supercharger_Pickup'
-    PlayerViewOffset=(X=5.000000,Y=5.000000,Z=-14.000000)
-    BobDamping=2.000000
-    AttachmentClass=Class'BWBP_SKC_Pro.Supercharger_Attachment'
-    IconMaterial=Texture'BWBP_SKC_Tex.AK91.SmallIcon_AK91'
-    IconCoords=(X2=127,Y2=31)
-    ItemName="[B] V-H 500KW Supercharger"
-    LightType=LT_Pulse
-    LightEffect=LE_NonIncidence
-    LightHue=30
-    LightSaturation=150
-    LightBrightness=150.000000
-    LightRadius=4.000000
-    Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Supercharger'
-    DrawScale=0.360000
+     FireModeClass(0)=Class'BWBP_SKC_Pro.Supercharger_PrimaryFire'
+     FireModeClass(1)=Class'BWBP_SKC_Pro.Supercharger_SecondaryFire'
+     SelectForce="SwitchToAssaultRifle"
+     AIRating=0.600000
+     CurrentRating=0.600000
+     bShowChargingBar=True
+     Description="Van Holt 500KW Supercharger||Manufacturer: Dipheox Combat Arms|Primary: Directed Energy Fire|Secondary: Magnetically Contained Projectile||Not much is known about this enigmatic CYLO variation. It is extremely rare and a cloesly guarded secret."
+     DisplayFOV=55.000000
+     Priority=41
+     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+     InventoryGroup=5
+     PickupClass=Class'BWBP_SKC_Pro.Supercharger_Pickup'
+     PlayerViewOffset=(X=5.000000,Y=5.000000,Z=-14.000000)
+     BobDamping=2.000000
+     AttachmentClass=Class'BWBP_SKC_Pro.Supercharger_Attachment'
+     IconMaterial=Texture'BWBP_SKC_Tex.AK91.SmallIcon_AK91'
+     IconCoords=(X2=127,Y2=31)
+     ItemName="[B] Van Holt 500KW Supercharger"
+     LightType=LT_Pulse
+     LightEffect=LE_NonIncidence
+     LightHue=30
+     LightSaturation=150
+     LightBrightness=150.000000
+     LightRadius=4.000000
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Supercharger'
+     DrawScale=0.360000
 }
