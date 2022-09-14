@@ -26,13 +26,14 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M353FlashEmitter'
 		FlashScaleFactor=0.850000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=384.000000
+		Recoil=512.000000
 		Chaos=0.080000
 		Inaccuracy=(X=16,Y=16)
 		WarnTargetPct=0.200000
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
+		AimedFireAnim="SightFire"
 		FireInterval=0.075000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
