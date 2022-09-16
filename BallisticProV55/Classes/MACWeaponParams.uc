@@ -14,6 +14,7 @@ defaultproperties
 		Damage=160
 		DamageRadius=192.000000
 		MomentumTransfer=70000.000000
+		PushBackForce=1000
 		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 		FlashScaleFactor=2.500000
 		Recoil=256.000000

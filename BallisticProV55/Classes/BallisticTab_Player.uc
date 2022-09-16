@@ -11,15 +11,15 @@ var automated moNumericEdit     ne_playerHealthCap;			//Health Cap
 var automated moNumericEdit     ne_playerSuperHealthCap;	//Super Health Cap
 var automated moNumericEdit     ne_iAdrenaline;				//Starting Adrenaline
 var automated moNumericEdit     ne_iAdrenalineCap;			//Adrenaline Cap
-var automated moFloatEdit       fe_dieSoundAmplifier;		//Death Sound Amplification
-var automated moFloatEdit       fe_dieSoundRangeAmplifier;	//Death Sound Range Amplification
-var automated moFloatEdit       fe_hitSoundAmplifier;		//Damage Audio Sound Amplification
-var automated moFloatEdit       fe_hitSoundRangeAmplifier;	//Damage Audio Sound Range Amplification
-var automated moFloatEdit       fe_footStepAmplifier;		//Footstep Sound Amplification
-var automated moFloatEdit       fe_jumpDamageAmplifier;		//Jump & Dodge Sound Amplification
 var automated moNumericEdit     ne_iArmor;					//Starting Armour
-var automated moNumericEdit     ne_iArmorCap;				//ArmourCap
-var automated moFloatEdit       fe_MaxFallSpeed;			//Max Fall Speed
+var automated moNumericEdit     ne_iArmorCap;	
+//var automated moFloatEdit       fe_dieSoundAmplifier;		//Death Sound Amplification
+//var automated moFloatEdit       fe_dieSoundRangeAmplifier;	//Death Sound Range Amplification
+//var automated moFloatEdit       fe_hitSoundAmplifier;		//Damage Audio Sound Amplification
+//var automated moFloatEdit       fe_hitSoundRangeAmplifier;	//Damage Audio Sound Range Amplification
+//var automated moFloatEdit       fe_footStepAmplifier;		//Footstep Sound Amplification
+//var automated moFloatEdit       fe_jumpDamageAmplifier;		//Jump & Dodge Sound Amplification			//ArmourCap
+//var automated moFloatEdit       fe_MaxFallSpeed;			//Max Fall Speed
 
 var BallisticConfigMenuPro         p_Anchor;
 var bool                        bInitialized;
@@ -57,16 +57,16 @@ function LoadSettings()
     ne_playerSuperHealthCap.SetValue(class'BallisticReplicationInfo'.default.playerSuperHealthCap);
     ne_iAdrenaline.SetValue(class'BallisticReplicationInfo'.default.iAdrenaline);
     ne_iAdrenalineCap.SetValue(class'BallisticReplicationInfo'.default.iAdrenalineCap);
-    fe_dieSoundAmplifier.SetValue(class'BallisticReplicationInfo'.default.dieSoundAmplifier);
-    fe_dieSoundRangeAmplifier.SetValue(class'BallisticReplicationInfo'.default.dieSoundRangeAmplifier);
-    fe_hitSoundAmplifier.SetValue(class'BallisticReplicationInfo'.default.hitSoundAmplifier);
-    fe_hitSoundRangeAmplifier.SetValue(class'BallisticReplicationInfo'.default.hitSoundRangeAmplifier);
-    fe_jumpDamageAmplifier.SetValue(class'BallisticReplicationInfo'.default.jumpDamageAmplifier);
-    fe_footStepAmplifier.SetValue(class'Mut_Ballistic'.default.footstepAmplifier);
+    //fe_dieSoundAmplifier.SetValue(class'BallisticReplicationInfo'.default.dieSoundAmplifier);
+    //fe_dieSoundRangeAmplifier.SetValue(class'BallisticReplicationInfo'.default.dieSoundRangeAmplifier);
+    //fe_hitSoundAmplifier.SetValue(class'BallisticReplicationInfo'.default.hitSoundAmplifier);
+    //fe_hitSoundRangeAmplifier.SetValue(class'BallisticReplicationInfo'.default.hitSoundRangeAmplifier);
+    //fe_jumpDamageAmplifier.SetValue(class'BallisticReplicationInfo'.default.jumpDamageAmplifier);
+    //fe_footStepAmplifier.SetValue(class'Mut_Ballistic'.default.footstepAmplifier);
 
     ne_iArmor.SetValue(class'BallisticReplicationInfo'.default.iArmor);
     ne_iArmorCap.SetValue(class'BallisticReplicationInfo'.default.iArmorCap);
-    fe_MaxFallSpeed.SetValue(class'BallisticReplicationInfo'.default.MaxFallSpeed);
+    //fe_MaxFallSpeed.SetValue(class'BallisticReplicationInfo'.default.MaxFallSpeed);
 }
 
 function DefaultSettings()
@@ -76,15 +76,15 @@ function DefaultSettings()
     ne_playerSuperHealthCap.SetValue(150);
     ne_iAdrenaline.SetValue(0);
     ne_iAdrenalineCap.SetValue(100);
-    fe_dieSoundAmplifier.SetValue(6.5);
-    fe_dieSoundRangeAmplifier.SetValue(1.0);
-    fe_hitSoundAmplifier.SetValue(8.0);
-    fe_hitSoundRangeAmplifier.SetValue(1.5);
-    fe_jumpDamageAmplifier.SetValue(80);
-    fe_footStepAmplifier.SetValue(1.5);
+    //fe_dieSoundAmplifier.SetValue(6.5);
+    //fe_dieSoundRangeAmplifier.SetValue(1.0);
+    //fe_hitSoundAmplifier.SetValue(8.0);
+    //fe_hitSoundRangeAmplifier.SetValue(1.5);
+    //fe_jumpDamageAmplifier.SetValue(80);
+    //fe_footStepAmplifier.SetValue(1.5);
     ne_iArmor.SetValue(100);
     ne_iArmorCap.SetValue(100);
-    fe_MaxFallSpeed.SetValue(800);
+    //fe_MaxFallSpeed.SetValue(800);
 }
 
 function SaveSettings()
@@ -97,15 +97,15 @@ function SaveSettings()
     class'BallisticReplicationInfo'.default.playerSuperHealthCap = ne_playerSuperHealthCap.GetValue();
     class'BallisticReplicationInfo'.default.iAdrenaline = ne_iAdrenaline.GetValue();
     class'BallisticReplicationInfo'.default.iAdrenalineCap = ne_iAdrenalineCap.GetValue();
-    class'BallisticReplicationInfo'.default.dieSoundAmplifier = fe_dieSoundAmplifier.GetValue();
-    class'BallisticReplicationInfo'.default.dieSoundRangeAmplifier = fe_dieSoundRangeAmplifier.GetValue();
-    class'BallisticReplicationInfo'.default.hitSoundAmplifier = fe_hitSoundAmplifier.GetValue();
-    class'BallisticReplicationInfo'.default.hitSoundRangeAmplifier = fe_hitSoundRangeAmplifier.GetValue();
-    class'BallisticReplicationInfo'.default.jumpDamageAmplifier = fe_jumpDamageAmplifier.GetValue();
+    //class'BallisticReplicationInfo'.default.dieSoundAmplifier = fe_dieSoundAmplifier.GetValue();
+    //class'BallisticReplicationInfo'.default.dieSoundRangeAmplifier = fe_dieSoundRangeAmplifier.GetValue();
+    //class'BallisticReplicationInfo'.default.hitSoundAmplifier = fe_hitSoundAmplifier.GetValue();
+    //class'BallisticReplicationInfo'.default.hitSoundRangeAmplifier = fe_hitSoundRangeAmplifier.GetValue();
+    //class'BallisticReplicationInfo'.default.jumpDamageAmplifier = fe_jumpDamageAmplifier.GetValue();
     class'BallisticReplicationInfo'.default.iArmor = ne_iArmor.GetValue();
     class'BallisticReplicationInfo'.default.iArmorCap = ne_iArmorCap.GetValue();
-    class'BallisticReplicationInfo'.default.MaxFallSpeed = fe_MaxFallSpeed.GetValue();
-    class'Mut_Ballistic'.default.footstepAmplifier = fe_footStepAmplifier.GetValue();
+    //class'BallisticReplicationInfo'.default.MaxFallSpeed = fe_MaxFallSpeed.GetValue();
+    //class'Mut_Ballistic'.default.footstepAmplifier = fe_footStepAmplifier.GetValue();
 
     class'BallisticReplicationInfo'.static.StaticSaveConfig();
     class'Mut_Ballistic'.static.StaticSaveConfig();
@@ -204,6 +204,8 @@ defaultproperties
      End Object
      ne_iAdrenalineCap=moNumericEdit'BallisticProV55.BallisticTab_Player.ne_iAdrenalineCapC'
 
+/*
+
      Begin Object Class=moFloatEdit Name=fe_dieSoundAmplifierC
          MinValue=0.000000
          MaxValue=999.000000
@@ -295,5 +297,5 @@ defaultproperties
          WinHeight=0.040000
      End Object
      fe_MaxFallSpeed=moFloatEdit'BallisticProV55.BallisticTab_Player.fe_MaxFallSpeedC'
-
+	*/
 }
