@@ -36,23 +36,10 @@ defaultproperties
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		FireInterval=0.250000
 		BurstFireRateFactor=1.00
+		AimedFireAnim="AimedFire"
 		FireEndAnim=
 		FireAnimRate=2.000000	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
-	End Object
-
-	//=================================================================
-    // SECONDARY FIRE
-    //=================================================================	
-
-	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
-		BotRefireRate=0.300000
-	End Object
-	
-	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
-		FireInterval=0.200000
-		AmmoPerFire=0
-		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
 	End Object
 		
 	//=================================================================
@@ -107,7 +94,6 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
 

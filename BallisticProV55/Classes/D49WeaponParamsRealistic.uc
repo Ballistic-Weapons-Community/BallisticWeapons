@@ -120,6 +120,8 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000

@@ -102,8 +102,10 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
 		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.250000,Z=15.700000)
+		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
+		SightPivot=(Pitch=0)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
 		InventorySize=12

@@ -38,8 +38,8 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 		FireInterval=0.800000
-		FireAnim="Fire"
-		AimedFireAnim="Fire"
+		FireAnim="FireClassic"
+		AimedFireAnim="FireClassic"
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True
 		FireEndAnim=	

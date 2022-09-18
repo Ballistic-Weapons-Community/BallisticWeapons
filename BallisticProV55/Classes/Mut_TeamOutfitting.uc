@@ -4,6 +4,9 @@
 // It's Loadout, but per-team.
 //=============================================================================
 class Mut_TeamOutfitting extends Mut_Ballistic
+	transient
+	HideDropDown
+	CacheExempt
 	config(BallisticProV55);
 
 var() config string 			LoadOut[5];			// Loadout info saved seperately on each client

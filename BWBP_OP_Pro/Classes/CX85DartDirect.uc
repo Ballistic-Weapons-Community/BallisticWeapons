@@ -169,6 +169,7 @@ function bool IsStationary()
 
 defaultproperties
 {
+	 bApplyParams=False
      ModeIndex=1
      bNoFXOnExplode=True
      TrackCount=1

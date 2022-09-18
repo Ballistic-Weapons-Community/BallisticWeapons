@@ -102,7 +102,7 @@ defaultproperties
 
 	//Shield Explosion
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryShieldEffectParams
-		ProjectileClass=Class'PumaProjectileRShort'
+		ProjectileClass=Class'PUMAProjectileClose'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=6000.000000
 		Damage=110.000000

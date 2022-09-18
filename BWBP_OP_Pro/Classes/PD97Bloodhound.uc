@@ -33,6 +33,7 @@ var   Actor			CurrentRocket;			//Current rocket of interest. The rocket that can
 var array<Actor> ActiveRockets;
 var() sound		LockedOnSound;		// beep!
 var() sound		LockedOffSound;		// lock it off
+var PD97TrackerBeacon ActiveBeacon;
 
 
 replication
@@ -281,6 +282,10 @@ simulated function WeaponTick (float DT)
 	{
 		ServerSetRocketTarget(LockedTarget.Location);
 	}
+	else if (LockedTarget == None && bLockedOn)
+	{
+		BreakLock();
+	}
 	
 }
 
@@ -363,6 +368,15 @@ simulated function BreakLock()
 {
 	bLockedOn = false;
     PlaySound(LockedOffSound,,0.7,,16);
+
+	if (ActiveBeacon != None)
+		ActiveBeacon.Destroy();
+}
+
+simulated function Destroyed()
+{
+	BreakLock();
+	super.Destroyed();
 }
 
 function ServerSetRocketTarget(vector Loc)

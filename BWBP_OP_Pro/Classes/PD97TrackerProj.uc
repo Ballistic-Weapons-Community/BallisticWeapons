@@ -114,6 +114,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	{
 		Proj = Spawn (class'PD97TrackerBeacon',,, LastHitLoc, R);
 		Proj.Instigator = Instigator;
+		PD97TrackerBeacon(Proj).Master = Master;
+		Master.ActiveBeacon = PD97TrackerBeacon(Proj);
 		Proj.bHardAttach = true;
 		Proj.SetBase(LastTrace);
 	}
@@ -121,6 +123,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	{
 		Proj = Spawn (class'PD97TrackerBeacon',,, LastHitLoc, R);
 		Proj.Instigator = Instigator;
+		PD97TrackerBeacon(Proj).Master = Master;
+		Master.ActiveBeacon = PD97TrackerBeacon(Proj);
 		Proj.SetPhysics(PHYS_None);
 		Proj.bHardAttach = true;
 		if (StuckActor != Instigator && StuckActor.DrawType == DT_Mesh)

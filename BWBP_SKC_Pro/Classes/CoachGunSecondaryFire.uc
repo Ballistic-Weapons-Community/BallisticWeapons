@@ -19,12 +19,12 @@ event ModeDoFire()
 		if (!CoachGun(Weapon).bLeftLoaded)
 		{
 			CoachGun(Weapon).bRightLoaded=false;
-			FireAnim='FireRight';
+			FireAnim='SightFire';
 		}
 		else
 		{
 			CoachGun(Weapon).bLeftLoaded=false;
-			FireAnim='FireLeft';
+			FireAnim='SightFire';
 		}
 	}
 	super.ModeDoFire();

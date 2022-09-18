@@ -116,7 +116,7 @@ defaultproperties
 		SightingTime=0.300000
 		MagAmmo=37
 		SightPivot=(Pitch=450)
-		SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
+		SightOffset=(X=-3.000000,Y=13.575000,Z=22.1000)
 		ViewOffset=(X=4.000000,Y=-4,Z=-14.000000)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000

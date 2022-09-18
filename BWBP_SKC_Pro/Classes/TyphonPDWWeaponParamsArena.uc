@@ -97,16 +97,16 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
+		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
 		ViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
 		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.300000,Z=18.700000)
-		SightPivot=(Pitch=1024)
+		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
+		SightPivot=(Pitch=0)
 		PlayerSpeedFactor=.95
 		PlayerJumpFactor=.95
 		InventorySize=12
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1
-		WeaponBoneScales(0)=(BoneName="Sight",Slot=1,Scale=0f)
 		MagAmmo=20
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'

@@ -90,6 +90,7 @@ simulated function Explode (vector a, vector b)
 
 defaultproperties
 {
+	 bApplyParams=False
      bPenetrate=True
      StartDelay=0.030000
      Speed=3000.000000

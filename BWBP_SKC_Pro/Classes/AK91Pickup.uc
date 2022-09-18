@@ -27,12 +27,12 @@ function InitDroppedPickupFor(Inventory Inv)
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.AK490.AK490Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.AK91.AK91_SM'
      InventoryType=Class'BWBP_SKC_Pro.AK91ChargeRifle'
      RespawnTime=20.000000
      PickupMessage="You picked up the AK-91 Charge Rifle"
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_Static.AK490.AK490Pickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.AK91.AK91_SM'
      Physics=PHYS_None
      DrawScale=0.250000
      PickupDrawScale=0.180000

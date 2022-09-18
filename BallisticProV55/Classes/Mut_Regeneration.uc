@@ -8,6 +8,9 @@
 // Copyright© 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class Mut_Regeneration extends Mutator
+	transient
+	HideDropDown
+	CacheExempt
 	config(BallisticProV55);
 
 var globalconfig bool     	bUseRegen;

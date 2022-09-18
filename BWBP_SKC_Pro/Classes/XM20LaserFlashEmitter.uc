@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM20BLaserFlashEmitter extends BallisticEmitter;
+class XM20LaserFlashEmitter extends BallisticEmitter;
 
 defaultproperties
 {
@@ -32,7 +32,7 @@ defaultproperties
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
-     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.XM20BLaserFlashEmitter.SpriteEmitter9'
+     Emitters(0)=SpriteEmitter'BWBP_SKC_Pro.XM20LaserFlashEmitter.SpriteEmitter9'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter10
          UseDirectionAs=PTDU_Up
@@ -60,7 +60,7 @@ defaultproperties
          SpawnOnTriggerPPS=500000.000000
          StartVelocityRange=(X=(Min=10.000000,Max=10.000000))
      End Object
-     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.XM20BLaserFlashEmitter.SpriteEmitter10'
+     Emitters(1)=SpriteEmitter'BWBP_SKC_Pro.XM20LaserFlashEmitter.SpriteEmitter10'
 
      bNoDelete=False
 }

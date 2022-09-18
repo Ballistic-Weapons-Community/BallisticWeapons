@@ -44,6 +44,10 @@ simulated event ModeDoFire()
 		//There can BE ONLY ONE
 		if (ActiveProj != None)
 			ActiveProj.Destroy();
+		if (PD97Bloodhound(BW) != None && PD97Bloodhound(BW).ActiveBeacon != None)
+		{
+			PD97Bloodhound(BW).ActiveBeacon.Destroy();
+		}
 	}
 	
 	if (PD97Bloodhound(BW) != None)

@@ -11,6 +11,9 @@
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class Mut_Outfitting extends Mut_Ballistic
+	transient
+	HideDropDown
+	CacheExempt
 	config(BallisticProV55);
 
 var() globalconfig string 			LoadOut[5];			// Loadout info saved seperately on each client

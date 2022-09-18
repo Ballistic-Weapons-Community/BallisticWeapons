@@ -236,11 +236,11 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipIn')
 	SightingTime=0.000001
 	GunLength=0.000000
-    bUseSights=False
+    bUseSights=True
 	bUseSpecialAim=True
 	ParamsClasses(0)=Class'FG50TW_WeaponParams'
 	ParamsClasses(1)=Class'FG50TW_WeaponParams'
-	ParamsClasses(2)=Class'FG50TW_WeaponParamsRealistic'
+	ParamsClasses(2)=Class'AS50TW_WeaponParamsRealistic'
 	SelectAnim="Deploy"
     BringUpTime=1.000000
 	bCanThrow=False

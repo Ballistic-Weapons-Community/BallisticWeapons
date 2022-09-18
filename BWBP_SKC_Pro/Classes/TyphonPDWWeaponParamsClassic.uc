@@ -96,9 +96,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
 		Weight=30
 		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.250000,Z=15.700000)
+		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
+		SightPivot=(Pitch=0)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
 		InventorySize=12
@@ -113,6 +115,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Urban
+		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.PUMA.PUMA-ShineUrban',Index=1)
@@ -132,6 +135,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Green
+		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
 		Weight=3
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.PUMA.PUMA-ShineGreen',Index=1)

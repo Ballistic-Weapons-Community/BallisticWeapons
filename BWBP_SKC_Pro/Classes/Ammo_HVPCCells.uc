@@ -10,7 +10,6 @@ class Ammo_HVPCCells extends BallisticAmmo;
 
 defaultproperties
 {
-     bNoPackResupply=True
      MaxAmmo=400
      InitialAmount=200
      IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIcon_LGFlash'

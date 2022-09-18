@@ -111,7 +111,7 @@ defaultproperties
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=35
-		SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
+		SightOffset=(X=-3.000000,Y=13.565000,Z=24.785000)
 		SightPivot=(Pitch=900)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000

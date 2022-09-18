@@ -119,7 +119,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
 	 CurrentWeaponMode=2
-	 ParamsClasses(0)=Class'G28WeaponParams'
+	 ParamsClasses(0)=Class'G28WeaponParamsArena'
 	 ParamsClasses(1)=Class'G28WeaponParamsClassic'
      FireModeClass(0)=Class'BWBP_SKC_Pro.G28PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.G28SecondaryFire'

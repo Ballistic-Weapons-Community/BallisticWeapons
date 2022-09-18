@@ -1,4 +1,4 @@
-class XM20BWeaponParamsRealistic extends BallisticWeaponParams;
+class XM20WeaponParamsRealistic extends BallisticWeaponParams;
 
 defaultproperties
 { 
@@ -14,13 +14,13 @@ defaultproperties
 		Damage=20
 		HeadMult=1.75
 		LimbMult=0.75
-		DamageType=Class'BWBP_SKC_Pro.DT_XM20B_Body'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20B_Head'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20B_Body'
+		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		PenetrateForce=600
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
-		MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20BFlashEmitter'
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.XM20FlashEmitter'
 		FlashScaleFactor=0.300000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.350000)
 		Recoil=10.000000
@@ -47,9 +47,9 @@ defaultproperties
 		RangeAtten=0.350000
 		Damage=20
 		LimbMult=0.75
-		DamageType=Class'BWBP_SKC_Pro.DT_XM20B_Body'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20B_Head'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20B_Body'
+		DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
 		PenetrateForce=300
 		bPenetrate=True
 		PDamageFactor=0.6
@@ -118,20 +118,20 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
 		SightOffset=(X=-10.000000,Y=9.7500000,Z=22.500000)
-		ViewOffset=(X=1.000000,Y=-3.000000,Z=-17.000000)
+		ViewOffset=(X=0.000000,Y=-2.000000,Z=-15.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Smooth
 		WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)
 		WeaponModes(1)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto")
 		WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
 		InitialWeaponMode=1
-		WeaponName="XM-20 Experimental Laser System"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
