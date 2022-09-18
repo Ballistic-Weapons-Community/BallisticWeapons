@@ -72,27 +72,18 @@ simulated event WeaponTick(float DT)
 
 simulated function AddHeat(float Amount)
 {
-
-	HeatLevel += Amount;
+	HeatLevel = FMax(0, HeatLevel + Amount);
+	AK91PrimaryFire(FireMode[0]).FireRate = AK91PrimaryFire(FireMode[0]).Params.FireInterval;
 	
 	if (HeatLevel >= 9.5)
 	{
-		Heatlevel = 12;
-        BallisticInstantFire(FireMode[0]).FireRate=0.210000;
-		//PlaySound(OverHeatSound,,3.7,,32);
-		//class'BallisticDamageType'.static.GenericHurt (Instigator, 10, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTPlasmaCannonOverheat');
+		AK91PrimaryFire(FireMode[0]).FireRate *= 1.5;
 	}
+	
 	if (HeatLevel >= 5.0)
 	{
 		PlaySound(HighHeatSound,,1.0*(HeatLevel/10),,32);
 	}
-	
-	else if (Heatlevel <=0 )
-	{
-        BallisticInstantFire(FireMode[0]).FireRate=BallisticInstantFire(FireMode[0]).default.FireRate;
-		Heatlevel = 0;
-	}
-
 }
 
 simulated function ClientSetHeat(float NewHeat)
@@ -440,6 +431,8 @@ defaultproperties
      SightingTime=0.300000
      FireModeClass(0)=Class'BWBP_SKC_Pro.AK91PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.AK91SecondaryFire'
+	 NDCrosshairCfg=(Pic1=None,Pic2=None,USize1=128,VSize1=128,USize2=128,VSize2=128,Color1=(B=0,G=0,R=255,A=255),Color2=(B=0,G=255,R=255,A=255),StartSize1=96,StartSize2=96)
+	 NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
      BringUpTime=0.900000
      PutDownTime=0.700000
      IdleAnimRate=0.400000
@@ -457,7 +450,7 @@ defaultproperties
      AttachmentClass=Class'BWBP_SKC_Pro.AK91Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.AK91.SmallIcon_AK91'
      IconCoords=(X2=127,Y2=31)
-     ItemName="[B] AK-91 Charge Rifle"
+     ItemName="AK-91 Charge Rifle"
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=30

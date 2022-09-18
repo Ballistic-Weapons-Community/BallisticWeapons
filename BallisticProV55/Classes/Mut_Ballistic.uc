@@ -47,6 +47,7 @@ var   globalconfig bool		bRegeneration;			// Enables Regeneration
 var   globalconfig bool		bShieldRegeneration;	// Enables Shield Regeneration
 var   globalconfig bool		bPreloadMeshes;			// Enables Mesh Preloader
 var   globalconfig bool		bBloodyHell;			// Enables BloodyHell
+var   globalconfig bool		bKillStreaks;			// Enables KillStreaks
 
 var   globalconfig bool		bUseItemizer;			// Should extra items be spawned using the Itemizer system
 var   globalconfig string	ItemGroup;				// Group to use for Itemizer. Only items of this group will spawned by Itemizer.
@@ -789,6 +790,10 @@ simulated function PreBeginPlay()
 	{
 		Level.Game.AddMutator("BallisticProV55.Mut_BallisticPreLoad", false);
 	}
+	if (bKillStreaks)
+	{
+		Level.Game.AddMutator("BallisticProV55.Mut_Killstreak", false);
+	}
 
 	if (level.Game != None)
 	{
@@ -1052,6 +1057,7 @@ defaultproperties
 	 bRegeneration=False
 	 bShieldRegeneration=False
 	 bPreloadMeshes=True
+	 bKillStreaks=False
 	 
 	 ItemGroup="Ballistic"
      bSpawnUniqueItems=True

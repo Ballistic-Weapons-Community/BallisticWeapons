@@ -23,6 +23,7 @@ var automated moCheckbox	ch_DoubleJump;				//Limits Double Jump
 var automated moCheckbox	ch_Regen;					//Enables Health Regen
 var automated moCheckbox	ch_ShieldRegen;				//Enables Shield Regen
 var automated moCheckbox	ch_PreCacheWeapons;			//Precache Weapons
+var automated moCheckbox	ch_KillStreaks;				//Killsteaks
 
 var BallisticConfigMenuPro	p_Anchor;
 var bool					bInitialized;
@@ -77,7 +78,7 @@ function LoadSettings()
 	ch_Regen.Checked(class'mut_Ballistic'.default.bRegeneration);
 	ch_ShieldRegen.Checked(class'mut_Ballistic'.default.bShieldRegeneration);
 	ch_PreCacheWeapons.Checked(class'Mut_Ballistic'.default.bPreloadMeshes);
-	
+	ch_KillStreaks.Checked(class'Mut_Ballistic'.default.bKillstreaks);
 }
 
 function SaveSettings()
@@ -95,6 +96,7 @@ function SaveSettings()
 	class'Mut_Ballistic'.default.bRegeneration					= ch_Regen.IsChecked();
 	class'Mut_Ballistic'.default.bShieldRegeneration			= ch_ShieldRegen.IsChecked();
 	class'Mut_Ballistic'.default.bPreloadMeshes					= ch_PreCacheWeapons.IsChecked();
+	class'Mut_Ballistic'.default.bKillstreaks					= ch_KillStreaks.IsChecked();
 	
 	class'BallisticReplicationInfo'.static.StaticSaveConfig();
 	class'BallisticWeapon'.static.StaticSaveConfig();
@@ -118,6 +120,7 @@ function DefaultSettings()
 	ch_Regen.Checked(false);
 	ch_ShieldRegen.Checked(false);
 	ch_PreCacheWeapons.Checked(true);
+	ch_KillStreaks.Checked(false);
 }
 
 defaultproperties
@@ -268,4 +271,17 @@ defaultproperties
          WinHeight=0.040000
      End Object
      ch_ShieldRegen=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_ShieldRegenCheck'
+	 
+	 Begin Object Class=moCheckBox Name=ch_KillStreaksCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="KillStreaks"
+         OnCreateComponent=ch_KillStreaksCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Enables Ballistic KillStreaks (Can Be Configured from the Loadout Tab)"
+         WinTop=0.600000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_KillStreaks=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_KillStreaksCheck'
 }
