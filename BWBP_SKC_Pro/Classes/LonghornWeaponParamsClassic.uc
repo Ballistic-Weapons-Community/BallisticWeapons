@@ -8,7 +8,8 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenadeNoDud'
+		//ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenadeNoDud'
+		ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenade'
 		Speed=3500.000000
 		Damage=70
 		DamageRadius=450.000000

@@ -29,7 +29,7 @@ defaultproperties
 		Chaos=-1.0
 		Inaccuracy=(X=3,Y=3)
 		WarnTargetPct=0.200000
-		PushbackForce=125.000000
+		PushBackForce=125.000000
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
