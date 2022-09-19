@@ -91,6 +91,8 @@ defaultproperties
 //=================================================================
 
 	Begin Object Class=AimParams Name=ClassicAimParams
+		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
 		AimSpread=(Min=1024,Max=2500)
 		AimAdjustTime=0.800000
 		CrouchMultiplier=0.8
