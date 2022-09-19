@@ -732,9 +732,9 @@ defaultproperties
 	 bCockOnEmpty=True
      ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagIn',Volume=1.000000)
      ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.PUMA.PUMA-MagOut',Volume=1.000000)
-	 WeaponModes(0)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
-	 WeaponModes(1)=(ModeName="Power Fire",ModeID="WM_FullAuto")
-	 WeaponModes(2)=(ModeName="Power Shot",bUnavailable=True)
+	 WeaponModes(0)=(ModeName="Mode: Rapid Fire",ModeID="WM_FullAuto")
+	 WeaponModes(1)=(ModeName="Mode: Charged Fire",ModeID="WM_FullAuto")
+	 WeaponModes(2)=(ModeName="Charged Shot",bUnavailable=True)
      CurrentWeaponMode=0
      bNoCrosshairInScope=True
 	 ZoomType=ZT_Irons

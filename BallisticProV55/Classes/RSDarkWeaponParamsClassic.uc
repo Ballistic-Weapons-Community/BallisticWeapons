@@ -244,7 +244,15 @@ defaultproperties
 		SightOffset=(X=-12.000000,Z=10.100000)
 		SightPivot=(Pitch=1400)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(1)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(2)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(3)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(4)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
+		AimParams(1)=AimParams'ClassicAimParams'
+		AimParams(2)=AimParams'ClassicAimParams'
+		AimParams(3)=AimParams'ClassicAimParams'
+		AimParams(4)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicBoltFireParams'
 		FireParams(1)=FireParams'ClassicFastFireParams'
 		FireParams(2)=FireParams'ClassicFlameFireParams'

@@ -38,6 +38,7 @@ defaultproperties
 		TargetState="SpinUpFire"
 		FireInterval=0.130000
 		BurstFireRateFactor=1.00
+        FireAnimRate=2.000000	
 		FireAnim="Fire"
 		FireEndAnim=	
 		FireEffectParams(0)=ShotgunEffectParams'RealisticPrimaryEffectParams'
@@ -122,7 +123,7 @@ defaultproperties
 			AmmoPerFire=3
 			BurstFireRateFactor=1.00
 			PreFireAnim="ChargeUp"
-			FireAnim="Fire"
+			FireAnim="FireBig"
 			FireEndAnim=	
 			FireEffectParams(0)=ShotgunEffectParams'RealisticSecondaryEffectParams'
 		End Object
