@@ -229,6 +229,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-500,Yaw=-1024)
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=1600.000000
 	End Object

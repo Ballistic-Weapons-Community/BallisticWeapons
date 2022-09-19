@@ -39,8 +39,8 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
 		FireInterval=0.360000
-		FireAnim="FireCombined"
-		AimedFireAnim="FireCombinedSight"
+		FireAnim="Fire"
+		AimedFireAnim="Fire"
 		BurstFireRateFactor=1.00
 		FireEndAnim=
 		FireAnimRate=2.500000	
@@ -105,6 +105,7 @@ defaultproperties
 		ADSMultiplier=0.800000
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-3072,Yaw=-3072)
 		ChaosDeclineTime=1.000000
 		ChaosSpeedThreshold=600.000000
 	End Object
@@ -116,6 +117,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25
 		MagAmmo=8
 		ViewOffset=(X=-2.000000,Y=6.000000,Z=-12.000000)
 		SightOffset=(X=5.000000,Y=0,Z=11.500000)

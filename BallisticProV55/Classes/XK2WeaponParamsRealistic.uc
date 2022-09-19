@@ -68,6 +68,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.0500000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-3536,Yaw=-2048)
 		AimDamageThreshold=300.000000
 		ChaosDeclineTime=0.650000
 		ChaosSpeedThreshold=600.000000
@@ -81,9 +82,10 @@ defaultproperties
 		PlayerSpeedFactor=1.050000
 		InventorySize=25
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.21
 		MagAmmo=40
 		ViewOffset=(X=-2.000000,Y=6.500000,Z=-11.000000)
-		SightOffset=(X=-5.000000,Y=-0.032500,Z=11.300000)
+		SightOffset=(X=3.000000,Y=-0.032500,Z=11.300000)
 		SightPivot=(Pitch=40)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=4.000000)
@@ -95,6 +97,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
 

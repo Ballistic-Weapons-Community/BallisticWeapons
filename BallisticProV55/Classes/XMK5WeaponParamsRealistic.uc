@@ -98,6 +98,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.0500000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-3536,Yaw=-2048)
 		AimDamageThreshold=300.000000
 		ChaosDeclineTime=0.650000
 		ChaosSpeedThreshold=575.000000
@@ -111,6 +112,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
 		InventorySize=20
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.21
 		MagAmmo=35
 		ViewOffset=(X=2.000000,Y=8.000000,Z=-10.000000)
 		SightOffset=(X=1.000000,Z=17.750000)
