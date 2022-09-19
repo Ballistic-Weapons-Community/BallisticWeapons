@@ -158,6 +158,8 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.350000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpOffSet=(Pitch=1000,Yaw=-3000)
 		ChaosDeclineTime=2.000000
 	End Object
     
@@ -168,6 +170,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=25
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25
 		MagAmmo=36
 		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)

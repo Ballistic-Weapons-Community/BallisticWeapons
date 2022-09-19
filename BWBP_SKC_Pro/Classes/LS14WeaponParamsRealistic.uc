@@ -136,6 +136,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.075000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.700000
 		ChaosSpeedThreshold=550.000000
 	End Object
@@ -146,6 +147,7 @@ defaultproperties
 		ADSMultiplier=0.800000
 		ViewBindFactor=0.250000
 		SprintChaos=1.000000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.000000
 	End Object
     
@@ -164,6 +166,7 @@ defaultproperties
 		PlayerJumpFactor=1.100000
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.3
 		MagAmmo=20
 		//ViewOffset=(X=-4.000000,Y=10.000000,Z=-16.000000)
 		ViewOffset=(X=-8.000000,Y=9.000000,Z=-16.000000)
@@ -193,6 +196,7 @@ defaultproperties
 		PlayerJumpFactor=1.100000
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25
 		MagAmmo=20
 		SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
 		SightPivot=(Pitch=600,Roll=-1024)

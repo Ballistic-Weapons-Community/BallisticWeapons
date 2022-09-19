@@ -96,6 +96,8 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-6000,Yaw=-8000)
+		JumpOffSet=(Pitch=-7000)
 		ChaosDeclineTime=1.300000
 		ChaosSpeedThreshold=475.000000
 	End Object
@@ -109,6 +111,7 @@ defaultproperties
 		PlayerJumpFactor=0.850000
 		InventorySize=51
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.3
 		MagAmmo=4
 		SightOffset=(X=0.000000,Y=5.300000,Z=23.300000)
 		ZoomType=ZT_Fixed

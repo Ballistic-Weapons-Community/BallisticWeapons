@@ -103,6 +103,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.060000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.200000
 		ChaosSpeedThreshold=565.000000
 	End Object
@@ -112,8 +113,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-Irons',Index=1)
 		InventorySize=30
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.23
 		MagAmmo=30
 		ViewOffset=(X=-3.000000,Y=8.000000,Z=-17.000000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
