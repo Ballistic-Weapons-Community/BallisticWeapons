@@ -30,7 +30,7 @@ defaultproperties
 		Inaccuracy=(X=2,Y=2)
 		WarnTargetPct=0.200000
 		FlashScaleFactor=1.000000
-		PushbackForce=200.000000
+		PushbackForce=0.000000
 	End Object
 	
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams

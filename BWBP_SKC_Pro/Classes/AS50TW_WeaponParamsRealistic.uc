@@ -28,7 +28,7 @@ defaultproperties
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.FG50-HeavyFire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=160.000000
 		Chaos=0.150000
-		PushbackForce=100.000000
+		PushbackForce=0.000000
 		Inaccuracy=(X=12,Y=12)
 	End Object
 		

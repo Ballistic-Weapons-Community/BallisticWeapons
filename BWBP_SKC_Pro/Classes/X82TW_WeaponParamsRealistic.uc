@@ -27,7 +27,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-Fire8',Volume=12.100000,Radius=450.000000)
 		Recoil=200.000000
 		Chaos=0.050000
-		PushbackForce=100.000000
+		PushbackForce=0.000000
 		Inaccuracy=(X=12,Y=12)
 	End Object
 		
