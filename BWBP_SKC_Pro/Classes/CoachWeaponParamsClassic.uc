@@ -30,7 +30,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-FireDouble',Volume=1.200000)
 		Recoil=256.000000
 		Chaos=-1.0
-		Inaccuracy=(X=900,Y=750)
+		Inaccuracy=(X=800,Y=650)
 		HipSpreadFactor=1.000000
 		BotRefireRate=0.100000
 		WarnTargetPct=0.100000
@@ -104,7 +104,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)
 		Recoil=256.000000
 		Chaos=-1.0
-		Inaccuracy=(X=900,Y=750)
+		Inaccuracy=(X=800,Y=650)
 		HipSpreadFactor=1.000000
 		BotRefireRate=0.100000
 		WarnTargetPct=0.100000

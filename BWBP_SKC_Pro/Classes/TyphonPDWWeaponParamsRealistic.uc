@@ -11,7 +11,7 @@ defaultproperties
 		DecayRange=(Min=1800,Max=3600)
 		TraceRange=(Max=6000.000000)
 		RangeAtten=0.30000
-		Damage=40.000000
+		Damage=50.000000
 		HeadMult=2.2
 		LimbMult=0.6
 		DamageType=Class'BWBP_SKC_Pro.DT_TyphonPDW'
@@ -23,22 +23,23 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
 		FlashScaleFactor=0.100000
-		Recoil=70.000000
+		Recoil=40.000000
 		Chaos=-1.000000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Fire',Volume=2.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-HFire',Volume=2.500000,Slot=SLOT_Interact,bNoOverride=False)
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
 	End Object
 
-	//Charged
+	
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.125000
+		FireInterval=0.165000
 		FireAnim="SightFire"
 		AimedFireAnim="SightFire"
 		FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
-		
-		Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParamsCharged
+	
+	//Charged	
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParamsCharged
 		DamageType=Class'BWBP_SKC_Pro.DT_TyphonPDW'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_TyphonPDWHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_TyphonPDW'
@@ -53,7 +54,7 @@ defaultproperties
 		FlashScaleFactor=0.050000
 		Recoil=140.000000
 		Chaos=0.150000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Overblast',Volume=7.800000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Blast',Volume=7.800000)
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
 	End Object
