@@ -5,9 +5,6 @@
 // Also adds a rules class that awards a health bonus for killing players.
 //=============================================================================
 class Mut_ShieldRegeneration extends Mutator
-	transient
-	HideDropDown
-	CacheExempt
 	config(BallisticProV55);
 
 var globalconfig bool     	bUseShieldRegen;
@@ -37,7 +34,7 @@ event Timer()
 
         P = xPawn(C.Pawn);
 
-        if (P == None || P.LastDamagedTime < (Level.TimeSeconds - RegenDelay))
+        if (P == None || BallisticPawn(P).LastDamagedTime < (Level.TimeSeconds - RegenDelay))
             continue;
 
         MaxShield = FMin(ShieldCap, P.ShieldStrengthMax);
