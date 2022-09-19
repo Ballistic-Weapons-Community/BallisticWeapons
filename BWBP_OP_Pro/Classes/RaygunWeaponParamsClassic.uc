@@ -13,7 +13,7 @@ defaultproperties
 		Speed=100.000000
 		AccelSpeed=20000.000000
 		MaxSpeed=10000.000000
-		Damage=75
+		Damage=50
 		MomentumTransfer=65000.000000
 		MaxDamageGainFactor=0.5
 		DamageGainStartTime=0.05
