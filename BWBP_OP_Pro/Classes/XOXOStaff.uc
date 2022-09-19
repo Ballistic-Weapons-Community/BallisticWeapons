@@ -256,6 +256,8 @@ simulated function ArousalDepleted()
 	if (LoveEffect != None)
 		LoveEffect.Kill();
 
+	ParamsClasses[GameStyleIndex].static.OverrideFireParams(self,0);
+
 	WeaponModes[3].bUnavailable=true;
 
 	CurrentWeaponMode = 0;

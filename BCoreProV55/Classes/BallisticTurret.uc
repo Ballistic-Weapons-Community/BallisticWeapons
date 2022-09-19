@@ -258,8 +258,10 @@ function InitUndeployedWeapon(Weapon Weap)
 {
 	if (BallisticWeapon(Weap) != None)
 	{
+		//turrets now have different firemodes when (un)mounted, so we'll be setting params to the default from now on
+		//BallisticWeapon(Weap).CurrentWeaponMode =		WeaponMode;
+		BallisticWeapon(Weap).ParamsClasses[BallisticWeapon(Weap).GameStyleIndex].static.OverrideFireParams(BallisticWeapon(Weap),0);
 		BallisticWeapon(Weap).MagAmmo =					MagAmmoAmount;
-		BallisticWeapon(Weap).CurrentWeaponMode =		WeaponMode;
 		BallisticWeapon(Weap).InitWeaponFromTurret(self);
 	}
 //	Weap.AddAmmo(AmmoAmount[0]-Weap.AmmoAmount(0), 0);
