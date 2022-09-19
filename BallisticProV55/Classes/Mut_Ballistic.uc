@@ -260,7 +260,7 @@ function ModifyPlayer(Pawn Other)
         Other.SuperHealthMax = class'BallisticReplicationInfo'.default.playerSuperHealthCap; // maximum superhealth a player can have
         xPawn(Other).ShieldStrengthMax = class'BallisticReplicationInfo'.default.iArmorCap;
         Other.AddShieldStrength(class'BallisticReplicationInfo'.default.iArmor);
-        Other.MaxFallSpeed = class'BallisticReplicationInfo'.default.MaxFallSpeed;
+        //Other.MaxFallSpeed = class'BallisticReplicationInfo'.default.MaxFallSpeed;
         xPawn(Other).FootstepVolume *= FootstepAmplifier;
 
         Other.Controller.AdrenalineMax = class'BallisticReplicationInfo'.default.iAdrenalineCap;

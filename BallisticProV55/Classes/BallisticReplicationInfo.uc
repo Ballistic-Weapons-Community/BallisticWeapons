@@ -35,12 +35,12 @@ var() config int 		iAdrenaline;  // maximum adrenaline a player starts with
 var() config int 		iAdrenalineCap;  // maximum adrenaline a player can have
 var() config int 		iArmor;  // armor the player starts with
 var() config int 		iArmorCap;  // maximum armor the player can have
-var() config float 		dieSoundAmplifier;  // amplifies the die sound
-var() config float 		dieSoundRangeAmplifier; // amplifies the range
-var() config float 		hitSoundAmplifier;  // amplifies the hit sound
-var() config float 		hitSoundRangeAmplifier;  // amplifies the range
-var() config float 		jumpDamageAmplifier;  // amplifies the jump damage
-var() config float 		MaxFallSpeed; // beyond this speed, players will take damage when landing on a surface
+//var() config float 		dieSoundAmplifier;  // amplifies the die sound
+//var() config float 		dieSoundRangeAmplifier; // amplifies the range
+//var() config float 		hitSoundAmplifier;  // amplifies the hit sound
+//var() config float 		hitSoundRangeAmplifier;  // amplifies the range
+//var() config float 		jumpDamageAmplifier;  // amplifies the jump damage
+//var() config float 		MaxFallSpeed; // beyond this speed, players will take damage when landing on a surface
 
 // Kill Rewards
 var() config int 		killrewardArmor;  // armor points for a kill
@@ -72,18 +72,18 @@ var struct RepInfo_BW
     var int iAdrenalineCap;  // maximum adrenaline a player can have
     var int iArmor;  // armor the player starts with
     var int iArmorCap;  // maximum armor the player can have
-    var float dieSoundAmplifier;  // amplifies the die sound
-    var float dieSoundRangeAmplifier; // amplifies the range
-    var float hitSoundAmplifier;  // amplifies the hit sound
-    var float hitSoundRangeAmplifier;  // amplifies the range
-    var float jumpDamageAmplifier;  // amplifies the jump damage
+    //var float dieSoundAmplifier;  // amplifies the die sound
+    //var float dieSoundRangeAmplifier; // amplifies the range
+    //var float hitSoundAmplifier;  // amplifies the hit sound
+    //var float hitSoundRangeAmplifier;  // amplifies the range
+    //var float jumpDamageAmplifier;  // amplifies the jump damage
 	
 	//Kill Rewards
 	var int killrewardArmor;  // armor points for a kill
     var int killrewardArmorCap;  // Limiter, the additional armor points will not exceel this value
     var int killRewardHealthpoints; // the amount of healthpoints a player gets for a kill
     var int killRewardHealthcap;  // Limiter, The additional healthpoints wont exceel this value
-    var float MaxFallSpeed;  // beyond this speed, players will take damage when landing on a surface
+    //var float MaxFallSpeed;  // beyond this speed, players will take damage when landing on a surface
     var int ADRKill;  // adrenaline for normal kill
     var int ADRMajorKill;   // adrenaline for major kill
     var int ADRMinorBonus;   // adrenaline for minor bonus
@@ -142,11 +142,11 @@ simulated function InitClientVars()
     iAdrenalineCap = BWRep.iAdrenalineCap;
     iArmor = BWRep.iArmor;
     iArmorCap = BWRep.iArmorCap;
-    dieSoundAmplifier = BWRep.dieSoundAmplifier;
-    dieSoundRangeAmplifier = BWRep.dieSoundRangeAmplifier;
-    hitSoundAmplifier = BWRep.hitSoundAmplifier;
-    hitSoundRangeAmplifier = BWRep.hitSoundRangeAmplifier;
-    jumpDamageAmplifier = BWRep.jumpDamageAmplifier;
+    //dieSoundAmplifier = BWRep.dieSoundAmplifier;
+    //dieSoundRangeAmplifier = BWRep.dieSoundRangeAmplifier;
+    //hitSoundAmplifier = BWRep.hitSoundAmplifier;
+    //hitSoundRangeAmplifier = BWRep.hitSoundRangeAmplifier;
+    //jumpDamageAmplifier = BWRep.jumpDamageAmplifier;
 	
 	//Kill Rewards
 	killrewardArmor = BWRep.killrewardArmor;
@@ -195,11 +195,11 @@ function ServerInitialize()
     BWRep.iAdrenalineCap = iAdrenalineCap;
     BWRep.iArmor = iArmor;
     BWRep.iArmorCap = iArmorCap;
-    BWRep.dieSoundAmplifier = dieSoundAmplifier;
-    BWRep.dieSoundRangeAmplifier = dieSoundRangeAmplifier;
-    BWRep.hitSoundAmplifier = hitSoundAmplifier;
-    BWRep.hitSoundRangeAmplifier = hitSoundRangeAmplifier;
-    BWRep.jumpDamageAmplifier = jumpDamageAmplifier;
+    //BWRep.dieSoundAmplifier = dieSoundAmplifier;
+    //BWRep.dieSoundRangeAmplifier = dieSoundRangeAmplifier;
+    //BWRep.hitSoundAmplifier = hitSoundAmplifier;
+    //BWRep.hitSoundRangeAmplifier = hitSoundRangeAmplifier;
+    //BWRep.jumpDamageAmplifier = jumpDamageAmplifier;
 	
 	//Kill Rewards
 	BWRep.killrewardArmor = killrewardArmor;
@@ -242,12 +242,12 @@ defaultproperties
      iAdrenalineCap=100
      iArmor=100
      iArmorCap=100
-     dieSoundAmplifier=6.500000
-     dieSoundRangeAmplifier=1.000000
-     hitSoundAmplifier=8.000000
-     hitSoundRangeAmplifier=1.500000
-     JumpDamageAmplifier=80.000000
-	 MaxFallSpeed=800.000000
+     //dieSoundAmplifier=6.500000
+     //dieSoundRangeAmplifier=1.000000
+     //hitSoundAmplifier=8.000000
+     //hitSoundRangeAmplifier=1.500000
+     //JumpDamageAmplifier=80.000000
+	 //MaxFallSpeed=800.000000
 	 
 	 //Kill Rewards
 	 KillrewardArmor=10

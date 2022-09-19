@@ -16,6 +16,7 @@ defaultproperties
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
+		PushbackForce=150.000000
 		FlashScaleFactor=0.800000
 		Recoil=72.000000
 		Chaos=0.120000

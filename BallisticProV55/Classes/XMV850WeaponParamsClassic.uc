@@ -28,7 +28,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Fire-1',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=50.000000
 		Chaos=-1.0
-		PushbackForce=25.000000
+		PushbackForce=0.000000
 		Inaccuracy=(X=64,Y=64)
 		WarnTargetPct=0.200000
 	End Object
