@@ -39,7 +39,7 @@ simulated state DirectFire
 {
 	simulated function bool AllowFire()
 	{
-		if (HVCMk9LightningGun(Weapon).HeatLevel >= 10 || HVCMk9LightningGun(Weapon).bIsVenting || !StreamAllowFire())
+		if (HVCMk9LightningGun(Weapon).HeatLevel >= 10 || HVCMk9LightningGun(Weapon).bIsVenting || !super.AllowFire())
 		{
 			if (Instigator.Role == ROLE_Authority && HvCMk9Attachment(Weapon.ThirdPersonActor).bStreamOn)
 				HvCMk9Attachment(Weapon.ThirdPersonActor).EndStream();
@@ -49,6 +49,7 @@ simulated state DirectFire
 		return true;
 	}
 
+	/*
 	simulated function bool StreamAllowFire()
 	{
 		if (!CheckReloading())
@@ -65,6 +66,7 @@ simulated state DirectFire
 			return false;
 		return true;
 	}
+	*/
 
 	//===========================================================================
 	// ApplyDamage
