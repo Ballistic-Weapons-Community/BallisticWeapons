@@ -47,7 +47,7 @@ function PlayFiring()
 	}
 	else if (M763Shotgun(BW).BCRepClass.default.GameStyle == 1)
 	{
-		AimedFireAnim = 'FireClassic';
+		AimedFireAnim = 'FireCombinedSight';
 		FireAnim = 'FireClassic';
 	}
 	else
@@ -67,7 +67,7 @@ function ServerPlayFiring()
 	}
 	else if (M763Shotgun(BW).BCRepClass.default.GameStyle == 1)
 	{
-		AimedFireAnim = 'FireClassic';
+		AimedFireAnim = 'FireCombinedSight';
 		FireAnim = 'FireClassic';
 	}
 	else

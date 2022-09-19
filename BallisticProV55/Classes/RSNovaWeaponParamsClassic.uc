@@ -124,7 +124,7 @@ defaultproperties
 		TargetState="Zap"
 		AmmoPerFire=2
 		FireAnim="Fire"
-	    FireInterval=0.100000
+	    FireInterval=0.750000
         FireEffectParams(0)=ProjectileEffectParams'ClassicGodStrikeEffectParams'
     End Object
 
