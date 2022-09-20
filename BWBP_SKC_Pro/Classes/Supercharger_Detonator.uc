@@ -66,11 +66,12 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 defaultproperties
 {
      bNoInitialSpin=True
+	 bApplyParams=False
      bAlignToVelocity=True
      DetonateDelay=0.100001
      ImpactDamage=120
      ImpactManager=Class'BWBP_SKC_Pro.IM_XMExplosion'
-//     bRandomStartRotaion=False
+	 bRandomStartRotation=False
      TrailClass=Class'BallisticProV55.M50GrenadeTrail'
      TrailOffset=(X=-8.000000)
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_Supercharge'

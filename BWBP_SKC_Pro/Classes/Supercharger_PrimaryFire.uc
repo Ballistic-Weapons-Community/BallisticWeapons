@@ -198,26 +198,18 @@ defaultproperties
      bPawnRapidFireAnim=True
      bPenetrate=False
      ClipFinishSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart2',Volume=1.000000,Radius=48.000000,bAtten=True)
-//     Damage=1
-//     DamageHead=2
-//     DamageLimb=1
      DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
      DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLORifle'
      DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLORifle'
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-OverHeat',Volume=1.000000)
-//     FireChaos=0.010000
 	 FireAnim=""
      FireEndAnim=
-//     FireRate=0.0631500
      FireSoundLoop=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireLoop'
-     FlashBone="Muzzle"
      FlashScaleFactor=0.250000
      KickForce=20000
      MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
      PenetrateForce=180
      PreFireAnim=
-//     RangeAtten=0.950000
-//     RecoilPerShot=130.000000
      RunningSpeedThresh=1000.000000
      ShakeOffsetMag=(X=-15.000000)
      ShakeOffsetRate=(X=-500.000000)
@@ -228,11 +220,6 @@ defaultproperties
      TraceRange=(Min=6400.000000,Max=6400.000000)
      TweenTime=0.000000
      WarnTargetPct=0.200000
-//     WaterRangeAtten=0.100000
-//     WaterRangeFactor=0.800000
      XInaccuracy=32.000000
      YInaccuracy=32.000000
-//     Damage=(Min=15.000000,Max=15.000000)
-//     DamageHead=(Min=20.000000,Max=20.000000)
-//     DamageLimb=(Min=10.000000,Max=10.000000)
 }

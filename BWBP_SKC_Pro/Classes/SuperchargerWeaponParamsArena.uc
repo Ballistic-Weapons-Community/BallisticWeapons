@@ -10,21 +10,23 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=13000.000000)
 		RangeAtten=0.950000
-		Damage=10
-		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
+		Damage=7
+		DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.400000
+		Recoil=100
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		WarnTargetPct=0.200000
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
 		FireInterval=0.100000
-		FireEndAnim=	
+		FireEndAnim="FireLoopEnd"	
+		FireAnim="FireLoop"
 		AimedFireAnim="SightFire"
 	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
@@ -43,6 +45,7 @@ defaultproperties
         HookStopFactor=1.500000
         HookPullForce=150.000000
         WarnTargetPct=0.05
+		FlashScaleFactor=0.500000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawOpen',Volume=0.750000,Radius=256.000000)
     End Object
     
@@ -79,9 +82,10 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
-		SightingTime=0.300000
-		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
+		SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
+		SightingTime=0.500000
 		SightPivot=(Pitch=64)
+		ZoomType=ZT_Fixed
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

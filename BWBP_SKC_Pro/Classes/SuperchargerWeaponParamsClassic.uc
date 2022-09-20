@@ -27,7 +27,8 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 		FireInterval=0.063150
-		FireEndAnim=	
+		FireEndAnim="FireLoopEnd"	
+		FireAnim="FireLoop"
 		AimedFireAnim="SightFire"
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
@@ -46,6 +47,7 @@ defaultproperties
         HookStopFactor=1.500000
         HookPullForce=150.000000
         WarnTargetPct=0.05
+		FlashScaleFactor=0.500000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-SawOpen',Volume=0.750000,Radius=256.000000)
     End Object
     
@@ -89,7 +91,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		InventorySize=29
 		SightingTime=0.300000
-		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
+		SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
 		SightPivot=(Pitch=64)
         ZoomType=ZT_Fixed
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
