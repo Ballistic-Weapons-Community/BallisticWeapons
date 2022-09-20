@@ -45,7 +45,7 @@ simulated event Tick (float DT)
 {
 	if (HeatLevel > 0)
 	{
-			Heatlevel = FMax(HeatLevel - 0.35 * DT, 0);
+		Heatlevel = FMax(HeatLevel - 0.35 * DT, 0);
 	}
 
 	super.Tick(DT);

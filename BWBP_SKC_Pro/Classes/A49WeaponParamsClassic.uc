@@ -66,6 +66,36 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 	End Object
+	
+	//Lob Shot
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryLobEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.A49LobProjectile'
+		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+		Speed=3000.000000
+		MaxSpeed=15000.000000
+		AccelSpeed=4000.000000
+		Damage=90
+		DamageRadius=270.000000
+		MomentumTransfer=80000.000000
+		bLimitMomentumZ=False
+		HeadMult=2.0
+		LimbMult=0.5
+		MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
+		FlashScaleFactor=1.600000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Autolaser.AutoLaser-Fire',Volume=1.300000)
+		Recoil=880.000000
+		Chaos=-1.0
+		Inaccuracy=(X=8,Y=4)
+		WarnTargetPct=0.300000	
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryLobFireParams
+		FireInterval=1.250000
+		BurstFireRateFactor=1.00
+		AmmoPerFire=10
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryLobEffectParams'
+	End Object
 
     //=================================================================
     // SECONDARY FIRE
@@ -93,13 +123,19 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=35
+        InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-12.000000,Z=35.000000)
 		SightPivot=(Pitch=768)
+		WeaponModes(0)=(ModeName="Concussive Fire",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Rapid Fire",ModeID="WM_FullAuto")
+		InitialWeaponMode=0
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(0)=FireParams'ClassicPrimaryLobFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
         AltFireParams(0)=FireParams'ArenaAltFireParams'
 		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object

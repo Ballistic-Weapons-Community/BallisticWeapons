@@ -102,6 +102,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		InventorySize=12
 		SightingTime=0.300000
 		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		SightPivot=(Pitch=64)

@@ -164,7 +164,7 @@ defaultproperties
 		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=26,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		MagAmmo=20
@@ -194,7 +194,7 @@ defaultproperties
 		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=26,Scale=1f)
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
-		InventorySize=35
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
 		MagAmmo=20

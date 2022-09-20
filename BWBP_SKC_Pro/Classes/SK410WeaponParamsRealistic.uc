@@ -111,7 +111,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=8
 		PlayerSpeedFactor=1.050000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
@@ -133,7 +133,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticRDSParams
-		InventorySize=35
+		InventorySize=8
 		PlayerSpeedFactor=1.050000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000

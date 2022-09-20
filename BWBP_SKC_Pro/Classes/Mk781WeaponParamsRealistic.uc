@@ -192,7 +192,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		MagAmmo=8
@@ -218,7 +218,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=RealisticRDSParams
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		MagAmmo=8

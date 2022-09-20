@@ -9,7 +9,7 @@ defaultproperties
 	
 	//Impact
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenade'
+		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenadeImpact'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=10000.000000
 		Damage=200.000000
@@ -29,7 +29,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.400000
+		FireInterval=0.800000
 		BurstFireRateFactor=1.00	
 	FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryEffectParams'
 	End Object
@@ -100,13 +100,13 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=24
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.35
 		MagAmmo=6
 		SightOffset=(X=-30.000000,Y=12.45,Z=14.8500000)
 		SightPivot=(Pitch=512)
-		WeaponModes(0)=(ModeName="Impact",ModeID="WM_FullAuto")
+		WeaponModes(0)=(ModeName="Impact",ModeID="WM_SemiAuto",Value=1)
 		WeaponModes(1)=(ModeName="4-Round Burst",bUnavailable=True)
 		WeaponModes(2)=(ModeName="4-Round Burst",bUnavailable=True)
 		ReloadAnimRate=1.000000

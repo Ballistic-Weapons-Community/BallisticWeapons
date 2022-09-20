@@ -19,7 +19,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=5
+		Recoil=2
 		Chaos=0.01
 		Inaccuracy=(X=2,Y=2)
 		WarnTargetPct=0.200000
@@ -122,6 +122,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
+		InventorySize=29
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
 		SightMoveSpeedFactor=0.500000

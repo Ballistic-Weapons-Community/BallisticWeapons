@@ -80,7 +80,7 @@ defaultproperties
     //=================================================================
 
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=32,Max=2048)
+		AimSpread=(Min=512,Max=2048)
 		CrouchMultiplier=0.600000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.050000
@@ -95,7 +95,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+        InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-12.000000,Z=35.000000)
 		SightPivot=(Pitch=768)
