@@ -563,19 +563,25 @@ function byte BestMode()
 	Dir = Instigator.Location - B.Enemy.Location;
 	Dist = VSize(Dir);
 
+	if (GameStyleIndex != 0)
+	{
+		CurrentWeaponMode = 3;
+		TrenchGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+	}
+	
 	if (Dist > 1024)
 	{
 		if (CurrentWeaponMode != 1)
 		{
 			CurrentWeaponMode = 1;
-			CoachGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+			TrenchGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 		}
 	}
 	
 	else if (CurrentWeaponMode != 0)
 	{
 		CurrentWeaponMode = 0;
-		CoachGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+		TrenchGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 	}
 	
 	lastModeChangeTime = level.TimeSeconds;
