@@ -29,6 +29,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	{
 		Proj.Instigator = Instigator;
 		PD97Rocket(Proj).Master = PD97Bloodhound(BW);
+		PD97Rocket(Proj).LastLoc = PD97Bloodhound(BW).GetRocketTarget();
 	}
 //	PD97Bloodhound(Weapon).AddProjectile(Proj);
 }
