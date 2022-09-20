@@ -10,7 +10,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=13000.000000)
 		RangeAtten=0.950000
-		Damage=1
+		Damage=3
 		DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
@@ -19,7 +19,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=130
+		Recoil=45
 		Chaos=0.01
 		Inaccuracy=(X=32,Y=32)
 		WarnTargetPct=0.200000
@@ -64,8 +64,8 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=ClassicRecoilParams
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=-0.300000),(InVal=0.600000,OutVal=-0.250000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000,OutVal=-0.300000)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=-0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.300000),(InVal=1.000000,OutVal=0.600000)))
-		ViewBindFactor=0.200000
+		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=-0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.300000),(InVal=0.800000,OutVal=0.000000),(InVal=1.000000,OutVal=-0.400000)))
+		ViewBindFactor=0.600000
 		CrouchMultiplier=0.800000
 		XRandFactor=0.25000
 		YRandFactor=0.25000
