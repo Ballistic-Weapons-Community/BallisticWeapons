@@ -44,7 +44,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
-		ProjectileClass=Class'BallisticProV55.M50Grenade'
+		ProjectileClass=Class'BallisticProV55.M50GrenadeSafe'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=3600.000000
 		Damage=200.000000
@@ -114,7 +114,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25
 		ViewOffset=(X=-3.500000,Y=4.500000,Z=-9.000000)

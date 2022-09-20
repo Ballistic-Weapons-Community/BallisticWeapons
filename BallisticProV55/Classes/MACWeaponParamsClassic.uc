@@ -102,7 +102,7 @@ defaultproperties
 		SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		InventorySize=51
+		InventorySize=29
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
         ZoomType=ZT_Logarithmic

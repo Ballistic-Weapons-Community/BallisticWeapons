@@ -91,7 +91,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=13,Scale=0f)
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
 		SightOffset=(X=-2.000000,Z=15.400000)

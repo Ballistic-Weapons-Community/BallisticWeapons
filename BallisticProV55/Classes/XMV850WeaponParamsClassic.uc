@@ -28,7 +28,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Fire-1',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=50.000000
 		Chaos=-1.0
-		PushbackForce=0.000000
+		PushbackForce=25.000000
 		Inaccuracy=(X=64,Y=64)
 		WarnTargetPct=0.200000
 	End Object
@@ -98,7 +98,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.700000
-		InventorySize=55
+		InventorySize=25
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=900
 		SightOffset=(X=8.000000,Z=28.000000)

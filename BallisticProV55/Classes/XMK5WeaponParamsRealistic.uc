@@ -110,7 +110,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
-		InventorySize=20
+		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=35

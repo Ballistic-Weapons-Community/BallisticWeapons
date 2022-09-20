@@ -14,7 +14,7 @@ defaultproperties
 		TraceCount=24
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=25.0
+		Damage=20.0
 		LimbMult=0.24
 		DamageType=Class'BallisticProV55.DTM290Shotgun'
 		DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
@@ -56,7 +56,7 @@ defaultproperties
 		TraceCount=12
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=25.0
+		Damage=20.0
 		LimbMult=0.24
 		DamageType=Class'BallisticProV55.DTM290Shotgun'
 		DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
@@ -125,7 +125,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
 		SightOffset=(X=-50.000000,Z=17.000000)
