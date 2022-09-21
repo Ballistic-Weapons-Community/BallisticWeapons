@@ -111,6 +111,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+        SightingTime=0.300000
 		MagAmmo=24
 		ViewOffset=(X=5.000000,Y=4.750000,Z=-9.000000)
 		ViewPivot=(Pitch=384)
@@ -121,8 +122,10 @@ defaultproperties
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
-		WeaponName="M46 Battle Rifle"
+		WeaponName="M46A2 .310 Battle Rifle"
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
@@ -130,23 +133,24 @@ defaultproperties
 	End Object
 
     Begin Object Class=WeaponParams Name=RealisticRDSParams
-        SightingTime=0.350000
+        SightingTime=0.210000
         MagAmmo=24
 		InventorySize=12
         SightPivot=(Pitch=-300,Roll=0)
         SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
+		ViewOffset=(X=5.000000,Y=4.750000,Z=-9.000000)
 		InitialWeaponMode=1
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=2.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
-		WeaponName="M46A2 .310 Battle Rifle"
+		WeaponName="M46A2 .310 Battle Rifle (RDS)"
         WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
+		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
     End Object 
 	Layouts(0)=WeaponParams'RealisticParams'
     Layouts(1)=WeaponParams'RealisticRDSParams'
