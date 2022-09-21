@@ -35,7 +35,8 @@ defaultproperties
 		MaxHoldTime=0.0
 		FireAnim="FireCombined"
 		AimedFireAnim="SightFireCombined"
-		FireAnimRate=0.800000	
+		FireAnimRate=0.800000
+		TargetState="Shotgun"
 	FireEffectParams(0)=ShotgunEffectParams'ArenaExploPrimaryEffectParams'
 	End Object
 	
@@ -47,8 +48,8 @@ defaultproperties
 		TraceRange=(Min=4096.000000,Max=5120.000000)
 		RangeAtten=1.000000
 		TraceCount=10
-		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-		ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
+		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
+		ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'
 		MaxHits=0
 		Damage=7
 		Inaccuracy=(X=150,Y=150)
@@ -73,6 +74,7 @@ defaultproperties
 		FireAnim="FireCombined"
 		AimedFireAnim="SightFireCombined"
 		FireAnimRate=0.800000	
+		TargetState="Shotgun"
 	FireEffectParams(0)=ShotgunEffectParams'ArenaElectroPrimaryEffectParams'
 	End Object
 	

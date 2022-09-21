@@ -273,7 +273,7 @@ simulated function CommonSwitchWeaponMode (byte NewMode)
 		SetBoneScale (3, 0.0, ShellTipBone2);
 		SetBoneScale (4, 1.0, ShellTipBone3);
 		SetBoneScale (5, 1.0, ShellTipBone4);
-		Skins[3]=MatBlackShell;
+		//Skins[3]=MatBlackShell;
 	}
 	else
 	{
@@ -281,7 +281,7 @@ simulated function CommonSwitchWeaponMode (byte NewMode)
 		SetBoneScale (3, 1.0, ShellTipBone2);
 		SetBoneScale (4, 0.0, ShellTipBone3);
 		SetBoneScale (5, 0.0, ShellTipBone4);
-		Skins[3]=MatGreenShell;
+		//Skins[3]=MatGreenShell;
 	}
 }
 

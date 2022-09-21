@@ -20,7 +20,7 @@ defaultproperties
 		Recoil=64.000000
 		Chaos=0.120000
 		WarnTargetPct=0.200000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.SKAS.SKAS-Rapid',Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BallisticSounds3.XMV-850.XMV-Fire-1',Slot=SLOT_Interact,Pitch=0.750000,bNoOverride=False)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
