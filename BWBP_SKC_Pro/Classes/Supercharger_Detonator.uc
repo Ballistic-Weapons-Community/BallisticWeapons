@@ -24,28 +24,6 @@ function InitFlame(vector End)
 	StartPoint = Location;
 }
 
-event Tick(float DT)
-{
-	super.Tick(DT);
-	if (vector(Rotation) Dot Normal(EndPoint-Location) < 0.0)
-		Destroy();
-}
-
-simulated function Timer()
-{
-	if (StartDelay > 0)
-	{
-		SetCollision(true, false, false);
-		StartDelay = 0;
-		SetPhysics(default.Physics);
-		bDynamicLight=default.bDynamicLight;
-		bHidden=default.bHidden;
-		InitProjectile();
-	}
-	else
-		super.Timer();
-}
-
 simulated function bool CanTouch (Actor Other)
 {
     local int i;
