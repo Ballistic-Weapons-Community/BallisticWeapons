@@ -11,6 +11,11 @@ class R78PrimaryFire extends BallisticProInstantFire;
 
 var bool	bExplosive;
 
+var() Actor						SMuzzleFlash;		// Silenced Muzzle flash stuff
+var() class<Actor>				SMuzzleFlashClass;
+var() Name						SFlashBone;
+var() float						SFlashScaleFactor;
+
 //========================================================
 // ApplyDamage
 //
@@ -142,8 +147,113 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	return true;
 }
 
+//========================================================
+// Suppressor Stuff
+//
+// 
+//========================================================
+function InitEffects()
+{
+	if (AIController(Instigator.Controller) != None)
+		return;
+    if ((MuzzleFlashClass != None) && ((MuzzleFlash == None) || MuzzleFlash.bDeleteMe) )
+		class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, MuzzleFlashClass, Weapon.DrawScale*FlashScaleFactor, weapon, FlashBone);
+    if ((SMuzzleFlashClass != None) && ((SMuzzleFlash == None) || SMuzzleFlash.bDeleteMe) )
+		class'BUtil'.static.InitMuzzleFlash (SMuzzleFlash, SMuzzleFlashClass, Weapon.DrawScale*SFlashScaleFactor, weapon, SFlashBone);
+}
+
+//Trigger muzzleflash emitter
+function FlashMuzzleFlash()
+{
+    if ( (Level.NetMode == NM_DedicatedServer) || (AIController(Instigator.Controller) != None) )
+		return;
+	if (!Instigator.IsFirstPerson() || PlayerController(Instigator.Controller).ViewTarget != Instigator)
+		return;
+    if (!R78Rifle(Weapon).bSilenced && MuzzleFlash != None)
+        MuzzleFlash.Trigger(Weapon, Instigator);
+    else if (R78Rifle(Weapon).bSilenced && SMuzzleFlash != None)
+        SMuzzleFlash.Trigger(Weapon, Instigator);
+
+	if (!bBrassOnCock)
+		EjectBrass();
+}
+
+// Remove effects
+simulated function DestroyEffects()
+{
+	Super.DestroyEffects();
+	class'BUtil'.static.KillEmitterEffect (SMuzzleFlash);
+}
+
+function ServerPlayFiring()
+{
+	if (R78Rifle(Weapon) != None && R78Rifle(Weapon).bSilenced && SilencedFireSound.Sound != None)
+		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,SilencedFireSound.bNoOverride,SilencedFireSound.Radius,SilencedFireSound.Pitch,SilencedFireSound.bAtten);
+	else if (BallisticFireSound.Sound != None)
+		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+
+	BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+
+	CheckClipFinished();
+}
+
+//Do the spread on the client side
+function PlayFiring()
+{
+	FireAnim = 'Fire';
+
+	if (R78Rifle(Weapon).bSilenced)
+	{
+		Weapon.SetBoneScale (0, 1.0, R78Rifle(Weapon).SilencerBone);
+	}
+	else
+	{
+		Weapon.SetBoneScale (0, 0.0, R78Rifle(Weapon).SilencerBone);
+	}
+
+	BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+
+    ClientPlayForceFeedback(FireForce);  // jdf
+    FireCount++;
+
+	if (R78Rifle(Weapon) != None && R78Rifle(Weapon).bSilenced && SilencedFireSound.Sound != None)
+		Weapon.PlayOwnedSound(SilencedFireSound.Sound,SilencedFireSound.Slot,SilencedFireSound.Volume,,SilencedFireSound.Radius,SilencedFireSound.Pitch,true);
+	else if (BallisticFireSound.Sound != None)
+		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
+
+	CheckClipFinished();
+}
+
+function SetSilenced(bool bSilenced)
+{
+	if (bSilenced)
+	{
+		FireRecoil *= 0.8;
+		RangeAtten *= 1.2;
+		XInaccuracy *= 0.75;
+		YInaccuracy *= 0.75;
+
+		BW.SightingTime = BW.default.SightingTime * 1.25;
+	}
+		
+	else
+	{
+		FireRecoil = default.FireRecoil;
+		RangeAtten = default.RangeAtten;
+		XInaccuracy = default.XInaccuracy;
+		YInaccuracy = default.YInaccuracy;
+
+		BW.SightingTime = BW.default.SightingTime;
+	}
+}
+
 defaultproperties
 {
+	SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
+	SFlashBone="tip2"
+	SFlashScaleFactor=0.750000
+	SilencedFireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilenceFire',Pitch=0.85,Volume=1.000000,Radius=1536.000000,bAtten=True)
+
 	TraceRange=(Min=30000.000000,Max=30000.000000)
 	Damage=80.000000
     HeadMult=1.5f
