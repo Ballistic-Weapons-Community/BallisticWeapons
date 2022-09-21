@@ -75,16 +75,16 @@ defaultproperties
 {
      UndeployedWeaponName="BWBP_SKC_Pro.AS50Rifle"
      WeaponClassName="BWBP_SKC_Pro.AS50_TW"
-     GunYawBounds=(Min=-12000.000000,Max=12000.000000)
-     GunPitchBounds=(Min=-10000.000000,Max=8192.000000)
+     GunYawBounds=(Min=-4000.000000,Max=4000.000000)
+     GunPitchBounds=(Min=-4000.000000,Max=2000.000000)
      CamYawBounds=(Min=-12000.000000,Max=12000.000000)
      CamPitchBounds=(Max=12000.000000)
      GunYawSpeed=24000.000000
      GunPitchSpeed=32768.000000
      CamTrackYawSpeed=32768.000000
      CamTrackPitchSpeed=32768.000000
-     AbandonedPitch=2600
-     CameraOffset=(X=-90.000000,Y=-14.000000,Z=14.000000)
+     AbandonedPitch=2000
+     CameraOffset=(X=-80.000000,Y=-20.000000,Z=20.000000)
      CameraElevation=5.000000
      GunBone="Weapon"
      PivotBone="StandPivot"

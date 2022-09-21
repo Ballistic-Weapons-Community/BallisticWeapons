@@ -19,7 +19,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.400000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=45
+		Recoil=35
 		Chaos=0.01
 		Inaccuracy=(X=32,Y=32)
 		WarnTargetPct=0.200000
@@ -65,7 +65,7 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=ClassicRecoilParams
 		XCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=-0.300000),(InVal=0.600000,OutVal=-0.250000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000,OutVal=-0.300000)))
 		YCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=-0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.300000),(InVal=0.800000,OutVal=0.000000),(InVal=1.000000,OutVal=-0.400000)))
-		ViewBindFactor=0.600000
+		ViewBindFactor=0.400000
 		CrouchMultiplier=0.800000
 		XRandFactor=0.25000
 		YRandFactor=0.25000

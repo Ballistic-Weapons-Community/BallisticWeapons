@@ -10,5 +10,5 @@ function DoFireEffect()
 
 defaultproperties
 {
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_50IncDrum'
+     AmmoClass=Class'BWBP_SKC_Pro.Ammo_50Inc'
 }
