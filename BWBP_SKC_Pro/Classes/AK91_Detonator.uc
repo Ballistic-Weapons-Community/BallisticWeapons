@@ -22,12 +22,13 @@ simulated event PreBeginPlay()
 
 defaultproperties
 {
-     bNoInitialSpin=True
+	 bApplyParams=False
+	 bNoInitialSpin=True
      bAlignToVelocity=True
-     DetonateDelay=0.100001
+     DetonateDelay=0.2
      ImpactDamage=120
      ImpactManager=Class'BWBP_SKC_Pro.IM_XMExplosion'
-//     bRandomStartRotaion=False
+     bRandomStartRotation=False
      TrailClass=Class'BallisticProV55.M50GrenadeTrail'
      TrailOffset=(X=-8.000000)
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_AK91Supercharge'
@@ -45,6 +46,7 @@ defaultproperties
      DamageRadius=300.000000
      MomentumTransfer=180000.000000
      MyDamageType=Class'BWBP_SKC_Pro.DT_AK91Supercharge'
+	 DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK91Supercharge'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence
      LightHue=25

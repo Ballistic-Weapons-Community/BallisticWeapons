@@ -16,7 +16,7 @@ var() int				Damage;			// Damage done every 0.5 seconds
 
 var Controller	InstigatorController;
 var   bool				DeadMode;		// Guy is dead and using karma ragdoll. Emitters don't like ragdolls, so use flat emitter shape
-var   RX22AFireControl	GasControl;
+var   SuperCharger_ChargeControl	ZapControl;
 var   Pawn				Ignitioneer;	// Pawn responsible for igniting the fire
 var   actor				MyAmbientSoundActor;
 
@@ -45,8 +45,6 @@ simulated event Destroyed()
 {
 	if (MyAmbientSoundActor != None)
 		MyAmbientSoundActor.Destroy();
-	if (GasControl != None)
-		GasControl.PatchRemove(self);
 	super.Destroyed();
 }
 

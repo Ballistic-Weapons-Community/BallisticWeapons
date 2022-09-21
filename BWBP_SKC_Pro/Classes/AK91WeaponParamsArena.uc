@@ -42,9 +42,9 @@ defaultproperties
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_GRSXXLaser'
 		Damage=5
-		DamageType=Class'BWBP_SKC_Pro.DT_AK91Zapped'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK91Zapped'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK91Zapped'
+		DamageType=Class'BWBP_SKC_Pro.DT_AK91ZappedAlt'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK91ZappedAlt'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK91ZappedAlt'
 		PenetrateForce=50
 		MuzzleFlashClass=Class'A49FlashEmitter'
 		FlashScaleFactor=0.600000

@@ -19,56 +19,13 @@ simulated event PreBeginPlay()
 		Instigator = Pawn(Owner);
 	super.PreBeginPlay();
 }
-/*
-simulated function Timer()
-{
-	if (StartDelay > 0)
-	{
-		SetCollision(true, false, false);
-		StartDelay = 0;
-		SetPhysics(default.Physics);
-		bDynamicLight=default.bDynamicLight;
-		bHidden=default.bHidden;
-		InitProjectile();
-	}
-	else
-		super.Timer();
-}
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
-{
-//    local Vector X;
-    local int i;
-
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
-	if (Other.Base == Instigator)
-		return;
-	for(i=0;i<AlreadyHit.length;i++)
-		if (AlreadyHit[i] == Other)
-			return;
-
-	if (Role == ROLE_Authority)		// Do damage for direct hits
-		DoDamage(Other, HitLocation);
-	if (CanPenetrate(Other) && Other != HitActor)
-	{	// Projectile can go right through enemies
-		AlreadyHit[AlreadyHit.length] = Other;
-		HitActor = Other;
-	}
-	else
-		Destroy();
-
-	if (Pawn(Other) != None)
-		ChargeControl.FireSinge(Pawn(Other), Instigator);
-}
-*/
 defaultproperties
 {
-     bNoInitialSpin=True
 	 bApplyParams=False
+	 bNoInitialSpin=True
      bAlignToVelocity=True
-     DetonateDelay=0.100001
+     DetonateDelay=0.2
      ImpactDamage=120
      ImpactManager=Class'BWBP_SKC_Pro.IM_XMExplosion'
 	 bRandomStartRotation=False
@@ -89,6 +46,7 @@ defaultproperties
      DamageRadius=300.000000
      MomentumTransfer=180000.000000
      MyDamageType=Class'BWBP_SKC_Pro.DT_Supercharge'
+	 DamageTypeHead=Class'BWBP_SKC_Pro.DT_Supercharge'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence
      LightHue=25
