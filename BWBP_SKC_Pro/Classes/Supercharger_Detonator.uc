@@ -8,8 +8,6 @@
 //=============================================================================
 class Supercharger_Detonator extends BallisticGrenade;
 
-
-var   Supercharger_ChargeControl	ChargeControl;
 var   Vector			EndPoint, StartPoint;
 var   array<actor>		AlreadyHit;
 
@@ -19,7 +17,20 @@ simulated event PreBeginPlay()
 		Instigator = Pawn(Owner);
 	super.PreBeginPlay();
 }
-/*
+
+function InitFlame(vector End)
+{
+	EndPoint = End;
+	StartPoint = Location;
+}
+
+event Tick(float DT)
+{
+	super.Tick(DT);
+	if (vector(Rotation) Dot Normal(EndPoint-Location) < 0.0)
+		Destroy();
+}
+
 simulated function Timer()
 {
 	if (StartDelay > 0)
@@ -35,37 +46,41 @@ simulated function Timer()
 		super.Timer();
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch (Actor Other)
 {
-//    local Vector X;
     local int i;
+    
+    if (!Super.CanTouch(Other))
+        return false;
 
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
-	if (Other.Base == Instigator)
-		return;
+    if (Other.Base == Instigator)
+		return false;
+
 	for(i=0;i<AlreadyHit.length;i++)
 		if (AlreadyHit[i] == Other)
-			return;
+			return false;
 
-	if (Role == ROLE_Authority)		// Do damage for direct hits
-		DoDamage(Other, HitLocation);
-	if (CanPenetrate(Other) && Other != HitActor)
-	{	// Projectile can go right through enemies
-		AlreadyHit[AlreadyHit.length] = Other;
-		HitActor = Other;
-	}
-	else
-		Destroy();
-
-	if (Pawn(Other) != None)
-		ChargeControl.FireSinge(Pawn(Other), Instigator);
+    return true;
 }
-*/
+
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
+{
+	if ( Instigator == None || Instigator.Controller == None )
+		Other.SetDelayedDamageInstigatorController( InstigatorController );
+
+	class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType);
+
+}
+
+simulated function Penetrate(Actor Other, Vector HitLocation)
+{
+	AlreadyHit[AlreadyHit.length] = Other;
+}
+
 defaultproperties
 {
-     bNoInitialSpin=True
+     bApplyParams=False
+	 bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=0.100001
      ImpactDamage=120

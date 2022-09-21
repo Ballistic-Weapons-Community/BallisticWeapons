@@ -252,23 +252,38 @@ function MakeNewExploder (Actor Other, Pawn InstigatedBy, int triggerType)
 
 	if (triggerType == 1)
 	{
-		Proj1 = Spawn (class'Supercharger_Detonator',InstigatedBy,,Other.Location, Other.Rotation);
+		Proj1 = Spawn (class'Supercharger_Detonator',,,Other.Location, Other.Rotation);
 		if (Proj1 != None)
 		{
 			Proj1.Instigator = InstigatedBy;
-			Proj1.ChargeControl = self;
 		}
 	}
 	else if (triggerType == 2)
 	{
-		Proj2 = Spawn (class'AK91_Detonator',InstigatedBy,,Other.Location, Other.Rotation);
+		Proj2 = Spawn (class'AK91_Detonator',,,Other.Location, Other.Rotation);
 		if (Proj2 != None)
 		{
 			Proj2.Instigator = InstigatedBy;
-			Proj2.ChargeControl = self;
 		}
 	}
 }
+/*
+function MakeNewExploder (Actor Other, Pawn InstigatedBy, int triggerType)
+{
+	local Supercharger_ActorExploder PF1;
+	local AK91_ActorExploder PF2;
+
+	if (triggerType == 1)
+	{
+		PF1 = Spawn (class'Supercharger_ActorExploder',InstigatedBy,,Other.Location, Other.Rotation);
+		PF1.Initialize(Other);
+	}
+	else if (triggerType == 2)
+	{
+		PF2 = Spawn (class'AK91_ActorExploder',InstigatedBy,,Other.Location, Other.Rotation);
+		PF2.Initialize(Other);
+	}
+}*/
 
 
 defaultproperties

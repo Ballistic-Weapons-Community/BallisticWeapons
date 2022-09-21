@@ -8,8 +8,6 @@
 //=============================================================================
 class AK91_Detonator extends BallisticGrenade;
 
-
-var   Supercharger_ChargeControl	ChargeControl;
 var   Vector			EndPoint, StartPoint;
 var   array<actor>		AlreadyHit;
 
@@ -20,8 +18,68 @@ simulated event PreBeginPlay()
 	super.PreBeginPlay();
 }
 
+function InitFlame(vector End)
+{
+	EndPoint = End;
+	StartPoint = Location;
+}
+
+event Tick(float DT)
+{
+	super.Tick(DT);
+	if (vector(Rotation) Dot Normal(EndPoint-Location) < 0.0)
+		Destroy();
+}
+
+simulated function Timer()
+{
+	if (StartDelay > 0)
+	{
+		SetCollision(true, false, false);
+		StartDelay = 0;
+		SetPhysics(default.Physics);
+		bDynamicLight=default.bDynamicLight;
+		bHidden=default.bHidden;
+		InitProjectile();
+	}
+	else
+		super.Timer();
+}
+
+simulated function bool CanTouch (Actor Other)
+{
+    local int i;
+    
+    if (!Super.CanTouch(Other))
+        return false;
+
+    if (Other.Base == Instigator)
+		return false;
+
+	for(i=0;i<AlreadyHit.length;i++)
+		if (AlreadyHit[i] == Other)
+			return false;
+
+    return true;
+}
+
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
+{
+	if ( Instigator == None || Instigator.Controller == None )
+		Other.SetDelayedDamageInstigatorController( InstigatorController );
+
+	class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType);
+
+}
+
+simulated function Penetrate(Actor Other, Vector HitLocation)
+{
+	AlreadyHit[AlreadyHit.length] = Other;
+}
+
 defaultproperties
 {
+     bApplyParams=False
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=0.100001
