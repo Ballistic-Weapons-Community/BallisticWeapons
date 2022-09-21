@@ -40,7 +40,7 @@ var() PD97Bloodhound  Master;
 replication
 {
 	reliable if (Role == ROLE_Authority && bNetInitial)
-		Target, LastLoc;
+		Target, LastLoc, bSeeking, SetRocketDestination, SetRocketTarget;
 	reliable if (bNetOwner && Role < ROLE_Authority)
 		ServerNotifyReceived;
 
@@ -239,4 +239,7 @@ defaultproperties
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
      AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'
      SoundVolume=64
+	 bTearOff=False
+	 bNetTemporary=False
+	 bUpdateSimulatedPosition=True
 }

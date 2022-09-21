@@ -439,7 +439,7 @@ defaultproperties
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000
      CurrentRating=0.600000
-     Description="AK-91 Charge Rifle||Manufacturer: Zavod Tochnogo Voorujeniya (ZTV Export)|Primary: 7.62 AP Rounds|Secondary: Emergency Vent||The AK-91 was designed by ZTV using reverse-engineered amplifier technology to augment the power of their existing AK-490 design. The amp works, but not without its drawbacks, it stores dangerous amounts of charge in an emergency capacitor that must be purged periodically to keep the weapon from catastrophically overheating."
+     Description="War, war never changes. But technology does as the fight against the Skrith wages on, cultivated in various weapon research facilities across the galaxies.  While some built from the ground up, others have been reverse engineered from the enemy factions. Most of them work after hard work and dedication, then there's ZTV Exports.  Legendary for their reliable and hard hitting weapons, but even they need to catch up in the arms race. Against their code of ethics, the brilliant minds at ZTV somehow managed to reverse engineer the AMP system and slap it onto their older AK91 models, causing it to hit much harder than before.  However, they also found that it can be overloaded with unstable energy particles that can severely harm the user unless they somehow purge it.  With the war raging on, ZTV Exports are willing to risk the chance in order to save the motherland."
      Priority=65
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=4
