@@ -106,7 +106,6 @@ defaultproperties
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.250000
 		WeaponName="R87A1 .416 Sniper Rifle"
-		WeaponBoneScales(0)=(BoneName="Silencer",Slot=78,Scale=0f)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

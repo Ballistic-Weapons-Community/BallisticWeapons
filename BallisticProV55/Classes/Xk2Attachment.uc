@@ -12,10 +12,25 @@ var int IceFireCount, OldIceFireCount;
 var() class<BCTraceEmitter>	IceTracerClass;	//Emitter to sue for under water tracer
 var() class<BCImpactManager>	IceImpactManager;
 
+var() array<Material> AmpMaterials; //We're using this for the amp
+
+var bool		bAmped;
+
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		IceFireCount;
+		IceFireCount, bAmped;
+}
+
+simulated function SetAmped(bool bIsAmped)
+{
+	bAmped = bIsAmped;
+	
+	/*if (bAmped)
+		SetBoneScale (1, 1.0, 'AMP');
+	else
+		SetBoneScale (1, 0.0, 'AMP');*/
 }
 
 function IceUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int HitSurf, optional bool bIsAlt, optional vector WaterHitLoc)
@@ -58,6 +73,10 @@ simulated event PostNetReceive()
 		FiringMode = 2;
 		ThirdPersonEffects();
 		OldIceFireCount = IceFireCount;
+		/*if (bAmped)
+			SetBoneScale (1, 1.0, 'AMP');
+		else
+			SetBoneScale (1, 0.0, 'AMP');*/
 	}
 }
 
@@ -122,7 +141,7 @@ simulated function InstantFireEffects(byte Mode)
 		return;
 	if (ImpactManager != None)
 	{
-		if (Mode == 2)
+		if (bAmped)
 			IceImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 		else ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 	}
@@ -169,7 +188,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	{
 		if (Dist > 200)
 		{
-			if (FiringMode == 2)
+			if (bAmped)
 				Tracer = Spawn(IceTracerClass, self, , TipLoc, Rotator(V - TipLoc));
 			else Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
 		}
@@ -196,13 +215,13 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      AltFlashBone="tip2"
      BrassClass=Class'BallisticProV55.Brass_Pistol'
-     BrassMode=MU_Both
-     InstantMode=MU_Both
-     FlashMode=MU_Both
+     BrassMode=MU_Primary
+     InstantMode=MU_Primary
+     FlashMode=MU_Primary
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'
      TracerMix=-3
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
-     WaterTracerMode=MU_Both
+     WaterTracerMode=MU_Primary
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      ReloadAnim="Reload_AR"
      CockingAnim="Cock_RearPull"

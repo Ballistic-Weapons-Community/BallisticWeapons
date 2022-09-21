@@ -1,22 +1,25 @@
 class SRXRifle extends BallisticWeapon;
 
-var   bool		bSilenced;				// Silencer on. Silenced
-var() name		SilencerBone;			// Bone to use for hiding silencer
-var() name		SilencerOnAnim;			// Think hard about this one...
-var() name		SilencerOffAnim;		//
-var() sound		SilencerOnSound;		// Silencer stuck on sound
-var() sound		SilencerOffSound;		//
+var(SRX)   bool		bSilenced;				// Silencer on. Silenced
+var(SRX) name		SilencerBone;			// Bone to use for hiding silencer
+var(SRX) name		SilencerOnAnim;			// Think hard about this one...
+var(SRX) name		SilencerOffAnim;		//
+var(SRX) sound		SilencerOnSound;		// Silencer stuck on sound
+var(SRX) sound		SilencerOffSound;		//
 
-var() array<Material> CamoMaterials; //We're using this for the amp
+var() array<Material> AmpMaterials; //We're using this for the amp
 
-var   bool		bAmped;				// Amp installed, gun has new effects
-var() name		AmplifierBone;			// Bone to use for hiding amp
-var() name		AmplifierOnAnim;			//
-var() name		AmplifierOffAnim;		//
-var() sound		AmplifierOnSound;		// Silencer stuck on sound
-var() sound		AmplifierOffSound;		//
-var() sound		AmplifierPowerOnSound;		// Silencer stuck on sound
-var() sound		AmplifierPowerOffSound;		//
+var(SRX)   bool		bAmped;				// Amp installed, gun has new effects
+var(SRX) name		AmplifierBone;			// Bone to use for hiding amp
+var(SRX) name		AmplifierOnAnim;			//
+var(SRX) name		AmplifierOffAnim;		//
+var(SRX) sound		AmplifierOnSound;		// Silencer stuck on sound
+var(SRX) sound		AmplifierOffSound;		//
+var(SRX) sound		AmplifierPowerOnSound;		// Silencer stuck on sound
+var(SRX) sound		AmplifierPowerOffSound;		//
+var(SRX) float		AmpCharge;					// Existing ampjuice
+var(SRX) float 	DrainRate;					// Rate that ampjuice leaks out
+var(SRX) bool		bShowCharge;				// Hides charge until the amp is on
 
 var	  Rotator	RearSightBoneRot;
 
@@ -33,7 +36,7 @@ var	float	AmmoBarPos;
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		ClientScreenStart;
+		ClientScreenStart, ClientSetHeat;
    	reliable if (Role < ROLE_Authority)
 		ServerSwitchSilencer, ServerSwitchAmplifier;	
 }
@@ -180,21 +183,40 @@ function ServerSwitchAmplifier(bool bNewValue)
 
 	if (bAmped)
 	{
-			WeaponModes[0].bUnavailable=true;
-			WeaponModes[1].bUnavailable=false;
-			WeaponModes[2].bUnavailable=false;
-			CurrentWeaponMode=1;
-			ServerSwitchWeaponMode(1);
+		WeaponModes[0].bUnavailable=true;
+		WeaponModes[1].bUnavailable=false;
+		WeaponModes[2].bUnavailable=false;
+		CurrentWeaponMode=1;
+		ServerSwitchWeaponMode(1);
+		AmpCharge=10;
 	}
 	else
 	{
-			WeaponModes[0].bUnavailable=false;
-			WeaponModes[1].bUnavailable=true;
-			WeaponModes[2].bUnavailable=true;
-			CurrentWeaponMode=0;
-			ServerSwitchWeaponMode(0);
+		WeaponModes[0].bUnavailable=false;
+		WeaponModes[1].bUnavailable=true;
+		WeaponModes[2].bUnavailable=true;
+		CurrentWeaponMode=0;
+		ServerSwitchWeaponMode(0);
+		AmpCharge=0;
+	}
+		
+	if (Role == ROLE_Authority)
+		SRXAttachment(ThirdPersonActor).SetAmped(bNewValue);
+		
+	if (CurrentWeaponMode == 1 && AmpCharge > 0)	//red
+	{
+		SRXAttachment(ThirdPersonActor).SetAmpColour(true, false);
+		Skins[14]=AmpMaterials[0];
+		Skins[15]=AmpMaterials[2];
+	}
+	else if (CurrentWeaponMode == 2 && AmpCharge > 0)	//green
+	{
+		SRXAttachment(ThirdPersonActor).SetAmpColour(false, true);
+		Skins[14]=AmpMaterials[1];
+		Skins[15]=AmpMaterials[3];
 	}
 }
+
 simulated function SwitchAmplifier(bool bNewValue)
 {
 	if (Role == ROLE_Authority)
@@ -208,6 +230,7 @@ simulated function SwitchAmplifier(bool bNewValue)
 		WeaponModes[0].bUnavailable=true;
 		WeaponModes[1].bUnavailable=false;
 		WeaponModes[2].bUnavailable=false;
+		AmpCharge=10;
 	}
 	else
 	{
@@ -215,22 +238,23 @@ simulated function SwitchAmplifier(bool bNewValue)
 		WeaponModes[0].bUnavailable=false;
 		WeaponModes[1].bUnavailable=true;
 		WeaponModes[2].bUnavailable=true;
+		AmpCharge=0;
 	}
 		
 	if (Role == ROLE_Authority)
 		SRXAttachment(ThirdPersonActor).SetAmped(bNewValue);
 		
-	if (CurrentWeaponMode == 1)	//red
+	if (CurrentWeaponMode == 1 && AmpCharge > 0)	//red
 	{
 		SRXAttachment(ThirdPersonActor).SetAmpColour(true, false);
-		Skins[14]=CamoMaterials[0];
-		Skins[15]=CamoMaterials[2];
+		Skins[14]=AmpMaterials[0];
+		Skins[15]=AmpMaterials[2];
 	}
-	else if (CurrentWeaponMode == 2)	//green
+	else if (CurrentWeaponMode == 2 && AmpCharge > 0)	//green
 	{
 		SRXAttachment(ThirdPersonActor).SetAmpColour(false, true);
-		Skins[14]=CamoMaterials[1];
-		Skins[15]=CamoMaterials[3];
+		Skins[14]=AmpMaterials[1];
+		Skins[15]=AmpMaterials[3];
 	}
 }
 
@@ -246,17 +270,17 @@ simulated function CommonSwitchWeaponMode (byte newMode)
 	super.CommonSwitchWeaponMode(newMode);
 
 	SRXPrimaryFire(FireMode[0]).SwitchWeaponMode(newMode);
-	if (newMode == 1)	//red
+	if (newMode == 1 && AmpCharge > 0)	//red
 	{
 		SRXAttachment(ThirdPersonActor).SetAmpColour(true, false);
-		Skins[14]=CamoMaterials[0];
-		Skins[15]=CamoMaterials[2];
+		Skins[14]=AmpMaterials[0];
+		Skins[15]=AmpMaterials[2];
 	}
-	else if (newMode == 2)	//green
+	else if (newMode == 2 && AmpCharge > 0)	//green
 	{
 		SRXAttachment(ThirdPersonActor).SetAmpColour(false, true);
-		Skins[14]=CamoMaterials[1];
-		Skins[15]=CamoMaterials[3];
+		Skins[14]=AmpMaterials[1];
+		Skins[15]=AmpMaterials[3];
 	}
 }
 
@@ -304,8 +328,8 @@ simulated function Notify_SilencerOff()	{	PlaySound(SilencerOffSound,,0.5);	}
 simulated function Notify_SilencerShow(){	SetBoneScale (0, 1.0, SilencerBone);	}
 simulated function Notify_SilencerHide(){	SetBoneScale (0, 0.0, SilencerBone);	}
 
-simulated function Notify_AmplifierOn()	{	PlaySound(AmplifierOnSound,,0.5);	}
-simulated function Notify_AmplifierOff()	{	PlaySound(AmplifierOffSound,,0.5);	}
+simulated function Notify_AmplifierOn()	{	PlaySound(AmplifierOnSound,,0.5);		bShowCharge=true;}
+simulated function Notify_AmplifierOff()	{	PlaySound(AmplifierOffSound,,0.5);		bShowCharge=false;}
 
 simulated function Notify_AmplifierShow(){	SetBoneScale (2, 1.0, AmplifierBone);	}
 simulated function Notify_AmplifierHide(){	SetBoneScale (2, 0.0, AmplifierBone);	}
@@ -358,6 +382,50 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 }
 
+simulated function float ChargeBar()
+{
+	if (!bShowCharge)
+		return 0;
+	else
+		return AmpCharge / 10;
+}
+
+simulated function AddHeat(float Amount)
+{
+	if (bBerserk)
+		Amount *= 0.75;
+		
+	AmpCharge = FMax(0, AmpCharge + Amount);
+	
+	if (AmpCharge <= 0)
+	{
+		PlaySound(AmplifierPowerOffSound,,2.0,,32);
+		Skins[14]=AmpMaterials[4];
+		Skins[15]=AmpMaterials[5];
+		WeaponModes[0].bUnavailable=false;
+		WeaponModes[1].bUnavailable=true;
+		WeaponModes[2].bUnavailable=true;
+		CurrentWeaponMode=0;
+		ServerSwitchWeaponMode(0);
+		if (Role == ROLE_Authority)
+			SRXAttachment(ThirdPersonActor).SetAmped(false);
+	}
+}
+
+simulated function ClientSetHeat(float NewHeat)
+{
+	AmpCharge = NewHeat;
+}
+
+simulated event Tick(float DT)
+{
+	super.Tick(DT);
+		
+	if (AmpCharge > 0)
+		AmpCharge = FMax(0, AmpCharge - DrainRate*DT);
+		
+}
+
 // Secondary fire doesn't count for this weapon
 simulated function bool HasAmmo()
 {
@@ -408,12 +476,16 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 
 defaultproperties
 {
+	DrainRate=0.15
+	
 	RearSightBoneRot=(Yaw=16384)
 	
-	CamoMaterials[0]=Shader'BWBP_SKC_Tex.Amp.Amp-FinalRed'
-	CamoMaterials[1]=Shader'BWBP_SKC_Tex.Amp.Amp-FinalGreen'
-	CamoMaterials[2]=Shader'BWBP_SKC_Tex.AMP.Amp-GlowRedShader'
-	CamoMaterials[3]=Shader'BWBP_SKC_Tex.AMP.Amp-GlowGreenShader'
+	AmpMaterials[0]=Shader'BWBP_SKC_Tex.Amp.Amp-FinalRed'
+	AmpMaterials[1]=Shader'BWBP_SKC_Tex.Amp.Amp-FinalGreen'
+	AmpMaterials[2]=Shader'BWBP_SKC_Tex.AMP.Amp-GlowRedShader'
+	AmpMaterials[3]=Shader'BWBP_SKC_Tex.AMP.Amp-GlowGreenShader'
+    AmpMaterials[4]=Texture'BWBP_SKC_Tex.Amp.Amp-BaseDepleted'
+    AmpMaterials[5]=Texture'ONSstructureTextures.CoreGroup.Invisible'
 	
 	MyFontColor=(R=255,G=255,B=255,A=255)
     WeaponScreen=ScriptedTexture'BWBP_OP_Tex.SRX.SRX-ScriptLCD'
@@ -427,6 +499,8 @@ defaultproperties
     AmplifierOffAnim="RemoveAMP"
     AmplifierOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
     AmplifierOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
+    AmplifierPowerOnSound=Sound'BWBP_SKC_Sounds.AMP.Amp-Install'
+    AmplifierPowerOffSound=Sound'BWBP_SKC_Sounds.AMP.Amp-Depleted'
 	
 	SilencerBone="Silencer"
 	SilencerOnAnim="AddSilencer"

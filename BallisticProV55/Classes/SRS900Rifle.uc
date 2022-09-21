@@ -180,7 +180,7 @@ simulated function SwitchSilencer(bool bDetachSuppressor)
 	OnSuppressorSwitched();
 }
 
-	simulated function OnSuppressorSwitched()
+simulated function OnSuppressorSwitched()
 {
 	if (bSilenced)
 	{

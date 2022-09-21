@@ -15,6 +15,7 @@ var   Actor		Heater;
 var   bool		bIgnited;
 var() sound		FireSoundLoop;
 var() sound		BotFireSound;
+var() float		HeatPerShot;
 
 var() 	bool		bDoOverCharge;
 
@@ -94,7 +95,7 @@ function DoFireEffect()
 	SendFireEffect(Other, HitLocation, HitNormal, 0);
 
 	Super(BallisticFire).DoFireEffect();
-	Supercharger_AssaultWeapon(Weapon).AddHeat(0.15);
+	Supercharger_AssaultWeapon(Weapon).AddHeat(HeatPerShot);
 }
 
 //Do the spread on the client side
@@ -103,7 +104,7 @@ function PlayFiring()
     ClientPlayForceFeedback(FireForce);  // jdf
     FireCount++;
 	if(Level.NetMode == NM_Client)
-		Supercharger_AssaultWeapon(BW).AddHeat(0.3);
+		Supercharger_AssaultWeapon(BW).AddHeat(HeatPerShot);
 		
 	
 	if (Level.NetMode != NM_Client && !bDoOverCharge && Supercharger_AssaultWeapon(Weapon).HeatLevel > 10)
@@ -189,6 +190,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
+	HeatPerShot=0.15
      aimerror=900.000000
      AmmoClass=Class'BWBP_SKC_Pro.Ammo_HVPCCells'
      AmmoPerFire=1

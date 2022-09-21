@@ -10,6 +10,7 @@
 //=============================================================================
 class M75PrimaryFire extends BallisticRailgunFire;
 
+const 				MAX_RAIL_POWER = 1.0f; // charges in 2 seconds, 0.6s hold time grace
 var   float RailPower;
 	
 simulated state ClassicRail
@@ -93,6 +94,80 @@ simulated state ClassicRail
 	}
 
 }
+
+//FullChargedRail - Stronger, only fires at max charge
+simulated state FullChargedRail
+{
+	simulated event ModeDoFire()
+	{
+		if (!AllowFire())
+			return;
+
+		if (RailPower >= MAX_RAIL_POWER)
+		{
+			PenetrateForce = default.PenetrateForce * RailPower;
+			WallPenetrationForce = default.WallPenetrationForce * RailPower;
+			
+			KickForce = default.KickForce * RailPower;
+			FireRecoil = default.FireRecoil * RailPower;
+			FirePushbackForce = default.FirePushbackForce * RailPower;
+			BW.RecoilDeclineTime = BW.default.RecoilDeclineTime * RailPower;
+			
+			BallisticFireSound.Volume=0.6 + RailPower * 0.8;
+			BallisticFireSound.Radius=(280.0+RailPower*350.0);
+			super.ModeDoFire();
+		}
+
+		RailPower = 0;
+		Weapon.ThirdPersonActor.SoundPitch =  32 + RailPower * 12;
+	}
+
+	simulated function ModeTick(float DeltaTime)
+	{	
+		if (bIsFiring)
+		{
+			RailPower = FMin(MAX_RAIL_POWER, RailPower + 1.0 * DeltaTime);
+
+			if (RailPower >= MAX_RAIL_POWER)
+				bIsFiring = false;
+		}
+		
+		else if (RailPower > 0)
+			RailPower = FMax(0, RailPower - DeltaTime);
+			
+		Super.ModeTick(DeltaTime);
+		
+		if (RailPower > 0 && RailPower <= 1.0f)
+		{
+			Weapon.ThirdPersonActor.SoundPitch =  32 + RailPower * 12;
+			//Weapon.SoundPitch = 32 + RailPower * 12;
+			
+			Weapon.ThirdPersonActor.SoundVolume =  64 + 190 * RailPower;
+			//Weapon.SoundVolume = 64 + 190 * RailPower;
+			
+			Weapon.ThirdPersonActor.SoundRadius = 128 + 768 * RailPower;
+		}
+	}
+
+	simulated function SendFireEffect(Actor Other, Vector HitLocation, Vector HitNormal, int Surf, optional Vector WaterHitLoc)
+	{
+		M75Attachment(Weapon.ThirdPersonActor).RailPower = 255 * FMin(RailPower, 1.0f);
+		super.SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
+	}
+
+	simulated function bool ImpactEffect(Vector HitLocation, Vector HitNormal, Material HitMat, Actor Other, optional Vector WaterHitLoc)
+	{
+		BallisticWeapon(Weapon).TargetedHurtRadius(80.0*FMin(RailPower, 1.0f), 64+64.0*FMin(RailPower, 1.0f), DamageType, 4000, HitLocation, Pawn(Other));
+		return super.ImpactEffect(HitLocation, HitNormal, HitMat, Other, WaterHitLoc);
+	}
+
+	function WallEnterEffect (Vector HitLocation, Vector HitNormal, Vector X, Actor other, Material HitMat)
+	{
+		BallisticWeapon(Weapon).TargetedHurtRadius(80.0*FMin(RailPower, 1.0f), 64+64.0*FMin(RailPower, 1.0f), DamageType, 4000, HitLocation, Pawn(Other));
+		super.WallEnterEffect(HitLocation, HitNormal, X, other, HitMat);
+	}
+}
+
 simulated state ChargedRail
 {
 	simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)

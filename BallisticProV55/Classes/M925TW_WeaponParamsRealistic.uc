@@ -27,8 +27,8 @@ defaultproperties
 		FlashScaleFactor=0.800000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Fire2',Volume=1.000000)
 		Recoil=80.000000
-		Chaos=0.150000
-		PushbackForce=0.000000
+		//Chaos=0.150000
+		//PushbackForce=50.000000
 		Inaccuracy=(X=12,Y=12)
 	End Object
 		
