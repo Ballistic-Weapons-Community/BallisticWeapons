@@ -295,7 +295,7 @@ defaultproperties
 	LightRadius=6.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M925'
 	DrawScale=0.140000
-	Skins(0)=Texture'BW_Core_WeaponTex.M925.M925Masked'
+	Skins(0)=Texture'BW_Core_WeaponTex.M925.M925Main'
 	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Small'
 	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925HeatShield'
 	Skins(3)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

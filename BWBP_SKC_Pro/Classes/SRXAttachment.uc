@@ -337,8 +337,7 @@ defaultproperties
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      bRapidFire=True
-     bAltRapidFire=True
-     DrawScale=0.800000
+	 DrawScale=0.800000
      RelativeRotation=(Pitch=32768)
 	 Mesh=SkeletalMesh'BWBP_OP_Anim.SRX_TPm'
 }

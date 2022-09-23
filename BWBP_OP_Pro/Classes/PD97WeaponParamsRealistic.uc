@@ -13,9 +13,9 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=6
-		DamageType=Class'BWBP_OP_Pro.DTPD97Dart'
-		DamageTypeHead=Class'BWBP_OP_Pro.DTPD97Dart'
-		DamageTypeArm=Class'BWBP_OP_Pro.DTPD97Dart'
+		DamageType=Class'BWBP_OP_Pro.DTPD97Shotgun'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTPD97ShotgunHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTPD97Shotgun'
 		PenetrationEnergy=4.000000
 		PenetrateForce=100
 		bPenetrate=True

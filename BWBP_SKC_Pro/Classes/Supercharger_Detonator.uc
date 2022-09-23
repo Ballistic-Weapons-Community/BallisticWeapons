@@ -60,7 +60,7 @@ defaultproperties
      bApplyParams=False
 	 bNoInitialSpin=True
      bAlignToVelocity=True
-     DetonateDelay=0.2
+     DetonateDelay=0.1
      ImpactDamage=120
      ImpactManager=Class'BWBP_SKC_Pro.IM_XMExplosion'
 	 bRandomStartRotation=False

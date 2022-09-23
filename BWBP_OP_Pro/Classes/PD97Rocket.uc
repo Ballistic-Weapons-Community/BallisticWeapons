@@ -233,8 +233,8 @@ defaultproperties
      ImpactManager=Class'BallisticProV55.IM_MRLRocket'
      TrailClass=Class'BallisticProV55.MRLTrailEmitter'
      TrailOffset=(X=-4.000000)
-     MyDamageType=Class'BWBP_SKC_Pro.DT_LS14Rocket'
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_LS14RocketRadius'
+     MyDamageType=Class'BWBP_OP_Pro.DT_PD97Rocket'
+     MyRadiusDamageType=Class'BWBP_OP_Pro.DT_PD97RocketRadius'
      SplashManager=Class'BallisticProV55.IM_ProjWater'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.MRL.MRLRocket'
      AmbientSound=Sound'BW_Core_WeaponSound.MRL.MRL-RocketFly'

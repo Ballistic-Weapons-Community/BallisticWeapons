@@ -24,7 +24,7 @@ defaultproperties
 		WallPDamageFactor=0.600000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.300000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=550.000000
 		Chaos=0.1
 		Inaccuracy=(X=8,Y=8)

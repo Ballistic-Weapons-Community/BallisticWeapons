@@ -65,6 +65,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		WeaponBoneScales(0)=(BoneName="M925RearIronSides",Slot=1,Scale=0f)
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.150000
 		SightPivot=(Pitch=64)
