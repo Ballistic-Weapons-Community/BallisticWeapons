@@ -22,15 +22,15 @@ static function class<Effects> GetPawnDamageEffect( vector HitLocation, float Da
 
 defaultproperties
 {
-     DeathStrings(0)="%k swung %kh Dark Star into %o's pointy nose."
-     DeathStrings(1)="%o's head was obliterated by %k's Dark saw."
-     DeathStrings(2)="%o's cranium couldn't quite escape %k's relentless Dark saw attack."
+     DeathStrings(0)="%k ripped and tore %kh chainsword into %o's screaming face."
+     DeathStrings(1)="%o's head was massacred by %k's chainsword."
+     DeathStrings(2)="%o's face was mulched by %k's chainsword."
      BloodManagerName="BWBP_OP_Pro.BloodMan_MAGSAW"
      bHeaddie=True
      DamageIdent="Melee"
      DamageDescription=",Slash,Hack,"
      WeaponClass=Class'BWBP_OP_Pro.MAG78Longsword'
-     DeathString="%k swung %kh Dark Star into %o's pointy nose."
+     DeathString=""%k ripped and tore %kh chainsword into %o's screaming face."
      FemaleSuicide="%o sawed her head off with a Dark Star."
      MaleSuicide="%o sawed his head off with a Dark Star."
      bAlwaysSevers=True
