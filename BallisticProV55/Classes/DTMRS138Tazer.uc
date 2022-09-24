@@ -31,7 +31,7 @@ defaultproperties
 	 BlockFatiguePenalty=0.3
      bExtraMomentumZ=True
      PawnDamageSounds(0)=SoundGroup'BW_Core_WeaponSound.MRS38.RSS-ElectroFlesh'
-     DamageOverlayMaterial=Shader'XGameShaders.PlayerShaders.LightningHit'
+     DamageOverlayMaterial=Shader'BallisticEpicEffects.PlayerShaders.LightningHit'
      DamageOverlayTime=0.900000
      GibPerterbation=0.250000
      VehicleDamageScaling=0.000000

@@ -25,7 +25,7 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          MaxParticles=2
          StartSizeRange=(X=(Min=2.000000,Max=20.000000),Y=(Min=10.000000,Max=25.000000),Z=(Min=10.000000,Max=25.000000))
-         Texture=Texture'EpicParticles.Beams.HotBolt01aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt01aw'
          LifetimeRange=(Min=0.100000,Max=0.150000)
      End Object
      Emitters(0)=BeamEmitter'BallisticProV55.RSNovaArc.BeamEmitter0'

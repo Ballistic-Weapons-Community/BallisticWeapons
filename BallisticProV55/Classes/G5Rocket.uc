@@ -108,13 +108,13 @@ simulated singular function HitWall( vector HitNormal, actor Wall )
 
 defaultproperties
 {
-     ImpactSounds(0)=Sound'XEffects.Impact4Snd'
-     ImpactSounds(1)=Sound'XEffects.Impact6Snd'
-     ImpactSounds(2)=Sound'XEffects.Impact7Snd'
-     ImpactSounds(3)=Sound'XEffects.Impact3'
-     ImpactSounds(4)=Sound'XEffects.Impact1'
-     ImpactSounds(5)=Sound'XEffects.Impact2'
-	 ImpactDamage=100.000000
+     //ImpactSounds(0)=Sound'XEffects.Impact4Snd'
+     //ImpactSounds(1)=Sound'XEffects.Impact6Snd'
+     //ImpactSounds(2)=Sound'XEffects.Impact7Snd'
+     //ImpactSounds(3)=Sound'XEffects.Impact3'
+     //ImpactSounds(4)=Sound'XEffects.Impact1'
+     //ImpactSounds(5)=Sound'XEffects.Impact2'
+	 //ImpactDamage=100.000000
 	 ArmedImpactDamage=150.000000
      ImpactMomentumTransfer=60000.000000
      ImpactDamageType=Class'BallisticProV55.DTG5Unarmed'

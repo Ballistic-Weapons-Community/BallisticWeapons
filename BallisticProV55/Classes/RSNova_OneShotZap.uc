@@ -49,7 +49,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=25.000000,Max=25.000000),Y=(Min=25.000000,Max=25.000000),Z=(Min=25.000000,Max=25.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'EpicParticles.Beams.HotBolt03aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt03aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object

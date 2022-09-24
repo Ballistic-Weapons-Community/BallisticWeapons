@@ -59,7 +59,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.300000,Max=0.300000))
          StartSizeRange=(X=(Min=14.000000,Max=24.000000),Y=(Min=14.000000,Max=24.000000),Z=(Min=14.000000,Max=24.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'EpicParticles.Beams.BeamFalloff'
+         Texture=Texture'BallisticEpicEffects.Beams.BeamFalloff'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          StartVelocityRange=(X=(Min=50.000000,Max=400.000000),Y=(Min=-200.000000,Max=200.000000),Z=(Min=-50.000000,Max=200.000000))
@@ -112,7 +112,7 @@ defaultproperties
          StartLocationOffset=(X=-20.000000)
          StartLocationRange=(Z=(Min=-20.000000,Max=20.000000))
          StartSizeRange=(X=(Min=5.000000,Max=7.000000),Y=(Min=5.000000,Max=7.000000),Z=(Min=5.000000,Max=7.000000))
-         Texture=Texture'EpicParticles.Beams.HotBolt04aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt04aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          StartVelocityRange=(X=(Min=-200.000000,Max=200.000000),Y=(Min=-200.000000,Max=200.000000),Z=(Min=-200.000000,Max=200.000000))

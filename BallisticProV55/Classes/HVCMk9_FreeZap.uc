@@ -55,7 +55,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.370000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=8.000000,Max=8.000000),Y=(Min=8.000000,Max=8.000000),Z=(Min=8.000000,Max=8.000000))
-         Texture=Texture'EpicParticles.Beams.HotBolt03aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt03aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          StartVelocityRange=(X=(Min=5.000000,Max=5.000000),Y=(Min=-2.000000,Max=2.000000),Z=(Min=-2.000000,Max=2.000000))
@@ -79,7 +79,7 @@ defaultproperties
          FadeInEndTime=0.034000
          MaxParticles=20
          StartSizeRange=(X=(Min=8.000000,Max=8.000000),Y=(Min=8.000000,Max=8.000000),Z=(Min=8.000000,Max=8.000000))
-         Texture=Texture'EpicParticles.Beams.HotBolt04aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt04aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          StartVelocityRange=(X=(Min=2.000000,Max=4.000000),Y=(Min=-4.000000,Max=4.000000),Z=(Min=-4.000000,Max=4.000000))
@@ -109,7 +109,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.280000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=25.000000,Max=30.000000),Y=(Min=25.000000,Max=30.000000),Z=(Min=25.000000,Max=30.000000))
-         Texture=Texture'EpicParticles.Beams.IonLightning'
+         Texture=Texture'BallisticEpicEffects.Beams.IonLightning'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
      End Object

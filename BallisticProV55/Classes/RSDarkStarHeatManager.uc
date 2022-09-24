@@ -93,7 +93,7 @@ defaultproperties
      Emitters(0)=SpriteEmitter'BallisticProV55.RSDarkStarHeatManager.RSDarkHeatSmoke'
 
      RemoteRole=ROLE_SimulatedProxy
-     AmbientSound=Sound'GeneralAmbience.firefx9'
+     //AmbientSound=Sound'GeneralAmbience.firefx9'
      SoundVolume=15
      SoundRadius=256.000000
 }

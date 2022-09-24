@@ -137,7 +137,7 @@ defaultproperties
      MatTwoPosY=570
      MaterialSize=64
      LocOffSetX=128
-     MessagesFont=Font'2k4Fonts.Verdana24'
+     //MessagesFont=Font'2k4Fonts.Verdana24'
      BGMatColour=(B=255,G=255,R=255,A=255)
      bVisible=True
      bRequiresTick=True

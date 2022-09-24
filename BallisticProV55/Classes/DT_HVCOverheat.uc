@@ -32,7 +32,7 @@ defaultproperties
      bCausesBlood=False
      bFlaming=True
      GibModifier=1.500000
-     DamageOverlayMaterial=Shader'XGameShaders.PlayerShaders.PlayerTransRed'
+     DamageOverlayMaterial=Shader'BallisticEpicEffects.PlayerShaders.PlayerTransRed'
      DamageOverlayTime=0.900000
      GibPerterbation=0.400000
      KDamageImpulse=20000.000000

@@ -76,7 +76,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 
 defaultproperties
 {
-     ChargingSound=Sound'GeneralAmbience.texture22'
+     //ChargingSound=Sound'GeneralAmbience.texture22'
      bFireOnRelease=True
      AmmoClass=Class'BallisticProV55.Ammo_A500Cells'
 

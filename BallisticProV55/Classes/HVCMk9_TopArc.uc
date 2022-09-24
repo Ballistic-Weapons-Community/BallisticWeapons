@@ -67,7 +67,7 @@ defaultproperties
          MaxParticles=2
          StartLocationOffset=(X=-1.000000)
          StartSizeRange=(X=(Min=2.000000,Max=20.000000),Y=(Min=2.000000,Max=20.000000),Z=(Min=2.000000,Max=20.000000))
-         Texture=Texture'EpicParticles.Beams.HotBolt01aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt01aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
      End Object

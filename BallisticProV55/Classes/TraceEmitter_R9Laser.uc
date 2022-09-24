@@ -83,7 +83,7 @@ defaultproperties
          StartSizeRange=(X=(Min=1.000000,Max=25.000000),Y=(Min=1.000000,Max=25.000000),Z=(Min=1.000000,Max=25.000000))
          InitialParticlesPerSecond=50000.000000
          DrawStyle=PTDS_AlphaBlend
-         Texture=Texture'AW-2004Particles.Energy.BurnFlare'
+         //Texture=Texture'AW-2004Particles.Energy.BurnFlare'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.450000,Max=0.450000)
          StartVelocityRange=(X=(Max=8000.000000))
@@ -107,7 +107,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=50.000000,Max=50.000000),Y=(Min=50.000000,Max=50.000000),Z=(Min=50.000000,Max=50.000000))
          InitialParticlesPerSecond=1000.000000
-         Texture=Texture'AW-2004Particles.Weapons.HardSpot'
+         //Texture=Texture'AW-2004Particles.Weapons.HardSpot'
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
      Emitters(3)=SpriteEmitter'BallisticProV55.TraceEmitter_R9Laser.SpriteEmitter1'
@@ -129,7 +129,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=2.000000)
          StartSizeRange=(X=(Min=30.000000,Max=30.000000),Y=(Min=30.000000,Max=30.000000),Z=(Min=30.000000,Max=30.000000))
          InitialParticlesPerSecond=1000.000000
-         Texture=Texture'AW-2004Particles.Weapons.PlasmaStar2'
+         //Texture=Texture'AW-2004Particles.Weapons.PlasmaStar2'
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
      Emitters(4)=SpriteEmitter'BallisticProV55.TraceEmitter_R9Laser.SpriteEmitter2'

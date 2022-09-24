@@ -33,7 +33,7 @@ defaultproperties
          MaxParticles=15
          DetailMode=DM_SuperHigh
          StartSizeRange=(X=(Min=5.000000,Max=12.000000),Y=(Min=5.000000,Max=12.000000),Z=(Min=5.000000,Max=12.000000))
-         Texture=Texture'EpicParticles.Beams.HotBolt04aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt04aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
          StartVelocityRange=(X=(Min=0.500000,Max=1.010000),Y=(Min=-1.000000,Max=1.000000),Z=(Min=-1.000000,Max=1.000000))
@@ -69,7 +69,7 @@ defaultproperties
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.800000)
          StartSizeRange=(X=(Min=10.000000,Max=20.000000),Y=(Min=10.000000,Max=20.000000),Z=(Min=10.000000,Max=20.000000))
          InitialParticlesPerSecond=40.000000
-         Texture=Texture'EpicParticles.Beams.HotBolt04aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt04aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
          StartVelocityRange=(X=(Min=1.000000,Max=1.000000))
@@ -96,7 +96,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.260000,Max=0.260000))
          StartSizeRange=(X=(Min=30.000000,Max=50.500000),Y=(Min=30.000000,Max=50.500000),Z=(Min=30.000000,Max=50.500000))
          InitialParticlesPerSecond=500.000000
-         Texture=Texture'EpicParticles.Beams.BeamFalloff'
+         Texture=Texture'BallisticEpicEffects.Beams.BeamFalloff'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.300000,Max=0.300000)
          StartVelocityRange=(X=(Min=150.000000,Max=3000.000000),Y=(Min=-100.000000,Max=100.000000),Z=(Min=-100.000000,Max=100.000000))

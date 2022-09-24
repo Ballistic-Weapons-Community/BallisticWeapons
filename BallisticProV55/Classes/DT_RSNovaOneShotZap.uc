@@ -28,7 +28,7 @@ defaultproperties
      bInstantHit=True
      bCauseConvulsions=True
      GibModifier=1.500000
-     DamageOverlayMaterial=Shader'XGameShaders.PlayerShaders.LightningHit'
+     DamageOverlayMaterial=Shader'BallisticEpicEffects.PlayerShaders.LightningHit'
      DamageOverlayTime=0.900000
      GibPerterbation=0.500000
      KDamageImpulse=20000.000000

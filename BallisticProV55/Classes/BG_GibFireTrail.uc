@@ -71,7 +71,7 @@ defaultproperties
          SizeScale(0)=(RelativeSize=1.000000)
          SizeScale(1)=(RelativeTime=1.000000,RelativeSize=0.500000)
          StartSizeRange=(X=(Min=2.000000,Max=2.000000),Y=(Min=2.000000,Max=2.000000),Z=(Min=2.000000,Max=2.000000))
-         Texture=Texture'EmitterTextures.MultiFrame.LargeFlames'
+         Texture=Texture'BallisticEpicEffects.MultiFrame.LargeFlames'
          TextureUSubdivisions=4
          TextureVSubdivisions=4
          SecondsBeforeInactive=0.000000

@@ -154,7 +154,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.170000,RelativeSize=0.500000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=0.500000)
          StartSizeRange=(X=(Min=12.000000,Max=20.000000),Y=(Min=12.000000,Max=20.000000),Z=(Min=12.000000,Max=20.000000))
-         Texture=Texture'EpicParticles.Beams.HotBolt03aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt03aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
      End Object
@@ -177,7 +177,7 @@ defaultproperties
          MaxParticles=8
          DetailMode=DM_SuperHigh
          StartSizeRange=(X=(Min=8.000000,Max=14.000000),Y=(Min=8.000000,Max=14.000000),Z=(Min=8.000000,Max=14.000000))
-         Texture=Texture'EpicParticles.Beams.HotBolt04aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt04aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
      End Object

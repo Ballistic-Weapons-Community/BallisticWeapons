@@ -104,7 +104,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.260000,Max=0.260000))
          StartSizeRange=(X=(Min=30.000000,Max=50.500000),Y=(Min=30.000000,Max=50.500000),Z=(Min=30.000000,Max=50.500000))
          InitialParticlesPerSecond=500.000000
-         Texture=Texture'EpicParticles.Beams.BeamFalloff'
+         Texture=Texture'BallisticEpicEffects.Beams.BeamFalloff'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.400000,Max=0.400000)
          StartVelocityRange=(X=(Min=150.000000,Max=3000.000000),Y=(Min=-100.000000,Max=100.000000),Z=(Min=-100.000000,Max=100.000000))

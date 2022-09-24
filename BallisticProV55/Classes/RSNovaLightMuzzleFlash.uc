@@ -61,7 +61,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.280000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=10.000000,Max=15.000000),Y=(Min=10.000000,Max=15.000000),Z=(Min=10.000000,Max=15.000000))
-         Texture=Texture'EpicParticles.Beams.HotBolt04aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt04aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          StartVelocityRange=(X=(Min=1.500000,Max=2.000000),Y=(Min=-1.000000,Max=1.000000),Z=(Min=-1.000000,Max=1.000000))
@@ -92,7 +92,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.370000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=5.000000,Max=8.000000),Y=(Min=5.000000,Max=8.000000),Z=(Min=5.000000,Max=8.000000))
-         Texture=Texture'EpicParticles.Beams.HotBolt04aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt04aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          StartVelocityRange=(X=(Min=2.000000,Max=2.000000),Y=(Min=-1.000000,Max=1.000000),Z=(Min=-1.000000,Max=1.000000))

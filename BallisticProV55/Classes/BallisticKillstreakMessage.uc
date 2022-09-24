@@ -45,7 +45,7 @@ static simulated function ClientReceive(
 
 defaultproperties
 {
-     StreakSound=Sound'GameSounds.Fanfares.UT2K3Fanfare08'
-     DonationSound=Sound'GameSounds.OtherFanfares.LadderOpened'
+     //StreakSound=Sound'GameSounds.Fanfares.UT2K3Fanfare08'
+     //DonationSound=Sound'GameSounds.OtherFanfares.LadderOpened'
      DrawColor=(B=0,G=60,R=255)
 }

@@ -1354,12 +1354,12 @@ function UpdateRotation(float DeltaTime, float maxPitch)
 
 defaultproperties
 {
-     WeapUIEnter=Sound'MenuSounds.selectDshort'
-     WeapUIExit=Sound'MenuSounds.selectK'
-     WeapUIFail=Sound'MenuSounds.denied1'
-     WeapUIUse=Sound'MenuSounds.selectJ'
-     WeapUICycle=Sound'MenuSounds.MS_ListChangeDown'
-     WeapUIChange=Sound'MenuSounds.MS_ListChangeUp'
+     //WeapUIEnter=Sound'MenuSounds.selectDshort'
+     //WeapUIExit=Sound'MenuSounds.selectK'
+     //WeapUIFail=Sound'MenuSounds.denied1'
+     //WeapUIUse=Sound'MenuSounds.selectJ'
+     //WeapUICycle=Sound'MenuSounds.MS_ListChangeDown'
+     //WeapUIChange=Sound'MenuSounds.MS_ListChangeUp'
      ZoomTimeMod=1.500000
      SavedBehindDistFactor=1.000000
 	 InputClass=class'BallisticProV55.BallisticPlayerInput'

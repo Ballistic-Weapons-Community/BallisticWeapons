@@ -41,6 +41,6 @@ static simulated function ClientReceive(
 
 defaultproperties
 {
-     WarningSound=Sound'WeaponSounds.BaseGunTech.BSeekLost1'
+     //WarningSound=Sound'WeaponSounds.BaseGunTech.BSeekLost1'
      DrawColor=(B=0,G=0,R=255)
 }

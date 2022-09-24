@@ -55,7 +55,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.370000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=25.000000,Max=30.000000),Y=(Min=25.000000,Max=30.000000),Z=(Min=25.000000,Max=30.000000))
-         Texture=Texture'EpicParticles.Beams.HotBeam02aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBeam02aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          StartVelocityRange=(X=(Min=5.000000,Max=5.000000))
@@ -78,7 +78,7 @@ defaultproperties
          FadeOutStartTime=0.072000
          FadeInEndTime=0.034000
          StartSizeRange=(X=(Min=8.000000,Max=8.000000),Y=(Min=8.000000,Max=8.000000),Z=(Min=8.000000,Max=8.000000))
-         Texture=Texture'EpicParticles.Beams.HotBolt04aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt04aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          StartVelocityRange=(X=(Min=2.000000,Max=4.000000),Y=(Min=-2.000000,Max=2.000000),Z=(Min=-2.000000,Max=2.000000))
@@ -112,7 +112,7 @@ defaultproperties
          SizeScale(1)=(RelativeTime=0.280000,RelativeSize=1.000000)
          SizeScale(2)=(RelativeTime=1.000000,RelativeSize=1.000000)
          StartSizeRange=(X=(Min=15.000000,Max=20.000000),Y=(Min=15.000000,Max=20.000000),Z=(Min=15.000000,Max=20.000000))
-         Texture=Texture'EpicParticles.Beams.HotBeam02aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBeam02aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
      End Object
@@ -134,7 +134,7 @@ defaultproperties
          FadeOutStartTime=0.042000
          FadeInEndTime=0.004000
          StartSizeRange=(X=(Min=8.000000,Max=8.000000),Y=(Min=8.000000,Max=8.000000),Z=(Min=8.000000,Max=8.000000))
-         Texture=Texture'EpicParticles.Beams.BeamFalloff'
+         Texture=Texture'BallisticEpicEffects.Beams.BeamFalloff'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.200000,Max=0.200000)
          StartVelocityRange=(X=(Min=2.000000,Max=4.000000),Y=(Min=-2.000000,Max=2.000000),Z=(Min=-2.000000,Max=2.000000))
