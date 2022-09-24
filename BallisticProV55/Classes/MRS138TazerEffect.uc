@@ -24,7 +24,7 @@ defaultproperties
          StartLocationOffset=(X=8.000000,Y=-9.000000)
          StartLocationRange=(X=(Min=-2.000000,Max=2.000000))
          StartSizeRange=(X=(Min=1.000000,Max=4.000000),Y=(Min=1.000000,Max=4.000000),Z=(Min=1.000000,Max=4.000000))
-         Texture=Texture'EpicParticles.Beams.HotBolt03aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt03aw'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.100000,Max=0.400000)
      End Object

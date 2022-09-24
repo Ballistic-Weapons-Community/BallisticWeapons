@@ -171,7 +171,7 @@ defaultproperties
          MaxParticles=8
          StartSizeRange=(X=(Min=2.000000,Max=8.000000),Y=(Min=2.000000,Max=8.000000),Z=(Min=2.000000,Max=8.000000))
          InitialParticlesPerSecond=80.000000
-         Texture=Texture'EpicParticles.Beams.HotBolt04aw'
+         Texture=Texture'BallisticEpicEffects.Beams.HotBolt04aw'
          LifetimeRange=(Min=0.400000,Max=0.400000)
          StartVelocityRange=(X=(Max=2.000000),Y=(Min=-2.000000,Max=2.000000),Z=(Min=-2.000000,Max=2.000000))
      End Object

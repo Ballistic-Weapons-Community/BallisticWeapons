@@ -329,7 +329,7 @@ defaultproperties
          StartSpinRange=(X=(Min=0.250000,Max=0.250000))
          StartSizeRange=(X=(Min=1.000000,Max=5.000000),Y=(Min=1.000000,Max=1.000000),Z=(Min=1.000000,Max=1.000000))
          InitialParticlesPerSecond=5000.000000
-         Texture=Texture'BWBP_SKC_Tex.BFG.BFGTrail'
+         //Texture=Texture'BWBP_SKC_Tex.BFG.BFGTrail'
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.350000,Max=0.350000)
          StartVelocityRange=(X=(Max=900.000000),Y=(Min=-750.000000,Max=750.000000),Z=(Min=-700.000000,Max=700.000000))

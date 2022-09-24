@@ -16,7 +16,7 @@ defaultproperties
      HitEffects(3)=Class'BallisticProV55.IE_ShellMetal'
      HitEffects(4)=Class'BallisticProV55.IE_ShellWood'
      HitEffects(5)=Class'BallisticProV55.IE_BulletGrass'
-     HitEffects(6)=Class'XEffects.pclredsmoke'
+     HitEffects(6)=Class'KFMod.FleshHitEmitter'
      HitEffects(7)=Class'BallisticProV55.IE_ShellIce'
      HitEffects(8)=Class'BallisticProV55.IE_ShellSnow'
      HitEffects(9)=Class'BallisticProV55.IE_ShellWater'

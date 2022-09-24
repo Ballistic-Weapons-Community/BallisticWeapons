@@ -58,7 +58,7 @@ defaultproperties
 		Damage=5
 		BotRefireRate=0.3
 		WarnTargetPct=0.5	
-		FireSound=(Sound=Sound'BWBP_OP_Sounds.PD97.BloodhoundTazerFire',Volume=2.250000)
+		//FireSound=(Sound=Sound'BWBP_OP_Sounds.PD97.BloodhoundTazerFire',Volume=2.250000)
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams

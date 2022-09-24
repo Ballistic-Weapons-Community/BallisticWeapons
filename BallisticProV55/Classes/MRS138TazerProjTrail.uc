@@ -19,7 +19,7 @@ defaultproperties
          StartSizeRange=(X=(Min=12.000000,Max=8.000000))
          ParticlesPerSecond=1.000000
          InitialParticlesPerSecond=500.000000
-         Texture=Texture'AW-2k4XP.Weapons.ShockTankEffectCore2Ga'
+         //Texture=Texture'AW-2k4XP.Weapons.ShockTankEffectCore2Ga'
          LifetimeRange=(Min=0.400000,Max=0.400000)
      End Object
      Emitters(0)=SpriteEmitter'BallisticProV55.MRS138TazerProjTrail.MRS138TazerProjTrailEmitter0'
@@ -39,7 +39,7 @@ defaultproperties
          CoordinateSystem=PTCS_Relative
          ParticlesPerSecond=5.000000
          InitialParticlesPerSecond=1000.000000
-         Texture=Texture'AW-2k4XP.Cicada.LongSpark'
+         //Texture=Texture'AW-2k4XP.Cicada.LongSpark'
          TextureUSubdivisions=1
          TextureVSubdivisions=1
          LifetimeRange=(Min=0.500000,Max=0.500000)

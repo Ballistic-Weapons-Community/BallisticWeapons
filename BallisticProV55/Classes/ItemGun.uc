@@ -74,7 +74,7 @@ defaultproperties
      FireModeClass(1)=Class'BallisticProV55.ItemgunFire'
      PutDownAnim="PutDown"
      IdleAnimRate=0.250000
-     SelectSound=Sound'WeaponSounds.Misc.translocator_change'
+     //SelectSound=Sound'WeaponSounds.Misc.translocator_change'
      SelectForce="Translocator_change"
      AIRating=-999.000000
      CurrentRating=-999.000000
@@ -90,17 +90,17 @@ defaultproperties
      CustomCrosshair=2
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Circle1"
      InventoryGroup=10
-     PickupClass=Class'XWeapons.Transpickup'
+     //PickupClass=Class'XWeapons.Transpickup'
      PlayerViewOffset=(X=28.500000,Y=12.000000,Z=-12.000000)
      PlayerViewPivot=(Pitch=1000,Yaw=400)
-     AttachmentClass=Class'XWeapons.TransAttachment'
-     IconMaterial=Texture'HUDContent.Generic.HUD'
+     //AttachmentClass=Class'XWeapons.TransAttachment'
+     //IconMaterial=Texture'HUDContent.Generic.HUD'
      IconCoords=(X2=2,Y2=2)
      ItemName="Item Gun"
-     Mesh=SkeletalMesh'NewWeapons2004.NewTranslauncher_1st'
+     //Mesh=SkeletalMesh'NewWeapons2004.NewTranslauncher_1st'
      DrawScale=0.800000
-     Skins(0)=FinalBlend'EpicParticles.JumpPad.NewTransLaunBoltFB'
-     Skins(1)=Texture'WeaponSkins.Skins.NEWTranslocatorTEX'
-     Skins(2)=Texture'WeaponSkins.AmmoPickups.NEWTranslocatorPUCK'
-     Skins(3)=FinalBlend'WeaponSkins.AmmoPickups.NewTransGlassFB'
+     //Skins(0)=FinalBlend'BallisticEpicEffects.JumpPad.NewTransLaunBoltFB'
+     //Skins(1)=Texture'WeaponSkins.Skins.NEWTranslocatorTEX'
+     //Skins(2)=Texture'WeaponSkins.AmmoPickups.NEWTranslocatorPUCK'
+     //Skins(3)=FinalBlend'WeaponSkins.AmmoPickups.NewTransGlassFB'
 }
