@@ -407,13 +407,13 @@ defaultproperties
     AmplifierOffAnim="AMPOff"
     AmplifierOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
     AmplifierOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
-    AmplifierPowerOnSound=Sound'BWBP_SKC_Sounds.AMP.Amp-Install'
-    AmplifierPowerOffSound=Sound'BWBP_SKC_Sounds.AMP.Amp-Depleted'
+    AmplifierPowerOnSound=Sound'BW_Core_WeaponSound.AMP.Amp-Install'
+    AmplifierPowerOffSound=Sound'BW_Core_WeaponSound.AMP.Amp-Depleted'
 	DrainRate=0.15
 	
-	AmpMaterials[0]=Shader'BWBP_SKC_Tex.Amp.Amp-FinalCyan'
-	AmpMaterials[1]=Shader'BWBP_SKC_Tex.AMP.Amp-GlowCyanShader'
-    AmpMaterials[2]=Texture'BWBP_SKC_Tex.Amp.Amp-BaseDepleted'
+	AmpMaterials[0]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalCyan'
+	AmpMaterials[1]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowCyanShader'
+    AmpMaterials[2]=Texture'BW_Core_WeaponTex.Amp.Amp-BaseDepleted'
     AmpMaterials[3]=Texture'ONSstructureTextures.CoreGroup.Invisible'
 	
 	bSilenced=True
@@ -490,6 +490,6 @@ defaultproperties
 	DrawScale=0.200000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
     Skins(1)=Shader'BW_Core_WeaponTex.XK2.XK2_Main-Shiney'
-    Skins(2)=Shader'BWBP_SKC_Tex.AMP.Amp-FinalCyan'
-    Skins(3)=Shader'BWBP_SKC_Tex.AMP.Amp-GlowCyanShader'
+    Skins(2)=Shader'BW_Core_WeaponTex.AMP.Amp-FinalCyan'
+    Skins(3)=Shader'BW_Core_WeaponTex.AMP.Amp-GlowCyanShader'
 }

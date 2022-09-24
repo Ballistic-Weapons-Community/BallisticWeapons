@@ -480,11 +480,11 @@ defaultproperties
 	
 	RearSightBoneRot=(Yaw=16384)
 	
-	AmpMaterials[0]=Shader'BWBP_SKC_Tex.Amp.Amp-FinalRed'
-	AmpMaterials[1]=Shader'BWBP_SKC_Tex.Amp.Amp-FinalGreen'
-	AmpMaterials[2]=Shader'BWBP_SKC_Tex.AMP.Amp-GlowRedShader'
-	AmpMaterials[3]=Shader'BWBP_SKC_Tex.AMP.Amp-GlowGreenShader'
-    AmpMaterials[4]=Texture'BWBP_SKC_Tex.Amp.Amp-BaseDepleted'
+	AmpMaterials[0]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalRed'
+	AmpMaterials[1]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalGreen'
+	AmpMaterials[2]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
+	AmpMaterials[3]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowGreenShader'
+    AmpMaterials[4]=Texture'BW_Core_WeaponTex.Amp.Amp-BaseDepleted'
     AmpMaterials[5]=Texture'ONSstructureTextures.CoreGroup.Invisible'
 	
 	MyFontColor=(R=255,G=255,B=255,A=255)
@@ -499,8 +499,8 @@ defaultproperties
     AmplifierOffAnim="RemoveAMP"
     AmplifierOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
     AmplifierOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
-    AmplifierPowerOnSound=Sound'BWBP_SKC_Sounds.AMP.Amp-Install'
-    AmplifierPowerOffSound=Sound'BWBP_SKC_Sounds.AMP.Amp-Depleted'
+    AmplifierPowerOnSound=Sound'BW_Core_WeaponSound.AMP.Amp-Install'
+    AmplifierPowerOffSound=Sound'BW_Core_WeaponSound.AMP.Amp-Depleted'
 	
 	SilencerBone="Silencer"
 	SilencerOnAnim="AddSilencer"
@@ -579,6 +579,6 @@ defaultproperties
     Skins(11)=Texture'BWBP_OP_Tex.SRX.SRX-ScreenMask'
     Skins(12)=Shader'BWBP_OP_Tex.SRX.SRX-Reticle-S'
     Skins(13)=Texture'BWBP_OP_Tex.SRX.SRX-Supp'
-    Skins(14)=Shader'BWBP_SKC_Tex.AMP.Amp-FinalRed'
-	Skins(15)=Shader'BWBP_SKC_Tex.AMP.Amp-GlowRedShader'
+    Skins(14)=Shader'BW_Core_WeaponTex.AMP.Amp-FinalRed'
+	Skins(15)=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
 }

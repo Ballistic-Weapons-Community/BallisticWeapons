@@ -41,8 +41,6 @@ class BallisticPawn extends xPawn;
 
 #EXEC OBJ LOAD File="BallisticThird.ukx"
 
-#EXEC OBJ LOAD File="BWBP_OP_Tex.utx"
-
 var byte				            DoubleJumpsLeft;
 var float				            LastDoubleJumpTime;
 var	bool				            bResetAnimationAction;

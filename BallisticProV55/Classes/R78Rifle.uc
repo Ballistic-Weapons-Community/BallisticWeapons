@@ -197,10 +197,10 @@ defaultproperties
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
-	PutDownTime=0.5
+	 PutDownTime=0.5
      CockAnim="CockQuick"
      //CockSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Cock')
-	 CockSound=(Sound=Sound'BWBP_SKC_Sounds.R78NS.R78NS-Cock')
+	 CockSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78NS-Cock')
      ReloadAnimRate=1.250000
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipHit')
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipOut')
