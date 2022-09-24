@@ -292,7 +292,16 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 	if (Pawn(Victim) != None)
 	{
 		if (BallisticPawn(Instigator) != None && RSDarkStar(Instigator.Weapon) != None && Victim.bProjTarget && (Pawn(Victim).GetTeamNum() != Instigator.GetTeamNum() || Instigator.GetTeamNum() == 255))
+		{
 			BallisticPawn(Instigator).GiveAttributedHealth(Damage / 3, Instigator.HealthMax, Instigator, True);	
+			if (BW.GameStyleIndex != 0 && Pawn(Victim).Health > 0)
+			{
+				if (BW.MagAmmo < BW.default.MagAmmo)
+					BW.MagAmmo = Min(BW.default.MagAmmo, BW.MagAmmo+Damage/4);
+				else
+					BW.AddAmmo(BW.MagAmmo+Damage/4, 0);
+			}
+		}
 		
 		if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 		{

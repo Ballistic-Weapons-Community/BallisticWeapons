@@ -59,7 +59,7 @@ function InitBomb(bool bThrown, bool bLaserOn, float HoldTime)
 		KSetBlockKarma(False);
 		SetPhysics(PHYS_None);
 	}
-	bLaserMode = False;//bLaserOn;
+	bLaserMode = bLaserOn;
 	if (Role == ROLE_Authority)
 	{
 		MyUseTrigger = Spawn(class'FP9Trigger',self ,, Location);

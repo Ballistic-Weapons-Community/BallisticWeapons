@@ -554,7 +554,7 @@ defaultproperties
 	AIRating=0.6
 	CurrentRating=0.6
 	LaserAmmo=3.500000
-	//bShouldDualInLoadout=False
+	bShouldDualInLoadout=True
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Glock.BigIcon_Glock'
@@ -583,7 +583,6 @@ defaultproperties
 	ParamsClasses(2)=Class'GRS9WeaponParamsRealistic' //todo: auto to semi
 	FireModeClass(0)=Class'BallisticProV55.GRS9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.GRS9SecondaryFire'
-	
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806InA',USize2=256,VSize2=256,Color1=(R=96,A=175),Color2=(B=255),StartSize1=100,StartSize2=110)
     NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
 	

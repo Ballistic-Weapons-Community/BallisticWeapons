@@ -82,11 +82,14 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=16,Max=1024)
-		CrouchMultiplier=0.700000
+		AimSpread=(Min=512,Max=1024)
+		AimAdjustTime=0.400000
+		CrouchMultiplier=0.820000
 		ADSMultiplier=0.700000
+		AimDamageThreshold=300
 		ViewBindFactor=0.050000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-4608,Yaw=-512)
 		ChaosDeclineTime=0.600000
 		ChaosSpeedThreshold=800.000000
 	End Object
@@ -97,8 +100,9 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=1.100000
-		InventorySize=15
+		InventorySize=5
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.12
 		MagAmmo=14
 		ViewOffset=(X=3.000000,Y=8.000000,Z=-9.000000)
 		SightOffset=(X=-18.000000,Y=-2.000000,Z=18.8750000)
@@ -108,6 +112,7 @@ defaultproperties
 		WristAdjust=(Yaw=-3000,Pitch=-000)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.200000
+		WeaponName="RS8 10mm Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

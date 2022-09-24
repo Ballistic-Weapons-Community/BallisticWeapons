@@ -19,7 +19,7 @@ defaultproperties
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
-		FlashScaleFactor=0.050000
+		FlashScaleFactor=0.50000
 		Recoil=70.000000
 		Chaos=0.150000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Typhon.Typhon-Fire',Volume=7.500000,Slot=SLOT_Interact,bNoOverride=False)
@@ -75,6 +75,7 @@ defaultproperties
 		YRandFactor=0.15000
 		DeclineTime=0.9
 		DeclineDelay=0.4000
+		bViewDecline=True
 	End Object
 
 	//=================================================================
@@ -95,11 +96,13 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		InventorySize=10
+		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
 		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.250000,Z=15.700000)
+		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
+		SightPivot=(Pitch=0)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
-		InventorySize=12
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1
 		MagAmmo=25
@@ -109,6 +112,7 @@ defaultproperties
 		FireParams(1)=FireParams'ClassicPrimaryFireParamsCharged'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
 
 

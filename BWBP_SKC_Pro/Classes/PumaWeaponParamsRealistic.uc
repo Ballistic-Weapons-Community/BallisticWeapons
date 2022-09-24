@@ -69,7 +69,7 @@ defaultproperties
 
 	//Range Det
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryRangeEffectParams
-		ProjectileClass=Class'PUMAProjectileClose'
+		ProjectileClass=Class'PumaProjectileRShort'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=12500.000000
 		Damage=55.000000
@@ -99,7 +99,7 @@ defaultproperties
 
 	//Shield Shot
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryShieldEffectParams
-		ProjectileClass=Class'PumaProjectileRShort'
+		ProjectileClass=Class'PUMAProjectileClose'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=6000.000000
 		Damage=55.000000
@@ -155,6 +155,8 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.250000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpOffSet=(Pitch=1000,Yaw=-3000)
 		ChaosDeclineTime=2.000000
 	End Object
     
@@ -163,14 +165,16 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=10
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25
 		MagAmmo=6
 		ViewOffset=(X=7.000000,Y=6.000000,Z=-13.000000)
 		SightOffset=(X=-10.000000,Y=-0.035000,Z=19.500000)
 		SightPivot=(Pitch=0)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		WeaponName="PUMA-77 Target Engagement System"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryImpactFireParams'

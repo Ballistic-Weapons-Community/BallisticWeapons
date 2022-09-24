@@ -15,6 +15,8 @@ var() bool bNoFXOnExplode; //Do FX in Destroyed and not in Explode
 var() Sound				DetonateSound;
 var   float				TriggerStartTime;	// Time when trigger will be active
 
+var PD97Bloodhound Master;
+
 simulated function ProcessTouch (Actor Other, vector HitLocation);
 function SetManualMode (bool bManual);	
 
@@ -82,7 +84,7 @@ simulated function InitProjectile()
 	super.InitProjectile();
 
 	PlaySound(DetonateSound,,2.0,,256,,);
-	//SetTimer(1.0, false);
+	SetTimer(30.0, false);
 	return;
 }
 
@@ -136,7 +138,7 @@ defaultproperties
 	 ImpactManager=Class'BallisticProV55.IM_Grenade'
 	 MyRadiusDamageType=Class'BallisticProV55.DTM46GrenadeRadius'
 	 SplashManager=Class'BallisticProV55.IM_ProjWater'
-     TrailClass=Class'BWBP_SKC_Pro.MGLNadeTrail'
+     TrailClass=Class'BWBP_OP_Pro.PD97BeaconEffect'
 	 ShakeRadius=512.000000
 	 MotionBlurRadius=384.000000
 	 MotionBlurFactor=3.000000

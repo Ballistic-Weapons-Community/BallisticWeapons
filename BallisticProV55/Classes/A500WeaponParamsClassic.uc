@@ -39,6 +39,8 @@ defaultproperties
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
 		ProjectileClass=Class'BallisticProV55.A500AltProjectile'
+        Speed=1000.000000
+        MaxSpeed=6000.000000
 		Damage=80.000000
 		DamageRadius=96.000000
 		MomentumTransfer=1000.000000
@@ -90,6 +92,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.150000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-500,Yaw=-1024)
 		AimDamageThreshold=75.000000
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=650.000000
@@ -100,7 +103,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=35
+		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
 		SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)

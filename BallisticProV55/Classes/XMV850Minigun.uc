@@ -107,9 +107,16 @@ simulated function float GetRampUpSpeed()
 {
 	local float mult;
 	
-	mult = 1 - (BarrelSpeed / RotationSpeeds[2]);
-	
-	return 0.075f + (0.5f * Square(mult) * (1 + 0.25*int(bBerserk)));
+	if (GameStyleIndex == 0)
+	{
+		mult = 1 - (BarrelSpeed / RotationSpeeds[2]);
+		
+		return 0.075f + (0.5f * Square(mult) * (1 + 0.25*int(bBerserk)));
+	}
+	else
+	{
+		return 0.4f;
+	}
 	
 	/*
 	if (BarrelSpeed < RotationSpeeds[0])

@@ -438,7 +438,6 @@ defaultproperties
 	Skins(1)=Shader'BW_Core_WeaponTex.MRS138.MRS138Shiney'
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	SightOffset=(X=15,Z=21.500000)
-	SightPivot=(Pitch=256)
 	SightDisplayFOV=40
 	ReloadAnimRate=1.500000
 	ReloadAnim="ReloadLoop"

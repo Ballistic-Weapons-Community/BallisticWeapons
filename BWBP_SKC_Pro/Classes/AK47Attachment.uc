@@ -18,10 +18,10 @@ replication
 		bLoaded;
 }
 
-simulated event PostNetBeginPlay()
+simulated event PreBeginPlay()
 {
-	super.PostNetBeginPlay();
-	if (AK47AssaultRifle(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
+	super.PreBeginPlay();
+	if (AK47AssaultRifle(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq';
 	}
@@ -73,7 +73,6 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      BrassClass=Class'BallisticProV55.Brass_Rifle'
-     TrackAnimMode=MU_Secondary
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'
      TracerChance=2.000000
      TracerMix=-3

@@ -1,10 +1,10 @@
 //=============================================================================
-// IM_IncendiaryBullet.
+// IM_IncendiaryHMGBullet.
 //
 // ImpactManager subclass for incendiary HMG bullets which need to be faster
 // and get custom effects. Used by FG50
 //
-// by Nolan "Dark Carnivour" Richert.
+// by SK, based on code by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
 class IM_IncendiaryHMGBullet extends BCImpactManager;

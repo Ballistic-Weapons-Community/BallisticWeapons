@@ -101,6 +101,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.050000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-3000,Yaw=-8000)
 		ChaosDeclineTime=1.000000
 		ChaosSpeedThreshold=1200.000000
 	End Object
@@ -110,14 +111,16 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=10
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.23
 		MagAmmo=50
 		ViewOffset=(X=0,Y=-5,Z=-14)
-		SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
+		SightOffset=(X=-3.000000,Y=13.565000,Z=24.785000)
 		SightPivot=(Pitch=900)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		WeaponName="CYLO-V 5.56mm Incendiary Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

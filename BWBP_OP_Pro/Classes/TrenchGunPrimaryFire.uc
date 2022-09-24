@@ -17,6 +17,10 @@ var() class<BCImpactManager>	AltImpactManager;
 var Name						AimedFireEmptyAnim, FireEmptyAnim, AimedFireSingleAnim, FireSingleAnim;
 var() float						ChargeTime, DecayCharge;
 
+// Projectile Vars
+var() Vector			SpawnOffset;		// Projectile spawned at this offset
+var	  Projectile		Proj;				// The projectile actor
+
 var() float						ElectroDamage;
 
 var bool                        FlashSide;
@@ -28,6 +32,234 @@ struct Point2
 };
 
 var() Point2					ElectroInaccuracy, ElectroDoubleInaccuracy, ExplosiveInaccuracy, ExplosiveDoubleInaccuracy;
+
+// =============================================================================================================================
+simulated state Projectile
+{
+
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local ProjectileEffectParams effect_params;
+
+		super.ApplyFireEffectParams(params);
+
+		effect_params = ProjectileEffectParams(params);
+
+		ProjectileClass =  effect_params.ProjectileClass;
+		SpawnOffset = effect_params.SpawnOffset;    
+		default.ProjectileClass =  effect_params.ProjectileClass;
+		default.SpawnOffset = effect_params.SpawnOffset;
+	}
+
+	// Copied from Proj Fire
+	function float MaxRange()
+	{
+		if (ProjectileClass.default.MaxSpeed > ProjectileClass.default.Speed)
+		{
+			// We know BW projectiles have AccelSpeed
+			if (class<BallisticProjectile>(ProjectileClass) != None && class<BallisticProjectile>(ProjectileClass).default.AccelSpeed > 0)
+			{
+				if (ProjectileClass.default.LifeSpan <= 0)
+					return FMin(ProjectileClass.default.MaxSpeed, (ProjectileClass.default.Speed + class<BallisticProjectile>(ProjectileClass).default.AccelSpeed * 2) * 2);
+				else
+					return FMin(ProjectileClass.default.MaxSpeed, (ProjectileClass.default.Speed + class<BallisticProjectile>(ProjectileClass).default.AccelSpeed * ProjectileClass.default.LifeSpan) * ProjectileClass.default.LifeSpan);
+			}
+			// For the rest, just use the max speed
+			else
+			{
+				if (ProjectileClass.default.LifeSpan <= 0)
+					return ProjectileClass.default.MaxSpeed * 2;
+				else
+					return ProjectileClass.default.MaxSpeed * ProjectileClass.default.LifeSpan*0.75;
+			}
+		}
+		else // Hopefully this proj doesn't change speed.
+		{
+			if (ProjectileClass.default.LifeSpan <= 0)
+				return ProjectileClass.default.Speed * 2;
+			else
+				return ProjectileClass.default.Speed * ProjectileClass.default.LifeSpan;
+		}
+	}
+
+	// Get aim then spawn projectile
+	// Azarael edit: Wall code
+	function DoFireEffect()
+	{
+		local Vector Start, X, Y, Z, End, HitLocation, HitNormal, StartTrace;
+		local Rotator Aim;
+		local actor Other;
+
+		Weapon.GetViewAxes(X,Y,Z);
+		// the to-hit trace always starts right in front of the eye
+		Start = Instigator.Location + Instigator.EyePosition();
+		
+		StartTrace = Start + X*SpawnOffset.X + Z*SpawnOffset.Z;
+		if ( !Weapon.WeaponCentered() )
+			StartTrace = StartTrace + Weapon.Hand * Y*SpawnOffset.Y;
+
+		Aim = GetFireAim(StartTrace);
+		Aim = Rotator(GetFireSpread() >> Aim);
+		
+		//wall check
+		End = Start + (Vector(Aim) * SpawnOffset.X);
+		Other = Weapon.Trace(HitLocation, HitNormal, End, Start, false);
+		if (Other != None)
+			StartTrace = HitLocation;
+		//end wall check
+
+		End = Start + (Vector(Aim)*MaxRange());
+		Other = Trace (HitLocation, HitNormal, End, Start, true);
+
+		if (Other != None)
+			Aim = Rotator(HitLocation-StartTrace);
+		if (Load == 2)
+			SpawnProjectile(Start + X*(SpawnOffset.X+1) + Z*SpawnOffset.Z, Aim);
+		SpawnProjectile(StartTrace, Aim);
+
+		SendFireEffect(none, vect(0,0,0), StartTrace, 0);
+		Super.DoFireEffect();
+	}
+
+	function SpawnProjectile (Vector Start, Rotator Dir)
+	{
+		Proj = Spawn (ProjectileClass,,, Start, Dir);
+		if (Proj != None)
+			Proj.Instigator = Instigator;
+	}
+}
+
+simulated state Shotgun
+{
+	//======================================================================
+	// Shotgun-DoFireEffect
+	//
+	// Send twice if double shot
+	//======================================================================
+	function DoFireEffect()
+	{
+		local Vector StartTrace;
+		local Rotator R, Aim;
+		local int i;
+
+		Aim = GetFireAim(StartTrace);
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RewindCollisions();
+		
+		for (i=0; i < GetTraceCount(Load); i++)
+		{
+			R = Rotator(GetFireSpread() >> Aim);
+			DoTrace(StartTrace, R);
+		}
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RestoreCollisions();
+
+		ApplyHits();
+		
+		// Tell the attachment the aim. It will calculate the rest for the clients
+		SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
+
+		Super(BallisticFire).DoFireEffect();
+	}
+}
+
+simulated state ShotgunIncendiary
+{
+
+	function TrenchGunFireControl GetFireControl()
+	{
+		return TrenchGun(Weapon).GetFireControl();
+	}
+
+	//======================================================================
+	// ShotgunIncendiary-DoFireEffect
+	//
+	// Spawn fire bits
+	//======================================================================
+	function DoFireEffect()
+	{
+		local Vector Start, Dir, End, HitLocation, HitNormal;
+		local Rotator R, Aim;
+		local actor Other;
+		local float Dist, NodeDist, DR;
+		local int i;
+
+		//============================= Instant Hit Bits ====================
+		Aim = GetFireAim(Start);
+		
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RewindCollisions();
+		
+		//Spawn the damage tracers first
+		for (i=0;i<GetTraceCount(Load);i++)
+		{
+			R = Rotator(GetFireSpread() >> Aim);
+			DoTrace(Start, R);
+		}
+		
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RestoreCollisions();
+		
+		ApplyHits();
+		
+		//============================= Flamey Bits ==========================
+		Start = Instigator.Location + Instigator.EyePosition();
+		Aim = GetFireAim(Start);
+		Aim = Rotator(GetFireSpread() >> Aim);
+
+		Dir = Vector(Aim);
+		End = Start + (Dir*MaxRange());
+		Weapon.bTraceWater=true;
+		for (i=0;i<20;i++)
+		{
+			Other = Trace(HitLocation, HitNormal, End, Start, true);
+			if (Other == None || Other.bWorldGeometry || Mover(Other) != none || Vehicle(Other)!=None || FluidSurfaceInfo(Other) != None || (PhysicsVolume(Other) != None && PhysicsVolume(Other).bWaterVolume))
+				break;
+			Start = HitLocation + Dir * FMax(32, (Other.CollisionRadius*2 + 4));
+		}
+		Weapon.bTraceWater=false;
+
+		if (Other == None)
+			HitLocation = End;
+		if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume) )
+			Other = None;
+		
+		//Spawn the tracers but also spawn a bunch of fire projectiles
+		for (i=0;i<GetTraceCount(Load);i++)
+		{
+			R = Rotator(GetFireSpread() >> Aim);
+			
+			if (Other != None && (Other.bWorldGeometry || Mover(Other) != none))
+				GetFireControl().FireShotRotated(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, Other, R);
+			else
+				GetFireControl().FireShotRotated(Start, HitLocation, Dist, Other != None, HitNormal, Instigator, None, R);
+		}
+
+		Dist = VSize(HitLocation-Start);
+		for (i=0;i<GetFireControl().GasNodes.Length;i++)
+		{
+			if (GetFireControl().GasNodes[i] == None || (RX22AGasCloud(GetFireControl().GasNodes[i]) == None && RX22AGasPatch(GetFireControl().GasNodes[i]) == None && RX22AGasSoak(GetFireControl().GasNodes[i]) == None))
+				continue;
+			NodeDist = VSize(GetFireControl().GasNodes[i].Location-Start);
+			if (NodeDist > Dist)
+				continue;
+			DR = Dir Dot Normal(GetFireControl().GasNodes[i].Location-Start);
+			if (DR < 0.75)
+				continue;
+			NodeDist = VSize(GetFireControl().GasNodes[i].Location - (Start + Dir * (DR * NodeDist)));
+			if (NodeDist < 128)
+				GetFireControl().GasNodes[i].TakeDamage(5, Instigator, GetFireControl().GasNodes[i].Location, vect(0,0,0), class'DTRX22ABurned');
+		}
+
+		// Tell the attachment the aim. It will calculate the rest for the clients
+		SendFireEffect(none, Vector(Aim)*TraceRange.Max, Start, 0);
+	
+		Super(BallisticFire).DoFireEffect();
+	}
+
+}
 
 //======================================================================
 // ApplyDamage
@@ -161,57 +393,14 @@ simulated function SwitchWeaponMode (byte newMode)
 {
 	if (newMode == 1) // Electro Mode
 	{
-		Damage = ElectroDamage;
-
-		PenetrateForce=500;
-		bPenetrate=True;
-
-		BallisticFireSound.Sound=SlugFireSound;
-		
-		TracerClass=AltTracerClass;
-		ImpactManager=AltImpactManager;
-		
-		DamageType=Class'DT_TrenchGunElectro';
-		DamageTypeArm=Class'DT_TrenchGunElectro';
-		DamageTypeHead=Class'DT_TrenchGunElectro';
-
-        MaxHits=0;
-		
-		RangeAtten = 1.0; // electrical shots shouldn't be losing damage at range
-		
 		KickForce=4500;
-		
 		MaxWaterTraceRange=9000;
-
-        TraceRange.Min = 4096;
-        TraceRange.Max = 5120;
-		
 		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(1);
 	}
 	else // Explosive Mode
 	{
-		Damage = default.Damage;
-
-		PenetrateForce=0;
-		bPenetrate=False;
-		
-		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
-		
-		TracerClass=default.TracerClass;
-		ImpactManager=default.ImpactManager;
-		
-		DamageType=Class'DT_TrenchGunExplosive';
-		DamageTypeArm=Class'DT_TrenchGunExplosive';
-		DamageTypeHead=Class'DT_TrenchGunExplosive';
-
-        MaxHits = default.MaxHits;
-		
-		RangeAtten = default.RangeAtten;
-		
 		KickForce=default.KickForce;
-		
 		MaxWaterTraceRange=default.MaxWaterTraceRange;
-		
 		TrenchGunAttachment(Weapon.ThirdPersonActor).SwitchWeaponMode(0);
 	}
 }
@@ -378,39 +567,6 @@ function int GetTraceCount(int load)
 }
 
 //======================================================================
-// DoFireEffect
-//
-// Send twice if double shot
-//======================================================================
-function DoFireEffect()
-{
-	local Vector StartTrace;
-	local Rotator R, Aim;
-	local int i;
-
-	Aim = GetFireAim(StartTrace);
-
-    if (Level.NetMode == NM_DedicatedServer)
-        BW.RewindCollisions();
-	
-	for (i=0; i < GetTraceCount(Load); i++)
-	{
-		R = Rotator(GetFireSpread() >> Aim);
-		DoTrace(StartTrace, R);
-	}
-
-    if (Level.NetMode == NM_DedicatedServer)
-        BW.RestoreCollisions();
-
-	ApplyHits();
-	
-	// Tell the attachment the aim. It will calculate the rest for the clients
-	SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
-
-	Super(BallisticFire).DoFireEffect();
-}
-
-//======================================================================
 //	DoTrace
 //
 //	Must initiate impact effects against pawns if in explosive mode
@@ -564,35 +720,15 @@ function SwitchShotParams()
 {
 	if (Load == 2)
 	{
-		BallisticFireSound.Volume = 2.0;
-		
-		if (BW.CurrentWeaponMode == 0)
-		{
-			XInaccuracy = ExplosiveDoubleInaccuracy.X;
-			YInaccuracy = ExplosiveDoubleInaccuracy.Y;
-		}
-
-		else
-		{
-			XInaccuracy = ElectroDoubleInaccuracy.X;
-			YInaccuracy = ElectroDoubleInaccuracy.Y;
-		}
+		BallisticFireSound.Volume = BallisticFireSound.Volume*2;
+		XInaccuracy = default.XInaccuracy*2.5;
+		YInaccuracy = default.YInaccuracy*1.5;
 	}
 	else
 	{
-		BallisticFireSound.Volume = 1.0;
-		
-		if (BW.CurrentWeaponMode == 0)
-		{
-			XInaccuracy = ExplosiveInaccuracy.X;
-			YInaccuracy = ExplosiveInaccuracy.Y;
-		}
-		
-		if (BW.CurrentWeaponMode == 1)
-		{			
-			XInaccuracy = ElectroInaccuracy.X;
-			YInaccuracy = ElectroInaccuracy.Y;
-		}
+		BallisticFireSound.Volume = default.BallisticFireSound.Volume;
+		XInaccuracy = default.XInaccuracy;
+		YInaccuracy = default.YInaccuracy;
 	}
 }
 
@@ -640,6 +776,9 @@ defaultproperties
 	MaxHoldTime=0.0
 	HipSpreadFactor=2.000000
 
+    ProjectileClass=Class'BWBP_SKC_Pro.BulldogRocket'
+    SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
+	
     CutOffDistance=2048.000000
     CutOffStartRange=1024.000000
 
@@ -683,7 +822,7 @@ defaultproperties
 
 	ElectroInaccuracy=(X=150,Y=150)
 	ElectroDoubleInaccuracy=(X=378,Y=220)
-	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)	FireAnim="FireCombined"
+	BallisticFireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)
 	FireAnim="FireCombined"
 	FireAnimRate=0.800000
 	FireRate=0.100000

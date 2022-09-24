@@ -45,7 +45,7 @@ simulated event Tick (float DT)
 {
 	if (HeatLevel > 0)
 	{
-			Heatlevel = FMax(HeatLevel - 0.35 * DT, 0);
+		Heatlevel = FMax(HeatLevel - 0.35 * DT, 0);
 	}
 
 	super.Tick(DT);
@@ -57,7 +57,8 @@ simulated event WeaponTick(float DT)
 	super.WeaponTick(DT);
 
 	if (HeatLevel >= 5 && Instigator.IsLocallyControlled() && GlowFX == None && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GlowFX == None || GlowFX.bDeleteMe))
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'HMCBarrelGlow', DrawScale, self, 'tip3');
+		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'HMCBarrelGlow', DrawScale, self, 'LAM');
+		//class'BUtil'.static.InitMuzzleFlash (GlowFX, class'HMCBarrelGlow', DrawScale, self, 'tip3');
 	else if (HeatLevel < 5)
 	{
 		if (GlowFX != None)
@@ -71,27 +72,18 @@ simulated event WeaponTick(float DT)
 
 simulated function AddHeat(float Amount)
 {
-
-	HeatLevel += Amount;
+	HeatLevel = FMax(0, HeatLevel + Amount);
+	AK91PrimaryFire(FireMode[0]).FireRate = AK91PrimaryFire(FireMode[0]).Params.FireInterval;
 	
 	if (HeatLevel >= 9.5)
 	{
-		Heatlevel = 12;
-        BallisticInstantFire(FireMode[0]).FireRate=0.210000;
-		//PlaySound(OverHeatSound,,3.7,,32);
-		//class'BallisticDamageType'.static.GenericHurt (Instigator, 10, Instigator, Instigator.Location, -vector(Instigator.GetViewRotation()) * 30000 + vect(0,0,10000), class'DTPlasmaCannonOverheat');
+		AK91PrimaryFire(FireMode[0]).FireRate *= 1.5;
 	}
+	
 	if (HeatLevel >= 5.0)
 	{
 		PlaySound(HighHeatSound,,1.0*(HeatLevel/10),,32);
 	}
-	
-	else if (Heatlevel <=0 )
-	{
-        BallisticInstantFire(FireMode[0]).FireRate=BallisticInstantFire(FireMode[0]).default.FireRate;
-		Heatlevel = 0;
-	}
-
 }
 
 simulated function ClientSetHeat(float NewHeat)
@@ -178,48 +170,53 @@ function Supercharger_ChargeControl GetChargeControl()
 //==========================================
 function ConicalBlast(float DamageAmount, float DamageRadius, vector Aim)
 {
- local actor Victims;
- local float damageScale, dist;
- local vector dir;
+	local actor Victims;
+	local float damageScale, dist;
+	local vector dir;
 
- if( bHurtEntry )
-  return;
+	if( bHurtEntry )
+		return;
 
- bHurtEntry = true;
- foreach CollidingActors( class 'Actor', Victims, DamageRadius, Location )
- {
-  if( (Victims != Instigator) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) )
-  {
-   if ( Aim dot Normal (Victims.Location - Location) < 0.5)
-    continue;
-   
-   if (!FastTrace(Victims.Location, Location))
-    continue;
-    
-   dir = Victims.Location - Location;
-   dist = FMax(1,VSize(dir));
+	bHurtEntry = true;
+	foreach CollidingActors( class 'Actor', Victims, DamageRadius, Location )
+	{
+		if( (Victims != Instigator) && (Victims.Role == ROLE_Authority) && (!Victims.IsA('FluidSurfaceInfo')) )
+		{
+			if ( Aim dot Normal (Victims.Location - Location) < 0.5)
+				continue;
 
+			if (!FastTrace(Victims.Location, Location))
+				continue;
 
-   dir = dir/dist;
-   damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
-   class'BallisticDamageType'.static.GenericHurt
-   (
-    Victims,
-    damageScale * DamageAmount * Heatlevel,
-    Instigator,
-    Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
-    vect(0,0,0),
-    class'DTA49Shockwave'
-   );
-   
-   if(Pawn(Victims) != None && Pawn(Victims).bProjTarget)
-    Pawn(Victims).AddVelocity(vect(0,0,200) + (Normal(Victims.Acceleration) * -FMin(Pawn(Victims).GroundSpeed, VSize(Victims.Velocity)) + Normal(dir) * 3000 * damageScale));
-      
-   if (Instigator != None && Vehicle(Victims) != None && Vehicle(Victims).Health > 0)
-    Vehicle(Victims).DriverRadiusDamage(DamageAmount, DamageRadius, Instigator.Controller, class'DTA49Shockwave', 0.0f, Location);
-  }
- }
- bHurtEntry = false;
+			dir = Victims.Location - Location;
+			dist = FMax(1,VSize(dir));
+
+			log("HeatLevel is  "$HeatLevel);
+			log("HeatLevel int is  "$int(HeatLevel));
+			dir = dir/dist;
+			//damageScale = 1 - FMax(0,(dist - Victims.CollisionRadius)/DamageRadius);
+			class'BallisticDamageType'.static.GenericHurt
+			(
+				Victims,
+				DamageAmount * int(Heatlevel),
+				Instigator,
+				Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir,
+				vect(0,0,0),
+				class'DT_AK91Zapped'
+			);
+
+			if (Pawn(Victims) != None)
+			{
+				ChargeControl.FireSinge(Pawn(Victims), Instigator, 2, int(HeatLevel)); //The 2 designates this weapon is an AK91, used for death messages, adds HeatLevel # of zaps
+				if ( Pawn(Victims).bProjTarget)
+					Pawn(Victims).AddVelocity(vect(0,0,200) + (Normal(Victims.Acceleration) * -FMin(Pawn(Victims).GroundSpeed, VSize(Victims.Velocity)) + Normal(dir) * 3000 * damageScale));
+			}
+
+			if (Instigator != None && Vehicle(Victims) != None && Vehicle(Victims).Health > 0)
+				Vehicle(Victims).DriverRadiusDamage(DamageAmount, DamageRadius, Instigator.Controller, class'DT_AK91Zapped', 0.0f, Location);
+		}
+	}
+	bHurtEntry = false;
 }
 
 simulated event AnimEnd (int Channel)
@@ -428,18 +425,21 @@ defaultproperties
      SightPivot=(Pitch=64)
      SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
      SightDisplayFOV=20.000000
-	 ParamsClasses(0)=Class'AK91ChargeRifleWeaponParamsArena'
-	 ParamsClasses(1)=Class'AK91ChargeRifleWeaponParamsArena'
+	 ParamsClasses(0)=Class'AK91WeaponParamsArena'
+	 ParamsClasses(1)=Class'AK91WeaponParamsClassic'
+	 ParamsClasses(2)=Class'AK91WeaponParamsRealistic'
      SightingTime=0.300000
      FireModeClass(0)=Class'BWBP_SKC_Pro.AK91PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.AK91SecondaryFire'
+	 NDCrosshairCfg=(Pic1=None,Pic2=None,USize1=128,VSize1=128,USize2=128,VSize2=128,Color1=(B=0,G=0,R=255,A=255),Color2=(B=0,G=255,R=255,A=255),StartSize1=96,StartSize2=96)
+	 NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
      BringUpTime=0.900000
      PutDownTime=0.700000
      IdleAnimRate=0.400000
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000
      CurrentRating=0.600000
-     Description="AK-91 Charge Rifle||Manufacturer: Zavod Tochnogo Voorujeniya (ZTV Export)|Primary: 7.62 AP Rounds|Secondary: Emergency Vent||Chambering 7.62mm armor piercing rounds, this rifle is a homage to its' distant predecessor, the AK-47. Though the weapons' looks have hardly changed at all, this model features a vastly improved firing mechanism, allowing it to operate in the most punishing of conditions. Equipped with a heavy reinforced stock, launchable ballistic bayonet, and 20 round box mag, this automatic powerhouse is guaranteed to cut through anything in its way. ZVT Exports designed this weapon to be practical and very easy to maintain. With its rugged and reliable design, the AK490 has spread throughout the cosmos and can be found just about anywhere."
+     Description="War, war never changes. But technology does as the fight against the Skrith wages on, cultivated in various weapon research facilities across the galaxies.  While some built from the ground up, others have been reverse engineered from the enemy factions. Most of them work after hard work and dedication, then there's ZTV Exports.  Legendary for their reliable and hard hitting weapons, but even they need to catch up in the arms race. Against their code of ethics, the brilliant minds at ZTV somehow managed to reverse engineer the AMP system and slap it onto their older AK91 models, causing it to hit much harder than before.  However, they also found that it can be overloaded with unstable energy particles that can severely harm the user unless they somehow purge it.  With the war raging on, ZTV Exports are willing to risk the chance in order to save the motherland."
      Priority=65
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=4
@@ -450,7 +450,7 @@ defaultproperties
      AttachmentClass=Class'BWBP_SKC_Pro.AK91Attachment'
      IconMaterial=Texture'BWBP_SKC_Tex.AK91.SmallIcon_AK91'
      IconCoords=(X2=127,Y2=31)
-     ItemName="[B] AK-91 Charge Rifle"
+     ItemName="AK-91 Charge Rifle"
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=30

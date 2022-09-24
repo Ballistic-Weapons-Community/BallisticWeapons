@@ -75,7 +75,7 @@ defaultproperties
 {
      UndeployedWeaponName="BWBP_SKC_Pro.FG50MachineGun"
      WeaponClassName="BWBP_SKC_Pro.FG50MG_TW"
-     GunYawBounds=(Min=-12000.000000,Max=12000.000000)
+     GunYawBounds=(Min=-6000.000000,Max=6000.000000)
      GunPitchBounds=(Min=-10000.000000,Max=8192.000000)
      CamYawBounds=(Min=-12000.000000,Max=12000.000000)
      CamPitchBounds=(Max=12000.000000)
@@ -83,12 +83,12 @@ defaultproperties
      GunPitchSpeed=32768.000000
      CamTrackYawSpeed=32768.000000
      CamTrackPitchSpeed=32768.000000
-     AbandonedPitch=2600
-     CameraOffset=(X=-90.000000,Y=-14.000000,Z=14.000000)
+     AbandonedPitch=2000
+     CameraOffset=(X=-70.000000,Y=-15.000000,Z=20.000000)
      CameraElevation=5.000000
      GunBone="Weapon"
      PivotBone="StandPivot"
-     DriverBackOff=45.000000
+     DriverBackOff=100.000000
      bDrawDriverInTP=True
      VehicleNameString="FG50 Mounted Machinegun"
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FG50_Turret_TPm'

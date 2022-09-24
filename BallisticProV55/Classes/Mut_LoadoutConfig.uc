@@ -1,6 +1,9 @@
 //Configuration class for Evolution variables (skill-based weapon unlocking.)
 //Affects both Evolution Loadout and Spatial Loadout.
 class Mut_LoadoutConfig extends Mutator
+	transient
+	HideDropDown
+	CacheExempt
 	config(BallisticProV55);
 
 var() globalconfig float	TimeScale;

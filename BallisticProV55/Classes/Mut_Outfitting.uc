@@ -11,6 +11,9 @@
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class Mut_Outfitting extends Mut_Ballistic
+	transient
+	HideDropDown
+	CacheExempt
 	config(BallisticProV55);
 
 var() globalconfig string 			LoadOut[5];			// Loadout info saved seperately on each client
@@ -486,12 +489,12 @@ static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P)
 			{
 				newWeapon.GiveTo(P);
 			}
-			if (BallisticHandgun(newWeapon) != None && BallisticHandgun(newWeapon).default.bShouldDualInLoadout)
+			/*if (BallisticHandgun(newWeapon) != None && BallisticHandgun(newWeapon).default.bShouldDualInLoadout)
 			{
 				newWeapon = P.Spawn(newClass,,,P.Location);
 				if( newWeapon != None )
 					newWeapon.GiveTo(P);
-			}
+			}*/
 			//Hack for bots - stops them complaining
 			if (Bot(P.Controller) != None && P.Weapon == None && P.PendingWeapon == None)
 			{

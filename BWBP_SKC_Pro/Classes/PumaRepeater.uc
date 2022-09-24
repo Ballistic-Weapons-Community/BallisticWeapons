@@ -860,7 +860,7 @@ defaultproperties
      AIRating=0.600000
      CurrentRating=0.600000
      bShowChargingBar=True
-     Description="PUMA-77 Repeating Pulse Rifle||Manufacturer: Majestic Firearms 12|Primary: Programmable Smart Round|Secondary: Shield Projector||The Type-77 RPR, a well known pulse weapon used during the Skrith wars, is one of the more recognizable light grenade launchers on the market. It was used extensively by the UTC as the PUMA-77 before their widespread adoption of the SRAC-21/G as the automatic grenade launcher of choice. This powerful weapon differs from other conventional grenade launchers in that it utilizes specialized fission batteries as ammunition, which both power and act as the carrier of the projectile. The projectiles themselves can be programmed by the side-mounted rangefinding module and allow soldiers to selectively airburst the rounds to hit targets behind cover. The PUMA-77s seen here are equipped with Frontier Tech's lightweight X57 shield projector, which is a scaled down version of the heavy portable shields used during the first Skrith war."
+     Description="PUMA-77 Repeating Pulse Rifle||Manufacturer: Majestic Firearms 12|Primary: Programmable Smart Round|Secondary: Shield Projector||The Type-77 RPR, better known as the 'PUMA', is one of the more recognizable light grenade launchers on the market. It was used extensively by the UTC before their widespread adoption of the SRAC-21/G during the first Skrith war. This powerful weapon differs from other conventional grenade launchers in that it utilizes specialized fission batteries as ammunition, which both power and act as the carrier of the projectile. The projectiles themselves can be programmed by the side-mounted rangefinding module and allow soldiers to selectively airburst the rounds to hit targets behind cover. The PUMA-77s seen here are equipped with Frontier Tech's lightweight X57 shield projector, which is a reverse-engineered prototype of the Skrith personal energy shields."
      Priority=245
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=8
@@ -876,7 +876,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=5.000000
-	 ParamsClasses(0)=Class'PumaRepeaterWeaponParamsArena'
+	 ParamsClasses(0)=Class'PUMAWeaponParamsArena'
 	 ParamsClasses(1)=Class'PUMAWeaponParamsClassic'
 	 ParamsClasses(2)=Class'PUMAWeaponParamsRealistic'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PUMA'

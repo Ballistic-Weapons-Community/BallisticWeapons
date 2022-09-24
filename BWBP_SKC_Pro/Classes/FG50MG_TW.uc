@@ -239,6 +239,8 @@ defaultproperties
     bUseSights=False
 	bUseSpecialAim=True
 	ParamsClasses(0)=Class'FG50TW_WeaponParams'
+	ParamsClasses(1)=Class'FG50TW_WeaponParams'
+	ParamsClasses(2)=Class'FG50TW_WeaponParamsRealistic'
 	SelectAnim="Deploy"
     BringUpTime=1.000000
 	bCanThrow=False

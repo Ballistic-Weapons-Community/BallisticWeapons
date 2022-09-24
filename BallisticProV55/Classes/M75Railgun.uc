@@ -32,6 +32,29 @@ var() float				ThermalRange;	// Maximum range at which it is possible to see ene
 var   ColorModifier		ColorMod;
 var   float				NextPawnListUpdateTime;
 
+
+simulated event PreBeginPlay()
+{
+	super.PreBeginPlay();
+	if (BCRepClass.default.GameStyle != 0)
+	{
+		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
+	}
+	if (BCRepClass.default.GameStyle != 0)
+	{
+		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
+	}
+}
+
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle == 2)
+	{
+		M75PrimaryFire(FireMode[0]).bFireOnRelease=True;
+	}
+}
+
 simulated function OnScopeViewChanged()
 {
 	super.OnScopeViewChanged();
@@ -378,6 +401,8 @@ simulated event DrawThermalMode (Canvas C)
 simulated function float ChargeBar()
 {
 	if (M75PrimaryFire(FireMode[0]).IsInState('ClassicRail'))
+		return M75PrimaryFire(FireMode[0]).RailPower;
+	else if (M75PrimaryFire(FireMode[0]).IsInState('FullChargedRail'))
 		return M75PrimaryFire(FireMode[0]).RailPower;
 	else
 		return M75SecondaryFire(FireMode[1]).RailPower;

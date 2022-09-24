@@ -269,7 +269,7 @@ defaultproperties
 	
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=128),StartSize1=94)
     NDCrosshairInfo=(SpreadRatios=(Y2=1.000000))
-	
+	MeleeFireClass=Class'BallisticProV55.M925MeleeFire'
 	PutDownTime=0.700000
 	BringUpTime=0.700000
 	SelectForce="SwitchToAssaultRifle"
@@ -295,7 +295,7 @@ defaultproperties
 	LightRadius=6.000000
 	Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_M925'
 	DrawScale=0.140000
-	Skins(0)=Texture'BW_Core_WeaponTex.M925.M925Masked'
+	Skins(0)=Texture'BW_Core_WeaponTex.M925.M925Main'
 	Skins(1)=Texture'BW_Core_WeaponTex.M925.M925Small'
 	Skins(2)=Texture'BW_Core_WeaponTex.M925.M925HeatShield'
 	Skins(3)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

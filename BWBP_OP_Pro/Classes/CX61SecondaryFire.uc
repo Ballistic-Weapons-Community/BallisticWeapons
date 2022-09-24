@@ -26,13 +26,11 @@ simulated function SwitchWeaponMode (byte NewMode)
 	{
 		BallisticFireSound.Sound=None;
 		FireSoundLoop=Sound'BW_Core_WeaponSound.T10.T10-toxinLoop';
-		GotoState('HealGas');
 	}
 	else
 	{
 		BallisticFireSound.Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-Ignite';
 		FireSoundLoop=Sound'BW_Core_WeaponSound.RX22A.RX22A-FireLoop';
-		GotoState('Flamer');
 	}
 
 	if (Weapon.bBerserk)

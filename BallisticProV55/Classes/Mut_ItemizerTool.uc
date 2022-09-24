@@ -27,7 +27,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Mut_ItemizerTool extends Mutator config(ItemizerV21) DependsOn(ItemizerDB);
+class Mut_ItemizerTool extends Mutator config(ItemizerV21) DependsOn(ItemizerDB)
+	transient
+	HideDropDown
+	CacheExempt;
 
 // Stuff for the menu system --------------------------------------------------
 struct ClassGroup	// Holds an array of pickup classes

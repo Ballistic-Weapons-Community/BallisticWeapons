@@ -36,6 +36,28 @@ defaultproperties
 		FireAnimRate=2.000000
 	FireEffectParams(0)=MeleeEffectParams'RealisticPrimaryEffectParams'
 	End Object
+
+	//Projectile
+	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryProjEffectParams
+		Speed=1500
+		Damage=50.0
+		HeadMult=2.5
+		LimbMult=0.6
+		SpreadMode=FSM_Rectangle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifeThrow',Radius=32.000000,bAtten=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.800000
+		WarnTargetPct=0.100000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticPrimaryFireProjParams
+		FireInterval=0.250000
+		AmmoPerFire=1
+		BurstFireRateFactor=1.00
+		FireAnimRate=2.500000
+		FireEffectParams(0)=ProjectileEffectParams'RealisticPrimaryProjEffectParams'
+	End Object
 		
 	//=================================================================
 	// SECONDARY FIRE
@@ -105,15 +127,18 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=1.150000
-		InventorySize=10
+        InventorySize=2
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		ViewOffset=(X=6.000000,Y=7.500000,Z=-8.000000)
 		ViewPivot=(Yaw=32768)
+		WeaponName="X3 Combat Knife"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryFireProjParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(1)=FireParams'RealisticPrimaryFireProjParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
 

@@ -37,6 +37,7 @@ defaultproperties
 		FireInterval=0.150000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
+		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
 	
@@ -166,6 +167,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.350000
 		SprintChaos=0.400000
+		 SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=2.000000
 	End Object
     
@@ -174,7 +176,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		MagAmmo=20

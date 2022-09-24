@@ -274,7 +274,6 @@ defaultproperties
     
 	CurrentWeaponMode=3
 	bNoCrosshairInScope=True
-	SightPivot=(Pitch=128)
 	SightOffset=(X=-6.000000,Z=5.30000)
 	ParamsClasses(0)=Class'M353WeaponParams'
 	ParamsClasses(1)=Class'M353WeaponParamsClassic' //todo: turret

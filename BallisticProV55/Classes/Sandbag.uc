@@ -162,7 +162,7 @@ defaultproperties
      DamagedSounds(2)=Sound'BW_Core_WeaponSound.BulletImpacts.BulletDirt3'
      DamagedSounds(3)=Sound'BW_Core_WeaponSound.BulletImpacts.BulletDirt4'
      DestroyedSound=Sound'BW_Core_WeaponSound.BOGP.BOGP_FlareImpact'
-     EffectWhenDestroyed=Class'BallisticProV55.IE_SandbagExplosion'
+	 EffectWhenDestroyed=Class'BallisticProV55.IE_SandbagExplosion'
      Health=250
      DrawType=DT_StaticMesh
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Sandbags.UTSandbags'

@@ -99,6 +99,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.050000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-4096,Yaw=-1024);
 		ChaosDeclineTime=0.900000
 		ChaosSpeedThreshold=650.000000
 	End Object
@@ -109,8 +110,9 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=1.100000
-		InventorySize=20
+		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.165
 		MagAmmo=36
 		ViewOffset=(X=11.000000,Y=7.000000,Z=-9.000000)
 		SightOffset=(X=-10.00000,Z=10.450000)
@@ -121,6 +123,7 @@ defaultproperties
 		InitialWeaponMode=2
 		ReloadAnimRate=0.900000
 		CockAnimRate=1.000000
+        WeaponName="Fifty-9 9mm SMG"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

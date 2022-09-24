@@ -93,7 +93,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=35
+		InventorySize=29
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

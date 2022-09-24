@@ -256,6 +256,8 @@ simulated function ArousalDepleted()
 	if (LoveEffect != None)
 		LoveEffect.Kill();
 
+	ParamsClasses[GameStyleIndex].static.OverrideFireParams(self,0);
+
 	WeaponModes[3].bUnavailable=true;
 
 	CurrentWeaponMode = 0;
@@ -369,6 +371,7 @@ defaultproperties
 	GunLength=128.000000
 	ParamsClasses(0)=Class'XOXOWeaponParams'
 	ParamsClasses(1)=Class'XOXOWeaponParamsClassic'
+	ParamsClasses(2)=Class'XOXOWeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_OP_Pro.XOXOPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.XOXOSecondaryFire'
 	PutDownAnimRate=1.350000

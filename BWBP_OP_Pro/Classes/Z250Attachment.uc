@@ -25,7 +25,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (Z250Minigun(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
+	if (Z250Minigun(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
 	{
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBulletLarge';
 	}

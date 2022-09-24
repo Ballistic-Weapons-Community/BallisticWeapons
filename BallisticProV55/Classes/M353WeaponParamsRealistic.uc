@@ -99,14 +99,16 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=0.875000
-		InventorySize=35
+		InventorySize=25
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.35
 		MagAmmo=150
 		ViewOffset=(X=0.000000,Y=3.000000,Z=-5.000000)
 		SightOffset=(X=-5.000000,Y=0.000000,Z=4.500000)
 		SightPivot=(Pitch=0,Roll=0)
 		CockAnimRate=0.900000
 		ReloadAnimRate=0.900000
+        WeaponName="M353 5.56mm Squad Machinegun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

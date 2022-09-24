@@ -7,7 +7,8 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
+	//Bigboom
+	Begin Object Class=ProjectileEffectParams Name=ClassicSlowEffectParams
 		ProjectileClass=Class'BallisticProV55.RSNovaProjectile'
 		SpawnOffset=(X=12.000000,Y=8.000000,Z=-9.000000)
 		Speed=50.000000
@@ -24,18 +25,138 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=60.000000
-		Chaos=-1.0
+		Chaos=0.2
 		Inaccuracy=(X=8,Y=8)
 		WarnTargetPct=0.200000	
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+	Begin Object Class=FireParams Name=ClassicSlowFireParams
 		FireInterval=0.800000
 		AmmoPerFire=3
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
-	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSlowEffectParams'
 	End Object
+	
+	//Smallboom
+	Begin Object Class=ProjectileEffectParams Name=ClassicFastEffectParams
+    	MuzzleFlashClass=Class'BallisticProV55.RSNovaFastMuzzleFlash'
+    	SpawnOffset=(X=12.000000,Y=8.000000,Z=-9.000000)
+        Speed=50.000000
+        AccelSpeed=30000.000000
+        MaxSpeed=7000.000000
+        Damage=18.000000
+		HeadMult=1.375
+		LimbMult=0.625
+		DamageRadius=48.000000
+		MomentumTransfer=10000.000000
+    	Recoil=14.000000
+	    Chaos=0.005000
+		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
+		bLimitMomentumZ=False
+		Inaccuracy=(X=8,Y=8)
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire2',Slot=SLOT_Interact,bNoOverride=False)
+	    ProjectileClass=Class'BallisticProV55.RSNovaFastProjectile'
+        WarnTargetPct=0.200000
+    End Object
+
+    Begin Object Class=FireParams Name=ClassicFastFireParams
+		AmmoPerFire=1
+		FireAnim="Fire2"
+	    FireEndAnim=
+        AimedFireAnim=
+	    FireInterval=0.150000
+        FireEffectParams(0)=ProjectileEffectParams'ClassicFastEffectParams'
+    End Object	
+	
+	//Lightning
+	Begin Object Class=ProjectileEffectParams Name=ClassicLightningEffectParams
+    	MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
+    	SpawnOffset=(X=0,Y=0,Z=0)
+        Speed=
+        AccelSpeed=
+        MaxSpeed=
+        Damage=5.000000
+		DamageRadius=
+		MomentumTransfer=
+		MaxDamageGainFactor=
+		DamageGainStartTime=
+		DamageGainEndTime=
+    	Recoil=7.000000
+	    Chaos=0.060000
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-AltFireStart',Slot=SLOT_Interact,bNoOverride=False)
+	    //ProjectileClass=
+        WarnTargetPct=0.200000
+    End Object
+
+    Begin Object Class=FireParams Name=ClassicLightningFireParams
+		TargetState="NovaLightning"
+		AmmoPerFire=1
+		FireLoopAnim="SecFireLoop"
+	    FireEndAnim="SecFireEnd"
+        AimedFireAnim=
+	    FireInterval=0.100000
+        FireEffectParams(0)=ProjectileEffectParams'ClassicLightningEffectParams'
+    End Object  
+
+	//God Strike
+	Begin Object Class=ProjectileEffectParams Name=ClassicGodStrikeEffectParams
+    	MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
+		SpawnOffset=(X=0,Y=0,Z=0)
+        Speed=
+        AccelSpeed=
+        MaxSpeed=
+        Damage=200.000000
+		DamageRadius=
+		MomentumTransfer=
+		MaxDamageGainFactor=
+		DamageGainStartTime=
+		DamageGainEndTime=
+    	Recoil=60.000000
+	    Chaos=0.060000
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-LightningBolt',Slot=SLOT_Interact,bNoOverride=False)
+	    //ProjectileClass=
+        WarnTargetPct=0.200000
+    End Object
+
+    Begin Object Class=FireParams Name=ClassicGodStrikeFireParams
+		TargetState="Zap"
+		AmmoPerFire=2
+		FireAnim="Fire"
+	    FireInterval=0.750000
+        FireEffectParams(0)=ProjectileEffectParams'ClassicGodStrikeEffectParams'
+    End Object
+
+	//Chain Lightning
+	Begin Object Class=ProjectileEffectParams Name=ClassicChainLightningEffectParams
+    	MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
+    	SpawnOffset=(X=0,Y=0,Z=0)
+        Speed=
+        AccelSpeed=
+        MaxSpeed=
+        Damage=5.000000
+		DamageRadius=
+		MomentumTransfer=
+		MaxDamageGainFactor=
+		DamageGainStartTime=
+		DamageGainEndTime=
+    	Recoil=256.000000
+	    Chaos=0.060000
+        FireSound=(Sound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-AltFireStart',Slot=SLOT_Interact,bNoOverride=False)
+	    //ProjectileClass=
+        WarnTargetPct=0.200000
+    End Object
+
+    Begin Object Class=FireParams Name=ClassicChainLightningFireParams
+		TargetState="ChainLightning"
+		AmmoPerFire=1
+		FireLoopAnim="SecFireLoop"
+	    FireEndAnim="SecFireEnd"
+        AimedFireAnim=
+	    FireInterval=0.100000
+        FireEffectParams(0)=ProjectileEffectParams'ClassicChainLightningEffectParams'
+    End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -89,16 +210,6 @@ defaultproperties
 		bViewDecline=True
 	End Object
 
-	Begin Object Class=RecoilParams Name=ClassicFastRecoilParams
-		XCurve=(Points=(,(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.080000),(InVal=0.300000,OutVal=0.180000),(InVal=0.600000,OutVal=0.240000),(InVal=0.700000,OutVal=0.30000),(InVal=1.000000,OutVal=0.35)))
-		YCurve=(Points=(,(InVal=0.100000,OutVal=0.050000),(InVal=0.200000,OutVal=0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=0.600000),(InVal=0.700000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
-		XRandFactor=0.05
-		YRandFactor=0.05
-		DeclineTime=0.5
-		ViewBindFactor=0.65
-		DeclineDelay=0.25
-	End Object
-
 	//=================================================================
 	// AIM
 	//=================================================================
@@ -110,6 +221,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-500,Yaw=-1024)
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=2400.000000
 	End Object
@@ -119,15 +231,18 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=66
 		SightOffset=(X=-16.000000,Z=14.000000)
 		SightPivot=(Pitch=1200)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		RecoilParams(1)=RecoilParams'ClassicFastRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(0)=FireParams'ClassicSlowFireParams'
+		FireParams(1)=FireParams'ClassicFastFireParams'
+		FireParams(2)=FireParams'ClassicLightningFireParams'
+		FireParams(3)=FireParams'ClassicGodStrikeFireParams'
+		FireParams(4)=FireParams'ClassicChainLightningFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'

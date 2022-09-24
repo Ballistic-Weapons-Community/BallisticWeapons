@@ -18,7 +18,8 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.ProtonPack.proton_pack_static'
+     bOnSide=False
+	 LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.ProtonPack.proton_pack_static'
      PickupDrawScale=0.750000
      InventoryType=Class'BWBP_OP_Pro.ProtonStreamer'
      RespawnTime=20.000000

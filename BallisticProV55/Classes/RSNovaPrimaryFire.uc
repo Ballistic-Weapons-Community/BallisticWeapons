@@ -255,61 +255,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 		ModePowerDrain *= 0.4;
 }
 
-function StartBerserk()
-{
-	if (BW.CurrentWeaponMode == 0)
-	{
-		FireRate = default.FireRate * 0.75;
-		FireAnimRate = default.FireAnimRate * 0.75;
-		FireRecoil = default.FireRecoil * 0.75;
-		FireChaos = default.FireChaos * 0.75;
-	}
-	else
-	{
-		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate * 0.75;
-    	FireAnimRate = default.FireAnimRate * 0.75;
-    	FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil * 0.75;
-		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos * 0.75;
-	}
-}
-
-function StopBerserk()
-{
-	if (BW.CurrentWeaponMode == 0)
-	{
-		FireRate = default.FireRate;
-		FireAnimRate = default.FireAnimRate;
-		FireRecoil = default.FireRecoil;
-		FireChaos = default.FireChaos;
-	}
-	else
-	{
-		FireRate = FireModes[BW.CurrentWeaponMode-1].mFireRate;
-    	FireAnimRate = default.FireAnimRate;
-    	FireRecoil = FireModes[BW.CurrentWeaponMode-1].mRecoil;
-		FireChaos = FireModes[BW.CurrentWeaponMode-1].mFireChaos;
-	}
-}
-
-function StartSuperBerserk()
-{
-	if (BW.CurrentWeaponMode == 4)
-    	FireRate = 0.1;
-	else if (BW.CurrentWeaponMode == 3)
-    	FireRate = 0.75;
-	else if (BW.CurrentWeaponMode == 2)
-    	FireRate = 0.1;
-	else if (BW.CurrentWeaponMode == 1)
-    	FireRate = 0.15;
-	else
-    	FireRate = 0.8;
-    FireRate /= Level.GRI.WeaponBerserk;
-    FireAnimRate = default.FireAnimRate * Level.GRI.WeaponBerserk;
-    ReloadAnimRate = default.ReloadAnimRate * Level.GRI.WeaponBerserk;
-}
-
-
-
 event Timer()
 {
 	super.Timer();
@@ -630,7 +575,7 @@ state Zap
 		else if (Vehicle(Other) != None && Vehicle(Other).Driver!=None && Vehicle(Other).Driver.Health > 0)
 			bWasAlive = true;
 
-		class'BallisticDamageType'.static.GenericHurt (Other, 145, Instigator, HitLocation, 50000 * Dir, class'DT_RSNovaOneShotZap');
+		class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, 50000 * Dir, class'DT_RSNovaOneShotZap');
 
 		if (bWasAlive && Pawn(Other).Health <= 0)
 			class'RSNovaSoul'.static.SpawnSoul(Other.Location, Instigator, Pawn(Other), Weapon);
@@ -946,7 +891,7 @@ state ChainLightning
 					bWasAlive = false;
 
 				ForceDir = (Instigator.Location + vector(Instigator.GetViewRotation()) * 700) - ChainVics[i].ZapVic.Location;
-				class'BallisticDamageType'.static.GenericHurt (ChainVics[i].ZapVic, 6, Instigator, ChainVics[i].ZapVic.Location + (Normal(ChainVics[i].ZapVic.Location - Instigator.Location))*-24, 40000 * FMax(0.1, 1-(VSize(ForceDir)/2000)) * Normal(ForceDir), class'DT_RSNovaChainLightning');
+				class'BallisticDamageType'.static.GenericHurt (ChainVics[i].ZapVic, Damage*2, Instigator, ChainVics[i].ZapVic.Location + (Normal(ChainVics[i].ZapVic.Location - Instigator.Location))*-24, 40000 * FMax(0.1, 1-(VSize(ForceDir)/2000)) * Normal(ForceDir), class'DT_RSNovaChainLightning');
 
 				if (bWasAlive && Pawn(ChainVics[i].ZapVic).Health <= 0)
 					class'RSNovaSoul'.static.SpawnSoul(ChainVics[i].ZapVic.Location, Instigator, Pawn(ChainVics[i].ZapVic), Weapon);
@@ -1048,22 +993,22 @@ static function FireModeStats GetStats()
 {
 	local FireModeStats FS;
 
-	FS.DamageInt = default.FireModes[0].mProjClass.default.Damage;
+	FS.DamageInt = default.ProjectileClass.default.Damage;
 	FS.Damage = String(FS.DamageInt);
 
 
     FS.HeadMult = class<BallisticProjectile>(default.ProjectileClass).default.HeadMult;
     FS.LimbMult = class<BallisticProjectile>(default.ProjectileClass).default.LimbMult;
 
-	FS.DPS = default.FireModes[0].mProjClass.default.Damage / default.FireModes[0].mFireRate;
-	FS.TTK = default.FireModes[0].mFireRate * (Ceil(175/default.FireModes[0].mProjClass.default.Damage) - 1);
-	if (default.FireModes[0].mFireRate < 0.5)
-		FS.RPM = String(int((1 / default.FireModes[0].mFireRate) * 60))@default.ShotTypeString$"/min";
-	else FS.RPM = 1/default.FireModes[0].mFireRate@"times/second";
-	FS.RPShot = default.FireModes[0].mRecoil;
-	FS.RPS = default.FireModes[0].mRecoil / default.FireModes[0].mFireRate;
-	FS.FCPShot = default.FireModes[0].mFireChaos;
-	FS.FCPS = default.FireModes[0].mFireChaos / default.FireModes[0].mFireRate;
+	FS.DPS = default.ProjectileClass.default.Damage / default.FireRate;
+	FS.TTK = default.FireRate * (Ceil(175/default.ProjectileClass.default.Damage) - 1);
+	if (default.FireRate < 0.5)
+		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
+	else FS.RPM = 1/default.FireRate@"times/second";
+	FS.RPShot = default.FireRecoil;
+	FS.RPS = default.FireRecoil / default.FireRate;
+	FS.FCPShot = default.FireChaos;
+	FS.FCPS = default.FireChaos / default.FireRate;
 	FS.RangeOpt = "Max:"@(10000 / 52.5)@"metres";
 	
 	return FS;
@@ -1075,11 +1020,7 @@ defaultproperties
      FireSoundLoop=Sound'BW_Core_WeaponSound.NovaStaff.Nova-AltFireLoop'
      Damage=2
      SpawnOffset=(X=12.000000,Y=8.000000,Z=-9.000000)
-     FireModes(0)=(mProjClass=Class'BallisticProV55.RSNovaFastProjectile',mFireRate=0.170000,mFireChaos=0.060000,mFireSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-Fire2',mFireAnim="Fire2",mRecoil=150.000000,mAmmoPerFire=1,bModeLead=True,bModeSplash=True)
-     FireModes(1)=(mFireRate=0.100000,mFireSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=7.000000,mAmmoPerFire=1,TargetState="NovaLightning",bModeInstantHit=True)
-     FireModes(2)=(mFireRate=0.750000,mFireSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-LightningBolt',mFireAnim="Fire",mRecoil=256.000000,mAmmoPerFire=2,TargetState="Zap",bModeInstantHit=True)
-     FireModes(3)=(mFireRate=0.100000,mFireSound=Sound'BW_Core_WeaponSound.NovaStaff.Nova-AltFireStart',mFireAnim="SecFireLoop",bLoopedAnim=True,mFireEndAnim="SecFireEnd",mRecoil=256.000000,mAmmoPerFire=1,TargetState="ChainLightning",bModeInstantHit=True)
-     MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
+	 MuzzleFlashClass=Class'BallisticProV55.RSNovaSlowMuzzleFlash'
      FireRecoil=1024.000000
      FireChaos=0.250000
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))

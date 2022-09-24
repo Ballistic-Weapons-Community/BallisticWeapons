@@ -81,6 +81,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 
 defaultproperties
 {
+	 bApplyParams=False
      bPenetrate=True
      StartDelay=0.050000
      Speed=3000.000000

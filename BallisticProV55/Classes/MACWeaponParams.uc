@@ -14,6 +14,7 @@ defaultproperties
 		Damage=160
 		DamageRadius=192.000000
 		MomentumTransfer=70000.000000
+		PushBackForce=1000
 		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 		FlashScaleFactor=2.500000
 		Recoil=256.000000
@@ -61,7 +62,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ArenaAimParams
 		SprintOffSet=(Pitch=-7000,Yaw=-3500)
 		JumpOffSet=(Pitch=-6000,Yaw=-1500)
-		AimAdjustTime=1.000000
+		AimAdjustTime=0.700000
 		AimSpread=(Min=256,Max=2048)
 		ChaosDeclineTime=1.200000
 		ChaosSpeedThreshold=3500.000000
@@ -72,6 +73,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		ReloadAnimRate=2.250000
 		SightPivot=(Pitch=450)
 		SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
 		ViewOffset=(X=3.000000,Y=12.000000,Z=-3.000000)

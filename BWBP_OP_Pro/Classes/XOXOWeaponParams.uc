@@ -42,7 +42,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_OP_Pro.XOXOBomb'
 		SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
 		Speed=2500.000000
-		MaxSpeed=2500.000000
+		MaxSpeed=0000.000000
 		AccelSpeed=100000.000000
 		Damage=100
 		DamageRadius=768.000000
@@ -53,7 +53,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-FireBig',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=1024.000000
-		Chaos=0.750000
+		Chaos=0.250000
 		WarnTargetPct=0.200000	
 	End Object
 
@@ -218,6 +218,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		ReloadAnimRate=1.250000
 		ViewOffset=(X=5.000000,Y=6.000000,Z=-9.000000)
 		SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
 		SightPivot=(Pitch=768)

@@ -74,12 +74,12 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=25
+        InventorySize=7
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=8
 		SightOffset=(X=-20.000000,Y=-7.350000,Z=41.700000)
 		ViewOffset=(X=0.000000,Y=19.500000,Z=-30.000000)
-		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=55,Scale=0f)
+		WeaponBoneScales(0)=(BoneName="RedDotSight",Slot=54,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="LAM",Slot=55,Scale=1f)
 		ZoomType=ZT_Irons
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

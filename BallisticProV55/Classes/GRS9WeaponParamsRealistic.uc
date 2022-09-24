@@ -153,8 +153,9 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=5
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.21
 		MagAmmo=19
 		ViewOffset=(X=6.000000,Y=7.000000,Z=-8.000000)
 		SightOffset=(X=-15.000000,Y=-1.000000,Z=17.600000)
@@ -168,6 +169,7 @@ defaultproperties
 		InitialWeaponMode=2
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.400000
+		WeaponName="GRS9-L2 9mm Handgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticBurstRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'

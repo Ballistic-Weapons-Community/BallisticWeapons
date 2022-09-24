@@ -65,7 +65,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicCarbinePrimaryFireParams
-		FireInterval=0.100000
+		FireInterval=0.110000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ClassicCarbinePrimaryEffectParams'
@@ -134,6 +134,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.250000
 		SprintChaos=1.000000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.500000
 	End Object
 	
@@ -143,6 +144,7 @@ defaultproperties
 		ADSMultiplier=0.800000
 		ViewBindFactor=0.250000
 		SprintChaos=1.000000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.000000
 	End Object
     
@@ -151,15 +153,15 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		WeaponBoneScales(0)=(BoneName="Scope",Slot=21,Scale=1f)
-		WeaponBoneScales(1)=(BoneName="RDS",Slot=22,Scale=0f)
-		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=23,Scale=1f)
-		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=24,Scale=0f)
-		WeaponBoneScales(4)=(BoneName="Stock",Slot=25,Scale=1f)
-		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=26,Scale=0f)
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=91,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="RDS",Slot=92,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=93,Scale=1f)
+		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=94,Scale=0f)
+		WeaponBoneScales(4)=(BoneName="Stock",Slot=95,Scale=1f)
+		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=96,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=20
 		SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
@@ -177,24 +179,25 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-		Begin Object Class=WeaponParams Name=ClassicCarbineParams
-		WeaponBoneScales(0)=(BoneName="Scope",Slot=21,Scale=0f)
-		WeaponBoneScales(1)=(BoneName="RDS",Slot=22,Scale=1f)
-		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=23,Scale=0f)
-		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=24,Scale=1f)
-		WeaponBoneScales(4)=(BoneName="Stock",Slot=25,Scale=0f)
-		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=26,Scale=1f)
+	Begin Object Class=WeaponParams Name=ClassicCarbineParams
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=91,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="RDS",Slot=92,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=93,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=94,Scale=1f)
+		WeaponBoneScales(4)=(BoneName="Stock",Slot=95,Scale=0f)
+		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=96,Scale=1f)
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
-		InventorySize=35
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=20
 		SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
-		ZoomType=ZT_Logarithmic
+		ZoomType=ZT_Irons
 		WeaponModes(0)=(ModeName="Single Barrel",ModeID="WM_FullAuto")
-		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Double Barrel",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
 		WeaponModes(2)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=0
 		WeaponName="LS10 Laser Carbine"
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000

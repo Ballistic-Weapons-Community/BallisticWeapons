@@ -78,7 +78,7 @@ simulated function FireShot(vector Start, Vector End, float Dist, bool bHit, vec
 // Purpose: Facilitate and limit conditions for igniting players, track gun type
 // Actions: Increment singe count for the specified enemy, possibly start an ActorBurner
 // Sources: Flame projectiles and radius damagers or fires that can ignite a player
-function FireSinge(Pawn P, Pawn InstigatedBy, int triggerType)
+function FireSinge(Pawn P, Pawn InstigatedBy, int triggerType, optional int numZaps)
 {
 	local int i;
 
@@ -86,10 +86,13 @@ function FireSinge(Pawn P, Pawn InstigatedBy, int triggerType)
 			if (SingeVictims[i].Vic == P)
 			{
 				SingeVictims[i].NextReduceTime = level.TimeSeconds + 2.0;
-				SingeVictims[i].Burns++;
-				if (SingeVictims[i].Burns == 25)
-					MakeNewExploder(P, InstigatedBy, triggerType);
+				if (numZaps == 0)
+					SingeVictims[i].Burns++;
+				else
+					SingeVictims[i].Burns += numZaps;
 				if (SingeVictims[i].Burns == 15)
+					MakeNewExploder(P, InstigatedBy, triggerType);
+				if (SingeVictims[i].Burns == 10)
 					MakeNewBurner(P, InstigatedBy, triggerType);
 				return;
 			}
@@ -249,23 +252,38 @@ function MakeNewExploder (Actor Other, Pawn InstigatedBy, int triggerType)
 
 	if (triggerType == 1)
 	{
-		Proj1 = Spawn (class'Supercharger_Detonator',InstigatedBy,,Other.Location, Other.Rotation);
+		Proj1 = Spawn (class'Supercharger_Detonator',,,Other.Location, Other.Rotation);
 		if (Proj1 != None)
 		{
 			Proj1.Instigator = InstigatedBy;
-			Proj1.ChargeControl = self;
 		}
 	}
 	else if (triggerType == 2)
 	{
-		Proj2 = Spawn (class'AK91_Detonator',InstigatedBy,,Other.Location, Other.Rotation);
+		Proj2 = Spawn (class'AK91_Detonator',,,Other.Location, Other.Rotation);
 		if (Proj2 != None)
 		{
 			Proj2.Instigator = InstigatedBy;
-			Proj2.ChargeControl = self;
 		}
 	}
 }
+/*
+function MakeNewExploder (Actor Other, Pawn InstigatedBy, int triggerType)
+{
+	local Supercharger_ActorExploder PF1;
+	local AK91_ActorExploder PF2;
+
+	if (triggerType == 1)
+	{
+		PF1 = Spawn (class'Supercharger_ActorExploder',InstigatedBy,,Other.Location, Other.Rotation);
+		PF1.Initialize(Other);
+	}
+	else if (triggerType == 2)
+	{
+		PF2 = Spawn (class'AK91_ActorExploder',InstigatedBy,,Other.Location, Other.Rotation);
+		PF2.Initialize(Other);
+	}
+}*/
 
 
 defaultproperties

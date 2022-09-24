@@ -83,6 +83,7 @@ defaultproperties
 		ViewBindFactor=0.500000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
+		bViewDecline=True
 	End Object
 
 	//=================================================================
@@ -104,7 +105,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=1
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

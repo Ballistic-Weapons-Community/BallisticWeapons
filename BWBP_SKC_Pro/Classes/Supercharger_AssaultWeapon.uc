@@ -23,10 +23,6 @@ var float		NextChangeMindTime;	// For AI
 var bool		bWaterBurn;			// busy getting damaged in water
 var bool		bIsVenting;
 
-var bool	bArcOOA;			// Arcs have been killed cause ammo is out
-var Actor	Arc1;				// The decorative side arc
-var Actor	Arc2;				// The top arcs
-var Actor	Arc3;
 var Actor	ClawSpark1;			// Sparks attached to claws when tracking enemy
 var Actor	ClawSpark2;
 var float	ClawAlpha;			// An alpha amount for claw movement interpolation
@@ -214,25 +210,6 @@ simulated event WeaponTick(float DT)
 	if (!Instigator.IsLocallyControlled())
 		return;
 
-
-	if (level.DetailMode>DM_Low)
-	{
-		if (AmmoAmount(0) < 1 && !FireMode[1].bIsFiring)	{	
-			if (!bArcOOA)
-			{
-				bArcOOA=true;
-				if (Arc1 != None)	Arc1.Destroy();
-				if (Arc2 != None)	Arc2.Destroy();
-				if (Arc3 != None)	Arc3.Destroy();
-			}	
-		}
-		else if (bArcOOA)
-		{
-			bArcOOA = false;
-			InitArcs();
-		}
-	}
-
 	if (ClawSpark1 != None)
 	{
 		End = GetBoneCoords('tip').Origin + vector(Instigator.GetViewRotation()) * 96;
@@ -254,8 +231,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	Instigator.SoundPitch = default.SoundPitch;
 	Instigator.SoundRadius = default.SoundRadius;
 	Instigator.bFullVolume = true;
-	if (AmmoAmount(0) > 0 && level.DetailMode>DM_Low)
-		InitArcs();
 }
 simulated function bool PutDown()
 {
@@ -268,9 +243,6 @@ simulated function bool PutDown()
 			ServerReloadRelease();
 		}
 
-		if (Arc1 != None)	Arc1.Destroy();
-		if (Arc2 != None)	Arc2.Destroy();
-		if (Arc3 != None)	Arc3.Destroy();
 		bWaterBurn=false;
 		Instigator.AmbientSound = None;
 		Instigator.SoundVolume = Instigator.default.SoundVolume;
@@ -282,25 +254,6 @@ simulated function bool PutDown()
 	return false;
 }
 
-
-simulated function ResetArcs()
-{
-	if (level.DetailMode>DM_Low)
-	{
-		if (Arc1==None && bArcOOA)
-			return;
-		InitArcs();
-	}
-}
-simulated function InitArcs()
-{
-	if (Arc1 == None)
-		class'bUtil'.static.InitMuzzleFlash(Arc1, class'HVCMk9_SideArc', DrawScale, self, 'Arc3');
-	if (Arc2 == None)
-		class'bUtil'.static.InitMuzzleFlash(Arc2, class'HVCMk9_TopArc',  DrawScale, self, 'Arc1');
-	if (Arc3 == None)
-		class'bUtil'.static.InitMuzzleFlash(Arc3, class'HVCMk9_TopArc',  DrawScale, self, 'Arc2');
-}
 
 // -----------------------------------------------
 // Reload / Venting stuff
@@ -323,12 +276,6 @@ simulated function Notify_LGArcOff()
 {
 	Instigator.AmbientSound = VentingSound;
 	Instigator.SoundVolume = 128;
-	if (Arc1 != None)
-	{	Emitter(Arc1).Kill();	Arc1=None;	}
-	if (Arc2 != None)
-	{	Emitter(Arc2).Kill();	Arc2=None;	}
-	if (Arc3 != None)
-	{	Emitter(Arc3).Kill();	Arc3=None;	}
 }
 simulated event AnimEnd (int Channel)
 {
@@ -385,8 +332,7 @@ exec simulated function ReloadRelease(optional byte i)
 }
 simulated function Notify_LGArcOn()
 {
-	if (AmmoAmount(0) > 0 && level.DetailMode>DM_Low)
-		InitArcs();
+
 }
 function ServerReloadRelease(optional byte i)
 {
@@ -400,13 +346,6 @@ function ServerReloadRelease(optional byte i)
 
 simulated function Destroyed()
 {
-
-	if (Arc1 != None)
-		Arc1.Destroy();
-	if (Arc2 != None)
-		Arc2.Destroy();
-	if (Arc3 != None)
-		Arc3.Destroy();
 	if (ClawSpark1 != None)
 		ClawSpark1.Destroy();
 	if (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == VentingSound)
@@ -456,7 +395,7 @@ function bool CanAttack(Actor Other)
 
     // check that target is within range
     Dist = VSize(Instigator.Location - Other.Location);
-    if (Dist > FireMode[1].MaxRange())
+    if (Dist > FireMode[0].MaxRange())
 	{
 		BotReload();
         return false;
@@ -521,50 +460,24 @@ function bool CanAttack(Actor Other)
 function byte BestMode()
 {
 	local Bot B;
-	local float Result, Dist;
-	local Controller C;
+	local float Dist;
+	local Vector Dir;
 
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
-		return Rand(2);
-
-	Dist = VSize(B.Enemy.Location - Instigator.Location);
-	if (level.Game.bTeamGame && Rand(7) < B.Skill)
-	{
-		for (C=level.ControllerList;C!=None;C=C.nextController)
-			if (Instigator.Controller.SameTeamAs(C) && C.Pawn != None && Normal(C.Pawn.Location - Instigator.Location) Dot Normal(B.Enemy.Location - Instigator.Location) > 0.75)
-				return 1;
-	}
-	Result = FRand()-0.1;
-	if (Instigator.PhysicsVolume.bWaterVolume)
-	{
-		if (B.Enemy.PhysicsVolume == Instigator.PhysicsVolume && Dist > 200)
-			Result -= 0.5;
-		else if (Dist < 200)
-			Result += 0.4;
-		if (Result > 0.5)
-			return 1;
-		return 0;
-	}
-
-	// Stubborn ass bots want to keep zapping
-	if (NextChangeMindTime > level.TimeSeconds)
 		return 0;
 
-	if (HeatLevel > 5)
-		Result -= 0.1 * B.Skill * ((HeatLevel-5)/5);
-	if (Dist > 1150)
-		Result += 0.08 * B.Skill;
-	else if (Dist < 500)
-		result -= 0.05 * B.Skill;
-	if (VSize(B.Enemy.Velocity) < 100)
-		Result += 0.3;
-	Result += 0.4 * (FMax(0.0, Normal(B.Enemy.Velocity) Dot vector(Instigator.GetViewRotation())) * 2 - 1);
-
-	if (Result > 0.5)
+	if (!HasAmmoLoaded(0))
 		return 1;
-	NextChangeMindTime = level.TimeSeconds + 4;
-	return 0;
+
+	Dir = Instigator.Location - B.Enemy.Location;
+	Dist = VSize(Dir);
+
+	if (Dist > 200)
+		return 0;
+	if (Dist < FireMode[1].MaxRange())
+		return 1;
+	return Rand(2);
 }
 
 function float GetAIRating()
@@ -597,85 +510,67 @@ defaultproperties
 	OverheatSound=Sound'BW_Core_WeaponSound.LightningGun.LG-OverHeat'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	UsedAmbientSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
-     AIReloadTime=0.200000
-     BigIconMaterial=Texture'BWBP_SKC_Tex.AK91.BigIcon_AK91'
-     //BallisticInventoryGroup=6
+    AIReloadTime=0.200000
+    BigIconMaterial=Texture'BWBP_SKC_Tex.SuperCharger.BigIcon_Super'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
 	bWT_Energy=True
-     bWT_Splash=True
-     bWT_RapidProj=True
-     bWT_Projectile=True
-     SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.5;1.0")
+    bWT_Splash=True
+    bWT_RapidProj=True
+    bWT_Projectile=True
+    SpecialInfo(0)=(Info="360.0;40.0;1.0;90.0;0.0;0.5;1.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Pullout',Volume=0.750000)
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway',Volume=0.600000)
-     MagAmmo=100
-     CockAnimPostReload="Idle"
-     CockAnim="Idle"
-     ClipInFrame=0.700000
-     bNeedCock=False
-     bCockOnEmpty=False
-	 bNonCocking=True
-//	bShowChargingBar=True
-	 bNoMag=True
+    MagAmmo=100
+    CockAnimPostReload="Idle"
+    CockAnim="Idle"
+    ClipInFrame=0.700000
+    bNeedCock=False
+    bCockOnEmpty=False
+	bNonCocking=True
+	bNoMag=True
 	ParamsClasses(0)=Class'SuperchargerWeaponParamsArena'
-	ParamsClasses(1)=Class'SuperchargerWeaponParamsClassic' \\todo: lots of state code
-     WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
-     WeaponModes(1)=(ModeName="Max Safe Voltage",Value=5.000000)
-     WeaponModes(2)=(ModeName="Overload")
+	ParamsClasses(1)=Class'SuperchargerWeaponParamsClassic'
+	ParamsClasses(2)=Class'SuperchargerWeaponParamsRealistic'
+    WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
+    WeaponModes(1)=(ModeName="Max Safe Voltage",Value=5.000000)
+    WeaponModes(2)=(ModeName="Overload")
 	CurrentWeaponMode=2
-	ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
-//     RecoilXCurve=(Points=(,(InVal=0.100000,OutVal=0.010000),(InVal=0.200000,OutVal=0.250000),(InVal=0.300000,OutVal=-0.300000),(InVal=0.600000,OutVal=-0.250000),(InVal=0.700000,OutVal=0.250000),(InVal=1.000000,OutVal=-0.300000)))
-//     RecoilYCurve=(Points=(,(InVal=0.100000,OutVal=0.180000),(InVal=0.200000,OutVal=-0.200000),(InVal=0.300000,OutVal=0.300000),(InVal=0.600000,OutVal=-0.150000),(InVal=0.700000,OutVal=0.300000),(InVal=1.000000,OutVal=0.600000)))
-     SightOffset=(X=-25.000000,Z=19.500000)
-     SightDisplayFOV=40.000000
-//     CrosshairCfg=(Pic1=Texture'BallisticUI2.Crosshairs.R78OutA',Pic2=Texture'BallisticUI2.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=0,A=255),Color2=(B=0,G=0,R=255,A=255),StartSize1=90,StartSize2=93)
-     GunLength=16.500000
-     LongGunPivot=(Pitch=2000,Yaw=-1024)
-     LongGunOffset=(X=-10.000000,Y=0.000000,Z=-5.000000)
-//     CrouchAimFactor=0.800000
-//     JumpOffSet=(Pitch=1000,Yaw=-500)
-//     JumpChaos=0.300000
-//     AimAdjustTime=0.400000
-//     AimSpread=(X=(Min=-32.000000,Max=32.000000),Y=(Min=-32.000000,Max=32.000000))
-//     ChaosAimSpread=(X=(Min=-1048.000000,Max=1048.000000),Y=(Min=-1600.000000,Max=1600.000000))
-//     ViewAimFactor=0.050000
-//     ViewRecoilFactor=0.200000
-//     ChaosDeclineTime=1.000000
-//     ChaosTurnThreshold=170000.000000
-//     ChaosSpeedThreshold=1200.000000
-//     RecoilXFactor=0.250000
-//     RecoilYFactor=0.250000
-//     RecoilMax=1600.000000
-//     RecoilDeclineTime=0.800000
+	ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeView'
+	SightOffset=(X=-25.000000,Z=19.500000)
+    SightDisplayFOV=40.000000
+    NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.R78OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=0,A=255),Color2=(B=0,G=0,R=255,A=255),StartSize1=90,StartSize2=93)
+    GunLength=16.500000
+    LongGunPivot=(Pitch=2000,Yaw=-1024)
+    LongGunOffset=(X=-10.000000,Y=0.000000,Z=-5.000000)
 	PutDownTime=1.500000
 	BringUpTime=1.50000
     SelectAnimRate=1.0
     PutDownAnimRate=1.0
-     FireModeClass(0)=Class'BWBP_SKC_Pro.Supercharger_PrimaryFire'
-     FireModeClass(1)=Class'BWBP_SKC_Pro.Supercharger_SecondaryFire'
-     SelectForce="SwitchToAssaultRifle"
-     AIRating=0.600000
-     CurrentRating=0.600000
-     bShowChargingBar=True
-     Description="Van Holt 500KW Supercharger||Manufacturer: Dipheox Combat Arms|Primary: Directed Energy Fire|Secondary: Magnetically Contained Projectile||Not much is known about this enigmatic CYLO variation. It is extremely rare and a cloesly guarded secret."
-     DisplayFOV=55.000000
-     Priority=41
-     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-     InventoryGroup=5
-     PickupClass=Class'BWBP_SKC_Pro.Supercharger_Pickup'
-     PlayerViewOffset=(X=5.000000,Y=5.000000,Z=-14.000000)
-     BobDamping=2.000000
-     AttachmentClass=Class'BWBP_SKC_Pro.Supercharger_Attachment'
-     IconMaterial=Texture'BWBP_SKC_Tex.AK91.SmallIcon_AK91'
-     IconCoords=(X2=127,Y2=31)
-     ItemName="[B] Van Holt 500KW Supercharger"
-     LightType=LT_Pulse
-     LightEffect=LE_NonIncidence
-     LightHue=30
-     LightSaturation=150
-     LightBrightness=150.000000
-     LightRadius=4.000000
-     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Supercharger'
-     DrawScale=0.360000
+    FireModeClass(0)=Class'BWBP_SKC_Pro.Supercharger_PrimaryFire'
+    FireModeClass(1)=Class'BWBP_SKC_Pro.Supercharger_SecondaryFire'
+    SelectForce="SwitchToAssaultRifle"
+    AIRating=0.600000
+    CurrentRating=0.600000
+    bShowChargingBar=True
+    Description="Van Holt 500KW Supercharger||Manufacturer: Dipheox Combat Arms|Primary: Directed Energy Fire|Secondary: Magnetically Contained Projectile||Not much is known about this enigmatic CYLO variation. It is extremely rare and a cloesly guarded secret."
+    DisplayFOV=55.000000
+    Priority=41
+    CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
+    InventoryGroup=5
+    PickupClass=Class'BWBP_SKC_Pro.Supercharger_Pickup'
+    PlayerViewOffset=(X=5.000000,Y=5.000000,Z=-14.000000)
+    BobDamping=2.000000
+    AttachmentClass=Class'BWBP_SKC_Pro.Supercharger_Attachment'
+    IconMaterial=Texture'BWBP_SKC_Tex.SuperCharger.SmallIcon_Super'
+    IconCoords=(X2=127,Y2=31)
+    ItemName="V-H 500KW Supercharger"
+    LightType=LT_Pulse
+    LightEffect=LE_NonIncidence
+    LightHue=30
+    LightSaturation=150
+    LightBrightness=150.000000
+    LightRadius=4.000000
+    Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Supercharger'
+    DrawScale=0.360000
 }

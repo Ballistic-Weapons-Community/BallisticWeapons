@@ -38,6 +38,20 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
+
+	//=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -66,6 +80,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.250000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=600.000000
 	End Object
@@ -76,7 +91,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=13,Scale=0f)
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
 		SightOffset=(X=-2.000000,Z=15.400000)
@@ -86,6 +101,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
 

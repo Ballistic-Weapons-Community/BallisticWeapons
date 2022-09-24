@@ -16,7 +16,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Mut_BallisticSwap extends Mut_Ballistic;
+class Mut_BallisticSwap extends Mut_Ballistic
+	transient
+	HideDropDown
+	CacheExempt;
 
 //===========================================================================
 // Structs

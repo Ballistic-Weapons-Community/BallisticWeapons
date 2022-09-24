@@ -11,8 +11,12 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Mut_BallisticArena extends Mut_Ballistic config(BallisticProV55);
-
+class Mut_BallisticArena extends Mut_Ballistic
+	transient
+	HideDropDown
+	CacheExempt
+	config(BallisticProV55);
+	
 var() config array<string>	WeaponClassNames;	// List of weapons given to players
 var() config bool			bRandomPickOne;		// Randomly picks one weapon per match from the list for all players instead of giving players all of them
 var() config bool			bRandomPerSpawn;	// Randomly selects a new weapon from the list each time the player spawns

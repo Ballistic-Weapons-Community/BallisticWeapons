@@ -40,10 +40,15 @@ simulated function bool AllowFire()
 
 function PlayFiring()
 {
-	if (BW.MagAmmo - ConsumedLoad < 1 || M763Shotgun(BW).BCRepClass.default.GameStyle != 0)
+	if (BW.MagAmmo - ConsumedLoad < 1 || M763Shotgun(BW).BCRepClass.default.GameStyle == 2)
 	{
 		AimedFireAnim = 'FireSight';
 		FireAnim = 'Fire';
+	}
+	else if (M763Shotgun(BW).BCRepClass.default.GameStyle == 1)
+	{
+		AimedFireAnim = 'FireCombinedSight';
+		FireAnim = 'FireClassic';
 	}
 	else
 	{
@@ -55,10 +60,15 @@ function PlayFiring()
 
 function ServerPlayFiring()
 {
-	if (BW.MagAmmo - ConsumedLoad < 1 || M763Shotgun(BW).BCRepClass.default.GameStyle != 0)
+	if (BW.MagAmmo - ConsumedLoad < 1 || M763Shotgun(BW).BCRepClass.default.GameStyle == 2)
 	{
 		AimedFireAnim = 'FireSight';
 		FireAnim = 'Fire';
+	}
+	else if (M763Shotgun(BW).BCRepClass.default.GameStyle == 1)
+	{
+		AimedFireAnim = 'FireCombinedSight';
+		FireAnim = 'FireClassic';
 	}
 	else
 	{

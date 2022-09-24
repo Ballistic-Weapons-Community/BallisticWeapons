@@ -10,8 +10,6 @@
 //=============================================================================
 class AK91SecondaryFire extends BallisticShotgunFire;
 
-var int WaveDamage;
-
 simulated function bool AllowFire()
 {
 	if (AK91ChargeRifle(BW).HeatLevel <= 5.0 || !super.AllowFire())
@@ -31,27 +29,26 @@ function DoFireEffect()
 {
  	local Vector Start;
  	local Rotator Aim;
-	AK91ChargeRifle(BW).AddHeat(-10.00);
  
  	Start = Instigator.Location + Instigator.EyePosition();
  
  	Aim = GetFireAim(Start);
  	Aim = Rotator(GetFireSpread() >> Aim);
  
- 	AK91ChargeRifle(BW).ConicalBlast(WaveDamage, 512, Vector(Aim)); //Wave damage here will scale with heat
+ 	AK91ChargeRifle(BW).ConicalBlast(Damage*2, 512, Vector(Aim)); //Wave damage here scales with heat on the main gun
+	AK91ChargeRifle(BW).AddHeat(-10.00);
 	Super.DoFireEffect();
 }
 
 
 defaultproperties
 {
-     FlashBone="tip3"
-     TraceCount=3
+     FlashBone="LAM"
+     TraceCount=1
      TracerChance=1.000000
      ImpactManager=Class'BWBP_SKC_Pro.IM_GRSXXLaser'
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
      TraceRange=(Min=600.000000,Max=600.000000)
-	 WaveDamage=10
      Damage=5
      RangeAtten=0.200000
      DamageType=Class'BWBP_SKC_Pro.DTA49Shockwave'
@@ -72,7 +69,7 @@ defaultproperties
      FireAnim="AltFire"
      TweenTime=0.000000
      FireRate=1.700000
-     AmmoClass=Class'BallisticProV55.Ammo_Cells'
+     AmmoClass=Class'BWBP_SKC_Pro.Ammo_AK762mm'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000

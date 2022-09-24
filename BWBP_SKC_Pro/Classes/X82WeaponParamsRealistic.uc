@@ -94,8 +94,9 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=0.850000
-		InventorySize=35
+		InventorySize=25
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.33
 		MagAmmo=5
 		ViewOffset=(X=-5,Y=5,Z=-9)
 		SightOffset=(X=13.000000,Y=-1.600000,Z=7.200000)
@@ -103,6 +104,7 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		CockAnimRate=1.000000
 		ReloadAnimRate=0.400000
+		WeaponName="X83A1 12.7mm Anti-Materiel Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

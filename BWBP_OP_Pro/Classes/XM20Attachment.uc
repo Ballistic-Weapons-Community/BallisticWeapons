@@ -96,8 +96,12 @@ defaultproperties
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.XM20.XM20-FlyBy',Volume=0.700000)
      FlyByBulletSpeed=-1.000000
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_OP_Anim.XM20Blue_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.XM20_TPm'
      RelativeLocation=(X=-3.000000,Z=2.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.200000
+     Skins(0)=Texture'ONSstructureTextures.CoreGroup.Invisible'
+     Skins(1)=Shader'BWBP_SKC_Tex.XM20Prototype.XM20-MainProtoShine'
+     Skins(2)=Texture'BWBP_SKC_Tex.XM20Prototype.XM20-MiscProto'
+     Skins(3)=Texture'ONSstructureTextures.CoreGroup.Invisible'
 }

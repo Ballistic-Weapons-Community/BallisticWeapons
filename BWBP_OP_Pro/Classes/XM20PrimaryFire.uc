@@ -58,7 +58,7 @@ defaultproperties
 	BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.XM20.XM20-PulseFire',Volume=1.500000)
 	FireEndAnim=
 	FireRate=0.135000
-	AmmoClass=Class'BWBP_OP_Pro.Ammo_XM20Laser'
+    AmmoClass=Class'BWBP_SKC_Pro.Ammo_Laser'
 	ShakeRotMag=(X=200.000000,Y=16.000000)
 	ShakeRotRate=(X=5000.000000,Y=5000.000000,Z=5000.000000)
 	ShakeRotTime=1.000000

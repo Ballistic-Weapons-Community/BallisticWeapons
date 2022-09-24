@@ -3,8 +3,12 @@
 //
 // Allows players to set and obtain killstreak weapons
 //=============================================================================
-class Mut_Killstreak extends Mutator config(BallisticProV55);
-
+class Mut_Killstreak extends Mutator
+	transient
+	HideDropDown
+	CacheExempt
+	config(BallisticProV55);
+	
 const NUM_GROUPS = 2;
 
 var() globalconfig array<string>	Streak1s;	// Killstreak One

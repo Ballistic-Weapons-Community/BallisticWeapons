@@ -43,23 +43,22 @@ defaultproperties
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
-	
-	
-		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
-			SpreadMode=FSM_Rectangle
-			FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.300000
-		End Object
 		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=1.000000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			FireAnim="Deploy"
-			FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
+		SpreadMode=FSM_Rectangle
+		FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=1.000000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireAnim="Deploy"
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -89,6 +88,8 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.400000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-7000,Yaw=-3500)
+		JumpOffSet=(Pitch=-7000)
 		ChaosDeclineTime=5.000000
 	End Object
     
@@ -101,14 +102,12 @@ defaultproperties
 		SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		InventorySize=51
+		InventorySize=29
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
-		//SightingTime=0.000000
-        //ZoomType=ZT_Smooth
         ZoomType=ZT_Logarithmic
 		MagAmmo=5
-		//SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
+		WeaponName="J2329-HAMR"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

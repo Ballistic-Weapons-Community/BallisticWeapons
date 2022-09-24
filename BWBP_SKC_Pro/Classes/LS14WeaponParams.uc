@@ -89,12 +89,11 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		ReloadAnimRate=1.150000
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=21,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="RDS",Slot=22,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="LongBarrel",Slot=23,Scale=1f)
 		WeaponBoneScales(3)=(BoneName="ShortBarrel",Slot=24,Scale=0f)
-		WeaponBoneScales(4)=(BoneName="Stock",Slot=25,Scale=1f)
-		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=26,Scale=0f)
 		ViewOffset=(X=-5.000000,Y=12.000000,Z=-15.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)

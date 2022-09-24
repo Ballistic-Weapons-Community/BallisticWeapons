@@ -8,7 +8,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Game_BallisticDeathmatch extends xDeathMatch;
+class Game_BallisticDeathmatch extends xDeathMatch
+	transient
+	HideDropDown
+	CacheExempt;
 
 var const localized string	BallisticGroup;
 

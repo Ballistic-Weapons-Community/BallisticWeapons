@@ -84,6 +84,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=RealisticAimParams
+		SprintOffset=(Pitch=-3000,Yaw=-4000)
 		AimSpread=(Min=600,Max=1280)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
@@ -108,6 +109,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.250000
 		MagAmmo=24
+		WeaponName="E58 Government Raygun"
         RecoilParams(0)=RecoilParams'RealisticRecoilParams'
         AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

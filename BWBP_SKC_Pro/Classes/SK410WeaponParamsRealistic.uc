@@ -99,6 +99,8 @@ defaultproperties
 		ADSMultiplier=0.800000
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpOffSet=(Pitch=1000,Yaw=-3000)
 		AimDamageThreshold=300.000000
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=600.000000
@@ -109,14 +111,21 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=8
 		PlayerSpeedFactor=1.050000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		MagAmmo=6
 		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
+		ReloadAnimRate=1.100000
+		CockAnimRate=1.000000
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=0
 		SightPivot=(Pitch=150)
         WeaponBoneScales(0)=(BoneName="RDS",Slot=7,Scale=0f)
+		WeaponName="SK-410 8ga Breaching Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
@@ -124,7 +133,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=RealisticRDSParams
-		InventorySize=35
+		InventorySize=8
 		PlayerSpeedFactor=1.050000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
@@ -133,6 +142,11 @@ defaultproperties
 		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
 		ReloadAnimRate=1.100000
 		CockAnimRate=1.000000
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=0
+		WeaponName="SK-410 8ga Breaching Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

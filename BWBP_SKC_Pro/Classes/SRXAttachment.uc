@@ -320,7 +320,7 @@ defaultproperties
      MuzzleFlashClassAmp1=Class'BWBP_SKC_Pro.SRXFlashEmitter'
      MuzzleFlashClassAmp2=Class'BallisticProV55.A500FlashEmitter'
 	 
-     ImpactManagerAmp1=Class'BWBP_SKC_Pro.IM_BulletHE'
+     ImpactManagerAmp1=Class'BWBP_SKC_Pro.IM_BulletAmpInc'
      ImpactManagerAmp2=Class'BWBP_SKC_Pro.IM_BulletAcid'
 	 
 	 TracerClassAmp1=Class'BWBP_SKC_Pro.TraceEmitter_HMG'
@@ -337,8 +337,7 @@ defaultproperties
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      bRapidFire=True
-     bAltRapidFire=True
-     DrawScale=0.800000
+	 DrawScale=0.800000
      RelativeRotation=(Pitch=32768)
 	 Mesh=SkeletalMesh'BWBP_OP_Anim.SRX_TPm'
 }

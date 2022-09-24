@@ -81,6 +81,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.250000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=2.000000
 	End Object
     
@@ -89,7 +90,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
 		SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
@@ -97,7 +98,6 @@ defaultproperties
         ZoomType=ZT_Logarithmic
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.250000
-		WeaponBoneScales(0)=(BoneName="Silencer",Slot=78,Scale=0f)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

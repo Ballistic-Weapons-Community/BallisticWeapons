@@ -7,14 +7,143 @@
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class SKASShotgun extends BallisticProShotgun;
+
 var bool		bIsSuper;			// Manual mode!
 var float		lastModeChangeTime;
-
-var() sound      	QuickCockSound;
+var() sound     QuickCockSound;
 var() sound		UltraDrawSound;       	//56k MODEM ACTION.
 
 var()     float Heat;
 var()     float CoolRate;
+
+var   float DesiredSpeed, BarrelSpeed;
+var   float MaxRotationSpeed;
+var   int	BarrelTurn;
+var() Sound BarrelSpinSound;
+var() Sound BarrelStopSound;
+var() Sound BarrelStartSound;
+
+function SetServerTurnVelocity (int NewTVYaw, int NewTVPitch)
+{
+	SKASPrimaryFire(FireMode[0]).TurnVelocity.Yaw = NewTVYaw;
+	SKASPrimaryFire(FireMode[0]).TurnVelocity.Pitch = NewTVPitch;
+}
+
+simulated event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BCRepClass.default.GameStyle == 2)
+	{
+		SKASPrimaryFire(FireMode[0]).bRequireSpool=true;
+	}
+}
+
+simulated event PostBeginPlay()
+{
+	super.PostBeginPlay();
+	SKASPrimaryFire(FireMode[0]).MainGun = self;
+}
+
+// takes more time to reach higher speeds
+// this is unrealistic because miniguns are electric with extremely powerful motors and provide constant torque,
+// but do you really want the xmv to spin up to 3600rpm instantly? I for one don't
+simulated function float GetRampUpSpeed()
+{
+	local float mult;
+	
+	mult = 1 - (BarrelSpeed / MaxRotationSpeed);
+	
+	if (BCRepClass.default.GameStyle == 2)
+		return 0.075f + (3.0 * mult * (1 + 0.25*int(bBerserk)));
+	else
+		return 0.075f + (mult * (1 + 0.25*int(bBerserk)));
+}
+
+simulated event WeaponTick (float DT)
+{
+	local rotator BT;
+
+	if (Heat > 0)
+		Heat = FMax(0, Heat - CoolRate*DT);
+
+	super.WeaponTick(DT);
+
+	if (BCRepClass.default.GameStyle == 1)
+		return;
+	
+	BT.Pitch = BarrelTurn;
+	SetBoneRotation('BarrelRotator', BT);
+	DesiredSpeed = MaxRotationSpeed;
+}
+
+simulated function bool PutDown()
+{
+	if (super.PutDown())
+	{
+		Instigator.AmbientSound = None;
+		BarrelSpeed = 0;
+		return true;
+	}
+	return false;
+}
+
+simulated event Tick (float DT)
+{
+	local float OldBarrelTurn;
+
+	super.Tick(DT);
+
+	if (BCRepClass.default.GameStyle == 1 || CurrentWeaponMode != 0)
+		return;
+
+	if (FireMode[0].IsFiring() && !bServerReloading)
+	{
+		BarrelSpeed = BarrelSpeed + FClamp(DesiredSpeed - BarrelSpeed, -0.35*DT, GetRampUpSpeed() *DT);
+		BarrelTurn += BarrelSpeed * 655360 * DT;
+	}
+	else if (BarrelSpeed > 0)
+	{
+		BarrelSpeed = FMax(BarrelSpeed-2.0*DT, 0.01);
+		OldBarrelTurn = BarrelTurn;
+		BarrelTurn += BarrelSpeed * 655360 * DT;
+		if (BarrelSpeed <= 0.025 && int(OldBarrelTurn/10922.66667) < int(BarrelTurn/10922.66667))
+		{
+			BarrelTurn = int(BarrelTurn/10922.66667) * 10922.66667;
+			BarrelSpeed = 0;
+			PlaySound(BarrelStopSound, SLOT_None, 0.5, , 32, 1.0, true);
+			Instigator.AmbientSound = None;
+		}
+	}
+	if (BarrelSpeed > 0)
+	{
+		Instigator.AmbientSound = BarrelSpinSound;
+		Instigator.SoundPitch = 32 + 96 * BarrelSpeed;
+	}
+}
+
+simulated function float GetSecCharge()
+{
+	return SKASSecondaryFire(FireMode[0]).RailPower;
+}
+
+simulated function float ChargeBar()
+{
+	if (Heat + SKASSecondaryFire(Firemode[1]).RailPower > 0)
+		return FMin((Heat + SKASSecondaryFire(Firemode[1]).RailPower), 1);
+	
+	if (BCRepClass.default.GameStyle == 1)
+		return 0;
+	
+    return BarrelSpeed / DesiredSpeed;
+}
+
+function ServerSwitchWeaponMode(byte NewMode)
+{
+	if (BarrelSpeed > 0)
+		return;
+		
+	super.ServerSwitchWeaponMode(NewMode);
+}
 
 static function class<Pickup> RecommendAmmoPickup(int Mode)
 {
@@ -165,19 +294,13 @@ simulated function Notify_ManualBrassOut()
 	BFireMode[0].EjectBrass();
 }
 
-simulated function float ChargeBar()
-{
-    return FMin((Heat + SKASSecondaryFire(Firemode[1]).RailPower), 1);
-}
-
-simulated event WeaponTick(float DT)
-{
-	Heat = FMax(0, Heat - CoolRate*DT);
-	super.WeaponTick(DT);
-}
-
 defaultproperties
 {
+	BarrelSpinSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelSpinLoop'
+	BarrelStopSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStop'
+	BarrelStartSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelStart'
+	
+	MaxRotationSpeed=1.00
     ManualLines(0)="Automatic fire has moderate spread, moderate damage, short range and fast fire rate.||Manual fire has tight spread, long range, good damage and low fire rate."
     ManualLines(1)="Multi-shot attack. Loads a shell into each of the barrels, then fires them all at once. Very high damage, short range and wide spread."
     ManualLines(2)="Extremely effective at close range."
@@ -203,11 +326,11 @@ defaultproperties
     bCockOnEmpty=True
     NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,R=255,A=192),Color2=(B=0,G=0,R=255,A=98),StartSize1=113,StartSize2=120)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),SizeFactors=(X1=0.750000,X2=0.750000),MaxScale=8.000000)
-	WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
-    WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
-    WeaponModes(2)=(ModeName="Semi-Auto",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
-    WeaponModes(3)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
-    WeaponModes(4)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
+	//WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
+    //WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)
+    //WeaponModes(2)=(ModeName="Semi-Auto",bUnavailable=True,ModeID="WM_SemiAuto",Value=1.000000)
+    //WeaponModes(3)=(ModeName="1110011",bUnavailable=True,ModeID="WM_FullAuto")
+    //WeaponModes(4)=(ModeName="XR4 System",bUnavailable=True,ModeID="WM_FullAuto")
     CurrentWeaponMode=0
     SightPivot=(Pitch=1024)
     SightOffset=(X=-20.000000,Y=9.700000,Z=19.000000)

@@ -9,9 +9,9 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=RealisticPrimaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.A49LobProjectile'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
-		Speed=1000.000000
-		MaxSpeed=2000.000000
-		AccelSpeed=1000.000000
+		Speed=3000.000000
+		MaxSpeed=15000.000000
+		AccelSpeed=4000.000000
 		Damage=90
 		DamageRadius=270.000000
 		MomentumTransfer=80000.000000
@@ -80,7 +80,7 @@ defaultproperties
     //=================================================================
 
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=32,Max=2048)
+		AimSpread=(Min=512,Max=2048)
 		CrouchMultiplier=0.600000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.050000
@@ -95,11 +95,12 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+        InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-12.000000,Z=35.000000)
 		SightPivot=(Pitch=768)
 		MagAmmo=40
+		WeaponName="A49 Concussive Blaster"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

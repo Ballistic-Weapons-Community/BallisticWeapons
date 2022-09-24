@@ -12,6 +12,22 @@ var() Sound FlySound;
 
 var int ImpactDamage;
 
+simulated function PreBeginPlay()
+{
+    local BallisticWeapon BW;
+    Super(Projectile).PreBeginPlay();
+
+    if (Instigator == None)
+        return;
+
+    BW = BallisticWeapon(Instigator.Weapon);
+
+    if (BW == None)
+        return;
+
+    BW.default.ParamsClasses[BW.GameStyleIndex].static.OverrideProjectileParams(BW, self, 3);
+}
+
 simulated function PostBeginPlay()
 {
 	SetTimer(0.15, false);

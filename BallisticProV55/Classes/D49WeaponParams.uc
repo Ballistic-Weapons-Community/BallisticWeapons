@@ -100,14 +100,22 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-        PlayerSpeedFactor=1.050000
+        WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
+		CockAnimRate=1.750000
+		ReloadAnimRate=1.750000
+		PlayerSpeedFactor=1.050000
         DisplaceDurationMult=0.5
         SightingTime=0.200000
         MagAmmo=6
         InventorySize=6
 		ViewOffset=(X=-2.000000,Y=13.000000,Z=-12.000000)
 		ViewPivot=(Pitch=512)
-		SightOffset=(X=-30.000000,Y=-0.400000,Z=14.500000)
+		SightOffset=(X=-30.000000,Y=-3.500000,Z=23.9500000)
+		SightPivot=(Pitch=-175,Roll=-500)
+		bAdjustHands=true
+		RootAdjust=(Yaw=-375,Pitch=2000)
+		WristAdjust=(Yaw=-2500,Pitch=-0000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
         FireParams(0)=FireParams'ArenaFireParams'

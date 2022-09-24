@@ -27,6 +27,8 @@ var() Actor						SMuzzleFlash;		// Silenced Muzzle flash stuff
 var() class<Actor>				SMuzzleFlashClass;
 var() Name						SFlashBone;
 var() float						SFlashScaleFactor;
+var(SRX) bool						bAmped;
+var(SRX) float						AmpDrainPerShot;
 
 function InitEffects()
 {
@@ -78,6 +80,23 @@ simulated function SwitchWeaponMode (byte NewMode)
 		FireRate *= 0.75;
 	if ( Level.GRI.WeaponBerserk > 1.0 )
 	    FireRate /= Level.GRI.WeaponBerserk;
+		
+	if (NewMode == 0) //Standard Fire
+	{
+		bAmped=False;
+	}
+	else if (NewMode == 1) //Cryo Amp
+	{
+		bAmped=True;
+	}
+	else if (NewMode == 2) //RAD Amp
+	{
+		bAmped=True;
+	}
+	else
+	{
+		bAmped=False;
+	}
 }
 
 //// server propagation of firing ////
@@ -135,6 +154,17 @@ function PlayFiring()
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
 
 	CheckClipFinished();
+	
+	if (bAmped)
+		SRXRifle(BW).AddHeat(AmpDrainPerShot);
+}
+
+// Get aim then run trace...
+function DoFireEffect()
+{
+	Super.DoFireEffect();
+	if (Level.NetMode == NM_DedicatedServer)
+		SRXRifle(BW).AddHeat(AmpDrainPerShot);
 }
 
 simulated function SetSilenced(bool bSilenced)
@@ -197,15 +227,17 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 defaultproperties
 {
+	 AmpDrainPerShot=-0.85
 	 AmpFlashBone="tip2"
      Amp1FlashScaleFactor=0.300000
 	 Amp2FlashScaleFactor=0.300000
-	 
-	 SMuzzleFlashClass=Class'BWBP_SKC_Pro.SRXSilencedFlash'
 	 MuzzleFlashClassAmp1=Class'BWBP_SKC_Pro.FG50FlashEmitter'
      MuzzleFlashClassAmp2=Class'BallisticProV55.A500FlashEmitter'
+	 
+	 SMuzzleFlashClass=Class'BWBP_SKC_Pro.SRXSilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=0.750000
+	 
      CutOffDistance=6144.000000
      CutOffStartRange=3072.000000
      TraceRange=(Min=30000.000000,Max=30000.000000)
@@ -236,7 +268,7 @@ defaultproperties
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireRate=0.185000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_SRXBullets'
+     AmmoClass=Class'BallisticProV55.Ammo_RS762mm'
      ShakeRotMag=(X=128.000000,Y=64.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000

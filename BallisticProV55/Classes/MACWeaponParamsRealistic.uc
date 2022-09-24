@@ -67,6 +67,8 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.400000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-7000,Yaw=-3500)
+		JumpOffSet=(Pitch=-7000)
 		ChaosDeclineTime=4.000000
 	End Object
     
@@ -77,11 +79,12 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		InventorySize=51
+		InventorySize=29
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.000000
+		SightingTime=0.4500000
 		MagAmmo=5
         ZoomType=ZT_Logarithmic
+		WeaponName="J2329-HAMR Assault Cannon"
 		ViewOffset=(X=3.000000,Y=12.000000,Z=-3.000000)
 		SightOffset=(X=-3.000000,Y=-6.000000,Z=4.500000)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

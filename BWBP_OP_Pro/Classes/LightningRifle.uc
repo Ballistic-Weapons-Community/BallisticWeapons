@@ -12,6 +12,12 @@ struct RevInfo
 	var() name	BoneName;
 };
 
+simulated function PostNetBeginPlay()
+{
+	SetBoneScale(1, 0.0, 'ScreenFlap');
+	Super.PostNetBeginPlay();
+}
+
 simulated function float ChargeBar()
 {
 	return ChargePower / MaxCharge;

@@ -366,7 +366,7 @@ defaultproperties
 	ParamsClasses(2)=Class'M806WeaponParamsRealistic'
 	FireModeClass(0)=Class'BallisticProV55.M806PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M806SecondaryFire'
-	
+	MeleeFireClass=Class'BallisticProV55.M806MeleeFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=192),StartSize1=61,StartSize2=101)
     NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))
 	

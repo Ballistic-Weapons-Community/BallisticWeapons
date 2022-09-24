@@ -8,8 +8,6 @@
 //=============================================================================
 class Supercharger_Detonator extends BallisticGrenade;
 
-
-var   Supercharger_ChargeControl	ChargeControl;
 var   Vector			EndPoint, StartPoint;
 var   array<actor>		AlreadyHit;
 
@@ -19,58 +17,53 @@ simulated event PreBeginPlay()
 		Instigator = Pawn(Owner);
 	super.PreBeginPlay();
 }
-/*
-simulated function Timer()
+
+function InitFlame(vector End)
 {
-	if (StartDelay > 0)
-	{
-		SetCollision(true, false, false);
-		StartDelay = 0;
-		SetPhysics(default.Physics);
-		bDynamicLight=default.bDynamicLight;
-		bHidden=default.bHidden;
-		InitProjectile();
-	}
-	else
-		super.Timer();
+	EndPoint = End;
+	StartPoint = Location;
 }
 
-// Hit something interesting
-simulated function ProcessTouch (Actor Other, vector HitLocation)
+simulated function bool CanTouch (Actor Other)
 {
-//    local Vector X;
     local int i;
+    
+    if (!Super.CanTouch(Other))
+        return false;
 
-	if (Other == None || (!bCanHitOwner && (Other == Instigator || Other == Owner)))
-		return;
-	if (Other.Base == Instigator)
-		return;
+    if (Other.Base == Instigator)
+		return false;
+
 	for(i=0;i<AlreadyHit.length;i++)
 		if (AlreadyHit[i] == Other)
-			return;
+			return false;
 
-	if (Role == ROLE_Authority)		// Do damage for direct hits
-		DoDamage(Other, HitLocation);
-	if (CanPenetrate(Other) && Other != HitActor)
-	{	// Projectile can go right through enemies
-		AlreadyHit[AlreadyHit.length] = Other;
-		HitActor = Other;
-	}
-	else
-		Destroy();
-
-	if (Pawn(Other) != None)
-		ChargeControl.FireSinge(Pawn(Other), Instigator);
+    return true;
 }
-*/
+
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
+{
+	if ( Instigator == None || Instigator.Controller == None )
+		Other.SetDelayedDamageInstigatorController( InstigatorController );
+
+	class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType);
+
+}
+
+simulated function Penetrate(Actor Other, Vector HitLocation)
+{
+	AlreadyHit[AlreadyHit.length] = Other;
+}
+
 defaultproperties
 {
-     bNoInitialSpin=True
+     bApplyParams=False
+	 bNoInitialSpin=True
      bAlignToVelocity=True
-     DetonateDelay=0.100001
+     DetonateDelay=0.1
      ImpactDamage=120
      ImpactManager=Class'BWBP_SKC_Pro.IM_XMExplosion'
-//     bRandomStartRotaion=False
+	 bRandomStartRotation=False
      TrailClass=Class'BallisticProV55.M50GrenadeTrail'
      TrailOffset=(X=-8.000000)
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_Supercharge'
@@ -88,6 +81,7 @@ defaultproperties
      DamageRadius=300.000000
      MomentumTransfer=180000.000000
      MyDamageType=Class'BWBP_SKC_Pro.DT_Supercharge'
+	 DamageTypeHead=Class'BWBP_SKC_Pro.DT_Supercharge'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence
      LightHue=25

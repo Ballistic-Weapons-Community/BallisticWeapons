@@ -162,8 +162,6 @@ final simulated function AddRecoil (float Amount, optional byte Mode)
 	if (BW.bAimDisabled || Amount == 0)
 		return;
 		
-	Amount *= BW.BCRepClass.default.RecoilScale;
-	
 	if (BW.Instigator.bIsCrouched && VSize(BW.Instigator.Velocity) < 30)
 		Amount *= CrouchMultiplier;
 		
@@ -263,6 +261,8 @@ private final simulated function Rotator GetRecoilPivot(bool bIgnoreViewAim)
 	
 	if (BW.InstigatorController != None && BW.InstigatorController.Handedness == -1)
 		R.Yaw = -R.Yaw;
+
+    R *= BW.BCRepClass.default.RecoilScale;
 	
 	if (bIgnoreViewAim || BW.Instigator.Controller == None || PlayerController(BW.Instigator.Controller) == None || PlayerController(BW.Instigator.Controller).bBehindView)
         return R;

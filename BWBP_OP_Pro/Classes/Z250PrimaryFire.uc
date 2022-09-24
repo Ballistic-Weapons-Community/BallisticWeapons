@@ -18,6 +18,7 @@ var float	LagTime;
 var	int		TraceCount;
 
 var bool	bStarted;
+var bool	bSpinning;
 
 var float	NextTVUpdateTime;
 
@@ -32,7 +33,6 @@ function PlayFiring()
 		bStarted = true;
 		Minigun.BlendFireHold();
 		BW.SafeLoopAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
-		BW.PlaySound(Minigun.BarrelStartSound, SLOT_None, 0.5, , 32, 1.0, true);
 	}
 
 	ClientPlayForceFeedback(FireForce);  // jdf
@@ -383,8 +383,17 @@ function DoFireEffect()
 // ModeDoFire from WeaponFire.uc, but with a few changes
 simulated event ModeDoFire()
 {
-    if (!AllowFire() || Minigun.BarrelSpeed < Minigun.RotationSpeeds[0])
+    if (!AllowFire())
         return;
+	if (Minigun.BarrelSpeed < Minigun.RotationSpeeds[0])
+	{
+		if (!bSpinning)
+		{
+			BW.PlaySound(Minigun.BarrelStartSound, SLOT_None, 1.5, , 32, 1.0, true);
+			bSpinning=true;
+		}
+		return;
+	}
 		
 	BW.bPreventReload=true;
 	BW.FireCount++;

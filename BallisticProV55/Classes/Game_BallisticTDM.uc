@@ -6,7 +6,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Game_BallisticTDM extends xTeamGame;
+class Game_BallisticTDM extends xTeamGame
+	transient
+	HideDropDown
+	CacheExempt;
 
 var   globalconfig string	InventoryMode;		// The mutator to use for modifying pickups and how inventory is acquired
 var() localized Array<string>	InventoryModes;	// Display Text associated with Inventory mutator options

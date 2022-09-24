@@ -8,13 +8,13 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=1800.000000,Max=9000.000000)
+		TraceRange=(Min=1800.000000,Max=9000.000000) //7.62x51mm
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.1
 		Damage=55.0
-		HeadMult=2.127272
-		LimbMult=0.654545
+		HeadMult=2.2
+		LimbMult=0.65
 		DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSRXRifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSRXRifle'
@@ -29,7 +29,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRSM2.SRSM2-Fire4',Pitch=1.000000,Volume=1.500000)
 		Recoil=850.000000
 		Chaos=0.100000
-		Inaccuracy=(X=2,Y=2)
+		Inaccuracy=(X=1,Y=1)
 		WarnTargetPct=0.200000
 		BotRefireRate=0.150000
 	End Object
@@ -38,6 +38,7 @@ defaultproperties
 		FireInterval=0.125000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
+		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 	
@@ -127,10 +128,10 @@ defaultproperties
 		XCurve=(Points=(,(InVal=0.400000,OutVal=-0.100000),(InVal=0.70000,OutVal=0.300000),(InVal=1.000000,OutVal=0.000000)))
 		YCurve=(Points=(,(InVal=0.400000,OutVal=0.300000),(InVal=0.70000,OutVal=0.500000),(InVal=1.000000,OutVal=0.400000)))
 		YawFactor=0.200000
-		XRandFactor=0.185000
-		YRandFactor=0.185000
+		XRandFactor=0.165000
+		YRandFactor=0.165000
 		MaxRecoil=4000
-		DeclineTime=0.900000
+		DeclineTime=0.800000
 		DeclineDelay=0.180000;
 		ViewBindFactor=0.500000
 		ADSViewBindFactor=0.500000
@@ -147,6 +148,7 @@ defaultproperties
 		MaxRecoil=4000
 		DeclineTime=1.20000
 		DeclineDelay=1.000000
+		bViewDecline=True
 	End Object
 
 	Begin Object Class=RecoilParams Name=RealisticRecoilParamsAcid
@@ -157,6 +159,7 @@ defaultproperties
 		MaxRecoil=4000
 		DeclineTime=0.30000
 		DeclineDelay=0.300000
+		bViewDecline=True
 	End Object
 
 	//=================================================================
@@ -164,13 +167,14 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=680,Max=1536)
+		AimSpread=(Min=640,Max=1436)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.075000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.600000
-		ChaosSpeedThreshold=550.000000
+		ChaosSpeedThreshold=575.000000
 	End Object
     
 	//=================================================================
@@ -178,7 +182,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
 		MagAmmo=20
@@ -187,6 +191,7 @@ defaultproperties
 		SightPivot=(Pitch=-128,Yaw=16)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		WeaponName="SRK-650 7.62mm Marksman Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticRecoilParamsInc'
 		RecoilParams(2)=RecoilParams'RealisticRecoilParamsAcid'

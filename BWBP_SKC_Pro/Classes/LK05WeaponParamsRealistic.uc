@@ -23,7 +23,7 @@ defaultproperties
 		PDamageFactor=0.6
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=1.200000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LK05.LK05-HeavyFire',Volume=1.500000)
 		Recoil=700.000000
@@ -89,6 +89,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.060000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.200000
 		ChaosSpeedThreshold=565.000000
 	End Object
@@ -98,14 +99,16 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=30
+		InventorySize=11
 		MagAmmo=25
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.24
 		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
 		ViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-RecShine',Index=3)
+		WeaponMaterialSwaps(3)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
@@ -114,6 +117,7 @@ defaultproperties
 		InitialWeaponMode=2
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		WeaponName="LK-05 6.8mm Assault Carbine"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

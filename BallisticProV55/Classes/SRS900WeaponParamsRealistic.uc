@@ -84,6 +84,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.075000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-2560,Yaw=-4096)
 		ChaosDeclineTime=1.600000
 		ChaosSpeedThreshold=550.000000
 	End Object
@@ -93,7 +94,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
 		MagAmmo=20
@@ -106,6 +107,7 @@ defaultproperties
 		InitialWeaponMode=2
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		WeaponName="SRS900-E 7.62mm Marksman Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

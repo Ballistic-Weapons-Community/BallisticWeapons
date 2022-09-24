@@ -87,6 +87,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.200000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.0
 	End Object
     
@@ -94,14 +95,15 @@ defaultproperties
 	// BASIC PARAMS
 	//=================================================================	
 	
-	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=35
+	Begin Object Class=WeaponParams Name=ClassicParams //Tan
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
 		MagAmmo=25
 		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9)
+		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
 		ReloadAnimRate=1.000000
@@ -111,6 +113,7 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
 
 

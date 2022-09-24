@@ -44,7 +44,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
-		ProjectileClass=Class'BallisticProV55.M50Grenade'
+		ProjectileClass=Class'BallisticProV55.M50GrenadeSafe'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=3600.000000
 		Damage=200.000000
@@ -104,6 +104,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-3072,Yaw=-6144)
 		ChaosDeclineTime=1.450000
 		ChaosSpeedThreshold=550.000000
 	End Object
@@ -113,8 +114,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.25
 		ViewOffset=(X=-3.500000,Y=4.500000,Z=-9.000000)
 		SightOffset=(X=1.000000,Y=0.050000,Z=12.09000)
 		SightPivot=(Pitch=200,Roll=0)
@@ -124,6 +126,7 @@ defaultproperties
 		InitialWeaponMode=2
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		WeaponName="M50A1 5.56mm Assault Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

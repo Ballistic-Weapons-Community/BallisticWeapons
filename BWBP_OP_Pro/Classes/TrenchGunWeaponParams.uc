@@ -18,6 +18,8 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
+		PenetrateForce=0
+		bPenetrate=False
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.frost_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)	FireAnim="FireCombined"
@@ -33,7 +35,8 @@ defaultproperties
 		MaxHoldTime=0.0
 		FireAnim="FireCombined"
 		AimedFireAnim="SightFireCombined"
-		FireAnimRate=0.800000	
+		FireAnimRate=0.800000
+		TargetState="Shotgun"
 	FireEffectParams(0)=ShotgunEffectParams'ArenaExploPrimaryEffectParams'
 	End Object
 	
@@ -43,16 +46,18 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=ArenaElectroPrimaryEffectParams
 		TraceRange=(Min=4096.000000,Max=5120.000000)
-		RangeAtten=0.250000
+		RangeAtten=1.000000
 		TraceCount=10
-		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
-		ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'
-		MaxHits=14 // inflict maximum of 156 damage to a single target
+		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
+		ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'
+		MaxHits=0
 		Damage=7
 		Inaccuracy=(X=150,Y=150)
 		DamageType=Class'DT_TrenchGunElectro'
 		DamageTypeArm=Class'DT_TrenchGunElectro'
 		DamageTypeHead=Class'DT_TrenchGunElectro'
+		PenetrateForce=500
+		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.electro_Shot',Volume=1.000000,Radius=384.000000,Pitch=1.400000)	FireAnim="FireCombined"
@@ -69,6 +74,7 @@ defaultproperties
 		FireAnim="FireCombined"
 		AimedFireAnim="SightFireCombined"
 		FireAnimRate=0.800000	
+		TargetState="Shotgun"
 	FireEffectParams(0)=ShotgunEffectParams'ArenaElectroPrimaryEffectParams'
 	End Object
 	

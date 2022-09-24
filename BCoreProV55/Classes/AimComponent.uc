@@ -535,8 +535,8 @@ private final simulated function TickLongGun (float DT)
 
 	Start = BW.Instigator.Location + BW.Instigator.EyePosition();
     T = BW.Trace(HitLoc, HitNorm, Start + vector(BW.Instigator.GetViewRotation()) * (GunLength+BW.Instigator.CollisionRadius), Start, true);
-    
-	if (T == None || T.Base == BW.Instigator || (Pawn(T) == None && T.Owner == BW.Instigator))
+	
+	if (T == None || T.Base == BW.Instigator || (Pawn(T) == None && T.Owner == BW.Instigator) || BW.MeleeState != MS_None)
 	{
         BW.OnDisplaceEnd();
 		NewLongGunFactor = 0;

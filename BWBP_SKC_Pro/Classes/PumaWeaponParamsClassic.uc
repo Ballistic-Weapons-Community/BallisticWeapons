@@ -102,7 +102,7 @@ defaultproperties
 
 	//Shield Explosion
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryShieldEffectParams
-		ProjectileClass=Class'PumaProjectileRShort'
+		ProjectileClass=Class'PUMAProjectileClose'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=6000.000000
 		Damage=110.000000
@@ -158,6 +158,8 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.250000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpOffSet=(Pitch=1000,Yaw=-3000)
 		ChaosDeclineTime=2.000000
 	End Object
     
@@ -166,7 +168,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=6
 		ViewOffset=(X=7.000000,Y=6.000000,Z=-13.000000)

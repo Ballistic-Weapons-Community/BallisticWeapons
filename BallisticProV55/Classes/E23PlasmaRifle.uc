@@ -498,7 +498,7 @@ defaultproperties
 	AIRating=0.650000
 	CurrentRating=0.650000
 	bShowChargingBar=True
-	Description="This experimental prototype, being developed on Earth by Frontier Tech, fires variable high-power plasma projectiles from an advanced energy cell. Designed for law enforcement and light infantry sectors, the E-23 is a light, fairly compact and powerful energy assault weapon. The 'ViPeR' is equipped with a sniper scope including optional Infra-Red night-vision lamp."
+	Description="This experimental prototype was developed on Earth by Frontier Tech and fires variable high-power plasma projectiles from an advanced energy cell. Designed for law enforcement and light infantry sectors, the E-23 is a light, fairly compact and powerful energy assault weapon. The 'ViPeR' is equipped with a sniper scope including optional Infra-Red night-vision lamp."
 	Priority=39
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=5

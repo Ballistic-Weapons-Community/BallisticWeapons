@@ -6,7 +6,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Mut_Itemizer extends Mutator;
+class Mut_Itemizer extends Mutator
+	transient
+	HideDropDown
+	CacheExempt;
 
 var() config string ItemGroup;
 var() string GroupDisplayText, GroupDescText;

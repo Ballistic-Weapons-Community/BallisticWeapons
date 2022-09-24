@@ -271,10 +271,10 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	CockAnimPostReload="ReloadEndCock"
-	CockSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Cock')
+	CockSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-Cock')
 	ReloadAnimRate=1.100000
-	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipOut')
-	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipIn')
+	ClipOutSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagOut')
+	ClipInSound=(Sound=Sound'BWBP_OP_Sounds.CX61.CX61-MagIn')
 	ClipInFrame=0.650000
 	bCockOnEmpty=True
     WeaponModes(0)=(ModeName="Flamethrower",ModeID="WM_FullAuto")
@@ -290,7 +290,7 @@ defaultproperties
 	GunLength=16.000000
 	ParamsClasses(0)=Class'CX61WeaponParams'
 	ParamsClasses(1)=Class'CX61WeaponParamsClassic'
-	ParamsClasses(2)=Class'CX61WeaponParamsClassic'
+	ParamsClasses(2)=Class'CX61WeaponParamsRealistic'
 	ParamsClasses(3)=Class'CX61WeaponParams'
 	FireModeClass(0)=Class'BWBP_OP_Pro.CX61PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.CX61SecondaryFire'

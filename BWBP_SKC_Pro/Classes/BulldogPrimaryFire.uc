@@ -9,6 +9,8 @@ class BulldogPrimaryFire extends BallisticRangeAttenFire;
 
 var() class<actor>			AltBrassClass1;			//Alternate Fire's brass
 var() class<actor>			AltBrassClass2;			//Alternate Fire's brass (whole FRAG-12)
+var bool 	bSmallRadiusDamage; //We're in classic, do radius damage
+var bool 	bLargeRadiusDamage; //We're in realistic, blow them up
 
 // Check if there is ammo in clip if we use weapon's mag or is there some in inventory if we don't
 simulated function bool AllowFire()
@@ -61,6 +63,49 @@ function EjectFRAGBrass()
     Weapon.GetViewAxes(X,Y,Z);
 	Start = C.Origin + X * BrassOffset.X + Y * BrassOffset.Y + Z * BrassOffset.Z;
 	Spawn(AltBrassClass2, weapon,, Start, Rotator(C.XAxis));
+}
+
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+{
+	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+	
+	if (Victim.bProjTarget)
+	{
+		if (BallisticShield(Victim) != None)
+			BW.TargetedHurtRadius(Damage, 48, class'DTBulldog', 500, HitLocation, Pawn(Victim));
+		else
+			BW.TargetedHurtRadius(Damage, 96, class'DTBulldog', 500, HitLocation, Pawn(Victim));
+	}
+}
+
+// Does something to make the effects appear
+simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
+{
+	local int Surf;
+
+	if (!Other.bWorldGeometry && Mover(Other) == None && Pawn(Other) == None || level.NetMode == NM_Client)
+		return false;
+
+	if (Vehicle(Other) != None)
+		Surf = 3;
+	else if (HitMat == None)
+		Surf = int(Other.SurfaceType);
+	else
+		Surf = int(HitMat.SurfaceType);
+		
+	if (bSmallRadiusDamage && (Other == None || Other.bWorldGeometry))
+		BW.TargetedHurtRadius(30, 96, class'DTBulldog', 500, HitLocation);
+		
+	if (bLargeRadiusDamage && (Other == None || Other.bWorldGeometry))
+		BW.TargetedHurtRadius(35, 160, class'DTBulldog', 500, HitLocation);
+
+	// Tell the attachment to spawn effects and so on
+	SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
+	
+	if (!bAISilent)
+		Instigator.MakeNoise(1.0);
+		
+	return true;
 }
 
 defaultproperties

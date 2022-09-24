@@ -8,8 +8,10 @@
 // Secondary fire launches a tazer with a limited maximum range. This applies slow and damage 
 // over time. Breaking line of sight or angling around the user will remove the tazer's effect.
 //
-// In classic and realistic, this gun performs differently. Primary is a light missile.
+// In classic, primary is a light missile.
 // Secondary is a tracker dart that guides the missiles.
+//
+// In realistic, primary is a light shotgun.
 //
 // Coded by a bunch of people.
 //===========================================================================
@@ -31,6 +33,7 @@ var   Actor			CurrentRocket;			//Current rocket of interest. The rocket that can
 var array<Actor> ActiveRockets;
 var() sound		LockedOnSound;		// beep!
 var() sound		LockedOffSound;		// lock it off
+var PD97TrackerBeacon ActiveBeacon;
 
 
 replication
@@ -49,10 +52,15 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (BCRepClass.default.GameStyle == 1)
 	{
 		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryMissileFire';
 		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryTracerFire';
+	}
+	else if (BCRepClass.default.GameStyle == 2)
+	{
+		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryShotgunFire';
+		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryFire';
 	}
 }
 
@@ -274,6 +282,10 @@ simulated function WeaponTick (float DT)
 	{
 		ServerSetRocketTarget(LockedTarget.Location);
 	}
+	else if (LockedTarget == None && bLockedOn)
+	{
+		BreakLock();
+	}
 	
 }
 
@@ -356,6 +368,15 @@ simulated function BreakLock()
 {
 	bLockedOn = false;
     PlaySound(LockedOffSound,,0.7,,16);
+
+	if (ActiveBeacon != None)
+		ActiveBeacon.Destroy();
+}
+
+simulated function Destroyed()
+{
+	BreakLock();
+	super.Destroyed();
 }
 
 function ServerSetRocketTarget(vector Loc)
@@ -446,7 +467,7 @@ defaultproperties
 	SightingTime=0.200000
 	ParamsClasses(0)=Class'PD97WeaponParams'
 	ParamsClasses(1)=Class'PD97WeaponParamsClassic'
-	ParamsClasses(2)=Class'PD97WeaponParamsClassic'
+	ParamsClasses(2)=Class'PD97WeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_OP_Pro.PD97PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.PD97SecondaryFire'
 	PutDownTime=0.600000

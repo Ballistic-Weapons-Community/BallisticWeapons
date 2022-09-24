@@ -56,7 +56,7 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Eagle.Eagle-Fire3',Volume=4.100000)
      FireEndAnim=
      FireRate=0.40000
-     AmmoClass=Class'BWBP_SKC_Pro.Ammo_44MagnumScope'
+     AmmoClass=Class'BallisticProV55.Ammo_44Magnum'
      ShakeRotMag=(X=64.000000,Y=32.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000

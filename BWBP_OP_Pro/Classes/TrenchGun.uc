@@ -37,12 +37,41 @@ var DeployableInfo      AltDeployable;
 const                   DeployRange = 512;
 var float	            CooldownTime;
 
+var	TrenchGunFireControl	FireControl;
+
 exec function Offset(int index, int value)
 {
 	if (Level.NetMode != NM_Standalone)
 		return;
 
 	AltDeployable.SpawnOffset = value;
+}
+
+replication
+{
+	reliable if (Role==ROLE_Authority)
+		FireControl;
+}
+
+simulated function PostNetBeginPlay()
+{
+	local TrenchGunFireControl FC;
+
+	super.PostNetBeginPlay();
+	if (Role == ROLE_Authority && FireControl == None)
+	{
+		foreach DynamicActors (class'TrenchGunFireControl', FC)
+		{
+			FireControl = FC;
+			return;
+		}
+		FireControl = Spawn(class'TrenchGunFireControl', None);
+	}
+}
+
+function TrenchGunFireControl GetFireControl()
+{
+	return FireControl;
 }
 
 simulated function PostBeginPlay()
@@ -534,19 +563,25 @@ function byte BestMode()
 	Dir = Instigator.Location - B.Enemy.Location;
 	Dist = VSize(Dir);
 
+	if (GameStyleIndex != 0)
+	{
+		CurrentWeaponMode = 3;
+		TrenchGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+	}
+	
 	if (Dist > 1024)
 	{
 		if (CurrentWeaponMode != 1)
 		{
 			CurrentWeaponMode = 1;
-			CoachGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+			TrenchGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 		}
 	}
 	
 	else if (CurrentWeaponMode != 0)
 	{
 		CurrentWeaponMode = 0;
-		CoachGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+		TrenchGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 	}
 	
 	lastModeChangeTime = level.TimeSeconds;
@@ -639,9 +674,11 @@ defaultproperties
 	ClipInFrame=0.800000
 	bNonCocking=True
     bNoCrosshairInScope=True
-	WeaponModes(0)=(ModeName="Explosive Shot",Value=1.000000)
-	WeaponModes(1)=(ModeName="Electro Shot",Value=1.000000)
-	WeaponModes(2)=(ModeName="Ice Shot",Value=1.000000,bUnavailable=True)
+	WeaponModes(0)=(ModeName="Ammo: Explosive",Value=1.000000)
+	WeaponModes(1)=(ModeName="Ammo: Electro",Value=1.000000)
+	WeaponModes(2)=(ModeName="Ammo: Cryogenic",Value=1.000000,bUnavailable=True)
+	WeaponModes(3)=(ModeName="Ammo: FRAG-12",Value=1.000000,bUnavailable=True)
+	WeaponModes(4)=(ModeName="Ammo: Dragon",Value=1.000000,bUnavailable=True)
 	CurrentWeaponMode=0
 	SightPivot=(Pitch=256)
 	SightOffset=(X=50.000000,Y=11.500000,Z=43.500000)
@@ -650,6 +687,8 @@ defaultproperties
 	LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
 	ParamsClasses(0)=Class'TrenchGunWeaponParams'
+	ParamsClasses(1)=Class'TrenchGunWeaponParamsClassic'
+	ParamsClasses(2)=Class'TrenchGunWeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_OP_Pro.TrenchGunPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.TrenchGunSecondaryFire'
 	SelectAnimRate=2.000000
@@ -658,7 +697,7 @@ defaultproperties
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	AIRating=0.800000
 	CurrentRating=0.800000
-	Description="BR-112 Trenchgun || Manufacturer: N/A, field modified || Deep in the mud filled trenches of Indorix Paraxii, the Carcosan Greasers, only days away from a full force Cryon and Skrith invasion, were desperate for a way to weather the impending invasion. Supply errors left them with little more than a surplus of specialized shotgun ammo that was not able to reliably feed into their standard issued shotguns. Ever resourceful, the Carcosan Greasers were able to improvise, and between scavanging as many civilian shotguns as they can and fabricating the rest with their on site nano-forges, they were able to outfit their company with reliable, light weight breach loaded shotguns well adapted to run whatever ammo type they could throw in them. They proceeded to hold the invasion off long enough for the area to be evacuated, holding off weapons fire with their iconic NFUD wrenches being used in tandem  withe their specialized shotguns, wreaking havoc to the systems of the Cryon with their electroshot and freezing the Skrith where they stood."
+	Description="BR-112 Trenchgun || Manufacturer: N/A, field modified || Deep in the mud filled trenches of Indorix Paraxii and only days away from a full force Cryon and Skrith invasion, the Carcosan Greasers were desperate for a way to weather the impending invasion. Supply errors left them with little more than a surplus of specialized shotgun ammo that was not able to reliably feed into their standard issue shotguns. Ever resourceful, the Carcosan Greasers were able to improvise, and between scavanging as many civilian shotguns as they can and fabricating the rest with their on site nano-forges, they were able to outfit their company with reliable, light weight breach loaded shotguns well adapted to run whatever ammo type they could throw in them. They proceeded to hold the invasion off long enough for the area to be evacuated, holding off weapons fire with their iconic NFUD wrenches being used in tandem with their specialized shotguns, wreaking havoc to the systems of the Cryon with their electroshot and freezing the Skrith where they stood."
 	Priority=38
 	HudColor=(B=35,G=100,R=200)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

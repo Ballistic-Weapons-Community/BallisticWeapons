@@ -8,7 +8,8 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenadeNoDud'
+		//ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenadeNoDud'
+		ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenade'
 		Speed=3500.000000
 		Damage=70
 		DamageRadius=450.000000
@@ -92,6 +93,8 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.200000
 		SprintChaos=0.200000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpOffSet=(Pitch=1000)
 		ChaosDeclineTime=1.000000
 		ChaosSpeedThreshold=800.000000
 	End Object
@@ -101,7 +104,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=4
 		SightOffset=(Y=19.60,Z=26.40)

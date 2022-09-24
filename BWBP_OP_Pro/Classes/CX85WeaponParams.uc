@@ -16,9 +16,11 @@ defaultproperties
 		AimSpread=(Min=16,Max=768)
 		ADSMultiplier=0.15
 		SprintOffset=(Pitch=-3000,Yaw=-8000)
+		JumpOffset=(Pitch=-1024,Yaw=-1024)
 	End Object
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		CockAnimRate=1.200000
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
 		InventorySize=12

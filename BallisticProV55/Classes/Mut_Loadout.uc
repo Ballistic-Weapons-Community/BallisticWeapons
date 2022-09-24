@@ -18,6 +18,9 @@
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
 class Mut_Loadout extends Mut_Ballistic
+	transient
+	HideDropDown
+	CacheExempt
 	config(BallisticProV55) exportstructs;
 
 struct LORequirements
