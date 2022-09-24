@@ -26,7 +26,7 @@ defaultproperties
      bCauseConvulsions=True
      bDelayedDamage=True
      bNeverSevers=True
-     DamageOverlayMaterial=Shader'XGameShaders.PlayerShaders.LinkHit'
+     //DamageOverlayMaterial=Shader'XGameShaders.PlayerShaders.LinkHit'
      DamageOverlayTime=0.900000
      GibPerterbation=0.100000
      KDamageImpulse=3000.000000

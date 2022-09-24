@@ -19,7 +19,7 @@ static function IncrementKills(Controller Killer)
 	if ( PlayerController(Killer) == None )
 		return;
 
-	PlayerController(Killer).ReceiveLocalizedMessage( Class'XGame.SpecialKillMessage', 0, Killer.PlayerReplicationInfo, None, None );
+	//PlayerController(Killer).ReceiveLocalizedMessage( Class'XGame.SpecialKillMessage', 0, Killer.PlayerReplicationInfo, None, None );
 	xPRI = xPlayerReplicationInfo(Killer.PlayerReplicationInfo);
 	if ( xPRI != None )
 	{
