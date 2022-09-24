@@ -9,7 +9,7 @@
 class G5MortarDamageHull extends Triggers;
 
 // Got hit, explode with a tiny delay
-event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
 	if (Projectile(Base) != None)
 		Base.TakeDamage(Damage, EventInstigator, HitLocation, Momentum, DamageType);

@@ -47,7 +47,7 @@ simulated function Destroyed()
 	super.Destroyed();
 }
 
-simulated function SpawnTracer(byte Mode, Vector V)
+simulated function BWSpawnTracer(byte Mode, Vector V)
 {
 	local M75Spiral Spiral;
 	local TraceEmitter_Railgun TER;

@@ -1,5 +1,5 @@
-class Sandbag extends DECO_Smashable;
-
+class Sandbag extends Object;
+/*
 var Sound							DamagedSounds[4];
 var Sound							DestroyedSound;
 var BallisticTurret 				AttachedWeapon;
@@ -180,3 +180,4 @@ defaultproperties
      bProjTarget=True
      bUseCylinderCollision=False
 }
+*/

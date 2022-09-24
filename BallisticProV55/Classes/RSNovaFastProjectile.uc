@@ -166,7 +166,7 @@ simulated function bool CanTouch (Actor Other)
     return Super.CanTouch(Other);
 }
 
-event TakeDamage( int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+event TakeDamage( int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
     if (DamageType == class'DT_RSDarkSlow' || DamageType == class'DT_RSDarkFast')
     {

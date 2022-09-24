@@ -1,5 +1,5 @@
 class SandbagAttachment extends BallisticMeleeAttachment;
-
+/*
 defaultproperties
 {
      ImpactManager=Class'BallisticProV55.IM_Katana'
@@ -14,3 +14,4 @@ defaultproperties
      RelativeRotation=(Pitch=30000,Yaw=30000,Roll=12000)
      DrawScale=0.175000
 }
+*/

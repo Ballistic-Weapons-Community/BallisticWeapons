@@ -191,7 +191,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 	}
 }
 
-event TakeDamage( int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+event TakeDamage( int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
 	Local RSDeathball DB;
     if (DamageType == class'DT_RSDarkSlow' || DamageType == class'DT_RSDarkFast')

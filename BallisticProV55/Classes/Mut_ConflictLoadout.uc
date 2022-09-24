@@ -623,17 +623,17 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	{
 		if (!SpawnNewItem(-1, Other, class'IP_AmmoPack'))
 		{
-			WeaponLocker(Other).myMarker.bBlocked = True;
+			//WeaponLocker(Other).myMarker.bBlocked = True;
 			Other.GotoState('Disabled');
 			return false;
 		}
 	}
 	// No bases. Weapon pickups replaced with ammo packs
-	else if (xWeaponBase(Other) != None)
+	/*else if (xWeaponBase(Other) != None)
 	{
 		if (!SpawnNewItem(-1, Other, class'IP_AmmoPack'))
 			return false;
-	}
+	}*/
 	else if (xPickupBase(Other) != None)
 	{
 		Other.bHidden=true;
@@ -659,7 +659,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 				SwapWeapon(Other, GetInventoryFor(Replacements[i].NewItems[Rand(Replacements[i].NewItems.length)]));
 		}
 		// Replace Weapon base
-		else if (xWeaponBase(Other) != None && xWeaponBase(Other).WeaponType != None && xWeaponBase(Other).WeaponType == GetInventoryFor(Replacements[i].OldItem) && (!Replacements[i].bSuper || !bLeaveSuper))
+		/*else if (xWeaponBase(Other) != None && xWeaponBase(Other).WeaponType != None && xWeaponBase(Other).WeaponType == GetInventoryFor(Replacements[i].OldItem) && (!Replacements[i].bSuper || !bLeaveSuper))
 		{
 			if (Replacements[i].bUseBase)
 			{
@@ -669,9 +669,9 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 			}
 			else if (!SpawnNewItem(i, Other))
 				return false;
-		}
+		}*/
 		// Change pickup classes for WildcardBases
-		else if (WildcardBase(Other) != None)
+		/*else if (WildcardBase(Other) != None)
 		{
 //			Other.bHidden = true;
 			for(j=0;j<ArrayCount(WildcardBase(Other).PickupClasses);j++)
@@ -679,7 +679,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 				if (WildcardBase(Other).PickupClasses[j] != None && WildcardBase(Other).PickupClasses[j] == GetPickupFor(Replacements[i].OldItem) && (!Replacements[i].bSuper || !bLeaveSuper) && class<TournamentPickup>(GetPickupFor(GetNewItem(i))) != None)
 					WildcardBase(Other).PickupClasses[j] = class<TournamentPickup>(GetPickupFor(GetNewItem(i)));
 			}
-		}
+		}*/
 		// Replace Pickup base
 		else if (xPickupBase(Other) != None && xPickupBase(Other).PowerUp != None && xPickupBase(Other).PowerUp == GetPickupFor(Replacements[i].OldItem) && (!Replacements[i].bSuper || !bLeaveSuper))
 		{
@@ -689,7 +689,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 				return false;
 		}
 		// Change weapons in weaponlockers
-		else if (WeaponLocker(Other) != None && (!Replacements[i].bSuper || !bLeaveSuper))
+		/*else if (WeaponLocker(Other) != None && (!Replacements[i].bSuper || !bLeaveSuper))
 		{
 			for (j=0;j<WeaponLocker(Other).Weapons.Length;j++)
 			{
@@ -703,7 +703,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 					WeaponLocker(Other).Weapons[j].WeaponClass = class<weapon>(GetInventoryFor(NewItem));
 				}
 			}
-		}
+		}*/
 		else if (Pickup(Other) != None && Pickup(Other).Class == GetPickupFor(Replacements[i].OldItem) && (!Replacements[i].bSuper || !bLeaveSuper))
 			AddPickupSwap(Pickup(Other), i);
 	}

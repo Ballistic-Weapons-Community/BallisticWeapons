@@ -31,7 +31,7 @@ function Ignite(Pawn EventInstigator)
 	Destroy();
 }
 
-function TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+function TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
 	Ignite(EventInstigator);
 }

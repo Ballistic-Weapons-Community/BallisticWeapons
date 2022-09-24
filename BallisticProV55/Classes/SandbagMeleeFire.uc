@@ -8,7 +8,7 @@
 // Copyright� 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class SandbagMeleeFire extends BallisticMeleeFire;
-
+/*
 var() Array<name> SliceAnims;
 var int SliceAnim;
 
@@ -55,3 +55,4 @@ defaultproperties
      BotRefireRate=0.800000
      WarnTargetPct=0.100000
 }
+*/

@@ -199,7 +199,7 @@ function int ManageHeatInteraction(Pawn P)
 	return HM.ConsecutiveHits;
 }
 
-event TakeDamage( int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+event TakeDamage( int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
     if (DamageType == class'DT_RSNovaSlow' || DamageType == class'DT_RSNovaFast')
 		ImpactManager.static.StartSpawn(HitLocation, normal(Momentum), 5, Level.GetLocalPlayerController(), 4/*HF_NoDecals*/);

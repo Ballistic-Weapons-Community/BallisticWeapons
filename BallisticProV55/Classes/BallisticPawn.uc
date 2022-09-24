@@ -421,13 +421,13 @@ simulated function TickFX(float DeltaTime)
 					&& (PlayerReplicationInfo != None) );
 
 
-	if ( bDrawCorona && (PlayerReplicationInfo.Team != None) )
+	/*if ( bDrawCorona && (PlayerReplicationInfo.Team != None) )
 	{
 		if ( PlayerReplicationInfo.Team.TeamIndex == 0 )
 			Texture = Texture'RedMarker_t';
 		else
 			Texture = Texture'BlueMarker_t';
-	}
+	}*/
 }
 
 function bool AddInventory( inventory NewItem )
@@ -508,7 +508,7 @@ simulated function FootStepping(int Side)
     SurfaceNum = 0;
 
     for ( i=0; i<Touching.Length; i++ )
-		if ( ((PhysicsVolume(Touching[i]) != None) && PhysicsVolume(Touching[i]).bWaterVolume)
+		/*if ( ((PhysicsVolume(Touching[i]) != None) && PhysicsVolume(Touching[i]).bWaterVolume)
 			|| (FluidSurfaceInfo(Touching[i]) != None) )
 		{
 			if ( FRand() < 0.5 )
@@ -520,7 +520,7 @@ simulated function FootStepping(int Side)
 				&& !Touching[i].TraceThisActor(HitLocation, HitNormal,Location - CollisionHeight*vect(0,0,1.1), Location) )
 					Spawn(class'WaterRing',,,HitLocation,rot(16384,0,0));
 			return;
-		}
+		}*/
 
 	if ( (Base!=None) && (!Base.IsA('LevelInfo')) && (Base.SurfaceType!=0) )
 	{
@@ -534,7 +534,7 @@ simulated function FootStepping(int Side)
 		if (FloorMat !=None)
 			SurfaceNum = FloorMat.SurfaceType;
 	}
-	PlaySound(SoundFootsteps[SurfaceNum], SLOT_Interact, FootstepVolume * SoundScale,, FootstepRadius * SoundScale );
+	//PlaySound(SoundFootsteps[SurfaceNum], SLOT_Interact, FootstepVolume * SoundScale,, FootstepRadius * SoundScale );
 }
 
 simulated function AssignInitialPose()
@@ -567,17 +567,17 @@ simulated function AssignInitialPose()
 			}
 		}
 		//log( "Skeleton "$recx.Skeleton$" Species "$recx.Species );
-		if (  recx.Species.default.SpeciesName == "Alien" )
-			 LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rdAlien');
-		else if (  recx.Species.default.SpeciesName == "Juggernaut" )
-			 LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rd');
-		else if ( recx.Sex ~= "Female" && PlayerReplicationInfo.CharacterName != "July")
-			LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rdFemale');	 
-		else LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rd');
+		//if (  recx.Species.default.SpeciesName == "Alien" )
+			 //LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rdAlien');
+		//else if (  recx.Species.default.SpeciesName == "Juggernaut" )
+			 //LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rd');
+		//else if ( recx.Sex ~= "Female" && PlayerReplicationInfo.CharacterName != "July")
+			//LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rdFemale');	 
+		//else LinkSkelAnim(MeshAnimation'BallisticThird.Ballistic3rd');
 	}
 }
 
-simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
+/*simulated function BWSetWeaponAttachment(xWeaponAttachment NewAtt)
 {
 	local BallisticAttachment BAtt;
 	
@@ -626,7 +626,7 @@ simulated function SetWeaponAttachment(xWeaponAttachment NewAtt)
 			IdleWeaponAnim = IdleHeavyAnim;
 		}
 	}
-}
+}*/
 
 simulated event SetAnimAction(name NewAction)
 {
@@ -1175,7 +1175,7 @@ function CalcHitLoc( Vector hitLoc, Vector hitRay, out Name boneName, out float 
 
 State Dying
 {
-	simulated function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector Momentum, class<DamageType> damageType)
+	simulated function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector Momentum, class<DamageType> damageType, optional int HitIndex)
 	{
 		if (level.Timeseconds == LastPainTime)
 			PlayHit(Damage, InstigatedBy, Hitlocation, damageType, Momentum);
@@ -1221,7 +1221,7 @@ State Dying
 }
 
 // Line up hits to be fired at DoHit()
-function PlayHit(float Damage, Pawn InstigatedBy, vector HitLocation, class<DamageType> DamageType, vector Momentum)
+function PlayHit(float Damage, Pawn InstigatedBy, vector HitLocation, class<DamageType> DamageType, vector Momentum, optional int HitIndex)
 {
     local Vector HitRay;
     local Name HitBone;
@@ -1421,22 +1421,22 @@ simulated function class<BloodManager> GetBloodManagerForGore (class<DamageType>
 	}
 	else
 	{
-		if (ClassIsChildOf(DT, class'DamTypeSuperShockBeam'))
-			return class'BloodMan_FireExploded';
+		//if (ClassIsChildOf(DT, class'DamTypeSuperShockBeam'))
+			//return class'BloodMan_FireExploded';
 
 		if (DT.default.bAlwaysGibs ||
-			ClassIsChildOf(DT, class'Gibbed') ||
-			ClassIsChildOf(DT, class'DamTypeRocket') ||
-			ClassIsChildOf(DT, class'DamTypeFlakShell') ||
-			ClassIsChildOf(DT, class'DamTypeRedeemer') ||
-			ClassIsChildOf(DT, class'DamTypeTankShell') ||
-			ClassIsChildOf(DT, class'DamTypeAttackCraftMissle') ||
-			ClassIsChildOf(DT, class'DamTypeShockCombo') ||
-			ClassIsChildOf(DT, class'DamTypeMASCannon') ||
-			ClassIsChildOf(DT, class'DamTypeTeleFrag') ||
-			ClassIsChildOf(DT, class'DamTypeIonBlast') ||
-			ClassIsChildOf(DT, class'DamTypeTeleFragged') ||
-			ClassIsChildOf(DT, class'DamTypeIonCannonBlast') )
+			//ClassIsChildOf(DT, class'Gibbed') ||
+			//ClassIsChildOf(DT, class'DamTypeRocket') ||
+			//ClassIsChildOf(DT, class'DamTypeFlakShell') ||
+			//ClassIsChildOf(DT, class'DamTypeRedeemer') ||
+			//ClassIsChildOf(DT, class'DamTypeTankShell') ||
+			//ClassIsChildOf(DT, class'DamTypeAttackCraftMissle') ||
+			//ClassIsChildOf(DT, class'DamTypeShockCombo') ||
+			//ClassIsChildOf(DT, class'DamTypeMASCannon') ||
+			//ClassIsChildOf(DT, class'DamTypeTeleFrag') ||
+			//ClassIsChildOf(DT, class'DamTypeIonBlast') ||
+			//ClassIsChildOf(DT, class'DamTypeTeleFragged') ||
+			ClassIsChildOf(DT, class'DamTypeHuskGun') )
 			return class'BloodMan_Exploded';
 	}
 	if (DT.default.bBulletHit)
@@ -1837,7 +1837,7 @@ simulated function SpawnGibs(Rotator HitRotation, float ChunkPerterbation)
 	GetBloodManagerForGore(None).static.DoSeverEffects(self, 'head', HitRay, ChunkPerterbation, 100);
 }
 
-function PlayDyingSound()
+/*function PlayDyingSound()
 {
 	// Dont play dying sound if a skeleton. Tricky without vocal chords.
 	if ( bSkeletized )
@@ -1860,7 +1860,7 @@ function PlayDyingSound()
 		return;
 		
 	PlaySound(SoundGroupClass.static.GetDeathSound(), SLOT_Pain,2.5*TransientSoundVolume, true,500);
-}
+}*/
 
 simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
 {
@@ -2186,8 +2186,8 @@ singular event BaseChange()
 			JumpOffPawn();
 		}
 	}
-	else if (Sandbag(Base) != None) //hack fixme
-		JumpOffPawn();
+	//else if (Sandbag(Base) != None) //hack fixme
+		//JumpOffPawn();
 	
 	else if ( (Decoration(Base) != None) && (Velocity.Z < -400) )
 	{
@@ -2346,8 +2346,8 @@ function CalcSpeedUp(float SpeedFactor)
 	local float NewSpeed;
 	
 	NewSpeed = Instigator.default.GroundSpeed * SpeedFactor;
-	if (ComboSpeed(CurrentCombo) != None)
-		NewSpeed *= 1.4;
+	/*if (ComboSpeed(CurrentCombo) != None)
+		NewSpeed *= 1.4;*/
 	if (BallisticWeapon(Weapon) != None && (BallisticWeapon(Weapon).PlayerSpeedFactor <= 1 || SpeedFactor <= 1))
 		NewSpeed *= BallisticWeapon(Weapon).PlayerSpeedFactor;
 	GroundSpeed = NewSpeed;
@@ -2551,7 +2551,7 @@ function RemoveCoverAnchor(Actor A)
 		CoverAnchors.Remove(i, 1);
 }
  
-function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector momentum, class<DamageType> damageType)
+function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector momentum, class<DamageType> damageType, optional int HitIndex)
 {
 		local int actualDamage;
 		local Controller Killer;

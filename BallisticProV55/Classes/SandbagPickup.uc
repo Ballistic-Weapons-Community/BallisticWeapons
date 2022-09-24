@@ -1,6 +1,6 @@
 class SandbagPickup extends BallisticWeaponPickup
 	placeable;
-
+/*
 defaultproperties
 {
      PickupDrawScale=0.450000
@@ -12,3 +12,4 @@ defaultproperties
      DrawScale=0.700000
      CollisionHeight=4.000000
 }
+*/

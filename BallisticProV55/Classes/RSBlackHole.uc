@@ -179,7 +179,7 @@ Begin:
 		Destroy();
 }
 
-event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
 	AddCharge(Damage/100.0);
 }

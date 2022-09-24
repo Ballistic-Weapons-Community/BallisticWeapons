@@ -83,7 +83,7 @@ simulated function HurtRadius( float DamageAmount, float DamageRadius, class<Dam
 	bHurtEntry = false;
 }
 
-function TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+function TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
 	if (bIgnited)
 		return;

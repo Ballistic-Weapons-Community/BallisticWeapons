@@ -101,7 +101,7 @@ simulated function DoDirectHit(byte Mode, vector HitLocation, vector HitNormal, 
 }
 
 // Spawn a tracer and water tracer
-simulated function SpawnTracer(byte Mode, Vector V)
+simulated function BWSpawnTracer(byte Mode, Vector V)
 {
 	local BCTraceEmitter Tracer;
 	local Vector TipLoc, WLoc, WNorm;

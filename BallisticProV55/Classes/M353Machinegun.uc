@@ -149,7 +149,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 {
     local int m;
     local weapon w;
-	local SandbagLayer Bags;
+	//local SandbagLayer Bags;
     local bool bPossiblySwitch, bJustSpawned;
 
     Instigator = Other;
@@ -189,7 +189,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 	if ( Instigator.Weapon != W )
 		W.ClientWeaponSet(bPossiblySwitch);
 		
-	if(BallisticTurret(Instigator) == None && Instigator.IsHumanControlled() && class'SandbagLayer'.static.ShouldGiveBags(Instigator))
+	/*if(BallisticTurret(Instigator) == None && Instigator.IsHumanControlled() && class'SandbagLayer'.static.ShouldGiveBags(Instigator))
     {
         Bags = Spawn(class'SandbagLayer',,,Instigator.Location);
 		
@@ -198,7 +198,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 			
         if( Bags != None )
             Bags.GiveTo(Instigator);
-    }
+    }*/
 		
 	//Disable aim for weapons picked up by AI-controlled pawns
 	bAimDisabled = default.bAimDisabled || !Instigator.IsHumanControlled();

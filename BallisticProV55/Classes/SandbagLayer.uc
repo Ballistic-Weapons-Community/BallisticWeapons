@@ -1,5 +1,5 @@
 class SandbagLayer extends BallisticWeapon;
-
+/*
 #exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
 
 var Sound DropSound;
@@ -268,3 +268,4 @@ defaultproperties
 	SoundVolume=150
 	TransientSoundRadius=256.000000
 }
+*/

@@ -28,19 +28,19 @@ function bool PreventDeath(Pawn Killed, Controller Killer, class<DamageType> DT,
 	// This causes non ballistic weapons and damagetypes to make blood explode effects
 	if (!ClassIsChildOf(DT, class'BallisticDamageType') && DT.default.bCausesBlood && (
 		DT.default.bAlwaysGibs ||
-		ClassIsChildOf(DT, class'Gibbed') ||
-		ClassIsChildOf(DT, class'DamTypeRocket') ||
-		ClassIsChildOf(DT, class'DamTypeFlakShell') ||
-		ClassIsChildOf(DT, class'DamTypeSuperShockBeam') ||
-		ClassIsChildOf(DT, class'DamTypeRedeemer') ||
-		ClassIsChildOf(DT, class'DamTypeTankShell') ||
-		ClassIsChildOf(DT, class'DamTypeAttackCraftMissle') ||
-		ClassIsChildOf(DT, class'DamTypeShockCombo') ||
-		ClassIsChildOf(DT, class'DamTypeMASCannon') ||
-		ClassIsChildOf(DT, class'DamTypeTeleFrag') ||
-		ClassIsChildOf(DT, class'DamTypeIonBlast') ||
-		ClassIsChildOf(DT, class'DamTypeTeleFragged') ||
-		ClassIsChildOf(DT, class'DamTypeIonCannonBlast') ))
+		ClassIsChildOf(DT, class'KFWeaponDamageType') ))
+		//ClassIsChildOf(DT, class'DamTypeRocket') ||
+		//ClassIsChildOf(DT, class'DamTypeFlakShell') ||
+		//ClassIsChildOf(DT, class'DamTypeSuperShockBeam') ||
+		//ClassIsChildOf(DT, class'DamTypeRedeemer') ||
+		//ClassIsChildOf(DT, class'DamTypeTankShell') ||
+		//ClassIsChildOf(DT, class'DamTypeAttackCraftMissle') ||
+		//ClassIsChildOf(DT, class'DamTypeShockCombo') ||
+		//ClassIsChildOf(DT, class'DamTypeMASCannon') ||
+		//ClassIsChildOf(DT, class'DamTypeTeleFrag') ||
+		//ClassIsChildOf(DT, class'DamTypeIonBlast') ||
+		//ClassIsChildOf(DT, class'DamTypeTeleFragged') ||
+		//ClassIsChildOf(DT, class'DamTypeIonCannonBlast') ))
 		ExplodedDamage.static.DoBloodEffects(HitLocation, 100, Killed.Location - HitLocation * 10000, Killed, (Level.bDropDetail || Level.DetailMode == DM_Low));
 	return false;
 

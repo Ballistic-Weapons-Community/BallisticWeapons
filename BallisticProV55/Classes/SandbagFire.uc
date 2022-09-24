@@ -1,5 +1,5 @@
 class SandbagFire extends BallisticFire;
-
+/*
 function DoFireEffect();
 
 simulated event ModeDoFire()
@@ -126,3 +126,4 @@ defaultproperties
      AmmoClass=Class'BallisticProV55.Ammo_Sandbags'
      BotRefireRate=2.000000
 }
+*/

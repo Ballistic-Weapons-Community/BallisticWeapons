@@ -2,7 +2,7 @@
 // As the turret list, but for sandbags.
 //===========================================================================
 class SandbagList extends Info config(BallisticProV55);
-
+/*
 var   array<Sandbag>			Bags;
 var() globalconfig int			MaxBags;
 
@@ -62,3 +62,4 @@ defaultproperties
 {
      MaxBags=30
 }
+*/

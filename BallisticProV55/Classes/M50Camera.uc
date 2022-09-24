@@ -55,7 +55,7 @@ simulated event PostNetReceive()
 	}
 }
 
-event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
 	// don't allow team members to destroy M50 cam
 	if (InstigatorController != None && EventInstigator.Controller != None && EventInstigator.Controller.SameTeamAs(InstigatorController))

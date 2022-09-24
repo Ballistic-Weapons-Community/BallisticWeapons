@@ -36,7 +36,7 @@ function InitRogue(byte Stage)
 	GotoState('JetPack');
 }
 
-function TakeDamage(int Damage, Pawn InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+function TakeDamage(int Damage, Pawn InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
 }
 

@@ -43,7 +43,7 @@ simulated function PostNetBeginPlay()
 }
 
 // Got hit, explode with a tiny delay
-event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
 	if (Health < 1)
 		return;

@@ -264,7 +264,7 @@ function bool SwapPickup(Actor Other, class<Pickup> NewItem, int Index, optional
 	// Settings for when old actor is a Pickup
 	if (Pickup(Other) != None)
 	{
-		if (Pickup(Other).PickupBase != None && WildcardBase(Pickup(Other).PickupBase) != None)
+		if (Pickup(Other).PickupBase != None/* && &WildcardBase(Pickup(Other).PickupBase) != None*/)
 			A.PickupBase = Pickup(Other).PickupBase;
 		if (Pickup(Other).myMarker != None)
 		{
@@ -277,8 +277,8 @@ function bool SwapPickup(Actor Other, class<Pickup> NewItem, int Index, optional
 	// Settings for when old actor is a xPickupBase
 	else if (xPickupBase(Other) != None)
 	{
-		if (xWeaponBase(Other) != None)
-			xWeaponBase(Other).WeaponType = None;
+		//if (xWeaponBase(Other) != None)
+			//xWeaponBase(Other).WeaponType = None;
 		xPickupBase(Other).PowerUp = None;
 		Other.bHidden = true;
         A.Event = xPickupBase(Other).event;
@@ -389,7 +389,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	}
 
 	// Replace Weapon base
-	else if (xWeaponBase(Other) != None && xWeaponBase(Other).WeaponType != None)
+	/*else if (xWeaponBase(Other) != None && xWeaponBase(Other).WeaponType != None)
 	{
 		for(i=0;i<NumWeapons;i++)
 		{
@@ -408,7 +408,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 		if (bKillRogueWeaponPickups)
 			return SwapPickup(Other, Swaps[Rand(NumWeapons)].NewClasses[Rand(Swaps[i].NewClasses.length)].default.PickupClass, i);
 		return true;
-	}
+	}*/
 
 	else if (Ammo(Other) != None)
 	{
@@ -494,12 +494,12 @@ function DoSomeShit()
 //since that requires knowledge to be saved of the original weaponlocker loadout, which isn't possible on a per-WL
 //basis without a lot of faffing around and checkreplacing weaponlockers into a subclass for the purpose.
 
-function SwapLockers()
+/*function SwapLockers()
 {
 	local int i, j, k;
 	local WeaponLocker L;
-	local LockerWeapon LW;
-	local class<UTWeaponPickup> NP;
+	//local LockerWeapon LW;
+	local class<KfWeaponPickup> NP;
 	local array<WeaponLocker> Lockers;
 
 	if(!bLockersChange && bLockersSetup) // Az
@@ -579,7 +579,7 @@ function SwapLockers()
 			}
 		}
 	}
-}
+}*/
 
 event Tick (float DT)
 {
@@ -591,7 +591,7 @@ event Tick (float DT)
 		PickupChangeTime = level.TimeSeconds + default.PickupChangeTime;
 	}
 	//Cheap method of getting initial swaps in after a short delay - Azarael
-	if (!bLockersSetup && level.TimeSeconds > 5)
+	/*if (!bLockersSetup && level.TimeSeconds > 5)
 	{
 		SwapLockers();
 		bLockersSetup = True;
@@ -600,7 +600,7 @@ event Tick (float DT)
 	{
 		SwapLockers();
 		LockerChangeTime = level.TimeSeconds + default.LockerChangeTime;
-	}
+	}*/
 }
 
 defaultproperties

@@ -47,7 +47,7 @@
 class Game_BWConflict extends xTeamGame
 	config(BallisticProV55);
 
-var int					RoundCounter, RoundWinner, RoundTime;
+/*var int					RoundCounter, RoundWinner, RoundTime;
 var NavigationPoint		StartA, StartB;
 var int					RoundNum;				//Current round
 
@@ -996,4 +996,4 @@ defaultproperties
      ScreenShotName="BW_Core_WeaponTex.ui.Conflict-Sequence"
      DecoTextName="BallisticProV55.Game_BWConflict"
      Acronym="BWCP"
-}
+}*/

@@ -172,7 +172,7 @@ simulated event Timer()
 simulated singular function HitWall(vector HitNormal, actor Wall);
 
 // Got hit, explode with a tiny delay
-event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
 	if (class<BallisticDamageType>(DamageType) != None && !class<BallisticDamageType>(DamageType).default.bDetonatesBombs)
 		return;

@@ -498,7 +498,7 @@ simulated event Timer()
 	local int i;
 	
 	if (!bLWsInitialized)
-		AdjustLockerWeapons();
+		//AdjustLockerWeapons();
  	if (Role < ROLE_Authority)
  		return;
 	while (DoomedItems.Length > 0)
@@ -598,7 +598,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 		xPawn(Other).RequiredEquipment[1] = string(GetInventoryFor(GetNewItem(0)));
 	}
 
-	else if (Weapon(Other) != None || xWeaponBase(Other) != None || WildCardBase(Other) != None || xPickupBase(Other) != None || WeaponLocker(Other) != None || Pickup(Other) != None)
+	/*else if (Weapon(Other) != None || xWeaponBase(Other) != None || WildCardBase(Other) != None || xPickupBase(Other) != None || WeaponLocker(Other) != None || Pickup(Other) != None)
 	{
 		//Go through replacements list and see if there is a match
 		for (i=0;i<Replacements.Length;i++)
@@ -660,7 +660,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 			else if (Pickup(Other) != None && Pickup(Other).Class == GetPickupFor(Replacements[i].OldItem) && (!Replacements[i].bSuper || !bLeaveSuper))
 				AddPickupSwap(Pickup(Other), i);
 		}
-	}
+	}*/
 	return true;
 }
 
@@ -710,7 +710,7 @@ function bool SpawnNewItem(int Index, Actor Other, optional class<Actor> NewItem
     }
 
 	// Settings for when old actor is a Pickup
-	if (Pickup(Other) != None)
+	/*if (Pickup(Other) != None)
 	{
 		if (Pickup(Other).PickupBase != None && WildcardBase(Pickup(Other).PickupBase) != None)
 		{
@@ -741,7 +741,7 @@ function bool SpawnNewItem(int Index, Actor Other, optional class<Actor> NewItem
 			xPickupBase(Other).MyMarker = None;
 		}
 		return true;
-	}
+	}*/
 	return false;
 }
 
@@ -837,7 +837,7 @@ simulated function BeginPlay()
 	local WeaponLocker W;
 	local int i, j;
 
-	if (Level.NetMode == NM_Client)
+	/*if (Level.NetMode == NM_Client)
 	{
 		// Remove all pads...
 	    ForEach AllActors(class'xPickupBase', PB)
@@ -863,14 +863,14 @@ simulated function BeginPlay()
 						}
 			}
 		}
-	}
+	}*/
 	// Stuff won't be ready now, do it after its had a chance to init...
 	SetTimer(0.05, false);
 	
 	Super.BeginPlay();
 }
 
-simulated function AdjustLockerWeapons()
+/*simulated function AdjustLockerWeapons()
 {
 	local LockerWeapon L;
 	local class<UTWeaponPickup> NP;
@@ -912,7 +912,7 @@ simulated function AdjustLockerWeapons()
 			}
 		}
 	}
-}
+}*/
 
 function Array<Class<Weapon> > GetAllWeaponClasses()
 {

@@ -93,7 +93,7 @@ function bool CheckReplacement( Actor Other, out byte bSuperRelevant )
 	local int i;
 
 	bSuperRelevant = 0;
-	if (Weapon(Other) != None && (!Weapon(Other).bNoInstagibReplace) && Translauncher(Other)==None)
+	if (Weapon(Other) != None && (!Weapon(Other).bNoInstagibReplace) /*&& Translauncher(Other)==None*/)
 	{
 		for (i=0;i<WeaponClasses.length;i++)
 			if (WeaponClasses[i] == Other.class)
@@ -114,7 +114,7 @@ function bool CheckReplacement( Actor Other, out byte bSuperRelevant )
 			(WeaponClasses[1].default.FireModeClass[0].default.AmmoClass.default.PickupClass != Other.class &&
 			 WeaponClasses[1].default.FireModeClass[1].default.AmmoClass.default.PickupClass != Other.class)))
 		return false;
-*/	else if (xWeaponBase(Other) != None)
+*/	/*else if (xWeaponBase(Other) != None)
 	{
 		Other.bHidden = true;
 //		if (WeaponClasses.length != 1)
@@ -122,7 +122,7 @@ function bool CheckReplacement( Actor Other, out byte bSuperRelevant )
 		return false;
 	}
 	else if (xPickupBase(Other) != None)
-		Other.bHidden = true;
+		Other.bHidden = true;*/
 	else if (Ammo(Other) != None)
 	{
 		if (IP_AmmoPack(Other)!=None)

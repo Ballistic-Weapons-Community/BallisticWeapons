@@ -26,7 +26,7 @@ simulated event Destroyed()
 	super.Destroyed();
 }
 
-simulated function SpawnTracer(byte Mode, Vector V)
+simulated function BWSpawnTracer(byte Mode, Vector V)
 {
 	local TraceEmitter_A42Beam Tracer;
 	local float Dist;

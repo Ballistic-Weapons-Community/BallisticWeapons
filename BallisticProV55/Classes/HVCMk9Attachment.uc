@@ -362,7 +362,7 @@ simulated function DoWaterDischarge()
 	Instigator.PlaySound(DischargeSound, SLOT_None, 1.8, , 192, 1.0 , false);
 }
 
-simulated function SpawnTracer(byte Mode, Vector V)
+simulated function BWSpawnTracer(byte Mode, Vector V)
 {
 	local BCTraceEmitter Tracer;
 	local float Dist;

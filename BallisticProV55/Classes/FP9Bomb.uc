@@ -383,7 +383,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 }
 
 // Got hit, explode with a tiny delay
-event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
 	if (bDamaged || DamageType == ImpactDamageType || (class<BallisticDamageType>(DamageType) != None && !class<BallisticDamageType>(DamageType).default.bDetonatesBombs))
 		return;

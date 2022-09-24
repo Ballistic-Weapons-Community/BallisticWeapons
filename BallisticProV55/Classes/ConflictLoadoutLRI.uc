@@ -231,11 +231,11 @@ final private simulated function ModifyMenu()
 
 function UpdateSkillInfo()
 {
-	if (Game_BWConflict(Level.Game) != None)
-		MySkillInfo.ElapsedTime = Game_BWConflict(level.Game).TotalMatchTime;
-	else if (Role == ROLE_Authority)
-		MySkillInfo.ElapsedTime = Level.Game.GameReplicationInfo.ElapsedTime;
-	else MySkillInfo.ElapsedTime = PlayerController(myController).GameReplicationInfo.ElapsedTime;
+	//if (Game_BWConflict(Level.Game) != None)
+		//MySkillInfo.ElapsedTime = Game_BWConflict(level.Game).TotalMatchTime;
+	//else if (Role == ROLE_Authority)
+		//MySkillInfo.ElapsedTime = Level.Game.GameReplicationInfo.ElapsedTime;
+	//else MySkillInfo.ElapsedTime = PlayerController(myController).GameReplicationInfo.ElapsedTime;
 	
 	if (myController.PlayerReplicationInfo.Deaths == 0)
 	{

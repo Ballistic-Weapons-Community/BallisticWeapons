@@ -205,7 +205,7 @@ function ChangeLoadout (Pawn P, out string Stuff[5], optional string OldStuff[5]
 	local int Count, i, j;
 	local Array<Inventory> BadInv;
 
-	for (Inv=P.Inventory; Inv!=None && Count < 1000; Inv=Inv.Inventory)
+	/*for (Inv=P.Inventory; Inv!=None && Count < 1000; Inv=Inv.Inventory)
 	{
 		if (Weapon(Inv) != None && Translauncher(Inv)==None)
 		{
@@ -225,7 +225,7 @@ function ChangeLoadout (Pawn P, out string Stuff[5], optional string OldStuff[5]
 				}
 		}
 		Count++;
-	}
+	}*/
 	while (BadInv.length > 0)
 	{
 		if (BadInv[0] != None)
@@ -352,20 +352,20 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 		SetTimer(0.1, false);
 		PCPendingCOI = PlayerController(Other);
 	}
-	else if (xPawn(Other) != None)
+	else if (KFPawn(Other) != None)
 	{
-		xPawn(Other).RequiredEquipment[0] = "";
-		xPawn(Other).RequiredEquipment[1] = "";
+		KFPawn(Other).RequiredEquipment[0] = "";
+		KFPawn(Other).RequiredEquipment[1] = "";
 		return true;
 	}
 	// Only allow weapons that are in the loadout groups
-	else if (Weapon(Other) != None && (!Weapon(Other).bNoInstagibReplace) && Translauncher(Other)==None)
+	/*else if (Weapon(Other) != None && (!Weapon(Other).bNoInstagibReplace) && Translauncher(Other)==None)
 	{
 		for (i=0;i<Items.length;i++)
 			if (Items[i].ItemName ~= string(Other.class))
 				return true;
 		return false;
-	}
+	}*/
 	// No weapon pickups unless they are dropped. Dropped BWs are owned by the weapon that dropped them
 	else if (WeaponPickup(Other) != None && Other.Owner == None)
 		return false;
@@ -382,11 +382,11 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 		}
 	}
 	// No bases. Weapon pickups replaced with ammo packs
-	else if (xWeaponBase(Other) != None)
+	/*else if (xWeaponBase(Other) != None)
 	{
 		if (!SpawnNewItem(-1, Other, class'IP_AmmoPack'))
 			return false;
-	}
+	}*/
 	else if (xPickupBase(Other) != None)
 	{
 		Other.bHidden=true;

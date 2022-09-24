@@ -9,7 +9,7 @@
 class Mut_Elimination extends Mutator
 	HideDropDown
 	CacheExempt;
-
+/*
 struct Replacement
 {
 	var() class<Pickup>	OldItem;
@@ -123,30 +123,30 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 	if (Conflict == None)
 		return true;
 
-	if (WeaponLocker(Other) != None)
+	/*if (WeaponLocker(Other) != None)
 	{
 		Other.GotoState('Disabled');
 		if (Conflict.bAmmoPacks)
 			SpawnNewItem(-1, Other, class'IP_AmmoPack');
 		return false;
-	}
+	}*/
 	else if (Other.IsA('Pickup'))
 	{
 		if (Other.IsA('AdrenalinePickup'))
         	return false;
 
-		if (Other.IsA('WeaponPickup'))
+		/*if (Other.IsA('WeaponPickup'))
 		{
 			if (!Conflict.bKeepWeapons)
 				return !Level.bStartup;
-		}
-		else if (Other.IsA('Ammo'))
+		}*/
+		/*else if (Other.IsA('Ammo'))
 		{
 			if (Conflict.bAmmoPacks && IP_AmmoPack(Other)!=None)
 				return true;
 			if (!Conflict.bKeepWeapons || Conflict.bAmmoPacks)
 				return !Level.bStartup;
-		}
+		}*/
 		else
 		{
 			if (!Conflict.bKeepHealth && (Other.IsA('TournamentPickup') || Other.IsA('ArmorPickup')))
@@ -262,11 +262,11 @@ function bool SpawnNewItem(int Index, Actor Other, optional class<Pickup> NewIte
 	// Settings for when old actor is a Pickup
 	if (Pickup(Other) != None)
 	{
-		if (Pickup(Other).PickupBase != None && WildcardBase(Pickup(Other).PickupBase) != None)
+		/*if (Pickup(Other).PickupBase != None && WildcardBase(Pickup(Other).PickupBase) != None)
 		{
 			A.PickupBase = Pickup(Other).PickupBase;
 			A.PickupBase.myPickUp = A;
-		}
+		}*/
 		if (Pickup(Other).myMarker != None)
 		{
 			A.myMarker = Pickup(Other).MyMarker;
@@ -276,8 +276,8 @@ function bool SpawnNewItem(int Index, Actor Other, optional class<Pickup> NewIte
 	// Settings for when old actor is a xPickupBase
 	else if (xPickupBase(Other) != None)
 	{
-		if (xWeaponBase(Other) != None)
-			xWeaponBase(Other).WeaponType = None;
+		//if (xWeaponBase(Other) != None)
+		//	xWeaponBase(Other).WeaponType = None;
 		xPickupBase(Other).PowerUp = None;
 		Other.bHidden = true;
         A.Event = xPickupBase(Other).event;
@@ -308,3 +308,4 @@ defaultproperties
      bAlwaysRelevant=True
      RemoteRole=ROLE_SimulatedProxy
 }
+*/

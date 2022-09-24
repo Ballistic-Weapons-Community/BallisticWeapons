@@ -1,5 +1,5 @@
 class SandbagTrigger extends Trigger;
-
+/*
 var Sandbag Bags;
 
 event Touch(actor Other)
@@ -50,3 +50,4 @@ defaultproperties
      CollisionRadius=72.000000
      CollisionHeight=48.000000
 }
+*/

@@ -8,7 +8,7 @@
 //=============================================================================
 class Game_BWConflictCTFMaps extends Game_BWConflict;
 
-simulated event PostBeginPlay()
+/*simulated event PostBeginPlay()
 {
 	super.PostBeginPlay();
 
@@ -44,4 +44,4 @@ defaultproperties
      bNetTemporary=True
      bAlwaysRelevant=True
      RemoteRole=ROLE_SimulatedProxy
-}
+}*/

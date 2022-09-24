@@ -104,7 +104,7 @@ simulated event Tick(float DT)
 	}
 }
 
-event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
 	if (HitLocation == Location)
 	{
@@ -132,7 +132,7 @@ event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Mo
 auto state Spawning
 {
 	event Touch( Actor Other );
-	event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType);
+	event TakeDamage(int Damage, Pawn EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex);
 	simulated function BeginState()
 	{
 		NetState = 0;

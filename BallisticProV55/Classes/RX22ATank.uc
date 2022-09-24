@@ -61,7 +61,7 @@ simulated event PostNetReceive()
 }
 
 
-function TakeDamage(int Damage, Pawn InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType)
+function TakeDamage(int Damage, Pawn InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional int HitIndex)
 {
 	local bool bFire;
 	if (Weapon.BCRepClass.default.GameStyle != 0)
