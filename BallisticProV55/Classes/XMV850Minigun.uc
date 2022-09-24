@@ -229,8 +229,8 @@ function Notify_Deploy()
 			HitLoc = End;
 		End = HitLoc - vect(0,0,100);
 		T = Trace(HitLoc, HitNorm, End, HitLoc, true, vect(6,6,6));
-		if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
-			break;
+		//if (T != None && (T.bWorldGeometry && (Sandbag(T) == None || Sandbag(T).AttachedWeapon == None)) && HitNorm.Z >= 0.9 && FastTrace(HitLoc, Start))
+			//break;
 		if (Forward <= 45)
 			return;
 	}
@@ -238,16 +238,16 @@ function Notify_Deploy()
 	FireMode[1].bIsFiring = false;
    	FireMode[1].StopFiring();
 
-	if(Sandbag(T) != None)
-	{
-		HitLoc = T.Location;
-		HitLoc.Z += class'XMV850Turret'.default.CollisionHeight + 15;
-	}
+	//if(Sandbag(T) != None)
+	//{
+	//	HitLoc = T.Location;
+	//	HitLoc.Z += class'XMV850Turret'.default.CollisionHeight + 15;
+	//}
 	
-	else
-	{
+	//else
+	//{
 		HitLoc.Z += class'XMV850Turret'.default.CollisionHeight - 9;
-	}
+	//}
 	
 	CompressedEq = Instigator.Rotation;
 		
@@ -264,8 +264,8 @@ function Notify_Deploy()
 	
     if (Turret != None)
     {
-    	if (Sandbag(T) != None)
-			Sandbag(T).AttachedWeapon = Turret;
+    	//if (Sandbag(T) != None)
+		//	Sandbag(T).AttachedWeapon = Turret;
 		Turret.InitDeployedTurretFor(self);
 		Turret.TryToDrive(Instigator);
 		Destroy();

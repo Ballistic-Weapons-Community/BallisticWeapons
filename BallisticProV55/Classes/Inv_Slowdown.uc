@@ -58,8 +58,8 @@ function CalcNewMoveSpeed(optional bool bReset)
 		if (BallisticWeapon(Instigator.Weapon).SprintControl != None && BallisticWeapon(Instigator.Weapon).SprintControl.bSprinting)
 			NewSpeed *= BallisticWeapon(Instigator.Weapon).SprintControl.SpeedFactor;
 	}
-	if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
-		NewSpeed *= 1.4;
+	//if (ComboSpeed(xPawn(Instigator).CurrentCombo) != None)
+	//	NewSpeed *= 1.4;
 	if (Instigator.GroundSpeed != NewSpeed)
 		Instigator.GroundSpeed = NewSpeed;
 }

@@ -64,12 +64,12 @@ simulated function InstantFireEffects(byte Mode)
 			if (mHitActor == None)
 			{
 				DoWaterTrace(Mode, Start, End);
-				SpawnTracer(Mode, End);
+				BWSpawnTracer(Mode, End);
 			}
 			else
 			{
 				DoWaterTrace(Mode, Start, HitLocation);
-				SpawnTracer(Mode, HitLocation);
+				BWSpawnTracer(Mode, HitLocation);
 			}
 
 			if (mHitActor == None || (!mHitActor.bWorldGeometry && Mover(mHitActor) == None))
@@ -95,7 +95,7 @@ simulated function GasShotFX()
 	if (mHitLocation == vect(0,0,0) || Instigator == none)
 		return;
 
-	SpawnTracer(1, mHitLocation);
+	BWSpawnTracer(1, mHitLocation);
 	FlyByEffects(1, mHitLocation);
 
 }

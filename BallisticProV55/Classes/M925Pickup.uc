@@ -51,7 +51,7 @@ simulated event Tick(float DT)
 	if (ChangeTime > 0 && level.TimeSeconds > ChangeTime && (IsInState('Sleeping') || /*!level.Game.bWeaponStay || */!PlayerCanSeeMe()))
 		OnItemChange(self);
 
-	super(UTWeaponPickup).Tick(DT);
+	super(KFWeaponPickup).Tick(DT);
 
 	if (level.NetMode == NM_DedicatedServer)
 		return;

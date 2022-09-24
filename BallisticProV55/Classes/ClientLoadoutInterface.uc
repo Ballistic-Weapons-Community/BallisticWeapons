@@ -193,15 +193,15 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4);
 		LastLoadoutTime = level.TimeSeconds;
 	}
-	else if ((ONSOnslaughtGame(level.Game)!=None))
-		for(i=0;i<ONSOnslaughtGame(level.Game).PowerCores.length;i++)
-			if ( (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByRed && PC.GetTeamNum() == 0) || (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByBlue && PC.GetTeamNum() == 1) )
-				if (VSize(ONSOnslaughtGame(level.Game).PowerCores[i].Location - PC.Pawn.Location) < 384)
-				{
-					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4);
-					LastLoadoutTime = level.TimeSeconds;
-					return;
-				}
+	//else if ((ONSOnslaughtGame(level.Game)!=None))
+	//	for(i=0;i<ONSOnslaughtGame(level.Game).PowerCores.length;i++)
+	//		if ( (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByRed && PC.GetTeamNum() == 0) || (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByBlue && PC.GetTeamNum() == 1) )
+	//			if (VSize(ONSOnslaughtGame(level.Game).PowerCores[i].Location - PC.Pawn.Location) < 384)
+	//			{
+	//				ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4);
+	//				LastLoadoutTime = level.TimeSeconds;
+	//				return;
+	//			}
 }
 // Called from server. Tells client to send back loadout info
 simulated function ClientStartLoadout()

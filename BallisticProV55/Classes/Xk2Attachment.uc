@@ -84,7 +84,7 @@ simulated function InstantFireEffects(byte Mode)
 		return;
 	if (Instigator == none)
 		return;
-	SpawnTracer(Mode, mHitLocation);
+	BWSpawnTracer(Mode, mHitLocation);
 	FlyByEffects(Mode, mHitLocation);
 	// Client, trace for hitnormal, hitmaterial and hitactor
 	if (Level.NetMode == NM_Client)

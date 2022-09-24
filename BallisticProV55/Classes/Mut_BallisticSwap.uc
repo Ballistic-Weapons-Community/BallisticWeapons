@@ -499,7 +499,7 @@ function DoSomeShit()
 	local int i, j, k;
 	local WeaponLocker L;
 	//local LockerWeapon LW;
-	local class<KfWeaponPickup> NP;
+	local class<KFWeaponPickup> NP;
 	local array<WeaponLocker> Lockers;
 
 	if(!bLockersChange && bLockersSetup) // Az
@@ -555,7 +555,7 @@ function DoSomeShit()
 					MeshEmitter(LW.Emitters[j]).Disabled=false;
 				
 				if(j < L.Weapons.Length)
-					NP = class<UTWeaponPickup>(GetPickupFor(L.Weapons[j].WeaponClass));
+					NP = class<KFWeaponPickup>(GetPickupFor(L.Weapons[j].WeaponClass));
 
 				if (NP != None && MeshEmitter(LW.Emitters[j]).StaticMesh != NP.default.StaticMesh)
 				{

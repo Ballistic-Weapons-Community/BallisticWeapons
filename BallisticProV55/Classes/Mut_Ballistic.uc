@@ -873,7 +873,7 @@ simulated function BeginPlay()
 /*simulated function AdjustLockerWeapons()
 {
 	local LockerWeapon L;
-	local class<UTWeaponPickup> NP;
+	local class<KFWeaponPickup> NP;
 	local int i, j;
 
 	if (bLWsInitialized)
@@ -888,7 +888,7 @@ simulated function BeginPlay()
 		{
 			for (j=0;j<L.Emitters.Length;j++)
 			{
-				NP = class<UTWeaponPickup>(GetPickupFor(Replacements[i].NewItems[0]));
+				NP = class<KFWeaponPickup>(GetPickupFor(Replacements[i].NewItems[0]));
 				if (NP != None && ( MeshEmitter(L.Emitters[j]).StaticMesh == GetPickupFor(Replacements[i].OldItem).default.StaticMesh ||
 					MeshEmitter(L.Emitters[j]).StaticMesh == NP.default.StaticMesh) )
 				{

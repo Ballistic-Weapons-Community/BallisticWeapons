@@ -396,7 +396,7 @@ simulated function InstantFireEffects(byte Mode)
 		return;
 	if (mHitLocation == vect(0,0,0))
 		return;
-	SpawnTracer(Mode, mHitLocation);
+	BWSpawnTracer(Mode, mHitLocation);
 	if (VSize(mHitLocation) < 2)
 		return;
 	// Client, trace for hitnormal, hitmaterial and hitactor

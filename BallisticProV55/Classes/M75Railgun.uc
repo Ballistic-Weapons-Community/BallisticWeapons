@@ -318,7 +318,7 @@ simulated event DrawThermalMode (Canvas C)
 				for (i=0;i<P.Attached.length;i++)
 					if (P.Attached[i] != None)
 					{
-						if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
+						if (Pawn(P.Attached[i]) != None/* || ONSWeapon(P.Attached[i]) != None || InventoryAttachment(P.Attached[i])!= None*/)
 						{
 							if (P.Attached[i].Skins.length > 0)
 							{	AttOldSkins0[i] = P.Attached[i].Skins[0];	P.Attached[i].Skins[0] = ColorMod;	}
@@ -344,7 +344,7 @@ simulated event DrawThermalMode (Canvas C)
 				for (i=0;i<P.Attached.length;i++)
 					if (P.Attached[i] != None)
 					{
-						if (Pawn(P.Attached[i]) != None || ONSWeapon(P.Attached[i]) != None/* || InventoryAttachment(P.Attached[i])!= None*/)
+						if (Pawn(P.Attached[i]) != None/* || ONSWeapon(P.Attached[i]) != None || InventoryAttachment(P.Attached[i])!= None*/)
 						{
 							if (AttOldSkins1[i] == None)
 							{

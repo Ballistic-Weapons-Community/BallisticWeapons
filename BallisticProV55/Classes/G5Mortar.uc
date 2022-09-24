@@ -78,11 +78,11 @@ simulated function InitMortar()
 	if (Target != None)
 		Speed *= 0.35;
 		MaxSpeed *= 0.35;
-	if (ONSTreadCraft(Target)!=None || ONSWheeledCraft(Target)!=None)	{
-		Height = 2000;	}
-	else if (ONSHoverCraft(Target)!=None)	{
-		TurnRate *= 1.25;
-		MaxSpeed *= 3;	}
+	//if (ONSTreadCraft(Target)!=None || ONSWheeledCraft(Target)!=None)	{
+		//Height = 2000;	}
+	//else if (ONSHoverCraft(Target)!=None)	{
+		//TurnRate *= 1.25;
+		//MaxSpeed *= 3;	}
 
 	Start = Location + Vector(Rotation) * Speed * 0.2;
 	Mid = Location + (LastLoc - Location) * 0.5;
