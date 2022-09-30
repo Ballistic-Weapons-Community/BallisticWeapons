@@ -17,6 +17,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTBulldog'
 		PenetrateForce=250
 		bPenetrate=True
+		PushbackForce=3000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		FlashScaleFactor=1.100000
 		Recoil=1280.000000
@@ -44,6 +45,7 @@ defaultproperties
 		Speed=7000.000000
 		MaxSpeed=7000.000000
 		Damage=110
+		PushbackForce=100.000000
 		DamageRadius=512.000000
 		MomentumTransfer=60000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'

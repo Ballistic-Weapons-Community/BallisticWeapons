@@ -14,9 +14,9 @@ defaultproperties
 		DamageTypeHead=Class'BallisticProV55.DTXMV850MGHead'
 		DamageTypeArm=Class'BallisticProV55.DTXMV850MG'
 		PenetrateForce=150
+		PushbackForce=150.000000
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
-		PushbackForce=150.000000
 		FlashScaleFactor=0.800000
 		Recoil=72.000000
 		Chaos=0.120000

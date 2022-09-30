@@ -43,11 +43,11 @@ defaultproperties
 		Damage=50
 		DamageRadius=192.000000
 		MomentumTransfer=50000.000000
+		PushbackForce=200.000000
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-FlameFire',Volume=1.300000,Radius=256.000000)
 		Recoil=512.000000
 		Chaos=0.500000
-		PushbackForce=200.000000
 		SplashDamage=True
 		BotRefireRate=0.7
 		WarnTargetPct=0.5	

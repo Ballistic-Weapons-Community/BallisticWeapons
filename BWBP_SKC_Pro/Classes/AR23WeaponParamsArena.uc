@@ -18,6 +18,7 @@ defaultproperties
 		PenetrateForce=100.000000
 		bPenetrate=True
 		PDamageFactor=0.8
+		PushbackForce=250.000000
 		WallPDamageFactor=0.75
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
@@ -52,6 +53,8 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AR23Flak'
 		PenetrateForce=100
 		bPenetrate=True
+		PushbackForce=1850.000000
+		MomentumTransfer=50.000000
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=2
 		Recoil=768.000000

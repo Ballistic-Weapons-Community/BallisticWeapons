@@ -17,6 +17,7 @@ defaultproperties
 		PenetrateForce=450
 		bPenetrate=True
 		PDamageFactor=0.800000
+		PushbackForce=255.000000
 		WallPDamageFactor=0.850000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		Recoil=450.000000

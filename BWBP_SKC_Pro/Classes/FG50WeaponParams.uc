@@ -17,6 +17,7 @@ defaultproperties
 		PenetrateForce=150
 		PDamageFactor=0.800000
 		WallPDamageFactor=0.800000
+		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
 		Recoil=512.000000
@@ -42,6 +43,7 @@ defaultproperties
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
 		PenetrateForce=150
+		PushbackForce=125.000000
 		PDamageFactor=0.800000
 		WallPDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'

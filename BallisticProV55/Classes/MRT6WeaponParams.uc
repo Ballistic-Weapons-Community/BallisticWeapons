@@ -18,6 +18,7 @@ defaultproperties
         DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'
         MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
         FlashScaleFactor=1.200000
+		PushbackForce=1200.000000
         Recoil=1024.000000
         Chaos=0.450000
         BotRefireRate=0.7
@@ -44,6 +45,7 @@ defaultproperties
         TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
         ImpactManager=Class'BallisticProV55.IM_Shell'
         Damage=10
+		PushbackForce=600.000000
         DamageType=Class'BallisticProV55.DTMRT6Shotgun'
         DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'
         DamageTypeArm=Class'BallisticProV55.DTMRT6Shotgun'

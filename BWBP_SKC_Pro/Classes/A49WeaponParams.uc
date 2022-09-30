@@ -38,6 +38,7 @@ defaultproperties
 		FlashScaleFactor=1.200000
      	Recoil=512.000000
      	Chaos=0.500000
+		PushbackForce=1500.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A49.A49-ShockWave',Volume=2.000000)
      	WarnTargetPct=0.100000
 		BotRefireRate=0.900000
