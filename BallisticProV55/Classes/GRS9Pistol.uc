@@ -611,4 +611,6 @@ defaultproperties
 	DrawScale=0.150000
 	bFullVolume=True
 	SoundRadius=128.000000
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Shader'BW_Core_WeaponTex.Glock.Glock_Shiny'
 }

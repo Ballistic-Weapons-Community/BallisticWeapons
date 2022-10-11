@@ -8,7 +8,7 @@
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright� 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class MD24MeleeFire extends BallisticMeleeFire;
+class RS8MeleeFire extends BallisticMeleeFire;
 
 simulated function bool HasAmmo()
 {
@@ -19,19 +19,19 @@ function PlayPreFire()
 {
 	super.PlayPreFire();
 
-	MD24Pistol(Weapon).bStriking = true;
+	RS8Pistol(Weapon).bStriking = true;
 }
 
 function PlayFiring()
 {
 	if (BW.MagAmmo == 0)
 	{
-		PreFireAnim = 'PrepMeleeOpen';
+		PreFireAnim = 'MeleePrepOpen';
 		FireAnim = 'MeleeOpen';
 	}
 	else
 	{
-		PreFireAnim = 'PrepMelee';
+		PreFireAnim = 'MeleePrep';
 		FireAnim = 'Melee';
 	}
 	super.PlayFiring();
@@ -48,9 +48,9 @@ defaultproperties
      Damage=35.000000
      
      
-     DamageType=Class'BallisticProV55.DTMD24Melee'
-     DamageTypeHead=Class'BallisticProV55.DTMD24Melee'
-     DamageTypeArm=Class'BallisticProV55.DTMD24Melee'
+     DamageType=Class'BallisticProV55.DTRS8Melee'
+     DamageTypeHead=Class'BallisticProV55.DTRS8Melee'
+     DamageTypeArm=Class'BallisticProV55.DTRS8Melee'
      KickForce=100
      HookStopFactor=1.700000
      HookPullForce=100.000000
@@ -61,10 +61,10 @@ defaultproperties
      BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
-     PreFireAnim="PrepMelee"
+     PreFireAnim="MeleePrep"
      FireAnim="Melee"
      FireRate=0.450000
-     AmmoClass=Class'BallisticProV55.Ammo_MD24Clip'
+     AmmoClass=Class'BallisticProV55.Ammo_RS8Bullets'
      AmmoPerFire=0
      ShakeRotMag=(X=64.000000,Y=128.000000)
      ShakeRotRate=(X=2500.000000,Y=2500.000000,Z=2500.000000)

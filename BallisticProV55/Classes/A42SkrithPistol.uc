@@ -246,6 +246,7 @@ defaultproperties
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_A42'
 	BigIconCoords=(X1=80,Y1=24,X2=410,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	MeleeFireClass=Class'BallisticProV55.A42MeleeFire'
 	bWT_RapidProj=True
 	bWT_Energy=True
 	ManualLines(0)="Launches moderate damage plasma projectiles at a good rate of fire. These projectiles gain damage over range."

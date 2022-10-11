@@ -12,6 +12,7 @@
 class M806Pistol extends BallisticHandgun;
 
 var   bool			bLaserOn;
+var   bool			bStriking;
 var   LaserActor	Laser;
 var() Sound			LaserOnSound;
 var() Sound			LaserOffSound;
@@ -233,7 +234,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		HitLocation = End;
 
 	// Draw dot at end of beam
-	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
 		SpawnLaserDot(HitLocation);
 	else
 		KillLaserDot();
@@ -244,7 +245,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs)
 	Laser.SetLocation(Loc);
 	HitLocation = ConvertFOVs(End, Instigator.Controller.FovAngle, DisplayFOV, 400);
-	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
 		Laser.SetRotation(Rotator(HitLocation - Loc));
 	else
 	{
@@ -271,7 +272,9 @@ simulated event AnimEnd (int Channel)
     local float Frame, Rate;
 
     GetAnimParams(0, Anim, Frame, Rate);
-
+	
+	if(Anim != 'MeleePrep')
+		bStriking = false;
 	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim)
 	{
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
