@@ -15,9 +15,10 @@ class FG50MachineGun extends BallisticWeapon;
 //aiming
 var(FG50)	Emitter		        LaserDot;
 var(FG50)	LaserActor	        Laser;
-var(FG50) Sound		        LaserOnSound;
-var(FG50) Sound		        LaserOffSound;
+var(FG50) 	Sound		        LaserOnSound;
+var(FG50) 	Sound		        LaserOffSound;
 var(FG50)	bool			    bLaserOn;
+var   		bool				bStriking;
 
 //heat
 var(FG50)	FG50Heater			Heater;
@@ -308,7 +309,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		HitLocation = End;
 
 	// Draw dot at end of beam
-	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
 		SpawnLaserDot(HitLocation);
 	else
 		KillLaserDot();
@@ -319,7 +320,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs)
 	Laser.SetLocation(Loc);
 	HitLocation = ConvertFOVs(End, Instigator.Controller.FovAngle, DisplayFOV, 400);
-	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
 		Laser.SetRotation(Rotator(HitLocation - Loc));
 	else
 	{
@@ -599,21 +600,9 @@ function ServerWeaponSpecial(optional byte i)
 
 // AI Interface =====
 // choose between regular or alt-fire
+
 function byte BestMode()
 {
-	local Bot B;
-
-	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return 0;
-
-	if (B.Skill > Rand(6))
-	{
-		if (AimComponent.GetChaos() < 0.1 || AimComponent.GetChaos() < 0.5 && VSize(B.Enemy.Location - Instigator.Location) > 500)
-			return 1;
-	}
-	else if (FRand() > 0.75)
-		return 1;
 	return 0;
 }
 
@@ -636,7 +625,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.2, Dist, 1024, 2048); 
+	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.75, Dist, 1024, 2048); 
 }
 
 
@@ -678,6 +667,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	MagAmmo=40
+	MeleeFireClass=Class'BWBP_SKC_Pro.FG50MeleeFire'
 	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-Cock',Volume=2.500000,Radius=32.000000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.AS50.FG50-DrumOut',Volume=1.500000,Radius=32.000000)

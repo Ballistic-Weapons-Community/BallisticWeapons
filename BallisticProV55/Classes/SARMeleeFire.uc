@@ -8,7 +8,19 @@
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright� 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class M806MeleeFire extends BallisticMeleeFire;
+class SARMeleeFire extends BallisticMeleeFire;
+
+simulated function ModeHoldFire()
+{
+	Super.ModeHoldFire();
+	BW.GunLength=1;
+}
+
+simulated event ModeDoFire()
+{
+	super.ModeDoFire();
+	BW.GunLength = BW.default.GunLength;
+}
 
 simulated function bool HasAmmo()
 {
@@ -19,7 +31,7 @@ function PlayPreFire()
 {
 	super.PlayPreFire();
 
-	MD24Pistol(Weapon).bStriking = true;
+	SARAssaultRifle(Weapon).bStriking = true;
 }
 
 defaultproperties
@@ -30,12 +42,9 @@ defaultproperties
      SwipePoints(3)=(Weight=1,offset=(Pitch=-1000,Yaw=-1000))
      SwipePoints(4)=(Weight=3,offset=(Pitch=-2048,Yaw=-2048))
      TraceRange=(Min=140.000000,Max=140.000000)
-     Damage=35.000000
-     
-     
-     //DamageType=Class'BallisticProV55.DTM806Melee'
-     //DamageTypeHead=Class'BallisticProV55.DTM806Melee'
-     DamageTypeArm=Class'BallisticProV55.DTM806Melee'
+     DamageType=Class'BallisticProV55.DTSARMelee'
+     DamageTypeHead=Class'BallisticProV55.DTSARMelee'
+     DamageTypeArm=Class'BallisticProV55.DTSARMelee'
      KickForce=100
      HookStopFactor=1.700000
      HookPullForce=100.000000
@@ -43,13 +52,13 @@ defaultproperties
      bReleaseFireOnDie=False
      bIgnoreReload=True
      ScopeDownOn=SDO_PreFire
-     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.MD24.MD24_Melee',Volume=0.5,Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=32.000000,bAtten=True)
      bAISilent=True
      bFireOnRelease=True
      PreFireAnim="MeleePrep"
-     FireAnim="MeleeFire"
+     FireAnim="Melee"
      FireRate=0.450000
-     AmmoClass=Class'BallisticProV55.Ammo_MD24Clip'
+     AmmoClass=Class'BallisticProV55.Ammo_556mm'
      AmmoPerFire=0
      ShakeRotMag=(X=64.000000,Y=128.000000)
      ShakeRotRate=(X=2500.000000,Y=2500.000000,Z=2500.000000)

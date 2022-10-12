@@ -680,10 +680,6 @@ simulated function SetNVLight(bool bOn)
 		NVLight.bDynamicLight = false;
 }
 
-///================================================
-///
-///================================================
-
 static function class<Pickup> RecommendAmmoPickup(int Mode)
 {
 	return class'AP_50IncMag';
@@ -701,25 +697,11 @@ simulated function bool HasAmmo()
 	return false;	//This weapon is empty
 }
 
-
-
 // AI Interface =====
 // choose between regular or alt-fire
+
 function byte BestMode()
 {
-	local Bot B;
-
-	B = Bot(Instigator.Controller);
-	if ( (B == None) || (B.Enemy == None) )
-		return 0;
-
-	if (B.Skill > Rand(6))
-	{
-		if (AimComponent.GetChaos() < 0.1 || AimComponent.GetChaos() < 0.5 && VSize(B.Enemy.Location - Instigator.Location) > 500)
-			return 1;
-	}
-	else if (FRand() > 0.75)
-		return 1;
 	return 0;
 }
 
@@ -742,7 +724,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.5, Dist, 2048, 3072); 
+	return class'BUtil'.static.ReverseDistanceAtten(Rating, 0.75, Dist, 1024, 2048); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -768,7 +750,7 @@ defaultproperties
 	ScreenBase4=Texture'BWBP_SKC_Tex.FG50.FG50-Screen4'
 	Numbers=Texture'BWBP_SKC_Tex.PUMA.PUMA-Numbers'
 	MyFontColor=(B=255,G=255,R=255,A=255)
-
+	MeleeFireClass=Class'BWBP_SKC_Pro.AS50MeleeFire'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_Tex.FSG50.BigIcon_FSG50'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'

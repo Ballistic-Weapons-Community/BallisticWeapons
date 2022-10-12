@@ -13,6 +13,7 @@ const AUTO_MODE = 0;
 const BURST_MODE = 1;
 
 var   bool			bLaserOn, bOldLaserOn;
+var   bool			bStriking;
 var   LaserActor	Laser;
 var() Sound			LaserOnSound;
 var() Sound			LaserOffSound;
@@ -352,7 +353,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 		HitLocation = End;
 
 	// Draw dot at end of beam
-	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2 && ReloadState != RS_GearSwitch)
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2 && ReloadState != RS_GearSwitch)
 		SpawnLaserDot(HitLocation);
 	else
 		KillLaserDot();
@@ -364,7 +365,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	Laser.SetLocation(Loc);
 	HitLocation = class'BUtil'.static.ConvertFOVs(Instigator.Location + Instigator.EyePosition(), Instigator.GetViewRotation(), End, Instigator.Controller.FovAngle, DisplayFOV, 400);
 
-	if (ReloadState == RS_None && ClientState == WS_ReadyToFire &&
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire &&
 	   ((FireMode[0].IsFiring() && Level.TimeSeconds - FireMode[0].NextFireTime > -0.05) || (!FireMode[0].IsFiring() && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)) && ReloadState != RS_GearSwitch)
 		Laser.SetRotation(Rotator(HitLocation - Loc));
 	else
@@ -517,6 +518,7 @@ defaultproperties
 	SpecialInfo(0)=(Info="240.0;25.0;0.8;90.0;0.0;1.0;0.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
+	MeleeFireClass=Class'BallisticProV55.SARMeleeFire'
 	CockAnimPostReload="ReloadEndCock"
 	CockAnimRate=1.250000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Cock')
