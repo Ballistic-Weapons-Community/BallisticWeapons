@@ -160,7 +160,7 @@ defaultproperties
 		Weight=30
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-Irons',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.MARS.F2000-Irons',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.LK05.LK05-EOTechGlow',Index=4)
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000

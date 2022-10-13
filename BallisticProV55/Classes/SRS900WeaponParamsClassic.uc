@@ -109,10 +109,10 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Desert
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_KBP_Tex.SRS900.SRS900Main',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_KBP_Tex.SRS900.SRS900Scope',Index=2)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_KBP_Tex.SRS900.SRS900Ammo',Index=3)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_KBP_Tex.SRS900-K.SRS900-KMain',Index=0)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_KBP_Tex.SRS900-K.SRS900-KScopeShine',Index=1)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_KBP_Tex.SRS900-K.SRS900-KAmmo',Index=2)
 		Weight=20
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
@@ -131,8 +131,8 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_BlackNoScope
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
-		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.SRS.SRSNSGrey',Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.SRS.SRSNSGrey',Index=0)
 		Weight=10
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
@@ -151,8 +151,8 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_UrbanNoScope
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSUrban',Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSUrban',Index=0)
 		Weight=10
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
@@ -171,8 +171,8 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_DesertNoScope
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSDesert',Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSDesert',Index=0)
 		Weight=10
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
@@ -191,8 +191,8 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_GermanNoScope
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSM2German',Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSM2German',Index=0)
 		Weight=10
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
@@ -211,8 +211,8 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_BlueNoScope
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSJungle',Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSJungle',Index=0)
 		Weight=3
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
@@ -231,8 +231,8 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_RedNoScope
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSTiger',Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSTiger',Index=0)
 		Weight=3
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
@@ -251,8 +251,8 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_RedTigerNoScope
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=4)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSFlame',Index=1)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSFlame',Index=0)
 		Weight=1
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000

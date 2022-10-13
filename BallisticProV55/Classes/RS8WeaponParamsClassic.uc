@@ -166,7 +166,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ClassicParams_Black
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.RS8.RS8-Shiney',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.RS8-K.RS8-K-Shiney',Index=1)
 		Weight=10
 		PlayerSpeedFactor=1.100000
 		InventorySize=35

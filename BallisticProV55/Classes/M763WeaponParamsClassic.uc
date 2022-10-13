@@ -132,8 +132,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Tactical
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.M763.M763ShotgunShiney',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_KBP_Tex.M763.M763SmallShiney',Index=2)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.M763-K.M763-KShotgunShiney',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_KBP_Tex.M763-K.M763-KSmallShiney',Index=2)
 		Weight=10
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000

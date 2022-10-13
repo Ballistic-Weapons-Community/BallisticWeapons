@@ -155,7 +155,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Tech
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.D66.D66',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SWC_Tex.D66.D66-Shine',Index=1)
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=50,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
 		Weight=3

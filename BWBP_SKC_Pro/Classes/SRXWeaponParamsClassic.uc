@@ -177,7 +177,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-Rifle',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.SRX.SRX-Stock',Index=2)
 		WeaponMaterialSwaps(3)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=4)
 		WeaponMaterialSwaps(4)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=5)
@@ -231,7 +231,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_GrayHolo
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-Rifle',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-StockBlack',Index=2)
 		WeaponMaterialSwaps(3)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=5)
 		WeaponMaterialSwaps(4)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=6)
@@ -280,7 +280,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_HighTechYellow
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-Rifle',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.SRX.SRX-StockYellowCamo',Index=2)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
 		InventorySize=35
@@ -303,7 +303,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_HighTechGreen
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-Rifle',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.SRX.SRX-StockJungle',Index=2)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
 		InventorySize=35
@@ -326,7 +326,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_HighTechRed
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-Rifle',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.SRX.SRX-StockRedCamo',Index=2)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
 		InventorySize=35

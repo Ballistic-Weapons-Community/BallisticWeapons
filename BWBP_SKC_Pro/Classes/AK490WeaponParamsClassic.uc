@@ -243,6 +243,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.AK490.GoldAK-Shine',Index=1)
 		Weight=1
 		InventorySize=35
+	End Object
 	
     Layouts(0)=WeaponParams'ClassicParams' //Standard
     Layouts(1)=WeaponParams'ClassicParams_D' //Desert Camo
