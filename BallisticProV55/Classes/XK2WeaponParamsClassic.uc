@@ -35,6 +35,46 @@ defaultproperties
 		BurstFireRateFactor=1.00	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
+
+	//Ice
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryIceEffectParams
+		TraceRange=(Min=4096.000000,Max=4096.000000)
+		RangeAtten=0.2
+		Damage=14
+		HeadMult=1.4f
+		LimbMult=0.6f
+		DamageType=Class'BallisticProV55.DTXK2Freeze'
+		DamageTypeHead=Class'BallisticProV55.DTXK2Freeze'
+		DamageTypeArm=Class'BallisticProV55.DTXK2Freeze'
+		PenetrateForce=150
+		bPenetrate=True
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=0.250000
+		Recoil=98.000000
+		Chaos=0.050000
+		Inaccuracy=(X=96,Y=96)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryIceFireParams
+		FireInterval=0.09000
+		AimedFireAnim="SightFire"	
+		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryIceEffectParams'
+	End Object
+	
+    //=================================================================
+    // SECONDARY FIRE
+    //=================================================================	
+
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -72,7 +112,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
-		InventorySize=35
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=50
 		SightOffset=(Y=-0.550000,Z=14.900000)
@@ -81,12 +121,17 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Burst of Six",ModeID="WM_BigBurst",Value=6.000000)
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		WeaponModes(4)=(ModeName="Amp: Ice Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=3
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		FireParams(3)=FireParams'ClassicPrimaryFireParams'
+		FireParams(4)=FireParams'ClassicPrimaryIceFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Silver

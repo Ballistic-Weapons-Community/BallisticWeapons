@@ -19,6 +19,13 @@ simulated Event PreBeginPlay()
 	}
 }
 
+simulated Event PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+	if (BallisticTurret(Instigator) != None)
+		bHidden=true;
+}
+
 // Return the location of the muzzle.
 simulated function Vector GetModeTipLocation(optional byte Mode)
 {

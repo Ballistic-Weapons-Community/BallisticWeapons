@@ -24,7 +24,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.Artillery.Art-Fire')
 		Recoil=8000.000000
 		Chaos=0.800000
-		PushbackForce=1000.000000
+		PushbackForce=0.000000
 		Inaccuracy=(X=4,Y=4)
 		SplashDamage=True
 		RecommendSplashDamage=True

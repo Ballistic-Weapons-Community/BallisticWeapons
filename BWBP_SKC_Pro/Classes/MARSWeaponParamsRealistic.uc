@@ -101,6 +101,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.060000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.200000
 		ChaosSpeedThreshold=565.000000
 	End Object
@@ -110,8 +111,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.3
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		ViewOffset=(X=-6.000000,Y=9.500000,Z=-21.000000)
 		ZoomType=ZT_Logarithmic

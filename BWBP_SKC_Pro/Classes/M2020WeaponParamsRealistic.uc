@@ -105,6 +105,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.075000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.600000
 		ChaosSpeedThreshold=475.000000
 	End Object
@@ -114,10 +115,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
 		SightOffset=(X=0.000000,Y=-3.000000,Z=18.000000)
+		SightingTime=0.3
 		ViewOffset=(X=1,Y=7,Z=-13)
 		ZoomType=ZT_Smooth
 		WeaponModes(0)=(ModeName="Gauss: Online",ModeID="WM_SemiAuto",Value=1.000000)

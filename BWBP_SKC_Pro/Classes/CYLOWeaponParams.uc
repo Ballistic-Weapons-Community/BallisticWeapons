@@ -41,6 +41,7 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=10
+		PushbackForce=150.000000
 		DamageType=Class'BWBP_SKC_Pro.DTCYLOShotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOShotgunHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOShotgun'

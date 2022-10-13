@@ -242,7 +242,7 @@ defaultproperties
 	ParamsClasses(1)=Class'FG50TW_WeaponParams'
 	ParamsClasses(2)=Class'FG50TW_WeaponParamsRealistic'
 	SelectAnim="Deploy"
-    BringUpTime=1.000000
+    BringUpTime=1.600000
 	bCanThrow=False
 	bNoInstagibReplace=True
 	DisplayFOV=90.000000

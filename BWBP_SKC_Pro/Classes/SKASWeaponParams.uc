@@ -13,7 +13,8 @@ defaultproperties
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
         ImpactManager=Class'BallisticProV55.IM_Shell'
         Damage=13
-        DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
+        PushbackForce=180.000000
+		DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
         DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
         DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgun'
         PenetrateForce=100
@@ -46,7 +47,8 @@ defaultproperties
         DamageType=Class'BWBP_SKC_Pro.DTSKASShotgun'
         DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
         DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgun'
-        PenetrateForce=100
+        PushbackForce=180.000000
+		PenetrateForce=100
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
         FlashScaleFactor=1.5
@@ -77,7 +79,8 @@ defaultproperties
         TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
         ImpactManager=Class'BallisticProV55.IM_Shell'
         Damage=10
-        DamageType=Class'BWBP_SKC_Pro.DTSKASShotgunAlt'
+        PushbackForce=850.000000
+		DamageType=Class'BWBP_SKC_Pro.DTSKASShotgunAlt'
         DamageTypeHead=Class'BWBP_SKC_Pro.DTSKASShotgunHead'
         DamageTypeArm=Class'BWBP_SKC_Pro.DTSKASShotgunAlt'
         PenetrateForce=100

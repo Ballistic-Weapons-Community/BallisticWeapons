@@ -105,7 +105,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		Weight=7
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=14
 		SightOffset=(X=-15.000000,Y=-0.700000,Z=12.300000)

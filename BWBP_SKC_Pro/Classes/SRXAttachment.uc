@@ -312,10 +312,10 @@ simulated function FlashMuzzleFlash(byte Mode)
 
 defaultproperties
 {
-	 CamoMaterials[0]=Shader'BWBP_SKC_Tex.Amp.Amp-FinalRed'
-	 CamoMaterials[1]=Shader'BWBP_SKC_Tex.Amp.Amp-FinalGreen'
-	 CamoMaterials[2]=Shader'BWBP_SKC_Tex.AMP.Amp-GlowRedShader'
-	 CamoMaterials[3]=Shader'BWBP_SKC_Tex.AMP.Amp-GlowGreenShader'
+	 CamoMaterials[0]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalRed'
+	 CamoMaterials[1]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalGreen'
+	 CamoMaterials[2]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
+	 CamoMaterials[3]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowGreenShader'
 	 
      MuzzleFlashClassAmp1=Class'BWBP_SKC_Pro.SRXFlashEmitter'
      MuzzleFlashClassAmp2=Class'BallisticProV55.A500FlashEmitter'
@@ -337,8 +337,7 @@ defaultproperties
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
      bRapidFire=True
-     bAltRapidFire=True
-     DrawScale=0.800000
+	 DrawScale=0.800000
      RelativeRotation=(Pitch=32768)
 	 Mesh=SkeletalMesh'BWBP_OP_Anim.SRX_TPm'
 }

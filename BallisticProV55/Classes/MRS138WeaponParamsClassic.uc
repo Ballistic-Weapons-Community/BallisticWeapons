@@ -58,7 +58,7 @@ defaultproperties
 		Damage=5
 		BotRefireRate=0.3
 		WarnTargetPct=0.5	
-		FireSound=(Sound=Sound'BWBP_OP_Sounds.PD97.BloodhoundTazerFire',Volume=2.250000)
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Tazer.BloodhoundTazerFire',Volume=2.250000)
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
@@ -97,6 +97,8 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.150000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpOffSet=(Pitch=1000,Yaw=-3000)
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=550.000000
 	End Object
@@ -106,7 +108,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=35
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
 		SightOffset=(Z=25.000000)

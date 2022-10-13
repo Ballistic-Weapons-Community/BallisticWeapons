@@ -15,6 +15,7 @@ defaultproperties
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_X82Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_X82Torso'
 		PenetrateForce=450
+		PushbackForce=255.000000
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		Recoil=768.000000

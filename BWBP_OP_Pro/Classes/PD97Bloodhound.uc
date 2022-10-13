@@ -85,11 +85,15 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	{
 		IdleAnim = 'OpenIdle';
 		ReloadAnim = 'OpenReload';
+		SelectAnim = 'PulloutOpen';
+		PutDownAnim = 'PutawayOpen';
 	}
 	else
 	{
 		IdleAnim = 'Idle';
 		ReloadAnim = 'Reload';
+		SelectAnim = 'Pullout';
+		PutDownAnim = 'Putaway';
 	}
 }
 
@@ -100,6 +104,8 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		if (IdleAnim == 'Idle')
 			IdleAnim = 'OpenIdle';
 		ReloadAnim = 'OpenReload';
+		SelectAnim = 'PulloutOpen';
+		PutDownAnim = 'PutawayOpen';
 	}
 	else
 	{
@@ -111,6 +117,8 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		if (IdleAnim == 'OpenIdle')
 			IdleAnim = 'Idle';
 		ReloadAnim = 'Reload';
+		SelectAnim = 'Pullout';
+		PutDownAnim = 'Putaway';
 	}
 
 	//Phase out Channel 1 if a sight fire animation has just ended.

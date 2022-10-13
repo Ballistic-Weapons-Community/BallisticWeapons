@@ -86,6 +86,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.050000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=0.750000
 		ChaosSpeedThreshold=575.000000
 	End Object
@@ -95,7 +96,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
 		MagAmmo=5
@@ -105,7 +106,6 @@ defaultproperties
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.250000
 		WeaponName="R87A1 .416 Sniper Rifle"
-		WeaponBoneScales(0)=(BoneName="Silencer",Slot=78,Scale=0f)
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

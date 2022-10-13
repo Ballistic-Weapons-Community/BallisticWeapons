@@ -22,6 +22,7 @@ var() Sound			LaserOnSound;
 var() Sound			LaserOffSound;
 var   Emitter		LaserBlast;
 var   Emitter		LaserDot;
+var   bool			bStriking;
 
 replication
 {
@@ -195,9 +196,8 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	if (Other == None)
 		HitLocation = End;
 
-	// Draw dot at end of beam
-	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.1)
-//	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && Level.TimeSeconds - FireMode[0].NextFireTime > 0.1)
+	/// Draw dot at end of beam
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.1)
 	{
 	    GetAnimParams(0, anim, frame, rate);
  		if (anim != SilencerOnAnim && anim != SilencerOffAnim)
@@ -217,7 +217,7 @@ simulated function DrawLaserSight ( Canvas Canvas )
 	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs)
 	Laser.SetLocation(Loc);
 	HitLocation = ConvertFOVs(End, Instigator.Controller.FovAngle, DisplayFOV, 400);
-	if (bAimAligned)
+	if (!bStriking && ReloadState == RS_None && ClientState == WS_ReadyToFire && !IsInState('DualAction') && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
 		Laser.SetRotation(Rotator(HitLocation - Loc));
 	else
 	{
@@ -357,11 +357,15 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	{
 		IdleAnim = 'OpenIdle';
 		ReloadAnim = 'OpenReload';
+		SelectAnim = 'PulloutOpen';
+		PutDownAnim = 'PutawayOpen';
 	}
 	else
 	{
 		IdleAnim = 'Idle';
 		ReloadAnim = 'Reload';
+		SelectAnim = 'Pullout';
+		PutDownAnim = 'Putaway';
 	}
 
 	if (AIController(Instigator.Controller) != None)
@@ -380,17 +384,23 @@ simulated event AnimEnd (int Channel)
 
     GetAnimParams(0, Anim, Frame, Rate);
 
+	if(Anim != 'MeleePrep')
+		bStriking = false;
 	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim)
 	{
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 		{
 			IdleAnim = 'OpenIdle';
 			ReloadAnim = 'OpenReload';
+			SelectAnim = 'PulloutOpen';
+			PutDownAnim = 'PutawayOpen';
 		}
 		else
 		{
 			IdleAnim = 'Idle';
 			ReloadAnim = 'Reload';
+			SelectAnim = 'Pullout';
+			PutDownAnim = 'Putaway';
 		}
 	}
 	Super.AnimEnd(Channel);
@@ -478,6 +488,7 @@ defaultproperties
 	SilencerOffTurnSound=Sound'BW_Core_WeaponSound.Pistol.RSP-SilencerTurn'
 	LaserOnSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
 	LaserOffSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
+	MeleeFireClass=Class'BallisticProV55.RS8MeleeFire'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_RS8'

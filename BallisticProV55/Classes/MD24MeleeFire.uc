@@ -22,6 +22,21 @@ function PlayPreFire()
 	MD24Pistol(Weapon).bStriking = true;
 }
 
+function PlayFiring()
+{
+	if (BW.MagAmmo == 0)
+	{
+		PreFireAnim = 'PrepMeleeOpen';
+		FireAnim = 'MeleeOpen';
+	}
+	else
+	{
+		PreFireAnim = 'PrepMelee';
+		FireAnim = 'Melee';
+	}
+	super.PlayFiring();
+}
+
 defaultproperties
 {
      SwipePoints(0)=(offset=(Pitch=2048,Yaw=2048))

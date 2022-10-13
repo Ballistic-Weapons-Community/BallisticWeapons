@@ -110,6 +110,8 @@ defaultproperties
 		ADSMultiplier=0.900000
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
+		JumpOffSet=(Pitch=2048,Yaw=-512)
+		SprintOffSet=(Pitch=-4608,Yaw=-512)
 		AimDamageThreshold=300.000000
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=600.000000
@@ -121,7 +123,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=1.100000
-		InventorySize=15
+        InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.225000
 		MagAmmo=6

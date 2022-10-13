@@ -109,6 +109,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.450000
 		ChaosSpeedThreshold=550.000000
 	End Object
@@ -121,11 +122,12 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Prototype",Slot=59,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.3
 		MagAmmo=40
 		SightOffset=(X=-10.000000,Y=9.7500000,Z=22.500000)
-		ViewOffset=(X=0.000000,Y=-2.000000,Z=-15.000000)
+		ViewOffset=(X=0.000000,Y=-3.000000,Z=-16.000000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		ZoomType=ZT_Smooth
 		WeaponModes(0)=(ModeName="Laser Beam",bUnavailable=True)

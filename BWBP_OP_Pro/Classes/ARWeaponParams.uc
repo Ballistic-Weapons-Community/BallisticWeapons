@@ -18,6 +18,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_ARShotgun'
 		PenetrateForce=100
 		bPenetrate=True
+		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
 		FlashScaleFactor=1.000000
 		Recoil=256.000000
@@ -49,6 +50,7 @@ defaultproperties
 		Damage=50
 		DamageRadius=128.000000
 		MomentumTransfer=0.000000
+		PushbackForce=180.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MK781FlashEmitter'
 		FlashScaleFactor=0.500000
 		Recoil=650.000000

@@ -105,6 +105,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.200000
 		SprintChaos=0.200000
+		SprintOffSet=(Pitch=-3072,Yaw=-5120)
 		ChaosDeclineTime=0.650000
 		ChaosSpeedThreshold=600.000000
 	End Object
@@ -115,8 +116,9 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.22
 		MagAmmo=7
 		ViewOffset=(X=5.000000,Y=6.500000,Z=-12.000000)
 		SightOffset=(X=12.500000,Y=-0.05500,Z=4.700000)

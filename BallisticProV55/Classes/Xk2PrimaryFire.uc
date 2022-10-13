@@ -14,6 +14,13 @@ var() class<Actor>				SMuzzleFlashClass;
 var() Name						SFlashBone;
 var() float						SFlashScaleFactor;
 
+var() Actor						MuzzleFlashAmp;		
+var() class<Actor>				MuzzleFlashClassAmp;	
+var() Name						AmpFlashBone;
+var() float						AmpFlashScaleFactor;
+var(XK2) bool						bAmped;
+var(XK2) float						AmpDrainPerShot;
+
 function InitEffects()
 {
 	if (AIController(Instigator.Controller) != None)
@@ -22,6 +29,8 @@ function InitEffects()
 		class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, MuzzleFlashClass, Weapon.DrawScale*FlashScaleFactor, weapon, FlashBone);
     if ((SMuzzleFlashClass != None) && ((SMuzzleFlash == None) || SMuzzleFlash.bDeleteMe) )
 		class'BUtil'.static.InitMuzzleFlash (SMuzzleFlash, SMuzzleFlashClass, Weapon.DrawScale*SFlashScaleFactor, weapon, SFlashBone);
+	if ((MuzzleFlashClassAmp != None) && ((MuzzleFlashAmp == None) || MuzzleFlashAmp.bDeleteMe) )
+		class'BUtil'.static.InitMuzzleFlash (MuzzleFlashAmp, MuzzleFlashClassAmp, Weapon.DrawScale*AmpFlashScaleFactor, weapon, FlashBone);
 }
 
 function SetSilenced(bool bSilenced)
@@ -50,6 +59,8 @@ function FlashMuzzleFlash()
 		return;
     if (!XK2SubMachinegun(Weapon).bSilenced && MuzzleFlash != None)
         MuzzleFlash.Trigger(Weapon, Instigator);
+    else if (MuzzleFlashAmp != None && XK2Submachinegun(Weapon).CurrentWeaponMode == 4)
+       	MuzzleFlashAmp.Trigger(Weapon, Instigator);
     else if (XK2SubMachinegun(Weapon).bSilenced && SMuzzleFlash != None)
         SMuzzleFlash.Trigger(Weapon, Instigator);
 
@@ -64,11 +75,56 @@ simulated function DestroyEffects()
 
 	class'BUtil'.static.KillEmitterEffect (MuzzleFlash);
 	class'BUtil'.static.KillEmitterEffect (SMuzzleFlash);
+	class'BUtil'.static.KillEmitterEffect (MuzzleFlashAmp);
+}
+
+simulated function SwitchWeaponMode (byte NewMode)
+{
+	if (Weapon.bBerserk)
+		FireRate *= 0.75;
+	if ( Level.GRI.WeaponBerserk > 1.0 )
+	    FireRate /= Level.GRI.WeaponBerserk;
+		
+	if (NewMode == 4) 
+	{
+		bAmped=True;
+		WaterRangeAtten=0.600000;
+		CutOffDistance=2304.000000;
+		CutOffStartRange=1536.000000;
+		WallPenetrationForce=24.000000;
+	}
+	else
+	{
+		bAmped=False;//Standard Fire
+	}
+}
+
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+{	
+    local Inv_Slowdown Slow;
+
+    super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+
+    if (bAmped && Pawn(Victim) != None && Pawn(Victim).Health > 0 && Vehicle(Victim) == None)
+    {
+        Slow = Inv_Slowdown(Pawn(Victim).FindInventoryType(class'Inv_Slowdown'));
+
+        if (Slow == None)
+        {
+            Pawn(Victim).CreateInventory("BallisticProV55.Inv_Slowdown");
+            Slow = Inv_Slowdown(Pawn(Victim).FindInventoryType(class'Inv_Slowdown'));
+        }
+
+        Slow.AddSlow(0.7, 0.2);
+    }
 }
 
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
 {
-	BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, XK2SubMachinegun(Weapon).bSilenced, WaterHitLoc);
+	if (!bAmped)
+		BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, XK2SubMachinegun(Weapon).bSilenced, WaterHitLoc);
+	else
+		XK2Attachment(Weapon.ThirdPersonActor).IceUpdateHit(Other, HitLocation, HitNormal, Surf, , WaterHitLoc);
 }
 
 function ServerPlayFiring()
@@ -113,10 +169,26 @@ function PlayFiring()
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
 
 	CheckClipFinished();
+	
+	if (bAmped)
+		XK2SubMachinegun(BW).AddHeat(AmpDrainPerShot);
+}
+
+// Get aim then run trace...
+function DoFireEffect()
+{
+	Super.DoFireEffect();
+	if (Level.NetMode == NM_DedicatedServer)
+		XK2SubMachinegun(BW).AddHeat(AmpDrainPerShot);
 }
 
 defaultproperties
 {
+	 AmpDrainPerShot=-0.3
+	 AmpFlashBone="tip2"
+     AmpFlashScaleFactor=0.300000
+     MuzzleFlashClassAmp=Class'BallisticProV55.XK2SilencedFlash'
+	 
      SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000

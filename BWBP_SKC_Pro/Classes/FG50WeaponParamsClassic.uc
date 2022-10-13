@@ -157,6 +157,8 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.300000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpOffset=(Pitch=-6000,Yaw=2000)
 		ChaosDeclineTime=1.500000
 	End Object
 
@@ -177,7 +179,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		PlayerSpeedFactor=0.890000
 		PlayerJumpFactor=0.750000
-		InventorySize=40
+		InventorySize=27
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
 		SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)

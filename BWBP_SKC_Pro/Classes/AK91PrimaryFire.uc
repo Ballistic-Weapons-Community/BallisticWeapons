@@ -159,9 +159,6 @@ defaultproperties
      TraceRange=(Min=12000.000000,Max=13000.000000)
      Damage=30
      WaterRangeAtten=0.800000
-     DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
      KickForce=22000
      PenetrateForce=180
      bPenetrate=True

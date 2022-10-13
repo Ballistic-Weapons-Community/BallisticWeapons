@@ -46,6 +46,7 @@ defaultproperties
         AccelSpeed=3000.000000
         Damage=50
         DamageRadius=256.000000
+		PushbackForce=180.000000
         MomentumTransfer=100000.000000
         MuzzleFlashClass=Class'BWBP_SKC_Pro.SK410HeatEmitter'
         FlashScaleFactor=0.500000

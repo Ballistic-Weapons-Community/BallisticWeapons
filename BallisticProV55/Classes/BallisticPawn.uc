@@ -41,8 +41,6 @@ class BallisticPawn extends xPawn;
 
 #EXEC OBJ LOAD File="BallisticThird.ukx"
 
-#EXEC OBJ LOAD File="BWBP_OP_Tex.utx"
-
 var byte				            DoubleJumpsLeft;
 var float				            LastDoubleJumpTime;
 var	bool				            bResetAnimationAction;
@@ -2880,18 +2878,18 @@ defaultproperties
      HeadRadius=13.000000
      TransientSoundVolume=0.300000
 	 
-	 StrafeScale=0.700000
-     BackScale=0.600000
-     MyFriction=4.000000
+	 StrafeScale=1.000000
+     BackScale=1.000000
+     //MyFriction=4.000000
      RagdollLifeSpan=20.000000
      GroundSpeed=360.000000
 	 LadderSpeed=280.000000
      WaterSpeed=150.000000
-     AirSpeed=270.000000
+     //AirSpeed=270.000000
      WalkingPct=0.900000
 	 CrouchedPct=0.350000
-     DodgeSpeedFactor=1.200000
-     DodgeSpeedZ=190.000000
+     //DodgeSpeedFactor=1.200000
+     //DodgeSpeedZ=190.000000
 
      Begin Object Class=KarmaParamsSkel Name=PawnKParams
          KConvulseSpacing=(Max=2.200000)

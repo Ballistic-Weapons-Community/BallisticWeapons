@@ -14,7 +14,7 @@ defaultproperties
 		TraceCount=12
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=25.0
+		Damage=20.0
 		LimbMult=0.24
 		DamageType=Class'BallisticProV55.DTM763Shotgun'
 		DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
@@ -106,6 +106,8 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.150000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpOffSet=(Pitch=1000,Yaw=-3000)
 		ChaosDeclineTime=2.000000
 	End Object
     
@@ -169,7 +171,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M781.M781-OldTrusty',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M781.M781Small',Index=2)
 		Weight=3
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
 		SightOffset=(X=5.000000,Z=18.500000)

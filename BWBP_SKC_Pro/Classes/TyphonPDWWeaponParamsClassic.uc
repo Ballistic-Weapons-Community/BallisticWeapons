@@ -96,6 +96,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		InventorySize=10
 		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
 		Weight=30
 		SightingTime=0.250000
@@ -103,7 +104,6 @@ defaultproperties
 		SightPivot=(Pitch=0)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
-		InventorySize=12
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1
 		MagAmmo=25

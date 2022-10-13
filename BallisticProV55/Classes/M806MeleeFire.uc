@@ -33,9 +33,9 @@ defaultproperties
      Damage=35.000000
      
      
-     //DamageType=Class'BallisticProV55.DTMD24Melee'
-     //DamageTypeHead=Class'BallisticProV55.DTMD24Melee'
-     //DamageTypeArm=Class'BallisticProV55.DTMD24Melee'
+     //DamageType=Class'BallisticProV55.DTM806Melee'
+     //DamageTypeHead=Class'BallisticProV55.DTM806Melee'
+     DamageTypeArm=Class'BallisticProV55.DTM806Melee'
      KickForce=100
      HookStopFactor=1.700000
      HookPullForce=100.000000

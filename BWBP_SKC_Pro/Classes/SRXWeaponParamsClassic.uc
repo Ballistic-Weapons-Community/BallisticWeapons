@@ -167,6 +167,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.350000
 		SprintChaos=0.400000
+		 SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=2.000000
 	End Object
     
@@ -183,7 +184,7 @@ defaultproperties
 		WeaponMaterialSwaps(5)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=6)
 		WeaponMaterialSwaps(6)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=11)
 		WeaponMaterialSwaps(7)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=12)
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		MagAmmo=20

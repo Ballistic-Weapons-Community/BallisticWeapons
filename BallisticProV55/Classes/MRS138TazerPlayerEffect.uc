@@ -1,6 +1,6 @@
 class MRS138TazerPlayerEffect extends DGVEmitter;
 
-#exec OBJ LOAD File=BWBP_OP_Sounds.uax
+#exec OBJ LOAD File=BW_Core_WeaponSound.uax
 
 simulated function StartSound()
 {
@@ -93,7 +93,7 @@ defaultproperties
      Emitters(2)=BeamEmitter'BallisticProV55.MRS138TazerPlayerEffect.MRS138PlayerBoltEmitter'
 
      AutoDestroy=True
-     AmbientSound=Sound'BWBP_OP_Sounds.PD97.BloodhoundTazer'
+     AmbientSound=Sound'BW_Core_WeaponSound.Tazer.BloodhoundTazer'
      bFullVolume=True
      bHardAttach=True
      SoundVolume=150

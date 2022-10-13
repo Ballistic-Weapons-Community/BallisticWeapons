@@ -24,7 +24,7 @@ defaultproperties
 		WallPDamageFactor=0.600000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
 		FlashScaleFactor=0.300000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.rpk940.rpk-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=550.000000
 		Chaos=0.1
 		Inaccuracy=(X=8,Y=8)
@@ -52,9 +52,9 @@ defaultproperties
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_GRSXXLaser'
 		Damage=7
-		DamageType=Class'BWBP_SKC_Pro.DT_AK91Zapped'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK91Zapped'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK91Zapped'
+		DamageType=Class'BWBP_SKC_Pro.DT_AK91ZappedAlt'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK91ZappedAlt'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK91ZappedAlt'
 		PenetrateForce=100
 		bPenetrate=True
 		MuzzleFlashClass=Class'A49FlashEmitter'
@@ -101,6 +101,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.200000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.000000
 	End Object
 
@@ -109,10 +110,13 @@ defaultproperties
 	//=================================================================		
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
-		SightingTime=0.300000
+		SightingTime=0.210000
 		MagAmmo=25
+		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
+		SightPivot=(Pitch=64)
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
 		ViewOffset=(X=0.000000,Y=5.000000,Z=-14.000000)
 		WeaponName="AK-91 7.62mm Charge Rifle"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'

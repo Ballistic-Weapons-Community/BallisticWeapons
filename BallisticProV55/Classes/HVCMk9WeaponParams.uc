@@ -37,6 +37,7 @@ defaultproperties
 		DamageTypeArm=Class'BallisticProV55.DT_HVCRedLightning'
 		MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
 		Recoil=96.000000
+		PushbackForce=1600.000000
 		BotRefireRate=0.4
 		WarnTargetPct=0.8
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-SecFire',Volume=0.900000)

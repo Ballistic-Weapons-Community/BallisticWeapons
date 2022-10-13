@@ -167,11 +167,15 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	{
 		IdleAnim = 'OpenIdle';
 		ReloadAnim = 'OpenReload';
+		SelectAnim = 'PulloutOpen';
+		PutDownAnim = 'PutawayOpen';
 	}
 	else
 	{
 		IdleAnim = 'Idle';
 		ReloadAnim = 'Reload';
+		SelectAnim = 'Pullout';
+		PutDownAnim = 'Putaway';
 	}
 
 	if ( ThirdPersonActor != None )
@@ -298,11 +302,15 @@ simulated event AnimEnd (int Channel)
 		{
 			IdleAnim = 'OpenIdle';
 			ReloadAnim = 'OpenReload';
+			SelectAnim = 'PulloutOpen';
+			PutDownAnim = 'PutawayOpen';
 		}
 		else
 		{
 			IdleAnim = 'Idle';
 			ReloadAnim = 'Reload';
+			SelectAnim = 'Pullout';
+			PutDownAnim = 'Putaway';
 		}
 	}
 	Super.AnimEnd(Channel);

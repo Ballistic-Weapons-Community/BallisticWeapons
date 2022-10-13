@@ -17,6 +17,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTBulldog'
 		PenetrateForce=250
 		bPenetrate=True
+		PushbackForce=3000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
 		FlashScaleFactor=1.100000
 		Recoil=1280.000000
@@ -44,6 +45,7 @@ defaultproperties
 		Speed=7000.000000
 		MaxSpeed=7000.000000
 		Damage=110
+		PushbackForce=100.000000
 		DamageRadius=512.000000
 		MomentumTransfer=60000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
@@ -96,8 +98,8 @@ defaultproperties
 		ReloadAnimRate=1.250000
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=9,Scale=0f)
 		SightPivot=(Pitch=256)
-		SightOffset=(X=-18.000000,Y=4.475000,Z=6.800000)
-		ViewOffset=(X=11.000000,Y=2.000000,Z=-6.000000)
+		ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
+		SightOffset=(X=-40.000000,Y=13.500000,Z=20.100000)
 		PlayerSpeedFactor=0.900000
 		PlayerJumpFactor=0.900000
 		InventorySize=12

@@ -40,6 +40,40 @@ defaultproperties
 		FireAnimRate=1.2000000	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
+	
+	Begin Object Class=InstantEffectParams Name=RealisticPrimaryBurstEffectParams
+		TraceRange=(Min=1200.000000,Max=4800.000000) //5.56mm Short Barrel
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.0500000
+		Damage=43.0
+		HeadMult=2.139534
+		LimbMult=0.651162
+		DamageType=Class'BallisticProV55.DTSARRifle'
+		DamageTypeHead=Class'BallisticProV55.DTSARRifleHead'
+		DamageTypeArm=Class'BallisticProV55.DTSARRifle'
+		PenetrationEnergy=16.000000
+		PenetrateForce=50
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
+		FlashScaleFactor=1.000000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-Fire',Pitch=1.250000,Volume=0.900000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=825.000000
+		Chaos=0.05000
+		Inaccuracy=(X=12,Y=12)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticPrimaryBurstFireParams
+		FireInterval=0.060000
+		BurstFireRateFactor=1.00
+		FireEndAnim=
+		FireAnimRate=1.2000000	
+	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryBurstEffectParams'
+	End Object
 		
 	//=================================================================
 	// SECONDARY FIRE
@@ -81,6 +115,22 @@ defaultproperties
 		CrouchMultiplier=0.700000
 		bViewDecline=True
 	End Object
+	
+	Begin Object Class=RecoilParams Name=RealisticBurstRecoilParams
+		XCurve=(Points=(,(InVal=0.450000,OutVal=0.3500000),(InVal=0.650000,OutVal=0.300000),(InVal=1.000000,OutVal=0.200000)))
+		YCurve=(Points=(,(InVal=0.50000,OutVal=0.350000),(InVal=0.750000,OutVal=0.450000),(InVal=1.000000,OutVal=0.400000)))
+		YawFactor=0.10000
+		XRandFactor=0.125000
+		YRandFactor=0.125000
+		MaxRecoil=3000.000000
+		DeclineTime=0.600000
+		DeclineDelay=0.125000
+		ViewBindFactor=0.060000
+		ADSViewBindFactor=0.060000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+		bViewDecline=True
+	End Object
 
 	//=================================================================
 	// AIM
@@ -92,6 +142,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.060000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-4096,Yaw=-2048);
 		ChaosDeclineTime=1.200000
 		ChaosSpeedThreshold=565.000000
 	End Object
@@ -101,18 +152,22 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=30
+		InventorySize=10
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.22
 		MagAmmo=35
 		ViewOffset=(X=-8.000000,Y=7.000000,Z=-11.000000)
-		//SightOffset=(X=8.000000,Y=-0.045000,Z=8.140000)
 		SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
+		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
 		ReloadAnimRate=0.925000
 		CockAnimRate=1.000000
 		WeaponName="AC-12 5.56mm Assault Carbine"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		RecoilParams(1)=RecoilParams'RealisticBurstRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryBurstFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'

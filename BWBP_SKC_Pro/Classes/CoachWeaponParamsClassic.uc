@@ -30,7 +30,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-FireDouble',Volume=1.200000)
 		Recoil=256.000000
 		Chaos=-1.0
-		Inaccuracy=(X=900,Y=750)
+		Inaccuracy=(X=800,Y=650)
 		HipSpreadFactor=1.000000
 		BotRefireRate=0.100000
 		WarnTargetPct=0.100000
@@ -104,7 +104,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Redwood.Redwood-Fire',Volume=1.200000)
 		Recoil=256.000000
 		Chaos=-1.0
-		Inaccuracy=(X=900,Y=750)
+		Inaccuracy=(X=800,Y=650)
 		HipSpreadFactor=1.000000
 		BotRefireRate=0.100000
 		WarnTargetPct=0.100000
@@ -192,7 +192,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=2
 		ViewOffset=(X=-20.000000,Y=20.000000,Z=-40.000000)

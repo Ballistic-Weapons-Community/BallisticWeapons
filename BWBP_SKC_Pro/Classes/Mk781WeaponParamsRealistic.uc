@@ -182,6 +182,8 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpOffSet=(Pitch=1000,Yaw=-3000)
 		ChaosDeclineTime=1.000000
 	End Object
     
@@ -190,7 +192,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		MagAmmo=8
@@ -216,7 +218,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=RealisticRDSParams
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		MagAmmo=8

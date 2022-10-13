@@ -14,6 +14,7 @@ defaultproperties
         ImpactManager=Class'BallisticProV55.IM_Shell'
         MaxHits=18
         Damage=12
+		PushbackForce=1000.000000
         DamageType=Class'BallisticProV55.DTM290Shotgun'
         DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
         DamageTypeArm=Class'BallisticProV55.DTM290Shotgun'
@@ -49,6 +50,7 @@ defaultproperties
         DamageTypeHead=Class'BallisticProV55.DTM290ShotgunHead'
         DamageTypeArm=Class'BallisticProV55.DTM290Shotgun'
         PenetrateForce=100
+		PushbackForce=600.000000
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
         FlashScaleFactor=2
@@ -97,6 +99,8 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
 		CockAnimRate=1.350000
 		ReloadAnimRate=1.750000
 		SightPivot=(Pitch=256)

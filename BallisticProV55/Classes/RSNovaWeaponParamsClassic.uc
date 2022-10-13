@@ -124,7 +124,7 @@ defaultproperties
 		TargetState="Zap"
 		AmmoPerFire=2
 		FireAnim="Fire"
-	    FireInterval=0.100000
+	    FireInterval=0.750000
         FireEffectParams(0)=ProjectileEffectParams'ClassicGodStrikeEffectParams'
     End Object
 
@@ -221,6 +221,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-500,Yaw=-1024)
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=2400.000000
 	End Object
@@ -230,7 +231,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=66
 		SightOffset=(X=-16.000000,Z=14.000000)

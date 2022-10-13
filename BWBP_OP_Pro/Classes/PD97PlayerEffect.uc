@@ -93,7 +93,7 @@ defaultproperties
      Emitters(2)=BeamEmitter'BWBP_OP_Pro.PD97PlayerEffect.BeamEmitter10'
 
      AutoDestroy=True
-     AmbientSound=Sound'BWBP_OP_Sounds.PD97.BloodhoundTazer'
+     AmbientSound=Sound'BW_Core_WeaponSound.Tazer.BloodhoundTazer'
      bFullVolume=True
      bHardAttach=True
      SoundVolume=150

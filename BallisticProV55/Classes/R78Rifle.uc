@@ -11,6 +11,18 @@
 //=============================================================================
 class R78Rifle extends BallisticWeapon;
 
+var   bool		bSilenced;
+var() name		SilencerBone;
+var() name		SilencerOnAnim;			
+var() name		SilencerOffAnim;
+var() sound		SilencerOnSound;
+var() sound		SilencerOffSound;
+
+replication
+{
+	reliable if (Role < ROLE_Authority)
+		ServerSwitchSilencer;
+}
 
 simulated event PostNetBeginPlay()
 {
@@ -23,6 +35,79 @@ simulated event PostNetBeginPlay()
 		CockSound.Sound=Sound'BW_Core_WeaponSound.R78.R78-Cock';
 		R78PrimaryFire(FireMode[0]).bExplosive = false;
 	}
+}
+
+function ServerSwitchSilencer(bool bDetachSuppressor)
+{
+	SwitchSilencer(bSilenced);
+}
+
+exec simulated function WeaponSpecial(optional byte i)
+{
+	if (ReloadState != RS_None || SightingState != SS_None || GameStyleIndex == 0)
+		return;
+	TemporaryScopeDown(0.5);
+	ServerSwitchSilencer(bSilenced);
+	SwitchSilencer(bSilenced);
+	ReloadState = RS_GearSwitch;
+}
+
+simulated function SwitchSilencer(bool bDetachSuppressor)
+{
+	if (Role == ROLE_Authority)
+		bServerReloading = True;
+	ReloadState = RS_GearSwitch;
+	
+	if (bDetachSuppressor)
+		PlayAnim(SilencerOffAnim);
+	else
+		PlayAnim(SilencerOnAnim);
+
+	OnSuppressorSwitched();
+}
+
+simulated function OnSuppressorSwitched()
+{
+	if (bSilenced)
+	{
+		ApplySuppressorAim();
+		SightingTime *= 1.25;
+	}
+	else
+	{
+		AimComponent.Recalculate();
+		SightingTime = default.SightingTime;
+	}
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bSilenced)
+		ApplySuppressorAim();
+}
+
+simulated function ApplySuppressorAim()
+{
+	AimComponent.AimSpread.Min *= 1.25;
+	AimComponent.AimSpread.Max *= 1.25;
+}
+
+simulated function Notify_SilencerOn()	{	PlaySound(SilencerOnSound,,0.5);	}
+simulated function Notify_SilencerOff()	{	PlaySound(SilencerOffSound,,0.5);	}
+
+simulated function Notify_SilencerShow(){	SetBoneScale (0, 1.0, SilencerBone);	bSilenced=True; R78PrimaryFire(BFireMode[0]).SetSilenced(true);}
+simulated function Notify_SilencerHide(){	SetBoneScale (0, 0.0, SilencerBone);	bSilenced=False; R78PrimaryFire(BFireMode[0]).SetSilenced(false);}
+
+simulated function BringUp(optional Weapon PrevWeapon)
+{
+	Super.BringUp(PrevWeapon);
+
+	if (bSilenced)
+		SetBoneScale (0, 1.0, SilencerBone);
+	else
+		SetBoneScale (0, 0.0, SilencerBone);
 }
 
 simulated function PlayCocking(optional byte Type)
@@ -96,6 +181,11 @@ function float SuggestDefenseStyle()	{	return 0.9;	}
 
 defaultproperties
 {
+	SilencerBone="Silencer"
+	SilencerOnAnim="SilencerAdd"
+	SilencerOffAnim="SilencerRemove"
+	SilencerOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
+	SilencerOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
 
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_R78'
@@ -107,10 +197,10 @@ defaultproperties
      SpecialInfo(0)=(Info="240.0;25.0;0.5;60.0;10.0;0.0;0.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Putaway')
-	PutDownTime=0.5
+	 PutDownTime=0.5
      CockAnim="CockQuick"
      //CockSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Cock')
-	 CockSound=(Sound=Sound'BWBP_SKC_Sounds.R78NS.R78NS-Cock')
+	 CockSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78NS-Cock')
      ReloadAnimRate=1.250000
      ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipHit')
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78-ClipOut')

@@ -134,6 +134,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.250000
 		SprintChaos=1.000000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.500000
 	End Object
 	
@@ -143,6 +144,7 @@ defaultproperties
 		ADSMultiplier=0.800000
 		ViewBindFactor=0.250000
 		SprintChaos=1.000000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.000000
 	End Object
     
@@ -159,7 +161,7 @@ defaultproperties
 		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=96,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=20
 		SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)
@@ -186,7 +188,7 @@ defaultproperties
 		WeaponBoneScales(5)=(BoneName="ShortStock",Slot=96,Scale=1f)
 		PlayerSpeedFactor=1.100000
 		PlayerJumpFactor=1.100000
-		InventorySize=35
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=20
 		SightOffset=(X=18.000000,Y=-8.500000,Z=22.000000)

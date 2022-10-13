@@ -26,11 +26,11 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter_C'
 		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.M925.M925-Fire',Volume=0.800000)
 		Recoil=160.000000
-		Chaos=0.35
+		//Chaos=0.35
 		Inaccuracy=(X=2,Y=2)
 		WarnTargetPct=0.200000
 		FlashScaleFactor=1.000000
-		PushbackForce=200.000000
+		//PushbackForce=200.000000
 	End Object
 	
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams

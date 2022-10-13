@@ -18,6 +18,7 @@ defaultproperties
 		bPenetrate=True
 		PDamageFactor=0.750000
 		WallPDamageFactor=0.750000
+		PushbackForce=120.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.M2020FlashEmitter'
 		FlashScaleFactor=1.200000
 		Recoil=320.000000

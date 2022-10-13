@@ -101,6 +101,7 @@ defaultproperties
 		ChaosDeclineTime=1.500000
 		ChaosSpeedThreshold=525
 		SprintOffset=(Pitch=-3000,Yaw=-8000)
+		JumpOffset=(Pitch=-1024,Yaw=-1024)
 	End Object
 
 	//=================================================================

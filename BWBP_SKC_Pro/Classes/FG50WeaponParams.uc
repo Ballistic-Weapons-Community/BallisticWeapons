@@ -17,6 +17,7 @@ defaultproperties
 		PenetrateForce=150
 		PDamageFactor=0.800000
 		WallPDamageFactor=0.800000
+		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
 		FlashScaleFactor=1.000000
 		Recoil=512.000000
@@ -42,6 +43,7 @@ defaultproperties
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
 		PenetrateForce=150
+		PushbackForce=125.000000
 		PDamageFactor=0.800000
 		WallPDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter'
@@ -125,7 +127,7 @@ defaultproperties
 		YCurve=(Points=(,(InVal=0.20000,OutVal=0.250000),(InVal=0.400000,OutVal=0.40000),(InVal=0.600000,OutVal=0.700000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.050000
 		YRandFactor=0.050000
-		MaxRecoil=16384
+		MaxRecoil=8192
 		DeclineTime=1.500000
 	End Object
 

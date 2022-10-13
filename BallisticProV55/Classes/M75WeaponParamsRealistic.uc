@@ -14,8 +14,14 @@ defaultproperties
 		Damage=325.0
 		HeadMult=2.0
 		LimbMult=0.5
-		PenetrationEnergy=128.000000
+		DamageType=Class'BallisticProV55.DTM75Railgun'
+		DamageTypeHead=Class'BallisticProV55.DTM75RailgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM75Railgun'
+		PenetrationEnergy=2560.000000
 		PenetrateForce=600
+		bPenetrate=True
+		PDamageFactor=0.95
+		WallPDamageFactor=0.7
 		Recoil=3072.000000
 		Chaos=-1.0
 		PushbackForce=920.000000
@@ -25,7 +31,7 @@ defaultproperties
 	End Object
 		
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-        TargetState="ChargedRail"
+        TargetState="FullChargedRail"
 		FireInterval=0.900000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True
@@ -33,40 +39,18 @@ defaultproperties
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
 
-    //=================================================================
+	//=================================================================
     // SECONDARY FIRE
     //=================================================================	
-	
-	Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams
-		TraceRange=(Min=20000.000000,Max=20000.000000)
-		WaterTraceRange=5000.0
-		DecayRange=(Min=0.0,Max=0.0)
-		Damage=325.0
-		HeadMult=2.0
-		LimbMult=0.5
-		DamageType=Class'BallisticProV55.DTM75Railgun'
-		DamageTypeHead=Class'BallisticProV55.DTM75RailgunHead'
-		DamageTypeArm=Class'BallisticProV55.DTM75Railgun'
-		PenetrationEnergy=2560.000000
-		PenetrateForce=600
-		bPenetrate=True
-		PDamageFactor=0.95
-		WallPDamageFactor=0.7
-		SpreadMode=FSM_Rectangle
-		MuzzleFlashClass=Class'BallisticProV55.M75FlashEmitter'
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.M75.M75Fire',Radius=350.000000)
-		Recoil=3072.000000
-		Chaos=-1.0
-		PushbackForce=920.000000
-		BotRefireRate=0.300000
-		WarnTargetPct=0.050000
-	End Object
 
+	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
+		BotRefireRate=0.300000
+	End Object
+	
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
-		FireInterval=0.300000
-		BurstFireRateFactor=1.00
-		bCockAfterFire=True	
-	FireEffectParams(0)=InstantEffectParams'RealisticSecondaryEffectParams'
+		FireInterval=0.200000
+		AmmoPerFire=0
+		FireEffectParams(0)=FireEffectParams'RealisticSecondaryEffectParams'
 	End Object
 		
 	//=================================================================
@@ -100,6 +84,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.200000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-4096,Yaw=-5120)
 		ChaosDeclineTime=1.200000
 	End Object
     
@@ -110,7 +95,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.750000
-		InventorySize=50
+		InventorySize=25
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
 		MagAmmo=3

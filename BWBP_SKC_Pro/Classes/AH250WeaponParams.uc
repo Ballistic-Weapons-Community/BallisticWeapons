@@ -17,6 +17,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTAH250Pistol'
 		PenetrateForce=200
 		bPenetrate=True
+		PushbackForce=150.000000
 		MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
 		FlashScaleFactor=0.500000
 		Recoil=512.000000

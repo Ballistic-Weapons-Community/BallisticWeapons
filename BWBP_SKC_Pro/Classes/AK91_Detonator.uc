@@ -8,8 +8,6 @@
 //=============================================================================
 class AK91_Detonator extends BallisticGrenade;
 
-
-var   Supercharger_ChargeControl	ChargeControl;
 var   Vector			EndPoint, StartPoint;
 var   array<actor>		AlreadyHit;
 
@@ -20,14 +18,52 @@ simulated event PreBeginPlay()
 	super.PreBeginPlay();
 }
 
+function InitFlame(vector End)
+{
+	EndPoint = End;
+	StartPoint = Location;
+}
+
+simulated function bool CanTouch (Actor Other)
+{
+    local int i;
+    
+    if (!Super.CanTouch(Other))
+        return false;
+
+    if (Other.Base == Instigator)
+		return false;
+
+	for(i=0;i<AlreadyHit.length;i++)
+		if (AlreadyHit[i] == Other)
+			return false;
+
+    return true;
+}
+
+simulated function ApplyImpactEffect(Actor Other, Vector HitLocation)
+{
+	if ( Instigator == None || Instigator.Controller == None )
+		Other.SetDelayedDamageInstigatorController( InstigatorController );
+
+	class'BallisticDamageType'.static.GenericHurt (Other, Damage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType);
+
+}
+
+simulated function Penetrate(Actor Other, Vector HitLocation)
+{
+	AlreadyHit[AlreadyHit.length] = Other;
+}
+
 defaultproperties
 {
+     bApplyParams=False
      bNoInitialSpin=True
      bAlignToVelocity=True
-     DetonateDelay=0.100001
+     DetonateDelay=0.1
      ImpactDamage=120
      ImpactManager=Class'BWBP_SKC_Pro.IM_XMExplosion'
-//     bRandomStartRotaion=False
+     bRandomStartRotation=False
      TrailClass=Class'BallisticProV55.M50GrenadeTrail'
      TrailOffset=(X=-8.000000)
      MyRadiusDamageType=Class'BWBP_SKC_Pro.DT_AK91Supercharge'
@@ -45,6 +81,7 @@ defaultproperties
      DamageRadius=300.000000
      MomentumTransfer=180000.000000
      MyDamageType=Class'BWBP_SKC_Pro.DT_AK91Supercharge'
+	 DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK91Supercharge'
      LightType=LT_Steady
      LightEffect=LE_QuadraticNonIncidence
      LightHue=25

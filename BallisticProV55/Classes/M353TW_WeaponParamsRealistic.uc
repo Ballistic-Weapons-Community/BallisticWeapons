@@ -26,7 +26,7 @@ defaultproperties
 		FlashScaleFactor=0.850000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M353.M353-Fire1',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=32.000000
-		Chaos=0.080000
+		//Chaos=0.080000
 		Inaccuracy=(X=16,Y=16)
 		WarnTargetPct=0.200000
 	End Object
@@ -95,7 +95,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=0.875000
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=150
 		ViewOffset=(X=11.000000,Y=-1.000000,Z=-14.000000)

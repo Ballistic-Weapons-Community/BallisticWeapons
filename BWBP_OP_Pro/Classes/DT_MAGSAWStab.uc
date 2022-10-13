@@ -29,7 +29,7 @@ defaultproperties
      DamageIdent="Melee"
      DamageDescription=",Slash,Hack,"
      WeaponClass=Class'BWBP_OP_Pro.MAG78Longsword'
-     DeathString="%o screeched and lept onto %k's Dark Star saw."
+     DeathString="%o was sawed in half by %k's chainsaw longsword."
      FemaleSuicide="%o somehow managed to end herself with her MAG-SAW."
      MaleSuicide="%o somehow managed to end himself with his MAG-SAW."
      bAlwaysSevers=True

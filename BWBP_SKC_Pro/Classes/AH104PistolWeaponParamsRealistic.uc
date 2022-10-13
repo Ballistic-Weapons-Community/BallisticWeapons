@@ -94,11 +94,14 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=576,Max=1452)
-		CrouchMultiplier=0.700000
-		ADSMultiplier=0.700000
+		AimSpread=(Min=706,Max=1452)
+		AimAdjustTime=0.400000
+		CrouchMultiplier=0.820000
+		ADSMultiplier=0.770000
+		AimDamageThreshold=300
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=1.000000
 		ChaosSpeedThreshold=575.000000
 	End Object
@@ -109,8 +112,9 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=0f)
-		InventorySize=35
+        InventorySize=8
 		SightMoveSpeedFactor=0.500000
+		SightingTime=0.21
 		MagAmmo=7
 		SightOffset=(X=-30.000000,Y=-0.700000,Z=22.600000)
 		ViewOffset=(X=8,Y=8,Z=-18)

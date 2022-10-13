@@ -23,10 +23,6 @@ var float		NextChangeMindTime;	// For AI
 var bool		bWaterBurn;			// busy getting damaged in water
 var bool		bIsVenting;
 
-var bool	bArcOOA;			// Arcs have been killed cause ammo is out
-var Actor	Arc1;				// The decorative side arc
-var Actor	Arc2;				// The top arcs
-var Actor	Arc3;
 var Actor	ClawSpark1;			// Sparks attached to claws when tracking enemy
 var Actor	ClawSpark2;
 var float	ClawAlpha;			// An alpha amount for claw movement interpolation
@@ -214,25 +210,6 @@ simulated event WeaponTick(float DT)
 	if (!Instigator.IsLocallyControlled())
 		return;
 
-
-	if (level.DetailMode>DM_Low)
-	{
-		if (AmmoAmount(0) < 1 && !FireMode[1].bIsFiring)	{	
-			if (!bArcOOA)
-			{
-				bArcOOA=true;
-				if (Arc1 != None)	Arc1.Destroy();
-				if (Arc2 != None)	Arc2.Destroy();
-				if (Arc3 != None)	Arc3.Destroy();
-			}	
-		}
-		else if (bArcOOA)
-		{
-			bArcOOA = false;
-			InitArcs();
-		}
-	}
-
 	if (ClawSpark1 != None)
 	{
 		End = GetBoneCoords('tip').Origin + vector(Instigator.GetViewRotation()) * 96;
@@ -254,8 +231,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	Instigator.SoundPitch = default.SoundPitch;
 	Instigator.SoundRadius = default.SoundRadius;
 	Instigator.bFullVolume = true;
-	if (AmmoAmount(0) > 0 && level.DetailMode>DM_Low)
-		InitArcs();
 }
 simulated function bool PutDown()
 {
@@ -268,9 +243,6 @@ simulated function bool PutDown()
 			ServerReloadRelease();
 		}
 
-		if (Arc1 != None)	Arc1.Destroy();
-		if (Arc2 != None)	Arc2.Destroy();
-		if (Arc3 != None)	Arc3.Destroy();
 		bWaterBurn=false;
 		Instigator.AmbientSound = None;
 		Instigator.SoundVolume = Instigator.default.SoundVolume;
@@ -282,25 +254,6 @@ simulated function bool PutDown()
 	return false;
 }
 
-
-simulated function ResetArcs()
-{
-	if (level.DetailMode>DM_Low)
-	{
-		if (Arc1==None && bArcOOA)
-			return;
-		InitArcs();
-	}
-}
-simulated function InitArcs()
-{
-	if (Arc1 == None)
-		class'bUtil'.static.InitMuzzleFlash(Arc1, class'HVCMk9_SideArc', DrawScale, self, 'Arc3');
-	if (Arc2 == None)
-		class'bUtil'.static.InitMuzzleFlash(Arc2, class'HVCMk9_TopArc',  DrawScale, self, 'Arc1');
-	if (Arc3 == None)
-		class'bUtil'.static.InitMuzzleFlash(Arc3, class'HVCMk9_TopArc',  DrawScale, self, 'Arc2');
-}
 
 // -----------------------------------------------
 // Reload / Venting stuff
@@ -323,12 +276,6 @@ simulated function Notify_LGArcOff()
 {
 	Instigator.AmbientSound = VentingSound;
 	Instigator.SoundVolume = 128;
-	if (Arc1 != None)
-	{	Emitter(Arc1).Kill();	Arc1=None;	}
-	if (Arc2 != None)
-	{	Emitter(Arc2).Kill();	Arc2=None;	}
-	if (Arc3 != None)
-	{	Emitter(Arc3).Kill();	Arc3=None;	}
 }
 simulated event AnimEnd (int Channel)
 {
@@ -385,8 +332,7 @@ exec simulated function ReloadRelease(optional byte i)
 }
 simulated function Notify_LGArcOn()
 {
-	if (AmmoAmount(0) > 0 && level.DetailMode>DM_Low)
-		InitArcs();
+
 }
 function ServerReloadRelease(optional byte i)
 {
@@ -400,13 +346,6 @@ function ServerReloadRelease(optional byte i)
 
 simulated function Destroyed()
 {
-
-	if (Arc1 != None)
-		Arc1.Destroy();
-	if (Arc2 != None)
-		Arc2.Destroy();
-	if (Arc3 != None)
-		Arc3.Destroy();
 	if (ClawSpark1 != None)
 		ClawSpark1.Destroy();
 	if (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == VentingSound)
@@ -456,7 +395,7 @@ function bool CanAttack(Actor Other)
 
     // check that target is within range
     Dist = VSize(Instigator.Location - Other.Location);
-    if (Dist > FireMode[1].MaxRange())
+    if (Dist > FireMode[0].MaxRange())
 	{
 		BotReload();
         return false;
@@ -521,50 +460,24 @@ function bool CanAttack(Actor Other)
 function byte BestMode()
 {
 	local Bot B;
-	local float Result, Dist;
-	local Controller C;
+	local float Dist;
+	local Vector Dir;
 
 	B = Bot(Instigator.Controller);
 	if ( (B == None) || (B.Enemy == None) )
-		return Rand(2);
-
-	Dist = VSize(B.Enemy.Location - Instigator.Location);
-	if (level.Game.bTeamGame && Rand(7) < B.Skill)
-	{
-		for (C=level.ControllerList;C!=None;C=C.nextController)
-			if (Instigator.Controller.SameTeamAs(C) && C.Pawn != None && Normal(C.Pawn.Location - Instigator.Location) Dot Normal(B.Enemy.Location - Instigator.Location) > 0.75)
-				return 1;
-	}
-	Result = FRand()-0.1;
-	if (Instigator.PhysicsVolume.bWaterVolume)
-	{
-		if (B.Enemy.PhysicsVolume == Instigator.PhysicsVolume && Dist > 200)
-			Result -= 0.5;
-		else if (Dist < 200)
-			Result += 0.4;
-		if (Result > 0.5)
-			return 1;
-		return 0;
-	}
-
-	// Stubborn ass bots want to keep zapping
-	if (NextChangeMindTime > level.TimeSeconds)
 		return 0;
 
-	if (HeatLevel > 5)
-		Result -= 0.1 * B.Skill * ((HeatLevel-5)/5);
-	if (Dist > 1150)
-		Result += 0.08 * B.Skill;
-	else if (Dist < 500)
-		result -= 0.05 * B.Skill;
-	if (VSize(B.Enemy.Velocity) < 100)
-		Result += 0.3;
-	Result += 0.4 * (FMax(0.0, Normal(B.Enemy.Velocity) Dot vector(Instigator.GetViewRotation())) * 2 - 1);
-
-	if (Result > 0.5)
+	if (!HasAmmoLoaded(0))
 		return 1;
-	NextChangeMindTime = level.TimeSeconds + 4;
-	return 0;
+
+	Dir = Instigator.Location - B.Enemy.Location;
+	Dist = VSize(Dir);
+
+	if (Dist > 200)
+		return 0;
+	if (Dist < FireMode[1].MaxRange())
+		return 1;
+	return Rand(2);
 }
 
 function float GetAIRating()
@@ -623,7 +536,7 @@ defaultproperties
     WeaponModes(1)=(ModeName="Max Safe Voltage",Value=5.000000)
     WeaponModes(2)=(ModeName="Overload")
 	CurrentWeaponMode=2
-	ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
+	ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeView'
 	SightOffset=(X=-25.000000,Z=19.500000)
     SightDisplayFOV=40.000000
     NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.R78OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.G5InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=0,A=255),Color2=(B=0,G=0,R=255,A=255),StartSize1=90,StartSize2=93)

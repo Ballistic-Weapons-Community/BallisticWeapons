@@ -18,6 +18,7 @@ defaultproperties
 		PDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_OP_Pro.LightningFlashEmitter'
 		FlashScaleFactor=0.600000
+		PushbackForce=256.000000
 		Recoil=1024.000000
 		Chaos=0.800000
 		BotRefireRate=0.400000
@@ -43,6 +44,7 @@ defaultproperties
 		AccelSpeed=1500.000000
 		Damage=70
 		DamageRadius=100.000000
+		PushbackForce=256.000000
 		MuzzleFlashClass=Class'BWBP_OP_Pro.LightningFlashEmitter'
 		FlashScaleFactor=0.600000
 		Recoil=400.000000

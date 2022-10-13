@@ -92,6 +92,7 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.200000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=0.500000
 	End Object
     
@@ -102,7 +103,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams //Black, IRNV, no GL
 		Weight=30
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MARS2'
-		InventorySize=35
+		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
