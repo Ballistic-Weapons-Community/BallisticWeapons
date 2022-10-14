@@ -120,7 +120,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.PUMA.PUMA-ShineUrban',Index=1)
 		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.250000,Z=15.700000)
+		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
 		InventorySize=12
@@ -140,7 +140,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.PUMA.PUMA-ShineGreen',Index=1)
 		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.250000,Z=15.700000)
+		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
 		InventorySize=12
@@ -159,7 +159,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.PUMA.PUMA-ShineBlue',Index=1)
 		SightingTime=0.250000
-		SightOffset=(X=-4.000000,Y=0.250000,Z=15.700000)
+		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
 		PlayerSpeedFactor=1
 		PlayerJumpFactor=1
 		InventorySize=12
