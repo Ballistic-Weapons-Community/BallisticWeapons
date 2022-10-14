@@ -239,10 +239,25 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicParams_AU //Gold
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.AK490.GoldAK-Shine',Index=1)
-		Weight=1
-		InventorySize=35
+        WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+        WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.AK490.GoldAK-Shine',Index=1)
+        Weight=1
+        InventorySize=11
+        SightMoveSpeedFactor=0.500000
+        SightingTime=0.300000
+        MagAmmo=20
+        SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
+        SightPivot=(Pitch=64)
+        WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+        WeaponModes(1)=(ModeName="Rapid Burst",ModeID="WM_BigBurst",Value=2.000000)
+        WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+        InitialWeaponMode=2
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        RecoilParams(1)=RecoilParams'ClassicRecoilParamsBurst'
+        AimParams(0)=AimParams'ClassicAimParams'
+        FireParams(0)=FireParams'ClassicPrimaryFireParams'
+        FireParams(1)=FireParams'ClassicPrimaryFireBurstParams'
+        FireParams(2)=FireParams'ClassicPrimaryFireParams'
 	End Object
 	
     Layouts(0)=WeaponParams'ClassicParams' //Standard

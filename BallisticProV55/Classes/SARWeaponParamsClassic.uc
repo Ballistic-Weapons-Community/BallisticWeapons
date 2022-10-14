@@ -142,6 +142,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
@@ -158,7 +159,95 @@ defaultproperties
 		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Gray
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.SAR-K.SAR15-Shiny',Index=1)
+		Weight=10
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=40
+		SightOffset=(Z=15.600000)
+		SightPivot=(Pitch=600)
+		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Black
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SWC_Tex.DSAR.DSARSkin-Shiny',Index=1)
+		Weight=10
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=40
+		SightOffset=(Z=15.600000)
+		SightPivot=(Pitch=600)
+		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Blue
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SWC_Tex.CSAR.CSARSkin-Shiny',Index=1)
+		Weight=10
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=40
+		SightOffset=(Z=15.600000)
+		SightPivot=(Pitch=600)
+		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Desert
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.SAR-K.AAS-Shiny',Index=1)
+		Weight=5
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=40
+		SightOffset=(Z=15.600000)
+		SightPivot=(Pitch=600)
+		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-Gray'
+	Layouts(2)=WeaponParams'ClassicParams-Black'
+	Layouts(3)=WeaponParams'ClassicParams-Blue'
+	Layouts(4)=WeaponParams'ClassicParams-Desert'
 
 }

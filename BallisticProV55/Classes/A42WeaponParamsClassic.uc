@@ -163,5 +163,4 @@ defaultproperties
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams_R'
 
-
 }
