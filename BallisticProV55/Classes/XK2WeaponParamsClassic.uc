@@ -137,7 +137,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Silver
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.XK3.XK3-NickelShine',Index=1)
-		Weight=3
+		Weight=5
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=50
@@ -155,8 +155,29 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_AU
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.XK2Camo.XK2-Gold-Shine',Index=1)
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=100
+		SightOffset=(Y=-0.550000,Z=14.900000)
+		SightPivot=(Pitch=600,Roll=-512)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Burst of Six",ModeID="WM_BigBurst",Value=6.000000)
+		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=3
+		ReloadAnimRate=1.400000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams_Silver'
-
+	Layouts(2)=WeaponParams'ClassicParams_AU'
 
 }
