@@ -471,6 +471,8 @@ defaultproperties
 	SightDisplayFOV=25.000000
 	GunLength=80.000000
 	ParamsClasses(0)=Class'R9A1WeaponParams'
+	ParamsClasses(1)=Class'R9A1WeaponParamsClassic'
+	ParamsClasses(2)=Class'R9A1WeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_OP_Pro.R9A1PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.R9A1ScopeFire'
 	SightingTime=0.4
