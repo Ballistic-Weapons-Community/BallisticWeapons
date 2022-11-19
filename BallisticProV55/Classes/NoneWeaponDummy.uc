@@ -1,4 +1,7 @@
-class NoneWeaponDummy extends RandomWeaponDummy;
+class NoneWeaponDummy extends RandomWeaponDummy
+	transient
+	HideDropDown
+	CacheExempt;
 
 // makes this weapon unusable by destroying it right after it spawns
 event PreBeginPlay()

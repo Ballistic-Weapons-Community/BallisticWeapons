@@ -1,4 +1,7 @@
-class RandomWeaponDummy extends BallisticWeapon;
+class RandomWeaponDummy extends BallisticWeapon
+	transient
+	HideDropDown
+	CacheExempt;
 
 defaultproperties
 {

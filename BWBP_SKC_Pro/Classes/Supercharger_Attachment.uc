@@ -6,6 +6,7 @@
 //=============================================================================
 class Supercharger_Attachment extends BallisticAttachment;
 
+var Actor 		Pack;			// The Backpack To Add
 
 defaultproperties
 {

@@ -26,7 +26,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.150000
+		FireInterval=0.185000
 		FireAnim="FireSmall"
 		FireEndAnim=
 		AimedFireAnim="SightFire"	

@@ -74,7 +74,9 @@ defaultproperties
      LightRadius=24.000000
      bDynamicLight=True
      LifeSpan=1.000000
-     Skins(0)=FinalBlend'BW_Core_WeaponTex.GunFire.A73ProjFinal'
+     DrawType=DT_StaticMesh
+	 StaticMesh=StaticMesh'WeaponStaticMesh.LinkProjectile'
+	 Skins(0)=FinalBlend'BW_Core_WeaponTex.GunFire.A73ProjFinal'
      Skins(1)=FinalBlend'BW_Core_WeaponTex.GunFire.A73Proj2Final'
      Style=STY_Additive
      SoundVolume=255

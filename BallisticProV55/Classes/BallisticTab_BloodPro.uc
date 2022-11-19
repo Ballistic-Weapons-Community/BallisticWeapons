@@ -8,7 +8,7 @@
 //=============================================================================
 class BallisticTab_BloodPro extends UT2K4TabPanel;
 
-var automated moCheckbox	ch_BloodyHell, ch_BloodDrags, ch_BloodImpacts, ch_BloodPools, ch_BloodSplats, ch_BloodExplodes, ch_BloodFX, ch_Stmups, ch_Chunks, ch_ScreenFX;
+var automated moCheckbox	ch_BloodDrags, ch_BloodImpacts, ch_BloodPools, ch_BloodSplats, ch_BloodExplodes, ch_BloodFX, ch_Stmups, ch_Chunks, ch_ScreenFX;
 var automated moFloatEdit	fl_BloodTimeScale;
 var automated moSlider		sl_GibMulti;
 
@@ -33,7 +33,6 @@ function ShowPanel(bool bShow)
 
 function LoadSettings()
 {
-	ch_BloodyHell.Checked(class'mut_Ballistic'.default.bBloodyHell);
 	ch_BloodDrags.Checked(class'BWBloodControl'.default.bUseBloodDrags);
 	ch_BloodImpacts.Checked(class'BWBloodControl'.default.bUseBloodImpacts);
 	ch_BloodPools.Checked(class'BWBloodControl'.default.bUseBloodPools);
@@ -52,7 +51,6 @@ function SaveSettings()
 {
 	if (!bInitialized)
 		return;
-	class'mut_Ballistic'.default.bBloodyHell 		= ch_BloodyHell.IsChecked();
 	class'BWBloodControl'.default.bUseBloodDrags 	= ch_BloodDrags.IsChecked();
 	class'BWBloodControl'.default.bUseBloodImpacts 	= ch_BloodImpacts.IsChecked();
 	class'BWBloodControl'.default.bUseBloodPools 	= ch_BloodPools.IsChecked();
@@ -75,7 +73,6 @@ function SaveSettings()
 
 function DefaultSettings()
 {
-	ch_BloodyHell.Checked(false);
 	ch_BloodDrags.Checked(true);
 	ch_BloodImpacts.Checked(true);
 	ch_BloodPools.Checked(true);
@@ -92,19 +89,6 @@ function DefaultSettings()
 
 defaultproperties
 {
-     Begin Object Class=moCheckBox Name=ch_BloodyHellCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Enable BloodyHell"
-         OnCreateComponent=ch_BloodyHellCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Enables BloodyHell"
-         WinTop=0.050000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_BloodyHell=moCheckBox'BallisticProV55.BallisticTab_BloodPro.ch_BloodyHellCheck'
-
 	 Begin Object Class=moCheckBox Name=ch_BloodFXCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
@@ -112,7 +96,7 @@ defaultproperties
          OnCreateComponent=ch_BloodFXCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles blood effects when damaging players."
-         WinTop=0.100000
+         WinTop=0.050000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -125,7 +109,7 @@ defaultproperties
          OnCreateComponent=ch_BloodDragsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles dead bodies leaving blood trails when they slide across surfaces."
-         WinTop=0.150000
+         WinTop=0.100000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -138,7 +122,7 @@ defaultproperties
          OnCreateComponent=ch_BloodImpactsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles blood marks caused by bodies impacting with surfaces at high speed."
-         WinTop=0.200000
+         WinTop=0.150000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -151,7 +135,7 @@ defaultproperties
          OnCreateComponent=ch_BloodPoolsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles dead bodies leaving pools when they are stationary."
-         WinTop=0.250000
+         WinTop=0.200000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -164,7 +148,7 @@ defaultproperties
          OnCreateComponent=ch_BloodSplatsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles blood spatter marks appearing on surfaces when players are damaged."
-         WinTop=0.300000
+         WinTop=0.250000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -177,7 +161,7 @@ defaultproperties
          OnCreateComponent=ch_BloodExplodesCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles horrendous blood effects when players are blown up."
-         WinTop=0.350000
+         WinTop=0.300000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -190,7 +174,7 @@ defaultproperties
          OnCreateComponent=ch_ChunksCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles gibs for dismemberment."
-         WinTop=0.400000
+         WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -203,7 +187,7 @@ defaultproperties
          OnCreateComponent=ch_StmupsCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles spawning of stumps on severed limbs."
-         WinTop=0.450000
+         WinTop=0.400000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -216,7 +200,7 @@ defaultproperties
          OnCreateComponent=ch_ScreenFXCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Toggles blood splashes and effects applied to the screen."
-         WinTop=0.500000
+         WinTop=0.450000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -231,7 +215,7 @@ defaultproperties
          OnCreateComponent=fl_BloodTimeScaleFloat.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Scales the life time of blood effects. 0 = Forever."
-         WinTop=0.550000
+         WinTop=0.500000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -243,7 +227,7 @@ defaultproperties
          Caption="Gib Multiplier"
          OnCreateComponent=sl_GibMultiSlider.InternalOnCreateComponent
          Hint="Multiplies number of gibs spawned. 1 = Normal, 0 = None. WARNING: Higher than 1 may kill performance!"
-         WinTop=0.600000
+         WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
