@@ -60,9 +60,8 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicFreezeFireParams
-		FireInterval=0.225000
-		FireEndAnim=
-		AimedFireAnim="AimedFire"	
+		FireInterval=0.300000
+		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ClassicFreezeEffectParams'
 	End Object
 
@@ -88,9 +87,8 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicHeatFireParams
-		FireInterval=0.225000
-		FireEndAnim=
-		AimedFireAnim="AimedFire"	
+		FireInterval=0.300000
+		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ClassicHeatEffectParams'
 	End Object
 		
@@ -131,14 +129,11 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		WeaponModes(0)=(ModeName="Regular")
-		WeaponModes(1)=(ModeName="Freeze",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(2)=(ModeName="Heat Ray",ModeID="WM_SemiAuto",Value=1.000000)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
-		SightOffset=(X=-2.000000,Z=15.400000)
-		SightPivot=(Pitch=512)
+		SightPivot=(Roll=6000)
+		SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

@@ -55,7 +55,7 @@ function ShowPanel(bool bShow)
 function LoadSettings()
 {
 	co_InventoryMode.AddItem("Pickups" ,,string(0));
-	co_InventoryMode.AddItem("Standard Loadout" ,,string(1));
+	co_InventoryMode.AddItem("OutFitting Loadout" ,,string(1));
 	co_InventoryMode.AddItem("Conflict Loadout" ,,string(2));
 	co_InventoryMode.AddItem("Evolution Loadout" ,,string(3));
 	co_InventoryMode.AddItem("Arena" ,,string(4));

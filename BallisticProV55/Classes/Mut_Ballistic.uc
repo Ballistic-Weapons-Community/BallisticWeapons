@@ -46,7 +46,6 @@ var   array<PickupSwap> PickupSwaps;				// Pickups waiting to be swapped
 var   globalconfig bool		bRegeneration;			// Enables Regeneration
 var   globalconfig bool		bShieldRegeneration;	// Enables Shield Regeneration
 var   globalconfig bool		bPreloadMeshes;			// Enables Mesh Preloader
-var   globalconfig bool		bBloodyHell;			// Enables BloodyHell
 var   globalconfig bool		bKillStreaks;			// Enables KillStreaks
 
 var   globalconfig bool		bUseItemizer;			// Should extra items be spawned using the Itemizer system
@@ -771,11 +770,6 @@ simulated function PreBeginPlay()
 {
 	if (Role == ROLE_Authority)
 		BallisticReplicationInfo = class'BallisticReplicationInfo'.static.HitMe(self);
-
-	if (bBloodyHell)
-	{
-		Level.Game.AddMutator("BallisticProV55.Mut_BloodyHell", false);
-	}
 	
 	if (bRegeneration)
 	{
@@ -1053,7 +1047,6 @@ defaultproperties
      AirSpeedScale=270.000000
      AccelRateScale=256.000000
 	 
-	 bBloodyHell=False
 	 bRegeneration=False
 	 bShieldRegeneration=False
 	 bPreloadMeshes=True

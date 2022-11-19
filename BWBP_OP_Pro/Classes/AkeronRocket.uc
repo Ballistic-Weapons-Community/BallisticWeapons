@@ -184,7 +184,7 @@ defaultproperties
      ImpactManager=Class'BWBP_OP_Pro.IM_Akeron'
      bRandomStartRotation=False
      AccelSpeed=100000.000000
-     TrailClass=Class'BallisticProV55.G5RocketTrail'
+     TrailClass=Class'BWBP_OP_Pro.AkeronRocketTrail'
      TrailOffset=(X=-4.000000)
      MyRadiusDamageType=Class'BWBP_OP_Pro.DTAkeron'
      SplashManager=Class'BallisticProV55.IM_ProjWater'

@@ -7,10 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Mut_BloodyHell extends Mutator
-	transient
-	HideDropDown
-	CacheExempt;
+class Mut_BloodyHell extends Mutator;
 
 function ModifyPlayer(Pawn Other)
 {
@@ -68,6 +65,6 @@ defaultproperties
 {
      ConfigMenuClassName="BallisticProV55.BallisticConfigMenuPro"
      GroupName="Blood"
-     FriendlyName="Bloody Hell (Pro)"
+     FriendlyName="BallisticPro: Bloody Hell"
      Description="Adds horrific blood effects for dead bodies, including: blood trails, corpse impact marks, blood pools and under water blood. The pinnacle of horrendousness...||http://www.runestorm.com"
 }

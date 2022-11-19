@@ -41,7 +41,6 @@ defaultproperties
          FadeOut=True
          FadeIn=True
          RespawnDeadParticles=False
-         ZTest=False
          UniformSize=True
          AutomaticInitialSpawning=False
          TriggerDisabled=False

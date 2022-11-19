@@ -433,10 +433,6 @@ defaultproperties
 	StartShovelAnimRate=1.400000
 	StartShovelAnim="PrepReload"
 	SpecialInfo(0)=(Info="240.0;25.0;0.5;40.0;0.0;1.0;-999.0")
-	Skins(3)=Texture'BW_Core_WeaponTex.MRS138.MRS138Shell'
-	Skins(2)=Shader'BW_Core_WeaponTex.MRS138.MRS138HeatShiney'
-	Skins(1)=Shader'BW_Core_WeaponTex.MRS138.MRS138Shiney'
-	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
 	SightOffset=(X=15,Z=21.500000)
 	SightDisplayFOV=40
 	ReloadAnimRate=1.500000
@@ -492,4 +488,8 @@ defaultproperties
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	AttachmentClass=Class'BallisticProV55.MRS138Attachment'
 	AIRating=0.800000
+	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+	Skins(1)=Shader'BW_Core_WeaponTex.MRS138.MRS138Shiney'
+	Skins(2)=Texture'BW_Core_WeaponTex.MRS138.MRS138HeatShield'
+	Skins(3)=Texture'BW_Core_WeaponTex.MRS138.MRS138Shell'
 }
