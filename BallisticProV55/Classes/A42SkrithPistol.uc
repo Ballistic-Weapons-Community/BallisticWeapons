@@ -11,7 +11,7 @@
 class A42SkrithPistol extends BallisticHandgun;
 
 var float NextAmmoTickTime;
-var Actor GlowFX;
+var Actor			GlowFX;
 
 simulated event PreBeginPlay()
 {
@@ -37,8 +37,22 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		GlowFX.Destroy();
     if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2)
     {
-    	GlowFX = None;
+    	if (LayoutIndex == 1)
+		{
+		GlowFX = None;
+		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFXRed', DrawScale, self, 'tip');
+		}
+		else if (LayoutIndex == 2)
+		{
+		GlowFX = None;
+		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFXGreen', DrawScale, self, 'tip');
+		}
+		else
+		{
+		GlowFX = None;
 		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFX', DrawScale, self, 'tip');
+		}
+		
 		if (GlowFX != None)
 		{
 			if ((IsSlave() && Othergun.Hand >= 0) || (!IsSlave() && Hand < 0))

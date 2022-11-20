@@ -44,6 +44,42 @@ defaultproperties
 		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 		End Object
 		
+		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams-Red
+			ProjectileClass=Class'BallisticProV55.A42ProjectileBal'
+			SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
+			Speed=50.000000
+			MaxSpeed=8000.000000
+			AccelSpeed=60000.000000
+			Damage=15.0
+			DamageRadius=48.000000
+			MomentumTransfer=100.000000
+			HeadMult=2.0
+			LimbMult=0.55
+			SpreadMode=FSM_Rectangle
+			MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitterBal'
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Fire',Volume=0.700000)
+			Recoil=24.000000
+			Chaos=-1.0
+			Inaccuracy=(X=8,Y=4)
+			WarnTargetPct=0.300000	
+		End Object
+
+		Begin Object Class=FireParams Name=ClassicPrimaryFireParams-Red
+			FireInterval=0.250000
+			AmmoPerFire=5
+			BurstFireRateFactor=1.00
+			FireEndAnim=	
+		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Red'
+		End Object
+
+		Begin Object Class=FireParams Name=ClassicPrimaryFireParamsBurst-Red
+			FireInterval=0.080000
+			AmmoPerFire=5
+			BurstFireRateFactor=1.00
+			FireEndAnim=	
+		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Red'
+		End Object
+		
 		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams-Acid
 			ProjectileClass=Class'BallisticProV55.A42AcidProjectile'
 			SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
@@ -191,9 +227,9 @@ defaultproperties
 		InitialWeaponMode=2
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
-		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams-Red'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst-Red'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams-Red'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
@@ -208,15 +244,15 @@ defaultproperties
 		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 		SightPivot=(Pitch=1024,Roll=-768)
 		ViewOffset=(X=8.000000,Y=10.000000,Z=-10.000000)
-		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=0
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams-Acid'
 		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst-Acid'
-		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams-Acid'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	

@@ -107,7 +107,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		Weight-30
+		Weight=30
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(Y=-1.000000,Z=14.800000)
@@ -125,7 +125,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Tiger
-		Weight-10
+		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SATiger',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SBTiger',Index=2)
