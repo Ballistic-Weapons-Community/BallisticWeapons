@@ -107,6 +107,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight-30
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(Y=-1.000000,Z=14.800000)
@@ -122,7 +123,28 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Tiger
+		Weight-10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SATiger',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SBTiger',Index=2)
+		InventorySize=12
+		SightMoveSpeedFactor=0.500000
+		SightOffset=(Y=-1.000000,Z=14.800000)
+		SightPivot=(Pitch=600,Roll=-1024)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	Layouts(1)=WeaponParams'ClassicParams-Tiger'
 }

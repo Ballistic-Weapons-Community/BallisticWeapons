@@ -125,6 +125,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
 		InventorySize=12
@@ -139,7 +140,27 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-RNS
+		Weight=20
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.M290MagiCannon.MiniThorSkin',Index=1)
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
+		InventorySize=12
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=10
+		SightOffset=(X=-50.000000,Z=17.000000)
+		SightPivot=(Pitch=512)
+		CockAnimRate=1.000000
+		ReloadAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-RNS'
 
 }

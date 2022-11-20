@@ -32,6 +32,32 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 	End Object
+	
+	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams-E
+		ProjectileClass=Class'BallisticProV55.A500EProjectile'
+		Speed=6000.000000
+		MaxSpeed=6000.000000
+		Damage=16.0
+		DamageRadius=64.000000
+		MomentumTransfer=100.000000
+		HeadMult=1.875
+		LimbMult=0.4375
+		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.A500EFlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_Fire1',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=256.000000
+		Chaos=-1.0
+		Inaccuracy=(X=950,Y=600)
+		WarnTargetPct=0.200000	
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams-E
+		FireInterval=0.800000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-E'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
@@ -61,6 +87,32 @@ defaultproperties
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	End Object
+	
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams-E
+		ProjectileClass=Class'BallisticProV55.A500EAltProjectile'
+        Speed=1000.000000
+        MaxSpeed=6000.000000
+		Damage=80.000000
+		DamageRadius=96.000000
+		MomentumTransfer=1000.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		SpreadMode=FSM_Rectangle
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.A500EFlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_AltFire',Volume=1.800000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=0.0
+		Chaos=-1.0
+		WarnTargetPct=0.200000	
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams-E
+		FireInterval=0.800000
+		AmmoPerFire=2
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams-E'
 	End Object
 		
 	//=================================================================
@@ -103,6 +155,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
@@ -113,7 +166,54 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-B
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.SRL.SkrithRocketLauncher_Main',Index=1)
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=10
+		SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
+		SightPivot=(Pitch=1024)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-E
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.Misc.Dragon_Main',Index=1)
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=10
+		SightOffset=(X=4.000000,Y=0.100000,Z=30.250000)
+		SightPivot=(Pitch=1024)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams-E'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams-E'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-SSS
+		Weight=1
+		LayoutMesh=SkeletalMesh'BWBP_SWC_Anims.FPm_SkrithSuperWeapon'
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=20
+		SightOffset=(X=4.000000,Y=0.100000,Z=33.500000)
+		SightPivot=(Pitch=1024)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-B'
+	Layouts(2)=WeaponParams'ClassicParams-E'
+	Layouts(3)=WeaponParams'ClassicParams-SSS'
 
 }

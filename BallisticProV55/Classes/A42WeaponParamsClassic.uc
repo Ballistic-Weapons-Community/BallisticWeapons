@@ -44,6 +44,43 @@ defaultproperties
 		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 		End Object
 		
+		Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams-Acid
+			ProjectileClass=Class'BallisticProV55.A42AcidProjectile'
+			SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
+			Speed=1000.000000
+			MaxSpeed=6000.000000
+			AccelSpeed=60000.000000
+			Damage=5.000000
+			DamageRadius=56.000000
+			MomentumTransfer=100.000000
+			HeadMult=2.0
+			LimbMult=0.55
+			SpreadMode=FSM_Rectangle
+			FlashScaleFactor=0.6
+			MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
+			FireSound=(Sound=Sound'BW_Core_WeaponSound.Reptile.Rep_AltImpact')
+			Recoil=64.000000
+			Chaos=-1.0
+			Inaccuracy=(X=32,Y=32)
+			WarnTargetPct=0.300000	
+		End Object
+
+		Begin Object Class=FireParams Name=ClassicPrimaryFireParams-Acid
+			FireInterval=0.100000
+			AmmoPerFire=1
+			BurstFireRateFactor=1.00
+			FireEndAnim=	
+		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Acid'
+		End Object
+
+		Begin Object Class=FireParams Name=ClassicPrimaryFireParamsBurst-Acid
+			FireInterval=0.080000
+			AmmoPerFire=1
+			BurstFireRateFactor=1.00
+			FireEndAnim=	
+		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Acid'
+		End Object
+		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
@@ -160,7 +197,31 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
+	Begin Object Class=WeaponParams Name=ClassicParams_G //The Green One
+		Weight=2
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SWC_Tex.AcidPistol.A512_ExpShine',Index=1)
+		PlayerSpeedFactor=1.100000
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=300
+		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
+		SightPivot=(Pitch=1024,Roll=-768)
+		ViewOffset=(X=8.000000,Y=10.000000,Z=-10.000000)
+		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=0
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams-Acid'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst-Acid'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams_R'
+	Layouts(2)=WeaponParams'ClassicParams_G'
 
 }

@@ -126,6 +126,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		PlayerSpeedFactor=1.150000
         InventorySize=2
 		SightMoveSpeedFactor=0.500000
@@ -137,7 +138,24 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 		AltFireParams(1)=FireParams'ClassicPrimaryFireProjParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-B
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.X3k.KnifeA1Shine',Index=1)
+		PlayerSpeedFactor=1.150000
+        InventorySize=2
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=1
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireProjParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(1)=FireParams'ClassicPrimaryFireProjParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-B'
 
 }
