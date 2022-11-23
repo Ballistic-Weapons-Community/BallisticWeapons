@@ -269,7 +269,7 @@ var() IntBox				BigIconCoords;				// Coords for drawing the BigIcon in the weapo
 var	bool					bSkipDrawWeaponInfo;		// Skips the Ballistic versions of NewDrawWeaponInfo
 var	bool					bAllowWeaponInfoOverride;	// If true, prevents upgraded HUDs from overriding the weapon info display
 var() float					IdleTweenTime;				// Just a general tween time used by anims like idle
-var() BallisticGunAugment	GunAugment;				// Actor to spawn if the layout has an additional optic/suppressor/bayonet
+var() array<BallisticGunAugment>	GunAugments;				// Actor to spawn if the layout has an additional optic/suppressor/bayonet
 //-----------------------------------------------------------------------------
 // Sound
 //-----------------------------------------------------------------------------
@@ -538,7 +538,6 @@ simulated function SetLayoutIndex(byte NewLayoutIndex)
 {
 	LayoutIndex = NewLayoutIndex;
 	bLayoutSet = True;
-	log("Layout set to  "$LayoutIndex);
 }
 
 //===========================================================================
@@ -566,12 +565,10 @@ simulated function PostNetBeginPlay()
 		{
 			WeightSum += Layouts[i].Weight;
 		}
-		log("WeightSum: "$WeightSum);
 		f = FRand()*WeightSum;
 		
 		for (i=0; i<Layouts.length; i++)
 		{
-			log("f : "$f$", CurrentWeight : "$CurrentWeight$", CurrentWeight+NextWeight : "$CurrentWeight+Layouts[i].Weight);
 			if ( f >= CurrentWeight && f < CurrentWeight+Layouts[i].Weight)
 			{
 				SetLayoutIndex(i);
@@ -589,11 +586,13 @@ simulated function PostNetBeginPlay()
 	{
 		LinkMesh(WeaponParams.LayoutMesh);
 	}
+	
 	//Spawn a weapon attachment if required by the layout
-	if (WeaponParams.GunAugmentClass != None)
+    for (i = 0; i < WeaponParams.GunAugments.Length; ++i)
 	{
-		GunAugment = Spawn(WeaponParams.GunAugmentClass);
-		AttachToBone(GunAugment,'Augment');
+		GunAugments[i] = Spawn(WeaponParams.GunAugments[i].GunAugmentClass);
+		GunAugments[i].SetDrawScale(WeaponParams.GunAugments[i].Scale);
+		AttachToBone(GunAugments[i], WeaponParams.GunAugments[i].BoneName);
 	}
 	
 	if (BCRepClass.default.bNoReloading)

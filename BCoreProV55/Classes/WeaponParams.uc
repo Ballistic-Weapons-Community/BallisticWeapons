@@ -23,6 +23,13 @@ struct BoneScale
     var()   float       Scale;
 };
 
+struct GunAugment
+{
+	var() class<BallisticGunAugment>	GunAugmentClass;		//The RDS, Suppressor, Bayonet actor.
+	var()	Name	BoneName;
+	var()	float	Scale;
+};
+
 struct WeaponModeType							// All the settings for a weapon firing mode
 {
 	var() localized string 	ModeName;			// Display name for this mode
@@ -81,7 +88,7 @@ var() Vector                ViewOffset;            // Offset when at rest
 var() Rotator               ViewPivot;            // Pivot when at rest
 var() String				WeaponName;
 var() Mesh					LayoutMesh;
-var() class<BallisticGunAugment>	GunAugmentClass;		//The RDS, Suppressor, Bayonet actor. Will look for a socket called "Attach"
+var() array<GunAugment>	GunAugments;		//The RDS, Suppressor, Bayonet actor. Will look for a socket called "Attach"
 //-----------------------------------------------------------------------------
 // Aim
 //-----------------------------------------------------------------------------

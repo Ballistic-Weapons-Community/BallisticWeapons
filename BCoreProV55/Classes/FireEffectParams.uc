@@ -29,6 +29,7 @@ enum FireSpreadMode
 //-----------------------------------------------------------------------------
 var() class<Actor>				MuzzleFlashClass;	    // The actor class to use for this fire's muzzle flash
 var() float                     FlashScaleFactor;
+var() Name						FlashBone;			// Bone to attach muzzle flash to
 //-----------------------------------------------------------------------------
 // Sound
 //-----------------------------------------------------------------------------
@@ -58,6 +59,7 @@ static simulated function Initialize(BallisticWeapon BW);
 defaultproperties
 {
     FlashScaleFactor=1f
+	FlashBone="tip"
     // AI //
     SplashDamage=false
     RecommendSplashDamage=false
