@@ -38,7 +38,74 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
-		
+	
+	// Long Barreled
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_Long
+		TraceRange=(Min=12000.000000,Max=15000.000000)
+		WaterTraceRange=12000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=25.0
+		HeadMult=3.5
+		LimbMult=0.45
+		DamageType=Class'BallisticProV55.DTM50Assault'
+		DamageTypeHead=Class'BallisticProV55.DTM50AssaultHead'
+		DamageTypeArm=Class'BallisticProV55.DTM50AssaultLimb'
+		PenetrationEnergy=32.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter_C'
+		FlashScaleFactor=0.800000
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Fire3',Volume=1.600000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=52.000000
+		Chaos=-1.0
+		Inaccuracy=(X=1,Y=1)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Long
+		FireInterval=0.105000
+		BurstFireRateFactor=1.00
+		AimedFireAnim="SightFire"
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_Long'
+	End Object
+	
+	//Suppressed
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_Sil
+		TraceRange=(Min=12000.000000,Max=15000.000000)
+		WaterTraceRange=12000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=25.0
+		HeadMult=3.5
+		LimbMult=0.45
+		DamageType=Class'BallisticProV55.DTM50Assault'
+		DamageTypeHead=Class'BallisticProV55.DTM50AssaultHead'
+		DamageTypeArm=Class'BallisticProV55.DTM50AssaultLimb'
+		PenetrationEnergy=32.000000
+		PenetrateForce=150
+		bPenetrate=True
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
+		FlashScaleFactor=0.800000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.F2000-SilFire',Volume=1.100000,Radius=192.000000,bAtten=True)
+		Recoil=72.000000
+		Chaos=-1.0
+		Inaccuracy=(X=2,Y=2)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_Sil
+		FireInterval=0.100000
+		BurstFireRateFactor=1.00
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_Sil'
+	End Object
+	
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
@@ -110,6 +177,7 @@ defaultproperties
 		Weight=30
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
 		SightOffset=(Y=-1.000000,Z=14.800000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
@@ -124,7 +192,101 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams-Tiger
+	Begin Object Class=WeaponParams Name=ClassicParams_Stealth
+		Weight=10
+		
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M50.M50SkinA-D',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M50.M50SkinB-D',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.M50.M50Laser',Index=4)
+		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_TexExp.M50.M50Gren-D',Index=5)
+		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50.M900Grenade',Index=6)
+		AttachmentMaterialSwaps(0)=(Material=Texture'BWBP_SKC_TexExp.M50.M50SkinA-D',Index=0)
+		AttachmentMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M50.M50SkinB-D',Index=1)
+		AttachmentMaterialSwaps(2)=(Material=Texture'BW_Core_WeaponTex.M50.M50Laser',Index=4)
+		AttachmentMaterialSwaps(3)=(Material=Texture'BWBP_SKC_TexExp.M50.M50Gren-D',Index=3)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.1)
+		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
+		SightOffset=(Y=-1.000000,Z=14.800000)
+		SightPivot=(Pitch=600,Roll=-1024)
+		
+		InventorySize=12
+		SightMoveSpeedFactor=0.500000
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Sil'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_AdvStealth
+		Weight=10
+		
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_FPm'
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M50.M50SkinA-D',Index=2)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M50.M50SkinB-D',Index=3)
+		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-MainBlack',Index=4)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=5)
+		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-CoverBlack',Index=6)
+		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=7)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.1)
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Scope",Scale=0.05)
+        WeaponBoneScales(0)=(BoneName="Sights",Slot=0,Scale=0f)
+		ViewOffset=(X=-4.000000,Y=10.00000,Z=-15.000000)
+		SightOffset=(X=0.000000,Y=-6.580000,Z=21.65000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=1)
+		
+		InventorySize=12
+		SightMoveSpeedFactor=0.500000
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Sil'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Desert
+		Weight=10
+		
+		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.M50A3_FPm'
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M50.M50SkinA-D',Index=2)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M50.M50SkinB-D',Index=3)
+		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-MainTan',Index=4)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Misc',Index=5)
+		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-CoverTan',Index=6)
+		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.M50A3.M50A3-Barrel',Index=7)
+		//GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_EOTech',BoneName="Scope",Scale=0.15)
+		ViewOffset=(X=-4.000000,Y=10.00000,Z=-15.000000)
+		SightOffset=(X=0.000000,Y=-6.580000,Z=21.65000)
+		SightPivot=(Pitch=0,Roll=0,Yaw=1)
+		
+		InventorySize=12
+		SightMoveSpeedFactor=0.500000
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Long'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_GaussTiger
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SATiger',Index=1)
@@ -145,7 +307,7 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams-AU
+	Begin Object Class=WeaponParams Name=ClassicParams_Gold
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.M50Camos.M50_Main1_S1',Index=1)
@@ -169,8 +331,13 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-Tiger'
-	Layouts(2)=WeaponParams'ClassicParams-AU'
-	
+	Layouts(0)=WeaponParams'ClassicParams' //M50 (Silver, GL)
+	Layouts(1)=WeaponParams'ClassicParams_Stealth' //M50 (Black, Suppressed, Smoke GL, Burst)
+	Layouts(2)=WeaponParams'ClassicParams_AdvStealth'//M50A3 Stealth (Black, Suppressed, EO Tech)
+	Layouts(3)=WeaponParams'ClassicParams_Desert' //M50A3 Desert (Tan, Irons)
+	//Layouts(4)=WeaponParams'ClassicParams_Jungle' //M50A1 Jungle (Jungle, Scope, GL, Burst)
+	Layouts(4)=WeaponParams'ClassicParams_GaussTiger' //M50A1 Gauss Prototype (M30A2, Screen Scope, Gauss, Burst)
+	Layouts(5)=WeaponParams'ClassicParams_Gold' //M50 (Gold, GL)
+
+
 }
