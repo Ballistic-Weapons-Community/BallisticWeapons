@@ -39,18 +39,18 @@ simulated function BringUp(optional Weapon PrevWeapon)
     {
     	if (LayoutIndex == 1)
 		{
-		GlowFX = None;
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFXRed', DrawScale, self, 'tip');
+			GlowFX = None;
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFXRed', DrawScale, self, 'tip');
 		}
 		else if (LayoutIndex == 2)
 		{
-		GlowFX = None;
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFXGreen', DrawScale, self, 'tip');
+			GlowFX = None;
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFXGreen', DrawScale, self, 'tip');
 		}
 		else
 		{
-		GlowFX = None;
-		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFX', DrawScale, self, 'tip');
+			GlowFX = None;
+			class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A42AmbientFX', DrawScale, self, 'tip');
 		}
 		
 		if (GlowFX != None)
@@ -60,6 +60,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		}
 	}
 }
+
 simulated function bool MayNeedReload(byte Mode, float Load)
 {
 	return false;

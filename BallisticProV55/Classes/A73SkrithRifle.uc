@@ -107,6 +107,10 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		{
 		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXBal', DrawScale, self, 'tip');
 		}
+		else if (LayoutIndex == 2)
+		{
+		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFXB', DrawScale, self, 'tip');
+		}
 		else
 		{
 		class'BUtil'.static.InitMuzzleFlash (GlowFX, class'A73GlowFX', DrawScale, self, 'tip');
