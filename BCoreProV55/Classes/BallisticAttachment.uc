@@ -211,8 +211,18 @@ simulated function GenerateModeInfo()
 
 simulated function PostNetBeginPlay()
 {
+	local int i;
+	
 	Super.PostNetBeginPlay();
 	bHeavy = bIsAimed;
+	
+	if (BallisticWeapon(Instigator.Weapon) != None)
+	{
+		for (i = 0; i < BallisticWeapon(Instigator.Weapon).WeaponParams.AttachmentMaterialSwaps.Length; ++i)
+		{
+			Skins[BallisticWeapon(Instigator.Weapon).WeaponParams.AttachmentMaterialSwaps[i].Index] = BallisticWeapon(Instigator.Weapon).WeaponParams.AttachmentMaterialSwaps[i].Material;
+		}
+	}
 }
 	
 // If firecount changes, start ThirdPersonEffects()

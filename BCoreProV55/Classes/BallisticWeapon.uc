@@ -547,53 +547,12 @@ simulated function SetLayoutIndex(byte NewLayoutIndex)
 //===========================================================================
 simulated function PostNetBeginPlay()
 {
-	local byte i;
-	local float f;
-	local int WeightSum, CurrentWeight;
-	local array<WeaponParams> Layouts;
 	Super.PostNetBeginPlay();
 
     assert(ParamsClasses[GameStyleIndex] != None);
 	
-	//Build a weighted list of random layouts and return a random layout index
-	if (!bLayoutSet/* && BCRepClass.default.bRandomCamo*/)
-	{
-		Layouts = ParamsClasses[GameStyleIndex].default.Layouts;
-				
-		//Build the weighted list
-		for (i=0; i<Layouts.length; i++)
-		{
-			WeightSum += Layouts[i].Weight;
-		}
-		f = FRand()*WeightSum;
-		
-		for (i=0; i<Layouts.length; i++)
-		{
-			if ( f >= CurrentWeight && f < CurrentWeight+Layouts[i].Weight)
-			{
-				SetLayoutIndex(i);
-				break;
-			}
-			CurrentWeight += Layouts[i].Weight;
-		}
-	}
-    
     // Forced to delay initialization because of the need to wait for GameStyleIndex and LayoutIndex to be replicated
 	ParamsClasses[GameStyleIndex].static.Initialize(self);
-	
-	//Change mesh if layout dictates it
-	if (WeaponParams.LayoutMesh != None)
-	{
-		LinkMesh(WeaponParams.LayoutMesh);
-	}
-	
-	//Spawn a weapon attachment if required by the layout
-    for (i = 0; i < WeaponParams.GunAugments.Length; ++i)
-	{
-		GunAugments[i] = Spawn(WeaponParams.GunAugments[i].GunAugmentClass);
-		GunAugments[i].SetDrawScale(WeaponParams.GunAugments[i].Scale);
-		AttachToBone(GunAugments[i], WeaponParams.GunAugments[i].BoneName);
-	}
 	
 	if (BCRepClass.default.bNoReloading)
 		bNoMag = true;
@@ -620,6 +579,53 @@ simulated function PostNetBeginPlay()
 
 		RcComponent.DeclineDelay = CalculateBurstRecoilDelay(BFireMode[0].bBurstMode);
 	}
+}
+
+//Take a layout from a pickup or mutator via GiveTo. If default (255), generate a random layout if applicable
+simulated function GenerateLayout(byte Index)
+{
+	local byte i;
+	local float f;
+	local int WeightSum, CurrentWeight;
+	local array<WeaponParams> Layouts;
+	
+	Layouts = ParamsClasses[GameStyleIndex].default.Layouts;
+	
+	//We have a layout set, use it
+	if (Index < Layouts.length)
+	{
+		SetLayoutIndex(Index);
+	}
+	
+	if (!bLayoutSet)
+	{
+		//Build a weighted list of random layouts and return a random layout index
+		if (Layouts.length > 0 /* && BCRepClass.default.bRandomCamo*/)
+		{
+					
+			//Build the weighted list
+			for (i=0; i<Layouts.length; i++)
+			{
+				WeightSum += Layouts[i].Weight;
+			}
+			f = FRand()*WeightSum;
+			
+			for (i=0; i<Layouts.length; i++)
+			{
+				if ( f >= CurrentWeight && f < CurrentWeight+Layouts[i].Weight)
+				{
+					SetLayoutIndex(i);
+					break;
+				}
+				CurrentWeight += Layouts[i].Weight;
+			}
+		}
+		else
+		{
+			SetLayoutIndex(0);
+		}
+	}
+
 }
 
 simulated function OnWeaponParamsChanged()
@@ -649,6 +655,7 @@ simulated function OnWeaponParamsChanged()
     ZoomType                    = WeaponParams.ZoomType;
 
 	bAdjustHands				= WeaponParams.bAdjustHands;
+	
 	if (WeaponParams.WristAdjust != rot(0,0,0))
     {
 		WristAdjust = WeaponParams.WristAdjust;
@@ -688,12 +695,28 @@ simulated function OnWeaponParamsChanged()
         default.PlayerViewPivot = WeaponParams.ViewPivot;
     }
 	
+	//Visuals
     for (i = 0; i < WeaponParams.WeaponMaterialSwaps.Length; ++i)
         Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = WeaponParams.WeaponMaterialSwaps[i].Material;
 
     for (i = 0; i < WeaponParams.WeaponBoneScales.Length; ++i)
         SetBoneScale(WeaponParams.WeaponBoneScales[i].Slot, WeaponParams.WeaponBoneScales[i].Scale, WeaponParams.WeaponBoneScales[i].BoneName);
 	
+	//Change mesh if layout dictates it
+	if (WeaponParams.LayoutMesh != None)
+	{
+		LinkMesh(WeaponParams.LayoutMesh);
+	}
+	
+	//Spawn a weapon attachment if required by the layout
+    for (i = 0; i < WeaponParams.GunAugments.Length; ++i)
+	{
+		GunAugments[i] = Spawn(WeaponParams.GunAugments[i].GunAugmentClass);
+		GunAugments[i].SetDrawScale(WeaponParams.GunAugments[i].Scale);
+		AttachToBone(GunAugments[i], WeaponParams.GunAugments[i].BoneName);
+	}
+	
+	//Weapon Modes
 	if (WeaponParams.WeaponModes.Length != 0)
 	{
 		for (i = 0; i < WeaponModes.Length; ++i)
@@ -3459,7 +3482,16 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			GenerateLayout(255);
+			ParamsClasses[GameStyleIndex].static.Initialize(self);
+		}
     }
  	
    	else if ( !W.HasAmmo() )
@@ -3828,7 +3860,7 @@ simulated event StopFire(int Mode)
 
 function DropFrom(vector StartLocation)
 {
-    local int m;
+    local int m, i;
 	local Pickup Pickup;
 
     if (!bCanThrow)// || !HasAmmo())
@@ -3855,6 +3887,14 @@ function DropFrom(vector StartLocation)
             WeaponPickup(Pickup).bThrown = true;
     	Pickup.InitDroppedPickupFor(self);
 	    Pickup.Velocity = Velocity;
+		if (BallisticWeaponPickup(Pickup) != None)
+		{
+			BallisticWeaponPickup(Pickup).LayoutIndex = LayoutIndex;
+			for (i = 0; i < WeaponParams.AttachmentMaterialSwaps.Length; ++i)
+			{
+				BallisticWeaponPickup(Pickup).Skins[WeaponParams.AttachmentMaterialSwaps[i].Index] = WeaponParams.AttachmentMaterialSwaps[i].Material;
+			}
+		}
     }
     Destroy();
 }

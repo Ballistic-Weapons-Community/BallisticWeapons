@@ -31,11 +31,14 @@ var   BallisticPickupTrigger    puTrigger;
 var float	                LastBlockNotificationTime;
 
 var	int						DetectedInventorySize;		// Hack. Tracking inventory size calculcated during BallisticWeapon.HandlePickupQuery
+var byte 		LayoutIndex, OldLayoutIndex;
 
 replication
 {
 	unreliable if (Role == ROLE_Authority && bNetDirty)
 		LandedRot;
+	reliable if (Role == ROLE_Authority)
+		LayoutIndex;
 }
 
 simulated function PreBeginPlay()
@@ -347,12 +350,18 @@ event Landed(Vector HitNormal)
 
 simulated function PostNetReceive()
 {
+	if (LayoutIndex != OldLayoutIndex)
+	{
+		OldLayoutIndex = LayoutIndex;
+		//Skins[0] = class<BallisticCamoWeapon>(InventoryType).default.CamoMaterials[CamoIndex];
+	}
 	if (level.NetMode != NM_Client)
 		return;
 	if (LandedRot != rot(0,0,0))	{
 		SetRotation(LandedRot);
 	}
 }
+
 
 event Destroyed()
 {
@@ -507,6 +516,8 @@ Respawn:
 
 defaultproperties
 {
+	 LayoutIndex=255
+	 OldLayoutIndex=255
      bOnSide=True
      LowPolyDist=500.000000
      ReplacementsIndex=-1
