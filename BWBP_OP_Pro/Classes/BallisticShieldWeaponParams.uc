@@ -79,7 +79,8 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=UniversalParams
-        ViewOffset=(Y=75.000000,Z=-125.000000)
+        Weight=30
+		ViewOffset=(Y=75.000000,Z=-125.000000)
 		PlayerSpeedFactor=0.9
         MagAmmo=1
         InventorySize=5
@@ -89,5 +90,36 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
     End Object 
-    Layouts(0)=WeaponParams'UniversalParams'
+    
+	Begin Object Class=WeaponParams Name=UniversalParams-Civ
+		Weight=10
+		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.FPm_CivShield'
+		ViewOffset=(Y=75.000000,Z=-125.000000)
+		PlayerSpeedFactor=0.9
+        MagAmmo=1
+        InventorySize=5
+        DisplaceDurationMult=0
+        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
+        AimParams(0)=AimParams'UniversalAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
+	
+	Begin Object Class=WeaponParams Name=UniversalParams-Junk
+		Weight=10
+		LayoutMesh=SkeletalMesh'BWBP_OP_Anim.FPm_JunkShield'
+		ViewOffset=(Y=75.000000,Z=-125.000000)
+		PlayerSpeedFactor=0.9
+        MagAmmo=1
+        InventorySize=5
+        DisplaceDurationMult=0
+        RecoilParams(0)=RecoilParams'UniversalRecoilParams'
+        AimParams(0)=AimParams'UniversalAimParams'
+		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+    End Object 
+	
+	Layouts(0)=WeaponParams'UniversalParams'
+	Layouts(1)=WeaponParams'UniversalParams-Civ'
+	Layouts(2)=WeaponParams'UniversalParams-Junk'
 }

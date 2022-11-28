@@ -91,6 +91,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		PlayerSpeedFactor=0.850000
 		PlayerJumpFactor=0.750000
 		InventorySize=25
@@ -103,7 +104,48 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Irons
+		Weight=30
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
+		ZoomType=ZT_Irons
+		PlayerSpeedFactor=0.850000
+		PlayerJumpFactor=0.750000
+		InventorySize=25
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=7
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Arctic
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.M75.M75-Scope-S1',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_CC_Tex.M75.M75-Clip-D1',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.M75.M75-Main-S1',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_CC_Tex.M75.M75-Main2-S1',Index=4)
+		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=1f)
+		ZoomType=ZT_Irons
+		PlayerSpeedFactor=0.850000
+		PlayerJumpFactor=0.750000
+		InventorySize=25
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=7
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-Irons'
+	Layouts(2)=WeaponParams'ClassicParams-Arctic'
 
 }
