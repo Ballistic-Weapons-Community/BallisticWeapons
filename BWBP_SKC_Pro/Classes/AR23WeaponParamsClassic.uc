@@ -59,7 +59,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
 		FlashScaleFactor=0.500000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-SFire',Volume=1.550000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AR23.AR23-Sil',Volume=1.550000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)
 		Recoil=512.000000
 		Chaos=0.1
 		Inaccuracy=(X=1,Y=1)
@@ -180,8 +180,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Winter //Suppressor, EO Tech
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.AR23.AR23-MainWinterShine',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.AR23.AR23-MiscWinterShine',Index=2)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.AR23Camos.AR23-MainWinterShine',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.AR23Camos.AR23-MiscWinterShine',Index=2)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.AR23.AR23-HoloShine',Index=3)
 		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.AR23.Muzzle_2D_View',Index=4)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)
