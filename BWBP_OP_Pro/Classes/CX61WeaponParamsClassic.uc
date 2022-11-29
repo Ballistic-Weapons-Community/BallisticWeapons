@@ -2,9 +2,6 @@ class CX61WeaponParamsClassic extends BallisticWeaponParams;
 
 defaultproperties
 {
-    //=================================================================
-    // PRIMARY FIRE
-    //=================================================================	
 	
 	//=================================================================
     // PRIMARY FIRE
@@ -29,40 +26,13 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
 		FireInterval=0.150000
-		FireAnim="Fire"
+		FireAnim="SightFire"
 		FireEndAnim=
 		AimedFireAnim="SightFire"
 		FireAnimRate=1.000000	
 		TargetState="Flechette"
 		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 	End Object
-	
-	/*
-	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
-		TraceRange=(Min=9000.000000,Max=9000.000000)
-		RangeAtten=0.350000
-		Damage=50
-		DamageType=Class'BWBP_OP_Pro.DT_CX61Chest'
-		DamageTypeHead=Class'BWBP_OP_Pro.DT_CX61Head'
-		DamageTypeArm=Class'BWBP_OP_Pro.DT_CX61Chest'
-		PenetrateForce=180
-		bPenetrate=True
-		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
-		FlashScaleFactor=0.700000
-		Recoil=256.000000
-		Chaos=0.20000
-		WarnTargetPct=0.200000
-		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.CX61.CX61-FireHeavy',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
-	End Object
-
-	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-		FireInterval=0.150000
-		FireAnim="SightFire"
-		FireEndAnim=
-		AimedFireAnim="SightFire"
-		FireAnimRate=1.000000	
-		FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
-	End Object*/
 		
     //=================================================================
     // SECONDARY FIRE
@@ -129,6 +99,9 @@ defaultproperties
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.300000
 		DisplaceDurationMult=1
+		ViewOffset=(X=-3.000000,Y=7.000000,Z=-13.500000)
+		SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
+		SightPivot=(Pitch=600)
 		WeaponModes(0)=(ModeName="Flamethrower",Value=2,ModeID="WM_BigBurst")
 		WeaponModes(1)=(ModeName="Healing Gas",Value=2,ModeID="WM_BigBurst")
 		WeaponModes(2)=(bUnavailable=True)

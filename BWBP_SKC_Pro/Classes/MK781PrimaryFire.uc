@@ -83,22 +83,12 @@ simulated function SwitchSilencerMode(bool bSilenced)
 {
 	if (bSilenced)
 	{
-		XInaccuracy			= 128;
-		YInaccuracy			= 128;
-		FireRecoil 			*= 0.8;
-		Damage 				*= 0.8;
-		RangeAtten 			= 0.65;
 		CutOffStartRange	= 1536;
 		CutOffDistance		= 2048;
 	}
 	
 	else
 	{
-		XInaccuracy=default.XInaccuracy;
-		YInaccuracy=default.YInaccuracy;
-		FireRecoil=default.FireRecoil;
-		Damage = default.Damage;
-		RangeAtten = default.RangeAtten;
 		CutOffStartRange = default.CutOffStartRange;
 		CutOffDistance = default.CutOffDistance;
 	}
