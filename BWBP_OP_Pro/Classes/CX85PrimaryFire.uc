@@ -91,7 +91,7 @@ simulated state SeekerFlechette
 
 defaultproperties
 {
-	ProjectileClass="BWBP_OP_Pro.CX85Flechette"
+	 ProjectileClass="BWBP_OP_Pro.CX85Flechette"
      SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
      CutOffDistance=6144.000000
      CutOffStartRange=3072.000000

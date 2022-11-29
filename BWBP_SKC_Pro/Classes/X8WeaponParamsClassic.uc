@@ -7,7 +7,6 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	
 		Begin Object Class=MeleeEffectParams Name=ClassicPrimaryEffectParams
 			TraceRange=(Min=96.000000,Max=96.000000)
 			WaterTraceRange=5000.0
@@ -38,7 +37,6 @@ defaultproperties
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
-	
 	
 		Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
 			ProjectileClass=Class'BWBP_SKC_Pro.X8ProjectileHeld'

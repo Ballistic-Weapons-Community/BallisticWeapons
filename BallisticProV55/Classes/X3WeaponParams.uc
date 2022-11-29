@@ -91,7 +91,10 @@ defaultproperties
 		FireEffectParams(0)=MeleeEffectParams'ArenaSecondaryEffectParams'
 	End Object
 	
-	//stff
+	//=================================================================
+	// RECOIL
+	//=================================================================
+	
     Begin Object Class=RecoilParams Name=UniversalRecoilParams
         ViewBindFactor=0.00
         PitchFactor=0
@@ -99,12 +102,20 @@ defaultproperties
         DeclineTime=1.500000
     End Object
 
+	//=================================================================
+	// AIM
+	//=================================================================
+
     Begin Object Class=AimParams Name=UniversalAimParams
         ViewBindFactor=0.00
         SprintOffSet=(Pitch=-3000,Yaw=-4000)
         AimSpread=(Min=0,Max=0)
         ChaosDeclineTime=0.320000
     End Object
+
+	//=================================================================
+	// BASIC PARAMS
+	//=================================================================	
 
     Begin Object Class=WeaponParams Name=UniversalParams
         PlayerSpeedFactor=1.10
