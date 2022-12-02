@@ -599,6 +599,9 @@ simulated function OnWeaponParamsChanged()
 
     ZoomType                    = WeaponParams.ZoomType;
 
+	if (WeaponParams.ScopeViewTex != None)
+		ScopeViewTex = WeaponParams.ScopeViewTex;
+	
 	bAdjustHands				= WeaponParams.bAdjustHands;
 	if (WeaponParams.WristAdjust != rot(0,0,0))
     {
