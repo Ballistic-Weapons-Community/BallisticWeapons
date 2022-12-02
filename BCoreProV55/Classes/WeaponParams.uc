@@ -75,6 +75,7 @@ var() float					SightingTime;			// Time it takes to move weapon to and from sigh
 var() Vector                SightOffset;            // Offset when moving weapon to ADS position
 var() Rotator               SightPivot;             // Pivot when moving weapon to ADS position
 var() EZoomType             ZoomType;               // Type of zoom. Precise control is within the weapon's sighting properties
+var() Material				ScopeViewTex;			// Texture displayed in Scope View. Fills the screen
 var() bool         			bAdjustHands;      		//Adjust hand position when sighting?
 var() rotator      			WristAdjust;       		//Amount to move wrist bone when using iron sights.
 var() rotator      			RootAdjust;        		//Amount to move arm bone when using iron sights.
