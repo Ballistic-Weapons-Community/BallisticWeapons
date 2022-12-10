@@ -10,7 +10,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=13000.000000)
 		RangeAtten=0.950000
-		Damage=21
+		Damage=23
 		HeadMult=1.5f
 		LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DT_AK91Zapped'
@@ -25,7 +25,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.110000
+		FireInterval=0.130000
 		FireEndAnim=	
 		AimedFireAnim="SightFire"
 	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
@@ -81,6 +81,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=ArenaAimParams
 		AimSpread=(Min=256,Max=256)
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ViewBindFactor=0.200000
 		ChaosDeclineTime=1.500000
 	End Object
@@ -94,7 +95,7 @@ defaultproperties
 		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		SightPivot=(Pitch=64)
 		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
-		MagAmmo=40
+		MagAmmo=25
 		InventorySize=12
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'

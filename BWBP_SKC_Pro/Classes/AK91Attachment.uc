@@ -16,6 +16,8 @@ defaultproperties
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
+	 TracerMode=MU_Both      
+	 InstantMode=MU_Both
      FlyBySound=(Sound=Sound'BWBP_SKC_Sounds.LS14.Gauss-FlyBy',Volume=0.300000)
      bRapidFire=True
      RelativeRotation=(Pitch=32768)

@@ -12,7 +12,7 @@
 class AK91ChargeRifle extends BallisticWeapon;
 
 //Gun Heat
-var float		HeatLevel;			// Current Heat level, duh...
+var float		HeatLevel, MaxHeatLevel; // Current Heat level, duh...
 var() Sound		OverHeatSound;		// Sound to play when it overheats
 var() Sound		HighHeatSound;		// Sound to play when heat is dangerous
 var Actor GlowFX;
@@ -39,7 +39,7 @@ replication
 
 simulated function float ChargeBar()
 {
-	return HeatLevel / 10;
+	return HeatLevel / MaxHeatLevel;
 }
 simulated event Tick (float DT)
 {
@@ -72,7 +72,7 @@ simulated event WeaponTick(float DT)
 
 simulated function AddHeat(float Amount)
 {
-	HeatLevel = FMax(0, HeatLevel + Amount);
+	HeatLevel = FClamp(0, HeatLevel + Amount, MaxHeatLevel);
 	AK91PrimaryFire(FireMode[0]).FireRate = AK91PrimaryFire(FireMode[0]).Params.FireInterval;
 	
 	if (HeatLevel >= 9.5)
@@ -396,6 +396,7 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 defaultproperties
 {
      bShowChargingBar=True
+	 MaxHeatLevel=10
      OverHeatSound=Sound'BWBP_SKC_Sounds.XavPlas.Xav-Overload'
 	 HighHeatSound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle'
      UsedAmbientSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
@@ -420,7 +421,7 @@ defaultproperties
      bCockOnEmpty=False
      bNoCrosshairInScope=True
      WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
-     WeaponModes(1)=(ModeName="Semi-Auto",Value=1.000000)
+     WeaponModes(1)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
      CurrentWeaponMode=2
      SightPivot=(Pitch=64)
      SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
