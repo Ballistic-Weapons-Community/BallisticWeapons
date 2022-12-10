@@ -134,10 +134,10 @@ defaultproperties
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOn')
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.BX5.BX5-SecOff')
      bNonCocking=True
-     WeaponModes(0)=(ModeName="Guidance: Slow",ModeID="WM_FullAuto")
-     WeaponModes(1)=(ModeName="Guidance: Fast",ModeID="WM_FullAuto")
-     WeaponModes(2)=(bUnavailable=True)
-     CurrentWeaponMode=0
+     //WeaponModes(0)=(ModeName="Barrage",ModeID="WM_BigBurst",Value=3)
+	 //WeaponModes(1)=(ModeName="High Velocity",ModeID="WM_FullAuto",Value=1)
+	 //WeaponModes(2)=(bUnavailable=True)
+     //CurrentWeaponMode=0
      ScopeXScale=1.333000
      ScopeViewTex=Texture'BW_Core_WeaponTex.Artillery.Artillery-ScopeView'
      FullZoomFOV=10.000000

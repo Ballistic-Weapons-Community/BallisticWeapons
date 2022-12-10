@@ -18,7 +18,7 @@ var automated GUIListBox	lb_Weapons;
 var Automated GUIImage		Box_WeapList, Box_Inventory, Pic_Weapon, Box_WeapIcon;
 var automated GUILabel   	l_WeapTitle;
 var automated GUIScrollTextBox	tb_Desc;
-var Automated GUIButton BStats;
+var Automated GUIButton BStats, BClear;
 var automated GUILabel	l_StatTime, l_StatFrags, l_StatEfficiency, l_StatDamageRate, l_StatSniperEff, l_StatShotgunEff, l_StatHazardEff, l_StatHeading, l_Loading;
 
 var() localized string StatTimeCaption;
@@ -802,10 +802,21 @@ defaultproperties
      End Object
      tb_Desc=GUIScrollTextBox'BallisticProV55.BallisticTab_ConflictLoadoutPro.WeaponDescription'
 
-     Begin Object Class=GUIButton Name=BStatButton
+     Begin Object Class=GUIButton Name=BClearButton
+         Caption="Clear Loadout"
+         WinTop=0.92000
+         WinLeft=0.20000
+         WinWidth=0.200000
+         TabOrder=1
+         OnClick=BallisticTab_ConflictLoadoutPro.InternalOnClick
+         OnKeyEvent=CancelButton.InternalOnKeyEvent
+     End Object
+     bClear=GUIButton'BallisticProV55.BallisticTab_ConflictLoadoutPro.BClearButton'
+	 
+	 Begin Object Class=GUIButton Name=BStatButton
          Caption="Stats"
          WinTop=0.920000
-         WinLeft=0.400000
+         WinLeft=0.600000
          WinWidth=0.200000
          TabOrder=1
          OnClick=BallisticTab_ConflictLoadoutPro.InternalOnClick
