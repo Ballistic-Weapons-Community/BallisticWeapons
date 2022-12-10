@@ -123,7 +123,7 @@ simulated event Tick (float DT)
 
 simulated function float GetSecCharge()
 {
-	return SKASSecondaryFire(FireMode[0]).RailPower;
+	return SKASSecondaryFire(FireMode[1]).RailPower;
 }
 
 simulated function float ChargeBar()
@@ -227,7 +227,7 @@ function byte BestMode()
 
 	if (Dist > 400)
 		return 0;
-	if (Dist < FireMode[1].MaxRange() && FRand() > 0.3)
+	if (Dist < FireMode[1].MaxRange() && FRand() > 0.1)
 		return 1;
 	if (vector(B.Enemy.Rotation) dot Normal(Dir) < 0.0 && (VSize(B.Enemy.Velocity) < 100 || Normal(B.Enemy.Velocity) dot Normal(B.Velocity) < 0.5))
 		return 1;
