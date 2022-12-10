@@ -68,6 +68,7 @@ defaultproperties
   MuzzleFlashClass=Class'BallisticProV55.MRS138FlashEmitter'
   BrassClass=Class'BallisticProV55.Brass_MRS138Shotgun'
   BrassOffset=(X=45.000000,Y=-20.000000,Z=35.000000)
+  bBrassOnCock=True
   FireRecoil=512.000000
   FireChaos=0.400000
   XInaccuracy=256.000000

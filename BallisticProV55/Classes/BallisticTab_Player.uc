@@ -6,6 +6,7 @@
 //=============================================================================
 class BallisticTab_Player extends UT2K4TabPanel;
 
+var automated moCheckbox		ch_CustomStats;				//Enables Custom Health, Shield & Adren Stats
 var automated moNumericEdit     ne_playerHealth;			//Starting Health
 var automated moNumericEdit     ne_playerHealthCap;			//Health Cap
 var automated moNumericEdit     ne_playerSuperHealthCap;	//Super Health Cap
@@ -52,7 +53,8 @@ function ShowPanel(bool bShow)
 
 function LoadSettings()
 {
-    ne_playerHealth.SetValue(class'BallisticReplicationInfo'.default.playerHealth);
+    ch_CustomStats.Checked(class'BallisticReplicationInfo'.default.bCustomStats);
+	ne_playerHealth.SetValue(class'BallisticReplicationInfo'.default.playerHealth);
     ne_playerHealthCap.SetValue(class'BallisticReplicationInfo'.default.playerHealthCap);
     ne_playerSuperHealthCap.SetValue(class'BallisticReplicationInfo'.default.playerSuperHealthCap);
     ne_iAdrenaline.SetValue(class'BallisticReplicationInfo'.default.iAdrenaline);
@@ -71,7 +73,8 @@ function LoadSettings()
 
 function DefaultSettings()
 {
-    ne_playerHealth.SetValue(100);
+    ch_CustomStats.Checked(false);
+	ne_playerHealth.SetValue(100);
     ne_playerHealthCap.SetValue(100);
     ne_playerSuperHealthCap.SetValue(150);
     ne_iAdrenaline.SetValue(0);
@@ -92,20 +95,21 @@ function SaveSettings()
     if (!bInitialized)
         return;
 
-    class'BallisticReplicationInfo'.default.playerHealth    = ne_playerHealth.GetValue();
-    class'BallisticReplicationInfo'.default.playerHealthCap = ne_playerHealthCap.GetValue();
-    class'BallisticReplicationInfo'.default.playerSuperHealthCap = ne_playerSuperHealthCap.GetValue();
-    class'BallisticReplicationInfo'.default.iAdrenaline = ne_iAdrenaline.GetValue();
-    class'BallisticReplicationInfo'.default.iAdrenalineCap = ne_iAdrenalineCap.GetValue();
-    //class'BallisticReplicationInfo'.default.dieSoundAmplifier = fe_dieSoundAmplifier.GetValue();
-    //class'BallisticReplicationInfo'.default.dieSoundRangeAmplifier = fe_dieSoundRangeAmplifier.GetValue();
-    //class'BallisticReplicationInfo'.default.hitSoundAmplifier = fe_hitSoundAmplifier.GetValue();
-    //class'BallisticReplicationInfo'.default.hitSoundRangeAmplifier = fe_hitSoundRangeAmplifier.GetValue();
-    //class'BallisticReplicationInfo'.default.jumpDamageAmplifier = fe_jumpDamageAmplifier.GetValue();
-    class'BallisticReplicationInfo'.default.iArmor = ne_iArmor.GetValue();
-    class'BallisticReplicationInfo'.default.iArmorCap = ne_iArmorCap.GetValue();
-    //class'BallisticReplicationInfo'.default.MaxFallSpeed = fe_MaxFallSpeed.GetValue();
-    //class'Mut_Ballistic'.default.footstepAmplifier = fe_footStepAmplifier.GetValue();
+    class'BallisticReplicationInfo'.default.bCustomStats				= ch_CustomStats.IsChecked();
+	class'BallisticReplicationInfo'.default.playerHealth    			= ne_playerHealth.GetValue();
+    class'BallisticReplicationInfo'.default.playerHealthCap 			= ne_playerHealthCap.GetValue();
+    class'BallisticReplicationInfo'.default.playerSuperHealthCap 		= ne_playerSuperHealthCap.GetValue();
+    class'BallisticReplicationInfo'.default.iAdrenaline 				= ne_iAdrenaline.GetValue();
+    class'BallisticReplicationInfo'.default.iAdrenalineCap 				= ne_iAdrenalineCap.GetValue();
+    //class'BallisticReplicationInfo'.default.dieSoundAmplifier 		= fe_dieSoundAmplifier.GetValue();
+    //class'BallisticReplicationInfo'.default.dieSoundRangeAmplifier 	= fe_dieSoundRangeAmplifier.GetValue();
+    //class'BallisticReplicationInfo'.default.hitSoundAmplifier 		= fe_hitSoundAmplifier.GetValue();
+    //class'BallisticReplicationInfo'.default.hitSoundRangeAmplifier 	= fe_hitSoundRangeAmplifier.GetValue();
+    //class'BallisticReplicationInfo'.default.jumpDamageAmplifier		= fe_jumpDamageAmplifier.GetValue();
+    class'BallisticReplicationInfo'.default.iArmor 						= ne_iArmor.GetValue();
+    class'BallisticReplicationInfo'.default.iArmorCap 					= ne_iArmorCap.GetValue();
+    //class'BallisticReplicationInfo'.default.MaxFallSpeed 				= fe_MaxFallSpeed.GetValue();
+    //class'Mut_Ballistic'.default.footstepAmplifier 					= fe_footStepAmplifier.GetValue();
 
     class'BallisticReplicationInfo'.static.StaticSaveConfig();
     class'Mut_Ballistic'.static.StaticSaveConfig();
@@ -113,14 +117,27 @@ function SaveSettings()
 
 defaultproperties
 {
-     Begin Object Class=moNumericEdit Name=ne_playerHealthEdit
+     Begin Object Class=moCheckBox Name=ch_CustomStatsCheck
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.900000
+         Caption="Custom Stats"
+         OnCreateComponent=ch_CustomStatsCheck.InternalOnCreateComponent
+         IniOption="@Internal"
+         Hint="Enables Custom Stats for Health, Shield and Adrenaline"
+         WinTop=0.050000
+         WinLeft=0.250000
+         WinHeight=0.040000
+     End Object
+     ch_CustomStats=moCheckBox'BallisticProV55.BallisticTab_Player.ch_CustomStatsCheck'
+	 
+	 Begin Object Class=moNumericEdit Name=ne_playerHealthEdit
          MinValue=1
          MaxValue=999
          ComponentWidth=0.175000
          Caption="Starting Health:"
          OnCreateComponent=ne_playerHealthEdit.InternalOnCreateComponent
          Hint="The Health Players spawn with."
-         WinTop=0.050000
+         WinTop=0.100000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -133,7 +150,7 @@ defaultproperties
          Caption="Health Cap:"
          OnCreateComponent=ne_playerHealthEdit.InternalOnCreateComponent
          Hint="The Players Health cap."
-         WinTop=0.100000
+         WinTop=0.150000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -146,7 +163,7 @@ defaultproperties
          Caption="Super Health Cap:"
          OnCreateComponent=ne_playerHealthEdit.InternalOnCreateComponent
          Hint="The Super Health cap."
-         WinTop=0.150000
+         WinTop=0.200000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -159,7 +176,7 @@ defaultproperties
          Caption="Starting Armour:"
          OnCreateComponent=ne_iArmorC.InternalOnCreateComponent
          Hint="The Armour Players Spawn with."
-         WinTop=0.200000
+         WinTop=0.250000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -172,7 +189,7 @@ defaultproperties
          Caption="Armour Cap:"
          OnCreateComponent=ne_iArmorCapC.InternalOnCreateComponent
          Hint="The Armour Cap."
-         WinTop=0.250000
+         WinTop=0.300000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -185,7 +202,7 @@ defaultproperties
          Caption="Starting Adrenaline:"
          OnCreateComponent=ne_iAdrenalineC.InternalOnCreateComponent
          Hint="The adrenaline players spawn with."
-         WinTop=0.300000
+         WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -198,7 +215,7 @@ defaultproperties
          Caption="Adrenaline Cap:"
          OnCreateComponent=ne_iAdrenalineCapC.InternalOnCreateComponent
          Hint="The adrenaline cap."
-         WinTop=0.350000
+         WinTop=0.400000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

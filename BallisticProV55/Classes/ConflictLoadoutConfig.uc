@@ -53,7 +53,7 @@ static function int GetSavedInitialWeaponIndex()
 
 defaultproperties 
 {
-	SavedInventory(0)="BallisticProV55.M50AssaultRifle"
+	SavedInventory(0)="BallisticProV55.A73SkrithRifle"
 	SavedInventory(1)="BallisticProV55.M806Pistol"
 	SavedInventory(2)="BallisticProV55.X3Knife"
 	SavedInventory(3)="BallisticProV55.NRP57Grenade"

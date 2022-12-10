@@ -21,11 +21,11 @@ function SpawnProjectile(Vector Start, Rotator Dir)
 	local PlayerController Possessor;
     local class<AkeronWarhead> WarheadClass;
 
-    if (BW.CurrentWeaponMode == 2)
+    /*if (BW.CurrentWeaponMode == 2)
         WarheadClass = class'AkeronWarheadHEBurst';
     else if (BW.CurrentWeaponMode == 1)
         WarheadClass = class'AkeronWarheadFast';
-    else
+    else*/
         WarheadClass = class'AkeronWarhead';
 	
     Warhead = Weapon.Spawn(WarheadClass, Instigator,, Start, Dir);

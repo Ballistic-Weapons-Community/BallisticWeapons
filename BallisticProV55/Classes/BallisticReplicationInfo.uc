@@ -28,6 +28,7 @@ var() Config bool 		bUseRunningAnims; // Pawns will use running anims for walkin
 var() Config bool		bUniversalMineLights; // All BX-5 mines are lit.
 
 //Player
+var() Config bool		bCustomStats;			// Enables Custom Health, Shield & Adren Stats.
 var() config int 		playerHealth;  // health the player starts with
 var() config int 		playerHealthCap; // maximum health a player can have
 var() config int 		playerSuperHealthCap; // maximum superhealth a player can have
@@ -35,6 +36,7 @@ var() config int 		iAdrenaline;  // maximum adrenaline a player starts with
 var() config int 		iAdrenalineCap;  // maximum adrenaline a player can have
 var() config int 		iArmor;  // armor the player starts with
 var() config int 		iArmorCap;  // maximum armor the player can have
+
 //var() config float 		dieSoundAmplifier;  // amplifies the die sound
 //var() config float 		dieSoundRangeAmplifier; // amplifies the range
 //var() config float 		hitSoundAmplifier;  // amplifies the hit sound
@@ -65,18 +67,19 @@ var struct RepInfo_BW
 	var bool		bUniversalMineLights;
 	
 	//Player
-	var int playerHealth;  // health the player starts with
-    var int playerHealthCap; // maximum health a player can have
-    var int playerSuperHealthCap; // maximum superhealth a player can have
-    var int iAdrenaline;  // maximum adrenaline a player starts with
-    var int iAdrenalineCap;  // maximum adrenaline a player can have
-    var int iArmor;  // armor the player starts with
-    var int iArmorCap;  // maximum armor the player can have
-    //var float dieSoundAmplifier;  // amplifies the die sound
-    //var float dieSoundRangeAmplifier; // amplifies the range
-    //var float hitSoundAmplifier;  // amplifies the hit sound
-    //var float hitSoundRangeAmplifier;  // amplifies the range
-    //var float jumpDamageAmplifier;  // amplifies the jump damage
+	var bool		bCustomStats;
+	var int 		playerHealth;  // health the player starts with
+    var int 		playerHealthCap; // maximum health a player can have
+    var int 		playerSuperHealthCap; // maximum superhealth a player can have
+    var int 		iAdrenaline;  // maximum adrenaline a player starts with
+    var int 		iAdrenalineCap;  // maximum adrenaline a player can have
+    var int 		iArmor;  // armor the player starts with
+    var int 		iArmorCap;  // maximum armor the player can have
+    //var float 	dieSoundAmplifier;  // amplifies the die sound
+    //var float 	dieSoundRangeAmplifier; // amplifies the range
+    //var float 	hitSoundAmplifier;  // amplifies the hit sound
+    //var float 	hitSoundRangeAmplifier;  // amplifies the range
+    //var float 	jumpDamageAmplifier;  // amplifies the jump damage
 	
 	//Kill Rewards
 	var int killrewardArmor;  // armor points for a kill
@@ -135,13 +138,17 @@ simulated function InitClientVars()
 	class.default.ReloadSpeedScale = ReloadSpeedScale;
 	
 	// Player
-    playerHealth = BWRep.playerHealth;
-    playerHealthCap = BWRep.playerHealthCap;
-    playerSuperHealthCap = BWRep.playerSuperHealthCap;
-    iAdrenaline = BWRep.iAdrenaline;
-    iAdrenalineCap = BWRep.iAdrenalineCap;
-    iArmor = BWRep.iArmor;
-    iArmorCap = BWRep.iArmorCap;
+    if (bCustomStats)
+	{
+		playerHealth = BWRep.playerHealth;
+		playerHealthCap = BWRep.playerHealthCap;
+		playerSuperHealthCap = BWRep.playerSuperHealthCap;
+		iAdrenaline = BWRep.iAdrenaline;
+		iAdrenalineCap = BWRep.iAdrenalineCap;
+		iArmor = BWRep.iArmor;
+		iArmorCap = BWRep.iArmorCap;
+	}
+	
     //dieSoundAmplifier = BWRep.dieSoundAmplifier;
     //dieSoundRangeAmplifier = BWRep.dieSoundRangeAmplifier;
     //hitSoundAmplifier = BWRep.hitSoundAmplifier;
@@ -188,13 +195,17 @@ function ServerInitialize()
 	BWRep.bUseRunningAnims = bUseRunningAnims;
 
 	// Player
-    BWRep.playerHealth = playerHealth;
-    BWRep.playerHealthCap = playerHealthCap;
-    BWRep.playerSuperHealthCap = playerSuperHealthCap;
-    BWRep.iAdrenaline = iAdrenaline;
-    BWRep.iAdrenalineCap = iAdrenalineCap;
-    BWRep.iArmor = iArmor;
-    BWRep.iArmorCap = iArmorCap;
+    if (bCustomStats)
+	{
+		BWRep.playerHealth = playerHealth;
+		BWRep.playerHealthCap = playerHealthCap;
+		BWRep.playerSuperHealthCap = playerSuperHealthCap;
+		BWRep.iAdrenaline = iAdrenaline;
+		BWRep.iAdrenalineCap = iAdrenalineCap;
+		BWRep.iArmor = iArmor;
+		BWRep.iArmorCap = iArmorCap;
+	}
+	
     //BWRep.dieSoundAmplifier = dieSoundAmplifier;
     //BWRep.dieSoundRangeAmplifier = dieSoundRangeAmplifier;
     //BWRep.hitSoundAmplifier = hitSoundAmplifier;
@@ -235,6 +246,7 @@ defaultproperties
 	 
 	 //Player
 	 //PlayerSpeedScale=1.000000
+	 bCustomStats=False
 	 PlayerHealth=100
      PlayerHealthCap=100
      PlayerSuperHealthCap=150
