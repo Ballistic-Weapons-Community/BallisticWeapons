@@ -225,7 +225,7 @@ function ModifyPlayer(Pawn Other)
 	//adds sprint support to mutator
     if (xPawn(Other) != None && bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
 	{
-		SC = Spawn(class'BCSprintControl',Other);
+		SC = Spawn(class'BWRechargeSprintControl',Other);
 		SC.Stamina = InitStamina;
 		SC.MaxStamina = InitMaxStamina;
 		SC.StaminaDrainRate = InitStaminaDrainRate;
@@ -254,19 +254,22 @@ function ModifyPlayer(Pawn Other)
 	else if(xPawn(Other) != None)
     {
         // Player
-        Other.Health = class'BallisticReplicationInfo'.default.playerHealth;  // health the player starts with
-        Other.HealthMax = class'BallisticReplicationInfo'.default.playerHealthCap; // maximum health a player can have
-        Other.SuperHealthMax = class'BallisticReplicationInfo'.default.playerSuperHealthCap; // maximum superhealth a player can have
-        xPawn(Other).ShieldStrengthMax = class'BallisticReplicationInfo'.default.iArmorCap;
-        Other.AddShieldStrength(class'BallisticReplicationInfo'.default.iArmor);
-        //Other.MaxFallSpeed = class'BallisticReplicationInfo'.default.MaxFallSpeed;
-        xPawn(Other).FootstepVolume *= FootstepAmplifier;
+        if (BallisticReplicationInfo(BallisticReplicationInfo).bCustomStats) //"BallisticReplicationInfo" is of type "BCReplicationInfo", but we're casting it to type "BallisticReplicationInfo". might need a rename at some point
+		{
+			Other.Health = class'BallisticReplicationInfo'.default.playerHealth;  // health the player starts with
+			Other.HealthMax = class'BallisticReplicationInfo'.default.playerHealthCap; // maximum health a player can have
+			Other.SuperHealthMax = class'BallisticReplicationInfo'.default.playerSuperHealthCap; // maximum superhealth a player can have
+			xPawn(Other).ShieldStrengthMax = class'BallisticReplicationInfo'.default.iArmorCap;
+			Other.AddShieldStrength(class'BallisticReplicationInfo'.default.iArmor);
+			//Other.MaxFallSpeed = class'BallisticReplicationInfo'.default.MaxFallSpeed;
 
-        Other.Controller.AdrenalineMax = class'BallisticReplicationInfo'.default.iAdrenalineCap;
-        if(Other.Controller.Adrenaline < class'BallisticReplicationInfo'.default.iAdrenaline)
-        {
-            Other.Controller.Adrenaline = class'BallisticReplicationInfo'.default.iAdrenaline;
-        }
+			Other.Controller.AdrenalineMax = class'BallisticReplicationInfo'.default.iAdrenalineCap;
+			if(Other.Controller.Adrenaline < class'BallisticReplicationInfo'.default.iAdrenaline)
+			{
+				Other.Controller.Adrenaline = class'BallisticReplicationInfo'.default.iAdrenaline;
+			}
+		}
+		xPawn(Other).FootstepVolume *= FootstepAmplifier;
 
         if(BallisticPawn(Other) != none)
         {
