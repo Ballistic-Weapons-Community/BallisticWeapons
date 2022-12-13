@@ -27,7 +27,11 @@ function PlayFiring()
 {
 	Super.PlayFiring();
 	Weapon.SoundPitch = Min(150, Weapon.SoundPitch + 8);
-	AK91ChargeRifle(BW).AddHeat(0.45);
+	
+	if (BW.GameStyleIndex != 0)
+		AK91ChargeRifle(BW).AddHeat(0.45);
+	else
+		AK91ChargeRifle(BW).AddHeat(0.15);
 }
 
 function Supercharger_ChargeControl GetChargeControl()
@@ -153,6 +157,13 @@ function DoTrace (Vector InitialStart, Rotator Dir)
 	}
 }
 
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+{
+	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+
+	if (BW.GameStyleIndex == 0)
+		AK91ChargeRifle(BW).AddHeat(0.67);
+}
 
 defaultproperties
 {

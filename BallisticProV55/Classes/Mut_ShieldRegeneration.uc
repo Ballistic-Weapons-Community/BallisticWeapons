@@ -37,7 +37,7 @@ event Timer()
 
         P = xPawn(C.Pawn);
 
-        if (P == None || BallisticPawn(P).LastDamagedTime < (Level.TimeSeconds - RegenDelay))
+        if (P == None || BallisticPawn(P).LastDamagedTime > (Level.TimeSeconds - RegenDelay))
             continue;
 
         MaxShield = FMin(ShieldCap, P.ShieldStrengthMax);

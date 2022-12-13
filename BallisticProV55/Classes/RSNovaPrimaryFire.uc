@@ -47,6 +47,19 @@ simulated event PostBeginPlay()
 	NovaStaff = RSNovaStaff(Weapon);
 }
 
+//hacky fix for nova's multi firemodes that utilise damage in main weapon
+simulated function ApplyFireEffectParams(FireEffectParams params)
+{
+	local ProjectileEffectParams effect_params;
+
+    super.ApplyFireEffectParams(params);
+
+	effect_params = ProjectileEffectParams(params);
+
+	Damage = effect_params.Damage;
+	default.Damage = effect_params.Damage;
+}
+
 simulated function vector GetFireSpread()
 {
 	local float fX;

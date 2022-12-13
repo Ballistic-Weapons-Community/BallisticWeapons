@@ -63,6 +63,13 @@ var()	bool			bShouldDualInLoadout; 	//True for a gunclass which should be dual w
 var	float				CreationTime;
 var		bool			bDualBlocked;			// Used by params to block dual wielding 
 
+var	bool				bUseDualReload;			// Use dual, simultaneous reloading, vs. individual gun reloading.
+var bool 				bDualMixing;			// Can dual wield non-identical weapons
+var() Name				DualReloadAnim;			// Anim to use for when bUseDualReload is set
+var() Name				DualReloadEmptyAnim;	// Anim to use for when bUseDualReload is set
+var() float				DualReloadAnimRate;		// Rate to play dual reload anim at
+var() float				DualReloadAnimDelay;	// Time to delay reload animation of slave pistol (muh realism)
+
 // Autotracking vars
 var   Pawn				Target;					// The guy getting tracked by our gun
 var   Rotator			TrackerAim;				// Offset from ViewRotation where the tracking gun is aimed
@@ -93,14 +100,21 @@ simulated function PostBeginPlay()
 	CreationTime = Level.TimeSeconds;
 }
 
+simulated function PostNetBeginPlay()
+{
+	super.PostNetBeginPlay();
+
+	if (GameStyleIndex == 0)
+		bUseDualReload = true;
+}
+
 simulated function OnWeaponParamsChanged()
 {
-    assert(WeaponParams != None);
+    super.OnWeaponParamsChanged();
+		
+	assert(WeaponParams != None);
 	
 	bDualBlocked				= WeaponParams.bDualBlocked;
-
-	super.OnWeaponParamsChanged();
-	
 }
 
 // Scope key pressed. Try go into tracking mode
@@ -363,18 +377,31 @@ simulated function bool CanReload ()
 
 exec simulated function Reload (optional byte i)
 {
-	if (bIsPendingHandGun || PendingHandGun != None/* || IsInState('Lowered')*/ || ClientState != WS_ReadyToFire)
-		return;
-	if (OtherGun == None)
-		Super.Reload(i);
-	else if (Othergun.ClientState != WS_ReadyToFire)
-		return;
-	else if (CanReload() && (IsSlave() || float(MagAmmo) / default.MagAmmo <= float(OtherGun.MagAmmo) / OtherGun.default.MagAmmo || !OtherGun.CanReload()))
+	if (bUseDualReload && OtherGun != None)
 	{
+		if (IsMaster() && (!CanReload() || !OtherGun.CanReload() || ClientState != WS_ReadyToFire || OtherGun.ClientState != WS_ReadyToFire) )
+			return;
+			
 		Super.Reload(i);
+		
+		if (IsMaster())
+			OtherGun.Reload(i);
 	}
-	else if (IsMaster())
-		OtherGun.Reload(i);
+	else
+	{
+		if (bIsPendingHandGun || PendingHandGun != None/* || IsInState('Lowered')*/ || ClientState != WS_ReadyToFire)
+			return;
+		if (OtherGun == None)
+			Super.Reload(i);
+		else if (Othergun.ClientState != WS_ReadyToFire)
+			return;
+		else if (CanReload() && (IsSlave() || float(MagAmmo) / default.MagAmmo <= float(OtherGun.MagAmmo) / OtherGun.default.MagAmmo || !OtherGun.CanReload()))
+		{
+			Super.Reload(i);
+		}
+		else if (IsMaster())
+			OtherGun.Reload(i);
+	}
 }
 
 function ServerStartReload (optional byte i)
@@ -386,12 +413,30 @@ function ServerStartReload (optional byte i)
 
 simulated function CommonStartReload (optional byte i)
 {
-	if (OtherGun == None || OtherGun.IsInState('Lowered'))
+	if (OtherGun == None || OtherGun.IsInState('Lowered') || bUseDualReload)
 	{
 		Super.CommonStartReload(i);
 		return;
 	}
 	GotoState('PendingReloading');
+}
+
+simulated function PlayReload()
+{
+	if (bUseDualReload && OtherGun != None && HasAnim(DualReloadAnim) && HasAnim(DualReloadEmptyAnim))
+	{
+		if (IsMaster())
+		{
+			SetTimer(DualReloadAnimDelay, false);
+			return;
+		}
+		if (MagAmmo < 1)
+			SafePlayAnim(DualReloadEmptyAnim, DualReloadAnimRate, , 0, "RELOAD");
+		else
+			SafePlayAnim(DualReloadAnim, DualReloadAnimRate, , 0, "RELOAD");
+	}
+	else
+		super.PlayReload();
 }
 
 exec simulated function CockGun(optional byte Type)
@@ -735,6 +780,14 @@ simulated event Timer()
 {
 	local int Mode;
 
+	if ((ReloadState == RS_StartShovel || ReloadState == RS_PreClipOut) && IsMaster() && bUseDualReload && HasAnim(DualReloadAnim) && HasAnim(DualReloadEmptyAnim))
+	{
+		if (MagAmmo < 1)
+			SafePlayAnim(DualReloadEmptyAnim, DualReloadAnimRate, , 0, "RELOAD");
+		else
+			SafePlayAnim(DualReloadAnim, DualReloadAnimRate, , 0, "RELOAD");
+	}
+
 	if (Instigator != None && AIController(Instigator.Controller) != None && ClientState == WS_BringUp && Othergun == None && PendingHandgun == None && !bIsPendingHandgun)
 	{
 		Super.Timer();
@@ -786,7 +839,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	
 	if (Level.TimeSeconds > CreationTime + 1)
 	{
-		if (OtherGun == None && PendingHandgun == None)
+		if (OtherGun == None && PendingHandgun == None && !bDualBlocked)
 		{
 			if (LastSlave != None)
 				PendingHandgun = LastSlave;
@@ -968,8 +1021,6 @@ simulated final function SetDualMode (bool bDualMode)
 {
 	if (bDualMode)
 	{
-		if (bDualBlocked)
-			return;
 		if (Instigator.IsLocallyControlled() && SightingState == SS_Active)
 			StopScopeView();
 		SetBoneScale(8, 0.0, SupportHandBone);
@@ -1076,6 +1127,9 @@ exec simulated function DualSelect (optional class<Weapon> NewWeaponClass )
 {
 	local BallisticHandgun Best;
     local Inventory Inv;
+
+	if (bDualBlocked)
+		return;
 
 	if (ClientState != WS_ReadyToFire || ReloadState != RS_None || IsFiring() || bScopeView || bScopeHeld || bScopeDesired || (OtherGun!=None && (PreventSwap() || OtherGun.PreventSwap())))
 		return;
@@ -1775,6 +1829,11 @@ simulated function MeleeReleaseImpl()
 
 defaultproperties
 {
+	 bUseDualReload=False
+	 DualReloadAnim="DualReload"
+	 DualReloadEmptyAnim="DualReloadOpen"
+	 DualReloadAnimRate=1.000000
+	 DualReloadAnimDelay=0.200000
      SupportHandBone="Root01"
      bShouldDualInLoadout=True
      TrackSpeed=18000.000000
