@@ -98,6 +98,8 @@ defaultproperties
 		MagAmmo=7
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		ZoomType=ZT_Logarithmic
+		ScopeViewTex=Texture'BW_Core_WeaponTex.M75.M75ScopeView'
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'

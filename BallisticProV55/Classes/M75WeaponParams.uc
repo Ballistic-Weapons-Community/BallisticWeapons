@@ -99,6 +99,7 @@ defaultproperties
         MagAmmo=5
         InventorySize=12
         ZoomType=ZT_Logarithmic
+		ScopeViewTex=Texture'BW_Core_WeaponTex.M75.M75ScopeView'
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
