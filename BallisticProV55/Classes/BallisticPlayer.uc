@@ -128,149 +128,200 @@ simulated function RenderOverlays(Canvas C)
 // Draw Weapon selection UI
 simulated function DrawWeaponUI(Canvas C)
 {
-	local int i, j;
-	local float ScaleFactor, XS, YS, IconXSize, IconYSize, OutXSize, SmoothPulsePhase, XOffset, YOffset, XL,YL, YLC;
-	local string ammoTxt;
+    local int i, j;
+    local float ScaleFactor, XS, YS, IconXSize, IconYSize, OutXSize, SmoothPulsePhase, XL,YL, YLC;
+    local string ammoTxt;
 
-	if (CheckInventoryChange())
-		ListItems();
+    if(Pawn == none)
+        return;
 
-	IconPulsePhase = class'BUtil'.static.LoopFloat(IconPulsePhase, (Level.TimeSeconds-LastUIDrawTime)*2, 1, 0);
-	if (IconPulsePhase > 0.5)
-		SmoothPulsePhase = Smerp(IconPulsePhase*2-1, 1, 0);
-	else
-		SmoothPulsePhase = Smerp(IconPulsePhase*2, 0, 1);
+    if (CheckInventoryChange())
+        ListItems();
 
-	ScaleFactor = FMin(float(C.SizeX)/2000, float(C.SizeY)/1500) * class'HUD'.default.HudScale;
-//	ScaleFactor = float(C.SizeX) / 1600 * class'HUD'.default.HudScale;
-	XS = 128*ScaleFactor; YS = 64*ScaleFactor;
-	LastUIDrawTime = Level.TimeSeconds;
-	if (C.Style != 5)
-		C.Style = 5;
-	for (i=0;i<11;i++)
-	{
-		// Draw list of numbers down left side of screen
-		C.SetPos(4*ScaleFactor, (188 + 96*i)*ScaleFactor);
-		C.SetDrawColor(255, 255, 255);
-		C.Font = class'BallisticWeapon'.static.GetFontSizeIndex(C, -3 + int(2 * class'HUD'.default.HudScale));
-		C.DrawText(GroupNames[i], false);
+    IconPulsePhase = Class'BUtil'.static.LoopFloat(IconPulsePhase, (Level.TimeSeconds-LastUIDrawTime)*2, 1, 0);
+    if (IconPulsePhase > 0.5)
+        SmoothPulsePhase = Smerp(IconPulsePhase*2-1, 1, 0);
+    else
+        SmoothPulsePhase = Smerp(IconPulsePhase*2, 0, 1);
 
-		for (j=0;j<WeaponGroups[i].Items.length;j++)
-		{
-			if (WeaponGroups[i].Items[j] == None)
-				continue;
-			// Draw background behind each icon. Color shows status of that item
-			C.SetPos((96+132*j)*ScaleFactor, (160 + 96*i)*ScaleFactor);
-			if (Weapon(WeaponGroups[i].Items[j]) != None && !Weapon(WeaponGroups[i].Items[j]).HasAmmo())
-				C.SetDrawColor(255, 0, 0);
-			else if (BallisticWeapon(WeaponGroups[i].Items[j]) != None && !BallisticWeapon(WeaponGroups[i].Items[j]).HasAmmoLoaded(255))
-				C.SetDrawColor(255, 128, 0);
-			else
-				C.SetDrawColor(0, 0, 255);
-			if (Weapon(WeaponGroups[i].Items[j]) != None && Weapon(WeaponGroups[i].Items[j]).ClientState != WS_Hidden)
-				C.DrawColor.G += 128;
-			if (i == WGroup && j == WItem)
-			{
-				C.DrawColor.R = Min(255, C.DrawColor.R+96);
-				C.DrawColor.G = Min(255, C.DrawColor.G+96);
-				C.DrawColor.B = Min(255, C.DrawColor.B+96);
-			}
-			C.DrawTileStretched(Texture'BW_Core_WeaponTex.UI.WeaponUIFrame', XS, YS);
-			// Draw the icons. Don't draw highlighted icon now though.
-			if (i == WGroup && j == WItem)
-				continue;
-			C.SetDrawColor(255, 255, 255);
-			if (BallisticWeapon(WeaponGroups[i].Items[j]) != None && BallisticWeapon(WeaponGroups[i].Items[j]).BigIconMaterial != None)
-			{
-				C.SetPos((96+132*j)*ScaleFactor, (160 + 96*i)*ScaleFactor);
-				C.DrawTile(BallisticWeapon(WeaponGroups[i].Items[j]).BigIconMaterial,
-				XS, YS, 0, 0, 512, 256);
-			}
-			else if (WeaponGroups[i].Items[j].IconMaterial != None)
-			{
-				IconXSize = WeaponGroups[i].Items[j].IconCoords.X2 - WeaponGroups[i].Items[j].IconCoords.X1;
-				IconYSize = WeaponGroups[i].Items[j].IconCoords.Y2 - WeaponGroups[i].Items[j].IconCoords.Y1;
-				OutXSize = YS*(IconXSize / IconYSize);
-				C.SetPos((96+132*j)*ScaleFactor+XS/2-OutXSize/2, (160 + 96*i)*ScaleFactor);
+    ScaleFactor = FMin(float(C.SizeX)/2200, float(C.SizeY)/1800) * Class'HUD'.default.HudScale;
+//  ScaleFactor = float(C.SizeX) / 1600 * Class'UD'.default.HudScale;
+    XS = 128*ScaleFactor; YS = 64*ScaleFactor;
+    LastUIDrawTime = Level.TimeSeconds;
+    if (C.Style != 5)
+        C.Style = 5;
 
-				C.DrawTile(WeaponGroups[i].Items[j].IconMaterial, OutXSize, YS,
-				WeaponGroups[i].Items[j].IconCoords.X1, WeaponGroups[i].Items[j].IconCoords.Y1,
-				IconXSize, IconYSize);
-			}
-			else
-			{
-				C.SetPos((96+132*j)*ScaleFactor, (160 + 96*i)*ScaleFactor);
-				C.DrawTile(Texture'BW_Core_WeaponTex.Icons.BigIcon_NA', XS, YS, 0,0,512,256);
-			}
-		}
-	}
-	if (WeaponGroups[WGroup].Items.length > WItem && WeaponGroups[WGroup].Items[WItem] != None)
-	{
-		C.SetDrawColor(255, 255, 255);
-		// Draw icon for highlighted item big and draw it last so it's drawn over everything else
-		if (BallisticWeapon(WeaponGroups[WGroup].Items[WItem]) != None && BallisticWeapon(WeaponGroups[WGroup].Items[WItem]).BigIconMaterial != None)
-		{
-			XS = 192 + 128 * SmoothPulsePhase;
-			YS = 96 + 64 * SmoothPulsePhase;
+    for (i=0;i<10;i++)
+    {
+        // Draw list of numbers down left side of screen
+        C.SetPos((4*ScaleFactor), (188 + 96*i)*ScaleFactor);
+        C.SetDrawColor(255, 255, 255);
+        C.Font = Class'BallisticWeapon'.static.GetFontSizeIndex(C, -3 + int(2 * Class'HUD'.default.HudScale));
 
-			C.SetPos(((160 + 132*WItem) - XS/2)*ScaleFactor, ((192 + 96*WGroup) - YS/2.5)*ScaleFactor);
-			C.DrawTile(BallisticWeapon(WeaponGroups[WGroup].Items[WItem]).BigIconMaterial,
-			XS*ScaleFactor, YS*ScaleFactor, 0, 0, 512, 256);
-		}
-		else if (WeaponGroups[WGroup].Items[WItem].IconMaterial != None)
-		{
-			IconXSize = WeaponGroups[WGroup].Items[WItem].IconCoords.X2 - WeaponGroups[WGroup].Items[WItem].IconCoords.X1;
-			IconYSize = WeaponGroups[WGroup].Items[WItem].IconCoords.Y2 - WeaponGroups[WGroup].Items[WItem].IconCoords.Y1;
+        // Well, only draw the list numbers if there are any items in it
+        C.DrawColor.A = Class'HUD'.default.HudOpacity;
 
-			YS = 96 + 64 * SmoothPulsePhase;
+        if(WeaponGroups[i].Items.length < 1)
+            C.SetDrawColor(0, 0, 0, Class'HUD'.default.HudOpacity);
 
-			OutXSize = YS*(IconXSize / IconYSize);
-			C.SetPos(((160 + 132*WItem) - OutXSize/2)*ScaleFactor, ((192 + 96*WGroup) - YS/2.5)*ScaleFactor);
+        if(WeaponGroups[i].Items.length > 0 || !Class'HUD'.default.bSmallWeaponBar)
+            C.DrawText(GroupNames[i], false);
 
-			C.DrawTile(WeaponGroups[WGroup].Items[WItem].IconMaterial, OutXSize*ScaleFactor, YS*ScaleFactor,
-			WeaponGroups[WGroup].Items[WItem].IconCoords.X1, WeaponGroups[WGroup].Items[WItem].IconCoords.Y1, IconXSize, IconYSize);
+        for (j=0;j<WeaponGroups[i].Items.length;j++)
+        {
+            if (WeaponGroups[i].Items[j] == None)
+                continue;
+            // Draw background behind each icon. Color shows status of that item
+            C.SetPos((96+132*j)*ScaleFactor, (160 + 96*i)*ScaleFactor);
+            if (Weapon(WeaponGroups[i].Items[j]) != None && !Weapon(WeaponGroups[i].Items[j]).HasAmmo())
+                C.SetDrawColor(255, 0, 0);
+            else if (BallisticWeapon(WeaponGroups[i].Items[j]) != None && !BallisticWeapon(WeaponGroups[i].Items[j]).HasAmmoLoaded(255))
+                C.SetDrawColor(255, 128, 0);
+            else
+                C.SetDrawColor(0, 0, 255);
+            if (Weapon(WeaponGroups[i].Items[j]) != None && Weapon(WeaponGroups[i].Items[j]).ClientState != WS_Hidden)
+                C.DrawColor.G += 128;
+            if (i == WGroup && j == WItem)
+            {
+                C.DrawColor.R = Min(255, C.DrawColor.R+96);
+                C.DrawColor.G = Min(255, C.DrawColor.G+96);
+                C.DrawColor.B = Min(255, C.DrawColor.B+96);
+            }
+            C.DrawTileStretched(Texture'BW_Core_WeaponTex.UI.WeaponUIFrame', XS, YS);
 
-		}
-		else
-		{
-			XS = 192 + 128 * SmoothPulsePhase;
-			YS = 96 + 64 * SmoothPulsePhase;
+            // Draw the icons. Don't draw highlighted icon now though.
+            // Draw the background above the selection text, its easier to catch for the eye after all
+            if (i == WGroup && j == WItem)
+            {
+                /*
+                C.SetPos( (C.ClipX/2) - (XS/2), C.ClipY*0.8-YL*1.5-YS);
+                C.DrawTileStretched(Texture'BW_Core_WeaponTex.UI.WeaponUIFrame', XS, YS);
+                */
+                continue;
+            }
+            C.SetDrawColor(255, 255, 255);
+            if (BallisticWeapon(WeaponGroups[i].Items[j]) != None && BallisticWeapon(WeaponGroups[i].Items[j]).BigIconMaterial != None)
+            {
+                C.SetPos((96+132*j)*ScaleFactor, (160 + 96*i)*ScaleFactor);
+                C.DrawTile(BallisticWeapon(WeaponGroups[i].Items[j]).BigIconMaterial,
+                XS, YS, 0, 0, 512, 256);
+            }
+            else if (WeaponGroups[i].Items[j].IconMaterial != None)
+            {
+                IconXSize = WeaponGroups[i].Items[j].IconCoords.X2 - WeaponGroups[i].Items[j].IconCoords.X1;
+                IconYSize = WeaponGroups[i].Items[j].IconCoords.Y2 - WeaponGroups[i].Items[j].IconCoords.Y1;
+                OutXSize = YS*(IconXSize / IconYSize);
+                C.SetPos((96+132*j)*ScaleFactor+XS/2-OutXSize/2, (160 + 96*i)*ScaleFactor);
 
-			C.SetPos(((160 + 132*WItem) - XS/2)*ScaleFactor, ((192 + 96*WGroup) - YS/2.5)*ScaleFactor);
-			C.DrawTile(Texture'BW_Core_WeaponTex.Icons.BigIcon_NA',
-			XS*ScaleFactor, YS*ScaleFactor, 0, 0, 512, 256);
-		}
-		// Draw name of highlighted item
-		C.Font = class'BallisticWeapon'.static.GetFontSizeIndex(C, -4 + int(2 * class'HUD'.default.HudScale));
-		C.SetPos(C.ClipX - 512*ScaleFactor, 128*ScaleFactor);
-		C.DrawText(WeaponGroups[WGroup].Items[WItem].ItemName, false);
-		// Draw ammo for highlighted item
-		C.SetPos(C.ClipX - 512*ScaleFactor, (128+32)*ScaleFactor);
-		if (BallisticWeapon(WeaponGroups[WGroup].Items[WItem]) != None && !BallisticWeapon(WeaponGroups[WGroup].Items[WItem]).bNoMag)
-			C.DrawText(BallisticWeapon(WeaponGroups[WGroup].Items[WItem]).AmmoAmount(0) @ BallisticWeapon(WeaponGroups[WGroup].Items[WItem]).MagAmmo, false);
-		else if (Weapon(WeaponGroups[WGroup].Items[WItem]) != None)
-			C.DrawText(Weapon(WeaponGroups[WGroup].Items[WItem]).AmmoAmount(0), false);
-	}
+                C.DrawTile(WeaponGroups[i].Items[j].IconMaterial, OutXSize, YS,
+                WeaponGroups[i].Items[j].IconCoords.X1, WeaponGroups[i].Items[j].IconCoords.Y1,
+                IconXSize, IconYSize);
+            }
+            else
+            {
+                C.SetPos((96+132*j)*ScaleFactor, (160 + 96*i)*ScaleFactor);
+                C.DrawTile(Texture'BW_Core_WeaponTex.Icons.BigIcon_NA', XS, YS, 0,0,512,256);
+            }
+        }
+    }
+    if (WeaponGroups[WGroup].Items.length > WItem && WeaponGroups[WGroup].Items[WItem] != None)
+    {
+        C.Font = Class'BallisticWeapon'.static.GetFontSizeIndex(C, int(2 * Class'HUD'.default.HudScale));
+        C.Strlen(WeaponGroups[WGroup].Items[WItem].ItemName,XL,YL);
 
-	// Draw name of highlighted item
-	C.Font = class'BallisticWeapon'.static.GetFontSizeIndex(C, -4 + int(2 * class'HUD'.default.HudScale));
-	OutXSize=0;
-	for (i=0;i<4;i++)
-	{
-		C.TextSize(WeapUIHelp[i], XS, YS);
-		if (XS > OutXSize)
-			OutXSize = XS;
-	}
-	OutXSize *= 1.1;
-	C.SetDrawColor(0, 255, 0);
-	C.SetPos(C.ClipX - OutXSize, 320*ScaleFactor);
-	C.DrawText(WeapUIHelp[0], true);
-	C.SetPos(C.ClipX - OutXSize, 352*ScaleFactor);
-	C.DrawText(WeapUIHelp[1], true);
-	C.SetPos(C.ClipX - OutXSize, 384*ScaleFactor);
-	C.DrawText(WeapUIHelp[2], true);
-	C.SetPos(C.ClipX - OutXSize, 416*ScaleFactor);
-	C.DrawText(WeapUIHelp[3], true);
+        C.SetDrawColor(255, 255, 255);
+        // Draw icon for highlighted item big and draw it last so it's drawn over everything else
+        if (BallisticWeapon(WeaponGroups[WGroup].Items[WItem]) != None && BallisticWeapon(WeaponGroups[WGroup].Items[WItem]).BigIconMaterial != None)
+        {
+
+            XS = 192 + 128 * 0.8;
+            YS = 96 + 64 * 0.8;
+
+            C.SetPos( (C.ClipX/2) - (XS/2)*ScaleFactor, C.ClipY*0.8-YL*3.0);
+            C.DrawTile(BallisticWeapon(WeaponGroups[WGroup].Items[WItem]).BigIconMaterial,XS*ScaleFactor, YS*ScaleFactor, 0, 0, 512, 256);
+
+            XS = 192 + 128 * SmoothPulsePhase;
+            YS = 96 + 64 * SmoothPulsePhase;
+
+            C.SetPos(((160 + 132*WItem) - XS/2)*ScaleFactor, ((192 + 96*WGroup) - YS/2.5)*ScaleFactor);
+            C.DrawTile(BallisticWeapon(WeaponGroups[WGroup].Items[WItem]).BigIconMaterial,XS*ScaleFactor, YS*ScaleFactor, 0, 0, 512, 256);
+
+        }
+        else if (WeaponGroups[WGroup].Items[WItem].IconMaterial != None)
+        {
+            IconXSize = WeaponGroups[WGroup].Items[WItem].IconCoords.X2 - WeaponGroups[WGroup].Items[WItem].IconCoords.X1;
+            IconYSize = WeaponGroups[WGroup].Items[WItem].IconCoords.Y2 - WeaponGroups[WGroup].Items[WItem].IconCoords.Y1;
+
+            YS = 96 + 64 * SmoothPulsePhase;
+
+            OutXSize = YS*(IconXSize / IconYSize);
+            C.SetPos(((160 + 132*WItem) - OutXSize/2)*ScaleFactor, ((192 + 96*WGroup) - YS/2.5)*ScaleFactor);
+
+            C.DrawTile(WeaponGroups[WGroup].Items[WItem].IconMaterial, OutXSize*ScaleFactor, YS*ScaleFactor,
+            WeaponGroups[WGroup].Items[WItem].IconCoords.X1, WeaponGroups[WGroup].Items[WItem].IconCoords.Y1, IconXSize, IconYSize);
+
+        }
+        else
+        {
+            XS = 192 + 128 * SmoothPulsePhase;
+            YS = 96 + 64 * SmoothPulsePhase;
+
+            C.SetPos(((160 + 132*WItem) - XS/2)*ScaleFactor, ((192 + 96*WGroup) - YS/2.5)*ScaleFactor);
+            C.DrawTile(Texture'BW_Core_WeaponTex.Icons.BigIcon_NA', XS*ScaleFactor, YS*ScaleFactor, 0, 0, 512, 256);
+        }
+
+        // Draw name of highlighted item
+        C.Font = Class'BallisticWeapon'.static.GetFontSizeIndex(C, int(2 * Class'HUD'.default.HudScale));
+        C.SetPos( (C.ClipX/2) - (XL/2), C.ClipY*0.8-YL);
+        C.DrawText(WeaponGroups[WGroup].Items[WItem].ItemName);
+
+        if(!Class'HUD'.default.bShowWeaponInfo)
+            return;
+
+        YLC = YL;
+
+        // Draw ammo for highlighted item
+        if (BallisticWeapon(WeaponGroups[WGroup].Items[WItem]) != None && !BallisticWeapon(WeaponGroups[WGroup].Items[WItem]).bNoMag)
+        {
+            ammoTxt = "Mag: "$BallisticWeapon(WeaponGroups[WGroup].Items[WItem]).MagAmmo$" / Total: "$ BallisticWeapon(WeaponGroups[WGroup].Items[WItem]).AmmoAmount(0);
+
+            C.Font = Class'BallisticWeapon'.static.GetFontSizeIndex(C, -3 + int(2 * Class'HUD'.default.HudScale));
+            C.Strlen(ammoTxt,XL,YL);
+            C.SetPos( (C.ClipX/2) - (XL/2), C.ClipY*0.8-YL*2.0+YLC);
+            C.DrawText(ammoTxt);
+        }
+        else if (Weapon(WeaponGroups[WGroup].Items[WItem]) != None)
+        {
+            ammoTxt = "Total: "$ BallisticWeapon(WeaponGroups[WGroup].Items[WItem]).AmmoAmount(0);
+
+            C.Font = Class'BallisticWeapon'.static.GetFontSizeIndex(C, -3 + int(2 * Class'HUD'.default.HudScale));
+            C.Strlen(ammoTxt,XL,YL);
+            C.SetPos( (C.ClipX/2) - (XL/2), C.ClipY*0.8-YL*2.0+YLC);
+            C.DrawText(ammoTxt);
+        }
+    }
+
+	/*
+    //Draw name of highlighted item
+    //C.Font = Class'BallisticWeapon'.static.GetFontSizeIndex(C, -4 + int(2 * Class'HUD'.default.HudScale));
+    OutXSize=0;
+    for (i=0;i<4;i++)
+    {
+        C.TextSize(WeapUIHelp[i], XS, YS);
+        if (XS > OutXSize)
+            OutXSize = XS;
+    }
+    OutXSize *= 1.1;
+    C.SetDrawColor(0, 255, 0);
+    C.SetPos(C.ClipX - OutXSize, 320*ScaleFactor);
+    C.DrawText(WeapUIHelp[0], true);
+    C.SetPos(C.ClipX - OutXSize, 352*ScaleFactor);
+    C.DrawText(WeapUIHelp[1], true);
+    C.SetPos(C.ClipX - OutXSize, 384*ScaleFactor);
+    C.DrawText(WeapUIHelp[2], true);
+    C.SetPos(C.ClipX - OutXSize, 416*ScaleFactor);
+    C.DrawText(WeapUIHelp[3], true);
+	*/
 }
 
 // Weapon group key pressed

@@ -656,6 +656,12 @@ simulated function OnWeaponParamsChanged()
 
 	if (WeaponParams.ScopeViewTex != None)
 		ScopeViewTex = WeaponParams.ScopeViewTex;
+		
+	if (WeaponParams.MinZoom != 0)
+		MinZoom = WeaponParams.MinZoom;
+		
+	if (WeaponParams.MaxZoom != 0)
+		MaxZoom = WeaponParams.MaxZoom;
 	
 	bAdjustHands				= WeaponParams.bAdjustHands;
 	
