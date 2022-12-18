@@ -10,7 +10,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class R9RangerRifle extends BallisticWeapon;
+class R9RangerRifle extends BallisticWeapon
+	transient
+	HideDropDown
+	CacheExempt;
 
 var float LastModeChangeTime;
 
