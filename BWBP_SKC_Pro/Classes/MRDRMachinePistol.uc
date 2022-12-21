@@ -93,7 +93,7 @@ simulated function Notify_SlideRelease()
 // Relocate the weapon according to sight view.
 // Improved ironsights.
 // SightZoomFactor used instead of FullZoomFOV.
-simulated function PositionSights()
+/*simulated function PositionSights()
 {
 	local Vector SightPos, Offset, NewLoc, OldLoc;//, X,Y,Z;
 	local PlayerController PC;
@@ -177,7 +177,7 @@ simulated function PositionSights()
             SetBoneRotation('rightwrist', class'BUtil'.static.RSmerp(SightingPhase, rot(0,0,0), WristAdjust));
         }
     }
-}
+}*/
 
 // AI Interface =====
 // choose between regular or alt-fire
@@ -257,7 +257,7 @@ simulated event AnimEnd (int Channel)
 
     GetAnimParams(0, Anim, Frame, Rate);
 
-	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim)
+	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
 	{
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 		{
@@ -285,7 +285,8 @@ simulated function PlayCocking(optional byte Type)
 
 defaultproperties
 {
-	bShouldDualInLoadout=False
+	SupportHandBone="Root 01"
+	bShouldDualInLoadout=True
 	HandgunGroup=2
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000

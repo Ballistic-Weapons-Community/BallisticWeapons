@@ -275,7 +275,7 @@ simulated event AnimEnd (int Channel)
 	
 	if(Anim != 'MeleePrep')
 		bStriking = false;
-	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim)
+	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
 	{
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 		{
@@ -350,7 +350,7 @@ defaultproperties
 	SightFXClass=Class'BallisticProV55.M806SightLEDs'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
-	bShouldDualInLoadout=False
+	bShouldDualInLoadout=True
 	SpecialInfo(0)=(Info="0.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Putaway')
