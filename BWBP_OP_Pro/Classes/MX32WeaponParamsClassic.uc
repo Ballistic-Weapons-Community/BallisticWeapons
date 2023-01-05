@@ -131,6 +131,7 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		ViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
 		SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
 		PlayerSpeedFactor=0.870000
@@ -145,6 +146,75 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicFastRocketFireParams'
 		AltFireParams(1)=FireParams'ClassicGuidedRocketFireParams'
-    End Object 
+    End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Desert
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MX32Camos.MX32_Weapon_S2',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.MX32Camos.MX32_Attach_S2',Index=2)
+		Weight=10
+		ViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
+		SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
+		PlayerSpeedFactor=0.870000
+        PlayerJumpFactor=0.870000
+        SightMoveSpeedFactor=0.75
+		MagAmmo=30
+		SightingTime=0.55
+		DisplaceDurationMult=1.4
+        InventorySize=12
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicFastRocketFireParams'
+		AltFireParams(1)=FireParams'ClassicGuidedRocketFireParams'
+    End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Ruby
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MX32Camos.MX32_Weapon_S3',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.MX32Camos.MX32_Attach_S3',Index=2)
+		Weight=10
+		ViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
+		SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
+		PlayerSpeedFactor=0.870000
+        PlayerJumpFactor=0.870000
+        SightMoveSpeedFactor=0.75
+		MagAmmo=30
+		SightingTime=0.55
+		DisplaceDurationMult=1.4
+        InventorySize=12
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicFastRocketFireParams'
+		AltFireParams(1)=FireParams'ClassicGuidedRocketFireParams'
+    End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Au
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MX32Camos.MX32_Weapon_S1',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.MX32Camos.MX32_Attach_S1',Index=2)
+		Weight=1
+		ViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
+		SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
+		PlayerSpeedFactor=0.870000
+        PlayerJumpFactor=0.870000
+        SightMoveSpeedFactor=0.75
+		MagAmmo=60
+		ReloadAnimRate=1.300000
+		CockAnimRate=1.300000
+		SightingTime=0.55
+		DisplaceDurationMult=1.4
+        InventorySize=12
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicFastRocketFireParams'
+		AltFireParams(1)=FireParams'ClassicGuidedRocketFireParams'
+    End Object
+	
     Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams-Desert'
+	Layouts(2)=WeaponParams'ClassicParams-Ruby'
+	Layouts(3)=WeaponParams'ClassicParams-Au'
 }
