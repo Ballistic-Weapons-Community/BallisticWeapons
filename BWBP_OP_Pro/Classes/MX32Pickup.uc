@@ -13,8 +13,8 @@ class MX32Pickup extends BallisticWeaponPickup
 //===========================================================================
 static function StaticPrecache(LevelInfo L)
 {
-	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.MX32.MX32-Main');
-	L.AddPrecacheMaterial(Texture'BWBP_OP_Tex.MX32.MX32-Attach');
+	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.MX32.MX32-Main-S');
+	L.AddPrecacheMaterial(Shader'BWBP_OP_Tex.MX32.MX32-Attach-S');
 	L.AddPrecacheMaterial(Texture'ONSstructureTextures.CoreGroup.Invisible');
 	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MX32.MX32-MainStatic');
 	L.AddPrecacheStaticMesh(StaticMesh'BWBP_OP_Static.MX32.MX32-AmmoStatic');
@@ -22,8 +22,8 @@ static function StaticPrecache(LevelInfo L)
 
 simulated function UpdatePrecacheMaterials()
 {
-	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.MX32.MX32-Main');
-	Level.AddPrecacheMaterial(Texture'BWBP_OP_Tex.MX32.MX32-Attach');
+	Level.AddPrecacheMaterial(Shader'BWBP_OP_Tex.MX32.MX32-Main-S');
+	Level.AddPrecacheMaterial(Shader'BWBP_OP_Tex.MX32.MX32-Attach-S');
 	Level.AddPrecacheMaterial(Texture'ONSstructureTextures.CoreGroup.Invisible');
 }
 simulated function UpdatePrecacheStaticMeshes()
