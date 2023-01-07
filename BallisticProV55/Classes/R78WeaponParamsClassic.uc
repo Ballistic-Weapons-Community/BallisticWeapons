@@ -90,11 +90,13 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7
 		SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
 		SightPivot=(Roll=-1024)
+		ViewOffset=(X=6.000000,Y=8.000000,Z=-11.500000)
         ZoomType=ZT_Logarithmic
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.250000
@@ -103,7 +105,167 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-Tan
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.R87.R87_Main-SD',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_KBP_Tex.R87.R87_Scope-SD',Index=2)
+		InventorySize=15
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=7
+		SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
+		SightPivot=(Roll=-1024)
+		ViewOffset=(X=6.000000,Y=8.000000,Z=-11.500000)
+        ZoomType=ZT_Logarithmic
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.250000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-DesertNS
+		Weight=10
+		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.NoScope.RifleSkinDesertCamo',Index=0)
+		InventorySize=15
+		ZoomType=ZT_Irons
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=7
+		SightPivot=(Pitch=-32,Roll=-1024)
+		SightOffset=(X=-10.000000,Y=-1.180000,Z=11.950000)
+		ViewOffset=(X=8.000000,Y=4.000000,Z=-10.000000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.250000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-UrbanNS
+		Weight=10
+		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.NoScope.R98_UTiger-SD',Index=0)
+		InventorySize=15
+		ZoomType=ZT_Irons
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=7
+		SightPivot=(Pitch=-32,Roll=-1024)
+		SightOffset=(X=-10.000000,Y=-1.180000,Z=11.950000)
+		ViewOffset=(X=8.000000,Y=4.000000,Z=-10.000000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.250000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-JungleNS
+		Weight=10
+		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.NoScope.R98_JTiger-SD',Index=0)
+		InventorySize=15
+		ZoomType=ZT_Irons
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=7
+		SightPivot=(Pitch=-32,Roll=-1024)
+		SightOffset=(X=-10.000000,Y=-1.180000,Z=11.950000)
+		ViewOffset=(X=8.000000,Y=4.000000,Z=-10.000000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.250000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-TigerNS
+		Weight=3
+		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.NoScope.R98_RTiger-SD',Index=0)
+		InventorySize=15
+		ZoomType=ZT_Irons
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=7
+		SightPivot=(Pitch=-32,Roll=-1024)
+		SightOffset=(X=-10.000000,Y=-1.180000,Z=11.950000)
+		ViewOffset=(X=8.000000,Y=4.000000,Z=-10.000000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.250000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-WinterNS
+		Weight=3
+		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.NoScope.R98_Winter-SD',Index=0)
+		InventorySize=15
+		ZoomType=ZT_Irons
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=7
+		SightPivot=(Pitch=-32,Roll=-1024)
+		SightOffset=(X=-10.000000,Y=-1.180000,Z=11.950000)
+		ViewOffset=(X=8.000000,Y=4.000000,Z=-10.000000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.250000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-AUNS
+		Weight=1
+		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.NoScope.GoldRifle-Shine',Index=0)
+		InventorySize=15
+		ZoomType=ZT_Irons
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=7
+		SightPivot=(Pitch=-32,Roll=-1024)
+		SightOffset=(X=-10.000000,Y=-1.180000,Z=11.950000)
+		ViewOffset=(X=8.000000,Y=4.000000,Z=-10.000000)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.250000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-AU
+		Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.NoScope.GoldRifle-Shine',Index=1)
+		InventorySize=15
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=7
+		SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
+		SightPivot=(Roll=-1024)
+        ZoomType=ZT_Logarithmic
+		ReloadAnimRate=1.250000
+		CockAnimRate=1.250000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
-
+	Layouts(1)=WeaponParams'ClassicParams-Tan'
+	Layouts(2)=WeaponParams'ClassicParams-DesertNS'
+	Layouts(3)=WeaponParams'ClassicParams-UrbanNS'
+	Layouts(4)=WeaponParams'ClassicParams-JungleNS'
+	Layouts(5)=WeaponParams'ClassicParams-TigerNS'
+	Layouts(6)=WeaponParams'ClassicParams-WinterNS'
+	Layouts(7)=WeaponParams'ClassicParams-AUNS'
+	Layouts(8)=WeaponParams'ClassicParams-AU'
+	
 }
