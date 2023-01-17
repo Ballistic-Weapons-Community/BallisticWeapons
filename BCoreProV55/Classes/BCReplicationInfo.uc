@@ -25,7 +25,7 @@ enum EGameStyle
 
 // Server Variables -----------------------------------------------------------
 // Weapon
-var() globalconfig EGameStyle	GameStyle;
+var() globalconfig EGameStyle	GameStyle;				
 var() globalconfig float		AccuracyScale;			// Used for scaling general weapon accuracy.
 var() globalconfig float		RecoilScale;			// Used for scaling general weapon recoil.
 var() globalconfig bool		    bNoJumpOffset;			// Prevents weapons shifting and being offset when jumping or sprinting
@@ -37,6 +37,7 @@ var() globalconfig bool         bAlternativePickups;	// Press Use to Pickup Weap
 // ----------------------------------------------------------------------------
 var struct RepInfo_BCore
 {
+	var EGameStyle 	GameStyle;
 	var float		AccuracyScale;
 	var float		RecoilScale;
 	var float       ReloadSpeedScale;
@@ -55,6 +56,7 @@ replication
 // Set all defaults to match server vars here
 simulated function InitClientVars()
 {
+	GameStyle 			= BCoreRep.GameStyle;
 	AccuracyScale		= BCoreRep.AccuracyScale;
 	RecoilScale			= BCoreRep.RecoilScale;
 	ReloadSpeedScale 	= BCoreRep.ReloadSpeedScale;
@@ -63,6 +65,7 @@ simulated function InitClientVars()
 	bNoReloading		= BCoreRep.bNoReloading;
 	bAlternativePickups = BCoreRep.bAlternativePickups;
 
+	class.default.GameStyle 			= GameStyle;
 	class.default.AccuracyScale			= AccuracyScale;
 	class.default.RecoilScale			= RecoilScale;
 	class.default.ReloadSpeedScale 		= ReloadSpeedScale;
@@ -82,6 +85,7 @@ simulated function InitClientVars()
 
 function ServerInitialize()
 {
+	BCoreRep.GameStyle				= GameStyle;
 	BCoreRep.AccuracyScale			= AccuracyScale;
 	BCoreRep.RecoilScale			= RecoilScale;
 	BCoreRep.ReloadSpeedScale 		= ReloadSpeedScale;
