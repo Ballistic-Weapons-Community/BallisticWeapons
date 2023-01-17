@@ -125,7 +125,7 @@ static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 
 static function bool IsValid(coerce string S)
 {
-	if (InStr(s, "Recolors4") != -1 || InStr(s, "Prototypes") != -1 || InStr(s, "WeaponPack2") != -1)
+	if (InStr(s, "Recolors") != -1 || InStr(s, "Prototypes") != -1 || InStr(s, "WeaponPack") != -1 || InStr(s, "V2") != -1 || InStr(s, "KabPack") != -1 || InStr(s, "Extreme") != -1 || InStr(s, "Fix") != -1 ||  InStr(s, "OtherPack") != -1)
 		return false;
 	return true;
 }

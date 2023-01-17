@@ -511,6 +511,26 @@ simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
 		//setup blood set
 	  BloodSet = class'BWBloodSetHunter'.static.GetBloodSetFor(self);
 	}
+	
+	//Exclude Matrix because it's cheap. Treat incoming Jakobs as the default character.
+	if ( (rec.Species == None) || (PlayerReplicationInfo.CharacterName ~= "Matrix") || (PlayerReplicationInfo.CharacterName ~= "Jakob") || ForceDefaultCharacter() )
+		rec = class'xUtil'.static.FindPlayerRecord(GetDefaultCharacter());
+		
+	if (PlayerReplicationInfo.CharacterName ~= "Abaddon")
+		rec = class'xUtil'.static.FindPlayerRecord("AbaddonB");
+
+    else if (PlayerReplicationInfo.CharacterName ~= "Kaela")
+		rec = class'xUtil'.static.FindPlayerRecord("KaelaB");
+
+    else if (PlayerReplicationInfo.CharacterName ~= "Zarina")
+		rec = class'xUtil'.static.FindPlayerRecord("ZarinaB");
+
+    else if (PlayerReplicationInfo.CharacterName ~= "Jakob")
+		rec = class'xUtil'.static.FindPlayerRecord("JakobB");
+
+	// If you're using an advantage-conferring skin you're going to be as bright as the bloody Sun
+	if (rec.DefaultName == "July")
+		AmbientGlow = 64;
 }
 
 simulated function Tick(float DeltaTime)
