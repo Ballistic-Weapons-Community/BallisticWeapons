@@ -8,11 +8,16 @@
 //=============================================================================
 class MarlinPrimaryFire extends BallisticRangeAttenFire;
 
+var() 	BUtil.FullSound			GaussSound;	//extra Gauss sound to play
+
 //// server propagation of firing ////
 function ServerPlayFiring()
 {
 	if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+
+	if (GaussSound.Sound != None && MarlinRifle(BW).bGauss)
+		Weapon.PlayOwnedSound(GaussSound.Sound,GaussSound.Slot,GaussSound.Volume,GaussSound.bNoOverride,GaussSound.Radius,GaussSound.Pitch,GaussSound.bAtten);
 
 	CheckClipFinished();
 
@@ -60,11 +65,23 @@ function PlayFiring()
 	if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 
+	if (GaussSound.Sound != None && MarlinRifle(BW).bGauss)
+		Weapon.PlayOwnedSound(GaussSound.Sound,GaussSound.Slot,GaussSound.Volume,GaussSound.bNoOverride,GaussSound.Radius,GaussSound.Pitch,GaussSound.bAtten);
+
 	CheckClipFinished();
+}
+
+simulated event ModeDoFire()
+{
+	super.ModeDoFire();
+	
+	if (MarlinRifle(BW).bGauss)
+		MarlinRifle(BW).ServerSwitchGauss(false);
 }
 
 defaultproperties
 {
+	 GaussSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart2',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
 	 CutOffStartRange=3072
 	 CutOffDistance=6144
 	 RangeAtten=0.75
