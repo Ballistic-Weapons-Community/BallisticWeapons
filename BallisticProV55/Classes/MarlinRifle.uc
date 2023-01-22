@@ -9,6 +9,70 @@
 //=============================================================================
 class MarlinRifle extends BallisticWeapon;
 
+var	 	float 		GaussLevel, MaxGaussLevel;
+var  	bool 		bGauss;
+var() 	Sound		GaussOnSound;
+
+replication
+{
+	reliable if (Role == ROLE_Authority)
+		bGauss;
+}
+
+//gauss code. can add to secondary fire to implement gauss bullet loading
+//backup for attachment - sometimes the incorrect tracer would display
+simulated function BringUp(optional Weapon PrevWeapon)
+{
+	super.BringUp(PrevWeapon);
+	ServerSwitchGauss(bGauss);
+}
+
+function ServerSwitchGauss(bool bNewGauss)
+{
+	bGauss = bNewGauss;
+	
+	MarlinAttachment(ThirdPersonActor).SetGauss(bGauss);
+	
+	if (bGauss)
+	{
+		WeaponModes[0].bUnavailable=true;
+		WeaponModes[1].bUnavailable=false;
+		CurrentWeaponMode=1;
+		ServerSwitchWeaponMode(1);
+	}
+	else
+	{
+		GaussLevel=0;
+		WeaponModes[0].bUnavailable=false;
+		WeaponModes[1].bUnavailable=true;
+		CurrentWeaponMode=0;
+		ServerSwitchWeaponMode(0);		
+	}
+	
+	ClientSwitchGauss(bNewGauss);
+}
+
+simulated function ClientSwitchGauss(bool bNewGauss)
+{
+	bGauss = bNewGauss;
+
+	if (bGauss)
+	{
+		WeaponModes[0].bUnavailable=true;
+		WeaponModes[1].bUnavailable=false;
+		PlaySound(GaussOnSound,,0.7,,32);
+	}
+	else
+	{
+		GaussLevel=0;
+		WeaponModes[0].bUnavailable=false;
+		WeaponModes[1].bUnavailable=true;
+	}
+	
+	if (Role == ROLE_Authority)
+		MarlinAttachment(ThirdPersonActor).SetGauss(bGauss);
+}
+
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
 	if (MeleeState >= MS_Held)
@@ -140,6 +204,14 @@ simulated function WeaponTick (float DT)
 			GunLength = default.GunLength;
 	}
 
+	if (GameStyleIndex == 0)
+	{
+		GaussLevel = FMin(GaussLevel + DT, MaxGaussLevel);
+		
+		if (GaussLevel == MaxGaussLevel && !bGauss)
+			ServerSwitchGauss(!bGauss);
+	}
+
 	super.WeaponTick(DT);
 }
 
@@ -223,8 +295,15 @@ function float SuggestAttackStyle()	{	return -0.4;	}
 function float SuggestDefenseStyle()	{	return 0.4;	}
 // End AI Stuff =====
 
+simulated function float ChargeBar()
+{
+	return FMax(0, GaussLevel/MaxGaussLevel);
+}
+
 defaultproperties
 {
+	GaussOnSound=Sound'BW_Core_WeaponSound.AMP.Amp-Install'
+	MaxGaussLevel=3
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Marlin.BigIcon_Marlin'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -248,10 +327,11 @@ defaultproperties
 	bShovelLoad=True
 	StartShovelAnim="StartReload"
 	EndShovelAnim="EndReload"
-	WeaponModes(0)=(ModeName="Lever Action")
-	WeaponModes(1)=(bUnavailable=True)
+	WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
+	WeaponModes(1)=(ModeName="Electro Shot",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
+	bShowChargingBar=True
 	
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(A=138),StartSize1=61,StartSize2=10)
 	
