@@ -9,12 +9,15 @@
 //=============================================================================
 class ProtonStreamer extends BallisticWeapon;
 
-var	ProtonStreamEffect			StreamEffect;
-var	bool						bShieldOn;
-var	Sound 						ShieldOnSound, ShieldOffSound;
-var	float						LastShieldTick;
-var	Pawn						DrainTarget, BoostTarget;
-var ProtonGameRules				myRules;
+var	ProtonStreamEffect				StreamEffect;
+var	ProtonStreamEffectNew			StreamEffectGravity;
+var	ProtonStreamEffectChild			StreamEffectChild;
+var	bool							bShieldOn;
+var	Sound 							ShieldOnSound, ShieldOffSound;
+var	float							LastShieldTick;
+var	Pawn							DrainTarget, BoostTarget;
+var ProtonGameRules					myRules;
+var	bool							bAlternateCheck;
 
 replication
 {
@@ -87,6 +90,16 @@ function ServerSwitchWeaponMode (byte NewMode)
 	ProtonStreamAttachment(ThirdPersonActor).ModeColor = CurrentWeaponMode;
 }
 
+simulated function ClientSwitchWeaponMode (byte newMode)
+{
+	if (IsFiring())
+		return;
+		
+	Super.ClientSwitchWeaponMode(NewMode);
+	
+	ProtonStreamAttachment(ThirdPersonActor).ModeColor = CurrentWeaponMode;
+}
+
 simulated event WeaponTick(float DT)
 {
 	super.WeaponTick(DT);
@@ -106,6 +119,72 @@ simulated event WeaponTick(float DT)
 	}
 }
 
+//simulated state ArenaProtonWeapon
+//{
+	simulated function BonusAmmo(float AppliedDmg)
+	{
+		Ammo[0].AddAmmo(AppliedDmg);
+	}
+//}
+
+/*simulated state ClassicProtonWeapon
+{
+	simulated event WeaponTick(float DT)
+	{
+		super.WeaponTick(DT);
+
+		if (Role == ROLE_Authority)
+		{
+			if (NextAmmoTickTime < level.TimeSeconds && !FireMode[0].bIsFiring && !FireMode[1].bIsFiring)
+			{
+				if (MagAmmo < default.MagAmmo && bShieldOn)
+					MagAmmo=Min(default.MagAmmo, MagAmmo+3);
+				if (bAlternateCheck)
+				{
+					if (MagAmmo < default.MagAmmo)
+					{
+						MagAmmo=Min(default.MagAmmo, MagAmmo+1);
+						bAlternateCheck = false;
+					}
+				}	
+				else
+				bAlternateCheck = true;
+				NextAmmoTickTime = level.TimeSeconds + 0.1;
+			}
+		}
+	}
+	
+	simulated function RenderOverlays (Canvas C)
+	{
+		local int i;
+		local vector	EndEffect;
+		local float Magnitude;
+		
+		Super.RenderOverlays(C);
+
+		if (StreamEffectGravity != None)
+		{
+			StreamEffectGravity.bHidden = true;
+			StreamEffectChild.bHidden = true;
+			StreamEffectGravity.SetLocation(ConvertFOVs(GetBoneCoords('tip').Origin, DisplayFOV, Instigator.Controller.FovAngle, 96));
+			StreamEffectChild.SetLocation(ConvertFOVs(GetBoneCoords('tip').Origin, DisplayFOV, Instigator.Controller.FovAngle, 96));
+			if (StreamEffectGravity.LinkedPawn != None)
+			{
+				EndEffect = ParticleStreamAttachment(ThirdPersonActor).EndEffect;
+				StreamEffectGravity.EndEffect = EndEffect;
+				StreamEffectChild.EndEffect = EndEffect;
+			}	
+			C.DrawActor(StreamEffect, false, false, Instigator.Controller.FovAngle);
+			C.DrawActor(StreamEffectChild, false, false, Instigator.Controller.FovAngle);
+		}
+	}
+	
+	function byte BestMode()
+	{
+		return 0;
+	}
+}*/
+
 //===========================================================================
 // Stream effect for FP.
 //===========================================================================
@@ -122,35 +201,6 @@ simulated function RenderOverlays (Canvas C)
 		
 		
 			StreamEffect.UpdateEndpoint();
-			
-		/*else
-		{
-			StreamEffect.SetRotation(BallisticFire(FireMode[0]).GetFireAim(Start));
-			AimDir = BallisticFire(FireMode[0]).GetFireAim(Start);
-			End = Start + Normal(Vector(AimDir))*1500;
-			Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
-			if (Other == None)
-				HitLocation = End;
-				
-			/*
-			if (FireMode[0].bIsFiring)
-				for (i=0; i<3; i++)
-					BeamEmitter(StreamEffect.Emitters[i]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(HitLocation - StreamEffect.Location, HitLocation - StreamEffect.Location);
-			else BeamEmitter(StreamEffect.Emitters[0]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(HitLocation - StreamEffect.Location, HitLocation - StreamEffect.Location);
-			*/
-			
-			Magnitude = VSize(HitLocation - Start);
-			
-			HitLocation.X = Magnitude;
-			HitLocation.Y = 0;
-			HitLocation.Z = 0;
-			
-			if (FireMode[0].bIsFiring)
-				for (i=0; i<3; i++)
-					BeamEmitter(StreamEffect.Emitters[i]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(HitLocation, HitLocation);
-			else BeamEmitter(StreamEffect.Emitters[0]).BeamEndPoints[0].Offset = class'BallisticEmitter'.static.VtoRV(HitLocation, HitLocation);
-		}
-		*/
 		
 		C.DrawActor(StreamEffect, false, false, Instigator.Controller.FovAngle);
 	}
@@ -182,11 +232,6 @@ simulated function FirePressed(float F)
 	if (bNeedReload && MagAmmo > 0)
 		bNeedReload = false;
 	super.FirePressed(F);
-}
-
-simulated function BonusAmmo(float AppliedDmg)
-{
-	Ammo[0].AddAmmo(AppliedDmg);
 }
 
 simulated function bool MayNeedReload(byte Mode, float Load)
@@ -307,6 +352,8 @@ function float GetAIRating()
 
 defaultproperties
 {
+	ShieldOnSound=Sound'BWBP_OP_Sounds.ProtonPack.Proton-Putaway'
+    ShieldOffSound=Sound'BWBP_OP_Sounds.ProtonPack.Proton-Pullout'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.ProtonPack.BigIcon_ProtonPack'
 	BigIconCoords=(Y1=32,X2=512,Y2=225)
@@ -320,7 +367,7 @@ defaultproperties
 	bNonCocking=True
 	WeaponModes(0)=(ModeName="Proton Stream",ModeID="WM_FullAuto")
 	WeaponModes(1)=(ModeName="Neutrino Amplification",ModeID="WM_FullAuto")
-	WeaponModes(2)=(bUnavailable=True)
+	WeaponModes(2)=(ModeName="Gravity Proton Stream",ModeID="WM_FullAuto",bUnavailable=True)
 	CurrentWeaponMode=0
 	bUseSights=False
 	bNoCrosshairInScope=True
@@ -328,6 +375,7 @@ defaultproperties
 	SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 	SightDisplayFOV=40.000000
 	ParamsClasses(0)=Class'ProtonWeaponParams'
+	ParamsClasses(1)=Class'ProtonWeaponParams'
 	FireModeClass(0)=Class'BWBP_OP_Pro.ProtonStreamPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.ProtonStreamSecondaryFire'
 	SelectAnimRate=1.250000
