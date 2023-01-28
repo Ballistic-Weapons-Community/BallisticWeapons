@@ -99,28 +99,31 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 {	
-	if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
+	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
 	{
-		if (IdleAnim == 'Idle')
-			IdleAnim = 'OpenIdle';
-		ReloadAnim = 'OpenReload';
-		SelectAnim = 'PulloutOpen';
-		PutDownAnim = 'PutawayOpen';
-	}
-	else
-	{
-		if (anim == FireMode[0].FireAnim || (anim == FireMode[1].FireAnim && !FireMode[1].IsFiring()))
+		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 		{
-			bPreventReload=false;
-			CycleDrum();
+			if (IdleAnim == 'Idle')
+				IdleAnim = 'OpenIdle';
+			ReloadAnim = 'OpenReload';
+			SelectAnim = 'PulloutOpen';
+			PutDownAnim = 'PutawayOpen';
 		}
-		if (IdleAnim == 'OpenIdle')
-			IdleAnim = 'Idle';
-		ReloadAnim = 'Reload';
-		SelectAnim = 'Pullout';
-		PutDownAnim = 'Putaway';
+		else
+		{
+			if (Anim == FireMode[0].FireAnim || (anim == FireMode[1].FireAnim && !FireMode[1].IsFiring()))
+			{
+				bPreventReload=false;
+				CycleDrum();
+			}
+			if (IdleAnim == 'OpenIdle')
+				IdleAnim = 'Idle';
+			ReloadAnim = 'Reload';
+			SelectAnim = 'Pullout';
+			PutDownAnim = 'Putaway';
+		}
 	}
-
+	
 	//Phase out Channel 1 if a sight fire animation has just ended.
 	if (anim == BFireMode[0].AimedFireAnim || anim == BFireMode[1].AimedFireAnim)
 	{
@@ -434,6 +437,7 @@ function float GetAIRating()
 
 defaultproperties
 {
+	SupportHandBone="Root01"
 	AIRating=0.5
 	CurrentRating=0.5
 	ShellBones(0)="Shell1"
@@ -448,7 +452,7 @@ defaultproperties
 	SpareShellBones(4)="SpareShell5"
     LockedOnSound=Sound'MenuSounds.select3'
     LockedOffSound=Sound'2K4MenuSounds.Generic.msfxDown'
-	bShouldDualInLoadout=False
+	bShouldDualInLoadout=True
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BWBP_OP_Tex.Bloodhound.BigIcon_PD97'
@@ -489,7 +493,7 @@ defaultproperties
 	HudColor=(B=250,G=150,R=150)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
 	InventoryGroup=2
-	GroupOffset=6
+	GroupOffset=13
 	PickupClass=Class'BWBP_OP_Pro.PD97Pickup'
 	PlayerViewOffset=(X=5.000000,Y=8.000000,Z=-10.000000)
 	AttachmentClass=Class'BWBP_OP_Pro.PD97Attachment'
