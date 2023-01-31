@@ -1396,7 +1396,16 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         bPossiblySwitch = true;
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
+		{
+			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
+		}
+		else
+		{
+			GenerateLayout(255);
+			ParamsClasses[GameStyleIndex].static.Initialize(self);
+		}
 	}
   	else if ( !W.HasAmmo() )
 		bPossiblySwitch = true;
@@ -1463,7 +1472,7 @@ simulated function ClientWeaponThrown()
 
 function DropFrom(vector StartLocation)
 {
-    local int m;
+    local int m, i;
 	local Pickup Pickup;
 
 	if (IsMaster()/* && OtherGun.bCanThrow*/)
@@ -1507,6 +1516,14 @@ function DropFrom(vector StartLocation)
             WeaponPickup(Pickup).bThrown = true;
     	Pickup.InitDroppedPickupFor(self);
 	    Pickup.Velocity = Velocity;
+		if (BallisticHandgunPickup(Pickup) != None)
+		{
+			BallisticHandgunPickup(Pickup).LayoutIndex = LayoutIndex;
+			for (i = 0; i < WeaponParams.AttachmentMaterialSwaps.Length; ++i)
+			{
+				BallisticHandgunPickup(Pickup).Skins[WeaponParams.AttachmentMaterialSwaps[i].Index] = WeaponParams.AttachmentMaterialSwaps[i].Material;
+			}
+		}
     }
     Destroy();
 }
