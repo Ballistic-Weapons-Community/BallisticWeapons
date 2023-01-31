@@ -521,6 +521,7 @@ defaultproperties
 	FireModeClass(1)=Class'BWBP_SKC_Pro.AH104SecondaryFire'
 	PutDownTime=1.000000
 	BringUpTime=1.300000
+	CockingBringUpTime=2.600000
 	SelectForce="SwitchToAssaultRifle"
 	Description="AH-104 'Hellfire' Handcannon||Manufacturer: Enravion Combat Solutions|Primary: HEAP Rounds|Secondary: Laser Sight||'The handcannon of the future.' Those were the words of Enravion as they publically released this modified version of the AM67. Nicknamed the 'Pounder' for its potent .600 explosive armor piercing rounds; the AH104 can legally carry the name handcannon. Its immense stopping power and anti-armor capability make this weapon a favorite of military leaders and personnel across the worlds. The full-steel AH104 is known to be absurdly heavy (12 lbs unloaded) in order to compensate for the power of its large rounds and cannot be dual wielded. It also comes equipped with a laser targeting system in place of the usual AM67 flash bulb."
 	Priority=162

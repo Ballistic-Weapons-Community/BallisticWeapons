@@ -104,6 +104,8 @@ defaultproperties
 		Weight=30
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MARS2'
 		InventorySize=11
+		bNeedCock=True
+		//BringUpTime=0.6
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -122,7 +124,8 @@ defaultproperties
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-MainGreen',Index=1)
-		InventorySize=35
+		InventorySize=11
+		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -141,7 +144,8 @@ defaultproperties
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-MainSplitter',Index=1)
-		InventorySize=35
+		InventorySize=11
+		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -160,9 +164,10 @@ defaultproperties
 		Weight=30
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.MARS.F2000-Irons',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-Irons',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.LK05.LK05-EOTechGlow',Index=4)
-		InventorySize=35
+		InventorySize=11
+		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -183,7 +188,8 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.MARS.F2000-IronArctic',Index=1)
-		InventorySize=35
+		InventorySize=11
+		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -204,7 +210,8 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-IronBlack',Index=1)
-		InventorySize=35
+		InventorySize=11
+		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -225,7 +232,8 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-IronWhite',Index=1)
-		InventorySize=35
+		InventorySize=11
+		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)

@@ -221,6 +221,9 @@ defaultproperties
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
      WaterTracerMode=MU_Both
      FlyBySound=(Sound=SoundGroup'BW_Core_WeaponSound.FlyBys.Bullet-Whizz',Volume=0.700000)
+     AmbientSound=Sound'BW_Core_WeaponSound.M75.M75Hum'
+     SoundVolume=48
+     SoundRadius=128.000000
      ReloadAnim="Reload_AR"
      ReloadAnimRate=0.700000
      bRapidFire=True

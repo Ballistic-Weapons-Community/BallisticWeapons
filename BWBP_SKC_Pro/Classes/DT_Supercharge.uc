@@ -17,10 +17,11 @@ defaultproperties
 {
      FlashF=0.100000
      FlashV=(X=2000.000000,Y=600.000000,Z=600.000000)
-     DeathStrings(0)="%o erupted into a show of lights and blood after being overcharged by %k."
-     DeathStrings(1)="%k popped %o like a balloon after charging them up."
-     DeathStrings(2)="%o's heart, mind, soul and body was reduced to mist by being supercharged thanks to %k."
-     DeathStrings(3)="%k reduced %o into a fine red mist after charging them beyond their limits."
+	 //DeathStrings(0)="%o erupted into a show of lights and blood after being overcharged by %k."
+     //DeathStrings(1)="%k popped %o like a balloon after charging them up."
+     //DeathStrings(2)="%o's heart, mind, soul and body was reduced to mist by being supercharged thanks to %k."
+     //DeathStrings(3)="%k reduced %o into a fine red mist after charging them beyond their limits."
+     DeathStrings(0)="%k SUPERCHARGED %o!"
      FemaleSuicides(0)="%o SUPERCHARGED herself."
      MaleSuicides(0)="%o SUPERCHARGED himself."
      BloodManagerName="BallisticProV55.BloodMan_Lightning"

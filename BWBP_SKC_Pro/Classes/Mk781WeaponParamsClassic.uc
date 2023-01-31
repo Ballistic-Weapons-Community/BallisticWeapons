@@ -196,6 +196,7 @@ defaultproperties
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=6
 		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
 		SightPivot=(Pitch=-64,Yaw=10)
@@ -219,6 +220,7 @@ defaultproperties
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=6
 		SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
 		ReloadAnimRate=1.000000
@@ -239,9 +241,10 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1014.M1014-MainCamoDesert',Index=1)
 		Weight=10
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=6
 		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
 		SightPivot=(Pitch=-64,Yaw=10)
@@ -264,9 +267,10 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1014.M1014-MainCamoDigital',Index=1)
 		Weight=10
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=6
 		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
 		SightPivot=(Pitch=-64,Yaw=10)
@@ -289,9 +293,10 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1014.M1014-MainCamoAmerica',Index=1)
 		Weight=3
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=6
 		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
 		SightPivot=(Pitch=-64,Yaw=10)
@@ -314,9 +319,10 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1014.M1014-MainCamoTiger',Index=1)
 		Weight=1
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=6
 		SightOffset=(X=10.000000,Y=-7.645,Z=11.90000)
 		SightPivot=(Pitch=-64,Yaw=10)

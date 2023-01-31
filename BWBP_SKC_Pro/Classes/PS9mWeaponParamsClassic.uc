@@ -107,6 +107,7 @@ defaultproperties
 		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
+		bNeedCock=True
 		MagAmmo=10
 		SightOffset=(X=-10.000000,Y=11.40000,Z=11.50000)
 		SightPivot=(Pitch=1024)

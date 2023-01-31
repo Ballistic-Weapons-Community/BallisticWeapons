@@ -110,6 +110,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.MARS.F2000-Irons',Index=1)
 		InventorySize=11
+		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.500000,Y=-6.350000,Z=23.150000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)

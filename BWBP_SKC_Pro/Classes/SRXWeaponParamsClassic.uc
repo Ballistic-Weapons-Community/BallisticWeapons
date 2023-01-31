@@ -177,7 +177,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-Rifle',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.SRX.SRX-Stock',Index=2)
 		WeaponMaterialSwaps(3)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=4)
 		WeaponMaterialSwaps(4)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=5)
@@ -187,6 +187,7 @@ defaultproperties
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		SightPivot=(Pitch=-128,Yaw=16)
@@ -211,9 +212,10 @@ defaultproperties
 		WeaponMaterialSwaps(5)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=6)
 		WeaponMaterialSwaps(6)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=11)
 		WeaponMaterialSwaps(7)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=12)
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		SightPivot=(Pitch=-128,Yaw=16)
@@ -231,15 +233,16 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_GrayHolo
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-Rifle',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-StockBlack',Index=2)
 		WeaponMaterialSwaps(3)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=5)
 		WeaponMaterialSwaps(4)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=6)
 		WeaponMaterialSwaps(5)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=11)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		SightPivot=(Pitch=-128,Yaw=16)
@@ -260,9 +263,10 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.SRX.SRX-StockRedBlack',Index=2)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		SightPivot=(Pitch=-128,Yaw=16)
@@ -280,12 +284,13 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_HighTechYellow
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-Rifle',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.SRX.SRX-StockYellowCamo',Index=2)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		SightPivot=(Pitch=-128,Yaw=16)
@@ -303,12 +308,13 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_HighTechGreen
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-Rifle',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.SRX.SRX-StockJungle',Index=2)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		SightPivot=(Pitch=-128,Yaw=16)
@@ -326,12 +332,13 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_HighTechRed
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-RifleDark',Index=1)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_OP_Tex.SRX.SRX-Rifle',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.SRX.SRX-StockRedCamo',Index=2)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=53,Scale=0f)
-		InventorySize=35
+		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		SightPivot=(Pitch=-128,Yaw=16)

@@ -151,6 +151,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=9
 		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
 		SightPivot=(Pitch=-800)
@@ -168,6 +169,7 @@ defaultproperties
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Holo",Scale=0.06)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=9
 		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
 		SightPivot=(Pitch=-800)
@@ -191,6 +193,7 @@ defaultproperties
 		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Holo",Scale=0.06)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=9
 		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
 		SightPivot=(Pitch=-800)
@@ -206,6 +209,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Holo",Slot=52,Scale=0f)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=9
 		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
 		SightPivot=(Pitch=-800)

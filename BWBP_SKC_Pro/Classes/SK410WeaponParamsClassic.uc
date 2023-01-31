@@ -114,6 +114,8 @@ defaultproperties
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		//BringUpTime=1.000000
+		bNeedCock=True
 		MagAmmo=6
 		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
 		SightPivot=(Pitch=150)
@@ -126,9 +128,10 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicRDSParams
 		Weight=10
-		InventorySize=35
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=6
 		SightPivot=(Pitch=150)
 		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
@@ -144,9 +147,10 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SK410.SK410-UC-CamoJungle',Index=1)
 		Weight=10
-		InventorySize=35
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=6
 		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
 		SightPivot=(Pitch=150)
@@ -161,9 +165,10 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SK410.SK410-UC-CamoDigital',Index=1)
 		Weight=10
-		InventorySize=35
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=6
 		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
 		SightPivot=(Pitch=150)
@@ -178,9 +183,10 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SK410.SK410-R-CamoBlood',Index=1)
 		Weight=3
-		InventorySize=35
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=6
 		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
 		SightPivot=(Pitch=150)
@@ -195,9 +201,10 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SK410.SK410-R-CamoTiger',Index=1)
 		Weight=3
-		InventorySize=35
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=6
 		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
 		SightPivot=(Pitch=150)
@@ -212,9 +219,10 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.SK410.SK410-Charged',Index=1)
 		Weight=1
-		InventorySize=35
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=6
 		SightOffset=(X=-8.000000,Y=-10.000000,Z=21.000000)
 		SightPivot=(Pitch=150)

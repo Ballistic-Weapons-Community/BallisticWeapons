@@ -181,6 +181,7 @@ defaultproperties
 		PlayerJumpFactor=0.750000
 		InventorySize=27
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=40
 		SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		ViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)

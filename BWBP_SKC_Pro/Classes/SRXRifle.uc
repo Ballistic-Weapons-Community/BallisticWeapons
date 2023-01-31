@@ -477,6 +477,7 @@ function float SuggestDefenseStyle()	{	return 0.8;	}
 defaultproperties
 {
 	DrainRate=0.15
+    bShowChargingBar=True
 	
 	RearSightBoneRot=(Yaw=16384)
 	
