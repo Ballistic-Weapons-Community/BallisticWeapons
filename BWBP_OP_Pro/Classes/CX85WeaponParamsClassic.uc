@@ -111,6 +111,7 @@ defaultproperties
 		SightingTime=0.700000
 		ReloadAnimRate=0.800000
 		DisplaceDurationMult=1
+		bNeedCock=True
 		MagAmmo=32
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'
