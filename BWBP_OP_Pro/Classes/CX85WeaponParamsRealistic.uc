@@ -118,6 +118,7 @@ defaultproperties
 		ReloadAnimRate=0.800000
 		DisplaceDurationMult=1
 		MagAmmo=32
+		bMagPlusOne=True
         ZoomType=ZT_Logarithmic
 		WeaponName="CX85 15mm Flechette Cannon"
         RecoilParams(0)=RecoilParams'RealisticRecoilParams'

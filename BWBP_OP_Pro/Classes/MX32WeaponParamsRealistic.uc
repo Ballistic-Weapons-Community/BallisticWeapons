@@ -141,6 +141,7 @@ defaultproperties
         PlayerJumpFactor=0.870000
         SightMoveSpeedFactor=0.75
 		MagAmmo=30
+		bMagPlusOne=True
 		SightingTime=0.55
 		DisplaceDurationMult=1.4
         InventorySize=12

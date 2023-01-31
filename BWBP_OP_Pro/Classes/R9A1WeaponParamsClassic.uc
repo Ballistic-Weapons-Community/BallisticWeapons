@@ -132,6 +132,7 @@ defaultproperties
 		Weight=30
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightPivot=(Roll=6000)
 		SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
@@ -152,6 +153,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.R9A1.R9_scope_SH2',Index=2)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightPivot=(Roll=6000)
 		SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
@@ -172,6 +174,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.R9A1.R9_scope_SH2',Index=2)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightPivot=(Roll=6000)
 		SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
@@ -192,6 +195,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.R9A1.R9_scope_SH2',Index=2)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightPivot=(Roll=6000)
 		SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
@@ -212,6 +216,7 @@ defaultproperties
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.R9A1.R9_scope_SH2',Index=2)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightPivot=(Roll=6000)
 		SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)

@@ -743,6 +743,7 @@ defaultproperties
 	SelectAnimRate=0.900000
 	PutDownTime=0.550000
 	BringUpTime=0.700000
+	CockingBringUpTime=1.500000
 	AIRating=0.850000
 	CurrentRating=0.850000
 	Description="RCS-715 Tactical Buster||Manufacturer: JAX Industrial Firm|Primary: Automatic Shotgun Blast|Secondary: Incendiary Grenade"

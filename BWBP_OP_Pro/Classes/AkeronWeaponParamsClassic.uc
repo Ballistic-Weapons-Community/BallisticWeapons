@@ -78,7 +78,7 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.500000
 		WarnTargetPct=0.300000
-		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.M202-FireDumb')
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.M202-FireDumbTriple')
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryBarrageFireParams

@@ -78,6 +78,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.400000
 		DisplaceDurationMult=1
+		bNeedCock=True
 		MagAmmo=8
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'ClassicRecoilParams'

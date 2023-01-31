@@ -111,6 +111,7 @@ defaultproperties
 		WeaponModes(2)=(bUnavailable=True)
 		InitialWeaponMode=0
 		MagAmmo=16
+		bMagPlusOne=True
 		WeaponName="CX61 15mm Flechette Rifle"
         RecoilParams(0)=RecoilParams'RealisticRecoilParams'
         AimParams(0)=AimParams'RealisticAimParams'
