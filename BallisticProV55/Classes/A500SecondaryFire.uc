@@ -17,7 +17,7 @@ const ACIDMAX = 5;
 
 function ModeHoldFire()
 {
-    if ( BW.HasMagAmmo(ThisModeNum) )
+    if ( BW.HasMagAmmo(ThisModeNum) && BW.GameStyleIndex == 0)
     {
         Super.ModeHoldFire();
 		BW.bPreventReload = True;
@@ -76,6 +76,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 
 defaultproperties
 {
+	 AcidLoad=2.5
      ChargingSound=Sound'GeneralAmbience.texture22'
      bFireOnRelease=True
      AmmoClass=Class'BallisticProV55.Ammo_A500Cells'

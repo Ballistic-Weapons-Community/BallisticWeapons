@@ -75,10 +75,11 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.500000
 		WarnTargetPct=0.300000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Fire1')	
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.Akeron.Akeron-Fire')	
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		AmmoPerFire=1
 		FireInterval=0.800000
 		FireEndAnim=	
 		FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'

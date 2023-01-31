@@ -21,15 +21,10 @@ replication
 
 simulated event PostNetReceive()
 {
+	Super.PostNetReceive();
+	
 	if (bGauss != bOldGauss)
 		bOldGauss = bGauss;
-		
-	Super.PostNetReceive();
-}
-
-simulated function SetGauss(bool bNewGauss)
-{
-	bGauss = bNewGauss;
 }
 
 // Does all the effects for an instant-hit kind of fire.
@@ -38,6 +33,8 @@ simulated function InstantFireEffects(byte Mode)
 {
 	local Vector HitLocation, Dir, Start;
 	local Material HitMat;
+
+	log("When firing: bGauss = "$ bGauss);
 
 	if (mHitLocation == vect(0,0,0))
 		return;
@@ -83,7 +80,8 @@ simulated function InstantFireEffects(byte Mode)
 	{
 		if (bGauss)
 			GaussImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
-		else ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+		else 
+			ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 	}
 }
 
@@ -94,6 +92,8 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	local Vector TipLoc, WLoc, WNorm;
 	local float Dist;
 	local bool bThisShot;
+	
+	log("When firing: bGauss = "$ bGauss);
 
 	if (class'BallisticMod'.default.EffectsDetailMode == 0)
 		return;
@@ -134,7 +134,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 				Tracer = Spawn(TracerClass, self, , TipLoc, Rotator(V - TipLoc));
 		}
 		if (Tracer != None)
-			Tracer.Initialize(Dist);
+			Tracer.Initialize(Dist,0.2);
 	}
 	// Spawn under water bullet effect
 	if ( Instigator != None && Instigator.PhysicsVolume.bWaterVolume && level.DetailMode == DM_SuperHigh && WaterTracerClass != None &&
@@ -149,7 +149,7 @@ simulated function SpawnTracer(byte Mode, Vector V)
 
 defaultproperties
 {
-	 GaussTracerClass=Class'BallisticProV55.TraceEmitter_HVCBlueZap'
+	 GaussTracerClass=Class'BallisticProV55.TraceEmitter_MarlinZap'
 	 GaussImpactManager=Class'BallisticProV55.IM_HVCBlueLightning'
      MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
@@ -158,6 +158,9 @@ defaultproperties
      BrassClass=Class'BallisticProV55.Brass_Rifle'
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'
      WaterTracerClass=Class'BallisticProV55.TraceEmitter_WaterBullet'
+	 TracerMode=MU_Primary
+	 InstantMode=MU_Primary
+	 FlashMode=MU_Primary
      FlyByMode=MU_Primary
      MeleeStrikeAnim="Melee_Smash"
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.Marlin_TPm'

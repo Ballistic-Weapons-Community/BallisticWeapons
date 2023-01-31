@@ -27,6 +27,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
 		FireInterval=0.08000
 		FireEndAnim=
+		BurstFireRateFactor=0.66
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
@@ -84,6 +85,10 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
         CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
+		WeaponModes(0)=(bUnavailable=True)
+		WeaponModes(1)=(ModeName="Burst of Three",ModeID="WM_Burst",Value=3.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_Burst",Value=5.000000)
+		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		PlayerSpeedFactor=0.950000
         PlayerJumpFactor=0.950000
         SightMoveSpeedFactor=0.8

@@ -77,6 +77,9 @@ defaultproperties
 		PlayerJumpFactor=0.9
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.550000
+		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(2)=(bUnavailable=True)
 		MagAmmo=50
         InventorySize=12
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'

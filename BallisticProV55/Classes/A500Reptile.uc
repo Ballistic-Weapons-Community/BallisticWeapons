@@ -22,6 +22,9 @@ simulated function PostBeginPlay()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
+	
+	bShowChargingBar=(BCRepClass.default.GameStyle == 0);
+	
 	if (BCRepClass.default.GameStyle == 1)
 	{
 		A500PrimaryFire(FireMode[0]).HipSpreadFactor = 1;
@@ -211,7 +214,10 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 simulated function float ChargeBar()
 {
-	return BFireMode[1].HoldTime / BFireMode[1].MaxHoldTime;
+	if (GameStyleIndex == 0)
+		return FMax(0, BFireMode[1].HoldTime / BFireMode[1].MaxHoldTime);
+		
+	return 0;
 }
 
 defaultproperties

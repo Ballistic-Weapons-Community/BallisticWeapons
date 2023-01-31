@@ -46,7 +46,7 @@ defaultproperties
 		PenetrateForce=20
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
-		FlashScaleFactor=0.100000
+		FlashScaleFactor=0.000000
 		Recoil=768.000000
 		Chaos=0.800000
 		BotRefireRate=0.7
@@ -95,7 +95,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		WeaponModes(0)=(ModeName="Lever Action",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Electro Shot",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+		WeaponModes(1)=(ModeName="Electro Shot",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(bUnavailable=True)
 		CockAnimRate=1.700000
 		ReloadAnimRate=2.000000

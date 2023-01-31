@@ -62,6 +62,10 @@ simulated function PostNetBeginPlay()
 			LightType = LT_None;
 		}
 	}
+	
+	//params update
+	ExplosiveImpactDamage = default.Damage * 1.3;
+	ImpactDamage = default.Damage;
 }
 
 simulated function InitEffects ()
@@ -194,12 +198,14 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 		if (!bHasImpacted && !bFireReleased && default.LifeSpan - LifeSpan > ArmingDelay)
 		{
 			class'BallisticDamageType'.static.GenericHurt (Other, ExplosiveImpactDamage, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
+			
 			DetonationType = DET_Direct;
 			Explode(HitLocation, vect(0,0,1));
 		}
 		else 
 		{
 			class'BallisticDamageType'.static.GenericHurt (Other, ImpactDamage * VSize(Velocity) / MaxSpeed, Instigator, HitLocation, MomentumTransfer * Normal(Velocity), ImpactDamageType);
+			
 			ReflectNorm = Location - Other.Location;
 			ReflectNorm.Z = 0;
 			ReflectNorm = Normal(ReflectNorm);

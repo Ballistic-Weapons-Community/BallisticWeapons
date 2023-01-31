@@ -10,68 +10,89 @@
 class MarlinRifle extends BallisticWeapon;
 
 var	 	float 		GaussLevel, MaxGaussLevel;
-var  	bool 		bGauss;
 var() 	Sound		GaussOnSound;
 
-replication
+var		Actor		GaussGlow1, GaussGlow2;
+
+simulated function AddGauss(optional float Amount)
 {
-	reliable if (Role == ROLE_Authority)
-		bGauss;
+	if (bBerserk)
+		Amount *= 1.2;
+		
+	GaussLevel = FMin(GaussLevel + Amount, MaxGaussLevel);
+	
+	if (GaussLevel == MaxGaussLevel && CurrentWeaponMode == 0)
+	{			
+		GaussGlow1.bHidden=false;
+		GaussGlow2.bHidden=false;
+		PlaySound(GaussOnSound,,0.7,,32);
+		ServerSwitchWeaponMode(1);
+		ClientSwitchWeaponMode(1);
+	}
 }
 
-//gauss code. can add to secondary fire to implement gauss bullet loading
-//backup for attachment - sometimes the incorrect tracer would display
+simulated function Tick (float DT)
+{
+	super.Tick(DT);
+
+	if (GameStyleIndex == 0)
+		AddGauss(DT);
+}
+
+//override to prevent weapon switching for arena
+exec simulated function SwitchWeaponMode (optional byte ModeNum)
+{
+	if (GameStyleIndex == 0)
+		return;
+		
+	super.SwitchWeaponMode(ModeNum);
+}
+
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	super.BringUp(PrevWeapon);
-	ServerSwitchGauss(bGauss);
+	
+	if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GaussGlow1 == None || GaussGlow1.bDeleteMe))
+		class'BUtil'.static.InitMuzzleFlash(GaussGlow1, class'MarlinChargeEffect', DrawScale, self, 'Gauss2');
+		
+	if (Instigator.IsLocallyControlled() && level.DetailMode == DM_SuperHigh && class'BallisticMod'.default.EffectsDetailMode >= 2 && (GaussGlow2 == None || GaussGlow2.bDeleteMe))
+		class'BUtil'.static.InitMuzzleFlash(GaussGlow2, class'MarlinChargeEffect', DrawScale, self, 'Gauss3');
+		
+	if (GaussGlow1 != None)
+	{
+		AttachToBone(GaussGlow1, 'Gauss2');
+		GaussGlow1.bHidden=true;
+	}
+	if (GaussGlow2 != None)
+	{
+		AttachToBone(GaussGlow2, 'Gauss3');
+		GaussGlow2.bHidden=true;
+	}
 }
 
-function ServerSwitchGauss(bool bNewGauss)
+simulated event Destroyed()
 {
-	bGauss = bNewGauss;
-	
-	MarlinAttachment(ThirdPersonActor).SetGauss(bGauss);
-	
-	if (bGauss)
-	{
-		WeaponModes[0].bUnavailable=true;
-		WeaponModes[1].bUnavailable=false;
-		CurrentWeaponMode=1;
-		ServerSwitchWeaponMode(1);
-	}
-	else
-	{
-		GaussLevel=0;
-		WeaponModes[0].bUnavailable=false;
-		WeaponModes[1].bUnavailable=true;
-		CurrentWeaponMode=0;
-		ServerSwitchWeaponMode(0);		
-	}
-	
-	ClientSwitchGauss(bNewGauss);
+	if (GaussGlow1 != None)
+		GaussGlow1.Destroy();
+		
+	if (GaussGlow2 != None)
+		GaussGlow2.Destroy();
+		
+	Super.Destroyed();
 }
 
-simulated function ClientSwitchGauss(bool bNewGauss)
+simulated function bool PutDown()
 {
-	bGauss = bNewGauss;
-
-	if (bGauss)
+	if (super.PutDown())
 	{
-		WeaponModes[0].bUnavailable=true;
-		WeaponModes[1].bUnavailable=false;
-		PlaySound(GaussOnSound,,0.7,,32);
+		if (GaussGlow1 != None)	GaussGlow1.Destroy();
+		if (GaussGlow2 != None)	GaussGlow2.Destroy();
+		return true;
 	}
-	else
-	{
-		GaussLevel=0;
-		WeaponModes[0].bUnavailable=false;
-		WeaponModes[1].bUnavailable=true;
-	}
-	
-	if (Role == ROLE_Authority)
-		MarlinAttachment(ThirdPersonActor).SetGauss(bGauss);
+	return false;
 }
+
+//================================================================
 
 function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocation, out Vector Momentum, class<DamageType> DamageType)
 {
@@ -202,14 +223,6 @@ simulated function WeaponTick (float DT)
 			GunLength = 1;
 		else if (GunLength == 1)
 			GunLength = default.GunLength;
-	}
-
-	if (GameStyleIndex == 0)
-	{
-		GaussLevel = FMin(GaussLevel + DT, MaxGaussLevel);
-		
-		if (GaussLevel == MaxGaussLevel && !bGauss)
-			ServerSwitchGauss(!bGauss);
 	}
 
 	super.WeaponTick(DT);
