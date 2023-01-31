@@ -36,7 +36,7 @@ struct LayoutInfo
 {
 	var() config byte 			GameStyleIndex;
 	var() config byte 			LayoutIndex;
-	var() config byte			LayoutName;
+	var() config string			LayoutName;
 };
 
 struct WeaponInfo
@@ -49,7 +49,8 @@ struct WeaponInfo
 	var() config Material		BigIconMaterial;
 	var() config byte			InventorySize;
 	var() config bool			bIsBW;
-	var() config array<LayoutInfo>		Layouts;
+	var() config array<LayoutInfo> 	Layouts;
+	var() config int 			TotalLayouts;
 };
 
 var() config array<WeaponInfo>	Weapons;
@@ -67,6 +68,28 @@ static function bool FindWeaponInfo(string CN, out WeaponInfo WI, optional out i
 			WI = default.Weapons[i];
 			return true;
 		}
+	Index = -1;
+	return false;
+}
+
+// Find a specific layout for a chosen weapon, output the LI and return success or failure to find the weapon
+static function bool FindLayoutInfo(string LN, WeaponInfo WI, byte GameStyleIndex, out LayoutInfo LI, optional out int Index)
+{
+	local int i,j;
+	
+	//first check if our required WeaponInfo exists in our list
+	if (FindWeaponInfo(WI.ClassName, WI, i))
+	{
+		for (j = 0; j < default.Weapons[i].TotalLayouts; j++)
+		{
+			if (default.Weapons[i].Layouts[j].LayoutName ~= LN && default.Weapons[i].Layouts[j].GameStyleIndex == GameStyleIndex)
+			{
+				Index = j;
+				LI = default.Weapons[i].Layouts[j];
+				return true;
+			}
+		}
+	}
 	Index = -1;
 	return false;
 }
@@ -103,7 +126,9 @@ static function WeaponInfo AddWeaponInfoName(string WeapClassName, optional out 
 static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 {
 	local WeaponInfo WI;
+	local LayoutInfo LI;
 	local Class<BallisticWeapon> BW;
+	local int GIIndex, LIIndex, TotalLayouts;
 
 	i=-1;
 	if (Weap == None)
@@ -114,7 +139,6 @@ static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 	WI.SmallIconMaterial = Weap.default.IconMaterial;
 	WI.SmallIconCoords	 = Weap.default.IconCoords;
 	WI.InventoryGroup	 = Weap.default.InventoryGroup;
-
 	
 	BW = Class<BallisticWeapon>(Weap);
 	if (BW != None)
@@ -122,6 +146,22 @@ static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 		WI.BigIconMaterial		= BW.default.BigIconMaterial;
 		WI.InventorySize		= BW.static.GetInventorySize();
 		WI.bIsBW				= true;
+		
+		for (GIIndex = 0; GIIndex <= 1; GIIndex++)
+		{
+			for (LIIndex = 0; LIIndex < BW.default.ParamsClasses[GIIndex].default.Layouts.length; LIIndex++)
+			{
+				LI.GameStyleIndex = GIIndex;
+				LI.LayoutIndex = LIIndex;
+				LI.LayoutName = "Layout name : "$string(TotalLayouts);
+				//LI.LayoutName = BW.default.ParamsClasses[GIIndex].default.Layouts[LIIndex].LayoutName;
+				
+				WI.Layouts[TotalLayouts] = LI;
+				TotalLayouts++;
+			}
+		}
+		
+		WI.TotalLayouts = TotalLayouts;
 	}
 
 	i = default.Weapons.length;
@@ -159,6 +199,7 @@ static function EndSession()
 
 defaultproperties
 {
+/*
      Weapons(0)=(ClassName="BallisticProV55.X3Knife",ItemName="X3 Knife",SmallIconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_X3',SmallIconCoords=(X2=127,Y2=31),InventoryGroup=1,BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_X3',InventorySize=2,bIsBW=True)
      Weapons(1)=(ClassName="BallisticProV55.A909SkrithBlades",ItemName="A909 Skrith Blades",SmallIconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_A909',SmallIconCoords=(X2=127,Y2=31),InventoryGroup=1,BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_A909',InventorySize=2,bIsBW=True)
      Weapons(2)=(ClassName="BallisticProV55.EKS43Katana",ItemName="EKS43 Katana",SmallIconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_EKS43',SmallIconCoords=(X2=127,Y2=31),InventoryGroup=1,BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_EKS43',InventorySize=2,bIsBW=True)
@@ -190,4 +231,5 @@ defaultproperties
      Weapons(28)=(ClassName="BallisticProV55.FP9Explosive",ItemName="FP9A5 Explosive Device",SmallIconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_FP9Explosive',SmallIconCoords=(X2=127,Y2=31),BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_FP9A5',bIsBW=True)
      Weapons(29)=(ClassName="BallisticProV55.BX5Mine",ItemName="BX5-SM Land Mine",SmallIconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_BX5',SmallIconCoords=(X2=127,Y2=31),BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_BX5',bIsBW=True)
      Weapons(30)=(ClassName="BallisticProV55.T10Grenade",ItemName="T10 Toxic Grenade",SmallIconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_T10',SmallIconCoords=(X2=127,Y2=31),BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_T10',bIsBW=True)
+*/
 }
