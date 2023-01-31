@@ -229,6 +229,7 @@ var   bool							bNeedCock;						// Gun needs to be cocked. Will be cocked when 
 var   bool							bPreventReload;					// Reload will not start. Used to prevent reloading while fire anim plays
 var   EReloadState					ReloadState;					// State of the gun during reloading or cocking. Set seperately on client and server
 var   bool							bServerReloading;				// Used to let clients know that server side is still reloading
+var   bool     						bMagPlusOne;              		// A true value means weapon can store an extra round in chamber.
 //-----------------------------------------------------------------------------
 // Recoil
 //-----------------------------------------------------------------------------
@@ -639,6 +640,9 @@ simulated function OnWeaponParamsChanged()
 
 	MagAmmo 					= WeaponParams.MagAmmo;
 	default.MagAmmo				= WeaponParams.MagAmmo;
+	
+	bMagPlusOne					= WeaponParams.bMagPlusOne;
+	default.bMagPlusOne			= WeaponParams.bMagPlusOne;
 
 	PlayerSpeedFactor 			= WeaponParams.PlayerSpeedFactor;
 	default.PlayerSpeedFactor	= WeaponParams.PlayerSpeedFactor;
@@ -651,17 +655,13 @@ simulated function OnWeaponParamsChanged()
 	
 	CockAnimRate 					= WeaponParams.CockAnimRate;
 	default.CockAnimRate				= WeaponParams.CockAnimRate;
+	
+	bNeedCock						= WeaponParams.bNeedCock;
 
     ZoomType                    = WeaponParams.ZoomType;
 
 	if (WeaponParams.ScopeViewTex != None)
 		ScopeViewTex = WeaponParams.ScopeViewTex;
-		
-	if (WeaponParams.MinZoom != 0)
-		MinZoom = WeaponParams.MinZoom;
-		
-	if (WeaponParams.MaxZoom != 0)
-		MaxZoom = WeaponParams.MaxZoom;
 	
 	bAdjustHands				= WeaponParams.bAdjustHands;
 	
@@ -900,7 +900,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 	// Shovel loop ended, start it again
 	if (ReloadState == RS_PostShellIn)
 	{
-		if (MagAmmo >= default.MagAmmo || Ammo[0].AmmoAmount < 1 )
+		if (MagAmmo - (int(!bNeedCock) * int(!bNonCocking) * int(bMagPlusOne))  >= default.MagAmmo || Ammo[0].AmmoAmount < 1 )
 		{
 			PlayShovelEnd();
 			ReloadState = RS_EndShovel;
@@ -1154,7 +1154,7 @@ simulated function Notify_ShellIn()
 		ReloadState = RS_PostShellIn;
 		if (Role == ROLE_Authority)
 		{
-			AmmoNeeded = Min(ShovelIncrement, default.MagAmmo - MagAmmo);
+			AmmoNeeded = Min(ShovelIncrement, default.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0)));
 
 			if (AmmoNeeded > Ammo[0].AmmoAmount)
 				MagAmmo+=Ammo[0].AmmoAmount;
@@ -1183,11 +1183,11 @@ simulated function Notify_ClipIn()
 	PlayOwnedSound(ClipInSound.Sound,ClipInSound.Slot,ClipInSound.Volume,ClipInSound.bNoOverride,ClipInSound.Radius,ClipInSound.Pitch,ClipInSound.bAtten);
 	if (level.NetMode != NM_Client)
 	{
-		AmmoNeeded = default.MagAmmo-MagAmmo;
+		AmmoNeeded = default.MagAmmo - MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking) * int(MagAmmo > 0));
 		if (AmmoNeeded > Ammo[0].AmmoAmount)
 			MagAmmo+=Ammo[0].AmmoAmount;
 		else
-			MagAmmo = default.MagAmmo;
+			MagAmmo += AmmoNeeded;
 		Ammo[0].UseAmmo (AmmoNeeded, True);
 	}
 }
@@ -2651,7 +2651,7 @@ function ServerStartReload (optional byte i)
 	if (ReloadState != RS_None)
 		return;
 		
-	if (MagAmmo >= default.MagAmmo)
+	if (MagAmmo >= default.MagAmmo + (int(!bNeedCock) * int(bMagPlusOne) * int(!bNonCocking)))
 	{
 		if (bNeedCock)
 			ServerCockGun(0);
@@ -3500,6 +3500,7 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 		{
 			GenerateLayout(255);
 			ParamsClasses[GameStyleIndex].static.Initialize(self);
+            MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
 		}
     }
  	
@@ -5288,6 +5289,7 @@ defaultproperties
 	 CockAnim="Cock"
 	 CockAnimRate=1.000000
      CockSelectAnim="PulloutFancy"
+	 CockSelectAnimRate=1.000000
      CockSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
 	 
      ReloadAnim="Reload"

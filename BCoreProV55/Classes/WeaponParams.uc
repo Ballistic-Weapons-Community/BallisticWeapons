@@ -100,6 +100,8 @@ var() float					DisplaceDurationMult;   // Duration multiplier for aim displacem
 // Ammo
 //-----------------------------------------------------------------------------
 var() int			        MagAmmo;				//Ammo currently in magazine for Primary and Secondary. Max is whatever the default is.
+var() bool					bMagPlusOne;			//A true value means weapon can store an extra round in chamber. Primarily used in realistic.
+var() bool					bNeedCock;				//A true value means this gun is drawn with no round in the chamber, will trigger the cock anim or CockingDrawAnim
 //-----------------------------------------------------------------------------
 // Pistol Dual Wielding
 //-----------------------------------------------------------------------------
