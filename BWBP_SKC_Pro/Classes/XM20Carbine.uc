@@ -595,6 +595,7 @@ defaultproperties
      FireModeClass(0)=Class'BWBP_SKC_Pro.XM20PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.XM20SecondaryFire'
      BringUpTime=0.800000
+	 CockingBringUpTime=1.200000
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.600000
      CurrentRating=0.600000

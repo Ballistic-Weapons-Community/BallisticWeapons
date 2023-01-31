@@ -179,6 +179,7 @@ defaultproperties
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=-10.000000,Y=-0.650000,Z=27.200000)
 		SightPivot=(Pitch=-128,Yaw=16)
@@ -193,6 +194,7 @@ defaultproperties
 		FireParams(2)=FireParams'ClassicPrimaryFireParamsAcid'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+
 	Layouts(0)=WeaponParams'ClassicParams'
 
 

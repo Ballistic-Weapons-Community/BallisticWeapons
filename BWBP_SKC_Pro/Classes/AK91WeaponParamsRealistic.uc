@@ -114,6 +114,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.210000
 		MagAmmo=25
+		bMagPlusOne=True
 		SightOffset=(X=-10.000000,Y=-0.050000,Z=16.500000)
 		SightPivot=(Pitch=64)
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)

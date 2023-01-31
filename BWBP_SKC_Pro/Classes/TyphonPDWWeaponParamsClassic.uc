@@ -105,6 +105,7 @@ defaultproperties
 		PlayerJumpFactor=1
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1
+		bNeedCock=True
 		MagAmmo=25
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'

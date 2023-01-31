@@ -101,6 +101,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=11
 		MagAmmo=25
+		bMagPlusOne=True
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.24
 		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)

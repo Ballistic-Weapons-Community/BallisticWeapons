@@ -195,7 +195,8 @@ defaultproperties
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
-		MagAmmo=8
+		MagAmmo=9
+		bMagPlusOne=False //Animation actually accounts for this, magAmmo is +1 instead
 		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)
@@ -221,7 +222,8 @@ defaultproperties
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
-		MagAmmo=8
+		MagAmmo=9
+		bMagPlusOne=False //Animation actually accounts for this, magAmmo is +1 instead
 		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto",bUnavailable=True)
 		WeaponModes(1)=(ModeName="Semi-Automatic",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(ModeName="X-007 Loaded",bUnavailable=True)

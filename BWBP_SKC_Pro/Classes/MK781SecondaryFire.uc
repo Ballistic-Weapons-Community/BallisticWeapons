@@ -175,74 +175,74 @@ simulated state ElektroSlug
 
 simulated state ElektroShot
 {
-// Get aim then run several individual traces using different spread for each one
-function DoFireEffect()
-{
-    local Vector StartTrace;
-    local Rotator R, Aim;
-	local int i;
-
-	Aim = GetFireAim(StartTrace);
-
-     if (Level.NetMode == NM_DedicatedServer)
-        BW.RewindCollisions();
-
-	for (i=0;i<TraceCount;i++)
+	// Get aim then run several individual traces using different spread for each one
+	function DoFireEffect()
 	{
-		R = Rotator(GetFireSpread() >> Aim);
-		DoTrace(StartTrace, R);
+		local Vector StartTrace;
+		local Rotator R, Aim;
+		local int i;
+
+		Aim = GetFireAim(StartTrace);
+
+		 if (Level.NetMode == NM_DedicatedServer)
+			BW.RewindCollisions();
+
+		for (i=0;i<TraceCount;i++)
+		{
+			R = Rotator(GetFireSpread() >> Aim);
+			DoTrace(StartTrace, R);
+		}
+
+		if (Level.NetMode == NM_DedicatedServer)
+			BW.RestoreCollisions();
+
+		ApplyHits();
+
+		// Tell the attachment the aim. It will calculate the rest for the clients
+		SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
+
+		Super(BallisticFire).DoFireEffect();
 	}
 
-    if (Level.NetMode == NM_DedicatedServer)
-        BW.RestoreCollisions();
-		
-	ApplyHits();
-
-	// Tell the attachment the aim. It will calculate the rest for the clients
-	SendFireEffect(none, Vector(Aim)*TraceRange.Max, StartTrace, 0);
-
-	Super(BallisticFire).DoFireEffect();
-}
-
-// Even if we hit nothing, this is already taken care of in DoFireEffects()...
-function NoHitEffect (Vector Dir, optional vector Start, optional vector HitLocation, optional vector WaterHitLoc)
-{
-	local Vector V;
-
-	V = Instigator.Location + Instigator.EyePosition() + Dir * TraceRange.Min;
-	if (TracerClass != None && Level.DetailMode > DM_Low && class'BallisticMod'.default.EffectsDetailMode > 0 && VSize(V - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()) > 200 && FRand() < TracerChance)
-		Spawn(TracerClass, instigator, , BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation(), Rotator(V - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()));
-	if (ImpactManager != None && WaterHitLoc != vect(0,0,0) && Weapon.EffectIsRelevant(WaterHitLoc,false) && bDoWaterSplash)
-		ImpactManager.static.StartSpawn(WaterHitLoc, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLoc), 9, Instigator);
-}
-
-// Spawn the impact effects here for StandAlone and ListenServers cause the attachment won't do it
-simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
-{
-	local int Surf;
-
-	if (ImpactManager != None && WaterHitLoc != vect(0,0,0) && Weapon.EffectIsRelevant(WaterHitLoc,false) && bDoWaterSplash)
-		ImpactManager.static.StartSpawn(WaterHitLoc, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLoc), 9, Instigator);
-
-	if (!Other.bWorldGeometry && Mover(Other) == None)
-		return false;
-
-	if (!bAISilent)
-		Instigator.MakeNoise(1.0);
-	if (ImpactManager != None && Weapon.EffectIsRelevant(HitLocation,false))
+	// Even if we hit nothing, this is already taken care of in DoFireEffects()...
+	function NoHitEffect (Vector Dir, optional vector Start, optional vector HitLocation, optional vector WaterHitLoc)
 	{
-		if (Vehicle(Other) != None)
-			Surf = 3;
-		else if (HitMat == None)
-			Surf = int(Other.SurfaceType);
-		else
-			Surf = int(HitMat.SurfaceType);
-		ImpactManager.static.StartSpawn(HitLocation, HitNormal, Surf, instigator);
-		if (TracerClass != None && Level.DetailMode > DM_Low && class'BallisticMod'.default.EffectsDetailMode > 0 && VSize(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()) > 200 && FRand() < TracerChance)
-			Spawn(TracerClass, instigator, , BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation(), Rotator(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()));
+		local Vector V;
+
+		V = Instigator.Location + Instigator.EyePosition() + Dir * TraceRange.Min;
+		if (TracerClass != None && Level.DetailMode > DM_Low && class'BallisticMod'.default.EffectsDetailMode > 0 && VSize(V - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()) > 200 && FRand() < TracerChance)
+			Spawn(TracerClass, instigator, , BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation(), Rotator(V - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()));
+		if (ImpactManager != None && WaterHitLoc != vect(0,0,0) && Weapon.EffectIsRelevant(WaterHitLoc,false) && bDoWaterSplash)
+			ImpactManager.static.StartSpawn(WaterHitLoc, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLoc), 9, Instigator);
 	}
-	return true;
-}
+
+	// Spawn the impact effects here for StandAlone and ListenServers cause the attachment won't do it
+	simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Material HitMat, Actor Other, optional vector WaterHitLoc)
+	{
+		local int Surf;
+
+		if (ImpactManager != None && WaterHitLoc != vect(0,0,0) && Weapon.EffectIsRelevant(WaterHitLoc,false) && bDoWaterSplash)
+			ImpactManager.static.StartSpawn(WaterHitLoc, Normal((Instigator.Location + Instigator.EyePosition()) - WaterHitLoc), 9, Instigator);
+
+		if (!Other.bWorldGeometry && Mover(Other) == None)
+			return false;
+
+		if (!bAISilent)
+			Instigator.MakeNoise(1.0);
+		if (ImpactManager != None && Weapon.EffectIsRelevant(HitLocation,false))
+		{
+			if (Vehicle(Other) != None)
+				Surf = 3;
+			else if (HitMat == None)
+				Surf = int(Other.SurfaceType);
+			else
+				Surf = int(HitMat.SurfaceType);
+			ImpactManager.static.StartSpawn(HitLocation, HitNormal, Surf, instigator);
+			if (TracerClass != None && Level.DetailMode > DM_Low && class'BallisticMod'.default.EffectsDetailMode > 0 && VSize(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()) > 200 && FRand() < TracerChance)
+				Spawn(TracerClass, instigator, , BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation(), Rotator(HitLocation - BallisticAttachment(Weapon.ThirdPersonActor).GetModeTipLocation()));
+		}
+		return true;
+	}
 
 }
 

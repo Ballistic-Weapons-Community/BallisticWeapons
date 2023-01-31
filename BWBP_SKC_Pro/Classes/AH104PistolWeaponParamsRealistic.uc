@@ -116,6 +116,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=7
+		bMagPlusOne=True
 		SightOffset=(X=-30.000000,Y=-0.700000,Z=22.600000)
 		ViewOffset=(X=8,Y=8,Z=-18)
 		WeaponName="AH104 .600 Handcannon"

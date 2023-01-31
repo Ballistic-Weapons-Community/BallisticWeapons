@@ -118,6 +118,7 @@ defaultproperties
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
+		bMagPlusOne=True
 		SightOffset=(X=0.000000,Y=-3.000000,Z=18.000000)
 		SightingTime=0.3
 		ViewOffset=(X=1,Y=7,Z=-13)

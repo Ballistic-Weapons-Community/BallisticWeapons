@@ -37,6 +37,29 @@ defaultproperties
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'
 	End Object
+		
+    //=================================================================
+    // SECONDARY FIRE - Todo
+    //=================================================================	
+	
+	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.AK47Knife'
+		SpawnOffset=(X=12.000000,Y=10.000000,Z=-15.000000)
+		Speed=8500.000000
+		MaxSpeed=8500.000000
+		Damage=90
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.AK47.AK47-KnifeFire',Volume=1.350000)
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		FireInterval=0.650000
+		PreFireTime=0.450000
+		PreFireAnim="PreKnifeFire"
+		FireAnim="KnifeFire"	
+		FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'
+	End Object
 				
 	//=================================================================
 	// RECOIL
@@ -87,6 +110,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
 	
     Layouts(0)=WeaponParams'RealisticParams'

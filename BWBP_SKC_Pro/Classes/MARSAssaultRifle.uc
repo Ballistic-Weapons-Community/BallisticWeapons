@@ -862,6 +862,7 @@ defaultproperties
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MARSSecondaryFire'
 	PutDownTime=0.700000
 	BringUpTime=0.330000
+	CockingBringUpTime=1.200000
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.700000
 	CurrentRating=0.700000

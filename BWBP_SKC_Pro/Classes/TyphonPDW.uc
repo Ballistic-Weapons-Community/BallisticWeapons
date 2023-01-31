@@ -747,9 +747,10 @@ defaultproperties
      SelectForce="SwitchToAssaultRifle"
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50In',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353OutA',USize1=128,VSize1=128,USize2=256,VSize2=256,Color1=(B=255,G=0,R=0,A=255),Color2=(B=68,G=65,R=62,A=188),StartSize1=96,StartSize2=69)
 	 NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
-	 AIRating=0.600000
+     AIRating=0.600000
      CurrentRating=0.600000
-	 Description="The LRX-5 'Typhon' was a popular energy weapon used alongside the LS14 prior to the first Skrith War, but was quickly phased out due to its ineffectiveness against Skrith energy shielding. It wasn’t until the Battle of Gahenna where the Typhon found its value in the war. A Cryon mechanised force was bearing down on Frontier Tech's vaunted energy research labs, but the invaders were unable to punch through the base defenders' brand new weapon mounted energy shields. The engineering team evacuated safely with the tech, and since then upgraded Typhons are still seen in the hands of the core world military and police forces. These post war LRX-5s are all outfitted with the X57 shield projector, a reverse-engineered portable energy shield."
+//     Description="Before the Skrith wars broke out, photon weaponry was declared inhumane by the Neo-Geneva convention due to the effects it had against animal test subjects.  It wasn’t until one battle on Gahanna where photon weaponry found it’s value against the Cyron troopers, discombobulating their gyroscopic sensors long enough to turn the tide, living to fight another day.  Since then, photon weaponry has been deemed legal to use in both wartime situations and underground blood sports. The EP110 is the latest in this field, a bullpup SMG not only able to clear out enclosed spaces, but it also has a discombobulator field able to disorient and destroy anyone caught in its path."
+     Description="The LRX-5 'Typhon' was a popular energy weapon used alongside the LS14 prior to the first Skrith War, but was quickly phased out due to its ineffectiveness against Skrith energy shielding. It wasn’t until the Battle of Gahenna where the Typhon found its value in the war. A Cryon mechanised force was bearing down on Frontier Tech's vaunted energy research labs, but the invaders were unable to punch through the base defenders' brand new weapon mounted energy shields. The engineering team evacuated safely with the tech, and since then upgraded Typhons are still seen in the hands of the core world military and police forces. These post war LRX-5s are all outfitted with the X57 shield projector, a reverse-engineered portable energy shield."
      ManualLines(0)="Fires laser shots. Has a decent fire rate with moderate DPS and low recoil, but has inaccuracy problems and prefire wind-up time."	 
 	 ManualLines(1)="Employs an energy shield. Pressing altfire again removes the shield."
 	 ManualLines(2)="Can fire rapid or power laser shots. Power shots have higher DPS and AoE damage, at the cost of a higher wind-up time and lower fire rate."
@@ -761,6 +762,7 @@ defaultproperties
      PlayerViewOffset=(X=-4.000000,Y=6.000000,Z=-11.000000)
      PutDownTime=0.800000
      BringUpTime=1.000000
+	 CockingBringUpTime=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.TyphonPDWAttachment'
      IconMaterial=Texture'BWBP_SKC_Tex.Typhon.SmallIcon_Typhon'
      IconCoords=(X2=127,Y2=31)

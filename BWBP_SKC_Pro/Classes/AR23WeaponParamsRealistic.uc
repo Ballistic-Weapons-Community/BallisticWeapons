@@ -120,6 +120,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.27
 		MagAmmo=9
+		bMagPlusOne=True
 		SightOffset=(X=-10,Y=-0.000000,Z=15.700000)
 		SightPivot=(Pitch=-800)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)

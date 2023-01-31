@@ -157,6 +157,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=36
 		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Manual",ModeID="WM_SemiAuto",Value=1.000000)

@@ -102,6 +102,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		InventorySize=11
+		bNeedCock=True
+		//BringUpTime=0.6
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -115,7 +117,9 @@ defaultproperties
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 	End Object
+
 	Layouts(0)=WeaponParams'ClassicParams'
+
 
 
 }

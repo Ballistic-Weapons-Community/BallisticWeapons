@@ -117,6 +117,7 @@ defaultproperties
 		PlayerJumpFactor=0.750000
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=8
 		ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
 		SightOffset=(X=-40.000000,Y=13.500000,Z=20.100000)
@@ -128,6 +129,7 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+
 	Layouts(0)=WeaponParams'ClassicParams'
 
 

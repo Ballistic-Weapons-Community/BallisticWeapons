@@ -675,6 +675,7 @@ defaultproperties
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MK781PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MK781SecondaryFire'
 	PutDownTime=0.500000
+	CockingBringUpTime=0.600000
 	AIRating=0.800000
 	CurrentRating=0.800000
 	Description="The Avenger Mk 781 is the special ops version of the M763. It boasts a modernized firing and recoil suppression system and has been praised for its field effectiveness. A good weapon in a pinch, the M781 has been known to save many soldiers' lives. ||This particular model is the MK781 Mod 0, which uses a new lightweight polymer frame and is designed specifically for tactical wetwork. Tube length and barrel length are shortened to cut weight, leaving the Mark 781 with a shell capacity of 6. As part of its wetwork upgrades, this Mark 781 has gained the ability to affix a special suppressor designed for flechette sabot ammunition and slugs. Operators are advised not to load high-powered rounds or buckshot into the suppressor due to potential suppressor damage and failure."

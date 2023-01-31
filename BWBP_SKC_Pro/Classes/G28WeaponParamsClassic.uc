@@ -7,7 +7,7 @@ defaultproperties
     //=================================================================	
 	
     Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
-        ProjectileClass=Class'BWBP_SKC_Pro.G28Thrown'
+        ProjectileClass=Class'BWBP_SKC_Pro.G28Thrown_Exp'
         SpawnOffset=(X=25.000000,Y=10.000000,Z=2.000000)
         Speed=800.000000
         MaxSpeed=1500.000000
@@ -27,7 +27,7 @@ defaultproperties
     //=================================================================	
 	
     Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-		ProjectileClass=Class'BWBP_SKC_Pro.G28Rolled'
+		ProjectileClass=Class'BWBP_SKC_Pro.G28Rolled_Exp'
 		Speed=200.000000
         MaxSpeed=500.000000
     End Object

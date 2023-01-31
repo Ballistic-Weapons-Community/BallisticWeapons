@@ -198,6 +198,7 @@ defaultproperties
     PutDownAnimRate=1.600000
     PutDownTime=0.350000
     BringUpTime=0.600000
+	CockingBringUpTime=2.000000
     AIRating=0.850000
     CurrentRating=0.850000
     Description="The SK-410 shotgun is a large-bore, compact shotgun based off the popular AK-490 design. While it is illegal on several major planets, this powerful weapon and its signature explosive shotgun shells are almost ubiquitous. A weapon originally designed for breaching use, the SK-410 is now found in the hands of civillians and terrorists throughout the worlds. It had become so prolific with outer colony terrorist groups that the UTC began the SKAS assault weapon program in an effort to find a powerful shotgun of their own."

@@ -99,6 +99,7 @@ defaultproperties
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
+		bNeedCock=True
 		MagAmmo=25
 		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
