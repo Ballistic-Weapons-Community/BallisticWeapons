@@ -52,7 +52,8 @@ enum EZoomType
 // Layouts
 //-----------------------------------------------------------------------------
 var() int					Weight;					// How likely it is for this layout to be chosen, higher is more likely
-var() String				LayoutName;
+var() String				LayoutName;				// The layout name in menus
+var() String				LayoutTags;				// Internal tag used to change gun functionality eg gauss, explosive, suppressed
 //-----------------------------------------------------------------------------
 // Movement speed
 //-----------------------------------------------------------------------------
