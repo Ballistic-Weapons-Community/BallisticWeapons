@@ -130,6 +130,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightOffset=(X=-50.000000,Z=17.000000)
 		SightPivot=(Pitch=512)
@@ -149,6 +150,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightOffset=(X=-50.000000,Z=17.000000)
 		SightPivot=(Pitch=512)
@@ -168,6 +170,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightOffset=(X=-50.000000,Z=17.000000)
 		SightPivot=(Pitch=512)
@@ -181,6 +184,6 @@ defaultproperties
 	
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams-RNS'
-	Layouts(2)=WeaponParams'ClassicParams-C'
+	Layouts(12)=WeaponParams'ClassicParams-C'
 
 }

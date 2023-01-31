@@ -117,6 +117,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=4
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=-10.000000,Y=-0.725000,Z=10.300000)
 		SightPivot=(Pitch=1024,Roll=-1024)
@@ -133,8 +134,9 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.MD24.MD24BlackShine',Index=1)
 		Weight=10
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=-10.000000,Y=-0.725000,Z=10.300000)
 		SightPivot=(Pitch=1024,Roll=-1024)
@@ -151,8 +153,9 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.MD24.MD24DesertShine',Index=1)
 		Weight=10
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=-10.000000,Y=-0.725000,Z=10.300000)
 		SightPivot=(Pitch=1024,Roll=-1024)
@@ -169,8 +172,9 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.MD24.MD24BlueShine',Index=1)
 		Weight=3
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=-10.000000,Y=-0.725000,Z=10.300000)
 		SightPivot=(Pitch=1024,Roll=-1024)
@@ -187,8 +191,9 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.MD24.MD24RedShine',Index=1)
 		Weight=3
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=4
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=-10.000000,Y=-0.725000,Z=10.300000)
 		SightPivot=(Pitch=1024,Roll=-1024)

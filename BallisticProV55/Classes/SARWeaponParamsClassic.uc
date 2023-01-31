@@ -145,6 +145,7 @@ defaultproperties
 		Weight=30
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=40
 		SightOffset=(Z=15.600000)
 		SightPivot=(Pitch=600)
@@ -166,6 +167,7 @@ defaultproperties
 		Weight=10
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=40
 		SightOffset=(Z=15.600000)
 		SightPivot=(Pitch=600)
@@ -187,6 +189,7 @@ defaultproperties
 		Weight=10
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=40
 		SightOffset=(Z=15.600000)
 		SightPivot=(Pitch=600)
@@ -208,6 +211,7 @@ defaultproperties
 		Weight=10
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=40
 		SightOffset=(Z=15.600000)
 		SightPivot=(Pitch=600)
@@ -229,6 +233,7 @@ defaultproperties
 		Weight=5
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=40
 		SightOffset=(Z=15.600000)
 		SightPivot=(Pitch=600)

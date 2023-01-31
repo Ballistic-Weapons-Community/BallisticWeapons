@@ -96,6 +96,7 @@ defaultproperties
 		PlayerJumpFactor=0.750000
 		InventorySize=25
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=7
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
@@ -115,6 +116,7 @@ defaultproperties
 		PlayerJumpFactor=0.750000
 		InventorySize=25
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=7
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
@@ -137,6 +139,7 @@ defaultproperties
 		PlayerJumpFactor=0.750000
 		InventorySize=25
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=7
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000

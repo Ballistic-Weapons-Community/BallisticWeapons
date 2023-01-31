@@ -110,6 +110,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=12
 		SightOffset=(X=-15.000000,Y=-0.350000,Z=8.750000)
 		SightPivot=(Pitch=1024,Roll=-1024)
@@ -122,13 +123,43 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 
+	Begin Object Class=WeaponParams Name=ClassicParams_Scope
+		Weight=10
+		
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BW_Core_WeaponTex.M806.M806_Main-SD',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'ONSstructureTextures.CoreGroup.Invisible',Index=2)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_PistolRail',BoneName="ScopeRail",Scale=0.1)
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Scope",Scale=0.07)
+		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
+		ZoomType=ZT_Fixed
+		
+		PlayerSpeedFactor=1.100000
+		InventorySize=5
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=12
+		SightOffset=(X=-15.000000,Y=-0.350000,Z=8.750000)
+		SightPivot=(Pitch=1024,Roll=-1024)
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParamsBurst'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Begin Object Class=WeaponParams Name=ClassicParams_Gold
+		Weight=1
+		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.Dragon.Dragon_Main-SD',Index=1)
-		Weight=1
+
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=5
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=12
 		SightOffset=(X=-15.000000,Y=-0.350000,Z=8.750000)
 		SightPivot=(Pitch=1024,Roll=-1024)
@@ -142,7 +173,8 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams_Gold'
+	Layouts(1)=WeaponParams'ClassicParams_Scope'
+	Layouts(2)=WeaponParams'ClassicParams_Gold'
 
 
 }

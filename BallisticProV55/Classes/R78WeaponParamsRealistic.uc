@@ -100,6 +100,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.300000
 		MagAmmo=5
+		bMagPlusOne=True
         ZoomType=ZT_Logarithmic
 		ViewOffset=(X=1.000000,Y=6.500000,Z=-12.000000)
 		SightOffset=(X=10.500000,Y=0.000000,Z=17.0500000)

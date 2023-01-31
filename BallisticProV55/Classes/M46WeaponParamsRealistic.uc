@@ -113,6 +113,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
         SightingTime=0.300000
 		MagAmmo=24
+		bMagPlusOne=True
 		ViewOffset=(X=5.000000,Y=4.750000,Z=-9.000000)
 		ViewPivot=(Pitch=384)
 		SightOffset=(X=0.000000,Z=11.3500000)
@@ -135,6 +136,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=RealisticRDSParams
         SightingTime=0.210000
         MagAmmo=24
+		bMagPlusOne=True
 		InventorySize=12
         SightPivot=(Pitch=-300,Roll=0)
         SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)

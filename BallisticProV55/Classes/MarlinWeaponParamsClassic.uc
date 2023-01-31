@@ -32,7 +32,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-		FireInterval=0.800000
+		FireInterval=0.300000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True
 		FireEndAnim=
@@ -108,7 +108,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=0.800000
+		FireInterval=0.700000
 		AmmoPerFire=0
 		BurstFireRateFactor=1.00
 		PreFireAnim="PrepSwipe"
@@ -161,6 +161,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=8
 		SightOffset=(X=4.000000,Z=12.600000)
 		SightPivot=(Pitch=384)
@@ -179,6 +180,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=8
 		SightOffset=(X=4.000000,Z=12.600000)
 		SightPivot=(Pitch=384)
@@ -197,6 +199,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=8
 		SightOffset=(X=4.000000,Z=12.600000)
 		SightPivot=(Pitch=384)
@@ -215,6 +218,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=1f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=8
 		SightOffset=(X=4.000000,Y=-0.100000,Z=10.500000)
 		SightPivot=(Pitch=128)
@@ -233,6 +237,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=1f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=8
 		SightOffset=(X=4.000000,Y=-0.100000,Z=10.500000)
 		SightPivot=(Pitch=128)
@@ -251,6 +256,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=12
 		SightOffset=(X=4.000000,Z=12.600000)
 		SightPivot=(Pitch=384)

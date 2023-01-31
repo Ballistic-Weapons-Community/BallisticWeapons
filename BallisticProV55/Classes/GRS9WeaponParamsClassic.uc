@@ -171,6 +171,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=18
 		SightOffset=(X=-15.000000,Y=-0.550000,Z=10.100000)
 		SightPivot=(Pitch=768,Roll=-1024)
@@ -194,6 +195,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=18
 		SightOffset=(X=-15.000000,Y=-0.550000,Z=10.100000)
 		SightPivot=(Pitch=768,Roll=-1024)
@@ -217,6 +219,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=18
 		SightOffset=(X=-15.000000,Y=-0.550000,Z=10.100000)
 		SightPivot=(Pitch=768,Roll=-1024)
@@ -240,6 +243,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=18
 		SightOffset=(X=-15.000000,Y=-0.550000,Z=10.100000)
 		SightPivot=(Pitch=768,Roll=-1024)
@@ -263,6 +267,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=18
 		SightOffset=(X=-15.000000,Y=-0.550000,Z=10.100000)
 		SightPivot=(Pitch=768,Roll=-1024)
@@ -286,6 +291,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=18
 		SightOffset=(X=-15.000000,Y=-0.550000,Z=10.100000)
 		SightPivot=(Pitch=768,Roll=-1024)
@@ -309,6 +315,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=18
 		SightOffset=(X=-15.000000,Y=-0.550000,Z=10.100000)
 		SightPivot=(Pitch=768,Roll=-1024)

@@ -108,6 +108,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=25
 		SightOffset=(Y=-1.000000,Z=12.500000)
 		SightPivot=(Pitch=600,Roll=-1024)
@@ -121,6 +122,7 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=ClassicRDSParams
         SightingTime=0.350000
+		bNeedCock=True
         MagAmmo=24
         InventorySize=12
         SightPivot=(Pitch=-300,Roll=0)

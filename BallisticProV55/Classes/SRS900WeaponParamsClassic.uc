@@ -94,6 +94,7 @@ defaultproperties
 		Weight=30
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=20.000000,Z=11.750000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -116,6 +117,7 @@ defaultproperties
 		Weight=20
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=20.000000,Z=11.750000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -138,6 +140,7 @@ defaultproperties
 		ZoomType=ZT_Irons
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=20.000000,Z=11.750000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -160,6 +163,7 @@ defaultproperties
 		ZoomType=ZT_Irons
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=20.000000,Z=11.750000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -182,6 +186,7 @@ defaultproperties
 		ZoomType=ZT_Irons
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=20.000000,Z=11.750000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -204,6 +209,7 @@ defaultproperties
 		ZoomType=ZT_Irons
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=20.000000,Z=11.750000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -226,6 +232,7 @@ defaultproperties
 		ZoomType=ZT_Irons
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=20.000000,Z=11.750000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -248,6 +255,7 @@ defaultproperties
 		ZoomType=ZT_Irons
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=20.000000,Z=11.750000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
@@ -270,6 +278,7 @@ defaultproperties
 		ZoomType=ZT_Irons
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=20.000000,Z=11.750000)
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)

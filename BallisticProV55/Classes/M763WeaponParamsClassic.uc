@@ -117,8 +117,9 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightOffset=(X=5.000000,Z=18.500000)
 		SightPivot=(Pitch=512)
@@ -135,8 +136,9 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.M763-K.M763-KShotgunShiney',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_KBP_Tex.M763-K.M763-KSmallShiney',Index=2)
 		Weight=10
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightOffset=(X=5.000000,Z=18.500000)
 		SightPivot=(Pitch=512)
@@ -153,8 +155,9 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.M781.M781_LargeShine',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.M781.M781_SmallShine',Index=2)
 		Weight=3
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightOffset=(X=5.000000,Z=18.500000)
 		SightPivot=(Pitch=512)
@@ -173,6 +176,7 @@ defaultproperties
 		Weight=3
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightOffset=(X=5.000000,Z=18.500000)
 		SightPivot=(Pitch=512)

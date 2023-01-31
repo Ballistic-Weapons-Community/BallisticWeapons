@@ -215,7 +215,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.A48.A48Skin_SD',Index=1)
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=300
 		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
@@ -238,7 +238,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SWC_Tex.AcidPistol.A512_ExpShine',Index=1)
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=300
 		SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)

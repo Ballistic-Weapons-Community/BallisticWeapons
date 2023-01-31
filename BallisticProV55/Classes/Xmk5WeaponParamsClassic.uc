@@ -109,9 +109,14 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=1f)
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=45
 		SightOffset=(X=1.000000,Z=17.750000)
 		SightPivot=(Pitch=200)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -126,9 +131,14 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=45
 		SightOffset=(X=1.000000,Z=14.900000)
 		SightPivot=(Pitch=200)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
@@ -150,9 +160,14 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=45
 		SightOffset=(X=-20.000000,Z=13.000000)
 		SightPivot=(Pitch=200)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

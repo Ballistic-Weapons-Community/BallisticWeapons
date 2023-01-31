@@ -111,6 +111,7 @@ defaultproperties
 		Weight=30
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=7
 		SightOffset=(Z=25.000000)
 		SightPivot=(Pitch=512)
@@ -127,6 +128,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MRS138-Camos.MRSArctic-Main-Shine',Index=1)
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=7
 		SightOffset=(Z=25.000000)
 		SightPivot=(Pitch=512)
@@ -143,6 +145,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MRS138-Camos.MRSGold-Main-Shine',Index=1)
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(Z=25.000000)
 		SightPivot=(Pitch=512)

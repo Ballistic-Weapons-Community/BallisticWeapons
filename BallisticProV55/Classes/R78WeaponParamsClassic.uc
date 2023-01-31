@@ -93,6 +93,7 @@ defaultproperties
 		Weight=30
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=7
 		SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
 		SightPivot=(Roll=-1024)

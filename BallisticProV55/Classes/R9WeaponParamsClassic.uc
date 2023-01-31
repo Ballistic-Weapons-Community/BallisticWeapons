@@ -93,6 +93,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=13,Scale=0f)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightOffset=(X=-2.000000,Z=15.400000)
 		SightPivot=(Pitch=512)

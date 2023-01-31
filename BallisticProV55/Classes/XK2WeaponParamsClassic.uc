@@ -114,6 +114,7 @@ defaultproperties
 		Weight=30
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=50
 		SightOffset=(Y=-0.550000,Z=14.900000)
 		SightPivot=(Pitch=600,Roll=-512)
@@ -137,9 +138,10 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Silver
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.XK3.XK3-NickelShine',Index=1)
-		Weight=5
-		InventorySize=35
+		Weight=3
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=50
 		SightOffset=(Y=-0.550000,Z=14.900000)
 		SightPivot=(Pitch=600,Roll=-512)
@@ -161,6 +163,7 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.XK2Camo.XK2-Gold-Shine',Index=1)
 		InventorySize=35
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=100
 		SightOffset=(Y=-0.550000,Z=14.900000)
 		SightPivot=(Pitch=600,Roll=-512)

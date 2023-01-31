@@ -140,7 +140,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
 		Weight=10
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=6
 		SightOffset=(X=-20.000000,Y=-1.800000,Z=25.100000)
@@ -160,7 +160,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
 		Weight=3
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=6
 		SightOffset=(X=-20.000000,Y=-1.800000,Z=25.100000)

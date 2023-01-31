@@ -132,7 +132,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=2.000000
+		FireInterval=0.400000
 		BurstFireRateFactor=1.00
 		PreFireAnim="GrenadePrepFire"
 		FireAnim="GrenadeFire"	
@@ -186,6 +186,7 @@ defaultproperties
 		InitialWeaponMode=2
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		bNeedCock=True
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -217,6 +218,7 @@ defaultproperties
 		InitialWeaponMode=1
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		bNeedCock=True
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Sil'
@@ -249,6 +251,7 @@ defaultproperties
 		InitialWeaponMode=2
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		bNeedCock=True
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Sil'
@@ -279,27 +282,62 @@ defaultproperties
 		InitialWeaponMode=2
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		bNeedCock=True
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams_Long'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams_GaussTiger
+	Begin Object Class=WeaponParams Name=ClassicParams_Jungle
 		Weight=10
+		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SATiger',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SBTiger',Index=2)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Scope",Scale=0.15)
+		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
+		ZoomType=ZT_Fixed
+		
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
 		SightOffset=(Y=-1.000000,Z=14.800000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
 		InitialWeaponMode=1
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		bNeedCock=True
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_GaussTiger
+		Weight=10
+		
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SATiger',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SBTiger',Index=2)
+		ScopeViewTex=Texture'BWBP_SKC_Tex.M30A2.M30A2-Scope'
+		ZoomType=ZT_Logarithmic
+		
+		InventorySize=12
+		SightMoveSpeedFactor=0.500000
+		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
+		SightOffset=(Y=-1.000000,Z=14.800000)
+		SightPivot=(Pitch=600,Roll=-1024)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		bNeedCock=True
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
@@ -308,19 +346,23 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Gold
 		Weight=1
+		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.M50Camos.M50_Main1_S1',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.M50Camos.M50_Main2_S1',Index=2)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.M50Camos.M50_Laser_S1',Index=4)
 		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_CC_Tex.M50Camos.M50_Main3_S1',Index=5)
+		
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
 		SightOffset=(Y=-1.000000,Z=14.800000)
 		SightPivot=(Pitch=600,Roll=-1024)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
+		bNeedCock=True
 		MagAmmo=80
 		ReloadAnimRate=1.500000
 		CockAnimRate=1.500000
@@ -334,9 +376,9 @@ defaultproperties
 	Layouts(1)=WeaponParams'ClassicParams_Stealth' //M50 (Black, Suppressed, Smoke GL, Burst)
 	Layouts(2)=WeaponParams'ClassicParams_AdvStealth'//M50A3 Stealth (Black, Suppressed, EO Tech)
 	Layouts(3)=WeaponParams'ClassicParams_Desert' //M50A3 Desert (Tan, Irons)
-	//Layouts(4)=WeaponParams'ClassicParams_Jungle' //M50A1 Jungle (Jungle, Scope, GL, Burst)
-	Layouts(4)=WeaponParams'ClassicParams_GaussTiger' //M50A1 Gauss Prototype (M30A2, Screen Scope, Gauss, Burst)
-	Layouts(5)=WeaponParams'ClassicParams_Gold' //M50 (Gold, GL)
+	Layouts(4)=WeaponParams'ClassicParams_Jungle' //M50A1 Jungle (Jungle, Scope, GL, Burst)
+	Layouts(5)=WeaponParams'ClassicParams_GaussTiger' //M50A1 Gauss Prototype (M30A2, Screen Scope, Gauss, Burst)
+	Layouts(6)=WeaponParams'ClassicParams_Gold' //M50 (Gold, GL)
 
 
 }

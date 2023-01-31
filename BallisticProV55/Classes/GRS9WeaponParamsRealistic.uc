@@ -157,6 +157,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=19
+		bMagPlusOne=True
 		ViewOffset=(X=6.000000,Y=7.000000,Z=-8.000000)
 		SightOffset=(X=-15.000000,Y=-1.000000,Z=17.600000)
 		SightPivot=(Pitch=-25,Roll=-0)

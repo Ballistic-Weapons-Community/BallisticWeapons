@@ -107,6 +107,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=-15.000000,Y=-0.700000,Z=12.300000)
 		SightPivot=(Pitch=1024,Roll=-1024)
@@ -125,8 +126,9 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=1f)
 		Weight=2
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=10.000000,Y=0.04,Z=7.950000)
 		SightPivot=(Pitch=0,Roll=-0)
@@ -147,8 +149,9 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		Weight=3
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=-15.000000,Y=-0.700000,Z=12.300000)
 		SightPivot=(Pitch=1024,Roll=-1024)
@@ -169,8 +172,9 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		Weight=1
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=8
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=-15.000000,Y=-0.700000,Z=12.300000)
 		SightPivot=(Pitch=1024,Roll=-1024)
@@ -187,7 +191,7 @@ defaultproperties
 	
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams_RDS'
-	Layouts(2)=WeaponParams'ClassicParams_Gray'
-	Layouts(3)=WeaponParams'ClassicParams_Silver'
+	Layouts(2)=WeaponParams'ClassicParams_Gray' //AH104
+	Layouts(3)=WeaponParams'ClassicParams_Silver' //AH999
 
 }

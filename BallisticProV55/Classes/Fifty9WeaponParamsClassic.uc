@@ -109,6 +109,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=45
 		SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
 		SightPivot=(Pitch=900,Roll=-800)
@@ -129,6 +130,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=45
 		SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
 		SightPivot=(Pitch=900,Roll=-800)
@@ -149,6 +151,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=45
 		SightOffset=(X=-10.000000,Y=-0.800000,Z=13.100000)
 		SightPivot=(Pitch=900,Roll=-800)

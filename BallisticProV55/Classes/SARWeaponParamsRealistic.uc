@@ -156,6 +156,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.22
 		MagAmmo=35
+		bMagPlusOne=True
 		ViewOffset=(X=-8.000000,Y=7.000000,Z=-11.000000)
 		SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)

@@ -148,6 +148,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=-15.000000,Y=-0.900000,Z=13.200000)
 		SightPivot=(Pitch=768,Roll=-1024)
@@ -169,8 +170,9 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.RS8-K.RS8-K-Shiney',Index=1)
 		Weight=10
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=-15.000000,Y=-0.900000,Z=13.200000)
 		SightPivot=(Pitch=768,Roll=-1024)
@@ -192,8 +194,9 @@ defaultproperties
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.M1911.M1911-Shiny',Index=1)
 		Weight=10
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=-15.000000,Y=-0.900000,Z=13.200000)
 		SightPivot=(Pitch=768,Roll=-1024)
@@ -214,8 +217,9 @@ defaultproperties
 		LayoutMesh=SkeletalMesh'BWBP_CC_Anim.FPm_RS8X3'
 		Weight=10
 		PlayerSpeedFactor=1.100000
-		InventorySize=35
+		InventorySize=6
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=-15.000000,Y=-0.900000,Z=13.200000)
 		SightPivot=(Pitch=768,Roll=-1024)
