@@ -45,7 +45,10 @@
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
 class Game_BWConflict extends xTeamGame
-	config(BallisticProV55);
+	config(BallisticProV55)
+	transient
+	HideDropDown
+	CacheExempt;
 
 var int					RoundCounter, RoundWinner, RoundTime;
 var NavigationPoint		StartA, StartB;

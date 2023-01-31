@@ -73,10 +73,11 @@ defaultproperties
 		Chaos=0.500000
 		BotRefireRate=0.500000
 		WarnTargetPct=0.300000
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.G5.G5-Fire1')	
+		FireSound=(Sound=Sound'BWBP_OP_Sounds.Akeron.Akeron-Fire')
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		AmmoPerFire=1
 		FireInterval=0.800000
 		FireEndAnim=	
 		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
@@ -130,6 +131,7 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryBarrageFireParams'
 		FireParams(1)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(1)=FireParams'ArenaSecondaryFireParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
 }

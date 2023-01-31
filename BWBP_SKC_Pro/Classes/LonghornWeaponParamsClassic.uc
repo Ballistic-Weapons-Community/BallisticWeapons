@@ -11,6 +11,7 @@ defaultproperties
 		//ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenadeNoDud'
 		ProjectileClass=Class'BWBP_SKC_Pro.LonghornClusterGrenade'
 		Speed=3500.000000
+		MaxSpeed=3500.000000
 		Damage=70
 		DamageRadius=450.000000
 		MomentumTransfer=20000.000000
@@ -33,7 +34,7 @@ defaultproperties
 		FireInterval=0.40000
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True	
-	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams'
 	End Object
 		
 	//=================================================================
@@ -62,7 +63,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
 		BurstFireRateFactor=1.00
 		bCockAfterFire=True	
-	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
 	End Object
 		
 	//=================================================================

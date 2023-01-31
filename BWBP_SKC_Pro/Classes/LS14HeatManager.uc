@@ -31,7 +31,7 @@ function PostBeginPlay()
 
 function AddHeat(float Amount)
 {
-	Heat = FMin (Heat + Amount, MaxHeat);
+	Heat = FClamp(Heat + Amount, 0, MaxHeat);
 	NextHeatDecayTime = Level.TimeSeconds + HeatDeclineDelay;
 }
 
@@ -46,9 +46,9 @@ simulated function Tick(float DT)
 		return;
 	}
 	
-	if (Heat > 0 && Level.TimeSeconds > NextHeatDecayTime)
+	if (Heat >= 0 && Level.TimeSeconds > NextHeatDecayTime)
 	{
-		Heat -= Decay;
+		Heat = FMax(0, Heat - Decay);
 		if (Heat <= 0)
 		{
 			SetBase(None);

@@ -8,11 +8,17 @@
 //=============================================================================
 class MarlinPrimaryFire extends BallisticRangeAttenFire;
 
+var() 	BUtil.FullSound			GaussSound;	//extra Gauss sound to play
+var 	bool					bGauss;
+
 //// server propagation of firing ////
 function ServerPlayFiring()
 {
 	if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+
+	if (GaussSound.Sound != None && bGauss)
+		Weapon.PlayOwnedSound(GaussSound.Sound,GaussSound.Slot,GaussSound.Volume,GaussSound.bNoOverride,GaussSound.Radius,GaussSound.Pitch,GaussSound.bAtten);
 
 	CheckClipFinished();
 
@@ -60,11 +66,40 @@ function PlayFiring()
 	if (BallisticFireSound.Sound != None)
 		Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
 
+	if (GaussSound.Sound != None && bGauss)
+		Weapon.PlayOwnedSound(GaussSound.Sound,GaussSound.Slot,GaussSound.Volume,GaussSound.bNoOverride,GaussSound.Radius,GaussSound.Pitch,GaussSound.bAtten);
+
 	CheckClipFinished();
+}
+
+simulated event ModeDoFire()
+{
+	if (!AllowFire())
+        return;
+		
+	bGauss = (MarlinRifle(BW).GaussLevel == MarlinRifle(BW).MaxGaussLevel);
+
+	super.ModeDoFire();
+	
+	if (bGauss)
+	{
+		MarlinRifle(BW).GaussGlow1.bHidden=true;
+		MarlinRifle(BW).GaussGlow2.bHidden=true;
+		MarlinRifle(BW).GaussLevel = 0;			
+		MarlinRifle(BW).ServerSwitchWeaponMode(0);
+		MarlinRifle(BW).ClientSwitchWeaponMode(0);
+	}
+}
+
+simulated function SendFireEffect(Actor Other, Vector HitLocation, Vector HitNormal, int Surf, optional Vector WaterHitLoc)
+{
+	MarlinAttachment(Weapon.ThirdPersonActor).bGauss = bGauss;
+	super.SendFireEffect(Other, HitLocation, HitNormal, Surf, WaterHitLoc);
 }
 
 defaultproperties
 {
+	 GaussSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart2',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
 	 CutOffStartRange=3072
 	 CutOffDistance=6144
 	 RangeAtten=0.75

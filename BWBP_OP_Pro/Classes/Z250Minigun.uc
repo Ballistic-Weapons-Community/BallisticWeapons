@@ -492,7 +492,8 @@ defaultproperties
 	GrenOpenSound=Sound'BW_Core_WeaponSound.M50.M50GrenOpen'
 	GrenLoadSound=Sound'BW_Core_WeaponSound.M50.M50GrenLoad'
 	GrenCloseSound=Sound'BW_Core_WeaponSound.M50.M50GrenClose'
-	BarrelSpinSound=Sound'BWBP_OP_Sounds.Z250.Z250-Motor'
+	BarrelSpinSound=Sound'BW_Core_WeaponSound.XMV-850.XMV-BarrelSpinLoop'
+	//BarrelSpinSound=Sound'BWBP_OP_Sounds.Z250.Z250-Motor'
 	BarrelStopSound=Sound'BWBP_OP_Sounds.Z250.Z250-SpinDown'
 	BarrelStartSound=Sound'BWBP_OP_Sounds.Z250.Z250-SpinUp'
 	PlayerSpeedFactor=0.900000
@@ -520,7 +521,7 @@ defaultproperties
 	WeaponModes(1)=(ModeName="600 RPM",ModeID="WM_FullAuto")
 	WeaponModes(2)=(ModeName="800 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 	WeaponModes(3)=(ModeName="900 RPM",ModeID="WM_FullAuto")
-	WeaponModes(4)=(ModeName="1200 RPM",ModeID="WM_FullAuto")
+	WeaponModes(4)=(ModeName="1200 RPM",ModeID="WM_FullAuto",bUnavailable=True)
 	 
 	RotationSpeeds(0)=0.22
 	RotationSpeeds(1)=0.33

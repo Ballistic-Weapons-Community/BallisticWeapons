@@ -1863,7 +1863,7 @@ function PlayDyingSound()
 simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
 {
 	//Exclude Matrix because it's cheap. Treat incoming Jakobs as the default character.
-	if ( (rec.Species == None) || (PlayerReplicationInfo.CharacterName ~= "Matrix") || (PlayerReplicationInfo.CharacterName ~= "Jakob") || ForceDefaultCharacter() )
+	/*if ( (rec.Species == None) || (PlayerReplicationInfo.CharacterName ~= "Matrix") || (PlayerReplicationInfo.CharacterName ~= "Enigma") || ForceDefaultCharacter() )
 		rec = class'xUtil'.static.FindPlayerRecord(GetDefaultCharacter());
 		
 	if (PlayerReplicationInfo.CharacterName ~= "Abaddon")
@@ -1878,6 +1878,11 @@ simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
     else if (PlayerReplicationInfo.CharacterName ~= "Jakob")
 		rec = class'xUtil'.static.FindPlayerRecord("JakobB");
 
+	// If you're using an advantage-conferring skin you're going to be as bright as the bloody Sun
+	if (rec.DefaultName == "July")
+		AmbientGlow = 64;
+	*/
+
     Species = rec.Species;
 	RagdollOverride = rec.Ragdoll;
 
@@ -1888,10 +1893,6 @@ simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
 			return;
 	}
 	ResetPhysicsBasedAnim();
-
-	// If you're using an advantage-conferring skin you're going to be as bright as the bloody Sun
-	if (rec.DefaultName == "July")
-		AmbientGlow = 64;
 
 	BloodSet = class'BWBloodSetHunter'.static.GetBloodSetFor(self);
 }

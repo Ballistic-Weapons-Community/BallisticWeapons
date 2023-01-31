@@ -36,7 +36,7 @@ function DoFireEffect()
  	Aim = Rotator(GetFireSpread() >> Aim);
  
  	AK91ChargeRifle(BW).ConicalBlast(Damage*2, 512, Vector(Aim)); //Wave damage here scales with heat on the main gun
-	AK91ChargeRifle(BW).AddHeat(-10.00);
+	AK91ChargeRifle(BW).AddHeat(-100.00);
 	Super.DoFireEffect();
 }
 

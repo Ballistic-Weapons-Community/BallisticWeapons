@@ -6,7 +6,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Game_BWConflictCTFMaps extends Game_BWConflict;
+class Game_BWConflictCTFMaps extends Game_BWConflict
+	transient
+	HideDropDown
+	CacheExempt;
 
 simulated event PostBeginPlay()
 {
