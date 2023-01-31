@@ -116,6 +116,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=8
 		SightOffset=(X=4.000000,Z=12.600000)
 		SightPivot=(Pitch=384)
@@ -126,6 +127,7 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+
 	Layouts(0)=WeaponParams'ClassicParams'
 
 

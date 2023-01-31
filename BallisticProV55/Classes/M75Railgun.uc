@@ -40,10 +40,6 @@ simulated event PreBeginPlay()
 	{
 		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
 	}
-	if (BCRepClass.default.GameStyle != 0)
-	{
-		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
-	}
 }
 
 simulated event PostNetBeginPlay()

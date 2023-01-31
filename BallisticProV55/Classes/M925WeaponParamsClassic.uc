@@ -80,6 +80,7 @@ defaultproperties
 		PlayerSpeedFactor=0.850000
 		InventorySize=25
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=50
 		SightOffset=(X=-20.000000,Z=9.150000)
 		SightPivot=(Pitch=512)

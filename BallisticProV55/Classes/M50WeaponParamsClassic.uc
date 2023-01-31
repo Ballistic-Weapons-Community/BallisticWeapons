@@ -65,7 +65,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=2.000000
+		FireInterval=0.400000
 		BurstFireRateFactor=1.00
 		PreFireAnim="GrenadePrepFire"
 		FireAnim="GrenadeFire"	
@@ -117,12 +117,15 @@ defaultproperties
 		InitialWeaponMode=2
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		bNeedCock=True
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+
 	Layouts(0)=WeaponParams'ClassicParams'
+
 
 
 }

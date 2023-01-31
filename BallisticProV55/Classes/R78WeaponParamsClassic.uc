@@ -92,9 +92,11 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=7
 		SightOffset=(X=10.000000,Y=-1.600000,Z=17.000000)
 		SightPivot=(Roll=-1024)
+		ViewOffset=(X=6.000000,Y=8.000000,Z=-11.500000)
         ZoomType=ZT_Logarithmic
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.250000
@@ -103,6 +105,7 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
 
 

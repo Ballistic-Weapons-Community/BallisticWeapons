@@ -144,6 +144,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=40
 		SightOffset=(Z=15.600000)
 		SightPivot=(Pitch=600)
@@ -158,6 +159,7 @@ defaultproperties
 		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
+
 	Layouts(0)=WeaponParams'ClassicParams'
 
 

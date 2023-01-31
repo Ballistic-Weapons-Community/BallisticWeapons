@@ -106,6 +106,7 @@ defaultproperties
 		PlayerSpeedFactor=1.100000
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=14
 		SightOffset=(X=-15.000000,Y=-0.700000,Z=12.300000)
 		SightPivot=(Pitch=1024,Roll=-1024)
@@ -119,7 +120,7 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-	Layouts(0)=WeaponParams'ClassicParams'
 
+	Layouts(0)=WeaponParams'ClassicParams'
 
 }

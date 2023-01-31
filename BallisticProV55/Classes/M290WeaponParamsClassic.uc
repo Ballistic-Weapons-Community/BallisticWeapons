@@ -129,6 +129,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
 		MagAmmo=10
 		SightOffset=(X=-50.000000,Z=17.000000)
 		SightPivot=(Pitch=512)
@@ -139,7 +140,9 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+
 	Layouts(0)=WeaponParams'ClassicParams'
+
 
 
 }

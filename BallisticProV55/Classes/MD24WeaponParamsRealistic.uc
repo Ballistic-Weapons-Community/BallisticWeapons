@@ -134,6 +134,7 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object
+
 	Layouts(0)=WeaponParams'RealisticParams'
 
 

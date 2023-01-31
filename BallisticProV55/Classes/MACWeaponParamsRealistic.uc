@@ -83,6 +83,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.4500000
 		MagAmmo=5
+		bMagPlusOne=True
         ZoomType=ZT_Logarithmic
 		WeaponName="J2329-HAMR Assault Cannon"
 		ViewOffset=(X=3.000000,Y=12.000000,Z=-3.000000)
