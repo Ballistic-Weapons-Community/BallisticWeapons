@@ -111,7 +111,7 @@ simulated state FullChargedRail
 			KickForce = default.KickForce * RailPower;
 			FireRecoil = default.FireRecoil * RailPower;
 			FirePushbackForce = default.FirePushbackForce * RailPower;
-			BW.RecoilDeclineTime = BW.default.RecoilDeclineTime * RailPower;
+			BW.RcComponent.DeclineTime = BW.RcComponent.default.DeclineTime * RailPower;
 			BW.RcComponent.DeclineDelay = BW.RcComponent.default.DeclineDelay * RailPower;
 			
 			BallisticFireSound.Volume=0.6 + RailPower * 0.8;

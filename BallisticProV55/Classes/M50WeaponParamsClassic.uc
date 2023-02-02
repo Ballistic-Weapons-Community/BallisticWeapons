@@ -175,6 +175,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
+		LayoutName="Default"
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
@@ -195,6 +196,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Stealth
 		Weight=10
+		LayoutName="Metal Gear Solid"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinA-D',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinB-D',Index=2)
@@ -228,6 +230,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_AdvStealth
 		Weight=10
 		
+		LayoutName="Big Boss"
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_M50A3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinA-D',Index=1)
@@ -261,6 +264,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Desert
 		Weight=10
 		
+		LayoutName="Raiden"
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_M50A3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinA-D',Index=1)
@@ -292,6 +296,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Jungle
 		Weight=10
 		
+		LayoutName="The Lion Sleeps Tonight"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SATiger',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SBTiger',Index=2)
@@ -320,6 +325,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_GaussTiger
 		Weight=10
 		
+		LayoutName="Rawr XD"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SATiger',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SBTiger',Index=2)
@@ -347,6 +353,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Gold
 		Weight=1
 		
+		LayoutName="Money Money Money"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.M50Camos.M50_Main1_S1',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.M50Camos.M50_Main2_S1',Index=2)

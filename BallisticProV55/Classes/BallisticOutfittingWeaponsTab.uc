@@ -13,6 +13,7 @@ class BallisticOutfittingWeaponsTab extends UT2K4TabPanel config(BallisticProV55
 // Use GUILoadOutItems to select weapons. This control has some text with an image that cycles when you click on it
 var automated GUILoadOutItem Item_Melee, Item_SideArm, Item_Primary, Item_Secondary, Item_Grenade;
 var automated GUIComboBox	 cb_Melee, cb_SideArm, cb_Primary, cb_Secondary, cb_Grenade;
+var automated GUIComboBox	 cb_Melee_LI, cb_SideArm_LI, cb_Primary_LI, cb_Secondary_LI, cb_Grenade_LI;
 var automated moComboBox		cb_Presets;
 var Automated GUIImage Box_Melee, Box_SideArm, Box_Primary, Box_Secondary, Box_Grenade, Box_Streak1, Box_Streak2, Box_Streak3, MeleeBack, SideArmBack, PrimaryBack, SecondaryBack, GrenadeBack;
 var Automated GUIButton BDone, BCancel, BSavePreset;
@@ -340,7 +341,6 @@ function FillItemInfos(int Group, int Index)
 	}
 }
 
-
 function bool InternalOnKeyEvent(out byte Key, out byte State, float delta)
 {
 	return false;
@@ -406,16 +406,30 @@ function InternalOnChange(GUIComponent Sender)
 		return;
 		
 	if (Sender == cb_Melee)
+	{
 		Item_Melee.SetItem(cb_Melee.GetExtra());
-		
+		LoadLayouts(0, Item_Melee.Index, cb_Melee_LI);
+	}
 	else if (Sender == cb_SideArm)
+	{
 		Item_SideArm.SetItem(cb_SideArm.GetExtra());
+		LoadLayouts(1, Item_SideArm.Index, cb_SideArm_LI);
+	}
 	else if (Sender == cb_Primary)
+	{
 		Item_Primary.SetItem(cb_Primary.GetExtra());
+		LoadLayouts(2, Item_Primary.Index, cb_Primary_LI);
+	}
 	else if (Sender == cb_Secondary)
+	{
 		Item_Secondary.SetItem(cb_Secondary.GetExtra());
+		LoadLayouts(3, Item_Secondary.Index, cb_Secondary_LI);
+	}
 	else if (Sender == cb_Grenade)
+	{
 		Item_Grenade.SetItem(cb_Grenade.GetExtra());
+		LoadLayouts(4, Item_Grenade.Index, cb_Grenade_LI);
+	}
 		
 	else if (Sender == cb_Presets && cb_Presets.GetExtra() != "")
 	{
@@ -425,6 +439,37 @@ function InternalOnChange(GUIComponent Sender)
 		Item_Secondary.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[3]);
 		Item_Grenade.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[4]);
 	}
+}
+
+//give this function a gun, grab an array of layouts from cache, add each value to the combobox
+function bool LoadLayouts(int GroupIndex, int Index, GUIComboBox LayoutComboBox)
+{
+ 	local BC_WeaponInfoCache.LayoutInfo LI;
+	local BC_WeaponInfoCache.WeaponInfo WI;
+	local int i, j;
+	
+	if (COI.GetGroupItem(GroupIndex, Index) == "")
+		return false;
+		
+	//clear old layouts
+	LayoutComboBox.Clear();
+		
+	class'BC_WeaponInfoCache'.static.FindWeaponInfo(COI.GetGroupItem(GroupIndex, Index), WI, i);
+	
+	if (i==-1)
+	{
+		log("Error loading item for outfitting: "$COI.GetGroupItem(GroupIndex, Index), 'Warning');
+		return false;
+	}
+	
+	for (j = 0; j < WI.TotalLayouts; j++)
+	{
+		if (class'BC_WeaponInfoCache'.static.FindLayoutInfo(WI, class'BCReplicationInfo'.default.GameStyle, j, LI, i))
+			LayoutComboBox.AddItem(LI.LayoutName);
+	}
+
+	//cb_gunLI.addItem(LI.layoutName, , LI.layoutIndex);
+	return true;
 }
 
 defaultproperties
@@ -507,6 +552,19 @@ defaultproperties
      End Object
      cb_Melee=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_MeleeComBox'
 
+	Begin Object Class=GUIComboBox Name=cb_MeleeComBox_LI
+         MaxVisibleItems=16
+         Hint="Gear layouts."
+         WinTop=0.280000
+         WinLeft=0.102148
+         WinWidth=0.196094
+         WinHeight=0.040000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_MeleeComBox_LI.InternalOnKeyEvent
+     End Object
+     cb_Melee_LI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_MeleeComBox_LI'
+	 
      Begin Object Class=GUIComboBox Name=cb_SideArmBox
          MaxVisibleItems=16
          Hint="Quick list of sidearms."
@@ -519,6 +577,19 @@ defaultproperties
          OnKeyEvent=cb_SideArmBox.InternalOnKeyEvent
      End Object
      cb_SideArm=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_SideArmBox'
+	 
+     Begin Object Class=GUIComboBox Name=cb_SideArmBox_LI
+         MaxVisibleItems=16
+         Hint="Sidearm layouts."
+         WinTop=0.280000
+         WinLeft=0.402930
+         WinWidth=0.196094
+         WinHeight=0.040000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_SideArmBox_LI.InternalOnKeyEvent
+     End Object
+     cb_SideArm_LI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_SideArmBox_LI'
 
      Begin Object Class=GUIComboBox Name=cb_PrimaryComBox
          MaxVisibleItems=16
@@ -533,6 +604,19 @@ defaultproperties
      End Object
      cb_Primary=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_PrimaryComBox'
 
+     Begin Object Class=GUIComboBox Name=cb_PrimaryComBox_LI
+         MaxVisibleItems=16
+         Hint="Primary Weapon layouts."
+         WinTop=0.580000
+         WinLeft=0.251563
+         WinWidth=0.196094
+         WinHeight=0.040000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_PrimaryComBox_LI.InternalOnKeyEvent
+     End Object
+     cb_Primary_LI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_PrimaryComBox_LI'
+
      Begin Object Class=GUIComboBox Name=cb_SecondaryComBox
          MaxVisibleItems=16
          Hint="Quick list of secondary weapons."
@@ -546,6 +630,19 @@ defaultproperties
      End Object
      cb_Secondary=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_SecondaryComBox'
 
+     Begin Object Class=GUIComboBox Name=cb_SecondaryComBox_LI
+         MaxVisibleItems=16
+         Hint="Secondary weapon layouts."
+         WinTop=0.580000
+         WinLeft=0.550977
+         WinWidth=0.196094
+         WinHeight=0.040000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_SecondaryComBox_LI.InternalOnKeyEvent
+     End Object
+     cb_Secondary_LI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_SecondaryComBox_LI'
+
      Begin Object Class=GUIComboBox Name=cb_GrenadeComBox
          MaxVisibleItems=16
          Hint="Quick list of grenades and traps."
@@ -558,6 +655,19 @@ defaultproperties
          OnKeyEvent=cb_GrenadeComBox.InternalOnKeyEvent
      End Object
      cb_Grenade=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_GrenadeComBox'
+
+     Begin Object Class=GUIComboBox Name=cb_GrenadeComBox_LI
+         MaxVisibleItems=16
+         Hint="Grenade layouts."
+         WinTop=0.280000
+         WinLeft=0.702148
+         WinWidth=0.196094
+         WinHeight=0.040000
+         TabOrder=0
+         OnChange=BallisticOutfittingWeaponsTab.InternalOnChange
+         OnKeyEvent=cb_GrenadeComBox_LI.InternalOnKeyEvent
+     End Object
+     cb_Grenade_LI=GUIComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.cb_GrenadeComBox_LI'
 
      Begin Object Class=moComboBox Name=co_PresetsCB
          ComponentJustification=TXTA_Left

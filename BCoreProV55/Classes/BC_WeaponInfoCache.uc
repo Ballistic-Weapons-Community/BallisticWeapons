@@ -73,19 +73,21 @@ static function bool FindWeaponInfo(string CN, out WeaponInfo WI, optional out i
 }
 
 // Find a specific layout for a chosen weapon, output the LI and return success or failure to find the weapon
-static function bool FindLayoutInfo(string LN, WeaponInfo WI, byte GameStyleIndex, out LayoutInfo LI, optional out int Index)
+static function bool FindLayoutInfo(WeaponInfo WI, byte GameStyleIndex, int LayoutIndex, out LayoutInfo LI, optional out int Index)
 {
-	local int i,j;
+	local int i, j;
 	
 	//first check if our required WeaponInfo exists in our list
 	if (FindWeaponInfo(WI.ClassName, WI, i))
 	{
-		for (j = 0; j < default.Weapons[i].TotalLayouts; j++)
+		for (j = 0; j < GameStyleIndex; j++)
 		{
-			if (default.Weapons[i].Layouts[j].LayoutName ~= LN && default.Weapons[i].Layouts[j].GameStyleIndex == GameStyleIndex)
+			log("Loading layout : index "$default.Weapons[i].Layouts[LayoutIndex].LayoutIndex$" : name "$default.Weapons[i].Layouts[LayoutIndex].LayoutName); 
+		
+			if (default.Weapons[i].Layouts[LayoutIndex].GameStyleIndex == GameStyleIndex)
 			{
-				Index = j;
-				LI = default.Weapons[i].Layouts[j];
+				Index = LayoutIndex;
+				LI = default.Weapons[i].Layouts[LayoutIndex];
 				return true;
 			}
 		}
@@ -153,9 +155,16 @@ static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 			{
 				LI.GameStyleIndex = GIIndex;
 				LI.LayoutIndex = LIIndex;
-				LI.LayoutName = "Layout name : "$string(TotalLayouts);
-				//LI.LayoutName = BW.default.ParamsClasses[GIIndex].default.Layouts[LIIndex].LayoutName;
 				
+				if (BW.default.ParamsClasses[GIIndex].default.Layouts[LIIndex].LayoutName == "")
+				{
+					LI.LayoutName = string(GIIndex)$":"$string(LIIndex);
+				}
+				else
+				{
+					LI.LayoutName = BW.default.ParamsClasses[GIIndex].default.Layouts[LIIndex].LayoutName;
+				}
+			
 				WI.Layouts[TotalLayouts] = LI;
 				TotalLayouts++;
 			}
