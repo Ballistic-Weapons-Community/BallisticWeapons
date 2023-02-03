@@ -289,7 +289,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 		 (Invasion(level.Game)!=None && !Invasion(level.Game).bWaveInProgress) ||
 		 (CTFGame(level.Game)!=None && PC.GetTeamNum()<2 && VSize(CTFTeamAI(CTFGame(level.Game).Teams[PC.GetTeamNum()].AI).FriendlyFlag.HomeBase.Location - PC.Pawn.Location) < 384) )
 	{
-		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4);
+		ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4,0,0,0,0,0);
 		LastLoadoutTime = level.TimeSeconds;
 	}
 
@@ -298,7 +298,7 @@ function ServerLoadoutChanged(string Stuff0, string Stuff1, string Stuff2, strin
 			if ( (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByRed && PC.GetTeamNum() == 0) || (ONSOnslaughtGame(level.Game).PowerCores[i].bPoweredByBlue && PC.GetTeamNum() == 1) )
 				if (VSize(ONSOnslaughtGame(level.Game).PowerCores[i].Location - PC.Pawn.Location) < 384)
 				{
-					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4);
+					ServerSetLoadout(Stuff0, Stuff1, Stuff2, Stuff3, Stuff4,0,0,0,0,0);
 					LastLoadoutTime = level.TimeSeconds;
 					return;
 				}
@@ -313,7 +313,12 @@ simulated function ClientStartLoadout()
 	class'Mut_Outfitting'.default.LoadOut[1],
 	class'Mut_Outfitting'.default.LoadOut[2],
 	class'Mut_Outfitting'.default.LoadOut[3],
-	class'Mut_Outfitting'.default.LoadOut[4]
+	class'Mut_Outfitting'.default.LoadOut[4],
+	class'Mut_Outfitting'.default.Layout[0],
+	class'Mut_Outfitting'.default.Layout[1],
+	class'Mut_Outfitting'.default.Layout[2],
+	class'Mut_Outfitting'.default.Layout[3],
+	class'Mut_Outfitting'.default.Layout[4]
 	);
 }
 
@@ -325,10 +330,11 @@ simulated function ClientSaveLoadoutClasses()
 
 // Loadout info sent back from client after it was requested by server.
 // Outfit the client with the standard weapons.
-function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4)
+function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4, int L0, int L1, int L2, int L3, int L4)
 {
 	local int i;
 	local string Stuff[5];
+	local int Layout[5];
 	
 	Stuff[0] = Stuff0;
 	Stuff[1] = Stuff1;
@@ -336,6 +342,41 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 	Stuff[3] = Stuff3;
 	Stuff[4] = Stuff4;
 	
+	Layout[0] = L0;
+	Layout[1] = L1;
+	Layout[2] = L2;
+	Layout[3] = L3;
+	Layout[4] = L4;
+
+	if (PC.Pawn != None)
+		Mut.OutfitPlayer(PC.Pawn, Stuff, LastLoadout, Layout);
+		
+	for (i=0; i< NUM_GROUPS; i++)
+	{
+		LastLoadout[i] = Stuff[i];
+		LastLoadoutClasses[i] = class<Weapon>(DynamicLoadObject(Stuff[i], Class'Class', True));
+		
+		if (BallisticPlayer(PC) != None)
+			BallisticPlayer(PC).LastLoadoutClasses[i] = LastLoadoutClasses[i];
+	}
+	
+	ClientSaveLoadoutClasses();
+}
+
+/*
+// Loadout info sent back from client after it was requested by server.
+// Outfit the client with the standard weapons.
+function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string Stuff3, string Stuff4)
+{
+	local int i;
+	local string Stuff[5];
+	local int Layout[5];
+	
+	Stuff[0] = Stuff0;
+	Stuff[1] = Stuff1;
+	Stuff[2] = Stuff2;
+	Stuff[3] = Stuff3;
+	Stuff[4] = Stuff4;
 
 	if (PC.Pawn != None)
 		Mut.OutfitPlayer(PC.Pawn, Stuff, LastLoadout);
@@ -352,6 +393,7 @@ function ServerSetLoadout(string Stuff0, string Stuff1, string Stuff2, string St
 	
 	ClientSaveLoadoutClasses();
 }
+*/
 
 defaultproperties
 {

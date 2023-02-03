@@ -28,7 +28,7 @@ defaultproperties
      InventoryModes(4)="Arena"
 	 InventoryModes(5)="Melee Only"
      InventoryMuts(0)="BallisticProV55.Mut_BallisticSwap"
-     InventoryMuts(1)="BallisticProV55.Mut_TeamOutfitting"
+     InventoryMuts(1)="BallisticProV55.Mut_Outfitting"
      InventoryMuts(2)="BallisticProV55.Mut_ConflictLoadout"
 	 InventoryMuts(3)="BallisticProV55.Mut_Loadout"
      InventoryMuts(4)="BallisticProV55.Mut_BallisticArena"

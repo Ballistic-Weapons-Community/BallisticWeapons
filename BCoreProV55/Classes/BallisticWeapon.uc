@@ -593,7 +593,7 @@ simulated function GenerateLayout(byte Index)
 	Layouts = ParamsClasses[GameStyleIndex].default.Layouts;
 	
 	//We have a layout set, use it
-	if (Index < Layouts.length)
+	if (Index < Layouts.length && Index >= 0)
 	{
 		SetLayoutIndex(Index);
 	}

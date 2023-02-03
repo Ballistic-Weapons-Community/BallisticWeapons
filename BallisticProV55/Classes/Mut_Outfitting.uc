@@ -17,6 +17,7 @@ class Mut_Outfitting extends Mut_Ballistic
 	config(BallisticProV55);
 
 var() globalconfig string 			LoadOut[5];			// Loadout info saved seperately on each client
+var() globalconfig int 				Layout[5];			// Layout number saved seperately on each client
 var() globalconfig bool				bDebugMode;
 
 var   Array<ClientOutfittingInterface>	COIPond;	// Jump right in, they won't bite - probably...
@@ -140,7 +141,7 @@ function ModifyPlayer(Pawn Other)
 					i--;
 				continue;
 			}
-			SpawnWeapon(W, Other);
+			SpawnWeaponLayout(W, Other, -1);
 			if (i == 0)
 				i = 4;
 			else if (i == 3)
@@ -189,6 +190,7 @@ function Mutate(string MutateString, PlayerController Sender)
 	super.Mutate(MutateString, Sender);
 }
 
+//Admin function to add a weapon to a loadout group
 function AddWeapon(PlayerController Sender, array<String> split_string)
 {	
 	local int i, loadout_group;
@@ -261,6 +263,7 @@ function AddWeapon(PlayerController Sender, array<String> split_string)
 	class'Mut_Outfitting'.static.StaticSaveConfig();
 }
 
+//Admin function to re,pve a weapon from a loadout group
 function RemoveWeapon(PlayerController Sender, array<String> split_string)
 {	
 	local bool success;
@@ -370,7 +373,7 @@ function ChangeLoadout (Pawn P, out string Stuff[NUM_GROUPS], optional string Ol
 }
 
 // Makes sure client loadout is allowed, then cleans stuff out the inventory and adds the new weapons
-function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldStuff[NUM_GROUPS])
+function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldStuff[NUM_GROUPS], optional int Layouts[NUM_GROUPS])
 {
 	local byte i, j, k, m, DummyFlags;
 	local bool bMatch;
@@ -445,7 +448,7 @@ function OutfitPlayer(Pawn Other, string Stuff[NUM_GROUPS], optional string OldS
 				if (W == None)
 					log("Could not load outfitted weapon "$Stuff[i]);
 				else
-					SpawnWeapon(W, Other);
+					SpawnWeaponLayout(W, Other, Layouts[i]);
 			}
 		}
 		if (i == 0)
@@ -521,6 +524,51 @@ static function Weapon SpawnWeapon(class<weapon> newClass, Pawn P)
 	return None;
 }
 
+//Spawn a weapon but set a layout if available
+static function Weapon SpawnWeaponLayout(class<weapon> newClass, Pawn P, int LayoutIndex)
+{
+	local Weapon newWeapon;
+	//local BallisticPlayerReplicationInfo BPRI;
+	//local Inventory Inv;
+
+    if( (newClass!=None) && P != None)
+    {
+		newWeapon = Weapon(P.FindInventoryType(newClass));
+		
+		if (newWeapon == None || BallisticHandgun(newWeapon) != None)
+		{
+			newWeapon = P.Spawn(newClass,,,P.Location);
+			if( newWeapon != None )
+			{
+				if (BallisticWeapon(newWeapon) != None)
+					BallisticWeapon(newWeapon).GenerateLayout(LayoutIndex);
+				newWeapon.GiveTo(P);
+			}
+			//Hack for bots - stops them complaining
+			if (Bot(P.Controller) != None && P.Weapon == None && P.PendingWeapon == None)
+			{
+				P.PendingWeapon = newWeapon;
+				P.ChangedWeapon();
+			}
+			
+			return newWeapon;
+		}
+		else //we already have this gun
+		{
+			newWeapon.AddAmmo(newClass.default.AmmoClass[0].default.InitialAmount, 0);
+			newWeapon.AddAmmo(newClass.default.AmmoClass[1].default.InitialAmount, 1);
+			if (BallisticWeapon(newWeapon) != None)
+			{
+				BallisticWeapon(newWeapon).MagAmmo = BallisticWeapon(newWeapon).default.MagAmmo;
+				BallisticWeapon(newWeapon).bNeedReload = False;
+				if (!P.IsLocallyControlled())
+					BallisticWeapon(newWeapon).ClientWeaponReloaded();
+			}
+		}
+    }
+	
+	return None;
+}
 
 // Do not spawn a default weapon yet...
 function class<Weapon> MyDefaultWeapon()
@@ -613,6 +661,11 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 
 defaultproperties
 {
+	 Layout(0)=0
+	 Layout(1)=0
+	 Layout(2)=0
+	 Layout(3)=0
+	 Layout(4)=0
 	 LoadOut(0)="BallisticProV55.X3Knife"
      LoadOut(1)="BallisticProV55.M806Pistol"
      LoadOut(2)="BallisticProV55.M763Shotgun"

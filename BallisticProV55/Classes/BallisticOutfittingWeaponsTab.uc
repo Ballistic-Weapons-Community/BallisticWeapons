@@ -382,15 +382,30 @@ function SaveWeapons()
 			SavedLoadouts[cb_Presets.GetIndex()].Weapons[4] = Item_Grenade.Items[Item_Grenade.Index].Text;
 
 		if (Item_Melee.Items.length > Item_Melee.Index)
+		{
 			class'Mut_Outfitting'.default.LoadOut[0] = Item_Melee.Items[Item_Melee.Index].Text;
+			class'Mut_Outfitting'.default.Layout[0] = cb_Melee_LI.getIndex();
+		}
 		if (Item_SideArm.Items.length > Item_SideArm.Index)
+		{
 			class'Mut_Outfitting'.default.LoadOut[1] = Item_SideArm.Items[Item_SideArm.Index].Text;
+			class'Mut_Outfitting'.default.Layout[1] = cb_SideArm_LI.getIndex();
+		}
 		if (Item_Primary.Items.length > Item_Primary.Index)
+		{
 			class'Mut_Outfitting'.default.LoadOut[2] = Item_Primary.Items[Item_Primary.Index].Text;
+			class'Mut_Outfitting'.default.Layout[2] = cb_Primary_LI.getIndex();
+		}
 		if (Item_Secondary.Items.length > Item_Secondary.Index)
+		{
 			class'Mut_Outfitting'.default.LoadOut[3] = Item_Secondary.Items[Item_Secondary.Index].Text;
+			class'Mut_Outfitting'.default.Layout[3] = cb_Secondary_LI.getIndex();
+		}
 		if (Item_Grenade.Items.length > Item_Grenade.Index)
+		{
 			class'Mut_Outfitting'.default.LoadOut[4] = Item_Grenade.Items[Item_Grenade.Index].Text;
+			class'Mut_Outfitting'.default.Layout[4] = cb_Grenade_LI.getIndex();
+		}
 		
 		CurrentIndex=cb_Presets.GetIndex();
 		
