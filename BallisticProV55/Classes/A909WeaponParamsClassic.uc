@@ -106,6 +106,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Slice"
 		Weight=30
 		PlayerSpeedFactor=1.200000
 		InventorySize=8
@@ -118,6 +119,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-B
+		LayoutName="Dice"
 		Weight=20
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SWC_Tex.EnergyWristBlades.EnergyWristBladeShine',Index=1)

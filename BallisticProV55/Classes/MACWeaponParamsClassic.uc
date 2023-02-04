@@ -98,6 +98,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Desert"
+		Weight=60
+		
 		SightPivot=(Pitch=450)
 		SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
 		PlayerSpeedFactor=0.750000
@@ -113,7 +116,57 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Jungle
+		LayoutName="Jungle"
+		Weight=20
+		WeaponMaterialSwaps(0)=(Material=Texture'BWBP_SKC_TexExp.MACCamos.Artillery-MainJungle',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Artillery.Artillery_Glass',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=2)
+		
+		SightPivot=(Pitch=450)
+		SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
+		PlayerSpeedFactor=0.750000
+		PlayerJumpFactor=0.750000
+		InventorySize=29
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.450000
+        ZoomType=ZT_Logarithmic
+		MagAmmo=5
+		WeaponName="J2329-HAMR"
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_Urban
+		LayoutName="Urban"
+		Weight=20
+		WeaponMaterialSwaps(0)=(Material=Texture'BWBP_SKC_TexExp.MACCamos.Artillery-MainJungle',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.M290MagiCannon.MiniThorSkin',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=2)
+		
+		SightPivot=(Pitch=450)
+		SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
+		PlayerSpeedFactor=0.750000
+		PlayerJumpFactor=0.750000
+		InventorySize=29
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.450000
+        ZoomType=ZT_Logarithmic
+		MagAmmo=5
+		WeaponName="J2329-HAMR"
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Jungle'
+	Layouts(2)=WeaponParams'ClassicParams_Urban'
 
 
 }

@@ -102,7 +102,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="7Fold Steel"
 		Weight=30
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
@@ -114,7 +116,9 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Flamer
+		LayoutName="Superheated Alloy"
 		Weight=30
+		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.EKS43-K.Katana-KGlow',Index=1)
 		PlayerSpeedFactor=1.100000

@@ -106,7 +106,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Gray"
 		Weight=30
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
@@ -124,6 +126,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicParams_Scope
+		LayoutName="Marksman"
 		Weight=10
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
@@ -151,6 +154,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Gold
+		LayoutName="Gold Dragon"
 		Weight=1
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)

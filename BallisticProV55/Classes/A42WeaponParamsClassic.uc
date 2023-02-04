@@ -65,8 +65,9 @@ defaultproperties
 		End Object
 
 		Begin Object Class=FireParams Name=ClassicPrimaryFireParams-Red
+			TargetState="SpreadShot"
 			FireInterval=0.250000
-			AmmoPerFire=5
+			AmmoPerFire=15
 			BurstFireRateFactor=1.00
 			FireEndAnim=	
 		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Red'
@@ -190,7 +191,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Infantry Blue"
 		Weight=8
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
@@ -211,9 +214,11 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicParams_R //The Red One
+		LayoutName="Elite Red"
 		Weight=2
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.A48.A48Skin_SD',Index=1)
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
@@ -234,6 +239,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_G //The Green One
+		LayoutName="Prototype Green"
 		Weight=2
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SWC_Tex.AcidPistol.A512_ExpShine',Index=1)

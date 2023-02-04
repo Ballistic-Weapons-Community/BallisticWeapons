@@ -112,6 +112,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
+		LayoutName="Black"
+		
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -139,6 +141,8 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.XK3.XK3-NickelShine',Index=1)
 		Weight=3
+		LayoutName="Silver"
+		
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -159,6 +163,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_AU
 		Weight=1
+		LayoutName="Gold"
+		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.XK2Camo.XK2-Gold-Shine',Index=1)
 		InventorySize=35

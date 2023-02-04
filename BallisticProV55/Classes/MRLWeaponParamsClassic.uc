@@ -93,6 +93,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="OD Green"
+		Weight=95
+		
 		InventorySize=29
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40
@@ -101,7 +104,26 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_Rad
+		LayoutName="Radical"
+		Weight=5
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.MRLCamos.MRL_MainRed_S1',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.MRLCamos.MRL-MagRed',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.MRL.MRL_Rocket',Index=3)
+		
+		InventorySize=29
+		SightMoveSpeedFactor=0.500000
+		MagAmmo=40
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams_Rad'
 
 
 }

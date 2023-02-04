@@ -90,6 +90,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Standard"
 		InventorySize=4
 		SightMoveSpeedFactor=0.500000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'

@@ -92,6 +92,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
+		LayoutName="Silver"
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
@@ -113,6 +115,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-RS
 		Weight=10
+		LayoutName="Candy Cane"
+		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.XRS10-Camos.XRS10RS-Main-Shine',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.XRS10.XRS10LaserShiney',Index=2)
@@ -138,6 +142,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-AU
 		Weight=3
+		LayoutName="Gold"
+		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.XRS10-Camos.XRS10Gold-Main-Shine',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.XRS10-Camos.XRS10Gold-LAM-Shine',Index=2)

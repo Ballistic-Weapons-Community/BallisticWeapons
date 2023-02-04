@@ -118,7 +118,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Red"
 		Weight=30
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
@@ -135,9 +137,11 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-W
+		LayoutName="White"
 		Weight=30
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.WBOGP.whiteBOGP_Main',Index=0)
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
@@ -154,9 +158,11 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-F
+		LayoutName="Radical"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_CC_Tex.BOGP.FGP',Index=0)
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
@@ -173,9 +179,11 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-M
+		LayoutName="Medical"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_CC_Tex.BOGP.MGP',Index=0)
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000

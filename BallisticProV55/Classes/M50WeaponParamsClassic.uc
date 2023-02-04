@@ -174,8 +174,8 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Silver"
 		Weight=30
-		LayoutName="Default"
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		ViewOffset=(X=1.000000,Y=7.000000,Z=-8.000000)
@@ -195,8 +195,8 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Stealth
+		LayoutName="M50A1 Stealth"
 		Weight=10
-		LayoutName="Metal Gear Solid"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinA-D',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinB-D',Index=2)
@@ -228,9 +228,9 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_AdvStealth
+		LayoutName="M50A3 Adv Stealth"
 		Weight=10
 		
-		LayoutName="Big Boss"
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_M50A3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinA-D',Index=1)
@@ -262,9 +262,9 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Desert
+		LayoutName="M50A3 Desert Ops"
 		Weight=10
 		
-		LayoutName="Raiden"
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_M50A3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinA-D',Index=1)
@@ -273,7 +273,7 @@ defaultproperties
 		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_TexExp.M50A3.M50A3-MainTan',Index=4)
 		WeaponMaterialSwaps(5)=(Material=Texture'BWBP_SKC_TexExp.M50A3.M50A3-Barrel',Index=5)
 		WeaponMaterialSwaps(6)=(Material=Texture'BWBP_SKC_TexExp.M50A3.M50A3-Misc',Index=6)
-		//GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_EOTech',BoneName="Scope",Scale=0.15)
+		//GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Scope",Scale=0.15)
 		ViewOffset=(X=-4.000000,Y=10.00000,Z=-15.000000)
 		SightOffset=(X=0.000000,Y=-6.580000,Z=21.65000)
 		SightPivot=(Pitch=0,Roll=0,Yaw=1)
@@ -294,9 +294,9 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Jungle
+		LayoutName="Jungle Burst"
 		Weight=10
 		
-		LayoutName="The Lion Sleeps Tonight"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SATiger',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SBTiger',Index=2)
@@ -323,9 +323,9 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_GaussTiger
+		LayoutName="Gauss Prototype"
 		Weight=10
 		
-		LayoutName="Rawr XD"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SATiger',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SBTiger',Index=2)
@@ -351,9 +351,9 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Gold
+		LayoutName="Gold"
 		Weight=1
 		
-		LayoutName="Money Money Money"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.M50Camos.M50_Main1_S1',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.M50Camos.M50_Main2_S1',Index=2)

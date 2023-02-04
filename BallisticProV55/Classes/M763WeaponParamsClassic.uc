@@ -116,7 +116,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		Weight=30
+		LayoutName="Gray"
+		Weight=60
+		
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -132,10 +134,12 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Tactical
+		LayoutName="Tactical"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.M763-K.M763-KShotgunShiney',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_KBP_Tex.M763-K.M763-KSmallShiney',Index=2)
-		Weight=10
+		Weight=20
+		
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -151,10 +155,12 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Wood
+		LayoutName="Wood"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.M781.M781_LargeShine',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.M781.M781_SmallShine',Index=2)
-		Weight=3
+		Weight=10
+		
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -170,10 +176,12 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_WoodOld
+		LayoutName="Old Trusty"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M781.M781-OldTrusty',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M781.M781Small',Index=2)
-		Weight=3
+		Weight=10
+		
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True

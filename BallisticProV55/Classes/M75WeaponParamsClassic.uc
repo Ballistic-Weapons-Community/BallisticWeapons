@@ -91,7 +91,8 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		Weight=30
+		LayoutName="M75 Scoped"
+		Weight=70
 		PlayerSpeedFactor=0.850000
 		PlayerJumpFactor=0.750000
 		InventorySize=25
@@ -109,7 +110,8 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Irons
-		Weight=30
+		LayoutName="X75 Prototype"
+		Weight=5
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
 		ZoomType=ZT_Irons
 		PlayerSpeedFactor=0.850000
@@ -127,7 +129,8 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Arctic
-		Weight=10
+		LayoutName="M75 Arctic"
+		Weight=25
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.M75.M75-Scope-S1',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_CC_Tex.M75.M75-Clip-D1',Index=2)
@@ -150,7 +153,7 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-Irons'
+	Layouts(1)=WeaponParams'ClassicParams-Irons' //Prototype
 	Layouts(2)=WeaponParams'ClassicParams-Arctic'
-
+	//Orange DDPAT
 }

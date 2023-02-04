@@ -126,7 +126,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Silver"
 		Weight=30
+		
 		PlayerSpeedFactor=1.150000
         InventorySize=2
 		SightMoveSpeedFactor=0.500000
@@ -140,9 +142,11 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-B
+		LayoutName="Black"
 		Weight=10
+		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.X3k.KnifeA1Shine',Index=1)
+		//WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.X3k.KnifeA1Shine',Index=1)
 		PlayerSpeedFactor=1.150000
         InventorySize=2
 		SightMoveSpeedFactor=0.500000

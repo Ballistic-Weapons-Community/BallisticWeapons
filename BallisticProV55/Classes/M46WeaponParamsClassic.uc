@@ -106,6 +106,10 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Desert Scoped"
+		Weight=30
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
+		
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -113,21 +117,99 @@ defaultproperties
 		SightOffset=(Y=-1.000000,Z=12.500000)
 		SightPivot=(Pitch=600,Roll=-1024)
         ZoomType=ZT_Logarithmic
-        WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 
-    Begin Object Class=WeaponParams Name=ClassicRDSParams
+    Begin Object Class=WeaponParams Name=ClassicParams_Jungle
+		LayoutName="Jungle RDS"
+		Weight=20
+        WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_Boom_Tex.M46.AR-CamoGreenMain',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_Boom_Tex.M46.AR-CamoGreenClip',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_Boom_Tex.M46.AR-CamoGreenGrenadeLauncher',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.OA-AR.OA-AR_Grenade',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.OA-AR.OA-AR_Scope_Shine',Index=5)
+		WeaponMaterialSwaps(6)=(Material=FinalBlend'BW_Core_WeaponTex.OA-SMG.OA-SMG_SightFB',Index=6)
+		
         SightingTime=0.350000
 		bNeedCock=True
-        MagAmmo=24
+        MagAmmo=25
         InventorySize=12
         SightPivot=(Pitch=-300,Roll=0)
         SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
-        WeaponBoneScales(0)=(BoneName="Scope",Slot=0,Scale=0f)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+    End Object 
+
+    Begin Object Class=WeaponParams Name=ClassicParams_Blue
+		LayoutName="Blue Amplified"
+		Weight=10
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
+        WeaponBoneScales(1)=(BoneName="Scope",Slot=1,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Reflex',BoneName="RDS",Scale=0.1)
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Amplifier',BoneName="Muzzle",Scale=0.8)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_Boom_Tex.M46.AR-CamoBlueMain',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SWC_Tex.M46Brink.AL_PulseRifle_Clip',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_Boom_Tex.M46.AR-CamoBlueGrenadeLauncher',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.OA-AR.OA-AR_Grenade',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.OA-AR.OA-AR_Scope_Shine',Index=5)
+		WeaponMaterialSwaps(6)=(Material=FinalBlend'BW_Core_WeaponTex.OA-SMG.OA-SMG_SightFB',Index=6)
+		//WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.M46Brink.AL_PulseRifle_Main',Index=1)
+		//WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SWC_Tex.M46Brink.AL_PulseRifle_Clip',Index=2)
+		//WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SWC_Tex.M46Brink.AL_PulseRifle_GrenadeLauncher',Index=3)
+		
+        SightingTime=0.350000
+		bNeedCock=True
+        MagAmmo=25
+        InventorySize=12
+        SightPivot=(Pitch=-300,Roll=0)
+        SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
+		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+		InitialWeaponMode=2
+		ReloadAnimRate=1.000000
+		CockAnimRate=1.000000
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+    End Object 
+
+    Begin Object Class=WeaponParams Name=ClassicParams_Black
+		LayoutName="Stealth Holosight"
+		Weight=10
+        WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
+        WeaponBoneScales(1)=(BoneName="Scope",Slot=1,Scale=0f)
+		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="RDS",Scale=0.15)
+		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="Muzzle",Scale=0.5)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_Boom_Tex.M46.AR-GrayMain',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_Boom_Tex.M46.AR-GrayClip',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=5)
+		WeaponMaterialSwaps(6)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=6)
+		
+        SightingTime=0.350000
+		bNeedCock=True
+        MagAmmo=25
+        InventorySize=12
+        SightPivot=(Pitch=-300,Roll=0)
+        SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
 		WeaponModes(0)=(ModeName="Semi-Auto",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
@@ -141,7 +223,9 @@ defaultproperties
     End Object 
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-    Layouts(1)=WeaponParams'ClassicRDSParams'
+    Layouts(1)=WeaponParams'ClassicParams_Jungle'
+    Layouts(2)=WeaponParams'ClassicParams_Blue'
+    Layouts(3)=WeaponParams'ClassicParams_Black'
 
 
 }

@@ -102,6 +102,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Snub Fighter"
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
 		Weight=7
 		PlayerSpeedFactor=1.100000
@@ -123,6 +124,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_RDS
+		LayoutName="Mid-Range"
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=1f)
 		Weight=2
 		PlayerSpeedFactor=1.100000
@@ -144,6 +146,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Gray
+		LayoutName="Heavy Pounder"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.AM67.AH104-MainMk2',Index=1)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)
@@ -167,6 +170,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Silver
+		LayoutName="AH999 Limited"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.AM67.AH999-Main',Index=1)
 		WeaponBoneScales(0)=(BoneName="Sight",Slot=12,Scale=0f)

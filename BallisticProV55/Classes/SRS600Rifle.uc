@@ -1,4 +1,4 @@
-class SRS600Rifle extends BallisticWeapon;
+class SRS600Rifle extends BallisticWeapon HideDropDown CacheExempt;
 
 var float StealthRating, StealthImps;
 

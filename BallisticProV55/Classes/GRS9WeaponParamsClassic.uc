@@ -167,7 +167,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Black"
 		Weight=30
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
@@ -189,9 +191,11 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Silver
+		LayoutName="Silver"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.GRS9.GlockSilver_Shine',Index=1)
 		Weight=10
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
@@ -213,9 +217,11 @@ defaultproperties
 	End Object
 
 	Begin Object Class=WeaponParams Name=ClassicParams_BrownPartial
+		LayoutName="Half-Poop"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.GRS9.GlockBrown_Shine',Index=1)
 		Weight=10
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
@@ -237,9 +243,11 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_BrownFull
+		LayoutName="Poop"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.GRS9.GlockFullBrown_Shine',Index=1)
 		Weight=10
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
@@ -261,9 +269,11 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Green
+		LayoutName="Green"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.GRS9.GlockGreen_Shine',Index=1)
 		Weight=8
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
@@ -285,9 +295,11 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_UTC
+		LayoutName="UTC Issue"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.GRS9.UTCGlockShine',Index=1)
 		Weight=5
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
@@ -309,9 +321,11 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_AU
+		LayoutName="Butter"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.GRS9.Glock_GoldShine',Index=1)
 		Weight=1
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000

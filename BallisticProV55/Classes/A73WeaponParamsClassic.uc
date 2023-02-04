@@ -55,7 +55,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams-Pink
-		FireInterval=0.100000
+		FireInterval=0.080000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Pink'
@@ -82,6 +82,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams-Orange
+		AmmoPerFire=2
 		FireInterval=0.157500
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
@@ -218,6 +219,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Infantry Blue"
 		Weight=30
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
@@ -233,6 +235,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Pink
+		LayoutName="Fabulous Pink"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_KBP_Tex.A73Purple.A73AmmoSkin',Index=1)
@@ -240,7 +243,7 @@ defaultproperties
 		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_KBP_Tex.A73Purple.A73SkinB',Index=3)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
-		MagAmmo=40
+		MagAmmo=25
 		SightOffset=(X=-12.000000,Z=14.300000)
 		SightPivot=(Pitch=768)
 		ReloadAnimRate=1.000000
@@ -252,6 +255,7 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Orange
+		LayoutName="Elite Orange"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.A73b.A73BAmmoSkin',Index=1)

@@ -97,6 +97,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
+		LayoutName="Teal"
+		
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.700000
 		InventorySize=25
@@ -117,6 +119,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-500
 		Weight=10
+		LayoutName="Black"
+		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.XMV500.XMV500_Main',Index=0)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.XMV500.XMV500_Barrels_SD',Index=2)
@@ -139,6 +143,8 @@ defaultproperties
 	End Object
 	Begin Object Class=WeaponParams Name=ClassicParams-858
 		Weight=10
+		LayoutName="Green"
+		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_KBP_Tex.XMV858.XMV858_Main',Index=0)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_KBP_Tex.XMV858.XMV858_Barrels_SD',Index=2)

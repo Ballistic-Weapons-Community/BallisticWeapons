@@ -155,6 +155,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Caustic Green"
 		Weight=30
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
@@ -168,9 +169,11 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-B
+		LayoutName="Burning Tar"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.SRL.SkrithRocketLauncher_Main',Index=1)
+		
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
@@ -183,9 +186,11 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-E
+		LayoutName="Ablating Orange"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.Misc.Dragon_Main',Index=1)
+		
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=10
@@ -198,8 +203,10 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-SSS
+		LayoutName="Reverse Engineered"
 		Weight=1
 		LayoutMesh=SkeletalMesh'BWBP_SWC_Anims.FPm_SkrithSuperWeapon'
+		
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=20

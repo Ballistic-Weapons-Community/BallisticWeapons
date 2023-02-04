@@ -29,6 +29,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
+		TargetState="Spread"
 		FireInterval=0.240000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	

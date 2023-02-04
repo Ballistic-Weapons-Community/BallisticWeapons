@@ -117,7 +117,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		Weight=30
+		LayoutName="Engraved"
+		Weight=90
+		
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000
@@ -133,7 +135,9 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Rust
-		Weight=20
+		LayoutName="Neglected"
+		Weight=10
+		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.LeMatt-Camos.LeMattBR-Main1-Shine',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.LeMatt-Camos.LeMattBR-Main2-Shine',Index=2)

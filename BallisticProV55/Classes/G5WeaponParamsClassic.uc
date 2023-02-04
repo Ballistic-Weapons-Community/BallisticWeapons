@@ -97,7 +97,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="UTC Issue"
 		Weight=30
+		
 		PlayerSpeedFactor=0.850000
 		InventorySize=25
 		SightMoveSpeedFactor=0.500000
@@ -113,7 +115,9 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Silver
+		LayoutName="Pirated Gray"
 		Weight=10
+		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.SMAA.SMAA-Shine',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.SMAA.SMAAScope',Index=2)

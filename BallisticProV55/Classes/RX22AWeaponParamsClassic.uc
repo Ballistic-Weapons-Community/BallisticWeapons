@@ -95,7 +95,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Fuel Sprayer"
 		Weight=30
+		
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.700000
         InventorySize=24
@@ -110,9 +112,11 @@ defaultproperties
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-BR
+		LayoutName="Fireballer"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.RX22E.RX22ESkin',Index=1)
+		
 		PlayerSpeedFactor=0.800000
 		PlayerJumpFactor=0.700000
         InventorySize=24

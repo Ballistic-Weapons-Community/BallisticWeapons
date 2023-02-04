@@ -105,6 +105,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
 		Weight=30
+		LayoutName="Brown"
+		
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=1f)
 		InventorySize=8
@@ -127,6 +129,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-C
 		Weight=15
+		LayoutName="No Dart"
+		
 		WeaponBoneScales(0)=(BoneName="SightFront",Slot=18,Scale=1f)
 		WeaponBoneScales(1)=(BoneName="Darter",Slot=19,Scale=0f)
 		InventorySize=8
@@ -149,6 +153,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Red
 		Weight=10
+		LayoutName="Red"
+		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_Boom_Tex.XMk5Smg.SMGMain',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_Boom_Tex.XMk5Smg.SMGShield',Index=2)
