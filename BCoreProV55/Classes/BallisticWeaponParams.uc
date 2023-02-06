@@ -25,7 +25,8 @@
 //=============================================================================
 class BallisticWeaponParams extends Object;
 
-var array<WeaponParams>                  Layouts;
+var array<WeaponParams>                  Layouts; //Gun variants, attachment setups, alternate designs
+var array<WeaponCamos>                  Camos; //Gun skins
 
 static simulated final function Initialize(BallisticWeapon BW)
 {

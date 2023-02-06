@@ -1,0 +1,24 @@
+//=============================================================================
+// WeaponCamos.
+//
+// Subobject designed to hold a set of skins to load in.
+// Has a friendly name for menus and a locking var to ensure the camo is not 
+// put on layouts with model changes.
+//
+// by Azarael, SK
+//=============================================================================
+class WeaponCamos extends Object
+    editinlinenew;
+	
+// Struct used for skin replacements
+struct MaterialSwap
+{
+    var()   Material    Material;
+    var()   int         Index;
+};
+
+
+var() int					Weight;					// How likely it is for this layout to be chosen, higher is more likely
+var() String				CamoName;				// The camo name in menus
+var() array<MaterialSwap>   WeaponMaterialSwaps;	// The set of skins used in this camo
+var() array<int>			AllowedLayouts;			// Which layouts support this camo
