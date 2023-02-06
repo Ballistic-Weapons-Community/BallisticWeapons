@@ -92,7 +92,7 @@ simulated function AnimEnded (int Channel, name anim, float frame, float rate)
 		SetBoneRotation('Hammer', rot(0,0,0));
 		PlayIdle();
 	}
-	else if (anim == FireMode[0].FireAnim || anim == FireMode[1].FireAnim)
+	else if (Anim == FireMode[0].FireAnim || Anim == FireMode[1].FireAnim)
 	{
 		PlayIdle();
 		bPreventReload=false;

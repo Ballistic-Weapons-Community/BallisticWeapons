@@ -25,6 +25,28 @@ var() sound			HealSound;		// The sound of a thousand dying orphans
 simulated function bool SlaveCanUseMode(int Mode) {return Mode == 0;}
 simulated function bool MasterCanSendMode(int Mode) {return Mode == 0;}
 
+simulated state PendingSelfHeal extends PendingDualAction
+{
+	simulated function BeginState()	{	OtherGun.LowerHandGun();	}
+	simulated function HandgunLowered (BallisticHandgun Other)	{ global.HandgunLowered(Other); if (Other == Othergun) WeaponSpecial();	}
+	simulated event AnimEnd(int Channel)
+	{
+		Othergun.RaiseHandGun();
+		global.AnimEnd(Channel);
+	}
+}
+
+simulated state PendingLoadGrenade extends PendingDualAction
+{
+	simulated function BeginState()	{	OtherGun.LowerHandGun();	}
+	simulated function HandgunLowered (BallisticHandgun Other)	{ global.HandgunLowered(Other); if (Other == Othergun) LoadGrenade();	}
+	simulated event AnimEnd(int Channel)
+	{
+		Othergun.RaiseHandGun();
+		global.AnimEnd(Channel);
+	}
+}
+
 simulated function BringUp(optional Weapon PrevWeapon)
 {
 	if (!bLoaded)
@@ -68,9 +90,20 @@ exec simulated function WeaponSpecial(optional byte i)
 	{
 		PlayAnim(HealAnim, 1.1, , 0);
 		ReloadState = RS_Cocking;
+		if (Othergun != None)
+		{
+			if (Othergun.Clientstate != WS_ReadyToFire)
+				return;
+			if (IsinState('DualAction'))
+				return;
+			if (!Othergun.IsinState('Lowered'))
+			{
+				GotoState('PendingSelfHeal');
+				return;
+			}
+		}
 	}
 }
-
 
 simulated function Notify_DartHeal()
 {
@@ -104,6 +137,18 @@ simulated function LoadGrenade()
 		return;
 	if (ReloadState == RS_None)
 		PlayAnim(GrenadeLoadAnim, 1.1, , 0);
+	if (Othergun != None)
+	{
+		if (Othergun.Clientstate != WS_ReadyToFire)
+			return;
+		if (IsinState('DualAction'))
+			return;
+		if (!Othergun.IsinState('Lowered'))
+		{
+			GotoState('PendingLoadGrenade');
+			return;
+		}
+	}
 }
 
 // Notifys for greande loading sounds
@@ -126,7 +171,7 @@ simulated function Notify_GrenLaunch()
 
 simulated function Notify_GrenInvisible()	{ SetBoneScale (1, 0.0, GrenBoneBase);	}
 
-simulated function PlayReload()
+/*simulated function PlayReload()
 {
     if (MagAmmo < 1)
     {
@@ -139,7 +184,7 @@ simulated function PlayReload()
        ClipInSound.Sound=PartialReloadSound;
     }
 	SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
-}
+}*/
 
 simulated event AnimEnd (int Channel)
 {
@@ -149,17 +194,21 @@ simulated event AnimEnd (int Channel)
     GetAnimParams(0, Anim, Frame, Rate);
 	if (Anim == HealAnim)
 		ReloadState = RS_None;
-	if (Anim == 'FireOpen' || Anim == 'Pullout' || Anim == 'Fire' || Anim == 'Dart_Fire' || Anim == 'Dart_FireOpen' ||Anim == CockAnim || Anim == ReloadAnim)
+	if (Anim == 'FireOpen' || Anim == 'Pullout' || Anim == 'Fire' || Anim == 'Dart_Fire' || Anim == 'Dart_FireOpen' ||Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
 	{
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 		{
 			IdleAnim = 'IdleOpen';
 			ReloadAnim = 'ReloadOpen';
+			SelectAnim = 'PulloutOpen';
+			PutDownAnim = 'PutawayOpen';
 		}
 		else
 		{
 			IdleAnim = 'Idle';
 			ReloadAnim = 'Reload';
+			SelectAnim = 'Pullout';
+			PutDownAnim = 'Putaway';
 		}
 	}
 	Super.AnimEnd(Channel);
@@ -287,7 +336,7 @@ defaultproperties
 	PartialReloadSound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-MagInS2'
 	HealAnim="Heal"
 	HealSound=Sound'BWBP_SKC_Sounds.Stealth.Stealth-Heal'
-	bShouldDualInLoadout=False
+	bShouldDualInLoadout=True
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Cross4',pic2=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=25,G=122,R=11,A=255),Color2=(B=255,G=255,R=255,A=255),StartSize1=22,StartSize2=59)
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
@@ -319,7 +368,7 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.600000
 	CurrentRating=0.600000
-	Description="PS-9m Stealth Pistol||Manufacturer: Zavod Tochnogo Voorujeniya (ZTV Export)|Primary: Tranquilizer Dart Fire|Secondary: FMD Medical Dart"
+	Description="PS-9m Stealth Pistol||Manufacturer: Zavod Tochnogo Voorujeniya (ZTV Export)|Primary: Tranquilizer Dart Fire|Secondary: FMD Medical Dart||The PS-9m Stealth Pistol is a rare weapon seldom seen outside the walls of the Earth-based Russian Federation and black ops PMCs. It is mainly used as a tool for covert assassination and as such fires darts filled with highly potent neurotoxins. Every dart carries a 100% chance of death without medical aid and a 95% chance with. Subjects injected with the concoction report immediate vision impairment and excruciating pain, after 20 minutes subjects lose the ability to respond, and after 1 hour lethal convulsions set in. In order to make up for that unacceptable 95% success rate, the stealth pistol additionally comes with a fully automatic firing mode. This has been a cause for major concern, because there have been several times where the weapon's rapid fire recoil has directed darts into hapless civilians. It should be noted that the PS-9m's darts are instantly lethal on a headshot and are additionally filled with corrosive acids to neutralize mechanized threats. General Alexi 'Rasputin' Volkov is the only known man to have survived more than 9 darts and famously killed his attacker in hand-to-hand combat."
 	Priority=65
 	HudColor=(B=130,G=100,R=100)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"

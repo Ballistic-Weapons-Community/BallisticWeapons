@@ -159,6 +159,7 @@ defaultproperties
 		PlayerSpeedFactor=0.870000
         PlayerJumpFactor=0.870000
         SightMoveSpeedFactor=0.75
+		bNeedCock=True
 		MagAmmo=30
 		SightingTime=0.55
 		DisplaceDurationMult=1.4

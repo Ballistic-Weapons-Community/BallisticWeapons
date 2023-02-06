@@ -53,6 +53,23 @@ function bool DoTazerBlurEffect(Actor Victim)
 		DoTazerBlurEffect(Victim);
 }
 
+function PlayFiring()
+{
+	if (BW.MagAmmo - ConsumedLoad < 1)
+	{
+		BW.IdleAnim = 'IdleOpen';
+		BW.ReloadAnim = 'ReloadOpen';
+		FireAnim = 'FireOpen';
+	}
+	else
+	{
+		BW.IdleAnim = 'Idle';
+		BW.ReloadAnim = 'Reload';
+		FireAnim = 'Fire';
+	}
+	super.PlayFiring();
+}
+
 defaultproperties
 {
      TraceRange=(Min=3000.000000)

@@ -174,7 +174,7 @@ defaultproperties
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M763OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M763InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(G=255,A=128),Color2=(B=53,G=86,R=110,A=192),StartSize1=168,StartSize2=166)
     NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=8.000000)
 
-    Description="MRT6 Shotgun Sidearm||Manufacturer: Wot ya Packin Gun Corp|Primary: Dual Barrel Shot|Secondary: Single Barrel Shot"
+    Description="MRT6 Shotgun Sidearm||Manufacturer: Wot ya Packin Gun Corp|Primary: Dual Barrel Shot|Secondary: Single Barrel Shot||One of Wot Ya Packin's most famous creations, the ridiculous MRT6 has grown quite a reputaton. A favourite of gangsters, thieves and countless other such criminals, the MRT6 is a small, fairly light shotgun that can easily be mistaken for a pistol. It has two barrels that can be fired simultaneously, it can be reloaded quickly and has an eight shell magazine. It is rarely seen in professional military use due to its loud noise, short range and extreme spread, but it is has a very high damage when used at close range, as anyone that is unfortunate enough to be aboard an unsuspecting ship attacked by a band of cargo raiders would testify. In fact, during an incident where Var Dehidra's pirates boarded a private exploration vessel, already being attacked by another band. They used their MRT6's to defeat the entire band of over thirty B1 'Possum' wielding marauders as well as the ship's defenders."
     Priority=35
     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
     InventoryGroup=2
