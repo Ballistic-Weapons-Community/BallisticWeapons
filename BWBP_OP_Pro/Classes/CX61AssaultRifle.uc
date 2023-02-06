@@ -298,7 +298,7 @@ defaultproperties
 	PutDownAnimRate=1.800000
 	PutDownTime=0.400000
 	BringUpTime=0.400000
-	CockingBringUpTime=0.650000
+	CockingBringUpTime=1.100000
 	SelectForce="SwitchToAssaultRifle"
 	bShowChargingBar=True
 	Description="Cimerion Labs' CX61 Tactical Rifle was engineered as a reliable primary weapon for use by medical personnel. Incorporating a nano-forge capable of producing G28 aerosol for projection by the weapon, it is able to choose between projecting healing spray or igniting the G28 gas in order to emit a blast of flame to disorient foes."

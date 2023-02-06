@@ -72,7 +72,7 @@ defaultproperties
 		MagAmmo=7
         ZoomType=ZT_Fixed
 		SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
-		ViewOffset=(X=15.000000,Y=12.000000,Z=-37.000000)
+		ViewOffset=(X=15.000000,Y=24.000000,Z=-37.000000)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

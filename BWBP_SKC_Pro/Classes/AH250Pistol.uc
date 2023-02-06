@@ -2,13 +2,16 @@
 // AH250 "Hawk".
 // With compliments of team-spec*Azarael
 //=============================================================================
-class AH250Pistol extends BallisticWeapon;
+class AH250Pistol extends Ballistichandgun;
 
 var(AH250Pistol) name		RDSBone;			// Bone to use for hiding Red Dot Sight
 var(AH250Pistol) name		MuzzBone;			// Bone to use for hiding Compensator
 var(AH250Pistol) name		LAMBone;			// Bone to use for hiding LAM
 var(AH250Pistol) name		ScopeBone;			// Bone to use for hiding scope
 var(AH208Pistol) name		BulletBone;			// Bone to use for hiding bullet
+
+simulated function bool SlaveCanUseMode(int Mode) {return Mode == 0;}
+simulated function bool MasterCanSendMode(int Mode) {return Mode == 0;}
 
 simulated function PostBeginPlay()
 {
@@ -63,7 +66,7 @@ simulated event AnimEnd (int Channel)
 
     GetAnimParams(0, Anim, Frame, Rate);
 
-	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == 'OpenFire' || Anim == 'OpenSightFire' || Anim == CockAnim || Anim == ReloadAnim)
+	if (Anim == 'OpenFire' || Anim == 'Fire' || Anim == 'OpenFire' || Anim == 'OpenSightFire' || Anim == CockAnim || Anim == ReloadAnim || Anim == DualReloadAnim || Anim == DualReloadEmptyAnim)
 	{
 		if (MagAmmo - BFireMode[0].ConsumedLoad < 1)
 		{
@@ -176,6 +179,7 @@ defaultproperties
 	SightOffset=(X=70.000000,Y=-7.350000,Z=45.400002)
 	SightDisplayFOV=40.000000
 	GunLength=4.000000
+	bShouldDualInLoadout=True
 	ParamsClasses(0)=Class'AH250WeaponParams'
 	ParamsClasses(1)=Class'AH250WeaponParamsClassic'
 	ParamsClasses(2)=Class'AH250WeaponParamsRealistic'
