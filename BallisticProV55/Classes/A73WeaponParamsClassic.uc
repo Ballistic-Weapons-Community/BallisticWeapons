@@ -66,7 +66,7 @@ defaultproperties
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
 		Speed=85.000000
 		MaxSpeed=4500.000000
-		AccelSpeed=7000.000000
+		AccelSpeed=100000.000000
 		Damage=40.0
 		DamageRadius=64.000000
 		MomentumTransfer=100.000000
@@ -152,8 +152,8 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams-Orange
     	MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterB'
         SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
-        Speed=90.000000
-        AccelSpeed=0.000000
+        Speed=1500.000000
+        AccelSpeed=0.000000 //is this working?
         MaxSpeed=2000.000000
         Damage=90.000000
         DamageRadius=270.000000

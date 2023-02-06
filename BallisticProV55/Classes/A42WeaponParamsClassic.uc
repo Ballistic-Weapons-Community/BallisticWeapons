@@ -67,7 +67,7 @@ defaultproperties
 		Begin Object Class=FireParams Name=ClassicPrimaryFireParams-Red
 			TargetState="SpreadShot"
 			FireInterval=0.250000
-			AmmoPerFire=15
+			AmmoPerFire=5
 			BurstFireRateFactor=1.00
 			FireEndAnim=	
 		FireEffectParams(0)=ProjectileEffectParams'ClassicPrimaryEffectParams-Red'

@@ -210,6 +210,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
+     ModeIndex=1
      ImpactManager=Class'BallisticProV55.IM_A73PowerB'
      PenetrateManager=Class'BallisticProV55.IM_A73PowerB'
      bRandomStartRotation=False
