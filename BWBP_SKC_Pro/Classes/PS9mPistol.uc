@@ -368,7 +368,7 @@ defaultproperties
 	SelectForce="SwitchToAssaultRifle"
 	AIRating=0.600000
 	CurrentRating=0.600000
-	Description="PS-9m Stealth Pistol||Manufacturer: Zavod Tochnogo Voorujeniya (ZTV Export)|Primary: Tranquilizer Dart Fire|Secondary: FMD Medical Dart"
+	Description="PS-9m Stealth Pistol||Manufacturer: Zavod Tochnogo Voorujeniya (ZTV Export)|Primary: Tranquilizer Dart Fire|Secondary: FMD Medical Dart||The PS-9m Stealth Pistol is a rare weapon seldom seen outside the walls of the Earth-based Russian Federation and black ops PMCs. It is mainly used as a tool for covert assassination and as such fires darts filled with highly potent neurotoxins. Every dart carries a 100% chance of death without medical aid and a 95% chance with. Subjects injected with the concoction report immediate vision impairment and excruciating pain, after 20 minutes subjects lose the ability to respond, and after 1 hour lethal convulsions set in. In order to make up for that unacceptable 95% success rate, the stealth pistol additionally comes with a fully automatic firing mode. This has been a cause for major concern, because there have been several times where the weapon's rapid fire recoil has directed darts into hapless civilians. It should be noted that the PS-9m's darts are instantly lethal on a headshot and are additionally filled with corrosive acids to neutralize mechanized threats. General Alexi 'Rasputin' Volkov is the only known man to have survived more than 9 darts and famously killed his attacker in hand-to-hand combat."
 	Priority=65
 	HudColor=(B=130,G=100,R=100)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
