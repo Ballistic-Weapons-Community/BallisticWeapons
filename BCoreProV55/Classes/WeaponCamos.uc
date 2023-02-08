@@ -21,4 +21,5 @@ struct MaterialSwap
 var() int					Weight;					// How likely it is for this layout to be chosen, higher is more likely
 var() String				CamoName;				// The camo name in menus
 var() array<MaterialSwap>   WeaponMaterialSwaps;	// The set of skins used in this camo
-var() array<int>			AllowedLayouts;			// Which layouts support this camo
+
+var() int					Index;					// Used to find our index number in a cut down array of allowed camos

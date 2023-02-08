@@ -390,6 +390,8 @@ var	Object.Color	HeaderColor, TextColor;
 var() byte                      GameStyleIndex;         // Game style parameters to use for this weapon
 var() byte                      LayoutIndex;            // Index of layout parameters to use for this weapon instance
 var() bool						bLayoutSet;				// Do we have our layout chosen already
+var() byte                      CamoIndex;            	// Index of camo sets to use for this weapon
+var() bool						bCamoSet;				// Do we have our camo chosen already
 //-----------------------------------------------------------------------------
 // Move speed
 //-----------------------------------------------------------------------------
@@ -436,7 +438,7 @@ replication
 {
 	// Things the server should send to the owning client
 	reliable if (bNetOwner && Role == ROLE_Authority)
-		MagAmmo, bServerReloading, NetInventoryGroup, GameStyleIndex, LayoutIndex, bServerDeferInitialSwitch;
+		MagAmmo, bServerReloading, NetInventoryGroup, GameStyleIndex, LayoutIndex, CamoIndex, bServerDeferInitialSwitch;
 
 	// functions on server, called by client
    	reliable if (Role < ROLE_Authority)
@@ -541,6 +543,12 @@ simulated function SetLayoutIndex(byte NewLayoutIndex)
 	bLayoutSet = True;
 }
 
+simulated function SetCamoIndex(byte NewCamoIndex)
+{
+	CamoIndex = NewCamoIndex;
+	bCamoSet = True;
+}
+
 //===========================================================================
 // PostNetBeginPlay
 //
@@ -596,6 +604,7 @@ simulated function GenerateLayout(byte Index)
 	if (Index < Layouts.length && Index >= 0)
 	{
 		SetLayoutIndex(Index);
+		return;
 	}
 	
 	if (!bLayoutSet)
@@ -626,7 +635,90 @@ simulated function GenerateLayout(byte Index)
 			SetLayoutIndex(0);
 		}
 	}
+}
 
+//Take a camo from a pickup or mutator via GiveTo. If default (255), generate a random camo if applicable
+//Builds a sublist of acceptable camos based on our layout
+simulated function GenerateCamo(byte Index)
+{
+	local byte i, j;
+	local float f;
+	
+	local int WeightSum, CurrentWeight;
+	local array<WeaponCamos> Camos;
+	local array<WeaponCamos> CamoSublist;
+	local array<int> AllowedCamos;
+	
+	Camos = ParamsClasses[GameStyleIndex].default.Camos;
+	AllowedCamos = ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
+	
+	//We have a layout set, use it
+	if (Index < Camos.length && Index >= 0)
+	{
+		SetCamoIndex(Index);
+		return;
+	}
+	
+	//Note: Redo this! Instead of having allowed layouts in camo, just have allowed camos in layout, build from there
+	if (!bCamoSet)
+	{
+		//Create a sublist of allowed camos
+		if (AllowedCamos.length == 0) //default, all are allowed
+		{
+			CamoSublist = Camos;
+		}
+		for (i=0;i<AllowedCamos.length;i++)
+		{
+			CamoSublist.Insert(0,1); //add a blank
+			CamoSublist[0] = Camos[AllowedCamos[i]]; //set it
+		}
+	
+		/*for (i=0;i<Camos.length;i++)
+		{
+			if (Camos[i].AllowedLayouts.length == 0) //default, all are allowed
+			{
+				CamoSublist.Insert(0,1); //add a blank
+				CamoSublist[0] = Camos[i]; //set it
+			}
+			else
+			{
+				for (j=0;j<Camos[i].AllowedLayouts.length;j++)
+				{
+					if (LayoutIndex == Camos[i].AllowedLayouts[j])
+					{
+						CamoSublist.Insert(1,1);
+						CamoSublist[0] = Camos[i];
+						break;
+					}
+				}
+			}
+		}*/
+	
+		//Build a weighted list of random camos and return a random layout index
+		if (CamoSublist.length > 0 /* && BCRepClass.default.bRandomCamo*/)
+		{
+			//Build the weighted list
+			for (i=0; i<CamoSublist.length; i++)
+			{
+				WeightSum += CamoSublist[i].Weight;
+			}
+			f = FRand()*WeightSum;
+			
+			for (i=0; i<CamoSublist.length; i++)
+			{
+				if ( f >= CurrentWeight && f < CurrentWeight+CamoSublist[i].Weight)
+				{
+					SetCamoIndex(CamoSublist[i].Index);
+					break;
+				}
+				CurrentWeight += CamoSublist[i].Weight;
+			}
+		}
+		else
+		{
+			SetCamoIndex(0);
+		}
+	}
 }
 
 simulated function OnWeaponParamsChanged()
@@ -3499,12 +3591,14 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
 		{
 			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
+			//GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
 			ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
 		}
 		else
 		{
 			GenerateLayout(255);
+			//GenerateCamo(255);
 			ParamsClasses[GameStyleIndex].static.Initialize(self);
             MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
 		}
