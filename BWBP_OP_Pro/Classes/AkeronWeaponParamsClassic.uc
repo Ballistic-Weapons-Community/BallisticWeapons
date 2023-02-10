@@ -40,7 +40,7 @@ defaultproperties
 		Speed=450.000000
 		MaxSpeed=1500.000000
 		AccelSpeed=6000.000000
-		Damage=200
+		Damage=150
 		DamageRadius=150.000000
 		MomentumTransfer=70000.000000
 		RadiusFallOffType=RFO_Linear

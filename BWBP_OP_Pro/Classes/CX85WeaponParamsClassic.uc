@@ -60,7 +60,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=0.300000
+		FireInterval=0.700000
 		AmmoPerFire=0
 		PreFireAnim=
 		FireAnim="FireAlt"
