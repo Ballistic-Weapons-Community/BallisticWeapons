@@ -29,7 +29,8 @@ defaultproperties
 		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.RCS.RCS-Fire')
 		Recoil=256.000000
 		Chaos=0.500000
-		Inaccuracy=(X=192,Y=192)
+		Inaccuracy=(X=1200,Y=1200)
+		HipSpreadFactor=1.000000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.500000
 	End Object

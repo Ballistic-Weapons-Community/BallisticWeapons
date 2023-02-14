@@ -33,7 +33,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
-		FireInterval=0.085500
+		FireInterval=0.085500 //+ .15xrand offline, x2 online
 		BurstFireRateFactor=1.00
 		PreFireAnim=
 		FireEndAnim=	
