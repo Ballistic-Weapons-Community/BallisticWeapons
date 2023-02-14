@@ -23,7 +23,7 @@ simulated event ModeDoFire()
 		}
 		else
 		{
-			FireRate = Params.FireInterval;
+			FireRate = Params.FireInterval * 2.0;
 		}
 	}
 	Super.ModeDoFire();

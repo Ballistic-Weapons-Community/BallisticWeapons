@@ -36,6 +36,7 @@ defaultproperties
 		FireInterval=0.300000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
+		AimedFireAnim="AimedFire"	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
 	
@@ -62,6 +63,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ClassicFreezeFireParams
 		FireInterval=0.300000
 		FireEndAnim=	
+		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'ClassicFreezeEffectParams'
 	End Object
 
@@ -89,6 +91,7 @@ defaultproperties
 	Begin Object Class=FireParams Name=ClassicHeatFireParams
 		FireInterval=0.300000
 		FireEndAnim=	
+		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'ClassicHeatEffectParams'
 	End Object
 		
