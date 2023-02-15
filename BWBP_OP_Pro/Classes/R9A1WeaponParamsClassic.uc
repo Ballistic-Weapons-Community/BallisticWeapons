@@ -132,91 +132,6 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		Weight=30
-		InventorySize=15
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=10
-		SightPivot=(Roll=6000)
-		SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicFreezeFireParams'
-		FireParams(2)=FireParams'ClassicHeatFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-Yellow
-		Weight=5
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_OP_Tex.R9A1.R9_body_SH2',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.R9A1.R9_scope_SH2',Index=2)
-		InventorySize=15
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=10
-		SightPivot=(Roll=6000)
-		SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicFreezeFireParams'
-		FireParams(2)=FireParams'ClassicHeatFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-Jungle
-		Weight=10
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_OP_Tex.R9A1.R9_body_SH3',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.R9A1.R9_scope_SH2',Index=2)
-		InventorySize=15
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=10
-		SightPivot=(Roll=6000)
-		SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicFreezeFireParams'
-		FireParams(2)=FireParams'ClassicHeatFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-Grey
-		Weight=20
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.R9.R9_body_SH4',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.R9A1.R9_scope_SH2',Index=2)
-		InventorySize=15
-		SightMoveSpeedFactor=0.500000
-		bNeedCock=True
-		MagAmmo=10
-		SightPivot=(Roll=6000)
-		SightOffset=(X=-5.000000,Y=-2.300000,Z=9.150000)
-		ReloadAnimRate=1.000000
-		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		FireParams(1)=FireParams'ClassicFreezeFireParams'
-		FireParams(2)=FireParams'ClassicHeatFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
-	Begin Object Class=WeaponParams Name=ClassicParams-DDPAT
-		Weight=20
-		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.R9.R9_body_SH5',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.R9A1.R9_scope_SH2',Index=2)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -234,9 +149,5 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(1)=WeaponParams'ClassicParams-Yellow'
-	Layouts(2)=WeaponParams'ClassicParams-Jungle'
-	Layouts(3)=WeaponParams'ClassicParams-Grey'
-	Layouts(4)=WeaponParams'ClassicParams-DDPAT'
 
 }
