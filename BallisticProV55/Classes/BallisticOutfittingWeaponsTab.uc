@@ -40,6 +40,7 @@ struct WeaponItemInfo
 	var string ItemClassName;
 	var IntBox ImageCoords;
 	var int InventoryGroup;
+	var byte Index;
 };
 
 var array<WeaponItemInfo> sortedPrimaries;
@@ -217,11 +218,11 @@ function LoadWeapons()
 	cb_SideArm_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[1]);
 	
 	Item_Primary.SetItem(SavedLoadOuts[CurrentIndex].Weapons[2]);
-	LoadLayouts(2, Item_Primary.Index, cb_Primary_LI);
+	LoadLayouts(2, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_LI);
 	cb_Primary_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[2]);
 	
 	Item_Secondary.SetItem(SavedLoadOuts[CurrentIndex].Weapons[3]);
-	LoadLayouts(3, Item_Secondary.Index, cb_Secondary_LI);
+	LoadLayouts(3, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_LI);
 	cb_Secondary_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[3]);
 	
 	Item_Grenade.SetItem(SavedLoadOuts[CurrentIndex].Weapons[4]);
@@ -286,6 +287,7 @@ function FillItemInfos(int Group, int Index)
 	WInfo.ItemCap = WI.ItemName;
 	WInfo.InventoryGroup = WI.InventoryGroup;
 	WInfo.ItemClassName = COI.GetGroupItem(Group, Index);
+	WInfo.Index = Index;
 	if (WI.bIsBW)
 	{
 		WInfo.ItemImage = WI.BigIconMaterial;
@@ -370,9 +372,9 @@ function OnLoadoutItemChange(GUIComponent Sender)
 	else if (Sender == Item_SideArm)
 		LoadLayouts(1, Item_SideArm.Index, cb_SideArm_LI);
 	else if (Sender == Item_Primary)
-		LoadLayouts(2, Item_Primary.Index, cb_Primary_LI);
+		LoadLayouts(2, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_LI);
 	else if (Sender == Item_Secondary)
-		LoadLayouts(3, Item_Secondary.Index, cb_Secondary_LI);
+		LoadLayouts(3, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_LI);
 	else if (Sender == Item_Grenade)
 		LoadLayouts(4, Item_Grenade.Index, cb_Grenade_LI);
 }
@@ -500,12 +502,12 @@ function InternalOnChange(GUIComponent Sender)
 	else if (Sender == cb_Primary)
 	{
 		Item_Primary.SetItem(cb_Primary.GetExtra());
-		LoadLayouts(2, Item_Primary.Index, cb_Primary_LI);
+		LoadLayouts(2, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_LI);
 	}
 	else if (Sender == cb_Secondary)
 	{
 		Item_Secondary.SetItem(cb_Secondary.GetExtra());
-		LoadLayouts(3, Item_Secondary.Index, cb_Secondary_LI);
+		LoadLayouts(3, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_LI);
 	}
 	else if (Sender == cb_Grenade)
 	{
@@ -524,11 +526,11 @@ function InternalOnChange(GUIComponent Sender)
 		cb_SideArm_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[1]);
 		
 		Item_Primary.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[2]);
-		LoadLayouts(2, Item_Primary.Index, cb_Primary_LI);
+		LoadLayouts(2, sortedPrimaries[Item_Primary.Index].Index, cb_Primary_LI);
 		cb_Primary_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[2]);
 		
 		Item_Secondary.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[3]);
-		LoadLayouts(3, Item_Secondary.Index, cb_Secondary_LI);
+		LoadLayouts(3, sortedSecondaries[Item_Secondary.Index].Index, cb_Secondary_LI);
 		cb_Secondary_LI.setIndex(SavedLoadOuts[CurrentIndex].Layouts[3]);
 		
 		Item_Grenade.SetItem(SavedLoadOuts[cb_Presets.GetIndex()].Weapons[4]);
