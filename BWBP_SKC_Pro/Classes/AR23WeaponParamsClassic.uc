@@ -165,7 +165,7 @@ defaultproperties
 		Weight=10
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="GLIrons",Slot=52,Scale=0f)
-		WeaponBoneScales(2)=(BoneName="Holo",Slot=53,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Holo",Slot=53,Scale=0.1f)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Holo",Scale=0.06)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
@@ -188,7 +188,7 @@ defaultproperties
 		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.AR23.Muzzle_2D_View',Index=4)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="GLIrons",Slot=52,Scale=0f)
-		WeaponBoneScales(2)=(BoneName="Holo",Slot=53,Scale=0f)
+		WeaponBoneScales(2)=(BoneName="Holo",Slot=53,Scale=0.1f)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.1)
 		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Holo",Scale=0.06)
 		InventorySize=15

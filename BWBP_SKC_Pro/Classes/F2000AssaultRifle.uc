@@ -1,7 +1,7 @@
 //=============================================================================
 // MARS-3 (i.e. F2000.)
 //=============================================================================
-class F2000AssaultRifle extends BallisticWeapon;
+class F2000AssaultRifle extends BallisticWeapon HideDropDown CacheExempt;
 
 var   bool		bSilenced;				// Silencer on. Silenced
 var() name		SilencerBone;			// Bone to use for hiding silencer
