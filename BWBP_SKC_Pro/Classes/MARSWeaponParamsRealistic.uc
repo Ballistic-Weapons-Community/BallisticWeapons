@@ -75,22 +75,6 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=RealisticRecoilParams_HeavyBarrel
-		XCurve=(Points=(,(InVal=0.450000,OutVal=0.40000),(InVal=0.65000,OutVal=0.2000),(InVal=1.0000000,OutVal=0.150000)))
-		YCurve=(Points=(,(InVal=0.500000,OutVal=0.350000),(InVal=0.750000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
-		YawFactor=0.15000
-		XRandFactor=0.165000
-		YRandFactor=0.165000
-		MaxRecoil=3000.000000
-		DeclineTime=0.850000 //HB
-		DeclineDelay=0.150000 //HB
-		ViewBindFactor=0.060000
-		ADSViewBindFactor=1.000000
-		HipMultiplier=1.000000
-		CrouchMultiplier=0.700000
-		bViewDecline=True
-	End Object
-	
 	Begin Object Class=RecoilParams Name=RealisticRecoilParams
 		XCurve=(Points=(,(InVal=0.450000,OutVal=0.40000),(InVal=0.65000,OutVal=0.2000),(InVal=1.0000000,OutVal=0.150000)))
 		YCurve=(Points=(,(InVal=0.500000,OutVal=0.350000),(InVal=0.750000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
@@ -98,10 +82,10 @@ defaultproperties
 		XRandFactor=0.165000
 		YRandFactor=0.165000
 		MaxRecoil=3000.000000
-		DeclineTime=0.750000
-		DeclineDelay=0.135000
+		DeclineTime=0.850000
+		DeclineDelay=0.150000
 		ViewBindFactor=0.060000
-		ADSViewBindFactor=0.200000
+		ADSViewBindFactor=1.000000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
@@ -111,30 +95,13 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=RealisticAimParams_HeavyBarrel
-		AimSpread=(Min=256,Max=1280) //HB
-		CrouchMultiplier=0.700000
-		ADSMultiplier=0.700000
-		ViewBindFactor=0.060000
-		SprintChaos=0.400000
-		SprintOffSet=(Pitch=-1000,Yaw=-2048)
-		JumpChaos=0.350000
-		JumpOffSet=(Pitch=-5000,Yaw=-1000)
-		FallingChaos=0.400000
-		ChaosDeclineTime=1.200000
-		ChaosSpeedThreshold=565.000000
-	End Object
-
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=400,Max=1280)
+		AimSpread=(Min=256,Max=1280)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.060000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-1000,Yaw=-2048)
-		JumpChaos=0.350000
-		JumpOffSet=(Pitch=-5000,Yaw=-1000)
-		FallingChaos=0.400000
 		ChaosDeclineTime=1.200000
 		ChaosSpeedThreshold=565.000000
 	End Object
@@ -145,6 +112,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=12
+		WeaponPrice=2800
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.3
 		SightOffset=(X=-5.000000,Y=-7.340000,Z=27.170000)
@@ -159,8 +127,8 @@ defaultproperties
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		WeaponName="MARS-2 5.56mm Bullpup Rifle"
-		RecoilParams(0)=RecoilParams'RealisticRecoilParams_HeavyBarrel'
-		AimParams(0)=AimParams'RealisticAimParams_HeavyBarrel'
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
+		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
 	End Object

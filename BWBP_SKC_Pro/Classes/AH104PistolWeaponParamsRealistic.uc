@@ -100,11 +100,8 @@ defaultproperties
 		ADSMultiplier=0.770000
 		AimDamageThreshold=300
 		ViewBindFactor=0.100000
-		SprintChaos=0.300000
+		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-1000,Yaw=-2048)
-		JumpChaos=0.750000
-		JumpOffSet=(Pitch=1000,Yaw=-500)
-		FallingChaos=0.400000
 		ChaosDeclineTime=1.000000
 		ChaosSpeedThreshold=575.000000
 	End Object
@@ -116,6 +113,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=0f)
         InventorySize=8
+		WeaponPrice=3000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.21
 		MagAmmo=7
