@@ -12,7 +12,7 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.400000
-		Damage=30
+		Damage=24
 		TraceCount=10
 		HeadMult=1.5
 		LimbMult=0.5
@@ -183,6 +183,9 @@ defaultproperties
 		ADSMultiplier=0.650000
 		ViewBindFactor=0.150000
 		SprintChaos=0.400000
+		JumpChaos=0.800000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
 		ChaosDeclineTime=2.000000
 	End Object
     

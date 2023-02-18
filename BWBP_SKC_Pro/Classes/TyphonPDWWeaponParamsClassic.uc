@@ -82,11 +82,15 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
+	Begin Object Class=AimParams Name=ClassicAimParams //heavy smg handling
 		AimSpread=(Min=32,Max=512)
 		ADSMultiplier=0.200000
-		SprintOffset=(Pitch=-3000,Yaw=-4000)
 		AimAdjustTime=0.450000
+		SprintChaos=0.400000
+		SprintOffset=(Pitch=-3000,Yaw=-4000)
+		JumpChaos=0.350000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
 		ChaosDeclineTime=0.90000
 		ChaosSpeedThreshold=15000.000000
 	End Object

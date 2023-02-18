@@ -89,13 +89,15 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
+	Begin Object Class=AimParams Name=ClassicAimParams //Ultra light handling
 		AimSpread=(Min=16,Max=1748)
 		CrouchMultiplier=0.500000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.200000
-		SprintChaos=0.400000
-		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		SprintChaos=0.050000
+		JumpChaos=0.050000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.050000
 		ChaosDeclineTime=2.000000
 	End Object
     

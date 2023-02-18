@@ -43,7 +43,7 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 	
-	Begin Object Class=RecoilParams Name=ClassicRecoilParams
+	Begin Object Class=RecoilParams Name=ClassicRecoilParams_Compensated
 		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.600000
 		YRandFactor=0.900000
@@ -56,19 +56,51 @@ defaultproperties
 		bViewDecline=True
 	End Object
 
+	Begin Object Class=RecoilParams Name=ClassicRecoilParams
+		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
+		YawFactor=0.400000
+		MaxRecoil=8192.000000
+		DeclineTime=0.600000
+		DeclineDelay=0.200000
+		ViewBindFactor=0.200000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+		bViewDecline=True
+	End Object
+
 	//=================================================================
 	// AIM
 	//=================================================================
 	
-	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=128,Max=2900)
+	Begin Object Class=AimParams Name=ClassicAimParams_Compensated //heavy pistol handling
+		AimSpread=(Min=128,Max=2900) //comp
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.150000
 		SprintChaos=0.400000
-		ChaosDeclineTime=1.400000
-		ChaosSpeedThreshold=1400.000000
+		JumpChaos=0.300000 //comp
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
+		ChaosDeclineTime=1.400000 //comp
+		ChaosSpeedThreshold=950.000000
+		//ChaosSpeedThreshold=1400.000000
 	End Object
+	
+	Begin Object Class=AimParams Name=ClassicAimParams
+		AimSpread=(Min=96,Max=2900)
+		CrouchMultiplier=0.700000
+		ADSMultiplier=0.700000
+		ViewBindFactor=0.150000
+		SprintChaos=0.400000
+		JumpChaos=0.250000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
+		ChaosDeclineTime=0.900000
+		ChaosSpeedThreshold=950.000000
+		//ChaosDeclineTime=0.500000
+		//ChaosSpeedThreshold=1400.000000
+	End Object
+    
     
 	//=================================================================
 	// BASIC PARAMS
@@ -83,8 +115,8 @@ defaultproperties
 		ViewOffset=(X=0.000000,Y=19.500000,Z=-30.000000)
 		ZoomType=ZT_Fixed
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AimParams(0)=AimParams'ClassicAimParams_Compensated'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_Compensated'
 	End Object
 
 	Layouts(0)=WeaponParams'ClassicParams'

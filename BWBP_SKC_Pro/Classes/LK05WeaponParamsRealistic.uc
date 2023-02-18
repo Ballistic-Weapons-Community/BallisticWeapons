@@ -44,20 +44,19 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
+		FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.300000
+	End Object
 	
-		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
-			FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.300000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=1.300000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=1.300000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -90,6 +89,9 @@ defaultproperties
 		ViewBindFactor=0.060000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpChaos=0.300000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
 		ChaosDeclineTime=1.200000
 		ChaosSpeedThreshold=565.000000
 	End Object
