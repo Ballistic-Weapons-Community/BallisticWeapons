@@ -88,7 +88,11 @@ defaultproperties
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000
-		SprintChaos=0.400000
+		SprintChaos=0.500000
+		SprintOffSet=(Pitch=-6000,Yaw=-8000)
+		JumpChaos=0.500000
+		JumpOffSet=(Pitch=2000,Yaw=-5000)
+		FallingChaos=0.500000
 		ChaosDeclineTime=1.500000
 		ChaosSpeedThreshold=400
 	End Object

@@ -87,9 +87,11 @@ defaultproperties
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.400000
-		SprintChaos=0.400000
+		SprintChaos=0.500000
 		SprintOffSet=(Pitch=-7000,Yaw=-3500)
+		JumpChaos=0.500000
 		JumpOffSet=(Pitch=-7000)
+		FallingChaos=0.500000
 		ChaosDeclineTime=5.000000
 	End Object
     
@@ -114,6 +116,7 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(2)=WeaponParams'ClassicParams_Urban'
 
 
 }

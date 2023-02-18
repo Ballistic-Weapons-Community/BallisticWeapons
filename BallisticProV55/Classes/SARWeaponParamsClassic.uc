@@ -112,15 +112,15 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=ClassicBurstRecoilParams
 		XCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.100000,OutVal=0.060000),(InVal=0.150000,OutVal=-0.060000),(InVal=0.200000),(InVal=0.400000,OutVal=-0.200000),(InVal=0.600000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.300000),(InVal=1.000000,OutVal=1.000000)))
 		YCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.100000,OutVal=-0.050000),(InVal=0.150000),(InVal=0.200000,OutVal=0.300000),(InVal=0.400000,OutVal=0.500000),(InVal=0.600000,OutVal=0.600000),(InVal=1.000000,OutVal=1.000000)))
-	   	XRandFactor=0.15
-		YRandFactor=0.15
-		YawFactor=0.700000
+	   	XRandFactor=0.15 //
+		YRandFactor=0.15 //
+		YawFactor=0.700000 //
 		MaxRecoil=3840.000000
-		DeclineTime=0.7
+		DeclineTime=0.7 //
 		ViewBindFactor=0.45
 		HipMultiplier=1.000000
-		CrouchMultiplier=0.7
-		DeclineDelay=0.14
+		CrouchMultiplier=0.7 //
+		//DeclineDelay=0.14 //
 		bViewDecline=True
 	End Object
 
@@ -135,20 +135,27 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.050000
 		SprintChaos=0.400000
+		JumpChaos=0.300000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
 		ChaosDeclineTime=1.000000
 		ChaosSpeedThreshold=1200.000000
+		ChaosTurnThreshold=170000.000000
 	End Object
 	
 	Begin Object Class=AimParams Name=ClassicBurstAimParams
 		AimSpread=(Min=32,Max=2560)
 		AimAdjustTime=0.400000
-		CrouchMultiplier=0.900000
+		CrouchMultiplier=0.700000 //
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.050000
 		SprintChaos=0.400000
-		ChaosDeclineTime=1.200000
-		ChaosSpeedThreshold=960.000000
-		//ChaosTurnThreshold=131072.000000
+		JumpChaos=0.300000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
+		ChaosDeclineTime=1.200000 //
+		ChaosSpeedThreshold=960.000000 //
+		ChaosTurnThreshold=131072.000000 //
 	End Object
     
 	//=================================================================
@@ -169,6 +176,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
+		AimParams(1)=AimParams'ClassicBurstAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'

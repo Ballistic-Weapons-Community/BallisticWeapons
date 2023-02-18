@@ -89,8 +89,11 @@ defaultproperties
 		OffsetAdjustTime=0.650000
 		CrouchMultiplier=0.900000
 		ViewBindFactor=0.100000
-		SprintChaos=0.400000
+		SprintChaos=0.500000
 		SprintOffSet=(Pitch=-3000,Yaw=-7000)
+		JumpChaos=0.500000
+		JumpOffSet=(Pitch=1000,Yaw=-3000)
+		FallingChaos=0.500000
 		AimDamageThreshold=375.000000
 		ChaosDeclineTime=1.650000
 		ChaosSpeedThreshold=350
