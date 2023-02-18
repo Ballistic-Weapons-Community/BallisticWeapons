@@ -120,11 +120,11 @@ defaultproperties
 		XCurve=(Points=(,(InVal=0.450000,OutVal=0.3500000),(InVal=0.650000,OutVal=0.300000),(InVal=1.000000,OutVal=0.200000)))
 		YCurve=(Points=(,(InVal=0.50000,OutVal=0.350000),(InVal=0.750000,OutVal=0.450000),(InVal=1.000000,OutVal=0.400000)))
 		YawFactor=0.10000
-		XRandFactor=0.125000 //
-		YRandFactor=0.125000 //
+		XRandFactor=0.125000
+		YRandFactor=0.125000
 		MaxRecoil=3000.000000
-		DeclineTime=0.600000 //
-		DeclineDelay=0.125000 //
+		DeclineTime=0.600000
+		DeclineDelay=0.125000
 		ViewBindFactor=0.060000
 		ADSViewBindFactor=0.060000
 		HipMultiplier=1.000000
@@ -143,9 +143,6 @@ defaultproperties
 		ViewBindFactor=0.060000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-4096,Yaw=-2048);
-		JumpChaos=0.300000
-		JumpOffSet=(Pitch=1000,Yaw=-500)
-		FallingChaos=0.400000
 		ChaosDeclineTime=1.200000
 		ChaosSpeedThreshold=565.000000
 	End Object
@@ -156,6 +153,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=10
+		WeaponPrice=1500
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.22
 		MagAmmo=35

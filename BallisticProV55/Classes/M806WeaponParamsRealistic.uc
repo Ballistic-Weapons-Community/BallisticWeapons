@@ -91,9 +91,6 @@ defaultproperties
 		ViewBindFactor=0.050000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-4608,Yaw=-512)
-		JumpChaos=0.200000
-		JumpOffSet=(Pitch=1000,Yaw=-500)
-		FallingChaos=0.400000
 		ChaosDeclineTime=0.650000
 		ChaosSpeedThreshold=750.000000
 	End Object
@@ -108,6 +105,7 @@ defaultproperties
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.13
 		MagAmmo=12
+		WeaponPrice=800
 		bMagPlusOne=True
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-6.000000)
 		SightOffset=(X=-5.000000,Y=-1.315,Z=12.600000)

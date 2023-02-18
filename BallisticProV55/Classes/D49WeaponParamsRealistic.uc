@@ -114,9 +114,6 @@ defaultproperties
 		ViewBindFactor=0.050000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-4608,Yaw=-512)
-		JumpChaos=0.200000
-		JumpOffSet=(Pitch=1000,Yaw=-500)
-		FallingChaos=0.400000
 		ChaosDeclineTime=0.700000
 		ChaosSpeedThreshold=675.000000
 	End Object
@@ -130,6 +127,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
+		WeaponPrice=1800
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.15
 		MagAmmo=6
