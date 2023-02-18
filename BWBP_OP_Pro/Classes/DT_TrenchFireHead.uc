@@ -10,17 +10,18 @@ class DT_TrenchFireHead extends DT_BWShell;
 
 defaultproperties
 {
-     DeathStrings(0)="%k melted %o's helmet and head into molten slag."
-     DeathStrings(1)="%o got his neck ripped out by by %k's Trenchgun."
-     DeathStrings(2)="%o took a whole facial of %k's dragon breath shells."
-     DeathStrings(3)="%k's let his Trenchgun make a meal out of %o's face."
+     DeathStrings(0)="%o’s face was literally melted off by %k’s hot shot."
+     DeathStrings(1)="%k bruleed %o’s face to the point it was burnt to a crisp."
+     DeathStrings(2)="%o singed their tongue, nose, heck, the whole face after being too close to %k’s trenchgun."
+     DeathStrings(3)="%k exposed the skull of %o with just one easy white hot shot to the dome."
+     DeathStrings(4)="%o’s had their hair set ablaze before their whole head melted off due to %k."
      bHeaddie=True
      InvasionDamageScaling=2
      DamageIdent="Shotgun"
      WeaponClass=Class'BWBP_OP_Pro.TrenchGun'
-     DeathString="%k uncorked %o with the Trenchgun."
-     FemaleSuicide="%o nailed herself with the Trenchgun."
-     MaleSuicide="%o nailed himself with the Trenchgun."
+     DeathString="%o singed their tongue, nose, heck, the whole face after being too close to %k’s trenchgun."
+     FemaleSuicide="%o roasted themselves with a dragon’s breath shell."
+     MaleSuicide="%%o roasted themselves with a dragon’s breath shell."
 	 bIgniteFires=True
      bAlwaysSevers=True
      bSpecial=True

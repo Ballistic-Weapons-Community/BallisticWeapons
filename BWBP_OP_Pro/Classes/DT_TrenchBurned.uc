@@ -10,15 +10,16 @@ class DT_TrenchBurned extends DT_BWFire;
 
 defaultproperties
 {
-     DeathStrings(0)="%k sprayed %o with fire."
-     DeathStrings(1)="%k's Dragon seared the flesh off %o."
-     DeathStrings(2)="%o was torched to a crisp by %k's flamethrower."
-     DeathStrings(3)="%o got cooked alive by %k's Dragon."
-     DeathStrings(4)="%k poured fire all over %o's screaming figure."
+     DeathStrings(0)="%o had their fat rendered to a crisp after being shot by %k’s white hot phosphorus."
+     DeathStrings(1)="%k won the fire making challenge after using %o’s corpse as a heat source."
+     DeathStrings(2)="%o reached maximum thermal capacity after taking about 2 shells from %k."
+     DeathStrings(3)="%k burned the skin on their dish, a roast %o with a blood sauce reduction."
+     DeathStrings(4)="%o was cremated in 30 seconds or less after being lit up by %k’s dragon’s breath."
+     DeathStrings(5)="%k flambeed %o with a dragon’s breath shell, too bad they forgot the marshmallows."
      InvasionDamageScaling=1.500000
      DamageIdent="Shotgun"
      WeaponClass=Class'BWBP_OP_Pro.TrenchGun'
-     DeathString="%k sprayed %o with fire."
+     DeathString="%%o reached maximum thermal capacity after taking about 2 shells from %k."
      FemaleSuicide="%o miscalculated the theoretical thermal capacity of her body."
      MaleSuicide="%o miscalculated the theoretical thermal capacity of his body."
      bDelayedDamage=True

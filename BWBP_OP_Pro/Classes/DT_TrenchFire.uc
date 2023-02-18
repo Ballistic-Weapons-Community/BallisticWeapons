@@ -10,16 +10,17 @@ class DT_TrenchFire extends DT_BWShell;
 
 defaultproperties
 {
-     DeathStrings(0)="%o was chewed up like a piece of meat by %k's Trenchgun."
-     DeathStrings(1)="%k unleashed the dragon's breath on %o."
-     DeathStrings(2)="%o couldn't slay the dragon and got roasted by %k's Trenchgun."
-     DeathStrings(3)="%k sicced his Trenchgun onto %o, good shotgun gets a treat."
+     DeathStrings(0)="It wasn’t the burn that got %o, it was the impact from %k’s Trenchgun that did them in."
+     DeathStrings(1)="%k reduced %o to cinders after shooting them with some good ol’ phosphorus."
+     DeathStrings(2)="%o took %k’s phosphorous point blank in the chest, searing the flesh off their ribcage."
+     DeathStrings(3)="%k started a fire using their trenchgun and %o as their fleshy tinder."
+     DeathStrings(4)="To say %o was overheated by %k’s dragon’s breath would be an understatement."
      InvasionDamageScaling=2
      DamageIdent="Shotgun"
      WeaponClass=Class'BWBP_OP_Pro.TrenchGun'
-     DeathString="%k blasted a pound of lead into %o with the Trenchgun."
-     FemaleSuicide="%o nailed herself with the Trenchgun."
-     MaleSuicide="%o nailed himself with the Trenchgun."
+     DeathString="It wasn’t the burn that got %o, it was the impact from %k’s Trenchgun that did them in."
+     FemaleSuicide="%o roasted themselves with a dragon’s breath shell."
+     MaleSuicide="%o roasted themselves with a dragon’s breath shell."
 	 bIgniteFires=True
      bExtraMomentumZ=True
      GibPerterbation=0.400000
