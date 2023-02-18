@@ -114,9 +114,9 @@ defaultproperties
 		SightOffset=(X=70.000000,Y=-7.350000,Z=45.400000)
 		ViewOffset=(X=0.000000,Y=19.500000,Z=-30.000000)
 		ZoomType=ZT_Fixed
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams_Compensated'
 		AimParams(0)=AimParams'ClassicAimParams_Compensated'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams_Compensated'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 	End Object
 
 	Layouts(0)=WeaponParams'ClassicParams'
