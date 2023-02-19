@@ -116,7 +116,5 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
-	Layouts(2)=WeaponParams'ClassicParams_Urban'
-
 
 }

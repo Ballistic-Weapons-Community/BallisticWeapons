@@ -260,12 +260,6 @@ function AttachToPawn(Pawn P)
 		AK47Attachment(ThirdPersonActor).bLoaded = True;
 }
 
-// Animation notify for when cocking action starts. Used to time sounds
-simulated function Notify_CockSim()
-{
-	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
-}
-
 simulated function PlayCocking(optional byte Type)
 {
 	if (Type == 2)

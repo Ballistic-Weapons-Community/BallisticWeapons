@@ -314,6 +314,7 @@ var() Name					CockAnim;					// Animation to use for cocking
 var() Name					CockAnimPostReload;			// Anim to use for cocking at end of reload
 var() Name					CockSelectAnim;				// Anim used when bringing up a weapon which needs cocking
 var() BUtil.FullSound		CockSound;					// Sound to play for cocking
+var() BUtil.FullSound		CockSelectSound;			// Sound to play for cocking during pullout (If a different sound is required)
 var() bool					bCockAfterReload;			// Always cock the gun after reload
 var() bool					bCockOnEmpty;				// Gun will cock when reload ends if mag was empty before reload
 var() bool					bNonCocking;				// Gun doesn't, can't or shouldn't get cocked...
@@ -1077,6 +1078,7 @@ final function RestoreCollisions()
 //
 // Used to time reloading
 //================================================================================
+
 // Animation notify for when a shell is loaded in
 simulated function Notify_ShellIn()
 {
@@ -1106,6 +1108,7 @@ simulated function Notify_ShellIn()
 		}
 	}
 }
+
 // Animation notify for when the magazine is stuck in
 simulated function Notify_ClipIn()
 {
@@ -1125,6 +1128,7 @@ simulated function Notify_ClipIn()
 		Ammo[0].UseAmmo (AmmoNeeded, True);
 	}
 }
+
 // Animation notify for when the magazine is pulled out
 simulated function Notify_ClipOut()
 {
@@ -1133,6 +1137,7 @@ simulated function Notify_ClipOut()
 	ReloadState = RS_PreClipIn;
 	PlayOwnedSound(ClipOutSound.Sound,ClipOutSound.Slot,ClipOutSound.Volume,ClipOutSound.bNoOverride,ClipOutSound.Radius,ClipOutSound.Pitch,ClipOutSound.bAtten);
 }
+
 // Animation notify for when cocking action starts. Used to time sounds
 simulated function Notify_CockStart()
 {
@@ -1140,11 +1145,21 @@ simulated function Notify_CockStart()
 	ReloadState = RS_Cocking;
 	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
 }
+
+// Animation notify for when cocking action starts for pullout fancy animations that use a different sound to Notify_CockStart. Used to time sounds
+simulated function Notify_CockPullout()
+{
+	if (ReloadState == RS_None)	return;
+	ReloadState = RS_Cocking;
+	PlayOwnedSound(CockSelectSound.Sound,CockSelectSound.Slot,CockSelectSound.Volume,CockSelectSound.bNoOverride,CockSelectSound.Radius,CockSelectSound.Pitch,CockSelectSound.bAtten);
+}
+
 // Animation notify for ejecting a cartridge
 simulated function Notify_BrassOut()
 {
 	BFireMode[0].EjectBrass();
 }
+
 // Animation notify to make gun cock after fired
 simulated function Notify_CockAfterFire()
 {
@@ -1152,17 +1167,20 @@ simulated function Notify_CockAfterFire()
 	if (bNeedCock && ReloadState == RS_None && MagAmmo > 0)
 		CommonCockGun(1);
 }
+
 // Animation notify to make gun cock after reload
 simulated function Notify_CockAfterReload()
 {
 	if (bNeedCock && ReloadState == RS_None && MagAmmo > 0)
 		CommonCockGun(2);
 }
+
 // Animation notify for when the magazine is hit
 simulated function Notify_ClipHit()
 {
 	PlayOwnedSound(ClipHitSound.Sound,ClipHitSound.Slot,ClipHitSound.Volume,ClipHitSound.bNoOverride,ClipHitSound.Radius,ClipHitSound.Pitch,ClipHitSound.bAtten);
 }
+
 //================================================================================
 // END NOTIFIES
 //================================================================================
@@ -1172,6 +1190,7 @@ simulated function Notify_ClipHit()
 //
 // These are called to play anims and can be overridden in subclasses.
 //================================================================================
+
 simulated function PlayIdle()
 {
 	if (MeleeState == MS_Pending)
@@ -1204,6 +1223,7 @@ simulated function PlayIdle()
 	else
 	    SafeLoopAnim(IdleAnim, IdleAnimRate, IdleTweenTime, ,"IDLE");
 }
+
 simulated function PlayReload()
 {
 	if (bShovelLoad)
@@ -1215,18 +1235,21 @@ simulated function PlayReload()
 		else	SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
 	}
 }
+
 simulated function PlayShovelEnd()
 {
 	if (bNeedCock && HasAnim(EndShovelEmptyAnim))
 		SafePlayAnim(EndShovelEmptyAnim, EndShovelAnimRate, 0.1, ,"RELOAD");
 	else SafePlayAnim(EndShovelAnim, EndShovelAnimRate, 0.1, ,"RELOAD");
 }
+
 simulated function PlayShovelLoop()
 {
 	SafePlayAnim(ReloadAnim, ReloadAnimRate, 0.0, , "RELOAD");
 	if (BallisticAttachment(ThirdPersonActor) != None && BallisticAttachment(ThirdPersonActor).ReloadAnim != '')
 		Instigator.SetAnimAction('Shovel');
 }
+
 simulated function PlayCocking(optional byte Type)
 {
 	if (Type == 2 && HasAnim(CockAnimPostReload))
@@ -1237,6 +1260,7 @@ simulated function PlayCocking(optional byte Type)
 	if (SightingState != SS_None)
 		TemporaryScopeDown(default.SightingTime);
 }
+
 //================================================================================
 // END ANIM PLAY FUNCTIONS
 //================================================================================
@@ -5210,6 +5234,7 @@ defaultproperties
      CockSelectAnim="PulloutFancy"
 	 CockSelectAnimRate=1.000000
      CockSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
+	 CockSelectSound=(Volume=0.500000,Radius=64.000000,Pitch=1.000000,bAtten=True)
 	 
      ReloadAnim="Reload"
      ReloadAnimRate=1.000000
