@@ -7,56 +7,55 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-		Begin Object Class=FireEffectParams Name=RealisticPrimaryEffectParams
-			SpreadMode=FSM_Circle
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart')
-			Recoil=64.000000
-			Chaos=-1.0
-			Inaccuracy=(X=6000,Y=6000)
-			BotRefireRate=0.990000
-		End Object
-		
-		Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-			FireInterval=0.100000
-			BurstFireRateFactor=1.00
-			FireEffectParams(0)=FireEffectParams'RealisticPrimaryEffectParams'
-		End Object
+	Begin Object Class=FireEffectParams Name=RealisticPrimaryEffectParams
+		SpreadMode=FSM_Circle
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart')
+		Recoil=64.000000
+		Chaos=-1.0
+		Inaccuracy=(X=6000,Y=6000)
+		BotRefireRate=0.990000
+	End Object
+	
+	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
+		FireInterval=0.100000
+		BurstFireRateFactor=1.00
+		FireEffectParams(0)=FireEffectParams'RealisticPrimaryEffectParams'
+	End Object
 		
     //=================================================================
     // SECONDARY FIRE
     //=================================================================	
 	
-	
-		Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams
-			TraceRange=(Min=1600.000000,Max=1600.000000)
-			WaterTraceRange=5000.0
-			DecayRange=(Min=0.0,Max=0.0)
-			Damage=285.0
-			HeadMult=1.315789
-			LimbMult=0.754385
-			DamageType=Class'BallisticProV55.DT_HVCRedLightning'
-			DamageTypeHead=Class'BallisticProV55.DT_HVCRedLightning'
-			DamageTypeArm=Class'BallisticProV55.DT_HVCRedLightning'
-			PDamageFactor=0.6
-			WallPDamageFactor=0.4
-			SpreadMode=FSM_Rectangle
-			MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
-			FireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-SecFire',Volume=0.900000)
-			Recoil=96.000000
-			Chaos=-1.0
-			PushbackForce=1600.000000
-			Inaccuracy=(X=2,Y=2)
-			BotRefireRate=1.000000
-			WarnTargetPct=0.200000
-		End Object
+	Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams
+		TraceRange=(Min=1600.000000,Max=1600.000000)
+		WaterTraceRange=5000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		Damage=285.0
+		HeadMult=1.315789
+		LimbMult=0.754385
+		DamageType=Class'BallisticProV55.DT_HVCRedLightning'
+		DamageTypeHead=Class'BallisticProV55.DT_HVCRedLightning'
+		DamageTypeArm=Class'BallisticProV55.DT_HVCRedLightning'
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		SpreadMode=FSM_Rectangle
+		MuzzleFlashClass=Class'BallisticProV55.HVCMk9RedMuzzleFlash'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-SecFire',Volume=0.900000)
+		Recoil=96.000000
+		Chaos=-1.0
+		PushbackForce=1600.000000
+		Inaccuracy=(X=2,Y=2)
+		BotRefireRate=1.000000
+		WarnTargetPct=0.200000
+	End Object
 
-		Begin Object Class=FireParams Name=RealisticSecondaryFireParams
-			FireInterval=0.700000
-			BurstFireRateFactor=1.00
-			FireAnim="Fire2"
-			FireEndAnim=	
-		FireEffectParams(0)=InstantEffectParams'RealisticSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		FireInterval=0.700000
+		BurstFireRateFactor=1.00
+		FireAnim="Fire2"
+		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'RealisticSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -86,6 +85,10 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.250000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-500,Yaw=-1024)
+		JumpChaos=0.400000
+		JumpOffSet=(Pitch=-5000,Yaw=-1000)
+		FallingChaos=0.400000
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=600.000000
 	End Object

@@ -124,6 +124,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
+		WeaponPrice=9000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.14
 		MagAmmo=9

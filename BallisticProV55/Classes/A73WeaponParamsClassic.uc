@@ -96,6 +96,9 @@ defaultproperties
 		ViewBindFactor=0.150000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-500,Yaw=-1024)
+		JumpOffSet=(Pitch=-5000,Yaw=-1000)
+		JumpChaos=0.400000
+		FallingChaos=0.400000
 		AimDamageThreshold=75.000000
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=650.000000

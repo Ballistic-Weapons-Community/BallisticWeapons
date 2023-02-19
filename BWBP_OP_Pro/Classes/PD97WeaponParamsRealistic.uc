@@ -105,6 +105,7 @@ defaultproperties
 		PlayerSpeedFactor=1.05
 		PlayerJumpFactor=1.05
 		InventorySize=6
+		WeaponPrice=600
 		SightMoveSpeedFactor=1
 		SightingTime=0.20000
 		DisplaceDurationMult=0.5

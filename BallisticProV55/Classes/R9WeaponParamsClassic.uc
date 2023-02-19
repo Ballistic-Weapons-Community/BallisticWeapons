@@ -36,6 +36,7 @@ defaultproperties
 		FireInterval=0.300000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
+		AimedFireAnim="AimedFire"	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
 
@@ -81,6 +82,9 @@ defaultproperties
 		ViewBindFactor=0.250000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpChaos=0.400000
+		JumpOffSet=(Pitch=-5000,Yaw=-1000)
+		FallingChaos=0.400000
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=600.000000
 	End Object

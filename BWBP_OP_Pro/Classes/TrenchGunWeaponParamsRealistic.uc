@@ -83,9 +83,9 @@ defaultproperties
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunFlame'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
 		Damage=5
-		DamageType=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
-		DamageTypeHead=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
-		DamageTypeArm=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
+		DamageType=Class'BWBP_OP_Pro.DT_TrenchFire'
+		DamageTypeHead=Class'BWBP_OP_Pro.DT_TrenchFireHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DT_TrenchFire'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.ARFlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.fire_shot',Volume=1.500000,Radius=384.000000,Pitch=1.000000)

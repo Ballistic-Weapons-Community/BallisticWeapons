@@ -61,15 +61,18 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
+	Begin Object Class=AimParams Name=ClassicAimParams //Super Heavy Rifle Handling
 		AimSpread=(Min=128,Max=3840)
 		AimAdjustTime=0.900000
+		OffsetAdjustTime=0.350000
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.850000
 		ViewBindFactor=0.550000
-		SprintChaos=0.400000
+		SprintChaos=0.450000
 		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpChaos=0.450000
 		JumpOffset=(Pitch=-6000,Yaw=2000)
+		FallingChaos=0.450000
 		ChaosDeclineTime=1.800000
 		ChaosSpeedThreshold=300.000000
 	End Object

@@ -138,6 +138,7 @@ defaultproperties
         MagAmmo=24
 		bMagPlusOne=True
 		InventorySize=12
+		WeaponPrice=2300
         SightPivot=(Pitch=-300,Roll=0)
         SightOffset=(X=-10.000000,Y=0.000000,Z=11.550000)
 		ViewOffset=(X=5.000000,Y=4.750000,Z=-9.000000)

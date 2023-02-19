@@ -127,6 +127,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
+		WeaponPrice=1800
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.15
 		MagAmmo=6

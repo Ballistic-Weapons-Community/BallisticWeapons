@@ -39,6 +39,7 @@ var BUtil.IntRange		        AimSpread;			    // Range for how far aim can be fro
 var float                       AimAdjustTime;
 var float				        ChaosDeclineTime;	    // Time it take for chaos to decline from 1 to 0
 var int                         ChaosSpeedThreshold;    
+var int							ChaosTurnThreshold;
 var float                       CrouchMultiplier;
 //-----------------------------------------------------------------------------
 // Long Gun
@@ -254,6 +255,7 @@ final simulated function Recalculate()
     AimAdjustTime       = Params.AimAdjustTime;
     ChaosDeclineTime    = Params.ChaosDeclineTime;
     ChaosSpeedThreshold = Params.ChaosSpeedThreshold;
+    ChaosTurnThreshold = Params.ChaosTurnThreshold;
 	CrouchMultiplier    = Params.CrouchMultiplier;
 
 	if (ViewBindFactor == 0)
@@ -427,10 +429,20 @@ final simulated function Rotator CalcNewAimOffset()
 	return R;
 }
 
-//Aim system only handles movement penalties in Pro. Wildness caused by weapon firing is conefire.
+// Aim system only handles movement penalties in Pro. Wildness caused by weapon firing is conefire.
+// In Classic, the below vars are used
+// Sets NewAim, OldAim, interpolation time and adds chaos. Another key part of the aiming system. Entry point for aim system...
+// DT 	 		Should be time since last tick,
+// TimeMod	 	Set this to use custom time instead of AimAdjustTime,
+// ExtraChaos	Extra amount added to chaos
+// XMod			Extra Yaw Added to new aim,
+// YMod			Extra Pitch Added to new aim,
+// BaseChaos	Minimum chaos for new aim. (Player turn chaos and ExtraChaos are still added after this)
 final simulated function Reaim (float DT, optional float TimeMod, optional float ExtraChaos, optional float XMod, optional float YMod, optional float BaseChaos)
 {
-	local float VResult, X, Y, T;
+	local int RDist;
+	local float VResult, X, Y, T, CAF, XValue, YValue;
+	local Rotator ViewOff, R;
 	local Vector V;//, Forward, Right, up;
 
 	if (BW.bAimDisabled)
@@ -458,13 +470,44 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
 
 	//Changed how this is worked out.
 	//Uses ChaosSpeedThreshold (VResult) to provide a basic movement penalty.
-	Chaos = FClamp(VResult, 0, 1 );
-	NewChaos = Chaos;
+	if (BW.GameStyleIndex == 0)
+	{
+		Chaos = FClamp(VResult, 0, 1 );
+		NewChaos = Chaos;
+		XValue = FRand();
+		YValue = FRand();
+	}
+	else //classic heavy chaos
+	{
+		// Figure out how much the view changed
+		ViewOff = BW.GetPlayerAim() - OldLookDir;
+		R.Yaw = Abs(ViewOff.Yaw);		R.Pitch = Abs(ViewOff.Pitch);
+		RDist = int(Sqrt((R.Yaw*R.Yaw) + (R.Pitch*R.Pitch)));
+		
+		// Add some wildness depending on how much view changed and player movement speed.
+		// Chaos is calculated as (BaseChaos + Move Speed Chaos) unleass current chaos is already higher,
+		// then it adds (View Change Chaos * CrouchAimFactor) + ExtraChaos.
+		if (BW.Instigator.bIsCrouched)	CAF = CrouchMultiplier;	else CAF = 1;
+		Chaos = FClamp(FMax(BaseChaos+VResult, Chaos) + ExtraChaos + CAF*((RDist/DT)/ChaosTurnThreshold), 0, 1 );
+		NewChaos = Chaos;
+
+		if (PlayerController(BW.Instigator.Controller) != None && RDist > 0)
+		{	// Bias new aim according to direction player was turning
+			XValue = 0.5 + FRand() * 0.5 * (( (ViewOff.Yaw/R.Yaw)*2 + (FRand()*2 - 1) )/3);
+			YValue = 0.5 + FRand() * 0.5 * (( (ViewOff.Pitch/R.Pitch)*2 + (FRand()*2 - 1) )/3);
+		}
+		else
+		{	// Random direction
+			XValue = FRand();
+			YValue = FRand();
+		}
+		
+	}
 
 	// Calculate new aim
 	// The previous section only tracks movement-induced chaos for the sake of an accurately updated crosshair.
-	X = XMod + Lerp( FRand(), Lerp(Chaos, -AimSpread.Min, -AimSpread.Max), Lerp(Chaos, AimSpread.Min, AimSpread.Max) );
-	Y = YMod + Lerp( FRand(), Lerp(Chaos, -AimSpread.Min, -AimSpread.Max), Lerp(Chaos, AimSpread.Min, AimSpread.Max) );
+	X = XMod + Lerp( XValue, Lerp(Chaos, -AimSpread.Min, -AimSpread.Max), Lerp(Chaos, AimSpread.Min, AimSpread.Max) );
+	Y = YMod + Lerp( YValue, Lerp(Chaos, -AimSpread.Min, -AimSpread.Max), Lerp(Chaos, AimSpread.Min, AimSpread.Max) );
 	
 	if (BW.Instigator.bIsCrouched)
 	{

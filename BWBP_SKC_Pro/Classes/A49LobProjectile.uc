@@ -29,7 +29,7 @@ simulated function InitProjectile ()
 defaultproperties
 {
     FallSpeed=600.000000
-    ImpactManager=Class'BallisticProV55.IM_A73Lob'
+    ImpactManager=Class'BWBP_SKC_Pro.IM_A49Lob'
     bPenetrate=False
     TrailClass=Class'BallisticProV55.A73PowerTrailEmitter'
     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTA49Skrith'

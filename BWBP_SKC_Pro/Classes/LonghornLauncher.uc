@@ -421,6 +421,7 @@ defaultproperties
 	SightOffset=(Y=19.600000,Z=26.400000)
 	ParamsClasses(0)=Class'LonghornWeaponParams'
 	ParamsClasses(1)=Class'LonghornWeaponParamsClassic'
+	ParamsClasses(2)=Class'LonghornWeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LonghornPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LonghornSecondaryFire'
 	SelectAnimRate=1.100000

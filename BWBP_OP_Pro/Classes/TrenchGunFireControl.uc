@@ -114,7 +114,7 @@ simulated function DoFlameHit(FlameHit Hit)
 	local int i;
 	local BW_FuelPatch Other;
 
-	BurnRadius(4, 256, class'DTTrenchBurned', 0, Hit.HitLoc, Hit.Instigator);
+	BurnRadius(4, 256, class'DT_TrenchBurned', 0, Hit.HitLoc, Hit.Instigator);
 
 	if (NearFire(Hit.HitLoc, Other))
 		Other.AddFuel(0.5);

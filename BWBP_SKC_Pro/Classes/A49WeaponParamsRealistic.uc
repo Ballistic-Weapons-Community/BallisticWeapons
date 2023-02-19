@@ -19,7 +19,7 @@ defaultproperties
 		HeadMult=2.0
 		LimbMult=0.5
 		MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-		FlashScaleFactor=1.600000
+		FlashScaleFactor=1.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Autolaser.AutoLaser-Fire',Volume=1.300000)
 		Recoil=880.000000
 		Chaos=-1.0
@@ -28,7 +28,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=1.250000
+		FireInterval=0.800000
 		BurstFireRateFactor=1.00
 		AmmoPerFire=10
 		FireEndAnim=	
@@ -84,10 +84,15 @@ defaultproperties
 		CrouchMultiplier=0.600000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.050000
-		SprintChaos=0.400000
 		AimDamageThreshold=75.000000
+		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpChaos=0.750000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
 		ChaosDeclineTime=2.000000
-		ChaosSpeedThreshold=600.000000
+		ChaosSpeedThreshold=1000.000000
+		ChaosTurnThreshold=185000.000000
 	End Object
     
 	//=================================================================

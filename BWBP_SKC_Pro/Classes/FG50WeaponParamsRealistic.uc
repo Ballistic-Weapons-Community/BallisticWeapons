@@ -110,23 +110,28 @@ defaultproperties
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.800000
 		ViewBindFactor=0.100000
-		SprintChaos=0.400000
 		ChaosDeclineTime=1.600000
 		ChaosSpeedThreshold=375
+		SprintChaos=0.500000
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		JumpChaos=0.500000
 		JumpOffset=(Pitch=-6000,Yaw=2000)
+		FallingChaos=0.500000
+		AimAdjustTime=1.000000
 	End Object
 
 	Begin Object Class=AimParams Name=RealisticControlledAimParams
 		AimSpread=(Min=16,Max=2048)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
-		SprintChaos=0.400000
 		ChaosDeclineTime=1.25
 		ChaosSpeedThreshold=350
+		SprintChaos=0.500000
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		JumpChaos=0.500000
 		JumpOffset=(Pitch=-6000,Yaw=2000)
-		AimAdjustTime=1
+		FallingChaos=0.500000
+		AimAdjustTime=1.1
 	End Object 
     
 	//=================================================================

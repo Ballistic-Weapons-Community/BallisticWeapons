@@ -33,6 +33,7 @@ var() int   				AimDamageThreshold;	// Damage done to player is divided by this 
 var() float				    ChaosDeclineTime;	// Time it take for chaos to decline from 1 to 0
 var() float                 ChaosDeclineDelay;  // Delay before chaos declines
 var() int				    ChaosSpeedThreshold;// Player speed divided by this to set chaos. <100=Very High Spread, 500=Average, >500 Good Spread.
+var() int					ChaosTurnThreshold; // Speed(Rotator units per second) of view rotation required to reach full chaos.
 
 defaultproperties
 {
@@ -50,4 +51,5 @@ defaultproperties
     ChaosDeclineTime=0.640000
     ChaosDeclineDelay=0.000000
     ChaosSpeedThreshold=500.000000
+    ChaosTurnThreshold=131072.000000
 }
