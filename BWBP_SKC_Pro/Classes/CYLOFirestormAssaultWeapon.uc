@@ -36,7 +36,7 @@ var() int	     	SGShells;
 var byte			OldWeaponMode;
 var() float			GunCockTime;		// Used so players cant interrupt the shotgun.
 
-var	RX22AFireControl	FireControl;
+var	CYLOFirestormFireControl	FireControl;
 
 replication
 {
@@ -46,18 +46,9 @@ replication
 		ClientOverCharge, ClientSetHeat;
 }
 
-simulated event PreBeginPlay()
-{
-	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
-	{
-		FireModeClass[1]=Class'BWBP_SKC_Pro.CYLOFirestormSecondaryShotgunFire';
-	}
-}
-
 simulated event PostNetBeginPlay()
 {
-	local RX22AFireControl FC;
+	local CYLOFirestormFireControl FC;
 	
 	super.PostNetBeginPlay();
 
@@ -73,17 +64,17 @@ simulated event PostNetBeginPlay()
 	
 	if (Role == ROLE_Authority && FireControl == None)
 	{
-		foreach DynamicActors (class'RX22AFireControl', FC)
+		foreach DynamicActors (class'CYLOFirestormFireControl', FC)
 		{
 			FireControl = FC;
 			return;
 		}
-		FireControl = Spawn(class'RX22AFireControl', None);
+		FireControl = Spawn(class'CYLOFirestormFireControl', None);
 	}
 	
 }
 
-function RX22AFireControl GetFireControl()
+function CYLOFirestormFireControl GetFireControl()
 {
 	return FireControl;
 }

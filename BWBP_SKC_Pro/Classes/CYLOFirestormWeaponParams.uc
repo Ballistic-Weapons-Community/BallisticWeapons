@@ -34,6 +34,38 @@ defaultproperties
 	// SECONDARY FIRE
 	//=================================================================	
 	
+	//Dragon's Breath
+	Begin Object Class=ShotgunEffectParams Name=ArenaSecondaryEffectParams_Flame
+		TraceRange=(Min=1572.000000,Max=1572.000000)
+		RangeAtten=0.200000
+		TraceCount=4
+		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunFlameLight'
+		ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
+		Damage=15
+		DamageType=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgunHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
+		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		FlashScaleFactor=1.000000
+		Recoil=512.000000
+		Chaos=0.30000
+		BotRefireRate=0.7
+		WarnTargetPct=0.5	
+		SpreadMode=FSM_Rectangle
+		Inaccuracy=(X=1250,Y=1250)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.CYLO.CYLO-FlameFire',Volume=1.300000)
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaSecondaryFireParams_Flame
+		FireInterval=0.4
+		AmmoPerFire=0
+		FireAnim="FireSG"
+		FireEndAnim=	
+		TargetState="FireShot"
+	FireEffectParams(0)=ShotgunEffectParams'ArenaSecondaryEffectParams_Flame'
+	End Object
+	
+	//HE Slug
 	Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.CYLOFirestormHEProjectile'
 		SpawnOffset=(Y=20.000000,Z=-20.000000)
@@ -58,6 +90,7 @@ defaultproperties
 		AmmoPerFire=0
 		FireAnim="FireSG"
 		FireEndAnim=	
+		TargetState="HESlug"
 	FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
 	End Object
 	

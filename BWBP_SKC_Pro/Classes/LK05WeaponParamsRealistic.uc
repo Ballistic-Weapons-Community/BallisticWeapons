@@ -26,7 +26,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=1.200000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.LK05.LK05-HeavyFire',Volume=1.500000)
-		Recoil=700.000000
+		Recoil=465.000000 //700 hip
 		Chaos=0.080000
 		Inaccuracy=(X=10,Y=10)
 		WarnTargetPct=0.200000
@@ -44,20 +44,19 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
+		FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
+		Recoil=0.0
+		Chaos=-1.0
+		BotRefireRate=0.300000
+	End Object
 	
-		Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams
-			FireSound=(Volume=1.000000,Radius=255.000000,Pitch=1.000000,bNoOverride=True)
-			Recoil=0.0
-			Chaos=-1.0
-			BotRefireRate=0.300000
-		End Object
-		
-		Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-			FireInterval=1.300000
-			AmmoPerFire=0
-			BurstFireRateFactor=1.00
-			FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
-		End Object
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+		FireInterval=1.300000
+		AmmoPerFire=0
+		BurstFireRateFactor=1.00
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams'
+	End Object
 		
 	//=================================================================
 	// RECOIL
@@ -66,6 +65,8 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=RealisticRecoilParams
 		XCurve=(Points=(,(InVal=0.450000,OutVal=0.350000),(InVal=0.750000,OutVal=0.325000),(InVal=1.000000,OutVal=0.100000)))
 		YCurve=(Points=(,(InVal=0.475000,OutVal=0.3250000),(InVal=0.750000,OutVal=0.425000),(InVal=1.000000,OutVal=0.400000)))
+		XCurveAlt=(Points=(,(InVal=0.450000,OutVal=0.350000),(InVal=0.750000,OutVal=0.325000),(InVal=1.000000,OutVal=0.100000)))
+		YCurveAlt=(Points=(,(InVal=0.475000,OutVal=0.1250000),(InVal=0.750000,OutVal=0.425000),(InVal=1.000000,OutVal=0.100000)))
 		YawFactor=0.175000
 		XRandFactor=0.165000
 		YRandFactor=0.165000
@@ -74,9 +75,10 @@ defaultproperties
 		DeclineDelay=0.180000
 		ViewBindFactor=0.060000
 		ADSViewBindFactor=0.060000
-		HipMultiplier=1.000000
+		HipMultiplier=1.500000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
+		bUseAltSightCurve=True
 	End Object
 
 	//=================================================================
@@ -90,6 +92,9 @@ defaultproperties
 		ViewBindFactor=0.060000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpChaos=0.300000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
 		ChaosDeclineTime=1.200000
 		ChaosSpeedThreshold=565.000000
 	End Object
@@ -100,7 +105,6 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=11
-		WeaponPrice=2200
 		MagAmmo=25
 		bMagPlusOne=True
 		SightMoveSpeedFactor=0.500000

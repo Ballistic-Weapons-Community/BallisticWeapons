@@ -8,7 +8,7 @@ defaultproperties
      InvasionDamageScaling=2.500000
      DamageIdent="Killstreak"
      WeaponClass=Class'BWBP_SKC_Pro.MGLauncher'
-     DeathString="%o was tagged by %k's M900 grenade."
+     DeathString="%o was tagged by %k's MGL grenade."
      FemaleSuicide="%o tagged herself with her own grenade."
      MaleSuicide="%o tagged himself with his own grenade."
      bDelayedDamage=True

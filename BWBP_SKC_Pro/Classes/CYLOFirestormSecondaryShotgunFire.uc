@@ -9,7 +9,7 @@
 //=============================================================================
 class CYLOFirestormSecondaryShotgunFire extends BallisticShotgunFire;
 
-function RX22AFireControl GetFireControl()
+function CYLOFirestormFireControl GetFireControl()
 {
 	return CYLOFirestormAssaultWeapon(Weapon).GetFireControl();
 }
@@ -67,7 +67,7 @@ function DoFireEffect()
 			continue;
 		NodeDist = VSize(GetFireControl().GasNodes[i].Location - (Start + Dir * (DR * NodeDist)));
 		if (NodeDist < 128)
-			GetFireControl().GasNodes[i].TakeDamage(5, Instigator, GetFireControl().GasNodes[i].Location, vect(0,0,0), class'DTRX22ABurned');
+			GetFireControl().GasNodes[i].TakeDamage(5, Instigator, GetFireControl().GasNodes[i].Location, vect(0,0,0), class'DT_CYLOFirestormShotgun');
 	}
 
 
@@ -117,9 +117,9 @@ defaultproperties
      TraceRange=(Min=1500.000000,Max=1500.000000)
      Damage=15.000000
      RangeAtten=0.20000
-     DamageType=Class'BWBP_SKC_Pro.DTCYLOShotgun'
-     DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOShotgunHead'
-     DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOShotgun'
+     DamageType=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
+     DamageTypeHead=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgunHead'
+     DamageTypeArm=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
      KickForce=5000
      PenetrateForce=0
 	 bPenetrate=False
