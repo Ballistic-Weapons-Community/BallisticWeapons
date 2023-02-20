@@ -14,9 +14,9 @@ defaultproperties
 		Damage=72.0
 		HeadMult=1.7
 		LimbMult=0.5
-		DamageType=Class'BallisticProV55.DTR9Rifle'
-		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
-		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
+		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		PenetrationEnergy=48.000000
 		PenetrateForce=150
 		bPenetrate=True
