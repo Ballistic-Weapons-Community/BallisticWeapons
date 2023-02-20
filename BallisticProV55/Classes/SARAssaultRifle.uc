@@ -12,16 +12,16 @@ class SARAssaultRifle extends BallisticWeapon;
 const AUTO_MODE = 0;
 const BURST_MODE = 1;
 
-var   bool			bLaserOn, bOldLaserOn;
-var   bool			bStriking;
-var   LaserActor	Laser;
+var()   bool			bLaserOn, bOldLaserOn;
+var()   bool			bStriking;
+var()   LaserActor	Laser;
 var() Sound			LaserOnSound;
 var() Sound			LaserOffSound;
 var   Emitter		LaserDot;
 
-var   name		StockOpenAnim;
-var   name		StockCloseAnim;
-var   bool		bStockOpen, bStockBoneOpen;
+var()   name		StockOpenAnim;
+var()   name		StockCloseAnim;
+var()   bool		bStockOpen, bStockBoneOpen;
 
 // This uhhh... thing is added to allow manual drawing of brass OVER the muzzle flash
 struct UziBrass
@@ -42,7 +42,8 @@ simulated function PostBeginPlay()
 	Super.PostBeginPlay();
 
 	SetStockRotation();
-	OnStockSwitched();
+	if (bStockOpen)
+		OnStockSwitched();
 }
 
 simulated function float ChargeBar()
@@ -95,7 +96,7 @@ function ServerSwitchWeaponMode (byte NewMode)
 	if (ReloadState != RS_None)
 		return;
 		
-	NewMode = byte(bStockOpen);
+	NewMode = byte(!bStockOpen);
 		
 	// can feasibly happen
 	if (NewMode == CurrentWeaponMode)
@@ -109,7 +110,7 @@ function ServerSwitchWeaponMode (byte NewMode)
 simulated function CommonSwitchWeaponMode(byte NewMode)
 {
 	Super.CommonSwitchWeaponMode(NewMode);
-	SwitchStock(NewMode == AUTO_MODE);
+	SwitchStock(NewMode == BURST_MODE);
 }
 
 simulated function OnStockSwitched()
@@ -135,11 +136,19 @@ simulated function SwitchStock(bool bNewValue)
 	
 	TemporaryScopeDown(0.4);
 
-	bStockOpen = bNewValue;
+	if (!bStockOpen)
+		SetStockRotation();
+
+	bStockOpen = !bStockOpen;
+
+	if (!bStockOpen)
+		SetStockRotation();
+
+	//bStockOpen = bNewValue;
 	
-	SetBoneRotation('Stock', rot(0,0,0));
+	//SetBoneRotation('Stock', rot(0,0,0));
 	
-	if (bNewValue)
+	if (bStockOpen)
 		PlayAnim(StockOpenAnim);
 	else
 		PlayAnim(StockCloseAnim);
@@ -497,7 +506,7 @@ simulated function bool ReadyToFire(int Mode)
 
 defaultproperties
 {
-	bStockOpen=true
+	bStockOpen=False
 	AIRating=0.72
 	CurrentRating=0.72
 	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'

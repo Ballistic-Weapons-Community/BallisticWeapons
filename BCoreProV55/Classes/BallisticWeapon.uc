@@ -3908,7 +3908,7 @@ simulated event Timer()
 			if (BringUpTime == CockingBringUpTime)
 				bNeedCock = False;
 			else if (MagAmmo > 0)
-				ServerCockGun();
+				CommonCockGun();
 		}
     }
     else if (ClientState == WS_PutDown)

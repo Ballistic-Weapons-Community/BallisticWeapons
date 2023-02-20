@@ -47,6 +47,7 @@ var float						DeclineDelay;					// The time between firing and when recoil shou
 var float             			HipMultiplier;            		// Hipfire recoil is scaled up by this value
 var float             			CrouchMultiplier;         		// Crouch recoil is scaled by this value
 var bool                        bViewDecline;                   // Weapon will move back down through its recoil path when recoil is declining
+var bool						bUseAltSightCurve;				// Weapon will use a different recoil curve when in sights
 
 //=============================================================================
 // STATE
@@ -142,6 +143,7 @@ final simulated function Recalculate()
 	HipMultiplier 		= Params.HipMultiplier;
 	CrouchMultiplier 	= Params.CrouchMultiplier;
     bViewDecline        = Params.bViewDecline;
+    bUseAltSightCurve   = Params.bUseAltSightCurve;
 
 	if (ViewBindFactor == 0)
 		ViewBindFactor = Params.ViewBindFactor;
@@ -256,9 +258,16 @@ private final simulated function Rotator GetRecoilPivot(bool bIgnoreViewAim)
     }
         
 	// Pitching/Yawing
-	R.Yaw += Params.EvaluateXRecoil(Recoil);
-	R.Pitch += Params.EvaluateYRecoil(Recoil);
-	
+	if (BW.bScopeView && bUseAltSightCurve)
+	{
+		R.Yaw += Params.EvaluateXRecoilAlt(Recoil);
+		R.Pitch += Params.EvaluateYRecoilAlt(Recoil);
+	}
+	else
+	{
+		R.Yaw += Params.EvaluateXRecoil(Recoil);
+		R.Pitch += Params.EvaluateYRecoil(Recoil);
+	}
 	if (BW.InstigatorController != None && BW.InstigatorController.Handedness == -1)
 		R.Yaw = -R.Yaw;
 

@@ -100,6 +100,7 @@ defaultproperties
 		bNeedCock=True
 		MagAmmo=20
 		SightOffset=(X=20.000000,Z=11.750000)
+        ZoomType=ZT_Logarithmic
 		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")

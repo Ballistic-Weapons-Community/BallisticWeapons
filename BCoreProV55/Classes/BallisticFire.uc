@@ -201,6 +201,7 @@ simulated function ApplyFireEffectParams(FireEffectParams effect_params)
     // must check on existing muzzle flash for replacement
     MuzzleFlashClass        		= effect_params.MuzzleFlashClass;
     FlashScaleFactor        		= effect_params.FlashScaleFactor;
+	FlashBone						= effect_params.FlashBone;
     BallisticFireSound     	 		= effect_params.FireSound;
     FireRecoil            			= effect_params.Recoil;
     FirePushbackForce	     	 	= effect_params.PushbackForce;
