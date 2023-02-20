@@ -48,36 +48,70 @@ defaultproperties
 		
     //=================================================================
     // SECONDARY FIRE
-    //=================================================================	/*
+    //=================================================================
 	
-	Begin Object Class=MeleeEffectParams Name=ClassicSecondaryEffectParams
-		TraceRange=(Min=128.000000,Max=128.000000)
-		WaterTraceRange=5000.0
-		Damage=65.0
-		HeadMult=1.538461
-		LimbMult=0.461538
-		DamageType=Class'BallisticProV55.DTM763Hit'
-		DamageTypeHead=Class'BallisticProV55.DTM763HitHead'
-		DamageTypeArm=Class'BallisticProV55.DTM763Hit'
-		ChargeDamageBonusFactor=1
-		PenetrationEnergy=0.000000
-		SpreadMode=FSM_Rectangle
-		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Radius=32.000000,bAtten=True)
-		Recoil=0.0
+	//Gas Slug
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams_Slug
+		ProjectileClass=Class'BallisticProV55.M763GasSlug'
+		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+		Speed=3600.000000
+		MaxSpeed=1000000.000000
+		AccelSpeed=1200.000000
+		Damage=100.000000
+		DamageRadius=300.000000
+		MomentumTransfer=10000.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
+		Recoil=450.000000
 		Chaos=-1.0
-		BotRefireRate=0.900000
-		WarnTargetPct=0.050000
+		Inaccuracy=(X=2,Y=2)
+		SplashDamage=True
+		RecommendSplashDamage=True
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Slug
+		TargetState="GasSlug"
+		FireInterval=0.750000
+		FireAnim="FireCombined"
+		FireEndAnim=
+		AimedFireAnim="FireCombinedSight"
+		FireAnimRate=1.100000	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams_Slug'
 	End Object
 	
-	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=0.800000
-		AmmoPerFire=0
-		BurstFireRateFactor=1.00
-		PreFireAnim="PrepHit"
-		FireAnim="Hit"
-		FireEffectParams(0)=MeleeEffectParams'ClassicSecondaryEffectParams'
+	//Gas Spray
+	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams_Spray
+		TraceRange=(Min=768.000000,Max=768.000000)
+		RangeAtten=0.250000
+		Damage=35
+		DamageType=Class'BallisticProV55.DTM763Shotgun'
+		DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'
+		DamageTypeArm=Class'BallisticProV55.DTM763Shotgun'
+		PenetrateForce=100
+		bPenetrate=True
+		FlashScaleFactor=2.000000
+		Recoil=1280.000000
+		Chaos=0.500000
+		BotRefireRate=0.3
+		WarnTargetPct=0.75
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
 	End Object
-		*/
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Spray
+		TargetState="GasSpray"
+		FireInterval=0.750000
+		FireAnim="FireCombined"
+		FireEndAnim=
+		AimedFireAnim="FireCombinedSight"
+		FireAnimRate=1.100000	
+		FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams_Spray'
+	End Object
+	
 	//=================================================================
 	// RECOIL
 	//=================================================================
@@ -129,7 +163,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		//AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Spray'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams'
