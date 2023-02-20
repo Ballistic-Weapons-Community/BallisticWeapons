@@ -84,6 +84,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=ClassicAimParams
 		AimSpread=(Min=64,Max=2048)
 		AimAdjustTime=1.000000
+		OffsetAdjustTime=0.650000
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.400000

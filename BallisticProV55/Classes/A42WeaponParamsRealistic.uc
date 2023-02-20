@@ -29,6 +29,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
+		TargetState="Spread"
 		FireInterval=0.240000
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
@@ -89,6 +90,9 @@ defaultproperties
 		ViewBindFactor=0.050000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-4608,Yaw=-512)
+		JumpChaos=0.200000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
 		ChaosDeclineTime=0.900000
 		ChaosSpeedThreshold=600.000000
 	End Object

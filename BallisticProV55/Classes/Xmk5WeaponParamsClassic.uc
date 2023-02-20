@@ -88,7 +88,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
+	Begin Object Class=AimParams Name=ClassicAimParams //Heavy SMG Handling
 		AimSpread=(Min=48,Max=2560)
 		AimAdjustTime=0.450000
 		CrouchMultiplier=0.700000
