@@ -2377,7 +2377,7 @@ simulated function CommonWeaponSpecialRelease(optional byte i);
 //===========================================================================
 // WEAPON COCKING
 //---------------------------------------------------------------------------
-exec simulated function CockGun(optional byte Type)		{if (bNonCocking || ReloadState != RS_None || bPreventReload) return; ServerCockGun(Type); }
+exec simulated function CockGun(optional byte Type)		{if (bNonCocking || ReloadState != RS_None || ClientState == WS_BringUp || bPreventReload) return; ServerCockGun(Type); }
 simulated function ClientCockGun (optional byte Type)	{ CommonCockGun(Type);							}
 function ServerCockGun(optional byte Type)
 {	
