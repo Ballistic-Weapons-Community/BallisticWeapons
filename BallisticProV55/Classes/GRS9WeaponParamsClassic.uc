@@ -151,7 +151,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
+	Begin Object Class=AimParams Name=ClassicAimParams //Light Pistol
 		AimSpread=(Min=32,Max=8192)
 		AimAdjustTime=0.350000
 		ADSMultiplier=0.700000

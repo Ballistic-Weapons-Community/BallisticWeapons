@@ -151,7 +151,7 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
+	Begin Object Class=AimParams Name=ClassicAimParams //Super Heavy
 		AimAdjustTime=1.000000
 		AimSpread=(Min=32,Max=2560)
 		CrouchMultiplier=0.100000

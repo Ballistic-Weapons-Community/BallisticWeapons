@@ -129,10 +129,15 @@ defaultproperties
 	Begin Object Class=AimParams Name=ClassicAimParams
 		AimSpread=(Min=64,Max=512)
 		ADSMultiplier=0.650000
+		SprintChaos=0.500000
 		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		JumpChaos=0.500000
 		JumpOffset=(Pitch=-6000,Yaw=-1500)
+		FallingChaos=0.500000
+		AimDamageThreshold=300.000000
 		AimAdjustTime=1.000000
-		ChaosSpeedThreshold=500.000000
+		ChaosDeclineTime=2.800000
+		ChaosSpeedThreshold=340.000000
 	End Object
 
 	//=================================================================
@@ -150,8 +155,8 @@ defaultproperties
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.500000
 		WeaponModes(0)=(ModeName="Mode: Barrage",ModeID="WM_FullAuto",bUnavailable=True)
-		WeaponModes(1)=(ModeName="Mode: High Velocity",ModeID="WM_FullAuto")
-		WeaponModes(2)=(ModeName="Mode: Barrage",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Mode: High Velocity",ModeID="WM_SemiAuto",Value=1)
+		WeaponModes(2)=(ModeName="Mode: Barrage",ModeID="WM_BigBurst",Value=3)
 		InitialWeaponMode=2
 		MagAmmo=6
         ZoomType=ZT_Logarithmic

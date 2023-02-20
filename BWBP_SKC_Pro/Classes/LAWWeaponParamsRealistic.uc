@@ -118,6 +118,7 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		ItemName="FGM-70 "Shockwave" 152mm Anti-Tank Weapon"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

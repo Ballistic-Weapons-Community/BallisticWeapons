@@ -21,7 +21,7 @@ defaultproperties
         DamageGainEndTime=0.0
         FlashScaleFactor=0.750000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
-        Chaos=0.01
+        Chaos=0.06
         Recoil=40
 		Inaccuracy=(X=32,Y=32)
         WarnTargetPct=0.1

@@ -82,7 +82,11 @@ defaultproperties
 	Begin Object Class=AimParams Name=ClassicAimParams
 		AimSpread=(Min=32,Max=1024)
 		ADSMultiplier=0.200000
+		SprintChaos=0.400000
 		SprintOffset=(Pitch=-3000,Yaw=-4000)
+		JumpChaos=0.400000
+		JumpOffSet=(Pitch=-5000,Yaw=-1000)
+		FallingChaos=0.400000
 		AimAdjustTime=0.400000
 		ChaosDeclineTime=1.00000
 		ChaosSpeedThreshold=1200.000000
