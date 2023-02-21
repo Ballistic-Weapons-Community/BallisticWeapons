@@ -109,7 +109,6 @@ defaultproperties
 		JumpOffset=(Pitch=-6000,Yaw=-1500)
 		FallingChaos=0.500000
 		AimDamageThreshold=300.000000
-		AimAdjustTime=1.000000
 		ChaosDeclineTime=2.800000
 		ChaosSpeedThreshold=440.000000
 	End Object

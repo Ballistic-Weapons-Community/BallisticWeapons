@@ -80,7 +80,6 @@ defaultproperties
 		JumpChaos=0.200000
 		JumpOffSet=(Pitch=1000,Yaw=-500)
 		FallingChaos=0.400000
-		ChaosDeclineTime=0.500000
 		ChaosSpeedThreshold=1400.000000
 		ChaosTurnThreshold=196608.000000
 	End Object

@@ -63,10 +63,9 @@ defaultproperties
 	Begin Object Class=AimParams Name=ClassicAimParams
 		AimSpread=(Min=64,Max=512)
 		ADSMultiplier=0.0
-		JumpChaos=0.200000
 		AimAdjustTime=0.450000
 		SprintChaos=0.300000
-		JumpChaos=0.300000
+		JumpChaos=0.200000
 		JumpOffSet=(Pitch=1000,Yaw=-500)
 		FallingChaos=0.300000
 	End Object
