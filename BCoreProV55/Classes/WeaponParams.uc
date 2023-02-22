@@ -13,6 +13,7 @@ class WeaponParams extends Object
 struct MaterialSwap
 {
     var()   Material    Material;
+	var()	string		MaterialName;
     var()   int         Index;
 };
 

@@ -646,8 +646,8 @@ simulated function GenerateCamo(byte Index)
 	local float f;
 	
 	local int WeightSum, CurrentWeight;
-	local array<WeaponCamos> Camos;
-	local array<WeaponCamos> CamoSublist;
+	local array<WeaponCamo> Camos;
+	local array<WeaponCamo> CamoSublist;
 	local array<int> AllowedCamos;
 	
 	Camos = ParamsClasses[GameStyleIndex].default.Camos;
@@ -725,7 +725,8 @@ simulated function GenerateCamo(byte Index)
 simulated function OnWeaponParamsChanged()
 {
     local int i;
-
+	local Material M;
+	
     assert(WeaponParams != None);
 
 	SightingTime 				= WeaponParams.SightingTime;
@@ -805,7 +806,16 @@ simulated function OnWeaponParamsChanged()
 	
 	//Visuals
     for (i = 0; i < WeaponParams.WeaponMaterialSwaps.Length; ++i)
-        Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = WeaponParams.WeaponMaterialSwaps[i].Material;
+	{
+		if (WeaponParams.WeaponMaterialSwaps[i].Material != None)
+			Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = WeaponParams.WeaponMaterialSwaps[i].Material;
+		if (WeaponParams.WeaponMaterialSwaps[i].MaterialName != "")
+		{
+			M = Material(DynamicLoadObject(WeaponParams.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+			if (M != None)
+				Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = M;
+		}
+	}
 
     for (i = 0; i < WeaponParams.WeaponBoneScales.Length; ++i)
         SetBoneScale(WeaponParams.WeaponBoneScales[i].Slot, WeaponParams.WeaponBoneScales[i].Scale, WeaponParams.WeaponBoneScales[i].BoneName);

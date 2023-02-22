@@ -1,13 +1,13 @@
 //=============================================================================
-// WeaponCamos.
+// WeaponCamo.
 //
 // Subobject designed to hold a set of skins to load in.
 // Has a friendly name for menus and a locking var to ensure the camo is not 
 // put on layouts with model changes.
 //
-// by Azarael, SK
+// by Azarael and SK
 //=============================================================================
-class WeaponCamos extends Object
+class WeaponCamo extends Object
     editinlinenew;
 	
 // Struct used for skin replacements
