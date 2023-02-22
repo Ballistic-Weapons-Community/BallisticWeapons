@@ -249,7 +249,7 @@ function ModifyPlayer( pawn Other )
 		EquipBot(Other);
 	else
 	{
-		CLRI.Validate(CLRI.Loadout);
+		CLRI.Validate(CLRI.Loadout, CLRI.Layout);
 		if (CLRI.Loadout.length == 0)
 		{
  			s = GetFallbackWeapon(CLRI);
@@ -278,7 +278,12 @@ function ModifyPlayer( pawn Other )
 						continue;
 				
 					if (class<Weapon>(InventoryClass) != None)
-						SpawnConflictWeapon(class<Weapon>(InventoryClass), Other, 255, i == CLRI.InitialWeaponIndex);
+					{
+						if ( i >= CLRI.Layout.length || CLRI.Layout[i] == "")
+							SpawnConflictWeapon(class<Weapon>(InventoryClass), Other, 255, i == CLRI.InitialWeaponIndex, 0);
+						else
+							SpawnConflictWeapon(class<Weapon>(InventoryClass), Other, 255, i == CLRI.InitialWeaponIndex, int(CLRI.Layout[i]));
+					}
 					else 
 						SpawnInventoryItem(InventoryClass, Other);
 
@@ -356,7 +361,7 @@ function SpawnInventoryItem(class<Inventory> InvClass, Pawn Other)
 	}
 }
 
-function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_inventory_group, bool set_as_initial_weapon)
+function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_inventory_group, bool set_as_initial_weapon, int LayoutIndex)
 {
 	local Weapon newWeapon;
 
@@ -372,6 +377,7 @@ function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_invento
             {
                 BallisticWeapon(newWeapon).NetInventoryGroup = net_inventory_group;
                 BallisticWeapon(newWeapon).bServerDeferInitialSwitch = !set_as_initial_weapon;
+				BallisticWeapon(newWeapon).GenerateLayout(LayoutIndex);
             }
 			newWeapon.GiveTo(Other);
 			newWeapon.PickupFunction(Other);

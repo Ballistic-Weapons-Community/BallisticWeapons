@@ -42,6 +42,8 @@ var int                 InitialWeaponIndex;
 var int                 PendingInitialWeaponIndex;
 
 var array<string> 		Loadout;								// Current loadout
+var array<string>		Layout;									// Current layout of each item
+var array<string>		Camo;									// Current camo of each item
 
 var array<string> 		FullInventoryList;					// List of all weapons available
 var array<Mut_Loadout.LORequirements> RequirementsList;	// Requirements for the weapons. order and length must match 'FullInventoryList'
@@ -186,12 +188,14 @@ simulated function OnInventoryUpdated()
 
 simulated function SendSavedInventory()
 {	
-	local string s;
+	local string s, ls, cs;
     local int i;
 
 	s = class'ConflictLoadoutConfig'.static.BuildSavedInventoryString();
+	ls = class'ConflictLoadoutConfig'.static.BuildSavedLayoutString();
+	cs = class'ConflictLoadoutConfig'.static.BuildSavedCamoString();
     i = class'ConflictLoadoutConfig'.static.GetSavedInitialWeaponIndex();
-	ServerSetInventory(s, i);
+	ServerSetInventory(s, ls, i);
 }
 
 simulated function Tick(float deltatime)
@@ -422,12 +426,13 @@ function UpdateInitialWeaponIndex()
 // Sent from client to update server's loadout. Splits the received
 // string into an array and validates with UpdateInventory.
 //===================================================
-function ServerSetInventory(string ClassesString, int initial_wep_index)
+function ServerSetInventory(string ClassesString, string LayoutsString, int initial_wep_index)
 {
 	if (!bInventoryInitialized)
 	{
 		bInventoryInitialized = true;
 		Split(ClassesString, "|", Loadout);
+		Split(LayoutsString, "|", Layout);
         InitialWeaponIndex = initial_wep_index;
 		UpdateInventory();
 		return;
@@ -437,11 +442,13 @@ function ServerSetInventory(string ClassesString, int initial_wep_index)
 	{
 		case LUM_Immediate:
 			Split(ClassesString, "|", Loadout);
+			Split(LayoutsString, "|", Layout);
             InitialWeaponIndex = initial_wep_index;
 			UpdateInventory();
 			break;
 		case LUM_Delayed:
 			Split(ClassesString, "|", PendingLoadout);
+			Split(LayoutsString, "|", Layout);
             PendingInitialWeaponIndex = initial_wep_index;
 			bPendingLoadout = true;
 			break;
@@ -473,7 +480,7 @@ function UpdateInventory()
 {
 	local string s;
 
-	Validate(Loadout);
+	Validate(Loadout, Layout);
 
 	if (Loadout.length == 0)
 	{
@@ -488,7 +495,7 @@ function UpdateInventory()
 //===================================================
 // Validate a list of weapons and take out the bad ones
 //===================================================
-simulated function Validate(out array<string> ClassNames)
+simulated function Validate(out array<string> ClassNames, out array<string> LayoutIndex)
 {
 	local int i;
 	for (i = 0; i < ClassNames.length; i++)
@@ -496,6 +503,7 @@ simulated function Validate(out array<string> ClassNames)
 		if (!ValidateWeapon(ClassNames[i]))
 		{
 			ClassNames.remove(i,1);
+			LayoutIndex.remove(i,1);
 			i--;
 		}
 	}
@@ -644,7 +652,19 @@ defaultproperties
 	Loadout(3)="BallisticProV55.MD24Pistol"
 	Loadout(4)="BallisticProV55.X4Knife"
 	Loadout(5)="BallisticProV55.NRP57Grenade"
-
+	Layout(0)="0"
+	Layout(1)="0"
+	Layout(2)="0"
+	Layout(3)="0"
+	Layout(4)="0"
+	Layout(5)="0"
+	Camo(0)="0"
+	Camo(1)="0"
+	Camo(2)="0"
+	Camo(3)="0"
+	Camo(4)="0"
+	Camo(5)="0"
+	
 	ChangeInterval=60.000000
 	MenuName="Gear"
 	MenuHelp="Choose your starting equipment here."
