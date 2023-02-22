@@ -84,7 +84,12 @@ function DoFireEffect()
 	Super(BallisticFire).DoFireEffect();
 	
 	if (level.Netmode == NM_DedicatedServer)
-		AK91ChargeRifle(Weapon).AddHeat(0.45);
+	{
+		if (BW.GameStyleIndex != 0)
+			AK91ChargeRifle(Weapon).AddHeat(0.45);
+		else
+			AK91ChargeRifle(Weapon).AddHeat(0.15);
+	}
 }
 
 

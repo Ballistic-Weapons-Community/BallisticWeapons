@@ -25,15 +25,20 @@ defaultproperties
     // AIM
     //=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
+	Begin Object Class=AimParams Name=ClassicAimParams //Heavy SMG handling
 		AimSpread=(Min=16,Max=2048)
 		CrouchMultiplier=0.600000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.350000
-		SprintChaos=0.400000
 		AimDamageThreshold=75.000000
+		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpChaos=0.750000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
 		ChaosDeclineTime=2.000000
-		ChaosSpeedThreshold=600.000000
+		ChaosSpeedThreshold=900.000000
+		ChaosTurnThreshold=185000.000000
 	End Object
 
     //=================================================================
@@ -74,14 +79,15 @@ defaultproperties
 		Speed=3000.000000
 		MaxSpeed=15000.000000
 		AccelSpeed=4000.000000
-		Damage=90
-		DamageRadius=270.000000
+		Damage=80
+		DamageRadius=340.000000
+		RadiusFallOffType=RFO_Linear
 		MomentumTransfer=80000.000000
 		bLimitMomentumZ=False
 		HeadMult=2.0
 		LimbMult=0.5
 		MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
-		FlashScaleFactor=1.600000
+		FlashScaleFactor=1.200000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Autolaser.AutoLaser-Fire',Volume=1.300000)
 		Recoil=880.000000
 		Chaos=-1.0
@@ -90,7 +96,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryLobFireParams
-		FireInterval=1.250000
+		FireInterval=0.850000
 		BurstFireRateFactor=1.00
 		AmmoPerFire=10
 		FireEndAnim=	
@@ -124,6 +130,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
         InventorySize=10
+		MagAmmo=40
 		SightMoveSpeedFactor=0.500000
 		SightOffset=(X=-12.000000,Z=35.000000)
 		SightPivot=(Pitch=768)

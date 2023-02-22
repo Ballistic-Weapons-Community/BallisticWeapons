@@ -102,10 +102,15 @@ defaultproperties
 	Begin Object Class=AimParams Name=RealisticAimParams
 		AimSpread=(Min=64,Max=512)
 		ADSMultiplier=0.650000
-		SprintOffset=(Pitch=-6000,Yaw=-8000)
-		JumpOffset=(Pitch=-6000,Yaw=-1500)
 		AimAdjustTime=1.000000
-		ChaosSpeedThreshold=500.000000
+		SprintChaos=0.500000
+		SprintOffset=(Pitch=-6000,Yaw=-8000)
+		JumpChaos=0.500000
+		JumpOffset=(Pitch=-6000,Yaw=-1500)
+		FallingChaos=0.500000
+		AimDamageThreshold=300.000000
+		ChaosDeclineTime=2.800000
+		ChaosSpeedThreshold=440.000000
 	End Object
 
 	//=================================================================
@@ -127,7 +132,7 @@ defaultproperties
 		InitialWeaponMode=0
 		MagAmmo=6
         ZoomType=ZT_Logarithmic
-		WeaponName="AN-56 Akeron Guided Missile Launcher"
+		WeaponName="AN-56 Akeron 60mm Guided Missile Launcher"
         RecoilParams(0)=RecoilParams'RealisticRecoilParams'
         AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryBarrageFireParams'

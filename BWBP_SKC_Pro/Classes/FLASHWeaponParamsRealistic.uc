@@ -90,14 +90,16 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=RealisticAimParams
 		AimSpread=(Min=1000,Max=2560)
-		AimAdjustTime=0.550000
+		AimAdjustTime=0.600000
 		OffsetAdjustTime=0.350000
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000
-		SprintChaos=0.400000
+		SprintChaos=0.500000
 		SprintOffSet=(Pitch=-6000,Yaw=-8000)
+		JumpChaos=0.500000
 		JumpOffSet=(Pitch=-7000)
+		FallingChaos=0.500000
 		ChaosDeclineTime=1.300000
 		ChaosSpeedThreshold=475.000000
 	End Object
@@ -117,6 +119,7 @@ defaultproperties
 		ZoomType=ZT_Fixed
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		WeaponName="AT40 STREAK 66mm Incendiary Rocket Launcher"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

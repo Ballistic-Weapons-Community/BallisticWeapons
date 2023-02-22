@@ -60,7 +60,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=0.300000
+		FireInterval=0.700000
 		AmmoPerFire=0
 		PreFireAnim=
 		FireAnim="FireAlt"
@@ -93,10 +93,12 @@ defaultproperties
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.600000
-		SprintChaos=0.400000
 		ChaosDeclineTime=2.000000
+		SprintChaos=0.450000
 		SprintOffset=(Pitch=-3000,Yaw=-8000)
+		JumpChaos=0.450000
 		JumpOffset=(Pitch=-1024,Yaw=-1024)
+		FallingChaos=0.450000
 	End Object
 
 	//=================================================================

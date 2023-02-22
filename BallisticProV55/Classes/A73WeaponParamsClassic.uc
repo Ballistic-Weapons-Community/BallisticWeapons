@@ -10,14 +10,14 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ClassicPrimaryEffectParams
 		ProjectileClass=Class'BallisticProV55.A73Projectile'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
-		Speed=50.000000
-		MaxSpeed=3000.000000
+		Speed=2500.000000
+		MaxSpeed=9000.000000
 		AccelSpeed=60000.000000
-		Damage=20.0
+		Damage=27.0
 		DamageRadius=64.000000
 		MomentumTransfer=100.000000
-		HeadMult=2.0
-		LimbMult=0.45
+		HeadMult=2.1
+		LimbMult=0.5
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.A73.A73Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
@@ -209,6 +209,9 @@ defaultproperties
 		ViewBindFactor=0.150000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-500,Yaw=-1024)
+		JumpOffSet=(Pitch=-5000,Yaw=-1000)
+		JumpChaos=0.400000
+		FallingChaos=0.400000
 		AimDamageThreshold=75.000000
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=650.000000

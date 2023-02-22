@@ -44,17 +44,18 @@ defaultproperties
 	// SECONDARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams
+	//Flame
+	Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams_Flame
 		TraceRange=(Min=1572.000000,Max=1572.000000)
 		RangeAtten=0.200000
 		TraceCount=4
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunFlameLight'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
 		Damage=15
-		DamageType=Class'BWBP_SKC_Pro.DTCYLOShotgun'
-		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOShotgunHead'
-		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLOShotgun'
-		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
+		DamageType=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgunHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_CYLOFirestormShotgun'
+        MuzzleFlashClass=Class'BWBP_SKC_Pro.SK410HeatEmitter'
 		FlashScaleFactor=1.000000
 		Recoil=768.000000
 		Chaos=0.30000
@@ -65,13 +66,44 @@ defaultproperties
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.CYLO.CYLO-FlameFire',Volume=1.300000)
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Flame
 		FireInterval=0.4
 		AmmoPerFire=0
 		FireAnim="FireSG"
 		FireEndAnim=	
-	FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams'
+		TargetState="FireShot"
+	FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams_Flame'
 	End Object
+	
+	//BOOM
+	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
+		ProjectileClass=Class'BWBP_SKC_Pro.CYLOFirestormHEProjectile'
+		SpawnOffset=(Y=20.000000,Z=-20.000000)
+        Speed=6300.000000
+        MaxSpeed=6300.000000
+        AccelSpeed=3000.000000
+        Damage=65
+        DamageRadius=200.000000
+        MomentumTransfer=10000.000000
+		RadiusFallOffType=RFO_Linear
+        MuzzleFlashClass=Class'BWBP_SKC_Pro.SK410HeatEmitter'
+		FlashScaleFactor=1.000000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-FlameFire',Volume=1.300000,Radius=256.000000)
+		Recoil=640.000000
+		Chaos=-1.0
+		Inaccuracy=(X=128,Y=128)
+        BotRefireRate=0.6
+        WarnTargetPct=0.4	
+    End Object
+
+    Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+		FireInterval=0.4
+		AmmoPerFire=0
+		FireAnim="FireSG"
+		FireEndAnim=	
+		TargetState="HESlug"
+        FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'
+    End Object
 		
 	//=================================================================
 	// RECOIL
@@ -100,6 +132,9 @@ defaultproperties
 		ViewBindFactor=0.050000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-3000,Yaw=-8000)
+		JumpChaos=0.300000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
 		ChaosDeclineTime=1.000000
 		ChaosSpeedThreshold=1200.000000
 	End Object
@@ -120,7 +155,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Flame'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
 

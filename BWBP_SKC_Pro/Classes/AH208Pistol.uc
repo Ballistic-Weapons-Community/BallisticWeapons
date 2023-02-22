@@ -45,12 +45,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	Super.BringUp(PrevWeapon);
 }
 
-// Animation notify for when cocking action starts. Used to time sounds
-simulated function Notify_CockSim()
-{
-	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
-}
-
 simulated function Notify_HideBullet()
 {
 	if (MagAmmo < 2)

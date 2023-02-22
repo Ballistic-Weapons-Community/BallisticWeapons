@@ -50,7 +50,43 @@ defaultproperties
 	//=================================================================
 	// SECONDARY FIRE
 	//=================================================================	
-	Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams
+	
+	//Gas Slug
+	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams_Slug
+		ProjectileClass=Class'BallisticProV55.M763GasSlug'
+		SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
+		Speed=3600.000000
+		MaxSpeed=1000000.000000
+		AccelSpeed=1200.000000
+		Damage=100.000000
+		DamageRadius=300.000000
+		MomentumTransfer=10000.000000
+		HeadMult=1.0
+		LimbMult=1.0
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.M763FlashEmitter'
+		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
+		Recoil=768.000000
+		Chaos=-1.0
+		Inaccuracy=(X=2,Y=2)
+		SplashDamage=True
+		RecommendSplashDamage=True
+		BotRefireRate=0.300000
+		WarnTargetPct=0.300000	
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Slug
+		TargetState="GasSlug"
+		FireInterval=0.750000
+		FireAnim="FireCombined"
+		FireEndAnim=
+		AimedFireAnim="FireCombinedSight"
+		FireAnimRate=1.100000	
+	FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams_Slug'
+	End Object
+	
+	//Gas Spray
+	Begin Object Class=InstantEffectParams Name=RealisticSecondaryEffectParams_Spray
 		TraceRange=(Min=768.000000,Max=768.000000)
 		RangeAtten=0.250000
 		Damage=35
@@ -66,14 +102,15 @@ defaultproperties
 		WarnTargetPct=0.75
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
 	End Object
-		
-	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
+
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams_Spray
+		TargetState="GasSpray"
 		FireInterval=0.750000
 		FireAnim="FireCombined"
 		FireEndAnim=
 		AimedFireAnim="FireCombinedSight"
 		FireAnimRate=1.100000	
-	FireEffectParams(0)=MeleeEffectParams'RealisticSecondaryEffectParams'
+		FireEffectParams(0)=InstantEffectParams'RealisticSecondaryEffectParams_Spray'
 	End Object
 		
 	//=================================================================
@@ -106,6 +143,9 @@ defaultproperties
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-3072,Yaw=-3072)
+		JumpChaos=0.700000
+		JumpOffSet=(Pitch=1000,Yaw=-3000)
+		FallingChaos=0.400000
 		ChaosDeclineTime=1.000000
 		ChaosSpeedThreshold=600.000000
 	End Object
@@ -133,7 +173,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		//AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParams_Slug'
 	End Object
 	
 	Layouts(0)=WeaponParams'RealisticParams'

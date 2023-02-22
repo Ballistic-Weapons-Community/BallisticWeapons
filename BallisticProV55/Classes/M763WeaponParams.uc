@@ -58,6 +58,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
+		TargetState="GasSpray"
 		FireInterval=0.750000
 		FireAnim="FireCombined"
 		FireEndAnim=

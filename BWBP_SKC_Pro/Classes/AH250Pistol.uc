@@ -42,12 +42,6 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	Super.BringUp(PrevWeapon);
 }
 
-// Animation notify for when cocking action starts. Used to time sounds
-simulated function Notify_CockSim()
-{
-	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
-}
-
 simulated function Notify_HideBullet()
 {
 	if (MagAmmo < 2)
@@ -190,7 +184,7 @@ defaultproperties
 	PutDownAnimRate=1.600000
 	PutDownTime=0.500000
 	BringUpTime=0.600000
-	CockingBringUpTime=1.700000
+	CockingBringUpTime=1.400000
 	SelectForce="SwitchToAssaultRifle"
 	Description="AH-250 'Hawk' Assault Pistol||Manufacturer: Enravion Combat Solutions|Primary: Magnum Rounds|Secondary: Scope|The new AH-250 is an updated version of Enravion's AH-208 model. Equipped with a compensator for recoil, match-grade internals, and a precision scope, the AH-250 is a powerful and precise sidearm. Big game hunters have taken a liking to the gun and it can be seen in almost every outer planet action flick. Military adoption remains low due to the heavy recoil and impracticality of carrying around such a large sidearm."
 	Priority=96

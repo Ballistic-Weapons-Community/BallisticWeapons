@@ -57,7 +57,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50GrenFire')
-		Recoil=600.000000
+		Recoil=400.000000 //600 hip
 		Chaos=-1.0
 		Inaccuracy=(X=128,Y=128)
 		SplashDamage=True
@@ -82,6 +82,8 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=RealisticRecoilParams
 		XCurve=(Points=(,(InVal=0.400000,OutVal=0.250000),(InVal=0.600000,OutVal=0.300000),(InVal=1.000000,OutVal=0.300000)))
 		YCurve=(Points=(,(InVal=0.400000,OutVal=0.300000),(InVal=0.700000,OutVal=0.400000),(InVal=1.000000,OutVal=0.400000)))
+		XCurveAlt=(Points=(,(InVal=0.400000,OutVal=0.250000),(InVal=0.600000,OutVal=0.300000),(InVal=1.000000,OutVal=0.300000)))
+		YCurveAlt=(Points=(,(InVal=0.400000,OutVal=0.100000),(InVal=0.700000,OutVal=0.400000),(InVal=1.000000,OutVal=0.300000)))
 		YawFactor=0.150000
 		XRandFactor=0.150000
 		YRandFactor=0.150000
@@ -90,9 +92,10 @@ defaultproperties
 		DeclineDelay=0.175000
 		ViewBindFactor=0.200000
 		ADSViewBindFactor=0.200000
-		HipMultiplier=1.000000
+		HipMultiplier=1.500000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
+		bUseAltSightCurve=True
 	End Object
 
 	//=================================================================
@@ -106,6 +109,9 @@ defaultproperties
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-3072,Yaw=-6144)
+		JumpChaos=0.400000
+		JumpOffSet=(Pitch=-5000,Yaw=-1000)
+		FallingChaos=0.400000
 		ChaosDeclineTime=1.450000
 		ChaosSpeedThreshold=550.000000
 	End Object
@@ -116,6 +122,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=12
+		WeaponPrice=2000
 		bMagPlusOne=True
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.25

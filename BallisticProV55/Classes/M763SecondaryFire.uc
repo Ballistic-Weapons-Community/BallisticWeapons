@@ -7,6 +7,9 @@
 //=============================================================================
 class M763SecondaryFire extends BallisticProInstantFire;
 
+var() Vector			SpawnOffset;		// Projectile spawned at this offset
+var	  Projectile		Proj;				// The projectile actor
+
 //===========================================================================
 // AllowFire
 //
@@ -30,124 +33,212 @@ simulated function ModeDoFire()
 	M763Shotgun(BW).PrepPriFire();
 }
 
-// Do the trace to find out where bullet really goes
-function DoTrace (Vector InitialStart, Rotator Dir)
+simulated state GasSpray
 {
-	local int						PenCount, WallCount;
-	local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc;
-	local Material					HitMaterial;
-	local float						Dist;
-	local Actor						Other, LastOther;
-	local bool						bHitWall;
-
-	// Work out the range
-	Dist = TraceRange.Min + FRand() * (TraceRange.Max - TraceRange.Min);
-
-	Start = InitialStart;
-	X = Normal(Vector(Dir));
-	End = Start + X * Dist;
-	LastHitLoc = End;
-	Weapon.bTraceWater=true;
-
-	while (Dist > 0)		// Loop traces in case we need to go through stuff
+	// Do the trace to find out where bullet really goes
+	function DoTrace (Vector InitialStart, Rotator Dir)
 	{
-		// Do the trace
-		Other = Trace (HitLocation, HitNormal, End, Start, true, , HitMaterial);
-		Weapon.bTraceWater=false;
-		Dist -= VSize(HitLocation - Start);
-		if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry))
-			break;
-		if (Other != None)
+		local int						PenCount, WallCount;
+		local Vector					End, X, HitLocation, HitNormal, Start, WaterHitLoc, LastHitLoc;
+		local Material					HitMaterial;
+		local float						Dist;
+		local Actor						Other, LastOther;
+		local bool						bHitWall;
+
+		// Work out the range
+		Dist = TraceRange.Min + FRand() * (TraceRange.Max - TraceRange.Min);
+
+		Start = InitialStart;
+		X = Normal(Vector(Dir));
+		End = Start + X * Dist;
+		LastHitLoc = End;
+		Weapon.bTraceWater=true;
+
+		while (Dist > 0)		// Loop traces in case we need to go through stuff
 		{
-			// Water
-			if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume) )
+			// Do the trace
+			Other = Trace (HitLocation, HitNormal, End, Start, true, , HitMaterial);
+			Weapon.bTraceWater=false;
+			Dist -= VSize(HitLocation - Start);
+			if (Level.NetMode == NM_Client && (Other.Role != Role_Authority || Other.bWorldGeometry))
+				break;
+			if (Other != None)
 			{
-				if (VSize(HitLocation - Start) > 1)
-					WaterHitLoc=HitLocation;
-				Start = HitLocation;
-				Dist = Min(Dist, MaxWaterTraceRange);
-				End = Start + X * Dist;
-				Weapon.bTraceWater=false;
-				continue;
-			}
-
-			LastHitLoc = HitLocation;
-				
-			// Got something interesting
-			if (!Other.bWorldGeometry && Other != LastOther)
-			{				
-				OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, 0, WaterHitLoc);
-			
-				LastOther = Other;
-
-				if (CanPenetrate(Other, HitLocation, X, PenCount))
+				// Water
+				if ( (FluidSurfaceInfo(Other) != None) || ((PhysicsVolume(Other) != None) && PhysicsVolume(Other).bWaterVolume) )
 				{
-					PenCount++;
-					Start = HitLocation + (X * Other.CollisionRadius * 2);
+					if (VSize(HitLocation - Start) > 1)
+						WaterHitLoc=HitLocation;
+					Start = HitLocation;
+					Dist = Min(Dist, MaxWaterTraceRange);
 					End = Start + X * Dist;
-					Weapon.bTraceWater=true;
-					if (Vehicle(Other) != None)
-						HitVehicleEffect (HitLocation, HitNormal, Other);
+					Weapon.bTraceWater=false;
 					continue;
 				}
-				else if (Vehicle(Other) != None)
+
+				LastHitLoc = HitLocation;
+					
+				// Got something interesting
+				if (!Other.bWorldGeometry && Other != LastOther)
+				{				
+					OnTraceHit(Other, HitLocation, InitialStart, X, PenCount, WallCount, 0, WaterHitLoc);
+				
+					LastOther = Other;
+
+					if (CanPenetrate(Other, HitLocation, X, PenCount))
+					{
+						PenCount++;
+						Start = HitLocation + (X * Other.CollisionRadius * 2);
+						End = Start + X * Dist;
+						Weapon.bTraceWater=true;
+						if (Vehicle(Other) != None)
+							HitVehicleEffect (HitLocation, HitNormal, Other);
+						continue;
+					}
+					else if (Vehicle(Other) != None)
+						bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+					else if (Mover(Other) == None)
+						break;
+				}
+				// Do impact effect
+				if (Other.bWorldGeometry || Mover(Other) != None)
+				{
+					WallCount++;
 					bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
-				else if (Mover(Other) == None)
 					break;
-			}
-			// Do impact effect
-			if (Other.bWorldGeometry || Mover(Other) != None)
-			{
-				WallCount++;
-				bHitWall = ImpactEffect (HitLocation, HitNormal, HitMaterial, Other, WaterHitLoc);
+				}
+				// Still in the same guy
+				if (Other == Instigator || Other == LastOther)
+				{
+					Start = HitLocation + (X * FMax(32, Other.CollisionRadius * 2));
+					End = Start + X * Dist;
+					Weapon.bTraceWater=true;
+					continue;
+				}
 				break;
 			}
-			// Still in the same guy
-			if (Other == Instigator || Other == LastOther)
+			else
 			{
-				Start = HitLocation + (X * FMax(32, Other.CollisionRadius * 2));
-				End = Start + X * Dist;
-				Weapon.bTraceWater=true;
-				continue;
+				LastHitLoc = End;
+				break;
 			}
-			break;
 		}
-		else
+		// Never hit a wall, so just tell the attachment to spawn muzzle flashes and play anims, etc
+		if (!bHitWall)
+			NoHitEffect(X, InitialStart, LastHitLoc, WaterHitLoc);
+			
+		M763Shotgun(BW).GC.SpawnColliders(InitialStart, LastHitLoc);
+	}
+
+	// Base deviation.
+	simulated function vector GetFireSpread()
+	{
+		local float fX;
+		local Rotator R;
+
+		if (BW.bScopeView)
+			return super(BallisticProInstantFire).GetFireSpread();
+
+		fX = frand();
+		R.Yaw =  512 * sin (FMin(sqrt(frand()), 1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+		if (frand() > 0.5)
+			R.Yaw = -R.Yaw;
+		R.Pitch = 512 * sin (FMin(sqrt(frand()), 1)  * 1.5707963267948966) * cos(fX*1.5707963267948966);
+		if (frand() > 0.5)
+			R.Pitch = -R.Pitch;
+		return Vector(R);
+	}
+
+	// Check if bullet should go through enemy
+	function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int PenCount)
+	{
+		return true;
+	}
+}
+
+simulated state GasSlug
+{
+	simulated function ApplyFireEffectParams(FireEffectParams params)
+	{
+		local ProjectileEffectParams effect_params;
+
+		super(BallisticFire).ApplyFireEffectParams(params);
+
+		effect_params = ProjectileEffectParams(params);
+
+		ProjectileClass =  effect_params.ProjectileClass;
+		SpawnOffset = effect_params.SpawnOffset;    
+		default.ProjectileClass =  effect_params.ProjectileClass;
+		default.SpawnOffset = effect_params.SpawnOffset;
+	}
+	
+	// Became complicated when acceleration came into the picture
+	// Override for even wierder situations
+	function float MaxRange()
+	{
+		if (ProjectileClass.default.MaxSpeed > ProjectileClass.default.Speed)
 		{
-			LastHitLoc = End;
-			break;
+			// We know BW projectiles have AccelSpeed
+			if (class<BallisticProjectile>(ProjectileClass) != None && class<BallisticProjectile>(ProjectileClass).default.AccelSpeed > 0)
+			{
+				if (ProjectileClass.default.LifeSpan <= 0)
+					return FMin(ProjectileClass.default.MaxSpeed, (ProjectileClass.default.Speed + class<BallisticProjectile>(ProjectileClass).default.AccelSpeed * 2) * 2);
+				else
+					return FMin(ProjectileClass.default.MaxSpeed, (ProjectileClass.default.Speed + class<BallisticProjectile>(ProjectileClass).default.AccelSpeed * ProjectileClass.default.LifeSpan) * ProjectileClass.default.LifeSpan);
+			}
+			// For the rest, just use the max speed
+			else
+			{
+				if (ProjectileClass.default.LifeSpan <= 0)
+					return ProjectileClass.default.MaxSpeed * 2;
+				else
+					return ProjectileClass.default.MaxSpeed * ProjectileClass.default.LifeSpan*0.75;
+			}
+		}
+		else // Hopefully this proj doesn't change speed.
+		{
+			if (ProjectileClass.default.LifeSpan <= 0)
+				return ProjectileClass.default.Speed * 2;
+			else
+				return ProjectileClass.default.Speed * ProjectileClass.default.LifeSpan;
 		}
 	}
-	// Never hit a wall, so just tell the attachment to spawn muzzle flashes and play anims, etc
-	if (!bHitWall)
-		NoHitEffect(X, InitialStart, LastHitLoc, WaterHitLoc);
-		
-	M763Shotgun(BW).GC.SpawnColliders(InitialStart, LastHitLoc);
-}
 
-// Base deviation.
-simulated function vector GetFireSpread()
-{
-	local float fX;
-    local Rotator R;
+	// Get aim then spawn projectile
+	function DoFireEffect()
+	{
+		local Vector StartTrace, X, Y, Z, Start, End, HitLocation, HitNormal;
+		local Rotator Aim;
+		local actor Other;
 
-	if (BW.bScopeView)
-		return super(BallisticProInstantFire).GetFireSpread();
+	    Weapon.GetViewAxes(X,Y,Z);
+    	// the to-hit trace always starts right in front of the eye
+	    Start = Instigator.Location + Instigator.EyePosition();
 
-	fX = frand();
-	R.Yaw =  512 * sin (FMin(sqrt(frand()), 1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-	if (frand() > 0.5)
-		R.Yaw = -R.Yaw;
-	R.Pitch = 512 * sin (FMin(sqrt(frand()), 1)  * 1.5707963267948966) * cos(fX*1.5707963267948966);
-	if (frand() > 0.5)
-		R.Pitch = -R.Pitch;
-	return Vector(R);
-}
+	    StartTrace = Start + X*SpawnOffset.X + Z*SpawnOffset.Z;
+    	if ( !Weapon.WeaponCentered() )
+		    StartTrace = StartTrace + Weapon.Hand * Y*SpawnOffset.Y;
 
-// Check if bullet should go through enemy
-function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int PenCount)
-{
-	return true;
+		Aim = GetFireAim(StartTrace);
+		Aim = Rotator(GetFireSpread() >> Aim);
+
+		End = Start + (Vector(Aim)*MaxRange());
+		Other = Trace (HitLocation, HitNormal, End, Start, true);
+
+		if (Other != None)
+			Aim = Rotator(HitLocation-StartTrace);
+	    SpawnProjectile(StartTrace, Aim);
+
+		SendFireEffect(none, vect(0,0,0), StartTrace, 0);
+		// Skip the instant fire version which would cause instant trace damage.
+		Super(BallisticFire).DoFireEffect();
+	}
+
+	function SpawnProjectile (Vector Start, Rotator Dir)
+	{
+		Proj = Spawn (ProjectileClass,,, Start, Dir);
+		Proj.Instigator = Instigator;
+	}
 }
 
 defaultproperties
@@ -155,6 +246,10 @@ defaultproperties
      TraceRange=(Min=768.000000,Max=768.000000)
      Damage=35.000000
      
+	 //Proj
+     ProjectileClass=Class'BallisticProV55.M763GasSlug'
+     SpawnOffset=(Y=20.000000,Z=-20.000000)
+	 
      RangeAtten=0.250000
      DamageType=Class'BallisticProV55.DTM763Shotgun'
      DamageTypeHead=Class'BallisticProV55.DTM763ShotgunHead'

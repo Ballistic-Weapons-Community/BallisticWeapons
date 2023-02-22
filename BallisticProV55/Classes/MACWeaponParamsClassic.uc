@@ -84,12 +84,15 @@ defaultproperties
 	Begin Object Class=AimParams Name=ClassicAimParams
 		AimSpread=(Min=64,Max=2048)
 		AimAdjustTime=1.000000
+		OffsetAdjustTime=0.650000
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.400000
-		SprintChaos=0.400000
+		SprintChaos=0.500000
 		SprintOffSet=(Pitch=-7000,Yaw=-3500)
+		JumpChaos=0.500000
 		JumpOffSet=(Pitch=-7000)
+		FallingChaos=0.500000
 		ChaosDeclineTime=5.000000
 	End Object
     
@@ -167,6 +170,5 @@ defaultproperties
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams_Jungle'
 	Layouts(2)=WeaponParams'ClassicParams_Urban'
-
 
 }

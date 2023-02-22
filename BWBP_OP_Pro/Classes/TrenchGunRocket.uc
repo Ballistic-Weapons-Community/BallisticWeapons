@@ -105,7 +105,7 @@ defaultproperties
      ImpactSounds(5)=Sound'XEffects.Impact2'
 
      ImpactDamage=125
-     ImpactDamageType=Class'BWBP_SKC_Pro.DT_BulldogImpact'
+     ImpactDamageType=Class'BWBP_OP_Pro.DT_TrenchFRAGImpact'
      ImpactManager=Class'BWBP_SKC_Pro.IM_BulldogFRAG'
 	 ReflectImpactManager=Class'BallisticProV55.IM_GunHit'
      TrailClass=Class'BallisticProV55.HAMRShellTrail'
@@ -118,8 +118,8 @@ defaultproperties
 	 DamageRadius=180.000000
      WallPenetrationForce=192
      MomentumTransfer=60000.000000
-     MyDamageType=Class'BWBP_SKC_Pro.DTBulldogFRAG'
-     MyRadiusDamageType=Class'BWBP_SKC_Pro.DTBulldogFRAGRadius'
+     MyDamageType=Class'BWBP_OP_Pro.DT_TrenchFRAG'
+     MyRadiusDamageType=Class'BWBP_OP_Pro.DT_TrenchFRAGRadius'
 
      StaticMesh=StaticMesh'BWBP_SKC_Static.Bulldog.Frag12Proj'
 

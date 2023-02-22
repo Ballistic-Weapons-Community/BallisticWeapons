@@ -21,7 +21,7 @@ defaultproperties
         DamageGainEndTime=0.0
         FlashScaleFactor=0.750000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.VPR.VPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
-        Chaos=0.01
+        Chaos=0.06
         Recoil=40
 		Inaccuracy=(X=32,Y=32)
         WarnTargetPct=0.1
@@ -149,7 +149,11 @@ defaultproperties
 		CrouchMultiplier=0.500000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.150000
-		SprintChaos=0.400000
+		SprintChaos=0.350000
+		SprintOffSet=(Pitch=-500,Yaw=-1024)
+		JumpChaos=0.350000
+		JumpOffSet=(Pitch=-5000,Yaw=-1000)
+		FallingChaos=0.350000
 		AimDamageThreshold=75.000000
 		ChaosDeclineTime=2.000000
 		ChaosSpeedThreshold=650.000000

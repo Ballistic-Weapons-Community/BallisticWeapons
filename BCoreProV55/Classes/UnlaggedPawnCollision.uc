@@ -24,6 +24,8 @@ Keeps track of Pawn positions for unlagging.
 class UnlaggedPawnCollision extends Actor
     notplaceable;
 
+const LADDER_SANITY_DIST = 128;
+
 struct SavedRotation
 {
     var Rotator rotation;
@@ -50,14 +52,22 @@ function Tick(float DeltaTime)
         UpdateUnlagLocation();
 }
 
-/**
+final function bool HasCompatiblePhysics(xPawn P)
+{
+    return P.Physics == PHYS_Walking ||
+        P.Physics == PHYS_Falling ||
+        P.Physics == PHYS_Ladder ||
+        P.Physics == PHYS_Flying;
+}
+
+/*
 Remember the last ticks' locations for serverside ping compensation.
 */
 final function UpdateUnlagLocation()
 {
     local int i;
 
-    if (LastLocationUpdateTime == Level.TimeSeconds || !UnlaggedPawn.bCollideActors || UnlaggedPawn.Physics != PHYS_Walking && UnlaggedPawn.Physics != PHYS_Falling && UnlaggedPawn.Physics != PHYS_Flying)
+    if (LastLocationUpdateTime == Level.TimeSeconds || !UnlaggedPawn.bCollideActors || !HasCompatiblePhysics(UnlaggedPawn))
         return;
 
     LastLocationUpdateTime = Level.TimeSeconds;
@@ -136,6 +146,14 @@ final function EnableUnlag(float PingTime)
     
     SetLocation(UnlaggedLocation);
     SetCollisionSize(UnlaggedRadius, UnlaggedHeight);
+
+    // sanity check
+    // disable unlag if parameters unlikely to be valid
+    if (UnlaggedRadius == 0 || UnlaggedHeight == 0)
+        return;
+
+    if (UnlaggedPawn.Physics == PHYS_Ladder && VSize(Location - UnlaggedPawn.Location) > LADDER_SANITY_DIST)
+        return;
 
     SetCollision(true, true, true);
 

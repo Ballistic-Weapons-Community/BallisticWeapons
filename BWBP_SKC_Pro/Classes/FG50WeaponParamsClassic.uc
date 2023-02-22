@@ -151,25 +151,31 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
+	Begin Object Class=AimParams Name=ClassicAimParams //Super Heavy
+		AimAdjustTime=1.000000
 		AimSpread=(Min=32,Max=2560)
 		CrouchMultiplier=0.100000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.300000
-		SprintChaos=0.400000
+		SprintChaos=0.500000
 		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpChaos=0.500000
 		JumpOffset=(Pitch=-6000,Yaw=2000)
+		FallingChaos=0.500000
 		ChaosDeclineTime=1.500000
 	End Object
 
 	Begin Object Class=AimParams Name=ClassicControlledAimParams
-		AimAdjustTime=1
+		AimAdjustTime=1.1
 		ADSMultiplier=0.4
 		AimSpread=(Min=64,Max=768)
 		ChaosDeclineTime=1.25
 		ChaosSpeedThreshold=350
+		SprintChaos=0.500000
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		JumpChaos=0.500000
 		JumpOffset=(Pitch=-6000,Yaw=2000)
+		FallingChaos=0.500000
 	End Object 
     
 	//=================================================================

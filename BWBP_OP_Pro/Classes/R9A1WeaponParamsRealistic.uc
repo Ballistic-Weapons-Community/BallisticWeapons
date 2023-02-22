@@ -14,9 +14,9 @@ defaultproperties
 		Damage=93.0
 		HeadMult=2.387096
 		LimbMult=0.677419
-		DamageType=Class'BallisticProV55.DTR9Rifle'
-		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
-		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
+		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		PenetrationEnergy=27.000000
 		PenetrateForce=200
 		bPenetrate=True
@@ -128,6 +128,9 @@ defaultproperties
 		ViewBindFactor=0.125000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-4096,Yaw=-3072)
+		JumpChaos=0.400000
+		JumpOffSet=(Pitch=-5000,Yaw=-1000)
+		FallingChaos=0.400000
 		ChaosDeclineTime=1.200000
 		ChaosSpeedThreshold=550.000000
 	End Object

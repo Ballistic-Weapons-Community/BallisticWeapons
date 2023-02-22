@@ -104,6 +104,9 @@ defaultproperties
 		ViewBindFactor=0.200000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-3000,Yaw=-8000)
+		JumpChaos=0.300000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
 		ChaosDeclineTime=1.000000
 	End Object
 
@@ -113,6 +116,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=10
+		WeaponPrice=800
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.230000
 		MagAmmo=37

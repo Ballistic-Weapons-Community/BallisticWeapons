@@ -69,6 +69,9 @@ defaultproperties
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-6000,Yaw=-8000)
+		JumpChaos=0.400000
+		JumpOffSet=(Pitch=-7000)
+		FallingChaos=0.400000
 		ChaosDeclineTime=1.300000
 		ChaosSpeedThreshold=475.000000
 	End Object
@@ -89,6 +92,7 @@ defaultproperties
 		SightOffset=(X=-2.7500000,Y=-5.40000,Z=4.80000000)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
+		WeaponName="G5 90mm Guided Missile Launcher"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

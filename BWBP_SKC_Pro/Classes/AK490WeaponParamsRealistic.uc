@@ -25,7 +25,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1.000000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.ak47.ak47-Fire',Pitch=1.100000,Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=700.000000
+		Recoil=465.000000 //700 hip
 		Chaos=0.1
 		Inaccuracy=(X=12,Y=12)
 		WarnTargetPct=0.200000
@@ -75,7 +75,7 @@ defaultproperties
 		DeclineTime=1.500000
 		ViewBindFactor=0.100000
 		ADSViewBindFactor=0.200000
-		HipMultiplier=1.000000
+		HipMultiplier=1.500000
 		CrouchMultiplier=0.700000
 		bViewDecline=True
 	End Object
@@ -91,6 +91,9 @@ defaultproperties
 		ViewBindFactor=0.200000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpChaos=0.350000
+		JumpOffSet=(Pitch=-5000,Yaw=-1000)
+		FallingChaos=0.400000
 		ChaosDeclineTime=1.000000
 	End Object
 
@@ -100,6 +103,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=11
+		WeaponPrice=1200
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.210000
 		MagAmmo=20

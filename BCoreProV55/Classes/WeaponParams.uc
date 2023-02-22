@@ -63,6 +63,7 @@ var() float					PlayerJumpFactor;		// Player JumpZ multiplied by this when holdi
 // Conflict Loadout
 //-----------------------------------------------------------------------------
 var() byte					InventorySize;			// How much space this weapon should occupy in an inventory. 0-100. Used by mutators, games, etc...
+var() int					WeaponPrice;			// How many cash should this cost
 //-----------------------------------------------------------------------------
 // Handling
 //-----------------------------------------------------------------------------
@@ -125,6 +126,7 @@ defaultproperties
     PlayerSpeedFactor=1.000000
     PlayerJumpFactor=1.000000
     InventorySize=12
+    WeaponPrice=100
     SightMoveSpeedFactor=0.900000
     SightingTime=0.350000
     ZoomType=ZT_Irons

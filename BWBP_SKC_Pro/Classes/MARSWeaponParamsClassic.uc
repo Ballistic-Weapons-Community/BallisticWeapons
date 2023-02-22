@@ -69,7 +69,7 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 
-	Begin Object Class=RecoilParams Name=ClassicRecoilParams
+	Begin Object Class=RecoilParams Name=ClassicRecoilParams_HeavyBarrel
 		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=-0.400000),(InVal=1.000000,OutVal=-0.200000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.650000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
 		YawFactor=0.400000
@@ -81,18 +81,48 @@ defaultproperties
 		CrouchMultiplier=0.500000
 		bViewDecline=True
 	End Object
+	
+	Begin Object Class=RecoilParams Name=ClassicRecoilParams
+		XCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.300000),(InVal=0.800000,OutVal=0.400000),(InVal=1.000000,OutVal=0.500000)))
+		YCurve=(Points=(,(InVal=0.200000,OutVal=0.100000),(InVal=0.400000,OutVal=0.150000),(InVal=0.600000,OutVal=0.800000),(InVal=0.800000,OutVal=0.900000),(InVal=1.000000,OutVal=1.000000)))
+		PitchFactor=4.000000
+		YawFactor=0.100000
+		XRandFactor=0.600000
+		YRandFactor=0.500000
+		MaxRecoil=7000
+		DeclineTime=1.5
+		ViewBindFactor=0.500000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.800000
+		bViewDecline=True
+	End Object
 
 	//=================================================================
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ClassicAimParams
+	Begin Object Class=AimParams Name=ClassicAimParams_HeavyBarrel
 		AimSpread=(Min=16,Max=2048)
 		CrouchMultiplier=0.500000
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.200000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpChaos=0.350000
+		JumpOffSet=(Pitch=-5000,Yaw=-1000)
+		FallingChaos=0.400000
+		ChaosDeclineTime=0.500000
+	End Object
+	
+	Begin Object Class=AimParams Name=ClassicAimParams
+		AimSpread=(Min=16,Max=2560)
+		ADSMultiplier=0.700000
+		ViewBindFactor=0.300000
+		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpChaos=0.350000
+		JumpOffSet=(Pitch=-5000,Yaw=-1000)
+		FallingChaos=0.400000
 		ChaosDeclineTime=0.500000
 	End Object
     
@@ -115,8 +145,8 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams_HeavyBarrel'
+		AimParams(0)=AimParams'ClassicAimParams_HeavyBarrel'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 	End Object
 	

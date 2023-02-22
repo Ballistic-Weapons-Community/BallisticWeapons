@@ -83,9 +83,9 @@ defaultproperties
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunFlame'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
 		Damage=5
-		DamageType=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
-		DamageTypeHead=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
-		DamageTypeArm=Class'BWBP_OP_Pro.DT_TrenchGunExplosive'
+		DamageType=Class'BWBP_OP_Pro.DT_TrenchFire'
+		DamageTypeHead=Class'BWBP_OP_Pro.DT_TrenchFireHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DT_TrenchFire'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.ARFlashEmitter'
 		FlashScaleFactor=1.500000
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.TechGun.fire_shot',Volume=1.500000,Radius=384.000000,Pitch=1.000000)
@@ -189,6 +189,10 @@ defaultproperties
 		ADSMultiplier=0.700000
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-4096,Yaw=-2048)
+		JumpChaos=0.800000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
 		ChaosDeclineTime=1.000000
 		ChaosSpeedThreshold=600.000000
 	End Object

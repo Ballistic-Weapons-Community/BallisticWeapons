@@ -9,8 +9,8 @@ defaultproperties
      InvasionDamageScaling=1.500000
      DamageIdent="Killstreak"
      WeaponClass=Class'BWBP_SKC_Pro.MGLauncher'
-     DeathString="%o lost a few teeth to %k's M900 grenade."
-     FemaleSuicide="%o found one of her M900 grenades."
-     MaleSuicide="%o found one of his M900 grenades."
+     DeathString="%o lost a few teeth to %k's MGL grenade."
+     FemaleSuicide="%o found one of her MGL grenades."
+     MaleSuicide="%o found one of his MGL grenades."
      bDelayedDamage=True
 }

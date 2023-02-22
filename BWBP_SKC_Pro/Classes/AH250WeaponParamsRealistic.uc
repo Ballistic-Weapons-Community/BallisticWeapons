@@ -45,7 +45,7 @@ defaultproperties
 	// RECOIL
 	//=================================================================
 	
-	Begin Object Class=RecoilParams Name=RealisticRecoilParams
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams_Compensated
 		XCurve=(Points=(,(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.600000
 		YRandFactor=0.900000
@@ -58,13 +58,29 @@ defaultproperties
 		CrouchMultiplier=0.700000
 		bViewDecline=True
 	End Object
+	
+	Begin Object Class=RecoilParams Name=RealisticRecoilParams
+		XCurve=(Points=(,(InVal=1.000000,OutVal=0.000000)))
+		YawFactor=0.400000
+		XRandFactor=1
+		YRandFactor=1
+		MaxRecoil=8192.000000
+		DeclineTime=0.800000
+		DeclineDelay=0.200000
+		ViewBindFactor=0.200000
+		ADSViewBindFactor=0.200000
+		HipMultiplier=1.000000
+		CrouchMultiplier=0.700000
+		bViewDecline=True
+	End Object
+
 
 	//=================================================================
 	// AIM
 	//=================================================================
 	
-	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=668,Max=2900)
+	Begin Object Class=AimParams Name=RealisticAimParams_Compensated
+		AimSpread=(Min=668,Max=2900) //Comp
 		AimAdjustTime=0.400000
 		CrouchMultiplier=0.820000
 		ADSMultiplier=0.770000
@@ -72,16 +88,36 @@ defaultproperties
 		ViewBindFactor=0.100000
 		SprintChaos=0.400000
 		SprintOffSet=(Pitch=-4608,Yaw=-512)
-		ChaosDeclineTime=1.400000
+		JumpChaos=0.300000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
+		ChaosDeclineTime=1.400000 //Comp
 		ChaosSpeedThreshold=1400.000000
 	End Object
     
+	Begin Object Class=AimParams Name=RealisticAimParams
+		AimSpread=(Min=650,Max=2900)
+		AimAdjustTime=0.400000
+		CrouchMultiplier=0.820000
+		ADSMultiplier=0.770000
+		AimDamageThreshold=300
+		ViewBindFactor=0.100000
+		SprintChaos=0.400000
+		SprintOffSet=(Pitch=-4608,Yaw=-512)
+		JumpChaos=0.250000
+		JumpOffSet=(Pitch=1000,Yaw=-500)
+		FallingChaos=0.400000
+		ChaosDeclineTime=1.000000
+		ChaosSpeedThreshold=1400.000000
+	End Object
+	
 	//=================================================================
 	// BASIC PARAMS
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=RealisticParams
 		InventorySize=8
+		WeaponPrice=2000
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.250000
 		MagAmmo=8
@@ -89,8 +125,8 @@ defaultproperties
 		ViewOffset=(X=0.000000,Y=19.500000,Z=-30.000000)
 		ZoomType=ZT_Fixed
 		WeaponName="AH250 .44 Scoped Handgun"
-		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
-		AimParams(0)=AimParams'RealisticAimParams'
+		RecoilParams(0)=RecoilParams'RealisticRecoilParams_Compensated'
+		AimParams(0)=AimParams'RealisticAimParams_Compensated'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 	End Object
 
