@@ -55,6 +55,15 @@ var() config int 		ADRMinorBonus;   // adrenaline for minor bonus
 var() config int 		ADRKillTeamMate;   // adrenaline for killing a teammate
 var() config int 		ADRMinorError;    // adrenaline for a minor error
 
+//Sloth
+var() config bool           bUseSloth;
+var() config float          PlayerStrafeScale;
+var() config float          PlayerBackpedalScale;
+var() config float          PlayerGroundSpeed;
+var() config float          PlayerAirSpeed;
+var() config float          PlayerAccelRate;
+var() config float          PlayerJumpZ;
+
 // ----------------------------------------------------------------------------
 var struct RepInfo_BW
 {
@@ -95,10 +104,21 @@ var struct RepInfo_BW
 
 }BWRep;
 
+var struct RepInfo_BW_Move
+{
+    var bool           bUseSloth;
+    var float          PlayerStrafeScale;
+    var float          PlayerBackpedalScale;
+    var float          PlayerGroundSpeed;
+    var float          PlayerAirSpeed;
+    var float          PlayerAccelRate;
+    var float          PlayerJumpZ;
+} BWRepMove;
+
 replication
 {
 	reliable if (Role == ROLE_Authority && bNetInitial)
-		BWRep;
+		BWRep, BWRepMove;
 }
 
 //Set all defaults to match server vars here
@@ -115,6 +135,14 @@ simulated function InitClientVars()
 	bUniversalMineLights = BWRep.bUniversalMineLights;
 	bUseRunningAnims = BWRep.bUseRunningAnims;
 
+    bUseSloth = BWRepMove.bUseSloth;
+    PlayerStrafeScale = BWRepMove.PlayerStrafeScale;
+	PlayerBackpedalScale = BWRepMove.PlayerBackpedalScale;
+	PlayerGroundSpeed = BWRepMove.PlayerGroundSpeed;
+	PlayerAirSpeed = BWRepMove.PlayerAirSpeed;
+	PlayerAccelRate = BWRepMove.PlayerAccelRate;
+    PlayerJumpZ = BWRepMove.PlayerJumpZ;
+
 	class.default.bBrightPlayers	= bBrightPlayers;
 	class.default.bNoDodging		= bNoDodging;
 	class.default.bNoDoubleJump	= bNoDoubleJump;
@@ -122,6 +150,14 @@ simulated function InitClientVars()
 	class.default.CrouchingPercentage = CrouchingPercentage;
 	class.default.bUniversalMineLights = bUniversalMineLights;
 	class.default.bUseRunningAnims = bUseRunningAnims;
+
+    class.default.bUseSloth = bUseSloth;
+    class.default.PlayerStrafeScale = PlayerStrafeScale;
+	class.default.PlayerBackpedalScale = PlayerBackpedalScale;
+	class.default.PlayerGroundSpeed = PlayerGroundSpeed;
+	class.default.PlayerAirSpeed = PlayerAirSpeed;
+	class.default.PlayerAccelRate = PlayerAccelRate;
+    class.default.PlayerJumpZ = PlayerJumpZ;
 	
 	//Kill Rewards
 	class.default.killrewardArmor = killrewardArmor;
@@ -194,6 +230,14 @@ function ServerInitialize()
 	BWRep.bUniversalMineLights = bUniversalMineLights;
 	BWRep.bUseRunningAnims = bUseRunningAnims;
 
+    BWRepMove.bUseSloth = bUseSloth;
+    BWRepMove.PlayerStrafeScale = PlayerStrafeScale;
+	BWRepMove.PlayerBackpedalScale = PlayerBackpedalScale;
+	BWRepMove.PlayerGroundSpeed = PlayerGroundSpeed;
+	BWRepMove.PlayerAirSpeed = PlayerAirSpeed;
+	BWRepMove.PlayerAccelRate = PlayerAccelRate;
+    BWRepMove.PlayerJumpZ = PlayerJumpZ;
+    
 	// Player
     if (bCustomStats)
 	{
@@ -269,4 +313,13 @@ defaultproperties
      ADRMinorBonus=5
      ADRKillTeamMate=-10
      ADRMinorError=-5
+
+    // Movement rate
+     bUseSloth=False
+     PlayerStrafeScale=0.850000
+     PlayerBackpedalScale=0.700000
+     PlayerGroundSpeed=260.000000
+     PlayerAirSpeed=260.000000
+     PlayerAccelRate=768.000000
+     PlayerJumpZ=256
 }

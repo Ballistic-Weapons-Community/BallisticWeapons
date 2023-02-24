@@ -160,21 +160,13 @@ var     float               LastDamagedTime;
 var		class<DamageType>	LastDamagedType;
 
 //Sloth variables
-var 	float 				StrafeScale, BackScale, GroundSpeedScale, AccelRateScale;
+var 	float 				StrafeScale, BackpedalScale;
 var 	float 				MyFriction, OldMovementSpeed;
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
 		ClientHits, HitCounter, ClientSetCrouchAbility;
-}
-
-simulated function PostBeginPlay()
-{
-	super.PostBeginPlay();
-
-	if (class'BallisticReplicationInfo'.default.bNoDodging)
-		bCanWallDodge = false;
 }
 
 simulated event PostNetBeginPlay()
@@ -210,6 +202,23 @@ simulated event PostNetBeginPlay()
 		WalkAnims[2]='RunL';
 		WalkAnims[3]='RunR';
 	}
+
+    if (class'BallisticReplicationInfo'.default.bUseSloth)
+    {
+        StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
+        BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
+        GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+        AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
+        AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
+        JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
+
+        default.StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
+        default.BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
+        default.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+        default.AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
+        default.AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
+        default.JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
+    }
 	
 	if(!pawnNetInit)
     {
@@ -2775,7 +2784,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 	{
 		GetAxes(GetViewRotation(),X,Y,Z);
 		MaxStrafeSpeed = GroundSpeed * StrafeScale;
-		MaxBackSpeed = GroundSpeed * BackScale;
+		MaxBackSpeed = GroundSpeed * BackpedalScale;
 		XSpeed = Abs(X dot Velocity);
 		
 		if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
@@ -2864,7 +2873,7 @@ defaultproperties
      TransientSoundVolume=0.300000
 	 
 	 StrafeScale=1.000000
-     BackScale=1.000000
+     BackpedalScale=1.000000
      //MyFriction=4.000000
      RagdollLifeSpan=20.000000
      GroundSpeed=360.000000

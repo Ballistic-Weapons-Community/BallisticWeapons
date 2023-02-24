@@ -87,15 +87,6 @@ var   globalconfig float    	InitStaminaChargeRate;
 var   globalconfig float    	InitSpeedFactor;
 var   globalconfig float    	JumpDrainFactor;
 
-//Sloth
-var globalconfig bool           bUseSloth;
-var globalconfig float          PlayerStrafeScale;
-var globalconfig float          PlayerBackpedalScale;
-var globalconfig float          PlayerGroundSpeed;
-var globalconfig float          PlayerAirSpeed;
-var globalconfig float          PlayerAccelRate;
-var globalconfig float          PlayerJumpZ;
-
 var   BCReplicationInfo	BallisticReplicationInfo;
 
 var	int						CRCount;
@@ -222,6 +213,9 @@ function ModifyPlayer(Pawn Other)
 	local class<Weapon> FW;
 	local int i;
 	local BCSprintControl SC;
+    local BallisticPawn BPawn;
+
+    BPawn = BallisticPawn(Other);
 
 	//adds sprint support to mutator
     if (xPawn(Other) != None && bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
@@ -238,7 +232,7 @@ function ModifyPlayer(Pawn Other)
 		Sprinters[Sprinters.length] = SC;
 	}
 
-	if (!DMMode && BallisticPawn(Other) == None)
+	if (!DMMode && BPawn == None)
 	{
 		ClientModifyPlayer(Other);
 		// Make players a bit crap
@@ -272,9 +266,9 @@ function ModifyPlayer(Pawn Other)
 		}
 		xPawn(Other).FootstepVolume *= FootstepAmplifier;
 
-        if(BallisticPawn(Other) != none)
+        if(BPawn != none)
         {
-            BallisticPawn(Other).BPRI = class'Mut_Ballistic'.static.GetBPRI(Other.Controller.PlayerReplicationInfo);
+            BPawn.BPRI = class'Mut_Ballistic'.static.GetBPRI(Other.Controller.PlayerReplicationInfo);
         }
     }
 	
@@ -300,15 +294,6 @@ function ModifyPlayer(Pawn Other)
 	// Add ammo for default weapon
 	AddStartingAmmo(Other);
 	
-	if (bUseSloth && BallisticPawn(Other) != None)
-	{
-		BallisticPawn(Other).StrafeScale = PlayerStrafeScale;
-		BallisticPawn(Other).BackScale = PlayerBackpedalScale;
-		BallisticPawn(Other).GroundSpeed = PlayerGroundSpeed;
-		BallisticPawn(Other).AirSpeed = PlayerAirSpeed;
-		BallisticPawn(Other).AccelRate = PlayerAccelRate;
-	}
-
 	Super.ModifyPlayer(Other);
 }
 
@@ -348,7 +333,7 @@ simulated function ClientModifyPlayer(Pawn Other)
 	{
 		if (xPawn(P) != none && BallisticPawn(P) == None)
 		{
-			xPawn(P).FootstepVolume = 0.5;
+			xPawn(P).FootstepVolume = 0.35;
 			xPawn(P).UDamageSound = UDamageSnd;
 			xPawn(P).TransientSoundVolume=0.200000;
 		}
@@ -1043,14 +1028,6 @@ defaultproperties
      InitStaminaChargeRate=20.000000
      InitSpeedFactor=1.350000
      JumpDrainFactor=2.000000
-	 
-	 bUseSloth=False
-     PlayerStrafeScale=0.850000
-     PlayerBackpedalScale=0.700000
-     PlayerGroundSpeed=260.000000
-     PlayerAirSpeed=260.000000
-     PlayerAccelRate=768.000000
-     PlayerJumpZ=256
 	 
 	 bRegeneration=False
 	 bShieldRegeneration=False

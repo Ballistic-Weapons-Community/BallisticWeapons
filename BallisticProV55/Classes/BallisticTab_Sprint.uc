@@ -58,12 +58,12 @@ function LoadSettings()
     fe_InitSpeedFactor.SetValue(class'BallisticProV55.Mut_Ballistic'.default.InitSpeedFactor);
     fe_JumpDrainFactor.SetValue(class'BallisticProV55.Mut_Ballistic'.default.JumpDrainFactor);
 
-	cb_bUseSloth.Checked(class'BallisticProV55.Mut_Ballistic'.default.bUseSloth);
-    fe_PlayerStrafeScale.SetValue(class'BallisticProV55.Mut_Ballistic'.default.PlayerStrafeScale);
-    fe_PlayerBackpedalScale.SetValue(class'BallisticProV55.Mut_Ballistic'.default.PlayerBackpedalScale);
-    fe_PlayerGroundSpeed.SetValue(class'BallisticProV55.Mut_Ballistic'.default.PlayerGroundSpeed);
-    fe_PlayerAirSpeed.SetValue(class'BallisticProV55.Mut_Ballistic'.default.PlayerAirSpeed);
-    fe_PlayerAccelRate.SetValue(class'BallisticProV55.Mut_Ballistic'.default.PlayerAccelRate);
+	cb_bUseSloth.Checked(class'BallisticReplicationInfo'.default.bUseSloth);
+    fe_PlayerStrafeScale.SetValue(class'BallisticReplicationInfo'.default.PlayerStrafeScale);
+    fe_PlayerBackpedalScale.SetValue(class'BallisticReplicationInfo'.default.PlayerBackpedalScale);
+    fe_PlayerGroundSpeed.SetValue(class'BallisticReplicationInfo'.default.PlayerGroundSpeed);
+    fe_PlayerAirSpeed.SetValue(class'BallisticReplicationInfo'.default.PlayerAirSpeed);
+    fe_PlayerAccelRate.SetValue(class'BallisticReplicationInfo'.default.PlayerAccelRate);
     
 }
 
@@ -98,14 +98,15 @@ function SaveSettings()
     class'BallisticProV55.Mut_Ballistic'.default.InitSpeedFactor = fe_InitSpeedFactor.GetValue();
     class'BallisticProV55.Mut_Ballistic'.default.JumpDrainFactor = fe_JumpDrainFactor.GetValue();
 	
-	class'BallisticProV55.Mut_Ballistic'.default.bUseSloth = cb_bUseSloth.IsChecked();
-    class'BallisticProV55.Mut_Ballistic'.default.PlayerStrafeScale = fe_PlayerStrafeScale.GetValue();
-    class'BallisticProV55.Mut_Ballistic'.default.PlayerBackpedalScale = fe_PlayerBackpedalScale.GetValue();
-    class'BallisticProV55.Mut_Ballistic'.default.PlayerGroundSpeed = fe_PlayerGroundSpeed.GetValue();
-    class'BallisticProV55.Mut_Ballistic'.default.PlayerAirSpeed = fe_PlayerAirSpeed.GetValue();
-    class'BallisticProV55.Mut_Ballistic'.default.PlayerAccelRate = fe_PlayerAccelRate.GetValue();
+	class'BallisticReplicationInfo'.default.bUseSloth = cb_bUseSloth.IsChecked();
+    class'BallisticReplicationInfo'.default.PlayerStrafeScale = fe_PlayerStrafeScale.GetValue();
+    class'BallisticReplicationInfo'.default.PlayerBackpedalScale = fe_PlayerBackpedalScale.GetValue();
+    class'BallisticReplicationInfo'.default.PlayerGroundSpeed = fe_PlayerGroundSpeed.GetValue();
+    class'BallisticReplicationInfo'.default.PlayerAirSpeed = fe_PlayerAirSpeed.GetValue();
+    class'BallisticReplicationInfo'.default.PlayerAccelRate = fe_PlayerAccelRate.GetValue();
 
     class'BallisticProV55.Mut_Ballistic'.static.StaticSaveConfig();
+    class'BallisticReplicationInfo'.static.StaticSaveConfig();
 }
 
 defaultproperties
