@@ -13,7 +13,7 @@ defaultproperties
 		DecayRange=(Min=0.0,Max=0.0)
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		TraceCount=13
+		TraceCount=12
 		Damage=12.0
 		HeadMult=2.25
 		LimbMult=0.666666
@@ -31,7 +31,8 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Fire1',Volume=1.300000)
 		Recoil=920.000000
 		Chaos=0.120000
-		Inaccuracy=(X=800,Y=800)
+		//Inaccuracy=(X=800,Y=800)
+		Inaccuracy=(X=300,Y=300)
 		HipSpreadFactor=1.000000
 		BotRefireRate=0.900000
 		WarnTargetPct=0.100000
