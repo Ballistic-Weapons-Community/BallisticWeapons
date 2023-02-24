@@ -11,7 +11,7 @@ class BallisticTab_RulesPro extends UT2K4TabPanel;
 
 var automated moEditBox   	eb_ItemGroup;
 var automated moCheckbox	ch_UseItemizer, ch_LeaveSuper, ch_BrightPickups, ch_SpawnUnique, ch_PickupsChange, ch_RandomDefaults,
-							ch_BrightPlayers, ch_StableSprint, ch_NoLongGun, ch_KillRogueWPs, ch_ForceBWPawn, ch_NoReloading, ch_NoDodging, ch_DoubleJump;
+							ch_BrightPlayers, ch_StableSprint, ch_NoLongGun, ch_KillRogueWPs, ch_ForceBWPawn, ch_NoReloading, ch_NoDodging, ch_NoDoubleJump;
 var automated moSlider		sl_Accuracy, sl_Recoil, sl_Damage, sl_VDamage;
 var automated moFloatEdit	fl_Damage, fl_VDamage;
 var automated moComboBox	co_GameStyle;
@@ -55,7 +55,7 @@ function LoadSettings()
 	ch_ForceBWPawn.Checked(class'Mut_Ballistic'.default.bForceBallisticPawn);
 	ch_NoReloading.Checked(class'BallisticReplicationInfo'.default.bNoReloading);
 	ch_NoDodging.Checked(class'BallisticReplicationInfo'.default.bNoDodging);
-	ch_DoubleJump.Checked(class'BallisticReplicationInfo'.default.bLimitDoubleJumps);
+	ch_NoDoubleJump.Checked(class'BallisticReplicationInfo'.default.bNoDoubleJump);
 
     co_GameStyle.AddItem("Arena" ,,string(0));
 	co_GameStyle.AddItem("Classic" ,,string(1));
@@ -87,7 +87,7 @@ function SaveSettings()
 	class'Mut_Ballistic'.default.bForceBallisticPawn		= ch_ForceBWPawn.IsChecked();
 	class'BallisticReplicationInfo'.default.bNoReloading	= ch_NoReloading.IsChecked();
 	class'BallisticReplicationInfo'.default.bNoDodging		= ch_NoDodging.IsChecked();
-	class'BallisticReplicationInfo'.default.bLimitDoubleJumps = ch_DoubleJump.IsChecked();
+	class'BallisticReplicationInfo'.default.bNoDoubleJump = ch_NoDoubleJump.IsChecked();
 
 	class'BallisticReplicationInfo'.static.StaticSaveConfig();
 	class'BallisticWeapon'.static.StaticSaveConfig();
@@ -117,7 +117,7 @@ function DefaultSettings()
 	ch_ForceBWPawn.Checked(false);
 	ch_NoReloading.Checked(false);
 	ch_NoDodging.Checked(false);
-	ch_DoubleJump.Checked(false);
+	ch_NoDoubleJump.Checked(false);
 }
 
 /*     Begin Object Class=moSlider Name=sl_DamageSlider
@@ -389,24 +389,24 @@ defaultproperties
          Caption="No Dodging"
          OnCreateComponent=ch_NoDodgingCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Disables dodging for all players"
+         Hint="Disables dodging for all players."
          WinTop=0.900000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
      ch_NoDodging=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_NoDodgingCheck'
 
-    Begin Object Class=moCheckBox Name=ch_DoubleJumpCheck
+    Begin Object Class=moCheckBox Name=ch_NoDoubleJumpCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Limit Double Jump"
-         OnCreateComponent=ch_DoubleJumpCheck.InternalOnCreateComponent
+         Caption="No Double Jump"
+         OnCreateComponent=ch_NoDoubleJumpCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Limits the Double Jump capabilities of players."
+         Hint="Disables double jump for all players."
          WinTop=0.950000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_DoubleJump=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_DoubleJumpCheck'
+     ch_NoDoubleJump=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_NoDoubleJumpCheck'
 
 }

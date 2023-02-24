@@ -33,7 +33,6 @@
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //
 // Couple of edits by Azarael:
-// Replicated DoubleJumpsLeft in order to stop strange behaviour online
 // Configurable Walking and Crouching speed.
 // Set Movement Anims for "Walking" to "Running" ones.
 //=============================================================================
@@ -41,8 +40,6 @@ class BallisticPawn extends xPawn;
 
 #EXEC OBJ LOAD File="BallisticThird.ukx"
 
-var byte				            DoubleJumpsLeft;
-var float				            LastDoubleJumpTime;
 var	bool				            bResetAnimationAction;
 
 var globalconfig	bool	        bLocalDisableAnimation;
@@ -170,8 +167,6 @@ replication
 {
 	reliable if (Role == ROLE_Authority)
 		ClientHits, HitCounter, ClientSetCrouchAbility;
-	reliable if (bNetOwner && Role == ROLE_Authority)
-		DoubleJumpsLeft;
 }
 
 simulated function PostBeginPlay()
@@ -2152,12 +2147,6 @@ function DoDoubleJump( bool bUpdating )
 
 	if (Role == ROLE_Authority)
 		Inventory.OwnerEvent('Jumped');
-
-	if (class'BallisticReplicationInfo'.default.bLimitDoubleJumps && !bIsCrouched && !bWantsToCrouch)
-	{
-		LastDoubleJumpTime = level.TimeSeconds;
-		DoubleJumpsLeft--;
-	}
 }
 
 singular event BaseChange()
@@ -2199,14 +2188,9 @@ singular event BaseChange()
 
 function bool CanDoubleJump()
 {
-	if (class'BallisticReplicationInfo'.default.bLimitDoubleJumps && DoubleJumpsLeft < 5 && level.TimeSeconds > LastDoubleJumpTime + 15)
-	{
-		LastDoubleJumpTime = level.TimeSeconds;
-		DoubleJumpsLeft++;
-	}
 	if(BallisticWeapon(Weapon) != None && BallisticWeapon(Weapon).bScopeView)
 		return false;
-	if (class'BallisticReplicationInfo'.default.bLimitDoubleJumps && DoubleJumpsLeft < 1)
+	if (class'BallisticReplicationInfo'.default.bNoDoubleJump)
 		return false;
 	else
 		return super.CanDoubleJump();
@@ -2214,11 +2198,12 @@ function bool CanDoubleJump()
 
 function bool CanMultiJump()
 {
-	if (class'BallisticReplicationInfo'.default.bLimitDoubleJumps && DoubleJumpsLeft < 1)
+	if (class'BallisticReplicationInfo'.default.bNoDoubleJump)
 		return false;
 	else
 		return super.CanMultiJump();
 }
+
 function bool Dodge(eDoubleClickDir DoubleClickMove)
 {
 //	if (bNoDodging)
@@ -2834,7 +2819,6 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 
 defaultproperties
 {
-     DoubleJumpsLeft=3
      MoverLeaveGrace=1.000000
      MinDragDistance=40.000000
      MaxPoolVelocity=20.000000

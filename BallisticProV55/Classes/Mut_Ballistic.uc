@@ -88,12 +88,13 @@ var   globalconfig float    	InitSpeedFactor;
 var   globalconfig float    	JumpDrainFactor;
 
 //Sloth
-var globalconfig bool bUseSloth;
-var globalconfig float StrafeScale;
-var globalconfig float BackScale;
-var globalconfig float GroundSpeedScale;
-var globalconfig float AirSpeedScale;
-var globalconfig float AccelRateScale;
+var globalconfig bool           bUseSloth;
+var globalconfig float          PlayerStrafeScale;
+var globalconfig float          PlayerBackpedalScale;
+var globalconfig float          PlayerGroundSpeed;
+var globalconfig float          PlayerAirSpeed;
+var globalconfig float          PlayerAccelRate;
+var globalconfig float          PlayerJumpZ;
 
 var   BCReplicationInfo	BallisticReplicationInfo;
 
@@ -301,11 +302,11 @@ function ModifyPlayer(Pawn Other)
 	
 	if (bUseSloth && BallisticPawn(Other) != None)
 	{
-		BallisticPawn(Other).StrafeScale = StrafeScale;
-		BallisticPawn(Other).BackScale = BackScale;
-		BallisticPawn(Other).GroundSpeed = GroundSpeedScale;
-		BallisticPawn(Other).AirSpeed = AirSpeedScale;
-		BallisticPawn(Other).AccelRate = AccelRateScale;
+		BallisticPawn(Other).StrafeScale = PlayerStrafeScale;
+		BallisticPawn(Other).BackScale = PlayerBackpedalScale;
+		BallisticPawn(Other).GroundSpeed = PlayerGroundSpeed;
+		BallisticPawn(Other).AirSpeed = PlayerAirSpeed;
+		BallisticPawn(Other).AccelRate = PlayerAccelRate;
 	}
 
 	Super.ModifyPlayer(Other);
@@ -1044,11 +1045,12 @@ defaultproperties
      JumpDrainFactor=2.000000
 	 
 	 bUseSloth=False
-     StrafeScale=0.700000
-     BackScale=0.600000
-     GroundSpeedScale=270.000000
-     AirSpeedScale=270.000000
-     AccelRateScale=256.000000
+     PlayerStrafeScale=0.850000
+     PlayerBackpedalScale=0.700000
+     PlayerGroundSpeed=260.000000
+     PlayerAirSpeed=260.000000
+     PlayerAccelRate=768.000000
+     PlayerJumpZ=256
 	 
 	 bRegeneration=False
 	 bShieldRegeneration=False

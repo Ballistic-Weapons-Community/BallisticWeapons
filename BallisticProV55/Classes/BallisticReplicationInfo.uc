@@ -19,23 +19,23 @@ class BallisticReplicationInfo extends BCReplicationInfo config(BallisticProV55)
 // Server Variables -----------------------------------------------------------
 
 // Pawn
-var() Config bool		bBrightPlayers;		// Players have ambient glow to glow in the dark like the standard pawns.
-var() Config bool		bNoDodging;			// Disables dodging.
-var() Config bool		bLimitDoubleJumps;	// Limits double jumps so you can only do a few before having to wait for them to recharge.
-var() Config float		WalkingPercentage;   // Let players configure the walking movespeed percentage.
-var() Config float		CrouchingPercentage; // Let players configure the crouching movespeed percentage.
-var() Config bool 		bUseRunningAnims; // Pawns will use running anims for walking.
-var() Config bool		bUniversalMineLights; // All BX-5 mines are lit.
+var() Config bool		bBrightPlayers;		    // Players have ambient glow to glow in the dark like the standard pawns.
+var() Config bool		bNoDodging;			    // Disables dodging.
+var() Config bool		bNoDoubleJump;	        // Disables double jump.
+var() Config float		WalkingPercentage;      // Let players configure the walking movespeed percentage.
+var() Config float		CrouchingPercentage;    // Let players configure the crouching movespeed percentage.
+var() Config bool 		bUseRunningAnims;       // Pawns will use running anims for walking.
+var() Config bool		bUniversalMineLights;   // All BX-5 mines are lit.
 
 //Player
 var() Config bool		bCustomStats;			// Enables Custom Health, Shield & Adren Stats.
-var() config int 		playerHealth;  // health the player starts with
-var() config int 		playerHealthCap; // maximum health a player can have
-var() config int 		playerSuperHealthCap; // maximum superhealth a player can have
-var() config int 		iAdrenaline;  // maximum adrenaline a player starts with
-var() config int 		iAdrenalineCap;  // maximum adrenaline a player can have
-var() config int 		iArmor;  // armor the player starts with
-var() config int 		iArmorCap;  // maximum armor the player can have
+var() config int 		playerHealth;           // health the player starts with
+var() config int 		playerHealthCap;        // maximum health a player can have
+var() config int 		playerSuperHealthCap;   // maximum superhealth a player can have
+var() config int 		iAdrenaline;            // maximum adrenaline a player starts with
+var() config int 		iAdrenalineCap;         // maximum adrenaline a player can have
+var() config int 		iArmor;                 // armor the player starts with
+var() config int 		iArmorCap;              // maximum armor the player can have
 
 //var() config float 		dieSoundAmplifier;  // amplifies the die sound
 //var() config float 		dieSoundRangeAmplifier; // amplifies the range
@@ -60,7 +60,7 @@ var struct RepInfo_BW
 {
 	var bool		bBrightPlayers;
 	var bool		bNoDodging;
-	var bool		bLimitDoubleJumps;
+	var bool		bNoDoubleJump;
 	var float		WalkingPercentage;
 	var float		CrouchingPercentage;
 	var bool		bUseRunningAnims;
@@ -109,7 +109,7 @@ simulated function InitClientVars()
 
 	bBrightPlayers		= BWRep.bBrightPlayers;
 	bNoDodging			= BWRep.bNoDodging;
-	bLimitDoubleJumps	= BWRep.bLimitDoubleJumps;
+	bNoDoubleJump	= BWRep.bNoDoubleJump;
 	WalkingPercentage	= BWRep.WalkingPercentage;
 	CrouchingPercentage = BWRep.CrouchingPercentage;
 	bUniversalMineLights = BWRep.bUniversalMineLights;
@@ -117,7 +117,7 @@ simulated function InitClientVars()
 
 	class.default.bBrightPlayers	= bBrightPlayers;
 	class.default.bNoDodging		= bNoDodging;
-	class.default.bLimitDoubleJumps	= bLimitDoubleJumps;
+	class.default.bNoDoubleJump	= bNoDoubleJump;
 	class.default.WalkingPercentage	= WalkingPercentage;
 	class.default.CrouchingPercentage = CrouchingPercentage;
 	class.default.bUniversalMineLights = bUniversalMineLights;
@@ -170,7 +170,7 @@ simulated function InitClientVars()
 
 	Log("bBrightPlayers: "$bBrightPlayers);
 	Log("bNoDodging: "$bNoDodging);
-	Log("bLimitDoubleJumps: "$bLimitDoubleJumps);
+	Log("bNoDoubleJump: "$bNoDoubleJump);
 	log("Walking percentage: "$WalkingPercentage * 100$"%");
 	log("Crouching percentage:"$CrouchingPercentage*100$"%");
 
@@ -188,7 +188,7 @@ function ServerInitialize()
 {
 	BWRep.bBrightPlayers	= bBrightPlayers;
 	BWRep.bNoDodging		= bNoDodging;
-	BWRep.bLimitDoubleJumps	= bLimitDoubleJumps;
+	BWRep.bNoDoubleJump	= bNoDoubleJump;
     BWRep.WalkingPercentage = WalkingPercentage;
     BWRep.CrouchingPercentage = CrouchingPercentage;
 	BWRep.bUniversalMineLights = bUniversalMineLights;
