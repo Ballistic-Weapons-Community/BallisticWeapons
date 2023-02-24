@@ -19,16 +19,16 @@ class BallisticReplicationInfo extends BCReplicationInfo config(BallisticProV55)
 // Server Variables -----------------------------------------------------------
 
 // Pawn
-var() Config bool		bBrightPlayers;		    // Players have ambient glow to glow in the dark like the standard pawns.
-var() Config bool		bNoDodging;			    // Disables dodging.
-var() Config bool		bNoDoubleJump;	        // Disables double jump.
-var() Config float		WalkingPercentage;      // Let players configure the walking movespeed percentage.
-var() Config float		CrouchingPercentage;    // Let players configure the crouching movespeed percentage.
-var() Config bool 		bUseRunningAnims;       // Pawns will use running anims for walking.
-var() Config bool		bUniversalMineLights;   // All BX-5 mines are lit.
+var() config bool		bBrightPlayers;		    // Players have ambient glow to glow in the dark like the standard pawns.
+var() config bool		bNoDodging;			    // Disables dodging.
+var() config bool		bNoDoubleJump;	        // Disables double jump.
+var() config float		WalkingPercentage;      // Let players configure the walking movespeed percentage.
+var() config float		CrouchingPercentage;    // Let players configure the crouching movespeed percentage.
+var() config bool 		bUseRunningAnims;       // Pawns will use running anims for walking.
+var() config bool		bUniversalMineLights;   // All BX-5 mines are lit.
 
 //Player
-var() Config bool		bCustomStats;			// Enables Custom Health, Shield & Adren Stats.
+var() config bool		bCustomStats;			// Enables Custom Health, Shield & Adren Stats.
 var() config int 		playerHealth;           // health the player starts with
 var() config int 		playerHealthCap;        // maximum health a player can have
 var() config int 		playerSuperHealthCap;   // maximum superhealth a player can have
@@ -63,7 +63,7 @@ var() config float          PlayerGroundSpeed;
 var() config float          PlayerAirSpeed;
 var() config float          PlayerAccelRate;
 var() config float          PlayerJumpZ;
-
+var() config float          PlayerDodgeZ;
 // ----------------------------------------------------------------------------
 var struct RepInfo_BW
 {
@@ -113,6 +113,7 @@ var struct RepInfo_BW_Move
     var float          PlayerAirSpeed;
     var float          PlayerAccelRate;
     var float          PlayerJumpZ;
+    var float          PlayerDodgeZ;
 } BWRepMove;
 
 replication
@@ -142,6 +143,7 @@ simulated function InitClientVars()
 	PlayerAirSpeed = BWRepMove.PlayerAirSpeed;
 	PlayerAccelRate = BWRepMove.PlayerAccelRate;
     PlayerJumpZ = BWRepMove.PlayerJumpZ;
+    PlayerDodgeZ = BWRepMove.PlayerDodgeZ;
 
 	class.default.bBrightPlayers	= bBrightPlayers;
 	class.default.bNoDodging		= bNoDodging;
@@ -158,7 +160,8 @@ simulated function InitClientVars()
 	class.default.PlayerAirSpeed = PlayerAirSpeed;
 	class.default.PlayerAccelRate = PlayerAccelRate;
     class.default.PlayerJumpZ = PlayerJumpZ;
-	
+	class.default.PlayerDodgeZ = PlayerDodgeZ;
+
 	//Kill Rewards
 	class.default.killrewardArmor = killrewardArmor;
     class.default.killrewardArmorCap = killrewardArmorCap;
@@ -237,7 +240,8 @@ function ServerInitialize()
 	BWRepMove.PlayerAirSpeed = PlayerAirSpeed;
 	BWRepMove.PlayerAccelRate = PlayerAccelRate;
     BWRepMove.PlayerJumpZ = PlayerJumpZ;
-    
+    BWRepMove.PlayerDodgeZ = PlayerDodgeZ;
+
 	// Player
     if (bCustomStats)
 	{
@@ -316,10 +320,11 @@ defaultproperties
 
     // Movement rate
      bUseSloth=False
-     PlayerStrafeScale=0.850000
-     PlayerBackpedalScale=0.700000
-     PlayerGroundSpeed=260.000000
-     PlayerAirSpeed=260.000000
+     PlayerStrafeScale=1
+     PlayerBackpedalScale=0.9
+     PlayerGroundSpeed=270.000000
+     PlayerAirSpeed=270.000000
      PlayerAccelRate=768.000000
      PlayerJumpZ=256
+     PlayerDodgeZ=170
 }

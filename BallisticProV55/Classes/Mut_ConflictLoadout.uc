@@ -140,7 +140,7 @@ function AddWeapon(PlayerController Sender, array<String> split_string)
 
 	if (!(WI.ClassName ~= split_string[1]))
 	{
-		Sender.ClientMessage("Mutate AddWeapon: Couldn't find "@split_string[1]@" in the cache."); 
+		Sender.ClientMessage("Mutate AddWeapon: Couldn't find "$split_string[1]$" in the cache."); 
 		return;
 	}
 
@@ -177,14 +177,14 @@ function RemoveWeapon(PlayerController Sender, array<String> split_string)
 		{
 			class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bRed = false;
 			class'Mut_ConflictLoadout'.default.ConflictWeapons[i].bBlue = false;
-			Sender.ClientMessage("Mutate RemoveWeapon: Successfully disabled "@split_string[1]); 
+			Sender.ClientMessage("Mutate RemoveWeapon: Successfully disabled "$split_string[1]); 
 
 			class'Mut_ConflictLoadout'.static.StaticSaveConfig();
 			return;	
 		}
 	}
 
-	Sender.ClientMessage("Mutate RemoveWeapon: Couldn't find "@split_string[1]@" in the conflict list."); 
+	Sender.ClientMessage("Mutate RemoveWeapon: Couldn't find "$split_string[1]$" in the conflict list."); 
 }
 
 //==================================================

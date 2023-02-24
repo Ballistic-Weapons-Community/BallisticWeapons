@@ -211,13 +211,15 @@ simulated event PostNetBeginPlay()
         AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
         AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
         JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
-
+        DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
+        
         default.StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
         default.BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
         default.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
         default.AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
         default.AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
         default.JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
+        default.DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
     }
 	
 	if(!pawnNetInit)
