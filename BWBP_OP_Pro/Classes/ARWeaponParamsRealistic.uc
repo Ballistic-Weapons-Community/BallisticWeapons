@@ -10,10 +10,12 @@ defaultproperties
 	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=600.000000,Max=3000.000000)
 		WaterTraceRange=5000.0
-		TraceCount=8
+		//TraceCount=8
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=20.0
+		//Damage=20.0
+		TraceCount=12
+		Damage=11.0
 		HeadMult=2.05
 		LimbMult=0.6
 		PenetrationEnergy=5.000000
