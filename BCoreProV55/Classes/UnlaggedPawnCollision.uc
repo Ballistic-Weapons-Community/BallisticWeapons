@@ -25,22 +25,27 @@ class UnlaggedPawnCollision extends Actor
     notplaceable;
 
 const LADDER_SANITY_DIST = 128;
+const UPDATE_EPSILON = 0.005f; // ignore positional updates within 5ms
 
-struct SavedRotation
+struct HistoryEntry
 {
+    var Vector  location;
+    var Vector  head_location;
+    var int     collision_radius;
+    var int     collision_height;
     var Rotator rotation;
-    var float   time;
+    var float   timestamp;
 };
 
 //=============================================================================
 // Variables
 //=============================================================================
-var() float         MaxUnlagTime;                           // Maximum rewind time in ms. Players with latency higher than this will still be required to lead shots.
-var xPawn           UnlaggedPawn;                           // The pawn whom this collision represents
-var bool            bUnlagged;                              // If true, this collision represents the owner Pawn's hit cylinder and the owner Pawn's collision is disabled
-var float           LastLocationUpdateTime;
-var InterpCurve     LocX, LocY, LocZ, CollRadius, CollHeight;   // Interpolation curves for determining location, collision radius and collision height for any given period in time
-var array<SavedRotation>  Rotations;
+var() float                 MaxUnlagTime;                           // Maximum rewind time in ms. Players with latency higher than this will still be required to lead shots.
+var xPawn                   UnlaggedPawn;                           // The pawn whom this collision represents
+var bool                    bUnlagged;                              // If true, this collision represents the owner Pawn's hit cylinder and the owner Pawn's collision is disabled
+var float                   LastLocationUpdateTime;
+var Vector                  LastHeadLocation;                       // last location of head on trace
+var array<HistoryEntry>     History;
 
 var bool            PawnCollideActors, PawnBlockActors, PawnBlockPlayers;
 /**
@@ -67,113 +72,71 @@ final function UpdateUnlagLocation()
 {
     local int i;
 
-    if (LastLocationUpdateTime == Level.TimeSeconds || !UnlaggedPawn.bCollideActors || !HasCompatiblePhysics(UnlaggedPawn))
+    if (LastLocationUpdateTime > Level.TimeSeconds - UPDATE_EPSILON || !UnlaggedPawn.bCollideActors || !HasCompatiblePhysics(UnlaggedPawn))
         return;
 
     LastLocationUpdateTime = Level.TimeSeconds;
 
-    while (LocX.Points.Length > 1 && LocX.Points[1].InVal < LastLocationUpdateTime - MaxUnlagTime) 
+    while (History.Length > 1 && History[0].timestamp < LastLocationUpdateTime - MaxUnlagTime) 
     {
-        //log(LastLocationUpdateTime@"- removing"@LocationHistory.LocX.Points[0].InVal);
-        LocX.Points.Remove(0, 1);
-        LocY.Points.Remove(0, 1);
-        LocZ.Points.Remove(0, 1);
-        CollRadius.Points.Remove(0, 1);
-        CollHeight.Points.Remove(0, 1);
-    }
-
-    while (Rotations.Length > 1 && Rotations[1].time < LastLocationUpdateTime - MaxUnlagTime)
-    {
-        Rotations.Remove(0, 1);
+        //log(LastLocationUpdateTime@"- removing"@History[0].timestamp);
+        History.Remove(0, 1);
     }
     
-    i = LocX.Points.Length;
+    i = History.Length;
 
-    LocX.Points.Length = i + 1;
-    LocX.Points[i].InVal = LastLocationUpdateTime;
-    LocX.Points[i].OutVal = UnlaggedPawn.Location.X;
-
-    LocY.Points.Length = i + 1;
-    LocY.Points[i].InVal = LastLocationUpdateTime;
-    LocY.Points[i].OutVal = UnlaggedPawn.Location.Y;
-
-    LocZ.Points.Length = i + 1;
-    LocZ.Points[i].InVal = LastLocationUpdateTime;
-    LocZ.Points[i].OutVal = UnlaggedPawn.Location.Z;
-
-    CollRadius.Points.Length = i + 1;
-    CollRadius.Points[i].InVal = LastLocationUpdateTime;
-    CollRadius.Points[i].OutVal = UnlaggedPawn.CollisionRadius;
-
-    CollHeight.Points.Length = i + 1;
-    CollHeight.Points[i].InVal = LastLocationUpdateTime;
-    CollHeight.Points[i].OutVal = UnlaggedPawn.CollisionHeight;
-
-    i = Rotations.Length;
-    Rotations.Length = i + 1;
-
-    Rotations[i].Rotation = UnlaggedPawn.Rotation;
-    Rotations[i].time = LastLocationUpdateTime;
+    History.Length = i + 1;
+    History[i].location = UnlaggedPawn.Location;
+    History[i].head_location = UnlaggedPawn.GetBoneCoords('head').Origin;
+    History[i].collision_radius = UnlaggedPawn.CollisionRadius;
+    History[i].collision_height = UnlaggedPawn.CollisionHeight;
+    History[i].rotation = UnlaggedPawn.Rotation;
+    History[i].timestamp = LastLocationUpdateTime;
 }
 
-/**
+/*
 Enable the unlagged collision cylinder.
 */
 final function EnableUnlag(float PingTime)
 {
-    local vector UnlaggedLocation;
-    local float UnlagTime;
-    local range UnlagTimeRange;
-    local float UnlaggedRadius, UnlaggedHeight;
+    local float ShotTime;
     local int i;
   
     if (Level.NetMode == NM_Standalone || UnlaggedPawn == None || !UnlaggedPawn.bCollideActors || UnlaggedPawn.Health <= 0)
         return;
 
     UpdateUnlagLocation();
-    
-    InterpCurveGetInputDomain(LocX, UnlagTimeRange.Min, UnlagTimeRange.Max);
+
     //log(Name @ "Unlagging:" @ PingTime @ UnlagTimeRange.Min @ UnlagTimeRange.Max);
-    UnlagTime = FClamp(Level.TimeSeconds - PingTime, Level.TimeSeconds - MaxUnlagTime, UnlagTimeRange.Max);
-    UnlaggedRadius = InterpCurveEval(CollRadius, UnlagTime);
-    UnlaggedHeight = InterpCurveEval(CollHeight, UnlagTime);
-    // should result in 0/0 if too early, i.e. no chance to hit with trace weapon
-    
-    UnlagTime = FClamp(Level.TimeSeconds - PingTime, UnlagTimeRange.Min, UnlagTimeRange.Max);
-    UnlaggedLocation.X = InterpCurveEval(LocX, UnlagTime);
-    UnlaggedLocation.Y = InterpCurveEval(LocY, UnlagTime);
-    UnlaggedLocation.Z = InterpCurveEval(LocZ, UnlagTime);
-    
-    SetLocation(UnlaggedLocation);
-    SetCollisionSize(UnlaggedRadius, UnlaggedHeight);
+    ShotTime = Level.TimeSeconds - FMin(PingTime, MaxUnlagTime);
 
-    // sanity check
+    // find index in history
+    // use last valid index if not found
+    for (i = 0; i < History.Length - 1 && History[i].timestamp <= ShotTime; ++i);
+
+    // TODO:
+    // could interpolate, but given tick frequency and UT move speed, probably not needed - could produce some whacky results for interim states
+
+    // sanity checks
     // disable unlag if parameters unlikely to be valid
-    if (UnlaggedRadius == 0 || UnlaggedHeight == 0)
+    if (History[i].collision_radius == 0 || History[i].collision_height == 0)
         return;
 
-    if (UnlaggedPawn.Physics == PHYS_Ladder && VSize(Location - UnlaggedPawn.Location) > LADDER_SANITY_DIST)
+    if (UnlaggedPawn.Physics == PHYS_Ladder && VSize(History[i].Location - UnlaggedPawn.Location) > LADDER_SANITY_DIST)
         return;
 
-    SetCollision(true, true, true);
+    SetLocation(History[i].location);
+    SetRotation(History[i].rotation);
+    SetCollisionSize(History[i].collision_radius, History[i].collision_height);
+    LastHeadLocation = History[i].head_location;
 
-/*
-    PawnCollideActors = UnlaggedPawn.bCollideActors;
-    PawnBlockActors = UnlaggedPawn.bBlockActors;
-    PawnBlockPlayers = UnlaggedPawn.bBlockPlayers;
-    
-    UnlaggedPawn.SetCollision(false, false, false);
-*/
+    SetCollision(true, true, true); // TODO / FIXME: try (true, false, false) - these don't need to perform blocking
 
     UnlaggedPawn.bBlockZeroExtentTraces=False;
     UnlaggedPawn.bBlockNonZeroExtentTraces=False;
 
-    for (i = 0; i < Rotations.Length - 1 && Rotations[i].time >= UnlagTime; ++i);
-
-    SetRotation(Rotations[i].Rotation);
-
     //log(Name @ "Pawn: X:" $ UnlaggedPawn.Location.X $ "Y: " $ UnlaggedPawn.Location.Y $ "Z: " $ UnlaggedPawn.Location.Z);
-    //log(Name @ "Collision: X:" $ Location.X $ "Y: " $ Location.Y $ "Z: " $ Location.Z  $ " Rot:" $ Rotation $ " ColH: " $ CollisionHeight $ " ColR:" $ CollisionRadius);
+    //log(Name @ "Collision: X:" $ History[i].location.X $ "Y: " $ History[i].location.Y $ "Z: " $ History[i].location.Z  $ " Rot:" $ History[i].rotation $ " ColH: " $ History[i].collision_height $ " ColR:" $ History[i].collision_radius);
     
     bUnlagged = True;
 }
@@ -181,12 +144,12 @@ final function EnableUnlag(float PingTime)
 /*
 If in rewind state, redirect damage taken by the cylinder (explosive rounds, FP9 hijack etc) to the owning Pawn
 */
-function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector Momentum, class<DamageType> damageType)
+function TakeDamage( int damage, Pawn instigated_by, Vector hit_loc, Vector momentum_dir, class<DamageType> damage_type)
 {
     if (!bUnlagged || UnlaggedPawn == None)
         return;
 
-	UnlaggedPawn.TakeDamage( Damage, InstigatedBy, Hitlocation, Momentum, damageType);
+	UnlaggedPawn.TakeDamage(damage, instigated_by, hit_loc, momentum_dir, damage_type);
 }
 
 /**
@@ -200,19 +163,12 @@ final function DisableUnlag()
     if (!bUnlagged)
         return;
 
-/*
-    if (UnlaggedPawn != None && UnlaggedPawn.Health > 0)
-    {
-        //log(Name @ "Pawn: Restoring collision parameters");
-        UnlaggedPawn.SetCollision(PawnCollideActors, PawnBlockActors, PawnBlockPlayers);
-    }    
-*/
-
     UnlaggedPawn.bBlockZeroExtentTraces=True;
     UnlaggedPawn.bBlockNonZeroExtentTraces=True;
 
     SetCollision(false, false, false);
     bUnlagged = False;
+
 
     //if (AIController(UnlaggedPawn.Controller) != None)
     //    Spawn(class'TransEffectRed');
@@ -223,7 +179,7 @@ final function DisableUnlag()
 //=============================================================================
 defaultproperties
 {
-     MaxUnlagTime=1.000000
+     MaxUnlagTime=0.25f
      bHidden=True
      RemoteRole=ROLE_None
 }

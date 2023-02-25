@@ -97,7 +97,7 @@ function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector 
     if (UnlaggedPawnCollision(Other) != None)
     {
         DamageHitLocation = GetDamageHitLocation(Other, HitLocation, TraceStart, Dir);
-        Dmg = GetDamageForCollision(Other, DamageHitLocation, Dir, HitDT);
+        Dmg = GetDamageForCollision(UnlaggedPawnCollision(Other), DamageHitLocation, TraceStart, Dir, HitDT);
         Victim = UnlaggedPawnCollision(Other).UnlaggedPawn;
     }
 	else 
@@ -111,7 +111,7 @@ function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector 
             DamageHitLocation = HitLocation;
         }
 	
-	    Dmg = GetDamage(Other, DamageHitLocation, Dir, Victim, HitDT);
+	    Dmg = GetDamage(Other, DamageHitLocation, TraceStart, Dir, Victim, HitDT);
     }
 
 	ScaleFactor = ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WallPenForce, WaterHitLocation);

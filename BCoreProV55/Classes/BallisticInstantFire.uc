@@ -48,8 +48,8 @@ class BallisticInstantFire extends BallisticFire
 
 const MAX_WALLS = 5;
 
-const TORSO_RADIUS = 22;
-const HEAD_RADIUS = 6;
+const TORSO_RADIUS = 12;
+const HEAD_RADIUS = 7;
 
 //General Vars ----------------------------------------------------------------
 var() Range				        TraceRange;				        // Min and Max range of trace
@@ -230,11 +230,11 @@ function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int Pen
 }
 
 // Figure out the damage, damagetype and potentially change victim, e.g. driver instead of vehicle
-function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
+function float GetDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, out Actor Victim, optional out class<DamageType> DT)
 {
-	local string	Bone;
-	local float		Dmg, BoneDist;
+	local float		Dmg;
 	local Pawn		DriverPawn;
+    local Vector    HeadLocation;
 
 	Dmg = Damage;
 
@@ -259,12 +259,12 @@ function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor
         return Dmg;
     }
     
-    // Pawn target - check for head shot using bone system
+    // Pawn target - check for locational damage
     if (Pawn(Other) != None)
     {
-        // Check for head shot
-        Bone = string(Other.GetClosestBone(HitLocation, Dir, BoneDist, 'head', 10));
-        if (InStr(Bone, "head") > -1)
+        HeadLocation = Other.GetBoneCoords('head').Origin;
+
+        if (GetClosestDistanceTo(HeadLocation, TraceStart, Dir) <= HEAD_RADIUS)
         {
             Dmg *= HeadMult;
             DT = DamageTypeHead;
@@ -294,24 +294,26 @@ function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor
 	return Dmg;
 }
 
-final function float GetDamageForCollision(Actor Other, vector HitLocation, vector Dir, optional out class<DamageType> DT)
+/*
+hit algo for unlagged collisions
+
+- first extend to closest point to saved head location and check if in radius - if so, return head damage
+- then extend to vector between head and body, check within radius - if so, return body damage
+- else return limb damage
+*/
+
+final function float GetDamageForCollision(UnlaggedPawnCollision Other, vector HitLocation, vector TraceStart, vector Dir, optional out class<DamageType> DT)
 {
 	local float	Dmg;
 
 	Dmg = Damage;
 	DT = DamageType;
 
-    if (HitLocation.Z > Other.Location.Z + Other.CollisionHeight - 4)
+    if (GetClosestDistanceTo(Other.LastHeadLocation, TraceStart, Dir) <= HEAD_RADIUS)
     {
-        HitLocation.Z = Other.Location.Z;
-
-        // Head radius
-        if (VSize(HitLocation - Other.Location) <= HEAD_RADIUS)
-        {
-            Dmg *= HeadMult;
-            DT = DamageTypeHead;
-            return Dmg;
-        }
+        Dmg *= HeadMult;
+        DT = DamageTypeHead;
+        return Dmg;
     }
 
     if (HitLocation.Z > Other.Location.Z - 5)
@@ -332,20 +334,35 @@ final function float GetDamageForCollision(Actor Other, vector HitLocation, vect
 // Actor can be Pawn-derived or UnlaggedPawnCollision
 function Vector GetDamageHitLocation(Actor Other, Vector HitLocation, vector TraceStart, vector Dir)
 {	
-	//Locational damage code from Mr Evil
-	local Vector BoneTestLocation, ClosestLocation;
+    local Vector ClosestLocation;
+    //local Vector BoneTestLocation;
 
-	//Find a point on the victim's Z axis at the same height as the HitLocation.
+	// Find a point on the victim's Z axis at the same height as the HitLocation.
+    // FIXME: This needs a serious rethink
 	ClosestLocation = Other.Location;
 	ClosestLocation.Z += (HitLocation - Other.Location).Z;
-	
+
+    return GetClosestPointTo(ClosestLocation, TraceStart, Dir);
+}
+
+    /*
 	//Extend the shot along its direction to a point where it is closest to the victim's Z axis.
 	BoneTestLocation = Dir;
 	BoneTestLocation *= VSize(ClosestLocation - HitLocation);
-	BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
+	BoneTestLocation *= normal(ClosestLocation - HitLocation) dot Dir; // normal(HitLocation - TraceStart); // tracestart to hitlocation is dir...
 	BoneTestLocation += HitLocation;
 	
 	return BoneTestLocation;
+    */
+
+final function float GetClosestDistanceTo(Vector target_point, Vector start_loc, Vector dir)
+{
+    return VSize(target_point - GetClosestPointTo(target_point, start_loc, dir));
+}
+
+final function Vector GetClosestPointTo(Vector target_point, Vector start_loc, Vector dir)
+{
+    return start_loc + (dir * ((target_point - start_loc) dot dir));
 }
 
 function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
@@ -391,7 +408,7 @@ function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector 
     if (UnlaggedPawnCollision(Other) != None)
     {
         DamageHitLocation = GetDamageHitLocation(Other, HitLocation, TraceStart, Dir);
-        Dmg = GetDamageForCollision(Other, DamageHitLocation, Dir, HitDT);
+        Dmg = GetDamageForCollision(UnlaggedPawnCollision(Other), DamageHitLocation, TraceStart, Dir, HitDT);
         Victim = UnlaggedPawnCollision(Other).UnlaggedPawn;
     }
 	else 
@@ -405,7 +422,7 @@ function OnTraceHit (Actor Other, vector HitLocation, vector TraceStart, vector 
             DamageHitLocation = HitLocation;
         }
 	
-	    Dmg = GetDamage(Other, DamageHitLocation, Dir, Victim, HitDT);
+	    Dmg = GetDamage(Other, DamageHitLocation, TraceStart, Dir, Victim, HitDT);
     }
 
 	ScaleFactor = ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WallPenForce, WaterHitLocation);

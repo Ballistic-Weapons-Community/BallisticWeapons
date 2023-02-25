@@ -26,6 +26,8 @@ class BallisticProjectile extends Projectile
     DependsOn(ProjectileEffectParams)
 	config(BallisticProV55);
 
+const HEAD_RADIUS = 7;
+const TORSO_RADIUS = 12;
 const MAX_MOMENTUM_Z = 10000.0f;
 
 //=============================================================================
@@ -686,7 +688,7 @@ function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out
 			HitLocationMatchZ.Z = Other.Location.Z;
 			
 			// Check for head shot
-			Bone = string(Other.GetClosestBone(HitLocation, Dir, BoneDist, 'head', 10));
+			Bone = string(Other.GetClosestBone(HitLocation, Dir, BoneDist, 'head', HEAD_RADIUS));
 			if (InStr(Bone, "head") > -1)
 			{
 				Dmg *= HeadMult;
@@ -696,7 +698,7 @@ function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out
 			}
 			
 			// Limb shots
-			else if (HitLocation.Z < Other.Location.Z - (Other.CollisionHeight/6) || VSize(HitLocationMatchZ - Other.Location) > 22) //accounting for groin region here
+			else if (HitLocation.Z < Other.Location.Z - (Other.CollisionHeight/6) || VSize(HitLocationMatchZ - Other.Location) > TORSO_RADIUS) //accounting for groin region here
 			{
 				Dmg *= LimbMult;
 
