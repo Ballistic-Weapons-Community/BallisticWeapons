@@ -2863,7 +2863,6 @@ defaultproperties
      FootstepVolume=0.350000
      FootstepRadius=400.000000
 
-     CollisionHeight=39.000000
      CollisionRadius=19.000000
 
      GruntVolume=0.2

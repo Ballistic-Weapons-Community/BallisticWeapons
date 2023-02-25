@@ -48,8 +48,8 @@ class BallisticInstantFire extends BallisticFire
 
 const MAX_WALLS = 5;
 
-const TORSO_RADIUS = 12;
-const HEAD_RADIUS = 7;
+const TORSO_RADIUS = 11;
+const HEAD_RADIUS = 9;
 
 //General Vars ----------------------------------------------------------------
 var() Range				        TraceRange;				        // Min and Max range of trace
@@ -76,7 +76,6 @@ var() float						PDamageFactor;					// Damage multiplied by this with each penet
 var() float						WallPDamageFactor;				// Damage multiplied by this for each wall penetration
 var() bool						bUseRunningDamage;				// Enable damage variations when running towards/away from enemies
 var() float						RunningSpeedThresh;				// Instigator speed divided by this to figure out Running damage bonus
-var() globalconfig float		DamageModHead, DamageModLimb; 	// Configurable damage modifiers for base damage
 var	bool						bNoPositionalDamage;
 //-----------------------------------------------------------------------------
 
@@ -122,8 +121,20 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     default.RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range
 
     Damage = effect_params.Damage;
-    HeadMult = effect_params.HeadMult;
-    LimbMult = effect_params.LimbMult;    
+
+    if (!class'BCReplicationInfo'.default.bUseFixedModifiers)
+    {
+        HeadMult = effect_params.HeadMult;
+        LimbMult = effect_params.LimbMult;   
+    }
+
+    else 
+    {   
+        Damage *= class'BCReplicationInfo'.default.DamageScale;
+        HeadMult = class'BCReplicationInfo'.default.DamageModHead;
+        LimbMult = class'BCReplicationInfo'.default.DamageModLimb;
+    }
+
 	default.Damage = effect_params.Damage;
     default.HeadMult = effect_params.HeadMult;
     default.LimbMult = effect_params.LimbMult;
@@ -230,7 +241,7 @@ function bool CanPenetrate (Actor Other, vector HitLocation, vector Dir, int Pen
 }
 
 // Figure out the damage, damagetype and potentially change victim, e.g. driver instead of vehicle
-function float GetDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, out Actor Victim, optional out class<DamageType> DT)
+final function float GetDamage (Actor Other, vector HitLocation, vector TraceStart, vector Dir, out Actor Victim, optional out class<DamageType> DT)
 {
 	local float		Dmg;
 	local Pawn		DriverPawn;
@@ -252,6 +263,7 @@ function float GetDamage (Actor Other, vector HitLocation, vector TraceStart, ve
         if (DriverPawn != None)
         {
             Victim = DriverPawn;
+
             Dmg *= HeadMult;
             DT = DamageTypeHead;
         }
@@ -264,7 +276,7 @@ function float GetDamage (Actor Other, vector HitLocation, vector TraceStart, ve
     {
         HeadLocation = Other.GetBoneCoords('head').Origin;
 
-        if (GetClosestDistanceTo(HeadLocation, TraceStart, Dir) <= HEAD_RADIUS)
+        if (class'BUtil'.static.GetClosestDistanceTo(HeadLocation, TraceStart, Dir) <= HEAD_RADIUS)
         {
             Dmg *= HeadMult;
             DT = DamageTypeHead;
@@ -305,11 +317,19 @@ hit algo for unlagged collisions
 final function float GetDamageForCollision(UnlaggedPawnCollision Other, vector HitLocation, vector TraceStart, vector Dir, optional out class<DamageType> DT)
 {
 	local float	Dmg;
+    local Vector HeadPositionApprox;
 
 	Dmg = Damage;
 	DT = DamageType;
 
-    if (GetClosestDistanceTo(Other.LastHeadLocation, TraceStart, Dir) <= HEAD_RADIUS)
+    // must be approximated. animation sync online is simply too poor
+    HeadPositionApprox = Other.Location;
+    HeadPositionApprox.Z += Other.CollisionHeight;
+    HeadPositionApprox.Z -= HEAD_RADIUS + 2;
+
+    // fixme: try doing a crouch check too
+
+    if (class'BUtil'.static.GetClosestDistanceTo(HeadPositionApprox, TraceStart, Dir) <= HEAD_RADIUS)
     {
         Dmg *= HeadMult;
         DT = DamageTypeHead;
@@ -342,7 +362,7 @@ function Vector GetDamageHitLocation(Actor Other, Vector HitLocation, vector Tra
 	ClosestLocation = Other.Location;
 	ClosestLocation.Z += (HitLocation - Other.Location).Z;
 
-    return GetClosestPointTo(ClosestLocation, TraceStart, Dir);
+    return class'BUtil'.static.GetClosestPointTo(ClosestLocation, TraceStart, Dir);
 }
 
     /*
@@ -354,16 +374,6 @@ function Vector GetDamageHitLocation(Actor Other, Vector HitLocation, vector Tra
 	
 	return BoneTestLocation;
     */
-
-final function float GetClosestDistanceTo(Vector target_point, Vector start_loc, Vector dir)
-{
-    return VSize(target_point - GetClosestPointTo(target_point, start_loc, dir));
-}
-
-final function Vector GetClosestPointTo(Vector target_point, Vector start_loc, Vector dir)
-{
-    return start_loc + (dir * ((target_point - start_loc) dot dir));
-}
 
 function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
 {

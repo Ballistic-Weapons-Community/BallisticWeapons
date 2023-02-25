@@ -23,8 +23,9 @@ enum EGameStyle
 	Tactical	// PvE
 };
 
-// Server Variables -----------------------------------------------------------
-// Weapon
+//=============================================================================
+// CONFIG VARIABLES
+//=============================================================================
 var() globalconfig EGameStyle	GameStyle;				
 var() globalconfig float		AccuracyScale;			// Used for scaling general weapon accuracy.
 var() globalconfig float		RecoilScale;			// Used for scaling general weapon recoil.
@@ -33,6 +34,10 @@ var() globalconfig bool		    bNoLongGun;				// Disable 'long gun' features
 var() globalconfig bool		    bNoReloading;			// Disables reloading and weapons use boring old style ammo handling...
 var() globalconfig float      	ReloadSpeedScale;   	// Buff reload speeds
 var() globalconfig bool         bAlternativePickups;	// Press Use to Pickup Weapon
+
+// NOT REPLICATED
+var() globalconfig bool         bUseFixedModifiers;                         // Testing - use fixed modifiers for locational damage
+var() globalconfig float		DamageScale, DamageModHead, DamageModLimb; 	// Configurable damage modifiers
 
 // ----------------------------------------------------------------------------
 var struct RepInfo_BCore
@@ -137,4 +142,8 @@ defaultproperties
 	 ReloadSpeedScale=1.000000
 	 bAlternativePickups=False
      bOnlyDirtyReplication=False
+     bUseFixedModifiers=False
+     DamageScale=1.0f
+     DamageModHead=1.5f
+     DamageModLimb = 0.7f
 }

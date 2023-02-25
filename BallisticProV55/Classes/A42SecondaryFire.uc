@@ -19,10 +19,11 @@ simulated function PlayPreFire()
 		BW.SafeLoopAnim('SecIdle', 1.0, TweenTime, ,"IDLE");
 }
 
-function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
+function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
 {
 	KickForce = (FMin(HoldTime, ChargeTime) / ChargeTime) * InstantEffectParams(Params.FireEffectParams[0]).MomentumTransfer;
-	return super.GetDamage (Other, HitLocation, Dir, Victim, DT) * (FMin(HoldTime, ChargeTime) / ChargeTime);
+    
+	return super.ResolveDamageFactors(Other, TraceStart, HitLocation, PenetrateCount, WallCount, WallPenForce, WaterHitLocation) * (FMin(HoldTime, ChargeTime) / ChargeTime);
 }
 
 simulated event ModeDoFire()

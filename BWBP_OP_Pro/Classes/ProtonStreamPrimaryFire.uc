@@ -11,19 +11,6 @@ simulated function SwitchWeaponMode(byte NewMode)
 	else GoToState('');
 }
 	
-//===========================================================================
-// GetDamage
-//
-// Lacks locational damage
-//===========================================================================
-function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
-{
-	DT = DamageType;
-	Victim = Other;
-
-	return Damage;
-}
-	
 simulated function StopFiring()
 {
 	Super.StopFiring();
@@ -73,7 +60,7 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 	local actor Victim;
 	local bool bWasAlive;
 	
-	Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
+	Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
 	
 	if (xPawn(Victim) != None && Pawn(Victim).Health > 0 && Pawn(Victim).bProjTarget)
 	{

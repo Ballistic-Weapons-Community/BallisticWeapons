@@ -321,10 +321,10 @@ defaultproperties
     // Movement rate
      bUseSloth=False
      PlayerStrafeScale=1
-     PlayerBackpedalScale=0.9
-     PlayerGroundSpeed=270.000000
-     PlayerAirSpeed=270.000000
-     PlayerAccelRate=768.000000
+     PlayerBackpedalScale=1
+     PlayerGroundSpeed=260.000000
+     PlayerAirSpeed=260.000000
+     PlayerAccelRate=2048.000000
      PlayerJumpZ=256
      PlayerDodgeZ=170
 }

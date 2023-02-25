@@ -49,7 +49,7 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 	
 	else
 	{
-		Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
+		Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
 		
 		if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 		{
@@ -204,20 +204,7 @@ simulated event ModeDoFire()
 	bNoAmmoConsumption=False;
 
 }
-	
-//===========================================================================
-// GetDamage
-//
-// Lacks locational damage
-//===========================================================================
-function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
-{
-	DT = DamageType;
-	Victim = Other;
-	
-	return Damage;
-}
-	
+
 //===========================================================================
 // MaintainConnection
 //

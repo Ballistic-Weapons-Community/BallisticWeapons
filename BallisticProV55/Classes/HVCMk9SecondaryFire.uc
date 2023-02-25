@@ -25,10 +25,10 @@ simulated function PlayPreFire()
 	BW.SafeLoopAnim('Idle', 2.0, TweenTime, ,"IDLE");
 }
 
-function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
+function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
 {
 	KickForce = ChargePower * default.KickForce;
-	return super.GetDamage (Other, HitLocation, Dir, Victim, DT) * ChargePower;
+	return Super.ResolveDamageFactors(Other, TraceStart, HitLocation, Penetratecount, WallCount, WallPenForce, WaterHitLocation) * ChargePower;
 }
 
 //resets arc colours, play fire anim and sound
