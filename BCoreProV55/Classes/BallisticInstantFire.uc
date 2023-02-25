@@ -49,7 +49,8 @@ class BallisticInstantFire extends BallisticFire
 const MAX_WALLS = 5;
 
 const TORSO_RADIUS = 11;
-const HEAD_RADIUS = 9;
+const HEAD_HEIGHT_HALF = 10;
+const HEAD_RADIUS = 9; // cylinder
 
 //General Vars ----------------------------------------------------------------
 var() Range				        TraceRange;				        // Min and Max range of trace
@@ -318,22 +319,31 @@ final function float GetDamageForCollision(UnlaggedPawnCollision Other, vector H
 {
 	local float	Dmg;
     local Vector HeadPositionApprox;
+    local Vector HeadTestPoint;
 
 	Dmg = Damage;
 	DT = DamageType;
 
     // must be approximated. animation sync online is simply too poor
+    // use cylinder for head
     HeadPositionApprox = Other.Location;
     HeadPositionApprox.Z += Other.CollisionHeight;
-    HeadPositionApprox.Z -= HEAD_RADIUS + 2;
+    HeadPositionApprox.Z -= HEAD_HEIGHT_HALF + 2;
 
     // fixme: try doing a crouch check too
 
-    if (class'BUtil'.static.GetClosestDistanceTo(HeadPositionApprox, TraceStart, Dir) <= HEAD_RADIUS)
-    {
-        Dmg *= HeadMult;
-        DT = DamageTypeHead;
-        return Dmg;
+    HeadTestPoint = class'BUtil'.static.GetClosestPointTo(HeadPositionApprox, TraceStart, Dir);
+
+    if (Abs(HeadTestPoint.Z - HeadPositionApprox.Z) <= HEAD_HEIGHT_HALF)
+    { 
+        HeadTestPoint.Z = HeadPositionApprox.Z;
+
+        if(VSize(HeadTestPoint - HeadPositionApprox) <= HEAD_RADIUS)
+        {
+            Dmg *= HeadMult;
+            DT = DamageTypeHead;
+            return Dmg;
+        }
     }
 
     if (HitLocation.Z > Other.Location.Z - 5)

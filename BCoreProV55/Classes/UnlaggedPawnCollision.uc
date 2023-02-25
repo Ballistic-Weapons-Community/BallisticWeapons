@@ -85,6 +85,7 @@ final function UpdateUnlagLocation()
     
     i = History.Length;
 
+    // history array has most recent entries at the back
     History.Length = i + 1;
     History[i].location = UnlaggedPawn.Location;
     History[i].head_location = UnlaggedPawn.GetBoneCoords('head').Origin;
@@ -111,8 +112,8 @@ final function EnableUnlag(float PingTime)
     ShotTime = Level.TimeSeconds - FMin(PingTime, MaxUnlagTime);
 
     // find index in history
-    // use last valid index if not found
-    for (i = 0; i < History.Length - 1 && History[i].timestamp <= ShotTime; ++i);
+    // use most recent index if not found
+    for (i = 0; i < History.Length - 1 && History[i].timestamp >= ShotTime; ++i);
 
     // TODO:
     // could interpolate, but given tick frequency and UT move speed, probably not needed - could produce some whacky results for interim states
