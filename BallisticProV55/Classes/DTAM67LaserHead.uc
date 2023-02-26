@@ -11,25 +11,6 @@ class DTAM67LaserHead extends DT_BWMiscDamage;
 var float	FlashF;
 var vector	FlashV;
 
-// HeadShot stuff from old sniper damage ------------------
-static function IncrementKills(Controller Killer)
-{
-	local xPlayerReplicationInfo xPRI;
-
-	if ( PlayerController(Killer) == None )
-		return;
-
-	PlayerController(Killer).ReceiveLocalizedMessage( Class'XGame.SpecialKillMessage', 0, Killer.PlayerReplicationInfo, None, None );
-	xPRI = xPlayerReplicationInfo(Killer.PlayerReplicationInfo);
-	if ( xPRI != None )
-	{
-		xPRI.headcount++;
-		if ( (xPRI.headcount == 15) && (UnrealPlayer(Killer) != None) )
-			UnrealPlayer(Killer).ClientDelayedAnnouncementNamed('HeadHunter',15);
-	}
-}
-// --------------------------------------------------------
-
 static function class<Effects> GetPawnDamageEffect( vector HitLocation, float Damage, vector Momentum, Pawn Victim, bool bLowDetail )
 {
 	if (PlayerController(Victim.Controller) != None)

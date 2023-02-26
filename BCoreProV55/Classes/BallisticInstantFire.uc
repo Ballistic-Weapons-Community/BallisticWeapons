@@ -123,7 +123,7 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
 
     Damage = effect_params.Damage;
 
-    if (!class'BCReplicationInfo'.default.bUseFixedModifiers)
+    if (!class'BCReplicationInfo'.static.UseFixedModifiers())
     {
         HeadMult = effect_params.HeadMult;
         LimbMult = effect_params.LimbMult;   

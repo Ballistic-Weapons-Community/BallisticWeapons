@@ -35,8 +35,13 @@ var() globalconfig bool		    bNoReloading;			// Disables reloading and weapons u
 var() globalconfig float      	ReloadSpeedScale;   	// Buff reload speeds
 var() globalconfig bool         bAlternativePickups;	// Press Use to Pickup Weapon
 
+// LDG TEST ONLY
+var() globalconfig bool         bUseFixedModifiers;                      // Testing - use fixed modifiers for various aspects - Arena only!
+var() globalconfig float        SightingTimeScale;
+var() globalconfig int          ChaosSpeedThresholdOverride;
+
 // NOT REPLICATED
-var() globalconfig bool         bUseFixedModifiers;                         // Testing - use fixed modifiers for locational damage
+
 var() globalconfig float		DamageScale, DamageModHead, DamageModLimb; 	// Configurable damage modifiers
 
 // ----------------------------------------------------------------------------
@@ -50,6 +55,9 @@ var struct RepInfo_BCore
 	var bool		bNoLongGun;
 	var bool		bNoReloading;
 	var bool        bAlternativePickups;
+    var bool        bUseFixedModifiers;
+    var float       SightingTimeScale;
+    var float       ChaosSpeedThresholdOverride;
 } BCoreRep;
 
 replication
@@ -69,6 +77,9 @@ simulated function InitClientVars()
 	bNoLongGun			= BCoreRep.bNoLongGun;
 	bNoReloading		= BCoreRep.bNoReloading;
 	bAlternativePickups = BCoreRep.bAlternativePickups;
+    bUseFixedModifiers  = BCoreRep.bUseFixedModifiers;
+    SightingTimeScale   = BCoreRep.SightingTimeScale;
+    ChaosSpeedThresholdOverride = BCoreRep.ChaosSpeedThresholdOverride;
 
 	class.default.GameStyle 			= GameStyle;
 	class.default.AccuracyScale			= AccuracyScale;
@@ -78,6 +89,8 @@ simulated function InitClientVars()
 	class.default.bNoLongGun			= bNoLongGun;
 	class.default.bNoReloading			= bNoReloading;
 	class.default.bAlternativePickups 	= bAlternativePickups;
+    class.default.SightingTimeScale     = SightingTimeScale;
+    class.default.ChaosSpeedThresholdOverride = ChaosSpeedThresholdOverride;
 
 	Log("InitClientVars: "$ModString);
 
@@ -98,6 +111,9 @@ function ServerInitialize()
 	BCoreRep.bNoLongGun				= bNoLongGun;
 	BCoreRep.bNoReloading			= bNoReloading;
 	BCoreRep.bAlternativePickups 	= bAlternativePickups;
+    BCoreRep.bUseFixedModifiers     = bUseFixedModifiers;
+    BCoreRep.SightingTimeScale      = SightingTimeScale;
+    BCoreRep.ChaosSpeedThresholdOverride = ChaosSpeedThresholdOverride;
 
 	Log("ServerInitialize: "$ModString);
 }
@@ -106,6 +122,16 @@ simulated event PostNetBeginPlay()
 {
 	if (Role < ROLE_Authority)
 		InitClientVars();
+}
+
+static final function bool IsArena()
+{
+    return default.GameStyle == EGameStyle.Arena;
+}
+
+static final function bool UseFixedModifiers()
+{
+    return IsArena() && default.bUseFixedModifiers;
 }
 
 static function BCReplicationInfo HitMe(actor A)
@@ -145,5 +171,6 @@ defaultproperties
      bUseFixedModifiers=False
      DamageScale=1.0f
      DamageModHead=1.5f
-     DamageModLimb = 0.7f
+     DamageModLimb=0.7f
+     SightingTimeScale=1.0f
 }

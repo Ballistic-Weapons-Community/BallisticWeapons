@@ -30,7 +30,6 @@ const UPDATE_EPSILON = 0.005f; // ignore positional updates within 5ms
 struct HistoryEntry
 {
     var Vector  location;
-    var Vector  head_location;
     var int     collision_radius;
     var int     collision_height;
     var Rotator rotation;
@@ -44,7 +43,6 @@ var() float                 MaxUnlagTime;                           // Maximum r
 var xPawn                   UnlaggedPawn;                           // The pawn whom this collision represents
 var bool                    bUnlagged;                              // If true, this collision represents the owner Pawn's hit cylinder and the owner Pawn's collision is disabled
 var float                   LastLocationUpdateTime;
-var Vector                  LastHeadLocation;                       // last location of head on trace
 var array<HistoryEntry>     History;
 
 var bool            PawnCollideActors, PawnBlockActors, PawnBlockPlayers;
@@ -88,7 +86,6 @@ final function UpdateUnlagLocation()
     // history array has most recent entries at the back
     History.Length = i + 1;
     History[i].location = UnlaggedPawn.Location;
-    History[i].head_location = UnlaggedPawn.GetBoneCoords('head').Origin;
     History[i].collision_radius = UnlaggedPawn.CollisionRadius;
     History[i].collision_height = UnlaggedPawn.CollisionHeight;
     History[i].rotation = UnlaggedPawn.Rotation;
@@ -108,12 +105,18 @@ final function EnableUnlag(float PingTime)
 
     UpdateUnlagLocation();
 
-    //log(Name @ "Unlagging:" @ PingTime @ UnlagTimeRange.Min @ UnlagTimeRange.Max);
+    // log(Name @ "Unlagging: Latency: "$PingTime);
     ShotTime = Level.TimeSeconds - FMin(PingTime, MaxUnlagTime);
 
     // find index in history
     // use most recent index if not found
-    for (i = 0; i < History.Length - 1 && History[i].timestamp >= ShotTime; ++i);
+    for (i = History.Length - 1; i > 0; i--)
+    {
+        if (History[i].timestamp < ShotTime)
+            break;
+    }
+
+    // log(Name @ "Time:"@ Level.TimeSeconds @ "Shot Time:"@ ShotTime @ "Closest Timestamp:" @ History[i].timestamp @ "("$ Level.TimeSeconds - History[i].timestamp $ "seconds ago, "$ i $" of " $ History.Length $ ")");
 
     // TODO:
     // could interpolate, but given tick frequency and UT move speed, probably not needed - could produce some whacky results for interim states
@@ -129,12 +132,13 @@ final function EnableUnlag(float PingTime)
     SetLocation(History[i].location);
     SetRotation(History[i].rotation);
     SetCollisionSize(History[i].collision_radius, History[i].collision_height);
-    LastHeadLocation = History[i].head_location;
 
     SetCollision(true, true, true); // TODO / FIXME: try (true, false, false) - these don't need to perform blocking
 
     UnlaggedPawn.bBlockZeroExtentTraces=False;
     UnlaggedPawn.bBlockNonZeroExtentTraces=False;
+
+    // log(UnlaggedPawn.Name $ ": Collision distance:"@ VSize(Location - UnlaggedPawn.Location));
 
     //log(Name @ "Pawn: X:" $ UnlaggedPawn.Location.X $ "Y: " $ UnlaggedPawn.Location.Y $ "Z: " $ UnlaggedPawn.Location.Z);
     //log(Name @ "Collision: X:" $ History[i].location.X $ "Y: " $ History[i].location.Y $ "Z: " $ History[i].location.Z  $ " Rot:" $ History[i].rotation $ " ColH: " $ History[i].collision_height $ " ColR:" $ History[i].collision_radius);

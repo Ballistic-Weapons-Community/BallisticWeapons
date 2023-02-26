@@ -166,7 +166,8 @@ simulated function ApplyParams(ProjectileEffectParams params)
 	bLimitMomentumZ = params.bLimitMomentumZ;
 	default.bLimitMomentumZ = params.bLimitMomentumZ;
 	
-    if (!class'BCReplicationInfo'.default.bUseFixedModifiers)
+    // not scaling projectile damage atm
+    if (!class'BCReplicationInfo'.static.UseFixedModifiers())
     {
         HeadMult = params.HeadMult;
         LimbMult = params.LimbMult; 

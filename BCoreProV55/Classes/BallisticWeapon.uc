@@ -678,6 +678,12 @@ simulated function OnWeaponParamsChanged()
 		}
 		CurrentWeaponMode = WeaponParams.InitialWeaponMode;
 	}
+
+    if (class'BCReplicationInfo'.static.UseFixedModifiers())
+    {
+        SightingTime *= class'BCReplicationInfo'.default.SightingTimeScale;
+        default.SightingTime = SightingTime;
+    }
 }
 
 simulated final function CreateRecoilComponent()

@@ -13,6 +13,7 @@ static function IncrementKills(Controller Killer)
 {
     Killer.AwardAdrenaline(10);
 }
+
 static function Hurt (Actor Victim, float Damage, Pawn Instigator, vector HitLocation, vector Momentum, class<DamageType> DT)
 {
 	Super.Hurt(Victim, Damage, Instigator, HitLocation, Momentum, DT);
