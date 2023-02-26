@@ -7,7 +7,7 @@
 //
 // by Marc "Sgt. Kelly" Moylan
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AR23HeavyRifle extends BallisticWeapon;
 
@@ -313,6 +313,7 @@ defaultproperties
      ParamsClasses(0)=Class'AR23WeaponParamsArena'
      ParamsClasses(1)=Class'AR23WeaponParamsClassic'
      ParamsClasses(2)=Class'AR23WeaponParamsRealistic'
+     ParamsClasses(3)=Class'AR23WeaponParamsTactical'
 	 WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
      WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
      WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")

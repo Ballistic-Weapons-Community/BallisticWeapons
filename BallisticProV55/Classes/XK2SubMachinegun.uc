@@ -463,6 +463,7 @@ defaultproperties
 	ParamsClasses(0)=Class'XK2WeaponParams'
 	ParamsClasses(1)=Class'XK2WeaponParamsClassic'
 	ParamsClasses(2)=Class'XK2WeaponParamsRealistic'
+    ParamsClasses(3)=Class'XK2WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.Xk2PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.Xk2SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

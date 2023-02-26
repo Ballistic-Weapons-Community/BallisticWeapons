@@ -515,6 +515,7 @@ defaultproperties
 	ParamsClasses(0)=Class'RS8WeaponParams'
 	ParamsClasses(1)=Class'RS8WeaponParamsClassic'
 	ParamsClasses(2)=Class'RS8WeaponParamsRealistic'
+    ParamsClasses(3)=Class'RS8WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.RS8PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RS8SecondaryFire'
 	

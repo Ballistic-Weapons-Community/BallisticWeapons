@@ -150,6 +150,7 @@ defaultproperties
      ParamsClasses(0)=Class'AkeronWeaponParams'
      ParamsClasses(1)=Class'AkeronWeaponParamsClassic'
      ParamsClasses(2)=Class'AkeronWeaponParamsRealistic'
+     ParamsClasses(3)=Class'AkeronWeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_OP_Pro.AkeronPrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.AkeronSecondaryFire'
      SelectAnimRate=0.600000

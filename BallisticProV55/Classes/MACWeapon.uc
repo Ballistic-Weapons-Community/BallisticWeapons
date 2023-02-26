@@ -469,6 +469,7 @@ defaultproperties
 	ParamsClasses(0)=Class'MACWeaponParams'
 	ParamsClasses(1)=Class'MACWeaponParamsClassic'
 	ParamsClasses(2)=Class'MACWeaponParamsRealistic'
+    ParamsClasses(3)=Class'MACWeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.MACPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.MACSecondaryFire'
 	SelectAnimRate=0.600000

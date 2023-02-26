@@ -239,6 +239,7 @@ defaultproperties
 	ParamsClasses(0)=Class'SandbagWeaponParams'
 	ParamsClasses(1)=Class'SandbagWeaponParams'
 	ParamsClasses(2)=Class'SandbagWeaponParams'
+    ParamsClasses(3)=Class'SandbagWeaponParams'
 	FireModeClass(0)=Class'BallisticProV55.SandbagFire'
 	FireModeClass(1)=Class'BallisticProV55.SandbagFire'
 	PutDownTime=0.900000

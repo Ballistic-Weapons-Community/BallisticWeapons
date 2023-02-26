@@ -356,6 +356,7 @@ defaultproperties
 	ParamsClasses(0)=Class'M763WeaponParams'
 	ParamsClasses(1)=Class'M763WeaponParamsClassic' //todo: primary anim, alt + melee
 	ParamsClasses(2)=Class'M763WeaponParamsRealistic' //todo: semi-auto
+    ParamsClasses(3)=Class'M763WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.M763PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M763SecondaryFire'
 	

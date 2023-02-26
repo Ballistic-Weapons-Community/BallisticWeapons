@@ -613,6 +613,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'MX32WeaponParams'
 	 ParamsClasses(1)=Class'MX32WeaponParamsClassic'
 	 ParamsClasses(2)=Class'MX32WeaponParamsRealistic'
+     ParamsClasses(3)=Class'MX32WeaponParamsTactical'
 	 MagAmmo=50
      PutDownAnimRate=1.500000
      SelectForce="SwitchToAssaultRifle"

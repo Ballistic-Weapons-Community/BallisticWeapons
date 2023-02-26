@@ -300,6 +300,7 @@ defaultproperties
 	ParamsClasses(0)=Class'RX22AWeaponParams'
 	ParamsClasses(1)=Class'RX22AWeaponParamsClassic'
 	ParamsClasses(2)=Class'RX22AWeaponParamsRealistic'
+    ParamsClasses(3)=Class'RX22AWeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.RX22APrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RX22ASecondaryFire'
 	

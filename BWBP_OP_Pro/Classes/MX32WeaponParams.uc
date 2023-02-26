@@ -104,7 +104,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.400000
+		ADSMultiplier=0.600000
 		CrouchMultiplier=0.750000
 		AimSpread=(Min=64,Max=768)
 		AimAdjustTime=0.550000

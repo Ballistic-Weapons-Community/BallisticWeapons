@@ -89,7 +89,7 @@ simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 	LS14PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.static.IsClassic())
 	{
 		LS14PrimaryFire(FireMode[0]).default.HeatPerShot = 0;
 		LS14PrimaryFire(FireMode[0]).default.HeatPerShotDouble = 0;
@@ -231,7 +231,7 @@ simulated function AddHeat(float Amount, float OverrideAmount, float DeclineTime
 	SelfHeatDeclineTime = FMax(Level.TimeSeconds + DeclineTime, SelfHeatDeclineTime);
 	
 	//arena heat
-	if (BCRepClass.default.GameStyle == 0)
+	if (BCRepClass.static.IsArena())
 	{
 		if (SelfHeatLevel >= 9.75)
 		{
@@ -1068,6 +1068,7 @@ defaultproperties
 	ParamsClasses(0)=Class'LS14WeaponParams'
 	ParamsClasses(1)=Class'LS14WeaponParamsClassic'
 	ParamsClasses(2)=Class'LS14WeaponParamsRealistic'
+    ParamsClasses(3)=Class'LS14WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LS14PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LS14SecondaryFire'
 	SelectAnimRate=1.500000

@@ -33,7 +33,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.static.IsClassic())
 	{
 		bVariableHeatProps=True;
 		A49PrimaryFire(FireMode[0]).bVariableHeatProps = True;
@@ -397,6 +397,7 @@ defaultproperties
 	ParamsClasses(0)=Class'A49WeaponParams'
 	ParamsClasses(1)=Class'A49WeaponParamsClassic'
 	ParamsClasses(2)=Class'A49WeaponParamsRealistic'
+    ParamsClasses(3)=Class'A49WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.A49PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.A49SecondaryFire'
 	PutDownAnimRate=2.300000

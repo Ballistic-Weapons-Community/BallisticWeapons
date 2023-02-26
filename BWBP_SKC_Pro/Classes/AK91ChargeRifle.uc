@@ -423,6 +423,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'AK91WeaponParamsArena'
 	 ParamsClasses(1)=Class'AK91WeaponParamsClassic'
 	 ParamsClasses(2)=Class'AK91WeaponParamsRealistic'
+     ParamsClasses(3)=Class'AK91WeaponParamsTactical'
      SightingTime=0.300000
      FireModeClass(0)=Class'BWBP_SKC_Pro.AK91PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.AK91SecondaryFire'

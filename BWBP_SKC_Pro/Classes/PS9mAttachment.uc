@@ -60,7 +60,7 @@ simulated event PostBeginPlay()
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (PS9mPistol(Instigator.Weapon).BCRepClass.default.GameStyle == 1)
+	if (PS9mPistol(Instigator.Weapon).BCRepClass.static.IsClassic())
 	{
 		TracerChance=1;
 		TracerMix=0;

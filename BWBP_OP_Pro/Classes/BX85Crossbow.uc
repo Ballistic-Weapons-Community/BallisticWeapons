@@ -631,6 +631,7 @@ defaultproperties
 	ParamsClasses(0)=Class'BX85WeaponParams'
 	ParamsClasses(1)=Class'BX85WeaponParamsClassic'
 	ParamsClasses(2)=Class'BX85WeaponParamsRealistic'
+    ParamsClasses(3)=Class'BX85WeaponParamsTactical'
 	CockSound=(Sound=Sound'BWBP_OP_Sounds.XBow.CockFast',Volume=1.200000)
 	FireModeClass(0)=Class'BWBP_OP_Pro.BX85PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'

@@ -146,6 +146,7 @@ defaultproperties
     ParamsClasses(0)=Class'M290WeaponParams'
     ParamsClasses(1)=Class'M290WeaponParamsClassic'
     ParamsClasses(2)=Class'M290WeaponParamsRealistic'
+    ParamsClasses(3)=Class'M290WeaponParamsTactical'
     FireModeClass(0)=Class'BallisticProV55.M290PrimaryFire'
     FireModeClass(1)=Class'BallisticProV55.M290SecondaryFire'
     AIRating=0.900000

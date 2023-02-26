@@ -49,7 +49,7 @@ replication
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.static.IsClassic())
 	{
 		StartingGrenades = 6;
 	}
@@ -673,6 +673,7 @@ defaultproperties
 	ParamsClasses(0)=Class'MK781WeaponParams'
 	ParamsClasses(1)=Class'MK781WeaponParamsClassic'
 	ParamsClasses(2)=Class'MK781WeaponParamsRealistic'
+    ParamsClasses(3)=Class'MK781WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MK781PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MK781SecondaryFire'
 	PutDownTime=0.500000

@@ -29,7 +29,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (BCRepClass.static.IsRealism())
 	{
 		bLaserVariant=true;
 		FireModeClass[1]=Class'BallisticProV55.AM67SecondaryLaserFire';
@@ -39,7 +39,7 @@ simulated event PreBeginPlay()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (BCRepClass.static.IsRealism())
 	{
 		if (AM67Attachment(ThirdPersonActor) != none)
 			AM67Attachment(ThirdPersonActor).bLaserVariant=True;
@@ -382,6 +382,7 @@ defaultproperties
 	ParamsClasses(0)=Class'AM67WeaponParams'
 	ParamsClasses(1)=Class'AM67WeaponParamsClassic'
 	ParamsClasses(2)=Class'AM67WeaponParamsRealistic'
+    ParamsClasses(3)=Class'AM67WeaponParamsTactical'
 	PickupClass=Class'BallisticProV55.AM67Pickup'
 	PlayerViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 	Priority=24

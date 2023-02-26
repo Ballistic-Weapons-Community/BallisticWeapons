@@ -787,6 +787,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'RSDarkWeaponParams'
 	 ParamsClasses(1)=Class'RSDarkWeaponParamsClassic'
 	 ParamsClasses(2)=Class'RSDarkWeaponParamsRealistic'
+     ParamsClasses(3)=Class'RSDarkWeaponParamsTactical'
      FireModeClass(0)=Class'BallisticProV55.RSDarkPrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.RSDarkMeleeFire'
      BringUpTime=0.500000

@@ -173,6 +173,7 @@ defaultproperties
     ParamsClasses(0)=Class'AH208WeaponParams'
     ParamsClasses(1)=Class'AH208WeaponParamsClassic'
     ParamsClasses(2)=Class'AH208WeaponParamsRealistic'
+    ParamsClasses(3)=Class'AH208WeaponParamsTactical'
     FireModeClass(0)=Class'BWBP_SKC_Pro.AH208PrimaryFire'
     FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
     MeleeFireClass=Class'BWBP_SKC_Pro.AH208MeleeFire'

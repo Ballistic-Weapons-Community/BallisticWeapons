@@ -52,12 +52,12 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.static.IsClassic())
 	{
 		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryMissileFire';
 		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryTracerFire';
 	}
-	else if (BCRepClass.default.GameStyle == 2)
+	else if (BCRepClass.static.IsRealism())
 	{
 		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryShotgunFire';
 		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryFire';
@@ -480,6 +480,7 @@ defaultproperties
 	ParamsClasses(0)=Class'PD97WeaponParams'
 	ParamsClasses(1)=Class'PD97WeaponParamsClassic'
 	ParamsClasses(2)=Class'PD97WeaponParamsRealistic'
+    ParamsClasses(3)=Class'PD97WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.PD97PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.PD97SecondaryFire'
 	PutDownTime=0.600000

@@ -744,6 +744,7 @@ defaultproperties
 	ParamsClasses(0)=Class'G5WeaponParams'
 	ParamsClasses(1)=Class'G5WeaponParamsClassic' //todo: seeker stats
 	ParamsClasses(2)=Class'G5WeaponParamsRealistic' //todo: seeker stats
+    ParamsClasses(3)=Class'G5WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.G5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.G5SecondaryFire'
 	SelectAnimRate=0.600000

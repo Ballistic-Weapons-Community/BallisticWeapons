@@ -264,6 +264,7 @@ defaultproperties
 	ParamsClasses(0)=Class'SRS600WeaponParams'
 	ParamsClasses(1)=Class'SRS600WeaponParamsClassic'
 	ParamsClasses(2)=Class'SRS600WeaponParamsRealistic'
+    ParamsClasses(3)=Class'SRS600WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.SRS600PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	

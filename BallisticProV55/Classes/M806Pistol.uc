@@ -367,6 +367,7 @@ defaultproperties
 	ParamsClasses(0)=Class'M806WeaponParams'
 	ParamsClasses(1)=Class'M806WeaponParamsClassic'
 	ParamsClasses(2)=Class'M806WeaponParamsRealistic'
+    ParamsClasses(3)=Class'M806WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.M806PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M806SecondaryFire'
 	MeleeFireClass=Class'BallisticProV55.M806MeleeFire'

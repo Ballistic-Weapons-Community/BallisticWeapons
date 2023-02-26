@@ -180,18 +180,19 @@ simulated event PostNetBeginPlay()
 		AmbientGlow=0;
 	}
 
-	if (class'BallisticReplicationInfo'.default.WalkingPercentage != WalkingPct)
+	if (class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor != WalkingPct)
 	{
-		WalkingPct = class'BallisticReplicationInfo'.default.WalkingPercentage;
-		default.WalkingPct = class'BallisticReplicationInfo'.default.WalkingPercentage;
+		WalkingPct = class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor;
+		default.WalkingPct = class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor;
 	}
 	
-	if (class'BallisticReplicationInfo'.default.CrouchingPercentage != CrouchedPct)
+	if (class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor != CrouchedPct)
 	{
-		CrouchedPct = class'BallisticReplicationInfo'.default.CrouchingPercentage;
-		default.CrouchedPct = class'BallisticReplicationInfo'.default.CrouchingPercentage;
+		CrouchedPct = class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor;
+		default.CrouchedPct = class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor;
 	}
-	if (class'BallisticReplicationInfo'.default.bUseRunningAnims && WalkingPct >= 0.75)
+
+	if (class'BallisticReplicationInfo'.default.bUseRunningAnims && class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor >= 0.75)
 	{
 		default.WalkAnims[0]='RunF';
 		default.WalkAnims[1]='RunB';

@@ -66,6 +66,8 @@ function LoadSettings()
 	co_GameStyle.AddItem("Competitive" ,,string(0));
 	co_GameStyle.AddItem("Classic" ,,string(1));
 	co_GameStyle.AddItem("Realism" ,,string(2));
+    co_GameStyle.AddItem("Tactical" ,,string(3));
+
 	co_GameStyle.ReadOnly(True);
 	co_GameStyle.SetIndex(class'BallisticReplicationInfo'.default.GameStyle);
 	

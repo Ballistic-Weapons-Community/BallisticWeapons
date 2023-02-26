@@ -544,9 +544,10 @@ defaultproperties
 	SightOffset=(X=20.000000,Y=-0.010000,Z=12.400000)
 	SightDisplayFOV=25.000000
 	GunLength=16.000000
-	ParamsClasses(0)=Class'SARWeaponParams'
+	ParamsClasses(0)=Class'SARWeaponParams' // todo: fix people messing with the default for the stock and breaking arena
 	ParamsClasses(1)=Class'SARWeaponParamsClassic'
 	ParamsClasses(2)=Class'SARWeaponParamsRealistic'
+    ParamsClasses(3)=Class'SARWeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.SARFlashFire'
 	

@@ -532,6 +532,7 @@ defaultproperties
 	ParamsClasses(0)=Class'SuperchargerWeaponParamsArena'
 	ParamsClasses(1)=Class'SuperchargerWeaponParamsClassic'
 	ParamsClasses(2)=Class'SuperchargerWeaponParamsRealistic'
+    ParamsClasses(3)=Class'SuperchargerWeaponParamsTactical'
     WeaponModes(0)=(bUnavailable=True,ModeID="WM_None")
     WeaponModes(1)=(ModeName="Max Safe Voltage",Value=5.000000)
     WeaponModes(2)=(ModeName="Overload")

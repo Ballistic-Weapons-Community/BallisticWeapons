@@ -45,7 +45,7 @@ simulated event PreBeginPlay()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (BCRepClass.static.IsRealism())
 	{
 		M75PrimaryFire(FireMode[0]).bFireOnRelease=True;
 	}
@@ -491,6 +491,7 @@ defaultproperties
 	ParamsClasses(0)=Class'M75WeaponParams'
 	ParamsClasses(1)=Class'M75WeaponParamsClassic' //todo: state code for charge, alt fire??
 	ParamsClasses(2)=Class'M75WeaponParamsRealistic' //todo: state code for charge, alt fire??
+    ParamsClasses(3)=Class'M75WeaponParamsTactical'
     FireModeClass(0)=Class'BallisticProV55.M75PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M75SecondaryFire'
 	

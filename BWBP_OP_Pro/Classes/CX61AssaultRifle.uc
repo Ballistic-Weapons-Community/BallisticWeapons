@@ -164,7 +164,7 @@ simulated event Tick (float DT)
 	super.Tick(DT);
 	if (StoredGas < default.StoredGas && ( FireMode[1]==None || !FireMode[1].IsFiring() ))
 	{
-		if (BCRepClass.default.GameStyle == 1)
+		if (BCRepClass.static.IsClassic())
 			StoredGas = FMin(default.StoredGas, StoredGas + (DT / 10) * (1 + StoredGas/default.StoredGas) );
 		else
 			StoredGas = FMin(default.StoredGas, StoredGas + (DT / 20));
@@ -291,7 +291,7 @@ defaultproperties
 	ParamsClasses(0)=Class'CX61WeaponParams'
 	ParamsClasses(1)=Class'CX61WeaponParamsClassic'
 	ParamsClasses(2)=Class'CX61WeaponParamsRealistic'
-	ParamsClasses(3)=Class'CX61WeaponParams'
+	ParamsClasses(3)=Class'CX61WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.CX61PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.CX61SecondaryFire'
 	SelectAnimRate=1.400000

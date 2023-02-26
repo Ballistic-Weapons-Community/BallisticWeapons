@@ -66,9 +66,9 @@ function LoadSettings()
 	ch_StableSprint.Checked(class'BallisticReplicationInfo'.default.bNoJumpOffset);
 	ch_NoLongGun.Checked(class'BallisticReplicationInfo'.default.bNoLongGun);
 	ch_NoReloading.Checked(class'BallisticReplicationInfo'.default.bNoReloading);
-	fl_WalkingPct.SetValue(class'BallisticReplicationInfo'.default.WalkingPercentage);
+	fl_WalkingPct.SetValue(class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor);
 	fl_ReloadSpeed.SetValue(class'BallisticReplicationInfo'.default.ReloadSpeedScale);
-	fl_CrouchingPct.SetValue(class'BallisticReplicationInfo'.default.CrouchingPercentage);
+	fl_CrouchingPct.SetValue(class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor);
 	ch_MineLights.Checked(class'BallisticReplicationInfo'.default.bUniversalMineLights);
 	ch_RunningAnims.Checked(class'BallisticReplicationInfo'.default.bUseRunningAnims);
 }
@@ -87,8 +87,8 @@ function SaveSettings()
 	class'BallisticReplicationInfo'.default.bNoJumpOffset			= ch_StableSprint.IsChecked();
 	class'BallisticReplicationInfo'.default.bNoLongGun				= ch_NoLongGun.IsChecked();
 	class'BallisticReplicationInfo'.default.bNoReloading			= ch_NoReloading.IsChecked();
-	class'BallisticReplicationInfo'.default.WalkingPercentage 		= fl_WalkingPct.GetValue();
-	class'BallisticReplicationInfo'.default.CrouchingPercentage 	= fl_CrouchingPct.GetValue();
+	class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor 		= fl_WalkingPct.GetValue();
+	class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor 	= fl_CrouchingPct.GetValue();
 	class'BallisticReplicationInfo'.default.bUniversalMineLights 	= ch_MineLights.IsChecked();
 	class'BallisticReplicationInfo'.default.bUseRunningAnims 		= ch_RunningAnims.IsChecked();
 	class'BallisticReplicationInfo'.default.ReloadSpeedScale = fl_ReloadSpeed.GetValue();

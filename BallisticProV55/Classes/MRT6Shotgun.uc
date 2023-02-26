@@ -168,6 +168,7 @@ defaultproperties
     ParamsClasses(0)=Class'MRT6WeaponParams'
     ParamsClasses(1)=Class'MRT6WeaponParamsClassic'
     ParamsClasses(2)=Class'MRT6WeaponParamsRealistic'
+    ParamsClasses(3)=Class'MRT6WeaponParamsTactical'
     FireModeClass(0)=Class'BallisticProV55.MRT6PrimaryFire'
     FireModeClass(1)=Class'BallisticProV55.MRT6SecondaryFire'
 	

@@ -304,6 +304,7 @@ defaultproperties
 	ParamsClasses(0)=Class'XMK5WeaponParams'
 	ParamsClasses(1)=Class'XMK5WeaponParamsClassic'
 	ParamsClasses(2)=Class'XMK5WeaponParamsRealistic'
+    ParamsClasses(3)=Class'XMK5WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.XMK5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XMK5SecondaryFire'
 	PutDownTime=0.350000

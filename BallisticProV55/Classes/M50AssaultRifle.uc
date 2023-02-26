@@ -691,6 +691,7 @@ defaultproperties
 	ParamsClasses(0)=Class'M50WeaponParams'
 	ParamsClasses(1)=Class'M50WeaponParamsClassic'
 	ParamsClasses(2)=Class'M50WeaponParamsRealistic'
+    ParamsClasses(3)=Class'M50WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.M50PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M50SecondaryFire'
 	PutDownAnimRate=1.500000

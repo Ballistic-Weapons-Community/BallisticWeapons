@@ -716,6 +716,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'HVPCMk66WeaponParams'
 	 ParamsClasses(1)=Class'HVPCMk66WeaponParamsClassic'
 	 ParamsClasses(2)=Class'HVPCMk66WeaponParamsRealistic'
+     ParamsClasses(3)=Class'HVPCMk66WeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_SKC_Pro.HVPCMk66PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.HVPCMk66SecondaryFire'
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc4',USize2=256,VSize2=256,Color1=(G=248,R=0),Color2=(B=153,G=168,R=170,A=173),StartSize2=82)

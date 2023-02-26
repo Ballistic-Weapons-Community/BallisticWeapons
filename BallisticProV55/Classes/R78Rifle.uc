@@ -230,6 +230,7 @@ defaultproperties
      ParamsClasses(0)=Class'R78WeaponParams'
      ParamsClasses(1)=Class'R78WeaponParamsClassic'
      ParamsClasses(2)=Class'R78WeaponParamsRealistic'
+     ParamsClasses(3)=Class'R78WeaponParamsTactical'
      FireModeClass(0)=Class'BallisticProV55.R78PrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      BringUpTime=0.500000

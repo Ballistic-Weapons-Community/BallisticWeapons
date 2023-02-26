@@ -23,7 +23,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.static.IsClassic())
 	{
 		A73PrimaryFire(FireMode[0]).HeatPerShot = 0;
 		A73SecondaryFire(FireMode[1]).HeatPerShot = 0;
@@ -310,6 +310,7 @@ defaultproperties
 	ParamsClasses(0)=Class'A73WeaponParams'
 	ParamsClasses(1)=Class'A73WeaponParamsClassic'
 	ParamsClasses(2)=Class'A73WeaponParamsRealistic'
+    ParamsClasses(3)=Class'A73WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.A73PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A73SecondaryFire'
 	BringUpTime=0.500000

@@ -583,6 +583,7 @@ defaultproperties
 	ParamsClasses(0)=Class'LK05WeaponParams'
 	ParamsClasses(1)=Class'LK05WeaponParamsClassic'
 	ParamsClasses(2)=Class'LK05WeaponParamsRealistic'
+    ParamsClasses(3)=Class'LK05WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LK05PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LK05SecondaryFire'
 	IdleAnimRate=0.500000

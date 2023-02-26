@@ -22,8 +22,6 @@ class BallisticReplicationInfo extends BCReplicationInfo config(BallisticProV55)
 var() config bool		bBrightPlayers;		    // Players have ambient glow to glow in the dark like the standard pawns.
 var() config bool		bNoDodging;			    // Disables dodging.
 var() config bool		bNoDoubleJump;	        // Disables double jump.
-var() config float		WalkingPercentage;      // Let players configure the walking movespeed percentage.
-var() config float		CrouchingPercentage;    // Let players configure the crouching movespeed percentage.
 var() config bool 		bUseRunningAnims;       // Pawns will use running anims for walking.
 var() config bool		bUniversalMineLights;   // All BX-5 mines are lit.
 
@@ -70,8 +68,6 @@ var struct RepInfo_BW
 	var bool		bBrightPlayers;
 	var bool		bNoDodging;
 	var bool		bNoDoubleJump;
-	var float		WalkingPercentage;
-	var float		CrouchingPercentage;
 	var bool		bUseRunningAnims;
 	var bool		bUniversalMineLights;
 	
@@ -131,8 +127,7 @@ simulated function InitClientVars()
 	bBrightPlayers		= BWRep.bBrightPlayers;
 	bNoDodging			= BWRep.bNoDodging;
 	bNoDoubleJump	= BWRep.bNoDoubleJump;
-	WalkingPercentage	= BWRep.WalkingPercentage;
-	CrouchingPercentage = BWRep.CrouchingPercentage;
+
 	bUniversalMineLights = BWRep.bUniversalMineLights;
 	bUseRunningAnims = BWRep.bUseRunningAnims;
 
@@ -148,8 +143,6 @@ simulated function InitClientVars()
 	class.default.bBrightPlayers	= bBrightPlayers;
 	class.default.bNoDodging		= bNoDodging;
 	class.default.bNoDoubleJump	= bNoDoubleJump;
-	class.default.WalkingPercentage	= WalkingPercentage;
-	class.default.CrouchingPercentage = CrouchingPercentage;
 	class.default.bUniversalMineLights = bUniversalMineLights;
 	class.default.bUseRunningAnims = bUseRunningAnims;
 
@@ -210,8 +203,8 @@ simulated function InitClientVars()
 	Log("bBrightPlayers: "$bBrightPlayers);
 	Log("bNoDodging: "$bNoDodging);
 	Log("bNoDoubleJump: "$bNoDoubleJump);
-	log("Walking percentage: "$WalkingPercentage * 100$"%");
-	log("Crouching percentage:"$CrouchingPercentage*100$"%");
+	log("Walking percentage: "$PlayerADSMoveSpeedFactor * 100$"%");
+	log("Crouching percentage:"$PlayerCrouchSpeedFactor*100$"%");
 
 	if (Role < ROLE_Authority && bBrightPlayers)
 	{
@@ -228,8 +221,6 @@ function ServerInitialize()
 	BWRep.bBrightPlayers	= bBrightPlayers;
 	BWRep.bNoDodging		= bNoDodging;
 	BWRep.bNoDoubleJump	= bNoDoubleJump;
-    BWRep.WalkingPercentage = WalkingPercentage;
-    BWRep.CrouchingPercentage = CrouchingPercentage;
 	BWRep.bUniversalMineLights = bUniversalMineLights;
 	BWRep.bUseRunningAnims = bUseRunningAnims;
 
@@ -288,8 +279,6 @@ static function BCReplicationInfo GetBRep(actor A)
 
 defaultproperties
 {
-     WalkingPercentage=0.900000
-     CrouchingPercentage=0.450000
      ModString="Ballistic Weapons Pro"
 	 
 	 //Player

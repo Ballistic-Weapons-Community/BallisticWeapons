@@ -737,7 +737,7 @@ defaultproperties
 	ParamsClasses(0)=Class'ARWeaponParams'
 	ParamsClasses(1)=Class'ARWeaponParamsClassic'
 	ParamsClasses(2)=Class'ARWeaponParamsRealistic'
-	ParamsClasses(3)=Class'ARWeaponParams'
+	ParamsClasses(3)=Class'ARWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.ARPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.ARSecondaryFire'
 	SelectAnimRate=0.900000

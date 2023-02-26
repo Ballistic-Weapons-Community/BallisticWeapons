@@ -372,6 +372,7 @@ defaultproperties
 	ParamsClasses(0)=Class'XOXOWeaponParams'
 	ParamsClasses(1)=Class'XOXOWeaponParamsClassic'
 	ParamsClasses(2)=Class'XOXOWeaponParamsRealistic'
+    ParamsClasses(3)=Class'XOXOWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.XOXOPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.XOXOSecondaryFire'
 	PutDownAnimRate=1.350000

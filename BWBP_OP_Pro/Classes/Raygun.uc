@@ -547,6 +547,7 @@ defaultproperties
 	ParamsClasses(0)=Class'RaygunWeaponParams'
 	ParamsClasses(1)=Class'RaygunWeaponParamsClassic'
 	ParamsClasses(2)=Class'RaygunWeaponParamsRealistic'
+    ParamsClasses(3)=Class'RaygunWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.RaygunPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.RaygunSecondaryFire'
 	BringUpTime=0.500000

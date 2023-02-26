@@ -858,6 +858,7 @@ defaultproperties
 	ParamsClasses(0)=Class'MARSWeaponParams'
 	ParamsClasses(1)=Class'MARSWeaponParamsClassic'
 	ParamsClasses(2)=Class'MARSWeaponParamsRealistic'
+    ParamsClasses(3)=Class'MARSWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MARSPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MARSSecondaryFire'
 	PutDownTime=0.700000

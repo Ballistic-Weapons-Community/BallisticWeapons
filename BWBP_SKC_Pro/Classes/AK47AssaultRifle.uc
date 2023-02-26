@@ -387,6 +387,7 @@ defaultproperties
 	ParamsClasses(0)=Class'AK490WeaponParams'
 	ParamsClasses(1)=Class'AK490WeaponParamsClassic'
 	ParamsClasses(2)=Class'AK490WeaponParamsRealistic'
+    ParamsClasses(3)=Class'AK490WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.AK47PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.AK47SecondaryFire'
 	IdleAnimRate=0.400000

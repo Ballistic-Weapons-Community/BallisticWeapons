@@ -879,6 +879,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'PUMAWeaponParamsArena'
 	 ParamsClasses(1)=Class'PUMAWeaponParamsClassic'
 	 ParamsClasses(2)=Class'PUMAWeaponParamsRealistic'
+     ParamsClasses(3)=Class'PUMAWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PUMA'
      DrawScale=0.360000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

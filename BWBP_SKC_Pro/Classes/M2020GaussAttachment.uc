@@ -34,7 +34,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (M2020GaussDMR(Instigator.Weapon).BCRepClass.default.GameStyle == 2)
+	if (M2020GaussDMR(Instigator.Weapon).BCRepClass.static.IsRealism())
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_GaussQuick';
 	}

@@ -136,7 +136,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaStandardAimParams
-		ADSMultiplier=0.35
+		ADSMultiplier=0.5
 		AimSpread=(Min=128,Max=1536)
 		ChaosDeclineTime=1.750000
 		ChaosSpeedThreshold=350

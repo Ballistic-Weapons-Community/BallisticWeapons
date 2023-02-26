@@ -264,6 +264,7 @@ defaultproperties
 	ParamsClasses(0)=Class'M925WeaponParams'
 	ParamsClasses(1)=Class'M925WeaponParamsClassic' //todo: turret
 	ParamsClasses(2)=Class'M925WeaponParamsRealistic' //todo: turret
+    ParamsClasses(3)=Class'M925WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.M925PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.M925SecondaryFire'
 	

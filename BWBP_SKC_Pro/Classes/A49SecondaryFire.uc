@@ -45,7 +45,7 @@ function DoFireEffect()
 /*
 simulated function ApplyRecoil()
 {
-	if (A49SkrithBlaster(BW).BCRepClass.default.GameStyle == 1)
+	if (A49SkrithBlaster(BW).BCRepClass.static.IsClassic())
 	{
 		if (BW != None)
 			BW.AddRecoil(FireRecoil, FireChaos, ThisModeNum);

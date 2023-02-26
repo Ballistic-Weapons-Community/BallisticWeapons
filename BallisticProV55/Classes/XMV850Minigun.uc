@@ -62,7 +62,7 @@ simulated event PreBeginPlay()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (BCRepClass.static.IsRealism())
 	{
 		XMV850MinigunPrimaryFire(FireMode[0]).bRequireSpool=true;
 	}
@@ -463,6 +463,7 @@ defaultproperties
 	ParamsClasses(0)=Class'XMV850WeaponParams'
 	ParamsClasses(1)=Class'XMV850WeaponParamsClassic' //Todo: state code to support fire while spinning
 	ParamsClasses(2)=Class'XMV850WeaponParamsRealistic' //Todo: state code to support fire while spinning
+    ParamsClasses(3)=Class'XMV850WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.XMV850MinigunPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XMV850MinigunSecondaryFire'
 	SelectAnimRate=0.750000

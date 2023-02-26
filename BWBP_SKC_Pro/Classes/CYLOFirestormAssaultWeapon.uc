@@ -52,12 +52,12 @@ simulated event PostNetBeginPlay()
 	
 	super.PostNetBeginPlay();
 
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.static.IsClassic())
 	{
 		bVariableHeatProps=true;
 		CYLOFirestormPrimaryFire(FireMode[0]).bVariableHeatProps=true;
 	}
-	else if (BCRepClass.default.GameStyle == 2)
+	else if (BCRepClass.static.IsRealism())
 	{
 		CYLOFirestormPrimaryFire(FireMode[0]).HeatPerShot = 0.1;
 	}
@@ -701,6 +701,7 @@ defaultproperties
 	ParamsClasses(0)=Class'CYLOFirestormWeaponParams' 
 	ParamsClasses(1)=Class'CYLOFirestormWeaponParamsClassic' 
 	ParamsClasses(2)=Class'CYLOFirestormWeaponParamsRealistic' 
+    ParamsClasses(3)=Class'CYLOFirestormWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.CYLOFirestormPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.CYLOFirestormSecondaryFire'
 	bShowChargingBar=True

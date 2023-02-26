@@ -419,6 +419,7 @@ defaultproperties
 	ParamsClasses(0)=Class'MD24WeaponParams'
 	ParamsClasses(1)=Class'MD24WeaponParamsClassic'
 	ParamsClasses(2)=Class'MD24WeaponParamsRealistic'
+    ParamsClasses(3)=Class'MD24WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.MD24PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	SelectForce="SwitchToAssaultRifle"

@@ -592,6 +592,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'XM20WeaponParams'
 	 ParamsClasses(1)=Class'XM20WeaponParamsClassic'
 	 ParamsClasses(2)=Class'XM20WeaponParamsRealistic'
+     ParamsClasses(3)=Class'XM20WeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_SKC_Pro.XM20PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.XM20SecondaryFire'
      BringUpTime=0.800000

@@ -540,6 +540,7 @@ defaultproperties
 	ParamsClasses(0)=Class'CYLOWeaponParams' 
 	ParamsClasses(1)=Class'CYLOWeaponParamsClassic' 
 	ParamsClasses(2)=Class'CYLOWeaponParamsRealistic' 
+    ParamsClasses(3)=Class'CYLOWeaponParamsTactical'
 	AmmoClass[0]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
 	AmmoClass[1]=Class'BWBP_SKC_Pro.Ammo_CYLOInc'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.CYLOPrimaryFire'

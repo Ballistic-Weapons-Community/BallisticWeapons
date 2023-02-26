@@ -220,6 +220,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'ICISWeaponParams'
 	 ParamsClasses(1)=Class'ICISWeaponParamsClassic'
 	 ParamsClasses(2)=Class'ICISWeaponParamsRealistic'
+     ParamsClasses(3)=Class'ICISWeaponParamsTactical'
 	 FireModeClass(0)=Class'BWBP_SKC_Pro.ICISPrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.ICISSecondaryFire'
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.X3OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.X3InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(R=129,A=192),Color2=(G=196,R=0,A=192),StartSize1=99,StartSize2=107)

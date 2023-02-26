@@ -34,7 +34,8 @@ var() globalconfig bool		    bNoLongGun;				// Disable 'long gun' features
 var() globalconfig bool		    bNoReloading;			// Disables reloading and weapons use boring old style ammo handling...
 var() globalconfig float      	ReloadSpeedScale;   	// Buff reload speeds
 var() globalconfig bool         bAlternativePickups;	// Press Use to Pickup Weapon
-
+var() globalconfig float		PlayerADSMoveSpeedFactor;
+var() globalconfig float		PlayerCrouchSpeedFactor;
 // LDG TEST ONLY
 var() globalconfig bool         bUseFixedModifiers;                      // Testing - use fixed modifiers for various aspects - Arena only!
 var() globalconfig float        SightingTimeScale;
@@ -54,6 +55,8 @@ var struct RepInfo_BCore
 	var bool		bNoJumpOffset;
 	var bool		bNoLongGun;
 	var bool		bNoReloading;
+    var float		PlayerADSMoveSpeedFactor;
+    var float		PlayerCrouchSpeedFactor;
 	var bool        bAlternativePickups;
     var bool        bUseFixedModifiers;
     var float       SightingTimeScale;
@@ -76,6 +79,8 @@ simulated function InitClientVars()
 	bNoJumpOffset		= BCoreRep.bNoJumpOffset;
 	bNoLongGun			= BCoreRep.bNoLongGun;
 	bNoReloading		= BCoreRep.bNoReloading;
+    PlayerADSMoveSpeedFactor = BCoreRep.PlayerADSMoveSpeedFactor;
+	PlayerCrouchSpeedFactor = BCoreRep.PlayerCrouchSpeedFactor;
 	bAlternativePickups = BCoreRep.bAlternativePickups;
     bUseFixedModifiers  = BCoreRep.bUseFixedModifiers;
     SightingTimeScale   = BCoreRep.SightingTimeScale;
@@ -88,6 +93,8 @@ simulated function InitClientVars()
 	class.default.bNoJumpOffset			= bNoJumpOffset;
 	class.default.bNoLongGun			= bNoLongGun;
 	class.default.bNoReloading			= bNoReloading;
+    class.default.PlayerADSMoveSpeedFactor = PlayerADSMoveSpeedFactor;
+	class.default.PlayerCrouchSpeedFactor = PlayerCrouchSpeedFactor;
 	class.default.bAlternativePickups 	= bAlternativePickups;
     class.default.SightingTimeScale     = SightingTimeScale;
     class.default.ChaosSpeedThresholdOverride = ChaosSpeedThresholdOverride;
@@ -110,6 +117,8 @@ function ServerInitialize()
 	BCoreRep.bNoJumpOffset			= bNoJumpOffset;
 	BCoreRep.bNoLongGun				= bNoLongGun;
 	BCoreRep.bNoReloading			= bNoReloading;
+    BCoreRep.PlayerADSMoveSpeedFactor = PlayerADSMoveSpeedFactor;
+	BCoreRep.PlayerCrouchSpeedFactor = PlayerCrouchSpeedFactor;
 	BCoreRep.bAlternativePickups 	= bAlternativePickups;
     BCoreRep.bUseFixedModifiers     = bUseFixedModifiers;
     BCoreRep.SightingTimeScale      = SightingTimeScale;
@@ -126,12 +135,22 @@ simulated event PostNetBeginPlay()
 
 static final function bool IsArena()
 {
-    return default.GameStyle == EGameStyle.Arena;
+    return default.GameStyle == EGameStyle.Arena || default.GameStyle == EGameStyle.Tactical;
+}
+
+static final function bool IsClassic()
+{
+    return default.GameStyle == EGameStyle.Legacy;
+}
+
+static final function bool IsRealism()
+{
+    return default.GameStyle == EGameStyle.Realism;
 }
 
 static final function bool UseFixedModifiers()
 {
-    return IsArena() && default.bUseFixedModifiers;
+    return default.GameStyle == EGameStyle.Arena && default.bUseFixedModifiers;
 }
 
 static function BCReplicationInfo HitMe(actor A)
@@ -173,4 +192,6 @@ defaultproperties
      DamageModHead=1.5f
      DamageModLimb=0.7f
      SightingTimeScale=1.0f
+     PlayerADSMoveSpeedFactor=1
+     PlayerCrouchSpeedFactor=0.5
 }

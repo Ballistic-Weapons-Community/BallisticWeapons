@@ -46,11 +46,11 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.static.IsClassic())
 	{
 		BulldogPrimaryFire(FireMode[0]).bSmallRadiusDamage = true;
 	}
-	else if (BCRepClass.default.GameStyle == 2)
+	else if (BCRepClass.static.IsRealism())
 	{
 		BulldogPrimaryFire(FireMode[0]).bLargeRadiusDamage = true;
 	}
@@ -719,6 +719,7 @@ defaultproperties
 	ParamsClasses(0)=Class'BulldogWeaponParams'
 	ParamsClasses(1)=Class'BulldogWeaponParamsClassic'
 	ParamsClasses(2)=Class'BulldogWeaponParamsRealistic'
+    ParamsClasses(3)=Class'BulldogWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.BulldogPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.BulldogSecondaryFire'
 	PutDownAnimRate=1.700000
