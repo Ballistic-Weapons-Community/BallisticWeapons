@@ -54,6 +54,7 @@ const HEAD_RADIUS = 9; // cylinder
 
 //General Vars ----------------------------------------------------------------
 var() Range				        TraceRange;				        // Min and Max range of trace
+var() Range                     DecayRange;                     // Decays from 1 to range atten over min to max
 var() float				        MaxWaterTraceRange;		        // Maximum distance this fire should trace after entering water
 var() float				        WallPenetrationForce;	        // Maximum thickness of the walls that this bullet gan go through
 
@@ -114,12 +115,19 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     effect_params = InstantEffectParams(params);
 
     TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
+    DecayRange = effect_params.DecayRange;
+
+    // handle params
+    if (DecayRange.Max == 0 || DecayRange.Max <= DecayRange.Min)
+        DecayRange.Max = TraceRange.Max;
+
     MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
     // FIXME - CutOffStartRange
-    RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range    
+    RangeAtten = effect_params.RangeAtten;        // Multiplier at max falloff
 	default.TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
+    default.DecayRange = DecayRange;
     default.MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
-    default.RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range
+    default.RangeAtten = effect_params.RangeAtten;        // Multiplier at max falloff
 
     Damage = effect_params.Damage;
 
@@ -385,6 +393,21 @@ function Vector GetDamageHitLocation(Actor Other, Vector HitLocation, vector Tra
 	return BoneTestLocation;
     */
 
+final function float GetRangeAttenFactor(vector start, vector end)
+{
+	local float dist;
+
+	dist = VSize(end - start);
+
+	if (dist <= DecayRange.Min)
+		return 1.0f;
+
+	if (dist >= DecayRange.Max)
+		return RangeAtten;
+
+	return Lerp( (dist - DecayRange.Min) / DecayRange.Max - DecayRange.Min, 1.0f, RangeAtten);
+}
+
 function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
 {
 	local float  DamageFactor;
@@ -393,7 +416,7 @@ function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLo
 	DamageFactor = 1;
 
 	if (RangeAtten != 1.0)
-		DamageFactor *= Lerp(VSize(HitLocation-TraceStart)/TraceRange.Max, 1, RangeAtten);
+		DamageFactor *= GetRangeAttenFactor(TraceStart, HitLocation);
 
 	if (WaterRangeAtten != 1.0 && WaterHitLocation != vect(0,0,0))
 		DamageFactor *= Lerp(VSize(HitLocation-WaterHitLocation) / MaxWaterTraceRange, 1, WaterRangeAtten);

@@ -9,6 +9,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=3000,Max=9000)
 		RangeAtten=0.350000
 		Damage=21
 		DamageType=Class'BWBP_OP_Pro.DTCX85Bullet'

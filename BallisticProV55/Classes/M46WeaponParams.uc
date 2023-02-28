@@ -8,6 +8,7 @@ defaultproperties
 	
     Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
         TraceRange=(Min=12000.000000,Max=15000.000000)
+        DecayRange=(Min=1500,Max=4500)
         RangeAtten=0.50000
         Damage=30
         HeadMult=1.5f

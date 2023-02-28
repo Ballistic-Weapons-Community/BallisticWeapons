@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class RS8PrimaryFire extends BallisticRangeAttenFire;
+class RS8PrimaryFire extends BallisticProInstantFire;
 
 var() Actor						SMuzzleFlash;		// Silenced Muzzle flash stuff
 var() class<Actor>				SMuzzleFlashClass;
@@ -141,8 +141,6 @@ defaultproperties
      SFlashBone="tip2"
      SFlashScaleFactor=0.25
 	 TraceRange=(Min=4000.000000,Max=4000.000000)
-     CutOffDistance=2048.000000
-     CutOffStartRange=768.000000
 	 RangeAtten=0.3
      WallPenetrationForce=8.000000
      

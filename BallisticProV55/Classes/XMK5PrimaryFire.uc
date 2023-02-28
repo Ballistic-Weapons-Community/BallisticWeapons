@@ -7,12 +7,10 @@
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright� 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XMK5PrimaryFire extends BallisticRangeAttenFire;
+class XMK5PrimaryFire extends BallisticProInstantFire;
 
 defaultproperties
 {
-     CutOffDistance=1536.000000
-     CutOffStartRange=768.000000
      TraceRange=(Min=4096.000000,Max=4096.000000)
      WallPenetrationForce=8.000000
      

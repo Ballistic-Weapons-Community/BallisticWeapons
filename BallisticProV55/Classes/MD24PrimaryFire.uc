@@ -7,7 +7,7 @@
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright� 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class MD24PrimaryFire extends BallisticRangeAttenFire;
+class MD24PrimaryFire extends BallisticProInstantFire;
 
 //Do the spread on the client side
 function PlayFiring()
@@ -31,8 +31,6 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=1536.000000
-     CutOffStartRange=512.000000
      TraceRange=(Min=4000.000000,Max=4000.000000)
      WallPenetrationForce=8.000000
      

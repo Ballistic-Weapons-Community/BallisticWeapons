@@ -4,12 +4,10 @@
 // Assault rifle fire.
 // DPS is greater than normal, but so too is recoil.
 //=============================================================================
-class AK47PrimaryFire extends BallisticRangeAttenFire;
+class AK47PrimaryFire extends BallisticProInstantFire;
 
 defaultproperties
 {
-     CutOffDistance=4096.000000
-     CutOffStartRange=2048.000000
      TraceRange=(Min=12000.000000,Max=13000.000000)
      
      WallPenetrationForce=24.000000

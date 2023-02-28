@@ -159,8 +159,6 @@ simulated function SwitchWeaponMode (byte newMode)
 		DamageTypeHead=Class'DTCoachSlug';
 
         RangeAtten=0.250000;
-		CutOffStartRange=1536;
-		CutOffDistance=4096;
 
 		TraceRange.Min=9000;
 		TraceRange.Max=9000;
@@ -192,8 +190,6 @@ simulated function SwitchWeaponMode (byte newMode)
 		DamageTypeArm=Class'DTCoachShot';
 		DamageTypeHead=Class'DTCoachShot';
 
-        CutOffDistance=default.CutOffDistance;
-        CutOffStartRange=default.CutOffStartRange;
 		RangeAtten=default.RangeAtten;
 
 		
@@ -488,9 +484,6 @@ defaultproperties
     ChargeTime=0.35
 	MaxHoldTime=0.0
 	HipSpreadFactor=2.5
-
-	CutOffDistance=2048.000000
-	CutOffStartRange=1024.000000
 
 	TraceCount=10
 	TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'

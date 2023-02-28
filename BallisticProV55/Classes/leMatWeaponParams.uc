@@ -5,10 +5,9 @@ defaultproperties
     //=================================================================
     // PRIMARY FIRE
     //=================================================================	
-	
-	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=8000.000000,Max=8000.000000)
+        DecayRange=(Min=750,Max=2250)
 		RangeAtten=0.40000
 		Damage=45
 		DamageType=Class'BallisticProV55.DTleMatRevolver'
@@ -39,6 +38,7 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=2500.000000,Max=2500.000000)
+        DecayRange=(Min=750,Max=2250)
 		RangeAtten=0.500000
 		TraceCount=8
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
@@ -108,6 +108,8 @@ defaultproperties
         InventorySize=6
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+        FireParams(0)=FireParams'ArenaPrimaryFireParams'
+        AltFireParams(0)=FireParams'ArenaSecondaryFireParams';
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
 }

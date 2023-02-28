@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class SARPrimaryFire extends BallisticRangeAttenFire;
+class SARPrimaryFire extends BallisticProInstantFire;
 
 function PlayFiring()
 {
@@ -69,14 +69,9 @@ function EjectBrass()
 
 defaultproperties
 {
-     CutOffDistance=2560.000000
-     CutOffStartRange=1280.000000
      TraceRange=(Min=9000.000000,Max=9000.000000)
      WallPenetrationForce=16.000000
-     
      Damage=20.000000
-     
-     
      RangeAtten=0.350000
      WaterRangeAtten=0.800000
      DamageType=Class'BallisticProV55.DTSARRifle'

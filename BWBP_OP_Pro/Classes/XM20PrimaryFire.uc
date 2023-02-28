@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XM20PrimaryFire extends BallisticRangeAttenFire;
+class XM20PrimaryFire extends BallisticProInstantFire;
 
 var()	float			HeatPerShot;
 
@@ -33,8 +33,6 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 defaultproperties
 {
 	HeatPerShot=8.000000
-	CutOffDistance=3072.000000
-	CutOffStartRange=1536.000000
 	TraceRange=(Min=11000.000000,Max=12000.000000)
     MaxWaterTraceRange=11000
 	WallPenetrationForce=64.000000

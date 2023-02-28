@@ -8,15 +8,13 @@
 //
 // by Marc "Sgt Kelly" Moylan.
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class AR23PrimaryFire extends BallisticProInstantFire;
 
 defaultproperties
 {
      TraceRange=(Min=12000.000000,Max=15000.000000)
-	 //CutOffDistance=1536.000000
-     //CutOffStartRange=768.000000
      //WaterRangeFactor=0.800000
      //WallPenetrationForce=48.000000
      //MaxWalls=3

@@ -7,11 +7,7 @@
 class BallisticProShotgunFire extends BallisticShotgunFire;
 
 var float 		HipSpreadFactor;
-var() float 	CutOffDistance;
-var() float 	CutOffStartRange;
 var int	 		MaxSpreadFactor;
-
-
 
 simulated function ApplyFireEffectParams(FireEffectParams params)
 {
@@ -22,30 +18,6 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     effect_params = ShotgunEffectParams(params);
 
 	HipSpreadFactor = effect_params.HipSpreadFactor;
-}
-
-
-function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
-{
-	local float  DamageFactor;
-
-	DamageFactor = 1;
-
-	if (WaterRangeAtten < 1.0 && WaterHitLocation != vect(0,0,0))
-		DamageFactor *= class'BallisticRangeAttenFire'.static.GetRangeAttenFactor(TraceStart, HitLocation, CutOffStartRange, CutOffDistance, WaterRangeAtten);
-	else if (RangeAtten != 1.0)
-		DamageFactor *= class'BallisticRangeAttenFire'.static.GetRangeAttenFactor(TraceStart, HitLocation, CutOffStartRange, CutOffDistance, RangeAtten);
-	
-	if (PenetrateCount > 0)
-		DamageFactor *= PDamageFactor * PenetrateCount;
-
-	if (WallCount > 0 && WallPenetrationForce > 0)
-	{
-		DamageFactor *= WallPDamageFactor * WallCount;
-		DamageFactor *= WallPenForce / WallPenetrationForce;
-	}
-
-	return DamageFactor;
 }
 
 //return spread in radians

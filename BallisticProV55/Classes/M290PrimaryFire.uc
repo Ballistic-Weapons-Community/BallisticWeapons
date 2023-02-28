@@ -76,8 +76,6 @@ function FlashMuzzleFlash()
 defaultproperties
 {
 	 HipSpreadFactor=2
-     CutOffDistance=2048.000000
-     CutOffStartRange=768.000000
      TraceCount=20
      MaxHits=18
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'

@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class R9A1PrimaryFire extends BallisticRangeAttenFire;
+class R9A1PrimaryFire extends BallisticProInstantFire;
 
 var BUtil.FullSound FreezeFireSound, LaserFireSound;
 var int	HeatPerShot;
@@ -173,8 +173,6 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffStartRange=4096
-	 CutOffDistance=8192
 	 RangeAtten=0.5
      FreezeFireSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
      LaserFireSound=(Sound=Sound'BW_Core_WeaponSound.R9.EnergyRelayExplode',Volume=3.000000,Radius=256.000000)

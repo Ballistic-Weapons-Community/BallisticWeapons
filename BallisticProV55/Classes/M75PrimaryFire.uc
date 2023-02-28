@@ -67,7 +67,6 @@ simulated state ClassicRail
 
 		TraceRange = effect_params.TraceRange;             // Maximum range of this shot type
 		MaxWaterTraceRange = effect_params.WaterTraceRange;        // Maximum range through water
-		// FIXME - CutOffStartRange
 		RangeAtten = effect_params.RangeAtten;        // Interpolation curve for damage reduction over range
 
 		default.Damage = effect_params.Damage;

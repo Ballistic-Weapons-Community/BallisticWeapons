@@ -64,8 +64,6 @@ defaultproperties
 {
 	 HipSpreadFactor=2.000000
 	 MaxSpreadFactor=2.000000
-     CutOffDistance=1536.000000
-     CutOffStartRange=768.000000
      TraceCount=6
      TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'

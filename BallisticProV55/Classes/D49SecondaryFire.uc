@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class D49SecondaryFire extends BallisticRangeAttenFire;
+class D49SecondaryFire extends BallisticProInstantFire;
 
 simulated function PlayFiring()
 {

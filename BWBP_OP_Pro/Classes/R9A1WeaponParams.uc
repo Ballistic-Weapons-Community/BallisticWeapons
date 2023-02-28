@@ -8,6 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=4000,Max=12000)
 		RangeAtten=0.5
 		Damage=40
 		HeadMult=1.5
@@ -35,6 +36,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=ArenaFreezeEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=4000,Max=12000)
 		RangeAtten=0.5
 		Damage=35
 		HeadMult=1.5
@@ -62,6 +64,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=ArenaHeatEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=4000,Max=12000)
 		WaterTraceRange=5000
 		RangeAtten=0.5
 		Damage=20

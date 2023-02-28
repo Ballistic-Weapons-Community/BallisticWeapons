@@ -10,12 +10,10 @@
 // uses code by Nolan "Dark Carnivour" Richert.
 // Copyright� 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
-class M46PrimaryFire extends BallisticRangeAttenFire;
+class M46PrimaryFire extends BallisticProInstantFire;
 
 defaultproperties
 {
-     CutOffDistance=3072.000000
-     CutOffStartRange=1536.000000
      TraceRange=(Min=12000.000000,Max=15000.000000)
      WallPenetrationForce=24.000000
      

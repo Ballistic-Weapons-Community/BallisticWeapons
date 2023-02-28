@@ -7,7 +7,7 @@
 // by Casey 'Xavious' Johnson and Marc 'Sergeant Kelly'
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class CYLOPrimaryFire extends BallisticRangeAttenFire;
+class CYLOPrimaryFire extends BallisticProInstantFire;
 
 var() sound		RifleFireSound;
 var() sound		MeleeFireSound;
@@ -33,8 +33,6 @@ defaultproperties
 {
      RifleFireSound=Sound'BWBP_SKC_Sounds.CYLO.CYLO-Fire'
      MeleeFireSound=Sound'BW_Core_WeaponSound.A73.A73Stab'
-     CutOffDistance=3072.000000
-     CutOffStartRange=1536.000000
      TraceRange=(Min=8000.000000,Max=12000.000000)
      WallPenetrationForce=24.000000
      

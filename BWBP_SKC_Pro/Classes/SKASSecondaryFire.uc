@@ -111,8 +111,6 @@ defaultproperties
      ChargeSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-TriCharge'
      UltraChargeSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-UltraCharge'
      UltraFireSound=Sound'BWBP_SKC_Sounds.SKAS.SKAS-Ultra'
-     CutOffDistance=1536.000000
-     CutOffStartRange=1024.000000
      TraceCount=30
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'

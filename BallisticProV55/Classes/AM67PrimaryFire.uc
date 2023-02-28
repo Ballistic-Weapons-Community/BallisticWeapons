@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class AM67PrimaryFire extends BallisticRangeAttenFire;
+class AM67PrimaryFire extends BallisticProInstantFire;
 
 defaultproperties
 {

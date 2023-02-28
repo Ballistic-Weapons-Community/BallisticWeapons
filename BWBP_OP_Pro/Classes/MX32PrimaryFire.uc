@@ -1,9 +1,7 @@
-class MX32PrimaryFire extends BallisticRangeAttenFire;
+class MX32PrimaryFire extends BallisticProInstantFire;
 
 defaultproperties
 {
-     CutOffDistance=8192.000000
-     CutOffStartRange=4096.000000
      TraceRange=(Min=12000.000000,Max=15000.000000)
      WallPenetrationForce=1.000000
      

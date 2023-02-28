@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class CYLOFirestormPrimaryFire extends BallisticRangeAttenFire;
+class CYLOFirestormPrimaryFire extends BallisticProInstantFire;
 
 var   float		StopFireTime, HeatPerShot;
 var() Sound			FailSound;
@@ -168,8 +168,6 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 defaultproperties
 {
      HeatPerShot=0.900000
-     CutOffDistance=4096.000000
-     CutOffStartRange=2048.000000
      TraceRange=(Min=10000.000000,Max=12000.000000)
 	 
 	 bPenetrate=False

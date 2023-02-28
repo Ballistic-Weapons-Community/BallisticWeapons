@@ -742,13 +742,8 @@ defaultproperties
 	ChargeTime=0.35
 	MaxHoldTime=0.0
 	HipSpreadFactor=2.000000
-
     ProjectileClass=Class'BWBP_SKC_Pro.BulldogRocket'
     SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-	
-    CutOffDistance=2048.000000
-    CutOffStartRange=1024.000000
-
 	TraceCount=10
 	TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
     ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'

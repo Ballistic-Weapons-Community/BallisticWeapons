@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Fifty9PrimaryFire extends BallisticRangeAttenFire;
+class Fifty9PrimaryFire extends BallisticProInstantFire;
 
 //Spawn shell casing for first person
 function EjectBrass()

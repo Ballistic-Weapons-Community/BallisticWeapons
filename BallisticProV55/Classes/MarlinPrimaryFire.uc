@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class MarlinPrimaryFire extends BallisticRangeAttenFire;
+class MarlinPrimaryFire extends BallisticProInstantFire;
 
 var() 	BUtil.FullSound			GaussSound;	//extra Gauss sound to play
 var 	bool					bGauss;
@@ -100,8 +100,6 @@ simulated function SendFireEffect(Actor Other, Vector HitLocation, Vector HitNor
 defaultproperties
 {
 	 GaussSound=(Sound=Sound'BW_Core_WeaponSound.LightningGun.LG-FireStart2',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
-	 CutOffStartRange=3072
-	 CutOffDistance=6144
 	 RangeAtten=0.75
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=24.000000

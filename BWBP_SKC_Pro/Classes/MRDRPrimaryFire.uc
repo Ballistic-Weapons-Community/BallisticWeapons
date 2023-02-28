@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
-class MRDRPrimaryFire extends BallisticRangeAttenFire;
+class MRDRPrimaryFire extends BallisticProInstantFire;
 
 //Do the spread on the client side
 function PlayFiring()
@@ -26,8 +26,6 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=1536.000000
-     CutOffStartRange=768.000000
      WallPenetrationForce=8.000000
      
      Damage=20.000000

@@ -45,15 +45,11 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
-     CutOffDistance=1536.000000
-     CutOffStartRange=768.000000
      TraceCount=8
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'
      TraceRange=(Min=2500.000000,Max=2500.000000)
      Damage=10.000000
-     
-     
      RangeAtten=0.500000
      DamageType=Class'BallisticProV55.DTleMatShotgun'
      DamageTypeHead=Class'BallisticProV55.DTleMatShotgunHead'

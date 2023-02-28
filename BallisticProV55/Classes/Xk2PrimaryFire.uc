@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XK2PrimaryFire extends BallisticRangeAttenFire;
+class XK2PrimaryFire extends BallisticProInstantFire;
 
 var() Actor						SMuzzleFlash;		// Silenced Muzzle flash stuff
 var() class<Actor>				SMuzzleFlashClass;
@@ -36,17 +36,18 @@ function InitEffects()
 function SetSilenced(bool bSilenced)
 {
 	bAISilent = bSilenced;
+
 	if (!bSilenced)
 	{
 		XInaccuracy *= 2;
 		YInaccuracy *= 2;
-		CutOffStartRange *= 1.25;
+		DecayRange.Min *= 1.25f;
 	}
 	else
 	{
 		XInaccuracy = default.XInaccuracy;
 		YInaccuracy = default.YInaccuracy;
-		CutOffStartRange = default.CutOffStartRange;
+		DecayRange.Min *= 0.8f;
 	}
 }
 
@@ -88,9 +89,10 @@ simulated function SwitchWeaponMode (byte NewMode)
 	if (NewMode == 4) 
 	{
 		bAmped=True;
+        
 		WaterRangeAtten=0.600000;
-		CutOffDistance=2304.000000;
-		CutOffStartRange=1536.000000;
+		DecayRange.Max = 4200.000000;
+		DecayRange.Min = 1500.000000;
 		WallPenetrationForce=24.000000;
 	}
 	else
@@ -192,9 +194,7 @@ defaultproperties
      SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
-	 
-     CutOffDistance=2048.000000
-     CutOffStartRange=768.000000
+
      TraceRange=(Min=4096.000000,Max=4096.000000)
 	 RangeAtten=0.2
 	 WaterRangeAtten=0.200000

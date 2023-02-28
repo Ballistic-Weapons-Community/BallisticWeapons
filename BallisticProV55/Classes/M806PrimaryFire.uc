@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class M806PrimaryFire extends BallisticRangeAttenFire;
+class M806PrimaryFire extends BallisticProInstantFire;
 
 //Do the spread on the client side
 function PlayFiring()
@@ -30,8 +30,6 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=2048.000000
-     CutOffStartRange=768.000000
      TraceRange=(Min=4000,Max=4000)
      WallPenetrationForce=8.000000
      
