@@ -12,6 +12,8 @@ class FireParams extends Object
     DependsOn(BUtil)
     DependsOn(FireEffectParams);
 
+const DEFAULT_TIME_DILATION = 1.1f;
+
 //-----------------------------------------------------------------------------
 // WeaponFire General
 //-----------------------------------------------------------------------------
@@ -56,20 +58,20 @@ final function FireEffectParams.FireModeStats GetStats()
 	
 	FS = FireEffectParams[0].GetStats();
 
-    FS.DPS = FS.DamageInt / FireInterval;
+    FS.DPS = (FS.DamageInt / FireInterval) * DEFAULT_TIME_DILATION;
 
     if (FS.DamageInt > 0)
-	    FS.TTK = FireInterval * (Ceil(175/FS.DamageInt) - 1);
+	    FS.TTK = FireInterval * (Ceil(175/FS.DamageInt) - 1) / DEFAULT_TIME_DILATION;
     else
         FS.TTK = 0;
 
     if (FireInterval < 0.4)
-		FS.RPM = String(int((1 / FireInterval) * 60)) @ FS.ShotTypeString $ "/minute";
+		FS.RPM = String(int((1 / FireInterval) * 60 * DEFAULT_TIME_DILATION)) @ FS.ShotTypeString $ "/minute";
 	else 
-        FS.RPM = 1 / FireInterval @ FS.ShotTypeString $ "/second";
+        FS.RPM = String(int((1 / FireInterval) * DEFAULT_TIME_DILATION)) @ FS.ShotTypeString $ "/second";
 
-    FS.RPS = FS.RPShot / FireInterval;
-	FS.FCPS = FS.FCPShot / FireInterval;
+    FS.RPS = (FS.RPShot / FireInterval) * DEFAULT_TIME_DILATION;
+	FS.FCPS = (FS.FCPShot / FireInterval) * DEFAULT_TIME_DILATION;
 	
 	return FS;
 }

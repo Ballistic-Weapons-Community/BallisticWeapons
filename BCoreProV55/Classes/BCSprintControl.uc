@@ -170,7 +170,7 @@ defaultproperties
 {
      Stamina=100.000000
      MaxStamina=100.000000
-     StaminaDrainRate=20.000000
+     StaminaDrainRate=25.000000
      StaminaChargeRate=25.000000
      SpeedFactor=1.50000
      bReplicateInstigator=True

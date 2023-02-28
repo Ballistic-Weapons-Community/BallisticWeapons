@@ -9,8 +9,6 @@
 //=============================================================================
 class BallisticWeaponStatsMenu extends UT2K4GUIPage;
 
-const TIME_DILATION_FIXED = 1.1f;
-
 var float BaselineDPSDivisor;
 var float BaselineTTKDivisor;
 
@@ -316,15 +314,6 @@ function UpdateInfo()
 		l_WeaponCaption.Caption = BW.default.ItemName;
 		l_WeaponCaption.TextColor = BW.default.HUDColor;
 		sb_Desc.SetContent(BW.static.GetManual());
-
-		// account for 1.1 speed that is native to UT
-		FS.DPS *= TIME_DILATION_FIXED; 
-		FS.TTK /= TIME_DILATION_FIXED;
-		FS.RPS *= TIME_DILATION_FIXED;
-		
-		AFS.DPS *= TIME_DILATION_FIXED;
-		AFS.TTK /= TIME_DILATION_FIXED;
-		AFS.RPS *= TIME_DILATION_FIXED;
 
 		//pri
 		db_DShot.Caption = FS.Damage;
