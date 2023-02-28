@@ -1,11 +1,10 @@
 //=============================================================================
 // XM20SecondaryFire.
 //
-// Burning laser fire that fires while altfire is held. Uses a special recharging
-// ammo counter with a small limiting delay after releasing fire.
-// Switches on weapon's laser sight when firing for effects.
+// Burning laser fire that fires while altfire is held after a delay
+// Can fire in high power or low power, and will update the gun screen.
 //
-// by Nolan "Dark Carnivour" Richert.
+// by DC, SK, Jiffy
 // Copyright(c) 2007 RuneStorm. All Rights Reserved.
 //=============================================================================
 class XM20SecondaryFire extends BallisticProInstantFire;
@@ -71,7 +70,7 @@ simulated function ModeTick(float DT)
 // ModeDoFire from WeaponFire.uc, but with a few changes
 simulated event ModeDoFire()
 {
-    if (!AllowFire() || XM20Carbine(BW).LaserCharge < XM20Carbine(BW).MaxCharge || TyphonPDW(BW).bShieldUp || bPreventFire)
+    if (!AllowFire() || XM20Carbine(BW).LaserCharge < XM20Carbine(BW).MaxCharge || bPreventFire)
         return;
 
 	if (BW != None)
@@ -117,7 +116,7 @@ simulated event ModeDoFire()
         PlayFiring();
         FlashMuzzleFlash();
         StartMuzzleSmoke();
-		TyphonPDW(BW).UpdateScreen();
+		XM20Carbine(BW).UpdateScreen();
     }
     else // server
         ServerPlayFiring();
