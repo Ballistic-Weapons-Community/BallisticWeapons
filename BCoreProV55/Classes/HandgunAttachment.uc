@@ -41,8 +41,6 @@ simulated function Hide(bool NewbHidden)
 // Return the location of the muzzle.
 simulated function Vector GetModeTipLocation(optional byte Mode)
 {
-    local Coords C;
-
 	if (Instigator != None && Instigator.IsFirstPerson() && PlayerController(Instigator.Controller).ViewTarget == Instigator)
 	{
 		if (HandGun != None)

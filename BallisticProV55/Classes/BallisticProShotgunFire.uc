@@ -189,46 +189,6 @@ static function float GetAttachmentDispersionFactor()
 	return default.HipSpreadFactor;
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-    local int opt_range, decay_range, max_range;
-	
-	FS.DamageInt = int(default.Damage * default.TraceCount);
-
-    if (default.RangeAtten < 1f)
-	    FS.Damage 		= FS.DamageInt @ "-" @ int(FS.DamageInt * default.RangeAtten);
-    else 
-        FS.Damage = String(FS.DamageInt);
-
-    FS.HeadMult = default.HeadMult;
-    FS.LimbMult = default.LimbMult;
-
-	FS.DPS = (default.Damage * default.TraceCount) / default.FireRate;
-	FS.TTK = default.FireRate * (Ceil(175/FS.DamageInt) - 1);
-
-	if (default.FireRate < 0.5)
-		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	else 
-        FS.RPM = 1/default.FireRate@"times/second";
-
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-
-    opt_range =         default.CutOffStartRange / 52.5f;
-    decay_range =     (default.CutOffStartRange + default.CutOffDistance) / 52.5f;
-    max_range =         default.TraceRange.Max / 52.5f;
-
-	FS.RangeOpt = "Max damage:"@ opt_range @"metres";
-    FS.RangeDecayed = "Min damage:"@ decay_range @"metres";
-    FS.RangeMax = "Max range:"@ max_range @"metres";
-	
-	return FS;
-}
-
 defaultproperties
 {
      HipSpreadFactor=2.00000

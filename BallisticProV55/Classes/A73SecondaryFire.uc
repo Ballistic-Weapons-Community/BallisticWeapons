@@ -33,29 +33,6 @@ function DoFireEffect()
 		A73SkrithRifle(BW).AddHeat(HeatPerShot, HeatDeclineDelay);
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-
-	FS.DamageInt = default.ProjectileClass.default.Damage;
-	FS.Damage = String(FS.DamageInt)@"-"@String(FS.DamageInt * 3);
-
-    FS.HeadMult = class<BallisticProjectile>(default.ProjectileClass).default.HeadMult;
-    FS.LimbMult = class<BallisticProjectile>(default.ProjectileClass).default.LimbMult;
-
-	FS.DPS = default.ProjectileClass.default.Damage / default.FireRate;
-	FS.TTK = default.FireRate * (Ceil(175/default.ProjectileClass.default.Damage) - 1);
-	FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.RangeOpt = "Max dmg: 0.3s";
-	
-	return FS;
-}
-
 defaultproperties
 {
 	 HeatPerShot=3.40000

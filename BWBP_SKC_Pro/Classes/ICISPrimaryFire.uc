@@ -67,7 +67,6 @@ function DoFireEffect()
 defaultproperties
 {
     bAISilent=True
-    EffectString="Heals over time."
     PreFireTime=0.65
     PreFireAnim="PrepHealLoop"
     FireLoopAnim="HealLoopA"

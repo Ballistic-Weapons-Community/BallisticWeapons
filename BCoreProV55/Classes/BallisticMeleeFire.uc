@@ -450,28 +450,6 @@ simulated event ModeHoldFire()
 		BW.PlayerSprint(false);
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-	
-	FS.DamageInt = default.Damage;
-	if (default.bFireOnRelease)
-		FS.Damage = String(FS.DamageInt)@"-"@String(int(FS.DamageInt * 1.33));
-	else	FS.Damage = String(FS.DamageInt);
-
-
-    FS.HeadMult = default.HeadMult;
-    FS.LimbMult = default.LimbMult;
-
-	FS.DPS = default.Damage / default.FireRate;
-	FS.TTK = default.FireRate * (Ceil(175/default.Damage) - 1);
-	FS.RPM = 1/default.FireRate@"attacks/second";
-	FS.RangeOpt = "Max range: "@(default.TraceRange.Max / 52.5)@"metres";
-	
-	return FS;
-}
-
 defaultproperties
 {
      SwipePoints(0)=(Weight=3,offset=(Yaw=2560))
@@ -498,7 +476,6 @@ defaultproperties
      PDamageFactor=0.500000
      RunningSpeedThresh=1000.000000
      bNoPositionalDamage=True
-     ShotTypeString="attacks"
      TweenTime=0.100000
      FireRate=0.800000
 }

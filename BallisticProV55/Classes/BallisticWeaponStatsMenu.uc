@@ -11,9 +11,10 @@ class BallisticWeaponStatsMenu extends UT2K4GUIPage;
 
 const TIME_DILATION_FIXED = 1.1f;
 
-const BASELINE_DPS_DIVISOR = 2.42f;
-const BASELINE_TTK_DIVISOR = 0.0065f;
-const BASELINE_RECOIL_DIVISOR = 14.42f;
+var float BaselineDPSDivisor;
+var float BaselineTTKDivisor;
+
+const BASELINE_RECOIL_DIVISOR = 14.42f; // the recoil generation of the sar12 in arena
 
 var Automated GUIImage			    MyBack, Box_WeaponList, Box_Desc, Box_WeaponIcon, WeaponIcon;
 var Automated GUISectionBackground  GenBack, PriBack, AltBack;
@@ -46,6 +47,18 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	Super.InitComponent(MyController, MyOwner);
 	if (bInitialized)
 		return;
+
+    if (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.default.GameStyle == 0)
+    {
+        BaselineDPSDivisor = 2.42f;
+        BaselineTTKDivisor = 0.0065f;
+    }
+
+    else 
+    {
+        BaselineDPSDivisor = 4f;
+        BaselineTTKDivisor = 0.004f;
+    }
 
 	lb_Weapons.List.OnChange = InternalOnChange;
 	
@@ -283,24 +296,27 @@ function UpdateInfo()
 	local class<BallisticWeapon> BW;
     local class<BallisticWeaponParams> params;
 
-	local BallisticFire.FireModeStats FS, AFS;
+	local FireEffectParams.FireModeStats FS, AFS;
+
+    local int GameStyleIndex;
+
+    GameStyleIndex = class'BCReplicationInfo'.default.GameStyle;
 	
 	//FIXME DynamicLoadObject
 	BW = class<BallisticWeapon>(DynamicLoadObject(lb_Weapons.List.GetExtra(), class'Class', True));
 
 	if (BW != None)
-        params = BW.default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle];
+        params = BW.default.ParamsClasses[GameStyleIndex];
 
     if (params != None)
 	{
-		FS = class<BallisticFire>(BW.default.FireModeClass[0]).static.GetStats();
-		AFS = class<BallisticFire>(BW.default.FireModeClass[1]).static.GetStats();
+		FS = params.static.GetFireStats();
+		AFS = params.static.GetAltFireStats();
 		WeaponIcon.Image = BW.default.BigIconMaterial;
 		l_WeaponCaption.Caption = BW.default.ItemName;
 		l_WeaponCaption.TextColor = BW.default.HUDColor;
 		sb_Desc.SetContent(BW.static.GetManual());
-		
-		
+
 		// account for 1.1 speed that is native to UT
 		FS.DPS *= TIME_DILATION_FIXED; 
 		FS.TTK /= TIME_DILATION_FIXED;
@@ -310,7 +326,6 @@ function UpdateInfo()
 		AFS.TTK /= TIME_DILATION_FIXED;
 		AFS.RPS *= TIME_DILATION_FIXED;
 
-		
 		//pri
 		db_DShot.Caption = FS.Damage;
         db_HeadMult.Caption = "Head: x"$String(FS.HeadMult);
@@ -321,11 +336,11 @@ function UpdateInfo()
         db_RangeMax.Caption = FS.RangeMax;
 		
 		pb_DPS.Value = FMin(FS.DPS, pb_DPS.High);
-		pb_DPS.Caption = FS.DPS @ "(" $ int(FS.DPS / BASELINE_DPS_DIVISOR)$"%)";
+		pb_DPS.Caption = FS.DPS @ "(" $ int(FS.DPS / BaselineDPSDivisor)$"%)";
 		pb_DPS.BarColor = ColorBar(pb_DPS.Value / pb_DPS.High);
 		
 		pb_TTK.Value = FMin(FS.TTK, pb_TTK.High);
-		pb_TTK.Caption = FS.TTK @ "("$int(FS.TTK / BASELINE_TTK_DIVISOR)$"%)";
+		pb_TTK.Caption = FS.TTK @ "("$int(FS.TTK / BaselineTTKDivisor)$"%)";
 		pb_TTK.BarColor = ColorBar(pb_TTK.Value / pb_TTK.High);
 		
 		db_RPM.Caption = FS.RPM;
@@ -390,8 +405,11 @@ function UpdateInfo()
 			bAltStatsVisible=false;
 		}
 		
+        if (AFS.DamageInt > 0)
+            db_DShotAlt.Caption = AFS.Damage;
+        else 
+            db_DShotAlt.Caption = AFS.EffectString;
 
-		db_DShotAlt.Caption = AFS.Damage;
         db_HeadMultAlt.Caption = "Head: x"$String(AFS.HeadMult);
         db_LimbMultAlt.Caption = "Limb: x"$String(AFS.LimbMult);
 
@@ -428,7 +446,11 @@ function UpdateInfo()
 		pb_MoveSpeed.Caption = string(int(Ceil(pb_MoveSpeed.Value * 100f)))$ "%";
 		pb_MoveSpeed.BarColor = ColorBar(pb_MoveSpeed.Value / pb_MoveSpeed.High);
 
-        pb_ADSMoveSpeed.Value = params.default.Layouts[0].PlayerSpeedFactor * params.default.Layouts[0].SightMoveSpeedFactor;
+        pb_ADSMoveSpeed.Value = 
+            params.default.Layouts[0].PlayerSpeedFactor * 
+            params.default.Layouts[0].SightMoveSpeedFactor * 
+            class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor;
+        
 		pb_ADSMoveSpeed.Caption = string(int(Ceil(pb_ADSMoveSpeed.Value * 100f)))$ "%";
 		pb_ADSMoveSpeed.BarColor = ColorBar(pb_ADSMoveSpeed.Value / pb_ADSMoveSpeed.High);
 
@@ -771,4 +793,7 @@ defaultproperties
      bAllowedAsLast=True
      OnClose=BallisticWeaponStatsMenu.InternalOnClose
      OnKeyEvent=BallisticWeaponStatsMenu.InternalOnKeyEvent
+
+    BaselineDPSDivisor = 2.42f;
+    BaselineTTKDivisor = 0.0065f;
 }

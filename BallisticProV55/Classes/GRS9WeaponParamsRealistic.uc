@@ -85,6 +85,7 @@ defaultproperties
         FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
         WarnTargetPct=1.000000
         BotRefireRate=0.3
+        EffectString="Blinding flash"
     End Object
 
     Begin Object Class=FireParams Name=RealisticFlashFireParams

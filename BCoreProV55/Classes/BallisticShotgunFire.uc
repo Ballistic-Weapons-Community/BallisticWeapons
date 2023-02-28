@@ -353,35 +353,6 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	return true;
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-	
-	FS.DamageInt = int(default.Damage * default.TraceCount);
-
-    if (default.RangeAtten < 1f)
-	    FS.Damage 		= String(FS.DamageInt) @ "-" @ String(FS.DamageInt * default.RangeAtten);
-    else 
-        FS.Damage = String(FS.DamageInt);
-
-    FS.HeadMult = default.HeadMult;
-    FS.LimbMult = default.LimbMult;
-
-	FS.DPS = (default.Damage * default.TraceCount) / default.FireRate;
-	FS.TTK = default.FireRate * (Ceil(175/FS.DamageInt) - 1);
-	if (default.FireRate < 0.5)
-		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	else FS.RPM = 1/default.FireRate@"times/second";
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.RangeOpt = "Max range:"@(default.TraceRange.Max / 52.5)@"metres";
-	
-	return FS;
-}
-
 static function float GetAttachmentDispersionFactor()
 {
 	return 3.0f;
@@ -396,5 +367,4 @@ defaultproperties
      LimbMult=0.7f
 	 bPenetrate=False
      FireSpreadMode=FSM_Scatter
-     ShotTypeString="shots"
 }

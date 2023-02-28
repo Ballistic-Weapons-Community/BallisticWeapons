@@ -62,6 +62,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
 		MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
 		BotRefireRate=0.300000
+        EffectString="Blinding flash"
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

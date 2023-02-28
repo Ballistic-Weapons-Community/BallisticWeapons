@@ -63,6 +63,8 @@ simulated function ApplyRecoil()
 	}
 }*/
 
+/*
+FIXME: Special fire. Needs its own fire effect params class to do that.
 //Accessor for stats
 static function FireModeStats GetStats() 
 {
@@ -81,6 +83,7 @@ static function FireModeStats GetStats()
 	
 	return FS;
 }
+*/
 
 defaultproperties
 {

@@ -510,18 +510,6 @@ state Immolate
 	function FlashMuzzleFlash();
 }
 
-//Accessor for stats
-static function FireModeStats GetStats()
-{
-	local FireModeStats FS;
-
-	FS = Super.GetStats();
-    
-	FS.RangeOpt = "Max:"@(10000 / 52.5)@"metres";
-
-	return FS;
-}
-
 defaultproperties
 {
      FireSoundLoop=Sound'BW_Core_WeaponSound.DarkStar.Dark-AltFireLoop'

@@ -8,7 +8,8 @@
 //=============================================================================
 class BWRechargeSprintControl extends BCSprintControl;
 
-const SPRINT_INTERVAL = 2.25;
+const SHORT_RECHARGE_DELAY = 0.5f;
+const LONG_RECHARGE_DELAY = 2f;
 
 replication
 {
@@ -29,8 +30,11 @@ singular function StopSprint()
 	if (Instigator != None)
 		UpdateSpeed();
 
-	SprintRechargeDelay = Level.TimeSeconds + SPRINT_INTERVAL;
-	ClientDelayRecharge(SPRINT_INTERVAL);
+    if (SprintRechargeDelay < Level.TimeSeconds + SHORT_RECHARGE_DELAY)
+    {
+        SprintRechargeDelay = Level.TimeSeconds + SHORT_RECHARGE_DELAY;
+        ClientDelayRecharge(SHORT_RECHARGE_DELAY);
+    }
 }
 
 simulated function OwnerEvent(name EventName)
@@ -43,35 +47,34 @@ simulated function OwnerEvent(name EventName)
 		{
 			ClientJumped();
 			Stamina = FMax(0, Stamina - StaminaDrainRate * 2);
-			SprintRechargeDelay = Level.TimeSeconds + SPRINT_INTERVAL;
+			SprintRechargeDelay = Level.TimeSeconds + LONG_RECHARGE_DELAY;
 		}
 		else
 		{
-			SprintRechargeDelay = Level.TimeSeconds + SPRINT_INTERVAL;
-			ClientDelayRecharge(SPRINT_INTERVAL);
+			SprintRechargeDelay = Level.TimeSeconds + LONG_RECHARGE_DELAY;
+			ClientDelayRecharge(LONG_RECHARGE_DELAY);
 		}
 	}
 	else if (EventName == 'Jumped')
 	{
-		SprintRechargeDelay = Level.TimeSeconds + SPRINT_INTERVAL;
-		ClientDelayRecharge(SPRINT_INTERVAL);
+		SprintRechargeDelay = Level.TimeSeconds + LONG_RECHARGE_DELAY;
+		ClientDelayRecharge(LONG_RECHARGE_DELAY);
 	}
 }
 
 simulated function ClientDelayRecharge(float Delay)
 {
-	SprintRechargeDelay = Level.TimeSeconds + SPRINT_INTERVAL;
+	SprintRechargeDelay = Level.TimeSeconds + Delay;
 }
 
 simulated function ClientJumped()
 {
 	if (level.NetMode != NM_Client)
 		return;
-	SprintRechargeDelay = Level.TimeSeconds + SPRINT_INTERVAL;
+
+	SprintRechargeDelay = Level.TimeSeconds + LONG_RECHARGE_DELAY;
 	Stamina = FMax(0, Stamina - StaminaDrainRate * 2);
 }
-
-
 
 defaultproperties
 {

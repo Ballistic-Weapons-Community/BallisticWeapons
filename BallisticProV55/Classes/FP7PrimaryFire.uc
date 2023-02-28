@@ -8,6 +8,9 @@
 //=============================================================================
 class FP7PrimaryFire extends BallisticProGrenadeFire;
 
+/*
+FIXME: Needs to report damage from control instead. Needs its own fire params or fire effect params class to do that.
+
 //Accessor for stats
 static function FireModeStats GetStats() 
 {
@@ -15,7 +18,6 @@ static function FireModeStats GetStats()
 
 	FS.DamageInt = class'FP7FireControl'.default.Damage;
 	FS.Damage = String(FS.DamageInt)@"+"@class'FP7FireControl'.default.BaseDamage@"initial";
-
 
     FS.HeadMult = 1;
     FS.LimbMult = 1;
@@ -31,6 +33,7 @@ static function FireModeStats GetStats()
 	
 	return FS;
 }
+*/
 
 defaultproperties
 {

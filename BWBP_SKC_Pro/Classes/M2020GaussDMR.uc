@@ -484,8 +484,8 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
     {
 		AddHeat(Damage*2.5, false);
 
-		Damage /= 5;
-		Momentum /= 5;
+		Damage /= 2;
+		Momentum /= 2;
 
 		M2020GaussAttachment(ThirdPersonActor).BlockEffectCount += 1;
 		M2020GaussAttachment(ThirdPersonActor).DoBlockEffect();

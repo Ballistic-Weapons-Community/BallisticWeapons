@@ -2300,6 +2300,7 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
 {
     local float VelocityZ;
     local name Anim;
+    local float DodgeGroundSpeed;
 
     if ( Physics == PHYS_Falling )
     {
@@ -2322,7 +2323,16 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
     }
 
     VelocityZ = Velocity.Z;
-    Velocity = DodgeSpeedFactor*GroundSpeed*Dir + (Velocity Dot Cross)*Cross;
+
+    DodgeGroundSpeed = GroundSpeed;
+
+    // arena allows increased dodge distance when sprint is on
+    if (class'BCReplicationInfo'.default.GameStyle != 0 && default.GroundSpeed < GroundSpeed)
+    {
+        DodgeGroundSpeed = default.GroundSpeed;
+    }
+
+    Velocity = DodgeSpeedFactor*DodgeGroundSpeed*Dir + (Velocity Dot Cross)*Cross;
 
 	if ( !bCanDodgeDoubleJump )
 		MultiJumpRemaining = 0;

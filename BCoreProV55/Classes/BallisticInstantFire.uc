@@ -773,38 +773,6 @@ simulated function SwitchWeaponMode (byte NewMode)
 	}
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-	
-	FS.DamageInt 	= default.Damage;
-
-    if (default.RangeAtten < 1f)
-	    FS.Damage 		= String(FS.DamageInt) @ "-" @ default.Damage * default.RangeAtten;
-    else 
-        FS.Damage = String(FS.DamageInt);
-
-    FS.HeadMult = default.HeadMult;
-    FS.LimbMult = default.LimbMult;
-
-	FS.DPS 			= FS.DamageInt / default.FireRate;
-	FS.TTK 			= default.FireRate * (Ceil(175/FS.DamageInt) - 1);
-
-	if (default.FireRate < 0.5)
-		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	else 
-		FS.RPM 	= 1/default.FireRate@"times/second";
-		
-	FS.RPShot 		= default.FireRecoil;
-	FS.RPS 			= default.FireRecoil / default.FireRate;
-	FS.FCPShot 		= default.FireChaos;
-	FS.FCPS 		= default.FireChaos / default.FireRate;
-	FS.RangeOpt 	= "Max range:"@(int(default.TraceRange.Max / 52.5))@"m";
-	
-	return FS;
-}
-
 defaultproperties
 {
      TraceRange=(Min=5000.000000,Max=5000.000000)

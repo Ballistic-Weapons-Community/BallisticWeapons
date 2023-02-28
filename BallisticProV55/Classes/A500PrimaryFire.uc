@@ -77,6 +77,9 @@ simulated function vector GetFireDir(out Vector StartTrace)
 	return Vector(AdjustAim(StartTrace, AimError));
 }
 
+/*
+FIXME: Projectile weapon with shotgun-like mechanics.
+
 //Accessor for stats
 static function FireModeStats GetStats() 
 {
@@ -84,7 +87,6 @@ static function FireModeStats GetStats()
 	
 	FS.DamageInt = default.ProjectileClass.default.Damage * default.ProjectileCount;
 	FS.Damage = String(FS.DamageInt);
-
 
     FS.HeadMult = class<BallisticProjectile>(default.ProjectileClass).default.HeadMult;
     FS.LimbMult = class<BallisticProjectile>(default.ProjectileClass).default.LimbMult;
@@ -100,6 +102,7 @@ static function FireModeStats GetStats()
 	
 	return FS;
 }
+*/
 
 defaultproperties
 {

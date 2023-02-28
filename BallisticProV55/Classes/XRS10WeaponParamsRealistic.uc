@@ -46,6 +46,7 @@ defaultproperties
 		Recoil=0.0
 		Chaos=-1.0
 		BotRefireRate=0.300000
+        EffectString="Laser sight"
 	End Object
 		
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams

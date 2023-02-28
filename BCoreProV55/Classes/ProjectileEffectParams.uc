@@ -39,6 +39,30 @@ var()   ERadiusFallOffType          RadiusFallOffType;
 
 static simulated function Initialize(BallisticWeapon BW);
 
+//Accessor for stats
+function FireModeStats GetStats() 
+{
+	local FireModeStats FS;
+
+    FS = Super.GetStats();
+
+	FS.DamageInt = Damage;
+	FS.Damage = String(FS.DamageInt);
+
+    if (DamageGainEndTime > 0)
+        FS.Damage @= "-" @ String(Int(FS.DamageInt * (1f + MaxDamageGainFactor)));
+
+    FS.HeadMult = HeadMult;
+    FS.LimbMult = LimbMult;
+
+    if (DamageGainEndTime > 0)
+    	FS.RangeOpt = "Ramp: " @ DamageGainEndTime + DamageGainStartTime @ "seconds";
+    else
+	    FS.RangeOpt = "Maximum:"@ String(int(10000 / 52.5))@"m";
+	
+	return FS;
+}
+
 defaultproperties
 {
     HeadMult=1.500000
@@ -46,4 +70,5 @@ defaultproperties
     MaxSpeed=0.000000
     DamageRadius=0.000000
     RadiusFallOffType=RFO_Quadratic
+    ShotTypeString="shots"
 }
