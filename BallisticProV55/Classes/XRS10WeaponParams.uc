@@ -38,7 +38,7 @@ defaultproperties
 
     Begin Object Class=FireEffectParams Name=ArenaSecEffectParams
         BotRefireRate=0.3
-             EffectString="Laser sight"
+        EffectString="Laser sight"
     End Object
 
 	Begin Object Class=FireParams Name=ArenaSecFireParams

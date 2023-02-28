@@ -396,6 +396,7 @@ function Vector GetDamageHitLocation(Actor Other, Vector HitLocation, vector Tra
 final function float GetRangeAttenFactor(vector start, vector end)
 {
 	local float dist;
+    local float alpha;
 
 	dist = VSize(end - start);
 
@@ -405,7 +406,9 @@ final function float GetRangeAttenFactor(vector start, vector end)
 	if (dist >= DecayRange.Max)
 		return RangeAtten;
 
-	return Lerp( (dist - DecayRange.Min) / DecayRange.Max - DecayRange.Min, 1.0f, RangeAtten);
+    alpha = (dist - DecayRange.Min) / (DecayRange.Max - DecayRange.Min);
+
+	return Lerp(alpha, 1.0f, RangeAtten);
 }
 
 function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
