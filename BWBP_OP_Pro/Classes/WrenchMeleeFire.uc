@@ -17,7 +17,7 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 	local int AdjustedDamage, AdjustedRepair;
 	
 	if (Other.IsA('Monster'))
-		Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
+		Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
 	
 	//Locational damage code from Mr Evil under test here
 	else if(Other.IsA('xPawn'))
@@ -32,10 +32,10 @@ function DoDamage (Actor Other, vector HitLocation, vector TraceStart, vector Di
 		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
 		BoneTestLocation += HitLocation;
 		
-		Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
+		Dmg = GetDamage(Other, BoneTestLocation, TraceStart, Dir, Victim, HitDT);
 	}
 	
-	else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
+	else Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
 	//End locational damage code test
 		
 	if (Instigator != None)

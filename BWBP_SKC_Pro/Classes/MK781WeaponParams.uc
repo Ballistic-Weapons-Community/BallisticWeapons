@@ -9,6 +9,7 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=2560.000000,Max=2560.000000)
+        DecayRange=(Min=750,Max=2250)
 		WaterTraceRange=5000.0
 		RangeAtten=0.400000
 		TraceCount=8

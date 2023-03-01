@@ -7,7 +7,7 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
+	/*Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=13000.000000)
 		RangeAtten=0.950000
 		Damage=7
@@ -29,6 +29,57 @@ defaultproperties
 		FireAnim="FireLoop"
 		AimedFireAnim="SightFire"
 	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object*/
+	
+	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
+		TraceRange=(Min=12000.000000,Max=13000.000000)
+		RangeAtten=0.950000
+		Damage=7
+		DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+		PenetrateForce=180
+		bPenetrate=True
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
+		FlashScaleFactor=0.400000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=20
+		Chaos=0.01
+		Inaccuracy=(X=64,Y=64)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
+		FireInterval=0.063150
+		FireEndAnim="FireLoopEnd"	
+		FireAnim="FireLoop"
+		AimedFireAnim="SightFire"
+	FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
+	End Object
+
+	Begin Object Class=InstantEffectParams Name=ArenaPrimarySpreadEffectParams
+		TraceRange=(Min=12000.000000,Max=13000.000000)
+		RangeAtten=0.950000
+		Damage=7
+		DamageType=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DT_SuperchargeZapped'
+		PenetrateForce=180
+		bPenetrate=True
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.PlasmaFlashEmitter'
+		FlashScaleFactor=0.400000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=100
+		Chaos=0.01
+		Inaccuracy=(X=512,Y=512)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ArenaPrimarySpreadFireParams
+		FireInterval=0.040150
+		FireEndAnim=	
+		AimedFireAnim="SightFire"
+	FireEffectParams(0)=InstantEffectParams'ArenaPrimarySpreadEffectParams'
 	End Object
 		
 	//=================================================================
@@ -75,6 +126,10 @@ defaultproperties
 		AimSpread=(Min=256,Max=256)
 		ViewBindFactor=0.200000
 		ChaosDeclineTime=1.500000
+		SprintChaos=0.500000
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
+		JumpChaos=0.500000
+		JumpOffset=(Pitch=-6000,Yaw=2000)
 	End Object
     
 	//=================================================================
@@ -82,13 +137,23 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ArenaParams
+		InventorySize=12
+		PlayerSpeedFactor=0.850000
+		PlayerJumpFactor=0.850000
+		SightMoveSpeedFactor=0.950000
 		SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
 		SightingTime=0.500000
 		SightPivot=(Pitch=64)
 		ZoomType=ZT_Fixed
+		InitialWeaponMode=2
+		WeaponModes(0)=(ModeName="Mode: Area Charge",ModeID="WM_FullAuto")
+		WeaponModes(1)=(ModeName="Mode: Dolphin",ModeID="WM_FullAuto",Value=5.000000,bUnavailable=True)
+		WeaponModes(2)=(ModeName="Mode: Precise Charge",ModeID="WM_FullAuto")
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
-		FireParams(0)=FireParams'ArenaPrimaryFireParams'
+		FireParams(0)=FireParams'ArenaPrimarySpreadFireParams'
+		FireParams(1)=FireParams'ArenaPrimaryFireParams'
+		FireParams(2)=FireParams'ArenaPrimaryFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ArenaParams'

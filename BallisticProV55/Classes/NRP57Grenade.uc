@@ -72,6 +72,7 @@ defaultproperties
      ParamsClasses(0)=Class'NRP57WeaponParams'
      ParamsClasses(1)=Class'NRP57WeaponParamsClassic'
      ParamsClasses(2)=Class'NRP57WeaponParamsRealistic'
+     ParamsClasses(3)=Class'NRP57WeaponParamsTactical'
      FireModeClass(0)=Class'BallisticProV55.NRP57PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.NRP57SecondaryFire'
 	 

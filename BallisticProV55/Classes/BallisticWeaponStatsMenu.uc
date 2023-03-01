@@ -9,11 +9,9 @@
 //=============================================================================
 class BallisticWeaponStatsMenu extends UT2K4GUIPage;
 
-const TIME_DILATION_FIXED = 1.1f;
-
-const BASELINE_DPS_DIVISOR = 2.42f;
-const BASELINE_TTK_DIVISOR = 0.0065f;
-const BASELINE_RECOIL_DIVISOR = 14.42f;
+var float BaselineDPS;
+var float BaselineTTK;
+var float BaselineRPS;
 
 var Automated GUIImage			    MyBack, Box_WeaponList, Box_Desc, Box_WeaponIcon, WeaponIcon;
 var Automated GUISectionBackground  GenBack, PriBack, AltBack;
@@ -33,19 +31,41 @@ var automated moComboBox	        cb_Display;
 var automated GUIScrollTextBox      sb_Desc;
 var automated GUIProgressBar	    pb_DPS, pb_TTK, pb_RPS, pb_DPSAlt, pb_TTKAlt, pb_RPSAlt, pb_Raise, pb_ViewRecoilFactor, pb_DPM, pb_MoveSpeed, pb_ADSMoveSpeed, pb_Displacement;
 
-var InterpCurve 						RedCurve, GreenCurve, BlueCurve;
+var InterpCurve 					RedCurve, GreenCurve, BlueCurve;
 
-var bool									bInitialized, bAltStatsVisible;
+var bool							bInitialized, bAltStatsVisible;
 
-var bool									bShowTextBox;
+var bool							bShowTextBox;
+
+var class<BallisticWeapon>          BaselineClass;
 
 var() localized string Headings[10];
+
+function InitBaselineParams()
+{
+    local class<BallisticWeaponParams> params;
+    local int GameStyleIndex;
+    local FireEffectParams.FireModeStats fire_stats;
+
+    GameStyleIndex = class'BCReplicationInfo'.default.GameStyle;
+
+    params = BaselineClass.default.ParamsClasses[GameStyleIndex];
+
+    fire_stats = params.static.GetFireStats();
+    
+    BaselineDPS = fire_stats.DPS;
+    BaselineTTK = fire_stats.TTK;
+    BaselineRPS = fire_stats.RPS;
+}
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
 	Super.InitComponent(MyController, MyOwner);
+
 	if (bInitialized)
 		return;
+
+    InitBaselineParams();
 
 	lb_Weapons.List.OnChange = InternalOnChange;
 	
@@ -58,9 +78,9 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_RPS.Caption = "Recoil/Second";
     lb_Range.Caption = "Effective Ranges";
 	
-	pb_DPS.High = 520;
-	pb_TTK.High = 1.4f;
-	pb_RPS.High = 2750;
+	pb_DPS.High = BaselineDPS * 3;
+	pb_TTK.High = BaselineTTK * 3;
+	pb_RPS.High = BaselineRPS * 3;
 	
 	//alt
 	lb_DShotAlt.Caption = "Damage";
@@ -71,9 +91,9 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_RPSAlt.Caption = "Recoil/Second";
     lb_RangeAlt.Caption = "Effective Ranges";
 	
-	pb_DPSAlt.High = 520;
-	pb_TTKAlt.High = 1.4;
-	pb_RPSAlt.High = 2750;
+	pb_DPSAlt.High = BaselineDPS * 3;
+	pb_TTKAlt.High = BaselineTTK * 3;
+	pb_RPSAlt.High = BaselineRPS * 3;
 	
 	//gen
 
@@ -83,8 +103,8 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_DPM.Caption = "Damage/Mag";
     lb_MoveSpeed.Caption = "Movement Speed";
     lb_ADSMoveSpeed.Caption = "ADS Movement Speed";
-	lb_CrouchMultiplier.Caption = "Crouch Aim Stabilization";
-	lb_ADSMultiplier.Caption = "ADS Aim Stabilization";
+	lb_CrouchMultiplier.Caption = "Crouch Recoil Multiplier";
+	lb_ADSMultiplier.Caption = "ADS Sway Multiplier";
     lb_Displacement.Caption = "Displacement Factor";
 
     pb_Raise.High = 0.8f;
@@ -283,34 +303,27 @@ function UpdateInfo()
 	local class<BallisticWeapon> BW;
     local class<BallisticWeaponParams> params;
 
-	local BallisticFire.FireModeStats FS, AFS;
+	local FireEffectParams.FireModeStats FS, AFS;
+
+    local int GameStyleIndex;
+
+    GameStyleIndex = class'BCReplicationInfo'.default.GameStyle;
 	
 	//FIXME DynamicLoadObject
 	BW = class<BallisticWeapon>(DynamicLoadObject(lb_Weapons.List.GetExtra(), class'Class', True));
 
 	if (BW != None)
-        params = BW.default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle];
+        params = BW.default.ParamsClasses[GameStyleIndex];
 
     if (params != None)
 	{
-		FS = class<BallisticFire>(BW.default.FireModeClass[0]).static.GetStats();
-		AFS = class<BallisticFire>(BW.default.FireModeClass[1]).static.GetStats();
+		FS = params.static.GetFireStats();
+		AFS = params.static.GetAltFireStats();
 		WeaponIcon.Image = BW.default.BigIconMaterial;
 		l_WeaponCaption.Caption = BW.default.ItemName;
 		l_WeaponCaption.TextColor = BW.default.HUDColor;
 		sb_Desc.SetContent(BW.static.GetManual());
-		
-		
-		// account for 1.1 speed that is native to UT
-		FS.DPS *= TIME_DILATION_FIXED; 
-		FS.TTK /= TIME_DILATION_FIXED;
-		FS.RPS *= TIME_DILATION_FIXED;
-		
-		AFS.DPS *= TIME_DILATION_FIXED;
-		AFS.TTK /= TIME_DILATION_FIXED;
-		AFS.RPS *= TIME_DILATION_FIXED;
 
-		
 		//pri
 		db_DShot.Caption = FS.Damage;
         db_HeadMult.Caption = "Head: x"$String(FS.HeadMult);
@@ -321,11 +334,11 @@ function UpdateInfo()
         db_RangeMax.Caption = FS.RangeMax;
 		
 		pb_DPS.Value = FMin(FS.DPS, pb_DPS.High);
-		pb_DPS.Caption = FS.DPS @ "(" $ int(FS.DPS / BASELINE_DPS_DIVISOR)$"%)";
+		pb_DPS.Caption = FS.DPS @ "(" $ int((FS.DPS / BaselineDPS) * 100) $ "%)";
 		pb_DPS.BarColor = ColorBar(pb_DPS.Value / pb_DPS.High);
 		
 		pb_TTK.Value = FMin(FS.TTK, pb_TTK.High);
-		pb_TTK.Caption = FS.TTK @ "("$int(FS.TTK / BASELINE_TTK_DIVISOR)$"%)";
+		pb_TTK.Caption = FS.TTK @ "(" $ int((FS.TTK / BaselineTTK) * 100) $ "%)";
 		pb_TTK.BarColor = ColorBar(pb_TTK.Value / pb_TTK.High);
 		
 		db_RPM.Caption = FS.RPM;
@@ -333,7 +346,7 @@ function UpdateInfo()
 		db_Recoil.Caption = String(FS.RPShot);
 		
 		pb_RPS.Value = FMin(FS.RPS, pb_RPS.High);
-		pb_RPS.Caption = String(FS.RPS) @ "("$int(FS.RPS / BASELINE_RECOIL_DIVISOR)$"%)";
+		pb_RPS.Caption = String(FS.RPS) @ "(" $ int((FS.RPS / BaselineRPS)* 100) $ "%)";
 		pb_RPS.BarColor = ColorBar(pb_RPS.Value / pb_RPS.High);
 		
 		//Alt
@@ -390,8 +403,11 @@ function UpdateInfo()
 			bAltStatsVisible=false;
 		}
 		
+        if (AFS.DamageInt > 0)
+            db_DShotAlt.Caption = AFS.Damage;
+        else 
+            db_DShotAlt.Caption = AFS.EffectString;
 
-		db_DShotAlt.Caption = AFS.Damage;
         db_HeadMultAlt.Caption = "Head: x"$String(AFS.HeadMult);
         db_LimbMultAlt.Caption = "Limb: x"$String(AFS.LimbMult);
 
@@ -400,11 +416,11 @@ function UpdateInfo()
         db_RangeMaxAlt.Caption = AFS.RangeMax;
 
 		pb_DPSAlt.Value = FMin(AFS.DPS, pb_DPSAlt.High);
-		pb_DPSAlt.Caption = AFS.DPS @ "("$int(AFS.DPS / 2.2)$"%)";
+		pb_DPSAlt.Caption = AFS.DPS @ "("$int((AFS.DPS / BaselineDPS) * 100)$"%)";
 		pb_DPSAlt.BarColor = ColorBar(pb_DPSAlt.Value / pb_DPSAlt.High);
 		
 		pb_TTKAlt.Value = FMin(AFS.TTK, pb_TTKAlt.High);
-		pb_TTKAlt.Caption = AFS.TTK @ "("$int(AFS.TTK / 0.007)$"%)";
+		pb_TTKAlt.Caption = AFS.TTK @ "("$int((AFS.TTK / BaselineTTK) * 100)$"%)";
 		pb_TTKAlt.BarColor = ColorBar(pb_TTKAlt.Value / pb_TTKAlt.High);
 		
 		db_RPMAlt.Caption = AFS.RPM;
@@ -412,7 +428,7 @@ function UpdateInfo()
 		db_RecoilAlt.Caption = String(AFS.RPShot);
 		
 		pb_RPSAlt.Value = FMin(AFS.RPS, pb_RPSAlt.High);
-		pb_RPSAlt.Caption = String(AFS.RPS) @ "("$int(AFS.RPS / 13.33)$"%)";
+		pb_RPSAlt.Caption = String(AFS.RPS) @ "("$int((AFS.RPS / BaselineRPS) * 100)$"%)";
 		pb_RPSAlt.BarColor = ColorBar(pb_RPSAlt.Value / pb_RPSAlt.High);
 				
 		//general stats
@@ -428,7 +444,11 @@ function UpdateInfo()
 		pb_MoveSpeed.Caption = string(int(Ceil(pb_MoveSpeed.Value * 100f)))$ "%";
 		pb_MoveSpeed.BarColor = ColorBar(pb_MoveSpeed.Value / pb_MoveSpeed.High);
 
-        pb_ADSMoveSpeed.Value = params.default.Layouts[0].PlayerSpeedFactor * params.default.Layouts[0].SightMoveSpeedFactor;
+        pb_ADSMoveSpeed.Value = 
+            params.default.Layouts[0].PlayerSpeedFactor * 
+            params.default.Layouts[0].SightMoveSpeedFactor * 
+            class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor;
+        
 		pb_ADSMoveSpeed.Caption = string(int(Ceil(pb_ADSMoveSpeed.Value * 100f)))$ "%";
 		pb_ADSMoveSpeed.BarColor = ColorBar(pb_ADSMoveSpeed.Value / pb_ADSMoveSpeed.High);
 
@@ -442,9 +462,9 @@ function UpdateInfo()
 		pb_DPM.Caption = String(int(pb_DPM.Value)) @ "("$int(pb_DPM.Value / 6.0f)$"%)";
 		pb_DPM.BarColor = ColorBar(pb_DPM.Value / pb_DPM.High);
 		
-		db_CrouchMultiplier.Caption = string(int(Ceil(100f * (1 - params.default.Layouts[0].AimParams[0].CrouchMultiplier))))$"%";
+		db_CrouchMultiplier.Caption = string(int(Ceil(100f * params.default.Layouts[0].AimParams[0].CrouchMultiplier)))$"%";
 		
-		db_ADSMultiplier.Caption = string(int(100 * (1 - params.default.Layouts[0].AimParams[0].ADSMultiplier)))$"%";
+		db_ADSMultiplier.Caption = string(int(100 * params.default.Layouts[0].AimParams[0].ADSMultiplier))$"%";
 	}
 }
 
@@ -771,4 +791,6 @@ defaultproperties
      bAllowedAsLast=True
      OnClose=BallisticWeaponStatsMenu.InternalOnClose
      OnKeyEvent=BallisticWeaponStatsMenu.InternalOnKeyEvent
+
+    BaselineClass=class'M50AssaultRifle'
 }

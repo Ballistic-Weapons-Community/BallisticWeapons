@@ -484,8 +484,8 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
     {
 		AddHeat(Damage*2.5, false);
 
-		Damage /= 5;
-		Momentum /= 5;
+		Damage /= 2;
+		Momentum /= 2;
 
 		M2020GaussAttachment(ThirdPersonActor).BlockEffectCount += 1;
 		M2020GaussAttachment(ThirdPersonActor).DoBlockEffect();
@@ -582,6 +582,7 @@ defaultproperties
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50Putaway')
 	CockAnimPostReload="ReloadEndCock"
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-Cock',Volume=1.400000)
+	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-CockOld',Volume=1.400000)
 	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-MagHit',Volume=1.400000)
 	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-MagOut',Volume=1.400000)
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.M2020.M2020-MagIn',Volume=1.400000)
@@ -606,6 +607,7 @@ defaultproperties
 	ParamsClasses(0)=Class'M2020WeaponParams'
 	ParamsClasses(1)=Class'M2020WeaponParamsClassic'
 	ParamsClasses(2)=Class'M2020WeaponParamsRealistic'
+    ParamsClasses(3)=Class'M2020WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.M2020GaussPrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc6',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=207,G=229,R=231,A=197),Color2=(B=226,G=0,R=0,A=255),StartSize1=77,StartSize2=68)

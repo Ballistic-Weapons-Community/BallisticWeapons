@@ -524,6 +524,7 @@ defaultproperties
 	ParamsClasses(0)=Class'MRLWeaponParams'
 	ParamsClasses(1)=Class'MRLWeaponParamsClassic'
 	ParamsClasses(2)=Class'MRLWeaponParamsRealistic'
+    ParamsClasses(3)=Class'MRLWeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.MRLPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.MRLSecondaryFire'
 	

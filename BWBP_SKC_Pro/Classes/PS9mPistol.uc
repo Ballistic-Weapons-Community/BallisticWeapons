@@ -362,6 +362,7 @@ defaultproperties
 	ParamsClasses(0)=Class'PS9mWeaponParams'
 	ParamsClasses(1)=Class'PS9mWeaponParamsClassic'
 	ParamsClasses(2)=Class'PS9mWeaponParamsRealistic'
+    ParamsClasses(3)=Class'PS9mWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.PS9mPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.PS9mSecondaryFire'
 	PutDownTime=0.700000

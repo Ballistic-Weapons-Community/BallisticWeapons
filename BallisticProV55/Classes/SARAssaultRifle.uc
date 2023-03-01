@@ -42,6 +42,7 @@ simulated function PostBeginPlay()
 	Super.PostBeginPlay();
 
 	SetStockRotation();
+
 	if (bStockOpen)
 		OnStockSwitched();
 }
@@ -136,13 +137,9 @@ simulated function SwitchStock(bool bNewValue)
 	
 	TemporaryScopeDown(0.4);
 
-	if (!bStockOpen)
-		SetStockRotation();
-
 	bStockOpen = !bStockOpen;
 
-	if (!bStockOpen)
-		SetStockRotation();
+	SetStockRotation();
 
 	//bStockOpen = bNewValue;
 	
@@ -171,7 +168,7 @@ simulated function AdjustStockProperties()
     	LongGunOffset	= vect(15, 20, -7);
 		GunLength 		= 64;
 		
-		SightingTime				= 0.35;
+		SightingTime = default.SightingTime * 1.25;
 	}
 	else
 	{
@@ -473,7 +470,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -506,7 +503,7 @@ simulated function bool ReadyToFire(int Mode)
 
 defaultproperties
 {
-	bStockOpen=False
+	bStockOpen=True // the weapon expects this to be the default - please don't change it
 	AIRating=0.72
 	CurrentRating=0.72
 	LaserOnSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
@@ -536,7 +533,7 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.SAR.SAR-ClipIn')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
-	WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=4.000000,RecoilParamsIndex=1)
+	WeaponModes(1)=(ModeName="Burst",ModeID="WM_Burst",Value=4.000000,RecoilParamsIndex=1,AimParamsIndex=1)
 	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	bNoCrosshairInScope=True
@@ -547,6 +544,8 @@ defaultproperties
 	ParamsClasses(0)=Class'SARWeaponParams'
 	ParamsClasses(1)=Class'SARWeaponParamsClassic'
 	ParamsClasses(2)=Class'SARWeaponParamsRealistic'
+    ParamsClasses(3)=Class'SARWeaponParamsTactical'
+
 	FireModeClass(0)=Class'BallisticProV55.SARPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.SARFlashFire'
 	

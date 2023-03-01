@@ -8,6 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=8000.000000,Max=9000.000000)
+        DecayRange=(Min=2000,Max=6000)
 		RangeAtten=0.50000
 		Damage=60
 		HeadMult=1.5f
@@ -63,8 +64,6 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=ArenaParams
-		PlayerSpeedFactor=1.050000
-		PlayerJumpFactor=1.000000
 		InventorySize=6
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.40000

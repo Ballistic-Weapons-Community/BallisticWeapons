@@ -31,6 +31,7 @@ defaultproperties
 		Recoil=32.000000
 		WarnTargetPct=0.500000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.RX22A.RX22A-FuelLoop',Volume=0.600000,Slot=SLOT_Interact,bNoOverride=False)
+        EffectString="Spray gas"
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

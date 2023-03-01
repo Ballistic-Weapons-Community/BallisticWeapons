@@ -56,7 +56,7 @@ defaultproperties
     //=================================================================	
 
     Begin Object Class=FireEffectParams Name=ArenaAltEffectParams
-
+        EffectString="Switch grenade"
     End Object
 
     Begin Object Class=FireParams Name=ArenaAltFireParams

@@ -62,8 +62,6 @@ simulated function DestroyEffects()
 defaultproperties
 {
      HipSpreadFactor=1.50000
-     CutOffDistance=1536.000000
-     CutOffStartRange=768.000000
      TraceCount=7
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunHE'
      ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'

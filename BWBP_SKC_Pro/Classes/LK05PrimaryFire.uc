@@ -10,7 +10,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class LK05PrimaryFire extends BallisticRangeAttenFire;
+class LK05PrimaryFire extends BallisticProInstantFire;
 
 var() sound	FireSoundLoop;
 var() sound	FireSoundLoopBegin;
@@ -239,8 +239,6 @@ defaultproperties
      SMuzzleFlashClass=Class'BWBP_SKC_Pro.LK05SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=0.750000
-     CutOffDistance=3072.000000
-     CutOffStartRange=1792.000000
      TraceRange=(Min=9000.000000,Max=11000.000000)
      WallPenetrationForce=16.000000
      

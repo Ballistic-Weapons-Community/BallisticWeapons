@@ -165,7 +165,6 @@ defaultproperties
      MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
      FlashBone="tip2"
      BallisticFireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
-     EffectString="Blinding flash"
      bFireOnRelease=True
      bModeExclusive=False
      MaxHoldTime=0.500000

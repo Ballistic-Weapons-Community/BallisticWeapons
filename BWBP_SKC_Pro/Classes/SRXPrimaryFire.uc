@@ -7,7 +7,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class SRXPrimaryFire extends BallisticRangeAttenFire;
+class SRXPrimaryFire extends BallisticProInstantFire;
 
 var() sound		SuperFireSound;
 var() sound		MegaFireSound;
@@ -238,8 +238,6 @@ defaultproperties
      SFlashBone="tip2"
      SFlashScaleFactor=0.750000
 	 
-     CutOffDistance=6144.000000
-     CutOffStartRange=3072.000000
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=24.000000
      

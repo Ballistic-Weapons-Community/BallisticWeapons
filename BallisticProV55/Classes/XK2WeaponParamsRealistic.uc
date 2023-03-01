@@ -70,6 +70,7 @@ defaultproperties
 
 	Begin Object Class=FireEffectParams Name=RealisticSecondaryEffectParams
 		BotRefireRate=0.300000
+        EffectString="Attach AMP"
 	End Object
 	
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams

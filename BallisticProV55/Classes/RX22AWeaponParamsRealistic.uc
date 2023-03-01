@@ -41,6 +41,7 @@ defaultproperties
 		Chaos=-1.0
 		Inaccuracy=(X=128,Y=128)
 		WarnTargetPct=0.200000
+        EffectString="Spray gas"
 	End Object
 		
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams

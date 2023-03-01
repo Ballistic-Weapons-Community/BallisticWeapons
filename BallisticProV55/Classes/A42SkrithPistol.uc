@@ -16,7 +16,7 @@ var Actor			GlowFX;
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (BCRepClass.static.IsRealism())
 	{
 		FireModeClass[0]=Class'BallisticProV55.A42PrimaryFireSpread';
 		FireModeClass[1]=Class'BallisticProV55.A42PrimaryFire';
@@ -283,6 +283,7 @@ defaultproperties
 	ParamsClasses(0)=Class'A42WeaponParams'
 	ParamsClasses(1)=Class'A42WeaponParamsClassic'
 	ParamsClasses(2)=Class'A42WeaponParamsRealistic'
+    ParamsClasses(3)=Class'A42WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.A42PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A42SecondaryFire'
 	BringUpTime=0.500000

@@ -635,6 +635,7 @@ defaultproperties
 	ParamsClasses(0)=Class'SRS900WeaponParams'
 	ParamsClasses(1)=Class'SRS900WeaponParamsClassic'
 	ParamsClasses(2)=Class'SRS900WeaponParamsRealistic'
+    ParamsClasses(3)=Class'SRS900WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.SRS900PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	BringUpTime=0.500000

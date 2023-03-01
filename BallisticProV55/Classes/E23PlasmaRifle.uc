@@ -34,7 +34,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.static.IsClassic())
 		E23PrimaryFire(FireMode[0]).SGFireCount = 9;
 	E23PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
 	if (Laser == None)
@@ -490,6 +490,7 @@ defaultproperties
 	ParamsClasses(0)=Class'E23WeaponParams'
 	ParamsClasses(1)=Class'E23WeaponParamsClassic'
 	ParamsClasses(2)=Class'E23WeaponParamsRealistic'
+    ParamsClasses(3)=Class'E23WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.E23PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.E23SecondaryFire'
 	SelectAnimRate=1.250000

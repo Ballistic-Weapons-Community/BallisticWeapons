@@ -1,12 +1,10 @@
 //=============================================================================
 // M46PrimaryFireQS.
 //=============================================================================
-class M46PrimaryFireQS extends BallisticRangeAttenFire;
+class M46PrimaryFireQS extends BallisticProInstantFire;
 
 defaultproperties
 {
-     CutOffDistance=3072.000000
-     CutOffStartRange=1536.000000
      TraceRange=(Min=12000.000000,Max=15000.000000)
      WallPenetrationForce=24.000000
      Damage=30.000000

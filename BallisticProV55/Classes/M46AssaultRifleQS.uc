@@ -13,6 +13,7 @@ defaultproperties
 	ParamsClasses(0)=Class'M46WeaponParams'
 	ParamsClasses(1)=Class'M46WeaponParamsClassic' 
 	ParamsClasses(2)=Class'M46WeaponParamsRealistic' 
+    ParamsClasses(3)=Class'M46WeaponParamsTactical'
     FireModeClass(0)=Class'BallisticProV55.M46PrimaryFireQS'
     FireModeClass(1)=Class'BallisticProV55.M46SecondaryFireQS'
     GroupOffset=2

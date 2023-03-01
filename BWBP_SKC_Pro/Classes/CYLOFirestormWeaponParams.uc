@@ -8,6 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=10000.000000,Max=12000.000000)
+        DecayRange=(Min=2000,Max=6000)
 		RangeAtten=0.350000
 		Damage=30
 		DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
@@ -119,8 +120,8 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=16,Max=768)
-		ADSMultiplier=0.3
+		AimSpread=(Min=32,Max=768)
+		ADSMultiplier=0.7
 		SprintOffset=(Pitch=-3000,Yaw=-8000)
 		AimAdjustTime=0.400000
 		ChaosDeclineTime=0.5

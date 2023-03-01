@@ -17,7 +17,6 @@ event ModeDoFire()
 defaultproperties
 {
      bUseWeaponMag=False
-     EffectString="Laser sight"
      bWaitForRelease=True
      bModeExclusive=False
      FireRate=0.200000

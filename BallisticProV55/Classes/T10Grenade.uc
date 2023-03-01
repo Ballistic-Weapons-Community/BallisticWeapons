@@ -75,6 +75,7 @@ defaultproperties
      ParamsClasses(0)=Class'T10WeaponParams'
      ParamsClasses(1)=Class'T10WeaponParamsClassic'
      ParamsClasses(2)=Class'T10WeaponParamsRealistic'
+     ParamsClasses(3)=Class'T10WeaponParamsTactical'
      FireModeClass(0)=Class'BallisticProV55.T10PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.T10SecondaryFire'
 	 

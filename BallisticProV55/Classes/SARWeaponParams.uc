@@ -8,6 +8,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=ArenaAutoEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
+        DecayRange=(Min=1250,Max=3750)
 		RangeAtten=0.350000
 		Damage=20
 		DamageType=Class'BallisticProV55.DTSARRifle'
@@ -32,6 +33,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaBurstEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
+        DecayRange=(Min=1250,Max=3750)
 		RangeAtten=0.350000
 		Damage=20
 		DamageType=Class'BallisticProV55.DTSARRifle'
@@ -62,6 +64,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.AM67.AM67-SecFire',Volume=0.600000)
 		MuzzleFlashClass=Class'BallisticProV55.AM67FlashEmitter'
 		BotRefireRate=0.300000
+        EffectString="Blinding flash"
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
@@ -104,7 +107,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.200000
+		ADSMultiplier=0.700000
 		SprintOffset=(Pitch=-3000,Yaw=-4000)
 		AimAdjustTime=0.300000
 		AimSpread=(Min=12,Max=768)
@@ -128,6 +131,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaAutoRecoilParams'
         RecoilParams(1)=RecoilParams'ArenaBurstRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+        AimParams(1)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaAutoFireParams'
 		FireParams(1)=FireParams'ArenaBurstFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'

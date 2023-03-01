@@ -689,6 +689,7 @@ defaultproperties
 	ParamsClasses(0)=Class'TrenchGunWeaponParams'
 	ParamsClasses(1)=Class'TrenchGunWeaponParamsClassic'
 	ParamsClasses(2)=Class'TrenchGunWeaponParamsRealistic'
+    ParamsClasses(3)=Class'TrenchGunWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.TrenchGunPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.TrenchGunSecondaryFire'
 	SelectAnimRate=2.000000

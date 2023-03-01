@@ -389,6 +389,7 @@ defaultproperties
 	ParamsClasses(0)=Class'LAWWeaponParams'
 	ParamsClasses(1)=Class'LAWWeaponParamsClassic'
 	ParamsClasses(2)=Class'LAWWeaponParamsRealistic'
+    ParamsClasses(3)=Class'LAWWeaponParamsTactical'
 	 
 	FireModeClass(0)=Class'BWBP_SKC_Pro.LAWPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.LAWSecondaryFire'

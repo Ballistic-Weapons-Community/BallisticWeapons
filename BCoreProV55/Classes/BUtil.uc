@@ -207,6 +207,16 @@ static final function Rotator RSmerp (float Time, Rotator Min, Rotator Max)
 	return R;
 }
 
+static final function float GetClosestDistanceTo(Vector target_point, Vector start_loc, Vector dir)
+{
+    return VSize(target_point - GetClosestPointTo(target_point, start_loc, dir));
+}
+
+static final function Vector GetClosestPointTo(Vector target_point, Vector start_loc, Vector dir)
+{
+    return start_loc + (dir * ((target_point - start_loc) dot dir));
+}
+
 // Increment an int and have it loop within a specified range
 static final function int Loop(int It, int By, optional int Max, optional int Min)
 {

@@ -501,6 +501,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'CoachWeaponParams'
 	 ParamsClasses(1)=Class'CoachWeaponParamsClassic'
 	 ParamsClasses(2)=Class'CoachWeaponParamsRealistic' 
+     ParamsClasses(3)=Class'CoachWeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_SKC_Pro.CoachGunPrimaryFire'
      FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
      SelectAnimRate=2.000000

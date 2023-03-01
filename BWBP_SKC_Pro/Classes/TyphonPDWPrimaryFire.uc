@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class TyphonPDWPrimaryFire extends BallisticRangeAttenFire;
+class TyphonPDWPrimaryFire extends BallisticProInstantFire;
 
 var   float		StopFireTime;
 var   bool		bPreventFire;	//prevent fire/recharging when laser is cooling

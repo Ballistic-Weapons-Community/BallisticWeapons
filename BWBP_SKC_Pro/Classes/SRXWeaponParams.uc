@@ -8,6 +8,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=ArenaStandardEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=3000,Max=6000)
 		RangeAtten=0.450000
 		Damage=34
 		HeadMult=1.4f
@@ -35,6 +36,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=ArenaExplosiveEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=3000,Max=6000)
 		RangeAtten=1.000000
 		Damage=45
 		HeadMult=1.4f
@@ -62,6 +64,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaAcidEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=3000,Max=6000)
 		RangeAtten=1.000000
 		Damage=25
 		HeadMult=1.4f
@@ -93,6 +96,7 @@ defaultproperties
 
 	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
 		BotRefireRate=0.300000
+        EffectString="Attach AMP"
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

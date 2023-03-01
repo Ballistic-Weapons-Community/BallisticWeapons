@@ -7,12 +7,10 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class MARSPrimaryFire extends BallisticRangeAttenFire;
+class MARSPrimaryFire extends BallisticProInstantFire;
 
 defaultproperties
 {
-     CutOffDistance=8144.000000
-     CutOffStartRange=2536.000000
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WallPenetrationForce=16.000000
      

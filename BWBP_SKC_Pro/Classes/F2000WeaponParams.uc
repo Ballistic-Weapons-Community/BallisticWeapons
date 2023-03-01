@@ -8,6 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
+        DecayRange=(Min=2048,Max=7000)
 		RangeAtten=0.350000
 		Damage=20
 		DamageType=Class'BWBP_SKC_Pro.DTF2000Assault'
@@ -87,8 +88,6 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		CockAnimRate=1.10000
 		ReloadAnimRate=1.10000
-		PlayerSpeedFactor=1
-		PlayerJumpFactor=1
 		InventorySize=12
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.350000		

@@ -793,7 +793,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -858,6 +858,7 @@ defaultproperties
 	ParamsClasses(0)=Class'MARSWeaponParams'
 	ParamsClasses(1)=Class'MARSWeaponParamsClassic'
 	ParamsClasses(2)=Class'MARSWeaponParamsRealistic'
+    ParamsClasses(3)=Class'MARSWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MARSPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MARSSecondaryFire'
 	PutDownTime=0.700000

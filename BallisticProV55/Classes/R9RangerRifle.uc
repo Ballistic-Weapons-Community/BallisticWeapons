@@ -226,6 +226,7 @@ defaultproperties
 	ParamsClasses(0)=Class'R9WeaponParams'
 	ParamsClasses(1)=Class'R9WeaponParamsClassic'
 	ParamsClasses(2)=Class'R9WeaponParamsRealistic'
+    ParamsClasses(3)=Class'R9WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.R9PrimaryFire'
     FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	

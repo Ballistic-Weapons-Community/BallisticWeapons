@@ -12,7 +12,9 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		TraceCount=26
-		Damage=20.0
+		Damage=15.0
+		//TraceCount=24
+		//Damage=20
 		HeadMult=2.15
 		LimbMult=0.6
 		DamageType=Class'BWBP_SKC_Pro.DTCoachShot'
@@ -88,7 +90,9 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		TraceCount=13
-		Damage=20.0
+		Damage=15.0
+		//TraceCount=13
+		//Damage=20
 		HeadMult=2.15
 		LimbMult=0.6
 		DamageType=Class'BWBP_SKC_Pro.DTCoachShot'

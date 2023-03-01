@@ -8,6 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=8000.000000,Max=12000.000000)
+        DecayRange=(Min=1500,Max=4500)
 		RangeAtten=0.350000
 		Damage=28
 		DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
@@ -36,6 +37,7 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=5000.000000,Max=5000.000000)
+        DecayRange=(Min=1000,Max=2500)
 		RangeAtten=0.750000
 		TraceCount=9
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
@@ -83,8 +85,8 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.3
-		AimSpread=(Min=16,Max=768)
+		ADSMultiplier=0.6
+		AimSpread=(Min=32,Max=768)
 		SprintOffset=(Pitch=-3000,Yaw=-8000)
 		AimAdjustTime=0.400000
 		ChaosDeclineTime=0.5

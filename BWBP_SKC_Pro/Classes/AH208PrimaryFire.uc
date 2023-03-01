@@ -2,7 +2,7 @@
 // AH208PrimaryFire.
 // The Pro equivalent of the Golden Gun.
 //=============================================================================
-class AH208PrimaryFire extends BallisticRangeAttenFire;
+class AH208PrimaryFire extends BallisticProInstantFire;
 
 //Do the spread on the client side
 function PlayFiring()
@@ -26,8 +26,6 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=3072.000000
-     CutOffStartRange=1536.000000
      TraceRange=(Min=7500.000000,Max=7500.000000)
      WallPenetrationForce=64.000000
 

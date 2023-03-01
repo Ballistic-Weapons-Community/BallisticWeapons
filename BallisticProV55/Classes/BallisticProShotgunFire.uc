@@ -7,11 +7,7 @@
 class BallisticProShotgunFire extends BallisticShotgunFire;
 
 var float 		HipSpreadFactor;
-var() float 	CutOffDistance;
-var() float 	CutOffStartRange;
 var int	 		MaxSpreadFactor;
-
-
 
 simulated function ApplyFireEffectParams(FireEffectParams params)
 {
@@ -22,30 +18,6 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
     effect_params = ShotgunEffectParams(params);
 
 	HipSpreadFactor = effect_params.HipSpreadFactor;
-}
-
-
-function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
-{
-	local float  DamageFactor;
-
-	DamageFactor = 1;
-
-	if (WaterRangeAtten < 1.0 && WaterHitLocation != vect(0,0,0))
-		DamageFactor *= class'BallisticRangeAttenFire'.static.GetRangeAttenFactor(TraceStart, HitLocation, CutOffStartRange, CutOffDistance, WaterRangeAtten);
-	else if (RangeAtten != 1.0)
-		DamageFactor *= class'BallisticRangeAttenFire'.static.GetRangeAttenFactor(TraceStart, HitLocation, CutOffStartRange, CutOffDistance, RangeAtten);
-	
-	if (PenetrateCount > 0)
-		DamageFactor *= PDamageFactor * PenetrateCount;
-
-	if (WallCount > 0 && WallPenetrationForce > 0)
-	{
-		DamageFactor *= WallPDamageFactor * WallCount;
-		DamageFactor *= WallPenForce / WallPenetrationForce;
-	}
-
-	return DamageFactor;
 }
 
 //return spread in radians
@@ -187,46 +159,6 @@ simulated event ModeDoFire()
 static function float GetAttachmentDispersionFactor()
 {
 	return default.HipSpreadFactor;
-}
-
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-    local int opt_range, decay_range, max_range;
-	
-	FS.DamageInt = int(default.Damage * default.TraceCount);
-
-    if (default.RangeAtten < 1f)
-	    FS.Damage 		= FS.DamageInt @ "-" @ int(FS.DamageInt * default.RangeAtten);
-    else 
-        FS.Damage = String(FS.DamageInt);
-
-    FS.HeadMult = default.HeadMult;
-    FS.LimbMult = default.LimbMult;
-
-	FS.DPS = (default.Damage * default.TraceCount) / default.FireRate;
-	FS.TTK = default.FireRate * (Ceil(175/FS.DamageInt) - 1);
-
-	if (default.FireRate < 0.5)
-		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	else 
-        FS.RPM = 1/default.FireRate@"times/second";
-
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-
-    opt_range =         default.CutOffStartRange / 52.5f;
-    decay_range =     (default.CutOffStartRange + default.CutOffDistance) / 52.5f;
-    max_range =         default.TraceRange.Max / 52.5f;
-
-	FS.RangeOpt = "Max damage:"@ opt_range @"metres";
-    FS.RangeDecayed = "Min damage:"@ decay_range @"metres";
-    FS.RangeMax = "Max range:"@ max_range @"metres";
-	
-	return FS;
 }
 
 defaultproperties

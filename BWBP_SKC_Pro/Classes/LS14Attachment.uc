@@ -21,7 +21,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (LS14Carbine(Instigator.Weapon).BCRepClass.default.GameStyle == 2)
+	if (LS14Carbine(Instigator.Weapon).BCRepClass.static.IsRealism())
 	{
 		bBigLaser=True;
 	}

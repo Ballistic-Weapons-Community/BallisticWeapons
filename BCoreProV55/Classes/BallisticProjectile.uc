@@ -26,6 +26,8 @@ class BallisticProjectile extends Projectile
     DependsOn(ProjectileEffectParams)
 	config(BallisticProV55);
 
+const HEAD_RADIUS = 7;
+const TORSO_RADIUS = 12;
 const MAX_MOMENTUM_Z = 10000.0f;
 
 //=============================================================================
@@ -164,9 +166,19 @@ simulated function ApplyParams(ProjectileEffectParams params)
 	bLimitMomentumZ = params.bLimitMomentumZ;
 	default.bLimitMomentumZ = params.bLimitMomentumZ;
 	
-    HeadMult = params.HeadMult;
-    LimbMult = params.LimbMult;
+    // not scaling projectile damage atm
+    if (!class'BCReplicationInfo'.static.UseFixedModifiers())
+    {
+        HeadMult = params.HeadMult;
+        LimbMult = params.LimbMult; 
+    }
 
+    else 
+    {   
+        HeadMult = class'BCReplicationInfo'.default.DamageModHead;
+        LimbMult = class'BCReplicationInfo'.default.DamageModLimb;
+    }
+    
     Speed = params.Speed;
 	default.Speed = params.Speed;
 	
@@ -610,23 +622,14 @@ simulated function DoDamage(Actor Other, vector HitLocation)
 {
 	local class<DamageType> DT;
 	local float Dmg;
-    local Vector ClosestLocation, BoneTestLocation, temp;
+    local Vector BoneTestLocation;
 
 	if ( Instigator == None || Instigator.Controller == None )
 		Other.SetDelayedDamageInstigatorController( InstigatorController );
 
 	if (xPawn(Other) != None)
 	{
-		//Find a point on the victim's Z axis at the same height as the HitLocation.
-		ClosestLocation = Other.Location;
-		ClosestLocation.Z += (HitLocation - Other.Location).Z;
-		
-		//Extend the hit along the projectile's Velocity to a point where it is closest to the victim's Z axis.
-		temp = Normal(Velocity);
-		temp *= VSize(ClosestLocation - HitLocation);
-		BoneTestLocation = temp;
-		BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(temp);
-		BoneTestLocation += HitLocation;
+        BoneTestLocation = GetDamageHitLocation(Other);
 		
 		class'BallisticDamageType'.static.GenericHurt (GetDamageVictim(Other, BoneTestLocation, Normal(Velocity), Dmg, DT), Dmg, Instigator, HitLocation, GetMomentumVector(Normal(Velocity)), DT);
 	}
@@ -647,6 +650,19 @@ final function float GetDamageOverRangeFactor()
     return 1f;
 }
 
+// Actor can be Pawn-derived or UnlaggedPawnCollision
+function Vector GetDamageHitLocation(Actor Other)
+{	
+    local Vector ClosestLocation;
+    //local Vector BoneTestLocation;
+
+	// Find a point on the victim's Z axis at the same height as the HitLocation.
+	ClosestLocation = Other.Location;
+	ClosestLocation.Z += (Location - Other.Location).Z;
+
+    return class'BUtil'.static.GetClosestPointTo(ClosestLocation, Location, normal(Velocity));
+}
+
 function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
 {
 	local string	Bone;
@@ -656,6 +672,9 @@ function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out
 
 	Dmg = Damage;
 	DT = MyDamageType;
+
+    if(UnlaggedPawnCollision(Other) != None)
+        return GetDamageForCollision(UnlaggedPawnCollision(Other), HitLocation, Dir, Dmg, DT);
 
     if (DamageGainEndTime > 0)
         Dmg *= GetDamageOverRangeFactor();
@@ -686,7 +705,7 @@ function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out
 			HitLocationMatchZ.Z = Other.Location.Z;
 			
 			// Check for head shot
-			Bone = string(Other.GetClosestBone(HitLocation, Dir, BoneDist, 'head', 10));
+			Bone = string(Other.GetClosestBone(HitLocation, Dir, BoneDist, 'head', HEAD_RADIUS));
 			if (InStr(Bone, "head") > -1)
 			{
 				Dmg *= HeadMult;
@@ -696,7 +715,7 @@ function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out
 			}
 			
 			// Limb shots
-			else if (HitLocation.Z < Other.Location.Z - (Other.CollisionHeight/6) || VSize(HitLocationMatchZ - Other.Location) > 22) //accounting for groin region here
+			else if (HitLocation.Z < Other.Location.Z - (Other.CollisionHeight/6) || VSize(HitLocationMatchZ - Other.Location) > TORSO_RADIUS) //accounting for groin region here
 			{
 				Dmg *= LimbMult;
 
@@ -706,6 +725,47 @@ function Actor GetDamageVictim (Actor Other, vector HitLocation, vector Dir, out
 		}
 	}
 
+	return Other;
+}
+
+/*
+hit algo for unlagged collisions
+
+- first extend to closest point to saved head location and check if in radius - if so, return head damage
+- then extend to vector between head and body, check within radius - if so, return body damage
+- else return limb damage
+*/
+
+final function Actor GetDamageForCollision(UnlaggedPawnCollision Other, vector HitLocation, vector Dir, out float Dmg, optional out class<DamageType> DT)
+{
+    local Vector HeadPositionApprox;
+
+    // must be approximated. animation sync online is simply too poor
+    HeadPositionApprox = Other.Location;
+    HeadPositionApprox.Z += Other.CollisionHeight;
+    HeadPositionApprox.Z -= HEAD_RADIUS + 2;
+
+    // fixme: try doing a crouch check too
+
+    if (class'BUtil'.static.GetClosestDistanceTo(HeadPositionApprox, Location, Dir) <= HEAD_RADIUS)
+    {
+        Dmg *= HeadMult;
+        DT = DamageTypeHead;
+        return Other;
+    }
+
+    if (HitLocation.Z > Other.Location.Z - 5)
+    {
+        HitLocation.Z = Other.Location.Z;
+
+        // Torso radius
+        if (VSize(HitLocation - Other.Location) <= TORSO_RADIUS)
+            return Other;
+    }
+    
+    Dmg *= LimbMult;
+    DT = DamageTypeLimb;
+      
 	return Other;
 }
 

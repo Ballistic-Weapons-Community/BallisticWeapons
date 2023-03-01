@@ -255,6 +255,10 @@ final simulated function Recalculate()
     AimAdjustTime       = Params.AimAdjustTime;
     ChaosDeclineTime    = Params.ChaosDeclineTime;
     ChaosSpeedThreshold = Params.ChaosSpeedThreshold;
+
+    if (class'BCReplicationInfo'.static.UseFixedModifiers())
+        ChaosSpeedThreshold = FMin(ChaosSpeedThreshold, class'BCReplicationInfo'.default.ChaosSpeedThresholdOverride);
+
     ChaosTurnThreshold = Params.ChaosTurnThreshold;
 	CrouchMultiplier    = Params.CrouchMultiplier;
 
@@ -463,7 +467,7 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
 		if (BW.Instigator.Base != None)
 
 			V -= BW.Instigator.Base.Velocity;
-		VResult = VSize(V) / Params.ChaosSpeedThreshold;
+		VResult = VSize(V) / ChaosSpeedThreshold;
 	}
 
 	OldChaos = NewChaos;

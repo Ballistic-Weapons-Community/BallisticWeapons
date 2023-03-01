@@ -852,6 +852,12 @@ simulated function OnWeaponParamsChanged()
 		}
 		CurrentWeaponMode = WeaponParams.InitialWeaponMode;
 	}
+
+    if (class'BCReplicationInfo'.static.UseFixedModifiers())
+    {
+        SightingTime *= class'BCReplicationInfo'.default.SightingTimeScale;
+        default.SightingTime = SightingTime;
+    }
 }
 
 simulated final function CreateRecoilComponent()
@@ -1315,7 +1321,7 @@ simulated function Notify_ClipOut()
 // Animation notify for when cocking action starts. Used to time sounds
 simulated function Notify_CockStart()
 {
-	if (ReloadState == RS_None)	return;
+	if (ReloadState == RS_None && !bNeedCock)	return;
 	ReloadState = RS_Cocking;
 	PlayOwnedSound(CockSound.Sound,CockSound.Slot,CockSound.Volume,CockSound.bNoOverride,CockSound.Radius,CockSound.Pitch,CockSound.bAtten);
 }
@@ -1323,7 +1329,7 @@ simulated function Notify_CockStart()
 // Animation notify for when cocking action starts for pullout fancy animations that use a different sound to Notify_CockStart. Used to time sounds
 simulated function Notify_CockPullout()
 {
-	if (ReloadState == RS_None)	return;
+	if (ReloadState == RS_None && !bNeedCock)	return;
 	ReloadState = RS_Cocking;
 	PlayOwnedSound(CockSelectSound.Sound,CockSelectSound.Slot,CockSelectSound.Volume,CockSelectSound.bNoOverride,CockSelectSound.Radius,CockSelectSound.Pitch,CockSelectSound.bAtten);
 }
@@ -3186,7 +3192,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	AimComponent.OnWeaponSelected();
 
-	Instigator.WalkingPct = WeaponParams.SightMoveSpeedFactor;
+	Instigator.WalkingPct = class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor * WeaponParams.SightMoveSpeedFactor;
 
 	if (Role == ROLE_Authority)
 	{

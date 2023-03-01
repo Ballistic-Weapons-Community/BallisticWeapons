@@ -8,6 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=15000.000000)
+        DecayRange=(Min=1500,Max=4500)
 		RangeAtten=0.350000
 		Damage=20
 		DamageType=Class'BallisticProV55.DTM50Assault'
@@ -74,7 +75,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.200000
+		ADSMultiplier=0.700000
 		SprintOffSet=(Pitch=-3000,Yaw=-4000)
 		AimSpread=(Min=16,Max=728)
 		ChaosDeclineTime=0.5

@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class leMatPrimaryFire extends BallisticRangeAttenFire;
+class leMatPrimaryFire extends BallisticProInstantFire;
 
 function ServerPlayFiring()
 {
@@ -23,8 +23,7 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=2048.000000
-     CutOffStartRange=768.000000
+     DecayRange=(Min=768,Max=2816)
      TraceRange=(Min=8000.000000,Max=8000.000000)
      WallPenetrationForce=8.000000
      

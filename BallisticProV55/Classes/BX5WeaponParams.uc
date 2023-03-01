@@ -26,7 +26,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
-
+        EffectString="Spring mode"
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams

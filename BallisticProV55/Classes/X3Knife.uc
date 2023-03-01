@@ -163,6 +163,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'X3WeaponParams'
 	 ParamsClasses(1)=Class'X3WeaponParamsClassic'
 	 ParamsClasses(2)=Class'X3WeaponParamsRealistic'
+     ParamsClasses(3)=Class'X3WeaponParamsTactical'
      FireModeClass(0)=Class'BallisticProV55.X3PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.X3SecondaryFire'
 	 

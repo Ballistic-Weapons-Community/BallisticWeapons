@@ -45,7 +45,7 @@ function DoFireEffect()
 /*
 simulated function ApplyRecoil()
 {
-	if (A49SkrithBlaster(BW).BCRepClass.default.GameStyle == 1)
+	if (A49SkrithBlaster(BW).BCRepClass.static.IsClassic())
 	{
 		if (BW != None)
 			BW.AddRecoil(FireRecoil, FireChaos, ThisModeNum);
@@ -63,6 +63,8 @@ simulated function ApplyRecoil()
 	}
 }*/
 
+/*
+FIXME: Special fire. Needs its own fire effect params class to do that.
 //Accessor for stats
 static function FireModeStats GetStats() 
 {
@@ -81,6 +83,7 @@ static function FireModeStats GetStats()
 	
 	return FS;
 }
+*/
 
 defaultproperties
 {

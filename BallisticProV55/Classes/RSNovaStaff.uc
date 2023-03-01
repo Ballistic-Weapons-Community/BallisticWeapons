@@ -744,6 +744,7 @@ defaultproperties
 	ParamsClasses(0)=Class'RSNovaWeaponParams'
 	ParamsClasses(1)=Class'RSNovaWeaponParamsClassic'
 	ParamsClasses(2)=Class'RSNovaWeaponParamsRealistic'
+    ParamsClasses(3)=Class'RSNovaWeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.RSNovaPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.RSNovaMeleeFire'
 	

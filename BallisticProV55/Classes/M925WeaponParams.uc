@@ -8,6 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
+        DecayRange=(Min=5000,Max=13000)
 		RangeAtten=0.65
 		Damage=50
 		HeadMult=1.5f
@@ -53,10 +54,10 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=384,Max=1280)
+		AimSpread=(Min=128,Max=1280)
 		SprintOffset=(Pitch=-6000,Yaw=-8000)
 		JumpOffset=(Pitch=-6000,Yaw=-4000)
-		ADSMultiplier=0.40000
+		ADSMultiplier=1
 		AimAdjustTime=0.400000
 		ChaosDeclineTime=1.750000
 	End Object

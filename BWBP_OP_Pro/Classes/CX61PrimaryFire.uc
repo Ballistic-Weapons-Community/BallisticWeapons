@@ -1,7 +1,7 @@
 //=============================================================================
 // CX61 primary fire. Automatic.
 //=============================================================================
-class CX61PrimaryFire extends BallisticRangeAttenFire;
+class CX61PrimaryFire extends BallisticProInstantFire;
 
 
 var() Vector			SpawnOffset;		// Projectile spawned at this offset
@@ -96,8 +96,6 @@ defaultproperties
 {
 	 ProjectileClass="BWBP_OP_Pro.CX61Flechette"
      SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
-     CutOffDistance=2560.000000
-     CutOffStartRange=1280.000000
      TraceRange=(Min=9000.000000,Max=9000.000000)
      
      WallPenetrationForce=16.000000

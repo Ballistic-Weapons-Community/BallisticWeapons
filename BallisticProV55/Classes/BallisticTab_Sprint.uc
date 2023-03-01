@@ -15,11 +15,11 @@ var automated moFloatEdit       fe_InitSpeedFactor;			//Speed During Sprint
 var automated moFloatEdit       fe_JumpDrainFactor;			//Jump Drain Factor
 
 var automated moCheckBox        cb_bUseSloth;				//Enable Sloth
-var automated moFloatEdit       fe_StrafeScale;				//Strafe Scale
-var automated moFloatEdit       fe_BackScale;				//Backwards Strafe Scale
-var automated moFloatEdit       fe_GroundSpeedScale;		//Ground Speed Scale
-var automated moFloatEdit       fe_AirSpeedScale;			//Air Speed Scale
-var automated moFloatEdit       fe_AccelRateScale;			//Acceleration Scale
+var automated moFloatEdit       fe_PlayerStrafeScale;				//Strafe Scale
+var automated moFloatEdit       fe_PlayerBackpedalScale;				//Backwards Strafe Scale
+var automated moFloatEdit       fe_PlayerGroundSpeed;		//Ground Speed Scale
+var automated moFloatEdit       fe_PlayerAirSpeed;			//Air Speed Scale
+var automated moFloatEdit       fe_PlayerAccelRate;			//Acceleration Scale
 
 var BallisticConfigMenuPro		p_Anchor;
 var bool                    	bInitialized;
@@ -58,12 +58,12 @@ function LoadSettings()
     fe_InitSpeedFactor.SetValue(class'BallisticProV55.Mut_Ballistic'.default.InitSpeedFactor);
     fe_JumpDrainFactor.SetValue(class'BallisticProV55.Mut_Ballistic'.default.JumpDrainFactor);
 
-	cb_bUseSloth.Checked(class'BallisticProV55.Mut_Ballistic'.default.bUseSloth);
-    fe_StrafeScale.SetValue(class'BallisticProV55.Mut_Ballistic'.default.StrafeScale);
-    fe_BackScale.SetValue(class'BallisticProV55.Mut_Ballistic'.default.BackScale);
-    fe_GroundSpeedScale.SetValue(class'BallisticProV55.Mut_Ballistic'.default.GroundSpeedScale);
-    fe_AirSpeedScale.SetValue(class'BallisticProV55.Mut_Ballistic'.default.AirSpeedScale);
-    fe_AccelRateScale.SetValue(class'BallisticProV55.Mut_Ballistic'.default.AccelRateScale);
+	cb_bUseSloth.Checked(class'BallisticReplicationInfo'.default.bUseSloth);
+    fe_PlayerStrafeScale.SetValue(class'BallisticReplicationInfo'.default.PlayerStrafeScale);
+    fe_PlayerBackpedalScale.SetValue(class'BallisticReplicationInfo'.default.PlayerBackpedalScale);
+    fe_PlayerGroundSpeed.SetValue(class'BallisticReplicationInfo'.default.PlayerGroundSpeed);
+    fe_PlayerAirSpeed.SetValue(class'BallisticReplicationInfo'.default.PlayerAirSpeed);
+    fe_PlayerAccelRate.SetValue(class'BallisticReplicationInfo'.default.PlayerAccelRate);
     
 }
 
@@ -78,11 +78,11 @@ function DefaultSettings()
     fe_JumpDrainFactor.SetValue(2);
 	
 	cb_bUseSloth.Checked(false);
-    fe_StrafeScale.SetValue(0.700000);
-    fe_BackScale.SetValue(0.600000);
-    fe_GroundSpeedScale.SetValue(270.000000);
-    fe_AirSpeedScale.SetValue(270.000000);
-    fe_AccelRateScale.SetValue(256.000000);
+    fe_PlayerStrafeScale.SetValue(0.850000);
+    fe_PlayerBackpedalScale.SetValue(0.700000);
+    fe_PlayerGroundSpeed.SetValue(260.000000);
+    fe_PlayerAirSpeed.SetValue(260.000000);
+    fe_PlayerAccelRate.SetValue(768.000000);
 }
 
 function SaveSettings()
@@ -98,14 +98,15 @@ function SaveSettings()
     class'BallisticProV55.Mut_Ballistic'.default.InitSpeedFactor = fe_InitSpeedFactor.GetValue();
     class'BallisticProV55.Mut_Ballistic'.default.JumpDrainFactor = fe_JumpDrainFactor.GetValue();
 	
-	class'BallisticProV55.Mut_Ballistic'.default.bUseSloth = cb_bUseSloth.IsChecked();
-    class'BallisticProV55.Mut_Ballistic'.default.StrafeScale = fe_StrafeScale.GetValue();
-    class'BallisticProV55.Mut_Ballistic'.default.BackScale = fe_BackScale.GetValue();
-    class'BallisticProV55.Mut_Ballistic'.default.GroundSpeedScale = fe_GroundSpeedScale.GetValue();
-    class'BallisticProV55.Mut_Ballistic'.default.AirSpeedScale = fe_AirSpeedScale.GetValue();
-    class'BallisticProV55.Mut_Ballistic'.default.AccelRateScale = fe_AccelRateScale.GetValue();
+	class'BallisticReplicationInfo'.default.bUseSloth = cb_bUseSloth.IsChecked();
+    class'BallisticReplicationInfo'.default.PlayerStrafeScale = fe_PlayerStrafeScale.GetValue();
+    class'BallisticReplicationInfo'.default.PlayerBackpedalScale = fe_PlayerBackpedalScale.GetValue();
+    class'BallisticReplicationInfo'.default.PlayerGroundSpeed = fe_PlayerGroundSpeed.GetValue();
+    class'BallisticReplicationInfo'.default.PlayerAirSpeed = fe_PlayerAirSpeed.GetValue();
+    class'BallisticReplicationInfo'.default.PlayerAccelRate = fe_PlayerAccelRate.GetValue();
 
     class'BallisticProV55.Mut_Ballistic'.static.StaticSaveConfig();
+    class'BallisticReplicationInfo'.static.StaticSaveConfig();
 }
 
 defaultproperties
@@ -210,68 +211,68 @@ defaultproperties
      End Object
      cb_bUseSloth=moCheckBox'BallisticProV55.BallisticTab_Sprint.cb_bUseSlothC'
 
-     Begin Object Class=moFloatEdit Name=fe_StrafeScaleC
+     Begin Object Class=moFloatEdit Name=fe_PlayerStrafeScaleC
          MinValue=0.000000
          MaxValue=999.000000
          ComponentWidth=0.175000
          Caption="Strafe Ground Speed Scale:"
-         OnCreateComponent=fe_StrafeScaleC.InternalOnCreateComponent
+         OnCreateComponent=fe_PlayerStrafeScaleC.InternalOnCreateComponent
          Hint="The initial stamina."
          WinTop=0.500000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     fe_StrafeScale=moFloatEdit'BallisticProV55.BallisticTab_Sprint.fe_StrafeScaleC'
+     fe_PlayerStrafeScale=moFloatEdit'BallisticProV55.BallisticTab_Sprint.fe_PlayerStrafeScaleC'
 
-     Begin Object Class=moFloatEdit Name=fe_BackScaleC
+     Begin Object Class=moFloatEdit Name=fe_PlayerBackpedalScaleC
          MinValue=0.000000
          MaxValue=999.000000
          ComponentWidth=0.175000
          Caption="Backwards Ground Speed Scale:"
-         OnCreateComponent=fe_BackScaleC.InternalOnCreateComponent
+         OnCreateComponent=fe_PlayerBackpedalScaleC.InternalOnCreateComponent
          Hint="The maximal stamina."
          WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     fe_BackScale=moFloatEdit'BallisticProV55.BallisticTab_Sprint.fe_BackScaleC'
+     fe_PlayerBackpedalScale=moFloatEdit'BallisticProV55.BallisticTab_Sprint.fe_PlayerBackpedalScaleC'
 
-     Begin Object Class=moFloatEdit Name=fe_GroundSpeedScaleC
+     Begin Object Class=moFloatEdit Name=fe_PlayerGroundSpeedC
          MinValue=0.000000
          MaxValue=999.000000
          ComponentWidth=0.175000
          Caption="Ground Speed Scale:"
-         OnCreateComponent=fe_GroundSpeedScaleC.InternalOnCreateComponent
+         OnCreateComponent=fe_PlayerGroundSpeedC.InternalOnCreateComponent
          Hint="The stamina drain rate."
          WinTop=0.600000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     fe_GroundSpeedScale=moFloatEdit'BallisticProV55.BallisticTab_Sprint.fe_GroundSpeedScaleC'
+     fe_PlayerGroundSpeed=moFloatEdit'BallisticProV55.BallisticTab_Sprint.fe_PlayerGroundSpeedC'
 
-     Begin Object Class=moFloatEdit Name=fe_AirSpeedScaleC
+     Begin Object Class=moFloatEdit Name=fe_PlayerAirSpeedC
          MinValue=0.000000
          MaxValue=999.000000
          ComponentWidth=0.175000
          Caption="Air Speed Scale:"
-         OnCreateComponent=fe_AirSpeedScaleC.InternalOnCreateComponent
+         OnCreateComponent=fe_PlayerAirSpeedC.InternalOnCreateComponent
          Hint="The stamina charge rate."
          WinTop=0.650000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     fe_AirSpeedScale=moFloatEdit'BallisticProV55.BallisticTab_Sprint.fe_AirSpeedScaleC'
+     fe_PlayerAirSpeed=moFloatEdit'BallisticProV55.BallisticTab_Sprint.fe_PlayerAirSpeedC'
 
-     Begin Object Class=moFloatEdit Name=fe_AccelRateScaleC
+     Begin Object Class=moFloatEdit Name=fe_PlayerAccelRateC
          MinValue=0.000000
          MaxValue=999.000000
          ComponentWidth=0.175000
          Caption="Acceleration Rate:"
-         OnCreateComponent=fe_AccelRateScaleC.InternalOnCreateComponent
+         OnCreateComponent=fe_PlayerAccelRateC.InternalOnCreateComponent
          Hint="The speed factor during sprint."
          WinTop=0.700000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     fe_AccelRateScale=moFloatEdit'BallisticProV55.BallisticTab_Sprint.fe_AccelRateScaleC'
+     fe_PlayerAccelRate=moFloatEdit'BallisticProV55.BallisticTab_Sprint.fe_PlayerAccelRateC'
 }

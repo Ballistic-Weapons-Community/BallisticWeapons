@@ -241,6 +241,7 @@ defaultproperties
 	ParamsClasses(0)=Class'FG50TW_WeaponParams'
 	ParamsClasses(1)=Class'FG50TW_WeaponParams'
 	ParamsClasses(2)=Class'FG50TW_WeaponParamsRealistic'
+    ParamsClasses(3)=Class'FG50TW_WeaponParamsTactical'
 	SelectAnim="Deploy"
     BringUpTime=1.600000
 	bCanThrow=False

@@ -447,29 +447,6 @@ simulated event ModeDoFire()
 	BW.bNeedReload = BW.MayNeedReload(ThisModeNum, ConsumedLoad);
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-	
-	FS.DamageInt = default.Damage;
-	FS.Damage = String(FS.DamageInt);
-
-    FS.HeadMult = default.HeadMult;
-    FS.LimbMult = default.LimbMult;
-
-	FS.DPS = FS.DamageInt / 0.075;
-	FS.TTK = 0.075 * (Ceil(175/FS.DamageInt) - 1);
-	FS.RPM = String(int((1 / 0.075) * 60))@default.ShotTypeString$"/min";
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.RangeOpt = "Max:"@(int(default.TraceRange.Max / 52.5))@"metres";
-	
-	return FS;
-}
-
 defaultproperties
 {
 	 TraceCount=1

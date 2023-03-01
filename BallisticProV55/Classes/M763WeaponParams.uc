@@ -8,6 +8,7 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=3072.000000,Max=3072.000000)
+        DecayRange=(Min=1000,Max=3000)
 		RangeAtten=0.15000
 		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'

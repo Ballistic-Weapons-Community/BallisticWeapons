@@ -93,6 +93,9 @@ simulated function bool HasAmmo()
 	return true;
 }
 
+/*
+FIXME: Animation-driven secondary attack. Needs params to be aware of this.
+
 //Accessor for stats
 static function FireModeStats GetStats() 
 {
@@ -111,6 +114,7 @@ static function FireModeStats GetStats()
 	
 	return FS;
 }
+*/
 
 defaultproperties
 {

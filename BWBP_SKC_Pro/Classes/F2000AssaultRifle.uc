@@ -427,7 +427,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.5, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.5, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -479,6 +479,7 @@ defaultproperties
 	ParamsClasses(0)=Class'F2000WeaponParams'
 	ParamsClasses(1)=Class'F2000WeaponParamsClassic'
 	ParamsClasses(2)=Class'F2000WeaponParamsRealistic'
+    ParamsClasses(3)=Class'F2000WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.F2000PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.F2000SecondaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=255,R=255,A=134),Color2=(B=0,G=0,R=255,A=255),StartSize1=50,StartSize2=51)

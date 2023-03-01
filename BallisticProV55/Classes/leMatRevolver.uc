@@ -625,6 +625,7 @@ defaultproperties
 	ParamsClasses(0)=Class'leMatWeaponParams'
 	ParamsClasses(1)=Class'leMatWeaponParamsClassic'
 	ParamsClasses(2)=Class'leMatWeaponParamsRealistic'
+    ParamsClasses(3)=Class'leMatWeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.leMatPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.leMatSecondaryFire'
 	PutDownTime=0.700000

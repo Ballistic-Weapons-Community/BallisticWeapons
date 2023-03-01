@@ -19,7 +19,7 @@ var automated moNumericEdit int_MaxInventoryCapacity;	//Inventory Capacity
 var automated moCheckbox	ch_BrightPlayers;			//Bright Players
 var automated moCheckbox	ch_ForceBWPawn;				//Force Ballistic Pawn
 var automated moCheckbox	ch_NoDodging;				//Disables Dodging
-var automated moCheckbox	ch_DoubleJump;				//Limits Double Jump
+var automated moCheckbox	ch_NoDoubleJump;				//Limits Double Jump
 var automated moCheckbox	ch_Regen;					//Enables Health Regen
 var automated moCheckbox	ch_ShieldRegen;				//Enables Shield Regen
 var automated moCheckbox	ch_PreCacheWeapons;			//Precache Weapons
@@ -66,6 +66,8 @@ function LoadSettings()
 	co_GameStyle.AddItem("Competitive" ,,string(0));
 	co_GameStyle.AddItem("Classic" ,,string(1));
 	co_GameStyle.AddItem("Realism" ,,string(2));
+    co_GameStyle.AddItem("Tactical" ,,string(3));
+
 	co_GameStyle.ReadOnly(True);
 	co_GameStyle.SetIndex(class'BallisticReplicationInfo'.default.GameStyle);
 	
@@ -74,7 +76,7 @@ function LoadSettings()
 	ch_BrightPlayers.Checked(class'BallisticReplicationInfo'.default.bBrightPlayers);
 	ch_ForceBWPawn.Checked(class'Mut_Ballistic'.default.bForceBallisticPawn);
 	ch_NoDodging.Checked(class'BallisticReplicationInfo'.default.bNoDodging);
-	ch_DoubleJump.Checked(class'BallisticReplicationInfo'.default.bLimitDoubleJumps);
+	ch_NoDoubleJump.Checked(class'BallisticReplicationInfo'.default.bNoDoubleJump);
 	ch_Regen.Checked(class'mut_Ballistic'.default.bRegeneration);
 	ch_ShieldRegen.Checked(class'mut_Ballistic'.default.bShieldRegeneration);
 	ch_PreCacheWeapons.Checked(class'Mut_Ballistic'.default.bPreloadMeshes);
@@ -92,7 +94,7 @@ function SaveSettings()
 	class'BallisticReplicationInfo'.default.bBrightPlayers		= ch_BrightPlayers.IsChecked();
     class'Mut_Ballistic'.default.bForceBallisticPawn			= ch_ForceBWPawn.IsChecked();
 	class'BallisticReplicationInfo'.default.bNoDodging			= ch_NoDodging.IsChecked();
-	class'BallisticReplicationInfo'.default.bLimitDoubleJumps 	= ch_DoubleJump.IsChecked();
+	class'BallisticReplicationInfo'.default.bNoDoubleJump 	    = ch_NoDoubleJump.IsChecked();
 	class'Mut_Ballistic'.default.bRegeneration					= ch_Regen.IsChecked();
 	class'Mut_Ballistic'.default.bShieldRegeneration			= ch_ShieldRegen.IsChecked();
 	class'Mut_Ballistic'.default.bPreloadMeshes					= ch_PreCacheWeapons.IsChecked();
@@ -116,7 +118,7 @@ function DefaultSettings()
 	ch_BrightPlayers.Checked(false);
 	ch_ForceBWPawn.Checked(false);
 	ch_NoDodging.Checked(false);
-	ch_DoubleJump.Checked(false);
+	ch_NoDoubleJump.Checked(false);
 	ch_Regen.Checked(false);
 	ch_ShieldRegen.Checked(false);
 	ch_PreCacheWeapons.Checked(true);
@@ -226,25 +228,25 @@ defaultproperties
          Caption="Disable Dodging"
          OnCreateComponent=ch_NoDodgingCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Disables dodging for all players"
+         Hint="Disables dodging for all players."
          WinTop=0.400000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
      ch_NoDodging=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_NoDodgingCheck'
 
-    Begin Object Class=moCheckBox Name=ch_DoubleJumpCheck
+    Begin Object Class=moCheckBox Name=ch_NoDoubleJumpCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Limit Double Jump"
-         OnCreateComponent=ch_DoubleJumpCheck.InternalOnCreateComponent
+         Caption="Disable Double Jump"
+         OnCreateComponent=ch_NoDoubleJumpCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Limits the Double Jump capabilities of players."
+         Hint="Disables double jump for all players."
          WinTop=0.450000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_DoubleJump=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_DoubleJumpCheck'
+     ch_NoDoubleJump=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_NoDoubleJumpCheck'
 	 
 	 Begin Object Class=moCheckBox Name=ch_RegenCheck
          ComponentJustification=TXTA_Left

@@ -254,7 +254,7 @@ function ServerSwitchSilencer(bool bNewValue)
 
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (BCRepClass.default.GameStyle == 0)
+	if (BCRepClass.static.IsArena())
 		return;
 	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
@@ -374,7 +374,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -415,9 +415,9 @@ defaultproperties
 	ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Clipout')
 	ClipInSound=(Sound=Sound'BW_Core_WeaponSound.TEC.RSMP-Clipin')
 	ClipInFrame=0.650000
-	WeaponModes(0)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=4.000000)
-	WeaponModes(1)=(bUnavailable=True)
-    WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
+    WeaponModes(0)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+	WeaponModes(1)=(ModeName="Burst Fire",ModeID="WM_Burst",Value=4.000000)
+	WeaponModes(2)=(bUnavailable=True)
 	CurrentWeaponMode=0
 	
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M353InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=145,R=0,A=190),Color2=(B=77),StartSize1=80)
@@ -429,6 +429,7 @@ defaultproperties
 	ParamsClasses(0)=Class'XRS10WeaponParams'
 	ParamsClasses(1)=Class'XRS10WeaponParamsClassic'
 	ParamsClasses(2)=Class'XRS10WeaponParamsRealistic'
+    ParamsClasses(3)=Class'XRS10WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.XRS10PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XRS10SecondaryFire'
 	SelectForce="SwitchToAssaultRifle"

@@ -7,6 +7,7 @@
 // by Azarael 2020
 //=============================================================================
 class WeaponParams extends Object
+    DependsOn(FireEffectParams)
     editinlinenew;
 
 // Struct used for skin replacements
@@ -121,6 +122,26 @@ var() array<RecoilParams>	RecoilParams;
 var() array<AimParams>		AimParams;
 var() array<FireParams>     FireParams;
 var() array<FireParams>     AltFireParams;
+
+final function FireEffectParams.FireModeStats GetFireStats() 
+{
+    local FireEffectParams.FireModeStats FS;
+
+    if (FireParams.Length > 0)
+	    return FireParams[0].GetStats();
+
+    return FS;
+}
+
+final function FireEffectParams.FireModeStats GetAltFireStats() 
+{
+    local FireEffectParams.FireModeStats FS;
+
+    if (AltFireParams.Length > 0)
+	    return AltFireParams[0].GetStats();
+
+    return FS;
+}
 
 defaultproperties
 {

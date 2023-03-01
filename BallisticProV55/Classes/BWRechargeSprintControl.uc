@@ -8,12 +8,12 @@
 //=============================================================================
 class BWRechargeSprintControl extends BCSprintControl;
 
-const SPRINT_INTERVAL = 2.25;
+const RECHARGE_DELAY = 1.5f;
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		ClientDelayRecharge;
+		ClientDelayRecharge, ClientDodged;
 }
 
 // If Sprint not active, return
@@ -29,8 +29,11 @@ singular function StopSprint()
 	if (Instigator != None)
 		UpdateSpeed();
 
-	SprintRechargeDelay = Level.TimeSeconds + SPRINT_INTERVAL;
-	ClientDelayRecharge(SPRINT_INTERVAL);
+    if (SprintRechargeDelay < Level.TimeSeconds + RECHARGE_DELAY)
+    {
+        SprintRechargeDelay = Level.TimeSeconds + RECHARGE_DELAY;
+        ClientDelayRecharge(RECHARGE_DELAY);
+    }
 }
 
 simulated function OwnerEvent(name EventName)
@@ -39,39 +42,24 @@ simulated function OwnerEvent(name EventName)
 	
 	if (EventName == 'Dodged')
 	{
-		if (bSprintActive)
-		{
-			ClientJumped();
-			Stamina = FMax(0, Stamina - StaminaDrainRate * 2);
-			SprintRechargeDelay = Level.TimeSeconds + SPRINT_INTERVAL;
-		}
-		else
-		{
-			SprintRechargeDelay = Level.TimeSeconds + SPRINT_INTERVAL;
-			ClientDelayRecharge(SPRINT_INTERVAL);
-		}
-	}
-	else if (EventName == 'Jumped')
-	{
-		SprintRechargeDelay = Level.TimeSeconds + SPRINT_INTERVAL;
-		ClientDelayRecharge(SPRINT_INTERVAL);
+        SprintRechargeDelay = Level.TimeSeconds + RECHARGE_DELAY;
+        ClientDelayRecharge(RECHARGE_DELAY);
 	}
 }
 
 simulated function ClientDelayRecharge(float Delay)
 {
-	SprintRechargeDelay = Level.TimeSeconds + SPRINT_INTERVAL;
+	SprintRechargeDelay = Level.TimeSeconds + Delay;
 }
 
-simulated function ClientJumped()
+simulated function ClientDodged()
 {
 	if (level.NetMode != NM_Client)
 		return;
-	SprintRechargeDelay = Level.TimeSeconds + SPRINT_INTERVAL;
+
+	SprintRechargeDelay = Level.TimeSeconds + RECHARGE_DELAY;
 	Stamina = FMax(0, Stamina - StaminaDrainRate * 2);
 }
-
-
 
 defaultproperties
 {

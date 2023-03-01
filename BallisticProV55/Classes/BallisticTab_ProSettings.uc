@@ -31,8 +31,8 @@ function ShowPanel (bool bShow)
 
 function LoadSettings()
 {
-	fl_WalkingPct.SetValue(class'BallisticReplicationInfo'.default.WalkingPercentage);
-	fl_CrouchingPct.SetValue(class'BallisticReplicationInfo'.default.CrouchingPercentage);
+	fl_WalkingPct.SetValue(class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor);
+	fl_CrouchingPct.SetValue(class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor);
 	fl_NadePct.SetValue(class'Mut_BallisticSwap'.default.NadeReplacePercent);
 	ch_MineLights.Checked(class'BallisticReplicationInfo'.default.bUniversalMineLights);
 	ch_RunningAnims.Checked(class'BallisticReplicationInfo'.default.bUseRunningAnims);
@@ -43,8 +43,8 @@ function SaveSettings()
 {
 	if(!bInitialised)
 		return;
-	class'BallisticReplicationInfo'.default.WalkingPercentage = fl_WalkingPct.GetValue();
-	class'BallisticReplicationInfo'.default.CrouchingPercentage = fl_CrouchingPct.GetValue();
+	class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor = fl_WalkingPct.GetValue();
+	class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor = fl_CrouchingPct.GetValue();
 	class'BallisticReplicationInfo'.default.bUniversalMineLights = ch_MineLights.IsChecked();
 	class'BallisticReplicationInfo'.default.bUseRunningAnims = ch_RunningAnims.IsChecked();
 	class'Mut_BallisticSwap'.default.NadeReplacePercent = fl_NadePct.GetValue();

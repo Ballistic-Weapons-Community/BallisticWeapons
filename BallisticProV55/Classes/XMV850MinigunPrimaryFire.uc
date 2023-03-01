@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class XMV850MinigunPrimaryFire extends BallisticRangeAttenFire;
+class XMV850MinigunPrimaryFire extends BallisticProInstantFire;
 
 var rotator OldLookDir, TurnVelocity;
 var float	LastFireTime, MuzzleBTime, MuzzleCTime, OldFireRate;
@@ -321,8 +321,6 @@ simulated event ModeDoFire()
 
 defaultproperties
 {
-	 CutOffStartRange=3072
-	 CutOffDistance=8192
 	 RangeAtten=0.35
      TraceCount=1
      TraceRange=(Min=12000.000000,Max=12000.000000)

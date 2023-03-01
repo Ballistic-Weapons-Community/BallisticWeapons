@@ -23,7 +23,8 @@
 //=============================================================================
 // by Azarael 2020
 //=============================================================================
-class BallisticWeaponParams extends Object;
+class BallisticWeaponParams extends Object
+    DependsOn(FireEffectParams);
 
 var array<WeaponParams>                  Layouts; //Gun variants, attachment setups, alternate designs
 var array<WeaponCamos>                  Camos; //Gun skins
@@ -220,3 +221,15 @@ static simulated final function OverrideProjectileParams(BallisticWeapon BW, Bal
 
 // Subclass function for overriding
 static simulated function OnInitialize(BallisticWeapon BW);
+
+// stats
+
+static function FireEffectParams.FireModeStats GetFireStats() 
+{
+	return default.Layouts[0].GetFireStats();
+}
+
+static function FireEffectParams.FireModeStats GetAltFireStats() 
+{
+	return default.Layouts[0].GetAltFireStats();
+}

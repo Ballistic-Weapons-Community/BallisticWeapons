@@ -219,7 +219,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.75, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.75, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -264,6 +264,7 @@ defaultproperties
 	ParamsClasses(0)=Class'SRS600WeaponParams'
 	ParamsClasses(1)=Class'SRS600WeaponParamsClassic'
 	ParamsClasses(2)=Class'SRS600WeaponParamsRealistic'
+    ParamsClasses(3)=Class'SRS600WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.SRS600PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	

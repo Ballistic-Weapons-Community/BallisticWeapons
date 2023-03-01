@@ -517,6 +517,7 @@ defaultproperties
 	ParamsClasses(0)=Class'AH104PistolWeaponParamsArena'
 	ParamsClasses(1)=Class'AH104PistolWeaponParamsClassic'
 	ParamsClasses(2)=Class'AH104PistolWeaponParamsRealistic'
+    ParamsClasses(3)=Class'AH104PistolWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.AH104PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.AH104SecondaryFire'
 	PutDownTime=1.000000

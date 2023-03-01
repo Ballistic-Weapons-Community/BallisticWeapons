@@ -8,6 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
+        DecayRange=(Min=2500,Max=6500)
 		RangeAtten=0.35
 		Damage=20
 		HeadMult=1.5f
@@ -38,6 +39,7 @@ defaultproperties
 	
 	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
 		BotRefireRate=0.300000
+        EffectString="Deploy weapon"
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
@@ -68,7 +70,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.5
+		ADSMultiplier=0.7
 		AimSpread=(Min=128,Max=1024)
 		SprintOffset=(Pitch=-6000,Yaw=-8000)
 		JumpOffset=(Pitch=-4000,Yaw=3000)
@@ -90,7 +92,6 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_Burst",Value=5.000000)
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		PlayerSpeedFactor=0.950000
-        PlayerJumpFactor=0.950000
         DisplaceDurationMult=1.25
         SightMoveSpeedFactor=0.8
 		MagAmmo=100

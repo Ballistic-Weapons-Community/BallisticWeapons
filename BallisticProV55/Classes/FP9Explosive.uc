@@ -672,6 +672,7 @@ defaultproperties
 	ParamsClasses(0)=Class'FP9WeaponParams'
 	ParamsClasses(1)=Class'FP9WeaponParamsClassic' //todo: params and state code for laser tripmine
 	ParamsClasses(2)=Class'FP9WeaponParamsRealistic' //todo: params and state code for laser tripmine
+    ParamsClasses(3)=Class'FP9WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.FP9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.FP9SecondaryFire'
 	

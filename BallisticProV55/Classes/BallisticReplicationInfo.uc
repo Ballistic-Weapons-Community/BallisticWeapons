@@ -19,23 +19,21 @@ class BallisticReplicationInfo extends BCReplicationInfo config(BallisticProV55)
 // Server Variables -----------------------------------------------------------
 
 // Pawn
-var() Config bool		bBrightPlayers;		// Players have ambient glow to glow in the dark like the standard pawns.
-var() Config bool		bNoDodging;			// Disables dodging.
-var() Config bool		bLimitDoubleJumps;	// Limits double jumps so you can only do a few before having to wait for them to recharge.
-var() Config float		WalkingPercentage;   // Let players configure the walking movespeed percentage.
-var() Config float		CrouchingPercentage; // Let players configure the crouching movespeed percentage.
-var() Config bool 		bUseRunningAnims; // Pawns will use running anims for walking.
-var() Config bool		bUniversalMineLights; // All BX-5 mines are lit.
+var() config bool		bBrightPlayers;		    // Players have ambient glow to glow in the dark like the standard pawns.
+var() config bool		bNoDodging;			    // Disables dodging.
+var() config bool		bNoDoubleJump;	        // Disables double jump.
+var() config bool 		bUseRunningAnims;       // Pawns will use running anims for walking.
+var() config bool		bUniversalMineLights;   // All BX-5 mines are lit.
 
 //Player
-var() Config bool		bCustomStats;			// Enables Custom Health, Shield & Adren Stats.
-var() config int 		playerHealth;  // health the player starts with
-var() config int 		playerHealthCap; // maximum health a player can have
-var() config int 		playerSuperHealthCap; // maximum superhealth a player can have
-var() config int 		iAdrenaline;  // maximum adrenaline a player starts with
-var() config int 		iAdrenalineCap;  // maximum adrenaline a player can have
-var() config int 		iArmor;  // armor the player starts with
-var() config int 		iArmorCap;  // maximum armor the player can have
+var() config bool		bCustomStats;			// Enables Custom Health, Shield & Adren Stats.
+var() config int 		playerHealth;           // health the player starts with
+var() config int 		playerHealthCap;        // maximum health a player can have
+var() config int 		playerSuperHealthCap;   // maximum superhealth a player can have
+var() config int 		iAdrenaline;            // maximum adrenaline a player starts with
+var() config int 		iAdrenalineCap;         // maximum adrenaline a player can have
+var() config int 		iArmor;                 // armor the player starts with
+var() config int 		iArmorCap;              // maximum armor the player can have
 
 //var() config float 		dieSoundAmplifier;  // amplifies the die sound
 //var() config float 		dieSoundRangeAmplifier; // amplifies the range
@@ -55,14 +53,21 @@ var() config int 		ADRMinorBonus;   // adrenaline for minor bonus
 var() config int 		ADRKillTeamMate;   // adrenaline for killing a teammate
 var() config int 		ADRMinorError;    // adrenaline for a minor error
 
+//Sloth
+var() config bool           bUseSloth;
+var() config float          PlayerStrafeScale;
+var() config float          PlayerBackpedalScale;
+var() config float          PlayerGroundSpeed;
+var() config float          PlayerAirSpeed;
+var() config float          PlayerAccelRate;
+var() config float          PlayerJumpZ;
+var() config float          PlayerDodgeZ;
 // ----------------------------------------------------------------------------
 var struct RepInfo_BW
 {
 	var bool		bBrightPlayers;
 	var bool		bNoDodging;
-	var bool		bLimitDoubleJumps;
-	var float		WalkingPercentage;
-	var float		CrouchingPercentage;
+	var bool		bNoDoubleJump;
 	var bool		bUseRunningAnims;
 	var bool		bUniversalMineLights;
 	
@@ -95,10 +100,22 @@ var struct RepInfo_BW
 
 }BWRep;
 
+var struct RepInfo_BW_Move
+{
+    var bool           bUseSloth;
+    var float          PlayerStrafeScale;
+    var float          PlayerBackpedalScale;
+    var float          PlayerGroundSpeed;
+    var float          PlayerAirSpeed;
+    var float          PlayerAccelRate;
+    var float          PlayerJumpZ;
+    var float          PlayerDodgeZ;
+} BWRepMove;
+
 replication
 {
 	reliable if (Role == ROLE_Authority && bNetInitial)
-		BWRep;
+		BWRep, BWRepMove;
 }
 
 //Set all defaults to match server vars here
@@ -109,20 +126,35 @@ simulated function InitClientVars()
 
 	bBrightPlayers		= BWRep.bBrightPlayers;
 	bNoDodging			= BWRep.bNoDodging;
-	bLimitDoubleJumps	= BWRep.bLimitDoubleJumps;
-	WalkingPercentage	= BWRep.WalkingPercentage;
-	CrouchingPercentage = BWRep.CrouchingPercentage;
+	bNoDoubleJump	= BWRep.bNoDoubleJump;
+
 	bUniversalMineLights = BWRep.bUniversalMineLights;
 	bUseRunningAnims = BWRep.bUseRunningAnims;
 
+    bUseSloth = BWRepMove.bUseSloth;
+    PlayerStrafeScale = BWRepMove.PlayerStrafeScale;
+	PlayerBackpedalScale = BWRepMove.PlayerBackpedalScale;
+	PlayerGroundSpeed = BWRepMove.PlayerGroundSpeed;
+	PlayerAirSpeed = BWRepMove.PlayerAirSpeed;
+	PlayerAccelRate = BWRepMove.PlayerAccelRate;
+    PlayerJumpZ = BWRepMove.PlayerJumpZ;
+    PlayerDodgeZ = BWRepMove.PlayerDodgeZ;
+
 	class.default.bBrightPlayers	= bBrightPlayers;
 	class.default.bNoDodging		= bNoDodging;
-	class.default.bLimitDoubleJumps	= bLimitDoubleJumps;
-	class.default.WalkingPercentage	= WalkingPercentage;
-	class.default.CrouchingPercentage = CrouchingPercentage;
+	class.default.bNoDoubleJump	= bNoDoubleJump;
 	class.default.bUniversalMineLights = bUniversalMineLights;
 	class.default.bUseRunningAnims = bUseRunningAnims;
-	
+
+    class.default.bUseSloth = bUseSloth;
+    class.default.PlayerStrafeScale = PlayerStrafeScale;
+	class.default.PlayerBackpedalScale = PlayerBackpedalScale;
+	class.default.PlayerGroundSpeed = PlayerGroundSpeed;
+	class.default.PlayerAirSpeed = PlayerAirSpeed;
+	class.default.PlayerAccelRate = PlayerAccelRate;
+    class.default.PlayerJumpZ = PlayerJumpZ;
+	class.default.PlayerDodgeZ = PlayerDodgeZ;
+
 	//Kill Rewards
 	class.default.killrewardArmor = killrewardArmor;
     class.default.killrewardArmorCap = killrewardArmorCap;
@@ -170,9 +202,9 @@ simulated function InitClientVars()
 
 	Log("bBrightPlayers: "$bBrightPlayers);
 	Log("bNoDodging: "$bNoDodging);
-	Log("bLimitDoubleJumps: "$bLimitDoubleJumps);
-	log("Walking percentage: "$WalkingPercentage * 100$"%");
-	log("Crouching percentage:"$CrouchingPercentage*100$"%");
+	Log("bNoDoubleJump: "$bNoDoubleJump);
+	log("Walking percentage: "$PlayerADSMoveSpeedFactor * 100$"%");
+	log("Crouching percentage:"$PlayerCrouchSpeedFactor*100$"%");
 
 	if (Role < ROLE_Authority && bBrightPlayers)
 	{
@@ -188,11 +220,18 @@ function ServerInitialize()
 {
 	BWRep.bBrightPlayers	= bBrightPlayers;
 	BWRep.bNoDodging		= bNoDodging;
-	BWRep.bLimitDoubleJumps	= bLimitDoubleJumps;
-    BWRep.WalkingPercentage = WalkingPercentage;
-    BWRep.CrouchingPercentage = CrouchingPercentage;
+	BWRep.bNoDoubleJump	= bNoDoubleJump;
 	BWRep.bUniversalMineLights = bUniversalMineLights;
 	BWRep.bUseRunningAnims = bUseRunningAnims;
+
+    BWRepMove.bUseSloth = bUseSloth;
+    BWRepMove.PlayerStrafeScale = PlayerStrafeScale;
+	BWRepMove.PlayerBackpedalScale = PlayerBackpedalScale;
+	BWRepMove.PlayerGroundSpeed = PlayerGroundSpeed;
+	BWRepMove.PlayerAirSpeed = PlayerAirSpeed;
+	BWRepMove.PlayerAccelRate = PlayerAccelRate;
+    BWRepMove.PlayerJumpZ = PlayerJumpZ;
+    BWRepMove.PlayerDodgeZ = PlayerDodgeZ;
 
 	// Player
     if (bCustomStats)
@@ -240,8 +279,6 @@ static function BCReplicationInfo GetBRep(actor A)
 
 defaultproperties
 {
-     WalkingPercentage=0.900000
-     CrouchingPercentage=0.450000
      ModString="Ballistic Weapons Pro"
 	 
 	 //Player
@@ -269,4 +306,14 @@ defaultproperties
      ADRMinorBonus=5
      ADRKillTeamMate=-10
      ADRMinorError=-5
+
+    // Movement rate
+     bUseSloth=False
+     PlayerStrafeScale=1
+     PlayerBackpedalScale=1
+     PlayerGroundSpeed=260.000000
+     PlayerAirSpeed=260.000000
+     PlayerAccelRate=2048.000000
+     PlayerJumpZ=256
+     PlayerDodgeZ=170
 }

@@ -13,7 +13,7 @@ var() class<actor>			AltBrassClass2;			//Alternate Fire's brass (whole FRAG-12)
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BulldogAssaultCannon(Instigator.Weapon).BCRepClass.default.GameStyle == 2)
+	if (BulldogAssaultCannon(Instigator.Weapon).BCRepClass.static.IsRealism())
 	{
 		ImpactManager=Class'BallisticProV55.IM_MRLRocket';
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_HMG';

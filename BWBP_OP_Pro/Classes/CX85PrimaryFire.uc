@@ -1,4 +1,4 @@
-class CX85PrimaryFire extends BallisticRangeAttenFire;
+class CX85PrimaryFire extends BallisticProInstantFire;
 
 var() Vector			SpawnOffset;		// Projectile spawned at this offset
 var	  Projectile		Proj;				// The projectile actor
@@ -93,16 +93,10 @@ defaultproperties
 {
 	 ProjectileClass="BWBP_OP_Pro.CX85Flechette"
      SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
-     CutOffDistance=6144.000000
-     CutOffStartRange=3072.000000
      TraceRange=(Min=30000.000000,Max=30000.000000)
      WallPenetrationForce=16.000000
-     
      Damage=21.000000
-     
-     
      RangeAtten=0.350000
-
      DamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
      DamageTypeHead=Class'BWBP_OP_Pro.DTCX85BulletHead'
      DamageTypeArm=Class'BWBP_OP_Pro.DTCX85Bullet'

@@ -44,7 +44,7 @@ defaultproperties
 	// SECONDARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=ShotgunEffectParams Name=ClassicSecondaryEffectParams
+	Begin Object Class=ShotgunEffectParams Name=RealisticSecondaryEffectParams
 		//TracerChance=1.000000
 		TraceRange=(Min=600.000000,Max=600.000000)
 		RangeAtten=0.200000
@@ -65,11 +65,11 @@ defaultproperties
 		WarnTargetPct=0.100000	
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
 		FireInterval=1.700000
 		AmmoPerFire=0
 		FireAnim="FireAlt"	
-	FireEffectParams(0)=ShotgunEffectParams'ClassicSecondaryEffectParams'
+	FireEffectParams(0)=ShotgunEffectParams'RealisticSecondaryEffectParams'
 	End Object
 	
 	//=================================================================

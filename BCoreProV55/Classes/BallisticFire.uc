@@ -138,27 +138,6 @@ var(Jamming) bool				            bJamWastesAmmo;			// Jamming wastes the ammo th
 // END JAMMING
 //=============================================================================
 
-//===========================================================================
-// Statistics variables
-//===========================================================================
-struct FireModeStats
-{
-	var	String		Damage;
-	var	int			DamageInt;
-    var float       HeadMult;
-    var float       LimbMult;
-	var	int			DPS;
-	var	float		TTK;
-	var	String		RPM;
-	var	int			RPShot;
-	var	int			RPS;
-	var	float		FCPShot;
-	var	float		FCPS;
-	var	String		RangeOpt, RangeDecayed, RangeMax;
-};
-
-var	String		ShotTypeString, EffectString;
-
 simulated final function ApplyFireParams()
 {
     FireRate                		= Params.FireInterval;
@@ -817,23 +796,6 @@ simulated function bool AllowFire()
     return true;
 }
 
-//Accessor stub for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-	
-	FS.Damage=default.EffectString;
-	if (default.FireRate < 0.5)
-		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	else FS.RPM = 1/default.FireRate@"times/second";
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	
-	return FS;
-}
-
 defaultproperties
 {
      ClipFinishSound=(Volume=0.500000,Radius=32.000000,Pitch=1.000000)
@@ -851,8 +813,6 @@ defaultproperties
      bJamWastesAmmo=True
      SilencedFireSound=(Volume=0.500000,Pitch=1.000000,bNoOverride=True)
      BallisticFireSound=(Volume=1.000000,Radius=512.000000,Pitch=1.000000,bNoOverride=True)
-     ShotTypeString="rounds"
-     EffectString="Unknown"
      TransientSoundVolume=1.000000
      TweenTime=0.000000
      AmmoPerFire=1

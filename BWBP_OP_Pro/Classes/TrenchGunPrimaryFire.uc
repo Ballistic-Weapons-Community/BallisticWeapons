@@ -732,39 +732,6 @@ function SwitchShotParams()
 	}
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-	local float AdjustedFireRate;
-	
-	AdjustedFireRate=0.6;
-	
-	FS.DamageInt = int(default.Damage * default.TraceCount);
-
-    if (default.RangeAtten < 1f)
-	    FS.Damage 		= String(FS.DamageInt) @ "-" @ String(FS.DamageInt * default.RangeAtten);
-    else 
-        FS.Damage = String(FS.DamageInt);
-
-    FS.HeadMult = default.HeadMult;
-    FS.LimbMult = default.LimbMult;
-
-	FS.Damage = String(FS.DamageInt);
-	FS.DPS = (default.Damage * default.TraceCount) / AdjustedFireRate;
-	FS.TTK = 0.6 * (Ceil(175/FS.DamageInt) - 1);
-	if (AdjustedFireRate < 0.5)
-		FS.RPM = String(int((1 / AdjustedFireRate) * 60))@default.ShotTypeString$"/min";
-	else FS.RPM = 1/AdjustedFireRate@"times/second";
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.RangeOpt = "Max:"@(default.TraceRange.Max / 52.5)@"metres";
-	
-	return FS;
-}
-
 defaultproperties
 {
 	SlugFireSound=Sound'BWBP_OP_Sounds.TechGun.electro_Shot'
@@ -775,13 +742,8 @@ defaultproperties
 	ChargeTime=0.35
 	MaxHoldTime=0.0
 	HipSpreadFactor=2.000000
-
     ProjectileClass=Class'BWBP_SKC_Pro.BulldogRocket'
     SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-	
-    CutOffDistance=2048.000000
-    CutOffStartRange=1024.000000
-
 	TraceCount=10
 	TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
     ImpactManager=Class'BallisticProV55.IM_IncendiaryBullet'

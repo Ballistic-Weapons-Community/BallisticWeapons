@@ -252,7 +252,7 @@ function MakeNewExploder (Actor Other, Pawn InstigatedBy, int triggerType)
 
 	if (triggerType == 1)
 	{
-		Proj1 = Spawn (class'Supercharger_Detonator',,,Other.Location, Other.Rotation);
+		Proj1 = Spawn (class'Supercharger_Detonator',InstigatedBy,,Other.Location, Other.Rotation);
 		if (Proj1 != None)
 		{
 			Proj1.Instigator = InstigatedBy;
@@ -260,7 +260,7 @@ function MakeNewExploder (Actor Other, Pawn InstigatedBy, int triggerType)
 	}
 	else if (triggerType == 2)
 	{
-		Proj2 = Spawn (class'AK91_Detonator',,,Other.Location, Other.Rotation);
+		Proj2 = Spawn (class'AK91_Detonator',InstigatedBy,,Other.Location, Other.Rotation);
 		if (Proj2 != None)
 		{
 			Proj2.Instigator = InstigatedBy;

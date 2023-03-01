@@ -236,6 +236,7 @@ defaultproperties
 	ParamsClasses(0)=Class'FLASHWeaponParams'
 	ParamsClasses(1)=Class'FLASHWeaponParamsClassic'
 	ParamsClasses(2)=Class'FLASHWeaponParamsRealistic'
+    ParamsClasses(3)=Class'FLASHWeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.FLASHPrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.FLASHSecondaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=192),Color2=(B=0,G=255,R=255,A=86),StartSize1=75,StartSize2=95)

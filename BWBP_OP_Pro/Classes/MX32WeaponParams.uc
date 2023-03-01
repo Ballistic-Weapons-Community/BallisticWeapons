@@ -8,6 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=15000.000000)
+        DecayRange=(Min=3000,Max=9000)
 		RangeAtten=0.350000
 		Damage=20
 		DamageType=Class'BWBP_OP_Pro.DTMX32Primary'
@@ -104,7 +105,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.400000
+		ADSMultiplier=0.600000
 		CrouchMultiplier=0.750000
 		AimSpread=(Min=64,Max=768)
 		AimAdjustTime=0.550000

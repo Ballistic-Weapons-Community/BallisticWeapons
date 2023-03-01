@@ -80,10 +80,10 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 			BoneTestLocation *= normal(ClosestLocation - HitLocation) dot normal(HitLocation - TraceStart);
 			BoneTestLocation += HitLocation;
 	
-			Dmg = GetDamage(Other, BoneTestLocation, Dir, Victim, HitDT);
+			Dmg = GetDamage(Other, BoneTestLocation, TraceStart, Dir, Victim, HitDT);
 		}
 
-		else Dmg = GetDamage(Other, HitLocation, Dir, Victim, HitDT);
+		else Dmg = GetDamage(Other, HitLocation, TraceStart, Dir, Victim, HitDT);
 		
 		if (xPawn(Victim) != None && Pawn(Victim).Health > 0)
 		{
@@ -99,20 +99,7 @@ function StreamDoDamage (Actor Other, vector HitLocation, vector TraceStart, vec
 			class'XOXOLewdness'.static.DistributeLewd(HitLocation, Instigator, Pawn(Victim), Weapon);
 	}
 }
-	
-//===========================================================================
-// GetDamage
-//
-// Lacks locational damage
-//===========================================================================
-function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
-{
-	DT = DamageType;
-	Victim = Other;
-	
-	return Damage;
-}
-	
+
 //===========================================================================
 // MaintainConnection
 //

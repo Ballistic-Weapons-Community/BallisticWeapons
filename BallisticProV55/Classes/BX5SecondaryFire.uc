@@ -14,7 +14,6 @@ defaultproperties
 {
      bUseWeaponMag=False
      bAISilent=True
-     EffectString="Spring mode"
      bWaitForRelease=True
      bModeExclusive=False
      FireRate=0.700000

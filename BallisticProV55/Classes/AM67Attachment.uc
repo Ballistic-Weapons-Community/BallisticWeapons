@@ -30,7 +30,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (AM67Pistol(Instigator.Weapon).BCRepClass.default.GameStyle == 2)
+	if (AM67Pistol(Instigator.Weapon).BCRepClass.static.IsRealism())
 	{
 		bLaserVariant=true;
 	}

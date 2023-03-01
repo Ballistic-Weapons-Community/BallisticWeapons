@@ -145,7 +145,7 @@ simulated event Tick (float DT)
 {
 	local int i;
 	
-	if (BCRepClass.default.GameStyle == 0)
+	if (BCRepClass.static.IsArena())
 	{
 		if (HeatLevel > 0)
 		{
@@ -319,7 +319,7 @@ simulated event WeaponTick(float DT)
 	if (!Instigator.IsLocallyControlled())
 		return;
 
-	if ((BCRepClass.default.GameStyle == 0 && GetTargetZap() != None) || FireMode[1].bIsFiring)	
+	if ((BCRepClass.static.IsArena() && GetTargetZap() != None) || FireMode[1].bIsFiring)	
 	{	
 		if (ClawAlpha < 1)
 		{
@@ -390,7 +390,7 @@ simulated event RenderOverlays (Canvas C)
 	Super.RenderOverlays(C);
 	
 	
-	if (BCRepClass.default.GameStyle == 0)
+	if (BCRepClass.static.IsArena())
 	{
 		if (StreamEffect != None)
 		{
@@ -838,6 +838,7 @@ defaultproperties
 	ParamsClasses(0)=Class'HVCMk9WeaponParams'
 	ParamsClasses(1)=Class'HVCMk9WeaponParamsClassic' \\todo: lots of state code
 	ParamsClasses(2)=Class'HVCMk9WeaponParamsRealistic' \\todo: lots of state code
+    ParamsClasses(3)=Class'HVCMk9WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.HVCMk9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.HVCMk9SecondaryFire'
 	

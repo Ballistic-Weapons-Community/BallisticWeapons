@@ -14,7 +14,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (PD97Bloodhound(Instigator.Weapon).BCRepClass.default.GameStyle == 2)
+	if (PD97Bloodhound(Instigator.Weapon).BCRepClass.static.IsRealism())
 	{
 		bShotgunMode=true;
 		InstantMode=MU_Primary;

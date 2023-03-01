@@ -19,7 +19,6 @@ defaultproperties
 {
      bUseWeaponMag=False
      bAISilent=True
-     EffectString="Attach suppressor"
      bWaitForRelease=True
      bModeExclusive=False
      FireRate=1.300000

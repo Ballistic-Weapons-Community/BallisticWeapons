@@ -74,7 +74,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticProShotgunFire(BFireMode[0]).CutOffStartRange, BallisticProShotgunFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -146,6 +146,7 @@ defaultproperties
     ParamsClasses(0)=Class'M290WeaponParams'
     ParamsClasses(1)=Class'M290WeaponParamsClassic'
     ParamsClasses(2)=Class'M290WeaponParamsRealistic'
+    ParamsClasses(3)=Class'M290WeaponParamsTactical'
     FireModeClass(0)=Class'BallisticProV55.M290PrimaryFire'
     FireModeClass(1)=Class'BallisticProV55.M290SecondaryFire'
     AIRating=0.900000

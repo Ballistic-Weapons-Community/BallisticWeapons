@@ -170,18 +170,6 @@ state Sexplosion
 	}
 }
 
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-
-    FS = Super.GetStats();
-    
-	FS.RangeOpt = "Max dmg: 0.6s";
-	
-	return FS;
-}
-
 defaultproperties
 {
      SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)

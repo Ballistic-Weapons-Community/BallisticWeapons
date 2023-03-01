@@ -297,6 +297,7 @@ defaultproperties
 	ParamsClasses(0)=Class'BOGPWeaponParams'
 	ParamsClasses(1)=Class'BOGPWeaponParamsClassic'
 	ParamsClasses(2)=Class'BOGPWeaponParamsRealistic'
+    ParamsClasses(3)=Class'BOGPWeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.BOGPPrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.BOGPSecondaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.R78OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(A=126),Color2=(G=100,A=134),StartSize1=122,StartSize2=66)

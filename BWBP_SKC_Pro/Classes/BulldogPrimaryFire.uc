@@ -5,7 +5,7 @@
 //  Originally written by Sergeant_Kelly based on code by DarkCarnivour.
 //  Modified by Azarael.
 //  =============================================================================
-class BulldogPrimaryFire extends BallisticRangeAttenFire;
+class BulldogPrimaryFire extends BallisticProInstantFire;
 
 var() class<actor>			AltBrassClass1;			//Alternate Fire's brass
 var() class<actor>			AltBrassClass2;			//Alternate Fire's brass (whole FRAG-12)
@@ -110,8 +110,6 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 
 defaultproperties
 {
-	 CutOffStartRange=2048
-	 CutOffDistance=5120
 	 RangeAtten=0.5
      AltBrassClass1=Class'BWBP_SKC_Pro.Brass_FRAGSpent'
      AltBrassClass2=Class'BWBP_SKC_Pro.Brass_FRAG'

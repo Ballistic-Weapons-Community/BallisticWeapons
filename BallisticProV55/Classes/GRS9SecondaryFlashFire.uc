@@ -162,7 +162,6 @@ defaultproperties
      ChargeSoundPitch=32
      bUseWeaponMag=False
      FlashBone="tip2"
-     EffectString="Blinding flash"
      bFireOnRelease=True
      bModeExclusive=False
      AmmoClass=Class'BallisticProV55.Ammo_GRSNine'

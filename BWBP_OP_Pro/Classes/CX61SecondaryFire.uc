@@ -116,7 +116,7 @@ auto simulated state Flamer
 	
 		CX61Attachment(Weapon.ThirdPersonActor).CX61UpdateFlameHit(Other, HitLocation, HitNormal);
 		
-		if (CX61AssaultRifle(Weapon).BCRepClass.default.GameStyle == 1)
+		if (CX61AssaultRifle(Weapon).BCRepClass.static.IsClassic())
 			CX61AssaultRifle(Weapon).StoredGas -= 0.08;
 		else
 			CX61AssaultRifle(Weapon).StoredGas -= 0.1;
@@ -265,31 +265,6 @@ simulated function DestroyEffects()
 	Super.DestroyEffects();
 	if (MuzzleFlame != None)
 		MuzzleFlame.Destroy();
-}
-
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-
-	FS.DamageInt = class'CX61FlameProjectile'.default.Damage;
-	FS.Damage = String(FS.DamageInt) @ "(flame)," @ String(int(class'CX61HealProjectile'.default.Damage)) @ "(heal)";
-
-    FS.HeadMult = 1;
-    FS.LimbMult = 1;
-
-	FS.DPS = FS.DamageInt / default.FireRate;
-	FS.TTK = default.FireRate * (Ceil(175/FS.DamageInt) - 1);
-	if (default.FireRate < 0.5)
-		FS.RPM = String(int((1 / default.FireRate) * 60))@default.ShotTypeString$"/min";
-	else FS.RPM = 1/default.FireRate@"checks/second";
-	FS.RPShot = default.FireRecoil;
-	FS.RPS = default.FireRecoil / default.FireRate;
-	FS.FCPShot = default.FireChaos;
-	FS.FCPS = default.FireChaos / default.FireRate;
-	FS.RangeOpt = "Max:"@(3000 / 52.5)@"metres";
-	
-	return FS;
 }
 
 defaultproperties

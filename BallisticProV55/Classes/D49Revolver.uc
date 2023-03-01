@@ -486,6 +486,7 @@ defaultproperties
 	ParamsClasses(0)=Class'D49WeaponParams'
 	ParamsClasses(1)=Class'D49WeaponParamsClassic'
 	ParamsClasses(2)=Class'D49WeaponParamsRealistic'
+    ParamsClasses(3)=Class'D49WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.D49PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.D49SecondaryFire'
 	

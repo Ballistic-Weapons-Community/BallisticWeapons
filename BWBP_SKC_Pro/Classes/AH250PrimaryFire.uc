@@ -2,7 +2,7 @@
 // AH250 primary fire.
 // For the scoped Eagle.
 //=============================================================================
-class AH250PrimaryFire extends BallisticRangeAttenFire;
+class AH250PrimaryFire extends BallisticProInstantFire;
 
 //Do the spread on the client side
 function PlayFiring()
@@ -26,8 +26,6 @@ function PlayFiring()
 
 defaultproperties
 {
-     CutOffDistance=4096.000000
-     CutOffStartRange=2048.000000
      TraceRange=(Min=8000.000000,Max=9000.000000)
      WallPenetrationForce=16.000000
      

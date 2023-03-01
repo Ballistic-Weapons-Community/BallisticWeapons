@@ -14,7 +14,8 @@ defaultproperties
 		TraceCount=13
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=20.0
+		//Damage=20.0
+		Damage=15.0
 		HeadMult=2.15
 		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTMRS138Shotgun'
@@ -121,7 +122,7 @@ defaultproperties
 		SightPivot=(Pitch=0,Yaw=0,Roll=0)
 		ReloadAnimRate=1.250000
 		CockAnimRate=1.400000
-		WeaponName="MRS138 8ga Riot Shotgun"
+		WeaponName="MRS138 10ga Riot Shotgun"
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'

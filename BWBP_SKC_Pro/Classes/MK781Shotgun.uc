@@ -49,7 +49,7 @@ replication
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.static.IsClassic())
 	{
 		StartingGrenades = 6;
 	}
@@ -577,7 +577,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticProShotgunFire(BFireMode[0]).CutOffStartRange, BallisticProShotgunFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.35, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -650,6 +650,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Pump',Volume=2.300000,Radius=32.000000)
+	CockSelectSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.RS04-SlideLock',Volume=2.300000,Radius=32.000000)
 	ReloadAnim="ReloadLoop"
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Mk781.Mk781-ShellPlus',Volume=2.300000,Radius=32.000000)
 	ClipInFrame=0.325000
@@ -672,6 +673,7 @@ defaultproperties
 	ParamsClasses(0)=Class'MK781WeaponParams'
 	ParamsClasses(1)=Class'MK781WeaponParamsClassic'
 	ParamsClasses(2)=Class'MK781WeaponParamsRealistic'
+    ParamsClasses(3)=Class'MK781WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.MK781PrimaryFire'
 	FireModeClass(1)=Class'BWBP_SKC_Pro.MK781SecondaryFire'
 	PutDownTime=0.500000

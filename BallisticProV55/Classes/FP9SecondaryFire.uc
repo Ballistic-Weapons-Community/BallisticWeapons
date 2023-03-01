@@ -13,7 +13,6 @@ defaultproperties
 {
      bUseWeaponMag=False
      bAISilent=True
-     EffectString="Detonate"
      FireRate=0.300000
      AmmoClass=Class'BallisticProV55.Ammo_FP9Ammo'
      AmmoPerFire=0

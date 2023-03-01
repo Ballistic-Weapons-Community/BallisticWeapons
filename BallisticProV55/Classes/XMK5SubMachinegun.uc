@@ -254,7 +254,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.6, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -304,6 +304,7 @@ defaultproperties
 	ParamsClasses(0)=Class'XMK5WeaponParams'
 	ParamsClasses(1)=Class'XMK5WeaponParamsClassic'
 	ParamsClasses(2)=Class'XMK5WeaponParamsRealistic'
+    ParamsClasses(3)=Class'XMK5WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.XMK5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.XMK5SecondaryFire'
 	PutDownTime=0.350000

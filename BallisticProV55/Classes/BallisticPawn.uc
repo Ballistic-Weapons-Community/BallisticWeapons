@@ -33,7 +33,6 @@
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //
 // Couple of edits by Azarael:
-// Replicated DoubleJumpsLeft in order to stop strange behaviour online
 // Configurable Walking and Crouching speed.
 // Set Movement Anims for "Walking" to "Running" ones.
 //=============================================================================
@@ -41,8 +40,6 @@ class BallisticPawn extends xPawn;
 
 #EXEC OBJ LOAD File="BallisticThird.ukx"
 
-var byte				            DoubleJumpsLeft;
-var float				            LastDoubleJumpTime;
 var	bool				            bResetAnimationAction;
 
 var globalconfig	bool	        bLocalDisableAnimation;
@@ -163,23 +160,13 @@ var     float               LastDamagedTime;
 var		class<DamageType>	LastDamagedType;
 
 //Sloth variables
-var 	float 				StrafeScale, BackScale, GroundSpeedScale, AccelRateScale;
+var 	float 				StrafeScale, BackpedalScale;
 var 	float 				MyFriction, OldMovementSpeed;
 
 replication
 {
 	reliable if (Role == ROLE_Authority)
 		ClientHits, HitCounter, ClientSetCrouchAbility;
-	reliable if (bNetOwner && Role == ROLE_Authority)
-		DoubleJumpsLeft;
-}
-
-simulated function PostBeginPlay()
-{
-	super.PostBeginPlay();
-
-	if (class'BallisticReplicationInfo'.default.bNoDodging)
-		bCanWallDodge = false;
 }
 
 simulated event PostNetBeginPlay()
@@ -193,18 +180,19 @@ simulated event PostNetBeginPlay()
 		AmbientGlow=0;
 	}
 
-	if (class'BallisticReplicationInfo'.default.WalkingPercentage != WalkingPct)
+	if (class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor != WalkingPct)
 	{
-		WalkingPct = class'BallisticReplicationInfo'.default.WalkingPercentage;
-		default.WalkingPct = class'BallisticReplicationInfo'.default.WalkingPercentage;
+		WalkingPct = class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor;
+		default.WalkingPct = class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor;
 	}
 	
-	if (class'BallisticReplicationInfo'.default.CrouchingPercentage != CrouchedPct)
+	if (class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor != CrouchedPct)
 	{
-		CrouchedPct = class'BallisticReplicationInfo'.default.CrouchingPercentage;
-		default.CrouchedPct = class'BallisticReplicationInfo'.default.CrouchingPercentage;
+		CrouchedPct = class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor;
+		default.CrouchedPct = class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor;
 	}
-	if (class'BallisticReplicationInfo'.default.bUseRunningAnims && WalkingPct >= 0.75)
+
+	if (class'BallisticReplicationInfo'.default.bUseRunningAnims && class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor >= 0.75)
 	{
 		default.WalkAnims[0]='RunF';
 		default.WalkAnims[1]='RunB';
@@ -215,6 +203,25 @@ simulated event PostNetBeginPlay()
 		WalkAnims[2]='RunL';
 		WalkAnims[3]='RunR';
 	}
+
+    if (class'BallisticReplicationInfo'.default.bUseSloth)
+    {
+        StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
+        BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
+        GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+        AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
+        AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
+        JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
+        DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
+        
+        default.StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
+        default.BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
+        default.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+        default.AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
+        default.AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
+        default.JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
+        default.DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
+    }
 	
 	if(!pawnNetInit)
     {
@@ -2152,12 +2159,6 @@ function DoDoubleJump( bool bUpdating )
 
 	if (Role == ROLE_Authority)
 		Inventory.OwnerEvent('Jumped');
-
-	if (class'BallisticReplicationInfo'.default.bLimitDoubleJumps && !bIsCrouched && !bWantsToCrouch)
-	{
-		LastDoubleJumpTime = level.TimeSeconds;
-		DoubleJumpsLeft--;
-	}
 }
 
 singular event BaseChange()
@@ -2199,14 +2200,9 @@ singular event BaseChange()
 
 function bool CanDoubleJump()
 {
-	if (class'BallisticReplicationInfo'.default.bLimitDoubleJumps && DoubleJumpsLeft < 5 && level.TimeSeconds > LastDoubleJumpTime + 15)
-	{
-		LastDoubleJumpTime = level.TimeSeconds;
-		DoubleJumpsLeft++;
-	}
 	if(BallisticWeapon(Weapon) != None && BallisticWeapon(Weapon).bScopeView)
 		return false;
-	if (class'BallisticReplicationInfo'.default.bLimitDoubleJumps && DoubleJumpsLeft < 1)
+	if (class'BallisticReplicationInfo'.default.bNoDoubleJump)
 		return false;
 	else
 		return super.CanDoubleJump();
@@ -2214,11 +2210,12 @@ function bool CanDoubleJump()
 
 function bool CanMultiJump()
 {
-	if (class'BallisticReplicationInfo'.default.bLimitDoubleJumps && DoubleJumpsLeft < 1)
+	if (class'BallisticReplicationInfo'.default.bNoDoubleJump)
 		return false;
 	else
 		return super.CanMultiJump();
 }
+
 function bool Dodge(eDoubleClickDir DoubleClickMove)
 {
 //	if (bNoDodging)
@@ -2303,6 +2300,7 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
 {
     local float VelocityZ;
     local name Anim;
+    local float DodgeGroundSpeed;
 
     if ( Physics == PHYS_Falling )
     {
@@ -2325,7 +2323,16 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
     }
 
     VelocityZ = Velocity.Z;
-    Velocity = DodgeSpeedFactor*GroundSpeed*Dir + (Velocity Dot Cross)*Cross;
+
+    DodgeGroundSpeed = GroundSpeed;
+
+    // arena allows increased dodge distance when sprint is on
+    if (class'BCReplicationInfo'.default.GameStyle != 0 && default.GroundSpeed < GroundSpeed)
+    {
+        DodgeGroundSpeed = default.GroundSpeed;
+    }
+
+    Velocity = DodgeSpeedFactor*DodgeGroundSpeed*Dir + (Velocity Dot Cross)*Cross;
 
 	if ( !bCanDodgeDoubleJump )
 		MultiJumpRemaining = 0;
@@ -2790,7 +2797,7 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 	{
 		GetAxes(GetViewRotation(),X,Y,Z);
 		MaxStrafeSpeed = GroundSpeed * StrafeScale;
-		MaxBackSpeed = GroundSpeed * BackScale;
+		MaxBackSpeed = GroundSpeed * BackpedalScale;
 		XSpeed = Abs(X dot Velocity);
 		
 		if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
@@ -2834,7 +2841,6 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 
 defaultproperties
 {
-     DoubleJumpsLeft=3
      MoverLeaveGrace=1.000000
      MinDragDistance=40.000000
      MaxPoolVelocity=20.000000
@@ -2868,6 +2874,8 @@ defaultproperties
      FootstepVolume=0.350000
      FootstepRadius=400.000000
 
+     CollisionRadius=19.000000
+
      GruntVolume=0.2
      GruntRadius=300.000000
 	 bNoViewFlash=True
@@ -2880,7 +2888,7 @@ defaultproperties
      TransientSoundVolume=0.300000
 	 
 	 StrafeScale=1.000000
-     BackScale=1.000000
+     BackpedalScale=1.000000
      //MyFriction=4.000000
      RagdollLifeSpan=20.000000
      GroundSpeed=360.000000

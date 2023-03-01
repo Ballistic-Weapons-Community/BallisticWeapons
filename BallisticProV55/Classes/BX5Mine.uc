@@ -306,6 +306,7 @@ defaultproperties
 	ParamsClasses(0)=Class'BX5WeaponParams'
 	ParamsClasses(1)=Class'BX5WeaponParamsClassic' //todo: state to properly set spring mine dmg
 	ParamsClasses(2)=Class'BX5WeaponParamsRealistic' //todo: state to properly set spring mine dmg
+    ParamsClasses(3)=Class'BX5WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.BX5PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.BX5SecondaryFire'
 	NDCrosshairCfg=(Pic2=Texture'BW_Core_WeaponTex.Crosshairs.A73OutA',USize2=256,VSize2=256,Color1=(B=23,G=78,R=119),Color2=(G=98,R=158),StartSize1=135,StartSize2=87)

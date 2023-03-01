@@ -151,6 +151,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'XM84WeaponParams'
 	 ParamsClasses(1)=Class'XM84WeaponParamsClassic'
 	 ParamsClasses(2)=Class'XM84WeaponParamsRealistic'
+     ParamsClasses(3)=Class'XM84WeaponParamsTactical'
      FireModeClass(0)=Class'BWBP_SKC_Pro.XM84PrimaryFire'
      FireModeClass(1)=Class'BWBP_SKC_Pro.XM84SecondaryFire'
 	 NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.NRP57OutA',pic2=Texture'BW_Core_WeaponTex.Crosshairs.NRP57InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=7,G=255,R=255,A=166),Color2=(B=255,G=26,R=12,A=229),StartSize1=112,StartSize2=210)

@@ -4,7 +4,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class RS8PrimaryFire extends BallisticRangeAttenFire;
+class RS8PrimaryFire extends BallisticProInstantFire;
 
 var() Actor						SMuzzleFlash;		// Silenced Muzzle flash stuff
 var() class<Actor>				SMuzzleFlashClass;
@@ -46,12 +46,12 @@ simulated function DestroyEffects()
 	class'BUtil'.static.KillEmitterEffect (SMuzzleFlash);
 }
 // End effect functions ----------------------------------------------------
-function float GetDamage (Actor Other, vector HitLocation, vector Dir, out Actor Victim, optional out class<DamageType> DT)
+function float ResolveDamageFactors(Actor Other, vector TraceStart, vector HitLocation, int PenetrateCount, int WallCount, int WallPenForce, Vector WaterHitLocation)
 {
 	if (RS8Pistol(Weapon).bSilenced)
-		return Super.GetDamage (Other, HitLocation, Dir, Victim, DT) * 0.85;
+		return Super.ResolveDamageFactors(Other, TraceStart, HitLocation, Penetratecount, WallCount, WallPenForce, WaterHitLocation) * 0.85;
 	else
-		return Super.GetDamage (Other, HitLocation, Dir, Victim, DT);
+		return Super.ResolveDamageFactors(Other, TraceStart, HitLocation, Penetratecount, WallCount, WallPenForce, WaterHitLocation);
 }
 
 simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
@@ -141,8 +141,6 @@ defaultproperties
      SFlashBone="tip2"
      SFlashScaleFactor=0.25
 	 TraceRange=(Min=4000.000000,Max=4000.000000)
-     CutOffDistance=2048.000000
-     CutOffStartRange=768.000000
 	 RangeAtten=0.3
      WallPenetrationForce=8.000000
      

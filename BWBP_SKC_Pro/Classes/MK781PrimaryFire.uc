@@ -83,14 +83,13 @@ simulated function SwitchSilencerMode(bool bSilenced)
 {
 	if (bSilenced)
 	{
-		CutOffStartRange	= 1536;
-		CutOffDistance		= 2048;
+		DecayRange.Min = 1500;
+		DecayRange.Max = 3500;
 	}
 	
 	else
 	{
-		CutOffStartRange = default.CutOffStartRange;
-		CutOffDistance = default.CutOffDistance;
+		DecayRange = default.DecayRange;
 	}
 }
 
@@ -129,8 +128,6 @@ defaultproperties
      SMuzzleFlashClass=Class'BallisticProV55.XK2SilencedFlash'
      SFlashBone="tip2"
      SFlashScaleFactor=1.000000
-     CutOffDistance=1536.000000
-     CutOffStartRange=768.000000
      TraceCount=8
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
      ImpactManager=Class'BallisticProV55.IM_Shell'

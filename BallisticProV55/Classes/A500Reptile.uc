@@ -23,14 +23,14 @@ simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 	
-	bShowChargingBar=(BCRepClass.default.GameStyle == 0);
+	bShowChargingBar=(BCRepClass.static.IsArena());
 	
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.static.IsClassic())
 	{
 		A500PrimaryFire(FireMode[0]).HipSpreadFactor = 1;
 		A500PrimaryFire(FireMode[0]).ProjectileCount = 10;
 	}
-	else if (BCRepClass.default.GameStyle == 2)
+	else if (BCRepClass.static.IsRealism())
 	{
 		A500PrimaryFire(FireMode[0]).HipSpreadFactor = 1;
 		A500PrimaryFire(FireMode[0]).ProjectileCount = 12;
@@ -254,6 +254,7 @@ defaultproperties
 	ParamsClasses(0)=Class'A500WeaponParams'
 	ParamsClasses(1)=Class'A500WeaponParamsClassic'
 	ParamsClasses(2)=Class'A500WeaponParamsRealistic'
+    ParamsClasses(3)=Class'A500WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.A500PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.A500SecondaryFire'
 	BringUpTime=0.500000

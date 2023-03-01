@@ -538,6 +538,7 @@ defaultproperties
 	ParamsClasses(0)=Class'Z250WeaponParams'
 	ParamsClasses(1)=Class'Z250WeaponParamsClassic'
 	ParamsClasses(2)=Class'Z250WeaponParamsRealistic'
+    ParamsClasses(3)=Class'Z250WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_OP_Pro.Z250PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.Z250SecondaryFire'
 	SelectAnimRate=0.750000

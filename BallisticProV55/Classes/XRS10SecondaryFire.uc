@@ -19,7 +19,6 @@ event ModeDoFire()
 defaultproperties
 {
      bUseWeaponMag=False
-     EffectString="Laser sight"
      bWaitForRelease=True
      bModeExclusive=False
      AmmoClass=Class'BallisticProV55.Ammo_XRS10Bullets'

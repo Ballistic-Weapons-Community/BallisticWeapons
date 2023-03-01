@@ -33,8 +33,6 @@ simulated function PlayFiring()
 defaultproperties
 {
      //FlashBone="tip3"
-	 CutOffDistance=1536.000000
-     CutOffStartRange=1024.000000
      TraceCount=9
      TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
      ImpactManager=Class'BallisticProV55.IM_Shell'

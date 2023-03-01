@@ -251,8 +251,6 @@ defaultproperties
      SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
      PulseFireSound=Sound'BWBP_SKC_Sounds.Autolaser.AutoLaser-Fire'
      ShotFireSound=Sound'BWBP_SKC_Sounds.HyperBeamCannon.343Primary-Hit'
-     CutOffDistance=1.000000
-     CutOffStartRange=1.000000
      TraceCount=7
      TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
      ImpactManager=Class'BWBP_SKC_Pro.IM_Supercharge'

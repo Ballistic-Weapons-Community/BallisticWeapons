@@ -109,8 +109,8 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=RecoilParams Name=RealisticRecoilParams
-		XCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.500000),(InVal=0.600000,OutVal=0.300000)))
-		YCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.200000,OutVal=0.080000),(InVal=0.600000,OutVal=0.400000),(InVal=1.000000,OutVal=0.300000)))
+		//XCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.100000,OutVal=0.060000),(InVal=0.200000,OutVal=0.500000),(InVal=0.600000,OutVal=0.300000)))
+		//YCurve=(Points=(,(InVal=0.050000,OutVal=0.050000),(InVal=0.200000,OutVal=0.080000),(InVal=0.600000,OutVal=0.400000),(InVal=1.000000,OutVal=0.300000)))
 		XRandFactor=0.250000
 		YRandFactor=0.250000
 		MinRandFactor=0.300000

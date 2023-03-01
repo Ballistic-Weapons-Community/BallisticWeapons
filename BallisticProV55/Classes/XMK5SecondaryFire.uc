@@ -59,7 +59,10 @@ simulated event ModeDoFire()
 	bLoaded = false;
 }
 
-//Accessor for stats
+/*
+// Accessor for stats
+// FIXME: Needs to report DoT damage component. Needs its own fire effect params class to do that.
+
 static function FireModeStats GetStats() 
 {
 	local FireModeStats FS;
@@ -83,6 +86,7 @@ static function FireModeStats GetStats()
 	
 	return FS;
 }
+*/
 
 defaultproperties
 {

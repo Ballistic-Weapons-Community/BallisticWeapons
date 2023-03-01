@@ -44,18 +44,6 @@ function DoFireEffect()
 		A73SkrithRifle(BW).AddHeat(HeatPerShot, HeatDeclineDelay);
 }
 
-
-//Accessor for stats
-static function FireModeStats GetStats() 
-{
-	local FireModeStats FS;
-
-    FS = Super.GetStats();
-	FS.RangeOpt = "Max damage: 0.6s";
-	
-	return FS;
-}
-
 defaultproperties
 {
 	HeatPerShot=0.600000

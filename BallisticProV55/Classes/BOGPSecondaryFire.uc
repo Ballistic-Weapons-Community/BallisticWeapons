@@ -27,7 +27,6 @@ event ModeDoFire()
 defaultproperties
 {
      bUseWeaponMag=False
-     EffectString="Switch grenade"
      bWaitForRelease=True
      AmmoClass=Class'BallisticProV55.Ammo_BOGPGrenades'
      BotRefireRate=0.300000

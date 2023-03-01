@@ -341,7 +341,7 @@ function float GetAIRating()
 
 	Dist = VSize(B.Enemy.Location - Instigator.Location);
 	
-	return class'BUtil'.static.DistanceAtten(Rating, 0.75, Dist, BallisticRangeAttenFire(BFireMode[0]).CutOffStartRange, BallisticRangeAttenFire(BFireMode[0]).CutOffDistance); 
+	return class'BUtil'.static.DistanceAtten(Rating, 0.75, Dist, BallisticInstantFire(BFireMode[0]).DecayRange.Min, BallisticInstantFire(BFireMode[0]).DecayRange.Max); 
 }
 
 // tells bot whether to charge or back off while using this weapon
@@ -403,6 +403,7 @@ defaultproperties
 	ParamsClasses(0)=Class'M46WeaponParams'
 	ParamsClasses(1)=Class'M46WeaponParamsClassic' 
 	ParamsClasses(2)=Class'M46WeaponParamsRealistic' 
+    ParamsClasses(3)=Class'M46WeaponParamsTactical'
     AmmoClass(0)=Class'BallisticProV55.Ammo_M46Clip'	
 	AmmoClass(1)=Class'BallisticProV55.Ammo_M46Clip'
 	FireModeClass(0)=Class'BallisticProV55.M46PrimaryFire'

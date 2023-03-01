@@ -53,6 +53,7 @@ defaultproperties
      ParamsClasses(0)=Class'EKS43WeaponParams'
      ParamsClasses(1)=Class'EKS43WeaponParamsClassic'
      ParamsClasses(2)=Class'EKS43WeaponParamsRealistic'
+     ParamsClasses(3)=Class'EKS43WeaponParamsTactical'
      FireModeClass(0)=Class'BallisticProV55.EKS43PrimaryFire'
      FireModeClass(1)=Class'BallisticProV55.EKS43SecondaryFire'
 	 

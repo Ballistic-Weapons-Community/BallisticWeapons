@@ -28,7 +28,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (BCRepClass.static.IsRealism())
 	{
 		FireModeClass[1]=Class'BallisticProV55.GRS9SecondaryFlashFire';
 	}
@@ -472,7 +472,7 @@ simulated function CommonWeaponSpecial(optional byte i)
 
 simulated function float ChargeBar()
 {
-	if (BCRepClass.default.GameStyle == 2)
+	if (BCRepClass.static.IsRealism())
 	{
 		if (level.TimeSeconds >= FireMode[1].NextFireTime)
 		{
@@ -581,6 +581,7 @@ defaultproperties
 	ParamsClasses(0)=Class'GRS9WeaponParams'
 	ParamsClasses(1)=Class'GRS9WeaponParamsClassic' //todo: auto to semi
 	ParamsClasses(2)=Class'GRS9WeaponParamsRealistic' //todo: auto to semi
+    ParamsClasses(3)=Class'GRS9WeaponParamsTactical'
 	FireModeClass(0)=Class'BallisticProV55.GRS9PrimaryFire'
 	FireModeClass(1)=Class'BallisticProV55.GRS9SecondaryFire'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M50Out',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M806InA',USize2=256,VSize2=256,Color1=(R=96,A=175),Color2=(B=255),StartSize1=100,StartSize2=110)

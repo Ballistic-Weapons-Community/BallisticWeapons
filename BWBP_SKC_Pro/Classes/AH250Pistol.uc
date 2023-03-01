@@ -177,6 +177,7 @@ defaultproperties
 	ParamsClasses(0)=Class'AH250WeaponParams'
 	ParamsClasses(1)=Class'AH250WeaponParamsClassic'
 	ParamsClasses(2)=Class'AH250WeaponParamsRealistic'
+    ParamsClasses(3)=Class'AH250WeaponParamsTactical'
 	FireModeClass(0)=Class'BWBP_SKC_Pro.AH250PrimaryFire'
 	FireModeClass(1)=Class'BCoreProV55.BallisticScopeFire'
 	MeleeFireClass=Class'BWBP_SKC_Pro.AH250MeleeFire'

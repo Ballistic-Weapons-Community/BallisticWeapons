@@ -119,7 +119,6 @@ simulated function bool AllowFire()
 
 defaultproperties
 {
-     EffectString="Deploy bags"
      FireAnim="Place2"
      FireAnimRate=1.300000
      FireRate=0.750000

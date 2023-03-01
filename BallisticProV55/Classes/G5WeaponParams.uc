@@ -36,6 +36,7 @@ defaultproperties
 	
 	Begin Object Class=FireEffectParams Name=ArenaSecondaryEffectParams
 		BotRefireRate=0.300000
+        EffectString="Detonate"
 	End Object
 	
 	Begin Object Class=FireParams Name=ArenaSecondaryFireParams
@@ -58,7 +59,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.4
+		ADSMultiplier=0.6
 		SprintOffset=(Pitch=-6000,Yaw=-8000)
 		JumpOffset=(Pitch=-6000,Yaw=-1500)
 		AimAdjustTime=1.000000

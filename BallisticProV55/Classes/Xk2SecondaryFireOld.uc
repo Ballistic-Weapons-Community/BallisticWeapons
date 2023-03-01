@@ -3,7 +3,7 @@
 //
 // Ice rounds. Inflict slow upon targets hit, but deal lesser damage than standard XK2 rounds.
 //=============================================================================
-class XK2SecondaryFireOld extends BallisticRangeAttenFire;
+class XK2SecondaryFireOld extends BallisticProInstantFire;
 
 simulated function bool AllowFire()
 {
@@ -92,8 +92,6 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
-    CutOffDistance=2304.000000
-    CutOffStartRange=1536.000000
     WallPenetrationForce=24.000000
     
     Damage=14.000000

@@ -32,7 +32,7 @@ function SetServerTurnVelocity (int NewTVYaw, int NewTVPitch)
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (BCRepClass.static.IsRealism())
 	{
 		SKASPrimaryFire(FireMode[0]).bRequireSpool=true;
 	}
@@ -53,7 +53,7 @@ simulated function float GetRampUpSpeed()
 	
 	mult = 1 - (BarrelSpeed / MaxRotationSpeed);
 	
-	if (BCRepClass.default.GameStyle == 2)
+	if (BCRepClass.static.IsRealism())
 		return 0.075f + (3.0 * mult * (1 + 0.25*int(bBerserk)));
 	else
 		return 0.075f + (mult * (1 + 0.25*int(bBerserk)));
@@ -68,7 +68,7 @@ simulated event WeaponTick (float DT)
 
 	super.WeaponTick(DT);
 
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.static.IsClassic())
 		return;
 	
 	BT.Pitch = BarrelTurn;
@@ -93,7 +93,7 @@ simulated event Tick (float DT)
 
 	super.Tick(DT);
 
-	if (BCRepClass.default.GameStyle == 1 || CurrentWeaponMode != 0)
+	if (BCRepClass.static.IsClassic() || CurrentWeaponMode != 0)
 		return;
 
 	if (FireMode[0].IsFiring() && !bServerReloading)
@@ -131,7 +131,7 @@ simulated function float ChargeBar()
 	if (Heat + SKASSecondaryFire(Firemode[1]).RailPower > 0)
 		return FMin((Heat + SKASSecondaryFire(Firemode[1]).RailPower), 1);
 	
-	if (BCRepClass.default.GameStyle == 1)
+	if (BCRepClass.static.IsClassic())
 		return 0;
 	
     return BarrelSpeed / DesiredSpeed;
@@ -338,6 +338,7 @@ defaultproperties
     ParamsClasses(0)=Class'SKASWeaponParams'
     ParamsClasses(1)=Class'SKASWeaponParamsClassic'
     ParamsClasses(2)=Class'SKASWeaponParamsRealistic'
+    ParamsClasses(3)=Class'SKASWeaponParamsTactical'
     FireModeClass(0)=Class'BWBP_SKC_Pro.SKASPrimaryFire'
     FireModeClass(1)=Class'BWBP_SKC_Pro.SKASSecondaryFire'
     IdleAnimRate=0.100000

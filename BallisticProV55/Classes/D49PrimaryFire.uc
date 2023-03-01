@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class D49PrimaryFire extends BallisticRangeAttenFire;
+class D49PrimaryFire extends BallisticProInstantFire;
 
 var   bool			bSecondary;
 

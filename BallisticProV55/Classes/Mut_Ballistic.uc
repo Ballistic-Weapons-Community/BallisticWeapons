@@ -87,14 +87,6 @@ var   globalconfig float    	InitStaminaChargeRate;
 var   globalconfig float    	InitSpeedFactor;
 var   globalconfig float    	JumpDrainFactor;
 
-//Sloth
-var globalconfig bool bUseSloth;
-var globalconfig float StrafeScale;
-var globalconfig float BackScale;
-var globalconfig float GroundSpeedScale;
-var globalconfig float AirSpeedScale;
-var globalconfig float AccelRateScale;
-
 var   BCReplicationInfo	BallisticReplicationInfo;
 
 var	int						CRCount;
@@ -221,6 +213,9 @@ function ModifyPlayer(Pawn Other)
 	local class<Weapon> FW;
 	local int i;
 	local BCSprintControl SC;
+    local BallisticPawn BPawn;
+
+    BPawn = BallisticPawn(Other);
 
 	//adds sprint support to mutator
     if (xPawn(Other) != None && bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
@@ -237,14 +232,14 @@ function ModifyPlayer(Pawn Other)
 		Sprinters[Sprinters.length] = SC;
 	}
 
-	if (!DMMode && BallisticPawn(Other) == None)
+	if (!DMMode && BPawn == None)
 	{
 		ClientModifyPlayer(Other);
 		// Make players a bit crap
 		Other.GroundSpeed=360;
 		Other.default.GroundSpeed=360; //required as Ballistic keeps resetting it
-		Other.WalkingPct=class'BallisticReplicationInfo'.default.WalkingPercentage;
-		Other.CrouchedPct=class'BallisticReplicationInfo'.default.CrouchingPercentage;
+		Other.WalkingPct=class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor;
+		Other.CrouchedPct=class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor;
 		// Me can hide better
 		Other.Visibility = 16;
 		Other.default.Visibility = 16;
@@ -271,9 +266,9 @@ function ModifyPlayer(Pawn Other)
 		}
 		xPawn(Other).FootstepVolume *= FootstepAmplifier;
 
-        if(BallisticPawn(Other) != none)
+        if(BPawn != none)
         {
-            BallisticPawn(Other).BPRI = class'Mut_Ballistic'.static.GetBPRI(Other.Controller.PlayerReplicationInfo);
+            BPawn.BPRI = class'Mut_Ballistic'.static.GetBPRI(Other.Controller.PlayerReplicationInfo);
         }
     }
 	
@@ -299,15 +294,6 @@ function ModifyPlayer(Pawn Other)
 	// Add ammo for default weapon
 	AddStartingAmmo(Other);
 	
-	if (bUseSloth && BallisticPawn(Other) != None)
-	{
-		BallisticPawn(Other).StrafeScale = StrafeScale;
-		BallisticPawn(Other).BackScale = BackScale;
-		BallisticPawn(Other).GroundSpeed = GroundSpeedScale;
-		BallisticPawn(Other).AirSpeed = AirSpeedScale;
-		BallisticPawn(Other).AccelRate = AccelRateScale;
-	}
-
 	Super.ModifyPlayer(Other);
 }
 
@@ -347,7 +333,7 @@ simulated function ClientModifyPlayer(Pawn Other)
 	{
 		if (xPawn(P) != none && BallisticPawn(P) == None)
 		{
-			xPawn(P).FootstepVolume = 0.5;
+			xPawn(P).FootstepVolume = 0.35;
 			xPawn(P).UDamageSound = UDamageSnd;
 			xPawn(P).TransientSoundVolume=0.200000;
 		}
@@ -1042,13 +1028,6 @@ defaultproperties
      InitStaminaChargeRate=20.000000
      InitSpeedFactor=1.350000
      JumpDrainFactor=2.000000
-	 
-	 bUseSloth=False
-     StrafeScale=0.700000
-     BackScale=0.600000
-     GroundSpeedScale=270.000000
-     AirSpeedScale=270.000000
-     AccelRateScale=256.000000
 	 
 	 bRegeneration=False
 	 bShieldRegeneration=False

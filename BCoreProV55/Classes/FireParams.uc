@@ -9,7 +9,10 @@
 //=============================================================================
 class FireParams extends Object
     editinlinenew
-    DependsOn(BUtil);
+    DependsOn(BUtil)
+    DependsOn(FireEffectParams);
+
+const DEFAULT_TIME_DILATION = 1.1f;
 
 //-----------------------------------------------------------------------------
 // WeaponFire General
@@ -47,6 +50,31 @@ var() Name 						AimedFireAnim;		    // Fire anim to play when ADS
 var() array<FireEffectParams>   FireEffectParams;       // subobjects which define the gameplay effects of the firemode as well as various display factors
 
 static simulated final function Initialize(BallisticWeapon BW, int ModeIndex, int AmmoIndex);
+
+//Accessor stub for stats
+final function FireEffectParams.FireModeStats GetStats() 
+{
+	local FireEffectParams.FireModeStats FS;
+	
+	FS = FireEffectParams[0].GetStats();
+
+    FS.DPS = (FS.DamageInt / FireInterval) * DEFAULT_TIME_DILATION;
+
+    if (FS.DamageInt > 0)
+	    FS.TTK = FireInterval * (Ceil(175/FS.DamageInt) - 1) / DEFAULT_TIME_DILATION;
+    else
+        FS.TTK = 0;
+
+    if (FireInterval < 0.4)
+		FS.RPM = String(int((1 / FireInterval) * 60 * DEFAULT_TIME_DILATION))$"RPM";
+	else 
+        FS.RPM = String((1 / FireInterval) * DEFAULT_TIME_DILATION) @ FS.ShotTypeString $ "/second";
+
+    FS.RPS = (FS.RPShot / FireInterval) * DEFAULT_TIME_DILATION;
+	FS.FCPS = (FS.FCPShot / FireInterval) * DEFAULT_TIME_DILATION;
+	
+	return FS;
+}
 
 defaultproperties
 {
