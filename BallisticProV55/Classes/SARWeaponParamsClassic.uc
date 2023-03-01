@@ -158,18 +158,6 @@ defaultproperties
 		ChaosSpeedThreshold=960.000000 //
 		ChaosTurnThreshold=131072.000000 //
 	End Object
-	
-	Begin Object Class=AimParams Name=ClassicBurstAimParams
-		AimSpread=(Min=32,Max=2560)
-		AimAdjustTime=0.400000
-		CrouchMultiplier=0.900000
-		ADSMultiplier=0.700000
-		ViewBindFactor=0.050000
-		SprintChaos=0.400000
-		ChaosDeclineTime=1.200000
-		ChaosSpeedThreshold=960.000000
-		//ChaosTurnThreshold=131072.000000
-	End Object
     
 	//=================================================================
 	// BASIC PARAMS
@@ -191,6 +179,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
+		AimParams(1)=AimParams'ClassicBurstAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
@@ -234,12 +223,13 @@ defaultproperties
 		SightOffset=(Z=15.600000)
 		SightPivot=(Pitch=600)
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1,AimParamsIndex=1)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
+		AimParams(1)=AimParams'ClassicBurstAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
@@ -258,12 +248,13 @@ defaultproperties
 		SightOffset=(Z=15.600000)
 		SightPivot=(Pitch=600)
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1,AimParamsIndex=1)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
+		AimParams(1)=AimParams'ClassicBurstAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
@@ -282,12 +273,13 @@ defaultproperties
 		SightOffset=(Z=15.600000)
 		SightPivot=(Pitch=600)
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000,RecoilParamsIndex=1,AimParamsIndex=1)
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
         RecoilParams(1)=RecoilParams'ClassicBurstRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
+		AimParams(1)=AimParams'ClassicBurstAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		FireParams(1)=FireParams'ClassicPrimaryBurstFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
