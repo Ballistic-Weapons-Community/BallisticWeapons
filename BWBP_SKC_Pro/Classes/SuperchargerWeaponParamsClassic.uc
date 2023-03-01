@@ -79,7 +79,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ClassicAimParams
-		AimSpread=(Min=32,Max=1048)
+		AimSpread=(Min=32,Max=2048)
 		AimAdjustTime=1.000000
 		OffsetAdjustTime=0.500000
 		CrouchMultiplier=0.850000
@@ -100,6 +100,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams
 		InventorySize=29
 		SightingTime=0.300000
+		PlayerSpeedFactor=0.750000
+		PlayerJumpFactor=0.750000
 		SightOffset=(X=40.000000,Y=3.000000,Z=30.000000)
 		SightPivot=(Pitch=64)
         ZoomType=ZT_Fixed

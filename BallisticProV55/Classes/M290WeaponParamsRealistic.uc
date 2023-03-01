@@ -10,12 +10,12 @@ defaultproperties
 	Begin Object Class=ShotgunEffectParams Name=RealisticPrimaryEffectParams
 		TraceRange=(Min=600.000000,Max=3000.000000)
 		WaterTraceRange=5000.0
-		TraceCount=24
-		//TraceCount=20
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=12.0
+		//TraceCount=20
 		//Damage=10
+		TraceCount=16
+		Damage=18.0
 		HeadMult=2.15
 		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTM290Shotgun'
@@ -53,12 +53,12 @@ defaultproperties
 	Begin Object Class=ShotgunEffectParams Name=RealisticSecondaryEffectParams
 		TraceRange=(Min=600.000000,Max=3000.000000)
 		WaterTraceRange=5000.0
-		TraceCount=12
+		//Damage=20
 		//TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=12.0
-		//Damage=20
+		TraceCount=8
+		Damage=18.0
 		HeadMult=2.15
 		LimbMult=0.6
 		DamageType=Class'BallisticProV55.DTM290Shotgun'

@@ -33,7 +33,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticPrimaryFireParams
-		FireInterval=0.075000
+		FireInterval=0.075000 //880 RPM
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
 	FireEffectParams(0)=InstantEffectParams'RealisticPrimaryEffectParams'

@@ -11,6 +11,15 @@ class Supercharger_AssaultWeapon extends BallisticWeapon;
 
 var   Supercharger_ChargeControl	ChargeControl;
 
+
+//Scripted Ammo Screen Texture
+var() ScriptedTexture WeaponScreen; //Scripted texture to write on
+var() Material	WeaponScreenShader; //Scripted Texture with self illum applied
+var() Material	ScreenBase;
+var() Material	ScreenHeat;
+var protected const color MyFontColor; //Why do I even need this?
+var float HeatBar;
+
 var float		HeatLevel;			// Current Heat level, duh...
 var bool		bCriticalHeat;		// Heat is at critical levels
 var() Sound		OverHeatSound;		// Sound to play when it overheats
@@ -33,7 +42,7 @@ var bool		bLatchedOn;
 replication
 {
 	reliable if (Role==ROLE_Authority)
-		ChargeControl, ClientOverCharge, ClientSetHeat, bLatchedOn;
+		ChargeControl, ClientOverCharge, ClientSetHeat, bLatchedOn, ClientScreenStart;
 }
 
 
@@ -57,6 +66,68 @@ simulated function PostNetBeginPlay()
 function Supercharger_ChargeControl GetChargeControl()
 {
 	return ChargeControl;
+}
+
+//========================== AMMO COUNTER NON-STATIC TEXTURE ============
+
+simulated function ClientScreenStart()
+{
+	ScreenStart();
+}
+// Called on clients from camera when it gets to postnetbegin
+simulated function ScreenStart()
+{
+	if (Instigator.IsLocallyControlled())
+		WeaponScreen.Client = self;
+	Skins[3] = WeaponScreenShader; //Set up scripted texture.
+	UpdateScreen();//Give it some numbers n shit
+	if (Instigator.IsLocallyControlled())
+		WeaponScreen.Revision++;
+}
+
+simulated event RenderTexture( ScriptedTexture Tex )
+{
+	// 0 is full, 256 is empty
+	HeatBar = 256-(((FMin(HeatLevel, 10))/10.0f)*256);
+
+	Tex.DrawTile(0,0,256,256,0,0,256,256,ScreenBase, MyFontColor); //Basic screen
+
+	Tex.DrawTile(HeatBar,0,256,256,0,0,256,512,ScreenHeat, MyFontColor); //Ammo
+
+}
+	
+simulated function UpdateScreen()
+{
+	if (Instigator.IsLocallyControlled())
+	{
+			WeaponScreen.Revision++;
+	}
+}
+
+simulated event RenderOverlays( Canvas Canvas )
+{
+	if (Instigator.IsLocallyControlled())
+		WeaponScreen.Revision++;
+
+	super.RenderOverlays(Canvas);
+}
+	
+// Consume ammo from one of the possible sources depending on various factors
+simulated function bool ConsumeMagAmmo(int Mode, float Load, optional bool bAmountNeededIsMax)
+{
+
+	if (bNoMag || (BFireMode[Mode] != None && BFireMode[Mode].bUseWeaponMag == false))
+		ConsumeAmmo(Mode, Load, bAmountNeededIsMax);
+	else
+	{
+		if (MagAmmo < Load)
+			MagAmmo = 0;
+		else
+			MagAmmo -= Load;
+	}
+	
+	UpdateScreen();
+	return true;
 }
 
 // ============== Heat stuff =================
@@ -223,6 +294,13 @@ simulated function BringUp(optional Weapon PrevWeapon)
 {
 	bIsVenting = false;
 
+	if (Instigator != None && AIController(Instigator.Controller) == None) //Player Screen ON
+	{
+		ScreenStart();
+		if (!Instigator.IsLocallyControlled())
+			ClientScreenStart();
+	}
+
 	super.BringUp(PrevWeapon);
 
 	AmbientSound = None;
@@ -346,6 +424,8 @@ function ServerReloadRelease(optional byte i)
 
 simulated function Destroyed()
 {
+	if (Instigator != None && AIController(Instigator.Controller) == None)
+		WeaponScreen.client=None;
 	if (ClawSpark1 != None)
 		ClawSpark1.Destroy();
 	if (Instigator.AmbientSound == UsedAmbientSound || Instigator.AmbientSound == VentingSound)
@@ -506,6 +586,12 @@ function float SuggestDefenseStyle()	{	return -0.9;	}
 
 defaultproperties
 {
+	 MyFontColor=(R=255,G=255,B=255,A=255)
+     WeaponScreen=ScriptedTexture'BWBP_SKC_Tex.SuperCharger.Supercharger-ScriptLCD'
+     WeaponScreenShader=Shader'BWBP_SKC_Tex.SuperCharger.Supercharger-ScriptLCD-SD'
+	 ScreenBase=Texture'BWBP_SKC_Tex.LS14.LS14-ScreenBase'
+	 ScreenHeat=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-ScreenHeat'
+	 
 	VentingSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Coolant'
 	OverheatSound=Sound'BW_Core_WeaponSound.LightningGun.LG-OverHeat'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
@@ -574,4 +660,11 @@ defaultproperties
     LightRadius=4.000000
     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Supercharger'
     DrawScale=0.360000
+    Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
+    Skins(1)=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-Main'
+    Skins(2)=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-Main'
+    Skins(3)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
+    Skins(4)=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-Main' //
+    Skins(5)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
+    Skins(6)=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-Main'
 }
