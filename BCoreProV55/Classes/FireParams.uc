@@ -66,9 +66,9 @@ final function FireEffectParams.FireModeStats GetStats()
         FS.TTK = 0;
 
     if (FireInterval < 0.4)
-		FS.RPM = String(int((1 / FireInterval) * 60 * DEFAULT_TIME_DILATION)) @ FS.ShotTypeString $ "/minute";
+		FS.RPM = String(int((1 / FireInterval) * 60 * DEFAULT_TIME_DILATION))$"RPM";
 	else 
-        FS.RPM = String(int((1 / FireInterval) * DEFAULT_TIME_DILATION)) @ FS.ShotTypeString $ "/second";
+        FS.RPM = String((1 / FireInterval) * DEFAULT_TIME_DILATION) @ FS.ShotTypeString $ "/second";
 
     FS.RPS = (FS.RPShot / FireInterval) * DEFAULT_TIME_DILATION;
 	FS.FCPS = (FS.FCPShot / FireInterval) * DEFAULT_TIME_DILATION;

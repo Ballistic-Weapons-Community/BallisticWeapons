@@ -9,10 +9,9 @@
 //=============================================================================
 class BallisticWeaponStatsMenu extends UT2K4GUIPage;
 
-var float BaselineDPSDivisor;
-var float BaselineTTKDivisor;
-
-const BASELINE_RECOIL_DIVISOR = 14.42f; // the recoil generation of the sar12 in arena
+var float BaselineDPS;
+var float BaselineTTK;
+var float BaselineRPS;
 
 var Automated GUIImage			    MyBack, Box_WeaponList, Box_Desc, Box_WeaponIcon, WeaponIcon;
 var Automated GUISectionBackground  GenBack, PriBack, AltBack;
@@ -32,31 +31,41 @@ var automated moComboBox	        cb_Display;
 var automated GUIScrollTextBox      sb_Desc;
 var automated GUIProgressBar	    pb_DPS, pb_TTK, pb_RPS, pb_DPSAlt, pb_TTKAlt, pb_RPSAlt, pb_Raise, pb_ViewRecoilFactor, pb_DPM, pb_MoveSpeed, pb_ADSMoveSpeed, pb_Displacement;
 
-var InterpCurve 						RedCurve, GreenCurve, BlueCurve;
+var InterpCurve 					RedCurve, GreenCurve, BlueCurve;
 
-var bool									bInitialized, bAltStatsVisible;
+var bool							bInitialized, bAltStatsVisible;
 
-var bool									bShowTextBox;
+var bool							bShowTextBox;
+
+var class<BallisticWeapon>          BaselineClass;
 
 var() localized string Headings[10];
+
+function InitBaselineParams()
+{
+    local class<BallisticWeaponParams> params;
+    local int GameStyleIndex;
+    local FireEffectParams.FireModeStats fire_stats;
+
+    GameStyleIndex = class'BCReplicationInfo'.default.GameStyle;
+
+    params = BaselineClass.default.ParamsClasses[GameStyleIndex];
+
+    fire_stats = params.static.GetFireStats();
+    
+    BaselineDPS = fire_stats.DPS;
+    BaselineTTK = fire_stats.TTK;
+    BaselineRPS = fire_stats.RPS;
+}
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
 	Super.InitComponent(MyController, MyOwner);
+
 	if (bInitialized)
 		return;
 
-    if (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.default.GameStyle == 0)
-    {
-        BaselineDPSDivisor = 2.42f;
-        BaselineTTKDivisor = 0.0065f;
-    }
-
-    else 
-    {
-        BaselineDPSDivisor = 4f;
-        BaselineTTKDivisor = 0.004f;
-    }
+    InitBaselineParams();
 
 	lb_Weapons.List.OnChange = InternalOnChange;
 	
@@ -69,9 +78,9 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_RPS.Caption = "Recoil/Second";
     lb_Range.Caption = "Effective Ranges";
 	
-	pb_DPS.High = 520;
-	pb_TTK.High = 1.4f;
-	pb_RPS.High = 2750;
+	pb_DPS.High = BaselineDPS * 3;
+	pb_TTK.High = BaselineTTK * 3;
+	pb_RPS.High = BaselineRPS * 3;
 	
 	//alt
 	lb_DShotAlt.Caption = "Damage";
@@ -82,9 +91,9 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_RPSAlt.Caption = "Recoil/Second";
     lb_RangeAlt.Caption = "Effective Ranges";
 	
-	pb_DPSAlt.High = 520;
-	pb_TTKAlt.High = 1.4;
-	pb_RPSAlt.High = 2750;
+	pb_DPSAlt.High = BaselineDPS * 3;
+	pb_TTKAlt.High = BaselineTTK * 3;
+	pb_RPSAlt.High = BaselineRPS * 3;
 	
 	//gen
 
@@ -94,8 +103,8 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_DPM.Caption = "Damage/Mag";
     lb_MoveSpeed.Caption = "Movement Speed";
     lb_ADSMoveSpeed.Caption = "ADS Movement Speed";
-	lb_CrouchMultiplier.Caption = "Crouch Aim Stabilization";
-	lb_ADSMultiplier.Caption = "ADS Aim Stabilization";
+	lb_CrouchMultiplier.Caption = "Crouch Recoil Multiplier";
+	lb_ADSMultiplier.Caption = "ADS Sway Multiplier";
     lb_Displacement.Caption = "Displacement Factor";
 
     pb_Raise.High = 0.8f;
@@ -325,11 +334,11 @@ function UpdateInfo()
         db_RangeMax.Caption = FS.RangeMax;
 		
 		pb_DPS.Value = FMin(FS.DPS, pb_DPS.High);
-		pb_DPS.Caption = FS.DPS @ "(" $ int(FS.DPS / BaselineDPSDivisor)$"%)";
+		pb_DPS.Caption = FS.DPS @ "(" $ int((FS.DPS / BaselineDPS) * 100) $ "%)";
 		pb_DPS.BarColor = ColorBar(pb_DPS.Value / pb_DPS.High);
 		
 		pb_TTK.Value = FMin(FS.TTK, pb_TTK.High);
-		pb_TTK.Caption = FS.TTK @ "("$int(FS.TTK / BaselineTTKDivisor)$"%)";
+		pb_TTK.Caption = FS.TTK @ "(" $ int((FS.TTK / BaselineTTK) * 100) $ "%)";
 		pb_TTK.BarColor = ColorBar(pb_TTK.Value / pb_TTK.High);
 		
 		db_RPM.Caption = FS.RPM;
@@ -337,7 +346,7 @@ function UpdateInfo()
 		db_Recoil.Caption = String(FS.RPShot);
 		
 		pb_RPS.Value = FMin(FS.RPS, pb_RPS.High);
-		pb_RPS.Caption = String(FS.RPS) @ "("$int(FS.RPS / BASELINE_RECOIL_DIVISOR)$"%)";
+		pb_RPS.Caption = String(FS.RPS) @ "(" $ int((FS.RPS / BaselineRPS)* 100) $ "%)";
 		pb_RPS.BarColor = ColorBar(pb_RPS.Value / pb_RPS.High);
 		
 		//Alt
@@ -407,11 +416,11 @@ function UpdateInfo()
         db_RangeMaxAlt.Caption = AFS.RangeMax;
 
 		pb_DPSAlt.Value = FMin(AFS.DPS, pb_DPSAlt.High);
-		pb_DPSAlt.Caption = AFS.DPS @ "("$int(AFS.DPS / 2.2)$"%)";
+		pb_DPSAlt.Caption = AFS.DPS @ "("$int((AFS.DPS / BaselineDPS) * 100)$"%)";
 		pb_DPSAlt.BarColor = ColorBar(pb_DPSAlt.Value / pb_DPSAlt.High);
 		
 		pb_TTKAlt.Value = FMin(AFS.TTK, pb_TTKAlt.High);
-		pb_TTKAlt.Caption = AFS.TTK @ "("$int(AFS.TTK / 0.007)$"%)";
+		pb_TTKAlt.Caption = AFS.TTK @ "("$int((AFS.TTK / BaselineTTK) * 100)$"%)";
 		pb_TTKAlt.BarColor = ColorBar(pb_TTKAlt.Value / pb_TTKAlt.High);
 		
 		db_RPMAlt.Caption = AFS.RPM;
@@ -419,7 +428,7 @@ function UpdateInfo()
 		db_RecoilAlt.Caption = String(AFS.RPShot);
 		
 		pb_RPSAlt.Value = FMin(AFS.RPS, pb_RPSAlt.High);
-		pb_RPSAlt.Caption = String(AFS.RPS) @ "("$int(AFS.RPS / 13.33)$"%)";
+		pb_RPSAlt.Caption = String(AFS.RPS) @ "("$int((AFS.RPS / BaselineRPS) * 100)$"%)";
 		pb_RPSAlt.BarColor = ColorBar(pb_RPSAlt.Value / pb_RPSAlt.High);
 				
 		//general stats
@@ -453,9 +462,9 @@ function UpdateInfo()
 		pb_DPM.Caption = String(int(pb_DPM.Value)) @ "("$int(pb_DPM.Value / 6.0f)$"%)";
 		pb_DPM.BarColor = ColorBar(pb_DPM.Value / pb_DPM.High);
 		
-		db_CrouchMultiplier.Caption = string(int(Ceil(100f * (1 - params.default.Layouts[0].AimParams[0].CrouchMultiplier))))$"%";
+		db_CrouchMultiplier.Caption = string(int(Ceil(100f * params.default.Layouts[0].AimParams[0].CrouchMultiplier)))$"%";
 		
-		db_ADSMultiplier.Caption = string(int(100 * (1 - params.default.Layouts[0].AimParams[0].ADSMultiplier)))$"%";
+		db_ADSMultiplier.Caption = string(int(100 * params.default.Layouts[0].AimParams[0].ADSMultiplier))$"%";
 	}
 }
 
@@ -783,6 +792,5 @@ defaultproperties
      OnClose=BallisticWeaponStatsMenu.InternalOnClose
      OnKeyEvent=BallisticWeaponStatsMenu.InternalOnKeyEvent
 
-    BaselineDPSDivisor = 2.42f;
-    BaselineTTKDivisor = 0.0065f;
+    BaselineClass=class'M50AssaultRifle'
 }

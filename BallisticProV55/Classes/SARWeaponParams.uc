@@ -131,6 +131,7 @@ defaultproperties
         RecoilParams(0)=RecoilParams'ArenaAutoRecoilParams'
         RecoilParams(1)=RecoilParams'ArenaBurstRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
+        AimParams(1)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaAutoFireParams'
 		FireParams(1)=FireParams'ArenaBurstFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'

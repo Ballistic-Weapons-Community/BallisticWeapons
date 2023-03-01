@@ -149,7 +149,7 @@ defaultproperties
     BigIconCoords=(X1=47,Y1=16,X2=455,Y2=245)
     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
     bWT_Bullet=True
-    ManualLines(0)="Powerful .44 fire. Massive damage, long range and excellent fire rate."
+    ManualLines(0)="Powerful .44 fire. High damage and long range."
     ManualLines(1)="Prepares a bludgeoning attack, which will be executed upon release. The damage of the attack increases the longer altfire is held, up to 1.5 seconds for maximum damage output. As a blunt attack, has lower base damage compared to bayonets but inflicts a short-duration blinding effect when striking. This attack inflicts more damage from behind."
     ManualLines(2)="Effective at all ranges."
     SpecialInfo(0)=(Info="140.0;12.0;0.7;70.0;0.55;0.0;-999.0")
@@ -205,9 +205,9 @@ defaultproperties
     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_AHDeagle'
     DrawScale=0.800000
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-    Skins(1)=Shader'BWBP_SKC_Tex.Eagle.Eagle-GoldShine'
+    Skins(1)=Shader'BWBP_SKC_Tex.Eagle.Eagle-BlackShine'
     Skins(2)=Texture'BWBP_SKC_Tex.Eagle.Eagle-MiscBlack'
-    Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeGold'
+    Skins(3)=Texture'BWBP_SKC_Tex.Eagle.Eagle-Scope'
     Skins(4)=Texture'BWBP_SKC_Tex.Eagle.Eagle-FrontBlack'
     Skins(5)=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen'
 }

@@ -174,6 +174,7 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		RecoilParams(1)=RecoilParams'RealisticBurstRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
+        AimParams(1)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
 		FireParams(1)=FireParams'RealisticPrimaryBurstFireParams'
 		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
