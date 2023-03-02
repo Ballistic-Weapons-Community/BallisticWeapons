@@ -113,8 +113,8 @@ defaultproperties
 		LayoutName="Radical"
 		Weight=5
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.MRLCamos.MRL_MainRed_S1',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.MRLCamos.MRL-MagRed',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MRLCamos.MRL_MainRed_S1",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MRLCamos.MRL-MagRed",Index=2)
 		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.MRL.MRL_Rocket',Index=3)
 		
 		InventorySize=29

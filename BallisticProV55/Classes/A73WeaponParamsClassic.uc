@@ -241,9 +241,9 @@ defaultproperties
 		LayoutName="Fabulous Pink"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_KBP_Tex.A73Purple.A73AmmoSkin',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_KBP_Tex.A73Purple.A73Skin_SD',Index=2)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_KBP_Tex.A73Purple.A73SkinB',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A73Camos.A73AmmoSkin",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.A73CamosA73Skin_SD",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.A73CamosA73SkinB",Index=3)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=25
@@ -261,10 +261,10 @@ defaultproperties
 		LayoutName="Elite Orange"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.A73b.A73BAmmoSkin',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.A73b.A73BSkin_SD',Index=2)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_Tex.A73b.A73BSkinB0',Index=3)
-		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_SKC_Tex.A73b.A73BBladeShader',Index=4)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A73Camos.A73BAmmoSkin",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.A73Camos.A73BSkin_SD",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.A73Camos.A73BSkinB0",Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.A73Camos.A73BBladeShader",Index=4)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=40

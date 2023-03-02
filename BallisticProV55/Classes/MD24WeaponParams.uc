@@ -78,7 +78,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams_Black
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.MD24.MD24BlackShine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24BlackShine",Index=1)
 		Weight=10
 		ReloadAnimRate=1.350000
 		SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
@@ -96,7 +96,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams_Desert
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.MD24.MD24DesertShine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24DesertShine",Index=1)
 		Weight=10
 		ReloadAnimRate=1.350000
 		SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
@@ -114,7 +114,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams_Blue
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.MD24.MD24BlueShine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24BlueShine",Index=1)
 		Weight=3
 		ReloadAnimRate=1.350000
 		SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
@@ -132,7 +132,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams_Red
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.MD24.MD24RedShine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24RedShine",Index=1)
 		Weight=3
 		ReloadAnimRate=1.350000
 		SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)

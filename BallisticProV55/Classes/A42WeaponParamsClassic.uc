@@ -220,7 +220,7 @@ defaultproperties
 		LayoutName="Elite Red"
 		Weight=2
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.A48.A48Skin_SD',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A42_Camos.A48Skin_SD",Index=1)
 		
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
@@ -245,7 +245,7 @@ defaultproperties
 		LayoutName="Prototype Green"
 		Weight=2
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SWC_Tex.AcidPistol.A512_ExpShine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A42_Camos.A512_ExpShine",Index=1)
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
 		SightMoveSpeedFactor=0.500000

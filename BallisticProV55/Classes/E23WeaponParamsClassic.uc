@@ -186,7 +186,7 @@ defaultproperties
 		LayoutName="Police Issue"
 		Weight=5
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.Viper.UTCViperShine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.ViperCamos.UTCViperShine",Index=1)
 		
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000

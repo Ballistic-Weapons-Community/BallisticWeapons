@@ -135,10 +135,10 @@ defaultproperties
 		LayoutName="M75 Arctic"
 		Weight=25
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.M75.M75-Scope-S1',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_CC_Tex.M75.M75-Clip-D1',Index=2)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.M75.M75-Main-S1',Index=3)
-		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_CC_Tex.M75.M75-Main2-S1',Index=4)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Scope-S1",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Clip-D1",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Main-S1",Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M75Camos.M75-Main2-S1",Index=4)
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=1f)
 		ZoomType=ZT_Irons
 		PlayerSpeedFactor=0.850000

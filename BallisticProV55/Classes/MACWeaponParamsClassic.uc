@@ -123,7 +123,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Jungle
 		LayoutName="Jungle"
 		Weight=20
-		WeaponMaterialSwaps(0)=(Material=Texture'BWBP_SKC_TexExp.MACCamos.Artillery-MainJungle',Index=0)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MACCamos.Artillery-MainJungle",Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.Artillery.Artillery_Glass',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=2)
 		
@@ -146,7 +146,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Urban
 		LayoutName="Urban"
 		Weight=20
-		WeaponMaterialSwaps(0)=(Material=Texture'BWBP_SKC_TexExp.MACCamos.Artillery-MainJungle',Index=0)
+		WeaponMaterialSwaps(0)=(MaterialName="BWBP_Camos_Tex.MACCamos.Artillery-MainJungle",Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.M290MagiCannon.MiniThorSkin',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=2)
 		

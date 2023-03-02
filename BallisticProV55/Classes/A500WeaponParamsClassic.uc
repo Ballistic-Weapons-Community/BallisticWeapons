@@ -175,7 +175,7 @@ defaultproperties
 		LayoutName="Burning Tar"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.SRL.SkrithRocketLauncher_Main',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A500Camos.SkrithRocketLauncher_Main",Index=1)
 		
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
@@ -192,7 +192,7 @@ defaultproperties
 		LayoutName="Ablating Orange"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.Misc.Dragon_Main',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A500Camos.Dragon_Main",Index=1)
 		
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000

@@ -161,9 +161,9 @@ defaultproperties
 		LayoutName="Red"
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_Boom_Tex.XMk5Smg.SMGMain',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_Boom_Tex.XMk5Smg.SMGShield',Index=2)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_Boom_Tex.XMk5Smg.SMGClip',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.SMGMain",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.SMGShield",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.XMk5Camos.SMGClip",Index=3)
 		WeaponMaterialSwaps(4)=(Material=Texture'BW_Core_WeaponTex.OA-SMG.OA-SMG_Darter',Index=4)
 		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.OA-SMG.OA-SMG_Dart',Index=5)
 		WeaponMaterialSwaps(6)=(Material=FinalBlend'BW_Core_WeaponTex.OA-SMG.OA-SMG_SightFB',Index=6)

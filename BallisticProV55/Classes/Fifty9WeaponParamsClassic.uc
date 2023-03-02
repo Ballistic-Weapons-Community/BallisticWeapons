@@ -131,7 +131,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Red
 		LayoutName="Red Bling"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_KBP_Tex.Fifty7.Fifty7Skin',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.Fifty9Camos.Fifty7Skin",Index=1)
 		Weight=10
 		
 		PlayerSpeedFactor=1.100000
@@ -154,7 +154,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Orange
 		LayoutName="Orange Bling"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.TigerUzi.TigerUziSkin',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.Fifty9Camos.TigerUziSkin",Index=1)
 		Weight=10
 		
 		PlayerSpeedFactor=1.100000

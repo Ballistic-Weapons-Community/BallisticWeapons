@@ -116,8 +116,8 @@ defaultproperties
 		LayoutName="Tan Scoped"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.R87.R87_Main-SD',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_KBP_Tex.R87.R87_Scope-SD',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R87_Main-SD",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.R78Camos.R87_Scope-SD",Index=2)
 		InventorySize=15
 		
 		SightMoveSpeedFactor=0.500000
@@ -139,7 +139,7 @@ defaultproperties
 		Weight=10
 		
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.NoScope.RifleSkinDesertCamo',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.RifleSkinDesertCamo",Index=0)
 		InventorySize=15
 		ZoomType=ZT_Irons
 		SightMoveSpeedFactor=0.500000
@@ -159,7 +159,7 @@ defaultproperties
 		LayoutName="Urban" //Todo: Wood, quick pull
 		Weight=10
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.NoScope.R98_UTiger-SD',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_UTiger-SD",Index=0)
 		
 		InventorySize=15
 		ZoomType=ZT_Irons
@@ -180,7 +180,7 @@ defaultproperties
 		LayoutName="Jungle CQC Scope"
 		Weight=10
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.NoScope.R98_JTiger-SD',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_JTiger-SD",Index=0)
 		
 		InventorySize=15
 		ZoomType=ZT_Irons
@@ -201,7 +201,7 @@ defaultproperties
 		LayoutName="Red-Tiger Amplified"
 		Weight=3
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.NoScope.R98_RTiger-SD',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_RTiger-SD",Index=0)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Amplifier',BoneName="Muzzle",Scale=0.2)
 		
 		InventorySize=15
@@ -223,7 +223,7 @@ defaultproperties
 		LayoutName="Arctic Warfare"
 		Weight=3
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.NoScope.R98_Winter-SD',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_Winter-SD",Index=0)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="Muzzle",Scale=0.2)
 		
 		InventorySize=15
@@ -246,7 +246,7 @@ defaultproperties
 		Weight=1
 		
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.NoScope.GoldRifle-Shine',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.GoldRifle-Shine",Index=0)
 		InventorySize=15
 		ZoomType=ZT_Irons
 		SightMoveSpeedFactor=0.500000
@@ -267,7 +267,7 @@ defaultproperties
 		Weight=1
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.NoScope.GoldRifle-Shine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.GoldRifle-Shine",Index=1)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
 		MagAmmo=7

@@ -143,7 +143,7 @@ defaultproperties
 		LayoutName="White"
 		Weight=30
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.WBOGP.whiteBOGP_Main',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.whiteBOGP_Main",Index=0)
 		
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
@@ -164,7 +164,7 @@ defaultproperties
 		LayoutName="Radical"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_CC_Tex.BOGP.FGP',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.FGP",Index=0)
 		
 		PlayerSpeedFactor=1.100000
 		InventorySize=6
@@ -185,7 +185,7 @@ defaultproperties
 		LayoutName="Medical"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_CC_Tex.BOGP.MGP',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.BOGPCamos.MGP",Index=0)
 		
 		PlayerSpeedFactor=1.100000
 		InventorySize=6

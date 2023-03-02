@@ -123,9 +123,9 @@ defaultproperties
 		LayoutName="Candy Cane"
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.XRS10-Camos.XRS10RS-Main-Shine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10RS-Main-Shine",Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.XRS10.XRS10LaserShiney',Index=2)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.XRS10-Camos.XRS10RS-Sil-Shine',Index=3)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10RS-Sil-Shine",Index=3)
 		PlayerSpeedFactor=1.100000
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
@@ -150,9 +150,9 @@ defaultproperties
 		LayoutName="Gold"
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.XRS10-Camos.XRS10Gold-Main-Shine',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.XRS10-Camos.XRS10Gold-LAM-Shine',Index=2)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.XRS10-Camos.XRS10Gold-Sil-Shine',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-Main-Shine',Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-LAM-Shine',Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-Sil-Shine',Index=3)
 		PlayerSpeedFactor=1.100000
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000

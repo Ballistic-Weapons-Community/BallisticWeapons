@@ -126,8 +126,8 @@ defaultproperties
 		LayoutName="Black"
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.XMV500.XMV500_Main',Index=0)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.XMV500.XMV500_Barrels_SD',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV500_Main",Index=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV500_Barrels_SD",Index=2)
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.700000
 		InventorySize=25
@@ -150,8 +150,8 @@ defaultproperties
 		LayoutName="Green"
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=1)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_KBP_Tex.XMV858.XMV858_Main',Index=0)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_KBP_Tex.XMV858.XMV858_Barrels_SD',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV858_Main",Index=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XMVCamos.XMV858_Barrels_SD",Index=2)
 		PlayerSpeedFactor=0.750000
 		PlayerJumpFactor=0.700000
 		InventorySize=25

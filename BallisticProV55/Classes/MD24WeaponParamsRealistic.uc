@@ -143,7 +143,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Black
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.MD24.MD24BlackShine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24BlackShine",Index=1)
 		Weight=10
 		PlayerSpeedFactor=1.100000
 		InventorySize=4
@@ -164,7 +164,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Desert
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.MD24.MD24DesertShine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24DesertShine",Index=1)
 		Weight=10
 		PlayerSpeedFactor=1.100000
 		InventorySize=4
@@ -185,7 +185,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Blue
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.MD24.MD24BlueShine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24BlueShine",Index=1)
 		Weight=3
 		PlayerSpeedFactor=1.100000
 		InventorySize=4
@@ -206,7 +206,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=RealisticParams_Red
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.MD24.MD24RedShine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MD24Camos.MD24RedShine",Index=1)
 		Weight=3
 		PlayerSpeedFactor=1.100000
 		InventorySize=4

@@ -178,7 +178,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Bearmaster
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.MarlinRifle-K.MarlinK-Shiny',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.MarlinK-Shiny",Index=1)
 		Weight=30
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		InventorySize=12
@@ -197,7 +197,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_OB
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.Deermaster-Camos.DeermasterOrange-Main-Shine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.DeermasterOrange-Main-Shine",Index=1)
 		Weight=10
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		InventorySize=12
@@ -217,7 +217,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Gauss
 		Weight=5
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.MarlinRifle-K.MarlinK-Shiny',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.MarlinK-Shiny",Index=1)
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=1f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
@@ -236,7 +236,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_BearmasterGauss
 		Weight=5
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.MarlinRifle-K.MarlinK-Shiny',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.MarlinK-Shiny",Index=1)
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=1f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
@@ -255,7 +255,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Gold
 		Weight=1
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MarlinGold.MarlinGold-Shine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MarlinCamos.MarlinGold-Shine",Index=1)
 		WeaponBoneScales(0)=(BoneName="Gauss",Slot=19,Scale=0f)
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000

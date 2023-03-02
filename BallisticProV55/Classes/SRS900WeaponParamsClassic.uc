@@ -121,9 +121,9 @@ defaultproperties
 		Weight=20
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_KBP_Tex.SRS900-K.SRS900-KMain',Index=0)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_KBP_Tex.SRS900-K.SRS900-KScopeShine',Index=1)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_KBP_Tex.SRS900-K.SRS900-KAmmo',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS900-KMain",Index=0)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS900-KScopeShine",Index=1)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRS900-KAmmo",Index=2)
 		
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
@@ -148,7 +148,7 @@ defaultproperties
 		
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS600'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
-		WeaponMaterialSwaps(1)=(Material=Texture'BW_Core_WeaponTex.SRS.SRSNSGrey',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRSNSGrey",Index=0)
 		
 		ZoomType=ZT_Irons
 		InventorySize=15
@@ -174,7 +174,7 @@ defaultproperties
 		
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS600'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSUrban',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRSNSUrban",Index=0)
 		
 		ZoomType=ZT_Irons
 		InventorySize=15
@@ -200,7 +200,7 @@ defaultproperties
 		
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS600'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSDesert',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRSNSDesert",Index=0)
 		
 		ZoomType=ZT_Irons
 		InventorySize=15
@@ -226,7 +226,7 @@ defaultproperties
 		
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS600'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSM2German',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRSM2German",Index=0)
 		
 		ZoomType=ZT_Irons
 		InventorySize=15
@@ -252,7 +252,7 @@ defaultproperties
 		
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS600'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSJungle',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRSNSJungle",Index=0)
 		
 		ZoomType=ZT_Irons
 		InventorySize=15
@@ -278,7 +278,7 @@ defaultproperties
 		
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS600'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSTiger',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRSNSTiger",Index=0)
 		
 		ZoomType=ZT_Irons
 		InventorySize=15
@@ -304,7 +304,7 @@ defaultproperties
 		
 		LayoutMesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_SRS600'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=3)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SKS650.SRSNSFlame',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SRSCamos.SRSNSFlame",Index=0)
 		
 		ZoomType=ZT_Irons
 		InventorySize=15

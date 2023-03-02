@@ -163,7 +163,7 @@ defaultproperties
 		Weight=1
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.Dragon.Dragon_Main-SD',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M806Camos.Dragon_Main-SD",Index=1)
 
 		PlayerSpeedFactor=1.100000
 		InventorySize=5

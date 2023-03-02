@@ -150,7 +150,7 @@ defaultproperties
 		LayoutName="Dark"
 		Weight=20
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SWC_Tex.M290MagiCannon.MiniThorSkin',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M290Camos.MiniThorSkin",Index=1)
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
 		
@@ -172,7 +172,7 @@ defaultproperties
 		LayoutName="High Tech"
 		Weight=20
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.M290Camos.M290_SH1',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M290Camos.M290_SH1",Index=1)
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="Magazine",Slot=2,Scale=0f)
 		

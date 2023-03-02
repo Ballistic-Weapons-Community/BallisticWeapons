@@ -202,10 +202,10 @@ defaultproperties
 		LayoutName="M50A1 Stealth"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinA-D',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinB-D',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50SkinA-D",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50SkinB-D",Index=2)
 		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.M50.M50Laser',Index=4)
-		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50Gren-D',Index=5)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50Gren-D",Index=5)
 		WeaponMaterialSwaps(5)=(Material=Texture'BW_Core_WeaponTex.M50.M900Grenade',Index=6)
 		AttachmentMaterialSwaps(0)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinA-D',Index=0)
 		AttachmentMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinB-D',Index=1)
@@ -237,12 +237,12 @@ defaultproperties
 		
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_M50A3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinA-D',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M50SkinB-D',Index=2)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_TexExp.M50A3.M50A3-CoverBlack',Index=3)
-		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_TexExp.M50A3.M50A3-MainBlack',Index=4)
-		WeaponMaterialSwaps(5)=(Material=Texture'BWBP_SKC_TexExp.M50A3.M50A3-Barrel',Index=5)
-		WeaponMaterialSwaps(6)=(Material=Texture'BWBP_SKC_TexExp.M50A3.M50A3-Misc',Index=6)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50SkinA-D",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50SkinB-D",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50A3-CoverBlack",Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50A3-MainBlack",Index=4)
+		WeaponMaterialSwaps(5)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50A3-Barrel",Index=5)
+		WeaponMaterialSwaps(6)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50A3-Misc",Index=6)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="tip",Scale=0.1)
 		GunAugments(1)=(GunAugmentClass=class'BallisticProV55.Augment_Holo',BoneName="Scope",Scale=0.05)
         WeaponBoneScales(0)=(BoneName="Sights",Slot=0,Scale=0f)
@@ -302,8 +302,8 @@ defaultproperties
 		Weight=10
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SATiger',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SBTiger',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M50Camos.M30A2-SATiger",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M50Camos.M30A2-SBTiger",Index=2)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_4XScope',BoneName="Scope",Scale=0.15)
 		ScopeViewTex=Texture'BWBP_SKC_Tex.Eagle.Eagle-ScopeView'
 		ZoomType=ZT_Fixed
@@ -331,8 +331,8 @@ defaultproperties
 		Weight=10
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SATiger',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.M30A2.M30A2-SBTiger',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M50Camos.M30A2-SATiger",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M50Camos.M30A2-SBTiger",Index=2)
 		ScopeViewTex=Texture'BWBP_SKC_Tex.M30A2.M30A2-Scope'
 		ZoomType=ZT_Logarithmic
 		
@@ -359,10 +359,10 @@ defaultproperties
 		Weight=1
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.M50Camos.M50_Main1_S1',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.M50Camos.M50_Main2_S1',Index=2)
-		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.M50Camos.M50_Laser_S1',Index=4)
-		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_CC_Tex.M50Camos.M50_Main3_S1',Index=5)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50_Main1_S1",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50_Main2_S1",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50_Laser_S1",Index=4)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.M50Camos.M50_Main3_S1",Index=5)
 		
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000

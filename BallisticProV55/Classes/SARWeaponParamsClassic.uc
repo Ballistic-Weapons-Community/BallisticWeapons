@@ -188,7 +188,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Gray
 		LayoutName="Combat Laser"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.SAR-K.SAR15-Shiny',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SARCamos.SAR15-Shiny",Index=1)
 		Weight=10
 		
 		InventorySize=10
@@ -213,7 +213,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Black
 		LayoutName="Stealth Scoped"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SWC_Tex.DSAR.DSARSkin-Shiny',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SARCamos.DSARSkin-Shiny",Index=1)
 		Weight=10
 		
 		InventorySize=10
@@ -238,7 +238,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Blue
 		LayoutName="Tech Amplified"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SWC_Tex.CSAR.CSARSkin-Shiny',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SARCamos.CSARSkin-Shiny",Index=1)
 		Weight=10
 		
 		InventorySize=10
@@ -263,7 +263,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Desert
 		LayoutName="Desert Operator"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_KBP_Tex.SAR-K.AAS-Shiny',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SARCamos.AAS-Shiny",Index=1)
 		Weight=5
 		
 		InventorySize=10

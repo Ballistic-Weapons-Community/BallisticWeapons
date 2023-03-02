@@ -122,7 +122,7 @@ defaultproperties
 		LayoutName="Dice"
 		Weight=20
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SWC_Tex.EnergyWristBlades.EnergyWristBladeShine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.A909Camos.EnergyWristBladeShine",Index=1)
 		PlayerSpeedFactor=1.200000
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000

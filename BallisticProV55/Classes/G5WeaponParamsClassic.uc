@@ -122,9 +122,9 @@ defaultproperties
 		Weight=10
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.SMAA.SMAA-Shine',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.SMAA.SMAAScope',Index=2)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_TexExp.SMAA.SMAARocket',Index=4)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.G5Camos.SMAA-Shine",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.G5Camos.SMAAScope",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.G5Camos.SMAARocket",Index=4)
 		PlayerSpeedFactor=0.850000
 		InventorySize=25
 		SightMoveSpeedFactor=0.500000

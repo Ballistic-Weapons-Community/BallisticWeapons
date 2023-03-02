@@ -128,7 +128,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-AC
 		Weight=15
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MRS138-Camos.MRSArctic-Main-Shine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MRS138Camos.MRSArctic-Main-Shine",Index=1)
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -145,7 +145,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-AU
 		Weight=1
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MRS138-Camos.MRSGold-Main-Shine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MRS138Camos.MRSGold-Main-Shine",Index=1)
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
