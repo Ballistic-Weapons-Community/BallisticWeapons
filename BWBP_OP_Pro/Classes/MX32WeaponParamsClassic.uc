@@ -154,8 +154,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Desert
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MX32Camos.MX32_Weapon_S2',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.MX32Camos.MX32_Attach_S2',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Weapon_S2",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Attach_S2',Index=2)
 		Weight=10
 		ViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
 		SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
@@ -176,8 +176,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Ruby
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MX32Camos.MX32_Weapon_S3',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.MX32Camos.MX32_Attach_S3',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Weapon_S3",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Attach_S3",Index=2)
 		Weight=10
 		ViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
 		SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
@@ -197,8 +197,8 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Au
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MX32Camos.MX32_Weapon_S1',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.MX32Camos.MX32_Attach_S1',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Weapon_S1",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MX32Camos.MX32_Attach_S1",Index=2)
 		Weight=1
 		ViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
 		SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)

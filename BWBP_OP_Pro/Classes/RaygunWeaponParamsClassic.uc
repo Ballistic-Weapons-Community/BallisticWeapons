@@ -118,7 +118,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Blue
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=7)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.Raygun.Raygun_Blue_S',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Blue_S",Index=0)
 		Weight=20
 		SightPivot=(Pitch=450)
 		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
@@ -138,7 +138,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Black
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=7)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.Raygun.Raygun_Black_S',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Black_S",Index=0)
 		Weight=10
 		SightPivot=(Pitch=450)
 		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
@@ -158,7 +158,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Wooden
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=7)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.Raygun.Raygun_Wooden_S',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Wooden_S",Index=0)
 		Weight=10
 		SightPivot=(Pitch=450)
 		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
@@ -178,7 +178,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Emerald
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=7)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.Raygun.Raygun_Emerald_S',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_Emerald_S",Index=0)
 		Weight=3
 		SightPivot=(Pitch=450)
 		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
@@ -198,7 +198,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Gold
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=7)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.Raygun.Raygun_GnB_S',Index=0)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RaygunCamos.Raygun_GnB_S",Index=0)
 		Weight=1
 		SightPivot=(Pitch=450)
 		SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)

@@ -197,7 +197,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Grey
 		Weight=20
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.R9.R9_body_SH4',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH4",Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.R9A1.R9_scope_SH2',Index=2)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000
@@ -218,7 +218,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-DDPAT
 		Weight=20
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.R9.R9_body_SH5',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R9Camos.R9_body_SH5",Index=1)
 		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_OP_Tex.R9A1.R9_scope_SH2',Index=2)
 		InventorySize=15
 		SightMoveSpeedFactor=0.500000

@@ -245,7 +245,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Purple
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.XOXOCamos.XOXOPurpleCamo-Shine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XOXOCamos.XOXOPurpleCamo-Shine",Index=1)
 		SightOffset=(X=5.000000,Y=0.650000,Z=10.600000)
 		SightPivot=(Pitch=768)
 		PlayerSpeedFactor=1

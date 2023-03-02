@@ -133,8 +133,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-AUR
 		Weight=2
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.Z250.Z250_body_SH2',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.Z250.Z250_Sight_SH2',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.Z250Camos.Z250_body_SH2",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.Z250Camos.Z250_Sight_SH2",Index=2)
 		PlayerSpeedFactor=0.850000
 		PlayerJumpFactor=0.850000
 		InventorySize=35
