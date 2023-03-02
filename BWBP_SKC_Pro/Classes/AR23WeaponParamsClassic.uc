@@ -187,8 +187,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Winter //Suppressor, EO Tech
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.AR23Camos.AR23-MainWinterShine',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.AR23Camos.AR23-MiscWinterShine',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AR23Camos.AR23-MainWinterShine",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.AR23Camos.AR23-MiscWinterShine",Index=2)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.AR23.AR23-HoloShine',Index=3)
 		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.AR23.Muzzle_2D_View',Index=4)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=51,Scale=0f)

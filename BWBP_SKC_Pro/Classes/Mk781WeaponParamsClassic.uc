@@ -241,7 +241,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Desert
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1014.M1014-MainCamoDesert',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDesert",Index=1)
 		Weight=10
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
@@ -267,7 +267,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Digital
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1014.M1014-MainCamoDigital',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoDigital",Index=1)
 		Weight=10
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
@@ -293,7 +293,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_America
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1014.M1014-MainCamoAmerica',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoAmerica",Index=1)
 		Weight=3
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
@@ -319,7 +319,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Tiger
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1014.M1014-MainCamoTiger',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.M1014Camos.M1014-MainCamoTiger",Index=1)
 		Weight=1
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000

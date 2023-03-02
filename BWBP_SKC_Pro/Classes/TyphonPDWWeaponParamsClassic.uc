@@ -123,7 +123,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.PUMA.PUMA-ShineUrban',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.TyphonCamos.PUMA-ShineUrban",Index=1)
 		SightingTime=0.250000
 		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
 		PlayerSpeedFactor=1
@@ -144,7 +144,7 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="Ladder",Slot=52,Scale=0f)
 		Weight=3
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.PUMA.PUMA-ShineGreen',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.TyphonCamos.PUMA-ShineGreen",Index=1)
 		SightingTime=0.250000
 		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
 		PlayerSpeedFactor=1
@@ -164,7 +164,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Blue
 		Weight=1
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.PUMA.PUMA-ShineBlue',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.TyphonCamos.PUMA-ShineBlue",Index=1)
 		SightingTime=0.250000
 		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
 		PlayerSpeedFactor=1

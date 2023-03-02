@@ -139,7 +139,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ArenaParams_D //Desert
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.AK490.AK490-C-CamoDesert',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-C-CamoDesert",Index=1)
 		Weight=20
 		ReloadAnimRate=1.250000
 		PlayerSpeedFactor=1.000000
@@ -160,7 +160,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams_DE //Flecktarn
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.AK490.AK490-UC-CamoGerman',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoGerman",Index=1)
 		Weight=10
 		ReloadAnimRate=1.250000
 		PlayerSpeedFactor=1.000000
@@ -181,7 +181,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams_V //Veteran Bloody
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.AK490.AK490-UC-CamoBlood',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-UC-CamoBlood",Index=1)
 		Weight=3
 		ReloadAnimRate=1.250000
 		PlayerSpeedFactor=1.000000
@@ -202,7 +202,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams_R //Red
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.AK490.AK490-R-CamoRed',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoRed",Index=1)
 		Weight=3
 		ReloadAnimRate=1.250000
 		PlayerSpeedFactor=1.000000
@@ -223,7 +223,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams_B //Blue
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.AK490.AK490-R-CamoBlue',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.AK490-R-CamoBlue",Index=1)
 		Weight=3
 		ReloadAnimRate=1.250000
 		PlayerSpeedFactor=1.000000
@@ -244,7 +244,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams_AU //Gold
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.AK490.GoldAK-Shine',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.AK490Camos.GoldAK-Shine",Index=1)
 		Weight=1
 		ReloadAnimRate=1.250000
 		PlayerSpeedFactor=1.000000

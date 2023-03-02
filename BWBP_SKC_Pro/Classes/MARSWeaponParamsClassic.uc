@@ -153,7 +153,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Green //Green, IRNV, HE GL
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-MainGreen',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-MainGreen",Index=1)
 		InventorySize=11
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
@@ -173,7 +173,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Urban //Urban, IRNV, Smoke GL
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-MainSplitter',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-MainSplitter",Index=1)
 		InventorySize=11
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
@@ -194,8 +194,8 @@ defaultproperties
 		Weight=30
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-Irons',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.LK05.LK05-EOTechGlow',Index=4)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.MARS.F2000-Irons',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=4)
 		InventorySize=11
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
@@ -217,7 +217,7 @@ defaultproperties
 		Weight=10
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.MARS.F2000-IronArctic',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-IronArctic",Index=1)
 		InventorySize=11
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
@@ -239,7 +239,7 @@ defaultproperties
 		Weight=3
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-IronBlack',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-IronBlack",Index=1)
 		InventorySize=11
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000
@@ -261,7 +261,7 @@ defaultproperties
 		Weight=3
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.MARS.F2000-IronWhite',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-IronWhite",Index=1)
 		InventorySize=11
 		bNeedCock=True
 		SightMoveSpeedFactor=0.500000

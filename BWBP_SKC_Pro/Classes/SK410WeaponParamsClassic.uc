@@ -148,7 +148,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ClassicParams_Wood
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SK410.SK410-UC-CamoJungle',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-UC-CamoJungle",Index=1)
 		Weight=10
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
@@ -166,7 +166,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ClassicParams_Digital
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SK410.SK410-UC-CamoDigital',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-UC-CamoDigital",Index=1)
 		Weight=10
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
@@ -184,7 +184,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ClassicParams_Blood
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SK410.SK410-R-CamoBlood',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-R-CamoBlood",Index=1)
 		Weight=3
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
@@ -202,7 +202,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ClassicParams_Tiger
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.SK410.SK410-R-CamoTiger',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-R-CamoTiger",Index=1)
 		Weight=3
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000
@@ -220,7 +220,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ClassicParams_Corrupt
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.SK410.SK410-Charged',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SK410Camos.SK410-Charged",Index=1)
 		Weight=1
 		InventorySize=8
 		SightMoveSpeedFactor=0.500000

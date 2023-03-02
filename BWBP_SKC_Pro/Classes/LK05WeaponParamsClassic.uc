@@ -152,9 +152,9 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_TexExp.LK05.LK05-MainBlack',Index=3)
-		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_TexExp.LK05.LK05-HandleBlack',Index=1)
-		WeaponMaterialSwaps(5)=(Material=Texture'BWBP_SKC_TexExp.LK05.LK05-ButtBlack',Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-MainBlack",Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-HandleBlack",Index=1)
+		WeaponMaterialSwaps(5)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-ButtBlack",Index=2)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
 		ReloadAnimRate=1.000000
@@ -196,7 +196,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_TexExp.LK05.LK05-RecBlueCamo',Index=3)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecBlueCamo",Index=3)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
 		ReloadAnimRate=1.000000
@@ -218,7 +218,7 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=8)
 		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_Tex.LK05.LK05-EOTechGlow2',Index=9)
 		WeaponMaterialSwaps(2)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(3)=(Material=Texture'BWBP_SKC_TexExp.LK05.LK05-RecRedCamo',Index=3)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.LK05Camos.LK05-RecRedCamo",Index=3)
 		WeaponBoneScales(0)=(BoneName="IronsRear",Slot=55,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=56,Scale=0f)
 		ReloadAnimRate=1.000000
