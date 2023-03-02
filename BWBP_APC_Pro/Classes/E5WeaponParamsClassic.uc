@@ -188,10 +188,10 @@ defaultproperties
 		LayoutName="Spec Ops Issue"
 	    Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_BYWeapon_Shine',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_BYWeapon2_Shine',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_BYWeapon_Shine",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_BYWeapon2_Shine",Index=2)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3)
-		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_BYPadding_Shine',Index=4)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_BYPadding_Shine",Index=4)
 		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5)
 		
 		SightingTime=0.30000	 
@@ -216,10 +216,10 @@ defaultproperties
 		LayoutName="Neglected Issue"
 	    Weight=25
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_RSWeapon_Shine',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_RSWeapon2_Shine',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_RSWeapon_Shine",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_RSWeapon2_Shine",Index=2)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3)
-		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_RSPadding_Shine',Index=4)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_RSPadding_Shine",Index=4)
 		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5)
 		
 		SightingTime=0.30000	 
@@ -244,10 +244,10 @@ defaultproperties
 		LayoutName="Police Issue"
 	    Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.E5UTC.E5UTC-Main-Shine',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_Boom_Tex.E5UTC.E5UTC-Main2-Shine',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.E5UTC-Main-Shine",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.E5UTC-Main2-Shine",Index=2)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3)
-		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_Boom_Tex.E5UTC.E5UTC-Padding-Shine',Index=4)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.E5UTC-Padding-Shine",Index=4)
 		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5)
 		
 		SightingTime=0.30000	 
@@ -272,10 +272,10 @@ defaultproperties
 		LayoutName="Warlord Issue"
 	    Weight=1
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_AUWeapon_Shine',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_AUWeapon2_Shine',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_AUWeapon_Shine",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_AUWeapon2_Shine",Index=2)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3)
-		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_AUPadding_Shine',Index=4)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_Camos_Tex.MVPRCamos.MVPR_AUPadding_Shine",Index=4)
 		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5)
 		
 		SightingTime=0.30000	 
