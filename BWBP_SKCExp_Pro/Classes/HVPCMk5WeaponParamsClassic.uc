@@ -180,8 +180,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_Proto
 		LayoutName="MK1 Unstable"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.HVPC.HVPC-MainProto',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.HVPC.HVPC-MiscProto',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-MainProto",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-MiscProto",Index=2)
 		WeaponMaterialSwaps(3)=(Material=Texture'BW_Core_WeaponTex.Misc.Invisible',Index=3)
 		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Stim.Stim-Glass',Index=4)
 		WeaponMaterialSwaps(5)=(Material=TexPanner'BWBP_SKC_Tex.X82.X82MeatPan',Index=5)
@@ -202,8 +202,8 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams_DX
 		LayoutName="MK3 Mainline"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.HVPC.HVPC-Main',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.HVPC.HVPC-Misc',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-Main",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-Misc",Index=2)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDot',Index=3)
 		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Stim.Stim-Glass',Index=4)
 		WeaponMaterialSwaps(5)=(Material=TexPanner'BWBP_SKC_Tex.X82.X82MeatPan',Index=5)
@@ -241,8 +241,8 @@ defaultproperties
 		LayoutName="E55 Plasma Cannon"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.HVPC.HVPC-MainBlack',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.HVPC.HVPC-MiscBlack',Index=2)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-MainBlack",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.HVPCCamos.HVPC-MiscBlack",Index=2)
 		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_SKC_Tex.Eagle.Eagle-SightDot',Index=3)
 		WeaponMaterialSwaps(4)=(Material=Texture'BWBP_SKC_Tex.Stim.Stim-Glass',Index=4)
 		WeaponMaterialSwaps(5)=(Material=TexPanner'BWBP_SKC_Tex.X82.X82MeatPan',Index=5)

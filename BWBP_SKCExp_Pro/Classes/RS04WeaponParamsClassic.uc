@@ -96,7 +96,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Black
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.M1911.RS04-MainShineX2',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS04Camos.RS04-MainShineX2",Index=1)
 		Weight=27
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
@@ -111,7 +111,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_TwoTone
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1911.RS04-UC-Main2Tone',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS04Camos.RS04-UC-Main2Tone",Index=1)
 		Weight=9
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
@@ -126,7 +126,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Jungle
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1911.RS04-UC-CamoJungle',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS04Camos.RS04-UC-CamoJungle",Index=1)
 		Weight=9
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
@@ -141,7 +141,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Autumn
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1911.RS04-R-CamoAutumn',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS04Camos.RS04-R-CamoAutumn",Index=1)
 		Weight=3
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
@@ -156,7 +156,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Hunter
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1911.RS04-R-CamoHunter',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS04Camos.RS04-R-CamoHunter",Index=1)
 		Weight=3
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000
@@ -171,7 +171,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_RedTiger
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.M1911.RS04-X-CamoTiger',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.RS04Camos.RS04-X-CamoTiger",Index=1)
 		Weight=1
 		InventorySize=5
 		SightMoveSpeedFactor=0.500000

@@ -105,8 +105,8 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.T9CN.Ber-MainE',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.T9CN.Ber-SlideE',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainE",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideE",Index=3)
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.150000
 		bNeedCock=True
@@ -140,8 +140,8 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.T9CN.Ber-MainShineB',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.T9CN.Ber-SlideShineB',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainShineB",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideShineB",Index=3)
 		Weight=1
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
@@ -160,8 +160,8 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.T9CN.Ber-MainShineC',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.T9CN.Ber-SlideShineC',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainShineC",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideShineC",Index=3)
 		Weight=1
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
@@ -180,8 +180,8 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.T9CN.Ber-MainShineD',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.T9CN.Ber-SlideShineC',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainShineD",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideShineC",Index=3)
 		Weight=1
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
@@ -200,8 +200,8 @@ defaultproperties
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.T9CN.Ber-MainE',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.T9CN.Ber-SlideE',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-MainE",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.T9CNCamos.Ber-SlideE",Index=3)
 		Weight=1
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
