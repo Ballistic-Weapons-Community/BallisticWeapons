@@ -163,7 +163,10 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ClassicParams
-	    SightingTime=0.30000	 
+		LayoutName="Military Issue"
+	    Weight=30
+		
+		SightingTime=0.30000	 
         MagAmmo=45        
         InventorySize=12
         SightMoveSpeedFactor=0.9
@@ -180,5 +183,122 @@ defaultproperties
         FireParams(2)=FireParams'ClassicSniperFireParams'
         AltFireParams(0)=FireParams'ClassicLaserFireParams'
     End Object 
-    Layouts(0)=WeaponParams'ClassicParams'
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-BY
+		LayoutName="Spec Ops Issue"
+	    Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_BYWeapon_Shine',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_BYWeapon2_Shine',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_BYPadding_Shine',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5)
+		
+		SightingTime=0.30000	 
+        MagAmmo=45        
+        InventorySize=12
+        SightMoveSpeedFactor=0.9
+		SightPivot=(Pitch=256)
+		SightOffset=(X=-35.000000,Y=-0.850000,Z=10.850000)
+		ViewOffset=(X=10.000000,Y=6.000000,Z=-8.500000)
+		WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(2)=(ModeName="Sniper Pulse",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+        FireParams(0)=FireParams'ClassicSeriesFireParams'
+        FireParams(1)=FireParams'ClassicMultiFireParams'
+        FireParams(2)=FireParams'ClassicSniperFireParams'
+        AltFireParams(0)=FireParams'ClassicLaserFireParams'
+    End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-RS
+		LayoutName="Neglected Issue"
+	    Weight=25
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_RSWeapon_Shine',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_RSWeapon2_Shine',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_RSPadding_Shine',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5)
+		
+		SightingTime=0.30000	 
+        MagAmmo=45        
+        InventorySize=12
+        SightMoveSpeedFactor=0.9
+		SightPivot=(Pitch=256)
+		SightOffset=(X=-35.000000,Y=-0.850000,Z=10.850000)
+		ViewOffset=(X=10.000000,Y=6.000000,Z=-8.500000)
+		WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(2)=(ModeName="Sniper Pulse",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+        FireParams(0)=FireParams'ClassicSeriesFireParams'
+        FireParams(1)=FireParams'ClassicMultiFireParams'
+        FireParams(2)=FireParams'ClassicSniperFireParams'
+        AltFireParams(0)=FireParams'ClassicLaserFireParams'
+    End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-UTC
+		LayoutName="Police Issue"
+	    Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.E5UTC.E5UTC-Main-Shine',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_Boom_Tex.E5UTC.E5UTC-Main2-Shine',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_Boom_Tex.E5UTC.E5UTC-Padding-Shine',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5)
+		
+		SightingTime=0.30000	 
+        MagAmmo=45        
+        InventorySize=12
+        SightMoveSpeedFactor=0.9
+		SightPivot=(Pitch=256)
+		SightOffset=(X=-35.000000,Y=-0.850000,Z=10.850000)
+		ViewOffset=(X=10.000000,Y=6.000000,Z=-8.500000)
+		WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(2)=(ModeName="Sniper Pulse",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+        FireParams(0)=FireParams'ClassicSeriesFireParams'
+        FireParams(1)=FireParams'ClassicMultiFireParams'
+        FireParams(2)=FireParams'ClassicSniperFireParams'
+        AltFireParams(0)=FireParams'ClassicLaserFireParams'
+    End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-AU
+		LayoutName="Warlord Issue"
+	    Weight=1
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_AUWeapon_Shine',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_AUWeapon2_Shine',Index=2)
+		WeaponMaterialSwaps(3)=(Material=Shader'BWBP_CC_Tex.MVPR.Shader',Index=3)
+		WeaponMaterialSwaps(4)=(Material=Shader'BWBP_CC_Tex.MVPRCamos.MVPR_AUPadding_Shine',Index=4)
+		WeaponMaterialSwaps(5)=(Material=Shader'BW_Core_WeaponTex.VPR.VPRGlass-Shiny',Index=5)
+		
+		SightingTime=0.30000	 
+        MagAmmo=45        
+        InventorySize=12
+        SightMoveSpeedFactor=0.9
+		SightPivot=(Pitch=256)
+		SightOffset=(X=-35.000000,Y=-0.850000,Z=10.850000)
+		ViewOffset=(X=10.000000,Y=6.000000,Z=-8.500000)
+		WeaponModes(0)=(ModeName="Series Pulse",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(1)=(ModeName="Multi Pulse",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(2)=(ModeName="Sniper Pulse",ModeID="WM_SemiAuto",Value=1.000000,bUnavailable=True)
+        RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+        AimParams(0)=AimParams'ClassicAimParams'
+        FireParams(0)=FireParams'ClassicSeriesFireParams'
+        FireParams(1)=FireParams'ClassicMultiFireParams'
+        FireParams(2)=FireParams'ClassicSniperFireParams'
+        AltFireParams(0)=FireParams'ClassicLaserFireParams'
+    End Object
+    
+	Layouts(0)=WeaponParams'ClassicParams'
+	Layouts(1)=WeaponParams'ClassicParams-BY'
+	Layouts(2)=WeaponParams'ClassicParams-RS'
+	Layouts(3)=WeaponParams'ClassicParams-UTC'
+	Layouts(4)=WeaponParams'ClassicParams-AU'
 }

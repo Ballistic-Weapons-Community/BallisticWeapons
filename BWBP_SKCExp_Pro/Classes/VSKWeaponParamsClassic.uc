@@ -103,6 +103,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		InventorySize=12
 		SightMoveSpeedFactor=0.500000
 		bNeedCock=True
@@ -116,8 +117,26 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireHeavyParams'
 		FireParams(1)=FireParams'ClassicPrimaryFireStandardParams'
 	End Object
-
+	
+	Begin Object Class=WeaponParams Name=ClassicParams-UTC
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.VSKBoom.UTCVskShine',Index=1)
+		InventorySize=12
+		SightMoveSpeedFactor=0.500000
+		bNeedCock=True
+		MagAmmo=10
+		SightOffset=(X=-20.000000,Y=-1.250000,Z=31.000000)
+		ViewOffset=(X=10.000000,Y=15.000000,Z=-27.000000)
+		SightPivot=(Pitch=600,Roll=-1024)
+		ZoomType=ZT_Smooth
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireHeavyParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireStandardParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams-UTC'
 
 }

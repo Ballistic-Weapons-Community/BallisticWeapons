@@ -98,6 +98,8 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=6
+		InventorySize=6
 		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
 		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
 		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
@@ -105,8 +107,103 @@ defaultproperties
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.T9CN.Ber-MainE',Index=1)
 		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.T9CN.Ber-SlideE',Index=3)
-		InventorySize=6
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.150000
+		bNeedCock=True
+		MagAmmo=18
+		SightPivot=(Pitch=128)
+		SightOffset=(X=-10.000000,Y=-2.090000,Z=9.35000)
+		ViewOffset=(X=0.000000,Y=6.500000,Z=-8.00000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
 
+	Begin Object Class=WeaponParams Name=ClassicParams_S
+		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
+		Weight=1
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.150000
+		bNeedCock=True
+		MagAmmo=18
+		SightPivot=(Pitch=128)
+		SightOffset=(X=-10.000000,Y=-2.090000,Z=9.35000)
+		ViewOffset=(X=0.000000,Y=6.500000,Z=-8.00000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_TT
+		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.T9CN.Ber-MainShineB',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.T9CN.Ber-SlideShineB',Index=3)
+		Weight=1
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.150000
+		bNeedCock=True
+		MagAmmo=18
+		SightPivot=(Pitch=128)
+		SightOffset=(X=-10.000000,Y=-2.090000,Z=9.35000)
+		ViewOffset=(X=0.000000,Y=6.500000,Z=-8.00000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_B
+		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.T9CN.Ber-MainShineC',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.T9CN.Ber-SlideShineC',Index=3)
+		Weight=1
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.150000
+		bNeedCock=True
+		MagAmmo=18
+		SightPivot=(Pitch=128)
+		SightOffset=(X=-10.000000,Y=-2.090000,Z=9.35000)
+		ViewOffset=(X=0.000000,Y=6.500000,Z=-8.00000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_BW
+		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_SKC_TexExp.T9CN.Ber-MainShineD',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Shader'BWBP_SKC_TexExp.T9CN.Ber-SlideShineC',Index=3)
+		Weight=1
+		InventorySize=10
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.150000
+		bNeedCock=True
+		MagAmmo=18
+		SightPivot=(Pitch=128)
+		SightOffset=(X=-10.000000,Y=-2.090000,Z=9.35000)
+		ViewOffset=(X=0.000000,Y=6.500000,Z=-8.00000)
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+	End Object
+
+	Begin Object Class=WeaponParams Name=ClassicParams_T
+		WeaponBoneScales(0)=(BoneName="RCAttachment",Slot=1,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="RCSlider",Slot=2,Scale=0f)
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.T9CN.Ber-MainE',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.T9CN.Ber-SlideE',Index=3)
+		Weight=1
+		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.150000
 		bNeedCock=True
@@ -120,6 +217,10 @@ defaultproperties
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams' //Robocop
-
-
+	Layouts(1)=WeaponParams'ClassicParams_S' //Silver
+	Layouts(2)=WeaponParams'ClassicParams_TT' //Two Tone
+	Layouts(3)=WeaponParams'ClassicParams_B' //Black
+	Layouts(4)=WeaponParams'ClassicParams_BW' //Black + Wood
+	Layouts(5)=WeaponParams'ClassicParams_T' //Tan
+	
 }

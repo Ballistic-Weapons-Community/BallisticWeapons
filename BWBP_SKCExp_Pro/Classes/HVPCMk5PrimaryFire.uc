@@ -41,55 +41,69 @@ function StopFiring()
 	StopFireTime = level.TimeSeconds;
 }
 
-// Get aim then spawn projectile
-function DoFireEffect()
+simulated state SingleShot
 {
-    local Vector StartTrace, X, Y, Z, Start, End, HitLocation, HitNormal;
-    local Rotator Aim;
-	local actor Other;
-	local int i;
 
-    Weapon.GetViewAxes(X,Y,Z);
-    // the to-hit trace always starts right in front of the eye
-    Start = Instigator.Location + Instigator.EyePosition();
-
-    StartTrace = Start + X*SpawnOffset.X + Z*SpawnOffset.Z;
-    if(!Weapon.WeaponCentered())
-	    StartTrace = StartTrace + Weapon.Hand * Y*SpawnOffset.Y;
-
-	for(i=0; i < ProjectileCount; i++)
+	function DoFireEffect()
 	{
-		Aim = GetFireAim(StartTrace);
-		Aim = Rotator(GetFireSpread() >> Aim);
-
-		End = Start + (Vector(Aim)*MaxRange());
-		Other = Trace (HitLocation, HitNormal, End, Start, true);
-
-		if (Other != None)
-			Aim = Rotator(HitLocation-StartTrace);
-		SpawnProjectile(StartTrace, Aim);
+		Super.DoFireEffect();
+		if (level.Netmode == NM_DedicatedServer)
+			HVPCMk5PlasmaCannon(BW).AddHeat(HeatPerShot);
 	}
-
-	SendFireEffect(none, vect(0,0,0), StartTrace, 0);
-	Super(BallisticFire).DoFireEffect();
-	if (level.Netmode == NM_DedicatedServer)
-		HVPCMk5PlasmaCannon(BW).AddHeat(HeatPerShot);
 }
 
-// Returns normal for some random spread. This is seperate from GetFireDir for shotgun reasons mainly...
-simulated function vector GetFireSpread()
+simulated state SpreadShot
 {
-	local float fX;
-    local Rotator R;
-
-	if (BW.bScopeView || BW.bAimDisabled)
-		return super.GetFireSpread();
-	else
+	// Get aim then spawn projectile
+	function DoFireEffect()
 	{
-		fX = frand();
-		R.Yaw =  XInaccuracy * HipSpreadFactor * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
-		R.Pitch = YInaccuracy * HipSpreadFactor *sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
-		return Vector(R);
+		local Vector StartTrace, X, Y, Z, Start, End, HitLocation, HitNormal;
+		local Rotator Aim;
+		local actor Other;
+		local int i;
+
+		Weapon.GetViewAxes(X,Y,Z);
+		// the to-hit trace always starts right in front of the eye
+		Start = Instigator.Location + Instigator.EyePosition();
+
+		StartTrace = Start + X*SpawnOffset.X + Z*SpawnOffset.Z;
+		if(!Weapon.WeaponCentered())
+			StartTrace = StartTrace + Weapon.Hand * Y*SpawnOffset.Y;
+
+		for(i=0; i < ProjectileCount; i++)
+		{
+			Aim = GetFireAim(StartTrace);
+			Aim = Rotator(GetFireSpread() >> Aim);
+
+			End = Start + (Vector(Aim)*MaxRange());
+			Other = Trace (HitLocation, HitNormal, End, Start, true);
+
+			if (Other != None)
+				Aim = Rotator(HitLocation-StartTrace);
+			SpawnProjectile(StartTrace, Aim);
+		}
+
+		SendFireEffect(none, vect(0,0,0), StartTrace, 0);
+		Super(BallisticFire).DoFireEffect();
+		if (level.Netmode == NM_DedicatedServer)
+			HVPCMk5PlasmaCannon(BW).AddHeat(HeatPerShot);
+	}
+
+	// Returns normal for some random spread. This is seperate from GetFireDir for shotgun reasons mainly...
+	simulated function vector GetFireSpread()
+	{
+		local float fX;
+		local Rotator R;
+
+		if (BW.bScopeView || BW.bAimDisabled)
+			return super.GetFireSpread();
+		else
+		{
+			fX = frand();
+			R.Yaw =  XInaccuracy * HipSpreadFactor * sin ((frand()*2-1) * 1.5707963267948966) * sin(fX*1.5707963267948966);
+			R.Pitch = YInaccuracy * HipSpreadFactor *sin ((frand()*2-1) * 1.5707963267948966) * cos(fX*1.5707963267948966);
+			return Vector(R);
+		}
 	}
 }
 

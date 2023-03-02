@@ -22,7 +22,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SMAA.SMAT-Fire',Volume=9.600000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SMAA.SMAT-FireOld',Volume=9.600000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=1524.000000
 		Chaos=-1.0
 		Inaccuracy=(X=5,Y=5)
@@ -119,6 +119,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		LayoutName="Big Boom"
+		Weight=30
+		
 		PlayerSpeedFactor=0.800000
 		InventorySize=71
 		SightMoveSpeedFactor=0.500000

@@ -115,6 +115,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
+		Weight=30
 		InventorySize=11
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.200000
@@ -132,8 +133,95 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
-
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_NoCarry
+		Weight=10
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.200000
+		SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
+		bNeedCock=True
+		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=-1)
+		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=1f)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_NoRDS
+		Weight=3
+		InventorySize=35
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.200000
+		SightOffset=(X=10.000000,Y=-6.450000,Z=20.900000)
+		bNeedCock=True
+		WeaponBoneScales(0)=(BoneName="IronsLower",Slot=53,Scale=0f)
+		WeaponBoneScales(1)=(BoneName="CarryHandle",Slot=54,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="HoloSightUpper",Slot=55,Scale=0f)
+		WeaponBoneScales(3)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_UTC
+		Weight=10
+		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
+		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_Boom_Tex.G51Rifle.UTCG51MainShine',Index=1)
+		InventorySize=11
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.200000
+		SightOffset=(X=0.000000,Y=-6.450000,Z=24.000000)
+		bNeedCock=True
+		WeaponBoneScales(0)=(BoneName="CarryHandle",Slot=54,Scale=1f)
+		WeaponBoneScales(1)=(BoneName="HoloSightLower",Slot=55,Scale=1f)
+		WeaponBoneScales(2)=(BoneName="HoloSightLower",Slot=56,Scale=0f)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
+	Begin Object Class=WeaponParams Name=ClassicParams_MJ5000
+		Weight=1
+		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MJ5000'
+		InventorySize=11
+		bNeedCock=True
+		MagAmmo=60
+		SightMoveSpeedFactor=0.500000
+		SightingTime=0.200000
+		SightOffset=(X=0.000000,Y=-6.380000,Z=21.000000)
+		ViewOffset=(X=-8.000000,Y=9.000000,Z=-14.000000)
+		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
+		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
+		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
+		InitialWeaponMode=1
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
+		AimParams(0)=AimParams'ClassicAimParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+	End Object
+	
 	Layouts(0)=WeaponParams'ClassicParams'
-
+	Layouts(1)=WeaponParams'ClassicParams_NoCarry'
+	Layouts(2)=WeaponParams'ClassicParams_NoRDS'
+	Layouts(3)=WeaponParams'ClassicParams_UTC'
+	Layouts(4)=WeaponParams'ClassicParams_MJ5000'
 
 }
