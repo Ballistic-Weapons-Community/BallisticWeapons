@@ -140,7 +140,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Bricks
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_JCF_Tex.SPASCamos.SPASShort_Main_S2',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S2",Index=1)
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
@@ -157,7 +157,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-AU
 		Weight=1
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_JCF_Tex.SPASCamos.SPASShort_Main_S3',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S3",Index=1)
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
@@ -174,7 +174,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Blue
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_JCF_Tex.SPASCamos.SPASShort_Main_S4',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S4",Index=1)
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
@@ -191,7 +191,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-Hazard
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Shader'BWBP_JCF_Tex.SPASCamos.SPASShort_Main_S5',Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.SPASCamos.SPASShort_Main_S5",Index=1)
 		InventorySize=10
 		SightMoveSpeedFactor=0.500000
 		SightingTime=0.450000
