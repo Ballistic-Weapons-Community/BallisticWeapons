@@ -12,7 +12,8 @@ defaultproperties
      DeathStrings(1)="%k's XM84 slowly liquidized %o's fragile brain."
      DeathStrings(2)="%o painfully succumbed to %k's XM84 aftershock."
      FlashThreshold=0
-     FlashV=(X=128.000000,Y=128.000000,Z=128.000000)
+     FlashF=-1.250000
+     FlashV=(X=1600.000000,Y=1600.000000,Z=4000.000000)
      bDetonatesBombs=False
      DamageIdent="Grenade"
 	 InvasionDamageScaling=3
