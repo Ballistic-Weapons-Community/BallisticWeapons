@@ -150,9 +150,9 @@ defaultproperties
 		LayoutName="Gold"
 		
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-Main-Shine',Index=1)
-		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-LAM-Shine',Index=2)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-Sil-Shine',Index=3)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-Main-Shine",Index=1)
+		WeaponMaterialSwaps(2)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-LAM-Shine",Index=2)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_Camos_Tex.XRS10Camos.XRS10Gold-Sil-Shine",Index=3)
 		PlayerSpeedFactor=1.100000
 		InventorySize=7
 		SightMoveSpeedFactor=0.500000
