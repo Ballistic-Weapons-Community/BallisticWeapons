@@ -52,6 +52,7 @@ var class<Weapon>						LastStreaks[2];
 
 var float                               DesiredFlashScale;
 var Vector                              DesiredFlashFog;
+var bool								bOverrideDmgFlash;
 
 // Fractional Parts of Pitch/Yaw Input
 var transient float PitchFraction, YawFraction;
@@ -1260,51 +1261,91 @@ function ViewFlash(float DeltaTime)
 
 */
 
-function ClientFlash( float scale, vector fog )
+function ClientDmgFlash( float scale, vector fog )
 {
 	DesiredFlashScale = scale;
 	DesiredFlashFog = 0.001 * fog;
 }
 
+function ClientFlash( float scale, vector fog )
+{
+    FlashScale = (scale + (1 - ScreenFlashScaling) * (1 - Scale)) * vect(1,1,1);
+    flashfog = ScreenFlashScaling * 0.001 * fog;
+	bOverrideDmgFlash=true;
+}
+
 function ViewFlash(float DeltaTime)
 {
 	local vector goalFog;
-	local float goalScale, delta;
+	local float goalScale, delta, Step;
     local PhysicsVolume ViewVolume;
 
-    if ( Pawn != None )
-    {
-		if ( bBehindView )
-			ViewVolume = Level.GetPhysicsVolume(CalcViewLocation);
-		else
-			ViewVolume = Pawn.HeadVolume;
-    }
+	if (bOverrideDmgFlash == true) //UT2k4 Style
+	{
+		delta = FMin(0.1, DeltaTime);
+		goalScale = 1; // + ConstantGlowScale;
+		goalFog = vect(0,0,0); // ConstantGlowFog;
 
-	delta = FMin(0.1, DeltaTime);
-	goalScale = 1 + DesiredFlashScale + ConstantGlowScale;
-	goalFog = DesiredFlashFog + ConstantGlowFog;
+		if ( Pawn != None )
+		{
+			if ( bBehindView )
+				ViewVolume = Level.GetPhysicsVolume(CalcViewLocation);
+			else
+				ViewVolume = Pawn.HeadVolume;
 
-    if (ViewVolume != None ) 
-    {
-        goalScale += ViewVolume.ViewFlash.X;
-        goalFog += ViewVolume.ViewFog;
-    }
+			goalScale += ViewVolume.ViewFlash.X;
+			goalFog += ViewVolume.ViewFog;
+		}
+			
+		Step = 0.6 * delta;
+		FlashScale.X = UpdateFlashComponent(FlashScale.X,step,goalScale);
+		FlashScale = FlashScale.X * vect(1,1,1);
 
-	DesiredFlashScale -= DesiredFlashScale * 2 * delta;
-	DesiredFlashFog -= DesiredFlashFog * 2 * delta;
-	FlashScale.X += (goalScale - FlashScale.X) * 10 * delta;
-	FlashFog += (goalFog - FlashFog) * 10 * delta;
+		FlashFog.X = UpdateFlashComponent(FlashFog.X,step,goalFog.X);
+		FlashFog.Y = UpdateFlashComponent(FlashFog.Y,step,goalFog.Y);
+		FlashFog.Z = UpdateFlashComponent(FlashFog.Z,step,goalFog.Z);
+		if ( FlashFog.Z < 0.003 )
+		{
+			FlashFog.Z = 0;
+			bOverrideDmgFlash=false;
+		}
+	}
+	else //UT99 Style
+	{
+		if ( Pawn != None )
+		{
+			if ( bBehindView )
+				ViewVolume = Level.GetPhysicsVolume(CalcViewLocation);
+			else
+				ViewVolume = Pawn.HeadVolume;
+		}
 
-	if ( FlashScale.X > 0.981 )
-		FlashScale.X = 1;
-	FlashScale = FlashScale.X * vect(1,1,1);
+		delta = FMin(0.1, DeltaTime);
+		goalScale = 1 + DesiredFlashScale + ConstantGlowScale;
+		goalFog = DesiredFlashFog + ConstantGlowFog;
 
-	if ( FlashFog.X < 0.003 )
-		FlashFog.X = 0;
-	if ( FlashFog.Y < 0.003 )
-		FlashFog.Y = 0;
-	if ( FlashFog.Z < 0.003 )
-		FlashFog.Z = 0;
+		if (ViewVolume != None ) 
+		{
+			goalScale += ViewVolume.ViewFlash.X;
+			goalFog += ViewVolume.ViewFog;
+		}
+
+		DesiredFlashScale -= DesiredFlashScale * 2 * delta;
+		DesiredFlashFog -= DesiredFlashFog * 2 * delta;
+		FlashScale.X += (goalScale - FlashScale.X) * 10 * delta;
+		FlashFog += (goalFog - FlashFog) * 10 * delta;
+
+		if ( FlashScale.X > 0.981 )
+			FlashScale.X = 1;
+		FlashScale = FlashScale.X * vect(1,1,1);
+
+		if ( FlashFog.X < 0.003 )
+			FlashFog.X = 0;
+		if ( FlashFog.Y < 0.003 )
+			FlashFog.Y = 0;
+		if ( FlashFog.Z < 0.003 )
+			FlashFog.Z = 0;
+	}
 }
 
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)

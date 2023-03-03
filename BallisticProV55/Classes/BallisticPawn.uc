@@ -2562,7 +2562,11 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		local int actualDamage;
 		local Controller Killer;
 		local vector HitLocationMatchZ;
- 
+		
+        local Vector SelfToHit, SelfToInstigator, CrossPlaneNormal;
+        local float W;
+        local float YawDir;
+		
 		if ( damagetype == None )
 		{
 			if ( InstigatedBy != None )
@@ -2590,20 +2594,22 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
  
 		if ( (Physics == PHYS_None) && (DrivenVehicle == None) )
 			SetMovementPhysics();
-
-		if (Physics == PHYS_Walking && damageType.default.bExtraMomentumZ)
-			momentum.Z = FMax(momentum.Z, 0.4 * VSize(momentum));
-
-		if ( instigatedBy == self )
-			momentum *= 0.6;
-
-		momentum = momentum/Mass;
 		
-		if (Momentum.Z > 950)
-			Momentum.Z = 950;
-		if (Momentum.Z < -300)
-			Momentum *= (-300 / Momentum.Z);
- 
+		if (class'BCReplicationInfo'.default.GameStyle != 1) //Classic lets you take off into orbit
+		{
+			if (Physics == PHYS_Walking && damageType.default.bExtraMomentumZ)
+				momentum.Z = FMax(momentum.Z, 0.4 * VSize(momentum));
+
+			if ( instigatedBy == self )
+				momentum *= 0.6;
+
+			momentum = momentum/Mass;
+			
+			if (Momentum.Z > 950)
+				Momentum.Z = 950;
+			if (Momentum.Z < -300)
+				Momentum *= (-300 / Momentum.Z);
+		}
 		if (Weapon != None)
 			Weapon.AdjustPlayerDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType );
 		
@@ -2679,21 +2685,55 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		}
 		else
 		{
-			if (class<BallisticDamageType>(damageType) != None && class<BallisticDamageType>(damageType).default.bNegatesMomentum)
+			if (class'BCReplicationInfo'.default.GameStyle != 1 && class'BCReplicationInfo'.default.GameStyle != 2) //Classic/Realism: Taking damage arrests movement
 			{
-				HitLocationMatchZ = Velocity;
-				HitLocationMatchZ.Z = 0;
-				AddVelocity( momentum - HitLocationMatchZ);
+				if (class<BallisticDamageType>(damageType) != None && class<BallisticDamageType>(damageType).default.bNegatesMomentum)
+				{
+					HitLocationMatchZ = Velocity;
+					HitLocationMatchZ.Z = 0;
+					AddVelocity( momentum - HitLocationMatchZ);
+				}
+				else
+					AddVelocity( momentum );
 			}
 			else
-				AddVelocity( momentum );
+			{
+				if ( InstigatedBy != None )
+				{
+					// Figure out which direction to spin:
+					if( InstigatedBy.Location != Location )
+					{
+						SelfToInstigator = InstigatedBy.Location - Location;
+						SelfToHit = HitLocation - Location;
+
+						CrossPlaneNormal = Normal( SelfToInstigator cross Vect(0,0,1) );
+						W = CrossPlaneNormal dot Location;
+
+						if( HitLocation dot CrossPlaneNormal < W )
+							YawDir = -1.0;
+						else
+							YawDir = 1.0;
+					}
+				}
+				
+				if( VSize(Momentum) < 10 )
+				{
+					Momentum = - Normal(SelfToInstigator) * Damage * 1000.0;
+					Momentum.Z = Abs( Momentum.Z );
+				}
+
+				SetPhysics(PHYS_Falling);
+				Momentum = Momentum / Mass;
+				AddVelocity( Momentum );
+				bBounce = true;
+			}
 			if (VSize(Momentum) > 50000)
 				bPendingNegation=True;
 			if ( Controller != None )
 				Controller.NotifyTakeHit(instigatedBy, HitLocation, actualDamage, DamageType, Momentum);
 			if ( instigatedBy != None && instigatedBy != self )
 				LastHitBy = instigatedBy.Controller;
-            if (PlayerController(Controller) != None)
+            if (BallisticPlayer(Controller) != None)
                 HandleViewFlash(actualDamage);
 		}
 		MakeNoise(1.0);
@@ -2713,11 +2753,11 @@ function HandleViewFlash(int damage)
 
 	if (ShieldStrength > 0)
     {
-        PlayerController(Controller).ClientFlash( -0.019 * rnd, ShieldFlashV);
+        BallisticPlayer(Controller).ClientDmgFlash( -0.019 * rnd, ShieldFlashV);
     }
     else 
     {
-		PlayerController(Controller).ClientFlash( -0.019 * rnd, rnd * BloodFlashV);  
+		BallisticPlayer(Controller).ClientDmgFlash( -0.019 * rnd, rnd * BloodFlashV);  
     }     
 }
 
