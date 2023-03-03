@@ -27,6 +27,7 @@ simulated event ModeDoFire()
 {
 	if (HoldTime >= ChargeTime && AY90SkrithBoltcaster(BW).MagAmmo >= 40)
 	{
+		AY90SkrithBoltcaster(BW).ParamsClasses[AY90SkrithBoltcaster(BW).GameStyleIndex].static.OverrideFireParams(AY90SkrithBoltcaster(BW),0);
 		ProjectileCount=30;
 		AmmoPerFire=40;
 		Load=40;
@@ -34,14 +35,16 @@ simulated event ModeDoFire()
 	}
 	else if (HoldTime >= (ChargeTime/2) && AY90SkrithBoltcaster(BW).MagAmmo >= 20)
 	{
-		ProjectileCount=15;
+		AY90SkrithBoltcaster(BW).ParamsClasses[AY90SkrithBoltcaster(BW).GameStyleIndex].static.OverrideFireParams(AY90SkrithBoltcaster(BW),0);
+		ProjectileCount=20;
 		AmmoPerFire=20;
 		Load=20;
 		BallisticFireSound.Sound=ChargeFireSound;
 	}
 	else
 	{
-		ProjectileCount=5;
+		AY90SkrithBoltcaster(BW).ParamsClasses[AY90SkrithBoltcaster(BW).GameStyleIndex].static.OverrideFireParams(AY90SkrithBoltcaster(BW),0);
+		ProjectileCount=10;
 		AmmoPerFire=10;
 		Load=10;
 		BallisticFireSound.Sound=default.BallisticFireSound.Sound;
@@ -209,7 +212,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 
 		Proj = Spawn (ProjectileClass,,, Start, rotator((Vector(rot(0,1,0)*FireSpread) >> R) >> Dir) );
 		Proj.Instigator = Instigator;
-
+		
         Cycle++;
 		if (Cycle > 3)
             Cycle = 1;
@@ -248,11 +251,11 @@ function DoFireEffect()
     local Vector StartTrace, X, Y, Z, Start, End, HitLocation, HitNormal, V;
     local Rotator Aim;
 	local actor Other;
-	local int i;
+	local int i, ProjSpread;
 	local float ProjAngle;
 	
 	//affects how spreaded the projectiles are - higher values for wider spread. can change implementation from here
-	const ProjSpread = 300;
+	ProjSpread = XInaccuracy;
 
     Weapon.GetViewAxes(X,Y,Z);
     // the to-hit trace always starts right in front of the eye
@@ -294,7 +297,7 @@ defaultproperties
      ChargeFireSound=Sound'BWBP_SKC_Sounds.SkrithBow.SkrithBow-WaveBlast'
      MaxChargeFireSound=Sound'BWBP_SKC_Sounds.SkrithBow.SkrithBow-WaveBlastMax'
 	 bFireOnRelease=True
-	 ProjectileClass=Class'AY90Projectile'
+	 ProjectileClass=Class'AY90WaveProjectile'
      ProjectileCount=5
 	 AmmoPerFire=10
     // FireRate=1.000000

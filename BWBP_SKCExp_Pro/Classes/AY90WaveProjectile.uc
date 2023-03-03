@@ -1,13 +1,13 @@
 //=============================================================================
-// AY90Projectile.
+// AY90WaveProjectile.
 //
-// Simple projectile for the elite A762.2.
-// Added healing of vehicles and Powercores to replace linkgun in Onslaught
+// Powerful projectile that launches in a horizontal bisecting wave.
+// Projectiles link to each other and heal ONS objects.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class AY90Projectile extends BallisticProjectile;
+class AY90WaveProjectile extends BallisticProjectile;
 
 var vector					StartLocation;
 var bool					bScaleDone;
@@ -169,15 +169,21 @@ defaultproperties
      LightSaturation=0
      LightBrightness=192.000000
 	 LightRadius=6.000000
-     StaticMesh=StaticMesh'BW_Core_WeaponStatic.A73.A73Projectile'
+	 TrailClass=Class'BWBP_SKCExp_Pro.AY90WaveTrailEmitter'
      bDynamicLight=True
      AmbientSound=Sound'BW_Core_WeaponSound.A73.A73ProjFly'
      LifeSpan=4.000000
+     //StaticMesh=StaticMesh'BW_Core_WeaponStatic.A73.A73Projectile'
+     //Skins(1)=FinalBlend'BWBP_SKC_Tex.SkrithBow.AY90Wave1-Final'
+     //Skins(0)=FinalBlend'BWBP_SKC_Tex.SkrithBow.AY90Wave2-Final'
+     StaticMesh=StaticMesh'BW_Core_WeaponStatic.DarkStar.DarkProjBig'
+     Skins(0)=Texture'BW_Core_WeaponTex.Misc.Invisible'
      Skins(1)=FinalBlend'BWBP_SKC_Tex.SkrithBow.AY90Wave1-Final'
-     Skins(0)=FinalBlend'BWBP_SKC_Tex.SkrithBow.AY90Wave2-Final'
      Style=STY_Additive
      SoundVolume=255
      SoundRadius=75.000000
+     CollisionRadius=15.000000
+     CollisionHeight=10.000000
      bFixedRotationDir=True
-	 DrawScale=3.000000
+	 DrawScale=8.000000
 }

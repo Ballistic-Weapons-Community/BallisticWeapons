@@ -29,7 +29,7 @@ defaultproperties
      LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.MP40.MP40Pickup'
      InventoryType=Class'BWBP_SKCExp_Pro.FMPMachinePistol'
      RespawnTime=20.000000
-     PickupMessage="You picked up the FMPA-2012"
+     PickupMessage="You picked up the FMP-2012 Machine Pistol"
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
      StaticMesh=StaticMesh'BWBP_SKC_StaticExp.MP40.MP40Pickup'
      Physics=PHYS_None
