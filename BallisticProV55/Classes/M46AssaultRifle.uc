@@ -62,10 +62,27 @@ simulated function bool IsGrenadeLoaded()
 	return M46SecondaryFire(FireMode[1]).bLoaded;
 }
 
-function bool AddMine(M46Mine Proj)
+function GainedChild(Actor proj)
 {
-	Mines[Mines.Length] = Proj;
-	return (CurrentWeaponMode == 1);
+    if (M46Mine(proj) != None)
+	    Mines[Mines.Length] = M46Mine(proj);
+}
+
+function LostChild(Actor proj)
+{
+    local int i;
+
+    if (M46Mine(proj) == None)
+        return;
+
+    for (i = 0; i < Mines.Length; ++i)
+    {
+        if (Mines[i] == proj)
+        {
+            Mines.Remove(i, 1);
+            return;
+        }
+    }
 }
 
 // Tell our ammo that this is the M46 it must notify about grenade pickups
@@ -107,18 +124,6 @@ simulated function LoadGrenade()
 		ReloadState=RS_Cocking;
 		PlayAnim(GrenadeLoadAnim, 1.1, , 0);
 	}
-}
-
-simulated function Destroyed()
-{
-	local int i;
-	for (i=0; i < Mines.Length; ++i)
-	{
-		if (Mines[i] != None)
-			Mines[i].Explode(Mines[i].Location, Vector(Mines[i].Rotation));
-	}
-	
-	Super.Destroyed();
 }
 
 simulated function bool HasNonMagAmmo(byte Mode)

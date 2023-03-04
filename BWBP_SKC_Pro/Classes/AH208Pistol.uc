@@ -185,7 +185,7 @@ defaultproperties
     SelectForce="SwitchToAssaultRifle"
     Description="Built as a more affordable alternative to the AH104, the AH208 is an alternate design chambered for .44 magnum rounds instead of the usual $100 .600 HEAP ones. It is less accurate than the AH104 and D49, but its 8 round magazine and faster reload times let it put more rounds down range than both. Its significant weight and recoil means it requires both hands to shoot and is harder to control than its revolver and handcannon siblings, a fact that comes into play where range is a concern. While not as popular as its larger .600 cousin, the AH208 packs a formidable punch and is a force to be reckoned with."
     Priority=96
-    HudColor=(G=217)
+	HudColor=(B=200,G=200)
     CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
     InventoryGroup=2
     GroupOffset=14
@@ -195,7 +195,7 @@ defaultproperties
     AttachmentClass=Class'BWBP_SKC_Pro.AH208Attachment'
     IconMaterial=Texture'BWBP_SKC_Tex.Eagle.SmallIcon_EagleGold'
     IconCoords=(X2=127,Y2=31)
-    ItemName="AH208 Golden Pistol"
+    ItemName="AH208 Assault Pistol"
     LightType=LT_Pulse
     LightEffect=LE_NonIncidence
     LightHue=30

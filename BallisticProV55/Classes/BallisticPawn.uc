@@ -2198,14 +2198,51 @@ singular event BaseChange()
 	OldBase = Base;
 }
 
+//==============================================================================
+// CanMantle
+//
+// Used for a cheap hack in Tactical mode, which allows a player to double jump
+// when a wall is in front of them
+//
+// TODO/FIXME:
+// We can use code similar to deploy in order to determine whether this wall 
+// should be mantled. We can then modify the double jump height based on what 
+// we find. Would need to check replication to maintain server synch.
+//==============================================================================
+final function bool CanMantle()
+{
+    local vector X,Y,Z, TraceStart, TraceEnd, HitLocation, HitNormal;
+    local Actor HitActor;
+	local rotator TurnRot;
+
+	if (MultiJumpRemaining == 0 || Physics != PHYS_Falling)
+        return false;
+
+	TurnRot.Yaw = Rotation.Yaw;
+    GetAxes(TurnRot,X,Y,Z);
+
+    TraceEnd = X;
+
+    TraceStart = Location - CollisionHeight*Vect(0,0,1) + TraceEnd*CollisionRadius;
+    TraceEnd = TraceStart + TraceEnd*32.0;
+
+    HitActor = Trace(HitLocation, HitNormal, TraceEnd, TraceStart, false, vect(1,1,1));
+    
+    return HitActor != None && HitActor.bWorldGeometry || (Mover(HitActor) != None);
+}
+
 function bool CanDoubleJump()
 {
 	if(BallisticWeapon(Weapon) != None && BallisticWeapon(Weapon).bScopeView)
 		return false;
+
+    if (class'BCReplicationInfo'.static.IsTactical())
+        return CanMantle();
+
 	if (class'BallisticReplicationInfo'.default.bNoDoubleJump)
 		return false;
-	else
-		return super.CanDoubleJump();
+
+	return super.CanDoubleJump();
 }
 
 function bool CanMultiJump()

@@ -148,6 +148,11 @@ static final function bool IsRealism()
     return default.GameStyle == EGameStyle.Realism;
 }
 
+static final function bool IsTactical()
+{
+    return default.GameStyle == EGameStyle.Tactical;
+}
+
 static final function bool UseFixedModifiers()
 {
     return default.GameStyle == EGameStyle.Arena && default.bUseFixedModifiers;
