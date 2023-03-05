@@ -19,7 +19,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
 		FlashScaleFactor=1.400000
-		Recoil=192.000000
+		Recoil=260.000000
 		Chaos=0.450000
 		BotRefireRate=0.6
 		WarnTargetPct=0.35
@@ -36,7 +36,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalFreezeEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
-		Damage=55
+		Damage=45
         HeadMult=2.5
         LimbMult=0.67f
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -46,7 +46,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
 		FlashScaleFactor=1.400000
-		Recoil=192.000000
+		Recoil=260.000000
 		Chaos=0.450000
 		BotRefireRate=0.6
 		WarnTargetPct=0.35
@@ -74,7 +74,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
 		FlashScaleFactor=1.400000
-		Recoil=192.000000
+		Recoil=260.000000
 		Chaos=0.450000
 		BotRefireRate=0.6
 		WarnTargetPct=0.35

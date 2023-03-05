@@ -32,8 +32,6 @@ defaultproperties
         DamageType=Class'BWBP_SKC_Pro.DT_ICIS'
         DamageTypeHead=Class'BWBP_SKC_Pro.DT_ICIS'
         DamageTypeArm=Class'BWBP_SKC_Pro.DT_ICIS'
-        HookStopFactor=1.700000
-        HookPullForce=100.000000
         BotRefireRate=0.800000
         WarnTargetPct=0.050000
         FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.X4.X4_Melee',Radius=32.000000,bAtten=True)

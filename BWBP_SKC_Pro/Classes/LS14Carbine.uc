@@ -231,7 +231,7 @@ simulated function AddHeat(float Amount, float OverrideAmount, float DeclineTime
 	SelfHeatDeclineTime = FMax(Level.TimeSeconds + DeclineTime, SelfHeatDeclineTime);
 	
 	//arena heat
-	if (BCRepClass.static.IsArena())
+	if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
 	{
 		if (SelfHeatLevel >= 9.75)
 		{

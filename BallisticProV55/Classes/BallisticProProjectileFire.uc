@@ -10,9 +10,9 @@ var bool bNoRandomFire; //don't use random spread by FireChaos because this is a
 simulated function vector GetFireSpread()
 {
 	local float fX;
-    	local Rotator R;
+    local Rotator R;
 
-	if (bNoRandomFire || BW.GameStyleIndex != 0 || BW.bScopeView)
+	if (bNoRandomFire || BW.bScopeView || !class'BCReplicationInfo'.static.IsArena())
 		return super.GetFireSpread();
 
 	fX = frand();

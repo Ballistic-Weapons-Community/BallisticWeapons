@@ -39,7 +39,7 @@ defaultproperties
         Damage=40
 		DamageRadius=0
 		MomentumTransfer=100
-    	Recoil=220.000000
+    	Recoil=100.000000
 	    Chaos=0.090000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Fire2',Slot=SLOT_Interact,bNoOverride=False)
 	    ProjectileClass=Class'BallisticProV55.RSDarkFastProjectile'

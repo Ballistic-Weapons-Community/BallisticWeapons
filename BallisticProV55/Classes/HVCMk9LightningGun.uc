@@ -145,7 +145,7 @@ simulated event Tick (float DT)
 {
 	local int i;
 	
-	if (BCRepClass.static.IsArena())
+	if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
 	{
 		if (HeatLevel > 0)
 		{
@@ -319,7 +319,7 @@ simulated event WeaponTick(float DT)
 	if (!Instigator.IsLocallyControlled())
 		return;
 
-	if ((BCRepClass.static.IsArena() && GetTargetZap() != None) || FireMode[1].bIsFiring)	
+	if (((class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical()) && GetTargetZap() != None) || FireMode[1].bIsFiring)	
 	{	
 		if (ClawAlpha < 1)
 		{
@@ -390,7 +390,7 @@ simulated event RenderOverlays (Canvas C)
 	Super.RenderOverlays(C);
 	
 	
-	if (BCRepClass.static.IsArena())
+	if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
 	{
 		if (StreamEffect != None)
 		{

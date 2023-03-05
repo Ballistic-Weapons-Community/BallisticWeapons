@@ -2631,7 +2631,7 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		if ( (Physics == PHYS_None) && (DrivenVehicle == None) )
 			SetMovementPhysics();
 		
-		if (class'BCReplicationInfo'.default.GameStyle != 1) //Classic lets you take off into orbit
+		if (!class'BCReplicationInfo'.static.IsClassic())) //Classic lets you take off into orbit
 		{
 			if (Physics == PHYS_Walking && damageType.default.bExtraMomentumZ)
 				momentum.Z = FMax(momentum.Z, 0.4 * VSize(momentum));
@@ -2721,7 +2721,7 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		}
 		else
 		{
-			if (class'BCReplicationInfo'.default.GameStyle != 1 && class'BCReplicationInfo'.default.GameStyle != 2) //Classic/Realism: Taking damage arrests movement
+			if (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.static.IsRealism()) //Classic/Realism: Taking damage arrests movement
 			{
 				if (class<BallisticDamageType>(damageType) != None && class<BallisticDamageType>(damageType).default.bNegatesMomentum)
 				{

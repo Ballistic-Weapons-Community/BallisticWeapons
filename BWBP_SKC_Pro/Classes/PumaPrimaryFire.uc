@@ -42,7 +42,7 @@ simulated function AdjustProps(byte NewMode)
 
 	if (PumaRepeater(BW).PriDetRangeM < 30 && NewMode == 2) //Range
 	{
-		if (BW.GameStyleIndex == 0)
+		if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
 			FireRate *= 1.2;
 		else
 			FireRate *= 2;
@@ -60,7 +60,7 @@ simulated function SwitchCannonMode (byte NewMode)
 
 	if (PumaRepeater(BW).PriDetRangeM < 30 && NewMode == 2) //Range
 	{
-		if (BW.GameStyleIndex == 0)
+		if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
 			FireRate *= 1.2;
 		else
 			FireRate *= 2;
@@ -80,7 +80,7 @@ function StartBerserk()
 
 	if (PumaRepeater(BW).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
 	{
-		if (BW.GameStyleIndex == 0)
+		if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
 			FireRate *= 1.2;
 		else
 			FireRate *= 2;
@@ -97,7 +97,7 @@ function StopBerserk()
 	
 	if (PumaRepeater(BW).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
 	{
-		if (BW.GameStyleIndex == 0)
+		if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
 			FireRate *= 1.2;
 		else
 			FireRate *= 2;
@@ -113,7 +113,7 @@ function StartSuperBerserk()
 	
 	if (PumaRepeater(BW).PriDetRangeM < 30 && BW.CurrentWeaponMode == 2)
 	{
-		if (BW.GameStyleIndex == 0)
+		if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
 			FireRate *= 1.2;
 		else
 			FireRate *= 2;

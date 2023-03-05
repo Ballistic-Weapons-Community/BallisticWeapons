@@ -63,6 +63,8 @@ replication
 		LastLoadoutClasses;
 	reliable if (Role < ROLE_Authority)
 		ServerCamDist, ServerReloaded;
+    unreliable if( Role==ROLE_Authority )
+        ClientDmgFlash;
 }
 
 simulated event PostBeginPlay()
@@ -1271,7 +1273,7 @@ function ClientFlash( float scale, vector fog )
 {
     FlashScale = (scale + (1 - ScreenFlashScaling) * (1 - Scale)) * vect(1,1,1);
     flashfog = ScreenFlashScaling * 0.001 * fog;
-	bOverrideDmgFlash=true;
+	bOverrideDmgFlash = true;
 }
 
 function ViewFlash(float DeltaTime)
@@ -1280,20 +1282,23 @@ function ViewFlash(float DeltaTime)
 	local float goalScale, delta, Step;
     local PhysicsVolume ViewVolume;
 
-	if (bOverrideDmgFlash == true) //UT2k4 Style
+    if ( Pawn != None )
+    {
+        if ( bBehindView )
+            ViewVolume = Level.GetPhysicsVolume(CalcViewLocation);
+        else
+            ViewVolume = Pawn.HeadVolume;
+    }
+
+	if (bOverrideDmgFlash) //UT2k4 Style
 	{
 		delta = FMin(0.1, DeltaTime);
 		goalScale = 1; // + ConstantGlowScale;
 		goalFog = vect(0,0,0); // ConstantGlowFog;
 
-		if ( Pawn != None )
+		if ( ViewVolume != None )
 		{
-			if ( bBehindView )
-				ViewVolume = Level.GetPhysicsVolume(CalcViewLocation);
-			else
-				ViewVolume = Pawn.HeadVolume;
-
-			goalScale += ViewVolume.ViewFlash.X;
+    		goalScale += ViewVolume.ViewFlash.X;
 			goalFog += ViewVolume.ViewFog;
 		}
 			
@@ -1312,14 +1317,6 @@ function ViewFlash(float DeltaTime)
 	}
 	else //UT99 Style
 	{
-		if ( Pawn != None )
-		{
-			if ( bBehindView )
-				ViewVolume = Level.GetPhysicsVolume(CalcViewLocation);
-			else
-				ViewVolume = Pawn.HeadVolume;
-		}
-
 		delta = FMin(0.1, DeltaTime);
 		goalScale = 1 + DesiredFlashScale + ConstantGlowScale;
 		goalFog = DesiredFlashFog + ConstantGlowFog;

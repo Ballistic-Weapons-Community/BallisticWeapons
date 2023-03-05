@@ -254,7 +254,7 @@ function ServerSwitchSilencer(bool bNewValue)
 
 exec simulated function WeaponSpecial(optional byte i)
 {
-	if (BCRepClass.static.IsArena())
+	if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
 		return;
 	if (ReloadState != RS_None || SightingState != SS_None)
 		return;

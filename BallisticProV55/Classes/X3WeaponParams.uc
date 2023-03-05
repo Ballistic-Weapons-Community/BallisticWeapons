@@ -17,8 +17,6 @@ defaultproperties
 		DamageTypeArm=Class'BallisticProV55.DTX3KnifeLimb'
 		ChargeDamageBonusFactor=1
 		PenetrationEnergy=0.000000
-		HookStopFactor=1.300000
-		HookPullForce=100.000000
 		SpreadMode=FSM_Rectangle
 		FireSound=(Sound=SoundGroup'BW_Core_WeaponSound.Knife.KnifeSlash',Radius=32.000000,bAtten=True)
 		Recoil=0.0

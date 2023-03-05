@@ -135,7 +135,7 @@ simulated event PostNetBeginPlay()
 
 static final function bool IsArena()
 {
-    return default.GameStyle == EGameStyle.Arena || default.GameStyle == EGameStyle.Tactical;
+    return default.GameStyle == EGameStyle.Arena;
 }
 
 static final function bool IsClassic()

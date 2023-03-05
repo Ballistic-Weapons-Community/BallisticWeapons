@@ -474,7 +474,7 @@ final simulated function Reaim (float DT, optional float TimeMod, optional float
 
 	//Changed how this is worked out.
 	//Uses ChaosSpeedThreshold (VResult) to provide a basic movement penalty.
-	if (BW.GameStyleIndex == 0)
+	if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
 	{
 		Chaos = FClamp(VResult, 0, 1 );
 		NewChaos = Chaos;
