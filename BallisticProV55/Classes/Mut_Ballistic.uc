@@ -80,8 +80,6 @@ var   globalconfig float    FootstepAmplifier;
 // Sprint
 var   Array<BCSprintControl> 	Sprinters;
 var   globalconfig bool     	bUseSprint;
-var   globalconfig float    	InitStamina;
-var   globalconfig float    	InitMaxStamina;
 var   globalconfig float    	InitStaminaDrainRate;
 var   globalconfig float    	InitStaminaChargeRate;
 var   globalconfig float    	InitSpeedFactor;
@@ -221,8 +219,8 @@ function ModifyPlayer(Pawn Other)
     if (xPawn(Other) != None && bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
 	{
 		SC = Spawn(class'BWRechargeSprintControl',Other);
-		SC.Stamina = InitStamina;
-		SC.MaxStamina = InitMaxStamina;
+		SC.Stamina = 100;
+		SC.MaxStamina = 100;
 		SC.StaminaDrainRate = InitStaminaDrainRate;
 		SC.StaminaChargeRate = InitStaminaChargeRate;
 		SC.SpeedFactor = InitSpeedFactor;
@@ -1022,8 +1020,6 @@ defaultproperties
      UDamageSnd=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
      
 	 bUseSprint=True
-     InitStamina=100.000000
-     InitMaxStamina=100.000000
      InitStaminaDrainRate=15.000000
      InitStaminaChargeRate=20.000000
      InitSpeedFactor=1.350000
