@@ -2631,7 +2631,7 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		if ( (Physics == PHYS_None) && (DrivenVehicle == None) )
 			SetMovementPhysics();
 		
-		if (!class'BCReplicationInfo'.static.IsClassic())) //Classic lets you take off into orbit
+		if (!class'BCReplicationInfo'.static.IsClassic()) //Classic lets you take off into orbit
 		{
 			if (Physics == PHYS_Walking && damageType.default.bExtraMomentumZ)
 				momentum.Z = FMax(momentum.Z, 0.4 * VSize(momentum));
