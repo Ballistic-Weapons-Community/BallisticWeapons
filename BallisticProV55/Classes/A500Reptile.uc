@@ -23,7 +23,7 @@ simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 	
-	bShowChargingBar=(BCRepClass.static.IsArena());
+	bShowChargingBar = (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical());
 	
 	if (BCRepClass.static.IsClassic())
 	{
@@ -214,7 +214,7 @@ function float SuggestDefenseStyle()	{	return -0.8;	}
 
 simulated function float ChargeBar()
 {
-	if (GameStyleIndex == 0)
+	if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
 		return FMax(0, BFireMode[1].HoldTime / BFireMode[1].MaxHoldTime);
 		
 	return 0;

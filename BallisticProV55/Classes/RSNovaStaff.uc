@@ -53,7 +53,7 @@ simulated function PostNetBeginPlay()
 
 	super.PostNetBeginPlay();
 
-	if (GameStyleIndex != 0)
+	if (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.static.IsRealism())
 	{
 		MaxSouls=10;
 	}
@@ -177,7 +177,7 @@ simulated event WeaponTick(float DT)
 
 	if (Role == ROLE_Authority)
 	{
-		if (GameStyleIndex != 0 && Instigator.Health > 0 && level.TimeSeconds >= NextRegenTime)
+		if (!class'BCReplicationInfo'.static.IsArena() && Instigator.Health > 0 && level.TimeSeconds >= NextRegenTime)
 		{
 			if (bOnRampage)
 				Instigator.GiveHealth(2, Instigator.SuperHealthMax);

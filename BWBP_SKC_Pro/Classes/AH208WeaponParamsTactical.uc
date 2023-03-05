@@ -70,7 +70,7 @@ defaultproperties
 		SightingTime=0.2
 		DisplaceDurationMult=0.5
 		MagAmmo=7
-		SightOffset=(X=20.000000,Y=-7.350000,Z=45.400002)
+		SightOffset=(X=0.000000,Y=-7.350000,Z=45.400002)
 		ViewOffset=(X=15.000000,Y=12.000000,Z=-37.000000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

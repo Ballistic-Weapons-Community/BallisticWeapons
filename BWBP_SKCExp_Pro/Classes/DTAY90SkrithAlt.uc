@@ -16,7 +16,7 @@ defaultproperties
      DeathStrings(3)="%o rode %k's plasma wave til he perished."
      BloodManagerName="BWBP_SKCExp_Pro.BloodMan_A73B"
      bIgniteFires=True
-     bOnlySeverLimbs=True
+	 bAlwaysSevers=True
      DamageDescription=",Flame,Plasma,"
      WeaponClass=Class'BWBP_SKCExp_Pro.AY90SkrithBoltcaster'
      DeathString="%k fused parts of %o with the AY90."

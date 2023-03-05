@@ -37,8 +37,8 @@ simulated function AddImpulse(float Amount)
 
 defaultproperties
 {
-     FlashF=-0.400000
-     FlashV=(X=128.000000,Y=128.000000,Z=128.000000)
+     FlashF=-0.600000
+     FlashV=(X=2500.000000,Y=2500.000000,Z=2500.000000)
      bHidden=True
      bOnlyRelevantToOwner=True
      bReplicateMovement=False

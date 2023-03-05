@@ -78,7 +78,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 	if (Proj != None)
 	{
 		Proj.Instigator = Instigator;
-		M46Grenade(Proj).M46 = M46AssaultRifle(BW);
+		M46Grenade(Proj).Rifle = M46AssaultRifle(BW);
 	}
 }
 

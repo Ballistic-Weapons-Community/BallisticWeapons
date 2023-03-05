@@ -109,8 +109,7 @@ var   float				LastImpactTime;		// Time of last impact mark spawn
 var() float				TimeBetweenImpacts;	// Minimum time between impact mark spawning
 var   vector			LastImpactNormal;	// Normal of last impact
 var   vector			LastImpactLocation;	// Location of last impact
-var config  bool		bNoViewFlash;       // Toggle the use of the new viewflash effects when u get damaged
-var     BCSprintControl Sprinter;
+var   BCSprintControl   Sprinter;
 // -------------------------------------------------------
 var   vector            BloodFlashV, ShieldFlashV;
 
@@ -2198,14 +2197,51 @@ singular event BaseChange()
 	OldBase = Base;
 }
 
+//==============================================================================
+// CanMantle
+//
+// Used for a cheap hack in Tactical mode, which allows a player to double jump
+// when a wall is in front of them
+//
+// TODO/FIXME:
+// We can use code similar to deploy in order to determine whether this wall 
+// should be mantled. We can then modify the double jump height based on what 
+// we find. Would need to check replication to maintain server synch.
+//==============================================================================
+final function bool CanMantle()
+{
+    local vector X,Y,Z, TraceStart, TraceEnd, HitLocation, HitNormal;
+    local Actor HitActor;
+	local rotator TurnRot;
+
+	if (MultiJumpRemaining == 0 || Physics != PHYS_Falling)
+        return false;
+
+	TurnRot.Yaw = Rotation.Yaw;
+    GetAxes(TurnRot,X,Y,Z);
+
+    TraceEnd = X;
+
+    TraceStart = Location - CollisionHeight*Vect(0,0,1) + TraceEnd*CollisionRadius;
+    TraceEnd = TraceStart + TraceEnd*32.0;
+
+    HitActor = Trace(HitLocation, HitNormal, TraceEnd, TraceStart, false, vect(1,1,1));
+    
+    return HitActor != None && HitActor.bWorldGeometry || (Mover(HitActor) != None);
+}
+
 function bool CanDoubleJump()
 {
 	if(BallisticWeapon(Weapon) != None && BallisticWeapon(Weapon).bScopeView)
 		return false;
+
+    if (class'BCReplicationInfo'.static.IsTactical())
+        return CanMantle();
+
 	if (class'BallisticReplicationInfo'.default.bNoDoubleJump)
 		return false;
-	else
-		return super.CanDoubleJump();
+
+	return super.CanDoubleJump();
 }
 
 function bool CanMultiJump()
@@ -2562,7 +2598,11 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		local int actualDamage;
 		local Controller Killer;
 		local vector HitLocationMatchZ;
- 
+		
+        local Vector SelfToHit, SelfToInstigator, CrossPlaneNormal;
+        local float W;
+        local float YawDir;
+		
 		if ( damagetype == None )
 		{
 			if ( InstigatedBy != None )
@@ -2590,20 +2630,22 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
  
 		if ( (Physics == PHYS_None) && (DrivenVehicle == None) )
 			SetMovementPhysics();
-
-		if (Physics == PHYS_Walking && damageType.default.bExtraMomentumZ)
-			momentum.Z = FMax(momentum.Z, 0.4 * VSize(momentum));
-
-		if ( instigatedBy == self )
-			momentum *= 0.6;
-
-		momentum = momentum/Mass;
 		
-		if (Momentum.Z > 950)
-			Momentum.Z = 950;
-		if (Momentum.Z < -300)
-			Momentum *= (-300 / Momentum.Z);
- 
+		if (!class'BCReplicationInfo'.static.IsClassic())) //Classic lets you take off into orbit
+		{
+			if (Physics == PHYS_Walking && damageType.default.bExtraMomentumZ)
+				momentum.Z = FMax(momentum.Z, 0.4 * VSize(momentum));
+
+			if ( instigatedBy == self )
+				momentum *= 0.6;
+
+			momentum = momentum/Mass;
+			
+			if (Momentum.Z > 950)
+				Momentum.Z = 950;
+			if (Momentum.Z < -300)
+				Momentum *= (-300 / Momentum.Z);
+		}
 		if (Weapon != None)
 			Weapon.AdjustPlayerDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType );
 		
@@ -2679,46 +2721,82 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		}
 		else
 		{
-			if (class<BallisticDamageType>(damageType) != None && class<BallisticDamageType>(damageType).default.bNegatesMomentum)
+			if (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.static.IsRealism()) //Classic/Realism: Taking damage arrests movement
 			{
-				HitLocationMatchZ = Velocity;
-				HitLocationMatchZ.Z = 0;
-				AddVelocity( momentum - HitLocationMatchZ);
+				if (class<BallisticDamageType>(damageType) != None && class<BallisticDamageType>(damageType).default.bNegatesMomentum)
+				{
+					HitLocationMatchZ = Velocity;
+					HitLocationMatchZ.Z = 0;
+					AddVelocity( momentum - HitLocationMatchZ);
+				}
+				else
+					AddVelocity( momentum );
 			}
 			else
-				AddVelocity( momentum );
+			{
+				if ( InstigatedBy != None )
+				{
+					// Figure out which direction to spin:
+					if( InstigatedBy.Location != Location )
+					{
+						SelfToInstigator = InstigatedBy.Location - Location;
+						SelfToHit = HitLocation - Location;
+
+						CrossPlaneNormal = Normal( SelfToInstigator cross Vect(0,0,1) );
+						W = CrossPlaneNormal dot Location;
+
+						if( HitLocation dot CrossPlaneNormal < W )
+							YawDir = -1.0;
+						else
+							YawDir = 1.0;
+					}
+				}
+				
+				if( VSize(Momentum) < 10 )
+				{
+					Momentum = - Normal(SelfToInstigator) * Damage * 1000.0;
+					Momentum.Z = Abs( Momentum.Z );
+				}
+
+				SetPhysics(PHYS_Falling);
+				Momentum = Momentum / Mass;
+				AddVelocity( Momentum );
+				bBounce = true;
+			}
 			if (VSize(Momentum) > 50000)
 				bPendingNegation=True;
 			if ( Controller != None )
 				Controller.NotifyTakeHit(instigatedBy, HitLocation, actualDamage, DamageType, Momentum);
 			if ( instigatedBy != None && instigatedBy != self )
 				LastHitBy = instigatedBy.Controller;
-            if (PlayerController(Controller) != None)
-                HandleViewFlash(actualDamage);
+            if (BallisticPlayer(Controller) != None)
+                DamageViewFlash(actualDamage);
 		}
 		MakeNoise(1.0);
 }
 
-function HandleViewFlash(int damage)
+function DamageViewFlash(int damage)
 {
     local int rnd;
 
     if (damage == 0)
         return;
 
-	if (bNoViewFlash)
-        return;
-		
-    rnd = FClamp(damage, 25, 70);
+    rnd = FClamp(damage / 2, 25, 50);
 
 	if (ShieldStrength > 0)
     {
-        PlayerController(Controller).ClientFlash( -0.019 * rnd, ShieldFlashV);
+        BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, ShieldFlashV);
     }
     else 
     {
-		PlayerController(Controller).ClientFlash( -0.019 * rnd, rnd * BloodFlashV);  
+		BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, BloodFlashV);  
     }     
+}
+
+exec simulated function TestFlash(int damage)
+{
+    DamageViewFlash(damage);
 }
 
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
@@ -2868,8 +2946,8 @@ defaultproperties
      Fades(15)=Texture'BW_Core_WeaponTex.Icons.stealth_128'
      UDamageSound=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
 
-	 BloodFlashV=(X=26.5,Y=4.5,Z=4.5)
-     ShieldFlashV=(X=400.000000,Y=400.000000,Z=400.000000)
+	 BloodFlashV=(X=1000,Y=250,Z=250)
+     ShieldFlashV=(X=750,Y=500,Z=350)
 
      FootstepVolume=0.350000
      FootstepRadius=400.000000
@@ -2878,7 +2956,6 @@ defaultproperties
 
      GruntVolume=0.2
      GruntRadius=300.000000
-	 bNoViewFlash=True
      DeResTime=4.000000
      RagDeathUpKick=0.000000
      bCanWalkOffLedges=True

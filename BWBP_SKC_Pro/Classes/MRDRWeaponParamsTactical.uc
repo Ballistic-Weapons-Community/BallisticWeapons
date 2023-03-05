@@ -40,8 +40,6 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_MRDR88Spike'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MRDR88SpikeHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MRDR88Spike'
-		HookStopFactor=1.700000
-		HookPullForce=100.000000
 		BotRefireRate=0.800000
 		WarnTargetPct=0.100000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Swing',Volume=0.5,Radius=32.000000,bAtten=True)

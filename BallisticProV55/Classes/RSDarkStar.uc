@@ -60,7 +60,7 @@ simulated function PostNetBeginPlay()
 
 	super.PostNetBeginPlay();
 	
-	if (GameStyleIndex != 0)
+	if (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.static.IsRealism())
 	{
 		MaxSoulPower=10;
 	}

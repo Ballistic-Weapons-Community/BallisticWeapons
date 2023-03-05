@@ -423,7 +423,7 @@ simulated function InstantFireEffects(byte Mode)
 		
 	if (Mode == 0)
 	{
-		if (ImpactManager != None && HVCMk9LightningGun(Instigator.Weapon).BCRepClass.static.IsArena())
+		if (ImpactManager != None && (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical()))
 			ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 	}
 	else if (ImpactManagerAlt != None)
@@ -435,7 +435,7 @@ simulated function Tick(float DT)
 {
 	super.Tick(DT);
 
-	if (HVCMk9LightningGun(Instigator.Weapon).BCRepClass.static.IsArena())
+	if (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical())
 	{
 		if (Level.NetMode == NM_DedicatedServer)
 			return;

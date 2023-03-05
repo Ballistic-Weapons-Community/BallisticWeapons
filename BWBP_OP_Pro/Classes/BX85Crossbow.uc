@@ -54,7 +54,8 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+    
+	if (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.static.IsRealism())
 	{
 		FireModeClass[0]=Class'BWBP_OP_Pro.BX85PrimaryBoltFire';
 	}

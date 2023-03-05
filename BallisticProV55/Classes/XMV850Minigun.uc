@@ -107,7 +107,7 @@ simulated function float GetRampUpSpeed()
 {
 	local float mult;
 	
-	if (GameStyleIndex == 0)
+	if (class'BCReplicationInfo'.static.IsArena())
 	{
 		mult = 1 - (BarrelSpeed / RotationSpeeds[2]);
 		
