@@ -63,6 +63,7 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
 	Proj.Instigator = Instigator;
+
 	if (BallisticPineapple(Proj) != None)
 	{
 		if (AIController(Instigator.Controller) == None)

@@ -17,6 +17,7 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DTCX85Bullet'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTCX85BulletHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTCX85Bullet'
+        PenetrationEnergy=16
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=class'BallisticProV55.M50FlashEmitter'

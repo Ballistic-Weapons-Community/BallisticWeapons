@@ -14,7 +14,7 @@ var bool	bShotgunMode;
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (CYLOFirestormAssaultWeapon(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		bShotgunMode=true;
 		InstantMode=MU_Both;

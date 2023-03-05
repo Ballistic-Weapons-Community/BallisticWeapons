@@ -16,6 +16,7 @@ defaultproperties
 		DamageType=Class'BallisticProV55.DTM806Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTM806PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTM806Pistol'
+        PenetrationEnergy=16
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M806FlashEmitter'

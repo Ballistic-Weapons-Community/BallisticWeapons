@@ -226,7 +226,7 @@ simulated function ModeTick(float DeltaTime)
 //======================================================================
 simulated event ModeDoFire()
 {
-	if (BW.BCRepClass.default.GameStyle != 0)
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		if (BW.MagAmmo == 1)
 		{

@@ -16,6 +16,7 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DTMX32Primary'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTMX32PrimaryHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTMX32PrimaryLimb'
+        PenetrationEnergy=16
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'

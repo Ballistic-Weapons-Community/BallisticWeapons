@@ -325,6 +325,8 @@ function TakeDamage(int Damage, Pawn InstigatedBy, Vector HitLocation, Vector Mo
         if ( InstigatedBy != None && InstigatedBy != self )
             LastHitBy = InstigatedBy.Controller;
 
+        DamageViewFlash(actualDamage);
+
 		if (class<BallisticDamageType>(DamageType) != None && class<BallisticDamageType>(DamageType).default.bPowerPush)
 		{
 			bPushed=True;

@@ -43,7 +43,7 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=TacticalBeamEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.A42FlashEmitter'
     	TraceRange=(Min=8000.000000,Max=8000.000000)
-        PenetrationEnergy=8.000000
+        PenetrationEnergy=8
         PenetrateForce=150
         Damage=85.000000
         HeadMult=2.75

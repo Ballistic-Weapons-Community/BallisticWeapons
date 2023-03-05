@@ -16,6 +16,7 @@ defaultproperties
 		DamageType=Class'BallisticProV55.DTMD24Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTMD24PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTMD24Pistol'
+        PenetrationEnergy=8
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'

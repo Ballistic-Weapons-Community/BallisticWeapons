@@ -41,7 +41,8 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+
+	if (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.static.IsRealism())
 	{
 		CYLOPrimaryFire(FireMode[0]).bVariableFirerate=true;
 	}

@@ -8,7 +8,7 @@ defaultproperties
 
     Begin Object Class=InstantEffectParams Name=BurstFireEffect
         DecayRange=(Min=788,Max=1838)
-        PenetrationEnergy=8.000000
+        PenetrationEnergy=8
         TraceRange=(Min=3072,Max=3072)
         Damage=26.000000
         HeadMult=2.75
@@ -32,7 +32,7 @@ defaultproperties
 
     Begin Object Class=InstantEffectParams Name=AutoFireEffect
         DecayRange=(Min=788,Max=1838)
-        PenetrationEnergy=8.000000
+        PenetrationEnergy=8
         TraceRange=(Min=3072,Max=3072)
         Damage=22.000000
         HeadMult=2.75

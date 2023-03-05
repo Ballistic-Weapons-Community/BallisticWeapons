@@ -15,11 +15,12 @@ defaultproperties
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
+        PenetrationEnergy=48
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
 		FlashScaleFactor=1.400000
-		Recoil=260.000000
+		Recoil=420.000000
 		Chaos=0.450000
 		BotRefireRate=0.6
 		WarnTargetPct=0.35
@@ -27,7 +28,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.225000
+		FireInterval=0.3000
 		FireEndAnim=
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
@@ -46,7 +47,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
 		FlashScaleFactor=1.400000
-		Recoil=260.000000
+		Recoil=420.000000
 		Chaos=0.450000
 		BotRefireRate=0.6
 		WarnTargetPct=0.35
@@ -54,7 +55,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalFreezeFireParams
-		FireInterval=0.225000
+		FireInterval=0.3000
 		FireEndAnim=
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalFreezeEffectParams'
@@ -74,7 +75,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'
 		FlashScaleFactor=1.400000
-		Recoil=260.000000
+		Recoil=240.000000
 		Chaos=0.450000
 		BotRefireRate=0.6
 		WarnTargetPct=0.35
@@ -82,7 +83,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalHeatFireParams
-		FireInterval=0.225000
+		FireInterval=0.3000
 		FireEndAnim=
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'TacticalHeatEffectParams'

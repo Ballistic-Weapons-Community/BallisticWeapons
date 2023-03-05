@@ -16,6 +16,7 @@ defaultproperties
 		DamageType=Class'BallisticProV55.DTM50Assault'
 		DamageTypeHead=Class'BallisticProV55.DTM50AssaultHead'
 		DamageTypeArm=Class'BallisticProV55.DTM50AssaultLimb'
+        PenetrationEnergy=16
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'

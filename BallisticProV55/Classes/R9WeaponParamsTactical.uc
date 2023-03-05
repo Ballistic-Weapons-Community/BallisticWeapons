@@ -15,6 +15,7 @@ defaultproperties
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
+        PenetrationEnergy=32
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.R9FlashEmitter'

@@ -392,7 +392,7 @@ simulated function InstantFireEffects(byte Mode)
 	local Vector HitLocation, Dir, Start;
 	local Material HitMat;
 
-	if (Mode == 0 && HVCMk9LightningGun(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (Mode == 0 && class'BCReplicationInfo'.static.IsClassicOrRealism())
 		return;
 	if (mHitLocation == vect(0,0,0))
 		return;

@@ -72,7 +72,7 @@ simulated function PostNetBeginPlay()
 	local Actor A;
 	
 	Super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		bDecorativeHeat=true;
 		FG50SecondaryFire(FireMode[0]).HeatPerShot=0.25;

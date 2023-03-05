@@ -16,11 +16,12 @@ defaultproperties
 		DamageType=Class'BallisticProV55.DTSRS600Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTSRS600RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTSRS600Rifle'
+        PenetrationEnergy=48
 		PenetrateForce=120
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=0.5
-		Recoil=210.000000
+		Recoil=360.000000
 		Chaos=0.065000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Radius=1536.000000,Slot=SLOT_Interact,bNoOverride=False,bAtten=True)

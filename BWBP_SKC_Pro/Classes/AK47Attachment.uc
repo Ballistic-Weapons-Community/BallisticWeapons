@@ -21,7 +21,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (AK47AssaultRifle(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq';
 	}

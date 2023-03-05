@@ -95,7 +95,7 @@ simulated function PostNetReceive()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		RocketActiveReloadRate = 0.0833;
 		MRLSecondaryFire(FireMode[1]).RocketMultiplier = 60;

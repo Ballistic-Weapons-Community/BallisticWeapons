@@ -11,7 +11,7 @@ class CYLOPrimaryFire extends BallisticProInstantFire;
 
 var() sound		RifleFireSound;
 var() sound		MeleeFireSound;
-var	bool	bVariableFirerate;
+var	bool	    bVariableFirerate;
 
 simulated event ModeDoFire()
 {

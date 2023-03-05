@@ -16,6 +16,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_LK05Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_LK05AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_LK05Assault'
+        PenetrationEnergy=16
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=1

@@ -2363,7 +2363,7 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
     DodgeGroundSpeed = GroundSpeed;
 
     // arena allows increased dodge distance when sprint is on
-    if (class'BCReplicationInfo'.default.GameStyle != 0 && default.GroundSpeed < GroundSpeed)
+    if (!class'BCReplicationInfo'.static.IsArena() && default.GroundSpeed < GroundSpeed)
     {
         DodgeGroundSpeed = default.GroundSpeed;
     }
@@ -2769,8 +2769,8 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 				Controller.NotifyTakeHit(instigatedBy, HitLocation, actualDamage, DamageType, Momentum);
 			if ( instigatedBy != None && instigatedBy != self )
 				LastHitBy = instigatedBy.Controller;
-            if (BallisticPlayer(Controller) != None)
-                DamageViewFlash(actualDamage);
+                
+            DamageViewFlash(actualDamage);
 		}
 		MakeNoise(1.0);
 }
@@ -2779,7 +2779,7 @@ function DamageViewFlash(int damage)
 {
     local int rnd;
 
-    if (damage == 0)
+    if (BallisticPlayer(Controller) == None || damage == 0)
         return;
 
     rnd = FClamp(damage / 2, 25, 50);

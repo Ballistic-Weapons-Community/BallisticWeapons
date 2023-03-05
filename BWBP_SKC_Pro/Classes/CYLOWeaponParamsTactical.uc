@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=8000.000000,Max=12000.000000)
-                DecayRange=(Min=1575,Max=3675)
+        DecayRange=(Min=1575,Max=3675)
 		RangeAtten=0.67
 		Damage=46
         HeadMult=2.75
@@ -16,6 +16,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLORifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTCYLORifle'
+        PenetrationEnergy=24
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'

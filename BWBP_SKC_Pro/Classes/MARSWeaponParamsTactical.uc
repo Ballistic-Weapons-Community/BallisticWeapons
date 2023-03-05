@@ -16,6 +16,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_MARSAssault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MARSAssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MARSAssault'
+        PenetrationEnergy=16
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter'
 		FlashScaleFactor=0.5

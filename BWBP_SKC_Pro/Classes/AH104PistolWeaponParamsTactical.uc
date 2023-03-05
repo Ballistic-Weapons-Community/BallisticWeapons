@@ -9,7 +9,7 @@ defaultproperties
 	
 		Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 			DecayRange=(Min=1575,Max=2560)
-			PenetrationEnergy=12 
+			PenetrationEnergy=48 
 			Damage=135.000000
             HeadMult=2.75f
             LimbMult=0.67f

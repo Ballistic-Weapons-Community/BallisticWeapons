@@ -31,7 +31,7 @@ var() float				SingleReloadAnimRate;   // Animation rate for single reload.
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		FireModeClass[1]=Class'BWBP_SKC_Pro.CoachGunSecondaryFire';
 	}
@@ -40,7 +40,7 @@ simulated event PreBeginPlay()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		CoachGunPrimaryFire(FireMode[0]).bFireOnRelease = false;
 	}

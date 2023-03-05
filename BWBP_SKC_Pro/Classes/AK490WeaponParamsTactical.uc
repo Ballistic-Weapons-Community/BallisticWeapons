@@ -17,6 +17,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
+        PenetrationEnergy=32
 		PenetrateForce=180
 		bPenetrate=True
 		MuzzleFlashClass=Class'AK47FlashEmitter'

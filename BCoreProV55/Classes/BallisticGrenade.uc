@@ -233,8 +233,12 @@ simulated event HitWall(vector HitNormal, actor Wall)
 		Explode(Location, HitNormal);
 		return;
 	}
-	else if (DetonateOn == DT_ImpactTimed && !bHasImpacted)
+
+	if (DetonateOn == DT_ImpactTimed && !bHasImpacted)
+    {
 		SetTimer(DetonateDelay, false);
+    }
+
 	if (Pawn(Wall) != None)
 	{
 		DampenFactor *= 0.5;

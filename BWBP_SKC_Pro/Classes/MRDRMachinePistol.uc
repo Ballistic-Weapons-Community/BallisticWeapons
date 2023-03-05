@@ -15,10 +15,7 @@ var() Sound		ClipOutSound2;
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
-	{
-		bUseSights=True;
-	}
+	bUseSights=True;
 }
 
 static function class<Pickup> RecommendAmmoPickup(int Mode)

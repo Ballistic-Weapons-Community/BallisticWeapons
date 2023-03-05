@@ -15,6 +15,7 @@ defaultproperties
 		DamageType=Class'BallisticProV55.DTRS8Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTRS8PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTRS8Pistol'
+        PenetrationEnergy=8
 		PenetrateForce=135
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'

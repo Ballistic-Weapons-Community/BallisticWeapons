@@ -36,7 +36,7 @@ var   float				NextPawnListUpdateTime;
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
 	}

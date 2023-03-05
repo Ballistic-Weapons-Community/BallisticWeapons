@@ -16,6 +16,7 @@ defaultproperties
         DamageType=Class'BallisticProV55.DTGRS9Pistol'
         DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
         DamageTypeArm=Class'BallisticProV55.DTGRS9Pistol'
+        PenetrationEnergy=8
         PenetrateForce=100
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'

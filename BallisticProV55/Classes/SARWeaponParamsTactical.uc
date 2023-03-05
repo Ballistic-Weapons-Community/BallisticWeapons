@@ -16,6 +16,7 @@ defaultproperties
 		DamageType=Class'BallisticProV55.DTSARRifle'
 		DamageTypeHead=Class'BallisticProV55.DTSARRifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTSARRifle'
+        PenetrationEnergy=16
 		PenetrateForce=150
 		bPenetrate=True
 		MuzzleFlashClass=Class'FlashEmitter_AR'

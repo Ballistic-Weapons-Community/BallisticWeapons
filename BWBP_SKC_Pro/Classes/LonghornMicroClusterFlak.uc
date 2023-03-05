@@ -263,7 +263,7 @@ defaultproperties
 	DetonateDelayRange=(Min=0.75,Max=1.250000)
 	DetonateOn=DT_ImpactTimed
 	PlayerImpactType=PIT_Detonate
-	DampenFactor=0.100000
+	DampenFactor=0.05
 	DampenFactorParallel=0.350000
 	bAlignToVelocity=True
 	ImpactDamage=45
