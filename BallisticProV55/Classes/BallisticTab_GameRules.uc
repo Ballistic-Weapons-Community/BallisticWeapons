@@ -11,10 +11,10 @@
 //=============================================================================
 class BallisticTab_GameRules extends UT2K4TabPanel;
 
-var automated moComboBox	co_InventoryMode;			//Choose Inventoy Mode
 var automated moComboBox	co_GameStyle;				//Choose Params
-//Add Killsteaks Here
-var automated moCheckbox	ch_ViewFlash;				//Damage Indication Flash Toggle
+var automated moComboBox	co_InventoryMode;			//Choose Inventory Mode
+
+//Add Killstreaks Here
 var automated moNumericEdit int_MaxInventoryCapacity;	//Inventory Capacity
 var automated moCheckbox	ch_BrightPlayers;			//Bright Players
 var automated moCheckbox	ch_ForceBWPawn;				//Force Ballistic Pawn
@@ -54,6 +54,14 @@ function ShowPanel(bool bShow)
 
 function LoadSettings()
 {
+    co_GameStyle.AddItem("Competitive" ,,string(0));
+	co_GameStyle.AddItem("Classic" ,,string(1));
+	co_GameStyle.AddItem("Realism" ,,string(2));
+    co_GameStyle.AddItem("Tactical" ,,string(3));
+
+	co_GameStyle.ReadOnly(True);
+	co_GameStyle.SetIndex(class'BallisticReplicationInfo'.default.GameStyle);
+
 	co_InventoryMode.AddItem("Pickups" ,,string(0));
 	co_InventoryMode.AddItem("Outfitting Loadout" ,,string(1));
 	co_InventoryMode.AddItem("Conflict Loadout" ,,string(2));
@@ -63,15 +71,8 @@ function LoadSettings()
 	co_InventoryMode.ReadOnly(True);
 	co_InventoryMode.SetIndex(class'Mut_BallisticGlobal'.default.InventoryModeIndex);
 	
-	co_GameStyle.AddItem("Competitive" ,,string(0));
-	co_GameStyle.AddItem("Classic" ,,string(1));
-	co_GameStyle.AddItem("Realism" ,,string(2));
-    co_GameStyle.AddItem("Tactical" ,,string(3));
 
-	co_GameStyle.ReadOnly(True);
-	co_GameStyle.SetIndex(class'BallisticReplicationInfo'.default.GameStyle);
 	
-	ch_ViewFlash.Checked(class'BallisticPawn'.default.bNoViewFlash);
 	int_MaxInventoryCapacity.SetValue(class'BallisticWeapon'.default.MaxInventoryCapacity);
 	ch_BrightPlayers.Checked(class'BallisticReplicationInfo'.default.bBrightPlayers);
 	ch_ForceBWPawn.Checked(class'Mut_Ballistic'.default.bForceBallisticPawn);
@@ -87,9 +88,9 @@ function SaveSettings()
 {
 	if (!bInitialized)
 		return;
+
+    class'BallisticReplicationInfo'.default.GameStyle       	= EGameStyle(co_GameStyle.GetIndex());
 	class'Mut_BallisticGlobal'.default.InventoryModeIndex		= co_InventoryMode.GetIndex();
-	class'BallisticReplicationInfo'.default.GameStyle       	= EGameStyle(co_GameStyle.GetIndex());
-	class'BallisticPawn'.default.bNoViewFlash					= ch_ViewFlash.IsChecked();
 	class'BallisticWeapon'.default.MaxInventoryCapacity 		= int_MaxInventoryCapacity.GetValue();	
 	class'BallisticReplicationInfo'.default.bBrightPlayers		= ch_BrightPlayers.IsChecked();
     class'Mut_Ballistic'.default.bForceBallisticPawn			= ch_ForceBWPawn.IsChecked();
@@ -111,9 +112,9 @@ function SaveSettings()
 
 function DefaultSettings()
 {
+    co_GameStyle.SetIndex(0);
 	co_InventoryMode.SetIndex(0);
-	co_GameStyle.SetIndex(0);
-	ch_ViewFlash.Checked(true);
+
 	int_MaxInventoryCapacity.SetValue(0);
 	ch_BrightPlayers.Checked(false);
 	ch_ForceBWPawn.Checked(false);
@@ -127,6 +128,20 @@ function DefaultSettings()
 
 defaultproperties
 {	 
+    Begin Object Class=moComboBox Name=co_GameStyleCombo
+         ComponentJustification=TXTA_Left
+         CaptionWidth=0.550000
+         Caption="Game Style"
+         OnCreateComponent=co_GameStyleCombo.InternalOnCreateComponent
+         IniOption="@Internal"
+         IniDefault="High"
+         Hint="Determines the general gameplay of Ballistic Weapons.||Arena: Fast, close to UT2004 speed, balanced.|Classic: Ballistic V2.5 gameplay.|Realism: More realistic.|Tactical: Slower movement with higher damage and stronger locational damage."
+         WinTop=0.050000
+         WinLeft=0.250000
+		 WinHeight=0.040000
+    End Object
+    co_GameStyle=moComboBox'co_GameStyleCombo'
+
 	 Begin Object Class=moComboBox Name=co_InventoryModeCombo
          ComponentJustification=TXTA_Left
          CaptionWidth=0.550000
@@ -135,51 +150,24 @@ defaultproperties
          IniOption="@Internal"
          IniDefault="High"
          Hint="Determines the Weapon Spawns of Ballistic Weapons"
-         WinTop=0.050000
-         WinLeft=0.250000
-		 WinHeight=0.040000
-     End Object
-     co_InventoryMode=moComboBox'co_InventoryModeCombo'
-	 
-	 Begin Object Class=moComboBox Name=co_GameStyleCombo
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.550000
-         Caption="Game Style"
-         OnCreateComponent=co_GameStyleCombo.InternalOnCreateComponent
-         IniOption="@Internal"
-         IniDefault="High"
-         Hint="Determines the general gameplay of Ballistic Weapons."
          WinTop=0.100000
          WinLeft=0.250000
 		 WinHeight=0.040000
      End Object
-     co_GameStyle=moComboBox'co_GameStyleCombo'
-	 
+     co_InventoryMode=moComboBox'co_InventoryModeCombo'
+
 	 Begin Object Class=moCheckBox Name=ch_PreCacheCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Pre-Cache Weapons"
+         Caption="Precache Weapons"
          OnCreateComponent=ch_PreCacheCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Pre-Cache Weapons at the start of the match"
+         Hint="Precache weapons at the start of the match."
          WinTop=0.1500000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
      ch_PreCacheWeapons=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_PreCacheCheck'
-	 
-	 Begin Object Class=moCheckBox Name=ch_ViewFlashCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="No Damage Screen Flashes"
-         OnCreateComponent=ch_ViewFlashCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Disable screen flashes when you get damaged."
-         WinTop=0.20000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_ViewFlash=moCheckBox'BallisticProV55.BallisticTab_GameRules.ch_ViewFlashCheck'
 	 
 	 Begin Object Class=moNumericEdit Name=int_MaxWepsInt
          MinValue=0
@@ -190,7 +178,7 @@ defaultproperties
          OnCreateComponent=int_MaxWepsInt.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Sets the player's maximum inventory capacity. 0 is infinite."
-         WinTop=0.250000
+         WinTop=0.200000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -203,7 +191,7 @@ defaultproperties
          OnCreateComponent=ch_BrightPlayersCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Makes players glow in the dark like normal UT2004. Only affects BW gametypes - standard gametypes have bright players already."
-         WinTop=0.300000
+         WinTop=0.250000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -215,8 +203,8 @@ defaultproperties
          Caption="Force Ballistic Pawn"
          OnCreateComponent=ch_ForceBWPawnCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="BW mutators will try to force BallisticPawn even when game specific pawn is used (WARNING: Could cause severe problems in some gametypes)"
-         WinTop=0.350000
+         Hint="BW mutators will try to force the Ballistic pawn even when game specific pawn is used.||WARNING: Can cause severe problems in some gametypes."
+         WinTop=0.300000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -229,7 +217,7 @@ defaultproperties
          OnCreateComponent=ch_NoDodgingCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Disables dodging for all players."
-         WinTop=0.400000
+         WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -242,7 +230,7 @@ defaultproperties
          OnCreateComponent=ch_NoDoubleJumpCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Disables double jump for all players."
-         WinTop=0.450000
+         WinTop=0.400000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -254,8 +242,8 @@ defaultproperties
          Caption="Health Regeneration"
          OnCreateComponent=ch_RegenCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Enables Ballistic Health Regeneration"
-         WinTop=0.500000
+         Hint="Enables health regeneration."
+         WinTop=0.450000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -267,8 +255,8 @@ defaultproperties
          Caption="Shield Regeneration"
          OnCreateComponent=ch_ShieldRegenCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Enables Ballistic Shield Regeneration"
-         WinTop=0.550000
+         Hint="Enables shield regeneration."
+         WinTop=0.500000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
@@ -277,11 +265,11 @@ defaultproperties
 	 Begin Object Class=moCheckBox Name=ch_KillStreaksCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="KillStreaks"
+         Caption="Killstreaks"
          OnCreateComponent=ch_KillStreaksCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Enables Ballistic KillStreaks (Can Be Configured from the Loadout Tab)"
-         WinTop=0.600000
+         Hint="Enables killstreaks. Configured via the Loadout tab."
+         WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object

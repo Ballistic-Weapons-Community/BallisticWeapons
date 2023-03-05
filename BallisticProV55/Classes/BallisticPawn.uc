@@ -109,8 +109,7 @@ var   float				LastImpactTime;		// Time of last impact mark spawn
 var() float				TimeBetweenImpacts;	// Minimum time between impact mark spawning
 var   vector			LastImpactNormal;	// Normal of last impact
 var   vector			LastImpactLocation;	// Location of last impact
-var config  bool		bNoViewFlash;       // Toggle the use of the new viewflash effects when u get damaged
-var     BCSprintControl Sprinter;
+var   BCSprintControl   Sprinter;
 // -------------------------------------------------------
 var   vector            BloodFlashV, ShieldFlashV;
 
@@ -2771,21 +2770,18 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 			if ( instigatedBy != None && instigatedBy != self )
 				LastHitBy = instigatedBy.Controller;
             if (BallisticPlayer(Controller) != None)
-                HandleViewFlash(actualDamage);
+                DamageViewFlash(actualDamage);
 		}
 		MakeNoise(1.0);
 }
 
-function HandleViewFlash(int damage)
+function DamageViewFlash(int damage)
 {
     local int rnd;
 
     if (damage == 0)
         return;
 
-	if (bNoViewFlash)
-        return;
-		
     rnd = FClamp(damage, 25, 70);
 
 	if (ShieldStrength > 0)
@@ -2955,7 +2951,6 @@ defaultproperties
 
      GruntVolume=0.2
      GruntRadius=300.000000
-	 bNoViewFlash=True
      DeResTime=4.000000
      RagDeathUpKick=0.000000
      bCanWalkOffLedges=True

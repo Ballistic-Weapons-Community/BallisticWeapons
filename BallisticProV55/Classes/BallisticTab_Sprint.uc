@@ -127,7 +127,7 @@ defaultproperties
 
      Begin Object Class=moNumericEdit Name=ne_InitStaminaChargeRateC
          MinValue=0
-         MaxValue=25
+         MaxValue=35
          Step=5
          ComponentWidth=0.175000
          Caption="Stamina Regen % Per Second"
