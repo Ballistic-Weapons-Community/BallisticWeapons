@@ -2782,16 +2782,21 @@ function DamageViewFlash(int damage)
     if (damage == 0)
         return;
 
-    rnd = FClamp(damage, 25, 70);
+    rnd = FClamp(damage / 2, 25, 50);
 
 	if (ShieldStrength > 0)
     {
-        BallisticPlayer(Controller).ClientDmgFlash( -0.019 * rnd, ShieldFlashV);
+        BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, ShieldFlashV);
     }
     else 
     {
-		BallisticPlayer(Controller).ClientDmgFlash( -0.019 * rnd, rnd * BloodFlashV);  
+		BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, BloodFlashV);  
     }     
+}
+
+exec simulated function TestFlash(int damage)
+{
+    DamageViewFlash(damage);
 }
 
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
@@ -2941,8 +2946,8 @@ defaultproperties
      Fades(15)=Texture'BW_Core_WeaponTex.Icons.stealth_128'
      UDamageSound=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
 
-	 BloodFlashV=(X=26.5,Y=4.5,Z=4.5)
-     ShieldFlashV=(X=400.000000,Y=400.000000,Z=400.000000)
+	 BloodFlashV=(X=1000,Y=250,Z=250)
+     ShieldFlashV=(X=750,Y=500,Z=350)
 
      FootstepVolume=0.350000
      FootstepRadius=400.000000
