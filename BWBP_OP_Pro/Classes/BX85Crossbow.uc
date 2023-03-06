@@ -55,7 +55,7 @@ simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
     
-	if (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.static.IsRealism())
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		FireModeClass[0]=Class'BWBP_OP_Pro.BX85PrimaryBoltFire';
 	}

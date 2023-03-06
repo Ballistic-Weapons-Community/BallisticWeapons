@@ -12,9 +12,9 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 {
 	local float Speed, DetonateDelay;
 	local vector EnemyDir;
-
 	Proj = Spawn (ProjectileClass,,, Start, Dir);
 	Proj.Instigator = Instigator;
+
 	if (BallisticProPineapple(Proj) != None)
 	{
 		if (AIController(Instigator.Controller) == None)
@@ -33,11 +33,11 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 			Speed = Proj.Speed;
 
 		if (BallisticHandGrenade(Weapon).ClipReleaseTime == 666)
-			DetonateDelay = BallisticPineapple(Proj).DetonateDelay - 3;
+			DetonateDelay = BallisticProPineapple(Proj).DetonateDelay - 3;
 		else if (BallisticHandGrenade(Weapon).ClipReleaseTime > 0.0)
-			DetonateDelay = BallisticPineapple(Proj).DetonateDelay - (Level.TimeSeconds - BallisticHandGrenade(Weapon).ClipReleaseTime);
+			DetonateDelay = BallisticProPineapple(Proj).DetonateDelay - (Level.TimeSeconds - BallisticHandGrenade(Weapon).ClipReleaseTime);
 		else
-			DetonateDelay = BallisticPineapple(Proj).DetonateDelay;
+			DetonateDelay = BallisticProPineapple(Proj).DetonateDelay;
             
 		BallisticProPineapple(Proj).InitProPineapple(Speed, DetonateDelay);
 	}

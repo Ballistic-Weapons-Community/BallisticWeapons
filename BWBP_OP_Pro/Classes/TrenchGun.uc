@@ -563,7 +563,7 @@ function byte BestMode()
 	Dir = Instigator.Location - B.Enemy.Location;
 	Dist = VSize(Dir);
 
-	if (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.static.IsRealism())
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		CurrentWeaponMode = 3;
 		TrenchGunPrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);

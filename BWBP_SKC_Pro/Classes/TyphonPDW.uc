@@ -118,7 +118,7 @@ simulated function PlayReload()
 		SafePlayAnim(StartShovelAnim, StartShovelAnimRate, , 0, "RELOAD");
 	else
 	{
-	    if (MagAmmo < 1 && HasAnim(ReloadEmptyAnim) && (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.static.IsRealism()))
+	    if (MagAmmo < 1 && HasAnim(ReloadEmptyAnim) && (class'BCReplicationInfo'.static.IsClassicOrRealism()))
 			SafePlayAnim(ReloadEmptyAnim, ReloadAnimRate, , 0, "RELOAD");
 		else SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
 	}

@@ -42,7 +42,7 @@ simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
 
-	if (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.static.IsRealism())
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		CYLOPrimaryFire(FireMode[0]).bVariableFirerate=true;
 	}
