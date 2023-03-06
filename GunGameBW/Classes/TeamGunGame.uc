@@ -2114,7 +2114,7 @@ defaultproperties
 	 DefaultWeapons(15)=Class'BallisticProV55.M46AssaultRifleQS'
      DefaultWeapons(16)=Class'BWBP_SKC_Pro.MARSAssaultRifle'
      DefaultWeapons(17)=Class'BWBP_SKC_Pro.F2000AssaultRifle'
-     DefaultWeapons(18)=Class'BWBP_SKC_Pro.CYLOAssaultWeapon'	//ar
+     DefaultWeapons(18)=Class'BWBP_SKC_Pro.CYLOFirestormAssaultWeapon'	//ar
 	 DefaultWeapons(19)=Class'BWBP_SKC_Pro.LK05Carbine'
 	 DefaultWeapons(20)=Class'BWBP_SKC_Pro.CYLOUAW'
 	 DefaultWeapons(21)=Class'BallisticProV55.SARAssaultRifle'
