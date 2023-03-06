@@ -103,8 +103,8 @@ defaultproperties
 		WeaponBoneScales(2)=(BoneName="RCSliderFront",Slot=3,Scale=0f)
 		WeaponBoneScales(3)=(BoneName="RCAttachmentIron",Slot=4,Scale=0f)
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_TexExp.T9CN.Ber-MainE',Index=1)
-		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_SKC_TexExp.T9CN.Ber-SlideE',Index=3)
+		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_Camos_Tex.T9CNCamos.Ber-MainE',Index=1)
+		WeaponMaterialSwaps(2)=(Material=Texture'BWBP_Camos_Tex.T9CNCamos.Ber-SlideE',Index=3)
 		InventorySize=6
 
 		SightMoveSpeedFactor=0.500000
