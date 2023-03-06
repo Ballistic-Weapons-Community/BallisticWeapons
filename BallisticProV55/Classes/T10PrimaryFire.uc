@@ -38,7 +38,8 @@ function SpawnProjectile (Vector Start, Rotator Dir)
 			DetonateDelay = BallisticPineapple(Proj).DetonateDelay - (Level.TimeSeconds - BallisticHandGrenade(Weapon).ClipReleaseTime);
 		else
 			DetonateDelay = BallisticPineapple(Proj).DetonateDelay;
-		BallisticPineapple(Proj).InitPineapple(Speed, DetonateDelay);
+            
+		BallisticProPineapple(Proj).InitProPineapple(Speed, DetonateDelay);
 	}
 }
 
