@@ -31,7 +31,7 @@ class XMV500Minigun extends BallisticWeapon
 	CacheExempt;
 
 #exec OBJ LOAD FILE=BW_Core_WeaponTex.utx
-#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
+#exec OBJ LOAD FILE=BWBP_Camos_Tex.utx
 
 
 var   float DesiredSpeed, BarrelSpeed;
@@ -271,7 +271,7 @@ simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
 	if (Instigator!=None && Instigator.IsLocallyControlled())
-		Shader'BWBP_SKC_TexExp.XMV500.XMV500_Barrels_SD'.FallbackMaterial = Texture'BWBP_SKC_TexExp.XMV500.XMV500_Barrels';
+		Shader'BWBP_Camos_Tex.XMVCamos.XMV500_Barrels_SD'.FallbackMaterial = Texture'BWBP_Camos_Tex.XMVCamos.XMV500_Barrels';
 }
 
 // Add extra Ballistic info to the debug readout
