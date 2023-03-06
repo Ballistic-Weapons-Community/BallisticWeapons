@@ -2867,53 +2867,57 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
 simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 {
+	
 	local Vector X, Y, Z, dir;
 	local float FSpeed, Control, NewSpeed, Drop, XSpeed, YSpeed, CosAngle, MaxStrafeSpeed, MaxBackSpeed;
 
-	//Scaling movement speed
-	if (Physics == PHYS_Walking)
+	if (class'BallisticReplicationInfo'.default.bUseSloth)
 	{
-		GetAxes(GetViewRotation(),X,Y,Z);
-		MaxStrafeSpeed = GroundSpeed * StrafeScale;
-		MaxBackSpeed = GroundSpeed * BackpedalScale;
-		XSpeed = Abs(X dot Velocity);
-		
-		if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
+		//Scaling movement speed
+		if (Physics == PHYS_Walking)
 		{
-			//limiting backspeed
-			dir = Normal(Velocity);
-			CosAngle = Abs(X dot dir);
-			Velocity = dir * (MaxBackSpeed / CosAngle);
-		}
-		
-		YSpeed = Abs(Y dot velocity);
-		if (YSpeed > MaxStrafeSpeed)
-		{
-			//limiting strafespeed
-			dir = Normal(Velocity);
-			CosAngle = Abs(Y dot dir);
-			Velocity = dir * (MaxStrafeSpeed / CosAngle);
-		}
+			GetAxes(GetViewRotation(),X,Y,Z);
+			MaxStrafeSpeed = GroundSpeed * StrafeScale;
+			MaxBackSpeed = GroundSpeed * BackpedalScale;
+			XSpeed = Abs(X dot Velocity);
+			
+			if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
+			{
+				//limiting backspeed
+				dir = Normal(Velocity);
+				CosAngle = Abs(X dot dir);
+				Velocity = dir * (MaxBackSpeed / CosAngle);
+			}
+			
+			YSpeed = Abs(Y dot velocity);
+			if (YSpeed > MaxStrafeSpeed)
+			{
+				//limiting strafespeed
+				dir = Normal(Velocity);
+				CosAngle = Abs(Y dot dir);
+				Velocity = dir * (MaxStrafeSpeed / CosAngle);
+			}
 
-		//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
-	}
-	 
-	if (Physics==PHYS_Walking)
-	{
-		FSpeed = Vsize(Velocity);
+			//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
+		}
 		 
-		if (VSize(Acceleration) < 1.00 && FSpeed > 1.00)
+		if (Physics==PHYS_Walking)
 		{
-			Control = FMin(100, FSpeed);
-				
-			Drop = Control * DeltaTime * MyFriction;
-			NewSpeed = FSpeed + drop;
-			NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
-			Velocity *= NewSpeed;
+			FSpeed = Vsize(Velocity);
+			 
+			if (VSize(Acceleration) < 1.00 && FSpeed > 1.00)
+			{
+				Control = FMin(100, FSpeed);
+					
+				Drop = Control * DeltaTime * MyFriction;
+				NewSpeed = FSpeed + drop;
+				NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
+				Velocity *= NewSpeed;
 
+			}
+			
+			OldMovementSpeed = Vsize(Velocity);
 		}
-		
-		OldMovementSpeed = Vsize(Velocity);
 	}
 }
 
