@@ -102,7 +102,7 @@ defaultproperties
     //=================================================================	
 	
 		Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams
-			ProjectileClass=Class'AY90Projectile'
+			ProjectileClass=Class'AY90WaveProjectile'
 			SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
 			Speed=5500.000000
 			MaxSpeed=14000.000000
@@ -119,7 +119,7 @@ defaultproperties
 			FireSound=(Sound=Sound'BWBP_SKC_Sounds.SkirthBow.SkrithBow-WaveFire',Volume=1.700000)
 			Recoil=130.00000
 			Chaos=0.020000
-			Inaccuracy=(X=2000,Y=10)
+			Inaccuracy=(X=200,Y=10)
 			WarnTargetPct=0.500000	
 		End Object
 
@@ -129,6 +129,36 @@ defaultproperties
 			BurstFireRateFactor=1.00
 			AimedFireAnim="SightFire"
 		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams'
+		End Object
+	
+		Begin Object Class=ProjectileEffectParams Name=ArenaSecondaryEffectParams_NoCharge
+			ProjectileClass=Class'AY90WaveProjectile'
+			SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+			Speed=5500.000000
+			MaxSpeed=14000.000000
+			AccelSpeed=70000.000000
+			Damage=25
+			DamageRadius=15.000000
+			MaxDamageGainFactor=1.00
+			DamageGainStartTime=0.05
+			DamageGainEndTime=0.7
+			MomentumTransfer=150.000000
+			HeadMult=1.5f
+			LimbMult=0.9f
+			MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
+			FireSound=(Sound=Sound'BWBP_SKC_Sounds.SkirthBow.SkrithBow-WaveFire',Volume=1.700000)
+			Recoil=130.00000
+			Chaos=0.020000
+			Inaccuracy=(X=200,Y=10)
+			WarnTargetPct=0.500000	
+		End Object
+
+		Begin Object Class=FireParams Name=ArenaSecondaryFireParams_NoCharge
+			FireInterval=0.750000
+			AmmoPerFire=5
+			BurstFireRateFactor=1.00
+			AimedFireAnim="SightFire"
+		FireEffectParams(0)=ProjectileEffectParams'ArenaSecondaryEffectParams_NoCharge'
 		End Object
 		
 	//=================================================================
@@ -181,7 +211,9 @@ defaultproperties
 		FireParams(0)=FireParams'ArenaPrimaryUnChargedFireParams'
 		FireParams(1)=FireParams'ArenaPrimaryChargedFireParams'
 		FireParams(2)=FireParams'ArenaPrimaryMaxFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(0)=FireParams'ArenaSecondaryFireParams_NoCharge'
+		AltFireParams(1)=FireParams'ArenaSecondaryFireParams'
+		AltFireParams(2)=FireParams'ArenaSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ArenaParams'
 

@@ -99,7 +99,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParams
-		ProjectileClass=Class'AY90Projectile'
+		ProjectileClass=Class'AY90WaveProjectile'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
 		Speed=85.000000
 		MaxSpeed=4500.000000
@@ -114,7 +114,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SkirthBow.SkrithBow-WaveFire',Volume=1.700000)
 		Recoil=0.0
 		Chaos=-1.0
-		Inaccuracy=(X=2000,Y=10)
+		Inaccuracy=(X=100,Y=10)
 		WarnTargetPct=0.500000	
 	End Object
 
@@ -123,6 +123,33 @@ defaultproperties
 		AmmoPerFire=10
 		BurstFireRateFactor=1.00	
 	FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParams'
+	End Object
+	
+	Begin Object Class=ProjectileEffectParams Name=RealisticSecondaryEffectParamsNoCharge
+		ProjectileClass=Class'AY90WaveProjectile'
+		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+		Speed=85.000000
+		MaxSpeed=4500.000000
+		AccelSpeed=70000.000000
+		Damage=20
+		DamageRadius=96.000000
+		MomentumTransfer=150.000000
+		HeadMult=2.5
+		LimbMult=0.5
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SkirthBow.SkrithBow-WaveFire',Volume=1.700000)
+		Recoil=0.0
+		Chaos=-1.0
+		Inaccuracy=(X=100,Y=10)
+		WarnTargetPct=0.500000	
+	End Object
+
+	Begin Object Class=FireParams Name=RealisticSecondaryFireParamsNoCharge
+		FireInterval=1.000000
+		AmmoPerFire=10
+		BurstFireRateFactor=1.00	
+	FireEffectParams(0)=ProjectileEffectParams'RealisticSecondaryEffectParamsNoCharge'
 	End Object
 		
 	//=================================================================
@@ -179,7 +206,7 @@ defaultproperties
 		FireParams(0)=FireParams'RealisticPrimaryFireParamsNoCharge'
 		FireParams(1)=FireParams'RealisticPrimaryFireParamsHalfCharge'
 		FireParams(2)=FireParams'RealisticPrimaryFireParamsMaxCharge'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		AltFireParams(0)=FireParams'RealisticSecondaryFireParamsNoCharge'
 		AltFireParams(1)=FireParams'RealisticSecondaryFireParams'
 		AltFireParams(2)=FireParams'RealisticSecondaryFireParams'
 	End Object

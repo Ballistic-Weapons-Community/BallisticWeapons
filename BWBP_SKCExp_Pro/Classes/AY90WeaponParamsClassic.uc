@@ -101,8 +101,35 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
-		ProjectileClass=Class'AY90Projectile'
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParamsMaxCharge
+		ProjectileClass=Class'AY90WaveProjectile'
+		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+		Speed=85.000000
+		MaxSpeed=4500.000000
+		AccelSpeed=70000.000000
+		Damage=60
+		DamageRadius=96.000000
+		MomentumTransfer=150.000000
+		HeadMult=2.5
+		LimbMult=0.5
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SkirthBow.SkrithBow-WaveFire',Volume=1.700000)
+		Recoil=0.0
+		Chaos=-1.0
+		Inaccuracy=(X=100,Y=10)
+		WarnTargetPct=0.500000	
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParamsMaxCharge
+		FireInterval=1.000000
+		AmmoPerFire=10
+		BurstFireRateFactor=1.00	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParamsMaxCharge'
+	End Object
+
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParamsHalfCharge
+		ProjectileClass=Class'AY90WaveProjectile'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
 		Speed=85.000000
 		MaxSpeed=4500.000000
@@ -117,15 +144,42 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SkirthBow.SkrithBow-WaveFire',Volume=1.700000)
 		Recoil=0.0
 		Chaos=-1.0
-		Inaccuracy=(X=2000,Y=10)
+		Inaccuracy=(X=100,Y=10)
 		WarnTargetPct=0.500000	
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParamsHalfCharge
 		FireInterval=1.000000
 		AmmoPerFire=10
 		BurstFireRateFactor=1.00	
-	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParamsHalfCharge'
+	End Object
+
+	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParamsNoCharge
+		ProjectileClass=Class'AY90WaveProjectile'
+		SpawnOffset=(X=10.000000,Y=10.000000,Z=-9.000000)
+		Speed=85.000000
+		MaxSpeed=4500.000000
+		AccelSpeed=70000.000000
+		Damage=20
+		DamageRadius=96.000000
+		MomentumTransfer=150.000000
+		HeadMult=2.5
+		LimbMult=0.5
+		RadiusFallOffType=RFO_Linear
+		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitter'
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SkirthBow.SkrithBow-WaveFire',Volume=1.700000)
+		Recoil=0.0
+		Chaos=-1.0
+		Inaccuracy=(X=100,Y=10)
+		WarnTargetPct=0.500000	
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParamsNoCharge
+		FireInterval=1.000000
+		AmmoPerFire=10
+		BurstFireRateFactor=1.00	
+	FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParamsNoCharge'
 	End Object
 		
 	//=================================================================
@@ -181,9 +235,9 @@ defaultproperties
 		FireParams(0)=FireParams'ClassicPrimaryFireParamsNoCharge'
 		FireParams(1)=FireParams'ClassicPrimaryFireParamsHalfCharge'
 		FireParams(2)=FireParams'ClassicPrimaryFireParamsMaxCharge'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-		AltFireParams(1)=FireParams'ClassicSecondaryFireParams'
-		AltFireParams(2)=FireParams'ClassicSecondaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParamsNoCharge'
+		AltFireParams(1)=FireParams'ClassicSecondaryFireParamsHalfCharge'
+		AltFireParams(2)=FireParams'ClassicSecondaryFireParamsMaxCharge'
 	End Object
 	Layouts(0)=WeaponParams'ClassicParams'
 
