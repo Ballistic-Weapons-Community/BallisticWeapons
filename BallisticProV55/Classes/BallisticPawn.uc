@@ -476,7 +476,10 @@ function CheckBob(float DeltaTime, vector Y)
 	local float OldBobTime;
 	local int m,n;
 
+    DeltaTime *= GroundSpeed / 360;
+
 	OldBobTime = BobTime;
+
 	Super.CheckBob(DeltaTime,Y);
 
 	if ( (Physics != PHYS_Walking) || (VSize(Velocity) < 10)
@@ -488,7 +491,7 @@ function CheckBob(float DeltaTime, vector Y)
 
 	if (m != n)
 		FootStepping(0);
-	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.35) )
+	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.5 * (360.0f / GroundSpeed)) )
 	{
 		LastFootStepTime = Level.TimeSeconds;
 		FootStepping(0);
@@ -503,11 +506,7 @@ simulated function FootStepping(int Side)
 	local vector HL,HN,Start,End,HitLocation,HitNormal;
 	local float SoundScale;
 	
-	if (bIsCrouched)
-		SoundScale = 0.35;
-	else if (GroundSpeed > default.GroundSpeed)
-		SoundScale = 1.35;
-	else SoundScale = 1;
+	SoundScale = GroundSpeed / default.GroundSpeed;
 
     SurfaceNum = 0;
 
@@ -1883,11 +1882,12 @@ simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
 
     else if (PlayerReplicationInfo.CharacterName ~= "Jakob")
 		rec = class'xUtil'.static.FindPlayerRecord("JakobB");
+	*/
 
 	// If you're using an advantage-conferring skin you're going to be as bright as the bloody Sun
+    // this check is fine - it won't break clients and I guarantee they won't even notice it
 	if (rec.DefaultName == "July")
 		AmbientGlow = 64;
-	*/
 
     Species = rec.Species;
 	RagdollOverride = rec.Ragdoll;
