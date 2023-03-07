@@ -11,7 +11,7 @@ simulated function vector GetFireSpread()
 	local float fX;
     local Rotator R;
 
-	if (BW.bScopeView || bNoRandomFire || class'BCReplicationInfo'.default.IsClassic() || class'BCReplicationInfo'.default.IsRealism())
+	if (BW.bScopeView || bNoRandomFire || class'BCReplicationInfo'.static.IsClassicOrRealism())
 		return super.GetFireSpread();
 
 	fX = frand();

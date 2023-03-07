@@ -30,7 +30,7 @@ simulated Event PreBeginPlay()
 {
 	super.PreBeginPlay();
 
-	if (CX61AssaultRifle(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_CX61Spectre';
 		TracerChance=1;

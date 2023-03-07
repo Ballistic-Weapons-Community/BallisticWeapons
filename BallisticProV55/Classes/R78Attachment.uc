@@ -11,7 +11,7 @@ class R78Attachment extends BallisticAttachment;
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (R78Rifle(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		ImpactManager=Class'BallisticProV55.IM_Bullet';
 	}

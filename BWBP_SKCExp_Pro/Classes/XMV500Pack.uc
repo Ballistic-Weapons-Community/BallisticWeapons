@@ -15,7 +15,7 @@ defaultproperties
      RelativeLocation=(X=15.000000,Y=7.000000)
      RelativeRotation=(Yaw=-16384,Roll=16384)
      DrawScale=0.230000
-     Skins(0)=Texture'BWBP_SKC_TexExp.XMV500.XMV500_BackPack'
-     Skins(1)=Texture'BWBP_SKC_TexExp.XMV500.XMV500_BackPack'
-     Skins(2)=Texture'BWBP_SKC_TexExp.XMV500.XMV500_BackPack'
+     Skins(0)=Texture'BWBP_Camos_Tex.XMVCamos.XMV500_BackPack'
+     Skins(1)=Texture'BWBP_Camos_Tex.XMVCamos.XMV500_BackPack'
+     Skins(2)=Texture'BWBP_Camos_Tex.XMVCamos.XMV500_BackPack'
 }

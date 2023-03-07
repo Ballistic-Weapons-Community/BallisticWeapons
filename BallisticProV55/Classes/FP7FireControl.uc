@@ -17,16 +17,16 @@ struct HitPawnInfo
 	var float HitTime;
 };
 
-var 	int				Ident;
-var() float			DamageRadius;			// Radius in which to immolate players
-var	bool			bHeld;					// This fire was detonated in hand. Use held messages
-var	Vector		GroundFireSpots[MAX_FIRE_SPOTS];	// Vectors sent to client to tell it where to spawn fires
+var 	int				        Ident;
+var() float			            DamageRadius;			// Radius in which to immolate players
+var	bool			            bHeld;					// This fire was detonated in hand. Use held messages
+var	Vector		                GroundFireSpots[MAX_FIRE_SPOTS];	// Vectors sent to client to tell it where to spawn fires
 var() class<BCImpactManager>	ImpactManager;	// Impact manager to spawn on final hit
-var	array<HitPawnInfo>	HitPawnData;
-var	float			Damage, BaseDamage;
-var   float			RepulsionForceMag;
-var array<FP7GroundFire>	Fires;
-var	bool 			bClientFiresSpawned;
+var	array<HitPawnInfo>	        HitPawnData;
+var	float			            Damage, BaseDamage;
+var   float			            RepulsionForceMag;
+var array<FP7GroundFire>	    Fires;
+var	bool 			            bClientFiresSpawned;
 
 replication
 {
@@ -136,7 +136,8 @@ simulated function Initialize()
 
 	// Spawn all the fires to set up an area of destruction
 	Start = Location+vect(0,0,8);
-	for(i=0;i<MAX_FIRE_SPOTS;i++)
+
+	for(i = 0; i < MAX_FIRE_SPOTS; i++)
 	{
 		End = VRand();
 		End.Z = Abs(End.Z);
@@ -247,7 +248,7 @@ defaultproperties
      bAlwaysRelevant=True
      RemoteRole=ROLE_SimulatedProxy
      AmbientSound=Sound'BW_Core_WeaponSound.FP7.FP7FireLoop'
-     LifeSpan=10.000000
+     LifeSpan=16.000000
      bFullVolume=True
      SoundVolume=255
      SoundRadius=256.000000

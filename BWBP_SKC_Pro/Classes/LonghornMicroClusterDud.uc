@@ -145,7 +145,7 @@ defaultproperties
 	 bApplyParams=False
      FlareClass=Class'BWBP_SKC_Pro.LonghornClusterFlare'
      DetonateOn=DT_None
-     DampenFactor=0.120000
+	 DampenFactor=0.05
      DampenFactorParallel=0.250000
      bAlignToVelocity=True
      DetonateDelay=1.250000

@@ -150,7 +150,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	else
 		Surf = int(HitMat.SurfaceType);
 		
-	if (Raygun(BW).BCRepClass.default.GameStyle != 0 && (Other == None || Other.bWorldGeometry))
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism() && (Other == None || Other.bWorldGeometry))
 		BW.TargetedHurtRadius(70, 386, class'DTRaygunChargedRadius', 50, HitLocation);
 
 	// Tell the attachment to spawn effects and so on

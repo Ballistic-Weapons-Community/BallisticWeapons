@@ -9,7 +9,7 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=TacticalFireEffectParams
         DecayRange=(Min=788,Max=1838)
         TraceRange=(Min=8000.000000,Max=9000.000000)
-        PenetrationEnergy=8.000000
+        PenetrationEnergy=16
         Damage=50.000000
         HeadMult=2.75
         LimbMult=0.67f
@@ -44,7 +44,7 @@ defaultproperties
     Begin Object Class=InstantEffectParams Name=TacticalAltFireEffectParams
         DecayRange=(Min=788,Max=1838)
         TraceRange=(Min=8000.000000,Max=9000.000000)
-        PenetrationEnergy=8.000000
+        PenetrationEnergy=16
         Damage=100.000000
         HeadMult=2.75
         LimbMult=0.67f

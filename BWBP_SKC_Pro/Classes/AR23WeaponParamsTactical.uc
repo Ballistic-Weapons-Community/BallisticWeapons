@@ -16,7 +16,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_AR23HR'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AR23HRHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AR23HR'
-		PenetrationEnergy=128.000000
+		PenetrationEnergy=64
 		PenetrateForce=100.000000
 		bPenetrate=True
 		PDamageFactor=0.8

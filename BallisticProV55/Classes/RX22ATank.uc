@@ -64,7 +64,9 @@ simulated event PostNetReceive()
 function TakeDamage(int Damage, Pawn InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType)
 {
 	local bool bFire;
-	if (Weapon.BCRepClass.default.GameStyle != 0)
+
+    // this isn't really realistic (unless the attack is fire-based), but I've added the dual check nonetheless
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		if (Role < ROLE_Authority)
 			return;

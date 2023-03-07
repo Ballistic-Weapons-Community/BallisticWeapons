@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class G28Thrown extends BallisticPineapple;
+class G28Thrown extends BallisticProPineapple;
 
 #exec OBJ LOAD FILE=BW_Core_WeaponSound.uax
 
@@ -61,23 +61,7 @@ event TakeDamage(int Damage, Pawn InstigatedBy, vector HitLocation, vector Momen
 	}
 	ExplodeFire(Location, vector(Rotation));
 }
-
 */
-
-simulated event KVelDropBelow()
-{
-	super.KVelDropBelow();
-
-	if (PATrail != None)
-		PATrail.Kill();
-}
-
-simulated event KImpact(actor other, vector pos, vector impactVel, vector impactNorm)
-{
-	super.KImpact(other, pos, impactVel, impactNorm);
-	if (PATrail!= None && VSize(impactVel) > 200)
-		PATrail.Kill();
-}
 
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
@@ -190,11 +174,11 @@ simulated function Tick(float DT)
 }
 */
 
-function InitPineapple(float PSpeed, float PDelay)
+function InitProPineapple(float PSpeed, float PDelay)
 {
 	Speed = PSpeed;
+    
 	DetonateDelay = PDelay;
-	NewSpeed = Speed;
 	NewDetonateDelay = DetonateDelay;
 
 	if (DetonateDelay <= 0)

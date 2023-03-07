@@ -14,6 +14,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AS50Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AS50Limb'
+        PenetrationEnergy=96
 		PenetrateForce=450
 		bPenetrate=True
 		PDamageFactor=0.800000

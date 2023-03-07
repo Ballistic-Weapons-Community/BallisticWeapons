@@ -15,6 +15,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSRXRifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSRXRifle'
+        PenetrationEnergy=48
 		PenetrateForce=120
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SRXFlashEmitter'

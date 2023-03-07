@@ -6,7 +6,7 @@
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2006 RuneStorm. All Rights Reserved.
 //=============================================================================
-class T10Thrown extends BallisticPineapple;
+class T10Thrown extends BallisticProPineapple;
 
 #exec OBJ LOAD FILE=BW_Core_WeaponSound.uax
 
@@ -31,21 +31,6 @@ simulated function DestroyEffects()
 		PATrail.Kill();
 }
 
-simulated event KVelDropBelow()
-{
-	super.KVelDropBelow();
-
-	if (PATrail != None)
-		PATrail.Kill();
-}
-
-simulated event KImpact(actor other, vector pos, vector impactVel, vector impactNorm)
-{
-	super.KImpact(other, pos, impactVel, impactNorm);
-	if (PATrail!= None && VSize(impactVel) > 200)
-		PATrail.Kill();
-}
-
 simulated function Explode(vector HitLocation, vector HitNormal)
 {
 	local T10CloudControl C;
@@ -53,6 +38,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 	if (bExploded)
 		return;
+
 	if ( Role == ROLE_Authority )
 	{
 		C = Spawn(class'T10CloudControl',self,,HitLocation-HitNormal*2);
@@ -62,6 +48,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 			C.InstigatorController = InstigatorController;
 		}
 	}
+
 	if (Level.NetMode != NM_DedicatedServer && TrailClass != None && Trail == None)
 	{
 		GetAxes(rot(16384,0,0),X,Y,Z);
@@ -74,10 +61,12 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		PlaySound(sound'BW_Core_WeaponSound.T10.T10-Ignite',, 0.7,, 128, 1.0, true);
 		AmbientSound = Sound'BW_Core_WeaponSound.T10.T10-toxinLoop';
 	}
+
 	bExploded=true;
 	LifeSpan = 8;
 	SetTimer(6.5,false);
 }
+
 simulated function Timer()
 {
 	super.Timer();
@@ -89,11 +78,11 @@ simulated function Timer()
 	}
 }
 
-function InitPineapple(float PSpeed, float PDelay)
+function InitProPineapple(float PSpeed, float PDelay)
 {
 	Speed = PSpeed;
+    
 	DetonateDelay = PDelay;
-	NewSpeed = Speed;
 	NewDetonateDelay = DetonateDelay;
 
 	if (DetonateDelay <= 0)

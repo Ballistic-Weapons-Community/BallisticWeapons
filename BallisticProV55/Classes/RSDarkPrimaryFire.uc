@@ -216,7 +216,7 @@ function DoFireEffect()
 {
 	Super.DoFireEffect();
 	
-	if (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.static.IsRealism())
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 		return;
 	
 	if (BW.CurrentWeaponMode == 0)

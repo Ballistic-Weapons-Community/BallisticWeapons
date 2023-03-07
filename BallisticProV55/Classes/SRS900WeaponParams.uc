@@ -21,7 +21,7 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.SRS900.SRS-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		FlashScaleFactor=0.500000
-		Recoil=240.000000
+		Recoil=320.000000
 		Chaos=0.070000
 		WarnTargetPct=0.200000
 	End Object

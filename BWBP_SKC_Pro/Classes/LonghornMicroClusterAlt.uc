@@ -171,7 +171,7 @@ defaultproperties
      ArmingDelay=0.100000
      DetonateOn=DT_ImpactTimed
      PlayerImpactType=PIT_Detonate
-     DampenFactor=0.120000
+	 DampenFactor=0.05
      DampenFactorParallel=0.250000
      bAlignToVelocity=True
      DetonateDelay=1.250000

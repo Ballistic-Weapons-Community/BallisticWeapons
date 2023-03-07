@@ -476,7 +476,10 @@ function CheckBob(float DeltaTime, vector Y)
 	local float OldBobTime;
 	local int m,n;
 
+    DeltaTime *= GroundSpeed / 360;
+
 	OldBobTime = BobTime;
+
 	Super.CheckBob(DeltaTime,Y);
 
 	if ( (Physics != PHYS_Walking) || (VSize(Velocity) < 10)
@@ -488,7 +491,7 @@ function CheckBob(float DeltaTime, vector Y)
 
 	if (m != n)
 		FootStepping(0);
-	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.35) )
+	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.5 * (360.0f / GroundSpeed)) )
 	{
 		LastFootStepTime = Level.TimeSeconds;
 		FootStepping(0);
@@ -503,11 +506,7 @@ simulated function FootStepping(int Side)
 	local vector HL,HN,Start,End,HitLocation,HitNormal;
 	local float SoundScale;
 	
-	if (bIsCrouched)
-		SoundScale = 0.35;
-	else if (GroundSpeed > default.GroundSpeed)
-		SoundScale = 1.35;
-	else SoundScale = 1;
+	SoundScale = GroundSpeed / default.GroundSpeed;
 
     SurfaceNum = 0;
 
@@ -1883,11 +1882,12 @@ simulated function Setup(xUtil.PlayerRecord rec, optional bool bLoadNow)
 
     else if (PlayerReplicationInfo.CharacterName ~= "Jakob")
 		rec = class'xUtil'.static.FindPlayerRecord("JakobB");
+	*/
 
 	// If you're using an advantage-conferring skin you're going to be as bright as the bloody Sun
+    // this check is fine - it won't break clients and I guarantee they won't even notice it
 	if (rec.DefaultName == "July")
 		AmbientGlow = 64;
-	*/
 
     Species = rec.Species;
 	RagdollOverride = rec.Ragdoll;
@@ -2363,7 +2363,7 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
     DodgeGroundSpeed = GroundSpeed;
 
     // arena allows increased dodge distance when sprint is on
-    if (class'BCReplicationInfo'.default.GameStyle != 0 && default.GroundSpeed < GroundSpeed)
+    if (!class'BCReplicationInfo'.static.IsArena() && default.GroundSpeed < GroundSpeed)
     {
         DodgeGroundSpeed = default.GroundSpeed;
     }
@@ -2631,7 +2631,7 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		if ( (Physics == PHYS_None) && (DrivenVehicle == None) )
 			SetMovementPhysics();
 		
-		if (!class'BCReplicationInfo'.static.IsClassic())) //Classic lets you take off into orbit
+		if (!class'BCReplicationInfo'.static.IsClassic()) // Classic lets you take off into orbit
 		{
 			if (Physics == PHYS_Walking && damageType.default.bExtraMomentumZ)
 				momentum.Z = FMax(momentum.Z, 0.4 * VSize(momentum));
@@ -2721,7 +2721,7 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		}
 		else
 		{
-			if (class'BCReplicationInfo'.static.IsClassic() || class'BCReplicationInfo'.static.IsRealism()) //Classic/Realism: Taking damage arrests movement
+			if (class'BCReplicationInfo'.static.IsArenaOrTactical())
 			{
 				if (class<BallisticDamageType>(damageType) != None && class<BallisticDamageType>(damageType).default.bNegatesMomentum)
 				{
@@ -2732,7 +2732,7 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 				else
 					AddVelocity( momentum );
 			}
-			else
+			else  //Classic/Realism: Taking damage arrests movement
 			{
 				if ( InstigatedBy != None )
 				{
@@ -2769,8 +2769,8 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 				Controller.NotifyTakeHit(instigatedBy, HitLocation, actualDamage, DamageType, Momentum);
 			if ( instigatedBy != None && instigatedBy != self )
 				LastHitBy = instigatedBy.Controller;
-            if (BallisticPlayer(Controller) != None)
-                DamageViewFlash(actualDamage);
+                
+            DamageViewFlash(actualDamage);
 		}
 		MakeNoise(1.0);
 }
@@ -2779,7 +2779,7 @@ function DamageViewFlash(int damage)
 {
     local int rnd;
 
-    if (damage == 0)
+    if (BallisticPlayer(Controller) == None || damage == 0)
         return;
 
     rnd = FClamp(damage / 2, 25, 50);
@@ -2867,53 +2867,57 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
 simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 {
+	
 	local Vector X, Y, Z, dir;
 	local float FSpeed, Control, NewSpeed, Drop, XSpeed, YSpeed, CosAngle, MaxStrafeSpeed, MaxBackSpeed;
 
-	//Scaling movement speed
-	if (Physics == PHYS_Walking)
+	if (class'BallisticReplicationInfo'.default.bUseSloth)
 	{
-		GetAxes(GetViewRotation(),X,Y,Z);
-		MaxStrafeSpeed = GroundSpeed * StrafeScale;
-		MaxBackSpeed = GroundSpeed * BackpedalScale;
-		XSpeed = Abs(X dot Velocity);
-		
-		if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
+		//Scaling movement speed
+		if (Physics == PHYS_Walking)
 		{
-			//limiting backspeed
-			dir = Normal(Velocity);
-			CosAngle = Abs(X dot dir);
-			Velocity = dir * (MaxBackSpeed / CosAngle);
-		}
-		
-		YSpeed = Abs(Y dot velocity);
-		if (YSpeed > MaxStrafeSpeed)
-		{
-			//limiting strafespeed
-			dir = Normal(Velocity);
-			CosAngle = Abs(Y dot dir);
-			Velocity = dir * (MaxStrafeSpeed / CosAngle);
-		}
+			GetAxes(GetViewRotation(),X,Y,Z);
+			MaxStrafeSpeed = GroundSpeed * StrafeScale;
+			MaxBackSpeed = GroundSpeed * BackpedalScale;
+			XSpeed = Abs(X dot Velocity);
+			
+			if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
+			{
+				//limiting backspeed
+				dir = Normal(Velocity);
+				CosAngle = Abs(X dot dir);
+				Velocity = dir * (MaxBackSpeed / CosAngle);
+			}
+			
+			YSpeed = Abs(Y dot velocity);
+			if (YSpeed > MaxStrafeSpeed)
+			{
+				//limiting strafespeed
+				dir = Normal(Velocity);
+				CosAngle = Abs(Y dot dir);
+				Velocity = dir * (MaxStrafeSpeed / CosAngle);
+			}
 
-		//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
-	}
-	 
-	if (Physics==PHYS_Walking)
-	{
-		FSpeed = Vsize(Velocity);
+			//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
+		}
 		 
-		if (VSize(Acceleration) < 1.00 && FSpeed > 1.00)
+		if (Physics==PHYS_Walking)
 		{
-			Control = FMin(100, FSpeed);
-				
-			Drop = Control * DeltaTime * MyFriction;
-			NewSpeed = FSpeed + drop;
-			NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
-			Velocity *= NewSpeed;
+			FSpeed = Vsize(Velocity);
+			 
+			if (VSize(Acceleration) < 1.00 && FSpeed > 1.00)
+			{
+				Control = FMin(100, FSpeed);
+					
+				Drop = Control * DeltaTime * MyFriction;
+				NewSpeed = FSpeed + drop;
+				NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
+				Velocity *= NewSpeed;
 
+			}
+			
+			OldMovementSpeed = Vsize(Velocity);
 		}
-		
-		OldMovementSpeed = Vsize(Velocity);
 	}
 }
 

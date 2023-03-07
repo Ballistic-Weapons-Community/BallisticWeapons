@@ -13,7 +13,7 @@ var() class<BCTraceEmitter>	AltTracerClass;		//Type of tracer to use for instant
 simulated Event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (AS50Rifle(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
 	{
 		ImpactManager=Class'IM_IncendiaryHMGBullet';
 	}

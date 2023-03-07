@@ -17,9 +17,9 @@ defaultproperties
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.XMV850.XMV850AmmoPiickup'
      DrawScale=0.350000
      PrePivot=(Z=9.000000)
-     Skins(0)=Texture'BWBP_SKC_TexExp.XMV500.XMV500_BackPack'
-     Skins(1)=Texture'BWBP_SKC_TexExp.XMV500.XMV500_BackPack'
-     Skins(2)=Texture'BWBP_SKC_TexExp.XMV500.XMV500_BackPack'
+     Skins(0)=Texture'BWBP_Camos_Tex.XMVCamos.XMV500_BackPack'
+     Skins(1)=Texture'BWBP_Camos_Tex.XMVCamos.XMV500_BackPack'
+     Skins(2)=Texture'BWBP_Camos_Tex.XMVCamos.XMV500_BackPack'
      CollisionRadius=8.000000
      CollisionHeight=5.500000
 }
