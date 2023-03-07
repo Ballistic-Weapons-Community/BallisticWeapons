@@ -2782,19 +2782,24 @@ function DamageViewFlash(int damage)
     if (BallisticPlayer(Controller) == None || damage == 0)
         return;
 
-    rnd = FClamp(damage / 2, 25, 50);
+    rnd = FClamp(damage, 25, 150);
 
 	if (ShieldStrength > 0)
     {
-        BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, ShieldFlashV);
+        BallisticPlayer(Controller).ClientFlash( 1 - (0.004 * rnd), ShieldFlashV);
     }
     else 
     {
-		BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, BloodFlashV);  
+		BallisticPlayer(Controller).ClientFlash( 1 - (0.004 * rnd), BloodFlashV);  
     }     
 }
 
-exec simulated function TestFlash(int damage)
+exec simulated function TestFlash(float scale)
+{
+    BallisticPlayer(Controller).ClientFlash(scale, BloodFlashV);  
+}
+
+exec simulated function TestDamageFlash(int damage)
 {
     DamageViewFlash(damage);
 }
