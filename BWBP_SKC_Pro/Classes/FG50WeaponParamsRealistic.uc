@@ -26,8 +26,8 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter_C'
 		FlashScaleFactor=0.800000
 		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AS50.FG50-HeavyFire',Volume=7.100000,Slot=SLOT_Interact,bNoOverride=False)
-		Recoil=1000.000000
-		Chaos=0.250000
+		Recoil=2500.000000
+		Chaos=1.000000
 		PushbackForce=100.000000
 		Inaccuracy=(X=12,Y=12)
 	End Object
@@ -88,12 +88,12 @@ defaultproperties
 
 	Begin Object Class=RecoilParams Name=RealisticRecoilParams
 		XCurve=(Points=(,(InVal=0.200000,OutVal=-0.100000),(InVal=0.600000,OutVal=0.200000),(InVal=1.000000,OutVal=0.300000)))
-		YCurve=(Points=(,(InVal=0.60000,OutVal=0.400000),(InVal=0.80000,OutVal=0.500000),(InVal=1.000000,OutVal=0.5000000)))
+		//YCurve=(Points=(,(InVal=0.60000,OutVal=0.400000),(InVal=0.80000,OutVal=0.500000),(InVal=1.000000,OutVal=0.5000000)))
 		YawFactor=0.200000
 		XRandFactor=0.350000
 		YRandFactor=0.350000
 		MaxRecoil=4000.000000
-		DeclineTime=1.250000
+		DeclineTime=2.000000
 		ViewBindFactor=0.300000
 		ADSViewBindFactor=0.300000
 		HipMultiplier=1.000000
@@ -106,7 +106,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=32,Max=3072)
+		AimSpread=(Min=32,Max=5072)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.800000
 		ViewBindFactor=0.100000
@@ -121,7 +121,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=AimParams Name=RealisticControlledAimParams
-		AimSpread=(Min=16,Max=2048)
+		AimSpread=(Min=16,Max=3048)
 		CrouchMultiplier=0.700000
 		ADSMultiplier=0.700000
 		ChaosDeclineTime=1.25
