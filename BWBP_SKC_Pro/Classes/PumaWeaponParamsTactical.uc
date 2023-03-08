@@ -7,11 +7,12 @@ defaultproperties
 	//=================================================================
 	
 	//Impact Det
-	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryImpactEffectParams
+	Begin Object Class=GrenadeEffectParams Name=TacticalPrimaryImpactEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectileFast'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=6500.000000
 		Damage=120
+        ImpactDamage=120
 		DamageRadius=180.000000
 		MomentumTransfer=30000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
@@ -31,11 +32,12 @@ defaultproperties
 	End Object
 
 	//Proximity Det
-	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryProxyEffectParams
+	Begin Object Class=GrenadeEffectParams Name=TacticalPrimaryProxyEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectile'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=4000.000000
 		Damage=105
+        ImpactDamage=105
 		DamageRadius=180.000000
 		MomentumTransfer=30000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
@@ -55,11 +57,12 @@ defaultproperties
 	End Object
 	
 	//Range Det
-	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryRangeEffectParams
+	Begin Object Class=GrenadeEffectParams Name=TacticalPrimaryRangeEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.PumaProjectileRShort'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=8500.000000
 		Damage=105
+        ImpactDamage=120
 		DamageRadius=180.000000
 		MomentumTransfer=30000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'

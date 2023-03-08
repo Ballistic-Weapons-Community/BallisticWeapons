@@ -6,7 +6,7 @@ defaultproperties
 	// PRIMARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
+	Begin Object Class=GrenadeEffectParams Name=TacticalPrimaryEffectParams
 		MuzzleFlashClass=Class'BallisticProV55.MRT6FlashEmitter'
 		FlashScaleFactor=1.500000
 		Recoil=1024.000000
@@ -19,6 +19,7 @@ defaultproperties
      	Speed=6000.000000
      	MaxSpeed=6000.000000
 		Damage=150
+        ImpactDamage=150
      	DamageRadius=450.000000
 		MomentumTransfer=100000.000000
 	End Object
@@ -35,7 +36,7 @@ defaultproperties
 	// SECONDARY FIRE
 	//=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
+	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams
 		Recoil=1024.000000
      	PushbackForce=800.000000
      	Chaos=1.000000
@@ -48,6 +49,7 @@ defaultproperties
      	Speed=5500.000000
     	MaxSpeed=5500.000000
     	Damage=45.000000
+        ImpactDamage=45
     	DamageRadius=256.000000
    	  	MomentumTransfer=25000.000000
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Longhorn.Longhorn-FireAlt',Volume=1.700000)

@@ -22,7 +22,7 @@ simulated function PostNetBeginPlay()
 {
 	local PlayerController PC;
 	
-    Acceleration = Normal(Velocity) * AccelSpeed;
+    Super.PostNetBeginPlay();
 	
 	if (Level.NetMode == NM_DedicatedServer)
 		return;

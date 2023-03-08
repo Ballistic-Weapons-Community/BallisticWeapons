@@ -59,7 +59,6 @@ simulated event PostBeginPlay()
 {
 	Super.PostBeginPlay();
 
-	VelocityDir = Rotation;
 	if (StartDelay > 0 && Role == ROLE_Authority || bAlwaysRelevant)
 	{
 		SetPhysics(PHYS_None);
@@ -68,15 +67,21 @@ simulated event PostBeginPlay()
 		SetTimer(StartDelay, false);
 		return;
 	}
-	InitProjectile();
 
+	InitProjectile();
+}
+
+simulated function SetInitialSpeed()
+{
+    VelocityDir = Rotation;
+    Acceleration = Normal(Velocity) * AccelSpeed;
 }
 
 simulated function PostNetBeginPlay()
 {
 	local PlayerController PC;
 	
-    Acceleration = Normal(Velocity) * AccelSpeed;
+    Super.PostNetBeginPlay();
 
 	if (Level.NetMode == NM_DedicatedServer)
 		return;
@@ -105,6 +110,21 @@ simulated function InitProjectile ()
     if (DetonateOn == DT_Timer)
         SetTimer(DetonateDelay, false);
     Super.InitProjectile();
+}
+
+simulated function ApplyParams(ProjectileEffectParams params)
+{
+    local GrenadeEffectParams gren_params;
+
+    Super.ApplyParams(params);
+
+    gren_params = GrenadeEffectParams(params);
+
+    if (gren_params == None)
+        return;
+
+    ImpactDamage = gren_params.ImpactDamage;
+    default.ImpactDamage = gren_params.ImpactDamage;
 }
 
 simulated event Timer()

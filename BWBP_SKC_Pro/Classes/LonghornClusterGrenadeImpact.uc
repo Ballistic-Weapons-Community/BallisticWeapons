@@ -10,9 +10,9 @@
 
 class LonghornClusterGrenadeImpact extends LonghornClusterGrenadeFlak; //Artillery
 
-simulated function InitProjectile ()
+simulated function SetInitialSpeed ()
 {
-    super.InitProjectile();
+    super.SetInitialSpeed();
 
 	Velocity.Z *= 0.50;
 	if (Velocity.Z < 0)

@@ -37,11 +37,12 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
+	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.F2000Grenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=3500.000000
 		Damage=80
+        ImpactDamage=80
 		DamageRadius=512.000000
 		MomentumTransfer=0.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'

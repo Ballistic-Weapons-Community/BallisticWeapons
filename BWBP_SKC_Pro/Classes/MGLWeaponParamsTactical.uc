@@ -6,11 +6,12 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
+	Begin Object Class=GrenadeEffectParams Name=TacticalPrimaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=4500.000000
 		Damage=200
+        ImpactDamage=200
 		DamageRadius=768.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		Recoil=768.000000
@@ -30,11 +31,12 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
+	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenadeRemote'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=4500.000000
 		Damage=200
+        ImpactDamage=200
 		DamageRadius=768.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		Recoil=768.000000

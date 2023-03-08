@@ -29,6 +29,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
+    
 	if (BCRepClass.static.IsRealism())
 	{
 		bLaserVariant=true;

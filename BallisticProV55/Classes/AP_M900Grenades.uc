@@ -8,10 +8,6 @@
 //=============================================================================
 class AP_M900Grenades extends BallisticAmmoPickup;
 
-simulated event PreBeginplay()
-{
-}
-
 defaultproperties
 {
      AmmoAmount=3

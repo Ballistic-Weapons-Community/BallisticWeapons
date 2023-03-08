@@ -73,7 +73,7 @@ simulated function ModeTick(float DeltaTime)
 
 	if (bIsFiring)
 	{
-        max_allowed_charge = Min(BW.MagAmmo * AMMO_TO_CHARGE_FACTOR, 1f);
+        max_allowed_charge = FMin(BW.MagAmmo * AMMO_TO_CHARGE_FACTOR, 1f);
 
 		//Scale charge
 		LightningRifle(BW).SetChargePower(FMin(max_allowed_charge, LightningRifle(BW).ChargePower + ChargeGainPerSecond * DeltaTime));
