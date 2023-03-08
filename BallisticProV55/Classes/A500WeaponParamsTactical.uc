@@ -10,8 +10,8 @@ defaultproperties
         ProjectileClass=Class'BallisticProV55.A500Projectile'
         MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'  
         Speed=5500.000000
-        MaxSpeed=6500.000000
-        AccelSpeed=3000.000000
+        AccelSpeed=100000.000000
+        MaxSpeed=14000.000000
         Damage=35.000000
         HeadMult=2
         LimbMult=0.8
@@ -83,7 +83,7 @@ defaultproperties
 
     Begin Object Class=AimParams Name=TacticalAimParams
         ADSMultiplier=0.35000
-        SprintOffSet=(Pitch=-3000,Yaw=-4000)
+        SprintOffset=(Pitch=-3072,Yaw=-4096)
         AimAdjustTime=0.600000
         AimSpread=(Min=64,Max=256)
         AimDamageThreshold=75.000000

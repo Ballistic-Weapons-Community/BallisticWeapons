@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPriStandardEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
-		Damage=80
+		Damage=100
         HeadMult=2.75
         LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
@@ -36,7 +36,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPriControlledEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
-		Damage=80
+		Damage=100
 		HeadMult=1.5f
 		LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
@@ -159,8 +159,8 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		PlayerSpeedFactor=0.850000
-		PlayerJumpFactor=0.850000
+		PlayerSpeedFactor=0.800000
+		PlayerJumpFactor=0.800000
 		InventorySize=20
 		SightMoveSpeedFactor=0.7
 		SightingTime=0.4

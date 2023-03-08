@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=12000.000000,Max=15000.000000)
         DecayRange=(Min=1350,Max=4000)
 		RangeAtten=0.67
-		Damage=36
+		Damage=34
         HeadMult=2.75
         LimbMult=0.67f
 		DamageType=Class'BWBP_OP_Pro.DT_CX61Chest'
@@ -29,7 +29,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.115000
+		FireInterval=0.100000
 		FireAnim="SightFire"
 		FireEndAnim=
 		AimedFireAnim="SightFire"
@@ -84,7 +84,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=64,Max=512)
 		ADSMultiplier=0.3500000
-		SprintOffset=(Pitch=-3000,Yaw=-4000)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimAdjustTime=0.400000
 		ChaosDeclineTime=1.250000
 		ChaosSpeedThreshold=300

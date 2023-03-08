@@ -10,7 +10,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=4500.000000
-		Damage=140
+		Damage=200
 		DamageRadius=768.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		Recoil=768.000000
@@ -34,7 +34,7 @@ defaultproperties
 		ProjectileClass=Class'BWBP_SKC_Pro.MGLGrenadeRemote'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=4500.000000
-		Damage=140
+		Damage=200
 		DamageRadius=768.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		Recoil=768.000000
@@ -69,7 +69,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=64,Max=1024)
-		SprintOffset=(Pitch=-3000,Yaw=-4096)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.000000
         ChaosSpeedThreshold=300
 	End Object

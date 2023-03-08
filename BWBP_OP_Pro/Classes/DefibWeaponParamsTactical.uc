@@ -8,7 +8,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=TacticalPrimaryEffectParams
         TraceRange=(Min=130,Max=130)
-        Damage=25
+        Damage=50
 		Fatigue=0.015000
         DamageType=Class'BWBP_OP_Pro.DTShockGauntlet'
         DamageTypeHead=Class'BWBP_OP_Pro.DTShockGauntlet'

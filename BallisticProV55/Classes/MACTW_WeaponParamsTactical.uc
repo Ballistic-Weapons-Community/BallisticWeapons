@@ -12,7 +12,7 @@ defaultproperties
 		Speed=9000.000000
 		MaxSpeed=9000.000000
 		Damage=160
-		DamageRadius=192.000000
+		DamageRadius=378.000000
 		MomentumTransfer=70000.000000
 		MuzzleFlashClass=Class'BallisticProV55.R78FlashEmitter'
 		FlashScaleFactor=2.500000

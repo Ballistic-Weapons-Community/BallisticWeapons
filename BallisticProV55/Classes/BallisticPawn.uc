@@ -2388,11 +2388,15 @@ function CalcSpeedUp(float SpeedFactor)
 	local float NewSpeed;
 	
 	NewSpeed = Instigator.default.GroundSpeed * SpeedFactor;
+
 	if (ComboSpeed(CurrentCombo) != None)
 		NewSpeed *= 1.4;
+
 	if (BallisticWeapon(Weapon) != None && (BallisticWeapon(Weapon).PlayerSpeedFactor <= 1 || SpeedFactor <= 1))
 		NewSpeed *= BallisticWeapon(Weapon).PlayerSpeedFactor;
+
 	GroundSpeed = NewSpeed;
+    
 	Inventory.OwnerEvent('SpeedChange');
 }
 

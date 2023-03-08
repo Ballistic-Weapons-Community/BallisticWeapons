@@ -105,10 +105,10 @@ function Initialize(Actor InitialTarget)
 	//Scale up max conductors, conduct radius, etc. according to ChargePower. Now uses default values, easier to balance
 
     // between 768 * 0.083 * 1 (63) and 768 * 0.083 * 16 (1019)
-	ConductRadius = default.ConductRadius * (1 + (SquareCoefficient * Square(ChargePower)));
+	ConductRadius = default.ConductRadius * (1 + (SquareCoefficient * Square(ChargePower * 4)));
 
     // between 3 * 2 (6) and 3 * 5 (15)
-	MaxConductors = default.MaxConductors * (1 + ChargePower);
+	MaxConductors = default.MaxConductors * (1 + (4 * ChargePower));
 
 	if (bIsCombo)	//if firing off a lightning projectile
 	{
@@ -284,7 +284,7 @@ function Propagate()
 //============================================================
 final function float CalcDecayMult()
 {
-    return 0.5f /* base power */ + ChargePower * 0.5f /* coeff */ * 0.17f /* max additional power*/;
+    return 0.5f /* base power */ + ChargePower * 2f /* coeff */ * 0.17f /* max additional power*/;
 }
 
 final function int CalcDamageForIndex(int index)

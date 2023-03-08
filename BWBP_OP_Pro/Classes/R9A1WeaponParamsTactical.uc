@@ -9,7 +9,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
-		Damage=60
+		Damage=45
         HeadMult=2.5
         LimbMult=0.67f
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -37,7 +37,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalFreezeEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		RangeAtten=0.75
-		Damage=45
+		Damage=40
         HeadMult=2.5
         LimbMult=0.67f
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -110,7 +110,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=64,Max=768)
-		SprintOffset=(Pitch=-1000,Yaw=-2048)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimAdjustTime=0.600000
 		ChaosSpeedThreshold=300
 		ADSMultiplier=0.5

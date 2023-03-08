@@ -38,9 +38,9 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.LS14Rocket'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-		Speed=750.000000
-		MaxSpeed=9000.000000
-		AccelSpeed=6750.000000
+		Speed=5500.000000
+		MaxSpeed=7500.000000
+		AccelSpeed=60000.000000
 		Damage=105
 		DamageRadius=384.000000
 		MomentumTransfer=50000.000000
@@ -53,7 +53,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-		FireInterval=0.600000
+		FireInterval=0.7500000
 		AmmoPerFire=0
 		PreFireAnim="GrenadePrepFire"
 		FireAnim="RLFire"	
@@ -81,8 +81,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=64,Max=512)
         ADSMultiplier=0.5
-		SprintOffset=(Pitch=-1000,Yaw=-2048)
-		JumpOffset=(Pitch=-6000,Yaw=2000)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.0
 		ChaosDeclineDelay=0.5
         ChaosSpeedThreshold=300

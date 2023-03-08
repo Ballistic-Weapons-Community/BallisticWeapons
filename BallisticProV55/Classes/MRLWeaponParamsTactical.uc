@@ -12,8 +12,8 @@ defaultproperties
 		Speed=4500.000000
 		MaxSpeed=25000.000000
 		AccelSpeed=10000.000000
-		Damage=35.000000
-		DamageRadius=420.000000
+		Damage=75.000000
+		DamageRadius=378.000000
 		MomentumTransfer=20000.000000
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.MRLFlashEmitter'
@@ -25,7 +25,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.110000
+		FireInterval=0.135000
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'TacticalPrimaryEffectParams'
 	End Object
@@ -40,8 +40,8 @@ defaultproperties
 		Speed=4500.000000
 		MaxSpeed=25000.000000
 		AccelSpeed=10000.000000
-		Damage=35.000000
-		DamageRadius=420.000000
+		Damage=75.000000
+		DamageRadius=378.000000
 		MomentumTransfer=20000.000000
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.MRLFlashEmitter'
@@ -53,7 +53,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-		FireInterval=0.080000
+		FireInterval=0.100000
 		FireEndAnim=	
 	FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams'
 	End Object
@@ -91,7 +91,7 @@ defaultproperties
 		ViewPivot=(Pitch=1024,Yaw=-512,Roll=1024)
 		PlayerSpeedFactor=0.8
         DisplaceDurationMult=1.4
-		SightingTime=0.65
+		SightingTime=0.45
 		MagAmmo=36
         InventorySize=35
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

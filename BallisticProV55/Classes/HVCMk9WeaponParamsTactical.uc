@@ -7,9 +7,9 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
-		Damage=10
-		HeadMult=1f
-		LimbMult=1f
+		Damage=25
+		HeadMult=2.25f
+		LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DT_HVCLightning'
 		DamageTypeHead=Class'BallisticProV55.DT_HVCLightning'
 		DamageTypeArm=Class'BallisticProV55.DT_HVCLightning'
@@ -65,7 +65,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=TacticalAimParams
-		SprintOffset=(Pitch=-500,Yaw=-1024)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimAdjustTime=0.400000
 		AimSpread=(Min=2,Max=2)
 		ChaosSpeedThreshold=300

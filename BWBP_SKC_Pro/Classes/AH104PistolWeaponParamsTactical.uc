@@ -5,8 +5,6 @@ defaultproperties
    //=================================================================
     // PRIMARY FIRE
     //=================================================================	
-	
-	
 		Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 			DecayRange=(Min=1575,Max=2560)
 			PenetrationEnergy=48 

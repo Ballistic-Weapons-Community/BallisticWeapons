@@ -9,7 +9,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
 		Damage=90
-        HeadMult=2.25
+        HeadMult=2.5
         LimbMult=0.67f
 		DamageType=Class'DTBX85Bolt'
 		DamageTypeHead=Class'DTBX85BoltHead'
