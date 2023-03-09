@@ -9,7 +9,7 @@ defaultproperties
 	
 	Begin Object Class=MeleeEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=130.000000,Max=130.000000)
-		Damage=35.0
+		Damage=55.0
 		HeadMult=1.0
 		LimbMult=1.0
 		DamageType=Class'BallisticProV55.DTX3Knife'
@@ -37,7 +37,7 @@ defaultproperties
 	//Projectile
 	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryProjEffectParams
 		Speed=3000
-		Damage=40.0
+		Damage=55.0
 		HeadMult=2.5
 		LimbMult=0.6
 		SpreadMode=FSM_Rectangle
@@ -62,7 +62,7 @@ defaultproperties
 	
 	Begin Object Class=MeleeEffectParams Name=TacticalSecondaryEffectParams
 		TraceRange=(Min=130.000000,Max=130.000000)
-		Damage=50.0
+		Damage=75.0
 		HeadMult=1.5
 		LimbMult=0.5
 		DamageType=Class'BallisticProV55.DTX3Knife'
@@ -106,7 +106,7 @@ defaultproperties
 
     Begin Object Class=AimParams Name=UniversalAimParams
         ViewBindFactor=0.00
-        SprintOffSet=(Pitch=-3000,Yaw=-4000)
+        SprintOffset=(Pitch=-3072,Yaw=-4096)
         AimSpread=(Min=0,Max=0)
         ChaosDeclineTime=0.320000
     End Object

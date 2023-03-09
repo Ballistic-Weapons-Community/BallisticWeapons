@@ -110,8 +110,6 @@ var() float				TimeBetweenImpacts;	// Minimum time between impact mark spawning
 var   vector			LastImpactNormal;	// Normal of last impact
 var   vector			LastImpactLocation;	// Location of last impact
 var   BCSprintControl   Sprinter;
-// -------------------------------------------------------
-var   vector            BloodFlashV, ShieldFlashV;
 
 // New Bw style DeRes vars -------------------------------
 var Projector			NewDeResDecal;		// Projector used to great symbol decal on teh floor under the corpse
@@ -2388,11 +2386,15 @@ function CalcSpeedUp(float SpeedFactor)
 	local float NewSpeed;
 	
 	NewSpeed = Instigator.default.GroundSpeed * SpeedFactor;
+
 	if (ComboSpeed(CurrentCombo) != None)
 		NewSpeed *= 1.4;
+
 	if (BallisticWeapon(Weapon) != None && (BallisticWeapon(Weapon).PlayerSpeedFactor <= 1 || SpeedFactor <= 1))
 		NewSpeed *= BallisticWeapon(Weapon).PlayerSpeedFactor;
+
 	GroundSpeed = NewSpeed;
+    
 	Inventory.OwnerEvent('SpeedChange');
 }
 
@@ -2631,7 +2633,7 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		if ( (Physics == PHYS_None) && (DrivenVehicle == None) )
 			SetMovementPhysics();
 		
-		if (!class'BCReplicationInfo'.static.IsClassic()) // Classic lets you take off into orbit
+		if (true /*!class'BCReplicationInfo'.static.IsClassic()*/) // Classic lets you take off into orbit
 		{
 			if (Physics == PHYS_Walking && damageType.default.bExtraMomentumZ)
 				momentum.Z = FMax(momentum.Z, 0.4 * VSize(momentum));
@@ -2721,8 +2723,8 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		}
 		else
 		{
-			if (class'BCReplicationInfo'.static.IsArenaOrTactical())
-			{
+			//if (class'BCReplicationInfo'.static.IsArenaOrTactical())
+			//{
 				if (class<BallisticDamageType>(damageType) != None && class<BallisticDamageType>(damageType).default.bNegatesMomentum)
 				{
 					HitLocationMatchZ = Velocity;
@@ -2731,8 +2733,8 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 				}
 				else
 					AddVelocity( momentum );
-			}
-			else  //Classic/Realism: Taking damage arrests movement
+			//}
+			/*else  //Classic/Realism: Taking damage arrests movement
 			{
 				if ( InstigatedBy != None )
 				{
@@ -2762,41 +2764,15 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 				Momentum = Momentum / Mass;
 				AddVelocity( Momentum );
 				bBounce = true;
-			}
+			}*/
 			if (VSize(Momentum) > 50000)
 				bPendingNegation=True;
 			if ( Controller != None )
 				Controller.NotifyTakeHit(instigatedBy, HitLocation, actualDamage, DamageType, Momentum);
 			if ( instigatedBy != None && instigatedBy != self )
 				LastHitBy = instigatedBy.Controller;
-                
-            DamageViewFlash(actualDamage);
 		}
 		MakeNoise(1.0);
-}
-
-function DamageViewFlash(int damage)
-{
-    local int rnd;
-
-    if (BallisticPlayer(Controller) == None || damage == 0)
-        return;
-
-    rnd = FClamp(damage / 2, 25, 50);
-
-	if (ShieldStrength > 0)
-    {
-        BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, ShieldFlashV);
-    }
-    else 
-    {
-		BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, BloodFlashV);  
-    }     
-}
-
-exec simulated function TestFlash(int damage)
-{
-    DamageViewFlash(damage);
 }
 
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
@@ -2949,9 +2925,6 @@ defaultproperties
      Fades(14)=Texture'BW_Core_WeaponTex.Icons.stealth_120'
      Fades(15)=Texture'BW_Core_WeaponTex.Icons.stealth_128'
      UDamageSound=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
-
-	 BloodFlashV=(X=1000,Y=250,Z=250)
-     ShieldFlashV=(X=750,Y=500,Z=350)
 
      FootstepVolume=0.350000
      FootstepRadius=400.000000

@@ -14,7 +14,7 @@ defaultproperties
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		MaxHits=14 // inflict maximum of 156 damage to a single target
-		Damage=12
+		Damage=13
         HeadMult=2
         LimbMult=0.67f
 		PushbackForce=100.000000
@@ -46,9 +46,8 @@ defaultproperties
 		TraceCount=1
 	    TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
-		MaxHits=14 // inflict maximum of 156 damage to a single target
-		Damage=80
-        HeadMult=2
+		Damage=70
+        HeadMult=2.25f
         LimbMult=0.67f
 		PushbackForce=250.000000
 		DamageType=Class'BWBP_SKC_Pro.DTCoachSlug'
@@ -107,7 +106,7 @@ defaultproperties
 		ReloadAnimRate=1.500000
 		SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
 		ViewOffset=(X=-10.000000,Y=20.000000,Z=-30.000000)
-		InventorySize=11
+		InventorySize=18
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.2
 		DisplaceDurationMult=1

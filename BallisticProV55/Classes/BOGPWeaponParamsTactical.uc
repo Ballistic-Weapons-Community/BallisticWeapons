@@ -6,12 +6,15 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 
-    Begin Object Class=ProjectileEffectParams Name=TacticalGrenadeEffectParams
+    Begin Object Class=GrenadeEffectParams Name=TacticalGrenadeEffectParams
         ProjectileClass=Class'BallisticProV55.BOGPGrenade'
         SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
         MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-        Speed=3500.000000
-        Damage=120.000000
+        Speed=2500.000000
+        MaxSpeed=2500.000000
+        AccelSpeed=0
+        Damage=150.000000
+        ImpactDamage=50
         DamageRadius=512.000000
         Chaos=0.700000
         Inaccuracy=(X=64,Y=64)
@@ -28,13 +31,14 @@ defaultproperties
         bCockAfterFire=True
     End Object 
 
-    Begin Object Class=ProjectileEffectParams Name=TacticalFlareEffectParams
+    Begin Object Class=GrenadeEffectParams Name=TacticalFlareEffectParams
         ProjectileClass=Class'BallisticProV55.BOGPFlare'
         SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
         Speed=5500.000000
-        MaxSpeed=7500.000000
+        MaxSpeed=14000.000000
         AccelSpeed=100000.000000
         Damage=40.000000
+        ImpactDamage=40
         DamageRadius=64.000000
         MomentumTransfer=0.000000
         MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
@@ -100,7 +104,7 @@ defaultproperties
         DisplaceDurationMult=0.75
         MagAmmo=1
         SightingTime=0.2
-        InventorySize=20
+        InventorySize=12
 		SightPivot=(Pitch=300)
 		SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

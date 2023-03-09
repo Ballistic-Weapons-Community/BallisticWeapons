@@ -12,13 +12,13 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=TacticalProjEffectParams
     	ProjectileClass=Class'BallisticProV55.A42Projectile'
         SpawnOffset=(X=10.000000,Y=10.000000,Z=-7.000000)
+        Speed=4000.000000
+        MaxSpeed=10000.000000
+        AccelSpeed=60000.000000
         Damage=45.000000
         HeadMult=2.25
         LimbMult=0.67
-        Speed=3000.000000
-        MaxSpeed=4500.000000
         DamageRadius=48.000000
-        AccelSpeed=60000.000000
         MaxDamageGainFactor=0.35
         DamageGainStartTime=0.05
         DamageGainEndTime=0.25
@@ -31,7 +31,7 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=TacticalProjFireParams
-        FireInterval=0.16
+        FireInterval=0.155
         FireEndAnim=
         FireEffectParams(0)=ProjectileEffectParams'TacticalProjEffectParams'
     End Object

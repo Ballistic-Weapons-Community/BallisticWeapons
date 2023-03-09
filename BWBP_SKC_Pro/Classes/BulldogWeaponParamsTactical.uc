@@ -41,12 +41,13 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
+	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.BulldogRocket'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=7000.000000
 		MaxSpeed=7000.000000
 		Damage=110
+        ImpactDamage=110
 		PushbackForce=100.000000
 		DamageRadius=512.000000
 		MomentumTransfer=60000.000000
@@ -85,7 +86,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=96,Max=1024)
 		ADSMultiplier=0.50000
-		SprintOffset=(Pitch=-1000,Yaw=-2048)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
         JumpOffset=(Pitch=-6000,Yaw=-1500)
         ChaosSpeedThreshold=300
 		ChaosDeclineTime=1.600000

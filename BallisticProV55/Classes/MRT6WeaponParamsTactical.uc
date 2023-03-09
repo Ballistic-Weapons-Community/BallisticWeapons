@@ -10,10 +10,10 @@ defaultproperties
         TraceRange=(Min=2048.000000,Max=2048.000000)
         DecayRange=(Min=500,Max=2000)
         RangeAtten=0.2
-        TraceCount=14
+        TraceCount=20
         TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
         ImpactManager=Class'BallisticProV55.IM_Shell'
-        Damage=10
+        Damage=9
         HeadMult=2
         LimbMult=0.67f
         DamageType=Class'BallisticProV55.DTMRT6Shotgun'
@@ -45,10 +45,10 @@ defaultproperties
         TraceRange=(Min=5000.000000,Max=5000.000000)
         DecayRange=(Min=500,Max=2000)
         RangeAtten=0.2
-        TraceCount=7
+        TraceCount=10
         TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
         ImpactManager=Class'BallisticProV55.IM_Shell'
-        Damage=10
+        Damage=9
 		PushbackForce=600.000000
         DamageType=Class'BallisticProV55.DTMRT6Shotgun'
         DamageTypeHead=Class'BallisticProV55.DTMRT6ShotgunHead'

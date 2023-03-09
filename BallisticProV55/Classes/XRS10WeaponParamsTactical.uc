@@ -13,7 +13,7 @@ defaultproperties
      	PenetrationEnergy=8.000000
 		PenetrateForce=135
 		bPenetrate=True
-     	Damage=26.000000
+     	Damage=26
         HeadMult=2.75
         LimbMult=0.67f
      	DamageType=Class'BallisticProV55.DTXRS10SMG'
@@ -69,7 +69,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
     	AimSpread=(Min=64,Max=256)
-		SprintOffSet=(Pitch=-3000,Yaw=-4000)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimAdjustTime=0.450000
 		ADSMultiplier=0.5
         ChaosSpeedThreshold=300

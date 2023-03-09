@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=120
+		Damage=150
         HeadMult=2
         LimbMult=0.85
 		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'
@@ -21,7 +21,7 @@ defaultproperties
 		PushbackForce=255.000000
 		WallPDamageFactor=0.850000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		Recoil=450.000000
+		Recoil=1024.000000
 		Chaos=1.000000
 		BotRefireRate=0.5
 		WarnTargetPct=0.4
@@ -42,7 +42,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
-		Damage=60
+		Damage=90
         HeadMult=2.75
         LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DT_AS50Torso'
@@ -51,7 +51,7 @@ defaultproperties
 		PDamageFactor=0.000000
 		WallPDamageFactor=0.850000
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		Recoil=768.000000
+		Recoil=1024.000000
 		Chaos=1.000000
 		BotRefireRate=0.50000
 		WarnTargetPct=0.40000
@@ -59,7 +59,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-		FireInterval=0.350000
+		FireInterval=0.80000
 		FireAnim="CFire"
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'TacticalSecondaryEffectParams'
@@ -104,12 +104,12 @@ defaultproperties
 		ReloadAnimRate=1.250000
 		SightOffset=(X=-5.000000,Y=25.000000,Z=10.300000)
 		ViewOffset=(X=5.000000,Y=-7.000000,Z=-8.000000)
-		PlayerSpeedFactor=0.90000
+		PlayerSpeedFactor=0.800000
         DisplaceDurationMult=1.25
 		InventorySize=24
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.45
-		MagAmmo=8
+		MagAmmo=6
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

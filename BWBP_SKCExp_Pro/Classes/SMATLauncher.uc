@@ -46,6 +46,7 @@ simulated function bool PutDown()
 	Instigator.SoundPitch = default.SoundPitch;
 	Instigator.SoundRadius = default.SoundRadius;
 	Instigator.bFullVolume = false;
+	return true;
 }
 
 simulated event Tick (float DT)

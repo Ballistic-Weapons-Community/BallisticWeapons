@@ -10,10 +10,10 @@ defaultproperties
 		TraceRange=(Min=2048.000000,Max=2048.000000)
         DecayRange=(Min=500,Max=2000)
 		RangeAtten=0.2
-		TraceCount=8
+		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
-		Damage=13
+		Damage=15
         HeadMult=2
         LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DTMRS138Shotgun'
@@ -44,14 +44,14 @@ defaultproperties
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=12800.000000
 		MaxSpeed=12800.000000
-		Damage=5
+		Damage=20
 		BotRefireRate=0.3
 		WarnTargetPct=0.5	
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.Tazer.BloodhoundTazerFire',Volume=2.250000)
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-		FireInterval=0.900000
+		FireInterval=0.750000
 		AmmoPerFire=0
 		PreFireAnim=
 		FireAnim="TazerStart"	
@@ -82,7 +82,7 @@ defaultproperties
 		ChaosSpeedThreshold=300
 		ChaosDeclineTime=0.750000
 		AimSpread=(Min=0,Max=0)
-		SprintOffset=(Pitch=-1000,Yaw=-2048)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 	End Object
 
 	//=================================================================

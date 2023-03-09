@@ -12,10 +12,9 @@ var() Sound FlySound;
 
 var int ImpactDamage;
 
-simulated function PreBeginPlay()
+simulated function InitParams()
 {
     local BallisticWeapon BW;
-    Super(Projectile).PreBeginPlay();
 
     if (Instigator == None)
         return;
@@ -31,7 +30,9 @@ simulated function PreBeginPlay()
 simulated function PostBeginPlay()
 {
 	SetTimer(0.15, false);
+
 	super.PostBeginPlay();
+    
 	if (FastTrace(Location + vector(rotation) * 3000, Location))
 		PlaySound(FlySound, SLOT_Interact, 1.0, , 512, , false);
 }

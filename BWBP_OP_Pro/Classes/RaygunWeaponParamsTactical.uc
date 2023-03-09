@@ -40,7 +40,7 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
-		Damage=10
+		Damage=70
 		DamageType=Class'BWBP_OP_Pro.DTRaygunCharged'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTRaygunCharged'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTRaygunCharged'
@@ -84,7 +84,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=1
         AimSpread=(Min=64,Max=378)
-		SprintOffset=(Pitch=-3000,Yaw=-4000)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimAdjustTime=0.600000
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300

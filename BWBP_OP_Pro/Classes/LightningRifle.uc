@@ -1,11 +1,11 @@
 class LightningRifle extends BallisticWeapon;
 
-var float		ChargePower, ChargeIndex, MaxCharge;	//Charge power of secondary fire - affects damage, ammo usage and conductivity
+var float		            ChargePower;	//Charge power of secondary fire - affects damage, ammo usage and conductivity. Max is 1
 
-var LightningProjectile ComboTarget;    // used by AI
-var bool            bRegisterTarget;
-var bool            bWaitForCombo;
-var vector          ComboStart;
+var LightningProjectile     ComboTarget;    // used by AI
+var bool                    bRegisterTarget;
+var bool                    bWaitForCombo;
+var vector                  ComboStart;
 
 struct RevInfo
 {
@@ -20,14 +20,14 @@ simulated function PostNetBeginPlay()
 
 simulated function float ChargeBar()
 {
-	return ChargePower / MaxCharge;
+	return ChargePower;
 }
 
 simulated function SetChargePower(float NewChargePower)
 {
 	ChargePower = NewChargePower;
-	ChargeIndex = int(NewChargePower);
 }
+
 // AI Interface =====
 
 function SetComboTarget(LightningProjectile L)
@@ -181,7 +181,6 @@ function float SuggestDefenseStyle()	{	return 0.9;	}
 
 defaultproperties
 {
-    MaxCharge=2
     ZoomInAnim="ZoomIn"
     ScopeViewTex=Texture'BWBP_OP_Tex.Arc.ARCRifleScope'
     ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
@@ -216,6 +215,9 @@ defaultproperties
     GunLength=60.000000
     BobDamping=0.800000
     ParamsClasses(0)=Class'LightningWeaponParams'
+    ParamsClasses(1)=Class'LightningWeaponParams'
+    ParamsClasses(2)=Class'LightningWeaponParamsTactical'
+    ParamsClasses(3)=Class'LightningWeaponParamsTactical'
     FireModeClass(0)=Class'BWBP_OP_Pro.LightningPrimaryFire'
     FireModeClass(1)=Class'BWBP_OP_Pro.LightningSecondaryFire'
     PutDownTime=0.700000

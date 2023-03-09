@@ -40,22 +40,18 @@ defaultproperties
 		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
-		
-	//=================================================================
-	// SECONDARY FIRE
-	//=================================================================	
-	
-	Begin Object Class=InstantEffectParams Name=ClassicSecondaryEffectParams
+
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryIceEffectParams
 		TraceRange=(Min=12000.000000,Max=15000.000000)
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.200000
-		Damage=14.000000
+		Damage=25.000000
 		HeadMult=2.0
 		LimbMult=1.0
-		DamageType=Class'BallisticProV55.DTXK2Freeze'
-		DamageTypeHead=Class'BallisticProV55.DTXK2Freeze'
-		DamageTypeArm=Class'BallisticProV55.DTXK2Freeze'
+		DamageType=Class'BWBP_APC_Pro.DTM575MG'
+		DamageTypeHead=Class'BWBP_APC_Pro.DTM575MGHead'
+		DamageTypeArm=Class'BWBP_APC_Pro.DTM575MG'
 		PenetrationEnergy=32.000000
 		PenetrateForce=150
 		bPenetrate=True
@@ -70,12 +66,18 @@ defaultproperties
 		Inaccuracy=(X=16,Y=16)
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicSecondaryFireParams
-		FireInterval=0.090000
+	Begin Object Class=FireParams Name=ClassicPrimaryIceFireParams
+		FireInterval=0.108000
 		BurstFireRateFactor=1.00
 		AimedFireAnim="SightFire"	
-	FireEffectParams(0)=InstantEffectParams'ClassicSecondaryEffectParams'
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryIceEffectParams'
 	End Object
+		
+	//=================================================================
+	// SECONDARY FIRE
+	//=================================================================	
+	
+
 		
 	//=================================================================
 	// RECOIL
@@ -128,7 +130,10 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
+		FireParams(1)=FireParams'ClassicPrimaryFireParams'
+		FireParams(2)=FireParams'ClassicPrimaryFireParams'
+		FireParams(3)=FireParams'ClassicPrimaryFireParams'
+		FireParams(4)=FireParams'ClassicPrimaryIceFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams-Jungle

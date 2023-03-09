@@ -310,8 +310,8 @@ defaultproperties
 	Priority=19
 	HudColor=(G=50)
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-	InventoryGroup=8
-	GroupOffset=5
+	InventoryGroup=2
+	GroupOffset=2
 	PickupClass=Class'BallisticProV55.BOGPPickup'
 	PlayerViewOffset=(X=5.000000,Y=6.000000,Z=-7.000000)
 	AttachmentClass=Class'BallisticProV55.BOGPAttachment'

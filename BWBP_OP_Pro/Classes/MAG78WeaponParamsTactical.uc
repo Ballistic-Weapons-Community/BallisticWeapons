@@ -8,7 +8,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=TacticalPrimaryEffectParams
         TraceRange=(Min=175.000000,Max=175.000000)
-        Damage=80
+        Damage=120
 		Fatigue=0.064000
         DamageType=Class'BWBP_OP_Pro.DT_MAGSAWStab'
         DamageTypeHead=Class'BWBP_OP_Pro.DT_MAGSAWStabHead'
@@ -31,7 +31,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=TacticalSecondaryEffectParams
         TraceRange=(Min=160.000000,Max=160.000000)
-        Damage=20
+        Damage=30
         DamageType=Class'DT_MAGSAWStab'
         DamageTypeHead=Class'DT_MAGSAWStabHead'
         DamageTypeArm=Class'DT_MAGSAWStab'

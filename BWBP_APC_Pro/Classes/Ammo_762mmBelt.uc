@@ -1,20 +1,20 @@
 //=============================================================================
-// Ammo_556mmBelt.
+// Ammo_762mmBelt.
 //
-// 5.56mm Rounds on belts for machineguns.
+// 7.62mm Rounds on belts for machineguns.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
-class Ammo_556mmBelt extends BallisticAmmo;
+class Ammo_762mmBelt extends BallisticAmmo;
 
 defaultproperties
 {
-     MaxAmmo=170
-     InitialAmount=85
+     MaxAmmo=150
+     InitialAmount=50
      IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIconsFlashing'
      PickupClass=Class'BWBP_APC_Pro.AP_M575Belt'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIconPage'
      IconCoords=(X1=256,X2=319,Y2=63)
-     ItemName="5.56mm Guardian Belt Ammo"
+     ItemName="7.62mm Belt Ammo"
 }

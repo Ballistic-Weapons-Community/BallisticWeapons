@@ -18,7 +18,7 @@ defaultproperties
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
 		PenetrationEnergy=72.000000
-		PenetrateForce=200
+		PenetrateForce=350
 		bPenetrate=True
 		PDamageFactor=0.800000
 		WallPDamageFactor=0.800000
@@ -47,7 +47,9 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
-		PenetrateForce=150
+		PenetrationEnergy=72.000000
+		PenetrateForce=350
+		bPenetrate=True
 		PDamageFactor=0.800000
 		WallPDamageFactor=0.800000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.FG50FlashEmitter_C'

@@ -133,22 +133,6 @@ replication
 		TearOffHitNormal;
 }
 
-simulated function PreBeginPlay()
-{
-    local BallisticWeapon BW;
-    Super.PreBeginPlay();
-
-    if (Instigator == None)
-        return;
-
-    BW = BallisticWeapon(Instigator.Weapon);
-
-    if (BW == None)
-        return;
-
-    BW.default.ParamsClasses[BW.GameStyleIndex].static.SetProjectileParams(BW, self);
-}
-
 simulated function ApplyParams(ProjectileEffectParams params)
 {
     /*if (Role != ROLE_Authority)
@@ -203,17 +187,27 @@ simulated event TornOff()
 	Explode(Location, TearOffHitNormal);
 }
 
-//LinkGun version
-simulated function PostBeginPlay()
+simulated function InitParams()
+{    
+    local BallisticWeapon BW;
+
+    if (Instigator == None)
+        return;
+
+    BW = BallisticWeapon(Instigator.Weapon);
+
+    if (BW == None)
+        return;
+
+    BW.default.ParamsClasses[BW.GameStyleIndex].static.SetProjectileParams(BW, self);
+}
+
+simulated function SetInitialSpeed()
 {
     local Rotator R;
-    
-    Super(Projectile).PostBeginPlay();
 
-	Velocity = Vector(Rotation);
+    Velocity = Vector(Rotation);
 	Velocity *= Speed;
-
-	StartRotation = Rotation;
 
 	if(bRandomStartRotation)
 	{
@@ -221,6 +215,21 @@ simulated function PostBeginPlay()
 		R.Roll = Rand(65536);
 		SetRotation(R);
 	}
+
+    Acceleration = Normal(Velocity) * AccelSpeed;
+
+	StartRotation = Rotation;
+}
+
+simulated function PostBeginPlay()
+{
+    Super(Projectile).PostBeginPlay();
+
+    if (Level.NetMode != NM_Client)
+    {
+        InitParams();
+        SetInitialSpeed();
+    }
 }
 
 //Modified LinkGun
@@ -228,8 +237,11 @@ simulated function PostNetBeginPlay()
 {
 	local PlayerController PC;
 	
-    Acceleration = Normal(Velocity) * AccelSpeed;
-	StartRotation = Rotation;
+    if (Level.NetMode == NM_Client)
+    {
+        InitParams();
+        SetInitialSpeed();
+    }
 
 	if (StartDelay > 0)
 	{
@@ -249,6 +261,7 @@ simulated function PostNetBeginPlay()
 	
 	if (Level.NetMode == NM_DedicatedServer)
 		return;
+        
 	if ( Level.bDropDetail || Level.DetailMode == DM_Low )
 	{
 		bDynamicLight = false;

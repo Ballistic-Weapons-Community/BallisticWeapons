@@ -1,6 +1,18 @@
 class CX85Attachment extends BallisticAttachment;
 
+var   bool			bLaserOn;		//Is laser currently active
+var   bool			bOldLaserOn;	//Old bLaserOn
+var   LaserActor	Laser;			//The laser actor
+var   vector		LaserEndLoc;
+var   Emitter		LaserDot;
 
+replication
+{
+	reliable if ( Role==ROLE_Authority )
+		bLaserOn;
+	unreliable if ( Role==ROLE_Authority && !bNetOwner )
+		LaserEndLoc;
+}
 
 simulated Event PreBeginPlay()
 {
@@ -57,6 +69,74 @@ simulated function Vector GetModeTipLocation(optional byte Mode)
             return GetBoneCoords('tip').Origin;
         }
     }
+}
+
+//Laser
+simulated function KillLaserDot()
+{
+	if (LaserDot != None)
+	{
+		LaserDot.Kill();
+		LaserDot = None;
+	}
+}
+simulated function SpawnLaserDot(optional vector Loc)
+{
+	if (LaserDot == None)
+		LaserDot = Spawn(class'G5LaserDot',,,Loc);
+	laserDot.bHidden=false;
+}
+
+simulated function Tick(float DT)
+{
+	local Vector Scale3D, Loc;
+
+	Super.Tick(DT);
+
+	if (Level.NetMode == NM_DedicatedServer)
+		return;
+
+	if (Laser == None)
+		Laser = Spawn(class'LaserActor_G5Painter',,,Location);
+
+	if (bLaserOn != bOldLaserOn)
+		bOldLaserOn = bLaserOn;
+
+	if (!bLaserOn || Instigator == None || Instigator.IsFirstPerson() || Instigator.DrivenVehicle != None)
+	{
+		if (!Laser.bHidden)
+			Laser.bHidden = true;
+		KillLaserDot();
+		return;
+	}
+	else
+	{
+		if (Laser.bHidden)
+			Laser.bHidden = false;
+		SpawnLaserDot();
+	}
+
+	if (LaserDot != None)
+		LaserDot.SetLocation(LaserEndLoc);
+
+	Loc = GetModeTipLocation();
+
+	Laser.SetLocation(Loc);
+	Laser.SetRotation(Rotator(LaserEndLoc - Loc));
+//	Laser.SetRelativeRotation(Rotator(HitLocation - Loc) - GetBoneRotation('tip'));
+	Scale3D.X = VSize(LaserEndLoc-Laser.Location)/128;
+	Scale3D.Y = 1.5;
+	Scale3D.Z = 1.5;
+	Laser.SetDrawScale3D(Scale3D);
+}
+
+simulated function Destroyed()
+{
+	if (LaserDot != None)
+		LaserDot.Destroy();
+	if (Laser != None)
+		Laser.Destroy();
+	Super.Destroyed();
 }
 
 defaultproperties

@@ -8,9 +8,6 @@
 //=============================================================================
 class DTSMATSuicide extends DT_BWExplode;
 
-var float	FlashF;
-var vector	FlashV;
-
 static function class<Effects> GetPawnDamageEffect( vector HitLocation, float Damage, vector Momentum, Pawn Victim, bool bLowDetail )
 {
 	if (PlayerController(Victim.Controller) != None)

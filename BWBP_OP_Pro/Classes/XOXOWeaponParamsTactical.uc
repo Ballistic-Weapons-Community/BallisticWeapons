@@ -129,7 +129,9 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
-		Damage=7
+		Damage=15
+        HeadMult=2.25
+        LimbMult=0.67
 		DamageType=Class'BWBP_OP_Pro.DTXOXOStream'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		Recoil=0.000000
@@ -195,7 +197,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalFastAimParams
     	AimSpread=(Min=64,Max=378)
         ADSMultiplier=0.35
-		SprintOffset=(Pitch=-1024,Yaw=-1024)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object
@@ -203,21 +205,21 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalBombAimParams
 		AimSpread=(Min=128,Max=1024)
         ADSMultiplier=0.2
-		SprintOffset=(Pitch=-1024,Yaw=-1024)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalLustAimParams
 		AimSpread=(Min=128,Max=1024)
-		SprintOffset=(Pitch=-1024,Yaw=-1024)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object
 	
 	Begin Object Class=AimParams Name=TacticalNukeAimParams
 		AimSpread=(Min=128,Max=1024)
-		SprintOffset=(Pitch=-1024,Yaw=-1024)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object

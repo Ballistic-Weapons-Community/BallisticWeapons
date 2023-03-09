@@ -11,11 +11,9 @@ class X3Projectile extends BallisticProjectile;
 var   bool			bStuckInWall;
 var   bool			bHitPlayer;
 
-
-simulated function PreBeginPlay()
+simulated function InitParams()
 {
     local BallisticWeapon BW;
-    Super(Projectile).PreBeginPlay();
 
     if (Instigator == None)
         return;
@@ -33,6 +31,7 @@ simulated function InitProjectile ()
 	SetTimer(0.1, false);
 	super.InitProjectile();
 }
+
 simulated event Timer()
 {
 	super.Timer();

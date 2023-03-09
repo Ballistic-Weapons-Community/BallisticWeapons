@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=120
+		Damage=150
         HeadMult=2
         LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DT_X82Torso'
@@ -19,7 +19,7 @@ defaultproperties
 		PushbackForce=255.000000
 		bPenetrate=True
 		MuzzleFlashClass=Class'BallisticProV55.M925FlashEmitter'
-		Recoil=768.000000
+		Recoil=1024.000000
 		Chaos=0.700000
 		BotRefireRate=0.300000
 		WarnTargetPct=0.700000
@@ -65,7 +65,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=256,Max=2048)
-		SprintOffset=(Pitch=-1000,Yaw=-2048)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		JumpOffset=(Pitch=-6000,Yaw=2000)
 		ADSMultiplier=0.75
 		AimAdjustTime=0.600000

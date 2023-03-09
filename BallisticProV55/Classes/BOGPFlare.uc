@@ -38,11 +38,13 @@ simulated event Tick(float DT)
 {
 	local float Dist;
 
+    /*
 	Dist = VSize(Location - FallStart);
 	FallOff = FMin(1.0,Dist/FallOffDistance);
 	FallingSpeed += (FallSpeed*DT)*FallOff;
 
 	Velocity = ((Speed * FMax(0.1,1.0-FallOff)) * Vector(VelocityDir)) + (FMin(512.0,FallingSpeed) * vect(0,0,-1));
+    */
 
 	if(Level.TimeSeconds >= DieTime)
 		FizzleOut();

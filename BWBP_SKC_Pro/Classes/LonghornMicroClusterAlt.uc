@@ -21,8 +21,8 @@ simulated function PostNetBeginPlay()
 {
 	local PlayerController PC;
 	
-    Acceleration = Normal(Velocity) * AccelSpeed;
-	
+    Super.PostNetBeginPlay();
+
 	if (Level.NetMode == NM_DedicatedServer)
 		return;
 		
@@ -85,11 +85,6 @@ simulated event HitWall(vector HitNormal, actor Wall)
 	{
 		Explode(Location, HitNormal);
 		return;
-	}
-	if (Pawn(Wall) != None)
-	{
-		DampenFactor *= 0.5;
-		DampenFactorParallel *= 0.5;
 	}
 
 	bCanHitOwner=true;
@@ -171,7 +166,7 @@ defaultproperties
      ArmingDelay=0.100000
      DetonateOn=DT_ImpactTimed
      PlayerImpactType=PIT_Detonate
-	 DampenFactor=0.05
+	 DampenFactor=0.1
      DampenFactorParallel=0.250000
      bAlignToVelocity=True
      DetonateDelay=1.250000

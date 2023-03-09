@@ -34,8 +34,9 @@ defaultproperties
 	//Ice
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryIceEffectParams
 		TraceRange=(Min=4096.000000,Max=4096.000000)
+        DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.5
-		Damage=14
+		Damage=18
         HeadMult=2.75
         LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DTXK2Freeze'
@@ -92,7 +93,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=0.4
-		SprintOffSet=(Pitch=-3000,Yaw=-4000)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimAdjustTime=0.400000
 		AimSpread=(Min=64,Max=378)
 		ChaosDeclineTime=0.5

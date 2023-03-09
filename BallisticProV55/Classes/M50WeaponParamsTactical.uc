@@ -38,11 +38,12 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
-	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
+	Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BallisticProV55.M50Grenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
 		Speed=3500.000000
 		Damage=110
+        ImpactDamage=110
 		DamageRadius=512.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		BotRefireRate=0.3
@@ -79,7 +80,7 @@ defaultproperties
 
 	Begin Object Class=AimParams Name=TacticalAimParams
 		ADSMultiplier=0.35
-		SprintOffSet=(Pitch=-3000,Yaw=-4000)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimSpread=(Min=64,Max=512)
 		ChaosDeclineTime=0.5
 		ChaosSpeedThreshold=300

@@ -8,8 +8,8 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		Damage=120
-        HeadMult=2
+		Damage=200
+        HeadMult=2.25f
         LimbMult=0.67f
 		DamageType=Class'BWBP_OP_Pro.DT_LightningRifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_LightningHead'
@@ -39,9 +39,8 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.LightningProjectile'
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.LS14-EnergyRocket',Volume=1.000000,Slot=SLOT_Interact,bNoOverride=False)
-		Speed=750.000000
-		MaxSpeed=1500.000000
-		AccelSpeed=1500.000000
+		Speed=2000.000000
+		MaxSpeed=2000.000000
 		Damage=70
 		DamageRadius=100.000000
 		PushbackForce=256.000000
@@ -54,7 +53,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalSecondaryFireParams
-		FireInterval=0.5
+		FireInterval=1
 		FireEndAnim=	
 		FireEffectParams(0)=ProjectileEffectParams'TacticalSecondaryEffectParams'
 	End Object
@@ -83,7 +82,7 @@ defaultproperties
 		AimAdjustTime=0.750000
 		ChaosSpeedThreshold=300
 		ChaosDeclineTime=0.750000
-		SprintOffset=(Pitch=-8192,Yaw=-12288)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		JumpOffset=(Pitch=-6000,Yaw=2000)
 	End Object
 
@@ -95,13 +94,13 @@ defaultproperties
 		ReloadAnimRate=0.9
 		ViewOffset=(X=20.000000,Y=16.000000,Z=-30.000000)
 		SightOffset=(Z=51.000000)
-		PlayerSpeedFactor=0.900000
-		PlayerJumpFactor=0.900000
+		PlayerSpeedFactor=0.800000
+		PlayerJumpFactor=0.800000
 		InventorySize=20
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.450000
 		DisplaceDurationMult=1.25
-		MagAmmo=8
+		MagAmmo=20
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

@@ -9,7 +9,7 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=TacticalPrimaryEffectParams
 		ProjectileClass=Class'BWBP_OP_Pro.AkeronRocket'
 		SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
-		Speed=4000.000000
+		Speed=5500.000000
 		MaxSpeed=35000.000000
 		AccelSpeed=100000.000000
 		Damage=150

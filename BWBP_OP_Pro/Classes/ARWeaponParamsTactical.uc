@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=4000.000000,Max=6000.000000)
         DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.3
-		TraceCount=6
+		TraceCount=10
 		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_RCSShotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=9
@@ -93,7 +93,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=64,Max=768)
         ADSMultiplier=0.6
-		SprintOffset=(Pitch=-4096,Yaw=-4096)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		JumpOffset=(Pitch=-1024,Yaw=-1024)
         ChaosSpeedThreshold=300
 	End Object

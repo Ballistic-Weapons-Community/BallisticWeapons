@@ -20,14 +20,6 @@ simulated event ModeDoFire()
 	Super.ModeDoFire();
 }
 
-function SpawnProjectile(Vector Start, Rotator Dir)
-{
-	Proj = Spawn (ProjectileClass,,, Start, Dir);
-
-	if (Proj != None)
-		Proj.Instigator = Instigator;
-}
-
 function PlayFiring()
 {
 	BOGPPistol(Weapon).bHideHead = true;

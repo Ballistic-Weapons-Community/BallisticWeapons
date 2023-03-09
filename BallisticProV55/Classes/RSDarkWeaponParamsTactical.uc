@@ -12,7 +12,7 @@ defaultproperties
         Speed=5000
         AccelSpeed=10000
         MaxSpeed=14000
-        Damage=105
+        Damage=135
         HeadMult=2.25
         LimbMult=0.67f
 		DamageRadius=128
@@ -118,8 +118,8 @@ defaultproperties
         Speed=4000.000000
         AccelSpeed=0.000000
         MaxSpeed=4000.000000
-        Damage=130.000000
-		DamageRadius=256.000000
+        Damage=150.000000
+		DamageRadius=378.000000
 		MomentumTransfer=80000.000000
     	Recoil=1024.000000
 	    Chaos=0.150000
@@ -201,7 +201,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
         AimSpread=(Min=64,Max=384)
         ADSMultiplier=0.35
-		SprintOffSet=(Pitch=-1024,Yaw=-1024)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
         ChaosSpeedThreshold=300
 	End Object

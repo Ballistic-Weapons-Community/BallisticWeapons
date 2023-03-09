@@ -8,7 +8,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=TacticalPrimaryEffectParams
         TraceRange=(Min=130.000000,Max=130.000000)
-        Damage=55
+        Damage=80
 		Fatigue=0.060000
         DamageType=Class'BallisticProV55.DTX4Knife'
         DamageTypeHead=Class'BallisticProV55.DTX4KnifeHead'
@@ -32,7 +32,7 @@ defaultproperties
 	
     Begin Object Class=MeleeEffectParams Name=TacticalSecondaryEffectParams
         TraceRange=(Min=130.000000,Max=130.000000)
-        Damage=70
+        Damage=105
 		Fatigue=0.200000
         DamageType=Class'BallisticProV55.DTX4Knife'
         DamageTypeHead=Class'BallisticProV55.DTX4KnifeHead'
@@ -68,7 +68,7 @@ defaultproperties
 
     Begin Object Class=AimParams Name=UniversalAimParams
         ViewBindFactor=0.00
-        SprintOffSet=(Pitch=-3000,Yaw=-4000)
+        SprintOffset=(Pitch=-3072,Yaw=-4096)
         AimSpread=(Min=0,Max=0)
         ChaosDeclineTime=0.320000
     End Object

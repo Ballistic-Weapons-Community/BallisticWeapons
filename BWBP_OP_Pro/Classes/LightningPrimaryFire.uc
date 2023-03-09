@@ -1,5 +1,8 @@
 class LightningPrimaryFire extends BallisticProInstantFire;
 
+const CHARGE_TO_AMMO_FACTOR = 4f;
+const AMMO_TO_CHARGE_FACTOR = 0.25f;
+
 var()	Name					ChargeAnim;		//Animation to use when charging
 var() 	BUtil.FullSound			LightningSound;	//Crackling sound to play
 var() 	Sound					ChargeLoopSound; //Sound to play
@@ -7,15 +10,29 @@ var()   byte                    ChargeLoopSoundVolume;
 var		byte					ChargeSoundPitch;
 var   	int 					TransferCDamage;	//Damage to transfer to LightningConductor actor
 var		float					ChargeGainPerSecond, ChargeDecayPerSecond, ChargeOvertime, MaxChargeOvertime;
-var		bool 					AmmoHasBeenCalculated;
+var		bool 					bAmmoHasBeenCalculated;
+var     float                   MaxDamageBonus;
+var     float                   TransferDamageMultiplier;
+var     int                     FullChargeAmmo;
+
+final function float CalcBonusDamageFactor()
+{
+   return (1 + (LightningRifle(BW).ChargePower * MaxDamageBonus));
+}
+
+// default settings: transfer 75% of damage
+final function float CalcTransferDamage()
+{
+    return default.Damage * CalcBonusDamageFactor() * TransferDamageMultiplier;
+}
 
 simulated function ModeDoFire()
 {
     if (BW.Role == ROLE_Authority)
-	    TransferCDamage = default.Damage * (1 + (0.25 * LightningRifle(BW).ChargePower));
+	    TransferCDamage = CalcTransferDamage();
 
 	Load = CalculateAmmoUse();
-	AmmoHasBeenCalculated = true;
+	bAmmoHasBeenCalculated = true;
 	
 	super.ModeDoFire();
 }
@@ -43,34 +60,40 @@ function AdjustChargeVolume()
 
 simulated function int CalculateAmmoUse()
 {	
-	if (LightningRifle(BW).ChargePower >= BW.MagAmmo)
-		return BW.MagAmmo;
+    local int load;
 
-	return Max(1, int(LightningRifle(BW).ChargePower));
+	load = Max(1, int(LightningRifle(BW).ChargePower * FullChargeAmmo));
+
+    return Min(BW.MagAmmo, load);
 }
 
 simulated function ModeTick(float DeltaTime)
 {	
+    local float max_allowed_charge;
+
 	if (bIsFiring)
 	{
+        max_allowed_charge = FMin(BW.MagAmmo * AMMO_TO_CHARGE_FACTOR, 1f);
+
 		//Scale charge
-		LightningRifle(BW).SetChargePower(FMin(Min(BW.MagAmmo, class'LightningRifle'.default.MaxCharge), LightningRifle(BW).ChargePower + ChargeGainPerSecond * DeltaTime));
+		LightningRifle(BW).SetChargePower(FMin(max_allowed_charge, LightningRifle(BW).ChargePower + ChargeGainPerSecond * DeltaTime));
 		
-		if (LightningRifle(BW).ChargePower >= Min(BW.MagAmmo, class'LightningRifle'.default.MaxCharge))
-			ChargeOvertime += DeltaTime;
-		
-		if (ChargeOvertime >= MaxChargeOvertime)
-			bIsFiring = false;
+		if (LightningRifle(BW).ChargePower >= max_allowed_charge)
+        {			
+            ChargeOvertime += DeltaTime;
+            
+            if (ChargeOvertime >= MaxChargeOvertime)
+                bIsFiring = false;
+        }
 	}
 
-
-	else if (LightningRifle(BW).ChargePower > 0 && AmmoHasBeenCalculated)
+	else if (LightningRifle(BW).ChargePower > 0 && bAmmoHasBeenCalculated)
 	{
 		LightningRifle(BW).SetChargePower(FMax(0.0, LightningRifle(BW).ChargePower - ChargeDecayPerSecond * DeltaTime));
 
 		if (LightningRifle(BW).ChargePower == 0)
 		{
-			AmmoHasBeenCalculated = false;
+			bAmmoHasBeenCalculated = false;
 			
             if (Weapon.Role == ROLE_Authority)
             {
@@ -107,7 +130,8 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 {
 	local LightningConductor LConductor;
 
-    Damage *= (1 + (0.25 * LightningRifle(BW).ChargePower));
+    Damage *= CalcBonusDamageFactor();
+
 	super.ApplyDamage(Target, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 
 	if (LightningProjectile(Target) != None)
@@ -141,20 +165,23 @@ function ApplyDamage(Actor Target, int Damage, Pawn Instigator, vector HitLocati
 
 defaultproperties
 {
+
 	ChargeAnim="ChargeLoop"
 	ChargeLoopSound=Sound'IndoorAmbience.machinery18'
     ChargeLoopSoundVolume=200
 	ChargeSoundPitch=32
-	MaxChargeOvertime=2.0f
+
+    // gameplay for charge
+	MaxChargeOvertime=1f
 	ChargeGainPerSecond=1f
-	ChargeDecayPerSecond=4.5f
+    ChargeDecayPerSecond=4f
+    FullChargeAmmo=4
+    MaxDamageBonus=0.5f
+    TransferDamageMultiplier=0.75f
+
 	LightningSound=(Sound=Sound'BWBP_OP_Sounds.Lightning.LightningGunCrackle',Volume=0.800000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
 	TraceRange=(Min=30000.000000,Max=30000.000000)
 	MaxWaterTraceRange=30000
-	Damage=80.000000
-	HeadMult=1.5f
-    LimbMult=0.9f
-	
 	WaterRangeAtten=0.800000
 	DamageType=Class'BWBP_OP_Pro.DT_LightningRifle'
 	DamageTypeHead=Class'BWBP_OP_Pro.DT_LightningHead'

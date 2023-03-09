@@ -1,16 +1,151 @@
 //=============================================================================
 // M575PrimaryFire.
 //
-// Extremely automatic, bullet style instant hit. Shots are long ranged,
-// powerful and sort of accurate when gun is mountued and used carefully.
-// Accuracy decreases very quickly especially if player is moving and the
-// ridiculous fire rate makes it even worse. Mounting the gun can solve the
-// problem though.
+// Powerful automatic fire. Stronger than the M353 but weaker than the M925.
+// Can mount an amp for a temporary power and freeze boost.
+// Optics afford this gun better accuracy than its peers.
 //
 // by Nolan "Dark Carnivour" Richert.
 // Copyright(c) 2005 RuneStorm. All Rights Reserved.
 //=============================================================================
 class M575PrimaryFire extends BallisticProInstantFire;
+
+var(M575) Actor						MuzzleFlashAmp;		
+var(M575) class<Actor>				MuzzleFlashClassAmp;	
+var(M575) Name						AmpFlashBone;
+var(M575) float						AmpFlashScaleFactor;
+var(M575) bool						bAmped;
+var(M575) float						AmpDrainPerShot;
+
+function InitEffects()
+{
+	if (AIController(Instigator.Controller) != None)
+		return;
+    if ((MuzzleFlashClass != None) && ((MuzzleFlash == None) || MuzzleFlash.bDeleteMe) )
+		class'BUtil'.static.InitMuzzleFlash (MuzzleFlash, MuzzleFlashClass, Weapon.DrawScale*FlashScaleFactor, weapon, FlashBone);
+	if ((MuzzleFlashClassAmp != None) && ((MuzzleFlashAmp == None) || MuzzleFlashAmp.bDeleteMe) )
+		class'BUtil'.static.InitMuzzleFlash (MuzzleFlashAmp, MuzzleFlashClassAmp, Weapon.DrawScale*AmpFlashScaleFactor, weapon, FlashBone);
+}
+
+//Trigger muzzleflash emitter
+function FlashMuzzleFlash()
+{
+    if ( (Level.NetMode == NM_DedicatedServer) || (AIController(Instigator.Controller) != None) )
+		return;
+	if (!Instigator.IsFirstPerson() || PlayerController(Instigator.Controller).ViewTarget != Instigator)
+		return;
+    if (!M575Machinegun(Weapon).bAmped && MuzzleFlash != None)
+        MuzzleFlash.Trigger(Weapon, Instigator);
+    else if (MuzzleFlashAmp != None && M575Machinegun(Weapon).CurrentWeaponMode == 4)
+       	MuzzleFlashAmp.Trigger(Weapon, Instigator);
+
+	if (!bBrassOnCock)
+		EjectBrass();
+}
+
+simulated function SwitchWeaponMode (byte NewMode)
+{
+	if (Weapon.bBerserk)
+		FireRate *= 0.75;
+	if ( Level.GRI.WeaponBerserk > 1.0 )
+	    FireRate /= Level.GRI.WeaponBerserk;
+		
+	if (NewMode == 4) 
+	{
+		bAmped=True;
+        
+		WaterRangeAtten=0.600000;
+		DecayRange.Max = 4200.000000;
+		DecayRange.Min = 1500.000000;
+		WallPenetrationForce=24.000000;
+	}
+	else
+	{
+		bAmped=False;//Standard Fire
+	}
+}
+
+function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocation, vector MomentumDir, class<DamageType> DamageType)
+{	
+    local Inv_Slowdown Slow;
+
+    super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
+
+    if (bAmped && Pawn(Victim) != None && Pawn(Victim).Health > 0 && Vehicle(Victim) == None)
+    {
+        Slow = Inv_Slowdown(Pawn(Victim).FindInventoryType(class'Inv_Slowdown'));
+
+        if (Slow == None)
+        {
+            Pawn(Victim).CreateInventory("BallisticProV55.Inv_Slowdown");
+            Slow = Inv_Slowdown(Pawn(Victim).FindInventoryType(class'Inv_Slowdown'));
+        }
+
+        Slow.AddSlow(1.5, 0.5);
+    }
+}
+
+simulated function SendFireEffect(Actor Other, vector HitLocation, vector HitNormal, int Surf, optional vector WaterHitLoc)
+{
+	if (!bAmped)
+		BallisticAttachment(Weapon.ThirdPersonActor).BallisticUpdateHit(Other, HitLocation, HitNormal, Surf, , WaterHitLoc);
+	else
+		M575Attachment(Weapon.ThirdPersonActor).IceUpdateHit(Other, HitLocation, HitNormal, Surf, , WaterHitLoc);
+}
+
+function ServerPlayFiring()
+{
+	Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,BallisticFireSound.bNoOverride,BallisticFireSound.Radius,BallisticFireSound.Pitch,BallisticFireSound.bAtten);
+
+	// Slightly modified Code from original PlayFiring()
+	if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
+		BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
+	else if(!BW.bScopeView || !Weapon.HasAnim(AimedFireAnim))
+		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	else BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, , "FIRE");
+	// End code from normal PlayFiring()
+
+	CheckClipFinished();
+}
+
+function PlayFiring()
+{
+		
+	// Slightly modified Code from original PlayFiring()
+	if (FireCount > 0 && Weapon.HasAnim(FireLoopAnim))
+		BW.SafePlayAnim(FireLoopAnim, FireLoopAnimRate, 0.0, ,"FIRE");
+	else if(!BW.bScopeView || !Weapon.HasAnim(AimedFireAnim))
+		BW.SafePlayAnim(FireAnim, FireAnimRate, TweenTime, ,"FIRE");
+	else BW.SafePlayAnim(AimedFireAnim, FireAnimRate, TweenTime, , "FIRE");
+	// End code from normal PlayFiring()
+
+    ClientPlayForceFeedback(FireForce);  // jdf
+    FireCount++;
+
+	Weapon.PlayOwnedSound(BallisticFireSound.Sound,BallisticFireSound.Slot,BallisticFireSound.Volume,,BallisticFireSound.Radius);
+
+	CheckClipFinished();
+	
+	if (bAmped)
+		M575Machinegun(BW).AddHeat(AmpDrainPerShot);
+}
+
+// Get aim then run trace...
+function DoFireEffect()
+{
+	Super.DoFireEffect();
+	if (Level.NetMode == NM_DedicatedServer)
+		M575Machinegun(BW).AddHeat(AmpDrainPerShot);
+}
+
+// Remove effects
+simulated function DestroyEffects()
+{
+	Super.DestroyEffects();
+
+	class'BUtil'.static.KillEmitterEffect (MuzzleFlash);
+	class'BUtil'.static.KillEmitterEffect (MuzzleFlashAmp);
+}
 
 event ModeDoFire()
 {
@@ -34,8 +169,12 @@ defaultproperties
 	 RangeAtten=0.35
      TraceRange=(Min=15000.000000,Max=15000.000000)
      WallPenetrationForce=24.000000
-     
      Damage=20.000000
+	 
+	 AmpDrainPerShot=-0.1
+	 AmpFlashBone="tip2"
+     AmpFlashScaleFactor=0.300000
+     MuzzleFlashClassAmp=Class'BallisticProV55.XK2SilencedFlash'
 	 
      WaterRangeAtten=0.800000
      DamageType=Class'BWBP_APC_Pro.DTM575MG'
@@ -60,7 +199,7 @@ defaultproperties
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireRate=0.082000
-     AmmoClass=Class'BWBP_APC_Pro.Ammo_556mmBelt'
+     AmmoClass=Class'BWBP_APC_Pro.Ammo_762mmBelt'
      ShakeRotMag=(X=64.000000,Y=64.000000,Z=128.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000
