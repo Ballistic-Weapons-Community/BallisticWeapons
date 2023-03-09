@@ -65,16 +65,13 @@ simulated function array<string> GetGroupForTeam(byte GroupNum, byte Team)
 //Returns the weapon group.
 simulated function array<string> GetGroup(byte GroupNum)
 {
-	if (Role == ROLE_Authority)
-		return Mut.GetGroup(GroupNum, PC.GetTeamNum());
-
     return GetGroupForTeam(GroupNum, PC.GetTeamNum());
 }
 
 //Returns the weapon at the specific index.
-simulated function string GetGroupItem(byte GroupNum, int ItemNum)
+simulated function string GetGroupItemForTeam(byte GroupNum, byte TeamNum, int ItemNum)
 {
-	if(PC.GetTeamNum() == 1)
+	if(TeamNum == 1)
 	{
 		switch (GroupNum)
 		{
@@ -85,20 +82,103 @@ simulated function string GetGroupItem(byte GroupNum, int ItemNum)
 		case	4:	return BlueGroup4[ItemNum];
 		}
 	}
-	switch (GroupNum)
+    else 
+    {
+        switch (GroupNum)
+        {
+        case	0:	return RedGroup0[ItemNum];
+        case	1:	return RedGroup1[ItemNum];
+        case	2:	return RedGroup2[ItemNum];
+        case	3:	return RedGroup3[ItemNum];
+        case	4:	return RedGroup4[ItemNum];
+        }
+    }
+}
+
+//Sets the weapon at the specific index. Because of sorting and shitty reference semantics.
+simulated function string SetGroupItemForTeam(string str, byte GroupNum, byte TeamNum, int ItemNum)
+{
+	if(TeamNum == 1)
 	{
-	case	0:	return RedGroup0[ItemNum];
-	case	1:	return RedGroup1[ItemNum];
-	case	2:	return RedGroup2[ItemNum];
-	case	3:	return RedGroup3[ItemNum];
-	case	4:	return RedGroup4[ItemNum];
+		switch (GroupNum)
+		{
+		case 0:	BlueGroup0[ItemNum] = str; 
+            break;
+		case 1:	BlueGroup1[ItemNum] = str; 
+            break;
+		case 2:	BlueGroup2[ItemNum] = str; 
+            break;
+		case 3:	BlueGroup3[ItemNum] = str; 
+            break;
+		case 4:	BlueGroup4[ItemNum] = str; 
+            break;
+		}
 	}
+    else 
+    {
+        switch (GroupNum)
+        {
+            case 0:	RedGroup0[ItemNum] = str; 
+                break;
+            case 1:	RedGroup1[ItemNum] = str; 
+                break;
+            case 2:	RedGroup2[ItemNum] = str; 
+                break;
+            case 3:	RedGroup3[ItemNum] = str; 
+                break;
+            case 4:	RedGroup4[ItemNum] = str; 
+                break;
+        }
+    }
+}
+
+//Sets the weapon at the specific index. Because of sorting and shitty reference semantics.
+simulated function string PushWeaponFromMutator(string str, byte GroupNum, byte TeamNum)
+{
+	if(TeamNum == 1)
+	{
+		switch (GroupNum)
+		{
+		case 0:	BlueGroup0.Length = BlueGroup0.Length + 1; BlueGroup0[BlueGroup0.Length - 1] = str;
+            break;
+		case 1:	BlueGroup1.Length = BlueGroup1.Length + 1; BlueGroup1[BlueGroup1.Length - 1] = str;
+            break;
+		case 2:	BlueGroup2.Length = BlueGroup2.Length + 1; BlueGroup2[BlueGroup2.Length - 1] = str;
+            break;
+		case 3:	BlueGroup3.Length = BlueGroup3.Length + 1; BlueGroup3[BlueGroup3.Length - 1] = str;
+            break;
+		case 4:	BlueGroup4.Length = BlueGroup4.Length + 1; BlueGroup4[BlueGroup4.Length - 1] = str;
+            break;
+		}
+	}
+    else 
+    {
+        switch (GroupNum)
+        {
+        case 0:	RedGroup0.Length = RedGroup0.Length + 1; RedGroup0[RedGroup0.Length - 1] = str;
+            break;
+        case 1:	RedGroup1.Length = RedGroup1.Length + 1; RedGroup1[RedGroup1.Length - 1] = str;
+            break;
+        case 2:	RedGroup2.Length = RedGroup2.Length + 1; RedGroup2[RedGroup2.Length - 1] = str;
+            break;
+        case 3:	RedGroup3.Length = RedGroup3.Length + 1; RedGroup3[RedGroup3.Length - 1] = str;
+            break;
+        case 4:	RedGroup4.Length = RedGroup4.Length + 1; RedGroup4[RedGroup4.Length - 1] = str;
+            break;
+        }
+    }
+}
+
+//Returns the weapon at the specific index.
+simulated function string GetGroupItem(byte GroupNum, int ItemNum)
+{
+    return GetGroupItemForTeam(GroupNum, PC.GetTeamNum(), ItemNum);
 }
 
 //Returns the number of weapons in the group.
-simulated function int GroupLength(byte GroupNum)
+simulated function int GroupLengthForTeam(byte GroupNum, byte team)
 {
-	if (PC.GetTeamNum() == 1)
+	if (team == 1)
 	{
 		switch (GroupNum)
 		{
@@ -120,6 +200,12 @@ simulated function int GroupLength(byte GroupNum)
 	return -1;
 }
 
+//Returns the number of weapons in the group.
+simulated function int GroupLength(byte GroupNum)
+{
+	return GroupLength(PC.GetTeamNum());
+}
+
 function bool IsInList (out array<string> List, string Test, optional out int Index)
 {
 	for(Index=0;Index<List.length;Index++)
@@ -130,15 +216,27 @@ function bool IsInList (out array<string> List, string Test, optional out int In
 
 function FillWeapons()
 {
-    local int team, group;
-
-    Log("ClientTeamOutfittingInterface::FillWeapons");
+    local int team, group_index, wep_index;
 
     for (team = 0; team < 2; ++team)
     {
-        for (group = 0; group < 5; ++group)
+        for (group_index = 0; group_index < 5; ++group_index)
         {
-            GetGroupForTeam(group, team) = Mut.GetGroup(group, team);
+            for (wep_index = 0; wep_index < Mut.GetGroup(group_index, team).Length; ++wep_index)
+            {
+                PushWeaponFromMutator(Mut.GetGroupItem(group_index, wep_index, team), group_index, team);
+            }
+        }
+    }
+
+    for (team = 0; team < 2; ++team)
+    {
+        for (group_index = 0; group_index < 5; ++group_index)
+        {
+            for (wep_index = 0; wep_index < GroupLengthForTeam(group_index, team); ++wep_index)
+            {
+               Log("Group "$group_index$", team "$team$", index "$wep_index$" is "$GetGroupItemForTeam(group_index, team, wep_index));
+            }
         }
     }
 }
@@ -339,27 +437,30 @@ function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.WeaponInfo
 
 simulated function SortLists()
 {
-    local int team, group;
+    local int team, group_index;
 
     for (team = 0; team < 2; ++team)
     {
-        for (group = 0; group < 5; ++group)
+        for (group_index = 0; group_index < 5; ++group_index)
         {
-            SortList(GetGroupForTeam(group, team));
+            SortList(group_index, team);
         }
     }
 }
 
-simulated function array<string> SortList(array<string> weapon_list)
+// fuck me, sorting lists in unrealscript is HORRIBLE
+simulated function SortList(byte group_index, byte team)
 {
 	local int i, j;
 	local BC_WeaponInfoCache.WeaponInfo WI;
+    local array<string> sorted;
+
 	local array<BC_WeaponInfoCache.WeaponInfo> SortedWIs;
 	local int wiGroup, existingGroup;
 
-	for (i=0; i < weapon_list.length; i++)
+	for (i=0; i < GetGroupForTeam(group_index, team).Length; i++)
 	{
-        if (LoadWIFromCache(weapon_list[i], WI))
+        if (LoadWIFromCache(GetGroupItemForTeam(group_index, team, i), WI))
         {
             if (SortedWIs.Length == 0)
                 SortedWIs[SortedWIs.Length] = WI;
@@ -405,12 +506,12 @@ simulated function array<string> SortList(array<string> weapon_list)
 		}
 
         else 
-            Log("ClientTeamOutfittingInterface: Failed to load "$ weapon_list[i] $" from cache");
+            Log("ClientTeamOutfittingInterface: Failed to load "$ GetGroupItemForTeam(group_index, team, i) $" from cache");
 	}
 	
 	for (i = 0; i < SortedWIs.Length; ++i)
     {
-		weapon_list[i] = SortedWIs[i].ClassName;
+		SetGroupItemForTeam(SortedWIs[i].ClassName, group_index, team, i);
     }
 }
 
