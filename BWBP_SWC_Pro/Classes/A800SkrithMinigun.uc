@@ -282,7 +282,7 @@ defaultproperties
      AttachmentClass=Class'BWBP_SWC_Pro.A800MinigunAttachment'
      IconMaterial=Texture'BWBP_SWC_Tex.SkrithHyperBlaster.SmallIcon_HyperBlaster'
      IconCoords=(X2=127,Y2=31)
-     ItemName="A800 Skrith HyperBlaster"
+     ItemName="A800 Skrith Hyperblaster"
      LightType=LT_Pulse
      LightEffect=LE_NonIncidence
      LightHue=30
