@@ -116,11 +116,9 @@ defaultproperties
 		SpreadMode=None
 		MuzzleFlashClass=None
 		FlashScaleFactor=None
-		FireSound=None
 		Recoil=None
 		Chaos=None
 		PushbackForce=None
-		Inaccuracy=None
 		SplashDamage=None
 		RecommendSplashDamage=None
 		BotRefireRate=0.300000

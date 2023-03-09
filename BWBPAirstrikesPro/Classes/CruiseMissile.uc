@@ -1,7 +1,6 @@
 class CruiseMissile extends Pawn;
 
 #EXEC OBJ LOAD FILE=2K4Hud.utx
-#EXEC OBJ LOAD FILE=CruiseMissileTex.utx
 
 var float Damage, DamageRadius, MomentumTransfer;
 var class<DamageType> MyDamageType;
