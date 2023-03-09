@@ -1257,6 +1257,9 @@ function ViewFlash(float DeltaTime)
 
 */
 
+// ViewFlash
+// 
+// Prevent override from ScreenFlashScaling
 function ViewFlash(float DeltaTime)
 {
 	local vector goalFog;
@@ -1288,11 +1291,6 @@ function ViewFlash(float DeltaTime)
     FlashFog.X = UpdateFlashComponent(FlashFog.X,step,goalFog.X);
     FlashFog.Y = UpdateFlashComponent(FlashFog.Y,step,goalFog.Y);
     FlashFog.Z = UpdateFlashComponent(FlashFog.Z,step,goalFog.Z);
-    
-    if ( FlashFog.Z < 0.003 )
-    {
-        FlashFog.Z = 0;
-    }
 }
 
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
