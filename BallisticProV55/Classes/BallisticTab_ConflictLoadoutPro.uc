@@ -13,7 +13,6 @@ const INVENTORY_SIZE_MAX = 35;
 var bool					bInitialized; // showpanel
 var bool					bLoadInitialized;
 
-
 var automated GUIListBox	lb_Weapons;
 var Automated GUIImage		Box_WeapList, Box_Inventory, Pic_Weapon, Box_WeapIcon;
 var automated GUILabel   	l_WeapTitle;
@@ -761,7 +760,8 @@ defaultproperties
 
      Begin Object Class=GUIImage Name=Pic_WeaponImg
          //Image=Texture'2K4Menus.NewControls.Display99'
-         ImageStyle=ISTY_Scaled
+         ImageStyle=ISTY_Justified
+         ImageAlign=IMGA_Center
          WinTop=0.040000
          WinLeft=0.515000
          WinWidth=0.40000

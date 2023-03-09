@@ -39,13 +39,9 @@ replication
 		PC;
 }
 
-//Returns the weapon group.
-simulated function array<string> GetGroup(byte GroupNum)
+simulated function array<string> GetGroupForTeam(byte GroupNum, byte Team)
 {
-	if (Role == ROLE_Authority)
-		return Mut.GetGroup(GroupNum, PC.GetTeamNum());
-
-	if(PC.GetTeamNum() == 1)
+    if(Team == 1)
 	{
 		switch (GroupNum)
 		{
@@ -66,12 +62,18 @@ simulated function array<string> GetGroup(byte GroupNum)
 	}	
 }
 
+//Returns the weapon group.
+simulated function array<string> GetGroup(byte GroupNum)
+{
+	if (Role == ROLE_Authority)
+		return Mut.GetGroup(GroupNum, PC.GetTeamNum());
+
+    return GetGroupForTeam(GroupNum, PC.GetTeamNum());
+}
+
 //Returns the weapon at the specific index.
 simulated function string GetGroupItem(byte GroupNum, int ItemNum)
 {
-	if (Role == ROLE_Authority)
-		return Mut.GetGroupItem(GroupNum, ItemNum, PC.GetTeamNum());
-
 	if(PC.GetTeamNum() == 1)
 	{
 		switch (GroupNum)
@@ -96,29 +98,7 @@ simulated function string GetGroupItem(byte GroupNum, int ItemNum)
 //Returns the number of weapons in the group.
 simulated function int GroupLength(byte GroupNum)
 {
-	if (Role == ROLE_Authority)
-	{
-		if(PC.GetTeamNum() == 1)
-		{
-			switch (GroupNum)
-			{
-				case 0: return class'Mut_TeamOutfitting'.default.BlueLoadoutGroup0.length;
-				case 1: return class'Mut_TeamOutfitting'.default.BlueLoadoutGroup1.length;
-				case 2: return class'Mut_TeamOutfitting'.default.BlueLoadoutGroup2.length;
-				case 3: return class'Mut_TeamOutfitting'.default.BlueLoadoutGroup3.length;
-				case 4: return class'Mut_TeamOutfitting'.default.BlueLoadoutGroup4.length;
-			}
-		}
-		switch (GroupNum)
-		{
-			case 0: return class'Mut_TeamOutfitting'.default.RedLoadoutGroup0.length;
-			case 1: return class'Mut_TeamOutfitting'.default.RedLoadoutGroup1.length;
-			case 2: return class'Mut_TeamOutfitting'.default.RedLoadoutGroup2.length;
-			case 3: return class'Mut_TeamOutfitting'.default.RedLoadoutGroup3.length;
-			case 4: return class'Mut_TeamOutfitting'.default.RedLoadoutGroup4.length;
-		}
-	}
-	else if(PC.GetTeamNum() == 1)
+	if (PC.GetTeamNum() == 1)
 	{
 		switch (GroupNum)
 		{
@@ -140,13 +120,27 @@ simulated function int GroupLength(byte GroupNum)
 	return -1;
 }
 
-
 function bool IsInList (out array<string> List, string Test, optional out int Index)
 {
 	for(Index=0;Index<List.length;Index++)
 		if (List[Index] == Test)
 			return true;
 	return false;
+}
+
+function FillWeapons()
+{
+    local int team, group;
+
+    Log("ClientTeamOutfittingInterface::FillWeapons");
+
+    for (team = 0; team < 2; ++team)
+    {
+        for (group = 0; group < 5; ++group)
+        {
+            GetGroupForTeam(group, team) = Mut.GetGroup(group, team);
+        }
+    }
 }
 
 //Goes through the available loadout weapons, adding them to the array and continuing if the loaded weapon is invalid.
@@ -322,7 +316,102 @@ simulated function ReceiveWeapon (string WeaponName, byte RedBoxes, byte BlueBox
 		BlueGroup4[BlueGroup4.length] = WeaponName;
 	
 	if (bTerminate)
+    {
+        SortLists();
+
 		bWeaponsReady = true;
+    }
+}
+
+// Get Name, BigIconMaterial and classname of weapon at index? in group?
+function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.WeaponInfo WepInfo)
+{
+	local int i;
+
+	WepInfo = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(ClassStr, i);
+	if (i==-1)
+	{
+		log("Error loading item for Conflict: "$ClassStr, 'Warning');
+		return false;
+	}
+	return true;
+}
+
+simulated function SortLists()
+{
+    local int team, group;
+
+    for (team = 0; team < 2; ++team)
+    {
+        for (group = 0; group < 5; ++group)
+        {
+            SortList(GetGroupForTeam(group, team));
+        }
+    }
+}
+
+simulated function array<string> SortList(array<string> weapon_list)
+{
+	local int i, j;
+	local BC_WeaponInfoCache.WeaponInfo WI;
+	local array<BC_WeaponInfoCache.WeaponInfo> SortedWIs;
+	local int wiGroup, existingGroup;
+
+	for (i=0; i < weapon_list.length; i++)
+	{
+        if (LoadWIFromCache(weapon_list[i], WI))
+        {
+            if (SortedWIs.Length == 0)
+                SortedWIs[SortedWIs.Length] = WI;
+            else 
+            {	
+                wiGroup = WI.InventoryGroup;
+                
+                if (wiGroup == 0)
+                    wiGroup = 10;
+                    
+                for (j = 0; j < SortedWIs.Length; ++j)
+                {
+                    existingGroup = SortedWIs[j].InventoryGroup;
+                    
+                    if (existingGroup == 0)
+                        existingGroup = 10;
+                    
+                    if (wiGroup < existingGroup)
+                    {
+                        SortedWIs.Insert(j, 1);
+                        SortedWIs[j] = WI;
+                        break;
+                    }
+                    
+                    if (wiGroup == existingGroup)
+                    {
+                        if (StrCmp(WI.ItemName, SortedWIs[j].ItemName, 6, True) <= 0)
+                        {	
+                            SortedWIs.Insert(j, 1);
+                            SortedWIs[j] = WI;
+                            break;
+                        }
+                    }
+                    
+                    if (j == SortedWIs.Length - 1)
+                    {
+                        SortedWIs[SortedWIs.Length] = WI;
+                        break;
+                    }
+                }
+            }
+
+		}
+
+        else 
+            Log("ClientTeamOutfittingInterface: Failed to load "$ weapon_list[i] $" from cache");
+	}
+	
+	for (i = 0; i < SortedWIs.Length; ++i)
+    {
+		weapon_list[i] = SortedWIs[i].ClassName;
+    }
 }
 
 function Initialize(Mut_TeamOutfitting MO, PlayerController P)
@@ -331,8 +420,18 @@ function Initialize(Mut_TeamOutfitting MO, PlayerController P)
 	PC = P;
 
 	bWeaponsReady=true;
-	if (level.NetMode != NM_StandAlone && Viewport(P.Player) == None)
-		SendWeapons();
+
+	if (level.NetMode != NM_StandAlone)
+    {   
+        if (Viewport(P.Player) == None)
+		    SendWeapons();
+    }
+
+    else 
+    {
+        FillWeapons();
+        SortLists();
+    }
 
 	ClientOpenLoadoutMenu();
 

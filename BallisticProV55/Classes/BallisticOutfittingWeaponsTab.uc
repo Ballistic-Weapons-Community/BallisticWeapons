@@ -574,7 +574,7 @@ defaultproperties
      cb_Presets=moComboBox'BallisticProV55.BallisticOutfittingWeaponsTab.co_PresetsCB'
 
      Begin Object Class=GUIImage Name=ImageBoxMelee
-         Image=Texture'2K4Menus.NewControls.Display99'
+         Image=Texture'2K4Menus.NewControls.ScrollGripWatched'
          ImageStyle=ISTY_Stretched
          WinTop=0.030000
          WinLeft=0.087500
@@ -585,7 +585,7 @@ defaultproperties
      Box_Melee=GUIImage'BallisticProV55.BallisticOutfittingWeaponsTab.ImageBoxMelee'
 
      Begin Object Class=GUIImage Name=ImageBoxSideArm
-         Image=Texture'2K4Menus.NewControls.Display99'
+         Image=Texture'2K4Menus.NewControls.ScrollGripWatched'
          ImageStyle=ISTY_Stretched
          WinTop=0.030000
          WinLeft=0.387500
@@ -596,7 +596,7 @@ defaultproperties
      Box_SideArm=GUIImage'BallisticProV55.BallisticOutfittingWeaponsTab.ImageBoxSideArm'
 
      Begin Object Class=GUIImage Name=ImageBoxPrimary
-         Image=Texture'2K4Menus.NewControls.Display99'
+         Image=Texture'2K4Menus.NewControls.ScrollGripWatched'
          ImageStyle=ISTY_Stretched
          WinTop=0.337500
          WinLeft=0.237500
@@ -607,7 +607,7 @@ defaultproperties
      Box_Primary=GUIImage'BallisticProV55.BallisticOutfittingWeaponsTab.ImageBoxPrimary'
 
      Begin Object Class=GUIImage Name=ImageBoxSecondary
-         Image=Texture'2K4Menus.NewControls.Display99'
+         Image=Texture'2K4Menus.NewControls.ScrollGripWatched'
          ImageStyle=ISTY_Stretched
          WinTop=0.337500
          WinLeft=0.537500
@@ -618,7 +618,7 @@ defaultproperties
      Box_Secondary=GUIImage'BallisticProV55.BallisticOutfittingWeaponsTab.ImageBoxSecondary'
 
      Begin Object Class=GUIImage Name=ImageBoxGrenade
-         Image=Texture'2K4Menus.NewControls.Display99'
+         Image=Texture'2K4Menus.NewControls.ScrollGripWatched'
          ImageStyle=ISTY_Stretched
          WinTop=0.030000
          WinLeft=0.687500
@@ -628,6 +628,7 @@ defaultproperties
      End Object
      Box_Grenade=GUIImage'BallisticProV55.BallisticOutfittingWeaponsTab.ImageBoxGrenade'
 
+    /*
      Begin Object Class=GUIImage Name=MeleeBackImage
          Image=Texture'Engine.MenuBlack'
          ImageStyle=ISTY_Stretched
@@ -682,7 +683,7 @@ defaultproperties
          RenderWeight=0.003000
      End Object
      GrenadeBack=GUIImage'BallisticProV55.BallisticOutfittingWeaponsTab.GrenadeBackImage'
-
+*/
      Begin Object Class=GUIButton Name=BSavePresetButton
          Caption="SAVE"
          Hint="Saves the current configuration as a new preset."
