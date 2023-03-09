@@ -203,7 +203,7 @@ simulated function int GroupLengthForTeam(byte GroupNum, byte team)
 //Returns the number of weapons in the group.
 simulated function int GroupLength(byte GroupNum)
 {
-	return GroupLengthForTeam(PC.GetTeamNum());
+	return GroupLengthForTeam(GroupNum, PC.GetTeamNum());
 }
 
 function bool IsInList (out array<string> List, string Test, optional out int Index)
