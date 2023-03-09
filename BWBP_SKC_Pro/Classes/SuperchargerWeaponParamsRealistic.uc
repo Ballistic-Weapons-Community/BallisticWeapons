@@ -21,6 +21,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=2
 		Chaos=0.01
+		Heat=0.15
 		Inaccuracy=(X=2,Y=2)
 		WarnTargetPct=0.200000
 	End Object
@@ -47,6 +48,7 @@ defaultproperties
 		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Misc.CXMS-FireSingle',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=10
 		Chaos=0.01
+		Heat=0.25
 		Inaccuracy=(X=512,Y=512)
 		WarnTargetPct=0.200000
 	End Object
