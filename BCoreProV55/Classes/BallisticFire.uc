@@ -112,6 +112,10 @@ var() FireEffectParams.FireSpreadMode	FireSpreadMode;		// The type of spread pat
 var() BUtil.FullSound		            SilencedFireSound;	// Fire sound to play when silenced
 var() BUtil.FullSound		            BallisticFireSound;	// Fire sound to play
 var() bool					            bAISilent;			// Bots dont hear the fire
+//-----------------------------------------------------------------------------
+// Heat
+//-----------------------------------------------------------------------------
+var() float					            HeatPerShot;			// Amount of heat added each shot
 //=============================================================================
 // END GAMEPLAY VARIABLES
 //=============================================================================
@@ -188,6 +192,7 @@ simulated function ApplyFireEffectParams(FireEffectParams effect_params)
     XInaccuracy      		       	= effect_params.Inaccuracy.X;
     YInaccuracy       	     		= effect_params.Inaccuracy.Y;
     FireSpreadMode    		      	= effect_params.SpreadMode;
+	HeatPerShot						= effect_params.Heat;
 	
 	default.MuzzleFlashClass        = effect_params.MuzzleFlashClass;
     default.FlashScaleFactor        = effect_params.FlashScaleFactor;
@@ -198,6 +203,7 @@ simulated function ApplyFireEffectParams(FireEffectParams effect_params)
     default.XInaccuracy             = effect_params.Inaccuracy.X;
     default.YInaccuracy             = effect_params.Inaccuracy.Y;
     default.FireSpreadMode          = effect_params.SpreadMode;
+	default.HeatPerShot						= effect_params.Heat;
 
     bSplashDamage           			= effect_params.SplashDamage;
     bRecommendSplashDamage  			= effect_params.RecommendSplashDamage;

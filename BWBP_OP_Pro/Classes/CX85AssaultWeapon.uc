@@ -15,10 +15,18 @@ var	float			LastDetonationTime;
 
 var bool			bPendingReceive; //Used when a dart has struck but not yet been replicated. Prevents detonation because of the desynchronised nature of the array.
 
+
+var   vector		TargetLocation;
+var   bool			bLaserOn, bLaserOld, bLaserTarget;
+var   LaserActor	Laser;
+var() Sound			LaserOnSound;
+var() Sound			LaserOffSound;
+var   Emitter		LaserDot;
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
-	    AltAmmo, bPendingReceive, ClientAddProjectile, ClientRemoveProjectile;
+	    AltAmmo, bPendingReceive, ClientAddProjectile, ClientRemoveProjectile, bLaserOn;
 }
 
 simulated function vector GetModeEffectStart(byte mode)
@@ -269,6 +277,10 @@ function AddProjectile(CX85DartDirect Proj)
 	StuckDarts[StuckDarts.Length] = Proj;
 	ClientAddProjectile(Proj);
 	bPendingReceive=False;
+	
+	if (Role == ROLE_Authority && !bLaserOn && !class'BCReplicationInfo'.static.IsArenaOrTactical())
+		ServerSwitchlaser(true);
+	
 }
 
 //===========================================================================
@@ -301,6 +313,10 @@ function LostChild(Actor Proj)
 			ClientRemoveProjectile(Proj);
 		}
 	}
+	
+	if (Role == ROLE_Authority && StuckDarts.Length == 0 && bLaserOn)
+		ServerSwitchlaser(false);
+	
 }
 
 //===========================================================================
@@ -355,6 +371,8 @@ simulated function RenderOverlays (Canvas C)
 {
 	Super.RenderOverlays(C);
 	
+	if (!IsInState('Lowered'))
+		DrawLaserSight(C);
 	if (bScopeView)
 		DrawTargeting(C);
 }
@@ -371,7 +389,10 @@ simulated function vector GetFlechetteTarget()
 	local int i;
 	
 	if (StuckDarts.Length == 0)
+	{
+		bLaserTarget=false;
 		return vect(0,0,0);
+	}
 		
 	ShortestDistance = BaseTrackDist;
 	
@@ -387,9 +408,16 @@ simulated function vector GetFlechetteTarget()
 			ClosestVictim = StuckDarts[i].Tracked;
 	}
 	if (ClosestVictim != None)
+	{
+		bLaserTarget=true;
+		TargetLocation = ClosestVictim.Location;
 		return ClosestVictim.Location;
+	}
 	else
+	{
+		bLaserTarget=false;
 		return vect(0,0,0);
+	}
 }
 //===========================================================================
 // DrawTargeting
@@ -426,6 +454,189 @@ simulated event DrawTargeting (Canvas C)
 		C.SetDrawColor(255,255,255,255 * Distancing);
 		C.DrawTileStretched(Texture'BW_Core_WeaponTex.G5.G5Targetbox', (V2.X - V.X) + 32*ScaleFactor, (V2.Y - V.Y) + 32*ScaleFactor);
 	}
+}
+
+//============================================================
+// Laser management
+//============================================================
+
+
+simulated function WeaponTick(float DT)
+{
+	Super.WeaponTick(DT);
+
+	if (Instigator != None && Instigator.IsLocallyControlled() && bLaserOn)
+		GetFlechetteTarget(); //Continually check for targets
+
+}
+
+function ServerSwitchLaser(bool bNewLaserOn)
+{
+	bLaserOn = bNewLaserOn;
+	bUseNetAim = default.bUseNetAim || bLaserOn;
+
+	CX85Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+    if (Instigator.IsLocallyControlled())
+		ClientSwitchLaser();
+	OnLaserSwitched();
+}
+
+simulated function ClientSwitchLaser()
+{
+	//TickLaser (0.05);
+	if (bLaserOn)
+	{
+		SpawnLaserDot();
+		PlaySound(LaserOnSound,,0.7,,32);
+	}
+	else
+	{
+		KillLaserDot();
+		PlaySound(LaserOffSound,,0.7,,32);
+	}
+	PlayIdle();
+	bUseNetAim = default.bUseNetAim || bLaserOn;
+	OnLaserSwitched();
+}
+
+simulated function OnLaserSwitched()
+{
+	if (bLaserOn)
+		ApplyLaserAim();
+	else
+		AimComponent.Recalculate();
+}
+
+simulated function OnAimParamsChanged()
+{
+	Super.OnAimParamsChanged();
+
+	if (bLaserOn)
+		ApplyLaserAim();
+}
+
+simulated function ApplyLaserAim()
+{
+	AimComponent.AimSpread.Max *= 0.8f;
+	AimComponent.AimAdjustTime *= 1.5f;
+}
+
+simulated function BringUp(optional Weapon PrevWeapon)
+{
+	Super.BringUp(PrevWeapon);
+	if (Instigator != None && Laser == None && PlayerController(Instigator.Controller) != None)
+		Laser = Spawn(class'LaserActor_G5Painter');
+	if (Instigator != None && LaserDot == None && PlayerController(Instigator.Controller) != None)
+		SpawnLaserDot();
+
+	if ( ThirdPersonActor != None )
+		CX85Attachment(ThirdPersonActor).bLaserOn = bLaserOn;
+}
+
+simulated function bool PutDown()
+{
+	if (Super.PutDown())
+	{
+		KillLaserDot();
+
+		if (ThirdPersonActor != None)
+			CX85Attachment(ThirdPersonActor).bLaserOn = false;
+
+		return true;
+	}
+	return false;
+}
+
+simulated function Destroyed ()
+{
+	default.bLaserOn = false;
+	if (Laser != None)
+		Laser.Destroy();
+	if (LaserDot != None)
+		LaserDot.Destroy();
+	Super.Destroyed();
+}
+
+// Draw a laser beam and dot to show exact path of bullets before they're fired, point it at the tracked dude
+simulated function DrawLaserSight ( Canvas Canvas )
+{
+	local Vector HitLocation, Start, End, HitNormal, Scale3D, Loc, AimDir;
+	local Actor Other;
+
+	if ((ClientState == WS_Hidden) || !bLaserOn || bScopeView || Instigator == None || Instigator.Controller == None || Laser==None)
+		return;
+
+	Loc = GetBoneCoords('tip').Origin;
+
+	// Draw beam from bone on gun to point on wall(This is tricky cause they are drawn with different FOVs), or closest target
+	Laser.SetLocation(Loc);
+	if (!bLaserTarget) //Calc from barrel to wall
+	{
+		AimDir = BallisticFire(FireMode[0]).GetFireDir(Start);
+		End = Start + Normal(AimDir)*10000;
+		Other = FireMode[0].Trace (HitLocation, HitNormal, End, Start, true);
+		if (Other == None)
+			HitLocation = End;
+		if ( ThirdPersonActor != None )
+			CX85Attachment(ThirdPersonActor).LaserEndLoc = HitLocation;
+	}
+	else //Calc to target
+	{
+		HitLocation = ConvertFOVs(TargetLocation, Instigator.Controller.FovAngle, DisplayFOV, 400);
+		if ( ThirdPersonActor != None )
+			CX85Attachment(ThirdPersonActor).LaserEndLoc = TargetLocation;
+	}
+	
+	// Draw dot at end of beam
+	if (ReloadState == RS_None && ClientState == WS_ReadyToFire && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2)
+		SpawnLaserDot(HitLocation);
+	else
+		KillLaserDot();
+	
+	if (LaserDot != None && !bLaserTarget)
+		LaserDot.SetLocation(HitLocation);
+	else
+		LaserDot.SetLocation(TargetLocation);
+	Canvas.DrawActor(LaserDot, false, false, Instigator.Controller.FovAngle);
+	
+	if (ReloadState == RS_None && ClientState == WS_ReadyToFire /* && Level.TimeSeconds - FireMode[0].NextFireTime > 0.2*/)
+		Laser.SetRotation(Rotator(HitLocation - Loc));
+	else
+		Laser.SetRotation(GetBoneRotation('tip'));
+
+	Scale3D.X = VSize(HitLocation-Loc)/128;
+	Scale3D.Y = 1.5;
+	Scale3D.Z = 1.5;
+	Laser.SetDrawScale3D(Scale3D);
+	Canvas.DrawActor(Laser, false, false, DisplayFOV);
+}
+
+simulated function KillLaserDot()
+{
+	if (LaserDot != None)
+	{
+		LaserDot.Kill();
+		LaserDot = None;
+	}
+}
+simulated function SpawnLaserDot(optional vector Loc)
+{
+	if (LaserDot == None)
+		LaserDot = Spawn(class'G5LaserDot',,,Loc);
+}
+
+// Azarael - improved ironsights
+simulated function UpdateNetAim()
+{
+	bUseNetAim = default.bUseNetAim || bScopeView || bLaserOn;
+}
+
+simulated function PlayIdle()
+{
+	Super.PlayIdle();
+	if (!bLaserOn || bPendingSightUp || SightingState != SS_None || !CanPlayAnim(IdleAnim, ,"IDLE"))
+		return;
+	FreezeAnimAt(0.0);
 }
 
 // Secondary fire doesn't count for this weapon
