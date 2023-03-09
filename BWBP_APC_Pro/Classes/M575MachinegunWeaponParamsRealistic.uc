@@ -8,7 +8,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=RealisticPrimaryEffectParams
-		TraceRange=(Min=2000.000000,Max=10000.000000) /7.62 long barrel
+		TraceRange=(Min=2000.000000,Max=10000.000000) //7.62 long barrel
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		Damage=55.0
@@ -48,7 +48,7 @@ defaultproperties
 		WaterTraceRange=5000.0
 		DecayRange=(Min=0.0,Max=0.0)
 		RangeAtten=0.200000
-		Damage=14.000000
+		Damage=49.000000
 		HeadMult=2.0
 		LimbMult=1.0
 		DamageType=Class'BallisticProV55.DTXK2Freeze'
@@ -63,13 +63,13 @@ defaultproperties
 		MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
 		FlashScaleFactor=0.250000
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.M575.M575-Fire',Volume=0.700000,Radius=384.000000,Pitch=1.400000)
-		Recoil=70.000000
+		Recoil=470.000000
 		Chaos=0.050000
 		Inaccuracy=(X=16,Y=16)
 	End Object
 
 	Begin Object Class=FireParams Name=RealisticSecondaryFireParams
-		FireInterval=0.090000
+		FireInterval=0.120000
 		BurstFireRateFactor=1.00
 		AimedFireAnim="SightFire"	
 	FireEffectParams(0)=InstantEffectParams'RealisticSecondaryEffectParams'
@@ -127,7 +127,10 @@ defaultproperties
 		RecoilParams(0)=RecoilParams'RealisticRecoilParams'
 		AimParams(0)=AimParams'RealisticAimParams'
 		FireParams(0)=FireParams'RealisticPrimaryFireParams'
-		AltFireParams(0)=FireParams'RealisticSecondaryFireParams'
+		FireParams(1)=FireParams'RealisticPrimaryFireParams'
+		FireParams(2)=FireParams'RealisticPrimaryFireParams'
+		FireParams(3)=FireParams'RealisticPrimaryFireParams'
+		FireParams(4)=FireParams'RealisticSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'RealisticParams'
 
