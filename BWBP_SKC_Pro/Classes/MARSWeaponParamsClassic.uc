@@ -7,7 +7,7 @@ defaultproperties
     // PRIMARY FIRE
     //=================================================================	
 	
-	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams_HeavyBarrel
 		TraceRange=(Min=11000.000000,Max=14000.000000)
 		WaterTraceRange=11200.0
 		DecayRange=(Min=0.0,Max=0.0)
@@ -30,10 +30,43 @@ defaultproperties
 		WarnTargetPct=0.200000
 	End Object
 
-	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams_HeavyBarrel
 		FireInterval=0.085700
 		BurstFireRateFactor=1.00
 		FireEndAnim=	
+	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams_HeavyBarrel'
+	End Object
+		
+	Begin Object Class=InstantEffectParams Name=ClassicPrimaryEffectParams
+		TraceRange=(Min=10500.000000,Max=12500.000000)
+		WaterTraceRange=10000.0
+		DecayRange=(Min=0.0,Max=0.0)
+		RangeAtten=0.850000
+		Damage=22
+		HeadMult=3.5
+		LimbMult=0.5
+		DamageType=Class'BWBP_SKC_Pro.DTF2000Assault'
+		DamageTypeHead=Class'BWBP_SKC_Pro.DTF2000AssaultHead'
+		DamageTypeArm=Class'BWBP_SKC_Pro.DTF2000Assault'
+		PenetrationEnergy=32.000000
+		PenetrateForce=150
+		PDamageFactor=0.6
+		WallPDamageFactor=0.4
+		MuzzleFlashClass=Class'BWBP_SKC_Pro.MARSFlashEmitter_C'
+		FlashScaleFactor=0.500000
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MARS.MARS-RapidFire',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
+		Recoil=96.000000
+		Chaos=-1.0
+		Inaccuracy=(X=32,Y=32)
+		WarnTargetPct=0.200000
+	End Object
+
+	Begin Object Class=FireParams Name=ClassicPrimaryFireParams
+		FireInterval=0.077000
+		BurstFireRateFactor=1.00
+		AimedFireAnim="SightFire"	
+		FireEndAnim=
+		FireAnimRate=2.000000	
 	FireEffectParams(0)=InstantEffectParams'ClassicPrimaryEffectParams'
 	End Object
 		
@@ -41,6 +74,7 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 	
+	//Smoke Grenade
 	Begin Object Class=ProjectileEffectParams Name=ClassicSecondaryEffectParams
 		ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade'
 		SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
@@ -63,6 +97,18 @@ defaultproperties
 		FireAnim="GLFire"
 		AimedFireAnim="GLSightFireFromPrep"	
 		FireEffectParams(0)=ProjectileEffectParams'ClassicSecondaryEffectParams'
+	End Object
+	
+	//Scope
+	Begin Object Class=FireEffectParams Name=ClassicSecondaryEffectParams_Scope
+		BotRefireRate=0.300000
+	End Object
+	
+	Begin Object Class=FireParams Name=ClassicSecondaryFireParams_Scope
+		FireInterval=0.200000
+		AmmoPerFire=0
+		TargetState=Scope
+		FireEffectParams(0)=FireEffectParams'ClassicSecondaryEffectParams_Scope'
 	End Object
 		
 	//=================================================================
@@ -132,6 +178,7 @@ defaultproperties
 	
 	Begin Object Class=WeaponParams Name=ClassicParams //Black, IRNV, no GL
 		Weight=30
+		LayoutTags="thermal"
 		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MARS2'
 		InventorySize=11
 		bNeedCock=True
@@ -147,11 +194,14 @@ defaultproperties
 		CockAnimRate=1.000000
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams_HeavyBarrel'
 		AimParams(0)=AimParams'ClassicAimParams_HeavyBarrel'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_HeavyBarrel'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Green //Green, IRNV, HE GL
 		Weight=10
+		LayoutTags="thermal"
+		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MARS2'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-MainGreen",Index=1)
 		InventorySize=11
@@ -165,13 +215,15 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams_HeavyBarrel'
+		AimParams(0)=AimParams'ClassicAimParams_HeavyBarrel'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_HeavyBarrel'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Urban //Urban, IRNV, Smoke GL
 		Weight=10
+		LayoutTags="thermal"
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-MainSplitter",Index=1)
 		InventorySize=11
@@ -185,13 +237,15 @@ defaultproperties
 		ZoomType=ZT_Logarithmic
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		RecoilParams(0)=RecoilParams'ClassicRecoilParams_HeavyBarrel'
+		AimParams(0)=AimParams'ClassicAimParams_HeavyBarrel'
+		FireParams(0)=FireParams'ClassicPrimaryFireParams_HeavyBarrel'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams_Scope'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Beige //Beige, Suppressor, HE GL
 		Weight=30
+		LayoutTags="suppressor"
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(Material=Texture'BWBP_SKC_Tex.MARS.F2000-Irons',Index=1)
@@ -205,16 +259,19 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
 		ZoomType=ZT_Irons
+		ScopeViewTex=None
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		WeaponName="MARS-3 CQB Assault Rifle"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Arctic //Arctic, Suppressor, Ice GL
 		Weight=10
+		LayoutTags="suppressor"
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-IronArctic",Index=1)
@@ -227,16 +284,19 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
 		ZoomType=ZT_Irons
+		ScopeViewTex=None
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		WeaponName="MARS-3 CQB Assault Rifle"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_Proto //Black prototype, Amp, Shockwave GL
 		Weight=3
+		LayoutTags="suppressor"
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-IronBlack",Index=1)
@@ -249,16 +309,19 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
 		ZoomType=ZT_Irons
+		ScopeViewTex=None
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		WeaponName="MARS-3 CQB Assault Rifle"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Begin Object Class=WeaponParams Name=ClassicParams_SE  //Special White, Suppressor, Shockwave GL
 		Weight=3
+		LayoutTags="suppressor"
 		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS3'
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.MARSCamos.F2000-IronWhite",Index=1)
@@ -271,12 +334,14 @@ defaultproperties
 		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=2
 		ZoomType=ZT_Irons
+		ScopeViewTex=None
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		WeaponName="MARS-3 CQB Assault Rifle"
 		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
 		AimParams(0)=AimParams'ClassicAimParams'
 		FireParams(0)=FireParams'ClassicPrimaryFireParams'
+		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
 	Layouts(0)=WeaponParams'ClassicParams' //Black
