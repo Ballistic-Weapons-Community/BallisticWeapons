@@ -118,7 +118,7 @@ defaultproperties
 	//=================================================================	
 	
 	Begin Object Class=WeaponParams Name=ClassicParams
-		WeaponBoneScales(2)=(BoneName="AMP",Slot=53,Scale=0f)
+		//WeaponBoneScales(2)=(BoneName="AMP",Slot=53,Scale=0f)
 		PlayerSpeedFactor=0.90000
 		PlayerJumpFactor=0.900000
 		SightMoveSpeedFactor=0.500000
@@ -134,6 +134,7 @@ defaultproperties
 		FireParams(3)=FireParams'ClassicPrimaryFireParams'
 		FireParams(4)=FireParams'ClassicPrimaryIceFireParams'
 	End Object
+
 	Layouts(0)=WeaponParams'ClassicParams'
 
 
