@@ -110,6 +110,8 @@ var() float				TimeBetweenImpacts;	// Minimum time between impact mark spawning
 var   vector			LastImpactNormal;	// Normal of last impact
 var   vector			LastImpactLocation;	// Location of last impact
 var   BCSprintControl   Sprinter;
+// -------------------------------------------------------
+var   vector            BloodFlashV, ShieldFlashV;
 
 // New Bw style DeRes vars -------------------------------
 var Projector			NewDeResDecal;		// Projector used to great symbol decal on teh floor under the corpse
@@ -2771,8 +2773,34 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 				Controller.NotifyTakeHit(instigatedBy, HitLocation, actualDamage, DamageType, Momentum);
 			if ( instigatedBy != None && instigatedBy != self )
 				LastHitBy = instigatedBy.Controller;
+                
+            DamageViewFlash(actualDamage);
 		}
 		MakeNoise(1.0);
+}
+
+function DamageViewFlash(int damage)
+{
+    local int rnd;
+
+    if (BallisticPlayer(Controller) == None || damage == 0)
+        return;
+
+    rnd = FClamp(damage / 2, 25, 50);
+
+	if (ShieldStrength > 0)
+    {
+        BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, ShieldFlashV);
+    }
+    else 
+    {
+		BallisticPlayer(Controller).ClientDmgFlash( -0.017 * rnd, BloodFlashV);  
+    }     
+}
+
+exec simulated function TestFlash(int damage)
+{
+    DamageViewFlash(damage);
 }
 
 simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
@@ -2925,6 +2953,9 @@ defaultproperties
      Fades(14)=Texture'BW_Core_WeaponTex.Icons.stealth_120'
      Fades(15)=Texture'BW_Core_WeaponTex.Icons.stealth_128'
      UDamageSound=Sound'BW_Core_WeaponSound.Udamage.UDamageFire'
+
+	 BloodFlashV=(X=1000,Y=250,Z=250)
+     ShieldFlashV=(X=750,Y=500,Z=350)
 
      FootstepVolume=0.350000
      FootstepRadius=400.000000
