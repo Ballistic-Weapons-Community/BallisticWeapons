@@ -559,7 +559,7 @@ simulated function ClientSetHeat(float NewHeat)
 simulated function Notify_AmpOn()	{	PlaySound(AmplifierOnSound,,0.5);		bShowCharge=true;}
 simulated function Notify_AmpOff()	{	PlaySound(AmplifierOffSound,,0.5);		bShowCharge=false;}
 
-simulated function Notify_AmpShow(){	SetBoneScale (2, 1.0, AmplifierBone);	}
+simulated function Notify_AMPShow(){	SetBoneScale (2, 1.0, AmplifierBone);	}
 simulated function Notify_AmpHide(){	SetBoneScale (2, 0.0, AmplifierBone);	}
 
 simulated function Notify_AMPOnTurn(){	PlaySound(AmplifierOnTurnSound,,0.5);}
