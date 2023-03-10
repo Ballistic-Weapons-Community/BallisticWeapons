@@ -15,6 +15,7 @@ function DoDamage(Actor Other, vector HitLocation)
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.MRS138Shotgun'
      ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
      TrailClass=Class'BallisticProV55.MRS138TazerProjTrail'
      MyRadiusDamageType=Class'BallisticProV55.DTMRS138TazerLine'

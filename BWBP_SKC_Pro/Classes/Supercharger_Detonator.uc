@@ -57,6 +57,7 @@ simulated function Penetrate(Actor Other, Vector HitLocation)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.Supercharger_AssaultWeapon'
      bApplyParams=False
 	 bNoInitialSpin=True
      bAlignToVelocity=True

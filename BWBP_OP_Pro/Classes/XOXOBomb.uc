@@ -177,6 +177,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.XOXOStaff'
      DampenFactor=0.150000
      DampenFactorParallel=0.300000
      ArmingDelay=0.75

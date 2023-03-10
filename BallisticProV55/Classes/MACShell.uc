@@ -132,6 +132,7 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 
 defaultproperties
 {   
+    WeaponClass=Class'BallisticProV55.MACWeapon'
      bLimitMomentumZ=False
      FlySound=Sound'BW_Core_WeaponSound.Artillery.Art-FlyBy'
      ImpactManager=Class'BallisticProV55.IM_HAMR'

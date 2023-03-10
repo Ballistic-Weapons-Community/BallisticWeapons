@@ -189,6 +189,7 @@ function InitProPineapple(float PSpeed, float PDelay)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.G28Grenade'
      ShotDamageType=Class'BWBP_SKC_Pro.DTG28Explode'
      Health=20
      DetonateDelay=2.000000

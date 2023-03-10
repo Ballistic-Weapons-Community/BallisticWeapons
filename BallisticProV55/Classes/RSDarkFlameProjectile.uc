@@ -214,6 +214,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.RSDarkStar'
      bPenetrate=True
      MyRadiusDamageType=Class'BallisticProV55.DT_RSDarkPlasma'
      Speed=3000.000000

@@ -314,6 +314,7 @@ function BlowUp(vector HitLocation)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
      bPrimaryGrenade=True
      ZBonus=40000.000000
      DamageDropoffFactor=0.100000

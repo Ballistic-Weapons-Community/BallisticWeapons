@@ -11,6 +11,7 @@ class XMK5Dart extends BallisticProjectile;
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.XMK5SubMachinegun'
      ModeIndex=1
      ImpactManager=Class'BallisticProV55.IM_XMK5Dart'
      TrailClass=Class'BallisticProV55.PineappleTrail'

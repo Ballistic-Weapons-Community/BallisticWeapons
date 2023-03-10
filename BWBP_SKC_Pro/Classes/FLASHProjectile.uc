@@ -31,6 +31,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.FLASHLauncher'
      DetonateOn=DT_Impact
      bNoInitialSpin=True
      bAlignToVelocity=True

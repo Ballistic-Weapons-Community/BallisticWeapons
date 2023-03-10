@@ -285,6 +285,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.BX5Mine'
      VehicleDamageType=Class'BallisticProV55.DTBX5VehicleRadius'
      HRadius=250.000000
      Health=30

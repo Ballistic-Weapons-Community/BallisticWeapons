@@ -108,6 +108,7 @@ simulated singular function HitWall( vector HitNormal, actor Wall )
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.G5Bazooka'
      ImpactSounds(0)=Sound'XEffects.Impact4Snd'
      ImpactSounds(1)=Sound'XEffects.Impact6Snd'
      ImpactSounds(2)=Sound'XEffects.Impact7Snd'

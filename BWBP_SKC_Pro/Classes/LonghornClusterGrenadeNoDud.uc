@@ -287,6 +287,7 @@ function BlowUp(vector HitLocation)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
      bAlignToVelocity=True
      bDynamicLight=True
      bNetTemporary=False

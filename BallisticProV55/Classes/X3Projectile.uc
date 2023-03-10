@@ -13,17 +13,7 @@ var   bool			bHitPlayer;
 
 simulated function InitParams()
 {
-    local BallisticWeapon BW;
-
-    if (Instigator == None)
-        return;
-
-    BW = BallisticWeapon(Instigator.Weapon);
-
-    if (BW == None)
-        return;
-
-    BW.default.ParamsClasses[BW.GameStyleIndex].static.OverrideProjectileParams(BW, self, 1);
+    WeaponClass.default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle].static.OverrideProjectileParams(self, 1);
 }
 
 simulated function InitProjectile ()
@@ -152,6 +142,7 @@ function UsedBy(Pawn User)
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.X3Knife'
      ModeIndex=1
 	 ImpactManager=Class'BallisticProV55.IM_KnifeThrown'
      bRandomStartRotation=False

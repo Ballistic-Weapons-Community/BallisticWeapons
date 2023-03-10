@@ -11,7 +11,7 @@
 // by Sarge
 // Coding help by Azarael
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class LAWMineHvy extends BallisticProjectile;
 
@@ -232,6 +232,7 @@ function bool IsStationary()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LAWLauncher'
 //     DetonateSound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_GrenadeBeep'
      DetonateSound=Sound'BWBP_SKC_Sounds.LAW.LAW-MineAlarm'
      Health=70

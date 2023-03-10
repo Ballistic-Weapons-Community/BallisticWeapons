@@ -128,6 +128,7 @@ simulated function TargetedHurtRadius( float DamageAmount, float DamageRadius, c
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
      bAlignToVelocity=True
      bDynamicLight=True
      bNoInitialSpin=False

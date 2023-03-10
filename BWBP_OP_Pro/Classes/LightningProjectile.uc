@@ -67,6 +67,7 @@ State WaitForCombo
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.LightningRifle'
      ModeIndex=1
      ImpactManager=Class'BWBP_OP_Pro.IM_LightningArcProj'
      AccelSpeed=-100.000000

@@ -82,6 +82,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.MARSAssaultRifle'
      ModeIndex=1
      DetonateOn=DT_Impact
      bNoInitialSpin=True

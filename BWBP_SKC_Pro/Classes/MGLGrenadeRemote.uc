@@ -48,6 +48,7 @@ function RemoteDetonate()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.MGLauncher'
      ModeIndex=1
      DetonateOn=DT_None
      PlayerImpactType=PIT_Detonate

@@ -86,6 +86,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.BOGPPistol'
      DetonateOn=DT_ImpactTimed
 	 PlayerImpactType=PIT_Detonate
      bNoInitialSpin=True

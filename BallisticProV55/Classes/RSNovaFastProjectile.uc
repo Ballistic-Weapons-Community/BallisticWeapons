@@ -208,6 +208,7 @@ simulated function DestroyEffects()
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.RSNovaStaff'
      ImpactManager=Class'BallisticProV55.IM_RSNovaProjectile'
      PenetrateManager=Class'BallisticProV55.IM_RSNovaProjectile'
      bRandomStartRotation=False

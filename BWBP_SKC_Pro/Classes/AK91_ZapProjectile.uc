@@ -81,6 +81,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 
 defaultproperties
 {
+     WeaponClass=Class'BWBP_SKC_Pro.AK91ChargeRifle'
 	 bApplyParams=False
      bPenetrate=True
      StartDelay=0.050000

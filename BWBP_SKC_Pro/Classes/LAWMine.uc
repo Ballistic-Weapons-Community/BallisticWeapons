@@ -8,7 +8,7 @@
 //
 // by Sarge and Azarael
 // uses code by Nolan "Dark Carnivour" Richert.
-// Copyright© 2011 RuneStorm. All Rights Reserved.
+// Copyrightï¿½ 2011 RuneStorm. All Rights Reserved.
 //=============================================================================
 class LAWMine extends BallisticProjectile;
 
@@ -175,6 +175,7 @@ function bool IsStationary()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LAWLauncher'
      ModeIndex=1
      DetonateSound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_GrenadeBeep'
      ShockRadius=1024

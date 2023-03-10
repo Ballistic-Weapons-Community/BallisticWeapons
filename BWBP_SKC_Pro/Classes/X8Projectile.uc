@@ -80,6 +80,7 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.X8Knife'
      ModeIndex=1
 	 TrailClass=Class'BallisticProV55.MRLTrailEmitter'
      ImpactManager=Class'BallisticProV55.IM_KnifeThrown'

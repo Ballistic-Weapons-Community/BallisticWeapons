@@ -131,6 +131,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.M763Shotgun'
 	 ModeIndex=1
      DetonateOn=DT_Impact
      bNoInitialSpin=True

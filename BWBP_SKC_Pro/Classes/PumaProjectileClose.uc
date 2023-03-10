@@ -10,6 +10,7 @@ class PUMAProjectileClose extends BallisticGrenade;
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.PumaRepeater'
      bNoInitialSpin=True
      bAlignToVelocity=True
      DetonateDelay=0.000100

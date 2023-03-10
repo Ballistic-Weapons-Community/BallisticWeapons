@@ -221,6 +221,7 @@ simulated event Landed( vector HitNormal )
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.PD97Bloodhound'
      TurnRate=32768.000000
      RollRange=192000
      ScrewRadius=3.000000

@@ -130,6 +130,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.ARShotgun'
      ModeIndex=1
      DetonateOn=DT_Impact
      bNoInitialSpin=True

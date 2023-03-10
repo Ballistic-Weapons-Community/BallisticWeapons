@@ -82,6 +82,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.M50AssaultRifle'
     ArmingDelay=0.3
     DetonateOn=DT_None
     PlayerImpactType=PIT_Bounce

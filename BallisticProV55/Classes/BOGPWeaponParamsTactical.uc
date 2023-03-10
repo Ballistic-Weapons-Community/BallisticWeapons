@@ -34,8 +34,8 @@ defaultproperties
     Begin Object Class=GrenadeEffectParams Name=TacticalFlareEffectParams
         ProjectileClass=Class'BallisticProV55.BOGPFlare'
         SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-        Speed=5500.000000
-        MaxSpeed=14000.000000
+        Speed=3500.000000
+        MaxSpeed=3500.000000
         AccelSpeed=100000.000000
         Damage=40.000000
         ImpactDamage=40

@@ -173,6 +173,7 @@ simulated function Actor GetDamageVictim (Actor Other, vector HitLocation, vecto
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.AkeronLauncher'
      ArmingDelay=0.050000
      ImpactSounds(0)=Sound'XEffects.Impact4Snd'
      ImpactSounds(1)=Sound'XEffects.Impact6Snd'

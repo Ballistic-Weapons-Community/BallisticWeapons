@@ -83,6 +83,7 @@ function TargetedHurtRadius( float DamageAmount, float DamageRadius, class<Damag
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.MRocketLauncher'
      RollRange=192000
      ImpactManager=Class'BallisticProV55.IM_MRLRocket'
      bRandomStartRotation=False

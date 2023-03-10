@@ -142,6 +142,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
 	 bApplyParams=False
      FlareClass=Class'BWBP_SKC_Pro.LonghornClusterFlare'
      DetonateOn=DT_None

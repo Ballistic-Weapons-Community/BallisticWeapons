@@ -59,6 +59,7 @@ function DoDamage (Actor Other, vector HitLocation)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.Raygun'
      ImpactManager=Class'BWBP_OP_Pro.IM_RaygunBlast'
      AccelSpeed=80000.000000
      TrailClass=Class'BWBP_OP_Pro.RaygunTrailEmitter'

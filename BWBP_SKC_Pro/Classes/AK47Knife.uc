@@ -65,6 +65,7 @@ simulated singular function HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+     WeaponClass=Class'BWBP_SKC_Pro.AK47AssaultRifle'
      ModeIndex=1
      ImpactManager=Class'BallisticProV55.IM_KnifeThrown'
      bRandomStartRotation=False

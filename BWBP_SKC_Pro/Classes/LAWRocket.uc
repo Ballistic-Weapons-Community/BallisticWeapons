@@ -62,6 +62,7 @@ simulated event HitWall(vector HitNormal, actor Wall)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LAWLauncher'
     bLimitMomentumZ=False
      FlySound=Sound'BWBP_SKC_Sounds.Flash.M202-Flyby'
      RollRange=100000

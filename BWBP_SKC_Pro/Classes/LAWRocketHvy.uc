@@ -174,6 +174,7 @@ simulated function ProcessTouch (Actor Other, vector HitLocation)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LAWLauncher'
      AccelSpeed=500.000000
      AmbientSound=Sound'BW_Core_WeaponSound.G5.G5-RocketFly'
      bDynamicLight=True

@@ -162,6 +162,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.LonghornLauncher'
      FlareClass=Class'BWBP_SKC_Pro.LonghornClusterFlare'
      ArmingDelay=0.100000
      DetonateOn=DT_ImpactTimed

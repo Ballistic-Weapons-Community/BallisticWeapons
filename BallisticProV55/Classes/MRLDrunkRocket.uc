@@ -138,6 +138,7 @@ simulated event Landed( vector HitNormal )
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.MRocketLauncher'
      RollRange=192000
      ScrewRadius=3.000000
      DudChance=-1.000000

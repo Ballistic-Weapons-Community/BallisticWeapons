@@ -92,6 +92,7 @@ simulated function HitWall( vector HitNormal, Actor Wall )
 
 defaultproperties
 {
+     WeaponClass=Class'BWBP_SKC_Pro.BulldogAssaultCannon'
      DampenFactor=0.15000
      DampenFactorParallel=0.300000
      ArmingDelay=0.05

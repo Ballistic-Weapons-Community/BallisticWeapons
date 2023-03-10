@@ -80,6 +80,7 @@ simulated function Timer()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_OP_Pro.MX32Weapon'
     ModeIndex=1
     IgniteSound=sound'CicadaSnds.MissileIgnite'
     ArmingDelay=0.2

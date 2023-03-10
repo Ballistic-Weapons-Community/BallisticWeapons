@@ -99,6 +99,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.F2000AssaultRifle'
      ModeIndex=1
      DetonateOn=DT_Impact
      bNoInitialSpin=True

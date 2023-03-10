@@ -117,6 +117,7 @@ function InitProPineapple(float PSpeed, float PDelay)
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.XM84Flashbang'
      DetonateDelay=2.000000
      ImpactDamage=15
      ImpactDamageType=Class'BWBP_SKC_Pro.DTXM84Hit'

@@ -126,6 +126,7 @@ simulated function Destroyed()
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.BX5Mine'
      TeamLightColor=128
      ImpactManager=Class'BallisticProV55.IM_AirMine'
      bRandomStartRotation=False

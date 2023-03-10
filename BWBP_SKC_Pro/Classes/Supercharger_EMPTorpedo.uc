@@ -39,6 +39,7 @@ simulated function InitEffects ()
 
 defaultproperties
 {
+    WeaponClass=Class'BWBP_SKC_Pro.Supercharger_AssaultWeapon'
      ImpactManager=Class'BWBP_SKC_Pro.IM_EMPRocketLarge'
      AccelSpeed=1200.000000
      TrailClass=Class'Onslaught.ONSBluePlasmaFireEffect'

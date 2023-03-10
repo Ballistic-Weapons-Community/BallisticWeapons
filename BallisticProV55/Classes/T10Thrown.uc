@@ -93,6 +93,7 @@ function InitProPineapple(float PSpeed, float PDelay)
 
 defaultproperties
 {
+    WeaponClass=Class'BallisticProV55.T10Grenade'
      DampenFactor=0.050000
      DampenFactorParallel=0.350000
      DetonateDelay=2.000000

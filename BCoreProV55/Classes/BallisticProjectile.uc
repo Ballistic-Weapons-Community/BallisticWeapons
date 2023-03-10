@@ -52,6 +52,7 @@ var		bool					bApplyParams;			// Apply params to this projectile (allows separat
 //-----------------------------------------------------------------------------
 // Appearance
 //-----------------------------------------------------------------------------
+var() class<BallisticWeapon>    WeaponClass;            // required, in order to query its parameters
 var() class<BCImpactManager>    ImpactManager;			// Impact manager to spawn on final hit
 var() class<BCImpactManager>    PenetrateManager;		// Impact manager to spawn when going through actors
 var() class<BCImpactManager>    SplashManager;			// Impact manager to spawn for splashes
@@ -62,6 +63,8 @@ var() bool					    bRandomStartRotation;	// Set random roll on startup
 // Handling
 //-----------------------------------------------------------------------------
 var() int                       ModeIndex;              // For parameter indexing - is primary or alt fire shot
+var() byte                      LayoutIndex;            // For parameter indexing - layout of firing weapon
+var() byte                      CurrentWeaponMode;      // For parameter indexing - fire mode index of firing weapon
 var() bool					    bCheckHitSurface;		// Check impact surfacetype on explode for surface dependant ImpactManagers
 var() bool					    bPenetrate;				// Will go through enemies
 var() float					    StartDelay;				// Used to delay projectile's entry into the world
@@ -129,101 +132,30 @@ var() ProjectileEffectParams.ERadiusFallOffType        RadiusFallOffType;
 
 replication
 {
+    reliable if (bNetInitial && Role == ROLE_Authority)
+        LayoutIndex, CurrentWeaponMode;
 	reliable if (bTearOff && Role == ROLE_Authority)
 		TearOffHitNormal;
 }
 
-simulated function ApplyParams(ProjectileEffectParams params)
-{
-    /*if (Role != ROLE_Authority)
-        return;*/
 
-    Damage = params.Damage;
-	default.Damage = params.Damage;
-	
-    DamageRadius = params.DamageRadius;
-	default.DamageRadius = params.DamageRadius;
-	
-    MomentumTransfer = params.MomentumTransfer;
-	default.MomentumTransfer = params.MomentumTransfer;
-
-	bLimitMomentumZ = params.bLimitMomentumZ;
-	default.bLimitMomentumZ = params.bLimitMomentumZ;
-	
-    // not scaling projectile damage atm
-    if (!class'BCReplicationInfo'.static.UseFixedModifiers())
-    {
-        HeadMult = params.HeadMult;
-        LimbMult = params.LimbMult; 
-    }
-
-    else 
-    {   
-        HeadMult = class'BCReplicationInfo'.default.DamageModHead;
-        LimbMult = class'BCReplicationInfo'.default.DamageModLimb;
-    }
-    
-    Speed = params.Speed;
-	default.Speed = params.Speed;
-	
-    AccelSpeed = params.AccelSpeed;    
-	default.AccelSpeed = params.AccelSpeed;
-	
-    MaxSpeed = params.MaxSpeed;    
-	default.MaxSpeed = params.MaxSpeed;
-
-    MaxDamageGainFactor = params.MaxDamageGainFactor;    
-    DamageGainStartTime = params.DamageGainStartTime;    
-    DamageGainEndTime = params.DamageGainEndTime;    
-    RadiusFallOffType = params.RadiusFallOffType;     
-	default.MaxDamageGainFactor = params.MaxDamageGainFactor;    
-    default.DamageGainStartTime = params.DamageGainStartTime;    
-    default.DamageGainEndTime = params.DamageGainEndTime;    
-    default.RadiusFallOffType = params.RadiusFallOffType;    
-}
 
 simulated event TornOff()
 {
 	Explode(Location, TearOffHitNormal);
 }
 
-simulated function InitParams()
-{    
-    local BallisticWeapon BW;
-
-    if (Instigator == None)
-        return;
-
-    BW = BallisticWeapon(Instigator.Weapon);
-
-    if (BW == None)
-        return;
-
-    BW.default.ParamsClasses[BW.GameStyleIndex].static.SetProjectileParams(BW, self);
-}
-
-simulated function SetInitialSpeed()
-{
-    local Rotator R;
-
-    Velocity = Vector(Rotation);
-	Velocity *= Speed;
-
-	if(bRandomStartRotation)
-	{
-		R = Rotation;
-		R.Roll = Rand(65536);
-		SetRotation(R);
-	}
-
-    Acceleration = Normal(Velocity) * AccelSpeed;
-
-	StartRotation = Rotation;
-}
-
 simulated function PostBeginPlay()
 {
     Super(Projectile).PostBeginPlay();
+
+    // timing - might not work correctly - not sure
+    // TODO: check when Instigator is assigned in C++.
+    if (Instigator != None && BallisticWeapon(Instigator.Weapon) != None)
+    {
+        CurrentWeaponMode = BallisticWeapon(Instigator.Weapon).CurrentWeaponMode;
+        LayoutIndex = BallisticWeapon(Instigator.Weapon).LayoutIndex;
+    }
 
     if (Level.NetMode != NM_Client)
     {
@@ -278,16 +210,78 @@ simulated function PostNetBeginPlay()
 	}
 }
 
-simulated function Destroyed()
+simulated function InitParams()
+{    
+    WeaponClass.default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle].static.SetProjectileParams(self);
+}
+
+simulated function ApplyParams(ProjectileEffectParams params)
 {
-	if (Trail != None)
+    Speed = params.Speed;
+	default.Speed = params.Speed;
+	
+    AccelSpeed = params.AccelSpeed;    
+	default.AccelSpeed = params.AccelSpeed;
+	
+    MaxSpeed = params.MaxSpeed;    
+	default.MaxSpeed = params.MaxSpeed;
+
+    if (Level.NetMode == NM_Client)
+        return;
+
+    Damage = params.Damage;
+	default.Damage = params.Damage;
+	
+    DamageRadius = params.DamageRadius;
+	default.DamageRadius = params.DamageRadius;
+	
+    MomentumTransfer = params.MomentumTransfer;
+	default.MomentumTransfer = params.MomentumTransfer;
+
+	bLimitMomentumZ = params.bLimitMomentumZ;
+	default.bLimitMomentumZ = params.bLimitMomentumZ;
+	
+    // not scaling projectile damage atm
+    if (!class'BCReplicationInfo'.static.UseFixedModifiers())
+    {
+        HeadMult = params.HeadMult;
+        LimbMult = params.LimbMult; 
+    }
+
+    else 
+    {   
+        HeadMult = class'BCReplicationInfo'.default.DamageModHead;
+        LimbMult = class'BCReplicationInfo'.default.DamageModLimb;
+    }
+
+    MaxDamageGainFactor = params.MaxDamageGainFactor;    
+    DamageGainStartTime = params.DamageGainStartTime;    
+    DamageGainEndTime = params.DamageGainEndTime;    
+    RadiusFallOffType = params.RadiusFallOffType; 
+
+	default.MaxDamageGainFactor = params.MaxDamageGainFactor;    
+    default.DamageGainStartTime = params.DamageGainStartTime;    
+    default.DamageGainEndTime = params.DamageGainEndTime;    
+    default.RadiusFallOffType = params.RadiusFallOffType;    
+}
+
+simulated function SetInitialSpeed()
+{
+    local Rotator R;
+
+    Velocity = Vector(Rotation);
+	Velocity *= Speed;
+
+	if(bRandomStartRotation)
 	{
-		if (Emitter(Trail) != None)
-			Emitter(Trail).Kill();
-		else
-			Trail.Destroy();
+		R = Rotation;
+		R.Roll = Rand(65536);
+		SetRotation(R);
 	}
-	Super.Destroyed();
+
+    Acceleration = Normal(Velocity) * AccelSpeed;
+
+	StartRotation = Rotation;
 }
 
 simulated function InitEffects ()
@@ -367,6 +361,18 @@ simulated function CheckSurface(vector StartLocation, vector StartNormal, out in
 		Surf = int(Wall.SurfaceType);
 	else
 		Surf = int(HitMaterial.SurfaceType);
+}
+
+simulated function Destroyed()
+{
+	if (Trail != None)
+	{
+		if (Emitter(Trail) != None)
+			Emitter(Trail).Kill();
+		else
+			Trail.Destroy();
+	}
+	Super.Destroyed();
 }
 
 simulated function ShakeView(vector HitLocation)
