@@ -261,8 +261,8 @@ defaultproperties
 {
      IceTracerClass=Class'BallisticProV55.TraceEmitter_Freeze'
      IceImpactManager=Class'BallisticProV55.IM_FreezeHit'
-	 MuzzleFlashClass=Class'BWBP_APC_Pro.M575FlashEmitter'
-	 AltMuzzleFlashClass=Class'BWBP_APC_Pro.M575FlashEmitter'
+	 MuzzleFlashClass=Class'BWBP_OP_Pro.M575FlashEmitter'
+	 AltMuzzleFlashClass=Class'BWBP_OP_Pro.M575FlashEmitter'
      ImpactManager=Class'BallisticProV55.IM_Bullet'
      BrassClass=Class'BallisticProV55.Brass_MG'
      TracerClass=Class'BallisticProV55.TraceEmitter_Default'

@@ -37,7 +37,7 @@ defaultproperties
 	 DeathStrings(5)="%o's skull was hollowed out by %k's hybrid beast."
      bHeaddie=True
      DamageIdent="Machinegun"
-     WeaponClass=Class'BWBP_APC_Pro.M575Machinegun'
+     WeaponClass=Class'BWBP_OP_Pro.M575Machinegun'
      DeathString="%k furiously machinegunned %o's head off."
      FemaleSuicide="%o shot herself in the head with the M575."
      MaleSuicide="%o shot himself in the head with the M575."

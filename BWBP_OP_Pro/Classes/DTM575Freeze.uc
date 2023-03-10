@@ -9,7 +9,7 @@ defaultproperties
      FlashV=(X=350.000000,Y=350.000000,Z=700.000000)
      FlashF=0.250000
      DamageIdent="SMG"
-     WeaponClass=Class'BWBP_APC_Pro.M575Machinegun'
+     WeaponClass=Class'BWBP_OP_Pro.M575Machinegun'
      DeathString="%k's cryo grenade put %o on ice."
      FemaleSuicide="%o stayed out in the cold."
      MaleSuicide="%o stayed out in the cold."

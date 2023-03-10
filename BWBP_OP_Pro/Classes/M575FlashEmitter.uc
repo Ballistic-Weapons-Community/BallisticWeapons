@@ -86,7 +86,7 @@ defaultproperties
          SpawnOnTriggerPPS=14.000000
          StartVelocityRange=(X=(Min=-5.000000,Max=5.000000),Y=(Min=-5.000000,Max=5.000000),Z=(Min=20.000000,Max=35.000000))
      End Object
-     Emitters(0)=SpriteEmitter'BWBP_APC_Pro.M575FlashEmitter.SpriteEmitter29'
+     Emitters(0)=SpriteEmitter'BWBP_OP_Pro.M575FlashEmitter.SpriteEmitter29'
 
      Begin Object Class=MeshEmitter Name=MeshEmitter2
          StaticMesh=StaticMesh'BW_Core_WeaponStatic.M353.M353MuzzleFlash'
@@ -119,7 +119,7 @@ defaultproperties
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
-     Emitters(1)=MeshEmitter'BWBP_APC_Pro.M575FlashEmitter.MeshEmitter2'
+     Emitters(1)=MeshEmitter'BWBP_OP_Pro.M575FlashEmitter.MeshEmitter2'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter1
          UseColorScale=True
@@ -144,6 +144,6 @@ defaultproperties
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
-     Emitters(2)=SpriteEmitter'BWBP_APC_Pro.M575FlashEmitter.SpriteEmitter1'
+     Emitters(2)=SpriteEmitter'BWBP_OP_Pro.M575FlashEmitter.SpriteEmitter1'
 
 }

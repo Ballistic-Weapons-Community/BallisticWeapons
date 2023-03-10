@@ -10,7 +10,7 @@ defaultproperties
      LowPolyStaticMesh=StaticMesh'BWBP_OP_Static.M575.Pickup_M575'
      PickupDrawScale=0.10000
      StandUp=(Y=0.800000)
-     InventoryType=Class'BWBP_APC_Pro.M575Machinegun'
+     InventoryType=Class'BWBP_OP_Pro.M575Machinegun'
      RespawnTime=20.000000
      PickupMessage="You picked up the M575 machinegun."
      PickupSound=Sound'BW_Core_WeaponSound.M353.M353-Putaway'

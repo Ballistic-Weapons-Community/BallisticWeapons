@@ -392,7 +392,7 @@ defaultproperties
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BWBP_OP_Tex.M575.BigIcon_M575'
      BigIconCoords=(Y1=50,Y2=240)
-     SightFXClass=Class'BWBP_APC_Pro.M575SightLEDs'
+     SightFXClass=Class'BWBP_OP_Pro.M575SightLEDs'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      bWT_Machinegun=True
@@ -422,8 +422,8 @@ defaultproperties
 	 bShowChargingBar=True
      SightPivot=(Pitch=128)
      SightOffset=(X=-2.000000,Y=-0.375000,Z=13.220000)
-     FireModeClass(0)=Class'BWBP_APC_Pro.M575PrimaryFire'
-     FireModeClass(1)=Class'BWBP_APC_Pro.M575SecondaryFire'
+     FireModeClass(0)=Class'BWBP_OP_Pro.M575PrimaryFire'
+     FireModeClass(1)=Class'BWBP_OP_Pro.M575SecondaryFire'
      SelectAnimRate=1.350000
      PutDownTime=0.550000
      BringUpTime=0.700000
@@ -438,9 +438,9 @@ defaultproperties
      HudColor=(G=150,R=100)
      CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
      InventoryGroup=6
-     PickupClass=Class'BWBP_APC_Pro.M575Pickup'
+     PickupClass=Class'BWBP_OP_Pro.M575Pickup'
      PlayerViewOffset=(X=5.000000,Y=4.000000,Z=-7.800000)
-     AttachmentClass=Class'BWBP_APC_Pro.M575Attachment'
+     AttachmentClass=Class'BWBP_OP_Pro.M575Attachment'
      IconMaterial=Texture'BWBP_OP_Tex.M575.SmallIcon_M575'
      IconCoords=(X2=127,Y2=31)
      ItemName="M575 GP Machinegun"
@@ -453,6 +453,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'M575MachinegunWeaponParamsArena'
 	 ParamsClasses(1)=Class'M575MachinegunWeaponParamsClassic'
 	 ParamsClasses(2)=Class'M575MachinegunWeaponParamsRealistic'
+     ParamsClasses(3)=Class'M575MachinegunWeaponParamsTactical'
      Mesh=SkeletalMesh'BWBP_OP_Anim.FPm_M575'
      DrawScale=1.000000
 }

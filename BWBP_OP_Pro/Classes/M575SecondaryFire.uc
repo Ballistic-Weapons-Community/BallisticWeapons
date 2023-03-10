@@ -114,9 +114,9 @@ defaultproperties
     Damage=14.000000
     RangeAtten=0.200000
     WaterRangeAtten=0.600000
-    DamageType=Class'BWBP_APC_Pro.DTM575Freeze'
-    DamageTypeHead=Class'BWBP_APC_Pro.DTM575Freeze'
-    DamageTypeArm=Class'BWBP_APC_Pro.DTM575Freeze'
+    DamageType=Class'BWBP_OP_Pro.DTM575Freeze'
+    DamageTypeHead=Class'BWBP_OP_Pro.DTM575Freeze'
+    DamageTypeArm=Class'BWBP_OP_Pro.DTM575Freeze'
     KickForce=500
     PenetrateForce=150
     bPenetrate=True
@@ -124,7 +124,7 @@ defaultproperties
     DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryPistol',Volume=0.700000)
     bDryUncock=True
 	FlashBone="tip"
-    MuzzleFlashClass=Class'BWBP_APC_Pro.M575FlashEmitter'
+    MuzzleFlashClass=Class'BWBP_OP_Pro.M575FlashEmitter'
     FlashScaleFactor=0.250000
     BrassClass=Class'BallisticProV55.Brass_MG'
     BrassOffset=(X=-25.000000,Z=-5.000000)
@@ -138,7 +138,7 @@ defaultproperties
 	IceSound=(Sound=Sound'BW_Core_WeaponSound.A42.A42-Impact',Volume=1.200000,Radius=1024.000000,Pitch=1.000000,bNoOverride=True)
     bPawnRapidFireAnim=True
     FireRate=0.090000
-    AmmoClass=Class'BWBP_APC_Pro.Ammo_556mmBelt'
+    AmmoClass=Class'BWBP_OP_Pro.Ammo_556mmBelt'
     ShakeRotMag=(X=64.000000,Y=32.000000)
     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
     ShakeRotTime=2.000000

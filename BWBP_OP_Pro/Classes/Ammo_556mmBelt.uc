@@ -13,7 +13,7 @@ defaultproperties
      MaxAmmo=170
      InitialAmount=85
      IconFlashMaterial=Shader'BW_Core_WeaponTex.Icons.AmmoIconsFlashing'
-     PickupClass=Class'BWBP_APC_Pro.AP_M575Belt'
+     PickupClass=Class'BWBP_OP_Pro.AP_M575Belt'
      IconMaterial=Texture'BW_Core_WeaponTex.Icons.AmmoIconPage'
      IconCoords=(X1=256,X2=319,Y2=63)
      ItemName="5.56mm Guardian Belt Ammo"

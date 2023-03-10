@@ -14,9 +14,9 @@ defaultproperties
 		Damage=55.0
 		HeadMult=2.127272
 		LimbMult=0.654545
-		DamageType=Class'BWBP_APC_Pro.DTM575MG'
-		DamageTypeHead=Class'BWBP_APC_Pro.DTM575MGHead'
-		DamageTypeArm=Class'BWBP_APC_Pro.DTM575MG'
+		DamageType=Class'BWBP_OP_Pro.DTM575MG'
+		DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'
+		DamageTypeArm=Class'BWBP_OP_Pro.DTM575MG'
 		PenetrationEnergy=24.000000
 		PenetrateForce=125
 		bPenetrate=True

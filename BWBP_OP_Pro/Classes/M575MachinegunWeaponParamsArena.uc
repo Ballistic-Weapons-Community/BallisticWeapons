@@ -12,9 +12,9 @@ defaultproperties
 			TraceRange=(Min=15000.000000,Max=15000.000000)
 			RangeAtten=0.35
 			Damage=20
-			DamageType=Class'BWBP_APC_Pro.DTM575MG'
-			DamageTypeHead=Class'BWBP_APC_Pro.DTM575MGHead'
-			DamageTypeArm=Class'BWBP_APC_Pro.DTM575MG'
+			DamageType=Class'BWBP_OP_Pro.DTM575MG'
+			DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'
+			DamageTypeArm=Class'BWBP_OP_Pro.DTM575MG'
 			PenetrateForce=150
 			bPenetrate=True
 			MuzzleFlashClass=Class'BallisticProV55.Fifty9FlashEmitter'
@@ -39,12 +39,12 @@ defaultproperties
 		Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
 			RangeAtten=0.200000
 			Damage=14
-			DamageType=Class'BWBP_APC_Pro.DTM575Freeze'
-			DamageTypeHead=Class'BWBP_APC_Pro.DTM575Freeze'
-			DamageTypeArm=Class'BWBP_APC_Pro.DTM575Freeze'
+			DamageType=Class'BWBP_OP_Pro.DTM575Freeze'
+			DamageTypeHead=Class'BWBP_OP_Pro.DTM575Freeze'
+			DamageTypeArm=Class'BWBP_OP_Pro.DTM575Freeze'
 			PenetrateForce=150
 			bPenetrate=True
-			MuzzleFlashClass=Class'BWBP_APC_Pro.M575FlashEmitter'
+			MuzzleFlashClass=Class'BWBP_OP_Pro.M575FlashEmitter'
 			FlashScaleFactor=0.250000
 			Recoil=70.000000
 			Chaos=0.050000

@@ -24,7 +24,7 @@ defaultproperties
          SecondsBeforeInactive=0.000000
          LifetimeRange=(Min=0.500000,Max=0.500000)
      End Object
-     Emitters(0)=SpriteEmitter'BWBP_APC_Pro.M575SightLEDs.SpriteEmitter12'
+     Emitters(0)=SpriteEmitter'BWBP_OP_Pro.M575SightLEDs.SpriteEmitter12'
 
      bHidden=True
 }

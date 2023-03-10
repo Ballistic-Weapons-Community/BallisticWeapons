@@ -17,7 +17,7 @@ defaultproperties
 	 DeathStrings(4)="%o ran, but couldn’t hide from %k's machinegun."
 	 DeathStrings(5)="%k's M575 chewed %o up like a chew toy."
      DamageIdent="Machinegun"
-     WeaponClass=Class'BWBP_APC_Pro.M575Machinegun'
+     WeaponClass=Class'BWBP_OP_Pro.M575Machinegun'
      DeathString="%o was torn to shreds by %k's M575."
      FemaleSuicide="%o shot herself in the foot with the M575."
      MaleSuicide="%o shot himself in the foot with the M575."
