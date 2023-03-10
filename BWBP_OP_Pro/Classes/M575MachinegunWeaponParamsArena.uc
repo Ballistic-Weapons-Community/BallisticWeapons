@@ -101,11 +101,14 @@ defaultproperties
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.550000
 		DisplaceDurationMult=1
-		MagAmmo=85
+		MagAmmo=50
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'
-		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'
+		FireParams(1)=FireParams'ArenaPrimaryFireParams'
+		FireParams(2)=FireParams'ArenaPrimaryFireParams'
+		FireParams(3)=FireParams'ArenaPrimaryFireParams'
+		FireParams(4)=FireParams'ArenaSecondaryFireParams'
 	End Object
 	Layouts(0)=WeaponParams'ArenaParams'
 

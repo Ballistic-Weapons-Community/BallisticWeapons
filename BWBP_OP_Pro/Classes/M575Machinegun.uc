@@ -17,6 +17,22 @@ var() 	name		ScopeOnAnim, ScopeOffAnim;
 var() 	Material 	ScopeScopeViewTex;
 var 	Rotator		ScopeOffRot, ScopeOnRot;
 
+var() array<Material> AmpMaterials; //We're using this for the amp
+
+var(M575)   bool		bAmped;				// Amp installed, gun has new effects
+var(MARS) name		AmplifierBone;			// Bone to use for hiding amp
+var(MARS) name		AmplifierOnAnim;			//
+var(MARS) name		AmplifierOffAnim;		//
+var(MARS) sound		AmplifierOnSound;		// Silencer stuck on sound
+var(MARS) sound		AmplifierOffSound;		//
+var(MARS) sound		AmplifierPowerOnSound;		// Silencer stuck on sound
+var(MARS) sound		AmplifierPowerOffSound;		//
+var(MARS) sound		AmplifierOnTurnSound;	// Silencer screw on sound
+var(MARS) sound		AmplifierOffTurnSound;	//
+var(MARS) float		AmpCharge;					// Existing ampjuice
+var(MARS) float 		DrainRate;					// Rate that ampjuice leaks out
+var(MARS) bool		bShowCharge;				// Hides charge until the amp is on
+
 var int				IceCharge;
 var float			LastChargeTime;
 
@@ -24,8 +40,10 @@ const ChargeInterval = 0.5;
 
 replication
 {
+	reliable if (Role < ROLE_Authority)
+		ServerSwitchAmplifier;	
 	reliable if (Role == ROLE_Authority)
-		IceCharge;
+		IceCharge, ClientSetHeat;
 }
 
 simulated function PostNetBeginPlay()
@@ -355,7 +373,10 @@ function float GetAIRating()
 
 simulated function float ChargeBar()
 {
-	return IceCharge/20.0f;
+	if (!bShowCharge)
+		return 0;
+	else
+		return AmpCharge / 10;
 }
 
 simulated function WeaponTick(float DT)
@@ -367,7 +388,197 @@ simulated function WeaponTick(float DT)
 		IceCharge++;
 		LastChargeTime = Level.TimeSeconds;
 	}
+	if (AmpCharge > 0)
+		AmpCharge = FMax(0, AmpCharge - DrainRate*DT);
 }
+
+//==============================================
+// Amp Code
+//==============================================
+
+//mount or unmount amp
+/*exec simulated function WeaponSpecial(optional byte i)
+{
+	if (ReloadState != RS_None || SightingState != SS_None)
+		return;
+	if (Clientstate != WS_ReadyToFire)
+		return;
+	TemporaryScopeDown(0.5);
+	
+	if (bAmped)	//take off amp
+	{
+		bAmped = !bAmped;
+		ServerSwitchAmplifier(bAmped);
+		SwitchAmplifier(bAmped);
+	}
+}*/
+
+exec simulated function ToggleAmplifier(optional byte i)
+{
+	if (ReloadState != RS_None || SightingState != SS_None)
+		return;
+	if (Clientstate != WS_ReadyToFire)
+		return;
+
+	TemporaryScopeDown(0.5);
+
+	bAmped = !bAmped;
+	ServerSwitchAmplifier(bAmped);
+	SwitchAmplifier(bAmped);
+}
+function ServerSwitchAmplifier(bool bNewValue)
+{
+	bAmped = bNewValue;
+
+	SwitchAmplifier(bAmped);
+
+	bServerReloading=True;
+	ReloadState = RS_GearSwitch;
+
+	if (bAmped)
+	{
+		WeaponModes[0].bUnavailable=true;
+		WeaponModes[1].bUnavailable=true;
+		WeaponModes[2].bUnavailable=true;
+		WeaponModes[3].bUnavailable=true;
+		WeaponModes[4].bUnavailable=false;
+		CurrentWeaponMode=4;
+		ServerSwitchWeaponMode(4);
+		AmpCharge=10;
+	}
+	else
+	{
+		WeaponModes[0].bUnavailable=false;
+		WeaponModes[1].bUnavailable=false;
+		WeaponModes[2].bUnavailable=false;
+		WeaponModes[3].bUnavailable=false;
+		WeaponModes[4].bUnavailable=true;
+		CurrentWeaponMode=3;
+		ServerSwitchWeaponMode(3);
+		AmpCharge=0;
+	}
+		
+	if (Role == ROLE_Authority)
+		M575Attachment(ThirdPersonActor).SetAmped(bNewValue);
+		
+	if (CurrentWeaponMode == 1 && AmpCharge > 0)	//blue
+	{
+		Skins[4]=AmpMaterials[0];
+		Skins[5]=AmpMaterials[1];
+	}
+}
+
+simulated function SwitchAmplifier(bool bNewValue)
+{
+	if (Role == ROLE_Authority)
+		bServerReloading = True;
+		
+	ReloadState = RS_GearSwitch;
+
+	if (bNewValue)
+	{
+		PlayAnim(AmplifierOnAnim);
+		WeaponModes[0].bUnavailable=true;
+		WeaponModes[1].bUnavailable=true;
+		WeaponModes[2].bUnavailable=true;
+		WeaponModes[3].bUnavailable=true;
+		WeaponModes[4].bUnavailable=false;
+		AmpCharge=10;
+	}
+	else
+	{
+		PlayAnim(AmplifierOffAnim);
+		WeaponModes[0].bUnavailable=false;
+		WeaponModes[1].bUnavailable=false;
+		WeaponModes[2].bUnavailable=false;
+		WeaponModes[3].bUnavailable=false;
+		WeaponModes[4].bUnavailable=true;
+		CurrentWeaponMode=3;
+		ServerSwitchWeaponMode(3);
+		AmpCharge=0;
+	}
+		
+	if (Role == ROLE_Authority)
+		M575Attachment(ThirdPersonActor).SetAmped(bNewValue);
+		
+	if (CurrentWeaponMode == 4 && AmpCharge > 0)	//blue
+	{
+		Skins[4]=AmpMaterials[0];
+		Skins[5]=AmpMaterials[1];
+	}
+}
+
+simulated function ServerSwitchWeaponMode (byte newMode)
+{
+	super.ServerSwitchWeaponMode (newMode);
+	if (!Instigator.IsLocallyControlled())
+		M575PrimaryFire(FireMode[0]).SwitchWeaponMode(CurrentWeaponMode);
+}
+
+simulated function CommonSwitchWeaponMode (byte newMode)
+{
+	super.CommonSwitchWeaponMode(newMode);
+
+	M575PrimaryFire(FireMode[0]).SwitchWeaponMode(newMode);
+	if (newMode == 4 && AmpCharge > 0)	//blue
+	{
+		Skins[4]=AmpMaterials[0];
+		Skins[5]=AmpMaterials[1];
+	}
+}
+
+simulated function AddHeat(float Amount)
+{
+	if (bBerserk)
+		Amount *= 0.75;
+		
+	AmpCharge = FMax(0, AmpCharge + Amount);
+	
+	if (AmpCharge <= 0)
+	{
+		PlaySound(AmplifierPowerOffSound,,2.0,,32);
+		Skins[4]=AmpMaterials[2];
+		Skins[5]=AmpMaterials[3];
+		WeaponModes[0].bUnavailable=false;
+		WeaponModes[1].bUnavailable=false;
+		WeaponModes[2].bUnavailable=false;
+		WeaponModes[3].bUnavailable=false;
+		WeaponModes[4].bUnavailable=true;
+		CurrentWeaponMode=3;
+		ServerSwitchWeaponMode(3);
+		if (Role == ROLE_Authority)
+			M575Attachment(ThirdPersonActor).SetAmped(false);
+	}
+}
+
+simulated function ClientSetHeat(float NewHeat)
+{
+	AmpCharge = NewHeat;
+}
+
+simulated function Notify_AmpOn()	{	PlaySound(AmplifierOnSound,,0.5);		bShowCharge=true;}
+simulated function Notify_AmpOff()	{	PlaySound(AmplifierOffSound,,0.5);		bShowCharge=false;}
+
+simulated function Notify_AmpShow(){	SetBoneScale (2, 1.0, AmplifierBone);	}
+simulated function Notify_AmpHide(){	SetBoneScale (2, 0.0, AmplifierBone);	}
+
+simulated function Notify_AMPOnTurn(){	PlaySound(AmplifierOnTurnSound,,0.5);}
+simulated function Notify_AMPOffTurn(){	PlaySound(AmplifierOffTurnSound,,0.5);}
+//==============================================
+// Regular Functions
+//==============================================
+
+simulated function BringUp(optional Weapon PrevWeapon)
+{
+	Super.BringUp(PrevWeapon);
+
+	if (bAmped)
+		SetBoneScale (2, 1.0, AmplifierBone);
+	else
+		SetBoneScale (2, 0.0, AmplifierBone);
+}
+
+
 
 // tells bot whether to charge or back off while using this weapon
 function float SuggestAttackStyle()	{	return -0.5;	}
@@ -377,6 +588,22 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
+	AmplifierBone="AMP"
+    AmplifierOnAnim="AMPApply"
+    AmplifierOffAnim="AMPRemove"
+    AmplifierOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
+    AmplifierOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
+    AmplifierPowerOnSound=Sound'BW_Core_WeaponSound.AMP.Amp-Install'
+    AmplifierPowerOffSound=Sound'BW_Core_WeaponSound.AMP.Amp-Depleted'
+	AmplifierOnTurnSound=SoundGroup'BW_Core_WeaponSound.XK2.XK2-SilencerTurn'
+	AmplifierOffTurnSound=SoundGroup'BW_Core_WeaponSound.XK2.XK2-SilencerTurn'
+	DrainRate=0.15
+	
+	AmpMaterials[0]=Shader'BW_Core_WeaponTex.Amp.Amp-FinalCyan'
+	AmpMaterials[1]=Shader'BW_Core_WeaponTex.AMP.Amp-GlowCyanShader'
+    AmpMaterials[2]=Texture'BW_Core_WeaponTex.Amp.Amp-BaseDepleted'
+    AmpMaterials[3]=Texture'ONSstructureTextures.CoreGroup.Invisible'
+	
 	 ScopeOnAnim="ScopeOn"
      ScopeOffAnim="ScopeOff"
 	 ScopeScopeViewTex=Texture'BWBP_OP_Tex.M575.M575Scope'
@@ -417,6 +644,7 @@ defaultproperties
      WeaponModes(1)=(ModeName="Burst of Three")
      WeaponModes(2)=(ModeName="Burst of Five",ModeID="WM_BigBurst",Value=5.000000)
      WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
+	WeaponModes(4)=(ModeName="Amp: Ice Full Auto",ModeID="WM_FullAuto",bUnavailable=True)
      CurrentWeaponMode=3
      bNoCrosshairInScope=True
 	 bShowChargingBar=True

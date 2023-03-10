@@ -2635,7 +2635,7 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		if ( (Physics == PHYS_None) && (DrivenVehicle == None) )
 			SetMovementPhysics();
 		
-		if (!class'BCReplicationInfo'.static.IsClassic()) // Classic lets you take off into orbit
+		if (true /*!class'BCReplicationInfo'.static.IsClassic()*/) // Classic lets you take off into orbit
 		{
 			if (Physics == PHYS_Walking && damageType.default.bExtraMomentumZ)
 				momentum.Z = FMax(momentum.Z, 0.4 * VSize(momentum));
@@ -2725,8 +2725,8 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		}
 		else
 		{
-			if (class'BCReplicationInfo'.static.IsArenaOrTactical())
-			{
+			//if (class'BCReplicationInfo'.static.IsArenaOrTactical())
+			//{
 				if (class<BallisticDamageType>(damageType) != None && class<BallisticDamageType>(damageType).default.bNegatesMomentum)
 				{
 					HitLocationMatchZ = Velocity;
@@ -2735,8 +2735,8 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 				}
 				else
 					AddVelocity( momentum );
-			}
-			else  //Classic/Realism: Taking damage arrests movement
+			//}
+			/*else  //Classic/Realism: Taking damage arrests movement
 			{
 				if ( InstigatedBy != None )
 				{
@@ -2766,7 +2766,7 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 				Momentum = Momentum / Mass;
 				AddVelocity( Momentum );
 				bBounce = true;
-			}
+			}*/
 			if (VSize(Momentum) > 50000)
 				bPendingNegation=True;
 			if ( Controller != None )

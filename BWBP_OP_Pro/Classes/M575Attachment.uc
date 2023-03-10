@@ -12,10 +12,24 @@ var int IceFireCount, OldIceFireCount;
 var() class<BCTraceEmitter>	IceTracerClass;	//Emitter to sue for under water tracer
 var() class<BCImpactManager>	IceImpactManager;
 
+var() array<Material> AmpMaterials; //We're using this for the amp
+
+var bool		bAmped;
+
 replication
 {
 	reliable if (Role == ROLE_Authority)
-		IceFireCount;
+		IceFireCount, bAmped;
+}
+
+simulated function SetAmped(bool bIsAmped)
+{
+	bAmped = bIsAmped;
+	
+	/*if (bAmped)
+		SetBoneScale (1, 1.0, 'AMP');
+	else
+		SetBoneScale (1, 0.0, 'AMP');*/
 }
 
 function IceUpdateHit(Actor HitActor, vector HitLocation, vector HitNormal, int HitSurf, optional bool bIsAlt, optional vector WaterHitLoc)
@@ -184,9 +198,10 @@ simulated function SpawnTracer(byte Mode, Vector V)
 	{
 		if (Dist > 200)
 		{
-			if (FiringMode == 2)
+			if (bAmped)
 				Tracer = Spawn(IceTracerClass, self, , TipLoc, Rotator(V - TipLoc));
-			else Tracer = Spawn(ModeInfos[Mode].TracerClass, self, , TipLoc, Rotator(V - TipLoc));
+			else 
+				Tracer = Spawn(ModeInfos[Mode].TracerClass, self, , TipLoc, Rotator(V - TipLoc));
 		}
 		if (Tracer != None)
 			Tracer.Initialize(Dist);
@@ -251,9 +266,10 @@ simulated function InstantFireEffects(byte Mode)
 		return;
 	if (ImpactManager != None)
 	{
-		if (Mode == 2)
+		if (bAmped)
 			IceImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
-		else ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
+		else 
+			ImpactManager.static.StartSpawn(HitLocation, mHitNormal, mHitSurf, instigator);
 	}
 }
 

@@ -25,7 +25,7 @@ defaultproperties
 		MomentumTransfer=20000.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
 		FlashScaleFactor=1.350000
-		Recoil=256.000000
+		Recoil=376.000000
 		Chaos=0.20000
 		WarnTargetPct=0.200000
 		FireSound=(Sound=SoundGroup'BWBP_OP_Sounds.CX85.CX85-Fire',Volume=1.500000,Slot=SLOT_Interact,bNoOverride=False)
@@ -73,14 +73,14 @@ defaultproperties
 	
 	Begin Object Class=RecoilParams Name=RealisticRecoilParams
 		XCurve=(Points=(,(InVal=0.300000,OutVal=0.100000),(InVal=0.600000,OutVal=0.200000),(InVal=1.000000,OutVal=-0.200000)))
-		YCurve=(Points=(,(InVal=0.500000,OutVal=0.250000),(InVal=0.800000,OutVal=0.450000),(InVal=1.000000,OutVal=0.400000)))
+		YCurve=(Points=(,(InVal=0.500000,OutVal=0.200000),(InVal=0.600000,OutVal=0.250000),(InVal=0.800000,OutVal=0.350000),(InVal=1.000000,OutVal=0.300000)))
 		XRandFactor=0.35000
 		YRandFactor=0.35000
 		PitchFactor=0.500000
 		YawFactor=0.300000
-		MaxRecoil=3260.000000
-		DeclineTime=0.700000
-		DeclineDelay=0.135000;
+		MaxRecoil=4096.000000
+		DeclineTime=2.000000
+		DeclineDelay=0.165000
 		ViewBindFactor=0.350000
 		HipMultiplier=1.000000
 		CrouchMultiplier=0.700000
@@ -92,7 +92,7 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=RealisticAimParams
-		AimSpread=(Min=16,Max=2772)
+		AimSpread=(Min=32,Max=2772)
 		AimAdjustTime=0.800000
 		CrouchMultiplier=0.500000
 		ADSMultiplier=0.700000
@@ -113,7 +113,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=RealisticParams
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
-		InventorySize=12
+		InventorySize=19
 		SightMoveSpeedFactor=0.8
 		ViewOffset=(X=25,Y=10,Z=-26)
 		SightingTime=0.750000

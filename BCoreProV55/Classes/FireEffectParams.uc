@@ -41,6 +41,10 @@ var() float				        Recoil;				    // Amount of recoil added each shot
 var() float				        PushbackForce;		    // How much to jolt player back when they fire
 var() float				        Chaos;				    // Chaos added to aim when fired. Will be auto calculated if < 0
 //-----------------------------------------------------------------------------
+// Heat
+//-----------------------------------------------------------------------------
+var() float				        Heat;				    // Amount of heat to add per shot
+//-----------------------------------------------------------------------------
 // Dispersal
 //-----------------------------------------------------------------------------
 var() BUtil.IntVector2	        Inaccuracy;			    // X and Y inaccuracy in rotational units
