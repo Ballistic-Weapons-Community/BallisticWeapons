@@ -16,20 +16,11 @@ var vector FallStart;
 var float FallOff;
 var float FallingSpeed;
 
-var   Rotator			VelocityDir;
-
-simulated event PostBeginPlay()
-{
-	Super.PostBeginPlay();
-
-	VelocityDir = Rotation;
-}
-
 simulated function InitProjectile()
 {
 	Super.InitProjectile();
 
-	FallStart=Location;
+	FallStart = Location;
 }
 
 simulated event Tick(float DT)

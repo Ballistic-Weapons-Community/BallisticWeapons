@@ -9,10 +9,10 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=TacticalMultiEffectParams
         ProjectileClass=Class'BallisticProV55.A500Projectile'
         MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'  
-        Speed=5500.000000
-        AccelSpeed=100000.000000
-        MaxSpeed=14000.000000
-        Damage=35.000000
+        Speed=3500.000000
+        AccelSpeed=0.000000
+        MaxSpeed=3500.000000
+        Damage=50.000000
         HeadMult=2
         LimbMult=0.8
         MomentumTransfer=1000.000000

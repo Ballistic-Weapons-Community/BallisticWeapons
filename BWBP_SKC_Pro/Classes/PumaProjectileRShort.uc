@@ -9,7 +9,7 @@
 //=============================================================================
 class PUMAProjectileRShort extends PUMAProjectile;
 
-var   float 		NewDetonateDelay;	// Detonate delay sent to clients
+var   float 	NewDetonateDelay;	// Detonate delay sent to clients
 var() int		FireModeNum;		// Da fire mode that spawned dis grenade
 var() bool 		bNoFXOnExplode; //Do FX in Destroyed and not in Explode
 var   bool		bProgramInitialized; //New detonation distance sent
@@ -18,6 +18,7 @@ var   bool		bProgramInitialized; //New detonation distance sent
 simulated event Timer()
 {
 	local float NewTimer;
+    
 	if (!bPrimed)
 	{
 		NewTimer = NewDetonateDelay - 0.05;
@@ -90,20 +91,16 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 simulated event PostBeginPlay ()
 {
-	Super(BallisticProjectile).PostBeginPlay();
+	Super.PostBeginPlay();
 
-	VelocityDir = Rotation;
- 
-	InitProjectile();
 	if (Role == ROLE_Authority)
 		SetTimer(0.05, false);
 }
 
-
 simulated function InitProjectile ()
 {
 	InitEffects();
-	Velocity = Speed * Vector(VelocityDir);
+
 	if (RandomSpin != 0 && !bNoInitialSpin)
 		RandSpin(RandomSpin);
 }

@@ -16,6 +16,7 @@ var Actor GlowFX;
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
+    
 	if (BCRepClass.static.IsRealism())
 	{
 		FireModeClass[0]=Class'BallisticProV55.A42PrimaryFireSpread';

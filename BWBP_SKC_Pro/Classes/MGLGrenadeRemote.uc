@@ -34,7 +34,6 @@ simulated event Timer() //Timer will handle remote det lock
 simulated function InitProjectile ()
 {
 	InitEffects();
-	Velocity = Speed * Vector(VelocityDir);
 	if (RandomSpin != 0 && !bNoInitialSpin)
 		RandSpin(RandomSpin);
 	SetTimer(DetonateDelay, false);

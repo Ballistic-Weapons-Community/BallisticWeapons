@@ -37,60 +37,27 @@ replication
 		DetonationType;
 }
 
-simulated function PostNetBeginPlay()
-{
-	local PlayerController PC;
-	
-    Acceleration = Normal(Velocity) * AccelSpeed;
-	
-	if (Level.NetMode == NM_DedicatedServer)
-		return;
-		
-	InitEffects();
-	
-	if ( Level.bDropDetail || Level.DetailMode == DM_Low )
-	{
-		bDynamicLight = false;
-		LightType = LT_None;
-	}
-	else
-	{
-		PC = Level.GetLocalPlayerController();
-		if ( (PC == None) || (Instigator == None) || (PC != Instigator.Controller) )
-		{
-			bDynamicLight = false;
-			LightType = LT_None;
-		}
-	}
-	
-	//params update
-	ExplosiveImpactDamage = default.Damage * 1.3;
-	ImpactDamage = default.Damage;
-}
-
 simulated function InitEffects ()
 {
 	local Vector X,Y,Z;
 
 	bDynamicLight=default.bDynamicLight; // Set up some effects, team colored
+
 	if (Level.NetMode != NM_DedicatedServer && TrailClass != None && Trail == None)
 	{
 		GetAxes(Rotation,X,Y,Z);
+
 		Trail = Spawn(TrailClass, self,, Location + X*TrailOffset.X + Y*TrailOffset.Y + Z*TrailOffset.Z, Rotation);
+
 		if(Instigator != None && LonghornGrenadeTrail(Trail) != None)
 			LonghornGrenadeTrail(Trail).SetupColor(Instigator.GetTeamNum());
+
 		if (Emitter(Trail) != None)
 			class'BallisticEmitter'.static.ScaleEmitter(Emitter(Trail), DrawScale);
+
 		if (Trail != None)
 			Trail.SetBase (self);
 	}
-}
-
-simulated function InitProjectile ()
-{
-	Velocity = Speed * Vector(VelocityDir);
-	if (RandomSpin != 0 && !bNoInitialSpin)
-		RandSpin(RandomSpin);
 }
 
 simulated event TornOff()

@@ -19,7 +19,6 @@ simulated function PostNetBeginPlay()
 
 simulated function InitProjectile ()
 {
-    Velocity = Speed * Vector(VelocityDir);
     if (RandomSpin != 0 && !bNoInitialSpin)
         RandSpin(RandomSpin);
     SetTimer(DetonateDelay, false);

@@ -49,67 +49,20 @@ var() int						ImpactDamage;			// Damage when hitting or sticking to players and
 var() Class<DamageType>			ImpactDamageType;		// Type of Damage caused for striking or sticking to players
 var() float						MinStickVelocity;		// Minimum velocity required to stick to players
 
-var   Rotator					VelocityDir;
-
-var	float						PokeReductionFactor;
-
-var globalconfig bool 			bAllowTerrainPoking;
-
 simulated event PostBeginPlay()
 {
 	Super.PostBeginPlay();
 
-	if (StartDelay > 0 && Role == ROLE_Authority || bAlwaysRelevant)
-	{
-		SetPhysics(PHYS_None);
-		SetCollision (false, false, false);
-		bHidden=true;
-		SetTimer(StartDelay, false);
-		return;
-	}
-
-	InitProjectile();
-}
-
-simulated function SetInitialSpeed()
-{
-    VelocityDir = Rotation;
-    Acceleration = Normal(Velocity) * AccelSpeed;
-}
-
-simulated function PostNetBeginPlay()
-{
-	local PlayerController PC;
-	
-    Super.PostNetBeginPlay();
-
-	if (Level.NetMode == NM_DedicatedServer)
-		return;
-
-	if ( Level.bDropDetail || Level.DetailMode == DM_Low )
-	{
-		bDynamicLight = false;
-		LightType = LT_None;
-	}
-	else
-	{
-		PC = Level.GetLocalPlayerController();
-		if ( (PC == None) || (Instigator == None) || (PC != Instigator.Controller) )
-		{
-			bDynamicLight = false;
-			LightType = LT_None;
-		}
-	}
+    if (RandomSpin != 0 && !bNoInitialSpin)
+        RandSpin(RandomSpin);
 }
 
 simulated function InitProjectile ()
 {
-    Velocity = Speed * Vector(VelocityDir);
-    if (RandomSpin != 0 && !bNoInitialSpin)
-        RandSpin(RandomSpin);
+    Super.InitProjectile();
+
     if (DetonateOn == DT_Timer)
         SetTimer(DetonateDelay, false);
-    Super.InitProjectile();
 }
 
 simulated function ApplyParams(ProjectileEffectParams params)
@@ -131,11 +84,7 @@ simulated event Timer()
 {
 	if (StartDelay > 0)
 	{
-		StartDelay = 0;
-		bHidden=false;
-		SetPhysics(default.Physics);
-		SetCollision (default.bCollideActors, default.bBlockActors, default.bBlockPlayers);
-		InitProjectile();
+        ShowAfterStartDelay();
 		//InitEffects();
 		return;
 	}
@@ -332,10 +281,6 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 	
 	A = Trace(HitLoc, HitNorm, End, , False);
 
-    // rarely used
-	if (TerrainInfo(A) != None && bAllowTerrainPoking)
-		TerrainInfo(A).PokeTerrain(Location, DamageRadius, DamageRadius/PokeReductionFactor);
-
     if (ImpactManager != None)
 	{
 		if (Instigator == None)
@@ -358,22 +303,21 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 defaultproperties
 {
-     DampenFactor=0.05000
-     DampenFactorParallel=0.350000
-     RandomSpin=32768.000000
-     DetonateDelay=3.000000
-     FlakClass=Class'XWeapons.FlakChunk'
-     TrailWhenStill=True
-     MinStickVelocity=200.000000
-     PokeReductionFactor=30.000000
-     Speed=1000.000000
-     Damage=70.000000
-     DamageRadius=240.000000
-     MomentumTransfer=75000.000000
-     Physics=PHYS_Falling
-     DrawScale=8.000000
-     bHardAttach=True
-     bBounce=True
-     bFixedRotationDir=True
-     RotationRate=(Roll=10000)
+    DampenFactor=0.05000
+    DampenFactorParallel=0.350000
+    RandomSpin=32768.000000
+    DetonateDelay=3.000000
+    FlakClass=Class'XWeapons.FlakChunk'
+    TrailWhenStill=True
+    MinStickVelocity=200.000000
+    Speed=1000.000000
+    Damage=70.000000
+    DamageRadius=240.000000
+    MomentumTransfer=75000.000000
+    Physics=PHYS_Falling
+    DrawScale=8.000000
+    bHardAttach=True
+    bBounce=True
+    bFixedRotationDir=True
+    RotationRate=(Roll=10000)
 }

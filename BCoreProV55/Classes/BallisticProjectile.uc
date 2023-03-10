@@ -138,13 +138,6 @@ replication
 		TearOffHitNormal;
 }
 
-
-
-simulated event TornOff()
-{
-	Explode(Location, TearOffHitNormal);
-}
-
 simulated function PostBeginPlay()
 {
     Super(Projectile).PostBeginPlay();
@@ -160,8 +153,41 @@ simulated function PostBeginPlay()
     if (Level.NetMode != NM_Client)
     {
         InitParams();
-        SetInitialSpeed();
+
+        if (StartDelay == 0)
+            SetInitialSpeed();
     }
+}
+
+simulated function HideForStartDelay()
+{
+    //Log("Hiding "$Name$" due to start delay of "$StartDelay);
+    
+    SetPhysics(PHYS_None);
+    SetCollision (false, false, false);
+    SetTimer(StartDelay, false);
+    bDynamicLight=false;
+
+    // interferes with replication
+    if (Level.NetMode != NM_DedicatedServer)
+        bHidden=true;
+}
+
+simulated function ShowAfterStartDelay()
+{
+    //Log("Showing "$Name$" due to start delay of "$StartDelay);
+
+    // interferes with replication
+    if (Level.NetMode != NM_DedicatedServer)
+        bHidden=false;
+
+    StartDelay = 0;
+    SetPhysics(default.Physics);
+    SetCollision (default.bCollideActors, default.bBlockActors, default.bBlockPlayers);
+    bDynamicLight=default.bDynamicLight;
+
+    SetInitialSpeed();
+    InitProjectile();
 }
 
 //Modified LinkGun
@@ -177,16 +203,26 @@ simulated function PostNetBeginPlay()
 
 	if (StartDelay > 0)
 	{
-		if(Role == ROLE_Authority || bNetOwner || bAlwaysRelevant)
+		if (Role == ROLE_Authority || bNetOwner || bAlwaysRelevant)
 		{
-			SetPhysics(PHYS_None);
-			bHidden=true;
-			SetTimer(StartDelay, false);
-			bDynamicLight=false;
+            if (Level.NetMode == NM_Client)
+            {
+                //Log("Hiding "$Name$" for start delay on client");
+            }
+
+            HideForStartDelay();
 			return;
 		}
 		
-		else StartDelay = 0;
+		else 
+        {
+            if (Level.NetMode == NM_Client)
+            {
+                //Log("Setting start delay for "$Name$" to 0");
+            }
+            StartDelay = 0;
+
+        }
 	}
 	
 	InitProjectile();
@@ -269,8 +305,12 @@ simulated function SetInitialSpeed()
 {
     local Rotator R;
 
-    Velocity = Vector(Rotation);
-	Velocity *= Speed;
+    Velocity = Vector(Rotation) * Speed;
+
+    if (AccelSpeed > 0 && MaxSpeed > Speed)
+    {
+        Acceleration = Normal(Velocity) * AccelSpeed;
+    }
 
 	if(bRandomStartRotation)
 	{
@@ -279,9 +319,13 @@ simulated function SetInitialSpeed()
 		SetRotation(R);
 	}
 
-    Acceleration = Normal(Velocity) * AccelSpeed;
-
 	StartRotation = Rotation;
+}
+
+// Initialize projectile stuff. This will be delayed by StartDelay
+simulated function InitProjectile ()
+{
+	InitEffects();
 }
 
 simulated function InitEffects ()
@@ -302,10 +346,9 @@ simulated function InitEffects ()
 	}
 }
 
-// Initialize projectile stuff. This will be delayed by StartDelay
-simulated function InitProjectile ()
+simulated event TornOff()
 {
-	InitEffects();
+	Explode(Location, TearOffHitNormal);
 }
 
 // When start delay ends, set all the properties that make it visible
@@ -313,10 +356,15 @@ simulated function Timer()
 {
 	if (StartDelay > 0)
 	{
+        //Log("Showing projectile due to start delay of "$StartDelay);
+
 		StartDelay = 0;
 		SetPhysics(default.Physics);
+		SetCollision (default.bCollideActors, default.bBlockActors, default.bBlockPlayers);
+        SetInitialSpeed();
 		bDynamicLight=default.bDynamicLight;
 		bHidden=false;
+        SetInitialSpeed();
 		InitProjectile();
 		return;
 	}
@@ -473,6 +521,8 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 
 function HideProjectile()
 {
+    // Log("HideProjectile");
+
 	SetPhysics(PHYS_None);
 	bAlwaysRelevant=True; //required to force bTearOff update
 	bHidden=True;

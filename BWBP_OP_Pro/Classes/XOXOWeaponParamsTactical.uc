@@ -44,8 +44,8 @@ defaultproperties
 		ProjectileClass=Class'BWBP_OP_Pro.XOXOBomb'
 		SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
 		Speed=2500.000000
-		MaxSpeed=0000.000000
-		AccelSpeed=100000.000000
+		MaxSpeed=2500.000000
+		AccelSpeed=0.000000
 		Damage=150
 		DamageRadius=768.000000
 		MomentumTransfer=-30000.000000

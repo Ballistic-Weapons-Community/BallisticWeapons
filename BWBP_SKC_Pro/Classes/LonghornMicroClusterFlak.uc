@@ -22,9 +22,7 @@ simulated function PostNetBeginPlay()
 {
 	local PlayerController PC;
 	 
-    Acceleration = Normal(Velocity) * AccelSpeed;
-	
-	if (Level.NetMode == NM_DedicatedServer)
+     if (Level.NetMode == NM_DedicatedServer)
 		return;
 		
 	InitEffects();
@@ -73,9 +71,7 @@ simulated event Timer()
 }
 
 simulated function InitProjectile ()
-{   
-	Velocity = Speed * Vector(VelocityDir);
-	
+{   	
 	if (RandomSpin != 0 && !bNoInitialSpin)
 		RandSpin(RandomSpin);
 

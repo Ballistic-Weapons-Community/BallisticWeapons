@@ -10,41 +10,103 @@ class BallisticProPineapple extends BallisticGrenade
 	abstract;
 
 var() int	FireModeNum;		// Da fire mode that spawned dis grenade
-var float NewDetonateDelay;
-var bool bPineappleInitialized;
+var float   ClientDetonateDelay;
+var float   ThrowPower;
 
 replication
 {
-	reliable if (Role==ROLE_Authority)
-		NewDetonateDelay;
+	reliable if (Role == ROLE_Authority)
+		ThrowPower, ClientDetonateDelay;
 }
 
+//==================================================================
+// PostBeginPlay
+//
+// Hardcode ThrowPower temporarily
+//==================================================================
+simulated event PostBeginPlay()
+{
+    ThrowPower = 1f; // FIXME: Hardcode. Don't have time
+
+	Super.PostBeginPlay();
+}
+
+//==================================================================
+// SetInitialSpeed
+//
+// Speed depends on ThrowPower
+//==================================================================
+simulated function SetInitialSpeed()
+{
+    local Rotator R;
+
+    //Log("Pineapple initial speed: "$Speed$" * "$ThrowPower);
+
+    // override physics from start delay...
+    SetPhysics(default.Physics);
+
+    Velocity = Speed * ThrowPower * Vector(Rotation);
+
+	R = Rotation;
+	R.Roll = -8192;
+	SetRotation(R);
+
+    StartRotation = Rotation;
+}
+
+//==================================================================
+// PostNetBeginPlay
+//
+// Handle interaction of detonation delay and start delay
+//==================================================================
+simulated event PostNetBeginPlay()
+{
+    if (Level.NetMode == NM_Client)
+    {
+        DetonateDelay = ClientDetonateDelay;
+    }
+
+	super.PostNetBeginPlay();
+}
+
+//==================================================================
+// SetThrowPowerAndDelay
+//
+// Server side only.
+//
+// Set throw power and detonation delay from firemode, which is 
+// aware of both
+//==================================================================
+function SetThrowPowerAndDelay(float NewThrowPower, float NewDelay)
+{
+	NewDelay = FMax(NewDelay, 0.1);
+
+    if (NewDelay < StartDelay)
+    {
+        DetonateDelay = NewDelay;
+		StartDelay = DetonateDelay / 2;
+    }
+    else 
+        DetonateDelay = NewDelay;
+
+    ClientDetonateDelay = DetonateDelay - StartDelay;
+}
+
+//==================================================================
+// Timer
+//
+// Either set projectile as visible, when start delay expires,
+// or cause explosion
+//==================================================================
 simulated event Timer()
 {
-	if (Role < ROLE_Authority && (NewDetonateDelay == default.NewDetonateDelay))
-	{
-		SetTimer(0.1, false);
-		return;
-	}
 	if (StartDelay > 0)
 	{
-		StartDelay = 0;
-		bHidden=false;
-		SetPhysics(default.Physics);
-		SetCollision (default.bCollideActors, default.bBlockActors, default.bBlockPlayers);
-		InitProjectile();
+        ShowAfterStartDelay();
 		return;
 	}
 
     HitActor = None;
-/*
-	if (HitActor != None)
-	{
-		if ( Instigator == None || Instigator.Controller == None )
-			HitActor.SetDelayedDamageInstigatorController( InstigatorController );
-		class'BallisticDamageType'.static.GenericHurt (HitActor, Damage, Instigator, Location, MomentumTransfer * (HitActor.Location - Location), MyDamageType);
-	}
-*/
 
 	Explode(Location, vect(0,0,1));
 }
@@ -53,7 +115,9 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 {
 	if (ShakeRadius > 0)
 		ShakeView(HitLocation);
+
 	BlowUp(HitLocation);
+
     if (ImpactManager != None)
 	{
 		if (Instigator == None)
@@ -61,6 +125,7 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		else
 			ImpactManager.static.StartSpawn(HitLocation, HitNormal, 0, Instigator);
 	}
+
 	if (Level.NetMode == NM_DedicatedServer || Level.NetMode == NM_ListenServer)
 	{
 		Velocity = vect(0,0,0);
@@ -81,72 +146,17 @@ simulated function bool CanTouch(Actor Other)
     return (!bHasImpacted || Pawn(Other) == None);
 }
 
-simulated event PostBeginPlay()
-{
-	local Rotator R;
-	
-	Super.PostBeginPlay();
-	R = Rotation;
-	R.Roll = -8192;
-	SetRotation(R);
-}
-
-function InitProPineapple(float PSpeed, float PDelay)
-{
-	PDelay = FMax(PDelay, 0.1);
-	
-	Speed = PSpeed;
-
-	DetonateDelay = PDelay;
-	NewDetonateDelay = DetonateDelay;
-
-	if (DetonateDelay <= StartDelay)
-		StartDelay = DetonateDelay / 2;
-}
-
-simulated function InitProjectile ()
-{
-	bPineappleInitialized = true;
-	Super.InitProjectile();
-}
-
-simulated event PostNetReceive()
-{
-	Super.PostNetReceive();
-
-	if (NewDetonateDelay != default.NewDetonateDelay && DetonateDelay != NewDetonateDelay)
-		DetonateDelay = NewDetonateDelay;
-		
-	if (!bPineappleInitialized && NewDetonateDelay != default.NewDetonateDelay)
-	{
-		if (StartDelay == 0)
-			InitProjectile();
-	}
-
-}
-
-simulated event PostNetBeginPlay()
-{
-	if (DetonateDelay <= StartDelay)
-		StartDelay = DetonateDelay / 2;
-	DetonateDelay -= StartDelay;
-	super.PostNetBeginPlay();
-}
-
 defaultproperties
 {
-     NewDetonateDelay=-0.120000
+     DetonateDelay=3
      bNoInitialSpin=True
      bRandomStartRotation=False
      StartDelay=0.300000
      NetTrappedDelay=1.000000
-     bNetTemporary=False
-     bUpdateSimulatedPosition=True
      LifeSpan=6.000000
      DrawScale=0.200000
      CollisionRadius=1.000000
      CollisionHeight=1.000000
      bUseCylinderCollision=False
-     bNetNotify=True
      RotationRate=(Roll=0)
 }
