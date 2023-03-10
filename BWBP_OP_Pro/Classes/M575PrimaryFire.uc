@@ -177,15 +177,15 @@ defaultproperties
      MuzzleFlashClassAmp=Class'BallisticProV55.XK2SilencedFlash'
 	 
      WaterRangeAtten=0.800000
-     DamageType=Class'BWBP_APC_Pro.DTM575MG'
-     DamageTypeHead=Class'BWBP_APC_Pro.DTM575MGHead'
-     DamageTypeArm=Class'BWBP_APC_Pro.DTM575MG'
+     DamageType=Class'BWBP_OP_Pro.DTM575MG'
+     DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'
+     DamageTypeArm=Class'BWBP_OP_Pro.DTM575MG'
      KickForce=2000
      PenetrateForce=150
      bPenetrate=True
      DryFireSound=(Sound=Sound'BW_Core_WeaponSound.Misc.DryRifle',Volume=0.700000)
      bCockAfterEmpty=True
-     MuzzleFlashClass=Class'BWBP_APC_Pro.M575FlashEmitter'
+     MuzzleFlashClass=Class'BWBP_OP_Pro.M575FlashEmitter'
 	 FlashBone="tip"
      FlashScaleFactor=0.300000
      BrassClass=Class'BallisticProV55.Brass_MG'
@@ -199,7 +199,7 @@ defaultproperties
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireRate=0.082000
-     AmmoClass=Class'BWBP_APC_Pro.Ammo_762mmBelt'
+     AmmoClass=Class'BWBP_OP_Pro.Ammo_762mmBelt'
      ShakeRotMag=(X=64.000000,Y=64.000000,Z=128.000000)
      ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
      ShakeRotTime=2.000000

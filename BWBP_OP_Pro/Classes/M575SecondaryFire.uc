@@ -20,7 +20,7 @@ defaultproperties
      bWaitForRelease=True
      bModeExclusive=False
      FireRate=0.700000
-     AmmoClass=Class'BWBP_APC_Pro.Ammo_762mmBelt'
+     AmmoClass=Class'BWBP_OP_Pro.Ammo_762mmBelt'
      AmmoPerFire=0
      BotRefireRate=0.300000
 }
