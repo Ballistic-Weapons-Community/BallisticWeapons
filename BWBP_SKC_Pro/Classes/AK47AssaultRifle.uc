@@ -384,7 +384,7 @@ defaultproperties
 	SightPivot=(Pitch=64)
 	SightOffset=(X=10.000000,Y=-10.020000,Z=20.600000)
 	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'AK490WeaponParams'
+	ParamsClasses(0)=Class'AK490WeaponParamsComp'
 	ParamsClasses(1)=Class'AK490WeaponParamsClassic'
 	ParamsClasses(2)=Class'AK490WeaponParamsRealistic'
     ParamsClasses(3)=Class'AK490WeaponParamsTactical'

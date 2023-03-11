@@ -462,7 +462,7 @@ defaultproperties
 	HudColor=(B=255,G=150,R=100)
 	GunLength=32.000000
 	GroupOffset=3
-	ParamsClasses(0)=Class'MRS138WeaponParams'
+	ParamsClasses(0)=Class'MRS138WeaponParamsComp'
 	ParamsClasses(1)=Class'MRS138WeaponParamsClassic'
 	ParamsClasses(2)=Class'MRS138WeaponParamsRealistic'
     ParamsClasses(3)=Class'MRS138WeaponParamsTactical'

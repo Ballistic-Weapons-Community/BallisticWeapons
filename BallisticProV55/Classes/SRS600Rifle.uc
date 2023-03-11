@@ -261,7 +261,7 @@ defaultproperties
 	SightOffset=(X=16.000000,Z=10.460000)
 	SightDisplayFOV=25.000000
 	GunLength=72.000000
-	ParamsClasses(0)=Class'SRS600WeaponParams'
+	ParamsClasses(0)=Class'SRS600WeaponParamsComp'
 	ParamsClasses(1)=Class'SRS600WeaponParamsClassic'
 	ParamsClasses(2)=Class'SRS600WeaponParamsRealistic'
     ParamsClasses(3)=Class'SRS600WeaponParamsTactical'

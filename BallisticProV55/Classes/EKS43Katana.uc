@@ -50,7 +50,7 @@ defaultproperties
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Putaway')
      GunLength=0.000000
      bAimDisabled=True
-     ParamsClasses(0)=Class'EKS43WeaponParams'
+     ParamsClasses(0)=Class'EKS43WeaponParamsComp'
      ParamsClasses(1)=Class'EKS43WeaponParamsClassic'
      ParamsClasses(2)=Class'EKS43WeaponParamsRealistic'
      ParamsClasses(3)=Class'EKS43WeaponParamsTactical'

@@ -488,7 +488,7 @@ defaultproperties
 	ZoomStages=2
 	SMuzzleFlashOffset=(X=50.000000,Z=-35.000000)
 	GunLength=80.000000
-	ParamsClasses(0)=Class'M75WeaponParams'
+	ParamsClasses(0)=Class'M75WeaponParamsComp'
 	ParamsClasses(1)=Class'M75WeaponParamsClassic' //todo: state code for charge, alt fire??
 	ParamsClasses(2)=Class'M75WeaponParamsRealistic' //todo: state code for charge, alt fire??
     ParamsClasses(3)=Class'M75WeaponParamsTactical'

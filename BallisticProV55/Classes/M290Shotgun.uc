@@ -143,7 +143,7 @@ defaultproperties
     bNoCrosshairInScope=True
     SightPivot=(Pitch=256)
     SightOffset=(X=-50.000000,Y=-0.040000,Z=14.050000)
-    ParamsClasses(0)=Class'M290WeaponParams'
+    ParamsClasses(0)=Class'M290WeaponParamsComp'
     ParamsClasses(1)=Class'M290WeaponParamsClassic'
     ParamsClasses(2)=Class'M290WeaponParamsRealistic'
     ParamsClasses(3)=Class'M290WeaponParamsTactical'

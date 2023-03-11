@@ -1068,7 +1068,7 @@ defaultproperties
 	MaxZoom=4.000000
 	ZoomStages=1
 	GunLength=80.000000
-	ParamsClasses(0)=Class'LS14WeaponParams'
+	ParamsClasses(0)=Class'LS14WeaponParamsComp'
 	ParamsClasses(1)=Class'LS14WeaponParamsClassic'
 	ParamsClasses(2)=Class'LS14WeaponParamsRealistic'
     ParamsClasses(3)=Class'LS14WeaponParamsTactical'

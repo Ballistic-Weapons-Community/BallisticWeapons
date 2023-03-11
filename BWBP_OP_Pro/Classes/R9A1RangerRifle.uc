@@ -470,7 +470,7 @@ defaultproperties
 	SightOffset=(X=15.000000,Y=2.850000,Z=9.000000)
 	SightDisplayFOV=25.000000
 	GunLength=80.000000
-	ParamsClasses(0)=Class'R9A1WeaponParams'
+	ParamsClasses(0)=Class'R9A1WeaponParamsComp'
 	ParamsClasses(1)=Class'R9A1WeaponParamsClassic'
 	ParamsClasses(2)=Class'R9A1WeaponParamsRealistic'
     ParamsClasses(3)=Class'R9A1WeaponParamsTactical'

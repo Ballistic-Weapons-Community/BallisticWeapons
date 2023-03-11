@@ -784,7 +784,7 @@ defaultproperties
      SightOffset=(X=-22.000000,Z=10.000000)
      SightDisplayFOV=40.000000
 	 GunLength=128.000000
-	 ParamsClasses(0)=Class'RSDarkWeaponParams'
+	 ParamsClasses(0)=Class'RSDarkWeaponParamsComp'
 	 ParamsClasses(1)=Class'RSDarkWeaponParamsClassic'
 	 ParamsClasses(2)=Class'RSDarkWeaponParamsRealistic'
      ParamsClasses(3)=Class'RSDarkWeaponParamsTactical'

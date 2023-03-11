@@ -498,7 +498,7 @@ defaultproperties
      GunLength=60.000000
      LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	 LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-	 ParamsClasses(0)=Class'CoachWeaponParams'
+	 ParamsClasses(0)=Class'CoachWeaponParamsComp'
 	 ParamsClasses(1)=Class'CoachWeaponParamsClassic'
 	 ParamsClasses(2)=Class'CoachWeaponParamsRealistic' 
      ParamsClasses(3)=Class'CoachWeaponParamsTactical'

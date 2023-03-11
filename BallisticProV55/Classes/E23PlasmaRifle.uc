@@ -487,7 +487,7 @@ defaultproperties
 	SightPivot=(Pitch=256)
 	SightOffset=(X=-8.000000,Z=9.300000)
 	SightDisplayFOV=25.000000
-	ParamsClasses(0)=Class'E23WeaponParams'
+	ParamsClasses(0)=Class'E23WeaponParamsComp'
 	ParamsClasses(1)=Class'E23WeaponParamsClassic'
 	ParamsClasses(2)=Class'E23WeaponParamsRealistic'
     ParamsClasses(3)=Class'E23WeaponParamsTactical'

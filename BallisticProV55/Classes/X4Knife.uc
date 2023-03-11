@@ -64,7 +64,7 @@ defaultproperties
      bNoMag=True
      GunLength=0.000000
      bAimDisabled=True
-     ParamsClasses(0)=Class'X4WeaponParams'
+     ParamsClasses(0)=Class'X4WeaponParamsComp'
      ParamsClasses(1)=Class'X4WeaponParamsClassic'
      ParamsClasses(2)=Class'X4WeaponParamsRealistic'
      ParamsClasses(3)=Class'X4WeaponParamsTactical'

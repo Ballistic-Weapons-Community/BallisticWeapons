@@ -629,7 +629,7 @@ defaultproperties
 	MinZoom=2.000000
 	MaxZoom=16.000000
 	ZoomStages=3
-	ParamsClasses(0)=Class'BX85WeaponParams'
+	ParamsClasses(0)=Class'BX85WeaponParamsComp'
 	ParamsClasses(1)=Class'BX85WeaponParamsClassic'
 	ParamsClasses(2)=Class'BX85WeaponParamsRealistic'
     ParamsClasses(3)=Class'BX85WeaponParamsTactical'

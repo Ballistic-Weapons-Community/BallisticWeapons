@@ -835,7 +835,7 @@ defaultproperties
 	SightPivot=(Pitch=1024)
 	SightOffset=(X=-12.000000,Z=26.000000)
 	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'HVCMk9WeaponParams'
+	ParamsClasses(0)=Class'HVCMk9WeaponParamsComp'
 	ParamsClasses(1)=Class'HVCMk9WeaponParamsClassic' \\todo: lots of state code
 	ParamsClasses(2)=Class'HVCMk9WeaponParamsRealistic' \\todo: lots of state code
     ParamsClasses(3)=Class'HVCMk9WeaponParamsTactical'

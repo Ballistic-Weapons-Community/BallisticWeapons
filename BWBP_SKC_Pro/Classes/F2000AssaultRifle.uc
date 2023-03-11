@@ -476,7 +476,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=6.000000,Y=-6.350000,Z=23.150000)
 	SightDisplayFOV=25.000000
-	ParamsClasses(0)=Class'F2000WeaponParams'
+	ParamsClasses(0)=Class'F2000WeaponParamsComp'
 	ParamsClasses(1)=Class'F2000WeaponParamsClassic'
 	ParamsClasses(2)=Class'F2000WeaponParamsRealistic'
     ParamsClasses(3)=Class'F2000WeaponParamsTactical'

@@ -297,7 +297,7 @@ defaultproperties
 	SightPivot=(Pitch=768)
 	SightOffset=(X=-12.000000,Z=14.300000)
 	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'RX22AWeaponParams'
+	ParamsClasses(0)=Class'RX22AWeaponParamsComp'
 	ParamsClasses(1)=Class'RX22AWeaponParamsClassic'
 	ParamsClasses(2)=Class'RX22AWeaponParamsRealistic'
     ParamsClasses(3)=Class'RX22AWeaponParamsTactical'

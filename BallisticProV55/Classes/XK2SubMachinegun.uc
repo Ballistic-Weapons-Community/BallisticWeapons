@@ -460,7 +460,7 @@ defaultproperties
 	AIRating=0.8
 	CurrentRating=0.8
 	SightZoomFactor=0.85
-	ParamsClasses(0)=Class'XK2WeaponParams'
+	ParamsClasses(0)=Class'XK2WeaponParamsComp'
 	ParamsClasses(1)=Class'XK2WeaponParamsClassic'
 	ParamsClasses(2)=Class'XK2WeaponParamsRealistic'
     ParamsClasses(3)=Class'XK2WeaponParamsTactical'

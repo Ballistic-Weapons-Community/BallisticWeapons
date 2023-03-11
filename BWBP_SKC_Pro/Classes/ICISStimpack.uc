@@ -217,7 +217,7 @@ defaultproperties
      SightingTime=0.000000
      GunLength=0.000000
      bAimDisabled=True
-	 ParamsClasses(0)=Class'ICISWeaponParams'
+	 ParamsClasses(0)=Class'ICISWeaponParamsComp'
 	 ParamsClasses(1)=Class'ICISWeaponParamsClassic'
 	 ParamsClasses(2)=Class'ICISWeaponParamsRealistic'
      ParamsClasses(3)=Class'ICISWeaponParamsTactical'

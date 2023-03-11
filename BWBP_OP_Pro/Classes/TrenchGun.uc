@@ -686,7 +686,7 @@ defaultproperties
 	GunLength=60.000000
 	LongGunPivot=(Pitch=6000,Yaw=-9000,Roll=2048)
 	LongGunOffset=(X=-30.000000,Y=11.000000,Z=-20.000000)
-	ParamsClasses(0)=Class'TrenchGunWeaponParams'
+	ParamsClasses(0)=Class'TrenchGunWeaponParamsComp'
 	ParamsClasses(1)=Class'TrenchGunWeaponParamsClassic'
 	ParamsClasses(2)=Class'TrenchGunWeaponParamsRealistic'
     ParamsClasses(3)=Class'TrenchGunWeaponParamsTactical'

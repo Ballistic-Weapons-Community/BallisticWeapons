@@ -255,7 +255,7 @@ defaultproperties
      SpecialInfo(0)=(Info="60.0;5.0;0.25;30.0;0.0;0.0;0.4")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
 	 PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
-	 ParamsClasses(0)=Class'ChaffWeaponParams'
+	 ParamsClasses(0)=Class'ChaffWeaponParamsComp'
 	 ParamsClasses(1)=Class'ChaffWeaponParamsClassic'
 	 ParamsClasses(2)=Class'ChaffWeaponParamsRealistic'
      ParamsClasses(3)=Class'ChaffWeaponParamsTactical'

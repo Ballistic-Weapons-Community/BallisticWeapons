@@ -288,7 +288,7 @@ defaultproperties
 	SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
 	SightDisplayFOV=25.000000
 	GunLength=16.000000
-	ParamsClasses(0)=Class'CX61WeaponParams'
+	ParamsClasses(0)=Class'CX61WeaponParamsComp'
 	ParamsClasses(1)=Class'CX61WeaponParamsClassic'
 	ParamsClasses(2)=Class'CX61WeaponParamsRealistic'
 	ParamsClasses(3)=Class'CX61WeaponParamsTactical'

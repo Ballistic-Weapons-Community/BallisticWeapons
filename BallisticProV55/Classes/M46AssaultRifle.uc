@@ -405,7 +405,7 @@ defaultproperties
 	MinZoom=2.000000
 	MaxZoom=4.000000
 	ZoomStages=1
-	ParamsClasses(0)=Class'M46WeaponParams'
+	ParamsClasses(0)=Class'M46WeaponParamsComp'
 	ParamsClasses(1)=Class'M46WeaponParamsClassic' 
 	ParamsClasses(2)=Class'M46WeaponParamsRealistic' 
     ParamsClasses(3)=Class'M46WeaponParamsTactical'

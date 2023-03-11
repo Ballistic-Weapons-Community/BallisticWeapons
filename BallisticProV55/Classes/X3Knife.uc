@@ -160,7 +160,7 @@ defaultproperties
      bNoMag=True
      GunLength=0.000000
 	 bAimDisabled=True
-	 ParamsClasses(0)=Class'X3WeaponParams'
+	 ParamsClasses(0)=Class'X3WeaponParamsComp'
 	 ParamsClasses(1)=Class'X3WeaponParamsClassic'
 	 ParamsClasses(2)=Class'X3WeaponParamsRealistic'
      ParamsClasses(3)=Class'X3WeaponParamsTactical'

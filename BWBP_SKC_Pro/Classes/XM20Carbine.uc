@@ -589,7 +589,7 @@ defaultproperties
      FullZoomFOV=40.000000
      SightPivot=(Pitch=600)
      SightOffset=(X=-10.000000,Y=11.7500000,Z=22.500000)
-	 ParamsClasses(0)=Class'XM20WeaponParams'
+	 ParamsClasses(0)=Class'XM20WeaponParamsComp'
 	 ParamsClasses(1)=Class'XM20WeaponParamsClassic'
 	 ParamsClasses(2)=Class'XM20WeaponParamsRealistic'
      ParamsClasses(3)=Class'XM20WeaponParamsTactical'

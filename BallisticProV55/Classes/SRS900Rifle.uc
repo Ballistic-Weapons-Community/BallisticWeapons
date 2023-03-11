@@ -632,7 +632,7 @@ defaultproperties
 	MaxZoom=8.000000
 	ZoomStages=2
 	GunLength=72.000000
-	ParamsClasses(0)=Class'SRS900WeaponParams'
+	ParamsClasses(0)=Class'SRS900WeaponParamsComp'
 	ParamsClasses(1)=Class'SRS900WeaponParamsClassic'
 	ParamsClasses(2)=Class'SRS900WeaponParamsRealistic'
     ParamsClasses(3)=Class'SRS900WeaponParamsTactical'

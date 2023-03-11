@@ -535,7 +535,7 @@ defaultproperties
 	SightOffset=(X=50.000000,Y=-10.690000,Z=45.400002)
 	SightDisplayFOV=45.000000
 	SightingTime=0.550000
-	ParamsClasses(0)=Class'Z250WeaponParams'
+	ParamsClasses(0)=Class'Z250WeaponParamsComp'
 	ParamsClasses(1)=Class'Z250WeaponParamsClassic'
 	ParamsClasses(2)=Class'Z250WeaponParamsRealistic'
     ParamsClasses(3)=Class'Z250WeaponParamsTactical'

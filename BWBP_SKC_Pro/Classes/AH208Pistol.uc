@@ -170,7 +170,7 @@ defaultproperties
     SightOffset=(X=20.000000,Y=-7.350000,Z=45.400002)
     SightDisplayFOV=40.000000
     GunLength=4.000000
-    ParamsClasses(0)=Class'AH208WeaponParams'
+    ParamsClasses(0)=Class'AH208WeaponParamsComp'
     ParamsClasses(1)=Class'AH208WeaponParamsClassic'
     ParamsClasses(2)=Class'AH208WeaponParamsRealistic'
     ParamsClasses(3)=Class'AH208WeaponParamsTactical'

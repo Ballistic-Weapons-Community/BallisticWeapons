@@ -353,7 +353,7 @@ defaultproperties
 	SightDisplayFOV=60.000000
 	SightPivot=(Pitch=128)
 	GunLength=48.000000
-	ParamsClasses(0)=Class'M763WeaponParams'
+	ParamsClasses(0)=Class'M763WeaponParamsComp'
 	ParamsClasses(1)=Class'M763WeaponParamsClassic' //todo: primary anim, alt + melee
 	ParamsClasses(2)=Class'M763WeaponParamsRealistic' //todo: semi-auto
     ParamsClasses(3)=Class'M763WeaponParamsTactical'

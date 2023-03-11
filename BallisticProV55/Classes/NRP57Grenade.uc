@@ -69,7 +69,7 @@ defaultproperties
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Putaway')
      CurrentWeaponMode=1
-     ParamsClasses(0)=Class'NRP57WeaponParams'
+     ParamsClasses(0)=Class'NRP57WeaponParamsComp'
      ParamsClasses(1)=Class'NRP57WeaponParamsClassic'
      ParamsClasses(2)=Class'NRP57WeaponParamsRealistic'
      ParamsClasses(3)=Class'NRP57WeaponParamsTactical'

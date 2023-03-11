@@ -670,7 +670,7 @@ defaultproperties
 	SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
 	SightDisplayFOV=20.000000
 	GunLength=48.000000
-	ParamsClasses(0)=Class'MK781WeaponParams'
+	ParamsClasses(0)=Class'MK781WeaponParamsComp'
 	ParamsClasses(1)=Class'MK781WeaponParamsClassic'
 	ParamsClasses(2)=Class'MK781WeaponParamsRealistic'
     ParamsClasses(3)=Class'MK781WeaponParamsTactical'

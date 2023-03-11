@@ -622,7 +622,7 @@ defaultproperties
 	SightOffset=(X=-20.000000,Y=0.070000,Z=6.150000)
 	SightDisplayFOV=60.000000
 	SightingTime=0.200000
-	ParamsClasses(0)=Class'leMatWeaponParams'
+	ParamsClasses(0)=Class'leMatWeaponParamsComp'
 	ParamsClasses(1)=Class'leMatWeaponParamsClassic'
 	ParamsClasses(2)=Class'leMatWeaponParamsRealistic'
     ParamsClasses(3)=Class'leMatWeaponParamsTactical'

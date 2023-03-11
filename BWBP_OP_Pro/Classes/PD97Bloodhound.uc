@@ -477,7 +477,7 @@ defaultproperties
 	SightOffset=(X=-10.000000,Y=-4.400000,Z=12.130000)
 	SightDisplayFOV=40.000000
 	SightingTime=0.200000
-	ParamsClasses(0)=Class'PD97WeaponParams'
+	ParamsClasses(0)=Class'PD97WeaponParamsComp'
 	ParamsClasses(1)=Class'PD97WeaponParamsClassic'
 	ParamsClasses(2)=Class'PD97WeaponParamsRealistic'
     ParamsClasses(3)=Class'PD97WeaponParamsTactical'

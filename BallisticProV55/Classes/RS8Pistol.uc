@@ -512,7 +512,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-15.000000,Z=8.700000)
 	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'RS8WeaponParams'
+	ParamsClasses(0)=Class'RS8WeaponParamsComp'
 	ParamsClasses(1)=Class'RS8WeaponParamsClassic'
 	ParamsClasses(2)=Class'RS8WeaponParamsRealistic'
     ParamsClasses(3)=Class'RS8WeaponParamsTactical'

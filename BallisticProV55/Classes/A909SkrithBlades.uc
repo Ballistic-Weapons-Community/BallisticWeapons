@@ -53,7 +53,7 @@ defaultproperties
      bAimDisabled=True
      NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.X3OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.X3InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(R=0),Color2=(R=0),StartSize1=108,StartSize2=101)
      NDCrosshairInfo=(SpreadRatios=(X1=0.250000,Y1=0.375000,X2=1.000000,Y2=1.000000),MaxScale=8.000000)
-	 ParamsClasses(0)=Class'A909WeaponParams'
+	 ParamsClasses(0)=Class'A909WeaponParamsComp'
      ParamsClasses(1)=Class'A909WeaponParamsClassic'
      ParamsClasses(2)=Class'A909WeaponParamsRealistic'
      ParamsClasses(3)=Class'A909WeaponParamsTactical'

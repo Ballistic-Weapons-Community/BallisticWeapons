@@ -535,7 +535,7 @@ defaultproperties
 	SightOffset=(X=-10.000000,Y=-0.670000,Z=27.200000)
 	SightDisplayFOV=25.000000
 	GunLength=72.000000
-	ParamsClasses(0)=Class'SRXWeaponParams'
+	ParamsClasses(0)=Class'SRXWeaponParamsComp'
 	ParamsClasses(1)=Class'SRXWeaponParamsClassic'
 	ParamsClasses(2)=Class'SRXWeaponParamsRealistic'
     ParamsClasses(3)=Class'SRXWeaponParamsTactical'

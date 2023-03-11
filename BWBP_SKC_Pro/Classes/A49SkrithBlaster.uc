@@ -394,7 +394,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	SightZoomFactor=0.85
 	GunLength=0.100000
-	ParamsClasses(0)=Class'A49WeaponParams'
+	ParamsClasses(0)=Class'A49WeaponParamsComp'
 	ParamsClasses(1)=Class'A49WeaponParamsClassic'
 	ParamsClasses(2)=Class'A49WeaponParamsRealistic'
     ParamsClasses(3)=Class'A49WeaponParamsTactical'

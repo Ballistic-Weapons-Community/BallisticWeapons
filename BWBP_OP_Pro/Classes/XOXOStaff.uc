@@ -369,7 +369,7 @@ defaultproperties
 	SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
 	SightDisplayFOV=40.000000
 	GunLength=128.000000
-	ParamsClasses(0)=Class'XOXOWeaponParams'
+	ParamsClasses(0)=Class'XOXOWeaponParamsComp'
 	ParamsClasses(1)=Class'XOXOWeaponParamsClassic'
 	ParamsClasses(2)=Class'XOXOWeaponParamsRealistic'
     ParamsClasses(3)=Class'XOXOWeaponParamsTactical'

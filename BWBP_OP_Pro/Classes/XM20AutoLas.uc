@@ -450,7 +450,7 @@ defaultproperties
 	SightDisplayFOV=15
 	GunLength=80.000000
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.A73InA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Misc5',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=255,G=255,A=192),Color2=(B=158,G=150,R=0,A=124),StartSize1=54,StartSize2=59)
-    ParamsClasses(0)=Class'XM20WeaponParams'
+    ParamsClasses(0)=Class'XM20WeaponParamsComp'
 	FireModeClass(0)=Class'BWBP_OP_Pro.XM20PrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.XM20SecondaryFire'
 	SelectAnimRate=1.500000

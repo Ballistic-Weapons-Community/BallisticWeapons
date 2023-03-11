@@ -301,7 +301,7 @@ defaultproperties
 	SightOffset=(X=1.000000,Z=17.750000)
 	SightDisplayFOV=25.000000
 	GunLength=40.000000
-	ParamsClasses(0)=Class'XMK5WeaponParams'
+	ParamsClasses(0)=Class'XMK5WeaponParamsComp'
 	ParamsClasses(1)=Class'XMK5WeaponParamsClassic'
 	ParamsClasses(2)=Class'XMK5WeaponParamsRealistic'
     ParamsClasses(3)=Class'XMK5WeaponParamsTactical'

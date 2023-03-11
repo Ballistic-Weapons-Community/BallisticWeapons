@@ -783,7 +783,7 @@ defaultproperties
 	MaxZoom=16.000000
 	ZoomStages=2
 	GunLength=80.000000
-	ParamsClasses(0)=Class'AS50WeaponParams'	 
+	ParamsClasses(0)=Class'AS50WeaponParamsComp'	 
 	ParamsClasses(1)=Class'AS50WeaponParamsClassic'	 
 	ParamsClasses(2)=Class'AS50WeaponParamsRealistic'	 
     ParamsClasses(3)=Class'AS50WeaponParamsTactical'

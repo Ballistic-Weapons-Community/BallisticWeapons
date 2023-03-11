@@ -230,7 +230,7 @@ defaultproperties
 	SightPivot=(Pitch=512)
 	SightOffset=(X=-30.000000,Y=12.450000,Z=14.850000)
 	GunLength=48.000000
-	ParamsClasses(0)=Class'MGLWeaponParams'
+	ParamsClasses(0)=Class'MGLWeaponParamsComp'
 	ParamsClasses(1)=Class'MGLWeaponParamsClassic'
 	ParamsClasses(2)=Class'MGLWeaponParamsRealistic'
     ParamsClasses(3)=Class'MGLWeaponParamsTactical'

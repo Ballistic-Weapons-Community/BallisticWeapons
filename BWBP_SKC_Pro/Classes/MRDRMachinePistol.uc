@@ -226,7 +226,7 @@ defaultproperties
 	GunLength=0.100000
 	AIRating=0.6
 	CurrentRating=0.6
-	ParamsClasses(0)=Class'MRDRWeaponParams'
+	ParamsClasses(0)=Class'MRDRWeaponParamsComp'
 	ParamsClasses(1)=Class'MRDRWeaponParamsClassic'
 	ParamsClasses(2)=Class'MRDRWeaponParamsRealistic'
     ParamsClasses(3)=Class'MRDRWeaponParamsTactical'

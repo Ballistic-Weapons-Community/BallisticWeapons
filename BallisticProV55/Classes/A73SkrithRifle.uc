@@ -307,7 +307,7 @@ defaultproperties
 	SightPivot=(Pitch=450)
 	SightOffset=(X=10.000000,Z=12.150000)
 	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'A73WeaponParams'
+	ParamsClasses(0)=Class'A73WeaponParamsComp'
 	ParamsClasses(1)=Class'A73WeaponParamsClassic'
 	ParamsClasses(2)=Class'A73WeaponParamsRealistic'
     ParamsClasses(3)=Class'A73WeaponParamsTactical'

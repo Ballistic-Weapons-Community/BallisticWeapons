@@ -466,7 +466,7 @@ defaultproperties
 	SightOffset=(X=-5.000000,Y=-15.000000,Z=10.000000)
 	SightDisplayFOV=70.000000
 	GunLength=96.000000
-	ParamsClasses(0)=Class'MACWeaponParams'
+	ParamsClasses(0)=Class'MACWeaponParamsComp'
 	ParamsClasses(1)=Class'MACWeaponParamsClassic'
 	ParamsClasses(2)=Class'MACWeaponParamsRealistic'
     ParamsClasses(3)=Class'MACWeaponParamsTactical'

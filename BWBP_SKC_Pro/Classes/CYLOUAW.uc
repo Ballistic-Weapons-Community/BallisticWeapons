@@ -538,7 +538,7 @@ defaultproperties
 	SightPivot=(Pitch=450)
 	SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
 	GunLength=16.000000
-	ParamsClasses(0)=Class'CYLOWeaponParams' 
+	ParamsClasses(0)=Class'CYLOWeaponParamsComp' 
 	ParamsClasses(1)=Class'CYLOWeaponParamsClassic' 
 	ParamsClasses(2)=Class'CYLOWeaponParamsRealistic' 
     ParamsClasses(3)=Class'CYLOWeaponParamsTactical'

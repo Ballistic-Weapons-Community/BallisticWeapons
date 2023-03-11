@@ -416,7 +416,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
 	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'MD24WeaponParams'
+	ParamsClasses(0)=Class'MD24WeaponParamsComp'
 	ParamsClasses(1)=Class'MD24WeaponParamsClassic'
 	ParamsClasses(2)=Class'MD24WeaponParamsRealistic'
     ParamsClasses(3)=Class'MD24WeaponParamsTactical'

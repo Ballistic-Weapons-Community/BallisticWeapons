@@ -604,7 +604,7 @@ defaultproperties
 	MaxZoom=16.000000
 	ZoomStages=8
 	GunLength=80.000000
-	ParamsClasses(0)=Class'M2020WeaponParams'
+	ParamsClasses(0)=Class'M2020WeaponParamsComp'
 	ParamsClasses(1)=Class'M2020WeaponParamsClassic'
 	ParamsClasses(2)=Class'M2020WeaponParamsRealistic'
     ParamsClasses(3)=Class'M2020WeaponParamsTactical'

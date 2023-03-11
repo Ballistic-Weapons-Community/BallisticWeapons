@@ -359,7 +359,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
 	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'PS9mWeaponParams'
+	ParamsClasses(0)=Class'PS9mWeaponParamsComp'
 	ParamsClasses(1)=Class'PS9mWeaponParamsClassic'
 	ParamsClasses(2)=Class'PS9mWeaponParamsRealistic'
     ParamsClasses(3)=Class'PS9mWeaponParamsTactical'

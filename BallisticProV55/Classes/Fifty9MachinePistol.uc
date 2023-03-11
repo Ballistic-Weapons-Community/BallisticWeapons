@@ -327,7 +327,7 @@ defaultproperties
 	SightOffset=(X=-10.000000,Z=12.00000)
 	SightDisplayFOV=60.000000
 	SightZoomFactor=0.85
-	ParamsClasses(0)=Class'Fifty9WeaponParams'	
+	ParamsClasses(0)=Class'Fifty9WeaponParamsComp'	
 	ParamsClasses(1)=Class'Fifty9WeaponParamsClassic'	
 	ParamsClasses(2)=Class'Fifty9WeaponParamsRealistic'	
     ParamsClasses(3)=Class'Fifty9WeaponParamsTactical'

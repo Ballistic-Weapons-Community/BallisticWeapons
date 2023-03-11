@@ -741,7 +741,7 @@ defaultproperties
 	SightOffset=(X=-60.000000,Z=15.000000)
 	SightDisplayFOV=40.000000
 	GunLength=128.000000
-	ParamsClasses(0)=Class'RSNovaWeaponParams'
+	ParamsClasses(0)=Class'RSNovaWeaponParamsComp'
 	ParamsClasses(1)=Class'RSNovaWeaponParamsClassic'
 	ParamsClasses(2)=Class'RSNovaWeaponParamsRealistic'
     ParamsClasses(3)=Class'RSNovaWeaponParamsTactical'

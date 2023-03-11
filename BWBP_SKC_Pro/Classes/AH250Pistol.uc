@@ -174,7 +174,7 @@ defaultproperties
 	SightDisplayFOV=40.000000
 	GunLength=4.000000
 	bShouldDualInLoadout=True
-	ParamsClasses(0)=Class'AH250WeaponParams'
+	ParamsClasses(0)=Class'AH250WeaponParamsComp'
 	ParamsClasses(1)=Class'AH250WeaponParamsClassic'
 	ParamsClasses(2)=Class'AH250WeaponParamsRealistic'
     ParamsClasses(3)=Class'AH250WeaponParamsTactical'

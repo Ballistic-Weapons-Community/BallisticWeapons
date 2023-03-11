@@ -855,7 +855,7 @@ defaultproperties
 	MaxZoom=4.000000
 	ZoomStages=1
 	SMuzzleFlashOffset=(X=15.000000,Z=-10.000000)
-	ParamsClasses(0)=Class'MARSWeaponParams'
+	ParamsClasses(0)=Class'MARSWeaponParamsComp'
 	ParamsClasses(1)=Class'MARSWeaponParamsClassic'
 	ParamsClasses(2)=Class'MARSWeaponParamsRealistic'
     ParamsClasses(3)=Class'MARSWeaponParamsTactical'

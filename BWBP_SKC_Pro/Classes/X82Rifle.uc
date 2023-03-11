@@ -386,7 +386,7 @@ defaultproperties
 	MaxZoom=32.000000
 	ZoomStages=3
 	GunLength=80.000000
-	ParamsClasses(0)=Class'X82WeaponParams'
+	ParamsClasses(0)=Class'X82WeaponParamsComp'
 	ParamsClasses(1)=Class'X82WeaponParamsClassic'
 	ParamsClasses(2)=Class'X82WeaponParamsRealistic'
     ParamsClasses(3)=Class'X82WeaponParamsTactical'

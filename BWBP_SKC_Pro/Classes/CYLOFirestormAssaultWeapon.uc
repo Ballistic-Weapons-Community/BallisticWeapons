@@ -698,7 +698,7 @@ defaultproperties
 	SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
 	bNoCrosshairInScope=True
 	GunLength=16.500000
-	ParamsClasses(0)=Class'CYLOFirestormWeaponParams' 
+	ParamsClasses(0)=Class'CYLOFirestormWeaponParamsComp' 
 	ParamsClasses(1)=Class'CYLOFirestormWeaponParamsClassic' 
 	ParamsClasses(2)=Class'CYLOFirestormWeaponParamsRealistic' 
     ParamsClasses(3)=Class'CYLOFirestormWeaponParamsTactical'

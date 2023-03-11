@@ -544,7 +544,7 @@ defaultproperties
 	SightOffset=(X=0.000000,Y=7.350000,Z=7.550000)
 	SightDisplayFOV=25.000000
 	SightZoomFactor=0.85
-	ParamsClasses(0)=Class'RaygunWeaponParams'
+	ParamsClasses(0)=Class'RaygunWeaponParamsComp'
 	ParamsClasses(1)=Class'RaygunWeaponParamsClassic'
 	ParamsClasses(2)=Class'RaygunWeaponParamsRealistic'
     ParamsClasses(3)=Class'RaygunWeaponParamsTactical'

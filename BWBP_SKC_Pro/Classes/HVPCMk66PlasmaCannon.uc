@@ -713,7 +713,7 @@ defaultproperties
      SightPivot=(Pitch=768)
      SightOffset=(X=-18.000000,Z=23.299999)
      SightDisplayFOV=40.000000
-	 ParamsClasses(0)=Class'HVPCMk66WeaponParams'
+	 ParamsClasses(0)=Class'HVPCMk66WeaponParamsComp'
 	 ParamsClasses(1)=Class'HVPCMk66WeaponParamsClassic'
 	 ParamsClasses(2)=Class'HVPCMk66WeaponParamsRealistic'
      ParamsClasses(3)=Class'HVPCMk66WeaponParamsTactical'

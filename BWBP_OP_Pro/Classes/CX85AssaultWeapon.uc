@@ -718,7 +718,7 @@ defaultproperties
 	MaxZoom=8.000000
 	ZoomStages=2
 	GunLength=72.000000
-	ParamsClasses(0)=Class'CX85WeaponParams'
+	ParamsClasses(0)=Class'CX85WeaponParamsComp'
 	ParamsClasses(1)=Class'CX85WeaponParamsClassic'
 	ParamsClasses(2)=Class'CX85WeaponParamsRealistic'
     ParamsClasses(3)=Class'CX85WeaponParamsTactical'

@@ -266,7 +266,7 @@ defaultproperties
 	SightPivot=(Pitch=1024,Roll=-768)
 	SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'A42WeaponParams'
+	ParamsClasses(0)=Class'A42WeaponParamsComp'
 	ParamsClasses(1)=Class'A42WeaponParamsClassic'
 	ParamsClasses(2)=Class'A42WeaponParamsRealistic'
     ParamsClasses(3)=Class'A42WeaponParamsTactical'

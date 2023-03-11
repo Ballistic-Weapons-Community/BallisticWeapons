@@ -386,7 +386,7 @@ defaultproperties
 	MaxZoom=8.000000
 	ZoomStages=6
 
-	ParamsClasses(0)=Class'LAWWeaponParams'
+	ParamsClasses(0)=Class'LAWWeaponParamsComp'
 	ParamsClasses(1)=Class'LAWWeaponParamsClassic'
 	ParamsClasses(2)=Class'LAWWeaponParamsRealistic'
     ParamsClasses(3)=Class'LAWWeaponParamsTactical'

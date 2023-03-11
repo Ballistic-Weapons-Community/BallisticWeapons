@@ -444,7 +444,7 @@ defaultproperties
      WeaponModes(1)=(ModeName="KILL!",ModeID="WM_FullAuto")
      GunLength=0.000000
 	 bAimDisabled=True
-	 ParamsClasses(0)=Class'DefibWeaponParams'
+	 ParamsClasses(0)=Class'DefibWeaponParamsComp'
      FireModeClass(0)=Class'BWBP_OP_Pro.DefibFistsPrimaryFire'
      FireModeClass(1)=Class'BWBP_OP_Pro.DefibFistsSecondaryFire'
      PutDownTime=0.660000

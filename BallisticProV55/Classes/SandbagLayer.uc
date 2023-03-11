@@ -236,7 +236,7 @@ defaultproperties
 	WeaponModes(1)=(bUnavailable=True)
 	WeaponModes(2)=(ModeName="Place")
 	GunLength=0.000000
-	ParamsClasses(0)=Class'SandbagWeaponParams'
+	ParamsClasses(0)=Class'SandbagWeaponParamsComp'
 	ParamsClasses(1)=Class'SandbagWeaponParams'
 	ParamsClasses(2)=Class'SandbagWeaponParams'
     ParamsClasses(3)=Class'SandbagWeaponParams'

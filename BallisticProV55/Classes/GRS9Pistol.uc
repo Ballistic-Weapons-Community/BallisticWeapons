@@ -578,7 +578,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-15.000000,Z=5.900000)
 	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'GRS9WeaponParams'
+	ParamsClasses(0)=Class'GRS9WeaponParamsComp'
 	ParamsClasses(1)=Class'GRS9WeaponParamsClassic' //todo: auto to semi
 	ParamsClasses(2)=Class'GRS9WeaponParamsRealistic' //todo: auto to semi
     ParamsClasses(3)=Class'GRS9WeaponParamsTactical'

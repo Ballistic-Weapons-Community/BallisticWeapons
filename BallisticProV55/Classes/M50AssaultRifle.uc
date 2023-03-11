@@ -688,7 +688,7 @@ defaultproperties
 	SightOffset=(Y=0.050000,Z=12.130000)
 	SightDisplayFOV=40.000000
 	EffectOffset=(X=100,Z=7)
-	ParamsClasses(0)=Class'M50WeaponParams'
+	ParamsClasses(0)=Class'M50WeaponParamsComp'
 	ParamsClasses(1)=Class'M50WeaponParamsClassic'
 	ParamsClasses(2)=Class'M50WeaponParamsRealistic'
     ParamsClasses(3)=Class'M50WeaponParamsTactical'

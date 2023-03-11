@@ -374,7 +374,7 @@ defaultproperties
 	SightPivot=(Pitch=1024,Roll=-768)
 	SightOffset=(X=-24.000000,Y=-3.100000,Z=15.000000)
 	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'ProtonWeaponParams'
+	ParamsClasses(0)=Class'ProtonWeaponParamsComp'
 	ParamsClasses(1)=Class'ProtonWeaponParams'
 	FireModeClass(0)=Class'BWBP_OP_Pro.ProtonStreamPrimaryFire'
 	FireModeClass(1)=Class'BWBP_OP_Pro.ProtonStreamSecondaryFire'

@@ -143,7 +143,7 @@ defaultproperties
 	bNoMag=True
 	GunLength=0.000000
 	bAimDisabled=True
-	ParamsClasses(0)=Class'DragonsToothWeaponParams'
+	ParamsClasses(0)=Class'DragonsToothWeaponParamsComp'
 	ParamsClasses(1)=Class'DragonsToothWeaponParamsClassic'
 	ParamsClasses(2)=Class'DragonsToothWeaponParamsRealistic'
     ParamsClasses(3)=Class'DragonsToothWeaponParamsTactical'

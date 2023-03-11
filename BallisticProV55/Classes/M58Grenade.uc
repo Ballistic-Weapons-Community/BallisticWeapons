@@ -41,7 +41,7 @@ defaultproperties
 	 
      SelectForce="SwitchToAssaultRifle"
      AIRating=0.400000
-     ParamsClasses(0)=Class'M58WeaponParams'
+     ParamsClasses(0)=Class'M58WeaponParamsComp'
      ParamsClasses(1)=Class'M58WeaponParams'
      ParamsClasses(2)=Class'M58WeaponParams'
      ParamsClasses(3)=Class'M58WeaponParams'

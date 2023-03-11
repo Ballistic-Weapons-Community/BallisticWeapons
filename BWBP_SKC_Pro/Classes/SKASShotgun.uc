@@ -335,7 +335,7 @@ defaultproperties
     SightPivot=(Pitch=1024)
     SightOffset=(X=-20.000000,Y=9.700000,Z=19.000000)
     GunLength=32.000000
-    ParamsClasses(0)=Class'SKASWeaponParams'
+    ParamsClasses(0)=Class'SKASWeaponParamsComp'
     ParamsClasses(1)=Class'SKASWeaponParamsClassic'
     ParamsClasses(2)=Class'SKASWeaponParamsRealistic'
     ParamsClasses(3)=Class'SKASWeaponParamsTactical'

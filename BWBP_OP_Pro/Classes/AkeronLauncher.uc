@@ -147,7 +147,7 @@ defaultproperties
      MinZoom=2.000000
      MaxZoom=8.000000
      ZoomStages=2
-     ParamsClasses(0)=Class'AkeronWeaponParams'
+     ParamsClasses(0)=Class'AkeronWeaponParamsComp'
      ParamsClasses(1)=Class'AkeronWeaponParamsClassic'
      ParamsClasses(2)=Class'AkeronWeaponParamsRealistic'
      ParamsClasses(3)=Class'AkeronWeaponParamsTactical'

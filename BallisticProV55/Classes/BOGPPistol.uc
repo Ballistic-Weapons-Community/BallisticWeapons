@@ -294,7 +294,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightPivot=(Pitch=300)
 	SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
-	ParamsClasses(0)=Class'BOGPWeaponParams'
+	ParamsClasses(0)=Class'BOGPWeaponParamsComp'
 	ParamsClasses(1)=Class'BOGPWeaponParamsClassic'
 	ParamsClasses(2)=Class'BOGPWeaponParamsRealistic'
     ParamsClasses(3)=Class'BOGPWeaponParamsTactical'

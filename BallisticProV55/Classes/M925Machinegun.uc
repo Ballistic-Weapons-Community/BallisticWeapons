@@ -261,7 +261,7 @@ defaultproperties
 	SightPivot=(Pitch=64)
 	SightOffset=(X=-18.000000,Z=7.200000)
 	SightDisplayFOV=40.000000
-	ParamsClasses(0)=Class'M925WeaponParams'
+	ParamsClasses(0)=Class'M925WeaponParamsComp'
 	ParamsClasses(1)=Class'M925WeaponParamsClassic' //todo: turret
 	ParamsClasses(2)=Class'M925WeaponParamsRealistic' //todo: turret
     ParamsClasses(3)=Class'M925WeaponParamsTactical'

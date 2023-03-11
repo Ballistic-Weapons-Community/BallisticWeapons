@@ -734,7 +734,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightDisplayFOV=40.000000
 	GunLength=48.000000
-	ParamsClasses(0)=Class'ARWeaponParams'
+	ParamsClasses(0)=Class'ARWeaponParamsComp'
 	ParamsClasses(1)=Class'ARWeaponParamsClassic'
 	ParamsClasses(2)=Class'ARWeaponParamsRealistic'
 	ParamsClasses(3)=Class'ARWeaponParamsTactical'

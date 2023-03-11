@@ -351,7 +351,7 @@ defaultproperties
 	FullZoomFOV=70.000000
 	bNoCrosshairInScope=True
 	SightOffset=(X=4.000000,Y=-0.070000,Z=4.750000)
-	ParamsClasses(0)=Class'MarlinWeaponParams'	 
+	ParamsClasses(0)=Class'MarlinWeaponParamsComp'	 
 	ParamsClasses(1)=Class'MarlinWeaponParamsClassic'	
 	ParamsClasses(2)=Class'MarlinWeaponParamsRealistic'	
     ParamsClasses(3)=Class'MarlinWeaponParamsTactical' 
