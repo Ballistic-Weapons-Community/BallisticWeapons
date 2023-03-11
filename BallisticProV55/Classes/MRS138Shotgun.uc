@@ -486,7 +486,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_MRS138'
 	BigIconCoords=(Y1=36,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	AttachmentClass=Class'BallisticProV55.MRS138Attachment'
 	AIRating=0.800000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'

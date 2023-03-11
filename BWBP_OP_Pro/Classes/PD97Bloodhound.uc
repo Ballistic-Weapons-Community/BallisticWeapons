@@ -52,12 +52,12 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryMissileFire';
 		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryTracerFire';
 	}
-	else if (BCRepClass.static.IsRealism())
+	else if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		FireModeClass[0]=Class'BWBP_OP_Pro.PD97PrimaryShotgunFire';
 		FireModeClass[1]=Class'BWBP_OP_Pro.PD97SecondaryFire';
@@ -457,7 +457,7 @@ defaultproperties
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BWBP_OP_Tex.Bloodhound.BigIcon_PD97'
 	IdleTweenTime=0.000000
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Heal=True
 	ManualLines(0)="Fires projectile darts. Upon striking an enemy, these darts release a cloud of pink gas which allows the path of the enemy to be tracked. The darts will also deal damage over time. Upon striking an ally, the darts heal over time instead of dealing damage."

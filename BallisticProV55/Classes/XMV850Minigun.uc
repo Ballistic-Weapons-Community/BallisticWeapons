@@ -62,7 +62,7 @@ simulated event PreBeginPlay()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.static.IsRealism())
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		XMV850MinigunPrimaryFire(FireMode[0]).bRequireSpool=true;
 	}
@@ -107,7 +107,7 @@ simulated function float GetRampUpSpeed()
 {
 	local float mult;
 	
-	if (class'BCReplicationInfo'.static.IsArena())
+	if (class'BallisticReplicationInfo'.static.IsArena())
 	{
 		mult = 1 - (BarrelSpeed / RotationSpeeds[2]);
 		
@@ -427,7 +427,7 @@ defaultproperties
 	AIReloadTime=4.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_XMV850'
 	BigIconCoords=(Y2=255)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Spins up the barrel. Once spun up to speed, unleashes a hail of bullets. Incredible fire rate and moderate damage. Sustained damage output is extremely high. Large ammo reserves due to the attached backpack mean the weapon can fire continuously for long periods."

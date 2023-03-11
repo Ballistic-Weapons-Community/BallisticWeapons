@@ -49,7 +49,7 @@ simulated Event PreBeginPlay()
 {
 	super.PreBeginPlay();
 	
-	if (M575Machinegun(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (!class'BallisticReplicationInfo'.static.IsArena())
 	{
 		TracerClass=Class'BallisticProV55.TraceEmitter_FiftyNine';
 	}

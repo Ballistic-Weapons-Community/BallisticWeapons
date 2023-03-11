@@ -39,6 +39,7 @@ singular function StartSprint()
         UpdateSpeed();
 }
 
+// problem. owner needs to calculate the speed, but this class is in the wrong package
 function UpdateSpeed()
 {
 	local float NewSpeed;
@@ -119,15 +120,20 @@ simulated event Tick(float DT)
 		if (!bSprinting)
 		{
 			bSprinting=true;
+
 			if (BallisticWeapon(Instigator.Weapon) != None)
 				BallisticWeapon(Instigator.Weapon).PlayerSprint(true);
+
 			if (Instigator != None && Instigator.Inventory != None)
 				Instigator.Inventory.OwnerEvent('StartSprint');
 		}
 		
 		if (Instigator.bIsCrouched)
 			Stamina -= StaminaDrainRate * DT * 1.5;
-		else Stamina -= StaminaDrainRate * DT;
+
+		else 
+            Stamina -= StaminaDrainRate * DT;
+
 		if (Role == ROLE_Authority)
 		{
 			if (Stamina <= 0 || Instigator.Physics != PHYS_Walking ||(Level.TimeSeconds >= NextAlignmentCheckTime && !CheckDirection()))
@@ -140,8 +146,10 @@ simulated event Tick(float DT)
 		if (bSprinting)
 		{
 			bSprinting=False;
+
 			if (BallisticWeapon(Instigator.Weapon) != None)
 				BallisticWeapon(Instigator.Weapon).PlayerSprint(false);
+
 			if (Instigator != None && Instigator.Inventory != None)
 				Instigator.Inventory.OwnerEvent('StopSprint');
 		}

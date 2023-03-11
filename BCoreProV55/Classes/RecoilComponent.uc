@@ -271,7 +271,7 @@ private final simulated function Rotator GetRecoilPivot(bool bIgnoreViewAim)
 	if (BW.InstigatorController != None && BW.InstigatorController.Handedness == -1)
 		R.Yaw = -R.Yaw;
 
-    R *= BW.BCRepClass.default.RecoilScale;
+    R *= class'BallisticReplicationInfo'.default.RecoilScale;
 	
 	if (bIgnoreViewAim || BW.Instigator.Controller == None || PlayerController(BW.Instigator.Controller) == None || PlayerController(BW.Instigator.Controller).bBehindView)
         return R;

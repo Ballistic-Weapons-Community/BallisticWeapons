@@ -359,7 +359,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.AK490.BigIcon_AK490'
 	BigIconCoords=(Y1=32,Y2=220)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Automatic 7.62mm fire. High sustained damage and long effective range, but high recoil and inferior hipfire controllability."
 	ManualLines(1)="If a knife is attached, it will be launched, dealing high damage. The user must hold the fire key for a short time to prepare the knife for launch.||If no knife is attached, one will be attached if available."

@@ -512,7 +512,7 @@ function Class<Inventory> GetInventoryClass(string InventoryClassName)
 function int GetItemSize(class<Inventory> Item)
 {
 	if (class<BallisticWeapon>(Item) != None)
-		return class<BallisticWeapon>(Item).default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle].default.Layouts[0].InventorySize;
+		return class<BallisticWeapon>(Item).default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].default.Layouts[0].InventorySize;
 	return 7;
 }
 
@@ -646,7 +646,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 			xPickupBase(Other).myEmitter.Destroy();
 	}
 	
-	else if (JumpSpot(Other) != None && BallisticReplicationInfo(BallisticReplicationInfo) != None && BallisticReplicationInfo(BallisticReplicationInfo).bNoDodging)
+	else if (JumpSpot(Other) != None && BallisticRep != None && BallisticRep.bNoDodging)
 	{
 		JumpSpot(Other).bDodgeUp = false;
 	}

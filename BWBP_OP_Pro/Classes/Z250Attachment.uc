@@ -25,7 +25,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBulletLarge';
 	}

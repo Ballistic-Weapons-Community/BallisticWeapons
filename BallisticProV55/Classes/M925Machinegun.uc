@@ -237,7 +237,7 @@ defaultproperties
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_M925'
 	BigIconCoords=(Y1=36,Y2=235)
 	SightFXClass=Class'BallisticProV55.M925SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)=".50 caliber fire. High damage per shot, but high recoil and fires in semi-automatic mode when not deployed. Has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."

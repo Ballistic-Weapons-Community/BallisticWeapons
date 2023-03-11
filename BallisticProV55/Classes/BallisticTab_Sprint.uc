@@ -12,7 +12,7 @@ var automated moNumericEdit     ne_InitStaminaChargeRate;	// Stamina Charge Rate
 var automated moFloatEdit       fe_InitSpeedFactor;			// Speed During Sprint
 var automated moFloatEdit       fe_JumpDrainFactor;			// Jump Drain Factor
 
-var automated moCheckBox        cb_bUseSloth;				// Enable Sloth
+var automated moCheckBox        cb_bOverrideMovement;				// Enable Sloth
 var automated moNumericEdit     ne_PlayerGroundSpeed;		// Ground Speed Scale
 var automated moNumericEdit     ne_PlayerAccelRate;			// Acceleration Scale
 var automated moFloatEdit       fe_PlayerStrafeScale;		// Strafe Scale
@@ -54,7 +54,7 @@ function LoadSettings()
     fe_InitSpeedFactor.SetValue(class'BallisticProV55.Mut_Ballistic'.default.InitSpeedFactor);
     fe_JumpDrainFactor.SetValue(class'BallisticProV55.Mut_Ballistic'.default.JumpDrainFactor);
 
-	cb_bUseSloth.Checked(class'BallisticReplicationInfo'.default.bUseSloth);
+	cb_bOverrideMovement.Checked(class'BallisticReplicationInfo'.default.bOverrideMovement);
     fe_PlayerStrafeScale.SetValue(class'BallisticReplicationInfo'.default.PlayerStrafeScale);
     fe_PlayerBackpedalScale.SetValue(class'BallisticReplicationInfo'.default.PlayerBackpedalScale);
     ne_PlayerGroundSpeed.SetValue(class'BallisticReplicationInfo'.default.PlayerGroundSpeed);
@@ -69,7 +69,7 @@ function DefaultSettings()
     fe_InitSpeedFactor.SetValue(1.50000);
     fe_JumpDrainFactor.SetValue(2);
 	
-	cb_bUseSloth.Checked(false);
+	cb_bOverrideMovement.Checked(false);
     fe_PlayerStrafeScale.SetValue(1);
     fe_PlayerBackpedalScale.SetValue(1);
     ne_PlayerGroundSpeed.SetValue(230);
@@ -87,7 +87,7 @@ function SaveSettings()
     class'BallisticProV55.Mut_Ballistic'.default.InitSpeedFactor = fe_InitSpeedFactor.GetValue();
     class'BallisticProV55.Mut_Ballistic'.default.JumpDrainFactor = fe_JumpDrainFactor.GetValue();
 	
-	class'BallisticReplicationInfo'.default.bUseSloth = cb_bUseSloth.IsChecked();
+	class'BallisticReplicationInfo'.default.bOverrideMovement = cb_bOverrideMovement.IsChecked();
     class'BallisticReplicationInfo'.default.PlayerStrafeScale = fe_PlayerStrafeScale.GetValue();
     class'BallisticReplicationInfo'.default.PlayerBackpedalScale = fe_PlayerBackpedalScale.GetValue();
     class'BallisticReplicationInfo'.default.PlayerGroundSpeed = ne_PlayerGroundSpeed.GetValue();
@@ -166,16 +166,16 @@ defaultproperties
      End Object
      fe_JumpDrainFactor=moFloatEdit'BallisticProV55.BallisticTab_Sprint.fe_JumpDrainFactorC'
 	 
-	 Begin Object Class=moCheckBox Name=cb_bUseSlothC
+	 Begin Object Class=moCheckBox Name=cb_bOverrideMovementC
          ComponentWidth=0.175000
          Caption="Adjust Movement"
-         OnCreateComponent=cb_bUseSlothC.InternalOnCreateComponent
+         OnCreateComponent=cb_bOverrideMovementC.InternalOnCreateComponent
          Hint="Overrides default movement with the settings below."
          WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     cb_bUseSloth=moCheckBox'BallisticProV55.BallisticTab_Sprint.cb_bUseSlothC'
+     cb_bOverrideMovement=moCheckBox'BallisticProV55.BallisticTab_Sprint.cb_bOverrideMovementC'
 
      Begin Object Class=moNumericEdit Name=ne_PlayerGroundSpeedC
          MinValue=160

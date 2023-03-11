@@ -700,7 +700,7 @@ defaultproperties
      AIReloadTime=0.200000
      BigIconMaterial=Texture'BWBP_SKC_Tex.BFG.BigIcon_BFG'
      BigIconCoords=(Y1=30,Y2=235)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Hazardous=True
      bWT_Energy=True
      bWT_Super=True

@@ -581,7 +581,7 @@ defaultproperties
      AIReloadTime=1.000000
      BigIconMaterial=Texture'BWBP_OP_Tex.MX32.BigIcon_MX32'
      BigIconCoords=(Y1=40,Y2=235)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Bullet=True
      bWT_Splash=True
      bWT_Machinegun=True

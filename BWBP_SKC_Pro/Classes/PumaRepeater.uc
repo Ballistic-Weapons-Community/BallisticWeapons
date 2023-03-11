@@ -830,7 +830,7 @@ defaultproperties
      ShieldSoundVolume=200
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	 BigIconMaterial=Texture'BWBP_SKC_Tex.PUMA.BigIcon_PUMA'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Shotgun=True
      bWT_Machinegun=True
 	 LongGunOffset=(X=8.000000,Y=-5.000000,Z=-3.000000)

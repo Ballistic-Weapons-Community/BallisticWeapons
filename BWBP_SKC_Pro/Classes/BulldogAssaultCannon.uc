@@ -46,11 +46,11 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		BulldogPrimaryFire(FireMode[0]).bSmallRadiusDamage = true;
 	}
-	else if (BCRepClass.static.IsRealism())
+	else if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		BulldogPrimaryFire(FireMode[0]).bLargeRadiusDamage = true;
 	}
@@ -683,7 +683,7 @@ defaultproperties
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BWBP_SKC_Tex.Bulldog.BigIcon_Bulldog'
 	BigIconCoords=(Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc9',pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50OutA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=0,G=0,R=255,A=192),Color2=(B=0,G=255,R=255,A=255),StartSize1=61,StartSize2=22)
     NDCrosshairInfo=(SpreadRatios=(X1=0.750000,Y1=0.750000,X2=0.300000,Y2=0.300000))

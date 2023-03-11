@@ -30,7 +30,7 @@ simulated Event PreBeginPlay()
 {
 	super.PreBeginPlay();
 
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		TracerClass=Class'BWBP_OP_Pro.TraceEmitter_CX61Spectre';
 		TracerChance=1;

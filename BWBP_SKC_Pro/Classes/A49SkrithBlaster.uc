@@ -33,7 +33,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.static.IsClassic())
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		bVariableHeatProps=True;
 		A49PrimaryFire(FireMode[0]).bVariableHeatProps = True;
@@ -379,7 +379,7 @@ defaultproperties
 	UsedAmbientSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
 	BigIconMaterial=Texture'BWBP_SKC_Tex.A6.BigIcon_A49'
 	BigIconCoords=(Y1=24)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_RapidProj=True
 	bWT_Energy=True
 	SpecialInfo(0)=(Info="0.0;-15.0;-999.0;-1.0;-999.0;-999.0;-999.0")

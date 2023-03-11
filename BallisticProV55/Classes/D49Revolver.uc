@@ -463,7 +463,7 @@ defaultproperties
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_D49'
 	SightFXClass=Class'BallisticProV55.D49SightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Fires from a single barrel. Powerful, but short-ranged and has high recoil."
 	ManualLines(1)="Fires both barrels at once. Twice as much recoil as the single fire with lower sustained damage output."

@@ -131,7 +131,7 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
 
     Damage = effect_params.Damage;
 
-    if (!class'BCReplicationInfo'.static.UseFixedModifiers())
+    if (!class'BallisticReplicationInfo'.static.UseFixedModifiers())
     {
         HeadMult = effect_params.HeadMult;
         LimbMult = effect_params.LimbMult;   
@@ -139,9 +139,9 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
 
     else 
     {   
-        Damage *= class'BCReplicationInfo'.default.DamageScale;
-        HeadMult = class'BCReplicationInfo'.default.DamageModHead;
-        LimbMult = class'BCReplicationInfo'.default.DamageModLimb;
+        Damage *= class'BallisticReplicationInfo'.default.DamageScale;
+        HeadMult = class'BallisticReplicationInfo'.default.DamageModHead;
+        LimbMult = class'BallisticReplicationInfo'.default.DamageModLimb;
     }
 
 	default.Damage = effect_params.Damage;

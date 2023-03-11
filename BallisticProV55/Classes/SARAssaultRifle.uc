@@ -515,7 +515,7 @@ defaultproperties
 	BigIconMaterial=Texture'BW_Core_WeaponTex.ui.BigIcon_SAR12'
 	BigIconCoords=(Y1=24,Y2=250)
 	SightFXClass=Class'BallisticProV55.SARSightDot'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic 5.56mm fire. Slightly shorter range than full-size assault rifles. Low damage and moderate recoil by default."

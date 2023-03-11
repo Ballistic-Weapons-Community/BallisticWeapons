@@ -21,7 +21,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq';
 	}

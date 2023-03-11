@@ -17,7 +17,7 @@ simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
     
-	if (BCRepClass.static.IsRealism())
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		FireModeClass[0]=Class'BallisticProV55.A42PrimaryFireSpread';
 		FireModeClass[1]=Class'BallisticProV55.A42PrimaryFire';
@@ -246,7 +246,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_A42'
 	BigIconCoords=(X1=80,Y1=24,X2=410,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	MeleeFireClass=Class'BallisticProV55.A42MeleeFire'
 	bWT_RapidProj=True
 	bWT_Energy=True

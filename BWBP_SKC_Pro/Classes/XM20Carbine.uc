@@ -582,7 +582,7 @@ defaultproperties
      WeaponModes(1)=(ModeName="Laser: Quick Charge",ModeID="WM_FullAuto")
      WeaponModes(2)=(ModeName="Laser: Overcharge",ModeID="WM_FullAuto")
 	 CurrentWeaponMode=1
-	 BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	 
      ScopeViewTex=Texture'BWBP_SKC_Tex.XM20.XM20-ScopeView'
      ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
      ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)

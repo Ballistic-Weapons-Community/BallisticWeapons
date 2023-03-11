@@ -13,7 +13,7 @@ var   bool			bHitPlayer;
 
 simulated function InitParams()
 {
-    WeaponClass.default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle].static.OverrideProjectileParams(self, 1);
+    WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.OverrideProjectileParams(self, 1);
 }
 
 simulated function InitProjectile ()

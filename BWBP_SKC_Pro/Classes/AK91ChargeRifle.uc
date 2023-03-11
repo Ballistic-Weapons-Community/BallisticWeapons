@@ -397,7 +397,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.000000
      BigIconMaterial=Texture'BWBP_SKC_Tex.AK91.BigIcon_AK91'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      BulletBone="Bullet1"
      BulletBone2="Bullet2"
      bWT_Bullet=True

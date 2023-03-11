@@ -275,7 +275,7 @@ simulated event RenderOverlays (Canvas C)
 		Super.RenderOverlays(C);
 		return;
 	}
-	if (BCRepClass.default.GameStyle != 1)
+	if (class'BallisticReplicationInfo'.default.GameStyle != 1)
 	{
 		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
 		SetRotation(Instigator.GetViewRotation());
@@ -596,7 +596,7 @@ defaultproperties
 	StabCurveTex=FinalBlend'BW_Core_WeaponTex.SRS900-UI.StabilityCurve-FB'
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=3)
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_SRS900'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="High-powered battle rifle fire. Long range, good penetration and high per-shot damage. Recoil is significant."

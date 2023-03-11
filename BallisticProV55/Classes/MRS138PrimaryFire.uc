@@ -17,7 +17,7 @@ simulated function DestroyEffects()
 
 function PlayFiring()
 {
-	if (BW.MagAmmo - ConsumedLoad < 1 || class'BCReplicationInfo'.static.IsClassic())
+	if (BW.MagAmmo - ConsumedLoad < 1 || class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		AimedFireAnim = 'AimedFire';
 		FireAnim = 'Fire';
@@ -32,7 +32,7 @@ function PlayFiring()
 
 function ServerPlayFiring()
 {
-	if (BW.MagAmmo - ConsumedLoad < 1 || class'BCReplicationInfo'.static.IsClassic())
+	if (BW.MagAmmo - ConsumedLoad < 1 || class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		AimedFireAnim = 'AimedFire';
 		FireAnim = 'Fire';

@@ -55,7 +55,7 @@ simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
     
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		FireModeClass[0]=Class'BWBP_OP_Pro.BX85PrimaryBoltFire';
 	}
@@ -606,7 +606,7 @@ defaultproperties
 	NDCrosshairInfo=(SpreadRatios=(X1=0.500000,Y1=0.500000,X2=0.500000,Y2=0.750000),SizeFactors=(X1=1.000000,Y1=1.000000,X2=1.000000,Y2=1.000000),MaxScale=4.000000,CurrentScale=0.000000)
 	BigIconMaterial=Texture'BWBP_OP_Tex.XBow.BigIcon_Crossbow'
 	IdleTweenTime=0.000000
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	ManualLines(0)="Launches an instant-hit crossbow bolt. This attack has a long fire interval and moderate damage, but is almost invisible and makes no sound. As such, it is very difficult to detect."
 	ManualLines(1)="Raises the scope."

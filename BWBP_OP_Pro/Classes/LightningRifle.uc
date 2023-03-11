@@ -193,7 +193,7 @@ defaultproperties
     ZoomStages=4
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
     BigIconMaterial=Texture'BWBP_OP_Tex.Arc.BigIcon_LightningRifle'
-    BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+    
     bWT_Bullet=True
     ManualLines(0)="Uncharged lightning bolt shot. Deals reasonable damage for a small ammo cost."
     ManualLines(1)="Charged lightning bolt. The rifle will fire when the fire key is released, or immediately upon becoming fully charged. Damage improves with charge, and more ammo is consumed."

@@ -272,7 +272,7 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BW_Core_WeaponTex.OA-SMG.BigIcon_OASMG'
 	BigIconCoords=(Y1=16,Y2=210)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	bWT_Projectile=True

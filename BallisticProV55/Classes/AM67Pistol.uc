@@ -30,7 +30,7 @@ simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
     
-	if (BCRepClass.static.IsRealism())
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		bLaserVariant=true;
 		FireModeClass[1]=Class'BallisticProV55.AM67SecondaryLaserFire';
@@ -40,7 +40,7 @@ simulated event PreBeginPlay()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.static.IsRealism())
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		if (AM67Attachment(ThirdPersonActor) != none)
 			AM67Attachment(ThirdPersonActor).bLaserVariant=True;
@@ -343,7 +343,7 @@ defaultproperties
 	AIReloadTime=1.500000
 
 	AttachmentClass=Class'BallisticProV55.AM67Attachment'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_AM67'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	BringUpTime=0.900000

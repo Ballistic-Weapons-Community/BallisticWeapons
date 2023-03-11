@@ -17,7 +17,7 @@ const ACIDMAX = 5;
 
 function ModeHoldFire()
 {
-    if ( BW.HasMagAmmo(ThisModeNum) && (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical()))
+    if ( BW.HasMagAmmo(ThisModeNum) && (class'BallisticReplicationInfo'.static.IsArena() || class'BallisticReplicationInfo'.static.IsTactical()))
     {
         Super.ModeHoldFire();
 		BW.bPreventReload = True;

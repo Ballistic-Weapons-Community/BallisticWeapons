@@ -85,7 +85,7 @@ var   globalconfig float    	InitStaminaChargeRate;
 var   globalconfig float    	InitSpeedFactor;
 var   globalconfig float    	JumpDrainFactor;
 
-var   BCReplicationInfo	BallisticReplicationInfo;
+var   BallisticReplicationInfo	BallisticRep;
 
 var	int						CRCount;
 
@@ -106,7 +106,6 @@ static function BallisticPlayerReplicationInfo GetBPRI(PlayerReplicationInfo PRI
 		return None;  //shouldn't happen
 	}
 
-	
 	if(BallisticPlayerReplicationInfo(PRI.CustomReplicationInfo) !=None)
 		return BallisticPlayerReplicationInfo(PRI.CustomReplicationInfo);
 	
@@ -205,12 +204,40 @@ function class<Actor> GetNewItem(int Index, optional bool bNoUnique, optional cl
 	return Replacements[Index].NewItems[Rand(Replacements[Index].NewItems.length)];
 }
 
+
+function CreateSprintControl(xPawn P)
+{	
+    local BCSprintControl SC;
+    
+    SC = Spawn(class'BWRechargeSprintControl', P);
+    SC.Stamina = 100;
+    SC.MaxStamina = 100;
+
+    if (class'BallisticReplicationInfo'.static.IsArena())
+    {
+        SC.StaminaDrainRate = 10;
+        SC.StaminaChargeRate = 20;
+        SC.SpeedFactor = 1.35;
+        SC.JumpDrainFactor = 0;
+    }
+
+    else
+    {
+        SC.StaminaDrainRate = InitStaminaDrainRate;
+        SC.StaminaChargeRate = InitStaminaChargeRate;
+        SC.SpeedFactor = InitSpeedFactor;
+        SC.JumpDrainFactor = JumpDrainFactor;
+    }
+
+    SC.GiveTo(P);
+    Sprinters[Sprinters.length] = SC;
+}
+
 // Modify players and bots a bit
 function ModifyPlayer(Pawn Other)
 {
 	local class<Weapon> FW;
 	local int i;
-	local BCSprintControl SC;
     local BallisticPawn BPawn;
 
     BPawn = BallisticPawn(Other);
@@ -218,26 +245,19 @@ function ModifyPlayer(Pawn Other)
 	//adds sprint support to mutator
     if (xPawn(Other) != None && bUseSprint && GetSprintControl(PlayerController(Other.Controller)) == None)
 	{
-		SC = Spawn(class'BWRechargeSprintControl',Other);
-		SC.Stamina = 100;
-		SC.MaxStamina = 100;
-		SC.StaminaDrainRate = InitStaminaDrainRate;
-		SC.StaminaChargeRate = InitStaminaChargeRate;
-		SC.SpeedFactor = InitSpeedFactor;
-		SC.JumpDrainFactor = JumpDrainFactor;
-
-		SC.GiveTo(Other);
-		Sprinters[Sprinters.length] = SC;
+        CreateSprintControl(xPawn(Other));
 	}
 
 	if (!DMMode && BPawn == None)
 	{
 		ClientModifyPlayer(Other);
+
 		// Make players a bit crap
-		Other.GroundSpeed=360;
-		Other.default.GroundSpeed=360; //required as Ballistic keeps resetting it
-		Other.WalkingPct=class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor;
-		Other.CrouchedPct=class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor;
+		Other.GroundSpeed=260;
+		Other.default.GroundSpeed=260; //required as Ballistic keeps resetting it
+		Other.WalkingPct=class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor;
+		Other.CrouchedPct=class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;
+
 		// Me can hide better
 		Other.Visibility = 16;
 		Other.default.Visibility = 16;
@@ -247,7 +267,7 @@ function ModifyPlayer(Pawn Other)
 	else if(xPawn(Other) != None)
     {
         // Player
-        if (BallisticReplicationInfo(BallisticReplicationInfo).bCustomStats) //"BallisticReplicationInfo" is of type "BCReplicationInfo", but we're casting it to type "BallisticReplicationInfo". might need a rename at some point
+        if (BallisticRep.bCustomStats) //"BallisticReplicationInfo" is of type "BCReplicationInfo", but we're casting it to type "BallisticReplicationInfo". might need a rename at some point
 		{
 			Other.Health = class'BallisticReplicationInfo'.default.playerHealth;  // health the player starts with
 			Other.HealthMax = class'BallisticReplicationInfo'.default.playerHealthCap; // maximum health a player can have
@@ -577,7 +597,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 			PlayerReplicationInfo(Other).CustomReplicationInfo = BPRI;
 	}
 	
-	else if (JumpSpot(Other) != None && BallisticReplicationInfo(BallisticReplicationInfo) != None && BallisticReplicationInfo(BallisticReplicationInfo).bNoDodging)
+	else if (JumpSpot(Other) != None && BallisticRep != None && BallisticRep.bNoDodging)
 	{
 		JumpSpot(Other).bDodgeUp = false;
 	}
@@ -756,7 +776,7 @@ simulated event Tick(float DT)
 simulated function PreBeginPlay()
 {
 	if (Role == ROLE_Authority)
-		BallisticReplicationInfo = class'BallisticReplicationInfo'.static.HitMe(self);
+		BallisticRep = class'BallisticReplicationInfo'.static.GetOrCreateInstance(self);
 	
 	if (bRegeneration)
 	{
@@ -767,16 +787,18 @@ simulated function PreBeginPlay()
 	{
 		Level.Game.AddMutator("BallisticProV55.Mut_ShieldRegeneration", false);
 	}
+
 	if (bPreloadMeshes)
 	{
 		Level.Game.AddMutator("BallisticProV55.Mut_BallisticPreLoad", false);
 	}
+
 	if (bKillStreaks)
 	{
 		Level.Game.AddMutator("BallisticProV55.Mut_Killstreak", false);
 	}
 
-	if (level.Game != None)
+	if (Level.Game != None)
 	{
 		Level.Game.AddGameModifier(Spawn(class'Rules_KillRewards'));
 		
@@ -789,9 +811,10 @@ simulated function PreBeginPlay()
            DeathMatch(Level.Game).ADR_MinorError = class'BallisticReplicationInfo'.default.ADRMinorError;
         }
 		
-		if (level.Game.DefaultPlayerClassName ~= "XGame.xPawn" || bForceBallisticPawn)
-			level.Game.DefaultPlayerClassName = "BallisticProV55.BallisticPawn";
-		if (level.Game.PlayerControllerClassName ~= "XGame.xPlayer")
+		if (Level.Game.DefaultPlayerClassName ~= "XGame.xPawn" || bForceBallisticPawn)
+			Level.Game.DefaultPlayerClassName = "BallisticProV55.BallisticPawn";
+
+		if (Level.Game.PlayerControllerClassName ~= "XGame.xPlayer")
 			Level.Game.PlayerControllerClassName = "BallisticProV55.BallisticPlayer";
 	}
 	

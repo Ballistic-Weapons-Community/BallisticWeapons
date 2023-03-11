@@ -157,7 +157,7 @@ defaultproperties
     TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
     BigIconMaterial=Texture'BWBP_SKC_Tex.SK410.BigIcon_SK410'
     BigIconCoords=(Y1=40)
-    BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+    
     bWT_Shotgun=True
     bWT_Machinegun=True
     ManualLines(0)="Rapid fire shotgun blasts with wide spread. Short range, but high sustained damage output."

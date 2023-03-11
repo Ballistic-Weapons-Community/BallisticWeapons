@@ -118,7 +118,7 @@ defaultproperties
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BWBP_OP_Tex.Akeron.BigIcon_Akeron'
      BigIconCoords=(X1=36,Y1=50,X2=486,Y2=220)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      bWT_Hazardous=True
      bWT_Splash=True
      bWT_Projectile=True

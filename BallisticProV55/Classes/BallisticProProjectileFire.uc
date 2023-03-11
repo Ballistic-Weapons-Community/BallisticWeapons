@@ -12,7 +12,7 @@ simulated function vector GetFireSpread()
 	local float fX;
     local Rotator R;
 
-	if (bNoRandomFire || BW.bScopeView || !class'BCReplicationInfo'.static.IsArena())
+	if (bNoRandomFire || BW.bScopeView || !class'BallisticReplicationInfo'.static.IsArena())
 		return super.GetFireSpread();
 
 	fX = frand();

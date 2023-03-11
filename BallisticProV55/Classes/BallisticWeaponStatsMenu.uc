@@ -47,7 +47,7 @@ function InitBaselineParams()
     local int GameStyleIndex;
     local FireEffectParams.FireModeStats fire_stats;
 
-    GameStyleIndex = class'BCReplicationInfo'.default.GameStyle;
+    GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 
     params = BaselineClass.default.ParamsClasses[GameStyleIndex];
 
@@ -307,7 +307,7 @@ function UpdateInfo()
 
     local int GameStyleIndex;
 
-    GameStyleIndex = class'BCReplicationInfo'.default.GameStyle;
+    GameStyleIndex = class'BallisticReplicationInfo'.default.GameStyle;
 	
 	//FIXME DynamicLoadObject
 	BW = class<BallisticWeapon>(DynamicLoadObject(lb_Weapons.List.GetExtra(), class'Class', True));
@@ -447,7 +447,7 @@ function UpdateInfo()
         pb_ADSMoveSpeed.Value = 
             params.default.Layouts[0].PlayerSpeedFactor * 
             params.default.Layouts[0].SightMoveSpeedFactor * 
-            class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor;
+            class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor;
         
 		pb_ADSMoveSpeed.Caption = string(int(Ceil(pb_ADSMoveSpeed.Value * 100f)))$ "%";
 		pb_ADSMoveSpeed.BarColor = ColorBar(pb_ADSMoveSpeed.Value / pb_ADSMoveSpeed.High);

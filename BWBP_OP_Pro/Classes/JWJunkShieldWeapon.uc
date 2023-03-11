@@ -223,7 +223,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.OtherShields.BigIcon_JWJunkShield'
 	BigIconCoords=(X1=180,Y1=0,X2=320,Y2=255)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	ManualLines(0)="Attacks with the weapon and shield. The shield continues to block whilst attacking."
 	ManualLines(1)="Prepared strike with the weapons."
 	ManualLines(2)="The ballistic shield reduces movement speed whilst active."

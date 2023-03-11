@@ -165,7 +165,7 @@ exec simulated function WeaponSpecial(optional byte i)
  	if (AmmoAmount(0) > 0)
 		SetBoneScale (0, 1.0, BombBone);
 
-	if (!class'BCReplicationInfo'.static.IsArena())
+	if (!class'BallisticReplicationInfo'.static.IsArena())
 	{
 		if (ChosenBomb == None && AmmoAmount(0) > 0)
 		{
@@ -651,7 +651,7 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_FP9A5'
 	BigIconCoords=(Y1=24,Y2=235)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Grenade=True

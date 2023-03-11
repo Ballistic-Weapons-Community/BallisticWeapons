@@ -30,7 +30,7 @@ simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
 
-	if (AM67Pistol(Instigator.Weapon).BCRepClass.static.IsRealism())
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		bLaserVariant=true;
 	}

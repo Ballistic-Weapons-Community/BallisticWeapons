@@ -248,7 +248,7 @@ simulated function PostNetBeginPlay()
 
 simulated function InitParams()
 {    
-    WeaponClass.default.ParamsClasses[class'BCReplicationInfo'.default.GameStyle].static.SetProjectileParams(self);
+    WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.SetProjectileParams(self);
 }
 
 simulated function ApplyParams(ProjectileEffectParams params)
@@ -278,7 +278,7 @@ simulated function ApplyParams(ProjectileEffectParams params)
 	default.bLimitMomentumZ = params.bLimitMomentumZ;
 	
     // not scaling projectile damage atm
-    if (!class'BCReplicationInfo'.static.UseFixedModifiers())
+    if (!class'BallisticReplicationInfo'.static.UseFixedModifiers())
     {
         HeadMult = params.HeadMult;
         LimbMult = params.LimbMult; 
@@ -286,8 +286,8 @@ simulated function ApplyParams(ProjectileEffectParams params)
 
     else 
     {   
-        HeadMult = class'BCReplicationInfo'.default.DamageModHead;
-        LimbMult = class'BCReplicationInfo'.default.DamageModLimb;
+        HeadMult = class'BallisticReplicationInfo'.default.DamageModHead;
+        LimbMult = class'BallisticReplicationInfo'.default.DamageModLimb;
     }
 
     MaxDamageGainFactor = params.MaxDamageGainFactor;    

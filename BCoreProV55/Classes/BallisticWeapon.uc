@@ -251,10 +251,6 @@ var AimComponent					AimComponent;
 //=============================================================================
 var() array< class<BallisticWeaponParams> >	ParamsClasses;
 //-----------------------------------------------------------------------------
-// Replication
-//-----------------------------------------------------------------------------
-var() class<BCReplicationInfo>		BCRepClass;				// BCReplication info class to use for server side variables that are sent to clients
-//-----------------------------------------------------------------------------
 // Display
 //-----------------------------------------------------------------------------
 struct WeaponSkin
@@ -491,8 +487,8 @@ simulated function PostBeginPlay()
 
     if (Role == ROLE_Authority)
     {
-        if (ParamsClasses[int(BCRepClass.default.GameStyle)] != None)
-        GameStyleIndex = int(BCRepClass.default.GameStyle);
+        if (ParamsClasses[int(class'BallisticReplicationInfo'.default.GameStyle)] != None)
+        GameStyleIndex = int(class'BallisticReplicationInfo'.default.GameStyle);
     }
 
 	Super.PostBeginPlay();
@@ -548,18 +544,18 @@ simulated function PostNetBeginPlay()
     // Forced to delay initialization because of the need to wait for GameStyleIndex and LayoutIndex to be replicated
 	ParamsClasses[GameStyleIndex].static.Initialize(self);
 
-	if (BCRepClass.default.bNoReloading)
+	if (class'BallisticReplicationInfo'.default.bNoReloading)
 		bNoMag = true;
 
     if (NetInventoryGroup != 255)
         InventoryGroup = NetInventoryGroup;
 
-	if (BCRepClass.default.ReloadSpeedScale != 1)
+	if (class'BallisticReplicationInfo'.default.ReloadSpeedScale != 1)
     {
-        CockAnimRate *= BCRepClass.default.ReloadSpeedScale;
-        ReloadAnimRate *= BCRepClass.default.ReloadSpeedScale;
-        StartShovelAnimRate *= BCRepClass.default.ReloadSpeedScale;
-        EndShovelAnimRate *= BCRepClass.default.ReloadSpeedScale;
+        CockAnimRate *= class'BallisticReplicationInfo'.default.ReloadSpeedScale;
+        ReloadAnimRate *= class'BallisticReplicationInfo'.default.ReloadSpeedScale;
+        StartShovelAnimRate *= class'BallisticReplicationInfo'.default.ReloadSpeedScale;
+        EndShovelAnimRate *= class'BallisticReplicationInfo'.default.ReloadSpeedScale;
     }
 
     bDeferInitialSwitch = bServerDeferInitialSwitch;
@@ -679,9 +675,9 @@ simulated function OnWeaponParamsChanged()
 		CurrentWeaponMode = WeaponParams.InitialWeaponMode;
 	}
 
-    if (class'BCReplicationInfo'.static.UseFixedModifiers())
+    if (class'BallisticReplicationInfo'.static.UseFixedModifiers())
     {
-        SightingTime *= class'BCReplicationInfo'.default.SightingTimeScale;
+        SightingTime *= class'BallisticReplicationInfo'.default.SightingTimeScale;
         default.SightingTime = SightingTime;
     }
 }
@@ -907,8 +903,8 @@ simulated function StartBerserk()
 	bBerserk = true;
 	UpdateBerserkRecoil();
 
-	ReloadAnimRate = (default.ReloadAnimRate * BCRepClass.default.ReloadSpeedScale) / 0.75;
-    CockAnimRate = (default.CockAnimRate * BCRepClass.default.ReloadSpeedScale) / 0.75;
+	ReloadAnimRate = (default.ReloadAnimRate * class'BallisticReplicationInfo'.default.ReloadSpeedScale) / 0.75;
+    CockAnimRate = (default.CockAnimRate * class'BallisticReplicationInfo'.default.ReloadSpeedScale) / 0.75;
     
     if (FireMode[0] != None)
         FireMode[0].StartBerserk();
@@ -921,8 +917,8 @@ simulated function StopBerserk()
 	bBerserk = false;
 	UpdateBerserkRecoil();
 
-	ReloadAnimRate = default.ReloadAnimRate * BCRepClass.default.ReloadSpeedScale;
-    CockAnimRate = default.CockAnimRate * BCRepClass.default.ReloadSpeedScale;
+	ReloadAnimRate = default.ReloadAnimRate * class'BallisticReplicationInfo'.default.ReloadSpeedScale;
+    CockAnimRate = default.CockAnimRate * class'BallisticReplicationInfo'.default.ReloadSpeedScale;
     
     if ( (Level.GRI != None) && Level.GRI.WeaponBerserk > 1.0 )
 		return;
@@ -1728,10 +1724,10 @@ simulated function OnAimParamsChanged()
 		ApplyADSAimModifiers();
 	}
 
-	if (BCRepClass.default.AccuracyScale != 1)
+	if (class'BallisticReplicationInfo'.default.AccuracyScale != 1)
 	{
-		AimComponent.AimSpread.Min *= BCRepClass.default.AccuracyScale;
-		AimComponent.AimSpread.Max *= BCRepClass.default.AccuracyScale;
+		AimComponent.AimSpread.Min *= class'BallisticReplicationInfo'.default.AccuracyScale;
+		AimComponent.AimSpread.Max *= class'BallisticReplicationInfo'.default.AccuracyScale;
 	}
 }
 
@@ -2590,7 +2586,7 @@ simulated final function bool IsHoldingMelee()
 
 simulated final function bool SprintActive()
 {
-	return (!BCRepClass.default.bNoJumpOffset && SprintControl != None && SprintControl.bSprinting);
+	return (!class'BallisticReplicationInfo'.default.bNoJumpOffset && SprintControl != None && SprintControl.bSprinting);
 }
 
 //===========================================================================
@@ -3018,7 +3014,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	AimComponent.OnWeaponSelected();
 
-	Instigator.WalkingPct = class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor * WeaponParams.SightMoveSpeedFactor;
+	Instigator.WalkingPct = class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor * WeaponParams.SightMoveSpeedFactor;
 
 	if (Role == ROLE_Authority)
 	{
@@ -4483,7 +4479,7 @@ function OwnerEvent(name EventName)
 			AimComponent.OnPlayerJumped();
 			NextCheckScopeTime = Level.TimeSeconds + 0.5;
 		}
-		else if ((EventName == 'Jumped' || EventName == 'Dodged') && !BCRepClass.default.bNoJumpOffset && !AimComponent.PendingForcedReaim())
+		else if ((EventName == 'Jumped' || EventName == 'Dodged') && !class'BallisticReplicationInfo'.default.bNoJumpOffset && !AimComponent.PendingForcedReaim())
 		{
 			AimComponent.OnPlayerJumped();
 		}
@@ -4505,7 +4501,7 @@ function OwnerEvent(name EventName)
 
 simulated function PlayerSprint (bool bSprinting)
 {
-	if (BCRepClass.default.bNoJumpOffset)
+	if (class'BallisticReplicationInfo'.default.bNoJumpOffset)
 		return;
 
 	if (bScopeView && Instigator.IsLocallyControlled())
@@ -4555,9 +4551,9 @@ simulated function AddRecoil(float Recoil, float FireChaos, optional byte Mode)
 	/*
 	// Set crosshair size
 	if (bReaiming)
-		NDCrosshairInfo.CurrentScale = FMin(1, Lerp(ReaimPhase/ReaimTime, OldChaos, NewChaos)*NDCrosshairChaosFactor*BCRepClass.default.AccuracyScale + (Recoil/RecoilMax)*BCRepClass.default.RecoilScale) * NDCrosshairInfo.MaxScale * NDCrosshairScaleFactor;
+		NDCrosshairInfo.CurrentScale = FMin(1, Lerp(ReaimPhase/ReaimTime, OldChaos, NewChaos)*NDCrosshairChaosFactor*class'BallisticReplicationInfo'.default.AccuracyScale + (Recoil/RecoilMax)*class'BallisticReplicationInfo'.default.RecoilScale) * NDCrosshairInfo.MaxScale * NDCrosshairScaleFactor;
 	else
-		NDCrosshairInfo.CurrentScale = FMin(1, NewChaos*NDCrosshairChaosFactor*BCRepClass.default.AccuracyScale + (Recoil/RecoilMax)*BCRepClass.default.RecoilScale) * NDCrosshairInfo.MaxScale * NDCrosshairScaleFactor;
+		NDCrosshairInfo.CurrentScale = FMin(1, NewChaos*NDCrosshairChaosFactor*class'BallisticReplicationInfo'.default.AccuracyScale + (Recoil/RecoilMax)*class'BallisticReplicationInfo'.default.RecoilScale) * NDCrosshairInfo.MaxScale * NDCrosshairScaleFactor;
 	*/
 }
 
@@ -5159,10 +5155,13 @@ static simulated final function int GetPickupMagAmmo()
 {
     local int i;
 
-    i = int(default.BCRepClass.default.GameStyle);
+    i = int(class'BallisticReplicationInfo'.default.GameStyle);
 
     if (default.ParamsClasses[i] == None)
+    {
+        Log(default.ItemName $ "::GetPickupMagAmmo: No params found for game style " $ class'BallisticReplicationInfo'.default.GameStyle $": Falling back");
         i = 0;
+    }
 
     return default.ParamsClasses[i].default.Layouts[0].MagAmmo;
 }
@@ -5171,10 +5170,13 @@ static simulated final function int GetInventorySize()
 {
     local int i;
 
-    i = int(default.BCRepClass.default.GameStyle);
+    i = int(class'BallisticReplicationInfo'.default.GameStyle);
 
     if (default.ParamsClasses[i] == None)
+    {
+        Log(default.ItemName $ "::GetInventorySize: No params found for game style " $ class'BallisticReplicationInfo'.default.GameStyle $": Falling back");
         i = 0;
+    }
 
     return default.ParamsClasses[i].default.Layouts[0].InventorySize;
 }
@@ -5225,7 +5227,6 @@ defaultproperties
      bAllowWeaponInfoOverride=True
      IdleTweenTime=0.200000
      SightFXBone="tip"
-     BCRepClass=Class'BCoreProV55.BCReplicationInfo'
      HeaderColor=(B=50,G=50,R=255)
      TextColor=(G=175,R=255)
      SpecialInfo(0)=(Id="EvoDefs",Info="0.0;10.0;0.5;50.0;0.2;0.2;0.1")

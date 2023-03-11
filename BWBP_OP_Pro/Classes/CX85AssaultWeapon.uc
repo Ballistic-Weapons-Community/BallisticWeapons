@@ -278,7 +278,7 @@ function AddProjectile(CX85DartDirect Proj)
 	ClientAddProjectile(Proj);
 	bPendingReceive=False;
 	
-	if (Role == ROLE_Authority && !bLaserOn && !class'BCReplicationInfo'.static.IsArenaOrTactical())
+	if (Role == ROLE_Authority && !bLaserOn && !class'BallisticReplicationInfo'.static.IsArenaOrTactical())
 		ServerSwitchlaser(true);
 	
 }
@@ -691,7 +691,7 @@ defaultproperties
 	BaseTrackDist=3368
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_OP_Tex.CX85.BigIcon_CX85'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic low-calibre fire. Has extremely long effective range, but as a low-calibre weapon, must be fired in bursts at range, subjecting the user to the effects of recoil."

@@ -95,7 +95,7 @@ simulated function PostNetReceive()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (class'BCReplicationInfo'.static.IsClassicOrRealism())
+	if (class'BallisticReplicationInfo'.static.IsClassicOrRealism())
 	{
 		RocketActiveReloadRate = 0.0833;
 		MRLSecondaryFire(FireMode[1]).RocketMultiplier = 60;
@@ -497,7 +497,7 @@ defaultproperties
 	BigMagAmmo=72
 	BigIconMaterial=Texture'BW_Core_WeaponTex.MRL.BigIcon_MRL'
 	BigIconCoords=(Y1=30,Y2=225)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_RapidProj=True

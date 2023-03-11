@@ -695,7 +695,7 @@ defaultproperties
 	LaserAimSpread=(Min=0,Max=256)
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_G5'
 	BigIconCoords=(Y1=36,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+	
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Projectile=True

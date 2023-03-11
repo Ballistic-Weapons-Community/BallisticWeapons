@@ -684,7 +684,7 @@ defaultproperties
      BigIconMaterial=Texture'BWBP_OP_Tex.Wrench.BigIcon_Wrench'
      BigIconCoords=(Y2=240)
      bAllowWeaponInfoOverride=False
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      ManualLines(0)="Constructs various deployables. Will deploy to the aim point. A description of each deployable is given underneath the fire mode text. Holding Weapon Function allows the user to scroll through the modes."
      ManualLines(1)="Constructs an energy barrier, regardless of the currently active mode."
      ManualLines(2)="Grants a 10% speed increase."

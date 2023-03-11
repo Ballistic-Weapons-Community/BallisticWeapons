@@ -200,7 +200,7 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_Tex.Stim.BigIcon_Stim'
      BigIconCoords=(Y1=24,Y2=230)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
+     
      ManualLines(0)="Injects self with the stimpack, granting 80 health over 10 seconds."
      ManualLines(1)="Melee attack. Damage improves over hold time, with max bonus reached after 1.5 seconds. Deals increased damage from behind."
 	 ManualLines(2)="Attacking allies with the stimpack will apply its effect to them."

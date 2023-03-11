@@ -161,6 +161,7 @@ var		class<DamageType>	LastDamagedType;
 //Sloth variables
 var 	float 				StrafeScale, BackpedalScale;
 var 	float 				MyFriction, OldMovementSpeed;
+var     bool                bCanDodge, bCanDoubleJump;
 
 replication
 {
@@ -171,56 +172,22 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (class'BallisticReplicationInfo'.default.bNoDodging)
-		bCanWallDodge = false;
+
 	if (!class'BallisticReplicationInfo'.default.bBrightPlayers)
 	{
 		bDramaticLighting=False;
 		AmbientGlow=0;
 	}
 
-	if (class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor != WalkingPct)
-	{
-		WalkingPct = class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor;
-		default.WalkingPct = class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor;
-	}
-	
-	if (class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor != CrouchedPct)
-	{
-		CrouchedPct = class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor;
-		default.CrouchedPct = class'BCReplicationInfo'.default.PlayerCrouchSpeedFactor;
-	}
+    // override movement if needed
+    // do not accept user interference with Comp or Tactical
 
-	if (class'BallisticReplicationInfo'.default.bUseRunningAnims && class'BCReplicationInfo'.default.PlayerADSMoveSpeedFactor >= 0.75)
-	{
-		default.WalkAnims[0]='RunF';
-		default.WalkAnims[1]='RunB';
-		default.WalkAnims[2]='RunL';
-		default.WalkAnims[3]='RunR';
-		WalkAnims[0]='RunF';
-		WalkAnims[1]='RunB';
-		WalkAnims[2]='RunL';
-		WalkAnims[3]='RunR';
-	}
-
-    if (class'BallisticReplicationInfo'.default.bUseSloth)
-    {
-        StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
-        BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
-        GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
-        AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
-        AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
-        JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
-        DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
-        
-        default.StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
-        default.BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
-        default.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
-        default.AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
-        default.AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
-        default.JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
-        default.DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
-    }
+    if (class'BallisticReplicationInfo'.static.IsArena())
+        ApplyArenaMovement();
+    else if (class'BallisticReplicationInfo'.static.IsTactical())
+        ApplyTacticalMovement();
+    else
+        ApplyMovementOverrides();
 	
 	if(!pawnNetInit)
     {
@@ -231,6 +198,103 @@ simulated event PostNetBeginPlay()
             Controller.AdrenalineMax = Class'BallisticReplicationInfo'.default.iAdrenalineCap;
             BPRI = class'Mut_Ballistic'.static.GetBPRI(Controller.PlayerReplicationInfo);
         }
+    }
+}
+
+simulated function ApplyArenaMovement()
+{
+    bCanWallDodge = True;
+    bCanDodge = True;
+    bCanDoubleJump = True;
+
+    WalkingPct=0.9; // ads move rate base
+    CrouchedPct=0.45;
+
+    StrafeScale = 1;
+    BackpedalScale = 1;
+    GroundSpeed = 260;
+    AirSpeed = 260;
+    AccelRate = 2048;
+    JumpZ = 294;
+    DodgeSpeedZ = 210;
+
+    BindDefaultMovement();
+}
+
+simulated function ApplyTacticalMovement()
+{
+    bCanWallDodge = True;
+    bCanDodge = True;
+    bCanDoubleJump = False;
+
+    WalkingPct=0.84; // ads move rate base
+    CrouchedPct=0.35;
+
+    StrafeScale = 1;
+    BackpedalScale = 1;
+    GroundSpeed = 230;
+    AirSpeed = 230;
+    AccelRate = 1792;
+    JumpZ = 294;
+    DodgeSpeedZ = 170;
+
+    BindDefaultMovement();
+}
+
+simulated final function BindDefaultMovement()
+{
+    default.WalkingPct = WalkingPct;
+    default.CrouchedPct = CrouchedPct;
+    default.StrafeScale = StrafeScale;
+    default.BackpedalScale = BackpedalScale;
+    default.GroundSpeed = GroundSpeed;
+    default.AirSpeed = AirSpeed;
+    default.AccelRate = AccelRate;
+    default.JumpZ = JumpZ;
+    default.DodgeSpeedZ = DodgeSpeedZ;
+
+    default.WalkAnims[0] = WalkAnims[0];
+	default.WalkAnims[1] = WalkAnims[1];
+	default.WalkAnims[2] = WalkAnims[2];
+	default.WalkAnims[3] = WalkAnims[3];
+}
+
+simulated function ApplyMovementOverrides()
+{ 
+	if (class'BallisticReplicationInfo'.default.bNoDodging)
+    {
+		bCanWallDodge = false;
+        bCanDodge = false;
+    }
+
+    if (class'BallisticReplicationInfo'.default.bNoDoubleJump)
+    {
+        bCanDoubleJump = false;
+    }
+
+	if (class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor != WalkingPct)
+		WalkingPct = class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor;
+	
+	if (class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor != CrouchedPct)
+		CrouchedPct = class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;
+
+	if (class'BallisticReplicationInfo'.default.bUseRunningAnims && class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor >= 0.75)
+	{
+		WalkAnims[0]='RunF';
+		WalkAnims[1]='RunB';
+		WalkAnims[2]='RunL';
+		WalkAnims[3]='RunR';
+	}
+
+    if (class'BallisticReplicationInfo'.default.bOverrideMovement)
+    {
+        StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
+        BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
+        GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+        AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
+        AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
+        JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
+        DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
     }
 }
 
@@ -2235,10 +2299,10 @@ function bool CanDoubleJump()
 	if(BallisticWeapon(Weapon) != None && BallisticWeapon(Weapon).bScopeView)
 		return false;
 
-    if (class'BCReplicationInfo'.static.IsTactical())
+    if (class'BallisticReplicationInfo'.static.IsTactical())
         return CanMantle();
 
-	if (class'BallisticReplicationInfo'.default.bNoDoubleJump)
+	if (!bCanDoubleJump)
 		return false;
 
 	return super.CanDoubleJump();
@@ -2246,28 +2310,25 @@ function bool CanDoubleJump()
 
 function bool CanMultiJump()
 {
-	if (class'BallisticReplicationInfo'.default.bNoDoubleJump)
+	if (!bCanDoubleJump)
 		return false;
-	else
-		return super.CanMultiJump();
+
+	return super.CanMultiJump();
 }
 
 function bool Dodge(eDoubleClickDir DoubleClickMove)
 {
-//	if (bNoDodging)
-	if (class'BallisticReplicationInfo'.default.bNoDodging)
+	if (!bCanDodge)
 		return false;
-	else
-	{
-		if (super.Dodge(DoubleClickMove))
-		{
-			if (Role == ROLE_Authority)
-				Inventory.OwnerEvent('Dodged');
-			return true;
-		}
-		else
-			return false;
-	}
+
+    if (super.Dodge(DoubleClickMove))
+    {
+        if (Role == ROLE_Authority)
+            Inventory.OwnerEvent('Dodged');
+        return true;
+    }
+
+    return false;
 }
 
 function bool DoJump( bool bUpdating )
@@ -2363,7 +2424,7 @@ function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector C
     DodgeGroundSpeed = GroundSpeed;
 
     // arena allows increased dodge distance when sprint is on
-    if (!class'BCReplicationInfo'.static.IsArena() && default.GroundSpeed < GroundSpeed)
+    if (!class'BallisticReplicationInfo'.static.IsArena() && default.GroundSpeed < GroundSpeed)
     {
         DodgeGroundSpeed = default.GroundSpeed;
     }
@@ -2610,7 +2671,7 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		if ( damagetype == None )
 		{
 			if ( InstigatedBy != None )
-					warn("No damagetype for damage by "$instigatedby$" with weapon "$InstigatedBy.Weapon);
+				warn("No damagetype for damage by "$instigatedby$" with weapon "$InstigatedBy.Weapon);
 			DamageType = class'DamageType';
 		}
  
@@ -2635,7 +2696,7 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		if ( (Physics == PHYS_None) && (DrivenVehicle == None) )
 			SetMovementPhysics();
 		
-		if (true /*!class'BCReplicationInfo'.static.IsClassic()*/) // Classic lets you take off into orbit
+		if (true /*!class'BallisticReplicationInfo'.static.IsClassic()*/) // Classic lets you take off into orbit
 		{
 			if (Physics == PHYS_Walking && damageType.default.bExtraMomentumZ)
 				momentum.Z = FMax(momentum.Z, 0.4 * VSize(momentum));
@@ -2725,7 +2786,7 @@ function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector mo
 		}
 		else
 		{
-			//if (class'BCReplicationInfo'.static.IsArenaOrTactical())
+			//if (class'BallisticReplicationInfo'.static.IsArenaOrTactical())
 			//{
 				if (class<BallisticDamageType>(damageType) != None && class<BallisticDamageType>(damageType).default.bNegatesMomentum)
 				{
@@ -2875,7 +2936,10 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 	local Vector X, Y, Z, dir;
 	local float FSpeed, Control, NewSpeed, Drop, XSpeed, YSpeed, CosAngle, MaxStrafeSpeed, MaxBackSpeed;
 
-	if (class'BallisticReplicationInfo'.default.bUseSloth)
+    if (class'BallisticReplicationInfo'.static.IsArena())
+        return;
+
+	if (class'BallisticReplicationInfo'.static.IsTactical() || class'BallisticReplicationInfo'.default.bOverrideMovement)
 	{
 		//Scaling movement speed
 		if (Physics == PHYS_Walking)
@@ -2927,6 +2991,8 @@ simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 
 defaultproperties
 {
+    bCanDodge=True
+    bCanDoubleJump=True
      MoverLeaveGrace=1.000000
      MinDragDistance=40.000000
      MaxPoolVelocity=20.000000
