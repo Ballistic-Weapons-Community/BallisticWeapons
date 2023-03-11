@@ -139,7 +139,7 @@ defaultproperties
 		ADSMultiplier=0.5
 		AimSpread=(Min=128,Max=1536)
 		ChaosDeclineTime=1.750000
-		ChaosSpeedThreshold=350
+		ChaosSpeedThreshold=300
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		JumpOffset=(Pitch=-6000,Yaw=2000)
 	End Object 
@@ -149,7 +149,7 @@ defaultproperties
 		ADSMultiplier=0.4
 		AimSpread=(Min=64,Max=768)
 		ChaosDeclineTime=1.25
-		ChaosSpeedThreshold=350
+		ChaosSpeedThreshold=300
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		JumpOffset=(Pitch=-6000,Yaw=2000)
 	End Object 

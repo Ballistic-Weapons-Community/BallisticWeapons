@@ -78,7 +78,7 @@ defaultproperties
 		OffsetAdjustTime=0.600000
 		AimSpread=(Min=128,Max=2048)
 		ChaosDeclineTime=0.320000
-		ChaosSpeedThreshold=500.000000
+		ChaosSpeedThreshold=300
 	End Object
 
 	//=================================================================

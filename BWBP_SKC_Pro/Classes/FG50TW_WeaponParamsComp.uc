@@ -18,7 +18,7 @@ defaultproperties
 		AimSpread=(Min=0,Max=0)
 		AimDamageThreshold=2000.000000
 		ChaosDeclineTime=1.750000
-		ChaosSpeedThreshold=350
+		ChaosSpeedThreshold=300
 		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		JumpOffset=(Pitch=-6000,Yaw=2000)
 	End Object 

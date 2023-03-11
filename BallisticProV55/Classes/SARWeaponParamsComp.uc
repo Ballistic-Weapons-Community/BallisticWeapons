@@ -106,13 +106,22 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ArenaAimParams
-		ADSMultiplier=0.700000
-		SprintOffset=(Pitch=-3000,Yaw=-4000)
+	Begin Object Class=AimParams Name=AutoAimParams
+		ADSMultiplier=0.35
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		AimAdjustTime=0.300000
-		AimSpread=(Min=12,Max=768)
+		AimSpread=(Min=64,Max=512)
 		ChaosDeclineTime=0.5
-		ChaosSpeedThreshold=15000.000000
+		ChaosSpeedThreshold=300
+	End Object
+
+	Begin Object Class=AimParams Name=BurstAimParams
+		ADSMultiplier=1
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		AimAdjustTime=0.45
+		AimSpread=(Min=48,Max=378)
+		ChaosDeclineTime=0.5
+		ChaosSpeedThreshold=300
 	End Object
 
 	//=================================================================
@@ -130,8 +139,8 @@ defaultproperties
         SightingTime=0.250000
         RecoilParams(0)=RecoilParams'ArenaAutoRecoilParams'
         RecoilParams(1)=RecoilParams'ArenaBurstRecoilParams'
-        AimParams(0)=AimParams'ArenaAimParams'
-        AimParams(1)=AimParams'ArenaAimParams'
+        AimParams(0)=AimParams'AutoAimParams'
+        AimParams(1)=AimParams'BurstAimParams'
 		FireParams(0)=FireParams'ArenaAutoFireParams'
 		FireParams(1)=FireParams'ArenaBurstFireParams'
 		AltFireParams(0)=FireParams'ArenaSecondaryFireParams'

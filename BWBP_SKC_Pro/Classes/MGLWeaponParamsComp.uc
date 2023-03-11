@@ -68,9 +68,10 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=192,Max=768)
-		SprintOffset=(Pitch=-3000,Yaw=-4096)
+		AimSpread=(Min=64,Max=1024)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.000000
+        ChaosSpeedThreshold=300
 	End Object
 
 	//=================================================================

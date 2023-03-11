@@ -190,27 +190,34 @@ defaultproperties
 	// AIM
 	//=================================================================
 
-	Begin Object Class=AimParams Name=ArenaFastAimParams
-		SprintOffset=(Pitch=-1024,Yaw=-1024)
+	Begin Object Class=AimParams Name=FastAimParams
+    	AimSpread=(Min=64,Max=378)
+        ADSMultiplier=0.35
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
+        ChaosSpeedThreshold=300
 	End Object
 
-	Begin Object Class=AimParams Name=ArenaBombAimParams
+	Begin Object Class=AimParams Name=BombAimParams
 		AimSpread=(Min=128,Max=1024)
-		SprintOffset=(Pitch=-1024,Yaw=-1024)
+        ADSMultiplier=0.2
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
+        ChaosSpeedThreshold=300
 	End Object
 	
-	Begin Object Class=AimParams Name=ArenaLustAimParams
+	Begin Object Class=AimParams Name=LustAimParams
 		AimSpread=(Min=128,Max=1024)
-		SprintOffset=(Pitch=-1024,Yaw=-1024)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
+        ChaosSpeedThreshold=300
 	End Object
 	
-	Begin Object Class=AimParams Name=ArenaNukeAimParams
+	Begin Object Class=AimParams Name=NukeAimParams
 		AimSpread=(Min=128,Max=1024)
-		SprintOffset=(Pitch=-1024,Yaw=-1024)
+		SprintOffset=(Pitch=-3072,Yaw=-4096)
 		ChaosDeclineTime=1.250000
+        ChaosSpeedThreshold=300
 	End Object
 
 	//=================================================================
@@ -242,10 +249,10 @@ defaultproperties
 		RecoilParams(1)=RecoilParams'ArenaBombRecoilParams'
 		RecoilParams(2)=RecoilParams'ArenaLustRecoilParams'
 		RecoilParams(3)=RecoilParams'ArenaNukeRecoilParams'
-		AimParams(0)=AimParams'ArenaFastAimParams'
-		AimParams(1)=AimParams'ArenaBombAimParams'
-		AimParams(2)=AimParams'ArenaLustAimParams'
-		AimParams(3)=AimParams'ArenaNukeAimParams'
+		AimParams(0)=AimParams'FastAimParams'
+		AimParams(1)=AimParams'BombAimParams'
+		AimParams(2)=AimParams'LustAimParams'
+		AimParams(3)=AimParams'NukeAimParams'
     End Object 
     Layouts(0)=WeaponParams'ArenaParams'
 }

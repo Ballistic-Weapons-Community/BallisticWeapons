@@ -97,12 +97,12 @@ defaultproperties
 	//=================================================================
 
 	Begin Object Class=AimParams Name=ArenaAimParams
-		AimSpread=(Min=64,Max=512)
-		ADSMultiplier=0.650000
+		AimSpread=(Min=64,Max=768)
+		ADSMultiplier=0.50000
 		SprintOffset=(Pitch=-6000,Yaw=-8000)
 		JumpOffset=(Pitch=-6000,Yaw=-1500)
 		AimAdjustTime=1.000000
-		ChaosSpeedThreshold=500.000000
+		ChaosSpeedThreshold=300
 	End Object
 
 	//=================================================================
