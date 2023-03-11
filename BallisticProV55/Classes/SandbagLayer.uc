@@ -237,9 +237,9 @@ defaultproperties
 	WeaponModes(2)=(ModeName="Place")
 	GunLength=0.000000
 	ParamsClasses(0)=Class'SandbagWeaponParamsComp'
-	ParamsClasses(1)=Class'SandbagWeaponParams'
-	ParamsClasses(2)=Class'SandbagWeaponParams'
-    ParamsClasses(3)=Class'SandbagWeaponParams'
+	ParamsClasses(1)=Class'SandbagWeaponParamsComp'
+	ParamsClasses(2)=Class'SandbagWeaponParamsComp'
+    ParamsClasses(3)=Class'SandbagWeaponParamsComp'
 	FireModeClass(0)=Class'BallisticProV55.SandbagFire'
 	FireModeClass(1)=Class'BallisticProV55.SandbagFire'
 	PutDownTime=0.900000

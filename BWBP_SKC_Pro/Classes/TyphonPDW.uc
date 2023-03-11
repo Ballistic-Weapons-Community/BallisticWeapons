@@ -773,7 +773,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-	 ParamsClasses(0)=Class'TyphonPDWWeaponParamsArena'
+	 ParamsClasses(0)=Class'TyphonPDWWeaponParamsComp'
 	 ParamsClasses(1)=Class'TyphonPDWWeaponParamsClassic'
 	 ParamsClasses(2)=Class'TyphonPDWWeaponParamsRealistic'
      ParamsClasses(3)=Class'TyphonPDWWeaponParamsTactical'

@@ -420,7 +420,7 @@ defaultproperties
      SightPivot=(Pitch=64)
      SightOffset=(X=-5.000000,Y=-10.020000,Z=20.600000)
      SightDisplayFOV=20.000000
-	 ParamsClasses(0)=Class'AK91WeaponParamsArena'
+	 ParamsClasses(0)=Class'AK91WeaponParamsComp'
 	 ParamsClasses(1)=Class'AK91WeaponParamsClassic'
 	 ParamsClasses(2)=Class'AK91WeaponParamsRealistic'
      ParamsClasses(3)=Class'AK91WeaponParamsTactical'

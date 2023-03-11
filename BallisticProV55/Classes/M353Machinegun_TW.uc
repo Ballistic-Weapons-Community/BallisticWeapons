@@ -278,7 +278,7 @@ defaultproperties
 	SightOffset=(X=-4.000000,Z=5.200000)
 	GunLength=0.000000
 	bUseSpecialAim=True
-	ParamsClasses(0)=Class'M353TW_WeaponParams'
+	ParamsClasses(0)=Class'M353TW_WeaponParamsComp'
 	ParamsClasses(1)=Class'M353TW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'M353TW_WeaponParamsRealistic'
     ParamsClasses(3)=Class'M353TW_WeaponParamsTactical'

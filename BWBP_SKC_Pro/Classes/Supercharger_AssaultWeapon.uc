@@ -615,7 +615,7 @@ defaultproperties
     bCockOnEmpty=False
 	bNonCocking=True
 	bNoMag=True
-	ParamsClasses(0)=Class'SuperchargerWeaponParamsArena'
+	ParamsClasses(0)=Class'SuperchargerWeaponParamsComp'
 	ParamsClasses(1)=Class'SuperchargerWeaponParamsClassic'
 	ParamsClasses(2)=Class'SuperchargerWeaponParamsRealistic'
     ParamsClasses(3)=Class'SuperchargerWeaponParamsTactical'

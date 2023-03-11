@@ -1,4 +1,4 @@
-class M575MachinegunWeaponParamsArena extends BallisticWeaponParams;
+class M575MachinegunWeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 {

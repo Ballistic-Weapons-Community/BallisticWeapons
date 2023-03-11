@@ -1,4 +1,4 @@
-class SuperchargerWeaponParamsArena extends BallisticWeaponParams;
+class SuperchargerWeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 {

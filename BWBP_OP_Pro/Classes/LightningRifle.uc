@@ -215,7 +215,7 @@ defaultproperties
     GunLength=60.000000
     BobDamping=0.800000
     ParamsClasses(0)=Class'LightningWeaponParamsComp'
-    ParamsClasses(1)=Class'LightningWeaponParams'
+    ParamsClasses(1)=Class'LightningWeaponParamsComp'
     ParamsClasses(2)=Class'LightningWeaponParamsTactical'
     ParamsClasses(3)=Class'LightningWeaponParamsTactical'
     FireModeClass(0)=Class'BWBP_OP_Pro.LightningPrimaryFire'

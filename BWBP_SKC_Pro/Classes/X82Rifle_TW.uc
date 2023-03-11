@@ -194,7 +194,7 @@ defaultproperties
 	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.X82.X82-ClipIn',Volume=1.500000)
 	GunLength=0.000000
 	bUseSpecialAim=True
-	ParamsClasses(0)=Class'X82TW_WeaponParams'
+	ParamsClasses(0)=Class'X82TW_WeaponParamsComp'
 	ParamsClasses(1)=Class'X82TW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'X82TW_WeaponParamsRealistic'
 	ParamsClasses(3)=Class'X82TW_WeaponParamsTactical'

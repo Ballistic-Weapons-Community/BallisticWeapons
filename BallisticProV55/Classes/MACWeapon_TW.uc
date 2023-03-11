@@ -158,7 +158,7 @@ defaultproperties
 	ReloadAnimRate=2.500000
 	GunLength=0.000000
 	bUseSpecialAim=True
-	ParamsClasses(0)=Class'MACTW_WeaponParams'
+	ParamsClasses(0)=Class'MACTW_WeaponParamsComp'
 	ParamsClasses(1)=Class'MACTW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'MACTW_WeaponParamsClassic'
     ParamsClasses(3)=Class'MACTW_WeaponParamsTactical'

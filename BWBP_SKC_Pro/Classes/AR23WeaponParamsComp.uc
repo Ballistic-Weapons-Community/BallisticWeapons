@@ -1,4 +1,4 @@
-class AR23WeaponParamsArena extends BallisticWeaponParams;
+class AR23WeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 {

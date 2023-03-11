@@ -264,7 +264,7 @@ defaultproperties
 	GunLength=0.000000
 	bUseSpecialAim=True
 	WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
-	ParamsClasses(0)=Class'M925TW_WeaponParams'
+	ParamsClasses(0)=Class'M925TW_WeaponParamsComp'
 	ParamsClasses(1)=Class'M925TW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'M925TW_WeaponParamsRealistic'
     ParamsClasses(3)=Class'M925TW_WeaponParamsTactical'

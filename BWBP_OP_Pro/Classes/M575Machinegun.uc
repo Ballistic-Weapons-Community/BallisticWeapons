@@ -678,7 +678,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-	 ParamsClasses(0)=Class'M575MachinegunWeaponParamsArena'
+	 ParamsClasses(0)=Class'M575MachinegunWeaponParamsComp'
 	 ParamsClasses(1)=Class'M575MachinegunWeaponParamsClassic'
 	 ParamsClasses(2)=Class'M575MachinegunWeaponParamsRealistic'
      ParamsClasses(3)=Class'M575MachinegunWeaponParamsTactical'

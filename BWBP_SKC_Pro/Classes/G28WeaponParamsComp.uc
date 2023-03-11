@@ -1,4 +1,4 @@
-class G28WeaponParamsArena extends BallisticWeaponParams;
+class G28WeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 {    

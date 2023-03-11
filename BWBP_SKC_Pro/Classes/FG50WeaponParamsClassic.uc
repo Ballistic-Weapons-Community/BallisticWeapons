@@ -197,7 +197,7 @@ defaultproperties
 		ReloadAnimRate=1.000000
 		CockAnimRate=1.000000
 		AimParams(0)=AimParams'ClassicAimParams'
-		AimParams(1)=AimParams'ArenaControlledAimParams'
+		AimParams(1)=AimParams'ClassicControlledAimParams'
 		FireParams(0)=FireParams'ClassicPriControlledFireParams'
 		FireParams(2)=FireParams'ClassicPrimaryFireParams'
 		AltFireParams(0)=FireParams'ClassicSecControlledFireParams'

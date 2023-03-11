@@ -160,7 +160,7 @@ defaultproperties
 	bUseSights=False
 	GunLength=0.000000
 	bUseSpecialAim=True
-	ParamsClasses(0)=Class'XMV850TW_WeaponParams'
+	ParamsClasses(0)=Class'XMV850TW_WeaponParamsComp'
 	ParamsClasses(1)=Class'XMV850TW_WeaponParamsClassic'
 	ParamsClasses(2)=Class'XMV850TW_WeaponParamsRealistic'
     ParamsClasses(3)=Class'XMV850TW_WeaponParamsTactical'

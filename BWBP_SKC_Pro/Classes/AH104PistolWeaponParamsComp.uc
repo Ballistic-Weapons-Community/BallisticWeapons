@@ -1,4 +1,4 @@
-class AH104PistolWeaponParamsArena extends BallisticWeaponParams;
+class AH104PistolWeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 {

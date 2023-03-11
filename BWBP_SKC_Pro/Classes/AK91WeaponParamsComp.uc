@@ -1,4 +1,4 @@
-class AK91WeaponParamsArena extends BallisticWeaponParams;
+class AK91WeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 {

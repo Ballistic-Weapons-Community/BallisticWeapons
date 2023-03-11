@@ -1,4 +1,4 @@
-class TyphonPDWWeaponParamsArena extends BallisticWeaponParams;
+class TyphonPDWWeaponParamsComp extends BallisticWeaponParams;
 
 defaultproperties
 {

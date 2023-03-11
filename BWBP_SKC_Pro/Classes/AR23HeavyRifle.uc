@@ -310,7 +310,7 @@ defaultproperties
      ClipOutSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipOut',Volume=1.000000)
      ClipInSound=(Sound=Sound'BW_Core_WeaponSound.OA-AR.OA-AR_ClipIn',Volume=1.000000)
      ClipInFrame=0.700000
-     ParamsClasses(0)=Class'AR23WeaponParamsArena'
+     ParamsClasses(0)=Class'AR23WeaponParamsComp'
      ParamsClasses(1)=Class'AR23WeaponParamsClassic'
      ParamsClasses(2)=Class'AR23WeaponParamsRealistic'
      ParamsClasses(3)=Class'AR23WeaponParamsTactical'
