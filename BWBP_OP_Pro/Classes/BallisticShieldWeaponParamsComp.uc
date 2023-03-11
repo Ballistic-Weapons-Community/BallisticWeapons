@@ -69,7 +69,7 @@ defaultproperties
 
     Begin Object Class=AimParams Name=UniversalAimParams
         ViewBindFactor=0.00
-        SprintOffset=(Pitch=-3000,Yaw=-4000)
+        SprintOffset=(Pitch=-3072,Yaw=-4096)
         AimSpread=(Min=0,Max=0)
         ChaosDeclineTime=0.320000
     End Object
@@ -82,7 +82,7 @@ defaultproperties
         ViewOffset=(Y=75.000000,Z=-125.000000)
 		PlayerSpeedFactor=0.9
         MagAmmo=1
-        InventorySize=5
+        InventorySize=2
         DisplaceDurationMult=0
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'

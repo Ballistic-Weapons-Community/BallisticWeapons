@@ -75,7 +75,7 @@ defaultproperties
 		ViewOffset=(X=6.000000,Y=6.000000,Z=-8.000000)
 		PlayerSpeedFactor=0.950000
 		MagAmmo=75
-        InventorySize=24
+        InventorySize=8
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

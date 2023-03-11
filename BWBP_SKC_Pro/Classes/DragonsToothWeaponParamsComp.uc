@@ -78,7 +78,7 @@ defaultproperties
         PlayerSpeedFactor=1.1
         DisplaceDurationMult=0.25
         MagAmmo=1
-        InventorySize=6
+        InventorySize=2
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
 		FireParams(0)=FireParams'ArenaPrimaryFireParams'

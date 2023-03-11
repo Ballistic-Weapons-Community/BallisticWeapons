@@ -83,7 +83,7 @@ defaultproperties
 		ViewOffset=(X=3.000000,Y=-3.000000,Z=-8.500000)
 		SightOffset=(X=-10.000000,Y=11.400000,Z=7.900000)
 		MagAmmo=15
-		InventorySize=5
+		InventorySize=2
         SightingTime=0.200000
         PlayerSpeedFactor=1.05
         DisplaceDurationMult=0.5

@@ -8,11 +8,16 @@
 //=============================================================================
 class BallisticTab_ConflictLoadoutPro extends MidGamePanel;
 
-const INVENTORY_SIZE_MAX = 35;
+const INVENTORY_SIZE_TOTAL = 12;
+
+const MAIN_SECTION_INDEX = 0;
+const SUB_SECTION_INDEX = 1;
 
 var bool					bInitialized; // showpanel
 var bool					bLoadInitialized;
 
+var int                     SectionSizes[2];
+var int                     SpaceUsed[2];
 
 var automated GUIListBox	lb_Weapons;
 var Automated GUIImage		Box_WeapList, Box_Inventory, Pic_Weapon, Box_WeapIcon;
@@ -46,9 +51,10 @@ struct Item
 	var() string	Ammo;
 	var() int		InventoryGroup;
 	var() bool		bBad;
+    var() int       SectionIndex;
 };
+
 var() array<Item> Inventory;
-var() int SpaceUsed;
 
 var() Material BoxTex;
 
@@ -206,8 +212,10 @@ simulated function InitWeaponLists ()
 
 	//Only explicitly load saved inventory.	
 	Inventory.length = 0;
-	SpaceUsed = 0;
-	
+
+	SpaceUsed[MAIN_SECTION_INDEX] = 0;
+    SpaceUsed[SUB_SECTION_INDEX] = 0;
+
 	for (i = 0; i < class'ConflictLoadoutConfig'.default.SavedInventory.length; i++)
 	{
 		a = class<Actor>(DynamicLoadObject(class'ConflictLoadoutConfig'.default.SavedInventory[i], class'Class'));
@@ -286,6 +294,19 @@ function int GetItemSize(class<Weapon> Item)
 	return 5;
 }
 
+function int SectionIndexFor(class<BallisticWeapon> BW)
+{
+    switch (BW.default.InventoryGroup)
+    {
+        case 0:
+        case 1:
+        case 11:
+            return SUB_SECTION_INDEX;
+        default:
+            return MAIN_SECTION_INDEX;
+    }
+}
+
 function int CountExisting(string weapon_name)
 {
 	local int i, count;
@@ -349,22 +370,40 @@ function bool GroupPriorityOver(int inserting_group, int target_group)
     */
 }
 
-function int GetInsertionPoint(int inserting_item_grp)
+function int GetInsertionPoint(class<BallisticWeapon> InsertWeapon)
 {
-	local int i, current_item_group;
-	
-	if (inserting_item_grp == 0)
-		inserting_item_grp = 11;
+	local int i, SectionIndex, ItemSize, InsertingGroup, CurrentItemGroup;
+
+    SectionIndex = SectionIndexFor(InsertWeapon);
+    ItemSize = GetItemSize(InsertWeapon);
+    InsertingGroup = InsertWeapon.default.InventoryGroup;
+
+	if (InsertingGroup == 0)
+		InsertingGroup = 11;
 	
 	for (i = 0; i < Inventory.Length; ++i)
 	{
-		current_item_group = Inventory[i].InventoryGroup;
+        // if inserting main weapon, and comparing to sub, insert before it
+        if (Inventory[i].SectionIndex > SectionIndex)
+            break;
+
+        // if inserting sub weapon, and comparing to main, insertion point is somewhere after
+        if (Inventory[i].SectionIndex < SectionIndex)
+            continue;
+
+        // check to see if we always insert before this weapon, by inventory group
+		CurrentItemGroup = Inventory[i].InventoryGroup;
 		
-		if (current_item_group == 0)
-			current_item_group = 11;
+		if (CurrentItemGroup == 0)
+			CurrentItemGroup = 11;
 			
-		if (GroupPriorityOver(inserting_item_grp, current_item_group))
+		if (GroupPriorityOver(InsertingGroup, CurrentItemgroup))
 			break;
+
+        // otherwise, if bigger, insert here
+        if (ItemSize > Inventory[i].Size)
+            break;
+
 	}
 	
 	return i;
@@ -373,6 +412,7 @@ function int GetInsertionPoint(int inserting_item_grp)
 function bool AddInventory(string ClassName, class<actor> InvClass, string FriendlyName)
 {
 	local int i, Size, A;
+    local int SectionIndex;
 	local class<BallisticWeapon> 	Weap;
 	local class<Weapon> 			WeaponClass;
 
@@ -401,17 +441,19 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 
 	Weap = class<BallisticWeapon>(WeaponClass);
 
+    SectionIndex = SectionIndexFor(Weap);
+
 	Size = GetItemSize(WeaponClass);
 
-	if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
+	if (SpaceUsed[SectionIndex] + Size > SectionSizes[SectionIndex])
 	{
-		Log("BallisticTab_ConflictLoadoutPro::AddInventory: No room: Used "$SpaceUsed$"/"$INVENTORY_SIZE_MAX$", requesting "$Size);
+		Log("BallisticTab_ConflictLoadoutPro::AddInventory: No room in section "$SectionIndex$": Used "$SpaceUsed[SectionIndex]$"/"$SectionSizes[SectionIndex]$", requesting "$Size);
 		return false;
 	}
 
-	SpaceUsed += Size;
+	SpaceUsed[SectionIndex] += Size;
 	
-	i = GetInsertionPoint(Weap.default.InventoryGroup);
+	i = GetInsertionPoint(Weap);
 	
 	Inventory.Insert(i, 1);
 	
@@ -419,6 +461,7 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 	Inventory[i].Size = Size;
 	Inventory[i].Title = FriendlyName;
 	Inventory[i].InventoryGroup = Weap.default.InventoryGroup;
+    Inventory[i].SectionIndex = SectionIndex;
 	
 	A = WeaponClass.default.FireModeClass[0].default.AmmoClass.default.InitialAmount;
 
@@ -452,10 +495,10 @@ function bool HandleConflictItem(class<actor> InvClass, string FriendlyName)
 	
 	Size = class<ConflictItem>(InvClass).default.Size/5;
 	
-	if (SpaceUsed + Size > INVENTORY_SIZE_MAX)
+	if (SpaceUsed[SUB_SECTION_INDEX] + Size > SectionSizes[SUB_SECTION_INDEX])
 		return false;
 
-	SpaceUsed += Size;
+	SpaceUsed[SUB_SECTION_INDEX] += Size;
 	i = Inventory.length;
 	Inventory.length = i + 1;
 	Inventory[i].ClassName = string(InvClass);
@@ -464,6 +507,8 @@ function bool HandleConflictItem(class<actor> InvClass, string FriendlyName)
 	Inventory[i].Icon = class<ConflictItem>(InvClass).default.Icon;
 	Inventory[i].Ammo = class<ConflictItem>(InvClass).default.ItemAmount;
 	Inventory[i].InventoryGroup = 12;
+    Inventory[i].SectionIndex = SUB_SECTION_INDEX;
+
 	return true;
 }
 
@@ -478,39 +523,73 @@ function bool InternalOnDblClick(GUIComponent Sender)
 	return true;
 }
 
+function int GetClickedInventoryIndex()
+{
+    local int i, X, ItemSize;
+
+    X = Box_Inventory.Bounds[0];
+
+    // main items
+    for (i = 0; i < Inventory.length && Inventory[i].SectionIndex == MAIN_SECTION_INDEX; i++)
+    {
+        ItemSize = (Box_Inventory.ActualWidth()/INVENTORY_SIZE_TOTAL) * Inventory[i].Size;
+
+        if (Controller.MouseX > X && Controller.MouseX < X + ItemSize)
+        {
+            return i;
+        }
+        X += ItemSize;
+    }
+
+    X = Box_Inventory.Bounds[0] + (Box_Inventory.ActualWidth() / INVENTORY_SIZE_TOTAL) * SectionSizes[MAIN_SECTION_INDEX];
+
+    // sub items - use offset
+    while (i < Inventory.Length) // unrealscript won't handle a for loop with an empty initializer, lol
+    {
+        ItemSize = (Box_Inventory.ActualWidth()/INVENTORY_SIZE_TOTAL) * Inventory[i].Size;
+
+        if (Controller.MouseX > X && Controller.MouseX < X + ItemSize)
+            return i;
+
+        X += ItemSize;
+        ++i;
+    }
+
+    return Inventory.Length;
+}
+
 function bool InternalOnClick(GUIComponent Sender)
 {
 	local int i;
-	local float X, ItemSize;
 
 	//Figure out which currently existing item the player clicked on and then remove it.
 	if (Sender == Box_Inventory)
 	{
-		X = Box_Inventory.Bounds[0];
+        i = GetClickedInventoryIndex();
 
-		for (i=0;i<Inventory.length;i++)
-		{
-			ItemSize = (Box_Inventory.ActualWidth()/INVENTORY_SIZE_MAX) * Inventory[i].Size;
-			if (Controller.MouseX > X && Controller.MouseX < X + ItemSize)
-			{
-				class'ConflictLoadoutConfig'.static.UpdateSavedInitialIndex(i);
-				return true;
-			}
-			X += ItemSize;
-		}
+        if (i < Inventory.Length)
+		    class'ConflictLoadoutConfig'.static.UpdateSavedInitialIndex(i);
+		return true;
 	}
 	
-	else if (Sender==BStats && CLRI!=None)
+	if (Sender == BStats && CLRI != None)
 	{
 		Controller.OpenMenu("BallisticProV55.BallisticConflictInfoMenu");
+
 		if (BallisticConflictInfoMenu(Controller.ActivePage) != None)
 			BallisticConflictInfoMenu(Controller.ActivePage).LoadWeapons(self);
+
+         return true;
 	}
 	
-	else if (Sender==BClear)
+	if (Sender == BClear)
 	{
 		Inventory.Length = 0;
-		SpaceUsed = 0;
+
+		SpaceUsed[MAIN_SECTION_INDEX] = 0;
+        SpaceUsed[SUB_SECTION_INDEX] = 0;
+
+        return true;
 	}
 
 	return true;
@@ -519,31 +598,29 @@ function bool InternalOnClick(GUIComponent Sender)
 function bool InternalOnRightClick(GUIComponent Sender)
 {
 	local int i;
-	local float X, ItemSize;
 
 	//Figure out which currently existing item the player clicked on and then remove it.
 	if (Sender == Box_Inventory)
 	{
-		X = Box_Inventory.Bounds[0];
+        i = GetClickedInventoryIndex();
 
-		for (i=0;i<Inventory.length;i++)
-		{
-			ItemSize = (Box_Inventory.ActualWidth()/INVENTORY_SIZE_MAX) * Inventory[i].Size;
-			if (Controller.MouseX > X && Controller.MouseX < X + ItemSize)
-			{
-				SpaceUsed -= Inventory[i].Size;
-				Inventory.Remove(i, 1);
-				return true;
-			}
-			X += ItemSize;
-		}
+        if (i < Inventory.Length)
+        {
+			SpaceUsed[Inventory[i].SectionIndex] -= Inventory[i].Size;
+			Inventory.Remove(i, 1);
+        }
+
+        return true;
 	}
 	
-	else if (Sender==BStats && CLRI!=None)
+	if (Sender==BStats && CLRI!=None)
 	{
 		Controller.OpenMenu("BallisticProV55.BallisticConflictInfoMenu");
+
 		if (BallisticConflictInfoMenu(Controller.ActivePage) != None)
 			BallisticConflictInfoMenu(Controller.ActivePage).LoadWeapons(self);
+
+            return true;
 	}
 
 	return true;
@@ -628,10 +705,15 @@ function DrawInventory(Canvas C)
 	local float X, ItemSize, IconX, IconY, XL, YL;
 	local float MyX, MyY, MyW, MyH, ScaleFactor;
 	local string s;
-
     local int initial_wep_index;
+    local int LastSectionIndex;
+    local int SlotWidth;
+
+    local string DisplayString;
 
     initial_wep_index = class'ConflictLoadoutConfig'.static.GetSavedInitialWeaponIndex();
+
+
 
 	ScaleFactor = float(Controller.ResX)/1600;
 	MyX = Box_Inventory.Bounds[0] + 24*ScaleFactor;
@@ -639,33 +721,59 @@ function DrawInventory(Canvas C)
 	MyW = Box_Inventory.ActualWidth() - 48*ScaleFactor;
 	MyH = Box_Inventory.ActualHeight() - 48*ScaleFactor;
 
+    SlotWidth = MyW / INVENTORY_SIZE_TOTAL;
+
 	C.SetDrawColor(255,255,255,255);
 	C.SetPos(MyX, Myy);
 	C.DrawTile(Controller.DefaultPens[1], MyW, MyH, 0, 0, 1, 1);
 
-	C.SetDrawColor(64,64,64,255);
+    // draw free slot indicators for primary weapons
+	C.SetDrawColor(128,64,0,255);
+
 	X = MyX;
-	for(i=0;i<INVENTORY_SIZE_MAX;i++)
+
+    X += SlotWidth * SpaceUsed[MAIN_SECTION_INDEX];
+
+	for(i = SpaceUsed[MAIN_SECTION_INDEX]; i < SectionSizes[MAIN_SECTION_INDEX]; i++)
 	{
 		C.SetPos(X, Myy);
-		C.DrawTile(BoxTex, MyW/INVENTORY_SIZE_MAX, MyH, 0, 0, 128, 64);
-		X += MyW/INVENTORY_SIZE_MAX;
+		C.DrawTile(BoxTex, SlotWidth, MyH, 0, 0, 128, 64);
+		X += SlotWidth;
+	}
+
+    // draw free slot indicators for sub weapons
+    C.SetDrawColor(0,64,128,255);
+
+    X += SlotWidth * SpaceUsed[SUB_SECTION_INDEX];
+
+    for(i = SpaceUsed[SUB_SECTION_INDEX]; i < SectionSizes[SUB_SECTION_INDEX]; i++)
+	{
+		C.SetPos(X, Myy);
+		C.DrawTile(BoxTex, SlotWidth, MyH, 0, 0, 128, 64);
+		X += SlotWidth;
 	}
 
 	X = MyX;
 	C.Style = 6;
 
-	for (i=0;i<Inventory.length;i++)
+	for (i = 0; i < Inventory.length; i++)
 	{
+        // push the offset along when switching to the sub weapons
+        if (Inventory[i].SectionIndex != LastSectionIndex)
+        {
+            LastSectionIndex = Inventory[i].SectionIndex;
+            X = MyX + (SlotWidth) * SectionSizes[MAIN_SECTION_INDEX];
+        }
+
 		if (Inventory[i].bBad)
-			C.SetDrawColor(255,64,64,255);
+			C.SetDrawColor(255,64,64,255);      // weapon is bad - red tint
         else if (i == initial_wep_index)
-            C.SetDrawColor(192,255,192,255);
-        else 
-			C.SetDrawColor(255,255,255,255);
+            C.SetDrawColor(192,255,192,255);    // green tint for currently selected weapon
+        else
+			C.SetDrawColor(255,255,255,255);    // no tint
 
         //can't exceed twice the height - Azarael
-        ItemSize = (MyW/INVENTORY_SIZE_MAX) * Inventory[i].Size;
+        ItemSize = SlotWidth * Inventory[i].Size;
         IconX = FMin(ItemSize, MyH*2.3);
         IconY = IconX/2;
 
@@ -675,37 +783,47 @@ function DrawInventory(Canvas C)
         }
 
 		if (Inventory[i].bBad)
-			C.SetDrawColor(255,0,0,255);
-        else if (i == initial_wep_index)
-            C.SetDrawColor(32,255,0,255);
-		else
-			C.SetDrawColor(255,128,0,255);
+			C.SetDrawColor(255,0,0,255);    // weapon is bad - red surround
+        //else if (i == initial_wep_index)
+        //    C.SetDrawColor(32,255,0,255);   // green surround for starter
+		else if (Inventory[i].SectionIndex == MAIN_SECTION_INDEX)
+			C.SetDrawColor(255,128,0,255); // orange frame for primary
+        else
+			C.SetDrawColor(0,128,255,255);  // blue frame for secondary
 
 		C.SetPos(X, MyY);
 		C.DrawTileStretched(BoxTex, ItemSize, MyH);
 
+        // draw weapon name
+        DisplayString = Inventory[i].Title;
+
         if (i == initial_wep_index)
+        {
             C.SetDrawColor(32,255,0,255);
-		else 
-            C.SetDrawColor(255,128,0,255);
+            DisplayString $= " - Initial";
+        }
+		else if (Inventory[i].SectionIndex == MAIN_SECTION_INDEX)
+			C.SetDrawColor(255,128,0,255); // orange text for primary
+        else
+			C.SetDrawColor(0,128,255,255);  // blue text for secondary
 
 		C.Font = Controller.GetMenuFont("UT2SmallFont").GetFont(C.ClipX*0.8);
-		C.StrLen(Inventory[i].Title, XL, YL);
+		C.StrLen(DisplayString, XL, YL);
 		if (XL > ItemSize)
 		{
-			j = InStr(Inventory[i].Title, " ");
-			s = Left(Inventory[i].Title, j);
+			j = InStr(DisplayString, " ");
+			s = Left(DisplayString, j);
 			C.SetPos(X+4*ScaleFactor, MyY + MyH - YL*2 - 4*ScaleFactor);
 			C.DrawText(s, false);
 
-			s = Right(Inventory[i].Title, Len(Inventory[i].Title)-j-1);
+			s = Right(DisplayString, Len(DisplayString)-j-1);
 			C.SetPos(X+4*ScaleFactor, MyY + MyH - YL - 4*ScaleFactor);
 			C.DrawText(s, false);
 		}
 		else
 		{
 			C.SetPos(X+4*ScaleFactor, MyY + MyH - YL - 4*ScaleFactor);
-			C.DrawText(Inventory[i].Title, false);
+			C.DrawText(DisplayString, false);
 		}
 
 		C.SetDrawColor(255,64,64,255);
@@ -722,6 +840,9 @@ function DrawInventory(Canvas C)
 
 defaultproperties
 {
+    SectionSizes(0)=10
+    SectionSizes(1)=2
+
      Begin Object Class=GUIListBox Name=lb_WeaponsList
          bVisibleWhenEmpty=True
          OnCreateComponent=lb_WeaponsList.InternalOnCreateComponent

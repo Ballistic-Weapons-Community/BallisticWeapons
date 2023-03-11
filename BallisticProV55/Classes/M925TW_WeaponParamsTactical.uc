@@ -76,7 +76,7 @@ defaultproperties
 		WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(bUnavailable=True)
 		MagAmmo=50
-        InventorySize=20
+        InventorySize=6
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

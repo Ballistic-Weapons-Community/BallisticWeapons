@@ -86,7 +86,7 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		InventorySize=20
+		InventorySize=4
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.20000
 		DisplaceDurationMult=0.5

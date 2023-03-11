@@ -126,7 +126,7 @@ defaultproperties
 		SightPivot=(Roll=11800)
 		SightOffset=(X=15.000000,Y=2.850000,Z=9.000000)
 		ViewOffset=(Y=9.500000,Z=-11.000000)
-		InventorySize=20
+		InventorySize=6
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.3
 		DisplaceDurationMult=1

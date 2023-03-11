@@ -120,7 +120,7 @@ defaultproperties
 		InitialWeaponMode=1
 		PlayerSpeedFactor=0.95000
         DisplaceDurationMult=1.25
-		InventorySize=20
+		InventorySize=5
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.35
 		MagAmmo=9

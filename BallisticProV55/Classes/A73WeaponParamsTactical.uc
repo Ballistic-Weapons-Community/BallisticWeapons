@@ -108,7 +108,7 @@ defaultproperties
 		SightPivot=(Pitch=450)
 		SightOffset=(X=10.000000,Z=12.150000)
         SightingTime=0.2
-		InventorySize=20
+		InventorySize=6
 	    RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'
         FireParams(0)=FireParams'TacticalProjFireParams'

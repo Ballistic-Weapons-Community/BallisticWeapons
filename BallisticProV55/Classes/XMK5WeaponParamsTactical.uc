@@ -97,7 +97,7 @@ defaultproperties
 		DisplaceDurationMult=0.75
 		MagAmmo=32
 		SightingTime=0.20000
-        InventorySize=12
+        InventorySize=4
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

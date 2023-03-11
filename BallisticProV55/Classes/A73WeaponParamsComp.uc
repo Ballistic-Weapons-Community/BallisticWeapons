@@ -105,7 +105,7 @@ defaultproperties
 		ViewOffset=(X=-4.000000,Y=10.000000,Z=-10.000000)
 		SightPivot=(Pitch=450)
 		SightOffset=(X=10.000000,Z=12.150000)
-		InventorySize=12
+		InventorySize=6
 	    RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'
         FireParams(0)=FireParams'ArenaProjFireParams'

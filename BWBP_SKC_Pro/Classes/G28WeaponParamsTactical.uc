@@ -65,7 +65,7 @@ defaultproperties
 
     Begin Object Class=WeaponParams Name=UniversalParams
         MagAmmo=1
-        InventorySize=12
+        InventorySize=2
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

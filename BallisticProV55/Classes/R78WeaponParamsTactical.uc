@@ -68,7 +68,7 @@ defaultproperties
 		SightingTime=0.40000
 		SightMoveSpeedFactor=0.8
 		MagAmmo=7
-        InventorySize=20
+        InventorySize=5
         ZoomType=ZT_Logarithmic
 		WeaponBoneScales(0)=(BoneName="Silencer",Slot=78,Scale=0f)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

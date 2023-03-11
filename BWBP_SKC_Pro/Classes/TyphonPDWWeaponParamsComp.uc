@@ -104,7 +104,7 @@ defaultproperties
 		SightPivot=(Pitch=0)
 		PlayerSpeedFactor=.95
 		PlayerJumpFactor=.95
-		InventorySize=12
+		InventorySize=4
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1
 		MagAmmo=20

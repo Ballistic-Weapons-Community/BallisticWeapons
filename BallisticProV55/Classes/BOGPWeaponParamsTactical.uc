@@ -104,7 +104,7 @@ defaultproperties
         DisplaceDurationMult=0.75
         MagAmmo=1
         SightingTime=0.2
-        InventorySize=12
+        InventorySize=3
 		SightPivot=(Pitch=300)
 		SightOffset=(X=-24.000000,Y=0.080000,Z=8.550000)
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

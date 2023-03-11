@@ -97,7 +97,7 @@ defaultproperties
 		SightOffset=(X=-20.000000,Z=35.000000)
 		CockAnimRate=1.200000
 		PlayerSpeedFactor=0.9
-		InventorySize=22
+		InventorySize=7
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.4
 		DisplaceDurationMult=1

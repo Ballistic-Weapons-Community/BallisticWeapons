@@ -170,7 +170,7 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="IronsFront",Slot=3,Scale=0f)
 		PlayerSpeedFactor=0.8
 		PlayerJumpFactor=0.8
-		InventorySize=12
+		InventorySize=6
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.450000		
 		DisplaceDurationMult=1

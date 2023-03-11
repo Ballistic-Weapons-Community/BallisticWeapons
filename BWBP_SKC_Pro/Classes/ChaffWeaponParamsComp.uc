@@ -75,7 +75,7 @@ defaultproperties
     Begin Object Class=WeaponParams Name=UniversalParams
         PlayerSpeedFactor=1.000000
         MagAmmo=1
-        InventorySize=3
+        InventorySize=1
 		ViewOffset=(Y=4.000000,Z=-15.000000)
 		ViewPivot=(Pitch=1024,Yaw=-1024)
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'

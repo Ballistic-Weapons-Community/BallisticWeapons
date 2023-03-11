@@ -159,7 +159,7 @@ defaultproperties
 	    ReloadAnimRate=1.250000
 		SightingTime=0.350000	 
         MagAmmo=100        
-        InventorySize=20
+        InventorySize=6
         SightMoveSpeedFactor=0.8
         ZoomType=ZT_Logarithmic
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)

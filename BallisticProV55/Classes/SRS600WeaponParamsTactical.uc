@@ -71,7 +71,7 @@ defaultproperties
 		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
         SightingTime=0.25
 		MagAmmo=20
-        InventorySize=20
+        InventorySize=6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'
 		FireParams(0)=FireParams'TacticalPrimaryFireParams'

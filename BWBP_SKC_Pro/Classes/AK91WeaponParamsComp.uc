@@ -98,7 +98,7 @@ defaultproperties
 		SightPivot=(Pitch=64)
 		ViewOffset=(X=5.000000,Y=7.000000,Z=-13.000000)
 		MagAmmo=25
-		InventorySize=12
+		InventorySize=6
 		WeaponBoneScales(0)=(BoneName="Scope",Slot=61,Scale=0f)
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'

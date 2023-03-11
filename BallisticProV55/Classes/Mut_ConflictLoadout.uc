@@ -12,7 +12,7 @@ class Mut_ConflictLoadout extends Mut_Ballistic
 	config(BallisticProV55)
 	DependsOn(Mut_Loadout);
 	
-const INVENTORY_SIZE_MAX = 35;
+const INVENTORY_SIZE_MAX = 12;
 	
 var() globalconfig byte	LoadoutOption;		 //0: normal loadout, 1: Evolution skill requirements, 2: Purchasing system (not implemented yet)
 var 		  array<string> 	LoadoutOptionText;

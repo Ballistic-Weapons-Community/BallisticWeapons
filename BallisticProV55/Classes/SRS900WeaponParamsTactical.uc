@@ -71,7 +71,7 @@ defaultproperties
 		MagAmmo=20
 		SightingTime=0.4
 		SightMoveSpeedFactor=0.8
-        InventorySize=20
+        InventorySize=6
         ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		AimParams(0)=AimParams'TacticalAimParams'

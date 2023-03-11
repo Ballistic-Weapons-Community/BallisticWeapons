@@ -138,7 +138,7 @@ defaultproperties
 		ReloadAnimRate=1.250000
 		SightPivot=(Pitch=50)
 		SightOffset=(X=25.000000,Y=0.010000,Z=8.000000)
-		InventorySize=20
+		InventorySize=6
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.25
 		DisplaceDurationMult=1

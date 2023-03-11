@@ -70,7 +70,7 @@ defaultproperties
 		MagAmmo=20
 		SightingTime=0.50000
 		SightMoveSpeedFactor=0.8
-        InventorySize=12
+        InventorySize=6
         ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'ArenaRecoilParams'
 		AimParams(0)=AimParams'ArenaAimParams'

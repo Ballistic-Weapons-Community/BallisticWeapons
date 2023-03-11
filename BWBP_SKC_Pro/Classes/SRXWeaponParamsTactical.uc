@@ -161,7 +161,7 @@ defaultproperties
 		SightOffset=(X=-10.000000,Y=-0.67,Z=27.200000)
 		ViewOffset=(X=-2.000000,Y=10.000000,Z=-20.000000)
 		MagAmmo=20
-        InventorySize=20
+        InventorySize=6
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
 		RecoilParams(1)=RecoilParams'TacticalExplosiveRecoilParams'
 		RecoilParams(2)=RecoilParams'TacticalAcidRecoilParams'

@@ -97,7 +97,7 @@ defaultproperties
 		SightingTime=0.500000
         SightMoveSpeedFactor=0.8
         MagAmmo=24
-        InventorySize=12
+        InventorySize=6
         ZoomType=ZT_Logarithmic
         WeaponBoneScales(0)=(BoneName="RDS",Slot=0,Scale=0f)
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
@@ -111,7 +111,7 @@ defaultproperties
 		ReloadAnimRate=1.250000
 		SightingTime=0.350000
         MagAmmo=24
-        InventorySize=12
+        InventorySize=6
 		ViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)
 		ViewPivot=(Pitch=384)
         SightPivot=(Pitch=-300,Roll=0)

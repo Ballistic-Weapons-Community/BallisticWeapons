@@ -82,7 +82,7 @@ defaultproperties
         ViewOffset=(Y=75.000000,Z=-125.000000)
 		PlayerSpeedFactor=0.9
         MagAmmo=1
-        InventorySize=5
+        InventorySize=2
         DisplaceDurationMult=0
         RecoilParams(0)=RecoilParams'UniversalRecoilParams'
         AimParams(0)=AimParams'UniversalAimParams'

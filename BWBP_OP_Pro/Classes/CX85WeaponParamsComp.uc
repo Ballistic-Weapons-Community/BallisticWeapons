@@ -95,7 +95,7 @@ defaultproperties
 		CockAnimRate=1.200000
 		PlayerSpeedFactor=0.9
 		PlayerJumpFactor=0.9
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.8
 		SightingTime=0.650000
 		DisplaceDurationMult=1

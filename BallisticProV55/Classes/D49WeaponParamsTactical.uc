@@ -109,7 +109,7 @@ defaultproperties
         DisplaceDurationMult=0.5
         SightingTime=0.2
         MagAmmo=6
-        InventorySize=9
+        InventorySize=3
 		ViewOffset=(X=-2.000000,Y=13.000000,Z=-12.000000)
 		ViewPivot=(Pitch=512)
 		SightOffset=(X=-30.000000,Y=-3.500000,Z=23.9500000)

@@ -226,7 +226,7 @@ defaultproperties
 		SightingTime=0.2
         DisplaceDurationMult=0.5
 		MagAmmo=32
-        InventorySize=20
+        InventorySize=5
 		WeaponModes(0)=(ModeName="Slow Bolt",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1)
 		WeaponModes(2)=(ModeName="Lightning",ModeID="WM_FullAuto",RecoilParamsIndex=1)
