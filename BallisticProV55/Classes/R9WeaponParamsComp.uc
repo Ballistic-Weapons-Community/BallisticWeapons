@@ -8,10 +8,10 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		RangeAtten=0.5
+		RangeAtten=0.75
 		Damage=45
-		HeadMult=1.5
-		LimbMult=0.85
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
@@ -35,10 +35,10 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=ArenaFreezeEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		RangeAtten=0.5
+		RangeAtten=0.75
 		Damage=40
-		HeadMult=1.5
-		LimbMult=0.85
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
@@ -62,10 +62,10 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=ArenaHeatEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
-		RangeAtten=0.5
+		RangeAtten=0.75
 		Damage=35
-		HeadMult=1.5
-		LimbMult=0.85
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DTR9Rifle'
 		DamageTypeHead=Class'BallisticProV55.DTR9RifleHead'
 		DamageTypeArm=Class'BallisticProV55.DTR9Rifle'
@@ -137,7 +137,7 @@ defaultproperties
 		ReloadAnimRate=1.250000
 		SightPivot=(Pitch=50)
 		SightOffset=(X=25.000000,Y=0.010000,Z=8.000000)
-		PlayerSpeedFactor=1
+		
 		PlayerJumpFactor=1
 		InventorySize=6
 		SightMoveSpeedFactor=0.9

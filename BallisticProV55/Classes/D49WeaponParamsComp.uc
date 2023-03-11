@@ -7,16 +7,16 @@ defaultproperties
     //=================================================================	
 
     Begin Object Class=InstantEffectParams Name=ArenaFireEffectParams
-        DecayRange=(Min=1024,Max=2536)
+        DecayRange=(Min=788,Max=1838)
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=8.000000
         Damage=50.000000
-        HeadMult=1.5f
-        LimbMult=0.7f
+        HeadMult=2.0f
+        LimbMult=0.67f
         DamageType=Class'BallisticProV55.DTD49Revolver'
         DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
         DamageTypeArm=Class'BallisticProV55.DTD49Revolver'
-        RangeAtten=0.3500000
+        RangeAtten=0.5
         PenetrateForce=200
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.D49FlashEmitter'
@@ -42,13 +42,13 @@ defaultproperties
     //=================================================================	
 
     Begin Object Class=InstantEffectParams Name=ArenaAltFireEffectParams
-        DecayRange=(Min=1024,Max=2536)
+        DecayRange=(Min=788,Max=1838)
         TraceRange=(Min=8000.000000,Max=9000.000000)
         PenetrationEnergy=8.000000
         Damage=100.000000
-        HeadMult=1.25f
-        LimbMult=0.8f
-        RangeAtten=0.350000
+        HeadMult=1.5f
+        LimbMult=0.67f
+        RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTD49Revolver'
         DamageTypeHead=Class'BallisticProV55.DTD49RevolverHead'
         DamageTypeArm=Class'BallisticProV55.DTD49Revolver'
@@ -104,7 +104,6 @@ defaultproperties
 		WeaponBoneScales(1)=(BoneName="ShortBarrel",Slot=51,Scale=0f)
 		CockAnimRate=1.750000
 		ReloadAnimRate=1.750000
-		PlayerSpeedFactor=1.050000
         DisplaceDurationMult=0.5
         SightingTime=0.200000
         MagAmmo=6

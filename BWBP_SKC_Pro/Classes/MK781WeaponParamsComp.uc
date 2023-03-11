@@ -9,9 +9,9 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=2560.000000,Max=2560.000000)
-        DecayRange=(Min=750,Max=2250)
+        DecayRange=(Min=1050,Max=2100)
 		WaterTraceRange=5000.0
-		RangeAtten=0.400000
+		RangeAtten=0.45
 		TraceCount=8
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
@@ -40,7 +40,7 @@ defaultproperties
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimarySilEffectParams
 		TraceRange=(Min=3000.000000,Max=5000.000000)
 		WaterTraceRange=5000.0
-		RangeAtten=0.650000
+		RangeAtten=0.45
 		TraceCount=10
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
@@ -163,7 +163,7 @@ defaultproperties
 		SightOffset=(X=20.000000,Y=-7.660000,Z=13.940000)
 		ViewOffset=(X=-6.000000,Y=10.000000,Z=-10.000000)
 		ReloadAnimRate=1.5
-		PlayerSpeedFactor=1.000000
+		
 		PlayerJumpFactor=1.000000
 		InventorySize=6
 		SightMoveSpeedFactor=0.9

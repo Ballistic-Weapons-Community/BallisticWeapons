@@ -10,11 +10,11 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
-		RangeAtten=0.200000
-        DecayRange=(Min=750,Max=2250)
+        DecayRange=(Min=788,Max=1838)
+        RangeAtten=0.5
 		Damage=20
-		HeadMult=1.5f
-		LimbMult=0.5f
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DT_MRDR88Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MRDR88Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_MRDR88Body'
@@ -87,7 +87,7 @@ defaultproperties
 		MagAmmo=24
         InventorySize=3
         SightingTime=0.200000
-        PlayerSpeedFactor=1.05
+        
         DisplaceDurationMult=0.5
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'
         AimParams(0)=AimParams'ArenaAimParams'

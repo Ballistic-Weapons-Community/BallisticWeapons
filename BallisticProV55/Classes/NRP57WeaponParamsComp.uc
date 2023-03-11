@@ -13,8 +13,8 @@ defaultproperties
         MaxSpeed=1500.000000
         Damage=150
         DamageRadius=1024.000000
-		HeadMult=1.0
-		LimbMult=1.0
+        HeadMult=2.0f
+        LimbMult=0.67f
         BotRefireRate=0.4
         WarnTargetPct=0.75	
         FireSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Throw',Radius=32.000000,bAtten=True)
@@ -75,7 +75,7 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=UniversalParams
-        PlayerSpeedFactor=1.000000
+        
         MagAmmo=1
         InventorySize=1
 		ViewOffset=(X=8.000000,Y=10.000000,Z=-12.000000)

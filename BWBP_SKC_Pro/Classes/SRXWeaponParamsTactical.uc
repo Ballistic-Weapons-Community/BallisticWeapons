@@ -8,6 +8,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=TacticalStandardEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=3000,Max=6000)
 		RangeAtten=0.75
 		Damage=52
         HeadMult=2.5
@@ -36,6 +37,7 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=TacticalExplosiveEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=3000,Max=6000)
 		RangeAtten=0.75
 		Damage=75
         HeadMult=2.5
@@ -63,6 +65,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalAcidEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
+        DecayRange=(Min=3000,Max=6000)
 		RangeAtten=0.75
 		Damage=40
         HeadMult=2.5

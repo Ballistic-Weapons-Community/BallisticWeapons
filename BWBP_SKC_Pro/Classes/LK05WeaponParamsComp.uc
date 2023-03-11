@@ -8,8 +8,8 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=9000.000000,Max=11000.000000)
-        DecayRange=(Min=1700,Max=4700)
-		RangeAtten=0.400000
+        DecayRange=(Min=1575,Max=3675)
+		RangeAtten=0.67
 		Damage=25
 		DamageType=Class'BWBP_SKC_Pro.DT_LK05Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_LK05AssaultHead'
@@ -62,7 +62,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		SightOffset=(X=10.000000,Y=-8.550000,Z=24.660000)
 		ViewOffset=(X=-6.000000,Y=12.000000,Z=-17.000000)
-		PlayerSpeedFactor=1
+		
 		PlayerJumpFactor=1
 		InventorySize=6
 		SightMoveSpeedFactor=0.9

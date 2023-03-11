@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=11000.000000,Max=12000.000000)
-        DecayRange=(Min=1500,Max=4500)
+        DecayRange=(Min=0,Max=4500)
 		Damage=12
 		DamageType=Class'BWBP_OP_Pro.DTXM20Body'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTXM20Head'
@@ -83,7 +83,7 @@ defaultproperties
 		ReloadAnimRate=1.000000
 		SightOffset=(X=20.000000,Y=16.8500000,Z=29.000000)
 		ViewOffset=(X=4.000000,Y=0.000000,Z=-22.000000)
-		PlayerSpeedFactor=1
+		
 		PlayerJumpFactor=1
 		InventorySize=5
 		SightMoveSpeedFactor=0.9

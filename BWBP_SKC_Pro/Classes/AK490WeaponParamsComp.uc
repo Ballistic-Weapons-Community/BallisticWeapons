@@ -9,11 +9,11 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=13000.000000)
-        DecayRange=(Min=2000,Max=6000)
-		RangeAtten=0.40000
+        DecayRange=(Min=2363,Max=6000)
+		RangeAtten=0.75
 		Damage=28
-		HeadMult=1.5f
-		LimbMult=0.75f
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK47Assault'
@@ -88,7 +88,7 @@ defaultproperties
 
 	Begin Object Class=WeaponParams Name=ArenaParams
 		ReloadAnimRate=1.250000
-		PlayerSpeedFactor=1.000000
+		
 		PlayerJumpFactor=1.000000
 		InventorySize=6
 		SightMoveSpeedFactor=0.9

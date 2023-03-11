@@ -9,10 +9,10 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=13000.000000)
-		RangeAtten=0.950000
+		RangeAtten=0.75
 		Damage=23
-		HeadMult=1.5f
-		LimbMult=0.75f
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DT_AK91Zapped'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK91Zapped'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_AK91Zapped'
@@ -37,7 +37,7 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=600.000000,Max=600.000000)
-		RangeAtten=0.200000
+		RangeAtten=0.2
 		TraceCount=3
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Supercharge'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_GRSXXLaser'

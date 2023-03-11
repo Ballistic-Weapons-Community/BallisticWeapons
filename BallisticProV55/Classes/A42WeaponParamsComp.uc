@@ -97,7 +97,6 @@ defaultproperties
         MagAmmo=18
         InventorySize=2
         SightingTime=0.200000
-        PlayerSpeedFactor=1.050000
         DisplaceDurationMult=0.5
 		ViewOffset=(X=8.000000,Y=10.000000,Z=-10.000000)
 		SightPivot=(Pitch=1024,Roll=-768)

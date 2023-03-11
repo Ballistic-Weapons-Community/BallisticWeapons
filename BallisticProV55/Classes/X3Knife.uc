@@ -153,7 +153,7 @@ defaultproperties
      
      ManualLines(0)="Slashes with the knife. Short range and less damage than other melee weapons."
      ManualLines(1)="Prepared slash. Gains damage over hold time (maximum bonus reached after 1.5 seconds). Deals more damage from behind."
-     ManualLines(2)="The Weapon Function key throws a knife, dealing good damage. Thrown knives have a very short range.||The user's movement speed improves with this weapon active."
+     ManualLines(2)="The Weapon Function key throws a knife, dealing good damage. Thrown knives have a very short range."
      SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePullOut')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifePutaway')

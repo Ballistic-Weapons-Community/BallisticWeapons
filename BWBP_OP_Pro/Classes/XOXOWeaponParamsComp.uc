@@ -73,8 +73,8 @@ defaultproperties
 		Damage=80
 		//DamageRadius=1024.000000
 		MomentumTransfer=4000.000000
-		HeadMult=1.5f
-		LimbMult=0.8f
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BWBP_OP_Pro.DTXOXOShockwave'
 		MuzzleFlashClass=Class'BWBP_OP_Pro.XOXOFlashEmitter'
 		FireSound=(Sound=Sound'BWBP_OP_Sounds.XOXO.XOXO-Fire',Slot=SLOT_Interact,bNoOverride=False)
@@ -229,7 +229,7 @@ defaultproperties
 		ViewOffset=(X=5.000000,Y=6.000000,Z=-9.000000)
 		SightOffset=(X=5.000000,Y=0.650000,Z=12.500000)
 		SightPivot=(Pitch=768)
-		PlayerSpeedFactor=1
+		
 		PlayerJumpFactor=1
 		InventorySize=6
 		SightMoveSpeedFactor=0.9

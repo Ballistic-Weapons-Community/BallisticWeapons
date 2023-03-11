@@ -7,13 +7,13 @@ defaultproperties
     //=================================================================	
 
     Begin Object Class=InstantEffectParams Name=BurstFireEffect
-        DecayRange=(Min=600,Max=1536)
+        DecayRange=(Min=788,Max=1838)
         PenetrationEnergy=8.000000
         TraceRange=(Min=3072,Max=3072)
         Damage=22.000000
-        HeadMult=1.4f
-        LimbMult=0.5f
-        RangeAtten=0.250000
+        HeadMult=2.0f
+        LimbMult=0.67f
+        RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTFifty9SMG'
         DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
         DamageTypeArm=Class'BallisticProV55.DTFifty9SMG'
@@ -31,13 +31,13 @@ defaultproperties
     End Object
 
     Begin Object Class=InstantEffectParams Name=AutoFireEffect
-        DecayRange=(Min=600,Max=1536)
+        DecayRange=(Min=788,Max=1838)
         PenetrationEnergy=8.000000
         TraceRange=(Min=3072,Max=3072)
         Damage=22.000000
-        HeadMult=1.4f
-        LimbMult=0.5f
-        RangeAtten=0.250000
+        HeadMult=2.0f
+        LimbMult=0.67f
+        RangeAtten=0.5
         DamageType=Class'BallisticProV55.DTFifty9SMG'
         DamageTypeHead=Class'BallisticProV55.DTFifty9SMGHead'
         DamageTypeArm=Class'BallisticProV55.DTFifty9SMG'
@@ -140,7 +140,6 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=ArenaParams
-		PlayerSpeedFactor=1.05 
 		DisplaceDurationMult=0.5
         MagAmmo=25        
 		InventorySize=3

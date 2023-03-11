@@ -151,8 +151,8 @@ defaultproperties
 		TraceRange=(Min=200.000000,Max=200.000000)
 		WaterTraceRange=5000.0
 		Damage=50.0
-		HeadMult=1f
-		LimbMult=1f
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DT_RSNovaStab'
 		DamageTypeHead=Class'BallisticProV55.DT_RSNovaStabHead'
 		DamageTypeArm=Class'BallisticProV55.DT_RSNovaStab'

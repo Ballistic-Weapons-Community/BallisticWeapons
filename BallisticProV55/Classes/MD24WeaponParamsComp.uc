@@ -8,11 +8,11 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=4000.000000,Max=4000.000000)
-        DecayRange=(Min=500,Max=2000)
-		RangeAtten=0.200000
+        DecayRange=(Min=788,Max=1838)
+		RangeAtten=0.5
 		Damage=25
-		HeadMult=1.5f
-		LimbMult=0.5f
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DTMD24Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTMD24PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTMD24Pistol'
@@ -64,7 +64,7 @@ defaultproperties
 		ReloadAnimRate=1.350000
 		SightOffset=(X=-15.000000,Y=-0.030000,Z=7.400000)
 		ViewOffset=(X=6.500000,Y=6.000000,Z=-6.500000)
-		PlayerSpeedFactor=1.05
+		
 		SightingTime=0.200000
         DisplaceDurationMult=0.33
         SightMoveSpeedFactor=1

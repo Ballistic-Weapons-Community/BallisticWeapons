@@ -8,8 +8,8 @@ defaultproperties
 	
     Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams
         TraceRange=(Min=2048.000000,Max=2048.000000)
-        DecayRange=(Min=750,Max=1750)
-        RangeAtten=0.500000
+        DecayRange=(Min=500,Max=2000)
+        RangeAtten=0.2
         TraceCount=14
         TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
         ImpactManager=Class'BallisticProV55.IM_Shell'
@@ -41,8 +41,8 @@ defaultproperties
 	
     Begin Object Class=ShotgunEffectParams Name=ArenaSecondaryEffectParams
         TraceRange=(Min=5000.000000,Max=5000.000000)
-        DecayRange=(Min=750,Max=1750)
-        RangeAtten=0.500000
+        DecayRange=(Min=500,Max=2000)
+        RangeAtten=0.2
         TraceCount=7
         TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
         ImpactManager=Class'BallisticProV55.IM_Shell'
@@ -101,7 +101,7 @@ defaultproperties
         SightPivot=(Pitch=768)
 		SightOffset=(X=-30.000000,Z=11.000000)
 		ViewOffset=(X=12.000000,Y=3.000000,Z=-8.500000)
-		PlayerSpeedFactor=1.05
+		
 		DisplaceDurationMult=0.33
 		SightingTime=0.25
 		MagAmmo=8

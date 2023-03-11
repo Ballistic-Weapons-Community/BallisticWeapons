@@ -9,10 +9,10 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=4000,Max=12000)
-		RangeAtten=0.5
+		RangeAtten=0.75
 		Damage=40
-		HeadMult=1.5
-		LimbMult=0.85
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -37,10 +37,10 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaFreezeEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=4000,Max=12000)
-		RangeAtten=0.5
+		RangeAtten=0.75
 		Damage=35
-		HeadMult=1.5
-		LimbMult=0.85
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -66,10 +66,10 @@ defaultproperties
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=4000,Max=12000)
 		WaterTraceRange=5000
-		RangeAtten=0.5
+		RangeAtten=0.75
 		Damage=20
-		HeadMult=1.5
-		LimbMult=0.85
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BWBP_OP_Pro.DTR9A1Rifle'
 		DamageTypeHead=Class'BWBP_OP_Pro.DTR9A1RifleHead'
 		DamageTypeArm=Class'BWBP_OP_Pro.DTR9A1Rifle'
@@ -128,7 +128,7 @@ defaultproperties
 		SightPivot=(Roll=11800)
 		SightOffset=(X=15.000000,Y=2.850000,Z=9.000000)
 		ViewOffset=(Y=9.500000,Z=-11.000000)
-		PlayerSpeedFactor=1
+		
 		PlayerJumpFactor=1
 		InventorySize=6
 		SightMoveSpeedFactor=0.9

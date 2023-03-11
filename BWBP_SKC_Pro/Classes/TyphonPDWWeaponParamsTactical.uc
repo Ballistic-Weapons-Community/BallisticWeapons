@@ -43,7 +43,7 @@ defaultproperties
 		DamageType=Class'BWBP_SKC_Pro.DT_TyphonPDW'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_TyphonPDWHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_TyphonPDW'
-		DecayRange=(Min=900,Max=3600)
+		DecayRange=(Min=1575,Max=3675)
 		TraceRange=(Max=6000.000000)
 		Damage=72.000000
         HeadMult=2.75f

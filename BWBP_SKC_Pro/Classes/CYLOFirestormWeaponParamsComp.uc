@@ -8,8 +8,8 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=10000.000000,Max=12000.000000)
-        DecayRange=(Min=2000,Max=6000)
-		RangeAtten=0.350000
+        DecayRange=(Min=2300,Max=6000)
+		RangeAtten=0.5
 		Damage=30
 		DamageType=Class'BWBP_SKC_Pro.DTCYLOFirestormRifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTCYLOFirestormRifleHead'
@@ -38,7 +38,7 @@ defaultproperties
 	//Dragon's Breath
 	Begin Object Class=ShotgunEffectParams Name=ArenaSecondaryEffectParams_Flame
 		TraceRange=(Min=1572.000000,Max=1572.000000)
-		RangeAtten=0.200000
+		RangeAtten=0.2
 		TraceCount=4
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunFlameLight'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
@@ -137,7 +137,7 @@ defaultproperties
 		SightOffset=(X=15.000000,Y=13.565000,Z=24.785000)
 		SightPivot=(Pitch=900)
 		ViewOffset=(X=8.000000,Z=-14.000000)
-		PlayerSpeedFactor=1
+		
 		PlayerJumpFactor=1
 		InventorySize=6
 		SightMoveSpeedFactor=0.9

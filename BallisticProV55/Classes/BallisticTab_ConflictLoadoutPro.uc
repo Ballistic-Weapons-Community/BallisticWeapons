@@ -346,7 +346,6 @@ function bool GroupPriorityOver(int inserting_group, int target_group)
     switch(inserting_group)
 	{
 		case 1: // melee
-        case 2: // sidearm
 			return inserting_group < target_group;
         case 11:
             return false;

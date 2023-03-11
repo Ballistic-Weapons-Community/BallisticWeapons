@@ -8,7 +8,8 @@ defaultproperties
     //=================================================================	
 		Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 			TraceRange=(Min=15000.000000,Max=15000.000000)
-			RangeAtten=0.35
+            DecayRange=(Min=2363,Max=5000)
+			RangeAtten=0.67
 			Damage=34
 			DamageType=Class'BWBP_OP_Pro.DTM575MG'
 			DamageTypeHead=Class'BWBP_OP_Pro.DTM575MGHead'
@@ -35,6 +36,7 @@ defaultproperties
 	
 	
 		Begin Object Class=InstantEffectParams Name=TacticalSecondaryEffectParams
+            DecayRange=(Min=2363,Max=5000)
 			RangeAtten=0.200000
 			Damage=14
 			DamageType=Class'BWBP_OP_Pro.DTM575Freeze'

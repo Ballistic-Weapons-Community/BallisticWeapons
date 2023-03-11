@@ -9,8 +9,8 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPriStandardEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		Damage=65
-		HeadMult=1.5f
-		LimbMult=0.85f
+        HeadMult=1.75f
+        LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'
@@ -37,8 +37,8 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPriControlledEffectParams
 		TraceRange=(Min=15000.000000,Max=15000.000000)
 		Damage=65
-		HeadMult=1.5f
-		LimbMult=0.85f
+        HeadMult=1.75f
+        LimbMult=0.85f
 		DamageType=Class'BWBP_SKC_Pro.DT_FG50Torso'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_FG50Head'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DT_FG50Limb'

@@ -9,10 +9,10 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaStandardEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=3000,Max=6000)
-		RangeAtten=0.450000
+		RangeAtten=0.75
 		Damage=34
-		HeadMult=1.4f
-		LimbMult=0.8f
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DTSRXRifle'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTSRXRifleHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTSRXRifle'
@@ -37,10 +37,10 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaExplosiveEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=3000,Max=6000)
-		RangeAtten=1.000000
+		RangeAtten=0.75
 		Damage=45
-		HeadMult=1.4f
-		LimbMult=0.8f
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=class'DTSRXRifle_Incendiary';
 		DamageTypeHead=class'DTSRXRifleHead_Incendiary';
 		DamageTypeArm=class'DTSRXRifle_Incendiary';
@@ -65,10 +65,10 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaAcidEffectParams
 		TraceRange=(Min=30000.000000,Max=30000.000000)
         DecayRange=(Min=3000,Max=6000)
-		RangeAtten=1.000000
+		RangeAtten=0.75
 		Damage=25
-		HeadMult=1.4f
-		LimbMult=0.8f
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=class'DTSRXRifle_Corrosive';
 		DamageTypeHead=class'DTSRXRifleHead_Corrosive';
 		DamageTypeArm=class'DTSRXRifle_Corrosive';

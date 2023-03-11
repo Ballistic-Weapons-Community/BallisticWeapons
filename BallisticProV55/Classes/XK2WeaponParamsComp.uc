@@ -8,11 +8,11 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=4096.000000,Max=4096.000000)
-        DecayRange=(Min=750,Max=2750)
-		RangeAtten=0.2
+        DecayRange=(Min=788,Max=1838)
+		RangeAtten=0.5
 		Damage=20
-		HeadMult=1.4f
-		LimbMult=0.6f
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DTXK2SMG'
 		DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
 		DamageTypeArm=Class'BallisticProV55.DTXK2SMG'
@@ -33,10 +33,11 @@ defaultproperties
 	//Ice
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryIceEffectParams
 		TraceRange=(Min=4096.000000,Max=4096.000000)
-		RangeAtten=0.2
+        DecayRange=(Min=788,Max=1838)
+		RangeAtten=0.5
 		Damage=14
-		HeadMult=1.4f
-		LimbMult=0.6f
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DTXK2Freeze'
 		DamageTypeHead=Class'BallisticProV55.DTXK2Freeze'
 		DamageTypeArm=Class'BallisticProV55.DTXK2Freeze'
@@ -107,7 +108,7 @@ defaultproperties
 		SightOffset=(X=5.000000,Z=12.700000)
 		ViewOffset=(X=4.000000,Y=8.000000,Z=-11.000000)
 		DisplaceDurationMult=0.75
-		PlayerSpeedFactor=1.000000
+		
 		MagAmmo=30
 		SightingTime=0.250000
         InventorySize=4

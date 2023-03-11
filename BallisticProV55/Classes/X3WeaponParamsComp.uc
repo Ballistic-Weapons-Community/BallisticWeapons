@@ -38,8 +38,8 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=ArenaPrimaryProjEffectParams
 		Speed=3000
 		Damage=40.0
-		HeadMult=2.5
-		LimbMult=0.6
+        HeadMult=2.0f
+        LimbMult=0.67f
 		SpreadMode=FSM_Rectangle
 		FireSound=(Sound=Sound'BW_Core_WeaponSound.Knife.KnifeThrow',Radius=32.000000,bAtten=True)
 		Recoil=0.0
@@ -115,7 +115,7 @@ defaultproperties
 	//=================================================================	
 
     Begin Object Class=WeaponParams Name=UniversalParams
-        PlayerSpeedFactor=1.10
+        
         DisplaceDurationMult=0.25
         MagAmmo=1
         InventorySize=1

@@ -95,8 +95,8 @@ defaultproperties
         TraceRange=(Min=10000.000000,Max=10000.000000)
         WaterTraceRange=5000
         Damage=11.000000
-        HeadMult=1.5f
-        LimbMult=0.5f
+        HeadMult=2.0f
+        LimbMult=0.67f
         DamageType=Class'BallisticProV55.DTVPRLaser'
         DamageTypeHead=Class'BallisticProV55.DTVPRLaserHead'
         DamageTypeArm=Class'BallisticProV55.DTVPRLaser'

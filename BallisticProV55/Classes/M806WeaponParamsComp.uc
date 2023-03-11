@@ -8,11 +8,11 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=4000,Max=4000)
-        DecayRange=(Min=750,Max=2750)
-		RangeAtten=0.30000
+        DecayRange=(Min=788,Max=1838)
+        RangeAtten=0.67
 		Damage=40
-		HeadMult=1.5f
-		LimbMult=0.5f
+        HeadMult=2.0f
+        LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DTM806Pistol'
 		DamageTypeHead=Class'BallisticProV55.DTM806PistolHead'
 		DamageTypeArm=Class'BallisticProV55.DTM806Pistol'
@@ -82,7 +82,7 @@ defaultproperties
 		WristAdjust=(Yaw=-3500,Pitch=-000)
 		ViewOffset=(X=3.000000,Y=7.000000,Z=-7.000000)
 		DisplaceDurationMult=0.5
-		PlayerSpeedFactor=1.05
+		
 		SightingTime=0.20000
 		MagAmmo=7
         InventorySize=2

@@ -7,8 +7,8 @@ defaultproperties
     //=================================================================	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=8000.000000,Max=8000.000000)
-        DecayRange=(Min=750,Max=2250)
-		RangeAtten=0.40000
+        DecayRange=(Min=788,Max=1838)
+		RangeAtten=0.5
 		Damage=45
 		DamageType=Class'BallisticProV55.DTleMatRevolver'
 		DamageTypeHead=Class'BallisticProV55.DTleMatrevolverHead'
@@ -38,8 +38,8 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=2500.000000,Max=2500.000000)
-        DecayRange=(Min=750,Max=2250)
-		RangeAtten=0.500000
+        DecayRange=(Min=788,Max=1838)
+		RangeAtten=0.5
 		TraceCount=8
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
@@ -101,7 +101,6 @@ defaultproperties
 		WristAdjust=(Yaw=-3000,Pitch=-0000)
 		ViewOffset=(X=15.000000,Y=11.000000,Z=-7.000000)
 		ViewPivot=(Pitch=512)
-		PlayerSpeedFactor=1.050000
         DisplaceDurationMult=0.5
         SightingTime=0.200000
         MagAmmo=9

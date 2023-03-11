@@ -88,8 +88,8 @@ defaultproperties
     RangeAtten=1f
 
     Damage=1
-    HeadMult=1.25f
-    LimbMult=0.7f
+    HeadMult=2.0f
+    LimbMult=0.67f
 
     UseRunningDamage=False
     RunningSpeedThreshold=300

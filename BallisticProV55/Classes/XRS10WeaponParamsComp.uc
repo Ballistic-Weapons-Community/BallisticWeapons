@@ -7,15 +7,15 @@ defaultproperties
     //=================================================================	
 
 	Begin Object Class=InstantEffectParams Name=ArenaPriEffectParams
-		DecayRange=(Min=600,Max=1024)
      	TraceRange=(Min=3072,Max=3072)
-		RangeAtten=0.250000
+        DecayRange=(Min=788,Max=1838)
+		RangeAtten=0.5
      	PenetrationEnergy=8.000000
 		PenetrateForce=135
 		bPenetrate=True
      	Damage=25.000000
-     	HeadMult=1.4f
-     	LimbMult=0.5f
+        HeadMult=2.0f
+        LimbMult=0.67f
      	DamageType=Class'BallisticProV55.DTXRS10SMG'
      	DamageTypeHead=Class'BallisticProV55.DTXRS10SMGHead'
     	DamageTypeArm=Class'BallisticProV55.DTXRS10SMG'
@@ -83,7 +83,7 @@ defaultproperties
 		SightOffset=(X=-15.000000,Z=9.500000)
 		ViewOffset=(X=5.000000,Y=11.000000,Z=-11.000000)
 		DisplaceDurationMult=0.5
-		PlayerSpeedFactor=1.050000
+		
 		MagAmmo=30
 		SightingTime=0.200000
         InventorySize=3

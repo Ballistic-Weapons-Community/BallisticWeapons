@@ -53,21 +53,21 @@ defaultproperties
     //=================================================================	
 	
 		Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
-			Damage=16
-			 HeadMult=1.5f
-			 LimbMult=0.5f
-			 Chaos=0
-			 Recoil=32
-			FlashScaleFactor=0.100000
+            Damage=16
+            HeadMult=2.0f
+            LimbMult=0.67f
+            Chaos=0
+            Recoil=32
+            FlashScaleFactor=0.100000
 		End Object
 		
 		Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParamsOvercharge
-			Damage=15
-			 HeadMult=1.5f
-			 LimbMult=0.5f
-			 Chaos=0
-			 Recoil=32
-			FlashScaleFactor=0.200000
+            Damage=15
+            HeadMult=2.0f
+            LimbMult=0.67f
+            Chaos=0
+            Recoil=32
+            FlashScaleFactor=0.200000
 		End Object
 		
 		Begin Object Class=FireParams Name=ArenaSecondaryFireParams
@@ -91,7 +91,7 @@ defaultproperties
 		SightPivot=(Pitch=600)
 		SightOffset=(X=-10.000000,Y=11.7500000,Z=22.500000)
 		ViewOffset=(X=6.000000,Y=1.000000,Z=-15.000000)
-		PlayerSpeedFactor=1
+		
 		PlayerJumpFactor=1
 		InventorySize=6
 		SightMoveSpeedFactor=0.9

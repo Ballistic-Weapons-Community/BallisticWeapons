@@ -10,7 +10,7 @@ defaultproperties
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=12000.000000,Max=15000.000000)
         DecayRange=(Min=1250,Max=3750)
-		RangeAtten=0.350000
+		RangeAtten=0.67
 		Damage=22
 		DamageType=Class'BWBP_OP_Pro.DT_CX61Chest'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_CX61Head'
@@ -98,7 +98,7 @@ defaultproperties
 		ViewOffset=(X=-3.000000,Y=7.000000,Z=-13.500000)
 		SightOffset=(X=6.000000,Y=-0.350000,Z=22.799999)
 		SightPivot=(Pitch=600)
-		PlayerSpeedFactor=1
+		
 		PlayerJumpFactor=1
 		InventorySize=6
 		SightMoveSpeedFactor=0.9

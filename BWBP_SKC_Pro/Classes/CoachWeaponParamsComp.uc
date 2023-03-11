@@ -9,7 +9,7 @@ defaultproperties
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryShotEffectParams
 		TraceRange=(Min=2560.000000,Max=3072.000000)
         DecayRange=(Min=1000,Max=3000)
-		RangeAtten=0.250000
+		RangeAtten=0.25
 		TraceCount=10
 		TracerClass=Class'BallisticProV55.TraceEmitter_MRTsix'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
@@ -40,7 +40,7 @@ defaultproperties
 	Begin Object Class=ShotgunEffectParams Name=ArenaPrimarySlugEffectParams
 		TraceRange=(Min=9000.000000,Max=9000.000000)
         DecayRange=(Min=1500,Max=5500)
-		RangeAtten=0.250000
+		RangeAtten=0.25
 		TraceCount=1
 	    TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_X83AM'
 		ImpactManager=Class'BWBP_SKC_Pro.IM_ExpBullet'
@@ -104,7 +104,7 @@ defaultproperties
 		ReloadAnimRate=1.500000
 		SightOffset=(X=-40.000000,Y=12.000000,Z=40.000000)
 		ViewOffset=(X=-10.000000,Y=20.000000,Z=-30.000000)
-		PlayerSpeedFactor=1.000000
+		
 		PlayerJumpFactor=1.000000
 		InventorySize=5
 		SightMoveSpeedFactor=0.9

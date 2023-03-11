@@ -8,11 +8,11 @@ defaultproperties
 	
     Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
         TraceRange=(Min=4000.000000,Max=4000.000000)
-        DecayRange=(Min=768,Max=2304)
-        RangeAtten=0.200000
+        DecayRange=(Min=788,Max=1838)
+        RangeAtten=0.5
         Damage=21
-        HeadMult=1.4f
-        LimbMult=0.5f
+        HeadMult=2.0f
+        LimbMult=0.67f
         DamageType=Class'BallisticProV55.DTGRS9Pistol'
         DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
         DamageTypeArm=Class'BallisticProV55.DTGRS9Pistol'
@@ -40,7 +40,7 @@ defaultproperties
     //=================================================================	
 	
     Begin Object Class=InstantEffectParams Name=ArenaSecondaryEffectParams
-        RangeAtten=0.2
+        RangeAtten=0.5
         Damage=14
         DamageType=Class'BallisticProV55.DTGRS9Laser'
         DamageTypeHead=Class'BallisticProV55.DTGRS9LaserHead'
@@ -97,7 +97,6 @@ defaultproperties
 		bDualBlocked=True
         SightOffset=(X=-15.000000,Z=5.900000)
 		ViewOffset=(X=6.000000,Y=8.000000,Z=-9.000000)
-		PlayerSpeedFactor=1.050000
         DisplaceDurationMult=0.5
         SightingTime=0.200000
         MagAmmo=18

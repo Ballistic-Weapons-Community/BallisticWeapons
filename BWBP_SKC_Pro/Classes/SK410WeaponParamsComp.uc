@@ -8,7 +8,7 @@ defaultproperties
 	
     Begin Object Class=ShotgunEffectParams Name=ArenaPrimaryEffectParams
         TraceRange=(Min=2048.000000,Max=2048.000000)
-        DecayRange=(Min=750,Max=2250)
+        DecayRange=(Min=788,Max=1838)
         RangeAtten=0.350000
         TraceCount=7
         TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunHE'
@@ -99,7 +99,7 @@ defaultproperties
 		SightPivot=(Pitch=150)
 		SightOffset=(X=20.000000,Y=-10.000000,Z=22.500000)
 		ViewOffset=(X=-4.000000,Y=13.000000,Z=-16.000000)
-		PlayerSpeedFactor=1.000000
+		
 		PlayerJumpFactor=1.000000
 		InventorySize=5
 		SightMoveSpeedFactor=1
