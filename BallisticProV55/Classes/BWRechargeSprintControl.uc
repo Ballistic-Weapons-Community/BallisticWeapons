@@ -16,6 +16,38 @@ replication
 		ClientDelayRecharge, ClientDodged;
 }
 
+simulated function PostBeginPlay()
+{
+    Super.PostBeginPlay();
+
+    if (Role == ROLE_Authority)
+    {
+        if (class'BallisticReplicationInfo'.static.IsArena())
+        {
+            StaminaDrainRate = 5;
+            StaminaChargeRate = 5;
+            SpeedFactor = 1.35;
+            JumpDrainFactor = 0;
+        }
+
+        else if (class'BallisticReplicationInfo'.static.IsTactical())
+        {
+            StaminaDrainRate = 25;
+            StaminaChargeRate = 35;
+            SpeedFactor = 1.5;
+            JumpDrainFactor = 0;
+        }
+
+        else
+        {
+            StaminaDrainRate = class'Mut_Ballistic'.default.InitStaminaDrainRate;
+            StaminaChargeRate = class'Mut_Ballistic'.default.InitStaminaChargeRate;
+            SpeedFactor = class'Mut_Ballistic'.default.InitSpeedFactor;
+            JumpDrainFactor = class'Mut_Ballistic'.default.JumpDrainFactor;
+        }
+    }
+}
+
 // If Sprint not active, return
 // Sprint not active
 // Multiply groundspeed

@@ -10,7 +10,7 @@
 class BCSprintControl extends Inventory;
 
 var() float		Stamina;			// Stamina level of player. Players can't sprint when this is out
-var() float		MaxStamina;			// Max level of stamina
+var   float     MaxStamina;
 var() float		StaminaDrainRate;	// Amount of stamina lost each second when sprinting
 var() float		StaminaChargeRate;	// Amount of stamina gained each second when not sprinting
 var   bool		bSprinting;			// Currently sprinting
@@ -22,6 +22,9 @@ var float       JumpDrainFactor;
 
 replication
 {
+    reliable if (Role == ROLE_Authority && bNetInitial)
+        StaminaDrainRate, StaminaChargeRate, SpeedFactor, JumpDrainFactor;
+
 	reliable if (Role == ROLE_Authority)
 		bSprintActive, ClientJumped;
 }

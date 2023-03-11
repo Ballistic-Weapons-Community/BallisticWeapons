@@ -208,26 +208,8 @@ function class<Actor> GetNewItem(int Index, optional bool bNoUnique, optional cl
 function CreateSprintControl(xPawn P)
 {	
     local BCSprintControl SC;
-    
+
     SC = Spawn(class'BWRechargeSprintControl', P);
-    SC.Stamina = 100;
-    SC.MaxStamina = 100;
-
-    if (class'BallisticReplicationInfo'.static.IsArena())
-    {
-        SC.StaminaDrainRate = 10;
-        SC.StaminaChargeRate = 20;
-        SC.SpeedFactor = 1.35;
-        SC.JumpDrainFactor = 0;
-    }
-
-    else
-    {
-        SC.StaminaDrainRate = InitStaminaDrainRate;
-        SC.StaminaChargeRate = InitStaminaChargeRate;
-        SC.SpeedFactor = InitSpeedFactor;
-        SC.JumpDrainFactor = JumpDrainFactor;
-    }
 
     SC.GiveTo(P);
     Sprinters[Sprinters.length] = SC;
