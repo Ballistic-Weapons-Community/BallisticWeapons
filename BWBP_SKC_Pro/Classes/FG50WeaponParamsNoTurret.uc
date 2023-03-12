@@ -34,7 +34,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		PlayerSpeedFactor=0.850000
 		PlayerJumpFactor=0.850000
-		InventorySize=12
+		InventorySize=7
 		SightMoveSpeedFactor=0.7
 		SightingTime=0.60000		
 		DisplaceDurationMult=1.4

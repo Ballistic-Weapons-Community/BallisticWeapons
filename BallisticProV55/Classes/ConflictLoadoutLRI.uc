@@ -47,10 +47,9 @@ var array<string> 		Loadout;								// Current loadout
 
 struct InventoryEntry
 {
-    var string  ClassName;
-    var string  ItemName;
-    var byte    InventoryGroup;
-    var byte    InventorySize;
+    var string                  ClassName;
+    var class<BallisticWeapon>  WeaponClass;
+    var byte                    InventorySize;
 };
 
 var array<InventoryEntry> 		FullInventoryList;					// List of all weapons available
@@ -338,8 +337,7 @@ static final function InventoryEntry GenerateFromClass(class<BallisticWeapon> We
     local InventoryEntry IE;
 
     IE.ClassName 		 = string(Weap);
-    IE.ItemName			 = Weap.default.ItemName;
-	IE.InventoryGroup	 = Weap.default.InventoryGroup;
+    IE.WeaponClass       = Weap;
 	IE.InventorySize	 = Weap.static.GetInventorySize();
 
     return IE;
@@ -366,12 +364,14 @@ simulated function SortList()
 
 	for (i=0; i < FullInventoryList.length; i++)
 	{
+        /*
         // handle conflict items
 		if (InStr(FullInventoryList[i].ClassName, "CItem") != -1)
         {
 			ConflictItems[ConflictItems.Length] = FullInventoryList[i].ClassName;
             continue;
         }
+        */
 
         // load weapon
         Weap = class<BallisticWeapon>(DynamicLoadObject(FullInventoryList[i].ClassName, class'Class'));
@@ -386,7 +386,7 @@ simulated function SortList()
             continue;
         }
 
-        // convert weapon class to cache weaponinfo
+        // convert weapon class to inventory entry
         Current = GenerateFromClass(Weap);
 
         if (Sorted.Length == 0)
@@ -395,7 +395,7 @@ simulated function SortList()
             continue;
         }
 
-        CurrentGroup = Current.InventoryGroup;
+        CurrentGroup = Current.WeaponClass.default.InventoryGroup;
         
         if (CurrentGroup == 0)
             CurrentGroup = 10;
@@ -403,7 +403,7 @@ simulated function SortList()
         for (j = 0; j < Sorted.Length; ++j)
         {
             // first check relative inventory group
-            SortedGroup = Sorted[j].InventoryGroup;
+            SortedGroup = Sorted[j].WeaponClass.default.InventoryGroup;
             
             if (SortedGroup == 0)
                 SortedGroup = 10;
@@ -425,7 +425,7 @@ simulated function SortList()
                 continue;
 
             // same inventory size - check string ordering
-            if (StrCmp(Current.ItemName, Sorted[j].ItemName, 6, True) <= 0)
+            if (StrCmp(Current.WeaponClass.default.ItemName, Sorted[j].WeaponClass.default.ItemName, 6, True) <= 0)
                 break;
         }
 
@@ -438,6 +438,7 @@ simulated function SortList()
 		FullInventoryList[i] = Sorted[i];
     }
 	
+    /*
 	j = i;
 		
 	for (i = 0; i < ConflictItems.Length; ++i)
@@ -447,6 +448,7 @@ simulated function SortList()
         FullInventoryList[j].InventoryGroup = 12;
 		++j;	
 	}
+    */
 }
 
 //===================================================

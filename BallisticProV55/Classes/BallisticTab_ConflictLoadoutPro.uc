@@ -20,6 +20,7 @@ var int                     SectionSizes[2];
 var int                     SpaceUsed[2];
 
 var automated GUIListBox	lb_Weapons;
+var GUIList                 li_Weapons;
 var Automated GUIImage		Box_WeapList, Box_Inventory, Pic_Weapon, Box_WeapIcon;
 var automated GUILabel   	l_WeapTitle;
 var automated GUIScrollTextBox	tb_Desc;
@@ -62,9 +63,11 @@ var ConflictLoadoutLRI CLRI;
 
 var bool bWaitingWeaps, bWaitingSkill;
 
+var GUIStyles 	ConflictListStyle;
+
 // Check for PRI update
 function InitPanel()
-{
+{   
 	super.InitPanel();
 	
 	Initialize();
@@ -72,11 +75,20 @@ function InitPanel()
 
 function Initialize()
 {
+    local eFontScale FS;
+
 	if (bInitialized)
 		return;
 
-	lb_Weapons.List.OnChange = InternalOnChange;
-	lb_Weapons.List.OnDblClick = InternalOnDblClick;
+    Controller.RegisterStyle(class'STY2ConflictList', true);
+
+    ConflictListStyle = Controller.GetStyle("ConflictList", FS);
+
+    li_Weapons = lb_Weapons.List;
+
+    li_Weapons.OnDrawItem = OnDrawConflictItem;
+	li_Weapons.OnChange = InternalOnChange;
+	li_Weapons.OnDblClick = InternalOnDblClick;
 	
 	CLRI = ConflictLoadoutLRI(class'Mut_Ballistic'.static.GetBPRI(PlayerOwner().PlayerReplicationInfo));
 	
@@ -208,7 +220,7 @@ simulated function InitWeaponLists ()
 	l_Loading.Caption = "";
 	l_Loading.Hide();
 
-	lb_Weapons.List.Clear();
+	li_Weapons.Clear();
 
 	//Only explicitly load saved inventory.	
 	Inventory.length = 0;
@@ -249,25 +261,25 @@ simulated function InitWeaponLists ()
 			if (lastIndex != -1)
 			{
 				lastIndex = -1;
-				lb_Weapons.List.Add("Misc",,"Mc",true);
+				li_Weapons.Add("Misc",,"Mc",true);
 			}
 			
 			CI = class<ConflictItem>(DynamicLoadObject(CLRI.FullInventoryList[i].ClassName, class'Class'));
 			
 			if (CI != None)
-				lb_Weapons.List.Add(CI.default.ItemName, , CLRI.FullInventoryList[i].ClassName);
+				li_Weapons.Add(CI.default.ItemName, , CLRI.FullInventoryList[i].ClassName);
 		}
 		
         // handle weapons
 		else 
 		{
-            if (CLRI.FullInventoryList[i].InventoryGroup != lastIndex)
+            if (CLRI.FullInventoryList[i].WeaponClass.default.InventoryGroup != lastIndex)
             {
-                lastIndex = CLRI.FullInventoryList[i].InventoryGroup;
-                lb_Weapons.List.Add(class'BallisticWeaponClassInfo'.static.GetHeading(lastIndex),, "Weapon Category", true);
+                lastIndex = CLRI.FullInventoryList[i].WeaponClass.default.InventoryGroup;
+                li_Weapons.Add(class'BallisticWeaponClassInfo'.static.GetHeading(lastIndex),, "Weapon Category", true);
             }
             
-            lb_Weapons.List.Add(CLRI.FullInventoryList[i].ItemName, , CLRI.FullInventoryList[i].ClassName);
+            li_Weapons.Add(CLRI.FullInventoryList[i].WeaponClass.default.ItemName, CLRI.FullInventoryList[i].WeaponClass, string(CLRI.FullInventoryList[i].WeaponClass));
 		}
 	}
 }
@@ -499,9 +511,9 @@ function bool HandleConflictItem(class<actor> InvClass, string FriendlyName)
 //Add inventory to the bottom bar
 function bool InternalOnDblClick(GUIComponent Sender)
 {
-	if (Sender==lb_Weapons.List)
+	if (Sender==li_Weapons)
 	{
-		AddInventory(string(lb_Weapons.List.GetObject()), class<actor>(lb_Weapons.List.GetObject()), lb_Weapons.List.Get());
+		AddInventory(string(li_Weapons.GetObject()), class<Actor>(li_Weapons.GetObject()), li_Weapons.Get());
 	}
 
 	return true;
@@ -619,47 +631,51 @@ function InternalOnChange(GUIComponent Sender)
 {
 	local class<BallisticWeapon> BW;
 	
-	if (Sender==lb_Weapons.List)
+	if (Sender==li_Weapons)
 	{
-		l_WeapTitle.Caption = lb_Weapons.List.SelectedText();
+		l_WeapTitle.Caption = li_Weapons.SelectedText();
 		
 		//Section header.
-		if (lb_Weapons.List.IsSection())
+		if (li_Weapons.IsSection())
 		{
-			tb_Desc.SetContent(class'BallisticWeaponClassInfo'.static.GetClassDescription(lb_Weapons.List.SelectedText()));
+			tb_Desc.SetContent(class'BallisticWeaponClassInfo'.static.GetClassDescription(li_Weapons.SelectedText()));
 			Pic_Weapon.Image = None;
 			return;
 		}
 
 		//Check for items which have already been loaded.
-		if (lb_Weapons.List.GetObject() != None)
+		if (li_Weapons.GetObject() != None)
 		{
-			if (class<BallisticWeapon>(lb_Weapons.List.GetObject()) != None)
+			if (class<BallisticWeapon>(li_Weapons.GetObject()) != None)
 			{
-				Pic_Weapon.Image = class<BallisticWeapon>(lb_Weapons.List.GetObject()).default.BigIconMaterial;
-				tb_Desc.SetContent(class<BallisticWeapon>(lb_Weapons.List.GetObject()).static.GetShortManual());
+				Pic_Weapon.Image = class<BallisticWeapon>(li_Weapons.GetObject()).default.BigIconMaterial;
+				tb_Desc.SetContent(class<BallisticWeapon>(li_Weapons.GetObject()).static.GetShortManual());
 				return;
 			}
-			if (class<ConflictItem>(lb_Weapons.List.GetObject()) != None)
+			if (class<ConflictItem>(li_Weapons.GetObject()) != None)
 			{
-				Pic_Weapon.Image = class<ConflictItem>(lb_Weapons.List.GetObject()).default.Icon;
-				tb_Desc.SetContent(class<ConflictItem>(lb_Weapons.List.GetObject()).default.Description);
+				Pic_Weapon.Image = class<ConflictItem>(li_Weapons.GetObject()).default.Icon;
+				tb_Desc.SetContent(class<ConflictItem>(li_Weapons.GetObject()).default.Description);
 				return;
 			}
 			return;
 		}
 		
-		//Item not loaded. Load it and add it as the Object for the weapons list's current position.
-		if (lb_Weapons.List.GetExtra() != "")
+        /*
+        // All items should now be loaded before adding - Azarael
+
+        //Item not loaded. Load it and add it as the Object for the weapons list's current position.
+		if (li_Weapons.GetExtra() != "")
 		{
-			BW = class<BallisticWeapon>(DynamicLoadObject(lb_Weapons.List.GetExtra(), class'Class'));
+			BW = class<BallisticWeapon>(DynamicLoadObject(li_Weapons.GetExtra(), class'Class'));
 			if (BW != None)
 			{
 				Pic_Weapon.Image = BW.default.BigIconMaterial;
 				tb_Desc.SetContent(BW.static.GetShortManual());
-				lb_Weapons.List.SetObjectAtIndex(lb_Weapons.List.Index, BW);
+				li_Weapons.SetObjectAtIndex(li_Weapons.Index, BW);
 			}
 		}
+        */
 	}	
 }
 
@@ -678,6 +694,88 @@ function UpdateInventory()
 	class'ConflictLoadoutConfig'.static.UpdateSavedInventory(Inventory);
 
 	CLRI.OnInventoryUpdated();
+}
+
+//=========================================================
+// DrawInventory
+//=========================================================
+function OnDrawConflictItem(Canvas Canvas, int i, float X, float Y, float W, float H, bool bSelected, bool bPending)
+{
+    local eMenuState m;
+    local eFontScale F;
+    local float xl,yl;
+    local GUIStyles style;
+    local float mX, mY, BarW;
+    local bool bIsSection;
+    local string s;
+    local class<BallisticWeapon> BW;
+    local int inv_size;
+
+    F = FNS_Medium;
+
+    Y += H*0.1;
+    H -= H*0.2;
+
+    if ( bSelected )
+    {
+        m = MSAT_Focused;
+    }
+    else
+    {
+        m = MSAT_Blurry;
+    }
+
+    if (li_Weapons.Elements[i].bSection)
+    {
+        // C++ code to draw section
+        style = li_Weapons.SectionStyle;
+        style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
+
+		mX = X + (W/2);
+		mY = Y + (H/2);
+
+        style.DrawText( Canvas, m, mX-(XL/2), mY-(YL/2), XL, YL, TXTA_Center, li_Weapons.GetItemAtIndex(i), F);
+        
+        BarW = ((W - XL) /2) * 0.8;
+
+        Canvas.SetPos(X + BarW * 0.1, mY - 2);
+        Canvas.SetDrawColor(255,128,64,255);
+		Canvas.DrawTile(Controller.DefaultPens[0], BarW, 5, 0, 0, 8, 8);
+		
+        Canvas.SetPos(mX + (XL/2) + BarW * 0.1, mY-2);
+        Canvas.SetDrawColor(255,128,64,255);
+        Canvas.DrawTile(Controller.DefaultPens[0], BarW, 5, 0, 0, 8, 8);
+
+        return;
+    }
+
+    style = ConflictListStyle;
+
+    if (bSelected)
+    {
+        Canvas.SetPos(X,Y);
+        Canvas.SetDrawColor(32,32,128,255);		// FIXME: Add a var
+        Canvas.DrawTile(Controller.DefaultPens[0], W, H, 0, 0, 2, 2);
+    }
+
+    style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
+    style.DrawText( Canvas, m, X, Y, W, YL, TXTA_Left, li_Weapons.GetItemAtIndex(i), F);
+
+    // need to derive inventory offset from 
+    BW = class<BallisticWeapon>(li_Weapons.GetObjectAtIndex(i));
+
+    inv_size = BW.static.GetInventorySize();
+
+    // must work out how to get this information
+    if (inv_size != 1)
+    {
+        s = inv_size $ " slots"; 
+    }
+    else 
+        s = "1 slot";
+
+    style.TextSize(Canvas, m, s, XL, YL, F);
+    style.DrawText( Canvas, m, X + W - XL, Y, XL, YL, TXTA_Right, s, F);
 }
 
 //=========================================================
@@ -837,6 +935,9 @@ defaultproperties
          WinWidth=0.400000
          WinHeight=0.580000
          RenderWeight=0.520000
+         StyleName="Page"
+		 SelectedStyleName="Page"
+         FontScale=FNS_Medium
          TabOrder=1
      End Object
      lb_Weapons=GUIListBox'BallisticProV55.BallisticTab_ConflictLoadoutPro.lb_WeaponsList'
