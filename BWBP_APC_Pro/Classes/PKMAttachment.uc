@@ -21,7 +21,7 @@ replication
 simulated Event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (PKMMachinegun(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsArena())
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq';
 	}
@@ -72,7 +72,7 @@ simulated Event PostNetBeginPlay()
 	super.PostNetBeginPlay();
 	if (BallisticTurret(Instigator) != None)
 		bHidden=true;
-	if (PKMMachinegun(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsArena())
 	{
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Tranq';
 	}

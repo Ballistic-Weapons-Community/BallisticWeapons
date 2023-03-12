@@ -98,7 +98,6 @@ defaultproperties
 	AIReloadTime=1.500000
 
 	AttachmentClass=Class'BWBP_APC_Pro.HB4Attachment'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	BigIconMaterial=Texture'BWBP_CC_Tex.HoloBlaster.BigIcon_HoloBlaster'
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806Pullout')
 	BringUpTime=0.900000

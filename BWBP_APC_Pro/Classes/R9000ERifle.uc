@@ -269,7 +269,6 @@ defaultproperties
 
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_CC_Tex.ElementalSniper.BigIcon_R9000E'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      ManualLines(0)="Bolt-action sniper rifle fire with Regular, Incendiary & Radiation rounds. High damage, long range, slow fire rate and deals damage to targets near the struck target."
      ManualLines(1)="Engages the scope."

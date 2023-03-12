@@ -521,7 +521,6 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_JCF_Tex.HKMK.BigIcon_HKMK'
 	BigIconCoords=(X1=64,Y1=70,X2=418)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic 10mm fire. Moderate damage and fire rate. Has the option of burst fire."
 	ManualLines(1)="Attaches a suppressor, reducing the effective range but removing the flash and reducing the noise output."

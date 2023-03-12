@@ -83,7 +83,6 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_SKC_TexExp.Thumper.BigIcon_Thumper'
 	BigIconCoords=(Y1=30,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
 	bWT_Projectile=True
 	SpecialInfo(0)=(Info="210.0;30.0;0.95;80.0;0.0;0.8;0.8")

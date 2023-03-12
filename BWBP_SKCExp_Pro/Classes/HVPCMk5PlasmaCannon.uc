@@ -42,7 +42,7 @@ replication
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		HVPCMk5PrimaryFire(FireMode[0]).ProjectileCount = 1;
 		HVPCMk5PrimaryFire(FireMode[0]).HeatPerShot = 1.0;
@@ -792,7 +792,6 @@ defaultproperties
      UsedAmbientSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Ambient'
      AIReloadTime=0.200000
      BigIconMaterial=Texture'BWBP_SKC_TexExp.EVPC.BigIcon_EVPC'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Hazardous=True
      bWT_Energy=True
      bWT_Super=True

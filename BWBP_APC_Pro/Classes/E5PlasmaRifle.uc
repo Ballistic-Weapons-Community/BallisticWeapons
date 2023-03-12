@@ -437,7 +437,6 @@ defaultproperties
 	BigIconCoords=(Y1=36,Y2=225)
 	SightFXClass=Class'BWBP_APC_Pro.E5ClipEffect'
 	SightFXBone="MagFX"
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_RapidProj=True
 	bWT_Energy=True
 	ManualLines(0)="Series mode fires a continuous stream of high damage projectiles, which gain damage over range.|Multi mode fires three projectiles simultaneously in a spread pattern, mimicking a shotgun."

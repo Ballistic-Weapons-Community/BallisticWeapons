@@ -33,7 +33,7 @@ simulated function PreBeginPlay()
     if (BW == None)
         return;
 
-    BW.default.ParamsClasses[BW.GameStyleIndex].static.OverrideProjectileParams(BW, self, 2);
+    BW.default.ParamsClasses[BW.GameStyleIndex].static.OverrideProjectileParams(self, 2);
 }
 
 

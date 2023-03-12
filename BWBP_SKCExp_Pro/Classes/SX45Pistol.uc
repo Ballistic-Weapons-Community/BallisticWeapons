@@ -508,7 +508,6 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_TexExp.SX45.BigIcon_SX45'
 	BigIconCoords=(X1=64,Y1=70,X2=418)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic .45 ACP Fire. Moderate damage and fire rate."
 	ManualLines(1)="Attach/Detach AMP. With a Choice of Radiation Bullets and Cryogenic Bullets"

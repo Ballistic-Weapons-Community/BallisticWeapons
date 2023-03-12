@@ -543,7 +543,6 @@ defaultproperties
     LaserOffSound=Sound'BW_Core_WeaponSound.M806.M806LSight'
 	BigIconMaterial=Texture'BWBP_CC_Tex.RL.BigIcon_CruRL'
 	BigIconCoords=(Y1=36,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
 	bWT_Splash=True
 	bWT_Projectile=True

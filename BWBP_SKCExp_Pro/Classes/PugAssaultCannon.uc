@@ -623,7 +623,6 @@ defaultproperties
 	AIReloadTime=1.500000
 	BigIconMaterial=Texture'BWBP_SKC_TexExp.Pug.BigIcon_Pug'
 	BigIconCoords=(Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	bNeedCock=False
 	bCockAfterReload=False

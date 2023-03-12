@@ -13,7 +13,7 @@ class SPASShotgun extends BallisticProShotgun;
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsArena())
 	{
 		FireModeClass[0]=Class'BWBP_JCF_Pro.SPASPrimarySlugFire';
 		FireModeClass[1]=Class'BCoreProV55.BallisticScopeFire';
@@ -108,7 +108,6 @@ defaultproperties
 {
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_JCF_Tex.SPAS.BigIcon_SPAS'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Shotgun=True
      SpecialInfo(0)=(Info="240.0;30.0;1.5;100.0;0.0;2.0;-999.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')

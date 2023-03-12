@@ -67,7 +67,6 @@ defaultproperties
      PinPullSound=(Sound=Sound'BW_Core_WeaponSound.M50.M50CamDie')
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SWC_Tex.NTOV.BigIcon_NTOV'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Grenade=True
      SpecialInfo(0)=(Info="0.0;5.0;-999.0;25.0;-999.0;0.0;0.5")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.NRP57.NRP57-Pullout')

@@ -25,7 +25,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (GASCPistol(Instigator.Weapon).BCRepClass.default.GameStyle != 0)
+	if (class'BallisticReplicationInfo'.static.IsArena())
 	{
 		TracerChance=1;
 		TracerMix=0;

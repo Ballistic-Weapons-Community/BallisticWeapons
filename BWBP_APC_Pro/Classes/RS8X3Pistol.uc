@@ -491,7 +491,6 @@ defaultproperties
 	MeleeFireClass=Class'BWBP_APC_Pro.RS8X3MeleeFire'
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_RS8'
 	BigIconCoords=(X1=64,Y1=70,X2=418)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	ManualLines(0)="Semi-automatic 10mm fire. Moderate damage and fire rate. Has the option of burst fire."
 	ManualLines(1)="Attaches a suppressor, reducing the effective range but removing the flash and reducing the noise output."
@@ -511,7 +510,7 @@ defaultproperties
 	bNoCrosshairInScope=True
 	SightOffset=(X=-15.000000,Z=8.700000)
 	SightDisplayFOV=60.000000
-	ParamsClasses(0)=Class'RS8WeaponParams'
+	ParamsClasses(0)=Class'RS8WeaponParamsComp'
 	ParamsClasses(1)=Class'RS8WeaponParamsClassic'
 	ParamsClasses(2)=Class'RS8WeaponParamsRealistic'
 	FireModeClass(0)=Class'BWBP_APC_Pro.RS8X3PrimaryFire'

@@ -73,9 +73,7 @@ simulated event Timer()
 }
 
 simulated function InitProjectile ()
-{   
-	Velocity = Speed * Vector(VelocityDir);
-	
+{   	
 	if (RandomSpin != 0 && !bNoInitialSpin)
 		RandSpin(RandomSpin);
 
