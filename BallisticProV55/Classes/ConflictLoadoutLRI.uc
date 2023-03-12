@@ -47,9 +47,10 @@ var array<string> 		Loadout;								// Current loadout
 
 struct InventoryEntry
 {
-    var string                  ClassName;
-    var class<BallisticWeapon>  WeaponClass;
-    var byte                    InventorySize;
+    var string  ClassName;
+    var string  ItemName;
+    var byte    InventoryGroup;
+    var byte    InventorySize;
 };
 
 var array<InventoryEntry> 		FullInventoryList;					// List of all weapons available
@@ -332,13 +333,14 @@ simulated function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.
 	return true;
 }
 
-static final function InventoryEntry GenerateFromClass(class<BallisticWeapon> Weap)
+static final function InventoryEntry GenerateFromWeaponInfo(BC_WeaponInfoCache.WeaponInfo WI)
 {
     local InventoryEntry IE;
 
-    IE.ClassName 		 = string(Weap);
-    IE.WeaponClass       = Weap;
-	IE.InventorySize	 = Weap.static.GetInventorySize();
+    IE.ClassName 		 = WI.ClassName;
+    IE.ItemName			 = WI.ItemName;
+	IE.InventoryGroup	 = WI.InventoryGroup;
+	IE.InventorySize	 = WI.InventorySize;
 
     return IE;
 }
@@ -355,10 +357,10 @@ static final function InventoryEntry GenerateFromClass(class<BallisticWeapon> We
 simulated function SortList()
 {
 	local int i, j;
+	local BC_WeaponInfoCache.WeaponInfo WI;
 	local InventoryEntry Current;
 	local array<InventoryEntry> Sorted;
 	local array<string> ConflictItems;
-    local class<BallisticWeapon> Weap;
 	
 	local int CurrentGroup, SortedGroup;
 
@@ -373,12 +375,9 @@ simulated function SortList()
         }
         */
 
-        // load weapon
-        Weap = class<BallisticWeapon>(DynamicLoadObject(FullInventoryList[i].ClassName, class'Class'));
-	
-        if (Weap == None) //if (!LoadWIFromCache(FullInventoryList[i], WI))
+        if (!LoadWIFromCache(FullInventoryList[i].ClassName, WI))
         {
-            Log("ConflictLoadoutLRI: Couldn't load "$FullInventoryList[i].ClassName$": not found, or not a Ballistic weapon.");
+            Log("ConflictLoadoutLRI: Couldn't load "$FullInventoryList[i].ClassName$" from cache.");
 
             FullInventoryList.Remove(i, 1);
             --i;
@@ -387,7 +386,7 @@ simulated function SortList()
         }
 
         // convert weapon class to inventory entry
-        Current = GenerateFromClass(Weap);
+        Current = GenerateFromWeaponInfo(WI);
 
         if (Sorted.Length == 0)
         {
@@ -395,7 +394,7 @@ simulated function SortList()
             continue;
         }
 
-        CurrentGroup = Current.WeaponClass.default.InventoryGroup;
+        CurrentGroup = Current.InventoryGroup;
         
         if (CurrentGroup == 0)
             CurrentGroup = 10;
@@ -403,7 +402,7 @@ simulated function SortList()
         for (j = 0; j < Sorted.Length; ++j)
         {
             // first check relative inventory group
-            SortedGroup = Sorted[j].WeaponClass.default.InventoryGroup;
+            SortedGroup = Sorted[j].InventoryGroup;
             
             if (SortedGroup == 0)
                 SortedGroup = 10;
@@ -425,7 +424,7 @@ simulated function SortList()
                 continue;
 
             // same inventory size - check string ordering
-            if (StrCmp(Current.WeaponClass.default.ItemName, Sorted[j].WeaponClass.default.ItemName, 6, True) <= 0)
+            if (StrCmp(Current.ItemName, Sorted[j].ItemName, 6, True) <= 0)
                 break;
         }
 

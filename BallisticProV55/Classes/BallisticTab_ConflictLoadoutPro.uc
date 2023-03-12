@@ -267,19 +267,19 @@ simulated function InitWeaponLists ()
 			CI = class<ConflictItem>(DynamicLoadObject(CLRI.FullInventoryList[i].ClassName, class'Class'));
 			
 			if (CI != None)
-				li_Weapons.Add(CI.default.ItemName, , CLRI.FullInventoryList[i].ClassName);
+				li_Weapons.Add(CI.default.ItemName, , string(i));
 		}
 		
         // handle weapons
 		else 
 		{
-            if (CLRI.FullInventoryList[i].WeaponClass.default.InventoryGroup != lastIndex)
+            if (CLRI.FullInventoryList[i].InventoryGroup != lastIndex)
             {
-                lastIndex = CLRI.FullInventoryList[i].WeaponClass.default.InventoryGroup;
+                lastIndex = CLRI.FullInventoryList[i].InventoryGroup;
                 li_Weapons.Add(class'BallisticWeaponClassInfo'.static.GetHeading(lastIndex),, "Weapon Category", true);
             }
             
-            li_Weapons.Add(CLRI.FullInventoryList[i].WeaponClass.default.ItemName, CLRI.FullInventoryList[i].WeaponClass, string(CLRI.FullInventoryList[i].WeaponClass));
+            li_Weapons.Add(CLRI.FullInventoryList[i].ItemName, , string(i));
 		}
 	}
 }
@@ -630,6 +630,7 @@ function bool InternalOnRightClick(GUIComponent Sender)
 function InternalOnChange(GUIComponent Sender)
 {
 	local class<BallisticWeapon> BW;
+    local int inv_offset;
 	
 	if (Sender==li_Weapons)
 	{
@@ -660,22 +661,22 @@ function InternalOnChange(GUIComponent Sender)
 			}
 			return;
 		}
-		
-        /*
-        // All items should now be loaded before adding - Azarael
 
-        //Item not loaded. Load it and add it as the Object for the weapons list's current position.
-		if (li_Weapons.GetExtra() != "")
-		{
-			BW = class<BallisticWeapon>(DynamicLoadObject(li_Weapons.GetExtra(), class'Class'));
-			if (BW != None)
-			{
-				Pic_Weapon.Image = BW.default.BigIconMaterial;
-				tb_Desc.SetContent(BW.static.GetShortManual());
-				li_Weapons.SetObjectAtIndex(li_Weapons.Index, BW);
-			}
-		}
-        */
+        if (li_Weapons.GetObject() == None) //Item not loaded. Load it and add it as the Object for the weapons list's current position.
+        {
+             inv_offset = int(li_Weapons.GetExtra());
+
+            if (inv_offset != -1)
+            {
+                BW = class<BallisticWeapon>(DynamicLoadObject(CLRI.FullInventoryList[inv_offset].ClassName, class'Class'));
+                if (BW != None)
+                {
+                    Pic_Weapon.Image = BW.default.BigIconMaterial;
+                    tb_Desc.SetContent(BW.static.GetShortManual());
+                    li_Weapons.SetObjectAtIndex(li_Weapons.Index, BW);
+                }
+            }
+        }
 	}	
 }
 
@@ -708,7 +709,7 @@ function OnDrawConflictItem(Canvas Canvas, int i, float X, float Y, float W, flo
     local float mX, mY, BarW;
     local bool bIsSection;
     local string s;
-    local class<BallisticWeapon> BW;
+    local int inv_offset;
     local int inv_size;
 
     F = FNS_Medium;
@@ -761,12 +762,10 @@ function OnDrawConflictItem(Canvas Canvas, int i, float X, float Y, float W, flo
     style.TextSize(Canvas,m, li_Weapons.GetItemAtIndex(i),XL,YL,F);
     style.DrawText( Canvas, m, X, Y, W, YL, TXTA_Left, li_Weapons.GetItemAtIndex(i), F);
 
-    // need to derive inventory offset from 
-    BW = class<BallisticWeapon>(li_Weapons.GetObjectAtIndex(i));
+    inv_offset = int(li_Weapons.GetExtraAtIndex(i));
 
-    inv_size = BW.static.GetInventorySize();
+    inv_size = CLRI.FullInventoryList[inv_offset].InventorySize;
 
-    // must work out how to get this information
     if (inv_size != 1)
     {
         s = inv_size $ " slots"; 
