@@ -277,7 +277,6 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.000000
      BigIconMaterial=Texture'BWBP_SKC_TexExp.M1911.BigIcon_RS04'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      SpecialInfo(0)=(Info="60.0;6.0;1.0;110.0;0.2;0.0;0.0")
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.RS04-Draw')

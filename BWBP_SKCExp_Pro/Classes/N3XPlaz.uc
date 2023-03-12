@@ -351,7 +351,6 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_TexExp.PlasAxe.BigIcon_PlasAxe'
      BigIconCoords=(X1=96,Y1=10,X2=418,Y2=245)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Heal=True
      SpecialInfo(0)=(Info="0.0;-999.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      WeaponModes(0)=(ModeName="Strikes")

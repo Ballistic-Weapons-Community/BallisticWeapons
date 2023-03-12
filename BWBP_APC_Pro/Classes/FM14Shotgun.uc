@@ -294,7 +294,6 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BWBP_CC_Tex.FM14.BigIcon_FM14'
 	BigIconCoords=(Y1=35,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Shotgun=True
 	ManualLines(0)="Long-ranged pump-action shotgun fire. Slug rounds and high damage, but relatively slow fire rate. Sustained damage output is lower than that of shorter-ranged shotguns."
 	ManualLines(1)="Loads a Flak shell. Once loaded, the Flak shell can be fired, generating an array of shrapnel when it explodes. This shrapnel can poisen the target and deal damage over time"

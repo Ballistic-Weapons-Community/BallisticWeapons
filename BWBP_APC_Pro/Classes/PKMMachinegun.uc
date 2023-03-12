@@ -328,7 +328,6 @@ defaultproperties
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BWBP_CC_Tex.PKM.BigIcon_PKMA'
      BigIconCoords=(Y1=50,Y2=240)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      bWT_Machinegun=True
      ManualLines(0)="Automatic 7.62mm fire. Has a high rate of fire, moderate damage and good sustained damage output. As a machinegun, it has a very long effective range. Large magazine capacity allows the weapon to fire for a long time, but the reload time is long."

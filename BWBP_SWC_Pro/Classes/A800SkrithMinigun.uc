@@ -233,7 +233,6 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BWBP_SWC_Tex.SkrithHyperBlaster.BigIcon_HyperBlaster'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Machinegun=True
      bWT_Super=True
      SpecialInfo(0)=(Info="480.0;60.0;2.0;100.0;0.5;0.5;0.5")

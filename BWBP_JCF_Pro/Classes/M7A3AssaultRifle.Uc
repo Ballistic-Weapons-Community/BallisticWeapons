@@ -111,7 +111,6 @@ defaultproperties
 {
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_JCF_Tex.M7A3.BigIcon_M7A3'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      SpecialInfo(0)=(Info="340.0;30.0;1.2;60.0;0.9;0.0;0.0")
      BringUpSound=(Sound=Sound'BWBP_JCF_Sounds.M7A3.M7A3_Pickup')

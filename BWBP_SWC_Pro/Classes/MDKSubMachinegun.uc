@@ -368,7 +368,6 @@ defaultproperties
 	BigIconMaterial=Texture'BWBP_SWC_Tex.Icons.BigIcon_MDK'
 	BigIconCoords=(X1=24,X2=450)
 	//SightFXClass=Class'BWBP_SWC_Pro.MDKSightLEDs'
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.Misc1',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.Dot1',USize1=256,VSize1=256,Color1=(B=128,G=64,R=64,A=140),Color2=(G=0),StartSize1=84,StartSize2=26)

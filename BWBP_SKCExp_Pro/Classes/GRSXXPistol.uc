@@ -48,7 +48,7 @@ replication
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		FireModeClass[1]=Class'BWBP_SKCExp_Pro.GRSXXSecondaryAmpFire';
 		BringUpSound.Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout';
@@ -57,7 +57,7 @@ simulated event PreBeginPlay()
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 2)
+	if (class'BallisticReplicationInfo'.static.IsRealism())
 	{
 		bAmped=False;
 		GRSXXPrimaryFire(FireMode[0]).bAmped = False;
@@ -755,7 +755,6 @@ defaultproperties
 	BigIconMaterial=Texture'BWBP_SKC_TexExp.Glock_Gold.BigIcon_GoldGlock'
 	BigIconCoords=(Y1=30,Y2=230)
 	SightFXBone="SightBone"
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	ManualLines(0)="Automatic fire. Short ranged, but has higher DPS than most pistols. Recoil is moderate."
 	ManualLines(1)="Projects a laser beam. Has extremely low DPS, but consistent damage over range and recharges over time."
 	ManualLines(2)="The Weapon Function key causes a hitscan single-shot beam to be projected from the unit, dealing good damage. The GRS-9 is effective at close range."

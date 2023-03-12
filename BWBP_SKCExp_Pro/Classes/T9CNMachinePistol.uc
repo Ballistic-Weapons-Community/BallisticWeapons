@@ -12,7 +12,7 @@ class T9CNMachinePistol extends BallisticHandgun;
 simulated event PostNetBeginPlay()
 {
 	super.PostNetBeginPlay();
-	if (BCRepClass.default.GameStyle == 1)
+	if (class'BallisticReplicationInfo'.static.IsClassic())
 	{
 		bUseSights=True;
 	}
@@ -153,7 +153,6 @@ defaultproperties
 	AIReloadTime=1.000000
 	BigIconMaterial=Texture'BWBP_SKC_TexExp.T9CN.BigIcon_BerSilver'
 	BigIconCoords=(X1=64,Y1=0,Y2=255)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	bWT_Machinegun=True
 	ManualLines(0)="Automatic pistol fire. Good strength and low recoil."

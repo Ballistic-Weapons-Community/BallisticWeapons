@@ -31,19 +31,6 @@ simulated function DestroyEffects()
 		PATrail.Kill();
 }
 
-function InitProPineapple(float PSpeed, float PDelay)
-{
-	PDelay = FMax(PDelay + (0.5 - FRand()) * 0.5, 0.1);
-	
-	Speed = PSpeed;
-
-	DetonateDelay = PDelay;
-	NewDetonateDelay = DetonateDelay;
-
-	if (DetonateDelay <= StartDelay)
-		StartDelay = DetonateDelay / 2;
-}
-
 defaultproperties
 {
      DampenFactor=0.050000

@@ -306,11 +306,10 @@ simulated event WeaponTick (float DT)
 
 	super.WeaponTick(DT);
 
-
 	if (SprintControl != None)
 	{
 		//if sprinting or running
-		if ((Instigator.Base != none && VSize(Instigator.velocity - Instigator.base.velocity) > 220 && !bRunOffsetting && CurrentWeaponMode != 1) || (!BCRepClass.default.bNoJumpOffset && SprintControl != None && SprintControl.bSprinting) )
+		if ((Instigator.Base != none && VSize(Instigator.velocity - Instigator.base.velocity) > 220 && !bRunOffsetting && CurrentWeaponMode != 1) || (!class'BallisticReplicationInfo'.default.bNoJumpOffset && SprintControl != None && SprintControl.bSprinting) )
 		{
 			AimComponent.OnPlayerSprint();
 			bRunOffsetting=true;
@@ -622,7 +621,6 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
      AIReloadTime=4.000000
      BigIconMaterial=Texture'BWBP_SKC_TexExp.XMV500.BigIcon_XMV500'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      bWT_Machinegun=True
      bWT_Super=True

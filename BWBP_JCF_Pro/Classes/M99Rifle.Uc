@@ -362,7 +362,6 @@ defaultproperties
      LaserOffSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_JCF_Tex.M99.BigIcon_M99'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      SpecialInfo(0)=(Info="240.0;35.0;2.0;120.0;10.0;0.0;0.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78Pullout')

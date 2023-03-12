@@ -444,7 +444,6 @@ defaultproperties
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      UsedAmbientSound=Sound'BW_Core_WeaponSound.A73.A73Hum1'
      BigIconMaterial=Texture'BWBP_SWC_Tex.SkrithStaff.BigIcon_SkrithStaff'
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_RapidProj=True
      bWT_Energy=True
      SpecialInfo(0)=(Info="300.0;25.0;0.5;85.0;0.2;0.2;0.2")

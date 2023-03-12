@@ -490,7 +490,6 @@ defaultproperties
      CoolRate=0.500000
      RunOffset=(Pitch=-3000,Yaw=-4000)
      SpecialInfo(0)=(Info="300.0;20.0;1.80;80.0;0.8;0.8;0.1")
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      BigIconMaterial=Texture'BWBP_SKC_TexExp.BeamCannon.BigIcon_HMC'
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Up')

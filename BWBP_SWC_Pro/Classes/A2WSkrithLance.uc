@@ -66,7 +66,6 @@ defaultproperties
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	BigIconMaterial=Texture'BW_Core_WeaponTex.Icons.BigIcon_A42'
 	BigIconCoords=(X1=80,Y1=24,X2=410,Y2=230)
-	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	//MeleeFireClass=Class'BallisticProV55.A2WMeleeFire'
 	bWT_RapidProj=True
 	bWT_Energy=True

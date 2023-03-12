@@ -256,7 +256,6 @@ defaultproperties
      AIReloadTime=1.000000
      BigIconMaterial=Texture'BWBP_CC_Tex.AR.ARBigIcon'
      BigIconCoords=(X1=16,Y1=30)
-     BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      bWT_Machinegun=True
      ManualLines(0)="Automatic fire. Moderate power, fire rate and recoil."

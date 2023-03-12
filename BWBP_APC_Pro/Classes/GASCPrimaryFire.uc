@@ -34,7 +34,7 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 {
 	super.ApplyDamage (Victim, Damage, Instigator, HitLocation, MomentumDir, DamageType);
 	
-	if (Victim.bProjTarget && GASCPistol(BW).BCRepClass.default.GameStyle != 0)
+	if (Victim.bProjTarget && class'BallisticReplicationInfo'.static.IsArena())
 	{
 		if (BallisticShield(Victim) != None)
 			BW.TargetedHurtRadius(2, 64, class'DTGASCPistol', 50, HitLocation, Pawn(Victim));
@@ -58,7 +58,7 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 	else
 		Surf = int(HitMat.SurfaceType);
 		
-	if (Other == None || Other.bWorldGeometry && GASCPistol(BW).BCRepClass.default.GameStyle != 0)
+	if (Other == None || Other.bWorldGeometry && class'BallisticReplicationInfo'.static.IsArena())
 		BW.TargetedHurtRadius(2, 64, class'DTGASCPistol', 50, HitLocation);
 
 	// Tell the attachment to spawn effects and so on
