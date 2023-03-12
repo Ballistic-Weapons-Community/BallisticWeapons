@@ -115,8 +115,8 @@ static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 	WI.SmallIconCoords	 = Weap.default.IconCoords;
 	WI.InventoryGroup	 = Weap.default.InventoryGroup;
 
-	
 	BW = Class<BallisticWeapon>(Weap);
+
 	if (BW != None)
 	{
 		WI.BigIconMaterial		= BW.default.BigIconMaterial;

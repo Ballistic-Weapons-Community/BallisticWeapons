@@ -243,7 +243,8 @@ simulated function InitWeaponLists ()
 		if (!CLRI.WeaponRequirementsOk(CLRI.RequirementsList[i]))
 			continue;
 		
-		if (InStr(CLRI.FullInventoryList[i], "CItem") != -1)
+        // handle conflict items
+		if (InStr(CLRI.FullInventoryList[i].ClassName, "CItem") != -1)
 		{ 
 			if (lastIndex != -1)
 			{
@@ -251,40 +252,24 @@ simulated function InitWeaponLists ()
 				lb_Weapons.List.Add("Misc",,"Mc",true);
 			}
 			
-			CI = class<ConflictItem>(DynamicLoadObject(CLRI.FullInventoryList[i], class'Class'));
+			CI = class<ConflictItem>(DynamicLoadObject(CLRI.FullInventoryList[i].ClassName, class'Class'));
 			
 			if (CI != None)
-				lb_Weapons.List.Add(CI.default.ItemName, , CLRI.FullInventoryList[i]);
+				lb_Weapons.List.Add(CI.default.ItemName, , CLRI.FullInventoryList[i].ClassName);
 		}
 		
+        // handle weapons
 		else 
 		{
-			if (LoadWIFromCache(CLRI.FullInventoryList[i], WI))
-			{
-				if (WI.InventoryGroup != lastIndex)
-				{
-					lastIndex = WI.InventoryGroup;
-					lb_Weapons.List.Add(class'BallisticWeaponClassInfo'.static.GetHeading(lastIndex),, "Weapon Category", true);
-				}
-				
-				lb_Weapons.List.Add(WI.ItemName, , CLRI.FullInventoryList[i]);
-			}
+            if (CLRI.FullInventoryList[i].InventoryGroup != lastIndex)
+            {
+                lastIndex = CLRI.FullInventoryList[i].InventoryGroup;
+                lb_Weapons.List.Add(class'BallisticWeaponClassInfo'.static.GetHeading(lastIndex),, "Weapon Category", true);
+            }
+            
+            lb_Weapons.List.Add(CLRI.FullInventoryList[i].ItemName, , CLRI.FullInventoryList[i].ClassName);
 		}
 	}
-}
-
-// Get Name, BigIconMaterial and classname of weapon at index? in group?
-function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.WeaponInfo WepInfo)
-{
-	local int i;
-
-	WepInfo = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(ClassStr, i);
-	if (i==-1)
-	{
-		log("Error loading item for Conflict: "$ClassStr, 'Warning');
-		return false;
-	}
-	return true;
 }
 
 function int GetItemSize(class<Weapon> Item)
@@ -294,7 +279,7 @@ function int GetItemSize(class<Weapon> Item)
 	return 5;
 }
 
-function int SectionIndexFor(class<BallisticWeapon> BW)
+function int GetSectionIndex(class<BallisticWeapon> BW)
 {
     switch (BW.default.InventoryGroup)
     {
@@ -373,7 +358,7 @@ function int GetInsertionPoint(class<BallisticWeapon> InsertWeapon)
 {
 	local int i, SectionIndex, ItemSize, InsertingGroup, CurrentItemGroup;
 
-    SectionIndex = SectionIndexFor(InsertWeapon);
+    SectionIndex = GetSectionIndex(InsertWeapon);
     ItemSize = GetItemSize(InsertWeapon);
     InsertingGroup = InsertWeapon.default.InventoryGroup;
 
@@ -440,7 +425,7 @@ function bool AddInventory(string ClassName, class<actor> InvClass, string Frien
 
 	Weap = class<BallisticWeapon>(WeaponClass);
 
-    SectionIndex = SectionIndexFor(Weap);
+    SectionIndex = GetSectionIndex(Weap);
 
 	Size = GetItemSize(WeaponClass);
 

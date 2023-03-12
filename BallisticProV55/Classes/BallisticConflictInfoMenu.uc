@@ -46,9 +46,9 @@ function LoadWeapons(BallisticTab_ConflictLoadoutPro Source)
 
 	ConflictMenu = Source;
 
-	for(i=0;i<Source.CLRI.FullInventoryList.Length;i++)
+	for(i = 0; i < Source.CLRI.FullInventoryList.Length; i++)
 	{
-		if (Source.CLRI.FullInventoryList[i] != "")
+		if (Source.CLRI.FullInventoryList[i].ClassName != "")
 		{
 			if (GetItemInfo( i, WI.ItemName, WI.ItemImage, WI.ItemClassName, WI.ImageCoords ))
 			{
@@ -152,17 +152,22 @@ function bool GetItemInfo(int Index, out string ItemCap, out Material ItemImage,
 	local int i;
 	local string ItemCName;
 
-	ItemCName = ConflictMenu.CLRI.FullInventoryList[Index];
+	ItemCName = ConflictMenu.CLRI.FullInventoryList[Index].ClassName;
+
 	if (ItemCName == "")
 		return false;
+
 	WI = class'BC_WeaponInfoCache'.static.AutoWeaponInfo(ItemCName, i);
+
 	if (i==-1)
 	{
 //		log("Error loading item for conflict: "$ItemCName, 'Warning');
 		return false;
 	}
+
 	ItemCap = WI.ItemName;
 	ItemClassName = ItemCName;
+
 	if (WI.bIsBW)
 	{
 		ItemImage = WI.BigIconMaterial;
@@ -173,6 +178,7 @@ function bool GetItemInfo(int Index, out string ItemCap, out Material ItemImage,
 		ItemImage = WI.SmallIconMaterial;
 		ImageCoords = WI.SmallIconCoords;
 	}
+
 	return true;
 }
 

@@ -16,7 +16,9 @@
 //=============================================================================
 class ConflictLoadoutLRI extends BallisticPlayerReplicationInfo 
 	DependsOn(Mut_Loadout)
-	DependsOn(ConflictLoadoutConfig);
+	DependsOn(ConflictLoadoutConfig)
+    exportstructs;
+
 /*
 	Game:	ServerFullList
 	PRI:	ClientInv
@@ -43,7 +45,15 @@ var int                 PendingInitialWeaponIndex;
 
 var array<string> 		Loadout;								// Current loadout
 
-var array<string> 		FullInventoryList;					// List of all weapons available
+struct InventoryEntry
+{
+    var string  ClassName;
+    var string  ItemName;
+    var byte    InventoryGroup;
+    var byte    InventorySize;
+};
+
+var array<InventoryEntry> 		FullInventoryList;					// List of all weapons available
 var array<Mut_Loadout.LORequirements> RequirementsList;	// Requirements for the weapons. order and length must match 'FullInventoryList'
 
 var array<class<ConflictItem> > AppliedItems;
@@ -93,6 +103,7 @@ replication
 		LoadoutOption;
 }
 
+// what is this?
 simulated function ClientPurge(bool bPurgeActors)
 {
 	local Actor A;
@@ -291,7 +302,11 @@ function RequestFullList()
 
 simulated function ClientReceiveWeaponReq(string ClassString, Mut_Loadout.LORequirements Requirements)
 {
-	FullInventoryList[FullInventoryList.length] = ClassString;
+    local InventoryEntry entry;
+
+    entry.ClassName = ClassString;
+
+	FullInventoryList[FullInventoryList.length] = entry;
 	RequirementsList[RequirementsList.length] = Requirements;
 }
 
@@ -318,76 +333,118 @@ simulated function bool LoadWIFromCache(string ClassStr, out BC_WeaponInfoCache.
 	return true;
 }
 
+static final function InventoryEntry GenerateFromClass(class<BallisticWeapon> Weap)
+{
+    local InventoryEntry IE;
+
+    IE.ClassName 		 = string(Weap);
+    IE.ItemName			 = Weap.default.ItemName;
+	IE.InventoryGroup	 = Weap.default.InventoryGroup;
+	IE.InventorySize	 = Weap.static.GetInventorySize();
+
+    return IE;
+}
+
+//=======================================================================
+// SortList
+// Sorts weapons by inventory group, inventory size and name.
+// Can't use cache here - InventorySize may change often.
+// Forced to DynamicLoadObject
+//
+// TODO: Possibly send cache revision in BallisticReplicationInfo
+// to cause a repop and limit the amount of building
+//=======================================================================
 simulated function SortList()
 {
 	local int i, j;
-	local BC_WeaponInfoCache.WeaponInfo WI;
-	local array<BC_WeaponInfoCache.WeaponInfo> SortedWIs;
+	local InventoryEntry Current;
+	local array<InventoryEntry> Sorted;
 	local array<string> ConflictItems;
+    local class<BallisticWeapon> Weap;
 	
-	local int wiGroup, existingGroup;
-	
+	local int CurrentGroup, SortedGroup;
+
 	for (i=0; i < FullInventoryList.length; i++)
 	{
-		if (InStr(FullInventoryList[i], "CItem") != -1)
-			ConflictItems[ConflictItems.Length] = FullInventoryList[i];
+        // handle conflict items
+		if (InStr(FullInventoryList[i].ClassName, "CItem") != -1)
+        {
+			ConflictItems[ConflictItems.Length] = FullInventoryList[i].ClassName;
+            continue;
+        }
+
+        // load weapon
+        Weap = class<BallisticWeapon>(DynamicLoadObject(FullInventoryList[i].ClassName, class'Class'));
 	
-		else 
-		{
-			if (LoadWIFromCache(FullInventoryList[i], WI))
-			{
-				if (SortedWIs.Length == 0)
-					SortedWIs[SortedWIs.Length] = WI;
-				else 
-				{	
-					wiGroup = WI.InventoryGroup;
-					
-					if (wiGroup == 0)
-						wiGroup = 10;
-						
-					for (j = 0; j < SortedWIs.Length; ++j)
-					{
-						existingGroup = SortedWIs[j].InventoryGroup;
-						
-						if (existingGroup == 0)
-							existingGroup = 10;
-						
-						if (wiGroup < existingGroup)
-						{
-							SortedWIs.Insert(j, 1);
-							SortedWIs[j] = WI;
-							break;
-						}
-						
-						if (wiGroup == existingGroup)
-						{
-							if (StrCmp(WI.ItemName, SortedWIs[j].ItemName, 6, True) <= 0)
-							{	
-								SortedWIs.Insert(j, 1);
-								SortedWIs[j] = WI;
-								break;
-							}
-						}
-						
-						if (j == SortedWIs.Length - 1)
-						{
-							SortedWIs[SortedWIs.Length] = WI;
-							break;
-						}
-					}
-				}
-			}
-		}
+        if (Weap == None) //if (!LoadWIFromCache(FullInventoryList[i], WI))
+        {
+            Log("ConflictLoadoutLRI: Couldn't load "$FullInventoryList[i].ClassName$": not found, or not a Ballistic weapon.");
+
+            FullInventoryList.Remove(i, 1);
+            --i;
+
+            continue;
+        }
+
+        // convert weapon class to cache weaponinfo
+        Current = GenerateFromClass(Weap);
+
+        if (Sorted.Length == 0)
+        {
+            Sorted[Sorted.Length] = Current;
+            continue;
+        }
+
+        CurrentGroup = Current.InventoryGroup;
+        
+        if (CurrentGroup == 0)
+            CurrentGroup = 10;
+            
+        for (j = 0; j < Sorted.Length; ++j)
+        {
+            // first check relative inventory group
+            SortedGroup = Sorted[j].InventoryGroup;
+            
+            if (SortedGroup == 0)
+                SortedGroup = 10;
+            
+            // valid insertion if group is less
+            if (CurrentGroup < SortedGroup)
+                break;
+            
+            if (CurrentGroup > SortedGroup)
+                continue;
+
+            // same inventory group - check relative inventory size
+
+            // valid insertion if inventory size is less
+            if (Current.InventorySize < Sorted[j].InventorySize)
+                break;
+
+            if (Current.InventorySize > Sorted[j].InventorySize)
+                continue;
+
+            // same inventory size - check string ordering
+            if (StrCmp(Current.ItemName, Sorted[j].ItemName, 6, True) <= 0)
+                break;
+        }
+
+        Sorted.Insert(j, 1);
+        Sorted[j] = Current;
 	}
 	
-	for (i = 0; i < SortedWIs.Length; ++i)
-		FullInventoryList[i] = SortedWIs[i].ClassName;
+	for (i = 0; i < Sorted.Length; ++i)
+    {
+		FullInventoryList[i] = Sorted[i];
+    }
 	
 	j = i;
 		
 	for (i = 0; i < ConflictItems.Length; ++i)
 	{
-		FullInventoryList[j] = ConflictItems[i];
+		FullInventoryList[j].ClassName = ConflictItems[i];
+        FullInventoryList[j].InventorySize = 1;
+        FullInventoryList[j].InventoryGroup = 12;
 		++j;	
 	}
 }
@@ -512,19 +569,23 @@ simulated function bool ValidateWeapon (string WeaponName)
 	if (Role == ROLE_Authority)
 	{
 		for (i=0;i<LoadoutMut.ConflictWeapons.Length;i++)
+        {
 			if (LoadoutMut.ConflictWeapons[i].ClassName ~= WeaponName)
 			{
 				if (!TeamAllowed(LoadoutMut.ConflictWeapons[i]))
 					return false;
 
 				return WeaponRequirementsOk(LoadoutMut.FullRequirementsList[i]);
-			}
+            }
+		}
 	}
 	else
 	{
-		for (i=0;i<FullInventoryList.Length;i++)
-			if (FullInventoryList[i] ~= WeaponName)
+		for (i = 0; i < FullInventoryList.Length; i++)
+        {
+			if (FullInventoryList[i].ClassName ~= WeaponName)
 				return WeaponRequirementsOk(RequirementsList[i]);
+        }
 	}
 	return false;
 }

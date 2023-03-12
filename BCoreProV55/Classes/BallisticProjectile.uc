@@ -277,7 +277,8 @@ simulated function ApplyParams(ProjectileEffectParams params)
 	bLimitMomentumZ = params.bLimitMomentumZ;
 	default.bLimitMomentumZ = params.bLimitMomentumZ;
 	
-    // not scaling projectile damage atm
+    Damage *= class'BallisticReplicationInfo'.default.DamageScale;
+    
     if (!class'BallisticReplicationInfo'.static.UseFixedModifiers())
     {
         HeadMult = params.HeadMult;
