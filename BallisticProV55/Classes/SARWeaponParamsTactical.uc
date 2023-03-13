@@ -142,6 +142,7 @@ defaultproperties
 		MagAmmo=32
         InventorySize=5
         SightingTime=0.2
+        SightMoveSpeedFactor=0.75 // maybe adjust the factor with stock mode
         RecoilParams(0)=RecoilParams'TacticalAutoRecoilParams'
         RecoilParams(1)=RecoilParams'TacticalBurstRecoilParams'
         AimParams(0)=AimParams'TacticalAutoAimParams'

@@ -81,7 +81,8 @@ defaultproperties
         MagAmmo=2        
 		InventorySize=8
 		PlayerSpeedFactor=0.9
-		SightMoveSpeedFactor=0.8
+        PlayerJumpFactor=0.9
+		SightMoveSpeedFactor=0.5
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
         AimParams(0)=AimParams'TacticalAimParams'

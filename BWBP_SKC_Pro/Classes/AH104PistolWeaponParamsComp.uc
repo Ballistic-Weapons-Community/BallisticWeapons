@@ -95,7 +95,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ArenaParams
 		WeaponBoneScales(0)=(BoneName="RDS",Slot=50,Scale=0f)
 		InventorySize=4
-		PlayerSpeedFactor=0.9
+		PlayerSpeedFactor=0.95
 		SightMoveSpeedFactor=0.900000
 		MagAmmo=9
 		ViewOffset=(X=10.000000,Y=10.000000,Z=-18.000000)

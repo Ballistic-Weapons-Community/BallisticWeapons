@@ -8,7 +8,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
 		TraceRange=(Min=8000.000000,Max=12000.000000)
-        DecayRange=(Min=1575,Max=3675)
+        DecayRange=(Min=1250,Max=3750)
 		RangeAtten=0.67
 		Damage=28
 		DamageType=Class'BWBP_SKC_Pro.DTCYLORifle'
@@ -25,7 +25,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.1050000
+		FireInterval=0.120000
 		PreFireAnim=
 		FireEndAnim=	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
@@ -37,7 +37,7 @@ defaultproperties
 	
 	Begin Object Class=ShotgunEffectParams Name=ArenaSecondaryEffectParams
 		TraceRange=(Min=5000.000000,Max=5000.000000)
-        DecayRange=(Min=1000,Max=2500)
+        DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.25
 		TraceCount=9
 		TracerClass=Class'BallisticProV55.TraceEmitter_Shotgun'
@@ -102,9 +102,8 @@ defaultproperties
 		SightPivot=(Pitch=450)
 		SightOffset=(X=15.000000,Y=13.575000,Z=22.1000)
 		ViewOffset=(X=8.000000,Z=-14.000000)
-		
 		PlayerJumpFactor=1
-		InventorySize=6
+		InventorySize=5
 		SightMoveSpeedFactor=0.9
 		SightingTime=0.350000		
 		DisplaceDurationMult=1

@@ -10,15 +10,6 @@
 
 class LonghornClusterGrenadeImpact extends LonghornClusterGrenadeFlak; //Artillery
 
-simulated function SetInitialSpeed ()
-{
-    super.SetInitialSpeed();
-
-	Velocity.Z *= 0.50;
-	if (Velocity.Z < 0)
-		Velocity.Z = 5;
-}
-
 defaultproperties
 {
      DetonateOn=DT_Impact

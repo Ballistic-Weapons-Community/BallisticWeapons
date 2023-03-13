@@ -95,7 +95,7 @@ defaultproperties
 		WeaponModes(3)=(ModeName="Full Auto",ModeID="WM_FullAuto")
 		InitialWeaponMode=3
         DisplaceDurationMult=1.25
-        SightMoveSpeedFactor=0.8
+        SightMoveSpeedFactor=0.75
 		MagAmmo=100
 		SightingTime=0.3
         InventorySize=6

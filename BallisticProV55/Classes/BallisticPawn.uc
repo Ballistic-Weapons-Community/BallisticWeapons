@@ -179,11 +179,19 @@ simulated event PostNetBeginPlay()
 		AmbientGlow=0;
 	}
 
-    // override movement if needed
-    // do not accept user interference with Comp or Tactical
+    // replace walk animations if ADS multipliers tend to be high
+	if (class'BallisticReplicationInfo'.static.GetADSMoveSpeedMultiplier() >= 0.75)
+	{
+		WalkAnims[0]='RunF';
+		WalkAnims[1]='RunB';
+		WalkAnims[2]='RunL';
+		WalkAnims[3]='RunR';
+	}
 
+    // override movement if needed
+    // do not accept user interference with Pro or Tactical
     if (class'BallisticReplicationInfo'.static.IsArena())
-        ApplyArenaMovement();
+        ApplyProMovement();
     else if (class'BallisticReplicationInfo'.static.IsTactical())
         ApplyTacticalMovement();
     else
@@ -201,13 +209,13 @@ simulated event PostNetBeginPlay()
     }
 }
 
-simulated function ApplyArenaMovement()
+simulated function ApplyProMovement()
 {
     bCanWallDodge = True;
     bCanDodge = True;
     bCanDoubleJump = True;
 
-    WalkingPct=0.9; // ads move rate base
+    WalkingPct=1; // highest ADS movement mult seen in Pro - NOT used as a multiplier, just an initial setting
     CrouchedPct=0.45;
 
     StrafeScale = 1;
@@ -227,7 +235,7 @@ simulated function ApplyTacticalMovement()
     bCanDodge = True;
     bCanDoubleJump = False;
 
-    WalkingPct=0.84; // ads move rate base
+    WalkingPct=0.85; // highest ADS movement mult seen in Arena
     CrouchedPct=0.35;
 
     StrafeScale = 1;
@@ -272,19 +280,11 @@ simulated function ApplyMovementOverrides()
         bCanDoubleJump = false;
     }
 
-	if (class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor != WalkingPct)
-		WalkingPct = class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor;
+	if (class'BallisticReplicationInfo'.static.GetADSMoveSpeedMultiplier() != WalkingPct)
+		WalkingPct = class'BallisticReplicationInfo'.static.GetADSMoveSpeedMultiplier();
 	
 	if (class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor != CrouchedPct)
 		CrouchedPct = class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;
-
-	if (class'BallisticReplicationInfo'.default.bUseRunningAnims && class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor >= 0.75)
-	{
-		WalkAnims[0]='RunF';
-		WalkAnims[1]='RunB';
-		WalkAnims[2]='RunL';
-		WalkAnims[3]='RunR';
-	}
 
     if (class'BallisticReplicationInfo'.default.bOverrideMovement)
     {

@@ -159,10 +159,10 @@ defaultproperties
 	//=================================================================	
 
 	Begin Object Class=WeaponParams Name=TacticalParams
-		PlayerSpeedFactor=0.800000
-		PlayerJumpFactor=0.800000
+		PlayerSpeedFactor=0.9
+		PlayerJumpFactor=0.9
 		InventorySize=6
-		SightMoveSpeedFactor=0.7
+		SightMoveSpeedFactor=0.5
 		SightingTime=0.4
 		DisplaceDurationMult=1.4
 		MagAmmo=40

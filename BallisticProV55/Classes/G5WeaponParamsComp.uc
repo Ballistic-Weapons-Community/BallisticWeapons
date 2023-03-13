@@ -80,7 +80,8 @@ defaultproperties
         DisplaceDurationMult=1.25
         MagAmmo=2        
 		InventorySize=8
-		PlayerSpeedFactor=0.95
+		PlayerSpeedFactor=0.9
+        PlayerJumpFactor=0.9
 		SightMoveSpeedFactor=0.8
         ZoomType=ZT_Logarithmic
         RecoilParams(0)=RecoilParams'ArenaRecoilParams'

@@ -160,7 +160,7 @@ defaultproperties
 		SightingTime=0.350000	 
         MagAmmo=100        
         InventorySize=6
-        SightMoveSpeedFactor=0.8
+        SightMoveSpeedFactor=0.5
         ZoomType=ZT_Logarithmic
 		ViewOffset=(X=4.000000,Y=6.000000,Z=-8.500000)
 		SightPivot=(Pitch=256)

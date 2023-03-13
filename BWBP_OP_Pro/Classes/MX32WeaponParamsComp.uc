@@ -125,8 +125,7 @@ defaultproperties
 		ReloadAnimRate=0.800000
 		ViewOffset=(X=1.000000,Y=8.000000,Z=-15.000000)
 		SightOffset=(X=-5.000000,Y=-0.330000,Z=22.800000)
-		PlayerSpeedFactor=0.870000
-        PlayerJumpFactor=0.870000
+		PlayerSpeedFactor=0.95
         SightMoveSpeedFactor=0.75
 		MagAmmo=50
 		SightingTime=0.55

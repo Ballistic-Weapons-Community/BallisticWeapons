@@ -3014,7 +3014,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 
 	AimComponent.OnWeaponSelected();
 
-	Instigator.WalkingPct = class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor * WeaponParams.SightMoveSpeedFactor;
+	Instigator.WalkingPct = class'BallisticReplicationInfo'.static.GetADSMoveSpeedMultiplier() * WeaponParams.SightMoveSpeedFactor;
 
 	if (Role == ROLE_Authority)
 	{

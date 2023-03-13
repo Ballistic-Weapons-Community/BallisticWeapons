@@ -102,8 +102,6 @@ defaultproperties
 		SightingTime=0.250000
 		SightOffset=(X=-4.000000,Y=0.200000,Z=14.800000)
 		SightPivot=(Pitch=0)
-		PlayerSpeedFactor=.95
-		PlayerJumpFactor=.95
 		InventorySize=4
 		SightMoveSpeedFactor=0.9
 		DisplaceDurationMult=1

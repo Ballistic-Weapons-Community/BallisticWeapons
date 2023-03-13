@@ -103,9 +103,9 @@ defaultproperties
 		SightPivot=(Pitch=256)
 		ViewOffset=(X=20.000000,Y=0.000000,Z=-18.000000)
 		SightOffset=(X=-40.000000,Y=13.500000,Z=20.100000)
-		PlayerSpeedFactor=0.900000
+		PlayerSpeedFactor=0.95
 		InventorySize=6
-		SightMoveSpeedFactor=0.8
+		SightMoveSpeedFactor=0.5
 		SightingTime=0.4
 		DisplaceDurationMult=1.25
 		MagAmmo=8

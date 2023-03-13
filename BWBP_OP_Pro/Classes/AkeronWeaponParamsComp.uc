@@ -118,8 +118,7 @@ defaultproperties
 		WeaponModes(1)=(ModeName="High Velocity",ModeID="WM_FullAuto",Value=1)
 		WeaponModes(2)=(ModeName="N/A",ModeID="WM_BigBurst",Value=3,bUnavailable=True)
 		InitialWeaponMode=1
-		PlayerSpeedFactor=0.90000
-		PlayerJumpFactor=0.90000
+		PlayerSpeedFactor=0.95
         DisplaceDurationMult=1.25
 		InventorySize=5
 		SightMoveSpeedFactor=0.8

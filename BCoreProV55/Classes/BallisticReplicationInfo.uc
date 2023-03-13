@@ -99,8 +99,6 @@ var struct RepInfo_BCore
 	var bool		bNoJumpOffset;
 	var bool		bNoLongGun;
 	var bool		bNoReloading;
-    var float		PlayerADSMoveSpeedFactor;
-    var float		PlayerCrouchSpeedFactor;
 	var bool        bAlternativePickups;
     var bool        bUseFixedModifiers;
     var float       SightingTimeScale;
@@ -147,6 +145,8 @@ var struct RepInfo_BW
 var struct RepInfo_BW_Move
 {
     var bool           bOverrideMovement;
+    var float		   PlayerADSMoveSpeedFactor;
+    var float		   PlayerCrouchSpeedFactor;
     var float          PlayerStrafeScale;
     var float          PlayerBackpedalScale;
     var float          PlayerGroundSpeed;
@@ -172,8 +172,6 @@ simulated function InitClientVars()
 	bNoJumpOffset		= BCoreRep.bNoJumpOffset;
 	bNoLongGun			= BCoreRep.bNoLongGun;
 	bNoReloading		= BCoreRep.bNoReloading;
-    PlayerADSMoveSpeedFactor = BCoreRep.PlayerADSMoveSpeedFactor;
-	PlayerCrouchSpeedFactor = BCoreRep.PlayerCrouchSpeedFactor;
 	bAlternativePickups = BCoreRep.bAlternativePickups;
     bUseFixedModifiers  = BCoreRep.bUseFixedModifiers;
     SightingTimeScale   = BCoreRep.SightingTimeScale;
@@ -187,6 +185,8 @@ simulated function InitClientVars()
 	bUseRunningAnims = BWRep.bUseRunningAnims;
 
     bOverrideMovement = BWRepMove.bOverrideMovement;
+    PlayerADSMoveSpeedFactor = BWRepMove.PlayerADSMoveSpeedFactor;
+	PlayerCrouchSpeedFactor = BWRepMove.PlayerCrouchSpeedFactor;
     PlayerStrafeScale = BWRepMove.PlayerStrafeScale;
 	PlayerBackpedalScale = BWRepMove.PlayerBackpedalScale;
 	PlayerGroundSpeed = BWRepMove.PlayerGroundSpeed;
@@ -206,9 +206,6 @@ simulated function InitClientVars()
 	class.default.bNoReloading			        = bNoReloading;
     class.default.bNoDodging		            = bNoDodging;
 	class.default.bNoDoubleJump	                = bNoDoubleJump;
-    class.default.PlayerADSMoveSpeedFactor      = PlayerADSMoveSpeedFactor;
-	class.default.PlayerCrouchSpeedFactor       = PlayerCrouchSpeedFactor;
-
 
 	class.default.bAlternativePickups 	        = bAlternativePickups;
     class.default.SightingTimeScale             = SightingTimeScale;
@@ -220,6 +217,8 @@ simulated function InitClientVars()
 	class.default.bUseRunningAnims              = bUseRunningAnims;
 
     class.default.bOverrideMovement             = bOverrideMovement;
+    class.default.PlayerADSMoveSpeedFactor      = PlayerADSMoveSpeedFactor;
+	class.default.PlayerCrouchSpeedFactor       = PlayerCrouchSpeedFactor;
     class.default.PlayerStrafeScale             = PlayerStrafeScale;
 	class.default.PlayerBackpedalScale          = PlayerBackpedalScale;
 	class.default.PlayerGroundSpeed             = PlayerGroundSpeed;
@@ -270,8 +269,6 @@ simulated function InitClientVars()
 	Log("bBrightPlayers: "$bBrightPlayers);
 	Log("bNoDodging: "$bNoDodging);
 	Log("bNoDoubleJump: "$bNoDoubleJump);
-	log("ADS move speed percentage: "$PlayerADSMoveSpeedFactor * 100$"%");
-	log("Crouching percentage:"$PlayerCrouchSpeedFactor*100$"%");
 }
 
 function ServerInitialize()
@@ -283,8 +280,6 @@ function ServerInitialize()
 	BCoreRep.bNoJumpOffset			= bNoJumpOffset;
 	BCoreRep.bNoLongGun				= bNoLongGun;
 	BCoreRep.bNoReloading			= bNoReloading;
-    BCoreRep.PlayerADSMoveSpeedFactor = PlayerADSMoveSpeedFactor;
-	BCoreRep.PlayerCrouchSpeedFactor = PlayerCrouchSpeedFactor;
 	BCoreRep.bAlternativePickups 	= bAlternativePickups;
     BCoreRep.bUseFixedModifiers     = bUseFixedModifiers;
     BCoreRep.SightingTimeScale      = SightingTimeScale;
@@ -297,6 +292,8 @@ function ServerInitialize()
 	BWRep.bUseRunningAnims = bUseRunningAnims;
 
     BWRepMove.bOverrideMovement = bOverrideMovement;
+    BWRepMove.PlayerADSMoveSpeedFactor = PlayerADSMoveSpeedFactor;
+    BWRepMove.PlayerCrouchSpeedFactor = PlayerCrouchSpeedFactor;
     BWRepMove.PlayerStrafeScale = PlayerStrafeScale;
 	BWRepMove.PlayerBackpedalScale = PlayerBackpedalScale;
 	BWRepMove.PlayerGroundSpeed = PlayerGroundSpeed;
@@ -388,6 +385,14 @@ static final function bool IsArenaOrTactical()
 static final function bool UseFixedModifiers()
 {
     return default.GameStyle == EGameStyle.Arena && default.bUseFixedModifiers;
+}
+
+static final function float GetADSMoveSpeedMultiplier()
+{
+    if (IsArenaOrTactical())
+        return 1.0f;
+
+    return default.PlayerADSMoveSpeedFactor;
 }
 
 static function BallisticReplicationInfo GetOrCreateInstance(actor A)

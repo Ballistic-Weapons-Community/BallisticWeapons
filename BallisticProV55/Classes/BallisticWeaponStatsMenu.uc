@@ -101,8 +101,8 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	lb_ViewRecoilFactor.Caption = "Recoil View Bind Factor";
 	lb_Mag.Caption = "Capacity";
 	lb_DPM.Caption = "Damage/Mag";
-    lb_MoveSpeed.Caption = "Movement Speed";
-    lb_ADSMoveSpeed.Caption = "ADS Movement Speed";
+    lb_MoveSpeed.Caption = "Movement Multiplier";
+    lb_ADSMoveSpeed.Caption = "ADS Movement Multiplier";
 	lb_CrouchMultiplier.Caption = "Crouch Recoil Multiplier";
 	lb_ADSMultiplier.Caption = "ADS Sway Multiplier";
     lb_Displacement.Caption = "Displacement Factor";
@@ -445,9 +445,8 @@ function UpdateInfo()
 		pb_MoveSpeed.BarColor = ColorBar(pb_MoveSpeed.Value / pb_MoveSpeed.High);
 
         pb_ADSMoveSpeed.Value = 
-            params.default.Layouts[0].PlayerSpeedFactor * 
             params.default.Layouts[0].SightMoveSpeedFactor * 
-            class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor;
+            class'BallisticReplicationInfo'.static.GetADSMoveSpeedMultiplier();
         
 		pb_ADSMoveSpeed.Caption = string(int(Ceil(pb_ADSMoveSpeed.Value * 100f)))$ "%";
 		pb_ADSMoveSpeed.BarColor = ColorBar(pb_ADSMoveSpeed.Value / pb_ADSMoveSpeed.High);

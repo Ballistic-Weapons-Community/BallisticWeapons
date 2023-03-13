@@ -96,7 +96,7 @@ defaultproperties
         CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
 		SightingTime=0.350000
-        SightMoveSpeedFactor=0.8
+        SightMoveSpeedFactor=0.5
         MagAmmo=24
         InventorySize=6
         ZoomType=ZT_Logarithmic
@@ -111,6 +111,7 @@ defaultproperties
 		CockAnimRate=1.250000
 		ReloadAnimRate=1.250000
 		SightingTime=0.20000
+        SightMoveSpeedFactor=0.75
         MagAmmo=24
         InventorySize=6
 		ViewOffset=(X=5.000000,Y=4.750000,Z=-8.000000)

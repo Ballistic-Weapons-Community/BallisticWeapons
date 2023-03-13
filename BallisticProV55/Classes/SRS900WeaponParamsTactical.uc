@@ -70,7 +70,7 @@ defaultproperties
 		ViewOffset=(X=2.000000,Y=9.000000,Z=-10.000000)
 		MagAmmo=20
 		SightingTime=0.4
-		SightMoveSpeedFactor=0.7
+		SightMoveSpeedFactor=0.5
         InventorySize=6
         ZoomType=ZT_Logarithmic
 		RecoilParams(0)=RecoilParams'TacticalRecoilParams'
