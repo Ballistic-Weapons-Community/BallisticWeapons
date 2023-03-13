@@ -11,7 +11,7 @@ defaultproperties
 		TraceRange=(Min=12000.000000,Max=15000.000000)
         DecayRange=(Min=1250,Max=3750)
 		RangeAtten=0.67
-		Damage=22
+		Damage=18
 		DamageType=Class'BWBP_OP_Pro.DT_CX61Chest'
 		DamageTypeHead=Class'BWBP_OP_Pro.DT_CX61Head'
 		DamageTypeArm=Class'BWBP_OP_Pro.DT_CX61Chest'
@@ -27,7 +27,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.115000
+		FireInterval=0.08000
 		FireAnim="SightFire"
 		FireEndAnim=
 		AimedFireAnim="SightFire"

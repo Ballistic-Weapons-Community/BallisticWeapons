@@ -8,13 +8,13 @@ defaultproperties
 
 	Begin Object Class=InstantEffectParams Name=ArenaPriEffectParams
      	TraceRange=(Min=3072,Max=3072)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=525,Max=1225)
 		RangeAtten=0.5
      	PenetrationEnergy=8.000000
 		PenetrateForce=135
 		bPenetrate=True
-     	Damage=25.000000
-        HeadMult=2.0f
+     	Damage=15.000000
+        HeadMult=2.25f
         LimbMult=0.67f
      	DamageType=Class'BallisticProV55.DTXRS10SMG'
      	DamageTypeHead=Class'BallisticProV55.DTXRS10SMGHead'
@@ -27,8 +27,7 @@ defaultproperties
 
 	Begin Object Class=FireParams Name=ArenaPriFireParams
 		AimedFireAnim="SightFire"
-		FireInterval=0.1000
-		BurstFireRateFactor=0.55
+		FireInterval=0.066
 		FireEffectParams(0)=InstantEffectParams'ArenaPriEffectParams'
 	End Object
 
@@ -54,7 +53,7 @@ defaultproperties
 	Begin Object Class=RecoilParams Name=ArenaRecoilParams
 		ViewBindFactor=0.5
 		HipMultiplier=1
-		XCurve=(Points=(,(InVal=0.200000,OutVal=0.05),(InVal=0.400000,OutVal=0.10000),(InVal=0.5500000,OutVal=0.120000),(InVal=0.800000,OutVal=0.15000),(InVal=1.000000,OutVal=0.100000)))
+		XCurve=(Points=(,(InVal=0.150000,OutVal=0.05),(InVal=0.30000,OutVal=-0.07000),(InVal=0.5500000,OutVal=0.090000),(InVal=0.800000,OutVal=-0.15000),(InVal=1.000000,OutVal=0.100000)))
 		YCurve=(Points=(,(InVal=0.200000,OutVal=0.220000),(InVal=0.400000,OutVal=0.400000),(InVal=0.600000,OutVal=0.650000),(InVal=0.800000,OutVal=0.800000),(InVal=1.000000,OutVal=1.000000)))
 		XRandFactor=0.05
 		YRandFactor=0.05
@@ -83,7 +82,6 @@ defaultproperties
 		SightOffset=(X=-15.000000,Z=9.500000)
 		ViewOffset=(X=5.000000,Y=11.000000,Z=-11.000000)
 		DisplaceDurationMult=0.5
-		
 		MagAmmo=30
 		SightingTime=0.200000
         InventorySize=3

@@ -232,8 +232,8 @@ simulated function ApplyTacticalMovement()
 
     StrafeScale = 1;
     BackpedalScale = 1;
-    GroundSpeed = 230;
-    AirSpeed = 230;
+    GroundSpeed = 200; // x1.1 because of UT -> effective 220
+    AirSpeed = 200;
     AccelRate = 1792;
     JumpZ = 294;
     DodgeSpeedZ = 170;

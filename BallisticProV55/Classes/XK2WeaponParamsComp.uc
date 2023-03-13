@@ -10,8 +10,8 @@ defaultproperties
 		TraceRange=(Min=4096.000000,Max=4096.000000)
         DecayRange=(Min=788,Max=1838)
 		RangeAtten=0.5
-		Damage=20
-        HeadMult=2.0f
+		Damage=16
+        HeadMult=2.25f
         LimbMult=0.67f
 		DamageType=Class'BallisticProV55.DTXK2SMG'
 		DamageTypeHead=Class'BallisticProV55.DTXK2SMGHead'
@@ -25,7 +25,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.09000
+		FireInterval=0.0825
 		AimedFireAnim="SightFire"	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object

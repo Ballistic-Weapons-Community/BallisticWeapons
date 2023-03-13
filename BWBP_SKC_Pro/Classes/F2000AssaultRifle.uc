@@ -215,10 +215,16 @@ function ApplySuppressorRecoil()
 //simulated function DoWeaponSpecial(optional byte i)
 exec simulated function WeaponSpecial(optional byte i)
 {
+    // too strong
+    if (class'BallisticReplicationInfo'.static.IsTactical())
+        return;
+
 	if (ReloadState != RS_None || SightingState != SS_None)
 		return;
-	if (Clientstate != WS_ReadyToFire)
+
+	if (ClientState != WS_ReadyToFire)
 		return;
+
 	TemporaryScopeDown(0.5);
 	bSilenced = !bSilenced;
 	ServerSwitchSilencer(bSilenced);

@@ -16,8 +16,8 @@ defaultproperties
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=12
-        HeadMult=2
-        LimbMult=0.67f
+        HeadMult=2.0f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTM781ShotgunHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTM781Shotgun'
@@ -47,8 +47,8 @@ defaultproperties
 		TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_Flechette'
 		ImpactManager=Class'BallisticProV55.IM_Shell'
 		Damage=12
-        HeadMult=2
-        LimbMult=0.67f
+        HeadMult=2.0f
+        LimbMult=0.75f
 		DamageType=Class'BWBP_SKC_Pro.DTM781Shotgun'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DTM781ShotgunHead'
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTM781Shotgun'

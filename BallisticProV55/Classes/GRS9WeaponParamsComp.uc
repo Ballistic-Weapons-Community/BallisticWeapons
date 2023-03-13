@@ -8,10 +8,10 @@ defaultproperties
 	
     Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
         TraceRange=(Min=4000.000000,Max=4000.000000)
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=525,Max=1225)
         RangeAtten=0.5
-        Damage=21
-        HeadMult=2.0f
+        Damage=15
+        HeadMult=2.25f
         LimbMult=0.67f
         DamageType=Class'BallisticProV55.DTGRS9Pistol'
         DamageTypeHead=Class'BallisticProV55.DTGRS9PistolHead'
@@ -20,7 +20,7 @@ defaultproperties
         bPenetrate=True
         MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
         FlashScaleFactor=2.500000
-        Recoil=120.000000
+        Recoil=180.000000
         Chaos=0.120000
         BotRefireRate=0.99
         WarnTargetPct=0.2
@@ -28,7 +28,7 @@ defaultproperties
     End Object
 
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-        FireInterval=0.050000
+        FireInterval=0.055
         FireEndAnim=
         AimedFireAnim='SightFire'
         FireAnimRate=1.700000	

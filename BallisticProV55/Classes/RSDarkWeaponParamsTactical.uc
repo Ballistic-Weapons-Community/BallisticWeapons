@@ -9,15 +9,15 @@ defaultproperties
     Begin Object Class=ProjectileEffectParams Name=TacticalBoltEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.RSDarkSlowMuzzleFlash'
     	SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
-        Speed=5000
-        AccelSpeed=10000
+        Speed=5500
+        AccelSpeed=100000
         MaxSpeed=14000
         Damage=135
         HeadMult=2.25
         LimbMult=0.67f
 		DamageRadius=128
 		MomentumTransfer=10000
-    	Recoil=1024.000000
+    	Recoil=512.000000
 	    Chaos=0.250000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Fire',Slot=SLOT_Interact,bNoOverride=False)
 	    ProjectileClass=Class'BallisticProV55.RSDarkProjectile'
@@ -35,15 +35,15 @@ defaultproperties
 	Begin Object Class=ProjectileEffectParams Name=TacticalFastEffectParams
     	MuzzleFlashClass=Class'BallisticProV55.RSDarkFastMuzzleFlash'
     	SpawnOffset=(X=40.000000,Y=8.000000,Z=-10.000000)
-        Speed=4000
-        AccelSpeed=80000
-        MaxSpeed=10000
+        Speed=5500
+        AccelSpeed=100000
+        MaxSpeed=14000
         Damage=60
         HeadMult=2.25
         LimbMult=0.67f
 		DamageRadius=0
 		MomentumTransfer=100
-    	Recoil=100.000000
+    	Recoil=96.000000
 	    Chaos=0.090000
         FireSound=(Sound=Sound'BW_Core_WeaponSound.DarkStar.Dark-Fire2',Slot=SLOT_Interact,bNoOverride=False)
 	    ProjectileClass=Class'BallisticProV55.RSDarkFastProjectile'

@@ -14,8 +14,8 @@ defaultproperties
         TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunHE'
         ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
         Damage=10
-        HeadMult=2
-        LimbMult=0.67f
+        HeadMult=2.0f
+        LimbMult=0.75f
         DamageType=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
         DamageTypeHead=Class'BWBP_SKC_Pro.DT_SK410ShotgunHead'
         DamageTypeArm=Class'BWBP_SKC_Pro.DT_SK410Shotgun'

@@ -12,7 +12,7 @@ defaultproperties
         DecayRange=(Min=2363,Max=6000)
 		RangeAtten=0.75
 		Damage=46
-        HeadMult=2.75
+        HeadMult=2.75f
         LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DT_AK47Assault'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_AK47AssaultHead'

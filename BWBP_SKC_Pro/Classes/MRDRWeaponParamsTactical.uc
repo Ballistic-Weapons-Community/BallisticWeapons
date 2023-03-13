@@ -11,7 +11,7 @@ defaultproperties
 	
 	Begin Object Class=InstantEffectParams Name=TacticalPrimaryEffectParams
 		RangeAtten=0.5
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=525,Max=1225)
 		Damage=22
         HeadMult=2.5
         LimbMult=0.67f
@@ -27,7 +27,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=TacticalPrimaryFireParams
-		FireInterval=0.165000
+		FireInterval=0.135
 		FireEffectParams(0)=InstantEffectParams'TacticalPrimaryEffectParams'
 	End Object
 		

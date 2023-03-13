@@ -10,7 +10,7 @@ defaultproperties
 		TraceRange=(Min=12000.000000,Max=15000.000000)
         DecayRange=(Min=1575,Max=3675)
 		RangeAtten=0.67
-		Damage=20
+		Damage=18
 		DamageType=Class'BallisticProV55.DTM50Assault'
 		DamageTypeHead=Class'BallisticProV55.DTM50AssaultHead'
 		DamageTypeArm=Class'BallisticProV55.DTM50AssaultLimb'
@@ -25,7 +25,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.090000
+		FireInterval=0.0825
 		FireEndAnim=
 		AimedFireAnim="AimedFire"	
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'

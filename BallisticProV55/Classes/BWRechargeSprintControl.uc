@@ -22,19 +22,21 @@ simulated function PostBeginPlay()
 
     if (Role == ROLE_Authority)
     {
+        // arena - limited run - mostly uses sprint boost dodge jump
         if (class'BallisticReplicationInfo'.static.IsArena())
         {
-            StaminaDrainRate = 5;
-            StaminaChargeRate = 5;
-            SpeedFactor = 1.35;
+            StaminaDrainRate = 10;
+            StaminaChargeRate = 10;
+            SpeedFactor = 1.4;
             JumpDrainFactor = 0;
         }
 
+        // tactical - infinite run, to stop you constantly wanting to dodge jump
         else if (class'BallisticReplicationInfo'.static.IsTactical())
         {
-            StaminaDrainRate = 25;
-            StaminaChargeRate = 35;
-            SpeedFactor = 1.5;
+            StaminaDrainRate = 0;
+            StaminaChargeRate = 0;
+            SpeedFactor = 1.4;
             JumpDrainFactor = 0;
         }
 

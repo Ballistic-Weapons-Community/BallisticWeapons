@@ -10,10 +10,10 @@ defaultproperties
     //=================================================================	
 	
 	Begin Object Class=InstantEffectParams Name=ArenaPrimaryEffectParams
-        DecayRange=(Min=788,Max=1838)
+        DecayRange=(Min=525,Max=1225)
         RangeAtten=0.5
-		Damage=20
-        HeadMult=2.0f
+		Damage=15
+        HeadMult=2.25f
         LimbMult=0.67f
 		DamageType=Class'BWBP_SKC_Pro.DT_MRDR88Body'
 		DamageTypeHead=Class'BWBP_SKC_Pro.DT_MRDR88Head'
@@ -26,7 +26,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireParams
-		FireInterval=0.165000
+		FireInterval=0.135
 		FireEffectParams(0)=InstantEffectParams'ArenaPrimaryEffectParams'
 	End Object
 		

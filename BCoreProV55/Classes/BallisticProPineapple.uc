@@ -36,7 +36,7 @@ simulated event PostBeginPlay()
 //
 // Speed depends on ThrowPower
 //==================================================================
-simulated function SetInitialSpeed()
+simulated function SetInitialSpeed(optional bool force_speed) // ignored here, we always set the speed
 {
     local Rotator R;
 

@@ -130,73 +130,87 @@ var() ProjectileEffectParams.ERadiusFallOffType        RadiusFallOffType;
 // END GAMEPLAY VARIABLES
 //=============================================================================
 
+// struct to avoid forced compression of rotators, if we need to start the projectile after a delay
+var struct NetInitialRot
+{
+    var int Pitch;
+    var int Yaw;
+    var int Roll;
+} NetInitialRotation;
+
 replication
 {
     reliable if (bNetInitial && Role == ROLE_Authority)
         LayoutIndex, CurrentWeaponMode;
+    reliable if (bNetInitial && Role == ROLE_Authority && bNetInitialRotation)
+        NetInitialRotation;
 	reliable if (bTearOff && Role == ROLE_Authority)
 		TearOffHitNormal;
 }
 
+//===================================================================
+// UpdateNetRotation
+// 
+// Updates the initial rotation that clients acquiring this projectile 
+// will see.
+//===================================================================
+final function UpdateNetRotation()
+{
+    NetInitialRotation.Pitch = Rotation.Pitch;
+    NetInitialRotation.Yaw = Rotation.Yaw;
+    NetInitialRotation.Roll = Rotation.Roll;
+}
+
+//===================================================================
+// PostBeginPlay
+//
+// Sets the replicated parameters required to derive properties on 
+// the client, binds the projectile parameters and applies initial 
+// speed on the server.
+//===================================================================
 simulated function PostBeginPlay()
 {
     Super(Projectile).PostBeginPlay();
 
-    // timing - might not work correctly - not sure
-    // TODO: check when Instigator is assigned in C++.
+    if (Level.NetMode == NM_Client)
+        return;
+
+    // bind replicated parameters for indexing on client
     if (Instigator != None && BallisticWeapon(Instigator.Weapon) != None)
     {
         CurrentWeaponMode = BallisticWeapon(Instigator.Weapon).CurrentWeaponMode;
         LayoutIndex = BallisticWeapon(Instigator.Weapon).LayoutIndex;
     }
 
-    if (Level.NetMode != NM_Client)
-    {
-        InitParams();
+    // replicate uncompressed rotation to client as part of initial state
+    UpdateNetRotation();
 
-        if (StartDelay == 0)
-            SetInitialSpeed();
-    }
+    InitParams();
+
+    if (StartDelay == 0)
+        SetInitialSpeed(true);
 }
 
-simulated function HideForStartDelay()
-{
-    //Log("Hiding "$Name$" due to start delay of "$StartDelay);
-    
-    SetPhysics(PHYS_None);
-    SetCollision (false, false, false);
-    SetTimer(StartDelay, false);
-    bDynamicLight=false;
-
-    // interferes with replication
-    if (Level.NetMode != NM_DedicatedServer)
-        bHidden=true;
-}
-
-simulated function ShowAfterStartDelay()
-{
-    //Log("Showing "$Name$" due to start delay of "$StartDelay);
-
-    // interferes with replication
-    if (Level.NetMode != NM_DedicatedServer)
-        bHidden=false;
-
-    StartDelay = 0;
-    SetPhysics(default.Physics);
-    SetCollision (default.bCollideActors, default.bBlockActors, default.bBlockPlayers);
-    bDynamicLight=default.bDynamicLight;
-
-    SetInitialSpeed();
-    InitProjectile();
-}
-
-//Modified LinkGun
+//===================================================================
+// PostNetBeginPlay
+//
+// Called after initial state has been replicated.
+// Applies acceleration on clients.
+//===================================================================
 simulated function PostNetBeginPlay()
 {
 	local PlayerController PC;
+    local Rotator R;
 	
     if (Level.NetMode == NM_Client)
     {
+        // apply UNCOMPRESSED rotation before deriving velocity and acceleration
+        R.Pitch = NetInitialRotation.Pitch;
+        R.Yaw = NetInitialRotation.Yaw;
+        R.Roll = NetInitialRotation.Roll;
+
+        SetRotation(R);
+
         InitParams();
         SetInitialSpeed();
     }
@@ -246,11 +260,22 @@ simulated function PostNetBeginPlay()
 	}
 }
 
+//===================================================================
+// InitParams
+//
+// Reads the game style for the parameters for this projectile and 
+// applies them.
+//===================================================================
 simulated function InitParams()
 {    
     WeaponClass.default.ParamsClasses[class'BallisticReplicationInfo'.default.GameStyle].static.SetProjectileParams(self);
 }
 
+//===================================================================
+// ApplyParams
+//
+// Sets all projectile parameters.
+//===================================================================
 simulated function ApplyParams(ProjectileEffectParams params)
 {
     Speed = params.Speed;
@@ -302,11 +327,25 @@ simulated function ApplyParams(ProjectileEffectParams params)
     default.RadiusFallOffType = params.RadiusFallOffType;    
 }
 
-simulated function SetInitialSpeed()
+//===================================================================
+// SetInitialSpeed
+//
+// Initializes velocity, acceleration and some rotation.
+//
+// Optional parameter is for use in situations where the server 
+// cannot replicate the desired velocity as part of initial rep
+// (i.e. when there is a StartDelay). It causes the velocity 
+// to be calculated and set on the client.
+//===================================================================
+simulated function SetInitialSpeed(optional bool force_speed)
 {
     local Rotator R;
 
-    Velocity = Vector(Rotation) * Speed;
+    // receive from server
+    if (Level.NetMode != NM_Client || force_speed)
+    {
+        Velocity = Vector(Rotation) * Speed;
+    }
 
     if (AccelSpeed > 0 && MaxSpeed > Speed)
     {
@@ -347,9 +386,60 @@ simulated function InitEffects ()
 	}
 }
 
+//===================================================================
+// TornOff
+//
+// Called for non-NetTemporary projectiles when server 
+// closes connection
+//===================================================================
 simulated event TornOff()
 {
 	Explode(Location, TearOffHitNormal);
+}
+
+//=======================================================================================================
+// START DELAY
+//
+// Allows for spawning a projectile, hiding it immediately and then making it visible and applying 
+// its physics after a delay.
+//
+// Used for grenades and other projectiles that should be delayed relative to when they are thrown.
+//
+// N.B. this isn't a great way to handle this, both because of its complexity and because the 
+// thrown grenade will actually spawn from the position that you initially threw, rather than where 
+// you currently are, which creates a error in position
+//=======================================================================================================
+
+
+simulated function HideForStartDelay()
+{
+    //Log("Hiding "$Name$" due to start delay of "$StartDelay);
+    
+    SetPhysics(PHYS_None);
+    SetCollision (false, false, false);
+    SetTimer(StartDelay, false);
+    bDynamicLight=false;
+
+    // interferes with replication
+    if (Level.NetMode != NM_DedicatedServer)
+        bHidden=true;
+}
+
+simulated function ShowAfterStartDelay()
+{
+    //Log("Showing "$Name$" due to start delay of "$StartDelay);
+
+    // interferes with replication
+    if (Level.NetMode != NM_DedicatedServer)
+        bHidden=false;
+
+    StartDelay = 0;
+    SetPhysics(default.Physics);
+    SetCollision (default.bCollideActors, default.bBlockActors, default.bBlockPlayers);
+    bDynamicLight=default.bDynamicLight;
+
+    SetInitialSpeed(true);
+    InitProjectile();
 }
 
 // When start delay ends, set all the properties that make it visible
@@ -359,14 +449,7 @@ simulated function Timer()
 	{
         //Log("Showing projectile due to start delay of "$StartDelay);
 
-		StartDelay = 0;
-		SetPhysics(default.Physics);
-		SetCollision (default.bCollideActors, default.bBlockActors, default.bBlockPlayers);
-        SetInitialSpeed();
-		bDynamicLight=default.bDynamicLight;
-		bHidden=false;
-        SetInitialSpeed();
-		InitProjectile();
+		ShowAfterStartDelay();
 		return;
 	}
 }
