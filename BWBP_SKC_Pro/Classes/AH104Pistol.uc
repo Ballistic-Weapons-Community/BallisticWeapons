@@ -528,7 +528,7 @@ defaultproperties
 	Priority=162
 	bShowChargingBar=True
 	CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross1"
-	InventoryGroup=3
+	InventoryGroup=2
 	GroupOffset=12
 	PickupClass=Class'BWBP_SKC_Pro.AH104Pickup'
 	PlayerViewOffset=(X=10.000000,Y=10.000000,Z=-18.000000)

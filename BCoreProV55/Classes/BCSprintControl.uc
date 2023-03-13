@@ -29,6 +29,14 @@ replication
 		bSprintActive, ClientJumped;
 }
 
+simulated function PostNetBeginPlay()
+{
+    Super.PostNetBeginPlay();
+
+    if (Instigator != None && Instigator.Weapon != None && BallisticWeapon(Instigator.Weapon) != None && BallisticWeapon(Instigator.Weapon).SprintControl == None)
+		BallisticWeapon(Instigator.Weapon).SprintControl = self;
+}
+
 //If Stamina's less than 0 or Sprint's active
 //return
 singular function StartSprint()
@@ -94,6 +102,7 @@ simulated function OwnerEvent(name EventName)
 		Stamina = FMax(0, Stamina - StaminaDrainRate * 0.5 * JumpDrainFactor);
 	}
 }
+
 simulated function ClientJumped()
 {
 	if (level.NetMode != NM_Client)
@@ -144,7 +153,7 @@ simulated event Tick(float DT)
 		}
 	}
 	// Stamina charges when not sprinting
-	else// if (VSize(RV) < Instigator.default.GroundSpeed * 0.8)
+	else if (Instigator.Physics != PHYS_Falling) // if (VSize(RV) < Instigator.default.GroundSpeed * 0.8)
 	{
 		if (bSprinting)
 		{
@@ -167,14 +176,6 @@ simulated event Tick(float DT)
 		}
 	}
 	Stamina = FClamp(Stamina, 0, MaxStamina);
-}
-
-function GiveTo(Pawn Other, optional Pickup Pickup)
-{
-	Super.GiveTo(Other);
-
-	if (Instigator != None && Instigator.Weapon != None && BallisticWeapon(Instigator.Weapon) != None && BallisticWeapon(Instigator.Weapon).SprintControl == None)
-		BallisticWeapon(Instigator.Weapon).SprintControl = self;
 }
 
 defaultproperties

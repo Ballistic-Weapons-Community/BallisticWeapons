@@ -7,16 +7,16 @@
 // adapting code written by DarkCarnivour, whose comments are below:
 //
 // Aim Stuff -----------------------------------------------------------------------------------------------------------
-// This is the eccessivly complicated aiming system.
+// This is the excessively complicated aiming system.
 // Basically, a Rotator(Aim) and rotator generated from the recoil are used to offset the gun from the player's view.
 // Aim is the base aim of the gun. Aim is interpolated randomly, within the ranges set by AimSpread. AimAdjustTime is
-// used to set how long it takes to shift. Aim only changes when the player turns of moves.
+// used to set how long it takes to shift.
 //
-// Chaos is applied when the player moves, jumps, turns, etc and greatly ruins a players ability to aim accurately. The
-// faster and more wildly the player moves, the more chaos is aplied to the weapon. When no chaos is applied the Aim will be
+// Chaos is applied when the player moves, jumps, turns, etc and greatly ruins a player's ability to aim accurately. The
+// faster and more wildly the player moves, the more chaos is aplied to the weapon. When no chaos is applied, the Aim will be
 // randomly interpolated whithin the ranges set by AimSpread.Min. When full chaos is applied, the Aim uses the ranges set
 // by AimSpread.Max. AimSpread.Min ranges can be used as a minimum spread and AimSpread.Max as the maximum spread. Aim
-// spread is adjusted smoothly between AimSpread.Min and AimSpread.Max depedning on chaos level.
+// spread is adjusted smoothly between AimSpread.Min and AimSpread.Max depending on chaos level.
 //=============================================================================
 class AimComponent extends Object;
 
@@ -72,6 +72,7 @@ var private Rotator				AimOffset;			    // Extra Aim offset. Set NewAimOffset an
 var private Rotator				NewAimOffset;		    // This is what AimOffset should be and is adjusted for sprinting and so on
 var private Rotator				OldAimOffset;		    // AimOffset before it started shifting. Used for interpolationg AimOffset
 var	private float				AimOffsetTime;		    // Time when AimOffset should reach NewAimOffset. Used for interpolationg AimOffset
+// var private float               VelocityAimAdjustMult;       // Multiplier on AimAdjustTime, set by ADS
 
 var private Rotator				LastViewPivot;			// Aim saved between ApplyAimToView calls, used to find delta aim
 var private float               ViewBindFactor;         // Amount to bind aim offsetting to view
@@ -265,6 +266,8 @@ final simulated function Recalculate()
 	if (ViewBindFactor == 0)
 		ViewBindFactor = Params.ViewBindFactor;
 
+    // VelocityAimAdjustMult = 1;
+
 	BW.OnAimParamsChanged();
 }
 
@@ -299,6 +302,11 @@ final simulated function ApplyADSModifiers()
 {
 	AimSpread.Min = 0;
     AimSpread.Max *= Params.ADSMultiplier;
+
+	/*
+    AimSpread.Max = AimSpread.Min;
+    VelocityAimAdjustMult = 0.5f;
+	*/
 }
 
 final simulated function OnADSViewStart()
@@ -365,23 +373,7 @@ final simulated function UpdateAim(float DT)
 		return;
 	}
 	
-	// Interpolate aim
-	if (bReaiming)
-	{	
-		ReaimPhase += DT;
-		if (ReaimPhase >= ReaimTime)
-			StopAim();
-		else
-			Aim = class'BUtil'.static.RSmerp(ReaimPhase/ReaimTime, OldAim, NewAim);
-	}
-
-	// Fell, Reaim
-	else if (BW.Instigator.Physics == PHYS_Falling)
-		Reaim(DT, , Params.FallingChaos);
-	
-	// Moved, Reaim
-	else if (bForceReaim || BW.GetPlayerAim() != OldLookDir || (BW.Instigator.Physics != PHYS_None && VSize(BW.Instigator.Velocity) > 100))
-		Reaim(DT);
+    UpdateReaim(DT);
 
 	// Interpolate the AimOffset
 	if (AimOffset != NewAimOffset)
@@ -410,6 +402,40 @@ final simulated function UpdateAim(float DT)
         AimAdjustTime = (Params.AimAdjustTime * 2) - (Params.AimAdjustTime * (FMin(VSize(BW.Instigator.Velocity - BW.Instigator.Base.Velocity), 375) / 350));
     else
         AimAdjustTime = Params.AimAdjustTime;
+
+	/* Azarael 13/03/2023 - wip sway impl - requires general changes so not done yet
+    AimAdjustTime = Params.AimAdjustTime;
+
+    // Change aim adjust time for player velocity
+	if (BW.Instigator.Base != None)
+        AimAdjustTime *= 1.0f - ((0.66f * (FMin(VSize(BW.Instigator.Velocity - BW.Instigator.Base.Velocity), 260) / 260)) * VelocityAimAdjustMult);
+	*/
+}
+
+final simulated function UpdateReaim(float DT)
+{
+    // Currently in aim transition - update.
+	if (bReaiming)
+	{	
+		ReaimPhase += DT;
+
+		if (ReaimPhase >= ReaimTime)
+			StopAim();
+		else
+			Aim = class'BUtil'.static.RSmerp(ReaimPhase/ReaimTime, OldAim, NewAim);
+	}
+
+	// Not in aim transition. Queue next move.
+	else if (BW.Instigator.Physics == PHYS_Falling)
+		Reaim(DT, , Params.FallingChaos);
+	
+    // Azarael 13/03/2023:
+    // We always want to be reaiming.
+    // 1) that's how we implement gun sway, and
+    // 2) if our last reaim pushed the aim to a rotation that is distant from centre, and our chaos drops in the meantime, we will get a huge 
+    // reaim as soon as the player moves their view. This is particularly obnoxious with snipers
+	else // if (bForceReaim || BW.GetPlayerAim() != OldLookDir || (BW.Instigator.Physics != PHYS_None && VSize(BW.Instigator.Velocity) > 100))
+		Reaim(DT);
 }
 
 // Checks up on things and returns what our AimOffset should be

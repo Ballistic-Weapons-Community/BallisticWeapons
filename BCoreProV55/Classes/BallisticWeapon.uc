@@ -480,6 +480,23 @@ simulated function bool CanPlayAnim (name Sequence, optional int Channel, option
 // Quick shortcut...
 simulated final function vector ViewAlignedOffset (vector Offset) { return class'BUtil'.static.ViewAlignedOffset(self, Offset); }
 
+simulated final function LinkSprintControl()
+{
+    local Inventory Inv;
+
+    if (SprintControl == None)	
+    {
+		for (Inv = Instigator.Inventory; Inv != None; Inv = Inv.Inventory)
+        {	
+            if (BCSprintControl(Inv) != None)	
+            {
+				SprintControl = BCSprintControl(Inv);		
+                break;	
+            }
+        }
+	}
+}
+
 // Set a few things...
 simulated function PostBeginPlay()
 {
@@ -488,7 +505,7 @@ simulated function PostBeginPlay()
     if (Role == ROLE_Authority)
     {
         if (ParamsClasses[int(class'BallisticReplicationInfo'.default.GameStyle)] != None)
-        GameStyleIndex = int(class'BallisticReplicationInfo'.default.GameStyle);
+            GameStyleIndex = int(class'BallisticReplicationInfo'.default.GameStyle);
     }
 
 	Super.PostBeginPlay();
@@ -538,6 +555,10 @@ simulated function PostBeginPlay()
 simulated function PostNetBeginPlay()
 {
 	Super.PostNetBeginPlay();
+
+	// Link up with sprint control
+    LinkSprintControl();
+
 
     assert(ParamsClasses[GameStyleIndex] != None);
     
@@ -3005,12 +3026,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 	if (PlayerSpeedFactor != default.PlayerSpeedFactor)
 		PlayerSpeedFactor = default.PlayerSpeedFactor;
 
-	// Link up with sprint control
-	if (SprintControl == None)	{
-		for (Inv=Instigator.Inventory;Inv!=None;Inv=Inv.Inventory)
-			if (BCSprintControl(Inv) != None)	{
-				SprintControl = BCSprintControl(Inv);		break;	}
-	}
+	LinkSprintControl();
 
 	AimComponent.OnWeaponSelected();
 

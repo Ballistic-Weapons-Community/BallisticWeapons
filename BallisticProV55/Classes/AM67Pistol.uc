@@ -364,7 +364,7 @@ defaultproperties
 	HudColor=(B=25,G=150,R=50)
 	IconCoords=(X2=127,Y2=31)
 	IconMaterial=Texture'BW_Core_WeaponTex.Icons.SmallIcon_AM67'
-	InventoryGroup=3
+	InventoryGroup=2
 	ItemName="AM67 Assault Pistol"
 
 	LightBrightness=150.000000

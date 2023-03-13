@@ -28,7 +28,7 @@ defaultproperties
 		AmmoPerFire=3
 	    FireEndAnim=
         AimedFireAnim=
-	    FireInterval=1.350000
+	    FireInterval=1.550000
         FireEffectParams(0)=ProjectileEffectParams'TacticalSlowEffectParams'
     End Object	
 	
@@ -227,7 +227,7 @@ defaultproperties
         SightMoveSpeedFactor=0.75
         DisplaceDurationMult=0.5
 		MagAmmo=32
-        InventorySize=4
+        InventorySize=5
 		WeaponModes(0)=(ModeName="Slow Bolt",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Rapid Fire",ModeID="WM_FullAuto",RecoilParamsIndex=1)
 		WeaponModes(2)=(ModeName="Lightning",ModeID="WM_FullAuto",RecoilParamsIndex=1)
