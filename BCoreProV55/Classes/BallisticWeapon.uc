@@ -563,7 +563,7 @@ simulated function PostNetBeginPlay()
     assert(ParamsClasses[GameStyleIndex] != None);
 	
     // Forced to delay initialization because of the need to wait for GameStyleIndex and LayoutIndex to be replicated
-	if (level.NetMode == NM_Client)
+	//if (level.NetMode == NM_Client)
 		ParamsClasses[GameStyleIndex].static.Initialize(self);
 	
 	if (BCRepClass.default.bNoReloading)
@@ -658,7 +658,7 @@ simulated function GenerateCamo(byte Index)
 	//No camos, disable load
 	if (Camos.length == 0)
 	{
-		SetCamoIndex(-1);
+		SetCamoIndex(-1); //-1 aborts load
 		return;
 	}
 	
@@ -669,7 +669,7 @@ simulated function GenerateCamo(byte Index)
 		return;
 	}
 	
-	//Note: Redo this! Instead of having allowed layouts in camo, just have allowed camos in layout, build from there
+	//Build an allowed list of camos based on layout, then randomize
 	if (!bCamoSet)
 	{
 		//Create a sublist of allowed camos
@@ -677,33 +677,14 @@ simulated function GenerateCamo(byte Index)
 		{
 			CamoSublist = Camos;
 		}
-		for (i=0;i<AllowedCamos.length;i++)
+		else
 		{
-			CamoSublist.Insert(0,1); //add a blank
-			CamoSublist[0] = Camos[AllowedCamos[i]]; //set it
-		}
-	
-		/*for (i=0;i<Camos.length;i++)
-		{
-			if (Camos[i].AllowedLayouts.length == 0) //default, all are allowed
+			for (i=0;i<AllowedCamos.length;i++)
 			{
 				CamoSublist.Insert(0,1); //add a blank
-				CamoSublist[0] = Camos[i]; //set it
+				CamoSublist[0] = Camos[AllowedCamos[i]]; //set it
 			}
-			else
-			{
-				for (j=0;j<Camos[i].AllowedLayouts.length;j++)
-				{
-					if (LayoutIndex == Camos[i].AllowedLayouts[j])
-					{
-						CamoSublist.Insert(1,1);
-						CamoSublist[0] = Camos[i];
-						break;
-					}
-				}
-			}
-		}*/
-	
+		}
 		//Build a weighted list of random camos and return a random layout index
 		if (CamoSublist.length > 0 /* && BCRepClass.default.bRandomCamo*/)
 		{
@@ -724,9 +705,13 @@ simulated function GenerateCamo(byte Index)
 				CurrentWeight += CamoSublist[i].Weight;
 			}
 		}
+		else if (CamoSublist.length == 0) //No camos allowed, abort load
+		{
+			SetCamoIndex(-1);
+		}
 		else
 		{
-			SetCamoIndex(0);
+			SetCamoIndex(0); //Randomizer disabled, load spot 0
 		}
 	}
 }
@@ -858,6 +843,9 @@ simulated function OnWeaponParamsChanged()
 		GunAugments[i].SetDrawScale(WeaponParams.GunAugments[i].Scale);
 		AttachToBone(GunAugments[i], WeaponParams.GunAugments[i].BoneName);
 	}
+	
+	log("Camo Index is "$CamoIndex);
+	log("Weapon Camo is "$WeaponCamo);
 	
 	//Weapon Modes
 	if (WeaponParams.WeaponModes.Length != 0)
@@ -3655,17 +3643,19 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
         W = self;
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
 		{
+			log("gun received with Layout "$BallisticWeaponPickup(Pickup).LayoutIndex$" and Camo "$BallisticWeaponPickup(Pickup).CamoIndex); 
 			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
 			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
-			if (Role == ROLE_Authority)
+			//if (Role == ROLE_Authority)
 				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
 		}
 		else
 		{
+			log("randomizing"); 
 			GenerateLayout(255);
 			GenerateCamo(255);
-			if (Role == ROLE_Authority)
+			//if (Role == ROLE_Authority)
 				ParamsClasses[GameStyleIndex].static.Initialize(self);
             MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
 		}
