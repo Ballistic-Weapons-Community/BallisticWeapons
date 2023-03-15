@@ -34,7 +34,7 @@ defaultproperties
          SpawnOnTriggerPPS=500000.000000
          StartVelocityRange=(X=(Min=20.000000,Max=20.000000))
      End Object
-     Emitters(0)=MeshEmitter'BWBP_SKCExp_Pro.R9000EFlashEmitterRad.MeshEmitter1'
+     Emitters(0)=MeshEmitter'BWBP_APC_Pro.R9000EFlashEmitterRad.MeshEmitter1'
 
      Begin Object Class=SpriteEmitter Name=SpriteEmitter31
          FadeOut=True
@@ -60,7 +60,7 @@ defaultproperties
          SpawnOnTriggerRange=(Min=1.000000,Max=1.000000)
          SpawnOnTriggerPPS=500000.000000
      End Object
-     Emitters(1)=SpriteEmitter'BWBP_SKCExp_Pro.R9000EFlashEmitterRad.SpriteEmitter31'
+     Emitters(1)=SpriteEmitter'BWBP_APC_Pro.R9000EFlashEmitterRad.SpriteEmitter31'
 
      bNoDelete=False
 
