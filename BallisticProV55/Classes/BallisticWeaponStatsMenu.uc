@@ -444,9 +444,7 @@ function UpdateInfo()
 		pb_MoveSpeed.Caption = string(int(Ceil(pb_MoveSpeed.Value * 100f)))$ "%";
 		pb_MoveSpeed.BarColor = ColorBar(pb_MoveSpeed.Value / pb_MoveSpeed.High);
 
-        pb_ADSMoveSpeed.Value = 
-            params.default.Layouts[0].SightMoveSpeedFactor * 
-            class'BallisticReplicationInfo'.static.GetADSMoveSpeedMultiplier();
+        pb_ADSMoveSpeed.Value = params.default.Layouts[0].SightMoveSpeedFactor;
         
 		pb_ADSMoveSpeed.Caption = string(int(Ceil(pb_ADSMoveSpeed.Value * 100f)))$ "%";
 		pb_ADSMoveSpeed.BarColor = ColorBar(pb_ADSMoveSpeed.Value / pb_ADSMoveSpeed.High);

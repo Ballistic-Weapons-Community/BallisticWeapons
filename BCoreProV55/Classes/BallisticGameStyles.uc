@@ -10,20 +10,21 @@ static final function class<BC_GameStyle> Get(BC_GameStyle.EGameStyle style)
 	return default.Styles[style];
 }
 
-static final function class<BC_GameStyle> GetServerStyle()
+// Style in use by the current game.
+static final function class<BC_GameStyle> GetReplicatedStyle()
 {
 	return default.Styles[class'BallisticReplicationInfo'.default.GameStyle];
 }
 
-// Client's own style - NOT the server's.
-static final function class<BC_GameStyle> GetClientLocalStyle()
+// Style configured for the local instance of the game.
+static final function class<BC_GameStyle> GetLocalStyle()
 {
 	return default.Styles[default.CurrentStyle];
 }
 
-// Client's own style, cast to the right class.
+// Style configured for the local instance of the game, cast to the right class.
 // This function will return None if the current style isn't config.
-static final function class<BC_GameStyle_Config> GetClientLocalConfigStyle()
+static final function class<BC_GameStyle_Config> GetLocalConfigStyle()
 {
 	return class<BC_GameStyle_Config>(default.Styles[default.CurrentStyle]);
 }

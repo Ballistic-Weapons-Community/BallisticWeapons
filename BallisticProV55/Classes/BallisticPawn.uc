@@ -179,15 +179,6 @@ simulated event PostNetBeginPlay()
 		AmbientGlow=0;
 	}
 
-    // replace walk animations if ADS multipliers tend to be high
-	if (class'BallisticReplicationInfo'.static.GetADSMoveSpeedMultiplier() >= 0.75)
-	{
-		WalkAnims[0]='RunF';
-		WalkAnims[1]='RunB';
-		WalkAnims[2]='RunL';
-		WalkAnims[3]='RunR';
-	}
-
     // override movement if needed
     // do not accept user interference with Pro or Tactical
     if (class'BallisticReplicationInfo'.static.IsArena())
@@ -196,6 +187,16 @@ simulated event PostNetBeginPlay()
         ApplyTacticalMovement();
     else
         ApplyMovementOverrides();
+
+	// replace walk animations if ADS multipliers tend to be high
+	if (class'BallisticGameStyles'.static.GetReplicatedStyle().default.bRunInADS)
+	{
+		WalkAnims[0]='RunF';
+		WalkAnims[1]='RunB';
+		WalkAnims[2]='RunL';
+		WalkAnims[3]='RunR';
+	}
+
 	
 	// FIXME: why is this here? this function is the definition of net init
 	if(!pawnNetInit)

@@ -249,16 +249,13 @@ function ModifyPlayer(Pawn Other)
 	}
 	else if(xPawn(Other) != None)
     {
-		// read the game style to know what values to set
-        if (BallisticRep.bCustomStats) //"BallisticReplicationInfo" is of type "BCReplicationInfo", but we're casting it to type "BallisticReplicationInfo". might need a rename at some point
-		{
-			Other.SuperHealthMax = class'BallisticReplicationInfo'.default.PlayerSuperHealthMax; // maximum superhealth a player can have
-			Other.HealthMax = class'BallisticReplicationInfo'.default.PlayerHealthMax; // maximum health a player can have
-			Other.Health = class'BallisticReplicationInfo'.default.PlayerHealth;  // health the player starts with
+		Other.SuperHealthMax = class'BallisticReplicationInfo'.default.PlayerSuperHealthMax; // maximum superhealth a player can have
+		Other.HealthMax = class'BallisticReplicationInfo'.default.PlayerHealthMax; // maximum health a player can have
+		Other.Health = class'BallisticReplicationInfo'.default.PlayerHealth;  // health the player starts with
 
-			xPawn(Other).ShieldStrengthMax = class'BallisticReplicationInfo'.default.PlayerShieldMax;
-			Other.AddShieldStrength(class'BallisticReplicationInfo'.default.PlayerShield);
-		}
+		xPawn(Other).ShieldStrengthMax = class'BallisticReplicationInfo'.default.PlayerShieldMax;
+		Other.AddShieldStrength(class'BallisticReplicationInfo'.default.PlayerShield);
+
 		xPawn(Other).FootstepVolume *= FootstepAmplifier;
 
         if(BPawn != none)
@@ -574,7 +571,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 			PlayerReplicationInfo(Other).CustomReplicationInfo = BPRI;
 	}
 	
-	else if (JumpSpot(Other) != None && BallisticRep != None && BallisticRep.bNoDodging)
+	else if (JumpSpot(Other) != None && BallisticRep != None && !BallisticRep.bAllowDodging)
 	{
 		JumpSpot(Other).bDodgeUp = false;
 	}
@@ -753,14 +750,17 @@ simulated event Tick(float DT)
 simulated function PreBeginPlay()
 {
 	if (Role == ROLE_Authority)
-		BallisticRep = class'BallisticReplicationInfo'.static.GetOrCreateInstance(self);
+	{
+		BallisticRep = Spawn(class'BallisticReplicationInfo');
+		class'BallisticGameStyles'.static.GetLocalStyle().static.InitializeReplicationInfo(BallisticRep);
+	}
 	
-	if (bRegeneration)
+	if (BallisticRep.default.bHealthRegeneration)
 	{
 		Level.Game.AddMutator("BallisticProV55.Mut_Regeneration", false);
 	}
 	
-	if (bShieldRegeneration)
+	if (BallisticRep.default.bShieldRegeneration)
 	{
 		Level.Game.AddMutator("BallisticProV55.Mut_ShieldRegeneration", false);
 	}
@@ -770,25 +770,16 @@ simulated function PreBeginPlay()
 		Level.Game.AddMutator("BallisticProV55.Mut_BallisticPreLoad", false);
 	}
 
-	if (bKillStreaks)
+	if (BallisticRep.default.bKillStreaks)
 	{
 		Level.Game.AddMutator("BallisticProV55.Mut_Killstreak", false);
 	}
 
 	if (Level.Game != None)
 	{
-		Level.Game.AddGameModifier(Spawn(class'Rules_KillRewards'));
-		
-		// fucking ow
-		if(DeathMatch(Level.Game) != none)
-        {
-           DeathMatch(Level.Game).ADR_Kill = class'BallisticReplicationInfo'.default.ADRKill;
-           DeathMatch(Level.Game).ADR_MajorKill = class'BallisticReplicationInfo'.default.ADRMajorKill;
-           DeathMatch(Level.Game).ADR_MinorBonus = class'BallisticReplicationInfo'.default.ADRMinorBonus;
-           DeathMatch(Level.Game).ADR_KillTeamMate = class'BallisticReplicationInfo'.default.ADRKillTeamMate;
-           DeathMatch(Level.Game).ADR_MinorError = class'BallisticReplicationInfo'.default.ADRMinorError;
-        }
-		
+		if (BallisticRep.default.HealthKillReward > 0 || BallisticRep.default.ShieldKillReward > 0)
+			Level.Game.AddGameModifier(Spawn(class'Rules_KillRewards'));
+				
 		if (Level.Game.DefaultPlayerClassName ~= "XGame.xPawn" || bForceBallisticPawn)
 			Level.Game.DefaultPlayerClassName = "BallisticProV55.BallisticPawn";
 
@@ -828,14 +819,18 @@ simulated function LoadItemClasses()
 function PostBeginPlay()
 {
 	local GameRules GR;
+
 	super.PostBeginPlay();
+
 	// Use Itemizer to spawn extra Ballistic Pickups
 	if (bUseItemizer && Role==ROLE_Authority)
 		bDoItemize=true;
 
 	if (Invasion(Level.Game) != None)
 		GR = spawn(class'Rules_Invasion');
-	else GR = spawn(class'Rules_Ballistic');
+	else 
+		GR = spawn(class'Rules_Ballistic');
+
 	if ( Level.Game.GameRulesModifiers == None )
 		Level.Game.GameRulesModifiers = GR;
 	else
@@ -1026,10 +1021,7 @@ defaultproperties
      InitSpeedFactor=1.350000
      JumpDrainFactor=2.000000
 	 
-	 bRegeneration=False
-	 bShieldRegeneration=False
 	 bPreloadMeshes=True
-	 bKillStreaks=False
 	 
 	 ItemGroup="Ballistic"
      bSpawnUniqueItems=True

@@ -54,7 +54,7 @@ function LoadSettings()
 {
 	local class<BC_GameStyle_Config> style;
 
-	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
 
 	if (style != None)
 	{
@@ -83,7 +83,7 @@ function SaveSettings()
     if (!bInitialized)
         return;
 
-	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
 
 	if (style != None)
 	{

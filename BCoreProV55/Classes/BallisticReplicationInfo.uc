@@ -29,12 +29,13 @@ var float					DamageScale;				// Scales general weapon damage
 var bool		    		bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
 var bool		    		bLongWeaponOffsetting;		// Causes weapons to offset when close to wall
 var bool		    		bNoReloading;				// Disables reloading and weapons use boring old style ammo handling...
+var int						MaxInventoryCapacity;		// Maximum inventory size player can hold
 
 //=============================================================================
 // GAMEPLAY
 //=============================================================================
 var bool         			bAlternativePickups;		// Press Use to Pickup Weapon
-var bool					bUniversalMineLights;   	// All BX-5 mines are lit.
+var bool					bUniversalMineLights;   	// All BX5 mines are lit.
 
 //=============================================================================
 // PAWN
@@ -61,15 +62,31 @@ var float					PlayerAirSpeed;
 var float					PlayerAccelRate;
 var float					PlayerJumpZ;
 var float					PlayerDodgeZ;
+//=============================================================================
+// HEALTH/ARMOR - NO REP
+//=============================================================================
+var bool					bHealthRegeneration;
+var bool					bShieldRegeneration;
+//=============================================================================
+// STYLE - NO REP
+//=============================================================================
+var bool					bKillstreaks;
+//=============================================================================
+// KILL REWARD - NO REP
+//=============================================================================
+var int						HealthKillReward; // the amount of healthpoints a player gets for a kill
+var int						KillRewardHealthMax;  // Limiter, The additional healthpoints wont exceel this value
+var int						ShieldKillReward;  // armor points for a kill
+var int						KillRewardShieldMax;  // Limiter, the additional armor points will not exceel this value
 
 replication
 {
 	reliable if (Role == ROLE_Authority && bNetInitial)
 		GameStyle,
-		AccuracyScale, RecoilScale, bWeaponJumpOffsetting, bLongWeaponOffsetting, bNoReloading, 
+		AccuracyScale, RecoilScale, bWeaponJumpOffsetting, bLongWeaponOffsetting, bNoReloading, MaxInventoryCapacity,
 		bAlternativePickups, bUniversalMineLights,
 		bBrightPlayers, PlayerHealth, PlayerHealthMax, PlayerSuperHealthMax, PlayerShield, PlayerShieldMax,
-		bAllowDodging, bAllowDoubleJump, PlayerWalkSpeedFactor, PlayerCrouchSpeedFactor, 
+		bPlayerDeceleration, bAllowDodging, bAllowDoubleJump, PlayerWalkSpeedFactor, PlayerCrouchSpeedFactor, 
 		PlayerStrafeScale, PlayerBackpedalScale, PlayerGroundSpeed, PlayerAirSpeed, PlayerAccelRate,
 		PlayerJumpZ, PlayerDodgeZ;
 		
@@ -90,6 +107,7 @@ simulated final function BindDefaults()
 
 	class.default.AccuracyScale			        = AccuracyScale;
 	class.default.RecoilScale			        = RecoilScale;
+	class.default.DamageScale					= DamageScale;
 	class.default.bWeaponJumpOffsetting			= bWeaponJumpOffsetting;
 	class.default.bLongWeaponOffsetting			= bLongWeaponOffsetting;
 	class.default.bNoReloading					= bNoReloading;
@@ -115,6 +133,11 @@ simulated final function BindDefaults()
 	class.default.PlayerAccelRate               = PlayerAccelRate;
     class.default.PlayerJumpZ                   = PlayerJumpZ;
 	class.default.PlayerDodgeZ                  = PlayerDodgeZ;
+
+	class.default.HealthKillReward				= HealthKillReward;
+	class.default.KillRewardHealthMax			= KillRewardHealthMax;
+	class.default.ShieldKillReward				= ShieldKillReward;
+	class.default.KillRewardShieldMax			= KillRewardShieldMax;
 
 		
 	Log("BallisticReplicationInfo: PostNetBeginPlay");
@@ -180,6 +203,7 @@ defaultproperties
 	AccuracyScale=1
 	RecoilScale=1
 	DamageScale=1
+
 	bWeaponJumpOffsetting=True
 	bLongWeaponOffsetting=False
 	bNoReloading=False

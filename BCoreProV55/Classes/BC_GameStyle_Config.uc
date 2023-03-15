@@ -10,13 +10,12 @@ class BC_GameStyle_Config extends BC_GameStyle
     config(BallisticProV55);
 
 //=============================================================================
-// CONFIG VARIABLES - NOT REPLICATED
+// INVENTORY
 //=============================================================================	
-var() config int			InventoryModeIndex;
 var() config int			MaxInventoryCapacity;
-var() config bool			bKillstreaks;
+
 //=============================================================================
-// CONFIG VARIABLES
+// WEAPONS
 //=============================================================================	
 var() config bool		    bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
 var() config bool		    bLongWeaponOffsetting;		// Causes weapons to offset when close to wall
@@ -32,7 +31,7 @@ var() config bool			bUniversalMineLights;   // All BX-5 mines are lit.
 //=============================================================================
 // HEALTH
 //=============================================================================
-var() config bool			bRegeneration;			// whether health regenerates
+var() config bool			bHealthRegeneration;	// whether health regenerates
 var() config int			PlayerHealth;           // health the player starts with
 var() config int			PlayerHealthMax;        // maximum health a player can have
 var() config int			PlayerSuperHealthMax;   // maximum superhealth a player can have
@@ -64,40 +63,49 @@ var() config float			PlayerDodgeZ;
 // KILL REWARD
 //=============================================================================
 var() config int			HealthKillReward; // the amount of healthpoints a player gets for a kill
-var() config int			HealthKillRewardCap;  // Limiter, The additional healthpoints wont exceel this value
-var() config int			ArmorKillReward;  // armor points for a kill
-var() config int			ArmorKillRewardCap;  // Limiter, the additional armor points will not exceel this value
+var() config int			KillRewardHealthMax;  // Limiter, The additional healthpoints wont exceel this value
+var() config int			ShieldKillReward;  // armor points for a kill
+var() config int			KillRewardShieldMax;  // Limiter, the additional armor points will not exceel this value
 
-protected function FillReplicationInfo(BallisticReplicationInfo rep)
-{
-	rep.bWeaponJumpOffsetting		= bWeaponJumpOffsetting;
-	rep.bLongWeaponOffsetting		= bLongWeaponOffsetting;
-	rep.bNoReloading				= bNoReloading;
-	rep.bAlternativePickups 		= bAlternativePickups;
+static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 
-    rep.bBrightPlayers				= bBrightPlayers;
-	rep.bAllowDodging				= bAllowDodging;
-	rep.bAllowDoubleJump			= bAllowDoubleJump;
-	rep.bUniversalMineLights 		= bUniversalMineLights;
+{	rep.MaxInventoryCapacity		= default.MaxInventoryCapacity;
 
-	rep.PlayerHealth 				= PlayerHealth;
-	rep.PlayerHealthMax 			= PlayerHealthMax;
-	rep.PlayerSuperHealthMax 		= playerSuperHealthMax;
-	rep.PlayerShield 				= PlayerShield;
-	rep.PlayerShieldMax 			= PlayerShieldMax;
+	rep.bWeaponJumpOffsetting		= default.bWeaponJumpOffsetting;
+	rep.bLongWeaponOffsetting		= default.bLongWeaponOffsetting;
+	rep.bNoReloading				= default.bNoReloading;
 
-	rep.bPlayerDeceleration			= bPlayerDeceleration;
-	rep.bAllowDodging				= bAllowDodging;
-	rep.bAllowDoubleJump			= bAllowDoubleJump;
-    rep.PlayerWalkSpeedFactor 		= PlayerWalkSpeedFactor;
-    rep.PlayerCrouchSpeedFactor 	= PlayerCrouchSpeedFactor;
-    rep.PlayerStrafeScale 			= PlayerStrafeScale;
-	rep.PlayerBackpedalScale 		= PlayerBackpedalScale;
-	rep.PlayerGroundSpeed 			= PlayerGroundSpeed;
-	rep.PlayerAirSpeed 				= PlayerAirSpeed;
-	rep.PlayerAccelRate 			= PlayerAccelRate;
-    rep.PlayerJumpZ 				= PlayerJumpZ;
-    rep.PlayerDodgeZ 				= PlayerDodgeZ;
+	rep.bAlternativePickups 		= default.bAlternativePickups;
+
+    rep.bBrightPlayers				= default.bBrightPlayers;
+	rep.bUniversalMineLights 		= default.bUniversalMineLights;
+
+	rep.bHealthRegeneration			= default.bHealthRegeneration;
+	rep.PlayerHealth 				= default.PlayerHealth;
+	rep.PlayerHealthMax 			= default.PlayerHealthMax;
+	rep.PlayerSuperHealthMax 		= default.playerSuperHealthMax;
+
+	rep.bShieldRegeneration			= default.bShieldRegeneration;
+	rep.PlayerShield 				= default.PlayerShield;
+	rep.PlayerShieldMax 			= default.PlayerShieldMax;
+
+	rep.bPlayerDeceleration			= default.bPlayerDeceleration;
+	rep.bAllowDodging				= default.bAllowDodging;
+	rep.bAllowDoubleJump			= default.bAllowDoubleJump;
+    rep.PlayerWalkSpeedFactor 		= default.PlayerWalkSpeedFactor;
+    rep.PlayerCrouchSpeedFactor 	= default.PlayerCrouchSpeedFactor;
+    rep.PlayerStrafeScale 			= default.PlayerStrafeScale;
+	rep.PlayerBackpedalScale 		= default.PlayerBackpedalScale;
+	rep.PlayerGroundSpeed 			= default.PlayerGroundSpeed;
+	rep.PlayerAirSpeed 				= default.PlayerAirSpeed;
+	rep.PlayerAccelRate 			= default.PlayerAccelRate;
+    rep.PlayerJumpZ 				= default.PlayerJumpZ;
+    rep.PlayerDodgeZ 				= default.PlayerDodgeZ;
+
+	rep.HealthKillReward			= default.HealthKillReward;
+	rep.KillRewardHealthMax			= default.KillRewardHealthMax;
+	rep.ShieldKillReward			= default.ShieldKillReward;
+	rep.KillRewardShieldMax			= default.KillRewardShieldMax;
 }
 
 defaultproperties
@@ -105,9 +113,10 @@ defaultproperties
 	// defaults here are used from classic
 	Index=GS_Classic
 	StyleName="Classic"
-	bHasFineConfig=True
+	bRunInADS=False
 
 	// General
+	MaxInventoryCapacity=12
     bAlternativePickups=False
 	bUniversalMineLights=False
 
@@ -136,7 +145,7 @@ defaultproperties
     PlayerDodgeZ=170
 
     HealthKillReward=0
-	HealthKillRewardCap=0
-	ArmorKillReward=0
-	ArmorKillRewardCap=0
+	KillRewardHealthMax=0
+	ShieldKillReward=0
+	KillRewardShieldMax=0
 }

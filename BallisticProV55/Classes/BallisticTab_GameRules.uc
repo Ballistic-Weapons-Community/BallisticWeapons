@@ -76,18 +76,18 @@ function LoadSettings()
 	ch_PreCacheWeapons.Checked(class'Mut_Ballistic'.default.bPreloadMeshes);
 	ch_ForceBWPawn.Checked(class'Mut_Ballistic'.default.bForceBallisticPawn);
 
-	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
 
 	if (style != None)
 	{
-		co_InventoryMode.SetIndex(style.default.class.default.InventoryModeIndex);
-		int_MaxInventoryCapacity.SetValue(style.default.class.default.MaxInventoryCapacity);
-		ch_BrightPlayers.Checked(style.default.class.default.bBrightPlayers);
-		ch_AllowDodging.Checked(style.default.class.default.bAllowDodging);
-		ch_AllowDoubleJump.Checked(style.default.class.default.bAllowDoubleJump);
-		ch_Regen.Checked(style.default.class.default.bRegeneration);
-		ch_ShieldRegen.Checked(style.default.class.default.bShieldRegeneration);
-		ch_KillStreaks.Checked(style.default.class.default.bKillstreaks);
+		co_InventoryMode.SetIndex(style.default.InventoryModeIndex);
+		int_MaxInventoryCapacity.SetValue(style.default.MaxInventoryCapacity);
+		ch_BrightPlayers.Checked(style.default.bBrightPlayers);
+		ch_AllowDodging.Checked(style.default.bAllowDodging);
+		ch_AllowDoubleJump.Checked(style.default.bAllowDoubleJump);
+		ch_Regen.Checked(style.default.bHealthRegeneration);
+		ch_ShieldRegen.Checked(style.default.bShieldRegeneration);
+		ch_KillStreaks.Checked(style.default.bKillstreaks);
 	}
 }
 
@@ -98,27 +98,27 @@ function SaveSettings()
 	if (!bInitialized)
 		return;
 
-	class'BallisticGameStyles'.default.GameStyle       			= EGameStyle(co_GameStyle.GetIndex());
-	class'BallisticGameStyles'.default.StaticSaveConfig();
+	class'BallisticGameStyles'.default.CurrentStyle       	= EGameStyle(co_GameStyle.GetIndex());
+	class'BallisticGameStyles'.static.StaticSaveConfig();
 
 	// stuff that's not game style relevant:
-	class'Mut_Ballistic'.default.bPreloadMeshes					= ch_PreCacheWeapons.IsChecked();
-    class'Mut_Ballistic'.default.bForceBallisticPawn			= ch_ForceBWPawn.IsChecked();
+	class'Mut_Ballistic'.default.bPreloadMeshes				= ch_PreCacheWeapons.IsChecked();
+    class'Mut_Ballistic'.default.bForceBallisticPawn		= ch_ForceBWPawn.IsChecked();
 	class'Mut_Ballistic'.static.StaticSaveConfig();
 
-	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
 
 	if (style != None)
 	{
 		style.default.InventoryModeIndex		= co_InventoryMode.GetIndex();
-		style.default.MaxInventoryCapacity 	= int_MaxInventoryCapacity.GetValue();	
-		style.default.bAllowDodging			= ch_AllowDodging.IsChecked();
-		style.default.bAllowDoubleJump 		= ch_AllowDoubleJump.IsChecked();
+		style.default.MaxInventoryCapacity 		= int_MaxInventoryCapacity.GetValue();	
+		style.default.bAllowDodging				= ch_AllowDodging.IsChecked();
+		style.default.bAllowDoubleJump 			= ch_AllowDoubleJump.IsChecked();
 		style.default.bBrightPlayers			= ch_BrightPlayers.IsChecked();
-		style.default.bRegeneration			= ch_Regen.IsChecked();
+		style.default.bHealthRegeneration		= ch_Regen.IsChecked();
 		style.default.bShieldRegeneration		= ch_ShieldRegen.IsChecked();
-		style.default.bKillstreaks			= ch_KillStreaks.IsChecked();
-		style.default.class.static.StaticSaveConfig();
+		style.default.bKillstreaks				= ch_KillStreaks.IsChecked();
+		style.static.StaticSaveConfig();
 	}
 }
 

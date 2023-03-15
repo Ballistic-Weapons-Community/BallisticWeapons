@@ -49,14 +49,14 @@ function LoadSettings()
 {
 	local class<BC_GameStyle_Config> style;
 
-	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
 
 	if (style != None)
 	{
-    	ne_killRewardHealthpoints.SetValue(style.default.class.default.killRewardHealthpoints);
-    	ne_killRewardHealthcap.SetValue(style.default.class.default.killRewardHealthcap);
-    	ne_killrewardArmor.SetValue(style.default.class.default.killrewardArmor);
-    	ne_killrewardArmorCap.SetValue(style.default.class.default.killrewardArmorCap);
+    	ne_killRewardHealthpoints.SetValue(style.default.HealthKillReward);
+    	ne_killRewardHealthcap.SetValue(style.default.KillRewardHealthMax);
+    	ne_killrewardArmor.SetValue(style.default.ShieldKillReward);
+    	ne_killrewardArmorCap.SetValue(style.default.KillRewardShieldMax);
 	}
 }
 
@@ -70,17 +70,19 @@ function DefaultSettings()
 
 function SaveSettings()
 {
+	local class<BC_GameStyle_Config> style;
+
     if (!bInitialized)
         return;
 
-	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
 
 	if (style != None)
 	{
-		style.default.killRewardHealthpoints  = ne_killRewardHealthpoints.GetValue();
-		style.default.killRewardHealthcap = ne_killRewardHealthcap.GetValue();
-		style.default.killrewardArmor = ne_killrewardArmor.GetValue();
-		style.default.killrewardArmorCap = ne_killrewardArmorCap.GetValue();
+		style.default.HealthKillReward  	= ne_killRewardHealthpoints.GetValue();
+		style.default.KillRewardHealthMax 	= ne_killRewardHealthcap.GetValue();
+		style.default.ShieldKillReward 		= ne_killrewardArmor.GetValue();
+		style.default.KillRewardShieldMax 	= ne_killrewardArmorCap.GetValue();
 		style.static.StaticSaveConfig();
 	}
 }

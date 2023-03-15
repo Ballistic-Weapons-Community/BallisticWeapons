@@ -59,9 +59,9 @@ function LoadSettings()
 	co_GameStyle.AddItem("Realism" ,,string(2));
     co_GameStyle.AddItem("Tactical" ,,string(3));
 	co_GameStyle.ReadOnly(True);
-	co_GameStyle.SetIndex(class'BallisticGameStyles'.default.GameStyle);
+	co_GameStyle.SetIndex(class'BallisticGameStyles'.default.CurrentStyle);
 
-	style = class'BallisticGameStyles'.static.GetClientLocalStyle();
+	style = class'BallisticGameStyles'.static.GetLocalStyle();
 
 	if (style != None)
 	{
@@ -73,7 +73,7 @@ function LoadSettings()
 
 	if (config_style != None)
 	{
-		ch_JumpOffsetting.Checked(cconfig_style.default.bWeaponJumpOffsetting);
+		ch_JumpOffsetting.Checked(config_style.default.bWeaponJumpOffsetting);
 		ch_LongWeaponOffsetting.Checked(config_style.default.bLongWeaponOffsetting);
 		ch_NoReloading.Checked(config_style.default.bNoReloading);
 		ch_BrightPlayers.Checked(config_style.default.bBrightPlayers);
@@ -90,6 +90,9 @@ function SaveSettings()
 	if (!bInitialized)
 		return;
 
+	class'BallisticGameStyles'.default.CurrentStyle       	= EGameStyle(co_GameStyle.GetIndex());
+	class'BallisticGameStyles'.static.StaticSaveConfig();
+
 	class'Mut_Ballistic'.default.ItemGroup		 			= eb_ItemGroup.GetText();
 	class'Mut_Ballistic'.default.bUseItemizer	 			= ch_UseItemizer.IsChecked();
 	class'Mut_Ballistic'.default.bLeaveSuper 				= ch_LeaveSuper.IsChecked();
@@ -105,7 +108,7 @@ function SaveSettings()
 	class'Rules_Ballistic'.default.VehicleDamageScale		= fl_VDamage.GetValue();
 	class'Rules_Ballistic'.static.StaticSaveConfig();
 
-	style = class'BallisticGameStyles'.static.GetClientLocalStyle();
+	style = class'BallisticGameStyles'.static.GetLocalStyle();
 
 	if (style != None)
 	{
@@ -118,7 +121,6 @@ function SaveSettings()
 
 	if (config_style != None)
 	{
-    	config_style.default.GameStyle       = EGameStyle(co_GameStyle.GetIndex());
 		config_style.default.bNoReloading	= ch_NoReloading.IsChecked();
 		config_style.default.bWeaponJumpOffsetting	= ch_JumpOffsetting.IsChecked();
 		config_style.default.bLongWeaponOffsetting		= ch_LongWeaponOffsetting.IsChecked();

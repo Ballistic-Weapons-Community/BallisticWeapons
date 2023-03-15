@@ -73,7 +73,7 @@ function LoadSettings()
     chk_bRemoveSuperHealthPack.Checked(class'BallisticProV55.Mut_Pickups'.default.bRemoveSuperHealthPack);
     chk_bRemoveAdrenaline.Checked(class'BallisticProV55.Mut_Pickups'.default.bRemoveAdrenaline);
 
-	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
 
 	if (style != None)
 	{
@@ -128,7 +128,7 @@ function SaveSettings()
     class'BallisticProV55.Mut_Pickups'.default.bRemoveAdrenaline = chk_bRemoveAdrenaline.IsChecked();
     class'BallisticProV55.Mut_Pickups'.static.StaticSaveConfig();
 
-	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
 
 	if (style != None)
 	{    

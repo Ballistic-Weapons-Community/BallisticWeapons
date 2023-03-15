@@ -424,7 +424,7 @@ simulated function PlayReload()
 
 function ServerWeaponSpecial(optional byte i)
 {
-	if (!FireMode[1].IsFiring() && level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo == default.LaserAmmo && !class'BallisticReplicationInfo'.default.IsRealism()/* && !IsInState('DualAction') && !IsInState('PendingDualAction')*/)
+	if (!FireMode[1].IsFiring() && level.TimeSeconds - GRS9SecondaryFire(FireMode[1]).StopFireTime >= 0.8 && LaserAmmo == default.LaserAmmo && !class'BallisticReplicationInfo'.static.IsRealism() /* && !IsInState('DualAction') && !IsInState('PendingDualAction')*/)
 	{
 		ClientWeaponSpecial(i);
 		CommonWeaponSpecial(i);

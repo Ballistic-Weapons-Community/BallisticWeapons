@@ -21,7 +21,6 @@ enum EGameStyle
 
 var EGameStyle  		Index;
 var string				StyleName;
-var bool				bHasFineConfig;
 
 //=============================================================================
 // CONFIG VARIABLES
@@ -30,13 +29,21 @@ var() config float		AccuracyScale;			    // Scales weapon sway
 var() config float		DamageScale;				// Scales weapon damage
 var() config float		RecoilScale;			    // Scales weapon recoil
 
-final function InitializeReplicationInfo(BallisticReplicationInfo rep)
-{
-	rep.GameStyle 		= Index;
+var() config int		InventoryModeIndex;			// Inventory mode used in this style - server only
+var() config bool		bKillstreaks;				// Use killstreaks in this style - server only
+//=============================================================================
+// NON-CONFIG VARIABLES
+//=============================================================================	
+var() bool				bRunInADS;					// Use run anims in ADS (because gametype has fast ADS move speed)
 
-	rep.AccuracyScale	= AccuracyScale;
-	rep.DamageScale		= DamageScale;
-	rep.RecoilScale		= RecoilScale;
+static final function InitializeReplicationInfo(BallisticReplicationInfo rep)
+{
+	rep.GameStyle 		= default.Index;
+
+	rep.AccuracyScale	= default.AccuracyScale;
+	rep.DamageScale		= default.DamageScale;
+	rep.RecoilScale		= default.RecoilScale;
+	rep.bKillstreaks	= default.bKillstreaks;
 
 	// style-specific properties here
 	FillReplicationInfo(rep);
@@ -44,15 +51,17 @@ final function InitializeReplicationInfo(BallisticReplicationInfo rep)
 	rep.BindDefaults();
 }
 
-protected function FillReplicationInfo(BallisticReplicationInfo rep);
+static protected function FillReplicationInfo(BallisticReplicationInfo rep);
 
 defaultproperties
 {
     Index=GS_Arena
 	StyleName="Pro"
-	bHasFineConfig=False
 
 	AccuracyScale=1.0f
 	DamageScale=1.0f
     RecoilScale=1.0f
+
+	bKillstreaks=True
+	bRunInADS=True
 }

@@ -57,7 +57,7 @@ function LoadSettings()
     fe_InitSpeedFactor.SetValue(class'BallisticProV55.Mut_Ballistic'.default.InitSpeedFactor);
     fe_JumpDrainFactor.SetValue(class'BallisticProV55.Mut_Ballistic'.default.JumpDrainFactor);
 
-	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
 
 	if (style != None)
 	{
@@ -98,7 +98,7 @@ function SaveSettings()
     class'Mut_Ballistic'.default.JumpDrainFactor = fe_JumpDrainFactor.GetValue();
 	class'Mut_Ballistic'.static.StaticSaveConfig();
 
-	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
 
 	if (style != None)
 	{

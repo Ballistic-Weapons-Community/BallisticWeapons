@@ -85,8 +85,6 @@ function PostBeginPlay()
 	}
 }
 
-		
-
 //==================================================
 // Mutate
 // Convenience editing function for servers
@@ -646,7 +644,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 			xPickupBase(Other).myEmitter.Destroy();
 	}
 	
-	else if (JumpSpot(Other) != None && BallisticRep != None && BallisticRep.bNoDodging)
+	else if (JumpSpot(Other) != None && BallisticRep != None && !BallisticRep.bAllowDodging)
 	{
 		JumpSpot(Other).bDodgeUp = false;
 	}

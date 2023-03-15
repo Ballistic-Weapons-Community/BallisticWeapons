@@ -65,7 +65,7 @@ function LoadSettings()
 	fl_Damage.SetValue(class'Rules_Ballistic'.default.DamageScale);
 	fl_VDamage.SetValue(class'Rules_Ballistic'.default.VehicleDamageScale);
 
-	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
 
 	if (style != None)
 	{
@@ -95,7 +95,7 @@ function SaveSettings()
 	class'Rules_Ballistic'.default.VehicleDamageScale				= fl_VDamage.GetValue();
 	class'Rules_Ballistic'.static.StaticSaveConfig();
 
-	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+	style = class'BallisticGameStyles'.static.GetLocalConfigStyle();
 
 	if (style != None)
 	{
