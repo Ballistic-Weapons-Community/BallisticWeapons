@@ -179,6 +179,7 @@ var     bool                        RewindActive;                   // True if c
 // WEAPON STATE VARIABLES
 //=============================================================================
 var		WeaponParams				WeaponParams;
+var		WeaponCamo					WeaponCamo;
 var		bool						bPendingBringupTimer;
 var     int                         NetInventoryGroup;
 var     bool                        bDeferInitialSwitch, bServerDeferInitialSwitch;
@@ -562,7 +563,8 @@ simulated function PostNetBeginPlay()
     assert(ParamsClasses[GameStyleIndex] != None);
 	
     // Forced to delay initialization because of the need to wait for GameStyleIndex and LayoutIndex to be replicated
-	ParamsClasses[GameStyleIndex].static.Initialize(self);
+	if (level.NetMode == NM_Client)
+		ParamsClasses[GameStyleIndex].static.Initialize(self);
 	
 	if (BCRepClass.default.bNoReloading)
 		bNoMag = true;
@@ -652,6 +654,13 @@ simulated function GenerateCamo(byte Index)
 	
 	Camos = ParamsClasses[GameStyleIndex].default.Camos;
 	AllowedCamos = ParamsClasses[GameStyleIndex].default.Layouts[LayoutIndex].AllowedCamos;
+	
+	//No camos, disable load
+	if (Camos.length == 0)
+	{
+		SetCamoIndex(-1);
+		return;
+	}
 	
 	//We have a layout set, use it
 	if (Index < Camos.length && Index >= 0)
@@ -814,6 +823,22 @@ simulated function OnWeaponParamsChanged()
 			M = Material(DynamicLoadObject(WeaponParams.WeaponMaterialSwaps[i].MaterialName, class'Material'));
 			if (M != None)
 				Skins[WeaponParams.WeaponMaterialSwaps[i].Index] = M;
+		}
+	}
+	
+	//Camos
+	if (WeaponCamo != None)
+	{
+		for (i = 0; i < WeaponCamo.WeaponMaterialSwaps.Length; ++i)
+		{
+			if (WeaponCamo.WeaponMaterialSwaps[i].Material != None)
+				Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = WeaponCamo.WeaponMaterialSwaps[i].Material;
+			if (WeaponCamo.WeaponMaterialSwaps[i].MaterialName != "")
+			{
+				M = Material(DynamicLoadObject(WeaponCamo.WeaponMaterialSwaps[i].MaterialName, class'Material'));
+				if (M != None)
+					Skins[WeaponCamo.WeaponMaterialSwaps[i].Index] = M;
+			}
 		}
 	}
 
@@ -3631,15 +3656,17 @@ function GiveTo(Pawn Other, optional Pickup Pickup)
 		if (Pickup != None && BallisticWeaponPickup(Pickup) != None)
 		{
 			GenerateLayout(BallisticWeaponPickup(Pickup).LayoutIndex);
-			//GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
-			ParamsClasses[GameStyleIndex].static.Initialize(self);
+			GenerateCamo(BallisticWeaponPickup(Pickup).CamoIndex);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
 			MagAmmo = BallisticWeaponPickup(Pickup).MagAmmo;
 		}
 		else
 		{
 			GenerateLayout(255);
-			//GenerateCamo(255);
-			ParamsClasses[GameStyleIndex].static.Initialize(self);
+			GenerateCamo(255);
+			if (Role == ROLE_Authority)
+				ParamsClasses[GameStyleIndex].static.Initialize(self);
             MagAmmo = MagAmmo + (int(!bNonCocking) *  int(bMagPlusOne) * int(!bNeedCock));
 		}
     }
@@ -3958,6 +3985,7 @@ simulated function Destroyed()
     }
 
 	WeaponParams = None;
+	WeaponCamo = None;
 
     if (RcComponent != None)
     {
@@ -4040,6 +4068,7 @@ function DropFrom(vector StartLocation)
 		if (BallisticWeaponPickup(Pickup) != None)
 		{
 			BallisticWeaponPickup(Pickup).LayoutIndex = LayoutIndex;
+			BallisticWeaponPickup(Pickup).CamoIndex = CamoIndex;
 			for (i = 0; i < WeaponParams.AttachmentMaterialSwaps.Length; ++i)
 			{
 				BallisticWeaponPickup(Pickup).Skins[WeaponParams.AttachmentMaterialSwaps[i].Index] = WeaponParams.AttachmentMaterialSwaps[i].Material;

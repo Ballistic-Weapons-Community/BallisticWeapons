@@ -37,6 +37,14 @@ struct LayoutInfo
 	var() config byte 			GameStyleIndex;
 	var() config byte 			LayoutIndex;
 	var() config string			LayoutName;
+	var() config array<int> 	AllowedCamos;
+};
+
+struct CamoInfo
+{
+	var() config byte 			GameStyleIndex;
+	var() config byte 			CamoIndex;
+	var() config string			CamoName;
 };
 
 struct WeaponInfo
@@ -50,7 +58,9 @@ struct WeaponInfo
 	var() config byte			InventorySize;
 	var() config bool			bIsBW;
 	var() config array<LayoutInfo> 	Layouts;
+	var() config array<CamoInfo> 	Camos;
 	var() config int 			TotalLayouts;
+	var() config int 			TotalCamos;
 };
 
 var() config array<WeaponInfo>	Weapons;
@@ -96,6 +106,42 @@ static function bool FindLayoutInfo(WeaponInfo WI, byte GameStyleIndex, int Layo
 	return false;
 }
 
+// Find a specific camo for a chosen weapon's layout, output the CI and return success or failure to find the weapon
+static function bool FindCamoInfo(WeaponInfo WI, byte GameStyleIndex, int LayoutIndex, int CamoIndex, out CamoInfo CI, optional out int Index)
+{
+	local int i, j, k;
+	
+	//first check if our required WeaponInfo exists in our list
+	if (FindWeaponInfo(WI.ClassName, WI, i))
+	{
+		for (j = 0; j < GameStyleIndex; j++)
+		{
+			log("Loading camo : index "$default.Weapons[i].Camos[CamoIndex].CamoIndex$" : name "$default.Weapons[i].Camos[CamoIndex].CamoName); 
+		
+			if (default.Weapons[i].Camos[CamoIndex].GameStyleIndex == GameStyleIndex )
+			{
+				if (default.Weapons[i].Layouts[LayoutIndex].AllowedCamos.Length == 0 )
+				{
+					Index = CamoIndex;
+					CI = default.Weapons[i].Camos[CamoIndex];
+					return true;
+				}
+				for (k = 0; k < default.Weapons[i].Layouts[LayoutIndex].AllowedCamos.Length; k++) //Why no dynamicArray.find?!?
+				{
+					if ( default.Weapons[i].Layouts[LayoutIndex].AllowedCamos[k] == CamoIndex)
+					{
+						Index = CamoIndex;
+						CI = default.Weapons[i].Camos[CamoIndex];
+						return true;
+					}
+				}
+			}
+		}
+	}
+	Index = -1;
+	return false;
+}
+
 // Fast shotcut to use FindWeaponInfo() and automatically AddWeaponInfoName() if needed
 static function WeaponInfo AutoWeaponInfo(string WeapClassName, optional out int i)
 {
@@ -107,7 +153,7 @@ static function WeaponInfo AutoWeaponInfo(string WeapClassName, optional out int
 	return AddWeaponInfoName(WeapClassName, i);
 }
 
-// Shorcut to AddWeaponInfo() using only classname
+// Shortcut to AddWeaponInfo() using only classname
 static function WeaponInfo AddWeaponInfoName(string WeapClassName, optional out int i)
 {
 	local class<Weapon> Weap;
@@ -129,8 +175,9 @@ static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 {
 	local WeaponInfo WI;
 	local LayoutInfo LI;
+	local CamoInfo CI;
 	local Class<BallisticWeapon> BW;
-	local int GIIndex, LIIndex, TotalLayouts;
+	local int GIIndex, LIIndex, CIIndex, TotalLayouts, TotalCamos;
 
 	i=-1;
 	if (Weap == None)
@@ -155,6 +202,7 @@ static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 			{
 				LI.GameStyleIndex = GIIndex;
 				LI.LayoutIndex = LIIndex;
+				LI.AllowedCamos = BW.default.ParamsClasses[GIIndex].default.Layouts[LIIndex].AllowedCamos;
 				
 				if (BW.default.ParamsClasses[GIIndex].default.Layouts[LIIndex].LayoutName == "")
 				{
@@ -168,9 +216,27 @@ static function WeaponInfo AddWeaponInfo(class<Weapon> Weap, optional out int i)
 				WI.Layouts[TotalLayouts] = LI;
 				TotalLayouts++;
 			}
+			for (CIIndex = 0; CIIndex < BW.default.ParamsClasses[GIIndex].default.Camos.length; CIIndex++)
+			{
+				CI.GameStyleIndex = GIIndex;
+				CI.CamoIndex = CIIndex;
+				
+				if (BW.default.ParamsClasses[GIIndex].default.Camos[CIIndex].CamoName == "")
+				{
+					CI.CamoName = string(GIIndex)$":"$string(CIIndex);
+				}
+				else
+				{
+					CI.CamoName = BW.default.ParamsClasses[GIIndex].default.Camos[CIIndex].CamoName;
+				}
+			
+				WI.Camos[TotalCamos] = CI;
+				TotalCamos++;
+			}
 		}
 		
 		WI.TotalLayouts = TotalLayouts;
+		WI.TotalCamos = TotalCamos;
 	}
 
 	i = default.Weapons.length;
