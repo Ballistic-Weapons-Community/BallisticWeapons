@@ -209,6 +209,7 @@ simulated event PostNetBeginPlay()
     }
 }
 
+// FIXME: Move to game style and replicate
 simulated function ApplyProMovement()
 {
     bCanWallDodge = True;

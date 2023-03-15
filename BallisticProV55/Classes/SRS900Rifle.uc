@@ -280,7 +280,7 @@ simulated event RenderOverlays (Canvas C)
 		Super.RenderOverlays(C);
 		return;
 	}
-	if (class'BallisticReplicationInfo'.default.GameStyle != 1)
+	if (!class'BallisticReplicationInfo'.default.IsClassic())
 	{
 		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
 		SetRotation(Instigator.GetViewRotation());

@@ -20,7 +20,7 @@ var automated GUILabel	l_Receiving;
 var BallisticOutfittingMenu p_Anchor;
 
 var config int CurrentIndex;
-var config bool bInitialised;
+var config bool bInitialized;
 var bool bWeaponsLoaded;
 
 struct LoadoutWeapons
@@ -65,11 +65,11 @@ function ShowPanel(bool bShow)
 	
 	super.ShowPanel(bShow);
 	
-	if (!bInitialised)
+	if (!bInitialized)
 	{
 		for(i=0;i<5;i++)
 		SavedLoadouts[0].Weapons[i] = class'Mut_Outfitting'.default.LoadOut[i];
-		bInitialised=True;
+		bInitialized=True;
 		SaveConfig();
 	}
 	

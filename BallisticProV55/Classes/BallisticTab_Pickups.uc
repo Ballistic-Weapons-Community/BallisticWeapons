@@ -21,7 +21,7 @@ var automated moCheckBox    chk_bRemoveBandages;		//Toggle Bandages
 var automated moCheckBox    chk_bRemoveHealthPack;		//Toggle Health Pack
 var automated moCheckBox    chk_bRemoveSuperHealthPack;	//Toggle Super Health Pack
 var automated moCheckBox    chk_bRemoveAdrenaline;		//Toggle Adrenaline
-var automated moCheckBox    chk_AlterantivePickups;		//Press USE to Pickup Weapons
+var automated moCheckBox    chk_AlternativePickups;		//Press USE to Pickup Weapons
 
 var BallisticConfigMenuPro	p_Anchor;
 var bool                    bInitialized;
@@ -40,9 +40,12 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 function ShowPanel(bool bShow)
 {
     super.ShowPanel(bShow);
+
     if (bInitialized)
         return;
+
     LoadSettings();
+
     bInitialized = true;
 }
 
@@ -52,6 +55,8 @@ function ShowPanel(bool bShow)
 
 function LoadSettings()
 {
+	local class<BC_GameStyle_Config> style;
+
     fl_NadePct.SetValue(class'Mut_BallisticSwap'.default.NadeReplacePercent);
 	ch_BrightPickups.Checked(class'Mut_Ballistic'.default.bBrightPickups);
 	ch_PickupsChange.Checked(class'Mut_Ballistic'.default.bPickupsChange);
@@ -67,7 +72,13 @@ function LoadSettings()
     chk_bRemoveHealthPack.Checked(class'BallisticProV55.Mut_Pickups'.default.bRemoveHealthPack);
     chk_bRemoveSuperHealthPack.Checked(class'BallisticProV55.Mut_Pickups'.default.bRemoveSuperHealthPack);
     chk_bRemoveAdrenaline.Checked(class'BallisticProV55.Mut_Pickups'.default.bRemoveAdrenaline);
-    chk_AlterantivePickups.Checked(class'BallisticReplicationInfo'.default.bAlternativePickups);
+
+	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+
+	if (style != None)
+	{
+    	chk_AlternativePickups.Checked(style.default.bAlternativePickups);
+	}
 }
 
 function DefaultSettings()
@@ -80,7 +91,8 @@ function DefaultSettings()
     chk_bRemoveHealthPack.Checked(true);
     chk_bRemoveSuperHealthPack.Checked(true);
     chk_bRemoveAdrenaline.Checked(true);
-    chk_AlterantivePickups.Checked(true);
+
+    chk_AlternativePickups.Checked(true);
 	
 	fl_NadePct.SetValue(15);
 	ch_BrightPickups.Checked(false);
@@ -92,16 +104,20 @@ function DefaultSettings()
 
 function SaveSettings()
 {
+	local class<BC_GameStyle_Config> style;
+
     if (!bInitialized)
         return;
 
-    class'Mut_BallisticSwap'.default.NadeReplacePercent = fl_NadePct.GetValue();
+    class'Mut_BallisticSwap'.default.NadeReplacePercent 	= fl_NadePct.GetValue();
 	class'Mut_Ballistic'.default.bBrightPickups		 		= ch_BrightPickups.IsChecked();
 	class'Mut_Ballistic'.default.bPickupsChange 			= ch_PickupsChange.IsChecked();
 	class'Mut_Ballistic'.default.bSpawnUniqueItems 			= ch_SpawnUnique.IsChecked();
 	class'Mut_Ballistic'.default.bKillRogueWeaponPickups	= ch_KillRogueWPs.IsChecked();
 	class'Mut_Ballistic'.default.bLeaveSuper 				= ch_LeaveSuper.IsChecked();
-	
+	class'Mut_BallisticSwap'.static.StaticSaveConfig();
+	class'Mut_Ballistic'.static.StaticSaveConfig();
+
 	class'BallisticProV55.Mut_Pickups'.default.bRemoveAmmoPacks = chk_bRemoveAmmoPacks.IsChecked();
     class'BallisticProV55.Mut_Pickups'.default.bRemoveUDamage = chk_bRemoveUDamage.IsChecked();
     class'BallisticProV55.Mut_Pickups'.default.bRemoveShieldPack = chk_bRemoveShieldPack.IsChecked();
@@ -110,10 +126,15 @@ function SaveSettings()
     class'BallisticProV55.Mut_Pickups'.default.bRemoveHealthPack = chk_bRemoveHealthPack.IsChecked();
     class'BallisticProV55.Mut_Pickups'.default.bRemoveSuperHealthPack = chk_bRemoveSuperHealthPack.IsChecked();
     class'BallisticProV55.Mut_Pickups'.default.bRemoveAdrenaline = chk_bRemoveAdrenaline.IsChecked();
-    class'BallisticReplicationInfo'.default.bAlternativePickups = chk_AlterantivePickups.IsChecked();
-
-    class'BallisticReplicationInfo'.static.StaticSaveConfig();
     class'BallisticProV55.Mut_Pickups'.static.StaticSaveConfig();
+
+	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+
+	if (style != None)
+	{    
+		style.default.bAlternativePickups = chk_AlternativePickups.IsChecked();
+    	style.static.StaticSaveConfig();
+	}
 }
 
 defaultproperties
@@ -302,17 +323,17 @@ defaultproperties
      End Object
      chk_bRemoveAdrenaline=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_bRemoveAdrenalineC'
 
-     Begin Object Class=moCheckBox Name=chk_AlterantivePickupsC
+     Begin Object Class=moCheckBox Name=chk_AlternativePickupsC
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
          Caption="Manual Pickups"
-         OnCreateComponent=chk_AlterantivePickupsC.InternalOnCreateComponent
+         OnCreateComponent=chk_AlternativePickupsC.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Press the use key to pickup weapons."
          WinTop=0.800000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     chk_AlterantivePickups=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_AlterantivePickupsC'
+     chk_AlternativePickups=moCheckBox'BallisticProV55.BallisticTab_Pickups.chk_AlternativePickupsC'
 
 }

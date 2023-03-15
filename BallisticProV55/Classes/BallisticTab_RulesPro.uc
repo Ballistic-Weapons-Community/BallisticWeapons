@@ -11,7 +11,7 @@ class BallisticTab_RulesPro extends UT2K4TabPanel;
 
 var automated moEditBox   	eb_ItemGroup;
 var automated moCheckbox	ch_UseItemizer, ch_LeaveSuper, ch_BrightPickups, ch_SpawnUnique, ch_PickupsChange, ch_RandomDefaults,
-							ch_BrightPlayers, ch_StableSprint, ch_NoLongGun, ch_KillRogueWPs, ch_ForceBWPawn, ch_NoReloading, ch_NoDodging, ch_NoDoubleJump;
+							ch_BrightPlayers, ch_JumpOffsetting, ch_LongWeaponOffsetting, ch_KillRogueWPs, ch_ForceBWPawn, ch_NoReloading, ch_AllowDodging, ch_AllowDoubleJump;
 var automated moSlider		sl_Accuracy, sl_Recoil, sl_Damage, sl_VDamage;
 var automated moFloatEdit	fl_Damage, fl_VDamage;
 var automated moComboBox	co_GameStyle;
@@ -37,6 +37,9 @@ function ShowPanel(bool bShow)
 
 function LoadSettings()
 {
+	local class<BC_GameStyle> style;
+	local class<BC_GameStyle_Config> config_style;
+
 	ch_RandomDefaults.Checked(class'Mut_Ballistic'.default.bRandomDefaultWeapons);
 	ch_UseItemizer.Checked(class'Mut_Ballistic'.default.bUseItemizer);
 	eb_ItemGroup.SetText(class'Mut_Ballistic'.default.ItemGroup);
@@ -44,31 +47,49 @@ function LoadSettings()
 	ch_BrightPickups.Checked(class'Mut_Ballistic'.default.bBrightPickups);
 	ch_SpawnUnique.Checked(class'Mut_Ballistic'.default.bSpawnUniqueItems);
 	ch_PickupsChange.Checked(class'Mut_Ballistic'.default.bPickupsChange);
-	sl_Accuracy.SetValue(class'BallisticReplicationInfo'.default.AccuracyScale);
-	sl_Recoil.SetValue(class'BallisticReplicationInfo'.default.RecoilScale);
-	ch_BrightPlayers.Checked(class'BallisticReplicationInfo'.default.bBrightPlayers);
+
+
 	fl_Damage.SetValue(class'Rules_Ballistic'.default.DamageScale);
 	fl_VDamage.SetValue(class'Rules_Ballistic'.default.VehicleDamageScale);
-	ch_StableSprint.Checked(class'BallisticReplicationInfo'.default.bNoJumpOffset);
-	ch_NoLongGun.Checked(class'BallisticReplicationInfo'.default.bNoLongGun);
 	ch_KillRogueWPs.Checked(class'Mut_Ballistic'.default.bKillRogueWeaponPickups);
 	ch_ForceBWPawn.Checked(class'Mut_Ballistic'.default.bForceBallisticPawn);
-	ch_NoReloading.Checked(class'BallisticReplicationInfo'.default.bNoReloading);
-	ch_NoDodging.Checked(class'BallisticReplicationInfo'.default.bNoDodging);
-	ch_NoDoubleJump.Checked(class'BallisticReplicationInfo'.default.bNoDoubleJump);
 
-    co_GameStyle.AddItem("Arena" ,,string(0));
+    co_GameStyle.AddItem("Pro" ,,string(0));
 	co_GameStyle.AddItem("Classic" ,,string(1));
 	co_GameStyle.AddItem("Realism" ,,string(2));
     co_GameStyle.AddItem("Tactical" ,,string(3));
 	co_GameStyle.ReadOnly(True);
-	co_GameStyle.SetIndex(class'BallisticReplicationInfo'.default.GameStyle);
+	co_GameStyle.SetIndex(class'BallisticGameStyles'.default.GameStyle);
+
+	style = class'BallisticGameStyles'.static.GetClientLocalStyle();
+
+	if (style != None)
+	{
+		sl_Accuracy.SetValue(style.default.AccuracyScale);
+		sl_Recoil.SetValue(style.default.RecoilScale);
+	}
+
+	config_style = class<BC_GameStyle_Config>(style);
+
+	if (config_style != None)
+	{
+		ch_JumpOffsetting.Checked(cconfig_style.default.bWeaponJumpOffsetting);
+		ch_LongWeaponOffsetting.Checked(config_style.default.bLongWeaponOffsetting);
+		ch_NoReloading.Checked(config_style.default.bNoReloading);
+		ch_BrightPlayers.Checked(config_style.default.bBrightPlayers);
+		ch_AllowDodging.Checked(config_style.default.bAllowDodging);
+		ch_AllowDoubleJump.Checked(config_style.default.bAllowDoubleJump);
+	}
 }
 
 function SaveSettings()
 {
+	local class<BC_GameStyle> style;
+	local class<BC_GameStyle_Config> config_style;
+
 	if (!bInitialized)
 		return;
+
 	class'Mut_Ballistic'.default.ItemGroup		 			= eb_ItemGroup.GetText();
 	class'Mut_Ballistic'.default.bUseItemizer	 			= ch_UseItemizer.IsChecked();
 	class'Mut_Ballistic'.default.bLeaveSuper 				= ch_LeaveSuper.IsChecked();
@@ -76,25 +97,36 @@ function SaveSettings()
 	class'Mut_Ballistic'.default.bSpawnUniqueItems 			= ch_SpawnUnique.IsChecked();
 	class'Mut_Ballistic'.default.bPickupsChange 			= ch_PickupsChange.IsChecked();
 	class'Mut_Ballistic'.default.bRandomDefaultWeapons 		= ch_RandomDefaults.IsChecked();
-	class'BallisticReplicationInfo'.default.AccuracyScale	= sl_Accuracy.GetValue();
-	class'BallisticReplicationInfo'.default.RecoilScale		= sl_Recoil.GetValue();
-	class'BallisticReplicationInfo'.default.bBrightPlayers	= ch_BrightPlayers.IsChecked();
-    class'BallisticReplicationInfo'.default.GameStyle       = EGameStyle(co_GameStyle.GetIndex());
-	class'Rules_Ballistic'.default.DamageScale 				= fl_Damage.GetValue();
-	class'Rules_Ballistic'.default.VehicleDamageScale		= fl_VDamage.GetValue();
-	class'BallisticReplicationInfo'.default.bNoJumpOffset	= ch_StableSprint.IsChecked();
-	class'BallisticReplicationInfo'.default.bNoLongGun		= ch_NoLongGun.IsChecked();
 	class'Mut_Ballistic'.default.bKillRogueWeaponPickups	= ch_KillRogueWPs.IsChecked();
 	class'Mut_Ballistic'.default.bForceBallisticPawn		= ch_ForceBWPawn.IsChecked();
-	class'BallisticReplicationInfo'.default.bNoReloading	= ch_NoReloading.IsChecked();
-	class'BallisticReplicationInfo'.default.bNoDodging		= ch_NoDodging.IsChecked();
-	class'BallisticReplicationInfo'.default.bNoDoubleJump = ch_NoDoubleJump.IsChecked();
-
-	class'BallisticReplicationInfo'.static.StaticSaveConfig();
-	class'BallisticWeapon'.static.StaticSaveConfig();
 	class'Mut_Ballistic'.static.StaticSaveConfig();
-	class'BallisticPawn'.static.StaticSaveConfig();
+
+	class'Rules_Ballistic'.default.DamageScale 				= fl_Damage.GetValue();
+	class'Rules_Ballistic'.default.VehicleDamageScale		= fl_VDamage.GetValue();
 	class'Rules_Ballistic'.static.StaticSaveConfig();
+
+	style = class'BallisticGameStyles'.static.GetClientLocalStyle();
+
+	if (style != None)
+	{
+		style.default.AccuracyScale	= sl_Accuracy.GetValue();
+		style.default.RecoilScale	= sl_Recoil.GetValue();
+		style.static.StaticSaveConfig();
+	}
+
+	config_style = class<BC_GameStyle_Config>(style);
+
+	if (config_style != None)
+	{
+    	config_style.default.GameStyle       = EGameStyle(co_GameStyle.GetIndex());
+		config_style.default.bNoReloading	= ch_NoReloading.IsChecked();
+		config_style.default.bWeaponJumpOffsetting	= ch_JumpOffsetting.IsChecked();
+		config_style.default.bLongWeaponOffsetting		= ch_LongWeaponOffsetting.IsChecked();
+		config_style.default.bBrightPlayers	= ch_BrightPlayers.IsChecked();
+		config_style.default.bAllowDodging		= ch_AllowDodging.IsChecked();
+		config_style.default.bAllowDoubleJump = ch_AllowDoubleJump.IsChecked();
+		config_style.static.StaticSaveConfig();
+	}
 }
 
 function DefaultSettings()
@@ -112,13 +144,13 @@ function DefaultSettings()
 	ch_BrightPlayers.Checked(false);
 	fl_Damage.SetValue(1.0);
 	fl_VDamage.SetValue(1.0);
-	ch_StableSprint.Checked(false);
-	ch_NoLongGun.Checked(false);
+	ch_JumpOffsetting.Checked(true);
+	ch_LongWeaponOffsetting.Checked(true);
 	ch_KillRogueWPs.Checked(false);
 	ch_ForceBWPawn.Checked(false);
 	ch_NoReloading.Checked(false);
-	ch_NoDodging.Checked(false);
-	ch_NoDoubleJump.Checked(false);
+	ch_AllowDodging.Checked(true);
+	ch_AllowDoubleJump.Checked(true);
 }
 
 /*     Begin Object Class=moSlider Name=sl_DamageSlider
@@ -273,25 +305,25 @@ defaultproperties
          Caption="Stable Jump/Sprint"
          OnCreateComponent=ch_SprintAimCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Disables weapon aiming off when jumping or sprinting"
+         Hint="Enables weapon offsetting when jumping or sprinting."
          WinTop=0.550000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_StableSprint=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_SprintAimCheck'
+     ch_JumpOffsetting=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_SprintAimCheck'
 
-     Begin Object Class=moCheckBox Name=ch_NoLongGunCheck
+     Begin Object Class=moCheckBox Name=ch_LongWeaponOffsettingCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
          Caption="No Long Gun Shifting"
-         OnCreateComponent=ch_NoLongGunCheck.InternalOnCreateComponent
+         OnCreateComponent=ch_LongWeaponOffsettingCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Disables long weapons shifting off when too close to obstuctions"
+         Hint="Enables weapon offsetting when too close to an object."
          WinTop=0.600000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_NoLongGun=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_NoLongGunCheck'
+     ch_LongWeaponOffsetting=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_LongWeaponOffsettingCheck'
 
      Begin Object Class=moCheckBox Name=ch_KillRogueWPsCheck
          ComponentJustification=TXTA_Left
@@ -364,7 +396,7 @@ defaultproperties
          Caption="Force Ballistic Pawn"
          OnCreateComponent=ch_ForceBWPawnCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="BW mutators will try to force BallisticPawn even when game specific pawn is used (WARNING: Could cause severe problems in some gametypes)"
+         Hint="Causes the mutator to override any custom Pawn class in use by the gametype.|Increases internal compatibility, but may break custom gametypes and mutators that need to replace the Pawn class."
          WinTop=0.800000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -377,37 +409,37 @@ defaultproperties
          Caption="Disable Reloading"
          OnCreateComponent=ch_NoReloadingCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Disables weapons needing to be reloaded"
+         Hint="Disables weapons needing to be reloaded."
          WinTop=0.850000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
      ch_NoReloading=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_NoReloadingCheck'
 
-     Begin Object Class=moCheckBox Name=ch_NoDodgingCheck
+     Begin Object Class=moCheckBox Name=ch_AllowDodgingCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="No Dodging"
-         OnCreateComponent=ch_NoDodgingCheck.InternalOnCreateComponent
+         Caption="Allow Dodging"
+         OnCreateComponent=ch_AllowDodgingCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Disables dodging for all players."
+         Hint="Enables dodging."
          WinTop=0.900000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_NoDodging=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_NoDodgingCheck'
+     ch_AllowDodging=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_AllowDodgingCheck'
 
-    Begin Object Class=moCheckBox Name=ch_NoDoubleJumpCheck
+    Begin Object Class=moCheckBox Name=ch_AllowDoubleJumpCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="No Double Jump"
-         OnCreateComponent=ch_NoDoubleJumpCheck.InternalOnCreateComponent
+         Caption="Allow Double Jump"
+         OnCreateComponent=ch_AllowDoubleJumpCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Disables double jump for all players."
+         Hint="Enables double jump."
          WinTop=0.950000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_NoDoubleJump=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_NoDoubleJumpCheck'
+     ch_AllowDoubleJump=moCheckBox'BallisticProV55.BallisticTab_RulesPro.ch_AllowDoubleJumpCheck'
 
 }

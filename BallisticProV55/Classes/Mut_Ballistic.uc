@@ -235,9 +235,10 @@ function ModifyPlayer(Pawn Other)
 		ClientModifyPlayer(Other);
 
 		// Make players a bit crap
-		Other.GroundSpeed=260;
-		Other.default.GroundSpeed=260; //required as Ballistic keeps resetting it
-		Other.WalkingPct=class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor;
+		Other.GroundSpeed=class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+		Other.default.GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed; //required as Ballistic keeps resetting it
+		
+		Other.WalkingPct=class'BallisticReplicationInfo'.default.PlayerWalkSpeedFactor;
 		Other.CrouchedPct=class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;
 
 		// Me can hide better
@@ -248,21 +249,15 @@ function ModifyPlayer(Pawn Other)
 	}
 	else if(xPawn(Other) != None)
     {
-        // Player
+		// read the game style to know what values to set
         if (BallisticRep.bCustomStats) //"BallisticReplicationInfo" is of type "BCReplicationInfo", but we're casting it to type "BallisticReplicationInfo". might need a rename at some point
 		{
-			Other.Health = class'BallisticReplicationInfo'.default.playerHealth;  // health the player starts with
-			Other.HealthMax = class'BallisticReplicationInfo'.default.playerHealthCap; // maximum health a player can have
-			Other.SuperHealthMax = class'BallisticReplicationInfo'.default.playerSuperHealthCap; // maximum superhealth a player can have
-			xPawn(Other).ShieldStrengthMax = class'BallisticReplicationInfo'.default.iArmorCap;
-			Other.AddShieldStrength(class'BallisticReplicationInfo'.default.iArmor);
-			//Other.MaxFallSpeed = class'BallisticReplicationInfo'.default.MaxFallSpeed;
+			Other.SuperHealthMax = class'BallisticReplicationInfo'.default.PlayerSuperHealthMax; // maximum superhealth a player can have
+			Other.HealthMax = class'BallisticReplicationInfo'.default.PlayerHealthMax; // maximum health a player can have
+			Other.Health = class'BallisticReplicationInfo'.default.PlayerHealth;  // health the player starts with
 
-			Other.Controller.AdrenalineMax = class'BallisticReplicationInfo'.default.iAdrenalineCap;
-			if(Other.Controller.Adrenaline < class'BallisticReplicationInfo'.default.iAdrenaline)
-			{
-				Other.Controller.Adrenaline = class'BallisticReplicationInfo'.default.iAdrenaline;
-			}
+			xPawn(Other).ShieldStrengthMax = class'BallisticReplicationInfo'.default.PlayerShieldMax;
+			Other.AddShieldStrength(class'BallisticReplicationInfo'.default.PlayerShield);
 		}
 		xPawn(Other).FootstepVolume *= FootstepAmplifier;
 
@@ -784,6 +779,7 @@ simulated function PreBeginPlay()
 	{
 		Level.Game.AddGameModifier(Spawn(class'Rules_KillRewards'));
 		
+		// fucking ow
 		if(DeathMatch(Level.Game) != none)
         {
            DeathMatch(Level.Game).ADR_Kill = class'BallisticReplicationInfo'.default.ADRKill;

@@ -12,7 +12,7 @@ var automated moNumericEdit     ne_InitStaminaChargeRate;	// Stamina Charge Rate
 var automated moFloatEdit       fe_InitSpeedFactor;			// Speed During Sprint
 var automated moFloatEdit       fe_JumpDrainFactor;			// Jump Drain Factor
 
-var automated moCheckBox        cb_bOverrideMovement;				// Enable Sloth
+var automated moCheckBox        cb_bPlayerDeceleration;				// Enable Sloth
 var automated moNumericEdit     ne_PlayerGroundSpeed;		// Ground Speed Scale
 var automated moNumericEdit     ne_PlayerAccelRate;			// Acceleration Scale
 var automated moFloatEdit       fe_PlayerStrafeScale;		// Strafe Scale
@@ -48,17 +48,25 @@ function ShowPanel(bool bShow)
 
 function LoadSettings()
 {
+	local class<BC_GameStyle_Config> style;
+
+	// gamestyle... all of them...
     cb_bUseSprint.Checked(class'BallisticProV55.Mut_Ballistic'.default.bUseSprint);
     ne_InitStaminaDrainRate.SetValue(class'BallisticProV55.Mut_Ballistic'.default.InitStaminaDrainRate);
     ne_InitStaminaChargeRate.SetValue(class'BallisticProV55.Mut_Ballistic'.default.InitStaminaChargeRate);
     fe_InitSpeedFactor.SetValue(class'BallisticProV55.Mut_Ballistic'.default.InitSpeedFactor);
     fe_JumpDrainFactor.SetValue(class'BallisticProV55.Mut_Ballistic'.default.JumpDrainFactor);
 
-	cb_bOverrideMovement.Checked(class'BallisticReplicationInfo'.default.bOverrideMovement);
-    fe_PlayerStrafeScale.SetValue(class'BallisticReplicationInfo'.default.PlayerStrafeScale);
-    fe_PlayerBackpedalScale.SetValue(class'BallisticReplicationInfo'.default.PlayerBackpedalScale);
-    ne_PlayerGroundSpeed.SetValue(class'BallisticReplicationInfo'.default.PlayerGroundSpeed);
-    ne_PlayerAccelRate.SetValue(class'BallisticReplicationInfo'.default.PlayerAccelRate);
+	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+
+	if (style != None)
+	{
+		cb_bPlayerDeceleration.Checked(style.default.bPlayerDeceleration);
+    	fe_PlayerStrafeScale.SetValue(style.default.PlayerStrafeScale);
+    	fe_PlayerBackpedalScale.SetValue(style.default.PlayerBackpedalScale);
+    	ne_PlayerGroundSpeed.SetValue(style.default.PlayerGroundSpeed);
+    	ne_PlayerAccelRate.SetValue(style.default.PlayerAccelRate);
+	}
 }
 
 function DefaultSettings()
@@ -69,7 +77,7 @@ function DefaultSettings()
     fe_InitSpeedFactor.SetValue(1.50000);
     fe_JumpDrainFactor.SetValue(2);
 	
-	cb_bOverrideMovement.Checked(false);
+	cb_bPlayerDeceleration.Checked(false);
     fe_PlayerStrafeScale.SetValue(1);
     fe_PlayerBackpedalScale.SetValue(1);
     ne_PlayerGroundSpeed.SetValue(230);
@@ -78,24 +86,30 @@ function DefaultSettings()
 
 function SaveSettings()
 {
+	local class<BC_GameStyle_Config> style;
+
     if (!bInitialized)
         return;
 
-    class'BallisticProV55.Mut_Ballistic'.default.bUseSprint = cb_bUseSprint.IsChecked();
-    class'BallisticProV55.Mut_Ballistic'.default.InitStaminaDrainRate = ne_InitStaminaDrainRate.GetValue();
-    class'BallisticProV55.Mut_Ballistic'.default.InitStaminaChargeRate = ne_InitStaminaChargeRate.GetValue();
-    class'BallisticProV55.Mut_Ballistic'.default.InitSpeedFactor = fe_InitSpeedFactor.GetValue();
-    class'BallisticProV55.Mut_Ballistic'.default.JumpDrainFactor = fe_JumpDrainFactor.GetValue();
-	
-	class'BallisticReplicationInfo'.default.bOverrideMovement = cb_bOverrideMovement.IsChecked();
-    class'BallisticReplicationInfo'.default.PlayerStrafeScale = fe_PlayerStrafeScale.GetValue();
-    class'BallisticReplicationInfo'.default.PlayerBackpedalScale = fe_PlayerBackpedalScale.GetValue();
-    class'BallisticReplicationInfo'.default.PlayerGroundSpeed = ne_PlayerGroundSpeed.GetValue();
-    class'BallisticReplicationInfo'.default.PlayerAirSpeed = ne_PlayerGroundSpeed.GetValue(); // this is NOT an error. ground and air speed should be equivalent
-    class'BallisticReplicationInfo'.default.PlayerAccelRate = ne_PlayerAccelRate.GetValue();
+    class'Mut_Ballistic'.default.bUseSprint = cb_bUseSprint.IsChecked();
+    class'Mut_Ballistic'.default.InitStaminaDrainRate = ne_InitStaminaDrainRate.GetValue();
+    class'Mut_Ballistic'.default.InitStaminaChargeRate = ne_InitStaminaChargeRate.GetValue();
+    class'Mut_Ballistic'.default.InitSpeedFactor = fe_InitSpeedFactor.GetValue();
+    class'Mut_Ballistic'.default.JumpDrainFactor = fe_JumpDrainFactor.GetValue();
+	class'Mut_Ballistic'.static.StaticSaveConfig();
 
-    class'BallisticProV55.Mut_Ballistic'.static.StaticSaveConfig();
-    class'BallisticReplicationInfo'.static.StaticSaveConfig();
+	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+
+	if (style != None)
+	{
+		style.default.bPlayerDeceleration = cb_bPlayerDeceleration.IsChecked();
+    	style.default.PlayerStrafeScale = fe_PlayerStrafeScale.GetValue();
+    	style.default.PlayerBackpedalScale = fe_PlayerBackpedalScale.GetValue();
+    	style.default.PlayerGroundSpeed = ne_PlayerGroundSpeed.GetValue();
+    	style.default.PlayerAirSpeed = ne_PlayerGroundSpeed.GetValue(); // this is NOT an error. ground and air speed should be equivalent
+    	style.default.PlayerAccelRate = ne_PlayerAccelRate.GetValue();
+    	style.static.StaticSaveConfig();
+	}
 }
 
 defaultproperties
@@ -166,16 +180,16 @@ defaultproperties
      End Object
      fe_JumpDrainFactor=moFloatEdit'BallisticProV55.BallisticTab_Sprint.fe_JumpDrainFactorC'
 	 
-	 Begin Object Class=moCheckBox Name=cb_bOverrideMovementC
+	 Begin Object Class=moCheckBox Name=cb_bPlayerDecelerationC
          ComponentWidth=0.175000
          Caption="Adjust Movement"
-         OnCreateComponent=cb_bOverrideMovementC.InternalOnCreateComponent
+         OnCreateComponent=cb_bPlayerDecelerationC.InternalOnCreateComponent
          Hint="Overrides default movement with the settings below."
          WinTop=0.350000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     cb_bOverrideMovement=moCheckBox'BallisticProV55.BallisticTab_Sprint.cb_bOverrideMovementC'
+     cb_bPlayerDeceleration=moCheckBox'BallisticProV55.BallisticTab_Sprint.cb_bPlayerDecelerationC'
 
      Begin Object Class=moNumericEdit Name=ne_PlayerGroundSpeedC
          MinValue=160

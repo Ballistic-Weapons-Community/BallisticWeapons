@@ -25,7 +25,7 @@ var automated moCheckbox	ch_ShieldRegen;				//Enables Shield Regen
 var automated moCheckbox	ch_PreCacheWeapons;			//Precache Weapons
 var automated moCheckbox	ch_KillStreaks;				//Killsteaks
 
-var BallisticConfigMenuPro	p_Anchor;
+var BallisticConfigMenuPro	p_Anchor;					// reference to owner, which we're not even using right now - but I guess we will...
 var bool					bInitialized;
 
 //==================================================================
@@ -35,6 +35,7 @@ var bool					bInitialized;
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
 	Super.InitComponent(MyController, MyOwner);
+
 	if (BallisticConfigMenuPro(Controller.ActivePage) != None)
 		p_Anchor = BallisticConfigMenuPro(Controller.ActivePage);
 }
@@ -54,6 +55,8 @@ function ShowPanel(bool bShow)
 
 function LoadSettings()
 {
+	local class<BC_GameStyle_Config> style;
+
     co_GameStyle.AddItem("Pro" ,,string(0));
 	co_GameStyle.AddItem("Classic" ,,string(1));
 	co_GameStyle.AddItem("Realism" ,,string(2));
@@ -69,56 +72,54 @@ function LoadSettings()
 	co_InventoryMode.AddItem("Arena" ,,string(4));
 	co_InventoryMode.AddItem("Melee" ,,string(4));
 	co_InventoryMode.ReadOnly(True);
-	co_InventoryMode.SetIndex(class'Mut_BallisticGlobal'.default.InventoryModeIndex);
-	
 
-	
-	int_MaxInventoryCapacity.SetValue(class'BallisticWeapon'.default.MaxInventoryCapacity);
-	ch_BrightPlayers.Checked(class'BallisticReplicationInfo'.default.bBrightPlayers);
-	ch_ForceBWPawn.Checked(class'Mut_Ballistic'.default.bForceBallisticPawn);
-	ch_AllowDodging.Checked(class'BallisticReplicationInfo'.default.bAllowDodging);
-	ch_AllowDoubleJump.Checked(class'BallisticReplicationInfo'.default.bAllowDoubleJump);
-	ch_Regen.Checked(class'mut_Ballistic'.default.bRegeneration);
-	ch_ShieldRegen.Checked(class'mut_Ballistic'.default.bShieldRegeneration);
 	ch_PreCacheWeapons.Checked(class'Mut_Ballistic'.default.bPreloadMeshes);
-	ch_KillStreaks.Checked(class'Mut_Ballistic'.default.bKillstreaks);
+	ch_ForceBWPawn.Checked(class'Mut_Ballistic'.default.bForceBallisticPawn);
+
+	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+
+	if (style != None)
+	{
+		co_InventoryMode.SetIndex(style.default.class.default.InventoryModeIndex);
+		int_MaxInventoryCapacity.SetValue(style.default.class.default.MaxInventoryCapacity);
+		ch_BrightPlayers.Checked(style.default.class.default.bBrightPlayers);
+		ch_AllowDodging.Checked(style.default.class.default.bAllowDodging);
+		ch_AllowDoubleJump.Checked(style.default.class.default.bAllowDoubleJump);
+		ch_Regen.Checked(style.default.class.default.bRegeneration);
+		ch_ShieldRegen.Checked(style.default.class.default.bShieldRegeneration);
+		ch_KillStreaks.Checked(style.default.class.default.bKillstreaks);
+	}
 }
 
 function SaveSettings()
 {
 	local class<BC_GameStyle_Config> style;
-	
+
 	if (!bInitialized)
 		return;
 
 	class'BallisticGameStyles'.default.GameStyle       			= EGameStyle(co_GameStyle.GetIndex());
 	class'BallisticGameStyles'.default.StaticSaveConfig();
 
-	// now do the rest
-
 	// stuff that's not game style relevant:
-	class'Mut_BallisticGlobal'.default.InventoryModeIndex		= co_InventoryMode.GetIndex();
 	class'Mut_Ballistic'.default.bPreloadMeshes					= ch_PreCacheWeapons.IsChecked();
     class'Mut_Ballistic'.default.bForceBallisticPawn			= ch_ForceBWPawn.IsChecked();
-
-	// stuff that is game style relevant:
-	class'BallisticReplicationInfo'.default.bAllowDodging		= ch_AllowDodging.IsChecked();
-	class'BallisticReplicationInfo'.default.bAllowDoubleJump 	= ch_AllowDoubleJump.IsChecked();
-	class'BallisticReplicationInfo'.default.bBrightPlayers		= ch_BrightPlayers.IsChecked();
-
-	// stuff that isn't game style relevant but bloody well should be:
-	class'Mut_Ballistic'.default.bRegeneration					= ch_Regen.IsChecked();
-	class'Mut_Ballistic'.default.bShieldRegeneration			= ch_ShieldRegen.IsChecked();
-	class'Mut_Ballistic'.default.bKillstreaks					= ch_KillStreaks.IsChecked();
-	class'BallisticWeapon'.default.MaxInventoryCapacity 		= int_MaxInventoryCapacity.GetValue();	
-
-	class'BallisticReplicationInfo'.static.StaticSaveConfig();
-	class'BallisticWeapon'.static.StaticSaveConfig();
 	class'Mut_Ballistic'.static.StaticSaveConfig();
-	class'BallisticPawn'.static.StaticSaveConfig();
-	class'Rules_Ballistic'.static.StaticSaveConfig();
-	class'Mut_Ballistic'.static.StaticSaveConfig();
-	class'Mut_BallisticGlobal'.static.StaticSaveConfig();
+
+	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+
+	if (style != None)
+	{
+		style.default.InventoryModeIndex		= co_InventoryMode.GetIndex();
+		style.default.MaxInventoryCapacity 	= int_MaxInventoryCapacity.GetValue();	
+		style.default.bAllowDodging			= ch_AllowDodging.IsChecked();
+		style.default.bAllowDoubleJump 		= ch_AllowDoubleJump.IsChecked();
+		style.default.bBrightPlayers			= ch_BrightPlayers.IsChecked();
+		style.default.bRegeneration			= ch_Regen.IsChecked();
+		style.default.bShieldRegeneration		= ch_ShieldRegen.IsChecked();
+		style.default.bKillstreaks			= ch_KillStreaks.IsChecked();
+		style.default.class.static.StaticSaveConfig();
+	}
 }
 
 function DefaultSettings()

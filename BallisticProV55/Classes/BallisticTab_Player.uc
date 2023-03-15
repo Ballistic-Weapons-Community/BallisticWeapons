@@ -54,20 +54,16 @@ function LoadSettings()
 {
 	local class<BC_GameStyle_Config> style;
 
-	style = class'BallisticGameStyles'.static.GetConfigStyle();
+	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
 
-	if (style == None)
+	if (style != None)
 	{
-		Log("BallisticTab_Player: Couldn't find a configurable style for index " $ class'BallisticGameStyles'.default.CurrentConfigStyle);
-		return;
+		ne_playerHealth.SetValue(style.default.PlayerHealth);
+		ne_playerHealthCap.SetValue(style.default.PlayerHealthMax);
+		ne_playerSuperHealthCap.SetValue(style.default.PlayerSuperHealthMax);
+		ne_iArmor.SetValue(style.default.PlayerShield);
+		ne_iArmorCap.SetValue(style.default.PlayerShieldMax);
 	}
-
-	ne_playerHealth.SetValue(style.default.PlayerHealth);
-    ne_playerHealthCap.SetValue(style.default.PlayerHealthMax);
-    ne_playerSuperHealthCap.SetValue(style.default.PlayerSuperHealthMax);
-
-    ne_iArmor.SetValue(style.default.PlayerShield);
-    ne_iArmorCap.SetValue(style.default.PlayerShieldMax);
 }
 
 function DefaultSettings()
@@ -75,8 +71,8 @@ function DefaultSettings()
 	ne_playerHealth.SetValue(100);
     ne_playerHealthCap.SetValue(100);
     ne_playerSuperHealthCap.SetValue(200);
-    ne_iArmor.SetValue(100);
-    ne_iArmorCap.SetValue(200);
+    ne_iArmor.SetValue(0);
+    ne_iArmorCap.SetValue(150);
     //fe_MaxFallSpeed.SetValue(800);
 }
 
@@ -87,21 +83,17 @@ function SaveSettings()
     if (!bInitialized)
         return;
 
-	style = class<BC_GameStyle_Config>(class'BallisticGameStyles'.static.GetConfigStyle());
+	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
 
-	if (style == None)
+	if (style != None)
 	{
-		Log("BallisticTab_Player: Couldn't find a configurable style for index " $ class'BallisticGameStyles'.default.CurrentConfigStyle);
-		return;
+		style.default.PlayerHealth    		= ne_playerHealth.GetValue();
+		style.default.PlayerHealthMax 		= ne_playerHealthCap.GetValue();
+		style.default.PlayerSuperHealthMax	= ne_playerSuperHealthCap.GetValue();
+		style.default.PlayerShield 			= ne_iArmor.GetValue();
+		style.default.PlayerShieldMax		= ne_iArmorCap.GetValue();
+		style.static.StaticSaveConfig();
 	}
-
-	style.default.class.default.PlayerHealth    		= ne_playerHealth.GetValue();
-    style.default.class.default.PlayerHealthMax 		= ne_playerHealthCap.GetValue();
-    style.default.class.default.PlayerSuperHealthMax	= ne_playerSuperHealthCap.GetValue();
-    style.default.class.default.PlayerShield 			= ne_iArmor.GetValue();
-    style.default.class.default.PlayerShieldMax			= ne_iArmorCap.GetValue();
-
-    style.default.class.default.StaticSaveConfig();
 }
 
 defaultproperties

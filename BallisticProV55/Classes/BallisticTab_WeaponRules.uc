@@ -14,8 +14,8 @@ class BallisticTab_WeaponRules extends UT2K4TabPanel;
 var automated moEditBox   	eb_ItemGroup;		//The name of the Itemizer layout you want to use.
 var automated moCheckbox	ch_UseItemizer; 	//Enable Itemizer to spawn aditional pickups in maps.
 var automated moCheckbox	ch_RandomDefaults;	//Players will spawn with a random weapon instead of stock pistol.
-var automated moCheckbox	ch_StableSprint;	//Disable Weapon Displacement when Running & Jumping
-var automated moCheckbox	ch_NoLongGun;		//Disable Weapon Displacement when Near a Wall
+var automated moCheckbox	ch_WeaponJumpOffsetting;	//Disable Weapon Displacement when Running & Jumping
+var automated moCheckbox	ch_LongWeaponOffsetting;		//Disable Weapon Displacement when Near a Wall
 var automated moCheckbox	ch_NoReloading;		//Disable Reloading
 var automated moCheckbox	ch_RunningAnims;	//Running Animations while ADS
 var automated moCheckbox	ch_MineLights;		//All Players can see Lights on Mines
@@ -56,48 +56,58 @@ function ShowPanel(bool bShow)
 
 function LoadSettings()
 {
+	local class<BC_GameStyle_Config> style;
+
 	ch_RandomDefaults.Checked(class'Mut_Ballistic'.default.bRandomDefaultWeapons);
 	ch_UseItemizer.Checked(class'Mut_Ballistic'.default.bUseItemizer);
 	eb_ItemGroup.SetText(class'Mut_Ballistic'.default.ItemGroup);
-	sl_Accuracy.SetValue(class'BallisticReplicationInfo'.default.AccuracyScale);
-	sl_Recoil.SetValue(class'BallisticReplicationInfo'.default.RecoilScale);
+
 	fl_Damage.SetValue(class'Rules_Ballistic'.default.DamageScale);
 	fl_VDamage.SetValue(class'Rules_Ballistic'.default.VehicleDamageScale);
-	ch_StableSprint.Checked(class'BallisticReplicationInfo'.default.bNoJumpOffset);
-	ch_NoLongGun.Checked(class'BallisticReplicationInfo'.default.bNoLongGun);
-	ch_NoReloading.Checked(class'BallisticReplicationInfo'.default.bNoReloading);
-	fl_WalkingPct.SetValue(class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor);
-	fl_ReloadSpeed.SetValue(class'BallisticReplicationInfo'.default.ReloadSpeedScale);
-	fl_CrouchingPct.SetValue(class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor);
-	ch_MineLights.Checked(class'BallisticReplicationInfo'.default.bUniversalMineLights);
-	ch_RunningAnims.Checked(class'BallisticReplicationInfo'.default.bUseRunningAnims);
+
+	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+
+	if (style != None)
+	{
+		sl_Accuracy.SetValue(style.default.AccuracyScale);
+		sl_Recoil.SetValue(style.default.RecoilScale);
+		ch_WeaponJumpOffsetting.Checked(style.default.bWeaponJumpOffsetting);
+		ch_LongWeaponOffsetting.Checked(style.default.bLongWeaponOffsetting);
+		ch_NoReloading.Checked(style.default.bNoReloading);
+		fl_WalkingPct.SetValue(style.default.PlayerWalkSpeedFactor);
+		fl_CrouchingPct.SetValue(style.default.PlayerCrouchSpeedFactor);
+	}
 }
 
 function SaveSettings()
 {
+	local class<BC_GameStyle_Config> style;
+
 	if (!bInitialized)
 		return;
+
 	class'Mut_Ballistic'.default.ItemGroup		 					= eb_ItemGroup.GetText();
 	class'Mut_Ballistic'.default.bUseItemizer	 					= ch_UseItemizer.IsChecked();
 	class'Mut_Ballistic'.default.bRandomDefaultWeapons 				= ch_RandomDefaults.IsChecked();
-	class'BallisticReplicationInfo'.default.AccuracyScale			= sl_Accuracy.GetValue();
-	class'BallisticReplicationInfo'.default.RecoilScale				= sl_Recoil.GetValue();
+	class'Mut_Ballistic'.static.StaticSaveConfig();
+
 	class'Rules_Ballistic'.default.DamageScale 						= fl_Damage.GetValue();
 	class'Rules_Ballistic'.default.VehicleDamageScale				= fl_VDamage.GetValue();
-	class'BallisticReplicationInfo'.default.bNoJumpOffset			= ch_StableSprint.IsChecked();
-	class'BallisticReplicationInfo'.default.bNoLongGun				= ch_NoLongGun.IsChecked();
-	class'BallisticReplicationInfo'.default.bNoReloading			= ch_NoReloading.IsChecked();
-	class'BallisticReplicationInfo'.default.PlayerADSMoveSpeedFactor 		= fl_WalkingPct.GetValue();
-	class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor 	= fl_CrouchingPct.GetValue();
-	class'BallisticReplicationInfo'.default.bUniversalMineLights 	= ch_MineLights.IsChecked();
-	class'BallisticReplicationInfo'.default.bUseRunningAnims 		= ch_RunningAnims.IsChecked();
-	class'BallisticReplicationInfo'.default.ReloadSpeedScale = fl_ReloadSpeed.GetValue();
-	
-	class'BallisticReplicationInfo'.static.StaticSaveConfig();
-	class'BallisticWeapon'.static.StaticSaveConfig();
-	class'Mut_Ballistic'.static.StaticSaveConfig();
-	class'BallisticPawn'.static.StaticSaveConfig();
 	class'Rules_Ballistic'.static.StaticSaveConfig();
+
+	style = class'BallisticGameStyles'.static.GetClientLocalConfigStyle();
+
+	if (style != None)
+	{
+		style.default.AccuracyScale			= sl_Accuracy.GetValue();
+		style.default.RecoilScale				= sl_Recoil.GetValue();
+		style.default.bWeaponJumpOffsetting			= ch_WeaponJumpOffsetting.IsChecked();
+		style.default.bLongWeaponOffsetting				= ch_LongWeaponOffsetting.IsChecked();
+		style.default.bNoReloading			= ch_NoReloading.IsChecked();
+		style.default.PlayerWalkSpeedFactor 		= fl_WalkingPct.GetValue();
+		style.default.PlayerCrouchSpeedFactor 	= fl_CrouchingPct.GetValue();
+		style.static.StaticSaveConfig();
+	}
 }
 
 function DefaultSettings()
@@ -110,8 +120,8 @@ function DefaultSettings()
 	fl_Damage.SetValue(1.0);
 	fl_VDamage.SetValue(1.0);
 	fl_ReloadSpeed.SetValue(1);
-	ch_StableSprint.Checked(false);
-	ch_NoLongGun.Checked(false);
+	ch_WeaponJumpOffsetting.Checked(false);
+	ch_LongWeaponOffsetting.Checked(false);
 	ch_NoReloading.Checked(false);
 	fl_WalkingPct.SetValue(0.75);
 	fl_CrouchingPct.SetValue(0.4);
@@ -227,20 +237,20 @@ defaultproperties
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_StableSprint=moCheckBox'BallisticProV55.BallisticTab_WeaponRules.ch_SprintAimCheck'
+     ch_WeaponJumpOffsetting=moCheckBox'BallisticProV55.BallisticTab_WeaponRules.ch_SprintAimCheck'
 
-     Begin Object Class=moCheckBox Name=ch_NoLongGunCheck
+     Begin Object Class=moCheckBox Name=ch_LongWeaponOffsettingCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
          Caption="No Long Gun Shifting"
-         OnCreateComponent=ch_NoLongGunCheck.InternalOnCreateComponent
+         OnCreateComponent=ch_LongWeaponOffsettingCheck.InternalOnCreateComponent
          IniOption="@Internal"
          Hint="Disables long weapons shifting off when too close to obstuctions"
          WinTop=0.450000
          WinLeft=0.250000
          WinHeight=0.040000
      End Object
-     ch_NoLongGun=moCheckBox'BallisticProV55.BallisticTab_WeaponRules.ch_NoLongGunCheck'
+     ch_LongWeaponOffsetting=moCheckBox'BallisticProV55.BallisticTab_WeaponRules.ch_LongWeaponOffsettingCheck'
 	
 	 Begin Object Class=moFloatEdit Name=fl_ReloadSpeedFloat
          MinValue=1.000000

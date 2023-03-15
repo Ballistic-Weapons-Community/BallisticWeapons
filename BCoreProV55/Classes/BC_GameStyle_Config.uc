@@ -10,6 +10,12 @@ class BC_GameStyle_Config extends BC_GameStyle
     config(BallisticProV55);
 
 //=============================================================================
+// CONFIG VARIABLES - NOT REPLICATED
+//=============================================================================	
+var() config int			InventoryModeIndex;
+var() config int			MaxInventoryCapacity;
+var() config bool			bKillstreaks;
+//=============================================================================
 // CONFIG VARIABLES
 //=============================================================================	
 var() config bool		    bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
@@ -24,11 +30,17 @@ var() config bool			bBrightPlayers;		    // Players have ambient glow to glow in
 var() config bool			bUniversalMineLights;   // All BX-5 mines are lit.
 
 //=============================================================================
-// HEALTH/ARMOR
+// HEALTH
 //=============================================================================
+var() config bool			bRegeneration;			// whether health regenerates
 var() config int			PlayerHealth;           // health the player starts with
 var() config int			PlayerHealthMax;        // maximum health a player can have
 var() config int			PlayerSuperHealthMax;   // maximum superhealth a player can have
+
+//=============================================================================
+// SHIELDS
+//=============================================================================
+var() config bool			bShieldRegeneration;	// whether shields regenerate
 var() config int			PlayerShield;           // armor the player starts with
 var() config int			PlayerShieldMax;        // maximum armor the player can have
 
