@@ -197,13 +197,13 @@ simulated event PostNetBeginPlay()
     else
         ApplyMovementOverrides();
 	
+	// FIXME: why is this here? this function is the definition of net init
 	if(!pawnNetInit)
     {
         pawnNetInit = true;
-        if(Controller != none)
+
+        if (Controller != None)
         {
-            if(Controller.Adrenaline < Class'BallisticReplicationInfo'.default.iAdrenaline) Controller.Adrenaline = Class'BallisticReplicationInfo'.default.iAdrenaline;
-            Controller.AdrenalineMax = Class'BallisticReplicationInfo'.default.iAdrenalineCap;
             BPRI = class'Mut_Ballistic'.static.GetBPRI(Controller.PlayerReplicationInfo);
         }
     }
@@ -269,33 +269,26 @@ simulated final function BindDefaultMovement()
 
 simulated function ApplyMovementOverrides()
 { 
-	if (class'BallisticReplicationInfo'.default.bNoDodging)
+	if (!class'BallisticReplicationInfo'.default.bAllowDodging)
     {
 		bCanWallDodge = false;
         bCanDodge = false;
     }
 
-    if (class'BallisticReplicationInfo'.default.bNoDoubleJump)
+    if (!class'BallisticReplicationInfo'.default.bAllowDoubleJump)
     {
         bCanDoubleJump = false;
     }
 
-	if (class'BallisticReplicationInfo'.static.GetADSMoveSpeedMultiplier() != WalkingPct)
-		WalkingPct = class'BallisticReplicationInfo'.static.GetADSMoveSpeedMultiplier();
-	
-	if (class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor != CrouchedPct)
-		CrouchedPct = class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;
-
-    if (class'BallisticReplicationInfo'.default.bOverrideMovement)
-    {
-        StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
-        BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
-        GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
-        AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
-        AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
-        JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
-        DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
-    }
+	WalkingPct = class'BallisticReplicationInfo'.default.PlayerWalkSpeedFactor;
+	CrouchedPct = class'BallisticReplicationInfo'.default.PlayerCrouchSpeedFactor;
+	StrafeScale = class'BallisticReplicationInfo'.default.PlayerStrafeScale;
+	BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
+	GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
+	AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
+	AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
+	JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
+	DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
 }
 
 simulated function CreateColorStyle()
@@ -713,7 +706,7 @@ simulated event SetAnimAction(name NewAction)
 			if (ReloadAnim != '')
 			{
 				AnimBlendParams(1, 1, 0.0, 0.2, FireRootBone);
-				PlayAnim(ReloadAnim, ReloadAnimRate * class'BallisticReplicationInfo'.default.ReloadSpeedScale, 0.25 / class'BallisticReplicationInfo'.default.ReloadSpeedScale, 1);
+				PlayAnim(ReloadAnim, ReloadAnimRate, 0.25, 1);
 				FireState=FS_PlayOnce;
 				bResetAnimationAction=True;
 			}
@@ -2932,61 +2925,61 @@ simulated function DisplayDebug(Canvas Canvas, out float YL, out float YPos)
 
 simulated event ModifyVelocity(float DeltaTime, vector OldVelocity)
 {
-	
 	local Vector X, Y, Z, dir;
 	local float FSpeed, Control, NewSpeed, Drop, XSpeed, YSpeed, CosAngle, MaxStrafeSpeed, MaxBackSpeed;
 
-    if (class'BallisticReplicationInfo'.static.IsArena())
-        return;
+	if (Physics != PHYS_Walking)
+		return;
 
-	if (class'BallisticReplicationInfo'.static.IsTactical() || class'BallisticReplicationInfo'.default.bOverrideMovement)
+	// constrains strafe move
+	if (StrafeScale < 1f || BackpedalScale < 1f)
 	{
-		//Scaling movement speed
-		if (Physics == PHYS_Walking)
-		{
-			GetAxes(GetViewRotation(),X,Y,Z);
-			MaxStrafeSpeed = GroundSpeed * StrafeScale;
-			MaxBackSpeed = GroundSpeed * BackpedalScale;
-			XSpeed = Abs(X dot Velocity);
-			
-			if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
-			{
-				//limiting backspeed
-				dir = Normal(Velocity);
-				CosAngle = Abs(X dot dir);
-				Velocity = dir * (MaxBackSpeed / CosAngle);
-			}
-			
-			YSpeed = Abs(Y dot velocity);
-			if (YSpeed > MaxStrafeSpeed)
-			{
-				//limiting strafespeed
-				dir = Normal(Velocity);
-				CosAngle = Abs(Y dot dir);
-				Velocity = dir * (MaxStrafeSpeed / CosAngle);
-			}
+		GetAxes(GetViewRotation(),X,Y,Z);
+		MaxStrafeSpeed = GroundSpeed * StrafeScale;
+		MaxBackSpeed = GroundSpeed * BackpedalScale;
 
-			//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
+		// backwards speed limit
+		XSpeed = Abs(X dot Velocity);
+		
+		if (XSpeed > MaxBackSpeed && (x dot Velocity) < 0)
+		{
+			//limiting backspeed
+			dir = Normal(Velocity);
+			CosAngle = Abs(X dot dir);
+			Velocity = dir * (MaxBackSpeed / CosAngle);
 		}
-		 
-		if (Physics==PHYS_Walking)
-		{
-			FSpeed = Vsize(Velocity);
-			 
-			if (VSize(Acceleration) < 1.00 && FSpeed > 1.00)
-			{
-				Control = FMin(100, FSpeed);
-					
-				Drop = Control * DeltaTime * MyFriction;
-				NewSpeed = FSpeed + drop;
-				NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
-				Velocity *= NewSpeed;
+		
+		// strafe speed limit
+		YSpeed = Abs(Y dot velocity);
 
-			}
-			
-			OldMovementSpeed = Vsize(Velocity);
+		if (YSpeed > MaxStrafeSpeed)
+		{
+			//limiting strafespeed
+			dir = Normal(Velocity);
+			CosAngle = Abs(Y dot dir);
+			Velocity = dir * (MaxStrafeSpeed / CosAngle);
 		}
 	}
+
+	//ClientMessage("Speed:"$string(VSize(Velocity) / GroundSpeed));
+		
+	// Applies decelerative friction
+	if (class'BallisticReplicationInfo'.default.bPlayerDeceleration)
+	{
+		FSpeed = VSize(Velocity);
+			
+		if (VSize(Acceleration) < 1.00 && FSpeed > 1.00)
+		{
+			Control = FMin(100, FSpeed);
+				
+			Drop = Control * DeltaTime * MyFriction;
+			NewSpeed = FSpeed + drop;
+			NewSpeed = FClamp(NewSpeed, 0, OldMovementSpeed*0.97) / FSpeed;
+			Velocity *= NewSpeed;
+		}
+	}
+	
+	OldMovementSpeed = VSize(Velocity);
 }
 
 defaultproperties

@@ -304,17 +304,8 @@ simulated function ApplyParams(ProjectileEffectParams params)
 	
     Damage *= class'BallisticReplicationInfo'.default.DamageScale;
     
-    if (!class'BallisticReplicationInfo'.static.UseFixedModifiers())
-    {
-        HeadMult = params.HeadMult;
-        LimbMult = params.LimbMult; 
-    }
-
-    else 
-    {   
-        HeadMult = class'BallisticReplicationInfo'.default.DamageModHead;
-        LimbMult = class'BallisticReplicationInfo'.default.DamageModLimb;
-    }
+    HeadMult = params.HeadMult;
+	LimbMult = params.LimbMult; 
 
     MaxDamageGainFactor = params.MaxDamageGainFactor;    
     DamageGainStartTime = params.DamageGainStartTime;    

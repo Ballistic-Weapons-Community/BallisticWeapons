@@ -133,18 +133,9 @@ simulated function ApplyFireEffectParams(FireEffectParams params)
 
     Damage *= class'BallisticReplicationInfo'.default.DamageScale;
 
-    if (!class'BallisticReplicationInfo'.static.UseFixedModifiers())
-    {
-        HeadMult = effect_params.HeadMult;
-        LimbMult = effect_params.LimbMult;   
-    }
+    HeadMult = effect_params.HeadMult;
+    LimbMult = effect_params.LimbMult;   
 
-    else 
-    {   
-        
-        HeadMult = class'BallisticReplicationInfo'.default.DamageModHead;
-        LimbMult = class'BallisticReplicationInfo'.default.DamageModLimb;
-    }
 
 	default.Damage = effect_params.Damage;
     default.HeadMult = effect_params.HeadMult;

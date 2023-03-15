@@ -6,7 +6,6 @@
 //=============================================================================
 class BallisticTab_Player extends UT2K4TabPanel;
 
-var automated moCheckbox		ch_CustomStats;				//Enables Custom Health, Shield & Adren Stats
 var automated moNumericEdit     ne_playerHealth;			//Starting Health
 var automated moNumericEdit     ne_playerHealthCap;			//Health Cap
 var automated moNumericEdit     ne_playerSuperHealthCap;	//Super Health Cap
@@ -53,83 +52,60 @@ function ShowPanel(bool bShow)
 
 function LoadSettings()
 {
-    ch_CustomStats.Checked(class'BallisticReplicationInfo'.default.bCustomStats);
-	ne_playerHealth.SetValue(class'BallisticReplicationInfo'.default.playerHealth);
-    ne_playerHealthCap.SetValue(class'BallisticReplicationInfo'.default.playerHealthCap);
-    ne_playerSuperHealthCap.SetValue(class'BallisticReplicationInfo'.default.playerSuperHealthCap);
-    ne_iAdrenaline.SetValue(class'BallisticReplicationInfo'.default.iAdrenaline);
-    ne_iAdrenalineCap.SetValue(class'BallisticReplicationInfo'.default.iAdrenalineCap);
-    //fe_dieSoundAmplifier.SetValue(class'BallisticReplicationInfo'.default.dieSoundAmplifier);
-    //fe_dieSoundRangeAmplifier.SetValue(class'BallisticReplicationInfo'.default.dieSoundRangeAmplifier);
-    //fe_hitSoundAmplifier.SetValue(class'BallisticReplicationInfo'.default.hitSoundAmplifier);
-    //fe_hitSoundRangeAmplifier.SetValue(class'BallisticReplicationInfo'.default.hitSoundRangeAmplifier);
-    //fe_jumpDamageAmplifier.SetValue(class'BallisticReplicationInfo'.default.jumpDamageAmplifier);
-    //fe_footStepAmplifier.SetValue(class'Mut_Ballistic'.default.footstepAmplifier);
+	local class<BC_GameStyle_Config> style;
 
-    ne_iArmor.SetValue(class'BallisticReplicationInfo'.default.iArmor);
-    ne_iArmorCap.SetValue(class'BallisticReplicationInfo'.default.iArmorCap);
-    //fe_MaxFallSpeed.SetValue(class'BallisticReplicationInfo'.default.MaxFallSpeed);
+	style = class'BallisticGameStyles'.static.GetConfigStyle();
+
+	if (style == None)
+	{
+		Log("BallisticTab_Player: Couldn't find a configurable style for index " $ class'BallisticGameStyles'.default.CurrentConfigStyle);
+		return;
+	}
+
+	ne_playerHealth.SetValue(style.default.PlayerHealth);
+    ne_playerHealthCap.SetValue(style.default.PlayerHealthMax);
+    ne_playerSuperHealthCap.SetValue(style.default.PlayerSuperHealthMax);
+
+    ne_iArmor.SetValue(style.default.PlayerShield);
+    ne_iArmorCap.SetValue(style.default.PlayerShieldMax);
 }
 
 function DefaultSettings()
 {
-    ch_CustomStats.Checked(false);
 	ne_playerHealth.SetValue(100);
     ne_playerHealthCap.SetValue(100);
-    ne_playerSuperHealthCap.SetValue(150);
-    ne_iAdrenaline.SetValue(0);
-    ne_iAdrenalineCap.SetValue(100);
-    //fe_dieSoundAmplifier.SetValue(6.5);
-    //fe_dieSoundRangeAmplifier.SetValue(1.0);
-    //fe_hitSoundAmplifier.SetValue(8.0);
-    //fe_hitSoundRangeAmplifier.SetValue(1.5);
-    //fe_jumpDamageAmplifier.SetValue(80);
-    //fe_footStepAmplifier.SetValue(1.5);
+    ne_playerSuperHealthCap.SetValue(200);
     ne_iArmor.SetValue(100);
-    ne_iArmorCap.SetValue(100);
+    ne_iArmorCap.SetValue(200);
     //fe_MaxFallSpeed.SetValue(800);
 }
 
 function SaveSettings()
 {
+	local class<BC_GameStyle_Config> style;
+
     if (!bInitialized)
         return;
 
-    class'BallisticReplicationInfo'.default.bCustomStats				= ch_CustomStats.IsChecked();
-	class'BallisticReplicationInfo'.default.playerHealth    			= ne_playerHealth.GetValue();
-    class'BallisticReplicationInfo'.default.playerHealthCap 			= ne_playerHealthCap.GetValue();
-    class'BallisticReplicationInfo'.default.playerSuperHealthCap 		= ne_playerSuperHealthCap.GetValue();
-    class'BallisticReplicationInfo'.default.iAdrenaline 				= ne_iAdrenaline.GetValue();
-    class'BallisticReplicationInfo'.default.iAdrenalineCap 				= ne_iAdrenalineCap.GetValue();
-    //class'BallisticReplicationInfo'.default.dieSoundAmplifier 		= fe_dieSoundAmplifier.GetValue();
-    //class'BallisticReplicationInfo'.default.dieSoundRangeAmplifier 	= fe_dieSoundRangeAmplifier.GetValue();
-    //class'BallisticReplicationInfo'.default.hitSoundAmplifier 		= fe_hitSoundAmplifier.GetValue();
-    //class'BallisticReplicationInfo'.default.hitSoundRangeAmplifier 	= fe_hitSoundRangeAmplifier.GetValue();
-    //class'BallisticReplicationInfo'.default.jumpDamageAmplifier		= fe_jumpDamageAmplifier.GetValue();
-    class'BallisticReplicationInfo'.default.iArmor 						= ne_iArmor.GetValue();
-    class'BallisticReplicationInfo'.default.iArmorCap 					= ne_iArmorCap.GetValue();
-    //class'BallisticReplicationInfo'.default.MaxFallSpeed 				= fe_MaxFallSpeed.GetValue();
-    //class'Mut_Ballistic'.default.footstepAmplifier 					= fe_footStepAmplifier.GetValue();
+	style = class<BC_GameStyle_Config>(class'BallisticGameStyles'.static.GetConfigStyle());
 
-    class'BallisticReplicationInfo'.static.StaticSaveConfig();
-    class'Mut_Ballistic'.static.StaticSaveConfig();
+	if (style == None)
+	{
+		Log("BallisticTab_Player: Couldn't find a configurable style for index " $ class'BallisticGameStyles'.default.CurrentConfigStyle);
+		return;
+	}
+
+	style.default.class.default.PlayerHealth    		= ne_playerHealth.GetValue();
+    style.default.class.default.PlayerHealthMax 		= ne_playerHealthCap.GetValue();
+    style.default.class.default.PlayerSuperHealthMax	= ne_playerSuperHealthCap.GetValue();
+    style.default.class.default.PlayerShield 			= ne_iArmor.GetValue();
+    style.default.class.default.PlayerShieldMax			= ne_iArmorCap.GetValue();
+
+    style.default.class.default.StaticSaveConfig();
 }
 
 defaultproperties
-{
-     Begin Object Class=moCheckBox Name=ch_CustomStatsCheck
-         ComponentJustification=TXTA_Left
-         CaptionWidth=0.900000
-         Caption="Custom Stats"
-         OnCreateComponent=ch_CustomStatsCheck.InternalOnCreateComponent
-         IniOption="@Internal"
-         Hint="Enables Custom Stats for Health, Shield and Adrenaline"
-         WinTop=0.050000
-         WinLeft=0.250000
-         WinHeight=0.040000
-     End Object
-     ch_CustomStats=moCheckBox'BallisticProV55.BallisticTab_Player.ch_CustomStatsCheck'
-	 
+{ 
 	 Begin Object Class=moNumericEdit Name=ne_playerHealthEdit
          MinValue=1
          MaxValue=999
