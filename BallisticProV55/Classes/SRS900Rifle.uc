@@ -275,7 +275,13 @@ simulated event RenderOverlays (Canvas C)
 		Super.RenderOverlays(C);
 		return;
 	}
-	if (BCRepClass.default.GameStyle != 1)
+	if (ZoomType == ZT_Irons)
+	{
+		Super.RenderOverlays(C);
+		if (SightFX != None)
+			RenderSightFX(C);
+	}
+	else if (BCRepClass.default.GameStyle != 1)
 	{
 		SetLocation(Instigator.Location + Instigator.CalcDrawOffset(self));
 		SetRotation(Instigator.GetViewRotation());

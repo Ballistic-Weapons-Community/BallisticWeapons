@@ -195,7 +195,7 @@ simulated function SendSavedInventory()
 	ls = class'ConflictLoadoutConfig'.static.BuildSavedLayoutString();
 	cs = class'ConflictLoadoutConfig'.static.BuildSavedCamoString();
     i = class'ConflictLoadoutConfig'.static.GetSavedInitialWeaponIndex();
-	ServerSetInventory(s, ls, i);
+	ServerSetInventory(s, ls, cs, i);
 }
 
 simulated function Tick(float deltatime)
@@ -426,13 +426,14 @@ function UpdateInitialWeaponIndex()
 // Sent from client to update server's loadout. Splits the received
 // string into an array and validates with UpdateInventory.
 //===================================================
-function ServerSetInventory(string ClassesString, string LayoutsString, int initial_wep_index)
+function ServerSetInventory(string ClassesString, string LayoutsString, string CamosString, int initial_wep_index)
 {
 	if (!bInventoryInitialized)
 	{
 		bInventoryInitialized = true;
 		Split(ClassesString, "|", Loadout);
 		Split(LayoutsString, "|", Layout);
+		Split(CamosString, "|", Camo);
         InitialWeaponIndex = initial_wep_index;
 		UpdateInventory();
 		return;
@@ -443,12 +444,14 @@ function ServerSetInventory(string ClassesString, string LayoutsString, int init
 		case LUM_Immediate:
 			Split(ClassesString, "|", Loadout);
 			Split(LayoutsString, "|", Layout);
+			Split(CamosString, "|", Camo);
             InitialWeaponIndex = initial_wep_index;
 			UpdateInventory();
 			break;
 		case LUM_Delayed:
 			Split(ClassesString, "|", PendingLoadout);
 			Split(LayoutsString, "|", Layout);
+			Split(CamosString, "|", Camo);
             PendingInitialWeaponIndex = initial_wep_index;
 			bPendingLoadout = true;
 			break;
@@ -480,7 +483,7 @@ function UpdateInventory()
 {
 	local string s;
 
-	Validate(Loadout, Layout);
+	Validate(Loadout, Layout, Camo);
 
 	if (Loadout.length == 0)
 	{
@@ -495,7 +498,7 @@ function UpdateInventory()
 //===================================================
 // Validate a list of weapons and take out the bad ones
 //===================================================
-simulated function Validate(out array<string> ClassNames, out array<string> LayoutIndex)
+simulated function Validate(out array<string> ClassNames, out array<string> LayoutIndex, out array<string> CamoIndex)
 {
 	local int i;
 	for (i = 0; i < ClassNames.length; i++)
@@ -504,6 +507,7 @@ simulated function Validate(out array<string> ClassNames, out array<string> Layo
 		{
 			ClassNames.remove(i,1);
 			LayoutIndex.remove(i,1);
+			CamoIndex.remove(i,1);
 			i--;
 		}
 	}

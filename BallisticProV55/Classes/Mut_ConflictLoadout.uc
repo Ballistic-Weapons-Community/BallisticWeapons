@@ -226,6 +226,7 @@ function bool SetDefaultRequirements(string ClassName, int Index)
 function ModifyPlayer( pawn Other )
 {
 	local int i, Size, SpaceUsed;
+	local int CamoIndex, LayoutIndex;
 	local float BonusAmmo;
 	local Inventory Inv;
 	local Weapon W;
@@ -249,7 +250,7 @@ function ModifyPlayer( pawn Other )
 		EquipBot(Other);
 	else
 	{
-		CLRI.Validate(CLRI.Loadout, CLRI.Layout);
+		CLRI.Validate(CLRI.Loadout, CLRI.Layout, CLRI.Camo);
 		if (CLRI.Loadout.length == 0)
 		{
  			s = GetFallbackWeapon(CLRI);
@@ -279,10 +280,13 @@ function ModifyPlayer( pawn Other )
 				
 					if (class<Weapon>(InventoryClass) != None)
 					{
-						if ( i >= CLRI.Layout.length || CLRI.Layout[i] == "")
-							SpawnConflictWeapon(class<Weapon>(InventoryClass), Other, 255, i == CLRI.InitialWeaponIndex, 0);
-						else
-							SpawnConflictWeapon(class<Weapon>(InventoryClass), Other, 255, i == CLRI.InitialWeaponIndex, int(CLRI.Layout[i]));
+						if ( i < CLRI.Layout.length && CLRI.Layout[i] != "")
+							LayoutIndex = int(CLRI.Layout[i]);
+						if ( i < CLRI.Camo.length && CLRI.Camo[i] != "")
+							CamoIndex = int(CLRI.Camo[i]);						
+						SpawnConflictWeapon(class<Weapon>(InventoryClass), Other, 255, i == CLRI.InitialWeaponIndex, LayoutIndex, CamoIndex);
+						LayoutIndex=0;
+						CamoIndex=0;
 					}
 					else 
 						SpawnInventoryItem(InventoryClass, Other);
@@ -361,7 +365,7 @@ function SpawnInventoryItem(class<Inventory> InvClass, Pawn Other)
 	}
 }
 
-function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_inventory_group, bool set_as_initial_weapon, int LayoutIndex)
+function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_inventory_group, bool set_as_initial_weapon, int LayoutIndex, int CamoIndex)
 {
 	local Weapon newWeapon;
 
@@ -378,6 +382,7 @@ function SpawnConflictWeapon(class<Weapon> WepClass, Pawn Other, int net_invento
                 BallisticWeapon(newWeapon).NetInventoryGroup = net_inventory_group;
                 BallisticWeapon(newWeapon).bServerDeferInitialSwitch = !set_as_initial_weapon;
 				BallisticWeapon(newWeapon).GenerateLayout(LayoutIndex);
+				BallisticWeapon(newWeapon).GenerateCamo(CamoIndex);
             }
 			newWeapon.GiveTo(Other);
 			newWeapon.PickupFunction(Other);
