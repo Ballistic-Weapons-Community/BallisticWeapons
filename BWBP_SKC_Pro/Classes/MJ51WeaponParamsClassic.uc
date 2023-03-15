@@ -198,30 +198,9 @@ defaultproperties
 		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
 	End Object
 	
-	Begin Object Class=WeaponParams Name=ClassicParams_MJ5000
-		Weight=1
-		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MJ5000'
-		InventorySize=11
-		bNeedCock=True
-		MagAmmo=60
-		SightMoveSpeedFactor=0.500000
-		SightingTime=0.200000
-		SightOffset=(X=0.000000,Y=-6.380000,Z=21.000000)
-		ViewOffset=(X=-8.000000,Y=9.000000,Z=-14.000000)
-		WeaponModes(0)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
-		WeaponModes(1)=(ModeName="Burst",ModeID="WM_BigBurst",Value=3.000000)
-		WeaponModes(2)=(ModeName="Auto",ModeID="WM_FullAuto",bUnavailable=True)
-		InitialWeaponMode=1
-		RecoilParams(0)=RecoilParams'ClassicRecoilParams'
-		AimParams(0)=AimParams'ClassicAimParams'
-		FireParams(0)=FireParams'ClassicPrimaryFireParams'
-		AltFireParams(0)=FireParams'ClassicSecondaryFireParams'
-	End Object
-	
 	Layouts(0)=WeaponParams'ClassicParams'
 	Layouts(1)=WeaponParams'ClassicParams_NoCarry'
 	Layouts(2)=WeaponParams'ClassicParams_NoRDS'
 	Layouts(3)=WeaponParams'ClassicParams_UTC'
-	Layouts(4)=WeaponParams'ClassicParams_MJ5000'
 
 }

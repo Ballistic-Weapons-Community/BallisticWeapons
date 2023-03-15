@@ -348,8 +348,8 @@ function float SuggestDefenseStyle()	{	return 0.5;	}
 
 defaultproperties
 {
-	LaserOnSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
-	LaserOffSound=Sound'BWAddPack-RS-Sounds.TEC.RSMP-LaserClick'
+	LaserOnSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
+	LaserOffSound=Sound'BW_Core_WeaponSound.TEC.RSMP-LaserClick'
 	AIRating=0.6
 	CurrentRating=0.6
 	ManualLines(0)="High-powered semi-automatic fire."

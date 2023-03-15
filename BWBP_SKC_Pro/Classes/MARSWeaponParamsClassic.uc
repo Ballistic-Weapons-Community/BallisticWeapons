@@ -232,7 +232,7 @@ defaultproperties
 		LayoutName="Thermal Marksman"
 		LayoutTags="thermal"
 		//Attachments
-		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MARS2'
+		LayoutMesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MARS2'
 		//Function
 		InventorySize=11
 		bNeedCock=True
