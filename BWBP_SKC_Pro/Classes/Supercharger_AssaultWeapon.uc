@@ -79,7 +79,7 @@ simulated function ScreenStart()
 {
 	if (Instigator.IsLocallyControlled())
 		WeaponScreen.Client = self;
-	Skins[2] = WeaponScreenShader; //Set up scripted texture.
+	Skins[3] = WeaponScreenShader; //Set up scripted texture.
 	UpdateScreen();//Give it some numbers n shit
 	if (Instigator.IsLocallyControlled())
 		WeaponScreen.Revision++;
@@ -661,7 +661,10 @@ defaultproperties
     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Supercharger'
     DrawScale=0.360000
     Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-    Skins(1)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
-    Skins(2)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
-	Skins(3)=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-Main'
+    Skins(1)=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-Main'
+    Skins(2)=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-Main'
+    Skins(3)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
+    Skins(4)=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-Main' //
+    Skins(5)=Combiner'BW_Core_WeaponTex.M50.NoiseComb'
+    Skins(6)=Texture'BWBP_SKC_Tex.SuperCharger.Supercharger-Main'
 }

@@ -169,7 +169,7 @@ defaultproperties
      ShakeOffsetMag=(X=-20.000000)
      ShakeOffsetRate=(X=-1000.000000)
      ShakeOffsetTime=2.000000
-     ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade'
+     ProjectileClass=Class'BWBP_SKC_Pro.MARSGrenade_Chaff'
 	 
 	 // AI
 	 bInstantHit=False

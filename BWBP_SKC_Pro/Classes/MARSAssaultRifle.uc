@@ -4,8 +4,8 @@
 class MARSAssaultRifle extends BallisticWeapon;
 
 //Layouts
-var   bool		bHasSuppressor;				// Can be silenced
-var   bool		bHasThermalSight;			// Can follow heat signatures
+var()   bool		bHasSuppressor;				// Can be silenced
+var()   bool		bHasThermalSight;			// Can follow heat signatures
 
 //Grenade
 var() Sound		GrenOpenSound;		//Sounds for grenade reloading
@@ -28,22 +28,22 @@ var() BUtil.FullSound	ThermalOnSound;	// Sound when activating thermal mode
 var() BUtil.FullSound	ThermalOffSound;// Sound when deactivating thermal mode
 var() BUtil.FullSound	NVOnSound;	// Sound when activating NV/Meat mode
 var() BUtil.FullSound	NVOffSound; // Sound when deactivating NV/Meat mode
-var   Array<Pawn>		PawnList;		// A list of all the potential pawns to view in thermal mode
+var()   Array<Pawn>		PawnList;		// A list of all the potential pawns to view in thermal mode
 var() material				WallVisionSkin;	// Texture to assign to players when theyare viewed with Thermal mode
-var   bool					bThermal;		// Is thermal mode active?
-var   bool					bUpdatePawns;	// Should viewable pawn list be updated
-var   Pawn					UpdatedPawns[16];// List of pawns to view in thermal scope
+var()   bool					bThermal;		// Is thermal mode active?
+var()   bool					bUpdatePawns;	// Should viewable pawn list be updated
+var()   Pawn					UpdatedPawns[16];// List of pawns to view in thermal scope
 var() material				Flaretex;		// Texture to use to obscure vision when viewing enemies directly through the thermal scope
 var() float					ThermalRange;	// Maximum range at which it is possible to see enemies through walls
-var   ColorModifier		ColorMod;
-var   bool					bMeatVision;
-var   Pawn					Target;
-var   float					TargetTime;
-var   float					LastSendTargetTime;
-var   float                 NextTargetFindTime, TargetFindInterval;
-var   vector				TargetLocation;
-var   Actor					NVLight;
-var   float				NextPawnListUpdateTime;
+var()   ColorModifier		ColorMod;
+var()   bool					bMeatVision;
+var()   Pawn					Target;
+var()   float					TargetTime;
+var()   float					LastSendTargetTime;
+var()   float                 NextTargetFindTime, TargetFindInterval;
+var()   vector				TargetLocation;
+var()   Actor					NVLight;
+var()   float				NextPawnListUpdateTime;
 
 replication
 {
@@ -59,6 +59,8 @@ simulated function OnWeaponParamsChanged()
 		
 	assert(WeaponParams != None);
 	
+	bHasSuppressor=False;
+	bHasThermalSight=False;
 	if (InStr(WeaponParams.LayoutTags, "suppressor") != -1)
 	{
 		bHasSuppressor=True;

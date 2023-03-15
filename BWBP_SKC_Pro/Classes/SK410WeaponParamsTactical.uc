@@ -10,10 +10,10 @@ defaultproperties
         TraceRange=(Min=2048.000000,Max=2048.000000)
         DecayRange=(Min=788,Max=1838)
         RangeAtten=0.35
-        TraceCount=10
+        TraceCount=7
         TracerClass=Class'BWBP_SKC_Pro.TraceEmitter_ShotgunHE'
         ImpactManager=Class'BWBP_SKC_Pro.IM_ShellHE'
-        Damage=10
+        Damage=9
         HeadMult=2
         LimbMult=0.67f
         DamageType=Class'BWBP_SKC_Pro.DT_SK410Shotgun'
@@ -41,13 +41,13 @@ defaultproperties
     // SECONDARY FIRE
     //=================================================================	
 
-    Begin Object Class=GrenadeEffectParams Name=TacticalSecondaryEffectParams
+    Begin Object Class=ProjectileEffectParams Name=TacticalSecondaryEffectParams
         ProjectileClass=Class'BWBP_SKC_Pro.SK410HEProjectile'
         SpawnOffset=(X=20.000000,Y=9.000000,Z=-9.000000)
         Speed=8000.000000
-        MaxSpeed=8000.000000
-        Damage=120
-        ImpactDamage=120
+        MaxSpeed=15000.000000
+        AccelSpeed=3000.000000
+        Damage=80
         DamageRadius=256.000000
 		PushbackForce=180.000000
         MomentumTransfer=100000.000000
@@ -87,7 +87,7 @@ defaultproperties
 	//=================================================================
 
     Begin Object Class=AimParams Name=TacticalAimParams
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+        SprintOffset=(Pitch=-1000,Yaw=-2048)
         ChaosSpeedThreshold=300
     End Object
 

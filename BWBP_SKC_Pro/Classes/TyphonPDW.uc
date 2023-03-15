@@ -107,7 +107,7 @@ simulated function CommonStartReload (optional byte i)
 
 	if (bCockAfterReload)
 		bNeedCock=true;
-	if (bCockOnEmpty && MagAmmo < 1 && (class'BCReplicationInfo'.static.IsArena() || class'BCReplicationInfo'.static.IsTactical()))
+	if (bCockOnEmpty && MagAmmo < 1 && GameStyleIndex == 0)
 		bNeedCock=true;
 	bNeedReload=false;
 }
@@ -118,9 +118,9 @@ simulated function PlayReload()
 		SafePlayAnim(StartShovelAnim, StartShovelAnimRate, , 0, "RELOAD");
 	else
 	{
-	    if (MagAmmo < 1 && HasAnim(ReloadEmptyAnim) && (class'BCReplicationInfo'.static.IsClassicOrRealism()))
+	    if (MagAmmo < 1 && HasAnim(ReloadEmptyAnim) && GameStyleIndex != 0)
 			SafePlayAnim(ReloadEmptyAnim, ReloadAnimRate, , 0, "RELOAD");
-		else SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
+		else	SafePlayAnim(ReloadAnim, ReloadAnimRate, , 0, "RELOAD");
 	}
 }
 

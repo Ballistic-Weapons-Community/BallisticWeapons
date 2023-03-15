@@ -15,7 +15,7 @@ defaultproperties
 	Begin Object Class=AimParams Name=TacticalAimParams
 		AimSpread=(Min=64,Max=512)
         ADSMultiplier=0.35
-		SprintOffset=(Pitch=-3072,Yaw=-4096)
+		SprintOffSet=(Pitch=-1000,Yaw=-2048)
 		ChaosDeclineTime=0.5
 		ChaosDeclineDelay=0.3
 		ChaosSpeedThreshold=300
@@ -58,6 +58,9 @@ defaultproperties
 			Damage=26
         HeadMult=2.25
         LimbMult=0.67f
+			DamageType=Class'BWBP_SKC_Pro.DT_XM20_Body'
+			DamageTypeHead=Class'BWBP_SKC_Pro.DT_XM20_Head'
+			DamageTypeArm=Class'BWBP_SKC_Pro.DT_XM20_Body'
 			 Chaos=0
 			 Recoil=32
 			FlashScaleFactor=0.100000

@@ -708,19 +708,18 @@ function AdjustPlayerDamage( out int Damage, Pawn InstigatedBy, Vector HitLocati
 	//if (CamoIndex == 3)
 	if ( DamageType == class'Fell' )
 		DamageMax = 20.0;
-
-	//else if (class<DT_PumaSelf>(DamageType) != none && bShieldUp &&  ShieldPower > 0)
-	//{
-		//Damage = 70;
-		//if (ShieldPower >= 40)
-		//{
-			//Damage = 30;
-        		//Momentum *= -2.00;
-		//}
-		//ShieldPower -= 80;
-    		//ClientTakeHit(80);
-		//return;
-	//}
+	else if (class<DT_PumaSelf>(DamageType) != none && bShieldUp &&  ShieldPower > 0) //Shield Jump
+	{
+		Damage = 70;
+		if (ShieldPower >= 40)
+		{
+			Damage = 30;
+        		Momentum *= -2.00;
+		}
+		ShieldPower -= 80;
+    		ClientTakeHit(80);
+		return;
+	}
 	else if (class<DTXM84GrenadeRadius>(DamageType) != none && bShieldUp)
 	{
 //		ShieldPower = -200;
