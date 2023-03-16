@@ -179,14 +179,7 @@ simulated event PostNetBeginPlay()
 		AmbientGlow=0;
 	}
 
-    // override movement if needed
-    // do not accept user interference with Pro or Tactical
-    if (class'BallisticReplicationInfo'.static.IsArena())
-        ApplyProMovement();
-    else if (class'BallisticReplicationInfo'.static.IsTactical())
-        ApplyTacticalMovement();
-    else
-        ApplyMovementOverrides();
+    ApplyMovementOverrides();
 
 	// replace walk animations if ADS multipliers tend to be high
 	if (class'BallisticGameStyles'.static.GetReplicatedStyle().default.bRunInADS)
@@ -197,7 +190,6 @@ simulated event PostNetBeginPlay()
 		WalkAnims[3]='RunR';
 	}
 
-	
 	// FIXME: why is this here? this function is the definition of net init
 	if(!pawnNetInit)
     {
@@ -208,47 +200,6 @@ simulated event PostNetBeginPlay()
             BPRI = class'Mut_Ballistic'.static.GetBPRI(Controller.PlayerReplicationInfo);
         }
     }
-}
-
-// FIXME: Move to game style and replicate
-simulated function ApplyProMovement()
-{
-    bCanWallDodge = True;
-    bCanDodge = True;
-    bCanDoubleJump = True;
-
-    WalkingPct=1; // highest ADS movement mult seen in Pro - NOT used as a multiplier, just an initial setting
-    CrouchedPct=0.45;
-
-    StrafeScale = 1;
-    BackpedalScale = 1;
-    GroundSpeed = 260;
-    AirSpeed = 260;
-    AccelRate = 2048;
-    JumpZ = 294;
-    DodgeSpeedZ = 210;
-
-    BindDefaultMovement();
-}
-
-simulated function ApplyTacticalMovement()
-{
-    bCanWallDodge = True;
-    bCanDodge = True;
-    bCanDoubleJump = False;
-
-    WalkingPct=0.85; // highest ADS movement mult seen in Arena
-    CrouchedPct=0.35;
-
-    StrafeScale = 1;
-    BackpedalScale = 1;
-    GroundSpeed = 200; // x1.1 because of UT -> effective 220
-    AirSpeed = 200;
-    AccelRate = 1792;
-    JumpZ = 294;
-    DodgeSpeedZ = 170;
-
-    BindDefaultMovement();
 }
 
 simulated final function BindDefaultMovement()

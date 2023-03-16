@@ -1,15 +1,16 @@
 //=============================================================================
-// Mut_Ballistic.
+// Mut_BallisticStyle
 //
-// Replaces normal weapons with Ballistic ones
-//
-// by Nolan "Dark Carnivour" Richert.
-// Copyright(c) 2005 RuneStorm. All Rights Reserved.
+// Bootstrapper mutator used to set game style information before spawning main 
+// Ballistic mutators.
 //=============================================================================
-class Mut_BallisticGlobal extends Mutator 
+class Mut_BallisticStyle extends Mutator 
+	abstract
+	HideDropDown
+	CacheExempt
 	config(BallisticProV55);
 
-// FUCK. Misunderstood it.
+var BC_GameStyle.EGameStyle		OverrideStyle;
 
 struct InventoryMode
 {
@@ -18,16 +19,19 @@ struct InventoryMode
 };
 
 var()	InventoryMode		InventoryModes[6];		// The Mutator Names
-var()	globalconfig int 	InventoryModeIndex;		// The Setting of mutators
 
 simulated function PreBeginPlay()
 {
-	Level.Game.AddMutator(InventoryModes[InventoryModeIndex].MutatorClassName, false);
+	// override the current style before creating the underlying BW mutator
+	// the mutator will then use the style to spawn the BallisticReplicationInfo,
+	// and thereafter it will be read from there
+	class'BallisticGameStyles'.default.CurrentStyle = OverrideStyle;
+
+	Level.Game.AddMutator(InventoryModes[class'BallisticGameStyles'.static.GetLocalStyle().default.InventoryModeIndex].MutatorClassName, false);
 }
 
 defaultproperties
 {
-     InventoryModeIndex=1
 	 InventoryModes(0)=(Name="Pickups",MutatorClassName="BallisticProV55.Mut_BallisticSwap")
 	 InventoryModes(1)=(Name="Outfitting",MutatorClassName="BallisticProV55.Mut_Outfitting")
      InventoryModes(2)=(Name="Conflict",MutatorClassName="BallisticProV55.Mut_ConflictLoadout")

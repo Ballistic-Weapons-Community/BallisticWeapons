@@ -62,18 +62,15 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep);
 
 defaultproperties
 {
-    Index=GS_Arena
-	StyleName="Pro"
-
 	SwayScale=1.0f
 	DamageScale=1.0f
     RecoilScale=1.0f
 
-	MaxInventoryCapacity=12
+	InventoryModeIndex=2
+	MaxInventoryCapacity=0
 
 	PlayerWalkSpeedFactor=0.9
 	PlayerCrouchSpeedFactor=0.45
 
 	bKillstreaks=True
-	bRunInADS=True
 }

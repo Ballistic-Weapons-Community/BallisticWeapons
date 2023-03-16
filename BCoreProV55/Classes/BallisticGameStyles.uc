@@ -31,6 +31,8 @@ static final function class<BC_GameStyle_Config> GetLocalConfigStyle()
 
 defaultproperties
 {
-	Styles(0)=class'BC_GameStyle'
-	Styles(1)=class'BC_GameStyle_Config'
+	Styles(0)=class'GameStyle_Pro'
+	Styles(1)=class'GameStyle_Classic'
+	Styles(2)=class'GameStyle_Realism'
+	Styles(3)=class'GameStyle_Tactical'
 }

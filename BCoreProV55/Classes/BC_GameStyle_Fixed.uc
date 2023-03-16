@@ -1,80 +1,78 @@
 //=============================================================================
-// BC_GameStyle_Config
+// BC_GameStyle_Fixed
 //
-// A game style with configurable properties.
+// A game style with non-configurable properties.
 //
 // by Azarael
 //=============================================================================
-class BC_GameStyle_Config extends BC_GameStyle
-    abstract
-    config(BallisticProV55);
+class BC_GameStyle_Fixed extends BC_GameStyle
+    abstract;
 
 //=============================================================================
 // WEAPONS
 //=============================================================================	
-var() config bool		    bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
-var() config bool		    bLongWeaponOffsetting;		// Causes weapons to offset when close to wall
-var() config bool		    bNoReloading;			    // Disables reloading and weapons use boring old style ammo handling...
-var() config bool           bAlternativePickups;	    // Press Use to Pickup Weapon
+var() bool		    bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
+var() bool		    bLongWeaponOffsetting;		// Causes weapons to offset when close to wall
+var() bool		    bNoReloading;			    // Disables reloading and weapons use boring old style ammo handling...
+var() bool          bAlternativePickups;	    // Press Use to Pickup Weapon
 
 //=============================================================================
 // PAWN
 //=============================================================================
-var() config bool			bBrightPlayers;		    // Players have ambient glow to glow in the dark like the standard pawns.
-var() config bool			bUniversalMineLights;   // All BX-5 mines are lit.
+var() bool			bBrightPlayers;		    // Players have ambient glow to glow in the dark like the standard pawns.
+var() bool			bUniversalMineLights;   // All BX-5 mines are lit.
 
 //=============================================================================
 // HEALTH
 //=============================================================================
-var() config bool			bHealthRegeneration;	// whether health regenerates
-var() config int			StartingHealth;           // health the player starts with
-var() config int			PlayerHealthMax;        // maximum health a player can have
-var() config int			PlayerSuperHealthMax;   // maximum superhealth a player can have
+var() bool			bHealthRegeneration;	// whether health regenerates
+var() int			StartingHealth;           // health the player starts with
+var() int			PlayerHealthMax;        // maximum health a player can have
+var() int			PlayerSuperHealthMax;   // maximum superhealth a player can have
 
 //=============================================================================
 // SHIELDS
 //=============================================================================
-var() config bool			bShieldRegeneration;	// whether shields regenerate
-var() config int			StartingShield;           // armor the player starts with
-var() config int			PlayerShieldMax;        // maximum armor the player can have
+var() bool			bShieldRegeneration;	// whether shields regenerate
+var() int			StartingShield;           // armor the player starts with
+var() int			PlayerShieldMax;        // maximum armor the player can have
 
 //=============================================================================
 // MOVEMENT
 //=============================================================================
-var() config bool			bPlayerDeceleration;		// Decel mechanics when stopping
-var() config bool			bAllowDodging;			    // Disables dodging.
-var() config bool			bAllowDoubleJump;	        // Disables double jump.
-var() config float			PlayerStrafeScale;
-var() config float			PlayerBackpedalScale;
-var() config float			PlayerGroundSpeed;
-var() config float			PlayerAirSpeed;
-var() config float			PlayerAccelRate;
-var() config float			PlayerJumpZ;
-var() config float			PlayerDodgeZ;
+var() bool			bPlayerDeceleration;		// Decel mechanics when stopping
+var() bool			bAllowDodging;			    // Disables dodging.
+var() bool			bAllowDoubleJump;	        // Disables double jump.
+var() float			PlayerStrafeScale;
+var() float			PlayerBackpedalScale;
+var() float			PlayerGroundSpeed;
+var() float			PlayerAirSpeed;
+var() float			PlayerAccelRate;
+var() float			PlayerJumpZ;
+var() float			PlayerDodgeZ;
 
 //=============================================================================
 // SPRINT
 //=============================================================================
-var() config bool			bEnableSprint;
-var() config int			StaminaChargeRate;
-var() config int			StaminaDrainRate;
-var() config float			SprintSpeedFactor;
-var() config float			JumpDrainFactor;
+var() bool			bEnableSprint;
+var() int			StaminaChargeRate;
+var() int			StaminaDrainRate;
+var() float			SprintSpeedFactor;
+var() float			JumpDrainFactor;
 
 //=============================================================================
 // KILL REWARD
 //=============================================================================
-var() config int			HealthKillReward; // the amount of healthpoints a player gets for a kill
-var() config int			KillRewardHealthMax;  // Limiter, The additional healthpoints wont exceel this value
-var() config int			ShieldKillReward;  // armor points for a kill
-var() config int			KillRewardShieldMax;  // Limiter, the additional armor points will not exceel this value
+var() int			HealthKillReward; // the amount of healthpoints a player gets for a kill
+var() int			KillRewardHealthMax;  // Limiter, The additional healthpoints wont exceel this value
+var() int			ShieldKillReward;  // armor points for a kill
+var() int			KillRewardShieldMax;  // Limiter, the additional armor points will not exceel this value
 
 static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 {	
 	rep.bWeaponJumpOffsetting		= default.bWeaponJumpOffsetting;
 	rep.bLongWeaponOffsetting		= default.bLongWeaponOffsetting;
 	rep.bNoReloading				= default.bNoReloading;
-
 	rep.bAlternativePickups 		= default.bAlternativePickups;
 
     rep.bBrightPlayers				= default.bBrightPlayers;
@@ -115,5 +113,5 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep)
 defaultproperties
 {
 	bWeaponJumpOffsetting=True
-	bLongWeaponOffsetting=True
+	bLongWeaponOffsetting=False
 }
