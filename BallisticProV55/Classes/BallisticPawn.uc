@@ -210,6 +210,7 @@ simulated final function BindDefaultMovement()
     default.BackpedalScale = BackpedalScale;
     default.GroundSpeed = GroundSpeed;
     default.AirSpeed = AirSpeed;
+	default.LadderSpeed = LadderSpeed;
     default.AccelRate = AccelRate;
     default.JumpZ = JumpZ;
     default.DodgeSpeedZ = DodgeSpeedZ;
@@ -239,6 +240,7 @@ simulated function ApplyMovementOverrides()
 	BackpedalScale = class'BallisticReplicationInfo'.default.PlayerBackpedalScale;
 	GroundSpeed = class'BallisticReplicationInfo'.default.PlayerGroundSpeed;
 	AirSpeed = class'BallisticReplicationInfo'.default.PlayerAirSpeed;
+	LadderSpeed = GroundSpeed * 0.65f;
 	AccelRate = class'BallisticReplicationInfo'.default.PlayerAccelRate;
 	JumpZ = class'BallisticReplicationInfo'.default.PlayerJumpZ;
 	DodgeSpeedZ = class'BallisticReplicationInfo'.default.PlayerDodgeZ;
@@ -2316,30 +2318,25 @@ function bool DoJump( bool bUpdating )
     return false;
 }
 
+//========================================================================
+// AddShieldStrength
+//
+// Create an armor to do hit effects, if none exists
+//========================================================================
 function bool AddShieldStrength(int ShieldAmount)
 {
 	local BallisticArmor BA;
-	local int OldShieldStrength;
 
 	BA = BallisticArmor(FindInventoryType(class'BallisticArmor'));
-	if (BA != None)
-	{
-		OldShieldStrength = BA.Charge;
-		BA.Charge = Min(BA.Charge + ShieldAmount, BA.MaxCharge);
-		BA.SetShieldDisplay(BA.Charge);
-	}
-	else
+	
+	if (BA == None)
 	{
 		BA = spawn(class'BallisticArmor',self);
-		BA.Charge = ShieldAmount;
-		BA.GiveTo (self, none);
+		BA.GiveTo(self, none);
 	}
-	if (BA == None)
-		return super.AddShieldStrength(ShieldAmount);
 
-	return (BA.Charge != OldShieldStrength);
+	return super.AddShieldStrength(ShieldAmount);
 }
-
 
 function bool PerformDodge(eDoubleClickDir DoubleClickMove, vector Dir, vector Cross)
 {
@@ -2604,6 +2601,26 @@ function RemoveCoverAnchor(Actor A)
 	
 	if (i < CoverAnchors.Length)
 		CoverAnchors.Remove(i, 1);
+}
+//===========================================================================
+// ShieldAbsorb
+//
+// Armor stops full damage
+// Don't play hit effects (BallisticArmor will do it)
+//===========================================================================
+function int ShieldAbsorb( int dam )
+{
+    local float Absorption;
+
+    if (ShieldStrength == 0)
+        return dam;
+
+    Absorption = FMin(ShieldStrength, dam);
+    
+    dam -= Absorption;
+    ShieldStrength -= Absorption;
+
+    return dam;
 }
  
 function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector momentum, class<DamageType> damageType)
