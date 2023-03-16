@@ -302,8 +302,6 @@ simulated function ApplyParams(ProjectileEffectParams params)
 	bLimitMomentumZ = params.bLimitMomentumZ;
 	default.bLimitMomentumZ = params.bLimitMomentumZ;
 	
-    Damage *= class'BallisticReplicationInfo'.default.DamageScale;
-    
     HeadMult = params.HeadMult;
 	LimbMult = params.LimbMult; 
 

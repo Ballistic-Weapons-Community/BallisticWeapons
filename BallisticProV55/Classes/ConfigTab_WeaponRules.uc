@@ -39,13 +39,12 @@ function LoadSettings()
 		sl_Sway.SetValue(style.default.SwayScale);
 		sl_Recoil.SetValue(style.default.RecoilScale);
 		fl_Damage.SetValue(style.default.DamageScale);
+		fl_VDamage.SetValue(style.default.VehicleDamageScale);
 		ch_WeaponJumpOffsetting.Checked(style.default.bWeaponJumpOffsetting);
 		ch_LongWeaponOffsetting.Checked(style.default.bLongWeaponOffsetting);
 		int_MaxInventoryCapacity.SetValue(style.default.MaxInventoryCapacity);
 		ch_NoReloading.Checked(style.default.bNoReloading);
 	}
-
-	fl_VDamage.SetValue(class'Rules_Ballistic'.default.VehicleDamageScale);
 
 	ch_UseItemizer.Checked(class'Mut_Ballistic'.default.bUseItemizer);
 	eb_ItemGroup.SetText(class'Mut_Ballistic'.default.ItemGroup);
@@ -62,9 +61,10 @@ function SaveSettings()
 
 	if (style != None)
 	{
-		style.default.SwayScale					= sl_Sway.GetValue();
+		style.default.SwayScale						= sl_Sway.GetValue();
 		style.default.RecoilScale					= sl_Recoil.GetValue();
 		style.default.DamageScale					= fl_Damage.GetValue();
+		style.default.VehicleDamageScale			= fl_VDamage.GetValue();
 		style.default.bWeaponJumpOffsetting			= ch_WeaponJumpOffsetting.IsChecked();
 		style.default.bLongWeaponOffsetting			= ch_LongWeaponOffsetting.IsChecked();
 		style.default.bNoReloading					= ch_NoReloading.IsChecked();
@@ -72,8 +72,6 @@ function SaveSettings()
 		style.static.StaticSaveConfig();
 	}
 
-	class'Rules_Ballistic'.default.DamageScale 						= fl_Damage.GetValue();
-	class'Rules_Ballistic'.default.VehicleDamageScale				= fl_VDamage.GetValue();
 	class'Rules_Ballistic'.static.StaticSaveConfig();
 
 	class'Mut_Ballistic'.default.ItemGroup		 					= eb_ItemGroup.GetText();
@@ -102,7 +100,7 @@ defaultproperties
          MaxValue=2.000000
          Caption="Sway Scale"
          OnCreateComponent=sl_SwaySlider.InternalOnCreateComponent
-         Hint="Scale the degree of sway of ballistic weapons."
+         Hint="Scales the degree of sway of weapons."
          WinTop=0.10000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -113,7 +111,7 @@ defaultproperties
          MaxValue=2.000000
          Caption="Recoil Scale"
          OnCreateComponent=sl_RecoilSlider.InternalOnCreateComponent
-         Hint="Scale the amount of recoil applied to ballistic weapons."
+         Hint="Scales the recoil pattern of weapons."
          WinTop=0.150000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -153,10 +151,10 @@ defaultproperties
 	 Begin Object Class=moCheckBox Name=ch_SprintAimCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="Stable Jump/Sprint"
+         Caption="Weapon Jump Offsetting"
          OnCreateComponent=ch_SprintAimCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Disables weapon aiming off when jumping or sprinting"
+         Hint="Causes weapons to offset when jumping or sprinting."
          WinTop=0.30000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -166,10 +164,10 @@ defaultproperties
      Begin Object Class=moCheckBox Name=ch_LongWeaponOffsettingCheck
          ComponentJustification=TXTA_Left
          CaptionWidth=0.900000
-         Caption="No Long Gun Shifting"
+         Caption="Long Weapon Offsetting"
          OnCreateComponent=ch_LongWeaponOffsettingCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Disables long weapons shifting off when too close to obstuctions"
+         Hint="Causes weapons to offset when too close to a wall or other surface."
          WinTop=0.35000
          WinLeft=0.250000
          WinHeight=0.040000
@@ -182,7 +180,7 @@ defaultproperties
          Caption="Disable Reloading"
          OnCreateComponent=ch_NoReloadingCheck.InternalOnCreateComponent
          IniOption="@Internal"
-         Hint="Disables weapons needing to be reloaded"
+         Hint="Disables reloading."
          WinTop=0.40000
          WinLeft=0.250000
          WinHeight=0.040000

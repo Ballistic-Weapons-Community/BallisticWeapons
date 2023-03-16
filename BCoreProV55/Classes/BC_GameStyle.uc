@@ -26,8 +26,9 @@ var string				StyleName;
 // CONFIG VARIABLES
 //=============================================================================	
 var() config float		SwayScale;			    	// Scales weapon sway
-var() config float		DamageScale;				// Scales weapon damage
 var() config float		RecoilScale;			    // Scales weapon recoil
+var() config float		DamageScale;				// Scales anti-player damage
+var() config float		VehicleDamageScale;			// Scales anti-vehicle damage
 
 var() config int		InventoryModeIndex;			// Inventory mode used in this style - server only
 var() config int		MaxInventoryCapacity;		// Maximum carrying capacity
@@ -46,6 +47,7 @@ static final function InitializeReplicationInfo(BallisticReplicationInfo rep)
 
 	rep.AccuracyScale			= default.SwayScale;
 	rep.DamageScale				= default.DamageScale;
+	rep.VehicleDamageScale		= default.VehicleDamageScale;
 	rep.RecoilScale				= default.RecoilScale;
 	rep.MaxInventoryCapacity	= default.MaxInventoryCapacity;
 	rep.bKillstreaks			= default.bKillstreaks;
@@ -63,8 +65,9 @@ static protected function FillReplicationInfo(BallisticReplicationInfo rep);
 defaultproperties
 {
 	SwayScale=1.0f
+	RecoilScale=1.0f
 	DamageScale=1.0f
-    RecoilScale=1.0f
+	VehicleDamageScale=1.0f
 
 	InventoryModeIndex=0
 	MaxInventoryCapacity=0

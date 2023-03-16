@@ -25,7 +25,8 @@ var BC_GameStyle.EGameStyle	GameStyle;
 //=============================================================================
 var float					AccuracyScale;				// Used for scaling general weapon accuracy.
 var float					RecoilScale;				// Used for scaling general weapon recoil.
-var float					DamageScale;				// Scales general weapon damage
+var float					DamageScale;				// Scales anti-player weapon damage
+var float					VehicleDamageScale;			// Scales anti-vehicle weapon damage
 var bool		    		bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
 var bool		    		bLongWeaponOffsetting;		// Causes weapons to offset when close to wall
 var bool		    		bNoReloading;				// Disables reloading and weapons use boring old style ammo handling...
@@ -115,6 +116,8 @@ simulated final function BindDefaults()
 	class.default.AccuracyScale			        = AccuracyScale;
 	class.default.RecoilScale			        = RecoilScale;
 	class.default.DamageScale					= DamageScale;
+	class.default.VehicleDamageScale			= VehicleDamageScale;
+	
 	class.default.bWeaponJumpOffsetting			= bWeaponJumpOffsetting;
 	class.default.bLongWeaponOffsetting			= bLongWeaponOffsetting;
 	class.default.bNoReloading					= bNoReloading;
@@ -220,6 +223,7 @@ defaultproperties
 	AccuracyScale=1
 	RecoilScale=1
 	DamageScale=1
+	VehicleDamageScale=1
 
 	bWeaponJumpOffsetting=True
 	bLongWeaponOffsetting=False
