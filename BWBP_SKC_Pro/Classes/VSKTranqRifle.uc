@@ -106,16 +106,16 @@ defaultproperties
 {
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.000000
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.VSKS.BigIcon_VSK'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.VSKS.BigIcon_VSK'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      SpecialInfo(0)=(Info="320.0;25.0;1.0;110.0;2.0;0.1;0.1")
-     BringUpSound=(Sound=Sound'BWBP_SKC_SoundsExp.VSK.VSK-Draw')
+     BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-Draw')
      PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-Holster')
      CockAnimPostReload="ReloadEndCock"
-     CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.VSK.VSK-Cock',Volume=1.000000)
-     ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.VSK.VSK-ClipOut',Volume=1.500000)
-     ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.VSK.VSK-ClipIn',Volume=1.500000)
+     CockSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-Cock',Volume=1.000000)
+     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-ClipOut',Volume=1.500000)
+     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.VSK.VSK-ClipIn',Volume=1.500000)
 	 ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.M1911.RS04-SlideLock',Volume=1.500000)
      ClipInFrame=0.650000
      bNeedCock=False
@@ -123,7 +123,7 @@ defaultproperties
      WeaponModes(1)=(ModeName="Low Powered",ModeID="WM_FullAuto")
 	 WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=1
-     ScopeViewTex=Texture'BWBP_SKC_TexExp.VSK.VSKScopeView'
+     ScopeViewTex=Texture'BWBP_SKC_Tex.VSK.VSKScopeView'
      ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
      ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	 ZoomType=ZT_Fixed
@@ -147,7 +147,7 @@ defaultproperties
      PlayerViewOffset=(X=10.000000,Y=15.000000,Z=-27.000000)
      BobDamping=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.VSKAttachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.VSKS.SmallIcon_VSK'
+     IconMaterial=Texture'BWBP_SKC_Tex.VSKS.SmallIcon_VSK'
      IconCoords=(X2=127,Y2=31)
      ItemName="VSK-42 Tranquilizer Rifle"
      LightType=LT_Pulse
@@ -159,6 +159,6 @@ defaultproperties
 	 ParamsClasses(0)=Class'VSKWeaponParamsArena'
 	 ParamsClasses(1)=Class'VSKWeaponParamsClassic'
 	 ParamsClasses(2)=Class'VSKWeaponParamsRealistic'
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_VSKS'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_VSKS'
      DrawScale=0.700000
 }

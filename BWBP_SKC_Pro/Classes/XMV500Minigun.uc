@@ -608,9 +608,9 @@ function float SuggestDefenseStyle()	{	return -1.4;	}
 
 defaultproperties
 {
-     BarrelSpinSound=Sound'BWBP_SKC_SoundsExp.550.Mini-Rotor'
-     BarrelStopSound=Sound'BWBP_SKC_SoundsExp.550.Mini-Down'
-     BarrelStartSound=Sound'BWBP_SKC_SoundsExp.550.Mini-Up'
+     BarrelSpinSound=Sound'BWBP_SKC_Sounds.550.Mini-Rotor'
+     BarrelStopSound=Sound'BWBP_SKC_Sounds.550.Mini-Down'
+     BarrelStartSound=Sound'BWBP_SKC_Sounds.550.Mini-Up'
      DeploySound=Sound'BW_Core_WeaponSound.XMV-850.XMV-Deploy'
      UndeploySound=Sound'BW_Core_WeaponSound.XMV-850.XMV-UnDeploy'
      RunOffset=(Pitch=-1500,Yaw=-3000)
@@ -621,7 +621,7 @@ defaultproperties
      PlayerJumpFactor=0.750000
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
      AIReloadTime=4.000000
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.XMV500.BigIcon_XMV500'
+     //BigIconMaterial=Texture'BWBP_SKC_Tex.XMV500.BigIcon_XMV500'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      bWT_Machinegun=True
@@ -674,7 +674,7 @@ defaultproperties
      PlayerViewOffset=(X=30.000000,Y=8.000000,Z=-45.000000)
      BobDamping=1.400000
      AttachmentClass=Class'BWBP_SKC_Pro.XMV500MinigunAttachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.XMV500.SmallIcon_XMV500'
+    // IconMaterial=Texture'BWBP_SKC_Tex.XMV500.SmallIcon_XMV500'
      IconCoords=(X2=127,Y2=25)
      ItemName="[B] XMB-500 Smart Minigun"
      LightType=LT_Pulse
@@ -683,7 +683,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_XMB501'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_XMB500'
      DrawScale=0.600000
      SoundRadius=128.000000
 }

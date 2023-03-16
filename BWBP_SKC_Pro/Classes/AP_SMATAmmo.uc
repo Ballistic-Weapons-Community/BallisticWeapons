@@ -16,7 +16,7 @@ defaultproperties
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.RocketPickup'
      StaticMesh=StaticMesh'BW_Core_WeaponStatic.Ammo.G5Rockets'
      DrawScale=0.750000
-     //Skins(0)=Texture'BWBP_SKC_TexExp.SMAA.SMAARocket'
+     //Skins(0)=Texture'BWBP_SKC_Tex.SMAA.SMAARocket'
      CollisionRadius=8.000000
      CollisionHeight=5.000000
 }

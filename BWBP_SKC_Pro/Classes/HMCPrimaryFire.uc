@@ -162,10 +162,10 @@ defaultproperties
 {
      ChargeRate=0.500000
      PowerLevel=1.000000
-     ChargeSound=Sound'BWBP_SKC_SoundsExp.BeamCannon.Beam-Charge'
-     LowFireSound=Sound'BWBP_SKC_SoundsExp.BeamCannon.Beam-FireLow'
-     PowerFireSound=Sound'BWBP_SKC_SoundsExp.BeamCannon.Beam-Fire'
-     RTeamFireSound=Sound'BWBP_SKC_SoundsExp.BeamCannon.RedBeam-Fire'
+     ChargeSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Charge'
+     LowFireSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-FireLow'
+     PowerFireSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Fire'
+     RTeamFireSound=Sound'BWBP_SKC_Sounds.BeamCannon.RedBeam-Fire'
      TraceRange=(Min=50000.000000,Max=50000.000000)
      Damage=145.000000
      WaterRangeAtten=0.600000
@@ -177,7 +177,7 @@ defaultproperties
      bPenetrate=True
      MuzzleFlashClass=Class'BWBP_SKC_Pro.HMCFlashEmitter'
      FireChaos=0.005000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.BeamCannon.Beam-Fire',Volume=1.700000,Radius=255.000000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Fire',Volume=1.700000,Radius=255.000000,Slot=SLOT_Interact,bNoOverride=False)
      bFireOnRelease=True
      bWaitForRelease=True
      bModeExclusive=False

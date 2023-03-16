@@ -50,7 +50,7 @@ defaultproperties
      //RecoilPerShot=1024.000000
      XInaccuracy=5.000000
      YInaccuracy=5.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SMAA.SMAT-Fire',Volume=9.200000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-Fire',Volume=9.200000,Slot=SLOT_Interact,bNoOverride=False)
      bSplashDamage=True
      bRecommendSplashDamage=True
      FireEndAnim=

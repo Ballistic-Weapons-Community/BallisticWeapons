@@ -18,7 +18,7 @@ defaultproperties
 		MomentumTransfer=30000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SRAC.SRAC-Fire',Volume=1.750000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SRAC.SRAC-Fire',Volume=1.750000)
 		SplashDamage=True
 		RecommendSplashDamage=True
 		BotRefireRate=0.900000

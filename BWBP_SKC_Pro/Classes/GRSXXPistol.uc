@@ -734,16 +734,16 @@ defaultproperties
 {
 	bAmped=True
 	Skins[0]=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	AmpMaterials[0]=Shader'BWBP_SKC_TexExp.Glock_Gold.GRSXX-AmpShine'
-	AmpMaterials[1]=Shader'BWBP_SKC_TexExp.Glock_Gold.GRSXX-AmpGlowShader'
-	AmpMaterials[2]=Shader'BWBP_SKC_TexExp.Glock_Gold.Amp-GoldDepleted-Shine'
+	AmpMaterials[0]=Shader'BWBP_SKC_Tex.Glock_Gold.GRSXX-AmpShine'
+	AmpMaterials[1]=Shader'BWBP_SKC_Tex.Glock_Gold.GRSXX-AmpGlowShader'
+	AmpMaterials[2]=Shader'BWBP_SKC_Tex.Glock_Gold.Amp-GoldDepleted-Shine'
 	AmpMaterials[3]=Texture'ONSstructureTextures.CoreGroup.Invisible'
     AmplifierBone="AMP"
     AmplifierOnAnim="AMPApply"
     AmplifierOffAnim="AMPRemove"
     AmplifierOnSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOn'
     AmplifierOffSound=Sound'BW_Core_WeaponSound.SRS900.SRS-SilencerOff'
-    AmplifierPowerOnSound=Sound'BWBP_SKC_SoundsExp.GRSXX.GRSXX-Select'
+    AmplifierPowerOnSound=Sound'BWBP_SKC_Sounds.GRSXX.GRSXX-Select'
     AmplifierPowerOffSound=Sound'BW_Core_WeaponSound.AMP.Amp-Depleted'
 	DrainRate=0.1
 	AIRating=0.6
@@ -752,7 +752,7 @@ defaultproperties
 	//bShouldDualInLoadout=False
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.Glock_Gold.BigIcon_GoldGlock'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.Glock_Gold.BigIcon_GoldGlock'
 	BigIconCoords=(Y1=30,Y2=230)
 	SightFXBone="SightBone"
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
@@ -760,7 +760,7 @@ defaultproperties
 	ManualLines(1)="Projects a laser beam. Has extremely low DPS, but consistent damage over range and recharges over time."
 	ManualLines(2)="The Weapon Function key causes a hitscan single-shot beam to be projected from the unit, dealing good damage. The GRS-9 is effective at close range."
 	SpecialInfo(0)=(Info="120.0;8.0;-999.0;25.0;0.0;0.0;-999.0")
-	BringUpSound=(Sound=Sound'BWBP_SKC_SoundsExp.Glock_Glod.GRSXX-Select')
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.Glock_Glod.GRSXX-Select')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	CockAnimRate=1.200000
 	CockSound=(Sound=Sound'BW_Core_WeaponSound.Glock.Glk-Cock',Volume=0.600000)
@@ -795,7 +795,7 @@ defaultproperties
 	PickupClass=Class'BWBP_SKC_Pro.GRSXXPickup'
 	PlayerViewOffset=(X=6.000000,Y=8.000000,Z=-9.000000)
 	AttachmentClass=Class'BWBP_SKC_Pro.GRSXXAttachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.Glock_Gold.SmallIcon_GoldGlock'
+	IconMaterial=Texture'BWBP_SKC_Tex.Glock_Gold.SmallIcon_GoldGlock'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="GRS-XX Pistol"
 	LightType=LT_Pulse
@@ -804,7 +804,7 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_GRSXX'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_GRSXX'
 	DrawScale=0.150000
 	bFullVolume=True
 	SoundRadius=128.000000

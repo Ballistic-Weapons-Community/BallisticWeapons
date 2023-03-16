@@ -60,7 +60,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.GRSXXFlashEmitter'
 		FlashScaleFactor=1.500000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.T9CN.T9CN-FireSingle',Volume=1.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-FireSingle',Volume=1.200000)
 		Recoil=512.000000
 		Chaos=0.070000
 		Inaccuracy=(X=13,Y=13)
@@ -95,7 +95,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.GRSXXFlashEmitter'
 		FlashScaleFactor=1.500000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.Glock_Gold.GRSXX-Fire',Volume=1.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Glock_Gold.GRSXX-Fire',Volume=1.200000)
 		Recoil=256.000000
 		Chaos=0.070000
 		Inaccuracy=(X=10,Y=10)

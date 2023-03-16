@@ -25,7 +25,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XMV850FlashEmitter'
 		FlashScaleFactor=0.800000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.550.Mini-Fire',Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.550.Mini-Fire',Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=40.000000
 		Chaos=0.000850
 		PushbackForce=15.000000

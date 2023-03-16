@@ -273,8 +273,8 @@ defaultproperties
      bFirstDraw=True
      GrenadeLoadAnim="LoadGrenade"
      GrenBone="Grenade"
-     GrenSlideSound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51-GrenLock'
-     ClipInSoundEmpty=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51-MagInEmpty'
+     GrenSlideSound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-GrenLock'
+     ClipInSoundEmpty=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagInEmpty'
      SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;0.8;0.7;0.2")
      AIReloadTime=1.000000
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'

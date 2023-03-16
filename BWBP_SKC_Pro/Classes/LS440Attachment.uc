@@ -138,5 +138,5 @@ defaultproperties
      RelativeRotation=(Pitch=32768)
      Mesh=SkeletalMesh'BWBP_SKC_Anim.LS14_TPm'
      DrawScale=0.200000
-     Skins(0)=Shader'BWBP_SKC_TexExp.LS440M.LS440_SD'
+     Skins(0)=Shader'BWBP_SKC_Tex.LS440M.LS440_SD'
 }

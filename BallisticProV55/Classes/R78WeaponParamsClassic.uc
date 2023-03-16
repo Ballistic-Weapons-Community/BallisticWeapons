@@ -138,7 +138,6 @@ defaultproperties
 		LayoutName="Desert RDS"
 		Weight=10
 		
-		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.RifleSkinDesertCamo",Index=0)
 		InventorySize=15
 		ZoomType=ZT_Irons
@@ -158,7 +157,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-UrbanNS
 		LayoutName="Urban" //Todo: Wood, quick pull
 		Weight=10
-		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
+		
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_UTiger-SD",Index=0)
 		
 		InventorySize=15
@@ -179,7 +178,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-JungleNS
 		LayoutName="Jungle CQC Scope"
 		Weight=10
-		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
+		
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_JTiger-SD",Index=0)
 		
 		InventorySize=15
@@ -200,7 +199,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-TigerNS
 		LayoutName="Red-Tiger Amplified"
 		Weight=3
-		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
+		
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_RTiger-SD",Index=0)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Amplifier',BoneName="Muzzle",Scale=0.2)
 		
@@ -222,7 +221,7 @@ defaultproperties
 	Begin Object Class=WeaponParams Name=ClassicParams-WinterNS
 		LayoutName="Arctic Warfare"
 		Weight=3
-		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
+		
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.R98_Winter-SD",Index=0)
 		GunAugments(0)=(GunAugmentClass=class'BallisticProV55.Augment_Suppressor',BoneName="Muzzle",Scale=0.2)
 		
@@ -245,7 +244,6 @@ defaultproperties
 		LayoutName="ANUS"
 		Weight=1
 		
-		LayoutMesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_R98'
 		WeaponMaterialSwaps(1)=(MaterialName="BWBP_Camos_Tex.R78Camos.GoldRifle-Shine",Index=0)
 		InventorySize=15
 		ZoomType=ZT_Irons

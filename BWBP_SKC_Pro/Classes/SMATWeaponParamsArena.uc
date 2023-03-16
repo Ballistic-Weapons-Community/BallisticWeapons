@@ -16,7 +16,7 @@ defaultproperties
 		DamageRadius=160.000000
 		MomentumTransfer=75000.000000
 		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SMAA.SMAT-FireOld')
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-FireOld')
 		Recoil=1024.000000
 		Chaos=0.500000
 		BotRefireRate=0.5
@@ -44,7 +44,7 @@ defaultproperties
 		DamageRadius=160.000000
 		MomentumTransfer=75000.000000
 		MuzzleFlashClass=Class'BallisticProV55.G5FlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SMAA.SMAT-FireOld')
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-FireOld')
 		Recoil=2048.000000
 		Chaos=0.500000
 		BotRefireRate=0.5

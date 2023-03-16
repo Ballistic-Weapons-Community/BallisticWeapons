@@ -40,7 +40,7 @@ defaultproperties
      bCausesBlood=False
      bDelayedDamage=True
      bNeverSevers=True
-     PawnDamageSounds(0)=Sound'BWBP_SKC_SoundsExp.VSK.VSK-Poison'
+     PawnDamageSounds(0)=Sound'BWBP_SKC_Sounds.VSK.VSK-Poison'
      DamageOverlayMaterial=Shader'XGameShaders.PlayerShaders.LinkHit'
      DamageOverlayTime=0.900000
      GibPerterbation=0.001000

@@ -21,13 +21,13 @@ function InitDroppedPickupFor(Inventory Inv)
 defaultproperties
 {
      bOnSide=False
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.EVPC.EVPC_Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.HVPC.HVPC_Pickup'
      PickupDrawScale=0.100000
      InventoryType=Class'BWBP_SKC_Pro.HVPCMk5PlasmaCannon'
      RespawnTime=20.000000
      PickupMessage="You got the High-Voltage Plasma Cannon Mk5"
      PickupSound=Sound'BW_Core_WeaponSound.LightningGun.LG-Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.EVPC.EVPC_Pickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.HVPC.HVPC_Pickup'
      Physics=PHYS_None
      DrawScale=0.100000
      PrePivot=(Z=-3.000000)

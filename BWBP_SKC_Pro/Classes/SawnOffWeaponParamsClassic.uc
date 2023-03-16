@@ -24,7 +24,7 @@ defaultproperties
 		WarnTargetPct=0.500000
 		Inaccuracy=(X=2500,Y=1800)
 		HipSpreadFactor=1.000000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SawnOff.SawnOff-DFire',Volume=1.900000)	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SawnOff.SawnOff-DFire',Volume=1.900000)	
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicPrimaryFireShotParams
@@ -91,7 +91,7 @@ defaultproperties
 		WarnTargetPct=0.500000
 		Inaccuracy=(X=1800,Y=1800)
 		HipSpreadFactor=1.000000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SawnOff.SawnOff-SFire',Volume=1.500000)	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SawnOff.SawnOff-SFire',Volume=1.500000)	
 	End Object
 
 	Begin Object Class=FireParams Name=ClassicSecondaryFireShotParams

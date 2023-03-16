@@ -226,8 +226,8 @@ defaultproperties
      FireChaosCurve=(Points=((InVal=0,OutVal=1),(InVal=0.160000,OutVal=1),(InVal=0.250000,OutVal=1.500000),(InVal=0.500000,OutVal=2.250000),(InVal=0.750000,OutVal=3.500000),(InVal=1.000000,OutVal=5.000000)))
      XInaccuracy=4
 	 YInaccuracy=4
-     SilencedFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.JSOC.JSOC-SuppressedFire',Volume=1.000000,Radius=192.000000,bAtten=True)
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.JSOC.JSOC-Fire',Volume=1.000000)
+     SilencedFireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-SuppressedFire',Volume=1.000000,Radius=192.000000,bAtten=True)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Fire',Volume=1.000000)
      bPawnRapidFireAnim=True
      FireAnim="Fire"
 	 FireEndAnim=

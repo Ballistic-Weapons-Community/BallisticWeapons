@@ -114,7 +114,7 @@ defaultproperties
      FireChaos=0.250000
      XInaccuracy=256.000000
      YInaccuracy=256.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SawnOff.SawnOff-Sfire',Volume=1.500000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SawnOff.SawnOff-Sfire',Volume=1.500000)
      FireAnim="SightFire"
      FireRate=0.400000
      AmmoClass=Class'BallisticProV55.Ammo_12Gauge'

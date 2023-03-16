@@ -26,12 +26,12 @@ simulated function UpdatePrecacheStaticMeshes()
 
 defaultproperties
 {
-     LowPolyStaticMesh=StaticMesh'BWBP_SKC_StaticExp.MP40.MP40Pickup'
+     LowPolyStaticMesh=StaticMesh'BWBP_SKC_Static.MP40.MP40Pickup'
      InventoryType=Class'BWBP_SKC_Pro.FMPMachinePistol'
      RespawnTime=20.000000
      PickupMessage="You picked up the FMP-2012 Machine Pistol"
      PickupSound=Sound'BW_Core_WeaponSound.M50.M50Putaway'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.MP40.MP40Pickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.MP40.MP40Pickup'
      Physics=PHYS_None
      DrawScale=0.100000
      CollisionHeight=4.000000

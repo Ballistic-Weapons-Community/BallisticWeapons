@@ -25,7 +25,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=0.600000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ55A3Carbine-Fire',Pitch=1.150000,Volume=1.10000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ55A3Carbine-Fire',Pitch=1.150000,Volume=1.10000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=700.000000
 		Chaos=0.050000
 		Inaccuracy=(X=12,Y=12)
@@ -55,7 +55,7 @@ defaultproperties
 		LimbMult=1.0
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'MJ51AltFlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51Carbine-GrenLaunch',Volume=2.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51Carbine-GrenLaunch',Volume=2.200000)
 		Recoil=600.000000
 		Chaos=-1.0
 		Inaccuracy=(X=128,Y=128)

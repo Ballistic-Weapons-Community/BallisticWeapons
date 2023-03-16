@@ -276,7 +276,7 @@ defaultproperties
      FlashlightAnim="FlashLightToggle"
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=1.000000
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.M1911.BigIcon_RS04'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.RS04.BigIcon_RS04'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      SpecialInfo(0)=(Info="60.0;6.0;1.0;110.0;0.2;0.0;0.0")
@@ -317,7 +317,7 @@ defaultproperties
      PickupClass=Class'BWBP_SKC_Pro.RS04Pickup'
      PlayerViewOffset=(Y=9.000000,Z=-14.000000)
      AttachmentClass=Class'BWBP_SKC_Pro.RS04Attachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.M1911.SmallIcon_RS04'
+     IconMaterial=Texture'BWBP_SKC_Tex.RS04.SmallIcon_RS04'
      IconCoords=(X2=127,Y2=31)
      ItemName="RS04 Compact Pistol"
      LightType=LT_Pulse
@@ -329,8 +329,8 @@ defaultproperties
 	 ParamsClasses(0)=Class'RS04WeaponParamsArena'
 	 ParamsClasses(1)=Class'RS04WeaponParamsClassic'
 	 ParamsClasses(2)=Class'RS04WeaponParamsRealistic'
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_RS04'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_RS04'
      DrawScale=0.350000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-     Skins(1)=Shader'BWBP_SKC_TexExp.M1911.RS04-MainShine'
+     Skins(1)=Shader'BWBP_SKC_Tex.RS04.RS04-MainShine'
 }

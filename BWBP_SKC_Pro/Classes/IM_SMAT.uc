@@ -64,7 +64,7 @@ defaultproperties
      HitEffects(9)=Class'BallisticProV55.IE_HAMRExplosionDirt'
      HitEffects(10)=Class'BallisticProV55.IE_RocketExplosion'
      HitDecals(0)=Class'BallisticProV55.AD_Explosion'
-     HitSounds(0)=Sound'BWBP_SKC_SoundsExp.SMAA.SMAT-Explosion'
+     HitSounds(0)=Sound'BWBP_SKC_Sounds.SMAA.SMAT-Explosion'
      HitSoundVolume=1.000000
      HitSoundRadius=1024.000000
      EffectBackOff=96.000000

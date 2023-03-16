@@ -47,7 +47,7 @@ defaultproperties
 		MomentumTransfer=150.000000
 		MuzzleFlashClass=Class'BallisticProV55.E23FlashEmitter'
 		FlashScaleFactor=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.A73E.A73E-Power',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Power',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=1024.000000
 		Chaos=0.500000
 		WarnTargetPct=0.200000	

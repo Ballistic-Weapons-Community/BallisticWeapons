@@ -141,7 +141,7 @@ defaultproperties
 {
 	 MaxCharge=1.000000
 	 FireSoundLoop=Sound'BWBP_SKC_Sounds.XM20B.XM20-Lase'
-     ChargeSound=Sound'BWBP_SKC_SoundsExp.LS440.LS440-SpinUp'
+     ChargeSound=Sound'BWBP_SKC_Sounds.LS440.LS440-SpinUp'
      TraceRange=(Min=1500000.000000,Max=1500000.000000)
      Damage=45
      HeadMult=2.0
@@ -160,7 +160,7 @@ defaultproperties
 //     MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
      FlashScaleFactor=0.400000
      //RecoilPerShot=20.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.LS440.LS440-Fire',Volume=0.900000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.LS440.LS440-Fire',Volume=0.900000)
      FireEndAnim=
      TweenTime=0.000000
      FireRate=0.150000

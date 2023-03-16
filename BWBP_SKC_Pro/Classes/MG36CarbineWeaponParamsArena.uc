@@ -17,7 +17,7 @@ defaultproperties
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=0.100000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.JSOC.JSOC-Fire',Volume=1.000000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Fire',Volume=1.000000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=128.000000
 		Chaos=0.180000
 		WarnTargetPct=0.200000

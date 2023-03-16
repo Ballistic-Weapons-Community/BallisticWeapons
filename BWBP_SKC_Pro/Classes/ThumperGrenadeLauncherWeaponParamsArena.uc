@@ -15,7 +15,7 @@ defaultproperties
 		DamageRadius=384.000000
 		MomentumTransfer=100000.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.M780.M780-Fire',Volume=3.500000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Fire',Volume=3.500000)
 		Chaos=0.700000
 		SplashDamage=True
 		Recoil=56
@@ -42,7 +42,7 @@ defaultproperties
 		Damage=20
 		DamageRadius=128.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.M780.M780-Fire',Volume=1.750000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Fire',Volume=1.750000)
 		Chaos=0.700000
 		SplashDamage=True
 		Recoil=56

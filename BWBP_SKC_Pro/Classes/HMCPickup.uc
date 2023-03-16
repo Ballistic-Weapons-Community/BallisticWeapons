@@ -9,7 +9,7 @@ var bool		bCamoChoosen;
 var bool		bRedTeam;
 
 #exec OBJ LOAD FILE=BW_Core_WeaponStatic.usx
-#exec OBJ LOAD FILE=BWBP_SKC_TexExp.utx
+#exec OBJ LOAD FILE=BWBP_SKC_Tex.utx
 
 simulated function UpdatePrecacheStaticMeshes()
 {
@@ -50,7 +50,7 @@ function InitDroppedPickupFor(Inventory Inv)
 	if ((HMCBeamCannon(Inv) != None && HMCBeamCannon(Inv).bRedTeam))
 	{
 		bRedTeam=true;
-		Skins[0] = Shader'BWBP_SKC_TexExp.BeamCannon.RedCannonSD';
+		Skins[0] = Shader'BWBP_SKC_Tex.BeamCannon.RedCannonSD';
 	}
 
     LifeSpan = 24;

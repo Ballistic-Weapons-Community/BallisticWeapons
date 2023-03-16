@@ -621,7 +621,7 @@ defaultproperties
 	bAltNeedCock=False
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.500000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.Pug.BigIcon_Pug'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.Pug.BigIcon_Pug'
 	BigIconCoords=(Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -673,7 +673,7 @@ defaultproperties
 	PlayerViewOffset=(X=10.000000,Y=11.000000,Z=-21.000000)
 	BobDamping=1.600000
 	AttachmentClass=Class'BWBP_SKC_Pro.PugAttachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.Pug.SmallIcon_Pug'
+	IconMaterial=Texture'BWBP_SKC_Tex.Pug.SmallIcon_Pug'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="PUG-M2 Riot Cannon"
 	LightType=LT_Pulse
@@ -682,6 +682,6 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=150.000000
 	LightRadius=4.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_Pug'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Pug'
 	DrawScale=0.500000
 }

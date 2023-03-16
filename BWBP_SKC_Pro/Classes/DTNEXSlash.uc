@@ -28,7 +28,7 @@ defaultproperties
      MaleSuicide="%o tripped and died a flamey, burney death."
      bArmorStops=False
      GibModifier=4.000000
-     PawnDamageSounds(0)=SoundGroup'BWBP_SKC_SoundsExp.NEX.Nex-HitBod'
+     PawnDamageSounds(0)=SoundGroup'BWBP_SKC_Sounds.NEX.Nex-HitBod'
      GibPerterbation=0.200000
      KDamageImpulse=1000.000000
      VehicleDamageScaling=0.150000

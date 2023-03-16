@@ -17,7 +17,7 @@ defaultproperties
 		LimbMult=1.0
 		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-		FireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.AGLS.AGLS-Fire',Volume=9.200000)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AGLS.AGLS-Fire',Volume=9.200000)
 		Recoil=256.0
 		Chaos=-1.0
 		SplashDamage=True
@@ -46,7 +46,7 @@ defaultproperties
 		LimbMult=1.0
 		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
-		FireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.AGLS.AGLS-Fire',Volume=9.200000)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.AGLS.AGLS-Fire',Volume=9.200000)
 		Recoil=1024.0
 		PushbackForce=500.000000
 		Chaos=0.4

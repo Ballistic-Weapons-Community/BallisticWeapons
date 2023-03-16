@@ -96,7 +96,7 @@ defaultproperties
      FireRecoil=2048.000000
      FirePushbackForce=100.000000
      FireChaos=1.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.PUG.PUG-FireSlug',Volume=2.500000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.PUG.PUG-FireSlug',Volume=2.500000)
 	 bFireOnRelease=True
      bWaitForRelease=True
      FireForce="AssaultRifleAltFire"

@@ -30,6 +30,6 @@ defaultproperties
      DrawScale=1.400000
      PickupDrawScale=1.400000
      CollisionHeight=3.000000
-     Skins(2)=Shader'BWBP_SKC_TexExp.LS440M.LS440_SD'
-     Skins(4)=Shader'BWBP_SKC_TexExp.LS440M.LS440_SD'
+     Skins(2)=Shader'BWBP_SKC_Tex.LS440M.LS440_SD'
+     Skins(4)=Shader'BWBP_SKC_Tex.LS440M.LS440_SD'
 }

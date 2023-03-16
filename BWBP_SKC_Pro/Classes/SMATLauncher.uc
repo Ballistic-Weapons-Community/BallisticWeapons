@@ -158,7 +158,7 @@ defaultproperties
      PlayerSpeedFactor=0.700000
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
      AIReloadTime=4.000000
-     //BigIconMaterial=Texture'BWBP_SKC_TexExp.SMAA.BigIcon_SMAA'
+     //BigIconMaterial=Texture'BWBP_SKC_Tex.SMAA.BigIcon_SMAA'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      
      bWT_Hazardous=True
@@ -181,7 +181,7 @@ defaultproperties
      WeaponModes(2)=(bUnavailable=True)
      CurrentWeaponMode=0
 	 
-	ScopeViewTex=Texture'BWBP_SKC_TexExp.SMAA.SMATAAScopeView'
+	ScopeViewTex=Texture'BWBP_SKC_Tex.SMAA.SMATAAScopeView'
 	ZoomInSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomIn',Volume=0.500000,Pitch=1.000000)
 	ZoomOutSound=(Sound=Sound'BW_Core_WeaponSound.R78.R78ZoomOut',Volume=0.500000,Pitch=1.000000)
 	MinZoom=2.000000
@@ -222,7 +222,7 @@ defaultproperties
      PlayerViewOffset=(X=20.000000,Y=15.000000,Z=-10.000000)
      BobDamping=1.800000
      AttachmentClass=Class'BWBP_SKC_Pro.SMATAttachment'
-     //IconMaterial=Texture'BWBP_SKC_TexExp.SMAA.SmallIcon_SMAA'
+     //IconMaterial=Texture'BWBP_SKC_Tex.SMAA.SmallIcon_SMAA'
      IconCoords=(X2=127,Y2=31)
      ItemName="S.M.A.T. Infantry Cannon"
      LightType=LT_Pulse
@@ -231,6 +231,6 @@ defaultproperties
      LightSaturation=100
      LightBrightness=192.000000
      LightRadius=12.000000
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_Smarf'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPa_Smarf'
      DrawScale=0.400000
 }

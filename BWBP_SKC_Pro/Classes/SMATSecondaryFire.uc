@@ -100,7 +100,7 @@ defaultproperties
 {
      ChargeRate=0.700000
      PowerLevel=1.000000
-     ChargeSound=Sound'BWBP_SKC_SoundsExp.SMAA.SMAT-Charge'
+     ChargeSound=Sound'BWBP_SKC_Sounds.SMAA.SMAT-Charge'
      SpawnOffset=(X=10.000000,Y=10.000000,Z=-3.000000)
      bCockAfterFire=True
      MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'

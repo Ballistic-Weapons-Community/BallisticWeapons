@@ -226,8 +226,8 @@ simulated function bool ImpactEffect(vector HitLocation, vector HitNormal, Mater
 defaultproperties
 {
 	 AmpDrainPerShot=-0.50
-     AmpRedFireSound=SoundGroup'BWBP_SKC_SoundsExp.MP40.MP40-HotFire'
-     AmpGreenFireSound=SoundGroup'BWBP_SKC_SoundsExp.MP40.MP40-AcidFire'
+     AmpRedFireSound=SoundGroup'BWBP_SKC_Sounds.MP40.MP40-HotFire'
+     AmpGreenFireSound=SoundGroup'BWBP_SKC_Sounds.MP40.MP40-AcidFire'
 	 MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 	 MuzzleFlashClassRed=Class'BallisticProV55.M50FlashEmitter'
      MuzzleFlashClassGreen=Class'BallisticProV55.A500FlashEmitter'
@@ -257,7 +257,7 @@ defaultproperties
      XInaccuracy=32.000000
      YInaccuracy=32.000000
 	 FireChaos=0.030000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MP40.MP40-Fire',Volume=1.200000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Fire',Volume=1.200000)
      bPawnRapidFireAnim=True
      FireEndAnim=
      FireRate=0.105000

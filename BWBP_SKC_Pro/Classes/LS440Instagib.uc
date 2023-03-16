@@ -331,7 +331,7 @@ defaultproperties
      PutDownAnimRate=1.500000
      PutDownTime=1.000000
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny',SkinNum=0)
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.LS440M.BigIcon_LS440'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.LS440M.BigIcon_LS440'
      //BallisticInventoryGroup=7
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
@@ -359,7 +359,7 @@ defaultproperties
      WeaponModes(1)=(ModeName="Burst",Value=3.000000)
      WeaponModes(2)=(ModeName="Full Auto",ModeID="WM_FullAuto")
      CurrentWeaponMode=2
-     ScopeViewTex=Texture'BWBP_SKC_TexExp.LS440M.LS440Scope'
+     ScopeViewTex=Texture'BWBP_SKC_Tex.LS440M.LS440Scope'
      ZoomInSound=(Sound=ProceduralSound'WeaponSounds.PZoomIn1.P1ZoomIn1',Volume=0.500000,Pitch=1.000000)
      ZoomOutSound=(Sound=ProceduralSound'WeaponSounds.PZoomOut1.P1ZoomOut1',Volume=0.500000,Pitch=1.000000)
      FullZoomFOV=5.000000
@@ -398,7 +398,7 @@ defaultproperties
      PlayerViewOffset=(X=5.000000,Y=10.000000,Z=-12.000000)
      BobDamping=1.800000
      AttachmentClass=Class'BWBP_SKC_Pro.LS440Attachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.LS440M.SmallIcon_LS440'
+     IconMaterial=Texture'BWBP_SKC_Tex.LS440M.SmallIcon_LS440'
      IconCoords=(X2=127,Y2=31)
      ItemName="[B] LS-440M Instagib Rifle"
      LightType=LT_Pulse
@@ -407,13 +407,13 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_LS440'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_LS440'
      DrawScale=0.300000
      UsedAmbientSound=Sound'BW_Core_WeaponSound.M75.M75Hum'
      bFullVolume=True
      SoundVolume=255
      SoundRadius=256.000000
      //Skins(0)=Shader'BallisticWeapons2.Hands.Hands-Shiny'
-     //Skins(1)=Shader'BWBP_SKC_TexExp.LS440M.LS440_SD'
+     //Skins(1)=Shader'BWBP_SKC_Tex.LS440M.LS440_SD'
      //Skins(2)=Combiner'BWBP_SKC_Tex.M30A2.M30A2-GunScope'
 }

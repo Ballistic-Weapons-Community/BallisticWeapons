@@ -117,7 +117,7 @@ defaultproperties
 {
      MaxCharge=1.000000
 	 FireSoundLoop=Sound'BWBP_SKC_Sounds.XM20B.XM20-Lase'
-     ChargeSound=Sound'BWBP_SKC_SoundsExp.LS440.LS440-SpinUp'
+     ChargeSound=Sound'BWBP_SKC_Sounds.LS440.LS440-SpinUp'
 	 PreFireAnim="LoopStart"
 	 FireLoopAnim="LoopFire"
 	 FireEndAnim="LoopEnd"

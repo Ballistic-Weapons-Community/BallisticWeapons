@@ -26,7 +26,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=0.900000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MP40.MP40-Fire',Volume=1.000000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Fire',Volume=1.000000)
 		Recoil=80.000000
 		Chaos=0.06
 		Inaccuracy=(X=28,Y=28)
@@ -55,7 +55,7 @@ defaultproperties
 		HookPullForce=-10.000000
 		MuzzleFlashClass=Class'BallisticProV55.M50FlashEmitter'
 		FlashScaleFactor=1.100000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MP40.MP40-HotFire',Volume=1.600000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-HotFire',Volume=1.600000)
 		Recoil=512.000000
 		Chaos=0.030000
 	End Object
@@ -83,7 +83,7 @@ defaultproperties
 		HookPullForce=-10.000000
 		MuzzleFlashClass=Class'BallisticProV55.A500FlashEmitter'
 		FlashScaleFactor=0.400000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MP40.MP40-AcidFire',Volume=1.100000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-AcidFire',Volume=1.100000)
 		Recoil=70.000000
 		Chaos=0.030000
 	End Object

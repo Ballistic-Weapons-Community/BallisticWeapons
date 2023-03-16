@@ -25,7 +25,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.LS14FlashEmitter'
 		FlashScaleFactor=0.200000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.LS440.LS440-Fire',Volume=1.300000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.LS440.LS440-Fire',Volume=1.300000)
 		Recoil=25.000000
 		Chaos=-1.00
 		BotRefireRate=1.050000

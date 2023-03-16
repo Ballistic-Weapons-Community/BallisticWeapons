@@ -399,6 +399,6 @@ defaultproperties
      ReloadAnim="Reload_Pistol"
      CockingAnim="Cock_RearPull"
      ReloadAnimRate=1.400000
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.SX45_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.SX45_TPm'
      DrawScale=1.000000
 }

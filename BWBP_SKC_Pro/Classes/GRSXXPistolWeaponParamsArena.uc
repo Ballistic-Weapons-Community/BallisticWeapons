@@ -20,7 +20,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.GRSXXFlashEmitter'
 		FlashScaleFactor=1.250000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.Glock_Gold.GRSXX-Fire',Volume=1.100000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Glock_Gold.GRSXX-Fire',Volume=1.100000)
 		Recoil=150.000000
 		Chaos=0.120000
 		BotRefireRate=0.99
@@ -47,7 +47,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTGRSXXLaser'
 		PenetrateForce=200
 		bPenetrate=True
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.Glock_Gold.G-Glk-LaserFire')
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.Glock_Gold.G-Glk-LaserFire')
 		Chaos=0.000000
 		BotRefireRate=0.999000
 		WarnTargetPct=0.010000

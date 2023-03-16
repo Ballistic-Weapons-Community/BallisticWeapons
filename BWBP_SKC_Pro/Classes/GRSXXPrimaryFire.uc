@@ -146,7 +146,7 @@ defaultproperties
      FireChaos=0.120000
      XInaccuracy=72.000000
      YInaccuracy=72.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.Glock_Gold.GRSXX-Fire',Volume=1.100000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.Glock_Gold.GRSXX-Fire',Volume=1.100000)
      FireEndAnim=
 	 AimedFireAnim='SightFire'
      FireAnimRate=1.700000

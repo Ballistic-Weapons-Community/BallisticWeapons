@@ -100,8 +100,8 @@ function ApplyDamage(Actor Victim, int Damage, Pawn Instigator, vector HitLocati
 
 defaultproperties
 {
-     ScopedFireSound=SoundGroup'BWBP_SKC_SoundsExp.VSK.VSK-SuperShot'
-     RegularFireSound=SoundGroup'BWBP_SKC_SoundsExp.VSK.VSK-Shot'
+     ScopedFireSound=SoundGroup'BWBP_SKC_Sounds.VSK.VSK-SuperShot'
+     RegularFireSound=SoundGroup'BWBP_SKC_Sounds.VSK.VSK-Shot'
      TraceRange=(Min=12000.000000,Max=15000.000000)
 	 WallPenetrationForce=0
      Damage=35
@@ -120,7 +120,7 @@ defaultproperties
      FireRecoil=88.000000
      XInaccuracy=1.750000
      YInaccuracy=1.750000
-     BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.VSK.VSK-SuperShot',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
+     BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.VSK.VSK-SuperShot',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
      bAISilent=True
      bPawnRapidFireAnim=True
      FireEndAnim=

@@ -100,7 +100,7 @@ defaultproperties
 {
      PlayerSpeedFactor=1.100000
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.BlkOpsBlade.BigIcon_WristBld'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.BlkOpsBlade.BigIcon_WristBld'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      SpecialInfo(0)=(Info="360.0;10.0;-999.0;-1.0;-999.0;-999.0;-999.0")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.EKS43.EKS-Pullout')
@@ -129,12 +129,12 @@ defaultproperties
      PlayerViewOffset=(X=50.000000,Y=00.000000,Z=-40.000000)
      BobDamping=1.000000
      AttachmentClass=Class'BWBP_SKC_Pro.BlackOpsWristBladeAttachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.BlkOpsBlade.SmallIcon_WristBld'
+     IconMaterial=Texture'BWBP_SKC_Tex.BlkOpsBlade.SmallIcon_WristBld'
      IconCoords=(X2=127,Y2=31)
      ItemName="X5W Black Ops Blade"
 	 ParamsClasses(0)=Class'BlackOpsWristBladeWeaponParamsArena'
 	 ParamsClasses(1)=Class'BlackOpsWristBladeWeaponParamsClassic'
 	 ParamsClasses(2)=Class'BlackOpsWristBladeWeaponParamsRealistic'
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_BOB'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_BOB'
      DrawScale=1.250000
 }

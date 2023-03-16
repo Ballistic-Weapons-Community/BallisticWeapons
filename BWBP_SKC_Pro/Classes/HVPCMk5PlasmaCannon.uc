@@ -835,7 +835,7 @@ defaultproperties
 	 ParamsClasses(0)=Class'HVPCMk5WeaponParamsArena'
 	 ParamsClasses(1)=Class'HVPCMk5WeaponParamsClassic'
 	 ParamsClasses(2)=Class'HVPCMk5WeaponParamsRealistic'
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_EVPC'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_HVPC'
      DrawScale=0.350000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
      bFullVolume=True

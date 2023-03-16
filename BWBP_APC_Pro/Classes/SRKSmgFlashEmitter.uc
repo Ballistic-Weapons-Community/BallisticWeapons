@@ -16,7 +16,7 @@ simulated event PostBeginPlay()
 defaultproperties
 {
      Begin Object Class=MeshEmitter Name=MeshEmitter0
-         StaticMesh=StaticMesh'BWBP_SKC_StaticExp.MJ51.MJ51MuzzleFlash'
+         StaticMesh=StaticMesh'BWBP_SKC_Static.MJ51.MJ51MuzzleFlash'
          UseMeshBlendMode=False
          RenderTwoSided=True
          UseParticleColor=True

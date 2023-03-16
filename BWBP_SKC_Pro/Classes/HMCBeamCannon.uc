@@ -63,7 +63,7 @@ function ServerSwitchWeaponMode(byte NewMode)
 		else	
 			bGreenLaser=False;
 		if(bGreenLaser) 
-			Laser.Skins[0]=TexPanner'BWBP_SKC_TexExp.BeamCannon.LaserPannerGreen';
+			Laser.Skins[0]=TexPanner'BWBP_SKC_Tex.BeamCannon.LaserPannerGreen';
 		else Laser.Skins[0]=Laser.default.Skins[0];
 		
 		HMCAttachment(ThirdPersonActor).SwitchMedicLaser(bGreenLaser);
@@ -160,7 +160,7 @@ simulated event PostNetReceive()
 	}
 	if (bGreenLaser != bOldGreenLaser)
 	{
-		if(bGreenLaser) Laser.Skins[0]=TexPanner'BWBP_SKC_TexExp.BeamCannon.LaserPannerGreen';
+		if(bGreenLaser) Laser.Skins[0]=TexPanner'BWBP_SKC_Tex.BeamCannon.LaserPannerGreen';
 		else  Laser.Skins[0]=Laser.default.Skins[0];
 		bOldGreenLaser = bGreenLaser;
 	}
@@ -347,7 +347,7 @@ simulated function BringUp(optional Weapon PrevWeapon)
 		if ( Instigator.PlayerReplicationInfo.Team.TeamIndex == 0 )
 		{
 			bRedTeam = True;
-			Skins[1] = Shader'BWBP_SKC_TexExp.BeamCannon.RedCannonSD';
+			Skins[1] = Shader'BWBP_SKC_Tex.BeamCannon.RedCannonSD';
 			BFireMode[0].BallisticFireSound.Sound=HMCPrimaryFire(BFireMode[0]).RTeamFireSound;
      		BFireMode[0].MuzzleFlashClass=Class'BWBP_SKC_Pro.A48FlashEmitter';
 		}
@@ -492,9 +492,9 @@ defaultproperties
      SpecialInfo(0)=(Info="300.0;20.0;1.80;80.0;0.8;0.8;0.1")
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.BeamCannon.BigIcon_HMC'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.BeamCannon.BigIcon_HMC'
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Up')
-     PutDownSound=(Sound=Sound'BWBP_SKC_SoundsExp.BeamCannon.Beam-Down')
+     PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Down')
      WeaponModes(0)=(ModeName="Tractor Beam",ModeID="WM_FullAuto",Value=0.250000)
      WeaponModes(1)=(ModeName="Repulsor Beam",ModeID="WM_FullAuto",Value=1.000000)
      WeaponModes(2)=(ModeName="Healing Beam",Value=0.333333)
@@ -523,7 +523,7 @@ defaultproperties
      PlayerViewOffset=(X=6.000000,Y=6.000000,Z=-8.000000)
      BobDamping=1.600000
      AttachmentClass=Class'BWBP_SKC_Pro.HMCAttachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.BeamCannon.SmallIcon_HMC'
+     IconMaterial=Texture'BWBP_SKC_Tex.BeamCannon.SmallIcon_HMC'
      IconCoords=(X2=127,Y2=31)
      ItemName="[B] HMC-117 Photon Cannon"
      LightType=LT_Pulse
@@ -535,8 +535,8 @@ defaultproperties
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.FPm_RX22A'
      DrawScale=0.350000
      Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	 Skins(1)=Shader'BWBP_SKC_TexExp.BeamCannon.BeamCannonSkin_SD'
-	 Skins(2)=FinalBlend'BWBP_SKC_TexExp.BeamCannon.BeamCannonShieldFB'
+	 Skins(1)=Shader'BWBP_SKC_Tex.BeamCannon.BeamCannonSkin_SD'
+	 Skins(2)=FinalBlend'BWBP_SKC_Tex.BeamCannon.BeamCannonShieldFB'
      bFullVolume=True
      SoundRadius=512.000000
 }

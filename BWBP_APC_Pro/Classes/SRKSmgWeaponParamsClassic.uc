@@ -25,7 +25,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MRDRFlashEmitter'
 		FlashScaleFactor=0.500000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.PK2000.PK2000-Fire',Volume=1.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.PK2000.PK2000-Fire',Volume=1.200000)
 		Recoil=256.000000
 		Chaos=0.250000
 		Inaccuracy=(X=8,Y=8)
@@ -57,7 +57,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MRDRFlashEmitter'
 		FlashScaleFactor=0.500000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.PK2000.PK2000-Fire',Volume=1.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.PK2000.PK2000-Fire',Volume=1.200000)
 		Recoil=128.000000
 		Chaos=0.150000
 		Inaccuracy=(X=8,Y=8)
@@ -84,7 +84,7 @@ defaultproperties
 		Damage=65
 		DamageRadius=320.000000
 		MuzzleFlashClass=Class'BWBP_APC_Pro.SRKSmgAltFlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51Carbine-GrenLaunch',Volume=2.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51Carbine-GrenLaunch',Volume=2.200000)
 		SplashDamage=True
 		RecommendSplashDamage=True
 		BotRefireRate=0.300000

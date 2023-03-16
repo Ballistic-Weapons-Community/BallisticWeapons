@@ -310,7 +310,7 @@ defaultproperties
      QuickCockSound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-CockQuick'
 
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.TAC30.BigIcon_TAC30'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.TAC30.BigIcon_TAC30'
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Hazardous=True
      bWT_Splash=True
@@ -345,7 +345,7 @@ defaultproperties
      PlayerViewOffset=(X=-4.000000,Y=8.000000,Z=-11.000000)
      BobDamping=1.700000
      AttachmentClass=Class'BWBP_SKC_Pro.TAC30Attachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.TAC30.SmallIcon_TAC30'
+     IconMaterial=Texture'BWBP_SKC_Tex.TAC30.SmallIcon_TAC30'
      IconCoords=(X2=127,Y2=30)
      ItemName="[B] TAC-30 Autocannon"
      LightType=LT_Pulse
@@ -354,7 +354,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_TAC30OLDUVs'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_TAC30'
      DrawScale=0.260000
 	 ParamsClasses(0)=Class'TAC30CannonWeaponParamsArena'
 	 ParamsClasses(1)=Class'TAC30WeaponParamsClassic'

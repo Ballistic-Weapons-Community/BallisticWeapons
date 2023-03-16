@@ -88,7 +88,7 @@ defaultproperties
      PivotBone="StandBase"
      bDrawDriverInTP=True
      VehicleNameString="[B] XMB-500 Sentry Gun"
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.XMB501Turret_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.XMB500Turret_TPm'
      DrawScale=0.350000
      CollisionHeight=22.400000
 	 

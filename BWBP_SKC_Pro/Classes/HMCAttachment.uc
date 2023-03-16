@@ -52,7 +52,7 @@ simulated event PostNetReceive()
 	if (bGreenLaser != bOldGreenLaser && Laser != None)
 	{
 		if(bGreenLaser)
-			Laser.Skins[0] = TexPanner'BWBP_SKC_TexExp.BeamCannon.LaserPannerGreen';
+			Laser.Skins[0] = TexPanner'BWBP_SKC_Tex.BeamCannon.LaserPannerGreen';
 		else Laser.Skins[0] = Laser.default.Skins[0];
 		bOldGreenLaser = bGreenLaser;
 	}
@@ -64,7 +64,7 @@ function SwitchMedicLaser(bool bGreen)
 {
 	bGreenLaser = bGreen;
 	if(bGreenLaser)
-		Laser.Skins[0] = TexPanner'BWBP_SKC_TexExp.BeamCannon.LaserPannerGreen';
+		Laser.Skins[0] = TexPanner'BWBP_SKC_Tex.BeamCannon.LaserPannerGreen';
 	else Laser.Skins[0] = Laser.default.Skins[0];
 }
 
@@ -223,7 +223,7 @@ simulated function PostNetBeginPlay()
 	
 	if (bRedTeam)
 	{
-		Skins[0] = Shader'BWBP_SKC_TexExp.BeamCannon.RedCannonSD';
+		Skins[0] = Shader'BWBP_SKC_Tex.BeamCannon.RedCannonSD';
      	TracerClass=Class'BallisticProV55.TraceEmitter_HVCRedLightning';
      	MuzzleFlashClass=Class'BWBP_SKC_Pro.HMCRedEmitter';
      	AltMuzzleFlashClass=Class'BWBP_SKC_Pro.HMCRedEmitter';

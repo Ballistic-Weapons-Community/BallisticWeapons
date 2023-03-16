@@ -338,17 +338,17 @@ defaultproperties
 	bShowChargingBar=True
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.MP40.BigIcon_MP40'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.MP40.BigIcon_MP40'
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
 	SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
-	BringUpSound=(Sound=Sound'BWBP_SKC_SoundsExp.MP40.MP40-Pullout',Volume=1.400000)
-	PutDownSound=(Sound=Sound'BWBP_SKC_SoundsExp.MP40.MP40-Putaway',Volume=1.400000)
+	BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Pullout',Volume=1.400000)
+	PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Putaway',Volume=1.400000)
 	CockAnimPostReload="ReloadEndCock"
-	CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.MP40.MP40-Cock',Volume=1.400000)
-	ClipHitSound=(Sound=Sound'BWBP_SKC_SoundsExp.MP40.MP40-MagHit',Volume=1.400000)
-	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.MP40.MP40-MagOut',Volume=1.400000)
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.MP40.MP40-MagIn',Volume=1.400000)
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-Cock',Volume=1.400000)
+	ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-MagHit',Volume=1.400000)
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-MagOut',Volume=1.400000)
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.MP40.MP40-MagIn',Volume=1.400000)
 	ClipInFrame=0.650000
 	CurrentWeaponMode=0
 	WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")
@@ -374,7 +374,7 @@ defaultproperties
 	PlayerViewOffset=(X=-5.000000,Y=12.000000,Z=-15.000000)
 	BobDamping=2.000000
 	AttachmentClass=Class'BWBP_SKC_Pro.FMPAttachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.MP40.SmallIcon_MP40'
+	IconMaterial=Texture'BWBP_SKC_Tex.MP40.SmallIcon_MP40'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="FMP-2012 Machine Pistol"
 	LightType=LT_Pulse
@@ -386,11 +386,11 @@ defaultproperties
 	ParamsClasses(0)=Class'FMPWeaponParamsArena'
 	ParamsClasses(1)=Class'FMPWeaponParamsClassic'
 	ParamsClasses(2)=Class'FMPWeaponParamsRealistic'
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MP40'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MP40'
 	DrawScale=0.30000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	Skins(1)=Shader'BWBP_SKC_TexExp.MP40.MP40-MainShine'
-	Skins(2)=Shader'BWBP_SKC_TexExp.MP40.MP40-MagShine'
+	Skins(1)=Shader'BWBP_SKC_Tex.MP40.MP40-MainShine'
+	Skins(2)=Shader'BWBP_SKC_Tex.MP40.MP40-MagShine'
 	Skins(3)=Shader'BW_Core_WeaponTex.Amp.Amp-FinalRed'
 	Skins(4)=Shader'BW_Core_WeaponTex.AMP.Amp-GlowRedShader'
 }

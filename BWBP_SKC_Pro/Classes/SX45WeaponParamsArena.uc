@@ -20,7 +20,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45FlashEmitter'
 		FlashScaleFactor=0.9
-		FireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.SX45.SX45-Fire',Volume=1.700000)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.SX45.SX45-Fire',Volume=1.700000)
 		Recoil=192.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
@@ -51,7 +51,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45CryoFlash'
 		FlashScaleFactor=0.06
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SX45.SX45-FrostFire',Volume=1.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-FrostFire',Volume=1.200000)
 		Recoil=512.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
@@ -82,7 +82,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45RadMuzzleFlash'
 		FlashScaleFactor=2.5
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SX45.SX45-RadFire',Volume=1.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-RadFire',Volume=1.200000)
 		Recoil=128.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000

@@ -667,6 +667,7 @@ simulated function GenerateCamo(byte Index)
 	//We have a layout set, use it
 	if (Index < Camos.length && Index >= 0)
 	{
+		//log("set index to " $Index$ ", camos length is " $Camos.length);
 		SetCamoIndex(Index);
 		return;
 	}
@@ -701,6 +702,7 @@ simulated function GenerateCamo(byte Index)
 			{
 				if ( f >= CurrentWeight && f < CurrentWeight+CamoSublist[i].Weight)
 				{
+					//log("set index to " $CamoSublist[i].Index$ ", camos sublist length is " $CamoSublist.length);
 					SetCamoIndex(CamoSublist[i].Index);
 					break;
 				}
@@ -714,6 +716,7 @@ simulated function GenerateCamo(byte Index)
 		}
 		else
 		{
+			//log("set index to 0, the randomizer is off");
 			SetCamoIndex(0); //Randomizer disabled, load spot 0
 		}
 	}

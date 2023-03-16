@@ -25,7 +25,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1.500000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.T9CN.T9CN-Fire',Volume=1.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Fire',Volume=1.200000)
 		Recoil=300.000000
 		Chaos=0.070000
 		Inaccuracy=(X=13,Y=13)
@@ -57,7 +57,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
 		FlashScaleFactor=1.500000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.T9CN.T9CN-Fire',Volume=1.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-Fire',Volume=1.200000)
 		Recoil=450.000000
 		Chaos=0.070000
 		Inaccuracy=(X=13,Y=13)

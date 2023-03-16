@@ -24,7 +24,7 @@ defaultproperties
 		BotRefireRate=0.60000
 		WarnTargetPct=0.500000
 		Inaccuracy=(X=220,Y=220)
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SawnOff.SawnOff-SFire',Volume=1.200000)	
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SawnOff.SawnOff-SFire',Volume=1.200000)	
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireShotParams
@@ -57,7 +57,7 @@ defaultproperties
 		BotRefireRate=0.60000
 		WarnTargetPct=0.500000	
 		Inaccuracy=(X=16,Y=0)
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SawnOff.SawnOff-DFire',Volume=1.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SawnOff.SawnOff-DFire',Volume=1.200000)
 	End Object
 
 	Begin Object Class=FireParams Name=ArenaPrimaryFireSlugParams

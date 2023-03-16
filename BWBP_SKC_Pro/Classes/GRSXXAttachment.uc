@@ -162,5 +162,5 @@ defaultproperties
      CockAnimRate=0.800000
      Mesh=SkeletalMesh'BW_Core_WeaponAnim.GRS9_TPm'
      DrawScale=0.070000
-	 Skins(0)=Shader'BWBP_SKC_TexExp.Glock_Gold.GRSXX-MainShine'
+	 Skins(0)=Shader'BWBP_SKC_Tex.Glock_Gold.GRSXX-MainShine'
 }

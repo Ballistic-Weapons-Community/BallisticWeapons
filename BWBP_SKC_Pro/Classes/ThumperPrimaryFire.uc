@@ -17,7 +17,7 @@ defaultproperties
      FireChaos=0.700000
      XInaccuracy=64.000000
      YInaccuracy=64.000000
-	 BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.M780.M780-Fire',Volume=3.500000)bSplashDamage=True
+	 BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Fire',Volume=3.500000)bSplashDamage=True
      bRecommendSplashDamage=True
      bTossed=True
      bModeExclusive=True

@@ -24,7 +24,7 @@ defaultproperties
 		WallPDamageFactor=0.4
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.XK2FlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SX45.SX45-HeavyFire',Volume=1.300000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyFire',Volume=1.300000)
 		Recoil=640.000000
 		Chaos=0.100000
 		Inaccuracy=(X=18,Y=18)
@@ -57,7 +57,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45CryoFlash'
 		FlashScaleFactor=1.10
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SX45.SX45-HeavyFrostFire',Volume=2.800000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyFrostFire',Volume=2.800000)
 		Recoil=700.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000
@@ -88,7 +88,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.SX45RadMuzzleFlash'
 		FlashScaleFactor=0.9
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SX45.SX45-HeavyRadFire',Volume=2.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-HeavyRadFire',Volume=2.200000)
 		Recoil=700.000000
 		Chaos=0.250000
 		BotRefireRate=0.750000

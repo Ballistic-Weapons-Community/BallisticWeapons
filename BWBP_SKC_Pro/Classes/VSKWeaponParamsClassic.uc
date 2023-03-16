@@ -24,7 +24,7 @@ defaultproperties
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
 		FlashScaleFactor=0.800000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.VSK.VSK-SuperShot',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.VSK.VSK-SuperShot',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=172.000000
 		Chaos=-1.0
 		Inaccuracy=(X=1,Y=1)
@@ -53,7 +53,7 @@ defaultproperties
 		PenetrateForce=150
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.VSKSilencedFlash'
 		FlashScaleFactor=0.400000
-		FireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.VSK.VSK-Shot',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.VSK.VSK-Shot',Volume=1.100000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=88.000000
 		WarnTargetPct=0.200000
 	End Object

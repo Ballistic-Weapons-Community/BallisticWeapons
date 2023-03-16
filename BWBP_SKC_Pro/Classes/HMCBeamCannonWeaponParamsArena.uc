@@ -17,7 +17,7 @@ defaultproperties
 		bPenetrate=True
 		HookStopFactor=2.500000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.HMCFlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.BeamCannon.Beam-Fire',Volume=1.700000,Radius=255.000000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Fire',Volume=1.700000,Radius=255.000000,Slot=SLOT_Interact,bNoOverride=False)
 		Chaos=0.005000
 		BotRefireRate=0.999000
 		WarnTargetPct=0.010000

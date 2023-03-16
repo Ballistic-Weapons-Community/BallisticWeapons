@@ -473,7 +473,7 @@ defaultproperties
      LastShellBone="ShellR"
      FireAnimCutThreshold=1.100000
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.TechSawnOff.BigIcon_SawnOff'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.TechSawnOff.BigIcon_SawnOff'
      //BigIconCoords=(Y1=35,Y2=225)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Shotgun=True
@@ -518,7 +518,7 @@ defaultproperties
      PickupClass=Class'BWBP_SKC_Pro.SawnOffPickup'
      PlayerViewOffset=(X=-10.000000,Y=20.000000,Z=-30.000000)
      AttachmentClass=Class'BWBP_SKC_Pro.SawnOffAttachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.TechSawnOff.SmallIcon_SawnOff'
+     IconMaterial=Texture'BWBP_SKC_Tex.TechSawnOff.SmallIcon_SawnOff'
      IconCoords=(X2=127,Y2=38)
      ItemName="Redwood Sawn Off"
      LightType=LT_Pulse
@@ -527,11 +527,11 @@ defaultproperties
      LightSaturation=150
      LightBrightness=180.000000
      LightRadius=5.000000
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_ScifiSawnOff'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_ScifiSawnOff'
      DrawScale=1.250000
      bShowChargingBar=True
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	 Skins(1)=Texture'BWBP_SKC_TexExp.TechSawnOff.mat_doublebarrel_2D_View'
-	 Skins(2)=Texture'BWBP_SKC_TexExp.TechSawnOff.DoubleBarrel_Main2_Tex'
-	 Skins(3)=Texture'BWBP_SKC_TexExp.TechSawnOff.DoubleBarrel_Main1_Tex'
+	 Skins(1)=Texture'BWBP_SKC_Tex.TechSawnOff.mat_doublebarrel_2D_View'
+	 Skins(2)=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main2_Tex'
+	 Skins(3)=Texture'BWBP_SKC_Tex.TechSawnOff.DoubleBarrel_Main1_Tex'
 }

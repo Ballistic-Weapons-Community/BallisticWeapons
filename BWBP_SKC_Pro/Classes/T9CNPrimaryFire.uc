@@ -52,7 +52,7 @@ defaultproperties
      FireChaos=0.100000
      XInaccuracy=48.000000
      YInaccuracy=48.000000
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.T9CN.T9CN-FireOld',Volume=1.300000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.T9CN.T9CN-FireOld',Volume=1.300000)
      bPawnRapidFireAnim=True
      FireRate=0.120000
      AmmoClass=Class'BallisticProV55.Ammo_GRSNine'

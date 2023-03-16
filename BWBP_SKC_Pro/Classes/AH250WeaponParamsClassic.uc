@@ -238,7 +238,7 @@ defaultproperties
 		CamoName="Two-Tone"
 		Weight=10
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_TexExp.Eagle.Eagle-TwoToneShine",Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-TwoToneShine",Index=1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-MiscBlack",Index=2)
 		WeaponMaterialSwaps(3)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-Scope",Index=3)
 		WeaponMaterialSwaps(4)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-FrontBlack",Index=4)
@@ -250,10 +250,10 @@ defaultproperties
 		CamoName="Chromed"
 		Weight=3
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_TexExp.Eagle.Eagle-SilverShine",Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-SilverShine",Index=1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-MiscBlack",Index=2)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_SKC_TexExp.Eagle.Eagle-ScopeRed",Index=3)
-		WeaponMaterialSwaps(4)=(MaterialName="BWBP_SKC_TexExp.Eagle.Eagle-FrontSilver",Index=4)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-ScopeRed",Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-FrontSilver",Index=4)
 		WeaponMaterialSwaps(5)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen",Index=5)
 	End Object
 	
@@ -262,10 +262,10 @@ defaultproperties
 		CamoName="Gold"
 		Weight=1
 		WeaponMaterialSwaps(0)=(Material=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny',Index=0)
-		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_TexExp.Eagle.Eagle-SilverShine",Index=1)
+		WeaponMaterialSwaps(1)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-SilverShine",Index=1)
 		WeaponMaterialSwaps(2)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-MiscBlack",Index=2)
-		WeaponMaterialSwaps(3)=(MaterialName="BWBP_SKC_TexExp.Eagle.Eagle-ScopeRed",Index=3)
-		WeaponMaterialSwaps(4)=(MaterialName="BWBP_SKC_TexExp.Eagle.Eagle-FrontSilver",Index=4)
+		WeaponMaterialSwaps(3)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-ScopeRed",Index=3)
+		WeaponMaterialSwaps(4)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-FrontSilver",Index=4)
 		WeaponMaterialSwaps(5)=(MaterialName="BWBP_SKC_Tex.Eagle.Eagle-SightDotGreen",Index=5)
 	End Object
 

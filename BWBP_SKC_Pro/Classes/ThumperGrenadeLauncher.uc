@@ -81,7 +81,7 @@ simulated function float ChargeBar()
 defaultproperties
 {
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.Thumper.BigIcon_Thumper'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.Thumper.BigIcon_Thumper'
 	BigIconCoords=(Y1=30,Y2=230)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Hazardous=True
@@ -90,7 +90,7 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M763.M763Putaway')
 	MagAmmo=5
-	CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.M780.M780-Cock')
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.M781.M781-Cock')
     ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-MagIn')
     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-MagOut')
     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.Bulldog.Bulldog-MagHit')lipInFrame=0.700000
@@ -124,7 +124,7 @@ defaultproperties
 	PlayerViewOffset=(X=30.000000,Y=15.000000,Z=-20.000000)
 	PlayerViewPivot=(Pitch=600)
 	AttachmentClass=Class'BWBP_SKC_Pro.ThumperAttachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.Thumper.SmallIcon_Thumper'
+	IconMaterial=Texture'BWBP_SKC_Tex.Thumper.SmallIcon_Thumper'
 	IconCoords=(X2=127,Y2=31)
 	ItemName="LRGh-90 'Topor' Grenade Launcher"
 	LightType=LT_Pulse
@@ -133,7 +133,7 @@ defaultproperties
 	LightSaturation=100
 	LightBrightness=150.000000
 	LightRadius=12.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_Thumper'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_Thumper'
 	DrawScale=0.600000
 	SoundPitch=56
 	SoundRadius=32.000000

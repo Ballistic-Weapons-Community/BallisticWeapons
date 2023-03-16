@@ -19,7 +19,7 @@ defaultproperties
 		RadiusFallOffType=RFO_Linear
 		MuzzleFlashClass=Class'BallisticProV55.M50M900FlashEmitter'
 		FlashScaleFactor=1.000000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.TAC.TAC-Fire',Volume=1.750000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.TAC.TAC-Fire',Volume=1.750000)
 		SplashDamage=True
 		RecommendSplashDamage=True
 		BotRefireRate=0.900000

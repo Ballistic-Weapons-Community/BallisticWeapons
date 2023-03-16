@@ -308,15 +308,15 @@ defaultproperties
      GrenadeLoadAnim="LoadGrenade"
      GrenBone="Grenade"
      GrenBoneBase="GrenadeHandle"
-     GrenSlideSound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51-GrenLock'
-     ClipInSoundEmpty=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51-MagInEmpty'
+     GrenSlideSound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-GrenLock'
+     ClipInSoundEmpty=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagInEmpty'
      BulletBone="Bullet1"
      BulletBone2="Bullet2"
      SpecialInfo(0)=(Info="240.0;20.0;0.9;75.0;0.8;0.7;0.2")
      AIReloadTime=1.000000
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.G51.BigIcon_G51'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.G51.BigIcon_G51'
      BringUpSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-PullOut',Volume=2.200000)
      PutDownSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Putaway',Volume=2.200000)
      WeaponModes(0)=(ModeName="Semi-Auto")
@@ -328,9 +328,9 @@ defaultproperties
      bNoCrosshairInScope=True
      SightOffset=(X=20.000000,Y=-6.450000,Z=20.500000)
      SightDisplayFOV=40.000000
-     CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51-Cock',Volume=2.200000)
-     ClipHitSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51-MagIn',Volume=2.200000)
-     ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51-MagOut',Volume=2.200000)
+     CockSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-Cock',Volume=2.200000)
+     ClipHitSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagIn',Volume=2.200000)
+     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51-MagOut',Volume=2.200000)
      ClipInFrame=0.650000
      LongGunOffset=(X=10.000000)
      bWT_Bullet=True
@@ -354,7 +354,7 @@ defaultproperties
      PlayerViewOffset=(X=-8.000000,Y=10.000000,Z=-16.000000)
      BobDamping=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.MJ51Attachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.G51.SmallIcon_G51'
+     IconMaterial=Texture'BWBP_SKC_Tex.G51.SmallIcon_G51'
      IconCoords=(X2=127,Y2=31)
      ItemName="G51 Carbine"
      LightType=LT_Pulse
@@ -363,7 +363,7 @@ defaultproperties
      LightSaturation=150
      LightBrightness=150.000000
      LightRadius=4.000000
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_G51Carbine'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_G51Carbine'
 	 ParamsClasses(0)=Class'MJ51WeaponParamsArena'
      ParamsClasses(1)=Class'MJ51WeaponParamsClassic'
      ParamsClasses(2)=Class'MJ51WeaponParamsRealistic'

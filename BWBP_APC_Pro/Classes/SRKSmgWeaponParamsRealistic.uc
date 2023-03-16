@@ -51,7 +51,7 @@ defaultproperties
 		Damage=65
 		DamageRadius=320.000000
 		MuzzleFlashClass=Class'BWBP_APC_Pro.SRKSmgAltFlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51Carbine-GrenLaunch',Volume=2.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51Carbine-GrenLaunch',Volume=2.200000)
 		SplashDamage=True
 		RecommendSplashDamage=True
 		BotRefireRate=0.300000

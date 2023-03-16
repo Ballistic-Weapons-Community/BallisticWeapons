@@ -291,9 +291,9 @@ simulated function ModeHoldFire()
 defaultproperties
 {
      HealReductionMult=2
-     ChargeSound=Sound'BWBP_SKC_SoundsExp.BeamCannon.Beam-Loop'
-     FireSoundLoop=Sound'BWBP_SKC_SoundsExp.BeamCannon.Beam-Loop'
-     FireSoundLoopRed=Sound'BWBP_SKC_SoundsExp.BeamCannon.RedBeam-Loop'
+     ChargeSound=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Loop'
+     FireSoundLoop=Sound'BWBP_SKC_Sounds.BeamCannon.Beam-Loop'
+     FireSoundLoopRed=Sound'BWBP_SKC_Sounds.BeamCannon.RedBeam-Loop'
      ZForce=(Z=225.000000)
      TraceRange=(Min=6000.000000,Max=6000.000000)
      Damage=6.000000

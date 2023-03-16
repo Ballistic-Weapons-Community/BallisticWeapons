@@ -48,7 +48,7 @@ defaultproperties
      DamageTypeArm=Class'BWBP_SKC_Pro.DTShockN3X'
      KickForce=20000
      bUseWeaponMag=False
-     BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.NEX.NEX-SlashAttack',Radius=32.000000,bAtten=True)
+     BallisticFireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.NEX.NEX-SlashAttack',Radius=32.000000,bAtten=True)
      bAISilent=True
      FireAnim="Chop3"
      FireAnimRate=1.650000

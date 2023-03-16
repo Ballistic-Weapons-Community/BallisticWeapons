@@ -61,7 +61,7 @@ defaultproperties
      ReloadAnim="Reload_Pistol"
      CockingAnim="Cock_RearPull"
      bRapidFire=True
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.T9CNRC_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.T9CNRC_TPm'
 	 RelativeLocation=(Z=5.000000)
      RelativeRotation=(Pitch=32768)
      DrawScale=0.150000

@@ -74,7 +74,7 @@ defaultproperties
 		LimbMult=0.5
 		SpreadMode=FSM_Rectangle
 		MuzzleFlashClass=Class'BallisticProV55.A73FlashEmitterB'
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.A73E.A73E-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		Recoil=102.000000
 		Chaos=-1.0
 		Inaccuracy=(X=9,Y=6)
@@ -166,7 +166,7 @@ defaultproperties
         DamageGainEndTime=0.7
         Recoil=241.000000
         Chaos=0.020000
-        FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.A73E.A73E-Power',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.A73E.A73E-Power',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
 		ProjectileClass=Class'BallisticProV55.A73PowerProjectileB'
         WarnTargetPct=0.500000
     End Object

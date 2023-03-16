@@ -581,22 +581,22 @@ defaultproperties
      //Description="Despite being a relic from the old world, the MG36 still remains a deadly modular weapon to this day.  While it can be a carbine, the machinegun form is a popular choice among the troops to lay down suppressive fire while being able to reload far more quicker than a belt-fed LMG.  Plus with dual scopes and a threaded barrel to attach suppressors, the MG36 is a worthy candidate to hold key positions and thin out hordes of Krao."
      Description="Mk.88 Light Support Weapon||Manufacturer: Majestic Firearms 12|Primary: 5.56mm Rifle Rounds|Secondary: Attach Suppressor|Special: Mount Bipod (Unscoped)/ Activate NV (Scoped)||A limited production weapon, the Mk.88 was Majestic's first foray into infantry support weaponry. After the first Skrith war jump-started the ballistic weapons business, Majestic Firearms 12 designed the Mk.88 to replace the aging M353's still in use by the UTC. The fast-firing and powerful Mk.88 was well received by troops, however its high recoil and prohibitive cost prevented it from seeing mainstream adoption. The Mk.88 currently sees limited service in special operations units and private military groups."
 	 TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.MG36.MG36_LargeIcon'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.MG36.MG36_LargeIcon'
      BigIconCoords=(Y1=36,Y2=225)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Bullet=True
      SpecialInfo(0)=(Info="240.0;25.0;0.9;80.0;0.7;0.7;0.4")
      BringUpSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Pullout')
      PutDownSound=(Sound=Sound'BW_Core_WeaponSound.M925.M925-Putaway')
-     CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.JSOC.JSOC-Cock',Volume=2.000000)
-     ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.JSOC.JSOC-MagOut',Volume=2.400000)
-     ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.JSOC.JSOC-MagIn',Volume=2.400000)
+     CockSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-Cock',Volume=2.000000)
+     ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-MagOut',Volume=2.400000)
+     ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.JSOC.JSOC-MagIn',Volume=2.400000)
      ClipInFrame=0.650000
      WeaponModes(0)=(bUnavailable=True)
      WeaponModes(1)=(Value=4.000000)
      WeaponModes(3)=(bUnavailable=True)
      bNoCrosshairInScope=True
-	 ScopeViewTex=Texture'BWBP_SKC_TexExp.MG36.G36ScopeView'
+	 ScopeViewTex=Texture'BWBP_SKC_Tex.MG36.G36ScopeView'
      SightOffset=(X=-15.000000,Y=-0.350000,Z=12.300000)
      SightDisplayFOV=25.000000
      FullZoomFOV=45
@@ -622,7 +622,7 @@ defaultproperties
      PlayerViewOffset=(X=5.000000,Y=5.000000,Z=-9.000000)
      BobDamping=2.000000
      AttachmentClass=Class'BWBP_SKC_Pro.MG36Attachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.MG36.MG36_SmallIcon'
+     IconMaterial=Texture'BWBP_SKC_Tex.MG36.MG36_SmallIcon'
      IconCoords=(X2=127,Y2=31)
      ItemName="Mk.88 Light Support Weapon"
      LightType=LT_Pulse
@@ -634,6 +634,6 @@ defaultproperties
 	 ParamsClasses(0)=Class'MG36CarbineWeaponParamsArena'
 	 ParamsClasses(1)=Class'MG36WeaponParamsClassic'
 	 ParamsClasses(2)=Class'MG36WeaponParamsRealistic'
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_MG36'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_MG36'
      DrawScale=1.000000
 }

@@ -17,7 +17,7 @@ defaultproperties
         Damage=30.000000
         DamageRadius=64.000000
         FlashScaleFactor=0.750000
-        FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MVPR.MVPR-FireAlt',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.MVPR.MVPR-FireAlt',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         Chaos=0.06
         Recoil=96
         WarnTargetPct=0.1
@@ -47,7 +47,7 @@ defaultproperties
         MaxDamageGainFactor=0.00
         DamageGainEndTime=0.0
         FlashScaleFactor=0.750000
-        FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MVPR.MVPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
+        FireSound=(Sound=Sound'BWBP_SKC_Sounds.MVPR.MVPR-Fire',Volume=1.200000,Slot=SLOT_Interact,bNoOverride=False)
         Chaos=0.5
         Recoil=768
         WarnTargetPct=0.2

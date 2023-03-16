@@ -34,7 +34,7 @@ defaultproperties
     WallPenetrationForce=128
     MyDamageType=Class'BWBP_SKC_Pro.DTMJ51HEGrenade'
     ImpactSound=SoundGroup'BW_Core_WeaponSound.NRP57.NRP57-Concrete'
-    StaticMesh=StaticMesh'BWBP_SKC_StaticExp.MJ51.MOACProjLaunched'
+    StaticMesh=StaticMesh'BWBP_SKC_Static.MJ51.MOACProjLaunched'
     DrawScale=0.120000
     bIgnoreTerminalVelocity=True
 	ModeIndex=1

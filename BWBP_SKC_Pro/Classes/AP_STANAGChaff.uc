@@ -51,7 +51,7 @@ defaultproperties
      InventoryType=Class'BWBP_SKC_Pro.Ammo_556mmSTANAG'
      PickupMessage="You got two 30 round 5.56mm magazines"
      PickupSound=Sound'BW_Core_WeaponSound.Ammo.ClipPickup'
-     StaticMesh=StaticMesh'BWBP_SKC_StaticExp.MJ51.M4MagazinePickup'
+     StaticMesh=StaticMesh'BWBP_SKC_Static.MJ51.CarbineSM_Ammo'
      DrawScale=0.550000
      PrePivot=(Z=5.000000)
      CollisionRadius=8.000000

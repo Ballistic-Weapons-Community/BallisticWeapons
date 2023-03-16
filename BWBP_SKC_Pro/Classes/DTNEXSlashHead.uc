@@ -37,7 +37,7 @@ defaultproperties
      bArmorStops=False
      bAlwaysSevers=True
      GibModifier=3.000000
-     PawnDamageSounds(0)=SoundGroup'BWBP_SKC_SoundsExp.NEX.Nex-HitBod'
+     PawnDamageSounds(0)=SoundGroup'BWBP_SKC_Sounds.NEX.Nex-HitBod'
      GibPerterbation=0.200000
      KDamageImpulse=1000.000000
 }

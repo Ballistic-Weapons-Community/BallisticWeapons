@@ -20,10 +20,10 @@ simulated function DestroyEffects()
 
 defaultproperties
 {          
-     SuperFireSound=Sound'BWBP_SKC_SoundsExp.SRAC.SRAC-Fire'
+     SuperFireSound=Sound'BWBP_SKC_Sounds.SRAC.SRAC-Fire'
 	 FabulousFireSound=Sound'BWBP_SKC_Sounds.M1911.M1911-Fire2'
      SpawnOffset=(X=15.000000,Y=10.000000,Z=-9.000000)
-     BallisticFireSound=(Sound=Sound'BWBP_SKC_SoundsExp.SRAC.SRAC-Fire',Volume=1.750000)
+     BallisticFireSound=(Sound=Sound'BWBP_SKC_Sounds.SRAC.SRAC-Fire',Volume=1.750000)
      bSplashDamage=True
      bRecommendSplashDamage=True
      FireAnim="Fire"

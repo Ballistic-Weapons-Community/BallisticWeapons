@@ -15,7 +15,7 @@ defaultproperties
 		DamageTypeArm=Class'BWBP_SKC_Pro.DTShockN3X'
         BotRefireRate=0.99
         WarnTargetPct=0.3
-        FireSound=(Sound=SoundGroup'BWBP_SKC_SoundsExp.NEX.NEX-SlashAttack',Radius=32.000000,bAtten=True)
+        FireSound=(Sound=SoundGroup'BWBP_SKC_Sounds.NEX.NEX-SlashAttack',Radius=32.000000,bAtten=True)
     End Object
     
     Begin Object Class=FireParams Name=ArenaPrimaryFireParams

@@ -124,7 +124,7 @@ simulated function AdjustMagnetProperties ()
 		if (Arc == None)
 			class'bUtil'.static.InitMuzzleFlash(Arc, class'BWBP_SKC_Pro.N3XBladeEffect', DrawScale, self, 'PlasmaEmitterStart');
 		
-		Skins[4]=Shader'BWBP_SKC_TexExp.PlasAxe.PlasEdge_Fire_S1';
+		Skins[4]=Shader'BWBP_SKC_Tex.PlasAxe.PlasEdge_Fire_S1';
 		Instigator.AmbientSound = VentingSound;
 		AddSpeedModification(0.7);
 	}
@@ -349,7 +349,7 @@ defaultproperties
 	 PutDownSound=(Sound=Sound'BWBP_OP_Sounds.FlameSword.FlameSword-Unequip',Volume=2.000000)
      PlayerSpeedFactor=1.100000
      TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
-     BigIconMaterial=Texture'BWBP_SKC_TexExp.PlasAxe.BigIcon_PlasAxe'
+     BigIconMaterial=Texture'BWBP_SKC_Tex.PlasAxe.BigIcon_PlasAxe'
      BigIconCoords=(X1=96,Y1=10,X2=418,Y2=245)
      BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
      bWT_Heal=True
@@ -377,20 +377,20 @@ defaultproperties
      PickupClass=Class'BWBP_SKC_Pro.N3XPlazPickup'
      PlayerViewOffset=(X=40.000000,Z=-10.000000)
      AttachmentClass=Class'BWBP_SKC_Pro.N3XPlazAttachment'
-     IconMaterial=Texture'BWBP_SKC_TexExp.PlasAxe.SmallIcon_PlasAxe'
+     IconMaterial=Texture'BWBP_SKC_Tex.PlasAxe.SmallIcon_PlasAxe'
      IconCoords=(X2=127,Y2=31)
      ItemName="NEX Plas-Edge Axe"
 	 ParamsClasses(0)=Class'N3XWeaponParams'
 	 ParamsClasses(1)=Class'NEXWeaponParamsClassic'
 	 ParamsClasses(2)=Class'NEXWeaponParamsRealistic'
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_PlasEdgeAxe'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_PlasEdgeAxe'
      DrawScale=0.400000
      bFullVolume=True
      SoundVolume=64
      SoundRadius=128.000000
 	 Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-	 Skins(1)=Shader'BWBP_SKC_TexExp.PlasAxe.PlasEdge_Axe_S1'
-	 Skins(2)=Shader'BWBP_SKC_TexExp.PlasAxe.PlasEdge_Shield_S1'
+	 Skins(1)=Shader'BWBP_SKC_Tex.PlasAxe.PlasEdge_Axe_S1'
+	 Skins(2)=Shader'BWBP_SKC_Tex.PlasAxe.PlasEdge_Shield_S1'
 	 Skins(3)=Texture'BW_Core_WeaponTex.Misc.Glass'
 	 Skins(4)=Texture'BW_Core_WeaponTex.Misc.Invisible'
 }

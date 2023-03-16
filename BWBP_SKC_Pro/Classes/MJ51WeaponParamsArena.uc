@@ -18,7 +18,7 @@ defaultproperties
 		bPenetrate=True
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MJ51FlashEmitter'
 		FlashScaleFactor=0.500000
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ55-Fire')
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ55-Fire')
 		Recoil=128.000000
 		Chaos=0.040000
 		WarnTargetPct=0.200000
@@ -43,7 +43,7 @@ defaultproperties
 		Damage=65
 		DamageRadius=192.000000
 		MuzzleFlashClass=Class'BWBP_SKC_Pro.MJ51AltFlashEmitter'
-		FireSound=(Sound=Sound'BWBP_SKC_SoundsExp.MJ51.MJ51Carbine-GrenLaunch',Volume=2.200000)
+		FireSound=(Sound=Sound'BWBP_SKC_Sounds.MJ51.MJ51Carbine-GrenLaunch',Volume=2.200000)
 		SplashDamage=True
 		RecommendSplashDamage=True
 		BotRefireRate=0.300000

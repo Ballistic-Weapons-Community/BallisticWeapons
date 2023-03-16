@@ -75,7 +75,7 @@ defaultproperties
      ReloadAnim="Reload_AR"
      ReloadAnimRate=1.200000
 	 FlashScale=0.500000
-     Mesh=SkeletalMesh'BWBP_SKC_AnimExp.MG36_TPm'
+     Mesh=SkeletalMesh'BWBP_SKC_Anim.MG36_TPm'
      RelativeRotation=(Pitch=32768)
 	 DrawScale=1.000000
      PrePivot=(Z=-10.000000)

@@ -506,7 +506,7 @@ defaultproperties
 	bShowChargingBar=True
 	TeamSkins(0)=(RedTex=Shader'BW_Core_WeaponTex.Hands.RedHand-Shiny',BlueTex=Shader'BW_Core_WeaponTex.Hands.BlueHand-Shiny')
 	AIReloadTime=1.000000
-	BigIconMaterial=Texture'BWBP_SKC_TexExp.SX45.BigIcon_SX45'
+	BigIconMaterial=Texture'BWBP_SKC_Tex.SX45.BigIcon_SX45'
 	BigIconCoords=(X1=64,Y1=70,X2=418)
 	BCRepClass=Class'BallisticProV55.BallisticReplicationInfo'
 	bWT_Bullet=True
@@ -517,12 +517,12 @@ defaultproperties
 	BringUpSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Pullout')
 	PutDownSound=(Sound=Sound'BW_Core_WeaponSound.XK2.XK2-Putaway')
 	CockAnimRate=1.250000
-	CockSound=(Sound=Sound'BWBP_SKC_SoundsExp.SX45.SX45-Cock')
+	CockSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-Cock')
 	ReloadAnimRate=1.250000
 	SelectAnimRate=1.500000
 	BringUpTime=0.700000
-	ClipOutSound=(Sound=Sound'BWBP_SKC_SoundsExp.SX45.SX45-MagOut')
-	ClipInSound=(Sound=Sound'BWBP_SKC_SoundsExp.SX45.SX45-MagIn')
+	ClipOutSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-MagOut')
+	ClipInSound=(Sound=Sound'BWBP_SKC_Sounds.SX45.SX45-MagIn')
 	ClipHitSound=(Sound=Sound'BW_Core_WeaponSound.M806.M806-ClipHit')
 	ClipInFrame=0.650000
 	WeaponModes(0)=(ModeName="Semi-Auto")
@@ -549,7 +549,7 @@ defaultproperties
 	PickupClass=Class'BWBP_SKC_Pro.SX45Pickup'
 	PlayerViewOffset=(X=0.000000,Y=7.000000,Z=-12.000000)
 	AttachmentClass=Class'BWBP_SKC_Pro.SX45Attachment'
-	IconMaterial=Texture'BWBP_SKC_TexExp.SX45.SmallIcon_SX45'
+	IconMaterial=Texture'BWBP_SKC_Tex.SX45.SmallIcon_SX45'
 	NDCrosshairCfg=(Pic1=Texture'BW_Core_WeaponTex.Crosshairs.M806OutA',Pic2=Texture'BW_Core_WeaponTex.Crosshairs.M50InA',USize1=256,VSize1=256,USize2=256,VSize2=256,Color1=(B=175,G=178,R=176,A=160),Color2=(G=0),StartSize1=52,StartSize2=40)
 	NDCrosshairInfo=(SpreadRatios=(Y1=0.800000,Y2=1.000000),MaxScale=6.000000)
 	IconCoords=(X2=127,Y2=31)
@@ -560,14 +560,14 @@ defaultproperties
 	LightSaturation=150
 	LightBrightness=130.000000
 	LightRadius=3.000000
-	Mesh=SkeletalMesh'BWBP_SKC_AnimExp.FPm_FNX'
+	Mesh=SkeletalMesh'BWBP_SKC_Anim.FPm_FNX'
 	DrawScale=0.300000
 	Skins(0)=Shader'BW_Core_WeaponTex.Hands.Hands-Shiny'
-    Skins(1)=Texture'BWBP_SKC_TexExp.SX45.SX45-Mag'
-    Skins(2)=Shader'BWBP_SKC_TexExp.SX45.SX45-SightReticle_S'
-    Skins(3)=Texture'BWBP_SKC_TexExp.SX45.SX45-Sight'
-    Skins(4)=Texture'BWBP_SKC_TexExp.SX45.SX45-Main'
-    Skins(5)=Texture'BWBP_SKC_TexExp.SX45.SX45-Laser'
+    Skins(1)=Texture'BWBP_SKC_Tex.SX45.SX45-Mag'
+    Skins(2)=Shader'BWBP_SKC_Tex.SX45.SX45-SightReticle_S'
+    Skins(3)=Texture'BWBP_SKC_Tex.SX45.SX45-Sight'
+    Skins(4)=Texture'BWBP_SKC_Tex.SX45.SX45-Main'
+    Skins(5)=Texture'BWBP_SKC_Tex.SX45.SX45-Laser'
     Skins(6)=Shader'BW_Core_WeaponTex.Amp.Amp-FinalCyan'
 	Skins(7)=Shader'BW_Core_WeaponTex.Amp.Amp-GlowCyanShader'
 }
