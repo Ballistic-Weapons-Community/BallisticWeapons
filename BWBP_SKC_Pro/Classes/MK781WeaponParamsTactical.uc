@@ -171,7 +171,7 @@ defaultproperties
 		ReloadAnimRate=1.5
 		InventorySize=6
 		SightMoveSpeedFactor=0.75
-		SightingTime=0.2
+		SightingTime=0.3
 		DisplaceDurationMult=1
 		MagAmmo=8
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'

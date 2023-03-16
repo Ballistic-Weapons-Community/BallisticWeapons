@@ -62,7 +62,7 @@ defaultproperties
 		CockAnimRate=1.25
 		InventorySize=5
 		SightMoveSpeedFactor=0.5
-		SightingTime=0.400000
+		SightingTime=0.5
 		DisplaceDurationMult=1
 		MagAmmo=8
         ZoomType=ZT_Logarithmic

@@ -145,7 +145,7 @@ defaultproperties
 		ViewOffset=(X=-4.000000,Y=1.000000,Z=-10.000000)
 		InventorySize=8
 		SightMoveSpeedFactor=0.75
-		SightingTime=0.25
+		SightingTime=0.35
 		DisplaceDurationMult=1
 		MagAmmo=24
 		WeaponModes(0)=(ModeName="Automatic",ModeID="WM_FullAuto")

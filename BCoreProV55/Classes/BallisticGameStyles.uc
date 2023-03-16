@@ -1,6 +1,7 @@
 class BallisticGameStyles extends Object
+	abstract
 	DependsOn(BC_GameStyle)
-    abstract;
+    config(System);
 
 var private array< class<BC_GameStyle> > 	Styles;
 var config BC_GameStyle.EGameStyle 			CurrentStyle;

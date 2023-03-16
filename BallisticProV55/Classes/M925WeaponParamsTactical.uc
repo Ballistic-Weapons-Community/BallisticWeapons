@@ -79,7 +79,7 @@ defaultproperties
 		PlayerSpeedFactor=0.9
         PlayerJumpFactor=0.9
 		SightMoveSpeedFactor=0.5
-		SightingTime=0.4
+		SightingTime=0.65
 		WeaponModes(0)=(ModeName="Auto",ModeID="WM_FullAuto")
 		WeaponModes(1)=(ModeName="Semi",ModeID="WM_SemiAuto",Value=1.000000)
 		WeaponModes(2)=(bUnavailable=True)

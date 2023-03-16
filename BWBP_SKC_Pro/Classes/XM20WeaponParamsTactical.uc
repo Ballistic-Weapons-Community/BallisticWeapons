@@ -95,7 +95,7 @@ defaultproperties
 		ViewOffset=(X=6.000000,Y=1.000000,Z=-15.000000)
 		InventorySize=6
 		SightMoveSpeedFactor=0.75
-		SightingTime=0.3
+		SightingTime=0.5
 		DisplaceDurationMult=1
 		MagAmmo=50
         ZoomType=ZT_Smooth

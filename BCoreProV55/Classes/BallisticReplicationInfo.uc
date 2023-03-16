@@ -86,18 +86,113 @@ var int						KillRewardShieldMax;  // Limiter, the additional armor points will 
 //=============================================================================
 var bool					bKillstreaks;
 
+//=============================================================================
+// REPLICATION STRUCTURES
+// to avoid the default comparison skipping the rep
+//=============================================================================
+
+//=============================================================================
+// STYLE
+//=============================================================================
+var struct GeneralRep
+{
+	var BC_GameStyle.EGameStyle	GameStyle;				
+	var float					AccuracyScale;				// Used for scaling general weapon accuracy.
+	var float					RecoilScale;				// Used for scaling general weapon recoil.
+	var float					DamageScale;				// Scales anti-player weapon damage
+	var float					VehicleDamageScale;			// Scales anti-vehicle weapon damage
+	var bool		    		bWeaponJumpOffsetting;		// Allows weapons to offset when sprinting or jumping
+	var bool		    		bLongWeaponOffsetting;		// Causes weapons to offset when close to wall
+	var bool		    		bNoReloading;				// Disables reloading and weapons use boring old style ammo handling...
+	var int						MaxInventoryCapacity;		// Maximum inventory size player can hold
+	var bool         			bAlternativePickups;		// Press Use to Pickup Weapon
+	var bool					bUniversalMineLights;   	// All BX5 mines are lit.
+} GRep;
+
+var struct PawnRep
+{
+	var bool					bBrightPlayers;		    	// Players have ambient glow to glow in the dark like the standard pawns.
+	var int						StartingHealth;           	// health the player starts with
+	var int						PlayerHealthMax;        	// maximum health a player can have
+	var int						PlayerSuperHealthMax;   	// maximum superhealth a player can have
+	var int						StartingShield;           	// armor the player starts with
+	var int						PlayerShieldMax;        	// maximum armor the player can have
+} PRep;
+
+var struct MoveRep
+{
+	var bool					bPlayerDeceleration;		// Decel mechanics when stopping
+	var bool					bAllowDodging;				// Enables dodging.
+	var bool					bAllowDoubleJump;			// Enables double jump.
+	var float					PlayerWalkSpeedFactor;
+	var float					PlayerCrouchSpeedFactor;
+	var float					PlayerStrafeScale;
+	var float					PlayerBackpedalScale;
+	var float					PlayerGroundSpeed;
+	var float					PlayerAirSpeed;
+	var float					PlayerAccelRate;
+	var float					PlayerJumpZ;
+	var float					PlayerDodgeZ;
+} MRep;
+
+var struct SprintRep
+{
+	var() config bool			bEnableSprint;
+	var() config int			StaminaChargeRate;
+	var() config int			StaminaDrainRate;
+	var() config float			SprintSpeedFactor;
+	var() config float			JumpDrainFactor;
+} SRep;
+
 replication
 {
 	reliable if (Role == ROLE_Authority && bNetInitial)
-		GameStyle,
-		AccuracyScale, RecoilScale, bWeaponJumpOffsetting, bLongWeaponOffsetting, bNoReloading, MaxInventoryCapacity,
-		bAlternativePickups, bUniversalMineLights,
-		bBrightPlayers, StartingHealth, PlayerHealthMax, PlayerSuperHealthMax, StartingShield, PlayerShieldMax,
-		bPlayerDeceleration, bAllowDodging, bAllowDoubleJump, PlayerWalkSpeedFactor, PlayerCrouchSpeedFactor, 
-		PlayerStrafeScale, PlayerBackpedalScale, PlayerGroundSpeed, PlayerAirSpeed, PlayerAccelRate,
-		PlayerJumpZ, PlayerDodgeZ,
-		StaminaChargeRate, StaminaDrainRate, SprintSpeedFactor, JumpDrainFactor;
-		
+		GRep, PRep, MRep, SRep;
+}
+
+final function BindToReplication()
+{
+	Log("BallisticReplicationInfo: BindToReplication");
+
+	GRep.GameStyle 						= GameStyle;
+
+	GRep.AccuracyScale			        = AccuracyScale;
+	GRep.RecoilScale			        = RecoilScale;
+	GRep.DamageScale					= DamageScale;
+	GRep.VehicleDamageScale				= VehicleDamageScale;
+	
+	GRep.bWeaponJumpOffsetting			= bWeaponJumpOffsetting;
+	GRep.bLongWeaponOffsetting			= bLongWeaponOffsetting;
+	GRep.bNoReloading					= bNoReloading;
+	GRep.MaxInventoryCapacity			= MaxInventoryCapacity;
+	GRep.bAlternativePickups 	        = bAlternativePickups;
+	GRep.bUniversalMineLights          	= bUniversalMineLights;
+
+	PRep.bBrightPlayers	            	= bBrightPlayers;
+    PRep.StartingHealth      			= StartingHealth;
+	PRep.PlayerHealthMax      			= PlayerHealthMax;
+	PRep.PlayerSuperHealthMax      		= PlayerSuperHealthMax;
+	PRep.StartingShield      			= StartingShield;
+	PRep.PlayerShieldMax      			= PlayerShieldMax;
+
+	MRep.bPlayerDeceleration			= bPlayerDeceleration;
+    MRep.bAllowDodging		            = bAllowDodging;
+	MRep.bAllowDoubleJump				= bAllowDoubleJump;
+    MRep.PlayerWalkSpeedFactor      	= PlayerWalkSpeedFactor;
+	MRep.PlayerCrouchSpeedFactor      	= PlayerCrouchSpeedFactor;
+    MRep.PlayerStrafeScale             	= PlayerStrafeScale;
+	MRep.PlayerBackpedalScale          	= PlayerBackpedalScale;
+	MRep.PlayerGroundSpeed            	= PlayerGroundSpeed;
+	MRep.PlayerAirSpeed                	= PlayerAirSpeed;
+	MRep.PlayerAccelRate               	= PlayerAccelRate;
+    MRep.PlayerJumpZ                   	= PlayerJumpZ;
+	MRep.PlayerDodgeZ                  	= PlayerDodgeZ;
+
+	SRep.bEnableSprint					= true;
+	SRep.StaminaChargeRate				= StaminaChargeRate;
+	SRep.StaminaDrainRate				= StaminaDrainRate;
+    SRep.SprintSpeedFactor				= SprintSpeedFactor;
+	SRep.JumpDrainFactor				= JumpDrainFactor;
 }
 
 // Set all defaults to match server vars here
@@ -106,7 +201,54 @@ simulated function PostNetBeginPlay()
 	if (Role == ROLE_Authority)
 		return;
 
+	BindFromReplication();
+
 	BindDefaults();
+}
+
+simulated final function BindFromReplication()
+{
+	Log("BallisticReplicationInfo: BindFromReplication");
+
+	GameStyle 					= GRep.GameStyle;
+
+	AccuracyScale			    = GRep.AccuracyScale;
+	RecoilScale			        = GRep.RecoilScale;
+	DamageScale					= GRep.DamageScale;
+	VehicleDamageScale			= GRep.VehicleDamageScale;
+	
+	bWeaponJumpOffsetting			= GRep.bWeaponJumpOffsetting;
+	bLongWeaponOffsetting			= GRep.bLongWeaponOffsetting;
+	bNoReloading					= GRep.bNoReloading;
+	MaxInventoryCapacity			= GRep.MaxInventoryCapacity;
+	bAlternativePickups 	        = GRep.bAlternativePickups;
+	bUniversalMineLights          = GRep.bUniversalMineLights;
+
+	bBrightPlayers	            = PRep.bBrightPlayers;
+    StartingHealth      			= PRep.StartingHealth;
+	PlayerHealthMax      			= PRep.PlayerHealthMax;
+	PlayerSuperHealthMax      	= PRep.PlayerSuperHealthMax;
+	StartingShield      			= PRep.StartingShield;
+	PlayerShieldMax      			= PRep.PlayerShieldMax;
+
+	bPlayerDeceleration			= MRep.bPlayerDeceleration;
+    bAllowDodging		            = MRep.bAllowDodging;
+	bAllowDoubleJump				= MRep.bAllowDoubleJump;
+    PlayerWalkSpeedFactor      	= MRep.PlayerWalkSpeedFactor;
+	PlayerCrouchSpeedFactor       = MRep.PlayerCrouchSpeedFactor;
+    PlayerStrafeScale             = MRep.PlayerStrafeScale;
+	PlayerBackpedalScale          = MRep.PlayerBackpedalScale;
+	PlayerGroundSpeed             = MRep.PlayerGroundSpeed;
+	PlayerAirSpeed                = MRep.PlayerAirSpeed;
+	PlayerAccelRate               = MRep.PlayerAccelRate;
+    PlayerJumpZ                   = MRep.PlayerJumpZ;
+	PlayerDodgeZ                  = MRep.PlayerDodgeZ;
+
+	bEnableSprint					= true;
+	StaminaChargeRate				= SRep.StaminaChargeRate;
+	StaminaDrainRate				= SRep.StaminaDrainRate;
+    SprintSpeedFactor				= SRep.SprintSpeedFactor;
+	JumpDrainFactor				= SRep.JumpDrainFactor;
 }
 
 simulated final function BindDefaults()
@@ -160,7 +302,7 @@ simulated final function BindDefaults()
 
 	class.default.bKillstreaks					= bKillstreaks;
 
-	Log("BallisticReplicationInfo: PostNetBeginPlay");
+	Log("BallisticReplicationInfo: BindDefaults");
 
 	Log("Accuracy Scale: "$AccuracyScale);
 	Log("Recoil Scale: "$RecoilScale);
@@ -170,6 +312,9 @@ simulated final function BindDefaults()
 	Log("Bright Players: "$bBrightPlayers);
 	Log("Dodging: "$bAllowDodging);
 	Log("Double Jumping: "$bAllowDoubleJump);
+
+	if (Role == ROLE_Authority)
+		BindToReplication();
 }
 
 static function BallisticReplicationInfo GetInstance(actor A)

@@ -490,22 +490,25 @@ function CheckBob(float DeltaTime, vector Y)
 	local float OldBobTime;
 	local int m,n;
 
-    DeltaTime *= GroundSpeed / 360;
+    DeltaTime *= GroundSpeed / 300;
 
 	OldBobTime = BobTime;
 
-	Super.CheckBob(DeltaTime,Y);
+	Super(Pawn).CheckBob(DeltaTime,Y);
 
-	if ( (Physics != PHYS_Walking) || (VSize(Velocity) < 10)
-		|| ((PlayerController(Controller) != None) && PlayerController(Controller).bBehindView) )
+	if ( (Physics != PHYS_Walking) || (VSize(Velocity) < 10) || ((PlayerController(Controller) != None) && PlayerController(Controller).bBehindView) )
 		return;
 
+	// BobTime is an accumulator and is never reset.
 	m = int(0.5 * Pi + 9.0 * OldBobTime/Pi);
 	n = int(0.5 * Pi + 9.0 * BobTime/Pi);
 
 	if (m != n)
+	{
 		FootStepping(0);
-	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.5 * (360.0f / GroundSpeed)) )
+	}
+
+	else if ( !bWeaponBob && bPlayOwnFootsteps && (Level.TimeSeconds - LastFootStepTime > 0.45 * (260.0f / GroundSpeed)) )
 	{
 		LastFootStepTime = Level.TimeSeconds;
 		FootStepping(0);
@@ -520,7 +523,11 @@ simulated function FootStepping(int Side)
 	local vector HL,HN,Start,End,HitLocation,HitNormal;
 	local float SoundScale;
 	
-	SoundScale = GroundSpeed / default.GroundSpeed;
+	// sprint - louder footsteps
+	if (GroundSpeed > default.GroundSpeed)
+		SoundScale = 2;
+	else
+		SoundScale = GroundSpeed / default.GroundSpeed;
 
     SurfaceNum = 0;
 
@@ -2988,9 +2995,10 @@ defaultproperties
 	 BloodFlashV=(X=1000,Y=250,Z=250)
      ShieldFlashV=(X=750,Y=500,Z=350)
 
-     FootstepVolume=0.350000
-     FootstepRadius=400.000000
+     FootstepVolume=0.20000
+     FootstepRadius=256.000000
 
+	 BaseEyeHeight=36
      CollisionRadius=19.000000
 
      GruntVolume=0.2

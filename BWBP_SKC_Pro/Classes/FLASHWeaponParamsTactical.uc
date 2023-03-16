@@ -83,7 +83,7 @@ defaultproperties
         DisplaceDurationMult=1.25
 		InventorySize=8
 		SightMoveSpeedFactor=0.5
-		SightingTime=0.350000		
+		SightingTime=0.50000		
 		MagAmmo=4
         ZoomType=ZT_Fixed
         RecoilParams(0)=RecoilParams'TacticalRecoilParams'
